@@ -1,0 +1,1029 @@
+{
+ "batch": 769,
+ "checks": [
+  {
+   "label": "★★ 静态：isEditable 早退排在 Escape 分支之前（D3 的机制）",
+   "pass": true,
+   "got": {
+    "gate": 486,
+    "esc": 548
+   }
+  },
+  {
+   "label": "★ 静态：isEditable 覆盖 INPUT/TEXTAREA/SELECT 与 contenteditable",
+   "pass": true,
+   "got": [
+    "INPUT",
+    "TEXTAREA",
+    "SELECT"
+   ]
+  },
+  {
+   "label": "★★ 静态：导演台 Esc 阶梯对另外五个浮层状态 0 处引用",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★ 静态：阶梯里导出面板那档恰好一处",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "★★ 静态：群众面板 3 个 input 在 2 个 button 之前 ⟹ 预测落点 index 3",
+   "pass": true,
+   "got": {
+    "inputs": 3,
+    "buttons": 2,
+    "order": [
+     "input",
+     "input",
+     "input",
+     "button",
+     "button"
+    ]
+   }
+  },
+  {
+   "label": "★ 静态：群众面板的非输入框落点实测就是 index 3（J12）",
+   "pass": true,
+   "got": {
+    "staticPredicted": 3,
+    "raw": 3
+   }
+  },
+  {
+   "label": "★ 静态：导出面板画幅按钮排在提交按钮之前",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ D12：取标签的形状守卫通过（最近的 <input 比最近的 > 更靠后）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★★ D12：那是个 type=file 且 className 含 sr-only 的输入框",
+   "pass": true,
+   "got": {
+    "file": true,
+    "srOnly": true
+   }
+  },
+  {
+   "label": "★★ D12：它**零可访问名**（无 aria-label / aria-labelledby / title / id / 不在 label 内）",
+   "pass": true,
+   "got": {
+    "mlAriaLabel": false,
+    "mlAriaLabelledby": false,
+    "mlTitle": false,
+    "mlId": false,
+    "mlLabelOpenedBefore": false
+   }
+  },
+  {
+   "label": "★ D12：产物里 D12 的每一项与现算一致（含 sr-only 与可访问名）",
+   "pass": true,
+   "got": {
+    "isSrOnly": true,
+    "hasAriaLabel": false,
+    "wrappedInLabel": false,
+    "typeFile": true
+   }
+  },
+  {
+   "label": "★★ D12：它落在模型库面板的**第一个**可聚焦位置（index 0）",
+   "pass": true,
+   "got": {
+    "artifact": 0,
+    "raw": 0
+   }
+  },
+  {
+   "label": "★ D12 的 measured 里含「editable 臂的落点就是它」与 pickedIndex=0",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D12 明确写了它与 765/762 那个 display:none 的**不是同一个**",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D12 有 fixDirection 且两个选项都写了",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 判据 12 条（8 PASS / 4 FAIL）",
+   "pass": true,
+   "got": {
+    "n": 12,
+    "pass": 8,
+    "fail": 4
+   }
+  },
+  {
+   "label": "★ FAIL 的判据恰好是 J5/J7/J8/J10",
+   "pass": true,
+   "got": [
+    "J10",
+    "J5",
+    "J7",
+    "J8"
+   ]
+  },
+  {
+   "label": "★ PASS 的判据恰好是 J1/J2/J3/J4/J6/J9/J11/J12",
+   "pass": true,
+   "got": [
+    "J1",
+    "J11",
+    "J12",
+    "J2",
+    "J3",
+    "J4",
+    "J6",
+    "J9"
+   ]
+  },
+  {
+   "label": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★★ 协议等价按**落点**配对：768 的 raw 被真的读了一遍",
+   "pass": true,
+   "got": {
+    "reproduced": [
+     "export",
+     "preset",
+     "pathmenu",
+     "phonevcam",
+     "crowd",
+     "modellib"
+    ],
+    "prevIds": true
+   }
+  },
+  {
+   "label": "★★ 6/6 复现 768 的读数（由 raw 现算，不是引用产物）",
+   "pass": true,
+   "got": {
+    "artifact": [
+     "export",
+     "preset",
+     "pathmenu",
+     "phonevcam",
+     "crowd",
+     "modellib"
+    ],
+    "raw": [
+     "export",
+     "preset",
+     "pathmenu",
+     "phonevcam",
+     "crowd",
+     "modellib"
+    ],
+    "mismatch": []
+   }
+  },
+  {
+   "label": "★ 产物写明「按落点不按臂名」的判别式与其理由",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 3 个浮层一个输入框都没有 ⟹ 它们的 editable 臂结构性不可能",
+   "pass": true,
+   "got": {
+    "noEditable": [
+     "preset",
+     "pathmenu",
+     "phonevcam"
+    ],
+    "impossible": [
+     "preset/editable",
+     "pathmenu/editable",
+     "phonevcam/editable"
+    ]
+   }
+  },
+  {
+   "label": "★★ 结构性失败与存量一致（n==0 ⟺ 该臂两轮都失败；n>0 ⟹ 两轮都成功）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★★ 两臂读到的控件存量**一致**（不一致 ⟹ 有一臂读数被改过）",
+   "pass": true,
+   "got": {}
+  },
+  {
+   "label": "★ 产物里 impossibleArms 与 raw 现算一致",
+   "pass": true,
+   "got": {
+    "artifact": [
+     "preset/editable",
+     "pathmenu/editable",
+     "phonevcam/editable"
+    ],
+    "raw": [
+     "preset/editable",
+     "pathmenu/editable",
+     "phonevcam/editable"
+    ]
+   }
+  },
+  {
+   "label": "★ 可聚焦控件存量与 768 逐个相同",
+   "pass": true,
+   "got": {
+    "agree": true,
+    "raw": {
+     "export": 5,
+     "preset": 10,
+     "pathmenu": 5,
+     "phonevcam": 2,
+     "crowd": 5,
+     "modellib": 15
+    }
+   }
+  },
+  {
+   "label": "★★ 新协议分桶：焦点掉 body 3 个 + 导演台被关掉 3 个",
+   "pass": true,
+   "got": {
+    "artifact": {
+     "body": [
+      "export",
+      "phonevcam",
+      "modellib"
+     ],
+     "deskLost": [
+      "preset",
+      "pathmenu",
+      "crowd"
+     ]
+    },
+    "raw": {
+     "measured-focus-to-body": [
+      "export",
+      "phonevcam",
+      "modellib"
+     ],
+     "measured-desk-lost": [
+      "preset",
+      "pathmenu",
+      "crowd"
+     ]
+    }
+   }
+  },
+  {
+   "label": "★★ 归还焦点触发器 0 个",
+   "pass": true,
+   "got": {
+    "artifact": [],
+    "raw": null
+   }
+  },
+  {
+   "label": "★★ 6 个浮层的分桶**恰好铺满**（all([]) 陷阱）",
+   "pass": true,
+   "got": {
+    "artifact": {
+     "measured-desk-lost": 3,
+     "measured-focus-to-body": 3
+    },
+    "raw": {
+     "measured-focus-to-body": [
+      "export",
+      "phonevcam",
+      "modellib"
+     ],
+     "measured-desk-lost": [
+      "preset",
+      "pathmenu",
+      "crowd"
+     ]
+    }
+   }
+  },
+  {
+   "label": "★ 逐浮层结论与 raw 现算一致",
+   "pass": true,
+   "got": {}
+  },
+  {
+   "label": "★★ J4：768 的「2 个没测到」被关掉，且产物不再有那一桶",
+   "pass": true,
+   "got": "★ **768 的 J10「2 个浮层没测到」被关掉了**：换成非输入框落点之后，**6 个浮层全部拿到焦点去向读数，0"
+  },
+  {
+   "label": "★★ J5：D11 扩大确认，措辞含「仍是 0/6」与「3 个全错」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D11 的 newMembers 是 export（只加了一个）",
+   "pass": true,
+   "got": {
+    "id": "D11",
+    "from": "768 的 2/6 测到",
+    "to": "3/6 测到且全错",
+    "severity": "低",
+    "title": "焦点归还仍是 0/6；新增导出面板一例（独立协议）",
+    "newMembers": [
+     "export"
+    ],
+    "measured": "非输入框落点下，导出面板 / 虚拟相机 / 模型库**全部把焦点丢到 `body`**，2/2 轮；预设运镜 / 创建运动轨迹 / 添加群众阵列按 Esc **关掉整个导演台**、触发器随之卸载 ⟹ **「没测到」这一桶已清空**。",
+    "needsSrcChange": true
+   }
+  },
+  {
+   "label": "★★ J6：765 的 D4 独立复现，措辞含「另一套协议」与「独立重测」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ D4 本批**没有新增成员**（产物不许把它写成扩宽）",
+   "pass": true,
+   "got": {
+    "newMembers": []
+   }
+  },
+  {
+   "label": "★ D4 的 note 写明是「双协议确认」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 导出面板新协议的落点实测就是画幅按钮（index 1/5）",
+   "pass": true,
+   "got": {
+    "raw": 1
+   }
+  },
+  {
+   "label": "★★ J7：D3×D8 的耦合写成实测（输入框=没发生 / cancel 按钮=导演台没了）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ D3 的 repairOrder 写明「先修 D8，再修 D3」且有顺序理由",
+   "pass": true,
+   "got": "★ **先修 D8，再修 D3。** 顺序反了会在「给 `isEditable` 开特例」的那一刻把群众阵列面板的「按 Esc 丢工作区」直接打开。"
+  },
+  {
+   "label": "★★ 群众阵列双臂读数：editable=没关、noneditable=导演台没了",
+   "pass": true,
+   "got": {
+    "editable": [
+     "panel-stuck",
+     "panel-stuck"
+    ],
+    "noneditable": [
+     "desk-lost",
+     "desk-lost"
+    ]
+   }
+  },
+  {
+   "label": "★ D3 的 note 写明「作用域」与「这个 if 的两面」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ J9：产物写明 isEditable 早退只对两类浮层有效、对模型库无效",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 模型库的 editable 臂落点是 INPUT 却仍然关掉了面板（作用域证据）",
+   "pass": true,
+   "got": {
+    "index": 0,
+    "class": [
+     "closed-focus-on-body",
+     "closed-focus-on-body"
+    ]
+   }
+  },
+  {
+   "label": "★★ J10 是不声称，且列了「只换类别没换位置」与 768 的遗留项",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里保留了「没换位置」与「sr-only 同族未普查」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里说了没改 src/",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ 两轮逐字段一致",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 可比性里记了协议（每臂重载页面、不点外点）与「只换一个变量」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ 12 格无缺格、每格两轮",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 观察恰好 5 条（多出来的就是「把缺陷降级成观察」的痕迹）",
+   "pass": true,
+   "got": [
+    "O1",
+    "O2",
+    "O3",
+    "O4",
+    "O5"
+   ]
+  },
+  {
+   "label": "★ 观测 O3 记了「换个变量把耦合照出来」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 观测 O5 记了「产物里的推理是欠账」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 探针教训 6 条（R81/R82/R83/R84/R85/R86）",
+   "pass": true,
+   "got": [
+    "R81",
+    "R82",
+    "R83",
+    "R84",
+    "R85",
+    "R86"
+   ]
+  },
+  {
+   "label": "★ 每条教训都有 whyItMatters",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ R85 写明了 JSX 上 `[^>]*>` 会停在 `=>` 上",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ R84 写明了 sr-only 与 display:none 是两回事",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ R86 写明了「要改决定分类的那个字段」与 R80 的关系",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ env.srcModified 为 False",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 原始读数与探针脚本都随产物提交（R43）",
+   "pass": true,
+   "got": {
+    "raw": [],
+    "probes": []
+   }
+  },
+  {
+   "label": "★ rawSha 覆盖本批与 768 两份原始读数",
+   "pass": true,
+   "got": {
+    "vb769a.json": "a0854aa2ad7c6f9b",
+    "vb768a.json": "cf53ac25259836a3"
+   }
+  },
+  {
+   "label": "★ 每个探针都标了 rounds 与 injected",
+   "pass": true,
+   "got": [
+    [
+     "769a",
+     2
+    ]
+   ]
+  },
+  {
+   "label": "★ README 判据表 12 行",
+   "pass": true,
+   "got": 12
+  },
+  {
+   "label": "★★ README 判据表首格不许是裸数字（pre-commit 正则会拦）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★ README 判据表的结论与产物 verdict 逐行一致",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★ README 有「选题」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「判据」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「读数全景」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「新缺陷」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「方法论」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「探针教训」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「不声称」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「复现」章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ README 有 D12 章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ README 的 D12 段写了 sr-only 与「第一个可聚焦」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「先修 D8，再修 D3」的顺序结论",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有「修法顺序」段",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ 台账恰好一行 Batch 769",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "★ 台账首格是 Batch 769（不是裸数字）",
+   "pass": true,
+   "got": "| Batch 769 | **协议 v2：只换"
+  },
+  {
+   "label": "★★ 台账新行 0 个 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★ 台账新行是 3 列",
+   "pass": true,
+   "got": 4
+  },
+  {
+   "label": "★ 台账新行提到了 D12 与「先修 D8，再修 D3」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 台账历史 U+FFFD 仍是 9 个、仍在 522/583/587",
+   "pass": true,
+   "got": {
+    "n": 9,
+    "lines": [
+     522,
+     583,
+     587
+    ]
+   }
+  },
+  {
+   "label": "★ 台账只有 632 行",
+   "pass": true,
+   "got": 632
+  }
+ ],
+ "pass": 84,
+ "total": 84,
+ "negativeControls": [
+  {
+   "name": "★★ 删掉 D12",
+   "caught": true,
+   "firstFail": "★ D12 的 measured 里含「editable 臂的落点就是它」与 pickedIndex=0"
+  },
+  {
+   "name": "★★ 把 D12 真的降级成观察（从 defects 挪走）",
+   "caught": true,
+   "firstFail": "★ D12 的 measured 里含「editable 臂的落点就是它」与 pickedIndex=0"
+  },
+  {
+   "name": "★ 把 D12 的 isSrOnly 抹掉（它就不 sr-only 了）",
+   "caught": true,
+   "firstFail": "★ D12：产物里 D12 的每一项与现算一致（含 sr-only 与可访问名）"
+  },
+  {
+   "name": "★ 把 D12 的 hasAriaLabel 改成 true（有名字了）",
+   "caught": true,
+   "firstFail": "★ D12：产物里 D12 的每一项与现算一致（含 sr-only 与可访问名）"
+  },
+  {
+   "name": "★ 把 D12 的 indexInPanel 从 0 改成 1（不再是第一站）",
+   "caught": true,
+   "firstFail": "★★ D12：它落在模型库面板的**第一个**可聚焦位置（index 0）"
+  },
+  {
+   "name": "★ 抹掉 D12 的 whyItWasMissedBefore（与 765 那个的区别没了）",
+   "caught": true,
+   "firstFail": "★ D12 明确写了它与 765/762 那个 display:none 的**不是同一个**"
+  },
+  {
+   "name": "★ 抹掉 D12 的 fixDirection",
+   "caught": true,
+   "firstFail": "★ D12 有 fixDirection 且两个选项都写了"
+  },
+  {
+   "name": "★ 删掉 J8",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 删掉 R85（JSX 切片那条）",
+   "caught": true,
+   "firstFail": "★ 探针教训 5 条（R81/R82/R83/R84/R85/R86）"
+  },
+  {
+   "name": "★ 删掉 R84（sr-only vs display:none）",
+   "caught": true,
+   "firstFail": "★ 探针教训 5 条（R81/R82/R83/R84/R85/R86）"
+  },
+  {
+   "name": "★★ 把 reproduced 改成 5 个（少一个复现）",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★★ 把 matchedArm 抹掉（说不清按什么配对）",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★★ 把 impossibleArms 抹成空（假装三臂都跑起来了）",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★ 删掉 J3（协议等价判别式）",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ R81 抹掉 whyItMatters",
+   "caught": true,
+   "firstFail": "★ 每条教训都有 whyItMatters"
+  },
+  {
+   "name": "★★ 把「焦点掉 body」那一桶清空（当成 0 个）",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★★ 把「导演台被关掉」那一桶清空",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★★ 塞一个「归还到触发器」的浮层（D11 就被推翻了）",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★★ 把 counts 改成 6 个都掉 body",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★ 删掉 J5（D11 扩大确认）",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 删掉 J4（768 的缺口被关掉）",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★★ 抹掉 D3 的 repairOrder（顺序约束没了）",
+   "caught": true,
+   "firstFail": "★★ D3 的 repairOrder 写明「先修 D8，再修 D3」且有顺序理由"
+  },
+  {
+   "name": "★★ 把 repairOrder 写成「先修 D3 再修 D8」（顺序反了）",
+   "caught": true,
+   "firstFail": "★★ D3 的 repairOrder 写明「先修 D8，再修 D3」且有顺序理由"
+  },
+  {
+   "name": "★★ 删掉 J7（耦合那条判据）",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ D3 的 note 抹掉「作用域」",
+   "caught": true,
+   "firstFail": "★ D3 的 note 写明「作用域」与「这个 if 的两面」"
+  },
+  {
+   "name": "★ 删掉 J9（isEditable 作用域）",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★★ 把 D4 的 newMembers 塞进 export（谎称扩宽了）",
+   "caught": true,
+   "firstFail": "★★ D4 本批**没有新增成员**（产物不许把它写成扩宽）"
+  },
+  {
+   "name": "★ 把 D4 的 note 里的「没有新增成员」抹掉",
+   "caught": true,
+   "firstFail": "★★ D4 本批**没有新增成员**（产物不许把它写成扩宽）"
+  },
+  {
+   "name": "★ 删掉 J6（D4 独立复现）",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★★ 删掉 J10（不声称）",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 不声称里删掉「没换位置」",
+   "caught": true,
+   "firstFail": "★ 不声称里保留了「没换位置」与「sr-only 同族未普查」"
+  },
+  {
+   "name": "★ 不声称里删掉「sr-only 同族未普查」",
+   "caught": true,
+   "firstFail": "★ 不声称里保留了「没换位置」与「sr-only 同族未普查」"
+  },
+  {
+   "name": "★ 把 J5 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 把 J7 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 把 J8 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 把 J10 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 判据全改成 PASS",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 把判据条数从 12 改成 9",
+   "caught": true,
+   "firstFail": "★ 判据 12 条（8 PASS / 4 FAIL）"
+  },
+  {
+   "name": "★ 把 J7 的 evidence 换成可比性",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "★ 只改 findings 一份（判据的 evidence 不动）",
+   "caught": true,
+   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+  },
+  {
+   "name": "伪造：isEditable 早退不再排在 Escape 分支之前",
+   "caught": true,
+   "firstFail": "★★ 静态：isEditable 早退排在 Escape 分支之前（D3 的机制）"
+  },
+  {
+   "name": "伪造：isEditable 判定不再覆盖 contenteditable",
+   "caught": true,
+   "firstFail": "★ 静态：isEditable 覆盖 INPUT/TEXTAREA/SELECT 与 contenteditable"
+  },
+  {
+   "name": "伪造：群众面板变成 2 个 input（落点预测要变）",
+   "caught": true,
+   "firstFail": "★★ 静态：群众面板 3 个 input 在 2 个 button 之前 ⟹ 预测落点 index 3"
+  },
+  {
+   "name": "伪造：群众面板按钮排在 input 之前",
+   "caught": true,
+   "firstFail": "★★ 静态：群众面板 3 个 input 在 2 个 button 之前 ⟹ 预测落点 index 3"
+  },
+  {
+   "name": "伪造：那个文件框其实不是 sr-only",
+   "caught": true,
+   "firstFail": "★★ D12：那是个 type=file 且 className 含 sr-only 的输入框"
+  },
+  {
+   "name": "伪造：那个文件框其实有 aria-label",
+   "caught": true,
+   "firstFail": "★★ D12：它**零可访问名**（无 aria-label / aria-labelledby / title / id / 不在 label 内）"
+  },
+  {
+   "name": "伪造：那个文件框其实被 <label> 包着",
+   "caught": true,
+   "firstFail": "★★ D12：它**零可访问名**（无 aria-label / aria-labelledby / title / id / 不在 label 内）"
+  },
+  {
+   "name": "伪造：形状守卫失败（切片越过了标签结尾）",
+   "caught": true,
+   "firstFail": "★★ D12：取标签的形状守卫通过（最近的 <input 比最近的 > 更靠后）"
+  },
+  {
+   "name": "伪造：导演台阶梯里居然引用了别的浮层状态",
+   "caught": true,
+   "firstFail": "★★ 静态：导演台 Esc 阶梯对另外五个浮层状态 0 处引用"
+  },
+  {
+   "name": "伪造：导出面板画幅按钮排到提交之后",
+   "caught": true,
+   "firstFail": "★ 静态：导出面板画幅按钮排在提交按钮之前"
+  },
+  {
+   "name": "★★ 原始：导出面板新协议下焦点不再掉 body",
+   "caught": true,
+   "firstFail": "★★ 新协议分桶：焦点掉 body 3 个 + 导演台被关掉 3 个"
+  },
+  {
+   "name": "★★ 原始：群众阵列新协议下不再关导演台（耦合消失）",
+   "caught": true,
+   "firstFail": "★★ 新协议分桶：焦点掉 body 3 个 + 导演台被关掉 3 个"
+  },
+  {
+   "name": "★★ 原始：群众阵列 editable 臂不再被早退吞掉",
+   "caught": true,
+   "firstFail": "★★ 协议等价按**落点**配对：768 的 raw 被真的读了一遍"
+  },
+  {
+   "name": "★★ 原始：模型的 editable 臂落点从 INPUT 改成 BUTTON（作用域证据消失）",
+   "caught": true,
+   "firstFail": "★★ 协议等价按**落点**配对：768 的 raw 被真的读了一遍"
+  },
+  {
+   "name": "★★ 原始：把 768 的 crowd inside 臂改掉（6/6 复现被破坏）",
+   "caught": true,
+   "firstFail": "★★ 协议等价按**落点**配对：768 的 raw 被真的读了一遍"
+  },
+  {
+   "name": "★ 原始：把 768 的 phonevcam inside 臂改掉",
+   "caught": true,
+   "firstFail": "★★ 协议等价按**落点**配对：768 的 raw 被真的读了一遍"
+  },
+  {
+   "name": "★★ 原始：给 preset 凭空加一个输入框（结构性失败的解释被破坏）",
+   "caught": true,
+   "firstFail": "★★ 两臂读到的控件存量**一致**（不一致 ⟹ 有一臂读数被改过）"
+  },
+  {
+   "name": "★ 原始：群众阵列非输入框落点从 index 3 改成 1（J12 失效）",
+   "caught": true,
+   "firstFail": "★ 静态：群众面板的非输入框落点实测就是 index 3（J12）"
+  },
+  {
+   "name": "★ 原始：某格 FAILED",
+   "caught": true,
+   "firstFail": "重算抛错：sequence item 0: expected str instance, NoneType found"
+  },
+  {
+   "name": "★ all([]) 陷阱：把 rows 清空（两轮都清）",
+   "caught": true,
+   "firstFail": "重算抛错：export 没读到存量"
+  },
+  {
+   "name": "★ 原始：可聚焦控件存量改成与 768 不同",
+   "caught": true,
+   "firstFail": "重算抛错：modellib 两类计数与总数对不上"
+  },
+  {
+   "name": "★ 原始：某格起点不干净（浮层没打开）",
+   "caught": true,
+   "firstFail": "★★ 结构性失败与存量一致（n==0 ⟺ 该臂两轮都失败；n>0 ⟹ 两轮都成功）"
+  },
+  {
+   "name": "★ 原始：焦点没放进浮层内",
+   "caught": true,
+   "firstFail": "★★ 结构性失败与存量一致（n==0 ⟺ 该臂两轮都失败；n>0 ⟹ 两轮都成功）"
+  },
+  {
+   "name": "★ 原始：editable 臂落到了非输入框控件（臂与类别不符）",
+   "caught": true,
+   "firstFail": "★★ 结构性失败与存量一致（n==0 ⟺ 该臂两轮都失败；n>0 ⟹ 两轮都成功）"
+  },
+  {
+   "name": "★ 台账删掉 Batch 769 行",
+   "caught": true,
+   "firstFail": "★★ 台账恰好一行 Batch 769"
+  },
+  {
+   "name": "★ 台账行首格改成裸数字 769",
+   "caught": true,
+   "firstFail": "★★ 台账恰好一行 Batch 769"
+  },
+  {
+   "name": "★ 台账行首格写成 Batch 0769",
+   "caught": true,
+   "firstFail": "★★ 台账恰好一行 Batch 769"
+  },
+  {
+   "name": "★ 台账新行塞一个 U+FFFD",
+   "caught": true,
+   "firstFail": "★★ 台账新行 0 个 U+FFFD"
+  },
+  {
+   "name": "★ 台账被追加了 Batch 770（行数断言）",
+   "caught": true,
+   "firstFail": "★ 台账新行是 3 列"
+  },
+  {
+   "name": "★ 台账新行不含 D12",
+   "caught": true,
+   "firstFail": "★ 台账新行提到了 D12 与「先修 D8，再修 D3」"
+  },
+  {
+   "name": "★ README 判据表首格改成裸数字",
+   "caught": true,
+   "firstFail": "★ README 判据表 12 行"
+  },
+  {
+   "name": "★ README 删掉「不声称」章节",
+   "caught": true,
+   "firstFail": "★ README 有「不声称」章节"
+  },
+  {
+   "name": "★ README 删掉 D12 章节",
+   "caught": true,
+   "firstFail": "★★ README 有 D12 章节"
+  },
+  {
+   "name": "★ README 删掉「先修 D8，再修 D3」",
+   "caught": true,
+   "firstFail": "★ README 有「先修 D8，再修 D3」的顺序结论"
+  },
+  {
+   "name": "★ README 删掉 sr-only",
+   "caught": true,
+   "firstFail": "★★ README 的 D12 段写了 sr-only 与「第一个可聚焦」"
+  }
+ ],
+ "negativeCaught": 75,
+ "negativeTotal": 75,
+ "rawError": null,
+ "ok": true
+}

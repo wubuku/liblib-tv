@@ -1,0 +1,6504 @@
+{
+ "batch": 769,
+ "date": "2026-10-01",
+ "scope": "协议 v2：只换「焦点落点」这一个变量，把 768 明确声明「没测到」的 2 个浮层测掉，并按落点复核 768 的读数",
+ "env": {
+  "base": "http://localhost:4317",
+  "canvas": "canvas-2",
+  "directorNodeId": "b-bTLLuU4w5q",
+  "viewport": "1440x1000（桌面）",
+  "player": "chromium (playwright sync_api)",
+  "srcModified": false
+ },
+ "probes": [
+  {
+   "id": "769a",
+   "file": "probes/dbg769a.py",
+   "raw": "raw/vb769a.json",
+   "rounds": 2,
+   "injected": false,
+   "note": "两个臂各从重载页面开始：editable（浮层里第一个输入框）/ noneditable（第一个非输入框控件）。某臂要的类别为 0 时**如实报计数并拒绝退化**。"
+  }
+ ],
+ "rawSha": {
+  "vb769a.json": "a0854aa2ad7c6f9b",
+  "vb768a.json": "cf53ac25259836a3"
+ },
+ "findings": {
+  "comparability": {
+   "keys": [
+    "rows"
+   ],
+   "allConsistent": true,
+   "firstDiff": {},
+   "rounds": 2,
+   "protocol": "★ **每个臂都从重新加载的页面开始**（768 的 R73），全程**不点外点**；只点 6 个 disclosure 触发器，其余是 `.focus()` 读操作与 Esc。",
+   "variable": "★ 本批**只换一个变量**：焦点落点（第一个输入框 / 第一个非输入框控件）。其余协议与 768 逐字相同。",
+   "clearedLocalStorage": [
+    [],
+    [
+     "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+    ]
+   ],
+   "deskGoneAfter": [
+    [
+     "preset/noneditable",
+     "pathmenu/noneditable",
+     "crowd/noneditable"
+    ],
+    [
+     "preset/noneditable",
+     "pathmenu/noneditable",
+     "crowd/noneditable"
+    ]
+   ],
+   "carriedOverFrom768": {
+    "deskGoneAfterMatches": [
+     [
+      "preset/noneditable",
+      "pathmenu/noneditable",
+      "crowd/noneditable"
+     ],
+     [
+      "preset/noneditable",
+      "pathmenu/noneditable",
+      "crowd/noneditable"
+     ]
+    ],
+    "clearedPattern": [
+     [],
+     [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ]
+    ]
+   }
+  },
+  "protocolV2": {
+   "arm": "noneditable（浮层里第一个非输入框控件）",
+   "perDisclosure": {
+    "export": {
+     "verdict": "measured-focus-to-body",
+     "editableArmVerdict": "measured-stuck",
+     "landing": {
+      "tag": "BUTTON",
+      "type": "button",
+      "pickedIndex": 1,
+      "pickedTag": "BUTTON",
+      "nEditable": 1,
+      "nNonEditable": 4,
+      "total": 5,
+      "isEditableByTag": false,
+      "inPanel": true
+     },
+     "editableLanding": {
+      "tag": "INPUT",
+      "type": "number",
+      "pickedIndex": 0,
+      "pickedTag": "INPUT",
+      "nEditable": 1,
+      "nNonEditable": 4,
+      "total": 5,
+      "isEditableByTag": true,
+      "inPanel": true
+     },
+     "class": [
+      "closed-focus-on-body",
+      "closed-focus-on-body"
+     ]
+    },
+    "preset": {
+     "verdict": "measured-desk-lost",
+     "editableArmVerdict": "structurally-impossible",
+     "landing": {
+      "tag": "BUTTON",
+      "type": "button",
+      "pickedIndex": 0,
+      "pickedTag": "BUTTON",
+      "nEditable": 0,
+      "nNonEditable": 10,
+      "total": 10,
+      "isEditableByTag": false,
+      "inPanel": true
+     },
+     "editableLanding": {
+      "tag": null,
+      "type": null,
+      "pickedIndex": null,
+      "pickedTag": null,
+      "nEditable": 0,
+      "nNonEditable": 10,
+      "total": 10,
+      "isEditableByTag": false,
+      "inPanel": false
+     },
+     "class": [
+      "desk-lost",
+      "desk-lost"
+     ]
+    },
+    "pathmenu": {
+     "verdict": "measured-desk-lost",
+     "editableArmVerdict": "structurally-impossible",
+     "landing": {
+      "tag": "BUTTON",
+      "type": "button",
+      "pickedIndex": 0,
+      "pickedTag": "BUTTON",
+      "nEditable": 0,
+      "nNonEditable": 5,
+      "total": 5,
+      "isEditableByTag": false,
+      "inPanel": true
+     },
+     "editableLanding": {
+      "tag": null,
+      "type": null,
+      "pickedIndex": null,
+      "pickedTag": null,
+      "nEditable": 0,
+      "nNonEditable": 5,
+      "total": 5,
+      "isEditableByTag": false,
+      "inPanel": false
+     },
+     "class": [
+      "desk-lost",
+      "desk-lost"
+     ]
+    },
+    "phonevcam": {
+     "verdict": "measured-focus-to-body",
+     "editableArmVerdict": "structurally-impossible",
+     "landing": {
+      "tag": "BUTTON",
+      "type": "button",
+      "pickedIndex": 0,
+      "pickedTag": "BUTTON",
+      "nEditable": 0,
+      "nNonEditable": 2,
+      "total": 2,
+      "isEditableByTag": false,
+      "inPanel": true
+     },
+     "editableLanding": {
+      "tag": null,
+      "type": null,
+      "pickedIndex": null,
+      "pickedTag": null,
+      "nEditable": 0,
+      "nNonEditable": 2,
+      "total": 2,
+      "isEditableByTag": false,
+      "inPanel": false
+     },
+     "class": [
+      "closed-focus-on-body",
+      "closed-focus-on-body"
+     ]
+    },
+    "crowd": {
+     "verdict": "measured-desk-lost",
+     "editableArmVerdict": "measured-stuck",
+     "landing": {
+      "tag": "BUTTON",
+      "type": "button",
+      "pickedIndex": 3,
+      "pickedTag": "BUTTON",
+      "nEditable": 3,
+      "nNonEditable": 2,
+      "total": 5,
+      "isEditableByTag": false,
+      "inPanel": true
+     },
+     "editableLanding": {
+      "tag": "INPUT",
+      "type": "number",
+      "pickedIndex": 0,
+      "pickedTag": "INPUT",
+      "nEditable": 3,
+      "nNonEditable": 2,
+      "total": 5,
+      "isEditableByTag": true,
+      "inPanel": true
+     },
+     "class": [
+      "desk-lost",
+      "desk-lost"
+     ]
+    },
+    "modellib": {
+     "verdict": "measured-focus-to-body",
+     "editableArmVerdict": "measured-focus-to-body",
+     "landing": {
+      "tag": "BUTTON",
+      "type": "button",
+      "pickedIndex": 1,
+      "pickedTag": "BUTTON",
+      "nEditable": 2,
+      "nNonEditable": 13,
+      "total": 15,
+      "isEditableByTag": false,
+      "inPanel": true
+     },
+     "editableLanding": {
+      "tag": "INPUT",
+      "type": "file",
+      "pickedIndex": 0,
+      "pickedTag": "INPUT",
+      "nEditable": 2,
+      "nNonEditable": 13,
+      "total": 15,
+      "isEditableByTag": true,
+      "inPanel": true
+     },
+     "class": [
+      "closed-focus-on-body",
+      "closed-focus-on-body"
+     ]
+    }
+   },
+   "focusRestoredToTrigger": [],
+   "focusFellToBody": [
+    "export",
+    "phonevcam",
+    "modellib"
+   ],
+   "panelStuck": [],
+   "deskLost": [
+    "preset",
+    "pathmenu",
+    "crowd"
+   ],
+   "structurallyImpossible": [],
+   "counts": {
+    "measured-desk-lost": 3,
+    "measured-focus-to-body": 3
+   },
+   "cells": {
+    "export/editable": [
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": "panel-stuck",
+      "focusAfter": {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     },
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": "panel-stuck",
+      "focusAfter": {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     }
+    ],
+    "export/noneditable": [
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     },
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     }
+    ],
+    "preset/editable": [
+     {
+      "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+      "failedKind": "no-element-of-that-kind",
+      "opened": false,
+      "focusPlaced": false,
+      "landing": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": null,
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+      "failedKind": "no-element-of-that-kind",
+      "opened": false,
+      "focusPlaced": false,
+      "landing": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": null,
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "preset/noneditable": [
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "pathmenu/editable": [
+     {
+      "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+      "failedKind": "no-element-of-that-kind",
+      "opened": false,
+      "focusPlaced": false,
+      "landing": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": null,
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+      "failedKind": "no-element-of-that-kind",
+      "opened": false,
+      "focusPlaced": false,
+      "landing": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": null,
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "pathmenu/noneditable": [
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "phonevcam/editable": [
+     {
+      "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+      "failedKind": "no-element-of-that-kind",
+      "opened": false,
+      "focusPlaced": false,
+      "landing": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": null,
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+      "failedKind": "no-element-of-that-kind",
+      "opened": false,
+      "focusPlaced": false,
+      "landing": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": null,
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "phonevcam/noneditable": [
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     },
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     }
+    ],
+    "crowd/editable": [
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": "panel-stuck",
+      "focusAfter": {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     },
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": "panel-stuck",
+      "focusAfter": {
+       "tag": "INPUT",
+       "isTrigger": false,
+       "isBody": false,
+       "inDialog": true
+      }
+     }
+    ],
+    "crowd/noneditable": [
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 3,
+       "pickedTag": "BUTTON",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     },
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 3,
+       "pickedTag": "BUTTON",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "desk-lost",
+      "focusAfter": {
+       "tag": null,
+       "isTrigger": null,
+       "isBody": null,
+       "inDialog": null
+      }
+     }
+    ],
+    "modellib/editable": [
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "INPUT",
+       "type": "file",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     },
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "INPUT",
+       "type": "file",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     }
+    ],
+    "modellib/noneditable": [
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     },
+     {
+      "failed": null,
+      "failedKind": null,
+      "opened": true,
+      "focusPlaced": true,
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "class": "closed-focus-on-body",
+      "focusAfter": {
+       "tag": "BODY",
+       "isTrigger": false,
+       "isBody": true,
+       "inDialog": false
+      }
+     }
+    ]
+   }
+  },
+  "reproducibility": {
+   "rule": "★ **按落点（tag+type）配对，不按臂名** —— 面板里没有输入框的浮层，它的 `editable` 臂会结构性失败；按臂名配对会把「那一类控件不存在」误判成「复现失败」。",
+   "pairs": [
+    {
+     "id": "export",
+     "prevArm": "inside",
+     "prevLanding": [
+      "INPUT",
+      "number"
+     ],
+     "prevClass": [
+      "panel-stuck",
+      "panel-stuck"
+     ],
+     "matchedArm": "editable",
+     "newClass": [
+      "panel-stuck",
+      "panel-stuck"
+     ],
+     "reproduces": true
+    },
+    {
+     "id": "preset",
+     "prevArm": "inside",
+     "prevLanding": [
+      "BUTTON",
+      "button"
+     ],
+     "prevClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "matchedArm": "noneditable",
+     "newClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "reproduces": true
+    },
+    {
+     "id": "pathmenu",
+     "prevArm": "inside",
+     "prevLanding": [
+      "BUTTON",
+      "button"
+     ],
+     "prevClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "matchedArm": "noneditable",
+     "newClass": [
+      "desk-lost",
+      "desk-lost"
+     ],
+     "reproduces": true
+    },
+    {
+     "id": "phonevcam",
+     "prevArm": "inside",
+     "prevLanding": [
+      "BUTTON",
+      "button"
+     ],
+     "prevClass": [
+      "closed-focus-on-body",
+      "closed-focus-on-body"
+     ],
+     "matchedArm": "noneditable",
+     "newClass": [
+      "closed-focus-on-body",
+      "closed-focus-on-body"
+     ],
+     "reproduces": true
+    },
+    {
+     "id": "crowd",
+     "prevArm": "inside",
+     "prevLanding": [
+      "INPUT",
+      "number"
+     ],
+     "prevClass": [
+      "panel-stuck",
+      "panel-stuck"
+     ],
+     "matchedArm": "editable",
+     "newClass": [
+      "panel-stuck",
+      "panel-stuck"
+     ],
+     "reproduces": true
+    },
+    {
+     "id": "modellib",
+     "prevArm": "inside",
+     "prevLanding": [
+      "INPUT",
+      "file"
+     ],
+     "prevClass": [
+      "closed-focus-on-body",
+      "closed-focus-on-body"
+     ],
+     "matchedArm": "editable",
+     "newClass": [
+      "closed-focus-on-body",
+      "closed-focus-on-body"
+     ],
+     "reproduces": true
+    }
+   ],
+   "reproduced": [
+    "export",
+    "preset",
+    "pathmenu",
+    "phonevcam",
+    "crowd",
+    "modellib"
+   ],
+   "notComparable": [],
+   "mismatched": [],
+   "prevSource": "raw/vb768a.json 的 inside 臂（同一批原始读数，非文字引用）"
+  },
+  "staticLayer": {
+   "isEditableGateLine": 486,
+   "escapeBranchLine": 548,
+   "isEditableTagsInGate": [
+    "INPUT",
+    "TEXTAREA",
+    "SELECT"
+   ],
+   "deskLadderOtherPanelRefs": 0,
+   "deskLadderExportTiers": 1,
+   "exportPanelHasAspectMap": true,
+   "exportPanelAspectBeforeSubmit": true,
+   "exportPanelSubmitPresent": true,
+   "crowdPanelStaticOrder": [
+    "input",
+    "input",
+    "input",
+    "button",
+    "button"
+   ],
+   "crowdPanelFirstButtonAfterInputs": true,
+   "crowdPanelHasCancelBeforeAdd": true,
+   "crowdPanelInputs": 3,
+   "crowdPanelButtons": 2
+  },
+  "focusInventory": {
+   "perPanel": {
+    "export": {
+     "total": 5,
+     "nEditable": 1,
+     "nNonEditable": 4
+    },
+    "preset": {
+     "total": 10,
+     "nEditable": 0,
+     "nNonEditable": 10
+    },
+    "pathmenu": {
+     "total": 5,
+     "nEditable": 0,
+     "nNonEditable": 5
+    },
+    "phonevcam": {
+     "total": 2,
+     "nEditable": 0,
+     "nNonEditable": 2
+    },
+    "crowd": {
+     "total": 5,
+     "nEditable": 3,
+     "nNonEditable": 2
+    },
+    "modellib": {
+     "total": 15,
+     "nEditable": 2,
+     "nNonEditable": 13
+    }
+   },
+   "panelsWithoutEditableControl": [
+    "preset",
+    "pathmenu",
+    "phonevcam"
+   ],
+   "panelsWithBothKinds": [
+    "export",
+    "crowd",
+    "modellib"
+   ],
+   "armsStructurallyImpossible": [
+    "preset/editable",
+    "pathmenu/editable",
+    "phonevcam/editable"
+   ],
+   "editableLandingIndex": {
+    "export": 0,
+    "preset": null,
+    "pathmenu": null,
+    "phonevcam": null,
+    "crowd": 0,
+    "modellib": 0
+   },
+   "noneditableLandingIndex": {
+    "export": 1,
+    "preset": 0,
+    "pathmenu": 0,
+    "phonevcam": 0,
+    "crowd": 3,
+    "modellib": 1
+   },
+   "agreesWith768": {
+    "export": true,
+    "preset": true,
+    "pathmenu": true,
+    "phonevcam": true,
+    "crowd": true,
+    "modellib": true
+   }
+  },
+  "srOnlyFileInput": {
+   "tagExcerpt": "ow-hidden rounded-lg border border-white/10 bg-[#242424]/[.98] text-[#dedede] shadow-[0_12px_32px_rgba(0,0,0,0.42)]\"\n        >\n          <input\n            ref={localModelLibraryInputRef}\n            data-director-model-library-local-input\n            type=\"file\"\n            accept=\".fbx,.obj\"\n     ",
+   "typeFile": true,
+   "isSrOnly": true,
+   "hasAriaLabel": false,
+   "hasAriaLabelledby": false,
+   "hasTitle": false,
+   "hasId": false,
+   "indexInPanel": 0,
+   "panelFocusables": 15,
+   "labelOpenedBefore": false,
+   "wrappedInLabel": false,
+   "labelCountInPanel": 1
+  }
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "verdict": "PASS",
+   "statement": "**两轮逐字段一致**（`rows` 整棵树的归一化 diff 为空），且先证明可比：每个臂都从**重新加载的页面**开始，全程不点外点（768 的 R73）。本批**只换一个变量** —— 焦点落点的类别（第一个输入框 / 第一个非输入框控件），其余协议与 768 逐字相同。",
+   "evidenceKey": "comparability",
+   "evidence": {
+    "keys": [
+     "rows"
+    ],
+    "allConsistent": true,
+    "firstDiff": {},
+    "rounds": 2,
+    "protocol": "★ **每个臂都从重新加载的页面开始**（768 的 R73），全程**不点外点**；只点 6 个 disclosure 触发器，其余是 `.focus()` 读操作与 Esc。",
+    "variable": "★ 本批**只换一个变量**：焦点落点（第一个输入框 / 第一个非输入框控件）。其余协议与 768 逐字相同。",
+    "clearedLocalStorage": [
+     [],
+     [
+      "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+     ]
+    ],
+    "deskGoneAfter": [
+     [
+      "preset/noneditable",
+      "pathmenu/noneditable",
+      "crowd/noneditable"
+     ],
+     [
+      "preset/noneditable",
+      "pathmenu/noneditable",
+      "crowd/noneditable"
+     ]
+    ],
+    "carriedOverFrom768": {
+     "deskGoneAfterMatches": [
+      [
+       "preset/noneditable",
+       "pathmenu/noneditable",
+       "crowd/noneditable"
+      ],
+      [
+       "preset/noneditable",
+       "pathmenu/noneditable",
+       "crowd/noneditable"
+      ]
+     ],
+     "clearedPattern": [
+      [],
+      [
+       "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+      ]
+     ]
+    }
+   }
+  },
+  {
+   "id": "J2",
+   "verdict": "PASS",
+   "statement": "**12 格全部有读数，没有一格是意外失败。** 其中 3 个臂「失败」是**结构事实**而非探针坏了：预设运镜、创建运动轨迹、虚拟相机这三个浮层里**一个输入框都没有**（可编辑控件数分别为 0/0/0），所以「找第一个输入框」这件事在它们身上不存在。探针在这种情况下**如实报出两类控件各多少个**并拒绝退化成交取第一个 —— 退化会让读数看着有、其实答非所问。",
+   "evidenceKey": "focusInventory",
+   "evidence": {
+    "perPanel": {
+     "export": {
+      "total": 5,
+      "nEditable": 1,
+      "nNonEditable": 4
+     },
+     "preset": {
+      "total": 10,
+      "nEditable": 0,
+      "nNonEditable": 10
+     },
+     "pathmenu": {
+      "total": 5,
+      "nEditable": 0,
+      "nNonEditable": 5
+     },
+     "phonevcam": {
+      "total": 2,
+      "nEditable": 0,
+      "nNonEditable": 2
+     },
+     "crowd": {
+      "total": 5,
+      "nEditable": 3,
+      "nNonEditable": 2
+     },
+     "modellib": {
+      "total": 15,
+      "nEditable": 2,
+      "nNonEditable": 13
+     }
+    },
+    "panelsWithoutEditableControl": [
+     "preset",
+     "pathmenu",
+     "phonevcam"
+    ],
+    "panelsWithBothKinds": [
+     "export",
+     "crowd",
+     "modellib"
+    ],
+    "armsStructurallyImpossible": [
+     "preset/editable",
+     "pathmenu/editable",
+     "phonevcam/editable"
+    ],
+    "editableLandingIndex": {
+     "export": 0,
+     "preset": null,
+     "pathmenu": null,
+     "phonevcam": null,
+     "crowd": 0,
+     "modellib": 0
+    },
+    "noneditableLandingIndex": {
+     "export": 1,
+     "preset": 0,
+     "pathmenu": 0,
+     "phonevcam": 0,
+     "crowd": 3,
+     "modellib": 1
+    },
+    "agreesWith768": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    }
+   }
+  },
+  {
+   "id": "J3",
+   "verdict": "PASS",
+   "statement": "★ **协议等价的判别式是「落点」，不是「臂名」**：按 **(tag, type) 把本批的某一臂与 768 的 `inside` 臂配对**，**6/6 逐格复现**（读数完全相同）。这同时是 768 的可复现性对照 —— 同一协议、换一个探针再跑一遍，结论不变。**若按臂名配对**，那 3 个「面板里没有输入框」的臂会被误判成复现失败。",
+   "evidenceKey": "reproducibility",
+   "evidence": {
+    "rule": "★ **按落点（tag+type）配对，不按臂名** —— 面板里没有输入框的浮层，它的 `editable` 臂会结构性失败；按臂名配对会把「那一类控件不存在」误判成「复现失败」。",
+    "pairs": [
+     {
+      "id": "export",
+      "prevArm": "inside",
+      "prevLanding": [
+       "INPUT",
+       "number"
+      ],
+      "prevClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "matchedArm": "editable",
+      "newClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "reproduces": true
+     },
+     {
+      "id": "preset",
+      "prevArm": "inside",
+      "prevLanding": [
+       "BUTTON",
+       "button"
+      ],
+      "prevClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "matchedArm": "noneditable",
+      "newClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "reproduces": true
+     },
+     {
+      "id": "pathmenu",
+      "prevArm": "inside",
+      "prevLanding": [
+       "BUTTON",
+       "button"
+      ],
+      "prevClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "matchedArm": "noneditable",
+      "newClass": [
+       "desk-lost",
+       "desk-lost"
+      ],
+      "reproduces": true
+     },
+     {
+      "id": "phonevcam",
+      "prevArm": "inside",
+      "prevLanding": [
+       "BUTTON",
+       "button"
+      ],
+      "prevClass": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ],
+      "matchedArm": "noneditable",
+      "newClass": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ],
+      "reproduces": true
+     },
+     {
+      "id": "crowd",
+      "prevArm": "inside",
+      "prevLanding": [
+       "INPUT",
+       "number"
+      ],
+      "prevClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "matchedArm": "editable",
+      "newClass": [
+       "panel-stuck",
+       "panel-stuck"
+      ],
+      "reproduces": true
+     },
+     {
+      "id": "modellib",
+      "prevArm": "inside",
+      "prevLanding": [
+       "INPUT",
+       "file"
+      ],
+      "prevClass": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ],
+      "matchedArm": "editable",
+      "newClass": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ],
+      "reproduces": true
+     }
+    ],
+    "reproduced": [
+     "export",
+     "preset",
+     "pathmenu",
+     "phonevcam",
+     "crowd",
+     "modellib"
+    ],
+    "notComparable": [],
+    "mismatched": [],
+    "prevSource": "raw/vb768a.json 的 inside 臂（同一批原始读数，非文字引用）"
+   }
+  },
+  {
+   "id": "J4",
+   "verdict": "PASS",
+   "statement": "★ **768 的 J10「2 个浮层没测到」被关掉了**：换成非输入框落点之后，**6 个浮层全部拿到焦点去向读数，0 个「没测到」**。768 的分桶是「测到且错 2 / 没测到 2 / 触发器已卸载 2」；本批是「测到且错 3 / 导演台被关掉 3」，**没有「没测到」这一桶了**。",
+   "evidenceKey": "protocolV2",
+   "evidence": {
+    "arm": "noneditable（浮层里第一个非输入框控件）",
+    "perDisclosure": {
+     "export": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "preset": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "pathmenu": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "phonevcam": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "crowd": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 3,
+       "pickedTag": "BUTTON",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "modellib": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-focus-to-body",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "file",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     }
+    },
+    "focusRestoredToTrigger": [],
+    "focusFellToBody": [
+     "export",
+     "phonevcam",
+     "modellib"
+    ],
+    "panelStuck": [],
+    "deskLost": [
+     "preset",
+     "pathmenu",
+     "crowd"
+    ],
+    "structurallyImpossible": [],
+    "counts": {
+     "measured-desk-lost": 3,
+     "measured-focus-to-body": 3
+    },
+    "cells": {
+     "export/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "preset/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "crowd/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "J5",
+   "verdict": "FAIL",
+   "statement": "★ **D11 扩大确认：焦点归还仍是 0/6，而且现在有 3 个是真测到的、3 个全错** —— 导出面板、虚拟相机、模型库**全部把焦点丢到 `body`**（768 只测到后两个，导出面板当时被 D3 遮住）。另 3 个（预设运镜、创建运动轨迹、添加群众阵列）按 Esc **把整个导演台关掉**、触发器随之卸载 ⟹ 仍然**没有可归还的对象**。2/2 轮。",
+   "evidenceKey": "protocolV2",
+   "evidence": {
+    "arm": "noneditable（浮层里第一个非输入框控件）",
+    "perDisclosure": {
+     "export": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "preset": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "pathmenu": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "phonevcam": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "crowd": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 3,
+       "pickedTag": "BUTTON",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "modellib": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-focus-to-body",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "file",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     }
+    },
+    "focusRestoredToTrigger": [],
+    "focusFellToBody": [
+     "export",
+     "phonevcam",
+     "modellib"
+    ],
+    "panelStuck": [],
+    "deskLost": [
+     "preset",
+     "pathmenu",
+     "crowd"
+    ],
+    "structurallyImpossible": [],
+    "counts": {
+     "measured-desk-lost": 3,
+     "measured-focus-to-body": 3
+    },
+    "cells": {
+     "export/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "preset/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "crowd/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "J6",
+   "verdict": "PASS",
+   "statement": "★ **765 的 D4 得到独立复现**：导出面板在焦点落到**非输入框**控件（画幅按钮，落点 index 1/5）上按 Esc，**面板关掉、焦点掉到 `body`**，2/2 轮。768 因 D3 遮住没能重测到这一格，本批用**另一套协议、另一个探针**把它测了出来 —— 同一缺陷的第二次独立读数。",
+   "evidenceKey": "protocolV2",
+   "evidence": {
+    "arm": "noneditable（浮层里第一个非输入框控件）",
+    "perDisclosure": {
+     "export": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "preset": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "pathmenu": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "phonevcam": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "crowd": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 3,
+       "pickedTag": "BUTTON",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "modellib": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-focus-to-body",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "file",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     }
+    },
+    "focusRestoredToTrigger": [],
+    "focusFellToBody": [
+     "export",
+     "phonevcam",
+     "modellib"
+    ],
+    "panelStuck": [],
+    "deskLost": [
+     "preset",
+     "pathmenu",
+     "crowd"
+    ],
+    "structurallyImpossible": [],
+    "counts": {
+     "measured-desk-lost": 3,
+     "measured-focus-to-body": 3
+    },
+    "cells": {
+     "export/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "preset/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "crowd/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "J7",
+   "verdict": "FAIL",
+   "statement": "★ **本批最关键的一条：D3×D8 的耦合从推理变成读数。** 同一个浮层、同一颗 Esc、只换焦点类别：添加群众阵列面板 —— 焦点在**数值输入框**上 ⟹ **什么都没发生**（`isEditable` 早退吞掉 Esc）；焦点在 **cancel 按钮**上 ⟹ **整个导演台没了**。⟹ 唯一挡住「按 Esc 丢整个工作区」的就是那个早退。768 把这句话标成**推理**（写在 D3 的 compositionNote），本批把它**测成了读数** ⟹ **修 D3 必须先修 D8**，否则按 765 的拍板给 `isEditable` 开特例的那一刻，就会把「按 Esc 丢工作区」这条路径直接打开。",
+   "evidenceKey": "protocolV2",
+   "evidence": {
+    "arm": "noneditable（浮层里第一个非输入框控件）",
+    "perDisclosure": {
+     "export": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "preset": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "pathmenu": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "phonevcam": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "crowd": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 3,
+       "pickedTag": "BUTTON",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "modellib": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-focus-to-body",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "file",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     }
+    },
+    "focusRestoredToTrigger": [],
+    "focusFellToBody": [
+     "export",
+     "phonevcam",
+     "modellib"
+    ],
+    "panelStuck": [],
+    "deskLost": [
+     "preset",
+     "pathmenu",
+     "crowd"
+    ],
+    "structurallyImpossible": [],
+    "counts": {
+     "measured-desk-lost": 3,
+     "measured-focus-to-body": 3
+    },
+    "cells": {
+     "export/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "preset/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "crowd/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "J8",
+   "verdict": "FAIL",
+   "statement": "★ **缺陷 D12（低，新增）**：**模型库面板的第一个可聚焦控件**是一个 `sr-only` 的 **1px** `<input type=\"file\">`（落点 index **0**/%d），**零可访问名** —— 无 `aria-label`、无 `aria-labelledby`、无 `title`、无 `id`、也不在任何 `<label>` 里。键盘用户 Tab 进模型库，**第一站是一个看不见、也没有名字的文件选择器**。★ 它与 765/762 记的那个隐藏 file input **不是同一个**：那个用 `display:none`（**不可聚焦**，所以当时判为不构成缺陷）；这个用 `sr-only`（**1px 但仍可聚焦**）。",
+   "evidenceKey": "srOnlyFileInput",
+   "evidence": {
+    "tagExcerpt": "ow-hidden rounded-lg border border-white/10 bg-[#242424]/[.98] text-[#dedede] shadow-[0_12px_32px_rgba(0,0,0,0.42)]\"\n        >\n          <input\n            ref={localModelLibraryInputRef}\n            data-director-model-library-local-input\n            type=\"file\"\n            accept=\".fbx,.obj\"\n     ",
+    "typeFile": true,
+    "isSrOnly": true,
+    "hasAriaLabel": false,
+    "hasAriaLabelledby": false,
+    "hasTitle": false,
+    "hasId": false,
+    "indexInPanel": 0,
+    "panelFocusables": 15,
+    "labelOpenedBefore": false,
+    "wrappedInLabel": false,
+    "labelCountInPanel": 1
+   }
+  },
+  {
+   "id": "J9",
+   "verdict": "PASS",
+   "statement": "★ **`isEditable` 早退的作用域被量出来了**：它**只对两类浮层有效** —— ①「靠导演台阶梯关」的（导出面板，`:557`）②「根本没有 Esc 处理」的（添加群众阵列）。**模型库面板的落点同样是 `INPUT`，Esc 却照样关掉了面板**—— 因为它自己的 window **捕获**监听 `DirectorViewport.tsx:2748` 在 DirectorDesk 的**冒泡**处理器**之前**就 `stopImmediatePropagation()` 了。⟹ 「isEditable 早退」**不是**一道全局防线，只覆盖「事件能到达导演台」的那些路径。",
+   "evidenceKey": "protocolV2",
+   "evidence": {
+    "arm": "noneditable（浮层里第一个非输入框控件）",
+    "perDisclosure": {
+     "export": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "preset": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "pathmenu": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "phonevcam": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "crowd": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 3,
+       "pickedTag": "BUTTON",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "modellib": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-focus-to-body",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "file",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     }
+    },
+    "focusRestoredToTrigger": [],
+    "focusFellToBody": [
+     "export",
+     "phonevcam",
+     "modellib"
+    ],
+    "panelStuck": [],
+    "deskLost": [
+     "preset",
+     "pathmenu",
+     "crowd"
+    ],
+    "structurallyImpossible": [],
+    "counts": {
+     "measured-desk-lost": 3,
+     "measured-focus-to-body": 3
+    },
+    "cells": {
+     "export/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "preset/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "crowd/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "J10",
+   "verdict": "FAIL",
+   "statement": "★ **不声称**：本批换的只是焦点**类别**、**没换焦点位置**，还有很多形态没测 —— 焦点在浮层**外面**（对话框别处）时按 Esc；焦点在**第三个**控件上；以及「可聚焦但不可编辑」的其他类型（除本批的 `INPUT[type=file]` 之外）在别处还有没有。**另外 768 那些不声称项依然成立**：没测 6 个浮层里的 Tab 围栏、没测打开状态下再点一次触发器、没测多个浮层同时开着、没测虚拟相机录制中的 Esc、只测了 1440 桌面一档视口。",
+   "evidenceKey": "protocolV2",
+   "evidence": {
+    "arm": "noneditable（浮层里第一个非输入框控件）",
+    "perDisclosure": {
+     "export": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 1,
+       "nNonEditable": 4,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "preset": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 10,
+       "total": 10,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "pathmenu": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 5,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "phonevcam": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "structurally-impossible",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 0,
+       "pickedTag": "BUTTON",
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": null,
+       "type": null,
+       "pickedIndex": null,
+       "pickedTag": null,
+       "nEditable": 0,
+       "nNonEditable": 2,
+       "total": 2,
+       "isEditableByTag": false,
+       "inPanel": false
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     },
+     "crowd": {
+      "verdict": "measured-desk-lost",
+      "editableArmVerdict": "measured-stuck",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 3,
+       "pickedTag": "BUTTON",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "number",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 3,
+       "nNonEditable": 2,
+       "total": 5,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "desk-lost",
+       "desk-lost"
+      ]
+     },
+     "modellib": {
+      "verdict": "measured-focus-to-body",
+      "editableArmVerdict": "measured-focus-to-body",
+      "landing": {
+       "tag": "BUTTON",
+       "type": "button",
+       "pickedIndex": 1,
+       "pickedTag": "BUTTON",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": false,
+       "inPanel": true
+      },
+      "editableLanding": {
+       "tag": "INPUT",
+       "type": "file",
+       "pickedIndex": 0,
+       "pickedTag": "INPUT",
+       "nEditable": 2,
+       "nNonEditable": 13,
+       "total": 15,
+       "isEditableByTag": true,
+       "inPanel": true
+      },
+      "class": [
+       "closed-focus-on-body",
+       "closed-focus-on-body"
+      ]
+     }
+    },
+    "focusRestoredToTrigger": [],
+    "focusFellToBody": [
+     "export",
+     "phonevcam",
+     "modellib"
+    ],
+    "panelStuck": [],
+    "deskLost": [
+     "preset",
+     "pathmenu",
+     "crowd"
+    ],
+    "structurallyImpossible": [],
+    "counts": {
+     "measured-desk-lost": 3,
+     "measured-focus-to-body": 3
+    },
+    "cells": {
+     "export/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "export/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 1,
+        "nNonEditable": 4,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "preset/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "preset/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 10,
+        "total": 10,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "pathmenu/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 5,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/editable": [
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+       "failedKind": "no-element-of-that-kind",
+       "opened": false,
+       "focusPlaced": false,
+       "landing": {
+        "tag": null,
+        "type": null,
+        "pickedIndex": null,
+        "pickedTag": null,
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": false
+       },
+       "class": null,
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "phonevcam/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 0,
+        "pickedTag": "BUTTON",
+        "nEditable": 0,
+        "nNonEditable": 2,
+        "total": 2,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "crowd/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "number",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "panel-stuck",
+       "focusAfter": {
+        "tag": "INPUT",
+        "isTrigger": false,
+        "isBody": false,
+        "inDialog": true
+       }
+      }
+     ],
+     "crowd/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 3,
+        "pickedTag": "BUTTON",
+        "nEditable": 3,
+        "nNonEditable": 2,
+        "total": 5,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "desk-lost",
+       "focusAfter": {
+        "tag": null,
+        "isTrigger": null,
+        "isBody": null,
+        "inDialog": null
+       }
+      }
+     ],
+     "modellib/editable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "INPUT",
+        "type": "file",
+        "pickedIndex": 0,
+        "pickedTag": "INPUT",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": true,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ],
+     "modellib/noneditable": [
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      },
+      {
+       "failed": null,
+       "failedKind": null,
+       "opened": true,
+       "focusPlaced": true,
+       "landing": {
+        "tag": "BUTTON",
+        "type": "button",
+        "pickedIndex": 1,
+        "pickedTag": "BUTTON",
+        "nEditable": 2,
+        "nNonEditable": 13,
+        "total": 15,
+        "isEditableByTag": false,
+        "inPanel": true
+       },
+       "class": "closed-focus-on-body",
+       "focusAfter": {
+        "tag": "BODY",
+        "isTrigger": false,
+        "isBody": true,
+        "inDialog": false
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "id": "J11",
+   "verdict": "PASS",
+   "statement": "**没点任何有副作用的控件**：只点了 6 个 disclosure 触发器（导出面板的提交、虚拟相机的「连接」、模型库的添加、群众阵列的「添加」都没点）。群众阵列的非输入框落点是**cancel 按钮**（index 3/5），只 `.focus()` 不点。",
+   "evidenceKey": "focusInventory",
+   "evidence": {
+    "perPanel": {
+     "export": {
+      "total": 5,
+      "nEditable": 1,
+      "nNonEditable": 4
+     },
+     "preset": {
+      "total": 10,
+      "nEditable": 0,
+      "nNonEditable": 10
+     },
+     "pathmenu": {
+      "total": 5,
+      "nEditable": 0,
+      "nNonEditable": 5
+     },
+     "phonevcam": {
+      "total": 2,
+      "nEditable": 0,
+      "nNonEditable": 2
+     },
+     "crowd": {
+      "total": 5,
+      "nEditable": 3,
+      "nNonEditable": 2
+     },
+     "modellib": {
+      "total": 15,
+      "nEditable": 2,
+      "nNonEditable": 13
+     }
+    },
+    "panelsWithoutEditableControl": [
+     "preset",
+     "pathmenu",
+     "phonevcam"
+    ],
+    "panelsWithBothKinds": [
+     "export",
+     "crowd",
+     "modellib"
+    ],
+    "armsStructurallyImpossible": [
+     "preset/editable",
+     "pathmenu/editable",
+     "phonevcam/editable"
+    ],
+    "editableLandingIndex": {
+     "export": 0,
+     "preset": null,
+     "pathmenu": null,
+     "phonevcam": null,
+     "crowd": 0,
+     "modellib": 0
+    },
+    "noneditableLandingIndex": {
+     "export": 1,
+     "preset": 0,
+     "pathmenu": 0,
+     "phonevcam": 0,
+     "crowd": 3,
+     "modellib": 1
+    },
+    "agreesWith768": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    }
+   }
+  },
+  {
+   "id": "J12",
+   "verdict": "PASS",
+   "statement": "★ **静态预测与实测落点逐个对上**：群众阵列面板的 JSX 里是 3 个 `<input>` 在 2 个 `<button>` **之前**（cancel 又在 add 之前）⟹ 预测「第一个非输入框控件」是第 **3** 个（0 基），实测 `pickedIndex` 正是 **3**。这条能在跑浏览器之前就预测落点，是本批少走弯路的关键。",
+   "evidenceKey": "staticLayer",
+   "evidence": {
+    "isEditableGateLine": 486,
+    "escapeBranchLine": 548,
+    "isEditableTagsInGate": [
+     "INPUT",
+     "TEXTAREA",
+     "SELECT"
+    ],
+    "deskLadderOtherPanelRefs": 0,
+    "deskLadderExportTiers": 1,
+    "exportPanelHasAspectMap": true,
+    "exportPanelAspectBeforeSubmit": true,
+    "exportPanelSubmitPresent": true,
+    "crowdPanelStaticOrder": [
+     "input",
+     "input",
+     "input",
+     "button",
+     "button"
+    ],
+    "crowdPanelFirstButtonAfterInputs": true,
+    "crowdPanelHasCancelBeforeAdd": true,
+    "crowdPanelInputs": 3,
+    "crowdPanelButtons": 2
+   }
+  }
+ ],
+ "defects": [
+  {
+   "id": "D12",
+   "severity": "低",
+   "newInThisBatch": true,
+   "title": "模型库面板的第一个可聚焦控件是一个 sr-only 的 1px 文件输入框，且零可访问名",
+   "where": [
+    "src/components/director/DirectorViewport.tsx（`data-director-model-library-local-input`）"
+   ],
+   "mechanism": "面板挂载时第一个孩子就是 `<input type=\"file\" accept=\".fbx,.obj\" multiple className=\"sr-only\">`。`sr-only` 是 Tailwind 的「视觉隐藏但**仍可聚焦**」（1px×1px + clip），**不是** `display:none`。它没有 `aria-label` / `aria-labelledby` / `title` / `id`，也不在任何 `<label>` 里 ⟹ **可访问名为空**。",
+   "measured": "editable 臂的落点就是它：`INPUT[type=file]`、`pickedIndex=0`（面板共 15 个可聚焦控件），2/2 轮；换到 noneditable 臂时落点变成 index 1 的按钮。",
+   "severityRationale": "**低**：焦点不可见且无名字，键盘用户不知道自己在哪；但仍在对话框内、Esc 还能关掉面板，不会「卡住」。与 765 的 D4 同级。",
+   "whyItWasMissedBefore": "★ **它与 765/762 记的那个隐藏 file input 不是同一个**：那个用 `display:none` ⟹ **不可聚焦**，当时据此判它「不构成缺陷」（对那一处成立）。`sr-only` 这一族**不在那次扫描范围内** —— 它是 1px、**有布局盒、仍可聚焦**。",
+   "fixDirection": "①给它 `aria-label`（例如「上传本地模型」）；②或者改用真正的 `<button>` 触发「点一下打开文件选择器」，把 `<input type=file>` 藏起来而不是让它当第一站。①更小，②更对。",
+   "needsSrcChange": true
+  }
+ ],
+ "widened": [
+  {
+   "id": "D11",
+   "from": "768 的 2/6 测到",
+   "to": "3/6 测到且全错",
+   "severity": "低",
+   "title": "焦点归还仍是 0/6；新增导出面板一例（独立协议）",
+   "newMembers": [
+    "export"
+   ],
+   "measured": "非输入框落点下，导出面板 / 虚拟相机 / 模型库**全部把焦点丢到 `body`**，2/2 轮；预设运镜 / 创建运动轨迹 / 添加群众阵列按 Esc **关掉整个导演台**、触发器随之卸载 ⟹ **「没测到」这一桶已清空**。",
+   "needsSrcChange": true
+  },
+  {
+   "id": "D4",
+   "from": "1/6（765）→ 3/6（768）",
+   "to": "3/6 且有双协议证据",
+   "severity": "低",
+   "title": "关闭浮层后焦点掉到 body —— 导出面板这一例得到独立复现",
+   "newMembers": [],
+   "note": "★ 本批**没有新增成员**，但把 765 最初发现的那一例（导出面板）**用另一套协议独立重测了一遍**：768 因 D3 遮住没测到，本批落在画幅按钮上测到，2/2 轮。同一个缺陷在两个批次、两个探针、两套协议下都出现 ⟹ D4 已从「单点观察」升级为**双协议确认**。",
+   "needsSrcChange": true
+  },
+  {
+   "id": "D3",
+   "from": "1/6 → 2/6（768）",
+   "to": "2/6，作用域已量清",
+   "severity": "低",
+   "title": "焦点在浮层内的输入框时 Esc 关不掉浮层（`DirectorDesk.tsx:487` 的 isEditable 早退）",
+   "newMembers": [],
+   "note": "成员没变（导出面板、添加群众阵列），但本批量清了两件事：①**作用域**——它只对「靠导演台阶梯关」与「根本没有 Esc 处理」的两类浮层有效，对自带 window 捕获监听的模型库面板**完全无效**（落点同样是 INPUT，Esc 照样关面板）；②**耦合**——群众阵列的「没关」与「导演台没了」是**同一个`if` 的两面**：焦点在输入框 ⟹ 早退 ⟹ 面板不关 ⟹ 导演台也因此幸存。**这条现在是实测，不是推理。**",
+   "repairOrder": "★ **先修 D8，再修 D3。** 顺序反了会在「给 `isEditable` 开特例」的那一刻把群众阵列面板的「按 Esc 丢工作区」直接打开。",
+   "needsSrcChange": true
+  },
+  {
+   "id": "D8",
+   "from": "1/6 → 3/6（768）",
+   "to": "3/6，成员由双臂读数确认",
+   "severity": "中",
+   "title": "按 Esc 关掉整个导演台",
+   "newMembers": [],
+   "note": "成员没变（预设运镜、创建运动轨迹、添加群众阵列），但**添加群众阵列这一个成员现在有了双臂读数**：焦点在输入框 ⟹ 什么都没发生；焦点在 cancel 按钮 ⟹ 导演台没了。⟹ 它「有时不丢工作区」不是安全，只是被 D3 的早退挡住了。",
+   "needsSrcChange": true
+  }
+ ],
+ "observations": [
+  {
+   "id": "O1",
+   "text": "★ **协议等价的判别式是「落点」，不是「臂名」**。6 个浮层里3 个**一个输入框都没有**（预设运镜 0、创建运动轨迹 0、虚拟相机 0 个可编辑控件），所以它们的 `editable` 臂**必然**失败。若按臂名去配 768 的读数，这 3 个会被误判成「复现失败」—— 而它们实际上复现得最干净。",
+   "verdict": "方法论记录（R81）"
+  },
+  {
+   "id": "O2",
+   "text": "★ **静态能在跑浏览器之前预测落点**：群众面板 JSX 里 3 个 input 在 2 个 button 之前 ⟹ 预测非输入框落点是第 3 个，实测 `pickedIndex=3`。",
+   "verdict": "方法论记录"
+  },
+  {
+   "id": "O3",
+   "text": "★ **「换个变量」这一招把一个看不见的耦合照了出来**：同一个浮层、同一颗 Esc，焦点类别从输入框换成按钮，结果从「什么都没发生」变成「整个导演台没了」。**只测一个落点就会把这个耦合完全漏掉** —— 768 那一次就漏了（它把「浮层没关」当成结论的终点）。",
+   "verdict": "方法论记录（R83）"
+  },
+  {
+   "id": "O4",
+   "text": "**跨批复现 6/6**，且可聚焦控件存量与 768 **逐个相同**（export 5, preset 10, pathmenu 5, phonevcam 2, crowd 5, modellib 15）—— 两批用不同探针、不同协议、不同代码路径。",
+   "verdict": "事实记录"
+  },
+  {
+   "id": "O5",
+   "text": "★ **上一批写在产物里的「推理」是欠账**：768 那句「群众阵列此刻没丢工作区，靠的正是 `isEditable` 早退」当时明确标成推理、放在 D3 的 compositionNote 里。本批用两个臂把它测成了读数。**判据里凡是标着「机制推断」的，下一批就该去测它。**",
+   "verdict": "方法论记录（R83）"
+  }
+ ],
+ "notClaimed": [
+  "无源站对照：本批全部结论只针对 clone 自身的行为自洽性。",
+  "★ **本批只换了焦点「类别」，没换焦点「位置」**（J10）：焦点在浮层**外面**（对话框别处）时按 Esc、焦点在**第三个**控件上，都**没测**。",
+  "★ **「可聚焦但不可编辑」的其他类型没普查**：本批只碰到模型库面板的 `INPUT[type=file]`（`sr-only`）。同族是否还有别处，**未测**。",
+  "**没有测 6 个浮层里的 Tab 围栏**（765 只量过导出面板与对话框级，767/768 连续两批列为不声称）。",
+  "**没有测打开状态下再点一次触发器**（toggle 关闭 vs 报错）。",
+  "**没有测多个浮层同时开着会怎样** —— 每格都从重载页面开始。",
+  "**没有测虚拟相机在录制中的 Esc**（`DirectorPhoneVcamPanel.tsx:292` 有 `if (!recording) onClose()`）。",
+  "**只测了 1440 桌面一档视口**。",
+  "**没有改 `src/`**：所有结论都是读数 + 源码现算，修法列在缺陷条目里等拍板。"
+ ],
+ "probeLessons": [
+  {
+   "id": "R81",
+   "text": "★ **协议等价的判别式是「落点」，不是「臂名」。** 本批 %d 个臂「失败」是结构事实（那些面板里那一类控件真的是 0 个），探针**如实报出两类控件各多少个并拒绝退化**。退化成交取第一个会让读数看着有、其实答非所问。按落点（tag+type）配对之后，**6/6 复现**了上一批的读数。",
+   "whyItMatters": "按臂名配对会把「那一类控件不存在」误判成「复现失败」，进而误判成「新一批数据不可信」。"
+  },
+  {
+   "id": "R82",
+   "text": "★ **一道「守卫」的作用域必须单独量。** `isEditable` 早退看起来像全局防线，实测只对「事件能到达导演台」的两类浮层有效：模型库面板的落点**也是 INPUT**，Esc 却照样关掉了面板 —— 因为它自己的 window 捕获监听先把事件截住了。**「有守卫」不等于「有防线」**，要按「事件到不到得了」逐条算。",
+   "whyItMatters": "否则会把守卫当成修复的安全垫 —— 而它恰好在要修的那个路径上失效。"
+  },
+  {
+   "id": "R83",
+   "text": "★ **产物里标着「机制推断」的判据是欠账，下一批就去测它。** 768 那句「群众阵列此刻没丢工作区靠的正是 `isEditable` 早退」当时是对的、也如实标了推理，但它**没有读数支撑**。本批只换一个变量（焦点类别）就把它测成了读数 —— **推理与读数的距离，有时只差一个变量。**",
+   "whyItMatters": "推理留在产物里久了会变成「已知事实」被后续批次引用，越传越硬。"
+  },
+  {
+   "id": "R84",
+   "text": "★ **`sr-only` 与 `display:none` 是两回事。** 765/762 查隐藏 file input 时判它「不构成缺陷」，依据是 `display:none` **不可聚焦** —— 这条对**那一处**成立。但 `sr-only` 是 1px×1px + clip，**有布局盒、仍可聚焦** ⟹ 同一族的另一个实例根本没进那次的扫描范围。**查「不可见控件」时要先把「不可见」分成两族**（`display:none` / `visibility:hidden` vs 视觉隐藏但有盒子）。",
+   "whyItMatters": "它让一个同族缺陷被「已排除」的说法盖住了两批。"
+  },
+  {
+   "id": "R85",
+   "text": "★ **在 JSX 上用 `[^>]*>` 切标签会停在 `=>` 的那个 `>` 上。** 我为了给 D12 取模型库那个文件框的标签，写了 `<input\\b[^>]*data-…[^>]*>` —— 匹配到的却是「到 `onChange={(event) =>` 为止」，后面的 `className=\"sr-only\"` 被切掉，断言「不是 sr-only」直接炸出来。**形状完全对、语义完全错**（R72 的同族）。改法：按标记位置取固定窗口，外加一条形状断言 —— **最近的 `<input` 必须比最近的 `>` 更靠后**，否则说明早已被前一个标签截断。",
+   "whyItMatters": "这类切片错会**静默地**给出「看起来有依据」的结论：若当时没有那条 `isSrOnly` 断言，我就会把「不是 sr-only」当成读数写进产物 —— 而它是切片错，不是事实。"
+  },
+  {
+   "id": "R86",
+   "text": "★ **阴性对照要改「**决定分类的那个字段**」，不是改一个看起来相关的字段。** 我写了「把 768 的 `crowd/inside` 焦点改成 `isTrigger`」来破坏 6/6 复现 —— 结果那条对照**永远漏放**：`crowd/inside` 的分类是 `panel-stuck`，而分类函数**先看面板还在不在**（`panelPresent`），焦点字段根本轮不到读。改 `panelPresent` 才拦得住。",
+   "whyItMatters": "这是 R80 的第二例：**无效的阴性对照不会报错，只会永远「漏放」**。判断一条对照有没有效，先问「我改的字段真的参与了这个判据吗」。"
+  }
+ ]
+}

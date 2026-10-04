@@ -1,0 +1,1233 @@
+{
+ "batch": 769,
+ "probe": "a",
+ "question": "协议 v2：焦点放在浮层里第一个**输入框** vs 第一个**非输入框**控件上，按 Esc 之后焦点去哪",
+ "rounds": [
+  {
+   "cleared": {
+    "removed": []
+   },
+   "load": {
+    "opened": true
+   },
+   "rows": [
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "nEditable": 1,
+      "nNonEditable": 4,
+      "pickedKind": "editable",
+      "pickedIndex": 0,
+      "pickedTag": "INPUT",
+      "tag": "INPUT",
+      "type": "number",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "INPUT",
+      "type": "number",
+      "isEditableByTag": true,
+      "inPanel": true,
+      "wantEditable": true
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "INPUT",
+      "activeAria": null,
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "export",
+     "name": "导出面板"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "nEditable": 1,
+      "nNonEditable": 4,
+      "pickedKind": "noneditable",
+      "pickedIndex": 1,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "16:9",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "export",
+     "name": "导出面板"
+    },
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "err": "no element of that kind",
+      "n": 0,
+      "nEditable": 0,
+      "nNonEditable": 10,
+      "total": 10
+     },
+     "FAILED": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+     "id": "preset",
+     "name": "预设运镜面板"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 10,
+      "nEditable": 0,
+      "nNonEditable": 10,
+      "pickedKind": "noneditable",
+      "pickedIndex": 0,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "关闭预设运镜",
+       "text": "",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "preset",
+     "name": "预设运镜面板"
+    },
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "err": "no element of that kind",
+      "n": 0,
+      "nEditable": 0,
+      "nNonEditable": 5,
+      "total": 5
+     },
+     "FAILED": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+     "id": "pathmenu",
+     "name": "创建运动轨迹菜单"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "nEditable": 0,
+      "nNonEditable": 5,
+      "pickedKind": "noneditable",
+      "pickedIndex": 0,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": null,
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "铅笔路径",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "pathmenu",
+     "name": "创建运动轨迹菜单"
+    },
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "err": "no element of that kind",
+      "n": 0,
+      "nEditable": 0,
+      "nNonEditable": 2,
+      "total": 2
+     },
+     "FAILED": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+     "id": "phonevcam",
+     "name": "虚拟相机面板"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 2,
+      "nEditable": 0,
+      "nNonEditable": 2,
+      "pickedKind": "noneditable",
+      "pickedIndex": 0,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "关闭虚拟相机",
+       "text": "",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "phonevcam",
+     "name": "虚拟相机面板"
+    },
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "nEditable": 3,
+      "nNonEditable": 2,
+      "pickedKind": "editable",
+      "pickedIndex": 0,
+      "pickedTag": "INPUT",
+      "tag": "INPUT",
+      "type": "number",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "INPUT",
+      "type": "number",
+      "isEditableByTag": true,
+      "inPanel": true,
+      "wantEditable": true
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "INPUT",
+      "activeAria": null,
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "crowd",
+     "name": "添加群众阵列面板"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "nEditable": 3,
+      "nNonEditable": 2,
+      "pickedKind": "noneditable",
+      "pickedIndex": 3,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "取消",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "crowd",
+     "name": "添加群众阵列面板"
+    },
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 15,
+      "nEditable": 2,
+      "nNonEditable": 13,
+      "pickedKind": "editable",
+      "pickedIndex": 0,
+      "pickedTag": "INPUT",
+      "tag": "INPUT",
+      "type": "file",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "file",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "INPUT",
+      "type": "file",
+      "isEditableByTag": true,
+      "inPanel": true,
+      "wantEditable": true
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "modellib",
+     "name": "模型库面板"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 15,
+      "nEditable": 2,
+      "nNonEditable": 13,
+      "pickedKind": "noneditable",
+      "pickedIndex": 1,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "关闭模型库",
+       "text": "",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "modellib",
+     "name": "模型库面板"
+    }
+   ],
+   "deskGoneAfter": [
+    "preset/noneditable",
+    "pathmenu/noneditable",
+    "crowd/noneditable"
+   ]
+  },
+  {
+   "cleared": {
+    "removed": [
+     "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+    ]
+   },
+   "load": {
+    "opened": true
+   },
+   "rows": [
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "nEditable": 1,
+      "nNonEditable": 4,
+      "pickedKind": "editable",
+      "pickedIndex": 0,
+      "pickedTag": "INPUT",
+      "tag": "INPUT",
+      "type": "number",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "INPUT",
+      "type": "number",
+      "isEditableByTag": true,
+      "inPanel": true,
+      "wantEditable": true
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "INPUT",
+      "activeAria": null,
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "export",
+     "name": "导出面板"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "nEditable": 1,
+      "nNonEditable": 4,
+      "pickedKind": "noneditable",
+      "pickedIndex": 1,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "16:9",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "export",
+     "name": "导出面板"
+    },
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "err": "no element of that kind",
+      "n": 0,
+      "nEditable": 0,
+      "nNonEditable": 10,
+      "total": 10
+     },
+     "FAILED": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 10, \"total\": 10}",
+     "id": "preset",
+     "name": "预设运镜面板"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 10,
+      "nEditable": 0,
+      "nNonEditable": 10,
+      "pickedKind": "noneditable",
+      "pickedIndex": 0,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "关闭预设运镜",
+       "text": "",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "preset",
+     "name": "预设运镜面板"
+    },
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "err": "no element of that kind",
+      "n": 0,
+      "nEditable": 0,
+      "nNonEditable": 5,
+      "total": 5
+     },
+     "FAILED": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 5, \"total\": 5}",
+     "id": "pathmenu",
+     "name": "创建运动轨迹菜单"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "nEditable": 0,
+      "nNonEditable": 5,
+      "pickedKind": "noneditable",
+      "pickedIndex": 0,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": null,
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "铅笔路径",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "pathmenu",
+     "name": "创建运动轨迹菜单"
+    },
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "err": "no element of that kind",
+      "n": 0,
+      "nEditable": 0,
+      "nNonEditable": 2,
+      "total": 2
+     },
+     "FAILED": "面板内没有输入框可聚焦控件：{\"err\": \"no element of that kind\", \"nEditable\": 0, \"nNonEditable\": 2, \"total\": 2}",
+     "id": "phonevcam",
+     "name": "虚拟相机面板"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 2,
+      "nEditable": 0,
+      "nNonEditable": 2,
+      "pickedKind": "noneditable",
+      "pickedIndex": 0,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "关闭虚拟相机",
+       "text": "",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "phonevcam",
+     "name": "虚拟相机面板"
+    },
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "nEditable": 3,
+      "nNonEditable": 2,
+      "pickedKind": "editable",
+      "pickedIndex": 0,
+      "pickedTag": "INPUT",
+      "tag": "INPUT",
+      "type": "number",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "INPUT",
+      "type": "number",
+      "isEditableByTag": true,
+      "inPanel": true,
+      "wantEditable": true
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "number",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "INPUT",
+      "activeAria": null,
+      "activeText": "",
+      "isBody": false,
+      "inDialog": true
+     },
+     "id": "crowd",
+     "name": "添加群众阵列面板"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 5,
+      "nEditable": 3,
+      "nNonEditable": 2,
+      "pickedKind": "noneditable",
+      "pickedIndex": 3,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消"
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": null,
+       "text": "取消",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "open": false
+     },
+     "desk": {
+      "open": false
+     },
+     "id": "crowd",
+     "name": "添加群众阵列面板"
+    },
+    {
+     "mode": "editable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 15,
+      "nEditable": 2,
+      "nNonEditable": 13,
+      "pickedKind": "editable",
+      "pickedIndex": 0,
+      "pickedTag": "INPUT",
+      "tag": "INPUT",
+      "type": "file",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "INPUT",
+       "aria": null,
+       "text": "",
+       "type": "file",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "INPUT",
+      "type": "file",
+      "isEditableByTag": true,
+      "inPanel": true,
+      "wantEditable": true
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "modellib",
+     "name": "模型库面板"
+    },
+    {
+     "mode": "noneditable",
+     "fresh": {
+      "opened": true
+     },
+     "focus": {
+      "focused": true,
+      "total": 15,
+      "nEditable": 2,
+      "nNonEditable": 13,
+      "pickedKind": "noneditable",
+      "pickedIndex": 1,
+      "pickedTag": "BUTTON",
+      "tag": "BUTTON",
+      "type": "button",
+      "text": ""
+     },
+     "before": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": true,
+      "triggerAriaExpanded": "true",
+      "active": {
+       "tag": "BUTTON",
+       "aria": "关闭模型库",
+       "text": "",
+       "type": "button",
+       "isTrigger": false,
+       "inPanel": true,
+       "inDialog": true,
+       "isBody": false
+      }
+     },
+     "focusKind": {
+      "tag": "BUTTON",
+      "type": "button",
+      "isEditableByTag": false,
+      "inPanel": true,
+      "wantEditable": false
+     },
+     "after": {
+      "deskOpen": true,
+      "triggerPresent": true,
+      "panelPresent": false,
+      "triggerAriaExpanded": "false",
+      "active": {
+       "tag": "BODY",
+       "aria": null,
+       "text": "画布 2开通会员限时",
+       "type": null,
+       "isTrigger": false,
+       "inPanel": false,
+       "inDialog": false,
+       "isBody": true
+      }
+     },
+     "desk": {
+      "open": true,
+      "activeTag": "BODY",
+      "activeAria": null,
+      "activeText": "画布 2开通会员限时",
+      "isBody": true,
+      "inDialog": false
+     },
+     "id": "modellib",
+     "name": "模型库面板"
+    }
+   ],
+   "deskGoneAfter": [
+    "preset/noneditable",
+    "pathmenu/noneditable",
+    "crowd/noneditable"
+   ]
+  }
+ ]
+}
