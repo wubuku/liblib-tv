@@ -1,0 +1,316 @@
+{
+  "batch": 745,
+  "title": "B 档 7 个两段式命令逐个走完：3 个一段式 + 3 个两段式全部真跑并记账",
+  "verdict": "7/7",
+  "summary": {
+    "results": [
+      {
+        "cmd": "addDerivedNode",
+        "label": "逐帧拉片",
+        "steps": 1,
+        "nodeStatus": "ready",
+        "nodeDuration": 30,
+        "durationGate": false,
+        "rejectedFeedback": null,
+        "entryOk": true,
+        "entryLog": [
+          "clicked text:逐帧拉片 -> True"
+        ],
+        "panelPresent": null,
+        "submitPresent": null,
+        "submitted": false,
+        "submitDisabled": null,
+        "past0": 1,
+        "past1": 2,
+        "nodes0": 11,
+        "nodes1": 12,
+        "edges0": 11,
+        "edges1": 12,
+        "newNodes": [
+          "shot-breakdown-1791075469990"
+        ],
+        "newEdges": [
+          "e-video-1791075468841-2s3lu4-shot-breakdown-1791075469990"
+        ],
+        "newTypes": [
+          "shot-breakdown"
+        ]
+      },
+      {
+        "cmd": "createVideoFrameCapture",
+        "label": "抽帧",
+        "steps": 1,
+        "nodeStatus": "ready",
+        "nodeDuration": 30,
+        "durationGate": false,
+        "rejectedFeedback": null,
+        "entryOk": true,
+        "entryLog": [
+          "clicked [data-video-frame-menu-trigger] -> True",
+          "[data-video-frame-kind=\"current\"] 出现=True",
+          "clicked [data-video-frame-kind=\"current\"] -> True"
+        ],
+        "panelPresent": null,
+        "submitPresent": null,
+        "submitted": false,
+        "submitDisabled": null,
+        "past0": 1,
+        "past1": 2,
+        "nodes0": 11,
+        "nodes1": 12,
+        "edges0": 11,
+        "edges1": 12,
+        "newNodes": [
+          "video-frame-1791075475176-uh3d26"
+        ],
+        "newEdges": [
+          "e-video-1791075473319-1mtuam-video-frame-1791075475176-uh3d26"
+        ],
+        "newTypes": []
+      },
+      {
+        "cmd": "createAudioSplit",
+        "label": "音视频分离",
+        "steps": 1,
+        "nodeStatus": "ready",
+        "nodeDuration": 30,
+        "durationGate": false,
+        "rejectedFeedback": null,
+        "entryOk": true,
+        "entryLog": [
+          "clicked [data-video-audio-menu-trigger] -> True",
+          "[data-video-audio-mode=\"av\"] 出现=True",
+          "clicked [data-video-audio-mode=\"av\"] -> True"
+        ],
+        "panelPresent": null,
+        "submitPresent": null,
+        "submitted": false,
+        "submitDisabled": null,
+        "past0": 1,
+        "past1": 2,
+        "nodes0": 11,
+        "nodes1": 13,
+        "edges0": 11,
+        "edges1": 13,
+        "newNodes": [
+          "audio-split-1791075480970-fa1fhu",
+          "silent-video-1791075480970-riyp6g"
+        ],
+        "newEdges": [
+          "e-video-1791075478510-vxpg8w-audio-split-1791075480970-fa1fhu",
+          "e-video-1791075478510-vxpg8w-silent-video-1791075480970-riyp6g"
+        ],
+        "newTypes": [
+          "audio"
+        ]
+      },
+      {
+        "cmd": "createSubtitleErase",
+        "label": "智能去字幕",
+        "steps": 2,
+        "nodeStatus": "ready",
+        "nodeDuration": 30,
+        "durationGate": false,
+        "rejectedFeedback": null,
+        "entryOk": true,
+        "entryLog": [
+          "clicked [data-video-subtitle-menu-trigger] -> True",
+          "[data-video-subtitle-mode=\"smart\"] 出现=True",
+          "clicked [data-video-subtitle-mode=\"smart\"] -> True"
+        ],
+        "panelPresent": true,
+        "submitPresent": true,
+        "submitted": true,
+        "submitDisabled": false,
+        "past0": 1,
+        "past1": 2,
+        "nodes0": 11,
+        "nodes1": 12,
+        "edges0": 11,
+        "edges1": 12,
+        "newNodes": [
+          "subtitle-erase-1791075488758-7fb7k3"
+        ],
+        "newEdges": [
+          "e-video-1791075484682-5u1qgy-subtitle-erase-1791075488758-7fb7k3"
+        ],
+        "newTypes": []
+      },
+      {
+        "cmd": "createSmartMatting",
+        "label": "智能抠像",
+        "steps": 2,
+        "nodeStatus": "ready",
+        "nodeDuration": 30,
+        "durationGate": false,
+        "rejectedFeedback": null,
+        "entryOk": true,
+        "entryLog": [
+          "clicked [data-video-picture-edit-menu-trigger] -> True",
+          "[data-video-picture-edit-action=\"matting\"] 出现=True",
+          "clicked [data-video-picture-edit-action=\"matting\"] -> True"
+        ],
+        "panelPresent": true,
+        "submitPresent": true,
+        "submitted": true,
+        "submitDisabled": false,
+        "past0": 1,
+        "past1": 2,
+        "nodes0": 11,
+        "nodes1": 12,
+        "edges0": 11,
+        "edges1": 12,
+        "newNodes": [
+          "smart-matting-1791075496794-wklj04"
+        ],
+        "newEdges": [
+          "e-video-1791075492153-ezsjla-smart-matting-1791075496794-wklj04"
+        ],
+        "newTypes": []
+      },
+      {
+        "cmd": "createPictureEdit",
+        "label": "主体消除",
+        "steps": 2,
+        "nodeStatus": "ready",
+        "nodeDuration": 30,
+        "durationGate": true,
+        "rejectedFeedback": "视频大于15秒，暂不支持该功能",
+        "entryOk": true,
+        "entryLog": [
+          "clicked [data-video-picture-edit-menu-trigger] -> True",
+          "[data-video-picture-edit-action=\"subjectRemove\"] 出现=True",
+          "clicked [data-video-picture-edit-action=\"subjectRemove\"] -> True"
+        ],
+        "panelPresent": false,
+        "submitPresent": false,
+        "submitted": false,
+        "submitDisabled": null,
+        "past0": 1,
+        "past1": 1,
+        "nodes0": 11,
+        "nodes1": 11,
+        "edges0": 11,
+        "edges1": 11,
+        "newNodes": [],
+        "newEdges": [],
+        "newTypes": []
+      },
+      {
+        "cmd": "createDepthMotionCapture",
+        "label": "深度动作捕捉",
+        "steps": 2,
+        "nodeStatus": "ready",
+        "nodeDuration": 30,
+        "durationGate": true,
+        "rejectedFeedback": "视频时长超过处理上限，暂不支持深度动作捕捉",
+        "entryOk": true,
+        "entryLog": [
+          "clicked [data-video-depth-motion-trigger] -> True"
+        ],
+        "panelPresent": false,
+        "submitPresent": false,
+        "submitted": false,
+        "submitDisabled": null,
+        "past0": 1,
+        "past1": 1,
+        "nodes0": 11,
+        "nodes1": 11,
+        "edges0": 11,
+        "edges1": 11,
+        "newNodes": [],
+        "newEdges": [],
+        "newTypes": []
+      }
+    ],
+    "clean": [
+      "addDerivedNode",
+      "createVideoFrameCapture",
+      "createAudioSplit",
+      "createSubtitleErase",
+      "createSmartMatting"
+    ],
+    "gated": [
+      "createPictureEdit",
+      "createDepthMotionCapture"
+    ],
+    "durationGateRerun": {
+      "createPictureEdit": {
+        "duration": 10,
+        "panel": true,
+        "submit": true,
+        "submitDisabled": true,
+        "past0": 2,
+        "past1": 2,
+        "nodes0": 11,
+        "nodes1": 11
+      },
+      "createDepthMotionCapture": {
+        "duration": 10,
+        "panel": true,
+        "submit": true,
+        "submitDisabled": false,
+        "past0": 2,
+        "past1": 3,
+        "nodes0": 11,
+        "nodes1": 12
+      }
+    }
+  },
+  "checks": [
+    {
+      "label": "C1 7 个命令的入口链逐个命中（每一跳都点到）",
+      "pass": true,
+      "detail": "{\"addDerivedNode\": [\"clicked text:逐帧拉片 -> True\"], \"createVideoFrameCapture\": [\"clicked [data-video-frame-menu-trigger] -> True\", \"[data-video-frame-kind=\\\"current\\\"] 出现=True\", \"clicked [data-video-frame-kind=\\\"current\\\"] -> True\"], \"createAudioSplit\": [\"clicked [data-video-audio-menu-trigger] -> True\", \"[data-video-audio-mode=\\\"av\\\"] 出现=True\", \"clicked [data-video-audio-mode=\\\"av\\\"] -> True\"], \"createSubtitleErase\": [\"clicked [data-video-subtitle-menu-trigger] -> True\", \"[data-video-subtitle-mode=\\\"smart\\\"] 出现=True\", \"clicked [data-video-subtitle-mode=\\\"smart\\\"] -> True\"], \"createSmartMatting\": [\"clicked [data-video-picture-edit-menu-trigger] -> True\", \"[data-video-picture-edit-action=\\\"matting\\\"] 出现=True\", \"clicked [data-video-picture-edit-action=\\\"matting\\\"] -> True\"], \"createPictureEdit\": [\"clicked [data-video-picture-edit-menu-trigger] -> True\", \"[data-video-picture-edit-action=\\\"subjectRemove\\\"] 出现=True\", \"clicked [data-video-picture-edit-action=\\\"subjectRemove\\\"] -> True\"], \"createDepthMotionCapture\": [\"clicked [data-video-depth-motion-trigger] -> True\"]}"
+    },
+    {
+      "label": "C2 无时长门控的 5 个命令：3 个一段式 + 2 个两段式，全部真跑并记账",
+      "pass": true,
+      "detail": "{\"addDerivedNode\": {\"steps\": 1, \"panel\": null, \"past\": [1, 2], \"nodes\": [11, 12], \"newTypes\": [\"shot-breakdown\"]}, \"createVideoFrameCapture\": {\"steps\": 1, \"panel\": null, \"past\": [1, 2], \"nodes\": [11, 12], \"newTypes\": []}, \"createAudioSplit\": {\"steps\": 1, \"panel\": null, \"past\": [1, 2], \"nodes\": [11, 13], \"newTypes\": [\"audio\"]}, \"createSubtitleErase\": {\"steps\": 2, \"panel\": true, \"past\": [1, 2], \"nodes\": [11, 12], \"newTypes\": []}, \"createSmartMatting\": {\"steps\": 2, \"panel\": true, \"past\": [1, 2], \"nodes\": [11, 12], \"newTypes\": []}}"
+    },
+    {
+      "label": "C3 两个有时长门控的命令：默认 30 秒下面板不出现、store 不动、**但 UI 有说明**",
+      "pass": true,
+      "detail": "{\"createPictureEdit\": {\"duration\": 30, \"panel\": false, \"past\": [1, 1], \"feedback\": \"视频大于15秒，暂不支持该功能\"}, \"createDepthMotionCapture\": {\"duration\": 30, \"panel\": false, \"past\": [1, 1], \"feedback\": \"视频时长超过处理上限，暂不支持深度动作捕捉\"}}"
+    },
+    {
+      "label": "C4 时长对照：改成 10 秒后**两个面板都出现**；深度动作捕捉提交后 past +1 且建节点",
+      "pass": true,
+      "detail": "{\"createPictureEdit\": {\"duration\": 10, \"panel\": true, \"submit\": true, \"submitDisabled\": true, \"past0\": 2, \"past1\": 2, \"nodes0\": 11, \"nodes1\": 11}, \"createDepthMotionCapture\": {\"duration\": 10, \"panel\": true, \"submit\": true, \"submitDisabled\": false, \"past0\": 2, \"past1\": 3, \"nodes0\": 11, \"nodes1\": 12}}"
+    },
+    {
+      "label": "C4b 主体消除是**三段式**：面板出来了但提交按钮 disabled（要先在画面上标记主体）",
+      "pass": true,
+      "detail": "{\"duration\": 10, \"panel\": true, \"submit\": true, \"submitDisabled\": true, \"past0\": 2, \"past1\": 2, \"nodes0\": 11, \"nodes1\": 11}"
+    },
+    {
+      "label": "C5 每个命令都在 status===\"ready\" 的新卡上验（744 的 B 档门控前提）",
+      "pass": true,
+      "detail": "{\"addDerivedNode\": \"ready\", \"createVideoFrameCapture\": \"ready\", \"createAudioSplit\": \"ready\", \"createSubtitleErase\": \"ready\", \"createSmartMatting\": \"ready\", \"createPictureEdit\": \"ready\", \"createDepthMotionCapture\": \"ready\"}"
+    },
+    {
+      "label": "C6 门控是**时长**、不是别的：只改 durationSeconds 一个字段就从「被拒」变「可跑」",
+      "pass": true,
+      "detail": "{\"default\": {\"createPictureEdit\": 30, \"createDepthMotionCapture\": 30}, \"rerun\": {\"createPictureEdit\": 10, \"createDepthMotionCapture\": 10}}"
+    }
+  ],
+  "conclusions": [
+    "B 档 7 个命令逐个走完：**5 个真跑通**（逐帧拉片 / 抽帧 / 音视频分离 一步到位；智能去字幕 / 智能抠像 两段式），每个都 past +1 且新建了真实节点。",
+    "音视频分离一步产生 **2 个新节点**（audio-split + silent-video）与 2 条边。",
+    "**另 2 个（主体消除 / 深度动作捕捉）还有第三层门控：视频时长** —— 新建卡默认 `durationSeconds: 30`，>15 秒被直接 return。",
+    "但**这不是静默失败**：UI 用 `data-video-picture-edit-feedback` / `data-video-depth-motion-feedback` 横幅写明了原因（\"视频大于15秒，暂不支持该功能\" / \"视频时长超过处理上限…\"）。",
+    "**门控就是时长**：只把 `durationSeconds` 改成 10 秒（其余字段不动），两个面板立刻出现。深度动作捕捉提交后 past +1 并新建节点。",
+    "**主体消除是三段式**：面板出现后提交按钮 `disabled`（`disabled={!canSubmit}`），要先在画面上标记主体才能提交 —— 本批未做标记那一跳，故它的 createPictureEdit 未被触发。",
+    "⟹ 门控是**四层**不是三层：L1 选中且单选 / L2 status===\"ready\"（toolbar 与 5 个面板）/ L3 durationSeconds 2.5~15 秒（主体消除、深度动作捕捉）/ L4 status!==\"pending\"（generator 面板）。"
+  ],
+  "notClaimed": [
+    "两个时长门控命令只验了上界（30 秒被拒）与 10 秒可用；**下界 <2.5 秒未验**，未取证。",
+    "「新建视频卡默认 30 秒」是否有意 —— 未取证（承 734 待拍板① 的同类问题）。",
+    "抽帧只验了 `frameKind=\"current\"`；`first`/`last` 三种 kind 未逐个验，未取证。",
+    "音视频分离只验了 `av` 模式；`vocals`（人声提取）/ `background`（背景音提取）未验。",
+    "主体消除只验了 `subjectRemove`；`subjectModify`/`subjectReplace` 未验。",
+    "面板提交后是否有异步任务（如 depth-motion 的 delayMs 520）—— 本批的等待时长可能不够，但读数已显示节点新建，未见二次变更，未取证是否还有后续阶段。",
+    "主体消除的「标记主体」那一跳没做 ⟹ `createPictureEdit` 本批**未真跑**，只证到「面板能开、提交按钮 disabled」。时长下界 <2.5 秒的提示文案未验。",
+    "多选态（selectedNodeCount>1）下这 7 个命令全部不可达那一格未测。"
+  ]
+}
