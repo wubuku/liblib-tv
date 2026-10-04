@@ -1,0 +1,260 @@
+{
+ "batch": 755,
+ "checks": [
+  {
+   "label": "静态 下拉容器带 overflow-hidden（缺陷的根因条件）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 行内菜单是 absolute right-2 top-full（定位在行的下方）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 菜单四项文案齐全",
+   "pass": true,
+   "got": [
+    "在新窗口打开",
+    "重命名画布",
+    "复制画布",
+    "删除画布"
+   ]
+  },
+  {
+   "label": "静态 「在新窗口打开」的 onClick 只有 closeDropdown()",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 画布列表是 max-h-60 overflow-y-auto",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 「删除画布」菜单项受 canvases.length > 1 门控",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 删除确认框文案含「此操作不可恢复」且 role/aria 齐全",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 setActiveCanvas 清空三个选中字段",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 setActiveCanvas 会 canvasGeneration + 1",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 addCanvas（不是 createCanvas）不 bump canvasGeneration（口径不一致，静态记录）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 removeCanvas 是软删除 + 有 <=1 守卫 + removedAt 是日期串",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 删除活动画布回退到 filtered[min(removedIndex, len-1)]",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 removeCanvas 会从 historyByCanvas 里滤掉该画布",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "静态 purgeRemovedCanvas 在画布树里零调用点",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "静态 restoreCanvas 的调用点在 /project 页，回收站标签也在那儿",
+   "pass": true,
+   "got": {
+    "restoreCallSites": 2
+   }
+  },
+  {
+   "label": "判据 14 条",
+   "pass": true,
+   "got": 14
+  },
+  {
+   "label": "两轮一致（按生成 id 形态过滤后 diff 为空）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "轮间独立性写明是整页 reload",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "headline 记录了缺陷 + 根因（Tailwind 类名 overflow-hidden）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "证据链 5 条齐全（几何/命中/功能/阳性对照/同页并存）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "返工 4 条（R16 行序 / R17 fitView / R19 验收器与动作名 / R18 阳性对照方法）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "不声称清单非空（≥8 条）",
+   "pass": true,
+   "got": 9
+  },
+  {
+   "label": "「删除会清历史」与「恢复按钮没观察到」都进了不声称",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据2 「在新窗口打开」三项变化全 0",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据3 选中态跨画布不保留",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据4 历史栈按 canvasId 隔离（canvas-1 无条目、切回还在）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据5 viewport 两张画布各自留存",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据6 canvasGeneration 单调 +1",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据7 2 张画布时菜单只有 1/4 可点",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据7 三项各点一次全部零效果",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据8 阳性对照：6 张时第一行 4/4 可点",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据8 重命名真的成功（行内 input + 改名结果）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据9 同页并存：顶部行 4/4、末行 0/4",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据10 删除确认框结构与取消零变化",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据11 删除 = 软删除 + 回退到创建序相邻的前一个",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据12a 确认框写「此操作不可恢复」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据12b 恢复入口在 /project 的回收站（画布内无提示）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判判13 store 升序 vs DOM 倒序",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "判据14 purgeRemovedCanvas 零调用点",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数叶子级交叉核对 21 项（/tmp/vb755d.json）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：两轮按生成 id 形态过滤后 diff 为空",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "原始读数：baseline 两轮相同且是种子",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：菜单几何三档自洽（2 张 1/4、6 张首行 4/4、末行 0/4）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数：阳性对照下菜单底边 < 容器底边（6 张首行）",
+   "pass": true,
+   "got": null
+  }
+ ],
+ "passed": 44,
+ "total": 44,
+ "static": {
+  "dropdownOverflowHidden": true,
+  "rowMenuTopFull": true,
+  "rowMenuItems": [
+   "在新窗口打开",
+   "重命名画布",
+   "复制画布",
+   "删除画布"
+  ],
+  "openInNewWindowIsNoop": true,
+  "listMaxH60": true,
+  "deleteOnlyWhenMoreThanOne": true,
+  "deleteCopyUnrecoverable": true,
+  "deleteDialogAria": true,
+  "setActiveCanvasClearsSelection": true,
+  "setActiveCanvasBumpsGeneration": true,
+  "addCanvasNoBump": true,
+  "removeCanvasSoftDelete": true,
+  "removeCanvasGuard": true,
+  "removeCanvasFallback": true,
+  "removeCanvasDropsHistory": true,
+  "removedAtIsDate": true,
+  "purgeHits": [],
+  "restoreCallSites": 2,
+  "recycleBinTabInProjectPage": true
+ }
+}

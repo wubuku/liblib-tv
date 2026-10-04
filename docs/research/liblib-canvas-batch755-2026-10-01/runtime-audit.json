@@ -1,0 +1,521 @@
+{
+  "batch": 755,
+  "date": "2026-10-01",
+  "clone": "http://localhost:4317",
+  "subject": "画布切换与多画布状态隔离 + 行内菜单可达性（含一处高严重度缺陷）",
+  "seed": {
+    "canvases": 2,
+    "active": "canvas-2",
+    "nodes": 10,
+    "edges": 11,
+    "noPersistence": "store 无持久化，每轮整页 reload 回到种子"
+  },
+  "judgeCount": 14,
+  "twoRound": {
+    "rounds": 2,
+    "independence": "轮间整页 reload ⟹ zustand 回到种子",
+    "filter": "凡匹配 <prefix>-<epochMillis>-<rand6> 的字符串替换为 <generated-id>",
+    "diff": {},
+    "consistent": true
+  },
+  "judgments": [
+    {
+      "no": 1,
+      "title": "画布下拉的结构普查",
+      "claim": "trigger 76×32；容器 224×194 且 overflow:hidden；「新建画布」28×28（aria-label=新建画布）；画布行 222×40 带 data-canvas-active",
+      "evidence": {
+        "dropdown": {
+          "present": true,
+          "w": 224,
+          "h": 194,
+          "overflow": "hidden",
+          "trigger": {
+            "w": 76,
+            "h": 32
+          },
+          "newBtn": {
+            "w": 28,
+            "h": 28,
+            "aria": "新建画布"
+          },
+          "projectText": "当前项目未命名工作区",
+          "rows": [
+            {
+              "id": "canvas-2",
+              "active": "true",
+              "w": 222,
+              "h": 40
+            },
+            {
+              "id": "canvas-1",
+              "active": "false",
+              "w": 222,
+              "h": 40
+            }
+          ]
+        },
+        "trigger": {
+          "w": 76,
+          "h": 32
+        },
+        "measuredIn": "755d 两轮 + 755a 单轮（1440 视口）"
+      },
+      "why": "这是本批所有几何结论的基准面 —— 后面的「菜单被裁掉」全部相对它算。",
+      "twoRound": true
+    },
+    {
+      "no": 2,
+      "title": "「在新窗口打开」是装饰性按钮",
+      "claim": "可点、关掉下拉，但节点数/画布数/回收站三项全 0 变化",
+      "evidence": {
+        "point": {
+          "x": 331,
+          "y": 224,
+          "w": 142,
+          "h": 36,
+          "topIsSelf": true
+        },
+        "delta": {
+          "nodes": 0,
+          "canvases": 0,
+          "removed": 0
+        },
+        "dropdownOpenAfter": false,
+        "static": "CanvasTabDropdown.tsx:255-262 onClick 只有 closeDropdown()"
+      },
+      "why": "它无 disabled、无 title、连 aria-label 都没有 —— 与 750/751 记的「看起来能点、点着没反应」同类，但更彻底：实现里根本没有行为。",
+      "twoRound": true
+    },
+    {
+      "no": 3,
+      "title": "选中态跨画布不保留",
+      "claim": "canvas-2 上选中一个节点 → 切到 canvas-1 为空 → 切回 canvas-2 仍为空",
+      "evidence": {
+        "before": [
+          "i-1FQ9tErTcC"
+        ],
+        "onCanvas1": [],
+        "backOnCanvas2": [],
+        "survived": false,
+        "static": "canvasStore.ts:1109-1121 setActiveCanvas 把三个选中字段全清空；选中态是 store 里**全局一份**，不按画布存"
+      },
+      "why": "⟹ 选中态既不跨画布保留、也不按画布各存一份。",
+      "twoRound": true
+    },
+    {
+      "no": 4,
+      "title": "历史栈按 canvasId 隔离，切回还在",
+      "claim": "canvas-2 拖动节点后 past=1；到 canvas-1 上 canvas-2 的条目仍在、而 canvas-1 **根本没有条目**；切回 canvas-2 仍是 1",
+      "evidence": {
+        "afterDrag": {
+          "canvas-2": 1
+        },
+        "onC1": {
+          "canvas-2": 1
+        },
+        "backOnC2": {
+          "canvas-2": 1
+        },
+        "isolated": true
+      },
+      "why": "historyByCanvas 以 canvasId 分键，隔离成立。",
+      "twoRound": true
+    },
+    {
+      "no": 5,
+      "title": "viewport 按画布隔离",
+      "claim": "canvas-1 连按两次 Meta+= 放大到 1.2；同期 canvas-2 保持 0.299；切回后两张各自仍是自己的值",
+      "evidence": {
+        "c1Before": 1,
+        "c1After": 1.2,
+        "c2WhileOnC1": 0.299,
+        "c2AfterBack": 0.299,
+        "c1AfterBack": 1.2
+      },
+      "why": "viewport 存在 CanvasData 里，隔离成立。两轮一致里 zoom 的绝对值依赖 fitView 时刻，故只断言「各自留存、互不影响」。",
+      "twoRound": true
+    },
+    {
+      "no": 6,
+      "title": "canvasGeneration 每次切换 +1（单调）",
+      "claim": "1 → 4 → 5 → 7，逐步 +1",
+      "evidence": {
+        "steps": {
+          "baseline": 1,
+          "onC1": 4,
+          "backOnC2": 5,
+          "final": 7
+        },
+        "static": "canvasStore.ts:1109-1122 setActiveCanvas 里 canvasGeneration + 1；但 addCanvas:1036-1049 设了 activeCanvasId **却没 +1**"
+      },
+      "why": "递增本身是单调的。**动作真名是 `addCanvas` 不是 `createCanvas`**（我第一版在审计里写成 createCanvas，核 src/ 时改正，rework R19）；`addCanvas` 不 +1 是一处口径不一致（待拍板），**本批没有构造出它的可观测后果**，故只作静态记录。",
+      "twoRound": true
+    },
+    {
+      "no": 7,
+      "title": "行内菜单被祖先 overflow:hidden 裁掉（默认 2 张画布时）",
+      "claim": "容器 194px（底边 246）、菜单高 146px 且底边 351 ⟹ 落在容器外；4 项里只有第 1 项可点，**重命名画布 / 复制画布 / 删除画布 三项不可达**",
+      "evidence": {
+        "geom": {
+          "dropdown": true,
+          "ddH": 194,
+          "ddBottom": 246,
+          "overflow": "hidden",
+          "listH": 81,
+          "scrollable": true,
+          "rowY": 165,
+          "rowBottom": 205,
+          "menuH": 146,
+          "menuBottom": 351,
+          "menuInsideDropdown": false
+        },
+        "clickableCount": 1,
+        "unreachable": [
+          "重命名画布",
+          "复制画布",
+          "删除画布"
+        ],
+        "items": [
+          {
+            "t": "在新窗口打开",
+            "y": 206,
+            "bottom": 242,
+            "w": 142,
+            "h": 36,
+            "topIsSelf": true
+          },
+          {
+            "t": "重命名画布",
+            "y": 242,
+            "bottom": 278,
+            "w": 142,
+            "h": 36,
+            "topIsSelf": false
+          },
+          {
+            "t": "复制画布",
+            "y": 278,
+            "bottom": 314,
+            "w": 142,
+            "h": 36,
+            "topIsSelf": false
+          },
+          {
+            "t": "删除画布",
+            "y": 314,
+            "bottom": 350,
+            "w": 142,
+            "h": 36,
+            "topIsSelf": false
+          }
+        ],
+        "functionalProof2Canvases": {
+          "重命名画布": {
+            "inputPresent": false,
+            "namesAfter": null
+          },
+          "复制画布": {
+            "canvasesBefore": 2,
+            "canvasesAfter": 2
+          },
+          "删除画布": {
+            "confirmDialogPresent": false
+          }
+        },
+        "static": "CanvasTabDropdown.tsx:129 容器 className 含 overflow-hidden；行内菜单是 absolute right-2 top-full（定位在行的**下方**）"
+      },
+      "why": "三条证据一致才敢下结论：① 菜单 rect 底边超出容器底边；② 各项中心的 elementFromPoint 落回按钮自己为 false；③ 命中的是 `.react-flow__pane`（画布本身）。外加功能验证：三项各点一次，全部零效果。",
+      "twoRound": true
+    },
+    {
+      "no": 8,
+      "title": "阳性对照：6 张画布时第一行 4/4 可点，重命名真的成功",
+      "claim": "容器涨到 353px（底边 405）后菜单（底边 351）完整落在容器内 ⟹ 4 项全可点；点「重命名画布」出行内 input（170×30、focused、值=画布 6），输入 + Enter 后该画布改名为「改名成功」",
+      "evidence": {
+        "geom": {
+          "dropdown": true,
+          "ddH": 353,
+          "ddBottom": 405,
+          "overflow": "hidden",
+          "listH": 240,
+          "scrollable": false,
+          "rowY": 165,
+          "rowBottom": 205,
+          "menuH": 146,
+          "menuBottom": 351,
+          "menuInsideDropdown": true
+        },
+        "clickableCount": 4,
+        "rowId": "canvas-6",
+        "renamePoint": {
+          "x": 331,
+          "y": 260,
+          "w": 142,
+          "h": 36,
+          "topIsSelf": true
+        },
+        "renameInput": {
+          "present": true,
+          "value": "画布 6",
+          "w": 170,
+          "h": 30,
+          "focused": true
+        },
+        "namesAfter": [
+          "画布 1",
+          "画布 2",
+          "画布 3",
+          "画布 4",
+          "画布 5",
+          "改名成功"
+        ]
+      },
+      "why": "这是把「被裁掉」从推测变成机制断言的关键一格：**同一份代码、同一批画布，只是容器够高，功能就出现了** ⟹ 不是这三项没实现，是被祖先的 overflow 裁掉。",
+      "twoRound": true
+    },
+    {
+      "no": 9,
+      "title": "同一个菜单在同一页面上同时可点与不可点",
+      "claim": "6 张画布时：顶部行（y=165）**4/4**，最底行（y=365）**0/4**",
+      "evidence": {
+        "topRow": {
+          "id": "canvas-6",
+          "clickable": 4,
+          "geom": {
+            "dropdown": true,
+            "ddH": 353,
+            "ddBottom": 405,
+            "overflow": "hidden",
+            "listH": 240,
+            "scrollable": false,
+            "rowY": 165,
+            "rowBottom": 205,
+            "menuH": 146,
+            "menuBottom": 351,
+            "menuInsideDropdown": true
+          }
+        },
+        "bottomRow": {
+          "id": "canvas-1",
+          "clickable": 0,
+          "geom": {
+            "dropdown": true,
+            "ddH": 353,
+            "ddBottom": 405,
+            "overflow": "hidden",
+            "listH": 240,
+            "scrollable": true,
+            "rowY": 365,
+            "rowBottom": 405,
+            "menuH": 146,
+            "menuBottom": 551,
+            "menuInsideDropdown": false
+          }
+        },
+        "rowY": {
+          "canvas-6": 165,
+          "canvas-5": 205,
+          "canvas-4": 245,
+          "canvas-3": 285,
+          "canvas-2": 325,
+          "canvas-1": 365
+        }
+      },
+      "why": "可用性取决于**行在列表里的位置**，而不是画布本身。列表容器是 max-h-60 overflow-y-auto（240px 封顶），行菜单永远向下展开，所以越靠下的行越放不下。",
+      "twoRound": true
+    },
+    {
+      "no": 10,
+      "title": "删除确认框的结构与文案",
+      "claim": "遮罩 1000×900、role=dialog aria-label=删除画布；正文「确定要删除画布「改名成功」吗？**此操作不可恢复**。」；取消 50×30 / 确认 48×30；点取消零变化",
+      "evidence": {
+        "dialog": {
+          "present": true,
+          "w": 1000,
+          "h": 900,
+          "dialogAria": "删除画布",
+          "text": "删除画布确定要删除画布「改名成功」吗？此操作不可恢复。取消确认",
+          "buttons": [
+            {
+              "t": "取消",
+              "w": 50,
+              "h": 30,
+              "x": 557,
+              "y": 467
+            },
+            {
+              "t": "确认",
+              "w": 48,
+              "h": 30,
+              "x": 615,
+              "y": 467
+            }
+          ]
+        },
+        "afterCancel": {
+          "canvases": 6,
+          "removed": 0,
+          "dialogGone": true
+        }
+      },
+      "why": "取消这一格是必要的对照：它证明对话框真的会关、而不是因为别的原因卡住。",
+      "twoRound": true
+    },
+    {
+      "no": 11,
+      "title": "删除是软删除，且活动画布回退到创建序相邻的前一个",
+      "claim": "确认后画布 6 → 5；removedCanvases +1 = {id, name=改名成功, nodes:0, removedAt:'2026-10-04'}；活动画布 canvas-6 → **canvas-5**",
+      "evidence": {
+        "canvasesBefore": 6,
+        "canvasesAfter": 5,
+        "removed": [
+          {
+            "id": "canvas-6",
+            "name": "改名成功",
+            "nodes": 0,
+            "removedAt": "2026-10-04"
+          }
+        ],
+        "activeBefore": "canvas-6",
+        "activeAfter": "canvas-5",
+        "perCanvasHistory": {
+          "canvas-2": 1
+        },
+        "static": "canvasStore.ts:1075-1099：软删除进 removedCanvases 带 removedAt 日期串；fallbackCanvas = filtered[min(removedIndex, len-1)]；并从 historyByCanvas 里滤掉该画布"
+      },
+      "why": "「优先前一个」这条回退规则在只有 2 张画布、删第 1 张时正好是 Batch 114 注释描述的行为（这格是 6 张里删第 1 行，落到 canvas-5）。",
+      "twoRound": true
+    },
+    {
+      "no": 12,
+      "title": "「此操作不可恢复」与实现的软删除矛盾",
+      "claim": "store 保留整份快照 + removedAt；恢复入口在 **/project** 的回收站，画布内没有任何提示；回收站文案「仅显示最近 30 天内删除的内容」",
+      "evidence": {
+        "confirmCopy": "删除画布确定要删除画布「改名成功」吗？此操作不可恢复。取消确认",
+        "projectPage": {
+          "url": "/project",
+          "hasRecycleBinTab": true,
+          "recycleBinBtn": {
+            "w": 56,
+            "h": 32
+          },
+          "text": "💥 Seedance 2.5 720P 年会员生成限时5折起，低至0.39 元/秒 | 年会员最低 4.5 折 限时抢购 | 新建项目 | 首页 | 项目 | LibTV Agent | 创作者挑战赛 | Blender 插件 | LibTV Plugin | 百万积分大包上线 | 积分超市限时抢购 | 帮助 | 返回 | 全部项目 | 回收站 | 新建文件夹 | 开始创建 | 创建新的视频项目 | 0 个节点 | 画布 1 | 2026-10-04 | 10 个节点 | 画布 2 | 2026-10-04 | ",
+          "recycleBinRestoreBtn": []
+        },
+        "recycleBinText": "💥 Seedance 2.5 720P 年会员生成限时5折起，低至0.39 元/秒 | 年会员最低 4.5 折 限时抢购 | 新建项目 | 首页 | 项目 | LibTV Agent | 创作者挑战赛 | Blender 插件 | LibTV Plugin | 百万积分大包上线 | 积分超市限时抢购 | 帮助 | 返回 | 全部项目 | 回收站 | 新建文件夹 | 仅显示最近 30 天内删除的内容",
+        "static": "canvasStore.ts:1083-1088 Batch 124 注释「软删除——完整快照进回收站（源站 /project 回收站 30 天保留）」；restoreCanvas 的唯一调用点在 app/project/page.tsx:192 与 :205"
+      },
+      "why": "数据可恢复、但恢复入口在另一个路由，画布里既不提示也不链接。",
+      "twoRound": true
+    },
+    {
+      "no": 13,
+      "title": "新建画布可用；DOM 行序是「新建在前」而 store 数组是升序",
+      "claim": "连点 4 次「新建画布」建出 canvas-3..6；store 数组 = [canvas-1..6]（升序），下拉 DOM 行序 = [canvas-6..1]（倒序）",
+      "evidence": {
+        "count": 6,
+        "storeOrder": [
+          "canvas-1",
+          "canvas-2",
+          "canvas-3",
+          "canvas-4",
+          "canvas-5",
+          "canvas-6"
+        ],
+        "domRowOrder": [
+          "canvas-6",
+          "canvas-5",
+          "canvas-4",
+          "canvas-3",
+          "canvas-2",
+          "canvas-1"
+        ],
+        "domRowY": {
+          "canvas-6": 165,
+          "canvas-5": 205,
+          "canvas-4": 245,
+          "canvas-3": 285,
+          "canvas-2": 325,
+          "canvas-1": 365
+        },
+        "active": "canvas-6",
+        "newBtn": {
+          "w": 28,
+          "h": 28,
+          "aria": "新建画布"
+        }
+      },
+      "why": "「新建画布」是这张下拉里唯一**始终可用**的功能（28×28，在容器内），它走的是 `addCanvas`（store:1036）。行序倒序这一点是 rework R16 的直接原因。",
+      "twoRound": true
+    },
+    {
+      "no": 14,
+      "title": "purgeRemovedCanvas 零调用点",
+      "claim": "回收站没有「彻底删除」，软删除的快照会一直留着",
+      "evidence": {
+        "grepHits": [],
+        "static": "全 src/ 无调用点（只存在于 store 声明与实现）"
+      },
+      "why": "与 setEdges / duplicateNode / removeNode / REGISTERED_ASSET_ATTACH 同族。",
+      "twoRound": false
+    }
+  ],
+  "headline": {
+    "defect": "行内菜单（重命名画布 / 复制画布 / 删除画布）被祖先容器的 overflow:hidden 裁掉；在默认 2 张画布下 4 项里 3 项不可达，在 6 张画布下只有顶部行可用、最底行 0/4",
+    "rootCause": "CanvasTabDropdown.tsx:129 容器 overflow-hidden；行内菜单 absolute right-2 top-full 定位在行下方，菜单高 146px 而容器只留 41px",
+    "proofChain": [
+      "几何：菜单 rect 底边 351 > 容器底边 246（2 张画布）",
+      "命中：各项中心 elementFromPoint 落回按钮自己为 false，命中 .react-flow__pane",
+      "功能：三项各点一次，零效果（无 input / 画布数不变 / 无确认框）",
+      "阳性对照：6 张画布容器涨到 353px 后同一菜单 4/4 可点且重命名成功",
+      "同页并存：6 张画布时顶部行 4/4、最底行 0/4"
+    ]
+  },
+  "rework": [
+    {
+      "id": "R16",
+      "batch": "755d",
+      "what": "把 store 里的画布数组顺序当成了下拉里的行顺序",
+      "detail": "store 数组是升序 [canvas-1..6]，而下拉 DOM 行序是**新建的在前**（倒序 [canvas-6..1]）⟹ 我按 store[0] 取的「第一行」其实是列表**最下面**那行 ⟹ 「6 张时 4/4 可点」与删除链路两格全部没落地（renameInput=null、确认框没出来）。补跑时按 DOM 位置取行才拿到真读数",
+      "rule": "**数组顺序 ≠ 渲染顺序**；要「第一行/最后一行」必须问 DOM，不能问 store 数组。UI 有自己的排序（orderedCanvases）时尤其"
+    },
+    {
+      "id": "R17",
+      "batch": "755d",
+      "what": "每轮没先 fitView 就去抓节点中心",
+      "detail": "1000×900 视口下 i-1FQ9tErTcC 的中心不在视口内 ⟹ 选中态与历史栈两格的抓点 hit=false，两格读数全空。同一根因的另一面：R16 修好后若不修这格，仍会得到「看起来像「没变化」的空读数」",
+      "rule": "每轮固定动作清单要包含 fitView；抓点 hit=false 时**当场记失败**，不要让空读数流进判据（754 的 R15 已经吃过一次）"
+    },
+    {
+      "id": "R19",
+      "batch": "755 验收器 + 审计",
+      "what": "验收器第一版 44 项里 6 个 ❌，全是我自己的正则/取名错；另有一处**审计正文里的动作名写错**",
+      "detail": "① 根因检查我按 Tailwind 类名写 `overflow:hidden`，而类名是 `overflow-hidden`（无冒号）；② 「在新窗口打开」的 `onClick` 写在文案**之前**（还夹着 `type=\"button\"`），我按「文案往后找 onClick」写死；③ action 签名带类型标注（`setActiveCanvas: (id: string) =>`），我按 `(id) =>` 写；④ `setActiveCanvas:` 在文件里出现**两次**（接口声明 `=> void;` + 实现 `=> {`），我的取块函数拿到了**声明** —— batch 750 立过的「同一模式出现多次时先数清有几处」又踩一次；⑤ 交叉核对拿**整个对象**做相等比较，而产物里的 evidence 是原始读数的**子集/改名**（`dropdownOpen` → `dropdownOpenAfter`）⟹ 改成**叶子级**核对 21 项；⑥ **动作真名是 `addCanvas` 不是 `createCanvas`** —— 我第一版在审计正文里写成 createCanvas，核 src/ 后改正",
+      "rule": "静态断言的正则要对齐真实排版（缩进、换行、字面量、类名）；**取实现体要先排除同名声明**；「整对象相等」只在两侧同源时可用，产物是子集时改叶子级核对；**审计正文里出现的每个函数名都要回 src/ 核一遍**"
+    },
+    {
+      "id": "R18",
+      "batch": "755b/755c",
+      "what": "（方法记录）看到 topIsSelf=false 时没有立刻下结论",
+      "detail": "第一反应是「被裁掉」，但那只是推测 —— 同一个 false 也可能是「我的中心点选得不好」或「行不同」。于是补了三条独立证据（几何 / 命中 / 功能）+ 一个阳性对照",
+      "rule": "「某元素不可点」这个结论要有**阳性对照**：构造一个它**应该可点**的场合并证明确实可点，否则无法区分「不可达」与「我没点到」"
+    }
+  ],
+  "notClaimed": [
+    "行菜单的裁剪只验了 `overflow:hidden` 这一个机制；「列表 max-h-60 overflow-y-auto」与之的交互只间接看到（2 张画布时 list 的 scrollH=186 > clientH=80，scrollH 含那 146px 菜单）",
+    "**在 6 张画布时删除画布会顺带把该画布的 history 条目一起滤掉** —— 静态明确（:1095-1097）但本次删的 canvas-6 本身没有历史条目 ⟹ 这格没验到",
+    "回收站的「恢复」按钮**没观察到**：store 无持久化，导航到 /project 时回收站已空（「回收站为空」）⟹ 「恢复入口存在」只有静态结论（app/project/page.tsx:192/:205）",
+    "「在新窗口打开」只验了它零效果；源站这个入口点下去会开什么**没对照**",
+    "复制画布（duplicateCanvas）只在 6 张画布时通过第一行点过一次，**没有深验它对导演台项目登记（director 项目 registry）的影响**",
+    "画布名重命名只验了 Enter 提交一条；**失焦提交与 Esc 取消两条没验**",
+    "「新建画布」的 `canvasGeneration` 不 +1 这处不一致**没有构造出可观测后果**，只作静态记录",
+    "下拉面板在窄视口 / 长画布名 / 键盘导航（Tab、方向键）下的行为没测",
+    "本批没有与源站对照画布列表 / 回收站"
+  ],
+  "rawProbeFiles": {
+    "a": "755a 画布下拉普查 + 选中/历史/viewport 隔离 + 「在新窗口打开」",
+    "b": "755b 逐项命中诊断（4 项各 142×36，只有第 1 项 topIsSelf）",
+    "c": "755c 阳性对照：加到 6 张画布后第一行 4/4 且重命名成功",
+    "d": "755d 两轮判据采集（本文件的判据来源）"
+  }
+}
