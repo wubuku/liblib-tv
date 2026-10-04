@@ -5703,6 +5703,25 @@ def main() -> int:
     # ⭐ 967：读数文件必须**真的在**，否则下面 DDDD.* 的探针钉子全是空串
     p967 = ROOT / "scripts/jimeng_probe967_armptr_src.py"
     _p967 = p967.read_text(encoding="utf-8") if p967.exists() else ""
+    # 968/968b：复刻侧探针（**零节点点击**），`_p967src` 是 968 从 967 抠尺子的对象
+    p967s = ROOT / "scripts/jimeng_probe967_armptr_src.py"
+    _p967src = p967s.read_text(encoding="utf-8") if p967s.exists() else ""
+    p968 = ROOT / "scripts/jimeng_probe968_replica_armptr_ck.py"
+    _p968 = p968.read_text(encoding="utf-8") if p968.exists() else ""
+    p968b = ROOT / "scripts/jimeng_probe968b_nextjsportal_ck.py"
+    _p968b = p968b.read_text(encoding="utf-8") if p968b.exists() else ""
+    # ⭐ 968b 的结论「`NEXTJS-PORTAL` 不是复刻自己写的」**必须**由源码反证：
+    #   复刻组件里**一处都不许**出现 `nextjs-portal` / `NEXTJS-PORTAL`
+    _replica_srcs = []
+    for _pat in ("src/components/jimeng/**/*.tsx",
+                 "src/components/jimeng/**/*.ts",
+                 "src/components/jimeng/**/*.css"):
+        for _f in sorted(ROOT.glob(_pat)):
+            try:
+                _replica_srcs.append(_f.read_text(encoding="utf-8"))
+            except (OSError, UnicodeDecodeError):
+                pass
+    del _pat, _f
     p892 = ROOT / "scripts/jimeng_probe892_preventdefault_src.py"
     _p892 = p892.read_text(encoding="utf-8") if p892.exists() else ""
     p896 = ROOT / "scripts/jimeng_probe896_roving_tabindex_policy_src.py"
@@ -7936,6 +7955,10 @@ def main() -> int:
 
     # ══ 批 967：⭐⭐⭐⭐⭐ 把 900 与 963 的两个数**放进同一张表对账** ══
     print("— ZZZZZ. 批 967 两个可观测量对账：900 与 963 都没错 + 更正 965 —")
+    # ⚠️ 968/968b 的 `replicarmptr_968` / `nextjsportal_968b` 在 audit 里
+    #   **嵌在 `armptr_967` 之内**（它们是 967 的后续两批）⇒ 判据锚 `_ausrc`。
+    #   968 用**五位**前缀 `AAAAA`：`AAAA`–`ZZZZ` 已经被 26 批占满，
+    #   而 967 刚因为**撞号**（`CCCC` 撞 941、`DDDD` 撞 942）改过一次名 ⇒ 不复用。
 
     check("ZZZZZ.1 ⭐⭐⭐⭐⭐ **900 与 963 都没错 —— 它们量的不是同一件事**（源站 2/2 "
           "逐项一致）：「被布上 `'0'`」漏 **2** 枚（`b22-upload`、`音频 61`）、"
@@ -8026,6 +8049,88 @@ def main() -> int:
           # ⚠️ 探针里**不许**出现预写的判词字符串
           and "verdict_armed" not in _p967
           and "verdict_recon" not in _p967)
+
+    # ══ 批 968/968b：**复刻侧**用 967 同一把尺子复核 + 「18 = 18」的假匹配 ══
+    print("— AAAAA. 批 968 复刻侧复核 + 968b 拆穿「数目相等」 —")
+
+    check("AAAAA.1 ⭐⭐⭐⭐ **967 那两条机制规则在复刻侧同样成立**（2/2 逐项一致）："
+          "**布防 ⇒ 落焦** `self_eq_armed` = `n_self_rows` = **14/14**；"
+          "**`'0'` 不撤** `n_armed_after_rows` = `n_armed_presses` = **80/80**；"
+          "`armed_point_hist` = `{\"pre\": 80}` ⇒ 布防在**每一按开始时就已存在**，"
+          "与源站 `{\"pre\": 139, \"post\": 1}` **同一形状** ⇒ 复刻的 `armAll` "
+          "**只写不撤**、arming 的**时机**也对了",
+          '"replicarmptr_968"' in _ausrc
+          and "**967 那两条机制规则在复刻侧同样成立**" in _ausrc
+          and "= **14/14**" in _ausrc
+          and "= **80/80**" in _ausrc
+          and "复刻的 `armAll` **只写不撤**" in _ausrc
+          and "**同一形状**" in _ausrc
+          # ⭐ 钉探针：**逐字搬 967 的仪器**（`_grab` + assert）⇒ 两侧才可比
+          and "def _grab(name):" in _p968
+          and 'INSTALL_JS = _grab("INSTALL_JS")' in _p968
+          and 'assert _s in _p967src, f"{_n} 抠出来**不等于** 967 里的那份' in _p968
+          and '"js_verbatim_from_967"' in _p968
+          and "**复刻与源站同一把尺子**" in _p968
+          # ⭐ 钉探针：关系式判据（不是绝对值）+ 分母要对
+          and "**判据是关系式的、不是绝对值**" in _p968
+          and "步长门的分母是 `step_pairs`、" in _p968)
+
+    check("AAAAA.2 ⭐⭐⭐⭐ **步长：复刻严格按纯 DOM 序** —— `step_hist` = "
+          "`{\"+1\": 12, \"wrap\": 1}`、**`gt2` = 0、`+2` = 0**（2/2）"
+          "⇒ **比源站「干净」**（源站 963 是 `{+1: 103, +2: 1, 折返: 1}`、**恰好漏一枚**）"
+          "⇒ **967 写进实现的处置（「按纯 DOM 序 + 把那一枚记为已知差异」）确实落地**；"
+          "且 `n_never_armed`/`n_never_landed`/`n_landed_never_armed` **三个都是 0**",
+          '"steps_dom_order_968"' in _ausrc
+          and "**步长：复刻严格按纯 DOM 序**" in _ausrc
+          and "`gt2` = 0、`+2` = 0" in _ausrc
+          and "复刻比源站「干净" in _ausrc
+          and "**确实落地了**" in _ausrc
+          and '"three_sets_align_968"' in _ausrc
+          and "`n_never_armed` = **0**" in _ausrc
+          and "**复刻三张集合两两对齐**" in _ausrc
+          # ⚠️⚠️ **`wrap` 必须单独记成一类**（962 的教训）
+          and "**`wrap` 必须单独记成一类**" in _ausrc
+          and "**「非单调」根本推不出「乱序」**" in _ausrc
+          # ⭐ 钉探针：步长分四类 + 回折单独一类
+          and 'step_hist[cat] = step_hist.get(cat, 0) + 1' in _p968
+          and 'cat = "wrap"' in _p968
+          and "**回折单独记成一类**" in _p968)
+
+    check("AAAAA.3 ⭐⭐⭐⭐⭐ **拆穿一个「数目相等」的假匹配** ⇒ 长期待办"
+          "「复刻缺的项目面板停靠点」**差点被错关掉**：复刻 out 段实测 **18 个**、"
+          "源站也 **18 个**，但第 17 个是 **`NEXTJS-PORTAL`** —— 纯读复查（968b，"
+          "**零点击零按键**）：`parent_tag` = **`SCRIPT`**、`n_children` = **0**、"
+          "`innerHTML` = **空**、`rect` = **`[0,0,0,0]`**、`is_focusable` = **`False`**"
+          "⇒ **它压根不是复刻的 UI 元素**、是 **Next.js 开发态注入的 runtime 节点**"
+          "⇒ 复刻真正的 out 停靠点是 **17 个** ⇒ **差的那一个仍然是「项目面板」**",
+          '"nextjsportal_968b"' in _ausrc
+          and "**「数目相等」不等于「集合相等」**" in _ausrc
+          and "**差点被错关掉**" in _ausrc
+          and "**待办不许关**" in _ausrc
+          and "**数目对齐只是线索、不是结论**" in _ausrc
+          and "**逐个核身份**" in _ausrc
+          # ⭐ 钉探针：968b 真的查了那几项，而不是只说结论
+          and "parent_tag: e.parentElement ? e.parentElement.tagName : null," in _p968b
+          and "is_focusable: e.tabIndex >= 0," in _p968b
+          and '"pure_read": True' in _p968b
+          # ⚠️ 仓里**不许**出现自写的 nextjs-portal（否则这条结论就假了）
+          and not any("nextjs-portal" in t or "NEXTJS-PORTAL" in t
+                      for t in _replica_srcs))
+
+    check("AAAAA.4 ⚠️⚠️ **步长那道门第一版太弱，是干跑当场抓到的**：它只查 "
+          "`n_step_gt2 == 0` ⇒ 在「**全部是 `wrap`、`+1` 一次都没有**」的"
+          "**退化数据**上**照样绿** ⇒ 按 942 的纪律**改严**（再加「`+1` 真的出现过」"
+          "**且**「回折真的出现过」）⇒ 改完之后**双向可验**：退化数据判红、"
+          "合理数据转绿 ⇒ ⭐ **一道门必须能红、能不红**",
+          '"weak_gate_fixed_968"' in _ausrc
+          and "**步长那道门第一版太弱，是干跑当场抓到的**" in _ausrc
+          and "**改严**" in _ausrc
+          and "**一道门必须能红、能不红**；只会绿的门**比没有门更坏**" in _ausrc
+          # ⭐ 钉探针：改严后的门**真的**写了那两条
+          and '"steps_are_dom_order_both_reps": bool(' in _p968
+          and 'min(_c0.get("n_step_plus1") or 0, _c1.get("n_step_plus1") or 0) > 0' in _p968
+          and 'min(_c0.get("n_step_wrap") or 0, _c1.get("n_step_wrap") or 0) >= 1' in _p968
+          and "**第一版这道门太弱**" in _p968)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "

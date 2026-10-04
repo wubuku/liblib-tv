@@ -141,6 +141,9 @@ PROBE_VARS = {
     # ⚠️ 967：**与写 `DDDD.*` 判据同一步登记** —— 962/963/964/965 各栽过一次，
     #   症状都是「新增变量没登记 ⇒ 锚点自查把整组**静默跳过** ⇒ 报 0 问题」
     "_p967": "scripts/jimeng_probe967_armptr_src.py",
+    # ⚠️ 968/968b：**同样与写 `AAAAA.*` 判据同一步登记**（同一个坑，第三次预防）
+    "_p968": "scripts/jimeng_probe968_replica_armptr_ck.py",
+    "_p968b": "scripts/jimeng_probe968b_nextjsportal_ck.py",
     # ⚠️ 961 顺带补上 `asrc`（= audit 源码，M 组判据在用；
     #   它的路径是 `ROOT / "scripts" / "…"` 两段写法，自动提取抓不到）
     "asrc": "scripts/jimeng_unclickable_audit.py",
