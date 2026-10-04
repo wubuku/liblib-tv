@@ -1,0 +1,328 @@
+{
+  "读数": {
+    "节点表": [
+      {
+        "id": "a-GgqvrVz0pw",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "box": [
+          1214,
+          599,
+          161,
+          161
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 0
+      },
+      {
+        "id": "a-THmbuJXQj4",
+        "cls": "react-flow__node react-flow__node-audio nopan selectable draggable",
+        "box": [
+          263,
+          182,
+          161,
+          161
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 1
+      },
+      {
+        "id": "b-mfkcQNULC3",
+        "cls": "react-flow__node react-flow__node-shot-breakdown nopan selectable draggable",
+        "box": [
+          1176,
+          44,
+          147,
+          178
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 2
+      },
+      {
+        "id": "i-9nlG6HdjK2",
+        "cls": "react-flow__node react-flow__node-image nopan selectable draggable",
+        "box": [
+          76,
+          319,
+          285,
+          161
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 3
+      },
+      {
+        "id": "i-sODTbgLUm1",
+        "cls": "react-flow__node react-flow__node-image nopan selectable draggable",
+        "box": [
+          808,
+          319,
+          285,
+          161
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 4
+      },
+      {
+        "id": "n-56F19pXVB4",
+        "cls": "react-flow__node react-flow__node-director-console-3d nopan selectable draggable",
+        "box": [
+          323,
+          77,
+          161,
+          161
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 5
+      },
+      {
+        "id": "t-2AK3Ukyxj3",
+        "cls": "react-flow__node react-flow__node-text nopan selectable draggable",
+        "box": [
+          208,
+          605,
+          161,
+          161
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 6
+      },
+      {
+        "id": "t-UtVx3lZmrV",
+        "cls": "react-flow__node react-flow__node-text nopan selectable draggable",
+        "box": [
+          1160,
+          319,
+          161,
+          161
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 7
+      },
+      {
+        "id": "v-eMpqKtiLlx",
+        "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+        "box": [
+          65,
+          319,
+          285,
+          161
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 8
+      },
+      {
+        "id": "v-oZNpH99MtM",
+        "cls": "react-flow__node react-flow__node-video-clip nopan selectable draggable",
+        "box": [
+          945,
+          44,
+          161,
+          161
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 9
+      },
+      {
+        "id": "v-v2hlWY4Br3",
+        "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+        "box": [
+          565,
+          44,
+          285,
+          161
+        ],
+        "z": "0",
+        "视口内": true,
+        "dom序": 10
+      }
+    ],
+    "落点采样": {
+      "目标框": [
+        76,
+        319,
+        285,
+        161
+      ],
+      "格": [
+        [
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "(非节点)"
+        ],
+        [
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "(非节点)"
+        ],
+        [
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "(非节点)"
+        ],
+        [
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "(非节点)"
+        ],
+        [
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "(非节点)"
+        ],
+        [
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "v-eMpqKtiLlx",
+          "(非节点)"
+        ],
+        [
+          "a-THmbuJXQj4",
+          "(非节点)",
+          "(非节点)",
+          "v-eMpqKtiLlx",
+          "(非节点)",
+          "(非节点)",
+          "(非节点)"
+        ]
+      ]
+    },
+    "落点采样2": {
+      "目标框": [
+        808,
+        319,
+        285,
+        161
+      ],
+      "格": [
+        [
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "(非节点)"
+        ],
+        [
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "(非节点)"
+        ],
+        [
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "(非节点)"
+        ],
+        [
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "(非节点)"
+        ],
+        [
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "(非节点)"
+        ],
+        [
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "自己",
+          "(非节点)"
+        ],
+        [
+          "(非节点)",
+          "(非节点)",
+          "(非节点)",
+          "自己",
+          "(非节点)",
+          "(非节点)",
+          "(非节点)"
+        ]
+      ]
+    }
+  },
+  "步骤": [
+    "坐标偏差：[]",
+    "\n视口内节点 11 / 共 11",
+    "　a-GgqvrVz0pw box=[1214,599,161,161] z=0 dom序=0 视口内",
+    "　a-THmbuJXQj4 box=[263,182,161,161] z=0 dom序=1 视口内",
+    "　b-mfkcQNULC3 box=[1176,44,147,178] z=0 dom序=2 视口内",
+    "　i-9nlG6HdjK2 box=[76,319,285,161] z=0 dom序=3 视口内",
+    "　i-sODTbgLUm1 box=[808,319,285,161] z=0 dom序=4 视口内",
+    "　n-56F19pXVB4 box=[323,77,161,161] z=0 dom序=5 视口内",
+    "　t-2AK3Ukyxj3 box=[208,605,161,161] z=0 dom序=6 视口内",
+    "　t-UtVx3lZmrV box=[1160,319,161,161] z=0 dom序=7 视口内",
+    "　v-eMpqKtiLlx box=[65,319,285,161] z=0 dom序=8 视口内",
+    "　v-oZNpH99MtM box=[945,44,161,161] z=0 dom序=9 视口内",
+    "　v-v2hlWY4Br3 box=[565,44,285,161] z=0 dom序=10 视口内",
+    "\n⭐ 图片节点 i-9nlG6HdjK2 视口框 [76,319,285,161]，7×7 落点归属（行=上→下，列=左→右）：",
+    "　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         ",
+    "　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         ",
+    "　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         ",
+    "　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         ",
+    "　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         ",
+    "　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         ",
+    "　a-THmbuJXQj4  (非节点)         (非节点)         v-eMpqKtiLlx  (非节点)         (非节点)         (非节点)         ",
+    "\n⭐ 图片节点 i-sODTbgLUm1 视口框 [808,319,285,161]，7×7 落点归属：",
+    "　自己            自己            自己            自己            自己            自己            (非节点)         ",
+    "　自己            自己            自己            自己            自己            自己            (非节点)         ",
+    "　自己            自己            自己            自己            自己            自己            (非节点)         ",
+    "　自己            自己            自己            自己            自己            自己            (非节点)         ",
+    "　自己            自己            自己            自己            自己            自己            (非节点)         ",
+    "　自己            自己            自己            自己            自己            自己            (非节点)         ",
+    "　(非节点)         (非节点)         (非节点)         自己            (非节点)         (非节点)         (非节点)         ",
+    "\n✅ 只读诊断，未点击任何节点",
+    "⭐ 收尾坐标偏差：[]"
+  ]
+}

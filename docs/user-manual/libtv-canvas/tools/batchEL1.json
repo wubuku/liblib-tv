@@ -1,0 +1,77 @@
+{
+  "读数": {
+    "普查": [
+      {
+        "tag": "DIV",
+        "cls": "",
+        "attrs": {
+          "style": "position: absolute; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; pointer-events: auto; top: 50%; right: 0px; transform: translateY(-50%);"
+        },
+        "文字": "",
+        "有效文字": "",
+        "cursor": "crosshair",
+        "opacity": "1",
+        "box": [
+          39,
+          381,
+          37,
+          37
+        ],
+        "中心": [
+          57,
+          399
+        ],
+        "svg": "M10 6.5v7M6.5 10h7"
+      },
+      {
+        "tag": "DIV",
+        "cls": "",
+        "attrs": {
+          "style": "position: absolute; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; pointer-events: auto; top: 50%; left: 0px; transform: translateY(-50%);"
+        },
+        "文字": "",
+        "有效文字": "",
+        "cursor": "crosshair",
+        "opacity": "1",
+        "box": [
+          361,
+          381,
+          37,
+          37
+        ],
+        "中心": [
+          379,
+          399
+        ],
+        "svg": "M10 6.5v7M6.5 10h7"
+      }
+    ],
+    "滑块": null,
+    "箭头": null,
+    "阳性对照": {
+      "标签": "阳性对照",
+      "缺失": true,
+      "新": []
+    },
+    "滑块悬停": {
+      "标签": "高级设置滑块",
+      "缺失": true,
+      "新": []
+    },
+    "箭头悬停": {
+      "标签": "展开收起箭头",
+      "缺失": true,
+      "新": []
+    }
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "点击图片节点后选中：[\"v-eMpqKtiLlx\"]",
+    "\n⭐ 节点内小尺寸可点容器 2 个（全属性已落盘）",
+    "\n　手册点名的 高级设置滑块：❌ 没在本轮找到",
+    "　手册点名的 展开/收起箭头：❌ 没在本轮找到",
+    "\n⭐ 阳性对照目标：没找到带文字的小控件",
+    "\n✅ 三轮悬停都已留下全视口截图 + 近景截图（含阴性）",
+    "⭐ 收尾坐标偏差：[]"
+  ]
+}
