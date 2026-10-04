@@ -1,0 +1,438 @@
+{
+  "batch": 746,
+  "title": "A 档剩下 4 个命令：createLongVideoProcess 有一条被菜单藏起来、芯片能进的路径（我第一版静态推理漏了 :226 而误判为不可达）；同一个「已加入本地任务」提示，真假各有一条",
+  "verdict": "11/11",
+  "summary": {
+    "results": {
+      "modes": [
+        {
+          "id": "text",
+          "text": "文生视频",
+          "disabled": false
+        },
+        {
+          "id": "omnireference",
+          "text": "全能参考",
+          "disabled": true
+        },
+        {
+          "id": "image",
+          "text": "图生视频",
+          "disabled": true
+        },
+        {
+          "id": "first-last",
+          "text": "首尾帧",
+          "disabled": true
+        },
+        {
+          "id": "image-reference",
+          "text": "图片参考",
+          "disabled": true
+        }
+      ],
+      "C3_shortCircuit": {
+        "clicked": true,
+        "before": {
+          "className": "flex size-8 shrink-0 items-center justify-center rounded-xl bg-white text-[#202020]",
+          "title": "生成视频",
+          "disabled": false,
+          "longState": null,
+          "icon": "arrow"
+        },
+        "after": {
+          "className": "flex size-8 shrink-0 items-center justify-center rounded-xl text-[#202020] bg-[#09caf5]",
+          "title": "已加入本地任务",
+          "disabled": false,
+          "longState": null,
+          "icon": "check"
+        },
+        "escape": {
+          "submitStillThere": false,
+          "selectedCount": 0
+        },
+        "footBefore": {
+          "model": "2.5",
+          "mode": "文生视频",
+          "params": "16:9 · 720P · 5s · 1个 ·",
+          "process": null
+        },
+        "past": [
+          1,
+          1
+        ],
+        "nodes": [
+          11,
+          11
+        ],
+        "edges": [
+          11,
+          11
+        ],
+        "nodeIdsIdentical": true,
+        "edgeIdsIdentical": true
+      },
+      "C4_longVideo": {
+        "chipClicked": true,
+        "footBeforeChip": {
+          "model": "2.5",
+          "mode": "文生视频",
+          "params": "16:9 · 720P · 5s · 1个 ·",
+          "process": null
+        },
+        "footAfterChip": {
+          "model": "2.5",
+          "mode": "超长视频",
+          "params": "Auto · 720P · 300s · 1个 ·",
+          "process": "查看过程"
+        },
+        "btnAfterChip": {
+          "className": "flex size-8 shrink-0 items-center justify-center rounded-xl bg-white text-[#202020]",
+          "title": "生成视频",
+          "disabled": false,
+          "longState": "idle",
+          "icon": "arrow"
+        },
+        "clicked": true,
+        "btnAt250ms": {
+          "className": "flex size-8 shrink-0 items-center justify-center rounded-xl cursor-wait bg-[#09caf5]/70 text-white",
+          "title": "正在创建本地过程",
+          "disabled": true,
+          "longState": "submitting",
+          "icon": "spinner"
+        },
+        "footAt250ms": {
+          "model": "2.5",
+          "mode": "超长视频",
+          "params": "Auto · 720P · 300s · 1个 ·",
+          "process": "查看过程"
+        },
+        "btnAfterTimer": {
+          "className": "flex size-8 shrink-0 items-center justify-center rounded-xl text-[#202020] bg-[#09caf5]",
+          "title": "已加入本地任务",
+          "disabled": false,
+          "longState": "created",
+          "icon": "check"
+        },
+        "footAfterTimer": {
+          "model": "2.5",
+          "mode": "超长视频",
+          "params": "Auto · 720P · 300s · 1个 ·",
+          "process": "返回编辑"
+        },
+        "chipPast": [
+          1,
+          2
+        ],
+        "submitPast": [
+          2,
+          3
+        ],
+        "nodes": [
+          11,
+          23
+        ],
+        "edges": [
+          11,
+          33
+        ],
+        "newLongVideoNodes": 12
+      },
+      "C5_reconcile": {
+        "staticNodeWrites": 12,
+        "staticNodeTotal": 12,
+        "staticEdgeTotal": 22,
+        "runtimeNewNodes": 12,
+        "runtimeNewEdges": 22,
+        "runtimeLongVideoNodes": 12
+      },
+      "C6_effect": {
+        "opened": true,
+        "cardCount": 4,
+        "card": "试妆特写",
+        "picked": true,
+        "past": [
+          1,
+          3
+        ],
+        "nodes": [
+          11,
+          12
+        ],
+        "edges": [
+          11,
+          12
+        ],
+        "newFiles": [
+          "素材 - 特效 - 试妆特写"
+        ]
+      },
+      "C7_destroy": {
+        "presentBeforeAttempt": false,
+        "visBeforeAttempt": null,
+        "presentAfterAttempt": true,
+        "groupBox": {
+          "x": 319,
+          "y": 704,
+          "w": 642,
+          "h": 55,
+          "cx": 640,
+          "cy": 732
+        },
+        "buttonBoxWhenHidden": {
+          "x": 0,
+          "y": 0,
+          "w": 0,
+          "h": 0,
+          "cx": 0,
+          "cy": 0
+        },
+        "elementAtGroupCentre": {
+          "tag": "DIV",
+          "inSlot": true
+        },
+        "visBeforeHover": {
+          "display": "none",
+          "visibility": "visible",
+          "opacity": "1",
+          "w": 0,
+          "h": 0
+        },
+        "visAfterHover": {
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "w": 46,
+          "h": 53
+        },
+        "destroyed": true,
+        "past": [
+          2,
+          3
+        ],
+        "nodes": [
+          12,
+          11
+        ],
+        "edges": [
+          12,
+          11
+        ],
+        "attemptAfter": null
+      },
+      "C8_exit": {
+        "picked": true,
+        "footBefore": {
+          "model": "2.5",
+          "mode": "超长视频",
+          "params": "Auto · 720P · 300s · 1个 ·",
+          "process": "返回编辑"
+        },
+        "footAfter": {
+          "model": "2.5",
+          "mode": "文生视频",
+          "params": "Auto · 720P · 30s · 1个 ·",
+          "process": null
+        },
+        "attemptAfter": null,
+        "nodes": [
+          23,
+          23
+        ],
+        "edges": [
+          33,
+          33
+        ],
+        "past": [
+          4,
+          5
+        ]
+      },
+      "C9_chipNotToggle": {
+        "footBefore": {
+          "model": "2.5",
+          "mode": "超长视频",
+          "params": "Auto · 720P · 300s · 1个 ·",
+          "process": "返回编辑"
+        },
+        "footAfter": {
+          "model": "2.5",
+          "mode": "超长视频",
+          "params": "Auto · 720P · 300s · 1个 ·",
+          "process": "返回编辑"
+        },
+        "past": [
+          3,
+          4
+        ],
+        "nodes": [
+          23,
+          23
+        ],
+        "edges": [
+          33,
+          33
+        ],
+        "footIdentical": true
+      },
+      "C10_continuation": {
+        "exitPresentFresh": false,
+        "exitPresentAfterMenu": false,
+        "continuation": null
+      },
+      "static": {
+        "longVideoModeLine": 110,
+        "longVideoModeSrc": "{ id: \"long-video\", label: \"超长视频\", disabled: true, inMenu: false, badge: \"Beta\" },",
+        "effectsTriggerLine": 393,
+        "isLongVideoLine": 172,
+        "chipBranchLines": [
+          179,
+          225,
+          268,
+          282
+        ],
+        "setModeLongVideoLines": [
+          226
+        ],
+        "chipClearOnModeSwitchLine": 268,
+        "earlyReturnLine": 309,
+        "pureComponentStateLine": 310,
+        "pureComponentStateReturnLine": 311,
+        "effectsCardLine": 532,
+        "continuationExitLine": 641,
+        "slotGroupLine": 736,
+        "destroyLine": 745,
+        "longSubmitStateLine": 839,
+        "generateBtnLine": 851,
+        "menuFilterLine": 974,
+        "storeDeclLines": [
+          348,
+          2244
+        ],
+        "storeImplLine": 2244,
+        "storeMakeNodeWrites": 12,
+        "storeProcessNodesSpread": 3,
+        "storeProcessNodeSingles": 2,
+        "storeEdgeWrites": 18,
+        "storeEdgeCount": 22
+      }
+    },
+    "aTierTable": [
+      {
+        "cmd": "createFirstFrameReference",
+        "run": "744 已跑（failed 卡，past +1、只写 attempt）"
+      },
+      {
+        "cmd": "createFirstLastFrameReference",
+        "run": "744 已跑（failed 卡，past +1、只写 attempt）"
+      },
+      {
+        "cmd": "updateNodeData（setAttempt）",
+        "run": "744 已跑（「5分钟超长视频」芯片，past +1）"
+      },
+      {
+        "cmd": "addNodeAtPosition + addEdge（选特效）",
+        "run": "746 本批跑（past +2）"
+      },
+      {
+        "cmd": "destroyFirstFrameReference",
+        "run": "746 本批跑（past +1、节点 -1、边 -1）"
+      },
+      {
+        "cmd": "clearVideoContinuation",
+        "run": "746 只验到「入口条件不满足」"
+      },
+      {
+        "cmd": "createLongVideoProcess",
+        "run": "746 本批跑通（芯片路径，past +1、节点 +12、边 +22）"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "label": "C1 静态：long-video 是 inMenu:false（被 :974 过滤），但 :226 有 setMode(\"long-video\") ⟹ 存在第二条赋值路径；且 createLongVideoProcess 恰好两处（:348 接口声明 + :2244 实现）",
+      "pass": true,
+      "detail": "{\"longVideoModeLine\": 110, \"longVideoModeSrc\": \"{ id: \\\"long-video\\\", label: \\\"超长视频\\\", disabled: true, inMenu: false, badge: \\\"Beta\\\" },\", \"effectsTriggerLine\": 393, \"isLongVideoLine\": 172, \"chipBranchLines\": [179, 225, 268, 282], \"setModeLongVideoLines\": [226], \"chipClearOnModeSwitchLine\": 268, \"earlyReturnLine\": 309, \"pureComponentStateLine\": 310, \"pureComponentStateReturnLine\": 311, \"effectsCardLine\": 532, \"continuationExitLine\": 641, \"slotGroupLine\": 736, \"destroyLine\": 745, \"longSubmitStateLine\": 839, \"generateBtnLine\": 851, \"menuFilterLine\": 974, \"storeDeclLines\": [348, 2244], \"storeImplLine\": 2244, \"storeMakeNodeWrites\": 12, \"storeProcessNodesSpread\": 3, \"storeProcessNodeSingles\": 2, \"storeEdgeWrites\": 18, \"storeEdgeCount\": 22}"
+    },
+    {
+      "label": "C2 运行时：模式菜单里没有 long-video",
+      "pass": true,
+      "detail": "[{\"id\": \"text\", \"text\": \"文生视频\", \"disabled\": false}, {\"id\": \"omnireference\", \"text\": \"全能参考\", \"disabled\": true}, {\"id\": \"image\", \"text\": \"图生视频\", \"disabled\": true}, {\"id\": \"first-last\", \"text\": \"首尾帧\", \"disabled\": true}, {\"id\": \"image-reference\", \"text\": \"图片参考\", \"disabled\": true}]"
+    },
+    {
+      "label": "C3 非长视频路径点「生成视频」：store 零写入，但按钮变蓝 + title 变「已加入本地任务」；而 long-state 属性整段不存在（也被 isLongVideo 门控）",
+      "pass": true,
+      "detail": "{\"clicked\": true, \"before\": {\"className\": \"flex size-8 shrink-0 items-center justify-center rounded-xl bg-white text-[#202020]\", \"title\": \"生成视频\", \"disabled\": false, \"longState\": null, \"icon\": \"arrow\"}, \"after\": {\"className\": \"flex size-8 shrink-0 items-center justify-center rounded-xl text-[#202020] bg-[#09caf5]\", \"title\": \"已加入本地任务\", \"disabled\": false, \"longState\": null, \"icon\": \"check\"}, \"escape\": {\"submitStillThere\": false, \"selectedCount\": 0}, \"footBefore\": {\"model\": \"2.5\", \"mode\": \"文生视频\", \"params\": \"16:9 · 720P · 5s · 1个 ·\", \"process\": null}, \"past\": [1, 1], \"nodes\": [11, 11], \"edges\": [11, 11], \"nodeIdsIdentical\": true, \"edgeIdsIdentical\": true}"
+    },
+    {
+      "label": "C4 芯片路径：芯片 ⟹ 模式触发器「超长视频」+ long-state 变 idle + 「查看过程」出现；点生成视频 ⟹ submitting(disabled) → created，past +1、节点 +12、边 +22、「返回编辑」出现",
+      "pass": true,
+      "detail": "{\"chipClicked\": true, \"footBeforeChip\": {\"model\": \"2.5\", \"mode\": \"文生视频\", \"params\": \"16:9 · 720P · 5s · 1个 ·\", \"process\": null}, \"footAfterChip\": {\"model\": \"2.5\", \"mode\": \"超长视频\", \"params\": \"Auto · 720P · 300s · 1个 ·\", \"process\": \"查看过程\"}, \"btnAfterChip\": {\"className\": \"flex size-8 shrink-0 items-center justify-center rounded-xl bg-white text-[#202020]\", \"title\": \"生成视频\", \"disabled\": false, \"longState\": \"idle\", \"icon\": \"arrow\"}, \"clicked\": true, \"btnAt250ms\": {\"className\": \"flex size-8 shrink-0 items-center justify-center rounded-xl cursor-wait bg-[#09caf5]/70 text-white\", \"title\": \"正在创建本地过程\", \"disabled\": true, \"longState\": \"submitting\", \"icon\": \"spinner\"}, \"footAt250ms\": {\"model\": \"2.5\", \"mode\": \"超长视频\", \"params\": \"Auto · 720P · 300s · 1个 ·\", \"process\": \"查看过程\"}, \"btnAfterTimer\": {\"className\": \"flex size-8 shrink-0 items-center justify-center rounded-xl text-[#202020] bg-[#09caf5]\", \"title\": \"已加入本地任务\", \"disabled\": false, \"longState\": \"created\", \"icon\": \"check\"}, \"footAfterTimer\": {\"model\": \"2.5\", \"mode\": \"超长视频\", \"params\": \"Auto · 720P · 300s · 1个 ·\", \"process\": \"返回编辑\"}, \"chipPast\": [1, 2], \"submitPast\": [2, 3], \"nodes\": [11, 23], \"edges\": [11, 33], \"newLongVideoNodes\": 12}"
+    },
+    {
+      "label": "C5 对账：静态 12 个 makeProcessNode 写点、22 条边 ⟺ 运行时 +12 节点 / +22 边",
+      "pass": true,
+      "detail": "{\"staticNodeWrites\": 12, \"staticNodeTotal\": 12, \"staticEdgeTotal\": 22, \"runtimeNewNodes\": 12, \"runtimeNewEdges\": 22, \"runtimeLongVideoNodes\": 12}"
+    },
+    {
+      "label": "C6 选特效：节点 +1、边 +1，**past +2**（建图与连线各记一条）",
+      "pass": true,
+      "detail": "{\"opened\": true, \"cardCount\": 4, \"card\": \"试妆特写\", \"picked\": true, \"past\": [1, 3], \"nodes\": [11, 12], \"edges\": [11, 12], \"newFiles\": [\"素材 - 特效 - 试妆特写\"]}"
+    },
+    {
+      "label": "C7 销毁首帧：group 挂在外层 slot 上 ⟹ hover 外层后按钮 display:none→flex、尺寸 0→非 0；点它 past +1、节点 -1、边 -1、attempt 归 None",
+      "pass": true,
+      "detail": "{\"presentBeforeAttempt\": false, \"visBeforeAttempt\": null, \"presentAfterAttempt\": true, \"groupBox\": {\"x\": 319, \"y\": 704, \"w\": 642, \"h\": 55, \"cx\": 640, \"cy\": 732}, \"buttonBoxWhenHidden\": {\"x\": 0, \"y\": 0, \"w\": 0, \"h\": 0, \"cx\": 0, \"cy\": 0}, \"elementAtGroupCentre\": {\"tag\": \"DIV\", \"inSlot\": true}, \"visBeforeHover\": {\"display\": \"none\", \"visibility\": \"visible\", \"opacity\": \"1\", \"w\": 0, \"h\": 0}, \"visAfterHover\": {\"display\": \"flex\", \"visibility\": \"visible\", \"opacity\": \"1\", \"w\": 46, \"h\": 53}, \"destroyed\": true, \"past\": [2, 3], \"nodes\": [12, 11], \"edges\": [12, 11], \"attemptAfter\": null}"
+    },
+    {
+      "label": "C8 退出路径：长视频态下从模式菜单选 text ⟹ 芯片被清、模式不再显示「超长视频」、过程节点不删",
+      "pass": true,
+      "detail": "{\"picked\": true, \"footBefore\": {\"model\": \"2.5\", \"mode\": \"超长视频\", \"params\": \"Auto · 720P · 300s · 1个 ·\", \"process\": \"返回编辑\"}, \"footAfter\": {\"model\": \"2.5\", \"mode\": \"文生视频\", \"params\": \"Auto · 720P · 30s · 1个 ·\", \"process\": null}, \"attemptAfter\": null, \"nodes\": [23, 23], \"edges\": [33, 33], \"past\": [4, 5]}"
+    },
+    {
+      "label": "C9 芯片不是 toggle：在芯片**仍激活**时再点一次同芯片 ⟹ past +1 但页脚与节点/边/模式逐项零变化",
+      "pass": true,
+      "detail": "{\"footBefore\": {\"model\": \"2.5\", \"mode\": \"超长视频\", \"params\": \"Auto · 720P · 300s · 1个 ·\", \"process\": \"返回编辑\"}, \"footAfter\": {\"model\": \"2.5\", \"mode\": \"超长视频\", \"params\": \"Auto · 720P · 300s · 1个 ·\", \"process\": \"返回编辑\"}, \"past\": [3, 4], \"nodes\": [23, 23], \"edges\": [33, 33], \"footIdentical\": true}"
+    },
+    {
+      "label": "C10 清除续写：无 continuation 时「退出续写模式」按钮不渲染（条件渲染）",
+      "pass": true,
+      "detail": "{\"exitPresentFresh\": false, \"exitPresentAfterMenu\": false, \"continuation\": null}"
+    },
+    {
+      "label": "C11 A 档汇总表 7 行齐（8 个命令里 selectNodeOutput 等不在 VideoNode，已在 744 表内）",
+      "pass": true,
+      "detail": "[{\"cmd\": \"createFirstFrameReference\", \"run\": \"744 已跑（failed 卡，past +1、只写 attempt）\"}, {\"cmd\": \"createFirstLastFrameReference\", \"run\": \"744 已跑（failed 卡，past +1、只写 attempt）\"}, {\"cmd\": \"updateNodeData（setAttempt）\", \"run\": \"744 已跑（「5分钟超长视频」芯片，past +1）\"}, {\"cmd\": \"addNodeAtPosition + addEdge（选特效）\", \"run\": \"746 本批跑（past +2）\"}, {\"cmd\": \"destroyFirstFrameReference\", \"run\": \"746 本批跑（past +1、节点 -1、边 -1）\"}, {\"cmd\": \"clearVideoContinuation\", \"run\": \"746 只验到「入口条件不满足」\"}, {\"cmd\": \"createLongVideoProcess\", \"run\": \"746 本批跑通（芯片路径，past +1、节点 +12、边 +22）\"}]"
+    }
+  ],
+  "conclusions": [
+    "**`long-video` 在模式菜单里进不去，但芯片能进**：`modeItems` 里 `long-video` 是 `inMenu: false`（`:110`），被 `:974` 的 filter 排除；而 `:225-229` 的 `attempt === \"5分钟超长视频\"` 重放块里有 `setMode(\"long-video\")` ⟹ 节点卡芯片是**第二条赋值路径**。实测点芯片后：模式触发器「文生视频」→「**超长视频**」、参数「16:9 · 720P · 5s」→「**Auto · 720P · 300s**」、`data-video-long-submit-state` 从**不存在**变成 `\"idle\"`、「查看过程」按钮出现。",
+    "**`createLongVideoProcess:2244` 真跑通**：`long-state` 三态真实流转 `idle → submitting（按钮 disabled + spinner）→ created`，`title` 同步 「生成视频 → 正在创建本地过程 → 已加入本地任务」，「查看过程」翻成「返回编辑」；store `past` +1、节点 **+12**、边 **+22**。",
+    "**静态写点与运行时读数逐个对平**：`:2332/2341/2350/2361/2370/2379/2390/2400/2410/2420/2431/2439` 共 12 个 `makeProcessNode` 写点（material 3 + shot 3 + candidate 4 + assembly 1 + final 1）；`:2462-2480` 的边 = `source→shot` 3 + `material→shot` 6 + `shot→candidate` 8 + `candidate→assembly` 4 + `assembly→final` 1 = **22** ⟺ 实测 +12 / +22。",
+    "**同一个「已加入本地任务」提示，真假各有一条**：非长视频路径 store **零写入**（`past`/节点/边/`nodeIds`/`edgeIds` 全同）却照样变蓝、换对勾、`title` 翻成「已加入本地任务」—— `:852-863` 的底色/`title` 三元**不区分 `isLongVideo`**；长视频路径则真写入。撒谎的是 `:309-312` 那个「只 `setSubmitted(true)` 就 return」的分支复用了整套提交反馈。",
+    "**非长视频路径没有防重入**：提交中 `disabled` 恒 `false`、无 spinner；长视频路径有 `longVideoSubmitting` + `longVideoSubmitTimerRef` 双重守卫（`:313-319`）⟹ 同一按钮两条路径的并发语义不同。",
+    "**模式菜单里没有「超长视频」，但面板上会显示「超长视频」** —— 用户进得去（芯片）、也退得出（`:268-270` 选别的模式会顺带清芯片，实测 C8：选「文生视频」后 `attempt` 归 `None`、模式回落、「查看过程」消失），但**看不到自己在哪个模式里**（8 个 `modeItems` 里 3 个 `inMenu: false`）。",
+    "**「5分钟超长视频」芯片不是 toggle**：再点一次同芯片 `past` +1 但页脚、模式、节点、边**逐项零变化**（与 `:218` 注释「芯片非 toggle」一致）。",
+    "**选特效一次点击记两条账**：`addNodeAtPosition`（建 `image`「素材 - 特效 - X」）与 `addEdge`（连线）是两次独立记账 ⟹ `past` +2，撤销要点两次才完全回退。",
+    "**销毁首帧的 hover 目标是外层整条 slot，不是缩略图**：`group` 类挂在 `[data-video-firstframe-slot]`（实测宽 642px）上，按钮是内层 48×55 槽的 `absolute inset-0 hidden … group-hover:flex` ⟹ 在这 642px 任意位置悬停都会在 48px 宽的缩略图上冒出「销毁」。hover 前 `display:none`、盒子 0×0，hover 后 `flex`、46×53；点它 `past` +1、节点 −1、边 −1、`attempt` 归 `None`。",
+    "**清除续写是条件渲染**：`isContinuation && onClearContinuation` ⟹ 新建 ready 卡 `continuation = None` 时 `[data-video-continuation-exit]` 根本不渲染。"
+  ],
+  "probeCorrections": [
+    "**我自己的静态推理漏了一条赋值路径**（本批最重要的一次返工）：第一版只追了 `selectMode`（菜单那条 `setMode` 路径）就断言 `mode` 永远到不了 `\"long-video\"` ⟹ `createLongVideoProcess` 是死代码。实际 `:226` 在 `prevAttempt` 重放块里另有一条 `setMode(\"long-video\")`，由芯片触发。**判据 C1 第一版只断言了我已经读到的东西，等于没断言** —— 静态结论必须回头穷举该变量的**全部**赋值点（`setMode` / 直接 `mode=` / props 传参），而不是只跟一条调用链。",
+    "**C3 第一版点不到按钮**：用 `Escape` 想收掉模式菜单，实际 `Escape` 走画布级**取消选中**（实测选中数 1→0）⟹ 整块 `VideoGenerationPanel` 卸载，`[aria-label=\"生成视频\"]` 自然不在 DOM ⟹ `clicked=False`。改法：用同一枚触发器再点一次关菜单（不碰 Escape）。",
+    "**C3 第一版判据选错测点**：以为 `data-video-long-submit-state` 会变 `created`，但它被 `isLongVideo` 门控、在此路径上整段不存在。改判 class 底色 / `title` / 图标字形（Lucide 的 `svg.lucide-check`、`svg.lucide-loader-circle` vs 原始 `svg[aria-hidden]`），并**另开一条芯片路径**去读同一个属性。",
+    "**C7 第一版 hover 了一个零尺寸元素**：按钮 `display:none` ⟹ 盒子恒在 (0,0)，按它的中心 `mouse.move` 等于把鼠标移到屏幕左上角，`group-hover` 自然不触发。改法：hover 外层 `[data-video-firstframe-slot]` 的中心，并用 `elementFromPoint` 证明命中点确实落在该 slot 内。",
+    "**「按元素自身盒子做真实交互」的探针必须先确认元素可见** —— `display:none` 时 `getBoundingClientRect()` 不报错但恒为 0×0，鼠标坐标是垃圾。"
+  ],
+  "notClaimed": [
+    "不声称**超长视频在源站是否可用** —— 未取证；也不声称 `inMenu: false` + `badge: \"Beta\"` 是有意未开放还是遗留。",
+    "`clearVideoContinuation` **未真跑** —— 要先经「智能续写」两段式建出 `continuation`，本批只验到「入口条件不满足」。",
+    "选特效**只验了第一张效果卡**；4 张卡是否都建图 + 连线，未逐个验。",
+    "「素材 - 特效 - X」节点与视频节点的**连线方向、handle 类型**未验。",
+    "销毁首帧只在**新建的 ready 卡**上跑；种子 failed 卡（已有 image 入边）上点「销毁」的行为未验。",
+    "`past +2` 的两条记录**各自的内容**（快照是否只差节点/边）未展开验，只验了条数。",
+    "长视频过程节点的**阶段内容**（标题/副标题/图片）未逐个验，只数了 12 这个总数并与静态写点对平；12 个 `long-video-process` 是否会继续演进（pending→…）未取证。",
+    "8 个 `modeItems` 里另两个 `inMenu: false` 项（`video-edit` / `first-frame`）**只从源码读到 `inMenu: false`**，未像 `long-video` 那样走芯片路径单独验。",
+    "「悬停区比控件宽 13 倍」只在本视口（1280×1150、面板 642px）测得，**不声称窄视口下同样是 13 倍**。"
+  ]
+}
