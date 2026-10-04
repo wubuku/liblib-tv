@@ -5698,6 +5698,8 @@ def main() -> int:
     _p964 = p964.read_text(encoding="utf-8") if p964.exists() else ""
     p965 = ROOT / "scripts/jimeng_probe965_focusable_src.py"
     _p965 = p965.read_text(encoding="utf-8") if p965.exists() else ""
+    p966 = ROOT / "scripts/jimeng_probe966_clicksel_src.py"
+    _p966 = p966.read_text(encoding="utf-8") if p966.exists() else ""
     p892 = ROOT / "scripts/jimeng_probe892_preventdefault_src.py"
     _p892 = p892.read_text(encoding="utf-8") if p892.exists() else ""
     p896 = ROOT / "scripts/jimeng_probe896_roving_tabindex_policy_src.py"
@@ -7866,6 +7868,68 @@ def main() -> int:
           # ⭐ 钉探针：两个口径**都**读了（属性 vs 计算值）
           and "tab_index_prop: el.tabIndex," in _p965
           and "**而** `getAttribute('tabindex')` " in _ausrc)
+
+    # ══ 批 966：⭐⭐⭐⭐ 最后一块**行为侧** —— 点选那枚 vs 点选两个邻居 ══
+    print("— CCCC. 批 966 行为侧：三枚点完**完全一致** ⇒ 行为侧也查不出 —")
+
+    check("CCCC.1 ⭐⭐⭐⭐ **行为侧也查不出**：三枚点完**逐项一致** —— "
+          "都**被自己选中**（`n_selected 0 → 1`）、都**不把焦点搬进节点**、"
+          "都**不开新层** ⇒ 那枚在**可观察行为上与邻居无异**",
+          '"what_966_measures": (' in _ausrc
+          and "965 之后只剩**行为侧**可查" in _ausrc
+          and "**选中态 / 编辑态 / 是否开层**" in _ausrc
+          and "**每枚都重新 `boot()` 归零**" in _ausrc
+          and "**不盲点**" in _ausrc
+          and "**点之前先纯读地确认「那个坐标上到底是什么」**" in _ausrc
+          and "**因为点上不安全" in _ausrc
+          and "**我够不够得着**" in _ausrc
+          # ⭐ 钉探针：纯读规划 + 守卫在 click 之前 + 每枚 boot
+          and 'CLICKPLAN_JS = """([nodeSel, tid]) => {' in _p966
+          and "document.elementFromPoint(x, y)" in _p966
+          and "hit_is_button:" in _p966
+          and "点之前先看清那个坐标上是什么" in _p966
+          and "            boot_fn()                     # ⭐ 每枚都归零" in _p966
+          and 'guard_point(_plan["x"], _plan["y"])' in _p966
+          and 'STATE_JS = """([nodeSel]) => {' in _p966
+          and '"click_plan_recorded": bool(all(' in _p966
+          and '"click_all_three_accounted": bool(all(' in _p966
+          and "**三枚都要有结论**（点到了 或 如实记「没点」）" in _p966)
+
+    check("CCCC.2 ⭐⭐⭐⭐ **三条路全部走完的总结**（963 `tabindex` / 964 解剖 / "
+          "965 可聚焦性 / 966 行为）⇒ **那枚与邻居在**所有可观察维度**上无异** ⇒ "
+          "**跳过是应用自己表里的一个选择**，**没有 DOM 表达式**；"
+          "⇒ 对复刻不变：**按纯 DOM 序实现 + 把这一枚记为已知差异**",
+          "**跳过是应用自己表里的一个选择**" in _ausrc
+          and "**没有 DOM 表达式**" in _ausrc
+          and "**对复刻不变**：**按纯 DOM 序实现" in _ausrc
+          and "**三枚行为一致 ⇒ 行为侧也查不出**" in _p966
+          and "**三枚行为不同 ⇒ 那枚确实特殊**" in _p966)
+
+    check("CCCC.3 ⚠️⚠️⚠️ 966 在**跑起来之前**又踩三个坑，三个都**当场抓住**："
+          "① `READ_FM_JS` 的**名字**被写成 `READ_FT_JS`（**函数体却是前者的**）"
+          "⇒ 同名覆盖 ⇒ `NameError`；② **Python 的 `#` 注释留在 JS 字符串里**"
+          "⇒ 运行时才炸、而**静态 JS 门没抓到**；③ 新门**少一个右括号** ⇒ "
+          "`py_compile` 当场报 ⇒ ⭐ 共同点：**都是「复制/插入」带进来的**",
+          '"three_more_traps_966": (' in _ausrc
+          and "在**跑起来之前**又踩了三个坑，三个都**当场抓住**" in _ausrc
+          and "**函数体是 `READ_FM_JS` 的读走逻辑**" in _ausrc
+          and "**同名覆盖**" in _ausrc
+          and "直接 **`NameError`**" in _ausrc
+          and "**复制/插入时必须核「名字」和「函数体」" in _ausrc
+          and "**把 Python 的 `#` 注释留在了 JS 字符串里**" in _ausrc
+          and "**运行时才炸**" in _ausrc
+          and "**那也是一条要记的洞**（静态门有覆盖不全的问题）" in _ausrc
+          and "**少写了一个右括号**" in _ausrc
+          and "**都是「复制/插入」这一动作带进来的**" in _ausrc
+          and "**三样都要过再谈读数**" in _ausrc
+          # ⭐ 钉探针：三个修复**真的**在文件里
+          and "第一版这里的名字被写成了 `READ_FT_JS`" in _p966
+          and "同名覆盖" in _p966
+          and "**复制/插入时必须核「名字」" in _p966
+          and "**第二版在这里踩了另一个坑**" in _p966
+          and "// ⚠️ **不截断**：数组 `slice` 会被切片守卫" in _p966
+          and '"click_plan_recorded": bool(all(' in _p966
+          and 'for r0 in out["runs"] if "skipped" not in r0["cells"][0])' in _p966)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
