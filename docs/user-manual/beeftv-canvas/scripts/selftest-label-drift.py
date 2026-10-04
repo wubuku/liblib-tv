@@ -23,6 +23,7 @@ import subprocess
 from beefsrc import resolve_src, explain
 import sys
 import tempfile
+from stagedeps import child_env
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -79,7 +80,7 @@ def run(desc, files, expect_fail=True, want=None):
     try:
         commit = build_ref(files)
         r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True,
-                           env={**os.environ, "BEEFTV_REF": TMPREF})
+                           env=child_env(ROOT, BEEFTV_REF=TMPREF))
         out = r.stdout + r.stderr
         if expect_fail and r.returncode == 0:
             print("  ✗ %s：闸门本应报错，却通过了" % desc); FAIL += 1
@@ -98,7 +99,7 @@ def run(desc, files, expect_fail=True, want=None):
 
 
 def main():
-    base = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
+    base = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True, env=child_env(ROOT))
     if base.returncode == 0:
         print("  ✓ 基线：真实 origin/main 通过（%s）" % base.stdout.strip().split("\n")[-1][:70])
         globals()["PASS"] = globals()["PASS"] + 1

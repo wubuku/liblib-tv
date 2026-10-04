@@ -27,6 +27,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from stagedeps import child_env
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GATE = os.path.join(ROOT, "scripts", "verify-baseline.py")
@@ -37,7 +38,13 @@ results = []
 
 
 def run_gate(cwd, env=None):
-    e = dict(os.environ)
+    #: **闸 17 的方向一之二在 Batch 262 把它抓出来了**：
+    #: 改前这里是 `e = dict(os.environ)`——**继承调用者的一切，包括那个把闸指到别处的变量**。
+    #: 实测 `BEEFTV_MANUAL_ROOT=/tmp` 下整份反验转 rc=1（8 处 `rc=2`），
+    #: 而**不设与指向真树时都是 rc=0**——**正是最容易骗过人的那一种**。
+    #: 旧判据没抓到：它问「这份反验有没有出现过那个变量名」，
+    #: **而这一份从头到尾一个字都没写过它**——是判据的口径太浅，不是写法的错。
+    e = child_env(cwd)
     e.update(env or {})
     r = subprocess.run([sys.executable, os.path.join(cwd, "scripts", "verify-baseline.py")],
                        cwd=cwd, capture_output=True, text=True, env=e)

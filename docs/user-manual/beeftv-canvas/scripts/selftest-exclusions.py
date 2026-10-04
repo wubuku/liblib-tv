@@ -75,6 +75,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from stagedeps import child_env
 
 try:
     import yaml
@@ -194,7 +195,7 @@ def run(desc, want, expect_fail=True, transform=None, gate_text=None,
         _prepare(tmp, inv, gt, pe)
         # baseline.py 用 BEEFTV_MANUAL_ROOT 定位手册根（Batch 178）：
         # 临时仓里没有 20-reference.md，不传就抛「读不到 20-reference.md」。
-        env={**os.environ, "BEEFTV_MANUAL_ROOT": ROOT}
+        env = child_env(ROOT)
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-exclusions.py")],
                            cwd=tmp, env=env, capture_output=True, text=True)
         out = r.stdout + r.stderr
@@ -605,7 +606,7 @@ def t_tell_in_indented_pipe_block(_inv, gate):
 
 
 def main():
-    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
+    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True, env=child_env(ROOT))
     if r.returncode == 0:
         print("  ✓ 基线：真实账本通过（%s）" % r.stdout.strip().split("\n")[-1][:60])
         globals()["PASS"] = globals()["PASS"] + 1

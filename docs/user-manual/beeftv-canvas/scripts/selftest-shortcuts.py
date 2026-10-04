@@ -21,6 +21,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from stagedeps import child_env
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -79,7 +80,7 @@ def run(desc, want, expect_fail=True, want_rc=1, mutate=None):
         make_manual(tmp, copy_all=True, extra=extra)
         # baseline.py 用 BEEFTV_MANUAL_ROOT 定位手册根（Batch 178）：
         # 临时仓里没有 20-reference.md，不传就抛「读不到 20-reference.md」。
-        env={**os.environ, "BEEFTV_MANUAL_ROOT": ROOT}
+        env = child_env(ROOT)
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-shortcuts.py")],
                            cwd=tmp, env=env, capture_output=True, text=True)
         out = r.stdout + r.stderr
@@ -120,7 +121,7 @@ def run_min_files():
             "a.md": "占位\n", "b.md": "占位\n",
         })
         # baseline.py 用 BEEFTV_MANUAL_ROOT 定位手册根（Batch 178）
-        env = {**os.environ, "BEEFTV_MANUAL_ROOT": ROOT}
+        env = child_env(ROOT)
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-shortcuts.py")],
                            cwd=tmp, env=env, capture_output=True, text=True)
         out = r.stdout + r.stderr
@@ -140,7 +141,7 @@ def run_cwd_independent():
     global PASS, VOID, FAIL
     elsewhere = tempfile.mkdtemp(prefix="beef-shortcut-elsewhere.")
     try:
-        r = subprocess.run([sys.executable, GATE], cwd=elsewhere, capture_output=True, text=True)
+        r = subprocess.run([sys.executable, GATE], cwd=elsewhere, capture_output=True, text=True, env=child_env(ROOT))
         if r.returncode != 0:
             print("  ✗ cwd 无关性：从无关目录运行 rc=%d（应 0）" % r.returncode); FAIL += 1
         elif "需带 Ctrl/Cmd" in r.stdout:
@@ -152,7 +153,7 @@ def run_cwd_independent():
 
 
 def main():
-    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
+    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True, env=child_env(ROOT))
     if r.returncode == 0:
         print("  ✓ 基线：真实手册通过（%s）" % r.stdout.strip()[:60])
         globals()["PASS"] = globals()["PASS"] + 1

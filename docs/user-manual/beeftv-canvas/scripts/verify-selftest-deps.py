@@ -59,7 +59,7 @@ SCRIPTS = os.path.join(ROOT, "scripts")
 # 而那正是「反验每一例都失败、构建全绿」那条老路（Batch 178）。
 # 合并前实测两份实现对 4 个闸门的闭包**逐条相同**（verify-meta / verify-exclusions /
 # verify-version-coverage / verify-line-counts），**行为一字未变**。
-from stagedeps import local_closure, local_imports
+from stagedeps import CHILD_ENV_FN, local_closure, local_imports
 
 
 def copies_gate_into_tmp(text):
@@ -319,46 +319,147 @@ ROOT_ENV = "BEEFTV_MANUAL_ROOT"
 ENV_AWARE_MODULES = ("baseline", "scope")
 
 
-def runs_staged_gate(text, gate_names):
-    """这份反验**真跑**了它搬进去的哪些闸。
 
-    **为什么要单独问「真跑」而不是只问「搬了」**：
-    `selftest-duplication.py` 把三个闸搬进临时树，
-    **但只把它们当文本扫**（闸 37 普查的是正则字面量），**从不执行它们**。
-    **「搬了闸」不等于「跑那个闸」，而只有真跑才会读到那个环境变量**——
-    **第一版口径按「搬了」算，于是把这一份误报成缺陷**（实测它 6/6 通过、什么事没有）。
+def _string_of(node):
+    """求一个表达式的「字面量那一截」。
 
-    判法：看 `subprocess.*` 调用的实参里**字面写着**哪个闸名。
-    **闸名是变量拼出来的（`run(g)`）就认不出**——
-    **而「认不出」在这里恰好是对的**：那份反验没有真跑那个闸。
+    **闸名在反验里几乎从不直接写成字面量**，实测本树上全是
+    `GATE = os.path.join(HERE, "verify-exclusions.py")`——
+    **只认 `ast.Constant` 的话模块级常量表是空的，于是这一类全部判不出闸名**
+    （本模块第一版就是这么写的，而它报出「0 处」，看起来像「全都合规」）。
+    """
+    if isinstance(node, ast.Constant) and isinstance(node.value, str):
+        return node.value
+    if (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
+            and node.func.attr == "join"):
+        return "".join(filter(None, (_string_of(a) for a in node.args)))
+    return None
+
+
+def _module_consts(tree):
+    """模块级 `NAME = <一段字符串>` → {NAME: 那段字符串}。"""
+    out = {}
+    for n in tree.body:
+        if isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Name):
+            v = _string_of(n.value)
+            if v:
+                out[n.targets[0].id] = v
+    return out
+
+
+def calls_pinning_root(text):
+    """**每一次**跑 env-aware 闸的子进程调用，那一次都得把手册根钉死送进去。
+    **前置条件是「真跑」而不是「搬了」**（Batch 260 立的，Batch 262 保留）：
+    `selftest-duplication.py` 把三个闸搬进临时树，**但只把它们当文本扫**、从不执行，
+    **什么事也没有**——**而第一版口径按「搬了」算，于是把这一份误报成缺陷**。
+    **只有真跑才会读到那个环境变量**，所以问的必须是「跑了」不是「搬了」。
+
+
+    返回 `(缺陷列表, 这份反验真跑过的 env-aware 闸)`。
+    **缺陷列表为空**且第二个值非空 = 每一处都合规；
+    **两个都空** = 这份反验压根没真跑那种闸，**不归这个方向管**。
+
+    **为什么要升级口径（Batch 262）**：
+    原判据只问「**这份反验的源码里有没有出现过** `BEEFTV_MANUAL_ROOT`」——
+    **而写成 `e = {**os.environ, "BEEFTV_MANUAL_ROOT": …}` 的那几份，
+    它们的变量名出现在「沙箱」那一次调用里**，
+    于是**「跑真树」那几次完全不传 env 的调用被判成合规**。
+    实测三份在 `BEEFTV_MANUAL_ROOT=/tmp` 下 rc=1
+    （`读不到 /tmp/20-reference.md`），**而闸一直报 rc=0**。
+    **判据问的是「有没有写过」，被测行为是「每一次调用送没送进去」**
+    （纪律 176 同族：判据问得比它需要回答的浅一层）。
+
+    **推论一**：**只升级这一半还不行**。收敛之后那些源码里
+    **再也没有那个变量的字面量了**（都变成 `child_env(…)`），
+    **旧口径会把本批刚做完的 32 处收敛全报成缺陷**——
+    实测预演报了 4 份，全是合规的。
+    **两种各自正确的约定并存时，洞在组合里，不在任何一边**（纪律 290 推论三）：
+    一个是「那个键该集中在一处设」，另一个是「判据认那个键的字面量」，
+    **单看都无懈可击，合起来就成了「收敛即违规」**。
+    所以认法必须**两者都认**。
+
+    **推论二**：**认法只有一份**——构造函数名从 `stagedeps` 里读，
+    **不在本文件里再写死一遍**（见 `CHILD_ENV_FN` 上面那段话）。
+
+    **推论三**：**还要追一格**。`env=env` 那种「先赋值再传」是合规的，
+    **而它占了这些反验的大多数**——不追这一格，预演把 4 份合规的报成了缺陷。
     """
     try:
         tree = ast.parse(text)
     except SyntaxError:
-        return set()
-    hit = set()
+        return [], set()
+    consts = _module_consts(tree)
+    binds = {}
+    for n in ast.walk(tree):
+        if isinstance(n, ast.Assign) and isinstance(n.targets[0], ast.Name):
+            binds.setdefault(n.targets[0].id, []).append(ast.unparse(n.value))
+    pins = (CHILD_ENV_FN + "(", ROOT_ENV)
+    hits, ran = [], set()
     for node in ast.walk(tree):
         if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)
                 and node.func.attr in ("run", "Popen", "call",
                                        "check_call", "check_output")):
             continue
-        args = list(node.args) + [k.value for k in node.keywords]
-        for a in args:
+        seg = ast.unparse(node)
+        #: **闸名有两条来路，漏掉任何一条都是假阴性**（真缺陷不被报）：
+        #:   ① 实参里**直接写着** `"…/verify-x.py"`；
+        #:   ② 实参里写的是模块级常量 `GATE`，值由 `os.path.join(HERE, "verify-x.py")` 拼出来。
+        #: **第一版只写了 ②**——于是闸 17 自己的反验夹具（它用 ①）整批落空，
+        #: 用例 13 与 15 双双报绿，**而闸当时确实有缺陷**。
+        #: **鉴别力验证的夹具只用了 ②，所以没照出来**：
+        #: **注入用的形态必须覆盖被测代码认得的那几种，否则验证验的是「我写的那一种」。**
+        gate = None
+        for a in list(node.args) + [k.value for k in node.keywords]:
             for sub in ast.walk(a):
-                if not (isinstance(sub, ast.Constant) and isinstance(sub.value, str)):
-                    continue
-                for g in gate_names:
-                    if g in sub.value or os.path.basename(sub.value) == g:
-                        hit.add(g)
-    return hit
+                if isinstance(sub, ast.Constant) and isinstance(sub.value, str):
+                    b = os.path.basename(sub.value)
+                    if b.startswith("verify-") and b.endswith(".py") \
+                            and os.path.isfile(os.path.join(SCRIPTS, b)):
+                        gate = b[:-3]
+                        break
+            if gate:
+                break
+        if not gate:
+            #: **这一步必须确认「这一次调用真的引用了那个常量」**——
+            #: 不确认的话，**同一文件里任何一句 `subprocess.run(["git", …])` 都会被配上 GATE**
+            #: （`selftest-label-drift.py` 实测：那四处全是 git 命令，
+            #: **git 不认那个变量，给它钉死纯属自己编出来的行为变更**）。
+            for cn, cv in consts.items():
+                b = os.path.basename(cv)
+                if b.startswith("verify-") and b.endswith(".py") and cn in seg \
+                        and os.path.isfile(os.path.join(SCRIPTS, b)):
+                    gate = b[:-3]
+                    break
+        if not gate:
+            continue
+        if not (set(ENV_AWARE_MODULES) & set(local_closure(gate))):
+            continue
+        ran.add(gate)
+        envk = [k for k in node.keywords if k.arg == "env"]
+        if not envk:
+            hits.append((node.lineno, gate, f"**没有 `env=`**"))
+            continue
+        e = ast.unparse(envk[0].value).strip()
+        if any(p in e for p in pins) or \
+                any(any(p in b for p in pins) for b in binds.get(e, [])):
+            continue
+        hits.append((node.lineno, gate,
+                     f"`env={e}` **送进去的键里没有 `{ROOT_ENV}`**"
+                     f"（设了别的键不等于钉死了手册根）"))
+    return hits, ran
 
 
 def env_not_pointed_back(selftests):
     """返回 (缺陷列表, 已合规份数)。
 
-    **判据只问一件能机械判定的事**：这份反验**真跑**的闸，
-    **其本地依赖闭包里有没有模块会认 `BEEFTV_MANUAL_ROOT`**，
-    而这份反验的源码里**有没有**给子进程设那个变量。
+    **判据问的是每一次调用**（`calls_pinning_root`），
+    **不是「这份反验的源码里有没有出现过那个变量名」**——
+    **后者会把「跑真树那几次不传 env」判成合规**（Batch 262 实测三份因此转红而闸报绿）。
+
+    **前置条件也一并放宽**：原来要求「先把闸搬进临时树」，
+    **而「跑真树」那几次根本不搬**——
+    **搬没搬与要不要钉死是两件事**：**闸会读那个变量，是因为它跑了，不是因为它被搬过**。
+    「只把闸当文本扫、从不执行」的那些（`selftest-duplication.py`）仍然不归这个方向管。
     """
     problems, ok_n = [], 0
     for fn in selftests:
@@ -368,26 +469,23 @@ def env_not_pointed_back(selftests):
                 text = fh.read()
         except OSError:
             continue
-        if not copies_gate_into_tmp(text):
+        hits, ran = calls_pinning_root(text)
+        if not ran:
             continue
-        ran = runs_staged_gate(text, independent_gate_names(text, SCRIPTS))
-        risky = sorted(g for g in ran
-                       if os.path.isfile(os.path.join(SCRIPTS, g))
-                       and set(ENV_AWARE_MODULES) & set(local_closure(g[:-3])))
-        if not risky:
-            continue
-        if ROOT_ENV in text:
+        if not hits:
             ok_n += 1
             continue
+        bad = "；".join("第 %d 行那次（跑 %s）%s" % (ln, g, why) for ln, g, why in hits)
         problems.append(
-            f"方向一之二：{fn} 真跑 {'、'.join(risky)}，"
-            f"而那个闸的依赖闭包里 {'/'.join(ENV_AWARE_MODULES)} "
-            f"**认 `{ROOT_ENV}`**——**反验没有给它设这个变量**"
+            f"方向一之二：{fn} 真跑 {'、'.join(sorted(ran))}，"
+            f"而那些闸的依赖闭包里 {'/'.join(ENV_AWARE_MODULES)} "
+            f"**认 `{ROOT_ENV}`**——**{bad}**"
             "　→ 那个变量没设时凑巧对（都指向真树），"
             "**而它被别人设了（例如这份反验本身被另一份反验调用）就整棵读错**。"
             f"**实测 Batch 259：`{fn}` 这一族在变量指向别处时整份反验转红**，"
             f"而指向真树时**全绿**——**正好是最容易骗过人的那一种**。"
-            f"　→ 修法：起子进程时 `env={{**os.environ, \"{ROOT_ENV}\": <它自己那棵树>}}`")
+            f"　→ 修法：起子进程时 `env={CHILD_ENV_FN}(<它自己那棵树>)`"
+            f"（要顺手多设别的键就写成 `{CHILD_ENV_FN}(<树>, 键=值)`）")
     return problems, ok_n
 
 

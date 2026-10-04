@@ -197,6 +197,44 @@ def stage_all(tmp, verify=True):
     return mods
 
 
+#: **「给子进程钉死手册根」的那个构造函数叫什么**（Batch 262）。
+#: **判据从这儿读，不在自己那边写死一份**——写死的话，
+#: 改了这个函数名而忘了改判据，判据就会把**全树每一处合规的收敛**静默报成缺陷，
+#: **而它报出来的每一行看上去都很有道理**。
+CHILD_ENV_FN = "child_env"
+
+
+def child_env(root, **overrides):
+    """造一个给子进程用的环境：**继承调用者的全部环境，只把手册根钉死成 `root`**。
+
+    **为什么要有这个函数**（Batch 262）：`BEEFTV_MANUAL_ROOT` 此前在 11 份反验里
+    有 20 处「给子进程造 env」的写法，且**形态分成两族**——
+    `{**os.environ, "BEEFTV_MANUAL_ROOT": X}` 与 `X = dict(os.environ)` 加紧随赋值。
+
+    **而漏掉它的后果是实测过的**（Batch 259，纪律 289）：
+    `baseline` 让那个变量**优先于 `__file__` 推断**，于是沙箱继承了调用者随手指的值，
+    闸会去读**另一棵树**，反验**「以闸报错的形态通过，而它其实什么都没验」**（纪律 178）。
+
+    **只强制每处都要的那一项**（`BEEFTV_MANUAL_ROOT`）：
+    `PYTHONDONTWRITEBYTECODE` / `BEEFTV_SRC` 各处不同，走 `**overrides`。
+    **若这个函数顺手塞进一些「一般该设的」变量，收敛就不是行为中性的**（纪律 250），
+    而「顺手」正是行为变更最常见的来源——**所以这里一行都不多设**。
+
+    **逐键等价**：`{**os.environ, "K": v}` 与 `dict(os.environ)` + 覆盖就是同一件事；
+    调用者环境里本来就带着 `BEEFTV_MANUAL_ROOT` 时，
+    本函数按**后写覆盖**把它换成 `root`，**与原先 20 处完全一致**。
+    """
+    env = dict(os.environ)
+    env["BEEFTV_MANUAL_ROOT"] = root
+    env.update(overrides)
+    return env
+
+#: **自检放在函数定义之后**：写在前面的话模块一 import 就炸，
+#: **而它炸的原因与判据无关**——那是加载顺序，不是判据的事。
+assert callable(globals().get(CHILD_ENV_FN)), \
+    "本模块里已经没有 %s 了，判据从这儿读它的名字，会把全树报成缺陷" % CHILD_ENV_FN
+
+
 if __name__ == "__main__":        # 手动自检：python3 scripts/stagedeps.py verify-foo
     for name in sorted(local_closure(sys.argv[1] if len(sys.argv) > 1 else "verify-meta")):
         print(name)

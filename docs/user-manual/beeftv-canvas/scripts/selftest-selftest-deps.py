@@ -143,12 +143,25 @@ def m_no_false_positive():
         shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(tmp, "scripts"))
         shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-deps.py"))
         # 造一份**不复制闸门**的反验：它 import 了 baseline 也不该报
+        #
+        # **Batch 262：夹具必须自己钉死那个变量**（第一版这里没加，
+        # **于是判据升级后用例 4 转红**）。
+        # **先量过再判**：这不是误伤——
+        # `BEEFTV_MANUAL_ROOT=/tmp` 下实测 `verify-baseline.py` **rc=2**
+        # （`未找到 20-reference.md`，**整棵读错**），
+        # **而不设与指向真树时都是 rc=0**。
+        # **所以真正的新认知是：「不搬闸」不等于「不需要钉死变量」**——
+        # 旧口径以前跳过这一类，是因为它把「搬没搬闸」当成了前置条件，
+        # **而闸会不会读那个变量，取决于它跑不跑，与它被搬没搬无关**。
         write(os.path.join(tmp, "scripts", "selftest-inplace.py"),
               "import os, sys, subprocess\n"
               "from baseline import resolve_ref\n"
+              "from stagedeps import child_env\n"
+              "HERE = os.path.dirname(os.path.abspath(__file__))\n"
               "def main():\n"
-              "    r = subprocess.run([sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'verify-baseline.py')],\n"
-              "                       capture_output=True, text=True)\n"
+              "    r = subprocess.run([sys.executable, os.path.join(HERE, 'verify-baseline.py')],\n"
+              "                       capture_output=True, text=True,\n"
+              "                       env=child_env(os.path.dirname(HERE)))\n"
               "    sys.exit(0 if r.returncode == 0 else 1)\n"
               "if __name__ == '__main__':\n    sys.exit(main())\n")
         r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
@@ -390,16 +403,30 @@ def m_transport_count_is_reported():
 
 
 # ── 13/14 方向一之二：真跑了闸，就必须告诉它手册根在哪（Batch 260）──
-def _env_fixture(tmp, run_it):
+def _env_fixture(tmp, mode):
     """造一份反验：它把一个**闭包会用到 `baseline`** 的闸搬进临时树。
 
-    `run_it=True`  → 真的用 `subprocess` 跑它，**且不设 `BEEFTV_MANUAL_ROOT`**
-    `run_it=False` → **只把它当文本读**，从不执行
+    **四种形态共用同一份搬运**（所以除那一件事外，其余全部合规）：
 
-    **这两份只差「有没有那一次 subprocess」**——
-    **而判据必须只因为这一件事给出相反的结论**，
-    **否则它分不清「搬了闸」与「跑了闸」，而这两件事的后果完全不同**：
-    `selftest-duplication.py` 把三个闸搬进临时树**只当文本扫**，什么事也没有。
+    | `mode` | 那几次 `subprocess` | 期望 | 用例 |
+    |---|---|---|---|
+    | `no_env` | 跑一次，**不传 `env=`** | 必报 | 13 |
+    | `text_only` | **只当文本读**，从不执行 | 不得报 | 14 |
+    | `partial` | 跑两次：**一次钉死、一次不传** | 必报 | 15 |
+    | `pinned` | 跑两次，**两次都钉死** | 不得报 | 16 |
+
+    **前两种是 Batch 260 立的**（那一对问的是「能不能分清『搬了』与『跑了』」）。
+
+    **后两种是 Batch 262 加的，因为它们才是真实缺口的形状**：
+    旧判据只问「**这份反验的源码里有没有出现过** `BEEFTV_MANUAL_ROOT`」，
+    而 `partial` 那一份的变量名**在钉死的那一次里出现过**——
+    于是被判成合规，**而它跑真树那一次真的会读错整棵树**
+    （实测三份在 `BEEFTV_MANUAL_ROOT=/tmp` 下 rc=1，闸却一直 rc=0）。
+
+    **而 `pinned` 那一对钉住的是判据的另一半**：
+    **判据必须认 `child_env(…)` 这个共享构造函数**——
+    **收敛之后源码里已经没有那个变量的字面量了，
+    只认字面量的判据会把每一处合规的收敛都报成缺陷**（预演实测报了 4 份，全是合规的）。
     """
     shutil.copytree(os.path.join(ROOT, "scripts"), os.path.join(tmp, "scripts"))
     shutil.copy(GATE, os.path.join(tmp, "scripts", "verify-selftest-deps.py"))
@@ -415,26 +442,48 @@ def _env_fixture(tmp, run_it):
             "    shutil.copy(GATE, os.path.join(tmp, 'scripts', 'verify-newfangled.py'))\n"
             "    shutil.copy(BASE, os.path.join(tmp, 'scripts', 'baseline.py'))\n"
             "    shutil.copy(BEEFSRC, os.path.join(tmp, 'scripts', 'beefsrc.py'))\n")
-    if run_it:
-        # **真跑**，而**没有** `env=`、**没有**那个变量
-        body += ("    r = subprocess.run([sys.executable, os.path.join('scripts', "
-                 "'verify-newfangled.py')],\n"
-                 "                       cwd=tmp, capture_output=True, text=True)\n"
-                 "    sys.exit(0 if r.returncode == 0 else 1)\n")
-    else:
-        # **只当文本读**——搬运一模一样，唯一的差别是不执行
+    head = ("import os, sys, shutil, tempfile, subprocess\n"
+            "from stagedeps import child_env\n"
+            "HERE = os.path.dirname(os.path.abspath(__file__))\n"
+            "GATE = os.path.join(HERE, 'verify-newfangled.py')\n"
+            "BASE = os.path.join(HERE, 'baseline.py')\n"
+            "BEEFSRC = os.path.join(HERE, 'beefsrc.py')\n"
+            "def main():\n")
+    one = ("    r = subprocess.run([sys.executable, os.path.join('scripts', "
+           "'verify-newfangled.py')],\n"
+           "                       cwd=tmp, capture_output=True, text=True%s)\n"
+           "    sys.exit(0 if r.returncode == 0 else 1)\n")
+    if mode in ("no_env", "text_only"):
+        head = head.replace("from stagedeps import child_env\n", "")
+    if mode == "no_env":
+        body += one % ""
+    elif mode == "text_only":
         body += ("    with open(os.path.join(tmp, 'scripts', 'verify-newfangled.py'),\n"
                  "              encoding='utf-8') as fh:\n"
                  "        assert 'baseline' in fh.read()\n"
                  "    sys.exit(0)\n")
+    elif mode == "partial":
+        #: **钉死的那一次放前面**——**它就是让旧判据放行的原因**：
+        #: 变量名出现在这份反验的源码里，而后面那一次**什么都没传**。
+        #:
+        #: **而这一处必须用「字面量」形态，不能用 `child_env(…)`**（第一版就是用了它）：
+        #: **夹具要复刻真实缺陷的形状**——
+        #: 实测转红的那三份用的正是 `{**os.environ, "BEEFTV_MANUAL_ROOT": …}`，
+        #: **而旧口径恰恰放过它**。
+        #: **用 `child_env` 写的话源码里根本没有那个变量的字面量，旧口径照样会报**——
+        #: **那一对就分不出新旧，而「鉴别力验证」验的其实是「我写的那一种」。**
+        head = head.replace("from stagedeps import child_env\n", "")
+        body += one % (', env={**os.environ, "BEEFTV_MANUAL_ROOT": tmp}')
+        body += one % ""
+    elif mode == "pinned":
+        body += one % ", env=child_env(tmp)"
+        body += one % ", env=child_env(tmp)"
+    else:
+        raise AssertionError("未知的 mode：%r" % mode)
     write(os.path.join(tmp, "scripts", "selftest-newfangled.py"),
-          "import os, sys, shutil, tempfile, subprocess\n"
-          "HERE = os.path.dirname(os.path.abspath(__file__))\n"
-          "GATE = os.path.join(HERE, 'verify-newfangled.py')\n"
-          "BASE = os.path.join(HERE, 'baseline.py')\n"
-          "BEEFSRC = os.path.join(HERE, 'beefsrc.py')\n"
-          "def main():\n" + body +
-          "if __name__ == '__main__':\n    sys.exit(main())\n")
+          head + body + "if __name__ == '__main__':\n    sys.exit(main())\n")
+
+
 
 
 def m_missing_env_reported():
@@ -442,7 +491,7 @@ def m_missing_env_reported():
     check_anchor()
     tmp = tempfile.mkdtemp(prefix="beef-deps-env-miss.")
     try:
-        _env_fixture(tmp, run_it=True)
+        _env_fixture(tmp, "no_env")
         r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
                            cwd=tmp, capture_output=True, text=True)
         out = (r.stdout or "") + (r.stderr or "")
@@ -464,7 +513,7 @@ def m_text_only_staging_not_reported():
     check_anchor()
     tmp = tempfile.mkdtemp(prefix="beef-deps-env-text.")
     try:
-        _env_fixture(tmp, run_it=False)
+        _env_fixture(tmp, "text_only")
         r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
                            cwd=tmp, capture_output=True, text=True)
         out = (r.stdout or "") + (r.stderr or "")
@@ -482,6 +531,52 @@ def m_text_only_staging_not_reported():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+def m_partial_pins_reported():
+    """**能抓那一侧（Batch 262）**：一次钉死、一次不传 → 那一次必须被点名。
+
+    **这一份是旧判据真的看不见的东西**：
+    变量名**在这份反验的源码里出现过**（钉死的那一次），
+    于是旧判据判它合规，**而它跑真树那一次会读错整棵树**。
+    **实测同一份夹具：旧判据 rc=0、新判据 rc=1**（`/tmp/b262_cmp.py` 跑过）。
+    """
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-env-partial.")
+    try:
+        _env_fixture(tmp, "partial")
+        r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                           cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        ok = (r.returncode == 1 and "✗ 方向一之二" in out
+              and "selftest-newfangled.py" in out and "没有 `env=`" in out)
+        record("15 一次钉死一次没钉（源码里有那个变量名）→ 仍必须报",
+               ok, f"rc={r.returncode}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_all_pinned_not_reported():
+    """**不误伤那一侧（Batch 262）**：每一次都钉死 → 不得报。
+
+    **它钉的是判据认不认得 `child_env(…)`**：
+    收敛之后那些源码里**再也没有那个变量的字面量**了——
+    **只认字面量的判据会把每一处合规的收敛都报成缺陷**，
+    **而下一个人会去把正确的写法改回手写字面量**（纪律 260）。
+    **实测：判据若只认字面量，这一份会被误报**。
+    """
+    check_anchor()
+    tmp = tempfile.mkdtemp(prefix="beef-deps-env-pinned.")
+    try:
+        _env_fixture(tmp, "pinned")
+        r = subprocess.run([sys.executable, os.path.join(tmp, "scripts", "verify-selftest-deps.py")],
+                           cwd=tmp, capture_output=True, text=True)
+        out = (r.stdout or "") + (r.stderr or "")
+        ok = r.returncode == 0 and "✗ 方向一之二" not in out
+        record("16 每一次都钉死（写成共享的 child_env）→ 不得报",
+               ok, f"rc={r.returncode}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def main():
     tests = [m_clean, m_missing_baseline_copy, m_gate_imports_missing_module,
              m_no_false_positive, m_rename_pattern_breaks,
@@ -489,7 +584,8 @@ def main():
              m_copytree_other_dir_still_reports, m_copytree_scripts_dir_passes,
              m_stage_gate_wrong_gate_still_reports, m_stage_gate_right_gate_passes,
              m_transport_count_is_reported,
-             m_missing_env_reported, m_text_only_staging_not_reported]
+             m_missing_env_reported, m_text_only_staging_not_reported,
+             m_partial_pins_reported, m_all_pinned_not_reported]
     for t in tests:
         try:
             t()

@@ -53,7 +53,7 @@ import sys
 import tempfile
 import time
 
-from stagedeps import stage_all
+from stagedeps import child_env, stage_all
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 REAL_ROOT = os.path.dirname(HERE)
@@ -380,10 +380,7 @@ def direction_one(gates):
     tmp = tempfile.mkdtemp(prefix="zero-input-")
     try:
         empty_tree(tmp)
-        env = dict(os.environ)
-        env["BEEFTV_MANUAL_ROOT"] = tmp
-        env["PYTHONDONTWRITEBYTECODE"] = "1"
-        env["BEEFTV_SRC"] = os.environ.get("BEEFTV_SRC", "")
+        env = child_env(tmp, PYTHONDONTWRITEBYTECODE='1', BEEFTV_SRC=os.environ.get('BEEFTV_SRC', ''))
         return run_gates(gates, os.path.join(tmp, "scripts"), env, skip=EXEMPT)[:3]
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
@@ -421,10 +418,7 @@ def direction_three(gates):
     scratch = tempfile.mkdtemp(prefix="zero-input-")
     bad = os.path.join(scratch, "上游仓不在这里")   # **故意不创建**
     try:
-        env = dict(os.environ)
-        env["BEEFTV_MANUAL_ROOT"] = REAL_ROOT
-        env["PYTHONDONTWRITEBYTECODE"] = "1"
-        env["BEEFTV_SRC"] = bad
+        env = child_env(REAL_ROOT, PYTHONDONTWRITEBYTECODE='1', BEEFTV_SRC=bad)
         return run_gates(gates, HERE, env)
     finally:
         shutil.rmtree(scratch, ignore_errors=True)

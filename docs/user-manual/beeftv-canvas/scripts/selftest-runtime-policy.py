@@ -23,6 +23,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from stagedeps import child_env
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 GATE = os.path.join(HERE, "verify-runtime-policy.py")
@@ -66,7 +67,7 @@ def run(desc, want_rc, mutate=None, want=None):
     try:
         # baseline.py 用 BEEFTV_MANUAL_ROOT 定位手册根（Batch 178）：
         # 临时目录里没有 20-reference.md，不传就会抛 BaselineError。
-        env={**os.environ, "BEEFTV_MANUAL_ROOT": tmp}
+        env = child_env(tmp)
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-runtime-policy.py")],
                            cwd=tmp, env=env, capture_output=True, text=True)
         out = r.stdout + r.stderr

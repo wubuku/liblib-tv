@@ -44,6 +44,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from stagedeps import child_env
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -71,9 +72,7 @@ def write_tree(d, records):
 
 
 def run(root):
-    env = dict(os.environ)
-    env["BEEFTV_MANUAL_ROOT"] = root
-    env["PYTHONDONTWRITEBYTECODE"] = "1"
+    env = child_env(root, PYTHONDONTWRITEBYTECODE='1')
     p = subprocess.run([sys.executable, os.path.join(root, "scripts", GATE)],
                        capture_output=True, text=True, env=env)
     return p.returncode, (p.stdout or "") + (p.stderr or "")

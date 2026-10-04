@@ -32,6 +32,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from stagedeps import child_env
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 GATE = "verify-scope.py"
@@ -85,9 +86,7 @@ def write_list(root, const, values):
 
 
 def run(root):
-    env = dict(os.environ)
-    env["BEEFTV_MANUAL_ROOT"] = root          # 反验搬了闸门，必须显式指回这棵树
-    env["PYTHONDONTWRITEBYTECODE"] = "1"      # 别在临时树里留 __pycache__
+    env = child_env(root, PYTHONDONTWRITEBYTECODE='1')        # 反验搬了闸门，必须显式指回这棵树；PYTHONDONTWRITEBYTECODE 别在临时树里留 __pycache__
     p = subprocess.run([sys.executable, os.path.join(root, "scripts", GATE)],
                        capture_output=True, text=True, env=env)
     return p.returncode, (p.stdout or "") + (p.stderr or "")

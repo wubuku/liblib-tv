@@ -43,6 +43,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from stagedeps import child_env
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -110,7 +111,7 @@ def run(desc, want_sub, want_rc=1, expect_fail=True, transform=None, page=TARGET
         #: **沙箱自己就是这一轮的手册根**。
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-query-params.py")],
                            cwd=tmp, capture_output=True, text=True,
-                                   env={**os.environ, "BEEFTV_MANUAL_ROOT": tmp})
+                                   env=child_env(tmp))
         out = r.stdout + r.stderr
         if r.returncode != want_rc:
             print("  ✗ %s：退出码 %d，期望 %d；实际：" % (desc, r.returncode, want_rc))
@@ -203,7 +204,7 @@ def main():
     #: **而它同样要显式指回真树**——调用者若把那个变量指向别处，
     #: **这一条就会拿一个错误的根去核真树**。**只修沙箱那一处，它仍然红。**
     r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True,
-                                                       env={**os.environ, "BEEFTV_MANUAL_ROOT": ROOT})
+                                                       env=child_env(ROOT))
     if r.returncode == 0:
         print("  ✓ 基线：真实手册通过（%s）" % r.stdout.strip().split("\n")[0][:70])
         PASS += 1

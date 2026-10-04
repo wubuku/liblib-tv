@@ -14,6 +14,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+from stagedeps import child_env
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(HERE)
@@ -57,7 +58,7 @@ def run(manifest_text, desc, want, expect_fail=True):
         # scripts/ + screenshots/（它要核的是 manifest 与上游，不涉及 20-reference.md），
         # 而 baseline.py 要从那里读「取证基线」声明。指 tmp 会抛
         # 「读不到 20-reference.md」，**每一例都失败**。
-        env={**os.environ, "BEEFTV_MANUAL_ROOT": ROOT}
+        env = child_env(ROOT)
         r = subprocess.run([sys.executable, os.path.join("scripts", "verify-screenshots-literals.py")],
                            cwd=tmp, env=env, capture_output=True, text=True)
         out = r.stdout + r.stderr
@@ -78,7 +79,7 @@ def main():
     src = open(os.path.join(ROOT, MANIFEST_REL), encoding="utf-8").read()
 
     # 基线：真实 manifest 应当通过
-    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True)
+    r = subprocess.run([sys.executable, GATE], cwd=ROOT, capture_output=True, text=True, env=child_env(ROOT))
     if r.returncode == 0:
         print("  ✓ 基线：真实 manifest 通过（%s）" % r.stdout.strip().split("\n")[-1][:60])
         globals()["PASS"] += 1
