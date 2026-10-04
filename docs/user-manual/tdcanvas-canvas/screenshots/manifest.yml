@@ -858,14 +858,14 @@ screenshots:
 
   - file: screenshots/14-manage-assets-zip-disabled.png
     task_id: manage-assets
-    step: 点「批量下载」进入勾选模式但未勾选任何资产，右上角「下载 ZIP」呈灰色不可点
+    step: 点「批量下载」进入勾选模式但未勾选任何资产，右上角「下载 ZIP」是暗紫色的 disabled 态（底色仍是那个紫，opacity 0.4 压暗）
     route: '/assets'
     viewport: 1280x900
     locale: zh-CN
     captured_at: '2026-10-01'
     verified_locator: '工具栏 已选 0 项 / 全选当前结果 / 下载 ZIP（disabled）/ 取消 / 卡片右上圆形勾选框未选中'
     visible_text: '已选 0 项'
-    alt: 刚进入批量模式尚未勾选资产，右上角下载 ZIP 按钮为灰色不可点，卡片右上勾选框未选中
+    alt: 刚进入批量模式尚未勾选资产，右上角下载 ZIP 按钮呈暗紫色（不是灰色）且 disabled 不可点，卡片右上勾选框未选中
     sha256: 4926dfbc8320b6ab2af46928ad32ec0078aaa52013da3af3130f82edeb2e01d4
 
   - file: screenshots/14-manage-assets-zip-done.png
