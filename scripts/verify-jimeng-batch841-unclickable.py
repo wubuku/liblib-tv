@@ -5710,6 +5710,9 @@ def main() -> int:
     _p968 = p968.read_text(encoding="utf-8") if p968.exists() else ""
     p968b = ROOT / "scripts/jimeng_probe968b_nextjsportal_ck.py"
     _p968b = p968b.read_text(encoding="utf-8") if p968b.exists() else ""
+    # 969：源站探针，**同轮重新量 out 段**（推翻 968b 的收尾结论）
+    p969 = ROOT / "scripts/jimeng_probe969_projectpanel_src.py"
+    _p969 = p969.read_text(encoding="utf-8") if p969.exists() else ""
     # ⭐ 968b 的结论「`NEXTJS-PORTAL` 不是复刻自己写的」**必须**由源码反证：
     #   复刻组件里**一处都不许**出现 `nextjs-portal` / `NEXTJS-PORTAL`
     _replica_srcs = []
@@ -8131,6 +8134,77 @@ def main() -> int:
           and 'min(_c0.get("n_step_plus1") or 0, _c1.get("n_step_plus1") or 0) > 0' in _p968
           and 'min(_c0.get("n_step_wrap") or 0, _c1.get("n_step_wrap") or 0) >= 1' in _p968
           and "**第一版这道门太弱**" in _p968)
+
+    # ══ 批 969：⭐⭐⭐⭐⭐ 同轮重测 ⇒ 推翻 968b 自己刚下的结论 ══
+    print("— BBBBB. 批 969 同轮重测 out 段：差集是「基线过期」不是「实现有缺陷」 —")
+
+    check("BBBBB.1 ⭐⭐⭐⭐⭐ **969 的判决是一条否定结果，而且它推翻的是上一批"
+          "自己刚下的结论**：源站 out 段本轮 **17** 个停靠点**全都带真 "
+          "`data-testid`**、**`host_tid is None` 的 0 个**（2/2）⇒ "
+          "**判据门 `panel_judgement_is_live_both_reps` 如实判红** —— "
+          "⭐ **判据恒 0 时必须报出来**，不许安静地写成「没有这个东西」；"
+          "954 记的 `out:测试项目…已保存…分享` 其 `aria` 来自 **`WHOAMI_JS` 的 "
+          "innerText 回退**（不是 `aria-label`）且含「**已保存**」这种**瞬时状态**"
+          "⇒ **未复现、成因未查明**",
+          '"projectpanel_969"' in _ausrc
+          and "**本批的判决是一条否定结果" in _ausrc
+          and "它推翻的是上一批自己刚下的结论" in _ausrc
+          and "`null_tid_rows` = 0" in _ausrc
+          and "**判据门 `panel_judgement_is_live_both_reps` " in _ausrc
+          and "如实判红" in _ausrc
+          and "判据恒 0 时**必须**报出来" in _ausrc
+          and "**未复现、成因未查明**" in _ausrc
+          # ⭐ 钉探针：**判据不许用自己起的名字**（按 host_tid is None，不按 aria）
+          and "拿它匹配就等于把结论写进判据 ⇒ 判据是「`host_tid is None`」" in _p969
+          and "拿它匹配就等于把结论写进判据" in _ausrc
+          and 'null_rows = [(k, f) for k, f in out_stops if f.get("host_tid") is None]' in _p969
+          and '"panel_judgement_is_live_both_reps"' in _p969
+          # ⭐ `FINGER_JS` 只读 aria-label、**不回退** innerText（这条是判据的一部分）
+          and "aria: a.getAttribute('aria-label')," in _p969
+          # ⚠️⚠️ **不许**再钉「文件里没有 innerText」这种**过粗的否定**：
+          #   探针自己的 `guard_point` 里就有 `innerText`（点守卫要读文案）
+          #   ⇒ 那种断言**会假红** ⇒ 改成钉**口径声明**本身
+          and 'out["aria_read_policy"] = (' in _p969
+          and "**没有 `||` 兜底、没有 innerText 回退**" in _p969
+          and "**口径不同**" in _p969)
+
+    check("BBBBB.2 ⭐⭐⭐⭐⭐ **968b 那句「复刻 17 / 源站 18 / 差的那一个仍然是"
+          "项目面板」是错的** —— 错因：**拿 954 的历史基线当本轮对照，没有在同一轮"
+          "重新量源站** ⇒ 本轮**同轮实测**：源站 **17**、复刻 **16 真 + 1 个开发态"
+          "产物** ⇒ **数目本来就相同**，且**集合逐个对完是同一组**（16 个身份全对上）"
+          "⇒ ⭐⭐⭐ **挂了几十批的待办应当结案为「本轮两侧同组、结构相同」**；"
+          "⭐⭐⭐ **纪律**：**同一件事要对比，就得在同一轮量两侧** —— 拿历史基线当"
+          "本轮一侧的对照，会把「基线过期」误读成「实现有缺陷」",
+          '"corrects_968b_969"' in _ausrc
+          and "源站 18 个、差的那一个仍然是项目面板」是错的" in _ausrc
+          and "**拿 954 的历史基线当本轮对照**" in _ausrc
+          and "**没有在同一轮重新量源站**" in _ausrc
+          and "**数目本来就相同**" in _ausrc
+          and "**集合逐个对完，两侧是同一组**" in _ausrc
+          and "**挂了几十批的待办" in _ausrc
+          and "应当结案为「本轮两侧同组、结构相同」" in _ausrc
+          and "同一件事要对比，" in _ausrc
+          and "就得在同一轮量两侧" in _ausrc
+          and "会把「基线过期」误读成「实现有缺陷」" in _ausrc
+          # ⚠️ HH.4：968b 的**原文必须还在**，只加「已被 969 推翻」的横幅
+          and "**差的那一个仍然是「项目面板」**" in _ausrc
+          and "**本条已被批 969 推翻**，原文保留、不删" in _ausrc)
+
+    check("BBBBB.3 ⭐⭐⭐ **唯一真实的结构差异：「更多」的 `data-testid` 不一致** —— "
+          "源站 **`canvas-editor-menu`**、复刻 **`canvas-more-trigger`**；"
+          "三处 aria 文本不同**全是数据/默认值**（`节点 76` vs `节点 7`、"
+          "`Credits 791` vs `745`、`Zoom 50%` vs `73%`）⇒ **其余全部对齐**",
+          '"one_real_structural_diff_969"' in _ausrc
+          and "**唯一真实的结构差异：「更多」的 `data-testid` 不一致**" in _ausrc
+          and "`canvas-editor-menu`" in _ausrc
+          and "`canvas-more-trigger`" in _ausrc
+          and "**全是数据/默认值，不是结构差异**" in _ausrc
+          and "**其余全部对齐**" in _ausrc
+          # ⭐ 钉探针：确实**逐个核身份**（tag / aria / 最近 data-testid）
+          and "**逐个核身份**（`tag` / `aria` / 最近 `data-testid`）" in _ausrc
+          and "host_tid: (a.closest('[data-testid]')" in _p969
+          and 'tag: (a.tagName || \'\').toUpperCase(),' in _p969)
+
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "

@@ -144,6 +144,8 @@ PROBE_VARS = {
     # ⚠️ 968/968b：**同样与写 `AAAAA.*` 判据同一步登记**（同一个坑，第三次预防）
     "_p968": "scripts/jimeng_probe968_replica_armptr_ck.py",
     "_p968b": "scripts/jimeng_probe968b_nextjsportal_ck.py",
+    # ⚠️ 969：**同一步**登记（第四次预防同一个坑）
+    "_p969": "scripts/jimeng_probe969_projectpanel_src.py",
     # ⚠️ 961 顺带补上 `asrc`（= audit 源码，M 组判据在用；
     #   它的路径是 `ROOT / "scripts" / "…"` 两段写法，自动提取抓不到）
     "asrc": "scripts/jimeng_unclickable_audit.py",
