@@ -1,0 +1,590 @@
+{
+  "读数": {
+    "容器": {
+      "左下": {
+        "box": [
+          8,
+          758,
+          274,
+          40
+        ],
+        "cls": "fixed bottom-3 z-10 flex items-end gap-2"
+      },
+      "中央": null
+    },
+    "底栏": [
+      {
+        "文字": "资产管理",
+        "aria": "资产管理",
+        "title": "",
+        "box": [
+          14,
+          764,
+          94,
+          28
+        ],
+        "中心": [
+          61,
+          778
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "整理画布，Option+Shift+F",
+        "title": "",
+        "box": [
+          112,
+          764,
+          28,
+          28
+        ],
+        "中心": [
+          126,
+          778
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "切换小地图",
+        "title": "",
+        "box": [
+          144,
+          764,
+          28,
+          28
+        ],
+        "中心": [
+          158,
+          778
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "隐藏节点连线",
+        "title": "",
+        "box": [
+          176,
+          764,
+          28,
+          28
+        ],
+        "中心": [
+          190,
+          778
+        ],
+        "svg": [
+          "iconify iconify--libtv"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "网格吸附",
+        "title": "",
+        "box": [
+          208,
+          764,
+          28,
+          28
+        ],
+        "中心": [
+          222,
+          778
+        ],
+        "svg": [
+          "iconify iconify--lucide pointer-ev"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "图片反推提示词",
+        "aria": "",
+        "title": "",
+        "box": [
+          219,
+          717,
+          66,
+          17
+        ],
+        "中心": [
+          252,
+          726
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "文字生音乐",
+        "aria": "",
+        "title": "",
+        "box": [
+          219,
+          736,
+          53,
+          17
+        ],
+        "中心": [
+          246,
+          744
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "46%",
+        "aria": "缩放选项",
+        "title": "",
+        "box": [
+          240,
+          764,
+          36,
+          28
+        ],
+        "中心": [
+          258,
+          778
+        ],
+        "svg": [],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "添加节点",
+        "title": "",
+        "box": [
+          580,
+          757,
+          32,
+          32
+        ],
+        "中心": [
+          596,
+          773
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "移动",
+        "title": "",
+        "box": [
+          620,
+          757,
+          32,
+          32
+        ],
+        "中心": [
+          636,
+          773
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "素材库",
+        "title": "",
+        "box": [
+          660,
+          757,
+          32,
+          32
+        ],
+        "中心": [
+          676,
+          773
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "角色造型室",
+        "title": "",
+        "box": [
+          700,
+          757,
+          32,
+          32
+        ],
+        "中心": [
+          716,
+          773
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "生成历史",
+        "title": "",
+        "box": [
+          740,
+          757,
+          32,
+          32
+        ],
+        "中心": [
+          756,
+          773
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "快捷键",
+        "title": "",
+        "box": [
+          789,
+          757,
+          32,
+          32
+        ],
+        "中心": [
+          805,
+          773
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "",
+        "aria": "教程",
+        "title": "",
+        "box": [
+          829,
+          757,
+          32,
+          32
+        ],
+        "中心": [
+          845,
+          773
+        ],
+        "svg": [
+          "iconify iconify--libtv pointer-eve"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgba(0, 0, 0, 0)"
+      },
+      {
+        "文字": "TV Director",
+        "aria": "TV Director",
+        "title": "",
+        "box": [
+          875,
+          749,
+          48,
+          48
+        ],
+        "中心": [
+          899,
+          773
+        ],
+        "svg": [
+          "absolute",
+          "ChatAgentLiquidOrb-module__JiGsiG_",
+          "ChatAgentLiquidOrb-module__JiGsiG_"
+        ],
+        "opacity": "1",
+        "cursor": "pointer",
+        "disabled": false,
+        "背景": "rgb(38, 38, 38)"
+      }
+    ],
+    "气泡": [
+      {
+        "box": [
+          14,
+          764,
+          94,
+          28
+        ],
+        "名字": "资产管理",
+        "气泡": []
+      },
+      {
+        "box": [
+          112,
+          764,
+          28,
+          28
+        ],
+        "名字": "整理画布，Option+Shift+F",
+        "气泡": [
+          [
+            "整理画布",
+            [
+              85,
+              735,
+              48,
+              17
+            ]
+          ],
+          [
+            "⌥⇧F",
+            [
+              137,
+              736,
+              30,
+              15
+            ]
+          ]
+        ]
+      },
+      {
+        "box": [
+          144,
+          764,
+          28,
+          28
+        ],
+        "名字": "切换小地图",
+        "气泡": []
+      },
+      {
+        "box": [
+          176,
+          764,
+          28,
+          28
+        ],
+        "名字": "隐藏节点连线",
+        "气泡": []
+      },
+      {
+        "box": [
+          208,
+          764,
+          28,
+          28
+        ],
+        "名字": "网格吸附",
+        "气泡": []
+      },
+      {
+        "box": [
+          219,
+          717,
+          66,
+          17
+        ],
+        "名字": "图片反推提示词",
+        "气泡": []
+      },
+      {
+        "box": [
+          219,
+          736,
+          53,
+          17
+        ],
+        "名字": "文字生音乐",
+        "气泡": []
+      },
+      {
+        "box": [
+          240,
+          764,
+          36,
+          28
+        ],
+        "名字": "46%",
+        "气泡": []
+      },
+      {
+        "box": [
+          580,
+          757,
+          32,
+          32
+        ],
+        "名字": "添加节点",
+        "气泡": []
+      },
+      {
+        "box": [
+          620,
+          757,
+          32,
+          32
+        ],
+        "名字": "移动",
+        "气泡": []
+      },
+      {
+        "box": [
+          660,
+          757,
+          32,
+          32
+        ],
+        "名字": "素材库",
+        "气泡": []
+      },
+      {
+        "box": [
+          700,
+          757,
+          32,
+          32
+        ],
+        "名字": "角色造型室",
+        "气泡": []
+      },
+      {
+        "box": [
+          740,
+          757,
+          32,
+          32
+        ],
+        "名字": "生成历史",
+        "气泡": []
+      },
+      {
+        "box": [
+          789,
+          757,
+          32,
+          32
+        ],
+        "名字": "快捷键",
+        "气泡": []
+      },
+      {
+        "box": [
+          829,
+          757,
+          32,
+          32
+        ],
+        "名字": "教程",
+        "气泡": []
+      },
+      {
+        "box": [
+          875,
+          749,
+          48,
+          48
+        ],
+        "名字": "TV Director",
+        "气泡": []
+      }
+    ]
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "容器：左下={\"box\":[8,758,274,40],\"cls\":\"fixed bottom-3 z-10 flex items-end gap-2\"}；中央=null",
+    "\n底部可见按钮 16 枚：",
+    "　[14,764,94,28] 「资产管理」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[112,764,28,28] 「整理画布，Option+Shift+F」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[144,764,28,28] 「切换小地图」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[176,764,28,28] 「隐藏节点连线」 svg=[\"iconify iconify--libtv\"] opacity=1 cursor=pointer",
+    "　[208,764,28,28] 「网格吸附」 svg=[\"iconify iconify--lucide pointer-ev\"] opacity=1 cursor=pointer",
+    "　[219,717,66,17] 「图片反推提示词」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[219,736,53,17] 「文字生音乐」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[240,764,36,28] 「46%」 svg=[] opacity=1 cursor=pointer",
+    "　[580,757,32,32] 「添加节点」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[620,757,32,32] 「移动」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[660,757,32,32] 「素材库」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[700,757,32,32] 「角色造型室」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[740,757,32,32] 「生成历史」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[789,757,32,32] 「快捷键」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[829,757,32,32] 「教程」 svg=[\"iconify iconify--libtv pointer-eve\"] opacity=1 cursor=pointer",
+    "　[875,749,48,48] 「TV Director」 svg=[\"absolute\",\"ChatAgentLiquidOrb-module__JiGsiG_\",\"ChatAgentLiquidOrb-module__JiGsiG_\"] opacity=1 cursor=pointer",
+    "　悬停「资产管理」：[]",
+    "　悬停「整理画布，Option+Shift+F」：[[\"整理画布\",[85,735,48,17]],[\"⌥⇧F\",[137,736,30,15]]]",
+    "　悬停「切换小地图」：[]",
+    "　悬停「隐藏节点连线」：[]",
+    "　悬停「网格吸附」：[]",
+    "　悬停「图片反推提示词」：[]",
+    "　悬停「文字生音乐」：[]",
+    "　悬停「46%」：[]",
+    "　悬停「添加节点」：[]",
+    "　悬停「移动」：[]",
+    "　悬停「素材库」：[]",
+    "　悬停「角色造型室」：[]",
+    "　悬停「生成历史」：[]",
+    "　悬停「快捷键」：[]",
+    "　悬停「教程」：[]",
+    "　悬停「TV Director」：[]",
+    "✅ 已拍两张裁图",
+    "⭐ 收尾坐标偏差：[]"
+  ]
+}
