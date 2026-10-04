@@ -53,12 +53,28 @@ import sys
 from pathlib import Path
 
 HEADING = re.compile(r"^#{2,4}\s*\*?\*?M(\d+)\s*\*?\*?\s*[（(]\s*(\d{4}-\d{2}-\d{2})", re.M)
+# ★ M233 新增：扫描面必须排除第三方与构建产物目录。
+#   本库其余 8 道门禁早就统一用这一个集合，本文件原先只排除了 .vitepress。
+SKIP_DIRS = {"node_modules", ".vitepress", "dist", ".git"}
 # 正文/账本里另一种语序：「2026-10-04 M196」「M194 复核（2026-10-04，…」
 # ⚠ 年份**不能写死**：M227 第一版写的是 `2026-`，于是自检注入的「今天+一年」
 #   （2027-）内联标注当场漏掉——**这正是本文件注释里警告的「写死日期的锚点会过期」，
 #   而它自己就犯了**。判据要能活过跨年。
 _DATE_HINT = re.compile(r"\d{4}-\d{2}-\d{2}")
-INLINE = re.compile(r"\d{4}-\d{2}-\d{2}[^\n]{0,10}?M(\d+)\b|\bM(\d+)\b[（(]?[^\n]{0,12}?\d{4}-\d{2}-\d{2}")
+INLINE = re.compile(
+    # 语序一：日期在前
+    r"\d{4}-\d{2}-\d{2}[^\n]{0,10}?M(\d+)\b"
+    # ★ M233：语序二「M 在前」**必须自带日期捕获组**。
+    #   第一版两条分支都不带日期组，代码靠 `mo.group(0)[:10]` 取日期；
+    #   而「M 在前」那支的 group(0) 开头是 `M194 复核（20`，
+    #   **取前 10 个字符根本不是一个日期** → fromisoformat 抛错 → `continue` 静默跳过。
+    #   实测本手册正文里有 **86 处**「M 在前」语序，全部落在这个静默跳过的分支里；
+    #   往里注入 22 处未来日期，判据 **exit 0**。**这是判据自己的一整块盲区。**
+    #   ——与自检里那条「否定形态不得误报」同源：那边是不该报的报了，
+    #     这边是**该报的不报**。**一个「静默 continue」的 except 分支比一条错判据更难发现，
+    #     因为它连报错的机会都不给。**
+    r"|\bM(\d+)\b[（(]?[^\n]{0,12}?(\d{4}-\d{2}-\d{2})"
+)
 
 
 def main() -> int:
@@ -95,9 +111,20 @@ def main() -> int:
             future.append((m, ds, d))
 
     # 正文/账本里的内联标注同样受这条约束
+    # ★ M233：这里原本只排除了 `.vitepress`，**漏了 `node_modules`**——
+    #   于是判据一在 **162 个 md** 上跑，其中 **136 个是第三方库的 README**
+    #   （本目录下带着一整个 vitepress 的 node_modules）。
+    #   **那不是性能问题**（实测 0.068s → 0.044s，本来就够快），
+    #   **而是正确性问题：这道门禁在替第三方文档做日期判定。**
+    #   今天恰好 0 命中只是运气——哪天某个依赖的 README 里出现
+    #   「…M5 2026-xx-xx…」这种行，门禁就会拿别人的文档报错。
+    #   ★ **对照**：本库 8 道门禁（anchors / duplicate-lines / emphasis / encoding /
+    #     retractions / section-ownership / structure / tables）**全都显式排除了 node_modules**，
+    #   **本文件是唯一漏掉的那一个**。孤立缺陷最好认，因为有对照。
     inline_future = []
+    inline_broken = []
     for f in sorted(root.rglob("*.md")):
-        if ".vitepress" in str(f):
+        if SKIP_DIRS & set(f.parts):
             continue
         txt = f.read_text(encoding="utf-8")
         for i, line in enumerate(txt.split("\n"), 1):
@@ -108,13 +135,28 @@ def main() -> int:
             if not _DATE_HINT.search(line):
                 continue
             for mo in INLINE.finditer(line):
-                ds = mo.group(0)[:10]
+                # ★ M233：日期的取法按「哪一支命中」决定，不能一律切片。
+                #   语序一（日期在前）日期就是 group(0) 的开头；语序二（M 在前）日期在 group(3)。
+                #   旧代码一律 `[:10]`，于是语序二拿到 `M194 复核（20` 这种非日期串，
+                #   **except ValueError: continue 把它静默丢掉**。
+                ds = mo.group(0)[:10] if mo.group(1) else (mo.group(3) or "")
                 try:
                     d = dt.date.fromisoformat(ds)
                 except ValueError:
+                    # ⚠ 这里**不能静默跳过**：M233 实测，一整类真实存在的语序
+                    #   就是这么被丢掉的，而门禁一路报「通过」。
+                    #   匹配到了 INLINE 却取不出日期 ⇒ 正则或取法坏了，点名报出来。
+                    inline_broken.append((f.relative_to(root), i, mo.group(0)[:40]))
                     continue
                 if d > today:
                     inline_future.append((f.relative_to(root), i, ds, line.strip()[:70]))
+
+    # ★ 判据一第二项的覆盖读数（M233）：**扫了多少个 md 必须报出来**——
+    #   本条缺陷正是「扫了 162 个、其中 136 个是第三方 README」而没人看见。
+    #   与 M231 的「对账 N/112 张」、M232 的「批次 N/39 个」是同一条纪律的第三次应用。
+    inline_scanned = sum(
+        1 for f in root.rglob("*.md") if not SKIP_DIRS & set(f.parts)
+    )
 
     # ---- 判据一（构建门禁）第二项：截图清单的 captured_at 不得晚于今天 ----
     shots_future = []
@@ -136,7 +178,7 @@ def main() -> int:
 
     print("=" * 76)
     print(f"[batch-dates] 今天 {today}；PROGRESS.md 带日期批次标题 {len(heads)} 条；"
-          f"截图清单 captured_at {len(shots)} 条")
+          f"截图清单 captured_at {len(shots)} 条；内联标注扫描 {inline_scanned} 个 md")
     print("=" * 76)
 
     problems: list[str] = []
@@ -153,6 +195,11 @@ def main() -> int:
         problems.append(
             f"screenshots/manifest.yml:{ln} 的 captured_at 是 {ds}，**晚于今天 {today}** —— "
             f"这张图声称拍摄于一个还没到的日子里")
+    # ★ M233：判据自己取不出日期的场合，**必须报出来而不是静默跳过**。
+    for rel, ln, frag in inline_broken:
+        problems.append(
+            f"{rel}:{ln} 匹配到了内联日期标注，却取不出日期：{frag!r} —— "
+            f"**这说明本判据的正则或取法与正文实际写法对不上，请修判据**")
 
     # ---- 判据二（可选深度对账，不参与构建判定）----
     deep_note = ""
