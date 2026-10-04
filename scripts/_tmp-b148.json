@@ -1,0 +1,3675 @@
+{
+ "批次": 148,
+ "目的": "六族「选中后出现什么面板」全谱",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员",
+  "组数": 0
+ },
+ "基线节点": 76,
+ "族": [
+  {
+   "族": "文本",
+   "缩放建前": "Zoom options, 60%",
+   "护栏": [
+    [
+     "①a 建前节点数 == 预期基线（挡上轮残留）",
+     true
+    ],
+    [
+     "①建前 0 选中（不能有上次留下的选中态）",
+     true
+    ],
+    [
+     "①b 建前无组卡片（本批专属：组会干扰框选与差集）",
+     true
+    ],
+    [
+     "②第1个建后差集恰好 1 个",
+     true
+    ],
+    [
+     "②b 第1个新节点恰好 .selected",
+     true
+    ]
+   ],
+   "护栏全过": true,
+   "SELF": "node_w5zrffywv0",
+   "缩放建后": "Zoom options, 60%",
+   "状态行": "77 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "普查": {
+    "容器": {
+     "node-toolbar": [
+      {
+       "盒": [
+        640,
+        476,
+        0,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      },
+      {
+       "盒": [
+        544,
+        188,
+        192,
+        40
+       ],
+       "有面积": true,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 3,
+       "svg数": 2,
+       "逐字": "背景色",
+       "按钮": [
+        {
+         "aria": null,
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          565,
+          192,
+          75,
+          32
+         ]
+        },
+        {
+         "aria": "全屏",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          649,
+          192,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "下载",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          683,
+          192,
+          32,
+          32
+         ]
+        }
+       ]
+      }
+     ],
+     "node-toolbar-feature-host": [
+      {
+       "盒": [
+        640,
+        476,
+        0,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ],
+     "generation-input-panel-shell": [],
+     "generation-form": [],
+     "video-generation-form": [],
+     "image-generation-form": [],
+     "selection-context-toolbar": [
+      {
+       "盒": [
+        560,
+        188,
+        160,
+        40
+       ],
+       "有面积": true,
+       "display": "flex",
+       "visibility": "visible",
+       "按钮数": 3,
+       "svg数": 2,
+       "逐字": "背景色",
+       "按钮": [
+        {
+         "aria": null,
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          565,
+          192,
+          75,
+          32
+         ]
+        },
+        {
+         "aria": "全屏",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          649,
+          192,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "下载",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          683,
+          192,
+          32,
+          32
+         ]
+        }
+       ]
+      }
+     ],
+     "selection-context-toolbar-surface": [
+      {
+       "盒": [
+        544,
+        188,
+        192,
+        40
+       ],
+       "有面积": true,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 3,
+       "svg数": 2,
+       "逐字": "背景色",
+       "按钮": [
+        {
+         "aria": null,
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          565,
+          192,
+          75,
+          32
+         ]
+        },
+        {
+         "aria": "全屏",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          649,
+          192,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "下载",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          683,
+          192,
+          32,
+          32
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "祖先链": [
+     {
+      "级": 0,
+      "tag": "DIV",
+      "cls": "react-flow__node-toolbar",
+      "testid": "node-toolbar",
+      "role": null,
+      "盒": [
+       544,
+       188,
+       192,
+       40
+      ],
+      "z": "200025"
+     },
+     {
+      "级": 1,
+      "tag": "DIV",
+      "cls": "react-flow__renderer",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "4"
+     },
+     {
+      "级": 2,
+      "tag": "DIV",
+      "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+      "testid": "rf__wrapper",
+      "role": "application",
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "0"
+     },
+     {
+      "级": 3,
+      "tag": "DIV",
+      "cls": "w-full h-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 4,
+      "tag": "DIV",
+      "cls": "relative h-full w-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 5,
+      "tag": "SECTION",
+      "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+      "testid": "canvas-main-region",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 6,
+      "tag": "DIV",
+      "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+      "testid": "canvas-workbench-shell",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     }
+    ],
+    "浮层": []
+   },
+   "节点testid": [
+    "text-flow-node-full",
+    "text-node-empty-placeholder",
+    "text-node-resize-controls",
+    "text-node-resize-top-left",
+    "text-node-resize-top",
+    "text-node-resize-top-right",
+    "text-node-resize-right",
+    "text-node-resize-bottom-right",
+    "textarea-resize-affordance",
+    "text-node-resize-bottom",
+    "text-node-resize-bottom-left",
+    "text-node-resize-left",
+    "text-node-selection-outline",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "flow-node-source-connection-menu-button"
+   ],
+   "删除": {
+    "id": "node_w5zrffywv0",
+    "消失": [
+     "node_w5zrffywv0"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "归位": {
+    "前": "Zoom options, 60%",
+    "目标": 60,
+    "回读": "Zoom options, 60%",
+    "输入框出现过": true,
+    "实测scale": 0.6,
+    "期望scale": 0.6,
+    "scale已追平": true,
+    "等待ms": 2
+   },
+   "族后节点数": 76
+  },
+  {
+   "族": "图片",
+   "缩放建前": "Zoom options, 60%",
+   "护栏": [
+    [
+     "①a 建前节点数 == 预期基线（挡上轮残留）",
+     true
+    ],
+    [
+     "①建前 0 选中（不能有上次留下的选中态）",
+     true
+    ],
+    [
+     "①b 建前无组卡片（本批专属：组会干扰框选与差集）",
+     true
+    ],
+    [
+     "②第1个建后差集恰好 1 个",
+     true
+    ],
+    [
+     "②b 第1个新节点恰好 .selected",
+     true
+    ]
+   ],
+   "护栏全过": true,
+   "SELF": "node_8f6b6g0ecf",
+   "缩放建后": "Zoom options, 57%",
+   "状态行": "77 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "普查": {
+    "容器": {
+     "node-toolbar": [
+      {
+       "盒": [
+        271,
+        456,
+        680,
+        208
+       ],
+       "有面积": true,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 7,
+       "svg数": 8,
+       "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / 张. 3 / 张 生",
+       "按钮": [
+        {
+         "aria": "展开图片生成器",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          917,
+          450,
+          40,
+          40
+         ]
+        },
+        {
+         "aria": "添加参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          473,
+          48,
+          48
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          446,
+          534,
+          24,
+          24
+         ]
+        },
+        {
+         "aria": "选择模型: Seedream 5.0 Lite",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          615,
+          146.1,
+          32
+         ]
+        },
+        {
+         "aria": "图片尺寸选项: 1:1 · 2K · 1",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          436,
+          615,
+          97.6,
+          32
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          536,
+          615,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "生成",
+         "testid": null,
+         "ariaDisabled": "true",
+         "盒": [
+          902,
+          615,
+          32,
+          32
+         ]
+        }
+       ]
+      },
+      {
+       "盒": [
+        520,
+        218,
+        181.8,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ],
+     "node-toolbar-feature-host": [
+      {
+       "盒": [
+        271,
+        456,
+        680,
+        208
+       ],
+       "有面积": true,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 7,
+       "svg数": 8,
+       "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / 张. 3 / 张 生",
+       "按钮": [
+        {
+         "aria": "展开图片生成器",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          917,
+          450,
+          40,
+          40
+         ]
+        },
+        {
+         "aria": "添加参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          473,
+          48,
+          48
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          446,
+          534,
+          24,
+          24
+         ]
+        },
+        {
+         "aria": "选择模型: Seedream 5.0 Lite",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          615,
+          146.1,
+          32
+         ]
+        },
+        {
+         "aria": "图片尺寸选项: 1:1 · 2K · 1",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          436,
+          615,
+          97.6,
+          32
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          536,
+          615,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "生成",
+         "testid": null,
+         "ariaDisabled": "true",
+         "盒": [
+          902,
+          615,
+          32,
+          32
+         ]
+        }
+       ]
+      }
+     ],
+     "generation-input-panel-shell": [],
+     "generation-form": [
+      {
+       "盒": [
+        271,
+        456,
+        680,
+        208
+       ],
+       "有面积": true,
+       "display": "flex",
+       "visibility": "visible",
+       "按钮数": 6,
+       "svg数": 7,
+       "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / 张. 3 / 张 生",
+       "按钮": [
+        {
+         "aria": "添加参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          473,
+          48,
+          48
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          446,
+          534,
+          24,
+          24
+         ]
+        },
+        {
+         "aria": "选择模型: Seedream 5.0 Lite",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          615,
+          146.1,
+          32
+         ]
+        },
+        {
+         "aria": "图片尺寸选项: 1:1 · 2K · 1",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          436,
+          615,
+          97.6,
+          32
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          536,
+          615,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "生成",
+         "testid": null,
+         "ariaDisabled": "true",
+         "盒": [
+          902,
+          615,
+          32,
+          32
+         ]
+        }
+       ]
+      }
+     ],
+     "video-generation-form": [],
+     "image-generation-form": [],
+     "selection-context-toolbar": [],
+     "selection-context-toolbar-surface": [
+      {
+       "盒": [
+        520,
+        218,
+        181.8,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ]
+    },
+    "祖先链": [
+     {
+      "级": 0,
+      "tag": "DIV",
+      "cls": "react-flow__node-toolbar",
+      "testid": "node-toolbar",
+      "role": null,
+      "盒": [
+       271,
+       456,
+       680,
+       208
+      ],
+      "z": "200020"
+     },
+     {
+      "级": 1,
+      "tag": "DIV",
+      "cls": "react-flow__renderer",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "4"
+     },
+     {
+      "级": 2,
+      "tag": "DIV",
+      "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+      "testid": "rf__wrapper",
+      "role": "application",
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "0"
+     },
+     {
+      "级": 3,
+      "tag": "DIV",
+      "cls": "w-full h-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 4,
+      "tag": "DIV",
+      "cls": "relative h-full w-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 5,
+      "tag": "SECTION",
+      "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+      "testid": "canvas-main-region",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 6,
+      "tag": "DIV",
+      "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+      "testid": "canvas-workbench-shell",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     }
+    ],
+    "浮层": []
+   },
+   "节点testid": [
+    "image-node-empty",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-target-connection-menu-button",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "flow-node-source-connection-menu-button"
+   ],
+   "删除": {
+    "id": "node_8f6b6g0ecf",
+    "消失": [
+     "node_8f6b6g0ecf"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "归位": {
+    "前": "Zoom options, 57%",
+    "目标": 60,
+    "回读": "Zoom options, 60%",
+    "输入框出现过": true,
+    "实测scale": 0.6,
+    "期望scale": 0.6,
+    "scale已追平": true,
+    "等待ms": 8
+   },
+   "族后节点数": 76
+  },
+  {
+   "族": "视频",
+   "缩放建前": "Zoom options, 60%",
+   "护栏": [
+    [
+     "①a 建前节点数 == 预期基线（挡上轮残留）",
+     true
+    ],
+    [
+     "①建前 0 选中（不能有上次留下的选中态）",
+     true
+    ],
+    [
+     "①b 建前无组卡片（本批专属：组会干扰框选与差集）",
+     true
+    ],
+    [
+     "②第1个建后差集恰好 1 个",
+     true
+    ],
+    [
+     "②b 第1个新节点恰好 .selected",
+     true
+    ]
+   ],
+   "护栏全过": true,
+   "SELF": "node_w1d27yh2qa",
+   "缩放建后": "Zoom options, 57%",
+   "状态行": "77 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "普查": {
+    "容器": {
+     "node-toolbar": [
+      {
+       "盒": [
+        271,
+        456,
+        680,
+        208
+       ],
+       "有面积": true,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 9,
+       "svg数": 12,
+       "逐字": "上传参考图、输入文字或 主体，描述你想生成的视频 即梦 Seedance 2.0 VIP 16:9 720P 1 全能参考 4s Current price 5",
+       "按钮": [
+        {
+         "aria": "展开视频生成器",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          917,
+          450,
+          40,
+          40
+         ]
+        },
+        {
+         "aria": "添加参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          473,
+          48,
+          48
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          446,
+          534,
+          24,
+          24
+         ]
+        },
+        {
+         "aria": "选择模型: 即梦 Seedance 2.0 VIP, Standard-only model",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          615,
+          184.1,
+          32
+         ]
+        },
+        {
+         "aria": "视频尺寸选项: 16:9 · 720P · 1, Standard-only model",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          474,
+          615,
+          129.1,
+          32
+         ]
+        },
+        {
+         "aria": "生成模式: 全能参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          606,
+          615,
+          80,
+          32
+         ]
+        },
+        {
+         "aria": "选择视频生成时长: 4s",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          688,
+          615,
+          46,
+          32
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          736,
+          615,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "生成",
+         "testid": null,
+         "ariaDisabled": "true",
+         "盒": [
+          902,
+          615,
+          32,
+          32
+         ]
+        }
+       ]
+      },
+      {
+       "盒": [
+        450,
+        218,
+        323.2,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ],
+     "node-toolbar-feature-host": [
+      {
+       "盒": [
+        271,
+        456,
+        680,
+        208
+       ],
+       "有面积": true,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 9,
+       "svg数": 12,
+       "逐字": "上传参考图、输入文字或 主体，描述你想生成的视频 即梦 Seedance 2.0 VIP 16:9 720P 1 全能参考 4s Current price 5",
+       "按钮": [
+        {
+         "aria": "展开视频生成器",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          917,
+          450,
+          40,
+          40
+         ]
+        },
+        {
+         "aria": "添加参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          473,
+          48,
+          48
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          446,
+          534,
+          24,
+          24
+         ]
+        },
+        {
+         "aria": "选择模型: 即梦 Seedance 2.0 VIP, Standard-only model",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          615,
+          184.1,
+          32
+         ]
+        },
+        {
+         "aria": "视频尺寸选项: 16:9 · 720P · 1, Standard-only model",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          474,
+          615,
+          129.1,
+          32
+         ]
+        },
+        {
+         "aria": "生成模式: 全能参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          606,
+          615,
+          80,
+          32
+         ]
+        },
+        {
+         "aria": "选择视频生成时长: 4s",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          688,
+          615,
+          46,
+          32
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          736,
+          615,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "生成",
+         "testid": null,
+         "ariaDisabled": "true",
+         "盒": [
+          902,
+          615,
+          32,
+          32
+         ]
+        }
+       ]
+      }
+     ],
+     "generation-input-panel-shell": [],
+     "generation-form": [],
+     "video-generation-form": [
+      {
+       "盒": [
+        271,
+        456,
+        680,
+        208
+       ],
+       "有面积": true,
+       "display": "flex",
+       "visibility": "visible",
+       "按钮数": 8,
+       "svg数": 11,
+       "逐字": "上传参考图、输入文字或 主体，描述你想生成的视频 即梦 Seedance 2.0 VIP 16:9 720P 1 全能参考 4s Current price 5",
+       "按钮": [
+        {
+         "aria": "添加参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          473,
+          48,
+          48
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          446,
+          534,
+          24,
+          24
+         ]
+        },
+        {
+         "aria": "选择模型: 即梦 Seedance 2.0 VIP, Standard-only model",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          288,
+          615,
+          184.1,
+          32
+         ]
+        },
+        {
+         "aria": "视频尺寸选项: 16:9 · 720P · 1, Standard-only model",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          474,
+          615,
+          129.1,
+          32
+         ]
+        },
+        {
+         "aria": "生成模式: 全能参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          606,
+          615,
+          80,
+          32
+         ]
+        },
+        {
+         "aria": "选择视频生成时长: 4s",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          688,
+          615,
+          46,
+          32
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          736,
+          615,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "生成",
+         "testid": null,
+         "ariaDisabled": "true",
+         "盒": [
+          902,
+          615,
+          32,
+          32
+         ]
+        }
+       ]
+      }
+     ],
+     "image-generation-form": [],
+     "selection-context-toolbar": [],
+     "selection-context-toolbar-surface": [
+      {
+       "盒": [
+        450,
+        218,
+        323.2,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ]
+    },
+    "祖先链": [
+     {
+      "级": 0,
+      "tag": "DIV",
+      "cls": "react-flow__node-toolbar",
+      "testid": "node-toolbar",
+      "role": null,
+      "盒": [
+       271,
+       456,
+       680,
+       208
+      ],
+      "z": "200020"
+     },
+     {
+      "级": 1,
+      "tag": "DIV",
+      "cls": "react-flow__renderer",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "4"
+     },
+     {
+      "级": 2,
+      "tag": "DIV",
+      "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+      "testid": "rf__wrapper",
+      "role": "application",
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "0"
+     },
+     {
+      "级": 3,
+      "tag": "DIV",
+      "cls": "w-full h-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 4,
+      "tag": "DIV",
+      "cls": "relative h-full w-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 5,
+      "tag": "SECTION",
+      "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+      "testid": "canvas-main-region",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 6,
+      "tag": "DIV",
+      "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+      "testid": "canvas-workbench-shell",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     }
+    ],
+    "浮层": []
+   },
+   "节点testid": [
+    "video-flow-node-surface",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-target-connection-menu-button",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "flow-node-source-connection-menu-button",
+    "video-node-empty"
+   ],
+   "删除": {
+    "id": "node_w1d27yh2qa",
+    "消失": [
+     "node_w1d27yh2qa"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "归位": {
+    "前": "Zoom options, 57%",
+    "目标": 60,
+    "回读": "Zoom options, 60%",
+    "输入框出现过": true,
+    "实测scale": 0.6,
+    "期望scale": 0.6,
+    "scale已追平": true,
+    "等待ms": 14
+   },
+   "族后节点数": 76
+  },
+  {
+   "族": "音频",
+   "缩放建前": "Zoom options, 60%",
+   "护栏": [
+    [
+     "①a 建前节点数 == 预期基线（挡上轮残留）",
+     true
+    ],
+    [
+     "①建前 0 选中（不能有上次留下的选中态）",
+     true
+    ],
+    [
+     "①b 建前无组卡片（本批专属：组会干扰框选与差集）",
+     true
+    ],
+    [
+     "②第1个建后差集恰好 1 个",
+     true
+    ],
+    [
+     "②b 第1个新节点恰好 .selected",
+     true
+    ]
+   ],
+   "护栏全过": true,
+   "SELF": "node_sn41z4104z",
+   "缩放建后": "Zoom options, 57%",
+   "状态行": "77 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "普查": {
+    "容器": {
+     "node-toolbar": [
+      {
+       "盒": [
+        277,
+        460,
+        680,
+        204
+       ],
+       "有面积": true,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 10,
+       "svg数": 11,
+       "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 C",
+       "按钮": [
+        {
+         "aria": "展开音频生成器",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          923,
+          454,
+          40,
+          40
+         ]
+        },
+        {
+         "aria": "添加参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          294,
+          477,
+          48,
+          48
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          578,
+          538,
+          24,
+          24
+         ]
+        },
+        {
+         "aria": "创作类型: 音频生成",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          294,
+          615,
+          80,
+          32
+         ]
+        },
+        {
+         "aria": "选择模型: SeedAudio 1.0, New",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          376,
+          615,
+          135.3,
+          32
+         ]
+        },
+        {
+         "aria": "音频生成: 全能配音",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          513,
+          615,
+          80,
+          32
+         ]
+        },
+        {
+         "aria": "音色: 音色库",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          595,
+          615,
+          68,
+          32
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          665,
+          615,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "显示折扣详情",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          854,
+          621,
+          46,
+          20
+         ]
+        },
+        {
+         "aria": "生成",
+         "testid": null,
+         "ariaDisabled": "true",
+         "盒": [
+          908,
+          615,
+          32,
+          32
+         ]
+        }
+       ]
+      },
+      {
+       "盒": [
+        525,
+        220,
+        183.8,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ],
+     "node-toolbar-feature-host": [
+      {
+       "盒": [
+        277,
+        460,
+        680,
+        204
+       ],
+       "有面积": true,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 10,
+       "svg数": 11,
+       "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 C",
+       "按钮": [
+        {
+         "aria": "展开音频生成器",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          923,
+          454,
+          40,
+          40
+         ]
+        },
+        {
+         "aria": "添加参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          294,
+          477,
+          48,
+          48
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          578,
+          538,
+          24,
+          24
+         ]
+        },
+        {
+         "aria": "创作类型: 音频生成",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          294,
+          615,
+          80,
+          32
+         ]
+        },
+        {
+         "aria": "选择模型: SeedAudio 1.0, New",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          376,
+          615,
+          135.3,
+          32
+         ]
+        },
+        {
+         "aria": "音频生成: 全能配音",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          513,
+          615,
+          80,
+          32
+         ]
+        },
+        {
+         "aria": "音色: 音色库",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          595,
+          615,
+          68,
+          32
+         ]
+        },
+        {
+         "aria": "引用参考",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          665,
+          615,
+          32,
+          32
+         ]
+        },
+        {
+         "aria": "显示折扣详情",
+         "testid": null,
+         "ariaDisabled": null,
+         "盒": [
+          854,
+          621,
+          46,
+          20
+         ]
+        },
+        {
+         "aria": "生成",
+         "testid": null,
+         "ariaDisabled": "true",
+         "盒": [
+          908,
+          615,
+          32,
+          32
+         ]
+        }
+       ]
+      }
+     ],
+     "generation-input-panel-shell": [],
+     "generation-form": [],
+     "video-generation-form": [],
+     "image-generation-form": [],
+     "selection-context-toolbar": [],
+     "selection-context-toolbar-surface": [
+      {
+       "盒": [
+        525,
+        220,
+        183.8,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ]
+    },
+    "祖先链": [
+     {
+      "级": 0,
+      "tag": "DIV",
+      "cls": "react-flow__node-toolbar",
+      "testid": "node-toolbar",
+      "role": null,
+      "盒": [
+       277,
+       460,
+       680,
+       204
+      ],
+      "z": "200020"
+     },
+     {
+      "级": 1,
+      "tag": "DIV",
+      "cls": "react-flow__renderer",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "4"
+     },
+     {
+      "级": 2,
+      "tag": "DIV",
+      "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+      "testid": "rf__wrapper",
+      "role": "application",
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "0"
+     },
+     {
+      "级": 3,
+      "tag": "DIV",
+      "cls": "w-full h-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 4,
+      "tag": "DIV",
+      "cls": "relative h-full w-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 5,
+      "tag": "SECTION",
+      "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+      "testid": "canvas-main-region",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 6,
+      "tag": "DIV",
+      "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+      "testid": "canvas-workbench-shell",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     }
+    ],
+    "浮层": []
+   },
+   "节点testid": [
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-target-connection-menu-button",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "flow-node-source-connection-menu-button",
+    "audio-node-empty",
+    "audio-node-status-icon"
+   ],
+   "删除": {
+    "id": "node_sn41z4104z",
+    "消失": [
+     "node_sn41z4104z"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "归位": {
+    "前": "Zoom options, 57%",
+    "目标": 60,
+    "回读": "Zoom options, 60%",
+    "输入框出现过": true,
+    "实测scale": 0.6,
+    "期望scale": 0.6,
+    "scale已追平": true,
+    "等待ms": 2
+   },
+   "族后节点数": 76
+  },
+  {
+   "族": "时间线",
+   "缩放建前": "Zoom options, 60%",
+   "护栏": [
+    [
+     "①a 建前节点数 == 预期基线（挡上轮残留）",
+     true
+    ],
+    [
+     "①建前 0 选中（不能有上次留下的选中态）",
+     true
+    ],
+    [
+     "①b 建前无组卡片（本批专属：组会干扰框选与差集）",
+     true
+    ],
+    [
+     "②第1个建后差集恰好 1 个",
+     true
+    ],
+    [
+     "②b 第1个新节点恰好 .selected",
+     true
+    ]
+   ],
+   "护栏全过": true,
+   "SELF": "node_kaansnxcy9",
+   "缩放建后": "Zoom options, 60%",
+   "状态行": "77 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "普查": {
+    "容器": {
+     "node-toolbar": [
+      {
+       "盒": [
+        640,
+        434,
+        0,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      },
+      {
+       "盒": [
+        280,
+        254,
+        720,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ],
+     "node-toolbar-feature-host": [
+      {
+       "盒": [
+        640,
+        434,
+        0,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ],
+     "generation-input-panel-shell": [],
+     "generation-form": [],
+     "video-generation-form": [],
+     "image-generation-form": [],
+     "selection-context-toolbar": [],
+     "selection-context-toolbar-surface": [
+      {
+       "盒": [
+        280,
+        254,
+        720,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ]
+    },
+    "祖先链": [
+     {
+      "级": 0,
+      "tag": "DIV",
+      "cls": "react-flow__node-toolbar",
+      "testid": "node-toolbar",
+      "role": null,
+      "盒": [
+       280,
+       254,
+       720,
+       0
+      ],
+      "z": "200025"
+     },
+     {
+      "级": 1,
+      "tag": "DIV",
+      "cls": "react-flow__renderer",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "4"
+     },
+     {
+      "级": 2,
+      "tag": "DIV",
+      "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+      "testid": "rf__wrapper",
+      "role": "application",
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "0"
+     },
+     {
+      "级": 3,
+      "tag": "DIV",
+      "cls": "w-full h-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 4,
+      "tag": "DIV",
+      "cls": "relative h-full w-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 5,
+      "tag": "SECTION",
+      "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+      "testid": "canvas-main-region",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 6,
+      "tag": "DIV",
+      "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+      "testid": "canvas-workbench-shell",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     }
+    ],
+    "浮层": []
+   },
+   "节点testid": [
+    "timeline-flow-node",
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-target-connection-menu-button",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "timeline-flow-node-main-track",
+    "timeline-toolbar",
+    "timeline-playback-clock",
+    "timeline-visual-track",
+    "timeline-track-gutter",
+    "timeline-mute-button",
+    "timeline-node-track-divider",
+    "timeline-track-scroll",
+    "timeline-track-canvas",
+    "timeline-ruler",
+    "timeline-ruler-interaction-extension",
+    "timeline-clip-track",
+    "timeline-source-picker-slot",
+    "timeline-empty-track-label",
+    "timeline-node-resize-handle"
+   ],
+   "删除": {
+    "id": "node_kaansnxcy9",
+    "消失": [
+     "node_kaansnxcy9"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "归位": {
+    "前": "Zoom options, 60%",
+    "目标": 60,
+    "回读": "Zoom options, 60%",
+    "输入框出现过": true,
+    "实测scale": 0.6,
+    "期望scale": 0.6,
+    "scale已追平": true,
+    "等待ms": 1
+   },
+   "族后节点数": 76
+  },
+  {
+   "族": "导演台",
+   "缩放建前": "Zoom options, 60%",
+   "护栏": [
+    [
+     "①a 建前节点数 == 预期基线（挡上轮残留）",
+     true
+    ],
+    [
+     "①建前 0 选中（不能有上次留下的选中态）",
+     true
+    ],
+    [
+     "①b 建前无组卡片（本批专属：组会干扰框选与差集）",
+     true
+    ],
+    [
+     "②第1个建后差集恰好 1 个",
+     true
+    ],
+    [
+     "②b 第1个新节点恰好 .selected",
+     true
+    ]
+   ],
+   "护栏全过": true,
+   "SELF": "node_krrmaqsrfp",
+   "缩放建后": "Zoom options, 60%",
+   "状态行": "77 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存.",
+   "普查": {
+    "容器": {
+     "node-toolbar": [
+      {
+       "盒": [
+        640,
+        476,
+        0,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      },
+      {
+       "盒": [
+        544,
+        228,
+        192,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ],
+     "node-toolbar-feature-host": [
+      {
+       "盒": [
+        640,
+        476,
+        0,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ],
+     "generation-input-panel-shell": [],
+     "generation-form": [],
+     "video-generation-form": [],
+     "image-generation-form": [],
+     "selection-context-toolbar": [],
+     "selection-context-toolbar-surface": [
+      {
+       "盒": [
+        544,
+        228,
+        192,
+        0
+       ],
+       "有面积": false,
+       "display": "block",
+       "visibility": "visible",
+       "按钮数": 0,
+       "svg数": 0,
+       "逐字": "",
+       "按钮": []
+      }
+     ]
+    },
+    "祖先链": [
+     {
+      "级": 0,
+      "tag": "DIV",
+      "cls": "react-flow__node-toolbar",
+      "testid": "node-toolbar",
+      "role": null,
+      "盒": [
+       544,
+       228,
+       192,
+       0
+      ],
+      "z": "200025"
+     },
+     {
+      "级": 1,
+      "tag": "DIV",
+      "cls": "react-flow__renderer",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "4"
+     },
+     {
+      "级": 2,
+      "tag": "DIV",
+      "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+      "testid": "rf__wrapper",
+      "role": "application",
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "0"
+     },
+     {
+      "级": 3,
+      "tag": "DIV",
+      "cls": "w-full h-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 4,
+      "tag": "DIV",
+      "cls": "relative h-full w-full",
+      "testid": null,
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 5,
+      "tag": "SECTION",
+      "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+      "testid": "canvas-main-region",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     },
+     {
+      "级": 6,
+      "tag": "DIV",
+      "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+      "testid": "canvas-workbench-shell",
+      "role": null,
+      "盒": [
+       0,
+       0,
+       1280,
+       720
+      ],
+      "z": "auto"
+     }
+    ],
+    "浮层": []
+   },
+   "节点testid": [
+    "flow-node-media-stroke",
+    "flow-node-target-handle",
+    "flow-node-title",
+    "flow-node-selected-tag",
+    "flow-node-source-handle",
+    "director-stage-flow-node-shell"
+   ],
+   "删除": {
+    "id": "node_krrmaqsrfp",
+    "消失": [
+     "node_krrmaqsrfp"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "归位": {
+    "前": "Zoom options, 60%",
+    "目标": 60,
+    "回读": "Zoom options, 60%",
+    "输入框出现过": true,
+    "实测scale": 0.6,
+    "期望scale": 0.6,
+    "scale已追平": true,
+    "等待ms": 1
+   },
+   "族后节点数": 76
+  }
+ ],
+ "表": [
+  {
+   "族": "文本",
+   "__err": null,
+   "护栏全过": true,
+   "缩放建前": "Zoom options, 60%",
+   "缩放建后": "Zoom options, 60%",
+   "归位后": "Zoom options, 60%",
+   "nodeToolbar实例数": 2,
+   "主实例": {
+    "盒": [
+     544,
+     188,
+     192,
+     40
+    ],
+    "按钮数": 3,
+    "svg数": 2,
+    "逐字": "背景色"
+   },
+   "其他容器": {
+    "node-toolbar-feature-host": [
+     [
+      [
+       640,
+       476,
+       0,
+       0
+      ],
+      0,
+      false
+     ]
+    ],
+    "generation-input-panel-shell": [],
+    "generation-form": [],
+    "video-generation-form": [],
+    "image-generation-form": [],
+    "selection-context-toolbar": [
+     [
+      [
+       560,
+       188,
+       160,
+       40
+      ],
+      3,
+      true
+     ]
+    ],
+    "selection-context-toolbar-surface": [
+     [
+      [
+       544,
+       188,
+       192,
+       40
+      ],
+      3,
+      true
+     ]
+    ]
+   },
+   "浮层": [],
+   "按钮表": [
+    {
+     "aria": null,
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      565,
+      192,
+      75,
+      32
+     ]
+    },
+    {
+     "aria": "全屏",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      649,
+      192,
+      32,
+      32
+     ]
+    },
+    {
+     "aria": "下载",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      683,
+      192,
+      32,
+      32
+     ]
+    }
+   ],
+   "祖先链": [
+    {
+     "级": 0,
+     "tag": "DIV",
+     "cls": "react-flow__node-toolbar",
+     "testid": "node-toolbar",
+     "role": null,
+     "盒": [
+      544,
+      188,
+      192,
+      40
+     ],
+     "z": "200025"
+    },
+    {
+     "级": 1,
+     "tag": "DIV",
+     "cls": "react-flow__renderer",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "4"
+    },
+    {
+     "级": 2,
+     "tag": "DIV",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+     "testid": "rf__wrapper",
+     "role": "application",
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "0"
+    },
+    {
+     "级": 3,
+     "tag": "DIV",
+     "cls": "w-full h-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 4,
+     "tag": "DIV",
+     "cls": "relative h-full w-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 5,
+     "tag": "SECTION",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "testid": "canvas-main-region",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 6,
+     "tag": "DIV",
+     "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+     "testid": "canvas-workbench-shell",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    }
+   ],
+   "删除": {
+    "id": "node_w5zrffywv0",
+    "消失": [
+     "node_w5zrffywv0"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "族后节点数": 76
+  },
+  {
+   "族": "图片",
+   "__err": null,
+   "护栏全过": true,
+   "缩放建前": "Zoom options, 60%",
+   "缩放建后": "Zoom options, 57%",
+   "归位后": "Zoom options, 60%",
+   "nodeToolbar实例数": 2,
+   "主实例": {
+    "盒": [
+     271,
+     456,
+     680,
+     208
+    ],
+    "按钮数": 7,
+    "svg数": 8,
+    "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / 张. 3 / 张 生"
+   },
+   "其他容器": {
+    "node-toolbar-feature-host": [
+     [
+      [
+       271,
+       456,
+       680,
+       208
+      ],
+      7,
+      true
+     ]
+    ],
+    "generation-input-panel-shell": [],
+    "generation-form": [
+     [
+      [
+       271,
+       456,
+       680,
+       208
+      ],
+      6,
+      true
+     ]
+    ],
+    "video-generation-form": [],
+    "image-generation-form": [],
+    "selection-context-toolbar": [],
+    "selection-context-toolbar-surface": [
+     [
+      [
+       520,
+       218,
+       181.8,
+       0
+      ],
+      0,
+      false
+     ]
+    ]
+   },
+   "浮层": [],
+   "按钮表": [
+    {
+     "aria": "展开图片生成器",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      917,
+      450,
+      40,
+      40
+     ]
+    },
+    {
+     "aria": "添加参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      288,
+      473,
+      48,
+      48
+     ]
+    },
+    {
+     "aria": "引用参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      446,
+      534,
+      24,
+      24
+     ]
+    },
+    {
+     "aria": "选择模型: Seedream 5.0 Lite",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      288,
+      615,
+      146.1,
+      32
+     ]
+    },
+    {
+     "aria": "图片尺寸选项: 1:1 · 2K · 1",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      436,
+      615,
+      97.6,
+      32
+     ]
+    },
+    {
+     "aria": "引用参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      536,
+      615,
+      32,
+      32
+     ]
+    },
+    {
+     "aria": "生成",
+     "testid": null,
+     "ariaDisabled": "true",
+     "盒": [
+      902,
+      615,
+      32,
+      32
+     ]
+    }
+   ],
+   "祖先链": [
+    {
+     "级": 0,
+     "tag": "DIV",
+     "cls": "react-flow__node-toolbar",
+     "testid": "node-toolbar",
+     "role": null,
+     "盒": [
+      271,
+      456,
+      680,
+      208
+     ],
+     "z": "200020"
+    },
+    {
+     "级": 1,
+     "tag": "DIV",
+     "cls": "react-flow__renderer",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "4"
+    },
+    {
+     "级": 2,
+     "tag": "DIV",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+     "testid": "rf__wrapper",
+     "role": "application",
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "0"
+    },
+    {
+     "级": 3,
+     "tag": "DIV",
+     "cls": "w-full h-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 4,
+     "tag": "DIV",
+     "cls": "relative h-full w-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 5,
+     "tag": "SECTION",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "testid": "canvas-main-region",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 6,
+     "tag": "DIV",
+     "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+     "testid": "canvas-workbench-shell",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    }
+   ],
+   "删除": {
+    "id": "node_8f6b6g0ecf",
+    "消失": [
+     "node_8f6b6g0ecf"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "族后节点数": 76
+  },
+  {
+   "族": "视频",
+   "__err": null,
+   "护栏全过": true,
+   "缩放建前": "Zoom options, 60%",
+   "缩放建后": "Zoom options, 57%",
+   "归位后": "Zoom options, 60%",
+   "nodeToolbar实例数": 2,
+   "主实例": {
+    "盒": [
+     271,
+     456,
+     680,
+     208
+    ],
+    "按钮数": 9,
+    "svg数": 12,
+    "逐字": "上传参考图、输入文字或 主体，描述你想生成的视频 即梦 Seedance 2.0 VIP 16:9 720P 1 全能参考 4s Current price 5"
+   },
+   "其他容器": {
+    "node-toolbar-feature-host": [
+     [
+      [
+       271,
+       456,
+       680,
+       208
+      ],
+      9,
+      true
+     ]
+    ],
+    "generation-input-panel-shell": [],
+    "generation-form": [],
+    "video-generation-form": [
+     [
+      [
+       271,
+       456,
+       680,
+       208
+      ],
+      8,
+      true
+     ]
+    ],
+    "image-generation-form": [],
+    "selection-context-toolbar": [],
+    "selection-context-toolbar-surface": [
+     [
+      [
+       450,
+       218,
+       323.2,
+       0
+      ],
+      0,
+      false
+     ]
+    ]
+   },
+   "浮层": [],
+   "按钮表": [
+    {
+     "aria": "展开视频生成器",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      917,
+      450,
+      40,
+      40
+     ]
+    },
+    {
+     "aria": "添加参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      288,
+      473,
+      48,
+      48
+     ]
+    },
+    {
+     "aria": "引用参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      446,
+      534,
+      24,
+      24
+     ]
+    },
+    {
+     "aria": "选择模型: 即梦 Seedance 2.0 VIP, Standard-only model",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      288,
+      615,
+      184.1,
+      32
+     ]
+    },
+    {
+     "aria": "视频尺寸选项: 16:9 · 720P · 1, Standard-only model",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      474,
+      615,
+      129.1,
+      32
+     ]
+    },
+    {
+     "aria": "生成模式: 全能参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      606,
+      615,
+      80,
+      32
+     ]
+    },
+    {
+     "aria": "选择视频生成时长: 4s",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      688,
+      615,
+      46,
+      32
+     ]
+    },
+    {
+     "aria": "引用参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      736,
+      615,
+      32,
+      32
+     ]
+    },
+    {
+     "aria": "生成",
+     "testid": null,
+     "ariaDisabled": "true",
+     "盒": [
+      902,
+      615,
+      32,
+      32
+     ]
+    }
+   ],
+   "祖先链": [
+    {
+     "级": 0,
+     "tag": "DIV",
+     "cls": "react-flow__node-toolbar",
+     "testid": "node-toolbar",
+     "role": null,
+     "盒": [
+      271,
+      456,
+      680,
+      208
+     ],
+     "z": "200020"
+    },
+    {
+     "级": 1,
+     "tag": "DIV",
+     "cls": "react-flow__renderer",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "4"
+    },
+    {
+     "级": 2,
+     "tag": "DIV",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+     "testid": "rf__wrapper",
+     "role": "application",
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "0"
+    },
+    {
+     "级": 3,
+     "tag": "DIV",
+     "cls": "w-full h-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 4,
+     "tag": "DIV",
+     "cls": "relative h-full w-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 5,
+     "tag": "SECTION",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "testid": "canvas-main-region",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 6,
+     "tag": "DIV",
+     "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+     "testid": "canvas-workbench-shell",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    }
+   ],
+   "删除": {
+    "id": "node_w1d27yh2qa",
+    "消失": [
+     "node_w1d27yh2qa"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "族后节点数": 76
+  },
+  {
+   "族": "音频",
+   "__err": null,
+   "护栏全过": true,
+   "缩放建前": "Zoom options, 60%",
+   "缩放建后": "Zoom options, 57%",
+   "归位后": "Zoom options, 60%",
+   "nodeToolbar实例数": 2,
+   "主实例": {
+    "盒": [
+     277,
+     460,
+     680,
+     204
+    ],
+    "按钮数": 10,
+    "svg数": 11,
+    "逐字": "输入台词并描述声音，可上传参考音频，通过 引用多个音色，使用时间戳编排人声、音效与配乐。 音频生成 SeedAudio 1.0 全能配音 音色库 12 24 C"
+   },
+   "其他容器": {
+    "node-toolbar-feature-host": [
+     [
+      [
+       277,
+       460,
+       680,
+       204
+      ],
+      10,
+      true
+     ]
+    ],
+    "generation-input-panel-shell": [],
+    "generation-form": [],
+    "video-generation-form": [],
+    "image-generation-form": [],
+    "selection-context-toolbar": [],
+    "selection-context-toolbar-surface": [
+     [
+      [
+       525,
+       220,
+       183.8,
+       0
+      ],
+      0,
+      false
+     ]
+    ]
+   },
+   "浮层": [],
+   "按钮表": [
+    {
+     "aria": "展开音频生成器",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      923,
+      454,
+      40,
+      40
+     ]
+    },
+    {
+     "aria": "添加参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      294,
+      477,
+      48,
+      48
+     ]
+    },
+    {
+     "aria": "引用参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      578,
+      538,
+      24,
+      24
+     ]
+    },
+    {
+     "aria": "创作类型: 音频生成",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      294,
+      615,
+      80,
+      32
+     ]
+    },
+    {
+     "aria": "选择模型: SeedAudio 1.0, New",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      376,
+      615,
+      135.3,
+      32
+     ]
+    },
+    {
+     "aria": "音频生成: 全能配音",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      513,
+      615,
+      80,
+      32
+     ]
+    },
+    {
+     "aria": "音色: 音色库",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      595,
+      615,
+      68,
+      32
+     ]
+    },
+    {
+     "aria": "引用参考",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      665,
+      615,
+      32,
+      32
+     ]
+    },
+    {
+     "aria": "显示折扣详情",
+     "testid": null,
+     "ariaDisabled": null,
+     "盒": [
+      854,
+      621,
+      46,
+      20
+     ]
+    },
+    {
+     "aria": "生成",
+     "testid": null,
+     "ariaDisabled": "true",
+     "盒": [
+      908,
+      615,
+      32,
+      32
+     ]
+    }
+   ],
+   "祖先链": [
+    {
+     "级": 0,
+     "tag": "DIV",
+     "cls": "react-flow__node-toolbar",
+     "testid": "node-toolbar",
+     "role": null,
+     "盒": [
+      277,
+      460,
+      680,
+      204
+     ],
+     "z": "200020"
+    },
+    {
+     "级": 1,
+     "tag": "DIV",
+     "cls": "react-flow__renderer",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "4"
+    },
+    {
+     "级": 2,
+     "tag": "DIV",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+     "testid": "rf__wrapper",
+     "role": "application",
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "0"
+    },
+    {
+     "级": 3,
+     "tag": "DIV",
+     "cls": "w-full h-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 4,
+     "tag": "DIV",
+     "cls": "relative h-full w-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 5,
+     "tag": "SECTION",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "testid": "canvas-main-region",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 6,
+     "tag": "DIV",
+     "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+     "testid": "canvas-workbench-shell",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    }
+   ],
+   "删除": {
+    "id": "node_sn41z4104z",
+    "消失": [
+     "node_sn41z4104z"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "族后节点数": 76
+  },
+  {
+   "族": "时间线",
+   "__err": null,
+   "护栏全过": true,
+   "缩放建前": "Zoom options, 60%",
+   "缩放建后": "Zoom options, 60%",
+   "归位后": "Zoom options, 60%",
+   "nodeToolbar实例数": 2,
+   "主实例": null,
+   "其他容器": {
+    "node-toolbar-feature-host": [
+     [
+      [
+       640,
+       434,
+       0,
+       0
+      ],
+      0,
+      false
+     ]
+    ],
+    "generation-input-panel-shell": [],
+    "generation-form": [],
+    "video-generation-form": [],
+    "image-generation-form": [],
+    "selection-context-toolbar": [],
+    "selection-context-toolbar-surface": [
+     [
+      [
+       280,
+       254,
+       720,
+       0
+      ],
+      0,
+      false
+     ]
+    ]
+   },
+   "浮层": [],
+   "按钮表": null,
+   "祖先链": [
+    {
+     "级": 0,
+     "tag": "DIV",
+     "cls": "react-flow__node-toolbar",
+     "testid": "node-toolbar",
+     "role": null,
+     "盒": [
+      280,
+      254,
+      720,
+      0
+     ],
+     "z": "200025"
+    },
+    {
+     "级": 1,
+     "tag": "DIV",
+     "cls": "react-flow__renderer",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "4"
+    },
+    {
+     "级": 2,
+     "tag": "DIV",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+     "testid": "rf__wrapper",
+     "role": "application",
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "0"
+    },
+    {
+     "级": 3,
+     "tag": "DIV",
+     "cls": "w-full h-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 4,
+     "tag": "DIV",
+     "cls": "relative h-full w-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 5,
+     "tag": "SECTION",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "testid": "canvas-main-region",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 6,
+     "tag": "DIV",
+     "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+     "testid": "canvas-workbench-shell",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    }
+   ],
+   "删除": {
+    "id": "node_kaansnxcy9",
+    "消失": [
+     "node_kaansnxcy9"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "族后节点数": 76
+  },
+  {
+   "族": "导演台",
+   "__err": null,
+   "护栏全过": true,
+   "缩放建前": "Zoom options, 60%",
+   "缩放建后": "Zoom options, 60%",
+   "归位后": "Zoom options, 60%",
+   "nodeToolbar实例数": 2,
+   "主实例": null,
+   "其他容器": {
+    "node-toolbar-feature-host": [
+     [
+      [
+       640,
+       476,
+       0,
+       0
+      ],
+      0,
+      false
+     ]
+    ],
+    "generation-input-panel-shell": [],
+    "generation-form": [],
+    "video-generation-form": [],
+    "image-generation-form": [],
+    "selection-context-toolbar": [],
+    "selection-context-toolbar-surface": [
+     [
+      [
+       544,
+       228,
+       192,
+       0
+      ],
+      0,
+      false
+     ]
+    ]
+   },
+   "浮层": [],
+   "按钮表": null,
+   "祖先链": [
+    {
+     "级": 0,
+     "tag": "DIV",
+     "cls": "react-flow__node-toolbar",
+     "testid": "node-toolbar",
+     "role": null,
+     "盒": [
+      544,
+      228,
+      192,
+      0
+     ],
+     "z": "200025"
+    },
+    {
+     "级": 1,
+     "tag": "DIV",
+     "cls": "react-flow__renderer",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "4"
+    },
+    {
+     "级": 2,
+     "tag": "DIV",
+     "cls": "react-flow octo-canvas-flow bg-dreamina-canvas-bg focus:",
+     "testid": "rf__wrapper",
+     "role": "application",
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "0"
+    },
+    {
+     "级": 3,
+     "tag": "DIV",
+     "cls": "w-full h-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 4,
+     "tag": "DIV",
+     "cls": "relative h-full w-full",
+     "testid": null,
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 5,
+     "tag": "SECTION",
+     "cls": "absolute inset-0 min-h-0 min-w-0 overflow-hidden",
+     "testid": "canvas-main-region",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    },
+    {
+     "级": 6,
+     "tag": "DIV",
+     "cls": "relative h-full min-h-0 min-w-0 overflow-hidden bg-dream",
+     "testid": "canvas-workbench-shell",
+     "role": null,
+     "盒": [
+      0,
+      0,
+      1280,
+      720
+     ],
+     "z": "auto"
+    }
+   ],
+   "删除": {
+    "id": "node_krrmaqsrfp",
+    "消失": [
+     "node_krrmaqsrfp"
+    ],
+    "删除项逐字": "删除 ⌫",
+    "消失数": 1,
+    "节点数": 76
+   },
+   "族后节点数": 76
+  }
+ ],
+ "小地图后": {
+  "ariaPressed": "true",
+  "dataState": "closed"
+ },
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "边数": 0,
+  "组数": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员",
+  "小地图": {
+   "ariaPressed": "true",
+   "dataState": "closed"
+  },
+  "残留自建": [],
+  "位移节点": []
+ },
+ "形态数": 5,
+ "断言全过": true
+}
