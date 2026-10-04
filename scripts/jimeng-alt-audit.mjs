@@ -5,12 +5,21 @@
 //   1) manifest 登记的 alt 与正文引用处是否逐字一致（构建器对一字之差即报 warn）
 //   2) 是否有截图登记了却没被任何正文引用
 //   3) alt 文案里是否残留与当前实测结论冲突的措辞
+//
+// 🔴 批次 154 修掉一个**假阳性源**：原来这里用 `y.split(/\n  - file: /)` 正则切块、
+//    再用 `/^\s+alt: (.+)$/m` 取值，于是**单引号 YAML 标量的那对引号被当成了 alt 的一部分** ——
+//    3 条带引号的条目（`subject-node.png` / `33-subject-imported.png` / `71-subject-source-menu.png`）
+//    被判成「alt 不一致」，而真解析出来它们与正文**逐字相同**。
+//    📌 与批次 154 修的 manifest 语法烂掉是**同一个根因**：**用正则代替解析器**。
+//    ⇒ 现在改走真 YAML 解析（`jimeng_yaml_dump.py`），两道门对同一份数据给同一个答案。
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const DIR = 'docs/user-manual/jimeng-canvas';
-const y = fs.readFileSync(path.join(DIR, 'screenshots/manifest.yml'), 'utf8');
-const blocks = y.split(/\n  - file: /).slice(1);
+const MAN = path.join(DIR, 'screenshots/manifest.yml');
+const 条目 = JSON.parse(execFileSync('python3', [path.join('scripts', 'jimeng_yaml_dump.py'), MAN], { encoding: 'utf8' }));
+const blocks = 条目.map((it) => ({ file: it.file, alt: it.alt }));
 
 const altByPath = new Map();
 const walk = (d) => {
@@ -30,10 +39,10 @@ walk(DIR);
 let ok = 0, altMismatch = 0, unreferenced = 0;
 const issues = [];
 for (const b of blocks) {
-  const file = b.split('\n')[0].trim();
+  const file = b.file;
   const abs = path.resolve(DIR, file);
   const refs = altByPath.get(abs) || [];
-  const mAlt = (b.match(/^\s+alt: (.+)$/m) || [])[1];
+  const mAlt = b.alt;
   if (!refs.length) { unreferenced++; issues.push(`未被正文引用  ${file}`); continue; }
   if (!mAlt) { issues.push(`manifest 缺 alt  ${file}`); continue; }
   const bad = refs.filter((r) => r.alt !== mAlt);
@@ -65,8 +74,8 @@ const SUBSTR_RULES = [
 console.log('\n=== alt 措辞与当前实测结论的冲突扫描 ===');
 let hit = 0;
 for (const b of blocks) {
-  const file = b.split('\n')[0].trim();
-  const a = (b.match(/^\s+alt: (.+)$/m) || [])[1] || '';
+  const file = b.file;
+  const a = b.alt || '';
   for (const [needle, why, allow] of SUBSTR_RULES) {
     if (!a.includes(needle)) continue;
     if (allow && a.includes(allow)) continue;

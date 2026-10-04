@@ -1,0 +1,1056 @@
+{
+ "批次": "154c",
+ "目的": "真点击：@提及面板 / 画布拾取模式 / 积分明细对话框 + 3 张截图",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "zoom": "Zoom options, 60%",
+  "实测scale": "translate(-2400.03px, -1651.25px) scale(0.6)",
+  "积分": "Credits: 805 · 基础会员",
+  "组数": 0,
+  "选中": 0
+ },
+ "建": {
+  "ids": [
+   "node_3qm2kyph4h"
+  ],
+  "护栏": [
+   {
+    "名": "①a 建前节点数 == 预期基线（挡上轮残留）",
+    "通过": true,
+    "详情": {
+     "实际": 76,
+     "预期": 76,
+     "提示": "不等就先跑 jimeng-b139-rescue.mjs 归位"
+    }
+   },
+   {
+    "名": "①建前 0 选中（不能有上次留下的选中态）",
+    "通过": true,
+    "详情": {
+     "选中数": 0
+    }
+   },
+   {
+    "名": "①b 建前无组卡片（本批专属：组会干扰框选与差集）",
+    "通过": true,
+    "详情": {
+     "组数": 0
+    }
+   },
+   {
+    "名": "②第1个建后差集恰好 1 个",
+    "通过": true,
+    "详情": {
+     "新增": [
+      "node_3qm2kyph4h"
+     ],
+     "前数": 76,
+     "后数": 77
+    }
+   },
+   {
+    "名": "②b 第1个新节点恰好 .selected",
+    "通过": true,
+    "详情": {
+     "SELF": "node_3qm2kyph4h",
+     "选中数": 1
+    }
+   }
+  ],
+  "护栏全过": true
+ },
+ "选中数": 1,
+ "默认态五项": {
+  "generation-form": {
+   "命中": 1,
+   "实例": [
+    {
+     "盒": [
+      680,
+      208,
+      271.3,
+      456
+     ],
+     "role": null,
+     "aria": "生成",
+     "逐字": "上传参考图、输入文字或 主体，描述你想生成的图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / 张. 3 / 张 生成 请输入提示词",
+     "祖先链": [
+      "div.generation-input-panel-shell",
+      "div{node-toolbar-feature-host}.nodrag",
+      "div{node-toolbar}.react-flow__node-toolbar",
+      "div.react-flow__renderer",
+      "div{rf__wrapper}.react-flow",
+      "div.w-full",
+      "div.relative"
+     ]
+    }
+   ]
+  },
+  "generation-mention-panel": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-mention-submenu": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-chip": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-close": {
+   "命中": 0,
+   "实例": []
+  }
+ },
+ "Q1_候选": {
+  "候选数": 2,
+  "点": [
+   {
+    "x": 458,
+    "y": 546,
+    "宽": 24,
+    "高": 24,
+    "左": 446,
+    "上": 534,
+    "aria": "引用参考",
+    "testid": null,
+    "逐字": "",
+    "中心是自己": true,
+    "中心是谁": "引用参考"
+   },
+   {
+    "x": 552,
+    "y": 631,
+    "宽": 32,
+    "高": 32,
+    "左": 536,
+    "上": 615,
+    "aria": "引用参考",
+    "testid": null,
+    "逐字": "",
+    "中心是自己": true,
+    "中心是谁": "引用参考"
+   }
+  ]
+ },
+ "Q1_用的点": {
+  "x": 552,
+  "y": 631,
+  "宽": 32,
+  "高": 32,
+  "左": 536,
+  "上": 615,
+  "aria": "引用参考",
+  "testid": null,
+  "逐字": "",
+  "中心是自己": true,
+  "中心是谁": "引用参考"
+ },
+ "Q1_提及": {
+  "generation-form": {
+   "命中": 1,
+   "实例": [
+    {
+     "盒": [
+      680,
+      208,
+      271.3,
+      432
+     ],
+     "role": null,
+     "aria": "生成",
+     "逐字": "@搜索主体、图片 添加参考 主体 图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / 张. 3 / 张 生成",
+     "祖先链": [
+      "div.generation-input-panel-shell",
+      "div{node-toolbar-feature-host}.nodrag",
+      "div{node-toolbar}.react-flow__node-toolbar",
+      "div.react-flow__renderer",
+      "div{rf__wrapper}.react-flow",
+      "div.w-full",
+      "div.relative"
+     ]
+    }
+   ]
+  },
+  "generation-mention-panel": {
+   "命中": 1,
+   "实例": [
+    {
+     "盒": [
+      240,
+      140,
+      168.8,
+      363
+     ],
+     "role": null,
+     "aria": null,
+     "逐字": "添加参考 主体 图片",
+     "祖先链": [
+      "div.generation-media-prompt-field",
+      "div.flex",
+      "form{generation-form}.generation-input-group",
+      "div.generation-input-panel-shell",
+      "div{node-toolbar-feature-host}.nodrag",
+      "div{node-toolbar}.react-flow__node-toolbar",
+      "div.react-flow__renderer"
+     ]
+    }
+   ]
+  },
+  "generation-mention-submenu": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-chip": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-close": {
+   "命中": 0,
+   "实例": []
+  }
+ },
+ "列表框": [
+  {
+   "aria": "可能@的内容",
+   "盒": [
+    240,
+    140,
+    169,
+    363
+   ],
+   "子项": [
+    "主体",
+    "图片"
+   ],
+   "子项数": 2
+  }
+ ],
+ "积分_提及后": "Credits: 805 · 基础会员",
+ "拍前断言1": {
+  "面板命中": 1,
+  "面板盒": [
+   240,
+   140,
+   168.8,
+   363
+  ],
+  "面板祖先": [
+   "div.generation-media-prompt-field",
+   "div.flex",
+   "form{generation-form}.generation-input-group",
+   "div.generation-input-panel-shell",
+   "div{node-toolbar-feature-host}.nodrag",
+   "div{node-toolbar}.react-flow__node-toolbar",
+   "div.react-flow__renderer"
+  ],
+  "提交钮": 1,
+  "积分": "Credits: 805 · 基础会员"
+ },
+ "截图1": "screenshots/54-generation-mention-panel.png",
+ "Q1_Esc一次后": {
+  "generation-form": {
+   "命中": 1,
+   "实例": [
+    {
+     "盒": [
+      680,
+      208,
+      271.3,
+      432
+     ],
+     "role": null,
+     "aria": "生成",
+     "逐字": "@搜索主体、图片 Seedream 5.0 Lite 1:1 2K 1 Current price 3 / 张. 3 / 张 生成",
+     "祖先链": [
+      "div.generation-input-panel-shell",
+      "div{node-toolbar-feature-host}.nodrag",
+      "div{node-toolbar}.react-flow__node-toolbar",
+      "div.react-flow__renderer",
+      "div{rf__wrapper}.react-flow",
+      "div.w-full",
+      "div.relative"
+     ]
+    }
+   ]
+  },
+  "generation-mention-panel": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-mention-submenu": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-chip": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-close": {
+   "命中": 0,
+   "实例": []
+  }
+ },
+ "Q1_Esc两次后": {
+  "generation-form": {
+   "命中": 1,
+   "实例": [
+    {
+     "盒": [
+      680,
+      208,
+      271.3,
+      432
+     ],
+     "role": null,
+     "aria": "生成",
+     "逐字": "@ Seedream 5.0 Lite 1:1 2K 1 Current price 3 / 张. 3 / 张 生成",
+     "祖先链": [
+      "div.generation-input-panel-shell",
+      "div{node-toolbar-feature-host}.nodrag",
+      "div{node-toolbar}.react-flow__node-toolbar",
+      "div.react-flow__renderer",
+      "div{rf__wrapper}.react-flow",
+      "div.w-full",
+      "div.relative"
+     ]
+    }
+   ]
+  },
+  "generation-mention-panel": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-mention-submenu": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-chip": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-close": {
+   "命中": 0,
+   "实例": []
+  }
+ },
+ "Q2_候选": {
+  "候选数": 1,
+  "点": [
+   {
+    "x": 312,
+    "y": 473,
+    "宽": 48,
+    "高": 48,
+    "左": 288,
+    "上": 449,
+    "aria": "添加参考",
+    "testid": null,
+    "逐字": "",
+    "中心是自己": true,
+    "中心是谁": "添加参考"
+   }
+  ]
+ },
+ "Q2_用的点": {
+  "x": 312,
+  "y": 473,
+  "宽": 48,
+  "高": 48,
+  "左": 288,
+  "上": 449,
+  "aria": "添加参考",
+  "testid": null,
+  "逐字": "",
+  "中心是自己": true,
+  "中心是谁": "添加参考"
+ },
+ "Q2_打开后": {
+  "generation-form": {
+   "命中": 1,
+   "实例": [
+    {
+     "盒": [
+      680,
+      208,
+      271.3,
+      432
+     ],
+     "role": null,
+     "aria": "生成",
+     "逐字": "@ Seedream 5.0 Lite 1:1 2K 1 Current price 3 / 张. 3 / 张 生成",
+     "祖先链": [
+      "div.generation-input-panel-shell",
+      "div{node-toolbar-feature-host}.nodrag",
+      "div{node-toolbar}.react-flow__node-toolbar",
+      "div.react-flow__renderer",
+      "div{rf__wrapper}.react-flow",
+      "div.w-full",
+      "div.relative"
+     ]
+    }
+   ]
+  },
+  "generation-mention-panel": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-mention-submenu": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-chip": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-close": {
+   "命中": 0,
+   "实例": []
+  },
+  "canvas-source-picker-canvas-frame": {
+   "命中": 0,
+   "实例": []
+  },
+  "canvas-source-picker-canvas-mask": {
+   "命中": 0,
+   "实例": []
+  }
+ },
+ "Q2_可见按钮": [
+  {
+   "aria": "Canvas title: 测试项目",
+   "testid": "canvas-project-title-trigger",
+   "逐字": "测试项目",
+   "w": 68,
+   "h": 28
+  },
+  {
+   "aria": "项目",
+   "testid": "canvas-project-trigger",
+   "逐字": "",
+   "w": 20,
+   "h": 28
+  },
+  {
+   "aria": "Canvas node summary: 节点 77",
+   "testid": "canvas-node-summary-trigger",
+   "逐字": "节点 77",
+   "w": 34,
+   "h": 28
+  },
+  {
+   "aria": "搜索",
+   "testid": "canvas-panel-launcher",
+   "逐字": "",
+   "w": 28,
+   "h": 28
+  },
+  {
+   "aria": "生成历史",
+   "testid": "canvas-panel-launcher",
+   "逐字": "",
+   "w": 28,
+   "h": 28
+  },
+  {
+   "aria": "分享",
+   "testid": "canvas-share-trigger",
+   "逐字": "分享",
+   "w": 60,
+   "h": 28
+  },
+  {
+   "aria": "更多",
+   "testid": null,
+   "逐字": "",
+   "w": 28,
+   "h": 28
+  },
+  {
+   "aria": "Credits: 805 · 基础会员",
+   "testid": "canvas-commerce-entry",
+   "逐字": "805 基础会员",
+   "w": 111,
+   "h": 28
+  },
+  {
+   "aria": "用户菜单",
+   "testid": "canvas-user-menu-trigger",
+   "逐字": "",
+   "w": 28,
+   "h": 28
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "导出时间线",
+   "testid": null,
+   "逐字": "",
+   "w": 24,
+   "h": 24
+  },
+  {
+   "aria": "全屏编辑",
+   "testid": null,
+   "逐字": "全屏编辑",
+   "w": 72,
+   "h": 24
+  },
+  {
+   "aria": "静音",
+   "testid": "timeline-mute-button",
+   "逐字": "",
+   "w": 24,
+   "h": 24
+  },
+  {
+   "aria": "添加素材到时间线",
+   "testid": null,
+   "逐字": "添加素材到时间线",
+   "w": 632,
+   "h": 48
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "替换媒体",
+   "testid": null,
+   "逐字": "",
+   "w": 20,
+   "h": 20
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "导出时间线",
+   "testid": null,
+   "逐字": "",
+   "w": 24,
+   "h": 24
+  },
+  {
+   "aria": "全屏编辑",
+   "testid": null,
+   "逐字": "全屏编辑",
+   "w": 72,
+   "h": 24
+  },
+  {
+   "aria": "静音",
+   "testid": "timeline-mute-button",
+   "逐字": "",
+   "w": 24,
+   "h": 24
+  },
+  {
+   "aria": "添加素材到时间线",
+   "testid": null,
+   "逐字": "添加素材到时间线",
+   "w": 632,
+   "h": 48
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  },
+  {
+   "aria": "Add tags",
+   "testid": "flow-node-selected-tag",
+   "逐字": "",
+   "w": 27,
+   "h": 27
+  }
+ ],
+ "Q2_从画布": {
+  "候选数": 0,
+  "点": []
+ },
+ "Q2_从画布用的点": null,
+ "全关后": {
+  "generation-form": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-mention-panel": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-mention-submenu": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-chip": {
+   "命中": 0,
+   "实例": []
+  },
+  "generation-source-picker-close": {
+   "命中": 0,
+   "实例": []
+  },
+  "canvas-source-picker-canvas-frame": {
+   "命中": 0,
+   "实例": []
+  },
+  "canvas-source-picker-canvas-mask": {
+   "命中": 0,
+   "实例": []
+  }
+ },
+ "删除": [
+  {
+   "id": "node_3qm2kyph4h",
+   "消失": [
+    "node_3qm2kyph4h"
+   ],
+   "删除项逐字": "删除 ⌫"
+  }
+ ],
+ "历史启动器": [
+  {
+   "aria": "生成历史",
+   "testid": "canvas-panel-launcher",
+   "逐字": "",
+   "expanded": "false",
+   "cx": 957,
+   "cy": 30,
+   "宽": 28,
+   "高": 28
+  }
+ ],
+ "历史落点校验": {
+  "中心是自己": true
+ },
+ "历史面板": {
+  "命中": true,
+  "盒": [
+   320,
+   211,
+   797,
+   56
+  ],
+  "aria": null,
+  "逐字": "生成历史 积分明细 全部 图片 视频 音频 文本 暂无生成历史",
+  "按钮": [
+   {
+    "逐字": "积分明细",
+    "aria": null,
+    "selected": null,
+    "宽": 68,
+    "高": 36,
+    "cx": 1067,
+    "cy": 90
+   },
+   {
+    "逐字": "全部",
+    "aria": null,
+    "selected": "true",
+    "宽": 42,
+    "高": 36,
+    "cx": 828,
+    "cy": 130
+   },
+   {
+    "逐字": "图片",
+    "aria": null,
+    "selected": "false",
+    "宽": 42,
+    "高": 36,
+    "cx": 874,
+    "cy": 130
+   },
+   {
+    "逐字": "视频",
+    "aria": null,
+    "selected": "false",
+    "宽": 42,
+    "高": 36,
+    "cx": 920,
+    "cy": 130
+   },
+   {
+    "逐字": "音频",
+    "aria": null,
+    "selected": "false",
+    "宽": 42,
+    "高": 36,
+    "cx": 966,
+    "cy": 130
+   },
+   {
+    "逐字": "文本",
+    "aria": null,
+    "selected": "false",
+    "宽": 42,
+    "高": 36,
+    "cx": 1012,
+    "cy": 130
+   }
+  ]
+ },
+ "积分明细钮": {
+  "逐字": "积分明细",
+  "aria": null,
+  "selected": null,
+  "宽": 68,
+  "高": 36,
+  "cx": 1067,
+  "cy": 90
+ },
+ "积分落点校验": {
+  "中心是自己": true,
+  "命中逐字": "积分明细"
+ },
+ "Q3": {
+  "workspace-project-info-dialog": {
+   "命中": 1,
+   "实例": [
+    {
+     "盒": [
+      800,
+      546,
+      240,
+      87
+     ],
+     "role": "dialog",
+     "aria": null,
+     "逐字": "项目信息 基础信息 积分消耗 总消耗积分 0 任务数 0 暂无数据 查看积分明细",
+     "祖先链": []
+    }
+   ]
+  }
+ },
+ "拍前断言3": {
+  "命中": 1,
+  "盒": [
+   800,
+   546,
+   240,
+   87
+  ],
+  "role": "dialog",
+  "aria": null,
+  "逐字": "项目信息 基础信息 积分消耗 总消耗积分 0 任务数 0 暂无数据 查看积分明细",
+  "祖先链": [],
+  "积分": "Credits: 805 · 基础会员"
+ },
+ "截图3": "screenshots/56-workspace-project-info-dialog.png",
+ "逐次Esc": [
+  {
+   "第几次": 1,
+   "对话框": 0,
+   "历史面板": 1,
+   "浮层": 1
+  },
+  {
+   "第几次": 2,
+   "对话框": 0,
+   "历史面板": 0,
+   "浮层": 0
+  },
+  {
+   "第几次": 3,
+   "对话框": 0,
+   "历史面板": 0,
+   "浮层": 0
+  }
+ ],
+ "收尾检查": {
+  "节点数": 76,
+  "位移节点": []
+ },
+ "小地图": {
+  "ariaPressed": "true",
+  "dataState": "closed"
+ },
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "zoom": "Zoom options, 60%",
+  "积分": "Credits: 805 · 基础会员",
+  "组数": 0,
+  "边数": 0,
+  "残留自建": []
+ },
+ "断言全过": true
+}

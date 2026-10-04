@@ -195,6 +195,17 @@
 
 - 容器 `[data-testid="generation-mention-panel"]` 实测 **240×244**，内含
   `[role="listbox"]`，aria 逐字 **`可能@的内容`**。
+
+![图片节点的引用参考菜单（2026-10-04 批次 154 拍，这是全册第一张提及参考面板的图）。画布中央是一个刚建好的空图片节点，标题「图片 1」，卡片里只有一个灰色图片占位图标；节点下方是自动展开的图片生成面板，提示词区里有一行灰色占位文字「@搜索主体、图片」，面板底部一排是模型「Seedream 5.0 Lite」、比例与分辨率「1:1 · 2K · 1」、一个 @ 图标，右端是价格「✦ 3 / 张」和一个白色圆形向上箭头按钮（生成）；面板左上角弹出一个深色浮层，顶端灰色小标题「添加参考」，下面两行可点条目「主体」和「图片」，每行左侧一个图标、右侧一个向右箭头，「主体」那一行有浅色高亮底表示默认选中；画布左边缘是竖排的工具图标，右上角显示「805 基础会员」](../screenshots/54-generation-mention-panel.png)
+
+> 📌 **本节读数的适用范围**：上面这些是**视频**节点上的读数（祖先链逐字就是
+> `form{video-generation-form}`）。**面板高度与类别数随节点族变**，横向对照见下方那张表：
+> **视频 4 类 `240×244`**、**图片 2 类 `240×140`**、**音频 3 类 `240×192`（没有「视频」）**。
+> ✅ **2026-10-04 批次 154 在图片节点上独立复现了「2 类 `240×140`」这一档**：
+> `240×140@168.8,363`、`[role="listbox"]` 子项**只有 2 个**（`主体` / `图片`），
+> 祖先链是 `div.generation-media-prompt-field < div.flex <
+> form{**generation-form**}.generation-input-group < div.generation-input-panel-shell <
+> div{node-toolbar-feature-host} < div{node-toolbar}`。详见 `SOURCE_OBSERVATIONS` §4.77.3。
 - ⚠️ **它渲染在生成表单内部**，不在 body 下：
   `generation-mention-panel < div < div < form{video-generation-form} < div <
   div{node-toolbar-feature-host} < div{node-toolbar}`。
@@ -344,6 +355,25 @@
 - **两条退出路径都实测过**：
   - 点 chip 右侧的 **`取消选择`** → 遮罩、框、chip 全部消失，节点与提示词原样保留；
   - 连按 **`Esc`** → 同样全部关闭。
+
+![从画布选择的全屏拾取模式（2026-10-04 批次 154 拍，这是全册第一张这个模式的图）。整块画布被一圈亮蓝色细边框包住，左侧竖排的工具图标条在这张图里完全看不见；视口顶部正中浮着一个蓝色胶囊标签，左边一个取景框图标、文字「从画布选择」、右边一个 ✕；画布中央是那个刚建的空图片节点「图片 1」，节点左右两侧原本有的圆形连接把手和右上角的标签图标都不见了；节点下方的图片生成面板还在，提示词区显示灰色占位文字「上传参考图、输入文字或 @ 主体，描述你想生成的图片」，底部一排是「Seedream 5.0 Lite」「1:1 · 2K · 1」和一个 @ 图标，右端价格「✦ 3 / 张」后面的向上箭头按钮是灰的（不可用），面板右上角有一个双向展开箭头图标](../screenshots/55-source-picker-canvas-mode.png)
+
+> 🆕 **2026-10-04 批次 154 补录三条此前没记的读数**（在**图片**节点上走一遍全流程，
+> 6 条断言全过，全程积分 `805 → 805`）：
+> - 🔑 **frame 与 mask 的挂载点不同**：`canvas-source-picker-canvas-frame` 的祖先链起于
+>   `div.react-flow__renderer`，而 `canvas-source-picker-canvas-mask` 起于
+>   `div.react-flow__viewport-portal`（再往里才是 viewport / pane / renderer）。
+>   两者的盒都是 `1280×720@0,0`，**光看尺寸分不出来**。
+> - 🔑 **「取消选择」按钮是 chip 的子元素**：`generation-source-picker-close` 的祖先链
+>   第一层就是 `div{generation-source-picker-chip}.absolute`。
+> - 🔑 **那行英文辅助文案是 `<OUTPUT>` 元素**，`1×1@846,631`，
+>   靠 `position:absolute` + `overflow:hidden` + `clip:rect(0px,0px,0px,0px)` 裁掉
+>   ⇒ 它是**给读屏软件用的 live region**，不是「缩小了的小字」。
+> - ⚠️ **画面上左栏九个入口看不见**（被 1280×720 遮罩挡住），
+>   但**本轮没有测它们在 DOM 里是否仍在**，所以「按钮仍在 DOM 里但被遮罩接管」这句**保持原样、不据此改动**。
+> - 🔴 顺带记一条**找点教训**：「添加参考」菜单里的三项是 `role="menuitem"`，
+>   **不是 `button`**。只搜 `button,[role=button]` 会得到「候选数 0」，
+>   而**读数 0 长得和「功能没了」一模一样** —— 详见 `SOURCE_OBSERVATIONS` §4.77。
 - ⚠️ **本批只开未选**。点画布上某个素材会真的把它接成参考（改宿主节点状态）。
   2026-10-01 **批次 61 已越过这条边界并实测**（见下）——
   🔴 此前把这里标成「**扣费前置边界**」是**错的**：

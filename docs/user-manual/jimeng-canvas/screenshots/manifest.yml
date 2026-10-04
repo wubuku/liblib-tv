@@ -255,7 +255,7 @@ screenshots:
     viewport: 880x430 (SVG 示意图)
     locale: zh-CN
     captured_at: 2026-10-01T07:00:00+08:00
-    verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.1 当日基线盘点绘制（顶栏顺序/左栏 9 项两组/底部 dock 4 项/右下与 AI 对话/状态行）；2026-10-01 批次 14 依 §3.25（抓手工具）与 §3.24/20-reference（状态行单复数变形）修订；**2026-10-02 批次 81 依实测顶栏补画此前漏掉的「分享」「更多」两个按钮**（左栏 9 项 / 底部 dock 4 项 / 缩放菜单 7 项逐字复核全部一致）；**2026-10-03 批次 120 撤掉画错的「底部状态行」横条**；**2026-10-03 批次 126 修一处 alt 陷阱**：alt 里不能写 markdown 强调标记 —— 本条 alt 原写「底部**没有**状态行」，渲染后变成带 strong 标签的 HTML，而 build-site.sh 是用 alt **原文** grep 构建产物的 .html，于是第 7 道门报「示意图未出现在构建产物中」（只 warn 仍算通过）。已去掉那对星号，第 7 道门回到「示意图均已进入构建产物: 4」 —— 实测那句 `N nodes, N edges, N selected. Editable. Room connected. 已保存.` 的唯一宿主是 `SPAN#:modern-js-r1:`（class `sr-only`、rect `[-1,-1,1,1]`），屏上不可见；底部可见的只有左下 dock 4 项 ＋ 右下「与 AI 对话」＋ 左上小地图'"
+    verified_locator: '示意图：依据 SOURCE_OBSERVATIONS.md §2.1 当日基线盘点绘制（顶栏顺序/左栏 9 项两组/底部 dock 4 项/右下与 AI 对话/状态行）；2026-10-01 批次 14 依 §3.25（抓手工具）与 §3.24/20-reference（状态行单复数变形）修订；**2026-10-02 批次 81 依实测顶栏补画此前漏掉的「分享」「更多」两个按钮**（左栏 9 项 / 底部 dock 4 项 / 缩放菜单 7 项逐字复核全部一致）；**2026-10-03 批次 120 撤掉画错的「底部状态行」横条**；**2026-10-03 批次 126 修一处 alt 陷阱**：alt 里不能写 markdown 强调标记 —— 本条 alt 原写「底部**没有**状态行」，渲染后变成带 strong 标签的 HTML，而 build-site.sh 是用 alt **原文** grep 构建产物的 .html，于是第 7 道门报「示意图未出现在构建产物中」（只 warn 仍算通过）。已去掉那对星号，第 7 道门回到「示意图均已进入构建产物: 4」 —— 实测那句 `N nodes, N edges, N selected. Editable. Room connected. 已保存.` 的唯一宿主是 `SPAN#:modern-js-r1:`（class `sr-only`、rect `[-1,-1,1,1]`），屏上不可见；底部可见的只有左下 dock 4 项 ＋ 右下「与 AI 对话」＋ 左上小地图'
     visible_text: 返回首页 / 已保存 / 分享 / 更多 / 选择工具 ⇄ 抓手工具 / 小地图 / 显示连线 / 与 AI 对话
     alt: 即梦画布界面分区示意图：顶栏（返回首页/画布标题/项目/节点 N/已保存/搜索/生成历史/分享/积分/更多/用户菜单，其中「已保存」是保存状态标签、不是可点按钮）、左侧节点入口栏（文本/图片/视频/音频/时间线/主体/导演台/资产库/上传，悬停展开为图标+文字）、中央画布区、底部 dock 视图控件（选择工具 ⇄ 抓手工具/小地图/显示连线/缩放值）、右下角「与 AI 对话」。底部没有状态行——那句 N nodes, N edges, N selected 属于读屏播报、屏上不可见；顶栏「节点 N」是屏上唯一能看到的数量读数（只有节点数，没有连线数）。
     sha256: c950c11406e531d39379992eba3ab048183cb2e0bbc2191784d979fcc66d8217
@@ -281,7 +281,7 @@ screenshots:
     captured_at: 2026-10-01T07:12:00+08:00
     verified_locator: 'react-flow__node-subject 节点（标题 @ 主体 1），红色高亮框为注入 overlay'
     visible_text: 导入主体 / 从画布选择 / 从资产库选择 / 本地添加
-    alt: 主体节点「主体 1」：标题行 @ 主体 1 带改名铅笔、描述占位「添加描述...」、导入区四项（导入主体／从画布选择／从资产库选择／本地添加），选中时没有浮动工具条；空态为 Empty subject: main missing, 0 auxiliaries, voice missing。
+    alt: '主体节点「主体 1」：标题行 @ 主体 1 带改名铅笔、描述占位「添加描述...」、导入区四项（导入主体／从画布选择／从资产库选择／本地添加），选中时没有浮动工具条；空态为 Empty subject: main missing, 0 auxiliaries, voice missing。'
     sha256: 5a1db7a3c154cedfbef24f36e9b170105368893571b5d55237f1ec2834094906
 
   - file: screenshots/timeline-node.png
@@ -437,7 +437,7 @@ screenshots:
     captured_at: 2026-10-01T08:28:00+08:00
     verified_locator: '主体节点 aria「本地添加」完成后；状态串逐字 Main Bound subject: main present, 0 auxiliaries, voice missing.'
     visible_text: 主体 1 / @ 主体 1 / 添加描述... / 节点 2 已保存
-    alt: 主体节点「主体 1」完成本地添加后的形态：标题 @ 主体 1 带改名铅笔、描述占位「添加描述...」、主媒体槽已绑定一张图片且右上角有 ✕ 移除钮、右侧还有一个 ＋ 空槽用于加辅助素材、右上角为音色图标；状态串为 Main Bound subject: main present, 0 auxiliaries, voice missing。
+    alt: '主体节点「主体 1」完成本地添加后的形态：标题 @ 主体 1 带改名铅笔、描述占位「添加描述...」、主媒体槽已绑定一张图片且右上角有 ✕ 移除钮、右侧还有一个 ＋ 空槽用于加辅助素材、右上角为音色图标；状态串为 Main Bound subject: main present, 0 auxiliaries, voice missing。'
     sha256: bd664bed4a86d30e6afe6d48ff90eed9c5f50d48379745ca4aaee22042943b22
 
   - file: screenshots/34-subject-asset-picker.png
@@ -725,7 +725,7 @@ screenshots:
     captured_at: 2026-10-01T10:12:30+08:00
     verified_locator: '顶栏 aria「Canvas node summary: 节点 1」按钮展开的 data-testid=canvas-node-summary-popover（role=dialog，200×92 @69,47），两行各 192×36'
     visible_text: 视频 1 / 视频 / 查看项目信息 / 节点 1 / 已保存 / 分享 / 805 基础会员
-    alt: 顶栏「节点 1」按钮展开的小结对话框：第一行是「视频 1」并带一个类型小标签「视频」，第二行是「查看项目信息」；面板锚定在顶栏「节点 1」按钮正下方（🔴 本图是 2026-09-23 画布只有 1 个节点时的旧读数，图上的 200×92 已被批次 83 推翻 —— 高度随**类型数**增长，公式 高 = 4 + 40×类型数 + 12 + 36，批次 89 造 1 个主体节点后实测 200×332；本手册未重拍此图）
+    alt: 顶栏「节点 1」按钮展开的小结对话框：第一行是「视频 1」并带一个类型小标签「视频」，第二行是「查看项目信息」；面板锚定在顶栏「节点 1」按钮正下方（🔴 本图是 2026-09-23 画布只有 1 个节点时的旧读数，图上的 200×92 已被批次 83 推翻 —— 高度随类型数增长，公式 高 = 4 + 40×类型数 + 12 + 36，批次 89 造 1 个主体节点后实测 200×332；本手册未重拍此图）
     sha256: ea456a04d6bbac2b1bae18b236f55964dbae6f9f83851803d5b13598af59a73f
 
   - file: screenshots/58-canvas-context-menu.png
@@ -797,7 +797,7 @@ screenshots:
     captured_at: 2026-10-01T11:40:00+08:00
     verified_locator: '选中「视频 1」按 ⌘D（1→2 节点）再按 ⌘Z（回到 1 节点）后右键，菜单「重做 ⌘⇧Z」行（192×36）逐字为「重做 | ⌘ ⇧ Z」且**无「无需重做操作」副文案**（可用态）；同一菜单里「撤销 ⌘Z」为置灰且带「无需撤销操作」（不可用态）'
     visible_text: 复制 ⌘ C / 复制副本 ⌘ D / 粘贴 ⌘ V / 下载 / 重做 ⌘ ⇧ Z / 撤销 ⌘ Z / 删除 ⌫ / 视频 1 / 100%
-    alt: 节点右键菜单的重做可用态：菜单里「重做 ⌘⇧Z」一行被橙色高亮框标出，字色明亮且下方**没有**「无需重做操作」灰色小字，表示此时可重做；紧邻的「撤销 ⌘Z」则整体置灰并带「无需撤销操作」小字，表示撤销栈已空；「下载」同样置灰
+    alt: 节点右键菜单的重做可用态：菜单里「重做 ⌘⇧Z」一行被橙色高亮框标出，字色明亮且下方没有「无需重做操作」灰色小字，表示此时可重做；紧邻的「撤销 ⌘Z」则整体置灰并带「无需撤销操作」小字，表示撤销栈已空；「下载」同样置灰
     sha256: bcdf2fdf141ddd7f412dc031490023a3fb046b0fd8c5217509b2169839026e30
 
   - file: screenshots/66-image-node-toolbar.png
@@ -1217,7 +1217,7 @@ screenshots:
     captured_at: 2026-10-01T22:10:00+08:00
     verified_locator: '受控条件：60% 缩放（scale 0.6），细网格逐点试点选中 node_3bfb9r79qe（三个文本节点在画布上互相重叠，矩形中心会选错 —— 实际命中的安全落点是 fx=0.10 fy=0.10）→ 注入橙色高亮框后裁切截图 clip={x:391,y:94,w:240,h:276}。读数：Rename 文本 1 逐字 35.5×24 @y，顶边−卡片顶=−32、底边−卡片顶=−8（60% 缩放下折合 canvas −53.3 / −13.3）。对照支 100 同法量视频节点得 +0.6'
     visible_text: 文本 1
-    alt: 选中的文本节点：「Rename 文本 1」按钮（橙色框）整个浮在卡片顶边（另一条橙色横线）**上方**，两者之间有一条可见的黑色空隙 —— 文本节点是 7 种类型里唯一不与卡片顶边齐平的
+    alt: 选中的文本节点：「Rename 文本 1」按钮（橙色框）整个浮在卡片顶边（另一条橙色横线）上方，两者之间有一条可见的黑色空隙 —— 文本节点是 7 种类型里唯一不与卡片顶边齐平的
     sha256: 75057bc367188de9462f5817ef323dd8a09b05b961193b75c2f7720de39098f0
 
   - file: screenshots/100-node-title-video-flush.png
@@ -1229,7 +1229,7 @@ screenshots:
     captured_at: 2026-10-01T22:10:00+08:00
     verified_locator: '对照条件：同一 60% 缩放、同一套高亮与裁切手法，选中 node_236ctpehgg（安全落点 fx=0.40 fy=0.10，共 156 个候选）→ 读数 Rename 视频 1 逐字 35.5×32，顶边−卡片顶=−31.4、底边−卡片顶=+0.6（底边压进卡片内），裁切 clip={x:548,y:301,w:389,h:276}。与 99 号同批次同条件拍摄，构成「底边关系因类型而异」的可见对照'
     visible_text: 视频 1
-    alt: 对照：选中的视频节点，「Rename 视频 1」按钮（橙色框）的底边**直接压在**卡片顶边（橙色横线）上，中间没有空隙
+    alt: 对照：选中的视频节点，「Rename 视频 1」按钮（橙色框）的底边直接压在卡片顶边（橙色横线）上，中间没有空隙
     sha256: 62586fc6e161d7c5ad90180e770acbfd2ac974e7bcdcba358dace43c90860012
 
   - file: screenshots/101-timeline-source-menu-title.png
@@ -1241,7 +1241,7 @@ screenshots:
     captured_at: 2026-10-01T23:05:00+08:00
     verified_locator: '左栏新建**空**时间线节点 node_2nms3s9qgz（受控条件：60% 缩放）→ 细网格逐点试点选中（tl 只读不动）→ 枚举选中态 ⊕：before 可见@(251,344)、**after 不存在** → 点 before ⊕ → 菜单 [data-testid=canvas-context-menu] 200×316，七项各 [role=menuitem]，**标题逐字「添加上下文」**（其余六种源均为「添加节点」）→ 逐项读数：文本/图片/视频/时间线/主体/导演台 全部 aria-disabled=true + color rgba(255,255,255,0.2)，**只有音频** aria-disabled=false + rgb(255,255,255)。图片/视频 的原因逐字为「没有可用的就绪资源」（与从别的源出发时时间线报「素材信息仍在加载中」正好相反）'
     visible_text: 添加上下文
-    alt: 从时间线节点出发（它是**唯一只有 before ⊕** 的类型，因此这张图的「添加上下文」标题**不是**它的专属）弹出的菜单：七项里只有「音频」是白色可点，文本／图片／视频／时间线／主体／导演台全是灰暗禁用态；节点左侧只有一个 ⊕ 按钮
+    alt: 从时间线节点出发（它是唯一只有 before ⊕ 的类型，因此这张图的「添加上下文」标题不是它的专属）弹出的菜单：七项里只有「音频」是白色可点，文本／图片／视频／时间线／主体／导演台全是灰暗禁用态；节点左侧只有一个 ⊕ 按钮
     sha256: 14b5d4129a55c675a42670993c246ddf8b72f12022bf85dee33138d9d4444917
 
   - file: screenshots/102-audio-node-selected-f-inert.png
@@ -1253,7 +1253,7 @@ screenshots:
     captured_at: 2026-10-01T23:40:00+08:00
     verified_locator: '左栏新建**空**音频节点 node_mn8wtmexpd（受控条件：60% 缩放）→ 细网格逐点试点选中 → keyGuard 通过（焦点在 DIV[rf__wrapper] aria="Canvas"）→ **按 F** → 等 1800ms 后读数：可见 [role=dialog] **0 个**、页面 innerText **不含**「此快捷键当前不可用」→ 裁切 clip={x:395,y:186,w:484,h:484} 截图。密集采样（8 次，t=0…3000ms）另见 SOURCE_OBSERVATIONS §3.79，阳性对照为视频节点 t=0 即命中 DIV 360×44@460,32。收尾按 data-id 删除，积分 805 未变'
     visible_text: 音频 1
-    alt: 选中的空音频节点：标题「音频 1」与标记色图标浮在卡片上沿之外，卡片左右各有一个圆形 ⊕ 连接按钮，卡片内是空态的音频图标；**按 F 之后画面没有任何变化** —— 没有全屏编辑器，也没有「此快捷键当前不可用」提示条；下方是音频生成面板（SeedAudio 1.0 / 全能配音 / 音色库 / 右侧 ✦ 12）
+    alt: 选中的空音频节点：标题「音频 1」与标记色图标浮在卡片上沿之外，卡片左右各有一个圆形 ⊕ 连接按钮，卡片内是空态的音频图标；按 F 之后画面没有任何变化 —— 没有全屏编辑器，也没有「此快捷键当前不可用」提示条；下方是音频生成面板（SeedAudio 1.0 / 全能配音 / 音色库 / 右侧 ✦ 12）
     sha256: df363ae8ac85d1ae47e65ad7db74e7c3fe9fa1967853b8db4fa81d11341ad6fe
 
   - file: screenshots/62-agent-empty.png
@@ -1371,7 +1371,7 @@ screenshots:
     viewport: 1280x720@2x
     locale: zh-CN
     captured_at: 2026-10-01T23:58:00+08:00
-    verified_locator: '左栏点「上传」40×40@16,543（**必须用全局 `p.on('filechooser')` 监听**，用 `p.waitForEvent` 会超时）→ filechooser 触发、isMultiple=true → 对画布上**常驻的隐藏** `input[type=file]`（0×0、multiple=true、accept 长 1106 字符）setInputFiles 一张 PNG → **t=0 即出现节点** .react-flow__node-image，aria 逐字「图片 node: b22-upload」，标题 `b22-upload`（**去掉扩展名**），卡片 341×192，状态行 `7 nodes, 0 edges, 1 selected.`（**自动选中**）→ 等 6s 让缩略图换成服务端图，再点空白取消选中 → 裁切 clip={x:379,y:174,w:521,h:372}。⚠️ 图中那个「左栏」是**被上传的图片内容本身**（源文件就是一张画布截图），不是画布左栏。积分 805 未变 ⇒ 上传免费。详见 SOURCE_OBSERVATIONS §3.83'
+    verified_locator: '左栏点「上传」40×40@16,543（**必须用全局 `p.on(''filechooser'')` 监听**，用 `p.waitForEvent` 会超时）→ filechooser 触发、isMultiple=true → 对画布上**常驻的隐藏** `input[type=file]`（0×0、multiple=true、accept 长 1106 字符）setInputFiles 一张 PNG → **t=0 即出现节点** .react-flow__node-image，aria 逐字「图片 node: b22-upload」，标题 `b22-upload`（**去掉扩展名**），卡片 341×192，状态行 `7 nodes, 0 edges, 1 selected.`（**自动选中**）→ 等 6s 让缩略图换成服务端图，再点空白取消选中 → 裁切 clip={x:379,y:174,w:521,h:372}。⚠️ 图中那个「左栏」是**被上传的图片内容本身**（源文件就是一张画布截图），不是画布左栏。积分 805 未变 ⇒ 上传免费。详见 SOURCE_OBSERVATIONS §3.83'
     visible_text: b22-upload
     alt: 上传生成的图片节点「b22-upload」出现在画布上，标题是去掉扩展名的文件名，卡片 341×192
     sha256: cc4896f71f4636e160172afe33f1e7790a902b2d641e492d54fdf8e76d612c82
@@ -1409,7 +1409,7 @@ screenshots:
     captured_at: 2026-10-01T22:12:00+08:00
     verified_locator: '左栏点「主体」新建**自建**主体节点 → 点节点选中（**硬断言 `selected===1`**）→ 点 `flow-node-target-connection-menu-button`（aria 逐字 `Create connected node before 主体 1`，36×36，**仅选中时出现**）→ 菜单 `canvas-context-menu` / `role=menu` / aria 逐字「**添加上下文**」 / 200×316，七项各 192×36：仅「音频」`cursor:pointer`+`rgb(255,255,255)`；文本/时间线/主体/导演台「无法连接这些节点」、图片/视频「**没有可用的就绪资源**」，均 `aria-disabled=true`+`rgba(255,255,255,0.2)` → 裁切 clip={x:479,y:228,w:293,h:467}（**节点 ∪ 菜单**并集，**7 个菜单项中心全部落在 clip 内，被裁 0**）。**只读结构，没有点任何一项。** 同一实例再点 after ⊕ 读得「添加节点 / 图片·视频·音频」⇒ 同源不同向。节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.90.2'
     visible_text: 添加上下文
-    alt: 同一个「主体 1」节点，点它**左边**的 ⊕（左侧那个圆圈加号按钮）弹出的菜单，标题逐字是「添加上下文」；七项里只有「音频」是白色可点，文本、图片、视频、时间线、主体、导演台全是灰暗的禁用态；节点右侧还有一个未被点亮的 ⊕ 按钮
+    alt: 同一个「主体 1」节点，点它左边的 ⊕（左侧那个圆圈加号按钮）弹出的菜单，标题逐字是「添加上下文」；七项里只有「音频」是白色可点，文本、图片、视频、时间线、主体、导演台全是灰暗的禁用态；节点右侧还有一个未被点亮的 ⊕ 按钮
     sha256: 729af985db51b2dbc10a3426c9afef3fe947c676cf5a65f38091b1279d68c5e2
 
   - file: screenshots/71-subject-source-menu.png
@@ -1421,7 +1421,7 @@ screenshots:
     captured_at: 2026-10-01T21:58:00+08:00
     verified_locator: '左栏点「主体」新建**自建**主体节点 → 选中（断言 `selected===1`）→ 点 `flow-node-source-connection-menu-button`（aria 逐字 `Create connected node after 主体 1`，36×36）→ 菜单 `canvas-context-menu` / `role=menu` / aria 逐字「**添加节点**」 / 200×316@775,353，七项各 192×36：图片/视频/音频 `cursor:pointer`+白；文本/时间线/主体/导演台「无法连接这些节点」`aria-disabled=true`+`rgba(255,255,255,0.2)` → 裁切 clip={x:457,y:224,w:548,h:475}（**节点 ∪ 菜单**并集，**7 项全部落在 clip 内，被裁 0**）。**只读结构，没有点任何一项。** 节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.90.4'
     visible_text: 添加节点
-    alt: **同一个「主体 1」节点**，改点它**右边**的 ⊕ 弹出的菜单，标题逐字变成「添加节点」；可点项从刚才的「只有音频」变成「图片 / 视频 / 音频」三项（白色），文本 / 时间线 / 主体 / 导演台仍是灰暗禁用态；左下角能看到节点左侧那个 ⊕ 按钮
+    alt: '同一个「主体 1」节点，改点它右边的 ⊕ 弹出的菜单，标题逐字变成「添加节点」；可点项从刚才的「只有音频」变成「图片 / 视频 / 音频」三项（白色），文本 / 时间线 / 主体 / 导演台仍是灰暗禁用态；左下角能看到节点左侧那个 ⊕ 按钮'
     sha256: 713c6a9e051c4ff74d167cda0e1ed154e540686eed892e5feb0faa25068583a3
 
   - file: screenshots/78-empty-video-node-card.png
@@ -1431,7 +1431,7 @@ screenshots:
     viewport: 1280x720@2x
     locale: zh-CN
     captured_at: 2026-10-02T08:36:00+08:00
-    verified_locator: 左栏点「视频」新建**自建**视频节点 → 断言 `selected===true` → 连读两次 scale 相同（真实 `0.568085`，标签 `57%`，**不是写死 0.6**）→ 读数 → 裁切 clip={x:392,y:213,w:438,h:237}（按**可见后代并集** `418×217` 再留 10px，**不是** `.react-flow__node` 矩形 `323×182`，后者会把上方 31px 的标题裁掉）→ 守卫：clip 内他人节点 `0`、带语义的非节点 UI（`BUTTON/INPUT/FORM/TEXTAREA/A` 或非空 `aria-label`）`0`、目标元素 `4` 个（标题 / `video-node-empty` / 两个 ⊕）全在 clip 内。**只读观察，没有点那个像播放键的图标** —— 它的 `aria-hidden="true"`、`cursor:grab` 都是读出来的。节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.97'
+    verified_locator: '左栏点「视频」新建**自建**视频节点 → 断言 `selected===true` → 连读两次 scale 相同（真实 `0.568085`，标签 `57%`，**不是写死 0.6**）→ 读数 → 裁切 clip={x:392,y:213,w:438,h:237}（按**可见后代并集** `418×217` 再留 10px，**不是** `.react-flow__node` 矩形 `323×182`，后者会把上方 31px 的标题裁掉）→ 守卫：clip 内他人节点 `0`、带语义的非节点 UI（`BUTTON/INPUT/FORM/TEXTAREA/A` 或非空 `aria-label`）`0`、目标元素 `4` 个（标题 / `video-node-empty` / 两个 ⊕）全在 clip 内。**只读观察，没有点那个像播放键的图标** —— 它的 `aria-hidden="true"`、`cursor:grab` 都是读出来的。节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.97'
     visible_text: 视频 2
     alt: 空视频节点：标题行「视频 2」与标签按钮，卡片内只有一个居中的占位图标，左右各一个 ⊕ 连接按钮，整张卡片没有任何播放、进度或音量控件，底部也没有时间读数
     sha256: 62aef6e188719c58adbe88501b0951d360d16018042212bd2ebb8c09ad21f901
@@ -1443,7 +1443,7 @@ screenshots:
     viewport: 1280x720@2x
     locale: zh-CN
     captured_at: 2026-10-02T10:10:00+08:00
-    verified_locator: 左栏点「文本」新建**自建**文本节点 → 断言 `selected===true` → 右键（落点先用 `elementFromPoint` 验归属本节点）→ 菜单 `canvas-context-menu` / aria 逐字 `Canvas context menu` / **200×292**，**7 项**各 192×36：复制 ⌘C / 复制副本 ⌘D / 粘贴 ⌘V / 下载 / **重做 ⇧⌘Z（`aria-disabled=true`、`cursor:not-allowed`、`SPAN.sr-only`「无需重做操作」）** / 撤销 ⌘Z / 删除 ⌫ → 裁切 clip={x:516,y:178,w:334,h:423}（**节点可见后代并集 ∩ 浮动工具条 ∩ 菜单**；工具条 `[data-testid=node-toolbar]` **不在节点 DOM 内**、在 `.react-flow__renderer` 下，**不纳入就会被守卫判成外来语义 UI** —— 第一版就是这样被拦下的）→ 守卫：clip 内他人节点 `0`、外来语义 UI `0`、菜单 7 项全在内。**只读观察，没有点任何一项**（含禁用的「重做」）。节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.99'
+    verified_locator: '左栏点「文本」新建**自建**文本节点 → 断言 `selected===true` → 右键（落点先用 `elementFromPoint` 验归属本节点）→ 菜单 `canvas-context-menu` / aria 逐字 `Canvas context menu` / **200×292**，**7 项**各 192×36：复制 ⌘C / 复制副本 ⌘D / 粘贴 ⌘V / 下载 / **重做 ⇧⌘Z（`aria-disabled=true`、`cursor:not-allowed`、`SPAN.sr-only`「无需重做操作」）** / 撤销 ⌘Z / 删除 ⌫ → 裁切 clip={x:516,y:178,w:334,h:423}（**节点可见后代并集 ∩ 浮动工具条 ∩ 菜单**；工具条 `[data-testid=node-toolbar]` **不在节点 DOM 内**、在 `.react-flow__renderer` 下，**不纳入就会被守卫判成外来语义 UI** —— 第一版就是这样被拦下的）→ 守卫：clip 内他人节点 `0`、外来语义 UI `0`、菜单 7 项全在内。**只读观察，没有点任何一项**（含禁用的「重做」）。节点已按 id 精确删除。积分 805 未变。详见 SOURCE_OBSERVATIONS §3.99'
     visible_text: 复制
     alt: 文本节点右键菜单：节点上方浮着三项工具条（背景色、全屏、下载），节点标题为「T 文本 4」、正文区显示占位「双击编辑文本」；右下方弹出的菜单共七项，依次为复制 ⌘C、复制副本 ⌘D、粘贴 ⌘V、下载、（一条分隔线）、灰色禁用的重做 ⇧⌘Z、撤销 ⌘Z、删除 ⌫，其中「重做」是本页此前漏记的那一项
     sha256: 187212e6d30da3b018f2f74339f70563ef00489d3ab1b833cb71252985186b12
@@ -1455,7 +1455,7 @@ screenshots:
     viewport: 1280x720@2x
     locale: zh-CN
     captured_at: 2026-10-02T20:40:00+08:00
-    verified_locator: 自建**带媒体**视频节点 `node_fxhrsbbfrz`（走左栏上传通道建出，素材是脚本自造的 6 秒 H.264 测试片，**上传不耗积分** 805→805）→ 选中起播 → 点 `[data-testid="video-node-fullscreen-toggle"]`（落点先验 `elementFromPoint` 落在按钮内）→ 断言 `document.fullscreenElement !== null` → 读 `video-fullscreen-player-bar` 全量后代 34 个并按 **`aria-valuemax` 区分两条 slider**（音量 `1` / 进度 `6`=素材时长）→ **取消静音**（`Unmute video`→`Mute video`，`video.muted` 跟着变）→ **按住音量 thumb 逐步拖到 80/60/40/20%**，每步回读 `aria-valuenow` 与 `video.volume` = 0.81/0.60/0.40/0.19（近似线性）→ 整屏截图（**全屏态下画布被浏览器全屏接管，无裁切、无他人节点**）→ 点 `[data-testid="video-fullscreen-browser-toggle"]` 退出（**`Esc` 连按三次无效，已受控复测**）。节点已按 id 精确删除，消失的 id 恰好只有它。详见 SOURCE_OBSERVATIONS §4.21'
+    verified_locator: '自建**带媒体**视频节点 `node_fxhrsbbfrz`（走左栏上传通道建出，素材是脚本自造的 6 秒 H.264 测试片，**上传不耗积分** 805→805）→ 选中起播 → 点 `[data-testid="video-node-fullscreen-toggle"]`（落点先验 `elementFromPoint` 落在按钮内）→ 断言 `document.fullscreenElement !== null` → 读 `video-fullscreen-player-bar` 全量后代 34 个并按 **`aria-valuemax` 区分两条 slider**（音量 `1` / 进度 `6`=素材时长）→ **取消静音**（`Unmute video`→`Mute video`，`video.muted` 跟着变）→ **按住音量 thumb 逐步拖到 80/60/40/20%**，每步回读 `aria-valuenow` 与 `video.volume` = 0.81/0.60/0.40/0.19（近似线性）→ 整屏截图（**全屏态下画布被浏览器全屏接管，无裁切、无他人节点**）→ 点 `[data-testid="video-fullscreen-browser-toggle"]` 退出（**`Esc` 连按三次无效，已受控复测**）。节点已按 id 精确删除，消失的 id 恰好只有它。详见 SOURCE_OBSERVATIONS §4.21'
     visible_text: 0:03 / 0:06
     alt: 全屏播放器：视频铺满画面，底部一条控件条，左侧是播放钮与时间读数「0:03 / 0:06」，右侧是音量滑杆、扬声器图标和全屏按钮，右上角没有关闭按钮
     sha256: 50f4793b9b8ada1e9fc52c9ba711767e282f6523d90d941cf3dbdcd1a4b25cec
@@ -1467,7 +1467,7 @@ screenshots:
     viewport: 1280x720@2x
     locale: zh-CN
     captured_at: 2026-10-02T21:05:00+08:00
-    verified_locator: 自建**带媒体**视频节点 `node_fxhrsbbfrz` → 换到 **40% 档**（连读两次 scale 相同 = 0.4/0.4，**不是写死**）→ 遍历视口内 52 个他人节点矩形，算出**位移最小的无遮挡落点** → 抓 `flow-node-title` 子树内**不在 button 内**的点拖过去（标题 DIV 内部还有一层标题文字 SPAN，命中它才是常态）→ 重新选中（**「选中即播」⇒ 不再多点播放钮**，这是第 3 版脚本才纠正的顺序错误）→ 等 2.4 秒让读数走到 `00:01` → 裁切 clip={x:514,y:131,w:252,h:166}（**非对称余量：上边 0**，因为选中态浮动工具条 `node-toolbar` 底边 258 必然切进来；其余三边 12）→ 守卫：clip 内他人节点 `0`、外来浮层 `0`、7 个目标 testid 齐。**为什么必须降到 40% 档**：60% 档视口里有 52 个他人节点，把「卡片+标题+12px 余量」=366×248 穷举 4px 步长**一个空位都没有**；且「时间线 2」`z-index=22` 比本卡 `z-index=11` **更高**，9×9 撒点判据从它上面跨过去了。详见 SOURCE_OBSERVATIONS §4.21'
+    verified_locator: '自建**带媒体**视频节点 `node_fxhrsbbfrz` → 换到 **40% 档**（连读两次 scale 相同 = 0.4/0.4，**不是写死**）→ 遍历视口内 52 个他人节点矩形，算出**位移最小的无遮挡落点** → 抓 `flow-node-title` 子树内**不在 button 内**的点拖过去（标题 DIV 内部还有一层标题文字 SPAN，命中它才是常态）→ 重新选中（**「选中即播」⇒ 不再多点播放钮**，这是第 3 版脚本才纠正的顺序错误）→ 等 2.4 秒让读数走到 `00:01` → 裁切 clip={x:514,y:131,w:252,h:166}（**非对称余量：上边 0**，因为选中态浮动工具条 `node-toolbar` 底边 258 必然切进来；其余三边 12）→ 守卫：clip 内他人节点 `0`、外来浮层 `0`、7 个目标 testid 齐。**为什么必须降到 40% 档**：60% 档视口里有 52 个他人节点，把「卡片+标题+12px 余量」=366×248 穷举 4px 步长**一个空位都没有**；且「时间线 2」`z-index=22` 比本卡 `z-index=11` **更高**，9×9 撒点判据从它上面跨过去了。详见 SOURCE_OBSERVATIONS §4.21'
     visible_text: 00:01 / 00:06
     alt: 带媒体的视频卡片正在播放：标题行是节点名，卡片里是视频画面，底部一条控件行，左侧为播放/暂停钮与时间读数「00:01 / 00:06」，右侧为静音钮与全屏钮，卡片最下方是细进度条
     sha256: 870183f52add43a7d7e137d0acddc2872c7109852cea3d91b01c1be8e5ed7371
@@ -1479,7 +1479,7 @@ screenshots:
     viewport: 1280x720@2x
     locale: zh-CN
     captured_at: 2026-10-02T21:50:00+08:00
-    verified_locator: 空白右键 →「新建节点」子菜单（`aria-expanded` `false`→`true` 才算打开，**几何非零不算**）→「本地上传」（落点双重把关：`innerText` 逐字 `本地上传` **且** `elementFromPoint` 命中元素落在该项内部 —— 该子菜单里另有「文本」「图片」等**一点就建节点**的项）→ `p.on('filechooser')` 全局监听（**`waitForEvent` 在 `connectOverCDP` 下会超时**）→ 读到该 input `accept` **111 条**、`multiple=true`、父链 `DIV#context-menu-submenu-add-node` → `setFiles('/tmp/jimeng-b102-doc.txt')` → **三重护栏**：上传前 id 数 55、上传后 56、**差集恰好 1 个** `node_0gg1c9b3tq` 且**同时是 `.selected`** → 读结构：`react-flow__node-text`、aria 逐字 `文本 node: jimeng-b102-doc`、**正文逐字含文件三行内容** → **积分 805→805** → 换到 **40% 档**（连读两次 0.4/0.4；60% 档下 `224×240` 的空位 `best=null`，视口内已有 **55 个他人节点**）→ 遍历他人节点矩形算出位移最小的无遮挡落点并拖过去 → 重新选中 → 裁切 clip={x:310,y:131,w:152,h:166}（**非对称余量：上边 0**，避开必然切进来的 `node-toolbar`）→ 守卫：clip 内他人节点 `0`、外来浮层 `0`。⚠️ **守卫放行后仍发现右下角有一个被裁掉一半的字形**（邻居元素，落在 12px 右边距带内，节点右边框在 x≈280、字形在 x≈285–295）⇒ 已把成图从 `304×332` **裁到 `283×332`**，节点边框完整保留。节点已按 id 精确删除，消失的 id 恰好只有它。详见 SOURCE_OBSERVATIONS §4.22'
+    verified_locator: '空白右键 →「新建节点」子菜单（`aria-expanded` `false`→`true` 才算打开，**几何非零不算**）→「本地上传」（落点双重把关：`innerText` 逐字 `本地上传` **且** `elementFromPoint` 命中元素落在该项内部 —— 该子菜单里另有「文本」「图片」等**一点就建节点**的项）→ `p.on(''filechooser'')` 全局监听（**`waitForEvent` 在 `connectOverCDP` 下会超时**）→ 读到该 input `accept` **111 条**、`multiple=true`、父链 `DIV#context-menu-submenu-add-node` → `setFiles(''/tmp/jimeng-b102-doc.txt'')` → **三重护栏**：上传前 id 数 55、上传后 56、**差集恰好 1 个** `node_0gg1c9b3tq` 且**同时是 `.selected`** → 读结构：`react-flow__node-text`、aria 逐字 `文本 node: jimeng-b102-doc`、**正文逐字含文件三行内容** → **积分 805→805** → 换到 **40% 档**（连读两次 0.4/0.4；60% 档下 `224×240` 的空位 `best=null`，视口内已有 **55 个他人节点**）→ 遍历他人节点矩形算出位移最小的无遮挡落点并拖过去 → 重新选中 → 裁切 clip={x:310,y:131,w:152,h:166}（**非对称余量：上边 0**，避开必然切进来的 `node-toolbar`）→ 守卫：clip 内他人节点 `0`、外来浮层 `0`。⚠️ **守卫放行后仍发现右下角有一个被裁掉一半的字形**（邻居元素，落在 12px 右边距带内，节点右边框在 x≈280、字形在 x≈285–295）⇒ 已把成图从 `304×332` **裁到 `283×332`**，节点边框完整保留。节点已按 id 精确删除，消失的 id 恰好只有它。详见 SOURCE_OBSERVATIONS §4.22'
     visible_text: JIMENG B102 DOC TEST
     alt: 上传文本文件的结果：生成的是一个「文本」节点，标题为去掉扩展名后的文件名（过长时中间省略），节点正文里逐行显示着刚才那个 .txt 文件的三行内容，右上角是标签按钮
     sha256: 01b8d2f2dfe91bd461788e77514f93b4884255543e2a58fe3c044e68f9ce0eac
@@ -1600,3 +1600,36 @@ screenshots:
     visible_text: 文本 4.md / 下载 / 输入文本…
     alt: 文本节点的全屏编辑器（2026-10-04 批次 144 拍，这是全册第一张文本全屏编辑器的图）。整屏被编辑器占满：左上角一个文档小图标加标题「文本 4.md」，右上角一个「下载」按钮和一个 ✕ 关闭按钮；中间一条横向工具栏，从左到右是带下拉箭头的 T（文字样式）、无序列表、有序列表、竖分隔线、B（加粗）、S（删除线）、I（倾斜）、U（下划线）；工具栏下方是一整块空的深色编辑区，左上角有一行灰色占位文字「输入文本…」
     sha256: 9da70e699e9c759bbe2369a0d961c2fd0a4ed6fba62d137d2686dad4aaa86c51
+  - file: screenshots/54-generation-mention-panel.png
+    task_id: prepare-generation
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-04T14:55:00+08:00
+    verified_locator: '2026-10-04 批次 154 c 轮。**全册第一张 @ 提及面板的图**，同时结清 SOURCE_OBSERVATIONS §4.49「全灭 testid」分诊表第 2 行的 generation-mention-panel。步骤：① 护栏建 1 个图片节点（建前 76 nodes / 0 选中 / 无组，建后差集恰好 1 且 .selected）② 把鼠标移回节点中心使生成面板出现 —— **不必点「展开图片生成器」**，建完选中时 generation-form 已命中 1、680×208、7 个按钮（本轮第一个要纠正的前提，见 §4.77.2）③ 在 node-toolbar 内按**尺寸**挑出 32×32 那处「引用参考」（另一处 24×24 在提示词区内、只在提示词为空时存在）④ 点它，**不调 settle()**（批次 153 定位：settle 会连按 Esc 把刚打开的浮层关掉）。**拍前逐条断言（全部通过）**：generation-mention-panel 命中 1、盒 240×140@168.8,363、祖先链 div.generation-media-prompt-field < div.flex < form{generation-form}.generation-input-group < div.generation-input-panel-shell < div{node-toolbar-feature-host}.nodrag < div{node-toolbar} ⇒ **它渲染在生成表单内部、不在 body 下**；内含 role=listbox、aria 逐字「可能@的内容」、盒 240×140、**子项 2 个**（主体 / 图片）；页面上 data-testid 含 submit 的元素 0 个；积分 805 进、805 出。📌 **本图读数的适用范围**：手册 `prepare-generation.md` 那节记的 240×244 / 4 个类别是**视频**节点的读数（该节祖先链逐字就是 form{video-generation-form}），**不是错记**；本图在**图片**节点上实测 240×140 / 只有主体与图片两项，是对批次 113 那条「面板高度与类别数随节点族变」横向规律的**独立复现**。⚠️ 图中缩放显示 57%（新建节点让画布自动适配，与 AUDIT 批次 149 记的 60%→57% 一致），收尾已 setZoom(60) 归位。拍完按 Esc 一次即关闭。**全程没点任何生成 / 确认 / 扣费按钮、没输入一个字**。详见 SOURCE_OBSERVATIONS §4.77'
+    visible_text: 测试项目 / 节点 77 / 已保存 / 分享 / 805 基础会员 / 图片 1 / 添加参考 / 主体 / 图片 / @搜索主体、图片 / Seedream 5.0 Lite / 1:1 2K 1 / 3 / 张 / 57%
+    alt: 图片节点的引用参考菜单（2026-10-04 批次 154 拍，这是全册第一张提及参考面板的图）。画布中央是一个刚建好的空图片节点，标题「图片 1」，卡片里只有一个灰色图片占位图标；节点下方是自动展开的图片生成面板，提示词区里有一行灰色占位文字「@搜索主体、图片」，面板底部一排是模型「Seedream 5.0 Lite」、比例与分辨率「1:1 · 2K · 1」、一个 @ 图标，右端是价格「✦ 3 / 张」和一个白色圆形向上箭头按钮（生成）；面板左上角弹出一个深色浮层，顶端灰色小标题「添加参考」，下面两行可点条目「主体」和「图片」，每行左侧一个图标、右侧一个向右箭头，「主体」那一行有浅色高亮底表示默认选中；画布左边缘是竖排的工具图标，右上角显示「805 基础会员」
+    sha256: 970a8b03df3e25c551749504b1bb6b72b74d17046707c4993268c979f773f1cd
+  - file: screenshots/55-source-picker-canvas-mode.png
+    task_id: prepare-generation
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-04T15:03:00+08:00
+    verified_locator: '2026-10-04 批次 154 d 轮。**全册第一张「从画布选择」全屏拾取模式的图**，结清 §4.49 分诊表第 3 行的 canvas-source-picker-canvas-frame / -mask。⚠️ 本轮开头先栽了一次：154 c 轮点「添加参考」后去找「从画布选择」，**候选数 0**，差点写成「来源选择器打不开」—— 真因是**手册把三个来源项记成 role=menuitem，而那一轮的找点只搜 button 与 role=button** ⇒ 与批次 153「把 data-testid 当 class」同族的第二个错：**找错元素类型 ⇒ 读数 0，而读数 0 长得和「功能没了」一模一样**。步骤：① 护栏建 1 个图片节点 ② 点面板左上 ⊕「添加参考」48×48 ⇒ role=menu 且 aria-label 逐字「添加参考」命中 1、盒 240×130、逐字「上传图片 从资产库添加 从画布选择」，三个 role=menuitem 各 232×38、各 1 个 svg（逐字复现手册；第一项在**图片**节点上是「上传图片」，视频与音频才是「上传参考内容」）③ 点第三项「从画布选择」。**拍前逐条断言（全部通过）**：canvas-source-picker-canvas-frame 命中 1、1280×720@0,0、祖先链起于 div.react-flow__renderer；canvas-source-picker-canvas-mask 命中 1、1280×720@0,0、祖先链起于 div.react-flow__viewport-portal ⇒ 🔑 **frame 与 mask 挂载点不同，此前全册没记**；generation-source-picker-chip 命中 1、145×44@567.5,32、逐字「从画布选择」；generation-source-picker-close 命中 1、24×24@676.5,42、aria 逐字「取消选择」，祖先链第一层就是 chip 本身 ⇒ **取消按钮是 chip 的子元素**；那行英文辅助文案命中，标签是 **OUTPUT**、1×1@846,631，position:absolute 加 overflow:hidden 加 clip:rect(0px,0px,0px,0px) ⇒ 它是**被 clip 裁掉的 live region**，不是普通小盒子；积分 805 进、805 出。**画面能直接读出三件事**：① 整个视口被一圈亮蓝色细框包住（frame）② 顶部正中一个蓝色胶囊「从画布选择」，带取景框图标与 ✕（chip）③ 节点上的两个圆形连接把手与标签钮**不见了**，生成面板里的生成箭头**变灰不可用**。⚠️ 画面上左栏九个入口**看不见**（被 1280×720 的遮罩挡住），**但本轮没有测它们在 DOM 里是否仍在**，故不据此下订正。拍完点「取消选择」，当场断言 frame / mask / chip / close **四项全部归 0**、节点与 generation-form 原样保留、积分仍 805。**全程没点任何生成 / 确认 / 扣费按钮、没输入一个字**。详见 SOURCE_OBSERVATIONS §4.77'
+    visible_text: 测试项目 / 节点 77 / 已保存 / 分享 / 805 基础会员 / 从画布选择 / 图片 1 / 上传参考图、输入文字或 主体，描述你想生成的图片 / Seedream 5.0 Lite / 1:1 2K 1 / 3 / 张 / 57%
+    alt: 从画布选择的全屏拾取模式（2026-10-04 批次 154 拍，这是全册第一张这个模式的图）。整块画布被一圈亮蓝色细边框包住，左侧竖排的工具图标条在这张图里完全看不见；视口顶部正中浮着一个蓝色胶囊标签，左边一个取景框图标、文字「从画布选择」、右边一个 ✕；画布中央是那个刚建的空图片节点「图片 1」，节点左右两侧原本有的圆形连接把手和右上角的标签图标都不见了；节点下方的图片生成面板还在，提示词区显示灰色占位文字「上传参考图、输入文字或 @ 主体，描述你想生成的图片」，底部一排是「Seedream 5.0 Lite」「1:1 · 2K · 1」和一个 @ 图标，右端价格「✦ 3 / 张」后面的向上箭头按钮是灰的（不可用），面板右上角有一个双向展开箭头图标
+    sha256: a690215aea4aa9bf2a675bfe9cd36b6349f0fbd45c76e8c5e3414874e2a59113
+  - file: screenshots/56-workspace-project-info-dialog.png
+    task_id: canvas-context
+    step: 0
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-04T14:55:00+08:00
+    verified_locator: '2026-10-04 批次 154 c 轮 Q3。**全册第一张「积分明细 / 项目信息」对话框的图**，结清 §4.49 分诊表第 4 行的 workspace-project-info-dialog —— 那行从 2026-10-03 起一直写着「点开积分明细属跳转型，**需单独授权**」；本轮目标更新（登录的是测试帐号，只要不执行真实生图与生视频就可以做有副作用的 CRUD）后**授权已解除**，当场验成。步骤：① 清空选中 ② 点顶栏启动器 aria 逐字「生成历史」（data-testid 逐字 canvas-panel-launcher、28×28、点击前 aria-expanded 为 false）⇒ canvas-feature-panel 命中 1、320×211@797,56、逐字「生成历史 积分明细 全部 图片 视频 音频 文本 暂无生成历史」，5 个真页签各 42×36、判选中看 aria-selected（data-state 属性根本不存在）③ 点标题行那个**普通 BUTTON**「积分明细」68×36（无 role、无 href、无 aria-label，自动化只能靠 innerText 认）。**拍前逐条断言（全部通过）**：workspace-project-info-dialog 命中 1、800×546@240,87、role 逐字 dialog、逐字「项目信息 基础信息 积分消耗 总消耗积分 0 任务数 0 暂无数据 查看积分明细」；积分 805 进、805 出。⚠️ 读到的**祖先链是空数组** —— 那是**本轮脚本自己的行为**（祖先循环在 parentElement 已是 body 处 break，而这个 dialog 正挂在 body 下），**不是「它没有祖先」**，不据此下任何结论。**拍后逐次按 Esc 记录**（复现手册 canvas-context.md 记的「由内向外一层一层关」）：第 1 次 ⇒ dialog 0、**生成历史面板仍在（1）**、浮层 1；第 2 次 ⇒ 面板 0、浮层 0；第 3 次 ⇒ 无变化。⚠️ 图中缩放显示 57%（本轮前面建过节点，画布自动适配），收尾已 setZoom(60) 归位；图上方还看得到画布自己的「当前视窗没有内容 / 回到节点」空视口提示（手册 navigate-canvas.md 早已建档，非本批新发现）。**全程没点任何生成 / 确认 / 扣费按钮、没输入一个字**，对话框里的「查看积分明细」与 ✕ 也都没点，只用 Esc 关。详见 SOURCE_OBSERVATIONS §4.77'
+    visible_text: 测试项目 / 节点 76 / 已保存 / 当前视窗没有内容 / 回到节点 / 项目信息 / 基础信息 / 积分消耗 / 总消耗积分 / 0 / 任务数 / 0 / 暂无数据 / 查看积分明细 / 积分明细 / 805 基础会员 / 57%
+    alt: 顶栏生成历史面板里的积分明细对话框（2026-10-04 批次 154 拍，这是全册第一张这个对话框的图）。画面中央是一块大号深色卡片，左上角标题「项目信息」，右上角一个 ✕ 关闭按钮；标题下方两个页签「基础信息」和「积分消耗」，后者带下划线表示当前选中；再下面是并排两张统计卡，左边「总消耗积分」数值 0，右边「任务数」数值 0；卡片中部一片空白写着「暂无数据」，右下角有一个「查看积分明细 ›」入口；被这张卡片盖住的右上方还能看到生成历史面板的一角，露出「生成历史」标题和「积分明细 ›」；画布顶部中间有一块提示「当前视窗没有内容」和「回到节点」，右上角显示「805 基础会员」
+    sha256: 782928d58a768cc70adb70085a9ee23ce1029230e32dc34060246d6c52e30a42
