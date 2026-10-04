@@ -5746,6 +5746,13 @@ def main() -> int:
     #   ⚠️ 判据组 `JJJJJ.1` 要钉的是**否定结果**（H₂ 被证伪）⇒ 同样最容易被忘掉
     p976 = ROOT / "scripts/jimeng_probe976_counterfactual_src.py"
     _p976 = p976.read_text(encoding="utf-8") if p976.exists() else ""
+    p976 = ROOT / "scripts/jimeng_probe976_counterfactual_src.py"
+    _p976 = p976.read_text(encoding="utf-8") if p976.exists() else ""
+    # ⭐⭐⭐ 977：**源站**正面检验 H₃（三臂）。⚠️ 本批的**干预件也逐字继承 976**
+    #   ⇒ 「本批的干预和 976 是同一件东西」由一条 `assert` 钉住
+    #   ⇒ 判据组 `KKKKK.1` 要钉的是「**臂 B 打中了靶子**」这个**前提**
+    p977 = ROOT / "scripts/jimeng_probe977_h3anchor_src.py"
+    _p977 = p977.read_text(encoding="utf-8") if p977.exists() else ""
     # ⭐ 970 的 CCCC.2 要**反证 816 那条决策真的在仓库里**（钉源码原文，
     #   不钉我自己写的转述）
     p816 = ROOT / "scripts/verify-jimeng-batch816-anchors.py"
@@ -9386,6 +9393,77 @@ def main() -> int:
           and '"discipline_976"' in _ausrc
           and "**注入件是 1×1、opacity 0、pointer-events none**" in _ausrc
           and "**不回答「那一格用户会看见什么」**" in _ausrc)
+
+    # ══ KKKKK. 批 977 源站正面检验 H₃：臂 B 让「第一个可聚焦元素」换人，
+    #    BODY 的后继**跟着换** ⇒ H₃ 的位置命题这一次扛住了（但出处仍未标注）══
+    print("— KKKKK. 批 977：臂 B 把第一个可聚焦元素设为不可聚焦，"
+          "BODY 的环上后继跟着换成下一个 ⇒ H₃ 扛住这一次 —")
+
+    check("KKKKK.1 ⭐⭐⭐⭐⭐ **臂 B 才是 H₃ 的正面检验，而它扛住了** —— "
+          "做法是把「DOM 里第一个可聚焦元素」临时设成 `tabindex=\"-1\"`"
+          "（**纯 JS、可还原**、**原属性值先记下来**）⇒ 「第一个」**换人** ⇒ "
+          "实测 **`BODY` 的环上后继跟着换了人**（`canvas-project-logo` → "
+          "`canvas-project-title-trigger`，2/2 逐格相同、三臂 `BODY` 都在第 6 格）⇒ "
+          "**H₃ 的位置命题这一次扛住了**；"
+          "⚠️⚠️ **但扛住了 ≠ 证明了** —— 「出处仍未标注」「976 那个支撑本来就弱」"
+          "「臂 B 只试了一枚元素一个方向」三条限制**必须一起记**",
+          '"h3_survives_arm_b_977"' in _ausrc
+          and "**臂 B 才是 H₃ 的正面检验，而它扛住了**" in _ausrc
+          and "**重新锚定**" in _ausrc
+          and '"honest_limit_977"' in _ausrc
+          and "**出处仍未标注**" in _ausrc
+          and "**一次成功不叫可靠**" in _ausrc
+          # ⭐⭐ 钉探针：臂 B 的前提三件套（生效 / 还原 / 真的换人）都要真在
+          and '"arm_b_mutation_took_effect_both_reps"' in _p977
+          and '"arm_b_restored_both_reps"' in _p977
+          and '"arm_b_moved_the_dom_first_focusable_both_reps"' in _p977
+          and 'UNFOCUS_JS = """' in _p977
+          and 'REFOCUS_JS = """' in _p977
+          and "target.removeAttribute(\'tabindex\')" in _p977
+          and "rec.had_tabindex_attr === true" in _p977
+          and '"_p977": "scripts/jimeng_probe977_h3anchor_src.py",' in _anchs)
+
+    check("KKKKK.2 ⭐⭐⭐⭐⭐ **臂 A 单独看分不开任何东西，而本批实测印证了这一点** —— "
+          "「回绕途经点」与「无条件途经点」在**两枚**的情况下**预测完全一样** ⇒ "
+          "臂 A 只留下「计数与座位」（环长 18 → 20、`BODY` **仍在第 6 格**、"
+          "**没被挤掉**）⇒ ⭐⭐⭐⭐ **两条臂都留着，但只有一条有判别力** ⇒ "
+          "⭐⭐⭐ **「再多测一次」与「改实验」不是一回事**，这件事要写进基线，"
+          "免得下一批把臂 A 当证据；"
+          "另有一条本批**实测**撞上的纪律：**读数里撞名的字段不能当身份** —— "
+          "976 的 `INJECT_JS` 把 `data-testid` **写死** ⇒ 两枚注入件**撞名** ⇒ "
+          "修法是**用 `own.id` 认身份**（`two_n_injected = 2` 数得对）",
+          '"arm_a_is_not_discriminating_977"' in _ausrc
+          and "**预测完全一样**" in _ausrc
+          and "**它的价值只剩「计数与座位」**" in _ausrc
+          and "**「再多测一次」与「改实验」不是一回事**" in _ausrc
+          and '"identity_collision_977"' in _ausrc
+          and "**读数里撞名的字段不能当身份**" in _ausrc
+          and "**用 `own.id` 认身份**" in _ausrc
+          # ⭐⭐ 钉探针：身份用 id、且这条纪律在源码里写成注释
+          and '(r.get(\"own\") or {}).get(\"id\") in (ID_A, ID_B)' in _p977
+          and '"why_own_id_is_identity"' in _p977
+          and '"two_injections_actually_in_ring_both_reps"' in _p977
+          and '"why_arm_b_is_the_real_test"' in _p977)
+
+    check("KKKKK.3 ⭐⭐⭐⭐⭐ **「守卫会命中自己」有第三种形态，本批连撞两次** —— "
+          "976 那种是「守卫那行**自己**在源码里」；本批这种是"
+          "「**注释里抄了一遍被禁的写法原文**」⇒ 子串匹配把**注释**也扫进来 ⇒ "
+          "**当场判红** ⇒ 两条归同一族：**守卫的匹配范围比它想匹配的大** ⇒ "
+          "修法：注释**不许抄被禁写法原文**，改用**描述**；"
+          "另两条照旧：**干预可还原且单独复查**（臂 B 还原时**先核对身份**，"
+          "tag 对不上宁可报红也不动）、**两个关系都真算**（正向 + 反向）",
+          '"guard_hits_comment_977"' in _ausrc
+          and "**抄了一遍被禁的写法原文**" in _ausrc
+          and "**当场判红**" in _ausrc
+          and "**守卫的匹配范围比它想匹配的大**" in _ausrc
+          and '"discipline_977"' in _ausrc
+          # ⭐⭐ 钉探针：新件里彻底没有那个写法，且行首锚定那条还在
+          and 'assert "||" not in UNFOCUS_JS' in _p977
+          and 'assert "||" not in REFOCUS_JS' in _p977
+          and "re.search(r'^DOMRANK_JS" in _p977
+          and '"h3_relation_measured_in_all_three_arms_both_reps"' in _p977
+          and "本批的干预和 976 是同一件东西" in _p977
+          and '"js_verbatim_from_976"' in _p977)
 
 
     print(f"\n{checks - len(failures)}/{checks}")
