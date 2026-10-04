@@ -1765,3 +1765,14 @@ screenshots:
     visible_text: '导演台 在 3D 空间中设计角色、机位与镜头 进入导演台'
     alt: '导演台节点被选中（2026-10-05 批次 160 拍）：节点逐字「导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Selected.」，橙色高亮框标出节点范围；按 F 之后画面没有任何变化——没有全屏编辑器，也没有「此快捷键当前不可用」提示条'
     sha256: c73bbbed180346ae012007e7c47fd800b5ce498f64544442424bfa0982f51465
+  - file: screenshots/121-credits-detail-destination.png
+    task_id: canvas-context
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T02:35:00+08:00
+    verified_locator: '[data-testid="workspace-project-info-dialog"]（800×546@240,87）内的「积分消耗」页签'
+    visible_text: '总消耗积分 0 任务数 0 暂无数据 查看积分明细'
+    alt: '项目信息对话框的「积分消耗」页签（2026-10-05 批次 161 拍）：页签栏里「积分消耗」下带下划线表示当前选中，下方两张统计卡分别是「总消耗积分 0」和「任务数 0」，卡片下方居中写着「暂无数据」，右下角是带右箭头的「查看积分明细」按钮 —— 按下这个按钮之后画面逐帧无变化，按钮是死的'
+    sha256: ae06b2b02fbfcc506f289e98b5af9a3416993668eb2cf17248ba14380c0531a0
