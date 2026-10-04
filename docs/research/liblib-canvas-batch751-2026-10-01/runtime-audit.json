@@ -1,0 +1,1115 @@
+{
+ "batch": 751,
+ "title": "把三族剩下的 25 种按门分五组打开；关键帧编辑器在泳道区不在轨道行；曲线默认已启用",
+ "verdict": "10/10",
+ "twoRoundsIdentical": true,
+ "static": {
+  "unionTotal": 447,
+  "familyCount": 52,
+  "familyByPrefix": {
+   "data-director-motion": 31,
+   "data-director-path": 15,
+   "data-director-curve": 6
+  },
+  "keyframe": {
+   "selectCallSitesInTimeline": [
+    1999
+   ],
+   "rowToggleAdd": [
+    1797
+   ],
+   "rowToggleDelete": [
+    1795
+   ],
+   "laneSelect": [
+    1999
+   ],
+   "laneSeek": [
+    2000
+   ],
+   "seedSelectedKeyframeId": [
+    "director-keyframe-character-0"
+   ]
+  },
+  "motionTabGate": {
+   "keyframeEditorGuard": [
+    232
+   ],
+   "sliderFieldComponent": [
+    71
+   ],
+   "readKeyframeTransform": [
+    53
+   ]
+  },
+  "orientGate": {
+   "pathControlsRotationY": [
+    2170
+   ],
+   "withCondition": [
+    2172
+   ],
+   "orientButton": [],
+   "enableButton": [],
+   "disabledAxesCall": [
+    2493
+   ],
+   "genericAxisAttrs": [
+    179
+   ],
+   "pathAxisAttrs": [
+    873
+   ],
+   "rotationHint": [
+    2505
+   ]
+  },
+  "pencil": {
+   "pointerDownSeed": [
+    1686,
+    1692
+   ],
+   "finishOnPointerUp": [
+    1708
+   ]
+  }
+ },
+ "run": {
+  "s1_motionTabLocked": {
+   "opened": [
+    "data-director-motion-create-path",
+    "data-director-motion-preset-button",
+    "data-director-motion-qr",
+    "data-director-motion-record",
+    "data-director-motion-retry",
+    "data-director-motion-vcam"
+   ],
+   "sliders": [],
+   "keyframeEditorPresent": false
+  },
+  "s2_menu": {
+   "menuOpened": [
+    "data-director-motion-path-draw-tool",
+    "data-director-motion-path-free-draw",
+    "data-director-motion-path-menu",
+    "data-director-motion-path-preset"
+   ],
+   "drawOpened": [
+    "data-director-path-drawing",
+    "data-director-path-drawing-cancel",
+    "data-director-path-drawing-complete",
+    "data-director-path-drawing-tool"
+   ],
+   "menu": {
+    "open": true,
+    "w": 176,
+    "h": 204,
+    "tools": [
+     "pencil",
+     "pen"
+    ],
+    "presets": [
+     "line",
+     "ring",
+     "rectangle"
+    ]
+   },
+   "draw": {
+    "open": true,
+    "tool": "pen",
+    "buttons": [
+     {
+      "a": "完成钢笔路径",
+      "d": false
+     },
+     {
+      "a": "取消路径绘制",
+      "d": false
+     }
+    ]
+   }
+  },
+  "s3_anchor": {
+   "afterBuild": [
+    "data-director-motion-path-anchor",
+    "data-director-motion-path-anchor-id",
+    "data-director-motion-path-anchor-selected",
+    "data-director-motion-path-anchor-type",
+    "data-director-motion-path-enabled",
+    "data-director-motion-path-id",
+    "data-director-motion-path-inspector",
+    "data-director-motion-path-locked",
+    "data-director-motion-path-pivot",
+    "data-director-motion-path-preset",
+    "data-director-motion-path-visible",
+    "data-director-motion-path-world-anchor",
+    "data-director-path-anchor-list",
+    "data-director-path-anchor-option",
+    "data-director-path-name",
+    "data-director-path-reset",
+    "data-director-path-reset-offset",
+    "data-director-path-transform-axis",
+    "data-director-path-transform-field"
+   ],
+   "afterSelectAnchor": [
+    "data-director-path-anchor-position",
+    "data-director-path-anchor-type-option"
+   ],
+   "afterSymmetric": [
+    "data-director-motion-path-handle",
+    "data-director-path-anchor-handle",
+    "data-director-path-anchor-handle-axis"
+   ],
+   "typeOptions": [
+    {
+     "t": "vertex",
+     "text": "顶点",
+     "pressed": "true",
+     "disabled": false
+    },
+    {
+     "t": "symmetric",
+     "text": "对称",
+     "pressed": "false",
+     "disabled": false
+    },
+    {
+     "t": "asymmetric",
+     "text": "非对称",
+     "pressed": "false",
+     "disabled": false
+    }
+   ],
+   "handleFields": [
+    {
+     "h": "in",
+     "axis": "x",
+     "value": "-0.896"
+    },
+    {
+     "h": "in",
+     "axis": "y",
+     "value": "0"
+    },
+    {
+     "h": "in",
+     "axis": "z",
+     "value": "-0.308"
+    },
+    {
+     "h": "out",
+     "axis": "x",
+     "value": "0.896"
+    },
+    {
+     "h": "out",
+     "axis": "y",
+     "value": "0"
+    },
+    {
+     "h": "out",
+     "axis": "z",
+     "value": "0.308"
+    }
+   ],
+   "paths": {
+    "count": "1",
+    "paths": [
+     {
+      "id": "director-motion-path-director-camera-main-1791093682682",
+      "preset": "line",
+      "visible": "true",
+      "text": "机位自动帧轨迹",
+      "anchors": [
+       {
+        "i": "0",
+        "type": "vertex",
+        "sel": "false",
+        "handles": []
+       },
+       {
+        "i": "1",
+        "type": "symmetric",
+        "sel": "true",
+        "handles": [
+         "in",
+         "out"
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  },
+  "s4_keyframe": {
+   "laneKeyframes": [
+    {
+     "trackId": "director-track-character-lead-transform",
+     "kind": "transform",
+     "objectId": "director-character-lead",
+     "kfId": "director-keyframe-character-0",
+     "time": "0",
+     "label": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "w": 11,
+     "h": 11,
+     "laneY": 1073,
+     "kfY": 1083
+    },
+    {
+     "trackId": "director-track-character-lead-transform",
+     "kind": "transform",
+     "objectId": "director-character-lead",
+     "kfId": "director-keyframe-character-4",
+     "time": "4",
+     "label": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "w": 11,
+     "h": 11,
+     "laneY": 1073,
+     "kfY": 1083
+    },
+    {
+     "trackId": "director-track-character-lead-transform",
+     "kind": "transform",
+     "objectId": "director-character-lead",
+     "kfId": "director-keyframe-character-8",
+     "time": "8",
+     "label": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "w": 11,
+     "h": 11,
+     "laneY": 1073,
+     "kfY": 1083
+    },
+    {
+     "trackId": "director-track-camera-main",
+     "kind": "camera",
+     "objectId": "director-camera-main",
+     "kfId": "director-keyframe-camera-0",
+     "time": "0",
+     "label": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "w": 11,
+     "h": 11,
+     "laneY": 1137,
+     "kfY": 1147
+    },
+    {
+     "trackId": "director-track-camera-main",
+     "kind": "camera",
+     "objectId": "director-camera-main",
+     "kfId": "director-keyframe-camera-4",
+     "time": "4",
+     "label": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "w": 11,
+     "h": 11,
+     "laneY": 1137,
+     "kfY": 1147
+    },
+    {
+     "trackId": "director-track-camera-main",
+     "kind": "camera",
+     "objectId": "director-camera-main",
+     "kfId": "director-keyframe-camera-8",
+     "time": "8",
+     "label": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "w": 11,
+     "h": 11,
+     "laneY": 1137,
+     "kfY": 1147
+    }
+   ],
+   "rowKeyframeButtons": [
+    {
+     "trackId": "director-track-character-lead-transform",
+     "label": "上一关键帧",
+     "pressed": null,
+     "disabled": true
+    },
+    {
+     "trackId": "director-track-character-lead-transform",
+     "label": "当前帧有关键帧",
+     "pressed": "true",
+     "disabled": false
+    },
+    {
+     "trackId": "director-track-character-lead-transform",
+     "label": "下一关键帧",
+     "pressed": null,
+     "disabled": false
+    },
+    {
+     "trackId": "director-track-camera-main",
+     "label": "上一关键帧",
+     "pressed": null,
+     "disabled": true
+    },
+    {
+     "trackId": "director-track-camera-main",
+     "label": "当前帧有关键帧",
+     "pressed": "true",
+     "disabled": false
+    },
+    {
+     "trackId": "director-track-camera-main",
+     "label": "下一关键帧",
+     "pressed": null,
+     "disabled": false
+    }
+   ],
+   "picked": {
+    "trackId": "director-track-camera-main",
+    "kind": "camera",
+    "objectId": "director-camera-main",
+    "kfId": "director-keyframe-camera-4",
+    "time": "4",
+    "label": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+    "w": 11,
+    "h": 11,
+    "laneY": 1137,
+    "kfY": 1147
+   },
+   "opened": [
+    "data-director-motion-create-path",
+    "data-director-motion-keyframe-axis",
+    "data-director-motion-keyframe-editor",
+    "data-director-motion-keyframe-field",
+    "data-director-motion-preset-button",
+    "data-director-motion-qr",
+    "data-director-motion-record",
+    "data-director-motion-retry",
+    "data-director-motion-slider",
+    "data-director-motion-slider-value",
+    "data-director-motion-vcam"
+   ],
+   "heading": "关键帧 4.00s",
+   "inputs": [
+    {
+     "field": "position",
+     "axis": "0",
+     "label": "位置 X",
+     "value": "4.1",
+     "step": "0.1"
+    },
+    {
+     "field": "position",
+     "axis": "1",
+     "label": "位置 Y",
+     "value": "2.3",
+     "step": "0.1"
+    },
+    {
+     "field": "position",
+     "axis": "2",
+     "label": "位置 Z",
+     "value": "5.4",
+     "step": "0.1"
+    },
+    {
+     "field": "rotation",
+     "axis": "0",
+     "label": "旋转 X",
+     "value": "0",
+     "step": "1"
+    },
+    {
+     "field": "rotation",
+     "axis": "1",
+     "label": "旋转 Y",
+     "value": "0",
+     "step": "1"
+    },
+    {
+     "field": "rotation",
+     "axis": "2",
+     "label": "旋转 Z",
+     "value": "0",
+     "step": "1"
+    },
+    {
+     "field": "scale",
+     "axis": "0",
+     "label": "缩放 X",
+     "value": "1",
+     "step": "0.1"
+    },
+    {
+     "field": "scale",
+     "axis": "1",
+     "label": "缩放 Y",
+     "value": "1",
+     "step": "0.1"
+    },
+    {
+     "field": "scale",
+     "axis": "2",
+     "label": "缩放 Z",
+     "value": "1",
+     "step": "0.1"
+    }
+   ],
+   "sliders": [
+    {
+     "t": "duration",
+     "label": "时长",
+     "min": "0",
+     "max": "10",
+     "step": "0.01",
+     "value": "4",
+     "w": 180
+    },
+    {
+     "t": "uniform-scale",
+     "label": "统一缩放",
+     "min": "0.1",
+     "max": "10",
+     "step": "0.05",
+     "value": "1",
+     "w": 180
+    }
+   ],
+   "sliderValues": [
+    {
+     "t": "duration",
+     "label": "时长 数值",
+     "value": "4",
+     "step": "0.01"
+    },
+    {
+     "t": "uniform-scale",
+     "label": "统一缩放 数值",
+     "value": "1",
+     "step": "0.05"
+    }
+   ]
+  },
+  "s5_orient": {
+   "afterBuild": [
+    "data-director-motion-path-anchor",
+    "data-director-motion-path-anchor-id",
+    "data-director-motion-path-anchor-selected",
+    "data-director-motion-path-anchor-type",
+    "data-director-motion-path-enabled",
+    "data-director-motion-path-id",
+    "data-director-motion-path-inspector",
+    "data-director-motion-path-locked",
+    "data-director-motion-path-orient",
+    "data-director-motion-path-pivot",
+    "data-director-motion-path-preset",
+    "data-director-motion-path-visible",
+    "data-director-motion-path-world-anchor",
+    "data-director-path-anchor-list",
+    "data-director-path-anchor-option",
+    "data-director-path-name",
+    "data-director-path-reset",
+    "data-director-path-reset-offset",
+    "data-director-path-transform-axis",
+    "data-director-path-transform-field"
+   ],
+   "enableUntouched": {
+    "pressed": "true",
+    "label": "启用曲线",
+    "title": "启用曲线"
+   },
+   "orientBefore": {
+    "pressed": "false",
+    "label": "绑定对象沿路径朝向",
+    "disabled": false
+   },
+   "openedByOrient": [
+    "data-director-motion-path-rotation-hint"
+   ],
+   "genRotationBefore": [
+    {
+     "field": "rotation",
+     "axis": "x",
+     "value": "0",
+     "disabled": false
+    },
+    {
+     "field": "rotation",
+     "axis": "y",
+     "value": "18",
+     "disabled": false
+    },
+    {
+     "field": "rotation",
+     "axis": "z",
+     "value": "0",
+     "disabled": false
+    }
+   ],
+   "genRotationAfter": [
+    {
+     "field": "rotation",
+     "axis": "x",
+     "value": "0",
+     "disabled": false
+    },
+    {
+     "field": "rotation",
+     "axis": "y",
+     "value": "71.03",
+     "disabled": true
+    },
+    {
+     "field": "rotation",
+     "axis": "z",
+     "value": "0",
+     "disabled": false
+    }
+   ],
+   "hintBefore": false,
+   "hintAfter": {
+    "text": "已开启沿路径朝向，Y 轴旋转由运动轨迹控制",
+    "color": "rgb(114, 152, 162)",
+    "fontSize": "10px",
+    "w": 248,
+    "h": 16
+   }
+  },
+  "residue": {
+   "staticThreeFamilies": 52,
+   "before": 2,
+   "after": 28,
+   "opened": 26,
+   "namesBefore": [
+    "data-director-motion-path-count",
+    "data-director-motion-path-layer"
+   ],
+   "namesAfter": [
+    "data-director-motion-create-path",
+    "data-director-motion-keyframe-axis",
+    "data-director-motion-keyframe-editor",
+    "data-director-motion-keyframe-field",
+    "data-director-motion-path-anchor",
+    "data-director-motion-path-anchor-id",
+    "data-director-motion-path-anchor-selected",
+    "data-director-motion-path-anchor-type",
+    "data-director-motion-path-count",
+    "data-director-motion-path-enabled",
+    "data-director-motion-path-handle",
+    "data-director-motion-path-id",
+    "data-director-motion-path-layer",
+    "data-director-motion-path-pivot",
+    "data-director-motion-path-preset",
+    "data-director-motion-path-visible",
+    "data-director-motion-path-world-anchor",
+    "data-director-motion-preset-button",
+    "data-director-motion-qr",
+    "data-director-motion-record",
+    "data-director-motion-retry",
+    "data-director-motion-slider",
+    "data-director-motion-slider-value",
+    "data-director-motion-vcam",
+    "data-director-path-drawing",
+    "data-director-path-drawing-cancel",
+    "data-director-path-drawing-complete",
+    "data-director-path-drawing-tool"
+   ],
+   "stillMissing": [
+    "data-director-curve-editor",
+    "data-director-curve-handle",
+    "data-director-curve-locked",
+    "data-director-curve-preset",
+    "data-director-curve-track-id",
+    "data-director-curve-values",
+    "data-director-motion-path-draw-tool",
+    "data-director-motion-path-free-draw",
+    "data-director-motion-path-inspector",
+    "data-director-motion-path-locked",
+    "data-director-motion-path-menu",
+    "data-director-motion-path-orient",
+    "data-director-motion-path-rotation-hint",
+    "data-director-path-anchor-handle",
+    "data-director-path-anchor-handle-axis",
+    "data-director-path-anchor-list",
+    "data-director-path-anchor-option",
+    "data-director-path-anchor-position",
+    "data-director-path-anchor-type-option",
+    "data-director-path-name",
+    "data-director-path-reset",
+    "data-director-path-reset-offset",
+    "data-director-path-transform-axis",
+    "data-director-path-transform-field"
+   ]
+  }
+ },
+ "checks": [
+  {
+   "label": "C1 静态：三族共 52 种（{'data-director-motion': 31, 'data-director-path': 15, 'data-director-curve': 6}）；`selectTimelineKeyframe` 在时间线里**只有一个**调用点（泳道区菱形）且同时 seek 播头；左侧轨道行的菱形是 add/delete toggle，两者行号不同",
+   "pass": true,
+   "detail": {
+    "familyByPrefix": {
+     "data-director-motion": 31,
+     "data-director-path": 15,
+     "data-director-curve": 6
+    },
+    "keyframe": {
+     "selectCallSitesInTimeline": [
+      1999
+     ],
+     "rowToggleAdd": [
+      1797
+     ],
+     "rowToggleDelete": [
+      1795
+     ],
+     "laneSelect": [
+      1999
+     ],
+     "laneSeek": [
+      2000
+     ],
+     "seedSelectedKeyframeId": [
+      "director-keyframe-character-0"
+     ]
+    }
+   }
+  },
+  {
+   "label": "C2 静态：运动页签的滑块字段与关键帧编辑器**共用一个守卫**`{selectedKeyframe && selectedTransform ? ... : null}`（两者在同一个文件同一段）",
+   "pass": true,
+   "detail": {
+    "keyframeEditorGuard": [
+     232
+    ],
+    "sliderFieldComponent": [
+     71
+    ],
+    "readKeyframeTransform": [
+     53
+    ]
+   }
+  },
+  {
+   "label": "C3 门未开：进运动页签只带出 6 种顶层，**滑块 0 个、关键帧编辑器不存在** ⟹ 滑块与编辑器确实被那一个守卫挡着",
+   "pass": true,
+   "detail": {
+    "opened": [
+     "data-director-motion-create-path",
+     "data-director-motion-preset-button",
+     "data-director-motion-qr",
+     "data-director-motion-record",
+     "data-director-motion-retry",
+     "data-director-motion-vcam"
+    ],
+    "sliders": [],
+    "keyframeEditorPresent": false
+   }
+  },
+  {
+   "label": "C4 路径菜单带出 4 种；选「钢笔路径」后绘制态再带出 4 种（面板有完成键与取消键）",
+   "pass": true,
+   "detail": {
+    "menuOpened": [
+     "data-director-motion-path-draw-tool",
+     "data-director-motion-path-free-draw",
+     "data-director-motion-path-menu",
+     "data-director-motion-path-preset"
+    ],
+    "drawOpened": [
+     "data-director-path-drawing",
+     "data-director-path-drawing-cancel",
+     "data-director-path-drawing-complete",
+     "data-director-path-drawing-tool"
+    ],
+    "draw": {
+     "open": true,
+     "tool": "pen",
+     "buttons": [
+      {
+       "a": "完成钢笔路径",
+       "d": false
+      },
+      {
+       "a": "取消路径绘制",
+       "d": false
+      }
+     ]
+    }
+   }
+  },
+  {
+   "label": "C5 选中锚点带出 2 种（位置字段 + 锚点类型三档 顶点/对称/非对称）；改成「对称」再带出 3 种，手柄字段 in/out 各三轴且**数值严格相反**",
+   "pass": true,
+   "detail": {
+    "afterSelectAnchor": [
+     "data-director-path-anchor-position",
+     "data-director-path-anchor-type-option"
+    ],
+    "afterSymmetric": [
+     "data-director-motion-path-handle",
+     "data-director-path-anchor-handle",
+     "data-director-path-anchor-handle-axis"
+    ],
+    "typeOptions": [
+     {
+      "t": "vertex",
+      "text": "顶点",
+      "pressed": "true",
+      "disabled": false
+     },
+     {
+      "t": "symmetric",
+      "text": "对称",
+      "pressed": "false",
+      "disabled": false
+     },
+     {
+      "t": "asymmetric",
+      "text": "非对称",
+      "pressed": "false",
+      "disabled": false
+     }
+    ],
+    "handleFields": [
+     {
+      "h": "in",
+      "axis": "x",
+      "value": "-0.896"
+     },
+     {
+      "h": "in",
+      "axis": "y",
+      "value": "0"
+     },
+     {
+      "h": "in",
+      "axis": "z",
+      "value": "-0.308"
+     },
+     {
+      "h": "out",
+      "axis": "x",
+      "value": "0.896"
+     },
+     {
+      "h": "out",
+      "axis": "y",
+      "value": "0"
+     },
+     {
+      "h": "out",
+      "axis": "z",
+      "value": "0.308"
+     }
+    ],
+    "symmetricAnchor": {
+     "i": "1",
+     "type": "symmetric",
+     "sel": "true",
+     "handles": [
+      "in",
+      "out"
+     ]
+    }
+   }
+  },
+  {
+   "label": "C6 泳道区关键帧菱形 6 个（camera 轨道 3 个），点**机位**轨道那个 ⟹ 编辑器标题与被点的时刻一致，9 个输入是 3 字段 × 3 轴**平铺在同一个 input 上**（不是容器-子元素）；滑块 2 个：时长 0–10 step 0.01、统一缩放 0.1–10 step 0.05",
+   "pass": true,
+   "detail": {
+    "laneCount": 6,
+    "cameraLanes": 3,
+    "picked": {
+     "trackId": "director-track-camera-main",
+     "kind": "camera",
+     "objectId": "director-camera-main",
+     "kfId": "director-keyframe-camera-4",
+     "time": "4",
+     "label": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "w": 11,
+     "h": 11,
+     "laneY": 1137,
+     "kfY": 1147
+    },
+    "heading": "关键帧 4.00s",
+    "inputs": [
+     {
+      "field": "position",
+      "axis": "0",
+      "label": "位置 X",
+      "value": "4.1",
+      "step": "0.1"
+     },
+     {
+      "field": "position",
+      "axis": "1",
+      "label": "位置 Y",
+      "value": "2.3",
+      "step": "0.1"
+     },
+     {
+      "field": "position",
+      "axis": "2",
+      "label": "位置 Z",
+      "value": "5.4",
+      "step": "0.1"
+     },
+     {
+      "field": "rotation",
+      "axis": "0",
+      "label": "旋转 X",
+      "value": "0",
+      "step": "1"
+     },
+     {
+      "field": "rotation",
+      "axis": "1",
+      "label": "旋转 Y",
+      "value": "0",
+      "step": "1"
+     },
+     {
+      "field": "rotation",
+      "axis": "2",
+      "label": "旋转 Z",
+      "value": "0",
+      "step": "1"
+     },
+     {
+      "field": "scale",
+      "axis": "0",
+      "label": "缩放 X",
+      "value": "1",
+      "step": "0.1"
+     },
+     {
+      "field": "scale",
+      "axis": "1",
+      "label": "缩放 Y",
+      "value": "1",
+      "step": "0.1"
+     },
+     {
+      "field": "scale",
+      "axis": "2",
+      "label": "缩放 Z",
+      "value": "1",
+      "step": "0.1"
+     }
+    ],
+    "sliders": [
+     {
+      "t": "duration",
+      "label": "时长",
+      "min": "0",
+      "max": "10",
+      "step": "0.01",
+      "value": "4",
+      "w": 180
+     },
+     {
+      "t": "uniform-scale",
+      "label": "统一缩放",
+      "min": "0.1",
+      "max": "10",
+      "step": "0.05",
+      "value": "1",
+      "w": 180
+     }
+    ],
+    "rowKeyframeButtons": 6
+   }
+  },
+  {
+   "label": "C7 **曲线默认就是启用的**（我没点它，`aria-pressed` 已是 true，而 label 恒为「启用曲线」不随状态变）；只点朝向 ⟹ 提示出现，**且通用 rotation 的 Y 轴真的 `disabled`、值从一个非零值变成另一个非零值** ⟹ 提示兑现、不是空话",
+   "pass": true,
+   "detail": {
+    "enableUntouched": {
+     "pressed": "true",
+     "label": "启用曲线",
+     "title": "启用曲线"
+    },
+    "orientBefore": {
+     "pressed": "false",
+     "label": "绑定对象沿路径朝向",
+     "disabled": false
+    },
+    "hintAfter": {
+     "text": "已开启沿路径朝向，Y 轴旋转由运动轨迹控制",
+     "color": "rgb(114, 152, 162)",
+     "fontSize": "10px",
+     "w": 248,
+     "h": 16
+    },
+    "genRotationBefore": [
+     {
+      "field": "rotation",
+      "axis": "x",
+      "value": "0",
+      "disabled": false
+     },
+     {
+      "field": "rotation",
+      "axis": "y",
+      "value": "18",
+      "disabled": false
+     },
+     {
+      "field": "rotation",
+      "axis": "z",
+      "value": "0",
+      "disabled": false
+     }
+    ],
+    "genRotationAfter": [
+     {
+      "field": "rotation",
+      "axis": "x",
+      "value": "0",
+      "disabled": false
+     },
+     {
+      "field": "rotation",
+      "axis": "y",
+      "value": "71.03",
+      "disabled": true
+     },
+     {
+      "field": "rotation",
+      "axis": "z",
+      "value": "0",
+      "disabled": false
+     }
+    ],
+    "orientGate": {
+     "pathControlsRotationY": [
+      2170
+     ],
+     "withCondition": [
+      2172
+     ],
+     "orientButton": [],
+     "enableButton": [],
+     "disabledAxesCall": [
+      2493
+     ],
+     "genericAxisAttrs": [
+      179
+     ],
+     "pathAxisAttrs": [
+      873
+     ],
+     "rotationHint": [
+      2505
+     ]
+    }
+   }
+  },
+  {
+   "label": "C8 单次线性走链：静态三族 52 种；走完（选 camera 轨道 → 建 line → 选中锚点 → 改对称 → 开朝向 → 开菜单 → 选钢笔 → 点泳道关键帧 → 进 motion 页签）后剩 24 种。**这个数不是「打不开」，是「一次只能开一个互斥面板」**",
+   "pass": true,
+   "detail": {
+    "before": 2,
+    "after": 28,
+    "opened": 26,
+    "stillMissing": [
+     "data-director-curve-editor",
+     "data-director-curve-handle",
+     "data-director-curve-locked",
+     "data-director-curve-preset",
+     "data-director-curve-track-id",
+     "data-director-curve-values",
+     "data-director-motion-path-draw-tool",
+     "data-director-motion-path-free-draw",
+     "data-director-motion-path-inspector",
+     "data-director-motion-path-locked",
+     "data-director-motion-path-menu",
+     "data-director-motion-path-orient",
+     "data-director-motion-path-rotation-hint",
+     "data-director-path-anchor-handle",
+     "data-director-path-anchor-handle-axis",
+     "data-director-path-anchor-list",
+     "data-director-path-anchor-option",
+     "data-director-path-anchor-position",
+     "data-director-path-anchor-type-option",
+     "data-director-path-name",
+     "data-director-path-reset",
+     "data-director-path-reset-offset",
+     "data-director-path-transform-axis",
+     "data-director-path-transform-field"
+    ]
+   }
+  },
+  {
+   "label": "C9 **跨批并集**：本批各组新增 44 种（组4 的 11 种里 6 种与组1 重叠；`motion-path-orient` 被 `kind === \"transform\"` 挡着、只在组5 的 transform 轨道上出现），与 750 已提交审计里「已在场」的 27 种合并 = 52 种，**正好覆盖静态三族全集 52 种**、未覆盖 0 种",
+   "pass": true,
+   "detail": {
+    "perGroup": {
+     "组1 运动页签": 6,
+     "组2 路径菜单": 4,
+     "组2 绘制态": 4,
+     "组3 选中锚点": 2,
+     "组3 改对称": 3,
+     "组4 关键帧": 11,
+     "组5 朝向": 1,
+     "组5 建路径(transform 轨道)": 20
+    },
+    "unionNew": 44,
+    "prevBatchCovered": 27,
+    "overlapWith750": [
+     "data-director-motion-path-anchor",
+     "data-director-motion-path-anchor-id",
+     "data-director-motion-path-anchor-selected",
+     "data-director-motion-path-anchor-type",
+     "data-director-motion-path-enabled",
+     "data-director-motion-path-id",
+     "data-director-motion-path-inspector",
+     "data-director-motion-path-locked",
+     "data-director-motion-path-pivot",
+     "data-director-motion-path-preset",
+     "data-director-motion-path-visible",
+     "data-director-motion-path-world-anchor",
+     "data-director-path-anchor-list",
+     "data-director-path-anchor-option",
+     "data-director-path-name",
+     "data-director-path-reset",
+     "data-director-path-reset-offset",
+     "data-director-path-transform-axis",
+     "data-director-path-transform-field"
+    ],
+    "covered": 52,
+    "static52": 52,
+    "uncovered": [],
+    "readFrom": "runtime-audit.json"
+   }
+  },
+  {
+   "label": "C10 **一条链装不下三族** —— 路径检查器面板与运动页签 / 曲线编辑器模式**互斥**：单次线性走完之后，750 曾开过的 27 种里有 15 种不在场 ⟹ 「走完还缺 24 种」是互斥面板的假象，不是打不开",
+   "pass": true,
+   "detail": {
+    "s6Present": 28,
+    "lostFromPrevBatch": 15,
+    "sample": [
+     "data-director-curve-editor",
+     "data-director-curve-handle",
+     "data-director-curve-locked",
+     "data-director-curve-preset",
+     "data-director-curve-track-id",
+     "data-director-curve-values",
+     "data-director-motion-path-inspector",
+     "data-director-motion-path-locked"
+    ]
+   }
+  }
+ ],
+ "probeCorrections": [
+  "探针 a：组4 点的是**左侧轨道行**里 aria-label 含「关键帧」的按钮 —— 那是addTimelineKeyframe / deleteTimelineKeyframe 的增删 toggle（DirectorTimeline.tsx:1794-1798），**不选中**。点到就等于把种子里两个关键帧删了。selectTimelineKeyframe 全项目只有一个调用点：泳道区的 `<button data-director-keyframe-id>`（:1999）",
+  "探针 b：组5 我去点「启用曲线」想打开它 —— **它默认就是 true**，我点完反而关掉了。同 745/746：静态断言取值前必须先读一次实际值",
+  "探针 c：关键帧字段读成 9 条但每条 inputs 都是空 —— 我按「容器含子元素」读，而 `data-director-motion-keyframe-field` 与 `-keyframe-axis` 挂在**同一个 input** 上（DirectorCameraMotionTab.tsx:268-269）。**属性是平铺的，不是一棵树**",
+  "探针 c：rotation 三轴 disabled 全 false ⟹ 看着像「提示撒谎」。查源码才发现我查的是`data-director-path-transform-field`（路径检查器专用，:873），带 `disabledAxes` 的是**通用**的 `data-director-transform-field`（:179 / :2493）。同 746/747：**找那个有 X 的元素不能按名字找，先确认它在哪个节点上**",
+  "探针 c：JS 里 `document.querySelector(...)` 那段报 SyntaxError，重写一次就好；同一写法在别处能跑通，没查到底因",
+  "751a 那一版把 `path-reset` 之后的起点当干净，其实 750 已经立过规矩：**一条链路只问一个问题，问之前必须能从 path-count 读到 0**",
+  "**判据自己又错四处**（不是探针、也不是产品）：① C1 写 `len(selectCallSites)==3`（以为把 `useDirectorStore` 的解构也算进去），实际该正则只命中真调用点 1 处 —— **数一个模式有几处命中之前，先确认匹配规则本身**；② C4 把两个中文按钮按语序写成 `[完成, 取消]`，但 `sorted()` 按码位排，「取」U+53D6 < 「完」U+5B8C ⟹ 正确顺序是 `[取消, 完成]`。**拿中文字面量写断言时，先想一遍排序规则**；③ C6 标签只剩一个 `%d` 却传了两个参数，直接 TypeError；④ C9 第一版拿**本批单链**的在场种数当「750 已覆盖」⟹ 算出 36/52。追下去才发现：路径检查器面板与运动页签 / 曲线编辑器模式**互斥**，进运动页签时 `path-anchor-*`/`path-name`/`curve-*` 整块被顶掉。**「走完还缺 N 种」在没有说明面板互斥的前提下是没有意义的读数** —— 741 立的「一个对不上的数字自己就是线索」第三次生效。改法：与 750 已提交的审计产物跨批对账，两批并集正好 52。对账时又抓到一处归属错误：`motion-path-orient` 被 `selectedTrack?.kind === \"transform\"` 挡着（DirectorInspector.tsx:1169），750 那条链走的是 camera 轨道所以它从未在 750 出现过，我第一版只把组5 的「点朝向」那一步算进并集、漏了「建路径」那一步 ⟹ 51/52。**一种属性该记在哪一步，要看它的守卫条件挂在哪个状态上**"
+ ],
+ "notClaimed": [
+  "只验了 1 条 camera 轨道与 1 条角色轨道的 3 个关键帧时刻（种子每条轨道只有 t=0/4/8）；关键帧多的时候编辑器行为未测",
+  "只把锚点改成了「对称」，没验「非对称」下 in/out 手柄是否独立可编辑",
+  "运动页签的「时长」滑杆量程 0–10 仍是 750 之前的存疑项（源站无交互证据），本批未取证",
+  "统一缩放量程 0.1–10 step 0.05 是 Batch 583 定的，本批只复读了显示值没有复跑源站",
+  "朝向开启后 Y 轴旋转值从 18 变 71.03 —— 具体是哪个算法、按什么规则算出来的未追查",
+  "关键帧编辑器的字段提交（autoKeyframe 开/关两态）本批未测",
+  "749 残差里其余族（场景 25 / 全景 9 / 分组 8 / 锁定 / 人群 / 手机 vcam 面板）仍未逐族验证",
+  "C9 的「750 已覆盖 27 种」是**读 750 已提交的审计产物**算出来的（`stillMissing` 取补集），不是本批重跑测出来的；两批的探针版本不同，不构成同一实验下的重复测量",
+  "未与源站导演台做任何对照（源站关着，需点击授权）"
+ ]
+}
