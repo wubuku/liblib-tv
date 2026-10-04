@@ -1,0 +1,75 @@
+{
+  "读数": {
+    "气泡": {
+      "气泡": [
+        {
+          "标签": "SPAN",
+          "id": null,
+          "cls": "pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 whitespace-nowra",
+          "role": "tooltip",
+          "文字": "按 ESC 退出",
+          "box": [
+            721,
+            33,
+            82,
+            24
+          ],
+          "opacity": "0",
+          "visibility": "visible",
+          "pointerEvents": "none",
+          "zIndex": "10",
+          "父": {
+            "标签": "SPAN",
+            "cls": "relative ml-1 inline-flex"
+          }
+        }
+      ],
+      "引用": []
+    },
+    "网格吸附关态HTML": "<button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height: 14px; color: var(--canvas-controls-icon);\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"color: var(--canvas-controls-icon);\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4\"></path></svg></span></button>",
+    "网格吸附开态HTML": "<button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height: 14px; color: var(--canvas-controls-icon);\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"color: var(--canvas-controls-icon);\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4\"></path></svg><svg class=\"absolute inset-0\" width=\"14\" height=\"14\" viewBox=\"0 0 14 14\"><line x1=\"1\" y1=\"1\" x2=\"13\" y2=\"13\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" opacity=\"0.6\"></line></svg></span></button>",
+    "复原": [
+      {
+        "aria": "资产管理",
+        "svg": 1
+      },
+      {
+        "aria": "整理画布，Option+Shift+F",
+        "svg": 1
+      },
+      {
+        "aria": "切换小地图",
+        "svg": 1
+      },
+      {
+        "aria": "隐藏节点连线",
+        "svg": 1
+      },
+      {
+        "aria": "网格吸附",
+        "svg": 1
+      },
+      {
+        "aria": "缩放选项",
+        "svg": 0
+      }
+    ],
+    "找字": []
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "Mantine 气泡枚举：1 个；有 id 的 0 个",
+    "逐个：[\n {\n  \"标签\": \"SPAN\",\n  \"id\": null,\n  \"cls\": \"pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 whitespace-nowra\",\n  \"role\": \"tooltip\",\n  \"文字\": \"按 ESC 退出\",\n  \"box\": [\n   721,\n   33,\n   82,\n   24\n  ],\n  \"opacity\": \"0\",\n  \"visibility\": \"visible\",\n  \"pointerEvents\": \"none\",\n  \"zIndex\": \"10\",\n  \"父\": {\n   \"标签\": \"SPAN\",\n   \"cls\": \"relative ml-1 inline-flex\"\n  }\n }\n]",
+    "⭐ 归属引用链：[]",
+    "网格吸附 outerHTML（关态）：<button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height: 14px; color: var(--canvas-controls-icon);\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"color: var(--canvas-controls-icon);\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4\"></path></svg></span></button>",
+    "点击网格吸附 [222,778]",
+    "网格吸附 outerHTML（开态）：<button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height: 14px; color: var(--canvas-controls-icon);\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"color: var(--canvas-controls-icon);\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4\"></path></svg><svg class=\"absolute inset-0\" width=\"14\" height=\"14\" viewBox=\"0 0 14 14\"><line x1=\"1\" y1=\"1\" x2=\"13\" y2=\"13\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" opacity=\"0.6\"></line></svg></span></button>",
+    "复原底栏：[{\"aria\":\"资产管理\",\"svg\":1},{\"aria\":\"整理画布，Option+Shift+F\",\"svg\":1},{\"aria\":\"切换小地图\",\"svg\":1},{\"aria\":\"隐藏节点连线\",\"svg\":1},{\"aria\":\"网格吸附\",\"svg\":1},{\"aria\":\"缩放选项\",\"svg\":0}]",
+    "含「新功能/真人」的元素：[]",
+    "⭐⭐ 静置 15s 后坐标复核：[]"
+  ],
+  "收尾": {
+    "偏差": [],
+    "已渲染": 11
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "读数": {
+    "候选面板": []
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "节点中心附近点击点：[708,62]",
+    "落点自证：{\"落点\":\"v-v2hlWY4Br3\",\"正确\":true}",
+    "候选面板：[]",
+    "❌ 没找到参数面板"
+  ],
+  "错误": "Error: 没找到参数面板\n    at file:///Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/libtv-canvas/tools/batchEW2.mjs:78:17"
+}

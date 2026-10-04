@@ -1,0 +1,363 @@
+{
+  "读数": {
+    "读": {
+      "找到": true,
+      "泡框": [
+        541,
+        191,
+        114,
+        27
+      ],
+      "卡框": [
+        565,
+        44,
+        285,
+        161
+      ],
+      "泡心": [
+        598,
+        204.5
+      ],
+      "相对卡": [
+        -24,
+        147
+      ],
+      "总数": 104,
+      "最近": [
+        {
+          "深度": 10,
+          "标签": "SPAN",
+          "文字": "角色库",
+          "cls": "",
+          "box": [
+            565,
+            225,
+            66,
+            26
+          ],
+          "宽": 66,
+          "高": 26,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "grab",
+          "position": "static",
+          "子数": 1,
+          "html": "<span class=\"\" aria-describedby=\"_r_80_\"><button type=\"button\" class=\"flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:bg-[var(--color-black-alpha-5)]"
+        },
+        {
+          "深度": 11,
+          "标签": "BUTTON",
+          "文字": "角色库",
+          "cls": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit",
+          "box": [
+            565,
+            225,
+            66,
+            26
+          ],
+          "宽": 66,
+          "高": 26,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 2,
+          "html": "<button type=\"button\" class=\"flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transition-colors cursor-pointer canvas-light:bg-[var(--color-black-alpha-5)] bg-[var(--color-white-alpha-5)] canvas-l"
+        },
+        {
+          "深度": 12,
+          "标签": "SPAN",
+          "文字": "角色库",
+          "cls": "whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral",
+          "box": [
+            587,
+            229,
+            36,
+            18
+          ],
+          "宽": 36,
+          "高": 18,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 0,
+          "html": "<span class=\"whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral-700\">角色库</span>"
+        },
+        {
+          "深度": 8,
+          "标签": "BUTTON",
+          "文字": "首帧生成视频",
+          "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center",
+          "box": [
+            577,
+            159,
+            60,
+            17
+          ],
+          "宽": 60,
+          "高": 17,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 2,
+          "html": "<button type=\"button\" class=\"group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:"
+        },
+        {
+          "深度": 12,
+          "标签": "svg",
+          "文字": "",
+          "cls": "[object SVGAnimatedString]",
+          "box": [
+            573,
+            232,
+            12,
+            12
+          ],
+          "宽": 12,
+          "高": 12,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 1,
+          "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv text-fg-muted canvas-light:text-neutral-700\" width=\"12\" height=\"12\" viewBox=\""
+        },
+        {
+          "深度": 9,
+          "标签": "SPAN",
+          "文字": "首帧生成视频",
+          "cls": "",
+          "box": [
+            592,
+            163,
+            39,
+            9
+          ],
+          "宽": 39,
+          "高": 9,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 0,
+          "html": "<span>首帧生成视频</span>"
+        },
+        {
+          "深度": 9,
+          "标签": "svg",
+          "文字": "",
+          "cls": "[object SVGAnimatedString]",
+          "box": [
+            582,
+            164,
+            6,
+            6
+          ],
+          "宽": 6,
+          "高": 6,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 1,
+          "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 22 22\"><path d=\"M11"
+        },
+        {
+          "深度": 10,
+          "标签": "path",
+          "文字": "",
+          "cls": "[object SVGAnimatedString]",
+          "box": [
+            582,
+            164,
+            6,
+            6
+          ],
+          "宽": 6,
+          "高": 6,
+          "display": "inline",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 0,
+          "html": "<path d=\"M11.58 0c0 5.76 4.66 10.42 10.42 10.42v1.16A10.4 10.4 0 0 0 11.58 22h-1.16l-.01-.54A10.4 10.4 0 0 0 0 11.58v-1.16c5.76 0 10.42-4.66 10.42-10.42z\" fill=\"currentColor\"></path>"
+        },
+        {
+          "深度": 8,
+          "标签": "BUTTON",
+          "文字": "首尾帧生成视频",
+          "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center",
+          "box": [
+            577,
+            141,
+            66,
+            17
+          ],
+          "宽": 66,
+          "高": 17,
+          "display": "flex",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 2,
+          "html": "<button type=\"button\" class=\"group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:"
+        },
+        {
+          "深度": 10,
+          "标签": "path",
+          "文字": "",
+          "cls": "[object SVGAnimatedString]",
+          "box": [
+            583,
+            146,
+            6,
+            6
+          ],
+          "宽": 6,
+          "高": 6,
+          "display": "inline",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 0,
+          "html": "<path d=\"M19.49 15c.75.43.75 1.51 0 1.94l-8.36 4.77c-.68.39-1.52.39-2.21 0L.56 16.94a1.12 1.12 0 0 1 0-1.94l.82-.47 7.54 4.3c.69.4 1.53.4 2.21 0l7.54-4.3zm0-5.12c.75.43.75 1.5 0 1.94l-8.36 4.76c-.68.4-1.52.4-2.21 0L.56 1"
+        },
+        {
+          "深度": 9,
+          "标签": "svg",
+          "文字": "",
+          "cls": "[object SVGAnimatedString]",
+          "box": [
+            582,
+            146,
+            6,
+            6
+          ],
+          "宽": 6,
+          "高": 6,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 1,
+          "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 20.05 22\"><path d=\""
+        },
+        {
+          "深度": 9,
+          "标签": "SPAN",
+          "文字": "首尾帧生成视频",
+          "cls": "",
+          "box": [
+            592,
+            145,
+            45,
+            9
+          ],
+          "宽": 45,
+          "高": 9,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 0,
+          "html": "<span>首尾帧生成视频</span>"
+        },
+        {
+          "深度": 12,
+          "标签": "svg",
+          "文字": "",
+          "cls": "[object SVGAnimatedString]",
+          "box": [
+            643,
+            232,
+            12,
+            12
+          ],
+          "宽": 12,
+          "高": 12,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 1,
+          "html": "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv text-fg-muted canvas-light:text-neutral-700\" width=\"12\" height=\"12\" viewBox=\""
+        },
+        {
+          "深度": 12,
+          "标签": "SPAN",
+          "文字": "特效",
+          "cls": "whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral",
+          "box": [
+            529,
+            229,
+            24,
+            18
+          ],
+          "宽": 24,
+          "高": 18,
+          "display": "block",
+          "visibility": "visible",
+          "opacity": "1",
+          "光标": "pointer",
+          "position": "static",
+          "子数": 0,
+          "html": "<span class=\"whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral-700\">特效</span>"
+        }
+      ]
+    }
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "⭐ 气泡框 [541,191,114,27]　卡框 [565,44,285,161]　相对卡 [-24,147]",
+    "卡内后代共 104 个（含 0 尺寸）。离气泡最近的 14 个：",
+    "  深度10 SPAN [565,225,66,26] 66×26 文字\"角色库\" 光标grab displayblock",
+    "      cls=",
+    "  深度11 BUTTON [565,225,66,26] 66×26 文字\"角色库\" 光标pointer displayflex",
+    "      cls=flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit",
+    "  深度12 SPAN [587,229,36,18] 36×18 文字\"角色库\" 光标pointer displayblock",
+    "      cls=whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral",
+    "  深度8 BUTTON [577,159,60,17] 60×17 文字\"首帧生成视频\" 光标pointer displayflex",
+    "      cls=group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center",
+    "  深度12 svg [573,232,12,12] 12×12 文字\"\" 光标pointer displayblock",
+    "      cls=[object SVGAnimatedString]",
+    "  深度9 SPAN [592,163,39,9] 39×9 文字\"首帧生成视频\" 光标pointer displayblock",
+    "      cls=",
+    "  深度9 svg [582,164,6,6] 6×6 文字\"\" 光标pointer displayblock",
+    "      cls=[object SVGAnimatedString]",
+    "  深度10 path [582,164,6,6] 6×6 文字\"\" 光标pointer displayinline",
+    "      cls=[object SVGAnimatedString]",
+    "  深度8 BUTTON [577,141,66,17] 66×17 文字\"首尾帧生成视频\" 光标pointer displayflex",
+    "      cls=group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center",
+    "  深度10 path [583,146,6,6] 6×6 文字\"\" 光标pointer displayinline",
+    "      cls=[object SVGAnimatedString]",
+    "  深度9 svg [582,146,6,6] 6×6 文字\"\" 光标pointer displayblock",
+    "      cls=[object SVGAnimatedString]",
+    "  深度9 SPAN [592,145,45,9] 45×9 文字\"首尾帧生成视频\" 光标pointer displayblock",
+    "      cls=",
+    "  深度12 svg [643,232,12,12] 12×12 文字\"\" 光标pointer displayblock",
+    "      cls=[object SVGAnimatedString]",
+    "  深度12 SPAN [529,229,24,18] 24×18 文字\"特效\" 光标pointer displayblock",
+    "      cls=whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral",
+    "已拍 ew8-卡片与气泡.png",
+    "⭐⭐ 静置 15s 后坐标复核：[]"
+  ],
+  "收尾": {
+    "偏差": [],
+    "已渲染": 11
+  }
+}
