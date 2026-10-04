@@ -1,0 +1,922 @@
+{
+ "batch": 750,
+ "title": "运动/路径/曲线三族：把 749 只从源码推断的残差打开",
+ "verdict": "13/13",
+ "twoRoundsIdentical": true,
+ "static": {
+  "unionTotal": 447,
+  "familyNames": [
+   "data-director-curve-editor",
+   "data-director-curve-handle",
+   "data-director-curve-locked",
+   "data-director-curve-preset",
+   "data-director-curve-track-id",
+   "data-director-curve-values",
+   "data-director-motion-create-path",
+   "data-director-motion-keyframe-axis",
+   "data-director-motion-keyframe-editor",
+   "data-director-motion-keyframe-field",
+   "data-director-motion-path-anchor",
+   "data-director-motion-path-anchor-id",
+   "data-director-motion-path-anchor-selected",
+   "data-director-motion-path-anchor-type",
+   "data-director-motion-path-count",
+   "data-director-motion-path-draw-tool",
+   "data-director-motion-path-enabled",
+   "data-director-motion-path-free-draw",
+   "data-director-motion-path-handle",
+   "data-director-motion-path-id",
+   "data-director-motion-path-inspector",
+   "data-director-motion-path-layer",
+   "data-director-motion-path-locked",
+   "data-director-motion-path-menu",
+   "data-director-motion-path-orient",
+   "data-director-motion-path-pivot",
+   "data-director-motion-path-preset",
+   "data-director-motion-path-rotation-hint",
+   "data-director-motion-path-visible",
+   "data-director-motion-path-world-anchor",
+   "data-director-motion-preset-button",
+   "data-director-motion-qr",
+   "data-director-motion-record",
+   "data-director-motion-retry",
+   "data-director-motion-slider",
+   "data-director-motion-slider-value",
+   "data-director-motion-vcam",
+   "data-director-path-anchor-handle",
+   "data-director-path-anchor-handle-axis",
+   "data-director-path-anchor-list",
+   "data-director-path-anchor-option",
+   "data-director-path-anchor-position",
+   "data-director-path-anchor-type-option",
+   "data-director-path-drawing",
+   "data-director-path-drawing-cancel",
+   "data-director-path-drawing-complete",
+   "data-director-path-drawing-tool",
+   "data-director-path-name",
+   "data-director-path-reset",
+   "data-director-path-reset-offset",
+   "data-director-path-transform-axis",
+   "data-director-path-transform-field"
+  ],
+  "familyCount": 52,
+  "familyByPrefix": {
+   "data-director-motion": 31,
+   "data-director-path": 15,
+   "data-director-curve": 6
+  },
+  "declAndImpl": {
+   "createMotionPath": [
+    733,
+    7703
+   ],
+   "startMotionPathDrawing": 1533,
+   "appendDraftAnchor": 1686,
+   "finishOnPointerUp": 1708,
+   "undoDirectorDecl": 577,
+   "undoDirectorImpl": 3742,
+   "redoDirectorImpl": 3815,
+   "deskHotkeyZ": 506,
+   "deskHotkeyY": 512,
+   "canvasHotkeyZ": 1342,
+   "historyWordsInStore": 0
+  },
+  "entryLines": {
+   "createMotionPathTrigger": 1108,
+   "drawTrail": 1677,
+   "curveEditorOpen": 1138,
+   "trackLabelRoleButton": 1711,
+   "pathResetIsReset": 1096,
+   "motionPresetButton": 310,
+   "motionCreatePathButton": 321
+  },
+  "deadButtonHasNoOnClick": true
+ },
+ "run": {
+  "cameraTabs": [
+   {
+    "v": "properties",
+    "t": "属性"
+   },
+   {
+    "v": "motion",
+    "t": "运动轨迹NEW"
+   },
+   {
+    "v": "captures",
+    "t": "截图"
+   }
+  ],
+  "motionTab": {
+   "vcam": {
+    "n": 1
+   },
+   "qr": {
+    "n": 1
+   },
+   "record": {
+    "n": 1
+   },
+   "retry": {
+    "n": 1
+   },
+   "presetButton": {
+    "n": 1
+   },
+   "createPath": {
+    "n": 1
+   }
+  },
+  "deadButtons": {
+   "presetOnClick": false,
+   "createOnClick": false,
+   "qrOnClick": true,
+   "recordOnClick": true,
+   "retryOnClick": true,
+   "attrsAdded": [],
+   "attrsRemoved": [],
+   "pathCountAfterClicks": "0",
+   "deadDiff": 4,
+   "orbitDiff": 860114,
+   "orbitPct": 45.37615,
+   "pathRenderDiff": 98084,
+   "threshold": 1895,
+   "rulerWorks": true,
+   "noChange": true
+  },
+  "trackSelection": {
+   "outerClickNoop": true,
+   "innerSelectsCamera": true,
+   "outerHasDataMarker": false,
+   "innerTitle": "机位01 · 对峙中景 · 机位",
+   "beforeSel": {
+    "director-track-character-lead-transform": "true",
+    "director-track-camera-main": "false"
+   },
+   "afterOuter": {
+    "director-track-character-lead-transform": "true",
+    "director-track-camera-main": "false"
+   },
+   "afterInner": {
+    "director-track-character-lead-transform": "false",
+    "director-track-camera-main": "true"
+   }
+  },
+  "pathMenu": {
+   "open": true,
+   "width": 176,
+   "height": 204,
+   "text": "自由绘制铅笔路径钢笔路径直线路径圆环路径矩形路径",
+   "tools": [
+    "pencil",
+    "pen"
+   ],
+   "presets": [
+    "line",
+    "ring",
+    "rectangle"
+   ],
+   "allEnabled": true,
+   "buttonCount": 5
+  },
+  "createPath": {
+   "pathCountBefore": "0",
+   "familyOpened": [
+    "data-director-motion-path-anchor",
+    "data-director-motion-path-anchor-id",
+    "data-director-motion-path-anchor-selected",
+    "data-director-motion-path-anchor-type",
+    "data-director-motion-path-enabled",
+    "data-director-motion-path-id",
+    "data-director-motion-path-inspector",
+    "data-director-motion-path-locked",
+    "data-director-motion-path-pivot",
+    "data-director-motion-path-visible",
+    "data-director-motion-path-world-anchor",
+    "data-director-path-anchor-list",
+    "data-director-path-anchor-option",
+    "data-director-path-name",
+    "data-director-path-reset",
+    "data-director-path-reset-offset",
+    "data-director-path-transform-axis",
+    "data-director-path-transform-field"
+   ],
+   "pathCountAfter": "1",
+   "layerBox": {
+    "w": 1,
+    "h": 1
+   },
+   "pathId": "director-motion-path-director-camera-main-1791090294224",
+   "pathName": "机位自动帧轨迹",
+   "pathPreset": "line",
+   "pathVisible": "true",
+   "anchorCount": 2,
+   "anchorBoxWidth": 0
+  },
+  "drawTrail": {
+   "width": 86,
+   "height": 24,
+   "ariaLabel": "绘制轨迹",
+   "ariaPressedBefore": "false",
+   "menuOpened": true,
+   "trackSelected": "director-track-camera-main"
+  },
+  "pencilDrag": {
+   "gesture": "drag",
+   "moves": 8,
+   "panelOnOpen": true,
+   "panelOpenDuringDrag": true,
+   "openDuring": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "panelAfterUp": false,
+   "count": "1",
+   "anchorCount": 9,
+   "pathName": "铅笔路径1",
+   "pathPreset": "pencil"
+  },
+  "penClick": {
+   "gesture": "click",
+   "clicks": 3,
+   "panelOnOpen": true,
+   "openAfterEachClick": [
+    true,
+    true,
+    true
+   ],
+   "panelStillOpenAfterClicks": true,
+   "buttons": [
+    "完成钢笔路径",
+    "取消路径绘制"
+   ],
+   "countDuringDraft": "0",
+   "countAfterComplete": "1",
+   "anchorCount": 3,
+   "pathName": "钢笔路径1",
+   "pathPreset": "pen"
+  },
+  "resetSemantics": {
+   "countBefore": "1",
+   "countAfterReset": "1",
+   "anchorCountBefore": 2,
+   "anchorCountAfterReset": 2
+  },
+  "residue": {
+   "familyBefore": 2,
+   "familyAfter": 27,
+   "opened": 25,
+   "stillMissing": [
+    "data-director-motion-create-path",
+    "data-director-motion-keyframe-axis",
+    "data-director-motion-keyframe-editor",
+    "data-director-motion-keyframe-field",
+    "data-director-motion-path-draw-tool",
+    "data-director-motion-path-free-draw",
+    "data-director-motion-path-handle",
+    "data-director-motion-path-menu",
+    "data-director-motion-path-orient",
+    "data-director-motion-path-rotation-hint",
+    "data-director-motion-preset-button",
+    "data-director-motion-qr",
+    "data-director-motion-record",
+    "data-director-motion-retry",
+    "data-director-motion-slider",
+    "data-director-motion-slider-value",
+    "data-director-motion-vcam",
+    "data-director-path-anchor-handle",
+    "data-director-path-anchor-handle-axis",
+    "data-director-path-anchor-position",
+    "data-director-path-anchor-type-option",
+    "data-director-path-drawing",
+    "data-director-path-drawing-cancel",
+    "data-director-path-drawing-complete",
+    "data-director-path-drawing-tool"
+   ],
+   "undoButtons": 0,
+   "redoButtons": 0,
+   "undoTextCount": 0,
+   "namesBefore": [
+    "data-director-motion-path-count",
+    "data-director-motion-path-layer"
+   ],
+   "namesAfter": [
+    "data-director-curve-editor",
+    "data-director-curve-handle",
+    "data-director-curve-locked",
+    "data-director-curve-preset",
+    "data-director-curve-track-id",
+    "data-director-curve-values",
+    "data-director-motion-path-anchor",
+    "data-director-motion-path-anchor-id",
+    "data-director-motion-path-anchor-selected",
+    "data-director-motion-path-anchor-type",
+    "data-director-motion-path-count",
+    "data-director-motion-path-enabled",
+    "data-director-motion-path-id",
+    "data-director-motion-path-inspector",
+    "data-director-motion-path-layer",
+    "data-director-motion-path-locked",
+    "data-director-motion-path-pivot",
+    "data-director-motion-path-preset",
+    "data-director-motion-path-visible",
+    "data-director-motion-path-world-anchor",
+    "data-director-path-anchor-list",
+    "data-director-path-anchor-option",
+    "data-director-path-name",
+    "data-director-path-reset",
+    "data-director-path-reset-offset",
+    "data-director-path-transform-axis",
+    "data-director-path-transform-field"
+   ]
+  },
+  "curveEditor": {
+   "modeBefore": "timeline",
+   "familyOpened": [
+    "data-director-curve-editor",
+    "data-director-curve-handle",
+    "data-director-curve-locked",
+    "data-director-curve-preset",
+    "data-director-curve-track-id",
+    "data-director-curve-values"
+   ],
+   "modeAfter": "curve",
+   "editorModeAttr": "curve",
+   "hasBackButton": true,
+   "backButtonLabel": "返回时间线"
+  },
+  "keyboard": {
+   "focused": true,
+   "isDivRoleButton": true,
+   "tabIndex": "0",
+   "title": "机位01 · 对峙中景 · 机位",
+   "hasOnKeyDown": false,
+   "hasOnClick": true,
+   "selectedBefore": {
+    "director-track-character-lead-transform": "true",
+    "director-track-camera-main": "false"
+   },
+   "selectedAfterEnter": {
+    "director-track-character-lead-transform": "true",
+    "director-track-camera-main": "false"
+   },
+   "selectedAfterSpace": {
+    "director-track-character-lead-transform": "true",
+    "director-track-camera-main": "false"
+   }
+  },
+  "undoRedo": {
+   "A_control_noKey": {
+    "keys": [],
+    "counts": [
+     "1"
+    ],
+    "names": [
+     [
+      "机位自动帧轨迹"
+     ]
+    ],
+    "anchors": [
+     [
+      2
+     ]
+    ]
+   },
+   "B_cmdZ": {
+    "keys": [
+     "Meta+z"
+    ],
+    "counts": [
+     "1",
+     "0"
+    ],
+    "names": [
+     [
+      "机位自动帧轨迹"
+     ],
+     []
+    ],
+    "anchors": [
+     [
+      2
+     ],
+     []
+    ]
+   },
+   "C_cmdShiftZ": {
+    "keys": [
+     "Meta+Shift+z"
+    ],
+    "counts": [
+     "1",
+     "1"
+    ],
+    "names": [
+     [
+      "机位自动帧轨迹"
+     ],
+     [
+      "机位自动帧轨迹"
+     ]
+    ],
+    "anchors": [
+     [
+      2
+     ],
+     [
+      2
+     ]
+    ]
+   },
+   "D_cmdZ_then_cmdShiftZ": {
+    "keys": [
+     "Meta+z",
+     "Meta+Shift+z"
+    ],
+    "counts": [
+     "1",
+     "0",
+     "1"
+    ],
+    "names": [
+     [
+      "机位自动帧轨迹"
+     ],
+     [],
+     [
+      "机位自动帧轨迹"
+     ]
+    ],
+    "anchors": [
+     [
+      2
+     ],
+     [],
+     [
+      2
+     ]
+    ]
+   },
+   "E_cmdY": {
+    "keys": [
+     "Meta+y"
+    ],
+    "counts": [
+     "1",
+     "1"
+    ],
+    "names": [
+     [
+      "机位自动帧轨迹"
+     ],
+     [
+      "机位自动帧轨迹"
+     ]
+    ],
+    "anchors": [
+     [
+      2
+     ],
+     [
+      2
+     ]
+    ]
+   },
+   "F_cmdZ_twice": {
+    "keys": [
+     "Meta+z",
+     "Meta+z"
+    ],
+    "counts": [
+     "1",
+     "0",
+     "0"
+    ],
+    "names": [
+     [
+      "机位自动帧轨迹"
+     ],
+     [],
+     []
+    ],
+    "anchors": [
+     [
+      2
+     ],
+     [],
+     []
+    ]
+   }
+  },
+  "undoRedoUi": {
+   "totalNodes": 151,
+   "hits": [],
+   "undoAttr": 0
+  },
+  "staticUnionOfThreeFamilies": [
+   "data-director-curve-editor",
+   "data-director-curve-handle",
+   "data-director-curve-locked",
+   "data-director-curve-preset",
+   "data-director-curve-track-id",
+   "data-director-curve-values",
+   "data-director-motion-create-path",
+   "data-director-motion-keyframe-axis",
+   "data-director-motion-keyframe-editor",
+   "data-director-motion-keyframe-field",
+   "data-director-motion-path-anchor",
+   "data-director-motion-path-anchor-id",
+   "data-director-motion-path-anchor-selected",
+   "data-director-motion-path-anchor-type",
+   "data-director-motion-path-count",
+   "data-director-motion-path-draw-tool",
+   "data-director-motion-path-enabled",
+   "data-director-motion-path-free-draw",
+   "data-director-motion-path-handle",
+   "data-director-motion-path-id",
+   "data-director-motion-path-inspector",
+   "data-director-motion-path-layer",
+   "data-director-motion-path-locked",
+   "data-director-motion-path-menu",
+   "data-director-motion-path-orient",
+   "data-director-motion-path-pivot",
+   "data-director-motion-path-preset",
+   "data-director-motion-path-rotation-hint",
+   "data-director-motion-path-visible",
+   "data-director-motion-path-world-anchor",
+   "data-director-motion-preset-button",
+   "data-director-motion-qr",
+   "data-director-motion-record",
+   "data-director-motion-retry",
+   "data-director-motion-slider",
+   "data-director-motion-slider-value",
+   "data-director-motion-vcam",
+   "data-director-path-anchor-handle",
+   "data-director-path-anchor-handle-axis",
+   "data-director-path-anchor-list",
+   "data-director-path-anchor-option",
+   "data-director-path-anchor-position",
+   "data-director-path-anchor-type-option",
+   "data-director-path-drawing",
+   "data-director-path-drawing-cancel",
+   "data-director-path-drawing-complete",
+   "data-director-path-drawing-tool",
+   "data-director-path-name",
+   "data-director-path-reset",
+   "data-director-path-reset-offset",
+   "data-director-path-transform-axis",
+   "data-director-path-transform-field"
+  ]
+ },
+ "checks": [
+  {
+   "label": "C1 静态：运动/路径/曲线三族共 52 种；createMotionPath 声明与实现各一处；entryLines 全部可定位；两个 motion 按钮源码里无 onClick",
+   "pass": true,
+   "detail": {
+    "familyByPrefix": {
+     "data-director-motion": 31,
+     "data-director-path": 15,
+     "data-director-curve": 6
+    },
+    "entryLines": {
+     "createMotionPathTrigger": 1108,
+     "drawTrail": 1677,
+     "curveEditorOpen": 1138,
+     "trackLabelRoleButton": 1711,
+     "pathResetIsReset": 1096,
+     "motionPresetButton": 310,
+     "motionCreatePathButton": 321
+    },
+    "declAndImpl": {
+     "createMotionPath": [
+      733,
+      7703
+     ],
+     "startMotionPathDrawing": 1533,
+     "appendDraftAnchor": 1686,
+     "finishOnPointerUp": 1708,
+     "undoDirectorDecl": 577,
+     "undoDirectorImpl": 3742,
+     "redoDirectorImpl": 3815,
+     "deskHotkeyZ": 506,
+     "deskHotkeyY": 512,
+     "canvasHotkeyZ": 1342,
+     "historyWordsInStore": 0
+    }
+   }
+  },
+  {
+   "label": "C1b **本批自我推翻**：我先 grep `pushHistory|undoStack|redoStack` 在 directorStore 找到 0 处，就写下「导演台没有历史栈」——查错了标识符族。真实名字是 undoDirector/redoDirector（声明与实现**行号不同**：接口是 `() => DirectorCommandResult;`、实现是 `() => {`），快捷键挂在 DirectorDesk 的 window keydown 上；store 里那三个错词确实 0 处",
+   "pass": true,
+   "detail": {
+    "historyWordsInStore": 0,
+    "undoDirectorDecl": 577,
+    "undoDirectorImpl": 3742,
+    "redoDirectorImpl": 3815,
+    "deskHotkeyZ": 506,
+    "deskHotkeyY": 512,
+    "canvasHotkeyZ": 1342
+   }
+  },
+  {
+   "label": "C2 门=选中机位→相机页签 motion：顶层 6 种（vcam/qr/record/retry/preset-button/create-path）同时出现；相机页签三值是 属性/运动轨迹NEW/截图",
+   "pass": true,
+   "detail": {
+    "motionTab": {
+     "vcam": 1,
+     "qr": 1,
+     "record": 1,
+     "retry": 1,
+     "presetButton": 1,
+     "createPath": 1
+    },
+    "cameraTabs": [
+     {
+      "v": "properties",
+      "t": "属性"
+     },
+     {
+      "v": "motion",
+      "t": "运动轨迹NEW"
+     },
+     {
+      "v": "captures",
+      "t": "截图"
+     }
+    ]
+   }
+  },
+  {
+   "label": "C3 两个 motion 按钮的 React props 无 onClick（另三个有）；点完 0 属性增/0 属性减、path-count 仍 0；像素尺本身有效（拖动视口旋转的 diff > 视口 10%），而死按钮点击的 diff 落在 0.1% 噪声门内",
+   "pass": true,
+   "detail": {
+    "presetOnClick": false,
+    "createOnClick": false,
+    "qrOnClick": true,
+    "recordOnClick": true,
+    "retryOnClick": true,
+    "attrsAdded": [],
+    "attrsRemoved": [],
+    "pathCountAfterClicks": "0",
+    "deadDiff": 4,
+    "orbitPct": 45.37615,
+    "threshold": 1895,
+    "rulerWorks": true,
+    "noChange": true
+   }
+  },
+  {
+   "label": "C4 路径菜单 176×204：自由绘制 2 工具(pencil/pen) + 3 预设(line/ring/rectangle) 全 enabled；`data-director-track-draw-trail` 86×24 一次点击即「选中该轨道 + 开菜单」",
+   "pass": true,
+   "detail": {
+    "menu": {
+     "width": 176,
+     "height": 204,
+     "tools": [
+      "pencil",
+      "pen"
+     ],
+     "presets": [
+      "line",
+      "ring",
+      "rectangle"
+     ],
+     "allEnabled": true,
+     "text": "自由绘制铅笔路径钢笔路径直线路径圆环路径矩形路径"
+    },
+    "drawTrail": {
+     "width": 86,
+     "height": 24,
+     "ariaLabel": "绘制轨迹",
+     "ariaPressedBefore": "false",
+     "menuOpened": true,
+     "trackSelected": "director-track-camera-main"
+    }
+   }
+  },
+  {
+   "label": "C5 轨道行外壳无 onClick；可点目标是行内**没有 data-*** 的 role=button(tabIndex=0)；点它才真的换选中轨道（外壳点不动）",
+   "pass": true,
+   "detail": {
+    "outerClickNoop": true,
+    "innerSelectsCamera": true,
+    "outerHasDataMarker": false,
+    "innerTitle": "机位01 · 对峙中景 · 机位",
+    "beforeSel": {
+     "director-track-character-lead-transform": "true",
+     "director-track-camera-main": "false"
+    },
+    "afterOuter": {
+     "director-track-character-lead-transform": "true",
+     "director-track-camera-main": "false"
+    },
+    "afterInner": {
+     "director-track-character-lead-transform": "false",
+     "director-track-camera-main": "true"
+    }
+   }
+  },
+  {
+   "label": "C6 选中 camera 轨道建 line ⟹ 路径 id 含 director-camera-main、名字「机位自动帧轨迹」、2 个锚点；sr-only 层 count 0→1 且盒子 1×1，锚点盒子 0 宽",
+   "pass": true,
+   "detail": {
+    "pathCountBefore": "0",
+    "pathCountAfter": "1",
+    "pathId": "director-motion-path-director-camera-main-1791090294224",
+    "pathName": "机位自动帧轨迹",
+    "anchorCount": 2,
+    "layerBox": {
+     "w": 1,
+     "h": 1
+    },
+    "anchorBoxWidth": 0,
+    "familyOpened": [
+     "data-director-motion-path-anchor",
+     "data-director-motion-path-anchor-id",
+     "data-director-motion-path-anchor-selected",
+     "data-director-motion-path-anchor-type",
+     "data-director-motion-path-enabled",
+     "data-director-motion-path-id",
+     "data-director-motion-path-inspector",
+     "data-director-motion-path-locked",
+     "data-director-motion-path-pivot",
+     "data-director-motion-path-visible",
+     "data-director-motion-path-world-anchor",
+     "data-director-path-anchor-list",
+     "data-director-path-anchor-option",
+     "data-director-path-name",
+     "data-director-path-reset",
+     "data-director-path-reset-offset",
+     "data-director-path-transform-axis",
+     "data-director-path-transform-field"
+    ]
+   }
+  },
+  {
+   "label": "C7 铅笔=拖拽：pointerdown 播种 + 8 次 move 追加 + pointerup 立刻完成 ⟹ 9 锚点「铅笔路径1」；钢笔=逐点点击：3 次点击后面板仍在，点「完成钢笔路径」才落地 3 锚点",
+   "pass": true,
+   "detail": {
+    "pencil": {
+     "gesture": "drag",
+     "anchorCount": 9,
+     "pathName": "铅笔路径1",
+     "panelOpenDuringDrag": true,
+     "pathPreset": "pencil"
+    },
+    "pen": {
+     "gesture": "click",
+     "countDuringDraft": "0",
+     "anchorCount": 3,
+     "panelStillOpenAfterClicks": true,
+     "pathName": "钢笔路径1"
+    }
+   }
+  },
+  {
+   "label": "C8 `data-director-path-reset` 走的是 resetMotionPath（重置锚点）不是删除 ⟹ 点完 path-count 与锚点数都不变",
+   "pass": true,
+   "detail": {
+    "countBefore": "1",
+    "countAfterReset": "1",
+    "anchorCountBefore": 2,
+    "anchorCountAfterReset": 2,
+    "resetHandlerLine": 1096
+   }
+  },
+  {
+   "label": "C9 曲线编辑器是**另一个 editorMode**：入口 data-director-open-curve-editor ⟹ timeline-mode timeline→curve ⟹ 曲线族 6 种齐现，且有「返回时间线」按钮",
+   "pass": true,
+   "detail": {
+    "modeBefore": "timeline",
+    "modeAfter": "curve",
+    "editorModeAttr": "curve",
+    "familyOpened": [
+     "data-director-curve-editor",
+     "data-director-curve-handle",
+     "data-director-curve-locked",
+     "data-director-curve-preset",
+     "data-director-curve-track-id",
+     "data-director-curve-values"
+    ],
+    "hasBackButton": true,
+    "backButtonLabel": "返回时间线"
+   }
+  },
+  {
+   "label": "C10 轨道名那个 role=button **可聚焦**（activeElement 就是它）但 Enter 与 Space 都不改选中态 ⟹ 焦点能停在这、键盘却用不了",
+   "pass": true,
+   "detail": {
+    "focused": true,
+    "isDivRoleButton": true,
+    "tabIndex": "0",
+    "title": "机位01 · 对峙中景 · 机位",
+    "selectedBefore": {
+     "director-track-character-lead-transform": "true",
+     "director-track-camera-main": "false"
+    },
+    "selectedAfterEnter": {
+     "director-track-character-lead-transform": "true",
+     "director-track-camera-main": "false"
+    },
+    "selectedAfterSpace": {
+     "director-track-character-lead-transform": "true",
+     "director-track-camera-main": "false"
+    },
+    "hasOnKeyDown": false
+   }
+  },
+  {
+   "label": "C11 三族残差：起点 N 种 ⟹ 走完整条链（选 camera 轨道 → 建 line → 开曲线编辑器）后 M 种，本批打开 O 种 = M−N；静态三族共 P 种，仍缺 Q 种",
+   "pass": true,
+   "detail": {
+    "familyBefore": 2,
+    "familyAfter": 27,
+    "opened": 25,
+    "staticFamilyCount": 52,
+    "stillMissingCount": 25
+   }
+  },
+  {
+   "label": "C12 导演台撤销/重做**功能完整但只有键盘**：Cmd+Z 1→0、Cmd+Shift+Z 0→1 往返可复原（名字与锚点数逐项相同）、重做栈空时 Cmd+Shift+Z / Cmd+Y 无操作、连按两次 Cmd+Z 第二次无操作；但 151 个可交互节点里 **0 个** 是撤销/重做入口（文本/title/aria-label/属性全 0）",
+   "pass": true,
+   "detail": {
+    "counts": {
+     "A_control_noKey": [
+      "1"
+     ],
+     "B_cmdZ": [
+      "1",
+      "0"
+     ],
+     "C_cmdShiftZ": [
+      "1",
+      "1"
+     ],
+     "D_cmdZ_then_cmdShiftZ": [
+      "1",
+      "0",
+      "1"
+     ],
+     "E_cmdY": [
+      "1",
+      "1"
+     ],
+     "F_cmdZ_twice": [
+      "1",
+      "0",
+      "0"
+     ]
+    },
+    "roundTripNames": [
+     [
+      "机位自动帧轨迹"
+     ],
+     [],
+     [
+      "机位自动帧轨迹"
+     ]
+    ],
+    "ui": {
+     "totalNodes": 151,
+     "hits": [],
+     "undoAttr": 0
+    }
+   }
+  }
+ ],
+ "probeCorrections": [
+  "探针 a：REACT_PROPS 用 Object.keys().find 前缀匹配，但 __reactFiber$ 排在 __reactProps$ 前面 ⟹ 命中 fiber，「有没有 onClick」根本没读出来（b 修正）",
+  "探针 a：SVG 探针取 document.querySelector('svg') = 第一个 svg（一个 22×14 图标），而运动轨迹是 react-three-fiber 的 <Line>，不是 SVG ⟹ 那条读数整条作废，改用视口截图像素对账",
+  "探针 a：读 window.__libtv_director 取 store —— 导演台 store 根本没挂 window（与画布的 __libtv_store 不同）⟹ motionPaths=null 是「没读到」不是「没有」，差点当成结论；改为一律经 DOM 读",
+  "探针 a：基线本来就选中了一条 transform 轨道 ⟹「选轨道带出 0 种」不构成门的证据",
+  "探针 b：DUMP 返回 dict，我按 set 用 ⟹ TypeError",
+  "探针 b：把 data-director-path-reset 当成「清空路径」，它其实是 resetMotionPath（重置锚点）⟹ 第二个问题起点已经有 1 条路径，三个问题全部作废（c 改一问一刷新）",
+  "探针 c：点 [data-director-track-row] 外壳建路径「落到角色身上」——撤回，外壳源码里就没有 onClick（DirectorTimeline.tsx:1708-1726），可点目标是行内一个没有任何 data-* 标记的 role=button（:1751-1756）；tracksAfter 里 camera 仍 selected=false 本来就说明我没点上",
+  "探针 c：「铅笔第一次点视口就死」——撤回。铅笔是拖拽工具（DirectorViewport.tsx:1678-1711 down 播种 → move 追加 → up 立刻 finish），我用无移动的 mouse.click 测它 ⟹ 工具本来就该结束。工具的交互模型不同，不能用同一种手势测两个工具",
+  "探针 c：c4 里给 pivot 数值框 fill+Enter 没提交上 ⟹ 那半个读数作废（reset≠delete 那半仍成立）",
+  "**判据自己也有三个 bug**（不是探针）：① `ce.get('familyOpened',[]).sort() == sorted([...])` —— list.sort() 返回 None，恒不等 ⟹ C9 假失败；② C11 把差值写成 `familyBefore - familyAfter == opened`，符号反了，正确是 `familyAfter - familyBefore`；③ C8 判据要的 `resetHandler` 键探针根本没采（C8 的实质读数 count 1→1 本来就对）",
+  "**PNG 字节相同不是稳定判据**：第一轮两轮比对里同一画面两次渲染的 PNG 长度 72787 vs 72788，差 1 字节就判「不一致」。改用 PIL 像素级比对",
+  "**「像素必须为 0」同样不是稳定判据**：WebGL 3D 场景同一状态两次渲染抖动 0 与 4 个像素交替（0.00021%）",
+  "**用「建路径」当阳性对照也失败**：它只有 ~212 像素的变化（视口 0.0112%），在 WebGL 合成下时灵时不灵（同一序列一次读到 212、一次读到 0）⟹ 小信号不能当标尺。第三版改用**拖动视口旋转**（OrbitControls）当标尺：稳定 839034 像素 / 44.26%，判据只断言「尺子有效（>视口 10%）+ 死按钮点击落在 0.1% 门内」；建路径的像素差只作记录，不进判据",
+  "顺带查清：元素截图与整页裁剪在视口区域只差 5 个像素 ⟹ 元素截图**能**拍到 WebGL，不是截图工具的锅（「先怀疑探针」这条规矩第二次生效）",
+  "探针自己第三轮又踩一次顺序错：`pathCountAfterClicks` 是在建完路径之后才读的，读到 1 ⟹ C3 假失败。**探针里每个读数都要问「这一刻之前我动过什么」**",
+  "**我自己的结论「导演台没有历史栈」被运行时推翻**：grep `pushHistory|undoStack|redoStack` 得 0 处就下了结论，而真实名字是 undoDirector/redoDirector；Cmd+Z 实测把刚建的路径删掉。规矩：断言「某能力不存在」前先穷举它的全部命名形态"
+ ],
+ "notClaimed": [
+  "除本批打开的三族外，749 的其余残差族（场景/全景/分组/锁定/人群/手机 vcam 面板等）仍未逐族验证",
+  "运动轨迹在 3D 场景里的可见渲染只用像素差**间接**证明：同一机位下建一条矩形路径，视口差约 212 像素（0.0112%）⟹ 确实画了，但占视口不到万分之一；该差值在 WebGL 合成下时灵时不灵（读到过 212 也读到过 0），所以只作记录不进判据。没有做像素级定位，也没验证线的颜色/粗细/选中态配色",
+  "sr-only 层无条件渲染全部路径、3D 层只画 enabled 的（DirectorViewport.tsx:1582-1583 filter）——这处不一致是源码读数，本批没有构造「禁用路径 + 读屏」的场景来实测",
+  "「role=button 没有键盘通路」只验了轨道名这一个；导演台其他 role=button 未普查",
+  "撤销/重做只验了运动路径这一条命令的往返；导演台其他命令的撤销粒度（是否原子）未测",
+  "Cmd+Z 走的是 DirectorDesk 的 window keydown（:506-516），与画布 page.tsx:1342 的 undo() 是两套；两者在导演台打开时是否互相抢键（谁先 preventDefault）本批未测",
+  "pencil 拖拽只跑了一次 8 步直线拖动，锚点采样密度与真实手绘的差异未测",
+  "pen 的 3 次点击用的是固定屏幕坐标，锚点世界坐标随之确定；没有验证锚点是否落在绘制平面上",
+  "未与源站导演台做任何对照（源站关着，需点击授权）"
+ ]
+}
