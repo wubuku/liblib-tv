@@ -1,0 +1,289 @@
+{
+  "batch": 744,
+  "title": "VideoNode 面板门控分层：16 个记账命令分 A 档 8 / B 档 8，status==\"ready\" 是 L2 硬门控",
+  "verdict": "6/6",
+  "summary": {
+    "static": {
+      "L1_showSingleNodeEditor": 120,
+      "L2_toolbar_gate": 415,
+      "L2_status_ready_line": 412,
+      "L3_generator_gate": 658,
+      "L3_attempts_gate": 659,
+      "L3_continuation_gate": 740,
+      "continuation_entry": 133,
+      "calls": {
+        "createFirstFrameReference": 677,
+        "createFirstLastFrameReference": 679,
+        "createLongVideoProcess": 730,
+        "addNodeAtPosition": 714,
+        "addEdge": 721,
+        "destroyFirstFrameReference": 725,
+        "clearVideoContinuation": 733,
+        "updateNodeData": 125,
+        "addDerivedNode": 201,
+        "createSubtitleErase": 227,
+        "createAudioSplit": 257,
+        "createPictureEdit": 396,
+        "createSmartMatting": 372,
+        "createDepthMotionCapture": 296,
+        "createVideoFrameCapture": 304,
+        "createVideoContinuation": 219
+      },
+      "implLines": {
+        "createFirstFrameReference": 320,
+        "createFirstLastFrameReference": 321,
+        "createLongVideoProcess": 348,
+        "addNodeAtPosition": 312,
+        "addEdge": 400,
+        "destroyFirstFrameReference": 323,
+        "clearVideoContinuation": 374,
+        "updateNodeData": 385,
+        "addDerivedNode": 313,
+        "createSubtitleErase": 329,
+        "createAudioSplit": 334,
+        "createPictureEdit": 353,
+        "createSmartMatting": 352,
+        "createDepthMotionCapture": 343,
+        "createVideoFrameCapture": 338,
+        "createVideoContinuation": 324
+      }
+    },
+    "L2": {
+      "failed": {
+        "found": true,
+        "toolbarInNode": 0,
+        "toolbarInDoc": 0,
+        "toolbarMenu": 0,
+        "toolbarTriggers": 0,
+        "attempts": 3,
+        "attemptLabels": [
+          "5分钟超长视频",
+          "首尾帧生成视频",
+          "首帧生成视频"
+        ],
+        "hasToolbarAnywhere": 0
+      },
+      "ready": {
+        "found": true,
+        "toolbarInNode": 0,
+        "toolbarInDoc": 1,
+        "toolbarMenu": 0,
+        "toolbarTriggers": 0,
+        "attempts": 3,
+        "attemptLabels": [
+          "5分钟超长视频",
+          "首尾帧生成视频",
+          "首帧生成视频"
+        ],
+        "hasToolbarAnywhere": 1
+      },
+      "seedId": "v-UGQZzZOpbv",
+      "readyId": "video-1791073650036-96qlq5",
+      "seedBefore": {
+        "nodeCount": 10,
+        "edgeCount": 11,
+        "past": 0,
+        "future": 0,
+        "nodeIds": [
+          "b-bTLLuU4w5q",
+          "g-245IDFh8sB",
+          "g-EFbbHpwq5w",
+          "i-1FQ9tErTcC",
+          "i-YDfWhFlthe",
+          "i-dnwoZQ7jsG",
+          "i-lBzmo67AHv",
+          "i-vxeeCnxySa",
+          "t-9j2MoccxBj",
+          "v-UGQZzZOpbv"
+        ],
+        "edgeIds": [
+          "e-8IgMkf6Vbj",
+          "e-AQmdIgKtl2",
+          "e-OwhsBRzrTz",
+          "e-QzX895ot0u",
+          "e-VQACH36eJC",
+          "e-XmiJkHfFAL",
+          "e-abKze5c8Ug",
+          "e-m2wWA2wIBA",
+          "e-nlMX3rEjwN",
+          "e-xNVTHNFZZl",
+          "e-yEqrTOR2Ya"
+        ],
+        "videoData": [
+          {
+            "id": "v-UGQZzZOpbv",
+            "status": "failed",
+            "attempt": null
+          }
+        ]
+      }
+    },
+    "tiers": {
+      "A": [
+        "createFirstFrameReference",
+        "createFirstLastFrameReference",
+        "createLongVideoProcess",
+        "addNodeAtPosition",
+        "addEdge",
+        "destroyFirstFrameReference",
+        "clearVideoContinuation",
+        "updateNodeData"
+      ],
+      "B": [
+        "addDerivedNode",
+        "createSubtitleErase",
+        "createAudioSplit",
+        "createPictureEdit",
+        "createSmartMatting",
+        "createDepthMotionCapture",
+        "createVideoFrameCapture",
+        "createVideoContinuation"
+      ],
+      "Acount": 8,
+      "Bcount": 8
+    },
+    "chips": {
+      "首帧生成视频": {
+        "clicked": true,
+        "past0": 0,
+        "past1": 1,
+        "nodes0": 10,
+        "nodes1": 10,
+        "edges0": 11,
+        "edges1": 11,
+        "attempt": "首帧生成视频",
+        "newNodes": [],
+        "newEdges": []
+      },
+      "首尾帧生成视频": {
+        "clicked": true,
+        "past0": 0,
+        "past1": 1,
+        "nodes0": 10,
+        "nodes1": 10,
+        "edges0": 11,
+        "edges1": 11,
+        "attempt": "首尾帧生成视频",
+        "newNodes": [],
+        "newEdges": []
+      },
+      "5分钟超长视频": {
+        "clicked": true,
+        "past0": 0,
+        "past1": 1,
+        "nodes0": 10,
+        "nodes1": 10,
+        "edges0": 11,
+        "edges1": 11,
+        "attempt": "5分钟超长视频",
+        "newNodes": [],
+        "newEdges": []
+      }
+    },
+    "continue": {
+      "entry": {
+        "found": true,
+        "aria": null
+      },
+      "ui": {
+        "canvasNodes": 11,
+        "hasTimeInputs": 2,
+        "bodyHasContinue": true
+      },
+      "before": {
+        "nodeCount": 11,
+        "edgeCount": 11,
+        "past": 2,
+        "future": 0,
+        "nodeIds": [
+          "b-bTLLuU4w5q",
+          "g-245IDFh8sB",
+          "g-EFbbHpwq5w",
+          "i-1FQ9tErTcC",
+          "i-YDfWhFlthe",
+          "i-dnwoZQ7jsG",
+          "i-lBzmo67AHv",
+          "i-vxeeCnxySa",
+          "t-9j2MoccxBj",
+          "v-UGQZzZOpbv",
+          "video-1791073661891-xwovea"
+        ],
+        "edgeIds": [
+          "e-8IgMkf6Vbj",
+          "e-AQmdIgKtl2",
+          "e-OwhsBRzrTz",
+          "e-QzX895ot0u",
+          "e-VQACH36eJC",
+          "e-XmiJkHfFAL",
+          "e-abKze5c8Ug",
+          "e-m2wWA2wIBA",
+          "e-nlMX3rEjwN",
+          "e-xNVTHNFZZl",
+          "e-yEqrTOR2Ya"
+        ],
+        "videoData": [
+          {
+            "id": "v-UGQZzZOpbv",
+            "status": "failed",
+            "attempt": "5分钟超长视频"
+          },
+          {
+            "id": "video-1791073661891-xwovea",
+            "status": "ready",
+            "attempt": null
+          }
+        ]
+      }
+    }
+  },
+  "checks": [
+    {
+      "label": "C1 三层门控源码位置在位（L1 / L2 status==ready / L3 status!==pending）",
+      "pass": true,
+      "detail": "{\"L1_showSingleNodeEditor\": 120, \"L2_toolbar_gate\": 415, \"L2_status_ready_line\": 412, \"L3_generator_gate\": 658, \"L3_attempts_gate\": 659, \"L3_continuation_gate\": 740, \"continuation_entry\": 133}"
+    },
+    {
+      "label": "C2 两态工具栏（document 级）：failed 0 命中 / ready ≥1；节点内恒 0（portal 出去）",
+      "pass": true,
+      "detail": "{\"failed\": {\"found\": true, \"toolbarInNode\": 0, \"toolbarInDoc\": 0, \"toolbarMenu\": 0, \"toolbarTriggers\": 0, \"attempts\": 3, \"attemptLabels\": [\"5分钟超长视频\", \"首尾帧生成视频\", \"首帧生成视频\"], \"hasToolbarAnywhere\": 0}, \"ready\": {\"found\": true, \"toolbarInNode\": 0, \"toolbarInDoc\": 1, \"toolbarMenu\": 0, \"toolbarTriggers\": 0, \"attempts\": 3, \"attemptLabels\": [\"5分钟超长视频\", \"首尾帧生成视频\", \"首帧生成视频\"], \"hasToolbarAnywhere\": 1}}"
+    },
+    {
+      "label": "C3 16 个命令分档 A 8 / B 8，且每个都指得到 VideoNode 调用行与 store 实现行",
+      "pass": true,
+      "detail": "{\"A\": {\"createFirstFrameReference\": 677, \"createFirstLastFrameReference\": 679, \"createLongVideoProcess\": 730, \"addNodeAtPosition\": 714, \"addEdge\": 721, \"destroyFirstFrameReference\": 725, \"clearVideoContinuation\": 733, \"updateNodeData\": 125}, \"B\": {\"addDerivedNode\": 201, \"createSubtitleErase\": 227, \"createAudioSplit\": 257, \"createPictureEdit\": 396, \"createSmartMatting\": 372, \"createDepthMotionCapture\": 296, \"createVideoFrameCapture\": 304, \"createVideoContinuation\": 219}}"
+    },
+    {
+      "label": "C4 failed 卡上 3 枚尝试芯片逐个可点且逐个记账（past +1）",
+      "pass": true,
+      "detail": "{\"首帧生成视频\": {\"clicked\": true, \"past0\": 0, \"past1\": 1, \"nodes0\": 10, \"nodes1\": 10, \"edges0\": 11, \"edges1\": 11, \"attempt\": \"首帧生成视频\", \"newNodes\": [], \"newEdges\": []}, \"首尾帧生成视频\": {\"clicked\": true, \"past0\": 0, \"past1\": 1, \"nodes0\": 10, \"nodes1\": 10, \"edges0\": 11, \"edges1\": 11, \"attempt\": \"首尾帧生成视频\", \"newNodes\": [], \"newEdges\": []}, \"5分钟超长视频\": {\"clicked\": true, \"past0\": 0, \"past1\": 1, \"nodes0\": 10, \"nodes1\": 10, \"edges0\": 11, \"edges1\": 11, \"attempt\": \"5分钟超长视频\", \"newNodes\": [], \"newEdges\": []}}"
+    },
+    {
+      "label": "C5 ready 卡上「智能续写」入口存在且可点（B 档唯一的两段式命令）",
+      "pass": true,
+      "detail": "{\"entry\": {\"found\": true, \"aria\": null}, \"ui\": {\"canvasNodes\": 11, \"hasTimeInputs\": 2, \"bodyHasContinue\": true}, \"before\": {\"nodeCount\": 11, \"edgeCount\": 11, \"past\": 2, \"future\": 0, \"nodeIds\": [\"b-bTLLuU4w5q\", \"g-245IDFh8sB\", \"g-EFbbHpwq5w\", \"i-1FQ9tErTcC\", \"i-YDfWhFlthe\", \"i-dnwoZQ7jsG\", \"i-lBzmo67AHv\", \"i-vxeeCnxySa\", \"t-9j2MoccxBj\", \"v-UGQZzZOpbv\", \"video-1791073661891-xwovea\"], \"edgeIds\": [\"e-8IgMkf6Vbj\", \"e-AQmdIgKtl2\", \"e-OwhsBRzrTz\", \"e-QzX895ot0u\", \"e-VQACH36eJC\", \"e-XmiJkHfFAL\", \"e-abKze5c8Ug\", \"e-m2wWA2wIBA\", \"e-nlMX3rEjwN\", \"e-xNVTHNFZZl\", \"e-yEqrTOR2Ya\"], \"videoData\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": \"5分钟超长视频\"}, {\"id\": \"video-1791073661891-xwovea\", \"status\": \"ready\", \"attempt\": null}]}}"
+    },
+    {
+      "label": "C6 743 那句「status 不是门控」的边界：L3 成立（两态各 3 枚芯片）、L2 不成立（toolbar 只在 ready）",
+      "pass": true,
+      "detail": "{\"attemptsBoth\": [3, 3], \"toolbarDocBoth\": [0, 1], \"toolbarInNodeBoth\": [0, 0]}"
+    }
+  ],
+  "conclusions": [
+    "三层门控：L1 `selected && 单选`（VideoNode.tsx:120）；L2 `status === \"ready\"` → 整块 VideoProcessingToolbar（:410-414）；L3 `status !== \"pending\"` → VideoGenerationPanel 与尝试列（:658/:701）。",
+    "16 个记账命令分两档：A 档 8 个（两态都可达）/ B 档 8 个（只有 status===\"ready\" 可达）。",
+    "L2 门控实测：failed 卡上 [data-video-toolbar-menu] 0 命中、ready 卡命中。",
+    "743 那句「status 不是门控」**适用边界被收窄**：对 L3 的 3 枚尝试芯片成立，对 L2 的 toolbar 一族**不成立**（status===\"ready\" 是硬门控）。",
+    "failed 卡上 3 枚芯片逐个可点、逐个记账（past +1）；其中「首帧生成视频」在已有 image 入边时只写 attempt 不建图（承 743 的 C4）。"
+  ],
+  "relationTo743": [
+    "743 的「status 不是门控」读数对、**理由过宽**：11 个芯片都在 VideoGenerationPanel / 尝试列里，那两块只排除 pending；但同一组件里还有 另一块被 status === \"ready\" 硬门控的 VideoProcessingToolbar。",
+    "743 读到的「工具栏 2 枚 data-inert 只在 ready 出现」正是 L2 门控的表现，本批把它从「现象」升格为「源码 + 运行时双证的门控条件」。"
+  ],
+  "notClaimed": [
+    "B 档 8 个命令里只对「智能续写」的**入口**做了实测；其余 7 个（去字幕/音频切分/图片编辑/智能抠像/深度运动/抽帧/逐帧拉片）未逐个走完两段式确认，未取证。",
+    "不声称 A 档 8 个在 ready 态下都可用 —— 只验了 failed 态下 3 枚尝试芯片。",
+    "「续写」的第二段（选时间区间并确认 createVideoContinuation）未执行，未取证。",
+    "不声称 failed 态不该有 toolbar —— 未取证；本批只报「读不到」。",
+    "多选态（selectedNodeCount > 1 ⟹ showSingleNodeEditor 为 false）下 16 个命令全部不可达，本批未测那一格。"
+  ]
+}
