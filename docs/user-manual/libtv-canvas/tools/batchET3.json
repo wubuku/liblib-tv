@@ -1,0 +1,367 @@
+{
+  "读数": {
+    "全": {
+      "提示条": {
+        "基线": {
+          "全页innerText含新功能": false,
+          "命中元素数": 0,
+          "最内元素": []
+        },
+        "已打开": {
+          "全页innerText含新功能": false,
+          "命中元素数": 0,
+          "最内元素": []
+        },
+        "已关掉": {
+          "全页innerText含新功能": false,
+          "命中元素数": 0,
+          "最内元素": []
+        },
+        "视频面板": {
+          "全页innerText含新功能": true,
+          "命中元素数": 2,
+          "最内元素": [
+            {
+              "文字": "新功能：支持真人",
+              "box": [
+                176,
+                297,
+                114,
+                27
+              ],
+              "cls": "m_1b3c8819 mantine-Tooltip-tooltip"
+            }
+          ]
+        }
+      },
+      "基线滑杆": [],
+      "高级设置元素": [
+        {
+          "tag": "DIV",
+          "cls": "",
+          "文字": "画布 2 开通会员 限时 45 折 20 TV Director 音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 参考 ",
+          "box": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "pos": "static",
+          "z": "auto",
+          "op": "1",
+          "vis": "visible"
+        },
+        {
+          "tag": "DIV",
+          "cls": "h-screen w-screen",
+          "文字": "画布 2 开通会员 限时 45 折 20 TV Director 音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 参考 ",
+          "box": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "pos": "static",
+          "z": "auto",
+          "op": "1",
+          "vis": "visible"
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative h-screen w-screen",
+          "文字": "TV Director 音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 参考 描述你想要的音频效果，可用 @ 引用音频 ",
+          "box": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "pos": "relative",
+          "z": "auto",
+          "op": "1",
+          "vis": "visible"
+        },
+        {
+          "tag": "DIV",
+          "cls": "relative h-screen w-screen",
+          "文字": "TV Director 音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 参考 描述你想要的音频效果，可用 @ 引用音频 ",
+          "box": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "pos": "relative",
+          "z": "auto",
+          "op": "1",
+          "vis": "visible"
+        }
+      ],
+      "音频已开": [
+        {
+          "场景": "音频-已打开",
+          "tag": "DIV",
+          "role": "slider",
+          "type": null,
+          "cls": "mantine-focus-auto m_c9a9a60a mantine-Slider-thumb",
+          "标签": "语速",
+          "ariaMin": "0.5",
+          "ariaMax": "2",
+          "ariaNow": "1",
+          "原生min": null,
+          "原生max": null,
+          "原生value": null,
+          "box": [
+            395,
+            548,
+            12,
+            12
+          ],
+          "尺寸": {
+            "宽": 12,
+            "高": 12
+          },
+          "在视口": true,
+          "样式可见": true,
+          "不可见原因": null,
+          "遮挡层": null,
+          "指针能点到": true,
+          "可信": true
+        },
+        {
+          "场景": "音频-已打开",
+          "tag": "DIV",
+          "role": "slider",
+          "type": null,
+          "cls": "mantine-focus-auto m_c9a9a60a mantine-Slider-thumb",
+          "标签": "声调",
+          "ariaMin": "-12",
+          "ariaMax": "12",
+          "ariaNow": "0",
+          "原生min": null,
+          "原生max": null,
+          "原生value": null,
+          "box": [
+            423,
+            584,
+            12,
+            12
+          ],
+          "尺寸": {
+            "宽": 12,
+            "高": 12
+          },
+          "在视口": true,
+          "样式可见": true,
+          "不可见原因": null,
+          "遮挡层": null,
+          "指针能点到": true,
+          "可信": true
+        },
+        {
+          "场景": "音频-已打开",
+          "tag": "DIV",
+          "role": "slider",
+          "type": null,
+          "cls": "mantine-focus-auto m_c9a9a60a mantine-Slider-thumb",
+          "标签": "音量",
+          "ariaMin": "0.01",
+          "ariaMax": "10",
+          "ariaNow": "6.2",
+          "原生min": null,
+          "原生max": null,
+          "原生value": null,
+          "box": [
+            443,
+            620,
+            12,
+            12
+          ],
+          "尺寸": {
+            "宽": 12,
+            "高": 12
+          },
+          "在视口": true,
+          "样式可见": true,
+          "不可见原因": null,
+          "遮挡层": null,
+          "指针能点到": true,
+          "可信": true
+        }
+      ],
+      "音频已关": [],
+      "问号": [
+        {
+          "box": [
+            118,
+            586,
+            12,
+            12
+          ],
+          "cls": "cursor-help",
+          "父cls": "flex items-center gap-1",
+          "父文字": "自动校验素材",
+          "父title": null,
+          "自身title": null,
+          "文本": ""
+        },
+        {
+          "box": [
+            150,
+            625,
+            14,
+            14
+          ],
+          "cls": "cursor-help",
+          "父cls": "flex items-center gap-1",
+          "父文字": "智能引用 AutoLink",
+          "父title": null,
+          "自身title": null,
+          "文本": ""
+        },
+        {
+          "box": [
+            309,
+            332,
+            12,
+            12
+          ],
+          "cls": "cursor-help",
+          "父cls": "text-fg-muted flex items-center gap-1.5 text",
+          "父文字": "生成音频",
+          "父title": null,
+          "自身title": null,
+          "文本": ""
+        }
+      ],
+      "悬停问号": {
+        "自证": {
+          "命中": "DIV.react-flow__pane",
+          "链": [
+            "DIV.react-flow__pane",
+            "DIV.react-flow__renderer",
+            "DIV.react-flow light",
+            "DIV.relative h-screen w-screen",
+            "DIV.relative h-screen w-screen",
+            "DIV.h-screen w-screen"
+          ],
+          "hover链": [
+            "DIV.h-screen w-screen",
+            "DIV.relative h-screen w-screen",
+            "DIV.relative h-screen w-screen",
+            "DIV.react-flow light",
+            "DIV.react-flow__renderer",
+            "DIV.react-flow__pane"
+          ]
+        },
+        "气泡": [
+          {
+            "cls": "m_1b3c8819 mantine-Tooltip-tooltip",
+            "文字": "新功能：支持真人",
+            "box": [
+              176,
+              297,
+              114,
+              27
+            ]
+          },
+          {
+            "cls": "pointer-events-none absolute left-1/2 top-full z-1",
+            "文字": "按 ESC 退出",
+            "box": [
+              721,
+              33,
+              82,
+              24
+            ]
+          }
+        ]
+      },
+      "悬停手柄": {
+        "自证": {
+          "命中": "DIV.mantine-focus-auto m_c9a9a60a mantine-Sl",
+          "链": [
+            "DIV.mantine-focus-auto m_c9a9a60a mant",
+            "DIV.m_c9ade57f mantine-Slider-track",
+            "DIV.m_a8645c2 mantine-Slider-trackCont",
+            "DIV.flex-1 m_dd36362e mantine-Slider-r",
+            "DIV.flex items-center gap-2",
+            "DIV.flex flex-col gap-2"
+          ],
+          "hover链": [
+            "DIV.flex flex-col gap-2",
+            "DIV.flex items-center gap-2",
+            "DIV.flex-1 m_dd36362e mantine-Slid",
+            "DIV.m_a8645c2 mantine-Slider-track",
+            "DIV.m_c9ade57f mantine-Slider-trac",
+            "DIV.mantine-focus-auto m_c9a9a60a "
+          ]
+        },
+        "气泡": [
+          {
+            "cls": "m_1b3c8819 mantine-Tooltip-tooltip",
+            "文字": "新功能：支持真人",
+            "box": [
+              176,
+              297,
+              114,
+              27
+            ]
+          },
+          {
+            "cls": "pointer-events-none absolute left-1/2 top-full z-1",
+            "文字": "按 ESC 退出",
+            "box": [
+              721,
+              33,
+              82,
+              24
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "\n════ ① 基线（无选中、无面板）════",
+    "　「新功能」全页 innerText 命中 = false，最内元素 []",
+    "　滑杆/数值框 0 个（其中可信 0 个）",
+    "\n════ ② 音频节点高级设置：打开前后各扫一次（v2 判可见性）════",
+    "　平移音频节点：true",
+    "　安全落点 [216,166]",
+    "　选中 [\"a-THmbuJXQj4\"]",
+    "　★ **还没点 ⚙**：滑杆 3 个，其中**可信** 3 个",
+    "　　<DIV slider> 标签=\"语速\" 可信=true 样式可见=true 挡=null aria=[0.5~2] now=1 value=null",
+    "　　<DIV slider> 标签=\"声调\" 可信=true 样式可见=true 挡=null aria=[-12~12] now=0 value=null",
+    "　　<DIV slider> 标签=\"音量\" 可信=true 样式可见=true 挡=null aria=[0.01~10] now=6.2 value=null",
+    "　参数条上无文字且可见的按钮：[{\"文字\":\"\",\"box\":[389,465,32,32],\"cls\":\"flex size-8 shrink-0 cursor-pointer items-center justify\",\"可见\":true},{\"文字\":\"\",\"box\":[433,465,32,32],\"cls\":\"text-canvas-controls-text mx-1 flex size-8 shrink-0 item\",\"可见\":true},{\"文字\":\"\",\"box\":[569,465,32,32],\"cls\":\"bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer ite\",\"可见\":true},{\"文字\":\"\",\"box\":[573,327,28,28],\"cls\":\"bg-panel-background absolute right-2 top-2 z-10 flex siz\",\"可见\":true}]",
+    "　⭐ 认定的 ⚙ = {\"文字\":\"\",\"box\":[433,465,32,32],\"cls\":\"text-canvas-controls-text mx-1 flex size-8 shrink-0 item\",\"可见\":true}",
+    "　　点前 elementFromPoint 自证：{\"cls\":\"text-canvas-controls-text mx-1 flex size-8 shrink-0 item\",\"文字\":\"\"}",
+    "　⭐ 面板里含「高级设置」的元素 4 个：",
+    "　　<DIV> box=[0,0,0,0] pos=static z=auto op=1 vis=visible cls= 文字=\"画布 2 开通会员 限时 45 折 20 TV Director 音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 参考 \"",
+    "　　<DIV> box=[0,0,1440,810] pos=static z=auto op=1 vis=visible cls=h-screen w-screen 文字=\"画布 2 开通会员 限时 45 折 20 TV Director 音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 参考 \"",
+    "　　<DIV> box=[0,0,1440,810] pos=relative z=auto op=1 vis=visible cls=relative h-screen w-screen 文字=\"TV Director 音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 参考 描述你想要的音频效果，可用 @ 引用音频 \"",
+    "　　<DIV> box=[0,0,1440,810] pos=relative z=auto op=1 vis=visible cls=relative h-screen w-screen 文字=\"TV Director 音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 参考 描述你想要的音频效果，可用 @ 引用音频 \"",
+    "　★ **点开之后**：滑杆 3 个，其中**可信** 3 个",
+    "　　<DIV slider> 标签=\"语速\" 可信=true 指针能点到=true aria=[0.5~2] now=1｜input 原生[null~null] value=null",
+    "　　<DIV slider> 标签=\"声调\" 可信=true 指针能点到=true aria=[-12~12] now=0｜input 原生[null~null] value=null",
+    "　　<DIV slider> 标签=\"音量\" 可信=true 指针能点到=true aria=[0.01~10] now=6.2｜input 原生[null~null] value=null",
+    "　　「新功能」此刻：innerText 命中=false 最内=[]",
+    "　★ **再按 Esc 关掉**：滑杆 0 个，其中**可信** 0 个",
+    "　　「新功能」此刻：innerText 命中=false 最内=[]",
+    "\n════ ③ 视频参数面板：ⓘ 精确悬停 + 滑块手柄做阳性对照 ════",
+    "　平移视频节点：true",
+    "　选中 [\"v-v2hlWY4Br3\"]",
+    "　　全页 .cursor-help 元素 3 个：[{\"box\":[118,586,12,12],\"cls\":\"cursor-help\",\"父cls\":\"flex items-center gap-1\",\"父文字\":\"自动校验素材\",\"父title\":null,\"自身title\":null,\"文本\":\"\"},{\"box\":[150,625,14,14],\"cls\":\"cursor-help\",\"父cls\":\"flex items-center gap-1\",\"父文字\":\"智能引用 AutoLink\",\"父title\":null,\"自身title\":null,\"文本\":\"\"},{\"box\":[309,332,12,12],\"cls\":\"cursor-help\",\"父cls\":\"text-fg-muted flex items-center gap-1.5 text\",\"父文字\":\"生成音频\",\"父title\":null,\"自身title\":null,\"文本\":\"\"}]",
+    "　　问号图标：指针落在 \"DIV.react-flow__pane\"｜:hover 链尾 [\"DIV.h-screen w-screen\",\"DIV.relative h-screen w-screen\",\"DIV.relative h-screen w-screen\",\"DIV.react-flow light\",\"DIV.react-flow__renderer\",\"DIV.react-flow__pane\"]",
+    "　　　气泡读数：[{\"cls\":\"m_1b3c8819 mantine-Tooltip-tooltip\",\"文字\":\"新功能：支持真人\",\"box\":[176,297,114,27]},{\"cls\":\"pointer-events-none absolute left-1/2 top-full z-1\",\"文字\":\"按 ESC 退出\",\"box\":[721,33,82,24]}]",
+    "　　滑块手柄（阳性对照）= {\"box\":[266,304,12,12],\"cls\":\"mantine-focus-auto m_c9a9a60a mantine-Slider-thumb\"}",
+    "　　视频时长手柄：指针落在 \"DIV.mantine-focus-auto m_c9a9a60a mantine-Sl\"｜:hover 链尾 [\"DIV.flex flex-col gap-2\",\"DIV.flex items-center gap-2\",\"DIV.flex-1 m_dd36362e mantine-Slid\",\"DIV.m_a8645c2 mantine-Slider-track\",\"DIV.m_c9ade57f mantine-Slider-trac\",\"DIV.mantine-focus-auto m_c9a9a60a \"]",
+    "　　　气泡读数：[{\"cls\":\"m_1b3c8819 mantine-Tooltip-tooltip\",\"文字\":\"新功能：支持真人\",\"box\":[176,297,114,27]},{\"cls\":\"pointer-events-none absolute left-1/2 top-full z-1\",\"文字\":\"按 ESC 退出\",\"box\":[721,33,82,24]}]",
+    "　　「新功能」此刻：innerText 命中=true 最内=[{\"文字\":\"新功能：支持真人\",\"box\":[176,297,114,27],\"cls\":\"m_1b3c8819 mantine-Tooltip-tooltip\"}]",
+    "\n✅ 完成（未拖滑块、未点开关）",
+    "⏳ ⌘0 复位 + 静置 15s…",
+    "⭐ 真的被移动：0 个 []"
+  ]
+}

@@ -1,0 +1,466 @@
+{
+  "读数": {
+    "全": {
+      "图标们": [
+        {
+          "序": 0,
+          "所属": "自动校验素材",
+          "box": [
+            118,
+            586,
+            12,
+            12
+          ],
+          "中心": [
+            124,
+            592
+          ],
+          "自身pe": "all",
+          "父pe": "all",
+          "该点顶层": "DIV.react-flow__pane"
+        },
+        {
+          "序": 1,
+          "所属": "智能引用 AutoLink",
+          "box": [
+            150,
+            625,
+            14,
+            14
+          ],
+          "中心": [
+            157,
+            632
+          ],
+          "自身pe": "all",
+          "父pe": "all",
+          "该点顶层": "DIV.react-flow__pane"
+        },
+        {
+          "序": 2,
+          "所属": "生成音频",
+          "box": [
+            309,
+            332,
+            12,
+            12
+          ],
+          "中心": [
+            315,
+            338
+          ],
+          "自身pe": "auto",
+          "父pe": "auto",
+          "该点顶层": "DIV.cursor-help"
+        }
+      ],
+      "轨迹": [
+        {
+          "序": 0,
+          "所属": "自动校验素材",
+          "中心": [
+            124,
+            592
+          ],
+          "自身pe": "all",
+          "父pe": "all",
+          "该点顶层": "DIV.react-flow__pane",
+          "探": {
+            "顶层": "DIV.react-flow__pane",
+            "链": [
+              "DIV.react-flow__pane pe=auto z=1",
+              "DIV.react-flow__renderer pe=auto z=4",
+              "DIV.react-flow light pe=auto z=0",
+              "DIV.relative h-screen w-screen pe=auto z=auto",
+              "DIV.relative h-screen w-screen pe=auto z=auto"
+            ],
+            "hover链": [
+              "DIV.relative h-screen w-scre",
+              "DIV.react-flow light",
+              "DIV.react-flow__renderer",
+              "DIV.react-flow__pane"
+            ]
+          },
+          "清场气泡": [
+            "新功能：支持真人",
+            "按 ESC 退出"
+          ],
+          "气泡": [
+            {
+              "文字": "新功能：支持真人",
+              "box": [
+                176,
+                297,
+                114,
+                27
+              ],
+              "pe": "none",
+              "op": "1"
+            },
+            {
+              "文字": "按 ESC 退出",
+              "box": [
+                721,
+                33,
+                82,
+                24
+              ],
+              "pe": "none",
+              "op": "0"
+            }
+          ]
+        },
+        {
+          "序": 1,
+          "所属": "智能引用 AutoLink",
+          "中心": [
+            157,
+            632
+          ],
+          "自身pe": "all",
+          "父pe": "all",
+          "该点顶层": "DIV.react-flow__pane",
+          "探": {
+            "顶层": "DIV.react-flow__pane",
+            "链": [
+              "DIV.react-flow__pane pe=auto z=1",
+              "DIV.react-flow__renderer pe=auto z=4",
+              "DIV.react-flow light pe=auto z=0",
+              "DIV.relative h-screen w-screen pe=auto z=auto",
+              "DIV.relative h-screen w-screen pe=auto z=auto"
+            ],
+            "hover链": [
+              "DIV.relative h-screen w-scre",
+              "DIV.react-flow light",
+              "DIV.react-flow__renderer",
+              "DIV.react-flow__pane"
+            ]
+          },
+          "清场气泡": [
+            "新功能：支持真人",
+            "按 ESC 退出"
+          ],
+          "气泡": [
+            {
+              "文字": "新功能：支持真人",
+              "box": [
+                176,
+                297,
+                114,
+                27
+              ],
+              "pe": "none",
+              "op": "1"
+            },
+            {
+              "文字": "按 ESC 退出",
+              "box": [
+                721,
+                33,
+                82,
+                24
+              ],
+              "pe": "none",
+              "op": "0"
+            }
+          ]
+        },
+        {
+          "序": 2,
+          "所属": "生成音频",
+          "中心": [
+            315,
+            338
+          ],
+          "自身pe": "auto",
+          "父pe": "auto",
+          "该点顶层": "DIV.cursor-help",
+          "探": {
+            "顶层": "DIV.cursor-help",
+            "链": [
+              "DIV.cursor-help pe=auto z=auto",
+              "DIV.text-fg-muted flex items-c pe=auto z=auto",
+              "DIV.flex flex-col gap-2 pe=auto z=auto",
+              "DIV.flex w-[340px] flex-col ga pe=auto z=auto",
+              "DIV.m_38a85659 mantine-Popover pe=auto z=300"
+            ],
+            "hover链": [
+              "DIV.flex w-[340px] flex-col ",
+              "DIV.flex flex-col gap-2",
+              "DIV.text-fg-muted flex items",
+              "DIV.cursor-help"
+            ]
+          },
+          "清场气泡": [
+            "新功能：支持真人",
+            "按 ESC 退出"
+          ],
+          "气泡": [
+            {
+              "文字": "新功能：支持真人",
+              "box": [
+                176,
+                297,
+                114,
+                27
+              ],
+              "pe": "none",
+              "op": "1"
+            },
+            {
+              "文字": "为生成的视频添加音频内容",
+              "box": [
+                234,
+                298,
+                162,
+                27
+              ],
+              "pe": "none",
+              "op": "1"
+            },
+            {
+              "文字": "按 ESC 退出",
+              "box": [
+                721,
+                33,
+                82,
+                24
+              ],
+              "pe": "none",
+              "op": "0"
+            }
+          ]
+        }
+      ],
+      "手柄气泡": [
+        {
+          "文字": "新功能：支持真人",
+          "box": [
+            176,
+            297,
+            114,
+            27
+          ],
+          "pe": "none",
+          "op": "1"
+        },
+        {
+          "文字": "按 ESC 退出",
+          "box": [
+            721,
+            33,
+            82,
+            24
+          ],
+          "pe": "none",
+          "op": "0"
+        }
+      ],
+      "齿轮AB": [
+        {
+          "状态": "A_刚选中还没碰⚙",
+          "滑杆": [
+            {
+              "场景": "A_刚选中还没碰⚙",
+              "tag": "DIV",
+              "role": "slider",
+              "type": null,
+              "标签": "语速",
+              "ariaMin": "0.5",
+              "ariaMax": "2",
+              "ariaNow": "1",
+              "原生value": null,
+              "box": [
+                395,
+                548,
+                12,
+                12
+              ]
+            },
+            {
+              "场景": "A_刚选中还没碰⚙",
+              "tag": "DIV",
+              "role": "slider",
+              "type": null,
+              "标签": "声调",
+              "ariaMin": "-12",
+              "ariaMax": "12",
+              "ariaNow": "0",
+              "原生value": null,
+              "box": [
+                423,
+                584,
+                12,
+                12
+              ]
+            },
+            {
+              "场景": "A_刚选中还没碰⚙",
+              "tag": "DIV",
+              "role": "slider",
+              "type": null,
+              "标签": "音量",
+              "ariaMin": "0.01",
+              "ariaMax": "10",
+              "ariaNow": "6.2",
+              "原生value": null,
+              "box": [
+                443,
+                620,
+                12,
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "状态": "B_点了一次⚙",
+          "滑杆": [
+            {
+              "场景": "B_点了一次⚙",
+              "tag": "DIV",
+              "role": "slider",
+              "type": null,
+              "标签": "语速",
+              "ariaMin": "0.5",
+              "ariaMax": "2",
+              "ariaNow": "1",
+              "原生value": null,
+              "box": [
+                395,
+                548,
+                12,
+                12
+              ]
+            },
+            {
+              "场景": "B_点了一次⚙",
+              "tag": "DIV",
+              "role": "slider",
+              "type": null,
+              "标签": "声调",
+              "ariaMin": "-12",
+              "ariaMax": "12",
+              "ariaNow": "0",
+              "原生value": null,
+              "box": [
+                423,
+                584,
+                12,
+                12
+              ]
+            },
+            {
+              "场景": "B_点了一次⚙",
+              "tag": "DIV",
+              "role": "slider",
+              "type": null,
+              "标签": "音量",
+              "ariaMin": "0.01",
+              "ariaMax": "10",
+              "ariaNow": "6.2",
+              "原生value": null,
+              "box": [
+                443,
+                620,
+                12,
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "状态": "C_又点了一次⚙",
+          "滑杆": [
+            {
+              "场景": "C_又点了一次⚙",
+              "tag": "DIV",
+              "role": "slider",
+              "type": null,
+              "标签": "语速",
+              "ariaMin": "0.5",
+              "ariaMax": "2",
+              "ariaNow": "1",
+              "原生value": null,
+              "box": [
+                395,
+                548,
+                12,
+                12
+              ]
+            },
+            {
+              "场景": "C_又点了一次⚙",
+              "tag": "DIV",
+              "role": "slider",
+              "type": null,
+              "标签": "声调",
+              "ariaMin": "-12",
+              "ariaMax": "12",
+              "ariaNow": "0",
+              "原生value": null,
+              "box": [
+                423,
+                584,
+                12,
+                12
+              ]
+            },
+            {
+              "场景": "C_又点了一次⚙",
+              "tag": "DIV",
+              "role": "slider",
+              "type": null,
+              "标签": "音量",
+              "ariaMin": "0.01",
+              "ariaMax": "10",
+              "ariaNow": "6.2",
+              "原生value": null,
+              "box": [
+                443,
+                620,
+                12,
+                12
+              ]
+            }
+          ]
+        },
+        {
+          "状态": "D_按了Esc",
+          "滑杆": []
+        }
+      ]
+    }
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "\n════ ① 三枚 .cursor-help 逐枚悬停，找「新功能：支持真人」的主人 ════",
+    "　平移视频节点：true",
+    "　全页 3 枚 .cursor-help：[{\"序\":0,\"所属\":\"自动校验素材\",\"box\":[118,586,12,12],\"中心\":[124,592],\"自身pe\":\"all\",\"父pe\":\"all\",\"该点顶层\":\"DIV.react-flow__pane\"},{\"序\":1,\"所属\":\"智能引用 AutoLink\",\"box\":[150,625,14,14],\"中心\":[157,632],\"自身pe\":\"all\",\"父pe\":\"all\",\"该点顶层\":\"DIV.react-flow__pane\"},{\"序\":2,\"所属\":\"生成音频\",\"box\":[309,332,12,12],\"中心\":[315,338],\"自身pe\":\"auto\",\"父pe\":\"auto\",\"该点顶层\":\"DIV.cursor-help\"}]",
+    "　▸ #0 属于「自动校验素材」中心 [124,592]",
+    "　　　移动前清场气泡：[\"新功能：支持真人\",\"按 ESC 退出\"]",
+    "　　　该点顶层：\"DIV.react-flow__pane\"｜:hover 尾 [\"DIV.relative h-screen w-scre\",\"DIV.react-flow light\",\"DIV.react-flow__renderer\",\"DIV.react-flow__pane\"]",
+    "　　　⭐ 悬停后气泡：[{\"文字\":\"新功能：支持真人\",\"box\":[176,297,114,27],\"pe\":\"none\"},{\"文字\":\"按 ESC 退出\",\"box\":[721,33,82,24],\"pe\":\"none\"}]",
+    "　▸ #1 属于「智能引用 AutoLink」中心 [157,632]",
+    "　　　移动前清场气泡：[\"新功能：支持真人\",\"按 ESC 退出\"]",
+    "　　　该点顶层：\"DIV.react-flow__pane\"｜:hover 尾 [\"DIV.relative h-screen w-scre\",\"DIV.react-flow light\",\"DIV.react-flow__renderer\",\"DIV.react-flow__pane\"]",
+    "　　　⭐ 悬停后气泡：[{\"文字\":\"新功能：支持真人\",\"box\":[176,297,114,27],\"pe\":\"none\"},{\"文字\":\"按 ESC 退出\",\"box\":[721,33,82,24],\"pe\":\"none\"}]",
+    "　▸ #2 属于「生成音频」中心 [315,338]",
+    "　　　移动前清场气泡：[\"新功能：支持真人\",\"按 ESC 退出\"]",
+    "　　　该点顶层：\"DIV.cursor-help\"｜:hover 尾 [\"DIV.flex w-[340px] flex-col \",\"DIV.flex flex-col gap-2\",\"DIV.text-fg-muted flex items\",\"DIV.cursor-help\"]",
+    "　　　⭐ 悬停后气泡：[{\"文字\":\"新功能：支持真人\",\"box\":[176,297,114,27],\"pe\":\"none\"},{\"文字\":\"为生成的视频添加音频内容\",\"box\":[234,298,162,27],\"pe\":\"none\"},{\"文字\":\"按 ESC 退出\",\"box\":[721,33,82,24],\"pe\":\"none\"}]",
+    "\n　⭐⭐ 「新功能：支持真人」的主人 = #0 属于「自动校验素材」",
+    "　▸ 阳性对照 滑块手柄 [272,310] → 气泡 [\"新功能：支持真人\",\"按 ESC 退出\"]",
+    "\n════ ② 音频节点 ⚙ 受控 A/B/C（点一次记一次，再点一次记一次）════",
+    "　平移音频节点：true",
+    "　选中 [\"a-THmbuJXQj4\"]",
+    "　⚙ 中心 [449,481]",
+    "　　【A_刚选中还没碰⚙】滑杆 3 根 [{\"标签\":\"语速\",\"aria\":[\"0.5\",\"2\",\"1\"],\"value\":null},{\"标签\":\"声调\",\"aria\":[\"-12\",\"12\",\"0\"],\"value\":null},{\"标签\":\"音量\",\"aria\":[\"0.01\",\"10\",\"6.2\"],\"value\":null}]",
+    "　　【B_点了一次⚙】滑杆 3 根 [{\"标签\":\"语速\",\"aria\":[\"0.5\",\"2\",\"1\"],\"value\":null},{\"标签\":\"声调\",\"aria\":[\"-12\",\"12\",\"0\"],\"value\":null},{\"标签\":\"音量\",\"aria\":[\"0.01\",\"10\",\"6.2\"],\"value\":null}]",
+    "　　【C_又点了一次⚙】滑杆 3 根 [{\"标签\":\"语速\",\"aria\":[\"0.5\",\"2\",\"1\"],\"value\":null},{\"标签\":\"声调\",\"aria\":[\"-12\",\"12\",\"0\"],\"value\":null},{\"标签\":\"音量\",\"aria\":[\"0.01\",\"10\",\"6.2\"],\"value\":null}]",
+    "　　【D_按了Esc】滑杆 0 根 []",
+    "\n✅ 完成（未拖滑块、未改数值）",
+    "⏳ ⌘0 复位 + 静置 15s…",
+    "⭐ 真的被移动：0 个 []"
+  ]
+}
