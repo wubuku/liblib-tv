@@ -396,7 +396,7 @@
 | 内容命中环 | `group-content-operation-hit-ring` | 同尺寸，`pointer-events-none` |
 | **标题命中区** | **`group-title-hit-area`** | `552×14`，文字「编组 1」 |
 | 标题外观 | `group-title-chrome` | `56×24` |
-| 标签钮 | `flow-node-selected-tag` | 🔴 批次 89 订正：原写 `24×24` **不是契约**，aria `Add tags`；屏上边长 = `24px × 视口 scale × 逐节点的 counter-scale`，同画布 60% 下就有 `24×24`/`28×28`/`29×29` 三种 |
+| 标签钮 | `flow-node-selected-tag` | 🔴 批次 89 订正：原写 `24×24` **不是契约**，aria `Add tags`；屏上边长 = `24px × 视口 scale × 该节点自身的 counter-scale`，同画布 60% 下就有 `24×24`/`28×28`/`29×29` 三种。🔴 **批次 150 再订正**：「**逐节点的**」措辞**从未被验证** —— 同族 3 节点实测该变量逐字相同（4/4），变的是**族**；且新建节点上恒 `24×24`（12/12，跨 3 档缩放）。机制仍待查 |
 | 朗读文本 | `sr-only` | 逐字 `Group 编组 1, 2 members. Not selected.` |
 | **可点边带** | 无 testid | 上/下 `580×24`、左/右 `24×493`，`pointer-events-auto` |
 
