@@ -1,0 +1,889 @@
+{
+ "batch": 765,
+ "probe": "b",
+ "question": "注入对照定位时长框 Esc 关不掉面板的机制、外点关闭、Esc 关面板后焦点死路、反向 Tab 进不进面板",
+ "rounds": [
+  {
+   "load": {
+    "opened": true,
+    "width": 1440
+   },
+   "state0": {
+    "open": true,
+    "vw": 1440,
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "false",
+     "ariaControls": null,
+     "ariaHasPopup": null,
+     "text": "导出视频到画布"
+    },
+    "panel": null,
+    "active": {
+     "tag": "DIV",
+     "type": null,
+     "aria": "3D导演台工作区",
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "isBody": false,
+     "text": "3D导演台第一集：咖啡馆"
+    }
+   },
+   "openPanel": {
+    "clicked": true,
+    "pt": [
+     1333,
+     827
+    ]
+   },
+   "state1": {
+    "open": true,
+    "vw": 1440,
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "true",
+     "ariaControls": null,
+     "ariaHasPopup": null,
+     "text": "导出视频到画布"
+    },
+    "panel": {
+     "present": true,
+     "status": "idle",
+     "tag": "SECTION",
+     "role": null,
+     "ariaLabel": null,
+     "id": null,
+     "rect": {
+      "x": 1146,
+      "y": 552,
+      "w": 286,
+      "h": 267
+     }
+    },
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": null,
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": true,
+     "isBody": false,
+     "text": "导出视频到画布"
+    }
+   },
+   "inj_text": {
+    "label": "text",
+    "reachedWinCapture": true,
+    "reachedWinBubble": true,
+    "escTargetAtWin": "INPUT/text",
+    "panelClosed": false,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "INPUT",
+     "type": "text",
+     "aria": null,
+     "inPanel": true,
+     "inDialog": true,
+     "isTrigger": false,
+     "isBody": false,
+     "text": ""
+    },
+    "inject": {
+     "injected": true,
+     "kind": "text",
+     "focused": true,
+     "tag": "INPUT",
+     "type": "text",
+     "isContentEditable": false,
+     "tabIndex": 0,
+     "rect": {
+      "x": 20,
+      "y": 839
+     }
+    },
+    "focusInPanelBefore": true,
+    "injectedStillInDom": true,
+    "removed": {
+     "removed": 1
+    },
+    "expectPanelClosed": false,
+    "matchesExpectation": true
+   },
+   "inj_number": {
+    "label": "number",
+    "reachedWinCapture": true,
+    "reachedWinBubble": true,
+    "escTargetAtWin": "INPUT/number",
+    "panelClosed": false,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "INPUT",
+     "type": "number",
+     "aria": null,
+     "inPanel": true,
+     "inDialog": true,
+     "isTrigger": false,
+     "isBody": false,
+     "text": ""
+    },
+    "inject": {
+     "injected": true,
+     "kind": "number",
+     "focused": true,
+     "tag": "INPUT",
+     "type": "number",
+     "isContentEditable": false,
+     "tabIndex": 0,
+     "rect": {
+      "x": 20,
+      "y": 839
+     }
+    },
+    "focusInPanelBefore": true,
+    "injectedStillInDom": true,
+    "removed": {
+     "removed": 1
+    },
+    "expectPanelClosed": false,
+    "matchesExpectation": true
+   },
+   "inj_ce": {
+    "label": "contenteditable",
+    "reachedWinCapture": true,
+    "reachedWinBubble": true,
+    "escTargetAtWin": "DIV/",
+    "panelClosed": false,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "DIV",
+     "type": null,
+     "aria": null,
+     "inPanel": true,
+     "inDialog": true,
+     "isTrigger": false,
+     "isBody": false,
+     "text": "注入"
+    },
+    "inject": {
+     "injected": true,
+     "kind": "contenteditable",
+     "focused": true,
+     "tag": "DIV",
+     "type": null,
+     "isContentEditable": true,
+     "tabIndex": -1,
+     "rect": {
+      "x": 20,
+      "y": 839
+     }
+    },
+    "focusInPanelBefore": true,
+    "injectedStillInDom": true,
+    "removed": {
+     "removed": 1
+    },
+    "expectPanelClosed": false,
+    "matchesExpectation": true
+   },
+   "inj_tabindex": {
+    "label": "tabindex",
+    "reachedWinCapture": true,
+    "reachedWinBubble": true,
+    "escTargetAtWin": "DIV/",
+    "panelClosed": true,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "BODY",
+     "type": null,
+     "aria": null,
+     "inPanel": false,
+     "inDialog": false,
+     "isTrigger": false,
+     "isBody": true,
+     "text": "画布 2开通会员限时 4"
+    },
+    "inject": {
+     "injected": true,
+     "kind": "tabindex",
+     "focused": true,
+     "tag": "DIV",
+     "type": null,
+     "isContentEditable": false,
+     "tabIndex": 0,
+     "rect": {
+      "x": 20,
+      "y": 839
+     }
+    },
+    "focusInPanelBefore": true,
+    "injectedStillInDom": false,
+    "removed": {
+     "removed": 0
+    },
+    "expectPanelClosed": true,
+    "matchesExpectation": true
+   },
+   "outsideScan": {
+    "tag": "DIV",
+    "cls": "absolute inset-0",
+    "text": "角色01 · 陈默",
+    "inDialog": true,
+    "inPanel": false,
+    "clickable": false
+   },
+   "outsideClick": {
+    "pt": [
+     320,
+     300
+    ],
+    "hit": {
+     "tag": "DIV",
+     "cls": "absolute inset-0",
+     "text": "角色01 · 陈默",
+     "inDialog": true,
+     "inPanel": false,
+     "clickable": false
+    },
+    "panelStillOpen": true,
+    "panelClosed": false,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "DIV",
+     "type": null,
+     "aria": "3D导演台工作区",
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "isBody": false,
+     "text": "3D导演台第一集：咖啡馆"
+    }
+   },
+   "focaloss_before": {
+    "tag": "BUTTON",
+    "type": "button",
+    "aria": null,
+    "inPanel": true,
+    "inDialog": true,
+    "isTrigger": false,
+    "isBody": false,
+    "text": "16:9"
+   },
+   "focaloss_esc": {
+    "label": "close-panel-by-esc",
+    "reachedWinCapture": true,
+    "reachedWinBubble": true,
+    "escTargetAtWin": "BUTTON/button",
+    "panelClosed": true,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "BODY",
+     "type": null,
+     "aria": null,
+     "inPanel": false,
+     "inDialog": false,
+     "isTrigger": false,
+     "isBody": true,
+     "text": "画布 2开通会员限时 4"
+    }
+   },
+   "focaloss_tab6": {
+    "steps": 6,
+    "reachedDialogCount": 6,
+    "onBodyCount": 0,
+    "seq": [
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inDialog": true,
+      "isBody": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "角色01 · 陈默",
+      "inDialog": true,
+      "isBody": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "变换",
+      "inDialog": true,
+      "isBody": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inDialog": true,
+      "isBody": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inDialog": true,
+      "isBody": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inDialog": true,
+      "isBody": false
+     }
+    ]
+   },
+   "shift_focusTrigger": {
+    "focused": true,
+    "panelOpen": true
+   },
+   "shift_tab12": {
+    "steps": 12,
+    "inPanelCount": 0,
+    "escapedDialogCount": 0,
+    "seq": [
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "INPUT",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "ms",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "INPUT",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "INPUT",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "下一步",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "跳过",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "新增机位",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     }
+    ]
+   }
+  },
+  {
+   "load": {
+    "opened": true,
+    "width": 1440
+   },
+   "state0": {
+    "open": true,
+    "vw": 1440,
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "false",
+     "ariaControls": null,
+     "ariaHasPopup": null,
+     "text": "导出视频到画布"
+    },
+    "panel": null,
+    "active": {
+     "tag": "DIV",
+     "type": null,
+     "aria": "3D导演台工作区",
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "isBody": false,
+     "text": "3D导演台第一集：咖啡馆"
+    }
+   },
+   "openPanel": {
+    "clicked": true,
+    "pt": [
+     1333,
+     827
+    ]
+   },
+   "state1": {
+    "open": true,
+    "vw": 1440,
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "true",
+     "ariaControls": null,
+     "ariaHasPopup": null,
+     "text": "导出视频到画布"
+    },
+    "panel": {
+     "present": true,
+     "status": "idle",
+     "tag": "SECTION",
+     "role": null,
+     "ariaLabel": null,
+     "id": null,
+     "rect": {
+      "x": 1146,
+      "y": 552,
+      "w": 286,
+      "h": 267
+     }
+    },
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": null,
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": true,
+     "isBody": false,
+     "text": "导出视频到画布"
+    }
+   },
+   "inj_text": {
+    "label": "text",
+    "reachedWinCapture": true,
+    "reachedWinBubble": true,
+    "escTargetAtWin": "INPUT/text",
+    "panelClosed": false,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "INPUT",
+     "type": "text",
+     "aria": null,
+     "inPanel": true,
+     "inDialog": true,
+     "isTrigger": false,
+     "isBody": false,
+     "text": ""
+    },
+    "inject": {
+     "injected": true,
+     "kind": "text",
+     "focused": true,
+     "tag": "INPUT",
+     "type": "text",
+     "isContentEditable": false,
+     "tabIndex": 0,
+     "rect": {
+      "x": 20,
+      "y": 839
+     }
+    },
+    "focusInPanelBefore": true,
+    "injectedStillInDom": true,
+    "removed": {
+     "removed": 1
+    },
+    "expectPanelClosed": false,
+    "matchesExpectation": true
+   },
+   "inj_number": {
+    "label": "number",
+    "reachedWinCapture": true,
+    "reachedWinBubble": true,
+    "escTargetAtWin": "INPUT/number",
+    "panelClosed": false,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "INPUT",
+     "type": "number",
+     "aria": null,
+     "inPanel": true,
+     "inDialog": true,
+     "isTrigger": false,
+     "isBody": false,
+     "text": ""
+    },
+    "inject": {
+     "injected": true,
+     "kind": "number",
+     "focused": true,
+     "tag": "INPUT",
+     "type": "number",
+     "isContentEditable": false,
+     "tabIndex": 0,
+     "rect": {
+      "x": 20,
+      "y": 839
+     }
+    },
+    "focusInPanelBefore": true,
+    "injectedStillInDom": true,
+    "removed": {
+     "removed": 1
+    },
+    "expectPanelClosed": false,
+    "matchesExpectation": true
+   },
+   "inj_ce": {
+    "label": "contenteditable",
+    "reachedWinCapture": true,
+    "reachedWinBubble": true,
+    "escTargetAtWin": "DIV/",
+    "panelClosed": false,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "DIV",
+     "type": null,
+     "aria": null,
+     "inPanel": true,
+     "inDialog": true,
+     "isTrigger": false,
+     "isBody": false,
+     "text": "注入"
+    },
+    "inject": {
+     "injected": true,
+     "kind": "contenteditable",
+     "focused": true,
+     "tag": "DIV",
+     "type": null,
+     "isContentEditable": true,
+     "tabIndex": -1,
+     "rect": {
+      "x": 20,
+      "y": 839
+     }
+    },
+    "focusInPanelBefore": true,
+    "injectedStillInDom": true,
+    "removed": {
+     "removed": 1
+    },
+    "expectPanelClosed": false,
+    "matchesExpectation": true
+   },
+   "inj_tabindex": {
+    "label": "tabindex",
+    "reachedWinCapture": true,
+    "reachedWinBubble": true,
+    "escTargetAtWin": "DIV/",
+    "panelClosed": true,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "BODY",
+     "type": null,
+     "aria": null,
+     "inPanel": false,
+     "inDialog": false,
+     "isTrigger": false,
+     "isBody": true,
+     "text": "画布 2开通会员限时 4"
+    },
+    "inject": {
+     "injected": true,
+     "kind": "tabindex",
+     "focused": true,
+     "tag": "DIV",
+     "type": null,
+     "isContentEditable": false,
+     "tabIndex": 0,
+     "rect": {
+      "x": 20,
+      "y": 839
+     }
+    },
+    "focusInPanelBefore": true,
+    "injectedStillInDom": false,
+    "removed": {
+     "removed": 0
+    },
+    "expectPanelClosed": true,
+    "matchesExpectation": true
+   },
+   "outsideScan": {
+    "tag": "DIV",
+    "cls": "absolute inset-0",
+    "text": "角色01 · 陈默",
+    "inDialog": true,
+    "inPanel": false,
+    "clickable": false
+   },
+   "outsideClick": {
+    "pt": [
+     320,
+     300
+    ],
+    "hit": {
+     "tag": "DIV",
+     "cls": "absolute inset-0",
+     "text": "角色01 · 陈默",
+     "inDialog": true,
+     "inPanel": false,
+     "clickable": false
+    },
+    "panelStillOpen": true,
+    "panelClosed": false,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "DIV",
+     "type": null,
+     "aria": "3D导演台工作区",
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "isBody": false,
+     "text": "3D导演台第一集：咖啡馆"
+    }
+   },
+   "focaloss_before": {
+    "tag": "BUTTON",
+    "type": "button",
+    "aria": null,
+    "inPanel": true,
+    "inDialog": true,
+    "isTrigger": false,
+    "isBody": false,
+    "text": "16:9"
+   },
+   "focaloss_esc": {
+    "label": "close-panel-by-esc",
+    "reachedWinCapture": true,
+    "reachedWinBubble": true,
+    "escTargetAtWin": "BUTTON/button",
+    "panelClosed": true,
+    "workspaceClosed": false,
+    "active": {
+     "tag": "BODY",
+     "type": null,
+     "aria": null,
+     "inPanel": false,
+     "inDialog": false,
+     "isTrigger": false,
+     "isBody": true,
+     "text": "画布 2开通会员限时 4"
+    }
+   },
+   "focaloss_tab6": {
+    "steps": 6,
+    "reachedDialogCount": 6,
+    "onBodyCount": 0,
+    "seq": [
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inDialog": true,
+      "isBody": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "角色01 · 陈默",
+      "inDialog": true,
+      "isBody": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "变换",
+      "inDialog": true,
+      "isBody": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inDialog": true,
+      "isBody": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inDialog": true,
+      "isBody": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inDialog": true,
+      "isBody": false
+     }
+    ]
+   },
+   "shift_focusTrigger": {
+    "focused": true,
+    "panelOpen": true
+   },
+   "shift_tab12": {
+    "steps": 12,
+    "inPanelCount": 0,
+    "escapedDialogCount": 0,
+    "seq": [
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "INPUT",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "ms",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "INPUT",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "INPUT",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "下一步",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "跳过",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "新增机位",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     }
+    ]
+   }
+  }
+ ]
+}

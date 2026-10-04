@@ -1,0 +1,1418 @@
+{
+ "batch": 765,
+ "checks": [
+  {
+   "label": "静态：isEditable 早退排在 Escape 分支之前",
+   "pass": true,
+   "got": 486
+  },
+  {
+   "label": "静态：isEditable 早退排在「关导出面板」那一档之前",
+   "pass": true,
+   "got": [
+    486,
+    556
+   ]
+  },
+  {
+   "label": "静态：移动端关抽屉那一档排在 isEditable 早退之前",
+   "pass": true,
+   "got": [
+    481,
+    486
+   ]
+  },
+  {
+   "label": "静态：Escape 分支的入口排在「关导出面板」那一档之前",
+   "pass": true,
+   "got": [
+    548,
+    556
+   ]
+  },
+  {
+   "label": "静态：setExportPanelOpen 全仓恰好 3 处调用（无外点关闭）",
+   "pass": true,
+   "got": 3
+  },
+  {
+   "label": "静态：关面板那一档里没有任何焦点处理（D4 的机制）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：面板挂在触发器之后（D6 反向 Tab 进不去的前提）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：触发器只有 aria-expanded，没有 aria-controls/aria-haspopup",
+   "pass": true,
+   "got": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "label": "静态：面板 if (!open) return null 存在（会卸载聚焦元素）",
+   "pass": true,
+   "got": 37
+  },
+  {
+   "label": "静态：面板根是 <section> 且无 role/aria-label/id（D6）",
+   "pass": true,
+   "got": [
+    "section",
+    false,
+    false,
+    false
+   ]
+  },
+  {
+   "label": "静态：面板里没有手势边界/没有 onKeyDown/没有 stopPropagation（D1 不适用）",
+   "pass": true,
+   "got": [
+    false,
+    false,
+    false
+   ]
+  },
+  {
+   "label": "静态：围栏 hook 有 keydown 监听、没有 focusin/focusout（D4 捞不回来）",
+   "pass": true,
+   "got": [
+    true,
+    false,
+    false
+   ]
+  },
+  {
+   "label": "静态：围栏 hook 只在整体卸载时调 restoreFocus",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "判据 17 条",
+   "pass": true,
+   "got": 17
+  },
+  {
+   "label": "verdict 分布 11 PASS / 6 FAIL",
+   "pass": true,
+   "got": [
+    11,
+    6
+   ]
+  },
+  {
+   "label": "★ 6 条 FAIL 恰好是 J4/J8/J10/J11/J12/J13（不许偷改）",
+   "pass": true,
+   "got": [
+    "J4",
+    "J8",
+    "J10",
+    "J11",
+    "J12",
+    "J13"
+   ]
+  },
+  {
+   "label": "判据 id 唯一且连续 J1..J17",
+   "pass": true,
+   "got": [
+    "J1",
+    "J2",
+    "J3",
+    "J4",
+    "J5",
+    "J6",
+    "J7",
+    "J8",
+    "J9",
+    "J10",
+    "J11",
+    "J12",
+    "J13",
+    "J14",
+    "J15",
+    "J16",
+    "J17"
+   ]
+  },
+  {
+   "label": "★ 每条判据都有非空 evidenceKey",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★ 每条判据的 evidenceKey 都真实存在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ evidence 不得为空对象（防止 all([]) 式空过）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "判据 4 条引用 findings 里的不同键（不许全挂一个）",
+   "pass": true,
+   "got": 11
+  },
+  {
+   "label": "缺陷 4 条 D3/D4/D5/D6",
+   "pass": true,
+   "got": [
+    "D3",
+    "D4",
+    "D5",
+    "D6"
+   ]
+  },
+  {
+   "label": "★ 四条缺陷都标 needsSrcChange",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 四条缺陷都有 where 且每处指向真实行",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 本批不重复声明 763/764 的 D1/D2",
+   "pass": true,
+   "got": [
+    "D3",
+    "D4",
+    "D5",
+    "D6"
+   ]
+  },
+  {
+   "label": "★ D3 声明了与 764 D2 同守卫",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★★ D3 的机制点名了判别点 reachedWinBubble=true（否则「就是 D1 那个 stopPropagation」也能蒙混过关）",
+   "pass": true,
+   "got": "`DirectorDesk.tsx:475-480` 把 isEditable 定义成「isContentEditable 或 tagName 是 INPUT/"
+  },
+  {
+   "label": "★ D3 的机制点名了 isEditable 早退这一行",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D4 的机制点名了 if (!open) return null",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D4 的机制点名了「没碰焦点 / 没有 focusin 监听」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D4 引用了 762 的对照结论",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ D5 引用了与 D3 的叠加",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 缺陷 where 的每处指针都指向真实文件与行号",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "缺陷严重度都在 低/中/高 之内",
+   "pass": true,
+   "got": [
+    "低",
+    "低",
+    "低",
+    "低"
+   ]
+  },
+  {
+   "label": "观察 4 条",
+   "pass": true,
+   "got": 4
+  },
+  {
+   "label": "★ O3 明确标了「不作判据」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "探针教训 R63–R66 四条",
+   "pass": true,
+   "got": [
+    "R63",
+    "R64",
+    "R65",
+    "R66"
+   ]
+  },
+  {
+   "label": "★ R63 记的是「按 Esc 之前先读状态」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ R64 记的是「预期被实测否掉」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里写明「没有点提交按钮」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里写明「没有选文件」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里写明那 6 次 Tab 谁接管判不了",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 不声称里写明无源站对照",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "不声称 ≥ 8 条",
+   "pass": true,
+   "got": 10
+  },
+  {
+   "label": "两轮可比且逐字段一致（765a）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "两轮可比且逐字段一致（765b）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★ 可比性判据比的是非空 key 列表",
+   "pass": true,
+   "got": [
+    10,
+    9
+   ]
+  },
+  {
+   "label": "原始读数轮数各为 2",
+   "pass": true,
+   "got": [
+    2,
+    2
+   ]
+  },
+  {
+   "label": "产物声明的轮数与原始读数一致",
+   "pass": true,
+   "got": [
+    2,
+    2
+   ]
+  },
+  {
+   "label": "★ 逐控件 Esc：格子数 = 2 轮 × 5 控件",
+   "pass": true,
+   "got": 10
+  },
+  {
+   "label": "★ 关面板 8 格 / 不关 2 格",
+   "pass": true,
+   "got": [
+    8,
+    2
+   ]
+  },
+  {
+   "label": "★ 不关的只有 duration（时长框）",
+   "pass": true,
+   "got": [
+    "duration"
+   ]
+  },
+  {
+   "label": "★ 没有一格把导演台关掉",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★ 全部格子聚焦都成功（不许拿「没聚焦到」解释）",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★ 探针自报的 allClosed 与重算一致（重算=False）",
+   "pass": true,
+   "got": [
+    false,
+    false
+   ]
+  },
+  {
+   "label": "面板可聚焦控件两轮都是 5",
+   "pass": true,
+   "got": [
+    5,
+    5
+   ]
+  },
+  {
+   "label": "★ 注入 8 格且 0 格失败",
+   "pass": true,
+   "got": [
+    8,
+    0
+   ]
+  },
+  {
+   "label": "★ 8 格全部获得焦点",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★ 8 格焦点全在面板内",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★★ 8/8 格 reachedWinBubble=true（D3 不是 D1 的 stopPropagation）",
+   "pass": true,
+   "got": [
+    8,
+    8
+   ]
+  },
+  {
+   "label": "8/8 格 reachedWinCapture=true",
+   "pass": true,
+   "got": 8
+  },
+  {
+   "label": "★ 可编辑的 6 格（text/number/ce × 2 轮）全部关不掉面板",
+   "pass": true,
+   "got": [
+    6,
+    6
+   ]
+  },
+  {
+   "label": "★ 不可编辑的 2 格（tabindex）都关掉了面板",
+   "pass": true,
+   "got": [
+    2,
+    2
+   ]
+  },
+  {
+   "label": "★ 注入对照里没有任何一格关掉导演台",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★ 注入元素 0 污染（要么被移除、要么随面板卸载）",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "产物 inject 派生量与重算一致",
+   "pass": true,
+   "got": [
+    8,
+    8
+   ]
+  },
+  {
+   "label": "外点：两轮都真点了、命中点确实在面板外",
+   "pass": true,
+   "got": [
+    [
+     true,
+     true
+    ],
+    [
+     false,
+     false
+    ]
+   ]
+  },
+  {
+   "label": "★ 点外面后面板仍然开着（2/2）",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "外点：导演台没被关掉",
+   "pass": true,
+   "got": [
+    false,
+    false
+   ]
+  },
+  {
+   "label": "焦点丢失：按 Esc 之前焦点在面板内",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "★ 按 Esc 之前焦点在面板内 ⟹ 事件已到 window 冒泡",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "★ 那一档确实关掉了面板、没关导演台",
+   "pass": true,
+   "got": [
+    [
+     true,
+     true
+    ],
+    [
+     false,
+     false
+    ]
+   ]
+  },
+  {
+   "label": "★ Esc 之后焦点两轮都掉到 BODY",
+   "pass": true,
+   "got": [
+    "BODY",
+    "BODY"
+   ]
+  },
+  {
+   "label": "★ Esc 之后焦点两轮都逃出 dialog",
+   "pass": true,
+   "got": [
+    false,
+    false
+   ]
+  },
+  {
+   "label": "★ Esc 之后焦点不在触发器上（D4 不是「焦点回触发器」）",
+   "pass": true,
+   "got": [
+    false,
+    false
+   ]
+  },
+  {
+   "label": "★ Tab 落点序列长度与步数一致（不许少读）",
+   "pass": true,
+   "got": [
+    [
+     6,
+     6
+    ],
+    [
+     6,
+     6
+    ]
+   ]
+  },
+  {
+   "label": "★ Tab 之后 6 步全部落回 dialog（J9 的更正）",
+   "pass": true,
+   "got": [
+    [
+     6,
+     6
+    ],
+    [
+     6,
+     6
+    ]
+   ]
+  },
+  {
+   "label": "反向 Tab：焦点确实落在触发器上、面板确实开着",
+   "pass": true,
+   "got": [
+    [
+     true,
+     true
+    ],
+    [
+     true,
+     true
+    ]
+   ]
+  },
+  {
+   "label": "★ 反向 Tab 12 步 0 次进面板",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "★ 反向 Tab 也没有逃出 dialog（围栏反向也守得住）",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "★ 正向从面板 Tab 0 次逃出 dialog",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "★ 正向从触发器 Tab 0 次逃出 dialog",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "正向从触发器 Tab 能走进面板",
+   "pass": true,
+   "got": [
+    5,
+    5
+   ]
+  },
+  {
+   "label": "★ 打开瞬间焦点留在触发器上",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "★ 打开瞬间焦点不在面板内",
+   "pass": true,
+   "got": [
+    false,
+    false
+   ]
+  },
+  {
+   "label": "aria-expanded 开之前 false、开之后 true",
+   "pass": true,
+   "got": [
+    [
+     "false",
+     "false"
+    ],
+    [
+     "true",
+     "true"
+    ]
+   ]
+  },
+  {
+   "label": "800px 下导出面板两轮都打开",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "★ 阶梯四档读齐了两轮",
+   "pass": true,
+   "got": 2
+  },
+  {
+   "label": "★ 第 1 档只关抽屉（面板不关、导演台不关）",
+   "pass": true,
+   "got": 2
+  },
+  {
+   "label": "★ 第 2 档关面板不关导演台",
+   "pass": true,
+   "got": 2
+  },
+  {
+   "label": "★ 第 3 档关导演台",
+   "pass": true,
+   "got": 2
+  },
+  {
+   "label": "★ 时长框那一档两轮都留着面板（D3 在移动端同样成立）",
+   "pass": true,
+   "got": 2
+  },
+  {
+   "label": "★ 导入按钮两轮都真的弹了文件选择器",
+   "pass": true,
+   "got": [
+    true,
+    true
+   ]
+  },
+  {
+   "label": "★ 隐藏 file input 两轮都是零可访问名（坐实 762）",
+   "pass": true,
+   "got": [
+    [
+     null,
+     null
+    ],
+    [
+     null,
+     null
+    ],
+    [
+     null,
+     null
+    ],
+    [
+     null,
+     null
+    ],
+    [
+     false,
+     false
+    ]
+   ]
+  },
+  {
+   "label": "★ 隐藏 file input 是 display:none（所以不可聚焦、不算缺陷）",
+   "pass": true,
+   "got": [
+    "none",
+    "none"
+   ]
+  },
+  {
+   "label": "导入按钮本身有可访问名且未 disabled",
+   "pass": true,
+   "got": [
+    [
+     "导入导演台项目",
+     "导入导演台项目"
+    ],
+    [
+     false,
+     false
+    ]
+   ]
+  },
+  {
+   "label": "文件类型限定为 json",
+   "pass": true,
+   "got": [
+    ".json,application/json",
+    ".json,application/json"
+   ]
+  },
+  {
+   "label": "★ 运行时：触发器两轮都没有 aria-controls / aria-haspopup",
+   "pass": true,
+   "got": [
+    [
+     null,
+     null
+    ],
+    [
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "label": "★ 运行时：面板两轮都是无 role/无 aria-label/无 id 的 SECTION",
+   "pass": true,
+   "got": [
+    [
+     "SECTION",
+     "SECTION"
+    ],
+    [
+     null,
+     null
+    ],
+    [
+     null,
+     null
+    ],
+    [
+     null,
+     null
+    ]
+   ]
+  },
+  {
+   "label": "产物 batch=765",
+   "pass": true,
+   "got": 765
+  },
+  {
+   "label": "产物声明未改 src/",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "probes 列了 2 个探针",
+   "pass": true,
+   "got": 2
+  },
+  {
+   "label": "★ 每份 raw 都有 sha 记录",
+   "pass": true,
+   "got": [
+    "vb765a.json",
+    "vb765b.json"
+   ]
+  },
+  {
+   "label": "原始读数存在 vb765a.json",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "原始读数存在 vb765b.json",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "探针脚本存在 dbg765a.py（原始读数与探针必须随产物提交）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "探针脚本存在 dbg765b.py（原始读数与探针必须随产物提交）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "探针脚本存在 mk765audit.py（原始读数与探针必须随产物提交）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 存在",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 选题",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 判据",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 缺陷",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 观察",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 探针教训",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 不声称",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 含章节 ## 复现",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有缺陷 D3 的独立章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有缺陷 D4 的独立章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有缺陷 D5 的独立章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 有缺陷 D6 的独立章节",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 没有把 D1/D2 说成本批新发现",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 表格首格没有裸数字（pre-commit 正则会误判）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "★ README 写明判据 17 条",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 提到了没有点提交按钮",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ README 提到了 J9 的更正（预期被否掉）",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 台账恰好一行 Batch 765",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "★ 台账行首格是「Batch 765」",
+   "pass": true,
+   "got": " Batch 765 "
+  },
+  {
+   "label": "★ 台账新行里 0 个 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "★ 台账新行非空且够长（不许占位）",
+   "pass": true,
+   "got": 1470
+  },
+  {
+   "label": "台账行提到 D3",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账行提到 D4",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账行提到 D5",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账行提到 D6",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账行提到 注入对照",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "台账行提到 死路",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "★ 台账历史 U+FFFD 仍是 9 个（522/583/587 未被动）",
+   "pass": true,
+   "got": 9
+  },
+  {
+   "label": "★ U+FFFD 仍只落在 522/583/587 三行",
+   "pass": true,
+   "got": [
+    522,
+    583,
+    587
+   ]
+  },
+  {
+   "label": "★ 台账行数 = 628（追加一行，不加前导空行）",
+   "pass": true,
+   "got": 628
+  },
+  {
+   "label": "★ Batch 764 行仍在且唯一",
+   "pass": true,
+   "got": null
+  }
+ ],
+ "pass": 140,
+ "total": 140,
+ "negativeControls": [
+  {
+   "name": "★ 删掉缺陷 D3",
+   "caught": true,
+   "firstFail": "缺陷 4 条 D3/D4/D5/D6"
+  },
+  {
+   "name": "★ 删掉缺陷 D4",
+   "caught": true,
+   "firstFail": "缺陷 4 条 D3/D4/D5/D6"
+  },
+  {
+   "name": "★ 删掉缺陷 D5",
+   "caught": true,
+   "firstFail": "缺陷 4 条 D3/D4/D5/D6"
+  },
+  {
+   "name": "★ 删掉缺陷 D6",
+   "caught": true,
+   "firstFail": "缺陷 4 条 D3/D4/D5/D6"
+  },
+  {
+   "name": "★ 把 D3 降级成观察",
+   "caught": true,
+   "firstFail": "观察 4 条"
+  },
+  {
+   "name": "★ 把 D3 的 needsSrcChange 去掉",
+   "caught": true,
+   "firstFail": "★ 四条缺陷都标 needsSrcChange"
+  },
+  {
+   "name": "★ 把 D3 的机制改回「就是 D1 那个 stopPropagation」",
+   "caught": true,
+   "firstFail": "★★ D3 的机制点名了判别点 reachedWinBubble=true（否则「就是 D1 那个 stopPropagation」也能蒙混过关）"
+  },
+  {
+   "name": "★ 把 D3 的 sameGuardAs 抹掉（会掩盖与 764 D2 的关系）",
+   "caught": true,
+   "firstFail": "★ D3 声明了与 764 D2 同守卫"
+  },
+  {
+   "name": "★ 把 D3 的机制改成不提判别点的说法",
+   "caught": true,
+   "firstFail": "★★ D3 的机制点名了判别点 reachedWinBubble=true（否则「就是 D1 那个 stopPropagation」也能蒙混过关）"
+  },
+  {
+   "name": "★ 把 D4 的机制改成不提 focusin",
+   "caught": true,
+   "firstFail": "★ D4 的机制点名了 if (!open) return null"
+  },
+  {
+   "name": "★ 把 D3 的 where 指向不存在的行号",
+   "caught": true,
+   "firstFail": "★ 缺陷 where 的每处指针都指向真实文件与行号"
+  },
+  {
+   "name": "★ 把 D3 的 where 指向不存在的文件",
+   "caught": true,
+   "firstFail": "★ 缺陷 where 的每处指针都指向真实文件与行号"
+  },
+  {
+   "name": "★ 把 D4 的对照（762 焦点回触发器）抹掉",
+   "caught": true,
+   "firstFail": "★ D4 引用了 762 的对照结论"
+  },
+  {
+   "name": "★ 把 D5 与 D3 的叠加抹掉",
+   "caught": true,
+   "firstFail": "★ D5 引用了与 D3 的叠加"
+  },
+  {
+   "name": "★ 本批重复声明 763/764 的 D1",
+   "caught": true,
+   "firstFail": "缺陷 4 条 D3/D4/D5/D6"
+  },
+  {
+   "name": "★ 把 J4 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 11 PASS / 6 FAIL"
+  },
+  {
+   "name": "★ 把 J8 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 11 PASS / 6 FAIL"
+  },
+  {
+   "name": "★ 把 J10 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 11 PASS / 6 FAIL"
+  },
+  {
+   "name": "★ 把 J11 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 11 PASS / 6 FAIL"
+  },
+  {
+   "name": "★ 把 J12 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 11 PASS / 6 FAIL"
+  },
+  {
+   "name": "★ 把 J13 从 FAIL 改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 11 PASS / 6 FAIL"
+  },
+  {
+   "name": "★ 把判据条数从 17 改成 12",
+   "caught": true,
+   "firstFail": "判据 17 条"
+  },
+  {
+   "name": "★ 把 J10（不声称）也改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 11 PASS / 6 FAIL"
+  },
+  {
+   "name": "★ 判据全改成 PASS",
+   "caught": true,
+   "firstFail": "verdict 分布 11 PASS / 6 FAIL"
+  },
+  {
+   "name": "只改 findings.inject.reachedWinBubble",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "只改 findings.inject.polluted",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "只改 findings.focusLoss.fellToBodyEverywhere",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "只改 findings.shiftTab.inPanel",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "只改 findings.outsideClick.panelStayedOpen",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "只改 findings.mobileLadder.allLadderOk",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "只改 findings.disclosureContract.hasAriaControls",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "★ 把 J5 的 evidence 换成别的键（让 FAIL 失去支撑）",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "★ 把 J8 的 evidence 换成可比性（焦点丢失失去支撑）",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "★ 把可比性说成一致（765a 不一致 key 非空）",
+   "caught": true,
+   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+  },
+  {
+   "name": "★ 把 O3 的「不作判据」标成「事实记录」",
+   "caught": true,
+   "firstFail": "★ O3 明确标了「不作判据」"
+  },
+  {
+   "name": "★ 不声称里删掉「没有点提交按钮」",
+   "caught": true,
+   "firstFail": "★ 不声称里写明「没有点提交按钮」"
+  },
+  {
+   "name": "★ 不声称里删掉「没有选文件」",
+   "caught": true,
+   "firstFail": "★ 不声称里写明「没有选文件」"
+  },
+  {
+   "name": "★ 删掉 R64（预期被否掉那条教训）",
+   "caught": true,
+   "firstFail": "探针教训 R63–R66 四条"
+  },
+  {
+   "name": "★ 把 R63 的内容换成别的",
+   "caught": true,
+   "firstFail": "★ R63 记的是「按 Esc 之前先读状态」"
+  },
+  {
+   "name": "★ 台账删掉 Batch 765 行",
+   "caught": true,
+   "firstFail": "★ 台账恰好一行 Batch 765"
+  },
+  {
+   "name": "★ 台账行首格改成裸数字 765",
+   "caught": true,
+   "firstFail": "★ 台账恰好一行 Batch 765"
+  },
+  {
+   "name": "★ 台账行首格写成 Batch 0765",
+   "caught": true,
+   "firstFail": "★ 台账恰好一行 Batch 765"
+  },
+  {
+   "name": "★ 台账新行塞一个 U+FFFD",
+   "caught": true,
+   "firstFail": "★ 台账新行里 0 个 U+FFFD"
+  },
+  {
+   "name": "★ 台账被追加了一行 Batch 766（行数断言）",
+   "caught": true,
+   "firstFail": "★ 台账新行非空且够长（不许占位）"
+  },
+  {
+   "name": "★ README 表格首格改成裸数字",
+   "caught": true,
+   "firstFail": "★ README 表格首格没有裸数字（pre-commit 正则会误判）"
+  },
+  {
+   "name": "★ README 删掉「不声称」章节",
+   "caught": true,
+   "firstFail": "README 含章节 ## 不声称"
+  },
+  {
+   "name": "★ README 删掉 D4",
+   "caught": true,
+   "firstFail": "★ README 有缺陷 D4 的独立章节"
+  },
+  {
+   "name": "伪造：isEditable 早退排在 Escape 之后",
+   "caught": true,
+   "firstFail": "静态：isEditable 早退排在 Escape 分支之前"
+  },
+  {
+   "name": "伪造：isEditable 早退排在「关面板」之后",
+   "caught": true,
+   "firstFail": "静态：isEditable 早退排在「关导出面板」那一档之前"
+  },
+  {
+   "name": "伪造：移动端关抽屉那档排在 isEditable 早退之后",
+   "caught": true,
+   "firstFail": "静态：移动端关抽屉那一档排在 isEditable 早退之前"
+  },
+  {
+   "name": "伪造：setExportPanelOpen 有 4 处调用（有外点关闭）",
+   "caught": true,
+   "firstFail": "静态：setExportPanelOpen 全仓恰好 3 处调用（无外点关闭）"
+  },
+  {
+   "name": "伪造：关面板那一档里有焦点处理",
+   "caught": true,
+   "firstFail": "静态：关面板那一档里没有任何焦点处理（D4 的机制）"
+  },
+  {
+   "name": "伪造：面板挂在触发器之前",
+   "caught": true,
+   "firstFail": "静态：面板挂在触发器之后（D6 反向 Tab 进不去的前提）"
+  },
+  {
+   "name": "伪造：触发器有 aria-controls",
+   "caught": true,
+   "firstFail": "静态：触发器只有 aria-expanded，没有 aria-controls/aria-haspopup"
+  },
+  {
+   "name": "伪造：面板根有 role=dialog",
+   "caught": true,
+   "firstFail": "静态：面板根是 <section> 且无 role/aria-label/id（D6）"
+  },
+  {
+   "name": "伪造：面板里有手势边界（D1 会适用）",
+   "caught": true,
+   "firstFail": "静态：面板里没有手势边界/没有 onKeyDown/没有 stopPropagation（D1 不适用）"
+  },
+  {
+   "name": "伪造：围栏 hook 有 focusin 监听（能捞回焦点）",
+   "caught": true,
+   "firstFail": "静态：围栏 hook 有 keydown 监听、没有 focusin/focusout（D4 捞不回来）"
+  },
+  {
+   "name": "伪造：围栏 hook 多处调 restoreFocus",
+   "caught": true,
+   "firstFail": "静态：围栏 hook 只在整体卸载时调 restoreFocus"
+  },
+  {
+   "name": "伪造：面板没有 if (!open) return null",
+   "caught": true,
+   "firstFail": "静态：面板 if (!open) return null 存在（会卸载聚焦元素）"
+  },
+  {
+   "name": "★ 原始：把时长格的 panelClosed 改成 True（缺陷消失）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把 tabindex 格的 panelClosed 改成 False",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把注入对照的 reachedWinBubble 全改成 false（D1 混进来）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把 contentEditable 格的 panelClosed 改成 True",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把焦点掉到 BODY 改成 BUTTON（D4 消失）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把 Esc 后焦点改成在触发器上",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把 Tab 6 步的落点序列清空（不许少读）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把 reachedDialogCount 改成 0（死路）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把反向 Tab 的 inPanelCount 改成 3",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把反向 Tab 的 escapedDialogCount 改成 1（围栏漏了）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把外点点击后面板改成已关",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把外点命中改成在面板内（点法就错了）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把第 3 档的 workspaceClosed 改成 False（阶梯错）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把第 1 档的 panelClosed 改成 True",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把文件选择器改成没弹",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把隐藏 input 的 accessibleName 填上",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把隐藏 input 的 display 改成 block（那就可聚焦了）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把触发器的 aria-controls 填上",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把面板的 role 填成 dialog",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把打开瞬间焦点改成进了面板",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把逐控件 Esc 的 focus 改成没聚焦上（不许这样解释）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 原始：把某格的 workspaceClosed 改成 True（面板关到导演台了）",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ all([]) 陷阱：把 d_sweep.rows 清空",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ all([]) 陷阱：把注入对照某一格整个删掉",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ all([]) 陷阱：把 shift_tab12 的 seq 清空",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  },
+  {
+   "name": "★ 伪造污染：注入元素既没移除也还在 DOM",
+   "caught": true,
+   "firstFail": "重算抛错：'__raw__'"
+  }
+ ],
+ "negativeCaught": 85,
+ "negativeTotal": 85,
+ "rawError": null,
+ "ok": true
+}

@@ -1,0 +1,2767 @@
+{
+ "batch": 765,
+ "probe": "a",
+ "question": "导入/导出面板内的焦点围栏、逐控件 Esc、800px 三档 Esc 优先级、导入按钮会不会弹文件选择器",
+ "rounds": [
+  {
+   "d_load": {
+    "opened": true,
+    "width": 1440
+   },
+   "d_before": {
+    "open": true,
+    "vw": 1440,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 48,
+     "w": 233
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 1159,
+     "w": 281
+    },
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "false",
+     "text": "导出视频到画布",
+     "x": 1324,
+     "y": 823,
+     "w": 108,
+     "h": 28
+    },
+    "panel": {
+     "present": false
+    },
+    "active": {
+     "tag": "DIV",
+     "type": null,
+     "aria": "3D导演台工作区",
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "text": "3D导演台第一集：咖啡馆"
+    }
+   },
+   "d_openPanel": {
+    "clicked": true,
+    "rect": {
+     "x": 1324,
+     "y": 823,
+     "w": 108,
+     "h": 28
+    },
+    "desk": {
+     "open": true,
+     "vw": 1440,
+     "tree": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": false,
+      "x": 48,
+      "w": 233
+     },
+     "inspector": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": false,
+      "x": 1159,
+      "w": 281
+     },
+     "trigger": {
+      "present": true,
+      "ariaExpanded": "true",
+      "text": "导出视频到画布",
+      "x": 1324,
+      "y": 823,
+      "w": 108,
+      "h": 28
+     },
+     "panel": {
+      "present": true,
+      "status": "idle",
+      "progress": null,
+      "rect": {
+       "x": 1146,
+       "y": 552,
+       "w": 286,
+       "h": 267
+      },
+      "duration": {
+       "value": "8",
+       "disabled": false,
+       "min": "1",
+       "max": "8",
+       "step": "0.5",
+       "aria": null
+      },
+      "aspect": [
+       {
+        "ratio": "16:9",
+        "pressed": "true",
+        "disabled": false,
+        "text": "16:9"
+       },
+       {
+        "ratio": "9:16",
+        "pressed": "false",
+        "disabled": false,
+        "text": "9:16"
+       },
+       {
+        "ratio": "1:1",
+        "pressed": "false",
+        "disabled": false,
+        "text": "1:1"
+       }
+      ],
+      "submit": {
+       "present": true,
+       "text": "导出视频到画布",
+       "disabled": false,
+       "type": "button"
+      },
+      "focusables": [
+       {
+        "i": 0,
+        "tag": "INPUT",
+        "type": "number",
+        "marker": "duration",
+        "submit": false,
+        "text": ""
+       },
+       {
+        "i": 1,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "16:9",
+        "submit": false,
+        "text": "16:9"
+       },
+       {
+        "i": 2,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "9:16",
+        "submit": false,
+        "text": "9:16"
+       },
+       {
+        "i": 3,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "1:1",
+        "submit": false,
+        "text": "1:1"
+       },
+       {
+        "i": 4,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "",
+        "submit": true,
+        "text": "导出视频到画布"
+       }
+      ]
+     },
+     "active": {
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": true,
+      "text": "导出视频到画布"
+     }
+    }
+   },
+   "d_state": {
+    "open": true,
+    "vw": 1440,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 48,
+     "w": 233
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 1159,
+     "w": 281
+    },
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "true",
+     "text": "导出视频到画布",
+     "x": 1324,
+     "y": 823,
+     "w": 108,
+     "h": 28
+    },
+    "panel": {
+     "present": true,
+     "status": "idle",
+     "progress": null,
+     "rect": {
+      "x": 1146,
+      "y": 552,
+      "w": 286,
+      "h": 267
+     },
+     "duration": {
+      "value": "8",
+      "disabled": false,
+      "min": "1",
+      "max": "8",
+      "step": "0.5",
+      "aria": null
+     },
+     "aspect": [
+      {
+       "ratio": "16:9",
+       "pressed": "true",
+       "disabled": false,
+       "text": "16:9"
+      },
+      {
+       "ratio": "9:16",
+       "pressed": "false",
+       "disabled": false,
+       "text": "9:16"
+      },
+      {
+       "ratio": "1:1",
+       "pressed": "false",
+       "disabled": false,
+       "text": "1:1"
+      }
+     ],
+     "submit": {
+      "present": true,
+      "text": "导出视频到画布",
+      "disabled": false,
+      "type": "button"
+     },
+     "focusables": [
+      {
+       "i": 0,
+       "tag": "INPUT",
+       "type": "number",
+       "marker": "duration",
+       "submit": false,
+       "text": ""
+      },
+      {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "16:9",
+       "submit": false,
+       "text": "16:9"
+      },
+      {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "9:16",
+       "submit": false,
+       "text": "9:16"
+      },
+      {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "1:1",
+       "submit": false,
+       "text": "1:1"
+      },
+      {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "",
+       "submit": true,
+       "text": "导出视频到画布"
+      }
+     ]
+    },
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": null,
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": true,
+     "text": "导出视频到画布"
+    }
+   },
+   "d_focusOnOpen": {
+    "tag": "BUTTON",
+    "type": "button",
+    "aria": null,
+    "inPanel": false,
+    "inDialog": true,
+    "isTrigger": true,
+    "text": "导出视频到画布"
+   },
+   "d_sweep": {
+    "label": "desktop",
+    "panelFocusables": 5,
+    "rows": [
+     {
+      "i": 0,
+      "item": {
+       "i": 0,
+       "tag": "INPUT",
+       "type": "number",
+       "marker": "duration",
+       "submit": false,
+       "text": ""
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number",
+       "marker": "duration",
+       "submit": false
+      },
+      "focusedInPanel": true,
+      "panelClosed": false,
+      "workspaceClosed": false,
+      "drawerStateAfter": "closed"
+     },
+     {
+      "i": 1,
+      "item": {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "16:9",
+       "submit": false,
+       "text": "16:9"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "16:9",
+       "submit": false
+      },
+      "focusedInPanel": true,
+      "panelClosed": true,
+      "workspaceClosed": false,
+      "drawerStateAfter": "closed"
+     },
+     {
+      "i": 2,
+      "item": {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "9:16",
+       "submit": false,
+       "text": "9:16"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "9:16",
+       "submit": false
+      },
+      "focusedInPanel": true,
+      "panelClosed": true,
+      "workspaceClosed": false,
+      "drawerStateAfter": "closed"
+     },
+     {
+      "i": 3,
+      "item": {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "1:1",
+       "submit": false,
+       "text": "1:1"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "1:1",
+       "submit": false
+      },
+      "focusedInPanel": true,
+      "panelClosed": true,
+      "workspaceClosed": false,
+      "drawerStateAfter": "closed"
+     },
+     {
+      "i": 4,
+      "item": {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "",
+       "submit": true,
+       "text": "导出视频到画布"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "",
+       "submit": true
+      },
+      "focusedInPanel": true,
+      "panelClosed": true,
+      "workspaceClosed": false,
+      "drawerStateAfter": "closed"
+     }
+    ],
+    "allClosed": false,
+    "anyWorkspaceClosed": false
+   },
+   "d_reopen": {
+    "clicked": true,
+    "rect": {
+     "x": 1324,
+     "y": 823,
+     "w": 108,
+     "h": 28
+    },
+    "desk": {
+     "open": true,
+     "vw": 1440,
+     "tree": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": false,
+      "x": 48,
+      "w": 233
+     },
+     "inspector": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": false,
+      "x": 1159,
+      "w": 281
+     },
+     "trigger": {
+      "present": true,
+      "ariaExpanded": "true",
+      "text": "导出视频到画布",
+      "x": 1324,
+      "y": 823,
+      "w": 108,
+      "h": 28
+     },
+     "panel": {
+      "present": true,
+      "status": "idle",
+      "progress": null,
+      "rect": {
+       "x": 1146,
+       "y": 552,
+       "w": 286,
+       "h": 267
+      },
+      "duration": {
+       "value": "8",
+       "disabled": false,
+       "min": "1",
+       "max": "8",
+       "step": "0.5",
+       "aria": null
+      },
+      "aspect": [
+       {
+        "ratio": "16:9",
+        "pressed": "true",
+        "disabled": false,
+        "text": "16:9"
+       },
+       {
+        "ratio": "9:16",
+        "pressed": "false",
+        "disabled": false,
+        "text": "9:16"
+       },
+       {
+        "ratio": "1:1",
+        "pressed": "false",
+        "disabled": false,
+        "text": "1:1"
+       }
+      ],
+      "submit": {
+       "present": true,
+       "text": "导出视频到画布",
+       "disabled": false,
+       "type": "button"
+      },
+      "focusables": [
+       {
+        "i": 0,
+        "tag": "INPUT",
+        "type": "number",
+        "marker": "duration",
+        "submit": false,
+        "text": ""
+       },
+       {
+        "i": 1,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "16:9",
+        "submit": false,
+        "text": "16:9"
+       },
+       {
+        "i": 2,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "9:16",
+        "submit": false,
+        "text": "9:16"
+       },
+       {
+        "i": 3,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "1:1",
+        "submit": false,
+        "text": "1:1"
+       },
+       {
+        "i": 4,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "",
+        "submit": true,
+        "text": "导出视频到画布"
+       }
+      ]
+     },
+     "active": {
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": true,
+      "text": "导出视频到画布"
+     }
+    }
+   },
+   "d_tabFromPanel": {
+    "steps": 12,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "inPanelCount": 4,
+    "onTriggerCount": 0,
+    "seq": [
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "16:9",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "9:16",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "1:1",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "导出视频到画布",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "角色01 · 陈默",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "变换",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "机位01 · 对峙中景",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "绘制轨迹",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     }
+    ]
+   },
+   "d_focusTrigger": {
+    "focused": true
+   },
+   "d_tabFromTrigger": {
+    "steps": 12,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "inPanelCount": 5,
+    "onTriggerCount": 0,
+    "seq": [
+     {
+      "tag": "INPUT",
+      "aria": null,
+      "text": "",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "16:9",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "9:16",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "1:1",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "导出视频到画布",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "角色01 · 陈默",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "变换",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "机位01 · 对峙中景",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     }
+    ]
+   },
+   "i_probe": {
+    "btn": {
+     "tag": "BUTTON",
+     "type": "button",
+     "ariaLabel": "导入导演台项目",
+     "title": "导入项目 JSON",
+     "text": "",
+     "disabled": false,
+     "rect": {
+      "x": 1379,
+      "y": 10,
+      "w": 32,
+      "h": 32
+     }
+    },
+    "input": {
+     "tag": "INPUT",
+     "type": "file",
+     "accept": ".json,application/json",
+     "ariaLabel": null,
+     "id": null,
+     "display": "none",
+     "visibility": "visible",
+     "rect": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+     }
+    },
+    "inputFocusable": {
+     "tabIndex": 0,
+     "display": "none",
+     "visibility": "visible",
+     "w": 0,
+     "h": 0
+    },
+    "btnWiredToInput": {
+     "inputHasId": false,
+     "labelFor": false
+    }
+   },
+   "i_clickScan": {
+    "pt": [
+     1382,
+     12
+    ],
+    "rect": {
+     "x": 1379,
+     "y": 10,
+     "w": 32,
+     "h": 32
+    }
+   },
+   "i_fileChooser": {
+    "fired": true,
+    "multiple": true,
+    "suggested": true
+   },
+   "i_after": {
+    "open": true,
+    "vw": 1440,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 48,
+     "w": 233
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 1159,
+     "w": 281
+    },
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "true",
+     "text": "导出视频到画布",
+     "x": 1324,
+     "y": 823,
+     "w": 108,
+     "h": 28
+    },
+    "panel": {
+     "present": true,
+     "status": "idle",
+     "progress": null,
+     "rect": {
+      "x": 1146,
+      "y": 552,
+      "w": 286,
+      "h": 267
+     },
+     "duration": {
+      "value": "8",
+      "disabled": false,
+      "min": "1",
+      "max": "8",
+      "step": "0.5",
+      "aria": null
+     },
+     "aspect": [
+      {
+       "ratio": "16:9",
+       "pressed": "true",
+       "disabled": false,
+       "text": "16:9"
+      },
+      {
+       "ratio": "9:16",
+       "pressed": "false",
+       "disabled": false,
+       "text": "9:16"
+      },
+      {
+       "ratio": "1:1",
+       "pressed": "false",
+       "disabled": false,
+       "text": "1:1"
+      }
+     ],
+     "submit": {
+      "present": true,
+      "text": "导出视频到画布",
+      "disabled": false,
+      "type": "button"
+     },
+     "focusables": [
+      {
+       "i": 0,
+       "tag": "INPUT",
+       "type": "number",
+       "marker": "duration",
+       "submit": false,
+       "text": ""
+      },
+      {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "16:9",
+       "submit": false,
+       "text": "16:9"
+      },
+      {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "9:16",
+       "submit": false,
+       "text": "9:16"
+      },
+      {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "1:1",
+       "submit": false,
+       "text": "1:1"
+      },
+      {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "",
+       "submit": true,
+       "text": "导出视频到画布"
+      }
+     ]
+    },
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": "导入导演台项目",
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "text": ""
+    }
+   },
+   "i_focus": {
+    "focused": true,
+    "tag": "BUTTON",
+    "type": "button",
+    "aria": "导入导演台项目"
+   },
+   "i_inputName": {
+    "ariaLabel": null,
+    "title": null,
+    "id": null,
+    "labelForText": null,
+    "hasLabelFor": false,
+    "tabIndex": 0,
+    "accessibleNameGuess": null
+   },
+   "m_load": {
+    "opened": true,
+    "width": 800
+   },
+   "m_afterLoad": {
+    "open": true,
+    "inspector": "closed",
+    "tree": "closed"
+   },
+   "m_drawerScan": {
+    "pt": [
+     51,
+     103
+    ],
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 32,
+     "h": 32
+    }
+   },
+   "m_drawer": {
+    "open": true,
+    "vw": 800,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": -220,
+     "w": 220
+    },
+    "inspector": {
+     "state": "open",
+     "focusScope": "inspector",
+     "inert": false,
+     "x": 519,
+     "w": 281
+    },
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "false",
+     "text": "导出视频到画布",
+     "x": 684,
+     "y": 865,
+     "w": 108,
+     "h": 28
+    },
+    "panel": {
+     "present": false
+    },
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": null,
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "text": "属性"
+    }
+   },
+   "m_openPanel": {
+    "clicked": true,
+    "rect": {
+     "x": 684,
+     "y": 865,
+     "w": 108,
+     "h": 28
+    },
+    "desk": {
+     "open": true,
+     "vw": 800,
+     "tree": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": true,
+      "x": -220,
+      "w": 220
+     },
+     "inspector": {
+      "state": "open",
+      "focusScope": "inspector",
+      "inert": false,
+      "x": 519,
+      "w": 281
+     },
+     "trigger": {
+      "present": true,
+      "ariaExpanded": "true",
+      "text": "导出视频到画布",
+      "x": 684,
+      "y": 865,
+      "w": 108,
+      "h": 28
+     },
+     "panel": {
+      "present": true,
+      "status": "idle",
+      "progress": null,
+      "rect": {
+       "x": 506,
+       "y": 594,
+       "w": 286,
+       "h": 267
+      },
+      "duration": {
+       "value": "8",
+       "disabled": false,
+       "min": "1",
+       "max": "8",
+       "step": "0.5",
+       "aria": null
+      },
+      "aspect": [
+       {
+        "ratio": "16:9",
+        "pressed": "true",
+        "disabled": false,
+        "text": "16:9"
+       },
+       {
+        "ratio": "9:16",
+        "pressed": "false",
+        "disabled": false,
+        "text": "9:16"
+       },
+       {
+        "ratio": "1:1",
+        "pressed": "false",
+        "disabled": false,
+        "text": "1:1"
+       }
+      ],
+      "submit": {
+       "present": true,
+       "text": "导出视频到画布",
+       "disabled": false,
+       "type": "button"
+      },
+      "focusables": [
+       {
+        "i": 0,
+        "tag": "INPUT",
+        "type": "number",
+        "marker": "duration",
+        "submit": false,
+        "text": ""
+       },
+       {
+        "i": 1,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "16:9",
+        "submit": false,
+        "text": "16:9"
+       },
+       {
+        "i": 2,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "9:16",
+        "submit": false,
+        "text": "9:16"
+       },
+       {
+        "i": 3,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "1:1",
+        "submit": false,
+        "text": "1:1"
+       },
+       {
+        "i": 4,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "",
+        "submit": true,
+        "text": "导出视频到画布"
+       }
+      ]
+     },
+     "active": {
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": true,
+      "text": "导出视频到画布"
+     }
+    }
+   },
+   "m_state": {
+    "open": true,
+    "vw": 800,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": -220,
+     "w": 220
+    },
+    "inspector": {
+     "state": "open",
+     "focusScope": "inspector",
+     "inert": false,
+     "x": 519,
+     "w": 281
+    },
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "true",
+     "text": "导出视频到画布",
+     "x": 684,
+     "y": 865,
+     "w": 108,
+     "h": 28
+    },
+    "panel": {
+     "present": true,
+     "status": "idle",
+     "progress": null,
+     "rect": {
+      "x": 506,
+      "y": 594,
+      "w": 286,
+      "h": 267
+     },
+     "duration": {
+      "value": "8",
+      "disabled": false,
+      "min": "1",
+      "max": "8",
+      "step": "0.5",
+      "aria": null
+     },
+     "aspect": [
+      {
+       "ratio": "16:9",
+       "pressed": "true",
+       "disabled": false,
+       "text": "16:9"
+      },
+      {
+       "ratio": "9:16",
+       "pressed": "false",
+       "disabled": false,
+       "text": "9:16"
+      },
+      {
+       "ratio": "1:1",
+       "pressed": "false",
+       "disabled": false,
+       "text": "1:1"
+      }
+     ],
+     "submit": {
+      "present": true,
+      "text": "导出视频到画布",
+      "disabled": false,
+      "type": "button"
+     },
+     "focusables": [
+      {
+       "i": 0,
+       "tag": "INPUT",
+       "type": "number",
+       "marker": "duration",
+       "submit": false,
+       "text": ""
+      },
+      {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "16:9",
+       "submit": false,
+       "text": "16:9"
+      },
+      {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "9:16",
+       "submit": false,
+       "text": "9:16"
+      },
+      {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "1:1",
+       "submit": false,
+       "text": "1:1"
+      },
+      {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "",
+       "submit": true,
+       "text": "导出视频到画布"
+      }
+     ]
+    },
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": null,
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": true,
+     "text": "导出视频到画布"
+    }
+   },
+   "m_panelFocusables": [
+    {
+     "i": 0,
+     "tag": "INPUT",
+     "type": "number",
+     "marker": "duration",
+     "submit": false,
+     "text": ""
+    },
+    {
+     "i": 1,
+     "tag": "BUTTON",
+     "type": "button",
+     "marker": "16:9",
+     "submit": false,
+     "text": "16:9"
+    },
+    {
+     "i": 2,
+     "tag": "BUTTON",
+     "type": "button",
+     "marker": "9:16",
+     "submit": false,
+     "text": "9:16"
+    },
+    {
+     "i": 3,
+     "tag": "BUTTON",
+     "type": "button",
+     "marker": "1:1",
+     "submit": false,
+     "text": "1:1"
+    },
+    {
+     "i": 4,
+     "tag": "BUTTON",
+     "type": "button",
+     "marker": "",
+     "submit": true,
+     "text": "导出视频到画布"
+    }
+   ],
+   "m_focusFirst": {
+    "focused": true,
+    "tag": "INPUT",
+    "type": "number",
+    "marker": "duration",
+    "submit": false
+   },
+   "m_escFromDuration": {
+    "panelClosed": false,
+    "drawerState": "closed",
+    "treeState": "closed",
+    "workspaceClosed": false,
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": "打开属性面板",
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "text": ""
+    }
+   },
+   "m_escFromAspect": {
+    "panelClosed": true,
+    "drawerState": "closed",
+    "treeState": "closed",
+    "workspaceClosed": false,
+    "active": {
+     "tag": "BODY",
+     "type": null,
+     "aria": null,
+     "inPanel": false,
+     "inDialog": false,
+     "isTrigger": false,
+     "text": "画布 2开通会员限时 4"
+    }
+   },
+   "m_escNext": {
+    "panelClosed": true,
+    "drawerState": null,
+    "treeState": null,
+    "workspaceClosed": true,
+    "active": null
+   },
+   "m_escNext2": {
+    "panelClosed": true,
+    "drawerState": null,
+    "treeState": null,
+    "workspaceClosed": true,
+    "active": null
+   },
+   "m_after": {
+    "open": false
+   }
+  },
+  {
+   "d_load": {
+    "opened": true,
+    "width": 1440
+   },
+   "d_before": {
+    "open": true,
+    "vw": 1440,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 48,
+     "w": 233
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 1159,
+     "w": 281
+    },
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "false",
+     "text": "导出视频到画布",
+     "x": 1324,
+     "y": 823,
+     "w": 108,
+     "h": 28
+    },
+    "panel": {
+     "present": false
+    },
+    "active": {
+     "tag": "DIV",
+     "type": null,
+     "aria": "3D导演台工作区",
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "text": "3D导演台第一集：咖啡馆"
+    }
+   },
+   "d_openPanel": {
+    "clicked": true,
+    "rect": {
+     "x": 1324,
+     "y": 823,
+     "w": 108,
+     "h": 28
+    },
+    "desk": {
+     "open": true,
+     "vw": 1440,
+     "tree": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": false,
+      "x": 48,
+      "w": 233
+     },
+     "inspector": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": false,
+      "x": 1159,
+      "w": 281
+     },
+     "trigger": {
+      "present": true,
+      "ariaExpanded": "true",
+      "text": "导出视频到画布",
+      "x": 1324,
+      "y": 823,
+      "w": 108,
+      "h": 28
+     },
+     "panel": {
+      "present": true,
+      "status": "idle",
+      "progress": null,
+      "rect": {
+       "x": 1146,
+       "y": 552,
+       "w": 286,
+       "h": 267
+      },
+      "duration": {
+       "value": "8",
+       "disabled": false,
+       "min": "1",
+       "max": "8",
+       "step": "0.5",
+       "aria": null
+      },
+      "aspect": [
+       {
+        "ratio": "16:9",
+        "pressed": "true",
+        "disabled": false,
+        "text": "16:9"
+       },
+       {
+        "ratio": "9:16",
+        "pressed": "false",
+        "disabled": false,
+        "text": "9:16"
+       },
+       {
+        "ratio": "1:1",
+        "pressed": "false",
+        "disabled": false,
+        "text": "1:1"
+       }
+      ],
+      "submit": {
+       "present": true,
+       "text": "导出视频到画布",
+       "disabled": false,
+       "type": "button"
+      },
+      "focusables": [
+       {
+        "i": 0,
+        "tag": "INPUT",
+        "type": "number",
+        "marker": "duration",
+        "submit": false,
+        "text": ""
+       },
+       {
+        "i": 1,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "16:9",
+        "submit": false,
+        "text": "16:9"
+       },
+       {
+        "i": 2,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "9:16",
+        "submit": false,
+        "text": "9:16"
+       },
+       {
+        "i": 3,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "1:1",
+        "submit": false,
+        "text": "1:1"
+       },
+       {
+        "i": 4,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "",
+        "submit": true,
+        "text": "导出视频到画布"
+       }
+      ]
+     },
+     "active": {
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": true,
+      "text": "导出视频到画布"
+     }
+    }
+   },
+   "d_state": {
+    "open": true,
+    "vw": 1440,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 48,
+     "w": 233
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 1159,
+     "w": 281
+    },
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "true",
+     "text": "导出视频到画布",
+     "x": 1324,
+     "y": 823,
+     "w": 108,
+     "h": 28
+    },
+    "panel": {
+     "present": true,
+     "status": "idle",
+     "progress": null,
+     "rect": {
+      "x": 1146,
+      "y": 552,
+      "w": 286,
+      "h": 267
+     },
+     "duration": {
+      "value": "8",
+      "disabled": false,
+      "min": "1",
+      "max": "8",
+      "step": "0.5",
+      "aria": null
+     },
+     "aspect": [
+      {
+       "ratio": "16:9",
+       "pressed": "true",
+       "disabled": false,
+       "text": "16:9"
+      },
+      {
+       "ratio": "9:16",
+       "pressed": "false",
+       "disabled": false,
+       "text": "9:16"
+      },
+      {
+       "ratio": "1:1",
+       "pressed": "false",
+       "disabled": false,
+       "text": "1:1"
+      }
+     ],
+     "submit": {
+      "present": true,
+      "text": "导出视频到画布",
+      "disabled": false,
+      "type": "button"
+     },
+     "focusables": [
+      {
+       "i": 0,
+       "tag": "INPUT",
+       "type": "number",
+       "marker": "duration",
+       "submit": false,
+       "text": ""
+      },
+      {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "16:9",
+       "submit": false,
+       "text": "16:9"
+      },
+      {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "9:16",
+       "submit": false,
+       "text": "9:16"
+      },
+      {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "1:1",
+       "submit": false,
+       "text": "1:1"
+      },
+      {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "",
+       "submit": true,
+       "text": "导出视频到画布"
+      }
+     ]
+    },
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": null,
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": true,
+     "text": "导出视频到画布"
+    }
+   },
+   "d_focusOnOpen": {
+    "tag": "BUTTON",
+    "type": "button",
+    "aria": null,
+    "inPanel": false,
+    "inDialog": true,
+    "isTrigger": true,
+    "text": "导出视频到画布"
+   },
+   "d_sweep": {
+    "label": "desktop",
+    "panelFocusables": 5,
+    "rows": [
+     {
+      "i": 0,
+      "item": {
+       "i": 0,
+       "tag": "INPUT",
+       "type": "number",
+       "marker": "duration",
+       "submit": false,
+       "text": ""
+      },
+      "focus": {
+       "focused": true,
+       "tag": "INPUT",
+       "type": "number",
+       "marker": "duration",
+       "submit": false
+      },
+      "focusedInPanel": true,
+      "panelClosed": false,
+      "workspaceClosed": false,
+      "drawerStateAfter": "closed"
+     },
+     {
+      "i": 1,
+      "item": {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "16:9",
+       "submit": false,
+       "text": "16:9"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "16:9",
+       "submit": false
+      },
+      "focusedInPanel": true,
+      "panelClosed": true,
+      "workspaceClosed": false,
+      "drawerStateAfter": "closed"
+     },
+     {
+      "i": 2,
+      "item": {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "9:16",
+       "submit": false,
+       "text": "9:16"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "9:16",
+       "submit": false
+      },
+      "focusedInPanel": true,
+      "panelClosed": true,
+      "workspaceClosed": false,
+      "drawerStateAfter": "closed"
+     },
+     {
+      "i": 3,
+      "item": {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "1:1",
+       "submit": false,
+       "text": "1:1"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "1:1",
+       "submit": false
+      },
+      "focusedInPanel": true,
+      "panelClosed": true,
+      "workspaceClosed": false,
+      "drawerStateAfter": "closed"
+     },
+     {
+      "i": 4,
+      "item": {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "",
+       "submit": true,
+       "text": "导出视频到画布"
+      },
+      "focus": {
+       "focused": true,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "",
+       "submit": true
+      },
+      "focusedInPanel": true,
+      "panelClosed": true,
+      "workspaceClosed": false,
+      "drawerStateAfter": "closed"
+     }
+    ],
+    "allClosed": false,
+    "anyWorkspaceClosed": false
+   },
+   "d_reopen": {
+    "clicked": true,
+    "rect": {
+     "x": 1324,
+     "y": 823,
+     "w": 108,
+     "h": 28
+    },
+    "desk": {
+     "open": true,
+     "vw": 1440,
+     "tree": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": false,
+      "x": 48,
+      "w": 233
+     },
+     "inspector": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": false,
+      "x": 1159,
+      "w": 281
+     },
+     "trigger": {
+      "present": true,
+      "ariaExpanded": "true",
+      "text": "导出视频到画布",
+      "x": 1324,
+      "y": 823,
+      "w": 108,
+      "h": 28
+     },
+     "panel": {
+      "present": true,
+      "status": "idle",
+      "progress": null,
+      "rect": {
+       "x": 1146,
+       "y": 552,
+       "w": 286,
+       "h": 267
+      },
+      "duration": {
+       "value": "8",
+       "disabled": false,
+       "min": "1",
+       "max": "8",
+       "step": "0.5",
+       "aria": null
+      },
+      "aspect": [
+       {
+        "ratio": "16:9",
+        "pressed": "true",
+        "disabled": false,
+        "text": "16:9"
+       },
+       {
+        "ratio": "9:16",
+        "pressed": "false",
+        "disabled": false,
+        "text": "9:16"
+       },
+       {
+        "ratio": "1:1",
+        "pressed": "false",
+        "disabled": false,
+        "text": "1:1"
+       }
+      ],
+      "submit": {
+       "present": true,
+       "text": "导出视频到画布",
+       "disabled": false,
+       "type": "button"
+      },
+      "focusables": [
+       {
+        "i": 0,
+        "tag": "INPUT",
+        "type": "number",
+        "marker": "duration",
+        "submit": false,
+        "text": ""
+       },
+       {
+        "i": 1,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "16:9",
+        "submit": false,
+        "text": "16:9"
+       },
+       {
+        "i": 2,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "9:16",
+        "submit": false,
+        "text": "9:16"
+       },
+       {
+        "i": 3,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "1:1",
+        "submit": false,
+        "text": "1:1"
+       },
+       {
+        "i": 4,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "",
+        "submit": true,
+        "text": "导出视频到画布"
+       }
+      ]
+     },
+     "active": {
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": true,
+      "text": "导出视频到画布"
+     }
+    }
+   },
+   "d_tabFromPanel": {
+    "steps": 12,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "inPanelCount": 4,
+    "onTriggerCount": 0,
+    "seq": [
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "16:9",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "9:16",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "1:1",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "导出视频到画布",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "角色01 · 陈默",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "变换",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "机位01 · 对峙中景",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "绘制轨迹",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     }
+    ]
+   },
+   "d_focusTrigger": {
+    "focused": true
+   },
+   "d_tabFromTrigger": {
+    "steps": 12,
+    "escapedCount": 0,
+    "escapedAt": [],
+    "inPanelCount": 5,
+    "onTriggerCount": 0,
+    "seq": [
+     {
+      "tag": "INPUT",
+      "aria": null,
+      "text": "",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "16:9",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "9:16",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "1:1",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "导出视频到画布",
+      "inPanel": true,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "角色01 · 陈默",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "变换",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "BUTTON",
+      "aria": null,
+      "text": "",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     },
+     {
+      "tag": "DIV",
+      "aria": null,
+      "text": "机位01 · 对峙中景",
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": false
+     }
+    ]
+   },
+   "i_probe": {
+    "btn": {
+     "tag": "BUTTON",
+     "type": "button",
+     "ariaLabel": "导入导演台项目",
+     "title": "导入项目 JSON",
+     "text": "",
+     "disabled": false,
+     "rect": {
+      "x": 1379,
+      "y": 10,
+      "w": 32,
+      "h": 32
+     }
+    },
+    "input": {
+     "tag": "INPUT",
+     "type": "file",
+     "accept": ".json,application/json",
+     "ariaLabel": null,
+     "id": null,
+     "display": "none",
+     "visibility": "visible",
+     "rect": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0
+     }
+    },
+    "inputFocusable": {
+     "tabIndex": 0,
+     "display": "none",
+     "visibility": "visible",
+     "w": 0,
+     "h": 0
+    },
+    "btnWiredToInput": {
+     "inputHasId": false,
+     "labelFor": false
+    }
+   },
+   "i_clickScan": {
+    "pt": [
+     1382,
+     12
+    ],
+    "rect": {
+     "x": 1379,
+     "y": 10,
+     "w": 32,
+     "h": 32
+    }
+   },
+   "i_fileChooser": {
+    "fired": true,
+    "multiple": true,
+    "suggested": true
+   },
+   "i_after": {
+    "open": true,
+    "vw": 1440,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 48,
+     "w": 233
+    },
+    "inspector": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": false,
+     "x": 1159,
+     "w": 281
+    },
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "true",
+     "text": "导出视频到画布",
+     "x": 1324,
+     "y": 823,
+     "w": 108,
+     "h": 28
+    },
+    "panel": {
+     "present": true,
+     "status": "idle",
+     "progress": null,
+     "rect": {
+      "x": 1146,
+      "y": 552,
+      "w": 286,
+      "h": 267
+     },
+     "duration": {
+      "value": "8",
+      "disabled": false,
+      "min": "1",
+      "max": "8",
+      "step": "0.5",
+      "aria": null
+     },
+     "aspect": [
+      {
+       "ratio": "16:9",
+       "pressed": "true",
+       "disabled": false,
+       "text": "16:9"
+      },
+      {
+       "ratio": "9:16",
+       "pressed": "false",
+       "disabled": false,
+       "text": "9:16"
+      },
+      {
+       "ratio": "1:1",
+       "pressed": "false",
+       "disabled": false,
+       "text": "1:1"
+      }
+     ],
+     "submit": {
+      "present": true,
+      "text": "导出视频到画布",
+      "disabled": false,
+      "type": "button"
+     },
+     "focusables": [
+      {
+       "i": 0,
+       "tag": "INPUT",
+       "type": "number",
+       "marker": "duration",
+       "submit": false,
+       "text": ""
+      },
+      {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "16:9",
+       "submit": false,
+       "text": "16:9"
+      },
+      {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "9:16",
+       "submit": false,
+       "text": "9:16"
+      },
+      {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "1:1",
+       "submit": false,
+       "text": "1:1"
+      },
+      {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "",
+       "submit": true,
+       "text": "导出视频到画布"
+      }
+     ]
+    },
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": "导入导演台项目",
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "text": ""
+    }
+   },
+   "i_focus": {
+    "focused": true,
+    "tag": "BUTTON",
+    "type": "button",
+    "aria": "导入导演台项目"
+   },
+   "i_inputName": {
+    "ariaLabel": null,
+    "title": null,
+    "id": null,
+    "labelForText": null,
+    "hasLabelFor": false,
+    "tabIndex": 0,
+    "accessibleNameGuess": null
+   },
+   "m_load": {
+    "opened": true,
+    "width": 800
+   },
+   "m_afterLoad": {
+    "open": true,
+    "inspector": "closed",
+    "tree": "closed"
+   },
+   "m_drawerScan": {
+    "pt": [
+     51,
+     103
+    ],
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 32,
+     "h": 32
+    }
+   },
+   "m_drawer": {
+    "open": true,
+    "vw": 800,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": -220,
+     "w": 220
+    },
+    "inspector": {
+     "state": "open",
+     "focusScope": "inspector",
+     "inert": false,
+     "x": 519,
+     "w": 281
+    },
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "false",
+     "text": "导出视频到画布",
+     "x": 684,
+     "y": 865,
+     "w": 108,
+     "h": 28
+    },
+    "panel": {
+     "present": false
+    },
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": null,
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "text": "属性"
+    }
+   },
+   "m_openPanel": {
+    "clicked": true,
+    "rect": {
+     "x": 684,
+     "y": 865,
+     "w": 108,
+     "h": 28
+    },
+    "desk": {
+     "open": true,
+     "vw": 800,
+     "tree": {
+      "state": "closed",
+      "focusScope": null,
+      "inert": true,
+      "x": -220,
+      "w": 220
+     },
+     "inspector": {
+      "state": "open",
+      "focusScope": "inspector",
+      "inert": false,
+      "x": 519,
+      "w": 281
+     },
+     "trigger": {
+      "present": true,
+      "ariaExpanded": "true",
+      "text": "导出视频到画布",
+      "x": 684,
+      "y": 865,
+      "w": 108,
+      "h": 28
+     },
+     "panel": {
+      "present": true,
+      "status": "idle",
+      "progress": null,
+      "rect": {
+       "x": 506,
+       "y": 594,
+       "w": 286,
+       "h": 267
+      },
+      "duration": {
+       "value": "8",
+       "disabled": false,
+       "min": "1",
+       "max": "8",
+       "step": "0.5",
+       "aria": null
+      },
+      "aspect": [
+       {
+        "ratio": "16:9",
+        "pressed": "true",
+        "disabled": false,
+        "text": "16:9"
+       },
+       {
+        "ratio": "9:16",
+        "pressed": "false",
+        "disabled": false,
+        "text": "9:16"
+       },
+       {
+        "ratio": "1:1",
+        "pressed": "false",
+        "disabled": false,
+        "text": "1:1"
+       }
+      ],
+      "submit": {
+       "present": true,
+       "text": "导出视频到画布",
+       "disabled": false,
+       "type": "button"
+      },
+      "focusables": [
+       {
+        "i": 0,
+        "tag": "INPUT",
+        "type": "number",
+        "marker": "duration",
+        "submit": false,
+        "text": ""
+       },
+       {
+        "i": 1,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "16:9",
+        "submit": false,
+        "text": "16:9"
+       },
+       {
+        "i": 2,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "9:16",
+        "submit": false,
+        "text": "9:16"
+       },
+       {
+        "i": 3,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "1:1",
+        "submit": false,
+        "text": "1:1"
+       },
+       {
+        "i": 4,
+        "tag": "BUTTON",
+        "type": "button",
+        "marker": "",
+        "submit": true,
+        "text": "导出视频到画布"
+       }
+      ]
+     },
+     "active": {
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "inPanel": false,
+      "inDialog": true,
+      "isTrigger": true,
+      "text": "导出视频到画布"
+     }
+    }
+   },
+   "m_state": {
+    "open": true,
+    "vw": 800,
+    "tree": {
+     "state": "closed",
+     "focusScope": null,
+     "inert": true,
+     "x": -220,
+     "w": 220
+    },
+    "inspector": {
+     "state": "open",
+     "focusScope": "inspector",
+     "inert": false,
+     "x": 519,
+     "w": 281
+    },
+    "trigger": {
+     "present": true,
+     "ariaExpanded": "true",
+     "text": "导出视频到画布",
+     "x": 684,
+     "y": 865,
+     "w": 108,
+     "h": 28
+    },
+    "panel": {
+     "present": true,
+     "status": "idle",
+     "progress": null,
+     "rect": {
+      "x": 506,
+      "y": 594,
+      "w": 286,
+      "h": 267
+     },
+     "duration": {
+      "value": "8",
+      "disabled": false,
+      "min": "1",
+      "max": "8",
+      "step": "0.5",
+      "aria": null
+     },
+     "aspect": [
+      {
+       "ratio": "16:9",
+       "pressed": "true",
+       "disabled": false,
+       "text": "16:9"
+      },
+      {
+       "ratio": "9:16",
+       "pressed": "false",
+       "disabled": false,
+       "text": "9:16"
+      },
+      {
+       "ratio": "1:1",
+       "pressed": "false",
+       "disabled": false,
+       "text": "1:1"
+      }
+     ],
+     "submit": {
+      "present": true,
+      "text": "导出视频到画布",
+      "disabled": false,
+      "type": "button"
+     },
+     "focusables": [
+      {
+       "i": 0,
+       "tag": "INPUT",
+       "type": "number",
+       "marker": "duration",
+       "submit": false,
+       "text": ""
+      },
+      {
+       "i": 1,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "16:9",
+       "submit": false,
+       "text": "16:9"
+      },
+      {
+       "i": 2,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "9:16",
+       "submit": false,
+       "text": "9:16"
+      },
+      {
+       "i": 3,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "1:1",
+       "submit": false,
+       "text": "1:1"
+      },
+      {
+       "i": 4,
+       "tag": "BUTTON",
+       "type": "button",
+       "marker": "",
+       "submit": true,
+       "text": "导出视频到画布"
+      }
+     ]
+    },
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": null,
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": true,
+     "text": "导出视频到画布"
+    }
+   },
+   "m_panelFocusables": [
+    {
+     "i": 0,
+     "tag": "INPUT",
+     "type": "number",
+     "marker": "duration",
+     "submit": false,
+     "text": ""
+    },
+    {
+     "i": 1,
+     "tag": "BUTTON",
+     "type": "button",
+     "marker": "16:9",
+     "submit": false,
+     "text": "16:9"
+    },
+    {
+     "i": 2,
+     "tag": "BUTTON",
+     "type": "button",
+     "marker": "9:16",
+     "submit": false,
+     "text": "9:16"
+    },
+    {
+     "i": 3,
+     "tag": "BUTTON",
+     "type": "button",
+     "marker": "1:1",
+     "submit": false,
+     "text": "1:1"
+    },
+    {
+     "i": 4,
+     "tag": "BUTTON",
+     "type": "button",
+     "marker": "",
+     "submit": true,
+     "text": "导出视频到画布"
+    }
+   ],
+   "m_focusFirst": {
+    "focused": true,
+    "tag": "INPUT",
+    "type": "number",
+    "marker": "duration",
+    "submit": false
+   },
+   "m_escFromDuration": {
+    "panelClosed": false,
+    "drawerState": "closed",
+    "treeState": "closed",
+    "workspaceClosed": false,
+    "active": {
+     "tag": "BUTTON",
+     "type": "button",
+     "aria": "打开属性面板",
+     "inPanel": false,
+     "inDialog": true,
+     "isTrigger": false,
+     "text": ""
+    }
+   },
+   "m_escFromAspect": {
+    "panelClosed": true,
+    "drawerState": "closed",
+    "treeState": "closed",
+    "workspaceClosed": false,
+    "active": {
+     "tag": "BODY",
+     "type": null,
+     "aria": null,
+     "inPanel": false,
+     "inDialog": false,
+     "isTrigger": false,
+     "text": "画布 2开通会员限时 4"
+    }
+   },
+   "m_escNext": {
+    "panelClosed": true,
+    "drawerState": null,
+    "treeState": null,
+    "workspaceClosed": true,
+    "active": null
+   },
+   "m_escNext2": {
+    "panelClosed": true,
+    "drawerState": null,
+    "treeState": null,
+    "workspaceClosed": true,
+    "active": null
+   },
+   "m_after": {
+    "open": false
+   }
+  }
+ ]
+}
