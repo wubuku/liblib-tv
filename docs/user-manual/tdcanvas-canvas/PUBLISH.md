@@ -391,6 +391,7 @@ python3 scripts/append-audit.py AUDIT.md < /tmp/audit-rows.txt
 | 卡片与封面 | `data-canvas-project-card` / `data-canvas-project-cover` / `data-canvas-project-preview` |
 | 引用 | `data-canvas-connected-references` / `data-reference-node-id` / `data-reference-kind` |
 | 图片历史 | `data-canvas-image-history` / `data-canvas-image-history-trigger` |
+| 空画布引导 | `data-canvas-empty-guide`（M212 补：`canvas-empty-guide.tsx:28`，**只在 `nodes.length === 0` 时渲染**——`project.tsx:3830`） |
 
 > **这张表由 `scripts/check-probe-contracts.py` 双向守着**：探针里用到的每个 `data-*` 标记
 > 必须在这张表里出现；表里的每个也必须真在应用源码里存在。
