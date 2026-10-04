@@ -11,7 +11,7 @@ import {
   Type,
   Upload,
 } from "lucide-react";
-import { Fragment, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import type { ComponentType } from "react";
 import { useReactFlow } from "@xyflow/react";
 
@@ -111,7 +111,64 @@ export function JimengToolRail() {
   const setAssetsOpen = useJimengStore((s) => s.setAssetsOpen);
   const addLocalUpload = useJimengStore((s) => s.addLocalUpload);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const railRef = useRef<HTMLDivElement | null>(null);
   const { screenToFlowPosition } = useReactFlow();
+
+  // SOURCE_FACT (batch 957，源站实测定死，2/2 逐格相同)：
+  // 源站左栏是**标准 WAI-ARIA roving tabindex**，不是「9 个按钮各占一个 Tab 位」。
+  // 探针 957 逐枚普查（**零点击**，只读属性）拿到的硬事实：
+  //   · 壳 `role="toolbar"` / `aria-label="Canvas toolbar"` / 壳**无** `tabindex`
+  //   · 壳内 9 枚 BUTTON 的 tabindex 分布 = **`0`×1 + `-1`×9**（另有 43 个非按钮后代 None）
+  //   · 唯一顺序入口是 **`文本`**
+  //   · 焦点在左栏那一个停靠点上按 **`ArrowDown`** ⇒ 焦点移到**下一枚按钮**
+  //     （`BUTTON/文本` → `BUTTON/图片`，仍在栏内），**强判据 2/2**、方向键**留在栏内**
+  // ⚠️⚠️ 复刻此前**一个 `tabIndex` 都没写**（`grep -c tabIndex` = 0）
+  // ⇒ 9 枚按钮全原生可聚焦 ⇒ **`Tab` 停靠点 9 个**，而源站只有 **1 个**
+  // ⇒ 这正是探针 956 记的「出画布段 27 vs 18、净多 9」里**最大的 8 个**。
+  // ⇒ 本批把机制补上；**视觉与几何一律不动**（只加 tabindex 与键盘行为）。
+  useEffect(() => {
+    const host = railRef.current;
+    if (!host) return;
+    const btns = Array.from(
+      host.querySelectorAll<HTMLElement>(':scope > button[aria-label]'),
+    );
+    if (!btns.length) return;
+    // 只在**还没有**任何一枚带 `tabindex="0"` 时初始化，避免覆盖后续的漫游结果。
+    if (btns.some((b) => b.getAttribute("tabindex") === "0")) return;
+    btns[0].setAttribute("tabindex", "0");
+    for (let i = 1; i < btns.length; i += 1) btns[i].setAttribute("tabindex", "-1");
+  }, []);
+
+  // ⭐ 方向键在**栏内**漫游（WAI-ARIA toolbar 的另一半，源站 957 实测有）。
+  // ⚠️ 只拦 `ArrowDown`/`ArrowUp`（垂直栏），**不拦** `Home`/`End`/`ArrowLeft`/`ArrowRight`
+  // —— 源站**没测过**后四个 ⇒ 不许凭空实现（930 的规矩：源站测不到就不实现）。
+  // ⚠️ 端点**不绕回**：`ArrowUp` 在第 1 枚上、`ArrowDown` 在最后一枚上都**撒手**，
+  // 让焦点按浏览器默认行为离开工具条 —— 源站那一格 957 **没有测到**，
+  // 故按「最保守、不臆造」的方向实现，并在 `rail_arrow_wrap` 门里如实记。
+  useEffect(() => {
+    const host = railRef.current;
+    if (!host) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+      const t = e.target as HTMLElement | null;
+      // 只在焦点**真的在左栏某一枚按钮上**时才接管。
+      if (!t || !host.contains(t)) return;
+      const btns = Array.from(
+        host.querySelectorAll<HTMLElement>(':scope > button[aria-label]'),
+      );
+      const cur = btns.indexOf(t as HTMLButtonElement);
+      if (cur === -1) return;
+      const next = cur + (e.key === "ArrowDown" ? 1 : -1);
+      if (next < 0 || next >= btns.length) return; // 端点撒手（不 preventDefault）
+      e.preventDefault(); // 只在**真的要移动**时才拦
+      for (let i = 0; i < btns.length; i += 1) {
+        btns[i].setAttribute("tabindex", i === next ? "0" : "-1");
+      }
+      btns[next].focus();
+    };
+    window.addEventListener("keydown", onKeyDown, true);
+    return () => window.removeEventListener("keydown", onKeyDown, true);
+  }, []);
 
   // Batch 68: 按节点默认尺寸的一半回退，保证插入点为视口中心
   // (SOURCE_FACT 68-newnode-selected.png: 文本节点创建于视口中心)
@@ -173,6 +230,7 @@ export function JimengToolRail() {
            Zoom options）本来就是英文，逐字对齐比自造中文更一致。 */
         role="toolbar"
         aria-label="Canvas toolbar"
+        ref={railRef}
         className="jimeng-tool-rail group pointer-events-auto flex w-12 flex-col items-center gap-0.5 p-1"
         data-testid="canvas-fixed-toolbar"
       >

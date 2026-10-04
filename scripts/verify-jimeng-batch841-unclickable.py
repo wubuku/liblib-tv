@@ -5678,6 +5678,10 @@ def main() -> int:
     _p956 = p956.read_text(encoding="utf-8") if p956.exists() else ""
     p957 = ROOT / "scripts/jimeng_probe957_rail_roving_src.py"
     _p957 = p957.read_text(encoding="utf-8") if p957.exists() else ""
+    p958 = ROOT / "scripts/jimeng_probe958_rail_roving_ck.py"
+    _p958 = p958.read_text(encoding="utf-8") if p958.exists() else ""
+    c958 = (ROOT / "src/components/jimeng/JimengToolRail.tsx"
+            ).read_text(encoding="utf-8")
 
     check("HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` "
           "**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**"
@@ -7012,6 +7016,102 @@ def main() -> int:
           and "**标签不许指向错的按**" in _p957
           # ⭐ 钉探针：`delta` 那个 `int()` —— 954/956 各栽过一次
           and "changed.append([int(i), was, cur])" in _p957)
+
+    # ══ 批 958：⭐⭐⭐⭐⭐ **复刻侧实施** 957 测死的 roving tabindex ══════════
+    print("— TTTT. 批 958 复刻左栏实施 roving tabindex：一圈 9/27 → 1/19 —")
+
+    check("TTTT.1 ⭐⭐⭐⭐⭐ **复刻左栏装上了 roving tabindex**，"
+          "**形状与源站 957 逐条相同**（改前可聚焦 9 枚、改后 1 枚）",
+          '"replica_rail_roving_installed_958": (' in _ausrc
+          and "**957→958：952 以来第一次产出**实际产品改动**" in _ausrc
+          and "**`0`×1 + `-1`×8**" in _ausrc
+          and "顺序里可聚焦 **1** 枚（改前是 **9**）" in _ausrc
+          and "**与源站 957 同一形状**" in _ausrc
+          and "**`-1` 少 1、`None` 少 26**" in _ausrc
+          and "**不是** roving 行为不同" in _ausrc
+          # ⭐ 钉**产品源码**：roving 初始化 + 方向键漫游 + `railRef` 真的在
+          and 'ref={railRef}' in c958
+          and ":scope > button[aria-label]" in c958
+          and 'btns[0].setAttribute("tabindex", "0");' in c958
+          and 'btns[i].setAttribute("tabindex", "-1");' in c958
+          and 'if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;' in c958
+          and "btns[next].focus();" in c958
+          # ⚠️ 钉「不臆造」：源站没测过的键**不许**实现
+          and "**不拦** `Home`/`End`/`ArrowLeft`/`ArrowRight`" in c958
+          and "源站**没测过**后四个" in c958
+          # ⭐ 钉探针：`RAIL_JS` 逐字来自 957
+          and "# ⭐ `RAIL_JS` **逐字来自 957**" in _p958
+          and "_RAIL_BLOCK in _p957src" in _p958)
+
+    check("TTTT.2 ⭐⭐⭐⭐ **`ArrowDown` 在复刻左栏内移动焦点，与源站 957 逐条相同**；"
+          "**弱判据第三次说错这件事在复刻侧也照样发生**",
+          '"replica_rail_arrow_matches_source_958": (' in _ausrc
+          and "**与源站 957 " in _ausrc
+          and "**逐条相同**（2/2 逐格相同）" in _ausrc
+          and "**强弱判据两边都是同一个组合**（弱 False / 强 True）" in _ausrc
+          and "**弱判据第三次说错这件事，在复刻侧也照样发生**" in _ausrc
+          and "**端点撒手是「不臆造」的选择、不是实测**" in _ausrc
+          and "**源站那一格未测**" in _ausrc
+          # ⭐ 钉探针：判别键**绕开 `press_row`**（957 查红的那条）
+          and "**绕开 `press_row`**（957 查红的那条）" in _p958
+          and "page.keyboard.press(KEY_ARROW)      # ⭐ **只发这一个键**" in _p958
+          and 'c["arrow_read_isolation"] = "**绕开 `press_row`**"' in _p958
+          and '"arrow_stays_in_rail": bool(all(' in _p958
+          and '"arrow_moved_strong": bool(all(' in _p958)
+
+    check("TTTT.3 ⭐⭐⭐⭐ **一圈：左栏 9 → 1、出画布段 27 → 19**（源站 1 / 18）⇒ "
+          "**净多 9 降到净多 1**；但**顺序差异没被本批修掉**",
+          '"one_lap_now_1_and_19_958": (' in _ausrc
+          and "**一圈的结构**：左栏 **9 → 1**、出画布段 **27 → 19**" in _ausrc
+          and "**绕开 `press_row`**" in _ausrc
+          and "**复刻从「27 vs 18」变成「19 vs 18」**" in _ausrc
+          and "「净多 9」**降到净多 1**" in _ausrc
+          and "**剩下的那 1 个是结构性的、不是随机**" in _ausrc
+          and "**少 1 个**源站有的**项目面板**" in _ausrc
+          and "**顺序差异仍然存在**" in _ausrc
+          and "**复刻把顶栏排在最前、源站把顶栏排在最后**" in _ausrc
+          # ⭐⭐ 钉探针：窗口**左闭右开**（第一版两端都含 ⇒ 2/20 而非 1/19）
+          and "**窗口是「左闭右开」**" in _p958
+          and 'c["leg_lo"] = _rs[0] if _rs else 1' in _p958
+          and 'c["leg_hi"] = (_rs[1] - 1) if len(_rs) > 1 else c["n_lead"]' in _p958
+          and 'if c["leg_lo"] <= r["seq"] <= c["leg_hi"]]' in _p958
+          and '"one_lap_rail_stop_is_1": bool(all(' in _p958
+          and 'r["cells"][2].get("leg_n_rail") == 1' in _p958)
+
+    check("TTTT.4 ⚠️⚠️⚠️⭐⭐ **957 查红的那条在**复刻**侧同样成立** —— 而我"
+          "**第一版是拿推断当读数**的",
+          '"arm_focus_also_taints_replica_958": (' in _ausrc
+          and "**957 查红的那条，在**复刻**侧同样成立** —— 而我" in _ausrc
+          and "**第一版是拿推断当读数**的" in _ausrc
+          and "**把焦点从 `out:文本` 拽到 **`node#6`**" in _ausrc
+          and "**我第一版的推断是「复刻侧不会」**" in _ausrc
+          and "**推断错了**" in _ausrc
+          and "**离开画布时不清除**" in _ausrc
+          and "**不是**读数" in _ausrc
+          and "**两边都得实测**" in _ausrc
+          and "⇒ 本批因此把**格 2 也改成绕开 `press_row`**" in _ausrc
+          and "**不可信**" in _ausrc
+          and "**依据要换成 958 的普查 + 一圈计数**" in _ausrc
+          # ⭐ 钉探针：格 2/格 3 都**不许**用 `press_row` 读焦点
+          and 'c["ring_read_isolation"] = "**绕开 `press_row`**' in _p958
+          and '"arm_focus_is_noop_at_rail": bool(all(' in _p958
+          and '"arm_focus_is_noop_at_rail": bool(all(' in _p958
+          and "**红**" in _p958)
+
+    check("TTTT.5 ⚠️⚠️ **两道既有门都只认自己看得见的形状** ⇒ "
+          "切片拼出来的 `RAIL_JS` **它俩都是瞎的**",
+          '"probe_defects_958": (' in _ausrc
+          and "**958 探针自己踩了 4 个坑**" in _ausrc
+          and '**收尾那行是 `}\\"\\"\\"`**（一个 `}` 加终止符）' in _ausrc
+          and "`SyntaxError: Unexpected end of input`" in _ausrc
+          and "**`jimeng_probe_js_syntax_check.py` 抓不到它**" in _ausrc
+          and "**门看不见的东西就得自己配平**" in _ausrc
+          and "**用别的方式造出来的东西，它们都是瞎的**" in _ausrc
+          # ⭐ 钉探针：自己配平（大括号免疫针）
+          and 'assert RAIL_JS.count("{") == RAIL_JS.count("}"), (' in _p958
+          and "**这正是 958 前三版的坑**" in _p958
+          and 'assert RAIL_JS.count("[tid, nodeSel]") == 1, (' in _p958
+          and "**这正是它的用处**" in _p958)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
