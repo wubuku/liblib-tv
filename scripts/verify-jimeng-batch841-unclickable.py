@@ -5672,6 +5672,8 @@ def main() -> int:
     _p953 = p953.read_text(encoding="utf-8") if p953.exists() else ""
     p954 = ROOT / "scripts/jimeng_probe954_source_ring_src.py"
     _p954 = p954.read_text(encoding="utf-8") if p954.exists() else ""
+    p955 = ROOT / "scripts/jimeng_probe955_onekey_inner_src.py"
+    _p955 = p955.read_text(encoding="utf-8") if p955.exists() else ""
 
     check("HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` "
           "**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**"
@@ -6691,6 +6693,135 @@ def main() -> int:
           # ⭐ 钉探针：基线里的 101/104 明确标成「**不是本批的读数**」
           and "**都不是本批的读数**" in _p954
           and "**别人**记的，不许当结论用" in _p954)
+
+    # ══ 批 955：⭐⭐⭐⭐ **只发一个键** ⇒ 空着的那一格补上了 ═══════════════
+    print("— QQQQ. 批 955 每格只发一个键：Escape 在工具条里确实不动焦点 —")
+
+    check("QQQQ.1 ⭐⭐⭐⭐ **空着的那一格补上了：`Escape` 在工具条里按不动焦点**"
+          "（4 个内层停靠点**逐个**测、2/2 逐格相同、位置门与「只按一键」两门全绿）："
+          "`导出时间线` / `全屏编辑` / `静音` / `添加素材到时间线` —— "
+          "**按前按后都是它**（弱=False 强=False）、指针恒 `[2]→[2]`、"
+          "`left_toolbar = False`。⇒ ⭐⭐⭐ **952 那条被 953 撤回的"
+          "「`Escape` 不能把焦点从工具条里弄出来」，现在重新成立** —— "
+          "而且证据等级**更高**（位置门 + 每格只发一个键 + 强判据 + 2/2）。"
+          "⚠️ **953 撤回它的理由没有被推翻，是被满足了**（理由是"
+          "「压根没在那个位置测过」）⇒ 现在测过了。"
+          "⚠️ 954 那一格是**同一个空缺**（它自己的判别组顺序也把焦点带走了）。",
+          '"onekey_inner_955": {' in _ausrc
+          and '"escape_in_toolbar_finally_measured_955": (' in _ausrc
+          and "**空着的那一格补上了：`Escape` 在**工具条里**按不动焦点**" in _ausrc
+          and "按前按后**都是它**（弱=False 强=False）" in _ausrc
+          and "**没有**离开内层" in _ausrc
+          and "**重新成立** —— 而且证据等级**更高**" in _ausrc
+          and "**结构上**排除了「前一个键把焦点带走」" in _ausrc
+          and "撤回的理由（953 记的）没有被推翻，是被满足了**" in _ausrc
+          and "954 那一格是**同一个空缺**" in _ausrc
+          # ⭐⭐ 钉探针：位置门 + 只按一键**真的在算**
+          and 'c["position_verified"] = bool(in_toolbar(reached))' in _p955
+          and '"position_verified_before_press": bool(all(' in _p955
+          and 'c["one_key_only"] = (c["n_target_keys"] == 1' in _p955
+          and '"one_key_only": bool(all(' in _p955
+          and 'TARGET_KEYS = ("Escape", "Shift+Tab")' in _p955
+          and 'INNER_TARGETS = (1, 2, 3, 4)' in _p955
+          # ⭐ 钉探针：格 = (第 i 个内层停靠点, 键)，每格独立 boot()
+          and 'for inner_target in INNER_TARGETS:' in _p955
+          and "n_audio = boot_fn()" in _p955
+          and "c[\"inner_seen\"] += 1" in _p955)
+
+    check("QQQQ.2 ⭐⭐⭐⭐ **`Shift+Tab` 的规则在源站侧**完整**成立**"
+          "（2/2 逐格相同、4 个位置**各判各的**）：第 1 个 `导出时间线` → "
+          "**`out:Canvas`（离开内层）**；第 2 个 `全屏编辑` → `导出时间线`；"
+          "第 3 个 `静音` → `全屏编辑`；第 4 个 `添加素材到时间线` → `静音`。"
+          "⇒ ⇒ **在工具条内反向逐个退，退到第一个再按就离开工具条** ⇒ "
+          "与 953 在**复刻**侧测到的**同一条规则** ⇒ 「位置相关」**两边都成立**。"
+          "⚠️⭐⭐ **第 2 格又是一次弱判据漏报**（`全屏编辑` → `导出时间线` 焦点动了，"
+          "弱判据说没动）⇒ 与 953 那条合起来：**弱判据在内层控件之间切换时"
+          "逐字地不可信**，已两次、两次都是它错。",
+          '"shift_tab_rule_mapped_on_all_four_955": (' in _ausrc
+          and "在工具条里的规则，现在在源站侧**完整**成立**" in _ausrc
+          and "**在工具条内反向逐个退，退到第一个再按就离开工具条**" in _ausrc
+          and "**同一条规则**" in _ausrc
+          and "「位置相关」这个判断**两边都成立**" in _ausrc
+          and "**第 2 格又是一次弱判据漏报**" in _ausrc
+          and "**逐字地不可信**，已两次、两次都是它错" in _ausrc
+          # ⭐ 钉探针：每格的按前/按后身份**真的逐格记下来**
+          and 'c["from_stop"] = stop_name(prow, "before")' in _p955
+          and 'c["to_stop"] = stop_name(prow, "after")' in _p955
+          and 'c["left_toolbar"] = bool(in_toolbar(prow, "before")' in _p955
+          and 'c["moved_weak"] = prow["focus_moved"]' in _p955
+          and 'c["moved_strong"] = strong_moved(prow)' in _p955)
+
+    check("QQQQ.3 ⚠️⭐⭐⭐ **逐字与归一化两道都在**源站**上红**，"
+          "而那**不是**「读数不稳」，是**被测对象**在动：差异字段**只有** "
+          "`identity_stable` / `bit` / `n_added` / `n_removed`，"
+          "**行为字段全部一致**。⭐ `identity_stable=False` ⇒ 节点表对不上 ⇒ "
+          "三元组**全是构造性产物**（946 的原话）⇒ **源站节点集逐轮会变**"
+          "（§930 记过 77 / 76）。⚠️⚠️⚠️ **第一版我以为「加一道归一化就修好了」"
+          "—— 错了**：归一化**按 `identity_stable` 这个标志分派**，而**标志本身"
+          "逐轮在动** ⇒ 两边照样不同、**不稳定的格次每轮都换一批** ⇒ "
+          "⇒ ⭐⭐⭐ **946 那条原理的正确落点**：「**哪些按的三元组不可用**」"
+          "本身也是逐轮变的 ⇒ **三元组在这张画布上根本不是可复现的读数面** ⇒ "
+          "**任何按它分派的归一化都抓不住** ⇒ ⭐ **第三道只比「行为字段」**"
+          "（不依赖那个标志）⇒ **8/8 格 2/2 逐条相同**。"
+          "⚠️⭐ **三道门逐字进读数**（逐字红 / 归一化红 / 行为绿）⇒ "
+          "**不许只报好看的第三道**。",
+          '"identity_unstable_on_source_955": (' in _ausrc
+          and "在**源站**上红**" in _ausrc
+          and "差异字段逐条查出来**只有** `identity_stable` / `bit` / `n_added` / " in _ausrc
+          and "（行为字段**全部一致**）" in _ausrc
+          and "**全是构造性产物**" in _ausrc
+          and "**源站的节点集逐轮会变** —— §930 早记过 77 / 76 两轮不同" in _ausrc
+          and "**第一版我以为「加一道归一化就修好了」—— 错了**" in _ausrc
+          and "**标志本身逐轮在动**" in _ausrc
+          and "**不稳定的格次" in _ausrc
+          and "**946 那条原理的正确落点在这里**" in _ausrc
+          and "一个可复现的读数面**" in _ausrc
+          and "**任何按它分派的归一化都抓不住**" in _ausrc
+          and "**第三道比较：只比「行为字段」**" in _ausrc
+          and "**8/8 格 2/2 逐条相同**" in _ausrc
+          and "**三道门逐字进读数**：逐字（红）、归一化（红）、" in _ausrc
+          and "**不许只报好看的第三道**" in _ausrc
+          and "被测对象不稳定，不是仪器不可靠**" in _ausrc
+          # ⭐⭐ 钉探针：**三道**比较**真的都在算**，且第三道**不依赖**那个标志
+          and "_UNSTABLE_TUPLE = (\"added\", \"removed\", \"changed\", \"bit\"," in _p955
+          and 'if r.get("identity_stable") is False:' in _p955
+          and 'r[k] = "UNSTABLE"' in _p955
+          and "curve_reproducible_norm" in _p955
+          and "def behavior_key(cell):" in _p955
+          and "**不依赖那个标志**，实测 **8/8 格 2/2 逐条相同**" in _p955
+          and "out[\"curve_reproducible_behavior\"] = bool(all(_ident_b))" in _p955
+          and "**三道门都进读数**：逐字（红）、归一化（红）、行为（绿）" in _p955
+          and "**不许只报第三道。**" in _p955
+          and "**三元组在这张画布上根本不是一个可复现的读数面**" in _p955)
+
+    check("QQQQ.4 ⭐⭐⭐ **本批的设计就是「让 954 那个错在结构上不可能发生」**，"
+          "而且**自己抓到了两个自身缺陷**：\n"
+          "① ⚠️⚠️ **第一版把两轮比较和设计门写在了 `for rep` 循环里面还跟了个 "
+          "`break`** ⇒ **第二轮根本不会跑**；`py_compile` 与逐字门都抓不到"
+          "（语法合法、逻辑残废）⇒ 已提出循环。⭐ 这是「**一次成功不叫可靠**」的"
+          "另一种翻法：**结构上压根没跑第二遍**；\n"
+          "② ⚠️ `assert not (RAW_KEYS & DERIVED_KEYS)` **又一次**真红"
+          "（`n_nodes` 同时登记两边）—— 953 与 955 **两次**栽在同一个键上 ⇒ "
+          "**这道门有效，但它的存在不替代「登记前先看一眼」**。",
+          '"one_key_cell_design_955": (' in _ausrc
+          and "本批的设计就是「让 954 那个错在结构上不可能发生」" in _ausrc
+          and "**不需要跨格共享的引导表**" in _ausrc
+          and "这种错在结构上**不可能**再发生" in _ausrc
+          and "**第二轮根本不会跑**" in _ausrc
+          and "**结构上压根没跑第二遍**" in _ausrc
+          and "**两次**栽在同一个键上" in _ausrc
+          # ⭐ 钉探针：两轮比较**真的在循环外**（不许再缩进回循环里）
+          and 'n_cells = ci' in _p955
+          and 'out["reps_identical"] = _ident' in _p955
+          and "out[\"ruler_actually_moved\"] = bool(" in _p955
+          and "for rep in range(1, REPS + 1):" in _p955
+          and 'assert not (RAW_KEYS & DERIVED_KEYS)' in _p955
+          # ⭐ 钉探针：**零**新件仪器（链式逐字）
+          and "for _fn in (ev, dump, guard, guard_point, delta, press_row, curve_key,\n"
+              "            armed_of, no_ti_of, pointer_of, row_pointer, in_toolbar,\n"
+              "            strong_moved, identity, stop_name, walk_stuck, boot_fn):" in _p955
+          and "assert _s in _p954src" in _p955
+          and '"new_pieces": []' in _p955)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
