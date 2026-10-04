@@ -2447,3 +2447,14 @@ screenshots:
     visible_text: Seedream 5.0 pro 当前使用 热点推荐官 538.4w
     alt: 一张风格卡的左下角多出一枚白底胶囊徽标：白底黑字写着「当前使用」，左边一枚 13×13 的对勾图标。⭐ 精确读数 81×24、bg rgb(255,255,255)、圆角 8px、内边距 4px 8px、class 含 bg-white ring-white。⭐ 它的父容器是 items-end ⇒ 贴在卡片底部，不是顶部。⭐⭐ 判据是「这张卡的 uuid == 当前节点正在用的风格 uuid」⇒ 必须画布上已经有素材节点在用这张风格，单纯浏览广场看不到它
     sha256: 1eb76c20d70f43854826aa133528b06294fdaa6d5be3096394ca7f0148feaecf
+  - file: screenshots/M-356-网格吸附开关的两态.png
+    task_id: organize-canvas
+    step: 42
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 左下角工具条第 5 枚「网格吸附」按钮：先拍关态，再点一次拍开态，两张同一位置裁切后并排
+    visible_text: 资产管理 47%
+    alt: 左下角工具条同一位置的两态并排：左边（关）是磁铁图标，右边（开）在磁铁上叠了一条斜杠。⭐ DOM 读数自证：关态按钮里有 1 个 svg（class iconify--lucide），开态有 2 个（多的那个 class 是 absolute inset-0），点回又恢复 1 个。⭐⭐ 这推翻了旧结论「点了没有任何可观察变化」—— 旧判据只量了 aria-label / backgroundColor 这类外部属性，没量按钮内部结构
+    sha256: b39ca016b7d484cd7d71e3bb86af5cf31e9b766b7e3db0673054c3e52bc430e9

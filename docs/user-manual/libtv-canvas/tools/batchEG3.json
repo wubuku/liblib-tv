@@ -1,0 +1,143 @@
+{
+  "读数": {
+    "祖先链": {
+      "链": [
+        {
+          "tag": "SPAN",
+          "cls": "min-w-0 flex-1 truncate text-left",
+          "box": [
+            123,
+            213,
+            165,
+            22
+          ],
+          "按钮数": 0,
+          "更多操作": 0,
+          "文本长": 5,
+          "position": "static",
+          "zIndex": "auto"
+        },
+        {
+          "tag": "BUTTON",
+          "cls": "flex h-9 shrink-0 items-center gap-2 whitespace-nowrap rounded-[10px] px-3 text-[14px] lea",
+          "box": [
+            85,
+            206,
+            215,
+            36
+          ],
+          "按钮数": 0,
+          "更多操作": 0,
+          "文本长": 5,
+          "position": "static",
+          "zIndex": "auto"
+        },
+        {
+          "tag": "DIV",
+          "cls": "b768:flex-col flex flex-row gap-1",
+          "box": [
+            85,
+            166,
+            215,
+            76
+          ],
+          "按钮数": 2,
+          "更多操作": 0,
+          "文本长": 11,
+          "position": "static",
+          "zIndex": "auto"
+        },
+        {
+          "tag": "DIV",
+          "cls": "border-nt-border-neutral-l1 b768:w-[240px] b768:flex-col b768:justify-between b768:border-",
+          "box": [
+            73,
+            154,
+            240,
+            575
+          ],
+          "按钮数": 2,
+          "更多操作": 0,
+          "文本长": 11,
+          "position": "static",
+          "zIndex": "auto"
+        },
+        {
+          "tag": "DIV",
+          "cls": "b768:flex-row flex min-h-0 flex-1 flex-col",
+          "box": [
+            73,
+            154,
+            1294,
+            575
+          ],
+          "按钮数": 7,
+          "更多操作": 0,
+          "文本长": 39,
+          "position": "static",
+          "zIndex": "auto"
+        },
+        {
+          "tag": "DIV",
+          "cls": "rounded-xl pointer-events-auto flex flex-col w-[calc(100vw-32px)] h-[calc(100vh-80px)] b76",
+          "box": [
+            72,
+            80,
+            1296,
+            650
+          ],
+          "按钮数": 8,
+          "更多操作": 0,
+          "文本长": 44,
+          "position": "static",
+          "zIndex": "auto"
+        },
+        {
+          "tag": "DIV",
+          "cls": "z-201 pointer-events-none fixed inset-0 flex items-center justify-center outline-none",
+          "box": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "按钮数": 8,
+          "更多操作": 0,
+          "文本长": 44,
+          "position": "fixed",
+          "zIndex": "201"
+        },
+        {
+          "tag": "DIV",
+          "cls": "",
+          "box": [
+            0,
+            810,
+            1440,
+            0
+          ],
+          "按钮数": 38,
+          "更多操作": 1,
+          "文本长": 167,
+          "position": "static",
+          "zIndex": "auto"
+        },
+        {
+          "tag": "BODY",
+          "cls": "antialiased",
+          "box": [
+            0,
+            0,
+            1440,
+            810
+          ],
+          "按钮数": 76,
+          "更多操作": 1,
+          "文本长": 493,
+          "position": "static",
+          "zIndex": "auto"
+        }
+      ]
+    }
+  }
+}

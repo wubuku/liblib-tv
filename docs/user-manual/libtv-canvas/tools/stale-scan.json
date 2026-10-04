@@ -1,14 +1,14 @@
 {
   "统计": {
     "带📖的文件": 15,
-    "带📖的段落": 100,
-    "命中候选": 15
+    "带📖的段落": 99,
+    "命中候选": 14
   },
   "候选": [
     {
       "类型": "作废旧值",
       "文件": "10-tasks/asset-library.md",
-      "行": 900,
+      "行": 943,
       "命中": [
         "runCount = 1100"
       ],
@@ -18,7 +18,7 @@
     {
       "类型": "作废旧值",
       "文件": "10-tasks/asset-library.md",
-      "行": 901,
+      "行": 944,
       "命中": [
         "runCount = 4200"
       ],
@@ -114,19 +114,7 @@
     {
       "类型": "📖旁有已结案关键词",
       "文件": "10-tasks/asset-library.md",
-      "行": 521,
-      "命中关键词": [
-        "当前使用"
-      ],
-      "对应已结案结论": [
-        "DT：广场里不出现（带阳性对照的可信阴性）"
-      ],
-      "原文": "源码上 `当前使用` 在这个下拉里的条件是 `这一行的模型 == 当前选中的模型`，而在**广场里浏览时根本没有「当前模型」这回事** ⇒ 对勾不会出现。 本轮两次成功的悬停采样（分别读出 2 行和 5 行，**阳性对照通过**）里， `当前使用` **一次都没出现**。 ⇒ 📖 它应该长在**画布节点的参数条**上（那里才有「当前模型」）， **本手册还没在界面上拍到它**。"
-    },
-    {
-      "类型": "📖旁有已结案关键词",
-      "文件": "10-tasks/asset-library.md",
-      "行": 656,
+      "行": 689,
       "命中关键词": [
         "681"
       ],
@@ -138,7 +126,7 @@
     {
       "类型": "📖旁有已结案关键词",
       "文件": "10-tasks/asset-library.md",
-      "行": 840,
+      "行": 883,
       "命中关键词": [
         "runCount",
         "1.1w",
@@ -160,7 +148,7 @@
     {
       "类型": "📖旁有已结案关键词",
       "文件": "10-tasks/asset-library.md",
-      "行": 1331,
+      "行": 1374,
       "命中关键词": [
         "738",
         "全部适配模型"
@@ -218,14 +206,18 @@
         "canvasStoreDelete",
         "canvasStoreDelete2",
         "disconnectEdgeTitle",
-        "disconnectConfirmText"
+        "disconnectConfirmText",
+        "openingDeleteNodeConfirm",
+        "openingDeleteNodeCancel"
       ],
       "对应已结案结论": [
         "DW：横幅 4 层祖先链，opacity 连乘后为 0 ⇒ 不可见",
         "EC：⛔ 不是菜单文案，是 store 记操作日志时传给 translate 的字符串",
         "EC：⛔ 同上（批量版 deleteEdgesBatch）",
         "EC：断开连线确认框文案，属另一条代码路径，界面未捕捉到 📖",
-        "EC：确定断开，同上"
+        "EC：确定断开，同上",
+        "EE：僵尸 key，删除节点路径用的是 deleteNodeConfirmText，界面永不出现",
+        "EE：僵尸 key，同上（删除节点用的是 common:cancel）"
       ],
       "原文": "| key | 字面 | 手册状态 | |---|---|---| | `canvasContextMenuMaterial` | `素材` | ⛔ 节点右键菜单 —— 无头环境拿不到系统菜单，但**菜单项确实存在** | | `canvasContextMenuText5110a0` | `资产` | 同上 | | ⚠️ `canvasStoreDelete` / `canvasStoreDelete2` | `删除边` / `批量删除边` | ⛔ **不是菜单文案**（Batch EC 更正）。查渲染代码：它们是 store 里 `deleteEdges` 函数**记操作日志时传给 `tr"
     },
@@ -295,7 +287,9 @@
     "zoomTo200": "EB：僵尸 key，渲染代码 0 处引用，界面永不出现",
     "zoomReset": "EB：僵尸 key，渲染代码 0 处引用，界面永不出现",
     "disconnectEdgeTitle": "EC：断开连线确认框文案，属另一条代码路径，界面未捕捉到 📖",
-    "disconnectConfirmText": "EC：确定断开，同上"
+    "disconnectConfirmText": "EC：确定断开，同上",
+    "openingDeleteNodeConfirm": "EE：僵尸 key，删除节点路径用的是 deleteNodeConfirmText，界面永不出现",
+    "openingDeleteNodeCancel": "EE：僵尸 key，同上（删除节点用的是 common:cancel）"
   },
   "作废值表": {
     "runCount = 1100": "DU：⛔ 1.1w 对应 10700，1100 是千字口径（作废）",

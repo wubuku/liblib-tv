@@ -1,0 +1,89 @@
+{
+  "读数": {
+    "清理前": [
+      {
+        "id": "a-GgqvrVz0pw",
+        "名": "音频节点 1",
+        "cls": "react-flow__node-audio"
+      },
+      {
+        "id": "a-THmbuJXQj4",
+        "名": "音频节点 1",
+        "cls": "react-flow__node-audio"
+      },
+      {
+        "id": "b-mfkcQNULC3",
+        "名": "逐帧拉片",
+        "cls": "react-flow__node-shot-breakdown"
+      },
+      {
+        "id": "i-9nlG6HdjK2",
+        "名": "图片节点 2",
+        "cls": "react-flow__node-image"
+      },
+      {
+        "id": "i-sODTbgLUm1",
+        "名": "图片节点 2",
+        "cls": "react-flow__node-image"
+      },
+      {
+        "id": "m-LYXQggoOBr",
+        "名": "素材-风格-Seedream 5.0 pro",
+        "cls": "react-flow__node-material-style"
+      },
+      {
+        "id": "n-56F19pXVB4",
+        "名": "导演台 5",
+        "cls": "react-flow__node-director-console-3d"
+      },
+      {
+        "id": "t-2AK3Ukyxj3",
+        "名": "文本节点 1",
+        "cls": "react-flow__node-text"
+      },
+      {
+        "id": "t-UtVx3lZmrV",
+        "名": "文本节点 1",
+        "cls": "react-flow__node-text"
+      },
+      {
+        "id": "v-eMpqKtiLlx",
+        "名": "视频节点 3",
+        "cls": "react-flow__node-video"
+      },
+      {
+        "id": "v-oZNpH99MtM",
+        "名": "智能剪辑 4",
+        "cls": "react-flow__node-video-clip"
+      },
+      {
+        "id": "v-v2hlWY4Br3",
+        "名": "视频节点 3",
+        "cls": "react-flow__node-video"
+      }
+    ],
+    "自证": {
+      "可删": [
+        {
+          "id": "m-LYXQggoOBr",
+          "名": "素材-风格-Seedream 5.0 pro",
+          "cls": "react-flow__node-material-style"
+        }
+      ],
+      "拒绝": []
+    },
+    "清理后": {
+      "节点数": 12,
+      "缺失": [],
+      "还多": [
+        "素材-风格-Seedream 5.0 pro"
+      ]
+    }
+  },
+  "步骤": [
+    "清理前 12 个（基线 11），多余 1 个：[{\"id\":\"m-LYXQggoOBr\",\"名\":\"素材-风格-Seedream 5.0 pro\"}]",
+    "自证通过（可删）1 个；被拒 0 个：[]",
+    "打开「素材-风格-Seedream 5.0 pro」的 ⋯ 菜单：false",
+    "⭐ 清理后 12 个；基线缺失=无 ✅；仍多余=[\"素材-风格-Seedream 5.0 pro\"]"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "读数": {
+    "关态": {
+      "svg数": 1,
+      "cls": [
+        "iconify iconify--lucide pointer-events-none "
+      ],
+      "box": [
+        208,
+        764,
+        28,
+        28
+      ]
+    },
+    "开态": {
+      "svg数": 2,
+      "cls": [
+        "iconify iconify--lucide pointer-events-none ",
+        "absolute inset-0"
+      ],
+      "box": [
+        208,
+        764,
+        28,
+        28
+      ]
+    },
+    "复原": {
+      "svg数": 1,
+      "cls": [
+        "iconify iconify--lucide pointer-events-none "
+      ],
+      "box": [
+        208,
+        764,
+        28,
+        28
+      ]
+    },
+    "clip": {
+      "x": 0,
+      "y": 738,
+      "width": 300,
+      "height": 70
+    }
+  }
+}
