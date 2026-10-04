@@ -124,6 +124,81 @@ PROBE_VARS = {
     "_p954": "scripts/jimeng_probe954_source_ring_src.py",
     "_p955": "scripts/jimeng_probe955_onekey_inner_src.py",
     "_p956": "scripts/jimeng_probe956_replica_ring_ck.py",
+    # ⚠️⚠️⚠️ 961 补登记：`_p957`–`_p960` **一直漏登记**，而收集器对**未登记**
+    #   的变量是 `continue`（**静默跳过**）⇒ 那四批的**探针锚点一次都没被
+    #   自查过**（只有指向 `_ausrc` 的那些被查了）⇒ 补上。
+    "_p957": "scripts/jimeng_probe957_rail_roving_src.py",
+    "_p958": "scripts/jimeng_probe958_rail_roving_ck.py",
+    "_p959": "scripts/jimeng_probe959_domorder_src.py",
+    "_p960": "scripts/jimeng_probe960_taborder_src.py",
+    "_p961": "scripts/jimeng_probe961_ticensus_src.py",
+    # ⚠️ 961 顺带补上 `asrc`（= audit 源码，M 组判据在用；
+    #   它的路径是 `ROOT / "scripts" / "…"` 两段写法，自动提取抓不到）
+    "asrc": "scripts/jimeng_unclickable_audit.py",
+    # ⚠️⚠️⚠️ **961 补登记的 59 个**：收集器对**未登记**的变量是 `continue`
+    #   （**静默跳过**）⇒ 这些变量上的锚点**从来没被自查过**。
+    #   961 补登记后：新增受检 235 条，**实测 0 问题**。
+    "_agp_raw": "src/components/jimeng/JimengAudioGenPanel.tsx",
+    "_anchs": "scripts/jimeng_check_verifier_anchors.py",
+    "_c942s": "scripts/jimeng_check_comment_anchors.py",
+    "_jws_raw": "src/components/jimeng/JimengWorkspace.tsx",
+    "_p871": "scripts/jimeng_probe871_voicefilter_kb.py",
+    "_p872": "scripts/jimeng_probe872_voicefilters_kb.py",
+    "_p873": "scripts/jimeng_probe873_voiceselect.py",
+    "_p874": "scripts/jimeng_probe874_escvalue.py",
+    "_p875": "scripts/jimeng_probe875_clearfilter.py",
+    "_p875c": "scripts/jimeng_probe875_clearfilter_ck.py",
+    "_p876": "scripts/jimeng_probe876_clearfilter_kb.py",
+    "_p876b": "scripts/jimeng_probe876b_clearfilter_mech.py",
+    "_p876c": "scripts/jimeng_probe876c_clearfilter_kb2.py",
+    "_p876k": "scripts/jimeng_probe876c_clearfilter_kb2_ck.py",
+    "_p877": "scripts/jimeng_probe877_clearfilter_kb_all.py",
+    "_p878": "scripts/jimeng_probe878_nodefocus_ck.py",
+    "_p881": "scripts/jimeng_probe881_domreplace_ck.py",
+    "_p882": "scripts/jimeng_probe882_whostealsfocus_ck.py",
+    "_p883": "scripts/jimeng_probe883_escselect_src.py",
+    "_p884": "scripts/jimeng_probe884_selectnode_src.py",
+    "_p885": "scripts/jimeng_probe885_escselect2_src.py",
+    "_p886": "scripts/jimeng_probe886_esconchip_src.py",
+    "_p887": "scripts/jimeng_probe887_esconchip_val_src.py",
+    "_p888": "scripts/jimeng_probe888_reopen_src.py",
+    "_p889": "scripts/jimeng_probe889_esclanding_src.py",
+    "_p889b": "scripts/jimeng_probe889b_esclanding2_src.py",
+    "_p889bck": "scripts/jimeng_probe889b_esclanding_ck.py",
+    "_p889c": "scripts/jimeng_probe889c_blankvar_src.py",
+    "_p889ck": "scripts/jimeng_probe889_esclanding_ck.py",
+    "_p889d": "scripts/jimeng_probe889d_canvasfocus_src.py",
+    "_p890": "scripts/jimeng_probe890_nodefocus_why_src.py",
+    "_p890b": "scripts/jimeng_probe890b_nodefocus_why2_src.py",
+    "_p890c": "scripts/jimeng_probe890c_nodefocus_why_ck.py",
+    "_p891": "scripts/jimeng_probe891_mousedown_rule_ck.py",
+    "_p893": "scripts/jimeng_probe893_clickmoment_src.py",
+    "_p899": "scripts/jimeng_probe899_roving_next_rule_src.py",
+    "_syn_src": "scripts/jimeng_probe_js_syntax_check.py",
+    "_v942s": "scripts/jimeng_check_strip_comments.py",
+    "_vsrc": "scripts/verify-jimeng-batch841-unclickable.py",
+    "a2": "src/components/jimeng/JimengAudioGenPanel.tsx",
+    "amsrc": "src/components/jimeng/JimengAssetsModal.tsx",
+    "asrc2": "src/components/jimeng/JimengAudioGenPanel.tsx",
+    "c958": "src/components/jimeng/JimengToolRail.tsx",
+    "csrc": "src/components/jimeng/jimengMenuChrome.tsx",
+    "csrc2": "src/components/jimeng/jimengMenuChrome.tsx",
+    "g2": "src/components/jimeng/JimengGenPanel.tsx",
+    "gsrc": "src/components/jimeng/JimengGenPanel.tsx",
+    "hsrc": "src/components/jimeng/JimengHistoryMenu.tsx",
+    "lsrc": "scripts/jimeng_kb_probe_lib.py",
+    "p868s": "scripts/jimeng_probe868_textbar.py",
+    "p869s": "scripts/jimeng_probe869_drawerpanels.py",
+    "p870s": "scripts/jimeng_probe870_voicefilter.py",
+    "pisrc": "src/components/jimeng/JimengProjectInfoModal.tsx",
+    "psrc": "scripts/jimeng_probe850_genpanel_kb.py",
+    "q852": "scripts/jimeng_probe852_arrowdiag.py",
+    "q853b": "scripts/jimeng_probe853b_audiostruct_kb.py",
+    "q855a": "scripts/jimeng_probe855_topbar_recon.py",
+    "qsrc": "scripts/jimeng_probe864_modaltrap.py",
+    "ssrc": "src/components/jimeng/JimengSearchOverlay.tsx",
+    # 961 用它把「C 的出处」钉在**两个探针源码**上（892 首测 / 896 复核）
+    "_p892": "scripts/jimeng_probe892_preventdefault_src.py",
     # 批 938：判据开始**钉 TS 源码**（槽位是 store 里的单一来源）
     "_wm_s": "src/store/jimengStore.ts",
     # ⚠️⚠️ **929 加的**：**门禁脚本自己**也必须登记 ——
@@ -143,6 +218,10 @@ PROBE_VARS = {
 def _const_str(node: ast.AST) -> str | None:
     return node.value if isinstance(node, ast.Constant) and isinstance(
         node.value, str) else None
+
+
+# ⚠️ 961：被**静默跳过**的变量名（未登记 ⇒ 不查），收集时记下来、最后**打印出来** ⇒ 「假绿」不再无声
+SKIPPED: list[str] = []
 
 
 def collect(tree: ast.AST) -> list[tuple[str, str, bool]]:
@@ -171,6 +250,13 @@ def collect(tree: ast.AST) -> list[tuple[str, str, bool]]:
                 if s is None or name is None:
                     continue
                 if name != "_ausrc" and name not in PROBE_VARS:
+                    # ⚠️⚠️⚠️ **961 改**：原来这里是**裸 `continue`（静默跳过）**
+                    #   ⇒ 判据里引了一个**没登记**的变量时，锚点**一条都不查**、
+                    #   而且**连提示都没有** ⇒ 961 之前 `_p957`–`_p960` 与另外
+                    #   59 个变量上的锚点**从来没被自查过**（"0 问题"是假绿）。
+                    # ⇒ 现在**照样不查**（它们多半是字典/切片/循环变量，
+                    #   不是文件源，硬当门会误报），但**必须被列出来**。
+                    SKIPPED.append(name)
                     continue
                 out.append((name, s, neg))
     return out
@@ -200,8 +286,14 @@ def main() -> int:
             print(f"MISSING     [{name}] {anchor!r}")
             problems += 1
 
+    if SKIPPED:
+        # ⚠️ **不算问题**（多半是字典/切片/循环变量），但**必须可见**（961）
+        import collections as _c
+        for _n, _k in _c.Counter(SKIPPED).most_common():
+            print(f"SKIPPED-未登记 [{_n}] {_k} 条锚点（**不查**）")
     print(f"\n锚点 {len(items)} 条（其中指向 _ausrc 的 {n_ausrc} 条），"
-          f"问题 {problems} 个")
+          f"问题 {problems} 个；另 {len(SKIPPED)} 条锚点因**变量未登记**被跳过"
+          f"（{len(set(SKIPPED))} 个变量）")
     if problems:
         print("⇒ 有判据已经失效/或被改成永远为真，**别等门禁跑完才发现**。")
         return 1

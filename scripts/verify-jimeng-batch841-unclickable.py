@@ -1084,8 +1084,12 @@ def main() -> int:
           "set(seq) | {start_who}" in lsrc)
     check("M.6 基线表里**音乐模型**方向键 False 的理由写明是"
           "「**内容只有 1 项**」而不是「源站方向键坏了」",
-          "只有 1 项" in lsrc or "只有 1 项" in (
-              ROOT / "scripts/jimeng_unclickable_audit.py").read_text(encoding="utf-8"))
+          # ⚠️⚠️ 961 修：原文是 `"只有 1 项" in lsrc or "只有 1 项" in <audit>`。
+          #   ⭐ 补登记后锚点自查**第一次报出这个问题**：`lsrc`
+          #   （`jimeng_kb_probe_lib.py`）里「只有 1 项」**出现 0 次**
+          #   ⇒ **第一个析取支恒假**，这条判据一直**只靠第二个析取**撑着。
+          #   ⇒ **改法不是放宽门，是删掉那句从来不真的话**（判据强度不变）。
+          "只有 1 项" in asrc)
     check("M.7 基线表里**全音色**记 `takes_focus_at_open: False` 且 why 写明"
           "「焦点自始至终停在触发器上」"
           "（853c：伪像与真结论**碰巧同形** —— 重新认层后才知道这次是真的）",
@@ -5684,6 +5688,12 @@ def main() -> int:
     _p959 = p959.read_text(encoding="utf-8") if p959.exists() else ""
     p960 = ROOT / "scripts/jimeng_probe960_taborder_src.py"
     _p960 = p960.read_text(encoding="utf-8") if p960.exists() else ""
+    p961 = ROOT / "scripts/jimeng_probe961_ticensus_src.py"
+    _p961 = p961.read_text(encoding="utf-8") if p961.exists() else ""
+    p892 = ROOT / "scripts/jimeng_probe892_preventdefault_src.py"
+    _p892 = p892.read_text(encoding="utf-8") if p892.exists() else ""
+    p896 = ROOT / "scripts/jimeng_probe896_roving_tabindex_policy_src.py"
+    _p896 = p896.read_text(encoding="utf-8") if p896.exists() else ""
     c958 = (ROOT / "src/components/jimeng/JimengToolRail.tsx"
             ).read_text(encoding="utf-8")
 
@@ -7273,6 +7283,180 @@ def main() -> int:
           and 'OUT = "/tmp/b960-taborder.json"' in _p960
           and 'out["out"] = "/tmp/b960-taborder.json"' in _p960
           and '"/tmp/b959-domorder.json"' not in _p960)
+
+    # ══ 批 961：⭐⭐⭐⭐ 堵上 959/960 的**读法盲区** ⇒ 而盲区里是空的 ══
+    print("— WWWW. 批 961 全文档普查 `tabindex`：正 `tabindex` = 0 个，"
+          "「按正 ti 排序」彻底排除 —")
+
+    check("WWWW.1 ⭐⭐⭐⭐ **959/960 的读法盲区被堵上 —— 而盲区里是空的**："
+          "它们只读**焦点所在那一枚**的 `tabindex` ⇒ 「没有正 ti」只覆盖"
+          "「各自获得焦点的那一刻」；961 **逐按普查全文档** ⇒ "
+          "**112 个原生可聚焦**、分布 `0`×1 + `None`×25 + `-1`×86、"
+          "**带正 `tabindex` 的 0 个** ⇒ **「靠正 `tabindex` 排序」彻底排除**",
+          '"blind_spot_closed_961": (' in _ausrc
+          and "**959/960 的读法盲区被堵上了 —— 而盲区里是空的**" in _ausrc
+          and "**只读「焦点所在的那一枚」**" in _ausrc
+          and "**「它们没有正 `tabindex`」这个结论只覆盖了" in _ausrc
+          and "**其它候选**当时的 `tabindex` " in _ausrc
+          and "**全文档原生可聚焦 112 个**" in _ausrc
+          and "分布 = **`0`×1 + `None`×25 + `-1`×86**" in _ausrc
+          and "**带正 `tabindex` 的 = 0 个**" in _ausrc
+          and "**「靠正 `tabindex` 排序」这个解释被**彻底**排除**" in _ausrc
+          and "不只是那 6 个画布控件没有，是**整个文档一个都没有**" in _ausrc
+          # ⭐ 钉探针：普查范围是**全文档**，不是焦点那一枚
+          and 'TICENSUS_JS = """([nodeSel]) => {' in _p961
+          and "const all = Array.from(document.querySelectorAll('*'));" in _p961
+          and "const NATIVE = ['BUTTON', 'A', 'INPUT', 'SELECT', 'TEXTAREA'];"
+              in _p961
+          and "n_focusable: n_focusable, ti_hist: hist, positive: positive,"
+              in _p961
+          # ⭐ 钉探针：**逐个列出带正值的**（不是只数）
+          and 'c["positive_tids"] = sorted({' in _p961
+          and 'c["positive_sample"] = (_outs[0].get("positive") or [])' in _p961
+          and 'c["n_out_with_positive"] = len(_pos)' in _p961
+          # ⭐⭐ 钉探针：961 自己的**两道可红判决门**（960 漏了，961 补上）
+          and '"no_positive_tabindex": bool(all(' in _p961
+          and '"ti_hist_stable_across_stops": bool(all(' in _p961
+          and 'r["cells"][0].get("n_positive_max") == 0' in _p961
+          and 'r["cells"][0].get("positive_tids") == []' in _p961
+          and 'r["cells"][0].get("n_out_with_positive") == 0)' in _p961
+          and 'r["cells"][0].get("ti_hist_stable") is True' in _p961
+          and "**可红**，红的就是「正 `tabindex`」没被否掉" in _p961
+          # ⚠️ 钉探针：守卫常量自己匹配得上东西（946 的教训）
+          and 'assert TICENSUS_JS.count("NATIVE.indexOf(tag)") == 1' in _p961
+          and "`TICENSUS_JS` 自己就匹配不上它要验的东西" in _p961
+          and "这道门恒绿，等于没有门" in _p961)
+
+    check("WWWW.2 ⚠️⚠️⚠️⭐⭐ **矛盾加强了，而且只剩一个方向**："
+          "A′（无正 ti）+ C（**没** `preventDefault`）⇒ 浏览器**本该严格**按 DOM 序走，"
+          "与 B（959/961 的 `Tab` 序非 DOM 序）**直接冲突** ⇒ "
+          "**剩下的可能只剩「应用在 keydown 之后主动 `focus()`」** ⇒ "
+          "**那才是复刻真正要对齐的东西**（应用自己维护的焦点顺序表）",
+          '"contradiction_hardens_961": (' in _ausrc
+          and "**矛盾加强了，而且现在只剩一个方向**" in _ausrc
+          and "**892 首测** 2/2、**896 复核**全 `False`" in _ausrc
+          and "**A′ + C 蕴含「浏览器应当**严格**按 DOM 序走」**" in _ausrc
+          and "**与 B 直接冲突**" in _ausrc
+          and "**剩下的方向只剩一个**" in _ausrc
+          and "（`focusin` / 宏任务 / `requestAnimationFrame`）**主动 `focus()` " in _ausrc
+          and "**没拦**，与 C 不矛盾" in _ausrc
+          and "**不用改**（与 A′ 不矛盾）" in _ausrc
+          and "而顺序**来自它自己的表**" in _ausrc
+          and "**这才是复刻真正要对齐的东西**" in _ausrc
+          and "而是**应用自己维护的那张焦点顺序表**" in _ausrc
+          # ⭐ 钉探针：961 复核的 B（`dom_index` 非单调）**可红且真的红着**
+          and '"dom_index_monotonic": bool(all(' in _p961
+          and "**DOM 下标单调不降 = " in _p961
+          and 'r["cells"][0].get("dom_index_monotonic") is True' in _p961
+          and '**960 已经逐条否掉**' in _p961
+          # ⚠️ 钉探针：**不许**把已否掉的猜想写成待查
+          and '**也不问** 960 问过的那两条（shadow root / keydown 改 ti，' in _p961)
+
+    check("WWWW.3 ⚠️⚠️⚠️ **更正出处时我自己也犯了「只查一处」的错**："
+          "960 §二 写 896，而 **896 确实测过**（明写用 892 的取法、"
+          "结论全 `False`）⇒ 960 那处引用**不算错**；准确说法是"
+          "**「892 首测 ＋ 896 复核」** ⇒ **C 有两个出处、都站得住**；"
+          "钉在**两个探针源码**上，不是钉在自述里",
+          '"where_961_almost_made_the_same_mistake_961": (' in _ausrc
+          and "**更正一处出处 —— 而我第一版的「更正」本身就是错的**" in _ausrc
+          and "**896 确实测过**" in _ausrc
+          and "汇总里有 `keydown_defaultPrevented_seen`" in _ausrc
+          and "**960 那处引用不算错**" in _ausrc
+          and "**准确的说法是「892 首测（2/2 `False`）＋ 896 复核（全 `False`）」**"
+              in _ausrc
+          and "**C 有两个出处、都站得住**" in _ausrc
+          and "我 961 第一版写的是「**不是 896**」⇒ **那一句是错的**" in _ausrc
+          # ⭐⭐ **钉探针源码**：C 的两个出处**真的都存在**，且**取法一致**
+          and "**派发结束后**再读 `defaultPrevented`" in _p892
+          and "defaultPrevented: e.defaultPrevented}); };" in _p892
+          and "defaultPrevented_final: s ? s.defaultPrevented : null," in _p892
+          and "`defaultPrevented` 用 **892 的取法**" in _p896
+          and "keydown_defaultPrevented_seen" in _p896
+          and '"keydown_defaultPrevented_seen": prevented,' in _p896
+          # ⚠️ 钉探针：961 自己**留痕**了这次自我更正（承 HH.4）
+          and "**更正一处出处，但第一版更正本身就错了**" in _p961
+          and "**892 首测**（那一批的主角就是这一项，2/2 `False`）" in _p961
+          and "没查「真正测过的还有哪些」" in _p961
+          and "**引用纪律要查两遍：路径查一遍、来源也查一遍**" in _ausrc)
+
+    check("WWWW.4 ⚠️⚠️ **同一次跑里有两个普查，数字不可比**；"
+          "且 961 **自己抓到两个缺陷**（`domidx_note` 是 960 照抄残留、"
+          "探针**没有给 961 判决自己的门**）⇒ 都改了、都**重跑**了",
+          '"two_censuses_961": (' in _ausrc
+          and "**同一次跑里有两个普查，口径不同、数字不可比**" in _ausrc
+          and "范围**只有左栏那一个容器**" in _ausrc
+          and "范围是**整个 `document`** 的" in _ausrc
+          and "961 的判决**只认后一个**" in _ausrc
+          and "**口径必须写在产物里**，不能只存在于跑的人脑子里" in _ausrc
+          and '"own_gate_missing_961": (' in _ausrc
+          and "**961 自己抓到两个缺陷，都改了、都重跑了**" in _ausrc
+          and "**原文是 960 照抄来的**" in _ausrc
+          and "**交付的读数文件里「本批问什么」被标错**了" in _ausrc
+          and "`design_gates` 里**没有 961 判决自己的门**" in _ausrc
+          and "**「可红」的门必须和判决同时落进探针**" in _ausrc
+          # ⭐ 钉探针：三个修复**真的**在文件里
+          and "**操作事故（961 自己抓到）**" in _p961
+          and "还在讲 960 的两个可能性（shadow root / keydown 改 ti）" in _p961
+          and "这回毁的是**读数文件里的一个说明字段** ⇒ 承 960 那条纪律" in _p961
+          and 'out["census_scope"] = (' in _p961
+          and "**两个普查不是同一件事，数字不可比**" in _p961
+          and "左栏普查（`RAIL_JS`，范围=左栏容器）" in _p961
+          # ⚠️ 钉探针：派生键补登记（935 的两道免疫针），且原始/派生没混
+          and '"n_positive_max", "n_out_with_positive", "positive_tids",' in _p961
+          and '"ti_hist_stable",' in _p961
+          and "`positive`/`ti_hist` 是**原始**读数，不能混" in _ausrc
+          and '"ti_hist", "n_native", "n_focusable", "n_positive", "positive",'
+              in _p961)
+
+    check("WWWW.5 ⭐⭐ **零计费与纯读纪律 961 继续守住**：新件 `TICENSUS_JS` "
+          "**只读不写**、判别键**绕开 `press_row`**（它带 `el.focus()` 会改被测对象）、"
+          "全程只点**一次画布空白**、⛔ 守卫拦在 `mouse.click` **之前**",
+          "⚠️ 纯读：不调 `focus()`、不改任何属性。" in _p961
+          and "只列**正** `tabindex`" in _p961
+          and "**绕开 `press_row`**（957 查红、958 复刻侧也证实" in _p961
+          and 'out["ruler"]["read_isolation"] = (' in _p961
+          and "会把焦点从 chrome 停靠点**拽回画布节点**（957 源站实测、958 复刻实测）"
+              in _p961
+          and "**本批零计费动作。** 只发一次画布空白点击去焦点" in _p961
+          and "⛔ 守卫拦在 `mouse.click` **之前**" in _p961
+          and 'guard_point(sp[0], sp[1])       # ⭐ 只点**画布空白**去焦点' in _p961
+          and '"zero_button_clicks": True,' in _p961
+          and '"read_isolated_from_press_row": True,' in _p961)
+
+    check("WWWW.6 ⚠️⚠️⚠️⭐⭐ **锚点自查里那个「静默跳过」的洞被堵上了**："
+          "未登记变量原本是**裸 `continue`** ⇒ `_p957`–`_p960` **四批**的探针锚点"
+          "**一次都没被查过**；补登记后 **2411 → 2853**、**0 问题**，"
+          "并**当场抓出一条恒假的析取支**（M.6）⇒ **改法是删恒假支、不是放宽门**；"
+          "剩下 167 条**确实不是文件源**，故不当门、但**已改成逐条打印**",
+          '"anchor_hole_961": (' in _ausrc
+          and "**锚点自查里有一个「静默跳过」的洞，961 把它堵上了**" in _ausrc
+          and "**裸 `continue`**" in _ausrc
+          and "**一条都不查、且连提示都没有**" in _ausrc
+          and "**`_p957`–`_p960` 一直漏登记**" in _ausrc
+          and "**四批**的探针锚点" in _ausrc
+          and "锚点总数 **2411 → 2853**（**+442**）" in _ausrc
+          and "新增受检 235 条**实测 0 问题**" in _ausrc
+          and "**出现 0 次**" in _ausrc
+          and "**第一个析取支恒假**" in _ausrc
+          and "**只靠第二个析取**撑着" in _ausrc
+          and "**改法不是放宽门，是删掉那句从来不真的话**" in _ausrc
+          and "「0 问题」+「没报错」**可能只是没人查**" in _ausrc
+          and "**确实是字典/切片/循环变量**、" in _ausrc
+          and "**不当门**（会误报），但**已改成逐条打印**" in _ausrc
+          # ⭐⭐ 钉**自查器本身**：洞**真的**堵了（登记 + 打印）
+          and '"_p957": "scripts/jimeng_probe957_rail_roving_src.py",' in _vsrc
+          and '"_p960": "scripts/jimeng_probe960_taborder_src.py",' in _vsrc
+          and '"_p961": "scripts/jimeng_probe961_ticensus_src.py",' in _vsrc
+          and '"_p892": "scripts/jimeng_probe892_preventdefault_src.py",' in _vsrc
+          and "**961 补登记的 59 个**" in _anchs
+          and "原来这里是**裸 `continue`（静默跳过）**" in _anchs
+          and "SKIPPED.append(name)" in _anchs
+          and 'print(f"SKIPPED-未登记 [{_n}] {_k} 条锚点（**不查**）")' in _anchs
+          and "条锚点因**变量未登记**被跳过" in _anchs
+          # ⚠️⚠️ M.6 只钉**新写法**在，**不钉「旧写法不在」** ——
+          #   那条 `not in _vsrc` 是**自指**的：断言文本自己就写在 verifier 文件里
+          #   ⇒ 恒红（一个恒红的判据比没有判据更坏）⇒ 只留正向锚点。
+          and '"只有 1 项" in asrc)' in _vsrc)
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
