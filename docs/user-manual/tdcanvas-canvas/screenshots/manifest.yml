@@ -54,7 +54,7 @@ screenshots:
     route: '/canvas/:id'
     viewport: 300x340
     locale: zh-CN
-    captured_at: '2026-10-03'
+    captured_at: '2026-10-02'
     verified_locator: '悬停前后全页可见文本取差集：新增文本 ["历史", "历史新建"]，新增浮层 72,484,40x24 SPAN.pointer-events-none absolute left-[calc(100%+8px)] text="历史"；:hover 链长 17、末端 path、末端几何落在历史按钮矩形内（阳性对照成立）'
     visible_text: '新建 历史'
     alt: 同一条左侧按钮条，「历史」那一格被点亮、右侧弹出一个写着「历史」的圆角标签；底部的剪刀按钮此刻是灰色的——红色只在鼠标停在它上面时出现，而这张图的鼠标停在「历史」上，加号右上角仍挂着「新建」徽标
@@ -66,7 +66,7 @@ screenshots:
     route: '/canvas/:id'
     viewport: 360x108
     locale: zh-CN
-    captured_at: '2026-10-03'
+    captured_at: '2026-10-02'
     verified_locator: '悬停前后全页可见文本取差集：主页按钮新增文本 ["主页"]、新增浮层 16,62,44x34 DIV.ant-tooltip text="主页"；同一次测量里 打开画布菜单（@62,16）悬停新增文本为空数组、:hover 链长 16 末端 path（指针确实落在按钮上），两者同为无 title 无浮层'
     visible_text: '主页 TDCanvas 1'
     alt: 画布顶栏左侧，鼠标停在青色的主页方块上、下方弹出「主页」标签，而它右边那个三横线的汉堡按钮停在原地、什么提示都没有
@@ -78,7 +78,7 @@ screenshots:
     route: '/canvas/:id'
     viewport: 320x380
     locale: zh-CN
-    captured_at: '2026-10-03'
+    captured_at: '2026-10-02'
     verified_locator: '[data-canvas-tool="tool-create"] 的 svg 类名由 lucide-plus 变为 lucide-x、aria-label 前后都是「添加节点」、aria-expanded 恒为 null；面板容器 .td-canvas-flyout 位于 88,240,212x352，标题「添加节点」，七项依次 文本/图片/视频/音频/ComfyUI 工作流/组/（分隔线）/上传素材'
     visible_text: '添加节点 文本 图片 视频 音频 ComfyUI 工作流 组 上传素材 新建'
     alt: 添加节点面板打开的样子，面板从按钮右侧展开、标题为添加节点，下面依次是文本、图片、视频、音频、ComfyUI 工作流、组和分隔线后的上传素材，左侧的加号按钮同时变成了叉号
@@ -1343,7 +1343,7 @@ screenshots:
     route: '/canvas/:id'
     viewport: 1600x950
     locale: zh-CN
-    captured_at: '2026-10-03'
+    captured_at: '2026-10-02'
     verified_locator: '逐项实读并断言：节点数恰为 2（image-1790941317841-kus2p 文本「m157.png参考素材」、text-1790942017662-pv12x 文本「文本生图双击编辑文字」）、[data-connection-id] 恰为 1、节点工具条数 0（已取消选中）、两个节点 rect 均未被视口裁切。连线由文本节点右侧输出端口拖到图片节点左侧输入端口建成，拖前拖后均由 data-connection-id 计数佐证'
     visible_text: 'TDCanvas 3 双击编辑文字 生图 m157.png 参考素材 58%'
     alt: '画布工作区全貌：顶部是顶栏、左侧是常驻的竖排图标按钮条，画布上左边一个参考素材图片节点、右上一个文本节点，两者之间连着一条线，左下角是视图控制与缩放滑杆（显示 58%）'
@@ -1356,7 +1356,7 @@ screenshots:
     route: '/canvas/:id'
     viewport: 1600x950
     locale: zh-CN
-    captured_at: '2026-10-03'
+    captured_at: '2026-10-02'
     verified_locator: '两个节点的 class 均含 z-50（选中态）实读确认；节点工具条计数用结构判据（高 48、宽>300、≥8 按钮、且底边在某个节点顶边上方 260px 内）：单选时 1 条、多选时 0 条'
     visible_text: 'm157.png 参考素材 文本 双击编辑文字 生图 39%'
     alt: '两个节点都带蓝色选中边框、可它们上方一个工具条也没有；左侧图标条上多出一个垃圾桶按钮'
@@ -1368,7 +1368,7 @@ screenshots:
     route: '/canvas/:id'
     viewport: 1600x950
     locale: zh-CN
-    captured_at: '2026-10-03'
+    captured_at: '2026-10-02'
     verified_locator: '组徽标文本实读为「组0 个节点」；组的 rect (675,303,532x336) 与文本节点 rect 均完整落在视口内（拍摄前逐条断言，否则不拍）'
     visible_text: '组 0 个节点 文本 双击编辑文字 生图 70%'
     alt: '文本节点整个落在组的虚线框里、组的右上角徽标却写着「0 个节点」'
