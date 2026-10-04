@@ -1,0 +1,594 @@
+{
+ "batch": 771,
+ "checks": [
+  {
+   "label": "产物：判据 15 条且 id 齐全",
+   "pass": true,
+   "got": {
+    "got": [
+     "J1",
+     "J10",
+     "J11",
+     "J12",
+     "J13",
+     "J14",
+     "J15",
+     "J2",
+     "J3",
+     "J4",
+     "J5",
+     "J6",
+     "J7",
+     "J8",
+     "J9"
+    ],
+    "want": [
+     "J1",
+     "J10",
+     "J11",
+     "J12",
+     "J13",
+     "J14",
+     "J15",
+     "J2",
+     "J3",
+     "J4",
+     "J5",
+     "J6",
+     "J7",
+     "J8",
+     "J9"
+    ]
+   }
+  },
+  {
+   "label": "产物：verdict 与预期一致",
+   "pass": true,
+   "got": {
+    "got": {
+     "J1": "PASS",
+     "J2": "PASS",
+     "J3": "PASS",
+     "J4": "PASS",
+     "J5": "PASS",
+     "J6": "PASS",
+     "J7": "PASS",
+     "J8": "PASS",
+     "J9": "PASS",
+     "J10": "PASS",
+     "J11": "PASS",
+     "J12": "PASS",
+     "J13": "PASS",
+     "J14": "PASS",
+     "J15": "PASS"
+    }
+   }
+  },
+  {
+   "label": "产物：每条判据的 evidence 等于 findings[evidenceKey]",
+   "pass": true,
+   "got": {
+    "mismatch": []
+   }
+  },
+  {
+   "label": "产物：本批无新缺陷（三个问题都不是新缺陷）",
+   "pass": true,
+   "got": {
+    "got": []
+   }
+  },
+  {
+   "label": "产物：更正块 2 条（C771-1/C771-2）",
+   "pass": true,
+   "got": {
+    "got": [
+     "C771-1",
+     "C771-2"
+    ]
+   }
+  },
+  {
+   "label": "产物：C771-1 明确点名 768 与 770 两处措辞",
+   "pass": true,
+   "got": {
+    "got": [
+     [
+      "batch 768 findings(D11 修法引用)",
+      "batch 770 defects[D13].fixDirection"
+     ],
+     [
+      "batch 768 findings(D11 修法引用)"
+     ]
+    ]
+   }
+  },
+  {
+   "label": "产物：教训 ['R90', 'R91', 'R92', 'R93'] 齐全",
+   "pass": true,
+   "got": {
+    "got": [
+     "R90",
+     "R91",
+     "R93",
+     "R92"
+    ]
+   }
+  },
+  {
+   "label": "产物：观察 ≥3 条",
+   "pass": true,
+   "got": {
+    "got": 3
+   }
+  },
+  {
+   "label": "产物：raw/vb771a.json 的 sha 记进产物",
+   "pass": true,
+   "got": {
+    "got": {
+     "vb771a.json": "3c35094c812dc47f",
+     "vb770a.json": "b353c1e13d42cd91"
+    }
+   }
+  },
+  {
+   "label": "静态：导演台只有一层围栏且挂在 root（冒泡）",
+   "pass": true,
+   "got": {
+    "onRoot": true,
+    "capture": false,
+    "listeners": 1
+   }
+  },
+  {
+   "label": "静态：root 那一层对每次 Tab 都无条件 preventDefault + focus(next)",
+   "pass": true,
+   "got": {
+    "pd": true,
+    "focus": true,
+    "guarded": false
+   }
+  },
+  {
+   "label": "静态：★ 更正 —— useLayerFocus 的 trap 没有 stopImmediatePropagation",
+   "pass": true,
+   "got": {
+    "stopImmediate": false,
+    "stopPropagation": false
+   }
+  },
+  {
+   "label": "静态：useLayerFocus 仍挂在 window 捕获上（所以那句缺失是要紧的）",
+   "pass": true,
+   "got": {
+    "hasTrap": true,
+    "capture": true
+   }
+  },
+  {
+   "label": "静态：导演台一个组件都没用 useLayerFocus",
+   "pass": true,
+   "got": {
+    "got": []
+   }
+  },
+  {
+   "label": "产物：静态层与验收器重读的源码一致",
+   "pass": true,
+   "got": {
+    "got": {
+     "useLayerFocusStopsImmediate": false,
+     "rootFocusesNextEveryTime": true
+    }
+   }
+  },
+  {
+   "label": "原始：24 格 × 2 轮、无缺格无失败格、步数一致",
+   "pass": true,
+   "got": {
+    "failed": [],
+    "cells": 24,
+    "walkSteps": 12,
+    "reachSteps": 3
+   }
+  },
+  {
+   "label": "原始：★ 问① 12/12 格都进得去浮层",
+   "pass": true,
+   "got": {
+    "enterAt": {
+     "export/reach-fwd": 1,
+     "export/reach-back": 1,
+     "preset/reach-fwd": 1,
+     "preset/reach-back": 1,
+     "pathmenu/reach-fwd": 1,
+     "pathmenu/reach-back": 1,
+     "phonevcam/reach-fwd": 1,
+     "phonevcam/reach-back": 1,
+     "crowd/reach-fwd": 1,
+     "crowd/reach-back": 1,
+     "modellib/reach-fwd": 1,
+     "modellib/reach-back": 1
+    }
+   }
+  },
+  {
+   "label": "原始：问① 落点正好是浮层的首/末控件",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    }
+   }
+  },
+  {
+   "label": "原始：问① 起点全部落在浮层外且紧邻浮层（「3 步够」的前提）",
+   "pass": true,
+   "got": {
+    "outside": {},
+    "adjacent": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    }
+   }
+  },
+  {
+   "label": "原始：★ 问② 注入真的拦到了 Tab（否则「没逃逸」不算数）",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    }
+   }
+  },
+  {
+   "label": "原始：★ 问② 6/6 个浮层 12 步都没走出浮层",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    }
+   }
+  },
+  {
+   "label": "原始：注入臂走的是**浮层自己的数组**并环绕",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    }
+   }
+  },
+  {
+   "label": "原始：单变量守住了 —— 臂 3 停传播、臂 4 不停",
+   "pass": true,
+   "got": {
+    "trap": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    },
+    "arm4": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    }
+   }
+  },
+  {
+   "label": "原始：★ 问③ 臂 4 的注入也真的拦到了 Tab（读数不算退化）",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    }
+   }
+  },
+  {
+   "label": "原始：★ 问③ 6/6 格在「照抄 useLayerFocus」的语义下**仍然逃逸**",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": 2,
+     "preset": 5,
+     "pathmenu": 5,
+     "phonevcam": 1,
+     "crowd": 1,
+     "modellib": 7
+    }
+   }
+  },
+  {
+   "label": "原始：★ 问③ 逃逸步数与**验收器自己写的**模拟器逐格吻合",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": true,
+     "preset": true,
+     "pathmenu": true,
+     "phonevcam": true,
+     "crowd": true,
+     "modellib": true
+    }
+   }
+  },
+  {
+   "label": "原始：★ 与 770 的分歧点恰好落在 770 的逃逸步上",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": {
+      "ok": true,
+      "agree": true,
+      "oldEscapeStep": 4,
+      "inside": 3,
+      "startSame": true
+     },
+     "preset": {
+      "ok": true,
+      "agree": true,
+      "oldEscapeStep": 10,
+      "inside": 9,
+      "startSame": true
+     },
+     "pathmenu": {
+      "ok": true,
+      "agree": true,
+      "oldEscapeStep": 5,
+      "inside": 4,
+      "startSame": true
+     },
+     "phonevcam": {
+      "ok": true,
+      "agree": true,
+      "oldEscapeStep": 2,
+      "inside": 1,
+      "startSame": true
+     },
+     "crowd": {
+      "ok": true,
+      "agree": true,
+      "oldEscapeStep": 2,
+      "inside": 1,
+      "startSame": true
+     },
+     "modellib": {
+      "ok": true,
+      "agree": true,
+      "oldEscapeStep": null,
+      "inside": 13,
+      "startSame": true
+     }
+    }
+   }
+  },
+  {
+   "label": "产物：三问的聚合与原始读数一致",
+   "pass": true,
+   "got": {
+    "reached": 12,
+    "stopped": 6,
+    "stillEscaped": 6,
+    "predMatched": true
+   }
+  },
+  {
+   "label": "产物：分类铺满 —— 没有「没测到」的桶被当成通过",
+   "pass": true,
+   "got": {
+    "neverReached": [],
+    "trapStillEscaped": [],
+    "arm4NeverEscaped": []
+   }
+  },
+  {
+   "label": "产物：探针脚本与 raw 都随产物提交（R43）",
+   "pass": true,
+   "got": {
+    "probes": [
+     "dbg771a.py",
+     "mk771audit.py"
+    ],
+    "raw": [
+     "vb771a.json"
+    ]
+   }
+  },
+  {
+   "label": "README：不含替换字符 U+FFFD",
+   "pass": true,
+   "got": {
+    "count": 0
+   }
+  },
+  {
+   "label": "README 提到「可达性」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「可修性」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「照抄」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「C771-1」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「R90」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：表格首格没有裸数字（pre-commit 正则会拦）",
+   "pass": true,
+   "got": {
+    "bare": []
+   }
+  },
+  {
+   "label": "台账：Batch 771 恰好一行",
+   "pass": true,
+   "got": {
+    "count": 1
+   }
+  },
+  {
+   "label": "台账：该行不含 U+FFFD",
+   "pass": true,
+   "got": {
+    "count": 0
+   }
+  },
+  {
+   "label": "台账：首格是 `| Batch 771 |` 而不是裸数字",
+   "pass": true,
+   "got": {
+    "head": "| Batch 771 | **6 个浮层的 Tab 围栏：可达性、可修性，以及「照抄 `useLayerFocus` "
+   }
+  },
+  {
+   "label": "台账：恰好 3 列",
+   "pass": true,
+   "got": {
+    "pipes": 4
+   }
+  },
+  {
+   "label": "台账：历史 U+FFFD 仍在 9 处、且分布未变",
+   "pass": true,
+   "got": {
+    "count": 9
+   }
+  }
+ ],
+ "pass": 42,
+ "total": 42,
+ "negativeControls": [
+  {
+   "name": "把臂 3 的 stopsImmediate 改成 False（抹掉单变量）",
+   "caught": true,
+   "expectFailOn": "单变量守住了",
+   "stillPassing": []
+  },
+  {
+   "name": "把臂 4 的 stopsImmediate 改成 True（抹掉单变量）",
+   "caught": true,
+   "expectFailOn": "单变量守住了",
+   "stillPassing": []
+  },
+  {
+   "name": "把可达性 12 格全部改成「没进浮层」",
+   "caught": true,
+   "expectFailOn": "都进得去浮层",
+   "stillPassing": []
+  },
+  {
+   "name": "改掉臂 4 一格的逃逸步数（打乱模拟器预测）",
+   "caught": true,
+   "expectFailOn": "模拟器逐格吻合",
+   "stillPassing": []
+  },
+  {
+   "name": "让臂 3 有一格走出浮层（把「6/6 拦住」做成假的）",
+   "caught": true,
+   "expectFailOn": "都没走出浮层",
+   "stillPassing": []
+  },
+  {
+   "name": "把臂 3 的 trapFired 置 0（「没逃逸」变成退化）",
+   "caught": true,
+   "expectFailOn": "问② 注入真的拦到了",
+   "stillPassing": []
+  },
+  {
+   "name": "篡改一条判据的 evidence（让它与 findings 不符）",
+   "caught": true,
+   "expectFailOn": "evidence 等于 findings",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉判据引用的 findings 键",
+   "caught": true,
+   "expectFailOn": "evidence 等于 findings",
+   "stillPassing": []
+  },
+  {
+   "name": "给本批塞一个假的新缺陷",
+   "caught": true,
+   "expectFailOn": "本批无新缺陷",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉 C771-1 这条更正",
+   "caught": true,
+   "expectFailOn": "更正块 2 条",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉一条探针教训",
+   "caught": true,
+   "expectFailOn": "教训",
+   "stillPassing": []
+  },
+  {
+   "name": "把台账 Batch 771 行删掉",
+   "caught": true,
+   "expectFailOn": "台账：Batch 771 恰好一行",
+   "stillPassing": []
+  },
+  {
+   "name": "把 README 表格首格改成裸数字（pre-commit 正则会拦）",
+   "caught": true,
+   "expectFailOn": "首格没有裸数字",
+   "stillPassing": []
+  }
+ ],
+ "negativeCaught": 13,
+ "negativeTotal": 13,
+ "rawError": null,
+ "ok": true
+}

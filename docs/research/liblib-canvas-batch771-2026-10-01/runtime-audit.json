@@ -1,0 +1,2728 @@
+{
+ "batch": 771,
+ "date": "2026-10-01",
+ "scope": "6 个导演台 disclosure 浮层的 Tab 围栏——770 留下的另外两问（可达性 / 可修性），加一条对 768/770 修法措辞的更正：「照抄 useLayerFocus 的 trap」到底够不够",
+ "env": {
+  "base": "http://localhost:4317",
+  "canvas": "canvas-2",
+  "viewport": "1440x1000（桌面）",
+  "player": "chromium (playwright sync_api)",
+  "srcModified": false
+ },
+ "probes": [
+  {
+   "id": "771a",
+   "file": "probes/dbg771a.py",
+   "raw": "raw/vb771a.json",
+   "rounds": 2,
+   "cells": 24,
+   "injected": true,
+   "arms": [
+    {
+     "mode": "reach-fwd",
+     "steps": 3,
+     "key": "Tab",
+     "note": "起点=紧邻浮层**之前**的对话框控件（770 的线性行走+ 连续段 ⟹ 3 步够定案）"
+    },
+    {
+     "mode": "reach-back",
+     "steps": 3,
+     "key": "Shift+Tab",
+     "note": "起点=紧邻浮层**之后**的对话框控件"
+    },
+    {
+     "mode": "trap-fwd",
+     "steps": 12,
+     "key": "Tab",
+     "injected": true,
+     "stopsImmediate": true,
+     "note": "浮层 ref + 捕获 + preventDefault + stopImmediatePropagation ⟹ D13 修法方向 ① 原样实现"
+    },
+    {
+     "mode": "trapnostop-fwd",
+     "steps": 12,
+     "key": "Tab",
+     "injected": true,
+     "stopsImmediate": false,
+     "note": "★ 与上一臂**只差这一个变量** ⟹ 语义=照抄 useLayerFocus 的 trap"
+    }
+   ]
+  }
+ ],
+ "rawSha": {
+  "vb771a.json": "3c35094c812dc47f",
+  "vb770a.json": "b353c1e13d42cd91"
+ },
+ "comparability": {
+  "allConsistent": true,
+  "firstDiff": {},
+  "rounds": 2,
+  "protocol": "★ 每格都从**重新加载的页面**开始（768 的 R73），全程不点外点；只点 6 个 disclosure 触发器。24 格 × 2 轮。",
+  "armA": {
+   "arm": "reach-fwd",
+   "steps": 3,
+   "key": "Tab"
+  },
+  "armB": {
+   "arm": "reach-back",
+   "steps": 3,
+   "key": "Shift+Tab"
+  },
+  "armC": {
+   "arm": "trap-fwd",
+   "steps": 12,
+   "key": "Tab",
+   "injected": true,
+   "stopsImmediate": true,
+   "note": "与 770 的 */fwd 同一协议 ⟹ D13 的 A/B 对照"
+  },
+  "armD": {
+   "arm": "trapnostop-fwd",
+   "steps": 12,
+   "key": "Tab",
+   "injected": true,
+   "stopsImmediate": false,
+   "note": "★ 与臂 C **逐字相同，只少一句 `stopImmediatePropagation()`** ⟹ 语义就是「照抄 useLayerFocus 的 trap」。"
+  },
+  "inference": "★ **为什么臂 1/2 只走 3 步就够**：770 已证明 Tab 在对话框数组上是 `index ± 1` 的**线性行走**并环绕，浮层的控件是数组里**连续的一段** ⟹ 可达性完全由数组位置决定。只要「紧邻浮层之前」的元素能走进去，任何排在浮层之前的元素都能走进去。**这条推理的前提由 770 的读数提供，本批不重新证明，只在 J 里引用。**",
+  "clearedLocalStorage": [
+   [],
+   [
+    "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22b-bTLLuU4w5q%22%5D"
+   ]
+  ],
+  "deskGoneAfter": [
+   null,
+   null
+  ]
+ },
+ "static": {
+  "existingTrapOnRoot": true,
+  "existingTrapCapture": false,
+  "existingKeydownCount": 1,
+  "existingArrayIsRoot": true,
+  "existingStopsPropagation": true,
+  "rootPreventDefaultCount": 2,
+  "rootFocusesNextEveryTime": true,
+  "rootNextIndexUnconditional": true,
+  "useLayerFocusHasTrap": true,
+  "useLayerFocusUsesCapture": true,
+  "useLayerFocusStopsImmediate": false,
+  "useLayerFocusStopsPropagation": false,
+  "useLayerFocusTrapPreventDefaults": 2,
+  "useLayerFocusTrapFocuses": 1,
+  "useLayerFocusConsumers": [
+   "src/components/jimeng/JimengAiDrawer.tsx",
+   "src/components/jimeng/JimengNodeSummaryPopover.tsx"
+  ],
+  "directorUsesIt": []
+ },
+ "reachability": {
+  "perCell": {
+   "export/reach-fwd": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 107,
+     "panelEnd": 111,
+     "panelCount": 5,
+     "dialogCount": 129,
+     "contiguous": true
+    },
+    "startIdxInDialog": 106,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 107,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "idxInDialog": 108,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "9:16",
+      "idxInDialog": 109,
+      "idxInPanel": 2
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 107,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "16:9",
+      "idxInDialog": 108,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "9:16",
+      "idxInDialog": 109,
+      "idxInPanel": 2
+     }
+    ]
+   },
+   "export/reach-back": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 107,
+     "panelEnd": 111,
+     "panelCount": 5,
+     "dialogCount": 129,
+     "contiguous": true
+    },
+    "startIdxInDialog": 112,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "导出视频到画布",
+      "idxInDialog": 111,
+      "idxInPanel": 4
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "1:1",
+      "idxInDialog": 110,
+      "idxInPanel": 3
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "9:16",
+      "idxInDialog": 109,
+      "idxInPanel": 2
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "导出视频到画布",
+      "idxInDialog": 111,
+      "idxInPanel": 4
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "1:1",
+      "idxInDialog": 110,
+      "idxInPanel": 3
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "9:16",
+      "idxInDialog": 109,
+      "idxInPanel": 2
+     }
+    ]
+   },
+   "preset/reach-fwd": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 124,
+     "panelEnd": 133,
+     "panelCount": 10,
+     "dialogCount": 151,
+     "contiguous": true
+    },
+    "startIdxInDialog": 123,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭预设运镜",
+      "text": "",
+      "idxInDialog": 124,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "替换运镜",
+      "idxInDialog": 125,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "追加运镜",
+      "idxInDialog": 126,
+      "idxInPanel": 2
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭预设运镜",
+      "text": "",
+      "idxInDialog": 124,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "替换运镜",
+      "idxInDialog": 125,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "追加运镜",
+      "idxInDialog": 126,
+      "idxInPanel": 2
+     }
+    ]
+   },
+   "preset/reach-back": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 124,
+     "panelEnd": 133,
+     "panelCount": 10,
+     "dialogCount": 151,
+     "contiguous": true
+    },
+    "startIdxInDialog": 134,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "螺旋上升",
+      "idxInDialog": 133,
+      "idxInPanel": 9
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "横移",
+      "idxInDialog": 132,
+      "idxInPanel": 8
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "升降",
+      "idxInDialog": 131,
+      "idxInPanel": 7
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "螺旋上升",
+      "idxInDialog": 133,
+      "idxInPanel": 9
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "横移",
+      "idxInDialog": 132,
+      "idxInPanel": 8
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "升降",
+      "idxInDialog": 131,
+      "idxInPanel": 7
+     }
+    ]
+   },
+   "pathmenu/reach-fwd": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 124,
+     "panelEnd": 128,
+     "panelCount": 5,
+     "dialogCount": 146,
+     "contiguous": true
+    },
+    "startIdxInDialog": 123,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "idxInDialog": 124,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "钢笔路径",
+      "idxInDialog": 125,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "直线路径",
+      "idxInDialog": 126,
+      "idxInPanel": 2
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "铅笔路径",
+      "idxInDialog": 124,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "钢笔路径",
+      "idxInDialog": 125,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "直线路径",
+      "idxInDialog": 126,
+      "idxInPanel": 2
+     }
+    ]
+   },
+   "pathmenu/reach-back": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 124,
+     "panelEnd": 128,
+     "panelCount": 5,
+     "dialogCount": 146,
+     "contiguous": true
+    },
+    "startIdxInDialog": 129,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "矩形路径",
+      "idxInDialog": 128,
+      "idxInPanel": 4
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "圆环路径",
+      "idxInDialog": 127,
+      "idxInPanel": 3
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "直线路径",
+      "idxInDialog": 126,
+      "idxInPanel": 2
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "矩形路径",
+      "idxInDialog": 128,
+      "idxInPanel": 4
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "圆环路径",
+      "idxInDialog": 127,
+      "idxInPanel": 3
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "直线路径",
+      "idxInDialog": 126,
+      "idxInPanel": 2
+     }
+    ]
+   },
+   "phonevcam/reach-fwd": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 41,
+     "panelEnd": 42,
+     "panelCount": 2,
+     "dialogCount": 126,
+     "contiguous": true
+    },
+    "startIdxInDialog": 40,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "idxInDialog": 41,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "启动本机预演",
+      "idxInDialog": 42,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": false,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "移动",
+      "text": "",
+      "idxInDialog": 43,
+      "idxInPanel": -1
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "idxInDialog": 41,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "启动本机预演",
+      "idxInDialog": 42,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": false,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "移动",
+      "text": "",
+      "idxInDialog": 43,
+      "idxInPanel": -1
+     }
+    ]
+   },
+   "phonevcam/reach-back": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 41,
+     "panelEnd": 42,
+     "panelCount": 2,
+     "dialogCount": 126,
+     "contiguous": true
+    },
+    "startIdxInDialog": 43,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "启动本机预演",
+      "idxInDialog": 42,
+      "idxInPanel": 1
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "idxInDialog": 41,
+      "idxInPanel": 0
+     },
+     {
+      "step": 3,
+      "inPanel": false,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "Z 反向",
+      "text": "",
+      "idxInDialog": 40,
+      "idxInPanel": -1
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "启动本机预演",
+      "idxInDialog": 42,
+      "idxInPanel": 1
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭虚拟相机",
+      "text": "",
+      "idxInDialog": 41,
+      "idxInPanel": 0
+     },
+     {
+      "step": 3,
+      "inPanel": false,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "Z 反向",
+      "text": "",
+      "idxInDialog": 40,
+      "idxInPanel": -1
+     }
+    ]
+   },
+   "crowd/reach-fwd": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 41,
+     "panelEnd": 45,
+     "panelCount": 5,
+     "dialogCount": 129,
+     "contiguous": true
+    },
+    "startIdxInDialog": 40,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 41,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 42,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 43,
+      "idxInPanel": 2
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 41,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 42,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 43,
+      "idxInPanel": 2
+     }
+    ]
+   },
+   "crowd/reach-back": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 41,
+     "panelEnd": 45,
+     "panelCount": 5,
+     "dialogCount": 129,
+     "contiguous": true
+    },
+    "startIdxInDialog": 46,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "添加",
+      "idxInDialog": 45,
+      "idxInPanel": 4
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "idxInDialog": 44,
+      "idxInPanel": 3
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 43,
+      "idxInPanel": 2
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "添加",
+      "idxInDialog": 45,
+      "idxInPanel": 4
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "取消",
+      "idxInDialog": 44,
+      "idxInPanel": 3
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "number",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 43,
+      "idxInPanel": 2
+     }
+    ]
+   },
+   "modellib/reach-fwd": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 41,
+     "panelEnd": 55,
+     "panelCount": 15,
+     "dialogCount": 139,
+     "contiguous": true
+    },
+    "startIdxInDialog": 40,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "file",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 41,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "idxInDialog": 42,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "便利生活",
+      "idxInDialog": 43,
+      "idxInPanel": 2
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "INPUT",
+      "type": "file",
+      "aria": null,
+      "text": "",
+      "idxInDialog": 41,
+      "idxInPanel": 0
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "关闭模型库",
+      "text": "",
+      "idxInDialog": 42,
+      "idxInPanel": 1
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": null,
+      "text": "便利生活",
+      "idxInDialog": 43,
+      "idxInPanel": 2
+     }
+    ]
+   },
+   "modellib/reach-back": {
+    "enteredAtStep": 1,
+    "reached": true,
+    "range": {
+     "panelStart": 41,
+     "panelEnd": 55,
+     "panelCount": 15,
+     "dialogCount": 139,
+     "contiguous": true
+    },
+    "startIdxInDialog": 56,
+    "path": [
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "预览模型 购物篮",
+      "text": "",
+      "idxInDialog": 55,
+      "idxInPanel": 14
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "ARTICLE",
+      "type": null,
+      "aria": "添加模型 购物篮",
+      "text": "购物篮",
+      "idxInDialog": 54,
+      "idxInPanel": 13
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "预览模型 咖啡杯",
+      "text": "",
+      "idxInDialog": 53,
+      "idxInPanel": 12
+     },
+     {
+      "step": 1,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "预览模型 购物篮",
+      "text": "",
+      "idxInDialog": 55,
+      "idxInPanel": 14
+     },
+     {
+      "step": 2,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "ARTICLE",
+      "type": null,
+      "aria": "添加模型 购物篮",
+      "text": "购物篮",
+      "idxInDialog": 54,
+      "idxInPanel": 13
+     },
+     {
+      "step": 3,
+      "inPanel": true,
+      "inDialog": true,
+      "tag": "BUTTON",
+      "type": "button",
+      "aria": "预览模型 咖啡杯",
+      "text": "",
+      "idxInDialog": 53,
+      "idxInPanel": 12
+     }
+    ]
+   }
+  },
+  "reachedPanel": [
+   "export/reach-fwd",
+   "export/reach-back",
+   "preset/reach-fwd",
+   "preset/reach-back",
+   "pathmenu/reach-fwd",
+   "pathmenu/reach-back",
+   "phonevcam/reach-fwd",
+   "phonevcam/reach-back",
+   "crowd/reach-fwd",
+   "crowd/reach-back",
+   "modellib/reach-fwd",
+   "modellib/reach-back"
+  ],
+  "neverReached": [],
+  "reachedCount": 12,
+  "totalCells": 12,
+  "fwdReached": [
+   "export/reach-fwd",
+   "preset/reach-fwd",
+   "pathmenu/reach-fwd",
+   "phonevcam/reach-fwd",
+   "crowd/reach-fwd",
+   "modellib/reach-fwd"
+  ],
+  "backReached": [
+   "export/reach-back",
+   "preset/reach-back",
+   "pathmenu/reach-back",
+   "phonevcam/reach-back",
+   "crowd/reach-back",
+   "modellib/reach-back"
+  ],
+  "enterStepIsOne": true,
+  "perDisclosure": {
+   "export": {
+    "fwd": true,
+    "back": true,
+    "fwdEnterAt": 1,
+    "backEnterAt": 1,
+    "panelStart": 107,
+    "panelEnd": 111,
+    "dialogCount": 129
+   },
+   "preset": {
+    "fwd": true,
+    "back": true,
+    "fwdEnterAt": 1,
+    "backEnterAt": 1,
+    "panelStart": 124,
+    "panelEnd": 133,
+    "dialogCount": 151
+   },
+   "pathmenu": {
+    "fwd": true,
+    "back": true,
+    "fwdEnterAt": 1,
+    "backEnterAt": 1,
+    "panelStart": 124,
+    "panelEnd": 128,
+    "dialogCount": 146
+   },
+   "phonevcam": {
+    "fwd": true,
+    "back": true,
+    "fwdEnterAt": 1,
+    "backEnterAt": 1,
+    "panelStart": 41,
+    "panelEnd": 42,
+    "dialogCount": 126
+   },
+   "crowd": {
+    "fwd": true,
+    "back": true,
+    "fwdEnterAt": 1,
+    "backEnterAt": 1,
+    "panelStart": 41,
+    "panelEnd": 45,
+    "dialogCount": 129
+   },
+   "modellib": {
+    "fwd": true,
+    "back": true,
+    "fwdEnterAt": 1,
+    "backEnterAt": 1,
+    "panelStart": 41,
+    "panelEnd": 55,
+    "dialogCount": 139
+   }
+  },
+  "landing": {
+   "export": {
+    "fwdLandsOnPanelStart": true,
+    "backLandsOnPanelEnd": true
+   },
+   "preset": {
+    "fwdLandsOnPanelStart": true,
+    "backLandsOnPanelEnd": true
+   },
+   "pathmenu": {
+    "fwdLandsOnPanelStart": true,
+    "backLandsOnPanelEnd": true
+   },
+   "phonevcam": {
+    "fwdLandsOnPanelStart": true,
+    "backLandsOnPanelEnd": true
+   },
+   "crowd": {
+    "fwdLandsOnPanelStart": true,
+    "backLandsOnPanelEnd": true
+   },
+   "modellib": {
+    "fwdLandsOnPanelStart": true,
+    "backLandsOnPanelEnd": true
+   }
+  },
+  "landingAllOK": true
+ },
+ "trappability": {
+  "perCell": {
+   "export/trap-fwd": {
+    "leftAtStep": null,
+    "stayedInPanel": true,
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 5
+   },
+   "preset/trap-fwd": {
+    "leftAtStep": null,
+    "stayedInPanel": true,
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 10
+   },
+   "pathmenu/trap-fwd": {
+    "leftAtStep": null,
+    "stayedInPanel": true,
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 5
+   },
+   "phonevcam/trap-fwd": {
+    "leftAtStep": null,
+    "stayedInPanel": true,
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 2
+   },
+   "crowd/trap-fwd": {
+    "leftAtStep": null,
+    "stayedInPanel": true,
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 5
+   },
+   "modellib/trap-fwd": {
+    "leftAtStep": null,
+    "stayedInPanel": true,
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 15
+   }
+  },
+  "escapeStopped": [
+   "export/trap-fwd",
+   "preset/trap-fwd",
+   "pathmenu/trap-fwd",
+   "phonevcam/trap-fwd",
+   "crowd/trap-fwd",
+   "modellib/trap-fwd"
+  ],
+  "stillEscaped": [],
+  "trapFiredPerCell": {
+   "export/trap-fwd": [
+    12
+   ],
+   "preset/trap-fwd": [
+    12
+   ],
+   "pathmenu/trap-fwd": [
+    12
+   ],
+   "phonevcam/trap-fwd": [
+    12
+   ],
+   "crowd/trap-fwd": [
+    12
+   ],
+   "modellib/trap-fwd": [
+    12
+   ]
+  },
+  "note": "★ 注入 = D13 修法方向 ① 的原样实现：挂在**浮层自己的 ref** 上、**捕获**阶段、算浮层自己的数组、环绕后 `preventDefault()` + `stopImmediatePropagation()`。",
+  "perDisclosure": {
+   "export": {
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 5
+   },
+   "preset": {
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 10
+   },
+   "pathmenu": {
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 5
+   },
+   "phonevcam": {
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 2
+   },
+   "crowd": {
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 5
+   },
+   "modellib": {
+    "escapeStopped": true,
+    "trapFired": [
+     12
+    ],
+    "steps": 12,
+    "panelCount": 15
+   }
+  },
+  "crossBatchPrefix": {
+   "comparedWith": "batch 770 的 */fwd（**无注入**的那两臂）",
+   "whyNotEqualSequences": "两臂的处理变量不同（770 没有围栏），所以「落点序列相同」本来就不该成立；可比的是**分歧点**。",
+   "howCompared": "★ 按**下标算术**比，不按 (tag,type) —— preset/pathmenu 的首末控件都是无文字 BUTTON，按标签分不开（先踩过）。",
+   "perCell": {
+    "export": {
+     "oldRounds": 2,
+     "panelRange": [
+      107,
+      111
+     ],
+     "panelCount": 5,
+     "startIdxInDialog": 108,
+     "oldEscapeStep": 4,
+     "stepsInsidePanelBeforeEscape": 3,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": true,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": 4,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    },
+    "preset": {
+     "oldRounds": 2,
+     "panelRange": [
+      124,
+      133
+     ],
+     "panelCount": 10,
+     "startIdxInDialog": 124,
+     "oldEscapeStep": 10,
+     "stepsInsidePanelBeforeEscape": 9,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": true,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": 10,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    },
+    "pathmenu": {
+     "oldRounds": 2,
+     "panelRange": [
+      124,
+      128
+     ],
+     "panelCount": 5,
+     "startIdxInDialog": 124,
+     "oldEscapeStep": 5,
+     "stepsInsidePanelBeforeEscape": 4,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": true,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": 5,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    },
+    "phonevcam": {
+     "oldRounds": 2,
+     "panelRange": [
+      41,
+      42
+     ],
+     "panelCount": 2,
+     "startIdxInDialog": 41,
+     "oldEscapeStep": 2,
+     "stepsInsidePanelBeforeEscape": 1,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": true,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": 2,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    },
+    "crowd": {
+     "oldRounds": 2,
+     "panelRange": [
+      41,
+      45
+     ],
+     "panelCount": 5,
+     "startIdxInDialog": 44,
+     "oldEscapeStep": 2,
+     "stepsInsidePanelBeforeEscape": 1,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": true,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": 2,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    },
+    "modellib": {
+     "oldRounds": 2,
+     "panelRange": [
+      41,
+      55
+     ],
+     "panelCount": 15,
+     "startIdxInDialog": 42,
+     "oldEscapeStep": null,
+     "stepsInsidePanelBeforeEscape": 13,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": null,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": null,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    }
+   },
+   "allPaired": true,
+   "allStartSame": true,
+   "allAgreesInsideThenDiverges": true,
+   "allInjectedWalkIsPanelOwnArray": true,
+   "cellsWhere770Escaped": 5,
+   "cellsWhere770StayedAllWalk": 1
+  }
+ },
+ "copyVerdict": {
+  "perCell": {
+   "export/trapnostop-fwd": {
+    "measuredEscapeStep": 2,
+    "predictedEscapeStep": 2,
+    "predictionMatched": true,
+    "landings": [
+     3,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "simulated": [
+     3,
+     null,
+     1,
+     3,
+     null,
+     1,
+     3,
+     null,
+     1,
+     3,
+     null,
+     1
+    ],
+    "startLocalIdx": 1,
+    "panelCount": 5,
+    "panelStart": 107,
+    "dialogCount": 129,
+    "trapFired": [
+     2
+    ]
+   },
+   "preset/trapnostop-fwd": {
+    "measuredEscapeStep": 5,
+    "predictedEscapeStep": 5,
+    "predictionMatched": true,
+    "landings": [
+     2,
+     4,
+     6,
+     8,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "simulated": [
+     2,
+     4,
+     6,
+     8,
+     null,
+     1,
+     3,
+     5,
+     7,
+     9,
+     1,
+     3
+    ],
+    "startLocalIdx": 0,
+    "panelCount": 10,
+    "panelStart": 124,
+    "dialogCount": 151,
+    "trapFired": [
+     5
+    ]
+   },
+   "pathmenu/trapnostop-fwd": {
+    "measuredEscapeStep": 5,
+    "predictedEscapeStep": 5,
+    "predictionMatched": true,
+    "landings": [
+     2,
+     4,
+     1,
+     3,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "simulated": [
+     2,
+     4,
+     1,
+     3,
+     null,
+     1,
+     3,
+     null,
+     1,
+     3,
+     null,
+     1
+    ],
+    "startLocalIdx": 0,
+    "panelCount": 5,
+    "panelStart": 124,
+    "dialogCount": 146,
+    "trapFired": [
+     5
+    ]
+   },
+   "phonevcam/trapnostop-fwd": {
+    "measuredEscapeStep": 1,
+    "predictedEscapeStep": 1,
+    "predictionMatched": true,
+    "landings": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "simulated": [
+     null,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1,
+     1
+    ],
+    "startLocalIdx": 0,
+    "panelCount": 2,
+    "panelStart": 41,
+    "dialogCount": 126,
+    "trapFired": [
+     1
+    ]
+   },
+   "crowd/trapnostop-fwd": {
+    "measuredEscapeStep": 1,
+    "predictedEscapeStep": 1,
+    "predictionMatched": true,
+    "landings": [
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "simulated": [
+     null,
+     1,
+     3,
+     null,
+     1,
+     3,
+     null,
+     1,
+     3,
+     null,
+     1,
+     3
+    ],
+    "startLocalIdx": 3,
+    "panelCount": 5,
+    "panelStart": 41,
+    "dialogCount": 129,
+    "trapFired": [
+     1
+    ]
+   },
+   "modellib/trapnostop-fwd": {
+    "measuredEscapeStep": 7,
+    "predictedEscapeStep": 7,
+    "predictionMatched": true,
+    "landings": [
+     3,
+     5,
+     7,
+     9,
+     11,
+     13,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    "simulated": [
+     3,
+     5,
+     7,
+     9,
+     11,
+     13,
+     null,
+     1,
+     3,
+     5,
+     7,
+     9
+    ],
+    "startLocalIdx": 1,
+    "panelCount": 15,
+    "panelStart": 41,
+    "dialogCount": 139,
+    "trapFired": [
+     7
+    ]
+   }
+  },
+  "stillEscaped": [
+   "export/trapnostop-fwd",
+   "preset/trapnostop-fwd",
+   "pathmenu/trapnostop-fwd",
+   "phonevcam/trapnostop-fwd",
+   "crowd/trapnostop-fwd",
+   "modellib/trapnostop-fwd"
+  ],
+  "neverEscaped": [],
+  "allPredictedMatched": true,
+  "escapeSteps": {
+   "export/trapnostop-fwd": 2,
+   "preset/trapnostop-fwd": 5,
+   "pathmenu/trapnostop-fwd": 5,
+   "phonevcam/trapnostop-fwd": 1,
+   "crowd/trapnostop-fwd": 1,
+   "modellib/trapnostop-fwd": 7
+  },
+  "question": "★ 「照抄 useLayerFocus 的 trap」够不够？",
+  "answer": "不够。停传播的臂 3 6/6 格 %d 步都没走出浮层；只去掉那一句的臂 4 **6/6 格全部照旧逃逸**，且逃逸步数与独立模拟器逐格吻合。⟹ `stopImmediatePropagation()` 不是锦上添花，是那层围栏在本上下文里唯一起作用的那一句。",
+  "why": "useLayerFocus 的 trap 挂在 **window 捕获**上、而导演台的对话��围栏挂在 **root 冒泡**上；`preventDefault()` **不阻止其他监听器** ⟹ 冒泡到 root 的那一次 Tab 仍会被它自己的 `preventDefault()` + `focus()` 接管，把焦点从浮层里拽走。"
+ },
+ "priorBatch": {
+  "batch": 770,
+  "dir": "docs/research/liblib-canvas-batch770-2026-10-01",
+  "raw": "raw/vb770a.json",
+  "usedFor": "跨批协议等价比对（判别式=落点序列）"
+ },
+ "findings": {
+  "F1_reachCount": {
+   "claim": "★ 问① 从浮层**外部**按 Tab / Shift+Tab 能不能进浮层",
+   "reached": 12,
+   "total": 12,
+   "perDisclosure": {
+    "export": {
+     "fwd": true,
+     "back": true,
+     "fwdEnterAt": 1,
+     "backEnterAt": 1,
+     "panelStart": 107,
+     "panelEnd": 111,
+     "dialogCount": 129
+    },
+    "preset": {
+     "fwd": true,
+     "back": true,
+     "fwdEnterAt": 1,
+     "backEnterAt": 1,
+     "panelStart": 124,
+     "panelEnd": 133,
+     "dialogCount": 151
+    },
+    "pathmenu": {
+     "fwd": true,
+     "back": true,
+     "fwdEnterAt": 1,
+     "backEnterAt": 1,
+     "panelStart": 124,
+     "panelEnd": 128,
+     "dialogCount": 146
+    },
+    "phonevcam": {
+     "fwd": true,
+     "back": true,
+     "fwdEnterAt": 1,
+     "backEnterAt": 1,
+     "panelStart": 41,
+     "panelEnd": 42,
+     "dialogCount": 126
+    },
+    "crowd": {
+     "fwd": true,
+     "back": true,
+     "fwdEnterAt": 1,
+     "backEnterAt": 1,
+     "panelStart": 41,
+     "panelEnd": 45,
+     "dialogCount": 129
+    },
+    "modellib": {
+     "fwd": true,
+     "back": true,
+     "fwdEnterAt": 1,
+     "backEnterAt": 1,
+     "panelStart": 41,
+     "panelEnd": 55,
+     "dialogCount": 139
+    }
+   },
+   "verdict": "PASS"
+  },
+  "F2_enterStepIsOne": {
+   "claim": "进浮层发生在第几步",
+   "allAtStepOne": true,
+   "stepsWalked": 3,
+   "note": "12/12 格第 1 步就进浮层。**这不是「很难进」**——进浮层根本没有门槛，缺的是**出去**那一侧的围栏。"
+  },
+  "F3_landingIsPanelEdge": {
+   "claim": "进浮层时落点是不是浮层的首/末控件（而不是路过）",
+   "perCell": {
+    "export": {
+     "fwdLandsOnPanelStart": true,
+     "backLandsOnPanelEnd": true
+    },
+    "preset": {
+     "fwdLandsOnPanelStart": true,
+     "backLandsOnPanelEnd": true
+    },
+    "pathmenu": {
+     "fwdLandsOnPanelStart": true,
+     "backLandsOnPanelEnd": true
+    },
+    "phonevcam": {
+     "fwdLandsOnPanelStart": true,
+     "backLandsOnPanelEnd": true
+    },
+    "crowd": {
+     "fwdLandsOnPanelStart": true,
+     "backLandsOnPanelEnd": true
+    },
+    "modellib": {
+     "fwdLandsOnPanelStart": true,
+     "backLandsOnPanelEnd": true
+    }
+   },
+   "allOK": true
+  },
+  "F4_bothDirections": {
+   "claim": "两个方向都可达（不是只有一边）",
+   "fwd": [
+    "export/reach-fwd",
+    "preset/reach-fwd",
+    "pathmenu/reach-fwd",
+    "phonevcam/reach-fwd",
+    "crowd/reach-fwd",
+    "modellib/reach-fwd"
+   ],
+   "back": [
+    "export/reach-back",
+    "preset/reach-back",
+    "pathmenu/reach-back",
+    "phonevcam/reach-back",
+    "crowd/reach-back",
+    "modellib/reach-back"
+   ],
+   "fwdCount": 6,
+   "backCount": 6
+  },
+  "F5_trapStopsEscape": {
+   "claim": "★ 问② 注入一层浮层级 Tab 围栏（捕获 + preventDefault + stopImmediatePropagation）之后，770 的逃逸是否停止",
+   "stopped": [
+    "export/trap-fwd",
+    "preset/trap-fwd",
+    "pathmenu/trap-fwd",
+    "phonevcam/trap-fwd",
+    "crowd/trap-fwd",
+    "modellib/trap-fwd"
+   ],
+   "stoppedCount": 6,
+   "total": 6,
+   "stepsWalked": 12,
+   "trapFiredAllPositive": true,
+   "verdict": "PASS ⟹ D13 修法方向 ① 在 6/6 个浮层上可修"
+  },
+  "F6_equivWith770": {
+   "claim": "★ 注入在 770 会逃逸的**那一刻**才生效，之前逐步完全一致",
+   "comparedWith": "batch 770 的 */fwd（**无注入**的那两臂）",
+   "whyNotEqualSequences": "两臂的处理变量不同（770 没有围栏），所以「落点序列相同」本来就不该成立；可比的是**分歧点**。",
+   "allStartSame": true,
+   "allAgreesInsideThenDiverges": true,
+   "allInjectedWalkIsPanelOwnArray": true,
+   "howCompared": "★ 按**下标算术**比，不按 (tag,type) —— preset/pathmenu 的首末控件都是无文字 BUTTON，按标签分不开（先踩过）。",
+   "cellsWhere770Escaped": 5,
+   "cellsWhere770StayedAllWalk": 1,
+   "perCell": {
+    "export": {
+     "oldRounds": 2,
+     "panelRange": [
+      107,
+      111
+     ],
+     "panelCount": 5,
+     "startIdxInDialog": 108,
+     "oldEscapeStep": 4,
+     "stepsInsidePanelBeforeEscape": 3,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": true,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": 4,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    },
+    "preset": {
+     "oldRounds": 2,
+     "panelRange": [
+      124,
+      133
+     ],
+     "panelCount": 10,
+     "startIdxInDialog": 124,
+     "oldEscapeStep": 10,
+     "stepsInsidePanelBeforeEscape": 9,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": true,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": 10,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    },
+    "pathmenu": {
+     "oldRounds": 2,
+     "panelRange": [
+      124,
+      128
+     ],
+     "panelCount": 5,
+     "startIdxInDialog": 124,
+     "oldEscapeStep": 5,
+     "stepsInsidePanelBeforeEscape": 4,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": true,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": 5,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    },
+    "phonevcam": {
+     "oldRounds": 2,
+     "panelRange": [
+      41,
+      42
+     ],
+     "panelCount": 2,
+     "startIdxInDialog": 41,
+     "oldEscapeStep": 2,
+     "stepsInsidePanelBeforeEscape": 1,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": true,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": 2,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    },
+    "crowd": {
+     "oldRounds": 2,
+     "panelRange": [
+      41,
+      45
+     ],
+     "panelCount": 5,
+     "startIdxInDialog": 44,
+     "oldEscapeStep": 2,
+     "stepsInsidePanelBeforeEscape": 1,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": true,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": 2,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    },
+    "modellib": {
+     "oldRounds": 2,
+     "panelRange": [
+      41,
+      55
+     ],
+     "panelCount": 15,
+     "startIdxInDialog": 42,
+     "oldEscapeStep": null,
+     "stepsInsidePanelBeforeEscape": 13,
+     "agreesForAllInsideSteps": true,
+     "oldEscapeEqualsInsidePlusOne": null,
+     "injectedWalkIsPanelOwnArray": true,
+     "firstDivergentStep": null,
+     "newEscapeStep": null,
+     "startIdxInDialogSame": true,
+     "startIdxInPanelSame": true,
+     "tookEffectAtOldEscapeStep": true
+    }
+   }
+  },
+  "F7_arm4StillEscapes": {
+   "claim": "★ 问③ 臂 4（同一份注入，**只少一句 `stopImmediatePropagation()`**，语义=照抄 useLayerFocus）是否还逃逸",
+   "stillEscaped": [
+    "export/trapnostop-fwd",
+    "preset/trapnostop-fwd",
+    "pathmenu/trapnostop-fwd",
+    "phonevcam/trapnostop-fwd",
+    "crowd/trapnostop-fwd",
+    "modellib/trapnostop-fwd"
+   ],
+   "stillEscapedCount": 6,
+   "total": 6,
+   "neverEscaped": [],
+   "escapeSteps": {
+    "export/trapnostop-fwd": 2,
+    "preset/trapnostop-fwd": 5,
+    "pathmenu/trapnostop-fwd": 5,
+    "phonevcam/trapnostop-fwd": 1,
+    "crowd/trapnostop-fwd": 1,
+    "modellib/trapnostop-fwd": 7
+   },
+   "trapFiredAllPositive": true
+  },
+  "F8_arm4Prediction": {
+   "claim": "臂 4 的逃逸步数是否可算（独立模拟器逐格对）",
+   "allPredictedMatched": true,
+   "perCell": {
+    "export/trapnostop-fwd": {
+     "panelCount": 5,
+     "startLocalIdx": 1,
+     "panelStart": 107,
+     "dialogCount": 129,
+     "measured": 2,
+     "predicted": 2
+    },
+    "preset/trapnostop-fwd": {
+     "panelCount": 10,
+     "startLocalIdx": 0,
+     "panelStart": 124,
+     "dialogCount": 151,
+     "measured": 5,
+     "predicted": 5
+    },
+    "pathmenu/trapnostop-fwd": {
+     "panelCount": 5,
+     "startLocalIdx": 0,
+     "panelStart": 124,
+     "dialogCount": 146,
+     "measured": 5,
+     "predicted": 5
+    },
+    "phonevcam/trapnostop-fwd": {
+     "panelCount": 2,
+     "startLocalIdx": 0,
+     "panelStart": 41,
+     "dialogCount": 126,
+     "measured": 1,
+     "predicted": 1
+    },
+    "crowd/trapnostop-fwd": {
+     "panelCount": 5,
+     "startLocalIdx": 3,
+     "panelStart": 41,
+     "dialogCount": 129,
+     "measured": 1,
+     "predicted": 1
+    },
+    "modellib/trapnostop-fwd": {
+     "panelCount": 15,
+     "startLocalIdx": 1,
+     "panelStart": 41,
+     "dialogCount": 139,
+     "measured": 7,
+     "predicted": 7
+    }
+   }
+  },
+  "F9_staticNoStopImmediate": {
+   "claim": "★ 更正：`useLayerFocus.ts` 的 trap 里**没有** `stopImmediatePropagation()`",
+   "stopsImmediate": false,
+   "stopsPropagation": false,
+   "usesCapture": true,
+   "trapPreventDefaultCount": 2,
+   "trapFocusCount": 1,
+   "consumers": [
+    "src/components/jimeng/JimengAiDrawer.tsx",
+    "src/components/jimeng/JimengNodeSummaryPopover.tsx"
+   ],
+   "directorUsesIt": [],
+   "affectsClaimsIn": [
+    "batch 768 findings(D11 修法引用)",
+    "batch 770 defects[D13].fixDirection"
+   ]
+  },
+  "F10_rootTakesOverEveryTab": {
+   "claim": "对话框那一层对**每一次** Tab 都 preventDefault + focus(nextIndex)，不是只在环绕时",
+   "preventDefaultCount": 2,
+   "focusesNextEveryTime": true,
+   "nextIndexUnconditional": true,
+   "why": "这正是臂 4 会逃逸的机制：注入 `preventDefault()` 之后，事件照样冒泡到 root，那一层**无条件**再 `focus(nextIndex)`，焦点于是走两跳。"
+  },
+  "F11_j8Closed": {
+   "claim": "770 遗留的 J8 盲区（没测从外部能不能进浮层）是否已关闭",
+   "wasNotClaimedIn": "batch 770",
+   "nowMeasured": 12,
+   "cells": [
+    "export/reach-fwd",
+    "export/reach-back",
+    "preset/reach-fwd",
+    "preset/reach-back",
+    "pathmenu/reach-fwd",
+    "pathmenu/reach-back",
+    "phonevcam/reach-fwd",
+    "phonevcam/reach-back",
+    "crowd/reach-fwd",
+    "crowd/reach-back",
+    "modellib/reach-fwd",
+    "modellib/reach-back"
+   ],
+   "closed": true
+  },
+  "F0_comparable": {
+   "allConsistent": true,
+   "rounds": 2,
+   "cellsPerRound": 24,
+   "failedCells": [],
+   "note": "24 格 × 2 轮，逐格归一化后 diff 为空（R55）。"
+  }
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "statement": "两轮读数逐格一致（可比性）",
+   "verdict": "PASS",
+   "evidenceKey": "F0_comparable",
+   "evidence": {
+    "allConsistent": true,
+    "rounds": 2,
+    "cellsPerRound": 24,
+    "failedCells": [],
+    "note": "24 格 × 2 轮，逐格归一化后 diff 为空（R55）。"
+   }
+  },
+  {
+   "id": "J2",
+   "statement": "24 格全部有读数，无失败格、无缺格",
+   "verdict": "PASS",
+   "evidenceKey": "F0_comparable",
+   "evidence": {
+    "allConsistent": true,
+    "rounds": 2,
+    "cellsPerRound": 24,
+    "failedCells": [],
+    "note": "24 格 × 2 轮，逐格归一化后 diff 为空（R55）。"
+   }
+  },
+  {
+   "id": "J3",
+   "statement": "★ 问①：12/12 格从浮层外部按 Tab / Shift+Tab 都**进得去**",
+   "verdict": "PASS",
+   "evidenceKey": "F1_reachCount",
+   "evidence": {
+    "claim": "★ 问① 从浮层**外部**按 Tab / Shift+Tab 能不能进浮层",
+    "reached": 12,
+    "total": 12,
+    "perDisclosure": {
+     "export": {
+      "fwd": true,
+      "back": true,
+      "fwdEnterAt": 1,
+      "backEnterAt": 1,
+      "panelStart": 107,
+      "panelEnd": 111,
+      "dialogCount": 129
+     },
+     "preset": {
+      "fwd": true,
+      "back": true,
+      "fwdEnterAt": 1,
+      "backEnterAt": 1,
+      "panelStart": 124,
+      "panelEnd": 133,
+      "dialogCount": 151
+     },
+     "pathmenu": {
+      "fwd": true,
+      "back": true,
+      "fwdEnterAt": 1,
+      "backEnterAt": 1,
+      "panelStart": 124,
+      "panelEnd": 128,
+      "dialogCount": 146
+     },
+     "phonevcam": {
+      "fwd": true,
+      "back": true,
+      "fwdEnterAt": 1,
+      "backEnterAt": 1,
+      "panelStart": 41,
+      "panelEnd": 42,
+      "dialogCount": 126
+     },
+     "crowd": {
+      "fwd": true,
+      "back": true,
+      "fwdEnterAt": 1,
+      "backEnterAt": 1,
+      "panelStart": 41,
+      "panelEnd": 45,
+      "dialogCount": 129
+     },
+     "modellib": {
+      "fwd": true,
+      "back": true,
+      "fwdEnterAt": 1,
+      "backEnterAt": 1,
+      "panelStart": 41,
+      "panelEnd": 55,
+      "dialogCount": 139
+     }
+    },
+    "verdict": "PASS"
+   }
+  },
+  {
+   "id": "J4",
+   "statement": "进浮层不需要门槛——12/12 格**第 1 步**就进去了",
+   "verdict": "PASS",
+   "evidenceKey": "F2_enterStepIsOne",
+   "evidence": {
+    "claim": "进浮层发生在第几步",
+    "allAtStepOne": true,
+    "stepsWalked": 3,
+    "note": "12/12 格第 1 步就进浮层。**这不是「很难进」**——进浮层根本没有门槛，缺的是**出去**那一侧的围栏。"
+   }
+  },
+  {
+   "id": "J5",
+   "statement": "落点正好是浮层的首/末控件（是「进浮层」不是「路过浮层」）",
+   "verdict": "PASS",
+   "evidenceKey": "F3_landingIsPanelEdge",
+   "evidence": {
+    "claim": "进浮层时落点是不是浮层的首/末控件（而不是路过）",
+    "perCell": {
+     "export": {
+      "fwdLandsOnPanelStart": true,
+      "backLandsOnPanelEnd": true
+     },
+     "preset": {
+      "fwdLandsOnPanelStart": true,
+      "backLandsOnPanelEnd": true
+     },
+     "pathmenu": {
+      "fwdLandsOnPanelStart": true,
+      "backLandsOnPanelEnd": true
+     },
+     "phonevcam": {
+      "fwdLandsOnPanelStart": true,
+      "backLandsOnPanelEnd": true
+     },
+     "crowd": {
+      "fwdLandsOnPanelStart": true,
+      "backLandsOnPanelEnd": true
+     },
+     "modellib": {
+      "fwdLandsOnPanelStart": true,
+      "backLandsOnPanelEnd": true
+     }
+    },
+    "allOK": true
+   }
+  },
+  {
+   "id": "J6",
+   "statement": "两个方向都可达",
+   "verdict": "PASS",
+   "evidenceKey": "F4_bothDirections",
+   "evidence": {
+    "claim": "两个方向都可达（不是只有一边）",
+    "fwd": [
+     "export/reach-fwd",
+     "preset/reach-fwd",
+     "pathmenu/reach-fwd",
+     "phonevcam/reach-fwd",
+     "crowd/reach-fwd",
+     "modellib/reach-fwd"
+    ],
+    "back": [
+     "export/reach-back",
+     "preset/reach-back",
+     "pathmenu/reach-back",
+     "phonevcam/reach-back",
+     "crowd/reach-back",
+     "modellib/reach-back"
+    ],
+    "fwdCount": 6,
+    "backCount": 6
+   }
+  },
+  {
+   "id": "J7",
+   "statement": "★ 问②：注入的浮层级围栏真的拦到了 Tab（否则「没逃逸」不算数）",
+   "verdict": "PASS",
+   "evidenceKey": "F5_trapStopsEscape",
+   "evidence": {
+    "claim": "★ 问② 注入一层浮层级 Tab 围栏（捕获 + preventDefault + stopImmediatePropagation）之后，770 的逃逸是否停止",
+    "stopped": [
+     "export/trap-fwd",
+     "preset/trap-fwd",
+     "pathmenu/trap-fwd",
+     "phonevcam/trap-fwd",
+     "crowd/trap-fwd",
+     "modellib/trap-fwd"
+    ],
+    "stoppedCount": 6,
+    "total": 6,
+    "stepsWalked": 12,
+    "trapFiredAllPositive": true,
+    "verdict": "PASS ⟹ D13 修法方向 ① 在 6/6 个浮层上可修"
+   }
+  },
+  {
+   "id": "J8",
+   "statement": "★ 问②：6/6 个浮层 12 步都没走出浮层 ⟹ D13 修法方向 ① 可修",
+   "verdict": "PASS",
+   "evidenceKey": "F5_trapStopsEscape",
+   "evidence": {
+    "claim": "★ 问② 注入一层浮层级 Tab 围栏（捕获 + preventDefault + stopImmediatePropagation）之后，770 的逃逸是否停止",
+    "stopped": [
+     "export/trap-fwd",
+     "preset/trap-fwd",
+     "pathmenu/trap-fwd",
+     "phonevcam/trap-fwd",
+     "crowd/trap-fwd",
+     "modellib/trap-fwd"
+    ],
+    "stoppedCount": 6,
+    "total": 6,
+    "stepsWalked": 12,
+    "trapFiredAllPositive": true,
+    "verdict": "PASS ⟹ D13 修法方向 ① 在 6/6 个浮层上可修"
+   }
+  },
+  {
+   "id": "J9",
+   "statement": "★ 跨批对照：注入臂与 770 的无注入臂**起点相同**，且在 770 会逃逸的那一步之前**逐步完全一致**、分歧恰好落在那一步 ⟹ 注入只改了该改的",
+   "verdict": "PASS",
+   "evidenceKey": "F6_equivWith770",
+   "evidence": {
+    "claim": "★ 注入在 770 会逃逸的**那一刻**才生效，之前逐步完全一致",
+    "comparedWith": "batch 770 的 */fwd（**无注入**的那两臂）",
+    "whyNotEqualSequences": "两臂的处理变量不同（770 没有围栏），所以「落点序列相同」本来就不该成立；可比的是**分歧点**。",
+    "allStartSame": true,
+    "allAgreesInsideThenDiverges": true,
+    "allInjectedWalkIsPanelOwnArray": true,
+    "howCompared": "★ 按**下标算术**比，不按 (tag,type) —— preset/pathmenu 的首末控件都是无文字 BUTTON，按标签分不开（先踩过）。",
+    "cellsWhere770Escaped": 5,
+    "cellsWhere770StayedAllWalk": 1,
+    "perCell": {
+     "export": {
+      "oldRounds": 2,
+      "panelRange": [
+       107,
+       111
+      ],
+      "panelCount": 5,
+      "startIdxInDialog": 108,
+      "oldEscapeStep": 4,
+      "stepsInsidePanelBeforeEscape": 3,
+      "agreesForAllInsideSteps": true,
+      "oldEscapeEqualsInsidePlusOne": true,
+      "injectedWalkIsPanelOwnArray": true,
+      "firstDivergentStep": 4,
+      "newEscapeStep": null,
+      "startIdxInDialogSame": true,
+      "startIdxInPanelSame": true,
+      "tookEffectAtOldEscapeStep": true
+     },
+     "preset": {
+      "oldRounds": 2,
+      "panelRange": [
+       124,
+       133
+      ],
+      "panelCount": 10,
+      "startIdxInDialog": 124,
+      "oldEscapeStep": 10,
+      "stepsInsidePanelBeforeEscape": 9,
+      "agreesForAllInsideSteps": true,
+      "oldEscapeEqualsInsidePlusOne": true,
+      "injectedWalkIsPanelOwnArray": true,
+      "firstDivergentStep": 10,
+      "newEscapeStep": null,
+      "startIdxInDialogSame": true,
+      "startIdxInPanelSame": true,
+      "tookEffectAtOldEscapeStep": true
+     },
+     "pathmenu": {
+      "oldRounds": 2,
+      "panelRange": [
+       124,
+       128
+      ],
+      "panelCount": 5,
+      "startIdxInDialog": 124,
+      "oldEscapeStep": 5,
+      "stepsInsidePanelBeforeEscape": 4,
+      "agreesForAllInsideSteps": true,
+      "oldEscapeEqualsInsidePlusOne": true,
+      "injectedWalkIsPanelOwnArray": true,
+      "firstDivergentStep": 5,
+      "newEscapeStep": null,
+      "startIdxInDialogSame": true,
+      "startIdxInPanelSame": true,
+      "tookEffectAtOldEscapeStep": true
+     },
+     "phonevcam": {
+      "oldRounds": 2,
+      "panelRange": [
+       41,
+       42
+      ],
+      "panelCount": 2,
+      "startIdxInDialog": 41,
+      "oldEscapeStep": 2,
+      "stepsInsidePanelBeforeEscape": 1,
+      "agreesForAllInsideSteps": true,
+      "oldEscapeEqualsInsidePlusOne": true,
+      "injectedWalkIsPanelOwnArray": true,
+      "firstDivergentStep": 2,
+      "newEscapeStep": null,
+      "startIdxInDialogSame": true,
+      "startIdxInPanelSame": true,
+      "tookEffectAtOldEscapeStep": true
+     },
+     "crowd": {
+      "oldRounds": 2,
+      "panelRange": [
+       41,
+       45
+      ],
+      "panelCount": 5,
+      "startIdxInDialog": 44,
+      "oldEscapeStep": 2,
+      "stepsInsidePanelBeforeEscape": 1,
+      "agreesForAllInsideSteps": true,
+      "oldEscapeEqualsInsidePlusOne": true,
+      "injectedWalkIsPanelOwnArray": true,
+      "firstDivergentStep": 2,
+      "newEscapeStep": null,
+      "startIdxInDialogSame": true,
+      "startIdxInPanelSame": true,
+      "tookEffectAtOldEscapeStep": true
+     },
+     "modellib": {
+      "oldRounds": 2,
+      "panelRange": [
+       41,
+       55
+      ],
+      "panelCount": 15,
+      "startIdxInDialog": 42,
+      "oldEscapeStep": null,
+      "stepsInsidePanelBeforeEscape": 13,
+      "agreesForAllInsideSteps": true,
+      "oldEscapeEqualsInsidePlusOne": null,
+      "injectedWalkIsPanelOwnArray": true,
+      "firstDivergentStep": null,
+      "newEscapeStep": null,
+      "startIdxInDialogSame": true,
+      "startIdxInPanelSame": true,
+      "tookEffectAtOldEscapeStep": true
+     }
+    }
+   }
+  },
+  {
+   "id": "J10",
+   "statement": "★ 问③：臂 4 的注入也真的拦到了 Tab（读数不算退化）",
+   "verdict": "PASS",
+   "evidenceKey": "F7_arm4StillEscapes",
+   "evidence": {
+    "claim": "★ 问③ 臂 4（同一份注入，**只少一句 `stopImmediatePropagation()`**，语义=照抄 useLayerFocus）是否还逃逸",
+    "stillEscaped": [
+     "export/trapnostop-fwd",
+     "preset/trapnostop-fwd",
+     "pathmenu/trapnostop-fwd",
+     "phonevcam/trapnostop-fwd",
+     "crowd/trapnostop-fwd",
+     "modellib/trapnostop-fwd"
+    ],
+    "stillEscapedCount": 6,
+    "total": 6,
+    "neverEscaped": [],
+    "escapeSteps": {
+     "export/trapnostop-fwd": 2,
+     "preset/trapnostop-fwd": 5,
+     "pathmenu/trapnostop-fwd": 5,
+     "phonevcam/trapnostop-fwd": 1,
+     "crowd/trapnostop-fwd": 1,
+     "modellib/trapnostop-fwd": 7
+    },
+    "trapFiredAllPositive": true
+   }
+  },
+  {
+   "id": "J11",
+   "statement": "★ 问③：**照抄 `useLayerFocus` 的语义（少一句停传播）6/6 格仍然逃逸** ⟹ 那句不是可选的",
+   "verdict": "PASS",
+   "evidenceKey": "F7_arm4StillEscapes",
+   "evidence": {
+    "claim": "★ 问③ 臂 4（同一份注入，**只少一句 `stopImmediatePropagation()`**，语义=照抄 useLayerFocus）是否还逃逸",
+    "stillEscaped": [
+     "export/trapnostop-fwd",
+     "preset/trapnostop-fwd",
+     "pathmenu/trapnostop-fwd",
+     "phonevcam/trapnostop-fwd",
+     "crowd/trapnostop-fwd",
+     "modellib/trapnostop-fwd"
+    ],
+    "stillEscapedCount": 6,
+    "total": 6,
+    "neverEscaped": [],
+    "escapeSteps": {
+     "export/trapnostop-fwd": 2,
+     "preset/trapnostop-fwd": 5,
+     "pathmenu/trapnostop-fwd": 5,
+     "phonevcam/trapnostop-fwd": 1,
+     "crowd/trapnostop-fwd": 1,
+     "modellib/trapnostop-fwd": 7
+    },
+    "trapFiredAllPositive": true
+   }
+  },
+  {
+   "id": "J12",
+   "statement": "臂 4 的逃逸步数与独立模拟器**逐格吻合**（机制没读错）",
+   "verdict": "PASS",
+   "evidenceKey": "F8_arm4Prediction",
+   "evidence": {
+    "claim": "臂 4 的逃逸步数是否可算（独立模拟器逐格对）",
+    "allPredictedMatched": true,
+    "perCell": {
+     "export/trapnostop-fwd": {
+      "panelCount": 5,
+      "startLocalIdx": 1,
+      "panelStart": 107,
+      "dialogCount": 129,
+      "measured": 2,
+      "predicted": 2
+     },
+     "preset/trapnostop-fwd": {
+      "panelCount": 10,
+      "startLocalIdx": 0,
+      "panelStart": 124,
+      "dialogCount": 151,
+      "measured": 5,
+      "predicted": 5
+     },
+     "pathmenu/trapnostop-fwd": {
+      "panelCount": 5,
+      "startLocalIdx": 0,
+      "panelStart": 124,
+      "dialogCount": 146,
+      "measured": 5,
+      "predicted": 5
+     },
+     "phonevcam/trapnostop-fwd": {
+      "panelCount": 2,
+      "startLocalIdx": 0,
+      "panelStart": 41,
+      "dialogCount": 126,
+      "measured": 1,
+      "predicted": 1
+     },
+     "crowd/trapnostop-fwd": {
+      "panelCount": 5,
+      "startLocalIdx": 3,
+      "panelStart": 41,
+      "dialogCount": 129,
+      "measured": 1,
+      "predicted": 1
+     },
+     "modellib/trapnostop-fwd": {
+      "panelCount": 15,
+      "startLocalIdx": 1,
+      "panelStart": 41,
+      "dialogCount": 139,
+      "measured": 7,
+      "predicted": 7
+     }
+    }
+   }
+  },
+  {
+   "id": "J13",
+   "statement": "★ 更正：`useLayerFocus.ts` 的 trap 里**没有** `stopImmediatePropagation()` ⟹ 768/770 的「照抄即可」那句要改",
+   "verdict": "PASS",
+   "evidenceKey": "F9_staticNoStopImmediate",
+   "evidence": {
+    "claim": "★ 更正：`useLayerFocus.ts` 的 trap 里**没有** `stopImmediatePropagation()`",
+    "stopsImmediate": false,
+    "stopsPropagation": false,
+    "usesCapture": true,
+    "trapPreventDefaultCount": 2,
+    "trapFocusCount": 1,
+    "consumers": [
+     "src/components/jimeng/JimengAiDrawer.tsx",
+     "src/components/jimeng/JimengNodeSummaryPopover.tsx"
+    ],
+    "directorUsesIt": [],
+    "affectsClaimsIn": [
+     "batch 768 findings(D11 修法引用)",
+     "batch 770 defects[D13].fixDirection"
+    ]
+   }
+  },
+  {
+   "id": "J14",
+   "statement": "机制侧：对话框那一层对每次 Tab 都无条件接管 nextIndex （这是臂 4 会逃逸的原因）",
+   "verdict": "PASS",
+   "evidenceKey": "F10_rootTakesOverEveryTab",
+   "evidence": {
+    "claim": "对话框那一层对**每一次** Tab 都 preventDefault + focus(nextIndex)，不是只在环绕时",
+    "preventDefaultCount": 2,
+    "focusesNextEveryTime": true,
+    "nextIndexUnconditional": true,
+    "why": "这正是臂 4 会逃逸的机制：注入 `preventDefault()` 之后，事件照样冒泡到 root，那一层**无条件**再 `focus(nextIndex)`，焦点于是走两跳。"
+   }
+  },
+  {
+   "id": "J15",
+   "statement": "★ 770 遗留的 J8 盲区已关闭",
+   "verdict": "PASS",
+   "evidenceKey": "F11_j8Closed",
+   "evidence": {
+    "claim": "770 遗留的 J8 盲区（没测从外部能不能进浮层）是否已关闭",
+    "wasNotClaimedIn": "batch 770",
+    "nowMeasured": 12,
+    "cells": [
+     "export/reach-fwd",
+     "export/reach-back",
+     "preset/reach-fwd",
+     "preset/reach-back",
+     "pathmenu/reach-fwd",
+     "pathmenu/reach-back",
+     "phonevcam/reach-fwd",
+     "phonevcam/reach-back",
+     "crowd/reach-fwd",
+     "crowd/reach-back",
+     "modellib/reach-fwd",
+     "modellib/reach-back"
+    ],
+    "closed": true
+   }
+  }
+ ],
+ "defects": [],
+ "defectsNote": "★ 本批**没有新缺陷**。三问的答案分别是：可达性成立（12/12）、D13 修法方向 ① 可修（6/6）、「照抄 useLayerFocus」**不够**（6/6 仍逃逸）。第三条不是新缺陷，是对 768/770 两条**修法指引**的更正。",
+ "corrections": [
+  {
+   "id": "C771-1",
+   "targets": [
+    "batch 768 findings(D11 修法引用)",
+    "batch 770 defects[D13].fixDirection"
+   ],
+   "wasSaid": "「src/hooks/useLayerFocus.ts 已有带 trap 的实现可照抄」／「root 换成浮层；useLayerFocus.ts 已有带 trap 的实现可照拄」",
+   "actual": "useLayerFocus.ts:96-115 的 trap 挂在 **window 捕获**上，对环绕时 `preventDefault()`，**既不 `stopPropagation()` 也不 `stopImmediatePropagation()`**；非环绕时完全交还原生 Tab。",
+   "measuredBy": "臂 3 vs 臂 4 单变量对照（只去掉那一句）：停传播 6/6 格 12 步不逃逸；不停传播 6/6 格全部照旧逃逸，逃逸步数 ['1', '2', '5', '7']。",
+   "whyItMatters": "那一句不是锦上添花，而是那层围栏在**本上下文**里唯一起作用的那一句：导演台的对话��围栏挂在 root **冒泡**上，`preventDefault()` 不阻止其他监听器，事件照样冒上去被它无条件 `focus(nextIndex)` 接管。",
+   "correctedGuidance": "D13 修法方向 ① 应写成「useLayerFocus 的**骨架**（挂在浮层 ref、捕获阶段、算浮层自己的数组）**加上** `stopImmediatePropagation()`」，而不是「照抄 useLayerFocus」。"
+  },
+  {
+   "id": "C771-2",
+   "targets": [
+    "batch 768 findings(D11 修法引用)"
+   ],
+   "wasSaid": "useLayerFocus 的 cleanup 段（`opener.focus()` + rAF + `root.isConnected` 守卫）就是 D11 的标准答案。",
+   "actual": "cleanup 段本身仍然成立（本次未改、未重测）；但它的 trap 与 D13 无关，**不能**拿它当 D13 的修法依据。",
+   "measuredBy": "本批未重测 D11（不声称）；仅更正「同一文件里哪一段能当哪条缺陷的答案」这个归属。",
+   "whyItMatters": "「同仓有个现成实现」很容易被读成「照抄那条就行」。同一个文件里**不同段**的适用性是分开的。"
+  }
+ ],
+ "observations": [
+  {
+   "id": "O771-1",
+   "text": "★ **进浮层毫无门槛，出浮层没有围栏**——两件事同时为真，且不是同一个问题。12/12 格第 1 步就进（进浮层像走平路），而 770 量到 11/12 格走出去（出浮层一按就到）。**同一个浮层，两个方向的体验完全不对称。**",
+   "whyItMatters": "只测一个方向会得出「这个浮层能用」或「这个浮层坏掉」的**片面**结论；D13 的严重度正是出在出不去那一侧。"
+  },
+  {
+   "id": "O771-2",
+   "text": "★ 臂 4 的逃逸**不是「完全没拦住」**，而是**焦点走两跳**：注入把焦点放进浮层的下一个控件，冒泡到 root 的那一次 Tab 又把它挪到**再下一个**（对话框数组 +1）。于是每按一次 Tab 净前进 2 个位置，逃逸步数因此是 `(控件数 − 起点下标) / 2` 量级的确定值，实测 %s 与独立模拟器 6/6 逐格吻合。",
+   "whyItMatters": "「加了围栏但还是逃出去」很容易被当成「这个浮层没法用围栏救」；真正的结论是**机制读错了**——只要读清两层各自做了什么，逃逸步数就可算，也就可验。"
+  },
+  {
+   "id": "O771-3",
+   "text": "★ 声明了 `role=\"dialog\"` 的 2 个浮层（crowd / modellib）里，**phonevcam（n=2）与 crowd（n=5）在臂 4 下第 1 步就逃**——控件越少的浮层，缺了停传播时**逃得越快**。这意味着「这层围栏有没有生效」在小浮层上最容易被漏看。",
+   "whyItMatters": "抽样验证浮层级围栏时，**挑控件多的浮层验**会得到「看起来是拦住了」的错误安心。"
+  }
+ ],
+ "probeLessons": [
+  {
+   "id": "R90",
+   "text": "★ **「照抄 X 就能修」这句话本身要验证，别当成事实抄进修法指引。** 768 与 770 都写了「useLayerFocus 已有带 trap 的实现可照抄」；逐字读那份源码，它**没有**那一句 `stopImmediatePropagation()`。同名机制 ≠ 可直接复用：**目标机制里的每一句，都必须在它原本的上下文里才成立。**",
+   "whyItMatters": "照着一条没验证的指引去改代码，会得到「改了但没修好」的结果，而且**看不出是哪一句缺了**。"
+  },
+  {
+   "id": "R91",
+   "text": "★ **「能不能修好」要问「修好之后谁还在跑」。** 给一个事件再加一个处理器，改变的**不是功能，而是事件流**。判别式：单变量对照——同一份注入，只去掉**一句**，其余逐字相同。本批 6/6 格从「12 步不逃逸」变成「照旧逃逸」。",
+   "whyItMatters": "「我加了一层围栏，怎么还有洞」这类问题，答案往往不在新加的那层里，而在**新旧两层同时动手**上。"
+  },
+  {
+   "id": "R93",
+   "text": "★ **跨批比「落点」时，签名要能分得开同族元素。** 我用 `(tag, type)` 当落点签名去比臂 3 与 770 的前缀，而 preset / pathmenu 的**首末控件都是无文字的 `BUTTON`** —— 按标签根本分不开，于是「一致的前缀」被算长、判据误判成「注入不是只在逃逸步才生效」。**下标算术才是无歧义的判据。**",
+   "whyItMatters": "签名分不开同族元素时，比对会**静默地偏向「看起来一致」**——和 R75「朝通过方向的误报比漏报更危险」是同一族。"
+  },
+  {
+   "id": "R92",
+   "text": "★ **静态断言的方向要写对：把「我期望它是 True」写成 `assert X is True`，事实相反时你只会看到脚本崩，看不到一条更正。** 本批那条正是如此——`useLayerFocusStopsImmediate`实为 **False**，而我最初写的是 `assert ... is True`。改法：注释写明「我期望什么、若是相反要怎么解释」，并把相反的事实**写成产物的一部分**（本批的 corrections）。",
+   "whyItMatters": "崩掉的断言只会让你改断言；**被记下来的相反事实**才会变成一条对前批的更正。"
+  }
+ ]
+}
