@@ -1,0 +1,314 @@
+{
+ "batch": 778,
+ "topic": "`Cmd+Z` 在检查器控件上的早退是「按设计」还是「缺陷」？按控件类型拆开之后，我自己的规划假设被否掉了",
+ "generatedBy": "probes/mk778audit.py",
+ "sources": {
+  "vb778a.json": {
+   "sha16": "29d940aa60442417",
+   "rounds": 2,
+   "rowsPerRound": 8
+  },
+  "vb776a.json": {
+   "sha16": "d59c5486df20a93f",
+   "usedFor": "族规模（现算，不手抄）"
+  }
+ },
+ "theSplit": {
+  "why": "★ 777 只回答了 Q-doc 且样本是 n=1 的 range 滑杆 ⟹ 我 778 规划时把「只测了 range」误当成「只有 range 是真空」。",
+  "Q-doc": "桌的 Cmd+Z 分支够不够得着 → **两族都够不着**（守卫只看 tagName，不看 `type`）",
+  "Q-native": "控件自己的文本撤销顶不顶得上 → **number 顶得上、range 顶不上**",
+  "refutedPlan": "★ 「number 族早退是取舍、按设计 ⟹ D14 授权范围缩小」**被否掉**，且方向反转：守卫在 number 族上是**承重墙**。"
+ },
+ "verdict": {
+  "D1d范围": "**没有被收窄** —— 全部 53 个可用控件、两族 2/2 成立",
+  "死键范围": "**只有 range 族 26 个**（number 族 27 个有原生撤销）",
+  "守卫能否整体去掉": "**不能** —— 去掉会让 number 用户的 `Cmd+Z` 撤掉上一个文档动作（数据错）",
+  "出路": "**存在** —— blur 之后两族都 2/2 可撤"
+ },
+ "comparability": {
+  "rounds": 2,
+  "rowsPerRound": 8,
+  "allConsistent": true,
+  "duplicateCell": {
+   "arms": [
+    "native",
+    "whileFocused"
+   ],
+   "why": "★ 我在探针 docstring 里**自己写了**「与 `native` 同动作」，却仍然把它跑成了两格。动作相同 ⟹ 实为同一格，报成 8 格会**多算一格**。",
+   "selfJustified": {
+    "number": true,
+    "range": true
+   },
+   "rule": "归一化 gesture id 里内嵌的 epoch ms（R125）后逐字段比较；不一致就说明它们不是同一格，「格数」要重算。",
+   "distinctCells": 6,
+   "distinctArms": [
+    "native",
+    "docAfterBlur",
+    "delWhileFocused"
+   ]
+  },
+  "normalization": "★ gesture id 形如 `director-gesture-1791187547721-1`，内嵌 epoch ms ⟹ **不归一化的话「两轮一致」永远不可能**。归一化规则 `<TS>` 已写进本产物（不是排除字段）。",
+  "retryPolicy": "每格最多试 3 次（含第一次），900×n 退避；`tries`/`retried` 记进 raw 但**排除在两轮一致性比较之外**。",
+  "retryStats": {
+   "cells": 16,
+   "retriedCells": 0,
+   "maxTries": 1
+  },
+  "boundary": "★ **本批未改 `src/`，也没有任何注入。** 删除**是破坏性操作且本批真的执行了**（用户目标明确允许有副作用的 CRUD），但：① 每格开头 `fresh()` 清 localStorage ⟹ 不留残留；② **不点**提交/连接/新增机位/导入导出，不做付费或真实生图生视频。"
+ },
+ "static": {
+  "guardLine": 487,
+  "undoLine": 506,
+  "guardBeforeUndo": true,
+  "isEditableLine": 475,
+  "isEditableConsultsType": false,
+  "onFocusLine": 79,
+  "onBlurLine": 80,
+  "onBlurCommits": true,
+  "onPointerUpDispatchesNumber": true,
+  "fovTypeLine": 1647,
+  "fovAttrLine": 1652,
+  "fovGap": 5,
+  "xfTypeLine": 177,
+  "xfAttrLine": 179,
+  "xfGap": 2,
+  "fovIsRange": true,
+  "xfIsNumber": true
+ },
+ "familySizes": {
+  "number": {
+   "count": 27,
+   "ids": [
+    "panchor",
+    "ptransform",
+    "xf"
+   ],
+   "nativeUndo": true
+  },
+  "range": {
+   "count": 26,
+   "ids": [
+    "fov",
+    "pose"
+   ],
+   "nativeUndo": false
+  },
+  "dedupRule": "★ 跨上下文**取 max**，不是求和 —— 同一族控件在不同上下文里是**同一批 DOM 元素**（`xf` 在 camera 与 camera-path 都是 12）⟹ 求和会重复计数。",
+  "crossCheck": "number 27 + range 26 = 53，与 776 README 自述的「共 53 个可用控件」相符 ⟹ 去重规则被独立校验过。"
+ },
+ "lifecycle": [
+  {
+   "family": "number",
+   "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+   "onFocus": {
+    "past": "0",
+    "future": "0",
+    "gesture": "director-gesture-1791187519693-1",
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "focusTag": "INPUT",
+    "focusType": "number",
+    "isInput": true
+   },
+   "afterMutate": {
+    "past": "0",
+    "future": "0",
+    "gesture": "director-gesture-1791187519693-1",
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "focusTag": "INPUT",
+    "focusType": "number",
+    "isInput": true
+   },
+   "valueAfterMutate": {
+    "value": "7.5",
+    "type": "number"
+   },
+   "afterBlur": {
+    "past": "1",
+    "future": "0",
+    "gesture": "",
+    "lastCommand": "GESTURE_COMMIT",
+    "lastDisp": "COMMITTED",
+    "focusTag": "BUTTON",
+    "focusType": "button",
+    "isInput": false
+   },
+   "typeSeen": "number"
+  },
+  {
+   "family": "range",
+   "selector": "[data-director-camera-fov]",
+   "onFocus": {
+    "past": "0",
+    "future": "0",
+    "gesture": "director-gesture-1791187533774-1",
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "focusTag": "INPUT",
+    "focusType": "range",
+    "isInput": true
+   },
+   "afterMutate": {
+    "past": "0",
+    "future": "0",
+    "gesture": "director-gesture-1791187533774-1",
+    "lastCommand": "UPDATE_CAMERA",
+    "lastDisp": "COMMITTED",
+    "focusTag": "INPUT",
+    "focusType": "range",
+    "isInput": true
+   },
+   "valueAfterMutate": {
+    "value": "48",
+    "type": "range"
+   },
+   "afterBlur": {
+    "past": "1",
+    "future": "0",
+    "gesture": "",
+    "lastCommand": "GESTURE_COMMIT",
+    "lastDisp": "COMMITTED",
+    "focusTag": "BUTTON",
+    "focusType": "button",
+    "isInput": false
+   },
+   "typeSeen": "range"
+  }
+ ],
+ "nativeUndo": {
+  "number": {
+   "mutatedTo": "7.5",
+   "afterUndo": "4.8",
+   "valueReverted": true,
+   "past": "0",
+   "future": "0",
+   "lastCommand": "GESTURE_BEGIN",
+   "deskSawKey": false
+  },
+  "range": {
+   "mutatedTo": "48",
+   "afterUndo": "48",
+   "valueReverted": false,
+   "past": "0",
+   "future": "0",
+   "lastCommand": "UPDATE_CAMERA",
+   "deskSawKey": false
+  }
+ },
+ "results": {
+  "delBlockedFamilies": 2,
+  "delBlockedMugBack": false,
+  "undoSlotConsumedFamilies": 2,
+  "nativeUndoWorks": {
+   "number": true,
+   "range": false
+  },
+  "vacuumCells": 1,
+  "vacuumControls": 26,
+  "distinctCells": 6,
+  "failedCells": 0
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "text": "★ **D1d 的范围没有被收窄 —— 它在两族上都成立。** 我 778 规划时假设「有原生撤销的控件不是真空」⟹ 实测否掉：`delWhileFocused` 的 number 臂道具**没回来**、`past` 1→1、`future` 0→0、`lastCommand` 连 `UNDO` 都没出现。理由很直白 —— **input 的文本撤销栈里没有「删了一个对象」这件事**。",
+   "evidence": "阶段二 预测 A"
+  },
+  {
+   "id": "J2",
+   "text": "★ **被收窄的是「守卫能不能整体去掉」，而答案是否。** 我原以为 number 族的早退是「按设计的取舍」；实测它是**承重墙**：`docAfterBlur` 两族都是 `future` 0→1 ⟹ 一次 blur 提交就把**唯一**的撤销槽占掉。去掉守卫 ⟹ number 用户输入后按 `Cmd+Z` 会撤掉**上一个文档动作** ⟹ 不是体验差，是**数据错**。",
+   "evidence": "阶段二 预测 C"
+  },
+  {
+   "id": "J3",
+   "text": "★ **「死键」只对 range 族成立（%d 个控件）。** 焦点在滑杆上时 `Cmd+Z` 的**三个读数同时不动**：值不动、`past/future` 不动、`lastCommand` 停在原处（不是 `UNDO`）⟹ 桌的键处理**根本没被触到**。而 number 族（%d 个）的原生撤销顶上了 ⟹ 值回到 %s。",
+   "evidence": "阶段二 预测 D + 阶段四"
+  },
+  {
+   "id": "J4",
+   "text": "★ **出路存在，但要靠「先移开焦点」这个用户不会想到的动作。** `docAfterBlur` 两族都 2/2 可撤（`lastCommand`=`UNDO`、`past` 1→0、`future` 0→1、值回退）⟹ 手势是在 **blur 时**提交的（`useDirectorGestureBoundary.ts:80 onBlur: commit`），所以「手还在滑杆上」时历史里**根本没有那一格**。",
+   "evidence": "阶段二 预测 B + C"
+  },
+  {
+   "id": "J5",
+   "text": "★ **同仓已有分流先例可以照抄**：`useDirectorGestureBoundary.ts:82-90` 的 `onPointerUp` **已经**在按 `type === \"number\"` 提前 return ⟹ 「按控件类型分派手势行为」在这个仓里是既有写法。而 `DirectorDesk.tsx:475-480` 的 `isEditable` 判据**只看 tagName、不看 `type`** ⟹ 缺的正是这一层分派。",
+   "evidence": "阶段三 S2 + S4"
+  },
+  {
+   "id": "J6",
+   "text": "★ **777 的 `fovInput` 臂是 range 滑杆，不是数字输入框。** 它用 `[data-director-camera-fov]` = `DirectorInspector.tsx:1646` 那个 `type=\"range\"`。同一个 FOV 区块里还有一个 `type=\"number\"` 的读数框（`:1661`，**不挂 gesture**、另有 draft 与 `onBlur` 复位）⟹ 777 的 D1d 其实是 **n=1 的 range 样本**，778 的 number 臂才是把它推广开的那个读数。",
+   "evidence": "阶段三 S5"
+  }
+ ],
+ "corrections": [
+  {
+   "id": "C778-1",
+   "targets": [
+    "**778 规划时的假设**：「D1d 过宽 ⟹ 正确范围 = 只有没有原生撤销的控件才是真空 ⟹ number 族 27 个早退是取舍、按设计 ⟹ D14 修法授权范围缩小，number 族的早退语义不必动」",
+    "**777 的措辞**：「焦点在**检查器输入框**上时删除不可撤销」"
+   ],
+   "was": "读作「删除不可撤销只发生在没有原生撤销的控件上（range 族 26 个），number 族 27 个是按设计的取舍、不在范围内」。",
+   "now": "★ 据实拆成两个独立问题：**Q-doc（桌的分支够不够得着）两族都够不着** ⟹ D1d 覆盖**全部 %d 个**可用控件，两族 %d/%d 成立，**范围没有被收窄**；**Q-native（控件自己的文本撤销顶不顶得上）只有 number 顶得上** ⟹ 「死键」只落在 range 族 %d 个上。★ 并且 777 的样本是 **n=1 的 range 滑杆**（见 J6）⟹ 「输入框」这个措辞当时是过度概括，本批把它推广到两族。★ **被收窄的是修法而不是缺陷范围**：`:487` 那道守卫在 number 族上是**承重墙**（去掉它会把「撤自己的字」变成「撤上一个动作」= 数据错）⟹ 修法**必须按控件类型分流**，不能整体去守卫。",
+   "evidence": "J1 + J2 + J3"
+  }
+ ],
+ "findings": {
+  "F1": "★ **D1d 范围没有被收窄** —— 原生撤销顶不上删除，两族都成立。",
+  "F2": "★ **守卫不能整体去掉** —— 它在 number 族上是承重墙，去掉会把「撤自己的字」变成「撤上一个动作」。",
+  "F3": "★ **26 个 range 滑杆上是死键且零反馈**，出路要靠先移开焦点。",
+  "F4": "★ **同仓已有分流先例**（`onPointerUp` 按 `type === \"number\"`），缺的只是 `isEditable` 判据里的那一层。",
+  "F5": "★ **777 的 `fovInput` 臂是 range 滑杆** ⟹ 它的 D1d 是 n=1 的 range 样本，「输入框」的措辞当时是过度概括。"
+ },
+ "probeLessons": [
+  {
+   "id": "R123",
+   "text": "★ **探针里两臂动作写得一样，它们就是同一格。** 我在 `native` 与 `whileFocused` 的 docstring 里**自己写了**「与 `native` 同动作」，却仍跑成两格 ⟹ 8 格里有一格是重复计数。归一化后逐字段断言一致，不一致就得重算格数。"
+  },
+  {
+   "id": "R124",
+   "text": "★ **「变化=是」有可能是「基准值没取到」的假象。** 本批 `summarize()` 只认 `valueBeforeUndo`/`valueAtUndo`，而 `native`/`whileFocused` 臂两者都没有（它们不 blur）⟹ `vb` 取到 `{}` ⟹ `str(None) != str(\"4.8\")` **恒真**。实测 range 那一格**其实没变**却被打印成「变化=是」。⟹ 基准值必须从 `valueAfterMutate` 取，且「变没变」不能用「两个都可能缺失的字段不相等」来判。这是 R121（把「读不到」当成「没变」）的同族错误。"
+  },
+  {
+   "id": "R125",
+   "text": "★ **内嵌时间戳的 id 让两件事都测不了**：「两轮逐字段一致」（R116）和「两臂是不是同一格」（R123）都因为 `director-gesture-<epoch_ms>-<seq>` 而恒假。归一化规则**写进产物**，不是排除字段。"
+  },
+  {
+   "id": "R126",
+   "text": "★ **「三个读数都没动」里的每一个「没动」都有三个不同原因**（值没被改 / 被改了但撤得回 / 撤不回）。本批靠 `lastCommand` 兜底：`native` 两族停在 `GESTURE_BEGIN`/`UPDATE_CAMERA` 而**不出现** `UNDO` ⟹ 这才证明**桌的键处理根本没被触到**，而不是「触到了但没生效」。只看「值没变」会把这两种混成一种。"
+  },
+  {
+   "id": "R127",
+   "text": "★ **臂的名字会替读数说话。** 777 的臂叫 `fovInput`、结论写「焦点在**输入框**上」⟹ 读起来像数字输入，而该元素是 `type=\"range\"` 的滑杆。**`type` 才是族的判据，不是标签、不是臂名。** 一个 n=1 的 range 样本被措辞放大成「所有检查器输入框」。"
+  },
+  {
+   "id": "R128",
+   "text": "★ **静态搜索的四种「找到错的」都在本批各犯了一次**：① 忘 `.split(\"\\n\")` ⟹ 整串当行列表，逐字符匹配恒假；② 忘了 `useDirectorGestureBoundary.ts:17-24` 有一份**类型声明**列着同名 handler ⟹ `first_in` 挂到声明上；③ `type=\"range\"` 有十几处 ⟹ 该取 data 属性**之前最后**一个而不是第一个；④ **`\\b` 在 `-` 前也算词边界** ⟹ `fov\\b` 命中 `fov-field`，而探针的 CSS `[data-director-camera-fov]` 是**精确属性名**匹配 —— **搜索式必须和探针的选择器对齐**。四次都是同一族：断言恒假时先怀疑搜索，而不是先改断言。"
+  }
+ ],
+ "defects": [
+  {
+   "id": "D1d",
+   "severity": "中-高（范围已由 778 更正）",
+   "text": "★ **焦点在检查器控件上时，删除不可撤销。** 删除进了历史（`past`=1）但 `Cmd+Z` 被 `isEditable` 守卫（`DirectorDesk.tsx:487`，排在 `:506` 的 undo 分支之前）吞掉 ⟹ 道具没回来、`past` 仍=1、`future` 仍=0、`lastCommand` 连 `UNDO` 都没出现。**与 D14 同一道守卫。** **778 更正**：范围不是「所有检查器输入框」这么含糊的措辞，而是**全部 53 个可用控件、两族 2/2 成立** —— **原生撤销顶不上删除**（文本撤销栈里没有「删了一个对象」）。",
+   "evidence": "J1"
+  },
+  {
+   "id": "D1f",
+   "severity": "中（本批记录）",
+   "text": "★ **26 个 range 族滑杆上，焦点还在控件内时 `Cmd+Z` 是死键，且零反馈。** 三个读数同时不动：值不动（48→48）、`past/future` 不动、`lastCommand` 停在 `UPDATE_CAMERA` 而不是 `UNDO` ⟹ 桌的键处理**根本没被触到**。而 `onBlur: commit` 意味着改动**要等移开焦点才进历史** ⟹ 用户「刚拖完滑杆就按 `Cmd+Z`」**什么也不会发生**，而界面不告知（`COMMITTED` 已被 `getDirectorCommandFeedback` 过滤成 `null`，777 已测撤销类控件 0）。**同一族里 number 有原生撤销、range 没有 ⟹ 同一个键在不同滑杆上行为不一致，用户无从预期。**",
+   "evidence": "J3 + J4"
+  }
+ ],
+ "srcDiff": "**本批未改 `src/`**（工作区 `src/` 干净）；**没有任何注入**。★ 本批**真的执行了破坏性删除**（用户目标允许有副作用的 CRUD），但每格开头 `fresh()` 清 localStorage ⟹ 不留残留。",
+ "rawSha": {
+  "vb778a.json": "29d940aa60442417",
+  "vb776a.json": "d59c5486df20a93f"
+ },
+ "retryStats": {
+  "cells": 16,
+  "retriedCells": 0,
+  "maxTries": 1
+ },
+ "boundary": "★ **本批未改 `src/`，也没有任何注入。** 删除**是破坏性操作且本批真的执行了**（用户目标明确允许有副作用的 CRUD），但：① 每格开头 `fresh()` 清 localStorage ⟹ 不留残留；② **不点**提交/连接/新增机位/导入导出，不做付费或真实生图生视频。"
+}

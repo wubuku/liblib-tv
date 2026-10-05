@@ -1,0 +1,1131 @@
+{
+ "batch": 778,
+ "probe": "a",
+ "question": "焦点在检查器控件上时 Cmd+Z 的早退 —— 「按设计」还是「缺陷」？**按控件类型拆开**（这一批更正我自己 777 的 D1d）",
+ "whyItMatters": "777 把「输入框落点上删除不可撤销」记成缺陷 D1d（中-高），但焦点在输入框时 Cmd+Z 本就该撤销**输入框自己的编辑**。★ 775 的 C775-1 正是「把按设计写成新缺陷」—— 我在 777 犯了一次同族错误。",
+ "split": "★ 关键读数：`number` input **有**原生撤销栈 ⟹ 早退是**取舍**；`range` input **没有** ⟹ 那一格**什么都撤不掉** ⟹ **真空**。⟹ **D1d 的范围按控件类型拆开**，而这**直接缩小 D14 修法的授权范围**：number 族的早退语义**不必动**。",
+ "threeReadings": "★ 每格必须**同时**读三个量：控件自己的 `value`（原生撤销）、`past/future`（文档撤销）、道具是否回来。**三个都可能「没变」而那正是真空** —— 只报其中一个都会把真空误判成原生撤销或文档撤销。",
+ "refutedPrediction": "★ 我**预测错了**并留下记录：以为方向键改 range 会「开一个永不提交的手势」⟹ 之后第一次 Cmd+Z 是死键。**实测否掉了它**：手势确实一直开着，但 blur 时**提交**（past 0→1），且第一次 Cmd+Z 就生效。",
+ "rounds": [
+  {
+   "rows": [
+    {
+     "family": "number",
+     "arm": "native",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187547721-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "valueAfterMutate": {
+      "value": "7.5",
+      "type": "number"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187547721-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187547721-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "number",
+     "arm": "docAfterBlur",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187561750-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "valueAfterMutate": {
+      "value": "7.5",
+      "type": "number"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187561750-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "blurFocusOk": true,
+     "stateAfterBlur": {
+      "past": "1",
+      "future": "0",
+      "gesture": "",
+      "lastCommand": "GESTURE_COMMIT",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "valueAtUndo": {
+      "value": "7.5",
+      "type": "number"
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "1",
+      "gesture": "",
+      "lastCommand": "UNDO",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "valueAfterUndo": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "number",
+     "arm": "whileFocused",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187576377-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "valueAfterMutate": {
+      "value": "7.5",
+      "type": "number"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187576377-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187576377-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "number",
+     "arm": "delWhileFocused",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187590396-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "mugGoneAfterDel": true,
+     "pastAfterDel": "1",
+     "focusAfterDel": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateBeforeUndo": {
+      "past": "1",
+      "future": "0",
+      "gesture": "director-gesture-1791187591697-6",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "1",
+      "future": "0",
+      "gesture": "director-gesture-1791187591697-6",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "mugBack": false,
+     "objects": 4,
+     "tries": 1
+    },
+    {
+     "family": "range",
+     "arm": "native",
+     "selector": "[data-director-camera-fov]",
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187605064-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "43",
+      "type": "range"
+     },
+     "valueAfterMutate": {
+      "value": "48",
+      "type": "range"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187605064-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187605064-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "48",
+      "type": "range"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "range",
+     "arm": "docAfterBlur",
+     "selector": "[data-director-camera-fov]",
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187619131-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "43",
+      "type": "range"
+     },
+     "valueAfterMutate": {
+      "value": "48",
+      "type": "range"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187619131-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "blurFocusOk": true,
+     "stateAfterBlur": {
+      "past": "1",
+      "future": "0",
+      "gesture": "",
+      "lastCommand": "GESTURE_COMMIT",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "valueAtUndo": {
+      "value": "48",
+      "type": "range"
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "1",
+      "gesture": "",
+      "lastCommand": "UNDO",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "valueAfterUndo": {
+      "value": "43",
+      "type": "range"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "range",
+     "arm": "whileFocused",
+     "selector": "[data-director-camera-fov]",
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187633733-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "43",
+      "type": "range"
+     },
+     "valueAfterMutate": {
+      "value": "48",
+      "type": "range"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187633733-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187633733-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "48",
+      "type": "range"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "range",
+     "arm": "delWhileFocused",
+     "selector": "[data-director-camera-fov]",
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187647790-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "43",
+      "type": "range"
+     },
+     "mugGoneAfterDel": true,
+     "pastAfterDel": "1",
+     "focusAfterDel": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateBeforeUndo": {
+      "past": "1",
+      "future": "0",
+      "gesture": "director-gesture-1791187649083-6",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "1",
+      "future": "0",
+      "gesture": "director-gesture-1791187649083-6",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "43",
+      "type": "range"
+     },
+     "mugBack": false,
+     "objects": 4,
+     "tries": 1
+    }
+   ],
+   "lifecycle": [
+    {
+     "family": "number",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "onFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187519693-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "afterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187519693-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueAfterMutate": {
+      "value": "7.5",
+      "type": "number"
+     },
+     "afterBlur": {
+      "past": "1",
+      "future": "0",
+      "gesture": "",
+      "lastCommand": "GESTURE_COMMIT",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "typeSeen": "number"
+    },
+    {
+     "family": "range",
+     "selector": "[data-director-camera-fov]",
+     "onFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187533774-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "afterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187533774-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueAfterMutate": {
+      "value": "48",
+      "type": "range"
+     },
+     "afterBlur": {
+      "past": "1",
+      "future": "0",
+      "gesture": "",
+      "lastCommand": "GESTURE_COMMIT",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "typeSeen": "range"
+    }
+   ]
+  },
+  {
+   "rows": [
+    {
+     "family": "number",
+     "arm": "native",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187690482-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "valueAfterMutate": {
+      "value": "7.5",
+      "type": "number"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187690482-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187690482-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "number",
+     "arm": "docAfterBlur",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187704864-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "valueAfterMutate": {
+      "value": "7.5",
+      "type": "number"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187704864-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "blurFocusOk": true,
+     "stateAfterBlur": {
+      "past": "1",
+      "future": "0",
+      "gesture": "",
+      "lastCommand": "GESTURE_COMMIT",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "valueAtUndo": {
+      "value": "7.5",
+      "type": "number"
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "1",
+      "gesture": "",
+      "lastCommand": "UNDO",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "valueAfterUndo": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "number",
+     "arm": "whileFocused",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187719414-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "valueAfterMutate": {
+      "value": "7.5",
+      "type": "number"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187719414-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187719414-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "number",
+     "arm": "delWhileFocused",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187733541-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "mugGoneAfterDel": true,
+     "pastAfterDel": "1",
+     "focusAfterDel": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateBeforeUndo": {
+      "past": "1",
+      "future": "0",
+      "gesture": "director-gesture-1791187734836-6",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "1",
+      "future": "0",
+      "gesture": "director-gesture-1791187734836-6",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "4.8",
+      "type": "number"
+     },
+     "mugBack": false,
+     "objects": 4,
+     "tries": 1
+    },
+    {
+     "family": "range",
+     "arm": "native",
+     "selector": "[data-director-camera-fov]",
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187748311-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "43",
+      "type": "range"
+     },
+     "valueAfterMutate": {
+      "value": "48",
+      "type": "range"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187748311-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187748311-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "48",
+      "type": "range"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "range",
+     "arm": "docAfterBlur",
+     "selector": "[data-director-camera-fov]",
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187762344-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "43",
+      "type": "range"
+     },
+     "valueAfterMutate": {
+      "value": "48",
+      "type": "range"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187762344-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "blurFocusOk": true,
+     "stateAfterBlur": {
+      "past": "1",
+      "future": "0",
+      "gesture": "",
+      "lastCommand": "GESTURE_COMMIT",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "valueAtUndo": {
+      "value": "48",
+      "type": "range"
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "1",
+      "gesture": "",
+      "lastCommand": "UNDO",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "valueAfterUndo": {
+      "value": "43",
+      "type": "range"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "range",
+     "arm": "whileFocused",
+     "selector": "[data-director-camera-fov]",
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187777006-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "43",
+      "type": "range"
+     },
+     "valueAfterMutate": {
+      "value": "48",
+      "type": "range"
+     },
+     "stateAfterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187777006-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187777006-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "48",
+      "type": "range"
+     },
+     "mugBack": true,
+     "objects": 5,
+     "tries": 1
+    },
+    {
+     "family": "range",
+     "arm": "delWhileFocused",
+     "selector": "[data-director-camera-fov]",
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateOnFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187791035-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueOnFocus": {
+      "value": "43",
+      "type": "range"
+     },
+     "mugGoneAfterDel": true,
+     "pastAfterDel": "1",
+     "focusAfterDel": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateBeforeUndo": {
+      "past": "1",
+      "future": "0",
+      "gesture": "director-gesture-1791187792329-6",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "stateAfterUndo": {
+      "past": "1",
+      "future": "0",
+      "gesture": "director-gesture-1791187792329-6",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueAfterUndo": {
+      "value": "43",
+      "type": "range"
+     },
+     "mugBack": false,
+     "objects": 4,
+     "tries": 1
+    }
+   ],
+   "lifecycle": [
+    {
+     "family": "number",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "onFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187662376-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "afterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187662376-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "isInput": true
+     },
+     "valueAfterMutate": {
+      "value": "7.5",
+      "type": "number"
+     },
+     "afterBlur": {
+      "past": "1",
+      "future": "0",
+      "gesture": "",
+      "lastCommand": "GESTURE_COMMIT",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "typeSeen": "number"
+    },
+    {
+     "family": "range",
+     "selector": "[data-director-camera-fov]",
+     "onFocus": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187676183-1",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "afterMutate": {
+      "past": "0",
+      "future": "0",
+      "gesture": "director-gesture-1791187676183-1",
+      "lastCommand": "UPDATE_CAMERA",
+      "lastDisp": "COMMITTED",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "isInput": true
+     },
+     "valueAfterMutate": {
+      "value": "48",
+      "type": "range"
+     },
+     "afterBlur": {
+      "past": "1",
+      "future": "0",
+      "gesture": "",
+      "lastCommand": "GESTURE_COMMIT",
+      "lastDisp": "COMMITTED",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "isInput": false
+     },
+     "typeSeen": "range"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,594 @@
+{
+ "batch": 778,
+ "checks": [
+  {
+   "label": "静态：缺源码",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "静态：`if (isEditable) return;` 找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：Cmd+Z 分支找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 守卫排在 Cmd+Z 分支**之前** ⟹ 焦点在可编辑元素时 undo 到不了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：`isEditable` 判据找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：判据按 tagName 认可编辑元素",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ `isEditable` 判据**不看 `type`** ⟹ 两族走同一条分支（这既是 D1d 两族同形的机制，也是「守卫不能整体去掉」的根）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：实现体里 `onFocus: begin`（不是只声明了名字）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 实现体里 `onBlur: commit` ⟹ 改动**要等移开焦点才进历史**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ `onPointerUp` 已按 `type === \"number\"` 分派 ⟹ 同仓已有分流先例可抄",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 777 的 `fovInput` 臂那个元素仍是 `type=\"range\"` ⟹ 777 的 D1d 是 n=1 的 range 样本",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：变换字段那个元素仍是 `type=\"number\"` ⟹ number 族代表元素在位",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：零 FAILED",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "原始：臂集合齐（2 族 × 4 臂）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "原始：两轮逐字段一致（gesture id 已归一化）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：生命周期两轮一致",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ 同格自证 —— native/whileFocused 两臂（剔掉臂标签）逐字段一致",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ 格数按同格折算后是 6（跑了 8 格，其中 1 格重复）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐族：number 删除后道具不在（这一格的前提成立）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐族：number 删除后 past=1（删除确实进了历史）",
+   "pass": true,
+   "got": "1",
+   "want": "1"
+  },
+  {
+   "label": "逐族：★ number 撤销后 lastCommand **不是** UNDO ⟹ 桌的键处理根本没被触到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐族：number 撤销后 past=1 future=0（命令被吞、历史没动）",
+   "pass": true,
+   "got": [
+    "1",
+    "0"
+   ],
+   "want": [
+    "1",
+    "0"
+   ]
+  },
+  {
+   "label": "逐族：★ number 撤销后道具**没回来**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐族：range 删除后道具不在（这一格的前提成立）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐族：range 删除后 past=1（删除确实进了历史）",
+   "pass": true,
+   "got": "1",
+   "want": "1"
+  },
+  {
+   "label": "逐族：★ range 撤销后 lastCommand **不是** UNDO ⟹ 桌的键处理根本没被触到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐族：range 撤销后 past=1 future=0（命令被吞、历史没动）",
+   "pass": true,
+   "got": [
+    "1",
+    "0"
+   ],
+   "want": [
+    "1",
+    "0"
+   ]
+  },
+  {
+   "label": "逐族：★ range 撤销后道具**没回来**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ D1d 在两族上都成立（2/2）⟹ **范围没有被收窄**，原生撤销顶不上删除",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "生命周期：number 有读数",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "生命周期：number 聚焦后 past=0",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "生命周期：★ number 改动后 past=0（改动期间**不**提交）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "生命周期：★ number blur 后 past=1（blur 才提交）",
+   "pass": true,
+   "got": "1",
+   "want": "1"
+  },
+  {
+   "label": "生命周期：number blur 后手势清空",
+   "pass": true,
+   "got": "",
+   "want": ""
+  },
+  {
+   "label": "生命周期：number blur 后 lastCommand=GESTURE_COMMIT",
+   "pass": true,
+   "got": "GESTURE_COMMIT",
+   "want": "GESTURE_COMMIT"
+  },
+  {
+   "label": "生命周期：range 有读数",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "生命周期：range 聚焦后 past=0",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "生命周期：★ range 改动后 past=0（改动期间**不**提交）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "生命周期：★ range blur 后 past=1（blur 才提交）",
+   "pass": true,
+   "got": "1",
+   "want": "1"
+  },
+  {
+   "label": "生命周期：range blur 后手势清空",
+   "pass": true,
+   "got": "",
+   "want": ""
+  },
+  {
+   "label": "生命周期：range blur 后 lastCommand=GESTURE_COMMIT",
+   "pass": true,
+   "got": "GESTURE_COMMIT",
+   "want": "GESTURE_COMMIT"
+  },
+  {
+   "label": "★ 手势生命周期两族一致：聚焦后 past=0 → 改动后 past=0 → blur 后 past=1（2/2）⟹ 改动**要等移开焦点才进历史**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "blur 后：number 焦点确实落在 BUTTON 上",
+   "pass": true,
+   "got": "BUTTON",
+   "want": "BUTTON"
+  },
+  {
+   "label": "blur 后：number lastCommand=UNDO（守卫不触发了）",
+   "pass": true,
+   "got": "UNDO",
+   "want": "UNDO"
+  },
+  {
+   "label": "blur 后：number past=0 future=1",
+   "pass": true,
+   "got": [
+    "0",
+    "1"
+   ],
+   "want": [
+    "0",
+    "1"
+   ]
+  },
+  {
+   "label": "blur 后：number 值被撤回去了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "blur 后：range 焦点确实落在 BUTTON 上",
+   "pass": true,
+   "got": "BUTTON",
+   "want": "BUTTON"
+  },
+  {
+   "label": "blur 后：range lastCommand=UNDO（守卫不触发了）",
+   "pass": true,
+   "got": "UNDO",
+   "want": "UNDO"
+  },
+  {
+   "label": "blur 后：range past=0 future=1",
+   "pass": true,
+   "got": [
+    "0",
+    "1"
+   ],
+   "want": [
+    "0",
+    "1"
+   ]
+  },
+  {
+   "label": "blur 后：range 值被撤回去了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ blur 后两族都把**唯一**的撤销槽占掉了（2/2）⟹ 守卫在 number 族上是承重墙",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "焦点内：number 记到了改动后的基准值",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "焦点内：number lastCommand 不是 UNDO（守卫拦住了）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "焦点内：range 记到了改动后的基准值",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "焦点内：range lastCommand 不是 UNDO（守卫拦住了）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 焦点内：number 族的**原生撤销顶上了**（值回到改动前）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 焦点内：range 族的值**没回退** ⟹ 与 number 构成对照",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 真空格 = range 族三读数同时不动（值 + past/future + lastCommand）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "族规模：776 普查每族都非空（逐族自证，防「少测」冒充「不存在」）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "族规模：number=27 / range=26（跨上下文取 max，**不是**求和）",
+   "pass": true,
+   "got": [
+    27,
+    26
+   ],
+   "want": [
+    27,
+    26
+   ]
+  },
+  {
+   "label": "族规模：两族合计 53 与 776 README 自述相符",
+   "pass": true,
+   "got": 53,
+   "want": 53
+  },
+  {
+   "label": "产物：audit.batch=778",
+   "pass": true,
+   "got": 778,
+   "want": 778
+  },
+  {
+   "label": "产物：audit 记的真空控件数 = range 族规模",
+   "pass": true,
+   "got": 26,
+   "want": 26
+  },
+  {
+   "label": "产物：audit 记的独立格数 = 6",
+   "pass": true,
+   "got": 6,
+   "want": 6
+  },
+  {
+   "label": "产物：audit 的 D1d 两族成立数 = 2",
+   "pass": true,
+   "got": 2,
+   "want": 2
+  },
+  {
+   "label": "产物：audit 的守卫行号 = 静态重算",
+   "pass": true,
+   "got": 487,
+   "want": 487
+  },
+  {
+   "label": "产物：audit 的 Cmd+Z 行号 = 静态重算",
+   "pass": true,
+   "got": 506,
+   "want": 506
+  },
+  {
+   "label": "台账：Batch 778 恰有一行",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "台账：该行无 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "台账：该行恰 4 个竖线（3 列）",
+   "pass": true,
+   "got": 4
+  },
+  {
+   "label": "★ README 里没有裸数字开头的 markdown 表行（会骗过 pre-commit 的 added_batch_numbers）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "README 无 U+FFFD",
+   "pass": true,
+   "got": 0
+  }
+ ],
+ "pass": 72,
+ "total": 72,
+ "negativeControls": [
+  {
+   "name": "把 number 族的删除撤销改成「成功了」 ⟹ 「D1d 两族都成立」必须红",
+   "why": "★ **对称对照之一**：漏判方向 = 把 27 个 number 控件误当成安全 ⟹ 修法会去动一块本来正常的语义",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐族：★ number 撤销后 lastCommand **不是** UNDO ⟹ 桌的键处理根本没被触到",
+    "逐族：number 撤销后 past=1 future=0（命令被吞、历史没动）",
+    "逐族：★ number 撤销后道具**没回来**",
+    "★ D1d 在两族上都成立（1/2）⟹ **范围没有被收窄**，原生撤销顶不上删除",
+    "产物：audit 的 D1d 两族成立数 = 1"
+   ],
+   "caught": true,
+   "expectFailOn": "D1d 在两族上都成立"
+  },
+  {
+   "name": "把 range 族的删除撤销改成「成功了」 ⟹ 「D1d 两族都成立」必须红",
+   "why": "★ **对称对照之二**：漏判方向 = 777 那条过度概括被当成正确，⟹ 授权范围被错误地缩到 26 个",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐族：★ range 撤销后 lastCommand **不是** UNDO ⟹ 桌的键处理根本没被触到",
+    "逐族：range 撤销后 past=1 future=0（命令被吞、历史没动）",
+    "逐族：★ range 撤销后道具**没回来**",
+    "★ D1d 在两族上都成立（1/2）⟹ **范围没有被收窄**，原生撤销顶不上删除",
+    "产物：audit 的 D1d 两族成立数 = 1"
+   ],
+   "caught": true,
+   "expectFailOn": "D1d 在两族上都成立"
+  },
+  {
+   "name": "让 range 族在焦点内也撤得回来 ⟹ 「range 的值没回退」必须红",
+   "why": "★ 漏判方向 = 26 个滑杆的死键被放过",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "原始：★ 同格自证 —— native/whileFocused 两臂（剔掉臂标签）逐字段一致",
+    "★ 焦点内：range 族的值**没回退** ⟹ 与 number 构成对照",
+    "★ 真空格 = range 族三读数同时不动（值 + past/future + lastCommand）"
+   ],
+   "caught": true,
+   "expectFailOn": "range 族的值**没回退**"
+  },
+  {
+   "name": "★ 对称：让 number 族在焦点内也撤不回来 ⟹ 「原生撤销顶上了」必须红",
+   "why": "★ 没有这条，一个「根本不会撤销任何东西」的坏探针能同时骗过 range 与 number 两条判据 ⟹ 真空格就成了恒真",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "原始：★ 同格自证 —— native/whileFocused 两臂（剔掉臂标签）逐字段一致",
+    "★ 焦点内：number 族的**原生撤销顶上了**（值回到改动前）"
+   ],
+   "caught": true,
+   "expectFailOn": "原生撤销顶上了"
+  },
+  {
+   "name": "让 native 与 whileFocused 读数不同 ⟹ 「同格自证」必须红",
+   "why": "证明「8 格里有 1 格重复」这条不是自称；否则格数会多算一格",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "原始：★ 同格自证 —— native/whileFocused 两臂（剔掉臂标签）逐字段一致"
+   ],
+   "caught": true,
+   "expectFailOn": "同格自证"
+  },
+  {
+   "name": "让 blur 后 past 不涨 ⟹ 「blur 才提交」必须红",
+   "why": "证明「出路要靠先移开焦点」这条不是恒真",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "生命周期：★ number blur 后 past=1（blur 才提交）",
+    "生命周期：★ range blur 后 past=1（blur 才提交）",
+    "★ 手势生命周期两族一致：聚焦后 past=0 → 改动后 past=0 → blur 后 past=1（0/2）⟹ 改动**要等移开焦点才进历史**"
+   ],
+   "caught": true,
+   "expectFailOn": "改动**要等移开焦点才进历史**"
+  },
+  {
+   "name": "让 blur 后撤销不生效 ⟹ 「占掉唯一撤销槽」必须红",
+   "why": "★ 漏判方向 = 「守卫是承重墙」这条授权依据被推翻 ⟹ 会给出「整体去掉守卫」这条会引入数据错的建议",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "blur 后：number lastCommand=UNDO（守卫不触发了）",
+    "blur 后：number past=0 future=1",
+    "blur 后：range lastCommand=UNDO（守卫不触发了）",
+    "blur 后：range past=0 future=1",
+    "★ blur 后两族都把**唯一**的撤销槽占掉了（0/2）⟹ 守卫在 number 族上是承重墙"
+   ],
+   "caught": true,
+   "expectFailOn": "占掉了"
+  },
+  {
+   "name": "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红",
+   "why": "mutatedAnything 为 false 时这条对照的结论是空的（R108）",
+   "mutatedAnything": false,
+   "kwMatchedCount": 0,
+   "flipped": [
+    "原始：两轮逐字段一致（gesture id 已归一化）",
+    "原始：★ 同格自证 —— native/whileFocused 两臂（剔掉臂标签）逐字段一致"
+   ],
+   "caught": false,
+   "expectFailOn": "__永不匹配__"
+  },
+  {
+   "name": "★ 静态：把守卫挪到 Cmd+Z 分支**之后** ⟹ 「守卫排在之前」必须红",
+   "why": "★ 本批静态层连踩四次作用域坑（R128），四次都表现为断言恒假 ⟹ 必须有对照证明静态判据真的在测顺序",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ 守卫排在 Cmd+Z 分支**之前** ⟹ 焦点在可编辑元素时 undo 到不了",
+    "产物：audit 的守卫行号 = 静态重算",
+    "产物：audit 的 Cmd+Z 行号 = 静态重算"
+   ],
+   "caught": true,
+   "expectFailOn": "守卫排在 Cmd+Z 分支**之前**"
+  },
+  {
+   "name": "★ 静态：删掉 `onPointerUp` 的 type 分派 ⟹ 「同仓已有分流先例」必须红",
+   "why": "证明「照抄 :82-90 的形状即可」这条授权依据不是恒真",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ `onPointerUp` 已按 `type === \"number\"` 分派 ⟹ 同仓已有分流先例可抄"
+   ],
+   "caught": true,
+   "expectFailOn": "同仓已有分流先例可抄"
+  },
+  {
+   "name": "★ 静态：让 `isEditable` 去看 `type` ⟹ 「判据不看 type」必须红",
+   "why": "★ 漏判方向 = 「两族同分支」这个前提被推翻 ⟹ D1d 的机制解释要重算",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ `isEditable` 判据**不看 `type`** ⟹ 两族走同一条分支（这既是 D1d 两族同形的机制，也是「守卫不能整体去掉」的根）",
+    "产物：audit 的守卫行号 = 静态重算",
+    "产物：audit 的 Cmd+Z 行号 = 静态重算"
+   ],
+   "caught": true,
+   "expectFailOn": "判据**不看 `type`**"
+  },
+  {
+   "name": "★ 静态：把 FOV 那个元素改成 `type=\"number\"` ⟹ 「777 是 n=1 的 range 样本」必须红",
+   "why": "证明「777 措辞过度概括」这条追溯不是恒真",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ 777 的 `fovInput` 臂那个元素仍是 `type=\"range\"` ⟹ 777 的 D1d 是 n=1 的 range 样本"
+   ],
+   "caught": true,
+   "expectFailOn": "n=1 的 range 样本"
+  }
+ ],
+ "negativeCaught": 12,
+ "negativeTotal": 12,
+ "negativeKwBroken": [
+  "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
+ ],
+ "negativeInert": [
+  "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
+ ],
+ "rawError": null,
+ "ok": true
+}
