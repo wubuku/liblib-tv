@@ -75,6 +75,7 @@ import time
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from baseline import announce_fallback  # noqa: E402
 from selftestnames import FIXTURE_RE  # noqa: E402
+import buildrecord  # noqa: E402
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPTS = os.path.join(ROOT, "scripts")
@@ -1171,6 +1172,100 @@ def main():
                 "　→ **同一个量被抄了两遍，其中一遍多半已经过期**。"
                 "以实测为准改 `SLOW`；**若实测那份也过期（就是开头那个案例），"
                 "重测一次再改两边**——**这一条抓不到「两遍一起错」**")
+
+    # ④g（**Batch 280 新增**）：**「构建要多久」这个量的机制必须接得上。**
+    #
+    # **为什么需要它**：本批实测 `build-site.sh` 的墙钟是 **251 秒（4 分 11 秒）**，
+    # **而 `selftest-zero-input.py` 的模块 docstring 从 Batch 192 起写着「只要 25 秒」**
+    # ——**低了 10 倍**。**那个数被抄进全树 8 处**，
+    # **其中一处是 Batch 279 建闸 41 时的「5.4 秒 vs 25 秒」比较**
+    # ——**也就是说，一个过期的数字直接参与过一次真实的决策**。
+    # **这是纪律 310 的第五个实例**，而前四个实例过期的都只是**登记表**；
+    # **这一次过期的是一条被用来做决策的理由**——**比过期登记表更坏**（纪律 288）。
+    #
+    # **机制不是又一张表**：`build-site.sh` 在开头记 `BEEF_T0`、末尾算 `BEEF_SECS`，
+    # 连同 `--secs` 交给 `record-build-result.py`，由 `buildrecord.write_record`
+    # 写进 `.git/beeftv-build-record` 的 `secs=`。
+    # **于是这个量有了一个每次构建都刷新的真值，而文档要引用就该去读它**（纪律 244 / 280）。
+    #
+    # **⚠️ 本方向只问「机制接上了吗」，不问「产出的值对不对」。
+    # 而这个分工是被逼出来的，不是设计出来的**：
+    # 第一版把「记录里有正的 `secs=`」也算在本方向里，**于是上线后的第一次构建必然红**——
+    # 构建中途读到的永远是**上一次**构建写的记录，而那一次还没有 `secs=`；
+    # **而记录只在 `fail == 0` 的构建末尾才写**（`record-build-result.py` 的硬条件），
+    # **于是一个「要求记录里有 `secs=`」的构建期判据等于永远红**——**那是死锁，不是失败**。
+    # **所以分工是**：**构建期问机制**（本方向，静态、必然可判）；
+    # **提交时问产出**（`buildrecord.check()` 核最新绿记录里有正 `secs=`，
+    # **那时绿记录必然存在**，而纪律 280 本来就在管那一步）。
+    #
+    # **⚠️ 更早的一版是「扫散文里的秒数」，本批把它否决了，理由必须写在这里**：
+    # 它扫 `build-site.sh` 与 `scripts/*.py` 里形如「构建/build-site.sh … N 秒」的行，
+    # 拿 N 与 `secs=` 比。**收紧一次之后仍有两个真问题**：
+    #   ① **`(\d+)` 把小数读成整数**——「实测 5.4 秒」被读成「4 秒」；
+    #   ② **同一行里的数字未必是同一个量**——「本方向让这件事进构建：**97 秒的东西里**
+    #      只有 0.6 秒那一段与有没有在验有关**」里的 97 说的是 `selftest-meta.sh`。
+    # **这不是把阈值调一下能解决的**：
+    # **「一句话里的数字属于哪个量」在散文里机械不可判定**，
+    # **而一个只会吵的判据会把「照它改」变成机械动作**（纪律 143：
+    # **会误报的守卫比没有守卫更坏**）。**所以只问机制，不问散文。**
+    #
+    # **它明确不管什么**：**它不核「文档里写的构建秒数对不对」。**
+    # **本批把那几处据实订正了，那是一次人工修正——判据不代替它。**
+    _g_src = {}
+    for _rel in ("build-site.sh", os.path.join("scripts", "record-build-result.py"),
+                 os.path.join("scripts", "buildrecord.py")):
+        try:
+            with open(os.path.join(ROOT, _rel), encoding="utf-8") as _fh:
+                _g_src[_rel] = _fh.read()
+        except OSError:
+            _g_src[_rel] = None
+    _bs_flat = re.sub(r"\\\n[ \t]*", " ", _g_src["build-site.sh"] or "")
+    #: **七个事实 = 链条上的七个接点**，少一个环就断。**分组按「谁接谁」，
+    #: **而报告时只报断掉的那一环的名字**——**「哪一环断了」比「有几个断了」有用**。
+    _G_FACTS = [
+        ("`build-site.sh` 记构建起点", "build-site.sh", r"BEEF_T0=\$\(date \+%s\)"),
+        ("`build-site.sh` 算构建墙钟", "build-site.sh", r"BEEF_SECS=\$\(\("),
+        ("`build-site.sh` 把墙钟传给记录脚本", "build-site.sh",
+         r"record-build-result\.py[^\n]*--secs"),
+        ("`record-build-result.py` 接受 `--secs`", os.path.join("scripts", "record-build-result.py"),
+         r"add_argument\(\"--secs\""),
+        ("`record-build-result.py` 把 `a.secs` 交给 `write_record`",
+         os.path.join("scripts", "record-build-result.py"), r"write_record\([^)]*a\.secs"),
+        ("`buildrecord.write_record` 收下 `secs`", os.path.join("scripts", "buildrecord.py"),
+         r"def write_record\([^)]*secs"),
+        ("`buildrecord` 把 `secs=` 写进记录体", os.path.join("scripts", "buildrecord.py"),
+         r"secs=%s"),
+    ]
+    _unreadable = [r for r, t in _g_src.items() if t is None]
+    if _unreadable:
+        problems.append(
+            "方向四g：读不到 %s"
+            "　→ **墙钟这条链的某一环根本没有文件可读**，"
+            "于是机制无从核对（**与「机制没接上」是两回事**：前者要补文件，后者要补代码）"
+            % "、".join("`%s`" % r for r in _unreadable))
+    _broken = [name for name, rel, pat in _G_FACTS
+               if _g_src.get(rel) is not None
+               and not re.search(pat, _bs_flat if rel == "build-site.sh" else _g_src[rel])]
+    if _broken:
+        problems.append(
+            "方向四g：构建墙钟这条链上断了 %s"
+            "　→ **「构建要多久」于是没有任何真值来源**，全树的秒数就都是手抄的，"
+            "**而本项目那份手抄低了 10 倍**（Batch 192 写「25 秒」，Batch 280 实测 **251 秒**）。"
+            "**修法是让 `build-site.sh` 自己把它测出来传下去，而不是去改某个抄本**"
+            % "、".join("**%s**" % b for b in _broken))
+    if not _unreadable and not _broken:
+        _seen = "-"
+        try:
+            with open(buildrecord.record_path(), encoding="utf-8") as _fh:
+                _m = re.search(r"^secs=(\d+)\s*$", _fh.read(), re.M)
+            if _m:
+                _seen = "**%s 秒**" % _m.group(1)
+        except OSError:
+            pass
+        print("方向四g：构建墙钟的机制接上了（`build-site.sh` 记起点/算墙钟/传给记录脚本 "
+              "→ `record-build-result.py` 收下并透传 → `buildrecord.write_record` 收下并写出 "
+              "`secs=`）；上一次绿构建记录里的 `secs=` 是 %s" % _seen)
+
 
     # ④f（**Batch 278 新增**）：**SLOW 的成本必须能落到源文件里真实存在的步骤上。**
     #

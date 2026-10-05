@@ -55,6 +55,10 @@ def staged_diff(repo):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--counts", help="`ok,warn,fail` 三个数，由 build-site.sh 的计数器给")
+    #: **Batch 280 新增**：`--secs` 是这次构建的墙钟（秒），
+    #: **由 `build-site.sh` 用 `date +%s` 实测**——
+    #: **本项目那份手抄的「25 秒」已经低了 10 倍**（纪律 244）。
+    ap.add_argument("--secs", default=None, help="本次构建墙钟（秒）")
     ap.add_argument("--check", action="store_true", help="只检查，不写记录")
     a = ap.parse_args()
     repo = buildrecord.repo_root()
@@ -96,7 +100,7 @@ def main():
         print("[未能核对] 传进来 ok=0——**这几乎只能是调用方坏了，"
               "不是「这次构建没输出」**；**拒绝写记录**（写下去的是一个自洽的假数）")
         return 2
-    p = buildrecord.write_record(batch, n_ok, n_warn, n_fail, a.counts)
+    p = buildrecord.write_record(batch, n_ok, n_warn, n_fail, a.counts, a.secs)
     print("全绿构建已记录：Batch %d，%d ok / %d warn / %d FAIL → %s"
           % (batch, n_ok, n_warn, n_fail, p))
     return 0

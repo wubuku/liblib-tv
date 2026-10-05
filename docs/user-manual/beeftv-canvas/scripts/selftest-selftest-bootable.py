@@ -1066,6 +1066,113 @@ def m_cost_split_clean_not_reported():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 38–40 构建墙钟的机制链（**Batch 280，方向四g**）────────────────────
+#
+# **三条用例的注入锚点是本批才出现的，所以它们刻意不 `assert` 锚点**——
+# **而这不是偷懒，理由是鉴别力验证实测出来的**：
+# 锚点在改前闸那棵树上**根本不存在**，而 `assert` 落空会让用例记成**「作废」**
+# （Batch 277/278 各踩过一次）。**作废的含义是「前提不成立、这条什么都没验」**，
+# 于是在对照组里它看起来像一条正常的红，**而实际上它连自己测的是什么都没说**。
+# **所以改成钉判据的输出**：`传给记录脚本` / ``交给 `write_record``` 这两个词
+# **只在对应那一环真的断了时才会出现在报告里**——
+# **于是「注入静默没生效」会让用例变红，而不是让它假绿**（纪律 107）。
+# **而改前闸没有方向四g，输出里根本没有这两个词，于是三条在对照组里是红而不是作废**，
+# **这正是新方向应有的鉴别力形态**。
+def m_build_secs_flag_removed():
+    """能抓①：`build-site.sh` 不把墙钟传给记录脚本 → 必报。
+
+    **注入形态刻意选 `--secs` → `--secz` 而不是整行删掉**：
+    删行会让 shell 的续行结构变样，而**判据读的是 `re.sub` 压平之后的文本**，
+    **形状一变它就可能因为「续行没了」而报另一个错**——
+    **那样这条用例验的就不是「传参」而是「续行」了**。
+    改一个字母则保留全部结构，只让那个接点真的断掉。
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "build-site.sh")
+        t = read(p)
+        new = t.replace('--secs "${BEEF_SECS}"', '--secz "${BEEF_SECS}"', 1)
+        applied = new != t
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("38 墙钟没传给记录脚本→必报",
+               rc == 1 and "方向四g" in out and "传给记录脚本" in out,
+               "rc=%d 注入%s生效" % (rc, "" if applied else "**没**"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_build_secs_not_forwarded():
+    """能抓②：记录脚本收了 `--secs` 却没交给 `write_record` → 必报。
+
+    **这一环最容易被漏**：参数声明在、值也拿到了，
+    **而少写一个实参时 argparse 与 Python 都不报错**——
+    **`write_record` 的 `secs` 默认 `None`，于是它照常写下一个空的 `secs=`**
+    （Batch 280 给 `write_record` 的注释里就写着这个形态）。
+    **而一个空值读起来像真值**——**这就是这一环必须单独有判据的原因**。
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "record-build-result.py")
+        t = read(p)
+        new = t.replace(
+            "buildrecord.write_record(batch, n_ok, n_warn, n_fail, a.counts, a.secs)",
+            "buildrecord.write_record(batch, n_ok, n_warn, n_fail, a.counts)", 1)
+        applied = new != t
+        write(p, new)
+        rc, out = run_in(tmp)
+        record("39 记录脚本没把 `a.secs` 交给 `write_record`→必报",
+               rc == 1 and "方向四g" in out and "交给 `write_record`" in out,
+               "rc=%d 注入%s生效" % (rc, "" if applied else "**没**"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_build_secs_mechanism_clean():
+    """**不误伤**：七个接点全在时，方向四g 一条都不许报。
+
+    **和 Batch 279 那条一样重要**：④g 是本批新增的方向，
+    **而一个永远会报的判据比没有判据更坏**——它会让人学会忽略它。
+
+    **⚠️ 这里刻意不 `assert`「④g 的绿行出现了」**——
+    **那行只在新闸里有，于是本例在对照组上会「作废」而不是「绿」**（Batch 278 踩过）。
+    **改成两段式**：**断言只问「没报」**（改前改后都成立），
+    **而「④g 到底跑没跑」放进 detail 里**——
+    **于是对照组上它是绿（那正是它该有的样子：不误伤），
+    而实验组那一行 detail 会明写「绿行在场」**，
+    **读的人不必再猜这一条是「验过了」还是「压根没执行」**。
+    **前提断言核的是方向五那句「慢反验 5 份已登记」——改前改后逐字相同**，
+    **它成立就说明闸至少走到了它有数据的那一段**。
+
+    **⚠️ 而「没报」这一条第一版就写错了（本批真踩）**：
+    我写的是 `rc == 0 and "方向四g" not in out`——
+    **而方向四g 在一切正常时会打印一行绿行**（含上一次绿构建记录的 `secs=`），
+    **所以那个条件永远为假，本例从第一版起就不可能通过**。
+    **这与 Batch 279 那两条红是同一个病：断言没落在判据真说的那句上**——
+    **方向四f 通过时一声不吭，方向四g 通过时会说话**，
+    **而我把两者当成了同一种形状。**
+    **改成核「报问题的那两句」在不在**（`这条链上断了` / `方向四g：读不到`），
+    **它们只在判据真的报问题时才出现**——
+    **而绿行照旧打进 detail，所以「④g 跑没跑」这件事仍然看得见。**
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        rc, out = run_in(tmp)
+        assert "慢反验 5 份已登记" in out, (
+            "前提失配：闸没走到 SLOW 那一段——**本例会因为「它没跑」而假绿**")
+        _bad = [w for w in ("这条链上断了", "方向四g：读不到") if w in out]
+        record("40 墙钟机制七环都在→一条都不许报",
+               rc == 0 and not _bad,
+               "rc=%d ④g 绿行%s在场%s"
+               % (rc, "" if "方向四g：" in out else "**不**",
+                  ("　报了 %s" % _bad) if _bad else ""))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def check_own_ledger_row():
     """本反验**自己核自己那一行**的「例数」——因为方向十七够不到它。
 
@@ -1107,7 +1214,9 @@ def main():
              m_slow_cost_single_copy, m_slow_cost_ledger_disagrees,
              m_slow_but_measured_fast, m_slow_cost_margin_allowed,
              m_cost_split_anchor_absent, m_cost_split_sum_off,
-             m_cost_split_absent, m_cost_split_clean_not_reported]
+             m_cost_split_absent, m_cost_split_clean_not_reported,
+             m_build_secs_flag_removed, m_build_secs_not_forwarded,
+             m_build_secs_mechanism_clean]
     for t in tests:
         try:
             t()

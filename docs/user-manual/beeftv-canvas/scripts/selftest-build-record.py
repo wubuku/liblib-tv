@@ -97,8 +97,14 @@ def record(name, ok, detail=""):
     results.append((name, "通过" if ok else "失败", detail))
 
 
-def rec(batch, ok=82, warn=0, fail=0, at="2026-10-04 01:10:20"):
-    return "batch=%d\nok=%d\nwarn=%d\nfail=%d\nat=%s\n" % (batch, ok, warn, fail, at)
+def rec(batch, ok=82, warn=0, fail=0, at="2026-10-04 01:10:20", secs=251):
+    #: **`secs` 是 Batch 280 加的**：绿记录里必须带构建墙钟。
+    #: **默认值 251 取自本批实测**（`/tmp/b280work/build280.wall`：`rc=0 墙钟=251 秒`）
+    #: ——**不取整百**，而 `240` 会让人以为这是「估的预算」。
+    #: **本助手给所有旧用例都补上了它**：不补的话，那几条「不得报」的用例
+    #: 会集体变红，**而它们变红的理由与它们要验的性质毫无关系**。
+    return "batch=%d\nok=%d\nwarn=%d\nfail=%d\nsecs=%d\nat=%s\n" % (
+        batch, ok, warn, fail, secs, at)
 
 
 DIFF_NEW = """diff --git a/docs/user-manual/beeftv-canvas/PROGRESS.md b/PROGRESS.md
@@ -170,6 +176,42 @@ def m_backfill_older_not_reported():
     use_record(rec(255))
     probs = buildrecord.check(DIFF_OLD)
     record("6 回填 250（小于 255）→ 不得报", not probs, "报了 %d 条" % len(probs))
+
+
+# ── 15 绿记录里没有构建墙钟 → 必报（Batch 280）───────────────────────
+def m_record_without_secs_reported():
+    """能抓①：记录里**根本没有 `secs=` 这个键** → 必报。
+
+    **这一条为什么重要**：它是本批那个病的**回归**——
+    全树 8 处都写着「构建只要 25 秒」而实测 251 秒，
+    **而那份手抄之所以能活这么久，是因为没有任何一处要求构建把它自己测出来**。
+
+    **注入形态刻意选「键不存在」而不是「值是 0」**：
+    `write_record(secs=None)` 写出的是 `secs=`，**读回来是空串**——
+    那正是 16 号用例的形态。**两例并存才覆盖得住**，
+    **而只写其中一例的人会以为自己覆盖了两种**（纪律 288 的同款：形似而质不同）。
+    """
+    use_record("batch=255\nok=82\nwarn=0\nfail=0\nat=2026-10-04 01:10:20\n")
+    probs = buildrecord.check(DIFF_NEW)
+    ok = len(probs) == 1 and "没有正的 `secs=`" in probs[0] and "再跑一次" in probs[0]
+    record("15 绿记录里没有 `secs=` → 必报", ok, probs[0][:70] if probs else "无问题")
+
+
+# ── 16 `secs=` 是空的 → 必报（Batch 280 的第二种形态）────────────────
+def m_record_empty_secs_reported():
+    """能抓②：`secs=` **在、但是空的** → 一样必报。
+
+    **为什么空值也必须报**：那是 `write_record(secs=None)` 亲手写出来的形态，
+    **而空值与「键不存在」在 `rec.get("secs") or 0` 眼里是同一件事**——
+    **换句话说，这一例验的不是「键在不在」，而是判据不会把空值当成读过**。
+
+    **如果只判「键在不在」，空值会被读成「测过了」**——
+    **而那正是本项目本批之前的形态**：一个读起来像真值的空字段。
+    """
+    use_record("batch=255\nok=82\nwarn=0\nfail=0\nsecs=\nat=2026-10-04 01:10:20\n")
+    probs = buildrecord.check(DIFF_NEW)
+    ok = len(probs) == 1 and "没有正的 `secs=`" in probs[0]
+    record("16 `secs=` 存在却是空值 → 必报", ok, probs[0][:70] if probs else "无问题")
 
 
 # ── 7 added_batch_numbers 的形态 ───────────────────────────────────
@@ -396,6 +438,7 @@ def main():
     tests = [m_new_batch_without_green_build, m_equal_batch_not_reported,
              m_no_record_reported, m_no_batch_row_not_reported,
              m_broken_record_reported, m_backfill_older_not_reported,
+             m_record_without_secs_reported, m_record_empty_secs_reported,
              m_added_numbers_shapes, m_newest_batch_numeric,
              m_counters_match_emitted_lines, m_zero_ok_refuses,
              m_fail_still_exits_nonzero,

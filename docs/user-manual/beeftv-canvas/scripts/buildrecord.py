@@ -90,7 +90,7 @@ def read_record():
         return None
 
 
-def write_record(batch, ok, warn, fail, source):
+def write_record(batch, ok, warn, fail, source, secs=None):
     """**只有 `fail == 0` 的构建才该调用它**——而 `build-site.sh` 能走到末尾就意味着这一点。
 
     **`source` 这个键名是订正过的**：第一版沿用 `log=`，而传进来的其实是
@@ -99,6 +99,14 @@ def write_record(batch, ok, warn, fail, source):
     **（而构建日志在 `/tmp` 下、早就没了）**。
     **判据的键必须与它声称在问的那件事是同一个键**（纪律 172）：
     **一个名字对不上的键，比没有这个键更费时间。**
+
+    **`secs` 是 Batch 280 加的**（墙钟，单位秒）。**它必须由脚本自己写**：
+    「构建要多久」这个量在本项目里被手抄进 8 处，**而从 Batch 192 起那份抄本就写着
+    25 秒——**实测 251 秒，低了 10 倍**（纪律 310 的第五个实例，
+    而这一次过期的是一条**被用来做决策的理由**：Batch 279 建闸 41 时
+    「5.4 秒 vs 25 秒」那个比较就出自它）。
+    **传 `None` 会写下一个空的 `secs=`**——**那是有意的**：
+    **空值让方向四g 报「没有真值」，而缺字段只会被读成「没写这项」**。
     """
     body = (
         "# 由 build-site.sh 在**走到脚本末尾时**写下；能被走到本身就是 rc=0 的证明。\n"
@@ -106,8 +114,9 @@ def write_record(batch, ok, warn, fail, source):
         "# **计数由 build-site.sh 末尾的 awk 从一个 mktemp 文件读出**——\n"
         "# **不是从日志正则解析的**（那条路试过，与真格式失配会数成 0）。\n"
         "batch=%d\nok=%d\nwarn=%d\nfail=%d\n"
-        "source=%s\nat=%s\n" % (int(batch), int(ok), int(warn), int(fail),
-                                 source, time.strftime("%Y-%m-%d %H:%M:%S"))
+        "source=%s\nsecs=%s\nat=%s\n" % (int(batch), int(ok), int(warn), int(fail),
+                                 source, secs,
+                                 time.strftime("%Y-%m-%d %H:%M:%S"))
     )
     p = record_path()
     with io.open(p, "w", encoding="utf-8") as f:
@@ -167,7 +176,12 @@ def added_batch_numbers(diff_text):
 
 
 def check(diff_text):
-    """返回问题清单（空列表 = 放行）。**三段退出码的语义在这里是「有 / 无 / 未能核对」。**"""
+    """返回问题清单（空列表 = 放行）。**三段退出码的语义在这里是「有 / 无 / 未能核对」。**
+
+    **Batch 280 加了第四个条件**：**新增批次行时，最新绿记录里必须有正的 `secs=`**
+    （构建墙钟）。**为什么是这里而不是某道闸，见下面那段注释**——
+    **一句话版本：构建中途读到的永远是上一次的记录，所以那道题只能在这里问。**
+    """
     added = added_batch_numbers(diff_text)
     if not added:
         return []                       # **没新增批次行 = 这一笔提交与构建无关**
@@ -187,4 +201,28 @@ def check(diff_text):
                 "——**新增批次却没有为它跑过一次绿构建**（纪律 280）"
                 % (sorted(added), rb, rec.get("ok", "?"), rec.get("warn", "?"),
                    rec.get("fail", "?"), rec.get("at", "?"))]
+    # ── Batch 280：核「这一次绿构建有没有测出构建墙钟」──────────────────
+    #
+    # **为什么放在这里，而不放进构建里的某道闸**：构建中途读到的永远是
+    # **上一次**构建写的记录，而记录只在 `fail == 0` 时才写——
+    # **于是一个构建期判据若要求「记录里有 `secs=`」，上线后的第一次构建必然红，
+    # 而那次红又保证记录不会被更新，于是永远红**。**那是死锁，不是失败。**
+    # **这里不一样**：走到本行就意味着**本次提交新增了批次行**，
+    # **而纪律 280 本来就要求为它跑过一次绿构建**——**所以绿记录此刻必然存在**。
+    #
+    # **为什么要核它**：本批实测构建墙钟 251 秒，**而全树 8 处手抄都写着「25 秒」**
+    # （低了 10 倍，纪律 310 的第五个实例）。
+    # **机制是 Batch 280 加的**：每次构建自己把墙钟写进记录。
+    # **而机制也会坏**——所以要有一条判据问「它真的写出来了吗」。
+    try:
+        secs = int(rec.get("secs") or 0)
+    except (TypeError, ValueError):
+        secs = 0
+    if secs <= 0:
+        return ["上一次全绿构建的记录里**没有正的 `secs=`**（读到 %r）"
+                "——**「构建要多久」这个量于是没有真值**，"
+                "全树那些秒数就都只是手抄（**本项目那份手抄低了 10 倍**："
+                "Batch 192 写「25 秒」，Batch 280 实测 **251 秒**）。"
+                "**修法是再跑一次 `build-site.sh`**，而不是去改某个抄本"
+                % rec.get("secs")]
     return []
