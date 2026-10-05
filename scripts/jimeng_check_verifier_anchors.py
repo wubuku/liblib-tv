@@ -272,6 +272,9 @@ PROBE_VARS = {
     "_p1003": "scripts/jimeng_probe1003_anchor_teeth.py",
     "_p1004": "scripts/jimeng_probe1004_anchor_coupling.py",
     "_p1005": "scripts/jimeng_probe1005_zero_coupling_census.py",
+    # ⭐⭐⭐⭐⭐ 1006：门加了 `argv[3]` 探针源覆盖之后、`_p1006` 才有意义
+    #   ⇒ 而它必须在**加读取行的同一步**被登记 —— 漏登记 = 假绿（900–905 同一个坑）
+    "_p1006": "scripts/jimeng_probe1006_duplicate_anchors.py",
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。
@@ -525,14 +528,25 @@ def main() -> int:
     #   **⇒ 因为「判据的牙」这件事的实验是「改目标、不改判据」—— 与 1002 正好相反** ⇒ ⇒
     #   **⇒ 而如果目标不可覆盖、那就又变成改真文件了 ⇒ ⇒
     #   **⇒ 两批的实验方向相反、可覆盖的能力却是同一个**
+    # ⭐⭐⭐⭐⭐ 1006：**探针源也必须可覆盖**（`argv[3]` = 一个 JSON：`{变量名: 路径}`）⇒ ⇒
+    #   **⇒ 因为 467 条锚点指向探针文件、而它们此前**一个都测不到** ⇒ ⇒
+    #   **⇒ 1003 当时的选择是「放弃这一类」、并把被排除的条数报了出来** ⇒ ⇒
+    #   **⇒ 那个取舍是对的、而本批把它补上 ⇒ ⇒
+    #   **⇒ 三批下来 `argv[1]` 判据侧 / `argv[2]` audit 侧 / `argv[3]` 探针侧 —— **
+    #   **⇒ 而它们是**同一个通用约束**的三个面：「仪器只能读固定路径 ⇒ 实验必然有副作用」**
+    import json as _json
+    _pover = {}
+    if len(sys.argv) > 3:
+        _pover = _json.loads(Path(sys.argv[3]).read_text(encoding="utf-8"))
     _vpath = Path(sys.argv[1]) if len(sys.argv) > 1 else VERIFIER
     _apath = Path(sys.argv[2]) if len(sys.argv) > 2 else AUDIT
     if not _apath.exists() or not _vpath.exists():
         print("找不到 audit / verifier 源码", file=sys.stderr)
         return 1
     ausrc = _apath.read_text(encoding="utf-8")
-    probes = {k: (ROOT / v).read_text(encoding="utf-8")
-              if (ROOT / v).exists() else ""
+    probes = {k: (Path(_pover[k]) if k in _pover
+                  else ROOT / v).read_text(encoding="utf-8")
+              if (Path(_pover[k]) if k in _pover else ROOT / v).exists() else ""
               for k, v in PROBE_VARS.items()}
 
     _vtree = ast.parse(_vpath.read_text(encoding="utf-8"))
