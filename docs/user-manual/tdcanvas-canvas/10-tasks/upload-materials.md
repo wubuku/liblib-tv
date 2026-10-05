@@ -74,7 +74,7 @@
 - 素材文件保存在本机（IndexedDB），节点记录稳定引用；刷新页面后素材仍在。
 - 每个素材节点自带播放/预览：图片直接显示；视频/音频用原生播放器。
 
-> **2026-10-03 M179 复核：「在节点内播放」这句里的「内」是真的内。** 上传一个 2 秒的 wav 造出音频节点后实测：页面里 `<audio>` 共 **1 个**，它的 `closest('[data-node-id]')` 就是那个音频节点本身，**不是浮层、不是 portal**；控件 `<audio controls>` 在节点框（540×160）内部的 504×54 一处，`readyState=4`、`duration=2`、`paused=true`——素材已解码完成，直接按播放键就能放。源码也对得上：`web/src/components/canvas/canvas-node.tsx:839` 的 `<audio … controls className="w-full">` 就写在节点组件内部（视频在同文件 `:793`）。音频节点 540×160 的窄条尺寸也复测无误。
+> **2026-10-03 M179 复核：「在节点内播放」这句里的「内」是真的内。** 上传一个 2 秒的 wav 造出音频节点后实测：页面里 `<audio>` 共 **1 个**，它的 `closest('[data-node-id]')` 就是那个音频节点本身，**不是浮层、不是 portal**；控件 `<audio controls>` 在节点框（540×160）内部的 504×54 一处，★ **这两个数都是画布坐标**（100% 缩放下的读数，**随缩放等比变**，归类见 [30-concepts.md](../30-concepts.md)），`readyState=4`、`duration=2`、`paused=true`——素材已解码完成，直接按播放键就能放。源码也对得上：`web/src/components/canvas/canvas-node.tsx:839` 的 `<audio … controls className="w-full">` 就写在节点组件内部（视频在同文件 `:793`）。音频节点 540×160 的窄条尺寸也复测无误。
 
 ![上传真实图片素材](../screenshots/05-upload-materials-image.png)
 
