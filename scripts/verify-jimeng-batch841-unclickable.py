@@ -5807,6 +5807,9 @@ def main() -> int:
     #   （缺失率归零 / 间隙在回绕点 / 间隙仍是间隙）
     p986 = ROOT / "scripts/jimeng_probe986_gaprate_lab.py"
     _p986 = p986.read_text(encoding="utf-8") if p986.exists() else ""
+    #   ⚠️ 判据组 `UUUUU.2` 要钉的是**那条被数据否掉的预测**（P1）
+    p987 = ROOT / "scripts/jimeng_probe987_wrapcause_ck.py"
+    _p987 = p987.read_text(encoding="utf-8") if p987.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -10704,6 +10707,157 @@ def main() -> int:
           and "**实验室的比率不等于源站的比率**" in _ausrc
           and "**本批零计费**" in _ausrc
           and "源站那一臂因未登录而没测到，不是「测了没事」" in _ausrc)
+    # ══ UUUUU. 批 987 复刻侧：⭐⭐⭐⭐⭐ **量「`rf__wrapper` 对齐」的影响面另一端** ——
+    #    答案：Tab 环按 `dom_rank`（= DOM 序）走、`rf__wrapper` 排前只因
+    #    `dom_rank`(42)<logo(110)，**成因是 JSX 兄弟顺序**；而 ⭐⭐⭐⭐
+    #    **本批自己的 P1 预测被数据否掉了**（否掉它的正是 986 的发现） ══
+    print("— UUUUU. 批 987 复刻侧：`rf__wrapper` 排在 `canvas-project-logo` 之前，"
+          "**既不是对齐决策、也不是引擎行为**，而是「画布根 `dom_rank`(42) < "
+          "logo(110)」这一个事实的推论（成因 = 源码 JSX 兄弟顺序，"
+          "`<JimengFlow/>` 756 行早于 `<JimengTopBar/>` 757 行）；"
+          "⭐⭐⭐⭐ **而本批的 P1「去掉 `BODY` 后严格递增」被数据否掉了** —��� "
+          "**下降点是「间隙之后的兜底」那一格**（`rf__wrapper` 的前驱是间隙） —")
+
+    check("UUUUU.1 ⭐⭐⭐⭐⭐ **本批要回答的是「为什么」、而 983 只答了「谁在前」** —— "
+          "983 量到 `dom_rank` 级相对次序两侧不同（源站 logo 68 < wrap 177；"
+          "复刻 wrap 42 < logo 110）⇒ ⇒ ⭐⭐⭐⭐⭐ "
+          "**只看 `dom_rank` 只能说「谁在前」、说不出「按什么规则在前」** ⇒ "
+          "⇒ ⭐⭐⭐⭐ **972/973 立的「先量影响面、不先改代码」的规矩，本批把影响面量完了**"
+          "⇒ 而「改不改」是产品决策、**仍不擅自提**",
+          '"question_987"' in _ausrc
+          and '"conclusion_987"' in _ausrc
+          and "既不是对齐决策、" in _ausrc
+          and "**972/973 立的「先量影响面、不先改代码」的规矩，" in _ausrc
+          and "本批把「影响面」量完了、而「改不改」是产品决策、仍不擅自提**" in _ausrc
+          and "（983/986 留下一句「还没量 ⇒ 先量，不先改」）" in _ausrc
+          and '"_p987": "scripts/jimeng_probe987_wrapcause_ck.py",' in _anchs)
+
+    check("UUUUU.2 ⭐⭐⭐⭐⭐ **P1 被数据否掉了、而否掉它的正是 986 的发现** —— "
+          "我预测「去掉 `BODY` 后整圈 `dom_rank` 严格递增」，"
+          "实测**去 `BODY` 后仍有 1 次下降** ⇒ ⇒ **环不是纯按 `dom_rank` 递增** ⇒ "
+          "下降点 = 环格 24(268) → 环格 26 `rf__wrapper`(42)，"
+          "**而环格 25 正是 `BODY`（间隙）** ⇒ ⇒ ⭐⭐⭐⭐⭐ "
+          "**`rf__wrapper` 的前驱是间隙、不是元素** ⇒ 它是"
+          "**「间隙之后的第一个元素」、填在间隙与环首之间** ⇒ "
+          "**「回绕兜底」的结构、不是「对齐决策」的产物** ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **否定结果必须钉住** —— 它最容易在下一批被悄悄忘掉",
+          '"p1_refuted_987"' in _ausrc
+          and "我预测「去掉 `BODY` 后整圈 `dom_rank` 严格递增」，" in _ausrc
+          and "实测**去 `BODY` 后仍有 1 次下降**" in _ausrc
+          and "⇒ ⭐⭐⭐⭐⭐ **`rf__wrapper` 的前驱是间隙、不是元素** ⇒ " in _ausrc
+          and "**`rf__wrapper` 的前驱是间隙、不是元素**" in _ausrc
+          and "「间隙之后的第一个元素」、填在间隙与环首之间**" in _ausrc
+          and "「回绕兜底」的结构、不是「对齐决策」的产物**" in _ausrc
+          and "**这是「回绕兜底」的结构、不是「对齐决策」的产物**" in _p987
+          and "**P1（环按 `dom_rank` 递增）**" in _p987
+          and "**这一条被数据否掉了**" in _ausrc)
+
+    check("UUUUU.3 ⭐⭐⭐⭐⭐ **P2 被精确修正** —— 「环内序号 == `dom_rank` 排名」"
+          "在**参与排序的 25 格里只对 24 格成立、1 格例外**"
+          "（`rf__wrapper`：ring_pos=26 而 rank=25）⇒ ⇒ "
+          "**正确形式是「除回绕兜底那一格外、两者一致」** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **`rf__wrapper` 落在末尾不是因为它 `dom_rank` 大，"
+          "而是因为它是间隙之后的兜底** ⇒ ⇒ ⭐⭐⭐⭐ "
+          "**983 记下的「唯一下降由 `BODY` 制造」是对的、但 983 没看出它的含义**"
+          "（它只知道下降点在第 25 格、且 `wrap_shape_ok=True`，**没往下问「那说明什么」）**",
+          '"p2_refined_987"' in _ausrc
+          and "在**参与排序的 25 格里只对 24 格成立**、**1 格例外**" in _ausrc
+          and "绕兜底那一格外、两者一致」** ⇒ " in _ausrc
+          and "**983 记下的「唯一下降由 `BODY` 制造」是对的，" in _ausrc
+          and "，**没往下问「那说明什么」）" in _ausrc
+          and "**983 早就记到的事实、可能藏着它自己的含义**" in _ausrc
+          and '"p2_refined_987"' in _p987
+          and "**也被数据精确修正了**" in _p987)
+
+    check("UUUUU.4 ⭐⭐⭐⭐⭐ **P3 命中，而且成因钉在源码的一行** —— "
+          "源码实测 **`<JimengFlow />` 第 756 行、`<JimengTopBar />` 第 757 行** ⇒ "
+          "**成因 = JSX 兄弟顺序**（画布先渲染、顶栏后渲染）⇒ ⇒ "
+          "⭐⭐⭐⭐ **CSS `position` 与 `z-index` 都不参与** —— "
+          "**`rf__wrapper` 与 logo 的先后只由 DOM 序决定** ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **要改它就得改 JSX 顺序、不是改 `tabindex`、"
+          "也不是改对齐决策** ⇒ ⇒ ⭐⭐⭐⭐ "
+          "「运行期先渲染」是观察、「JSX 顺序」是成因 ⇒ 两者必须分开**",
+          '"p3_hit_987"' in _ausrc
+          and "**第 756 行**、`<JimengTopBar />` 在 **第 757 行**" in _ausrc
+          and "**CSS `position` 与 `z-index` 都不参与**" in _ausrc
+          and "**`rf__wrapper` 与 logo 的先后只由 DOM 序决定**" in _ausrc
+          and "要改它就得改 JSX 顺序、而不是改 `tabindex`、" in _ausrc
+          and "**「运行期先渲染」是观察、「JSX 顺序」是成因 ⇒ 两者必须分开**" in _p987
+          and "def _jsx_order():" in _p987
+          and '"jsx_line_jimengflow"' in _p987
+          and '"flow_before_topbar"' in _p987
+          and "**成因钉在源码的一行**" in _p987)
+
+    check("UUUUU.5 ⭐⭐⭐⭐⭐ **「没测到」有第三个分支：没问对对象** —— "
+          "第一版误用 `READ_JS` 当就绪探针 ⇒ **两格全 `has_flow=False`** ⇒ "
+          "而 `READ_JS` 读的是 `window.__ap_rec`（**上一次 `INSTALL_JS` 装的监听器**留下的）"
+          "⇒ 在第一次 `INSTALL_JS` 之前**必然是 `null`** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **这不是「页面没就绪」、是「我问错了对象」** ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ 这是 985 那条纪律的**第三个分支**："
+          "**「没测到」必须能说清是「没就绪」、「没登录」、还是「没问对对象」** ⇒ "
+          "改用 983 的**独立就绪探针**后 2/2 `has_flow=True`",
+          '"instrument_fault_987"' in _ausrc
+          and "**我第一版误用 `READ_JS` 当就绪探针 ⇒ 两格全 " in _ausrc
+          and "`READ_JS` 读的是 `window.__ap_rec`" in _ausrc
+          and "**这不是「页面没就绪」、是「我问错了对象」**" in _ausrc
+          and "第三个分支**" in _ausrc
+          and "」有第三个分支：没问对对象** —— " in _ausrc
+          and "def boot_ck():" in _p987
+          and "**我第一版误用了 `READ_JS` 当就绪探针" in _p987
+          and "**这不是「页面没就绪」、是「我问错了对象」**" in _p987
+          and "**第三个分支**" in _p987)
+
+    check("UUUUU.6 ⭐⭐⭐⭐ **仪器读不到 ≠ 事实不成立** —— "
+          "`logo_is_focusable=False` 是**仪器读不到**、**不是不可聚焦** ⇒ "
+          "`DOMRANK_JS` **不读 `tabIndex`**（实测 `ti_prop = None`）⇒ "
+          "⇒ ⭐⭐⭐⭐ **这正是「仪器测什么决定你能看见什么」的又一次** ⇒ "
+          "⇒ ⭐⭐ **logo 是 `<a href>`、天然可聚焦**（源码可查）⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **本批不据这条读数下「logo 不可聚焦」的结论** ⇒ "
+          "⇒ ⭐⭐⭐⭐ **一条恒假的读数也有信息量**（985 那条）",
+          '"logo_focus_instrument_gap_987"' in _ausrc
+          and "**不是不可聚焦** —— `DOMRANK" in _ausrc
+          and "`DOMRANK_JS` **不读 `tabIndex`**" in _ausrc
+          and "定你能看见什么」的又一次** ⇒ " in _ausrc
+          and "**logo 是 `<a href>`、天然可聚焦**" in _ausrc
+          and "**本批不据这条读数下「logo 不可聚焦」的结论**" in _ausrc
+          and '"logo_focus_instrument_gap_987"' in _p987
+          and "**这正是 978/985 那条「仪器测什么决定你能看见什么」的又一次**" in _p987)
+
+    check("UUUUU.7 ⭐⭐⭐⭐⭐ **期望值错了、自测就是假绿（第三次复发）** —— "
+          "P1 我按「去掉 `BODY` 就该递增」推，**漏了「回绕兜底那一格本身的前驱是间隙」** "
+          "⇒ ⇒ ⭐⭐⭐⭐⭐ **「去掉一个异常值」不等于「剩下的就单调」** —— "
+          "**回绕点的前驱是间隙这件事，是另一条独立的结构** ⇒ ⇒ "
+          "⭐⭐ **它是 983 早就记到、却一直没被读出来的** ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **而本批正是靠把它读出来，才把 P1 推翻的**",
+          '"p1_wrong_how_discipline_987"' in _ausrc
+          and "**期望值错了、自测就是假绿**（本批第三次复发）" in _ausrc
+          and "**漏了「回绕兜底那一格" in _ausrc
+          and "**「去掉一个异常值」不等于「剩下的就单调」**" in _ausrc
+          and "**回绕点的前驱是间隙这件事，是另一条独立的结构**" in _ausrc
+          and "**期望值错了、自测就是假绿**" in _p987
+          and "**「去掉 `BODY` 就该递增」推，**漏了「回绕兜底那一格" in _p987
+          and "**「去掉一个异常值」不等于「剩下的就单调」**" in _p987)
+
+    check("UUUUU.8 ⭐⭐⭐⭐⭐ **本批零计费、且读数逐格一致** —— "
+          "复刻侧 2/2：`min_period = 26`、`laps_identical = True`、"
+          "`rf__wrapper` ring_pos=26/rank=25/`dom_rank`=42、"
+          "`canvas-project-logo` ring_pos=8/rank=8/`dom_rank`=110、"
+          "`wrap_dom_rank_smaller_than_logo = True`、"
+          "`body_is_excluded_from_ranking = True`、`n_rank_unknown_total = 0` ⇒ "
+          "计费**零**：只按 `Tab`、唯一的 `mouse.click` 点在 `about:blank` 空白处、"
+          "⛔ 守卫拦在 `mouse.click` **之前**",
+          '"reading_987"' in _ausrc
+          and "复刻侧 2/2 逐格一致：" in _ausrc
+          and "`min_period = 26`、`laps_identical = True`" in _ausrc
+          and "`dom_rank`=**42**" in _ausrc
+          and "`dom_rank`=**110**" in _ausrc
+          and "**本批零计费**" in _ausrc
+          and "⛔ 计费守卫拦在 `mouse.click` **之前**" in _ausrc
+          and '"n_descents_excluding_body"' in _p987
+          and '"wrap_dom_rank_smaller_than_logo"' in _p987
+          and '"body_is_excluded_from_ranking"' in _p987
+          and '"laps_identical"' in _p987
+          and "⛔ 计费守卫拦在 `mouse.click` **之前**" in _p987)
 
 
     print(f"\n{checks - len(failures)}/{checks}")
