@@ -1516,6 +1516,35 @@ Batch DO 把页面已加载的 **152 个 JS chunk（19 MB）** 只读下载下�
 | ~~`网格吸附` 开启时新增的那第二枚叠层 `svg` 里画的是什么~~ | ✅ **已结案（Batch EW）**：不是 `<path>`，是**一条 `<line>`** —— `x1=1 y1=1 x2=13 y2=13`、`stroke-width=1.5`、`opacity=0.6`，画在 `viewBox="0 0 14 14"` 的 `14×14` 叠层上，也就是一道对角线。之前读到 `d = null` 只是因为**读法只查 `path` 元素** |
 | 「新功能：支持真人」这枚引导标记 | ⭐ **归属已定（Batch EW）**：逐像素跟着 `视频节点 3`（`v-v2hlWY4Br3`）那张卡片走（平移画布时位移与卡片完全一致 `[260,150]`，而顶栏元素是 `[0,0]`）；只在选中这一张卡片时挂载，另外 5 个节点都没有；⛔ **不是悬停气泡**（指针压 `角色库` 也不弹，同轮悬停 `参考` 正常弹 ⇒ 检测有效）。⛔ 已更正「参数面板左侧 58px」—— `58` 是它到 `导演台` 节点卡的间距。📖 **它标记的到底是什么、为什么只有这一张卡有，仍未验** |
 
+### ④ 素材广场那几个状态词与计数字段（Batch FJ 逐字读自真实生产 bundle）
+
+⛔ **来源说明**：以下全部读自**从站点抓下来的真实生产 bundle**
+（`docs/research/` 下，chunk `3xjlk8cm1g3m9.js` 等），
+⛔ **不是**仓库里那份克隆源码（`package.json` 的 `name` 叫 `liblib-tv-canvas-clones`）。
+📖 **本手册没有在界面上逐条实测**（两个广场的入口在本轮账号下读出的是空态，见
+[素材库](10-tasks/asset-library.md)）。
+
+| 词 | 逐字文案 | 读到的上下文 |
+|---|---|---|
+| `loadingMore` | ⭐ **「正在加载更多」** | 与 `allLoaded` 相邻出现，是**素材列表翻页**的提示 |
+| `allLoaded` | ⭐ **「已加载全部」** | 同上 |
+| `materialMissingVersionCannotFavorite` | ⭐ **「该素材缺少版本信息，无法收藏」** | ⭐⭐ **触发条件拿到了**：`if(!r.versionUuid) return …` ⇒ **素材没有 `versionUuid` 就点不了收藏** |
+| `canSearch` | ⛔ **整个 bundle 里搜不到这个词** | 这一条 📖 **维持未验**（不是「不存在」，是「这个命名不存在」） |
+
+⭐⭐⭐ **顺带结掉一条一直没人说得清的**：
+`heat` / `score` 这两个词**在真实 bundle 里也搜不到**。
+而 `likeCount` 搜到了，它的上下文是
+
+```js
+downloadCount: e.counter?.downloadCount,
+likeCount:     e.counter?.likeCount,
+runCount:      e.counter?.runCount,
+```
+
+⇒ ⭐ **`likeCount` 不是一个画布概念，是素材的计数字段**，
+和 `downloadCount`（下载数）、`runCount`（使用数）**平级**，来自同一个 `counter` 对象。
+📖 手册界面上显示的那个「数字」到底是这三个里的哪一个，**仍未验**。
+
 ### ⑤ 纯按界面措辞推断
 
 - [10-tasks/share-canvas.md](10-tasks/share-canvas.md) 里「点下去会发生什么」的部分，是按界面上的措辞推的，**没有实测**。

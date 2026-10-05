@@ -1,0 +1,169 @@
+{
+  "步骤": [
+    "closePromos：[{\"模态\":false,\"文字\":\"Agent 已升级为 TV Director 全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。 知道了\",\"按钮\":\"知道了\",\"框\":[732,447,280,",
+    "已加载 script 156 个",
+    "—— 命中 22 处 ——",
+    "▪ 「likeCount」命中 9 处，文件 3n8hlsqr2mryz.js, 42hg44uh2sjdy.js, 2bym-dyxfkv4h.js, 0p0odaasu_yfu.js",
+    "   —— e,description:e.description,tags:e.tagsV2?.modelContent?.map(e=>e.tagLabel)||[],authorName:t,createTime:e.createTime,updateTime:e.updateTime,downloadCount:e.counter?.downloadCount,likeCount:e.counter?.likeCount,runCount:e.counter?.runCount,isVideoModel:e.isVideoModel,versionDesc:a?.versionDesc};await w.storeModel(o)}catch(e){}},",
+    "   —— iption,tags:e.tagsV2?.modelContent?.map(e=>e.tagLabel)||[],authorName:t,createTime:e.createTime,updateTime:e.updateTime,downloadCount:e.counter?.downloadCount,likeCount:e.counter?.likeCount,runCount:e.counter?.runCount,isVideoModel:e.isVideoModel,versionDesc:a?.versionDesc};await w.storeModel(o)}catch(e){}},C=async(e,t)=>{try{aw",
+    "▪ 「loadingMore」命中 3 处，文件 3xjlk8cm1g3m9.js, 3-mou5v69wxmq.js",
+    "   —— 版本信息，无法收藏\",\"srefCopied\":\"已复制 sref：{code}\",\"copySrefTitle\":\"复制 sref：{code}\",\"searchLensPlaceholder\":\"搜索特效名称、作者\",\"searchStylePlaceholder\":\"搜索风格名称、作者\",\"commercialOnlyFilter\":\"仅看可商用\",\"loadingMore\":\"正在加载更多\",\"allLoaded\":\"已加载全部\",\"currentlyInUse\":\"当前使用\",\"commercialUsable\":\"商用\",\"allAdaptedModels\":\"全部适配模型\",\"styleDetail\":\"风格详情\",\"lensDetail",
+    "   —— opied\":\"链接已复制\",\"listSeparatorAnd\":\"和\",\"listUpdateFailed\":\"更新列表失败，请重试\",\"loadFailed\":\"加载失败\",\"loadFailedClickRetry\":\"加载失败，点击重试\",\"loadFailedPleaseRetry\":\"加载失败，请重试\",\"loading\":\"加载中...\",\"loadingMore\":\"加载中…\",\"loadingShare\":\"加载分享…\",\"localUpload\":\"本地上传\",\"login\":\"登录\",\"loginGuideAction\":\"立即登录领取\",\"loginGuideBenefitGeneration\":\"生图/视频无压力（约生图**",
+    "▪ 「allLoaded」命中 1 处，文件 3xjlk8cm1g3m9.js",
+    "   —— :\"已复制 sref：{code}\",\"copySrefTitle\":\"复制 sref：{code}\",\"searchLensPlaceholder\":\"搜索特效名称、作者\",\"searchStylePlaceholder\":\"搜索风格名称、作者\",\"commercialOnlyFilter\":\"仅看可商用\",\"loadingMore\":\"正在加载更多\",\"allLoaded\":\"已加载全部\",\"currentlyInUse\":\"当前使用\",\"commercialUsable\":\"商用\",\"allAdaptedModels\":\"全部适配模型\",\"styleDetail\":\"风格详情\",\"lensDetail\":\"特效详情\",\"generatedCont",
+    "▪ 「materialMissingVersionCannotFavorite」命中 2 处，文件 3xjlk8cm1g3m9.js, 3-mou5v69wxmq.js",
+    "   —— 画布将新建一个图片节点并自动替换当前图源\",\"materialTabStylePlaza\":\"风格广场\",\"materialTabLensPlaza\":\"特效广场\",\"materialTabFavorite\":\"我的收藏\",\"materialTabRecent\":\"最近使用\",\"applyFailedWithReason\":\"应用失败：{reason}\",\"materialMissingVersionCannotFavorite\":\"该素材缺少版本信息，无法收藏\",\"srefCopied\":\"已复制 sref：{code}\",\"copySrefTitle\":\"复制 sref：{code}\",\"searchLensPlaceholder\":\"搜索特效名称",
+    "   —— useCallback)((e,t)=>{dK.getState().toggleFavoriteLocal(e,t),r?.(e,t)},[r]);return{toggleFavorite:(0,y.useCallback)(async r=>{if(!r.versionUuid)return void T.Notify.error(a(\"canvas:materialMissingVersionCannotFavorite\"));if(dK.getState().acquireFavoriteMutation(r.uuid))try{var i;let s,l=dK.getState().favoriteStateByUuid.get(r.uui",
+    "▪ 「会话已过期」命中 2 处，文件 3xjlk8cm1g3m9.js",
+    "   —— 频\",\"createSubjectVideoDurationMax\":\"请上传时长不超过 {max} 秒的视频\",\"createSubjectAudioUploadFailedRetry\":\"音频上传失败，请重试\",\"createSubjectScShownInHistory\":\"任务完成后将展示在历史记录。\",\"sessionExpiredTitle\":\"会话已过期\",\"emptyViewportHint\":\"当前视窗没有节点\",\"focusedToNodeHint\":\"已聚焦到所选节点\",\"backToNode\":\"返回节点\",\"createSubjectHistoryGallery\":\"历史图库\",\"createSubjectVoiceCreat",
+    "   —— kPendingDenied\":\"您的修改已被撤回（节点正在被他人编辑）\",\"notifyConnectRuleViolation\":\"不符合连线规则\",\"notifyNodesAlreadyConnected\":\"两节点已连接\",\"notifyNodesConnected\":\"已连接2个节点\",\"collabSessionExpiredTitle\":\"协作会话已过期\",\"collabSessionExpiredDescription\":\"此协作画布已在其他标签页打开\",\"tryLabel\":\"尝试：\",\"closeEsc\":\"关闭 (ESC)\",\"pipelineStatusPending\":\"等待中\",\"pipelineStatusRunning\"",
+    "▪ 「请刷新页面以继续编辑」命中 2 处，文件 3xjlk8cm1g3m9.js",
+    "   —— yViewportHint\":\"当前视窗没有节点\",\"focusedToNodeHint\":\"已聚焦到所选节点\",\"backToNode\":\"返回节点\",\"createSubjectHistoryGallery\":\"历史图库\",\"createSubjectVoiceCreateFailed\":\"音色创建失败\",\"sessionExpiredHelper\":\"请刷新页面以继续编辑\",\"createSubjectSmartGenerate\":\"智能生成\",\"stopBatchDownload\":\"停止批量下载\",\"createSubjectUpdateFailed\":\"更新失败\",\"groupNodes\":\"打组\",\"publishToLibTV\":\"在L",
+    "   —— 重试\",\"lockQueryNode\":\"目标节点\",\"useCollabPresenceProcessing2\":\"对方正在跟随你，无需再跟随 TA\",\"v4AbortHandlerLoadingNodeProcessing\":\"节点已同步，正在重新加载…\",\"v4AbortHandlerEditRefreshCanvasResume\":\"画布版本已更新，请刷新页面以继续编辑\",\"v4AbortHandlerRefreshCollabPlease\":\"收到来自更新版本的协作消息，请刷新页面\",\"v4AbortHandlerLoadingNode\":\"该节点已被其他成员更新，已为你重新加载最新内容\",\"v4AbortHandlerRetryFailed",
+    "▪ 「正在编辑」命中 3 处，文件 3xjlk8cm1g3m9.js",
+    "   —— geEditBoxSelectionHint\":\"框选你想要修改的对象\",\"interactiveImageEditBrushSelectionHint\":\"画出你想要修改的对象\",\"interactiveImageEditSelectMoveTarget\":\"拖动对象到想要的位置\",\"interactiveImageEditEditingRegion\":\"正在编辑第 {index} 处\",\"interactiveImageEditRegionCount\":\"{count} 处\",\"interactiveImageEditRecognizing\":\"识别中...\",\"interactiveImageEditRecognitionFallback\":\"未",
+    "   —— nce 要求\",\"complianceCheckPassed\":\"素材已通过合规校验，可用于Seedance视频生成\",\"complianceNoFaceDetected\":\"未检测到真人，可用于Seedance视频生成\",\"complianceCheckTimeout\":\"合规校验超时，请稍后重试\",\"nodeLockedCannotCopy\":\"其他成员正在编辑该节点，无法复制\",\"nodeLockedCannotCopyImage\":\"其他成员正在编辑该节点，无法复制图片\",\"imageCopied\":\"图片已复制\",\"copyImageFailed\":\"复制图片失败\",\"textCopied\":\"文本已复制\",\"copyTextFailed\":",
+    "⛔ 没命中：[\"canSearch\"]",
+    "done"
+  ],
+  "读数": {
+    "命中": [
+      {
+        "文件": "3n8hlsqr2mryz.js",
+        "字节": 109826,
+        "词": "likeCount",
+        "上下文": "e,description:e.description,tags:e.tagsV2?.modelContent?.map(e=>e.tagLabel)||[],authorName:t,createTime:e.createTime,updateTime:e.updateTime,downloadCount:e.counter?.downloadCount,likeCount:e.counter?.likeCount,runCount:e.counter?.runCount,isVideoModel:e.isVideoModel,versionDesc:a?.versionDesc};await w.storeModel(o)}catch(e){}},C=async(e,t)=>{try{await w.removeModel(e,t)}catch(e){}},E=async()=>{tr"
+      },
+      {
+        "文件": "3n8hlsqr2mryz.js",
+        "字节": 109826,
+        "词": "likeCount",
+        "上下文": "iption,tags:e.tagsV2?.modelContent?.map(e=>e.tagLabel)||[],authorName:t,createTime:e.createTime,updateTime:e.updateTime,downloadCount:e.counter?.downloadCount,likeCount:e.counter?.likeCount,runCount:e.counter?.runCount,isVideoModel:e.isVideoModel,versionDesc:a?.versionDesc};await w.storeModel(o)}catch(e){}},C=async(e,t)=>{try{await w.removeModel(e,t)}catch(e){}},E=async()=>{try{await w.clearAllMod"
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "loadingMore",
+        "上下文": "版本信息，无法收藏\",\"srefCopied\":\"已复制 sref：{code}\",\"copySrefTitle\":\"复制 sref：{code}\",\"searchLensPlaceholder\":\"搜索特效名称、作者\",\"searchStylePlaceholder\":\"搜索风格名称、作者\",\"commercialOnlyFilter\":\"仅看可商用\",\"loadingMore\":\"正在加载更多\",\"allLoaded\":\"已加载全部\",\"currentlyInUse\":\"当前使用\",\"commercialUsable\":\"商用\",\"allAdaptedModels\":\"全部适配模型\",\"styleDetail\":\"风格详情\",\"lensDetail\":\"特效详情\",\"generatedContentCommercialUsable\":\"生成内容可商用\",\"preferredRecomm"
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "loadingMore",
+        "上下文": "opied\":\"链接已复制\",\"listSeparatorAnd\":\"和\",\"listUpdateFailed\":\"更新列表失败，请重试\",\"loadFailed\":\"加载失败\",\"loadFailedClickRetry\":\"加载失败，点击重试\",\"loadFailedPleaseRetry\":\"加载失败，请重试\",\"loading\":\"加载中...\",\"loadingMore\":\"加载中…\",\"loadingShare\":\"加载分享…\",\"localUpload\":\"本地上传\",\"login\":\"登录\",\"loginGuideAction\":\"立即登录领取\",\"loginGuideBenefitGeneration\":\"生图/视频无压力（约生图**40张**或视频**2个**）\",\"loginGuideBenefitMemberModels\":\"海量会员模型 **免费试用**\",\"lo"
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "allLoaded",
+        "上下文": ":\"已复制 sref：{code}\",\"copySrefTitle\":\"复制 sref：{code}\",\"searchLensPlaceholder\":\"搜索特效名称、作者\",\"searchStylePlaceholder\":\"搜索风格名称、作者\",\"commercialOnlyFilter\":\"仅看可商用\",\"loadingMore\":\"正在加载更多\",\"allLoaded\":\"已加载全部\",\"currentlyInUse\":\"当前使用\",\"commercialUsable\":\"商用\",\"allAdaptedModels\":\"全部适配模型\",\"styleDetail\":\"风格详情\",\"lensDetail\":\"特效详情\",\"generatedContentCommercialUsable\":\"生成内容可商用\",\"preferredRecommendedModel\":\"首选推荐模型\",\"o"
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "materialMissingVersionCannotFavorite",
+        "上下文": "画布将新建一个图片节点并自动替换当前图源\",\"materialTabStylePlaza\":\"风格广场\",\"materialTabLensPlaza\":\"特效广场\",\"materialTabFavorite\":\"我的收藏\",\"materialTabRecent\":\"最近使用\",\"applyFailedWithReason\":\"应用失败：{reason}\",\"materialMissingVersionCannotFavorite\":\"该素材缺少版本信息，无法收藏\",\"srefCopied\":\"已复制 sref：{code}\",\"copySrefTitle\":\"复制 sref：{code}\",\"searchLensPlaceholder\":\"搜索特效名称、作者\",\"searchStylePlaceholder\":\"搜索风格名称、作者\",\"commercialOnlyFilter\":\"仅看可商"
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "会话已过期",
+        "上下文": "频\",\"createSubjectVideoDurationMax\":\"请上传时长不超过 {max} 秒的视频\",\"createSubjectAudioUploadFailedRetry\":\"音频上传失败，请重试\",\"createSubjectScShownInHistory\":\"任务完成后将展示在历史记录。\",\"sessionExpiredTitle\":\"会话已过期\",\"emptyViewportHint\":\"当前视窗没有节点\",\"focusedToNodeHint\":\"已聚焦到所选节点\",\"backToNode\":\"返回节点\",\"createSubjectHistoryGallery\":\"历史图库\",\"createSubjectVoiceCreateFailed\":\"音色创建失败\",\"sessionExpiredHelper\":\"请刷新页面以继续编辑\",\"createSubjectSm"
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "会话已过期",
+        "上下文": "kPendingDenied\":\"您的修改已被撤回（节点正在被他人编辑）\",\"notifyConnectRuleViolation\":\"不符合连线规则\",\"notifyNodesAlreadyConnected\":\"两节点已连接\",\"notifyNodesConnected\":\"已连接2个节点\",\"collabSessionExpiredTitle\":\"协作会话已过期\",\"collabSessionExpiredDescription\":\"此协作画布已在其他标签页打开\",\"tryLabel\":\"尝试：\",\"closeEsc\":\"关闭 (ESC)\",\"pipelineStatusPending\":\"等待中\",\"pipelineStatusRunning\":\"执行中\",\"pipelineStatusSuccess\":\"✓ 完成\",\"pipelineStatusFailed\":\"✗ 失败\",\"p"
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "请刷新页面以继续编辑",
+        "上下文": "yViewportHint\":\"当前视窗没有节点\",\"focusedToNodeHint\":\"已聚焦到所选节点\",\"backToNode\":\"返回节点\",\"createSubjectHistoryGallery\":\"历史图库\",\"createSubjectVoiceCreateFailed\":\"音色创建失败\",\"sessionExpiredHelper\":\"请刷新页面以继续编辑\",\"createSubjectSmartGenerate\":\"智能生成\",\"stopBatchDownload\":\"停止批量下载\",\"createSubjectUpdateFailed\":\"更新失败\",\"groupNodes\":\"打组\",\"publishToLibTV\":\"在LibTV上发布\",\"createSubjectAddVoice\":\"添加音色\",\"createSubjectDescPlaceholder\""
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "请刷新页面以继续编辑",
+        "上下文": "重试\",\"lockQueryNode\":\"目标节点\",\"useCollabPresenceProcessing2\":\"对方正在跟随你，无需再跟随 TA\",\"v4AbortHandlerLoadingNodeProcessing\":\"节点已同步，正在重新加载…\",\"v4AbortHandlerEditRefreshCanvasResume\":\"画布版本已更新，请刷新页面以继续编辑\",\"v4AbortHandlerRefreshCollabPlease\":\"收到来自更新版本的协作消息，请刷新页面\",\"v4AbortHandlerLoadingNode\":\"该节点已被其他成员更新，已为你重新加载最新内容\",\"v4AbortHandlerRetryFailedPlease\":\"同步校验失败，请检查网络后重试\",\"v4AbortHandlerDeleteNode\":\"该节点已被其他成员删除\",\"v4"
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "正在编辑",
+        "上下文": "geEditBoxSelectionHint\":\"框选你想要修改的对象\",\"interactiveImageEditBrushSelectionHint\":\"画出你想要修改的对象\",\"interactiveImageEditSelectMoveTarget\":\"拖动对象到想要的位置\",\"interactiveImageEditEditingRegion\":\"正在编辑第 {index} 处\",\"interactiveImageEditRegionCount\":\"{count} 处\",\"interactiveImageEditRecognizing\":\"识别中...\",\"interactiveImageEditRecognitionFallback\":\"未识别到主体，请改用框选或画笔\",\"interactiveImageEditCompleteCurrent\":\"请先完成当前编辑\",\"inte"
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "正在编辑",
+        "上下文": "nce 要求\",\"complianceCheckPassed\":\"素材已通过合规校验，可用于Seedance视频生成\",\"complianceNoFaceDetected\":\"未检测到真人，可用于Seedance视频生成\",\"complianceCheckTimeout\":\"合规校验超时，请稍后重试\",\"nodeLockedCannotCopy\":\"其他成员正在编辑该节点，无法复制\",\"nodeLockedCannotCopyImage\":\"其他成员正在编辑该节点，无法复制图片\",\"imageCopied\":\"图片已复制\",\"copyImageFailed\":\"复制图片失败\",\"textCopied\":\"文本已复制\",\"copyTextFailed\":\"复制文本失败\",\"cannotOptimizeNodeLayout\":\"无法优化该节点的布局\",\"workflowLayoutOptimi"
+      },
+      {
+        "文件": "3xjlk8cm1g3m9.js",
+        "字节": 344433,
+        "词": "正在编辑",
+        "上下文": "eedance视频生成\",\"complianceNoFaceDetected\":\"未检测到真人，可用于Seedance视频生成\",\"complianceCheckTimeout\":\"合规校验超时，请稍后重试\",\"nodeLockedCannotCopy\":\"其他成员正在编辑该节点，无法复制\",\"nodeLockedCannotCopyImage\":\"其他成员正在编辑该节点，无法复制图片\",\"imageCopied\":\"图片已复制\",\"copyImageFailed\":\"复制图片失败\",\"textCopied\":\"文本已复制\",\"copyTextFailed\":\"复制文本失败\",\"cannotOptimizeNodeLayout\":\"无法优化该节点的布局\",\"workflowLayoutOptimized\":\"已优化工作流布局\",\"layoutNoAdjustmentNeeded\":\"当前布"
+      },
+      {
+        "文件": "42hg44uh2sjdy.js",
+        "字节": 261156,
+        "词": "likeCount",
+        "上下文": "cheMeta:null,cacheScrollY:0,setItems:t=>e(e=>{e.items=t}),setCacheMeta:()=>{},setCacheScrollY:()=>{},toggleLike:t=>e(e=>{let i=e.items.find(e=>e.id===t);i&&(i.isLiked=!i.isLiked,i.likeCount+=i.isLiked?1:-1)}),reset:()=>e(e=>{e.items=[]})})),{name:\"ActivityAwardedStore\"}))],744027);var n=e.i(505e3);e.s([\"createAreaStore\",0,()=>{let e=null;return(0,r.createStore)()((0,t.devtools)((0,i.immer)((t,i)=>"
+      },
+      {
+        "文件": "42hg44uh2sjdy.js",
+        "字节": 261156,
+        "词": "likeCount",
+        "上下文": "etItems:t=>e(e=>{e.items=t}),setTotal:t=>e(e=>{e.total=t}),appendItems:t=>e(e=>{e.items.push(...t)}),toggleLike:t=>e(e=>{let i=e.items.find(e=>e.id===t);i&&(i.isLiked=!i.isLiked,i.likeCount+=i.isLiked?1:-1)}),updateItem:(t,i)=>e(e=>{let r=e.items.find(e=>e.id===t);r&&Object.assign(r,i)}),setCacheMeta:t=>e(e=>{e.cacheMeta=t}),setCacheScrollY:t=>e(e=>{e.cacheScrollY=t}),setCacheActiveTag:t=>e(e=>{e."
+      },
+      {
+        "文件": "42hg44uh2sjdy.js",
+        "字节": 261156,
+        "词": "likeCount",
+        "上下文": "ectId=i)}),setIsPlaying:t=>e(e=>{e.isPlaying=t}),setProcessModalOpen:t=>e(e=>{e.processModalOpen=t}),toggleLike:t=>e(e=>{let i=e.items.find(e=>e.id===t);i&&(i.isLiked=!i.isLiked,i.likeCount+=i.isLiked?1:-1)}),updateItem:(t,i)=>e(e=>{let r=e.items.find(e=>e.id===t);r&&Object.assign(r,i)}),reset:()=>e(e=>{e.projectId=\"\",e.items=[],e.currentIndex=0,e.isPlaying=!1,e.processModalOpen=!1})})),{name:\"Pro"
+      },
+      {
+        "文件": "2bym-dyxfkv4h.js",
+        "字节": 37286,
+        "词": "likeCount",
+        "上下文": "flex items-center gap-1\",children:[(0,t.jsx)(\"div\",{className:\"flex size-[14px] shrink-0 items-center justify-center\",children:(0,t.jsx)(r.Icons.StartL,{width:13,height:13})}),U(e.likeCount)]})]})]}),(0,t.jsxs)(\"div\",{className:\"flex shrink-0 items-center gap-2\",children:[b&&(0,t.jsx)(o.Tooltip,{label:g(\"common:skillShareAction\"),position:\"top\",withArrow:!0,zIndex:1201,children:(0,t.jsx)(\"button\","
+      },
+      {
+        "文件": "2bym-dyxfkv4h.js",
+        "字节": 37286,
+        "词": "likeCount",
+        "上下文": "namespace,title:e.name,authorName:e.ownerName??\"\",authorAvatar:e.ownerAvatar??\"\",categoryLabel:e.tags?.[0]?.tagLabel??e.tags?.[0]?.name??\"\",usageCount:e.useUv??e.usePv??0,rating:0,likeCount:e.likeCount??0,coverUrl:r,description:e.description??\"\",useScenario:e.useScenario??\"\",inputType:e.inputType??\"\",outputContent:e.outputContent??\"\",markdownContent:i,skillFiles:l,primarySkillFilePath:e.primarySki"
+      },
+      {
+        "文件": "2bym-dyxfkv4h.js",
+        "字节": 37286,
+        "词": "likeCount",
+        "上下文": "tle:e.name,authorName:e.ownerName??\"\",authorAvatar:e.ownerAvatar??\"\",categoryLabel:e.tags?.[0]?.tagLabel??e.tags?.[0]?.name??\"\",usageCount:e.useUv??e.usePv??0,rating:0,likeCount:e.likeCount??0,coverUrl:r,description:e.description??\"\",useScenario:e.useScenario??\"\",inputType:e.inputType??\"\",outputContent:e.outputContent??\"\",markdownContent:i,skillFiles:l,primarySkillFilePath:e.primarySkillFilePath??"
+      },
+      {
+        "文件": "3-mou5v69wxmq.js",
+        "字节": 970309,
+        "词": "loadingMore",
+        "上下文": "sx)(F.Icons.Play,{className:\"size-3.5\"})})]},e.voiceId)}),S&&(0,v.jsx)(\"div\",{className:\"text-fg-muted flex h-12 items-center justify-center text-xs\",children:w.length>0?n(\"common:loadingMore\"):n(\"common:loading\")}),!S&&b&&(0,v.jsxs)(\"button\",{type:\"button\",className:\"text-fg-muted hover:text-fg-default flex h-12 w-full items-center justify-center text-xs\",onClick:N,children:[n(\"common:loadFailed\""
+      },
+      {
+        "文件": "3-mou5v69wxmq.js",
+        "字节": 970309,
+        "词": "materialMissingVersionCannotFavorite",
+        "上下文": "useCallback)((e,t)=>{dK.getState().toggleFavoriteLocal(e,t),r?.(e,t)},[r]);return{toggleFavorite:(0,y.useCallback)(async r=>{if(!r.versionUuid)return void T.Notify.error(a(\"canvas:materialMissingVersionCannotFavorite\"));if(dK.getState().acquireFavoriteMutation(r.uuid))try{var i;let s,l=dK.getState().favoriteStateByUuid.get(r.uuid)??!!r.isFavorited,c=!l;o(r.uuid,c);let d={subscribeType:1,sourceType"
+      },
+      {
+        "文件": "0p0odaasu_yfu.js",
+        "字节": 412075,
+        "词": "likeCount",
+        "上下文": "turn t.isActivity===eR.TRUE?(0,eY.default)(t,[\"height\",\"imageUrl\",\"isActivity\",\"landingPage\",\"uuid\",\"width\",\"imageSource\",\"imageUuid\",\"tagsV2\"]):(0,eY.default)(t,[\"score\",\"title\",\"likeCount\",\"isLike\",\"avatar\",\"imageUuid\",\"nickname\",\"width\",\"height\",\"imageUrl\",\"isActivity\",\"uuid\",\"width\",\"hideGenerateInfo\",\"imageSource\",\"mediaType\",\"videoUrl\",\"tagsV2\",\"webpUrl\",\"recommendOtherRes\",\"utLogMap\",\"abVar"
+      }
+    ],
+    "脚本数": 156,
+    "没命中": [
+      "canSearch"
+    ]
+  }
+}
