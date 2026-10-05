@@ -6801,3 +6801,29 @@ Q1 纯只读；Q2/Q3 建 1 个音频节点并当轮右键删除，**消失集合
 | 📕 台账 | **不新增** —— 本批是对批次 210 结论的**独立复现 + 补一个判别维度**，没有推翻任何已建档结论；台账保持 **117 条** |
 | 📌 共享仓库协作 | 落笔前已 `git log -- <path>` 核对：我的 `scripts/jimeng-b203*/b204*/b205*` 全是**未跟踪的新文件**，未覆盖任何他人已提交文件；台账当前 **117 条**（我的 `describedby-host-variant` 与对方的 `initial-translate-not-recomputed` / `reused-tab-carryover-invalidates-absolute-constant` 都在）。📌 批次号取 **211** 而非 205：`205~209` 空号但已被另一会话用作在途编号，取最高位可避免撞号 |
 | 收尾 | 共享页签**未参与**本轮（全部用**新开页**）｜ **76 节点 / 0 残留 / 0 丢失 / 0 选中** ｜ 视口 `1280×720@2x` / 缩放 `26%` ｜ **积分 791** 全程未变 ｜ 本轮**只做只读读数，未新建/删除任何节点** ｜ ⛔ 未触发生成、未进入扣费页、未点「保存到主体库」、未分享、未下载 |
+
+### 批次 211 补记（2026-10-05）· 🔴 本批内容落在**别人的提交**里 —— 立规 91
+
+|---|---|
+| 🔴 发生了什么 | 本批（批次 211）的 10 个文件**被另一个会话的 `git commit` 一起带走**，
+落在 **`c0e308ef`**（那笔的提交信息是「Batch FX — 小地图实拍」）里。
+⚠️ 我这边**没有做错任何一步**：先 `git add -- <仅自己的路径>`、再 `git diff --cached --name-only` 核对，
+但**核对与提交之间**被并发插队 |
+| 📌 完整时序 | T1 我 `add` 自己的 10 个文件 → T2 我 `git diff --cached --name-only`，
+**此时已经看到他的 10 个 `libtv-canvas` 文件混进来了** → T3 他执行了**不带路径限制**的 `git commit`。
+⚠️ 我当时正在 T2 与 T3 之间**准备把自己那批先摘出去**，来不及 |
+| ✅ 内容完整性已核实 | `git show --stat c0e308ef` 里 `scripts/jimeng-b205a~f.mjs` 与
+`navigate-canvas.md` / `30-concepts.md` / `PROGRESS.md` / `SOURCE_OBSERVATIONS.md` **逐字在位**；
+`git show HEAD:…/PROGRESS.md \| grep -c "批次 211"` = `1`、
+`SOURCE_OBSERVATIONS.md` 里 `§4.128` = `7` 处、`30-concepts.md` 里 `立规 90` = `2` 处。
+**工作区对 `jimeng-canvas` 与 `jimeng-b205*` 已无任何未提交改动**；`origin/master` = `c0e308ef`，**已推送** |
+| ⚠️ 我做对的一件事 | 发现混进别人的文件后，用的是 **`git restore --staged -- docs/user-manual/libtv-canvas`**
+—— **只改索引、不碰他们的工作区**。⇒ 若当时用 `git checkout -- <path>` 或 `git reset --hard`，
+**就会把别人正在写的文件从磁盘上抹掉** |
+| 📕 立规 91 | **共享仓库里，别人的 `git commit` 会把你已暂存的文件一起带走。**
+三条可执行做法：① `add` → 核对 → `commit` **尽量连着跑**，别拆成两次交互 ② 提交前确认
+`libtv-canvas` / `liblib-canvas` / `beeftv-canvas` / `tdcanvas-canvas` / `docs/research` / `.github/`
+**一个字都不该出现** ③ 万一已被卷走：**不要改历史**（会影响别人），先 `git show --stat` **核实自己内容逐字在位**，
+再在 PROGRESS 里**把「批次 211 落在 c0e308ef 里」写下来** |
+| 📌 通用形态 | **共享索引意味着 `add` 与 `commit` 不是原子的**。单会话里它们是；多会话里它们之间隔着
+一次网络往返、一次思考、一次工具调用 —— **每一个都是别人插队的窗口** |
