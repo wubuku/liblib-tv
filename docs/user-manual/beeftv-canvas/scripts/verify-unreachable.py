@@ -76,6 +76,26 @@ from baseline import resolve_ref, BaselineError, module_ref, baseline_guard
 # 「缺陷已被修复」的人造 ref，不能改工作树、更不能动别人分支。
 REF = module_ref()
 
+#: **Batch 294：判据要钉「这里有一个把画布同步到后端的调用」这个事实，
+#: 而不是某一个函数名。**
+#:
+#: 原先 `p_copy_not_synced` / `p_rename_not_synced` 到处写死
+#: `"syncLocalCanvasProjectToBackend"` 这**一个符号名**，而 origin/main 上
+#: **同一个文件里并存两个 sync 符号**（旧的 `syncLocalCanvasProjectToBackend`
+#: 仍有 7 处、仍被 canvas-archive-restore 与画布库页使用；新的
+#: `syncLocalCanvasProject(id, includeGeneratedAssets, scope)` 由 createLocalCanvasProject 调用）。
+#:
+#: **实测后果**：那两条断言在 origin/main 上被判「判据已不成立，上游可能已修复」，
+#: **而它们要钉的行为一个字都没变**——两个复制入口与两处改名入口里
+#: **新旧两个符号都不存在**。闸的结论错，方向错得最贵：**它让人去改正文，
+#: 而正文仍然是对的**（纪律 328：判据过宽诱导动作，这里是判据过窄诱导改正文）。
+#:
+#: 顺带关上一个**假绿**：原先那两处入口只查旧名，**若上游把复制路径改成调新符号，
+#: 闸照样报「仍成立」**——而副本其实已经会上传了。
+#: 所以这四处的查法要**两边同时换成这个正则**：入口处「有同步调用」即失效，
+#: 对照组处「没有同步调用」即失效。
+CANVAS_SYNC_CALL = re.compile(r"\bsync[A-Za-z0-9_]*CanvasProject[A-Za-z0-9_]*\s*\(")
+
 # ── 工具 ──────────────────────────────────────────────────────────────
 
 
@@ -342,10 +362,11 @@ def p_copy_not_synced(src):
         body = m.group(0)
         if "importCanvasProject" not in body:
             return False
-        if "syncLocalCanvasProjectToBackend" in body:
+        # **Batch 294：认「有没有同步调用」，不认某一个函数名**（见 CANVAS_SYNC_CALL）。
+        if CANVAS_SYNC_CALL.search(body):
             return False
     m = re.search(r"export async function createLocalCanvasProject.*?\n\}", repo, re.S)
-    if not m or "syncLocalCanvasProjectToBackend" not in m.group(0):
+    if not m or not CANVAS_SYNC_CALL.search(m.group(0)):
         return False
     # importProject 必须是纯 set，不能带网络调用
     m2 = re.search(r"importProject: \(source, workspaceProjectId\) => \{.*?\n            \},", store, re.S)
@@ -396,16 +417,37 @@ def p_canvas_folders_are_local(src):
       (c) 画布库页面**零处**引用 AssetFolder / asset-folders——
           (c) 是关键：服务端的 folderId 只属于素材，没有它才能断言
           「服务端根本没有画布文件夹这个概念」，而不是「这里忘了同步」。
+
+    ⚠️ **Batch 294：(a) 认「经某个入口建文件夹」这个事实，(c) 之外补一条 (d)
+    直接量「服务端根本没有画布文件夹这个概念」——原先它只靠 (c) 间接推。**
+    实测：origin/main 上画布库页不再直调 store 的 `createFolder`，
+    改调 `createCanvasLibraryFolder`（`web/src/lib/canvas/canvas-folder-storage.ts`）。
+    **旧 (a) 因此为假，这条断言在 origin/main 上报「判据已不成立」——而它的结论碰巧是对的，
+    理由是错的**：闸是因为「页面少了那个调用」才报，不是因为服务端多了一整套东西。
+    **而那个东西是真的**：origin/main 新增 `backend/internal/handler/canvas_library.go`
+    的 GET/PUT/DELETE `/canvas-folders`，**基线上这两个目录合计 0 处**。
+    **「结论对、理由错」比「结论错」更贵**：照错误的理由去查，会得出
+    「大概是重构，去找新入口」而不是「服务端接上了，手册这句要改」。
+    (d) 把这件事变成直接量的事实，也顺带关上一个假绿：
+    **旧判据在「页面继续直调 createFolder、同时服务端新增了文件夹端点」的树上会报绿。**
     """
     idx = git_show(src, "web/src/pages/canvas/index.tsx")
     store = git_show(src, "web/src/stores/canvas/use-canvas-store.ts")
     if not idx or not store:
         return None
-    if "createFolder" not in idx or "createFolder(" not in idx:
+    # (a) 入口可以是 store 的 createFolder，也可以是后来抽出去的服务函数——
+    #     **要认的是「页面确实有一个建文件夹的入口」，不是它写在哪个模块里。**
+    if not re.search(r"\bcreateFolder\b", idx) \
+            and not re.search(r"\bcreateCanvasLibraryFolder\b", idx):
         return False
     if "writeCanvasFolders" not in store or "readCanvasFolders" not in store:
         return False
-    return "AssetFolder" not in idx and "asset-folders" not in idx
+    if "AssetFolder" in idx or "asset-folders" in idx:
+        return False
+    # (d) 服务端**零处**画布文件夹端点——这一条才是「纯本机」的直接依据。
+    r = _git_grep_run(["git", "grep", "-l", "-F", "/canvas-folders", REF,
+                       "--", "backend", "web/src"], cwd=src, capture_output=True, text=True)
+    return not (r.stdout or "").strip()
 
 
 def p_canvas_cover_is_localstorage(src):
@@ -497,17 +539,17 @@ def p_rename_not_synced(src):
     if not m:
         return False
     body = m.group(0)
-    if "syncLocalCanvasProjectToBackend" in body:
+    if CANVAS_SYNC_CALL.search(body):
         return False
     if "flushCanvasStorePersistence" not in body:
         return False
     m2 = re.search(r"const saveTitle = async \(\) => \{.*?\n    \};", card, re.S)
-    if not m2 or "syncLocalCanvasProjectToBackend" in m2.group(0):
+    if not m2 or CANVAS_SYNC_CALL.search(m2.group(0)):
         return False
     if "flushCanvasStorePersistence" not in m2.group(0):
         return False
     m3 = re.search(r"export async function createLocalCanvasProject.*?\n\}", repo, re.S)
-    return bool(m3) and "syncLocalCanvasProjectToBackend" in m3.group(0)
+    return bool(m3) and bool(CANVAS_SYNC_CALL.search(m3.group(0)))
 
 
 def _fn_body(text, header, terminator="\n}"):
@@ -1311,7 +1353,15 @@ def p_dev_lab_routes_no_entry(src):
         return None
     if 'const isolateDevRepro = import.meta.env.DEV' not in providers:
         return False
-    if ('pathname === "' + DEV_ROUTE_REPRO + '"') not in providers:
+    # **Batch 294：认「隔离判断里比对了那个路径」这个事实，不认取得 pathname 的写法。**
+    # 原式写死 `'pathname === "/dev/director-repro"'`，而 origin/main 把
+    # `window.location.pathname` 换成了 `appPathname()`——**判定对象一个字没变，
+    # 只是取法换了**，旧字面量因此不在，于是这条断言被判「判据已不成立」，
+    # 而「隔离被 DEV 包着、线上照样打后端」这个要写进手册的结论**仍然成立**。
+    # 取法不止一种（window.location.pathname / appPathname() / useLocation().pathname），
+    # **而事实只有一个：isolateDevRepro 的定义里比对了那个路径。**
+    m_iso = re.search(r"const isolateDevRepro\s*=(.*?);", providers, re.S)
+    if not m_iso or DEV_ROUTE_REPRO not in m_iso.group(1):
         return False
     return "WorkspaceBootstrapHydrator" in providers
 

@@ -10495,3 +10495,50 @@ Batch 249 加的）、`run_two_file_case`（3 条，**没有**）、用例 7 内
     **所以那两页在 v1.7.3 上仍然该排除**。
     **判据 `if "agent" in r` 宽到被这个不相干的新功能满足**，
     **已收紧为 `/api/agent` 前缀并在输出里逐条打出「特意不算」**（纪律 328）。
+
+258. **不可达闸在 `origin/main` 上的 7 条「判据已不成立」，实测是三种成因——而处置有两派**
+    （Batch 294，**逐条分清，处置写清楚**）：
+    闸的原话对 7 条一律是「**判据已不成立**，上游可能已修复，手册对应断言需回走核实后更新」。
+    **而逐条复现它每一步之后，7 条分成三类，其中 3 条要改的是判据而不是手册**：
+
+    **① 声明仍成立，失效的是对照组锚点（3 条）——处置是改判据**
+    - `canvas-copy-never-uploaded` 与 `canvas-rename-never-uploaded`（同一条对照组）：
+      **被钉的两条复制入口与两处改名入口，在 `origin/main` 上新旧两个 sync 符号都不存在**
+      （实测 `duplicateCurrentProject` 727 字符、`duplicateCanvasFromMenu` 1133 字符、
+      顶栏改名与 `saveTitle` 均只调 `flushCanvasStorePersistence`），
+      **「复制/改名这个动作本身不上传」这句话仍然成立**。
+      真正变的是对照组：`createLocalCanvasProject` 改调了**新函数**
+      `syncLocalCanvasProject(id, includeGeneratedAssets, scope)`，
+      而旧名 `syncLocalCanvasProjectToBackend` **在 `origin/main` 上仍有 7 处、仍被
+      `canvas-archive-restore.ts` 与画布库页使用**——**不是改名，是新增了第二个同义函数。**
+    - `dev-lab-routes-no-entry`：对照组 (c) 钉的是字面量 `pathname === "/dev/director-repro"`，
+      而上游把 `window.location.pathname` 换成了 `appPathname()`——**判定对象一个字没变**，
+      **「隔离被 `import.meta.env.DEV` 包着、线上照样打后端」这个要写进手册的结论仍然成立**；
+      两条 `/dev` 路由仍注册、界面仍零入口（实测 `router.tsx:66/67`）。
+
+    **② 结论对、理由错（1 条）——处置是改手册，但必须知道真正的成因**
+    - `canvas-folders-local-only`：闸是因为「画布库页不再直调 store 的 `createFolder`
+      （改调 `canvas-folder-storage.ts` 的 `createCanvasLibraryFolder`）」而报失效，
+      **而真正的变化是服务端接上了**：
+      **新增 `backend/internal/handler/canvas_library.go` 的 GET/PUT/DELETE `/canvas-folders`，
+      前端 `web/src/services/api/workspace-data.ts` 有三个对应 http 调用；
+      而这两个目录在基线 `bcc3b05` 上合计 0 处 `/canvas-folders`。**
+      新函数体里也确实分了两支：浏览器本地存储走 store，其余走
+      `stageUpsert` / `enqueueFolderCommit` / `commitFolderIntent`。**手册那句要改。**
+
+    **③ 上游真变了（3 条）——处置是改手册或逐条重核**
+    - `asset-list-endpoint-uncalled`：**真修复**。`origin/main` 新增
+      `web/src/services/api/workspace-assets.ts`，`http.get("/assets", …)` 两处，
+      「前端零处调用」不再成立。
+    - `channel-page-three-names`：面板大标题从
+      `{localMode ? "本地模型渠道" : "个人渠道"}` 改成**字面量 `<h2>模型服务</h2>`**，
+      `个人渠道` / `本地模型渠道` **在该文件里都已不存在**（「三个名字并存」不再成立）。
+    - `asset-sync-gated-off`：素材页大改，(d2) `enabled: remoteMode`、
+      (d3) `if (!remoteMode)`、(d4) `createAssetFolder`、(e) 远端取数函数读本地 store
+      **四条都不再成立**，**需逐条重核后才能定手册怎么写**。
+    - 另 1 条 `[scan]`：`art-critique-no-autostart` 的扫描键
+      `setArtCritiqueStartRequest` 本轮未被扫到，**属登记与现状不一致**（既有结论，本批未动）。
+
+    **改完之后 `origin/main` 的不一致数：8 → 5**（4 条断言 + 1 条扫描项），
+    **基线 `bcc3b05` 仍 rc=0 / 32 条断言仍成立**。
+    **鉴别力 7 例全部成立**（含 2 处旧闸假绿的实锤，见纪律 330）。
