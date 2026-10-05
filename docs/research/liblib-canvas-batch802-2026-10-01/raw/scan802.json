@@ -1,0 +1,676 @@
+{
+ "batch": 802,
+ "source": "src/store/canvasStore.ts",
+ "totalWritePoints": 41,
+ "totalFitCalls": 4,
+ "actions": [
+  {
+   "name": "restoreCanvas",
+   "ownerLine": 1203,
+   "writes": [
+    {
+     "line": 1211,
+     "target": "restored.nodes"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "duplicateCanvas",
+   "ownerLine": 1276,
+   "writes": [
+    {
+     "line": 1379,
+     "target": "planned.plan.targetNodes"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "createStoryScriptPair",
+   "ownerLine": 1425,
+   "writes": [
+    {
+     "line": 1457,
+     "target": "[...canvas.nodes, textNode, scriptNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "createFirstFrameReference",
+   "ownerLine": 1471,
+   "writes": [
+    {
+     "line": 1515,
+     "target": "hasImageRef ? canvas.nodes.map((node) => node.id === videoNodeId ? { ...node, da"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [
+    "getAbsoluteNodePosition"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "高：改了 nodes 但不经 fit，且碰了 parentId / 坐标系换算"
+  },
+  {
+   "name": "createFirstLastFrameReference",
+   "ownerLine": 1545,
+   "writes": [
+    {
+     "line": 1600,
+     "target": "hasImageRef ? canvas.nodes.map((node) => node.id === videoNodeId ? { ...node, da"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [
+    "getAbsoluteNodePosition"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "高：改了 nodes 但不经 fit，且碰了 parentId / 坐标系换算"
+  },
+  {
+   "name": "createImageHdPreset",
+   "ownerLine": 1633,
+   "writes": [
+    {
+     "line": 1664,
+     "target": "[...canvas.nodes, group, child]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 1,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "高：改了 nodes 但不经 fit，且碰了 parentId / 坐标系换算"
+  },
+  {
+   "name": "destroyFirstFrameReference",
+   "ownerLine": 1696,
+   "writes": [
+    {
+     "line": 1712,
+     "target": "canvas.nodes.map((node) => node.id === videoNodeId ? { ...node, data: { ...node."
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "addNodeAtPosition",
+   "ownerLine": 1729,
+   "writes": [
+    {
+     "line": 1749,
+     "target": "[...canvas.nodes, newNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "addDerivedNode",
+   "ownerLine": 1760,
+   "writes": [
+    {
+     "line": 1804,
+     "target": "[...item.nodes, newNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [
+    "getAbsoluteNodePosition"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "高：改了 nodes 但不经 fit，且碰了 parentId / 坐标系换算"
+  },
+  {
+   "name": "createVideoContinuation",
+   "ownerLine": 1815,
+   "writes": [
+    {
+     "line": 1903,
+     "target": "[...item.nodes, targetNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [
+    "getAbsoluteNodePosition"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "高：改了 nodes 但不经 fit，且碰了 parentId / 坐标系换算"
+  },
+  {
+   "name": "createSubtitleErase",
+   "ownerLine": 1918,
+   "writes": [
+    {
+     "line": 2036,
+     "target": "[...item.nodes, targetNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [
+    "getAbsoluteNodePosition"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "高：改了 nodes 但不经 fit，且碰了 parentId / 坐标系换算"
+  },
+  {
+   "name": "createAudioSplit",
+   "ownerLine": 2051,
+   "writes": [
+    {
+     "line": 2165,
+     "target": "[...item.nodes, audioNode, silentVideoNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [
+    "getAbsoluteNodePosition"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "高：改了 nodes 但不经 fit，且碰了 parentId / 坐标系换算"
+  },
+  {
+   "name": "createVideoFrameCapture",
+   "ownerLine": 2184,
+   "writes": [
+    {
+     "line": 2280,
+     "target": "[...item.nodes, targetNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "createDepthMotionCapture",
+   "ownerLine": 2295,
+   "writes": [
+    {
+     "line": 2377,
+     "target": "[...item.nodes, targetNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "createLongVideoProcess",
+   "ownerLine": 2396,
+   "writes": [
+    {
+     "line": 2645,
+     "target": "[...item.nodes, ...processNodes]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "createSmartMatting",
+   "ownerLine": 2660,
+   "writes": [
+    {
+     "line": 2748,
+     "target": "[...item.nodes, targetNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "createPictureEdit",
+   "ownerLine": 2767,
+   "writes": [
+    {
+     "line": 2908,
+     "target": "[...item.nodes, targetNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "createDirectorCapture",
+   "ownerLine": 2927,
+   "writes": [
+    {
+     "line": 2999,
+     "target": "[...item.nodes, targetNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "createDirectorAnimationExport",
+   "ownerLine": 3012,
+   "writes": [
+    {
+     "line": 3111,
+     "target": "[...item.nodes, targetNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "clearVideoContinuation",
+   "ownerLine": 3126,
+   "writes": [
+    {
+     "line": 3147,
+     "target": "canvas.nodes.map((node) => { if (node.id !== targetId) return node; const nextDa"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "completeShotBreakdown",
+   "ownerLine": 3164,
+   "writes": [
+    {
+     "line": 3243,
+     "target": "nextNodes"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [
+    "getAbsoluteNodePosition"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "高：改了 nodes 但不经 fit，且碰了 parentId / 坐标系换算"
+  },
+  {
+   "name": "duplicateNode",
+   "ownerLine": 3256,
+   "writes": [
+    {
+     "line": 3291,
+     "target": "[...canvas.nodes, copiedNode]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "duplicateSelectedNodes",
+   "ownerLine": 3302,
+   "writes": [
+    {
+     "line": 3326,
+     "target": "[...canvas.nodes, ...result.copiedNodes]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "removeNode",
+   "ownerLine": 3339,
+   "writes": [
+    {
+     "line": 3362,
+     "target": "fitStoryboardGroupsToChildren( canvas.nodes.filter((node) => !removedIds.has(nod"
+    }
+   ],
+   "fitCalls": 1,
+   "parentWrites": 0,
+   "absHelpers": [
+    "withDescendantIds"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": true,
+   "risk": "低"
+  },
+  {
+   "name": "removeSelectedNodes",
+   "ownerLine": 3377,
+   "writes": [
+    {
+     "line": 3398,
+     "target": "fitStoryboardGroupsToChildren( canvas.nodes.filter((node) => !removedIds.has(nod"
+    }
+   ],
+   "fitCalls": 1,
+   "parentWrites": 0,
+   "absHelpers": [
+    "withDescendantIds"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": true,
+   "risk": "低"
+  },
+  {
+   "name": "nudgeSelectedNodes",
+   "ownerLine": 3428,
+   "writes": [
+    {
+     "line": 3454,
+     "target": "fitStoryboardGroupsToChildren( canvas.nodes.map((node) => movingIds.has(node.id)"
+    }
+   ],
+   "fitCalls": 1,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": true,
+   "risk": "低"
+  },
+  {
+   "name": "groupSelectedNodes",
+   "ownerLine": 3475,
+   "writes": [
+    {
+     "line": 3550,
+     "target": "[groupNode, ...nextNodes]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 1,
+   "absHelpers": [
+    "getAbsoluteNodePosition"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "高：改了 nodes 但不经 fit，且碰了 parentId / 坐标系换算"
+  },
+  {
+   "name": "ungroupSelectedNodes",
+   "ownerLine": 3561,
+   "writes": [
+    {
+     "line": 3594,
+     "target": "nextNodes"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [
+    "getAbsoluteNodePosition",
+    "withoutParent"
+   ],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "高：改了 nodes 但不经 fit，且碰了 parentId / 坐标系换算"
+  },
+  {
+   "name": "updateNodeData",
+   "ownerLine": 3604,
+   "writes": [
+    {
+     "line": 3614,
+     "target": "canvas.nodes.map((node) => node.id === nodeId ? { ...node, data: { ...node.data,"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "setNodes",
+   "ownerLine": 3625,
+   "writes": [
+    {
+     "line": 3638,
+     "target": "storedNodes"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "routeReactFlowChanges",
+   "ownerLine": 3771,
+   "writes": [
+    {
+     "line": 3800,
+     "target": "currentCanvas.nodes"
+    },
+    {
+     "line": 3840,
+     "target": "fitStoryboardGroupsToChildren( plan.nextNodes.map(withoutStoredNodeSelection), )"
+    }
+   ],
+   "fitCalls": 1,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": true,
+   "risk": "低"
+  },
+  {
+   "name": "undo",
+   "ownerLine": 3915,
+   "writes": [
+    {
+     "line": 3925,
+     "target": "previous.nodes"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "redo",
+   "ownerLine": 3942,
+   "writes": [
+    {
+     "line": 3952,
+     "target": "next.nodes"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "selectNodeOutput",
+   "ownerLine": 3982,
+   "writes": [
+    {
+     "line": 4020,
+     "target": "c.nodes.map((n) => n.id !== nodeId ? n : { ...n, width: frameWidth, height: fram"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "addResourceCohort",
+   "ownerLine": 4048,
+   "writes": [
+    {
+     "line": 4109,
+     "target": "[...c.nodes, ...created]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "attachAssetReferences",
+   "ownerLine": 4126,
+   "writes": [
+    {
+     "line": 4216,
+     "target": "[...c.nodes, ...created]"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  },
+  {
+   "name": "submitLibTVEditorSessionCommit",
+   "ownerLine": 4233,
+   "writes": [
+    {
+     "line": 4271,
+     "target": "c.nodes.map((n) => n.id !== request.nodeId ? n : { ...n, data: { ...(n.data as R"
+    }
+   ],
+   "fitCalls": 0,
+   "parentWrites": 0,
+   "absHelpers": [],
+   "touchesGeometry": true,
+   "goesThroughFit": false,
+   "risk": "中：改了 nodes 但不经 fit"
+  }
+ ],
+ "fitCallSites": [
+  {
+   "line": 3362,
+   "owner": "removeNode",
+   "ownerLine": 3339
+  },
+  {
+   "line": 3398,
+   "owner": "removeSelectedNodes",
+   "ownerLine": 3377
+  },
+  {
+   "line": 3454,
+   "owner": "nudgeSelectedNodes",
+   "ownerLine": 3428
+  },
+  {
+   "line": 3840,
+   "owner": "routeReactFlowChanges",
+   "ownerLine": 3771
+  }
+ ],
+ "parentWriteSites": [
+  {
+   "line": 677,
+   "owner": "(模块顶层)",
+   "op": "删"
+  },
+  {
+   "line": 895,
+   "owner": "(模块顶层)",
+   "op": "删"
+  },
+  {
+   "line": 1084,
+   "owner": "(模块顶层)",
+   "op": "写"
+  },
+  {
+   "line": 1651,
+   "owner": "createImageHdPreset",
+   "op": "写"
+  },
+  {
+   "line": 3538,
+   "owner": "groupSelectedNodes",
+   "op": "写"
+  }
+ ]
+}

@@ -1636,10 +1636,17 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
     const source = canvas?.nodes.find((node) => node.id === imageNodeId);
     if (!canvas || !source) return;
     const groupId = createNodeId("g");
+    // ★★ Batch 802：原来写的是 `source.position` —— 那是「相对**直接父节点**」
+    //   的坐标。源节点只要**在任何一个组里**（不需要嵌套），而新建的组是
+    //   **顶层**（无 `parentId`）⟹ 祖先的偏移就被整段丢掉。
+    //   实测：把宿主组从 (200,150) 挪到 (500,450)，新组位置**纹丝不动**。
+    //   与 799（fit 写回）、800（取消分组）是**同一类**错误，但触发条件更宽。
+    const nodesById = new Map(canvas.nodes.map((node) => [node.id, node]));
+    const sourceAbsolute = getAbsoluteNodePosition(source, nodesById);
     const group: Node = {
       id: groupId,
       type: "storyboard-group",
-      position: { x: source.position.x + 320, y: source.position.y - 60 },
+      position: { x: sourceAbsolute.x + 320, y: sourceAbsolute.y - 60 },
       width: 430,
       height: 452,
       style: { width: 430, height: 452, zIndex: -1001 },

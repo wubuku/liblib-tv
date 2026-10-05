@@ -1,0 +1,1108 @@
+{
+ "batch": 802,
+ "phase": "pre",
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "presetFromLoose",
+     "sourceId": "n-loose",
+     "newGroupId": "g-1791242749194-31lb2j",
+     "hostOrigin": [
+      200,
+      150
+     ],
+     "srcPos": {
+      "x": 800,
+      "y": 600
+     },
+     "srcAbs": {
+      "x": 800,
+      "y": 600,
+      "depth": 0
+     },
+     "newGroupPos": {
+      "x": 1120,
+      "y": 560
+     },
+     "newGroupAbs": {
+      "x": 1120,
+      "y": 560,
+      "depth": 0
+     },
+     "freshIds": [
+      "g-1791242749194-31lb2j",
+      "i-1791242749194-guyvj5"
+     ],
+     "kidsParented": [
+      true
+     ],
+     "kidsCount": 1,
+     "before": {
+      "nodes": [
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 210,
+         "y": 160
+        },
+        "abs": {
+         "x": 210,
+         "y": 160,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 250,
+         "y": 200,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 3
+     },
+     "after": {
+      "nodes": [
+       {
+        "id": "g-1791242749194-31lb2j",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 1120,
+         "y": 560
+        },
+        "abs": {
+         "x": 1120,
+         "y": 560,
+         "depth": 0
+        },
+        "w": 420,
+        "h": 410,
+        "tag": null
+       },
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 210,
+         "y": 160
+        },
+        "abs": {
+         "x": 210,
+         "y": 160,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "i-1791242749194-guyvj5",
+        "type": "image",
+        "parentId": "g-1791242749194-31lb2j",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 1160,
+         "y": 600,
+         "depth": 1
+        },
+        "w": 340,
+        "h": 330,
+        "tag": null
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 250,
+         "y": 200,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 5
+     },
+     "tries": 1
+    },
+    {
+     "arm": "presetFromGroupedA",
+     "sourceId": "n-src",
+     "newGroupId": "g-1791242753719-wrd91j",
+     "hostOrigin": [
+      200,
+      150
+     ],
+     "srcPos": {
+      "x": 40,
+      "y": 40
+     },
+     "srcAbs": {
+      "x": 250,
+      "y": 200,
+      "depth": 1
+     },
+     "newGroupPos": {
+      "x": 360,
+      "y": 0
+     },
+     "newGroupAbs": {
+      "x": 360,
+      "y": 0,
+      "depth": 0
+     },
+     "freshIds": [
+      "g-1791242753719-wrd91j",
+      "i-1791242753719-z511d6"
+     ],
+     "kidsParented": [
+      true
+     ],
+     "kidsCount": 1,
+     "before": {
+      "nodes": [
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 210,
+         "y": 160
+        },
+        "abs": {
+         "x": 210,
+         "y": 160,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 250,
+         "y": 200,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 3
+     },
+     "after": {
+      "nodes": [
+       {
+        "id": "g-1791242753719-wrd91j",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 360,
+         "y": 0
+        },
+        "abs": {
+         "x": 360,
+         "y": 0,
+         "depth": 0
+        },
+        "w": 420,
+        "h": 410,
+        "tag": null
+       },
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 210,
+         "y": 160
+        },
+        "abs": {
+         "x": 210,
+         "y": 160,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "i-1791242753719-z511d6",
+        "type": "image",
+        "parentId": "g-1791242753719-wrd91j",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 400,
+         "y": 40,
+         "depth": 1
+        },
+        "w": 340,
+        "h": 330,
+        "tag": null
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 250,
+         "y": 200,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 5
+     },
+     "tries": 1
+    },
+    {
+     "arm": "presetFromGroupedB",
+     "sourceId": "n-src",
+     "newGroupId": "g-1791242758240-mq3i39",
+     "hostOrigin": [
+      500,
+      450
+     ],
+     "srcPos": {
+      "x": 40,
+      "y": 40
+     },
+     "srcAbs": {
+      "x": 550,
+      "y": 500,
+      "depth": 1
+     },
+     "newGroupPos": {
+      "x": 360,
+      "y": 0
+     },
+     "newGroupAbs": {
+      "x": 360,
+      "y": 0,
+      "depth": 0
+     },
+     "freshIds": [
+      "g-1791242758240-mq3i39",
+      "i-1791242758240-4ph5oj"
+     ],
+     "kidsParented": [
+      true
+     ],
+     "kidsCount": 1,
+     "before": {
+      "nodes": [
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 510,
+         "y": 460
+        },
+        "abs": {
+         "x": 510,
+         "y": 460,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 550,
+         "y": 500,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 3
+     },
+     "after": {
+      "nodes": [
+       {
+        "id": "g-1791242758240-mq3i39",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 360,
+         "y": 0
+        },
+        "abs": {
+         "x": 360,
+         "y": 0,
+         "depth": 0
+        },
+        "w": 420,
+        "h": 410,
+        "tag": null
+       },
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 510,
+         "y": 460
+        },
+        "abs": {
+         "x": 510,
+         "y": 460,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "i-1791242758240-4ph5oj",
+        "type": "image",
+        "parentId": "g-1791242758240-mq3i39",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 400,
+         "y": 40,
+         "depth": 1
+        },
+        "w": 340,
+        "h": 330,
+        "tag": null
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 550,
+         "y": 500,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 5
+     },
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "presetFromLoose",
+     "sourceId": "n-loose",
+     "newGroupId": "g-1791242762737-7td22s",
+     "hostOrigin": [
+      200,
+      150
+     ],
+     "srcPos": {
+      "x": 800,
+      "y": 600
+     },
+     "srcAbs": {
+      "x": 800,
+      "y": 600,
+      "depth": 0
+     },
+     "newGroupPos": {
+      "x": 1120,
+      "y": 560
+     },
+     "newGroupAbs": {
+      "x": 1120,
+      "y": 560,
+      "depth": 0
+     },
+     "freshIds": [
+      "g-1791242762737-7td22s",
+      "i-1791242762737-6tjm5h"
+     ],
+     "kidsParented": [
+      true
+     ],
+     "kidsCount": 1,
+     "before": {
+      "nodes": [
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 210,
+         "y": 160
+        },
+        "abs": {
+         "x": 210,
+         "y": 160,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 250,
+         "y": 200,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 3
+     },
+     "after": {
+      "nodes": [
+       {
+        "id": "g-1791242762737-7td22s",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 1120,
+         "y": 560
+        },
+        "abs": {
+         "x": 1120,
+         "y": 560,
+         "depth": 0
+        },
+        "w": 420,
+        "h": 410,
+        "tag": null
+       },
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 210,
+         "y": 160
+        },
+        "abs": {
+         "x": 210,
+         "y": 160,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "i-1791242762737-6tjm5h",
+        "type": "image",
+        "parentId": "g-1791242762737-7td22s",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 1160,
+         "y": 600,
+         "depth": 1
+        },
+        "w": 340,
+        "h": 330,
+        "tag": null
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 250,
+         "y": 200,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 5
+     },
+     "tries": 1
+    },
+    {
+     "arm": "presetFromGroupedA",
+     "sourceId": "n-src",
+     "newGroupId": "g-1791242767229-3ijhls",
+     "hostOrigin": [
+      200,
+      150
+     ],
+     "srcPos": {
+      "x": 40,
+      "y": 40
+     },
+     "srcAbs": {
+      "x": 250,
+      "y": 200,
+      "depth": 1
+     },
+     "newGroupPos": {
+      "x": 360,
+      "y": 0
+     },
+     "newGroupAbs": {
+      "x": 360,
+      "y": 0,
+      "depth": 0
+     },
+     "freshIds": [
+      "g-1791242767229-3ijhls",
+      "i-1791242767229-3aj9kh"
+     ],
+     "kidsParented": [
+      true
+     ],
+     "kidsCount": 1,
+     "before": {
+      "nodes": [
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 210,
+         "y": 160
+        },
+        "abs": {
+         "x": 210,
+         "y": 160,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 250,
+         "y": 200,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 3
+     },
+     "after": {
+      "nodes": [
+       {
+        "id": "g-1791242767229-3ijhls",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 360,
+         "y": 0
+        },
+        "abs": {
+         "x": 360,
+         "y": 0,
+         "depth": 0
+        },
+        "w": 420,
+        "h": 410,
+        "tag": null
+       },
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 210,
+         "y": 160
+        },
+        "abs": {
+         "x": 210,
+         "y": 160,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "i-1791242767229-3aj9kh",
+        "type": "image",
+        "parentId": "g-1791242767229-3ijhls",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 400,
+         "y": 40,
+         "depth": 1
+        },
+        "w": 340,
+        "h": 330,
+        "tag": null
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 250,
+         "y": 200,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 5
+     },
+     "tries": 1
+    },
+    {
+     "arm": "presetFromGroupedB",
+     "sourceId": "n-src",
+     "newGroupId": "g-1791242771718-2pt0rv",
+     "hostOrigin": [
+      500,
+      450
+     ],
+     "srcPos": {
+      "x": 40,
+      "y": 40
+     },
+     "srcAbs": {
+      "x": 550,
+      "y": 500,
+      "depth": 1
+     },
+     "newGroupPos": {
+      "x": 360,
+      "y": 0
+     },
+     "newGroupAbs": {
+      "x": 360,
+      "y": 0,
+      "depth": 0
+     },
+     "freshIds": [
+      "g-1791242771718-2pt0rv",
+      "i-1791242771718-4s7nx3"
+     ],
+     "kidsParented": [
+      true
+     ],
+     "kidsCount": 1,
+     "before": {
+      "nodes": [
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 510,
+         "y": 460
+        },
+        "abs": {
+         "x": 510,
+         "y": 460,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 550,
+         "y": 500,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 3
+     },
+     "after": {
+      "nodes": [
+       {
+        "id": "g-1791242771718-2pt0rv",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 360,
+         "y": 0
+        },
+        "abs": {
+         "x": 360,
+         "y": 0,
+         "depth": 0
+        },
+        "w": 420,
+        "h": 410,
+        "tag": null
+       },
+       {
+        "id": "g-host",
+        "type": "storyboard-group",
+        "parentId": null,
+        "pos": {
+         "x": 510,
+         "y": 460
+        },
+        "abs": {
+         "x": 510,
+         "y": 460,
+         "depth": 0
+        },
+        "w": 280,
+        "h": 180,
+        "tag": "g-host"
+       },
+       {
+        "id": "i-1791242771718-4s7nx3",
+        "type": "image",
+        "parentId": "g-1791242771718-2pt0rv",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 400,
+         "y": 40,
+         "depth": 1
+        },
+        "w": 340,
+        "h": 330,
+        "tag": null
+       },
+       {
+        "id": "n-loose",
+        "type": "image",
+        "parentId": null,
+        "pos": {
+         "x": 800,
+         "y": 600
+        },
+        "abs": {
+         "x": 800,
+         "y": 600,
+         "depth": 0
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-loose"
+       },
+       {
+        "id": "n-src",
+        "type": "image",
+        "parentId": "g-host",
+        "pos": {
+         "x": 40,
+         "y": 40
+        },
+        "abs": {
+         "x": 550,
+         "y": 500,
+         "depth": 1
+        },
+        "w": 200,
+        "h": 100,
+        "tag": "n-src"
+       }
+      ],
+      "total": 5
+     },
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}
