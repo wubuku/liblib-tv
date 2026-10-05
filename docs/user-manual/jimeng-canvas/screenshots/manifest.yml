@@ -1941,3 +1941,25 @@ screenshots:
     visible_text: '新建节点 粘贴 ⌘ V 重做 ⌘ ⇧ Z 撤销 ⌘ Z'
     alt: '窄窗口下「新建节点」的二级菜单塌进主菜单（2026-10-05 批次 170 拍）：屏幕 640 像素宽、在 x=200 处右键，主菜单从 172 高涨到 584 高，上半部是「新建节点」那一行，下面是「粘贴」「重做」「撤销」，中间横着一大片空白区域——那里本该是二级菜单，但它是隐藏且点不到的，橙色高亮框标出菜单范围'
     sha256: 9491028dc40c4bc43b498a2b260d25877a2f5da5f4d9f513d0fa242f51c3aeaa
+  - file: screenshots/133-node-tag-selector-224x44.png
+    task_id: organize-group-layout
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T14:52:00+08:00
+    verified_locator: '选中视频 1 后点标题行右侧 [data-testid=flow-node-selected-tag]（aria「Add tags」）弹出的 DIV[data-testid=canvas-node-tag-selector][role=toolbar][aria-label=Canvas tags]，读出 224×44，offsetWidth 224、computed max-width 1248px，6 个 role 逐字 全部清空 / 添加“青绿色” / 添加“靛蓝色” / 添加“紫色” / 添加“橙色” / 添加“黄色”'
+    visible_text: '全部清空 青绿色 靛蓝色 紫色 橙色 黄色'
+    alt: '节点选中后展开的标签色板（2026-10-05 批次 171 拍）：面板 224×44，浮在被选中的视频节点标题行上方，横向一排六枚 28×28 圆形按钮，从左到右依次是「全部清空」的禁用斜线图标、青绿色、靛蓝色、紫色、橙色、黄色的实心圆点，橙色高亮框标出面板范围'
+    sha256: 70c10cad97c4e2325a1b33d466176fcd5b099c3d413632b5ac54c801efa03fd1
+  - file: screenshots/134-node-tag-selector-clamped-200px.png
+    task_id: organize-group-layout
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 200x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T14:49:00+08:00
+    verified_locator: '视口钉到 200×720 后同一个 DIV[data-testid=canvas-node-tag-selector]，读出 168×44（offsetWidth 168 = 200−32，被 class 里的 max-w-canvas-tag-selector 夹住），scrollWidth 224 > clientWidth 168 ⇒ overflow-x-auto 生效；实测橙色与黄色两枚按钮已不在可视区内'
+    visible_text: '全部清空 青绿色 靛蓝色 紫色 橙色 黄色'
+    alt: '屏幕只有 200 像素宽时的标签色板（2026-10-05 批次 171 拍）：面板被压到 168 宽（= 屏幕宽 − 32），内容仍是 224 所以出现横向滚动，画面里只剩「全部清空」加青绿、靛蓝、紫三枚圆点，最右边的橙色被切掉一半、黄色已完全看不到，橙色高亮框标出面板范围'
+    sha256: 80e023f652e84d22bc45f09dd4bc46588d1ddcba5fb762714f22518924893694

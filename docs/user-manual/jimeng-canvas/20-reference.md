@@ -2087,3 +2087,57 @@ Current price 3 / 张. 3 / 张 生成`
 
 ⚠️ **第三种不是视口宽度的函数**：640 宽的屏幕上，x=120 处右键正常飞出、x=200 处就塌了。
 六个「宽 × 位置」组合逐一核对，6/6 与规则一致。
+
+### ✅ 「余量 32」这一族里，唯一**打开过**的一个：标签色板面板（批次 171 实测 12 档）
+
+上面那张表里 **32 那一族有 10 个类**。批次 170 把它们逐个拿页面上扫过，
+**全部 `inDom=0`**（静止态根本不挂载）⇒ 必须逐个找入口。批次 171 的结论：
+
+| 类 | 能不能打开 | 原因 |
+|---|---|---|
+| **`max-w-canvas-tag-selector`** | ✅ **打开了** | 选中节点 → 点标题行右侧的 `Add tags` |
+| `max-w-canvas-audio-trim-panel`、`-voice-catalog-panel` | ❌ | 画布上 **68 个音频节点全是空壳**（`No resources: 0 ready`），裁剪/音色面板不出现 |
+| `max-h-canvas-agent-approval-hover`（及它的 `-content`） | ❌ | 要等 agent **真的提出待批准动作**才挂载；那需要**发消息**（可能扣分，⛔ 立规 20） |
+| 其余 7 个（`panorama-editor`、`agent-*`、`generation-size-panel-viewport`、`mask-operation-status`、`post-edit-toolbar-viewport`、`smart-edit-cursor-guide`、`video-edit-panel`） | ❌ 未试 | 都需要有内容的媒体节点或特定工作流 |
+
+📌 **所以「余量 32」这一族至今只有一条实测**，其余 9 条**只有静态声明、没有动态读数**。
+记这一族时**不能只拿标签色板这一条去推广**（这正是批次 168 犯过的错，立规 41）。
+
+**标签色板的完整机制**（用户侧说明在
+[任务页](10-tasks/organize-group-layout.md#色板面板的尺寸机制2026-10-05-批次-171-实测-12-档)）：
+
+```
+DIV[data-testid=canvas-node-tag-selector][role=toolbar][aria-label="Canvas tags"]
+宽 = min(224, 100vw − 32)     门槛 256（12 档全中）
+高 = 44                        恒定，720/300/200 三档都一样
+class 逐字：fixed … h-canvas-tag-selector-height w-canvas-tag-selector-width
+             max-w-canvas-tag-selector … overflow-x-auto overflow-y-hidden … origin-center
+style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
+```
+
+🔑 **本批顺手回答了批次 170 a 轮立下、一直没答的问题**：
+「`max-w-canvas-X` 是包裹层还是面板本体？」
+**在标签色板上是同一个元素** —— 定尺类 `w-canvas-tag-selector-width` 与
+夹取类 `max-w-canvas-tag-selector` 逐字出现在**同一个 class 列表**里，
+**没有分家**。⇒ **「先滤出包裹层再量面板」这个步骤在这类面板上不成立**，
+量到的是什么就是什么。
+
+⚠️ **压窄后会出现横向滚动**：`scrollWidth` 恒为 **224**（内容宽），
+`clientWidth` 随视口变小 ⇒ `overflow-x-auto` 生效，末尾颜色被裁掉点不到
+（240 缺黄色、200 缺橙+黄、160 缺紫+橙+黄）。
+
+### 🔑 一个新机制坑：别直接改 react-flow 的 viewport transform（批次 171，f/g/h/i 四轮连续失败）
+
+批次 171 想在窄视口下点开标签色板，试了四种办法，**前三种全灭**：
+
+| 试法 | 结果 |
+|---|---|
+| 鼠标拖画布平移（f 轮） | 把平移循环套在所有档位上，**连 1280 都点不中** |
+| 直接 `setAttribute` 改 `.react-flow__viewport` 的 transform（g/h/i 轮） | 改完当下看着对，**下一次渲染 react-flow 就写回旧值** ⇒ 点下去时元素已回原处，`elementFromPoint` 命中 `null` |
+| 在窄视口里从零复现「选节点 → 点 Add tags」 | 窄视口下左栏 160 占掉大半，**Add tags 落在栏底**，按钮不可点 |
+
+✅ **正解（j 轮，12 档一次全中）**：**在 1280 下先把面板打开，再只改视口**。
+`max-width` 是**纯 CSS**，`setDeviceMetricsOverride` 之后无需任何交互就会重算
+（批次 170 的 k 轮已证明过这一点）。
+📌 **推论：凡是「只关心 CSS 夹取」的档位扫描，都应该「先开面板、后改视口」**，
+不要在每个窄视口里重新走一遍交互流程 —— 既慢又脆（立规 43）。
