@@ -1875,3 +1875,14 @@ screenshots:
     visible_text: '帮助中心'
     alt: '「帮助中心」面板（2026-10-05 批次 168 拍，1280×720 下实测 360×644）：面板钉在画布右上角，面板以 fixed + right-4 + top 偏移 60px + z-40 钉在右上角，左上角标题「帮助中心」，下面是说明文字与若干条目，右上角有 ✕ 关闭'
     sha256: ccaee05f37e0bcc54e329331156673106515549f01c38dd30503cb2b7c88c192
+  - file: screenshots/127-generation-history-panel-fixed-211.png
+    task_id: canvas-context
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T13:53:00+08:00
+    verified_locator: '顶栏 aria 逐字「生成历史」的按钮（[data-testid="canvas-panel-launcher] 共 2 个实例，另一个是「搜索」）点开的 [data-testid="generation-history-panel"]，读出 320×211@801,56'
+    visible_text: '生成历史 全部 图片 视频 音频 文本 暂无生成历史'
+    alt: '「生成历史」面板在 1280×720 下的样子（2026-10-05 批次 169 拍）：面板钉在画布右上角，标题行左侧「生成历史」、右侧「积分明细 ›」，下面一行五个页签 全部 / 图片 / 视频 / 音频 / 文本（全部 选中带下划线），内容区正中写着「暂无生成历史」；橙色高亮框标出面板 320×211 的范围'
+    sha256: 8de15ff04c26c24b1ef30c51a5c75cf815ff7d2890cfbf55a0c37cae88d21a14
