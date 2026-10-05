@@ -119,8 +119,68 @@ export async function shot(page, file, opts = {}) {
  * 里（aria-label=关闭 那个属于顶部横幅）。所以这里按可靠性排序：Escape → 点遮罩 → 找关闭钮。
  * 站点有单画布单编辑者锁，那个遮罩**不能**关（它是被测行为本身），因此先识别再关。
  */
+/**
+ * ⭐⭐⭐⭐ 关掉**非 Mantine 模态**的固定定位推广浮层。
+ *
+ * 起因（Batch FD-3 实测）：「Agent 已升级为 TV Director」是
+ *   `<div class="fixed w-[280px] max-w-[calc(100vw-24px)]">`，**z-index 101**，
+ *   ⛔ 不是 `.mantine-Modal-overlay` ⇒ 老版 closePromos 连关 5 轮都关不掉，
+ *   它会一直挡着画面、把 innerText 读数搅浑。
+ *
+ * ⛔ 安全边界（必须保留）：只点**纯 dismiss 文案**的白名单按钮。
+ *   ⛔ **绝不点 `去体验` / `开始体验`** —— 那会真的进入体验流程。
+ *   白名单里的每一个字都是「知道了 / 我知道了 / 关闭 / 不再提示」，
+ *   点下去的唯一后果是这个浮层消失。
+ * 判据要窄：position:fixed + 尺寸 200~600 + 自身文案命中推广词 + 按钮文案在白名单里。
+ */
+const 关浮层白名单 = ['知道了', '我知道了', '知道了！', '关闭', '不再提示', '以后再说', '稍后再说'];
+
+async function closeFixedPromos(page, max = 4) {
+  const 关掉的 = [];
+  for (let i = 0; i < max; i += 1) {
+    const 目标 = await page.evaluate((白名单) => {
+      const 推广词 = /已升级|新功能|来试|体验一下|限时|推荐|抢先|内测/i;
+      const 可见 = (el) => {
+        const r = el.getBoundingClientRect();
+        return r.width > 0 && r.height > 0;
+      };
+      const 浮层 = [...document.querySelectorAll('div.fixed, section.fixed, aside.fixed')]
+        .filter((el) => {
+          if (!可见(el)) return false;
+          const cs = getComputedStyle(el);
+          if (cs.position !== 'fixed') return false;
+          const r = el.getBoundingClientRect();
+          if (r.width < 180 || r.width > 640 || r.height < 120 || r.height > 720) return false;
+          return 推广词.test((el.innerText || '').slice(0, 300));
+        });
+      for (const f of 浮层) {
+        const btn = [...f.querySelectorAll('button,[role="button"]')]
+          .find((b) => 可见(b) && 白名单.includes((b.innerText || b.getAttribute('aria-label') || '').trim()));
+        if (!btn) continue;
+        const r = f.getBoundingClientRect();
+        const br = btn.getBoundingClientRect();
+        return {
+          文字: (f.innerText || '').replace(/\s+/g, ' ').slice(0, 80),
+          按钮: (btn.innerText || btn.getAttribute('aria-label') || '').trim(),
+          框: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)],
+          点击点: [Math.round(br.x + br.width / 2), Math.round(br.y + br.height / 2)],
+        };
+      }
+      return null;
+    }, 关浮层白名单);
+    if (!目标) break;
+    await page.mouse.click(目标.点击点[0], 目标.点击点[1]);
+    await page.waitForTimeout(400);
+    关掉的.push(目标);
+  }
+  return 关掉的;
+}
+
 export async function closePromos(page) {
   const report = [];
+  // ⭐ 先收非模态的 fixed 推广浮层（老版漏了这一类，见上方注释）
+  const fixed = await closeFixedPromos(page);
+  for (const f of fixed) report.push({ 模态: false, 文字: f.文字, 按钮: f.按钮, 框: f.框, 怎么关的: 'fixed-按钮', gone: true });
   for (let i = 0; i < 5; i += 1) {
     const info = await page.evaluate(() => {
       const ov = [...document.querySelectorAll('.mantine-Modal-overlay')].filter((m) => {
