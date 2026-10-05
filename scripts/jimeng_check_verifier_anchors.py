@@ -34,6 +34,7 @@ from __future__ import annotations
 
 import ast
 import re  # ⚠️ 997：`classify_skipped` 要按**赋值语句的形状**分类s
+import sys  # ⭐⭐⭐⭐⭐ 1002：让 `argv[1]` 能覆盖判据文件路径
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -267,6 +268,7 @@ PROBE_VARS = {
     "_p1000": "scripts/jimeng_probe1000_negative_census_reread.py",
     # ⚠️ 1001：**读取行与这条登记同一步加**
     "_p1001": "scripts/jimeng_probe1001_repeat_shape_reread.py",
+    "_p1002": "scripts/jimeng_probe1002_mutation_coverage.py",
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。
@@ -470,8 +472,54 @@ def collect(tree: ast.AST) -> list[tuple[str, str, bool]]:
     return out
 
 
+def census_ok_shape(tree: ast.AST) -> list[tuple[int, str, str]]:
+    """⭐⭐⭐⭐⭐ 1002：`check(name, ok, detail)` 的 **`ok` 位置**必须是表达式。
+
+    ⚠️⭐⭐⭐⭐⭐ **为什么单列一道门**（`collect()` 只走 `Compare` 节点）：
+    ⇒ ⇒ **`ok` 写成裸字符串 ⇒ 那一条判据**恒真** ⇒ 而它**一个 `Compare` 都没有**
+    ⇒ ⇒ **⇒ 所以 `collect()` 结构上看不见它、`锚点 N 条` 也数不到它**
+    ⇒ ⇒ **⇒ 而 1001 批我在做坏锚点探针时、正好连着三次把整条判断写成了字符串**
+    ⇒ ⇒ **⇒ 门三次都报「全通」—— 而「门没报」与「门坏了」在输出上完全一样**
+
+    ⚠️⚠️⚠️ **口径警告（我第一版就数错了）**：
+    `check` 是**固定三参** `(name, ok, detail="")` ⇒ ⇒
+    **`args[1]` 才是条件、`args[2]` 是给人看的 detail** ⇒ ⇒
+    ⇒ **而我第一版把 `args[1:]` 整个当条件、于是分母成了 911（真实是 791）** ⇒ ⇒
+    ⭐⭐⭐⭐ **⇒ 109 条 `detail` 里混着 106 个 f-string —— 它们非空、恒真、**
+    **而它们是**消息**、根本不是条件** ⇒ ⇒ **⇒ 一旦口径错了、就会报出 106 个假的「恒真」**
+    ⇒ ⇒ **⇒ 这与 1001「同一个东西要比同一个口径」是同一条**
+    """
+    out: list[tuple[int, str, str]] = []
+    for call in ast.walk(tree):
+        if not (isinstance(call, ast.Call) and isinstance(call.func, ast.Name)
+                and call.func.id == "check"):
+            continue
+        title = (call.args[0].value
+                 if call.args and isinstance(call.args[0], ast.Constant)
+                 else "?")
+        if len(call.args) < 2:
+            out.append((call.lineno, str(title)[:40], "**没有 `ok` 参数**"))
+            continue
+        ok = call.args[1]
+        if isinstance(ok, ast.Constant) and isinstance(ok.value, str):
+            out.append((call.lineno, str(title)[:40],
+                        "`ok` 是**裸字符串字面量** ⇒ 恒真 ⇒ "
+                        f"{ok.value[:40]!r}"))
+        elif isinstance(ok, ast.Constant):
+            out.append((call.lineno, str(title)[:40],
+                        f"`ok` 是裸字面量 {ok.value!r} ⇒ "
+                        f"{'恒真' if ok.value else '恒假'}"))
+    return out
+
+
 def main() -> int:
-    if not AUDIT.exists() or not VERIFIER.exists():
+    # ⭐⭐⭐⭐⭐ 1002：**判据文件路径可以覆盖** ⇒ ⇒
+    #   **「门只能读固定路径」⇒ 任何检出率实验都必须改真文件 ⇒ ⇒**
+    #   **⇒ 而那意味着实验本身有副作用（改到一半被中断就留下一个坏文件）** ⇒ ⇒
+    #   **⇒ 处置：接受 `argv[1]` 作为判据文件路径、默认值不变 ⇒ ⇒**
+    #   **⇒ 于是 1002 的变异实验全部在 `/tmp` 的副本上做、真文件一个字节都不动**
+    _vpath = Path(sys.argv[1]) if len(sys.argv) > 1 else VERIFIER
+    if not AUDIT.exists() or not _vpath.exists():
         print("找不到 audit / verifier 源码", file=sys.stderr)
         return 1
     ausrc = AUDIT.read_text(encoding="utf-8")
@@ -479,7 +527,8 @@ def main() -> int:
               if (ROOT / v).exists() else ""
               for k, v in PROBE_VARS.items()}
 
-    items = collect(ast.parse(VERIFIER.read_text(encoding="utf-8")))
+    _vtree = ast.parse(_vpath.read_text(encoding="utf-8"))
+    items = collect(_vtree)
     problems = 0
     n_ausrc = 0
     for name, anchor, neg in items:
@@ -494,6 +543,17 @@ def main() -> int:
             print(f"MISSING     [{name}] {anchor!r}")
             problems += 1
 
+    # ── ⭐⭐⭐⭐⭐ 1002：`ok` 位置的条件形状普查（`collect()` 看不见它）────
+    bad_ok = census_ok_shape(_vtree)
+    for _ln, _t, _why in bad_ok:
+        print(f"SHAPE-OK    [line {_ln}] {_t} —— {_why}")
+    problems += len(bad_ok)
+    n_checks = sum(1 for c in ast.walk(_vtree)
+                   if isinstance(c, ast.Call) and isinstance(c.func, ast.Name)
+                   and c.func.id == "check")
+    print(f"SHAPE-口径：check({n_checks}) 条、其中 `ok` 是**裸字面量**的 "
+          f"{len(bad_ok)} 条（**`detail` 位置不算** —— 它是人看的消息）")
+
     if SKIPPED:
         # ⚠️ **不算问题**（多半是字典/切片/循环变量），但**必须可见**（961）
         import collections as _c
@@ -501,7 +561,7 @@ def main() -> int:
             print(f"SKIPPED-未登记 [{_n}] {_k} 条锚点（**不查**）")
         # ⚠️⚠️⚠️ 997：**「未登记」不是一个同质的集合** ⇒ 门自己分类
         _cls = classify_skipped(ast.parse(
-            VERIFIER.read_text(encoding="utf-8")), set(SKIPPED))
+            _vpath.read_text(encoding="utf-8")), set(SKIPPED))
         for _tag, _names in _cls.items():
             if _names:
                 print(f"SKIPPED-分类 [{_tag}] {len(_names)} 个："

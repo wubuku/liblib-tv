@@ -5852,6 +5852,9 @@ def main() -> int:
     # ⚠️ 判据组 `F993J.3` 要钉的是**「歧义与被门检查互斥」**
     p1001 = ROOT / "scripts/jimeng_probe1001_repeat_shape_reread.py"
     _p1001 = p1001.read_text(encoding="utf-8") if p1001.exists() else ""
+    # ⚠️⚠️ 判据组 `G993K.2` 要钉的是**「改之前/改之后」那两条路必须分开数**
+    p1002 = ROOT / "scripts/jimeng_probe1002_mutation_coverage.py"
+    _p1002 = p1002.read_text(encoding="utf-8") if p1002.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -13515,6 +13518,159 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **反向门②**：**不许把「修好数字位数」说成「仪器从此可信」**
           and "修好之后这个仪器就可信了" not in _p1001
           and "修好之后这个仪器就可信了" not in _ausrc)
+
+    # ══ G993K. 批 1002 **「0 问题」是门的一个输出；门对自己够不够敏感从来没被量过**
+    print("— G993K. 批 1002 门自身的检出率："
+          "⭐⭐⭐⭐⭐ **6 类变异、3 类改前 0% / 4 类改后 0%** ⇒ ⇒ "
+          "⚠️ **而 0% 的成因**分两种**：门坏了／问题在门的问题之外** ⇒ ⇒ "
+          "**⇒ 后者更危险、因为它长得像前者**")
+
+    check("G993K.1 ⭐⭐⭐⭐⭐ **P1 成立：活文件里 `check(...)` 的 `ok` 是裸字面量的 0 条** ⇒ ⇒ "
+          "**⇒ 而这个 0 现在由门自己每次打印、而不是靠我记着** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 「0」必须能返回非零 —— P2/P3 就是它的反向用例** ⇒ ⇒ "
+          "**⇒ 而 P2/P3 这一对是本批的主交付**",
+          '"P1_no_bare_string_ok_in_stock"' in _p1002
+          and '"p1_no_bare_string_ok_1002_"' in _ausrc
+          and '"P1_hold_1002"' in _p1002
+          and '"n_bad_ok_reported"' in _p1002
+          and 'census_ok_shape' in _p1002  # ⭐ 这道判据自己在读门的那道普查
+          and 'census_ok_shape' in _anchs
+          and '"SHAPE-口径：check(' in _anchs
+          and 'def census_ok_shape' in _anchs
+          and '而这个 0 现在由门自己每次打印' in _p1002
+          and '而这个 0 现在由门自己每次打印' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「0 条」当成「这个检查通过了」的证据**
+          and '「0 条」不等于「检查通过了」' not in _p1002
+          and '「0 条」不等于「检查通过了」' not in _ausrc)
+
+    check("G993K.2 ⭐⭐⭐⭐⭐ **P2/P3 成立：改之前「`ok` 整条写成字符串」检出率 = 0、改之后 = 100%** ⇒ ⇒ "
+          "**⇒ 而这就是 1001 那三次「全通」的机制** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 机制是结构性的：`collect()` 只走 `Compare`、"
+          "**而裸字符串一个 `Compare` 都没有 ⇒ 连「锚点 N 条」都数不到** ⇒ ⇒ "
+          "**⇒ 而处置是「多一条独立的路」、不是「把 `collect()` 改聪明」** ⇒ ⇒ "
+          "**⇒ 因为 `collect()` 问「锚点在不在」、问不到「`ok` 是不是恒真」**",
+          '"p2_before_fix_m3_zero_1002_"' in _p1002
+          and '"p3_after_fix_m3_detected_1002_"' in _p1002
+          and '"p2_before_fix_m3_zero_1002_"' in _ausrc
+          and '"p3_after_fix_m3_detected_1002_"' in _ausrc
+          and '"P2_hold_1002"' in _p1002
+          and '"P3_hold_1002"' in _p1002
+          and '"n_problems_before"' in _p1002
+          and '而这就是 1001 那三次「全通」的机制' in _p1002
+          and '所以它连「锚点 N 条」都数不到' in _p1002
+          and '所以它连「锚点 N 条」都数不到' in _ausrc
+          and '不是数错了、是那个数按定义就不包含它' in _ausrc
+          and '而处置是「多一条独立的路」' in _p1002
+          and '问不到「`ok` 是不是恒真」' in _p1002
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许说「把 `collect()` 改得更聪明就行」**
+          and '把 `collect()` 改得更聪明就行' not in _p1002
+          and '把 `collect()` 改得更聪明就行' not in _ausrc)
+
+    check("G993K.3 ⭐⭐⭐⭐⭐ **P4 成立、而它否的是我自己的门：把锚点换成一个确实存在的串 ⇒ "
+          "改前改后都检不出** ⇒ ⇒ "
+          "**⇒ 「这条锚点在不在」按定义问不到「它的内容是不是必然为真」** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 这一类最危险：判据还在、门还全绿、而它什么都不防** ⇒ ⇒ "
+          "**⇒ M6「删掉整条判据」也是 0%、但成因不同 ⇒ 同样 0% 必须分开记** ⇒ ⇒ "
+          "**⇒ 而 M5 的第一版设计（翻正反向断言）被数据否掉了 —— "
+          "**反向断言的锚点按设计就不该存在、所以翻正反而会被检出**",
+          '"p4_m5_structurally_undetectable_1002_"' in _p1002
+          and '"p4b_m5_design_falsified_1002_"' in _p1002
+          and '"p4_m5_structurally_undetectable_1002_"' in _ausrc
+          and '"p4b_m5_design_falsified_1002_"' in _ausrc
+          and '"P4_hold_1002"' in _p1002
+          and '"M5-锚点换成必然为真的串"' in _p1002
+          and '"M6-删掉整条判据"' in _p1002
+          and 'PRESENT_ANCHOR' in _p1002
+          and '判据还在、门还全绿、而它什么都不防' in _p1002
+          and '判据还在、门还全绿、而它什么都不防' in _ausrc
+          and '同样是 0%、必须分开记' in _p1002
+          and '同样是 0%、必须分开记' in _ausrc
+          and '「否」的是我的变异设计' in _p1002
+          and '「否」的是我的变异设计' in _ausrc
+          and '反向断言的「方向」是被存在性本身保护的' in _p1002
+          and '反向断言的锚点**按设计就不该存在**' in _p1002
+          # ⭐⭐⭐⭐⭐ **反向门①**：**不许说「这类 0% 说明门坏了」**
+          and '0% 说明门坏了' not in _p1002
+          and '0% 说明门坏了' not in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门②**：**不许只报一个检出率比率**
+          and '只看检出率' not in _p1002
+          and '只看检出率' not in _ausrc)
+
+    check("G993K.4 ⭐⭐⭐⭐⭐ **P5 成立：「指向未登记变量」不产生 problem、但会打印 SKIPPED** ⇒ ⇒ "
+          "**⇒ 「可见」与「检出」是两个量、必须分开数** ⇒ ⇒ "
+          "**⇒ 而 961 那次吃过一次：静默 `continue` ⇒ 「0 问题」是假绿** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ P6 成立、而它是我自己犯的口径错："
+          "`check(name, ok, detail)` 固定三参、我第一版把 `args[1:]` 整个当条件 ⇒ "
+          "**分母 911（真实 791）⇒ 而那 109 条 `detail` 里有 106 个 f-string、非空恒真** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 口径错了的 0 比真的 0 更坏：它会让人以为仓里烂得很**",
+          '"p5_visible_is_not_detected_1002_"' in _p1002
+          and '"p6_ok_and_detail_slots_1002_"' in _p1002
+          and '"p5_visible_is_not_detected_1002_"' in _ausrc
+          and '"p6_ok_and_detail_slots_1002_"' in _ausrc
+          and '"P5_hold_1002"' in _p1002
+          and '"P6_hold_1002"' in _p1002
+          and '「可见」与「检出」是两个量' in _p1002
+          and '「可见」与「检出」是两个量' in _ausrc
+          and '分母成了 911（真实 791）' in _p1002
+          and '分母成了 911（真实 791）' in _ausrc
+          and '口径错了的 0 比真的 0 更坏' in _p1002
+          and '口径错了的 0 比真的 0 更坏' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「被跳过」记成「查过了」**
+          and '被跳过就算查过了' not in _p1002
+          and '被跳过就算查过了' not in _ausrc)
+
+    check("G993K.5 ⭐⭐⭐⭐⭐ **本批的仪器自己也栽了两次、而两次都是被自己的断言抓住的** ⇒ ⇒ "
+          "**① `before` 一律 2343 —— 成因是我给「改之前」那一路传了空的 `probes` 字典"
+          "** ⇒ **⇒ 而「恒定的巨大数字」几乎总是「某个集合是空的」** ⇒ ⇒ "
+          "**⇒ 更糟的是：那让 P2 与 P4 双双「不成立」、而两个都是假的** ⇒ ⇒ "
+          "**② M6 第一版什么都没删、却把结果当成了「删掉了」"
+          "**（`check(...)` 是表达式语句、父节点是 `ast.Expr`）** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 抓住它们的不是任何一道门、是探针自己那句「变异必须先验形状」** ⇒ ⇒ "
+          "**⇒ 而处置：路径可覆盖 ⇒ 6 个变异全在 `/tmp` 副本上跑、真文件一个字节都不动**",
+          '"instrument_empty_probes_1002_"' in _p1002
+          and '"m6_delete_bug_caught_by_shape_assert_1002_"' in _p1002
+          and '"path_override_1002_"' in _p1002
+          and '"instrument_empty_probes_1002_"' in _ausrc
+          and '"m6_delete_bug_caught_by_shape_assert_1002_"' in _ausrc
+          and '"path_override_1002_"' in _ausrc
+          and 'SHAPE_DELTA' in _p1002
+          and 'BASE_SHAPE' in _p1002
+          and '"n_problems_before_on_clean"' in _p1002
+          and '恒定的巨大数字' in _p1002
+          and '恒定的巨大数字' in _ausrc
+          and '读到 2343 先问' in _p1002
+          and '读到 2343 先问' in _ausrc
+          and '我以为我测了、其实我测的是原文件' in _p1002
+          and '我以为我测了、其实我测的是原文件' in _ausrc
+          and '是探针自己那句「变异必须先验形状」' in _p1002
+          and '全在 `/tmp` 的副本上跑、真文件一个字节都不动' in _p1002
+          and '全在 `/tmp` 的副本上跑、真文件一个字节都不动' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「探针跑完了」当成「探针量到了东西」**
+          and '探针跑完了就当量到了' not in _p1002
+          and '探针跑完了就当量到了' not in _ausrc)
+
+    check("G993K.6 ⭐⭐⭐⭐⭐ **本批纯离线：不打开浏览器、不按任何键、**连 `mouse.click` 都没有**、"
+          "**只读判据与门两个文本、跑 7 次门（1 基线 + 6 变异）** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而「0 检出」的两种成因必须分开记："
+          "**门坏了／问题在门的问题之外 —— 而后者更危险、因为它长得像前者** ⇒ ⇒ "
+          "**⇒ 验收标准：0% 的类别逐条列成因、不许只报一个比率**",
+          '"offline_1002"' in _p1002
+          and '"offline_1002"' in _ausrc
+          and '"discipline_1002"' in _p1002
+          and '"discipline_1002"' in _ausrc
+          and '连 `mouse.click` 都没有' in _p1002
+          and '跑 7 次门（1 基线 + 6 变异）' in _p1002
+          and '跑 7 次门（1 基线 + 6 变异）' in _ausrc
+          and '"undetected_are_listed_not_averaged"' in _p1002
+          and '0% 的类别逐条列成因、不许平均' in _ausrc
+          and '检出率必须按类别报' in _ausrc
+          and '问题在门的问题之外' in _ausrc
+          and '读到恒定的巨大数字' in _ausrc
+          and '「否」也可能是「我测的那件事不是我想测的那件事」' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许说「检出率够了、问题就都覆盖了」**
+          and '检出率够了问题就都覆盖了' not in _p1002
+          and '检出率够了问题就都覆盖了' not in _ausrc)
+
 
 
 
