@@ -1,0 +1,136 @@
+{
+  "步骤": [
+    "当前：https://www.liblib.tv/canvas?spaceId=10354929&projectId=59c3c1187a244cfab3c578019f7143e3",
+    "节点数 0",
+    "\n--- 空画布上的文字全量 ---",
+    "  画布 64 | 开通会员 | 限时 45 折 | 20 | 双击画布 | 自由生成节点 | 图片生成 | 视频生成 | 音频生成 | 剧本生成 | 智能剪辑 | 资产管理 | 100% | 新对话 | 让 TV Director 辅助你的无限创意 | 选择Skill开始创作 | 从爆款预设开始剧本原创 | 上传故事来改编 | 批量创建分镜 | 开启浏览器通知，及时获取最新消息 | 开启 | 全能创作 | 正在跟随 | 取消ESC | 按 ESC 退出",
+    "\n--- 打开下拉，定位「画布名称」输入框 ---",
+    "  ⛔ 没找到画布名称输入框（说明命名框不是常驻的）",
+    "\n--- 下拉容器内所有可点元素（按容器框过滤）---",
+    "  容器：{\"h\":220,\"框\":[166,91,212,220]}",
+    "  排除 63 行之后还剩 7 个：",
+    "   <BUTTON> 文「」aria=更多操作 type=button disabled=false 344,93,24,24\n       cls=absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+    "   <BUTTON> 文「」aria=更多操作 type=button disabled=false 344,129,24,24\n       cls=absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+    "   <BUTTON> 文「」aria=更多操作 type=button disabled=false 344,165,24,24\n       cls=absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+    "   <BUTTON> 文「」aria=更多操作 type=button disabled=false 344,201,24,24\n       cls=absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+    "   <BUTTON> 文「」aria=更多操作 type=button disabled=false 344,237,24,24\n       cls=absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+    "   <BUTTON> 文「」aria=更多操作 type=button disabled=false 344,273,24,24\n       cls=absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+    "   <BUTTON> 文「」aria=更多操作 type=button disabled=false 344,309,24,24\n       cls=absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item"
+  ],
+  "读数": {
+    "空画布文字": "画布 64\n开通会员\n限时 45 折\n20\n\n双击画布\n\n自由生成节点\n\n图片生成\n视频生成\n音频生成\n剧本生成\n智能剪辑\n资产管理\n100%\n新对话\n\n让 TV Director 辅助你的无限创意\n\n选择Skill开始创作\n从爆款预设开始剧本原创\n上传故事来改编\n批量创建分镜\n开启浏览器通知，及时获取最新消息\n开启\n\n\n\n\n全能创作\n正在跟随\n取消ESC\n按 ESC 退出",
+    "命名框结构": {
+      "错": "没找到画布名称输入框（说明命名框不是常驻的）"
+    },
+    "容器": {
+      "h": 220,
+      "框": [
+        166,
+        91,
+        212,
+        220
+      ]
+    },
+    "容器可点": [
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "aria": "更多操作",
+        "type": "button",
+        "disabled": false,
+        "cls": "absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+        "框": [
+          344,
+          93,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "aria": "更多操作",
+        "type": "button",
+        "disabled": false,
+        "cls": "absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+        "框": [
+          344,
+          129,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "aria": "更多操作",
+        "type": "button",
+        "disabled": false,
+        "cls": "absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+        "框": [
+          344,
+          165,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "aria": "更多操作",
+        "type": "button",
+        "disabled": false,
+        "cls": "absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+        "框": [
+          344,
+          201,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "aria": "更多操作",
+        "type": "button",
+        "disabled": false,
+        "cls": "absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+        "框": [
+          344,
+          237,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "aria": "更多操作",
+        "type": "button",
+        "disabled": false,
+        "cls": "absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+        "框": [
+          344,
+          273,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "aria": "更多操作",
+        "type": "button",
+        "disabled": false,
+        "cls": "absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2 item",
+        "框": [
+          344,
+          309,
+          24,
+          24
+        ]
+      }
+    ]
+  },
+  "断言": []
+}
