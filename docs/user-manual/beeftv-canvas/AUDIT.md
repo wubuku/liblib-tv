@@ -10349,3 +10349,18 @@ Batch 249 加的）、`run_two_file_case`（3 条，**没有**）、用例 7 内
     **第一句「N 份反验全部可启动」的「全部」两个字改成条件说**，
     **免得一条无条件打印的结论自己撒谎。**
     **验收**：反验 54/54、对照组 53 红 54 绿 0 作废、闸 rc=0。**纪律 320**。
+
+249. **5 份 SLOW 的「例数」第一次拿到了真值，而其中一份**整个跑不起来**（Batch 286）**：
+    `selftest-meta.sh` 47 / `selftest-unreachable.sh` 33 / `selftest-quote-punct.py` 7 /
+    `selftest-selftest-bootable.py` 54（自核）——**四个合计与表里都对得上**；
+    **而 `selftest-zero-input.py` rc=2「拒绝开跑」**，
+    **破口是 `shutil.rmtree(fleet_root, ignore_errors=True)` 没登记进 `READONLY_EXEMPT`**。
+    **`git log -S` 查出来由 `e227854b`（Batch 282）引入**——
+    **也就是 Batch 282 / 283 / 284 / 285 四个批次的绿构建全绿，
+    而这道闸从 Batch 282 起一次都没跑起来**（它在 SLOW 里，构建从不跑 SLOW）。
+    **已登记该豁免并写明它删的是 `tempfile.mkdtemp` 出来的那棵副本树**，
+    **实测修复后 rc=0、274.0 秒、0 处写操作**。
+    **顺带**：那一行「例数」登的 `2` **既不是闸数也不是件数、也没有出处**，
+    **已据实改成 3 并让该文件自己核自己这一行**（单位 = 本文件核的件数）。
+    **另记**：`selftest-unreachable.sh` 的 3 条失败归因是**上游领先基线 34 提交**，
+    **不是闸的缺陷**，而它把这件事记成了「闸门误伤」。**纪律 321**。
