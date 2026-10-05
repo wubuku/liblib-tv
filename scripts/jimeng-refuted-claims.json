@@ -1040,6 +1040,16 @@
    "pattern_note": "⚠️ **这一条踩了台账 pattern 选取的第五个坑：pattern 会撞到无关的同形文本。** 第一版 pattern 取的是那一行的末格 `图片 / 视频 / 音频 / 时间线 / 主体`，回填门立刻报红 —— 它同时命中 `canvas-context.md:583` 与本文件另一张表（从图片节点出发的可连目标类型），那两处**说法是对的**，不能加订正标记。⇒ 改为取**该行独有的开头** `左边（before）`（全册仅 1 处），并在该行**就地加删除线订正标记**。📌 推论：pattern 不只要「能命中」，还必须**只命中那一处**；全角括号是安全的（不是正则元字符）。",
    "refuted_in": "批次 184（SOURCE_OBSERVATIONS.md §4.107.3；10-tasks/connect-nodes.md 批次 71 那张表的 before 行**就地加删除线**，并在下方「哪些类型有几个 ⊕（批次 184 六类逐个普查）」一节给出完整替换表）",
    "reason": "2026-10-05 批次 184：判据是**选中后数 aria-label^=\"Create connected node\" 的元素个数**并逐个列出 testid（不靠「点不点得中」，点得中还要过命中测试）。在一个**带资源**的图片节点 b22-upload 上读到 **`⊕ 个数 = 1`，只有 flow-node-source-connection-menu-button（after）**；其 `flow-node-target-handle` 元素在 DOM 里，但 `::before` 的 `pointer-events` 是 `none`。另两轮独立佐证：184 第一轮取 before ⊕ 坐标读到 `null`。六类普查结果：video 2 / audio 2 / image 1（仅 source）/ text 1（仅 source）/ timeline 1（仅 target）/ external 0。⇒ 批次 71 表里把图片列进 before 那一行是错的，**图片节点没有 before ⊕**（主体节点当前不在画布上，那一行未复核，原样保留）。⇒ 附带一条更普适的：**DOM 里有 handle 元素 ≠ 它能拖**，判据必须读 `getComputedStyle(el,'::before').pointerEvents`。"
+  },
+  {
+   "id": "director-leaves-canvas",
+   "label": "以为点「进入导演台」会跳到外部工作台、离开画布（于是告诉用户用浏览器后退/刷新回去）",
+   "patterns": [
+    "后离开了画布"
+   ],
+   "pattern_note": "pattern 取自 director-node.md 常见错误表里那一句「点「进入导演台」后离开了画布」。选它是因为它是**全册唯一**出现「离开了画布」这个说法的位置（已 grep 确认），且「后离开了画布」这一段**逐字连续、边界处才有加粗**（原文写作 `点「进入导演台」后离开了画布`，前面用删除线包住整句、后面接 `｜`）。全角书名号与竖线不参与匹配，不含正则元字符。",
+   "refuted_in": "批次 185（SOURCE_OBSERVATIONS.md §4.108.3；10-tasks/director-node.md 常见错误表那一行**就地加删除线**，并在「取消 / 恢复」与新增的「订正：进入导演台并没有离开画布」两节给出完整读数表）",
+   "reason": "2026-10-05 批次 185：点「进入导演台」后 `location.href` 不变、浏览器标签页数 1→1、画布节点数 76→76，而 `role=\"dialog\"` 数 0→1、全屏固定遮罩 0→2、页面 data-testid 种类数 177→227、body 直接子节点 15→19 ⇒ 它是**在同一个画布页上开了一层全屏 role=dialog 浮层**（DIV[data-testid=director-stage-shell][aria-label=导演台]，1280×720@0,0、421 个后代；里面 3D 场景是 CANVAS[aria-label=3D viewport] 732×668@248,52），**不是跳转**。⇒ 实操后果：进去不用等加载、不丢画布，**按浏览器后退键反而可能把整个画布页退掉**；返回入口是右上角 BUTTON[aria-label=返回画布]（无可见文字的白色 ✕ 图标）32×32@1236,10，点它 dialog 1→0。⚠️ 浮层里另有一个 aria-label=关闭 的 ✕（32×32@203,58），认准 返回画布 那个。⇒ 立规 55：判「点击有没有生效」不能只看 URL/标签页/路由这类粗粒度量，必须轮询页面形状（dialog 数 / 全屏遮罩 / testid 种类数）。"
   }
  ]
 }

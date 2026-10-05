@@ -2007,3 +2007,14 @@ screenshots:
     visible_text: '复制 ⌘ C 复制副本 ⌘ D 复制为图片 ⌘ ⇧ C 粘贴 ⌘ V 保存到主体库 下载 重做 ⌘ ⇧ Z 无需重做操作 撤销 ⌘ Z 无需撤销操作 删除 ⌫'
     alt: "图片节点的右键菜单（2026-10-05 批次 175 拍）：九项——复制 ⌘ C、复制副本 ⌘ D、复制为图片 ⌘ ⇧ C、粘贴 ⌘ V，一条分隔线，保存到主体库、下载（这两项右侧没有快捷键），然后是灰字禁用的重做 ⌘ ⇧ Z 与撤销 ⌘ Z，最下面是删除 ⌫；橙色高亮框标出菜单范围"
     sha256: faf618a1948344b6f01520f5d5f37b8a742b71024547d2d0e2f784055d67d1d3
+  - file: screenshots/173-director-stage-return-canvas.png
+    task_id: director-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T19:21:00+08:00
+    verified_locator: '选中 .react-flow__node-external（导演台，id=node_pxvkay973v）后点节点内 BUTTON「进入导演台」（49×16@450,368，拍前用 elementFromPoint(474,376) 验过落点就是它）⇒ 1 秒内 role=dialog 数 0→1、testid 数 177→227，而 URL 与标签页数(1)都不变；浮层本体 DIV[role=dialog][data-testid=director-stage-shell][aria-label=导演台] 读出 1280×720@0,0、421 个后代，其中 CANVAS[aria-label=3D viewport] 732×668@248,52；返回入口 BUTTON[aria-label=返回画布] 32×32@1236,10，注入 border:3px solid #ff8c00 的 fixed 框外扩 8px 得 48×48@1228,2，拍前读回 border=3px solid rgb(255,140,0)、pointer-events=none、罩住按钮=true 才 shutter；点它后 dialog 1→0、浮层消失、节点数仍 76、URL 不变、状态行回到 76 nodes, 0 edges, 1 selected'
+    visible_text: '3D导演台 静态预演 动态预演 资产 搜索素材 预设 男性·标准 女性·标准 男性·少年 女性·少年 男性·儿童 女性·儿童 男性·纤瘦 女性·纤瘦 对象 搜索对象 机位 属性 环境预设 影棚 背景颜色 地面颜色 显示地面 地面不透明度 曝光 显示网格 导演视角'
+    alt: "3D 导演台全屏界面（2026-10-05 批次 185 拍）：顶栏左侧是标题「3D导演台」与问号帮助、保存两个小图标，中间是「静态预演」「动态预演」两个页签（静态预演为选中态），右侧依次是相机图标「拍摄」、分屏预览图标，以及最右上角一个白色叉号按钮「返回画布」——它被橙色高亮框标出；左侧「资产」面板有搜索素材框和一列预设卡片（男性·标准、女性·标准、男性·少年、女性·少年、男性·儿童、女性·儿童、男性·纤瘦、女性·纤瘦）；中间是 3D 视口，深色地面网格上有一条红色轴线和一条蓝色轴线，右上角浮着「机位」实时预览小窗，底部有「导演视角」下拉；右侧「对象」面板下面是「属性」区，列着环境预设「影棚」、背景颜色、地面颜色、显示地面开关、地面不透明度 50、曝光 1.05、显示网格开关；整个界面盖满 1280×720 的视口，画布节点一个都看不见"
+    sha256: 2da6f7185027152e09f7ae47618fc88d8fbcad2d368546df789feee765fa91d7
