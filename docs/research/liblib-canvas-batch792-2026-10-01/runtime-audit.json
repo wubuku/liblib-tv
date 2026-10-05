@@ -1,0 +1,226 @@
+{
+ "batch": 792,
+ "kind": "★ 第三批改 src/ 的批次（静默数据丢失）",
+ "claims": {
+  "D792-1": "★ 组合 (G) 跨分组多选时**静默掏空已有分组**：旧分组的成员被拽进新组，旧组 children 归零、界面只显示「组合成功」、五类提示选择器命中 0",
+  "C792-2": "★ 既有决定「分组不参与组合」**保留**；只补「所属组也在选区里的成员不进 children」⟹ 成员既不 进新组也不脱离原组",
+  "C792-3": "★ 新组 children 8 → 7 **不是退化**：少收的那 1 个正是原本会被拽走、从而掏空旧组的那一个",
+  "遗留": "★ 零提示**没有**被改变 —— 选中里有分组时用户仍然得不到任何告知"
+ },
+ "checks": [
+  {
+   "id": "A:三处源码锚点各唯一",
+   "ok": true,
+   "n": 3,
+   "anchors": [
+    {
+     "label": "收集选区里的分组 id",
+     "needle": "const selectedGroupIds = new Set(",
+     "ok": true,
+     "lines": [
+      3276
+     ],
+     "code": "const selectedGroupIds = new Set("
+    },
+    {
+     "label": "闸：所属组也在选区 ⟹ 不进 children",
+     "needle": "&& !selectedGroupIds.has(node.parentId ?? \"\"),",
+     "ok": true,
+     "lines": [
+      3284
+     ],
+     "code": "&& !selectedGroupIds.has(node.parentId ?? \"\"),"
+    },
+    {
+     "label": "原过滤仍在（分组不参与组合）",
+     "needle": "node.type !== \"storyboard-group\"",
+     "ok": true,
+     "lines": [
+      3283
+     ],
+     "code": "&& node.type !== \"storyboard-group\""
+    }
+   ],
+   "claim": "★ 既有决定「分组不参与组合」**保留**；新增的只有「所属组也在选区里的成员不进 children」这一条"
+  },
+  {
+   "id": "B:两阶段各 3 臂 × 2 轮且无 FAILED",
+   "desc": "★ 探针自己有 FAILED 或读数缺失就是**空读数**，不能当结论",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "pre": {
+     "groupPlusMember": 2,
+     "selectAllThenG": 2,
+     "twoLoose": 2
+    },
+    "post": {
+     "groupPlusMember": 2,
+     "selectAllThenG": 2,
+     "twoLoose": 2
+    }
+   }
+  },
+  {
+   "id": "C:★ 选区前置条件被读到（不是「假设我选中了」）",
+   "desc": "★ 756 的血泪：先记基线，否则会把「本来就空」读成「被掏空」；本批要求每条臂在按 `g` 之前读回 `selectedNodeIds` 的长度",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "want": {
+     "selectAllThenG": 10,
+     "groupPlusMember": 2
+    }
+   }
+  },
+  {
+   "id": "D:★★ 处理臂：pre 静默掏空、post 不掏空",
+   "desc": "★ pre 有分组的成员被抢（1 → 0）；post **零个**分组成员减少。★ 新组 children 由 8 变 7，少的那 1 个正是原本会被拽走、从而掏空旧组的那一个 —— 少收这一点换的是「不动别人的分组」",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "drained": [
+       {
+        "group": "g-EFbbHpwq",
+        "before": 1,
+        "after": 0
+       }
+      ],
+      "newGroups": [
+       {
+        "children": 8
+       }
+      ],
+      "nodeDelta": 1,
+      "selectedBeforeG": 10,
+      "toastCount": 0
+     },
+     {
+      "drained": [
+       {
+        "group": "g-EFbbHpwq",
+        "before": 1,
+        "after": 0
+       }
+      ],
+      "newGroups": [
+       {
+        "children": 8
+       }
+      ],
+      "nodeDelta": 1,
+      "selectedBeforeG": 10,
+      "toastCount": 0
+     }
+    ],
+    "post": [
+     {
+      "drained": [],
+      "newGroups": [
+       {
+        "children": 7
+       }
+      ],
+      "nodeDelta": 1,
+      "selectedBeforeG": 10,
+      "toastCount": 0
+     },
+     {
+      "drained": [],
+      "newGroups": [
+       {
+        "children": 7
+       }
+      ],
+      "nodeDelta": 1,
+      "selectedBeforeG": 10,
+      "toastCount": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "E:★★ 两条阳性对照前后都不变",
+   "desc": "★ 「组 + 自己成员」= 零变化（756 记录）；「两个散节点」= 节点 +1、新组 children 2 ⟹ 正常组合**仍能成**。★ 缺了后者，一个「让 `G` 什么都不做」的修复也能全绿",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  },
+  {
+   "id": "F:★ 基线里「本来就空」的组没被当成受害者",
+   "desc": "★ 756 的原话：「如果只看操作后的快照，会把『本来就空』误读成『被操作掏空』」⟹ 种子里 2 个组有 1 个（`g-245IDFh8sB`）本来就 0 成员，**受害的只能**是另一个。★ pre 恰好 1 个、post 0 个",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "evidence": [
+     {
+      "phase": "pre",
+      "drained": [
+       {
+        "group": "g-EFbbHpwq",
+        "before": 1,
+        "after": 0
+       }
+      ],
+      "本来就空的组": [
+       "g-245IDFh8"
+      ],
+      "误读": []
+     },
+     {
+      "phase": "pre",
+      "drained": [
+       {
+        "group": "g-EFbbHpwq",
+        "before": 1,
+        "after": 0
+       }
+      ],
+      "本来就空的组": [
+       "g-245IDFh8"
+      ],
+      "误读": []
+     },
+     {
+      "phase": "post",
+      "drained": [],
+      "本来就空的组": [
+       "g-245IDFh8"
+      ],
+      "误读": []
+     },
+     {
+      "phase": "post",
+      "drained": [],
+      "本来就空的组": [
+       "g-245IDFh8"
+      ],
+      "误读": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "G:★ 零提示这件事**没有**被改变（如实记账）",
+   "desc": "★ toast / alert / status 五类选择器命中 pre 与 post 都是 **0**。★ 本批修的是「不再破坏」，**没有**加任何提示 ⟹ 「选中里有分组时用户仍然得不到告知」是**遗留**项",
+   "ok": true,
+   "detail": {
+    "pre": [
+     0,
+     0
+    ],
+    "post": [
+     0,
+     0
+    ]
+   }
+  }
+ ],
+ "totals": {
+  "checks": 7,
+  "assertedAnchors": 3,
+  "failed": 0
+ }
+}

@@ -1,0 +1,340 @@
+{
+ "batch": 792,
+ "checks": [
+  {
+   "id": "S1:新增闸在、既有过滤仍在（正则定位）",
+   "desc": "★ 修法是「**只**堵破坏」：既有的「分组不参与组合」必须**保留**",
+   "ok": true,
+   "detail": {
+    "guard": [
+     3284
+    ],
+    "typeFilter": [
+     3283
+    ],
+    "collect": [
+     3276
+    ]
+   }
+  },
+  {
+   "id": "S2:★ 修复点落在 `groupSelectedNodes` 函数体内",
+   "desc": "★ 同一个文件里有多个 `…SelectedNodes` 实现，只断言「文件里有一行」会把别处的同名行也算进来（750 立过的「同一模式出现多次先数清有几处」）；★ 两边都必须换算成**行号**再比",
+   "ok": true,
+   "detail": {
+    "fnLine": 3259,
+    "guardLine": 3284,
+    "delta": 25
+   }
+  },
+  {
+   "id": "S3:★ 选区前置条件被读到",
+   "desc": "★ 选区是 `selectNodes` 摆的 ⟹ 必须读回长度；「我以为我选中了」和「我真的选中了」不是一回事",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "want": {
+     "selectAllThenG": 10,
+     "groupPlusMember": 2
+    }
+   }
+  },
+  {
+   "id": "S4:★ pre 掏空 1 个组、post 零个，且新组 children 8 → 7",
+   "desc": "★ 「少收一点就说不破坏」是最容易的糊弄 ⟹ 新组 children 数量**必须**钉住（pre 8 / post 7）",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "lost": [
+       "g-EFbbHpwq5w"
+      ],
+      "newKids": [
+       8
+      ],
+      "nodeDelta": 1,
+      "emptyBefore": [
+       "g-245IDFh8sB"
+      ],
+      "sel": 10,
+      "toast": 0
+     },
+     {
+      "lost": [
+       "g-EFbbHpwq5w"
+      ],
+      "newKids": [
+       8
+      ],
+      "nodeDelta": 1,
+      "emptyBefore": [
+       "g-245IDFh8sB"
+      ],
+      "sel": 10,
+      "toast": 0
+     }
+    ],
+    "post": [
+     {
+      "lost": [],
+      "newKids": [
+       7
+      ],
+      "nodeDelta": 1,
+      "emptyBefore": [
+       "g-245IDFh8sB"
+      ],
+      "sel": 10,
+      "toast": 0
+     },
+     {
+      "lost": [],
+      "newKids": [
+       7
+      ],
+      "nodeDelta": 1,
+      "emptyBefore": [
+       "g-245IDFh8sB"
+      ],
+      "sel": 10,
+      "toast": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "S5:★★ 两个阳性对照前后都不变",
+   "desc": "★ 「组 + 自己成员」= 零变化；「两个散节点」= 节点 +1、新组 children 2。★ 少了后者，一个「让 `G` 什么都不做」的修复能同时满足 S4 与 S6",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  },
+  {
+   "id": "S6:★★ 基线里「本来就空」的组没被算成受害者",
+   "desc": "★ 756 的原话：「如果只看操作后的快照，会把『本来就空』误读成『被操作掏空』」⟹ 种子里 2 个组有 1 个本来就 0 成员",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "evidence": [
+     {
+      "phase": "pre",
+      "lost": [
+       "g-EFbbHpwq5w"
+      ],
+      "emptyBefore": [
+       "g-245IDFh8sB"
+      ],
+      "misread": []
+     },
+     {
+      "phase": "pre",
+      "lost": [
+       "g-EFbbHpwq5w"
+      ],
+      "emptyBefore": [
+       "g-245IDFh8sB"
+      ],
+      "misread": []
+     },
+     {
+      "phase": "post",
+      "lost": [],
+      "emptyBefore": [
+       "g-245IDFh8sB"
+      ],
+      "misread": []
+     },
+     {
+      "phase": "post",
+      "lost": [],
+      "emptyBefore": [
+       "g-245IDFh8sB"
+      ],
+      "misread": []
+     }
+    ]
+   }
+  },
+  {
+   "id": "S7:★ 零提示**没有**被改变（如实记账）",
+   "desc": "★ 本批修的是「不再破坏」，**没有**加任何提示 ⟹ 「选中里有分组时用户仍然得不到告知」是**遗留**项，不能被本批的绿盖住",
+   "ok": true,
+   "detail": {
+    "pre": [
+     0,
+     0
+    ],
+    "post": [
+     0,
+     0
+    ]
+   }
+  },
+  {
+   "id": "S8:★ 画布是 `selectionOnDrag={false}`（所以框选不可用）",
+   "desc": "★ 这是选区**必须**用 store 摆的依据：第一版探针照 756 的手势拖，三条臂全读成空读数（选区 0 / 1 / 节点Δ 0）",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "id": "S9:两轮逐臂完全一致",
+   "desc": "★ 6 格每格两轮读数相同 ⟹ 不是抖动",
+   "ok": true,
+   "detail": {
+    "perCell": 6,
+    "allSame": true
+   }
+  },
+  {
+   "id": "S10:汇编器零失败",
+   "desc": "汇编器自己的断言必须全绿",
+   "ok": true,
+   "detail": {
+    "checks": 7,
+    "assertedAnchors": 3,
+    "failed": 0
+   }
+  },
+  {
+   "id": "S11:阴性对照已复原（源码 + raw，字节级）",
+   "desc": "★ N1 改过 `src/store/canvasStore.ts` ⟹ 必须字节级还原",
+   "ok": true,
+   "detail": {
+    "driftedSrc": false,
+    "driftedRaw": []
+   }
+  }
+ ],
+ "totals": {
+  "checks": 11,
+  "passed": 11,
+  "failed": 0
+ },
+ "negativeControls": {
+  "total": 5,
+  "caught": 5,
+  "detail": [
+   {
+    "name": "N1 新增的闸被拆掉",
+    "why": "★ 验证 S1/S2：闸是**唯一**的改动点，拆掉它源码侧必须判红",
+    "evidence": {
+     "oldGone": true,
+     "newThere": true
+    },
+    "expectFlipped": "S1:新增闸在、既有过滤仍在（正则定位）",
+    "flipped": [
+     "S1:新增闸在、既有过滤仍在（正则定位）",
+     "S2:★ 修复点落在 `groupSelectedNodes` 函数体内"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S3:★ 选区前置条件被读到",
+     "S4:★ pre 掏空 1 个组、post 零个，且新组 children 8 → 7",
+     "S5:★★ 两个阳性对照前后都不变",
+     "S6:★★ 基线里「本来就空」的组没被算成受害者",
+     "S7:★ 零提示**没有**被改变（如实记账）",
+     "S8:★ 画布是 `selectionOnDrag={false}`（所以框选不可用）",
+     "S9:两轮逐臂完全一致",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N2 pre 的受害者被抹平",
+    "why": "★ 验证 S4/S6：「pre 确实有人被掏空」这个读数**被真读了**（抹平之后 pre 与 post 就没区别，修复等于没发生）",
+    "evidence": {
+     "file": "vb792a-pre.json",
+     "hit": 2
+    },
+    "expectFlipped": "S4:★ pre 掏空 1 个组、post 零个，且新组 children 8 → 7",
+    "flipped": [
+     "S4:★ pre 掏空 1 个组、post 零个，且新组 children 8 → 7",
+     "S6:★★ 基线里「本来就空」的组没被算成受害者"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:新增闸在、既有过滤仍在（正则定位）",
+     "S2:★ 修复点落在 `groupSelectedNodes` 函数体内",
+     "S3:★ 选区前置条件被读到",
+     "S5:★★ 两个阳性对照前后都不变",
+     "S7:★ 零提示**没有**被改变（如实记账）",
+     "S8:★ 画布是 `selectionOnDrag={false}`（所以框选不可用）",
+     "S9:两轮逐臂完全一致",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N3 post 的「两个散节点」被翻坏",
+    "why": "★ 验证 S5：正常组合**仍能成**这件事必须**真的**在读，否则一个「让 `G` 什么都不做」的修复也能全绿",
+    "evidence": {
+     "file": "vb792a-post.json",
+     "hit": 2
+    },
+    "expectFlipped": "S5:★★ 两个阳性对照前后都不变",
+    "flipped": [
+     "S5:★★ 两个阳性对照前后都不变"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:新增闸在、既有过滤仍在（正则定位）",
+     "S2:★ 修复点落在 `groupSelectedNodes` 函数体内",
+     "S3:★ 选区前置条件被读到",
+     "S4:★ pre 掏空 1 个组、post 零个，且新组 children 8 → 7",
+     "S6:★★ 基线里「本来就空」的组没被算成受害者",
+     "S7:★ 零提示**没有**被改变（如实记账）",
+     "S8:★ 画布是 `selectionOnDrag={false}`（所以框选不可用）",
+     "S9:两轮逐臂完全一致",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N4 选区长度被改成 1",
+    "why": "★ 验证 S3：选区是 store 摆的，必须读回长度，否则「我以为我选中了」和「我真的选中了」分不开",
+    "evidence": {
+     "file": "vb792a-post.json",
+     "hit": 2
+    },
+    "expectFlipped": "S3:★ 选区前置条件被读到",
+    "flipped": [
+     "S3:★ 选区前置条件被读到"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:新增闸在、既有过滤仍在（正则定位）",
+     "S2:★ 修复点落在 `groupSelectedNodes` 函数体内",
+     "S4:★ pre 掏空 1 个组、post 零个，且新组 children 8 → 7",
+     "S5:★★ 两个阳性对照前后都不变",
+     "S6:★★ 基线里「本来就空」的组没被算成受害者",
+     "S7:★ 零提示**没有**被改变（如实记账）",
+     "S8:★ 画布是 `selectionOnDrag={false}`（所以框选不可用）",
+     "S9:两轮逐臂完全一致",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N5 基线里「本来就空」的组被改成有成员",
+    "why": "★ 验证 S6：受害者必须与基线**对照**才算数，否则「本来就空」的组会被算成受害者",
+    "evidence": {
+     "file": "vb792a-post.json",
+     "hit": 2
+    },
+    "expectFlipped": "S6:★★ 基线里「本来就空」的组没被算成受害者",
+    "flipped": [
+     "S4:★ pre 掏空 1 个组、post 零个，且新组 children 8 → 7",
+     "S6:★★ 基线里「本来就空」的组没被算成受害者"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:新增闸在、既有过滤仍在（正则定位）",
+     "S2:★ 修复点落在 `groupSelectedNodes` 函数体内",
+     "S3:★ 选区前置条件被读到",
+     "S5:★★ 两个阳性对照前后都不变",
+     "S7:★ 零提示**没有**被改变（如实记账）",
+     "S8:★ 画布是 `selectionOnDrag={false}`（所以框选不可用）",
+     "S9:两轮逐臂完全一致",
+     "S10:汇编器零失败"
+    ]
+   }
+  ]
+ }
+}

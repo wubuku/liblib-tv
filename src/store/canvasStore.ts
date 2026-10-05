@@ -3263,8 +3263,25 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       if (!currentCanvas) return state;
       const selectedIds = new Set(nodeIds ?? state.selectedNodeIds);
       const nodesById = new Map(currentCanvas.nodes.map((node) => [node.id, node]));
+      // Batch 792（修 batch 756 记的高严重度缺陷「组合会**静默掏空已有分组**」）：
+      // 原来 `children` 只把 `storyboard-group` **自己**排除，而 re-parent 的
+      // 依据是 `absolutePositions`（由 `children` 生成）——于是**在选区里的旧分组**
+      // 既不进新组、也不移动，**但它的成员**同样在选区里 ⟹ 被改写成**新组**的子节点
+      // ⟹ 旧分组 children 归零、退化成空壳，界面上只是「组合成功」，零提示。
+      // 756 实测：选区 10 个 → 新组 children 8、`g-EFbbHpwq5w` 1 → 0。
+      //
+      // ★ 修法保持「分组不参与组合」这个既有决定，**只**堵住破坏：
+      //   凡是**所属的组也在选区里**的节点，一律不进 `children`，
+      //   于是既不会被拽进新组、也不会脱离原组。
+      const selectedGroupIds = new Set(
+        currentCanvas.nodes
+          .filter((node) => selectedIds.has(node.id) && node.type === "storyboard-group")
+          .map((node) => node.id),
+      );
       const children = currentCanvas.nodes.filter(
-        (node) => selectedIds.has(node.id) && node.type !== "storyboard-group",
+        (node) => selectedIds.has(node.id)
+          && node.type !== "storyboard-group"
+          && !selectedGroupIds.has(node.parentId ?? ""),
       );
       if (children.length < 2) return state;
 

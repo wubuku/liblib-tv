@@ -1,0 +1,882 @@
+{
+ "batch": 792,
+ "phase": "post",
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "selectAllThenG",
+     "baseline": {
+      "canvasId": "canvas-2",
+      "nodeCount": 10,
+      "groups": [
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "t-9j2MoccxBj",
+        "type": "script"
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "type": "image"
+       },
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": []
+     },
+     "picked": 10,
+     "selectedBeforeG": 10,
+     "selectedHasGroup": true,
+     "toastCount": 0,
+     "before": {
+      "canvasId": "canvas-2",
+      "nodeCount": 10,
+      "groups": [
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "t-9j2MoccxBj",
+        "type": "script"
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "type": "image"
+       },
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "v-UGQZzZOpbv",
+       "g-245IDFh8sB",
+       "g-EFbbHpwq5w",
+       "t-9j2MoccxBj",
+       "i-1FQ9tErTcC",
+       "i-lBzmo67AHv",
+       "i-dnwoZQ7jsG",
+       "i-vxeeCnxySa",
+       "b-bTLLuU4w5q",
+       "i-YDfWhFlthe"
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "nodeCount": 11,
+      "groups": [
+       {
+        "id": "group-1791221348662-1aal13",
+        "title": "组合节点",
+        "kids": [
+         "t-9j2MoccxBj",
+         "i-1FQ9tErTcC",
+         "i-lBzmo67AHv",
+         "i-dnwoZQ7jsG",
+         "i-vxeeCnxySa",
+         "b-bTLLuU4w5q",
+         "i-YDfWhFlthe"
+        ],
+        "groupKind": "selection"
+       },
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [],
+      "memberOf": {
+       "t-9j2MoccxBj": "group-1791221348662-1aal13",
+       "i-1FQ9tErTcC": "group-1791221348662-1aal13",
+       "i-lBzmo67AHv": "group-1791221348662-1aal13",
+       "i-dnwoZQ7jsG": "group-1791221348662-1aal13",
+       "i-vxeeCnxySa": "group-1791221348662-1aal13",
+       "b-bTLLuU4w5q": "group-1791221348662-1aal13",
+       "i-YDfWhFlthe": "group-1791221348662-1aal13",
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "group-1791221348662-1aal13"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "groupPlusMember",
+     "groupId": "g-EFbbHpwq5w",
+     "memberId": "v-UGQZzZOpbv",
+     "selectedBeforeG": 2,
+     "before": {
+      "canvasId": "canvas-2",
+      "nodeCount": 10,
+      "groups": [
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "t-9j2MoccxBj",
+        "type": "script"
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "type": "image"
+       },
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "g-EFbbHpwq5w",
+       "v-UGQZzZOpbv"
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "nodeCount": 10,
+      "groups": [
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "t-9j2MoccxBj",
+        "type": "script"
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "type": "image"
+       },
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "g-EFbbHpwq5w",
+       "v-UGQZzZOpbv"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "twoLoose",
+     "picked": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ],
+     "selectedBeforeG": 2,
+     "newGroups": [
+      {
+       "id": "group-1791221355133-lwbw4r",
+       "title": "组合节点",
+       "kids": [
+        "t-9j2MoccxBj",
+        "i-1FQ9tErTcC"
+       ],
+       "groupKind": "selection"
+      }
+     ],
+     "nodeDelta": 1,
+     "before": {
+      "canvasId": "canvas-2",
+      "nodeCount": 10,
+      "groups": [
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "t-9j2MoccxBj",
+        "type": "script"
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "type": "image"
+       },
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "t-9j2MoccxBj",
+       "i-1FQ9tErTcC"
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "nodeCount": 11,
+      "groups": [
+       {
+        "id": "group-1791221355133-lwbw4r",
+        "title": "组合节点",
+        "kids": [
+         "t-9j2MoccxBj",
+         "i-1FQ9tErTcC"
+        ],
+        "groupKind": "selection"
+       },
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "t-9j2MoccxBj": "group-1791221355133-lwbw4r",
+       "i-1FQ9tErTcC": "group-1791221355133-lwbw4r",
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "group-1791221355133-lwbw4r"
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "selectAllThenG",
+     "baseline": {
+      "canvasId": "canvas-2",
+      "nodeCount": 10,
+      "groups": [
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "t-9j2MoccxBj",
+        "type": "script"
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "type": "image"
+       },
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": []
+     },
+     "picked": 10,
+     "selectedBeforeG": 10,
+     "selectedHasGroup": true,
+     "toastCount": 0,
+     "before": {
+      "canvasId": "canvas-2",
+      "nodeCount": 10,
+      "groups": [
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "t-9j2MoccxBj",
+        "type": "script"
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "type": "image"
+       },
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "v-UGQZzZOpbv",
+       "g-245IDFh8sB",
+       "g-EFbbHpwq5w",
+       "t-9j2MoccxBj",
+       "i-1FQ9tErTcC",
+       "i-lBzmo67AHv",
+       "i-dnwoZQ7jsG",
+       "i-vxeeCnxySa",
+       "b-bTLLuU4w5q",
+       "i-YDfWhFlthe"
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "nodeCount": 11,
+      "groups": [
+       {
+        "id": "group-1791221358334-x06nm3",
+        "title": "组合节点",
+        "kids": [
+         "t-9j2MoccxBj",
+         "i-1FQ9tErTcC",
+         "i-lBzmo67AHv",
+         "i-dnwoZQ7jsG",
+         "i-vxeeCnxySa",
+         "b-bTLLuU4w5q",
+         "i-YDfWhFlthe"
+        ],
+        "groupKind": "selection"
+       },
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [],
+      "memberOf": {
+       "t-9j2MoccxBj": "group-1791221358334-x06nm3",
+       "i-1FQ9tErTcC": "group-1791221358334-x06nm3",
+       "i-lBzmo67AHv": "group-1791221358334-x06nm3",
+       "i-dnwoZQ7jsG": "group-1791221358334-x06nm3",
+       "i-vxeeCnxySa": "group-1791221358334-x06nm3",
+       "b-bTLLuU4w5q": "group-1791221358334-x06nm3",
+       "i-YDfWhFlthe": "group-1791221358334-x06nm3",
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "group-1791221358334-x06nm3"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "groupPlusMember",
+     "groupId": "g-EFbbHpwq5w",
+     "memberId": "v-UGQZzZOpbv",
+     "selectedBeforeG": 2,
+     "before": {
+      "canvasId": "canvas-2",
+      "nodeCount": 10,
+      "groups": [
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "t-9j2MoccxBj",
+        "type": "script"
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "type": "image"
+       },
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "g-EFbbHpwq5w",
+       "v-UGQZzZOpbv"
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "nodeCount": 10,
+      "groups": [
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "t-9j2MoccxBj",
+        "type": "script"
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "type": "image"
+       },
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "g-EFbbHpwq5w",
+       "v-UGQZzZOpbv"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "twoLoose",
+     "picked": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ],
+     "selectedBeforeG": 2,
+     "newGroups": [
+      {
+       "id": "group-1791221364894-5qzj8k",
+       "title": "组合节点",
+       "kids": [
+        "t-9j2MoccxBj",
+        "i-1FQ9tErTcC"
+       ],
+       "groupKind": "selection"
+      }
+     ],
+     "nodeDelta": 1,
+     "before": {
+      "canvasId": "canvas-2",
+      "nodeCount": 10,
+      "groups": [
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "t-9j2MoccxBj",
+        "type": "script"
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "type": "image"
+       },
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "t-9j2MoccxBj",
+       "i-1FQ9tErTcC"
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "nodeCount": 11,
+      "groups": [
+       {
+        "id": "group-1791221364894-5qzj8k",
+        "title": "组合节点",
+        "kids": [
+         "t-9j2MoccxBj",
+         "i-1FQ9tErTcC"
+        ],
+        "groupKind": "selection"
+       },
+       {
+        "id": "g-245IDFh8sB",
+        "title": "分镜图 · 第一集：咖啡馆对峙-图片组",
+        "kids": [],
+        "groupKind": ""
+       },
+       {
+        "id": "g-EFbbHpwq5w",
+        "title": "视频组 · 第一集：咖啡馆对峙-视频组",
+        "kids": [
+         "v-UGQZzZOpbv"
+        ],
+        "groupKind": ""
+       }
+      ],
+      "loose": [
+       {
+        "id": "i-lBzmo67AHv",
+        "type": "image"
+       },
+       {
+        "id": "i-dnwoZQ7jsG",
+        "type": "image"
+       },
+       {
+        "id": "i-vxeeCnxySa",
+        "type": "image"
+       },
+       {
+        "id": "b-bTLLuU4w5q",
+        "type": "script-execution"
+       },
+       {
+        "id": "i-YDfWhFlthe",
+        "type": "image"
+       }
+      ],
+      "memberOf": {
+       "t-9j2MoccxBj": "group-1791221364894-5qzj8k",
+       "i-1FQ9tErTcC": "group-1791221364894-5qzj8k",
+       "v-UGQZzZOpbv": "g-EFbbHpwq5w"
+      },
+      "selected": [
+       "group-1791221364894-5qzj8k"
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}
