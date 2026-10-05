@@ -2095,3 +2095,50 @@ screenshots:
     visible_text: '全部 1 图片 视频 1 音频 文本 主体 1 视频 1 视频'
     alt: "搜索结果行的两个入口：橙实线框罩住整行（312×64），行内左侧是类型图标「1 / 视频 1 / 视频」两行文字；橙虚线框罩住行右端那个 16×16 的 ⌖ 定位图标，它只有光标悬停在这一行上时才显影，不悬停时那个位置看起来是空的"
     sha256: faabb29be8d1852601e0dbe61d9b195751d0bc0da03a89980af25bbeb98ae2d5
+  - file: screenshots/181-director-node-rest.png
+    task_id: director-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T21:20:00+08:00
+    verified_locator: '用搜索面板把「导演台」节点取景到画布 50%（setZoom 回读「Zoom options, 50%」、viewport transform 读 scale(0.5)），按 Esc 关掉面板后点一块空白 pane 取消选中，并断言「选中数 == 0」才继续；逐元素读出节点矩形 [394,280,160,160]、flow-node-title [394,248,59,32]、span[aria-label="进入导演台"] [449.75,367.5,48.5,16]、flow-node-target-handle [379,330,30,60]、flow-node-source-handle [539,330,30,60]；给整节点画 3px solid #ff8c00 框、给「进入导演台」与两个热区各画一个 3px dashed #ff8c00 框，读回四个框的 borderStyle（solid/dashed 都被认）、borderColor 逐字 rgb(255, 140, 0)、pointer-events 均为 none、宽高为正 才 shutter'
+    visible_text: '导演台 在 3D 空间中设计角色、机位与镜头 进入导演台'
+    alt: "导演台节点静息态（画布 50%）：橙实线框罩住整张卡片，卡片正中是一个立方体图标、说明文字「在 3D 空间中设计角色、机位与镜头」和一个灰底圆角按钮「进入导演台」；卡片左右两侧各有一个橙虚线框罩住的竖长热区（连线热区，画面上基本看不见东西）；卡片内按钮上还有一个橙虚线框罩住「进入导演台」那五个字；标题「导演台」在卡片上方、不在橙实线框里"
+    sha256: 464f3c4b56542f99905de170f0be3559af497393ee59781183f6a5472a90c6d2
+
+  - file: screenshots/182-director-node-selected.png
+    task_id: director-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T21:20:00+08:00
+    verified_locator: '点 flow-node-title 中心选中该节点并断言「选中数 == 1」；读出节点矩形仍是 [394,280,160,160]（与静息态逐字相同）、新增 BUTTON[aria-label="Rename 导演台"] [414,248,39,32]、flow-node-title [394,248,59,32]（两者 y 逐字相同）、「进入导演台」现在是 BUTTON 且 getAttribute("aria-label") 读出 null、节点内 [data-testid="node-toolbar"] 数为 0；给整节点画 solid 框、给 Rename 按钮与「进入导演台」各画一个 dashed 框，读回三个框的 borderStyle/borderColor/pointer-events/宽高 全对 才 shutter；裁切与 181 完全相同'
+    visible_text: '导演台 在 3D 空间中设计角色、机位与镜头 进入导演台'
+    alt: "同一个节点被选中后（画布仍是 50%、同一裁切，可与上一张叠着看）：卡片内多了一圈白色细描边，画面上仍然没有浮动工具条；卡片正中的「进入导演台」按钮从灰底变成了可点的深色圆角块（位置尺寸与静息态分毫未变）；卡片上方多出一个橙虚线框，正好罩住标题「导演台」右半边，而框里看不出多了任何东西——那就是下面那条「透明命中区」"
+    sha256: 95b33b2e3649fe45b27775d50a4c10fa5542d36be9857a928e04d4f2a3243fec
+
+  - file: screenshots/183-director-rename-hit-area.png
+    task_id: director-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T21:20:00+08:00
+    verified_locator: '选中态下读出 flow-node-title [394,248,59,32] 与 BUTTON[aria-label="Rename 导演台"] [414,248,39,32]，两者 y 逐字相同（248）；给标题画 3px solid 框、给 Rename 按钮画 3px dashed 框，裁切取两者并集外扩 14px；读回两个框的 borderStyle 分别是 solid / dashed、borderColor 逐字 rgb(255, 140, 0)、pointer-events 均为 none、宽高为正 才 shutter；另单独读回该按钮的 computed background 逐字 rgba(0, 0, 0, 0)、border 逐字 0px none rgba(255, 255, 255, 0.698)'
+    visible_text: '导演台'
+    alt: "标题那一行的特写：橙实线框罩住 flow-node-title（59×32，内含立方体图标与「导演台」三个字）；橙虚线框罩住叠在标题右半边上的 Rename 导演台 按钮（39×32），两个框顶边齐平，而虚线框内部看不到任何按钮、任何图标、任何边框——它就是一块纯透明的命中区"
+    sha256: 0e8c7e2f01e852c9f52c6953add0b88f50b03b1fe7335dce4e793459229f559f
+
+  - file: screenshots/184-director-handles.png
+    task_id: director-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T21:20:00+08:00
+    verified_locator: '把光标移到 flow-node-target-handle 的中心 [394,360] 悬停 900ms 后再拍；读出两个热区屏上各 [30,60]、换算 canvas 60×120，两者在「静息 / 悬停」两态的 computed opacity 都逐字是 0、background 逐字 rgba(0, 0, 0, 0)、border 逐字 0px solid；给左（悬停中的）画 3px solid 框、给右画 3px dashed 框，读回两个框的 borderStyle/borderColor/pointer-events/宽高 全对 才 shutter；另读出本节点内 [data-testid$="button"] 数为 0（⇒ 没有 ⊕ 按钮）'
+    visible_text: '在 3D 空间中设计角色、机位与镜头 进入导演台'
+    alt: "节点左右两侧那两个连线热区（画布 50%）：左边橙实线框罩住 flow-node-target-handle、右边橙虚线框罩住 flow-node-source-handle，屏上各 30×60；两个框里都看不到可辨认的把手图形，左框里只有悬停后浮出的一小块淡灰底；中间是节点本体的立方体图标、说明文字与「进入导演台」按钮"
+    sha256: 7a5897418235c75a99110dbf34374a3b6e57dfb4042791f0b258203da3ab5008
