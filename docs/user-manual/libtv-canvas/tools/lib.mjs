@@ -1,5 +1,43 @@
 // LibTV 画布手册取证 —— 共用无头浏览器 harness。
 //
+// ════════════════════════════════════════════════════════════════════
+// ⭐⭐⭐⭐⭐ 缺陷 462：**动手写「这个界面我没见过」之前，先 grep 三本账**
+// ════════════════════════════════════════════════════════════════════
+//   批次在动手前**必须**跑一遍（只读，不贵）：
+//       grep -c '<关键词>' docs/user-manual/libtv-canvas/{task-inventory.yml,AUDIT.md,PROGRESS.md}
+//
+//   为什么这是硬规矩：Batch FP-2 按「手册正文里没写这个面板」去补页，
+//   ⛔ 没先查账本，结果给一个**早就测过**的面板写了三个错解释
+//   （把「全灰」说成「节点里没图」，与 BA1 的读数直接矛盾），
+//   差点用错的覆盖掉对的。只查正文既**重复劳动**，又**危险**。
+//
+//   命中数很低 ≠ 没测过 —— 账本里的记法五花八门
+//   （有的记 class 名、有的记 key 前缀、有的只在 batch 脚本注释里）。
+//   查不到就当「没查过」，但要在 PROGRESS 里写明查过、查了哪三本。
+//
+// ════════════════════════════════════════════════════════════════════
+// ⭐⭐⭐⭐⭐ 节点类型判据：读 `class` 里的 `react-flow__node-<type>`，别读卡片文字
+// ════════════════════════════════════════════════════════════════════
+//   FQ-1 实测：节点的真实类型直接写在 class 上，一眼可分、不受文案改版影响：
+//       react-flow__node-script-v2       脚本 NEW        ← 前缀 `scriptV2*` 就是它
+//       react-flow__node-video-clip      智能剪辑        ← 前缀 `clip*` 是它
+//       react-flow__node-shot-breakdown  分镜拆解/逐帧拉片
+//       react-flow__node-image / -video / -audio / -text
+//       react-flow__node-director-console-3d
+//   ⭐⭐⭐ **测试画布 projectId=a4ef3de0cdca4977ba45b373eb5165b5 上有主画布没有的三种**
+//   （`script-v2` / `video-clip` / `shot-breakdown`）——
+//   只在主画布 34226ef1… 上找，永远找不到这三类。
+//
+//   ⛔ 反过来：**class 只能判「是什么类型」，不能判「能不能点」** ——
+//   同一个 class 的节点，当前状态（有没有图、有没有连上输入）完全不同。
+//
+// ════════════════════════════════════════════════════════════════════
+// ⭐⭐⭐ 可复算的数字不许手抄进正文
+// ════════════════════════════════════════════════════════════════════
+//   FK 把文案表统计**手抄**进 `20-reference.md`：6342 / 4850 / 9 个分组条数。
+//   FQ-1 重算发现 7 个分组条数是错的（scriptV2 记 42 实为 93、clip 记 89 实为 348）。
+//   ⇒ 数字要么给一个能重跑的脚本（见 `tools/i18n-census.py`），要么别写进正文。
+//
 // 约定：
 //   - 全部脚本通过本模块启动 **无头** Chromium + 已提取的 storageState，
 //     绝不 attach、不复用、不干扰用户自己那个有头窗口（CDP 9222）。
@@ -538,4 +576,99 @@ export async function 量浮层(page, 选) {
       return { 框: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)], z: cs.zIndex, position: cs.position, class: String(el.className || '').slice(0, 110), 文字: 归(el.innerText).slice(0, 600) };
     });
   }, 选);
+}
+
+// ════════════════════════════════════════════════════════════════════
+// ⭐⭐⭐⭐⭐ 缺陷 463：**拍一个节点前，必须验「中心落点属主就是它」**
+// ════════════════════════════════════════════════════════════════════
+// FQ-3 按节点框裁了一张图，文件名写「脚本V2节点」，
+// **拍到的是智能剪辑节点** —— 因为
+//     脚本 V2  [721,403,345,345]
+//     智能剪辑  [626,391,345,345]    ← 大面积重叠
+// 而 ⭐⭐ **`selected` 的节点 z-index = 1000**（未选中时是 `auto`）⇒ 它盖在别人上面。
+// ⇒ 「框量对了」**不等于**「拍到的是它」。与缺陷 449 同源，
+//   但那次盖住它的是浮层，这次盖住它的是**另一个节点**。
+
+/** 读某个节点中心点的落点属主。属主 !== id 就说明它被别人盖住了。 */
+export async function 中心属主(page, id) {
+  return page.evaluate((tid) => {
+    const n = document.querySelector(`.react-flow__node[data-id="${tid}"]`);
+    if (!n) return null;
+    const r = n.getBoundingClientRect();
+    const cx = Math.round(r.x + r.width / 2), cy = Math.round(r.y + r.height / 2);
+    const hit = document.elementFromPoint(cx, cy);
+    const owner = hit && hit.closest('.react-flow__node');
+    return {
+      中心: [cx, cy],
+      框: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)],
+      z: getComputedStyle(n).zIndex,
+      属主: owner ? owner.getAttribute('data-id') : null,
+      属主类: owner ? String(owner.className).slice(0, 70) : null,
+    };
+  }, id);
+}
+
+/** 按 `class` 里的类型名（如 `node-video-clip`）找节点 id。类型判据见文件头。 */
+export async function 找节点(page, 类型片段) {
+  return page.evaluate((t) => {
+    const n = [...document.querySelectorAll('.react-flow__node')].find((e) => String(e.className).includes(t));
+    return n ? n.getAttribute('data-id') : null;
+  }, 类型片段);
+}
+
+/** ⭐ 列出画布上所有重叠面积 > 25% 的节点对 —— 重叠是「张冠李戴」的温床。 */
+export async function 查重叠(page, { 阈值 = 0.25 } = {}) {
+  return page.evaluate((th) => {
+    const ns = [...document.querySelectorAll('.react-flow__node')]
+      .map((n) => {
+        const r = n.getBoundingClientRect();
+        return { id: n.getAttribute('data-id'), 类: (String(n.className).match(/node-([a-z0-9-]+)/) || [, '?'])[1], z: getComputedStyle(n).zIndex, 框: [r.x, r.y, r.width, r.height] };
+      })
+      .filter((n) => n.框[2] > 0 && n.框[3] > 0);
+    const 重 = [];
+    for (let i = 0; i < ns.length; i++) {
+      for (let j = i + 1; j < ns.length; j++) {
+        const a = ns[i], b = ns[j];
+        const ox = Math.min(a.框[0] + a.框[2], b.框[0] + b.框[2]) - Math.max(a.框[0], b.框[0]);
+        const oy = Math.min(a.框[1] + a.框[3], b.框[1] + b.框[3]) - Math.max(a.框[1], b.框[1]);
+        if (ox <= 0 || oy <= 0) continue;
+        const 比 = (ox * oy) / Math.min(a.框[2] * a.框[3], b.框[2] * b.框[3]);
+        if (比 > th) 重.push({ a: `${a.类}:${a.id}(z=${a.z})`, b: `${b.类}:${b.id}(z=${b.z})`, 重叠比: Number(比.toFixed(2)) });
+      }
+    }
+    return 重;
+  }, 阈值);
+}
+
+/**
+ * ⭐⭐⭐ 拍一个节点：点标题栏选中 → **验中心落点属主** → 才裁图。
+ * 验不过返回 `{ 失败: true }`，调用方必须重试或改用「整理画布」，**不许将就**。
+ */
+export async function 拍节点(page, 类型片段, 文件, { 记, 断言, 余量 = 26, 选 = true, 证据目录 = null } = {}) {
+  const id = await 找节点(page, 类型片段);
+  if (!id) { if (记) 记(`   ⛔ 找不到节点类型「${类型片段}」`); return { 失败: true, 原因: '找不到' }; }
+  if (选) {
+    // ⭐ 点**标题栏**（顶部 14px 处那儿没有按钮），不是点节点中心
+    const t = await page.evaluate((tid) => {
+      const n = document.querySelector(`.react-flow__node[data-id="${tid}"]`);
+      const r = n.getBoundingClientRect();
+      return [Math.round(r.x + r.width / 2), Math.round(r.y + 14)];
+    }, id);
+    await page.mouse.click(t[0], t[1]);
+    await page.waitForTimeout(2200);
+  }
+  const a = await 中心属主(page, id);
+  if (记) 记(`   中心落点自证 ${JSON.stringify(a)}`);
+  if (断言 && !断言(!!a && a.属主 === id, `「${类型片段}」(${id}) 的中心落点属主就是它自己（没被别的节点盖住）`, a)) {
+    return { 失败: true, 原因: '被盖住', 自证: a, id };
+  }
+  const 目录 = 证据目录 || SHOTS;
+  const clip = {
+    x: Math.max(0, a.框[0] - 余量), y: Math.max(0, a.框[1] - 余量),
+    width: Math.min(1440 - Math.max(0, a.框[0] - 余量), a.框[2] + 余量 * 2),
+    height: Math.min(810 - Math.max(0, a.框[1] - 余量), a.框[3] + 余量 * 2),
+  };
+  await page.screenshot({ path: resolve(目录, 文件), clip });
+  if (记) 记(`   📷 ${文件}｜id ${id}｜裁剪 ${JSON.stringify(clip)}`);
+  return { id, 框: a.框, clip, 文件 };
 }

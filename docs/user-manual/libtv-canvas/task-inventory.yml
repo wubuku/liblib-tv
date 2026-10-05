@@ -263,9 +263,17 @@ tasks:
       - 'batchBK2：⭐ **点中连线会进选中态** —— `elementFromPoint` 命中后 `.react-flow__edge.selected` 读出该线 aria-label，但按 `⌘L` 无效。⚠️ 另确认连线 path 的 `stroke` 为 `rgba(0,0,0,0)` + `stroke-width: 20px` + `pointer-events: visiblestroke`（与 BG 一致）'
       - 'batchBK3：📖 **断线入口仍未找到** —— 一次读到悬停连线时落点是 `DIV.scissors-enter`（像是剪刀按钮），但**换一轮读不到**：同坐标有时是 `path`、有时是 class 为空的 `DIV`，而 `querySelectorAll("[class*=scissors]")` **实查 0 个**。属**瞬态元素**，读不准，**不能作为断线依据**。本轮未改动画布（前后连线逐条一致）'
       - 'batchBJ2：⭐ 智能剪辑的生成按钮 **`aria-label="发送"`**（`[1042,438,32×32]`），是五类节点里唯一给生成按钮写了这个名的；规格那枚带 `data-practice-anchor="gen.params.count"`。'
+      - 'batchFQ1/FQ2/FQ5/FQ6：⭐⭐⭐ **「脚本 NEW」真能建节点**（本手册此前写的是「只展开子菜单，不建节点」，已更正）—— class `react-flow__node-script-v2`，卡片标题 `脚本生成器`，三个入口 `剧本生成分镜脚本` / `角色生成分镜脚本` / `自己编写分镜脚本`。⭐ **建完危险按钮 0 枚，建节点不消耗积分**。'
+      - 'batchFQ6：⭐⭐⭐⭐ **`自己编写分镜脚本` 打开一个全屏分镜表编辑器** —— 顶部三步进度条（`确认镜头` / `准备资产` / `合成提示词`，各带进度数字）、中间**十列表格**（`镜号` `时长` `画面描述` `景别` `光影氛围` `对白·旁白` `音效` `运镜` `最终提示词` `操作`）、每空格是一个 `+` 占位、`最终提示词` 格里写 `待生成提示词`（说明那一格是算出来的、不是手填）、底部 `＋ 添加镜头` 与 `→ 下一步：准备资产`。⛔⚠️ **按 `Esc` 关不掉这一层**（实测独占文案没消失），必须点右上角 `×`'
+      - 'batchFQ1/FQ2：⭐⭐ **class 名就是节点类型**，可当稳定判据：`node-script-v2` / `node-video-clip` / `node-shot-breakdown` / `node-director-console-3d` / `node-image` / `node-video` / `node-audio` / `node-text`'
+      - 'batchFQ2：⭐ **节点标题上的那个数字不是「同名实例序号」** —— 画布上两个 `音频节点` 都写着 `1`、两个 `图片节点` 都写着 `2`。`智能剪辑 4` / `视频节点 3` / `导演台 5` 是什么，📖 未验'
+      - 'batchFQ5：⚠️⚠️ **测试画布 a4ef3de0… 已判死** —— 21 个节点两两大面积重叠（105 对，重叠比 0.27~1.00），`⌘0` 后 zoom 仍是 0.985（fit view 没铺开）。⛔ 以后不要在它上面取证，改用主画布 34226ef1…（建前重叠 0 对）'
+      - 'batchFQ3/FQ4：⭐⭐⭐ **缺陷 463：拍节点前必须验「中心落点属主就是它」** —— FQ-3 按节点框裁图、文件名写「脚本V2节点」，**拍到的是智能剪辑节点**（两者重叠，且**被选中节点 `z-index: 1000`**）。治法已固化进 `tools/lib.mjs` 的 `中心属主` / `拍节点` / `查重叠`'
+      - 'batchFQ3：⭐ **第四次灰态反例，推翻「灰 = opacity 0.45」** —— `开始拉片` 是 `disabled: true` + **`opacity: 1.00`** + `cursor: not-allowed`。⇒ 判灰要看 `disabled` + `cursor`，**`opacity` 不是判据**'
     manual_pages:
       - 10-tasks/image-presets.md
       - 10-tasks/create-nodes.md
+      - 10-tasks/script-node.md
     node_types:
       - '文本 —— 尝试：自己编写内容 / 文生视频 / 图片反推提示词 / 文字生音乐'
       - '图片 —— 尝试：图生图 / 图片高清'
