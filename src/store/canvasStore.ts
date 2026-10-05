@@ -3575,16 +3575,19 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
       if (!group || children.length === 0) return state;
 
       const childIds = children.map((node) => node.id);
+      // ★★ Batch 800：解除分组要把成员的**相对**坐标转成**绝对**坐标。
+      //   原来写的是 `group.position + node.position` —— 那假设「组的 position
+      //   就是组的绝对位置」，只在组**没有父节点**时成立。嵌套时沿途所有祖先
+      //   的偏移都被丢掉（实测跳 200x150 = 外层组的位置），改用
+      //   `getAbsoluteNodePosition` 沿 `parentId` 链一次求和。
+      const nodesById = new Map(currentCanvas.nodes.map((node) => [node.id, node]));
       const nextNodes = currentCanvas.nodes
         .filter((node) => node.id !== groupId)
-        .map((node) =>
-          node.parentId === groupId
-            ? withoutParent(node, {
-                x: group.position.x + node.position.x,
-                y: group.position.y + node.position.y,
-              })
-            : node,
-        );
+        .map((node) => {
+          if (node.parentId !== groupId) return node;
+          const absolute = getAbsoluteNodePosition(node, nodesById);
+          return withoutParent(node, { x: absolute.x, y: absolute.y });
+        });
 
       return {
         canvases: state.canvases.map((canvas) =>

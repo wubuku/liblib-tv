@@ -1,0 +1,583 @@
+{
+ "batch": 800,
+ "totals": {
+  "passed": 12,
+  "total": 12
+ },
+ "checks": [
+  {
+   "id": "S1:★ 阳性对照：解除后成员的 `parentId` 变成空",
+   "why": "★ 没有它，「什么都没发生」也会让「位置没变」成立 ⟹ 假绿",
+   "ok": true,
+   "evidence": {
+    "ungroupInner#0": {
+     "n-m1": [
+      "g-inner",
+      null
+     ],
+     "n-m2": [
+      "g-inner",
+      null
+     ]
+    },
+    "ungroupInner#1": {
+     "n-m1": [
+      "g-inner",
+      null
+     ],
+     "n-m2": [
+      "g-inner",
+      null
+     ]
+    },
+    "ungroupOuter#0": {
+     "g-inner": [
+      "g-outer",
+      null
+     ],
+     "n-loose": [
+      "g-outer",
+      null
+     ]
+    },
+    "ungroupOuter#1": {
+     "g-inner": [
+      "g-outer",
+      null
+     ],
+     "n-loose": [
+      "g-outer",
+      null
+     ]
+    }
+   }
+  },
+  {
+   "id": "S2:★★ 阴性对照：`G`→`Shift+G` 键盘往返，成员不动（pre/post）",
+   "why": "★ 真实用户路径（`page.tsx:1412` 的 `Shift+G`），组没有父节点",
+   "ok": true,
+   "evidence": {
+    "pre#0": {
+     "t-9j2MoccxBj": [
+      0,
+      0
+     ],
+     "i-1FQ9tErTcC": [
+      0,
+      0
+     ]
+    },
+    "pre#1": {
+     "t-9j2MoccxBj": [
+      0,
+      0
+     ],
+     "i-1FQ9tErTcC": [
+      0,
+      0
+     ]
+    },
+    "post#0": {
+     "t-9j2MoccxBj": [
+      0,
+      0
+     ],
+     "i-1FQ9tErTcC": [
+      0,
+      0
+     ]
+    },
+    "post#1": {
+     "t-9j2MoccxBj": [
+      0,
+      0
+     ],
+     "i-1FQ9tErTcC": [
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "id": "S3:★★ 阴性对照：取消顶层组，成员与子组不动（pre/post）",
+   "why": "★ 与缺陷臂是同一个操作，唯一差别是沿途有没有祖先",
+   "ok": true,
+   "evidence": {
+    "pre#0": {
+     "g-inner": [
+      0,
+      0
+     ],
+     "n-loose": [
+      0,
+      0
+     ]
+    },
+    "pre#1": {
+     "g-inner": [
+      0,
+      0
+     ],
+     "n-loose": [
+      0,
+      0
+     ]
+    },
+    "post#0": {
+     "g-inner": [
+      0,
+      0
+     ],
+     "n-loose": [
+      0,
+      0
+     ]
+    },
+    "post#1": {
+     "g-inner": [
+      0,
+      0
+     ],
+     "n-loose": [
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "id": "S4:★★ 缺陷复现：pre 取消内层组成员跳位",
+   "why": "★ 799 的姊妹缺陷 —— 同一类坐标系错误",
+   "ok": true,
+   "evidence": {
+    "#0": {
+     "n-m1": [
+      -200,
+      -150
+     ],
+     "n-m2": [
+      -200,
+      -150
+     ]
+    },
+    "#1": {
+     "n-m1": [
+      -200,
+      -150
+     ],
+     "n-m2": [
+      -200,
+      -150
+     ]
+    }
+   }
+  },
+  {
+   "id": "S5:★★ 机制钉死：跳位量 = 沿途祖先偏移的相反数",
+   "why": "★ 只说「跳了」不够；说清「正好跳掉外层组的位置」才是机制",
+   "ok": true,
+   "evidence": {
+    "#0 n-m1": {
+     "跳了": [
+      -200,
+      -150
+     ],
+     "丢掉的那段": [
+      200,
+      150
+     ],
+     "恰好相反": true
+    },
+    "#0 n-m2": {
+     "跳了": [
+      -200,
+      -150
+     ],
+     "丢掉的那段": [
+      200,
+      150
+     ],
+     "恰好相反": true
+    },
+    "#1 n-m1": {
+     "跳了": [
+      -200,
+      -150
+     ],
+     "丢掉的那段": [
+      200,
+      150
+     ],
+     "恰好相反": true
+    },
+    "#1 n-m2": {
+     "跳了": [
+      -200,
+      -150
+     ],
+     "丢掉的那段": [
+      200,
+      150
+     ],
+     "恰好相反": true
+    }
+   }
+  },
+  {
+   "id": "S6:★★★ 修复生效：post 取消内层组成员不动",
+   "why": "★ 判据全用绝对位置 ⟹ 改对改错都判得出来",
+   "ok": true,
+   "evidence": {
+    "#0": {
+     "n-m1": [
+      0,
+      0
+     ],
+     "n-m2": [
+      0,
+      0
+     ]
+    },
+    "#1": {
+     "n-m1": [
+      0,
+      0
+     ],
+     "n-m2": [
+      0,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "id": "S7:★★ 无回归：阴性对照两条臂 pre/post 的绝对坐标逐位相同",
+   "why": "★ 修复对「沿途无祖先」必须是恒等变换 ⟹ 逐位相同是最强证据",
+   "ok": true,
+   "evidence": {
+    "比对数": 8,
+    "不一致": []
+   }
+  },
+  {
+   "id": "S8:★ 独立重算：post 脱管后的相对坐标（此时即绝对）== 用 before 的父链求和",
+   "why": "★ 验收器自己算那条链，不读源码公式 ⟹ 公式写错会被抓出来",
+   "ok": true,
+   "evidence": {
+    "post": {
+     "post ungroupInner#0 n-m1": {
+      "重算": [
+       280,
+       230
+      ],
+      "实测": [
+       280,
+       230
+      ],
+      "吻合": true
+     },
+     "post ungroupInner#0 n-m2": {
+      "重算": [
+       680,
+       230
+      ],
+      "实测": [
+       680,
+       230
+      ],
+      "吻合": true
+     },
+     "post ungroupInner#1 n-m1": {
+      "重算": [
+       280,
+       230
+      ],
+      "实测": [
+       280,
+       230
+      ],
+      "吻合": true
+     },
+     "post ungroupInner#1 n-m2": {
+      "重算": [
+       680,
+       230
+      ],
+      "实测": [
+       680,
+       230
+      ],
+      "吻合": true
+     },
+     "post ungroupOuter#0 g-inner": {
+      "重算": [
+       240,
+       190
+      ],
+      "实测": [
+       240,
+       190
+      ],
+      "吻合": true
+     },
+     "post ungroupOuter#0 n-loose": {
+      "重算": [
+       240,
+       590
+      ],
+      "实测": [
+       240,
+       590
+      ],
+      "吻合": true
+     },
+     "post ungroupOuter#1 g-inner": {
+      "重算": [
+       240,
+       190
+      ],
+      "实测": [
+       240,
+       190
+      ],
+      "吻合": true
+     },
+     "post ungroupOuter#1 n-loose": {
+      "重算": [
+       240,
+       590
+      ],
+      "实测": [
+       240,
+       590
+      ],
+      "吻合": true
+     }
+    },
+    "pre（缺陷就在这，应当对不上）": {
+     "pre ungroupInner#0 n-m1": {
+      "重算": [
+       280,
+       230
+      ],
+      "实测": [
+       80,
+       80
+      ],
+      "吻合": false
+     },
+     "pre ungroupInner#0 n-m2": {
+      "重算": [
+       680,
+       230
+      ],
+      "实测": [
+       480,
+       80
+      ],
+      "吻合": false
+     },
+     "pre ungroupInner#1 n-m1": {
+      "重算": [
+       280,
+       230
+      ],
+      "实测": [
+       80,
+       80
+      ],
+      "吻合": false
+     },
+     "pre ungroupInner#1 n-m2": {
+      "重算": [
+       680,
+       230
+      ],
+      "实测": [
+       480,
+       80
+      ],
+      "吻合": false
+     },
+     "pre ungroupOuter#0 g-inner": {
+      "重算": [
+       240,
+       190
+      ],
+      "实测": [
+       240,
+       190
+      ],
+      "吻合": true
+     },
+     "pre ungroupOuter#0 n-loose": {
+      "重算": [
+       240,
+       590
+      ],
+      "实测": [
+       240,
+       590
+      ],
+      "吻合": true
+     },
+     "pre ungroupOuter#1 g-inner": {
+      "重算": [
+       240,
+       190
+      ],
+      "实测": [
+       240,
+       190
+      ],
+      "吻合": true
+     },
+     "pre ungroupOuter#1 n-loose": {
+      "重算": [
+       240,
+       590
+      ],
+      "实测": [
+       240,
+       590
+      ],
+      "吻合": true
+     }
+    }
+   }
+  },
+  {
+   "id": "S9:★★ 静态锚点：`ungroupSelectedNodes` 改用沿父链求和",
+   "why": "★ 旧的单层加法若在别处复活，这条要红",
+   "ok": true,
+   "evidence": {
+    "段长": 1907,
+    "用了 getAbsoluteNodePosition": true,
+    "旧的单层加法仍在": false
+   }
+  },
+  {
+   "id": "S10:记账：799 的修复仍在（没被本批改回去）",
+   "why": "★ 800 修的是**另一处**坐标系，两个都要在",
+   "ok": true,
+   "evidence": {
+    "parentAbs 写回仍在": true
+   }
+  },
+  {
+   "id": "S11:汇编器零失败",
+   "why": "汇编器自己的断言必须全绿",
+   "ok": true,
+   "evidence": {
+    "passed": 10,
+    "total": 10
+   }
+  },
+  {
+   "id": "S12:记账：改动面",
+   "why": "★ 单点改动，不新增 API、不动 UI；**没有**顺带实现嵌套组合",
+   "ok": true,
+   "evidence": {
+    "改动文件": [
+     "src/store/canvasStore.ts"
+    ],
+    "改动函数": [
+     "ungroupSelectedNodes"
+    ],
+    "改动性质": [
+     "成员的相对坐标改用 getAbsoluteNodePosition 沿父链求和"
+    ],
+    "没有改": [
+     "groupSelectedNodes（799 复核过：它对顶层组是对的）",
+     "duplicateGraphSelection（已读源码：父也被复制时保持相对、父没被复制时用绝对+40，逻辑正确 ⟹ **未测**，见 README）",
+     "UI 造嵌套组的能力（792 遗留，仍未实现）"
+    ],
+    "源站对照": "★ 未做（源站需登录）"
+   }
+  }
+ ],
+ "negatives": [
+  {
+   "name": "N1 ★★ 源码回退：改回 `group.position + node.position`",
+   "why": "★ 端到端证据已在 pre/post raw 里；这条验的是静态锚点能抓住回退",
+   "evidence": {
+    "新的在": true,
+    "行数中性": true,
+    "旧的不在": true
+   },
+   "expectFlipped": "S9:★★ 静态锚点：`ungroupSelectedNodes` 改用沿父链求和",
+   "flipped": [
+    "S9:★★ 静态锚点：`ungroupSelectedNodes` 改用沿父链求和"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N2 ★★ 反向对照：只改 `ungroupSelectedNodes` 里 `nextNodes` 那行的注释",
+   "why": "★ 证明 S9 锚的是表达式不是某段文本",
+   "evidence": {
+    "新的在": true,
+    "行数中性": true,
+    "旧串仍在（预期）": true
+   },
+   "expectFlipped": "（反向对照：期望不翻）",
+   "flipped": [],
+   "ok": true
+  },
+  {
+   "name": "N3 ★★ post raw：把解除后 n-m1 的绝对坐标挪 +37",
+   "why": "★ 验证 S6 真的在看几何：几何一坏它就必须红",
+   "evidence": {
+    "file": "vb800a-post.json",
+    "hit": true
+   },
+   "expectFlipped": "S6:★★★ 修复生效：post 取消内层组成员不动",
+   "flipped": [
+    "S6:★★★ 修复生效：post 取消内层组成员不动"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N4 ★★ post raw：让解除后 n-m1 的 `parentId` 还在",
+   "why": "★ 验证 S1：没有它，「什么都没发生」会假绿",
+   "evidence": {
+    "file": "vb800a-post.json",
+    "hit": true
+   },
+   "expectFlipped": "S1:★ 阳性对照：解除后成员的 `parentId` 变成空",
+   "flipped": [
+    "S1:★ 阳性对照：解除后成员的 `parentId` 变成空"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N5 ★★ pre raw：把顶层组臂里 n-loose 的绝对 y 挪 +11",
+   "why": "★ 验证 S3（阴性对照）与 S7（无回归）确实在读这条臂",
+   "evidence": {
+    "file": "vb800a-pre.json",
+    "hit": true
+   },
+   "expectFlipped": "S3:★★ 阴性对照：取消顶层组，成员与子组不动（pre/post）",
+   "flipped": [
+    "S3:★★ 阴性对照：取消顶层组，成员与子组不动（pre/post）"
+   ],
+   "ok": true
+  }
+ ],
+ "negativesOk": 5,
+ "negativesTotal": 5,
+ "auditSummary": {
+  "passed": 10,
+  "total": 10
+ },
+ "restoreSha": {
+  "src": "3bbd575fbe93041a45f12ffc103cf02eeedfe0375c9d49f8c9e71d142fa4c1cc",
+  "pre": "84ddc7187b967dcb73cb51e6d3cab9ef547a5c3a16eebb087354747d733aa639",
+  "post": "493b6790bf52b45101e5327fc0a17b1a573bb79ae254f7be2cf9edb584da9e22",
+  "ok": {
+   "cs": true,
+   "pre": true,
+   "post": true
+  }
+ }
+}
