@@ -2189,3 +2189,63 @@ screenshots:
     visible_text: '文本 3 文本 3'
     alt: "文本节点「文本 3」的行内改名态：橙实线框罩住标题行里出现的那个输入框，里面是选中的「文本 3」三个字（初值就是原节点名）；橙虚线框罩住它所在的 flow-node-title 标题行，输入框整个落在标题行矩形之内 —— 这就是「按位置筛标题编辑态」的判据"
     sha256: f5c5d197456479c818c2119775d501f495350faaa50fd5940d7b077c135a3995
+
+  - file: screenshots/189-video-node-unselected.png
+    task_id: media-playback
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T22:05:00+08:00
+    verified_locator: '点画布空白取消选中后读出节点 selected=false、<video> 数 0、[data-testid="video-simple-player"] 数 0、[data-testid="video-node-player-bar"] 数 0、button 数 2（逐字 Add tags / 替换媒体）；断言这五项全中 才画框；给 .react-flow__node 卡片画一个 solid 框，读回 borderStyle/borderColor 逐字 rgb(255, 140, 0)/pointer-events none/宽高为正 才 shutter'
+    visible_text: 'jimeng-b195b-test 00:00 / 00:08'
+    alt: "同一个视频节点未选中（画布 100%）：橙实线框罩住整张卡片，卡片里是彩色测试图样式的封面，标题行「jimeng-b195b-test」和标签按钮在卡片上方，卡片上没有播放键、没有时间读数、没有进度条、底部也没有控件行，右上角只有一个素材入口图标"
+    sha256: 88abdc469846ac2383f05803b0acc867bf0b0a177813a4c1305dc81db0053308
+
+  - file: screenshots/190-video-node-selected-not-played.png
+    task_id: media-playback
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T22:05:00+08:00
+    verified_locator: '**单击标题行**（不点卡片正文，避免起播）后读出 selected=true、<video> 数 0、video-simple-player 数 1、[aria-label^="Play "] 逐字「Play jimeng-b195b-test」、button 数 5（逐字 Rename <名> / Add tags / Create connected node after <名> / Play <名> / 替换媒体）、video-node-mute-toggle 与 video-node-fullscreen-toggle **数 0**；五项全中 才画框；给卡片画 solid 框、给大播放键的 getBoundingClientRect 外扩 18px 画 dashed 框，读回两个框的 borderStyle（solid 与 dashed 都被认）/borderColor/pointer-events/宽高 全对 才 shutter'
+    visible_text: 'jimeng-b195b-test 00:00 / 00:08'
+    alt: "同一个视频节点被选中但从未播放（画布 100%，与上一张同一裁切）：卡片正中浮出一个圆形大播放键，橙虚线框罩住它；卡片底部仍然没有时间读数、没有进度条、没有控件行；节点里一共只有五个按钮——改名、标签、连线、播放、替换媒体"
+    sha256: 7f2825166d074db43a02ea025bec79c6412923ea01c0eda074c2995c638eb1fc
+
+  - file: screenshots/191-video-node-playing.png
+    task_id: media-playback
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T22:05:00+08:00
+    verified_locator: '**先点画布空白取消选中**（因为已选中时点卡片不会起播），再单击卡片正文；断言 selected=true 且 <video> 存在且 paused=false 且 video-node-player-bar 在且 video-simple-player 不在且 currentTime>0 才画框；给卡片画 solid 框、给 video-node-player-bar 外扩 6px 画 dashed 框，读回两个框全对 才 shutter'
+    visible_text: 'jimeng-b195b-test 00:00 / 00:08'
+    alt: "同一个视频节点正在播放（画布 100%，与前两张同一裁切）：正中的大播放键消失了，卡片底部浮出整条控件行——左侧是暂停钮与「00:00 / 00:08」时间读数，右侧是静音钮与全屏钮，卡片最下方是那条极细的进度条；画面左上角素材自带的帧号与时间码正在往前走"
+    sha256: 4cf56524ca4686b50c458dcef096d83b3c919147c9e52872c8ef22770391955a
+
+  - file: screenshots/192-video-player-bar-items.png
+    task_id: media-playback
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T22:05:00+08:00
+    verified_locator: '在控件行存在且 paused=false 时逐个读出五个控件的 getBoundingClientRect（[data-testid=video-node-playback-toggle] 16×16、video-node-player-clock 83.52×20、video-node-mute-toggle 36×36、video-node-fullscreen-toggle 36×36、slider-track 568.88×5）以及 role=slider 的 aria-valuemax/aria-valuenow；五个都读到 才给每个画一个框（solid 与 dashed 交替），读回五个框的 borderStyle/borderColor/pointer-events/宽高 全对 才 shutter'
+    visible_text: 'jimeng-b195b-test 00:00 / 00:08'
+    alt: "卡片底部控件行的五个控件逐个被框出：左上是最小的播放/暂停钮，右侧紧跟着时间读数「00:03 / 00:06」，右下是静音钮和全屏钮，卡片最下方横贯整张卡片的是那条极细的进度条，橙色实线框与虚线框交替罩住它们"
+    sha256: 5755fc01a8e7f1d427f88d2a47e50203e386aba1866757b4c9e793f1827e514e
+
+  - file: screenshots/193-video-node-paused.png
+    task_id: media-playback
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T22:05:00+08:00
+    verified_locator: '点 video-node-playback-toggle 之前先读 elementFromPoint(中心) 确认命中该元素（读出中心落点是它内部的 svg、命中 true），再单击；点后连采 4 帧 currentTime 逐帧都是 0.701、paused 集合 {true}、播放钮 aria 翻回「Play jimeng-b195b-test」、video-node-player-bar 仍在；断言这四项全中 才画框；给卡片画 solid 框、给控件行画 dashed 框，读回两个框全对 才 shutter'
+    visible_text: 'jimeng-b195b-test 00:00 / 00:08'
+    alt: "同一个视频节点暂停后（画布 100%，与前三张同一裁切）：底部控件行仍在原位，左侧胶囊里的暂停钮变成播放三角、时间读数停在「00:00 / 00:08」不再前进，右侧静音钮与全屏钮不变"
+    sha256: b89c622ee417c4a9f623127dc0b0d25edc28c95607d8876bba8edef41a480ced
