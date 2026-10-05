@@ -1,0 +1,1037 @@
+{
+ "batch": 777,
+ "probe": "a",
+ "question": "「导演台删除破坏性且跨 reload 持久化，却无『未保存/重置』提示」—— 这句捆了三件事，本批把它们拆开测",
+ "whyItMatters": "★ 「不可逆」与「无入口」是两种严重度完全不同的缺陷。把它们捆成一句，会让「可撤销」成立时把「无提示」一起放过 —— 而**用户看不到出路，不等于出路不存在**。",
+ "landingRule": "★ **落点必须在删除之后设置**。第一版把落点设在删除**之前** ⟹ 删除动作自己把焦点移走了；第二版删掉的就是选中对象 ⟹ 检查器字段随之消失。⟹ 第三版改用**按行删除按钮**（`stopPropagation()` ⟹ 不改选中）⟹ 相机 FOV 滑杆在删除后仍在屏上。",
+ "readings": "★ 可撤销性取**用户可见**后果（对象是否回来、`history-future`）；`history-past` 用**属性名**读（第一版把选择器传进 `getAttribute` ⟹ 永远读到空串，而空串看起来像「历史是空的」）。★ 跨 reload 持久化**不能用 `fresh()`** —— 它清 localStorage，那测的是另一件事。",
+ "feedbackSurface": "桌里有**常驻命令反馈面板**（`DirectorDesk.tsx:1008`），而 `getDirectorCommandFeedback` 对 `COMMITTED` 返回 `null` ⟹ 成功删除后它显示占位文案「无命令反馈」。",
+ "rounds": [
+  {
+   "rows": [
+    {
+     "landing": "fovInput",
+     "selected": [
+      "director-camera-main"
+     ],
+     "before": {
+      "past": "0",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "",
+      "lastDisposition": "",
+      "lastReason": "",
+      "focusTag": "DIV",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsBefore": 5,
+     "objectsAfterDelete": 4,
+     "mugGone": true,
+     "afterDelete": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "selectionKept": true,
+     "focus": {
+      "ok": true,
+      "tag": "INPUT",
+      "type": "range"
+     },
+     "atLanding": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "focusInInput": true,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "landingIsDistinct": true,
+     "afterUndo": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "focusInInput": true,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsAfterUndo": 4,
+     "mugBack": false,
+     "undone": false,
+     "tries": 1
+    },
+    {
+     "landing": "tree",
+     "selected": [
+      "director-camera-main"
+     ],
+     "before": {
+      "past": "0",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "",
+      "lastDisposition": "",
+      "lastReason": "",
+      "focusTag": "DIV",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsBefore": 5,
+     "objectsAfterDelete": 4,
+     "mugGone": true,
+     "afterDelete": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "selectionKept": true,
+     "focus": {
+      "ok": false,
+      "tag": "SECTION",
+      "type": null
+     },
+     "atLanding": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "landingIsDistinct": false,
+     "FAILED": "★ 落点不可聚焦（焦点掉到 BODY）⟹ 与 body 臂**是同一格**，不能当成两格报",
+     "afterUndo": {
+      "past": "0",
+      "future": "1",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "UNDO",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsAfterUndo": 5,
+     "mugBack": true,
+     "undone": true,
+     "tries": 3,
+     "retried": true
+    },
+    {
+     "landing": "body",
+     "selected": [
+      "director-camera-main"
+     ],
+     "before": {
+      "past": "0",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "",
+      "lastDisposition": "",
+      "lastReason": "",
+      "focusTag": "DIV",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsBefore": 5,
+     "objectsAfterDelete": 4,
+     "mugGone": true,
+     "afterDelete": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "selectionKept": true,
+     "focus": {
+      "ok": true,
+      "tag": "BODY",
+      "type": null
+     },
+     "atLanding": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "landingIsDistinct": false,
+     "afterUndo": {
+      "past": "0",
+      "future": "1",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "UNDO",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsAfterUndo": 5,
+     "mugBack": true,
+     "undone": true,
+     "tries": 1
+    },
+    {
+     "landing": "deskButton",
+     "selected": [
+      "director-camera-main"
+     ],
+     "before": {
+      "past": "0",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "",
+      "lastDisposition": "",
+      "lastReason": "",
+      "focusTag": "DIV",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsBefore": 5,
+     "objectsAfterDelete": 4,
+     "mugGone": true,
+     "afterDelete": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "selectionKept": true,
+     "focus": {
+      "ok": true,
+      "tag": "BUTTON",
+      "type": "button"
+     },
+     "atLanding": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "landingIsDistinct": true,
+     "afterUndo": {
+      "past": "0",
+      "future": "1",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "UNDO",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsAfterUndo": 5,
+     "mugBack": true,
+     "undone": true,
+     "tries": 1
+    }
+   ],
+   "census": {
+    "deskOk": true,
+    "rowDelete": 5,
+    "selToolbarDelete": 1,
+    "treeCtxMenu": 0,
+    "treeCtxActions": 0,
+    "liveRegions": 4,
+    "liveWithText": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ],
+    "undoish": [],
+    "feedbackPanel": true
+   },
+   "feedback": {
+    "before": {
+     "past": "0",
+     "future": "0",
+     "pastOnDialog": true,
+     "pastInDesk": true,
+     "lastCommand": "",
+     "lastDisposition": "",
+     "lastReason": "",
+     "focusTag": "DIV",
+     "focusType": null,
+     "focusInInput": false,
+     "liveTexts": [
+      "无命令反馈",
+      "场景描述已记录（本地草稿）",
+      "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+     ],
+     "undoishCount": 0,
+     "undoishLabels": [],
+     "dialogsInDesk": 0
+    },
+    "after": {
+     "past": "1",
+     "future": "0",
+     "pastOnDialog": true,
+     "pastInDesk": true,
+     "lastCommand": "DELETE_OBJECT",
+     "lastDisposition": "COMMITTED",
+     "lastReason": "",
+     "focusTag": "BODY",
+     "focusType": null,
+     "focusInInput": false,
+     "liveTexts": [
+      "无命令反馈",
+      "场景描述已记录（本地草稿）",
+      "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+     ],
+     "undoishCount": 0,
+     "undoishLabels": [],
+     "dialogsInDesk": 0
+    }
+   },
+   "persist": {
+    "beforeReload": {
+     "n": 4,
+     "mug": false
+    },
+    "state": {
+     "past": "1",
+     "future": "0",
+     "pastOnDialog": true,
+     "pastInDesk": true,
+     "lastCommand": "DELETE_OBJECT",
+     "lastDisposition": "COMMITTED",
+     "lastReason": "",
+     "focusTag": "BODY",
+     "focusType": null,
+     "focusInInput": false,
+     "liveTexts": [
+      "无命令反馈",
+      "场景描述已记录（本地草稿）",
+      "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+     ],
+     "undoishCount": 0,
+     "undoishLabels": [],
+     "dialogsInDesk": 0
+    },
+    "afterReload": {
+     "n": 4,
+     "mug": false,
+     "state": {
+      "past": "0",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "",
+      "lastDisposition": "",
+      "lastReason": "",
+      "focusTag": "DIV",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     }
+    }
+   }
+  },
+  {
+   "rows": [
+    {
+     "landing": "fovInput",
+     "selected": [
+      "director-camera-main"
+     ],
+     "before": {
+      "past": "0",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "",
+      "lastDisposition": "",
+      "lastReason": "",
+      "focusTag": "DIV",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsBefore": 5,
+     "objectsAfterDelete": 4,
+     "mugGone": true,
+     "afterDelete": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "selectionKept": true,
+     "focus": {
+      "ok": true,
+      "tag": "INPUT",
+      "type": "range"
+     },
+     "atLanding": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "focusInInput": true,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "landingIsDistinct": true,
+     "afterUndo": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "focusInInput": true,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsAfterUndo": 4,
+     "mugBack": false,
+     "undone": false,
+     "tries": 1
+    },
+    {
+     "landing": "tree",
+     "selected": [
+      "director-camera-main"
+     ],
+     "before": {
+      "past": "0",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "",
+      "lastDisposition": "",
+      "lastReason": "",
+      "focusTag": "DIV",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsBefore": 5,
+     "objectsAfterDelete": 4,
+     "mugGone": true,
+     "afterDelete": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "selectionKept": true,
+     "focus": {
+      "ok": false,
+      "tag": "SECTION",
+      "type": null
+     },
+     "atLanding": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "landingIsDistinct": false,
+     "FAILED": "★ 落点不可聚焦（焦点掉到 BODY）⟹ 与 body 臂**是同一格**，不能当成两格报",
+     "afterUndo": {
+      "past": "0",
+      "future": "1",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "UNDO",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsAfterUndo": 5,
+     "mugBack": true,
+     "undone": true,
+     "tries": 3,
+     "retried": true
+    },
+    {
+     "landing": "body",
+     "selected": [
+      "director-camera-main"
+     ],
+     "before": {
+      "past": "0",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "",
+      "lastDisposition": "",
+      "lastReason": "",
+      "focusTag": "DIV",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsBefore": 5,
+     "objectsAfterDelete": 4,
+     "mugGone": true,
+     "afterDelete": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "selectionKept": true,
+     "focus": {
+      "ok": true,
+      "tag": "BODY",
+      "type": null
+     },
+     "atLanding": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "landingIsDistinct": false,
+     "afterUndo": {
+      "past": "0",
+      "future": "1",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "UNDO",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsAfterUndo": 5,
+     "mugBack": true,
+     "undone": true,
+     "tries": 1
+    },
+    {
+     "landing": "deskButton",
+     "selected": [
+      "director-camera-main"
+     ],
+     "before": {
+      "past": "0",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "",
+      "lastDisposition": "",
+      "lastReason": "",
+      "focusTag": "DIV",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsBefore": 5,
+     "objectsAfterDelete": 4,
+     "mugGone": true,
+     "afterDelete": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BODY",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "selectionKept": true,
+     "focus": {
+      "ok": true,
+      "tag": "BUTTON",
+      "type": "button"
+     },
+     "atLanding": {
+      "past": "1",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "DELETE_OBJECT",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "landingIsDistinct": true,
+     "afterUndo": {
+      "past": "0",
+      "future": "1",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "UNDO",
+      "lastDisposition": "COMMITTED",
+      "lastReason": "",
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     },
+     "objectsAfterUndo": 5,
+     "mugBack": true,
+     "undone": true,
+     "tries": 1
+    }
+   ],
+   "census": {
+    "deskOk": true,
+    "rowDelete": 5,
+    "selToolbarDelete": 1,
+    "treeCtxMenu": 0,
+    "treeCtxActions": 0,
+    "liveRegions": 4,
+    "liveWithText": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ],
+    "undoish": [],
+    "feedbackPanel": true
+   },
+   "feedback": {
+    "before": {
+     "past": "0",
+     "future": "0",
+     "pastOnDialog": true,
+     "pastInDesk": true,
+     "lastCommand": "",
+     "lastDisposition": "",
+     "lastReason": "",
+     "focusTag": "DIV",
+     "focusType": null,
+     "focusInInput": false,
+     "liveTexts": [
+      "无命令反馈",
+      "场景描述已记录（本地草稿）",
+      "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+     ],
+     "undoishCount": 0,
+     "undoishLabels": [],
+     "dialogsInDesk": 0
+    },
+    "after": {
+     "past": "1",
+     "future": "0",
+     "pastOnDialog": true,
+     "pastInDesk": true,
+     "lastCommand": "DELETE_OBJECT",
+     "lastDisposition": "COMMITTED",
+     "lastReason": "",
+     "focusTag": "BODY",
+     "focusType": null,
+     "focusInInput": false,
+     "liveTexts": [
+      "无命令反馈",
+      "场景描述已记录（本地草稿）",
+      "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+     ],
+     "undoishCount": 0,
+     "undoishLabels": [],
+     "dialogsInDesk": 0
+    }
+   },
+   "persist": {
+    "beforeReload": {
+     "n": 4,
+     "mug": false
+    },
+    "state": {
+     "past": "1",
+     "future": "0",
+     "pastOnDialog": true,
+     "pastInDesk": true,
+     "lastCommand": "DELETE_OBJECT",
+     "lastDisposition": "COMMITTED",
+     "lastReason": "",
+     "focusTag": "BODY",
+     "focusType": null,
+     "focusInInput": false,
+     "liveTexts": [
+      "无命令反馈",
+      "场景描述已记录（本地草稿）",
+      "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+     ],
+     "undoishCount": 0,
+     "undoishLabels": [],
+     "dialogsInDesk": 0
+    },
+    "afterReload": {
+     "n": 4,
+     "mug": false,
+     "state": {
+      "past": "0",
+      "future": "0",
+      "pastOnDialog": true,
+      "pastInDesk": true,
+      "lastCommand": "",
+      "lastDisposition": "",
+      "lastReason": "",
+      "focusTag": "DIV",
+      "focusType": null,
+      "focusInInput": false,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ],
+      "undoishCount": 0,
+      "undoishLabels": [],
+      "dialogsInDesk": 0
+     }
+    }
+   }
+  }
+ ]
+}

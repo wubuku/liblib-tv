@@ -1,0 +1,440 @@
+{
+ "batch": 777,
+ "checks": [
+  {
+   "label": "静态：守卫找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：Cmd+Z 分支找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 守卫排在 Cmd+Z 分支**之前** ⟹ 焦点在输入框时 undo 到不了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：桌根仍暴露 history-past/future（本批读数方法的前提）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：反馈面板在位（无命令反馈那行还在）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ `getDirectorCommandFeedback` 对 COMMITTED 返回 null（这才是「成功删除后显示『无命令反馈』」的机制）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：按行删除按钮带 stopPropagation（「输入框在删除后留在屏上」的前提）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "覆盖：落点集合恰为 ['fovInput', 'deskButton', 'body', 'tree']",
+   "pass": true,
+   "got": [
+    "body",
+    "deskButton",
+    "fovInput",
+    "tree"
+   ],
+   "want": [
+    "body",
+    "deskButton",
+    "fovInput",
+    "tree"
+   ]
+  },
+  {
+   "label": "覆盖：没有非预期 FAILED",
+   "pass": true,
+   "got": [],
+   "want": []
+  },
+  {
+   "label": "覆盖：★ `tree` 臂**预期**失败且理由是「落点不可聚焦」（探针的自证：它与 body 臂是同一格，不许照报成两格）",
+   "pass": true,
+   "got": 1,
+   "want": 1
+  },
+  {
+   "label": "一致性：两轮逐字段一致（已排除 tries/retried）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "fovInput 臂：起始历史干净（past=0）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "fovInput 臂：删除后道具真的没了",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "fovInput 臂：按行删除**没有改选中**（否则「输入框留在屏上」的前提没了）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "fovInput 臂：删除进历史（past 0→1）",
+   "pass": true,
+   "got": "1",
+   "want": "1"
+  },
+  {
+   "label": "deskButton 臂：起始历史干净（past=0）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "deskButton 臂：删除后道具真的没了",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "deskButton 臂：按行删除**没有改选中**（否则「输入框留在屏上」的前提没了）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "deskButton 臂：删除进历史（past 0→1）",
+   "pass": true,
+   "got": "1",
+   "want": "1"
+  },
+  {
+   "label": "body 臂：起始历史干净（past=0）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "body 臂：删除后道具真的没了",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "body 臂：按行删除**没有改选中**（否则「输入框留在屏上」的前提没了）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "body 臂：删除进历史（past 0→1）",
+   "pass": true,
+   "got": "1",
+   "want": "1"
+  },
+  {
+   "label": "★ fovInput 臂：落点确实是**输入框**（否则那一格测的不是「输入框焦点」）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "deskButton 臂：落点与 body 臂**不重复**（焦点不是 BODY）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "R-past：删除进历史（非输入框三臂 past 0→1）",
+   "pass": true,
+   "got": 3,
+   "want": 3
+  },
+  {
+   "label": "R-undo：★ 非输入框落点**全部**能撤销（道具回到对象树）",
+   "pass": true,
+   "got": 2,
+   "want": 2
+  },
+  {
+   "label": "R-undo：deskButton 臂撤销后历史结构正确（past→0、future→1）",
+   "pass": true,
+   "got": [
+    "0",
+    "1"
+   ],
+   "want": [
+    "0",
+    "1"
+   ]
+  },
+  {
+   "label": "R-undo：body 臂撤销后历史结构正确（past→0、future→1）",
+   "pass": true,
+   "got": [
+    "0",
+    "1"
+   ],
+   "want": [
+    "0",
+    "1"
+   ]
+  },
+  {
+   "label": "★ R-undo：**输入框落点撤销无效**（道具没有回来）—— 这条若漏，会给用户一份「撤销一直可用」的错误建议",
+   "pass": true,
+   "got": false,
+   "want": false
+  },
+  {
+   "label": "★ R-undo：输入框落点撤销后历史**没动**（past 仍=1、future 仍=0）⟹ 是**命令被吞**，不是「撤销了但没生效」",
+   "pass": true,
+   "got": [
+    "1",
+    "0"
+   ],
+   "want": [
+    "1",
+    "0"
+   ]
+  },
+  {
+   "label": "R-persist：那一格跑成了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "R-persist：删除后（reload 前）道具**已不在**",
+   "pass": true,
+   "got": false,
+   "want": false
+  },
+  {
+   "label": "★ R-persist：reload 并重开桌后道具**仍然不在**（删除持久化成立）",
+   "pass": true,
+   "got": false,
+   "want": false
+  },
+  {
+   "label": "R-persist：reload 前后对象数不变（没有别的东西在动）",
+   "pass": true,
+   "got": 4,
+   "want": 4
+  },
+  {
+   "label": "★ R-persist：reload 后撤销历史**归零** ⟹ reload 之后删除真的没退路",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "R-affordance：普查自证桌在（否则「没找到提示」不算数）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "R-affordance：按行删除入口 ≥ 1（普查前提成立）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "★ R-affordance：桌内**撤销类控件 0 个**（普查与删除后各测一次）",
+   "pass": true,
+   "got": [
+    0,
+    0
+   ],
+   "want": [
+    0,
+    0
+   ]
+  },
+  {
+   "label": "★ R-affordance：删除后 live 区里出现**「无命令反馈」**（成功提交后界面告诉用户「无反馈」）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "产物：runtime-audit.json 在位",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "产物：更正恰为 C777-1",
+   "pass": true,
+   "got": [
+    "C777-1"
+   ],
+   "want": [
+    "C777-1"
+   ]
+  },
+  {
+   "label": "产物：教训为 R119–R122",
+   "pass": true,
+   "got": [
+    "R119",
+    "R120",
+    "R121",
+    "R122"
+   ],
+   "want": [
+    "R119",
+    "R120",
+    "R121",
+    "R122"
+   ]
+  },
+  {
+   "label": "产物：两个缺陷（D1d 撤销不可用 / D1e 零入口）",
+   "pass": true,
+   "got": [
+    "D1d",
+    "D1e"
+   ],
+   "want": [
+    "D1d",
+    "D1e"
+   ]
+  },
+  {
+   "label": "产物：汇编器与我**独立算出的**守卫行号一致",
+   "pass": true,
+   "got": 487,
+   "want": 487
+  },
+  {
+   "label": "产物：汇编器与我独立算出的 Cmd+Z 行号一致",
+   "pass": true,
+   "got": 506,
+   "want": 506
+  },
+  {
+   "label": "产物：★ 结论把「不可逆」判为**不成立**（而不是跟着 763 的原话）",
+   "pass": true,
+   "got": "**不成立**（非输入框落点 2/2 能撤销）",
+   "want": "**不成立**（非输入框落点 2/2 能撤销）"
+  },
+  {
+   "label": "台账：Batch 777 恰有一行",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "台账：该行无 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "台账：该行恰 4 个竖线（3 列）",
+   "pass": true,
+   "got": 4
+  }
+ ],
+ "pass": 50,
+ "total": 50,
+ "negativeControls": [
+  {
+   "name": "把输入框落点的撤销改成「成功了」 ⟹ 「撤销无效」必须红",
+   "why": "★ 这条判据若恒真，会给用户一份「撤销一直可用」的错误建议",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "★ R-undo：**输入框落点撤销无效**（道具没有回来）—— 这条若漏，会给用户一份「撤销一直可用」的错误建议",
+    "★ R-undo：输入框落点撤销后历史**没动**（past 仍=1、future 仍=0）⟹ 是**命令被吞**，不是「撤销了但没生效」"
+   ],
+   "caught": true,
+   "expectFailOn": "输入框落点撤销无效"
+  },
+  {
+   "name": "把非输入框落点的撤销改成「失败」 ⟹ 「全部能撤销」必须红",
+   "why": "★ 这条若恒真，会把「零撤销入口」误报成「不可逆」⟹ 用户去申请一个根本不需要的「重置项目」功能",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "R-undo：★ 非输入框落点**全部**能撤销（道具回到对象树）"
+   ],
+   "caught": true,
+   "expectFailOn": "非输入框落点**全部**能撤销"
+  },
+  {
+   "name": "给桌里加一个撤销按钮 ⟹ 「撤销类控件 0 个」必须红",
+   "why": "证明「零入口」这条读数不是恒真",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "★ R-affordance：桌内**撤销类控件 0 个**（普查与删除后各测一次）"
+   ],
+   "caught": true,
+   "expectFailOn": "撤销类控件 0 个"
+  },
+  {
+   "name": "把 live 区文案改成「已删除 1 个对象」 ⟹ 「出现『无命令反馈』」必须红",
+   "why": "证明那条判据测的是**具体文案**而不是「live 区非空」",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "★ R-affordance：删除后 live 区里出现**「无命令反馈」**（成功提交后界面告诉用户「无反馈」）"
+   ],
+   "caught": true,
+   "expectFailOn": "无命令反馈"
+  },
+  {
+   "name": "把跨 reload 改成「道具回来了」 ⟹ 「持久化成立」必须红",
+   "why": "证明持久化这条不是恒真",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "★ R-persist：reload 并重开桌后道具**仍然不在**（删除持久化成立）"
+   ],
+   "caught": true,
+   "expectFailOn": "仍然不在"
+  },
+  {
+   "name": "把删除后的 past 改成 0 ⟹ 「删除进历史」必须红",
+   "why": "证明「进历史」这条不是恒真（也是 D1d 的前提：历史里有才谈得上被吞）。★ 改 `past` 会**连带**打红「逐臂 past=1」那几条 ⟹ 这是合理的，所以 kw 要精确到**聚合那条**判据，否则会命中 4 条（775 的 R118：kw 必须取自标签字面量，且要选**唯一**的那一条）",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "fovInput 臂：删除进历史（past 0→1）",
+    "deskButton 臂：删除进历史（past 0→1）",
+    "body 臂：删除进历史（past 0→1）",
+    "R-past：删除进历史（非输入框三臂 past 0→1）"
+   ],
+   "caught": true,
+   "expectFailOn": "R-past：删除进历史"
+  },
+  {
+   "name": "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ 不许有判据翻红",
+   "why": "mutatedAnything 为 false 时这条对照的结论是空的（R108）",
+   "mutatedAnything": false,
+   "kwMatchedCount": 0,
+   "flipped": [],
+   "caught": false,
+   "expectFailOn": "__永不匹配__"
+  }
+ ],
+ "negativeCaught": 7,
+ "negativeTotal": 7,
+ "negativeKwBroken": [
+  "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ 不许有判据翻红"
+ ],
+ "negativeInert": [
+  "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ 不许有判据翻红"
+ ],
+ "rawError": null,
+ "ok": true
+}
