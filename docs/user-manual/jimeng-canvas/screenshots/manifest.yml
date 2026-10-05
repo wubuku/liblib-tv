@@ -1996,3 +1996,14 @@ screenshots:
     visible_text: '测试项目 节点 76 已保存'
     alt: "顶栏保存状态标签「已保存」（2026-10-05 批次 174 拍，裁剪 246×50）：画布标题「测试项目」与「项目」下拉按钮之后是「节点 76」，再往右一条分隔线，橙框标出的那一小块灰字「已保存」就是保存状态标签；它只有 30×18 像素，不是按钮（点了没反应、光标是普通箭头），右边是空白，没有「保存中」之类的第二种写法；截图时画布是 76 个节点、缩放 26%"
     sha256: 34cf424674f44ec7a0249ae0df7c4b59a3ac48d0ee3dbdbdeac1bf368e245bd9
+  - file: screenshots/138-image-node-menu-shortcuts.png
+    task_id: help-and-shortcuts
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T16:40:00+08:00
+    verified_locator: '选中 .react-flow__node-image（b22-upload，id=node_gref4sw056）后右键，DIV[data-testid=canvas-context-menu] 读出 200x372@1048,340，9 个 [role=menuitem]；每项恰含两个 SPAN（项名 + 快捷键或禁用原因），aria-keyshortcuts 依次为 Meta+C / Meta+D / Meta+Shift+C / Meta+V / 无 / 无 / Meta+Shift+Z+Meta+Y / Meta+Z / Backspace'
+    visible_text: '复制 ⌘ C 复制副本 ⌘ D 复制为图片 ⌘ ⇧ C 粘贴 ⌘ V 保存到主体库 下载 重做 ⌘ ⇧ Z 无需重做操作 撤销 ⌘ Z 无需撤销操作 删除 ⌫'
+    alt: "图片节点的右键菜单（2026-10-05 批次 175 拍）：九项——复制 ⌘ C、复制副本 ⌘ D、复制为图片 ⌘ ⇧ C、粘贴 ⌘ V，一条分隔线，保存到主体库、下载（这两项右侧没有快捷键），然后是灰字禁用的重做 ⌘ ⇧ Z 与撤销 ⌘ Z，最下面是删除 ⌫；橙色高亮框标出菜单范围"
+    sha256: faf618a1948344b6f01520f5d5f37b8a742b71024547d2d0e2f784055d67d1d3

@@ -919,6 +919,28 @@
    "pattern_note": "两条 pattern 都锚在**被自己否掉的推论**上（canvas-context 第 4 条末尾那句、20-reference 保存指示器与失败锚点那张表的结论列），命中处紧邻「不成立」「否掉」等标记。纯中文词组，不含任何正则元字符。",
    "refuted_in": "批次 174（SOURCE_OBSERVATIONS.md §4.97.4 与立规 47；10-tasks/canvas-context.md「确认保存状态」第 4 条末尾；20-reference.md「保存指示器与失败锚点」）",
    "reason": "2026-10-05 批次 174：a 轮扫 testid 时看到 canvas-save-failure-anchor，据名字推出「页面存在保存失败态」。d 轮量到它是 **0×0@1264,72、零子元素、零内文、position:absolute、pointer-events:none**，祖先只有 div[canvas-save-failure-anchor] → section[canvas-main-region] ⇒ **它只是定位锚**。f 轮断网全程采样它的子元素数与内文，**一次也没长出东西**；同时全页关键词扫描（失败/重试/离线/未保存/网络异常/稍后）**零命中**。⇒ 「存在保存失败提示」这个推断**被自己的读数否掉**：断网时页面上确实没有任何保存失败 UI。⇒ 立规 47：断言某功能存在时至少要有一条非空读数（有面积/有子元素/有内文），看见 testid 不等于功能存在。"
+  },
+  {
+   "id": "aria-keyshortcuts-is-not-a-shortcut-registry",
+   "label": "在空闲页面上扫到 aria-keyshortcuts 很少，就断定这个属性只零星使用",
+   "patterns": [
+    "只零星使用",
+    "全页只有 2 个"
+   ],
+   "pattern_note": "两条 pattern 都锚在**被自己推翻的推论**上（20-reference「采集陷阱」段的引述、PROGRESS 批次 175 那一行），命中处紧邻「被直接推翻」「差点写成」等标记。纯中文词组与阿拉伯数字，不含正则元字符。",
+   "refuted_in": "批次 175（SOURCE_OBSERVATIONS.md §4.98.1 与立规 48；20-reference.md「快捷键的第二真相源」；PROGRESS.md 批次 175）",
+   "reason": "2026-10-05 批次 175：a 轮在**空闲页面**普查，aria-keyshortcuts 全页只有 2 个且都是 F、kbd 标签 0 个，据此差点写成「这个属性只零星使用，不是快捷键登记表」。c/d 轮**打开节点右键菜单**再扫，那个结论被直接推翻：菜单 9 个 [role=menuitem] **每一项都有** aria-keyshortcuts（Meta+C / Meta+D / Meta+Shift+C / Meta+V / 无 / 无 / Meta+Shift+Z+Meta+Y / Meta+Z / Backspace）。同批 a 轮那条「按 aria-label 含快捷键字形扫全页得到 0 条」也是同一个原因——菜单上的 ⌘ C 是**浮层内的文字**，不是元素的 aria-label。⇒ 在空闲态扫出来的「没有」和「这个功能没有」是两件事。"
+  },
+  {
+   "id": "62-minus-4-equals-28",
+   "label": "用「62 行 − 4 个组标题 = 28 项」推导帮助面板的快捷键条数",
+   "patterns": [
+    "扣掉 4 个组标题恰好",
+    "这个算式不对"
+   ],
+   "pattern_note": "两条 pattern 都锚在**被订正的原句**与**订正说明**上（help-and-shortcuts.md 快捷键全表开头的订正框、20-reference 对账小节末尾那行），命中处紧邻「订正」「结论对、推导不对」等标记。纯中文词组，不含正则元字符。",
+   "refuted_in": "批次 175（10-tasks/help-and-shortcuts.md「快捷键全表」开头的订正框；20-reference.md「与帮助面板 28 项的对账」；SOURCE_OBSERVATIONS.md §4.98.4）",
+   "reason": "2026-10-05 批次 175 e 轮现场重读快捷键面板（shortcut-help-scroll-region，240×548@1028,112，scrollHeight 1300 / clientHeight 548），innerText 逐行切出 **62 行**。原文写「扣掉 4 个组标题恰好 28 项」，但 62 − 4 = 58，而 58 ÷ 2 = 29 ≠ 28。正确拆法：62 = 4 个组标题 + 28 个功能项（每项 2 行）+ 2 行多键项——「还原」占 3 行（⌘ ⇧ Z 与 ⌘ Y 各一行）、「适配画布」也占 3 行（⇧ 1 与 ⌘ 0 各一行）。⇒ 28 项这个数字本身没错，但这个算式不对。"
   }
  ]
 }
