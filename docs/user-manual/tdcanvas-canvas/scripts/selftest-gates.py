@@ -1876,6 +1876,47 @@ def mutate_src_exclude_removed(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_page_list_runtime_mutation(root: Path) -> None:
+    """页面清单在**运行时**被改，覆盖面当场缩小而覆盖门禁看不见（M241）。
+
+    ★ **阳性对照是两道门禁同时失明**：加一行 `BODY_PAGES.remove("20-reference.md")` 之后，
+    `check-claims.py` 的读数从「36 个含强断言的小节」掉到「29 个」——
+    **而 `check-page-coverage.py` 仍 exit=0、连一句提醒都没有**，
+    因为它是用**正则读源码里的字面量**来还原扫描面的，运行时那次改动它一个字都看不见。
+    ★ **失灵方向是「少报」**，所以必须由它自己来守这个前提。
+    """
+
+    path = root / "scripts" / "check-claims.py"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace(
+        'BODY_GLOBS = ["10-tasks/*.md"]',
+        'BODY_GLOBS = ["10-tasks/*.md"]\nBODY_PAGES.remove("20-reference.md")',
+        1,
+    )
+    assert patched != text, "注入失败：没找到 BODY_GLOBS 那一行"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_page_list_literal_change_ok(root: Path) -> None:
+    """反向对照：清单是**字面量**改动时，仍只提醒、不阻断（M241）。
+
+    ★ **这条钉住的是「我没有偷偷改政策」**：M162 划的边界是
+    「部分覆盖可见但不阻断」，**字面量改动本门禁读得到**，
+    报读会如实变化并点名——**所以它必须继续放行**。
+    **新判据只拦「运行时改」，不拦「字面量改」。**
+    """
+
+    path = root / "scripts" / "check-retractions.py"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace(
+        'LEDGER_PAGES = ["task-inventory.yml", "SOURCE_OBSERVATIONS.md"]',
+        'LEDGER_PAGES = ["task-inventory.yml"]',
+        1,
+    )
+    assert patched != text, "注入失败：没找到 LEDGER_PAGES 那一行"
+    path.write_text(patched, encoding="utf-8")
+
+
 def mutate_retraction_notation_needle(root: Path) -> None:
     """needle 退化成**纯「键=数字」的取证记法**时必须被拦下（M203）。
 
@@ -2059,6 +2100,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("又手抄了一份与 srcExclude 不一致的内部名单（M240）", mutate_internal_list_hardcoded, "internallists", "手抄的内部名单"),
     ("该推导的门禁被改回不推导，判据 2 必须抓到（M240）", mutate_internal_list_derivation_removed, "internallists", "没有 import"),
     ("事实源 srcExclude 被改坏，推导它的门禁必须判失败（M240）", mutate_src_exclude_removed, "emphasis", "读不到"),
+    ("页面清单在运行时被改，覆盖门禁必须当场发现（M241）", mutate_page_list_runtime_mutation, "pagecoverage", "静默"),
+    ("页面清单是字面量改动时仍只提醒不阻断（不误报，M241）", mutate_page_list_literal_change_ok, "pagecoverage", EXPECT_PASS),
 ]
 
 

@@ -52,6 +52,7 @@ M161 查实「自己写的核查工具漏扫了账本里 45 处引用」之后�
 
 from __future__ import annotations
 
+import ast
 import re
 import sys
 from pathlib import Path
@@ -108,15 +109,64 @@ def read_set(path: Path, name: str) -> set[str]:
     return set(re.findall(r'"([^"]+)"', m.group(1)))
 
 
+def mutated_lists(path: Path, names: set[str]) -> list[str]:
+    """页面清单常量在**定义之后**又被改过的地方（M241 新增判据）。
+
+    ★★ **本门禁是用正则读源码文本里的字面量来还原扫描面的**——
+    **所以它只在「清单确实是声明式的」这个前提下成立。**
+    而这个前提原先**没有任何东西守着**。
+
+    ★ **阳性对照（M241 实测，两道门禁同时失明）**：
+    在 `check-claims.py` 里加一行 `BODY_PAGES.remove("20-reference.md")`，
+
+    - `check-claims.py` **真的**不再扫那一页了——
+      它的读数从「36 个含强断言的小节」掉到「**29** 个」；
+    - ★ **而本门禁 exit=0、连一句 `[提醒]` 都没有**，
+      因为它读到的字面量里 `20-reference.md` **仍然在列表中**。
+
+    ★ **失灵方向是「少报」**：覆盖面被悄悄缩小，唯一守着覆盖面的门禁却报 ok。
+    ★ **所以这里不去猜运行时结果，而是直接守住那个前提**——
+    **清单常量不许被 `remove` / `append` / `extend` / `update` / `+=` / 重新赋值。**
+    改了就写进字面量，让本门禁读得到。
+    """
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    hits: list[str] = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.AugAssign) and isinstance(node.target, ast.Name) \
+                and node.target.id in names:
+            hits.append(f"第 {node.lineno} 行 `{node.target.id} += …`")
+        elif isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) \
+                and isinstance(node.func.value, ast.Name) and node.func.value.id in names:
+            hits.append(
+                f"第 {node.lineno} 行 `{node.func.value.id}.{node.func.attr}(…)`"
+            )
+        elif isinstance(node, ast.Assign):
+            for target in node.targets:
+                if isinstance(target, ast.Name) and target.id in names \
+                        and not isinstance(node.value, (ast.List, ast.Tuple, ast.Set)):
+                    hits.append(f"第 {node.lineno} 行 `{target.id} = <非字面量>`")
+    return hits
+
+
 def main() -> int:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
     if not root.exists():
         print(f"[页面覆盖] 手册目录不存在：{root}")
         return 1
 
+    # ★ M241：`problems` 必须在**汇总循环之前**声明——
+    #   新增的「清单被运行时改过」判据在循环内就要往里写，
+    #   声明写在后面会 UnboundLocalError（**崩掉也算 exit=1，
+    #   但那是崩、不是判据生效——两者必须分开确认**）。
+    problems: list[str] = []
+
     # —— 汇总三道门禁声明的覆盖面 ——
     covered: set[str] = set()
     per_gate: dict[str, set[str]] = {}
+    # ★ M241：每道门禁**自己申报**的多扫（写在 `EXTRA_PAGES` / `LEDGER_PAGES` 里）。
+    #   「某道门禁多扫了某一页」如果只存在于人的记忆里，下一个人无从判断是有意还是漏改；
+    #   写在源码常量里，它就成了**可核对的事实**（M240：需要人工同步的东西不许只活在注释里）。
+    declared_extra: dict[str, set[str]] = {}
     for fname, (p_names, g_names, e_name) in DECLARATIVE_GATES.items():
         script = HERE / fname
         if not script.exists():
@@ -129,6 +179,11 @@ def main() -> int:
         for g_name in g_names:
             globs |= read_optional_list(script, g_name)
         excl = read_set(script, e_name)
+        declared_extra[fname] = {
+            x for c in ("EXTRA_PAGES", "LEDGER_PAGES")
+            for x in (read_optional_list(script, c) or set())
+            if x.endswith(".md")
+        }
         hit: set[str] = set()
         for page in root.glob("*.md"):
             rel = page.name
@@ -146,10 +201,22 @@ def main() -> int:
         per_gate[fname] = hit | {p for p in pages if "/" not in p}
         covered |= per_gate[fname]
 
+        # ★ M241 新增：**上面两行读到的扫描面只在「清单是纯字面量」时成立。**
+        # 清单一旦在运行时被改，真实覆盖面就与这里读到的不一致，
+        # **而失灵方向是「少报」**——本门禁会照常报 ok。
+        muts = mutated_lists(script, set(p_names) | set(g_names))
+        if muts:
+            problems.append(
+                f"[静默] {fname} 的页面清单在定义之后被改过：{'；'.join(muts)}。\n"
+                f"  **本门禁是用正则读源码里的字面量来还原扫描面的**，"
+                f"运行时改出来的那几页它一个字都看不见——\n"
+                f"  实测（`BODY_PAGES.remove(...)`）：该门禁的覆盖面当场缩小，"
+                f"本门禁却仍 exit=0。\n"
+                f"  修法：把改动写进清单字面量，或改用 `BODY_GLOBS`。"
+            )
+
     # —— 根目录实际存在的页面 ——
     actual = {p.name for p in root.glob("*.md")}
-
-    problems: list[str] = []
 
     # 1) 根目录里有、谁都不扫的页
     orphans = sorted(
@@ -198,6 +265,27 @@ def main() -> int:
         for f in gaps:
             missing = sorted(n for n, hit in per_gate.items() if f not in hit)
             print(f"    · {f} —— 未被 {', '.join(missing)} 扫到")
+    # ★ M241：**「谁多扫了」也要点名，并标出哪些已在源码里申报。**
+    #   判据与退出码**一律不变**（部分覆盖仍不阻断，M162 划的边界）——
+    #   这里只把「知不知道它是故意的」从记忆搬进源码。
+    undeclared: list[str] = []
+    # ★ 基准是**交集**（每道门禁都扫的那些页），**不是并集**——
+    #   第一版这里减的是并集，等于把每一页都减掉了，`extra` 恒为空，
+    #   **「未申报的多扫」这条判据从落地起就是死的**（注入 E 抓到的）。
+    core_all = (set.intersection(*per_gate.values()) if per_gate else set())
+    for fname, hit in sorted(per_gate.items()):
+        extra = sorted((hit & actual) - set(KNOWN_EXCLUDED)
+                       - core_all - declared_extra[fname])
+        if not extra:
+            continue
+        undeclared.append(f"{fname} 多扫 {'、'.join(extra)} 却没在 EXTRA_PAGES/LEDGER_PAGES 里申报")
+    for f in sorted(actual & set().union(*declared_extra.values()) if declared_extra else set()):
+        owners = sorted(n for n, d in declared_extra.items() if f in d)
+        print(f"  · 已申报的多扫：{f} —— {'、'.join(owners)}")
+    if undeclared:
+        print("  [提醒] 以下多扫**没有申报**（仍不阻断，但没人知道它是有意还是漏改）：")
+        for line in undeclared:
+            print(f"    · {line}")
 
     if problems:
         print("[FAIL] 页面覆盖校验未通过：")

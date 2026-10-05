@@ -82,6 +82,13 @@ BODY_PAGES = [
     "90-troubleshooting.md",
     "SOURCE_OBSERVATIONS.md",
 ]
+# ★ **M241：本页多扫 `SOURCE_OBSERVATIONS.md` 是有意的，在此申报。**
+# 理由：账本里逐条记着「哪一次实测、在哪个文件第几行」，
+# **这些 file:line 引用会随源码改动一起漂**，而账本正是最需要被核对引用的地方
+# （正文写错了行号，读者点过去看不到内容；账本写错了，是订正依据本身失真）。
+# ★ **判据 2（多扫必须申报）就是靠这一条常量成立的**——
+# 没申报的多扫会被 `check-scan-agreement.py` 当成「没人知道为什么扫」而报错。
+EXTRA_PAGES = ["SOURCE_OBSERVATIONS.md"]
 BODY_GLOBS = ["10-tasks/*.md"]
 
 # 路径可含目录分隔符；行号可写成 N 或 N-M
