@@ -2062,3 +2062,25 @@ screenshots:
     visible_text: 'JIMENG-B190-SENTINEL 全屏编辑'
     alt: "⌘C 之后按 ⌘V 的结果：左边（橙虚线框）是刚粘出来的新节点，标题「文本」、正文里就是刚才写进剪贴板的 JIMENG-B190-SENTINEL 字符串；右边（橙实线框）才是原来那个被选中的「视频 1」节点——新出现的是一个内容完全不同的文本节点，不是被复制节点的副本"
     sha256: b45beb6869b62c4625cc197c85837cb87b5ac5ae682a8ee37ffa59c80eed3b59
+  - file: screenshots/178-search-select-before.png
+    task_id: navigate-canvas
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T20:50:00+08:00
+    verified_locator: '把画布设到 26%（setZoom 回读「Zoom options, 26%」、viewport transform 读 scale(0.26)），在搜索框输入「视频」后读回框值逐字「视频」、结果区读出 1 行 BUTTON[data-testid="canvas-search-result-node_236ctpehgg"] aria 逐字「视频 1, 视频」；此刻该节点的屏上矩形是 [-168, -93, 83, 148]，**整块在视口外**（所以那圈 dashed 提示框一个像素也没进画面）；给目标节点画 3px dashed #ff8c00 高亮框后读回 borderStyle=dashed、pointer-events=none、宽高为正 才 shutter'
+    visible_text: '视频 26% 节点 76'
+    alt: "点搜索结果行之前：缩放读数是 26%，左下角三个图标后就是百分比；搜索面板开着，框里是「视频」，结果区只有一行「视频 1 / 视频」；目标节点「视频 1」整块在视口外，画面左上角这一片全是堆在一起的音频节点，看不到它"
+    sha256: f21d5c7e6ab02023f22d15f760dc48736da9ef936076f8ff045be75777fbc47a
+  - file: screenshots/179-search-select-after.png
+    task_id: navigate-canvas
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T20:50:00+08:00
+    verified_locator: '点同一行结果行 ⇒ 状态行 1 selected；等 2.5 秒动画结束后读 viewport transform = translate(-38.5px, -84.3px) scale(0.5)，缩放 aria 逐字「Zoom options, 50%」（起点是 26%，落在 0.5–类型预设 0.625659 的钳位区间内）；目标节点屏上矩形 [394, 116, 160, 284]、完整在视口内=true；给同一节点画 3px solid #ff8c00 高亮框，读回 borderStyle=solid、pointer-events=none、宽高为正 才 shutter'
+    visible_text: '视频 1 全屏编辑 50% 节点 76'
+    alt: "点同一行结果行之后：左下角缩放读数从 26% 变成 50%；橙实线框罩住的「视频 1」节点整块落在画面里、右上角带「全屏编辑」工具条、左右各有一个圆圈加号按钮；搜索面板仍然开着，面板里那行「视频 1 / 视频」也仍然是高亮态"
+    sha256: ea53349d7d38e174c1952175ff70bd01d133d89d6d9c95834c907bd99b98ea19
