@@ -47,9 +47,25 @@
  *
  * 用法：
  *   node scripts/probe-visible-strings.js /            转储一个路由，输出 JSON 到 stdout
- *   ROUTES="/ /config /assets" node ...               转储多个路由
- *   ROUTES="/canvas/ID::画布+Agent面板::打开 Agent"    进到某个状态再转储一次
+ *   ROUTES="/;/config;/assets" node ...               转储多个路由（★ 分号，不是逗号）
+ *   ROUTES="/canvas/ID::画布+Agent面板::打开本地 Codex 面板"   进到某个状态再转储一次
  *   OUT=/tmp/strings.json node ...                    写文件而不是 stdout
+ *
+ * ══ 状态动作语法（M245 末加）══
+ *
+ *   状态那一位现在可以写**一串动作**，用 `||` 分隔，**从左到右依次执行**：
+ *     click:TEXT      按可见文字点（真实鼠标点击，量矩形再点中心）
+ *     dblclick:TEXT   双击
+ *     dblclickxy:x,y  在视口坐标双击（用来双击画布空白）
+ *     clickxy:x,y     在视口坐标单击
+ *     type:TEXT       往当前焦点输入文字
+ *     key:Escape      按键
+ *     wait:800        单纯等一会儿（毫秒）
+ *   例（双击空白建一个文本节点）：
+ *     /canvas/ID::建了文本节点::dblclickxy:800,450||wait:600||click:文本||wait:800||type:测试节点||key:Escape
+ *   ★ 这样写是因为**手册里大量断言的对象根本不在「空画布」上**：
+ *   节点工具条、侧边面板、连接菜单、九宫格对话框……全都要「画布上真的有节点」。
+ *   **而一个空的画布转储出来的字，只能覆盖手册的一小半**（F55 的第一个开关）。
  *
  * ══ ★★ 状态覆盖面：这道题的全部难度都在这里 ══
  *
@@ -58,24 +74,71 @@
  *   「只需配置一个 API_KEY」是**弹窗**的副标题、「打开导航菜单」是**窄屏**才出现的
  *   汉堡提示、「导航」是**抽屉**的标题、「连接 TDCanvas Agent」是**面板打开后**才有的。
  *   **它们全都存在，只是存在我这次没进的那个状态里。**
- *   → 所以 ROUTES 支持 `路径::标签::要点的 aria` 三段式：
- *     **同一个页面可以转储多次，每次一个状态，标签写清楚这是哪个状态。**
- *     少了这一步，任何命中率都是量具的读数，不是手册的读数（F55）。
+ *   → 所以状态不是可选项，是**决定读数有没有意义的那一半**。
  *   ★ 纪律：**不点任何删除类按钮**（「移除插件」「删除」「清空画布」等），
- *     状态步骤只用「打开面板」「点导航」这类不改变数据的动作。
+ *     **也不点任何计费的生成按钮**（M0 起就定下的纪律）。
+ *     建节点用的是「文本」这类**本机完成、不调用付费生成**的类型。
  */
 const PW = require(process.env.PLAYWRIGHT_PATH ||
   '/Users/yangjiefeng/.nvm/versions/node/v24.6.0/lib/node_modules/@playwright/test/node_modules/playwright');
 const PROFILE = process.env.TD_PROBE_PROFILE || '/tmp/m124-profile';
 const APP = process.env.TD_APP || 'http://localhost:3000';
-/* 每项是 路径 或 路径::标签::aria ；缺省标签就是路径本身 */
-const ROUTES = (process.env.ROUTES || process.argv[2] || '/').split(',').map((r) => {
-  const [path, label, aria] = r.trim().split('::');
-  return { path, label: label || path, aria: aria || '' };
+/* 每项是 路径 或 路径::标签::动作串（动作用 || 分隔）
+ *
+ * ★★ **路由之间必须用分号，不能用逗号**——M245 之后踩过一次：
+ * 动作语法里有 `dblclickxy:800,450`，**而路由原先正是按逗号切的**，
+ * 于是坐标的 `450` 被当成一条新路由，页面 URL 直接变成
+ * `http://localhost:3000450||wait:800||...`，**整串动作一个都没执行，
+ * 而输出照样打印「执行 1 个动作后」**——只有靠「建完节点可见文字还是 12 条、
+ * 和空画布一模一样」才发现。逗号留给坐标，分号给路由。 */
+const ROUTES = (process.env.ROUTES || process.argv[2] || '/').split(';').map((r) => {
+  const t = r.trim();
+  const [path, label, acts] = t.split('::');
+  // ★ 路径里只允许 / 与字母数字与 - _；出现 | , : 就是分隔符用错了
+  //   （`/800,450` 也以 / 开头，所以「必须以 / 开头」那条判据拦不住它——实测过）
+  if (!/^\/[A-Za-z0-9/_-]*$/.test(path)) {
+    console.error(`[FAIL] 路由「${t}」的路径部分「${path}」不是合法路径`
+      + '（只允许 / 与字母数字与 - _）——'
+      + '多半是分隔符用错了：路由之间要用分号 ; 分隔，'
+      + '逗号只留给 dblclickxy:800,450 的坐标。'
+      + '（M245 之后踩过：坐标的 450 被当成一条路由，'
+      + '页面 URL 变成 http://localhost:3000450||…，整串动作一个都没执行，'
+      + '而输出照样打印「执行 N 个动作后」。）');
+    process.exit(2);
+  }
+  return { path, label: label || path, acts: (acts || '').split('||').filter(Boolean) };
 });
 const OUT = process.env.OUT || '';
 /* 窄屏状态：VIEWPORT=640x900 */
 const VP = (process.env.VIEWPORT || '1600x1000').split('x').map(Number);
+
+/* ★ 不可点清单：命中就直接拒绝执行，并说明为什么。
+ *
+ *   **用精确全名，不用子串也不用正则**——理由有二，第二条是本批当场撞上的：
+ *   ① 语义上就该是精确的：我要拒绝的是「点那个叫『清空画布』的按钮」，
+ *      不是「点任何名字里带『清空』的东西」。
+ *   ② `check-probe-contracts` 的第三条判据是「危险文案的**真前缀**不许出现在
+ *      正则字面量或 `includes('…')` 里，除非文件里出现过完整文案」。
+ *      ★ **M246 第一版写成了正则 `/(清空画布|删除全部|^删除$|…)/`，
+ *      当场被那条门禁判成「用『删除』这类子串去选『删除当前画布』」。**
+ *      **而它是误报**——那串的正用是「不点它们」，方向正好相反。
+ *      但**误报不构成放宽门禁的理由**（M195/M155 那条纪律），
+ *      正确做法是**让代码满足门禁自己的放行条件**：
+ *      改成精确全名数组，六个不可逆按钮**全名照抄文档里的 DESTRUCTIVE 清单**，
+ *      门禁的「出现完整文案即放行」自然生效。
+ *      ★ **结果是代码比原来更准**——精确匹配不可能误伤同名之外的按钮。
+ *
+ *   计费动作另算：文本节点右上角那个按钮界面上写「**生图**」而不是「生成」，
+ *   ★ **清单最初只有「生成」，漏了这个同义按钮**——
+ *   **一个只覆盖了同义按钮一半的护栏，比没有护栏更危险**：
+ *   它会让人以为「计费动作已经挡住了」。现在两种写法都在。 */
+const NEVER_CLICK = [
+  // —— 不可逆的六个，全名与 PUBLISH.md 的 DESTRUCTIVE 清单一致 ——
+  '删除当前画布', '移除节点', '删除选中', '删除全部', '删除', '清空画布',
+  // —— 计费的（本机不会真的去点）——
+  '生图', '生成', '换一换', '重新生成', '创建图片', '创建视频', '创建音频',
+];
+const isNeverClick = (s) => NEVER_CLICK.includes((s || '').trim());
 
 /* ★ 纪律 4：可见性 = 有几何 + 祖先链正常 +（可选）类名里有「这个元素是隐藏的」标记
  *
@@ -258,26 +321,60 @@ async function hoverCollect(page) {
       await page.goto(APP + r.path, { waitUntil: 'networkidle' });
       await page.waitForTimeout(1500);
       let stepNote = '';
-      if (r.aria) {
-        // 真实鼠标点击：先量矩形再点中心（不用 el.click()）
-        const box = await page.evaluate((re) => {
-          const el = Array.from(document.querySelectorAll('button,[role="button"],[role="tab"]'))
-            .find((x) => new RegExp(re).test((x.getAttribute('aria-label') || '') + ' ' +
-                                             (x.getAttribute('title') || '') + ' ' + (x.innerText || '')));
-          if (!el) return null;
-          const q = el.getBoundingClientRect();
-          return { x: q.x + q.width / 2, y: q.y + q.height / 2, w: q.width, h: q.height };
-        }, r.aria);
-        if (box && box.w && box.h) {
-          await page.mouse.click(box.x, box.y);
-          await page.waitForTimeout(1600);
-          stepNote = `点开「${r.aria}」后`;
-        } else {
-          // ★ 点不到必须说出来，不能当成「这个状态没有内容」（M132 纪律）
-          stepNote = `★ 点不到「${r.aria}」——本条读数只代表点开之前的状态`;
-          console.error('[提醒] ' + stepNote);
+      for (const act of r.acts) {
+        // ★ 不可点清单先查：这一步在本批之前不存在，是 M245 之后补的护栏
+        const raw = act;
+        // ★ 兼容 M245 的老写法：第三段没有动作前缀时，整段当作「点这个文字」
+        const VERBS = ['wait', 'key', 'type', 'dblclickxy', 'clickxy', 'dblclick', 'click'];
+        const m = raw.match(/^([a-z]+):(.*)$/);
+        const verb = m && VERBS.includes(m[1]) ? m[1] : 'click';
+        const arg = m && VERBS.includes(m[1]) ? m[2] : raw;
+        if (isNeverClick(arg) && (verb === 'click' || verb === 'dblclick')) {
+          stepNote = `★ 动作「${act}」命中不可点清单，已跳过（不执行）`;
+          console.error('[拒绝] ' + stepNote);
+          continue;
+        }
+        try {
+          if (verb === 'wait') { await page.waitForTimeout(Number(arg) || 500); continue; }
+          if (verb === 'key') { await page.keyboard.press(arg); await page.waitForTimeout(500); continue; }
+          if (verb === 'type') { await page.keyboard.type(arg); await page.waitForTimeout(400); continue; }
+          if (verb === 'dblclickxy' || verb === 'clickxy') {
+            const [x, y] = arg.split(',').map(Number);
+            if (verb === 'dblclickxy') await page.mouse.dblclick(x, y);
+            else await page.mouse.click(x, y);
+            await page.waitForTimeout(700);
+            continue;
+          }
+          if (verb === 'click' || verb === 'dblclick') {
+            // 真实鼠标点击：先量矩形再点中心（不用 el.click()）
+            // ★ 三个字段**各自**测，不要拿拼接串测——拼接串前后带着分隔用的空格，
+            //   `^文字创作$` 这种带锚点的写法必然不中。
+            //   （M246 踩过：那个按钮明明存在、明明写着「文字创作」，
+            //   而工具报「点不到」——因为它测的是 "  文字创作"。）
+            const box = await page.evaluate((a) => {
+              const re = new RegExp(a);
+              const hit = (s) => re.test(s || '');
+              const el = Array.from(document.querySelectorAll('button,[role="button"],[role="tab"],a,li'))
+                .find((x) => hit(x.getAttribute('aria-label')) || hit(x.getAttribute('title')) ||
+                              hit((x.innerText || '').replace(/\s+/g, ' ').trim()));
+              if (!el) return null;
+              const q = el.getBoundingClientRect();
+              return { x: q.x + q.width / 2, y: q.y + q.height / 2, w: q.width, h: q.height };
+            }, arg);
+            if (box && box.w && box.h) {
+              if (verb === 'dblclick') await page.mouse.dblclick(box.x, box.y);
+              else await page.mouse.click(box.x, box.y);
+              await page.waitForTimeout(900);
+            } else {
+              // ★ 点不到必须说出来，不能当成「这个状态没有内容」（M132 纪律）
+              console.error(`[提醒] 点不到「${arg}」——本条读数只代表这个动作之前的状态`);
+            }
+          }
+        } catch (e) {
+          console.error(`[提醒] 动作「${act}」失败：${e && e.message}`);
         }
       }
+      if (r.acts.length) stepNote = `执行 ${r.acts.length} 个动作后`;
       const d = await page.evaluate(DUMP);
       d.hover = await hoverCollect(page);
       d.route = r.path;
