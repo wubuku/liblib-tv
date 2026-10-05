@@ -1853,3 +1853,14 @@ screenshots:
     visible_text: '项目信息 基础信息 积分消耗'
     alt: 窗口压到 1280×600 时对话框变成 800×480，只有中段从 382 缩到 316，标题、页签、页脚三段高度不变
     sha256: ab9e4e0bfd42f33e689aad1b627f131c276e413b0f9a9e6b9b86bec164c91493
+  - file: screenshots/125-subject-export-dialog-mechanism.png
+    task_id: subject-node
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T13:28:00+08:00
+    verified_locator: '右键 b22-upload（带就绪素材的图片节点）→「保存到主体库」弹出的对话框，读出 548×688@366,16；三个直接子 52 / 552 / 84'
+    visible_text: '设置主体 参考主体 名称 描述 保存'
+    alt: '「设置主体」对话框：标题「设置主体」带 ⓘ、参考主体区已预填那张图、中间是可滚动区（描述输入框被裁到一半）、右下角「保存」为灰色禁用态，橙色高亮框标出对话框范围'
+    sha256: 5fbfc85496250b339d71e3c869f85c43735f04ae7121e83a9cc6b14ca24dfa62

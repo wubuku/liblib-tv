@@ -1,0 +1,607 @@
+{
+ "批次": "167c",
+ "目的": "验证 宽=min(548,100vw−32) 与 高=min(734,100vh−32)，并订正「688 是定尺」的错法",
+ "起点": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "积分": "Credits: 791 · 基础会员",
+  "缩放": "Zoom options, 57%"
+ },
+ "内联样式": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+ "高度档": [
+  {
+   "找到": true,
+   "视口": [
+    1280,
+    800
+   ],
+   "盒": [
+    548,
+    734,
+    366,
+    33
+   ],
+   "余量": {
+    "左": 366,
+    "右": 366,
+    "上": 33,
+    "下": 33
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "548px",
+    "height": "734px",
+    "maxHeight": "768px",
+    "maxWidth": "1248px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 598,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 734
+  },
+  {
+   "找到": true,
+   "视口": [
+    1280,
+    766
+   ],
+   "盒": [
+    548,
+    734,
+    366,
+    16
+   ],
+   "余量": {
+    "左": 366,
+    "右": 366,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "548px",
+    "height": "734px",
+    "maxHeight": "734px",
+    "maxWidth": "1248px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 598,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 734
+  },
+  {
+   "找到": true,
+   "视口": [
+    1280,
+    765
+   ],
+   "盒": [
+    548,
+    733,
+    366,
+    16
+   ],
+   "余量": {
+    "左": 366,
+    "右": 366,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "548px",
+    "height": "733px",
+    "maxHeight": "733px",
+    "maxWidth": "1248px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 597,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 733
+  },
+  {
+   "找到": true,
+   "视口": [
+    1280,
+    720
+   ],
+   "盒": [
+    548,
+    688,
+    366,
+    16
+   ],
+   "余量": {
+    "左": 366,
+    "右": 366,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "548px",
+    "height": "688px",
+    "maxHeight": "688px",
+    "maxWidth": "1248px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 552,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 688
+  },
+  {
+   "找到": true,
+   "视口": [
+    1280,
+    700
+   ],
+   "盒": [
+    548,
+    668,
+    366,
+    16
+   ],
+   "余量": {
+    "左": 366,
+    "右": 366,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "548px",
+    "height": "668px",
+    "maxHeight": "668px",
+    "maxWidth": "1248px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 532,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 668
+  },
+  {
+   "找到": true,
+   "视口": [
+    1280,
+    600
+   ],
+   "盒": [
+    548,
+    568,
+    366,
+    16
+   ],
+   "余量": {
+    "左": 366,
+    "右": 366,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "548px",
+    "height": "568px",
+    "maxHeight": "568px",
+    "maxWidth": "1248px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 432,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 568
+  },
+  {
+   "找到": true,
+   "视口": [
+    1280,
+    400
+   ],
+   "盒": [
+    548,
+    368,
+    366,
+    16
+   ],
+   "余量": {
+    "左": 366,
+    "右": 366,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "548px",
+    "height": "368px",
+    "maxHeight": "368px",
+    "maxWidth": "1248px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 232,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 368
+  }
+ ],
+ "宽度档": [
+  {
+   "找到": true,
+   "视口": [
+    1280,
+    720
+   ],
+   "盒": [
+    548,
+    688,
+    366,
+    16
+   ],
+   "余量": {
+    "左": 366,
+    "右": 366,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "548px",
+    "height": "688px",
+    "maxHeight": "688px",
+    "maxWidth": "1248px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 552,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 688
+  },
+  {
+   "找到": true,
+   "视口": [
+    900,
+    720
+   ],
+   "盒": [
+    548,
+    688,
+    176,
+    16
+   ],
+   "余量": {
+    "左": 176,
+    "右": 176,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "548px",
+    "height": "688px",
+    "maxHeight": "688px",
+    "maxWidth": "868px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 552,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 688
+  },
+  {
+   "找到": true,
+   "视口": [
+    580,
+    720
+   ],
+   "盒": [
+    548,
+    688,
+    16,
+    16
+   ],
+   "余量": {
+    "左": 16,
+    "右": 16,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "548px",
+    "height": "688px",
+    "maxHeight": "688px",
+    "maxWidth": "548px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 552,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 688
+  },
+  {
+   "找到": true,
+   "视口": [
+    579,
+    720
+   ],
+   "盒": [
+    547,
+    688,
+    16,
+    16
+   ],
+   "余量": {
+    "左": 16,
+    "右": 16,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "547px",
+    "height": "688px",
+    "maxHeight": "688px",
+    "maxWidth": "547px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 552,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 688
+  },
+  {
+   "找到": true,
+   "视口": [
+    500,
+    720
+   ],
+   "盒": [
+    468,
+    688,
+    16,
+    16
+   ],
+   "余量": {
+    "左": 16,
+    "右": 16,
+    "上": 16,
+    "下": 16
+   },
+   "内联": "height: 734px; max-height: calc(-32px + 100vh); border-radius: 16px; width: 548px; pointer-events: auto;",
+   "计算": {
+    "width": "468px",
+    "height": "688px",
+    "maxHeight": "688px",
+    "maxWidth": "468px"
+   },
+   "子": [
+    {
+     "testid": "subject-export-dialog-header",
+     "高": 52,
+     "flex": "0 0 auto"
+    },
+    {
+     "testid": "subject-export-dialog-body",
+     "高": 552,
+     "flex": "1 1 0%"
+    },
+    {
+     "testid": "subject-export-dialog-footer",
+     "高": 84,
+     "flex": "0 0 auto"
+    }
+   ],
+   "子高合计": 688
+  }
+ ],
+ "预测": {
+  "高": [
+   734,
+   734,
+   733,
+   688,
+   668,
+   568,
+   368
+  ],
+  "高实测": [
+   734,
+   734,
+   733,
+   688,
+   668,
+   568,
+   368
+  ],
+  "宽": [
+   548,
+   548,
+   548,
+   547,
+   468
+  ],
+  "宽实测": [
+   548,
+   548,
+   548,
+   547,
+   468
+  ]
+ },
+ "钉回": {
+  "w": 1280,
+  "h": 720
+ },
+ "复原缩放": {
+  "前": "Zoom options, 20%",
+  "目标": 57,
+  "回读": "Zoom options, 57%",
+  "输入框出现过": true,
+  "实测scale": 0.57,
+  "期望scale": 0.57,
+  "scale已追平": true,
+  "等待ms": 1
+ },
+ "小地图已重开": true,
+ "收尾": {
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "视口": [
+   1280,
+   720
+  ],
+  "缩放": "Zoom options, 57%",
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "断言执行数": 8,
+ "断言预期数": 5,
+ "断言全过": true
+}
