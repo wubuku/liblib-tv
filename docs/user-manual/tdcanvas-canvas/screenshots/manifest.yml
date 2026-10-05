@@ -771,6 +771,7 @@ screenshots:
     visible_text: '只需配置一个 API_KEY'
     alt: API 配置弹窗，标题下写明只需配置一个 API_KEY，正文是获取与粘贴两步引导，底部是验证并查询余额与保存两个按钮
     sha256: c27bc4469fa7ae89f888d52e0ba1e510a7b608a6cc374034befee278131f89b4
+    m244_note: 'M244 活体复核：① 本条 verified_locator 把「（禁用）」只标在「保 存」后面，**漏了「验证并查询余额」也是禁用的**——2026-10-05 活体读数两个按钮都带 disabled 属性、cursor 都是 not-allowed、颜色同为 rgba(255,255,255,0.25)；图上那行「验证并查询余额」同样是灰的。**正文 20-reference.md:50「两者都禁用」是对的，漏记的只有本条取证字段**（R101 的成因之一）。② 弹窗右上角那个关闭控件是 32x32 的**纯图标按钮**（ant-modal-close，innerText 为空，aria-label=Close），**弹窗可见文本里 Close 与「关闭」各出现 0 次**——图上只有 × 图标。（R99）'
 
   - file: screenshots/02-navigate-canvas-top-menu.png
     task_id: navigate-canvas
@@ -944,6 +945,7 @@ screenshots:
     alt: Agent 面板的技能视图，顶部为本地 Skill 标题、重新读取与创建 Skill 按钮、搜索框和全部来源筛选，中间空态写明连接 Agent 后查看 Skill
     sha256: 75e2029273e9a601c1ac58f8e7ebeb5a1d174224d8b617caa18ab6e428f3edab
     m224_note: '技能面板，M224 核 1 遍全对'
+    m244_note: 'M244 活体复核（未连接态）：① 顶部两个按钮**都带 disabled**、cursor 都是 not-allowed——本条与正文原先只把「重新读取」标成禁用，**漏了「创建 Skill」**（R101，已订正）。② 重新读取那个按钮是 **32x32 纯图标**（innerText 空、内含 svg、无文本节点），**悬停提示浮层写的是「重新读取」四个字、不带 Skill**，「重新读取 Skill」是 aria-label——图上那个位置只有一个 ⟳ 图标（R100，已订正）。③ 副标题「安装在本机，由 Codex 直接执行」逐字核对无误。★ 阳性对照：悬停链末端确认指针真落在该按钮上，否则本条读数作废'
 
   - file: screenshots/16-use-agent-permissions.png
     task_id: use-agent
@@ -993,6 +995,7 @@ screenshots:
     visible_text: '设置 TDCanvas 调用 AI 土豆服务所需的唯一密钥'
     alt: 独立的 API 配置页，左侧是 API 小标题、服务密钥说明和安全提示，右侧是服务密钥表单、分两步引导与验证并查询余额和保存按钮
     sha256: 4457d6d5ae7bbeff89f2c9aff8ed10068f2294e3f4e0a40bff163adf78670111
+    m244_note: 'M244 看图复核：左栏（API 小标题 / 服务密钥 / 作用说明 / 分隔线 / 安全提示）、右栏卡片、第一步说明段与按钮、第二步、输入框 placeholder「请输入 API_KEY」、底部「验证并查询余额」与灰着的「保 存」逐项在图上，**与本条 verified_locator 及 20-reference.md:44 的正文说法全部对得上**。同批活体读数复核了 20-reference.md:52 的 M83 断言：整页 aside 宽 260.0、可点后代 0、弹窗内 aside 0 个——**结论不变**'
 
   - file: screenshots/20-responsive-640.png
     task_id: navigate-canvas
@@ -1043,6 +1046,7 @@ screenshots:
     visible_text: 'Set the single credential TDCanvas uses for AI Tudou services'
     alt: 英文界面的 API 配置页，标题为 API settings，字段为 Service credential，第一步是 Join AI Tudou 取 API key，底部有验证并查询余额与保存两个按钮
     sha256: 9c8047bc40bab96331c326adb1bf90d8ad555d89a3e38c4ab1e889cac23d2604
+    m244_note: 'M244 看图复核：API settings / Set the single credential TDCanvas uses for AI Tudou services / Service credential / Step 1: Get an AI Tudou API key / Join AI Tudou · Get API key / Step 2: Paste your API key and save to connect / Enter API_KEY / Verify & check balance / Save（灰着）逐项在图上。★ **20-reference.md:397 那两条 Step 文案与图上逐字一致**（含冒号后的完整句子），SOURCE_OBSERVATIONS 里 M199 记的「第一步不是计数」那条本批再看一遍仍成立'
 
   - file: screenshots/20-agent-en.png
     task_id: use-agent
@@ -1055,6 +1059,7 @@ screenshots:
     visible_text: 'Connect TDCanvas Agent'
     alt: 英文界面的 Agent 面板，标题下是选项一和选项二两段较长的英文说明与三条命令，底部是网页连接区和本地地址、连接令牌两个输入框
     sha256: e00a482b380a5607bb529edc63b3a296fe9fc76c8795d8a2cd93b39fa1422404
+    m244_note: 'M244 活体复核（第二独立来源，与 M199 互证）：切英文后未连接态面板全文逐项对上——标题 Connect TDCanvas Agent、Option 1: Use the Codex plugin、Option 2: Run TDCanvas Agent locally、**命令正好 3 条**（codex plugin remove tdcanvas / codex mcp remove tdcanvas / npm --prefix canvas-agent run dev）、Web connection / Disconnected、Local address / Local URL / Connection token / Connect token 全部在场。**一个字未改**'
 
   - file: screenshots/04-organize-canvas-appearance-light.png
     task_id: organize-canvas
