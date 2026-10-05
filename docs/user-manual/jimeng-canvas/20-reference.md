@@ -2366,26 +2366,33 @@ style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
 | `timeline` | 2 | `时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.` | ❌ sr-only |
 | **`external`（导演台）** | 1 | **`No resources: 0 ready, 0 processing, 0 failed. Not selected.`** | ❌ sr-only |
 | `text` | 3 | `双击编辑文本` ×2、`测试文字样例` ×1 | ✅ **看得见** |
-| **`image`（`b22-upload`）** | 1 | *(宿主存在，`innerText` **为空**)* | 有面积 `148×83`、**无文字** |
+| **`image`（`b22-upload`）** | 1 | *(宿主存在，`innerText` **为空**)* —— 🔴 批次 181 订正：这**只是取数方法的缺陷**，`alt` 上逐字是 `1 resource. Current preview: 图片已就绪. Not selected.` | 有面积 `148×83`、**正文无字但 `alt` 有字** |
 
 ⇒ **每个类型只有 1 种描述**，唯一的例外是 `text`（2 种）—— 而那 2 种**就是节点自己的正文**
 （`双击编辑文本` 是空文本节点的占位、`测试文字样例` 是它的内容）。
 ⇒ **`Current preview: 暂无<类型>` 这套是音视频共用的**；
-**三个计数器那套只属于 `external`（导演台）**。
+**三个计数器那套只属于 `external`（导演台）** ——
+🔴 批次 181 补一条边界：这只在**描述通道**上成立；
+同一串逐字也出现在 **`text` 节点的 `aria-label`** 上（见下节末行）。
 
 🔴 **订正两处类型归属（2026-10-05 批次 179 逐 id 核对）**：
 批次 176 初版把 `0 ready` 那一条归给图片、把「空描述」归给导演台，**两处都写反了**。
 实测：`0 ready` 属于 **`node_pxvkay973v`（导演台）**；
 而 **`b22-upload`（图片）的 `innerText` 是空的**（有面积 `148×83`、无文字）。
 ⇒ 上面这张交叉表是**订正后**的版本。
+🔴 **批次 181 再订正一次**：上面这句「`innerText` 是空的」**只描述了取数方法、不是产品行为** ——
+同一批读数改从 `alt` 取，图片节点**有**描述（逐字 `1 resource. Current preview: 图片已就绪. Not selected.`）。
 
 📌 手册另一处仍写着「`0 ready` 那句**只对导演台成立**」的提醒，
 与本表一致（批次 179 已同步订正）。
+🔴 但批次 181 把这条提醒**又收窄了一层**：它只在**描述通道**上成立（见下方订正小节）。
 
 🔴 **实操后果**：手册从批次 135 起一直记着那句
 `No resources: 0 ready, 0 processing, 0 failed.`，
 而它**只对导演台成立** ⇒ 自动化里按**这一句**判「空壳」**会漏掉 69 个节点**
 （68 个音频 + 1 个视频**全部漏掉**）。这条是**已订正**的旧结论。
+🔴 **批次 181 补**：连这个「漏 69 个」的数字也要再降一档 —— 那串逐字在 **`text` 的 `aria-label`** 上也出现，
+所以按字符串判空壳**既会漏、也会误判**；**判空壳别看文案**。
 
 #### 两条「有元素 ≠ 有内容」的读数
 
@@ -2394,6 +2401,45 @@ style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
   **零例外**。
 - **`image` 节点有描述宿主、有面积 `148×83`，但 `innerText` 是空的** ——
   和批次 175 的「看见 testid ≠ 功能存在」、批次 177 的「有面积 ≠ 有原因文字」同族。
+  🔴 批次 181 订正：这条**不能算「有元素 ≠ 有内容」的例证** —— 它是**「用 `innerText` 读 `<img>`」这个方法无效**，
+  改读 `alt` 就有内容。⇒ 立规 49：**读文案前先问「这个元素把文字放在哪个载体上」。**
+
+#### 🔴 批次 181 订正：**只用 `innerText` 读，会漏掉 `alt` 与 `aria-label` 上的文案**
+
+批次 179/180 的两处结论**都要再改一次** —— 不是它们写错了数字，
+而是**取数方法只读了 `innerText`**，而那**漏掉了另外两个文案载体**：
+
+| 载体 | 谁把文案放在上面 | 漏掉的代价 |
+|---|---|---|
+| `innerText`（文本节点） | `text`（正文区） | — |
+| **`alt`（属性）** | **`image`** | 🔴 图片节点被读成「**空描述**」—— 实际逐字 **`1 resource. Current preview: 图片已就绪. Not selected.`** |
+| **`aria-label`（属性）** | **`text`** | 🔴 漏掉那半句状态，逐字 `双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.` |
+
+⇒ **「`No resources: 0 ready, 0 processing, 0 failed.` 只属于导演台」这句话不成立**：
+它在**文本节点的 `aria-label`** 里也逐字出现。
+⇒ **「图片节点是空描述」也不成立**：它是**有描述的**，只是载体是 `alt`。
+⇒ ⚠️ 读 `<img>` 的 `innerText` **永远是空** —— 这是取数方法的缺陷，不是产品行为。
+
+#### 描述宿主的**三套实现**（按 `aria-describedby` 指向的那个元素本身）
+
+| 类型 | 节点数 | 宿主元素 | 父壳的 `data-testid` |
+|---|---|---|---|
+| `audio` | 68 | `SPAN.sr-only` | **（无）** class `group relative flex min-h-32 min-w-40 flex-col …` |
+| **`external`**（导演台） | 1 | `SPAN.sr-only` | **（无）**，**与 audio 同一串 class** |
+| `video` | 1 | `SPAN.sr-only` | `video-flow-node-surface` |
+| `timeline` | 2 | `SPAN.sr-only` | `timeline-flow-node` |
+| `text` | 3 | **`DIV[data-testid=text-flow-node-compact]`** | 就是 `rf__node-node_<id>`（**描述宿主自己就是节点第一层**） |
+| `image` | 1 | **`IMG[data-testid=image-node-compact]`** | `image-primary-preview-viewport` |
+
+⇒ **三类实现**：
+① **`sr-only` 播报 `SPAN`**（音视频 / 时间线 / 导演台，共 **71** 个）——
+   其中 `video` / `timeline` 的父壳**有 testid**，而**音频与导演台共用一个没有 testid 的壳**；
+② **正文容器本身**（`text`）—— `aria-describedby` 指的是**节点第一层那个 `div`**；
+③ **`<img>` 元素本身**（`image`）—— 指的是**那张图**，文案在它的 `alt` 上。
+
+📌 顺带一个**逐字可笑的读数**：图片节点的 `aria-label` 把它自己 `alt` 的内容
+**重复了两遍** —— 逐字 `1 resource. Current preview: 图片已就绪. Not selected.. 1 resource. Current preview: 图片已就绪. Not selected.`
+（中间那个**双句号**就是两遍拼接的缝）。
 
 #### 模板拆解：五句都以 `Not selected.` 结尾
 

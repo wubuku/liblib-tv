@@ -1007,6 +1007,18 @@
    "pattern_note": "两条 pattern 都锚在**被订正的表格行与订正说明**上（20-reference「七种描述文案」表下方那段「订正两处类型归属」），命中处紧邻「两处都写反了」「已订正」等标记。均为纯中文词组，不含任何正则元字符。",
    "refuted_in": "批次 179（SOURCE_OBSERVATIONS.md §4.102.3；20-reference.md「每个节点都有一条描述通道」的七种文案表与正文）",
    "reason": "2026-10-05 批次 179：逐 id 精确取值 document.getElementById('canvas-node-description-<id>')，查出 `No resources: 0 ready, 0 processing, 0 failed. Not selected.` 属于 **node_pxvkay973v（导演台）**，而 **b22-upload（图片）的 innerText 是空的**（有面积 148×83、无文字）—— 批次 176 把这两行**写反了**。同批把「刷新会不会改描述文案」这个变量单独控住（只改刷不刷新）：不刷新连读 3 次、刷新 1 次、刷新 2 次，音频 1 的描述逐字不变，且 76 节点全量普查在三种状态下分组逐字相同（68/2/2/1/1/1/1）⇒ 刷新不会改文案、批次 176 的统计是对的，错的只是那两行的类型归属。旁证是批次 178 曾把 `0 ready` 读成「音频 1」，与这个稳定读数不符且**未能复现**。"
+  },
+  {
+   "id": "innertext-misses-alt-and-aria-label",
+   "label": "只用 innerText 读节点文案 ⇒ 把「有描述的节点」读成空描述、并断言某串文案只属于一种类型",
+   "patterns": [
+    "图片节点是空描述",
+    "只属于导演台",
+    "只对导演台成立"
+   ],
+   "pattern_note": "三条 pattern 都锚在**被 181 推翻的旧说法**上，且刻意取自正文里逐字连续、**不在加粗内部**的中文词组：① 「图片节点是空描述」命中 181 订正节的「也不成立」；② 「只属于导演台」命中同一节的「这句话不成立」；③ 「只对导演台成立」命中 179/180 留在实操后果段的那句提醒（其上下文已有批次 181 的订正标记）。全部不含正则元字符。📌 第四条纪律（前面：不能含括号、不能含元字符、不能取自加粗之间）：**pattern 要能同时命中「原始记录处」与「订正处」**，否则门只会盯着订正区、旧结论复现时反而抓不到。",
+   "refuted_in": "批次 181（SOURCE_OBSERVATIONS.md §4.104.3；20-reference.md「批次 181 订正：只用 innerText 读，会漏掉 alt 与 aria-label 上的文案」一节，并就地回填了交叉表 image 行、179 订正块、实操后果段、「有元素≠有内容」那条）",
+   "reason": "2026-10-05 批次 181：批次 179/180 的两处结论**取数方法只读了 innerText**，而文案有三个载体。① **alt** —— 图片节点 b22-upload 的描述逐字是 `1 resource. Current preview: 图片已就绪. Not selected.`，之前被记成「空描述」；**读 <img> 的 innerText 恒为空**，那是方法缺陷不是产品行为。② **aria-label** —— 文本节点上逐字 `双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.` ⇒ **「0 ready 那串只属于导演台」不成立**（它在描述通道上只属 external，但在 text 的 aria-label 上也逐字出现），按字符串判「空壳」**既会漏 69 个、也会误判**。③ 同批把归因推到组件层：**描述宿主有三套实现**（sr-only 播报 SPAN 71 个 / 正文容器本身 text / <img> 本身 image），且**音频与导演台共用同一个没有 testid 的壳**（`group relative flex min-h-32 min-w-40 flex-col …`）⇒ 文案不同不是因为组件不同，是因为 video/timeline 有而它们没有 `-flow-node-surface` 那层。旁证：图片节点的 aria-label 把自己 alt 的内容**重复两遍**，中间那个双句号就是拼接缝。⇒ 立规 49：**按 innerText 读到空 ≠ 元素没有文案；读文案前先问载体是文本节点还是 alt/aria-label/title。**"
   }
  ]
 }

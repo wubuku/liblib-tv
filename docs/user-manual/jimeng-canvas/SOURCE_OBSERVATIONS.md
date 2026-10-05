@@ -18031,3 +18031,55 @@ ICU 消息模板**：
 
 📌 收尾：**纯只读**（只刷新与读取，未创建/删除/修改任何画布内容）；
 视口 **26%**、**76 节点 / 0 选中 / 0 残留浮层**、**积分 791** 全程未变。
+
+## 4.104 把归因推到**组件层**：描述宿主是**三套实现**；🔴 只读 `innerText` 漏掉 `alt` 与 `aria-label`
+
+（2026-10-05 批次 181。探针 `jimeng-b181` / `jimeng-b181b`；本节 4 小节。纯只读。）
+
+### 4.104.1 靶子：180 已归因出「哪种类型用哪种文案」，但**没答「为什么」**
+
+180 的结论：`Current preview: 暂无<类型>` 音视频共用、三个计数器只属于 `external`。
+要答「为什么」，得看**承载文案的元素**（`aria-describedby` 指向的那个）是不是同一个组件。
+
+### 4.104.2 ✅ 三套实现（按描述宿主本身逐类读）
+
+| 类型 | 节点数 | 宿主元素 | 父壳 `data-testid` |
+|---|---|---|---|
+| `audio` | 68 | `SPAN.sr-only` | **（无）**，class `group relative flex min-h-32 min-w-40 flex-col …` |
+| `external` | 1 | `SPAN.sr-only` | **（无）**，**与 audio 同一串 class** |
+| `video` | 1 | `SPAN.sr-only` | `video-flow-node-surface` |
+| `timeline` | 2 | `SPAN.sr-only` | `timeline-flow-node` |
+| `text` | 3 | **`DIV[data-testid=text-flow-node-compact]`** | 就是 `rf__node-node_<id>` |
+| `image` | 1 | **`IMG[data-testid=image-node-compact]`** | `image-primary-preview-viewport` |
+
+⇒ **① `sr-only` 播报 `SPAN`**（71 个）／**② 正文容器本身**（text）／**③ `<img>` 本身**（image）。
+⇒ 🔴 **音频与导演台共用同一个「没有 testid 的壳」** ⇒ 它们**文案不同不是因为组件不同**，
+是因为**没有各自的 `-flow-node-surface` 那层**（video/timeline 有）。
+
+### 4.104.3 🔴 由此推翻 179/180 的两处结论：取数方法只读了 `innerText`
+
+| 载体 | 谁把文案放在上面 | 漏掉的代价 |
+|---|---|---|
+| `innerText` | `text`（正文区） | — |
+| **`alt`** | **`image`** | 图片节点被读成「**空描述**」，实际逐字 **`1 resource. Current preview: 图片已就绪. Not selected.`** |
+| **`aria-label`** | **`text`** | 漏掉状态那半句：`双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected.` |
+
+⇒ **「`0 ready` 那套只属于导演台」不成立** —— 它在**文本节点的 `aria-label`** 里也逐字出现。
+⇒ **「图片节点是空描述」不成立** —— 它有描述，只是载体是 `alt`；**读 `<img>` 的 `innerText` 永远空**。
+📌 附带读数：图片节点的 `aria-label` 把它自己 `alt` 的内容**重复了两遍**，
+逐字 `1 resource. Current preview: 图片已就绪. Not selected.. 1 resource. Current preview: 图片已就绪. Not selected.`
+（中间那个**双句号**就是两遍拼接的缝）。
+
+### 4.104.4 自身失误 1 个：**又一次「指纹里混了 per-instance token」的恒真门**
+
+a 轮算了「同类型不同指纹数」，结果 **audio 68 → 68、text 3 → 3、timeline 2 → 2**
+—— **恰好等于节点数**。b 轮**把 class 里的 `node_*` 过滤掉了**，但
+**`data-testid="rf__node-node_<id>"` 这个 attribute 值本身含 id**，
+而我**只过滤了 class**、没处理 attribute ⇒ **又是同一个坑**。
+
+⇒ **四次同族复现**：批次 174 的三处恒真门、批次 175 的两个假零、批次 176 的「点了没选中」、
+本批的「指纹数 = 节点数」。**根子都是同一个：「我用来分组的那个串里，
+混进了每个实例都不同的东西。」**
+
+📌 收尾：**纯只读**（只刷新与读取，未创建/删除/修改任何画布内容）；
+视口 **26%**、**76 节点 / 0 选中 / 0 残留浮层**、**积分 791** 全程未变。
