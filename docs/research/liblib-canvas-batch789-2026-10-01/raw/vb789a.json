@@ -1,0 +1,486 @@
+{
+ "batch": 789,
+ "arms": [
+  "draftOnly",
+  "libOnly",
+  "draftThenLib",
+  "libThenDraft"
+ ],
+ "presses": 3,
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "draftOnly",
+     "setup": [
+      {
+       "phase": "exportOpen",
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": "ok"
+      },
+      {
+       "phase": "start",
+       "read": {
+        "draft": "true",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "start": {
+      "draft": "true",
+      "lib": "false",
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "presses": [
+      {
+       "press": 1,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 2,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 3,
+       "read": {
+        "draft": null,
+        "lib": null,
+        "exportOpen": false,
+        "deskOpen": false
+       }
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "libOnly",
+     "setup": [
+      {
+       "phase": "exportOpen",
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "phase": "openLib",
+       "ok": true,
+       "why": "ok"
+      },
+      {
+       "phase": "start",
+       "read": {
+        "draft": "false",
+        "lib": "true",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "start": {
+      "draft": "false",
+      "lib": "true",
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "presses": [
+      {
+       "press": 1,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 2,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 3,
+       "read": {
+        "draft": null,
+        "lib": null,
+        "exportOpen": false,
+        "deskOpen": false
+       }
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "draftThenLib",
+     "setup": [
+      {
+       "phase": "exportOpen",
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": "ok"
+      },
+      {
+       "phase": "openLib",
+       "ok": true,
+       "why": "ok"
+      },
+      {
+       "phase": "start",
+       "read": {
+        "draft": "true",
+        "lib": "true",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "start": {
+      "draft": "true",
+      "lib": "true",
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "presses": [
+      {
+       "press": 1,
+       "read": {
+        "draft": "false",
+        "lib": "true",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 2,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 3,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "libThenDraft",
+     "structurallyUnreachable": true,
+     "why": "★ 造草稿时模型库已被外点关闭关掉",
+     "setup": [
+      {
+       "phase": "exportOpen",
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "phase": "openLib",
+       "ok": true,
+       "why": "ok"
+      },
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": "ok",
+       "libAfterAttempt": "false",
+       "draftAfterAttempt": "true"
+      }
+     ],
+     "after": {
+      "draft": "true",
+      "lib": "false",
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "draftOnly",
+     "setup": [
+      {
+       "phase": "exportOpen",
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": "ok"
+      },
+      {
+       "phase": "start",
+       "read": {
+        "draft": "true",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "start": {
+      "draft": "true",
+      "lib": "false",
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "presses": [
+      {
+       "press": 1,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 2,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 3,
+       "read": {
+        "draft": null,
+        "lib": null,
+        "exportOpen": false,
+        "deskOpen": false
+       }
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "libOnly",
+     "setup": [
+      {
+       "phase": "exportOpen",
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "phase": "openLib",
+       "ok": true,
+       "why": "ok"
+      },
+      {
+       "phase": "start",
+       "read": {
+        "draft": "false",
+        "lib": "true",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "start": {
+      "draft": "false",
+      "lib": "true",
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "presses": [
+      {
+       "press": 1,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 2,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 3,
+       "read": {
+        "draft": null,
+        "lib": null,
+        "exportOpen": false,
+        "deskOpen": false
+       }
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "draftThenLib",
+     "setup": [
+      {
+       "phase": "exportOpen",
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": "ok"
+      },
+      {
+       "phase": "openLib",
+       "ok": true,
+       "why": "ok"
+      },
+      {
+       "phase": "start",
+       "read": {
+        "draft": "true",
+        "lib": "true",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "start": {
+      "draft": "true",
+      "lib": "true",
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "presses": [
+      {
+       "press": 1,
+       "read": {
+        "draft": "false",
+        "lib": "true",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 2,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "press": 3,
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "libThenDraft",
+     "structurallyUnreachable": true,
+     "why": "★ 造草稿时模型库已被外点关闭关掉",
+     "setup": [
+      {
+       "phase": "exportOpen",
+       "read": {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "phase": "openLib",
+       "ok": true,
+       "why": "ok"
+      },
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": "ok",
+       "libAfterAttempt": "false",
+       "draftAfterAttempt": "true"
+      }
+     ],
+     "after": {
+      "draft": "true",
+      "lib": "false",
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}

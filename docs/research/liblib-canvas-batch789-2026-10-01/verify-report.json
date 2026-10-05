@@ -1,0 +1,485 @@
+{
+ "batch": 789,
+ "checks": [
+  {
+   "id": "S1:两个 sIP 主人都在（正则定位，不靠行号）",
+   "desc": "★ 运镜草稿与模型库两个 effect **各自**都有 `sIP` 且都是 `window` 捕获相位（`addEventListener(..., true)` + 对称 `remove`）",
+   "ok": true,
+   "detail": {
+    "found": {
+     "motionPathDraft": {
+      "span": [
+       85960,
+       86558
+      ],
+      "evidence": {
+       "gateFirstLine": true,
+       "hasSIP": true,
+       "hasWindowCapture": true,
+       "hasWindowCaptureCleanup": true
+      }
+     },
+     "modelLibraryOpen": {
+      "span": [
+       87045,
+       87918
+      ],
+      "evidence": {
+       "gateFirstLine": true,
+       "hasSIP": true,
+       "hasWindowCapture": true,
+       "hasWindowCaptureCleanup": true
+      }
+     }
+    },
+    "bad": []
+   }
+  },
+  {
+   "id": "S2:两个门都是「状态非空才注册」",
+   "desc": "★ 两个 effect 体**第一件事**就是「状态为空就 return」，⟹ 监听器只在**状态变成非空那一刻**注册 ⟹ **注册顺序 = 打开顺序**。★ 这是**机制**层的读数，不是从观察反推的",
+   "ok": true,
+   "detail": {
+    "motionPathDraft": true,
+    "modelLibraryOpen": true
+   }
+  },
+  {
+   "id": "S3:★★ 混淆项：打开顺序与源码顺序在本批里**重合**",
+   "desc": "★ 唯一**可达**的共活臂 `draftThenLib` 里，草稿既**先打开**、effect 又**写在前面**（`:2697` vs `:2733`）⟹ 两种解释给出**同一预测**⟹ 本批**不能**区分 ⟹ 报告只准说「**先注册的赢**」（「注册顺序 = 打开顺序」由 S2 的门支撑，而不是由本臂的胜负反推）",
+   "ok": true,
+   "detail": {
+    "srcFirst": "motionPathDraft",
+    "openFirst": "motionPathDraft",
+    "coincide": true,
+    "note": "★ 两个顺序重合 ⟹ H1/H2 不可分离，本批不下结论"
+   }
+  },
+  {
+   "id": "S4:「桌还在」是**直读**（每个读数都带 deskOpen）",
+   "desc": "★ 若从「草稿与库两个读数都变 `null`」**推断**桌关，任何一个读数因别的原因消失都会误判 ⟹ 强制直读 `[role=\"dialog\"][aria-modal=\"true\"]`",
+   "ok": true,
+   "detail": {
+    "reads": 40,
+    "missing": []
+   }
+  },
+  {
+   "id": "S5:共活臂逐次读数重算一致（3 次 × 2 轮）",
+   "desc": "★ P1 草稿关、库**仍在**；P2 库关；P3 导出面板关、**桌仍在**",
+   "ok": true,
+   "detail": {
+    "p1": [
+     [
+      1,
+      3,
+      {
+       "draft": "false",
+       "lib": "true",
+       "exportOpen": true,
+       "desk": true
+      }
+     ],
+     [
+      2,
+      3,
+      {
+       "draft": "false",
+       "lib": "true",
+       "exportOpen": true,
+       "desk": true
+      }
+     ]
+    ],
+    "p2": [
+     [
+      1,
+      3,
+      {
+       "draft": "false",
+       "lib": "false",
+       "exportOpen": true,
+       "desk": true
+      }
+     ],
+     [
+      2,
+      3,
+      {
+       "draft": "false",
+       "lib": "false",
+       "exportOpen": true,
+       "desk": true
+      }
+     ]
+    ],
+    "p3": [
+     [
+      1,
+      3,
+      {
+       "draft": "false",
+       "lib": "false",
+       "exportOpen": false,
+       "desk": true
+      }
+     ],
+     [
+      2,
+      3,
+      {
+       "draft": "false",
+       "lib": "false",
+       "exportOpen": false,
+       "desk": true
+      }
+     ]
+    ]
+   }
+  },
+  {
+   "id": "S6:两个单独臂逐次读数重算一致（第 3 次桌关）",
+   "desc": "★ 单独时第 1 次就两样都清、第 3 次把整张桌关掉",
+   "ok": true,
+   "detail": [
+    {
+     "arm": "draftOnly",
+     "p1": [
+      [
+       1,
+       3,
+       {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "desk": true
+       }
+      ],
+      [
+       2,
+       3,
+       {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "desk": true
+       }
+      ]
+     ]
+    },
+    {
+     "arm": "draftOnly",
+     "p3": [
+      [
+       1,
+       3,
+       {
+        "draft": null,
+        "lib": null,
+        "exportOpen": false,
+        "desk": false
+       }
+      ],
+      [
+       2,
+       3,
+       {
+        "draft": null,
+        "lib": null,
+        "exportOpen": false,
+        "desk": false
+       }
+      ]
+     ]
+    },
+    {
+     "arm": "libOnly",
+     "p1": [
+      [
+       1,
+       3,
+       {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "desk": true
+       }
+      ],
+      [
+       2,
+       3,
+       {
+        "draft": "false",
+        "lib": "false",
+        "exportOpen": true,
+        "desk": true
+       }
+      ]
+     ]
+    },
+    {
+     "arm": "libOnly",
+     "p3": [
+      [
+       1,
+       3,
+       {
+        "draft": null,
+        "lib": null,
+        "exportOpen": false,
+        "desk": false
+       }
+      ],
+      [
+       2,
+       3,
+       {
+        "draft": null,
+        "lib": null,
+        "exportOpen": false,
+        "desk": false
+       }
+      ]
+     ]
+    }
+   ]
+  },
+  {
+   "id": "S7:★★ 「先注册的赢」（我预测「后开的赢」被否）",
+   "desc": "★ `draftThenLib` 第 1 次按 Escape 关掉的是**草稿**、模型库**留着** ⟹ 我原先的预测**被否**（★ 但 S3 已钉住：分不开「打开顺序」与「源码顺序」）",
+   "ok": true,
+   "detail": {
+    "press1": [
+     {
+      "draft": "false",
+      "lib": "true",
+      "exportOpen": true,
+      "desk": true
+     },
+     {
+      "draft": "false",
+      "lib": "true",
+      "exportOpen": true,
+      "desk": true
+     }
+    ],
+    "myPrediction": "模型库被关（后打开的赢）",
+    "actual": "草稿被关、模型库仍在"
+   }
+  },
+  {
+   "id": "S8:★ 不可达臂两轮一致，且**草稿造出来了**",
+   "desc": "★ 先开模型库再造草稿：两轮都 `libAfterAttempt==\"false\"` **且** `draftAfterAttempt==\"true\"` ⟹ 不是「造草稿失败」，是**模型库被外点关闭顺手关掉**（`DirectorViewport.tsx:2747` 的 `document.addEventListener(\"pointerdown\", …)`）⟹ C785-2 的直接推论",
+   "ok": true,
+   "detail": {
+    "rounds": [
+     1,
+     2
+    ],
+    "makeDraft": [
+     {
+      "phase": "makeDraft",
+      "ok": true,
+      "why": "ok",
+      "libAfterAttempt": "false",
+      "draftAfterAttempt": "true"
+     },
+     {
+      "phase": "makeDraft",
+      "ok": true,
+      "why": "ok",
+      "libAfterAttempt": "false",
+      "draftAfterAttempt": "true"
+     }
+    ],
+    "whys": [
+     "★ 造草稿时模型库已被外点关闭关掉",
+     "★ 造草稿时模型库已被外点关闭关掉"
+    ]
+   }
+  },
+  {
+   "id": "S9:8 格都在（4 臂 × 2 轮）且 tries 全为 1",
+   "desc": "★ 两轮一致、每臂两格；`tries==1` ⟹ 没有靠重试掩盖的抖动",
+   "ok": true,
+   "detail": {
+    "draftOnly": 2,
+    "draftThenLib": 2,
+    "libOnly": 2,
+    "libThenDraft": 2
+   }
+  },
+  {
+   "id": "S10:桌的锚点唯一",
+   "desc": "★ `aria-modal=\"true\"` 在整个 director 组件目录里**只有一处**、且**同一个元素**上还有 `role=\"dialog\"` ⟹ `[role=\"dialog\"][aria-modal=\"true\"]` 就是桌本身；其余 `role=\"dialog\"`（导出面板等）**没有** `aria-modal`，不会冒充",
+   "ok": true,
+   "detail": {
+    "hits": [
+     "DirectorDesk.tsx:902"
+    ],
+    "ariaModalWithoutDialog": []
+   }
+  },
+  {
+   "id": "S11:汇编器零失败",
+   "desc": "汇编器自己的断言必须全绿",
+   "ok": true,
+   "detail": {
+    "checks": 5,
+    "assertedAnchors": 20,
+    "failed": 0
+   }
+  },
+  {
+   "id": "S12:阴性对照已复原（源码 + raw，字节级）",
+   "desc": "★ N3 改过 `DirectorViewport.tsx` 的两处 ⟹ 必须字节级还原",
+   "ok": true,
+   "detail": {
+    "driftedSrc": [],
+    "driftedRaw": false
+   }
+  }
+ ],
+ "totals": {
+  "checks": 12,
+  "passed": 12,
+  "failed": 0
+ },
+ "negativeControls": {
+  "total": 5,
+  "caught": 5,
+  "detail": [
+   {
+    "name": "N1 共活臂 P1 草稿读数被翻成 true",
+    "why": "★ 验证 S5/S7 真的在读**共活臂第 1 次**的读数（若没读，「预测被否」这句话就没有证据）",
+    "evidence": {
+     "hit": 6
+    },
+    "expectFlipped": "S7:★★ 「先注册的赢」（我预测「后开的赢」被否）",
+    "flipped": [
+     "S5:共活臂逐次读数重算一致（3 次 × 2 轮）",
+     "S7:★★ 「先注册的赢」（我预测「后开的赢」被否）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:两个 sIP 主人都在（正则定位，不靠行号）",
+     "S2:两个门都是「状态非空才注册」",
+     "S3:★★ 混淆项：打开顺序与源码顺序在本批里**重合**",
+     "S4:「桌还在」是**直读**（每个读数都带 deskOpen）",
+     "S6:两个单独臂逐次读数重算一致（第 3 次桌关）",
+     "S8:★ 不可达臂两轮一致，且**草稿造出来了**",
+     "S9:8 格都在（4 臂 × 2 轮）且 tries 全为 1",
+     "S10:桌的锚点唯一",
+     "S11:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N2 不可达臂 libAfterAttempt 翻成 true",
+    "why": "★ 验证 S8：若模型库**没有**被关掉，这个臂就该被判为可达 ⟹ 「不可达」是**读出来的**不是写死的",
+    "evidence": {
+     "hit": 2
+    },
+    "expectFlipped": "S8:★ 不可达臂两轮一致，且**草稿造出来了**",
+    "flipped": [
+     "S8:★ 不可达臂两轮一致，且**草稿造出来了**"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:两个 sIP 主人都在（正则定位，不靠行号）",
+     "S2:两个门都是「状态非空才注册」",
+     "S3:★★ 混淆项：打开顺序与源码顺序在本批里**重合**",
+     "S4:「桌还在」是**直读**（每个读数都带 deskOpen）",
+     "S5:共活臂逐次读数重算一致（3 次 × 2 轮）",
+     "S6:两个单独臂逐次读数重算一致（第 3 次桌关）",
+     "S7:★★ 「先注册的赢」（我预测「后开的赢」被否）",
+     "S9:8 格都在（4 臂 × 2 轮）且 tries 全为 1",
+     "S10:桌的锚点唯一",
+     "S11:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N3 两处 sIP 一起被去掉（同一文件·原子化）",
+    "why": "★ 验证 S1 真的在找 `sIP`，而不是靠行号硬取。★ 只改 `:2702` 或只改 `:2744` S1 都仍绿（它要求两个都有）⟹ **两处必须一起改**，否则对照无效",
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 2702,
+      "oldGone": true,
+      "newThere": true
+     },
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 2744,
+      "oldGone": true,
+      "newThere": true
+     }
+    ],
+    "expectFlipped": "S1:两个 sIP 主人都在（正则定位，不靠行号）",
+    "flipped": [
+     "S1:两个 sIP 主人都在（正则定位，不靠行号）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S2:两个门都是「状态非空才注册」",
+     "S3:★★ 混淆项：打开顺序与源码顺序在本批里**重合**",
+     "S4:「桌还在」是**直读**（每个读数都带 deskOpen）",
+     "S5:共活臂逐次读数重算一致（3 次 × 2 轮）",
+     "S6:两个单独臂逐次读数重算一致（第 3 次桌关）",
+     "S7:★★ 「先注册的赢」（我预测「后开的赢」被否）",
+     "S8:★ 不可达臂两轮一致，且**草稿造出来了**",
+     "S9:8 格都在（4 臂 × 2 轮）且 tries 全为 1",
+     "S10:桌的锚点唯一",
+     "S11:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N4 共活臂 P3 deskOpen 翻成 false",
+    "why": "★ 验证 S5/S6：「3 次里桌没关」这个读数**被真读了**（少了它，「多按一次」就只是断言里的话）",
+    "evidence": {
+     "hit": 6
+    },
+    "expectFlipped": "S5:共活臂逐次读数重算一致（3 次 × 2 轮）",
+    "flipped": [
+     "S5:共活臂逐次读数重算一致（3 次 × 2 轮）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:两个 sIP 主人都在（正则定位，不靠行号）",
+     "S2:两个门都是「状态非空才注册」",
+     "S3:★★ 混淆项：打开顺序与源码顺序在本批里**重合**",
+     "S4:「桌还在」是**直读**（每个读数都带 deskOpen）",
+     "S6:两个单独臂逐次读数重算一致（第 3 次桌关）",
+     "S7:★★ 「先注册的赢」（我预测「后开的赢」被否）",
+     "S8:★ 不可达臂两轮一致，且**草稿造出来了**",
+     "S9:8 格都在（4 臂 × 2 轮）且 tries 全为 1",
+     "S10:桌的锚点唯一",
+     "S11:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N5 抽掉读数里的 deskOpen",
+    "why": "★ 验证 S4：「桌还在」**不能**退化成从别的读数推断",
+    "evidence": {
+     "hit": 6
+    },
+    "expectFlipped": "S4:「桌还在」是**直读**（每个读数都带 deskOpen）",
+    "flipped": [
+     "S4:「桌还在」是**直读**（每个读数都带 deskOpen）",
+     "S6:两个单独臂逐次读数重算一致（第 3 次桌关）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:两个 sIP 主人都在（正则定位，不靠行号）",
+     "S2:两个门都是「状态非空才注册」",
+     "S3:★★ 混淆项：打开顺序与源码顺序在本批里**重合**",
+     "S5:共活臂逐次读数重算一致（3 次 × 2 轮）",
+     "S7:★★ 「先注册的赢」（我预测「后开的赢」被否）",
+     "S8:★ 不可达臂两轮一致，且**草稿造出来了**",
+     "S9:8 格都在（4 臂 × 2 轮）且 tries 全为 1",
+     "S10:桌的锚点唯一",
+     "S11:汇编器零失败"
+    ]
+   }
+  ]
+ }
+}

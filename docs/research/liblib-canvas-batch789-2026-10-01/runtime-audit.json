@@ -1,0 +1,203 @@
+{
+ "batch": 789,
+ "claims": {
+  "P789-1_被否": "★ 我预测「谁**后**被打开谁赢」⟹ **被否**：实测 `draftThenLib` 第 1 次按 Escape 关掉的是**先打开的草稿**",
+  "真机制": "★ 两个 effect 都是「状态非空才注册」⟹ 注册顺序 = 打开顺序；同 target 同相位下**先注册**的那个 `sIP` 把后面全部截断",
+  "P789-2_成立": "★ `libThenDraft` **两轮都结构上不可达**（C785-2 的直接推论）",
+  "★ UX 结论": "★★ 两个 `sIP` 共活 ⟹ **要按的次数多一次**（D1i 那条成本线的延伸）"
+ },
+ "pressBudget": {
+  "draftOnly": {
+   "panelsGone": [
+    1,
+    1
+   ],
+   "deskClosed": [
+    3,
+    3
+   ]
+  },
+  "libOnly": {
+   "panelsGone": [
+    1,
+    1
+   ],
+   "deskClosed": [
+    3,
+    3
+   ]
+  },
+  "draftThenLib": {
+   "panelsGone": [
+    2,
+    2
+   ],
+   "deskClosed": [
+    null,
+    null
+   ]
+  }
+ },
+ "checks": [
+  {
+   "id": "A:两个 sIP 主人的行锚定",
+   "ok": true,
+   "n": 6,
+   "anchors": [
+    {
+     "state": "motionPathDraft",
+     "line": 2698,
+     "needle": "if (!timeline.motionPathDraft) return;",
+     "ok": true,
+     "code": "if (!timeline.motionPathDraft) return;"
+    },
+    {
+     "state": "motionPathDraft",
+     "line": 2702,
+     "needle": "event.stopImmediatePropagation();",
+     "ok": true,
+     "code": "event.stopImmediatePropagation();"
+    },
+    {
+     "state": "motionPathDraft",
+     "line": 2711,
+     "needle": "window.addEventListener(\"keydown\", handleKeyDown, true);",
+     "ok": true,
+     "code": "window.addEventListener(\"keydown\", handleKeyDown, true);"
+    },
+    {
+     "state": "modelLibraryOpen",
+     "line": 2734,
+     "needle": "if (!modelLibraryOpen) return;",
+     "ok": true,
+     "code": "if (!modelLibraryOpen) return;"
+    },
+    {
+     "state": "modelLibraryOpen",
+     "line": 2744,
+     "needle": "event.stopImmediatePropagation();",
+     "ok": true,
+     "code": "event.stopImmediatePropagation();"
+    },
+    {
+     "state": "modelLibraryOpen",
+     "line": 2748,
+     "needle": "window.addEventListener(\"keydown\", closeOnEscape, true);",
+     "ok": true,
+     "code": "window.addEventListener(\"keydown\", closeOnEscape, true);"
+    }
+   ],
+   "claim": "★ 两个主人都是 window **捕获** + `sIP`；两个 effect 都是「**状态非空才注册**」⟹ **注册顺序 = 打开顺序**"
+  },
+  {
+   "id": "B:逐次读数全部符合预测",
+   "ok": true,
+   "n": 8,
+   "detail": {
+    "mismatch": []
+   },
+   "claim": "★ `draftOnly`/`libOnly` 各 3 次读数、`draftThenLib` 3 次读数全部与预测逐字段相同"
+  },
+  {
+   "id": "C:★★ P789-1 被否（先开的赢）",
+   "ok": true,
+   "n": 1,
+   "detail": {
+    "press1": {
+     "draft": "false",
+     "lib": "true",
+     "exportOpen": "on",
+     "desk": true
+    },
+    "myPrediction": "模型库被关（后开的赢）",
+    "actual": "草稿被关、模型库仍在"
+   },
+   "claim": "★ 我预测「谁**后**被打开谁赢」⟹ **被否**。实测`draftThenLib` 第 1 次按 Escape 是 `draft=false, lib=true` ⟹ **先打开的草稿赢**。真机制：先注册的那个 `sIP` 把后面全部截断，而注册顺序 = 打开顺序"
+  },
+  {
+   "id": "D:libThenDraft 结构上不可达",
+   "ok": true,
+   "n": 2,
+   "detail": {
+    "rounds": [
+     1,
+     2
+    ],
+    "reasons": [
+     "★ 造草稿时模型库已被外点关闭关掉",
+     "★ 造草稿时模型库已被外点关闭关掉"
+    ]
+   },
+   "claim": "★ 先开模型库再造草稿**不可达**：造草稿必须点时间轴上的按钮（**pointer 事件**）⟹ 模型库的 `pointerdown` 外点关闭（`DirectorViewport.tsx:2747`）先把模型库关掉 ⟹ 这是 C785-2「四个外点关闭全是 pointer 类」的直接推论"
+  },
+  {
+   "id": "E:★★ 共活要多按一次",
+   "ok": true,
+   "n": 3,
+   "detail": {
+    "draftOnly": [
+     {
+      "round": 1,
+      "panelsGoneAtPress": 1,
+      "deskClosedAtPress": 3,
+      "observedPresses": 3,
+      "readsAfterDeskClosed": [
+       3
+      ]
+     },
+     {
+      "round": 2,
+      "panelsGoneAtPress": 1,
+      "deskClosedAtPress": 3,
+      "observedPresses": 3,
+      "readsAfterDeskClosed": [
+       3
+      ]
+     }
+    ],
+    "libOnly": [
+     {
+      "round": 1,
+      "panelsGoneAtPress": 1,
+      "deskClosedAtPress": 3,
+      "observedPresses": 3,
+      "readsAfterDeskClosed": [
+       3
+      ]
+     },
+     {
+      "round": 2,
+      "panelsGoneAtPress": 1,
+      "deskClosedAtPress": 3,
+      "observedPresses": 3,
+      "readsAfterDeskClosed": [
+       3
+      ]
+     }
+    ],
+    "draftThenLib": [
+     {
+      "round": 1,
+      "panelsGoneAtPress": 2,
+      "deskClosedAtPress": null,
+      "observedPresses": 3,
+      "readsAfterDeskClosed": []
+     },
+     {
+      "round": 2,
+      "panelsGoneAtPress": 2,
+      "deskClosedAtPress": null,
+      "observedPresses": 3,
+      "readsAfterDeskClosed": []
+     }
+    ]
+   },
+   "claim": "★ 两个 `sIP` 主人**单独**时：第 1 次按压就把两样都清了、第 3 次把整张桌关掉；**共活**时：面板要第 2 次才清、**已观测的 3 次里桌始终没关** ⟹ **多按一次**。这正是 D1i 那条成本线的延伸（784 是 `sIP`+bubble，本批是 `sIP`+`sIP`）"
+  }
+ ],
+ "totals": {
+  "checks": 5,
+  "assertedAnchors": 20,
+  "failed": 0
+ }
+}
