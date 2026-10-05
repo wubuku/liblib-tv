@@ -33,7 +33,7 @@
 from __future__ import annotations
 
 import ast
-import sys
+import re  # ⚠️ 997：`classify_skipped` 要按**赋值语句的形状**分类s
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -256,6 +256,15 @@ PROBE_VARS = {
     #   ⭐⭐⭐⭐⭐ `A993D.2` 要钉的是**「0 缺失是这道门最危险的状态」**
     #   ⇒ 而 `A993D.3` 要钉的是**「反向用例连否两次」**
     "_p996": "scripts/jimeng_probe996_regguard_reread.py",
+    # ⚠️⚠️⚠️ 997 补登记：`_p870s` 是一行**普通** `.read_text()` 读取
+    #   （`p870s_ = ROOT / "scripts/jimeng_probe870_voicefilter_src.py"`），
+    #   形状与 `_pNNN` 完全一样 ⇒ **却一直没登记** ⇒
+    #   **⇒ 961 补了 59 个、962 补了 1 个、两次都只按 `_pNNN` 族去补**
+    #   ⇒ **⇒ 而这一条是「按族的形状去补、漏掉的那一族一直没人看」的第三例**
+    "_p870s": "scripts/jimeng_probe870_voicefilter_src.py",
+    # ⚠️ 997：**读取行与这条登记是同一步加的** ⇒
+    #   **996 那条「钉探针 ≠ 钉 audit」在两处各栽过一次、这次必须一步做完**
+    "_p997": "scripts/jimeng_probe997_skipcensus_reread.py",
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。
@@ -351,6 +360,73 @@ def _const_str(node: ast.AST) -> str | None:
 # ⚠️ 961：被**静默跳过**的变量名（未登记 ⇒ 不查），收集时记下来、最后**打印出来** ⇒ 「假绿」不再无声
 SKIPPED: list[str] = []
 
+# ⚠️⚠️⚠️ 997：**别名** —— 995 那条根因（`in` 判断「有没有登记」不可靠）的第四种形态
+#   `_aus936 = _ausrc` ⇒ 判据里写 `_aus936 in ...`、而表里登记的是**本名** `_ausrc`
+#   ⇒ ⇒ **这与 995 同形、只是方向相反：995 是「本名的守卫把别处写的名字当成已登记」**
+#   ⇒ ⇒ **这一条是「引用的是别名、表里只有本名」⇒ 于是落进「未登记」**
+#   ⇒ ⇒ **⇒ 处置不必是「再读一遍文件」、可以是「给它一个别名」** —— 而那样**零 IO**
+ALIASES: dict[str, str] = {
+    "_aus936": "_ausrc",
+}
+
+
+def resolve_alias(name: str) -> str:
+    """把别名折到本名；不是别名就原样返回"""
+    seen = set()
+    while name in ALIASES and name not in seen:
+        seen.add(name)
+        name = ALIASES[name]
+    return name
+
+
+# ⚠️⚠️⚠️ 997：⭐⭐⭐⭐⭐ **「31 个未登记变量」不是一个同质的集合**
+#   995 那条是「共 N 条不给检索词」；这一条更狠 ——
+#   **同一张表里塞着四种不同的东西、而门把它们统称成「未登记」**
+#   ⇒ ⇒ **⇒ 归类之前不该把那个数当成一个口子的大小**
+RX_DERIVED_997 = re.compile(
+    r"strip_comments|strip_py_comments|json\.loads|\.group\(|\.split\(|"
+    r"\[.*:|\+")
+RX_ALIAS_997 = re.compile(r"^\s*\w+\s*$")
+
+
+def classify_skipped(tree: ast.AST, names: set[str]) -> dict[str, list[str]]:
+    """⭐⭐ 把「未登记」的变量按**赋值语句的形状**分成四类
+
+    ⚠️ **这里刻意不判定「哪个名字该登记」** —— **只报形状** ⇒
+    **⇒ 「该不该补」是人的决定、而「它是什么」是读数** ⇒
+    **这两件事混在一起、就会出现 997 第一版那种
+    「分类器自己造了个假阳性、把 P1 从成立翻成被否」的事**
+    """
+    rhs: dict[str, list[str]] = {}
+    for node in ast.walk(tree):
+        if not isinstance(node, (ast.Assign, ast.AnnAssign)):
+            continue
+        tgts = node.targets if isinstance(node, ast.Assign) \
+            else [node.target]
+        for t in tgts:
+            if not isinstance(t, ast.Name):
+                continue
+            rhs.setdefault(t.id, []).append(
+                (ast.unparse(node.value) if node.value is not None else ""))
+    out = {"A-可补登记(有一行普通 read_text)": [],
+           "B-派生物(strip/group/切片)": [],
+           "C-不是文本(字面量/子进程/解析结果)": [],
+           "D-连赋值都没有(循环变量)": []}
+    for n in sorted(names):
+        kinds = rhs.get(n, [])
+        if not kinds:
+            out["D-连赋值都没有(循环变量)"].append(n)
+            continue
+        j = " ".join(kinds)
+        if all(".read_text(" in k and not RX_DERIVED_997.search(k)
+               for k in kinds):
+            out["A-可补登记(有一行普通 read_text)"].append(n)
+        elif RX_DERIVED_997.search(j):
+            out["B-派生物(strip/group/切片)"].append(n)
+        else:
+            out["C-不是文本(字面量/子进程/解析结果)"].append(n)
+    return out
+
 
 def collect(tree: ast.AST) -> list[tuple[str, str, bool]]:
     """抽出 (目标变量, 锚点, 是否取反)。"""
@@ -377,6 +453,8 @@ def collect(tree: ast.AST) -> list[tuple[str, str, bool]]:
                 s = _const_str(node.left)
                 if s is None or name is None:
                     continue
+                # ⚠️ 997：**先折别名** ⇒ 别名不再落进「未登记」
+                name = resolve_alias(name)
                 if name != "_ausrc" and name not in PROBE_VARS:
                     # ⚠️⚠️⚠️ **961 改**：原来这里是**裸 `continue`（静默跳过）**
                     #   ⇒ 判据里引了一个**没登记**的变量时，锚点**一条都不查**、
@@ -419,6 +497,13 @@ def main() -> int:
         import collections as _c
         for _n, _k in _c.Counter(SKIPPED).most_common():
             print(f"SKIPPED-未登记 [{_n}] {_k} 条锚点（**不查**）")
+        # ⚠️⚠️⚠️ 997：**「未登记」不是一个同质的集合** ⇒ 门自己分类
+        _cls = classify_skipped(ast.parse(
+            VERIFIER.read_text(encoding="utf-8")), set(SKIPPED))
+        for _tag, _names in _cls.items():
+            if _names:
+                print(f"SKIPPED-分类 [{_tag}] {len(_names)} 个："
+                      f"{' '.join(sorted(_names))}")
     print(f"\n锚点 {len(items)} 条（其中指向 _ausrc 的 {n_ausrc} 条），"
           f"问题 {problems} 个；另 {len(SKIPPED)} 条锚点因**变量未登记**被跳过"
           f"（{len(set(SKIPPED))} 个变量）")
