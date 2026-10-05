@@ -1,0 +1,689 @@
+{
+ "batch": 780,
+ "checks": [
+  {
+   "label": "静态：缺源码",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "静态：`isEditable` 守卫找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：Delete/Backspace 分支找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 守卫排在 Delete 分支**之前** ⟹ 焦点在 `<input>` 上时 `:517` 够不着（这是「顺手不成立」的机制）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：`deleteDirectorEntity` 调用点在该分支**之内**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 该分支**同时**覆盖 Delete 与 Backspace 两个键",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：零 FAILED",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "原始：臂集合齐（5 臂）",
+   "pass": true,
+   "got": [
+    "controlDelete",
+    "numberBackspace",
+    "numberDelete",
+    "rangeBackspace",
+    "rangeDelete"
+   ],
+   "want": [
+    "controlDelete",
+    "numberBackspace",
+    "numberDelete",
+    "rangeBackspace",
+    "rangeDelete"
+   ]
+  },
+  {
+   "label": "原始：两轮逐字段一致",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：按压格数 = 5 臂 × 2 次",
+   "pass": true,
+   "got": 10,
+   "want": 10
+  },
+  {
+   "label": "原始：numberDelete 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：numberDelete 起始历史干净（past=0）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "原始：numberDelete 起点有对象",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ numberDelete 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**，所以「没删掉」这个读数有鉴别力",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：numberBackspace 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：numberBackspace 起始历史干净（past=0）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "原始：numberBackspace 起点有对象",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ numberBackspace 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**，所以「没删掉」这个读数有鉴别力",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：rangeDelete 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：rangeDelete 起始历史干净（past=0）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "原始：rangeDelete 起点有对象",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ rangeDelete 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**，所以「没删掉」这个读数有鉴别力",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：rangeBackspace 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：rangeBackspace 起始历史干净（past=0）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "原始：rangeBackspace 起点有对象",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ rangeBackspace 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**，所以「没删掉」这个读数有鉴别力",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：controlDelete 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：controlDelete 起始历史干净（past=0）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "原始：controlDelete 起点有对象",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ controlDelete 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**，所以「没删掉」这个读数有鉴别力",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "对照：第1次**真的删掉 1 个对象** ⟹ `:517` 跑到了",
+   "pass": true,
+   "got": 1,
+   "want": 1
+  },
+  {
+   "label": "对照：第1次目标对象不在了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "对照：第1次 `lastCommand=DELETE_OBJECTS`",
+   "pass": true,
+   "got": "DELETE_OBJECTS",
+   "want": "DELETE_OBJECTS"
+  },
+  {
+   "label": "对照：第1次 `past=1`（删除进了历史）",
+   "pass": true,
+   "got": "1",
+   "want": "1"
+  },
+  {
+   "label": "对照：第2次**真的删掉 1 个对象** ⟹ `:517` 跑到了",
+   "pass": true,
+   "got": 1,
+   "want": 1
+  },
+  {
+   "label": "对照：第2次目标对象不在了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "对照：第2次 `lastCommand=DELETE_OBJECTS`",
+   "pass": true,
+   "got": "DELETE_OBJECTS",
+   "want": "DELETE_OBJECTS"
+  },
+  {
+   "label": "对照：第2次 `past=1`（删除进了历史）",
+   "pass": true,
+   "got": "1",
+   "want": "1"
+  },
+  {
+   "label": "★ 判别力成立：对照臂 2/2 次**真删掉**（对象数与 `lastCommand` 都对）⟹ 「gesture 臂删不掉」不是探针删不动",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberDelete 第1次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：★ numberDelete 第1次**一个对象都没少**",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "逐次：numberDelete 第1次目标对象还在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberDelete 第1次 `past=0`（没进历史）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "逐次：★ numberDelete 第1次 `lastCommand` 停在 `GESTURE_BEGIN` （桌的键处理根本没走到 Delete 分支）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：numberDelete 第2次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：★ numberDelete 第2次**一个对象都没少**",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "逐次：numberDelete 第2次目标对象还在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberDelete 第2次 `past=0`（没进历史）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "逐次：★ numberDelete 第2次 `lastCommand` 停在 `GESTURE_BEGIN` （桌的键处理根本没走到 Delete 分支）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：numberBackspace 第1次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：★ numberBackspace 第1次**一个对象都没少**",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "逐次：numberBackspace 第1次目标对象还在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberBackspace 第1次 `past=0`（没进历史）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "逐次：★ numberBackspace 第1次 `lastCommand` 停在 `GESTURE_BEGIN` （桌的键处理根本没走到 Delete 分支）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：numberBackspace 第2次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：★ numberBackspace 第2次**一个对象都没少**",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "逐次：numberBackspace 第2次目标对象还在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberBackspace 第2次 `past=0`（没进历史）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "逐次：★ numberBackspace 第2次 `lastCommand` 停在 `GESTURE_BEGIN` （桌的键处理根本没走到 Delete 分支）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：rangeDelete 第1次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：★ rangeDelete 第1次**一个对象都没少**",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "逐次：rangeDelete 第1次目标对象还在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangeDelete 第1次 `past=0`（没进历史）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "逐次：★ rangeDelete 第1次 `lastCommand` 停在 `GESTURE_BEGIN` （桌的键处理根本没走到 Delete 分支）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：rangeDelete 第2次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：★ rangeDelete 第2次**一个对象都没少**",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "逐次：rangeDelete 第2次目标对象还在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangeDelete 第2次 `past=0`（没进历史）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "逐次：★ rangeDelete 第2次 `lastCommand` 停在 `GESTURE_BEGIN` （桌的键处理根本没走到 Delete 分支）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：rangeBackspace 第1次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：★ rangeBackspace 第1次**一个对象都没少**",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "逐次：rangeBackspace 第1次目标对象还在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangeBackspace 第1次 `past=0`（没进历史）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "逐次：★ rangeBackspace 第1次 `lastCommand` 停在 `GESTURE_BEGIN` （桌的键处理根本没走到 Delete 分支）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：rangeBackspace 第2次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：★ rangeBackspace 第2次**一个对象都没少**",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "逐次：rangeBackspace 第2次目标对象还在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangeBackspace 第2次 `past=0`（没进历史）",
+   "pass": true,
+   "got": "0",
+   "want": "0"
+  },
+  {
+   "label": "逐次：★ rangeBackspace 第2次 `lastCommand` 停在 `GESTURE_BEGIN` （桌的键处理根本没走到 Delete 分支）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "★ 777 的「顺手」**不成立**：8/8 次按压删不掉任何对象 ⟹ 真实序列是「键入 → 鼠标点删除按钮 → 点回控件 → Cmd+Z」",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 桌的键处理在 8/8 次按压里**根本没走到** Delete 分支",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "族规模：776 普查每族都非空（逐族自证，防「少测」冒充「不存在」）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "族规模：从 776 raw 重算 = 与 778 产物**一致**（跨批去重规则没变）",
+   "pass": true,
+   "got": [
+    27,
+    26
+   ],
+   "want": [
+    27,
+    26
+   ]
+  },
+  {
+   "label": "族规模：两族合计 53（与 776 README 自述相符）",
+   "pass": true,
+   "got": 53,
+   "want": 53
+  },
+  {
+   "label": "矩阵：三行**已测**的键都在（Escape / Meta+z / Delete / Backspace）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "矩阵：★ `Meta+c`/`Meta+v` 那一行**显式标为本批未测**（774 只在浮层落点上测过，没在 gesture 控件上测过）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "矩阵：`notMeasured` 列出 `Meta+c` 与 `Meta+v`",
+   "pass": true,
+   "got": [
+    "Meta+c",
+    "Meta+v"
+   ],
+   "want": [
+    "Meta+c",
+    "Meta+v"
+   ]
+  },
+  {
+   "label": "矩阵：★ `Escape` 行的数字取自 779 产物（现算，不手抄）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "矩阵：`Delete / Backspace` 行的 range 侧用的是重算出的族规模",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "产物：audit.batch=780",
+   "pass": true,
+   "got": 780,
+   "want": 780
+  },
+  {
+   "label": "产物：audit 的「删不掉」计数 = 重算值",
+   "pass": true,
+   "got": 8,
+   "want": 8
+  },
+  {
+   "label": "产物：audit 的守卫行号 = 静态重算",
+   "pass": true,
+   "got": 487,
+   "want": 487
+  },
+  {
+   "label": "产物：audit 的 Delete 分支行号 = 静态重算",
+   "pass": true,
+   "got": 517,
+   "want": 517
+  },
+  {
+   "label": "产物：audit 记的零 FAILED",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "台账：Batch 780 恰有一行",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "台账：该行无 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "台账：该行恰 4 个竖线（3 列）",
+   "pass": true,
+   "got": 4
+  },
+  {
+   "label": "★ README 里没有裸数字开头的 markdown 表行（会骗过 pre-commit 的 added_batch_numbers）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "README 无 U+FFFD",
+   "pass": true,
+   "got": 0
+  }
+ ],
+ "pass": 99,
+ "total": 99,
+ "negativeControls": [
+  {
+   "name": "让 gesture 臂**真的删掉**对象 ⟹ 「顺手不成立」必须红",
+   "why": "★ 漏判方向 = 「顺手」成立 ⟹ D1d 保持中-高 ⟹ 会给出「这个场景很常见」的错误印象",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐次：★ numberDelete 第1次**一个对象都没少**",
+    "逐次：numberDelete 第1次目标对象还在",
+    "逐次：★ numberDelete 第2次**一个对象都没少**",
+    "逐次：numberDelete 第2次目标对象还在",
+    "★ 777 的「顺手」**不成立**：6/8 次按压删不掉任何对象 ⟹ 真实序列是「键入 → 鼠标点删除按钮 → 点回控件 → Cmd+Z」",
+    "产物：audit 的「删不掉」计数 = 重算值"
+   ],
+   "caught": true,
+   "expectFailOn": "顺手」**不成立**"
+  },
+  {
+   "name": "★ 对称：让 rangeDelete 臂**真的删掉** ⟹ 同一条必须红",
+   "why": "★ 没有这条，number 与 range 两族的读数可以单独坏掉",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐次：★ rangeDelete 第1次**一个对象都没少**",
+    "逐次：rangeDelete 第1次目标对象还在",
+    "逐次：★ rangeDelete 第2次**一个对象都没少**",
+    "逐次：rangeDelete 第2次目标对象还在",
+    "★ 777 的「顺手」**不成立**：6/8 次按压删不掉任何对象 ⟹ 真实序列是「键入 → 鼠标点删除按钮 → 点回控件 → Cmd+Z」",
+    "产物：audit 的「删不掉」计数 = 重算值"
+   ],
+   "caught": true,
+   "expectFailOn": "顺手」**不成立**"
+  },
+  {
+   "name": "让 gesture 臂的 `lastCommand` 变成 DELETE_OBJECTS ⟹ 「桌的键处理没走到 Delete 分支」必须红",
+   "why": "证明那一条测的是 `lastCommand` 这个具体字段，而不是「对象数没变」",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐次：★ numberBackspace 第1次 `lastCommand` 停在 `GESTURE_BEGIN` （桌的键处理根本没走到 Delete 分支）",
+    "逐次：★ numberBackspace 第2次 `lastCommand` 停在 `GESTURE_BEGIN` （桌的键处理根本没走到 Delete 分支）",
+    "★ 桌的键处理在 6/8 次按压里**根本没走到** Delete 分支"
+   ],
+   "caught": true,
+   "expectFailOn": "桌的键处理在"
+  },
+  {
+   "name": "让对照臂删不掉 ⟹ 「判别力成立」与「真删掉 1 个对象」必须红",
+   "why": "★ 漏判方向 = 「删不掉」只是探针删不动 ⟹ 严重度被下调到一个**没有证据**的更低位",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "对照：第1次**真的删掉 1 个对象** ⟹ `:517` 跑到了",
+    "对照：第1次 `lastCommand=DELETE_OBJECTS`",
+    "对照：第1次 `past=1`（删除进了历史）",
+    "对照：第2次**真的删掉 1 个对象** ⟹ `:517` 跑到了",
+    "对照：第2次 `lastCommand=DELETE_OBJECTS`",
+    "对照：第2次 `past=1`（删除进了历史）",
+    "★ 判别力成立：对照臂 0/2 次**真删掉**（对象数与 `lastCommand` 都对）⟹ 「gesture 臂删不掉」不是探针删不动"
+   ],
+   "caught": true,
+   "expectFailOn": "判别力成立：对照臂"
+  },
+  {
+   "name": "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红",
+   "why": "mutatedAnything 为 false 时这条对照的结论是空的（R108）",
+   "mutatedAnything": false,
+   "kwMatchedCount": 0,
+   "flipped": [
+    "原始：两轮逐字段一致"
+   ],
+   "caught": false,
+   "expectFailOn": "__永不匹配__"
+  },
+  {
+   "name": "★ 静态：把守卫挪到 Delete 分支**之后** ⟹ 「守卫排在之前」必须红",
+   "why": "证明归因真的落在顺序上，而不是落在「Delete 分支存在」上",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ 守卫排在 Delete 分支**之前** ⟹ 焦点在 `<input>` 上时 `:517` 够不着（这是「顺手不成立」的机制）",
+    "产物：audit 的守卫行号 = 静态重算",
+    "产物：audit 的 Delete 分支行号 = 静态重算"
+   ],
+   "caught": true,
+   "expectFailOn": "守卫排在 Delete 分支**之前**"
+  },
+  {
+   "name": "★ 静态：把该分支窄化成只管 `Delete` ⟹ 「同时覆盖两个键」必须红",
+   "why": "证明 Backspace 那两格不是「顺手多测的」—— 分支只管一个键时本批的 Backspace 读数就失去了机制依据",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：Delete/Backspace 分支找得到",
+    "静态：★ 守卫排在 Delete 分支**之前** ⟹ 焦点在 `<input>` 上时 `:517` 够不着（这是「顺手不成立」的机制）",
+    "静态：`deleteDirectorEntity` 调用点在该分支**之内**",
+    "静态：★ 该分支**同时**覆盖 Delete 与 Backspace 两个键",
+    "产物：audit 的 Delete 分支行号 = 静态重算"
+   ],
+   "caught": true,
+   "expectFailOn": "**同时**覆盖 Delete 与 Backspace"
+  }
+ ],
+ "negativeCaught": 7,
+ "negativeTotal": 7,
+ "negativeKwBroken": [
+  "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
+ ],
+ "negativeInert": [
+  "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
+ ],
+ "rawError": null,
+ "ok": true
+}

@@ -1,0 +1,314 @@
+{
+ "batch": 780,
+ "topic": "验 D1d 严重度的前提：「顺手删个对象」到底自不自然；顺带把 `:487` 的放行判据定成一张「键 × 类型」矩阵",
+ "generatedBy": "probes/mk780audit.py",
+ "sources": {
+  "vb780a.json": {
+   "sha16": "47fe48d592c347df",
+   "rounds": 2,
+   "armsPerRound": 5,
+   "pressesPerArm": 2
+  },
+  "vb778a.json": {
+   "sha16": "29d940aa60442417"
+  },
+  "vb779a.json": {
+   "sha16": "b0638f8e5c6b7c94"
+  },
+  "batch778/runtime-audit.json": {
+   "sha16": "28c3d7aeba39a4a9",
+   "usedFor": "族规模与真空控件数"
+  },
+  "batch779/runtime-audit.json": {
+   "sha16": "59b9871a4579679e",
+   "usedFor": "Escape 行的现算数字"
+  },
+  "vb776a.json": {
+   "sha16": "d59c5486df20a93f",
+   "usedFor": "★ 族规模重算并对账"
+  }
+ },
+ "thePremise": {
+  "claim777": "「刚在输入框里改完数、顺手删个对象是很自然的落点」",
+  "how777MeasuredIt": "★ **用的是鼠标点行删除按钮**（`[data-director-delete-object]`；R119 就是为此立的）⟹ 测的是「已经删完之后能不能撤销」，**没测「焦点在控件上时能不能删」**",
+  "sourcePrediction": "`Delete`/`Backspace` 的处理在 `DirectorDesk.tsx:517`，**排在 `:487` 守卫之后** ⟹ 焦点停在 `<input>` 上时按 Delete 什么都不会发生。",
+  "verdict": "★ **预测成立** ⟹ 「顺手」不成立（8/8 次按压都删不掉）"
+ },
+ "readings": {
+  "R-control": "非输入落点上 `Delete` 2/2 次**真的删掉**（5→4、`DELETE_OBJECTS`、`past` 0→1）⟹ 判别力成立",
+  "R-gesture": "gesture 臂 8/8 次：事件**到达 window**（`win>=1`）而对象数**一个没少**、`past` 仍=0、`lastCommand` 停在 `GESTURE_BEGIN` ⟹ **桌的 `:487` 吞了 Delete/Backspace**"
+ },
+ "matrix": {
+  "rows": [
+   {
+    "key": "Escape",
+    "number": "**无原生兜底** ⟹ 779：hook 吞（6/6 次 `win=0`），桌够不着",
+    "range": "**无原生兜底** ⟹ 同左",
+    "passThrough": "**两族都该放行**"
+   },
+   {
+    "key": "Meta+z",
+    "number": "**有**（文本撤销）⟹ 778：早退是**承重墙**",
+    "range": "**无** ⟹ 778 的 D1f：26 个死键",
+    "passThrough": "**只 range 放行**"
+   },
+   {
+    "key": "Delete / Backspace",
+    "number": "**有**（删字符）⟹ 本批：早退",
+    "range": "**无** ⟹ **本批新记录**：26 个死键",
+    "passThrough": "**只 range 放行**"
+   },
+   {
+    "key": "Meta+c / Meta+v",
+    "number": "★ **本批未测**（774 只在浮层落点上测过）",
+    "range": "★ **本批未测**",
+    "passThrough": "★ 待测，不写进判据"
+   }
+  ],
+  "criterion": "★ **放行判据不是「控件类型」，是「该键在该类型上有没有原生兜底」。** 两个「无兜底」的键（`Meta+z` 与 `Delete`）在 26 个 range 滑杆上同时是死键 ⟹ **D1f 与本批的新缺陷是同一个缺陷的两种键** ⟹ 合并记一条。",
+  "counts": {
+   "range": 26,
+   "number": 27,
+   "vacuumControls": 26,
+   "d1dFamilies": 2
+  },
+  "notMeasured": [
+   "Meta+c",
+   "Meta+v"
+  ]
+ },
+ "verdict": {
+  "777的「顺手」": "**不成立** —— 焦点在控件上时 Delete/Backspace 删不掉",
+  "D1d严重度": "**下调 中-高 → 中**（缺陷本身不撤销：53 个控件、2/2 族）",
+  "`:487`放行判据": "★ **不是「控件类型」，是「该键在该类型上有没有原生兜底」**",
+  "D1f范围": "**扩展** —— `Meta+z` 与 `Delete`/`Backspace` 是同一缺陷的两种键，落在同样 26 个滑杆上 ⟹ 合并",
+  "未测": "★ `Meta+c`/`Meta+v`（在 gesture 控件上）本批未测"
+ },
+ "comparability": {
+  "rounds": 2,
+  "armsPerRound": 5,
+  "pressesPerArm": 2,
+  "allConsistent": true,
+  "retryPolicy": "每格最多试 3 次（含第一次），900×n 退避；`tries`/`retried` 记进 raw 但**排除在两轮一致性比较之外**。",
+  "retryStats": {
+   "cells": 10,
+   "retriedCells": 0,
+   "maxTries": 1
+  },
+  "boundary": "★ **本批未改 `src/`，也没有任何注入。** 删除**只发生在对照臂**（用户目标允许有副作用的 CRUD），每格开头 `fresh()` 清 localStorage ⟹ 不留残留；**不点**提交/连接/新增机位/导入导出，不做付费或真实生图生视频。",
+  "noDestructiveLeak": "★ gesture 臂**没有真的删除**（实测 8/8 次对象数不变）⟹ 本批唯一的破坏性操作是对照臂那一次，且它测的正是「删得掉」这个必要条件。"
+ },
+ "static": {
+  "guardLine": 487,
+  "deleteBranchLine": 517,
+  "deleteCallLine": 527,
+  "deleteAfterGuard": true
+ },
+ "noDelete": {
+  "numberDelete": [
+   {
+    "n": 1,
+    "cap": 1,
+    "win": 1,
+    "objectsDropped": 0,
+    "oidStillThere": true,
+    "past": "0",
+    "lastCommand": "GESTURE_BEGIN"
+   },
+   {
+    "n": 2,
+    "cap": 1,
+    "win": 1,
+    "objectsDropped": 0,
+    "oidStillThere": true,
+    "past": "0",
+    "lastCommand": "GESTURE_BEGIN"
+   }
+  ],
+  "numberBackspace": [
+   {
+    "n": 1,
+    "cap": 1,
+    "win": 1,
+    "objectsDropped": 0,
+    "oidStillThere": true,
+    "past": "0",
+    "lastCommand": "GESTURE_BEGIN"
+   },
+   {
+    "n": 2,
+    "cap": 1,
+    "win": 1,
+    "objectsDropped": 0,
+    "oidStillThere": true,
+    "past": "0",
+    "lastCommand": "GESTURE_BEGIN"
+   }
+  ],
+  "rangeDelete": [
+   {
+    "n": 1,
+    "cap": 1,
+    "win": 1,
+    "objectsDropped": 0,
+    "oidStillThere": true,
+    "past": "0",
+    "lastCommand": "GESTURE_BEGIN"
+   },
+   {
+    "n": 2,
+    "cap": 1,
+    "win": 1,
+    "objectsDropped": 0,
+    "oidStillThere": true,
+    "past": "0",
+    "lastCommand": "GESTURE_BEGIN"
+   }
+  ],
+  "rangeBackspace": [
+   {
+    "n": 1,
+    "cap": 1,
+    "win": 1,
+    "objectsDropped": 0,
+    "oidStillThere": true,
+    "past": "0",
+    "lastCommand": "GESTURE_BEGIN"
+   },
+   {
+    "n": 2,
+    "cap": 1,
+    "win": 1,
+    "objectsDropped": 0,
+    "oidStillThere": true,
+    "past": "0",
+    "lastCommand": "GESTURE_BEGIN"
+   }
+  ]
+ },
+ "controlArm": [
+  {
+   "n": 1,
+   "cap": 1,
+   "win": 1,
+   "objectsBefore": 5,
+   "objectsAfter": 4,
+   "objectsDropped": 1,
+   "oidStillThere": false,
+   "past": "1",
+   "lastCommand": "DELETE_OBJECTS"
+  },
+  {
+   "n": 2,
+   "cap": 1,
+   "win": 1,
+   "objectsBefore": 5,
+   "objectsAfter": 4,
+   "objectsDropped": 1,
+   "oidStillThere": false,
+   "past": "1",
+   "lastCommand": "DELETE_OBJECTS"
+  }
+ ],
+ "results": {
+  "noDeletePresses": 8,
+  "noDeleteTotal": 8,
+  "controlDeletedPresses": 2,
+  "deleteAfterGuard": true,
+  "rangeControls": 26,
+  "numberControls": 27,
+  "failedCells": 0
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "text": "★ **777 的「顺手」不成立。** 焦点在 gesture 控件上时，`Delete`/`Backspace` **删不掉任何对象**（8/8 次按压：事件**到达了 window**，而对象数一个没少、`lastCommand` 停在 `GESTURE_BEGIN`）⟹ 用户想「改完数顺手删个对象」必须**键入 → 鼠标点树上的行删除按钮 → 再点回控件 → 按 `Cmd+Z`**，那是四步**刻意**序列。",
+   "evidence": "阶段二 预测 B"
+  },
+  {
+   "id": "J2",
+   "text": "★ **判别力有对照**：非输入落点上的 `Delete` **真的删掉了**（2/2 次：5→4、`DELETE_OBJECTS`、`past` 0→1）⟹ 「gesture 臂删不掉」不是探针删不动。",
+   "evidence": "阶段二 预测 A"
+  },
+  {
+   "id": "J3",
+   "text": "★ **D1d 的严重度要下调**（中-高 → 中）。缺陷**本身仍成立**（2/2 族、53 个控件都不可撤销，778 已钉住），但**触发它需要一条刻意的四步序列**，而不是一次顺手 ⟹ 它的**发生频率**远低于777 写下的印象。",
+   "evidence": "J1 + 778 的 J1"
+  },
+  {
+   "id": "J4",
+   "text": "★ **`:487` 的放行判据不是「控件类型」，是「该键在该类型上有没有原生兜底」。** 三批读数正好铺满矩阵：`Escape` 两族都无兜底 ⟹ **都该放行**（779）；`Meta+z` 与 `Delete/Backspace` 在 number 有兜底（778 的承重墙 / 原生删字符）、在 range 没有 ⟹ **只 range 该放行**。⟹ D1f（`Meta+z` 死键，778）与本批的新缺陷（`Delete` 死键）是**同一个缺陷的两种键**，合并记一条，落在同样那 26 个滑杆上。",
+   "evidence": "阶段四 + 778 的 J3 + 779 的 J1"
+  },
+  {
+   "id": "J5",
+   "text": "★ **`Meta+c`/`Meta+v` 那一行本批未测** ⟹ 不写进矩阵也不写进判据。774 只在**浮层落点**上测过它们，没在 gesture 控件上测过 ⟹ 「它们在 number 上有原生兜底」目前**只是推断**。",
+   "evidence": "阶段四 notMeasured"
+  }
+ ],
+ "corrections": [
+  {
+   "id": "C780-1",
+   "targets": [
+    "**777 的 D1d 描述**：「而『刚在输入框里改完数、顺手删个对象』是很自然的落点」"
+   ],
+   "was": "读作「删除与输入框焦点很容易同时发生」⟹ 缺陷被当成高频、中-高。",
+   "now": "★ **那句『顺手』从来没被测过。** 777 的探针用的是**鼠标点行删除按钮**（`[data-director-delete-object]`，R119 就是为此立的）⟹ 它测的是「**已经**删完之后焦点能不能撤销」，**没测「焦点在控件上时能不能删」**。本批实测：焦点在 gesture 控件上时 `Delete`/`Backspace` **8/8 次都删不掉**（事件到达 window 而桌在 `:487` 早退）⟹ 真实序列是**键入 → 鼠标点删除按钮 → 点回控件 → `Cmd+Z`**，四步且刻意。⟹ **D1d 的严重度从「中-高」下调为「中」**（缺陷本身不撤销，仍是 53 个控件、2/2 族成立）。",
+   "evidence": "J1 + J2 + J3"
+  },
+  {
+   "id": "C780-2",
+   "targets": [
+    "**778 的 D1f**（`Meta+z` 在 26 个 range 滑杆上是死键）"
+   ],
+   "was": "记作一个只关于 `Meta+z` 的缺陷。",
+   "now": "★ **与本批的新缺陷合并**：同一个 `:487`、同样那 26 个 range 滑杆、同样「零反馈」⟹ `Meta+z` 与 `Delete`/`Backspace` 是**同一个缺陷的两种键**。⟹ 记一条即可：「**在没有原生兜底的键上，这 26 个滑杆是死键**」。",
+   "evidence": "J4"
+  }
+ ],
+ "findings": {
+  "F1": "★ **777 的「顺手」不成立** —— Delete/Backspace 在控件焦点下删不掉。",
+  "F2": "★ **D1d 严重度下调为中**（缺陷仍在，但要一条刻意的四步序列）。",
+  "F3": "★ **`:487` 的放行判据是「该键有无原生兜底」**，不是「控件类型」。",
+  "F4": "★ **D1f 扩展并合并** —— `Meta+z` 与 `Delete` 是同一缺陷的两种键。",
+  "F5": "★ `Meta+c`/`Meta+v` 在 gesture 控件上**本批未测** ⟹ 不进矩阵。"
+ },
+ "probeLessons": [
+  {
+   "id": "R134",
+   "text": "★ **缺陷描述里的「场景」也是要测的。** 我 777 写「顺手删个对象」时，探针用的是**鼠标按钮** ⟹ 那句话是从**机制**想出来的，不是从**读数**出来的。机制说 `Delete` 排在 `:487` 之后，而我没去测 ⟹ 三批之后才发现它把 D1d 的严重度高估了一档。"
+  },
+  {
+   "id": "R135",
+   "text": "★ **「什么都没发生」要配一个「真的发生了」的对照臂。**若没有非输入落点那 %d/%d 次真删掉，「gesture 臂删不掉」与「探针删不动」在产物里长得一模一样（R113/R121 同族）。"
+  },
+  {
+   "id": "R136",
+   "text": "★ **承重的读数要按「这个键会不会被 hook 拦」来选。**本批 `win` 对所有键都应为正（hook 只拦 Escape）⟹ 真正的读数是**「到达了 window 却什么也没发生」**。"
+  },
+  {
+   "id": "R137",
+   "text": "★ **没测的那一行要显式标出来，不要靠沉默。** `Meta+c`/`Meta+v` 在 number 上「有原生兜底」目前只是推断（774 只在浮层落点上测过）⟹ 矩阵里写成「本批未测」而不是留白或猜。"
+  }
+ ],
+ "defects": [
+  {
+   "id": "D1f",
+   "severity": "中（★ 778 记为中，780 扩了键的种类）",
+   "text": "★ **26 个 range 族滑杆上，凡是没有原生兜底的键都是死键，且零反馈。**本批实测扩展了键的种类：`Meta+z`（778 的 D1f）与 `Delete`/`Backspace`（本批）在同样那 26 个滑杆上**都是死键** —— 值/对象数、`past/future`、`lastCommand` 全部不动，而事件**确实到达了 window** ⟹ 桌在 `DirectorDesk.tsx:487` 的 `isEditable` 守卫早退。⟹ 同一个守卫、同一批控件、**两种键**，故合并记一条（见 C780-2）。",
+   "evidence": "J4 + 778 的 J3"
+  }
+ ],
+ "srcDiff": "**本批未改 `src/`**（工作区 `src/` 干净）；**没有任何注入**。",
+ "rawSha": {
+  "vb780a.json": "47fe48d592c347df",
+  "vb778a.json": "29d940aa60442417",
+  "vb779a.json": "b0638f8e5c6b7c94"
+ },
+ "retryStats": {
+  "cells": 10,
+  "retriedCells": 0,
+  "maxTries": 1
+ },
+ "boundary": "★ **本批未改 `src/`，也没有任何注入。** 删除**只发生在对照臂**（用户目标允许有副作用的 CRUD），每格开头 `fresh()` 清 localStorage ⟹ 不留残留；**不点**提交/连接/新增机位/导入导出，不做付费或真实生图生视频。"
+}

@@ -1,0 +1,1265 @@
+{
+ "batch": 780,
+ "probe": "a",
+ "question": "焦点在检查器 gesture 控件上时，Delete/Backspace **到底删不删得掉对象**？——这决定 777 说的「顺手删个对象」是不是真的顺手",
+ "whyItMatters": "★ 777 记 D1d（中-高）时写「刚在输入框里改完数、顺手删个对象是很自然的落点」，但它的探针**用的是鼠标点行删除按钮**（R119 就是为此立的）⟹ 那句「顺手」**从没被测过**。",
+ "sourcePrediction": "`Delete`/`Backspace` 的处理在 `DirectorDesk.tsx:517`，**排在 `:487` 的 `isEditable` 守卫之后** ⟹ 焦点停在 `<input>` 上时按 Delete **什么都不会发生**。",
+ "discriminator": "沿用 779 的三读数（capture 正向对照 + window 相位）。★ 本批承重的**不是** `win`（hook 对非 Escape 键只 `begin()` 不 `stopPropagation`（`:99-107`）⟹ 任何键都该到达 window），而是**「到达了 window 却什么也没发生」**⟹ 这正是 `:487` 的签名（`:550` 的 `preventDefault` 在守卫之后 ⟹ 早退时不生效）。",
+ "controlArm": "★ `controlDelete`：非输入落点 ⟹ `:487` 不触发 ⟹ `:517` **必须真的删掉一个对象**。没有它，「删不掉」可能只是「探针删不动」。",
+ "rounds": [
+  {
+   "rows": [
+    {
+     "arm": "numberDelete",
+     "key": "Delete",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "oid": "director-camera-main",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197283626-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197283626-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197283626-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     },
+     "objectsBefore": 5,
+     "tries": 1
+    },
+    {
+     "arm": "numberBackspace",
+     "key": "Backspace",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "oid": "director-camera-main",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197298627-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197298627-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197298627-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     },
+     "objectsBefore": 5,
+     "tries": 1
+    },
+    {
+     "arm": "rangeDelete",
+     "key": "Delete",
+     "selector": "[data-director-camera-fov]",
+     "oid": "director-camera-main",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197313720-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197313720-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197313720-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     },
+     "objectsBefore": 5,
+     "tries": 1
+    },
+    {
+     "arm": "rangeBackspace",
+     "key": "Backspace",
+     "selector": "[data-director-camera-fov]",
+     "oid": "director-camera-main",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197328719-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197328719-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197328719-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     },
+     "objectsBefore": 5,
+     "tries": 1
+    },
+    {
+     "arm": "controlDelete",
+     "key": "Delete",
+     "selector": "[data-director-panels-toggle]",
+     "oid": "director-prop-mug",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "1",
+        "future": "0",
+        "lastCommand": "DELETE_OBJECTS",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 4,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "objectsDropped": 1,
+       "oidStillThere": false
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "1",
+        "future": "0",
+        "lastCommand": "DELETE_OBJECTS",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 4,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "objectsDropped": 1,
+       "oidStillThere": false
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "",
+      "type": "button"
+     },
+     "stateBefore": {
+      "gesture": "",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "",
+      "lastDisp": "",
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     },
+     "objectsBefore": 5,
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "rows": [
+    {
+     "arm": "numberDelete",
+     "key": "Delete",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "oid": "director-camera-main",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197367126-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197367126-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197367126-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     },
+     "objectsBefore": 5,
+     "tries": 1
+    },
+    {
+     "arm": "numberBackspace",
+     "key": "Backspace",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "oid": "director-camera-main",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197382086-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197382086-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197382086-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     },
+     "objectsBefore": 5,
+     "tries": 1
+    },
+    {
+     "arm": "rangeDelete",
+     "key": "Delete",
+     "selector": "[data-director-camera-fov]",
+     "oid": "director-camera-main",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197397116-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197397116-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197397116-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     },
+     "objectsBefore": 5,
+     "tries": 1
+    },
+    {
+     "arm": "rangeBackspace",
+     "key": "Backspace",
+     "selector": "[data-director-camera-fov]",
+     "oid": "director-camera-main",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197412110-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Backspace",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197412110-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-mug",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 5,
+       "objectsDropped": 0,
+       "oidStillThere": true
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197412110-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     },
+     "objectsBefore": 5,
+     "tries": 1
+    },
+    {
+     "arm": "controlDelete",
+     "key": "Delete",
+     "selector": "[data-director-panels-toggle]",
+     "oid": "director-prop-mug",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "1",
+        "future": "0",
+        "lastCommand": "DELETE_OBJECTS",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 4,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "objectsDropped": 1,
+       "oidStillThere": false
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Delete",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Delete",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "1",
+        "future": "0",
+        "lastCommand": "DELETE_OBJECTS",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 4,
+        "objectIds": [
+         "director-character-lead",
+         "director-prop-table",
+         "director-prop-wall",
+         "director-camera-main"
+        ]
+       },
+       "objectsBefore": 5,
+       "objectsAfter": 4,
+       "objectsDropped": 1,
+       "oidStillThere": false
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "",
+      "type": "button"
+     },
+     "stateBefore": {
+      "gesture": "",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "",
+      "lastDisp": "",
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ]
+     },
+     "objectsBefore": 5,
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}
