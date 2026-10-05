@@ -2141,3 +2141,38 @@ style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
 （批次 170 的 k 轮已证明过这一点）。
 📌 **推论：凡是「只关心 CSS 夹取」的档位扫描，都应该「先开面板、后改视口」**，
 不要在每个窄视口里重新走一遍交互流程 —— 既慢又脆（立规 43）。
+
+### ✅ 休眠视口类的**可达性普查**（批次 171–172 累计）：16 个类，**打开过 2 个**
+
+批次 170 从源站样式表抄出 16 条带视口项的画布规则。
+它们**静止态全部 `inDom=0`**（面板不打开就不挂载）⇒ 每一类都得**单独找入口**。
+到批次 172 为止的账：
+
+| 类 | 状态 | 入口 / 打不开的原因 |
+|---|---|---|
+| `max-w-canvas-tag-selector` | ✅ **打开**（批次 171） | 选中节点 → 标题行右侧 `Add tags`。`min(224, 100vw−32) × 44`，门槛 256 |
+| `max-w-canvas-generation-size-panel-viewport` | ✅ **打开**（批次 172） | 左栏「图片」→ **新建**图片节点 → 参数行里 aria 逐字 `图片尺寸选项: 1:1 · 2K · 1` 的按钮。`min(432, 100vw−32) × 292`，门槛 464 |
+| `max-w-canvas-audio-trim-panel`、`-voice-catalog-panel` | ❌ | 画布上 **68 个音频节点全是空壳**（`No resources: 0 ready`） |
+| `max-h-canvas-agent-approval-hover`（及 `-content`） | ❌ | 要等 agent **真的提出待批准动作**才挂载 ⇒ 需发消息（可能扣分，⛔ 立规 20） |
+| `max-w-canvas-video-edit-panel`、`w-canvas-panorama-editor`、`max-w-canvas-smart-edit-cursor-guide`、`max-w-canvas-post-edit-toolbar-viewport`、`max-w-canvas-mask-operation-status`、`max-w-canvas-agent-skill-*`（3 个） | ❌ 未试 | 都需要有内容的媒体节点或特定工作流，本画布不具备 |
+
+🔴 **一个入口只对一种节点有效**（批次 172 的实测）：
+点**已有的**图片节点**不会**弹出尺寸面板；**新建**节点才会。
+⇒ 找入口时**不能只试「点已有的节点」**，得先确认这个面板是
+「选中态」还是「空节点 / 新建态」才有的（与批次 134 的结论一致）。
+
+### ✅ 两个已打开的「32 余量」面板对照表
+
+| | 标签色板 | 图片尺寸选项 |
+|---|---|---|
+| 定尺来自 | class `w-canvas-tag-selector-width` | **内联 `style="width: 432px"`** |
+| 夹取来自 | class `max-w-canvas-tag-selector` | class `max-w-canvas-generation-size-panel-viewport` |
+| 公式 | `min(224, 100vw−32)` | `min(432, 100vw−32)` |
+| 门槛 | **256** | **464** |
+| 高度 | 44 恒定 | 292 恒定 |
+| 角色 | `role="toolbar"`、`aria-label="Canvas tags"` | `role="dialog"`、`aria-label="图片尺寸选项"`、**无 testid** |
+| 弹出方向 | 钉在节点上方 | **按钮正上方**（class `bottom-full … left-0`） |
+| 变窄后 | 出现**横向滚动**，末尾颜色被裁 | 内容随之压缩，**不滚动** |
+
+⇒ **两处都验证了「定尺与夹取写在同一个元素上」**（一个走 class、一个走内联 style），
+**没有「包裹层 vs 面板本体」的分家**。
