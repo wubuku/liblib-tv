@@ -1,0 +1,121 @@
+{
+ "generated_by": "jimeng_probe1014_empty_ambiguity.py",
+ "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
+ "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
+ "census": {
+  "n_goldens": 8,
+  "n_excluded_self": 1,
+  "n_empty_list": 11,
+  "n_empty_null": 1,
+  "n_self_provable": 11,
+  "n_ambiguous": 1
+ },
+ "rows": [
+  {
+   "golden": "change-locality-1011.json",
+   "path": "/per_text/[4]/class_1005",
+   "kind": "null",
+   "self_provable": true,
+   "invariant": "class_1005 is None ⟺ in_1005_zero_coupling_golden == False"
+  },
+  {
+   "golden": "global-detection-1012.json",
+   "path": "/gate_cross_check/gate_baseline_missing",
+   "kind": "list",
+   "self_provable": true,
+   "invariant": "delta_matches_static 与 gate_missing 一起把差集钉死"
+  },
+  {
+   "golden": "occurrence-ledger-1013.json",
+   "path": "/cross_with_gate/only_ledger",
+   "kind": "list",
+   "self_provable": true,
+   "invariant": "symmetric_difference == len(only_ledger) + len(only_gate)"
+  },
+  {
+   "golden": "occurrence-ledger-1013.json",
+   "path": "/cross_with_gate/only_gate",
+   "kind": "list",
+   "self_provable": true,
+   "invariant": "symmetric_difference == len(only_ledger) + len(only_gate)"
+  },
+  {
+   "golden": "occurrence-ledger-1013.json",
+   "path": "/retired",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "real-history-detection-1010.json",
+   "path": "/pairs/[5]/baseline_out_of_scope_vars",
+   "kind": "list",
+   "self_provable": true,
+   "invariant": "baseline_out_of_scope == len(baseline_out_of_scope_vars)"
+  },
+  {
+   "golden": "real-history-detection-1010.json",
+   "path": "/pairs/[6]/baseline_out_of_scope_vars",
+   "kind": "list",
+   "self_provable": true,
+   "invariant": "baseline_out_of_scope == len(baseline_out_of_scope_vars)"
+  },
+  {
+   "golden": "real-history-detection-1010.json",
+   "path": "/pairs/[7]/baseline_out_of_scope_vars",
+   "kind": "list",
+   "self_provable": true,
+   "invariant": "baseline_out_of_scope == len(baseline_out_of_scope_vars)"
+  },
+  {
+   "golden": "stem-attribution-1007.json",
+   "path": "/rows/[2]/triggers",
+   "kind": "list",
+   "self_provable": true,
+   "invariant": "triggers == [] ⟺ about_self == False"
+  },
+  {
+   "golden": "stem-attribution-1007.json",
+   "path": "/rows/[3]/triggers",
+   "kind": "list",
+   "self_provable": true,
+   "invariant": "triggers == [] ⟺ about_self == False"
+  },
+  {
+   "golden": "stem-attribution-1007.json",
+   "path": "/rows/[6]/triggers",
+   "kind": "list",
+   "self_provable": true,
+   "invariant": "triggers == [] ⟺ about_self == False"
+  },
+  {
+   "golden": "stem-attribution-1007.json",
+   "path": "/rows/[7]/triggers",
+   "kind": "list",
+   "self_provable": true,
+   "invariant": "triggers == [] ⟺ about_self == False"
+  }
+ ],
+ "ambiguous": [
+  {
+   "golden": "occurrence-ledger-1013.json",
+   "path": "/retired",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  }
+ ],
+ "byte_identity_proof": {
+  "computed_but_empty": "{\"retired\": [], \"retired_note\": \"⭐⭐⭐⭐⭐⭐⭐⭐ **纯历史账本的 `retired` 恒为空 —— 这正是 P6 的内容：全量重算把「清单会过期」换成了「历史被截断」，而后者由 `fingerprint_2013` 的 sha 兜底**\"}",
+  "never_computed": "{\"retired\": [], \"retired_note\": \"⭐⭐⭐⭐⭐⭐⭐⭐ **纯历史账本的 `retired` 恒为空 —— 这正是 P6 的内容：全量重算把「清单会过期」换成了「历史被截断」，而后者由 `fingerprint_2013` 的 sha 兜底**\"}",
+  "identical": true
+ },
+ "companion_proof": {
+  "with_companion": "{\"retired\": [], \"retired_computed\": true, \"retired_n\": 0}",
+  "without_companion": "{\"retired\": []}",
+  "distinguishable": true,
+  "companion_catches_wrong_count": true
+ },
+ "fix_lands_in": "scripts/jimeng_probe1013_occurrence_ledger.py",
+ "fix_lands_in_why": "⭐⭐⭐⭐⭐ 账本每次运行都被探针整个重写 ⇒ ⇒ ⇒⇒ 改文件会在下一次跑时被抹掉 ⇒ ⇒ ⇒ ⇒ 处置必须落在探针里"
+}

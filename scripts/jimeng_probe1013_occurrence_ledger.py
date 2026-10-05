@@ -252,7 +252,13 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
                         "symmetric_difference": SYM_DIFF},
     "red_pairs": red_pairs,
     "rows": ledger_rows,
+    # ⚠️⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **1014 加的 companion 字段（原文 `retired: []` 一字未删）**
+    #   ⇒ ⇒ **`retired: []` 单独看是分不清「算过、没有」和「压根没算」的** ⇒ ⇒
+    #   ⇒ ⇒ 而 `retired_note` 是一段散文 —— 它和「没算过」完全兼容、钉不住任何东西 ⇒ ⇒ ⇒
+    #   ⇒ ⇒ ⇒ ⇒ **所以补两个可校验的 companion：一个说「跑了」、一个说「跑了是 0」**
     "retired": [],
+    "retired_computed": True,
+    "retired_n": 0,
     "retired_note": "⭐⭐⭐⭐⭐⭐⭐⭐ **纯历史账本的 `retired` 恒为空 —— "
                     "这正是 P6 的内容：全量重算把「清单会过期」换成了「历史被截断」，"
                     "而后者由 `fingerprint_2013` 的 sha 兜底**",

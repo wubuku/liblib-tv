@@ -5905,6 +5905,11 @@ def main() -> int:
     #   ⇒ ⇒ ⇒ **⇒ 所以这行读取与门里那条登记必须是同一步**
     p1013 = ROOT / "scripts/jimeng_probe1013_occurrence_ledger.py"
     _p1013 = p1013.read_text(encoding="utf-8") if p1013.exists() else ""
+    # ⚠️⚠️⭐⭐⭐⭐⭐⭐ 判据组 `S993W.1` 要钉的是**「空集合分两类：可自证的与不可自证的」**
+    #   ⇒ ⇒ 而 1014 的普查**必须把自己上一跑留下的 golden 排除掉** ⇒ ⇒
+    #   **⇒ 所以这行读取与门里那条登记必须是同一步**
+    p1014 = ROOT / "scripts/jimeng_probe1014_empty_ambiguity.py"
+    _p1014 = p1014.read_text(encoding="utf-8") if p1014.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -14990,6 +14995,125 @@ def main() -> int:
           #   **⇒ 「反向门」也不许凭印象写 —— 它和正向锚子一样必须先查过**
           and '不许让门看起来比它实际更强' in _ausrc
           and '所以自动生成的清单就不会过期' not in _ausrc)
+
+
+    # ══ 1014 宇宙冻结点 ══
+    # ⚠️ 同 1006–1013 那条：**1014 报的那些数是在它的 `S993W` 判据加进去之前、
+    #    在 1013 那一版 audit 上测的**
+    #    ⇒ ⇒ 而 1014 多一个自由度：**它的普查输入是 `docs/research/jimeng-canvas/*.json`
+    #    整个目录** ⇒ ⇒ ⇒ **⇒ 而那个目录里 1014 自己也会写一本 ⇒ ⇒ ⇒ ⇒
+    #    ⇒ **「普查把自己的产物吃进去」是本批第一件被否掉的事**
+    # ══ S993W. 批 1014 **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**
+    print("— S993W. 批 1014 空集合的歧义："
+          "8 本 golden、11 个空 list + 1 个 null，可自证 11、不可自证 1（1013 的 retired）")
+    check("S993W.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：普查 8 个 golden"
+          "（已排除本探针自己那本）、11 个空 list 字段、1 个 null 字段 —— "
+          "其中可自证 11 个、不可自证 1 个（就是 1013 刚写的 `retired`）** ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ 而可自证的判据不是「旁边有说明」、而是「旁边有一个可校验的不变式」** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而一段散文说明（`retired_note`）钉不住任何东西："
+          "它可以和「没算过」完全共存**",
+          '"P1_hold_2014"' in _p1014
+          and '"n_excluded_self"' in _p1014
+          and '"n_self_provable"' in _p1014
+          and '"p1_only_one_empty_field_is_unverifiable_2014_"' in _ausrc
+          and '不可自证 1 个' in _ausrc
+          and '它可以和「没算过」完全共存' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **反向门**：**普查不许把自己的
+          #   产物吃进去** —— 否则读数会随「跑过几次」变化，而那样的数字不能当证据
+          and 'assert not any(_is_own(f) for f in GOLDENS)' in _p1014
+          and '所以按文件名排除就够了' not in _p1014
+          and '所以按文件名排除就够了' not in _ausrc)
+
+    check("S993W.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立（这是本批的病根）："
+          "「真的算过、结果是空」与「根本没算」这两份账，`retired` 字段序列化之后"
+          "逐字节相同** ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 读 JSON 的人拿到 `retired: []` 时，"
+          "无法区分「查了、没有」和「压根没查」** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而这正是 1008 那条「清单会过期」的一个新的、更隐蔽的形态**",
+          '"P2_hold_2014"' in _p1014
+          and 'SAME_BYTES' in _p1014
+          and '"byte_identity_proof"' in _p1014
+          and '"p2_computed_and_never_computed_are_byte_identical_2014_"' in _ausrc
+          and '逐字节相同' in _ausrc
+          and '更隐蔽的形态' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **反向门**：**不许把
+          #   「旁边有一段说明」当成「它被算过」** —— 散文与「没算」完全兼容
+          and '旁边的说明就等于它被算过了' not in _ausrc
+          and '旁边的说明就等于它被算过了' not in _p1014)
+
+    check("S993W.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 成立：处置是给账本加 companion 字段"
+          "（`retired_computed` + `retired_n`），加上之后两份账可区分；"
+          "而且 companion 自己也要能区分「算了是 0」与「算了但算错了」—— 那一条也验了** ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而 1013 的 `retired: []` 原文一字不删、只加 companion** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而处置落在 1013 的探针里、不落在这本账上** ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ 因为账本每次运行都会被探针整个重写、改文件会在下一次跑时被抹掉**",
+          '"retired_computed"' in _p1014
+          and '"retired_n"' in _p1014
+          and '"companion_proof"' in _p1014
+          and '"P3_hold_2014"' in _p1014
+          and '"p3_companion_fields_make_it_distinguishable_2014_"' in _ausrc
+          and '原文一字不删' in _ausrc
+          and '改文件会在下一次跑时被抹掉' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **反向门**：**处置不许落在产物上**
+          and '所以改账本文件就够了' not in _p1014
+          and '所以改账本文件就够了' not in _ausrc)
+
+    check("S993W.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4 反向用例成立：造一份 `retired` 非空的真账，"
+          "分类器必须把它判成「可自证」—— 而当前版本判不了（companion 尚未进判据）** ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ 而这一条是为了排除「普查恒判不可自证」—— "
+          "那会让 12 个字段看起来全都一样有问题、而实际上只有 1 个** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以判据里必须同时钉住「可自证 11 个」和「不可自证 1 个」两个数**",
+          '"P4_hold_2014"' in _p1014
+          and 'INVARIANTS' in _p1014
+          and '"p4_reverse_case_classifier_is_not_constant_2014_"' in _ausrc
+          and '可自证 11 个' in _ausrc
+          and '不可自证 1 个' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **反向门**：**普查不许恒判「不可自证」**
+          and '所以其实每个空字段都有问题' not in _ausrc
+          and '所以其实每个空字段都有问题' not in _p1014)
+
+    check("S993W.5 ⭐⭐⭐⭐⭐⭐⭐⭐ **P5：这条规矩不只管空 list —— `null` 是同一个病的"
+          "另一种形态，而它同样分不清「算出来是 null」和「没算」** ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而本批的普查已经把 null 一并数进去了（1 个）**",
+          '"n_empty_null"' in _p1014
+          and 'elif o is None:' in _p1014
+          and '"P5_hold_2014"' in _p1014
+          and '"p5_null_is_the_same_disease_2014_"' in _ausrc
+          and 'null` 是同一个病的' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐ **反向门**：**不许把 null 从普查口径里悄悄去掉**
+          and 'null 不算、只查空 list' not in _p1014
+          and 'null 不算、只查空 list' not in _ausrc)
+
+    check("S993W.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 而最要紧的一句是："
+          "1013 刚刚做出来的那本账，自己就带着这个毛病** ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而这说明「刚做完的东西也是会犯的」不是假设、"
+          "是本会话第三次撞上（前两次：1012 的探针覆盖表是空的、"
+          "1013 的断言里硬写了目标变量数）** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以任何交付物都必须被下一批当成被测对象重新过一遍"
+          "——「自己验过」不算数**",
+          '"P6_hold_2014"' in _p1014
+          and 'occurrence-ledger-1013.json' in _p1014
+          and '"p6_the_previous_batch_artifact_is_itself_a_victim_2014_"' in _ausrc
+          and '自己就带着这个毛病' in _ausrc
+          and '「自己验过」不算数' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **反向门**：**「自己验过」不算数**
+          and '所以本批自己验过就行了' not in _p1014
+          and '所以本批自己验过就行了' not in _ausrc)
+
+    check("S993W.7 ⭐⭐⭐⭐⭐ **P7 成立：逐条落进 "
+          "`docs/research/jimeng-canvas/empty-ambiguity-1014.json`、由本探针自己写** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐⭐ **⇒ 而它记的是「每个空字段：哪本账、哪个路径、是空 list 还是 null、"
+          "可不可自证、以及钉住它的那个不变式是什么」** ⇒ ⇒ "
+          "**⇒ P8 成立：判据里手写的数全部有出处**",
+          '"P7_hold_2014"' in _p1014
+          and '"P8_hold_2014"' in _p1014
+          and 'empty-ambiguity-1014.json' in _p1014
+          and 'empty-ambiguity-1014.json' in _ausrc
+          and '"p7_golden_2014_"' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **反向门**：**账本自己也必须在普查口径内被排掉** ——
+          #   **而排除的依据必须是 `generated_by`、不是文件名**
+          and '"fix_lands_in_why"' in _p1014
+          and '每次运行都会被探针整个重写' in _ausrc)
 
 
     print(f"\n{checks - len(failures)}/{checks}")
