@@ -2018,3 +2018,47 @@ screenshots:
     visible_text: '3D导演台 静态预演 动态预演 资产 搜索素材 预设 男性·标准 女性·标准 男性·少年 女性·少年 男性·儿童 女性·儿童 男性·纤瘦 女性·纤瘦 对象 搜索对象 机位 属性 环境预设 影棚 背景颜色 地面颜色 显示地面 地面不透明度 曝光 显示网格 导演视角'
     alt: "3D 导演台全屏界面（2026-10-05 批次 185 拍）：顶栏左侧是标题「3D导演台」与问号帮助、保存两个小图标，中间是「静态预演」「动态预演」两个页签（静态预演为选中态），右侧依次是相机图标「拍摄」、分屏预览图标，以及最右上角一个白色叉号按钮「返回画布」——它被橙色高亮框标出；左侧「资产」面板有搜索素材框和一列预设卡片（男性·标准、女性·标准、男性·少年、女性·少年、男性·儿童、女性·儿童、男性·纤瘦、女性·纤瘦）；中间是 3D 视口，深色地面网格上有一条红色轴线和一条蓝色轴线，右上角浮着「机位」实时预览小窗，底部有「导演视角」下拉；右侧「对象」面板下面是「属性」区，列着环境预设「影棚」、背景颜色、地面颜色、显示地面开关、地面不透明度 50、曝光 1.05、显示网格开关；整个界面盖满 1280×720 的视口，画布节点一个都看不见"
     sha256: 2da6f7185027152e09f7ae47618fc88d8fbcad2d368546df789feee765fa91d7
+  - file: screenshots/174-before-delete.png
+    task_id: duplicate-delete-history
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T20:28:00+08:00
+    verified_locator: '搜索面板选中「视频 1」（.react-flow__node-video，id=node_236ctpehgg）后点它的标题行把焦点交回画布（document.activeElement 读出 DIV[data-testid=rf__wrapper][aria-label=Canvas]）；注入 border:3px solid #ff8c00 的 fixed 框外扩 10px 罩住节点，拍前读回 border=3px solid rgb(255,140,0)、pointer-events:none、框在视口内=true 才 shutter；此时状态行 76 nodes, 0 edges, 1 selected.，节点 canvas 坐标 [865, 400.11]'
+    visible_text: '视频 1 全屏编辑'
+    alt: "删除前：画布上一个标题为「视频 1」的视频节点处于选中态，橙实线框罩住整个节点卡片，卡片右上角露出「全屏编辑」工具按钮，节点左右两侧各有一个圆圈加号按钮；橙色框外侧还能看到左右邻居节点的一角和背景上的「+」按钮"
+    sha256: cd0d2ca304c462242e6c46db74820cde5fd7c3b6d9a058dbfca542d1bc4f74d3
+  - file: screenshots/175-after-delete.png
+    task_id: duplicate-delete-history
+    step: 2
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T20:28:00+08:00
+    verified_locator: '在 174 那张的同一裁切框、同一节点上按 Backspace，节点数 76→75、目标 id 从 R.ids() 消失、状态行 75 nodes, 0 edges, 0 selected.；节点已不在 DOM，于是把记住的屏上矩形写成 border:3px dashed #ff8c00 的 fixed 框（同样是固定定位、pointer-events:none、读回 border 3px dashed rgb(255,140,0)）标出「节点原来在的位置」；守卫同时认 solid 与 dashed 两种线型'
+    visible_text: '视频 5 全屏编辑'
+    alt: "删除后：同一块裁切位置，橙虚线框标出「节点原来在的地方」，框内是空的，透出后面邻居节点「视频 5」的一块深色画面和右上角的「全屏编辑 / 下载」工具条，画面上已看不到标题「视频 1」"
+    sha256: c06069eafff2a0786f829e032c68f9cb4edf60dbad8db5632ca091314eec78ea
+  - file: screenshots/176-after-undo.png
+    task_id: duplicate-delete-history
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T20:28:00+08:00
+    verified_locator: '在同一裁切框按 Meta+z，节点数 75→76、同一个 id（node_236ctpehgg）回来了、canvas 坐标仍是 [865, 400.11] 与删除前逐字相同；再注入一次 solid 橙框读回后才 shutter；撤销刚完成时状态行短暂显示「保存中....」，几百毫秒后回到「已保存.」'
+    visible_text: '视频 1 全屏编辑'
+    alt: "撤销后：同一块裁切位置，橙实线框里又是那个标题为「视频 1」的节点卡片，右上角有「全屏编辑」工具条、右侧有圆圈加号按钮，画面与删除前那张几乎一致；背后仍能透出邻居节点「视频 5」的深色画面"
+    sha256: bb01bd3b3d7c470c1e80da43e3b0dfc206d34b6e2fd25b30b02150cf85d52453
+  - file: screenshots/177-after-paste.png
+    task_id: duplicate-delete-history
+    step: 4
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T20:28:00+08:00
+    verified_locator: '先 navigator.clipboard.writeText(''JIMENG-B190-SENTINEL'') 写入哨兵（写入成功），选中 .react-flow__node-video（视频 1，aria 逐字「视频 node: 视频 1」）点标题行后按 Meta+c 再按 Meta+v ⇒ 节点数 76→77，新节点 aria 逐字「文本 node: JIMENG-B190-SENTINEL」；对原节点画 solid 橙框、对新节点画 dashed 橙框，裁切覆盖两者，拍前读回 border=3px solid rgb(255,140,0)、pointer-events:none、框在视口内=true 才 shutter；拍完按 id 用右键菜单「删除」清掉新节点（77→76）'
+    visible_text: 'JIMENG-B190-SENTINEL 全屏编辑'
+    alt: "⌘C 之后按 ⌘V 的结果：左边（橙虚线框）是刚粘出来的新节点，标题「文本」、正文里就是刚才写进剪贴板的 JIMENG-B190-SENTINEL 字符串；右边（橙实线框）才是原来那个被选中的「视频 1」节点——新出现的是一个内容完全不同的文本节点，不是被复制节点的副本"
+    sha256: b45beb6869b62c4625cc197c85837cb87b5ac5ae682a8ee37ffa59c80eed3b59
