@@ -477,18 +477,99 @@ assert "p1_duplicate_anchor_texts_exist_1006_" in _ab, (
 
 _allowed = _measured_numbers({k: v for k, v in out.items()
                               if k != "verdicts_1006"}, set())
-# 探针自己的源码里出现的数 = 格式串里的**结构字面量**（如「2 个以上目标」）
-_allowed |= set(_NUMRE.findall(VSRC_FOR_PROBE := vsrc))
-_allowed |= set(_NUMRE.findall(
-    io.open(__file__, encoding="utf-8").read()))
+# 探针源码里的数**不能**整个当白名单 ——
+# ⚠️⚠️⭐⭐⭐⭐⭐ **而第一版我就是 `findall(整份探针源码)`** ⇒ ⇒
+#   **⇒ 那等于「凡是探针里出现过的数都算有出处」⇒ 而这个白名单大到能把真漂移一起放过去** ⇒ ⇒
+#   **⇒ 收紧成三类：① 实测值 ② 冻结宇宙的读数 ③ 明确的结构字面量**
+#   （结构字面量 = 一位数 + 批号 + 那两个 argv 下标）
+_STRUCTURAL = set("0123456789") | {
+    "1003", "1004", "1005", "1006", "1007",   # 批号
+    "100",                                          # `±100 字符` 这类写死的口径
+}
+_allowed |= _STRUCTURAL
 
-_rows, _bad = {}, {}
+# ⭐⭐⭐⭐⭐ **1007 正式改写了 1006 的一条结论** ⇒ ⇒
+#   **⇒ 那一条的基线文本后面多了一段「改写横幅」⇒ 而它不该算成「数字漂移」**
+#   ⇒ ⇒ **⇒ 所以这里显式列出被改写的键 —— 而不是放宽整个契约**
+#   （放宽整个契约 = 又一次「仪器报红就说数据错」）
+_REWRITTEN_BY_1007 = {"p3_probe_side_is_even_more_boilerplate_2006_": "L993P.2"}
+
+# ⭐⭐⭐⭐⭐ **「有出处」的第二层：把宇宙冻结在 1006 那一刻**
+#   ⚠️ 背景：1007 加了自己的判据 ⇒ ⇒ 普查宇宙从 498 对长到 503 对 ⇒ ⇒
+#   **⇒ 于是 1006 基线里的 `498` / `187` / `238` / `16.9` 对「当前宇宙」不再有出处** ⇒ ⇒
+#   ⭐⭐⭐⭐⭐ **⇒ 而那不是漂移、那是宇宙长大了 ——
+#   **处置不是放宽契约、而是把口径钉死在它自己那一刻** ⇒ ⇒
+#   **⇒ 冻结点 = verifier 里那一行 `# ══ 1006 宇宙冻结点 ══`；**
+#   **⇒ 而冻结点必须在 1006 判据**之前**、不是之后** —— 因为 1006 报的那些数
+#   **是在它加自己判据之前测的 ⇒ ⇒ 判据加得越早、冻结点越要靠前**
+#   **⇒ 后来每一批的判据都必须加在那行之后**
+_FREEZE = "    # ══ 1006 宇宙冻结点 ══"
+_v1006, _frozen = vsrc, None
+if _FREEZE in vsrc:
+    _i = vsrc.index(_FREEZE)
+    _j = vsrc.index('    print(f"\\n{checks - len(failures)}/{checks}")')
+    _v1006 = vsrc[:_i] + vsrc[_j:]          # 截到冻结点、再接上收尾 ⇒ 语法完整
+    _t_f = collections.defaultdict(set)
+    for _n, _a, _neg in g.collect(ast.parse(_v1006)):
+        if _neg or _a in _t_f.get(_a, set()):
+            continue
+        if _a in SRC.get(_n, ""):
+            _t_f[_a].add(_n)
+    _mf = {a: v for a, v in _t_f.items() if len(v) > 1}
+    _frozen = {
+        "marker": _FREEZE,
+        "n_multi": len(_mf),
+        "n_pairs": sum(len(v) for v in _mf.values()),
+        "n_cross_audit_probe": len(
+            [a for a, v in _mf.items()
+             if "_ausrc" in v and any(x != "_ausrc" for x in v)]),
+        "n_max_targets": max((len(v) for v in _mf.values()), default=0),
+    }
+    # ⭐ 样板轴也要在**冻结宇宙**上重算 —— 而不只是重复/跨目标那几个数
+    #   （1006 的 84/498 = 16.9% 就是这么来的；不重算它就没有出处）
+    def _stems(name):
+        if name == "_ausrc":
+            return ["jimeng_unclickable_audit", "unclickable", "点不着",
+                    "判据", "门的"]
+        m = re.search(r"_p(\d+)", name)
+        if m:
+            return ["jimeng_probe%s" % m.group(1), "probe%s" % m.group(1)]
+        b = name.lstrip("_")
+        return [b] if len(b) >= 3 else []
+
+    _ab2 = 0
+    for _a, _vs in _mf.items():
+        for _n in _vs:
+            _hay = SRC.get(_n, "")
+            _i = _hay.find(_a)
+            if any(t in _hay[max(0, _i - CTX):_i + CTX]
+                   for t in _stems(_n)):
+                _ab2 += 1
+    _frozen["n_about_self"] = _ab2
+    _frozen["pct_about_self"] = round(100.0 * _ab2 / max(1, _frozen["n_pairs"]), 1)
+out["frozen_universe_1006"] = _frozen or {
+    "marker": _FREEZE, "note": "⭐ verifier 里还没有那一行（1007 之前）⇒ 用当前宇宙"}
+if _frozen:
+    for _v in _frozen.values():
+        if isinstance(_v, int):
+            _allowed.add(str(_v))
+            _allowed.add("%.1f" % _v)
+        elif isinstance(_v, float):          # ⭐ 百分比也要进白名单
+            _allowed.add(str(_v))
+            _allowed.add("%.1f" % _v)
+
+_rows, _bad, _rewritten = {}, {}, {}
 for _k, _v in out["verdicts_1006"].items():
     if _k == "discipline_2006":
         continue
     _got = sorted(set(_NUMRE.findall(_ab.get(_k) or "")),
                   key=lambda s: float(s))
     _miss = [n for n in _got if n not in _allowed]
+    if _k in _REWRITTEN_BY_1007:
+        # ⭐ 改写横幅里的数是**新批的读数**、不是 1006 的 ⇒ 所以只记不判
+        _rewritten[_k] = {"judged_by": _REWRITTEN_BY_1007[_k],
+                          "numbers": _got, "unjustified_ignored": _miss}
+        continue
     _rows[_k] = _got
     if _miss:
         _bad[_k] = _miss
@@ -502,8 +583,13 @@ out["audit_numbers_vs_computed_1006"] = {
     "numbers_by_key": _rows,
     "n_keys_with_unjustified_number": len(_bad),
     "unjustified": _bad,
+    "n_allowed_size": len(_allowed),
+    "allowed_kinds": "⭐ 实测值 ∪ 冻结宇宙读数 ∪ {一位数}+{批号}+{100} —— "
+                     "**不是**「探针源码里出现过的所有数」",
     "n_keys_prose_differs": len(_prose_diff),
     "prose_differs_keys": _prose_diff,
+    "rewritten_by_1007": _rewritten,
+    "n_keys_rewritten_by_1007": len(_rewritten),
     "contract": "⭐⭐⭐⭐⭐ **判据文本里写的是**手写的数** ⇒ 而每一个都必须有出处** ⇒ ⇒ "
                 "**⇒ 「措辞与摘要不同」是设计、「数字没有出处」才是缺陷** ⇒ ⇒ "
                 "**⇒ 手写的数漂了、门不红、verifier 也不红 —— 只有这个探针会红**",

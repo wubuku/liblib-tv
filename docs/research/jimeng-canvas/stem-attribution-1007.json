@@ -1,0 +1,84 @@
+{
+ "generated_by": "jimeng_probe1007_disparate_copies.py （写它的仪器就是读它的那个）",
+ "note": "⭐⭐⭐⭐⭐ **干净词表下「同一条句子在多个副本里提到谁不一致」的**逐条**清单**",
+ "n_rows": 9,
+ "rows": [
+  {
+   "anchor": "elementFromPoint",
+   "var": "_ausrc",
+   "about_self": true,
+   "triggers": [
+    "点不着"
+   ],
+   "len_anchor": 16
+  },
+  {
+   "anchor": "elementFromPoint",
+   "var": "_p891",
+   "about_self": true,
+   "triggers": [
+    "jimeng_probe891",
+    "probe891"
+   ],
+   "len_anchor": 16
+  },
+  {
+   "anchor": "elementFromPoint",
+   "var": "q855a",
+   "about_self": false,
+   "triggers": [],
+   "len_anchor": 16
+  },
+  {
+   "anchor": "一个截断的清单和一个全量的清单相比、永远在「变」",
+   "var": "_ausrc",
+   "about_self": false,
+   "triggers": [],
+   "len_anchor": 24
+  },
+  {
+   "anchor": "一个截断的清单和一个全量的清单相比、永远在「变」",
+   "var": "_p1005",
+   "about_self": true,
+   "triggers": [
+    "jimeng_probe1005",
+    "probe1005"
+   ],
+   "len_anchor": 24
+  },
+  {
+   "anchor": "探针**只输出读数**，判读留给基线",
+   "var": "_p904",
+   "about_self": true,
+   "triggers": [
+    "jimeng_probe904",
+    "probe904"
+   ],
+   "len_anchor": 18
+  },
+  {
+   "anchor": "探针**只输出读数**，判读留给基线",
+   "var": "_p905",
+   "about_self": false,
+   "triggers": [],
+   "len_anchor": 18
+  },
+  {
+   "anchor": "重复 2 次",
+   "var": "_p884",
+   "about_self": false,
+   "triggers": [],
+   "len_anchor": 6
+  },
+  {
+   "anchor": "重复 2 次",
+   "var": "_p888",
+   "about_self": true,
+   "triggers": [
+    "jimeng_probe888",
+    "probe888"
+   ],
+   "len_anchor": 6
+  }
+ ]
+}
