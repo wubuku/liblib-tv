@@ -49,7 +49,18 @@
  *   node scripts/probe-visible-strings.js /            转储一个路由，输出 JSON 到 stdout
  *   ROUTES="/;/config;/assets" node ...               转储多个路由（★ 分号，不是逗号）
  *   ROUTES="/canvas/ID::画布+Agent面板::打开本地 Codex 面板"   进到某个状态再转储一次
+ *   ROUTES="/canvas/ID::上传了素材::upload:^上传资产$|/path/to/x.png"   点它并把文件塞进去
  *   OUT=/tmp/strings.json node ...                    写文件而不是 stdout
+ *
+ * ★ **`upload:按钮文字|文件路径`**（M247 加）
+ *   点那个按钮，等系统的文件选择器弹出来，再把本地文件塞进去。
+ *   **走的是 Playwright 的 `filechooser` 事件**——
+ *   而不是 2026-09-26 那套「拷进 `web/public/__rt__/` 再页内 fetch」的绕行，
+ *   那一套是给**内置浏览器**（它不支持文件选择器）准备的，
+ *   **外部 Playwright 直接 `setInputFiles` 就行，不用往应用仓里拷文件、也不用删。**
+ *   ★ **素材清单见 `TEST_MEDIA_ASSETS.md`**（14 项，10 图 / 2 音 / 2 视频，字节数已核）。
+ *   ★ **上传是免费的**：它只把字节存到本机。**计费的是「生图 / 生成」那一步，
+ *     而那一步在 `NEVER_CLICK` 里，永远不会被点到。**
  *
  * ══ 状态动作语法（M245 末加）══
  *
@@ -325,7 +336,7 @@ async function hoverCollect(page) {
         // ★ 不可点清单先查：这一步在本批之前不存在，是 M245 之后补的护栏
         const raw = act;
         // ★ 兼容 M245 的老写法：第三段没有动作前缀时，整段当作「点这个文字」
-        const VERBS = ['wait', 'key', 'type', 'dblclickxy', 'clickxy', 'dblclick', 'click'];
+        const VERBS = ['wait', 'key', 'type', 'dblclickxy', 'clickxy', 'dblclick', 'click', 'upload'];
         const m = raw.match(/^([a-z]+):(.*)$/);
         const verb = m && VERBS.includes(m[1]) ? m[1] : 'click';
         const arg = m && VERBS.includes(m[1]) ? m[2] : raw;
@@ -343,6 +354,40 @@ async function hoverCollect(page) {
             if (verb === 'dblclickxy') await page.mouse.dblclick(x, y);
             else await page.mouse.click(x, y);
             await page.waitForTimeout(700);
+            continue;
+          }
+          if (verb === 'upload') {
+            // 点「按钮文字」→ 等文件选择器弹出来 → 把本地文件塞进去
+            const [btnText, filePath] = arg.split('|');
+            if (!filePath || !require('fs').existsSync(filePath)) {
+              console.error(`[提醒] upload 动作的文件不存在：${filePath}`);
+              continue;
+            }
+            if (isNeverClick(btnText)) {
+              console.error(`[拒绝] upload 目标「${btnText}」在不可点清单里`);
+              continue;
+            }
+            const box = await page.evaluate((a) => {
+              const re = new RegExp(a);
+              const hit = (s) => re.test(s || '');
+              const el = Array.from(document.querySelectorAll('button,[role="button"],a,li'))
+                .find((x) => hit(x.getAttribute('aria-label')) || hit(x.getAttribute('title')) ||
+                              hit((x.innerText || '').replace(/\s+/g, ' ').trim()));
+              if (!el) return null;
+              const q = el.getBoundingClientRect();
+              return { x: q.x + q.width / 2, y: q.y + q.height / 2, w: q.width, h: q.height };
+            }, btnText);
+            if (!box || !box.w || !box.h) {
+              console.error(`[提醒] upload 找不到按钮「${btnText}」`);
+              continue;
+            }
+            const [chooser] = await Promise.all([
+              page.waitForEvent('filechooser', { timeout: 8000 }),
+              page.mouse.click(box.x, box.y),
+            ]);
+            await chooser.setFiles(filePath);
+            await page.waitForTimeout(2000);
+            console.error(`[ok] 已上传 ${filePath.split('/').pop()}（${box.w}x${box.h} 的按钮）`);
             continue;
           }
           if (verb === 'click' || verb === 'dblclick') {
