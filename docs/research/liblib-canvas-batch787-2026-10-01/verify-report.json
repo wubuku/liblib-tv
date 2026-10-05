@@ -1,0 +1,245 @@
+{
+ "batch": 787,
+ "checks": [
+  {
+   "id": "S1:重算出 10 组",
+   "desc": "★ 缩进列分组 + action 解析必须找出 10 组",
+   "ok": true,
+   "detail": {
+    "n": 10,
+    "keys": [
+     "DirectorDesk.tsx:473",
+     "DirectorTimeline.tsx:1532",
+     "DirectorTimeline.tsx:1574",
+     "DirectorTimeline.tsx:601",
+     "DirectorTimeline.tsx:695",
+     "DirectorViewport.tsx:2825",
+     "DirectorViewport.tsx:2835",
+     "DirectorViewport.tsx:2842",
+     "DirectorViewport.tsx:3536",
+     "DirectorViewport.tsx:3556"
+    ]
+   }
+  },
+  {
+   "id": "S2:四组新增都在",
+   "desc": "★ `DirectorTimeline.tsx:1532/:1574` 与 `DirectorViewport.tsx:2835/:2842`",
+   "ok": true,
+   "detail": {
+    "missingOrWrong": [],
+    "found": {
+     "DirectorViewport.tsx:2835": [
+      "modelLibraryOpen",
+      "motionPathDraft"
+     ],
+     "DirectorViewport.tsx:2842": [
+      "modelLibraryOpen",
+      "motionPathDraft"
+     ],
+     "DirectorTimeline.tsx:1532": [
+      "motionPathDraft",
+      "pathMenuLeft"
+     ],
+     "DirectorTimeline.tsx:1574": [
+      "motionPathDraft",
+      "pathMenuLeft"
+     ]
+    }
+   }
+  },
+  {
+   "id": "S3:★ 重头戏：模型库加条目会杀掉运镜绘制",
+   "desc": "★ `addModelLibraryObject` 必须既写 `motionPathDraft` 又被 `addModelLibraryItem` 在**同一个函数体**里调",
+   "ok": true,
+   "detail": {
+    "actionFields": [
+     "motionPathDraft"
+    ],
+    "group2835": [
+     "modelLibraryOpen",
+     "motionPathDraft"
+    ]
+   }
+  },
+  {
+   "id": "S4:action 侧行锚定",
+   "desc": "★ `directorStore.ts:5190` 必须是 `motionPathDraft: null,`（**置空**，不是赋值成别的）",
+   "ok": true,
+   "detail": {
+    "5190": "motionPathDraft: null,"
+   }
+  },
+  {
+   "id": "S5:四方一致（普查 / 验收器 计数+清单，汇编器 那 4 组）",
+   "desc": "★ 普查与验收器必须都给出 **10** 组且清单相同；汇编器断言的 4 组必须**同时出现在**这两份里",
+   "ok": true,
+   "detail": {
+    "censusDeclaredCount": 10,
+    "censusListCount": 10,
+    "censusCount": 10,
+    "verifierCount": 10,
+    "assemblerGroups": [
+     "DirectorTimeline.tsx:1532",
+     "DirectorTimeline.tsx:1574",
+     "DirectorViewport.tsx:2835",
+     "DirectorViewport.tsx:2842"
+    ],
+    "assemblerNotInCensus": [],
+    "diff": []
+   }
+  },
+  {
+   "id": "S6:786 那层确实不认识 action（缺陷被钉住）",
+   "desc": "★ `census786.py` 里既无 `store_action_writes` 也无 `\"action\"` 形态",
+   "ok": true,
+   "detail": {
+    "hasStoreActionWrites": false,
+    "hasActionForm": false
+   }
+  },
+  {
+   "id": "S7:汇编器零失败",
+   "desc": "汇编器自己的断言必须全绿",
+   "ok": true,
+   "detail": {
+    "checks": 8,
+    "assertedAnchors": 15,
+    "failed": 0
+   }
+  },
+  {
+   "id": "S8:阴性对照已复原（源码 + raw）",
+   "desc": "★ 阴性对照改过的源码与 raw 必须字节级还原",
+   "ok": true,
+   "detail": {
+    "drifted": []
+   }
+  }
+ ],
+ "totals": {
+  "checks": 8,
+  "passed": 8,
+  "failed": 0
+ },
+ "negativeControls": {
+  "total": 4,
+  "caught": 4,
+  "detail": [
+   {
+    "name": "N1 去掉组件侧的 action 调用",
+    "why": "验证 S1/S2 真的在看那个 action 调用",
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 2836,
+      "oldGone": true,
+      "newThere": true,
+      "codeAfter": "/* 不加条目了 */"
+     }
+    ],
+    "expectFlipped": "S1:重算出 10 组",
+    "flipped": [
+     "S1:重算出 10 组",
+     "S2:四组新增都在",
+     "S3:★ 重头戏：模型库加条目会杀掉运镜绘制",
+     "S5:四方一致（普查 / 验收器 计数+清单，汇编器 那 4 组）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S4:action 侧行锚定",
+     "S6:786 那层确实不认识 action（缺陷被钉住）",
+     "S7:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N2 store 侧：该 action 不再写 motionPathDraft",
+    "why": "★ 验证 action→字段的解析链**整条**都在测（第一版只改组件侧，于是 store 侧根本没被覆盖）",
+    "evidence": [
+     {
+      "file": "src/store/directorStore.ts",
+      "line": 5190,
+      "oldGone": true,
+      "newThere": true,
+      "codeAfter": "motionPathDraftKept: null,"
+     }
+    ],
+    "expectFlipped": "S1:重算出 10 组",
+    "flipped": [
+     "S1:重算出 10 组",
+     "S2:四组新增都在",
+     "S3:★ 重头戏：模型库加条目会杀掉运镜绘制",
+     "S4:action 侧行锚定",
+     "S5:四方一致（普查 / 验收器 计数+清单，汇编器 那 4 组）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S6:786 那层确实不认识 action（缺陷被钉住）",
+     "S7:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N3 置空改成别的值",
+    "why": "验证 S4 真的在断言「**置空**」而不是「有写入」",
+    "evidence": [
+     {
+      "file": "src/store/directorStore.ts",
+      "line": 5190,
+      "oldGone": true,
+      "newThere": true,
+      "codeAfter": "motionPathDraft: draft,"
+     }
+    ],
+    "expectFlipped": "S4:action 侧行锚定",
+    "flipped": [
+     "S4:action 侧行锚定"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:重算出 10 组",
+     "S2:四组新增都在",
+     "S3:★ 重头戏：模型库加条目会杀掉运镜绘制",
+     "S5:四方一致（普查 / 验收器 计数+清单，汇编器 那 4 组）",
+     "S6:786 那层确实不认识 action（缺陷被钉住）",
+     "S7:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N4 raw：普查计数被改回 6",
+    "why": "验证 S5 的对账真的在比计数",
+    "evidence": {
+     "before": 10,
+     "after": 6
+    },
+    "expectFlipped": "S5:四方一致（普查 / 验收器 计数+清单，汇编器 那 4 组）",
+    "flipped": [
+     "S5:四方一致（普查 / 验收器 计数+清单，汇编器 那 4 组）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:重算出 10 组",
+     "S2:四组新增都在",
+     "S3:★ 重头戏：模型库加条目会杀掉运镜绘制",
+     "S4:action 侧行锚定",
+     "S6:786 那层确实不认识 action（缺陷被钉住）",
+     "S7:汇编器零失败"
+    ]
+   }
+  ]
+ },
+ "static": {
+  "groups": 10,
+  "actions": 23,
+  "keys": [
+   "DirectorDesk.tsx:473",
+   "DirectorTimeline.tsx:1532",
+   "DirectorTimeline.tsx:1574",
+   "DirectorTimeline.tsx:601",
+   "DirectorTimeline.tsx:695",
+   "DirectorViewport.tsx:2825",
+   "DirectorViewport.tsx:2835",
+   "DirectorViewport.tsx:2842",
+   "DirectorViewport.tsx:3536",
+   "DirectorViewport.tsx:3556"
+  ]
+ }
+}

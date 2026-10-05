@@ -1,0 +1,328 @@
+{
+ "batch": 787,
+ "claims": {
+  "C787-1": "★ `store action 调用`也是写入，而 786 那层只认 `set<S>(` 与对象字面量键 ⟹ 组数 6 ⟹ **10**",
+  "C787-2": "★★ **往模型库加条目会取消正在进行的运镜绘制**（`DirectorViewport.tsx:2836-2837` / `:2843-2844`）——两层普查都没报出过",
+  "C787-3": "★ 这条限定了 786 的一处推论：「没有交叉写入」**只在「层看得见全部写入」时才成立**"
+ },
+ "newGroups": [
+  {
+   "name": "timeline-draw-tool",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1532,
+   "members": [
+    {
+     "line": 1533,
+     "needle": "startMotionPathDrawing(tool);",
+     "state": "motionPathDraft"
+    },
+    {
+     "line": 1543,
+     "needle": "setPathMenuLeft(null);",
+     "state": "pathMenuLeft"
+    }
+   ]
+  },
+  {
+   "name": "timeline-create-from-preset",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1574,
+   "members": [
+    {
+     "line": 1575,
+     "needle": "createMotionPath(preset);",
+     "state": "motionPathDraft"
+    },
+    {
+     "line": 1576,
+     "needle": "setPathMenuLeft(null);",
+     "state": "pathMenuLeft"
+    }
+   ]
+  },
+  {
+   "name": "★ add-model-library-item",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2835,
+   "members": [
+    {
+     "line": 2836,
+     "needle": "addModelLibraryObject(item);",
+     "state": "motionPathDraft"
+    },
+    {
+     "line": 2837,
+     "needle": "setModelLibraryOpen(false);",
+     "state": "modelLibraryOpen"
+    }
+   ]
+  },
+  {
+   "name": "★ add-local-model-library-item",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2842,
+   "members": [
+    {
+     "line": 2843,
+     "needle": "addModelLibraryObject(item);",
+     "state": "motionPathDraft"
+    },
+    {
+     "line": 2844,
+     "needle": "setModelLibraryOpen(false);",
+     "state": "modelLibraryOpen"
+    }
+   ]
+  }
+ ],
+ "actionAnchors": [
+  {
+   "action": "startMotionPathDrawing",
+   "file": "src/store/directorStore.ts",
+   "line": 7753,
+   "needle": "startMotionPathDrawing: (tool, requestedTrackId) =>"
+  },
+  {
+   "action": "createMotionPath",
+   "file": "src/store/directorStore.ts",
+   "line": 7703,
+   "needle": "createMotionPath: (preset, requestedTrackId) =>"
+  },
+  {
+   "action": "addModelLibraryObject",
+   "file": "src/store/directorStore.ts",
+   "line": 5152,
+   "needle": "addModelLibraryObject: (item) => {"
+  },
+  {
+   "action": "addModelLibraryObject",
+   "file": "src/store/directorStore.ts",
+   "line": 5190,
+   "needle": "motionPathDraft: null,"
+  }
+ ],
+ "checks": [
+  {
+   "id": "A:timeline-draw-tool",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1532,
+   "ok": true,
+   "n": 2,
+   "members": [
+    {
+     "line": 1533,
+     "needle": "startMotionPathDrawing(tool);",
+     "state": "motionPathDraft"
+    },
+    {
+     "line": 1543,
+     "needle": "setPathMenuLeft(null);",
+     "state": "pathMenuLeft"
+    }
+   ],
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 1533,
+     "needle": "startMotionPathDrawing(tool);",
+     "ok": true,
+     "code": "startMotionPathDrawing(tool);"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 1543,
+     "needle": "setPathMenuLeft(null);",
+     "ok": true,
+     "code": "setPathMenuLeft(null);"
+    }
+   ]
+  },
+  {
+   "id": "A:timeline-create-from-preset",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1574,
+   "ok": true,
+   "n": 2,
+   "members": [
+    {
+     "line": 1575,
+     "needle": "createMotionPath(preset);",
+     "state": "motionPathDraft"
+    },
+    {
+     "line": 1576,
+     "needle": "setPathMenuLeft(null);",
+     "state": "pathMenuLeft"
+    }
+   ],
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 1575,
+     "needle": "createMotionPath(preset);",
+     "ok": true,
+     "code": "createMotionPath(preset);"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 1576,
+     "needle": "setPathMenuLeft(null);",
+     "ok": true,
+     "code": "setPathMenuLeft(null);"
+    }
+   ]
+  },
+  {
+   "id": "A:★ add-model-library-item",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2835,
+   "ok": true,
+   "n": 2,
+   "members": [
+    {
+     "line": 2836,
+     "needle": "addModelLibraryObject(item);",
+     "state": "motionPathDraft"
+    },
+    {
+     "line": 2837,
+     "needle": "setModelLibraryOpen(false);",
+     "state": "modelLibraryOpen"
+    }
+   ],
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2836,
+     "needle": "addModelLibraryObject(item);",
+     "ok": true,
+     "code": "addModelLibraryObject(item);"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2837,
+     "needle": "setModelLibraryOpen(false);",
+     "ok": true,
+     "code": "setModelLibraryOpen(false);"
+    }
+   ]
+  },
+  {
+   "id": "A:★ add-local-model-library-item",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2842,
+   "ok": true,
+   "n": 2,
+   "members": [
+    {
+     "line": 2843,
+     "needle": "addModelLibraryObject(item);",
+     "state": "motionPathDraft"
+    },
+    {
+     "line": 2844,
+     "needle": "setModelLibraryOpen(false);",
+     "state": "modelLibraryOpen"
+    }
+   ],
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2843,
+     "needle": "addModelLibraryObject(item);",
+     "ok": true,
+     "code": "addModelLibraryObject(item);"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2844,
+     "needle": "setModelLibraryOpen(false);",
+     "ok": true,
+     "code": "setModelLibraryOpen(false);"
+    }
+   ]
+  },
+  {
+   "id": "B:action 侧行锚定",
+   "ok": true,
+   "n": 4,
+   "anchors": [
+    {
+     "file": "src/store/directorStore.ts",
+     "line": 7753,
+     "needle": "startMotionPathDrawing: (tool, requestedTrackId) =>",
+     "ok": true,
+     "code": "startMotionPathDrawing: (tool, requestedTrackId) =>"
+    },
+    {
+     "file": "src/store/directorStore.ts",
+     "line": 7703,
+     "needle": "createMotionPath: (preset, requestedTrackId) =>",
+     "ok": true,
+     "code": "createMotionPath: (preset, requestedTrackId) =>"
+    },
+    {
+     "file": "src/store/directorStore.ts",
+     "line": 5152,
+     "needle": "addModelLibraryObject: (item) => {",
+     "ok": true,
+     "code": "addModelLibraryObject: (item) => {"
+    },
+    {
+     "file": "src/store/directorStore.ts",
+     "line": 5190,
+     "needle": "motionPathDraft: null,",
+     "ok": true,
+     "code": "motionPathDraft: null,"
+    }
+   ],
+   "claim": "★ `addModelLibraryObject` 在 `directorStore.ts:5190` 把 `motionPathDraft` **置空** ⟹ 「往模型库加条目」这个操作会**取消正在进行的运镜绘制**"
+  },
+  {
+   "id": "C:组数 6 ⟹ 10",
+   "ok": true,
+   "n": 1,
+   "detail": {
+    "c787_groups": 10,
+    "c787_touching": 53,
+    "c787_actions": 19
+   },
+   "claim": "★ 接上 action 调用之后，组数从 **6** 涨到 **10**、触到门状态的函数体从 **31** 涨到 **53**"
+  },
+  {
+   "id": "D:786 那层不认识 action（缺陷被钉住）",
+   "ok": true,
+   "n": 1,
+   "detail": {
+    "census786HasActionRecognition": false
+   },
+   "claim": "★ `census786.py` 里**没有**任何 action 识别（无 `store_action_writes`、无 `\"action\"` 形态）⟹ 四组新增在 786 里是**结构性不可见**，不是「没找到」"
+  },
+  {
+   "id": "E:四组都在 raw 里",
+   "ok": true,
+   "n": 1,
+   "detail": {
+    "rawKeys": [
+     "src/components/director/DirectorDesk.tsx:473",
+     "src/components/director/DirectorTimeline.tsx:1532",
+     "src/components/director/DirectorTimeline.tsx:1574",
+     "src/components/director/DirectorTimeline.tsx:601",
+     "src/components/director/DirectorTimeline.tsx:695",
+     "src/components/director/DirectorViewport.tsx:2825",
+     "src/components/director/DirectorViewport.tsx:2835",
+     "src/components/director/DirectorViewport.tsx:2842",
+     "src/components/director/DirectorViewport.tsx:3536",
+     "src/components/director/DirectorViewport.tsx:3556"
+    ],
+    "missing": []
+   },
+   "claim": "★ 四组新增必须真的出现在普查产物里"
+  }
+ ],
+ "totals": {
+  "checks": 8,
+  "assertedAnchors": 15,
+  "failed": 0
+ }
+}

@@ -1,0 +1,1611 @@
+{
+ "batch": 787,
+ "domain": {
+  "files": 14,
+  "dir": "src/components/director",
+  "plus": "src/app/page.tsx"
+ },
+ "gates": [
+  "activeDirectorNodeId",
+  "contextMenu",
+  "crowdPanelOpen",
+  "exportPanelOpen",
+  "followTargetId",
+  "modelLibraryOpen",
+  "motionPathDraft",
+  "pathMenuLeft",
+  "phoneVcamOpen",
+  "presetPanelLeft",
+  "viewerCaptureId"
+ ],
+ "storeActionsWritingGates": 19,
+ "storeActions": {
+  "closeSession": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "selectGroup": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "groupSelectedCharacters": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "addDirectorCamera": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "createTrackForSelectedObject": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "selectShot": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "addModelLibraryObject": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "importPhoneVcamTake": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "applyCameraMotionPreset": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "createMotionPath": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "startMotionPathDrawing": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "appendMotionPathDraftAnchor": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "updateMotionPathDraftLastHandle": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "finishMotionPathDrawing": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "cancelMotionPathDrawing": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "selectMotionPathAnchor": {
+   "file": "src/store/directorStore.ts",
+   "fields": [
+    "motionPathDraft"
+   ]
+  },
+  "openDirectorDesk": {
+   "file": "src/store/uiStore.ts",
+   "fields": [
+    "activeDirectorNodeId"
+   ]
+  },
+  "closeDirectorDesk": {
+   "file": "src/store/uiStore.ts",
+   "fields": [
+    "activeDirectorNodeId"
+   ]
+  },
+  "closeAllPanels": {
+   "file": "src/store/uiStore.ts",
+   "fields": [
+    "activeDirectorNodeId"
+   ]
+  }
+ },
+ "groupsTouchingGates": 53,
+ "crossWriteGroups": 10,
+ "crossWrites": [
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 473,
+   "kind": "named-arrow",
+   "name": "handleKeyDown",
+   "writesMulti": [
+    "exportPanelOpen",
+    "followTargetId"
+   ],
+   "earlyReturnRungs": 2,
+   "mechanism": "early-return-ladder"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 601,
+   "kind": "named-arrow",
+   "name": "togglePathMenu",
+   "writesMulti": [
+    "pathMenuLeft",
+    "presetPanelLeft"
+   ],
+   "earlyReturnRungs": 1,
+   "mechanism": "cross-write+ladders"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 695,
+   "kind": "named-arrow",
+   "name": "togglePresetPanel",
+   "writesMulti": [
+    "pathMenuLeft",
+    "presetPanelLeft"
+   ],
+   "earlyReturnRungs": 1,
+   "mechanism": "cross-write+ladders"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1532,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft",
+    "pathMenuLeft"
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1574,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft",
+    "pathMenuLeft"
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2825,
+   "kind": "named-arrow",
+   "name": "toggleModelLibrary",
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2835,
+   "kind": "named-arrow",
+   "name": "addModelLibraryItem",
+   "writesMulti": [
+    "modelLibraryOpen",
+    "motionPathDraft"
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2842,
+   "kind": "named-arrow",
+   "name": "addLocalModelLibraryItemToScene",
+   "writesMulti": [
+    "modelLibraryOpen",
+    "motionPathDraft"
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3536,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3556,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  }
+ ],
+ "allGroups": [
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 100,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:selectShot",
+     "line": 108,
+     "arg": "selectShot(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 451,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:closeSession",
+     "line": 456,
+     "arg": "closeSession(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 473,
+   "kind": "named-arrow",
+   "name": "handleKeyDown",
+   "writesMulti": [
+    "exportPanelOpen",
+    "followTargetId"
+   ],
+   "members": [
+    {
+     "state": "exportPanelOpen",
+     "form": "setter",
+     "line": 558,
+     "arg": "setExportPanelOpen(",
+     "fields": [
+      "exportPanelOpen"
+     ]
+    },
+    {
+     "state": "followTargetId",
+     "form": "objectKey",
+     "line": 565,
+     "arg": "followTargetId:",
+     "fields": [
+      "followTargetId"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 2,
+   "mechanism": "early-return-ladder"
+  },
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 622,
+   "kind": "named-arrow",
+   "name": "toggleExportPanel",
+   "writesMulti": [
+    "exportPanelOpen"
+   ],
+   "members": [
+    {
+     "state": "exportPanelOpen",
+     "form": "setter",
+     "line": 624,
+     "arg": "setExportPanelOpen(",
+     "fields": [
+      "exportPanelOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 1,
+   "mechanism": "early-return-ladder"
+  },
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 1405,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "followTargetId"
+   ],
+   "members": [
+    {
+     "state": "followTargetId",
+     "form": "objectKey",
+     "line": 1407,
+     "arg": "followTargetId:",
+     "fields": [
+      "followTargetId"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorIconRail.tsx",
+   "startLine": 345,
+   "kind": "named-arrow",
+   "name": "select",
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:addDirectorCamera",
+     "line": 351,
+     "arg": "addDirectorCamera(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 2,
+   "mechanism": "early-return-ladder"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 403,
+   "kind": "named-arrow",
+   "name": "handleKeyDown",
+   "writesMulti": [
+    "viewerCaptureId"
+   ],
+   "members": [
+    {
+     "state": "viewerCaptureId",
+     "form": "setter",
+     "line": 404,
+     "arg": "setViewerCaptureId(",
+     "fields": [
+      "viewerCaptureId"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 410,
+   "kind": "named-arrow",
+   "name": "closeViewer",
+   "writesMulti": [
+    "viewerCaptureId"
+   ],
+   "members": [
+    {
+     "state": "viewerCaptureId",
+     "form": "setter",
+     "line": 410,
+     "arg": "setViewerCaptureId(",
+     "fields": [
+      "viewerCaptureId"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 578,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "viewerCaptureId"
+   ],
+   "members": [
+    {
+     "state": "viewerCaptureId",
+     "form": "setter",
+     "line": 580,
+     "arg": "setViewerCaptureId(",
+     "fields": [
+      "viewerCaptureId"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 1119,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:selectMotionPathAnchor",
+     "line": 1120,
+     "arg": "selectMotionPathAnchor(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 1535,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:selectShot",
+     "line": 1536,
+     "arg": "selectShot(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 2390,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:selectShot",
+     "line": 2392,
+     "arg": "selectShot(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 2472,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "followTargetId"
+   ],
+   "members": [
+    {
+     "state": "followTargetId",
+     "form": "objectKey",
+     "line": 2473,
+     "arg": "followTargetId:",
+     "fields": [
+      "followTargetId"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 85,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:selectGroup",
+     "line": 85,
+     "arg": "selectGroup(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 142,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:selectGroup",
+     "line": 142,
+     "arg": "selectGroup(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 205,
+   "kind": "named-arrow",
+   "name": "close",
+   "writesMulti": [
+    "contextMenu"
+   ],
+   "members": [
+    {
+     "state": "contextMenu",
+     "form": "setter",
+     "line": 207,
+     "arg": "setContextMenu(",
+     "fields": [
+      "contextMenu"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 209,
+   "kind": "named-arrow",
+   "name": "esc",
+   "writesMulti": [
+    "contextMenu"
+   ],
+   "members": [
+    {
+     "state": "contextMenu",
+     "form": "setter",
+     "line": 210,
+     "arg": "setContextMenu(",
+     "fields": [
+      "contextMenu"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 475,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "contextMenu"
+   ],
+   "members": [
+    {
+     "state": "contextMenu",
+     "form": "setter",
+     "line": 479,
+     "arg": "setContextMenu(",
+     "fields": [
+      "contextMenu"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 570,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:groupSelectedCharacters",
+     "line": 570,
+     "arg": "groupSelectedCharacters(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 617,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "contextMenu"
+   ],
+   "members": [
+    {
+     "state": "contextMenu",
+     "form": "setter",
+     "line": 619,
+     "arg": "setContextMenu(",
+     "fields": [
+      "contextMenu"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 555,
+   "kind": "named-arrow",
+   "name": "close",
+   "writesMulti": [
+    "pathMenuLeft"
+   ],
+   "members": [
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 564,
+     "arg": "setPathMenuLeft(",
+     "fields": [
+      "pathMenuLeft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 566,
+   "kind": "named-arrow",
+   "name": "closeOnEscape",
+   "writesMulti": [
+    "pathMenuLeft"
+   ],
+   "members": [
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 567,
+     "arg": "setPathMenuLeft(",
+     "fields": [
+      "pathMenuLeft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 579,
+   "kind": "named-arrow",
+   "name": "close",
+   "writesMulti": [
+    "presetPanelLeft"
+   ],
+   "members": [
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 588,
+     "arg": "setPresetPanelLeft(",
+     "fields": [
+      "presetPanelLeft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 590,
+   "kind": "named-arrow",
+   "name": "closeOnEscape",
+   "writesMulti": [
+    "presetPanelLeft"
+   ],
+   "members": [
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 591,
+     "arg": "setPresetPanelLeft(",
+     "fields": [
+      "presetPanelLeft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 601,
+   "kind": "named-arrow",
+   "name": "togglePathMenu",
+   "writesMulti": [
+    "pathMenuLeft",
+    "presetPanelLeft"
+   ],
+   "members": [
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 603,
+     "arg": "setPresetPanelLeft(",
+     "fields": [
+      "presetPanelLeft"
+     ]
+    },
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 605,
+     "arg": "setPathMenuLeft(",
+     "fields": [
+      "pathMenuLeft"
+     ]
+    },
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 611,
+     "arg": "setPathMenuLeft(",
+     "fields": [
+      "pathMenuLeft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 1,
+   "mechanism": "cross-write+ladders"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 695,
+   "kind": "named-arrow",
+   "name": "togglePresetPanel",
+   "writesMulti": [
+    "pathMenuLeft",
+    "presetPanelLeft"
+   ],
+   "members": [
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 698,
+     "arg": "setPresetPanelLeft(",
+     "fields": [
+      "presetPanelLeft"
+     ]
+    },
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 704,
+     "arg": "setPathMenuLeft(",
+     "fields": [
+      "pathMenuLeft"
+     ]
+    },
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 705,
+     "arg": "setPresetPanelLeft(",
+     "fields": [
+      "presetPanelLeft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 1,
+   "mechanism": "cross-write+ladders"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1053,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:createTrackForSelectedObject",
+     "line": 1053,
+     "arg": "createTrackForSelectedObject(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1389,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "presetPanelLeft"
+   ],
+   "members": [
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 1389,
+     "arg": "setPresetPanelLeft(",
+     "fields": [
+      "presetPanelLeft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1425,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:applyCameraMotionPreset",
+     "line": 1436,
+     "arg": "applyCameraMotionPreset(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1532,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft",
+    "pathMenuLeft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:startMotionPathDrawing",
+     "line": 1533,
+     "arg": "startMotionPathDrawing(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    },
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 1543,
+     "arg": "setPathMenuLeft(",
+     "fields": [
+      "pathMenuLeft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1574,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft",
+    "pathMenuLeft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:createMotionPath",
+     "line": 1575,
+     "arg": "createMotionPath(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    },
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 1576,
+     "arg": "setPathMenuLeft(",
+     "fields": [
+      "pathMenuLeft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 1451,
+   "kind": "named-arrow",
+   "name": "content",
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:selectMotionPathAnchor",
+     "line": 1453,
+     "arg": "selectMotionPathAnchor(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 1632,
+   "kind": "named-arrow",
+   "name": "handlePointerCancel",
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:cancelMotionPathDrawing",
+     "line": 1635,
+     "arg": "cancelMotionPathDrawing(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 1678,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:appendMotionPathDraftAnchor",
+     "line": 1686,
+     "arg": "appendMotionPathDraftAnchor(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 1688,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:appendMotionPathDraftAnchor",
+     "line": 1692,
+     "arg": "appendMotionPathDraftAnchor(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    },
+    {
+     "state": "motionPathDraft",
+     "form": "action:updateMotionPathDraftLastHandle",
+     "line": 1694,
+     "arg": "updateMotionPathDraftLastHandle(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 1697,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:finishMotionPathDrawing",
+     "line": 1709,
+     "arg": "finishMotionPathDrawing(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 1713,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:cancelMotionPathDrawing",
+     "line": 1724,
+     "arg": "cancelMotionPathDrawing(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2699,
+   "kind": "named-arrow",
+   "name": "handleKeyDown",
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:cancelMotionPathDrawing",
+     "line": 2704,
+     "arg": "cancelMotionPathDrawing(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    },
+    {
+     "state": "motionPathDraft",
+     "form": "action:finishMotionPathDrawing",
+     "line": 2707,
+     "arg": "finishMotionPathDrawing(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2735,
+   "kind": "named-arrow",
+   "name": "closeOnOutsidePointerDown",
+   "writesMulti": [
+    "modelLibraryOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 2739,
+     "arg": "setModelLibraryOpen(",
+     "fields": [
+      "modelLibraryOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2741,
+   "kind": "named-arrow",
+   "name": "closeOnEscape",
+   "writesMulti": [
+    "modelLibraryOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 2745,
+     "arg": "setModelLibraryOpen(",
+     "fields": [
+      "modelLibraryOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2816,
+   "kind": "named-arrow",
+   "name": "addCrowd",
+   "writesMulti": [
+    "crowdPanelOpen"
+   ],
+   "members": [
+    {
+     "state": "crowdPanelOpen",
+     "form": "setter",
+     "line": 2822,
+     "arg": "setCrowdPanelOpen(",
+     "fields": [
+      "crowdPanelOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2825,
+   "kind": "named-arrow",
+   "name": "toggleModelLibrary",
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "members": [
+    {
+     "state": "phoneVcamOpen",
+     "form": "setter",
+     "line": 2826,
+     "arg": "setPhoneVcamOpen(",
+     "fields": [
+      "phoneVcamOpen"
+     ]
+    },
+    {
+     "state": "crowdPanelOpen",
+     "form": "setter",
+     "line": 2827,
+     "arg": "setCrowdPanelOpen(",
+     "fields": [
+      "crowdPanelOpen"
+     ]
+    },
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 2828,
+     "arg": "setModelLibraryOpen(",
+     "fields": [
+      "modelLibraryOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2835,
+   "kind": "named-arrow",
+   "name": "addModelLibraryItem",
+   "writesMulti": [
+    "modelLibraryOpen",
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:addModelLibraryObject",
+     "line": 2836,
+     "arg": "addModelLibraryObject(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    },
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 2837,
+     "arg": "setModelLibraryOpen(",
+     "fields": [
+      "modelLibraryOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2842,
+   "kind": "named-arrow",
+   "name": "addLocalModelLibraryItemToScene",
+   "writesMulti": [
+    "modelLibraryOpen",
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:addModelLibraryObject",
+     "line": 2843,
+     "arg": "addModelLibraryObject(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    },
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 2844,
+     "arg": "setModelLibraryOpen(",
+     "fields": [
+      "modelLibraryOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3054,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:finishMotionPathDrawing",
+     "line": 3055,
+     "arg": "finishMotionPathDrawing(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3068,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "motionPathDraft"
+   ],
+   "members": [
+    {
+     "state": "motionPathDraft",
+     "form": "action:cancelMotionPathDrawing",
+     "line": 3069,
+     "arg": "cancelMotionPathDrawing(",
+     "fields": [
+      "motionPathDraft"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3081,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "phoneVcamOpen"
+   ],
+   "members": [
+    {
+     "state": "phoneVcamOpen",
+     "form": "setter",
+     "line": 3081,
+     "arg": "setPhoneVcamOpen(",
+     "fields": [
+      "phoneVcamOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3144,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "crowdPanelOpen"
+   ],
+   "members": [
+    {
+     "state": "crowdPanelOpen",
+     "form": "setter",
+     "line": 3144,
+     "arg": "setCrowdPanelOpen(",
+     "fields": [
+      "crowdPanelOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3184,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "modelLibraryOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 3184,
+     "arg": "setModelLibraryOpen(",
+     "fields": [
+      "modelLibraryOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3536,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 3538,
+     "arg": "setModelLibraryOpen(",
+     "fields": [
+      "modelLibraryOpen"
+     ]
+    },
+    {
+     "state": "crowdPanelOpen",
+     "form": "setter",
+     "line": 3539,
+     "arg": "setCrowdPanelOpen(",
+     "fields": [
+      "crowdPanelOpen"
+     ]
+    },
+    {
+     "state": "phoneVcamOpen",
+     "form": "setter",
+     "line": 3540,
+     "arg": "setPhoneVcamOpen(",
+     "fields": [
+      "phoneVcamOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3556,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 3557,
+     "arg": "setModelLibraryOpen(",
+     "fields": [
+      "modelLibraryOpen"
+     ]
+    },
+    {
+     "state": "phoneVcamOpen",
+     "form": "setter",
+     "line": 3558,
+     "arg": "setPhoneVcamOpen(",
+     "fields": [
+      "phoneVcamOpen"
+     ]
+    },
+    {
+     "state": "crowdPanelOpen",
+     "form": "setter",
+     "line": 3559,
+     "arg": "setCrowdPanelOpen(",
+     "fields": [
+      "crowdPanelOpen"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/app/page.tsx",
+   "startLine": 479,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "activeDirectorNodeId"
+   ],
+   "members": [
+    {
+     "state": "activeDirectorNodeId",
+     "form": "action:closeDirectorDesk",
+     "line": 488,
+     "arg": "closeDirectorDesk(",
+     "fields": [
+      "activeDirectorNodeId"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/app/page.tsx",
+   "startLine": 504,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "activeDirectorNodeId"
+   ],
+   "members": [
+    {
+     "state": "activeDirectorNodeId",
+     "form": "action:closeDirectorDesk",
+     "line": 540,
+     "arg": "closeDirectorDesk(",
+     "fields": [
+      "activeDirectorNodeId"
+     ]
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  }
+ ],
+ "fixesVs783": [
+  "✗第①道 prop 名当状态名 ⟹ 改用 785 更正过的 `phoneVcamOpen`",
+  "✗第②道 内联 JSX 箭头不被包裹函数正则匹配 ⟹ 改用**括号链 + `=>` 判定**（783 把 `:3538` 误归到 `openLocalModelLibraryImport:2859`）",
+  "✗第③道 状态集按文件切 ⟹ 改成**全域** 11 个门状态",
+  "＋ 补一条**简写箭头体**路径（`() => set({...})` 没有块体）",
+  "★★ **第④个缺陷（batch 787）**：**store action 调用**也是写入，而 786 只认 `set<S>(` 与对象字面量键 ⟹ `DirectorTimeline.tsx:1533` 的 `startMotionPathDrawing(tool);` 隐形"
+ ],
+ "method": "★ **只采集**：写入点 → **括号链**定函数体（`{` 前是不是 `=>`） ⟹ 天然认得出 JSX 内联箭头；简写箭头体单走一条路。★ 交叉写入 = **同一个函数体**里写了 ≥2 个门状态。",
+ "notCovered": [
+  "「两个状态能不能同时活着」是**可达性**，静态不可判 ⟹ 运行时",
+  "本普查**只采集**，行锚定的结论由汇编器下"
+ ]
+}
