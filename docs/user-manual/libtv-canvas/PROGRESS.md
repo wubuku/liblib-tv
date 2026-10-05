@@ -13906,3 +13906,85 @@ if (隐1b.有) { 点它 }
 四道闸门全绿：manifest **260/260**、gate-a（18 tasks, 24 Markdown, 260 images）、
 build dist 22 页 260 图、site-check 7 页干净。
 
+
+## §155 Batch FX 收尾事故 —— 我的守卫为什么没拦住别人的文件
+
+### 155.1 发生了什么
+
+FX 提交 `c0e308ef` 的内容里，**混进了 9 个不属于本手册的文件**：
+
+```
+docs/user-manual/jimeng-canvas/10-tasks/navigate-canvas.md
+docs/user-manual/jimeng-canvas/30-concepts.md
+docs/user-manual/jimeng-canvas/PROGRESS.md
+docs/user-manual/jimeng-canvas/SOURCE_OBSERVATIONS.md
+scripts/jimeng-b205a.mjs … jimeng-b205f.mjs（共 6 个）
+```
+
+那是**另一位开发者**正在写的东西（另一本手册 `jimeng-canvas` + 另一批脚本）。
+
+### 155.2 ⭐⭐ 守卫为什么没拦住
+
+我一直用的这套守卫是：
+
+```bash
+git add docs/user-manual/libtv-canvas
+N=$(git diff --cached --name-only | wc -l)
+OTHER=$(git diff --cached --name-only | grep -cv '^docs/user-manual/libtv-canvas/')
+if [ "$OTHER" != "0" ]; then echo "!! 中止"; else commit; fi
+```
+
+⛔ **它检查的是「index 里有没有别人的文件」，而这次 index 里正好有** ——
+那 9 个文件在我 `git add` **之前**就已经被那位开发者 `git add` 过（staged 状态）。
+
+⭐⭐⭐ 关键点：**`git commit` 提交的是整个 index，不只是我刚 add 的那批。**
+所以「我 add 完再查 index」这个时序是**错的** ——
+查出来的 `OTHER≠0` 本该拦住我，但我的守卫在**上一次**运行时 index 是干净的，
+这次运行……
+
+> ⛔ 更正：我这次的守卫输出是「index 10 个，非我的 0 个」——
+> **它当时确实只看到 10 个、全是我的。**
+> 那 9 个文件是在**守卫跑完、commit 执行之前**被那位开发者 add 进去的。
+> ⇒ ⭐⭐ **这不是「守卫写错了」，是「守卫和 commit 之间存在一个竞态窗口」。**
+
+⭐ 这是**共享仓库里做定向提交的根本性难题**：
+`git add` → 检查 → `commit` 三步之间，任何人随时可以 `git add` 自己的文件。
+
+### 155.3 为什么不做回滚
+
+⛔ **绝对不能**。理由三条：
+
+1. `revert` 或 `reset` 会把**那位开发者的内容从历史里摘掉**，
+   而他们本地工作区还带着这些文件 ⇒ 下次 pull 会冲突，
+   **等于干扰别人的工作**，违反「绝对不能干扰其他开发者」。
+2. 规程禁止 `--amend`，也禁止任何会重写已 push 历史的操作。
+3. ⭐ **内容没有被破坏**：`git diff HEAD` 对那 9 个文件**为空** ——
+   它们的内容与那位开发者本地完全一致，一个字节都没被我改过。
+   ⇒ 唯一的后果是**归属错了**（记在了我的 commit message 下），
+   而内容是安全的。
+
+### 155.4 ⭐⭐ 正确的做法（下批起生效）
+
+别人已经在 `3a66649c` 记了同一条教训（**「别人的 git commit 会把你已暂存的文件一起带走」**），
+两边的结论一致。综合起来，本手册采取三条：
+
+| # | 做法 | 理由 |
+|---|---|---|
+| 1 | ⭐ **提交前 `git diff --cached --name-only` 重跑一次，且紧挨着 commit** | 把竞态窗口压到最小 |
+| 2 | ⭐ **commit 后立刻 `git show --name-only HEAD` 自查** | 已经晚了，但能立刻发现并补救 |
+| 3 | ⭐⭐ **改用 `git commit -- <路径>`？—— ⛔ 明确禁止** | 它看似能限定范围，但**在有 pre-commit 钩子且钩子失败时会把暂存区一起清空**，那是更严重的事故 |
+
+> ⭐⭐⭐ **最要紧的一句**：这个窗口**没法彻底关掉** ——
+> 共享仓库里只要别人还在 `git add`，就随时可能撞上。
+> ⇒ 真正可靠的不是「检查得更勤」，而是
+> ⭐ **「发现混入时绝不回滚」** ——
+> 因为**回滚造成的伤害远大于归属错误**。
+
+### 155.5 对本手册内容的影响
+
+⛔ **零**。`c0e308ef` 里属于本手册的 6 个文件
+（`organize-canvas.md` / `PROGRESS.md` / `M-393` / `manifest.yml` /
+`batchFX1-2` / `make-m393.py` / `manifest-sync.py`）
+内容与预期完全一致，四道闸门当时全绿。
+出问题的只是 commit message 把别人的文件也列了进去。
+
