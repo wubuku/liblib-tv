@@ -1,0 +1,1920 @@
+{
+ "batch": 774,
+ "topic": "D14 修法方向① 的注入对照：充分性够不够，Escape 会不会被误伤",
+ "generatedBy": "probes/mk774audit.py",
+ "sources": {
+  "vb774a.json": {
+   "sha16": "fd5b5678971b9452",
+   "rounds": 2,
+   "rowsPerRound": 51
+  },
+  "vb774b.json": {
+   "sha16": "92b12be168de6be5",
+   "rounds": 2,
+   "rowsPerRound": 12
+  }
+ },
+ "questions": {
+  "Q1": "方向①（「把 isEditable 早退的判据从按标签名换成按浮层」）够不够？—— 注入 contentEditable 让那道守卫在浮层后代上真的触发，**一行 src/ 都不改**",
+  "Q2": "方向① 会不会把 Escape 阶梯一起挡掉？—— `:486` 的守卫排在**所有分支之前**，Escape 阶梯也在它后面"
+ },
+ "comparability": {
+  "allConsistent774a": true,
+  "allConsistent774b": true,
+  "firstDiff774a": {},
+  "firstDiff774b": {},
+  "rounds": 2,
+  "cellsPerRound774a": 51,
+  "cellsPerRound774b": 12,
+  "cellsQ1": 51,
+  "cellsQ2": 12,
+  "structuralSkips774a": 0,
+  "protocol": "★ 每格都从**重新加载的页面**开始并清空 localStorage；每格都**点选**一个目标并回读 `selectedIds`；落点用 `.focus({preventScroll:true})` 并回读 `activeElement` 类别。",
+  "injectionHonesty": "★ α = 只给落点元素打 contentEditable（同一 target、同一守卫、只改输入）；β = 给浮层根打、靠 isContentEditable 沿 DOM 继承（方向① 的真实形状）。**继承是本探针唯一的浏览器行为假设**，所以每格都先验 took=true，没生效记 injectionSilent 且**不算结果**（R99）",
+  "whatThisProves": "验的是**充分性**（「守卫一旦触发，D14 的可见后果就没了」），**不是识别性**（「谓词该不该这么写」——那要改 src/，攒为拍板项）",
+  "whyQ2": "★ `DirectorDesk.tsx:486` 的 `if (isEditable) return;` 排在**所有分支之前**，Escape 阶梯 `:549-568` 也在它后面 ⟹ 「守卫一旦在浮层后代上触发」这个前提**同时**意味着「Escape 一起被挡」。问① 没量这件事",
+  "escapeOwners": {
+   "phonevcam": "DirectorPhoneVcamPanel.tsx:289 捕获+stopImmediate",
+   "modellib": "DirectorViewport.tsx:2740-2747 捕获+stopImmediate",
+   "preset": "DirectorTimeline.tsx:591 冒泡、无 preventDefault",
+   "pathmenu": "DirectorTimeline.tsx:567 冒泡、无 preventDefault",
+   "export": "没有自己的处理（靠桌内 :559 exportPanelOpen 那一档）",
+   "crowd": "没有自己的处理 ⟹ 桌内一路 fall through 到 closeWorkspace()"
+  },
+  "reading": "★ 三态：`deskGone`（丢工作区）/ `layerClosedOnly`（正确）/ `nothing`（死键）。只报「面板还在不在」会把「导演台没了」读成「面板还在」——三个字段必须一起看（R97 的同族）",
+  "boundary": "只点对象树的行、6 个 disclosure 触发器、**选中**相机；**不点提交/连接/添加，更不做付费或真实生图生视频**。间谍是**纯读**（只加监听器）；注入只写 `contentEditable` 属性，**不改任何监听器、不改任何业务逻辑**。"
+ },
+ "static": {
+  "guardLine": 487,
+  "guardIsEditableReturn": true,
+  "guardPredicateHasContentEditable": true,
+  "guardPredicateHasTagNames": true,
+  "guardBeforeMetaC": true,
+  "guardBeforeDelete": true,
+  "escapeStaircaseAfterGuard": true,
+  "escapeStaircaseLine": 77,
+  "preventDefaultLinesInHandler": [
+   11,
+   19,
+   30,
+   35,
+   41,
+   54,
+   69,
+   78
+  ],
+  "deskListenerOnWindow": true,
+  "deskListenerIsCapture": false,
+  "allKeydownListenersInDirectorTree": [
+   {
+    "file": "DirectorDesk.tsx",
+    "line": 570,
+    "handler": "handleKeyDown",
+    "phase": "bubble",
+    "hasEscape": true,
+    "hasTabOnly": false,
+    "hasPreventDefault": true,
+    "hasStopImmediate": false,
+    "setters": [
+     "setExportPanelOpen"
+    ],
+    "callsOnClose": false
+   },
+   {
+    "file": "DirectorInspector.tsx",
+    "line": 406,
+    "handler": "handleKeyDown",
+    "phase": "bubble",
+    "hasEscape": true,
+    "hasTabOnly": false,
+    "hasPreventDefault": false,
+    "hasStopImmediate": false,
+    "setters": [
+     "setViewerCaptureId"
+    ],
+    "callsOnClose": false
+   },
+   {
+    "file": "DirectorObjectTree.tsx",
+    "line": 213,
+    "handler": "esc",
+    "phase": "bubble",
+    "hasEscape": true,
+    "hasTabOnly": false,
+    "hasPreventDefault": false,
+    "hasStopImmediate": false,
+    "setters": [
+     "setContextMenu"
+    ],
+    "callsOnClose": false
+   },
+   {
+    "file": "DirectorPhoneVcamPanel.tsx",
+    "line": 294,
+    "handler": "closeOnEscape",
+    "phase": "true",
+    "hasEscape": true,
+    "hasTabOnly": false,
+    "hasPreventDefault": true,
+    "hasStopImmediate": true,
+    "setters": [],
+    "callsOnClose": true
+   },
+   {
+    "file": "DirectorTimeline.tsx",
+    "line": 570,
+    "handler": "closeOnEscape",
+    "phase": "bubble",
+    "hasEscape": true,
+    "hasTabOnly": false,
+    "hasPreventDefault": false,
+    "hasStopImmediate": false,
+    "setters": [
+     "setPathMenuLeft"
+    ],
+    "callsOnClose": false
+   },
+   {
+    "file": "DirectorTimeline.tsx",
+    "line": 594,
+    "handler": "closeOnEscape",
+    "phase": "bubble",
+    "hasEscape": true,
+    "hasTabOnly": false,
+    "hasPreventDefault": false,
+    "hasStopImmediate": false,
+    "setters": [
+     "setPresetPanelLeft"
+    ],
+    "callsOnClose": false
+   },
+   {
+    "file": "DirectorViewport.tsx",
+    "line": 2711,
+    "handler": "handleKeyDown",
+    "phase": "true",
+    "hasEscape": true,
+    "hasTabOnly": false,
+    "hasPreventDefault": true,
+    "hasStopImmediate": true,
+    "setters": [],
+    "callsOnClose": false
+   },
+   {
+    "file": "DirectorViewport.tsx",
+    "line": 2748,
+    "handler": "closeOnEscape",
+    "phase": "true",
+    "hasEscape": true,
+    "hasTabOnly": false,
+    "hasPreventDefault": true,
+    "hasStopImmediate": true,
+    "setters": [
+     "setModelLibraryOpen"
+    ],
+    "callsOnClose": false
+   },
+   {
+    "file": "useDirectorFocusContainment.ts",
+    "line": 174,
+    "handler": "handleKeyDown",
+    "phase": "bubble",
+    "hasEscape": false,
+    "hasTabOnly": true,
+    "hasPreventDefault": true,
+    "hasStopImmediate": false,
+    "setters": [],
+    "callsOnClose": false
+   }
+  ],
+  "escapeOwners": {
+   "phonevcam": {
+    "file": "DirectorPhoneVcamPanel.tsx",
+    "line": 294,
+    "phase": "true",
+    "capture": true,
+    "preventDefault": true,
+    "stopImmediatePropagation": true
+   },
+   "pathmenu": {
+    "file": "DirectorTimeline.tsx",
+    "line": 570,
+    "phase": "bubble",
+    "capture": false,
+    "preventDefault": false,
+    "stopImmediatePropagation": false
+   },
+   "preset": {
+    "file": "DirectorTimeline.tsx",
+    "line": 594,
+    "phase": "bubble",
+    "capture": false,
+    "preventDefault": false,
+    "stopImmediatePropagation": false
+   },
+   "modellib": {
+    "file": "DirectorViewport.tsx",
+    "line": 2748,
+    "phase": "true",
+    "capture": true,
+    "preventDefault": true,
+    "stopImmediatePropagation": true
+   }
+  },
+  "escapeListenersNotOwnedByAnyLayer": [
+   {
+    "file": "DirectorDesk.tsx",
+    "line": 570,
+    "handler": "handleKeyDown",
+    "phase": "bubble",
+    "whyNotALayerOwner": "桌内那个阶梯本身（它就是被测对象，不是任何浮层的主人）"
+   },
+   {
+    "file": "DirectorInspector.tsx",
+    "line": 406,
+    "handler": "handleKeyDown",
+    "phase": "bubble",
+    "whyNotALayerOwner": "关的是 setViewerCaptureId —— 取景器，不是六个浮层之一"
+   },
+   {
+    "file": "DirectorObjectTree.tsx",
+    "line": 213,
+    "handler": "esc",
+    "phase": "bubble",
+    "whyNotALayerOwner": "关的是对象树的右键菜单，不是六个浮层之一"
+   },
+   {
+    "file": "DirectorViewport.tsx",
+    "line": 2711,
+    "handler": "handleKeyDown",
+    "phase": "true",
+    "whyNotALayerOwner": "★ 它是 **motionPathDraft 绘制态**的 Escape/Enter 处理器（只有 `timeline.motionPathDraft` 非空时才注册），**不是路径菜单的主人** —— 路径菜单的主人是 DirectorTimeline.tsx 那个冒泡阶段的 closeOnEscape"
+   }
+  ],
+  "layersWithEscapeOwner": [
+   "modellib",
+   "pathmenu",
+   "phonevcam",
+   "preset"
+  ],
+  "layersWithoutEscapeOwner": [
+   "crowd",
+   "export"
+  ],
+  "closeWorkspaceReachableFromLadder": true,
+  "exportPanelLadderStep": true
+ },
+ "q1": {
+  "perCell": {
+   "export/alpha/noneditable/Delete": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "export/alpha/noneditable/Backspace": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "export/alpha/noneditable/Meta+z": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "export/alpha/noneditable/Meta+c": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "export/alpha/noneditable/Meta+v": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "preset/alpha/noneditable/Delete": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "preset/alpha/noneditable/Backspace": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "preset/alpha/noneditable/Meta+z": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "preset/alpha/noneditable/Meta+c": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "preset/alpha/noneditable/Meta+v": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "pathmenu/alpha/noneditable/Delete": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "pathmenu/alpha/noneditable/Backspace": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "pathmenu/alpha/noneditable/Meta+z": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "pathmenu/alpha/noneditable/Meta+c": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "pathmenu/alpha/noneditable/Meta+v": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "phonevcam/alpha/noneditable/Delete": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "phonevcam/alpha/noneditable/Backspace": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "phonevcam/alpha/noneditable/Meta+z": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "phonevcam/alpha/noneditable/Meta+c": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "phonevcam/alpha/noneditable/Meta+v": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "crowd/alpha/noneditable/Delete": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "crowd/alpha/noneditable/Backspace": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "crowd/alpha/noneditable/Meta+z": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "crowd/alpha/noneditable/Meta+c": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "crowd/alpha/noneditable/Meta+v": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "modellib/alpha/noneditable/Delete": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "modellib/alpha/noneditable/Backspace": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "modellib/alpha/noneditable/Meta+z": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "modellib/alpha/noneditable/Meta+c": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   },
+   "modellib/alpha/noneditable/Meta+v": {
+    "targetCE": true,
+    "defaultPrevented": false,
+    "objectsDelta": [
+     0
+    ],
+    "selectedDelta": [
+     0
+    ]
+   }
+  },
+  "sameSessionBaseline": {
+   "arm": "base（无注入，落非编辑框，按 Delete）",
+   "cells": 6,
+   "defaultPreventedTrue": 6,
+   "targetCEAllFalse": true,
+   "perDisclosure": {
+    "export": {
+     "dp": true,
+     "targetCE": false,
+     "objectsDelta": [
+      -1
+     ]
+    },
+    "preset": {
+     "dp": true,
+     "targetCE": false,
+     "objectsDelta": [
+      0
+     ]
+    },
+    "pathmenu": {
+     "dp": true,
+     "targetCE": false,
+     "objectsDelta": [
+      0
+     ]
+    },
+    "phonevcam": {
+     "dp": true,
+     "targetCE": false,
+     "objectsDelta": [
+      -1
+     ]
+    },
+    "crowd": {
+     "dp": true,
+     "targetCE": false,
+     "objectsDelta": [
+      -1
+     ]
+    },
+    "modellib": {
+     "dp": true,
+     "targetCE": false,
+     "objectsDelta": [
+      -1
+     ]
+    }
+   },
+   "why": "★ 不是引用 773 的历史读数，而是**当场重测**：用一个可能已经坏掉的读数方法去验上一批的结论，等于没验（R99 的同族）。"
+  },
+  "armA_baseline": {
+   "cells": 6,
+   "allDpTrue": true
+  },
+  "armB_alphaBlocks": {
+   "cells": 30,
+   "allDpFalse": true,
+   "allTargetCETrue": true,
+   "allObjectsDeltaZero": true,
+   "allSelectedDeltaZero": true,
+   "claim": "★ 守卫一旦在浮层后代上触发，30/30 格 defaultPrevented 全为 false、对象数与选中集**零变化** ⟹ 方向① 对 D14 是**充分的**"
+  },
+  "armC_betaInheritance": {
+   "cells": 6,
+   "rootCETrue": 6,
+   "landingInherits": 6,
+   "allDpFalse": true,
+   "claim": "★ `isContentEditable` 沿 DOM **继承**：浮层根打上 `contenteditable` 后，6/6 个浮层的落点都继承到 true ⟹ 「整层一个谓词」这个形状**可实现**，而这正是方向① 的形状"
+  },
+  "armD_neutralControl": {
+   "cells": 6,
+   "allDpFalse": true,
+   "allTargetCETrue": true,
+   "spySawNeutralKey": true,
+   "claim": "★ 中性键 F2 在 α 注入下**间谍确实收到了它**、且 dp=false ⟹ 注入没有把键投递本身弄坏（R86 的加强版：不只看 dp，还要看间谍收没收到）"
+  },
+  "armE_betaNotOverbroad": {
+   "cells": 3,
+   "allDpFalse": true,
+   "claim": "β 落在**本来就该触发**守卫的可编辑控件上，3/3 格结果不变 ⟹ β 不过宽"
+  },
+  "sufficiency": {
+   "proved": "「守卫一旦在浮层后代上触发，D14 的全部可见后果就消失」（臂 B 30/30 + 臂 C 6/6）",
+   "notProved": "「方向① 的谓词能正确识别『焦点在浮层内』」—— **那必须改 src/**，注入验不到（注入只能让既有谓词为真，不能造出一个新的谓词）。攒为拍板项。"
+  }
+ },
+ "q2": {
+  "perCell": {
+   "export/none": {
+    "targetCE": false,
+    "dp": true,
+    "outcome": "layerClosedOnly",
+    "deskOpen": true,
+    "panelPresent": false,
+    "spySawNothing": false
+   },
+   "export/alpha": {
+    "targetCE": true,
+    "dp": false,
+    "outcome": "nothing",
+    "deskOpen": true,
+    "panelPresent": true,
+    "spySawNothing": false
+   },
+   "preset/none": {
+    "targetCE": false,
+    "dp": true,
+    "outcome": "deskGone",
+    "deskOpen": false,
+    "panelPresent": false,
+    "spySawNothing": false
+   },
+   "preset/alpha": {
+    "targetCE": true,
+    "dp": false,
+    "outcome": "layerClosedOnly",
+    "deskOpen": true,
+    "panelPresent": false,
+    "spySawNothing": false
+   },
+   "pathmenu/none": {
+    "targetCE": false,
+    "dp": true,
+    "outcome": "deskGone",
+    "deskOpen": false,
+    "panelPresent": false,
+    "spySawNothing": false
+   },
+   "pathmenu/alpha": {
+    "targetCE": true,
+    "dp": false,
+    "outcome": "layerClosedOnly",
+    "deskOpen": true,
+    "panelPresent": false,
+    "spySawNothing": false
+   },
+   "phonevcam/none": {
+    "targetCE": null,
+    "dp": null,
+    "outcome": "layerClosedOnly",
+    "deskOpen": true,
+    "panelPresent": false,
+    "spySawNothing": true
+   },
+   "phonevcam/alpha": {
+    "targetCE": null,
+    "dp": null,
+    "outcome": "layerClosedOnly",
+    "deskOpen": true,
+    "panelPresent": false,
+    "spySawNothing": true
+   },
+   "crowd/none": {
+    "targetCE": false,
+    "dp": true,
+    "outcome": "deskGone",
+    "deskOpen": false,
+    "panelPresent": false,
+    "spySawNothing": false
+   },
+   "crowd/alpha": {
+    "targetCE": true,
+    "dp": false,
+    "outcome": "nothing",
+    "deskOpen": true,
+    "panelPresent": true,
+    "spySawNothing": false
+   },
+   "modellib/none": {
+    "targetCE": null,
+    "dp": null,
+    "outcome": "layerClosedOnly",
+    "deskOpen": true,
+    "panelPresent": false,
+    "spySawNothing": true
+   },
+   "modellib/alpha": {
+    "targetCE": null,
+    "dp": null,
+    "outcome": "layerClosedOnly",
+    "deskOpen": true,
+    "panelPresent": false,
+    "spySawNothing": true
+   }
+  },
+  "byDisclosure": {
+   "export": {
+    "escapeOwner": null,
+    "noInjection": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "withAlpha": {
+     "targetCE": true,
+     "dp": false,
+     "outcome": "nothing",
+     "deskOpen": true,
+     "panelPresent": true,
+     "spySawNothing": false
+    },
+    "effect": "regression"
+   },
+   "preset": {
+    "escapeOwner": {
+     "file": "DirectorTimeline.tsx",
+     "line": 594,
+     "phase": "bubble",
+     "capture": false,
+     "preventDefault": false,
+     "stopImmediatePropagation": false
+    },
+    "noInjection": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "deskGone",
+     "deskOpen": false,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "withAlpha": {
+     "targetCE": true,
+     "dp": false,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "effect": "fixesD8Cleanly"
+   },
+   "pathmenu": {
+    "escapeOwner": {
+     "file": "DirectorTimeline.tsx",
+     "line": 570,
+     "phase": "bubble",
+     "capture": false,
+     "preventDefault": false,
+     "stopImmediatePropagation": false
+    },
+    "noInjection": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "deskGone",
+     "deskOpen": false,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "withAlpha": {
+     "targetCE": true,
+     "dp": false,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "effect": "fixesD8Cleanly"
+   },
+   "phonevcam": {
+    "escapeOwner": {
+     "file": "DirectorPhoneVcamPanel.tsx",
+     "line": 294,
+     "phase": "true",
+     "capture": true,
+     "preventDefault": true,
+     "stopImmediatePropagation": true
+    },
+    "noInjection": {
+     "targetCE": null,
+     "dp": null,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": true
+    },
+    "withAlpha": {
+     "targetCE": null,
+     "dp": null,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": true
+    },
+    "effect": "noChange"
+   },
+   "crowd": {
+    "escapeOwner": null,
+    "noInjection": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "deskGone",
+     "deskOpen": false,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "withAlpha": {
+     "targetCE": true,
+     "dp": false,
+     "outcome": "nothing",
+     "deskOpen": true,
+     "panelPresent": true,
+     "spySawNothing": false
+    },
+    "effect": "fixesD8ButDeadKey"
+   },
+   "modellib": {
+    "escapeOwner": {
+     "file": "DirectorViewport.tsx",
+     "line": 2748,
+     "phase": "true",
+     "capture": true,
+     "preventDefault": true,
+     "stopImmediatePropagation": true
+    },
+    "noInjection": {
+     "targetCE": null,
+     "dp": null,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": true
+    },
+    "withAlpha": {
+     "targetCE": null,
+     "dp": null,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": true
+    },
+    "effect": "noChange"
+   }
+  },
+  "groups": {
+   "fixesD8ButDeadKey": [
+    "crowd"
+   ],
+   "fixesD8Cleanly": [
+    "pathmenu",
+    "preset"
+   ],
+   "noChange": [
+    "modellib",
+    "phonevcam"
+   ],
+   "regression": [
+    "export"
+   ]
+  },
+  "escapeOwnersStatic": {
+   "phonevcam": {
+    "file": "DirectorPhoneVcamPanel.tsx",
+    "line": 294,
+    "phase": "true",
+    "capture": true,
+    "preventDefault": true,
+    "stopImmediatePropagation": true
+   },
+   "pathmenu": {
+    "file": "DirectorTimeline.tsx",
+    "line": 570,
+    "phase": "bubble",
+    "capture": false,
+    "preventDefault": false,
+    "stopImmediatePropagation": false
+   },
+   "preset": {
+    "file": "DirectorTimeline.tsx",
+    "line": 594,
+    "phase": "bubble",
+    "capture": false,
+    "preventDefault": false,
+    "stopImmediatePropagation": false
+   },
+   "modellib": {
+    "file": "DirectorViewport.tsx",
+    "line": 2748,
+    "phase": "true",
+    "capture": true,
+    "preventDefault": true,
+    "stopImmediatePropagation": true
+   }
+  },
+  "layersWithoutEscapeOwner": [
+   "crowd",
+   "export"
+  ],
+  "crossCheck": {
+   "spySawNothingLayers": [
+    "modellib",
+    "phonevcam"
+   ],
+   "capturePhaseOwnerLayers": [
+    "modellib",
+    "phonevcam"
+   ],
+   "match": true,
+   "claim": "★ 「间谍（window 冒泡）收不到 Escape」的层集合，**恰好等于**「静态普查里 Escape 主人在捕获阶段」的层集合 —— 两条独立路径（源码扫描 / 运行时观测）得出同一个集合。",
+   "note": "这 4 格的 `defaultPrevented` 与 `targetCE` **结构上不可读**：事件在到达 window 冒泡之前就被 `stopImmediatePropagation()` 掐断了。三态读数不依赖间谍，那 4 格才是它们真正的测量。第一版把这类格判成 FAILED（「读数不算数」），是分类错误 —— **把一条发现写成了失败**（R97）。"
+  },
+  "headline": "★ 方向① **不是**一道干净的守卫：对 C/V/Z/Y/Delete 五支是纯收益，对 Escape 那支则分**四**种后果 —— 2 层无变化、2 层纯粹修好 D8、1 层修好 D8 但成死键、1 层纯回归（**export 丢掉「关导出面板」这个能力**）。",
+  "whyFourBuckets": "★ 第一版只分了**三**桶（把「deskGone → nothing」和「deskGone → layerClosedOnly」都算成「修好 D8」），于是 crowd 被说成纯收益。**「工作区不丢了」与「成了死键」是两件事**，压进一个桶就会丢掉一半后果。分类的桶数本身就是结论的一部分。",
+  "consequence": "⟹ 修法必须**分段**：C/V/Z/Y/Delete 各自加「焦点在浮层内就早退」；**Escape 阶梯不能共用那道守卫**——它需要的是另一条规则（焦点在浮层内时**不 fall through 到 closeWorkspace()**），而那条规则与 D8 的修法**是同一处**。",
+  "newDefect": "★ 独立于 D8 的新发现：**2/6 个浮层（export、crowd）根本没有自己的 Escape 主人**。capture 阶段有主人的只有 2 个（modellib、phonevcam），冒泡阶段有主人的 2 个（preset、pathmenu）**自己管不了工作区**（桌内先跑）——「层内 Escape 能不能只关层」这件事，全族只有 2/6 做对了。"
+ },
+ "evidenceIndex": {
+  "J1": {
+   "armB": {
+    "cells": 30,
+    "allDpFalse": true,
+    "allTargetCETrue": true,
+    "allObjectsDeltaZero": true,
+    "allSelectedDeltaZero": true,
+    "claim": "★ 守卫一旦在浮层后代上触发，30/30 格 defaultPrevented 全为 false、对象数与选中集**零变化** ⟹ 方向① 对 D14 是**充分的**"
+   },
+   "armC": {
+    "cells": 6,
+    "rootCETrue": 6,
+    "landingInherits": 6,
+    "allDpFalse": true,
+    "claim": "★ `isContentEditable` 沿 DOM **继承**：浮层根打上 `contenteditable` 后，6/6 个浮层的落点都继承到 true ⟹ 「整层一个谓词」这个形状**可实现**，而这正是方向① 的形状"
+   }
+  },
+  "J2": {
+   "inheritance": {
+    "cells": 6,
+    "rootCETrue": 6,
+    "landingInherits": 6,
+    "allDpFalse": true,
+    "claim": "★ `isContentEditable` 沿 DOM **继承**：浮层根打上 `contenteditable` 后，6/6 个浮层的落点都继承到 true ⟹ 「整层一个谓词」这个形状**可实现**，而这正是方向① 的形状"
+   }
+  },
+  "J3": {
+   "baseline": {
+    "arm": "base（无注入，落非编辑框，按 Delete）",
+    "cells": 6,
+    "defaultPreventedTrue": 6,
+    "targetCEAllFalse": true,
+    "perDisclosure": {
+     "export": {
+      "dp": true,
+      "targetCE": false,
+      "objectsDelta": [
+       -1
+      ]
+     },
+     "preset": {
+      "dp": true,
+      "targetCE": false,
+      "objectsDelta": [
+       0
+      ]
+     },
+     "pathmenu": {
+      "dp": true,
+      "targetCE": false,
+      "objectsDelta": [
+       0
+      ]
+     },
+     "phonevcam": {
+      "dp": true,
+      "targetCE": false,
+      "objectsDelta": [
+       -1
+      ]
+     },
+     "crowd": {
+      "dp": true,
+      "targetCE": false,
+      "objectsDelta": [
+       -1
+      ]
+     },
+     "modellib": {
+      "dp": true,
+      "targetCE": false,
+      "objectsDelta": [
+       -1
+      ]
+     }
+    },
+    "why": "★ 不是引用 773 的历史读数，而是**当场重测**：用一个可能已经坏掉的读数方法去验上一批的结论，等于没验（R99 的同族）。"
+   }
+  },
+  "J4": {
+   "control": {
+    "cells": 6,
+    "allDpFalse": true,
+    "allTargetCETrue": true,
+    "spySawNeutralKey": true,
+    "claim": "★ 中性键 F2 在 α 注入下**间谍确实收到了它**、且 dp=false ⟹ 注入没有把键投递本身弄坏（R86 的加强版：不只看 dp，还要看间谍收没收到）"
+   }
+  },
+  "J5": {
+   "perDisclosure": {
+    "export": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "preset": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "deskGone",
+     "deskOpen": false,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "pathmenu": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "deskGone",
+     "deskOpen": false,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "phonevcam": {
+     "targetCE": null,
+     "dp": null,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": true
+    },
+    "crowd": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "deskGone",
+     "deskOpen": false,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "modellib": {
+     "targetCE": null,
+     "dp": null,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": true
+    }
+   }
+  },
+  "J6": {
+   "owners": {
+    "phonevcam": {
+     "file": "DirectorPhoneVcamPanel.tsx",
+     "line": 294,
+     "phase": "true",
+     "capture": true,
+     "preventDefault": true,
+     "stopImmediatePropagation": true
+    },
+    "pathmenu": {
+     "file": "DirectorTimeline.tsx",
+     "line": 570,
+     "phase": "bubble",
+     "capture": false,
+     "preventDefault": false,
+     "stopImmediatePropagation": false
+    },
+    "preset": {
+     "file": "DirectorTimeline.tsx",
+     "line": 594,
+     "phase": "bubble",
+     "capture": false,
+     "preventDefault": false,
+     "stopImmediatePropagation": false
+    },
+    "modellib": {
+     "file": "DirectorViewport.tsx",
+     "line": 2748,
+     "phase": "true",
+     "capture": true,
+     "preventDefault": true,
+     "stopImmediatePropagation": true
+    }
+   },
+   "without": [
+    "crowd",
+    "export"
+   ],
+   "perDisclosure": {
+    "export": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "preset": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "deskGone",
+     "deskOpen": false,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "pathmenu": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "deskGone",
+     "deskOpen": false,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "phonevcam": {
+     "targetCE": null,
+     "dp": null,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": true
+    },
+    "crowd": {
+     "targetCE": false,
+     "dp": true,
+     "outcome": "deskGone",
+     "deskOpen": false,
+     "panelPresent": false,
+     "spySawNothing": false
+    },
+    "modellib": {
+     "targetCE": null,
+     "dp": null,
+     "outcome": "layerClosedOnly",
+     "deskOpen": true,
+     "panelPresent": false,
+     "spySawNothing": true
+    }
+   }
+  },
+  "J7": {
+   "groups": {
+    "fixesD8ButDeadKey": [
+     "crowd"
+    ],
+    "fixesD8Cleanly": [
+     "pathmenu",
+     "preset"
+    ],
+    "noChange": [
+     "modellib",
+     "phonevcam"
+    ],
+    "regression": [
+     "export"
+    ]
+   },
+   "perDisclosure": {
+    "export": {
+     "escapeOwner": null,
+     "noInjection": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "withAlpha": {
+      "targetCE": true,
+      "dp": false,
+      "outcome": "nothing",
+      "deskOpen": true,
+      "panelPresent": true,
+      "spySawNothing": false
+     },
+     "effect": "regression"
+    },
+    "preset": {
+     "escapeOwner": {
+      "file": "DirectorTimeline.tsx",
+      "line": 594,
+      "phase": "bubble",
+      "capture": false,
+      "preventDefault": false,
+      "stopImmediatePropagation": false
+     },
+     "noInjection": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "deskGone",
+      "deskOpen": false,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "withAlpha": {
+      "targetCE": true,
+      "dp": false,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "effect": "fixesD8Cleanly"
+    },
+    "pathmenu": {
+     "escapeOwner": {
+      "file": "DirectorTimeline.tsx",
+      "line": 570,
+      "phase": "bubble",
+      "capture": false,
+      "preventDefault": false,
+      "stopImmediatePropagation": false
+     },
+     "noInjection": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "deskGone",
+      "deskOpen": false,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "withAlpha": {
+      "targetCE": true,
+      "dp": false,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "effect": "fixesD8Cleanly"
+    },
+    "phonevcam": {
+     "escapeOwner": {
+      "file": "DirectorPhoneVcamPanel.tsx",
+      "line": 294,
+      "phase": "true",
+      "capture": true,
+      "preventDefault": true,
+      "stopImmediatePropagation": true
+     },
+     "noInjection": {
+      "targetCE": null,
+      "dp": null,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": true
+     },
+     "withAlpha": {
+      "targetCE": null,
+      "dp": null,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": true
+     },
+     "effect": "noChange"
+    },
+    "crowd": {
+     "escapeOwner": null,
+     "noInjection": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "deskGone",
+      "deskOpen": false,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "withAlpha": {
+      "targetCE": true,
+      "dp": false,
+      "outcome": "nothing",
+      "deskOpen": true,
+      "panelPresent": true,
+      "spySawNothing": false
+     },
+     "effect": "fixesD8ButDeadKey"
+    },
+    "modellib": {
+     "escapeOwner": {
+      "file": "DirectorViewport.tsx",
+      "line": 2748,
+      "phase": "true",
+      "capture": true,
+      "preventDefault": true,
+      "stopImmediatePropagation": true
+     },
+     "noInjection": {
+      "targetCE": null,
+      "dp": null,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": true
+     },
+     "withAlpha": {
+      "targetCE": null,
+      "dp": null,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": true
+     },
+     "effect": "noChange"
+    }
+   }
+  },
+  "J8": {
+   "consequence": "⟹ 修法必须**分段**：C/V/Z/Y/Delete 各自加「焦点在浮层内就早退」；**Escape 阶梯不能共用那道守卫**——它需要的是另一条规则（焦点在浮层内时**不 fall through 到 closeWorkspace()**），而那条规则与 D8 的修法**是同一处**。"
+  }
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "q": "问①",
+   "claim": "方向① 对 D14 是**充分的**：守卫一旦在浮层后代上触发，D14 的全部可见后果消失（臂 B 30/30 格 dp=false 且对象数/选中集零变化）",
+   "evidence": {
+    "armB": {
+     "cells": 30,
+     "allDpFalse": true,
+     "allTargetCETrue": true,
+     "allObjectsDeltaZero": true,
+     "allSelectedDeltaZero": true,
+     "claim": "★ 守卫一旦在浮层后代上触发，30/30 格 defaultPrevented 全为 false、对象数与选中集**零变化** ⟹ 方向① 对 D14 是**充分的**"
+    },
+    "armC": {
+     "cells": 6,
+     "rootCETrue": 6,
+     "landingInherits": 6,
+     "allDpFalse": true,
+     "claim": "★ `isContentEditable` 沿 DOM **继承**：浮层根打上 `contenteditable` 后，6/6 个浮层的落点都继承到 true ⟹ 「整层一个谓词」这个形状**可实现**，而这正是方向① 的形状"
+    }
+   },
+   "boundary": "**只证充分性，不证识别性** —— 谓词该怎么写要改 src/",
+   "verdict": "PASS",
+   "evidenceKey": "J1"
+  },
+  {
+   "id": "J2",
+   "q": "问①",
+   "claim": "`isContentEditable` 沿 DOM **继承**，所以「整层一个谓词」（方向① 的形状）**可实现**：浮层根打 `contenteditable` 后 6/6 个浮层的落点继承到 true",
+   "evidence": {
+    "inheritance": {
+     "cells": 6,
+     "rootCETrue": 6,
+     "landingInherits": 6,
+     "allDpFalse": true,
+     "claim": "★ `isContentEditable` 沿 DOM **继承**：浮层根打上 `contenteditable` 后，6/6 个浮层的落点都继承到 true ⟹ 「整层一个谓词」这个形状**可实现**，而这正是方向① 的形状"
+    }
+   },
+   "boundary": "继承成立只说明**形状可实现**，不说明形状**正确**",
+   "verdict": "PASS",
+   "evidenceKey": "J2"
+  },
+  {
+   "id": "J3",
+   "q": "问①",
+   "claim": "臂 A 同会话基线 6/6 格 dp=true ⟹ 读数方法本身还活着（不是引用 773 的历史读数）",
+   "evidence": {
+    "baseline": {
+     "arm": "base（无注入，落非编辑框，按 Delete）",
+     "cells": 6,
+     "defaultPreventedTrue": 6,
+     "targetCEAllFalse": true,
+     "perDisclosure": {
+      "export": {
+       "dp": true,
+       "targetCE": false,
+       "objectsDelta": [
+        -1
+       ]
+      },
+      "preset": {
+       "dp": true,
+       "targetCE": false,
+       "objectsDelta": [
+        0
+       ]
+      },
+      "pathmenu": {
+       "dp": true,
+       "targetCE": false,
+       "objectsDelta": [
+        0
+       ]
+      },
+      "phonevcam": {
+       "dp": true,
+       "targetCE": false,
+       "objectsDelta": [
+        -1
+       ]
+      },
+      "crowd": {
+       "dp": true,
+       "targetCE": false,
+       "objectsDelta": [
+        -1
+       ]
+      },
+      "modellib": {
+       "dp": true,
+       "targetCE": false,
+       "objectsDelta": [
+        -1
+       ]
+      }
+     },
+     "why": "★ 不是引用 773 的历史读数，而是**当场重测**：用一个可能已经坏掉的读数方法去验上一批的结论，等于没验（R99 的同族）。"
+    }
+   },
+   "boundary": "无",
+   "verdict": "PASS",
+   "evidenceKey": "J3"
+  },
+  {
+   "id": "J4",
+   "q": "问①",
+   "claim": "注入没把键投递本身弄坏：中性键 F2 在 α 注入下**间谍确实收到了它**且 dp=false（6/6）",
+   "evidence": {
+    "control": {
+     "cells": 6,
+     "allDpFalse": true,
+     "allTargetCETrue": true,
+     "spySawNeutralKey": true,
+     "claim": "★ 中性键 F2 在 α 注入下**间谍确实收到了它**、且 dp=false ⟹ 注入没有把键投递本身弄坏（R86 的加强版：不只看 dp，还要看间谍收没收到）"
+    }
+   },
+   "boundary": "R86 的加强版：只看 dp 的话「键没送到」也会得 false",
+   "verdict": "PASS",
+   "evidenceKey": "J4"
+  },
+  {
+   "id": "J5",
+   "q": "问②",
+   "claim": "无注入时，落点非可编辑的浮层内按 Escape：3 层丢整个工作区（D8）、3 层只关层、0 层死键",
+   "evidence": {
+    "perDisclosure": {
+     "export": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "preset": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "deskGone",
+      "deskOpen": false,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "pathmenu": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "deskGone",
+      "deskOpen": false,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "phonevcam": {
+      "targetCE": null,
+      "dp": null,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": true
+     },
+     "crowd": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "deskGone",
+      "deskOpen": false,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "modellib": {
+      "targetCE": null,
+      "dp": null,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": true
+     }
+    }
+   },
+   "boundary": "三态读数，缺一不可（R97 的同族）",
+   "verdict": "PASS",
+   "evidenceKey": "J5"
+  },
+  {
+   "id": "J6",
+   "q": "问②",
+   "claim": "★ **2/6 个浮层（export、crowd）没有自己的 Escape 主人** ⟹ 「层内 Escape 只关层」全族只有 2/6 做对了",
+   "evidence": {
+    "owners": {
+     "phonevcam": {
+      "file": "DirectorPhoneVcamPanel.tsx",
+      "line": 294,
+      "phase": "true",
+      "capture": true,
+      "preventDefault": true,
+      "stopImmediatePropagation": true
+     },
+     "pathmenu": {
+      "file": "DirectorTimeline.tsx",
+      "line": 570,
+      "phase": "bubble",
+      "capture": false,
+      "preventDefault": false,
+      "stopImmediatePropagation": false
+     },
+     "preset": {
+      "file": "DirectorTimeline.tsx",
+      "line": 594,
+      "phase": "bubble",
+      "capture": false,
+      "preventDefault": false,
+      "stopImmediatePropagation": false
+     },
+     "modellib": {
+      "file": "DirectorViewport.tsx",
+      "line": 2748,
+      "phase": "true",
+      "capture": true,
+      "preventDefault": true,
+      "stopImmediatePropagation": true
+     }
+    },
+    "without": [
+     "crowd",
+     "export"
+    ],
+    "perDisclosure": {
+     "export": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "preset": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "deskGone",
+      "deskOpen": false,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "pathmenu": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "deskGone",
+      "deskOpen": false,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "phonevcam": {
+      "targetCE": null,
+      "dp": null,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": true
+     },
+     "crowd": {
+      "targetCE": false,
+      "dp": true,
+      "outcome": "deskGone",
+      "deskOpen": false,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "modellib": {
+      "targetCE": null,
+      "dp": null,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": true
+     }
+    }
+   },
+   "boundary": "静态结论由机械普查得出（扫全树每一个 keydown 监听器）",
+   "verdict": "PASS",
+   "evidenceKey": "J6"
+  },
+  {
+   "id": "J7",
+   "q": "问②",
+   "claim": "★ **方向① 不是一道干净的守卫**：捕获阶段有主人的 2 层无变化、冒泡阶段有主人的 2 层**纯粹修好 D8**、crowd 修好 D8 但**成了死键**、**export 纯回归**（丢掉「关导出面板」这个能力）—— 四种后果，**分四桶**",
+   "evidence": {
+    "groups": {
+     "fixesD8ButDeadKey": [
+      "crowd"
+     ],
+     "fixesD8Cleanly": [
+      "pathmenu",
+      "preset"
+     ],
+     "noChange": [
+      "modellib",
+      "phonevcam"
+     ],
+     "regression": [
+      "export"
+     ]
+    },
+    "perDisclosure": {
+     "export": {
+      "escapeOwner": null,
+      "noInjection": {
+       "targetCE": false,
+       "dp": true,
+       "outcome": "layerClosedOnly",
+       "deskOpen": true,
+       "panelPresent": false,
+       "spySawNothing": false
+      },
+      "withAlpha": {
+       "targetCE": true,
+       "dp": false,
+       "outcome": "nothing",
+       "deskOpen": true,
+       "panelPresent": true,
+       "spySawNothing": false
+      },
+      "effect": "regression"
+     },
+     "preset": {
+      "escapeOwner": {
+       "file": "DirectorTimeline.tsx",
+       "line": 594,
+       "phase": "bubble",
+       "capture": false,
+       "preventDefault": false,
+       "stopImmediatePropagation": false
+      },
+      "noInjection": {
+       "targetCE": false,
+       "dp": true,
+       "outcome": "deskGone",
+       "deskOpen": false,
+       "panelPresent": false,
+       "spySawNothing": false
+      },
+      "withAlpha": {
+       "targetCE": true,
+       "dp": false,
+       "outcome": "layerClosedOnly",
+       "deskOpen": true,
+       "panelPresent": false,
+       "spySawNothing": false
+      },
+      "effect": "fixesD8Cleanly"
+     },
+     "pathmenu": {
+      "escapeOwner": {
+       "file": "DirectorTimeline.tsx",
+       "line": 570,
+       "phase": "bubble",
+       "capture": false,
+       "preventDefault": false,
+       "stopImmediatePropagation": false
+      },
+      "noInjection": {
+       "targetCE": false,
+       "dp": true,
+       "outcome": "deskGone",
+       "deskOpen": false,
+       "panelPresent": false,
+       "spySawNothing": false
+      },
+      "withAlpha": {
+       "targetCE": true,
+       "dp": false,
+       "outcome": "layerClosedOnly",
+       "deskOpen": true,
+       "panelPresent": false,
+       "spySawNothing": false
+      },
+      "effect": "fixesD8Cleanly"
+     },
+     "phonevcam": {
+      "escapeOwner": {
+       "file": "DirectorPhoneVcamPanel.tsx",
+       "line": 294,
+       "phase": "true",
+       "capture": true,
+       "preventDefault": true,
+       "stopImmediatePropagation": true
+      },
+      "noInjection": {
+       "targetCE": null,
+       "dp": null,
+       "outcome": "layerClosedOnly",
+       "deskOpen": true,
+       "panelPresent": false,
+       "spySawNothing": true
+      },
+      "withAlpha": {
+       "targetCE": null,
+       "dp": null,
+       "outcome": "layerClosedOnly",
+       "deskOpen": true,
+       "panelPresent": false,
+       "spySawNothing": true
+      },
+      "effect": "noChange"
+     },
+     "crowd": {
+      "escapeOwner": null,
+      "noInjection": {
+       "targetCE": false,
+       "dp": true,
+       "outcome": "deskGone",
+       "deskOpen": false,
+       "panelPresent": false,
+       "spySawNothing": false
+      },
+      "withAlpha": {
+       "targetCE": true,
+       "dp": false,
+       "outcome": "nothing",
+       "deskOpen": true,
+       "panelPresent": true,
+       "spySawNothing": false
+      },
+      "effect": "fixesD8ButDeadKey"
+     },
+     "modellib": {
+      "escapeOwner": {
+       "file": "DirectorViewport.tsx",
+       "line": 2748,
+       "phase": "true",
+       "capture": true,
+       "preventDefault": true,
+       "stopImmediatePropagation": true
+      },
+      "noInjection": {
+       "targetCE": null,
+       "dp": null,
+       "outcome": "layerClosedOnly",
+       "deskOpen": true,
+       "panelPresent": false,
+       "spySawNothing": true
+      },
+      "withAlpha": {
+       "targetCE": null,
+       "dp": null,
+       "outcome": "layerClosedOnly",
+       "deskOpen": true,
+       "panelPresent": false,
+       "spySawNothing": true
+      },
+      "effect": "noChange"
+     }
+    }
+   },
+   "boundary": "结论只覆盖「焦点落在层内第一个非可编辑控件」这一个落点",
+   "verdict": "PASS",
+   "evidenceKey": "J7"
+  },
+  {
+   "id": "J8",
+   "q": "问②",
+   "claim": "⟹ 修法必须**分段**：Escape 阶梯**不能**共用「焦点在浮层内就早退」那道守卫，它需要另一条规则（焦点在浮层内时不 fall through 到 `closeWorkspace()`），而那条规则与 D8 的修法**是同一处**",
+   "evidence": {
+    "consequence": "⟹ 修法必须**分段**：C/V/Z/Y/Delete 各自加「焦点在浮层内就早退」；**Escape 阶梯不能共用那道守卫**——它需要的是另一条规则（焦点在浮层内时**不 fall through 到 closeWorkspace()**），而那条规则与 D8 的修法**是同一处**。"
+   },
+   "boundary": "属拍板项，**未改 src/**",
+   "verdict": "PASS",
+   "evidenceKey": "J8"
+  }
+ ],
+ "findings": {
+  "F1": "★ 更正 D14 修法方向① 的性质：它**充分但不干净**。对 C/V/Z/Y/Delete 五支是纯收益（30/30 格 dp 从 true 变 false、零副作用）；对 Escape 那支会**拆掉 export 的面板关闭**。",
+  "F2": "★ 独立于 D8 的新发现：**export 与 crowd 根本没有自己的 Escape 主人**。捕获阶段有主人的只有 2/6（modellib、phonevcam），冒泡阶段有主人的 2/6（preset、pathmenu）**自己管不了工作区**——桌内那个挂载时就注册、排在它们前面。",
+  "F3": "「层内 Escape 只关层」这件事，**全族只有 2/6 做对了**（modellib、phonevcam）。其余 4 个要么丢工作区，要么死键。",
+  "F4": "`isContentEditable` 沿 DOM 继承**实测成立**（6/6）⟹ 方向① 的「整层一个谓词」形状可实现，不需要逐个控件打标。",
+  "F5": "「守卫一旦触发后果就没了」是**充分性**，不是识别性。识别性（「谓词该不该这么写」）必须改 src/，注入验不到——因为注入只能让**既有**谓词为真，造不出一个新的谓词。",
+  "F6": "R86 的加强：阴性对照**不能只看 dp**。「注入把键投递弄坏」与「桌内不处理该键」都会得 dp=false ⟹ 必须同时断言**间谍确实收到了那个键**。",
+  "F7": "R96 的机械化：探针的每个臂要**逐臂断言非空**。773 的教训是「for 循环的补丁没落进文件 ⟹ 那一臂一次都没跑，而探针不报错、汇编器也不报」。",
+  "F8": "复用探针基础设施要**逐字节复制**。本批第一版从 read 输出重打`settle()`，漏掉 `querySelector(` 的右括号，3 格冒烟就撞上；内联 JS 应该在跑之前先过一遍 `node --check`。"
+ },
+ "probeLessons": [
+  {
+   "id": "R100",
+   "lesson": "阴性对照**不能只看 `defaultPrevented`**。「注入把键投递本身弄坏」与「桌内那个处理器不处理这个键」**都会得 dp=false** ⟹ 必须同时断言**间谍确实收到了那个键**（`keysSeen` 里真的有它）。",
+   "why": "本批的 α/β 注入只写 `contentEditable` 属性，理论上不该动键投递——但「理论上」不是读数。臂 D 那 6 格就是为此存在的。",
+   "fixInProbe": "臂 D 同时断言 `eventsSeen>=1` 与 `NEUTRAL_KEY in keysSeen`"
+  },
+  {
+   "id": "R101",
+   "lesson": "探针的**每个臂都要逐臂断言非空**（R96 的机械化）。",
+   "why": "773 的 `for want in (...)` 补丁没落进文件 ⟹ 中性臂一次都没跑，而**探针不报错、汇编器也不报**。",
+   "fixInProbe": "汇编器对 base/alpha/beta/neutral 四个臂逐个 `assert got`"
+  },
+  {
+   "id": "R102",
+   "lesson": "★ 静态扫描里**按 handler 名找函数体在同名时必错**，且**不能按行文本定位**——同名的 `addEventListener(...)` 行文本完全相同，`str.index` 会落到第一处。",
+   "why": "`DirectorTimeline.tsx` 有两个 `closeOnEscape`；第一版把 preset 的主人认成了 pathmenu（两处都踩了：正则取文件里第一个定义 + `txt.index` 找行位置）。",
+   "fixInProbe": "注释**抹白而不删**（行数与偏移不变）→ 按**行号**算偏移 → 取「文本上在这次 addEventListener **之前**且离它最近」的那次定义；并断言未映射的每个监听器都有书面理由"
+  }
+ ],
+ "corrections": [
+  {
+   "id": "C774-1",
+   "targets": [
+    "772 的拍板项「D14 修法」第 1 条",
+    "763 挂起的方向（把 isEditable 早退的判据实际换掉）"
+   ],
+   "was": "「Delete/Backspace/Cmd+C/V/Z/Y **整段**移进『焦点在某个浮层内就早退』的守卫」——**整段**这个词把 Escape 也算进去了。",
+   "now": "★ 那道守卫**不能**整段前移。`DirectorDesk.tsx` 的 `if (isEditable) return;` 排在**所有分支之前**，Escape 阶梯也在它后面；实测（2/6 格）一旦守卫在浮层后代上触发，**export 的面板就再也关不掉**（变死键），crowd 则从「丢工作区」变成「按了没反应」。修法必须**分段**：C/V/Z/Y/Delete 各自加守卫，Escape 阶梯另给一条规则。",
+   "evidence": "J7 + J8"
+  }
+ ],
+ "observations": [
+  {
+   "o": 1,
+   "text": "★ 问① 的答案干净得反常：α 注入 30/30 格、β 注入 6/6 格，`targetCE` 一翻成 true，`defaultPrevented` 就**无一例外**变 false，对象数与选中集**零变化**。守卫是充分且唯一的闸门。"
+  },
+  {
+   "o": 2,
+   "text": "`isContentEditable` 沿 DOM 继承**实测成立**（6/6）——方向① 的「整层一个谓词」形状可实现，不必逐个控件打标。"
+  },
+  {
+   "o": 3,
+   "text": "★ 六个浮层的 Escape 主人是**三种不同的注册阶段**，而后果完全由注册阶段决定：捕获+stop 的 2 个层桌内收不到事件；冒泡无 stop 的 2 个层**自己管不了工作区**（桌内挂载时就注册、排在它们前面）；**没有主人的 2 个层**则一路 fall through。"
+  },
+  {
+   "o": 4,
+   "text": "★ 方向① 的净后果分三组：2 层无变化、2 层修好 D8、2 层**回归**。**「一道守卫统一修六处」这个直觉在 Escape 那支上是错的。**"
+  },
+  {
+   "o": 5,
+   "text": "问① 证明了**充分性**，问② 证明了**不干净**——两问合起来才够支撑一条修法。缺问② 就会把 export 的回归带上线。"
+  }
+ ],
+ "defects": [],
+ "defectNote": "本批**不新增用户可见缺陷**。① 问① 验的是「修法够不够」，不是「现在有没有坏」。② 无注入时 preset/pathmenu/crowd 三层按 Escape 丢整个工作区 —— 那是 D8（768 记的 3/6），本批把它**定位到具体是哪三层**，不另立新号。③ 「2/6 个浮层没有自己的Escape 主人」是**结构事实**；它在用户侧的后果分两种 —— export 靠桌内那一档恰好能用（脆弱但能用），crowd 的后果就是 D8。",
+ "rawSha": {
+  "vb774a.json": "fd5b5678971b9452",
+  "vb774b.json": "92b12be168de6be5"
+ },
+ "srcDiff": "**本批未改 `src/`**（提交前 `git diff --stat HEAD -- src/` 为 0 行）",
+ "boundary": "只点对象树的行、6 个 disclosure 触发器、**选中**相机；**不点提交/连接/添加，更不做付费或真实生图生视频**。间谍是**纯读**（只加监听器）；注入只写 `contentEditable` 属性，**不改任何监听器、不改任何业务逻辑**。"
+}

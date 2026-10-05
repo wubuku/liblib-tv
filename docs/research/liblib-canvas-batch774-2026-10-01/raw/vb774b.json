@@ -1,0 +1,1557 @@
+{
+ "batch": 774,
+ "probe": "b",
+ "question": "问②：方向① 会不会把 Escape 阶梯也一起挡掉？——六个浮层的 Escape「主人」分属三种注册阶段，后果各不相同",
+ "whyItMatters": "★ `DirectorDesk.tsx:486` 的 `if (isEditable) return;` 排在**所有分支之前**，Escape 阶梯 `:549-568` 也在它后面 ⟹ 「守卫一旦在浮层后代上触发」这个前提**同时**意味着「Escape 一起被挡」。问① 没量这件事",
+ "escapeOwners": {
+  "phonevcam": "DirectorPhoneVcamPanel.tsx:289 捕获+stopImmediate",
+  "modellib": "DirectorViewport.tsx:2740-2747 捕获+stopImmediate",
+  "preset": "DirectorTimeline.tsx:591 冒泡、无 preventDefault",
+  "pathmenu": "DirectorTimeline.tsx:567 冒泡、无 preventDefault",
+  "export": "没有自己的处理（靠桌内 :559 exportPanelOpen 那一档）",
+  "crowd": "没有自己的处理 ⟹ 桌内一路 fall through 到 closeWorkspace()"
+ },
+ "reading": "★ 三态：`deskGone`（丢工作区）/ `layerClosedOnly`（正确）/ `nothing`（死键）。只报「面板还在不在」会把「导演台没了」读成「面板还在」——三个字段必须一起看（R97 的同族）",
+ "rounds": [
+  {
+   "rows": [
+    {
+     "id": "export",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 1,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": true,
+       "targetCE": false,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": true,
+     "targetCE": false,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      true
+     ],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": false
+    },
+    {
+     "id": "export",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 1,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": false,
+       "targetCE": true,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": false,
+     "targetCE": true,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      false
+     ],
+     "deskOpen": true,
+     "panelPresent": true,
+     "outcome": "nothing",
+     "spySawNothing": false
+    },
+    {
+     "id": "preset",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-camera-main",
+     "focus": {
+      "ok": true,
+      "panelCount": 10,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 10
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": true,
+       "targetCE": false,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": true,
+     "targetCE": false,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      true
+     ],
+     "deskOpen": false,
+     "panelPresent": false,
+     "outcome": "deskGone",
+     "spySawNothing": false
+    },
+    {
+     "id": "preset",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-camera-main",
+     "focus": {
+      "ok": true,
+      "panelCount": 10,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 10
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": false,
+       "targetCE": true,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": false,
+     "targetCE": true,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      false
+     ],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": false
+    },
+    {
+     "id": "pathmenu",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-camera-main",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 5
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": true,
+       "targetCE": false,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": true,
+     "targetCE": false,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      true
+     ],
+     "deskOpen": false,
+     "panelPresent": false,
+     "outcome": "deskGone",
+     "spySawNothing": false
+    },
+    {
+     "id": "pathmenu",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-camera-main",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 5
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": false,
+       "targetCE": true,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": false,
+     "targetCE": true,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      false
+     ],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": false
+    },
+    {
+     "id": "phonevcam",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 2,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [],
+     "eventsSeen": 0,
+     "defaultPrevented": null,
+     "targetCE": null,
+     "targetTag": null,
+     "keysSeen": [],
+     "dpAll": [],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": true,
+     "dpUnreadable": "传播在捕获阶段被 stopImmediatePropagation() 掐断 —— 间谍（window 冒泡）收不到这个事件，桌内那个处理器同样收不到。**收不到本身就是证据**。"
+    },
+    {
+     "id": "phonevcam",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 2,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [],
+     "eventsSeen": 0,
+     "defaultPrevented": null,
+     "targetCE": null,
+     "targetTag": null,
+     "keysSeen": [],
+     "dpAll": [],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": true,
+     "dpUnreadable": "传播在捕获阶段被 stopImmediatePropagation() 掐断 —— 间谍（window 冒泡）收不到这个事件，桌内那个处理器同样收不到。**收不到本身就是证据**。"
+    },
+    {
+     "id": "crowd",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 3,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": true,
+       "targetCE": false,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": true,
+     "targetCE": false,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      true
+     ],
+     "deskOpen": false,
+     "panelPresent": false,
+     "outcome": "deskGone",
+     "spySawNothing": false
+    },
+    {
+     "id": "crowd",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 3,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": false,
+       "targetCE": true,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": false,
+     "targetCE": true,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      false
+     ],
+     "deskOpen": true,
+     "panelPresent": true,
+     "outcome": "nothing",
+     "spySawNothing": false
+    },
+    {
+     "id": "modellib",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 1,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [],
+     "eventsSeen": 0,
+     "defaultPrevented": null,
+     "targetCE": null,
+     "targetTag": null,
+     "keysSeen": [],
+     "dpAll": [],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": true,
+     "dpUnreadable": "传播在捕获阶段被 stopImmediatePropagation() 掐断 —— 间谍（window 冒泡）收不到这个事件，桌内那个处理器同样收不到。**收不到本身就是证据**。"
+    },
+    {
+     "id": "modellib",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 1,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [],
+     "eventsSeen": 0,
+     "defaultPrevented": null,
+     "targetCE": null,
+     "targetTag": null,
+     "keysSeen": [],
+     "dpAll": [],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": true,
+     "dpUnreadable": "传播在捕获阶段被 stopImmediatePropagation() 掐断 —— 间谍（window 冒泡）收不到这个事件，桌内那个处理器同样收不到。**收不到本身就是证据**。"
+    }
+   ]
+  },
+  {
+   "rows": [
+    {
+     "id": "export",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 1,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": true,
+       "targetCE": false,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": true,
+     "targetCE": false,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      true
+     ],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": false
+    },
+    {
+     "id": "export",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 1,
+      "counts": {
+       "editable": 1,
+       "noneditable": 4
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "16:9",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": false,
+       "targetCE": true,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": false,
+     "targetCE": true,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      false
+     ],
+     "deskOpen": true,
+     "panelPresent": true,
+     "outcome": "nothing",
+     "spySawNothing": false
+    },
+    {
+     "id": "preset",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-camera-main",
+     "focus": {
+      "ok": true,
+      "panelCount": 10,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 10
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": true,
+       "targetCE": false,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": true,
+     "targetCE": false,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      true
+     ],
+     "deskOpen": false,
+     "panelPresent": false,
+     "outcome": "deskGone",
+     "spySawNothing": false
+    },
+    {
+     "id": "preset",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-camera-main",
+     "focus": {
+      "ok": true,
+      "panelCount": 10,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 10
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": false,
+       "targetCE": true,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": false,
+     "targetCE": true,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      false
+     ],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": false
+    },
+    {
+     "id": "pathmenu",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-camera-main",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 5
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": true,
+       "targetCE": false,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": true,
+     "targetCE": false,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      true
+     ],
+     "deskOpen": false,
+     "panelPresent": false,
+     "outcome": "deskGone",
+     "spySawNothing": false
+    },
+    {
+     "id": "pathmenu",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-camera-main",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 5
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "铅笔路径",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-camera-main"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": false,
+       "targetCE": true,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": false,
+     "targetCE": true,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      false
+     ],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": false
+    },
+    {
+     "id": "phonevcam",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 2,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [],
+     "eventsSeen": 0,
+     "defaultPrevented": null,
+     "targetCE": null,
+     "targetTag": null,
+     "keysSeen": [],
+     "dpAll": [],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": true,
+     "dpUnreadable": "传播在捕获阶段被 stopImmediatePropagation() 掐断 —— 间谍（window 冒泡）收不到这个事件，桌内那个处理器同样收不到。**收不到本身就是证据**。"
+    },
+    {
+     "id": "phonevcam",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 2,
+      "localIdx": 0,
+      "counts": {
+       "editable": 0,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [],
+     "eventsSeen": 0,
+     "defaultPrevented": null,
+     "targetCE": null,
+     "targetTag": null,
+     "keysSeen": [],
+     "dpAll": [],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": true,
+     "dpUnreadable": "传播在捕获阶段被 stopImmediatePropagation() 掐断 —— 间谍（window 冒泡）收不到这个事件，桌内那个处理器同样收不到。**收不到本身就是证据**。"
+    },
+    {
+     "id": "crowd",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 3,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": true,
+       "targetCE": false,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": true,
+     "targetCE": false,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      true
+     ],
+     "deskOpen": false,
+     "panelPresent": false,
+     "outcome": "deskGone",
+     "spySawNothing": false
+    },
+    {
+     "id": "crowd",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 5,
+      "localIdx": 3,
+      "counts": {
+       "editable": 3,
+       "noneditable": 2
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "取消",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [
+      {
+       "key": "Escape",
+       "code": "Escape",
+       "meta": false,
+       "shift": false,
+       "dp": false,
+       "targetCE": true,
+       "targetTag": "BUTTON",
+       "targetType": "button"
+      }
+     ],
+     "eventsSeen": 1,
+     "defaultPrevented": false,
+     "targetCE": true,
+     "targetTag": "BUTTON",
+     "keysSeen": [
+      "Escape"
+     ],
+     "dpAll": [
+      false
+     ],
+     "deskOpen": true,
+     "panelPresent": true,
+     "outcome": "nothing",
+     "spySawNothing": false
+    },
+    {
+     "id": "modellib",
+     "arm": "none",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 1,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": null,
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [],
+     "eventsSeen": 0,
+     "defaultPrevented": null,
+     "targetCE": null,
+     "targetTag": null,
+     "keysSeen": [],
+     "dpAll": [],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": true,
+     "dpUnreadable": "传播在捕获阶段被 stopImmediatePropagation() 掐断 —— 间谍（window 冒泡）收不到这个事件，桌内那个处理器同样收不到。**收不到本身就是证据**。"
+    },
+    {
+     "id": "modellib",
+     "arm": "alpha",
+     "key": "Escape",
+     "target": "director-character-lead",
+     "focus": {
+      "ok": true,
+      "panelCount": 15,
+      "localIdx": 1,
+      "counts": {
+       "editable": 2,
+       "noneditable": 13
+      },
+      "tag": "BUTTON",
+      "type": "button",
+      "text": "",
+      "editable": false
+     },
+     "inject": {
+      "variant": "alpha",
+      "tagBefore": "BUTTON",
+      "ceBefore": false,
+      "ceAfter": true,
+      "took": true,
+      "stillFocused": true
+     },
+     "spy": {
+      "installed": true,
+      "now": 0
+     },
+     "before": {
+      "tree": true,
+      "objectCount": 5,
+      "objectIds": [
+       "director-character-lead",
+       "director-prop-table",
+       "director-prop-mug",
+       "director-prop-wall",
+       "director-camera-main"
+      ],
+      "selectedIds": [
+       "director-character-lead"
+      ],
+      "nodeCount": 10
+     },
+     "spyLog": [],
+     "eventsSeen": 0,
+     "defaultPrevented": null,
+     "targetCE": null,
+     "targetTag": null,
+     "keysSeen": [],
+     "dpAll": [],
+     "deskOpen": true,
+     "panelPresent": false,
+     "outcome": "layerClosedOnly",
+     "spySawNothing": true,
+     "dpUnreadable": "传播在捕获阶段被 stopImmediatePropagation() 掐断 —— 间谍（window 冒泡）收不到这个事件，桌内那个处理器同样收不到。**收不到本身就是证据**。"
+    }
+   ]
+  }
+ ]
+}

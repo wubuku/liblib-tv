@@ -1,0 +1,1087 @@
+{
+ "batch": 774,
+ "checks": [
+  {
+   "label": "产物：判据 8 条且 id 齐全",
+   "pass": true,
+   "got": {
+    "got": [
+     "J1",
+     "J2",
+     "J3",
+     "J4",
+     "J5",
+     "J6",
+     "J7",
+     "J8"
+    ]
+   }
+  },
+  {
+   "label": "产物：verdict 与预期一致（全 PASS，无 FAIL）",
+   "pass": true,
+   "got": {
+    "got": {
+     "J1": "PASS",
+     "J2": "PASS",
+     "J3": "PASS",
+     "J4": "PASS",
+     "J5": "PASS",
+     "J6": "PASS",
+     "J7": "PASS",
+     "J8": "PASS"
+    }
+   }
+  },
+  {
+   "label": "产物：每条判据都有非空 evidence 且 evidenceKey 指回自己",
+   "pass": true,
+   "got": {
+    "got": {
+     "J1": "J1",
+     "J2": "J2",
+     "J3": "J3",
+     "J4": "J4",
+     "J5": "J5",
+     "J6": "J6",
+     "J7": "J7",
+     "J8": "J8"
+    }
+   }
+  },
+  {
+   "label": "产物：evidenceIndex 与 judgments 的 evidence 一致",
+   "pass": true,
+   "got": {
+    "got": [
+     "J1",
+     "J2",
+     "J3",
+     "J4",
+     "J5",
+     "J6",
+     "J7",
+     "J8"
+    ]
+   }
+  },
+  {
+   "label": "产物：探针教训 ['R100', 'R101', 'R102'] 齐全",
+   "pass": true,
+   "got": {
+    "got": [
+     "R100",
+     "R101",
+     "R102"
+    ]
+   }
+  },
+  {
+   "label": "产物：观察 ≥5 条",
+   "pass": true,
+   "got": {
+    "got": 5
+   }
+  },
+  {
+   "label": "产物：本批不新增用户可见缺陷（defects 为空且有说明）",
+   "pass": true,
+   "got": {
+    "defects": []
+   }
+  },
+  {
+   "label": "产物：更正块 ['C774-1']",
+   "pass": true,
+   "got": {
+    "got": [
+     "C774-1"
+    ]
+   }
+  },
+  {
+   "label": "产物：C774-1 点名了 772 的拍板项",
+   "pass": true,
+   "got": {
+    "got": [
+     [
+      "772 的拍板项「D14 修法」第 1 条",
+      "763 挂起的方向（把 isEditable 早退的判据实际换掉）"
+     ]
+    ]
+   }
+  },
+  {
+   "label": "产物：★ 每条边界都写明「问① 只证充分性、不证识别性」",
+   "pass": true,
+   "got": {
+    "got": [
+     "**只证充分性，不证识别性** —— 谓词该怎么写要改 src/",
+     "继承成立只说明**形状可实现**，不说明形状**正确**",
+     "R86 的加强版：只看 dp 的话「键没送到」也会得 false",
+     "三态读数，缺一不可（R97 的同族）",
+     "静态结论由机械普查得出（扫全树每一个 keydown 监听器）",
+     "结论只覆盖「焦点落在层内第一个非可编辑控件」这一个落点",
+     "属拍板项，**未改 src/**"
+    ]
+   }
+  },
+  {
+   "label": "产物：两份 raw 的 sha 都记进产物",
+   "pass": true,
+   "got": {
+    "got": {
+     "vb774a.json": "fd5b5678971b9452",
+     "vb774b.json": "92b12be168de6be5"
+    }
+   }
+  },
+  {
+   "label": "产物：探针 raw/ 与 probes/ 都在场（R43）",
+   "pass": true,
+   "got": {
+    "raw": [
+     "vb774a.json",
+     "vb774b.json"
+    ],
+    "probes": [
+     "dbg774a.py",
+     "dbg774b.py",
+     "mk774audit.py"
+    ]
+   }
+  },
+  {
+   "label": "产物：声明本批未改 src/",
+   "pass": true,
+   "got": {
+    "got": "**本批未改 `src/`**（提交前 `git diff --stat HEAD -- src/` 为 0 行）"
+   }
+  },
+  {
+   "label": "静态：桌内那个 keydown 监听在 window 冒泡、**不是**捕获",
+   "pass": true,
+   "got": {
+    "capture": false
+   }
+  },
+  {
+   "label": "静态：守卫判据含 isContentEditable 与三个标签名",
+   "pass": true,
+   "got": {
+    "ce": true,
+    "tags": true
+   }
+  },
+  {
+   "label": "静态：守卫排在 Meta+C 与 Delete 之前",
+   "pass": true,
+   "got": {
+    "metaC": true,
+    "del": true
+   }
+  },
+  {
+   "label": "静态：★ Escape 阶梯排在守卫之后（问② 的全部要害）",
+   "pass": true,
+   "got": {
+    "guardLine": 487,
+    "escapeRel": 77
+   }
+  },
+  {
+   "label": "静态：Escape 阶梯里有 exportPanelOpen 那一档且末尾是 closeWorkspace",
+   "pass": true,
+   "got": {
+    "exportStep": true,
+    "close": true
+   }
+  },
+  {
+   "label": "静态：★ 扫到 9 个 keydown 监听器",
+   "pass": true,
+   "got": {
+    "got": 9
+   }
+  },
+  {
+   "label": "静态：★ 恰好 4 个浮层有自己的 Escape 主人",
+   "pass": true,
+   "got": {
+    "got": [
+     "modellib",
+     "pathmenu",
+     "phonevcam",
+     "preset"
+    ]
+   }
+  },
+  {
+   "label": "静态：★ 主人分属**两种**注册阶段：捕获 2 个 / 冒泡 2 个",
+   "pass": true,
+   "got": {
+    "capture": [
+     "modellib",
+     "phonevcam"
+    ],
+    "bubble": [
+     "pathmenu",
+     "preset"
+    ]
+   }
+  },
+  {
+   "label": "静态：捕获阶段的两个主人都带 stopImmediatePropagation",
+   "pass": true,
+   "got": {
+    "got": {
+     "modellib": true,
+     "phonevcam": true
+    }
+   }
+  },
+  {
+   "label": "静态：冒泡阶段的两个主人都**不** preventDefault",
+   "pass": true,
+   "got": {
+    "got": {
+     "pathmenu": false,
+     "preset": false
+    }
+   }
+  },
+  {
+   "label": "静态：★ 没有主人的恰好是 crowd 与 export",
+   "pass": true,
+   "got": {
+    "got": [
+     "crowd",
+     "export"
+    ]
+   }
+  },
+  {
+   "label": "静态：★ R102 —— 没映射到浮层的 Escape 监听器**每个都有书面理由**，且集合与登记一致",
+   "pass": true,
+   "got": {
+    "got": [
+     [
+      "DirectorDesk.tsx",
+      "handleKeyDown"
+     ],
+     [
+      "DirectorInspector.tsx",
+      "handleKeyDown"
+     ],
+     [
+      "DirectorObjectTree.tsx",
+      "esc"
+     ],
+     [
+      "DirectorViewport.tsx",
+      "handleKeyDown"
+     ]
+    ],
+    "withReason": [
+     "DirectorDesk.tsx",
+     "DirectorInspector.tsx",
+     "DirectorObjectTree.tsx",
+     "DirectorViewport.tsx"
+    ]
+   }
+  },
+  {
+   "label": "产物：静态层与验收器重读的源码一致",
+   "pass": true,
+   "got": {
+    "owners": [
+     "modellib",
+     "pathmenu",
+     "phonevcam",
+     "preset"
+    ],
+    "guardLine": 487
+   }
+  },
+  {
+   "label": "原始：两个探针各自两轮逐格一致",
+   "pass": true,
+   "got": {
+    "A": true,
+    "B": true
+   }
+  },
+  {
+   "label": "原始：★ R101 —— 四个臂逐臂数格，且没有哪个臂一次都没跑",
+   "pass": true,
+   "got": {
+    "got": {
+     "base": 6,
+     "alpha": 30,
+     "beta": 9,
+     "neutral": 6
+    },
+    "want": {
+     "base": 6,
+     "alpha": 30,
+     "beta": 9,
+     "neutral": 6
+    }
+   }
+  },
+  {
+   "label": "原始：格集合与登记完全一致（问① 51 格 + 问② 12 格），无失败格",
+   "pass": true,
+   "got": {
+    "bad": []
+   }
+  },
+  {
+   "label": "原始：每格自证（间谍装上；除 4 格按设计收不到外都收到事件；两个布尔在该读的地方都读得到；目标有选中）",
+   "pass": true,
+   "got": {
+    "installed": true,
+    "events": true,
+    "dp": true,
+    "ce": true,
+    "selected": true
+   }
+  },
+  {
+   "label": "原始：★ R99 —— 可读的 dp 读到**两个**不同的值，而读不到的 4 格**恰好**是捕获阶段那两个层（不是全 None、也不是随机缺）",
+   "pass": true,
+   "got": {
+    "readable": [
+     "False",
+     "True"
+    ],
+    "all": [
+     "False",
+     "None",
+     "True"
+    ],
+    "unreadable": [
+     "modellib/alpha",
+     "modellib/none",
+     "phonevcam/alpha",
+     "phonevcam/none"
+    ]
+   }
+  },
+  {
+   "label": "原始：★ 注入格**无一格静默失效**，且每个都 took（90 格）",
+   "pass": true,
+   "got": {
+    "silent": 0,
+    "allTook": true
+   }
+  },
+  {
+   "label": "原始：★ 臂 A 同会话基线 6/6 格 dp=true、targetCE=false",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": {
+      "dp": true,
+      "targetCE": false
+     },
+     "preset": {
+      "dp": true,
+      "targetCE": false
+     },
+     "pathmenu": {
+      "dp": true,
+      "targetCE": false
+     },
+     "phonevcam": {
+      "dp": true,
+      "targetCE": false
+     },
+     "crowd": {
+      "dp": true,
+      "targetCE": false
+     },
+     "modellib": {
+      "dp": true,
+      "targetCE": false
+     }
+    }
+   }
+  },
+  {
+   "label": "原始：★ 臂 B α 注入 30/30 格 targetCE=true 且 dp 从 true 变 false",
+   "pass": true,
+   "got": {
+    "n": 30,
+    "bad": []
+   }
+  },
+  {
+   "label": "原始：★ 臂 B 注入后对象数与选中集**零变化**（30/30）",
+   "pass": true,
+   "got": {
+    "bad": []
+   }
+  },
+  {
+   "label": "原始：★ 臂 C β 的 isContentEditable **继承**成立（6/6，根 true → 落点 true → dp=false）",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": {
+      "dp": false,
+      "targetCE": true,
+      "rootCE": [
+       "True"
+      ],
+      "activeCE": [
+       "True"
+      ],
+      "objectsDelta": [
+       0
+      ]
+     },
+     "preset": {
+      "dp": false,
+      "targetCE": true,
+      "rootCE": [
+       "True"
+      ],
+      "activeCE": [
+       "True"
+      ],
+      "objectsDelta": [
+       0
+      ]
+     },
+     "pathmenu": {
+      "dp": false,
+      "targetCE": true,
+      "rootCE": [
+       "True"
+      ],
+      "activeCE": [
+       "True"
+      ],
+      "objectsDelta": [
+       0
+      ]
+     },
+     "phonevcam": {
+      "dp": false,
+      "targetCE": true,
+      "rootCE": [
+       "True"
+      ],
+      "activeCE": [
+       "True"
+      ],
+      "objectsDelta": [
+       0
+      ]
+     },
+     "crowd": {
+      "dp": false,
+      "targetCE": true,
+      "rootCE": [
+       "True"
+      ],
+      "activeCE": [
+       "True"
+      ],
+      "objectsDelta": [
+       0
+      ]
+     },
+     "modellib": {
+      "dp": false,
+      "targetCE": true,
+      "rootCE": [
+       "True"
+      ],
+      "activeCE": [
+       "True"
+      ],
+      "objectsDelta": [
+       0
+      ]
+     }
+    }
+   }
+  },
+  {
+   "label": "原始：★ 臂 D 中性键 F2 读到 dp=false（6/6）",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": false,
+     "preset": false,
+     "pathmenu": false,
+     "phonevcam": false,
+     "crowd": false,
+     "modellib": false
+    }
+   }
+  },
+  {
+   "label": "原始：★ 臂 D **间谍确实收到了 F2**（R100：不只看 dp，还要看收没收到）",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": {
+      "saw": true,
+      "events": [
+       1
+      ]
+     },
+     "preset": {
+      "saw": true,
+      "events": [
+       1
+      ]
+     },
+     "pathmenu": {
+      "saw": true,
+      "events": [
+       1
+      ]
+     },
+     "phonevcam": {
+      "saw": true,
+      "events": [
+       1
+      ]
+     },
+     "crowd": {
+      "saw": true,
+      "events": [
+       1
+      ]
+     },
+     "modellib": {
+      "saw": true,
+      "events": [
+       1
+      ]
+     }
+    }
+   }
+  },
+  {
+   "label": "原始：臂 E β 落在可编辑控件上 3/3 格 dp=false（β 不过宽）",
+   "pass": true,
+   "got": {
+    "got": {
+     "crowd": {
+      "dp": false,
+      "targetCE": true
+     },
+     "export": {
+      "dp": false,
+      "targetCE": true
+     },
+     "modellib": {
+      "dp": false,
+      "targetCE": true
+     }
+    }
+   }
+  },
+  {
+   "label": "原始：★ 问② 的 targetCE 逐格：间谍收到事件的那 8 格里 arm=none ⟹ false、arm=alpha ⟹ true",
+   "pass": true,
+   "got": {
+    "got": {
+     "export/none": false,
+     "export/alpha": true,
+     "preset/none": false,
+     "preset/alpha": true,
+     "pathmenu/none": false,
+     "pathmenu/alpha": true,
+     "phonevcam/none": null,
+     "phonevcam/alpha": null,
+     "crowd/none": false,
+     "crowd/alpha": true,
+     "modellib/none": null,
+     "modellib/alpha": null
+    }
+   }
+  },
+  {
+   "label": "原始：★ 交叉预测 —— 「间谍收不到事件」的层集合，**恰好等于**「静态普查里主人在捕获阶段」的层集合",
+   "pass": true,
+   "got": {
+    "runtimeSawNothing": [
+     "modellib",
+     "phonevcam"
+    ],
+    "staticCaptureOwners": [
+     "modellib",
+     "phonevcam"
+    ]
+   }
+  },
+  {
+   "label": "原始：★ 读不到 dp 的 4 格**有书面理由**，且它们的三态读数仍然有效",
+   "pass": true,
+   "got": {
+    "unreadable": [
+     "modellib/alpha",
+     "modellib/none",
+     "phonevcam/alpha",
+     "phonevcam/none"
+    ],
+    "reason": true
+   }
+  },
+  {
+   "label": "原始：问① 的 51 格**每一格**都收到了事件（掐断传播只发生在问② 的 4 格）",
+   "pass": true,
+   "got": {
+    "q1SawNothing": 0
+   }
+  },
+  {
+   "label": "原始：问② 三态读数合法（deskGone / layerClosedOnly / nothing）",
+   "pass": true,
+   "got": {
+    "got": {
+     "export/none": "layerClosedOnly",
+     "export/alpha": "nothing",
+     "preset/none": "deskGone",
+     "preset/alpha": "layerClosedOnly",
+     "pathmenu/none": "deskGone",
+     "pathmenu/alpha": "layerClosedOnly",
+     "phonevcam/none": "layerClosedOnly",
+     "phonevcam/alpha": "layerClosedOnly",
+     "crowd/none": "deskGone",
+     "crowd/alpha": "nothing",
+     "modellib/none": "layerClosedOnly",
+     "modellib/alpha": "layerClosedOnly"
+    }
+   }
+  },
+  {
+   "label": "原始：★ 四个后果桶各归其位、互斥、**并集铺满** 6 个浮层",
+   "pass": true,
+   "got": {
+    "got": {
+     "fixesD8ButDeadKey": [
+      "crowd"
+     ],
+     "fixesD8Cleanly": [
+      "pathmenu",
+      "preset"
+     ],
+     "noChange": [
+      "modellib",
+      "phonevcam"
+     ],
+     "regression": [
+      "export"
+     ]
+    }
+   }
+  },
+  {
+   "label": "原始：★ export 注入后变**死键**（无注入时是「只关层、桌还在」）",
+   "pass": true,
+   "got": {
+    "got": {
+     "none": {
+      "dp": true,
+      "targetCE": false,
+      "outcome": "layerClosedOnly",
+      "deskOpen": true,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "alpha": {
+      "dp": false,
+      "targetCE": true,
+      "outcome": "nothing",
+      "deskOpen": true,
+      "panelPresent": true,
+      "spySawNothing": false
+     }
+    }
+   }
+  },
+  {
+   "label": "原始：★ crowd 注入后不再丢工作区、但成了死键（无注入时是 D8）",
+   "pass": true,
+   "got": {
+    "got": {
+     "none": {
+      "dp": true,
+      "targetCE": false,
+      "outcome": "deskGone",
+      "deskOpen": false,
+      "panelPresent": false,
+      "spySawNothing": false
+     },
+     "alpha": {
+      "dp": false,
+      "targetCE": true,
+      "outcome": "nothing",
+      "deskOpen": true,
+      "panelPresent": true,
+      "spySawNothing": false
+     }
+    }
+   }
+  },
+  {
+   "label": "产物：★ 与验收器独立重算一致（臂 B / 臂 C / 问② 分组）",
+   "pass": true,
+   "got": {
+    "q1B": {
+     "cells": 30,
+     "allDpFalse": true,
+     "allTargetCETrue": true,
+     "allObjectsDeltaZero": true,
+     "allSelectedDeltaZero": true,
+     "claim": "★ 守卫一旦在浮层后代上触发，30/30 格 defaultPrevented 全为 false、对象数与选中集**零变化** ⟹ 方向① 对 D14 是**充分的**"
+    },
+    "q1C": {
+     "cells": 6,
+     "rootCETrue": 6,
+     "landingInherits": 6,
+     "allDpFalse": true,
+     "claim": "★ `isContentEditable` 沿 DOM **继承**：浮层根打上 `contenteditable` 后，6/6 个浮层的落点都继承到 true ⟹ 「整层一个谓词」这个形状**可实现**，而这正是方向① 的形状"
+    },
+    "q2groups": {
+     "fixesD8ButDeadKey": [
+      "crowd"
+     ],
+     "fixesD8Cleanly": [
+      "pathmenu",
+      "preset"
+     ],
+     "noChange": [
+      "modellib",
+      "phonevcam"
+     ],
+     "regression": [
+      "export"
+     ]
+    }
+   }
+  },
+  {
+   "label": "产物：★ 证据 J5/J6/J7 与验收器重算的三态逐格一致",
+   "pass": true,
+   "got": {
+    "got": [
+     "crowd",
+     "export",
+     "modellib",
+     "pathmenu",
+     "phonevcam",
+     "preset"
+    ]
+   }
+  },
+  {
+   "label": "README：不含替换字符 U+FFFD",
+   "pass": true,
+   "got": {
+    "count": 0
+   }
+  },
+  {
+   "label": "README 提到「C774-1」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「6/6」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「defaultPrevented」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「R100」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「F2」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「死键」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「不证识别性」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：表格首格没有裸数字（pre-commit 正则会拦）",
+   "pass": true,
+   "got": {
+    "bare": []
+   }
+  },
+  {
+   "label": "台账：Batch 774 恰好一行",
+   "pass": true,
+   "got": {
+    "count": 1
+   }
+  },
+  {
+   "label": "台账：该行不含 U+FFFD",
+   "pass": true,
+   "got": {
+    "count": 0
+   }
+  },
+  {
+   "label": "台账：首格是 `| Batch 774 |`",
+   "pass": true,
+   "got": {
+    "head": "| Batch 774 | **D14「修法方向①」的注入对照：够不够？会不会误伤 Escape？** —— 763 挂"
+   }
+  },
+  {
+   "label": "台账：恰好 3 列",
+   "pass": true,
+   "got": {
+    "pipes": 4
+   }
+  },
+  {
+   "label": "台账：历史 U+FFFD 仍在 9 处",
+   "pass": true,
+   "got": {
+    "count": 9
+   }
+  }
+ ],
+ "pass": 63,
+ "total": 63,
+ "negativeControls": [
+  {
+   "name": "谎称 α 注入后守卫没挡住（dp 改回 true）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "臂 B α 注入 30/30 格",
+   "stillPassing": []
+  },
+  {
+   "name": "谎称 α 注入后对象还是被删了",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "零变化",
+   "stillPassing": []
+  },
+  {
+   "name": "谎称 isContentEditable 没有沿 DOM 继承",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "臂 C β 的 isContentEditable",
+   "stillPassing": []
+  },
+  {
+   "name": "★ R100：把中性臂的 F2 从键流里删掉（键没送到 vs 桌内不处理）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "间谍确实收到了 F2",
+   "stillPassing": []
+  },
+  {
+   "name": "中性臂 dp 改成 true（读数方法的前提被破坏）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "臂 D 中性键 F2 读到 dp=false",
+   "stillPassing": []
+  },
+  {
+   "name": "谎称臂 A 基线没跑到分支",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "臂 A 同会话基线",
+   "stillPassing": []
+  },
+  {
+   "name": "谎称 export 注入后还能关面板",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "export 注入后变**死键**",
+   "stillPassing": []
+  },
+  {
+   "name": "把 export 混进 noChange 组",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "四个后果桶",
+   "stillPassing": []
+  },
+  {
+   "name": "第二轮的读数被改掉",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "两轮逐格一致",
+   "stillPassing": []
+  },
+  {
+   "name": "★ R99：把 defaultPrevented 全改成 None",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "R99 ——",
+   "stillPassing": []
+  },
+  {
+   "name": "谎称有一格注入静默没生效",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "静默失效",
+   "stillPassing": []
+  },
+  {
+   "name": "★ R101：把中性臂整臂删掉",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "逐臂数格",
+   "stillPassing": []
+  },
+  {
+   "name": "把一格的目标选中抹掉",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "目标有选中",
+   "stillPassing": []
+  },
+  {
+   "name": "★ 谎称捕获阶段那个层其实收到了事件（源码与运行时两条独立路径必须对上）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "交叉预测",
+   "stillPassing": []
+  },
+  {
+   "name": "把「dp 读不到」的书面理由抹掉",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "mutatedAnything": true,
+   "caught": true,
+   "expectFailOn": "读不到 dp 的 4 格",
+   "stillPassing": []
+  },
+  {
+   "name": "篡改一条判据的 evidence",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "evidenceIndex 与 judgments",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉一个判据",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "判据 8 条",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉更正 C774-1",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "更正块",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉一条探针教训",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "探针教训",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉「不证识别性」这条边界（把充分性吹成识别性）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "每条边界都写明",
+   "stillPassing": []
+  },
+  {
+   "name": "给本批塞一个假的新缺陷",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "本批不新增用户可见缺陷",
+   "stillPassing": []
+  },
+  {
+   "name": "篡改静态层的守卫行号",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "静态层与验收器重读的源码一致",
+   "stillPassing": []
+  },
+  {
+   "name": "把台账 Batch 774 行改名",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "台账：Batch 774 恰好一行",
+   "stillPassing": []
+  },
+  {
+   "name": "把 README 表格首格改成裸数字",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "首格没有裸数字",
+   "stillPassing": []
+  }
+ ],
+ "negativeCaught": 24,
+ "negativeTotal": 24,
+ "negativeKwBroken": [],
+ "negativeInert": [],
+ "rawError": null,
+ "ok": true
+}
