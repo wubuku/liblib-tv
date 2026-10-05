@@ -5798,6 +5798,11 @@ def main() -> int:
     #   （**复现 ≠ 出处**）⇒ 以及**我自己那处过宽断言的更正**
     p984 = ROOT / "scripts/jimeng_probe984_bodytabindex_lab.py"
     _p984 = p984.read_text(encoding="utf-8") if p984.exists() else ""
+    # ⭐⭐⭐⭐⭐ 985：**实验室＋源站**探针 —— ⭐⭐⭐⭐⭐ **一次自我推翻**
+    #   ⇒ `BODY` 根本不是一格（**`:focus` 在谁身上**才是那一问）
+    #   ⚠️ 判据组 `SSSSS.1` 要钉的是**那三条否定读数**（`body` 从未被聚焦）
+    p985 = ROOT / "scripts/jimeng_probe985_bodynotacell_lab.py"
+    _p985 = p985.read_text(encoding="utf-8") if p985.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -10296,7 +10301,182 @@ def main() -> int:
           and "**读**属性被当成**写**" in _p984
           and "纯读守卫可能变成**恒真**" in _p984
           and "**只有这几条能按定义推出**" in _p984
-          and "**属于**待测事实**" in _p984)
+          and "**属于**待测事实**" in _p984)    # ══ SSSSS. 批 985 实验室：⭐⭐⭐⭐⭐⭐ **一次自我推翻** ——
+    #    `BODY` 根本不是一格（`:focus` 在谁身上才是那一问）⇒ 同一批
+    #    **把 H₃ 的「出处」彻底落定**（三件齐）⇒ 976–984 的计数口径要整个换掉 ══
+    print("— SSSSS. 批 985 实验室：`BODY` **从未被聚焦**（`body:focus=False`、"
+          "`n_real_focus=0`、**`hasFocus=False`**，三次机会零例外）⇒ "
+          "**它不是一格、是间隙**；出处三件齐（`SupportsFocus` 否 / "
+          "`ShouldVisit` 排除 / `ClearFocusedElement`+`TakeFocus`）⇒ "
+          "**H₃ 的位置命题是同义反复、应当作废** ⇒ 环长分母**减一**；"
+          "且源站本轮**没测到（登录态过期）** —")
+
+    check("SSSSS.1 ⭐⭐⭐⭐⭐⭐ **本批要推翻的是我自己 976–984 的同一个隐含前提** —— "
+          "**`BODY` 根本不是一格**：实验室 2/2 逐格相同，"
+          "`obs = ['lab-b1','lab-b2','lab-b3','GAP',…]`；"
+          "而**在每一个 `GAP` 上同时读出三件事**：`body.matches(':focus')` = "
+          "**`False`**（**`body` 从未被聚焦**）、真正持有焦点的元素数 = **`0`**、"
+          "`document.hasFocus()` = **`False`**（**连文档都没焦点**）⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **三次机会、零次例外**：`n_gap_ever_body_focused = 0`、"
+          "`n_gap_ever_has_focus = 0`、`n_gap_ever_any_focus = 0` ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **`BODY` 是「文档里没有任何元素持有焦点」这个状态**，"
+          "而 `Document.activeElement` 按 DOM 规范**回落到 `document.body`** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **我的仪器测的是「间隙」，却把它记成了「一格」** ⇒ "
+          "**976–984 全部读数里那个 `BODY`，读的都是这个间隙**；"
+          "⇒ 且 ⭐⭐⭐⭐⭐ **本批最漂亮的一条钉子**："
+          "**换名之后逐格相等**（`eq_984_baseline_after_rename = True`）⇒ "
+          "**同一条环、同一批位置，只是两批各叫各的**；"
+          "⚠️ 而 `eq_984_baseline_naive = False` ⇒ **我第一版那扇门就是拿"
+          "含 `GAP` 的序列去比含 `BODY` 的基线** ⇒ **门错、不是数据错** ⇒ "
+          "⭐⭐⭐⭐⭐ **那个恒假的读数原样保留**（命名为 `naive`）⇒ "
+          "**它就是两批口径不同的证据 ⇒ 删掉它才是错的**",
+          '"body_is_not_a_cell_985"' in _ausrc
+          and "**本批要推翻的是我自己 976–984 的同一个隐含前提**" in _ausrc
+          and "**三次机会、零次例外**" in _ausrc
+          and "`n_gap_ever_body_focused = 0`" in _ausrc
+          and "**它是「文档里没有任何元素持有焦点」这个状态**" in _ausrc
+          and "**回落到 `document.body`**" in _ausrc
+          and "**我的仪器测的是「间隙」，却把它记成了「一格」**" in _ausrc
+          and "**976–984 全部读数里那个 `BODY`，读的都是这个间隙**" in _ausrc
+          and '"rename_equivalence_985"' in _ausrc
+          and "**换名之后逐格相等**" in _ausrc
+          and "`eq_984_baseline_after_rename = True`" in _ausrc
+          and "`eq_984_baseline_naive = False`" in _ausrc
+          and "**我第一版那扇门就是拿" in _ausrc
+          and "**门错、不是数据错**" in _ausrc
+          and "两批口径不同的证据" in _ausrc
+          # ⭐⭐ 钉探针：新件必须真的问出那三问、两个读数都在
+          and "FOCUS_JS = " in _p985
+          and '"body_matches_focus"' in _p985
+          and '"has_focus"' in _p985
+          and '"n_real_focus"' in _p985
+          and '"is_gap"' in _p985
+          and '"eq_984_baseline_after_rename"' in _p985
+          and '"eq_984_baseline_naive"' in _p985
+          and '"first_cycle"' in _p985
+          and "def _cycle_of(keys):" in _p985
+          and '"n_gap_ever_body_focused"' in _p985
+          and "**本批的新件问的不是「落点是谁」" in _p985
+          and '"_p985": "scripts/jimeng_probe985_bodynotacell_lab.py",' in _anchs)
+
+    check("SSSSS.2 ⭐⭐⭐⭐⭐ **H₃ 的「出处」至此落定，而且是三件齐的** —— "
+          "① `element.cc` 的 `Element::SupportsFocus` 对 `document.body` 返回 "
+          "`FocusableState::kNotFocusable` ⇒ `FocusController::AdjustedTabIndex` "
+          "的默认值取 **−1** ⇒ ⭐⭐⭐⭐ **这正是 984 读到的 `ti_prop = -1` 的出处**；"
+          "② `focus_controller.cc` 的 `ShouldVisit()` 与遍历里那句 "
+          "`ReadingFlowAdjustedTabIndex(*current) >= 0` ⇒ ⭐⭐⭐⭐ "
+          "**`document.body` 被两处独立排除** ⇒ **它压根不是候选**；"
+          "③ 「找不到候选」的分支走 `document->ClearFocusedElement()` ＋ "
+          "`page_->GetChromeClient()->TakeFocus(type)` ⇒ ⭐⭐⭐⭐ "
+          "**焦点被交给 Chrome 的 UI 层** ⇒ 页面里自然「一个焦点都没有」；"
+          "⇒ ⇒ ⚠️⭐⭐ **于是 H₃ 那个问题本身问错了** —— "
+          "不是「回绕点是否接纳 `tabIndex < 0` 的 `document.body`」，"
+          "而是「**那个格子从来就不存在**」⇒ ⇒ "
+          "⭐⭐⭐⭐ **984 说「本批没有找到出处」—— 这一批找到了**，"
+          "**且 984 收窄后那句话是错的** ⇒ **改写，不删**；"
+          "⇒ ⭐⭐⭐⭐⭐ **连带 H₃ 的「位置命题」是同义反复、应当作废重写** —— "
+          "改写后它说的是「**「无元素持有焦点」这个状态，恰好出现在"
+          "最后一个与第一个可聚焦元素之间**」，"
+          "**而这在定义上就是必然的** ⇒ "
+          "**「它在那个位置」从来不是一条关于世界的发现，而是关于「间隙」的定义** ⇒ "
+          "⇒ 977 臂 B「后继换人」也随之改写："
+          "**那个「后继」就是新的第一个可聚焦元素** ⇒ "
+          "**977 的实测数据没错、观察也没错，错的是把它当成关于 `BODY` 这个实体的命题**",
+          '"source_at_last_985"' in _ausrc
+          and "**H₃ 的「出处」至此落定，而且是三件齐的**" in _ausrc
+          and "**这正是 984 读到的 `ti_prop = -1` 的出处**" in _ausrc
+          and "**`document.body` 被两处独立排除**" in _ausrc
+          and "**它压根不是顺序焦点导航的候选**" in _ausrc
+          and "**焦点被交给 Chrome 的 UI 层**" in _ausrc
+          and "**于是 H₃ 那个问题本身问错了**" in _ausrc
+          and "那个格子从来就不存在" in _ausrc
+          and "**984 说「本批没有找到出处」—— 这一批找到了**" in _ausrc
+          and "**改写，不删**" in _ausrc
+          and '"h3_is_a_tautology_985"' in _ausrc
+          and "**H₃ 的「位置命题」到此作废重写**" in _ausrc
+          and "**是同义反复，不是发现**" in _ausrc
+          and "**而这句话在定义上就是必然的**" in _ausrc
+          and "从来不是一条关于世界的发现" in _ausrc
+          and "而是关于「间隙」这个词的定义" in _ausrc
+          and "H₃ 应当作废" in _ausrc
+          and "新的第一个可聚焦元素" in _ausrc
+          and "**观察到的其实是「间隙的位置随端点移动」" in _ausrc
+          and "**977 那一批的实测数据没错、观察也没错**" in _ausrc
+          # ⭐⭐ 钉探针：984 那条「仍未找到出处」的边界必须**还在**（本批要推翻它）
+          and "984 那条「仍未找到出处」的边界不见了" in _p985
+          and "**本批没有找到出处，而且必须这么写**" in _p985
+          and "**顺序焦点导航在环的回绕点上，是否接纳" in _p985
+          and "**实现给了两处独立排除**" in _p985)
+
+    check("SSSSS.3 ⭐⭐⭐⭐⭐ **本批把计数口径整个换掉**（974 那条纪律的**第六次**应用）—— "
+          "**旧口径**（976–984）环长 = 观察到的停靠点数（**含 `BODY`**）"
+          "⇒ 源站 101、复刻 26、实验室 4；**新口径**（本批）"
+          "**可聚焦停靠点数 = 旧环长 − 1** ⇒ 源站 **100**、复刻 **25**、实验室 **3** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **「环长」在换口径后不再是同一件事** ⇒ "
+          "**凡引用「101 格 / 26 格」的旧结论，分母都要减一**；"
+          "⭐⭐⭐⭐⭐ **旧口径在零停靠点页面上会把「零」报成「一」**："
+          "本批 `A1` 臂（**页面上一个可聚焦元素都没有**）⇒ `obs` **全是 `GAP`**、"
+          "`n_focus_stops = 0` ⇒ 旧口径会给出「环长 1」的假象 ⇒ "
+          "⇒ ⭐⭐⭐⭐ **「某圈没走 `BODY`」这句话也要重述**（980 的 7.8%）："
+          "它**不是「缺失了一格」**，而是「**那一圈没有间隙**」—— "
+          "**这是完全不同的现象，必须重测**；"
+          "⚠️⭐⭐⭐⭐ **源站那一臂本轮没测到，而原因必须写清** —— "
+          "就绪探针返回 0，而 ⭐⭐⭐⭐ **第一版我差点误判成「源站改版」** ⇒ "
+          "本批补了一道**诊断读数** ⇒ 实测 `n_btn = 0` / `n_ti0 = 0` / "
+          "`n_nodeid = 0`，页面文本 = **「未命名项目 | 登录以打开您的画布」** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **是登录态过期，不是产品改版** ⇒ "
+          "**「复现不出来」与「没量到」要分开记**（981 的纪律）⇒ "
+          "⚠️ **旧口径的源站数字自此只能算**历史记录 ⇒ "
+          "⇒ ⭐⭐ **但本批结论不受影响**（978/982/983 在**三处**都记到同一行为 "
+          "⇒ **引擎层行为、与登录态无关**）；"
+          "另 ⭐⭐⭐⭐⭐ **那扇回归门我连错两次、第二次与第一次同类**："
+          "① 口径错（拿含 `GAP` 的比含 `BODY` 的）② 残段错"
+          "（拿 **10 步整段**比 **4 格的一圈** ⇒ **正是 980 那条"
+          "「切圈残段不许算进分母」**）⇒ ⇒ ⭐⭐⭐⭐ "
+          "**回归门的第一问永远是「这两串到底该不该逐格相等」**",
+          '"counting_caliber_changed_985"' in _ausrc
+          and "**本批把计数口径整个换掉**" in _ausrc
+          and "**可聚焦停靠点数 = 旧环长 − 1**" in _ausrc
+          and "**「环长」在换口径后不再是同一件事**" in _ausrc
+          and "分母都要减一" in _ausrc
+          and "**旧口径在零停靠点页面上会把「零」报成「一」**" in _ausrc
+          and "全是 `GAP`" in _ausrc
+          and "那一圈没有间隙" in _ausrc
+          and "**这是完全不同的现象，必须重测**" in _ausrc
+          and '"src_not_measured_985"' in _ausrc
+          and "**源站那一臂本轮没测到，而原因必须写清**" in _ausrc
+          and "**第一版我差点误判成「源站改版」**" in _ausrc
+          and "登录以打开您的画布" in _ausrc
+          and "**是登录态过期，不是产品改版**" in _ausrc
+          and "**「复现不出来」与「没量到」要分开记**" in _ausrc
+          and "自此只能算" in _ausrc
+          and "**但本批的结论不受影响**" in _ausrc
+          and "**它是引擎层行为、与登录态无关**" in _ausrc
+          and '"two_gate_errors_same_spot_985"' in _ausrc
+          and "**那扇回归门我连错两次，第二次与第一次同类**" in _ausrc
+          and "**第一次（口径错）**" in _ausrc
+          and "**第二次（残段错，同一族）**" in _ausrc
+          and "**这正是 980 那条「切圈残段不许算进分母」**" in _ausrc
+          and "**门只能拿「首个周期」去比**" in _ausrc
+          and "**两错都在同一扇门上、且都是「比较的对象没对齐」**" in _ausrc
+          and "**回归门的第一问永远是「这两串到底该不该逐格相等」**" in _ausrc
+          and '"discipline_985"' in _ausrc
+          and "**仪器测什么，决定了你能看见什么**" in _ausrc
+          and "**976–984 缺的那一问是「`:focus` 在谁身上」**" in _ausrc
+          and "**一个测错对象的仪器，会把「没有」读成「有一个奇怪的」**" in _ausrc
+          and "而 984 给的是" in _ausrc
+          and "**这一步不能省**" in _ausrc
+          and "**「没测到」必须能说清是「没就绪」还是「没登录」**" in _ausrc
+          and "**一个恒假的读数也有信息量**" in _ausrc
+          and "**本批零计费**：只按 `Tab`；" in _ausrc
+          # ⭐⭐ 钉探针：诊断读数与「两种没测到」的分辨
+          and '"why_not_measured"' in _p985
+          and '"note_about_old_baselines"' in _p985
+          and "**不是产品改版、也不是就绪探针失效**" in _p985
+          and "**待查**" in _p985
+          and '"gap_plus_focus_eq_steps"' in _p985)
+
+
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
