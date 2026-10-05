@@ -1,0 +1,807 @@
+{
+ "generated_by": "jimeng_probe1013_occurrence_ledger.py",
+ "note": "⭐⭐⭐⭐⭐⭐⭐⭐ **1012 的处方「把追加登记成账」跑起来会不会自己变成噪声源**",
+ "scope": "⭐ 全部 188 个目标变量、11 对快照",
+ "fingerprint_2013": {
+  "n_commits": 12,
+  "commits": [
+   "1dda1d5b",
+   "a62401ba",
+   "20c76d45",
+   "11ef6888",
+   "e7e8c779",
+   "76a0988a",
+   "9f180577",
+   "d857b7f7",
+   "0eada9fc",
+   "f5157f18",
+   "0d9f6a00",
+   "fc6645ab"
+  ],
+  "why": "⭐⭐⭐⭐⭐⭐⭐⭐ 见 P6"
+ },
+ "totals": {
+  "n_events": 68,
+  "by_kind": {
+   "grown": 67,
+   "vanished": 1
+  },
+  "n_red": 1,
+  "n_pairs": 11,
+  "n_red_pairs": 1,
+  "exhaustive": true,
+  "disjoint": true
+ },
+ "cross_with_gate": {
+  "ledger_red": [
+   [
+    "_anchs",
+    "probes = {k: (ROOT / v).read_text(encoding=\"utf-8\")"
+   ]
+  ],
+  "gate_vanished": [
+   [
+    "_anchs",
+    "probes = {k: (ROOT / v).read_text(encoding=\"utf-8\")"
+   ]
+  ],
+  "only_ledger": [],
+  "only_gate": [],
+  "symmetric_difference": 0
+ },
+ "red_pairs": [
+  "1005->1006"
+ ],
+ "rows": [
+  {
+   "var": "_ausrc",
+   "anchor": "按定义",
+   "pair": "1001->1002",
+   "kind": "grown",
+   "occ_before": 13,
+   "occ_after": 15,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1001->1002",
+   "kind": "grown",
+   "occ_before": 17,
+   "occ_after": 18,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "pair": "1001->1002",
+   "kind": "grown",
+   "occ_before": 13,
+   "occ_after": 14,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "pair": "1001->1002",
+   "kind": "grown",
+   "occ_before": 13,
+   "occ_after": 14,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "pair": "1001->1002",
+   "kind": "grown",
+   "occ_before": 13,
+   "occ_after": 14,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1001->1002",
+   "kind": "grown",
+   "occ_before": 17,
+   "occ_after": 18,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "pair": "1001->1002",
+   "kind": "grown",
+   "occ_before": 13,
+   "occ_after": 14,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "pair": "1001->1002",
+   "kind": "grown",
+   "occ_before": 13,
+   "occ_after": 14,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "作废",
+   "pair": "1002->1003",
+   "kind": "grown",
+   "occ_before": 36,
+   "occ_after": 37,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**又一次「同一个东西要比同一个口径」**",
+   "pair": "1002->1003",
+   "kind": "grown",
+   "occ_before": 1,
+   "occ_after": 2,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1002->1003",
+   "kind": "grown",
+   "occ_before": 18,
+   "occ_after": 19,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "pair": "1002->1003",
+   "kind": "grown",
+   "occ_before": 14,
+   "occ_after": 15,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "pair": "1002->1003",
+   "kind": "grown",
+   "occ_before": 14,
+   "occ_after": 15,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "pair": "1002->1003",
+   "kind": "grown",
+   "occ_before": 14,
+   "occ_after": 15,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "「同一个东西要比同一个口径」",
+   "pair": "1002->1003",
+   "kind": "grown",
+   "occ_before": 11,
+   "occ_after": 13,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1002->1003",
+   "kind": "grown",
+   "occ_before": 18,
+   "occ_after": 19,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "pair": "1002->1003",
+   "kind": "grown",
+   "occ_before": 14,
+   "occ_after": 15,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "pair": "1002->1003",
+   "kind": "grown",
+   "occ_before": 14,
+   "occ_after": 15,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "作废",
+   "pair": "1003->1004",
+   "kind": "grown",
+   "occ_before": 37,
+   "occ_after": 38,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1003->1004",
+   "kind": "grown",
+   "occ_before": 19,
+   "occ_after": 20,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1003->1004",
+   "kind": "grown",
+   "occ_before": 19,
+   "occ_after": 20,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "asrc",
+   "anchor": "b.left - 1",
+   "pair": "1004->1005",
+   "kind": "grown",
+   "occ_before": 1,
+   "occ_after": 2,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "asrc",
+   "anchor": "b.height / 2",
+   "pair": "1004->1005",
+   "kind": "grown",
+   "occ_before": 2,
+   "occ_after": 3,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1004->1005",
+   "kind": "grown",
+   "occ_before": 20,
+   "occ_after": 21,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1004->1005",
+   "kind": "grown",
+   "occ_before": 20,
+   "occ_after": 21,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_anchs",
+   "anchor": "probes = {k: (ROOT / v).read_text(encoding=\"utf-8\")",
+   "pair": "1005->1006",
+   "kind": "vanished",
+   "occ_before": 1,
+   "occ_after": 0,
+   "red": true,
+   "age_batches": 0,
+   "why_not_red": "原文真的消失了 ⇒ 门会报、账本也报"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "按定义",
+   "pair": "1005->1006",
+   "kind": "grown",
+   "occ_before": 15,
+   "occ_after": 17,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1005->1006",
+   "kind": "grown",
+   "occ_before": 21,
+   "occ_after": 22,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1005->1006",
+   "kind": "grown",
+   "occ_before": 21,
+   "occ_after": 22,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1006->1007",
+   "kind": "grown",
+   "occ_before": 22,
+   "occ_after": 23,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1006->1007",
+   "kind": "grown",
+   "occ_before": 22,
+   "occ_after": 23,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_p1006",
+   "anchor": "n_cross_audit_probe",
+   "pair": "1006->1007",
+   "kind": "grown",
+   "occ_before": 3,
+   "occ_after": 4,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1006->1007",
+   "kind": "grown",
+   "occ_before": 22,
+   "occ_after": 23,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1007->1008",
+   "kind": "grown",
+   "occ_before": 23,
+   "occ_after": 24,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1007->1008",
+   "kind": "grown",
+   "occ_before": 23,
+   "occ_after": 24,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1007->1008",
+   "kind": "grown",
+   "occ_before": 23,
+   "occ_after": 24,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1007->1008",
+   "kind": "grown",
+   "occ_before": 23,
+   "occ_after": 24,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1008->1009",
+   "kind": "grown",
+   "occ_before": 24,
+   "occ_after": 25,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1008->1009",
+   "kind": "grown",
+   "occ_before": 24,
+   "occ_after": 25,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1008->1009",
+   "kind": "grown",
+   "occ_before": 24,
+   "occ_after": 25,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1008->1009",
+   "kind": "grown",
+   "occ_before": 24,
+   "occ_after": 25,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "任何写出临时文件的仪器都必须注册 `atexit` 清理",
+   "pair": "1008->1009",
+   "kind": "grown",
+   "occ_before": 1,
+   "occ_after": 2,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1008->1009",
+   "kind": "grown",
+   "occ_before": 24,
+   "occ_after": 25,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1009->1010",
+   "kind": "grown",
+   "occ_before": 25,
+   "occ_after": 26,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1009->1010",
+   "kind": "grown",
+   "occ_before": 25,
+   "occ_after": 26,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1009->1010",
+   "kind": "grown",
+   "occ_before": 25,
+   "occ_after": 26,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1009->1010",
+   "kind": "grown",
+   "occ_before": 25,
+   "occ_after": 26,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1009->1010",
+   "kind": "grown",
+   "occ_before": 25,
+   "occ_after": 26,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1009->1010",
+   "kind": "grown",
+   "occ_before": 25,
+   "occ_after": 26,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1010->1011",
+   "kind": "grown",
+   "occ_before": 26,
+   "occ_after": 27,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1010->1011",
+   "kind": "grown",
+   "occ_before": 26,
+   "occ_after": 27,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1010->1011",
+   "kind": "grown",
+   "occ_before": 26,
+   "occ_after": 28,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1010->1011",
+   "kind": "grown",
+   "occ_before": 26,
+   "occ_after": 28,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1010->1011",
+   "kind": "grown",
+   "occ_before": 26,
+   "occ_after": 28,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1010->1011",
+   "kind": "grown",
+   "occ_before": 26,
+   "occ_after": 28,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "局部读数不许长得像全局的",
+   "pair": "1010->1011",
+   "kind": "grown",
+   "occ_before": 1,
+   "occ_after": 2,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "本批只量 `_ausrc` 这一个目标",
+   "pair": "1010->1011",
+   "kind": "grown",
+   "occ_before": 1,
+   "occ_after": 2,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1010->1011",
+   "kind": "grown",
+   "occ_before": 26,
+   "occ_after": 28,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1011->1012",
+   "kind": "grown",
+   "occ_before": 27,
+   "occ_after": 28,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "**连 `mouse.click` 都没有**",
+   "pair": "1011->1012",
+   "kind": "grown",
+   "occ_before": 27,
+   "occ_after": 28,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1011->1012",
+   "kind": "grown",
+   "occ_before": 28,
+   "occ_after": 29,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1011->1012",
+   "kind": "grown",
+   "occ_before": 28,
+   "occ_after": 29,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1011->1012",
+   "kind": "grown",
+   "occ_before": 28,
+   "occ_after": 29,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1011->1012",
+   "kind": "grown",
+   "occ_before": 28,
+   "occ_after": 29,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "拿旧 verifier 跑今天的门",
+   "pair": "1011->1012",
+   "kind": "grown",
+   "occ_before": 2,
+   "occ_after": 3,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "局部读数不许长得像全局的",
+   "pair": "1011->1012",
+   "kind": "grown",
+   "occ_before": 2,
+   "occ_after": 3,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "连 `mouse.click` 都没有",
+   "pair": "1011->1012",
+   "kind": "grown",
+   "occ_before": 28,
+   "occ_after": 29,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  },
+  {
+   "var": "_ausrc",
+   "anchor": "样本量不足以决定路线",
+   "pair": "1011->1012",
+   "kind": "grown",
+   "occ_before": 2,
+   "occ_after": 3,
+   "red": false,
+   "age_batches": 0,
+   "why_not_red": "原文仍在 ⇒ 门按设计不报、账本只记不红"
+  }
+ ],
+ "retired": [],
+ "retired_note": "⭐⭐⭐⭐⭐⭐⭐⭐ **纯历史账本的 `retired` 恒为空 —— 这正是 P6 的内容：全量重算把「清单会过期」换成了「历史被截断」，而后者由 `fingerprint_2013` 的 sha 兜底**"
+}
