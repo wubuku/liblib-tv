@@ -288,6 +288,7 @@ PROBE_VARS = {
     #   ⇒ 而它必须在**加读取行的同一步**被登记 —— 漏登记 = 假绿（900–905 同一个坑）
     "_p1010": "scripts/jimeng_probe1010_real_history_detection.py",
     "_p1011": "scripts/jimeng_probe1011_change_locality.py",
+    "_p1012": "scripts/jimeng_probe1012_global_detection.py",
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。

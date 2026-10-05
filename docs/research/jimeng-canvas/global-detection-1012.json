@@ -1,0 +1,139 @@
+{
+ "generated_by": "jimeng_probe1012_global_detection.py",
+ "note": "⭐⭐⭐⭐⭐⭐⭐⭐ **门在十批真实历史里、在全局口径上开口过几次**",
+ "scope": "⭐ 本批扩到全部 187 个目标变量（1010/1011 只量了 1 个）",
+ "pairs": [
+  {
+   "from": "1001",
+   "to": "1002",
+   "declared": 5589,
+   "touched": 8,
+   "vanished": 0
+  },
+  {
+   "from": "1002",
+   "to": "1003",
+   "declared": 5671,
+   "touched": 10,
+   "vanished": 0
+  },
+  {
+   "from": "1003",
+   "to": "1004",
+   "declared": 5727,
+   "touched": 3,
+   "vanished": 0
+  },
+  {
+   "from": "1004",
+   "to": "1005",
+   "declared": 5772,
+   "touched": 4,
+   "vanished": 0
+  },
+  {
+   "from": "1005",
+   "to": "1006",
+   "declared": 5811,
+   "touched": 4,
+   "vanished": 1
+  },
+  {
+   "from": "1006",
+   "to": "1007",
+   "declared": 5860,
+   "touched": 4,
+   "vanished": 0
+  },
+  {
+   "from": "1007",
+   "to": "1008",
+   "declared": 5910,
+   "touched": 4,
+   "vanished": 0
+  },
+  {
+   "from": "1008",
+   "to": "1009",
+   "declared": 5955,
+   "touched": 6,
+   "vanished": 0
+  },
+  {
+   "from": "1009",
+   "to": "1010",
+   "declared": 5989,
+   "touched": 6,
+   "vanished": 0
+  },
+  {
+   "from": "1010",
+   "to": "1011",
+   "declared": 6031,
+   "touched": 9,
+   "vanished": 0
+  }
+ ],
+ "totals": {
+  "n_pairs": 10,
+  "n_declared": 58315,
+  "n_touched": 58,
+  "n_vanished": 1,
+  "global_detection_rate": 0.0172
+ },
+ "by_side": {
+  "_ausrc": {
+   "touched": 54,
+   "vanished": 0,
+   "rate": 0.0
+  },
+  "other": {
+   "n_vars": 186,
+   "touched": 4,
+   "vanished": 1,
+   "rate": 0.25
+  }
+ },
+ "vanished_detail": [
+  {
+   "pair": "1005->1006",
+   "var": "_anchs",
+   "anchor": "probes = {k: (ROOT / v).read_text(encoding=\"utf-8\")"
+  }
+ ],
+ "per_var_touched": {
+  "_ausrc": 54,
+  "asrc": 2,
+  "_anchs": 1,
+  "_p1006": 1
+ },
+ "gate_cross_check": {
+  "pair": "1005->1006",
+  "static_missing": [
+   [
+    "_anchs",
+    "probes = {k: (ROOT / v).read_text(encoding=\"utf-8\")"
+   ]
+  ],
+  "gate_missing": [
+   [
+    "_anchs",
+    "probes = {k: (ROOT / v).read_text(encoding=\"utf-8\")"
+   ]
+  ],
+  "gate_baseline_missing": [],
+  "delta_matches_static": true
+ },
+ "reverse_case": {
+  "killed": [
+   "_anchs",
+   "probes = {k: (ROOT / v).read_text(encoding=\"utf-8\")"
+  ],
+  "delta": [
+   [
+    "_anchs",
+    "probes = {k: (ROOT / v).read_text(encoding=\"utf-8\")"
+   ]
+  ]
+ }
+}
