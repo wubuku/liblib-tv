@@ -2037,3 +2037,53 @@ Current price 3 / 张. 3 / 张 生成`
 **走菜单项「缩放至100%」的对照组同样关掉它** ⇒ 与 `Escape`、与输入框都无关。
 （几何证据：缩放菜单 `200×292` 在 dock 上方，与小地图 `156×114@16,554` **正好重叠**。）
 📌 **凡是要改缩放的实验，收尾时必须重新检查并打开小地图。**
+
+## 🧮 浮层尺寸的视口余量普查（批次 170：静态 CSS 全文，逐条抄出来）
+
+前面几批（165–169）测的浮层，余量都是 **32**（资产库、项目信息、设置主体）、
+**76**（帮助中心，＝上偏移 60 ＋ 右边距 16）—— 很容易推广成「画布浮层一律留 32」。
+🔴 **批次 170 把源站样式表（`main.94b57a0e55.css`，584 613 字节）里
+凡是带视口项的画布相关规则逐条抄了一遍，一共 14 条 —— 余量有四个值，不是一个。**
+
+| 余量 | 出现在哪些类上 | 声明逐字 |
+|---|---|---|
+| **32**（**10 个类**，多数派） | `w-canvas-panorama-editor`、`max-w-canvas-agent-approval-hover`、`max-w-canvas-agent-skill-dialog-viewport`、`max-w-canvas-agent-skill-publish-viewport`、`max-w-canvas-audio-trim-panel`、`max-w-canvas-audio-voice-catalog-panel`、`max-w-canvas-generation-size-panel-viewport`、`max-w-canvas-mask-operation-status`、`max-w-canvas-tag-selector`、`max-w-canvas-video-edit-panel` | `max-width:calc(100vw - 32px)` 等 |
+| **40** | `max-w-canvas-post-edit-toolbar-viewport` | `max-width:calc(100vw - 40px)` |
+| **36** | `max-w-canvas-agent-skill-description-tooltip` | `max-width:min(356px,calc(100vw - 36px))` |
+| **16** | `max-w-canvas-smart-edit-cursor-guide`、**以及画布右键菜单**（后者不在样式表里，是 Tailwind 任意值类） | `max-width:calc(100vw - 16px)` |
+
+⇒ 📌 **这个推广已被批次 170 推翻：「32」是多数派，不是定律。** 记浮层尺寸时，
+**余量必须连同它出自哪条声明一起记**，否则下一个批次又会拿 32 去套一个 40 或 16 的浮层。
+
+另两条**不是「宽度余量」而是「高度」**的，容易被漏掉：
+
+| 类 | 声明逐字 | 备注 |
+|---|---|---|
+| `max-h-canvas-agent-approval-hover` | `max-height:min(380px,50vh)` | **按视口高度的一半**，不是减法 |
+| `max-h-canvas-agent-approval-hover-content` | `max-height:calc(min(380px, 50vh) - 2px)` | 内层再减 2（省分隔线） |
+| `max-w-canvas-video-fullscreen-media` | `width:min(100%,calc((100vh - 40px)*var(--canvas-media-aspect-ratio)))` | **高度换算成宽度**：按画面宽高比 |
+| `w-canvas-panorama-editor` | `width:min(680px,calc(100vw - 32px))` | 与前几批的 `min(定尺, 视口−余量)` 同形 |
+
+### 🔑 右键菜单（`canvas-context-menu`）的完整机制速查
+
+用户侧的完整说明在 [任务页](10-tasks/canvas-context.md#画布右键菜单两种形态四条机制2026-10-05-批次-170-实测-30-余档)；
+这里是给「要自己核对」的人的四条公式，全部逐字取自 DOM：
+
+```
+定位    left = min(鼠标x, 视口宽 − 8 − 菜单宽)
+        top  = min(鼠标y, 视口高 − 8 − 菜单高)        ← 贴边留 8，八个锚点 8/8 命中
+高度    高 = 8 + Σ(直接子元素高) + 4×(直接子个数 − 1)  ← 每项 36、每条分隔线 4、间隙 4
+宽度    两档定尺，不随文字变：空白处 class `w-[240px]`；节点上 内联 style `width: 200px`
+夹取    max-w / max-h = calc(100vw / 100vh − 16px)      ← 门槛 ＝ 菜单尺寸 + 16
+```
+
+**二级菜单（悬停「新建节点」才展开，9 项，212×404）三选一**：
+
+```
+右边空间 ≥ 212  → 从菜单右侧飞出
+右边不够、左边 ≥ 212 → 翻到菜单左侧飞出
+两侧都不够      → 塌进主菜单就地展开（主菜单 172 → 584 高，多出的 404 既看不见也点不开）
+```
+
+⚠️ **第三种不是视口宽度的函数**：640 宽的屏幕上，x=120 处右键正常飞出、x=200 处就塌了。
+六个「宽 × 位置」组合逐一核对，6/6 与规则一致。

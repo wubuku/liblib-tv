@@ -798,6 +798,39 @@
    "pattern_note": "两条 pattern 锚在订正句本身，均不含强调标记；写后各 grep 核过命中 1 处。🔴 本条写第一版时 pattern 写成「面板高 = min(211」—— **回填门把 pattern 直接当正则编译**，这个未闭合的左括号让门直接 SyntaxError 崩掉（不是红，是崩）。已去掉括号：pattern 里**不要出现未转义的 ( )**（第 72 条的 note 早写过这条，本轮又犯）。",
    "refuted_in": "批次 169（SOURCE_OBSERVATIONS.md §4.92；10-tasks/canvas-context.md 新增「「生成历史」面板的尺寸与它不跟着窗口缩」小节）",
    "reason": "2026-10-05 批次 169：此前手册只记了 320×211 这个数，没说它会不会随窗口变。实测 13 档后答案是「几乎不变」——面板高 = min(211, 窗口高 − 116)，门槛 327（720/600/500/400/340/330/327 全部读出 211；300→184、267→151、256→140、200→84），宽 320 恒定（900/700 窄窗口也不缩）。机制逐字是 height:211px + max-height:100% + min-height:min(211px,100%)，顶边恒 y=56、下方另留 60 给底部 dock。与批次 165–168 测的四个模态（资产库 min(801,视口−32)、项目信息 min(546内容,80vh)、设置主体 min(548,视口−32)、帮助中心 min(648,视口−76)）正好相反 ⇒ 两类面板不能互相套结论。同批还发现面板自己有 testid generation-history-panel（<SECTION>，全册此前没记），且立规 34 生效：testid 被两个按钮复用这件事手册早已记录，本批只是独立重新发现。"
+  },
+  {
+   "id": "all-canvas-overlays-leave-32px-margin",
+   "label": "把「画布浮层两侧各留 16 ⇒ 余量 32」推广成「画布浮层一律余量 32」",
+   "patterns": [
+    "是多数派，不是定律",
+    "多数派不是定律"
+   ],
+   "pattern_note": "两条 pattern 都锚在**订正句本身**：前者命中 20-reference.md 普查表的结论行「「32」是多数派，不是定律」；后者命中 PROGRESS/SOURCE_OBSERVATIONS 的小节标题。写前用 grep 逐条核过命中数，且都避开未转义的括号（回填门把 pattern 当正则编译）。",
+   "refuted_in": "批次 170（SOURCE_OBSERVATIONS.md §4.93；20-reference.md 新增「浮层尺寸的视口余量普查」整节）",
+   "reason": "2026-10-05 批次 170：批次 165–169 连续五批测到的对话框余量都是 32（帮助中心 76 已是一次修正，但仍容易推广）。本批不跑实验、直接静态读源站样式表 main.94b57a0e55.css（584613 字节），把所有「选择器含 canvas 且声明带 vw/vh」的规则捞全 —— 一共 14 条，余量出现四个值：32（10 个类）/ 40（max-w-canvas-post-edit-toolbar-viewport）/ 36（max-w-canvas-agent-skill-description-tooltip）/ 16（max-w-canvas-smart-edit-cursor-guide）。另发现三条**不是宽度余量**、极易漏看：max-h-canvas-agent-approval-hover 是 max-height:min(380px,50vh)（视口高的一半，不是减法）、它的内层 calc(min(380px,50vh) - 2px)、以及 max-w-canvas-video-fullscreen-media 把高度按画面宽高比换算成宽度。⇒ 结论是「32 是多数派不是定律」，记尺寸时余量必须连同出自哪条声明一起记。"
+  },
+  {
+   "id": "canvas-context-menu-is-always-200-wide",
+   "label": "把画布右键菜单记成「宽恒为 200」的一种菜单",
+   "patterns": [
+    "容易让人以为右键菜单宽度恒为 200",
+    "两档宽度的写法不一样"
+   ],
+   "pattern_note": "第一条锚在 canvas-context.md 给批次 55 那张表加的范围限定句；第二条锚在右键菜单整节里点明两档宽度来源不同的那句。两条都紧邻订正标记（「完整两态见…」「空白那种写在 class 里…」）。",
+   "refuted_in": "批次 170（SOURCE_OBSERVATIONS.md §4.93.3；10-tasks/canvas-context.md 新增「画布右键菜单」整节，并给批次 55 的那张表加了范围限定）",
+   "reason": "2026-10-05 批次 170：此前手册只记了批次 55 的「节点上右键 200×292 七项」，读者容易以为右键菜单就这一种。实测至少两种：画布**空白处**右键是 240×172 四项（新建节点/粘贴/重做/撤销）、**节点上**右键是 200×292 七项。而且两档宽度的**写法不一样**：空白那种来自 class 里的 w-[240px]（带 data-context-menu-size=wide），节点那种**没有宽度类**，宽度是 JS 写进内联 style 的 width: 200px（size=medium）—— 静态 grep 样式表全文可证：octo-context-menu 相关规则只有 3 条、**一条宽度都没有**（立规 39 第三次应验）。同一批还把高度从「两个孤立数字」升级成内容累加公式 高 = 8 + Σ(直接子元素高) + 4×(直接子个数−1)（项 36、分隔线 4、列表 gap 4），两变体都精确命中。"
+  },
+  {
+   "id": "canvas-context-menu-only-closes-on-esc",
+   "label": "把「右键菜单鼠标移开不关」记成「右键菜单只有 Esc 能关」",
+   "patterns": [
+    "不随鼠标移开而消失",
+    "前者也实测成立"
+   ],
+   "pattern_note": "第一条锚在任务页常见错误表里「鼠标移开了菜单还在」那一行（同句已带「原写…已订正」的内联标记）；第二条锚在 SOURCE_OBSERVATIONS §4.93.2 对本批第 f 轮那个印象的自我订正句。🔴 第一版 pattern 写成「只能点别处或按 Esc」—— 写订正句时把那句改掉了，**自己把锚点删了**，回填门当场抓住。",
+   "refuted_in": "批次 170（SOURCE_OBSERVATIONS.md §4.93.2；10-tasks/canvas-context.md「🔑 怎么关掉它」小节；90-troubleshooting.md「右键菜单开着，底下那一整块画布点不动」）",
+   "reason": "2026-10-05 批次 170：f 轮实测到「菜单鼠标移开不关、Esc 能关」，差点就此写成「只有 Esc 能关」。q 轮补测发现**点菜单以外的画布同样能关**（点空白后菜单消失，读数 false）。⇒ 关闭方式三条里两条管用（点别处 / Esc），移开不管用。用户侧的连带结论：菜单开着时它正下方那一整块画布收不到点击 —— 实测一个 200×316 的菜单盖住 182×182 的节点，elementFromPoint 在节点中心命中的是菜单，连点三次节点恒 0 选中。"
   }
  ]
 }

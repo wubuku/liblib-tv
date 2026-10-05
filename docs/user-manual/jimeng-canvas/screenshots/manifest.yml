@@ -1886,3 +1886,58 @@ screenshots:
     visible_text: '生成历史 全部 图片 视频 音频 文本 暂无生成历史'
     alt: '「生成历史」面板在 1280×720 下的样子（2026-10-05 批次 169 拍）：面板钉在画布右上角，标题行左侧「生成历史」、右侧「积分明细 ›」，下面一行五个页签 全部 / 图片 / 视频 / 音频 / 文本（全部 选中带下划线），内容区正中写着「暂无生成历史」；橙色高亮框标出面板 320×211 的范围'
     sha256: 8de15ff04c26c24b1ef30c51a5c75cf815ff7d2890cfbf55a0c37cae88d21a14
+  - file: screenshots/128-canvas-rightclick-blank-240x172.png
+    task_id: canvas-context
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T14:22:00+08:00
+    verified_locator: '画布空白处右键弹出的 div[role=menu][data-testid=canvas-context-menu]，读出 240×172@250,30；四个直接子元素 36/4/36/36（新建节点 / 分隔线 / 粘贴 / 重做 / 撤销），列表 gap 4px'
+    visible_text: '新建节点 粘贴 ⌘ V 重做 ⌘ ⇧ Z 无需重做操作 撤销 ⌘ Z'
+    alt: '画布空白处右键弹出的菜单（2026-10-05 批次 170 拍）：240×172，只有四项——新建节点、粘贴 ⌘V、置灰的重做 ⌘⇧Z（下方小字「无需重做操作」）、撤销 ⌘Z，橙色高亮框标出菜单范围'
+    sha256: 222dd933cf8de2a7d07c60d3818da564ac2a41ab8b1dcfde25c39cfbd2f22b49
+  - file: screenshots/129-canvas-rightclick-node-200x292.png
+    task_id: canvas-context
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T14:23:00+08:00
+    verified_locator: '在音频节点上右键弹出的同一个 div[role=menu][data-testid=canvas-context-menu]，读出 200×292@347,376；八个直接子元素（7 项 36 + 1 条分隔线 4），内联 style 逐字含 width: 200px'
+    visible_text: '复制 ⌘ C 复制副本 ⌘ D 粘贴 ⌘ V 下载 没有可用的就绪资源 重做 ⌘ ⇧ Z 撤销 ⌘ Z 删除 ⌫'
+    alt: '节点上右键弹出的菜单（2026-10-05 批次 170 拍）：200×292，七项——复制 ⌘C、复制副本 ⌘D、粘贴 ⌘V、置灰的下载（下方小字「没有可用的就绪资源」）、置灰的重做 ⌘⇧Z、撤销 ⌘Z、删除 ⌫，中间有一条分隔线，橙色高亮框标出菜单范围'
+    sha256: d940882e22c5fb6c7cc3a88d9ca06d6e7b55a1f6e568a9f780779f953d3a7f3e
+  - file: screenshots/130-canvas-new-node-submenu-212x404.png
+    task_id: canvas-context
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T14:24:00+08:00
+    verified_locator: '鼠标悬停在「新建节点」那一行上后出现的子菜单，class 逐字 z-50 absolute visible、style 逐字 left: 100%; padding-left: 12px; top: -4px，读出 212×404@486,30，内含 9 个 role=menuitem'
+    visible_text: '文本 图片 视频 音频 时间线 主体 导演台 从资产库添加 本地上传'
+    alt: '「新建节点」的二级菜单展开的样子（2026-10-05 批次 170 拍）：从空白处右键菜单的第一项向右侧飞出的二级列表 212×404，逐行列出 文本、图片、视频、音频、时间线、主体、导演台、从资产库添加、本地上传，橙色高亮框标出二级菜单范围'
+    sha256: dc4d822571164638128a446f9d4322525a55677b262d19f4109b9a704924ad2f
+  - file: screenshots/131-canvas-rightmenu-clamped-250px.png
+    task_id: canvas-context
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 250x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T14:25:00+08:00
+    verified_locator: '视口钉到 250×720 后在画布空白处右键的同一个菜单，读出 234×584@8,50（宽 234 = 视口宽 250 − 16，被 class 里的 max-w-[calc(100vw_-_16px)] 夹住；左边余 8 = 贴边翻转规则）'
+    visible_text: '新建节点 粘贴 ⌘ V 重做 ⌘ ⇧ Z 无需重做操作 撤销 ⌘ Z 无需撤销操作'
+    alt: '屏幕只有 250 像素宽时（2026-10-05 批次 170 拍）：空白处右键弹出的菜单被压到 234 宽（= 屏幕宽 − 16），并贴到屏幕左边 8px 处，橙色高亮框标出菜单范围'
+    sha256: 511f5f7e354e27f5a7e1670e6c4564447aa2297b457743695b7486afd19d5aab
+  - file: screenshots/132-canvas-rightmenu-inline-gap-640px.png
+    task_id: canvas-context
+    step: 6
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 640x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T14:26:00+08:00
+    verified_locator: '视口 640×720、在 x=200 处右键（右边余 200 < 212、左边余 200 < 212，两侧都放不下二级菜单）时读出菜单 240×584，「新建节点」那一行高 448、其中的子菜单 visibility:hidden 却仍占 404 高'
+    visible_text: '新建节点 粘贴 ⌘ V 重做 ⌘ ⇧ Z 撤销 ⌘ Z'
+    alt: '窄窗口下「新建节点」的二级菜单塌进主菜单（2026-10-05 批次 170 拍）：屏幕 640 像素宽、在 x=200 处右键，主菜单从 172 高涨到 584 高，上半部是「新建节点」那一行，下面是「粘贴」「重做」「撤销」，中间横着一大片空白区域——那里本该是二级菜单，但它是隐藏且点不到的，橙色高亮框标出菜单范围'
+    sha256: 9491028dc40c4bc43b498a2b260d25877a2f5da5f4d9f513d0fa242f51c3aeaa
