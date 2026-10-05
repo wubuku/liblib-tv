@@ -1,0 +1,72 @@
+{
+ "batch": 784,
+ "states": [
+  "viewerCaptureId",
+  "contextMenu",
+  "open",
+  "pathMenuLeft",
+  "presetPanelLeft",
+  "motionPathDraft",
+  "modelLibraryOpen",
+  "activeDirectorNodeId",
+  "exportPanelOpen",
+  "followTargetId"
+ ],
+ "outsideClose": {
+  "viewerCaptureId": [],
+  "contextMenu": [
+   {
+    "event": "mousedown",
+    "target": "window",
+    "handler": "close",
+    "file": "src/components/director/DirectorObjectTree.tsx",
+    "line": 212
+   }
+  ],
+  "open": [],
+  "pathMenuLeft": [
+   {
+    "event": "pointerdown",
+    "target": "window",
+    "handler": "close",
+    "file": "src/components/director/DirectorTimeline.tsx",
+    "line": 569
+   }
+  ],
+  "presetPanelLeft": [
+   {
+    "event": "pointerdown",
+    "target": "window",
+    "handler": "close",
+    "file": "src/components/director/DirectorTimeline.tsx",
+    "line": 593
+   }
+  ],
+  "motionPathDraft": [],
+  "modelLibraryOpen": [],
+  "activeDirectorNodeId": [],
+  "exportPanelOpen": [],
+  "followTargetId": []
+ },
+ "statesWithOutsideClose": [
+  "contextMenu",
+  "pathMenuLeft",
+  "presetPanelLeft"
+ ],
+ "statesWithoutOutsideClose": [
+  "activeDirectorNodeId",
+  "exportPanelOpen",
+  "followTargetId",
+  "modelLibraryOpen",
+  "motionPathDraft",
+  "open",
+  "viewerCaptureId"
+ ],
+ "pointerListenersScanned": 25,
+ "method": "★ 判据：每条 `mousedown`/`pointerdown`/`click` 监听，取它注册的**处理器函数体**，要求 `set<S>(null)` **直接**出现在里面 ⟹ 同时排掉「不在 effect 里的代码」与「一跳间接调用」（`DirectorTimeline:771` 的 `pointerup`/`handleUp` → `cleanup()` 就是后者）。★ **不做任何归类**（前两版用「`ids` 第一个」猜门状态、用「所在 effect」判外点，都错了）。",
+ "notCovered": [
+  "**谁的门状态是哪个** —— 由汇编器逐条行锚定",
+  "**键盘可达性** —— 静态不可判，运行时的事",
+  "交叉写入（783 已用行锚定字面量钉死）—— 本普查不重复扫"
+ ]
+}

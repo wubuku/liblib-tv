@@ -1,0 +1,444 @@
+{
+ "batch": 784,
+ "arms": [
+  "ctxThenLibMouse",
+  "ctxThenLibKeyboard",
+  "ctxOnly",
+  "libOnly"
+ ],
+ "presses": 2,
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "ctxThenLibMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "after2": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": true,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "ctxThenLibKeyboard",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": true,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "secondFocus": {
+      "ok": true
+     },
+     "after2": {
+      "ctxOpen": true,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": true,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": true,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "ctxOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": null,
+        "exportOpen": false,
+        "deskOpen": false
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": false,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "libOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": false,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "tries": 1,
+     "retried": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "ctxThenLibMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "after2": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": true,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "ctxThenLibKeyboard",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": true,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "secondFocus": {
+      "ok": true
+     },
+     "after2": {
+      "ctxOpen": true,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": true,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": true,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "ctxOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": null,
+        "exportOpen": false,
+        "deskOpen": false
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": false,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "libOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": false,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "tries": 1,
+     "retried": false
+    }
+   ]
+  }
+ ]
+}

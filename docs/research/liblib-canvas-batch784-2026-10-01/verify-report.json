@@ -1,0 +1,599 @@
+{
+ "batch": 784,
+ "verdict": "通过",
+ "criteria": {
+  "total": 53,
+  "passed": 53,
+  "failed": 0,
+  "failedLabels": []
+ },
+ "negativeControls": {
+  "total": 8,
+  "caught": 8,
+  "stale": [],
+  "kwNotUnique": [],
+  "cases": [
+   {
+    "name": "把树那个主人的 `mousedown` 外点关闭改成一个永不触发的事件",
+    "why": "★ 「独立重算的有外点关闭清单」必须少掉 `contextMenu` ⟹ 「只有 3 个有」这条要能被抓",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★★ 独立重算：有外点关闭的门状态 = ['pathMenuLeft', 'presetPanelLeft']",
+     "静态：★ 没有外点关闭的门状态 8 个（预测 7）",
+     "静态：★★ 那 3 个的外点事件**各不相同** ⟹ 逐个手写、无统一机制",
+     "静态：★ 树那个主人的外点关闭挂在 **`mousedown`** 上",
+     "产物：★ audit 的「有外点关闭」清单 = 独立重算",
+     "产物：★ audit 的「没有外点关闭」数 = 独立重算",
+     "产物：★ audit 的外点事件表 = 独立重算"
+    ],
+    "caught": true,
+    "expectFailOn": "★★ 独立重算"
+   },
+   {
+    "name": "把 `setContextMenu(null)` 改成**一跳间接**（`queueMicrotask`）",
+    "why": "★★ 「**直接**出现」这条判据是 R146b 的修复 ⟹ 「那个 `close` 里**直接**写」必须红（间接调用不算外点关闭）",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★ 那个 `close` 里**直接** `setContextMenu(null)`（不是一跳间接）"
+    ],
+    "caught": true,
+    "expectFailOn": "直接"
+   },
+   {
+    "name": "把模型库触发器的 `type=\"button\"` 改成 `type=\"submit\"`",
+    "why": "★ 「键盘 `Enter` 只产生 `click`、不产生 `mousedown`」这条的静态前提之一 ⟹ 对照要能抓",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★★ 模型库触发器是 `type=\"button\"` ⟹ 键盘 `Enter` 激活它**只产生 `click`、不产生 `mousedown`**"
+    ],
+    "caught": true,
+    "expectFailOn": "只产生"
+   },
+   {
+    "name": "把模型库触发器的 `onClick` 去掉",
+    "why": "★ 同上：没有 `onClick` 就没有「点一下就开」这条路 ⟹ 「键盘激活可达」的前提不成立",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★ 模型库触发器用 `onClick` 激活"
+    ],
+    "caught": true,
+    "expectFailOn": "用 `onClick`"
+   },
+   {
+    "name": "把 keyboard 臂读成「右键菜单被关掉了」（不共活）",
+    "why": "★★★ 本批唯一的缺陷 D1i **完全依赖**这一格 ⟹ 对照要能证明它红",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "预测 E：★★★ keyboard 臂第 2 步后**右键菜单仍开着** ⟹ ★ **共活在键盘下可达**（「外点关闭只挡鼠标」）",
+     "预测 E：keyboard 臂**共活**",
+     "预测 H：★★ raw 的 `coLive` 字段与重算不符的臂 = ['ctxThenLibMouse', 'ctxThenLibKeyboard'] ⟹ ★ 那个字段**漏了「第一个是不是还开着」**这一检查（R149）",
+     "产物：★ audit 记的「键盘下共活」= 重算值",
+     "产物：★ audit 记的 raw 字段不符臂数 = 重算值"
+    ],
+    "caught": true,
+    "expectFailOn": "共活在键盘下可达"
+   },
+   {
+    "name": "把 keyboard 臂第 1 次读成「右键菜单被关掉了」",
+    "why": "★★★ 「一次 Escape 只关 `sIP` 那个」这条要能抓",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "预测 F：★★★ 第 1 次后**右键菜单留在原地** ⟹ ★ **一次 Escape 只关 `sIP` 那个**，bubble 那个**无反馈地留着**"
+    ],
+    "caught": true,
+    "expectFailOn": "留在原地"
+   },
+   {
+    "name": "把 libOnly 第 1 次读成「导出面板被关掉了」",
+    "why": "★ 「`sIP` 单独活着时也要按两次」这条要能抓",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "对照：★★ libOnly 第 1 次**导出面板仍在** ⟹ ★ **`sIP` 单独活着时，Escape 也要按两次**（782 读数第二次复现）"
+    ],
+    "caught": true,
+    "expectFailOn": "单独活着"
+   },
+   {
+    "name": "把 raw 里那个错的 `coLive` 字段**改成对的**",
+    "why": "★ R149：「raw 里的派生字段要与它自己的输入对账」⟹ 如果探针某天修好了，这条判据必须能红（否则就再也发现不了它曾经错过）",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "预测 H：★★ raw 的 `coLive` 字段与重算不符的臂 = [] ⟹ ★ 那个字段**漏了「第一个是不是还开着」**这一检查（R149）",
+     "产物：★ audit 记的 raw 字段不符臂数 = 重算值"
+    ],
+    "caught": true,
+    "expectFailOn": "漏了"
+   }
+  ]
+ },
+ "staticRecomputed": {
+  "statesWithOutsideClose": [
+   "contextMenu",
+   "pathMenuLeft",
+   "presetPanelLeft"
+  ],
+  "statesWithoutOutsideClose": [
+   "activeDirectorNodeId",
+   "exportPanelOpen",
+   "followTargetId",
+   "modelLibraryOpen",
+   "motionPathDraft",
+   "open",
+   "viewerCaptureId"
+  ],
+  "events": {
+   "contextMenu": [
+    "mousedown"
+   ],
+   "pathMenuLeft": [
+    "pointerdown"
+   ],
+   "presetPanelLeft": [
+    "pointerdown"
+   ]
+  },
+  "contextMenuSites": [
+   {
+    "event": "mousedown",
+    "handler": "close",
+    "file": "src/components/director/DirectorObjectTree.tsx",
+    "line": 212
+   }
+  ],
+  "treeMousedown": true,
+  "treeCloseDirect": true,
+  "libTriggerIsButton": true,
+  "libTriggerType": true,
+  "libTriggerOnClick": true
+ },
+ "runtimeRecomputed": {
+  "unexpectedFailed": [],
+  "arms": {
+   "ctxThenLibMouse": [
+    {
+     "arm": "ctxThenLibMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "after2": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": true,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     }
+    },
+    {
+     "arm": "ctxThenLibMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "after2": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": true,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     }
+    }
+   ],
+   "ctxThenLibKeyboard": [
+    {
+     "arm": "ctxThenLibKeyboard",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": true,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "secondFocus": {
+      "ok": true
+     },
+     "after2": {
+      "ctxOpen": true,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": true,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": true,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     }
+    },
+    {
+     "arm": "ctxThenLibKeyboard",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": true,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "secondFocus": {
+      "ok": true
+     },
+     "after2": {
+      "ctxOpen": true,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": true,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": true,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     }
+    }
+   ],
+   "ctxOnly": [
+    {
+     "arm": "ctxOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": null,
+        "exportOpen": false,
+        "deskOpen": false
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": false,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     }
+    },
+    {
+     "arm": "ctxOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": null,
+        "exportOpen": false,
+        "deskOpen": false
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": false,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": true,
+      "libOpen": false,
+      "exportOpen": true,
+      "deskOpen": true
+     }
+    }
+   ],
+   "libOnly": [
+    {
+     "arm": "libOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": false,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     }
+    },
+    {
+     "arm": "libOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "ctxOpen": false,
+        "libOpen": false,
+        "exportOpen": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after1": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     },
+     "coLive": false,
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "ctxOpen": false,
+      "libOpen": true,
+      "exportOpen": true,
+      "deskOpen": true
+     }
+    }
+   ]
+  },
+  "keys": [
+   "ctxOnly",
+   "ctxThenLibKeyboard",
+   "ctxThenLibMouse",
+   "libOnly"
+  ],
+  "rounds": 2,
+  "roundsConsistent": true,
+  "pressTotal": 16
+ },
+ "productSelfCheck": {
+  "产物：audit.batch=784": true,
+  "产物：★ audit 的「有外点关闭」清单 = 独立重算": true,
+  "产物：★ audit 的「没有外点关闭」数 = 独立重算": true,
+  "产物：★ audit 的外点事件表 = 独立重算": true,
+  "产物：★ audit 记的「键盘下共活」= 重算值": true,
+  "产物：★ audit 记的「鼠标下共活」= 重算值": true,
+  "产物：★ audit 记的 raw 字段不符臂数 = 重算值": true,
+  "产物：★ audit 记的**按压格数**（跨轮）= 重算值": true,
+  "产物：★ audit 记的**行数** = 4 臂 × 2 轮": true,
+  "产物：audit 记的零 FAILED": true
+ },
+ "problems": [],
+ "srcDiff": "**验收器未改 `src/`**（对照全在内存副本上做）"
+}
