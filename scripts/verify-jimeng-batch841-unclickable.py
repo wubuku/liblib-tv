@@ -5879,6 +5879,11 @@ def main() -> int:
     #   **⇒ 所以这行读取与门里那条登记必须是同一步**
     p1008 = ROOT / "scripts/jimeng_probe1008_golden_freshness.py"
     _p1008 = p1008.read_text(encoding="utf-8") if p1008.exists() else ""
+    # ⚠️⚠️ 判据组 `N993R.2` 要钉的是**「那 8 行全部是真跑门跑出来的」**
+    #   ⇒ 而「不许用推理填格」这条纪律**必须由门来钉**、不能只写在文档里 ⇒ ⇒
+    #   **⇒ 所以这行读取与门里那条登记必须是同一步**
+    p1009 = ROOT / "scripts/jimeng_probe1009_edit_visibility.py"
+    _p1009 = p1009.read_text(encoding="utf-8") if p1009.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -14371,6 +14376,93 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **反向门**：**不许说「本批把 1005 全部推翻」**
           and '本批把 1005 全部推翻' not in _p1008
           and '本批把 1005 全部推翻' not in _ausrc)
+
+
+    # ══ 1009 宇宙冻结点 ══
+    # ⚠️ 同 1006/1007/1008 那条：**1009 报的那些数是在它的 `N993R` 判据加进去之前测的**
+    #   ⇒ ⇒ **⇒ 而 1008 忘了执行这条通则、所以这一行是「上一批的教训」的物证**
+    # ══ N993R. 批 1009 **「目标侧的编辑 × 门看得见吗」—— 一张逐行真跑门的表**
+    print("— N993R. 批 1009 目标侧编辑可见性："
+          "⭐⭐⭐⭐⭐ **8 种编辑逐行真跑门 ⇒ 门看得见的 4 种、看不见的 4 种** ⇒ ⇒ "
+          "❌ **P2 被否：「升级成必须恰好 N 次」补不上 —— 末尾追加根本不改 N** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而看不见的那四种、共同点是「改动之后原文仍是子串或还在」**")
+
+    check("N993R.1 ⭐⭐⭐⭐⭐ **P1 成立（而我第一版把它算错了）：`_ausrc` 侧 3380 条正向锚点、"
+          "**其中 285 条（8.4%）在 audit 里出现 2 次以上** ⇒ ⇒ "
+          "**⇒ 而门对每一条都只问同一个二元问题「在不在」⇒ ⇒ "
+          "**⇒ 于是「在 1 次」和「在 4 次」对门是同一件事** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而反向锚点那 146 条的「0 次」是**期望值** —— 正向与反向不是一种状态**",
+          '"P1_four_states_are_very_uneven"' in _p1009
+          and '"p1_four_states_are_very_uneven_2009_"' in _ausrc
+          and '"P1_hold_1009"' in _p1009
+          and '"hist_positive"' in _p1009
+          and '"hist_negative"' in _p1009
+          and '"n_positive_appearing_more_than_once"' in _p1009
+          and '正向与反向不是一种状态' in _p1009
+          and '正向与反向不是一种状态' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把反向锚点的「0 次」当成异常**
+          and '反向锚点的 0 次是异常' not in _p1009
+          and '反向锚点的 0 次是异常' not in _ausrc)
+
+    check("N993R.2 ❌⭐⭐⭐⭐⭐ **P2 被否：把门从「在不在」升级成「必须恰好 N 次」补不上这个洞** ⇒ ⇒ "
+          "**⇒ 因为「只在末尾追加」根本不改 N、而它对门完全隐形** ⇒ ⇒ "
+          "**⇒ 所以那不是「升级 N」能补的洞 —— 洞在「子串包含」这个机制本身** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而 P3 否掉的是我的预测：能穿过门的不是「两种」而是「四种」** ⇒ ⇒ "
+          "**⇒ 看不见的那四种、共同点是「改动之后原文仍是子串或还在」**",
+          '"P2_requiring_exactly_n_would_close_the_gap"' in _p1009
+          and '"P2_requiring_exactly_n_would_close_the_gap_2009_"' in _ausrc
+          and '"P2_hold_1009"' in _p1009
+          and '"edit_table_1009"' in _p1009
+          and '"gate_sees_it"' in _p1009
+          and '洞在「子串包含」这个机制本身' in _p1009
+          and '洞在「子串包含」这个机制本身' in _ausrc
+          and '能穿过门的不是「两种」而是「**四种**」' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门①**：**不许把「升级成恰好 N 次」说成解法**
+          and '升级成恰好 N 次就能补上' not in _p1009
+          and '升级成恰好 N 次就能补上' not in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门②**：**不许用推理填那张表的任何一格**
+          and '这张表里有格子是推理出来的' not in _p1009
+          and '这张表里有格子是推理出来的' not in _ausrc)
+
+    check("N993R.3 ⭐⭐⭐⭐⭐ **P4 成立：在目标里把锚点**复制一份** ⇒ 门**仍然报 0** ⇒ ⇒ "
+          "**⇒ 而这是唯一一种「门看不见、但**普查**看得见」的编辑** ⇒ ⇒ "
+          "**⇒ 因为它把「零耦合」变成「非零耦合」、而门对次数一无所知** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 所以门与普查的分工边界就在这儿：门管「在不在」、"
+          "普查管「在几次、在几个文件」** ⇒ ⇒ "
+          "**⇒ P5 成立：那张表 8 行**全部**是真跑门跑出来的、没有一格是推理填的**",
+          '"P4_the_one_case_only_the_census_sees"' in _p1009
+          and '"p4_the_one_case_only_the_census_sees_2009_"' in _ausrc
+          and '"P4_hold_1009"' in _p1009
+          and '"p5_table_not_arguments"' in _p1009
+          and '"p5_table_not_arguments_2009_"' in _ausrc
+          and '"P5_hold_1009"' in _p1009
+          and '门管「在不在」、普查管「在几次、在几个文件」' in _p1009
+          and '门管「在不在」' in _ausrc
+          and '没有一格是推理填的' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许说普查是门的替代品**
+          and '普查可以取代这道门' not in _p1009
+          and '普查可以取代这道门' not in _ausrc)
+
+    check("N993R.4 ⭐⭐⭐⭐⭐ **P6 成立：逐行落进 "
+          "`docs/research/jimeng-canvas/edit-visibility-1009.json`、由写它的探针自己写** ⇒ ⇒ "
+          "⭐⭐⭐⭐ **⇒ 而本批自己踩了两次「顺序」与「口径」的坑，都已修**："
+          "**① 正向与反向混在一起数、把 146 条反向当成「第 0 种」** ⇒ ⇒ "
+          "**② `verdicts` 建在清单落盘之前、于是 `p6` 那一条读到空字符串** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 处置：凡是被引用的东西必须先造好；"
+          "而「空字符串」这种读数太容易被当成「这里本来就没什么可写」** ⇒ ⇒ "
+          "**⇒ 本批纯离线：连 `mouse.click` 都没有**",
+          '"P6_golden_and_numbers"' in _p1009
+          and '"p6_golden_1009_"' in _ausrc
+          and '"P6_hold_1009"' in _p1009
+          and 'edit-visibility-1009.json' in _p1009
+          and 'edit-visibility-1009.json' in _ausrc
+          and '凡是被引用的东西必须先造好' in _p1009
+          and '凡是被引用的东西必须先造好' in _ausrc
+          and '空字符串' in _p1009
+          and '连 `mouse.click` 都没有' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「空字符串」当成「没什么可写」**
+          and '读到空字符串说明本来就没什么可写' not in _p1009
+          and '读到空字符串说明本来就没什么可写' not in _ausrc)
 
 
     print(f"\n{checks - len(failures)}/{checks}")

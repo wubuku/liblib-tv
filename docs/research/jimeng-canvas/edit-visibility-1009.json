@@ -1,0 +1,70 @@
+{
+ "generated_by": "jimeng_probe1009_edit_visibility.py",
+ "note": "⭐⭐⭐⭐⭐ **「目标侧编辑 × 门看得见吗」的**逐行实测**清单 —— **而不是推理**",
+ "hist_positive": {
+  "1": 3094,
+  "2": 188,
+  "3+": 98
+ },
+ "hist_negative": {
+  "0": 146
+ },
+ "rows": [
+  {
+   "edit": "E1_整条删掉",
+   "occurrences_before": 2,
+   "occurrences_after": 0,
+   "gate_problems": 1,
+   "gate_sees_it": true
+  },
+  {
+   "edit": "E2_就地改字",
+   "occurrences_before": 2,
+   "occurrences_after": 0,
+   "gate_problems": 1,
+   "gate_sees_it": true
+  },
+  {
+   "edit": "E3_末尾追加",
+   "occurrences_before": 2,
+   "occurrences_after": 2,
+   "gate_problems": 0,
+   "gate_sees_it": false
+  },
+  {
+   "edit": "E4_开头追加",
+   "occurrences_before": 2,
+   "occurrences_after": 2,
+   "gate_problems": 0,
+   "gate_sees_it": false
+  },
+  {
+   "edit": "E5_中间插字",
+   "occurrences_before": 2,
+   "occurrences_after": 0,
+   "gate_problems": 1,
+   "gate_sees_it": true
+  },
+  {
+   "edit": "E6_旁边复制一份",
+   "occurrences_before": 2,
+   "occurrences_after": 4,
+   "gate_problems": 0,
+   "gate_sees_it": false
+  },
+  {
+   "edit": "E7_删掉末尾一段",
+   "occurrences_before": 2,
+   "occurrences_after": 0,
+   "gate_problems": 1,
+   "gate_sees_it": true
+  },
+  {
+   "edit": "E8_复制并改字",
+   "occurrences_before": 2,
+   "occurrences_after": 2,
+   "gate_problems": 0,
+   "gate_sees_it": false
+  }
+ ]
+}
