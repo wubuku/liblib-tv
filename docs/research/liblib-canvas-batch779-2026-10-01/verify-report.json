@@ -1,0 +1,516 @@
+{
+ "batch": 779,
+ "checks": [
+  {
+   "label": "静态：缺源码",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "静态：hook 的 `onKeyDown` 找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ hook 的 Escape 分支 `preventDefault`（第一道吞嘴之一）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ hook 的 Escape 分支 `stopPropagation`（第一道吞嘴之二）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 整个 `onKeyDown` 里 `stopPropagation` **恰好 1 次**",
+   "pass": true,
+   "got": 1,
+   "want": 1
+  },
+  {
+   "label": "静态：★ `stopPropagation` **不在**非 Escape 分支里 ⟹ 非 Escape 键**一定**能穿过 hook 到达 window",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "静态：桌的 keydown 监听挂在 window",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 桌的监听**不在 capture 相位** ⟹ 判别器成立（capture 版任何 `stopPropagation` 都拦不住）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "静态：`isEditable` 守卫找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：Escape 阶梯闸门找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 守卫排在阶梯闸门**之前** ⟹ 第二道吞嘴在第一道**下游**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：阶梯闸门之后有 `preventDefault`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 阶梯**自己有一档 `activeGesture`** ⟹ 前两处都改完，第 1 次按压仍只取消手势",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：阶梯四档齐全",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 阶梯档位有序（手势→导出面板→退出跟随→关桌）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 移动抽屉的 Escape 分支排在守卫**之前**（C775-2 同仓先例）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：零 FAILED",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "原始：臂集合齐（4 臂）",
+   "pass": true,
+   "got": [
+    "controlNonInput",
+    "gestureNumber",
+    "gestureRange",
+    "modifierNonEscape"
+   ],
+   "want": [
+    "controlNonInput",
+    "gestureNumber",
+    "gestureRange",
+    "modifierNonEscape"
+   ]
+  },
+  {
+   "label": "原始：两轮逐字段一致",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：按压格数 = 4 臂 × 3 次",
+   "pass": true,
+   "got": 12,
+   "want": 12
+  },
+  {
+   "label": "原始：gestureNumber 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ gestureNumber 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**，所以「没到达 window」这个读数有鉴别力",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：gestureNumber 导出面板在起点是开的 ⟹ 阶梯的 :557 那档有目标",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：gestureRange 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ gestureRange 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**，所以「没到达 window」这个读数有鉴别力",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：gestureRange 导出面板在起点是开的 ⟹ 阶梯的 :557 那档有目标",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：controlNonInput 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ controlNonInput 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**，所以「没到达 window」这个读数有鉴别力",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：controlNonInput 导出面板在起点是开的 ⟹ 阶梯的 :557 那档有目标",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：modifierNonEscape 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ modifierNonEscape 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**，所以「没到达 window」这个读数有鉴别力",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：modifierNonEscape 导出面板在起点是开的 ⟹ 阶梯的 :557 那档有目标",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：gestureNumber 第1次 `win=0` ⟹ 事件**从没到达 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：gestureNumber 第2次 `win=0` ⟹ 事件**从没到达 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：gestureNumber 第3次 `win=0` ⟹ 事件**从没到达 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：gestureRange 第1次 `win=0` ⟹ 事件**从没到达 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：gestureRange 第2次 `win=0` ⟹ 事件**从没到达 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：gestureRange 第3次 `win=0` ⟹ 事件**从没到达 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 第一道吞嘴覆盖 6/6 次按压 ⟹ **776 的机制归属正确**（第 2/3 次确实被 hook 的 stopPropagation 吞）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "对照：第1次 `win>=1` ⟹ 事件到达了 window（判别器有鉴别力）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "对照：第2次 `win>=1` ⟹ 事件到达了 window（判别器有鉴别力）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "对照：第3次 `win>=1` ⟹ 事件到达了 window（判别器有鉴别力）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "对照：★ 第 1 次按压后导出面板**关掉了**（阶梯 :557 跑到）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "对照：★ 第 2 次按压后桌**关掉了**（阶梯 :568 跑到）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 判别器有鉴别力：对照臂 3/3 次到达 window 且阶梯跑完 ⟹ gesture 臂的 `win=0` 不是判别器坏了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：Meta+z 第1次 `win>=1` ⟹ 事件**穿过了 hook** 到达 window",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：Meta+z 第1次 `lastCommand` **不是** `UNDO`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：Meta+z 第2次 `win>=1` ⟹ 事件**穿过了 hook** 到达 window",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：Meta+z 第2次 `lastCommand` **不是** `UNDO`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：Meta+z 第3次 `win>=1` ⟹ 事件**穿过了 hook** 到达 window",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：Meta+z 第3次 `lastCommand` **不是** `UNDO`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 第二道吞嘴：Meta+z 3/3 次**到达了 window** 而 `lastCommand` 始终非 `UNDO` ⟹ **桌的 `:487` 守卫把它吞了**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 承重的推论：修法 (a) 只动第一道 ⟹ 第 2 次按压从「被 hook 吞」变成「被 `:487` 吞」⟹ **对用户可见行为净为零** ⟹ **(a) 不能单独做**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "产物：audit.batch=779",
+   "pass": true,
+   "got": 779,
+   "want": 779
+  },
+  {
+   "label": "产物：audit 的第一道吞嘴计数 = 重算值",
+   "pass": true,
+   "got": 6,
+   "want": 6
+  },
+  {
+   "label": "产物：audit 的阶梯档位 = 静态重算",
+   "pass": true,
+   "got": {
+    "gesture": 553,
+    "export": 557,
+    "follow": 564,
+    "close": 568
+   },
+   "want": {
+    "gesture": 553,
+    "export": 557,
+    "follow": 564,
+    "close": 568
+   }
+  },
+  {
+   "label": "产物：audit 的守卫行号 = 静态重算",
+   "pass": true,
+   "got": 487,
+   "want": 487
+  },
+  {
+   "label": "产物：audit 的阶梯闸门行号 = 静态重算",
+   "pass": true,
+   "got": 549,
+   "want": 549
+  },
+  {
+   "label": "产物：audit 记的零 FAILED",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "台账：Batch 779 恰有一行",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "台账：该行无 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "台账：该行恰 4 个竖线（3 列）",
+   "pass": true,
+   "got": 4
+  },
+  {
+   "label": "★ README 里没有裸数字开头的 markdown 表行（会骗过 pre-commit 的 added_batch_numbers）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "README 无 U+FFFD",
+   "pass": true,
+   "got": 0
+  }
+ ],
+ "pass": 64,
+ "total": 64,
+ "negativeControls": [
+  {
+   "name": "让 gesture 臂的 Escape 到达 window ⟹ 「第一道吞嘴是 hook」必须红",
+   "why": "★ 漏判方向 = 会去改错的那一处（桌守卫），而真正该改的 hook 没人动",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐次：gestureNumber 第1次 `win=0` ⟹ 事件**从没到达 window**",
+    "逐次：gestureNumber 第2次 `win=0` ⟹ 事件**从没到达 window**",
+    "逐次：gestureNumber 第3次 `win=0` ⟹ 事件**从没到达 window**",
+    "★ 第一道吞嘴覆盖 3/6 次按压 ⟹ **776 的机制归属正确**（第 2/3 次确实被 hook 的 stopPropagation 吞）",
+    "产物：audit 的第一道吞嘴计数 = 重算值"
+   ],
+   "caught": true,
+   "expectFailOn": "第一道吞嘴覆盖"
+  },
+  {
+   "name": "★ 对称：让 gestureRange 臂的 Escape 到达 window ⟹ 同一条必须红",
+   "why": "★ 没有这条，range 族的读数可以单独坏掉而不被发现",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐次：gestureRange 第1次 `win=0` ⟹ 事件**从没到达 window**",
+    "逐次：gestureRange 第2次 `win=0` ⟹ 事件**从没到达 window**",
+    "逐次：gestureRange 第3次 `win=0` ⟹ 事件**从没到达 window**",
+    "★ 第一道吞嘴覆盖 3/6 次按压 ⟹ **776 的机制归属正确**（第 2/3 次确实被 hook 的 stopPropagation 吞）",
+    "产物：audit 的第一道吞嘴计数 = 重算值"
+   ],
+   "caught": true,
+   "expectFailOn": "第一道吞嘴覆盖"
+  },
+  {
+   "name": "让 Meta+z 臂的 undo 真的执行 ⟹ 「第二道吞嘴」必须红",
+   "why": "★ 漏判方向 = 照 776 的 C776-1 单独做 (a) ⟹ 净效果为零，而这条改动会被当成「已修 D1c」结案",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐次：Meta+z 第1次 `lastCommand` **不是** `UNDO`",
+    "逐次：Meta+z 第2次 `lastCommand` **不是** `UNDO`",
+    "逐次：Meta+z 第3次 `lastCommand` **不是** `UNDO`",
+    "★ 第二道吞嘴：Meta+z 3/3 次**到达了 window** 而 `lastCommand` 始终非 `UNDO` ⟹ **桌的 `:487` 守卫把它吞了**"
+   ],
+   "caught": true,
+   "expectFailOn": "第二道吞嘴：Meta+z"
+  },
+  {
+   "name": "让对照臂的 Escape 也到不了 window ⟹ 「判别器有鉴别力」必须红",
+   "why": "★ 漏判方向 = 「win=0」是判别器坏了，本批三条结论全部是空的",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "对照：第1次 `win>=1` ⟹ 事件到达了 window（判别器有鉴别力）",
+    "对照：第2次 `win>=1` ⟹ 事件到达了 window（判别器有鉴别力）",
+    "对照：第3次 `win>=1` ⟹ 事件到达了 window（判别器有鉴别力）",
+    "★ 判别器有鉴别力：对照臂 0/3 次到达 window 且阶梯跑完 ⟹ gesture 臂的 `win=0` 不是判别器坏了"
+   ],
+   "caught": true,
+   "expectFailOn": "判别器有鉴别力：对照臂"
+  },
+  {
+   "name": "让对照臂的阶梯不跑（面板与桌都不关）⟹ 「阶梯跑完」那两条必须红",
+   "why": "证明阶梯那两个读数测的是**具体档位**而不是「win>=1」",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "对照：★ 第 1 次按压后导出面板**关掉了**（阶梯 :557 跑到）",
+    "对照：★ 第 2 次按压后桌**关掉了**（阶梯 :568 跑到）"
+   ],
+   "caught": true,
+   "expectFailOn": "阶梯 :557 跑到"
+  },
+  {
+   "name": "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红",
+   "why": "mutatedAnything 为 false 时这条对照的结论是空的（R108）",
+   "mutatedAnything": false,
+   "kwMatchedCount": 0,
+   "flipped": [
+    "原始：两轮逐字段一致"
+   ],
+   "caught": false,
+   "expectFailOn": "__永不匹配__"
+  },
+  {
+   "name": "★ 静态：把守卫挪到阶梯闸门**之后** ⟹ 「第二道在第一道下游」必须红",
+   "why": "证明那条排序判据真的在测顺序",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ 守卫排在阶梯闸门**之前** ⟹ 第二道吞嘴在第一道**下游**",
+    "产物：audit 的守卫行号 = 静态重算",
+    "产物：audit 的阶梯闸门行号 = 静态重算"
+   ],
+   "caught": true,
+   "expectFailOn": "守卫排在阶梯闸门**之前**"
+  },
+  {
+   "name": "★ 静态：删掉 hook Escape 分支的 `stopPropagation` ⟹ 「第一道吞嘴」必须红",
+   "why": "证明第一道不是「凭空断言的」",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ hook 的 Escape 分支 `stopPropagation`（第一道吞嘴之二）",
+    "静态：★ 整个 `onKeyDown` 里 `stopPropagation` **恰好 1 次**"
+   ],
+   "caught": true,
+   "expectFailOn": "`stopPropagation`（第一道吞嘴之二）"
+  },
+  {
+   "name": "★ 静态：给非 Escape 分支也加 `stopPropagation` ⟹ 「非 Escape 键能到达 window」必须红",
+   "why": "★ 这条是第二道吞嘴测量的**前提** —— 若 hook 拦了非 Escape 键，「事件到达 window 而 undo 不发生」就不能归因于 `:487`",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ 整个 `onKeyDown` 里 `stopPropagation` **恰好 1 次**",
+    "静态：★ `stopPropagation` **不在**非 Escape 分支里 ⟹ 非 Escape 键**一定**能穿过 hook 到达 window"
+   ],
+   "caught": true,
+   "expectFailOn": "**不在**非 Escape 分支里"
+  },
+  {
+   "name": "★ 静态：删掉阶梯自己的 `activeGesture` 档 ⟹ 「阶梯自己有一档」必须红",
+   "why": "★ 漏判方向 = 会给出「改两处就能按一次关掉面板」这条**做不到**的承诺",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ 阶梯**自己有一档 `activeGesture`** ⟹ 前两处都改完，第 1 次按压仍只取消手势",
+    "静态：阶梯四档齐全",
+    "静态：★ 阶梯档位有序（手势→导出面板→退出跟随→关桌）",
+    "产物：audit 的阶梯档位 = 静态重算"
+   ],
+   "caught": true,
+   "expectFailOn": "阶梯**自己有一档 `activeGesture`**"
+  },
+  {
+   "name": "★ 静态：把 `activeGesture` 档挪到最后 ⟹ 「阶梯档位有序」必须红",
+   "why": "证明顺序判据真的在测顺序（775 的 C775-2 依赖这个顺序）",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ 阶梯档位有序（手势→导出面板→退出跟随→关桌）",
+    "产物：audit 的阶梯档位 = 静态重算"
+   ],
+   "caught": true,
+   "expectFailOn": "阶梯档位有序"
+  }
+ ],
+ "negativeCaught": 11,
+ "negativeTotal": 11,
+ "negativeKwBroken": [
+  "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
+ ],
+ "negativeInert": [
+  "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
+ ],
+ "rawError": null,
+ "ok": true
+}

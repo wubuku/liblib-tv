@@ -1,0 +1,960 @@
+{
+ "batch": 779,
+ "probe": "a",
+ "question": "776 更正 C776-1「只改 (a) = 按两次」的**机制归属**对不对？第 2/3 次 Escape 到底被 gesture hook 还是被桌的 isEditable 守卫吞掉？",
+ "whyItMatters": "★ 776 授权修法 (a) 的**唯一依据**就是「2/3 次按压被 hook 吞掉」。若真因是 `DirectorDesk.tsx:487` 的 `isEditable` 守卫（第 2 次按压时焦点**仍在 `<input>` 上**），修法 (a) **碰不到它** ⟹ 对用户可见行为净为零 ⟹ **C776-1 本身错了**。",
+ "twoCandidates": {
+  "(i) gesture hook": "`useDirectorGestureBoundary.ts:92-98` 的无条件 `preventDefault` + `stopPropagation` ⟹ **(a) 碰得到**",
+  "(ii) 桌守卫": "`DirectorDesk.tsx:487` 排在 `:550` 的 `preventDefault` **之前** ⟹ **(a) 碰不到**"
+ },
+ "discriminator": "★ 三读数：**capture 相位**的 document 监听器（任何 `stopPropagation` 都拦不住 ⟹ 正向对照证明按键送达了）、**晚注册**的 window 监听器是否被调用、事件到达 window 时的 `defaultPrevented`。⟹ `(1,0,*)`=hook 吞；`(1,1,0)`=桌守卫吞；`(1,1,1)`=阶梯真跑了。",
+ "controlArm": "焦点在 `[data-director-panels-toggle]`（桌内真的能聚焦、且**不挂** gesture handler 的元素）⟹ 阶梯应该真跑起来。★ 没有它，「win=0」可能只是判别器整个坏了。",
+ "rounds": [
+  {
+   "rows": [
+    {
+     "arm": "gestureNumber",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      },
+      {
+       "n": 3,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      }
+     ],
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "gesture": "director-gesture-1791196670986-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "exportPanel": true,
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number"
+     },
+     "readOnFocus": {
+      "cap": 0,
+      "win": 0,
+      "prevented": null,
+      "winEntryCount": 0,
+      "keys": []
+     },
+     "key": "Escape",
+     "tries": 1
+    },
+    {
+     "arm": "gestureRange",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range"
+       }
+      },
+      {
+       "n": 3,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range"
+       }
+      }
+     ],
+     "selector": "[data-director-camera-fov]",
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateOnFocus": {
+      "gesture": "director-gesture-1791196688323-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "exportPanel": true,
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "range"
+     },
+     "readOnFocus": {
+      "cap": 0,
+      "win": 0,
+      "prevented": null,
+      "winEntryCount": 0,
+      "keys": []
+     },
+     "key": "Escape",
+     "tries": 1
+    },
+    {
+     "arm": "controlNonInput",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "prevented": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Escape",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "",
+        "lastDisp": "",
+        "exportPanel": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "prevented": 0,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Escape",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": null,
+        "past": null,
+        "future": null,
+        "lastCommand": null,
+        "lastDisp": null,
+        "exportPanel": false,
+        "deskOpen": false,
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      },
+      {
+       "n": 3,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "prevented": 0,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Escape",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": null,
+        "past": null,
+        "future": null,
+        "lastCommand": null,
+        "lastDisp": null,
+        "exportPanel": false,
+        "deskOpen": false,
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      }
+     ],
+     "selector": "[data-director-panels-toggle]",
+     "focus": {
+      "ok": true,
+      "value": "",
+      "type": "button"
+     },
+     "stateOnFocus": {
+      "gesture": "",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "",
+      "lastDisp": "",
+      "exportPanel": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusType": "button"
+     },
+     "readOnFocus": {
+      "cap": 0,
+      "win": 0,
+      "prevented": null,
+      "winEntryCount": 0,
+      "keys": []
+     },
+     "key": "Escape",
+     "tries": 1
+    },
+    {
+     "arm": "modifierNonEscape",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": []
+       },
+       "state": {
+        "gesture": "director-gesture-1791196722994-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": []
+       },
+       "state": {
+        "gesture": "director-gesture-1791196722994-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      },
+      {
+       "n": 3,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": []
+       },
+       "state": {
+        "gesture": "director-gesture-1791196722994-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      }
+     ],
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "gesture": "director-gesture-1791196722994-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "exportPanel": true,
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number"
+     },
+     "readOnFocus": {
+      "cap": 0,
+      "win": 0,
+      "prevented": null,
+      "winEntryCount": 0,
+      "keys": []
+     },
+     "key": "Meta+z",
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "rows": [
+    {
+     "arm": "gestureNumber",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      },
+      {
+       "n": 3,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      }
+     ],
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "gesture": "director-gesture-1791196740691-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "exportPanel": true,
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number"
+     },
+     "readOnFocus": {
+      "cap": 0,
+      "win": 0,
+      "prevented": null,
+      "winEntryCount": 0,
+      "keys": []
+     },
+     "key": "Escape",
+     "tries": 1
+    },
+    {
+     "arm": "gestureRange",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range"
+       }
+      },
+      {
+       "n": 3,
+       "read": {
+        "cap": 1,
+        "win": 0,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_CANCEL",
+        "lastDisp": "NOOP",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range"
+       }
+      }
+     ],
+     "selector": "[data-director-camera-fov]",
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateOnFocus": {
+      "gesture": "director-gesture-1791196758010-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "exportPanel": true,
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "range"
+     },
+     "readOnFocus": {
+      "cap": 0,
+      "win": 0,
+      "prevented": null,
+      "winEntryCount": 0,
+      "keys": []
+     },
+     "key": "Escape",
+     "tries": 1
+    },
+    {
+     "arm": "controlNonInput",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "prevented": 1,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Escape",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "",
+        "lastDisp": "",
+        "exportPanel": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "prevented": 0,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Escape",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": null,
+        "past": null,
+        "future": null,
+        "lastCommand": null,
+        "lastDisp": null,
+        "exportPanel": false,
+        "deskOpen": false,
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      },
+      {
+       "n": 3,
+       "read": {
+        "cap": 1,
+        "win": 1,
+        "prevented": 0,
+        "winEntryCount": 1,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Escape",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Escape",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": null,
+        "past": null,
+        "future": null,
+        "lastCommand": null,
+        "lastDisp": null,
+        "exportPanel": false,
+        "deskOpen": false,
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      }
+     ],
+     "selector": "[data-director-panels-toggle]",
+     "focus": {
+      "ok": true,
+      "value": "",
+      "type": "button"
+     },
+     "stateOnFocus": {
+      "gesture": "",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "",
+      "lastDisp": "",
+      "exportPanel": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusType": "button"
+     },
+     "readOnFocus": {
+      "cap": 0,
+      "win": 0,
+      "prevented": null,
+      "winEntryCount": 0,
+      "keys": []
+     },
+     "key": "Escape",
+     "tries": 1
+    },
+    {
+     "arm": "modifierNonEscape",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": []
+       },
+       "state": {
+        "gesture": "director-gesture-1791196792751-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": []
+       },
+       "state": {
+        "gesture": "director-gesture-1791196792751-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      },
+      {
+       "n": 3,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "prevented": null,
+        "winEntryCount": 0,
+        "keys": []
+       },
+       "state": {
+        "gesture": "director-gesture-1791196792751-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "exportPanel": true,
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number"
+       }
+      }
+     ],
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateOnFocus": {
+      "gesture": "director-gesture-1791196792751-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "exportPanel": true,
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number"
+     },
+     "readOnFocus": {
+      "cap": 0,
+      "win": 0,
+      "prevented": null,
+      "winEntryCount": 0,
+      "keys": []
+     },
+     "key": "Meta+z",
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}

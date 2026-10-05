@@ -1,0 +1,352 @@
+{
+ "batch": 779,
+ "topic": "验 776 授权修法 (a) 的依据本身：第 2/3 次按压到底被谁吞掉",
+ "generatedBy": "probes/mk779audit.py",
+ "sources": {
+  "vb779a.json": {
+   "sha16": "b0638f8e5c6b7c94",
+   "rounds": 2,
+   "armsPerRound": 4,
+   "pressesPerArm": 3
+  },
+  "vb778a.json": {
+   "sha16": "29d940aa60442417",
+   "usedFor": "交叉引用 778 的 C778-1"
+  }
+ },
+ "discriminator": {
+  "how": "window 上晚注册一个 keydown 监听器 + 一个 **capture 相位**的 document 监听器。capture 相位任何 `stopPropagation` 都拦不住 ⟹ `cap` 是「按键真的送达了」的正向对照。",
+  "readings": {
+   "cap": "按键送达浏览器的次数（正向对照）",
+   "win": "到达了 window 相位的监听器次数（承重）",
+   "winEntryCount": "`keys` 里 `where=='window'` 的条目数（`win>0` 而它是 0 ⟹ 这次按的不是 Escape）",
+   "prevented": "★ **不可信**（依赖监听器相对次序），且 `win=0` 时为 null"
+  },
+  "table": [
+   [
+    "cap=1, win=0",
+    "**第一道**：gesture hook 的 `stopPropagation`"
+   ],
+   [
+    "cap>=1, win>=1, lastCommand≠UNDO",
+    "**第二道**：事件到了 window，但被桌的 `:487` 守卫拦下"
+   ],
+   [
+    "cap=1, win>=1, prevented=1",
+    "桌的阶梯**真的跑了**（对照臂）"
+   ]
+  ],
+  "whyTrustworthy": "★ 承重的 `cap`/`win` **与监听器相对次序无关**；`prevented` 依赖次序，已被实测证伪（R132）故不参与结论。"
+ },
+ "readings": {
+  "R-firstSwallow": "Escape 打在 gesture 控件上，6/6 次 `win=0` ⟹ **776 的机制归属正确**",
+  "R-secondSwallow": "`Meta+z` 打在 gesture 控件上，3/3 次 **到达 window** 而 `lastCommand` 始终非 `UNDO` ⟹ **桌的 `:487` 守卫是第二道吞嘴**",
+  "R-control": "非输入控件上 3/3 次 `win>=1`，阶梯跑完（第 1 次关导出面板、第 2 次关桌）⟹ 判别器有鉴别力",
+  "R-order": "静态确认阶梯档位有序：手势 :553 → 导出面板 :557 → 退出跟随 :564 → 关桌 :568"
+ },
+ "verdict": {
+  "776的机制归属": "**对**（第 2/3 次确实被 hook 的 stopPropagation 吞）",
+  "776的推论": "**错** —— 后面还有第二道吞嘴，(a) 单独做净效果为零",
+  "「按一次就关掉面板」": "**不是两处改动能做到的** —— 阶梯 `:553` 自己有一档 `activeGesture`，需要第三个**产品决定**",
+  "与778的汇合": "两批独立得到同一结论：修法必须**按控件类型分流**"
+ },
+ "comparability": {
+  "rounds": 2,
+  "armsPerRound": 4,
+  "pressesPerArm": 3,
+  "allConsistent": true,
+  "retryPolicy": "每格最多试 3 次（含第一次），900×n 退避；`tries`/`retried` 记进 raw 但**排除在两轮一致性比较之外**。",
+  "retryStats": {
+   "cells": 8,
+   "retriedCells": 0,
+   "maxTries": 1
+  },
+  "orderIndependence": "★ 承重的读数是 `win`（到达 window 的监听器有没有被调用）与 `cap`（按键有没有送达）——**两者都与监听器相对次序无关**。而 `prevented` **依赖次序**：应用在状态变化时会重挂 window 监听器（`:570` 的 effect 依赖 `exportPanelOpen`），新监听器被追加到末尾 ⟹ 我的监听器与桌的监听器**相对次序会翻转**。实测：对照臂第 1 次 `prevented=1`、第 2 次 `prevented=0` **而桌确实关了** ⟹ 那一列不可信，故**不参与任何结论**，且 `win=0` 时它是 `null` 而不是 `0`（R113/R121 同族）。",
+  "boundary": "★ **本批未改 `src/`，也没有任何注入。** 删除**不涉及**（本批只按 Escape 与 `Meta+z`）；导出面板由探针点开并由阶梯关掉 ⟹ 不留残留；**不点**提交/连接/新增机位/导入导出，不做付费或真实生图生视频。"
+ },
+ "static": {
+  "hookOnKeyDownLine": 92,
+  "hookEscapeBranchHasPrevent": true,
+  "hookEscapeBranchHasStop": true,
+  "hookOnKeyDownStopCount": 1,
+  "hookNonEscapeStopCount": 0,
+  "deskWindowKeydownRegs": [
+   570
+  ],
+  "deskWindowKeydownCaptureRegs": [],
+  "guardLine": 487,
+  "ladderGate": 549,
+  "ladderPreventLine": 550,
+  "guardBeforeLadder": true,
+  "ladderRungs": {
+   "gesture": 553,
+   "export": 557,
+   "follow": 564,
+   "close": 568
+  },
+  "ladderOrder": [
+   553,
+   557,
+   564,
+   568
+  ],
+  "ladderOrdered": true,
+  "mobileDrawerLine": 482,
+  "mobileDrawerBeforeGuard": true
+ },
+ "firstSwallow": {
+  "gestureNumber": [
+   {
+    "n": 1,
+    "cap": 1,
+    "win": 0,
+    "winEntryCount": 0,
+    "prevented": null,
+    "gesture": "",
+    "deskOpen": true,
+    "exportPanel": true,
+    "lastCommand": "GESTURE_CANCEL"
+   },
+   {
+    "n": 2,
+    "cap": 1,
+    "win": 0,
+    "winEntryCount": 0,
+    "prevented": null,
+    "gesture": "",
+    "deskOpen": true,
+    "exportPanel": true,
+    "lastCommand": "GESTURE_CANCEL"
+   },
+   {
+    "n": 3,
+    "cap": 1,
+    "win": 0,
+    "winEntryCount": 0,
+    "prevented": null,
+    "gesture": "",
+    "deskOpen": true,
+    "exportPanel": true,
+    "lastCommand": "GESTURE_CANCEL"
+   }
+  ],
+  "gestureRange": [
+   {
+    "n": 1,
+    "cap": 1,
+    "win": 0,
+    "winEntryCount": 0,
+    "prevented": null,
+    "gesture": "",
+    "deskOpen": true,
+    "exportPanel": true,
+    "lastCommand": "GESTURE_CANCEL"
+   },
+   {
+    "n": 2,
+    "cap": 1,
+    "win": 0,
+    "winEntryCount": 0,
+    "prevented": null,
+    "gesture": "",
+    "deskOpen": true,
+    "exportPanel": true,
+    "lastCommand": "GESTURE_CANCEL"
+   },
+   {
+    "n": 3,
+    "cap": 1,
+    "win": 0,
+    "winEntryCount": 0,
+    "prevented": null,
+    "gesture": "",
+    "deskOpen": true,
+    "exportPanel": true,
+    "lastCommand": "GESTURE_CANCEL"
+   }
+  ]
+ },
+ "secondSwallow": {
+  "reachedWindow": true,
+  "undoRan": false
+ },
+ "controlArm": [
+  {
+   "n": 1,
+   "cap": 1,
+   "win": 1,
+   "winEntryCount": 1,
+   "prevented": 1,
+   "exportPanel": false,
+   "deskOpen": true,
+   "lastCommand": ""
+  },
+  {
+   "n": 2,
+   "cap": 1,
+   "win": 1,
+   "winEntryCount": 1,
+   "prevented": 0,
+   "exportPanel": false,
+   "deskOpen": false,
+   "lastCommand": null
+  },
+  {
+   "n": 3,
+   "cap": 1,
+   "win": 1,
+   "winEntryCount": 1,
+   "prevented": 0,
+   "exportPanel": false,
+   "deskOpen": false,
+   "lastCommand": null
+  }
+ ],
+ "modifierArm": [
+  {
+   "n": 1,
+   "cap": 2,
+   "win": 2,
+   "winEntryCount": 0,
+   "prevented": null,
+   "gesture": "director-gesture-<TS>-1",
+   "lastCommand": "GESTURE_BEGIN",
+   "past": "0",
+   "deskOpen": true
+  },
+  {
+   "n": 2,
+   "cap": 2,
+   "win": 2,
+   "winEntryCount": 0,
+   "prevented": null,
+   "gesture": "director-gesture-<TS>-1",
+   "lastCommand": "GESTURE_BEGIN",
+   "past": "0",
+   "deskOpen": true
+  },
+  {
+   "n": 3,
+   "cap": 2,
+   "win": 2,
+   "winEntryCount": 0,
+   "prevented": null,
+   "gesture": "director-gesture-<TS>-1",
+   "lastCommand": "GESTURE_BEGIN",
+   "past": "0",
+   "deskOpen": true
+  }
+ ],
+ "results": {
+  "firstSwallowPresses": 6,
+  "firstSwallowTotal": 6,
+  "secondSwallowReachedWindow": true,
+  "secondSwallowUndoRan": false,
+  "controlReachedWindow": 3,
+  "controlTotal": 3,
+  "ladderOrdered": true,
+  "ladderRungs": {
+   "gesture": 553,
+   "export": 557,
+   "follow": 564,
+   "close": 568
+  },
+  "failedCells": 0
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "text": "★ **776 的机制归属是对的，但它的推论是错的。** 实测 %d/%d 次按压 `win=0`（事件**从没到达 window**）⟹ 第 2/3 次确实是被 hook 的 `stopPropagation`（`:95`）吞的，不是桌守卫。**但「被 hook 吞」推不出「去掉 hook 之后桌就接得住」。**",
+   "evidence": "阶段二 预测 A"
+  },
+  {
+   "id": "J2",
+   "text": "★ **第二道吞嘴直接测到了**：`Meta+z` 打在 gesture 控件上，hook 对非 Escape 键**只** `begin()`、**不** `stopPropagation`（`:99-107`）⟹ 事件**到达了 window**（`win>=1`），而 `lastCommand` **始终不是 `UNDO`**、`past` 不动 ⟹ **桌的 `:487` 守卫把它吞了。** ⟹ 修法 (a) 单独做：第 2 次按压从「被 hook 吞」变成「被 `:487` 吞」⟹ **对用户可见行为净为零**。",
+   "evidence": "阶段二 预测 C + 阶段三 S1/S2/S4"
+  },
+  {
+   "id": "J3",
+   "text": "★ **「两处」不够，是三个问题。** 桌的 Escape 阶梯 `:553` **自己就有一档 `activeGesture`** ⟹ 即使前两道吞嘴都让路，第 1 次按压**仍然只会取消手势**、不会关掉导出面板。⟹ **「按一次就关掉面板」不是任何 (a)+(b) 组合能达成的**，它要先回答一个**产品问题**：「有活动手势时 Escape 要不要也关层」。**这一样不是缺陷，是决定。**",
+   "evidence": "阶段三 S5 + 阶段二 预测 A/B"
+  },
+  {
+   "id": "J4",
+   "text": "★ **与 778 独立汇合。** 778 从另一条路得到同一结论：`:487` 在 number 族上是**承重墙**、不能整体去掉 ⟹ 修法必须**按控件类型分流**（先例 `useDirectorGestureBoundary.ts:82-90`）。779 则给出「分流之所以必要」的机制理由：不分流的话，**Escape 与 `Cmd+Z` 会被同一道 `:487` 一起拦掉**，而这两件事要的是**相反**的行为。",
+   "evidence": "J2 + 778 的 C778-1"
+  },
+  {
+   "id": "J5",
+   "text": "★ **对照臂证明判别器有鉴别力**：非输入控件上 `3/3` 次按压 `win>=1`，且阶梯**真的跑完**——第 1 次关掉导出面板（`:557`）、第 2 次关掉桌（`:568`）⟹ 「`win=0`」不是判别器坏了，而是事件真的没到 window。",
+   "evidence": "阶段二 预测 B"
+  }
+ ],
+ "corrections": [
+  {
+   "id": "C779-1",
+   "targets": [
+    "**776 的 C776-1**：「只改 (a) = 按两次；两处都改 = 按一次」",
+    "**据此授权的修法 (a)**：`useDirectorGestureBoundary.ts:93` 加 `if (!activeRef.current) return;`（挂起项里被标成「可以单独做」）"
+   ],
+   "was": "读作「第 2/3 次按压被 hook 吞掉 ⟹ (a) 让 hook 让路 ⟹ 桌就接得住 ⟹ (a) 单独可做、净效果是「按两次」。",
+   "now": "★ **机制归属对，推论错。** 吞掉按压的是**两道**串联的守卫，不是一道：① hook `:94-95`（实测 6/6 次 `win=0`）；② 桌 `:487`（实测 `Meta+z` 到达 window 而 undo 仍不发生）。修法 (a) 只动 ① ⟹ **(a) 单独做对用户可见行为净为零**。⟹ **(a) 不能单独做**，它必须与「`:487` 的分流」一起做；而 778 已证明 `:487` 不能整体去掉（number 族的原生撤销靠它）⟹ **两处都要按控件类型分流**，先例 `useDirectorGestureBoundary.ts:82-90`。",
+   "evidence": "J1 + J2 + J4"
+  },
+  {
+   "id": "C779-2",
+   "targets": [
+    "**776 的「两处」这个计数本身**"
+   ],
+   "was": "读作「Escape 阶梯有两处需要改（hook + 守卫）」。",
+   "now": "★ **是三个问题，不是两处。** 桌的阶梯 `:553` **自己就有一档 `activeGesture`** ⟹ 前两处都改完，第 1 次按压**仍然只取消手势**。⟹ 「按一次就关掉导出面板」需要**第三个决定**：「有活动手势时 Escape 要不要也关层」。★ 这一样**不是缺陷而是产品决定** ⟹ 不能和前两样一起当成「修完这两处就好了」。",
+   "evidence": "J3 + 阶段三 S5"
+  }
+ ],
+ "findings": {
+  "F1": "★ 776 的机制归属对、推论错：吞嘴是**两道**串联的。",
+  "F2": "★ 第二道吞嘴（桌 `:487`）已直接测到 ⟹ **(a) 不能单独做**。",
+  "F3": "★ **「两处」是三个问题**：阶梯 `:553` 自己的 `activeGesture` 档会吃掉第 1 次按压 ⟹ 「按一次关面板」需要产品决定。",
+  "F4": "★ 与 778 独立汇合：修法必须按控件类型分流。",
+  "F5": "★ 判别器有鉴别力（对照臂阶梯跑完），且承重读数与次序无关。"
+ },
+ "probeLessons": [
+  {
+   "id": "R129",
+   "text": "★ **「第一道是谁」与「去掉它之后会怎样」是两个读数。** 我 779 规划时把 776 的机制归属当成了充分条件，结果预测被否掉：实测证明第 2/3 次**确实**被 hook 吞，而这**推不出** (a) 有效——因为**后面还有第二道**。⟹ 授权一条修法时，「当前的吞嘴在哪」与「修完之后下一个吞嘴会不会接手」必须分别测。"
+  },
+  {
+   "id": "R130",
+   "text": "★ **换一个不被拦的键，就能测到后面那道吞嘴。** hook 只对 `Escape` 做 `stopPropagation`（`:93-98`），其余键只 `begin()`（`:99-107`）⟹ 按 `Meta+z` **一定**能穿过 hook 到达 window ⟹ 再看 `lastCommand` 有没有变成 `UNDO`，就知道**桌**那一侧拦不拦。★ 同一个键（Escape）永远只能测到**最前面**那道。"
+  },
+  {
+   "id": "R131",
+   "text": "★ **「没触发」与「触发了但没被消费」不能共用一个 0。** 第一版把 `prevented` 记成 0，而 `win=0` 时它压根没被写过 ⟹ 「非读数」长得像「未被 preventDefault」。改成 `win=0` 时记 **null**。这是 R113/R121 的同族错误。"
+  },
+  {
+   "id": "R132",
+   "text": "★ **「晚注册的监听器」不保证每次都最后跑。** 应用在状态变化时会重挂 window 监听器（`DirectorDesk.tsx:570` 的 effect 依赖 `exportPanelOpen`），新监听器被**追加到末尾** ⟹ 我与桌的监听器**相对次序会翻转**。实测：对照臂第 1 次 `prevented=1`、第 2 次 `prevented=0` **而桌确实关了**。⟹ **`defaultPrevented` 那一列不可信**；承重的只能是与次序无关的 `cap` / `win`。"
+  },
+  {
+   "id": "R133",
+   "text": "★ **按一次 `Meta+z` 会产生 2 个 keydown**（`Meta` 与 `z` 各一个）⟹ 计数类读数要按「≥1」判，不能按「==1」判；且 `keys` 只记 `Escape` ⟹ `win=2` 而 `winEntryCount=0` 是**正常**的，不是「读数矛盾」。"
+  }
+ ],
+ "defects": [
+  {
+   "id": "D1g",
+   "severity": "中-高（本批记录 · 授权依据缺陷）",
+   "text": "★ **Escape 在 53 个 gesture 控件上被「两道」串联的守卫吞掉，而修法 (a) 只动其中一道。** 第一道 = `useDirectorGestureBoundary.ts:94-95` 无条件 `preventDefault` + `stopPropagation`（实测 6/6 次 `win=0`）；第二道 = `DirectorDesk.tsx:487` 的 `isEditable` 守卫（实测 `Meta+z` 到达 window 而 `lastCommand` 仍非 `UNDO`）。⟹ 现有授权（(a) 可单独做）**依据不成立**；且即使两处都改，阶梯 `:553` 的 `activeGesture` 档仍会吃掉第 1 次按压。",
+   "evidence": "J1 + J2 + J3"
+  }
+ ],
+ "srcDiff": "**本批未改 `src/`**（工作区 `src/` 干净）；**没有任何注入**。",
+ "rawSha": {
+  "vb779a.json": "b0638f8e5c6b7c94",
+  "vb778a.json": "29d940aa60442417"
+ },
+ "retryStats": {
+  "cells": 8,
+  "retriedCells": 0,
+  "maxTries": 1
+ },
+ "boundary": "★ **本批未改 `src/`，也没有任何注入。** 删除**不涉及**（本批只按 Escape 与 `Meta+z`）；导出面板由探针点开并由阶梯关掉 ⟹ 不留残留；**不点**提交/连接/新增机位/导入导出，不做付费或真实生图生视频。"
+}
