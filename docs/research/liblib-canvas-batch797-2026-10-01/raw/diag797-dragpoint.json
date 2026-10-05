@@ -1,0 +1,330 @@
+{
+ "gid": "group-1791232976397-dbqy58",
+ "probe": {
+  "rect": {
+   "l": 148.3954620361328,
+   "t": 106.67001342773438,
+   "r": 413.3677520751953,
+   "b": 411.4256896972656,
+   "w": 264.9722900390625,
+   "h": 304.75567626953125
+  },
+  "groupStyle": {
+   "zIndex": "-1001",
+   "pointerEvents": "all",
+   "position": "absolute"
+  },
+  "groupClass": "react-flow__node react-flow__node-storyboard-group nopan selected selectable parent draggable",
+  "hits": [
+   {
+    "inset": 3,
+    "edge": "l",
+    "x": 151,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "react-flow__handle react-flow__handle-left nodrag nopan target connect",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 3,
+    "edge": "r",
+    "x": 410,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "react-flow__handle react-flow__handle-right nodrag nopan source connec",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 3,
+    "edge": "t",
+    "x": 281,
+    "y": 110,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 3,
+    "edge": "b",
+    "x": 281,
+    "y": 408,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 6,
+    "edge": "l",
+    "x": 154,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 6,
+    "edge": "r",
+    "x": 407,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 6,
+    "edge": "t",
+    "x": 281,
+    "y": 113,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 6,
+    "edge": "b",
+    "x": 281,
+    "y": 405,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 10,
+    "edge": "l",
+    "x": 158,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 10,
+    "edge": "r",
+    "x": 403,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 10,
+    "edge": "t",
+    "x": 281,
+    "y": 117,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 10,
+    "edge": "b",
+    "x": 281,
+    "y": 401,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 16,
+    "edge": "l",
+    "x": 164,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 16,
+    "edge": "r",
+    "x": 397,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 16,
+    "edge": "t",
+    "x": 281,
+    "y": 123,
+    "tag": "DIV",
+    "cls": "flex items-center gap-2 border-b border-[#363636] px-3 py-2",
+    "nodeId": "t-9j2MoccxBj",
+    "nodeCls": "react-flow__node react-flow__node-script nopan sel",
+    "isGroup": false
+   },
+   {
+    "inset": 16,
+    "edge": "b",
+    "x": 281,
+    "y": 395,
+    "tag": "IMG",
+    "cls": "object-cover transition-[filter] duration-300",
+    "nodeId": "i-1FQ9tErTcC",
+    "nodeCls": "react-flow__node react-flow__node-image nopan sele",
+    "isGroup": false
+   },
+   {
+    "inset": 24,
+    "edge": "l",
+    "x": 172,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 24,
+    "edge": "r",
+    "x": 389,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 24,
+    "edge": "t",
+    "x": 281,
+    "y": 131,
+    "tag": "DIV",
+    "cls": "flex items-center gap-2 border-b border-[#363636] px-3 py-2",
+    "nodeId": "t-9j2MoccxBj",
+    "nodeCls": "react-flow__node react-flow__node-script nopan sel",
+    "isGroup": false
+   },
+   {
+    "inset": 24,
+    "edge": "b",
+    "x": 281,
+    "y": 387,
+    "tag": "IMG",
+    "cls": "object-cover transition-[filter] duration-300",
+    "nodeId": "i-1FQ9tErTcC",
+    "nodeCls": "react-flow__node react-flow__node-image nopan sele",
+    "isGroup": false
+   },
+   {
+    "inset": 34,
+    "edge": "l",
+    "x": 182,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 34,
+    "edge": "r",
+    "x": 379,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 34,
+    "edge": "t",
+    "x": 281,
+    "y": 141,
+    "tag": "P",
+    "cls": "whitespace-pre-wrap text-xs font-normal leading-[1.55] text-[#d5d5d5]",
+    "nodeId": "t-9j2MoccxBj",
+    "nodeCls": "react-flow__node react-flow__node-script nopan sel",
+    "isGroup": false
+   },
+   {
+    "inset": 34,
+    "edge": "b",
+    "x": 281,
+    "y": 377,
+    "tag": "IMG",
+    "cls": "object-cover transition-[filter] duration-300",
+    "nodeId": "i-1FQ9tErTcC",
+    "nodeCls": "react-flow__node react-flow__node-image nopan sele",
+    "isGroup": false
+   },
+   {
+    "inset": 44,
+    "edge": "l",
+    "x": 192,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 44,
+    "edge": "r",
+    "x": 369,
+    "y": 259,
+    "tag": "DIV",
+    "cls": "relative h-full w-full overflow-visible border rounded-[20px] bg-white",
+    "nodeId": "group-1791232976397-dbqy58",
+    "nodeCls": "react-flow__node react-flow__node-storyboard-group",
+    "isGroup": true
+   },
+   {
+    "inset": 44,
+    "edge": "t",
+    "x": 281,
+    "y": 151,
+    "tag": "P",
+    "cls": "whitespace-pre-wrap text-xs font-normal leading-[1.55] text-[#d5d5d5]",
+    "nodeId": "t-9j2MoccxBj",
+    "nodeCls": "react-flow__node react-flow__node-script nopan sel",
+    "isGroup": false
+   },
+   {
+    "inset": 44,
+    "edge": "b",
+    "x": 281,
+    "y": 367,
+    "tag": "IMG",
+    "cls": "object-cover transition-[filter] duration-300",
+    "nodeId": "i-1FQ9tErTcC",
+    "nodeCls": "react-flow__node react-flow__node-image nopan sele",
+    "isGroup": false
+   }
+  ],
+  "属于组的点数": 20
+ }
+}

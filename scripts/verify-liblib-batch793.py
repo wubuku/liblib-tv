@@ -78,17 +78,27 @@ def run_checks(pre_raw, post_raw, audit):
     src = (ROOT / CS).read_text(encoding="utf-8")
     pre, post = index(pre_raw), index(post_raw)
 
-    # ── S1：纯函数存在，且挂在**唯一收口**上 ──
+    # ── S1：纯函数存在，且挂在**收口**上 ──
+    # ★★ Batch 797 修：这条断言原本写死 `len(fn_call) == 1`，在 793 提交时是对的，
+    #   但 794（删除 ×2）与 795（键盘 ×1）**合法**地各加了写点 ⟹ 变成 4 之后
+    #   这条断言就永久变红了。★ 教训：**「恰好 N 处」这种断言会随后续合法扩展失效**，
+    #   改成「定义恰好 1 个 + 拖拽那处仍经收口 + 旧裸写点已消失」。
     fn_def = re.findall(r"function fitStoryboardGroupsToChildren\(", src)
     fn_call = re.findall(r"nodes: fitStoryboardGroupsToChildren\(", src)
+    drag_call = re.findall(
+        r"nodes: fitStoryboardGroupsToChildren\(\n"
+        r"\s*plan\.nextNodes\.map\(withoutStoredNodeSelection\),", src)
     writer = re.findall(r"nodes: plan\.nextNodes\.map\(withoutStoredNodeSelection\)",
                         src)
-    add("S1:纯函数存在，且**替换**了原写点",
-        "★ 位置变更落库的唯一收口是 `nodes: plan.nextNodes.map(...)` "
-        "（`page.tsx:600` 全部经 `routeReactFlowChanges` 进来）",
-        len(fn_def) == 1 and len(fn_call) == 1 and len(writer) == 0,
-        {"fnDef": len(fn_def), "fnCall": len(fn_call),
-         "旧写点还在": len(writer)})
+    add("S1:纯函数**只有一个定义**，且拖拽收口仍经它、旧裸写点已消失",
+        "★ 位置变更落库的收口是 `plan.nextNodes.map(...)`（`page.tsx` 的 "
+        "`onNodesChange` 全部经 `routeReactFlowChanges` 进来）⟹ 拖拽那处必须"
+        "过收口。★ **不再**断言「调用点恰好 1 处」——794/795 合法加了写点",
+        len(fn_def) == 1 and len(drag_call) == 1 and len(writer) == 0
+        and len(fn_call) >= 1,
+        {"fnDef": len(fn_def), "收口调用点总数": len(fn_call),
+         "其中拖拽收口": len(drag_call), "旧裸写点还在": len(writer),
+         "★ 修正": "原断言 `len(fn_call) == 1` 在 794/795 加写点后永久变红"})
 
     # ── S2：★ 两条刻意边界都在源码里 ──
     empty_guard = re.findall(r"if \(kids\.length === 0\) continue;", src)
@@ -306,14 +316,45 @@ def main():
                     "★ 验证 S5：组「移动」不等于组「重算」⟹ 尺寸不变才是真不变量",
                     group_resized,
                     "S5:★ 对照二：拖组本身，尺寸不变、成员跟着走、仍在框内"))
-    # ⑤ 源码：把写点接回旧写法（不挂重算）⟹ S1 必须翻
-    negs.append(neg("N5 写点接回 `plan.nextNodes.map(...)`（不挂重算）",
-                    "★ 验证 S1：修复必须挂在**唯一收口**上；"
-                    "只在别处补一个监听或只读一次不算修好",
-                    lambda: mut_src(
-                        "nodes: fitStoryboardGroupsToChildren(",
-                        "nodes: plan.nextNodes.map("),
-                    "S1:纯函数存在，且**替换**了原写点"))
+    # ⑤ 源码：把**拖拽收口**接回旧写法（不挂重算）⟹ S1 必须翻
+    # ★★ Batch 797 修：原来按子串替换，而 `nodes: fitStoryboardGroupsToChildren(`
+    #   在 794/795 之后有 **4 处** ⟹ `mut_src` 的「须唯一一行」断言会直接抛错。
+    #   ⟹ 改成**按行号定位**拖拽那一处（`mut_src` 的 needle 只能是行内唯一子串，
+    #   这里改用块级判定：先找到 `plan.nextNodes.map` 那一段）。
+    def mut_drag_site():
+        p = ROOT / CS
+        orig = p.read_text(encoding="utf-8")
+        before = orig.split("\n")
+        at = None
+        for i, l in enumerate(before):
+            if l.strip() == "nodes: fitStoryboardGroupsToChildren(" and \
+                    "plan.nextNodes.map" in before[i + 1]:
+                at = i
+                break
+        assert at is not None, "★ 找不到拖拽收口那处"
+        after = list(before)
+        after[at] = after[at].replace(
+            "fitStoryboardGroupsToChildren(", "plan.nextNodes.map(")
+        assert len(after) == len(before), "★ 变异不是行数中性"
+        p.write_text("\n".join(after), encoding="utf-8")
+        txt = p.read_text(encoding="utf-8")
+        ev = {"行": at + 1, "行数中性": len(after) == len(before),
+              "拖拽收口还在": len(re.findall(
+                  r"nodes: fitStoryboardGroupsToChildren\(\n"
+                  r"\s*plan\.nextNodes\.map\(withoutStoredNodeSelection\),",
+                  txt)) == 1}
+        assert not ev["拖拽收口还在"], "★ 变异没真改到目标性质：%r" % ev
+
+        def restore():
+            p.write_text(orig, encoding="utf-8")
+        return restore, ev
+
+    negs.append(neg("N5 拖拽收口接回 `plan.nextNodes.map(...)`（不挂重算）",
+                    "★ 验证 S1：修复必须挂在**拖拽收口**上；"
+                    "只在别处补一个监听或只读一次不算修好。"
+                    "★ 按**行号**定位（该 needle 在 794/795 之后有 4 处）",
+                    mut_drag_site,
+                    "S1:纯函数**只有一个定义**，且拖拽收口仍经它、旧裸写点已消失"))
 
     fp_src = (ROOT / CS).read_bytes()
     fp = {p: p.read_bytes() for p in (PRE, POST)}
