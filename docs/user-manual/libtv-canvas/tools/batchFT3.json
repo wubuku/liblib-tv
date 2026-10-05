@@ -1,0 +1,7251 @@
+{
+  "步骤": [
+    "   图片节点（按 x 降序）[{\"id\":\"i-sODTbgLUm1\",\"类\":\"image\",\"框\":[835.3671875,329.2188415527344,300.2265625,168.9388427734375],\"图片数\":0},{\"id\":\"i-9nlG6HdjK2\",\"类\":\"image\",\"框\":[65.0078125,329.2188415527344,300.2265625,168.9388427734375],\"图片数\":0}]",
+    "   ✅ 断言通过：至少有一个图片节点",
+    "   ⭐ 选最靠右的：i-sODTbgLUm1 框 [835,329,300,169]",
+    "   点标题栏：全页可点元素 68 → 79（⭐ 变多了 = 编辑区展开了）",
+    "   ✅ 断言通过：图片节点(i-sODTbgLUm1) 中心落点属主就是它自己",
+    "   ✅ 断言通过：⭐ 选中后出现了新的可点元素（编辑区/参数条展开了）",
+    "   ⭐ 编辑区浮层：[\n {\n  \"框\": [\n   0,\n   0,\n   1440,\n   810\n  ],\n  \"z\": \"auto\",\n  \"class\": \"h-screen w-screen\",\n  \"全文\": \"画布 2 开通会员 限时 45 折 20 音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 脚本 V2 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 图片节点 2 图片节点 2 尝试： 图生图 图片高清 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 视频节点 3 智能剪辑 4 空空如\",\n  \"按钮\": [\n   {\n    \"文字\": \"画布 2\",\n    \"aria\": \"\",\n    \"title\": \"\",\n    \"框\": [\n     165,\n     8,\n     69,\n     32\n    ],\n    \"点\": [\n     200,\n     24\n    ],\n    \"禁用\": false,\n    \"cursor\": \"pointer\",\n    \"class\": \"group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-controls-ac\"\n   },\n   {\n    \"文字\": \"\",\n    \"aria\": \"工作流\",\n    \"title\": \"\",\n    \"框\": [\n     244,\n     8,\n     32,\n     32\n    ],\n    \"点\": [\n     260,\n     24\n    ],\n    \"禁用\": false,\n    \"cursor\": \"pointer\",\n    \"class\": \"flex size-8 items-center justify-center rounded-lg bg-clip-content transition-co\"\n   },\n   {\n    \"文字\": \"\",\n    \"aria\": \"故事板\",\n    \"title\": \"\",\n    \"框\": [\n     276,\n     8,\n     32,\n     32\n    ],\n    \"点\": [\n     292,\n     24\n    ],\n    \"禁用\": false,\n    \"cursor\": \"pointer\",\n    \"class\": \"flex size-8 items-center justify-center rounded-lg bg-clip-content p-0.5 transit\"\n   },\n   {\n    \"文字\": \"\",\n    \"aria\": \"发布与分享\",\n    \"title\": \"\",\n    \"框\": [\n     1087,\n     8,\n     32,\n     32\n    ],\n    \"点\": [\n     1103,\n     24\n    ],\n    \"禁用\": false,\n    \"cursor\": \"pointer\",\n    \"class\": \"border-(--topnav-btn-border) relative flex items-center justify-center border-[0\"\n   },\n   {\n    \"文字\": \"\",\n    \"aria\": \"积分超市\",\n    \"title\": \"\",\n    \"框\": [\n     1127,\n     8,\n     32,\n     32\n    ],\n    \"点\": [\n     1143,\n     24\n    ],\n    \"禁用\": false,\n    \"cursor\": \"pointer\",\n    \"class\": \"border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer items-cent\"\n   },\n   {\n    \"文字\": \"20\",\n    \"aria\": \"\",\n    \"title\": \"\",\n    \"框\": [\n     1334,\n     8,\n     58,\n     32\n    ],\n    \"点\": [\n     1363,\n     24\n    ],\n    \"禁用\": false,\n    \"cursor\": \"pointer\",\n    \"class\": \"border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer items-cent\"\n   },\n   {\n    \"文字\": \"\",\n    \"aria\": \"添加节点\",\n    \"title\": \"\",\n    \"框\": [\n     580,\n     757,\n     32,\n     32\n    ],\n    \"点\": [\n     596,\n     773\n    ],\n    \"禁用\": false,\n    \"cursor\": \"pointer\",\n    \"class\": \"relative flex items-center justify-center r",
+    "   ✅ 断言通过：⭐ 找到图片编辑区浮层（含占位提示那个框）",
+    "   ✅ 断言通过：⭐ 编辑区完整落在视口内（FT-2 那一轮它被裁掉了一半）",
+    "   悬停 [1079,657,32,32]（class flex size-8 shrink-0 items-center justif）→ \"按 ESC 退出\"",
+    "   悬停 [1154,657,32,32]（class flex size-8 shrink-0 cursor-pointer item）→ \"按 ESC 退出\"",
+    "   悬停 [1194,657,32,32]（class text-canvas-controls-text mx-1 flex size）→ \"按 ESC 退出\"",
+    "   悬停 [1274,657,32,32]（class bg-btn-invert-bg flex size-8 shrink-0 cu）→ \"按 ESC 退出\"",
+    "   悬停 [1278,515,28,28]（class bg-panel-background absolute right-2 top）→ \"按 ESC 退出\"",
+    "   ⭐ 气泡汇总 {\n \"20\": \"（本身有名字）\",\n \"画布 2\": \"（本身有名字）\",\n \"工作流\": \"（本身有名字）\",\n \"故事板\": \"（本身有名字）\",\n \"发布与分享\": \"（本身有名字）\",\n \"积分超市\": \"（本身有名字）\",\n \"添加节点\": \"（本身有名字）\",\n \"移动\": \"（本身有名字）\",\n \"素材库\": \"（本身有名字）\",\n \"角色造型室\": \"（本身有名字）\",\n \"生成历史\": \"（本身有名字）\",\n \"快捷键\": \"（本身有名字）\",\n \"教程\": \"（本身有名字）\",\n \"音频生视频\": \"（本身有名字）\",\n \"上传视频后开始\": \"（本身有名字）\",\n \"分镜\": \"（本身有名字）\",\n \"动态\": \"（本身有名字）\",\n \"音乐\": \"（本身有名字）\",\n \"开始拉片\": \"（本身有名字）\",\n \"打开脚本节点 →\": \"（本身有名字）\",\n \"图生图\": \"（本身有名字）\",\n \"图片高清\": \"（本身有名字）\",\n \"参考\": \"（本身有名字）\",\n \"标记\": \"（本身有名字）\",\n \"风格\": \"（本身有名字）\",\n \"Lib Image 2.5 Pro\": \"（本身有名字）\",\n \"16:9 · 标准画质 · 2K · 1张\": \"（本身有名字）\",\n \"预设\": \"（本身有名字）\",\n \"[1079,657,32,32]\": \"按 ESC 退出\",\n \"[1154,657,32,32]\": \"按 ESC 退出\",\n \"[1194,657,32,32]\": \"按 ESC 退出\",\n \"[1274,657,32,32]\": \"按 ESC 退出\",\n \"[1278,515,28,28]\": \"按 ESC 退出\",\n \"打开导演台\": \"（本身有名字）\",\n \"自己编写内容\": \"（本身有名字）\",\n \"文生视频\": \"（本身有名字）\",\n \"图片反推提示词\": \"（本身有名字）\",\n \"文字生音乐\": \"（本身有名字）\",\n \"讲解视频\": \"（本身有名字）\",\n \"批量广告\": \"（本身有名字）\",\n \"口播视频\": \"（本身有名字）\",\n \"素材混剪\": \"（本身有名字）\",\n \"5分钟超长视频\": \"（本身有名字）\",\n \"首尾帧生成视频\": \"（本身有名字）\",\n \"首帧生成视频\": \"（本身有名字）\",\n \"资产管理\": \"（本身有名字）\",\n \"整理画布，Option+Shift+F\": \"（本身有名字）\",\n \"切换小地图\": \"（本身有名字）\",\n \"隐藏节点连线\": \"（本身有名字）\",\n \"网格吸附\": \"（本身有名字）\",\n \"48%\": \"（本身有名字）\"\n}",
+    "   📷 ft3-0-图片编辑区浮层.png｜裁剪 {\"x\":0,\"y\":0,\"width\":1440,\"height\":810}",
+    "断言统计 {\"次数\":5,\"失败\":0}"
+  ],
+  "读数": {
+    "编辑区": [
+      {
+        "框": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "z": "auto",
+        "class": "h-screen w-screen",
+        "全文": "画布 2 开通会员 限时 45 折 20 音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 脚本 V2 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 图片节点 2 图片节点 2 尝试： 图生图 图片高清 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 视频节点 3 智能剪辑 4 空空如",
+        "按钮": [
+          {
+            "文字": "画布 2",
+            "aria": "",
+            "title": "",
+            "框": [
+              165,
+              8,
+              69,
+              32
+            ],
+            "点": [
+              200,
+              24
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-controls-ac"
+          },
+          {
+            "文字": "",
+            "aria": "工作流",
+            "title": "",
+            "框": [
+              244,
+              8,
+              32,
+              32
+            ],
+            "点": [
+              260,
+              24
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 items-center justify-center rounded-lg bg-clip-content transition-co"
+          },
+          {
+            "文字": "",
+            "aria": "故事板",
+            "title": "",
+            "框": [
+              276,
+              8,
+              32,
+              32
+            ],
+            "点": [
+              292,
+              24
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 items-center justify-center rounded-lg bg-clip-content p-0.5 transit"
+          },
+          {
+            "文字": "",
+            "aria": "发布与分享",
+            "title": "",
+            "框": [
+              1087,
+              8,
+              32,
+              32
+            ],
+            "点": [
+              1103,
+              24
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "border-(--topnav-btn-border) relative flex items-center justify-center border-[0"
+          },
+          {
+            "文字": "",
+            "aria": "积分超市",
+            "title": "",
+            "框": [
+              1127,
+              8,
+              32,
+              32
+            ],
+            "点": [
+              1143,
+              24
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer items-cent"
+          },
+          {
+            "文字": "20",
+            "aria": "",
+            "title": "",
+            "框": [
+              1334,
+              8,
+              58,
+              32
+            ],
+            "点": [
+              1363,
+              24
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer items-cent"
+          },
+          {
+            "文字": "",
+            "aria": "添加节点",
+            "title": "",
+            "框": [
+              580,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              596,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors group h-8"
+          },
+          {
+            "文字": "",
+            "aria": "移动",
+            "title": "",
+            "框": [
+              620,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              636,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "素材库",
+            "title": "",
+            "框": [
+              660,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              676,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "角色造型室",
+            "title": "",
+            "框": [
+              700,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              716,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "生成历史",
+            "title": "",
+            "框": [
+              740,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              756,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "快捷键",
+            "title": "",
+            "框": [
+              789,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              805,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "教程",
+            "title": "",
+            "框": [
+              829,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              845,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              670,
+              56,
+              17
+            ],
+            "点": [
+              105,
+              679
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1183,
+              167,
+              56,
+              17
+            ],
+            "点": [
+              1211,
+              175
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "上传视频后开始",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              109,
+              142,
+              80
+            ],
+            "点": [
+              779,
+              148
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center g"
+          },
+          {
+            "文字": "分镜",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              731,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "动态",
+            "aria": "",
+            "title": "",
+            "框": [
+              757,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              779,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              806,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              828,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "开始拉片",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              233,
+              142,
+              17
+            ],
+            "点": [
+              779,
+              241
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14"
+          },
+          {
+            "文字": "打开脚本节点 →",
+            "aria": "",
+            "title": "",
+            "框": [
+              735,
+              538,
+              137,
+              19
+            ],
+            "点": [
+              804,
+              548
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm fo"
+          },
+          {
+            "文字": "图生图",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              428,
+              42,
+              17
+            ],
+            "点": [
+              869,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片高清",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              447,
+              50,
+              17
+            ],
+            "点": [
+              873,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1278,
+              515,
+              28,
+              28
+            ],
+            "点": [
+              1292,
+              529
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shrink-0 items-cente"
+          },
+          {
+            "文字": "打开导演台",
+            "aria": "",
+            "title": "",
+            "框": [
+              991,
+              169,
+              44,
+              15
+            ],
+            "点": [
+              1013,
+              177
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg bo"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              652,
+              63,
+              17
+            ],
+            "点": [
+              352,
+              660
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              671,
+              49,
+              17
+            ],
+            "点": [
+              345,
+              680
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              690,
+              70,
+              17
+            ],
+            "点": [
+              355,
+              699
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              710,
+              56,
+              17
+            ],
+            "点": [
+              348,
+              718
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              408,
+              63,
+              17
+            ],
+            "点": [
+              1250,
+              417
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              428,
+              49,
+              17
+            ],
+            "点": [
+              1243,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              447,
+              70,
+              17
+            ],
+            "点": [
+              1253,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              466,
+              56,
+              17
+            ],
+            "点": [
+              1246,
+              475
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "讲解视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              151,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              158
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "批量广告",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              167,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              173
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "口播视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              182,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              189
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "素材混剪",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              198,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              204
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "5分钟超长视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              151,
+              67,
+              17
+            ],
+            "点": [
+              111,
+              160
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首尾帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              170,
+              70,
+              17
+            ],
+            "点": [
+              112,
+              179
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              190,
+              63,
+              17
+            ],
+            "点": [
+              108,
+              198
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "资产管理",
+            "aria": "资产管理",
+            "title": "",
+            "框": [
+              14,
+              764,
+              94,
+              28
+            ],
+            "点": [
+              61,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg transition-"
+          },
+          {
+            "文字": "",
+            "aria": "整理画布，Option+Shift+F",
+            "title": "",
+            "框": [
+              112,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              126,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-co"
+          },
+          {
+            "文字": "",
+            "aria": "切换小地图",
+            "title": "",
+            "框": [
+              144,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              158,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-co"
+          },
+          {
+            "文字": "",
+            "aria": "隐藏节点连线",
+            "title": "",
+            "框": [
+              176,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              190,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg trans"
+          },
+          {
+            "文字": "",
+            "aria": "网格吸附",
+            "title": "",
+            "框": [
+              208,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              222,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg trans"
+          },
+          {
+            "文字": "48%",
+            "aria": "缩放选项",
+            "title": "",
+            "框": [
+              240,
+              764,
+              36,
+              28
+            ],
+            "点": [
+              258,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 "
+          }
+        ]
+      },
+      {
+        "框": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "z": "auto",
+        "class": "relative h-screen w-screen",
+        "全文": "音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 脚本 V2 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 图片节点 2 图片节点 2 尝试： 图生图 图片高清 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 视频节点 3 智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频",
+        "按钮": [
+          {
+            "文字": "",
+            "aria": "添加节点",
+            "title": "",
+            "框": [
+              580,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              596,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors group h-8"
+          },
+          {
+            "文字": "",
+            "aria": "移动",
+            "title": "",
+            "框": [
+              620,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              636,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "素材库",
+            "title": "",
+            "框": [
+              660,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              676,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "角色造型室",
+            "title": "",
+            "框": [
+              700,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              716,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "生成历史",
+            "title": "",
+            "框": [
+              740,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              756,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "快捷键",
+            "title": "",
+            "框": [
+              789,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              805,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "教程",
+            "title": "",
+            "框": [
+              829,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              845,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              670,
+              56,
+              17
+            ],
+            "点": [
+              105,
+              679
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1183,
+              167,
+              56,
+              17
+            ],
+            "点": [
+              1211,
+              175
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "上传视频后开始",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              109,
+              142,
+              80
+            ],
+            "点": [
+              779,
+              148
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center g"
+          },
+          {
+            "文字": "分镜",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              731,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "动态",
+            "aria": "",
+            "title": "",
+            "框": [
+              757,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              779,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              806,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              828,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "开始拉片",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              233,
+              142,
+              17
+            ],
+            "点": [
+              779,
+              241
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14"
+          },
+          {
+            "文字": "打开脚本节点 →",
+            "aria": "",
+            "title": "",
+            "框": [
+              735,
+              538,
+              137,
+              19
+            ],
+            "点": [
+              804,
+              548
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm fo"
+          },
+          {
+            "文字": "图生图",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              428,
+              42,
+              17
+            ],
+            "点": [
+              869,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片高清",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              447,
+              50,
+              17
+            ],
+            "点": [
+              873,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1278,
+              515,
+              28,
+              28
+            ],
+            "点": [
+              1292,
+              529
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shrink-0 items-cente"
+          },
+          {
+            "文字": "打开导演台",
+            "aria": "",
+            "title": "",
+            "框": [
+              991,
+              169,
+              44,
+              15
+            ],
+            "点": [
+              1013,
+              177
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg bo"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              652,
+              63,
+              17
+            ],
+            "点": [
+              352,
+              660
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              671,
+              49,
+              17
+            ],
+            "点": [
+              345,
+              680
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              690,
+              70,
+              17
+            ],
+            "点": [
+              355,
+              699
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              710,
+              56,
+              17
+            ],
+            "点": [
+              348,
+              718
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              408,
+              63,
+              17
+            ],
+            "点": [
+              1250,
+              417
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              428,
+              49,
+              17
+            ],
+            "点": [
+              1243,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              447,
+              70,
+              17
+            ],
+            "点": [
+              1253,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              466,
+              56,
+              17
+            ],
+            "点": [
+              1246,
+              475
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "讲解视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              151,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              158
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "批量广告",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              167,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              173
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "口播视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              182,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              189
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "素材混剪",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              198,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              204
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "5分钟超长视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              151,
+              67,
+              17
+            ],
+            "点": [
+              111,
+              160
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首尾帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              170,
+              70,
+              17
+            ],
+            "点": [
+              112,
+              179
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              190,
+              63,
+              17
+            ],
+            "点": [
+              108,
+              198
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "资产管理",
+            "aria": "资产管理",
+            "title": "",
+            "框": [
+              14,
+              764,
+              94,
+              28
+            ],
+            "点": [
+              61,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg transition-"
+          },
+          {
+            "文字": "",
+            "aria": "整理画布，Option+Shift+F",
+            "title": "",
+            "框": [
+              112,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              126,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-co"
+          },
+          {
+            "文字": "",
+            "aria": "切换小地图",
+            "title": "",
+            "框": [
+              144,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              158,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-co"
+          },
+          {
+            "文字": "",
+            "aria": "隐藏节点连线",
+            "title": "",
+            "框": [
+              176,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              190,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg trans"
+          },
+          {
+            "文字": "",
+            "aria": "网格吸附",
+            "title": "",
+            "框": [
+              208,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              222,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg trans"
+          },
+          {
+            "文字": "48%",
+            "aria": "缩放选项",
+            "title": "",
+            "框": [
+              240,
+              764,
+              36,
+              28
+            ],
+            "点": [
+              258,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 "
+          }
+        ]
+      },
+      {
+        "框": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "z": "auto",
+        "class": "relative h-screen w-screen",
+        "全文": "音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 脚本 V2 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 图片节点 2 图片节点 2 尝试： 图生图 图片高清 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 视频节点 3 智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频",
+        "按钮": [
+          {
+            "文字": "",
+            "aria": "添加节点",
+            "title": "",
+            "框": [
+              580,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              596,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors group h-8"
+          },
+          {
+            "文字": "",
+            "aria": "移动",
+            "title": "",
+            "框": [
+              620,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              636,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "素材库",
+            "title": "",
+            "框": [
+              660,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              676,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "角色造型室",
+            "title": "",
+            "框": [
+              700,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              716,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "生成历史",
+            "title": "",
+            "框": [
+              740,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              756,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "快捷键",
+            "title": "",
+            "框": [
+              789,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              805,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "",
+            "aria": "教程",
+            "title": "",
+            "框": [
+              829,
+              757,
+              32,
+              32
+            ],
+            "点": [
+              845,
+              773
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              670,
+              56,
+              17
+            ],
+            "点": [
+              105,
+              679
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1183,
+              167,
+              56,
+              17
+            ],
+            "点": [
+              1211,
+              175
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "上传视频后开始",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              109,
+              142,
+              80
+            ],
+            "点": [
+              779,
+              148
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center g"
+          },
+          {
+            "文字": "分镜",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              731,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "动态",
+            "aria": "",
+            "title": "",
+            "框": [
+              757,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              779,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              806,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              828,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "开始拉片",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              233,
+              142,
+              17
+            ],
+            "点": [
+              779,
+              241
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14"
+          },
+          {
+            "文字": "打开脚本节点 →",
+            "aria": "",
+            "title": "",
+            "框": [
+              735,
+              538,
+              137,
+              19
+            ],
+            "点": [
+              804,
+              548
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm fo"
+          },
+          {
+            "文字": "图生图",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              428,
+              42,
+              17
+            ],
+            "点": [
+              869,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片高清",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              447,
+              50,
+              17
+            ],
+            "点": [
+              873,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1278,
+              515,
+              28,
+              28
+            ],
+            "点": [
+              1292,
+              529
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shrink-0 items-cente"
+          },
+          {
+            "文字": "打开导演台",
+            "aria": "",
+            "title": "",
+            "框": [
+              991,
+              169,
+              44,
+              15
+            ],
+            "点": [
+              1013,
+              177
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg bo"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              652,
+              63,
+              17
+            ],
+            "点": [
+              352,
+              660
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              671,
+              49,
+              17
+            ],
+            "点": [
+              345,
+              680
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              690,
+              70,
+              17
+            ],
+            "点": [
+              355,
+              699
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              710,
+              56,
+              17
+            ],
+            "点": [
+              348,
+              718
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              408,
+              63,
+              17
+            ],
+            "点": [
+              1250,
+              417
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              428,
+              49,
+              17
+            ],
+            "点": [
+              1243,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              447,
+              70,
+              17
+            ],
+            "点": [
+              1253,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              466,
+              56,
+              17
+            ],
+            "点": [
+              1246,
+              475
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "讲解视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              151,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              158
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "批量广告",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              167,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              173
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "口播视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              182,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              189
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "素材混剪",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              198,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              204
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "5分钟超长视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              151,
+              67,
+              17
+            ],
+            "点": [
+              111,
+              160
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首尾帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              170,
+              70,
+              17
+            ],
+            "点": [
+              112,
+              179
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              190,
+              63,
+              17
+            ],
+            "点": [
+              108,
+              198
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "资产管理",
+            "aria": "资产管理",
+            "title": "",
+            "框": [
+              14,
+              764,
+              94,
+              28
+            ],
+            "点": [
+              61,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg transition-"
+          },
+          {
+            "文字": "",
+            "aria": "整理画布，Option+Shift+F",
+            "title": "",
+            "框": [
+              112,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              126,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-co"
+          },
+          {
+            "文字": "",
+            "aria": "切换小地图",
+            "title": "",
+            "框": [
+              144,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              158,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-co"
+          },
+          {
+            "文字": "",
+            "aria": "隐藏节点连线",
+            "title": "",
+            "框": [
+              176,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              190,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg trans"
+          },
+          {
+            "文字": "",
+            "aria": "网格吸附",
+            "title": "",
+            "框": [
+              208,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              222,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg trans"
+          },
+          {
+            "文字": "48%",
+            "aria": "缩放选项",
+            "title": "",
+            "框": [
+              240,
+              764,
+              36,
+              28
+            ],
+            "点": [
+              258,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 "
+          }
+        ]
+      },
+      {
+        "框": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "z": "0",
+        "class": "react-flow light",
+        "全文": "音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 脚本 V2 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 图片节点 2 图片节点 2 尝试： 图生图 图片高清 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 视频节点 3 智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频",
+        "按钮": [
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              670,
+              56,
+              17
+            ],
+            "点": [
+              105,
+              679
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1183,
+              167,
+              56,
+              17
+            ],
+            "点": [
+              1211,
+              175
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "上传视频后开始",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              109,
+              142,
+              80
+            ],
+            "点": [
+              779,
+              148
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center g"
+          },
+          {
+            "文字": "分镜",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              731,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "动态",
+            "aria": "",
+            "title": "",
+            "框": [
+              757,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              779,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              806,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              828,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "开始拉片",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              233,
+              142,
+              17
+            ],
+            "点": [
+              779,
+              241
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14"
+          },
+          {
+            "文字": "打开脚本节点 →",
+            "aria": "",
+            "title": "",
+            "框": [
+              735,
+              538,
+              137,
+              19
+            ],
+            "点": [
+              804,
+              548
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm fo"
+          },
+          {
+            "文字": "图生图",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              428,
+              42,
+              17
+            ],
+            "点": [
+              869,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片高清",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              447,
+              50,
+              17
+            ],
+            "点": [
+              873,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1278,
+              515,
+              28,
+              28
+            ],
+            "点": [
+              1292,
+              529
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shrink-0 items-cente"
+          },
+          {
+            "文字": "打开导演台",
+            "aria": "",
+            "title": "",
+            "框": [
+              991,
+              169,
+              44,
+              15
+            ],
+            "点": [
+              1013,
+              177
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg bo"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              652,
+              63,
+              17
+            ],
+            "点": [
+              352,
+              660
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              671,
+              49,
+              17
+            ],
+            "点": [
+              345,
+              680
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              690,
+              70,
+              17
+            ],
+            "点": [
+              355,
+              699
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              710,
+              56,
+              17
+            ],
+            "点": [
+              348,
+              718
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              408,
+              63,
+              17
+            ],
+            "点": [
+              1250,
+              417
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              428,
+              49,
+              17
+            ],
+            "点": [
+              1243,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              447,
+              70,
+              17
+            ],
+            "点": [
+              1253,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              466,
+              56,
+              17
+            ],
+            "点": [
+              1246,
+              475
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "讲解视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              151,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              158
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "批量广告",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              167,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              173
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "口播视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              182,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              189
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "素材混剪",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              198,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              204
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "5分钟超长视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              151,
+              67,
+              17
+            ],
+            "点": [
+              111,
+              160
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首尾帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              170,
+              70,
+              17
+            ],
+            "点": [
+              112,
+              179
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              190,
+              63,
+              17
+            ],
+            "点": [
+              108,
+              198
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "资产管理",
+            "aria": "资产管理",
+            "title": "",
+            "框": [
+              14,
+              764,
+              94,
+              28
+            ],
+            "点": [
+              61,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg transition-"
+          },
+          {
+            "文字": "",
+            "aria": "整理画布，Option+Shift+F",
+            "title": "",
+            "框": [
+              112,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              126,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-co"
+          },
+          {
+            "文字": "",
+            "aria": "切换小地图",
+            "title": "",
+            "框": [
+              144,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              158,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-co"
+          },
+          {
+            "文字": "",
+            "aria": "隐藏节点连线",
+            "title": "",
+            "框": [
+              176,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              190,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg trans"
+          },
+          {
+            "文字": "",
+            "aria": "网格吸附",
+            "title": "",
+            "框": [
+              208,
+              764,
+              28,
+              28
+            ],
+            "点": [
+              222,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg trans"
+          },
+          {
+            "文字": "48%",
+            "aria": "缩放选项",
+            "title": "",
+            "框": [
+              240,
+              764,
+              36,
+              28
+            ],
+            "点": [
+              258,
+              778
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 "
+          }
+        ]
+      },
+      {
+        "框": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "z": "4",
+        "class": "react-flow__renderer",
+        "全文": "音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 脚本 V2 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 图片节点 2 图片节点 2 尝试： 图生图 图片高清 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 视频节点 3 智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频",
+        "按钮": [
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              670,
+              56,
+              17
+            ],
+            "点": [
+              105,
+              679
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1183,
+              167,
+              56,
+              17
+            ],
+            "点": [
+              1211,
+              175
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "上传视频后开始",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              109,
+              142,
+              80
+            ],
+            "点": [
+              779,
+              148
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center g"
+          },
+          {
+            "文字": "分镜",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              731,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "动态",
+            "aria": "",
+            "title": "",
+            "框": [
+              757,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              779,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              806,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              828,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "开始拉片",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              233,
+              142,
+              17
+            ],
+            "点": [
+              779,
+              241
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14"
+          },
+          {
+            "文字": "打开脚本节点 →",
+            "aria": "",
+            "title": "",
+            "框": [
+              735,
+              538,
+              137,
+              19
+            ],
+            "点": [
+              804,
+              548
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm fo"
+          },
+          {
+            "文字": "图生图",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              428,
+              42,
+              17
+            ],
+            "点": [
+              869,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片高清",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              447,
+              50,
+              17
+            ],
+            "点": [
+              873,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1278,
+              515,
+              28,
+              28
+            ],
+            "点": [
+              1292,
+              529
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shrink-0 items-cente"
+          },
+          {
+            "文字": "打开导演台",
+            "aria": "",
+            "title": "",
+            "框": [
+              991,
+              169,
+              44,
+              15
+            ],
+            "点": [
+              1013,
+              177
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg bo"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              652,
+              63,
+              17
+            ],
+            "点": [
+              352,
+              660
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              671,
+              49,
+              17
+            ],
+            "点": [
+              345,
+              680
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              690,
+              70,
+              17
+            ],
+            "点": [
+              355,
+              699
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              710,
+              56,
+              17
+            ],
+            "点": [
+              348,
+              718
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              408,
+              63,
+              17
+            ],
+            "点": [
+              1250,
+              417
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              428,
+              49,
+              17
+            ],
+            "点": [
+              1243,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              447,
+              70,
+              17
+            ],
+            "点": [
+              1253,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              466,
+              56,
+              17
+            ],
+            "点": [
+              1246,
+              475
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "讲解视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              151,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              158
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "批量广告",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              167,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              173
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "口播视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              182,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              189
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "素材混剪",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              198,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              204
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "5分钟超长视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              151,
+              67,
+              17
+            ],
+            "点": [
+              111,
+              160
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首尾帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              170,
+              70,
+              17
+            ],
+            "点": [
+              112,
+              179
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              190,
+              63,
+              17
+            ],
+            "点": [
+              108,
+              198
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          }
+        ]
+      },
+      {
+        "框": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "z": "1",
+        "class": "react-flow__pane",
+        "全文": "音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 脚本 V2 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 图片节点 2 图片节点 2 尝试： 图生图 图片高清 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 视频节点 3 智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频",
+        "按钮": [
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              670,
+              56,
+              17
+            ],
+            "点": [
+              105,
+              679
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1183,
+              167,
+              56,
+              17
+            ],
+            "点": [
+              1211,
+              175
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "上传视频后开始",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              109,
+              142,
+              80
+            ],
+            "点": [
+              779,
+              148
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center g"
+          },
+          {
+            "文字": "分镜",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              731,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "动态",
+            "aria": "",
+            "title": "",
+            "框": [
+              757,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              779,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              806,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              828,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "开始拉片",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              233,
+              142,
+              17
+            ],
+            "点": [
+              779,
+              241
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14"
+          },
+          {
+            "文字": "打开脚本节点 →",
+            "aria": "",
+            "title": "",
+            "框": [
+              735,
+              538,
+              137,
+              19
+            ],
+            "点": [
+              804,
+              548
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm fo"
+          },
+          {
+            "文字": "图生图",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              428,
+              42,
+              17
+            ],
+            "点": [
+              869,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片高清",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              447,
+              50,
+              17
+            ],
+            "点": [
+              873,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1278,
+              515,
+              28,
+              28
+            ],
+            "点": [
+              1292,
+              529
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shrink-0 items-cente"
+          },
+          {
+            "文字": "打开导演台",
+            "aria": "",
+            "title": "",
+            "框": [
+              991,
+              169,
+              44,
+              15
+            ],
+            "点": [
+              1013,
+              177
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg bo"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              652,
+              63,
+              17
+            ],
+            "点": [
+              352,
+              660
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              671,
+              49,
+              17
+            ],
+            "点": [
+              345,
+              680
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              690,
+              70,
+              17
+            ],
+            "点": [
+              355,
+              699
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              710,
+              56,
+              17
+            ],
+            "点": [
+              348,
+              718
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              408,
+              63,
+              17
+            ],
+            "点": [
+              1250,
+              417
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              428,
+              49,
+              17
+            ],
+            "点": [
+              1243,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              447,
+              70,
+              17
+            ],
+            "点": [
+              1253,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              466,
+              56,
+              17
+            ],
+            "点": [
+              1246,
+              475
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "讲解视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              151,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              158
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "批量广告",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              167,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              173
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "口播视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              182,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              189
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "素材混剪",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              198,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              204
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "5分钟超长视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              151,
+              67,
+              17
+            ],
+            "点": [
+              111,
+              160
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首尾帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              170,
+              70,
+              17
+            ],
+            "点": [
+              112,
+              179
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              190,
+              63,
+              17
+            ],
+            "点": [
+              108,
+              198
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          }
+        ]
+      },
+      {
+        "框": [
+          96378,
+          -76,
+          695,
+          391
+        ],
+        "z": "2",
+        "class": "react-flow__viewport xyflow__viewport react-flow__container",
+        "全文": "音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 脚本 V2 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 图片节点 2 图片节点 2 尝试： 图生图 图片高清 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 视频节点 3 智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频",
+        "按钮": [
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              670,
+              56,
+              17
+            ],
+            "点": [
+              105,
+              679
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1183,
+              167,
+              56,
+              17
+            ],
+            "点": [
+              1211,
+              175
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "上传视频后开始",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              109,
+              142,
+              80
+            ],
+            "点": [
+              779,
+              148
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center g"
+          },
+          {
+            "文字": "分镜",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              731,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "动态",
+            "aria": "",
+            "title": "",
+            "框": [
+              757,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              779,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              806,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              828,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "开始拉片",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              233,
+              142,
+              17
+            ],
+            "点": [
+              779,
+              241
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14"
+          },
+          {
+            "文字": "打开脚本节点 →",
+            "aria": "",
+            "title": "",
+            "框": [
+              735,
+              538,
+              137,
+              19
+            ],
+            "点": [
+              804,
+              548
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm fo"
+          },
+          {
+            "文字": "图生图",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              428,
+              42,
+              17
+            ],
+            "点": [
+              869,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片高清",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              447,
+              50,
+              17
+            ],
+            "点": [
+              873,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1278,
+              515,
+              28,
+              28
+            ],
+            "点": [
+              1292,
+              529
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shrink-0 items-cente"
+          },
+          {
+            "文字": "打开导演台",
+            "aria": "",
+            "title": "",
+            "框": [
+              991,
+              169,
+              44,
+              15
+            ],
+            "点": [
+              1013,
+              177
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg bo"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              652,
+              63,
+              17
+            ],
+            "点": [
+              352,
+              660
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              671,
+              49,
+              17
+            ],
+            "点": [
+              345,
+              680
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              690,
+              70,
+              17
+            ],
+            "点": [
+              355,
+              699
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              710,
+              56,
+              17
+            ],
+            "点": [
+              348,
+              718
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              408,
+              63,
+              17
+            ],
+            "点": [
+              1250,
+              417
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              428,
+              49,
+              17
+            ],
+            "点": [
+              1243,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              447,
+              70,
+              17
+            ],
+            "点": [
+              1253,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              466,
+              56,
+              17
+            ],
+            "点": [
+              1246,
+              475
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "讲解视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              151,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              158
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "批量广告",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              167,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              173
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "口播视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              182,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              189
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "素材混剪",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              198,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              204
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "5分钟超长视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              151,
+              67,
+              17
+            ],
+            "点": [
+              111,
+              160
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首尾帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              170,
+              70,
+              17
+            ],
+            "点": [
+              112,
+              179
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              190,
+              63,
+              17
+            ],
+            "点": [
+              108,
+              198
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          }
+        ]
+      },
+      {
+        "框": [
+          96378,
+          -76,
+          695,
+          391
+        ],
+        "z": "auto",
+        "class": "react-flow__nodes",
+        "全文": "音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 脚本 V2 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 图片节点 2 图片节点 2 尝试： 图生图 图片高清 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 文本节点 1 尝试： 自己编写内容 文生视频 图片反推提示词 文字生音乐 视频节点 3 智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频",
+        "按钮": [
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              670,
+              56,
+              17
+            ],
+            "点": [
+              105,
+              679
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "音频生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1183,
+              167,
+              56,
+              17
+            ],
+            "点": [
+              1211,
+              175
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "上传视频后开始",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              109,
+              142,
+              80
+            ],
+            "点": [
+              779,
+              148
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justify-center g"
+          },
+          {
+            "文字": "分镜",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              731,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "动态",
+            "aria": "",
+            "title": "",
+            "框": [
+              757,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              779,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              806,
+              208,
+              45,
+              15
+            ],
+            "点": [
+              828,
+              215
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center gap-1.5 ro"
+          },
+          {
+            "文字": "开始拉片",
+            "aria": "",
+            "title": "",
+            "框": [
+              708,
+              233,
+              142,
+              17
+            ],
+            "点": [
+              779,
+              241
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14"
+          },
+          {
+            "文字": "打开脚本节点 →",
+            "aria": "",
+            "title": "",
+            "框": [
+              735,
+              538,
+              137,
+              19
+            ],
+            "点": [
+              804,
+              548
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm fo"
+          },
+          {
+            "文字": "图生图",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              428,
+              42,
+              17
+            ],
+            "点": [
+              869,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片高清",
+            "aria": "",
+            "title": "",
+            "框": [
+              847,
+              447,
+              50,
+              17
+            ],
+            "点": [
+              873,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1278,
+              515,
+              28,
+              28
+            ],
+            "点": [
+              1292,
+              529
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shrink-0 items-cente"
+          },
+          {
+            "文字": "打开导演台",
+            "aria": "",
+            "title": "",
+            "框": [
+              991,
+              169,
+              44,
+              15
+            ],
+            "点": [
+              1013,
+              177
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg bo"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              652,
+              63,
+              17
+            ],
+            "点": [
+              352,
+              660
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              671,
+              49,
+              17
+            ],
+            "点": [
+              345,
+              680
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              690,
+              70,
+              17
+            ],
+            "点": [
+              355,
+              699
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              320,
+              710,
+              56,
+              17
+            ],
+            "点": [
+              348,
+              718
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "自己编写内容",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              408,
+              63,
+              17
+            ],
+            "点": [
+              1250,
+              417
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文生视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              428,
+              49,
+              17
+            ],
+            "点": [
+              1243,
+              436
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "图片反推提示词",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              447,
+              70,
+              17
+            ],
+            "点": [
+              1253,
+              456
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "文字生音乐",
+            "aria": "",
+            "title": "",
+            "框": [
+              1218,
+              466,
+              56,
+              17
+            ],
+            "点": [
+              1246,
+              475
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "讲解视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              151,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              158
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "批量广告",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              167,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              173
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "口播视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              182,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              189
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "素材混剪",
+            "aria": "",
+            "title": "",
+            "框": [
+              481,
+              198,
+              42,
+              14
+            ],
+            "点": [
+              501,
+              204
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-center gap-2 rounded"
+          },
+          {
+            "文字": "5分钟超长视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              151,
+              67,
+              17
+            ],
+            "点": [
+              111,
+              160
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首尾帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              170,
+              70,
+              17
+            ],
+            "点": [
+              112,
+              179
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          },
+          {
+            "文字": "首帧生成视频",
+            "aria": "",
+            "title": "",
+            "框": [
+              77,
+              190,
+              63,
+              17
+            ],
+            "点": [
+              108,
+              198
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center"
+          }
+        ]
+      },
+      {
+        "框": [
+          655,
+          506,
+          660,
+          192
+        ],
+        "z": "20",
+        "class": "node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -tran",
+        "全文": "参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink",
+        "按钮": [
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1278,
+              515,
+              28,
+              28
+            ],
+            "点": [
+              1292,
+              529
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shrink-0 items-cente"
+          }
+        ]
+      },
+      {
+        "框": [
+          655,
+          506,
+          660,
+          192
+        ],
+        "z": "auto",
+        "class": "bg-panel-background relative flex w-full flex-col gap-0 overflow-hidden rounded-2xl shadow-[0px_4px_10px_0px_rgba(0,0,0,0.12)] border-hair b",
+        "全文": "参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink",
+        "按钮": [
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1278,
+              515,
+              28,
+              28
+            ],
+            "点": [
+              1292,
+              529
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "bg-panel-background absolute right-2 top-2 z-10 flex size-7 shrink-0 items-cente"
+          }
+        ]
+      },
+      {
+        "框": [
+          656,
+          507,
+          658,
+          190
+        ],
+        "z": "auto",
+        "class": "flex min-h-0 w-full flex-col",
+        "全文": "参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink",
+        "按钮": [
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          }
+        ]
+      },
+      {
+        "框": [
+          656,
+          507,
+          658,
+          190
+        ],
+        "z": "auto",
+        "class": "flex min-h-0 flex-col gap-2 p-2",
+        "全文": "参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink",
+        "按钮": [
+          {
+            "文字": "参考",
+            "aria": "",
+            "title": "",
+            "框": [
+              668,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              695,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "标记",
+            "aria": "",
+            "title": "",
+            "框": [
+              726,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              753,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "风格",
+            "aria": "",
+            "title": "",
+            "框": [
+              784,
+              519,
+              54,
+              26
+            ],
+            "点": [
+              811,
+              532
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit"
+          },
+          {
+            "文字": "Lib Image 2.5 Pro",
+            "aria": "",
+            "title": "",
+            "框": [
+              664,
+              657,
+              159,
+              32
+            ],
+            "点": [
+              744,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex items-center justify-between bg-transparent transition-colors h-8 w-auto ga"
+          },
+          {
+            "文字": "16:9 · 标准画质 · 2K · 1张",
+            "aria": "",
+            "title": "",
+            "框": [
+              833,
+              657,
+              201,
+              32
+            ],
+            "点": [
+              933,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transparent transi"
+          },
+          {
+            "文字": "",
+            "aria": "预设",
+            "title": "",
+            "框": [
+              1043,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1059,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center justify-cen"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1079,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1095,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transparent trans"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1154,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1170,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounded-lg bg-tr"
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1194,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1210,
+              673
+            ],
+            "禁用": false,
+            "cursor": "pointer",
+            "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justify-center "
+          },
+          {
+            "文字": "",
+            "aria": "",
+            "title": "",
+            "框": [
+              1274,
+              657,
+              32,
+              32
+            ],
+            "点": [
+              1290,
+              673
+            ],
+            "禁用": true,
+            "cursor": "not-allowed",
+            "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center justify-center"
+          }
+        ]
+      }
+    ],
+    "气泡": {
+      "20": "（本身有名字）",
+      "画布 2": "（本身有名字）",
+      "工作流": "（本身有名字）",
+      "故事板": "（本身有名字）",
+      "发布与分享": "（本身有名字）",
+      "积分超市": "（本身有名字）",
+      "添加节点": "（本身有名字）",
+      "移动": "（本身有名字）",
+      "素材库": "（本身有名字）",
+      "角色造型室": "（本身有名字）",
+      "生成历史": "（本身有名字）",
+      "快捷键": "（本身有名字）",
+      "教程": "（本身有名字）",
+      "音频生视频": "（本身有名字）",
+      "上传视频后开始": "（本身有名字）",
+      "分镜": "（本身有名字）",
+      "动态": "（本身有名字）",
+      "音乐": "（本身有名字）",
+      "开始拉片": "（本身有名字）",
+      "打开脚本节点 →": "（本身有名字）",
+      "图生图": "（本身有名字）",
+      "图片高清": "（本身有名字）",
+      "参考": "（本身有名字）",
+      "标记": "（本身有名字）",
+      "风格": "（本身有名字）",
+      "Lib Image 2.5 Pro": "（本身有名字）",
+      "16:9 · 标准画质 · 2K · 1张": "（本身有名字）",
+      "预设": "（本身有名字）",
+      "[1079,657,32,32]": "按 ESC 退出",
+      "[1154,657,32,32]": "按 ESC 退出",
+      "[1194,657,32,32]": "按 ESC 退出",
+      "[1274,657,32,32]": "按 ESC 退出",
+      "[1278,515,28,28]": "按 ESC 退出",
+      "打开导演台": "（本身有名字）",
+      "自己编写内容": "（本身有名字）",
+      "文生视频": "（本身有名字）",
+      "图片反推提示词": "（本身有名字）",
+      "文字生音乐": "（本身有名字）",
+      "讲解视频": "（本身有名字）",
+      "批量广告": "（本身有名字）",
+      "口播视频": "（本身有名字）",
+      "素材混剪": "（本身有名字）",
+      "5分钟超长视频": "（本身有名字）",
+      "首尾帧生成视频": "（本身有名字）",
+      "首帧生成视频": "（本身有名字）",
+      "资产管理": "（本身有名字）",
+      "整理画布，Option+Shift+F": "（本身有名字）",
+      "切换小地图": "（本身有名字）",
+      "隐藏节点连线": "（本身有名字）",
+      "网格吸附": "（本身有名字）",
+      "48%": "（本身有名字）"
+    },
+    "断言": {
+      "次数": 5,
+      "失败": 0
+    }
+  },
+  "证据图": [
+    {
+      "文件": "ft3-0-图片编辑区浮层.png",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1440,
+        "height": 810
+      }
+    }
+  ]
+}

@@ -1619,6 +1619,27 @@ NEW = [
      '⑩ 底部白底主按钮「→ 下一步：准备资产」，⑪ 左下「＋ 添加镜头」。'
      '⭐⭐ 这一张图一次对上站点文案表 scriptV2* 93 条里的 20 条',
      '脚本节点的全屏分镜表编辑器：三步进度条、十列表格、右上角那枚关不掉的叉'),
+    # ── Batch FT 新增 1 张：图片编辑区浮层（预设面板和参数条都长在它身上）
+    ('M-390-图片编辑区浮层.png', 'create-nodes', 28,
+     '先点掉右侧那个一直开着的 TV Director 抽屉（只认 aria 恰为「关闭」的那枚，'
+     '⛔ 不点「开启浏览器通知」）→ 选最靠右的图片节点 i-sODTbgLUm1 → '
+     '点标题栏选中 → 按「innerText 以『参考 标记 风格』开头」筛 div 并**取面积最小**的那个'
+     '（⛔ 取最大的会命中 body —— Batch FT-3 就是这么把两条断言变成假绿灯的）→ '
+     '沿浮层宽度取 5 个采样点逐个验 elementFromPoint 不在任何 .mantine-Drawer-inner 里 → '
+     '才按 .node-floating-ui 壳的框 +18px 裁图。⚠️ 裁剪坐标乘 K=2',
+     '参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 '
+     'Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15',
+     '⭐⭐⭐ 选中图片节点后浮在节点下方的一整块编辑区，本手册此前从未完整描述过。'
+     '① `+参考` ② `标记` ③ `风格` 三枚胶囊按钮（rounded-full px-2 py-1）。'
+     '④ 一句占位「可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜」'
+     '—— ⭐⭐⭐ **「按文字指令编辑图片」这个用法手册一个字都没写过**。'
+     '⑤ 模型下拉 ⑥ 规格四段 ⑦ 一枚带蓝点的纯图标（含义未验）⑧ 一枚无字无 aria 的圆形图标 ⑨ 文A ⑩ 滑块形图标 '
+     '⑪ 圆形上箭头提交键，⭐ **本手册第一次读到它的禁用态**（disabled:true + cursor:not-allowed）'
+     '⑫ 右上角 ⤢ 展开箭头。'
+     '⭐⭐ 浮层壳 [655,506,660,192]，祖父 class `node-floating-ui nodrag nowheel nopan … '
+     'absolute -bottom-4 left-1/2 z-20 -translate-x-1/2` ⇒ **node-floating-ui 是这类浮层的统一 class 名**。'
+     '⛔ 本轮一个会消耗积分或改内容的按钮都没点',
+     '图片编辑区浮层：三枚胶囊按钮、那句「上传图片输入文字指令」的占位提示、底部参数条'),
 ]
 
 
@@ -1652,10 +1673,86 @@ def check_inventory_yaml():
     return n > 0
 
 
+def load_valid_task_ids():
+    """从 task-inventory.yml 读出全部合法 task id。
+
+    为什么要有这个函数：Batch FT 踩过的坑 —— M-390 的 task_id 被手写成
+    `image-presets`，那是**手册文件名**不是**库存里的任务 id**，gate-a 直接报
+    `unknown task_id`。而本脚本当时只做两件事：补缺失条目、刷新 sha256，
+    **从不校验已存在条目的 task_id** ⇒ 手错的 id 永远修不掉，改几次都白改。
+    """
+    import yaml
+    p = os.path.join(ROOT, 'task-inventory.yml')
+    d = yaml.safe_load(open(p, encoding='utf-8'))
+    return {str(t.get('id', '')) for t in d.get('tasks', []) if t.get('id')}
+
+
+def heal_task_ids(raw, new_table):
+    """把清单里所有非法 task_id 改回来。幂等。
+
+    优先用 NEW 表里登记的 id；NEW 表里没有就按「该图被哪一页 Markdown 引用、
+    那一页属于哪个任务的 manual_pages」去找，找不到就报出来让人改，不瞎猜。
+    """
+    import yaml
+    valid = load_valid_task_ids()
+    # 新图登记表：文件名 → 正确 task_id
+    want = {name: tid for name, tid, *_ in new_table}
+
+    # 反查：某张图出现在哪一页，该页属于哪个任务
+    page_owner = {}
+    inv = yaml.safe_load(open(os.path.join(ROOT, 'task-inventory.yml'), encoding='utf-8'))
+    for t in inv.get('tasks', []):
+        for page in (t.get('manual_pages') or []):
+            page_owner.setdefault(str(page), str(t.get('id', '')))
+
+    fixed, unresolved = [], []
+    for rel in re.findall(r'- file: (\S+)', raw):
+        m = re.search(
+            r'(- file: ' + re.escape(rel) + r'\n(?:    .*\n)*?    task_id: )(\S*)',
+            raw)
+        if not m or m.group(2) in valid:
+            continue
+        bad = m.group(2)
+        base = rel.split('/')[-1]
+        good = want.get(base)
+        if not good:
+            # 按「被哪一页引用 → 那一页属于谁」反查
+            cands = set()
+            for md in os.listdir(os.path.join(ROOT, '10-tasks')):
+                if not md.endswith('.md'):
+                    continue
+                if base not in open(os.path.join(ROOT, '10-tasks', md),
+                                    encoding='utf-8').read():
+                    continue
+                owner = page_owner.get(f'10-tasks/{md}')
+                if owner in valid:
+                    cands.add(owner)
+            good = sorted(cands)[0] if len(cands) == 1 else None
+        if good:
+            raw = raw[:m.start(2)] + good + raw[m.end(2):]
+            fixed.append(f'{base}: {bad} → {good}')
+        else:
+            unresolved.append(f'{base}: {bad}（查不出唯一归属）')
+    if fixed:
+        print('修正非法 task_id:', len(fixed))
+        for line in fixed:
+            print('  -', line)
+    if unresolved:
+        print('!! 仍无法修正的 task_id:')
+        for line in unresolved:
+            print('  -', line)
+    return raw, len(fixed)
+
+
 def main():
     raw = open(MANIFEST, encoding='utf-8').read()
     disk = sorted('screenshots/' + f for f in os.listdir(SHOTS) if f.endswith('.png'))
     listed = re.findall(r'- file: (\S+)', raw)
+
+    # 0) 先纠正非法 task_id（必须在补新条目之前，否则死条目会被带着一起改）
+    raw, n_heal = heal_task_ids(raw, NEW)
+    if n_heal:
+        listed = re.findall(r'- file: (\S+)', raw)
 
     # 1) 删死条目：清单里有、磁盘上没了的
     dead = [f for f in listed if f not in disk]

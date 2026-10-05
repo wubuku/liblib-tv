@@ -1,0 +1,517 @@
+{
+  "步骤": [
+    "=== ① 找一个有内容的图片节点 ===",
+    "   图片节点 [\n {\n  \"id\": \"i-9nlG6HdjK2\",\n  \"类\": \"image\",\n  \"框\": [\n   65.0078125,\n   329.2188415527344,\n   300.2265625,\n   168.9388427734375\n  ],\n  \"有媒体\": 0,\n  \"图片数\": 0,\n  \"文本\": \"图片节点 2\"\n },\n {\n  \"id\": \"i-sODTbgLUm1\",\n  \"类\": \"image\",\n  \"框\": [\n   835.3671875,\n   329.2188415527344,\n   300.2265625,\n   168.9388427734375\n  ],\n  \"有媒体\": 0,\n  \"图片数\": 0,\n  \"文本\": \"图片节点 2 尝试： 图生图 图片高清\"\n }\n]",
+    "   ✅ 断言通过：至少有一个图片节点",
+    "   ⭐ 选：i-9nlG6HdjK2 有 0 张图｜图片节点 2",
+    "   选中后中心落点自证 {\"中心\":[215,414],\"框\":[65,329,300,169],\"z\":\"1000\",\"属主\":\"i-9nlG6HdjK2\",\"属主类\":\"react-flow__node react-flow__node-image nopan selected selectable drag\"}",
+    "   ✅ 断言通过：图片节点(i-9nlG6HdjK2) 中心落点属主就是它自己",
+    "   ⛔ 选中后：危险按钮 4 枚 [{\"文字\":\"生成历史\",\"框\":[740,757,32,32],\"禁用\":false,\"cursor\":\"pointer\"},{\"文字\":\"首尾帧生成视频\",\"框\":[77,170,70,17],\"禁用\":false,\"cursor\":\"pointer\"},{\"文字\":\"首帧生成视频\",\"框\":[77,190,63,17],\"禁用\":false,\"cursor\":\"pointer\"},{\"文字\":\"手动生成\",\"框\":[1231,740,32,32],\"禁用\":false,\"cursor\":\"pointer\"}]",
+    "=== ② 穷举参数条按钮 + 逐个悬停读 tooltip ===",
+    "   ⭐ 参数条（y>500，节点外）共 23 枚",
+    "   [0] {\"文字\":\"\",\"aria\":\"添加节点\",\"title\":\"\",\"框\":[580,757,32,32],\"点\":[596,773],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"relative flex items-center justify-center rounded-lg transition-colors group h-8 w-8\"}",
+    "   [1] {\"文字\":\"\",\"aria\":\"移动\",\"title\":\"\",\"框\":[620,757,32,32],\"点\":[636,773],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr\"}",
+    "   [2] {\"文字\":\"\",\"aria\":\"素材库\",\"title\":\"\",\"框\":[660,757,32,32],\"点\":[676,773],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr\"}",
+    "   [3] {\"文字\":\"\",\"aria\":\"角色造型室\",\"title\":\"\",\"框\":[700,757,32,32],\"点\":[716,773],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr\"}",
+    "   [4] {\"文字\":\"\",\"aria\":\"生成历史\",\"title\":\"\",\"框\":[740,757,32,32],\"点\":[756,773],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr\"}",
+    "   [5] {\"文字\":\"\",\"aria\":\"快捷键\",\"title\":\"\",\"框\":[789,757,32,32],\"点\":[805,773],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr\"}",
+    "   [6] {\"文字\":\"\",\"aria\":\"教程\",\"title\":\"\",\"框\":[829,757,32,32],\"点\":[845,773],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr\"}",
+    "   [7] {\"文字\":\"资产管理\",\"aria\":\"资产管理\",\"title\":\"\",\"框\":[14,764,94,28],\"点\":[61,778],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"hover:bg-canvas-controls-hover relative flex items-center rounded-lg transition-colors gap-1 px-3\"}",
+    "   [8] {\"文字\":\"\",\"aria\":\"整理画布，Option+Shift+F\",\"title\":\"\",\"框\":[112,764,28,28],\"点\":[126,778],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-controls-hover\"}",
+    "   [9] {\"文字\":\"\",\"aria\":\"切换小地图\",\"title\":\"\",\"框\":[144,764,28,28],\"点\":[158,778],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-controls-hover\"}",
+    "   [10] {\"文字\":\"\",\"aria\":\"隐藏节点连线\",\"title\":\"\",\"框\":[176,764,28,28],\"点\":[190,778],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\"}",
+    "   [11] {\"文字\":\"\",\"aria\":\"网格吸附\",\"title\":\"\",\"框\":[208,764,28,28],\"点\":[222,778],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\"}",
+    "   [12] {\"文字\":\"48%\",\"aria\":\"缩放选项\",\"title\":\"\",\"框\":[240,764,36,28],\"点\":[258,778],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 text-[13px] leading-\"}",
+    "   [13] {\"文字\":\"上传故事来改编\",\"aria\":\"\",\"title\":\"上传故事来改编\",\"框\":[1041,521,366,39],\"点\":[1224,541],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 text-left text-[14px] leading-[22px] text-\"}",
+    "   [14] {\"文字\":\"批量优化提示词\",\"aria\":\"\",\"title\":\"批量优化提示词\",\"框\":[1041,560,366,39],\"点\":[1224,580],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 text-left text-[14px] leading-[22px] text-\"}",
+    "   [15] {\"文字\":\"开启\",\"aria\":\"\",\"title\":\"\",\"框\":[1269,622,26,18],\"点\":[1282,631],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"h-[18px] shrink-0 whitespace-nowrap border-0 bg-transparent p-0 text-[13px] font-normal leading-[nor\"}",
+    "   [16] {\"文字\":\"\",\"aria\":\"关闭浏览器通知提示\",\"title\":\"\",\"框\":[1383,619,24,24],\"点\":[1395,631],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"box-border flex size-6 shrink-0 items-center justify-center overflow-hidden rounded-lg border-0 bg-t\"}",
+    "   [17] {\"文字\":\"\",\"aria\":\"添加附件\",\"title\":\"\",\"框\":[1042,740,32,32],\"点\":[1058,756],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-default flex size-8 shrink-0 items-center \"}",
+    "   [18] {\"文字\":\"全能创作\",\"aria\":\"选择创作模式\",\"title\":\"\",\"框\":[1077,740,81,32],\"点\":[1118,756],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"relative flex h-8 min-w-0 items-center gap-px pl-2 pr-1 transition-colors hover:bg-bg-surface-second\"}",
+    "   [19] {\"文字\":\"\",\"aria\":\"选择模型\",\"title\":\"\",\"框\":[1161,740,32,32],\"点\":[1177,756],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-default flex size-8 shrink-0 items-center \"}",
+    "   [20] {\"文字\":\"\",\"aria\":\"Skill\",\"title\":\"\",\"框\":[1196,740,32,32],\"点\":[1212,756],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-default flex size-8 shrink-0 items-center \"}",
+    "   [21] {\"文字\":\"\",\"aria\":\"手动生成\",\"title\":\"\",\"框\":[1231,740,32,32],\"点\":[1247,756],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-default flex size-8 shrink-0 items-center \"}",
+    "   [22] {\"文字\":\"\",\"aria\":\"Send\",\"title\":\"\",\"框\":[1374,740,32,32],\"点\":[1390,756],\"禁用\":false,\"cursor\":\"pointer\",\"opacity\":\"1.00\",\"class\":\"copilotKitInputControlButton copilotKitInputSendButton cursor-pointer\"}",
+    "   气泡汇总 {\n \"|添加节点\": \"（本身有名字）\",\n \"|移动\": \"（本身有名字）\",\n \"|素材库\": \"（本身有名字）\",\n \"|角色造型室\": \"（本身有名字）\",\n \"|生成历史\": \"（本身有名字）\",\n \"|快捷键\": \"（本身有名字）\",\n \"|教程\": \"（本身有名字）\",\n \"资产管理|资产管理\": \"（本身有名字）\",\n \"|整理画布，Option+Shift+F\": \"（本身有名字）\",\n \"|切换小地图\": \"（本身有名字）\",\n \"|隐藏节点连线\": \"（本身有名字）\",\n \"|网格吸附\": \"（本身有名字）\",\n \"48%|缩放选项\": \"（本身有名字）\",\n \"上传故事来改编|\": \"（本身有名字）\",\n \"批量优化提示词|\": \"（本身有名字）\",\n \"开启|\": \"（本身有名字）\",\n \"|关闭浏览器通知提示\": \"（本身有名字）\",\n \"|添加附件\": \"（本身有名字）\",\n \"全能创作|选择创作模式\": \"（本身有名字）\",\n \"|选择模型\": \"（本身有名字）\",\n \"|Skill\": \"（本身有名字）\",\n \"|手动生成\": \"（本身有名字）\",\n \"|Send\": \"（本身有名字）\"\n}",
+    "   ⭐ 找 `shadow-md + rounded-xl + w-fit` 的容器：[]",
+    "   ⛔ 参数条读完：危险按钮 4 枚 [{\"文字\":\"生成历史\",\"框\":[740,757,32,32],\"禁用\":false,\"cursor\":\"pointer\"},{\"文字\":\"首尾帧生成视频\",\"框\":[77,170,70,17],\"禁用\":false,\"cursor\":\"pointer\"},{\"文字\":\"首帧生成视频\",\"框\":[77,190,63,17],\"禁用\":false,\"cursor\":\"pointer\"},{\"文字\":\"手动生成\",\"框\":[1231,740,32,32],\"禁用\":false,\"cursor\":\"pointer\"}]",
+    "   📷 ft1-0-图片节点选中全景.png",
+    "断言统计 {\"次数\":2,\"失败\":0}"
+  ],
+  "读数": {
+    "参数条": [
+      {
+        "文字": "",
+        "aria": "添加节点",
+        "title": "",
+        "框": [
+          580,
+          757,
+          32,
+          32
+        ],
+        "点": [
+          596,
+          773
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "relative flex items-center justify-center rounded-lg transition-colors group h-8 w-8"
+      },
+      {
+        "文字": "",
+        "aria": "移动",
+        "title": "",
+        "框": [
+          620,
+          757,
+          32,
+          32
+        ],
+        "点": [
+          636,
+          773
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr"
+      },
+      {
+        "文字": "",
+        "aria": "素材库",
+        "title": "",
+        "框": [
+          660,
+          757,
+          32,
+          32
+        ],
+        "点": [
+          676,
+          773
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr"
+      },
+      {
+        "文字": "",
+        "aria": "角色造型室",
+        "title": "",
+        "框": [
+          700,
+          757,
+          32,
+          32
+        ],
+        "点": [
+          716,
+          773
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr"
+      },
+      {
+        "文字": "",
+        "aria": "生成历史",
+        "title": "",
+        "框": [
+          740,
+          757,
+          32,
+          32
+        ],
+        "点": [
+          756,
+          773
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr"
+      },
+      {
+        "文字": "",
+        "aria": "快捷键",
+        "title": "",
+        "框": [
+          789,
+          757,
+          32,
+          32
+        ],
+        "点": [
+          805,
+          773
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr"
+      },
+      {
+        "文字": "",
+        "aria": "教程",
+        "title": "",
+        "框": [
+          829,
+          757,
+          32,
+          32
+        ],
+        "点": [
+          845,
+          773
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-canvas-contr"
+      },
+      {
+        "文字": "资产管理",
+        "aria": "资产管理",
+        "title": "",
+        "框": [
+          14,
+          764,
+          94,
+          28
+        ],
+        "点": [
+          61,
+          778
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg transition-colors gap-1 px-3"
+      },
+      {
+        "文字": "",
+        "aria": "整理画布，Option+Shift+F",
+        "title": "",
+        "框": [
+          112,
+          764,
+          28,
+          28
+        ],
+        "点": [
+          126,
+          778
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-controls-hover"
+      },
+      {
+        "文字": "",
+        "aria": "切换小地图",
+        "title": "",
+        "框": [
+          144,
+          764,
+          28,
+          28
+        ],
+        "点": [
+          158,
+          778
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "flex items-center justify-center rounded-lg transition-colors hover:bg-canvas-controls-hover"
+      },
+      {
+        "文字": "",
+        "aria": "隐藏节点连线",
+        "title": "",
+        "框": [
+          176,
+          764,
+          28,
+          28
+        ],
+        "点": [
+          190,
+          778
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors"
+      },
+      {
+        "文字": "",
+        "aria": "网格吸附",
+        "title": "",
+        "框": [
+          208,
+          764,
+          28,
+          28
+        ],
+        "点": [
+          222,
+          778
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors"
+      },
+      {
+        "文字": "48%",
+        "aria": "缩放选项",
+        "title": "",
+        "框": [
+          240,
+          764,
+          36,
+          28
+        ],
+        "点": [
+          258,
+          778
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 text-[13px] leading-"
+      },
+      {
+        "文字": "上传故事来改编",
+        "aria": "",
+        "title": "上传故事来改编",
+        "框": [
+          1041,
+          521,
+          366,
+          39
+        ],
+        "点": [
+          1224,
+          541
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 text-left text-[14px] leading-[22px] text-"
+      },
+      {
+        "文字": "批量优化提示词",
+        "aria": "",
+        "title": "批量优化提示词",
+        "框": [
+          1041,
+          560,
+          366,
+          39
+        ],
+        "点": [
+          1224,
+          580
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 text-left text-[14px] leading-[22px] text-"
+      },
+      {
+        "文字": "开启",
+        "aria": "",
+        "title": "",
+        "框": [
+          1269,
+          622,
+          26,
+          18
+        ],
+        "点": [
+          1282,
+          631
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "h-[18px] shrink-0 whitespace-nowrap border-0 bg-transparent p-0 text-[13px] font-normal leading-[nor"
+      },
+      {
+        "文字": "",
+        "aria": "关闭浏览器通知提示",
+        "title": "",
+        "框": [
+          1383,
+          619,
+          24,
+          24
+        ],
+        "点": [
+          1395,
+          631
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "box-border flex size-6 shrink-0 items-center justify-center overflow-hidden rounded-lg border-0 bg-t"
+      },
+      {
+        "文字": "",
+        "aria": "添加附件",
+        "title": "",
+        "框": [
+          1042,
+          740,
+          32,
+          32
+        ],
+        "点": [
+          1058,
+          756
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-default flex size-8 shrink-0 items-center "
+      },
+      {
+        "文字": "全能创作",
+        "aria": "选择创作模式",
+        "title": "",
+        "框": [
+          1077,
+          740,
+          81,
+          32
+        ],
+        "点": [
+          1118,
+          756
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "relative flex h-8 min-w-0 items-center gap-px pl-2 pr-1 transition-colors hover:bg-bg-surface-second"
+      },
+      {
+        "文字": "",
+        "aria": "选择模型",
+        "title": "",
+        "框": [
+          1161,
+          740,
+          32,
+          32
+        ],
+        "点": [
+          1177,
+          756
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-default flex size-8 shrink-0 items-center "
+      },
+      {
+        "文字": "",
+        "aria": "Skill",
+        "title": "",
+        "框": [
+          1196,
+          740,
+          32,
+          32
+        ],
+        "点": [
+          1212,
+          756
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-default flex size-8 shrink-0 items-center "
+      },
+      {
+        "文字": "",
+        "aria": "手动生成",
+        "title": "",
+        "框": [
+          1231,
+          740,
+          32,
+          32
+        ],
+        "点": [
+          1247,
+          756
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-default flex size-8 shrink-0 items-center "
+      },
+      {
+        "文字": "",
+        "aria": "Send",
+        "title": "",
+        "框": [
+          1374,
+          740,
+          32,
+          32
+        ],
+        "点": [
+          1390,
+          756
+        ],
+        "禁用": false,
+        "cursor": "pointer",
+        "opacity": "1.00",
+        "class": "copilotKitInputControlButton copilotKitInputSendButton cursor-pointer"
+      }
+    ],
+    "气泡": {
+      "|添加节点": "（本身有名字）",
+      "|移动": "（本身有名字）",
+      "|素材库": "（本身有名字）",
+      "|角色造型室": "（本身有名字）",
+      "|生成历史": "（本身有名字）",
+      "|快捷键": "（本身有名字）",
+      "|教程": "（本身有名字）",
+      "资产管理|资产管理": "（本身有名字）",
+      "|整理画布，Option+Shift+F": "（本身有名字）",
+      "|切换小地图": "（本身有名字）",
+      "|隐藏节点连线": "（本身有名字）",
+      "|网格吸附": "（本身有名字）",
+      "48%|缩放选项": "（本身有名字）",
+      "上传故事来改编|": "（本身有名字）",
+      "批量优化提示词|": "（本身有名字）",
+      "开启|": "（本身有名字）",
+      "|关闭浏览器通知提示": "（本身有名字）",
+      "|添加附件": "（本身有名字）",
+      "全能创作|选择创作模式": "（本身有名字）",
+      "|选择模型": "（本身有名字）",
+      "|Skill": "（本身有名字）",
+      "|手动生成": "（本身有名字）",
+      "|Send": "（本身有名字）"
+    },
+    "工具条容器": [],
+    "断言": {
+      "次数": 2,
+      "失败": 0
+    }
+  },
+  "证据图": [
+    {
+      "文件": "ft1-0-图片节点选中全景.png"
+    }
+  ]
+}

@@ -1,0 +1,322 @@
+{
+  "步骤": [
+    "   图片节点（x 降序）[{\"id\":\"i-sODTbgLUm1\",\"类\":\"image\",\"框\":[835.3671875,329.2188415527344,300.2265625,168.9388427734375]},{\"id\":\"i-9nlG6HdjK2\",\"类\":\"image\",\"框\":[65.0078125,329.2188415527344,300.2265625,168.9388427734375]}]",
+    "=== 试节点 i-sODTbgLUm1 框 [835,329,300,169] ===",
+    "   ✅ 断言通过：i-sODTbgLUm1 中心落点属主就是它自己",
+    "   ⭐ 最小命中浮层：{\n \"框\": [\n  656,\n  507,\n  658,\n  190\n ],\n \"class\": \"flex min-h-0 w-full flex-col\",\n \"父class\": \"bg-panel-background relative flex w-full flex-col gap-0 overflow-hidden rounded-2xl shadow-[0px_4px_10px_0px_rgba(0,0,0,0.12)] border-hair border-border-muted\",\n \"祖父class\": \"node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translat\",\n \"命中个数\": 4,\n \"全文\": \"参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink\",\n \"按钮\": [\n  {\n   \"文字\": \"参考\",\n   \"aria\": \"\",\n   \"框\": [\n    668,\n    519,\n    54,\n    26\n   ],\n   \"禁用\": false,\n   \"cursor\": \"pointer\",\n   \"class\": \"flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py\"\n  },\n  {\n   \"文字\": \"标记\",\n   \"aria\": \"\",\n   \"框\": [\n    726,\n    519,\n    54,\n    26\n   ],\n   \"禁用\": false,\n   \"cursor\": \"pointer\",\n   \"class\": \"flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py\"\n  },\n  {\n   \"文字\": \"风格\",\n   \"aria\": \"\",\n   \"框\": [\n    784,\n    519,\n    54,\n    26\n   ],\n   \"禁用\": false,\n   \"cursor\": \"pointer\",\n   \"class\": \"flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py\"\n  },\n  {\n   \"文字\": \"Lib Image 2.5 Pro\",\n   \"aria\": \"\",\n   \"框\": [\n    664,\n    657,\n    159,\n    32\n   ],\n   \"禁用\": false,\n   \"cursor\": \"pointer\",\n   \"class\": \"flex items-center justify-between bg-transparent transition-colors h-8\"\n  },\n  {\n   \"文字\": \"16:9 · 标准画质 · 2K · 1张\",\n   \"aria\": \"\",\n   \"框\": [\n    833,\n    657,\n    201,\n    32\n   ],\n   \"禁用\": false,\n   \"cursor\": \"pointer\",\n   \"class\": \"flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transpar\"\n  },\n  {\n   \"文字\": \"\",\n   \"aria\": \"预设\",\n   \"框\": [\n    1043,\n    657,\n    32,\n    32\n   ],\n   \"禁用\": false,\n   \"cursor\": \"pointer\",\n   \"class\": \"text-canvas-controls-text relative flex size-8 shrink-0 items-center j\"\n  },\n  {\n   \"文字\": \"\",\n   \"aria\": \"\",\n   \"框\": [\n    1079,\n    657,\n    32,\n    32\n   ],\n   \"禁用\": false,\n   \"cursor\": \"pointer\",\n   \"class\": \"flex size-8 shrink-0 items-center justify-center rounded-lg bg-transpa\"\n  },\n  {\n   \"文字\": \"\",\n   \"aria\": \"\",\n   \"框\": [\n    1154,\n    657,\n    32,\n    32\n   ],\n   \"禁用\": false,\n   \"",
+    "   ✅ 断言通过：选中 i-sODTbgLUm1 后找得到编辑区浮层（最小命中）",
+    "   完整落在视口内：true（框 [656,507,658,190]）",
+    "   ✅ 断言通过：⭐ i-sODTbgLUm1 的编辑区浮层完整落在视口内",
+    "   📷 ft4-0-图片编辑区浮层.png｜裁剪 {\"x\":638,\"y\":489,\"width\":694,\"height\":226}",
+    "断言统计 {\"次数\":3,\"失败\":0}"
+  ],
+  "读数": {
+    "浮层_i-sODTbgLUm1": {
+      "框": [
+        656,
+        507,
+        658,
+        190
+      ],
+      "class": "flex min-h-0 w-full flex-col",
+      "父class": "bg-panel-background relative flex w-full flex-col gap-0 overflow-hidden rounded-2xl shadow-[0px_4px_10px_0px_rgba(0,0,0,0.12)] border-hair border-border-muted",
+      "祖父class": "node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translat",
+      "命中个数": 4,
+      "全文": "参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink",
+      "按钮": [
+        {
+          "文字": "参考",
+          "aria": "",
+          "框": [
+            668,
+            519,
+            54,
+            26
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py"
+        },
+        {
+          "文字": "标记",
+          "aria": "",
+          "框": [
+            726,
+            519,
+            54,
+            26
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py"
+        },
+        {
+          "文字": "风格",
+          "aria": "",
+          "框": [
+            784,
+            519,
+            54,
+            26
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py"
+        },
+        {
+          "文字": "Lib Image 2.5 Pro",
+          "aria": "",
+          "框": [
+            664,
+            657,
+            159,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex items-center justify-between bg-transparent transition-colors h-8"
+        },
+        {
+          "文字": "16:9 · 标准画质 · 2K · 1张",
+          "aria": "",
+          "框": [
+            833,
+            657,
+            201,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transpar"
+        },
+        {
+          "文字": "",
+          "aria": "预设",
+          "框": [
+            1043,
+            657,
+            32,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center j"
+        },
+        {
+          "文字": "",
+          "aria": "",
+          "框": [
+            1079,
+            657,
+            32,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transpa"
+        },
+        {
+          "文字": "",
+          "aria": "",
+          "框": [
+            1154,
+            657,
+            32,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounde"
+        },
+        {
+          "文字": "",
+          "aria": "",
+          "框": [
+            1194,
+            657,
+            32,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justi"
+        },
+        {
+          "文字": "",
+          "aria": "",
+          "框": [
+            1274,
+            657,
+            32,
+            32
+          ],
+          "禁用": true,
+          "cursor": "not-allowed",
+          "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center just"
+        }
+      ]
+    },
+    "选中": "i-sODTbgLUm1",
+    "目标浮层": {
+      "框": [
+        656,
+        507,
+        658,
+        190
+      ],
+      "class": "flex min-h-0 w-full flex-col",
+      "父class": "bg-panel-background relative flex w-full flex-col gap-0 overflow-hidden rounded-2xl shadow-[0px_4px_10px_0px_rgba(0,0,0,0.12)] border-hair border-border-muted",
+      "祖父class": "node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translat",
+      "命中个数": 4,
+      "全文": "参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink",
+      "按钮": [
+        {
+          "文字": "参考",
+          "aria": "",
+          "框": [
+            668,
+            519,
+            54,
+            26
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py"
+        },
+        {
+          "文字": "标记",
+          "aria": "",
+          "框": [
+            726,
+            519,
+            54,
+            26
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py"
+        },
+        {
+          "文字": "风格",
+          "aria": "",
+          "框": [
+            784,
+            519,
+            54,
+            26
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py"
+        },
+        {
+          "文字": "Lib Image 2.5 Pro",
+          "aria": "",
+          "框": [
+            664,
+            657,
+            159,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex items-center justify-between bg-transparent transition-colors h-8"
+        },
+        {
+          "文字": "16:9 · 标准画质 · 2K · 1张",
+          "aria": "",
+          "框": [
+            833,
+            657,
+            201,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 bg-transpar"
+        },
+        {
+          "文字": "",
+          "aria": "预设",
+          "框": [
+            1043,
+            657,
+            32,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "text-canvas-controls-text relative flex size-8 shrink-0 items-center j"
+        },
+        {
+          "文字": "",
+          "aria": "",
+          "框": [
+            1079,
+            657,
+            32,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex size-8 shrink-0 items-center justify-center rounded-lg bg-transpa"
+        },
+        {
+          "文字": "",
+          "aria": "",
+          "框": [
+            1154,
+            657,
+            32,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "flex size-8 shrink-0 cursor-pointer items-center justify-center rounde"
+        },
+        {
+          "文字": "",
+          "aria": "",
+          "框": [
+            1194,
+            657,
+            32,
+            32
+          ],
+          "禁用": false,
+          "cursor": "pointer",
+          "class": "text-canvas-controls-text mx-1 flex size-8 shrink-0 items-center justi"
+        },
+        {
+          "文字": "",
+          "aria": "",
+          "框": [
+            1274,
+            657,
+            32,
+            32
+          ],
+          "禁用": true,
+          "cursor": "not-allowed",
+          "class": "bg-btn-invert-bg flex size-8 shrink-0 cursor-pointer items-center just"
+        }
+      ]
+    },
+    "断言": {
+      "次数": 3,
+      "失败": 0
+    }
+  },
+  "证据图": [
+    {
+      "文件": "ft4-0-图片编辑区浮层.png",
+      "clip": {
+        "x": 638,
+        "y": 489,
+        "width": 694,
+        "height": 226
+      },
+      "节点": "i-sODTbgLUm1"
+    }
+  ]
+}
