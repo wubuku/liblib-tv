@@ -33,7 +33,9 @@
 
 from __future__ import annotations
 
+import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -54,8 +56,112 @@ MARKER_RE = re.compile(r"data-[a-z][a-z0-9-]*")
 APP_REPO = Path("/Users/yangjiefeng/Documents/AICoderTudou/TDCanvas")
 
 
+def strip_js_comments(text: str) -> str:
+    """去掉 /* */ 块注释与「整行以 // 开头」的注释。
+
+    **只去整行 // 注释、不做行内截断**，是因为探针里常有 `http://…` 这样的
+    字符串，按 `//` 截到行尾会把 URL 砍成 `http:`。判据只找按钮文案的真前缀，
+    残留的 URL 片段不影响结论。
+
+    ★ **M242：这段原先是 `main()` 里的闭包**，新判据要用它，必须提到模块级。
+    **「剥注释」不是可选步骤**——`probe-toolbar-states.js` 的文件头就有一段
+    注释在讲 `DESTRUCTIVE` 是一道硬闸，**不剥就会把注释里的字样当成真代码**
+    （M194 同族：不剥注释就扫源码，判据必然出假阳性）。
+    """
+    text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
+    return "\n".join(
+        line for line in text.splitlines() if not line.lstrip().startswith("//")
+    )
+
+
+# ★★ **M242 新增：不可逆按钮白名单的「运行时改写」判据。**
+#
+# 上面 `destructive_items()` 是**用正则读源码文本里的 `new Set([...])` 字面量**，
+# 而「白名单」是本仓库最要命的一份名单——**它是探针唯一的硬闸**，
+# 命中就跳过那个按钮；白名单空了，探针就会去点真正的删除。
+#
+# ★ **阳性对照（M242 实测，两个独立读数当场对不上）**：
+#   在 `probe-toolbar-states.js` 声明之后加一行 `DESTRUCTIVE.clear();`
+#   - 门禁的读数（正则读源码）：仍是 6 项 → **报「白名单 6 项与文档一致」**；
+#   - `node` 真跑一遍算出来的：**`[]`（空）**。
+#   **而 `check-probe-contracts.py` 全程 exit=0。**
+#   同理 `DESTRUCTIVE.delete('删除全部')` 会让硬闸少一道、`.add(...)` 会多一道，
+#   **三个读数两两不一致，而门禁只看得见其中一个。**
+#
+# ★ **所以加两条判据**：
+#   ① **静态**：剥掉注释后，`DESTRUCTIVE` 不许作为 `.add/.delete/.clear/...`
+#      的接收者出现，也不许被重新赋值。**这条不依赖任何外部工具。**
+#   ② **真跑**：把「声明 + 随后的 Set 方法调用」原样交给 `node` 求值，
+#      **与正则读数对账**。①只能拦住已知写法，②能拦住任何写法
+#      （包括 `for` 循环里 `.add`、`.filter` 后重建等）。
+MUTATOR_RE = re.compile(r"\bDESTRUCTIVE\s*\.\s*\w+\s*\(")
+# ★ **裸赋值也算**（`DESTRUCTIVE = new Set([...])`，没有 const/let/var）：
+#   第一版只认带声明关键字的，于是裸赋值**两条判据都看不见**——
+#   而那正是最直接的「把白名单换掉」的手法。
+REASSIGN_RE = re.compile(r"^\s*(?:(?:const|let|var)\s+)?DESTRUCTIVE\s*=(?!=)", re.M)
+
+
+def destructive_mutations(script: Path) -> list[str]:
+    """返回「声明之后对 DESTRUCTIVE 的运行时改写」清单（判据 ①）。"""
+    body = strip_js_comments(script.read_text(encoding="utf-8"))
+    decl = DESTRUCTIVE_RE.search(body)
+    if not decl:
+        return []
+    after = body[decl.end():]
+    hits = [f"第 {i} 行 `{m.group(0).strip()}`"
+            for i, line in enumerate(after.splitlines(), 1)
+            for m in [MUTATOR_RE.search(line)] if m]
+    # 重新赋值只认「声明之后」的；第一处是合法的初始声明
+    for m in REASSIGN_RE.finditer(after):
+        hits.append(f"声明之后又出现 `{m.group(0).strip()}`")
+    return hits
+
+
+def destructive_runtime_items(script: Path) -> tuple[list[str] | None, str]:
+    """用 `node` 真算一遍 DESTRUCTIVE（判据 ②）。返回 (集合, 说明)。
+
+    ★ **只把「声明 + 随后的 Set 方法调用」送进 node**，不执行整个探针文件——
+    **探针文件顶层就会 require playwright 并真的去开浏览器**。
+    送到 node 里的片段被改名成局部 `D`，因此不会碰真实全局。
+    ★ **求值不出来就返回 `None` 并说明原因，由调用方判失败**——
+    **「算不出来」绝不能当成「算出来是空的」**（F42）。
+    """
+    text = script.read_text(encoding="utf-8")
+    decl = DESTRUCTIVE_RE.search(text)
+    if not decl:
+        return None, "读不出 DESTRUCTIVE 声明"
+    muts = re.findall(r"DESTRUCTIVE\s*\.\s*\w+\s*\([^)]*\)\s*;", text)
+    # ★ 裸赋值同样要送进 node（见 REASSIGN_RE 上方注释）
+    body = text[decl.end():]
+    reassigns = ["DESTRUCTIVE = " + m.group(1)
+                 for m in re.finditer(r"DESTRUCTIVE\s*=\s*(new Set\(.*?\)|[^;\n]+);", body, re.S)]
+    js = decl.group(0).replace("const DESTRUCTIVE", "let D") + "\n"
+    js += "\n".join(m.replace("DESTRUCTIVE", "D") for m in muts) + "\n"
+    js += "\n".join(m.replace("DESTRUCTIVE", "D", 1) for m in reassigns)
+    js += "\nconsole.log(JSON.stringify([...D].sort()));"
+    try:
+        done = subprocess.run(
+            ["node", "-e", js], capture_output=True, text=True, timeout=20,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        return None, f"调不动 node：{exc}"
+    if done.returncode != 0:
+        first = (done.stderr.strip().splitlines() or ["(无 stderr)"])[0]
+        return None, f"node 求值失败：{first[:80]}"
+    try:
+        return sorted(json.loads(done.stdout.strip())), "ok"
+    except (ValueError, TypeError) as exc:
+        return None, f"node 输出不是 JSON：{exc}"
+
+
 def destructive_items(script: Path) -> list[str]:
-    """从探针源码里解析出不可逆按钮白名单。"""
+    """从探针源码里解析出不可逆按钮白名单。
+
+    ★ **M242 提醒：这是「正则读源码字面量」的读数，只在
+    「白名单确实是字面量写的」时等于真实值。**
+    运行时改写由 `destructive_mutations`（判据 ①）与
+    `destructive_runtime_items`（判据 ②）各守一半，三条合起来才等于真相。
+    """
     match = DESTRUCTIVE_RE.search(script.read_text(encoding="utf-8"))
     if not match:
         raise SystemExit(
@@ -90,6 +196,41 @@ def main() -> int:
     if not items:
         print("[探针契约] DESTRUCTIVE 解析出 0 项 —— 解析多半失效了，拒绝放行。")
         return 1
+    # ★★ M242 判据 ①：白名单不许在运行时被改写
+    muts = destructive_mutations(script)
+    if muts:
+        print(
+            f"  [探针契约] {script.relative_to(root)} 的 DESTRUCTIVE 在声明之后被改写："
+            + "；".join(muts)
+        )
+        print(
+            "    **这份名单是探针唯一的硬闸，命中就跳过那个按钮。**"
+            "本门禁是用正则读源码里的 `new Set([...])` 字面量，"
+            "运行时改出来的那几项它一个字都看不见——"
+            "而 `DESTRUCTIVE.clear()` 会让硬闸**完全清空**，"
+            "探针就会去点真正的删除，本门禁却仍报「白名单 6 项与文档一致」。"
+        )
+        return 1
+
+    # ★★ M242 判据 ②：用 node 真算一遍，与正则读数对账
+    runtime, why = destructive_runtime_items(script)
+    if runtime is None:
+        print(f"  [探针契约] **没查**：无法求值 DESTRUCTIVE 的真实内容（{why}）。")
+        print("    这是全库最要命的一份名单（探针唯一的硬闸），"
+              "算不出来就不能当「没问题」放行——请装好 node 后重跑。")
+        return 1
+    if runtime != sorted(items):
+        print(
+            f"  [探针契约] **两个读数不一致**：正则读源码得 {len(items)} 项，"
+            f"node 真跑一遍得 {len(runtime)} 项。"
+        )
+        only_src = sorted(set(items) - set(runtime))
+        only_run = sorted(set(runtime) - set(items))
+        print(f"    只在源码字面量里：{only_src or '无'}")
+        print(f"    只在运行时才有：{only_run or '无'}")
+        print("    两者都是**不可逆按钮**，差的那几项决定了探针到底会点哪些按钮。")
+        return 1
+
     section = discipline_section(publish)
 
     missing = [name for name in items if name not in section]
@@ -194,18 +335,6 @@ def main() -> int:
     #   M106 当年在 `check-publish-sync.py` 上撞过一模一样的坑：
     #   `audit_manual.py` 在 `build-site.sh` 里出现 3 次、**全部在注释里**，
     #   当年的解法就是剥掉整行注释再比对。**同一个坑，换个门禁又踩一次。**
-    def strip_js_comments(text: str) -> str:
-        """去掉 /* */ 块注释与「整行以 // 开头」的注释。
-
-        **只去整行 // 注释、不做行内截断**，是因为探针里常有 `http://…` 这样的
-        字符串，按 `//` 截到行尾会把 URL 砍成 `http:`。判据只找按钮文案的真前缀，
-        残留的 URL 片段不影响结论。
-        """
-        text = re.sub(r"/\*.*?\*/", "", text, flags=re.S)
-        return "\n".join(
-            line for line in text.splitlines() if not line.lstrip().startswith("//")
-        )
-
     FUZZY_RES = (
         re.compile(r"/[^/\n]*%s[^/\n]*/"),
         re.compile(r"\.(?:includes|indexOf)\(\s*['\"]%s['\"]"),

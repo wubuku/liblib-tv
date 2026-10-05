@@ -1917,6 +1917,52 @@ def mutate_page_list_literal_change_ok(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_destructive_cleared_at_runtime(root: Path) -> None:
+    """不可逆按钮白名单在**运行时被清空**，而契约门禁看不见（M242）。
+
+    ★ **这是本库最要命的一份名单**：`DESTRUCTIVE` 是
+    `probe-toolbar-states.js` 唯一的硬闸，命中就跳过那个按钮。
+    **白名单清空 = 探针会去点真正的删除。**
+
+    ★ **阳性对照是「两个独立读数当场对不上」**：
+    - 本门禁的读数（正则读源码字面量）：仍是 6 项；
+    - `node` 真跑一遍：`[]`。
+    **而注入之前 `check-probe-contracts.py` 全程 exit=0。**
+
+    ★ 这里刻意把 `.clear()` **拆到两行**：静态判据①逐行看、看不见它，
+    **由判据②（node 真算）兜住**——证明两条判据不是冗余的。
+    """
+
+    path = root / "scripts" / "probe-toolbar-states.js"
+    path.write_text(
+        path.read_text(encoding="utf-8") + "\nDESTRUCTIVE\n  .clear();\n",
+        encoding="utf-8",
+    )
+
+
+def mutate_destructive_mentioned_in_comment_ok(root: Path) -> None:
+    """反向对照：注释里提到 `DESTRUCTIVE.clear()` **不该**被当成改写（M242）。
+
+    ★ **M194 的老教训**：扫 JS 源码前必须先剥注释，否则正文里举例的写法
+    会被当成真代码。`probe-toolbar-states.js` 的文件头本来就有一段注释
+    在讲 `DESTRUCTIVE` 是一道硬闸——**这条用例钉住剥注释这一步不许被省掉**。
+    """
+
+    path = root / "scripts" / "probe-toolbar-states.js"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace(
+        "const DESTRUCTIVE = new Set(",
+        '/* 早期版本用 DESTRUCTIVE.clear() 初始化，后来改成字面量 */\n'
+        "const DESTRUCTIVE = new Set(",
+        1,
+    )
+    assert patched != text, "注入失败：没找到 DESTRUCTIVE 声明那一行"
+    path.write_text(
+        patched + '\n// 历史写法：曾写过 DESTRUCTIVE.delete("删除全部")，后改为登记\n',
+        encoding="utf-8",
+    )
+
+
 def mutate_retraction_notation_needle(root: Path) -> None:
     """needle 退化成**纯「键=数字」的取证记法**时必须被拦下（M203）。
 
@@ -2102,6 +2148,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("事实源 srcExclude 被改坏，推导它的门禁必须判失败（M240）", mutate_src_exclude_removed, "emphasis", "读不到"),
     ("页面清单在运行时被改，覆盖门禁必须当场发现（M241）", mutate_page_list_runtime_mutation, "pagecoverage", "静默"),
     ("页面清单是字面量改动时仍只提醒不阻断（不误报，M241）", mutate_page_list_literal_change_ok, "pagecoverage", EXPECT_PASS),
+    ("不可逆按钮白名单在运行时被清空，契约门禁必须发现（M242）", mutate_destructive_cleared_at_runtime, "probecontracts", "两个读数不一致"),
+    ("注释里提到白名单改写不该被当成真代码（不误报，M242）", mutate_destructive_mentioned_in_comment_ok, "probecontracts", EXPECT_PASS),
 ]
 
 
