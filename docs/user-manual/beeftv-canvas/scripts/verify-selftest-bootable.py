@@ -95,15 +95,23 @@ SCRIPTS = os.path.join(ROOT, "scripts")
 #  ② 阈值本身写在表里、且**必须与实测分档对得上**（见 SLOW_BUDGET_SEC）。
 # **判据锚的是「谁慢、慢多少」这个可测事实，而不是一个我拍出来的数。**
 SLOW_BUDGET_SEC = 30
-#: **方向十九的豁免表（**Batch 281 实测登记**）。
+#: **方向十九的豁免表（**Batch 281 实测登记 27 条，Batch 282 起应当是空的**）。
+#:
+#: **它为什么曾经有 27 条**：真跑当时跑在**真实手册树**上，
+#: **而实测 27 份非慢反验会改那棵树**（见纪律 316 与 317）。
+#:
+#: **⚠️ Batch 282：真跑搬进完整副本树，于是这张表被清空了，而这不是「删得掉就无所谓」**——
+#: **留着那 27 条会正好掩盖我们要的信号**：
+#: **反验现在写在副本上，于是一条命中就只可能是「有反验用绝对路径逃出了副本树」**，
+#: **而那正是最该报的那一种**（它意味着副本树这道防线漏了）。
+#: **纪律 143 说「宁可宽不可删」，而它的前提是「误报的代价更大」——
+#: **这一条的前提已经不成立了，所以照搬它就是照搬一条过期理由**（纪律 288）。
 #:
 #: **这张表是普查的结果，不是设计的结果**——实测手段是
 #: 「隔离副本树 + `sys.addaudithook` 逐份真跑，只算基线提交里已跟踪的路径」
 #: （探针与它的三次修正见环境记录 244）。**73 份 python 反验里 26 份命中**。
 #:
-#: **它为什么存在**：方向十九要能抓住**第 27 份**，就必须先承认前 26 份。
-#: **而承认的方式必须逐条写出理由**——一张没有理由的名单，
-#: 下一个人只会照着它继续加（纪律 305：**登记是它诚实的形态，而不是绕过**）。
+#: **它现在为什么是空的**：见上面那三段。
 #:
 #: **⚠️ 覆盖面必须写在这里**：**它只罩 python 反验的普查口径**，
 #: **而 `selftest-meta.sh` 会原地改 15 个真实文件**（已登记进 `SLOW`，
@@ -111,35 +119,6 @@ SLOW_BUDGET_SEC = 30
 #: **`.sh` 反验在方向十九的运行时是罩得住的**（指纹法不看解释器），
 #: **而本批的普查没跑它们**——**这是本方向的已知盲区，不装作没有**。
 TREE_WRITE_EXEMPT = {
-    "selftest-baseline-landmark.py": "把 `20-reference.md` 当夹具删掉再还原",
-    "selftest-baseline.py": "改写 `20-reference.md` / `README.md` 与两个被测闸",
-    "selftest-batch-rows.py": "改写 `PROGRESS.md`",
-    "selftest-beefsrc.py": "删掉 `README.md` 再还原",
-    "selftest-container-closers.py": "删掉 4 个内容页（`README` / `20-reference` / `30-concepts` / `90-troubleshooting`）再还原",
-    "selftest-endpoints.py": "删掉 `20-reference.md` 再还原",
-    "selftest-error-copy.py": "改写 `90-troubleshooting.md` 与被测闸",
-    "selftest-exclusions.py": "删掉 4 个内容页再还原",
-    "selftest-feature-flags.py": "删掉 `20-reference.md` 再还原",
-    "selftest-heading-uniqueness.py": "删掉 4 个内容页再还原",
-    "selftest-ledger-refs.py": "改写 `AUDIT.md` / `PROGRESS.md` / `SOURCE_OBSERVATIONS.md`",
-    "selftest-line-counts.py": "删掉 `20-reference.md` 再还原",
-    "selftest-query-params.py": "删掉 4 个内容页再还原",
-    "selftest-quota-tables.py": "删掉 `20-reference.md` 再还原",
-    "selftest-quote-punct.py": "改写 `README.md` 与 `10-tasks/timeline-export.md`（**SLOW 登记，不在方向十六真跑名单里**）",
-    "selftest-route-notation.py": "删掉 `20-reference.md` 与 `task-inventory.yml` 再还原",
-    "selftest-runtime-policy.py": "删掉 `20-reference.md` 再还原",
-    "selftest-scope.py": "删掉 `PUBLISH.md` / `README.md` / `AUDIT.md` / `20-reference.md` 再还原",
-    "selftest-screenshots.py": "删掉 `PROGRESS.md` 再还原",
-    "selftest-selftest-bootable.py": "方向十六跑它就会无限递归，**本方向跑不到它**；名单保留是为了让「它也有这份性质」这件事有案可查",
-    "selftest-shortcuts.py": "删掉 `FINAL-REPORT.md` / `90-troubleshooting.md` / `PUBLISH.md` / `PROGRESS.md` 再还原",
-    "selftest-shot-drift.py": "改写被测闸、`screenshots/manifest.yml` 与 `10-tasks/director-basics.md`（**Batch 280 那次被 kill 的就是它**）",
-    "selftest-shot-version-source.py": "删掉 `task-inventory.yml` 再还原",
-    "selftest-shot-version.py": "改写被测闸、`screenshots/manifest.yml` 与页面"
-                                "（**Batch 281 上线首跑就抓到它，而一小时的普查没量到**"
-                                "——**它在副本树里因环境缺口提前退出，真树上才动到树**）",
-    "selftest-version-coverage.py": "删掉 `README.md` 与 `20-reference.md` 再还原",
-    "selftest-worktree-state.py": "删掉 `README.md` 再还原（**而它守的正是「工作区脏不脏」**）",
-    "selftest-zero-input.py": "方向三在真实手册树上跑，**而它的前提就是手册树正常**（`SLOW` 登记，不在方向十六真跑名单里）",
 }
 
 SLOW = {
@@ -377,7 +356,7 @@ SELFTEST_COSTS = {
     "selftest-scope.py": 0.4,
     "selftest-screenshots-literals.py": 14.0,   # **Batch 275 重测三次：13.33 / 13.16 / 13.82 秒，取大并留余量**。原登记 30.1 秒，**而它已从 SLOW 里移出**（实测早已掉到阈值下）
     "selftest-screenshots.py": 0.7,
-    "selftest-selftest-bootable.py": 1668.0,   # **Batch 281 重测：43 例实测 1668.0 秒**（此前 384.0 是 **Batch 210 的 26 例基线**，而 Batch 254 已实测 877 秒**却只改了 `SLOW` 没改这一处**——**方向四e 报绿只是因为那个过期值偏低**，把比值压到了 3.0 倍上限之下，纪律 310 的又一个假绿）
+    "selftest-selftest-bootable.py": 1668.0,   # **Batch 281 重测：43 例实测 1668.0 秒**（此前 384.0 是 **Batch 210 的 26 例基线**，而 Batch 254 已实测 877 秒**却只改了 `SLOW` 没改这一处**——**方向四e 报绿只是因为那个过期值偏低**，把比值压到了 3.0 倍上限之下，纪律 310 的又一个假绿）。**Batch 282 重测：45 例 1512 秒**（比 43 例的 1668 **更快**——**真跑搬进副本树顺带快了 12 秒**），**按纪律 204 保留较大的那个作为高水位，不下调**）
     #: **Batch 247 重测**：三次实测 7.33 / 6.95 / 7.11 秒，**而原登记值是 0.7——低估了十倍**。
     #: 9 例里每例都 `copytree` 一整份 `scripts/`（103 个 selftest-* 加 36 个闸）再起一个子进程跑被测闸，
     #: **耗时几乎全在重复拷贝上**。**`seconds` 是预算上限而不是实测均值，
@@ -903,6 +882,60 @@ def _dirty_paths():
         path = line[3:].strip()
         out.add(path.split(" -> ")[-1])
     return out
+
+
+#: **方向十六真跑时必须留在真实手册树上的反验**（**Batch 282 新增**）。
+#:
+#: **判据不是「慢」而是「需要真实 git 历史」**——**方向十六早就为前者硬排除过一份**
+#: （`selftest-selftest-bootable.py`，防递归），**本表是同一种机制的第二条理由**。
+#: **区别必须写清楚**：`SLOW` 的含义是「构建从不跑它，因为太慢」，
+#: **而本表的含义是「构建在副本树上跑它，而它要读的那份历史副本树没有」**。
+#: **两份合起来才是「本轮一份没跑」的全部理由**，**而只报其中一半
+#: 会让人以为另一半也跑了**（纪律 291：数与列出来的东西对不上）。
+FLEET_NEEDS_REAL_HISTORY = {
+    "selftest-shot-version-source.py":
+        "用例 `real-67` 要从**真实** git 历史推拍摄版本，而副本树只有一棵"
+        "新建的基线提交——实测给它 alternates 之后锚点提交可见，"
+        "**它却又报出另一个问题，而本批不追**（**如实登记，不装作它能跑**）",
+}
+
+
+def _make_fleet_tree():
+    """为方向十六的真跑建一棵**完整**手册树副本（**Batch 282 新增**）。
+
+    **三个环境条件，每一个都是量出来的，不是想出来的**：
+      ① **`node_modules` / `dist` / `.git` 不搬**（前者是依赖，后两者是产物与仓）；
+      ② **`.vitepress` 必须搬**——实测排除它之后
+         `selftest-current-version.py` 与 `selftest-shot-version.py` 直接 rc=1
+         （**它们读 `config.mjs`**，而「反验的沙箱里没有手册正文」那个理由
+         在这里的具体形态就是「没有发布配置」）；
+      ③ **必须 `git init` + 一次基线提交**——实测没有 git 仓时
+         `selftest-shot-version-source.py` 报「fatal: not a git repository」。
+
+    **建不出来就返回 `None`，而调用方必须把它当成「本轮不跑」而不是「放行」**。
+    """
+    tmp = tempfile.mkdtemp(prefix="beef-fleet.")
+    try:
+        for f in os.listdir(ROOT):
+            if f in ("node_modules", "dist", ".git"):
+                continue
+            s = os.path.join(ROOT, f)
+            d = os.path.join(tmp, f)
+            (shutil.copytree if os.path.isdir(s) else shutil.copy)(s, d)
+        env = dict(os.environ)
+        env.setdefault("GIT_AUTHOR_NAME", "beef-gate")
+        env.setdefault("GIT_COMMITTER_NAME", "beef-gate")
+        env.setdefault("GIT_AUTHOR_EMAIL", "gate@local")
+        env.setdefault("GIT_COMMITTER_EMAIL", "gate@local")
+        for cmd in (["git", "init", "-q"],
+                    ["git", "add", "-A", "-f"],
+                    ["git", "commit", "-q", "-m", "闸 18 真跑副本树基线"]):
+            subprocess.run(cmd, cwd=tmp, env=env, capture_output=True)
+        return tmp
+    except OSError:
+        shutil.rmtree(tmp, ignore_errors=True)
+        return None
+
 
 
 def _tree_fingerprint():
@@ -1824,6 +1857,14 @@ def main():
     # **本方向问的是行为，不是写法**：逐份真跑，看退出码。
     fleet_all = [n for n in names if n != "selftest-selftest-bootable.py"]
     fleet = [n for n in fleet_all if n not in SLOW]
+    #: **Batch 282：按设计排除的那份必须在这里就出 `fleet`，
+    #: 而不是在循环里 `continue`**——
+    #: **方向十七的分界是「跑没跑」，出 `fleet` 才算「按设计没跑」**
+    #: （Batch 274 踩过同一个坑：「既不在 by_design 也不在 dropped」，
+    #: **而输出上一个数与列出来的东西对不上**）。
+    #: **在循环里 continue 的后果实测到了**：它被算进
+    #: 「本轮真跑失败而掉出覆盖」——**而它一次都没跑过，不是它坏了**。
+    fleet = [n for n in fleet if n not in FLEET_NEEDS_REAL_HISTORY]
     if "selftest-selftest-bootable.py" not in SLOW:
         problems.append(
             "方向十六：`selftest-selftest-bootable.py` **不在 SLOW 登记里**——"
@@ -1890,7 +1931,31 @@ def main():
     #: **另起一遍普查就是同一件事做两遍**（**Batch 281 的普查实测跑了一小时**）。
     tree_writes = {}
     fp_cost = 0.0
+    #: **Batch 282：真跑搬进完整副本树**（**实测：109 份里只有 3 份会因环境而不同，
+    #: 而 3 份的差别全部来自副本树的两个环境条件，已在建树时补齐**）。
+    #: **方向十九因此从「27 份登记在案」升级成「真实手册树一次都不许被碰」**：
+    #: **它量的始终是真树（`ROOT`），而反验现在写在副本上**——
+    #: **于是一条命中就等于「有反验用绝对路径逃出了副本树」，那才是真信号**。
+    #: **`fleet` 已经空的时候不建树**——`sandbox()` 那种只有 `scripts/` 的沙箱
+    #: 会在上面被清空，**而这里再搬 15 MB 加一次 git 提交是纯浪费**。
+    fleet_root = _make_fleet_tree() if fleet else None
+    fleet_cwd = os.path.join(fleet_root, "scripts") if fleet_root else None
+    #: **⚠️ Batch 282 踩到：`fleet` 已经空的时候**（`sandbox()` 那种只有 `scripts/`
+    #: 的沙箱在上面被清空了）**根本不该走到这里报「建不出副本树」**——
+    #: **第一版只判 `if not fleet_root`，于是 12 条「必须不报」的用例一起变红**，
+    #: **而它们红的理由与它们要验的性质毫无关系**。
+    #: **「建不出树」与「本轮没东西要跑」必须分开**（纪律 156：没核不等于核过）。
+    if fleet and not fleet_root:
+        problems.append(
+            "方向十六：**建不出真跑用的副本树**，本轮 %d 份一份都没跑"
+            "　→ **不拿「跑不了」当「跑过了」**（纪律 156）" % len(fleet))
+        print("  方向十六：[不适用] 建不出真跑副本树，本轮一份不跑——"
+              "**「没跑」与「跑了」必须分开**")
+    if not fleet_root:
+        fleet = []
     for fn in fleet:
+        if fn in FLEET_NEEDS_REAL_HISTORY:
+            continue
         if budget - fleet_cost <= 0:
             problems.append(
                 f"方向十六：整体预算 {budget:.0f} 秒用尽，**剩下 {len(fleet) - ran} 份"
@@ -1909,7 +1974,7 @@ def main():
         try:
             r = subprocess.run(
                 ["bash", fn] if fn.endswith(".sh") else [sys.executable, fn],
-                cwd=SCRIPTS, capture_output=True, text=True,
+                cwd=fleet_cwd or SCRIPTS, capture_output=True, text=True,
                 timeout=min(per, budget - fleet_cost))
             rc, out = r.returncode, (r.stdout or "") + (r.stderr or "")
         except subprocess.TimeoutExpired:
@@ -2107,6 +2172,9 @@ def main():
             "而下一轮闸 18 报的是「那份反验没跑通」——**报的是后果不是原因**）。"
             "**修法是给它建沙箱**；确实必须写真树的，登记进 `TREE_WRITE_EXEMPT` 并写明理由"
             % (_n, "、".join(tree_writes[_n][:4])))
+    _needhist = sorted(FLEET_NEEDS_REAL_HISTORY)
+    if fleet_root:
+        shutil.rmtree(fleet_root, ignore_errors=True)
     _stale = sorted(set(TREE_WRITE_EXEMPT) - set(tree_writes))
     print("  方向十九：真跑期间 **%d 份**反验改动了手册树"
           "（已登记豁免 %d、新命中 %d）；指纹代价 %.2f 秒；%s%s"

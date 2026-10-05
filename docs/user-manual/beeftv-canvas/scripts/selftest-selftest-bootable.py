@@ -675,10 +675,18 @@ _GAP_MARK = "一个候选都不成立时是"
 #: **于是「沙箱里多了一份跑不通的」会立刻变红，「少了一份」也会。**
 #: **这个集合会过期，而过期是好事**：哪天 `sandbox_full()` 补上 `.vitepress/`，
 #: 这条用例会红并告诉人「该改期望值了」，**而不是让一个旧的期望继续成立**。
+#: **Batch 282：从 3 份变成 2 份，而这不是「修好了」也不是「坏了」**——
+#: **第三份（`selftest-shot-version-source.py`）现在是「按设计没跑」**
+#: （它要真实 git 历史，见闸 18 的 `FLEET_NEEDS_REAL_HISTORY`），
+#: **于是它根本不出现在「跑不通的名单」里**——
+#: **而「没跑」与「跑了但跑不通」必须分开**（纪律 156/291）。
+#: **⚠️ 这一处是被真跑逼出来的**：实测报的是
+#: `跑不通=['selftest-current-version.py', 'selftest-shot-version.py']`，
+#: **而判据写死三份，于是用例 24 与 26 一起红**——
+#: **它们红的理由不是「沙箱有毛病」，而是「真相变了而判据还停在上一个真相」**。
 KNOWN_ENV_GAPS = {
     "selftest-current-version.py",
     "selftest-shot-version.py",
-    "selftest-shot-version-source.py",
 }
 
 
@@ -1210,27 +1218,37 @@ def _pin_fleet(t):
 
 
 def m_tree_write_reported():
-    """能抓①：一份**没登记豁免**的反验改了手册树 → 方向十九必须点名它。
+    """**Batch 282 整条改了它的题目**：原来是「一份没登记豁免的反验改了手册树 → 必报」，
+    **而那张豁免表已随真跑搬进副本树被清空**——
+    **于是这个注入的锚点（删掉表里那一行）当场不存在**。
+    **它没有作废，而是一路红到整轮才被发现**，
+    **而红的理由是「锚点没了」，不是「判据坏了」——这两者在报告上只差一个词**。
+    **顺带一个刺眼的细节**：改掉的正则 `^    "selftest-x.py": .*` **匹配到了
+    `SELFTEST_COSTS` 里那一行**（那一行的值也是「键 + 冒号 + 任意东西」），
+    **于是注入删掉的是一条耗时登记，而用例要的判据根本没被注入**——
+    **与本批修掉的用例 10 同一个病：锚点只锚了键名，没有锚到它声称在问的那一处**。
 
-    **注入是「把豁免表里那一条删掉」**，而不是「造一份会写树的反验」——
-    **因为真有一份会写树的**：`selftest-batch-rows.py` 实测改写 `PROGRESS.md`
-    （Batch 281 普查，`73 份里 26 份`）。
-    **用现成的那一份而不是新造一份**：新造的反验要多写一个文件、多注册一行映射，
-    **而它验的性质与现成那份完全一样**。
+    **改成一条真在场的守卫**：**豁免表必须为空**。
+    **依据是纪律 288**：真跑搬进副本树之后，
+    **一条命中就只可能是「有反验用绝对路径逃出了副本树」**，
+    **而留着旧豁免正好掩盖那一种**。
+    **所以「这张表是空的」从此是一条要有人守着的性质**，
+    **而不是一个当前恰好成立的事实**。
     """
     check_anchor()
     tmp = sandbox_full()
     try:
-        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
-        t = _pin_fleet(read(p))
-        new, k = re.subn(r'^    "%s": .*\n' % re.escape(_ONE), "", t, count=1, flags=re.M)
-        assert k == 1, "注入未生效：豁免表里没有 `%s` 那一行（k=%d）" % (_ONE, k)
-        write(p, new)
-        rc, out = run_in_env(tmp)
-        record("41 改了手册树又没登记豁免→必报",
-               rc == 1 and "方向十九" in out and "真跑期间改动了手册树里的文件" in out
-               and _ONE in out,
-               "rc=%d" % rc)
+        src = read(GATE)
+        #: **范围必须卡在表体的 `}` 上**：第一版一路读到 `def _tree_fingerprint`，
+        #: **而那段里还有 `SLOW` 与 `SELFTEST_COSTS` 等字典**——
+        #: **于是它数出 50 条，而表里其实一条都没有**。
+        #: **「我以为我量的是 A」与「我量的是 A 加上一大片 B」在报告上只差一个数**。
+        _i = src.index("TREE_WRITE_EXEMPT = {")
+        body = src[_i:src.index("\n}", _i)]
+        entries = re.findall(r'^    "(selftest-[^"]+)":', body, re.M)
+        record("41 豁免表必须为空（真跑搬进副本树之后）",
+               not entries,
+               "表里还有 %d 条%s" % (len(entries), ("：%s" % "、".join(entries)) if entries else ""))
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -1300,9 +1318,68 @@ def m_exempt_reasons_not_empty():
     body = body[:body.index("\n}")]
     empty = re.findall(r'^    "[^"]+":\s*",?\s*$', body, re.M)
     n = len(re.findall(r'^    "[^"]+":', body, re.M))
+    #: **`n > 0` 这个条件在 Batch 282 之后是错的**：表被清空了，
+    #: **而「0 条里没有空理由」是恒真的**——
+    #: **要求它至少有一条，等于要求那张表必须保持非空，
+    #: 而那正是 Batch 282 刚拆掉的东西**（方向反了）。
     record("43 豁免表 %d 条每条都有理由" % n,
-           n > 0 and not empty,
+           not empty,
            "空理由 %d 条" % len(empty))
+
+
+# ── 44–45 真跑搬进副本树（**Batch 282**）────────────────────────────
+def m_fleet_copy_leaves_real_tree_untouched():
+    """能抓的反面（一）：**一份确实会改树的反验，在真树上留不下任何痕迹**。
+
+    **用的是现成那份**（`selftest-batch-rows.py` 实测改写 `PROGRESS.md`），
+    **而断言问的是「方向十九看到几份改了真树」**——
+    **它必须报 0**，因为真跑现在发生在副本树上。
+    **这一例是 Batch 282 整件事的可执行证据**：
+    **在改之前，同一个注入会报 1**（那正是 27 条豁免表存在的原因）。
+    """
+    check_anchor()
+    tmp = sandbox_full()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        write(p, _pin_fleet(read(p)))
+        rc, out = run_in_env(tmp)
+        line = [x for x in out.split("\n") if "方向十九：" in x]
+        assert line, ("前提失配：方向十九**根本没执行**——"
+                      "**本例会因为「它没跑」而假绿**（纪律 300 推论四）")
+        record("44 会写树的反验在真树上不留痕迹",
+               "改动了手册树（已登记豁免 0、新命中 0）" in line[0] or
+               "**0 份**反验改动了手册树" in line[0],
+               "rc=%d %s" % (rc, line[0].strip()[:70]))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_fleet_exclusion_accounted_as_by_design():
+    """**记账**：按设计排除的那份要落在 `by_design` 里，**不许落进 `dropped`**。
+
+    **本批真踩到的那一刀**：第一版把排除写在循环里 `continue`，
+    **而方向十七的分界是「跑没跑」**——于是那份被算成
+    **「本轮真跑失败而掉出覆盖」**，**而它一次都没跑过，不是它坏了**。
+    **这是一个数与列出来的东西对不上的形态**（纪律 291/274），
+    **而它要等的下一次真跑才暴露**。
+    **所以本例锚在输出那句话上**，而那句话的措辞正是 274 定下的。
+    """
+    check_anchor()
+    tmp = sandbox_full()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        write(p, _pin_fleet(read(p)))
+        rc, out = run_in_env(tmp)
+        _ex = "selftest-shot-version-source.py"
+        _by = [x for x in out.split("\n") if "按设计没跑" in x]
+        _drop = [x for x in out.split("\n") if "真跑失败而掉出覆盖" in x]
+        record("45 按设计排除的那份归在 by_design 而非 dropped",
+               bool(_by) and _ex in _by[0] and not (_drop and _ex in _drop[0]),
+               "rc=%d by_design 命中=%s dropped 命中=%s"
+               % (rc, _ex in _by[0] if _by else "无该行",
+                  _ex in _drop[0] if _drop else "无该行"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 def check_own_ledger_row():
@@ -1350,7 +1427,9 @@ def main():
              m_build_secs_flag_removed, m_build_secs_not_forwarded,
              m_build_secs_mechanism_clean,
              m_tree_write_reported, m_tree_write_exempt_not_reported,
-             m_exempt_reasons_not_empty]
+             m_exempt_reasons_not_empty,
+             m_fleet_copy_leaves_real_tree_untouched,
+             m_fleet_exclusion_accounted_as_by_design]
     for t in tests:
         try:
             t()
