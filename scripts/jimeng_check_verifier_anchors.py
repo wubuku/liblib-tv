@@ -270,6 +270,7 @@ PROBE_VARS = {
     "_p1001": "scripts/jimeng_probe1001_repeat_shape_reread.py",
     "_p1002": "scripts/jimeng_probe1002_mutation_coverage.py",
     "_p1003": "scripts/jimeng_probe1003_anchor_teeth.py",
+    "_p1004": "scripts/jimeng_probe1004_anchor_coupling.py",
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。
