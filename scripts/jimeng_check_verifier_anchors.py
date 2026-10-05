@@ -269,6 +269,7 @@ PROBE_VARS = {
     # ⚠️ 1001：**读取行与这条登记同一步加**
     "_p1001": "scripts/jimeng_probe1001_repeat_shape_reread.py",
     "_p1002": "scripts/jimeng_probe1002_mutation_coverage.py",
+    "_p1003": "scripts/jimeng_probe1003_anchor_teeth.py",
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。
@@ -518,11 +519,16 @@ def main() -> int:
     #   **⇒ 而那意味着实验本身有副作用（改到一半被中断就留下一个坏文件）** ⇒ ⇒
     #   **⇒ 处置：接受 `argv[1]` 作为判据文件路径、默认值不变 ⇒ ⇒**
     #   **⇒ 于是 1002 的变异实验全部在 `/tmp` 的副本上做、真文件一个字节都不动**
+    # ⭐⭐⭐⭐⭐ 1003：**目标文件（audit）也必须可覆盖** ⇒ ⇒
+    #   **⇒ 因为「判据的牙」这件事的实验是「改目标、不改判据」—— 与 1002 正好相反** ⇒ ⇒
+    #   **⇒ 而如果目标不可覆盖、那就又变成改真文件了 ⇒ ⇒
+    #   **⇒ 两批的实验方向相反、可覆盖的能力却是同一个**
     _vpath = Path(sys.argv[1]) if len(sys.argv) > 1 else VERIFIER
-    if not AUDIT.exists() or not _vpath.exists():
+    _apath = Path(sys.argv[2]) if len(sys.argv) > 2 else AUDIT
+    if not _apath.exists() or not _vpath.exists():
         print("找不到 audit / verifier 源码", file=sys.stderr)
         return 1
-    ausrc = AUDIT.read_text(encoding="utf-8")
+    ausrc = _apath.read_text(encoding="utf-8")
     probes = {k: (ROOT / v).read_text(encoding="utf-8")
               if (ROOT / v).exists() else ""
               for k, v in PROBE_VARS.items()}
