@@ -1,0 +1,56 @@
+{
+ "generated_by": "jimeng_probe1008_golden_freshness.py （写它的仪器就是读它的那个）",
+ "note": "⭐⭐⭐⭐⭐ **「哪份清单在哪个宇宙上还准」的逐条记录 —— 而它记录的是**账龄**、不是「过没过」**",
+ "rows": [
+  {
+   "snapshot": "e7e8c779",
+   "n_golden": 690,
+   "n_current": 697,
+   "n_added": 7,
+   "n_removed": 0,
+   "stale": true
+  },
+  {
+   "snapshot": "76a0988a",
+   "n_golden": 690,
+   "n_current": 709,
+   "n_added": 19,
+   "n_removed": 0,
+   "stale": true
+  },
+  {
+   "snapshot": "9f180577",
+   "n_golden": 690,
+   "n_current": 716,
+   "n_added": 26,
+   "n_removed": 0,
+   "stale": true
+  },
+  {
+   "snapshot": "HEAD",
+   "n_golden": 690,
+   "n_current": 716,
+   "n_added": 26,
+   "n_removed": 0,
+   "stale": true
+  },
+  {
+   "snapshot": "EDIT-IN-PLACE-ONE-ANCHOR",
+   "n_golden": 690,
+   "n_current": 715,
+   "n_added": 26,
+   "n_removed": 1,
+   "stale": true,
+   "note": "⭐ 就地改字：门报 1 个 MISSING、清单报 1 条消失"
+  },
+  {
+   "snapshot": "APPEND-ONLY-ONE-ANCHOR",
+   "n_golden": 690,
+   "n_current": 716,
+   "n_added": 26,
+   "n_removed": 0,
+   "stale": false,
+   "note": "⭐⭐⭐ 只追加：门报 0、清单报 0 —— 而它**本该**是过期的"
+  }
+ ]
+}
