@@ -827,7 +827,7 @@ EV 批先把那个步长量出来，再用实测步长重做拖拽实验 ——
 | 元素 | 形态 |
 |---|---|
 | 分区标题 | `画布` |
-| 新建 | 右上角加号按钮，`aria-label="新建画布"` |
+| 新建 | 右上角加号按钮，`aria-label="新建画布"`，**24×24 纯图标、无文字**，class `absolute right-0.5 top-1/2 flex size-6 -translate-y-1/2`。⭐ **每一行右上角各有一枚**（实测第一行在 `[346,57,24,24]`） |
 | 行 | `aria-label="切换到画布 {名称}"` |
 | 活动行 | 左侧带 `✓` |
 | 行菜单 | `更多操作`，**悬停才出现** |
@@ -1860,3 +1860,102 @@ runCount:      e.counter?.runCount,
 | **充值 / 买会员** | 涉及付费 |
 
 ---
+
+---
+
+## 📖 新手引导与引导配置工具（Batch FY：文案表证据，界面上全部未验）
+
+> ⭐ **这一节全部来自文案表**（8189 条里的 134 条引导类 key），
+> ⛔ **界面上一次都没碰到**（Batch FY-1/3/6 三轮，路径已排除三条）。
+> ⇒ 写在这里是**为了让「我没找到」有据可查**，而不是断言它们存在。
+> 复算：`python3 tools/i18n-interpolation.py` 之后按 `guide` 前缀筛。
+
+### 4 步新手引导（`onboarding*`）
+
+| key | 逐字文案 |
+|---|---|
+| `onboardingStep1Title` | `第1/4步` |
+| `onboardingStep1Desc` | `双击或右键创建新节点` |
+| `onboardingStep2Title` | `第2/4步` |
+| `onboardingStep2Desc` | `图片上方工具栏有高清、抠图、九宫格等功能` |
+| `onboardingStep3Title` | `第3/4步` |
+| `onboardingStep3Desc` | `拖拽一个或多个节点 + 进行连接` |
+| `onboardingStep4Title` | `第4/4步` |
+| `onboardingStep4Desc` | `把多个作品打组，打组后可排序和整组执行` |
+
+⭐ 注意第 2 步提到了「**抠图**」—— 本手册正文此前**没有出现过「抠图」这个功能**。
+
+### 引导的通用控件文案
+
+| key | 逐字文案 |
+|---|---|
+| `guideDefaultSkipBarLabel` | `跟着做，快速上手` |
+| `guideDefaultNextLabel` | `下一步` |
+| `guideDefaultPreviousLabel` | `上一步` |
+| `guideDefaultSkipLabel` | `跳过` |
+| `guideDefaultDoneLabel` | `知道了` |
+| `guideLockHint` | `先跟着引导完成这一步` |
+| `guidePaywallHintAck` | `知道了` |
+| `guideModelPaywallHint` | `可选择MiniMax H3生成视频` |
+
+### 引导的内容提示词（按功能分）
+
+| key | 逐字文案 | 对应功能 |
+|---|---|---|
+| `guideDoubleClickCanvas` | `双击画布` | 新建节点 |
+| `guideFreelyCreateNodes` | `自由生成节点` | 新建节点 |
+| `guideNodeScriptGenerator` | `脚本生成器` | 脚本节点 |
+| `guideNodeScript` | `剧本` | 脚本节点 |
+| `guideNodeCharacterImage` | `角色图` | 角色 |
+| `guideNodeCharacterThreeView` | `角色三视图` | 角色 |
+| `guideNodeFirstFrameImage` | `首帧图片` | 视频节点 |
+| `guideStoryScript` | `故事脚本生成` | 脚本 |
+| `guideGenStoryScript` | `点击生成故事脚本` | 脚本 |
+| `guideClipOrHd` | `选中视频后点击这里进行剪辑或高清生成` | 视频节点 |
+| `guideDirectGenVideo` | `直接点击生成视频` | 视频节点 |
+| `guideGenVideo` | `点击生成视频` | 视频节点 |
+| `guideEnterPromptGenVideo` | `输入提示词后，点击按钮生成视频` | 视频节点 |
+| `guideCharThreeView` | `选中角色图后，点击九宫格，选择角色三视图生成` | 角色 |
+| `guideMoreImageEdit` | `选中图片后点击这里进行更多智能编辑` | 图片节点 |
+| `guideMultiImageView` | `点击查看更多图片，并可切换其他主图进行编辑` | 图片节点 |
+| `guideReplaceAudio` | `点击按钮，可替换上传你的音频文件` | 音频节点 |
+| `guideReplaceCharImage` | `点击按钮，可替换上传你的角色图` | 角色 |
+| `guideReplaceFirstFrame` | `点击按钮，可替换上传你的首帧图` | 视频节点 |
+| `guideReplaceRefImage` | `点击按钮，可替换上传你的参考图` | 通用 |
+| `guideEditScript` | `双击剧本内容，可直接编辑或替换` | 脚本 |
+| `edgesGuideTip` | `点击可显示/隐藏画布上的连线` | 连线 |
+| `panoramaCompositionGuide` | `构图参考线` | 摄像机 |
+
+### ⭐⭐ 「引导配置工具」：`guideEditor*`（40+ 条，本质是内部编辑器）
+
+| key | 逐字文案 |
+|---|---|
+| `guideEditorTitle` | `引导配置工具` |
+| `guideEditorMetaKey` | `引导 key（如creatCanvas）` |
+| `guideEditorMetaKeyHint` | `引导key同时也是频控key：填相同 key 的引导共享一条记录，用户看过其中一条，其余都不再展示` |
+| `guideEditorStepsSection` | `步骤` |
+| `guideEditorStepText` | `气泡里的引导词` |
+| `guideEditorStepOrdinal` | `步骤{order}` |
+| `guideEditorStepVia` | `触发器：点 {label}` |
+| `guideEditorPickTarget` | `拾取目标` |
+| `guideEditorPickUnsupported` | `该元素暂不支持拾取（纯图标且无文案），需前端先加锚点` |
+| `guideEditorPreview` | `预览` |
+| `guideEditorPreviewLinkCopied` | `预览链接已复制（当前环境，带 guideDev=1 跳过频控），打开即可反复看` |
+| `guideEditorProdLinkCopied` | `生产链接已复制（正式域名），粘到金刚位 guideUrl` |
+| `guideEditorSuppressRealAction` | `不触发真实行为` |
+| `guideEditorSuppressRealActionHint` | `默认在收尾步骤会放行一次真实提交（真发任务、真扣积分）；勾上则只推进引导，不执行目标自己的动作` |
+| `guideEditorNodePresetResult` | `点击生成后展示的预制成品` |
+| `guideEditorViewportOffsetHint` | `默认本步节点居中。X 正值节点往右挪、Y 正值往下挪；目标在节点一侧时把节点往反方向挪，气泡才不挤在屏幕边缘` |
+
+⭐⭐⭐ **`guideEditorSuppressRealActionHint` 这句是本节最有价值的一条**：
+它逐字说明了引导在最后一步**默认会放行一次真实提交（真扣积分）**。
+
+⇒ ⭐ **这是给自动化/测试用的安全开关**：勾上之后引导只推进、不执行目标动作。
+本手册至今**没有在界面上见过这个开关**（📖），但如果哪天你看到它，
+**勾上再走引导** —— 否则最后一步会真的提交生成。
+
+⭐ 由此也能解释另一条：`guideEditorMetaKeyHint` 说
+**「引导key同时也是频控key…用户看过其中一条，其余都不再展示」**
+⇒ ⭐ **这就是为什么本手册这个老账号从来没见过新手引导** ——
+引导按 key 做**频控**，看过一次就不再出现。
+⛔ 这是**推断**（文案表 + 频控语义），未在界面上验证。

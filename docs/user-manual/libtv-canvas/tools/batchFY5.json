@@ -1,0 +1,5247 @@
+{
+  "步骤": [
+    "--- ① 定位下拉容器 ---",
+    "  最内层匹配容器：{\"h\":2260,\"cls\":\"m_b1336c6 mantine-ScrollArea-content\",\"框\":[166,91,212,2260]}",
+    "\n--- ② 容器内带可点特征的元素（role/tabindex/data-*/aria/cursor:pointer）---",
+    "  221 个：",
+    "   <DIV> 「音频节点 1\n尝试：\n音频生视频\n音」 role=application aria=null tabindex=null data-id=null cursor=auto 0,0,1440,810",
+    "   <g> 「」 role=group aria=Edge from i-9nlG6HdjK2 to v-eMpqKtiLlx tabindex=0 data-id=e-5U2jB82fuL cursor=pointer 365,414,100,0",
+    "   <g> 「」 role=group aria=Edge from v-v2hlWY4Br3 to v-oZNpH99MtM tabindex=0 data-id=e-Y2tJjtGxbL cursor=pointer 365,153,100,0",
+    "   <DIV> 「音频节点 1\n尝试：\n音频生视频」 role=group aria=null tabindex=0 data-id=a-GgqvrVz0pw cursor=grab 308,572,169,169",
+    "   <DIV> 「音频节点 1」 role=null aria=null tabindex=null data-id=null cursor=pointer 308,547,169,23",
+    "   <DIV> 「音频节点 1」 role=null aria=null tabindex=null data-id=null cursor=pointer 308,549,169,19",
+    "   <svg> 「」 role=img aria=null tabindex=null data-id=null cursor=pointer 308,552,14,14",
+    "   <DIV> 「」 role=null aria=null tabindex=null data-id=1-a-GgqvrVz0pw-target-target cursor=crosshair 309,657,0,0",
+    "   <svg> 「」 role=img aria=null tabindex=null data-id=null cursor=grab 381,626,23,23",
+    "   <svg> 「」 role=img aria=null tabindex=null data-id=null cursor=pointer 326,676,7,7",
+    "   <DIV> 「脚本 V2 1\n1\n确认镜头\n2\n准」 role=group aria=null tabindex=0 data-id=b-v5Ote7oaUv cursor=grab 65,572,169,169",
+    "   <DIV> 「脚本 V2 1」 role=null aria=null tabindex=null data-id=null cursor=pointer 65,547,169,23",
+    "   <DIV> 「脚本 V2 1」 role=null aria=null tabindex=null data-id=null cursor=pointer 65,549,169,19",
+    "   <DIV> 「」 role=null aria=null tabindex=null data-id=1-b-v5Ote7oaUv-source-source cursor=crosshair 234,657,0,0",
+    "   <DIV> 「图片节点 2」 role=group aria=null tabindex=0 data-id=i-9nlG6HdjK2 cursor=grab 65,329,300,169",
+    "   <DIV> 「图片节点 2」 role=null aria=null tabindex=null data-id=null cursor=pointer 65,304,300,23",
+    "   <DIV> 「图片节点 2」 role=null aria=null tabindex=null data-id=null cursor=pointer 65,306,300,19",
+    "   <svg> 「」 role=img aria=null tabindex=null data-id=null cursor=grab 193,392,43,43",
+    "   <DIV> 「」 role=null aria=null tabindex=null data-id=1-i-9nlG6HdjK2-source-source cursor=crosshair 365,414,0,0",
+    "   <DIV> 「视频节点 3\n尝试：\n5分钟超长视频」 role=group aria=null tabindex=0 data-id=v-v2hlWY4Br3 cursor=grab 65,69,300,169",
+    "   <svg> 「」 role=img aria=null tabindex=null data-id=null cursor=grab 200,99,31,31",
+    "   <DIV> 「」 role=null aria=null tabindex=null data-id=1-v-v2hlWY4Br3-source-source cursor=crosshair 365,153,0,0",
+    "   <BUTTON> 「」 role=null aria=切换小地图 tabindex=null data-id=null cursor=pointer 144,764,28,28",
+    "   <svg> 「」 role=img aria=null tabindex=null data-id=null cursor=pointer 152,772,13,13",
+    "   <BUTTON> 「」 role=null aria=隐藏节点连线 tabindex=null data-id=null cursor=pointer 176,764,28,28",
+    "\n--- ③ 三路找「新建画布」 ---",
+    "  按 aria 找：1 个 [{\"tag\":\"BUTTON\",\"aria\":\"新建画布\",\"框\":[346,57,24,24]}]",
+    "  按文字找：0 个 []",
+    "  按加号找：169 个 [{\"tag\":\"SPAN\",\"框\":[308,552,14,14]},{\"tag\":\"svg\",\"框\":[308,552,14,14]},{\"tag\":\"path\",\"框\":[308,552,14,14]},{\"tag\":\"DIV\",\"框\":[297,652,10,10]},{\"tag\":\"svg\",\"框\":[297,652,10,10]}]",
+    "\n--- ④ 容器右上角 60×60 范围内有什么 ---",
+    "  9 个：",
+    "   <DIV> 文「」 aria=null 365,134,39,39 cls=",
+    "   <DIV> 文「」 aria=null 367,148,10,10 cls=",
+    "   <svg> 文「」 aria=null 367,148,10,10 cls=[object SVGAnimatedString]",
+    "   <circle> 文「」 aria=null 367,149,9,9 cls=[object SVGAnimatedString]",
+    "   <circle> 文「」 aria=null 367,149,9,9 cls=[object SVGAnimatedString]",
+    "   <BUTTON> 文「」 aria=更多操作 344,93,24,24 cls=absolute right-0.5 top-1/2 flex size-6 -translate-",
+    "   <svg> 文「」 aria=null 349,98,14,14 cls=[object SVGAnimatedString]",
+    "   <BUTTON> 文「」 aria=更多操作 344,129,24,24 cls=absolute right-0.5 top-1/2 flex size-6 -translate-",
+    "   <svg> 文「」 aria=null 349,134,14,14 cls=[object SVGAnimatedString]"
+  ],
+  "读数": {
+    "容器": {
+      "h": 2260,
+      "cls": "m_b1336c6 mantine-ScrollArea-content",
+      "框": [
+        166,
+        91,
+        212,
+        2260
+      ]
+    },
+    "特征元素": [
+      {
+        "tag": "DIV",
+        "文": "音频节点 1\n尝试：\n音频生视频\n音",
+        "role": "application",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "auto",
+        "框": [
+          0,
+          0,
+          1440,
+          810
+        ]
+      },
+      {
+        "tag": "g",
+        "文": "",
+        "role": "group",
+        "aria": "Edge from i-9nlG6HdjK2 to v-eMpqKtiLlx",
+        "tabindex": "0",
+        "dataId": "e-5U2jB82fuL",
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          365,
+          414,
+          100,
+          0
+        ]
+      },
+      {
+        "tag": "g",
+        "文": "",
+        "role": "group",
+        "aria": "Edge from v-v2hlWY4Br3 to v-oZNpH99MtM",
+        "tabindex": "0",
+        "dataId": "e-Y2tJjtGxbL",
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          365,
+          153,
+          100,
+          0
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "音频节点 1\n尝试：\n音频生视频",
+        "role": "group",
+        "aria": null,
+        "tabindex": "0",
+        "dataId": "a-GgqvrVz0pw",
+        "projectId": null,
+        "cursor": "grab",
+        "框": [
+          308,
+          572,
+          169,
+          169
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "音频节点 1",
+        "role": null,
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          308,
+          547,
+          169,
+          23
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "音频节点 1",
+        "role": null,
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          308,
+          549,
+          169,
+          19
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          308,
+          552,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "",
+        "role": null,
+        "aria": null,
+        "tabindex": null,
+        "dataId": "1-a-GgqvrVz0pw-target-target",
+        "projectId": null,
+        "cursor": "crosshair",
+        "框": [
+          309,
+          657,
+          0,
+          0
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "grab",
+        "框": [
+          381,
+          626,
+          23,
+          23
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          326,
+          676,
+          7,
+          7
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "脚本 V2 1\n1\n确认镜头\n2\n准",
+        "role": "group",
+        "aria": null,
+        "tabindex": "0",
+        "dataId": "b-v5Ote7oaUv",
+        "projectId": null,
+        "cursor": "grab",
+        "框": [
+          65,
+          572,
+          169,
+          169
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "脚本 V2 1",
+        "role": null,
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          65,
+          547,
+          169,
+          23
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "脚本 V2 1",
+        "role": null,
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          65,
+          549,
+          169,
+          19
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "",
+        "role": null,
+        "aria": null,
+        "tabindex": null,
+        "dataId": "1-b-v5Ote7oaUv-source-source",
+        "projectId": null,
+        "cursor": "crosshair",
+        "框": [
+          234,
+          657,
+          0,
+          0
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "图片节点 2",
+        "role": "group",
+        "aria": null,
+        "tabindex": "0",
+        "dataId": "i-9nlG6HdjK2",
+        "projectId": null,
+        "cursor": "grab",
+        "框": [
+          65,
+          329,
+          300,
+          169
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "图片节点 2",
+        "role": null,
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          65,
+          304,
+          300,
+          23
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "图片节点 2",
+        "role": null,
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          65,
+          306,
+          300,
+          19
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "grab",
+        "框": [
+          193,
+          392,
+          43,
+          43
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "",
+        "role": null,
+        "aria": null,
+        "tabindex": null,
+        "dataId": "1-i-9nlG6HdjK2-source-source",
+        "projectId": null,
+        "cursor": "crosshair",
+        "框": [
+          365,
+          414,
+          0,
+          0
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "视频节点 3\n尝试：\n5分钟超长视频",
+        "role": "group",
+        "aria": null,
+        "tabindex": "0",
+        "dataId": "v-v2hlWY4Br3",
+        "projectId": null,
+        "cursor": "grab",
+        "框": [
+          65,
+          69,
+          300,
+          169
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "grab",
+        "框": [
+          200,
+          99,
+          31,
+          31
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "",
+        "role": null,
+        "aria": null,
+        "tabindex": null,
+        "dataId": "1-v-v2hlWY4Br3-source-source",
+        "projectId": null,
+        "cursor": "crosshair",
+        "框": [
+          365,
+          153,
+          0,
+          0
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "切换小地图",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          144,
+          764,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          152,
+          772,
+          13,
+          13
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "隐藏节点连线",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          176,
+          764,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          183,
+          771,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "网格吸附",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          208,
+          764,
+          28,
+          28
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          215,
+          771,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "48%",
+        "role": null,
+        "aria": "缩放选项",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          240,
+          764,
+          36,
+          28
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "画布\n画布 63\n画布 62\n画布 ",
+        "role": "dialog",
+        "aria": null,
+        "tabindex": "-1",
+        "dataId": null,
+        "projectId": null,
+        "cursor": "auto",
+        "框": [
+          165,
+          46,
+          214,
+          274
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "新建画布",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          346,
+          57,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 63",
+        "role": null,
+        "aria": "切换到画布 画布 63",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          95,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          93,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          98,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 62",
+        "role": null,
+        "aria": "切换到画布 画布 62",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          131,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          129,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          134,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 61",
+        "role": null,
+        "aria": "切换到画布 画布 61",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          167,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          165,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          170,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 60",
+        "role": null,
+        "aria": "切换到画布 画布 60",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          203,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          201,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          206,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 59",
+        "role": null,
+        "aria": "切换到画布 画布 59",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          239,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          237,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          242,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 58",
+        "role": null,
+        "aria": "切换到画布 画布 58",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          275,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          273,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          278,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 57",
+        "role": null,
+        "aria": "切换到画布 画布 57",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          311,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          309,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          314,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 56",
+        "role": null,
+        "aria": "切换到画布 画布 56",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          347,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          345,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          350,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 55",
+        "role": null,
+        "aria": "切换到画布 画布 55",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          383,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          381,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          386,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 54",
+        "role": null,
+        "aria": "切换到画布 画布 54",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          419,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          417,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          422,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 53",
+        "role": null,
+        "aria": "切换到画布 画布 53",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          455,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          453,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          458,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 52",
+        "role": null,
+        "aria": "切换到画布 画布 52",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          491,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          489,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          494,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 51",
+        "role": null,
+        "aria": "切换到画布 画布 51",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          527,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          525,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          530,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 50",
+        "role": null,
+        "aria": "切换到画布 画布 50",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          563,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          561,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          566,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 49",
+        "role": null,
+        "aria": "切换到画布 画布 49",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          599,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          597,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          602,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 48",
+        "role": null,
+        "aria": "切换到画布 画布 48",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          635,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          633,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          638,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 47",
+        "role": null,
+        "aria": "切换到画布 画布 47",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          671,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          669,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          674,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 46",
+        "role": null,
+        "aria": "切换到画布 画布 46",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          707,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          705,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          710,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 45",
+        "role": null,
+        "aria": "切换到画布 画布 45",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          743,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          741,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          746,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 44",
+        "role": null,
+        "aria": "切换到画布 画布 44",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          779,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          777,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          782,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 43",
+        "role": null,
+        "aria": "切换到画布 画布 43",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          815,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          813,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          818,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 42",
+        "role": null,
+        "aria": "切换到画布 画布 42",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          851,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          849,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          854,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 41",
+        "role": null,
+        "aria": "切换到画布 画布 41",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          887,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          885,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          890,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 40",
+        "role": null,
+        "aria": "切换到画布 画布 40",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          923,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          921,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          926,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 39",
+        "role": null,
+        "aria": "切换到画布 画布 39",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          959,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          957,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          962,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 38",
+        "role": null,
+        "aria": "切换到画布 画布 38",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          995,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          993,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          998,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 37",
+        "role": null,
+        "aria": "切换到画布 画布 37",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1031,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1029,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1034,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 36",
+        "role": null,
+        "aria": "切换到画布 画布 36",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1067,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1065,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1070,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 35",
+        "role": null,
+        "aria": "切换到画布 画布 35",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1103,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1101,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1106,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 34",
+        "role": null,
+        "aria": "切换到画布 画布 34",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1139,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1137,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1142,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 33",
+        "role": null,
+        "aria": "切换到画布 画布 33",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1175,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1173,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1178,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 32",
+        "role": null,
+        "aria": "切换到画布 画布 32",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1211,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1209,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1214,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 31",
+        "role": null,
+        "aria": "切换到画布 画布 31",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1247,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1245,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1250,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 30",
+        "role": null,
+        "aria": "切换到画布 画布 30",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1283,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1281,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1286,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 29",
+        "role": null,
+        "aria": "切换到画布 画布 29",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1319,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1317,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1322,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 28",
+        "role": null,
+        "aria": "切换到画布 画布 28",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1355,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1353,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1358,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 27",
+        "role": null,
+        "aria": "切换到画布 画布 27",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1391,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1389,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1394,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 26",
+        "role": null,
+        "aria": "切换到画布 画布 26",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1427,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1425,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1430,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 25",
+        "role": null,
+        "aria": "切换到画布 画布 25",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1463,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1461,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1466,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 24",
+        "role": null,
+        "aria": "切换到画布 画布 24",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1499,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1497,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1502,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 23",
+        "role": null,
+        "aria": "切换到画布 画布 23",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1535,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1533,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1538,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 22",
+        "role": null,
+        "aria": "切换到画布 画布 22",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1571,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1569,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1574,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 21",
+        "role": null,
+        "aria": "切换到画布 画布 21",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1607,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1605,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1610,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 20",
+        "role": null,
+        "aria": "切换到画布 画布 20",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1643,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1641,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1646,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 19",
+        "role": null,
+        "aria": "切换到画布 画布 19",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1679,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1677,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1682,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 18",
+        "role": null,
+        "aria": "切换到画布 画布 18",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1715,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1713,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1718,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 17",
+        "role": null,
+        "aria": "切换到画布 画布 17",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1751,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1749,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1754,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 16",
+        "role": null,
+        "aria": "切换到画布 画布 16",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1787,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1785,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1790,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 15",
+        "role": null,
+        "aria": "切换到画布 画布 15",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1823,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1821,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1826,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 14",
+        "role": null,
+        "aria": "切换到画布 画布 14",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1859,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1857,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1862,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 13",
+        "role": null,
+        "aria": "切换到画布 画布 13",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1895,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1893,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1898,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 12",
+        "role": null,
+        "aria": "切换到画布 画布 12",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1931,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1929,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1934,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 11",
+        "role": null,
+        "aria": "切换到画布 画布 11",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          1967,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          1965,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          1970,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 10",
+        "role": null,
+        "aria": "切换到画布 画布 10",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          2003,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          2001,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          2006,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 9",
+        "role": null,
+        "aria": "切换到画布 画布 9",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          2039,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          2037,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          2042,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 8",
+        "role": null,
+        "aria": "切换到画布 画布 8",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          2075,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          2073,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          2078,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 7",
+        "role": null,
+        "aria": "切换到画布 画布 7",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          2111,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          2109,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          2114,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 6",
+        "role": null,
+        "aria": "切换到画布 画布 6",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          2147,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          2145,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          2150,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 5",
+        "role": null,
+        "aria": "切换到画布 画布 5",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          2183,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          2181,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          2186,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 4",
+        "role": null,
+        "aria": "切换到画布 画布 4",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          2219,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          2217,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          2222,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 3",
+        "role": null,
+        "aria": "切换到画布 画布 3",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          2255,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          2253,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          2258,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "画布 2",
+        "role": null,
+        "aria": "切换到画布 画布 2",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "default",
+        "框": [
+          182,
+          2291,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "auto",
+        "框": [
+          349,
+          2294,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          2289,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          2294,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "手册取证画布",
+        "role": null,
+        "aria": "切换到画布 手册取证画布",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          182,
+          2327,
+          186,
+          21
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "role": null,
+        "aria": "更多操作",
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          344,
+          2325,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "role": "img",
+        "aria": null,
+        "tabindex": null,
+        "dataId": null,
+        "projectId": null,
+        "cursor": "pointer",
+        "框": [
+          349,
+          2330,
+          14,
+          14
+        ]
+      }
+    ],
+    "三路": {
+      "aria": [
+        {
+          "tag": "BUTTON",
+          "aria": "新建画布",
+          "框": [
+            346,
+            57,
+            24,
+            24
+          ]
+        }
+      ],
+      "文字": [],
+      "加号": [
+        {
+          "tag": "SPAN",
+          "框": [
+            308,
+            552,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            308,
+            552,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "path",
+          "框": [
+            308,
+            552,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "DIV",
+          "框": [
+            297,
+            652,
+            10,
+            10
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            297,
+            652,
+            10,
+            10
+          ]
+        },
+        {
+          "tag": "circle",
+          "框": [
+            297,
+            652,
+            9,
+            9
+          ]
+        },
+        {
+          "tag": "circle",
+          "框": [
+            297,
+            652,
+            9,
+            9
+          ]
+        },
+        {
+          "tag": "DIV",
+          "框": [
+            381,
+            626,
+            23,
+            23
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            381,
+            626,
+            23,
+            23
+          ]
+        },
+        {
+          "tag": "path",
+          "框": [
+            387,
+            631,
+            12,
+            13
+          ]
+        },
+        {
+          "tag": "DIV",
+          "框": [
+            236,
+            652,
+            10,
+            10
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            236,
+            652,
+            10,
+            10
+          ]
+        },
+        {
+          "tag": "circle",
+          "框": [
+            237,
+            652,
+            9,
+            9
+          ]
+        },
+        {
+          "tag": "circle",
+          "框": [
+            237,
+            652,
+            9,
+            9
+          ]
+        },
+        {
+          "tag": "DIV",
+          "框": [
+            368,
+            409,
+            10,
+            10
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            368,
+            409,
+            10,
+            10
+          ]
+        },
+        {
+          "tag": "circle",
+          "框": [
+            368,
+            409,
+            9,
+            9
+          ]
+        },
+        {
+          "tag": "circle",
+          "框": [
+            368,
+            409,
+            9,
+            9
+          ]
+        },
+        {
+          "tag": "path",
+          "框": [
+            209,
+            102,
+            18,
+            25
+          ]
+        },
+        {
+          "tag": "DIV",
+          "框": [
+            367,
+            148,
+            10,
+            10
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            367,
+            148,
+            10,
+            10
+          ]
+        },
+        {
+          "tag": "circle",
+          "框": [
+            367,
+            149,
+            9,
+            9
+          ]
+        },
+        {
+          "tag": "circle",
+          "框": [
+            367,
+            149,
+            9,
+            9
+          ]
+        },
+        {
+          "tag": "DIV",
+          "框": [
+            144,
+            764,
+            28,
+            28
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            144,
+            764,
+            28,
+            28
+          ]
+        },
+        {
+          "tag": "SPAN",
+          "框": [
+            151,
+            771,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            152,
+            772,
+            13,
+            13
+          ]
+        },
+        {
+          "tag": "path",
+          "框": [
+            152,
+            772,
+            13,
+            13
+          ]
+        },
+        {
+          "tag": "DIV",
+          "框": [
+            176,
+            764,
+            28,
+            28
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            176,
+            764,
+            28,
+            28
+          ]
+        },
+        {
+          "tag": "SPAN",
+          "框": [
+            183,
+            771,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            183,
+            771,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "path",
+          "框": [
+            185,
+            772,
+            10,
+            11
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            208,
+            764,
+            28,
+            28
+          ]
+        },
+        {
+          "tag": "SPAN",
+          "框": [
+            215,
+            771,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            215,
+            771,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "path",
+          "框": [
+            216,
+            772,
+            12,
+            12
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            346,
+            57,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            351,
+            62,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "path",
+          "框": [
+            351,
+            62,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            93,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            98,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            129,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            134,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            165,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            170,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            201,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            206,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            237,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            242,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            273,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            278,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            309,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            314,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            345,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            350,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            381,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            386,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            417,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            422,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            453,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            458,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            489,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            494,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            525,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            530,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            561,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            566,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            597,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            602,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            633,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            638,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            669,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            674,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            705,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            710,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            741,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            746,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            777,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            782,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            813,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            818,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            849,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            854,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            885,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            890,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            921,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            926,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            957,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            962,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            993,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            998,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1029,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1034,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1065,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1070,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1101,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1106,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1137,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1142,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1173,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1178,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1209,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1214,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1245,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1250,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1281,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1286,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1317,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1322,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1353,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1358,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1389,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1394,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1425,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1430,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1461,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1466,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1497,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1502,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1533,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1538,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1569,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1574,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1605,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1610,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1641,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1646,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1677,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1682,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1713,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1718,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1749,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1754,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1785,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1790,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1821,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1826,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1857,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1862,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1893,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1898,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1929,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1934,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            1965,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            1970,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            2001,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2006,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            2037,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2042,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            2073,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2078,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            2109,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2114,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            2145,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2150,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            2181,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2186,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            2217,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2222,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            2253,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2258,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "SPAN",
+          "框": [
+            344,
+            2289,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2294,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "path",
+          "框": [
+            349,
+            2296,
+            14,
+            10
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            2289,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2294,
+            14,
+            14
+          ]
+        },
+        {
+          "tag": "BUTTON",
+          "框": [
+            344,
+            2325,
+            24,
+            24
+          ]
+        },
+        {
+          "tag": "svg",
+          "框": [
+            349,
+            2330,
+            14,
+            14
+          ]
+        }
+      ]
+    },
+    "右上角": [
+      {
+        "tag": "DIV",
+        "文": "",
+        "aria": null,
+        "cls": "",
+        "框": [
+          365,
+          134,
+          39,
+          39
+        ]
+      },
+      {
+        "tag": "DIV",
+        "文": "",
+        "aria": null,
+        "cls": "",
+        "框": [
+          367,
+          148,
+          10,
+          10
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "aria": null,
+        "cls": "[object SVGAnimatedString]",
+        "框": [
+          367,
+          148,
+          10,
+          10
+        ]
+      },
+      {
+        "tag": "circle",
+        "文": "",
+        "aria": null,
+        "cls": "[object SVGAnimatedString]",
+        "框": [
+          367,
+          149,
+          9,
+          9
+        ]
+      },
+      {
+        "tag": "circle",
+        "文": "",
+        "aria": null,
+        "cls": "[object SVGAnimatedString]",
+        "框": [
+          367,
+          149,
+          9,
+          9
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "aria": "更多操作",
+        "cls": "absolute right-0.5 top-1/2 flex size-6 -translate-",
+        "框": [
+          344,
+          93,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "aria": null,
+        "cls": "[object SVGAnimatedString]",
+        "框": [
+          349,
+          98,
+          14,
+          14
+        ]
+      },
+      {
+        "tag": "BUTTON",
+        "文": "",
+        "aria": "更多操作",
+        "cls": "absolute right-0.5 top-1/2 flex size-6 -translate-",
+        "框": [
+          344,
+          129,
+          24,
+          24
+        ]
+      },
+      {
+        "tag": "svg",
+        "文": "",
+        "aria": null,
+        "cls": "[object SVGAnimatedString]",
+        "框": [
+          349,
+          134,
+          14,
+          14
+        ]
+      }
+    ]
+  },
+  "断言": []
+}

@@ -1,0 +1,165 @@
+{
+  "步骤": [
+    "--- 打开项目下拉 ---",
+    "\n--- 「画布 3」这一行的完整祖先链 ---",
+    "   L0 <SPAN> 182,2255,184,21 cursor=pointer pe=auto 子0 文「画布 3」\n       cls=min-w-0 flex-1 truncate",
+    "   L1 <BUTTON> 182,2255,186,21 cursor=pointer pe=auto 子1 文「画布 3」\n       cls=flex min-w-0 flex-1 items-center text-left text-[14px] font-normal leading-normal focus-vi",
+    "   L2 <DIV> 174,2251,196,28 cursor=auto pe=auto 子2 文「画布 3」\n       cls=group/canvas-row relative flex h-[28px] min-h-[28px] min-w-0 items-center rounded-lg py-1 ",
+    "   L3 <DIV> 166,91,212,2260 cursor=auto pe=auto 子63 文「画布 63\n画布 62\n画布 61\n画布 60\n画布 59\n」\n       cls=flex flex-col gap-2 px-2",
+    "   L4 <DIV> 166,91,212,2260 cursor=auto pe=auto 子1 文「画布 63\n画布 62\n画布 61\n画布 60\n画布 59\n」\n       cls=m_b1336c6 mantine-ScrollArea-content",
+    "   L5 <DIV> 166,91,212,220 cursor=auto pe=auto 子1 文「画布 63\n画布 62\n画布 61\n画布 60\n画布 59\n」\n       cls=m_c0783ff9 mantine-ScrollArea-viewport",
+    "   L6 <DIV> 166,91,212,220 cursor=auto pe=auto 子2 文「画布 63\n画布 62\n画布 61\n画布 60\n画布 59\n」\n       cls=m_d57069b5 mantine-ScrollArea-root",
+    "\n--- 逐层落点自证：点每一层的中心，看命中什么 ---",
+    "   点 L0 中心(274,2265) → null ⛔ 不在本行",
+    "   点 L1 中心(275,2265) → null ⛔ 不在本行",
+    "   点 L2 中心(272,2265) → null ⛔ 不在本行",
+    "   点 L3 中心(272,1221) → null ⛔ 不在本行",
+    "   点 L4 中心(272,1221) → null ⛔ 不在本行",
+    "   点 L5 中心(272,201) → DIV「画布 60」 ⛔ 不在本行",
+    "   点 L6 中心(272,201) → DIV「画布 60」 ⛔ 不在本行",
+    "\n--- 这一行里带 role / tabindex / cursor:pointer 的元素 ---",
+    "  0 个：",
+    "  ⛔ 这一行没有任何 role/tabindex/data-* 标记 ⇒ 可能真的只是个文本列表"
+  ],
+  "读数": {
+    "祖先链": {
+      "链": [
+        {
+          "层级": 0,
+          "tag": "SPAN",
+          "cls": "min-w-0 flex-1 truncate",
+          "框": [
+            182,
+            2255,
+            184,
+            21
+          ],
+          "文": "画布 3",
+          "子数": 0,
+          "cursor": "pointer",
+          "pointerEvents": "auto",
+          "中心": [
+            274,
+            2265
+          ]
+        },
+        {
+          "层级": 1,
+          "tag": "BUTTON",
+          "cls": "flex min-w-0 flex-1 items-center text-left text-[14px] font-normal leading-normal focus-vi",
+          "框": [
+            182,
+            2255,
+            186,
+            21
+          ],
+          "文": "画布 3",
+          "子数": 1,
+          "cursor": "pointer",
+          "pointerEvents": "auto",
+          "中心": [
+            275,
+            2265
+          ]
+        },
+        {
+          "层级": 2,
+          "tag": "DIV",
+          "cls": "group/canvas-row relative flex h-[28px] min-h-[28px] min-w-0 items-center rounded-lg py-1 ",
+          "框": [
+            174,
+            2251,
+            196,
+            28
+          ],
+          "文": "画布 3",
+          "子数": 2,
+          "cursor": "auto",
+          "pointerEvents": "auto",
+          "中心": [
+            272,
+            2265
+          ]
+        },
+        {
+          "层级": 3,
+          "tag": "DIV",
+          "cls": "flex flex-col gap-2 px-2",
+          "框": [
+            166,
+            91,
+            212,
+            2260
+          ],
+          "文": "画布 63\n画布 62\n画布 61\n画布 60\n画布 59\n",
+          "子数": 63,
+          "cursor": "auto",
+          "pointerEvents": "auto",
+          "中心": [
+            272,
+            1221
+          ]
+        },
+        {
+          "层级": 4,
+          "tag": "DIV",
+          "cls": "m_b1336c6 mantine-ScrollArea-content",
+          "框": [
+            166,
+            91,
+            212,
+            2260
+          ],
+          "文": "画布 63\n画布 62\n画布 61\n画布 60\n画布 59\n",
+          "子数": 1,
+          "cursor": "auto",
+          "pointerEvents": "auto",
+          "中心": [
+            272,
+            1221
+          ]
+        },
+        {
+          "层级": 5,
+          "tag": "DIV",
+          "cls": "m_c0783ff9 mantine-ScrollArea-viewport",
+          "框": [
+            166,
+            91,
+            212,
+            220
+          ],
+          "文": "画布 63\n画布 62\n画布 61\n画布 60\n画布 59\n",
+          "子数": 1,
+          "cursor": "auto",
+          "pointerEvents": "auto",
+          "中心": [
+            272,
+            201
+          ]
+        },
+        {
+          "层级": 6,
+          "tag": "DIV",
+          "cls": "m_d57069b5 mantine-ScrollArea-root",
+          "框": [
+            166,
+            91,
+            212,
+            220
+          ],
+          "文": "画布 63\n画布 62\n画布 61\n画布 60\n画布 59\n",
+          "子数": 2,
+          "cursor": "auto",
+          "pointerEvents": "auto",
+          "中心": [
+            272,
+            201
+          ]
+        }
+      ]
+    },
+    "可点元素": []
+  },
+  "断言": []
+}
