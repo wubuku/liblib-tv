@@ -1,0 +1,155 @@
+{
+  "读数": {
+    "星对比": {
+      "卡0": {
+        "aria": "取消收藏",
+        "文字": "",
+        "box": [
+          271,
+          210,
+          24,
+          24
+        ],
+        "path全": "M9.66.87a1.58 1.58 0 0 1 2.82 0l2.57 5.14 5.72.8c1.25.17 1.8 1.67.96 2.6l-4.03 4.56.72 5.02a1.58 1.58 0 0 1-2.3 1.62l-5.05-2.66L6 20.61A1.58 1.58 0 0 1 3.7 19l.73-5.02L.4 9.42a1.58 1.58 0 0 1 .96-2.61l5.73-.8z",
+        "圆点数": 0,
+        "html": "<button type=\"button\" aria-busy=\"false\" aria-label=\"取消收藏\" class=\"flex size-6 items-center justify-center rounded-lg transition-[background-color,opacity] bg-[rgba(31,31,31,0.2)] opacity-100 hover:bg-black/80 group-hover:bg-black/65\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size-3.5 text-white\" width=\"1.07em\" height=\"1em\" viewBox=\"0 0 22.13 20.8\"><path d=\"M9.66.87a1.58 1.58 0 0 1 2.82 0l2.57 5.14 5.72.8c1.25.17 1.8 1.67.96 2.6l-4.03 4.56.72 5.02a1.58 1.58 0 0 1-2.3 1.62l-5.05-2.66L6 20.61A1.58 1.58 0 0 1 3.7 19l.73-5.02L.4 9.42a1.58 1.58 0 0 1 .96-2.61l5.73-.8z\" fill=\"curr…"
+      },
+      "卡1": {
+        "aria": "收藏",
+        "文字": "",
+        "box": [
+          474,
+          210,
+          24,
+          24
+        ],
+        "path全": "M9.65.87a1.58 1.58 0 0 1 2.83 0l2.57 5.14 5.72.8c1.25.17 1.8 1.67.96 2.6l-4.03 4.56.72 5.02a1.58 1.58 0 0 1-2.3 1.62l-5.05-2.66L6 20.61l-.1.05A1.58 1.58 0 0 1 3.7 19l.73-5.02L.4 9.42a1.58 1.58 0 0 1 .96-2.61l5.73-.8zm-1.38 6.8-6.25.87 4.31 4.86-.78 5.41 5.52-2.9 5.5 2.9-.77-5.41 4.31-4.86-6.25-.88-2.8-5.59z",
+        "圆点数": 0,
+        "html": "<button type=\"button\" aria-busy=\"false\" aria-label=\"收藏\" class=\"flex size-6 items-center justify-center rounded-lg transition-[background-color,opacity] bg-black/65 opacity-0 hover:bg-black/80 group-hover:opacity-100\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size-3.5 text-white\" width=\"1.07em\" height=\"1em\" viewBox=\"0 0 22.13 20.8\"><path d=\"M9.65.87a1.58 1.58 0 0 1 2.83 0l2.57 5.14 5.72.8c1.25.17 1.8 1.67.96 2.6l-4.03 4.56.72 5.02a1.58 1.58 0 0 1-2.3 1.62l-5.05-2.66L6 20.61l-.1.05A1.58 1.58 0 0 1 3.7 19l.73-5.02L.4 9.42a1.58 1.58 0 0 1 .96-2.61l5.73-.8zm-1.38 6.8-6.25.87 4.…"
+      },
+      "相同": false
+    },
+    "卡0": {
+      "文字": "Seedream 5.0 Seedream 5.0 pro 热点推荐官 540.5w",
+      "box": [
+        117,
+        197,
+        191,
+        302
+      ],
+      "按钮": [
+        {
+          "aria": null,
+          "文字": "Seedream 5.0",
+          "box": [
+            130,
+            210,
+            24,
+            24
+          ],
+          "path全": null,
+          "圆点数": 0,
+          "html": "<button type=\"button\" class=\"flex h-6 max-w-6 items-center overflow-hidden rounded-lg bg-[rgba(31,31,31,0.2)] backdrop-blur-[2px] group-hover:max-w-35 transition-[background-color,max-width] duration-150 group-hover:bg-black/65\"><span class=\"flex size-6 shrink-0 items-center justify-center\"><img alt=\"Seedream 5.0\" class=\"size-3.5 shrink-0 object-contain\" decoding=\"async\" src=\"https://libtv-res.liblib.art/upload-images/70a305c50c704a778db114468830617b/43df57d720f983795db62c96952a44a86d1bc27a.png\"></span><span class=\"max-w-0 truncate whitespace-nowrap pr-0 text-[12px] leading-none text-white opacity-0 transition-[max-width,opacity,padding] duration-150 group-hover:max-w-[112px] group-hover:pr-…"
+        },
+        {
+          "aria": "取消收藏",
+          "文字": "",
+          "box": [
+            271,
+            210,
+            24,
+            24
+          ],
+          "path全": "M9.66.87a1.58 1.58 0 0 1 2.82 0l2.57 5.14 5.72.8c1.25.17 1.8 1.67.96 2.6l-4.03 4.56.72 5.02a1.58 1.58 0 0 1-2.3 1.62l-5.05-2.66L6 20.61A1.58 1.58 0 0 1 3.7 19l.73-5.02L.4 9.42a1.58 1.58 0 0 1 .96-2.61l5.73-.8z",
+          "圆点数": 0,
+          "html": "<button type=\"button\" aria-busy=\"false\" aria-label=\"取消收藏\" class=\"flex size-6 items-center justify-center rounded-lg transition-[background-color,opacity] bg-[rgba(31,31,31,0.2)] opacity-100 hover:bg-black/80 group-hover:bg-black/65\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size-3.5 text-white\" width=\"1.07em\" height=\"1em\" viewBox=\"0 0 22.13 20.8\"><path d=\"M9.66.87a1.58 1.58 0 0 1 2.82 0l2.57 5.14 5.72.8c1.25.17 1.8 1.67.96 2.6l-4.03 4.56.72 5.02a1.58 1.58 0 0 1-2.3 1.62l-5.05-2.66L6 20.61A1.58 1.58 0 0 1 3.7 19l.73-5.02L.4 9.42a1.58 1.58 0 0 1 .96-2.61l5.73-.8z\" fill=\"curr…"
+        },
+        {
+          "aria": "详情",
+          "文字": "",
+          "box": [
+            271,
+            413,
+            24,
+            24
+          ],
+          "path全": "M1.4 8.9c.22 0 .4.18.4.4v5.54l5.26-5.26a.4.4 0 0 1 .57 0l.7.71a.4.4 0 0 1 0 .57L3.2 16h5.3c.22 0 .4.18.4.4v1a.4.4 0 0 1-.4.4H.8A.8.8 0 0 1 0 17V9.3c0-.22.18-.4.4-.4zM17 0c.44 0 .8.36.8.8v7.7a.4.4 0 0 1-.4.4h-1a.4.4 0 0 1-.4-.4V3.14l-5.2 5.2a.4.4 0 0 1-.56 0l-.7-.72a.4.4 0 0 1 0-.56l5.25-5.26H9.3a.4.4 0 0 1-.4-.4v-1c0-.22.18-.4.4-.4z",
+          "圆点数": 0,
+          "html": "<button type=\"button\" aria-label=\"详情\" class=\"flex size-6 items-center justify-center rounded-lg opacity-0 transition-opacity group-hover:opacity-100 bg-black/65 hover:bg-black/80\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size-3.5 text-white\" width=\"1em\" height=\"1em\" viewBox=\"0 0 17.8 17.8\"><path d=\"M1.4 8.9c.22 0 .4.18.4.4v5.54l5.26-5.26a.4.4 0 0 1 .57 0l.7.71a.4.4 0 0 1 0 .57L3.2 16h5.3c.22 0 .4.18.4.4v1a.4.4 0 0 1-.4.4H.8A.8.8 0 0 1 0 17V9.3c0-.22.18-.4.4-.4zM17 0c.44 0 .8.36.8.8v7.7a.4.4 0 0 1-.4.4h-1a.4.4 0 0 1-.4-.4V3.14l-5.2 5.2a.4.4 0 0 1-.56 0l-.7-.72a.4.4 0 0 1 0…"
+        }
+      ]
+    },
+    "卡1": {
+      "文字": "J_漫剧素材三视图+大头表情+姿势图 商用 JM32 1.1w",
+      "box": [
+        320,
+        197,
+        191,
+        302
+      ],
+      "按钮": [
+        {
+          "aria": null,
+          "文字": "",
+          "box": [
+            333,
+            210,
+            24,
+            24
+          ],
+          "path全": "M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4",
+          "圆点数": 0,
+          "html": "<button type=\"button\" class=\"flex size-6 items-center justify-center rounded-lg bg-[rgba(31,31,31,0.2)] backdrop-blur-[2px] transition-colors group-hover:bg-black/65\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size-3 shrink-0 text-white\" width=\"1em\" height=\"1em\" viewBox=\"0 0 16 16\"><path d=\"M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4\" fill=\"currentColor\" transform=\"translate(0 6.2222) scale(0.888889)\"></path></svg></button>"
+        },
+        {
+          "aria": "收藏",
+          "文字": "",
+          "box": [
+            474,
+            210,
+            24,
+            24
+          ],
+          "path全": "M9.65.87a1.58 1.58 0 0 1 2.83 0l2.57 5.14 5.72.8c1.25.17 1.8 1.67.96 2.6l-4.03 4.56.72 5.02a1.58 1.58 0 0 1-2.3 1.62l-5.05-2.66L6 20.61l-.1.05A1.58 1.58 0 0 1 3.7 19l.73-5.02L.4 9.42a1.58 1.58 0 0 1 .96-2.61l5.73-.8zm-1.38 6.8-6.25.87 4.31 4.86-.78 5.41 5.52-2.9 5.5 2.9-.77-5.41 4.31-4.86-6.25-.88-2.8-5.59z",
+          "圆点数": 0,
+          "html": "<button type=\"button\" aria-busy=\"false\" aria-label=\"收藏\" class=\"flex size-6 items-center justify-center rounded-lg transition-[background-color,opacity] bg-black/65 opacity-0 hover:bg-black/80 group-hover:opacity-100\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size-3.5 text-white\" width=\"1.07em\" height=\"1em\" viewBox=\"0 0 22.13 20.8\"><path d=\"M9.65.87a1.58 1.58 0 0 1 2.83 0l2.57 5.14 5.72.8c1.25.17 1.8 1.67.96 2.6l-4.03 4.56.72 5.02a1.58 1.58 0 0 1-2.3 1.62l-5.05-2.66L6 20.61l-.1.05A1.58 1.58 0 0 1 3.7 19l.73-5.02L.4 9.42a1.58 1.58 0 0 1 .96-2.61l5.73-.8zm-1.38 6.8-6.25.87 4.…"
+        },
+        {
+          "aria": "详情",
+          "文字": "",
+          "box": [
+            474,
+            413,
+            24,
+            24
+          ],
+          "path全": "M1.4 8.9c.22 0 .4.18.4.4v5.54l5.26-5.26a.4.4 0 0 1 .57 0l.7.71a.4.4 0 0 1 0 .57L3.2 16h5.3c.22 0 .4.18.4.4v1a.4.4 0 0 1-.4.4H.8A.8.8 0 0 1 0 17V9.3c0-.22.18-.4.4-.4zM17 0c.44 0 .8.36.8.8v7.7a.4.4 0 0 1-.4.4h-1a.4.4 0 0 1-.4-.4V3.14l-5.2 5.2a.4.4 0 0 1-.56 0l-.7-.72a.4.4 0 0 1 0-.56l5.25-5.26H9.3a.4.4 0 0 1-.4-.4v-1c0-.22.18-.4.4-.4z",
+          "圆点数": 0,
+          "html": "<button type=\"button\" aria-label=\"详情\" class=\"flex size-6 items-center justify-center rounded-lg opacity-0 transition-opacity group-hover:opacity-100 bg-black/65 hover:bg-black/80\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--libtv pointer-events-none size-3.5 text-white\" width=\"1em\" height=\"1em\" viewBox=\"0 0 17.8 17.8\"><path d=\"M1.4 8.9c.22 0 .4.18.4.4v5.54l5.26-5.26a.4.4 0 0 1 .57 0l.7.71a.4.4 0 0 1 0 .57L3.2 16h5.3c.22 0 .4.18.4.4v1a.4.4 0 0 1-.4.4H.8A.8.8 0 0 1 0 17V9.3c0-.22.18-.4.4-.4zM17 0c.44 0 .8.36.8.8v7.7a.4.4 0 0 1-.4.4h-1a.4.4 0 0 1-.4-.4V3.14l-5.2 5.2a.4.4 0 0 1-.56 0l-.7-.72a.4.4 0 0 1 0…"
+        }
+      ]
+    },
+    "我的收藏": {
+      "卡片数": 0,
+      "文字": [],
+      "全文": "风格广场 我的收藏 最近使用 全部 暂无素材"
+    }
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "⭐ #0：\"Seedream 5.0 Seedream 5.0 pro 热点推荐官 540.5w\"",
+    "⭐ #1：\"J_漫剧素材三视图+大头表情+姿势图 商用 JM32 1.1w\"",
+    "⭐ #0 的星：aria=取消收藏 path=M9.66.87a1.58 1.58 0 0 1 2.82 0l2.57 5.14 5.72.8c1.25.17 1.8 1.67.96 2.6l-4.03 4.56.72 5.02a1.58 1.58 0 0 1-2.3 1.62l-5.05-2.66L6 20.61A1.58 1.58 0 0 1 3.7 19l.73-5.02L.4 9.42a1.58 1.58 0 0 1 .96-2.61l5.73-.8z",
+    "⭐ #1 的星：aria=收藏 path=M9.65.87a1.58 1.58 0 0 1 2.83 0l2.57 5.14 5.72.8c1.25.17 1.8 1.67.96 2.6l-4.03 4.56.72 5.02a1.58 1.58 0 0 1-2.3 1.62l-5.05-2.66L6 20.61l-.1.05A1.58 1.58 0 0 1 3.7 19l.73-5.02L.4 9.42a1.58 1.58 0 0 1 .96-2.61l5.73-.8zm-1.38 6.8-6.25.87 4.31 4.86-.78 5.41 5.52-2.9 5.5 2.9-.77-5.41 4.31-4.86-6.25-.88-2.8-5.59z",
+    "⭐⭐ 两个 path 相同？ false",
+    "已拍 ey6-卡0-已收藏态.png（只看卡面上半截）",
+    "已拍 ey6-卡1-未收藏态.png（同样的位置，用来比星的形状）",
+    "⭐⭐ 再读「我的收藏」：{\"卡片数\":0,\"文字\":[],\"全文\":\"风格广场 我的收藏 最近使用 全部 暂无素材\"}",
+    "已拍 ey6-风格-我的收藏-复测.png",
+    "⭐⭐ 静置 15s 后坐标复核：[]"
+  ],
+  "收尾": {
+    "偏差": [],
+    "已渲染": 11
+  }
+}

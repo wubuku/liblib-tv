@@ -1,0 +1,219 @@
+{
+  "读数": {
+    "特效广场": {
+      "页签": [
+        {
+          "t": "特效广场",
+          "选中": false,
+          "cls": "flex min-w-12 items-center justify-center whitespa"
+        },
+        {
+          "t": "我的收藏",
+          "选中": false,
+          "cls": "flex min-w-12 items-center justify-center whitespa"
+        },
+        {
+          "t": "最近使用",
+          "选中": false,
+          "cls": "flex min-w-12 items-center justify-center whitespa"
+        }
+      ],
+      "空态": [
+        "没有工作的天",
+        "没有工作的天",
+        "没有更多了"
+      ],
+      "卡片数": 42,
+      "详情数": 0,
+      "收藏星": 42,
+      "全文": "特效广场 我的收藏 最近使用 推荐 全部 小蜜蜂运镜 商用 vibe fckuing 3500 穿云而入 商用 管夯工作台 1600 飞跃地平线 商用 vibe fckuing 2800 逆转引力 商用 omom 553 地球缩放 商用 孤雌的白日梦 534 环球缩放 商用 苏打绿豆 549 瞳孔推镜 商用 消息免打扰 985 俯冲地球 商用 没有工作的天 789 产品扫光 商用 鱿鱼chill 3100 普拉达换装 商用 omom 138 多角度定点 商用 AI萨大法官 1900 水下慢镜头 商用 AI萨大法官 ",
+      "我的收藏": {
+        "页签": [
+          {
+            "t": "特效广场",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          },
+          {
+            "t": "我的收藏",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          },
+          {
+            "t": "最近使用",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          }
+        ],
+        "空态": [
+          "暂无素材"
+        ],
+        "卡片数": 0,
+        "详情数": 0,
+        "收藏星": 0,
+        "全文": "特效广场 我的收藏 最近使用 全部 暂无素材"
+      },
+      "最近使用": {
+        "页签": [
+          {
+            "t": "特效广场",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          },
+          {
+            "t": "我的收藏",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          },
+          {
+            "t": "最近使用",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          }
+        ],
+        "空态": [
+          "暂无素材"
+        ],
+        "卡片数": 0,
+        "详情数": 0,
+        "收藏星": 0,
+        "全文": "特效广场 我的收藏 最近使用 全部 暂无素材"
+      },
+      "收藏后": {
+        "页签": [
+          {
+            "t": "特效广场",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          },
+          {
+            "t": "我的收藏",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          },
+          {
+            "t": "最近使用",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          }
+        ],
+        "空态": [
+          "没有更多了"
+        ],
+        "卡片数": 1,
+        "详情数": 0,
+        "收藏星": 0,
+        "全文": "特效广场 我的收藏 最近使用 全部 Seedance 2.0 穿梭机运镜 vibe fckuing 0 没有更多了"
+      },
+      "取消收藏后": {
+        "页签": [
+          {
+            "t": "特效广场",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          },
+          {
+            "t": "我的收藏",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          },
+          {
+            "t": "最近使用",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          }
+        ],
+        "空态": [
+          "暂无素材"
+        ],
+        "卡片数": 0,
+        "详情数": 0,
+        "收藏星": 0,
+        "全文": "特效广场 我的收藏 最近使用 全部 暂无素材"
+      }
+    },
+    "风格广场": {
+      "页签": [
+        {
+          "t": "风格广场",
+          "选中": false,
+          "cls": "flex min-w-12 items-center justify-center whitespa"
+        },
+        {
+          "t": "我的收藏",
+          "选中": false,
+          "cls": "flex min-w-12 items-center justify-center whitespa"
+        },
+        {
+          "t": "最近使用",
+          "选中": false,
+          "cls": "flex min-w-12 items-center justify-center whitespa"
+        }
+      ],
+      "空态": [],
+      "卡片数": 30,
+      "详情数": 30,
+      "收藏星": 29,
+      "全文": "风格广场 我的收藏 最近使用 推荐 摄影写真 电商营销 动漫游戏 风格插画 平面设计 建筑及室内设计 创意玩法 文创周边 小说推文 仅看可商用 全部 Seedream 5.0 Seedream 5.0 pro 热点推荐官 540.5w J_漫剧素材三视图+大头表情+姿势图 商用 JM32 1.1w Z Image 【捌陆设计】短剧角色-Ai漫剧资产库人物角色四视图V8.0 商用 捌陆设计 339 Z Image CG质感仙侠国风动漫人物 商用 阿燊Jason 1200 Qwen Image Pan手绘美图140-Q",
+      "我的收藏": {
+        "页签": [
+          {
+            "t": "风格广场",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          },
+          {
+            "t": "我的收藏",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          },
+          {
+            "t": "最近使用",
+            "选中": false,
+            "cls": "flex min-w-12 items-center justify-center whitespa"
+          }
+        ],
+        "空态": [
+          "暂无素材"
+        ],
+        "卡片数": 0,
+        "详情数": 0,
+        "收藏星": 0,
+        "全文": "风格广场 我的收藏 最近使用 全部 暂无素材"
+      }
+    }
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "【特效广场·默认】卡片 42；详情按钮 0；收藏星 42；空态 [\"没有工作的天\",\"没有工作的天\",\"没有更多了\"]",
+    "        页签：[{\"t\":\"特效广场\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"我的收藏\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"最近使用\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"}]",
+    "已拍 ey4-特效广场.png",
+    "【特效广场·我的收藏】卡片 0；详情按钮 0；收藏星 0；空态 [\"暂无素材\"]",
+    "        页签：[{\"t\":\"特效广场\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"我的收藏\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"最近使用\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"}]",
+    "已拍 ey4-特效-我的收藏-空.png",
+    "【特效广场·最近使用】卡片 0；详情按钮 0；收藏星 0；空态 [\"暂无素材\"]",
+    "        页签：[{\"t\":\"特效广场\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"我的收藏\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"最近使用\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"}]",
+    "已拍 ey4-特效-最近使用.png",
+    "回到特效广场，真卡片 42 张",
+    "收藏后 toast：[]",
+    "已拍 ey4-收藏成功.png",
+    "【特效广场·我的收藏（收藏 1 张之后）】卡片 1；详情按钮 0；收藏星 0；空态 [\"没有更多了\"]",
+    "        页签：[{\"t\":\"特效广场\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"我的收藏\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"最近使用\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"}]",
+    "已拍 ey4-特效-我的收藏-有1张.png",
+    "收藏页里那张卡的按钮：[{\"aria\":null,\"box\":[130,210,24,24],\"中心\":[142,222],\"op\":\"1\"},{\"aria\":\"取消收藏\",\"box\":[271,210,24,24],\"中心\":[283,222],\"op\":\"1\"}]",
+    "取消收藏后 toast：[]",
+    "【特效广场·我的收藏（取消收藏之后）】卡片 0；详情按钮 0；收藏星 0；空态 [\"暂无素材\"]",
+    "        页签：[{\"t\":\"特效广场\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"我的收藏\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"最近使用\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"}]",
+    "已拍 ey4-特效-我的收藏-复原.png",
+    "【风格广场·默认】卡片 30；详情按钮 30；收藏星 29；空态 []",
+    "        页签：[{\"t\":\"风格广场\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"我的收藏\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"最近使用\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"}]",
+    "【风格广场·我的收藏】卡片 0；详情按钮 0；收藏星 0；空态 [\"暂无素材\"]",
+    "        页签：[{\"t\":\"风格广场\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"我的收藏\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"},{\"t\":\"最近使用\",\"选中\":false,\"cls\":\"flex min-w-12 items-center justify-center whitespa\"}]",
+    "已拍 ey4-风格-我的收藏.png",
+    "⭐⭐ 静置 15s 后坐标复核：[]"
+  ],
+  "收尾": {
+    "偏差": [],
+    "已渲染": 11
+  }
+}
