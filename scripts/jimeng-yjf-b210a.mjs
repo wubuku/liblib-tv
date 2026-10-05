@@ -3,7 +3,7 @@
 // ⚠️ 文件名带 yjf 前缀是**为了不和别的会话撞名**：本仓库同时有 3 个会话在写这一本手册
 //   （批次 165~203 / 288 / 1005）。批次 201 已经记过一次「我明明关掉了怎么还在」，
 //   同一个病在**协作面**上复发了一次：我曾用 write 工具覆盖掉别人已提交的
-//   `scripts/jimeng-b202a.mjs`。⇒ 立规 81（见 PROGRESS）：
+//   `scripts/jimeng-b202a.mjs`。⇒ 立规 85（见 PROGRESS）：
 //   **写任何文件之前先确认它不属于别人**（`git log -- <path>` + `ls`），
 //   文件名带上本会话唯一的标识，绝不复用别人批次里的序号。
 //
@@ -131,7 +131,7 @@ try {
           // 🔴 第一版这里写成 'canvas-search-result-node-node_' —— 那个前缀**根本不存在**
           //   （真实前缀是 'canvas-search-result-node_'）⇒ 11 臂的读数**全是 null**，
           //   而「去重后只剩 1 个值」这条断言在 `[null]` 上**照样通过**。
-          //   ⇒ 立规 82（见 PROGRESS）：**去重断言必须先确认读数本身不是空的**，
+          //   ⇒ 立规 86（见 PROGRESS）：**去重断言必须先确认读数本身不是空的**，
           //     否则「1 个值」既可能是「真的收敛了」，也可能是「从头到尾没读到数」。
           const id = tid.replace('canvas-search-result-node_', 'node_');
           const n = document.querySelector(`.react-flow__node[data-id="${id}"]`);
@@ -154,7 +154,7 @@ try {
       const tx集合 = [...new Set(帧.map((f) => f.vp && f.vp[0]))];
       const sc集合 = [...new Set(帧.map((f) => f.vp && f.vp[2]))];
       const 画布集合 = [...new Set(帧.map((f) => f.画布 && JSON.stringify(f.画布)))];
-      // 🔴 立规 82：先判「读到数了吗」，再判「收敛了吗」。
+      // 🔴 立规 86：先判「读到数了吗」，再判「收敛了吗」。
       const 有效帧 = 帧.filter((f) => f.vp && f.vp.length === 3 && Number.isFinite(f.vp[1]));
       if (有效帧.length === 0) {
         out.档[w] = { 无效: '6 帧里一帧都没读到 viewport 读数', 前置, 节点前置, 帧 };
@@ -177,7 +177,7 @@ try {
         tx取值: tx集合, ty取值: ty集合, scale取值: sc集合, 画布取值: 画布集合,
         地标,
         断言: {
-          判据: '先要求 6 帧里至少 1 帧读到数值（立规 82），再要求 ty 去重后只剩 1 个值',
+          判据: '先要求 6 帧里至少 1 帧读到数值（立规 86），再要求 ty 去重后只剩 1 个值',
           读到数了: 有效帧.length > 0,
           ty收敛: ty集合.length === 1,
           画布恒定: 画布集合.length === 1,

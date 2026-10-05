@@ -34,7 +34,7 @@ async function 取景(p, 记初值) {
   }
   // 🔴🔴 第一个版本把 Esc 放在**开完搜索面板之后** ⇒ Esc 把面板关掉 ⇒ 4 臂全部「目标行不在」。
   //   这正是批次 200 a 轮 18 臂全废的**同一个错**，而我自己在 a 轮注释里刚写下它。
-  //   ⇒ 立规 83：**知道一条教训 ≠ 执行时记得它。纪律必须贴在取点的那一行**，
+  //   ⇒ 立规 87：**知道一条教训 ≠ 执行时记得它。纪律必须贴在取点的那一行**，
   //     只写在文件头/方法论页的教训，会在写代码时被"顺手"绕过去。
   await p.keyboard.press('Escape');           // ✅ 清场必须在开面板**之前**
   await p.waitForTimeout(400);
@@ -82,7 +82,7 @@ async function 取景(p, 记初值) {
     }));
     await p.waitForTimeout(600);
   }
-  const 有效帧 = 帧.filter((f) => f.vp && f.vp.length === 3 && Number.isFinite(f.vp[1]));  // 立规 82
+  const 有效帧 = 帧.filter((f) => f.vp && f.vp.length === 3 && Number.isFinite(f.vp[1]));  // 立规 86
   if (有效帧.length === 0) return { 无效: '6 帧全空', 前置, 帧 };
   const ty集合 = [...new Set(帧.map((f) => f.vp && f.vp[1]))];
   return { 前置, 帧, 有效帧数: 有效帧.length, ty取值: ty集合,

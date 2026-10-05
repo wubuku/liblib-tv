@@ -9,7 +9,7 @@
 //   carryover 的机制：复用页 resize 之后，**取景落点不会立刻按新宽度重算**，
 //   会带着上一档的落点（b 轮复用页@1280 的 6 帧里同时出现 −44.5556 与 −156.555 两个值）。
 //
-// ⇒ 立规 84：**「每一档都换一个干净状态」不是洁癖，是读绝对值的必要条件。**
+// ⇒ 立规 88：**「每一档都换一个干净状态」不是洁癖，是读绝对值的必要条件。**
 //   复用同一页签只适合读**差值/相对关系**（比如断点在哪两档之间变），
 //   **不适合读某个量的绝对常数** —— 因为上一个自变量的残值会留在里面。
 //
@@ -28,7 +28,7 @@ const 宽度集 = [1200, 1210, 1215, 1220, 1225, 1230, 1240, 1260, 1280];
 const log = (...a) => console.log(a.join(' '));
 const OUT = '/tmp/b210c.json';
 const out = { 轮次: 'b210c', 条件: '每档 newPage + goto + 用完 close',
-  为什么: 'a 轮用一页复用 ⇒ 取景落点带上一档残值 ⇒ 绝对常数是假的（立规 84）',
+  为什么: 'a 轮用一页复用 ⇒ 取景落点带上一档残值 ⇒ 绝对常数是假的（立规 88）',
   测的两个量: ['加载后的初始 vp', '取景后的 vp'], 高度系数, 高度固定: H, 无效臂: 0, 档: {} };
 
 const { chromium } = await import('playwright');
@@ -53,7 +53,7 @@ for (const w of 宽度集) {
 
     const 初始 = await p.evaluate(读vp);        // ← 量 ①：加载后的初始 vp
 
-    // 🔴 清场必须在开面板**之前**（立规 83：纪律要贴在取点那一行，不能只写在文件头）
+    // 🔴 清场必须在开面板**之前**（立规 87：纪律要贴在取点那一行，不能只写在文件头）
     await p.keyboard.press('Escape');
     await p.waitForTimeout(400);
     const 搜索钮 = await p.evaluate(() => {
@@ -95,7 +95,7 @@ for (const w of 宽度集) {
     const 帧 = [];
     for (let k = 0; k < 6; k++) { 帧.push(await p.evaluate(读vp)); await p.waitForTimeout(600); }
 
-    const 有效帧 = 帧.filter((f) => f && f.length === 3 && Number.isFinite(f[1]));  // 立规 82
+    const 有效帧 = 帧.filter((f) => f && f.length === 3 && Number.isFinite(f[1]));  // 立规 86
     if (有效帧.length === 0) { out.档[w] = { 无效: '6 帧全空', 帧, 初始 }; out.无效臂++; log(w, '⛔ 6 帧全空'); continue; }
 
     const ty集合 = [...new Set(帧.map((f) => f && f[1]))];

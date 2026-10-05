@@ -55,7 +55,7 @@ for (const 臂 of 臂集) {
     await p.waitForSelector('.react-flow__node', { timeout: 45000 });
     await p.waitForTimeout(4500);
 
-    await p.keyboard.press('Escape');        // 🔴 清场必须在开面板之前（立规 83）
+    await p.keyboard.press('Escape');        // 🔴 清场必须在开面板之前（立规 87）
     await p.waitForTimeout(400);
     const 搜索钮 = await p.evaluate(() => {
       const e = document.querySelector('[data-testid="canvas-panel-launcher"][aria-label="搜索"]')
