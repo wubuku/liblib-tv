@@ -5816,6 +5816,9 @@ def main() -> int:
     #   ⚠️ 判据组 `WWWWW.2` 要钉的是**「两批不适用」这个结论**
     p989 = ROOT / "scripts/jimeng_probe989_ruler_reread.py"
     _p989 = p989.read_text(encoding="utf-8") if p989.exists() else ""
+    #   ⚠️ 判据组 `XXXXX.3`/`XXXXX.4` 要钉的是 P1 成立与 P2/P3 被否
+    p990 = ROOT / "scripts/jimeng_probe990_prodbuild_ck.py"
+    _p990 = p990.read_text(encoding="utf-8") if p990.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -11155,6 +11158,221 @@ def main() -> int:
           and '"offline_only"' in _p989
           and '"source_side_is_archived"' in _p989)
 
+    # ══ XXXXX. 批 990 **复刻侧 dev×prod 对读**（2/2 逐格一致）——
+    #   ⭐⭐⭐⭐⭐ **第一次量「生产构建」** —— 而 973/983/987 的复刻侧读数
+    #   **全部来自 dev server** ⇒ 「dev 上量到的」能不能搬到「生产上」
+    #   **从来没人验过**
+    print("— XXXXX. 批 990 复刻侧 dev×prod 对读："
+          "⭐⭐⭐⭐⭐ **第一次量「生产构建」** ⇒ "
+          "**P1 成立（间隙与构建模式无关）／P2·P3 被否（我猜错了 dev-only 长什么样）**")
+    check("XXXXX.1 ⭐⭐⭐⭐⭐ **P1 成立：间隙在生产构建里仍然在** —— "
+          "dev `gap_steps = 5`、prod `gap_steps = 5`（2/2 逐格相同）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **间隙是 Blink 引擎行为、与构建模式无关** ⇒ "
+          "⇒ **985 那条「它是引擎层行为、与登录态无关」"
+          "现在还多了半句：与构建模式也无关** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **985 那句不白写、它扛住了这一次换构建模式的检验**",
+          '"p1_gap_survives_production"' in _p990
+          and "**P1 成立：间隙在生产构建里仍然在**" in _p990
+          and "dev `gap_steps = 5`、prod `gap_steps = 5`（2/2 逐格相同）" in _p990
+          # ⚠️ 探针里这句**分两行**、所以只钉其中**逐字存在的**那一段
+          and "**间隙是 Blink 引擎行为、" in _p990
+          and "与构建模式无关** ⇒ " in _p990
+          and "与构建模式也无关**" in _p990
+          and '"p1_hold_990"' in _ausrc
+          and "**P1 成立：间隙在生产构建里仍然在**" in _ausrc
+          and "dev `gap_steps = 5`、prod `gap_steps = 5`（2/2 逐格相同）" in _ausrc
+          and "**间隙是 Blink 引擎行为、与构建模式无关**" in _ausrc
+          and "现在还多了半句：与构建模式也无关" in _ausrc
+          # ⭐⭐⭐⭐ 反向门：**「间隙是 dev-only 现象」这个错结论不许出现在任何一边**
+          and "间隙是 dev-only 现象" not in _p990
+          and "间隙是 dev-only 现象" not in _ausrc)
+
+    check("XXXXX.2 ⭐⭐⭐⭐⭐ **本批最值钱的一步是「先量新鲜度、再量内容」** —— "
+          "仓里那个 `.next` 生产产物是**过期的**（产物 `Oct 3 05:57`、"
+          "而 `JimengWorkspace.tsx` 改于 `Oct 4 23:01`）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **用它去量、量到的是一份已经不存在的代码** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **这与 988 那条「引文必须逐字来自原文」是同一族："
+          "先确认你量的是不是那个东西** ⇒ ⇒ "
+          "⇒ ⭐⭐ **「有产物」不等于「产物是新的」**",
+          '"stale_build_first"' in _p990
+          and "仓里那个 `.next` 生产产物是过期的" in _p990
+          and "先量新鲜度、再量内容" in _p990
+          and '"stale_build_first_990"' in _ausrc
+          and "仓里那个 `.next` 生产产物是过期的" in _ausrc
+          and "**用它去量、量到的是一份已经不存在的代码**" in _ausrc
+          and "这与 988 那条「引文必须逐字来自原文」是同一族" in _ausrc
+          # ⭐⭐⭐⭐ 反向门：**不许把「产物存在」当成「产物新鲜」**
+          and "产物存在即可信" not in _p990
+          and "产物存在即可信" not in _ausrc)
+
+    check("XXXXX.3 ⭐⭐⭐⭐⭐ **本批踩的第一个坑：Turbopack 拒绝指向项目根外的"
+          "`node_modules` 符号链接** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ 改用 `cp -Rc`（APFS 写时复制）**真克隆**（1.7G / 17s）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **这一条与「别在共享产物目录上构建」同源**："
+          "**都是为了让构建发生在一个不共享的地方**",
+          '"no_shared_dot_next"' in _p990
+          and "Turbopack 拒绝" in _p990
+          and "改用 `cp -Rc` 真克隆" in _p990
+          and "别在共享产物目录上构建" in _p990
+          and '"two_traps_990"' in _ausrc
+          and "Turbopack 拒绝" in _ausrc
+          and "改用 `cp -Rc` 真克隆" in _ausrc
+          and "别在共享产物目录上构建" in _p990
+          # ⭐⭐⭐ 反向门：**符号链接那条失败信息是真的**、不许改成别的措辞
+          and "points out of the filesystem root" in _p990)
+
+    check("XXXXX.4 ⭐⭐⭐⭐⭐ **本批最要紧的一条纪律：两次都改成「在一次性副本里改」、"
+          "而不是改仓库** —— ① 符号链接不行 ⇒ 用副本里的真克隆；"
+          "② `output: standalone` 下 `next start` ⇒ **Next 自己警告**不支持 "
+          "⇒ ⇒ ⭐⭐⭐⭐⭐ **于是仓库的 `next.config.ts` 一个字节都没改**"
+          "（仍是 `output: \"standalone\"`）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **这是「绝对不能干扰其他人的工作」在工具层面的落实** "
+          "⇒ 而共享的 `.next` 也没被碰（dev server `pid 51810` 未受干扰）",
+          '"two_traps"' in _p990
+          and "**Next 自己警告" in _p990
+          and "**两次都改成「在一次性副本里改」" in _p990
+          and "、**而不是改仓库**" in _p990
+          and "而不是改仓库" in _p990
+          and "仓库一个字节都没改" in _p990
+          and "**这是「绝对不能干扰其他人的工作」" in _p990
+          and "在工具层面的落实**" in _p990
+          and '"two_traps_990"' in _ausrc
+          and "**两次都改成「在一次性副本里改」、" in _ausrc
+          and "**而不是改仓库**" in _ausrc
+          and "**这是「绝对不能干扰其他人的工作」在工具层面的落实**" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许为了跑通就把仓库的 `next.config.ts` 改掉**
+          and "把仓库的 next.config.ts 改成 undefined" not in _ausrc
+          and "仓库的 next.config.ts 已改" not in _p990)
+
+    check("XXXXX.5 ⭐⭐⭐⭐⭐ **P2 与 P3 都被否掉了、而否掉它们的读数是本批第二件值钱的事** —— "
+          "我第一版的 `dev_only` 判据是「在不在 shadow root / "
+          "宿主名含不含 `nextjs-portage`」⇒ **它数出 0** "
+          "（`n_nextjs_portage` 两边都是 0、`in_shadow` 是 `False`）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **我猜错了 dev-only 长什么样** ⇒ ⇒ "
+          "⇒ 而**真正的多出来那一格是 `tag = NEXTJS-PORTAL`、在**主文档**里"
+          "（`in_shadow = False`）** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **「恒假的读数也有信息量」**（985 那条）—— "
+          "`dev_only_by_structure_guess = 0` **原样保留** ⇒ "
+          "**删掉它才是错的**",
+          '"p2_p3_refuted"' in _p990
+          and "我猜错了 dev-only 长什么样" in _p990
+          and "**它数出 0**" in _p990
+          and "真正的多出来那一格是" in _p990
+          and '"constant_false_reading_kept"' in _p990
+          and "恒假的读数也有信息量" in _p990
+          and "删掉它才是错的" in _p990
+          and '"p2_p3_refuted_990"' in _ausrc
+          and "**我猜错了 dev-only 长什么样**" in _ausrc
+          and "它数出 0" in _ausrc
+          and "**真正的多出来那一格是" in _ausrc
+          and "**「恒假的读数也有信息量」**" in _ausrc
+          and "**删掉它才是错的**" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把那个恒假读数悄悄删掉**
+          and '"dev_only_by_structure_guess": _d.get("n_dev_only_in_lap")' in _p990
+          and "**原样保留在读数里**" in _p990
+          and "dev_only_by_structure_guess" in _ausrc)
+
+    check("XXXXX.6 ⭐⭐⭐⭐⭐ **「dev-only」不是任何单边 DOM 里能认出来的东西** —— "
+          "**它是「这一格在 dev 有、在 prod 没有」这件事本身** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **所以判据必须是「两边的 DOM 各有什么」** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ 而 P2' / P3' 就是这么证的："
+          "`NEXTJS-PORTAL` 在 dev 的 census 里计数 1、在 prod 的 census 里计数 0"
+          "；两边的 key 集合**完全相同** ⇒ **差的是位置数（环长 26 → 25）** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **这与 989 那条「尺子有适用范围」同族："
+          "判据要问对那个问题、而不是问一个「单边就能答」的问题**",
+          '"dev_only_not_identifiable_in_one_build"' in _p990
+          and "「dev-only」不是任何单边 DOM" in _p990
+          and "里能认出来的东西**" in _p990
+          and "它是「这一格在 dev 有、在 prod 没有」这件事本身" in _p990
+          and "所以判据必须是「两边的 DOM 各有什么」" in _p990
+          and '"p2prime_p3prime_hold"' in _p990
+          and '"dev_only_not_identifiable_in_one_build_990"' in _ausrc
+          and "**它是「这一格在 dev 有、在 prod 没有」这件事本身**" in _ausrc
+          and "**所以判据必须是「两边的 DOM 各有什么」、" in _ausrc
+          and '"p2prime_p3prime_990"' in _ausrc
+          and "在 dev 的 census 里计数 **1**" in _ausrc
+          and "在 prod 的 census 里计数 **0**" in _ausrc
+          and "**环长 26 → 25**" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**「单边就能认定 dev-only」这个错法不许出现**
+          and "在 shadow root 里就是 dev-only" not in _p990
+          and "宿主名含 nextjs-portage 即可认定 dev-only" not in _p990)
+
+    check("XXXXX.7 ⭐⭐⭐⭐⭐ **本批冒出来的一条限定、而它限制的是 985/986 自己的读数** —— "
+          "985/986 量「间隙落在环的哪一格上」**零例外** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **而那句话说的是「结构位置」**"
+          "（间隙**紧贴最后一格之前**、两个构建都如此、`gap_from_end` 两边都是 −2）"
+          "⇒ ⇒ ⭐⭐⭐⭐⭐ **绝对下标在两个构建里不一样**"
+          "（dev 环 26 里间隙在 **24**、prod 环 25 里间隙在 **23**）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **成因**：多出来那一格"
+          "（`NEXTJS-PORTAL`）**正好插在「最后一格业务停靠点」与「间隙」之间** "
+          "⇒ **它把间隙整体往后顶了一格** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **「间隙在下标 24」这句话不是构建无关的** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **「结构位置」与「绝对下标」不是一个口径、不许互相顶替**"
+          "（981 那条「同一个东西要比同一个口径」）",
+          '"gap_index_limit_990_"' in _p990
+          and "绝对下标在两个构建里不一样" in _p990
+          and "间隙在下标 24」这句话不是构建无关的" in _p990
+          and "「结构位置」与「绝对下标」不是一个口径、不许互相顶替" in _p990
+          and '"gap_index_limit_990_"' in _ausrc
+          and "**绝对下标在两个构建里不一样**" in _ausrc
+          and "（dev 环 26 里间隙在 24、prod 环 25 里间隙在 23）" in _ausrc
+          and "**「间隙在下标 24」这句话不是构建无关的**" in _ausrc
+          and "**「结构位置」与「绝对下标」不是一个口径、不许互相顶替**" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「相对位置也变了」这个错说法写进来**
+          and "间隙的相对位置在两个构建里也不一样" not in _p990
+          and "间隙的相对位置在两个构建里也不一样" not in _ausrc)
+
+    check("XXXXX.8 ⭐⭐⭐⭐ **本批第二个仪器坑、而且是我自己新写的读数** —— "
+          "我第一版取「那一格的 key」、取的却是 `one_lap[i][key]` ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **而那个字段是「按了哪个键」、每一行恒为 `Tab`** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **这是一件恒真的读数** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **985 那条纪律是「恒假的读数要留」、"
+          "而它的另一半是「恒真的读数要认出它」** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **它是靠人眼发现的、不是靠门** ⇒ "
+          "**门只能验「我钉的判据成不成立」、验不出「我取错了字段」** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **改正之后才得到「两边的 key 集合完全相同」的成因**："
+          "**多出来那一格与间隙那一格在 key 上撞了**（都是 `None/None`）",
+          '"always_true_reading_990_"' in _p990
+          and "恒为 `Tab`" in _p990
+          and "这是一件恒真的读数" in _p990
+          and "「恒假的读数要留」" in _p990
+          and "它的另一半是「恒真的读数要认出它」" in _p990
+          and "门只能验「我钉的判据成不成立」、验不出「我取错了字段」" in _p990
+          and "多出来那一格与间隙那一格在 key 上撞了" in _p990
+          and '"always_true_reading_990_"' in _ausrc
+          and "**这是一件恒真的读数**" in _ausrc
+          and "**而它的另一半是「恒真的读数要认出它」**" in _ausrc
+          and "**它是靠人眼发现的、不是靠门**" in _ausrc
+          and "**验不出「我取错了字段」**" in _ausrc
+          and '"extra_cell_key_is_none_990_"' in _ausrc
+          and "**多出来的那一格和间隙那一格在 key 上撞了**" in _ausrc)
+
+    check("XXXXX.9 ⭐⭐⭐⭐⭐ **本批不是纯离线、而零计费仍是结构性的** —— "
+          "它要起**两个**服务器（dev 4317 + 一次性副本上的 prod 4318）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **但仍然零计费**：**只按 `Tab`**、"
+          "唯一的 `mouse.click` 点在 `about:blank` 空白处、"
+          "⛔ 计费守卫拦在 `mouse.click` **之前** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **源站根本不打开**（985 已确认登录态过期）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **「零计费」有两种：自律的、还有结构性的** —— "
+          "988/989 是后者（不打开浏览器、不按任何键），"
+          "**990 是「要起服务、但仍然一次都不碰计费面」** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐ **二者都成立、而「不是纯离线」必须写出来、不许含混**",
+          '"zero_billing"' in _p990
+          and "**本批不是纯离线**" in _p990
+          and "**但仍然零计费**" in _p990
+          and "**只按 `Tab`**" in _p990
+          and "计费守卫拦在 `mouse.click` **之前**" in _p990
+          and "**源站根本不打开**" in _p990
+          and '"offline_vs_online_990"' in _ausrc
+          and "**本批不是纯离线**" in _ausrc
+          and "**但仍然零计费**" in _ausrc
+          and "⛔ 计费守卫拦在 `mouse.click` **之前**" in _ausrc
+          and "**源站根本不打开**" in _ausrc
+          and '"offline_989"' in _ausrc
+          and "**零计费是结构性的、不是自律的**" in _ausrc
+          # ⭐⭐⭐⭐ 反向门：**「本批纯离线」这个说法是错的**、不许出现
+          and "本批纯离线（不打开浏览器、不按任何键）" not in _p990
+          and "本批纯离线（不打开浏览器、不按任何键）" not in _ausrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
