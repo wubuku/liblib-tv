@@ -380,6 +380,7 @@ interface CanvasState {
   duplicateSelectedNodes: (nodeIds?: readonly string[]) => void;
   removeNode: (nodeId: string) => void;
   removeSelectedNodes: (nodeIds?: readonly string[]) => void;
+  nudgeSelectedNodes: (delta: { x: number; y: number }) => void;
   groupSelectedNodes: (nodeIds?: readonly string[]) => void;
   ungroupSelectedNodes: (nodeIds?: readonly string[]) => void;
   updateNodeData: (nodeId: string, data: Record<string, unknown>) => void;
@@ -3372,6 +3373,66 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
         selectedNodeIds: [],
         selectedNodeId: null,
         selectedEdgeIds: [],
+        historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
+      };
+    });
+  },
+
+  // ★ Batch 795：键盘方向键移动。画布此前**完全没有**这个能力 ——
+  //   `page.tsx` 的 keydown 分支里没有任何 `Arrow*`，react-flow v12 也不内建，
+  //   store 侧更没有对应 API ⟹ 键盘用户完全无法移动节点。
+  //
+  //   两个必须遵守的约定：
+  //   1. **必须过 `fitStoryboardGroupsToChildren`**（793 的收口）⟹ 否则这就是
+  //      794 刚修完的「第三个漏掉的写点」：成员被键盘挪走，框不跟随。
+  //      推组时成员绝对位置没变 ⟹ 算出来是 no-op ⟹ 组移动后成员仍贴住它。
+  //   2. **必须记历史**（793 的 `onNodeDragStop` 同样做这件事）⟹ 否则会出现
+  //      756 记的那种「用户唯一出路是撤销、但撤销里没有这次移动」。
+  //
+  //   `delta` 由调用方给（1 像素 = 一次按压，`Shift` 加速由 UI 层决定），
+  //   store 不猜步长。
+  nudgeSelectedNodes: (delta) => {
+    const { activeCanvasId } = get();
+    if (!delta || (delta.x === 0 && delta.y === 0)) return;
+    set((state) => {
+      const currentCanvas = state.canvases.find(
+        (canvas) => canvas.id === activeCanvasId,
+      );
+      if (!currentCanvas) return state;
+      const selected = currentCanvas.nodes.filter(
+        (node) => state.selectedNodeIds.includes(node.id),
+      );
+      if (selected.length === 0) return state;
+      // ★ 组与它的成员**一起**搬：直接改 `position` 是相对父节点的偏移，
+      //   组和成员同时加同一个 delta 就能保持相互关系不变。
+      const movingIds = new Set<string>();
+      for (const node of selected) {
+        movingIds.add(node.id);
+        for (const child of currentCanvas.nodes) {
+          if (child.parentId === node.id) movingIds.add(child.id);
+        }
+      }
+      return {
+        canvases: state.canvases.map((canvas) =>
+          canvas.id === activeCanvasId
+            ? {
+                ...canvas,
+                nodes: fitStoryboardGroupsToChildren(
+                  canvas.nodes.map((node) =>
+                    movingIds.has(node.id)
+                      ? {
+                          ...node,
+                          position: {
+                            x: node.position.x + delta.x,
+                            y: node.position.y + delta.y,
+                          },
+                        }
+                      : node,
+                  ),
+                ),
+              }
+            : canvas,
+        ),
         historyByCanvas: pushHistory(state.historyByCanvas, currentCanvas),
       };
     });

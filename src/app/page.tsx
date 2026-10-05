@@ -162,6 +162,13 @@ const emptyNodes: Node[] = [];
 const emptyEdges: Edge[] = [];
 const desktopViewport = { x: -583.8, y: 260.8, zoom: 0.526 };
 const compactViewport = { x: 17, y: 128, zoom: 0.28 };
+// ★ Batch 795：方向键 → 位移方向。键不在表里就是「不是移动键」，不参与处理。
+const ARROW_NUDGE: Record<string, { x: number; y: number }> = {
+  ArrowUp: { x: 0, y: -1 },
+  ArrowDown: { x: 0, y: 1 },
+  ArrowLeft: { x: -1, y: 0 },
+  ArrowRight: { x: 1, y: 0 },
+};
 
 interface LibTVAssetLayoutLogEntry {
   operationId: number;
@@ -375,6 +382,7 @@ export default function Home() {
     groupSelectedNodes,
     ungroupSelectedNodes,
     removeSelectedNodes,
+    nudgeSelectedNodes,
     undo,
     redo,
     duplicateSelectedNodes,
@@ -1381,6 +1389,23 @@ export default function Home() {
         event.preventDefault();
         toggleAddNodePanel();
       }
+      // ★ Batch 795：方向键移动选区里的节点。此前画布**完全没有**这个能力。
+      //   步长：`Shift` 按住时 10 像素，否则 1 像素 —— 和桌面画布的惯例一致。
+      //   ★ 不碰 modifier 组合：`Cmd/Ctrl+方向` 与 `Alt+方向` 留给浏览器/系统，
+      //     只认**无修饰键**的裸方向键，避免抢走「切标签页」「前进后退」等。
+      if (!modifier && !event.altKey) {
+        const nudge = ARROW_NUDGE[event.key];
+        if (nudge) {
+          const selection = useCanvasStore.getState().getSelectionSnapshot();
+          // ★ 没选区就让方向键**原样透传**（不 preventDefault）⟹ 焦点不在画布
+          //   节点上时，用户仍能用方向键滚动别的面板。
+          if (selection.nodeIds.length > 0) {
+            event.preventDefault();
+            const step = event.shiftKey ? 10 : 1;
+            nudgeSelectedNodes({ x: nudge.x * step, y: nudge.y * step });
+          }
+        }
+      }
       if (!modifier && !event.altKey && event.key.toLowerCase() === "g") {
         event.preventDefault();
         const selection = useCanvasStore.getState().getSelectionSnapshot();
@@ -1438,6 +1463,7 @@ export default function Home() {
     groupSelectedNodes,
     organize,
     removeSelectedNodes,
+    nudgeSelectedNodes,
     redo,
     selectElements,
     ungroupSelectedNodes,

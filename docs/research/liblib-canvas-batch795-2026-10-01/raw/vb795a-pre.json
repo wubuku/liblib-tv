@@ -1,0 +1,358 @@
+{
+ "batch": 795,
+ "phase": "pre",
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "arrowMovesMember",
+     "gid": "group-1791229520069-1d79x9",
+     "kid": "t-9j2MoccxBj",
+     "before": {
+      "past": 1,
+      "nodeCount": 11,
+      "targets": [
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": true,
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200
+       },
+       {
+        "id": "group-1791229520069-1d79x9",
+        "exists": true,
+        "abs": {
+         "x": 76,
+         "y": -157
+        },
+        "w": 706,
+        "h": 812
+       }
+      ]
+     },
+     "after": {
+      "past": 1,
+      "nodeCount": 11,
+      "targets": [
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": true,
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200
+       },
+       {
+        "id": "group-1791229520069-1d79x9",
+        "exists": true,
+        "abs": {
+         "x": 76,
+         "y": -157
+        },
+        "w": 706,
+        "h": 812
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "arrowMovesGroup",
+     "gid": "group-1791229524429-r2jdvo",
+     "kid": "t-9j2MoccxBj",
+     "before": {
+      "past": 1,
+      "nodeCount": 11,
+      "targets": [
+       {
+        "id": "group-1791229524429-r2jdvo",
+        "exists": true,
+        "abs": {
+         "x": 76,
+         "y": -157
+        },
+        "w": 706,
+        "h": 812
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": true,
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200
+       }
+      ]
+     },
+     "after": {
+      "past": 1,
+      "nodeCount": 11,
+      "targets": [
+       {
+        "id": "group-1791229524429-r2jdvo",
+        "exists": true,
+        "abs": {
+         "x": 76,
+         "y": -157
+        },
+        "w": 706,
+        "h": 812
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": true,
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "positiveDelete",
+     "gid": "group-1791229528882-iv2nvv",
+     "kid": "t-9j2MoccxBj",
+     "before": {
+      "past": 1,
+      "nodeCount": 11,
+      "targets": [
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": true,
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200
+       },
+       {
+        "id": "group-1791229528882-iv2nvv",
+        "exists": true,
+        "abs": {
+         "x": 76,
+         "y": -157
+        },
+        "w": 706,
+        "h": 812
+       }
+      ]
+     },
+     "after": {
+      "past": 2,
+      "nodeCount": 10,
+      "targets": [
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": false,
+        "abs": null,
+        "w": null,
+        "h": null
+       },
+       {
+        "id": "group-1791229528882-iv2nvv",
+        "exists": true,
+        "abs": {
+         "x": 100,
+         "y": 241
+        },
+        "w": 682,
+        "h": 414
+       }
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "arrowMovesMember",
+     "gid": "group-1791229535087-5i4maz",
+     "kid": "t-9j2MoccxBj",
+     "before": {
+      "past": 1,
+      "nodeCount": 11,
+      "targets": [
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": true,
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200
+       },
+       {
+        "id": "group-1791229535087-5i4maz",
+        "exists": true,
+        "abs": {
+         "x": 76,
+         "y": -157
+        },
+        "w": 706,
+        "h": 812
+       }
+      ]
+     },
+     "after": {
+      "past": 1,
+      "nodeCount": 11,
+      "targets": [
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": true,
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200
+       },
+       {
+        "id": "group-1791229535087-5i4maz",
+        "exists": true,
+        "abs": {
+         "x": 76,
+         "y": -157
+        },
+        "w": 706,
+        "h": 812
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "arrowMovesGroup",
+     "gid": "group-1791229539432-fa4t2v",
+     "kid": "t-9j2MoccxBj",
+     "before": {
+      "past": 1,
+      "nodeCount": 11,
+      "targets": [
+       {
+        "id": "group-1791229539432-fa4t2v",
+        "exists": true,
+        "abs": {
+         "x": 76,
+         "y": -157
+        },
+        "w": 706,
+        "h": 812
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": true,
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200
+       }
+      ]
+     },
+     "after": {
+      "past": 1,
+      "nodeCount": 11,
+      "targets": [
+       {
+        "id": "group-1791229539432-fa4t2v",
+        "exists": true,
+        "abs": {
+         "x": 76,
+         "y": -157
+        },
+        "w": 706,
+        "h": 812
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": true,
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "positiveDelete",
+     "gid": "group-1791229543745-s8law0",
+     "kid": "t-9j2MoccxBj",
+     "before": {
+      "past": 1,
+      "nodeCount": 11,
+      "targets": [
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": true,
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200
+       },
+       {
+        "id": "group-1791229543745-s8law0",
+        "exists": true,
+        "abs": {
+         "x": 76,
+         "y": -157
+        },
+        "w": 706,
+        "h": 812
+       }
+      ]
+     },
+     "after": {
+      "past": 2,
+      "nodeCount": 10,
+      "targets": [
+       {
+        "id": "t-9j2MoccxBj",
+        "exists": false,
+        "abs": null,
+        "w": null,
+        "h": null
+       },
+       {
+        "id": "group-1791229543745-s8law0",
+        "exists": true,
+        "abs": {
+         "x": 100,
+         "y": 241
+        },
+        "w": 682,
+        "h": 414
+       }
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}
