@@ -148,8 +148,10 @@
   详见 `SOURCE_OBSERVATIONS.md` §4.73。
 - ⚠️ **主体节点例外**：它**始终**另有一个行内标题 `Edit 主体 1`（48.4×19.9，**在卡片内部** +6.6），
   与浮层 `Rename` **并存**。详见 [主体节点](10-tasks/subject-node.md)。
-- **连接 ⊕ 按钮也不对称**：`before`+`after` 两者都有的是 视频/图片/音频/主体；
-  文本**只有 `after`**、时间线**只有 `before`**、导演台**两个都没有**。
+- **连接 ⊕ 按钮也不对称**：`before`+`after` 两者都有的是 视频/音频/主体，
+  以及**空的**图片节点（🔴 批次 188 订正：~~图片~~ 要看**有没有内容** ——
+  **带内容的图片节点只有 `after`**）；文本**只有 `after`**、时间线**只有 `before`**、
+  导演台**两个都没有**。逐格读数见 [连接节点](10-tasks/connect-nodes.md#哪些类型有几个-批次-184-六类逐个普查取代批次-71-的两行列表)。
 
 ## 不耗积分的本地加工操作
 
@@ -301,7 +303,10 @@
   点 ⊕ 的**左边**（before）弹「**添加上下文**」、菜单在节点**左侧**；
   点 ⊕ 的**右边**（after）弹「**添加节点**」、菜单在节点**右侧**。
   **标题跟按钮走，不跟源节点类型走。** 逐项表见下节。
-  **两个入口**：① 选中节点后点其左右 **36×36** 的 ⊕ 按钮
+  **两个入口**：① 选中节点后点其左右的 ⊕ 按钮（🔴 **屏上尺寸不是常数**：
+  ⊕ 的屏上尺寸是 **`min(72×缩放, 36)`**（批次 188 用 22/26/40/50/60/75/100/150/200% 九档钉死，
+  拐点正好 50%）—— 批次 78/187 先后把它误记成「恒为 36×36」和「主体特别小」，
+  **两次都错在拿不同缩放的读数互比**，详见 [连接节点](10-tasks/connect-nodes.md#入口)）
   （aria 逐字 `Create connected node before/after <节点名>`，
   testid `flow-node-target-connection-menu-button` /
   `flow-node-source-connection-menu-button`，**仅选中时出现**）；
@@ -344,6 +349,7 @@ aria 逐字 `Create connected node before <节点名>`）—— **批次 71 新�
 | **文本** | ⛔ 本类型**只有 after ⊕**，没有 before ⊕ | | | | | | | **只有 after** |
 | **图片** | ✅ | ✅ | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | before + after |
 | **图片（已上传素材）** | — | — | — | — | — | — | — | 🔴 **只有 after**：这个源**根本没有 before ⊕**（`flow-node-target-connection-menu-button` 全文档计数 **0**）⇒ **整行不适用**，不是「七项全灰」 |
+| 🔴 **图片（空节点）** | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | **before + after**（批次 188 实测：空图片节点 `⊕ 个数 = 2`、两个手柄 `::before` 都是 `auto` ⇒ **上面那行不是图片类型的属性，是「带内容」的属性**；本行七项全灰**未逐项点开**，仅据 `::before` 可拖性推得） |
 | **视频** | ✅ | ✅ | ✅ | ✅ | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | before + after |
 | **音频** | 🔘 无法连接 | ✅ | 🔘 无法连接 | ✅ | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | before + after |
 | **时间线** | 🔘 无法连接 | 🔘 **没有可用的就绪资源** | 🔘 **没有可用的就绪资源** | ✅ | 🔘 无法连接 | 🔘 无法连接 | 🔘 无法连接 | **只有 before** |
@@ -527,6 +533,17 @@ aria 逐字 `Create connected node before <节点名>`）—— **批次 71 新�
   `selection-context-toolbar` `256.1×40`、`-count` `54.1×32`、多选手柄 `60×120`、连接菜单按钮 `36×36`。
   机制：多选条挂在 `.react-flow__node-toolbar → .react-flow__renderer` 下，
   **不在 `.react-flow__viewport` 里**，所以是**自己按 canvas 尺寸算完再手工乘 scale**。
+  🔴 **批次 188 复测 + 把 testid 补齐**：这里说的「连接菜单按钮」是
+  **`flow-node-multi-selection-source-connection-menu-button`**（aria 逐字
+  `Create connected node after selected nodes`），
+  它的直接父级实测就是 `DIV.react-flow__node-toolbar[data-testid="flow-node-multi-selection-source-toolbar"]`
+  （`offsetWidth = 0`）→ `.react-flow__renderer`；它自身的 `scale` 属性恒为 **`1`**
+  ⇒ **屏上真恒定 `36×36`**，22/26/50/100% 四档复现。
+  ⚠️ **别把它和单选节点那个 ⊕ 混为一谈** —— 后者 testid 是
+  `flow-node-*-connection-menu-button`、**在 viewport 内**、屏上是 `min(72×缩放, 36)`，
+  50% 以下会变小。两个按钮**数值都是 36、契约正好相反**。
+  📌 另一条同轮实测：**多选时单选节点的 ⊕ 一个都不出现**
+  （框选 7 个与 9 个两轮，全文档只剩多选那 1 个、节点内部总数 `0`）。
 - 🔑 **工具条按钮的 DOM 契约（批次 50/51 实测，选按钮时必看）**：
   - **有的按钮只有 innerText、没有 `aria-label`**：多选工具条的 `编组` / `布局`
     （图片节点工具条前 10 项同理）。只按 `aria-label` 找会**返回 null**，
@@ -1876,7 +1893,7 @@ b 轮穷举把它找回来了。📌 **「我没查到」≠「它不存在」�
 |---|---|---|
 | `flow-node-multi-selection-source-toolbar` | `0×0` | **零面积**，内含 1 个按钮 |
 | `flow-node-multi-selection-source-handle` | `60×120` | 多选集合的出边热区。🔴 **这是「屏上恒 `60×120`」**（40/60/100/200% 四档屏上与 `offsetWidth` 逐字相同），**不是**每节点连接手柄那条「canvas 恒 `60×120`」—— 两者 `offsetWidth` 都是 `60×120`，但**多选手柄挂在 `.react-flow__node-toolbar` 下、不在 `.react-flow__viewport` 里**（不被 scale 乘），每节点手柄在 viewport 内（被乘，60% 下屏上 `36×72`） |
-| `flow-node-multi-selection-source-connection-menu-button` | `36×36` | aria 逐字 **`Create connected node after selected nodes`**。四档屏上恒 `36×36` |
+| `flow-node-multi-selection-source-connection-menu-button` | `36×36` | aria 逐字 **`Create connected node after selected nodes`**。四档屏上恒 `36×36`。✅ **批次 188 独立复现**（22/26/50/100% 四档逐档 `36`，`offsetWidth = 36`、`scale` 属性恒 `1`、父级就是上一行那个 `0×0` 工具条）⇒ **它与多选手柄同层同契约，而与单选节点的 ⊕ 契约相反**（单选那个屏上是 `min(72×缩放, 36)`） |
 
 ### 🆕 两个「显示」开关的成对契约（批次 138 首次成对建档）
 
