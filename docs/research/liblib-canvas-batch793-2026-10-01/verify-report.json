@@ -1,0 +1,704 @@
+{
+ "batch": 793,
+ "checks": [
+  {
+   "id": "S1:纯函数存在，且**替换**了原写点",
+   "desc": "★ 位置变更落库的唯一收口是 `nodes: plan.nextNodes.map(...)` （`page.tsx:600` 全部经 `routeReactFlowChanges` 进来）",
+   "ok": true,
+   "detail": {
+    "fnDef": 1,
+    "fnCall": 1,
+    "旧写点还在": 0
+   }
+  },
+  {
+   "id": "S2:★ 两条刻意边界都在（空组不动 + 容差 no-op）",
+   "desc": "★ 空组不动 = 757 待拍板 ②（源站未采样）；容差 = 浮点噪声会让精确相等的 no-op 分支永不成立（实测 414 → 414.00000000000006）",
+   "ok": true,
+   "detail": {
+    "emptyGuard": 1,
+    "eps": 1
+   }
+  },
+  {
+   "id": "S3:★★ 处理臂：pre 框不动且子节点出框，post 框跟上且子节点在框内",
+   "desc": "★ `childInside` 来自 **DOM rect** 的包含关系（pre/post 同页同 zoom，zoom 自己约掉），不是拿 store 坐标反推",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "groupMoved": false,
+      "groupSizeChanged": false,
+      "childInside": [
+       true,
+       false
+      ],
+      "childMoved": true,
+      "beforeGroup": {
+       "pos": {
+        "x": 2374,
+        "y": -12
+       },
+       "w": 722,
+       "h": 460
+      },
+      "beforeKid": {
+       "id": "v-UGQZzZOpbv",
+       "abs": {
+        "x": 2436,
+        "y": 50
+       },
+       "w": 622,
+       "h": 350,
+       "dom": {
+        "t": 184,
+        "l": 1033,
+        "w": 233,
+        "h": 131,
+        "b": 316,
+        "r": 1266
+       },
+       "inside": true
+      }
+     },
+     {
+      "groupMoved": false,
+      "groupSizeChanged": false,
+      "childInside": [
+       true,
+       false
+      ],
+      "childMoved": true,
+      "beforeGroup": {
+       "pos": {
+        "x": 2374,
+        "y": -12
+       },
+       "w": 722,
+       "h": 460
+      },
+      "beforeKid": {
+       "id": "v-UGQZzZOpbv",
+       "abs": {
+        "x": 2436,
+        "y": 50
+       },
+       "w": 622,
+       "h": 350,
+       "dom": {
+        "t": 184,
+        "l": 1033,
+        "w": 233,
+        "h": 131,
+        "b": 316,
+        "r": 1266
+       },
+       "inside": true
+      }
+     }
+    ],
+    "post": [
+     {
+      "groupMoved": true,
+      "groupSizeChanged": false,
+      "childInside": [
+       true,
+       true
+      ],
+      "childMoved": true,
+      "beforeGroup": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "beforeKid": {
+       "id": "v-UGQZzZOpbv",
+       "abs": {
+        "x": 2436,
+        "y": 50
+       },
+       "w": 622,
+       "h": 350,
+       "dom": {
+        "t": 184,
+        "l": 1034,
+        "w": 233,
+        "h": 131,
+        "b": 316,
+        "r": 1268
+       },
+       "inside": true
+      }
+     },
+     {
+      "groupMoved": true,
+      "groupSizeChanged": false,
+      "childInside": [
+       true,
+       true
+      ],
+      "childMoved": true,
+      "beforeGroup": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "beforeKid": {
+       "id": "v-UGQZzZOpbv",
+       "abs": {
+        "x": 2436,
+        "y": 50
+       },
+       "w": 622,
+       "h": 350,
+       "dom": {
+        "t": 184,
+        "l": 1034,
+        "w": 233,
+        "h": 131,
+        "b": 316,
+        "r": 1268
+       },
+       "inside": true
+      }
+     }
+    ]
+   }
+  },
+  {
+   "id": "S4:★ 对照一：拖非成员，两阶段组都不动",
+   "desc": "★ 缺了它，一个「凡是拖动就把**所有**组都重算一遍」的粗糙实现也能让 S3 通过",
+   "ok": true,
+   "detail": [
+    {
+     "groupMoved": false,
+     "groupSizeChanged": false,
+     "childInside": [
+      true,
+      true
+     ],
+     "childMoved": false,
+     "beforeGroup": {
+      "pos": {
+       "x": 2374,
+       "y": -12
+      },
+      "w": 722,
+      "h": 460
+     },
+     "beforeKid": {
+      "id": "v-UGQZzZOpbv",
+      "abs": {
+       "x": 2436,
+       "y": 50
+      },
+      "w": 622,
+      "h": 350,
+      "dom": {
+       "t": 184,
+       "l": 1033,
+       "w": 233,
+       "h": 131,
+       "b": 316,
+       "r": 1266
+      },
+      "inside": true
+     }
+    },
+    {
+     "groupMoved": false,
+     "groupSizeChanged": false,
+     "childInside": [
+      true,
+      true
+     ],
+     "childMoved": false,
+     "beforeGroup": {
+      "pos": {
+       "x": 2374,
+       "y": -12
+      },
+      "w": 722,
+      "h": 460
+     },
+     "beforeKid": {
+      "id": "v-UGQZzZOpbv",
+      "abs": {
+       "x": 2436,
+       "y": 50
+      },
+      "w": 622,
+      "h": 350,
+      "dom": {
+       "t": 184,
+       "l": 1033,
+       "w": 233,
+       "h": 131,
+       "b": 316,
+       "r": 1266
+      },
+      "inside": true
+     }
+    },
+    {
+     "groupMoved": false,
+     "groupSizeChanged": false,
+     "childInside": [
+      true,
+      true
+     ],
+     "childMoved": false,
+     "beforeGroup": {
+      "pos": {
+       "x": 2404,
+       "y": 18
+      },
+      "w": 686,
+      "h": 414
+     },
+     "beforeKid": {
+      "id": "v-UGQZzZOpbv",
+      "abs": {
+       "x": 2436,
+       "y": 50
+      },
+      "w": 622,
+      "h": 350,
+      "dom": {
+       "t": 184,
+       "l": 1034,
+       "w": 233,
+       "h": 131,
+       "b": 316,
+       "r": 1268
+      },
+      "inside": true
+     }
+    },
+    {
+     "groupMoved": false,
+     "groupSizeChanged": false,
+     "childInside": [
+      true,
+      true
+     ],
+     "childMoved": false,
+     "beforeGroup": {
+      "pos": {
+       "x": 2404,
+       "y": 18
+      },
+      "w": 686,
+      "h": 414
+     },
+     "beforeKid": {
+      "id": "v-UGQZzZOpbv",
+      "abs": {
+       "x": 2436,
+       "y": 50
+      },
+      "w": 622,
+      "h": 350,
+      "dom": {
+       "t": 184,
+       "l": 1034,
+       "w": 233,
+       "h": 131,
+       "b": 316,
+       "r": 1268
+      },
+      "inside": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "S5:★ 对照二：拖组本身，尺寸不变、成员跟着走、仍在框内",
+   "desc": "★ 组「移动」不等于组「重算」⟹ 拖组时成员绝对位置没变，整段必须是 no-op（否则说明重算在误伤）",
+   "ok": true,
+   "detail": [
+    {
+     "groupMoved": true,
+     "groupSizeChanged": false,
+     "childInside": [
+      true,
+      true
+     ],
+     "childMoved": true,
+     "beforeGroup": {
+      "pos": {
+       "x": 2374,
+       "y": -12
+      },
+      "w": 722,
+      "h": 460
+     },
+     "beforeKid": {
+      "id": "v-UGQZzZOpbv",
+      "abs": {
+       "x": 2436,
+       "y": 50
+      },
+      "w": 622,
+      "h": 350,
+      "dom": {
+       "t": 184,
+       "l": 1033,
+       "w": 233,
+       "h": 131,
+       "b": 316,
+       "r": 1266
+      },
+      "inside": true
+     }
+    },
+    {
+     "groupMoved": true,
+     "groupSizeChanged": false,
+     "childInside": [
+      true,
+      true
+     ],
+     "childMoved": true,
+     "beforeGroup": {
+      "pos": {
+       "x": 2374,
+       "y": -12
+      },
+      "w": 722,
+      "h": 460
+     },
+     "beforeKid": {
+      "id": "v-UGQZzZOpbv",
+      "abs": {
+       "x": 2436,
+       "y": 50
+      },
+      "w": 622,
+      "h": 350,
+      "dom": {
+       "t": 184,
+       "l": 1033,
+       "w": 233,
+       "h": 131,
+       "b": 316,
+       "r": 1266
+      },
+      "inside": true
+     }
+    },
+    {
+     "groupMoved": true,
+     "groupSizeChanged": false,
+     "childInside": [
+      true,
+      true
+     ],
+     "childMoved": true,
+     "beforeGroup": {
+      "pos": {
+       "x": 2404,
+       "y": 18
+      },
+      "w": 686,
+      "h": 414
+     },
+     "beforeKid": {
+      "id": "v-UGQZzZOpbv",
+      "abs": {
+       "x": 2436,
+       "y": 50
+      },
+      "w": 622,
+      "h": 350,
+      "dom": {
+       "t": 184,
+       "l": 1034,
+       "w": 233,
+       "h": 131,
+       "b": 316,
+       "r": 1268
+      },
+      "inside": true
+     }
+    },
+    {
+     "groupMoved": true,
+     "groupSizeChanged": false,
+     "childInside": [
+      true,
+      true
+     ],
+     "childMoved": true,
+     "beforeGroup": {
+      "pos": {
+       "x": 2404,
+       "y": 18
+      },
+      "w": 686,
+      "h": 414
+     },
+     "beforeKid": {
+      "id": "v-UGQZzZOpbv",
+      "abs": {
+       "x": 2436,
+       "y": 50
+      },
+      "w": 622,
+      "h": 350,
+      "dom": {
+       "t": 184,
+       "l": 1034,
+       "w": 233,
+       "h": 131,
+       "b": 316,
+       "r": 1268
+      },
+      "inside": true
+     }
+    }
+   ]
+  },
+  {
+   "id": "S6:★★ post 基线框精确等于按 padding 独立重算的贴合值",
+   "desc": "★ 用 raw 里的子节点读数重算，**不依赖**源码里的公式 ⟹ 公式写错也会被抓出来。★ 种子里 722×460 并不贴合它唯一那个 622×350 的成员",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "evidence": [
+     {
+      "phase": "pre",
+      "group": {
+       "x": 2374,
+       "y": -12,
+       "w": 722,
+       "h": 460
+      },
+      "tightFit": {
+       "x": 2404,
+       "y": 18,
+       "w": 686,
+       "h": 414
+      },
+      "equals": false
+     },
+     {
+      "phase": "pre",
+      "group": {
+       "x": 2374,
+       "y": -12,
+       "w": 722,
+       "h": 460
+      },
+      "tightFit": {
+       "x": 2404,
+       "y": 18,
+       "w": 686,
+       "h": 414
+      },
+      "equals": false
+     },
+     {
+      "phase": "post",
+      "group": {
+       "x": 2404,
+       "y": 18,
+       "w": 686,
+       "h": 414
+      },
+      "tightFit": {
+       "x": 2404,
+       "y": 18,
+       "w": 686,
+       "h": 414
+      },
+      "equals": true
+     },
+     {
+      "phase": "post",
+      "group": {
+       "x": 2404,
+       "y": 18,
+       "w": 686,
+       "h": 414
+      },
+      "tightFit": {
+       "x": 2404,
+       "y": 18,
+       "w": 686,
+       "h": 414
+      },
+      "equals": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "S7:★ 两轮的行为签名一致",
+   "desc": "★ 拖拽起点是扫描出来的、每轮差几个像素 ⟹ 拿像素判「一致」会误报",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  },
+  {
+   "id": "S8:两阶段各 3 臂 × 2 轮且无 FAILED",
+   "desc": "★ 探针 FAILED 或读数缺失就是**空读数**",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  },
+  {
+   "id": "S9:汇编器零失败",
+   "desc": "汇编器自己的断言必须全绿",
+   "ok": true,
+   "detail": {
+    "checks": 7,
+    "assertedAnchors": 4,
+    "failed": 0
+   }
+  },
+  {
+   "id": "S10:阴性对照已复原（源码 + raw，字节级）",
+   "desc": "★ N1/N5 改过 `src/store/canvasStore.ts` ⟹ 必须字节级还原",
+   "ok": true,
+   "detail": {
+    "driftedSrc": false,
+    "driftedRaw": []
+   }
+  }
+ ],
+ "totals": {
+  "checks": 10,
+  "passed": 10,
+  "failed": 0
+ },
+ "negativeControls": {
+  "total": 5,
+  "caught": 5,
+  "detail": [
+   {
+    "name": "N1 「空组不动」的边界被拆掉",
+    "why": "★ 验证 S2：空组处理是 757 待拍板 ② 的边界，拆掉它源码侧必须判红（它会把空组也收缩掉）",
+    "evidence": {
+     "oldGone": true,
+     "newThere": true
+    },
+    "expectFlipped": "S2:★ 两条刻意边界都在（空组不动 + 容差 no-op）",
+    "flipped": [
+     "S2:★ 两条刻意边界都在（空组不动 + 容差 no-op）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:纯函数存在，且**替换**了原写点",
+     "S3:★★ 处理臂：pre 框不动且子节点出框，post 框跟上且子节点在框内",
+     "S4:★ 对照一：拖非成员，两阶段组都不动",
+     "S5:★ 对照二：拖组本身，尺寸不变、成员跟着走、仍在框内",
+     "S6:★★ post 基线框精确等于按 padding 独立重算的贴合值",
+     "S7:★ 两轮的行为签名一致",
+     "S8:两阶段各 3 臂 × 2 轮且无 FAILED",
+     "S9:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N2 pre 的「子节点出框」被翻成「在框内」",
+    "why": "★ 验证 S3：「框不动导致子节点出框」这个读数**被真读了**（翻平之后 pre 与 post 就没区别，修复等于没发生）",
+    "evidence": {
+     "file": "vb793a-pre.json",
+     "hit": 2
+    },
+    "expectFlipped": "S3:★★ 处理臂：pre 框不动且子节点出框，post 框跟上且子节点在框内",
+    "flipped": [
+     "S3:★★ 处理臂：pre 框不动且子节点出框，post 框跟上且子节点在框内"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:纯函数存在，且**替换**了原写点",
+     "S2:★ 两条刻意边界都在（空组不动 + 容差 no-op）",
+     "S4:★ 对照一：拖非成员，两阶段组都不动",
+     "S5:★ 对照二：拖组本身，尺寸不变、成员跟着走、仍在框内",
+     "S6:★★ post 基线框精确等于按 padding 独立重算的贴合值",
+     "S7:★ 两轮的行为签名一致",
+     "S8:两阶段各 3 臂 × 2 轮且无 FAILED",
+     "S9:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N3 post 的「拖非成员」被翻成「组动了」",
+    "why": "★ 验证 S4：必须能抓住「凡是拖动就把**所有**组都重算一遍」这种粗糙实现",
+    "evidence": {
+     "file": "vb793a-post.json",
+     "hit": 2
+    },
+    "expectFlipped": "S4:★ 对照一：拖非成员，两阶段组都不动",
+    "flipped": [
+     "S4:★ 对照一：拖非成员，两阶段组都不动"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:纯函数存在，且**替换**了原写点",
+     "S2:★ 两条刻意边界都在（空组不动 + 容差 no-op）",
+     "S3:★★ 处理臂：pre 框不动且子节点出框，post 框跟上且子节点在框内",
+     "S5:★ 对照二：拖组本身，尺寸不变、成员跟着走、仍在框内",
+     "S6:★★ post 基线框精确等于按 padding 独立重算的贴合值",
+     "S7:★ 两轮的行为签名一致",
+     "S8:两阶段各 3 臂 × 2 轮且无 FAILED",
+     "S9:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N4 post 的「拖组本身」被翻成「尺寸变了」",
+    "why": "★ 验证 S5：组「移动」不等于组「重算」⟹ 尺寸不变才是真不变量",
+    "evidence": {
+     "file": "vb793a-post.json",
+     "hit": 2
+    },
+    "expectFlipped": "S5:★ 对照二：拖组本身，尺寸不变、成员跟着走、仍在框内",
+    "flipped": [
+     "S5:★ 对照二：拖组本身，尺寸不变、成员跟着走、仍在框内"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:纯函数存在，且**替换**了原写点",
+     "S2:★ 两条刻意边界都在（空组不动 + 容差 no-op）",
+     "S3:★★ 处理臂：pre 框不动且子节点出框，post 框跟上且子节点在框内",
+     "S4:★ 对照一：拖非成员，两阶段组都不动",
+     "S6:★★ post 基线框精确等于按 padding 独立重算的贴合值",
+     "S7:★ 两轮的行为签名一致",
+     "S8:两阶段各 3 臂 × 2 轮且无 FAILED",
+     "S9:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N5 写点接回 `plan.nextNodes.map(...)`（不挂重算）",
+    "why": "★ 验证 S1：修复必须挂在**唯一收口**上；只在别处补一个监听或只读一次不算修好",
+    "evidence": {
+     "oldGone": true,
+     "newThere": true
+    },
+    "expectFlipped": "S1:纯函数存在，且**替换**了原写点",
+    "flipped": [
+     "S1:纯函数存在，且**替换**了原写点"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S2:★ 两条刻意边界都在（空组不动 + 容差 no-op）",
+     "S3:★★ 处理臂：pre 框不动且子节点出框，post 框跟上且子节点在框内",
+     "S4:★ 对照一：拖非成员，两阶段组都不动",
+     "S5:★ 对照二：拖组本身，尺寸不变、成员跟着走、仍在框内",
+     "S6:★★ post 基线框精确等于按 padding 独立重算的贴合值",
+     "S7:★ 两轮的行为签名一致",
+     "S8:两阶段各 3 臂 × 2 轮且无 FAILED",
+     "S9:汇编器零失败"
+    ]
+   }
+  ]
+ }
+}

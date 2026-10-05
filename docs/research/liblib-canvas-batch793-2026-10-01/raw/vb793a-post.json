@@ -1,0 +1,608 @@
+{
+ "batch": 793,
+ "phase": "post",
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "dragChildOut",
+     "groupId": "g-EFbbHpwq5w",
+     "kidId": "v-UGQZzZOpbv",
+     "drag": {
+      "moved": true,
+      "from": [
+       1151,
+       250
+      ],
+      "to": [
+       1531,
+       250
+      ]
+     },
+     "before": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(119.872px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 172,
+       "l": 1022,
+       "w": 257,
+       "h": 155,
+       "b": 328,
+       "r": 1280
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 2436,
+         "y": 50
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 184,
+         "l": 1034,
+         "w": 233,
+         "h": 131,
+         "b": 316,
+         "r": 1268
+        },
+        "inside": true
+       }
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(-115.628px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 3998.661073825504,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 172,
+       "l": 1385,
+       "w": 257,
+       "h": 155,
+       "b": 328,
+       "r": 1643
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 4031,
+         "y": 50
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 184,
+         "l": 1397,
+         "w": 233,
+         "h": 131,
+         "b": 316,
+         "r": 1631
+        },
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "dragNonMember",
+     "groupId": "g-EFbbHpwq5w",
+     "looseId": "t-9j2MoccxBj",
+     "drag": {
+      "moved": true,
+      "from": [
+       226,
+       156
+      ],
+      "to": [
+       486,
+       336
+      ]
+     },
+     "before": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(119.872px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 172,
+       "l": 1022,
+       "w": 257,
+       "h": 155,
+       "b": 328,
+       "r": 1280
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 2436,
+         "y": 50
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 184,
+         "l": 1034,
+         "w": 233,
+         "h": 131,
+         "b": 316,
+         "r": 1268
+        },
+        "inside": true
+       }
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(119.872px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 172,
+       "l": 1022,
+       "w": 257,
+       "h": 155,
+       "b": 328,
+       "r": 1280
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 2436,
+         "y": 50
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 184,
+         "l": 1034,
+         "w": 233,
+         "h": 131,
+         "b": 316,
+         "r": 1268
+        },
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "dragGroupItself",
+     "groupId": "g-EFbbHpwq5w",
+     "drag": {
+      "moved": true,
+      "from": [
+       1025,
+       174
+      ],
+      "to": [
+       1025,
+       324
+      ]
+     },
+     "before": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(119.872px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 172,
+       "l": 1022,
+       "w": 257,
+       "h": 155,
+       "b": 328,
+       "r": 1280
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 2436,
+         "y": 50
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 184,
+         "l": 1034,
+         "w": 233,
+         "h": 131,
+         "b": 316,
+         "r": 1268
+        },
+        "inside": true
+       }
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(119.872px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 2404,
+        "y": 401.6778523489933
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 316,
+       "l": 1022,
+       "w": 257,
+       "h": 155,
+       "b": 472,
+       "r": 1280
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 2436,
+         "y": 434
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 328,
+         "l": 1034,
+         "w": 233,
+         "h": 131,
+         "b": 460,
+         "r": 1268
+        },
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "dragChildOut",
+     "groupId": "g-EFbbHpwq5w",
+     "kidId": "v-UGQZzZOpbv",
+     "drag": {
+      "moved": true,
+      "from": [
+       1151,
+       250
+      ],
+      "to": [
+       1531,
+       250
+      ]
+     },
+     "before": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(119.872px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 172,
+       "l": 1022,
+       "w": 257,
+       "h": 155,
+       "b": 328,
+       "r": 1280
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 2436,
+         "y": 50
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 184,
+         "l": 1034,
+         "w": 233,
+         "h": 131,
+         "b": 316,
+         "r": 1268
+        },
+        "inside": true
+       }
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(-102.878px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 3964.689597315437,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 172,
+       "l": 1385,
+       "w": 257,
+       "h": 155,
+       "b": 328,
+       "r": 1643
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 3997,
+         "y": 50
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 184,
+         "l": 1397,
+         "w": 233,
+         "h": 131,
+         "b": 316,
+         "r": 1631
+        },
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "dragNonMember",
+     "groupId": "g-EFbbHpwq5w",
+     "looseId": "t-9j2MoccxBj",
+     "drag": {
+      "moved": true,
+      "from": [
+       226,
+       156
+      ],
+      "to": [
+       486,
+       336
+      ]
+     },
+     "before": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(119.872px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 172,
+       "l": 1022,
+       "w": 257,
+       "h": 155,
+       "b": 328,
+       "r": 1280
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 2436,
+         "y": 50
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 184,
+         "l": 1034,
+         "w": 233,
+         "h": 131,
+         "b": 316,
+         "r": 1268
+        },
+        "inside": true
+       }
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(119.872px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 172,
+       "l": 1022,
+       "w": 257,
+       "h": 155,
+       "b": 328,
+       "r": 1280
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 2436,
+         "y": 50
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 184,
+         "l": 1034,
+         "w": 233,
+         "h": 131,
+         "b": 316,
+         "r": 1268
+        },
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "dragGroupItself",
+     "groupId": "g-EFbbHpwq5w",
+     "drag": {
+      "moved": true,
+      "from": [
+       1025,
+       174
+      ],
+      "to": [
+       1025,
+       324
+      ]
+     },
+     "before": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(119.872px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 172,
+       "l": 1022,
+       "w": 257,
+       "h": 155,
+       "b": 328,
+       "r": 1280
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 2436,
+         "y": 50
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 184,
+         "l": 1034,
+         "w": 233,
+         "h": 131,
+         "b": 316,
+         "r": 1268
+        },
+        "inside": true
+       }
+      ]
+     },
+     "after": {
+      "canvasId": "canvas-2",
+      "zoom": "translate(119.872px, 165.594px) scale(0.375315)",
+      "groupId": "g-EFbbHpwq5w",
+      "groupStore": {
+       "pos": {
+        "x": 2404,
+        "y": 401.6778523489933
+       },
+       "w": 686,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 316,
+       "l": 1022,
+       "w": 257,
+       "h": 155,
+       "b": 472,
+       "r": 1280
+      },
+      "kids": [
+       {
+        "id": "v-UGQZzZOpbv",
+        "abs": {
+         "x": 2436,
+         "y": 434
+        },
+        "w": 622,
+        "h": 350,
+        "dom": {
+         "t": 328,
+         "l": 1034,
+         "w": 233,
+         "h": 131,
+         "b": 460,
+         "r": 1268
+        },
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}

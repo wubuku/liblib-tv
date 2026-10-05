@@ -1,0 +1,301 @@
+{
+ "batch": 793,
+ "kind": "★ 第四批改 src/ 的批次（分组框跟随成员）",
+ "claims": {
+  "D793-1": "★ 分组框与成员之间**没有任何跟随关系**：子节点拖出框后，框的位置与尺寸**一动不动**、`parentId` 照旧挂着 ⟹ 「store 说它属于这个组，屏幕说它不在框里」",
+  "C793-2": "★ 修法 = 在 `routeReactFlowChanges` 写 `plan.nextNodes` 的**唯一收口**上挂 `fitStoryboardGroupsToChildren`；拖**非成员**时它内部是 no-op ⟹ 不会误伤别的组",
+  "C793-3": "★ 两条刻意边界：0 成员的组**不动**（757 待拍板 ②，源站未采样）；组按「先外后内」处理且每轮**重算**绝对位置 ⟹ 嵌套时内层拿到的是已更新的绝对位置",
+  "★ 可见变化": "★ react-flow 挂载时发 `dimensions` 变更 ⟹ 首屏就把种子那个**并不贴合**的框归位（722×460 → 686×414，精确等于按 32×2 重算的值）",
+  "★ 未验": "★ **没有**单独的空组探针臂 ⟹ 「空组仍画完整框」只是被顺带观测到，不当结论"
+ },
+ "checks": [
+  {
+   "id": "A:四处源码锚点各唯一",
+   "ok": true,
+   "n": 4,
+   "anchors": [
+    {
+     "label": "纯函数存在",
+     "needle": "function fitStoryboardGroupsToChildren(",
+     "ok": true,
+     "lines": [
+      700
+     ],
+     "code": "function fitStoryboardGroupsToChildren(nodes: Node[]): Node[] {"
+    },
+    {
+     "label": "挂在唯一收口上",
+     "needle": "nodes: fitStoryboardGroupsToChildren(",
+     "ok": true,
+     "lines": [
+      3738
+     ],
+     "code": "nodes: fitStoryboardGroupsToChildren("
+    },
+    {
+     "label": "★ 空组不动",
+     "needle": "if (kids.length === 0) continue;",
+     "ok": true,
+     "lines": [
+      724
+     ],
+     "code": "if (kids.length === 0) continue;               // ★ 边界 1：空组不动"
+    },
+    {
+     "label": "★ 容差判 no-op",
+     "needle": "const EPS = 0.01;",
+     "ok": true,
+     "lines": [
+      757
+     ],
+     "code": "const EPS = 0.01;"
+    }
+   ],
+   "claim": "★ 纯函数 + 挂在 `routeReactFlowChanges` 的**唯一收口** + 空组不动 + 容差 no-op"
+  },
+  {
+   "id": "B:两阶段各 3 臂 × 2 轮且无 FAILED",
+   "desc": "★ 探针 FAILED 或读数缺失就是**空读数**，不能当结论",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  },
+  {
+   "id": "C:★★ 处理臂：pre 框不动且子节点出框，post 框跟上且子节点在框内",
+   "desc": "★ pre：`groupMoved=false` 且 `childInside [True, False]`；post：`groupMoved=true` 且 `childInside [True, True]`",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "groupMoved": false,
+      "childInside": [
+       true,
+       false
+      ],
+      "childMoved": true
+     },
+     {
+      "groupMoved": false,
+      "childInside": [
+       true,
+       false
+      ],
+      "childMoved": true
+     }
+    ],
+    "post": [
+     {
+      "groupMoved": true,
+      "childInside": [
+       true,
+       true
+      ],
+      "childMoved": true
+     },
+     {
+      "groupMoved": true,
+      "childInside": [
+       true,
+       true
+      ],
+      "childMoved": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "D:★ 对照一：拖非成员，组在两阶段都不得动",
+   "desc": "★ 缺了它，一个「凡是拖动就把**所有**组都重算一遍」的粗糙实现也能让 C 通过",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "groupMoved": false,
+      "groupSizeChanged": false,
+      "childInside": [
+       true,
+       true
+      ]
+     },
+     {
+      "groupMoved": false,
+      "groupSizeChanged": false,
+      "childInside": [
+       true,
+       true
+      ]
+     }
+    ],
+    "post": [
+     {
+      "groupMoved": false,
+      "groupSizeChanged": false,
+      "childInside": [
+       true,
+       true
+      ]
+     },
+     {
+      "groupMoved": false,
+      "groupSizeChanged": false,
+      "childInside": [
+       true,
+       true
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "E:★ 对照二：拖组本身尺寸不变、成员跟着走、仍在框内",
+   "desc": "★ 组「移动」不等于组「重算」⟹ 拖组时成员的绝对位置没变，整段必须是 no-op（否则说明重算逻辑在误伤）",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "groupMoved": true,
+      "groupSizeChanged": false,
+      "childMoved": true,
+      "childInside": [
+       true,
+       true
+      ]
+     },
+     {
+      "groupMoved": true,
+      "groupSizeChanged": false,
+      "childMoved": true,
+      "childInside": [
+       true,
+       true
+      ]
+     }
+    ],
+    "post": [
+     {
+      "groupMoved": true,
+      "groupSizeChanged": false,
+      "childMoved": true,
+      "childInside": [
+       true,
+       true
+      ]
+     },
+     {
+      "groupMoved": true,
+      "groupSizeChanged": false,
+      "childMoved": true,
+      "childInside": [
+       true,
+       true
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "F:★★ post 的基线框**精确等于**按 padding 重算的贴合值",
+   "desc": "★ 种子里 722×460 的框**并不贴合**它唯一那个 622×350 的成员（多 50/55px 任意余量）⟹ post 首屏被归位成 686×414。★ 这条同时独立验证了贴合公式（不依赖源码，只用 raw 里的子节点读数）",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "evidence": [
+     {
+      "phase": "pre",
+      "group": {
+       "pos": {
+        "x": 2374,
+        "y": -12
+       },
+       "w": 722,
+       "h": 460
+      },
+      "tightFit": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "equalsTightFit": false
+     },
+     {
+      "phase": "pre",
+      "group": {
+       "pos": {
+        "x": 2374,
+        "y": -12
+       },
+       "w": 722,
+       "h": 460
+      },
+      "tightFit": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "equalsTightFit": false
+     },
+     {
+      "phase": "post",
+      "group": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "tightFit": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "equalsTightFit": true
+     },
+     {
+      "phase": "post",
+      "group": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "tightFit": {
+       "pos": {
+        "x": 2404,
+        "y": 18
+       },
+       "w": 686,
+       "h": 414
+      },
+      "equalsTightFit": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "G:★ 两轮的**行为签名**一致",
+   "desc": "★ 拖拽起点是扫描出来的、每轮差几个像素 ⟹ 只能比**行为**（组动没动 / 尺寸变没变 / 在不在框内），拿像素判「一致」会误报",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  }
+ ],
+ "totals": {
+  "checks": 7,
+  "assertedAnchors": 4,
+  "failed": 0
+ }
+}

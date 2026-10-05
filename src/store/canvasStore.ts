@@ -680,6 +680,123 @@ function withoutParent(node: Node, position: { x: number; y: number }): Node {
 
 const GROUP_PADDING = 32;
 
+/**
+ * Batch 793（修 batch 757 待拍板 ①「分组框**与成员之间没有任何跟随关系**」）：
+ * 把每个 `storyboard-group` 的框重算成**恰好包住它的子节点**，并把子节点的
+ * 相对位置一起重基（组的 `position` 一变，所有子节点的绝对位置都会跟着偏）。
+ *
+ * 修之前的形态：把子节点拖出框后，**框的位置与尺寸一动不动**、
+ * `parentId` 照旧挂着 ⟹ 「**store 说它属于这个组，屏幕说它不在框里**」。
+ * 757 实测拖 501px 后子节点左边缘距框右边缘 277 屏幕像素。
+ *
+ * 两条刻意的边界：
+ * 1. **0 成员的组不动**。收缩/隐藏空组是 757 待拍板 ② 的问题，源站未采样，
+ *    本批不碰；空组保持原样（本批实测空组仍画完整框）。
+ * 2. **组的顺序按「先外后内」**，每轮都**重新**从当前列表算绝对位置，
+ *    这样嵌套时内层拿到的绝对位置已经是对的。
+ *
+ * 拖**组本身**时成员的绝对位置没变 ⟹ 算出来与现状相同 ⟹ 整段是 no-op。
+ */
+function fitStoryboardGroupsToChildren(nodes: Node[]): Node[] {
+  const isGroup = (node: Node) => node.type === "storyboard-group";
+  const groupIds = new Set(nodes.filter(isGroup).map((node) => node.id));
+  if (groupIds.size === 0) return nodes;
+
+  const depthOf = (node: Node): number => {
+    let depth = 0;
+    let parentId = node.parentId;
+    const seen = new Set<string>([node.id]);
+    while (parentId && !seen.has(parentId) && depth < 32) {
+      seen.add(parentId);
+      depth += 1;
+      parentId = nodes.find((item) => item.id === parentId)?.parentId;
+    }
+    return depth;
+  };
+  const groups = nodes
+    .filter(isGroup)
+    .sort((a, b) => depthOf(a) - depthOf(b));
+
+  let out = nodes;
+  for (const group of groups) {
+    const current = out;
+    const kids = current.filter((node) => node.parentId === group.id);
+    if (kids.length === 0) continue;               // ★ 边界 1：空组不动
+    const byId = new Map(current.map((node) => [node.id, node]));
+    const absolutePositions = new Map(
+      kids.map((node) => [node.id, getAbsoluteNodePosition(node, byId)]),
+    );
+    const minX = Math.min(
+      ...kids.map((node) => absolutePositions.get(node.id)?.x ?? node.position.x),
+    );
+    const minY = Math.min(
+      ...kids.map((node) => absolutePositions.get(node.id)?.y ?? node.position.y),
+    );
+    const maxX = Math.max(
+      ...kids.map(
+        (node) =>
+          (absolutePositions.get(node.id)?.x ?? node.position.x) + nodeWidth(node),
+      ),
+    );
+    const maxY = Math.max(
+      ...kids.map(
+        (node) =>
+          (absolutePositions.get(node.id)?.y ?? node.position.y) + nodeHeight(node),
+      ),
+    );
+    const nextPosition = {
+      x: minX - GROUP_PADDING,
+      y: minY - GROUP_PADDING,
+    };
+    const nextWidth = maxX - minX + GROUP_PADDING * 2;
+    const nextHeight = maxY - minY + GROUP_PADDING * 2;
+    const live = current.find((node) => node.id === group.id);
+    // ★ 用**容差**判「已经贴合」：重算是浮点运算，纯拖组时算出的高度会带上
+    //   1e-14 量级的噪声（实测 414 → 414.00000000000006）⟹ 精确相等会让
+    //   「no-op」分支永远不成立，于是每次拖组都白白重建一遍组与子节点对象。
+    const EPS = 0.01;
+    const near = (a: number | undefined, b: number) =>
+      typeof a === "number" && Math.abs(a - b) <= EPS;
+    if (
+      live &&
+      near(live.position.x, nextPosition.x) &&
+      near(live.position.y, nextPosition.y) &&
+      near(live.width, nextWidth) &&
+      near(live.height, nextHeight)
+    ) {
+      continue;                                   // ★ 已经是贴合的 ⟹ no-op
+    }
+    out = current.map((node) => {
+      if (node.id === group.id) {
+        return {
+          ...node,
+          position: nextPosition,
+          width: nextWidth,
+          height: nextHeight,
+          style: {
+            ...(node.style ?? {}),
+            width: nextWidth,
+            height: nextHeight,
+          },
+        };
+      }
+      if (node.parentId === group.id) {
+        const absolute = absolutePositions.get(node.id);
+        if (!absolute) return node;
+        return {
+          ...node,
+          position: {
+            x: absolute.x - nextPosition.x,
+            y: absolute.y - nextPosition.y,
+          },
+        };
+      }
+      return node;
+    });
+  }
+  return out;
+}
+
 interface DuplicateGraphResult {
   copiedNodes: Node[];
   copiedEdges: Edge[];
@@ -3614,7 +3731,13 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
               canvas.id === state.activeCanvasId
                 ? {
                     ...canvas,
-                    nodes: plan.nextNodes.map(withoutStoredNodeSelection),
+                    // ★ Batch 793：位置变更落库的唯一收口在这里，顺手让
+                    //   分组框跟随成员。`fitStoryboardGroupsToChildren` 内部
+                    //   已是 no-op 当子节点没动，所以非成员的拖动**不会**
+                    //   动到任何组。
+                    nodes: fitStoryboardGroupsToChildren(
+                      plan.nextNodes.map(withoutStoredNodeSelection),
+                    ),
                   }
                 : canvas,
             )
