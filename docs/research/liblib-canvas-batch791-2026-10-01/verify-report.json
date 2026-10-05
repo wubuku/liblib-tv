@@ -1,0 +1,343 @@
+{
+ "batch": 791,
+ "checks": [
+  {
+   "id": "S1:注册与清理**两侧**都带 `{ capture: true }`",
+   "desc": "★ 漏改 cleanup 会留下一个再也摘不掉的监听器；★ 多挂一个裸的 add 也会让计数对不上 ⟹ 两侧都要唯一且没有裸 add",
+   "ok": true,
+   "detail": {
+    "addTrue": [
+     451
+    ],
+    "removeTrue": [
+     452
+    ],
+    "bareAdd": []
+   }
+  },
+  {
+   "id": "S2:闸用 `classList.contains`（不是 `closest`）",
+   "desc": "★ v12 的 DOM 是 `renderer > pane > viewport > nodes > node`，pane 是 viewport 的**最外层** ⟹ `closest` 对节点也成立、闸形同虚设",
+   "ok": true,
+   "detail": {
+    "contains": [
+     447
+    ],
+    "closest": []
+   }
+  },
+  {
+   "id": "S3:★ 阶段没搞反（pre 空白双击开不了、post 开得了）",
+   "desc": "★ 拿改动后的读数当改动前是最容易犯的错 ⟹ pre 的空白双击必须**开不了**（`after == before`）、post 必须**开得了**",
+   "ok": true,
+   "detail": {
+    "pre.dblclickPane": [
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false
+     },
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false
+     }
+    ],
+    "pre.dblclickNode": [
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true
+     },
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true
+     }
+    ],
+    "post.dblclickPane": [
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true
+     },
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true
+     }
+    ],
+    "post.dblclickNode": [
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false
+     },
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "S4:两阶段各 4 臂 × 2 轮且无 FAILED",
+   "desc": "★ 探针自己有 FAILED 就是**空读数**，不能当结论",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "pre": {
+     "contextMenu": 2,
+     "dblclickNode": 2,
+     "dblclickPane": 2,
+     "tabKey": 2
+    },
+    "post": {
+     "contextMenu": 2,
+     "dblclickNode": 2,
+     "dblclickPane": 2,
+     "tabKey": 2
+    }
+   }
+  },
+  {
+   "id": "S5:★ 节点双击：pre 误开、post 不开",
+   "desc": "★ 只测「空白双击能开」的话，一个把闸拆掉的修复也能全绿 ⟹ 「节点双击不该开」必须单独判",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true
+     },
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true
+     }
+    ],
+    "post": [
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false
+     },
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false
+     }
+    ]
+   }
+  },
+  {
+   "id": "S6:空白画布双击：pre 死入口、post 通",
+   "desc": "★ `before` 与 `after` 都取自 raw，**不信**自报的 `panelOpened`",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false
+     },
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false
+     }
+    ],
+    "post": [
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true
+     },
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "S7:★★ 两条别的入口（Tab / 右键菜单）前后都通",
+   "desc": "★ 755 的 R18 / 758 的 R24：没有阳性对照，「双击那条坏了」与「面板本身打不开」无法区分",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  },
+  {
+   "id": "S8:两轮逐臂完全一致",
+   "desc": "★ 8 格每格两轮读数相同 ⟹ 不是抖动",
+   "ok": true,
+   "detail": {
+    "perCell": 8,
+    "allSame": true
+   }
+  },
+  {
+   "id": "S9:★ `onPaneDoubleClick` 在 `@xyflow/react` v12 里不存在",
+   "desc": "★ 758 给的三个修法方向里，第三个在本仓库的 React Flow 版本上**不可用**⟹ 只剩「挂到 pane」与「改捕获阶段」，而运行时读数支持后者",
+   "ok": true,
+   "detail": {
+    "hits": [],
+    "distExists": true
+   }
+  },
+  {
+   "id": "S10:汇编器零失败",
+   "desc": "汇编器自己的断言必须全绿",
+   "ok": true,
+   "detail": {
+    "checks": 7,
+    "assertedAnchors": 3,
+    "failed": 0
+   }
+  },
+  {
+   "id": "S11:阴性对照已复原（源码 + raw，字节级）",
+   "desc": "★ N1/N2 改过 `src/app/page.tsx` ⟹ 必须字节级还原",
+   "ok": true,
+   "detail": {
+    "driftedSrc": false,
+    "driftedRaw": []
+   }
+  }
+ ],
+ "totals": {
+  "checks": 11,
+  "passed": 11,
+  "failed": 0
+ },
+ "negativeControls": {
+  "total": 5,
+  "caught": 5,
+  "detail": [
+   {
+    "name": "N1 捕获阶段改回冒泡",
+    "why": "★ 验证 S1 真能判出「死入口那个修复还在不在」",
+    "evidence": {
+     "oldGone": true,
+     "newThere": true
+    },
+    "expectFlipped": "S1:注册与清理**两侧**都带 `{ capture: true }`",
+    "flipped": [
+     "S1:注册与清理**两侧**都带 `{ capture: true }`"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S2:闸用 `classList.contains`（不是 `closest`）",
+     "S3:★ 阶段没搞反（pre 空白双击开不了、post 开得了）",
+     "S4:两阶段各 4 臂 × 2 轮且无 FAILED",
+     "S5:★ 节点双击：pre 误开、post 不开",
+     "S6:空白画布双击：pre 死入口、post 通",
+     "S7:★★ 两条别的入口（Tab / 右键菜单）前后都通",
+     "S8:两轮逐臂完全一致",
+     "S9:★ `onPaneDoubleClick` 在 `@xyflow/react` v12 里不存在",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N2 闸换回 closest",
+    "why": "★ 验证 S2：闸一旦退回 `closest`，节点双击就会重新误开",
+    "evidence": {
+     "oldGone": true,
+     "newThere": true
+    },
+    "expectFlipped": "S2:闸用 `classList.contains`（不是 `closest`）",
+    "flipped": [
+     "S2:闸用 `classList.contains`（不是 `closest`）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:注册与清理**两侧**都带 `{ capture: true }`",
+     "S3:★ 阶段没搞反（pre 空白双击开不了、post 开得了）",
+     "S4:两阶段各 4 臂 × 2 轮且无 FAILED",
+     "S5:★ 节点双击：pre 误开、post 不开",
+     "S6:空白画布双击：pre 死入口、post 通",
+     "S7:★★ 两条别的入口（Tab / 右键菜单）前后都通",
+     "S8:两轮逐臂完全一致",
+     "S9:★ `onPaneDoubleClick` 在 `@xyflow/react` v12 里不存在",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N3 pre 的空白双击被翻成「能开」",
+    "why": "★ 验证 S3/S6：「死入口」这个读数**被真读了**（翻平之后 pre 与 post 就没区别了，修复等于没发生）",
+    "evidence": {
+     "file": "vb791a-pre.json",
+     "hit": 2
+    },
+    "expectFlipped": "S3:★ 阶段没搞反（pre 空白双击开不了、post 开得了）",
+    "flipped": [
+     "S3:★ 阶段没搞反（pre 空白双击开不了、post 开得了）",
+     "S6:空白画布双击：pre 死入口、post 通"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:注册与清理**两侧**都带 `{ capture: true }`",
+     "S2:闸用 `classList.contains`（不是 `closest`）",
+     "S4:两阶段各 4 臂 × 2 轮且无 FAILED",
+     "S5:★ 节点双击：pre 误开、post 不开",
+     "S7:★★ 两条别的入口（Tab / 右键菜单）前后都通",
+     "S8:两轮逐臂完全一致",
+     "S9:★ `onPaneDoubleClick` 在 `@xyflow/react` v12 里不存在",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N4 post 的节点双击被翻成「误开」",
+    "why": "★ 验证 S5：D791-2 的修复**被真读了**",
+    "evidence": {
+     "file": "vb791a-post.json",
+     "hit": 2
+    },
+    "expectFlipped": "S5:★ 节点双击：pre 误开、post 不开",
+    "flipped": [
+     "S5:★ 节点双击：pre 误开、post 不开"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:注册与清理**两侧**都带 `{ capture: true }`",
+     "S2:闸用 `classList.contains`（不是 `closest`）",
+     "S3:★ 阶段没搞反（pre 空白双击开不了、post 开得了）",
+     "S4:两阶段各 4 臂 × 2 轮且无 FAILED",
+     "S6:空白画布双击：pre 死入口、post 通",
+     "S7:★★ 两条别的入口（Tab / 右键菜单）前后都通",
+     "S8:两轮逐臂完全一致",
+     "S9:★ `onPaneDoubleClick` 在 `@xyflow/react` v12 里不存在",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N5 阳性对照（右键菜单）被翻坏",
+    "why": "★ 验证 S7：阳性对照必须**真的**在读，否则「双击那条坏了」可以和「面板打不开」混为一谈",
+    "evidence": {
+     "file": "vb791a-post.json",
+     "hit": 2
+    },
+    "expectFlipped": "S7:★★ 两条别的入口（Tab / 右键菜单）前后都通",
+    "flipped": [
+     "S7:★★ 两条别的入口（Tab / 右键菜单）前后都通"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:注册与清理**两侧**都带 `{ capture: true }`",
+     "S2:闸用 `classList.contains`（不是 `closest`）",
+     "S3:★ 阶段没搞反（pre 空白双击开不了、post 开得了）",
+     "S4:两阶段各 4 臂 × 2 轮且无 FAILED",
+     "S5:★ 节点双击：pre 误开、post 不开",
+     "S6:空白画布双击：pre 死入口、post 通",
+     "S8:两轮逐臂完全一致",
+     "S9:★ `onPaneDoubleClick` 在 `@xyflow/react` v12 里不存在",
+     "S10:汇编器零失败"
+    ]
+   }
+  ]
+ }
+}

@@ -1,0 +1,185 @@
+{
+ "batch": 791,
+ "kind": "★ 第二批改 src/ 的批次（修同一个监听器上的两个缺陷）",
+ "claims": {
+  "D791-1": "★ 监听器注册在冒泡阶段 ⟹ 空白画布双击这条入口**从未触发**（pre 实测面板条目恒 0）；改捕获阶段后 0 → 9",
+  "D791-2": "★ 闸用 `closest()`，而 v12 的 pane 是 viewport 最外层、节点在它里面 ⟹ 闸**从来没挡住节点** ⟹ 双击任意节点都误开面板（pre 与 post 修前都是 0 → 9）",
+  "C791-3": "★ 758 列的第三方向 `onPaneDoubleClick` 在 `@xyflow/react` v12 **不存在**",
+  "依据": "★ D791-2 不是发明：源码注释写的是「源站**空**画布双击」，「空」字就是契约；且实测空白处命中的正是 pane 自己"
+ },
+ "checks": [
+  {
+   "id": "A:三处源码锚点各唯一",
+   "ok": true,
+   "n": 3,
+   "anchors": [
+    {
+     "label": "注册用捕获阶段",
+     "needle": "addEventListener(\"dblclick\", handleDoubleClick, true)",
+     "ok": true,
+     "lines": [
+      451
+     ],
+     "code": "container.addEventListener(\"dblclick\", handleDoubleClick, true);"
+    },
+    {
+     "label": "清理也用捕获阶段",
+     "needle": "removeEventListener(\"dblclick\", handleDoubleClick, true)",
+     "ok": true,
+     "lines": [
+      452
+     ],
+     "code": "return () => container.removeEventListener(\"dblclick\", handleDoubleClick, true);"
+    },
+    {
+     "label": "闸改成「就是 pane」",
+     "needle": "classList.contains(\"react-flow__pane\")",
+     "ok": true,
+     "lines": [
+      447
+     ],
+     "code": "if (!target?.classList.contains(\"react-flow__pane\")) return;"
+    }
+   ],
+   "claim": "★ add 与 remove **两侧**都带 `{ capture: true }`（漏改 cleanup 会留下一个再也摘不掉的监听器），且闸是 `classList.contains`"
+  },
+  {
+   "id": "B:两阶段各 4 臂 × 2 轮且无 FAILED",
+   "desc": "★ 4 臂（双击空白/双击节点/Tab/右键菜单）× 2 轮，pre 与 post 都是",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "pre": {
+     "contextMenu": 2,
+     "dblclickNode": 2,
+     "dblclickPane": 2,
+     "tabKey": 2
+    },
+    "post": {
+     "contextMenu": 2,
+     "dblclickNode": 2,
+     "dblclickPane": 2,
+     "tabKey": 2
+    }
+   }
+  },
+  {
+   "id": "C:★★ D791-1 死入口修好了",
+   "desc": "★ 双击**空白画布**：pre 面板条目恒为 0（入口从未触发）、post 变成 9",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false,
+      "failed": null
+     },
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false,
+      "failed": null
+     }
+    ],
+    "post": [
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true,
+      "failed": null
+     },
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true,
+      "failed": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "D:★★ D791-2 节点双击不再误开面板",
+   "desc": "★ 双击**节点**：pre 会误开（0 → 9）、post 不开（0 → 0）；★ 这是本批做回归臂时**撞出来的**既有缺陷，不是修复引入的",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true,
+      "failed": null
+     },
+     {
+      "before": 0,
+      "after": 9,
+      "opened": true,
+      "failed": null
+     }
+    ],
+    "post": [
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false,
+      "failed": null
+     },
+     {
+      "before": 0,
+      "after": 0,
+      "opened": false,
+      "failed": null
+     }
+    ]
+   }
+  },
+  {
+   "id": "E:★ 两条别的入口前后都通",
+   "desc": "★ `Tab` 键（`page.tsx:1360`）与右键菜单「添加节点」（`CanvasContextMenu.tsx:122`）pre 就通、post 仍通 ⟹ 「双击那条坏了」与「面板本身打不开」可被区分",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  },
+  {
+   "id": "F:两轮逐臂完全一致",
+   "desc": "★ 8 个格子每格两轮读数相同 ⟹ 不是抖动",
+   "ok": true,
+   "detail": {
+    "perCell": 8,
+    "allSame": true
+   }
+  },
+  {
+   "id": "G:★ 机制读数被复现，且未解释项如实记账",
+   "desc": "★ pre 的相位计数：容器**捕获** 1 / 容器冒泡 **0** / pane 冒泡 1 ⟹ 事件在 pane 之后被掐断，这正是改捕获阶段的依据。★ post 的容器冒泡变成 [1, 1] —— 本批**解释不了**（改动不涉及传播），故不据此下任何机制结论",
+   "ok": true,
+   "detail": {
+    "preCounters": [
+     {
+      "cap": 1,
+      "bub": 0,
+      "winCap": 1,
+      "paneBub": 1
+     },
+     {
+      "cap": 1,
+      "bub": 0,
+      "winCap": 1,
+      "paneBub": 1
+     }
+    ],
+    "postContainerBubble": [
+     1,
+     1
+    ],
+    "未解释": true
+   }
+  }
+ ],
+ "totals": {
+  "checks": 7,
+  "assertedAnchors": 3,
+  "failed": 0
+ }
+}

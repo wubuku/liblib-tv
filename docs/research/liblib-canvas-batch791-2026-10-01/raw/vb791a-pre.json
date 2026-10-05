@@ -1,0 +1,114 @@
+{
+ "batch": 791,
+ "phase": "pre",
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "dblclickPane",
+     "point": [
+      86,
+      60
+     ],
+     "pointIsPane": true,
+     "nodeUnderPoint": false,
+     "before": 0,
+     "after": 0,
+     "panelOpened": false,
+     "counters": {
+      "cap": 1,
+      "bub": 0,
+      "winCap": 1,
+      "paneBub": 1
+     },
+     "container": "DIV.react-flow__renderer",
+     "tries": 1
+    },
+    {
+     "arm": "dblclickNode",
+     "point": [
+      640,
+      725
+     ],
+     "nodeId": "g-245IDFh8sB",
+     "before": 0,
+     "after": 9,
+     "panelOpened": true,
+     "container": "DIV.react-flow__renderer",
+     "tries": 1
+    },
+    {
+     "arm": "tabKey",
+     "before": 0,
+     "after": 9,
+     "panelOpened": true,
+     "container": "DIV.react-flow__renderer",
+     "tries": 1
+    },
+    {
+     "arm": "contextMenu",
+     "before": 0,
+     "after": 9,
+     "panelOpened": true,
+     "container": "DIV.react-flow__renderer",
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "dblclickPane",
+     "point": [
+      86,
+      60
+     ],
+     "pointIsPane": true,
+     "nodeUnderPoint": false,
+     "before": 0,
+     "after": 0,
+     "panelOpened": false,
+     "counters": {
+      "cap": 1,
+      "bub": 0,
+      "winCap": 1,
+      "paneBub": 1
+     },
+     "container": "DIV.react-flow__renderer",
+     "tries": 1
+    },
+    {
+     "arm": "dblclickNode",
+     "point": [
+      640,
+      725
+     ],
+     "nodeId": "g-245IDFh8sB",
+     "before": 0,
+     "after": 9,
+     "panelOpened": true,
+     "container": "DIV.react-flow__renderer",
+     "tries": 1
+    },
+    {
+     "arm": "tabKey",
+     "before": 0,
+     "after": 9,
+     "panelOpened": true,
+     "container": "DIV.react-flow__renderer",
+     "tries": 1
+    },
+    {
+     "arm": "contextMenu",
+     "before": 0,
+     "after": 9,
+     "panelOpened": true,
+     "container": "DIV.react-flow__renderer",
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}

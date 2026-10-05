@@ -417,17 +417,39 @@ export default function Home() {
   const flowContainerRef = useRef<HTMLElement | null>(null);
 
   // Batch 115: 源站空画布双击 = 打开添加节点面板（2026-09-06 采样）。
+  //
+  // Batch 791（修 batch 758 记的高严重度缺陷「双击入口从未触发」）：
+  // 原来注册在**冒泡**阶段，而 React Flow 在 `.react-flow__pane` 处
+  // `stopPropagation` 掉了 `dblclick` ⟹ 这个挂在**容器**上等冒泡的监听器
+  // **永远收不到**。运行时实测的事件路径：
+  //     容器**捕获** 1 → pane 冒泡 1 → 容器冒泡 **0**（断）
+  // 捕获阶段是自顶向下的，**先于** pane 上的处理器 ⟹ 改成 `{ capture: true }`
+  // 就能收到，同一个 effect 的 add/remove 两侧一起改（漏改 cleanup 会留下
+  // 一个再也摘不掉的监听器）。
+  //
+  // ★ 758 列的第三个方向「改用 React Flow 的 `onPaneDoubleClick` prop」
+  //   **不可用**：`@xyflow/react` v12 的类型里没有这个 prop
+  //   （`grep -rl onPaneDoubleClick node_modules/@xyflow/react/dist/` 无命中）。
   useEffect(() => {
     const container = flowContainerRef.current;
     if (!container) return;
     const handleDoubleClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement | null;
-      if (!target?.closest(".react-flow__pane")) return;
+      // ★ 判据必须是「目标**就是** pane」，不是 `closest('.react-flow__pane')`。
+      //   v12 的 DOM 是 `renderer > pane > viewport > nodes > node`：
+      //   `.react-flow__pane` 是 viewport 的**最外层**容器，节点在它**里面**
+      //   ⟹ `closest()` 对**节点**双击同样为真，那道闸从来没挡住过节点
+      //   ⟹ 后果：**双击任意节点都会误开本面板**（pre/post 两次实测都是
+      //   面板条目 0 → 9）。
+      //   而空白画布上 `elementFromPoint` 命中的正是 pane **自己**
+      //   （实测 `isPaneItself=true`）⟹ `classList.contains` 正好对上。
+      //   本条的依据是注释里已写明的「**空**画布双击」，不是发明。
+      if (!target?.classList.contains("react-flow__pane")) return;
       const state = useUIStore.getState();
       if (!state.isAddNodePanelOpen) state.toggleAddNodePanel();
     };
-    container.addEventListener("dblclick", handleDoubleClick);
-    return () => container.removeEventListener("dblclick", handleDoubleClick);
+    container.addEventListener("dblclick", handleDoubleClick, true);
+    return () => container.removeEventListener("dblclick", handleDoubleClick, true);
   }, []);
   const assetLayoutOperationRef = useRef(0);
   const assetLayoutFrameRef = useRef<number | null>(null);
