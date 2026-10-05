@@ -315,6 +315,32 @@ def m_copytree_scripts_dir_passes():
         0, "反验依赖核对通过")
 
 
+def m_copytree_alias_passes():
+    """**能抓判据的失明 + 不误伤**：目标路径藏在**模块级别名**里 → 不得报。
+
+    **这正是 Batch 287 实测的形态**：那份新反验原本写
+    `dst = os.path.join(tmp, "scripts")` 再 `shutil.copytree(HERE, dst)`，
+    **闸 17 报「4 处不自洽」**，而 `baseline` / `beefsrc` / `buildrecord` /
+    `selftestnames` **四个模块其实全都在临时目录里**——
+    **因为 `copytree` 搬的是整个 `scripts/`**。
+
+    **这一例的鉴别力全在「`\"scripts\"` 只出现在别名的值里」**：
+    注入的源与目标都是**裸名字**（`SRC_DIR` / `DST_DIR`），
+    `copytree` 的两个实参里**一个字面量都没有**——
+    **所以改前的判据必然认不出来（必然报红），改后必然认得出来（必然不报）**。
+    **若把字面量留在实参里，这一例在改前改后都会绿，鉴别力就是 0。**
+
+    **反方向仍由用例 8 守着**（搬 `docs/` 必须报）——
+    **本例只可能让判据多认一种写法，不可能让它把别的目录当成 scripts/**。
+    """
+    _copytree_case(
+        "24 copytree 的路径藏在模块级别名里→不得报（Batch 287 实况）",
+        'SRC_DIR = os.path.join(ROOT, "scripts")\n'
+        'DST_DIR = os.path.join(os.getcwd(), "scripts")\n'
+        'def _everywhere():\n    shutil.copytree(SRC_DIR, DST_DIR)',
+        0, "反验依赖核对通过")
+
+
 def _stage_gate_case(name, stage_line, want_rc, want_in):
     """Batch 253 新增的一对：`stage_gate(...)` 到底搬的是不是那个闸。
 
@@ -844,6 +870,7 @@ def main():
              m_no_false_positive, m_rename_pattern_breaks,
              m_loop_copy_without_the_module, m_loop_copy_with_the_module,
              m_copytree_other_dir_still_reports, m_copytree_scripts_dir_passes,
+             m_copytree_alias_passes,
              m_stage_gate_wrong_gate_still_reports, m_stage_gate_right_gate_passes,
              m_transport_count_is_reported,
              m_missing_env_reported, m_text_only_staging_not_reported,

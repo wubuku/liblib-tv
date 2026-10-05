@@ -222,6 +222,46 @@ def independent_gate_names(text, scripts_dir):
     return names
 
 
+def _module_level_aliases(tree):
+    """**模块顶层的「名字 = 表达式」表**——只收顶层，不进函数体。
+
+    **为什么只收顶层**：函数体里的 `dst = …` 每次调用可能不同，
+    按名字去解会把一个局部的 `dst` 当成全局常量；
+    **而本判据要处理的正是 `dst = os.path.join(tmp, "scripts")` 这种模块级常量**
+    （Batch 287 实测的形态）。**多认一层的代价是可能的假绿，
+    而少认一层的代价是已实测过的假红——所以宁可只收顶层，不多不少**。
+    """
+    out = {}
+    for node in tree.body:
+        if isinstance(node, ast.Assign):
+            for tgt in node.targets:
+                if isinstance(tgt, ast.Name):
+                    out[tgt.id] = node.value
+        elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+            out[node.target.id] = node.value
+    return out
+
+
+def _mentions_scripts(node, aliases, depth=0):
+    """这个表达式（含它引用的**模块级**名字）里有没有 `"scripts"` 这个末段字面量。
+
+    **深度上限 6**：`A = B; B = C; C = …` 这种链在真实代码里不会出现，
+    **而一个无上限的解引用能被自己写的常量表绕成环**。
+    """
+    if node is None or depth > 6:
+        return False
+    for sub in ast.walk(node):
+        if isinstance(sub, ast.Constant) and sub.value == "scripts":
+            return True
+        if isinstance(sub, ast.JoinedStr):      # f"…/scripts/…"
+            for v in sub.values:
+                if isinstance(v, ast.Constant) and v.value == "scripts":
+                    return True
+    if isinstance(node, ast.Name) and node.id in aliases:
+        return _mentions_scripts(aliases[node.id], aliases, depth + 1)
+    return False
+
+
 def copies_whole_scripts(text):
     """这份反验是不是 `copytree` 搬了**整个** `scripts/` 目录。
 
@@ -247,11 +287,30 @@ def copies_whole_scripts(text):
     而 A 是 `…/scripts` 与 B 是 `…/scripts` 都能保证「整份 scripts 到了临时目录」。
     **仍然不是「凡是有 copytree 就算」**：源与目标都不含 `scripts` 时照样不认
     （那会把「搬了另一个目录」当成搬了 scripts/，而依赖同样不在）。
+
+    **⚠️ Batch 288 修第五处——而这次的实测结论与前四次相反，值得单独说**：
+    ① **本批先把差集量了出来**：把「认写法」与「认事实」两版判据
+       在**全量 115 份反验与闸**上对跑，**差集 0 份**。
+       **也就是说第五次复发（Batch 287 那次）是本批自己的新反验造成的，
+       而它在上一个批次就已经把代码改对了**——
+       **「第五处缺陷」在今天没有留下任何一份被误报的反验。**
+    ② **所以本处的改动是纯预防性的**，而纯预防性改动必须证明它**只放宽不放宽**：
+       **新判据是旧判据的严格超集**（旧逻辑一字未动，只在它返回 False 时多解一层名字），
+       **所以今天判 True 的 6 份在新判据下必然仍判 True**——
+       **实测复核：两版都是 6 份，差集 0**（`环境记录 252`）。
+    ③ **那为什么还要改**：**因为同一个病已经复发五次**，
+       而第五次的代价是**一次红构建 + 一个批次**。
+       **「今天差集是 0」是运气不是保证**——下一次有人把 join 拆开就又复发一次。
+    ④ **判据的反例方向仍由用例 8 守着**（搬 `docs/` 必须报）——
+       **本处只可能把「确实搬了 scripts/」认得更全，不可能把「搬了别的目录」认成 scripts/**，
+       **除非有人把别名解成 `os.path.join(ROOT, "docs")`**，
+       **而那需要一个名字叫 `scripts` 的常量或字面量「scripts」出现在被解的表达式里**。
     """
     try:
         tree = ast.parse(text)
     except SyntaxError:
         return False
+    aliases = _module_level_aliases(tree)
     for node in ast.walk(tree):
         if not isinstance(node, ast.Call):
             continue
@@ -263,6 +322,9 @@ def copies_whole_scripts(text):
             for sub in ast.walk(arg):
                 if isinstance(sub, ast.Constant) and sub.value == "scripts":
                     return True
+            # **旧判据在此已经返回 False；下面这段只可能再补一个 True**
+            if _mentions_scripts(arg, aliases):
+                return True
     return False
 
 

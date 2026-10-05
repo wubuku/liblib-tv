@@ -21,6 +21,7 @@
 **而第 1 条特意用真历史而不是新造**：Batch 286 那份 rc=2 的产物还在，
 **一个自己造出来的坏状态只能证明判据认得自己造的那个形状**。
 """
+import ast
 import io
 import os
 import re
@@ -36,10 +37,6 @@ GATE = os.path.join(HERE, "verify-slow-bootable.py")
 ZERO = "selftest-zero-input.py"
 
 results = []
-#: **收尾自检不进 `results`**——它是收尾自检不是用例，
-#: 进了就是「例数包含它自己」的自指（Batch 286 在 `selftest-zero-input.py`
-#: 上刚为同一件事立过规矩，**而本批自己又差点犯**）。
-notes = []
 
 
 def read(p):
@@ -52,8 +49,18 @@ def write(p, t):
         fh.write(t)
 
 
-def record(name, ok, detail=""):
-    results.append((name, "通过" if ok else "失败", detail))
+#: **三态，不能只有两态**——**Batch 288 实测踩到：`record(name, "作废", …)`
+#: 里那个非空字符串是**真值**，于是「作废」被记成「通过」**——
+#: **一个前提不成立的用例报成绿的，与它根本没跑在退出码上分不开**。
+#: **所以 `ok` 只接布尔，状态由 `state` 说，不许借用 `ok` 传**。
+_STATES = ("通过", "失败", "作废")
+
+
+def record(name, ok, detail="", state=None):
+    if state is None:
+        state = "通过" if ok else "失败"
+    assert state in _STATES, "状态只能是 %s，收到 %r" % ("、".join(_STATES), state)
+    results.append((name, state, detail))
 
 
 def sandbox():
@@ -92,6 +99,18 @@ def edit_one(path, old, new):
     write(path, s.replace(old, new, 1))
 
 
+def _slow_count():
+    """**慢反验的份数，从闸 18 的源码现算**（`ast`，不执行对方）。"""
+    src = os.path.join(HERE, "verify-selftest-bootable.py")
+    tree = ast.parse(read(src))
+    for node in tree.body:
+        if isinstance(node, ast.Assign) and any(
+                isinstance(t, ast.Name) and t.id == "SLOW" for t in node.targets):
+            if isinstance(node.value, ast.Dict):
+                return len(node.value.keys)
+    raise AssertionError("前提失配：读不出 SLOW 名单")
+
+
 def expect(tag, tmp, want_rc, must=(), must_not=()):
     pr = run_in(tmp)
     out = pr.stdout + pr.stderr
@@ -111,13 +130,27 @@ def expect(tag, tmp, want_rc, must=(), must_not=()):
 # ── 1) 能抓（历史证据）：回退到 Batch 286 修复前 ──────────────────────────
 def m_no_total_reported():
     tmp = sandbox()
+    target = os.path.join(tmp, "scripts", ZERO)
     pre = subprocess.run(
         ["git", "show", "675a8c7f:docs/user-manual/beeftv-canvas/scripts/" + ZERO],
         capture_output=True, text=True, cwd=REPO)
-    assert pre.returncode == 0, "前提失配：取 675a8c7f 的旧版本失败（%s）" % pre.stderr[:120]
-    write(os.path.join(tmp, "scripts", ZERO), pre.stdout)
-    expect("能抓·回退到 675a8c7f（无合计行）", tmp, 1,
-           must=[ZERO, "没有合计输出点"])
+    if pre.returncode == 0:
+        #: **有 git 历史就用真的那一份**——**理由是它不是自己造的形状**。
+        write(target, pre.stdout)
+        how = "真历史 675a8c7f"
+    else:
+        #: **没有 git 历史（方向十六的沙箱、任何脱离仓库的运行）就退回「删掉合计行」**——
+        #: **而那造出来的是同一个形状**：一份没有合计输出点的慢反验。
+        #: **本条不许因为「拿不到真历史」就作废**——**作废在退出码上与失败难以分辨**，
+        #: **而这里两件事要核的其实完全一样**。
+        cur = read(target)
+        new = re.sub(r'^\s*print\("零输入体检反验[^\n]*\n', "", cur, count=1, flags=re.M)
+        assert new != cur, "前提失配：合计那行没找到，删不掉"
+        assert "零输入体检反验" not in new, "前提失配：删了一行还剩合计行"
+        write(target, new)
+        how = "**真历史取不到（%s），已退回「删掉合计行」——同一个形状**" % (
+            (pre.stderr or "").strip().splitlines() or [""])[0][:40]
+    expect("能抓·%s 无合计行" % how, tmp, 1, must=[ZERO, "没有合计输出点"])
 
 
 # ── 2) 能抓（装体·py）────────────────────────────────────────────────────
@@ -165,8 +198,13 @@ def m_unreadable_slow_is_rc2():
 # ── 7) 不误伤 ───────────────────────────────────────────────────────────
 def m_clean_not_reported():
     tmp = sandbox()
-    expect("不误伤·五份原样", tmp, 0,
-           must=["5 份慢反验都装得上体"], must_not=["✗ 查出"])
+    # **份数必须现算，不能写死**——**Batch 288 把 SLOW 从 5 份加到 6 份，
+    # 而这一例的期望串还写着「5 份」，于是它在上线首跑时红了**。
+    # **一个把当前值抄进期望值的断言，在那个值变化的那一天必然红**，
+    # **而它红的原因与它要核的东西毫无关系**——**白让人去查判据**。
+    n = _slow_count()
+    expect("不误伤·%d 份慢反验原样" % n, tmp, 0,
+           must=["%d 份慢反验都装得上体" % n], must_not=["✗ 查出"])
 
 
 def check_own_ledger_row():
@@ -197,23 +235,32 @@ def main():
         try:
             t()
         except AssertionError as exc:
-            record(t.__name__, "作废", "前提失配：%s" % exc)
+            record(t.__name__, False, "前提失配：%s" % exc, state="作废")
         except Exception as exc:                        # noqa: BLE001
-            record(t.__name__, "失败", "%s: %s" % (type(exc).__name__, exc))
-    try:
-        check_own_ledger_row()
-        notes.append("✓ 台账自检  对应关系表里本反验那一行的例数与本轮真跑数一致")
-    except AssertionError as exc:
-        notes.append("— 台账自检（**不占例名额**）  %s" % exc)
-
+            record(t.__name__, False, "%s: %s" % (type(exc).__name__, exc), state="失败")
     ok = sum(1 for _n, s, _d in results if s == "通过")
     bad = sum(1 for _n, s, _d in results if s == "失败")
     void = sum(1 for _n, s, _d in results if s == "作废")
+    #: **结果必须在收尾自检之前打出来**——**Batch 288 上线首跑就撞上了 Batch 209 那个坑**：
+    #: 台账自检在只有 `scripts/` 的沙箱里读不到 `AUDIT-RULES.md`，
+    #: 抛的是 **`FileNotFoundError` 而我只接了 `AssertionError`**，
+    #: **于是已经跑完的 7 例结果一行都没打印**——
+    #: **「7 例全过」与「一份报告都没交出来」在退出码上都是非 0，肉眼分不开**（Batch 209）。
+    #: **所以顺序是这一处的实质，不是排版**：自检是附加项，它没有资格吞掉主结果。
     for name, state, detail in results:
         print("  %s %s  %s" % ({"通过": "✓", "失败": "✗", "作废": "—"}[state], name, detail))
-    for nline in notes:
-        print("  %s" % nline)
     print("闸 42 反验：%d 例，通过 %d" % (len(results), ok))
+    # ── 收尾自检（**不占例名额**，且接住一切异常）────────────────────────────
+    try:
+        check_own_ledger_row()
+        print("  ✓ 台账自检（不占例名额）  对应关系表里本反验那一行的例数与本轮真跑数一致")
+    except AssertionError as exc:
+        print("  — 台账自检（不占例名额）  %s" % exc)
+    except Exception as exc:                            # noqa: BLE001
+        #: **沙箱里没有手册正文时它必须安静**——**方向十六的沙箱只搬 `scripts/`**，
+        #: **而一个「读不到台账」不是「台账对不上」**（纪律 156：没核 ≠ 核过）。
+        print("  — 台账自检（本轮不适用）  读不到手册正文：%s: %s"
+              % (type(exc).__name__, exc))
     return 1 if (bad or void) else 0
 
 

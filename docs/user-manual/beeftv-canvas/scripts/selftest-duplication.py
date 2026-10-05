@@ -65,6 +65,17 @@ def probe_root(files, accepted=None, accepted_file=None):
     **这是「判据认写法不认事实」的第五次复发**
     （前四次：Batch 190 两处、Batch 239、Batch 247）。
 
+    **⚠️ Batch 288 更正这个计数与上面这句的适用范围**：
+    **上面写的是「第五次」的那件事发生在 Batch 256，而 Batch 287 又复发了一次——第六次**，
+    **形态同样是把 `os.path.join(tmp, "scripts")` 从 `copytree(...)` 实参里拆出去**
+    （新反验 `selftest-slow-bootable.py` 的 `sandbox()`）。
+    **而 Batch 288 实测的差集是 0 份**：把「认写法」与「认事实」两版 `copies_whole_scripts()`
+    在**全量 171 份反验与闸**上对跑，**答案完全一致（各 6 份判 True）**——
+    **因为第六次那次的代码在上一个批次就已经改对了**。
+    **所以「第五处缺陷」到今天为止没有留下任何一份被误报的反验**，
+    **判据的修改是纯预防性的，且已实测是严格超集（只 False→True，不 True→False）**。
+    **纪律 323**。
+
     **本批改代码侧而不是改判据侧**——理由是 `stagedeps.py` 早就写明
     「凡是『搬整目录』这个事实，都写成一次调用，**而不是去猜一个
     `for … os.listdir(…)` 的循环搬了些什么**」。
