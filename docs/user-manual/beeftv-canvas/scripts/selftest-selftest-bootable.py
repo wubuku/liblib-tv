@@ -1663,6 +1663,91 @@ def m_skip_nested_filter_works():
 
 
 
+# ── 53–54 末尾六条事实不许被一条 `problems` 整体换走（**Batch 285**）─────
+#: **闸末尾那六条各自独立**：可启动份数 / 夹具语法 / 慢反验登记 /
+#: 方向十四 shell 变量 / 方向十三 构建出口 / 方向五之二 慢反验前提。
+#: **它们原来整块挂在 `if problems: return 1` 的 else 上。**
+#:
+#: **实测的爆炸半径**：注入**一条** `problems`，**六条全部从输出里消失**，
+#: **而净行数只减少 3**（15 → 12，问题分支自己印了 3 行）——
+#: **「只少了 3 行」看起来像无害，实际是 6 项核验从报告上蒸发了。**
+#:
+#: **锚点 `    if env_gap:` 改前改后都在**（Batch 254 起就有的那一行），
+#: **所以对照组记成「红」而不是「作废」**。
+#: **⚠️ 而本批取证时第一版把注入写在 `if problems:` 的下一行**——
+#: **那一行只在本就有一条问题时才执行，于是注入成了静默空转，
+#: 量出来是「0 行消失、0 条事实消失」这个漂亮的 0。**
+#: **「一个不执行的注入会给你一个漂亮的 0」**（纪律 155/157 换个方向再踩一次）。
+_INJECT_ANCHOR = "    if env_gap:\n"
+
+#: 六条事实各自的关键字。**写死六个而不在用例里数**——
+#: **数事实条数会立刻过期，而「这六个字串还在不在」是本批真正要守的性质。**
+_FACT_MARKS = ("全部可启动", "份注入夹具", "份已登记",
+               "shell 变量展开核对", "构建出口核对", "慢反验前提核对")
+
+
+def _missing_facts(out):
+    return [m for m in _FACT_MARKS if m not in out]
+
+
+def _inject_one_problem(tmp):
+    p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+    t = read(p)
+    assert _INJECT_ANCHOR in t, "前提失配：闸里找不到 `if env_gap:`（注入锚点没了）"
+    new = t.replace(_INJECT_ANCHOR,
+                    '    problems.append("用例 53 注入的假问题")\n' + _INJECT_ANCHOR, 1)
+    assert new != t, "注入空转"
+    assert "用例 53 注入的假问题" in new, "注入没落到代码里"
+    write(p, new)
+
+
+def m_one_problem_keeps_facts():
+    """**能抓**：注入一条 `problems` → **六条事实一条都不许消失**。
+
+    **改前闸在这里必红**：六条全部随那一块一起没了，
+    **而那正是 Batch 284 那一轮 7 条用例变红/作废的同一个机制**。
+
+    **断言同时问两件事**：事实还在（本题）**且**结论确实报出了问题（防恒真）——
+    **只问「事实还在」的话，一个把结论也吞掉的写法照样能过。**
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        _inject_one_problem(tmp)
+        rc, out = run_in(tmp)
+        miss = _missing_facts(out)
+        record("53 注入一条 problems → 末尾六条事实一条都不许消失",
+               rc == 1 and not miss and "1 处问题" in out,
+               "rc=%d 消失 %d 条%s 结论行=%s"
+               % (rc, len(miss), ("（%s）" % "、".join(miss)) if miss else "",
+                  "有" if "1 处问题" in out else "**无**"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_no_problem_keeps_facts():
+    """**不误伤**：没有 `problems` 时六条事实全在，且 rc=0。
+
+    **这一对缺了 54 就只有一半**：一个「无论有没有问题都不打印任何事实」的写法，
+    **会在 53 上露馅吗？不会——它同样会让 53 里的「结论行」消失**；
+    **而一个「无论有没有问题都照打结论」的写法会在 54 上露馅**（它会说 0 处问题而其实没核）。
+    **所以两条问的是同一个「事实块」在两种前提下的行为，不是一个能顶两个。**
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        rc, out = run_in(tmp)
+        miss = _missing_facts(out)
+        record("54 没有 problems 时六条事实全在且 rc=0",
+               rc == 0 and not miss and "用例 53 注入的假问题" not in out,
+               "rc=%d 缺 %d 条%s 误报=%d"
+               % (rc, len(miss), ("（%s）" % "、".join(miss)) if miss else "",
+                  out.count("用例 53 注入的假问题")))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+
 def check_own_ledger_row():
     """本反验**自己核自己那一行**的「例数」——因为方向十七够不到它。
 
@@ -1715,7 +1800,8 @@ def main():
              m_fleet_real_history_not_reported, m_fleet_broken_builder_wired,
              m_skip_table_tracked_file_reported,
              m_skip_table_clean_and_config_fingerprinted,
-             m_skip_nested_filter_works]
+             m_skip_nested_filter_works,
+             m_one_problem_keeps_facts, m_no_problem_keeps_facts]
     for t in tests:
         try:
             t()
