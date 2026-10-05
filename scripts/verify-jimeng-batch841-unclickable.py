@@ -5861,6 +5861,9 @@ def main() -> int:
     # ⚠️⚠️ 判据组 `I993M.3` 要钉的是**「正确公式与错公式的差别」**
     p1004 = ROOT / "scripts/jimeng_probe1004_anchor_coupling.py"
     _p1004 = p1004.read_text(encoding="utf-8") if p1004.exists() else ""
+    # ⚠️ 判据组 `J993N.3` 要钉的是**「golden 由写它的仪器自己写」**
+    p1005 = ROOT / "scripts/jimeng_probe1005_zero_coupling_census.py"
+    _p1005 = p1005.read_text(encoding="utf-8") if p1005.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -13884,6 +13887,98 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **反向门**：**不许把「报了问题」当成「报得准」**
           and '报了问题就说明报得准' not in _p1004
           and '报了问题就说明报得准' not in _ausrc)
+
+    # ══ J993N. 批 1005 **「零耦合」不是一个东西：拆开、并让清单落进仓里**
+    print("— J993N. 批 1005 零耦合普查："
+          "✅ **690 条分成「标识符（多处引用）」301 与「散文/片段」389 —— 前者是语义使然** ⇒ ⇒ "
+          "❌ **而 P2 被否：行距分不开它们、相邻档反而在标识符类里更多（82 vs 18）** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而「注入必须动两侧」：只改 audit 的话普查报 delta=0**")
+
+    check("J993N.1 ⭐⭐⭐⭐⭐ **P1 成立：零耦合锚点分成两类 —— "
+          "**「标识符（多处引用）」301 条与「散文/片段」389 条** ⇒ ⇒ "
+          "**⇒ 而前一类是**语义使然**：判据本来就在问「这个东西存在吗」、"
+          "**改掉其中一处不该让判据红** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 所以「零耦合」不能一刀切地说成「废判据」** ⇒ ⇒ "
+          "**⇒ 而清单必须逐条落进仓里、不许只留在探针输出里**",
+          '"P1_two_classes_exist"' in _p1005
+          and '"p1_two_classes_exist_1005_"' in _ausrc
+          and '"P1_hold_1005"' in _p1005
+          and '"census_1005"' in _p1005
+          and '"golden_path_1005"' in _p1005
+          and 'zero-coupling-anchors-1005.json' in _p1005
+          and 'zero-coupling-anchors-1005.json' in _ausrc
+          and '「零耦合」**不能**一刀切地说成「废判据」' in _p1005
+          and '「零耦合」**不能**一刀切地说成「废判据」' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「零耦合」直接等价成「这条判据没用」**
+          and '零耦合就等于这条判据没用' not in _p1005
+          and '零耦合就等于这条判据没用' not in _ausrc)
+
+    check("J993N.2 ⭐⭐⭐⭐⭐ **❌ P2 被否、而方向和我猜的相反："
+          "**「最小行距」不但分不开两类、相邻档反而在标识符类里更多（82 vs 18）** ⇒ ⇒ "
+          "**⇒ 因为相邻两行代码用同一个 token 是常事** ⇒ ⇒ "
+          "**⇒ 我原以为「相邻 = 散文被复制到两处」、"
+          "**而实际是「相邻 = 同一个 token 在同一处代码里出现两次」** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而行距这个轴不能当分类依据 —— "
+          "**它测的是「这个 token 挨得多近」、不是「这个判据弱不弱」** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 这是「否」的第六种自我形态：模式是我列的（1000 那条）** ⇒ ⇒ "
+          "**⇒ 而我没有去换一个「更好看的轴」来让它成立**",
+          '"P2_line_gap_separates_the_two_classes"' in _p1005
+          and '"P2_falsified_1005"' in _p1005
+          and '"p2_line_gap_separates_1005_"' in _ausrc
+          and '"P2_hold_1005"' in _p1005
+          and 'class_x_gap' in _p1005
+          and '它测的是「这个 token 挨得多近」' in _p1005
+          and '它测的是「这个 token 挨得多近」' in _ausrc
+          and '模式是我列的（1000 那条）' in _p1005
+          and '模式是我列的（1000 那条）' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门①**：**不许换一个轴让预测成立而不说**
+          and '换一个轴它就成立了' not in _p1005
+          and '换一个轴它就成立了' not in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门②**：**不许把「相邻」当成分类的证据**
+          and '相邻就说明是散文' not in _p1005
+          and '相邻就说明是散文' not in _ausrc)
+
+    check("J993N.3 ⭐⭐⭐⭐⭐ **P3 成立：清单由**本探针自己**写、逐条一致（新增 0、消失 0）** ⇒ ⇒ "
+          "**⇒ 而第一版那份是临时脚本落的、它把锚点截断到 40 字符** ⇒ ⇒ "
+          "**⇒ 后果是「新增 11 条、消失 11 条」、而它们其实是同一批 11 条** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 「差异数」本身也要有口径 —— "
+          "**一个截断的清单和一个全量的清单相比、永远在「变」** ⇒ ⇒ "
+          "**⇒ 处置：写它的仪器必须就是读它的那个**",
+          '"P3_golden_is_reproducible"' in _p1005
+          and '"p3_golden_is_reproducible_1005_"' in _ausrc
+          and '"P3_hold_1005"' in _p1005
+          and '--write-golden' in _p1005
+          and '"generated_by"' in _p1005
+          and '它把锚点截断到 40 字符' in _p1005
+          and '它把锚点截断到 40 字符' in _ausrc
+          and '一个截断的清单和一个全量的清单相比、永远在「变」' in _p1005
+          and '一个截断的清单和一个全量的清单相比、永远在「变」' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许只记一个总数就说「清单在仓里」**
+          and '只记总数就算清单落仓了' not in _p1005
+          and '只记总数就算清单落仓了' not in _ausrc)
+
+    check("J993N.4 ⭐⭐⭐⭐⭐ **P4 成立、而它的第一版报 delta=0：注入必须**动两侧**"
+          "** ⇒ ⇒ **⇒ 普查的宇宙是「verifier 里声明、且在目标里存在」的锚点**"
+          "** ⇒ ⇒ **⇒ 只改 audit 等于什么也没加** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而这恰恰说明那道门只认「声明」与「存在」两件事** ⇒ ⇒ "
+          "**⇒ P5 成立：分母是 `collect` 的条数、去重后的键数必须都报** ⇒ ⇒ "
+          "**⇒ 本批纯离线：连 `mouse.click` 都没有**",
+          '"P4_reverse_case_the_census_can_return_non_zero"' in _p1005
+          and '"p4_reverse_case_1005_"' in _ausrc
+          and '"P4_hold_1005"' in _p1005
+          and '"P5_denominator_is_collect_not_dedup"' in _p1005
+          and '"p5_denominator_is_collect_1005_"' in _ausrc
+          and '"P5_hold_1005"' in _p1005
+          and 'why_both_sides' in _p1005
+          and '只改目标等于什么也没加' in _p1005
+          and '只改目标等于什么也没加' in _ausrc
+          and '而这恰恰说明那道门只认「声明」与「存在」两件事' in _p1005
+          and '而这恰恰说明那道门只认「声明」与「存在」两件事' in _ausrc
+          and '连 `mouse.click` 都没有' in _p1005
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「注入只动一侧」当成「注入失败」而不查原因**
+          and '注入失败说明普查坏了' not in _p1005
+          and '注入失败说明普查坏了' not in _ausrc)
+
 
 
 
