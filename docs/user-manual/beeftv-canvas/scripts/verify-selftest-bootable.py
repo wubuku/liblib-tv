@@ -360,7 +360,15 @@ SELFTEST_COSTS = {
     "selftest-encoding.py": 0.2,
     "selftest-endpoints.py": 0.8,
     "selftest-error-copy.py": 0.8,
-    "selftest-exclusions.py": 1.6,
+    #: **Batch 293 据实重测：1.6 → 20.0。**
+    #: **实测三次 16.5 / 16.01 / 15.12 秒**（加第 22 例之后；加之前是 22 例），
+    #: **而登记的 1.6 低报约 10 倍**。
+    #: **而这一条与 Batch 288 那条是同一个病的两面**：
+    #: **那次是过期（7.5 曾经是真测量），这次是低报（1.6 从来就不是）**——
+    #: **方向四d 读的就是这个数，1.6 < 30 阈值，于是它永远看不见这一份反验变慢了 10 倍。**
+    #: **两次都不是判据的错，是「没人重测」这件事本身没人管**（方向四e 注释里已自认这个盲区）。
+    #: **按纪律 204 取大并留余量，登记 20.0**。
+    "selftest-exclusions.py": 20.0,
     "selftest-feature-flags.py": 0.4,
     "selftest-label-drift.py": 1.9,
     "selftest-ledger-refs.py": 0.3,

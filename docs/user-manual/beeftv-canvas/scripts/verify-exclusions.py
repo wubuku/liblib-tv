@@ -764,14 +764,43 @@ def main():
                 if f.startswith("backend/") and f.endswith(".go")
                 and not f.endswith("_test.go")]
     routes = beefsrc.routes_in(read_many(src, ref, go_files))
-    agent_routes = sorted(r for r in routes if "agent" in r)
+    #: **Batch 293 收紧这条判据——它原来宽到会被不相干的新功能满足。**
+    #:
+    #: 原式是 `r for r in routes if "agent" in r`：**任何含 "agent" 字样的路由都算命中**。
+    #: **实测后果（v1.7.3 / `origin/main`）**：上游新增了「外部 Agent」功能，
+    #: 它注册的是 **`/agent-clients` 与 `/agent-clients/:id`**——
+    #: **这两个字符串里都有 "agent"，于是被排除的两个页面被判成「解禁条件可能已满足，需回走验证」。**
+    #:
+    #: **而它满足的其实不是那两个页面的条件。** 实测被排除功能的真实路由空间是
+    #: **`/api/agent/*`**（`capabilities` / `memories` / `memories/compact` / `profile` / `runs`），
+    #: 且 `backend/internal/handler/agent_retired_test.go` **从 v1.6.22 就在**以真实 HTTP 路由图
+    #: 断言这五条**未注册**——**v1.7.3 上它们仍然未注册，那两个页面仍然该排除。**
+    #:
+    #: **所以这条判据的危险方向是「诱导一个错误动作」而不是「漏报」**：
+    #: 人若照着「条件可能已满足」去解禁，会把两个仍然退场的功能写回手册。
+    #: **判据过宽也会误导，只是它误导的方式是让人去做，而不是让人不做事。**
+    agent_routes = sorted(r for r in routes
+                          if r == "/api/agent" or r.startswith("/api/agent/"))
+    #: **一并把「长得像但不属于它」的路由单独列出来**——
+    #: **判据收紧之后，这一段的用途从「命中」变成「让人看见它为什么不算」**，
+    #: **而这不是装饰**：下一次上游再新增一个带 agent 字样的功能时，
+    #: **这一行会直接把那个名字打出来，而不必再靠人去回忆上一次差在哪。**
+    lookalikes = sorted(r for r in routes
+                        if "agent" in r and r not in agent_routes)
     if agent_routes:
         problems.append(
-            f"/agent 相关路由已注册 {len(agent_routes)} 条（{', '.join(agent_routes[:3])}）"
-            f" → cloud-agent / agent-memory-skills 的解禁条件可能已满足，需回走验证"
+            f"被排除功能自己的路由 `/api/agent/*` 已注册 {len(agent_routes)} 条"
+            f"（{', '.join(agent_routes[:5])}）"
+            f" → cloud-agent / agent-memory-skills 的解禁条件**真的**可能已满足，需回走验证"
         )
     else:
-        notes.append("cloud-agent / agent-memory-skills：/agent/* 仍未注册，条件成立")
+        notes.append("cloud-agent / agent-memory-skills：`/api/agent/*` 仍未注册，条件成立")
+        if lookalikes:
+            notes.append(
+                "  （**特意不算**：上游另有 %d 条含 agent 字样的路由——%s——"
+                "**它们不属于被排除功能的路由空间，不能用来满足它的解禁条件**）"
+                % (len(lookalikes), "、".join("`%s`" % r for r in lookalikes[:4]))
+            )
 
     # —— 条件 2：智能剪辑等节点仍在 developingNodeTypes ——
     avail = git_show(src, ref, "web/src/lib/canvas/canvas-feature-availability.ts")

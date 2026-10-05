@@ -10475,3 +10475,23 @@ Batch 249 加的）、`run_two_file_case`（3 条，**没有**）、用例 7 内
     （`cloud-agent` / `agent-memory-skills`），**而 v1.7.3 的提交里确实有 agent 与
     `/agent` 相关的工作**。**这是升版能带来的净收益，不只是补丁。**
     **而 274 件非测试修改是这一切的上界**（纪律 326 的口径）。**纪律 327**。
+
+257. **「外部 Agent」是 v1.7.3 的新功能，而它**不是**手册里那两个被排除的页面**
+    （Batch 293）：**实测 `origin/main`**——
+    **后端**：`/agent-clients`、`/agent-clients/:id` 两条路由已注册
+    （`backend/internal/agentops/clients.go`）；
+    **前端**：`web/src/pages/agents/` 整目录存在
+    （`index.tsx` 列出已连接的外部客户端 + `agent-connect-modal.tsx` 连接弹窗
+    + `agent-client-presentation.ts`）、
+    `web/src/services/api/agent-clients.ts` 三个接口
+    （`listAgentClients` / `createAgentClient` / `revokeAgentClient`）、
+    `workspace-route-modules.ts` 注册 `agents`；
+    **界面**：`workspace-sidebar-nav.tsx:53` 有**一级入口**
+    「**外部 Agent**」（图标 `Plug`，路由 `/agents`）。
+    **而 `web/src/pages/agents/` 在手册声明的基线 v1.6.22 上根本不存在**。
+    **它与手册里那两个被排除的页面是两件事**：
+    **那两页讲的是「云端 Agent：发起任务、审批与插话」与「Agent 记忆与技能」**，
+    **其路由空间是 `/api/agent/*`（5 条），而 `agent_retired_test.go` 在 v1.7.3 上仍在断言它们未注册**——
+    **所以那两页在 v1.7.3 上仍然该排除**。
+    **判据 `if "agent" in r` 宽到被这个不相干的新功能满足**，
+    **已收紧为 `/api/agent` 前缀并在输出里逐条打出「特意不算」**（纪律 328）。

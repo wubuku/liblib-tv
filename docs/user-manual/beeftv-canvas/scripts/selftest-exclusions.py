@@ -653,6 +653,42 @@ def main():
     run("21) 不误伤：告知写在前导 4 空格的「表格」里（真渲染器：那是代码块，读者看得见）",
         "证据降级告知", expect_fail=False, transform=t_tell_in_indented_pipe_block)
 
+    # ── Batch 293 新增第 22 例：判据**过宽**也会误导，而且误导的方式是「诱导一个动作」 ──
+    #
+    # **这一例必须真对着 `origin/main` 跑**，所以它用不了上面那个 `run()`——
+    # `run()` 把闸搬进临时树跑，跑的是**手册声明的基线**，那里没有 `/agent-clients`。
+    # **而 bug 只在 `origin/main` 上现形**（上游在那里新增了「外部 Agent」）。
+    #
+    # **它守的是哪一侧**：**不误伤**。**这一族的红不是「漏掉了一个问题」，
+    # 而是「报了一个不成立的问题，而那个报告会诱导人去解禁两个仍然退场的功能」**——
+    # **判据过宽与判据过窄都会骗人，方向不同而已。**
+    #
+    # **这一例有个会过期的性质，明写**：若将来上游真的注册了 `/api/agent/*`，
+    # 闸会**正确地**报「解禁条件真的可能已满足」，而这一例会红——
+    # **那时该做的是回走核实那两个页面并解禁，不是改这一例**。
+    global PASS, VOID, FAIL
+    env = child_env(ROOT)
+    env["BEEFTV_REF"] = "origin/main"
+    r22 = subprocess.run([sys.executable, GATE], cwd=ROOT,
+                         capture_output=True, text=True, env=env)
+    out22 = (r22.stdout or "") + (r22.stderr or "")
+    if "/api/agent/*` 仍未注册，条件成立" not in out22:
+        print("  ✗ 22) origin/main 上带 agent 字样但不属于被排除功能的路由 → 必须仍判「条件成立」；实际 rc=%d"
+              % r22.returncode)
+        FAIL += 1
+    elif "可能已满足" in out22:
+        print("  ✗ 22) 同上：闸把 `/agent-clients` 当成了解禁条件 → **判据过宽，"
+              "它会诱导人去解禁两个仍然退场的功能**")
+        FAIL += 1
+    elif "/agent-clients" not in out22:
+        print("  ✗ 22) 同上：判据对了，但**没有把「长得像却不算」的那两条打出来**"
+              " → 下一个人无法从输出看出它为什么不算")
+        FAIL += 1
+    else:
+        print("  ✓ 22) origin/main 上带 agent 字样但不属于被排除功能的路由 → 仍判「条件成立」，"
+              "且逐条打出「特意不算」")
+        PASS += 1
+
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0
 
