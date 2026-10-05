@@ -43,7 +43,18 @@ for (const b of blocks) {
   const abs = path.resolve(DIR, file);
   const refs = altByPath.get(abs) || [];
   const mAlt = b.alt;
-  if (!refs.length) { unreferenced++; issues.push(`未被正文引用  ${file}`); continue; }
+  if (!refs.length) {
+    unreferenced++;
+    // 🔴 批次 168 新增的**自解释分支**：这个失败几乎总是「alt 里出现了 `]`」造成的 ——
+    //   `/!\[([^\]]*)\]\(([^)]+)\)/` 撞上 alt 内第一个 `]` 就截断，于是整张图读不到。
+    //   而正文里**无从看出**这个原因（正文确实有引用）⇒ 门只报「未被正文引用」会把人带偏。
+    //   ⇒ 这里直接把最可能的原因写出来，并说明修法。
+    const 疑因 = mAlt && mAlt.includes(']')
+      ? '⚠️ 它的 alt 里含有 `]`（例如逐字引用类名 top-[60px]）⇒ **alt 里的 `]` 会截断 `![...](...)` 的匹配**；修法：alt 里避开方括号，或写成 `\\]`'
+      : '（alt 里没有 `]`，那就是正文里确实没有引用）';
+    issues.push(`未被正文引用  ${file}\n    ↳ ${疑因}`);
+    continue;
+  }
   if (!mAlt) { issues.push(`manifest 缺 alt  ${file}`); continue; }
   const bad = refs.filter((r) => r.alt !== mAlt);
   if (bad.length) {

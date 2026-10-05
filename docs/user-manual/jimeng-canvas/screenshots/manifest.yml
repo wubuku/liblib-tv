@@ -1864,3 +1864,14 @@ screenshots:
     visible_text: '设置主体 参考主体 名称 描述 保存'
     alt: '「设置主体」对话框：标题「设置主体」带 ⓘ、参考主体区已预填那张图、中间是可滚动区（描述输入框被裁到一半）、右下角「保存」为灰色禁用态，橙色高亮框标出对话框范围'
     sha256: 5fbfc85496250b339d71e3c869f85c43735f04ae7121e83a9cc6b14ca24dfa62
+  - file: screenshots/126-help-center-panel-360x644.png
+    task_id: help-and-shortcuts
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T13:36:00+08:00
+    verified_locator: '顶栏「用户菜单」→「帮助中心」打开的面板，.w-workspace-help-center 读出 360×644@904,60（上余量恒 60、右余量恒 16）'
+    visible_text: '帮助中心'
+    alt: '「帮助中心」面板（2026-10-05 批次 168 拍，1280×720 下实测 360×644）：面板钉在画布右上角，面板以 fixed + right-4 + top 偏移 60px + z-40 钉在右上角，左上角标题「帮助中心」，下面是说明文字与若干条目，右上角有 ✕ 关闭'
+    sha256: ccaee05f37e0bcc54e329331156673106515549f01c38dd30503cb2b7c88c192
