@@ -1,0 +1,321 @@
+{
+ "批次": "212a",
+ "靶子": "20-reference.md「选中之后描述会不会改」未取证",
+ "读的是什么": "节点 aria-describedby 指向的那个宿主的 innerText（未选中 vs 选中）",
+ "目标集": [
+  "文本 1",
+  "时间线 1",
+  "音频 68",
+  "b22-upload",
+  "视频 1",
+  "导演台"
+ ],
+ "臂": {
+  "文本 1": {
+   "无效": "无归属候选点（被别的节点盖住）",
+   "id": "node_3bfb9r79qe",
+   "前": {
+    "节点屏上": [
+     187,
+     32,
+     83,
+     83
+    ],
+    "描述id列表": [
+     "canvas-node-description-node_3bfb9r79qe"
+    ],
+    "宿主数": 1,
+    "宿主逐个": [
+     {
+      "tag": "DIV",
+      "testid": "text-flow-node-compact",
+      "是节点根": false,
+      "是节点子树内": true,
+      "面积": [
+       83,
+       83
+      ],
+      "innerText": "双击编辑文本",
+      "textContent": "双击编辑文本"
+     }
+    ],
+    "节点自身innerText": "双击编辑文本 文本 1",
+    "选中态": false
+   }
+  },
+  "时间线 1": {
+   "id": "node_cdwf8x6fbj",
+   "前": {
+    "节点屏上": [
+     73,
+     66,
+     312,
+     54
+    ],
+    "描述id列表": [
+     "canvas-node-description-node_cdwf8x6fbj"
+    ],
+    "宿主数": 1,
+    "宿主逐个": [
+     {
+      "tag": "SPAN",
+      "testid": null,
+      "是节点根": false,
+      "是节点子树内": true,
+      "面积": [
+       0,
+       0
+      ],
+      "innerText": "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+      "textContent": "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+     }
+    ],
+    "节点自身innerText": "时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.",
+    "选中态": false
+   },
+   "后": {
+    "节点屏上": [
+     100,
+     80,
+     312,
+     54
+    ],
+    "描述id列表": [
+     "canvas-node-description-node_cdwf8x6fbj"
+    ],
+    "宿主数": 1,
+    "宿主逐个": [
+     {
+      "tag": "SPAN",
+      "testid": null,
+      "是节点根": false,
+      "是节点子树内": true,
+      "面积": [
+       0,
+       0
+      ],
+      "innerText": "时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.",
+      "textContent": "时间线: 1 visual track, 0 audio tracks, 0 clips. Selected."
+     }
+    ],
+    "节点自身innerText": "时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 Drag clips to reorder them. With the keyboard, press Shift + Left or Right Arrow. 时间线: 1 visual track, 0 audio tracks, 0 clips. Selected.",
+    "选中态": true
+   },
+   "补点": 1,
+   "选中了": true,
+   "无效": null,
+   "对比": {
+    "宿主数一致": true,
+    "逐字前": [
+     "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+    ],
+    "逐字后": [
+     "时间线: 1 visual track, 0 audio tracks, 0 clips. Selected."
+    ],
+    "变了": true,
+    "末句前": [
+     " Not selected."
+    ],
+    "末句后": [
+     "ips. Selected."
+    ]
+   }
+  },
+  "音频 68": {
+   "id": "node_tadm1nyykc",
+   "前": {
+    "节点屏上": [
+     554,
+     153,
+     83,
+     83
+    ],
+    "描述id列表": [
+     "canvas-node-description-node_tadm1nyykc"
+    ],
+    "宿主数": 1,
+    "宿主逐个": [
+     {
+      "tag": "SPAN",
+      "testid": null,
+      "是节点根": false,
+      "是节点子树内": true,
+      "面积": [
+       0,
+       0
+      ],
+      "innerText": "No resources. Current preview: 暂无音频. Not selected.",
+      "textContent": "No resources. Current preview: 暂无音频. Not selected."
+     }
+    ],
+    "节点自身innerText": "音频 68 No resources. Current preview: 暂无音频. Not selected.",
+    "选中态": false
+   },
+   "后": {
+    "节点屏上": [
+     554,
+     153,
+     83,
+     83
+    ],
+    "描述id列表": [
+     "canvas-node-description-node_tadm1nyykc"
+    ],
+    "宿主数": 1,
+    "宿主逐个": [
+     {
+      "tag": "SPAN",
+      "testid": null,
+      "是节点根": false,
+      "是节点子树内": true,
+      "面积": [
+       0,
+       0
+      ],
+      "innerText": "No resources: 0 ready, 0 processing, 0 failed. Selected.",
+      "textContent": "No resources: 0 ready, 0 processing, 0 failed. Selected."
+     }
+    ],
+    "节点自身innerText": "音频 68 No resources: 0 ready, 0 processing, 0 failed. Selected.",
+    "选中态": true
+   },
+   "补点": 1,
+   "选中了": true,
+   "无效": null,
+   "对比": {
+    "宿主数一致": true,
+    "逐字前": [
+     "No resources. Current preview: 暂无音频. Not selected."
+    ],
+    "逐字后": [
+     "No resources: 0 ready, 0 processing, 0 failed. Selected."
+    ],
+    "变了": true,
+    "末句前": [
+     " Not selected."
+    ],
+    "末句后": [
+     "led. Selected."
+    ]
+   }
+  },
+  "b22-upload": {
+   "id": "node_gref4sw056",
+   "前": {
+    "节点屏上": [
+     1017,
+     499,
+     148,
+     83
+    ],
+    "描述id列表": [
+     "canvas-node-description-node_gref4sw056"
+    ],
+    "宿主数": 1,
+    "宿主逐个": [
+     {
+      "tag": "IMG",
+      "testid": "image-node-compact",
+      "是节点根": false,
+      "是节点子树内": true,
+      "面积": [
+       148,
+       83
+      ],
+      "innerText": "",
+      "textContent": ""
+     }
+    ],
+    "节点自身innerText": "b22-upload",
+    "选中态": false
+   },
+   "后": {
+    "节点屏上": [
+     1017,
+     499,
+     148,
+     83
+    ],
+    "描述id列表": [
+     "canvas-node-description-node_gref4sw056"
+    ],
+    "宿主数": 1,
+    "宿主逐个": [
+     {
+      "tag": "FIELDSET",
+      "testid": "image-node-result",
+      "是节点根": false,
+      "是节点子树内": true,
+      "面积": [
+       148,
+       83
+      ],
+      "innerText": "",
+      "textContent": ""
+     }
+    ],
+    "节点自身innerText": "b22-upload",
+    "选中态": true
+   },
+   "补点": 1,
+   "选中了": true,
+   "无效": null,
+   "对比": {
+    "宿主数一致": true,
+    "逐字前": [
+     ""
+    ],
+    "逐字后": [
+     ""
+    ],
+    "变了": false,
+    "末句前": [
+     ""
+    ],
+    "末句后": [
+     ""
+    ]
+   }
+  },
+  "视频 1": {
+   "出错": "page.waitForTimeout: Target page, context or browser has been closed"
+  },
+  "导演台": {
+   "出错": "page.evaluate: Target page, context or browser has been closed"
+  }
+ },
+ "无效臂": 3,
+ "起点": {
+  "缩放": "Zoom options, 26%",
+  "节点数": 79,
+  "选中": 0,
+  "积分": "Credits: 813 · 基础会员",
+  "浮层": 0
+ },
+ "索引样本": [
+  {
+   "id": "node_3bfb9r79qe",
+   "标题": "文本 1"
+  },
+  {
+   "id": "node_cdwf8x6fbj",
+   "标题": "时间线 1"
+  },
+  {
+   "id": "node_aw29cp094x",
+   "标题": "文本 2"
+  },
+  {
+   "id": "node_5gftn3dnt1",
+   "标题": "文本 3"
+  },
+  {
+   "id": "node_ay7f1jn45r",
+   "标题": "音频 1"
+  },
+  {
+   "id": "node_w6b1h9fvzw",
+   "标题": "音频 2"
+  }
+ ]
+}

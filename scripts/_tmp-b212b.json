@@ -1,0 +1,135 @@
+{
+ "批次": "212b",
+ "a轮出了什么问题": "共享画布漂到 79 节点/813 积分；页签被别的会话关掉；finally 里读页面导致收尾断言没跑",
+ "目标集": [
+  {
+   "标题": "音频 68",
+   "目的": "复现「前半句也变」那个发现"
+  },
+  {
+   "标题": "时间线 1",
+   "目的": "复现「只有末句变」"
+  },
+  {
+   "标题": "视频 1",
+   "目的": "a 轮未跑完"
+  },
+  {
+   "标题": "导演台",
+   "目的": "a 轮未跑完"
+  },
+  {
+   "标题": "文本 1",
+   "目的": "a 轮无归属点；这轮用更细的网格"
+  }
+ ],
+ "臂": {
+  "音频 68": {
+   "目的": "复现「前半句也变」那个发现",
+   "id": "node_tadm1nyykc",
+   "补点": 1,
+   "选中了": true,
+   "候选点数": 52,
+   "无效": null,
+   "宿主是节点根": [
+    false
+   ],
+   "逐字前": [
+    "No resources. Current preview: 暂无音频. Not selected."
+   ],
+   "逐字后": [
+    "No resources: 0 ready, 0 processing, 0 failed. Selected."
+   ],
+   "变了": true
+  },
+  "时间线 1": {
+   "目的": "复现「只有末句变」",
+   "id": "node_cdwf8x6fbj",
+   "补点": 1,
+   "选中了": true,
+   "候选点数": 48,
+   "无效": null,
+   "宿主是节点根": [
+    false
+   ],
+   "逐字前": [
+    "时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected."
+   ],
+   "逐字后": [
+    "时间线: 1 visual track, 0 audio tracks, 0 clips. Selected."
+   ],
+   "变了": true
+  },
+  "视频 1": {
+   "目的": "a 轮未跑完",
+   "id": "node_236ctpehgg",
+   "补点": 1,
+   "选中了": true,
+   "候选点数": 52,
+   "无效": null,
+   "宿主是节点根": [
+    false
+   ],
+   "逐字前": [
+    "No resources. Current preview: 暂无视频. Not selected."
+   ],
+   "逐字后": [
+    "No resources: 0 ready, 0 processing, 0 failed. Selected."
+   ],
+   "变了": true
+  },
+  "导演台": {
+   "目的": "a 轮未跑完",
+   "id": "node_pxvkay973v",
+   "补点": 1,
+   "选中了": true,
+   "候选点数": 51,
+   "无效": null,
+   "宿主是节点根": [
+    false
+   ],
+   "逐字前": [
+    "No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "逐字后": [
+    "No resources: 0 ready, 0 processing, 0 failed. Selected."
+   ],
+   "变了": true
+  },
+  "文本 1": {
+   "目的": "a 轮无归属点；这轮用更细的网格",
+   "id": "node_3bfb9r79qe",
+   "补点": 1,
+   "选中了": true,
+   "候选点数": 14,
+   "无效": null,
+   "宿主是节点根": [
+    false
+   ],
+   "逐字前": [
+    "双击编辑文本"
+   ],
+   "逐字后": [
+    "双击编辑文本"
+   ],
+   "变了": false
+  }
+ },
+ "起点": {
+  "缩放": "Zoom options, 26%",
+  "节点数": 79,
+  "选中": 0,
+  "积分": "Credits: 791 · 基础会员",
+  "浮层": 0
+ },
+ "收尾": {
+  "缩放": "Zoom options, 26%",
+  "节点数": 79,
+  "选中": 0,
+  "浮层": 0,
+  "积分": "Credits: 791 · 基础会员",
+  "状态行": "79 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ },
+ "有效臂": 5,
+ "无效臂": 0
+}
