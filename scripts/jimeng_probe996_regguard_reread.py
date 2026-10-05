@@ -61,12 +61,28 @@ HONESTY = (
     "⭐⭐⭐⭐⭐ **沿用 992–995 那条：「怎么选候选」也要记下来**"
 )
 
-# ⭐⭐⭐⭐⭐ **这条假引用就是反向用例本身 —— 写死、不许改**
-# ⚠️⚠️⚠️⭐⭐⭐⭐⭐ **第一版我写的是 `_pXXX`、而它红了 —— 而红的成因是
-#   **假名不符合被检的正则**（`_p` 加三位数字）⇒ ⇒ **门压根没看见它、照旧报 0**
-#   ⇒ ⇒ ⭐⭐⭐⭐⭐ **而这正是 P2 预言的那个陷阱、在同一批里当场咬我一口**
-#   ⇒ ⇒ ⭐⭐⭐⭐⭐ **结论：反向用例的名字必须自己通过被检的那道正则**
-FAKE = "_p999"
+# ⭐⭐⭐⭐⭐ **这条假引用就是反向用例本身**
+# ⚠️⚠️⚠️⭐⭐⭐⭐⭐ **第一版假名是 `_pXXX`、而它红了 —— 成因是假名不符合被检的正则**
+#   ⇒ **门压根没看见它、照旧报 0** ⇒ **⇒ 结论：假名必须自己通过被检的那道正则**
+# ⚠️⚠️⚠️⚠️⭐⭐⭐⭐⭐ **第二版我把假名写死成 `_p999` —— 而那是本批最大的一个漏洞**：
+#   **1001 才发现 `_p999` 已经被 999 批登记成了一个真探针变量** ⇒ ⇒
+#   **⇒ 于是「假名」变成了真名 ⇒ 注入它不改变任何数 ⇒ 反向用例静默失效** ⇒ ⇒
+#   **⭐⭐⭐⭐⭐ **⇒ 而 996 那道门自己开始报假绿、而且连 `P3` 都已经是 False**
+_NAMERE = re.compile(r"_p\d{3,}\Z")   # ⚠️ 1001：\d{3} 看不见 _p1000/_p1001
+
+def _pick_fake(vsrc_text):
+    """⭐⭐⭐⭐⭐ **假名在运行时挑一个「仓里没人用、且自己能通过被检正则」的**
+
+    ⭐⭐⭐⭐⭐ **⇒ 这条纪律 996 没写、而它正是这次假绿的直接原因**
+    """
+    for n in range(9000, 9099):
+        cand = "_p%d" % n
+        if _NAMERE.match(cand) and cand not in vsrc_text:
+            return cand
+    return "_p9099"
+
+
+FAKE = ""   # ⭐ 真正的名字在读到 vsrc 之后才定（见下）
 
 ausrc = ""
 if os.path.exists(AUDIT):
@@ -81,6 +97,8 @@ if os.path.exists(ANCHORCHK):
     with open(ANCHORCHK, encoding="utf-8") as f:
         asrc = f.read()
 
+# ⭐⭐⭐⭐⭐ **假名必须在这里定** —— 因为它依赖 `vsrc`（「仓里没人用」）
+FAKE = _pick_fake(vsrc)
 out = {
     "target": "offline-registry-guard",
     "source": "verify-jimeng-batch841-unclickable.py ＋ "
@@ -94,7 +112,9 @@ out = {
     "offline_996": True,
     "fake_name_996": FAKE,
     "fake_note_996": (
-        "⭐⭐⭐⭐⭐ **`_p999` 是写死的假引用、它就是那道反向用例** ⇒ "
+        "⭐⭐⭐⭐⭐ **假名是运行时挑的、不是写死的** —— "
+        "**因为 1001 才发现写死的 `_p999` 已被 999 批登记成真变量、"
+        "反向用例因此静默失效** ⇒ "
         "**而它的名字自己就通过被检的那道正则** —— "
         "**第一版的 `_pXXX` 不通过、所以那道反向用例当时是假的** ⇒ "
         "**任何时候跑这道门都必须报它** ⇒ "
@@ -110,7 +130,6 @@ out = {
 #   **995 是「拿正文当『有没有登记』的判据」不可靠；**
 #   **这一条是「拿正则扫正文当『有没有引用』的判据」同样不可靠** ⇒ ⇒
 #   ⇒ ⭐⭐⭐⭐⭐ **⇒ 所以判据必须扫 AST 里的条件表达式、不许扫字符串字面量**
-_NAMERE = re.compile(r"_p\d{3}\Z")
 
 
 def _referenced(src):
@@ -151,13 +170,13 @@ def _referenced(src):
 def _readlines(src):
     """⭐⭐ verifier 里真正的那行读取（**不是「名字在不在」**）"""
     return {m.group(1) for m in re.finditer(
-        r"^\s*(_p\d{3})\s*=\s*\w+\.read_text", src, re.M)}
+        r"^\s*(_p\d{3,})\s*=\s*\w+\.read_text", src, re.M)}
 
 
 def _registered(src):
     """⭐⭐ `PROBE_VARS` 里登记了的（**同样按「那一行条目」判**）"""
     return {m.group(1) for m in re.finditer(
-        r'"(_p\d{3})"\s*:\s*"scripts/', src)}
+        r'"(_p\d{3,})"\s*:\s*"scripts/', src)}
 
 
 refs = _referenced(vsrc)

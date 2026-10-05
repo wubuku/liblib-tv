@@ -5739,13 +5739,9 @@ def main() -> int:
     #   ⚠️ 判据组 `IIIII.1` 要钉的是**否定结果**（H₁ 被否）
     p975 = ROOT / "scripts/jimeng_probe975_scope_src.py"
     _p975 = p975.read_text(encoding="utf-8") if p975.exists() else ""
-    p975 = ROOT / "scripts/jimeng_probe975_scope_src.py"
-    _p975 = p975.read_text(encoding="utf-8") if p975.exists() else ""
     # ⭐⭐⭐ 976：**源站**反事实干预探针（`GAP_JS` / `INJECT_JS` / `UNINJECT_JS`）
     #   ⇒ 目的：把 975 留下的 A（开头没有可聚焦元素）与 B（无条件出现）**分开**
     #   ⚠️ 判据组 `JJJJJ.1` 要钉的是**否定结果**（H₂ 被证伪）⇒ 同样最容易被忘掉
-    p976 = ROOT / "scripts/jimeng_probe976_counterfactual_src.py"
-    _p976 = p976.read_text(encoding="utf-8") if p976.exists() else ""
     p976 = ROOT / "scripts/jimeng_probe976_counterfactual_src.py"
     _p976 = p976.read_text(encoding="utf-8") if p976.exists() else ""
     # ⭐⭐⭐ 977：**源站**正面检验 H₃（三臂）。⚠️ 本批的**干预件也逐字继承 976**
@@ -5753,14 +5749,10 @@ def main() -> int:
     #   ⇒ 判据组 `KKKKK.1` 要钉的是「**臂 B 打中了靶子**」这个**前提**
     p977 = ROOT / "scripts/jimeng_probe977_h3anchor_src.py"
     _p977 = p977.read_text(encoding="utf-8") if p977.exists() else ""
-    p977 = ROOT / "scripts/jimeng_probe977_h3anchor_src.py"
-    _p977 = p977.read_text(encoding="utf-8") if p977.exists() else ""
     # ⭐⭐⭐⭐⭐ 978：**实验室**探针（`about:blank`，**根本不打开源站**）
     #   ⇒ 零计费、零应用代码 ⇒ 「空白页上能不能复现」把
     #   **引擎/规范行为**与**源站应用的属性**分开
     #   ⚠️ 判据组 `LLLLL.1` 要钉的是那个**否定结果**（scroll 假设被否）
-    p978 = ROOT / "scripts/jimeng_probe978_lab_body_stop.py"
-    _p978 = p978.read_text(encoding="utf-8") if p978.exists() else ""
     p978 = ROOT / "scripts/jimeng_probe978_lab_body_stop.py"
     _p978 = p978.read_text(encoding="utf-8") if p978.exists() else ""
     # ⭐⭐⭐⭐⭐ 979：**实验室**探针第二支 —— 按一次 `Tab` 之后**页内纯读轮询**，
@@ -5788,8 +5780,6 @@ def main() -> int:
     #   ⇒ 并用它把 973/974 的核心结论**从一个 17.8% 的小段补到 100%**
     #   ⚠️ 判据组 `PPPPP.1` 要钉的是**这个新定义**；`PPPPP.2` 要钉的是
     #   **对 `OOOOO.2` 那两处错数的更正**（而**原文保留**、只加改写横幅）
-    p982 = ROOT / "scripts/jimeng_probe982_ringlen_src.py"
-    _p982 = p982.read_text(encoding="utf-8") if p982.exists() else ""
     p982 = ROOT / "scripts/jimeng_probe982_ringlen_src.py"
     _p982 = p982.read_text(encoding="utf-8") if p982.exists() else ""
     # ⭐⭐⭐⭐⭐ 984：**实验室**探针 —— ⭐⭐⭐⭐⭐ **把 H₃ 的「出处」逼到一个精确位置**
@@ -5859,6 +5849,9 @@ def main() -> int:
     # ⚠️ 判据组 `E993H.2` 要钉的是**「`PROBE_VARS` 的形状是一道隐形口径」**
     p1000 = ROOT / "scripts/jimeng_probe1000_negative_census_reread.py"
     _p1000 = p1000.read_text(encoding="utf-8") if p1000.exists() else ""
+    # ⚠️ 判据组 `F993J.3` 要钉的是**「歧义与被门检查互斥」**
+    p1001 = ROOT / "scripts/jimeng_probe1001_repeat_shape_reread.py"
+    _p1001 = p1001.read_text(encoding="utf-8") if p1001.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -12557,7 +12550,14 @@ def main() -> int:
           "**第一版的 `_pXXX` 就没过、所以它当时根本没在测任何东西**",
           '"P3_negative_control_catches"' in _p996
           and '"p3_refuted_twice_996"' in _p996
-          and 'FAKE = "_p999"' in _p996
+          # ⚠️ **改写横幅（1001）**：候选已从
+          #   写死的一个名字改成**运行时挑一个「仓里没人用、
+          #   且自己能通过被检正则」的名字**
+          #   ⇒ 形成了**假名与真名撞了**（那个名字
+          #   已经被 999 批登记成了一个真探针变量），
+          #   而 996 那道门的**反向用例就是因此静默失效**
+          and 'def _pick_fake(' in _p996
+          and '"fake_note_996"' in _p996
           and "**第一版假名 `_pXXX` 不符合被检的正则 ⇒ 门压根没看见它**"
           in _p996
           and "**第二版我把「读取行」也一起注入了 ⇒ " in _p996
@@ -13339,6 +13339,184 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **反向门**：**不许说「1:24 说明反向断言不重要」**
           and "1:24 说明反向断言不重要" not in _p1000
           and "1:24 说明反向断言不重要" not in _ausrc)
+
+    # ══ F993J. 批 1001 **「一个变量不是一个东西」在这个仓里的真实形态**
+    #   ⭐⭐⭐⭐⭐ **而本批的主结论是一个「互斥」：歧义与被门检查互斥**
+    print("— F993J. 批 1001 重复与形状："
+          "⭐⭐⭐⭐⭐ **4 个真有歧义的变量、已登记的 0 个 ⇒ "
+          "「歧义」与「被门检查」互斥** ⇒ "
+          "✅ **而删掉重复项之后门读数一个都没变**")
+    check("F993J.1 ⭐⭐⭐⭐⭐ **P1 成立、而它读的是改之前的数："
+          "**`PROBE_VARS` 里有 6 个键在源码文本里出现两次、而那个 dict 只有一个键** ⇒ ⇒ "
+          "**⇒ 6 条被静默覆盖 ⇒ 「登记了两遍」只存在于源码文本里** ⇒ ⇒ "
+          "**⇒ 而同类比较是「key 节点数 181 vs 去重后 175」** ⇒ ⇒ "
+          "**⇒ `n_raw_key_lines` 只匹配了某一形状的值、不能拿它跟键数比**",
+          '"P1_duplicate_keys_exist"' in _p1001
+          and '"p1_shadowed_keys_1001_"' in _ausrc
+          and '"P1_hold_1001"' in _p1001
+          and 'BEFORE_DUP_1001 = {' in _p1001
+          and '"like_for_like_1001"' in _p1001
+          and '"n_shadowed"' in _p1001
+          and "6 条被静默覆盖" in _ausrc
+          and "key 节点数 181 vs 去重后 175" in _ausrc
+          and '"p1_shadowed_keys_1001_"' in _ausrc
+          and "6 条被静默覆盖" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许用 dict 的键数当「登记了几遍」的证据**
+          and "dict 的键数就是登记的次数" not in _p1001
+          and "dict 的键数就是登记的次数" not in _ausrc)
+
+    check("F993J.2 ⭐⭐⭐⭐⭐ **P3 成立、而它是本批的主要交付：** "
+          "**4 个真有歧义（同名字、不同形状）的变量、"
+          "**全部落在「未登记」那一类里（已登记的 0 个）** ⇒ ⇒ "
+          "**⇒ 「歧义」与「被门检查」是互斥的** ⇒ ⇒ "
+          "**⇒ 因为能被登记的必须是「一行普通的 `read_text`」** ⇒ ⇒ "
+          "**⇒ 而这不是巧合、这是 §207 那条 A 类判据的副产品** ⇒ ⇒ "
+          "**⇒ 那道判据本来是为了分清「可补登记」与「表表达不了」、"
+          "**而它顺带把有歧义的变量全挡在门外**",
+          '"P3_ambiguity_and_checked_are_disjoint"' in _p1001
+          and '"p3_ambiguity_and_checked_disjoint_1001_"' in _p1001
+          and '"P3_hold_1001"' in _p1001
+          and '"n_multi_diff_registered_1001"' in _p1001
+          and '"n_multi_diff_1001"' in _p1001
+          and "全部落在「未登记」那一类里" in _p1001
+          and "「歧义」与「被门检查」是互斥的" in _p1001
+          and "那道判据本来是为了分清" in _ausrc
+          and '"p3_ambiguity_and_checked_disjoint_1001_"' in _ausrc
+          and "顺带把有歧义的变量全挡在门外" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许说「互斥是设计出来的」**
+          and "互斥是当初设计出来的" not in _p1001
+          and "互斥是当初设计出来的" not in _ausrc)
+
+    check("F993J.3 ⭐⭐⭐⭐⭐ **P4 成立：删掉 6 个重复键与 5 对相邻重复赋值（10 行）之后、"
+          "**官方门报的锚点数、问题数、跳过数全部不变** ⇒ ⇒ "
+          "**⇒ 而这正是「无害的重复」的定义** ⇒ ⇒ "
+          "**⇒ 而剩下那 5 处是一整块 3000 行之外的「重读」、我没有动它** ⇒ ⇒ "
+          "**⇒ 因为收益与风险不对称** ⇒ ⇒ "
+          "**⇒ 而 §206 P8 的第三次施用：处置改变了读数、所以 before 那个数必须抄下来**",
+          '"P4_removal_changes_nothing"' in _p1001
+          and '"p4_removal_changes_nothing_1001_"' in _p1001
+          and '"P4_hold_1001"' in _p1001
+          and '"before_1001"' in _p1001
+          and "而这正是「无害的重复」的定义" in _p1001
+          and "我没有动它" in _p1001
+          and "收益与风险不对称" in _ausrc
+          and "处置改变了读数、所以 before 那个数必须抄下来" in _ausrc
+          and '"p4_removal_changes_nothing_1001_"' in _ausrc
+          and "而剩下那 5 处是一整块 3000 行之外的「重读」、我没有动它" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「无害」当成「不必量」**
+          and "看起来无害所以不用量" not in _p1001
+          and "看起来无害所以不用量" not in _ausrc)
+
+    check("F993J.4 ⭐⭐⭐⭐⭐ **P5 成立：「静默覆盖」的反向用例通过了** ⇒ ⇒ "
+          "**⇒ 在一段内存文本里塞一个重复键、"
+          "**数键的判据报出「源码 3 行、dict 2 个键、重复 1 个」** ⇒ ⇒ "
+          "**⇒ 而没有这一步、那么「6 个重复键」这件事下次还会再发生** ⇒ ⇒ "
+          "**⇒ 因为「0 个重复键」与「我的正则什么都没匹配上」在输出上一样** ⇒ ⇒ "
+          "**⇒ 而本批的仪器第一版正是在这里栽的：用 `exec` 整个门拿到 0** ⇒ ⇒ "
+          "**⇒ 而更糟的是那个 0 会让「已登记的歧义数」恒为 0、"
+          "**而本批的主结论就建立在那一个数上**",
+          '"P5_silent_overwrite_needs_its_own_reverse_case"' in _p1001
+          and '"p5_reverse_case_1001_"' in _p1001
+          and '"P5_hold_1001"' in _p1001
+          and '"negative_control_1001"' in _p1001
+          and '"NC_hold_1001"' in _p1001
+          and '"instrument_exec_failed_1001_"' in _ausrc
+          and "用 `exec` 整个门去拿 `PROBE_VARS`、拿到的是 0" in _ausrc
+          and "而更糟的是：那个 0 会让" in _ausrc
+          and '"p5_reverse_case_1001_"' in _ausrc
+          and "「0 个重复键」与「我的正则什么都没匹配上」在输出上一样" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许在主结论所依赖的那个数恒为 0 时收工**
+          and "主结论依赖的数是 0 也可以收工" not in _p1001
+          and "主结论依赖的数是 0 也可以收工" not in _ausrc)
+
+    check("F993J.5 ⭐⭐⭐⭐⭐ **P2 成立：那 10 处重复赋值的右值完全相同、"
+          "**而且都在同一个作用域（`main`）里** ⇒ ⇒ "
+          "**⇒ 那是无害的重复、不是语义分叉** ⇒ ⇒ "
+          "**⇒ 而「同作用域」这一条必须量 —— 跨作用域的同名两次赋值根本不是重复** ⇒ ⇒ "
+          "**⇒ 而 `out` 与 `c` 就是跨作用域的那两个、它们确实不是重复**",
+          '"P2_duplicate_assignments_are_identical"' in _p1001
+          and '"p2_duplicates_harmless_1001_"' in _ausrc
+          and '"P2_hold_1001"' in _p1001
+          and '"multi_same_shape_1001"' in _p1001
+          and "都在同一个作用域（`main`）里" in _ausrc
+          and "跨作用域的同名两次赋值根本不是重复" in _ausrc
+          and '"p2_duplicates_harmless_1001_"' in _ausrc
+          and "跨作用域的同名两次赋值根本不是重复" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许按名字去重而不看作用域**
+          and "按名字去重就行" not in _p1001
+          and "按名字去重就行" not in _ausrc)
+
+    check("F993J.6 ⭐⭐⭐⭐⭐ **本批纯离线：不打开浏览器、不按任何键、**连 `mouse.click` 都没有**、"
+          "**只读判据与门两个文本、再跑一次门** ⇒ ⇒ "
+          "⭐⭐⭐⭐ **零计费是结构性的、不是自律的** ⇒ ⇒ "
+          "**⇒ 而本批最贴题的一件事是：仪器第一版用 `exec` 整个门去拿那个 dict、拿到 0** ⇒ ⇒ "
+          "**⇒ 而「读那个 dict」恰恰是本批要否掉的做法 —— "
+          "**它天然看不见重复**",
+          '"offline_1001"' in _p1001
+          and '"offline_1001"' in _ausrc
+          and "连 `mouse.click` 都没有" in _p1001
+          and "只读判据与门两个文本、再跑一次门" in _p1001
+          and "零计费是结构性的、不是自律的" in _p1001
+          and '"discipline_1001"' in _p1001
+          and "dict 对重复字面量键是静默覆盖的" in _p1001
+          and "一次判据同时当筛子用、会产生你没打算要的副作用" in _p1001
+          and '"discipline_1001"' in _ausrc
+          and "一次判据同时当筛子用、会产生你没打算要的副作用" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许说「清理一遍就一劳永逸」**
+          and "清理一遍就一劳永逸了" not in _p1001
+          and "清理一遍就一劳永逸了" not in _ausrc)
+
+    check("F993J.7 ⭐⭐⭐⭐⭐ **P6 成立、而它是本批最大的一条：「用可见的形状当判据」"
+          "**栽了第六次、而且这次栽在我自己写的探针上** ⇒ ⇒ "
+          "**⇒ 本探针第一版数 `PROBE_VARS` 键名用的就是 `_p\\d{3}[a-z]?` —— "
+          "**同一个仓、同一批、同一个主题** ⇒ ⇒ "
+          "**⇒ 998 那条「我刚批过的毛病不会因为批过就自动免疫」在这里要升级："
+          "**「我刚批过的毛病」+「我正在写它」= 更危险** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而处置不是「把洞填上」、是分清「洞填了」与「仪器可信了」："
+          "**AST 176 / 修后正则 143 / 原正则 141 —— 还有 33 条对修好后的正则隐形** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 那 33 条里 0 条是四位数 ⇒ 所以真正活着的是另一条轴** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而 P6b 被否：「盲正则会给出不同的重复键数」不成立** "
+          "**（999 那个文件里四位数键是 0 条、两种正则读到同一组 6 个）** ⇒ ⇒ "
+          "**⇒ 「洞存在」与「洞改过这个数」是两件事、而我原本写的是前者** ⇒ ⇒ "
+          "**⇒ 「否」的第三种自我形态：「洞是真的、而它这次没咬到」** ⇒ ⇒ "
+          "**⇒ 而 P6c 的反向用例证明它能咬：塞一个四位数重复键、盲正则报 0 而 AST 报 1** ⇒ ⇒ "
+          "**⇒ 真文件上没被咬到是运气、不是设计** ⇒ ⇒ "
+          "**⇒ P6d：门里那几个数是手写的（静态 dict 只能手写）⇒ "
+          "**所以让探针反过来核对那几个字面量 —— 不一致就报**",
+          # ── 探针侧：这六条必须真的可执行、而且各自带 hold ──
+          '"P6_shape_criterion_in_the_instrument_about_shape_criteria"' in _p1001
+          and '"P6a_hold_1001"' in _p1001
+          and '"P6b_hold_1001"' in _p1001
+          and '"P6c_hold_1001"' in _p1001
+          and '"P6d_hold_1001"' in _p1001
+          and '"p6_three_denominators_1001"' in _p1001
+          and '"p6_falsified_1001"' in _p1001
+          and '"negative_control_p6_1001"' in _p1001
+          and '"p6_audit_parity_1001"' in _p1001
+          and '_KEYRE_BLIND' in _p1001
+          and '"n_missing_4digit"' in _p1001
+          and '"digit_axis_alone"' in _p1001
+          and "而我原本写的是前者" in _p1001
+          and "那里没被咬到是运气、不是设计" in _p1001
+          and "这次没出事" in _p1001
+          # ── 官方门侧：四个新键与两句结论必须在场 ──
+          and '"p6_sixth_instance_in_my_own_probe_1001_"' in _ausrc
+          and '"p6_three_denominators_1001_"' in _ausrc
+          and '"p6_falsified_1001_"' in _ausrc
+          and '"negative_control_p6_1001_"' in _ausrc
+          and "而这正是本批最该被记下的一句" in _ausrc
+          and "所以「把数字位数修好」并不足以让这个仪器可信" in _ausrc
+          and "那里没被咬到是运气、不是设计" in _ausrc
+          and "「我刚批过的毛病」+「我正在写它」" in _ausrc
+          and "判据文本里的手写数会陈旧、会口算错" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门①**：**不许把「这次没咬到」写成「这个洞不存在」**
+          and "这个洞不存在" not in _p1001
+          and "这个洞不存在" not in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门②**：**不许把「修好数字位数」说成「仪器从此可信」**
+          and "修好之后这个仪器就可信了" not in _p1001
+          and "修好之后这个仪器就可信了" not in _ausrc)
+
+
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

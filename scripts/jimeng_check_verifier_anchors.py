@@ -167,26 +167,21 @@ PROBE_VARS = {
     #   ⭐⭐ `IIIII.1` 要钉「H₁ 被判否」这个**否定结果**
     #   ⇒ 否定结果**尤其**要钉：它最容易在下一批被悄悄忘掉
     "_p975": "scripts/jimeng_probe975_scope_src.py",
-    "_p975": "scripts/jimeng_probe975_scope_src.py",
     # ⚠️⚠️ 976：**同一步**登记（第十次预防同一个坑）——
     #   ⭐⭐ `JJJJJ.1` 要钉的是**否定结果**（H₂ 被证伪）
     #   ⇒ 否定结果**尤其**要钉：它最容易在下一批被悄悄忘掉
-    "_p976": "scripts/jimeng_probe976_counterfactual_src.py",
     "_p976": "scripts/jimeng_probe976_counterfactual_src.py",
     # ⚠️⚠️ 977：**同一步**登记（第十次预防同一个坑）——
     #   ⭐⭐ `KKKKK.1` 要钉的是「**臂 B 打中了靶子**」这个**前提**
     #   ⇒ 前提最容易在下一次改实验时被忘掉
     "_p977": "scripts/jimeng_probe977_h3anchor_src.py",
-    "_p977": "scripts/jimeng_probe977_h3anchor_src.py",
     # ⚠️⚠️ 978：**同一步**登记（第十一次预防同一个坑）——
     #   ⭐⭐ `LLLLL.1` 要钉的是那个**否定结果**（scroll 假设被否）
     #   ⇒ 否定结果**尤其**要钉：它最容易在下一批被悄悄忘掉
     "_p978": "scripts/jimeng_probe978_lab_body_stop.py",
-    "_p978": "scripts/jimeng_probe978_lab_body_stop.py",
     # ⚠️⚠️ 979：**同一步**登记（第十二次预防同一个坑）——
     #   ⭐⭐ `MMMMM.1` 要钉的是那个**否定结果**（978 的 (a) 被否）
     #   ⇒ 否定结果**尤其**要钉：它最容易在下一批被悄悄忘掉
-    "_p979": "scripts/jimeng_probe979_dwell_src.py",
     "_p979": "scripts/jimeng_probe979_dwell_src.py",
     # ⚠️⚠️ 980：**同一步**登记（第十三次预防同一个坑）——
     #   ⭐⭐ `NNNNN.1` 要钉的是**关键前提**（门②）
@@ -195,7 +190,6 @@ PROBE_VARS = {
     # ⚠️⚠️ 981：**同一步**登记（第十四次预防同一个坑）——
     #   ⭐⭐ `OOOOO.1` 要钉的是**那个诚实的否定结果**（**没量到**）
     #   ⇒ 否定结果**尤其**要钉：它最容易在下一批被悄悄忘掉
-    "_p981": "scripts/jimeng_probe981_srcrate_src.py",
     "_p981": "scripts/jimeng_probe981_srcrate_src.py",
     # ⚠️⚠️ 982：**同一步**登记（第十五次预防同一个坑）——
     #   ⭐⭐ `PPPPP.1` 要钉的是**那个新定义**（圈长 = 最小重复周期）
@@ -271,6 +265,8 @@ PROBE_VARS = {
     "_p999": "scripts/jimeng_probe999_whowouldfail_reread.py",
     # ⚠️ 1000：**读取行与这条登记同一步加**
     "_p1000": "scripts/jimeng_probe1000_negative_census_reread.py",
+    # ⚠️ 1001：**读取行与这条登记同一步加**
+    "_p1001": "scripts/jimeng_probe1001_repeat_shape_reread.py",
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。
