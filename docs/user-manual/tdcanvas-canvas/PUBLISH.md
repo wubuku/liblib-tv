@@ -701,7 +701,18 @@ TD_PROBE_PROFILE=/tmp/m124-profile node scripts/probe-canvas-chrome.js http://lo
 >    ★ 还有一条 `page.evaluate` 的硬约束：**传进去的函数整个序列化到页内执行，
 >    在里面调本文件的另一个函数会直接 ReferenceError**。
 >
-> **这三条已写进 `scripts/probe-toolbar-offset.js` 的收尾**——
+> **★ 2026-10-05 M257 补两条（F79 / F80），它们各自废掉过一整批探针**：
+> 4. **F79｜问「画布上有几个节点」一律读侧面板的「画布元素 N」，不要读 `[data-node-id]`。**
+>    `pages/canvas/project.tsx:617` 的 `visibleNodes` **只渲染视口 + 280px padding 内的节点**，
+>    所以 `[data-node-id]` 读回 0 **不等于画布是空的**——本批一度以为是数据丢了。
+>    **阳性对照**：读侧面板计数与读 DOM 计数**一起打出来**，两个数对不上时先怀疑量的不是同一个东西（F53 第 ② 类）。
+> 5. **F80｜枚举控件要按「容器里的全部交互元素」，不能按「实现打了什么标记」。**
+>    左下缩放条 6 个控件里只有 4 个带 `data-canvas-view-control`，
+>    **按属性枚举会漏掉「快捷键」——而那正是读者找帮助的入口。**
+>    反向的坑同族：`querySelector('[data-canvas-no-zoom]')` 选中的是**侧面板自己**，
+>    **要按「里面有没有 minimap」反查容器**。
+
+> **这几条已写进 `scripts/probe-chrome-clickable.js` 与 `scripts/probe-toolbar-offset.js` 的收尾**——
 > **收尾代码本身就是纪律的载体**：它会先验落点、再验签名，两道都对才按 Delete；
 > 落点对但签名不符时**打印出来交给人**，**不自己猜**。
 
