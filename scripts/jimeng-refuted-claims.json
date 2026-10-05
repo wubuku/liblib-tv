@@ -941,6 +941,17 @@
    "pattern_note": "两条 pattern 都锚在**被订正的原句**与**订正说明**上（help-and-shortcuts.md 快捷键全表开头的订正框、20-reference 对账小节末尾那行），命中处紧邻「订正」「结论对、推导不对」等标记。纯中文词组，不含正则元字符。",
    "refuted_in": "批次 175（10-tasks/help-and-shortcuts.md「快捷键全表」开头的订正框；20-reference.md「与帮助面板 28 项的对账」；SOURCE_OBSERVATIONS.md §4.98.4）",
    "reason": "2026-10-05 批次 175 e 轮现场重读快捷键面板（shortcut-help-scroll-region，240×548@1028,112，scrollHeight 1300 / clientHeight 548），innerText 逐行切出 **62 行**。原文写「扣掉 4 个组标题恰好 28 项」，但 62 − 4 = 58，而 58 ÷ 2 = 29 ≠ 28。正确拆法：62 = 4 个组标题 + 28 个功能项（每项 2 行）+ 2 行多键项——「还原」占 3 行（⌘ ⇧ Z 与 ⌘ Y 各一行）、「适配画布」也占 3 行（⇧ 1 与 ⌘ 0 各一行）。⇒ 28 项这个数字本身没错，但这个算式不对。"
+  },
+  {
+   "id": "no-resources-phrasing-is-one-sentence",
+   "label": "把节点的「没有资源」当成固定的一句 No resources: 0 ready, 0 processing, 0 failed.",
+   "patterns": [
+    "只对图片节点成立",
+    "这一句判「空壳」会漏掉"
+   ],
+   "pattern_note": "两条 pattern 都锚在**订正说明**上（20-reference「七种描述文案」小节里那两行），命中处紧邻「手册只记了其中一套」「两套完全不同的措辞」等标记。纯中文词组，不含正则元字符。",
+   "refuted_in": "批次 176（SOURCE_OBSERVATIONS.md §4.99.2；20-reference.md「每个节点都有一条描述通道」）",
+   "reason": "2026-10-05 批次 176：普查 aria-describedby 的 77 个宿主（76 个 = canvas-node-description-<节点 id>，逐条对应节点），得到**七种描述文案**。其中「没有资源」是**两套不同措辞**：音频 68 个 + 视频 1 个走 `No resources. Current preview: 暂无音频.` / `暂无视频.`（带「当前预览」），而图片 1 个走 `No resources: 0 ready, 0 processing, 0 failed.`（带三个计数器）。⇒ 手册从批次 135 起一直记的那一句只对图片节点成立，音频与视频节点从来不是这句话；自动化按它判「空壳」会漏掉 69 个节点。同一批还发现：看得见的描述只有 3 条且全在文本节点上（描述元素就是节点正文区 83×83）；空闲页上 aria-disabled / :disabled 计数为零，即所有禁用态都在浮层里（立规 48 的又一次印证）。"
   }
  ]
 }
