@@ -5856,6 +5856,9 @@ def main() -> int:
     # ⚠️ 判据组 `D993G.3` 要钉的是**「那 1 条不是代价、是判据的优点」**
     p999 = ROOT / "scripts/jimeng_probe999_whowouldfail_reread.py"
     _p999 = p999.read_text(encoding="utf-8") if p999.exists() else ""
+    # ⚠️ 判据组 `E993H.2` 要钉的是**「`PROBE_VARS` 的形状是一道隐形口径」**
+    p1000 = ROOT / "scripts/jimeng_probe1000_negative_census_reread.py"
+    _p1000 = p1000.read_text(encoding="utf-8") if p1000.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -13209,6 +13212,133 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **反向门**：**不许把「口径错了」直接抹掉**
           and "口径错了就当没发生" not in _p999
           and "口径错了就当没发生" not in _ausrc)
+
+    # ══ E993H. 批 1000 **反向断言普查：它们各自在防什么**
+    #   ⭐⭐⭐⭐⭐ **而本批五个预测否了四个 —— 两条否的是「我的模式」、一条否的是世界**
+    print("— E993H. 批 1000 反向断言普查："
+          "❌⭐⭐⭐⭐⭐ **P2 被否：206 条反向断言全部查原文、0 条查剥离后的** ⇒ "
+          "**⇒ 而 §209 那条唯一的例外恰恰没被登记**")
+    check("E993H.1 ⭐⭐⭐⭐⭐ **P2 被否、而它否出来的东西比预测更好** ⇒ ⇒ "
+          "**⇒ 我写的是「反向锚点里挂在剥离注释后的文本上的占多数」** ⇒ ⇒ "
+          "**⇒ 实测 206 条已登记的反向断言、206 条查的是原文、0 条查剥离后的** ⇒ ⇒ "
+          "**⇒ 所以「对注释免疫」是这个仓里的 1/206 孤例 —— "
+          "**而那 1 条恰恰因为用了 `strip_comments` 而落在「未登记」里、官方门不查它** ⇒ ⇒ "
+          "**⇒ 一条对的设计、和一条被检查的设计、是两件事** ⇒ ⇒ "
+          "**⇒ 而 `PROBE_VARS` 的形状是一道隐形口径：凡登记的必查原文** ⇒ ⇒ "
+          "**⇒ 这道口径对「钉代码在做什么」是对的、对「钉文档说了什么」是错的**",
+          '"P2_most_negatives_are_on_stripped_text"' in _p1000
+          and '"p2_refuted_headline_1000_"' in _p1000
+          and '"P2_hold_1000"' in _p1000
+          and '"neg_textkind_1000"' in _p1000
+          and '"n_stripped_1000"' in _p1000
+          and "206 条查的是原文、0 条查剥离后的" in _p1000
+          and "一条对的设计、和一条被检查的设计、是两件事" in _p1000
+          and "它是一道隐形的口径：凡是被登记的，查的必然是原文" in _p1000
+          and '"p2_refuted_headline_1000_"' in _ausrc
+          and "一条对的设计、和一条被检查的设计、是两件事" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「0 条」当成「这类判据不存在」**
+          and "0 条说明这类判据不存在" not in _p1000
+          and "0 条说明这类判据不存在" not in _ausrc)
+
+    check("E993H.2 ⭐⭐⭐⭐⭐ **P3 / P4 被否、而否证的是我的模式不是世界** ⇒ ⇒ "
+          "**⇒ 我列的两族只覆盖 13/206 = 6%、那条「读数」正则量到的是「含数字」** ⇒ ⇒ "
+          "**⇒ 第二版改按结构分：W 中文散文 143｜K 代码片段 48｜I 标识符 8｜O 其它 7** ⇒ ⇒ "
+          "**⇒ 覆盖率从 6% 到 97%** ⇒ ⇒ "
+          "**⇒ 而真两族是「中文散文片段（防某句措辞被写回去）」对"
+          "**「代码片段 / 标识符（防某个实现被引入）」** ⇒ ⇒ "
+          "**⇒ 这正是「分类的第一步是『这句话在做什么』、不是『它属于哪个关键词』」**",
+          '"P3_two_families"' in _p1000
+          and '"P4_some_negative_anchors_are_themselves_readings"' in _p1000
+          and '"p3_refuted_my_patterns_1000_"' in _p1000
+          and '"p4_refuted_also_my_pattern_1000_"' in _p1000
+          and '"P3_hold_1000"' in _p1000
+          and '"P4_hold_1000"' in _p1000
+          and '"family_coverage_1000"' in _p1000
+          and "只覆盖 13/206 = 6%" in _p1000
+          and "覆盖率从 6% 到 97%" in _p1000
+          and "按结构分出来的真两族是" in _p1000
+          and "不是『它属于哪个关键词』" in _p1000
+          and '"p3_refuted_my_patterns_1000_"' in _ausrc
+          and "覆盖率从 6% 到 97%" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「94% 落在其它」说成「数据没有结构」**
+          and "94% 落在其它说明数据没有结构" not in _p1000
+          and "94% 落在其它说明数据没有结构" not in _ausrc)
+
+    check("E993H.3 ⭐⭐⭐⭐⭐ **P5 被否、而这次是关于世界的** ⇒ ⇒ "
+          "**⇒ 实测 25 个组、前三名占 34% —— 而 34% 不是「高度集中」** ⇒ ⇒ "
+          "**⇒ 所以 P5 的否与 P3/P4 的否不同类："
+          "**P3/P4 的否是「我的模式不对」、这一条是「世界就是这样」** ⇒ ⇒ "
+          "**⇒ 而两类否证必须分开数 —— 否则就会把「我的模式不对」记成「我了解这个仓」**",
+          '"P5_group_concentration"' in _p1000
+          and '"p5_refuted_not_concentrated_1000_"' in _p1000
+          and '"P5_hold_1000"' in _p1000
+          and '"top3_share_1000"' in _p1000
+          and '"n_groups_with_negatives_1000"' in _p1000
+          and "34% 不是「高度集中」" in _p1000
+          and "P5 的否与 P3/P4 的否不同类" in _p1000
+          and '"p5_refuted_not_concentrated_1000_"' in _ausrc
+          and "两类否证必须分开数" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「我的模式不对」记成「我了解这个仓」**
+          and "我的模式不对说明我了解这个仓" not in _p1000
+          and "我的模式不对说明我了解这个仓" not in _ausrc)
+
+    check("E993H.4 ⭐⭐⭐⭐⭐ **反向用例：证明 `is_stripped()` 能返回 True** ⇒ ⇒ "
+          "**⇒ `picode`（仓里真实存在的 `strip_comments` 变量）返回 True** ⇒ ⇒ "
+          "**⇒ 而 `_ausrc` 与 `_p996` 返回 False** ⇒ ⇒ "
+          "**⇒ 所以「206 条全是 raw」这个 0 是读数、不是探测器坏了** ⇒ ⇒ "
+          "**⇒ 而这条不是形式：它正是本批那个结论能不能成立的前提**",
+          '"negative_control_1000"' in _p1000
+          and '"NC_hold_1000"' in _p1000
+          and '"nc_1000_"' in _ausrc
+          and "「恒零」与「恒真」一样危险" in _p1000
+          and "本该返回 True、而它确实返回 True" in _p1000
+          and '"nc_1000_"' in _ausrc
+          and "它正是本批那个结论能不能成立的前提" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许用一个 0 去做「这类不存在」的结论**
+          and "0 条就说明这一类判据不存在" not in _p1000
+          and "0 条就说明这一类判据不存在" not in _ausrc)
+
+    check("E993H.5 ⭐⭐⭐⭐⭐ **而本批的仪器先坏过一次** ⇒ ⇒ "
+          "**`is_stripped()` 的 `IfExp` 分支把 `unparse(body)` 当变量名传下去** ⇒ ⇒ "
+          "**⇒ `amap.get(...)` 永远为空、返回 None ⇒ 118/206 落在「unknown」** ⇒ ⇒ "
+          "**⇒ 而「unknown 一半以上」不是数据如此、是那个分支坏了** ⇒ ⇒ "
+          "**⇒ 修好后 206/206 都是 `raw` —— 而 P2 依然是否的** ⇒ ⇒ "
+          "**⇒ 也就是说：仪器坏掉时我差点得到相反的结论、而我按纪律先判了「门错还是数据错」**",
+          '"instrument_unknown_1000_"' in _ausrc
+          and "把 `unparse(body)` 当变量名传下去" in _ausrc
+          and "118/206 落在「unknown」" in _ausrc
+          and "不是数据如此、是那个分支坏了" in _ausrc
+          and "仪器坏掉时我差点得到相反的结论" in _ausrc
+          and "先判了「门错还是数据错」" in _ausrc
+          and 'def is_stripped(' in _p1000
+          and 'return None' in _p1000
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许在仪器 unknown 一半以上时照抄那个数**
+          and "unknown 一半以上也可以直接用" not in _p1000
+          and "unknown 一半以上也可以直接用" not in _ausrc)
+
+    check("E993H.6 ⭐⭐⭐⭐⭐ **P1 成立：反向锚点比正向少一个量级（1 : 24.23）** ⇒ ⇒ "
+          "**⇒ 而这与「反向断言是逐条刻意加的」一致** ⇒ ⇒ "
+          "**⇒ 一个 1:24 的类别、不可能靠「顺手」维持** ⇒ ⇒ "
+          "**⇒ 而本批纯离线：不打开浏览器、不按任何键、**连 `mouse.click` 都没有**、"
+          "**只读判据与门两个文本** ⇒ ⇒ "
+          "⭐⭐⭐⭐ **零计费是结构性的、不是自律的**",
+          '"P1_ratio_is_an_order_of_magnitude"' in _p1000
+          and '"p1_ratio_1000_"' in _p1000
+          and '"P1_hold_1000"' in _p1000
+          and '"ratio_1000"' in _p1000
+          and "不可能靠「顺手」维持" in _p1000
+          and '"offline_1000"' in _p1000
+          and '"offline_1000"' in _ausrc
+          and "连 `mouse.click` 都没有" in _p1000
+          and "只读判据与门两个文本" in _p1000
+          and "零计费是结构性的、不是自律的" in _p1000
+          and '"discipline_1000"' in _p1000
+          and "反向断言的存在本身就带着「它针对什么」的答案" in _p1000
+          and '"discipline_1000"' in _ausrc
+          and "「恒零」和「恒真」一样危险" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许说「1:24 说明反向断言不重要」**
+          and "1:24 说明反向断言不重要" not in _p1000
+          and "1:24 说明反向断言不重要" not in _ausrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

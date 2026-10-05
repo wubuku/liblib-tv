@@ -269,6 +269,8 @@ PROBE_VARS = {
     "_p998": "scripts/jimeng_probe998_derivesrc_reread.py",
     # ⚠️ 999：**读取行与这条登记同一步加** —— 995/996 各栽过一次
     "_p999": "scripts/jimeng_probe999_whowouldfail_reread.py",
+    # ⚠️ 1000：**读取行与这条登记同一步加**
+    "_p1000": "scripts/jimeng_probe1000_negative_census_reread.py",
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。
