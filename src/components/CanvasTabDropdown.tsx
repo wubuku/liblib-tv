@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useCanvasStore } from "@/store/canvasStore";
 import { useUIStore } from "@/store/uiStore";
 import { cn } from "@/lib/utils";
@@ -26,7 +26,23 @@ export function CanvasTabDropdown() {
   const [editName, setEditName] = useState("");
   const [editingProjectName, setEditingProjectName] = useState(false);
   const [projectNameDraft, setProjectNameDraft] = useState("");
-  const [menuOpenId, setMenuOpenId] = useState<string | null>(null);
+  // Batch 790: 行内菜单改用 `position: fixed`。
+  // 原来它是 `absolute right-2 top-full`，包含块是 `relative` 的行 —— 于是
+  // 祖先链上三个裁剪者（列表 `overflow-y-auto`、面板 `overflow-hidden`、
+  // 外壳 `overflow-hidden`）里前两个会把它**下边**裁掉，菜单越靠下裁得越多：
+  // 2 张画布的首行只剩第 1 项能点，末行 4 项全废，6 张画布的末行同样全废。
+  // `fixed` 不受祖先 `overflow` 裁剪（运行时读过整条祖先链：9 层，0 个有
+  // transform / filter / backdrop-filter / will-change / contain）。
+  type RowMenu = {
+    id: string;
+    top: number;
+    left: number;
+    anchorTop: number;
+    anchorBottom: number;
+  };
+  const [rowMenu, setRowMenu] = useState<RowMenu | null>(null);
+  const rowMenuRef = useRef<HTMLDivElement>(null);
+  const ROW_MENU_W = 144; // 与下面 `w-36` 对应
   // Batch 114: 删除画布确认框（源站文案：此操作不可恢复）。
   const [pendingDelete, setPendingDelete] = useState<{ id: string; name: string } | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -36,10 +52,35 @@ export function CanvasTabDropdown() {
     setEditName("");
     setEditingProjectName(false);
     setProjectNameDraft("");
-    setMenuOpenId(null);
+    setRowMenu(null);
     setPendingDelete(null);
     closeCanvasDropdown();
   }, [closeCanvasDropdown]);
+
+  // Batch 790: 行菜单跟随触发器，而不是跟着列表滚。
+  // `fixed` 不再被列表的滚动带着走 ⟹ 列表一滚菜单就会和它的行脱钩 ⟹ 直接关掉。
+  useEffect(() => {
+    if (!rowMenu) return;
+    const close = () => setRowMenu(null);
+    window.addEventListener("scroll", close, true);
+    window.addEventListener("resize", close);
+    return () => {
+      window.removeEventListener("scroll", close, true);
+      window.removeEventListener("resize", close);
+    };
+  }, [rowMenu?.id]);
+
+  // Batch 790: 向下放不下就翻到按钮上方。高度先按 0 渲染，量到真高度再定位置。
+  useLayoutEffect(() => {
+    const el = rowMenuRef.current;
+    if (!el || !rowMenu) return;
+    const h = el.offsetHeight;
+    if (rowMenu.top + h <= window.innerHeight - 8) return;
+    setRowMenu((cur) =>
+      cur ? { ...cur, top: Math.max(8, cur.anchorTop - 4 - h) } : cur,
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [rowMenu?.id]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -89,7 +130,7 @@ export function CanvasTabDropdown() {
     setEditName("");
     setEditingProjectName(false);
     setProjectNameDraft("");
-    setMenuOpenId(null);
+    setRowMenu(null);
     toggleCanvasDropdown();
   };
 
@@ -240,9 +281,29 @@ export function CanvasTabDropdown() {
                 <button
                   type="button"
                   aria-label="更多操作"
+                  data-canvas-row-more={canvas.id}
+                  aria-expanded={rowMenu?.id === canvas.id}
+                  aria-haspopup="menu"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setMenuOpenId(menuOpenId === canvas.id ? null : canvas.id);
+                    // Batch 790: 由按钮自己的位置算出 `fixed` 菜单的落点。
+                    const r = e.currentTarget.getBoundingClientRect();
+                    setRowMenu((cur) => {
+                      if (cur?.id === canvas.id) return null;
+                      return {
+                        id: canvas.id,
+                        top: r.bottom + 4,
+                        left: Math.max(
+                          8,
+                          Math.min(
+                            r.right - ROW_MENU_W,
+                            window.innerWidth - ROW_MENU_W - 8,
+                          ),
+                        ),
+                        anchorTop: r.top,
+                        anchorBottom: r.bottom,
+                      };
+                    });
                   }}
                   className="ml-1 flex size-6 shrink-0 items-center justify-center rounded-lg text-[#919191] opacity-0 transition-opacity hover:bg-[#525252] hover:text-white group-hover/canvas-row:opacity-100 focus-visible:opacity-100"
                 >
@@ -251,10 +312,18 @@ export function CanvasTabDropdown() {
                   </svg>
                 </button>
 
-                {menuOpenId === canvas.id && (
-                  <div className="absolute right-2 top-full z-50 w-36 overflow-hidden rounded-lg border border-[#525252] bg-[#363636] shadow-lg">
+                {rowMenu?.id === canvas.id && (
+                  <div
+                    ref={rowMenuRef}
+                    data-canvas-row-menu={canvas.id}
+                    role="menu"
+                    style={{ top: rowMenu.top, left: rowMenu.left }}
+                    className="fixed z-[60] w-36 overflow-hidden rounded-lg border border-[#525252] bg-[#363636] shadow-lg"
+                  >
                     <button
                       type="button"
+                      role="menuitem"
+                      data-canvas-row-menu-item="open-in-new-window"
                       onClick={() => {
                         closeDropdown();
                       }}
@@ -264,10 +333,12 @@ export function CanvasTabDropdown() {
                     </button>
                     <button
                       type="button"
+                      role="menuitem"
+                      data-canvas-row-menu-item="rename"
                       onClick={() => {
                         setEditingId(canvas.id);
                         setEditName(canvas.name);
-                        setMenuOpenId(null);
+                        setRowMenu(null);
                       }}
                       className="w-full px-3 py-2 text-left text-sm text-[#f7f7f7] hover:bg-[#525252] transition-colors"
                     >
@@ -275,6 +346,8 @@ export function CanvasTabDropdown() {
                     </button>
                     <button
                       type="button"
+                      role="menuitem"
+                      data-canvas-row-menu-item="duplicate"
                       onClick={() => {
                         duplicateCanvas(canvas.id);
                         closeDropdown();
@@ -286,8 +359,10 @@ export function CanvasTabDropdown() {
                     {canvases.length > 1 && (
                       <button
                         type="button"
+                        role="menuitem"
+                        data-canvas-row-menu-item="delete"
                         onClick={() => {
-                          setMenuOpenId(null);
+                          setRowMenu(null);
                           setPendingDelete({ id: canvas.id, name: canvas.name });
                         }}
                         className="w-full px-3 py-2 text-left text-sm text-[#f55353] hover:bg-[#525252] transition-colors"

@@ -1,0 +1,1336 @@
+{
+ "batch": 790,
+ "phase": "post",
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "rowCount": 2,
+     "idx": 0,
+     "rowRect": {
+      "t": 165,
+      "b": 205,
+      "l": 189,
+      "r": 411,
+      "w": 222,
+      "h": 40
+     },
+     "menuRect": {
+      "t": 201,
+      "b": 347,
+      "l": 255,
+      "r": 399,
+      "w": 144,
+      "h": 146
+     },
+     "menuPosition": "fixed",
+     "chain": [
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "auto",
+       "overflowY": "auto",
+       "hasRounded": false,
+       "rect": {
+        "t": 164,
+        "b": 245,
+        "l": 189,
+        "r": 411,
+        "w": 222,
+        "h": 81
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "absolute",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 52,
+        "b": 246,
+        "l": 188,
+        "r": 412,
+        "w": 224,
+        "h": 194
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 0,
+        "b": 1000,
+        "l": 0,
+        "r": 1440,
+        "w": 1440,
+        "h": 1000
+       },
+       "rectTooSmall": false
+      }
+     ],
+     "realClippers": [],
+     "items": [
+      {
+       "text": "在新窗口打开",
+       "rect": {
+        "t": 202,
+        "b": 238,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        220
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "在新窗口打开"
+      },
+      {
+       "text": "重命名画布",
+       "rect": {
+        "t": 238,
+        "b": 274,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        256
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "重命名画布"
+      },
+      {
+       "text": "复制画布",
+       "rect": {
+        "t": 274,
+        "b": 310,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        292
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "复制画布"
+      },
+      {
+       "text": "删除画布",
+       "rect": {
+        "t": 310,
+        "b": 346,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        328
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "删除画布"
+      }
+     ],
+     "menuTexts": [
+      "在新窗口打开",
+      "重命名画布",
+      "复制画布",
+      "删除画布"
+     ],
+     "func": {
+      "inputAppeared": true,
+      "inputFocused": true,
+      "overlayStillOpen": true,
+      "renameClickDispatched": true
+     },
+     "wantCanvases": 2,
+     "which": "first",
+     "tries": 1
+    },
+    {
+     "rowCount": 2,
+     "idx": 1,
+     "rowRect": {
+      "t": 205,
+      "b": 245,
+      "l": 189,
+      "r": 411,
+      "w": 222,
+      "h": 40
+     },
+     "menuRect": {
+      "t": 241,
+      "b": 387,
+      "l": 255,
+      "r": 399,
+      "w": 144,
+      "h": 146
+     },
+     "menuPosition": "fixed",
+     "chain": [
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "auto",
+       "overflowY": "auto",
+       "hasRounded": false,
+       "rect": {
+        "t": 164,
+        "b": 245,
+        "l": 189,
+        "r": 411,
+        "w": 222,
+        "h": 81
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "absolute",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 52,
+        "b": 246,
+        "l": 188,
+        "r": 412,
+        "w": 224,
+        "h": 194
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 0,
+        "b": 1000,
+        "l": 0,
+        "r": 1440,
+        "w": 1440,
+        "h": 1000
+       },
+       "rectTooSmall": false
+      }
+     ],
+     "realClippers": [],
+     "items": [
+      {
+       "text": "在新窗口打开",
+       "rect": {
+        "t": 242,
+        "b": 278,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        260
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "在新窗口打开"
+      },
+      {
+       "text": "重命名画布",
+       "rect": {
+        "t": 278,
+        "b": 314,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        296
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "重命名画布"
+      },
+      {
+       "text": "复制画布",
+       "rect": {
+        "t": 314,
+        "b": 350,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        332
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "复制画布"
+      },
+      {
+       "text": "删除画布",
+       "rect": {
+        "t": 350,
+        "b": 386,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        368
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "删除画布"
+      }
+     ],
+     "menuTexts": [
+      "在新窗口打开",
+      "重命名画布",
+      "复制画布",
+      "删除画布"
+     ],
+     "func": {
+      "inputAppeared": true,
+      "inputFocused": true,
+      "overlayStillOpen": true,
+      "renameClickDispatched": true
+     },
+     "wantCanvases": 2,
+     "which": "last",
+     "tries": 1
+    },
+    {
+     "rowCount": 6,
+     "idx": 0,
+     "rowRect": {
+      "t": 165,
+      "b": 205,
+      "l": 189,
+      "r": 411,
+      "w": 222,
+      "h": 40
+     },
+     "menuRect": {
+      "t": 201,
+      "b": 347,
+      "l": 255,
+      "r": 399,
+      "w": 144,
+      "h": 146
+     },
+     "menuPosition": "fixed",
+     "chain": [
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "auto",
+       "overflowY": "auto",
+       "hasRounded": false,
+       "rect": {
+        "t": 164,
+        "b": 404,
+        "l": 189,
+        "r": 411,
+        "w": 222,
+        "h": 240
+       },
+       "rectTooSmall": false
+      },
+      {
+       "tag": "DIV",
+       "position": "absolute",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 52,
+        "b": 405,
+        "l": 188,
+        "r": 412,
+        "w": 224,
+        "h": 353
+       },
+       "rectTooSmall": false
+      },
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 0,
+        "b": 1000,
+        "l": 0,
+        "r": 1440,
+        "w": 1440,
+        "h": 1000
+       },
+       "rectTooSmall": false
+      }
+     ],
+     "realClippers": [],
+     "items": [
+      {
+       "text": "在新窗口打开",
+       "rect": {
+        "t": 202,
+        "b": 238,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        220
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "在新窗口打开"
+      },
+      {
+       "text": "重命名画布",
+       "rect": {
+        "t": 238,
+        "b": 274,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        256
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "重命名画布"
+      },
+      {
+       "text": "复制画布",
+       "rect": {
+        "t": 274,
+        "b": 310,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        292
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "复制画布"
+      },
+      {
+       "text": "删除画布",
+       "rect": {
+        "t": 310,
+        "b": 346,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        328
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "删除画布"
+      }
+     ],
+     "menuTexts": [
+      "在新窗口打开",
+      "重命名画布",
+      "复制画布",
+      "删除画布"
+     ],
+     "func": {
+      "inputAppeared": true,
+      "inputFocused": true,
+      "overlayStillOpen": true,
+      "renameClickDispatched": true
+     },
+     "wantCanvases": 6,
+     "which": "first",
+     "tries": 1
+    },
+    {
+     "rowCount": 6,
+     "idx": 5,
+     "rowRect": {
+      "t": 365,
+      "b": 405,
+      "l": 189,
+      "r": 411,
+      "w": 222,
+      "h": 40
+     },
+     "menuRect": {
+      "t": 401,
+      "b": 547,
+      "l": 255,
+      "r": 399,
+      "w": 144,
+      "h": 146
+     },
+     "menuPosition": "fixed",
+     "chain": [
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "auto",
+       "overflowY": "auto",
+       "hasRounded": false,
+       "rect": {
+        "t": 164,
+        "b": 404,
+        "l": 189,
+        "r": 411,
+        "w": 222,
+        "h": 240
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "absolute",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 52,
+        "b": 405,
+        "l": 188,
+        "r": 412,
+        "w": 224,
+        "h": 353
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 0,
+        "b": 1000,
+        "l": 0,
+        "r": 1440,
+        "w": 1440,
+        "h": 1000
+       },
+       "rectTooSmall": false
+      }
+     ],
+     "realClippers": [],
+     "items": [
+      {
+       "text": "在新窗口打开",
+       "rect": {
+        "t": 402,
+        "b": 438,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        420
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "在新窗口打开"
+      },
+      {
+       "text": "重命名画布",
+       "rect": {
+        "t": 438,
+        "b": 474,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        456
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "重命名画布"
+      },
+      {
+       "text": "复制画布",
+       "rect": {
+        "t": 474,
+        "b": 510,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        492
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "复制画布"
+      },
+      {
+       "text": "删除画布",
+       "rect": {
+        "t": 510,
+        "b": 546,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        528
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "删除画布"
+      }
+     ],
+     "menuTexts": [
+      "在新窗口打开",
+      "重命名画布",
+      "复制画布",
+      "删除画布"
+     ],
+     "func": {
+      "inputAppeared": true,
+      "inputFocused": true,
+      "overlayStillOpen": true,
+      "renameClickDispatched": true
+     },
+     "wantCanvases": 6,
+     "which": "last",
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "rowCount": 2,
+     "idx": 0,
+     "rowRect": {
+      "t": 165,
+      "b": 205,
+      "l": 189,
+      "r": 411,
+      "w": 222,
+      "h": 40
+     },
+     "menuRect": {
+      "t": 201,
+      "b": 347,
+      "l": 255,
+      "r": 399,
+      "w": 144,
+      "h": 146
+     },
+     "menuPosition": "fixed",
+     "chain": [
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "auto",
+       "overflowY": "auto",
+       "hasRounded": false,
+       "rect": {
+        "t": 164,
+        "b": 245,
+        "l": 189,
+        "r": 411,
+        "w": 222,
+        "h": 81
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "absolute",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 52,
+        "b": 246,
+        "l": 188,
+        "r": 412,
+        "w": 224,
+        "h": 194
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 0,
+        "b": 1000,
+        "l": 0,
+        "r": 1440,
+        "w": 1440,
+        "h": 1000
+       },
+       "rectTooSmall": false
+      }
+     ],
+     "realClippers": [],
+     "items": [
+      {
+       "text": "在新窗口打开",
+       "rect": {
+        "t": 202,
+        "b": 238,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        220
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "在新窗口打开"
+      },
+      {
+       "text": "重命名画布",
+       "rect": {
+        "t": 238,
+        "b": 274,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        256
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "重命名画布"
+      },
+      {
+       "text": "复制画布",
+       "rect": {
+        "t": 274,
+        "b": 310,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        292
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "复制画布"
+      },
+      {
+       "text": "删除画布",
+       "rect": {
+        "t": 310,
+        "b": 346,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        328
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "删除画布"
+      }
+     ],
+     "menuTexts": [
+      "在新窗口打开",
+      "重命名画布",
+      "复制画布",
+      "删除画布"
+     ],
+     "func": {
+      "inputAppeared": true,
+      "inputFocused": true,
+      "overlayStillOpen": true,
+      "renameClickDispatched": true
+     },
+     "wantCanvases": 2,
+     "which": "first",
+     "tries": 1
+    },
+    {
+     "rowCount": 2,
+     "idx": 1,
+     "rowRect": {
+      "t": 205,
+      "b": 245,
+      "l": 189,
+      "r": 411,
+      "w": 222,
+      "h": 40
+     },
+     "menuRect": {
+      "t": 241,
+      "b": 387,
+      "l": 255,
+      "r": 399,
+      "w": 144,
+      "h": 146
+     },
+     "menuPosition": "fixed",
+     "chain": [
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "auto",
+       "overflowY": "auto",
+       "hasRounded": false,
+       "rect": {
+        "t": 164,
+        "b": 245,
+        "l": 189,
+        "r": 411,
+        "w": 222,
+        "h": 81
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "absolute",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 52,
+        "b": 246,
+        "l": 188,
+        "r": 412,
+        "w": 224,
+        "h": 194
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 0,
+        "b": 1000,
+        "l": 0,
+        "r": 1440,
+        "w": 1440,
+        "h": 1000
+       },
+       "rectTooSmall": false
+      }
+     ],
+     "realClippers": [],
+     "items": [
+      {
+       "text": "在新窗口打开",
+       "rect": {
+        "t": 242,
+        "b": 278,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        260
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "在新窗口打开"
+      },
+      {
+       "text": "重命名画布",
+       "rect": {
+        "t": 278,
+        "b": 314,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        296
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "重命名画布"
+      },
+      {
+       "text": "复制画布",
+       "rect": {
+        "t": 314,
+        "b": 350,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        332
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "复制画布"
+      },
+      {
+       "text": "删除画布",
+       "rect": {
+        "t": 350,
+        "b": 386,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        368
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "删除画布"
+      }
+     ],
+     "menuTexts": [
+      "在新窗口打开",
+      "重命名画布",
+      "复制画布",
+      "删除画布"
+     ],
+     "func": {
+      "inputAppeared": true,
+      "inputFocused": true,
+      "overlayStillOpen": true,
+      "renameClickDispatched": true
+     },
+     "wantCanvases": 2,
+     "which": "last",
+     "tries": 1
+    },
+    {
+     "rowCount": 6,
+     "idx": 0,
+     "rowRect": {
+      "t": 165,
+      "b": 205,
+      "l": 189,
+      "r": 411,
+      "w": 222,
+      "h": 40
+     },
+     "menuRect": {
+      "t": 201,
+      "b": 347,
+      "l": 255,
+      "r": 399,
+      "w": 144,
+      "h": 146
+     },
+     "menuPosition": "fixed",
+     "chain": [
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "auto",
+       "overflowY": "auto",
+       "hasRounded": false,
+       "rect": {
+        "t": 164,
+        "b": 404,
+        "l": 189,
+        "r": 411,
+        "w": 222,
+        "h": 240
+       },
+       "rectTooSmall": false
+      },
+      {
+       "tag": "DIV",
+       "position": "absolute",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 52,
+        "b": 405,
+        "l": 188,
+        "r": 412,
+        "w": 224,
+        "h": 353
+       },
+       "rectTooSmall": false
+      },
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 0,
+        "b": 1000,
+        "l": 0,
+        "r": 1440,
+        "w": 1440,
+        "h": 1000
+       },
+       "rectTooSmall": false
+      }
+     ],
+     "realClippers": [],
+     "items": [
+      {
+       "text": "在新窗口打开",
+       "rect": {
+        "t": 202,
+        "b": 238,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        220
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "在新窗口打开"
+      },
+      {
+       "text": "重命名画布",
+       "rect": {
+        "t": 238,
+        "b": 274,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        256
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "重命名画布"
+      },
+      {
+       "text": "复制画布",
+       "rect": {
+        "t": 274,
+        "b": 310,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        292
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "复制画布"
+      },
+      {
+       "text": "删除画布",
+       "rect": {
+        "t": 310,
+        "b": 346,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        328
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "删除画布"
+      }
+     ],
+     "menuTexts": [
+      "在新窗口打开",
+      "重命名画布",
+      "复制画布",
+      "删除画布"
+     ],
+     "func": {
+      "inputAppeared": true,
+      "inputFocused": true,
+      "overlayStillOpen": true,
+      "renameClickDispatched": true
+     },
+     "wantCanvases": 6,
+     "which": "first",
+     "tries": 1
+    },
+    {
+     "rowCount": 6,
+     "idx": 5,
+     "rowRect": {
+      "t": 365,
+      "b": 405,
+      "l": 189,
+      "r": 411,
+      "w": 222,
+      "h": 40
+     },
+     "menuRect": {
+      "t": 401,
+      "b": 547,
+      "l": 255,
+      "r": 399,
+      "w": 144,
+      "h": 146
+     },
+     "menuPosition": "fixed",
+     "chain": [
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "auto",
+       "overflowY": "auto",
+       "hasRounded": false,
+       "rect": {
+        "t": 164,
+        "b": 404,
+        "l": 189,
+        "r": 411,
+        "w": 222,
+        "h": 240
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "absolute",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 52,
+        "b": 405,
+        "l": 188,
+        "r": 412,
+        "w": 224,
+        "h": 353
+       },
+       "rectTooSmall": true
+      },
+      {
+       "tag": "DIV",
+       "position": "static",
+       "overflowX": "hidden",
+       "overflowY": "hidden",
+       "hasRounded": false,
+       "rect": {
+        "t": 0,
+        "b": 1000,
+        "l": 0,
+        "r": 1440,
+        "w": 1440,
+        "h": 1000
+       },
+       "rectTooSmall": false
+      }
+     ],
+     "realClippers": [],
+     "items": [
+      {
+       "text": "在新窗口打开",
+       "rect": {
+        "t": 402,
+        "b": 438,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        420
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "在新窗口打开"
+      },
+      {
+       "text": "重命名画布",
+       "rect": {
+        "t": 438,
+        "b": 474,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        456
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "重命名画布"
+      },
+      {
+       "text": "复制画布",
+       "rect": {
+        "t": 474,
+        "b": 510,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        492
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "复制画布"
+      },
+      {
+       "text": "删除画布",
+       "rect": {
+        "t": 510,
+        "b": 546,
+        "l": 256,
+        "r": 398,
+        "w": 142,
+        "h": 36
+       },
+       "point": [
+        327,
+        528
+       ],
+       "pointInViewport": true,
+       "hitIsSelf": true,
+       "hitTag": "BUTTON",
+       "hitText": "删除画布"
+      }
+     ],
+     "menuTexts": [
+      "在新窗口打开",
+      "重命名画布",
+      "复制画布",
+      "删除画布"
+     ],
+     "func": {
+      "inputAppeared": true,
+      "inputFocused": true,
+      "overlayStillOpen": true,
+      "renameClickDispatched": true
+     },
+     "wantCanvases": 6,
+     "which": "last",
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}

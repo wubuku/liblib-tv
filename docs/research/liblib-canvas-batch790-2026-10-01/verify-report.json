@@ -1,0 +1,288 @@
+{
+ "batch": 790,
+ "checks": [
+  {
+   "id": "S1:行菜单容器是 `position: fixed`（正则定位）",
+   "desc": "★ 菜单容器带 `data-canvas-row-menu` 且 className 里有 `fixed`、**没有** `absolute right-2 top-full`",
+   "ok": true,
+   "detail": {
+    "matches": 1,
+    "tag": "<div\n                    ref={rowMenuRef}\n                    data-canvas-row-menu={canvas.id}\n                    role=\"menu\"\n                    style={{ top:"
+   }
+  },
+  {
+   "id": "S2:四个菜单项锚点各出现**一次**且文案都在",
+   "desc": "★ 「4/4」里的 4 必须有唯一实指 ⟹ 四个 `data-canvas-row-menu-item` 各一次；★ 注意**不能**用「文案全文唯一」当判据（「删除画布」在删除确认框标题里也有，全文 5 次）",
+   "ok": true,
+   "detail": {
+    "anchors": [
+     "open-in-new-window",
+     "rename",
+     "duplicate",
+     "delete"
+    ],
+    "want": [
+     "open-in-new-window",
+     "rename",
+     "duplicate",
+     "delete"
+    ],
+    "labels": {
+     "在新窗口打开": 1,
+     "重命名画布": 1,
+     "复制画布": 1,
+     "删除画布": 2
+    }
+   }
+  },
+  {
+   "id": "S3:pre 全是 `absolute`、post 全是 `fixed`（阶段没搞反）",
+   "desc": "★ 拿改动后的读数当改动前是最容易犯的错 ⟹ 两份 raw 的 `menuPosition` 必须分别是 `absolute` 与 `fixed`",
+   "ok": true,
+   "detail": {
+    "pre": [
+     "absolute"
+    ],
+    "post": [
+     "fixed"
+    ]
+   }
+  },
+  {
+   "id": "S4:两阶段各 4 格 × 2 轮",
+   "desc": "★ 每份 raw 都要 4 个格子、每格 2 轮",
+   "ok": true,
+   "detail": {
+    "pre": {
+     "2张·first": 2,
+     "2张·last": 2,
+     "6张·first": 2,
+     "6张·last": 2
+    },
+    "post": {
+     "2张·first": 2,
+     "2张·last": 2,
+     "6张·first": 2,
+     "6张·last": 2
+    }
+   }
+  },
+  {
+   "id": "S5:★ post 的真裁剪者全部为 0（按包含块链算，不是只比几何）",
+   "desc": "★ 只比「祖先盒子装不下菜单」会在改成 `fixed` 之后**继续**报有裁剪者⟹ 必须按规则：`fixed` 的包含块是视口，祖先一个都裁不到",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  },
+  {
+   "id": "S6:★ pre 恰好 3/4 格三项功能够不着",
+   "desc": "★ 重命名 / 复制 / 删除三项在 3 个格子里**点不到** ⟹ 755 记的不可达在当前代码里**仍然成立**",
+   "ok": true,
+   "detail": {
+    "够不着": [
+     "2张·first",
+     "2张·last",
+     "6张·last"
+    ],
+    "够得着": [
+     "6张·first"
+    ]
+   }
+  },
+  {
+   "id": "S7:★ post 四格全部 4/4 且行内 input 真的出现",
+   "desc": "★ 「点得到」和「点了有用」是**两件事** ⟹ 命中之外还要功能证据",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  },
+  {
+   "id": "S8:★★ 阳性对照（6 张·首行）前后都 4/4",
+   "desc": "★ 755 的 R18：必须有一个格子**本来就该全可点**且实测全可点，否则「3/4 不可用」与「这份代码根本点不动」无法区分",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "all": true,
+      "funcOk": true
+     },
+     {
+      "all": true,
+      "funcOk": true
+     }
+    ],
+    "post": [
+     {
+      "all": true,
+      "funcOk": true
+     },
+     {
+      "all": true,
+      "funcOk": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "S9:★ 每格的行数与菜单项前后完全相同",
+   "desc": "★ 行数与菜单项都不变 ⟹ 变的只有「能不能点到」，而不是「菜单里少了东西」",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  },
+  {
+   "id": "S10:汇编器零失败",
+   "desc": "汇编器自己的断言必须全绿",
+   "ok": true,
+   "detail": {
+    "checks": 6,
+    "assertedAnchors": 27,
+    "failed": 0
+   }
+  },
+  {
+   "id": "S11:阴性对照已复原（源码 + raw，字节级）",
+   "desc": "★ N1 改过 `CanvasTabDropdown.tsx` ⟹ 必须字节级还原",
+   "ok": true,
+   "detail": {
+    "driftedSrc": false,
+    "driftedRaw": []
+   }
+  }
+ ],
+ "totals": {
+  "checks": 11,
+  "passed": 11,
+  "failed": 0
+ },
+ "negativeControls": {
+  "total": 5,
+  "caught": 5,
+  "detail": [
+   {
+    "name": "N1 源码改回 `absolute`",
+    "why": "★ 验证 S1 真的在找 `fixed`。★ 本批第一次动 `src/`，S1 必须是**唯一**能把「改动是否还在」判出来的检查",
+    "evidence": {
+     "oldGone": true,
+     "newThere": true,
+     "lineNo": 321
+    },
+    "expectFlipped": "S1:行菜单容器是 `position: fixed`（正则定位）",
+    "flipped": [
+     "S1:行菜单容器是 `position: fixed`（正则定位）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S2:四个菜单项锚点各出现**一次**且文案都在",
+     "S3:pre 全是 `absolute`、post 全是 `fixed`（阶段没搞反）",
+     "S4:两阶段各 4 格 × 2 轮",
+     "S5:★ post 的真裁剪者全部为 0（按包含块链算，不是只比几何）",
+     "S6:★ pre 恰好 3/4 格三项功能够不着",
+     "S7:★ post 四格全部 4/4 且行内 input 真的出现",
+     "S8:★★ 阳性对照（6 张·首行）前后都 4/4",
+     "S9:★ 每格的行数与菜单项前后完全相同",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N2 pre 的坏格被翻成「全通」",
+    "why": "★ 验证 S6：「3/4 不可用」这个结论**被真读了**（否则 pre 整份都变好，故事就反过来了）",
+    "evidence": {
+     "file": "vb790a-pre.json",
+     "hit": 8
+    },
+    "expectFlipped": "S6:★ pre 恰好 3/4 格三项功能够不着",
+    "flipped": [
+     "S6:★ pre 恰好 3/4 格三项功能够不着"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:行菜单容器是 `position: fixed`（正则定位）",
+     "S2:四个菜单项锚点各出现**一次**且文案都在",
+     "S3:pre 全是 `absolute`、post 全是 `fixed`（阶段没搞反）",
+     "S4:两阶段各 4 格 × 2 轮",
+     "S5:★ post 的真裁剪者全部为 0（按包含块链算，不是只比几何）",
+     "S7:★ post 四格全部 4/4 且行内 input 真的出现",
+     "S8:★★ 阳性对照（6 张·首行）前后都 4/4",
+     "S9:★ 每格的行数与菜单项前后完全相同",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N3 post 的末行被翻成「不通」",
+    "why": "★ 验证 S7：修复**不是**只对首行有效",
+    "evidence": {
+     "file": "vb790a-post.json",
+     "hit": 8
+    },
+    "expectFlipped": "S7:★ post 四格全部 4/4 且行内 input 真的出现",
+    "flipped": [
+     "S7:★ post 四格全部 4/4 且行内 input 真的出现"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:行菜单容器是 `position: fixed`（正则定位）",
+     "S2:四个菜单项锚点各出现**一次**且文案都在",
+     "S3:pre 全是 `absolute`、post 全是 `fixed`（阶段没搞反）",
+     "S4:两阶段各 4 格 × 2 轮",
+     "S5:★ post 的真裁剪者全部为 0（按包含块链算，不是只比几何）",
+     "S6:★ pre 恰好 3/4 格三项功能够不着",
+     "S8:★★ 阳性对照（6 张·首行）前后都 4/4",
+     "S9:★ 每格的行数与菜单项前后完全相同",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N4 post 的 menuPosition 被翻成 absolute",
+    "why": "★ 验证 S3 与 S5：★ 「只比几何」会把 `fixed` 也报成有裁剪者，S5 专门防这个",
+    "evidence": {
+     "file": "vb790a-post.json",
+     "hit": 8
+    },
+    "expectFlipped": "S3:pre 全是 `absolute`、post 全是 `fixed`（阶段没搞反）",
+    "flipped": [
+     "S3:pre 全是 `absolute`、post 全是 `fixed`（阶段没搞反）",
+     "S5:★ post 的真裁剪者全部为 0（按包含块链算，不是只比几何）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:行菜单容器是 `position: fixed`（正则定位）",
+     "S2:四个菜单项锚点各出现**一次**且文案都在",
+     "S4:两阶段各 4 格 × 2 轮",
+     "S6:★ pre 恰好 3/4 格三项功能够不着",
+     "S7:★ post 四格全部 4/4 且行内 input 真的出现",
+     "S8:★★ 阳性对照（6 张·首行）前后都 4/4",
+     "S9:★ 每格的行数与菜单项前后完全相同",
+     "S10:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N5 pre 的行数被改掉",
+    "why": "★ 验证 S9：必须能区分「可达性变了」与「内容变了」",
+    "evidence": {
+     "file": "vb790a-pre.json",
+     "hit": 2
+    },
+    "expectFlipped": "S9:★ 每格的行数与菜单项前后完全相同",
+    "flipped": [
+     "S9:★ 每格的行数与菜单项前后完全相同"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:行菜单容器是 `position: fixed`（正则定位）",
+     "S2:四个菜单项锚点各出现**一次**且文案都在",
+     "S3:pre 全是 `absolute`、post 全是 `fixed`（阶段没搞反）",
+     "S4:两阶段各 4 格 × 2 轮",
+     "S5:★ post 的真裁剪者全部为 0（按包含块链算，不是只比几何）",
+     "S6:★ pre 恰好 3/4 格三项功能够不着",
+     "S7:★ post 四格全部 4/4 且行内 input 真的出现",
+     "S8:★★ 阳性对照（6 张·首行）前后都 4/4",
+     "S10:汇编器零失败"
+    ]
+   }
+  ]
+ }
+}

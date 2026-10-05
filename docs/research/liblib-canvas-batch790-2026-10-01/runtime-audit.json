@@ -1,0 +1,445 @@
+{
+ "batch": 790,
+ "kind": "★ 第一批改 src/ 的批次（目标更新为「复刻用户体验」）",
+ "claims": {
+  "C790-1": "★ 755 记的「重命名/复制/删除不可达」在当前代码里**仍然成立** —— 4 个格子里 3 个",
+  "C790-2": "★ 真裁剪者**只有 1 个**：面板 `:173` 的 `overflow-hidden`。列表 `:197` 的 `overflow-y-auto` **不算**（它 `static`，不在包含块链上）⟹ 我第一批的判断是错的",
+  "C790-3": "★ 改成 `position: fixed` 后包含块变成**视口** ⟹ 真裁剪者 0，四格全部 4/4 且功能通",
+  "C790-4": "★ 阳性对照（6 张·首行）前后都 4/4 ⟹ 没有把能用的弄坏"
+ },
+ "pressEquivalent": null,
+ "checks": [
+  {
+   "id": "A:三个裁剪相关行的行锚定",
+   "ok": true,
+   "n": 3,
+   "anchors": [
+    {
+     "label": "面板裁剪者(absolute 时)",
+     "file": "src/components/CanvasTabDropdown.tsx",
+     "line": 173,
+     "ok": true,
+     "needleUnique": true,
+     "code": "<div data-liblib-overlay=\"canvas-dropdown\" className=\"absolute top-full left-0 mt-1 w-56 overflo"
+    },
+    {
+     "label": "列表(静态 ⟹ 不在包含块链上)",
+     "file": "src/components/CanvasTabDropdown.tsx",
+     "line": 238,
+     "ok": true,
+     "needleUnique": true,
+     "code": "<div className=\"max-h-60 overflow-y-auto border-t border-[#363636]\">"
+    },
+    {
+     "label": "行的包含块",
+     "file": "src/components/CanvasTabDropdown.tsx",
+     "line": 244,
+     "ok": true,
+     "needleUnique": true,
+     "code": "className=\"group/canvas-row relative flex items-center justify-between px-3 py-2 transition-colo"
+    }
+   ],
+   "claim": "★ 面板 `overflow-hidden`（absolute 时**唯一**的真裁剪者）、列表 `overflow-y-auto`（**静态** ⟹ 不在包含块链上）、行 `relative`（absolute 时的包含块）"
+  },
+  {
+   "id": "B:pre 逐格重算（真裁剪者个数）",
+   "ok": true,
+   "n": 4,
+   "detail": {
+    "cells": {
+     "2张·first": [
+      {
+       "menuPosition": "absolute",
+       "realClippers": 1,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": false,
+        "复制画布": false,
+        "删除画布": false
+       },
+       "hitAll": false,
+       "funcOk": false,
+       "rowCount": 2
+      },
+      {
+       "menuPosition": "absolute",
+       "realClippers": 1,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": false,
+        "复制画布": false,
+        "删除画布": false
+       },
+       "hitAll": false,
+       "funcOk": false,
+       "rowCount": 2
+      }
+     ],
+     "2张·last": [
+      {
+       "menuPosition": "absolute",
+       "realClippers": 1,
+       "hit": {
+        "在新窗口打开": false,
+        "重命名画布": false,
+        "复制画布": false,
+        "删除画布": false
+       },
+       "hitAll": false,
+       "funcOk": false,
+       "rowCount": 2
+      },
+      {
+       "menuPosition": "absolute",
+       "realClippers": 1,
+       "hit": {
+        "在新窗口打开": false,
+        "重命名画布": false,
+        "复制画布": false,
+        "删除画布": false
+       },
+       "hitAll": false,
+       "funcOk": false,
+       "rowCount": 2
+      }
+     ],
+     "6张·first": [
+      {
+       "menuPosition": "absolute",
+       "realClippers": 0,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": true,
+        "复制画布": true,
+        "删除画布": true
+       },
+       "hitAll": true,
+       "funcOk": true,
+       "rowCount": 6
+      },
+      {
+       "menuPosition": "absolute",
+       "realClippers": 0,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": true,
+        "复制画布": true,
+        "删除画布": true
+       },
+       "hitAll": true,
+       "funcOk": true,
+       "rowCount": 6
+      }
+     ],
+     "6张·last": [
+      {
+       "menuPosition": "absolute",
+       "realClippers": 1,
+       "hit": {
+        "在新窗口打开": false,
+        "重命名画布": false,
+        "复制画布": false,
+        "删除画布": false
+       },
+       "hitAll": false,
+       "funcOk": false,
+       "rowCount": 6
+      },
+      {
+       "menuPosition": "absolute",
+       "realClippers": 1,
+       "hit": {
+        "在新窗口打开": false,
+        "重命名画布": false,
+        "复制画布": false,
+        "删除画布": false
+       },
+       "hitAll": false,
+       "funcOk": false,
+       "rowCount": 6
+      }
+     ]
+    },
+    "bad": []
+   },
+   "claim": "★ pre 全部是 `absolute`；**只有 6 张·首行**真裁剪者 0（面板装得下菜单），其余 3 格都是 1"
+  },
+  {
+   "id": "C:★★ pre 有 3/4 格三项功能够不着",
+   "ok": true,
+   "n": 4,
+   "detail": {
+    "够不着的格子": [
+     "2张·first",
+     "2张·last",
+     "6张·last"
+    ],
+    "够得着的格子": [
+     "6张·first"
+    ]
+   },
+   "claim": "★ pre：**重命名 / 复制 / 删除**三项在 %s 三个格子里**点不到** ⟹ 755 记的「不可达」在当前代码里**仍然成立**。★ 唯一够得着的是 6 张·首行 ⟹ **天然阳性对照**，排除「这份代码根本点不动」"
+  },
+  {
+   "id": "D:★★ post 四格全部 4/4 且功能通",
+   "ok": true,
+   "n": 4,
+   "detail": {
+    "cells": {
+     "2张·first": [
+      {
+       "menuPosition": "fixed",
+       "realClippers": 0,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": true,
+        "复制画布": true,
+        "删除画布": true
+       },
+       "hitAll": true,
+       "funcOk": true,
+       "rowCount": 2
+      },
+      {
+       "menuPosition": "fixed",
+       "realClippers": 0,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": true,
+        "复制画布": true,
+        "删除画布": true
+       },
+       "hitAll": true,
+       "funcOk": true,
+       "rowCount": 2
+      }
+     ],
+     "2张·last": [
+      {
+       "menuPosition": "fixed",
+       "realClippers": 0,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": true,
+        "复制画布": true,
+        "删除画布": true
+       },
+       "hitAll": true,
+       "funcOk": true,
+       "rowCount": 2
+      },
+      {
+       "menuPosition": "fixed",
+       "realClippers": 0,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": true,
+        "复制画布": true,
+        "删除画布": true
+       },
+       "hitAll": true,
+       "funcOk": true,
+       "rowCount": 2
+      }
+     ],
+     "6张·first": [
+      {
+       "menuPosition": "fixed",
+       "realClippers": 0,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": true,
+        "复制画布": true,
+        "删除画布": true
+       },
+       "hitAll": true,
+       "funcOk": true,
+       "rowCount": 6
+      },
+      {
+       "menuPosition": "fixed",
+       "realClippers": 0,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": true,
+        "复制画布": true,
+        "删除画布": true
+       },
+       "hitAll": true,
+       "funcOk": true,
+       "rowCount": 6
+      }
+     ],
+     "6张·last": [
+      {
+       "menuPosition": "fixed",
+       "realClippers": 0,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": true,
+        "复制画布": true,
+        "删除画布": true
+       },
+       "hitAll": true,
+       "funcOk": true,
+       "rowCount": 6
+      },
+      {
+       "menuPosition": "fixed",
+       "realClippers": 0,
+       "hit": {
+        "在新窗口打开": true,
+        "重命名画布": true,
+        "复制画布": true,
+        "删除画布": true
+       },
+       "hitAll": true,
+       "funcOk": true,
+       "rowCount": 6
+      }
+     ]
+    },
+    "bad": []
+   },
+   "claim": "★ 改成 `fixed` 之后：真裁剪者 **0**、四项**全部**命中、点「重命名画布」**真的**出行内 input"
+  },
+  {
+   "id": "E:★★ 前后对照：变的是可达性不是内容",
+   "ok": true,
+   "n": 4,
+   "detail": {
+    "cells": {
+     "2张·first": {
+      "cell": "2张·first",
+      "position": [
+       "absolute",
+       "fixed"
+      ],
+      "realClippers": [
+       1,
+       0
+      ],
+      "hitAll": [
+       false,
+       true
+      ],
+      "funcOk": [
+       false,
+       true
+      ],
+      "rowCount": [
+       2,
+       2
+      ],
+      "菜单项完全相同": true
+     },
+     "2张·last": {
+      "cell": "2张·last",
+      "position": [
+       "absolute",
+       "fixed"
+      ],
+      "realClippers": [
+       1,
+       0
+      ],
+      "hitAll": [
+       false,
+       true
+      ],
+      "funcOk": [
+       false,
+       true
+      ],
+      "rowCount": [
+       2,
+       2
+      ],
+      "菜单项完全相同": true
+     },
+     "6张·first": {
+      "cell": "6张·first",
+      "position": [
+       "absolute",
+       "fixed"
+      ],
+      "realClippers": [
+       0,
+       0
+      ],
+      "hitAll": [
+       true,
+       true
+      ],
+      "funcOk": [
+       true,
+       true
+      ],
+      "rowCount": [
+       6,
+       6
+      ],
+      "菜单项完全相同": true
+     },
+     "6张·last": {
+      "cell": "6张·last",
+      "position": [
+       "absolute",
+       "fixed"
+      ],
+      "realClippers": [
+       1,
+       0
+      ],
+      "hitAll": [
+       false,
+       true
+      ],
+      "funcOk": [
+       false,
+       true
+      ],
+      "rowCount": [
+       6,
+       6
+      ],
+      "菜单项完全相同": true
+     }
+    },
+    "bad": [],
+    "修好的格子": [
+     "2张·first",
+     "2张·last",
+     "6张·last"
+    ],
+    "阳性对照": [
+     "6张·first"
+    ]
+   },
+   "claim": "★ 每个格子的**行数**与**菜单项**前后完全相同 ⟹ 变的只有「能不能点到」。★ 三格从「不够 4/4」变成「4/4」，第四格（阳性对照 6 张·首行）前后都 4/4 ⟹ **没有把能用的弄坏**"
+  },
+  {
+   "id": "F:两轮逐格完全一致",
+   "ok": true,
+   "n": 8,
+   "detail": {
+    "perCell": [
+     true,
+     true,
+     true,
+     true,
+     true,
+     true,
+     true,
+     true
+    ]
+   },
+   "claim": "★ 8 个格子（4 格 × 2 轮）每个的前后读数完全相同 ⟹ 不是抖动"
+  }
+ ],
+ "totals": {
+  "checks": 6,
+  "assertedAnchors": 27,
+  "failed": 0
+ }
+}
