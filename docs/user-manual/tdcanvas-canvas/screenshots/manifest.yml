@@ -551,6 +551,20 @@ screenshots:
     alt: 左侧 Dock 的加号按钮打开添加节点菜单，列出文本、图片、视频、音频、ComfyUI 工作流、组、上传素材七种节点类型
     sha256: a2ff7c56d00aa94ca7194e45b2516638a94370deebdfd4da93b324da28e1eaa2
     m220_note: '2026-10-04 M220：与 03-create-nodes-double-click-menu.png / 09-generate-images-create-menu.png 是同一份七项清单，但「组」与「ComfyUI 工作流」两项的先后相反（本图是「ComfyUI 工作流」在前）。差异是源码固化的，不是拍摄时机问题，详见 R67。'
+    m255_note: '2026-10-05 M255 补记本图的前提：**左侧节点面板是收起来的**。默认状态下那块面板是开着的（use-canvas-side-panel-store.ts:19 的 initialOpen() 只在 localStorage 明确记着 "0" 时才算关），它会把本图这块菜单整块盖住——详见 R106 与配图 30-concepts-add-node-menu-covered.png。本图本身逐字属实，缺的是「什么状态下拍的」这一句。'
+
+  - file: screenshots/30-concepts-add-node-menu-covered.png
+    task_id: create-nodes
+    step: 默认状态（左侧节点面板开着）点「+」——按钮已变成 ✕，但菜单完全没有出现
+    route: '/canvas/:id'
+    viewport: 1280x720
+    locale: zh-CN
+    captured_at: '2026-10-05'
+    verified_locator: '左侧 Dock 第 1 个按钮 data-canvas-tool="tool-create"（按下态，图标为 ✕） / 左侧节点面板 ASIDE.td-canvas-side-panel 占 x 56-336 / 菜单 DOM 存在但不可见：.td-canvas-flyout rect (88,125,212,352) 全部落在面板区间内'
+    visible_text: '画布元素 4 / 选择 / 全部 / 搜索节点'
+    alt: 默认状态下左侧节点面板开着，点了加号之后菜单完全没有出现——面板把它盖住了
+    sha256: 5e294080cb91359de88c19125b03a6c5b0fc83f5ea0ff0ba7b2f361a429cdbb3
+    m255_note: 'R106 的配图，与上一张 30-concepts-add-node-menu.png 构成同一枚硬币的两面（那张是面板收起时拍的）。**这张图的全部取证价值就在于「什么都没有」**——所以 alt 描述的是缺了什么，不是有什么。判据是 elementFromPoint：菜单第 4 项的中点落点是面板内部的滚动容器而不是菜单项。'
 
   - file: screenshots/30-concepts-two-text-nodes.png
     task_id: create-nodes
