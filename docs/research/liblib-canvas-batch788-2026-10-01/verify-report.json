@@ -1,0 +1,252 @@
+{
+ "batch": 788,
+ "checks": [
+  {
+   "id": "S1:读数链四段都在（正则找，不靠行号）",
+   "desc": "★ `motionPathDraft !== null || phoneVcamRecording` ⟹ `disabled={viewportGizmoDisabled}` ⟹ `data-director-viewport-gizmo-disabled`；写入侧 `motionPathDraft: null,`",
+   "ok": true,
+   "detail": {
+    "gizmoDisabledExpr": true,
+    "passesDisabledProp": true,
+    "landsDataAttr": true,
+    "writeSideNull": true
+   }
+  },
+  {
+   "id": "S2:冒烟判别式全过",
+   "desc": "★ 造草稿与造对照所需的每个入口都先验能通（773 立的纪律）",
+   "ok": true,
+   "detail": {
+    "① deskOpen": true,
+    "② 路径菜单能开": true,
+    "③ ★ 草稿能造出来": true,
+    "④ 模型库能开": true,
+    "④ 模型库条目能点": true
+   }
+  },
+  {
+   "id": "S3:四臂全部符合预测（从 trace 重算）",
+   "desc": "★ `draftOnly`/★对照 `draftThenToggleLib` 为 True、★★处理 `draftThenAddItem` 为 False",
+   "ok": true,
+   "detail": {
+    "violations": []
+   }
+  },
+  {
+   "id": "S4:重算值与 raw 自报值逐格一致（R149）",
+   "desc": "★ raw 里探针自报的 `draftAlive` 必须与我们**从 `trace` 重算**的相同",
+   "ok": true,
+   "detail": {
+    "mismatch": []
+   }
+  },
+  {
+   "id": "S5:8 格都在（4 臂 × 2 轮）",
+   "desc": "★ 两轮一致、每臂两格",
+   "ok": true,
+   "detail": {
+    "draftOnly": 2,
+    "draftThenAddItem": 2,
+    "draftThenToggleLib": 2,
+    "noDraftThenAddItem": 2
+   }
+  },
+  {
+   "id": "S6:★ 归因只落在「加条目」",
+   "desc": "★ 对照臂关掉面板后草稿仍 `true` ⟹ 开/关模型库不杀草稿；处理臂**开面板之后**草稿也还在，点了「加入场景」才没",
+   "ok": true,
+   "detail": {
+    "controlTrace": {
+     "afterDraft": "true",
+     "afterLibOpen": "true",
+     "afterLibClose": "true"
+    },
+    "treatmentTrace": {
+     "afterDraft": "true",
+     "afterLibOpen": "true",
+     "afterAdd": "false"
+    }
+   }
+  },
+  {
+   "id": "S7:★ 对照臂与处理臂在「加条目」之前**逐步相同**",
+   "desc": "★ 两臂的 `afterDraft` / `afterLibOpen` 必须一模一样 ⟹ 唯一的差别就是最后那一步「点没点条目」",
+   "ok": true,
+   "detail": {
+    "controlAfterDraft": "true",
+    "treatmentAfterDraft": "true",
+    "controlAfterLibOpen": "true",
+    "treatmentAfterLibOpen": "true"
+   }
+  },
+  {
+   "id": "S8:混淆项未触发",
+   "desc": "★ 读数里 `||` 了 `phoneVcamRecording` ⟹ 探针**从不**点 `[data-director-phone-vcam-trigger]`",
+   "ok": true,
+   "detail": {
+    "probeTouchesVCam": false
+   }
+  },
+  {
+   "id": "S9:汇编器零失败",
+   "desc": "汇编器自己的断言必须全绿",
+   "ok": true,
+   "detail": {
+    "checks": 5,
+    "assertedAnchors": 39,
+    "failed": 0
+   }
+  },
+  {
+   "id": "S10:阴性对照已复原（源码 + raw）",
+   "desc": "★ 阴性对照改过的源码与 raw 必须字节级还原",
+   "ok": true,
+   "detail": {
+    "driftedSrc": [],
+    "driftedRaw": false
+   }
+  }
+ ],
+ "totals": {
+  "checks": 10,
+  "passed": 10,
+  "failed": 0
+ },
+ "negativeControls": {
+  "total": 5,
+  "caught": 5,
+  "detail": [
+   {
+    "name": "N1 处理臂末项读数被翻成 true",
+    "why": "★ 验证 S3 真的在读**处理臂的末项**",
+    "evidence": {
+     "arm": "draftThenAddItem",
+     "phase": "afterAdd",
+     "to": "true",
+     "hit": 2
+    },
+    "expectFlipped": "S3:四臂全部符合预测（从 trace 重算）",
+    "flipped": [
+     "S3:四臂全部符合预测（从 trace 重算）",
+     "S4:重算值与 raw 自报值逐格一致（R149）",
+     "S6:★ 归因只落在「加条目」"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:读数链四段都在（正则找，不靠行号）",
+     "S2:冒烟判别式全过",
+     "S5:8 格都在（4 臂 × 2 轮）",
+     "S7:★ 对照臂与处理臂在「加条目」之前**逐步相同**",
+     "S8:混淆项未触发",
+     "S9:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N2 对照臂末项读数被翻成 false",
+    "why": "★ 验证 S3 真的在读**对照臂**（没有它，「一切都会杀掉草稿」这个更吓人的故事也能过）",
+    "evidence": {
+     "arm": "draftThenToggleLib",
+     "phase": "afterLibClose",
+     "to": "false",
+     "hit": 2
+    },
+    "expectFlipped": "S3:四臂全部符合预测（从 trace 重算）",
+    "flipped": [
+     "S3:四臂全部符合预测（从 trace 重算）",
+     "S4:重算值与 raw 自报值逐格一致（R149）",
+     "S6:★ 归因只落在「加条目」"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:读数链四段都在（正则找，不靠行号）",
+     "S2:冒烟判别式全过",
+     "S5:8 格都在（4 臂 × 2 轮）",
+     "S7:★ 对照臂与处理臂在「加条目」之前**逐步相同**",
+     "S8:混淆项未触发",
+     "S9:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N3 处理臂「开面板之后」就变成没了",
+    "why": "★ 验证 S6/S7 的归因：差别必须**只**落在最后那一步",
+    "evidence": {
+     "arm": "draftThenAddItem",
+     "phase": "afterLibOpen",
+     "to": "false",
+     "hit": 2
+    },
+    "expectFlipped": "S6:★ 归因只落在「加条目」",
+    "flipped": [
+     "S6:★ 归因只落在「加条目」",
+     "S7:★ 对照臂与处理臂在「加条目」之前**逐步相同**"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:读数链四段都在（正则找，不靠行号）",
+     "S2:冒烟判别式全过",
+     "S3:四臂全部符合预测（从 trace 重算）",
+     "S4:重算值与 raw 自报值逐格一致（R149）",
+     "S5:8 格都在（4 臂 × 2 轮）",
+     "S8:混淆项未触发",
+     "S9:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N4 只翻 raw 的派生字段",
+    "why": "★ 验证 S4：R149「派生字段要与自己的输入对账」",
+    "evidence": {
+     "hit": 2,
+     "changed": "draftAlive(draftOnly)"
+    },
+    "expectFlipped": "S4:重算值与 raw 自报值逐格一致（R149）",
+    "flipped": [
+     "S4:重算值与 raw 自报值逐格一致（R149）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:读数链四段都在（正则找，不靠行号）",
+     "S2:冒烟判别式全过",
+     "S3:四臂全部符合预测（从 trace 重算）",
+     "S5:8 格都在（4 臂 × 2 轮）",
+     "S6:★ 归因只落在「加条目」",
+     "S7:★ 对照臂与处理臂在「加条目」之前**逐步相同**",
+     "S8:混淆项未触发",
+     "S9:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N5 读数链被改（`||` 链断开，两处都断）",
+    "why": "★ 验证 S1 真的在找那条链，而不是靠行号硬取。★ 第一版只断 `:2560`，而 `:3589` 有一处**跨行**写法 （grep 单行搜不到、正则 `\\s*` 搜得到）⟹ S1 一声不吭",
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 2560,
+      "oldGone": true,
+      "newThere": true
+     },
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 3589,
+      "oldGone": true,
+      "newThere": true
+     }
+    ],
+    "expectFlipped": "S1:读数链四段都在（正则找，不靠行号）",
+    "flipped": [
+     "S1:读数链四段都在（正则找，不靠行号）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S2:冒烟判别式全过",
+     "S3:四臂全部符合预测（从 trace 重算）",
+     "S4:重算值与 raw 自报值逐格一致（R149）",
+     "S5:8 格都在（4 臂 × 2 轮）",
+     "S6:★ 归因只落在「加条目」",
+     "S7:★ 对照臂与处理臂在「加条目」之前**逐步相同**",
+     "S8:混淆项未触发",
+     "S9:汇编器零失败"
+    ]
+   }
+  ]
+ }
+}

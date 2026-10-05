@@ -1,0 +1,130 @@
+{
+ "batch": 788,
+ "claims": {
+  "C788-1": "★★ **运行时确认 C787-2**：造出运镜草稿后点「加入场景」，草稿**没了**（8 格两轮一致）",
+  "C788-2": "★ **归因唯一**：对照臂「只开再关模型库」草稿**仍活着** ⟹ 杀草稿的不是「开面板」而是「加条目」这个动作",
+  "C788-3": "★ 这是一种**不同于 D1i** 的失效形态：D1i 要**两个状态同时开着**、靠「按第二次 Escape」；本批**不需要共活**、靠「点一次加入场景」、绘制**静默消失**",
+  "C788-4": "★ 读数链 `:2559-2560` ⟹ `:2987` ⟹ `:420`；⚠ 它 `||` 了 `phoneVcamRecording`，本批不碰虚拟相机 ⟹ 混淆项恒假"
+ },
+ "arms": {
+  "draftOnly": true,
+  "draftThenAddItem": false,
+  "draftThenToggleLib": true,
+  "noDraftThenAddItem": false
+ },
+ "recomputed": {
+  "draftOnly": [
+   true
+  ],
+  "draftThenToggleLib": [
+   true
+  ],
+  "draftThenAddItem": [
+   false
+  ],
+  "noDraftThenAddItem": [
+   false
+  ]
+ },
+ "checks": [
+  {
+   "id": "A:读数链行锚定",
+   "ok": true,
+   "n": 5,
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2559,
+     "needle": "const viewportGizmoDisabled =",
+     "ok": true,
+     "code": "const viewportGizmoDisabled ="
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2560,
+     "needle": "timeline.motionPathDraft !== null || phoneVcamRecording;",
+     "ok": true,
+     "code": "timeline.motionPathDraft !== null || phoneVcamRecording;"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2987,
+     "needle": "disabled={viewportGizmoDisabled}",
+     "ok": true,
+     "code": "disabled={viewportGizmoDisabled}"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 420,
+     "needle": "data-director-viewport-gizmo-disabled={disabled}",
+     "ok": true,
+     "code": "data-director-viewport-gizmo-disabled={disabled}"
+    },
+    {
+     "file": "src/store/directorStore.ts",
+     "line": 5190,
+     "needle": "motionPathDraft: null,",
+     "ok": true,
+     "code": "motionPathDraft: null,"
+    }
+   ],
+   "claim": "★ `[data-director-viewport-gizmo-disabled]` ⟹ `motionPathDraft !== null`（`:2559-2560` ⟹ `:2987` ⟹ `:420`）"
+  },
+  {
+   "id": "B:冒烟判别式",
+   "ok": true,
+   "n": 5,
+   "detail": {
+    "① deskOpen": true,
+    "② 路径菜单能开": true,
+    "③ ★ 草稿能造出来": true,
+    "④ 模型库能开": true,
+    "④ 模型库条目能点": true
+   },
+   "claim": "★ 造草稿、造对照所需的每一个入口都必须先验能通"
+  },
+  {
+   "id": "C:四臂两轮全部符合预测",
+   "ok": true,
+   "n": 8,
+   "detail": {
+    "mismatch": []
+   },
+   "claim": "★ `draftOnly` True / ★对照 `draftThenToggleLib` True / ★★处理 `draftThenAddItem` False / `noDraftThenAddItem` False；且**重算值与 raw 自报的 `draftAlive` 逐格相同**"
+  },
+  {
+   "id": "D:★ 归因只落在「加条目」那一步",
+   "ok": true,
+   "n": 1,
+   "detail": {
+    "controlTrace": {
+     "afterDraft": "true",
+     "afterLibOpen": "true",
+     "afterLibClose": "true"
+    },
+    "treatmentTrace": {
+     "afterDraft": "true",
+     "afterLibOpen": "true",
+     "afterAdd": "false"
+    }
+   },
+   "claim": "★ 对照臂在**关掉**面板之后草稿还是 `true` ⟹ 「开/关模型库」本身不杀草稿；处理臂在**开面板之后**草稿也还在、只有点了「加入场景」才变 ⟹ 归因**唯一地**落在加条目那个动作上"
+  },
+  {
+   "id": "E:混淆项未触发",
+   "ok": true,
+   "n": 20,
+   "detail": {
+    "probeTouchesVCam": false,
+    "reads": 20,
+    "readsWithNull": []
+   },
+   "claim": "★ 读数 `viewportGizmoDisabled` 里 `||` 了 `phoneVcamRecording`，本批**从不**点 `[data-director-phone-vcam-trigger]` ⟹ 该混淆项恒假；且**每一条**有读数的步骤都必须给出可解析的 `libOpen`（不能是 null）"
+  }
+ ],
+ "totals": {
+  "checks": 5,
+  "assertedAnchors": 39,
+  "failed": 0
+ }
+}

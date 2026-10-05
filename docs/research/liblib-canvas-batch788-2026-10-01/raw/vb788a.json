@@ -1,0 +1,499 @@
+{
+ "batch": 788,
+ "arms": [
+  "draftOnly",
+  "draftThenToggleLib",
+  "draftThenAddItem",
+  "noDraftThenAddItem"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "draftOnly",
+     "steps": [
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": [
+        {
+         "draft": "true",
+         "libPanel": false,
+         "libOpen": "false",
+         "pathMenu": false
+        }
+       ]
+      },
+      {
+       "phase": "afterDraft",
+       "read": {
+        "draft": "true",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      }
+     ],
+     "after": {
+      "draft": "true",
+      "libPanel": false,
+      "libOpen": "false",
+      "pathMenu": false
+     },
+     "expect": "草稿活着",
+     "draftAlive": true,
+     "trace": [
+      {
+       "phase": "afterDraft",
+       "draft": "true"
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "draftThenToggleLib",
+     "steps": [
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": [
+        {
+         "draft": "true",
+         "libPanel": false,
+         "libOpen": "false",
+         "pathMenu": false
+        }
+       ]
+      },
+      {
+       "phase": "afterDraft",
+       "read": {
+        "draft": "true",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterLibOpen",
+       "read": {
+        "draft": "true",
+        "libPanel": true,
+        "libOpen": "true",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterLibClose",
+       "read": {
+        "draft": "true",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      }
+     ],
+     "after": {
+      "draft": "true",
+      "libPanel": false,
+      "libOpen": "false",
+      "pathMenu": false
+     },
+     "expect": "★ 只开再关模型库 ⟹ 草稿**仍**活着",
+     "draftAlive": true,
+     "control": true,
+     "trace": [
+      {
+       "phase": "afterDraft",
+       "draft": "true"
+      },
+      {
+       "phase": "afterLibOpen",
+       "draft": "true"
+      },
+      {
+       "phase": "afterLibClose",
+       "draft": "true"
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "draftThenAddItem",
+     "steps": [
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": [
+        {
+         "draft": "true",
+         "libPanel": false,
+         "libOpen": "false",
+         "pathMenu": false
+        }
+       ]
+      },
+      {
+       "phase": "afterDraft",
+       "read": {
+        "draft": "true",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterLibOpen",
+       "read": {
+        "draft": "true",
+        "libPanel": true,
+        "libOpen": "true",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterAdd",
+       "read": {
+        "draft": "false",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      }
+     ],
+     "after": {
+      "draft": "false",
+      "libPanel": false,
+      "libOpen": "false",
+      "pathMenu": false
+     },
+     "expect": "★★ 加条目 ⟹ 草稿**没了**",
+     "draftAlive": false,
+     "trace": [
+      {
+       "phase": "afterDraft",
+       "draft": "true"
+      },
+      {
+       "phase": "afterLibOpen",
+       "draft": "true"
+      },
+      {
+       "phase": "afterAdd",
+       "draft": "false"
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "noDraftThenAddItem",
+     "steps": [
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": [
+        "按设计跳过"
+       ]
+      },
+      {
+       "phase": "afterDraft",
+       "read": {
+        "draft": "false",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterLibOpen",
+       "read": {
+        "draft": "false",
+        "libPanel": true,
+        "libOpen": "true",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterAdd",
+       "read": {
+        "draft": "false",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      }
+     ],
+     "after": {
+      "draft": "false",
+      "libPanel": false,
+      "libOpen": "false",
+      "pathMenu": false
+     },
+     "expect": "不造草稿 ⟹ 加条目后一切正常",
+     "draftAlive": false,
+     "expectDraftAlive": false,
+     "trace": [
+      {
+       "phase": "afterDraft",
+       "draft": "false"
+      },
+      {
+       "phase": "afterLibOpen",
+       "draft": "false"
+      },
+      {
+       "phase": "afterAdd",
+       "draft": "false"
+      }
+     ],
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "draftOnly",
+     "steps": [
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": [
+        {
+         "draft": "true",
+         "libPanel": false,
+         "libOpen": "false",
+         "pathMenu": false
+        }
+       ]
+      },
+      {
+       "phase": "afterDraft",
+       "read": {
+        "draft": "true",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      }
+     ],
+     "after": {
+      "draft": "true",
+      "libPanel": false,
+      "libOpen": "false",
+      "pathMenu": false
+     },
+     "expect": "草稿活着",
+     "draftAlive": true,
+     "trace": [
+      {
+       "phase": "afterDraft",
+       "draft": "true"
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "draftThenToggleLib",
+     "steps": [
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": [
+        {
+         "draft": "true",
+         "libPanel": false,
+         "libOpen": "false",
+         "pathMenu": false
+        }
+       ]
+      },
+      {
+       "phase": "afterDraft",
+       "read": {
+        "draft": "true",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterLibOpen",
+       "read": {
+        "draft": "true",
+        "libPanel": true,
+        "libOpen": "true",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterLibClose",
+       "read": {
+        "draft": "true",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      }
+     ],
+     "after": {
+      "draft": "true",
+      "libPanel": false,
+      "libOpen": "false",
+      "pathMenu": false
+     },
+     "expect": "★ 只开再关模型库 ⟹ 草稿**仍**活着",
+     "draftAlive": true,
+     "control": true,
+     "trace": [
+      {
+       "phase": "afterDraft",
+       "draft": "true"
+      },
+      {
+       "phase": "afterLibOpen",
+       "draft": "true"
+      },
+      {
+       "phase": "afterLibClose",
+       "draft": "true"
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "draftThenAddItem",
+     "steps": [
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": [
+        {
+         "draft": "true",
+         "libPanel": false,
+         "libOpen": "false",
+         "pathMenu": false
+        }
+       ]
+      },
+      {
+       "phase": "afterDraft",
+       "read": {
+        "draft": "true",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterLibOpen",
+       "read": {
+        "draft": "true",
+        "libPanel": true,
+        "libOpen": "true",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterAdd",
+       "read": {
+        "draft": "false",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      }
+     ],
+     "after": {
+      "draft": "false",
+      "libPanel": false,
+      "libOpen": "false",
+      "pathMenu": false
+     },
+     "expect": "★★ 加条目 ⟹ 草稿**没了**",
+     "draftAlive": false,
+     "trace": [
+      {
+       "phase": "afterDraft",
+       "draft": "true"
+      },
+      {
+       "phase": "afterLibOpen",
+       "draft": "true"
+      },
+      {
+       "phase": "afterAdd",
+       "draft": "false"
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "arm": "noDraftThenAddItem",
+     "steps": [
+      {
+       "phase": "makeDraft",
+       "ok": true,
+       "why": [
+        "按设计跳过"
+       ]
+      },
+      {
+       "phase": "afterDraft",
+       "read": {
+        "draft": "false",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterLibOpen",
+       "read": {
+        "draft": "false",
+        "libPanel": true,
+        "libOpen": "true",
+        "pathMenu": false
+       }
+      },
+      {
+       "phase": "afterAdd",
+       "read": {
+        "draft": "false",
+        "libPanel": false,
+        "libOpen": "false",
+        "pathMenu": false
+       }
+      }
+     ],
+     "after": {
+      "draft": "false",
+      "libPanel": false,
+      "libOpen": "false",
+      "pathMenu": false
+     },
+     "expect": "不造草稿 ⟹ 加条目后一切正常",
+     "draftAlive": false,
+     "expectDraftAlive": false,
+     "trace": [
+      {
+       "phase": "afterDraft",
+       "draft": "false"
+      },
+      {
+       "phase": "afterLibOpen",
+       "draft": "false"
+      },
+      {
+       "phase": "afterAdd",
+       "draft": "false"
+      }
+     ],
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,57 @@
+{
+ "deskOpen": true,
+ "drawBtn": 1,
+ "drawBtnId": "director-track-camera-main",
+ "before": {
+  "gizmo": "false",
+  "menu": false,
+  "libPanel": false,
+  "toolCount": 0,
+  "toolDisabled": null,
+  "addLabel": null
+ },
+ "clickedDraw": true,
+ "afterDraw": {
+  "gizmo": "false",
+  "menu": true,
+  "libPanel": false,
+  "toolCount": 2,
+  "toolDisabled": false,
+  "addLabel": null
+ },
+ "clickedTool": true,
+ "afterTool": {
+  "gizmo": "true",
+  "menu": false,
+  "libPanel": false,
+  "toolCount": 0,
+  "toolDisabled": null,
+  "addLabel": null
+ },
+ "clickedLib": true,
+ "afterLib": {
+  "gizmo": "true",
+  "menu": false,
+  "libPanel": true,
+  "toolCount": 0,
+  "toolDisabled": null,
+  "addLabel": "加入场景 饮料瓶"
+ },
+ "clickedAdd": true,
+ "afterAdd": {
+  "gizmo": "false",
+  "menu": false,
+  "libPanel": false,
+  "toolCount": 0,
+  "toolDisabled": null,
+  "addLabel": null
+ },
+ "judgments": {
+  "① deskOpen": true,
+  "② 路径菜单能开": true,
+  "③ ★ 草稿能造出来": true,
+  "④ 模型库能开": true,
+  "④ 模型库条目能点": true,
+  "★ 加条目后草稿消失（待判）": true
+ }
+}
