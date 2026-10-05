@@ -2678,3 +2678,47 @@ screenshots:
     visible_text: 图片节点 2 视频节点 3 音频节点 1 文本节点 1 1 selection frame (dashed) 2 each node's own ports drag a / b / c to link nodes, NOT the node card itself 3 multi-select toolbar 4 the edge between 2 selected nodes lights up blue
     alt: 框选之后画布上凭空多出来的四样东西，都用不同颜色框出来：① 橙色虚线选区框，沿着它圈住了整批选中的节点；② 三个带加号的圆环（标了 a / b / c），是每个节点**自己的连接端口** —— 11 个节点 × 两侧 = 22 个；⭐ 这张图同时印证「连线要拖圆环、拖卡片不连线」；③ 绿色框出的多选工具条，七个键一字排开；④ 粉色开口细框套住的那条边，是两个被选中节点之间的连线，高亮成发光的蓝色。⭐ ② 的圆环和 ④ 的高亮边都是**框选之后才有**的，所以「框选后画布上好像多出了一些东西」不是错觉
     sha256: 31e0460aec06c8d9e7ab35a49ee9221048199b43bae5dd9d25f9e7b845e29139
+  - file: screenshots/M-377-官方角色库-完整界面.png
+    task_id: character-studio
+    step: 8
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 底栏点「角色造型室」→ 等面板加载 → 点顶部第二个页签「官方角色库」→ 把 5904px 宽的横向容器用滚轮横着推了 6 次 → 全页 dump 文字（132 条）与 characterStudio* 的 747 条对账（命中 27）→ 裁面板区域后按 K=2 换算像素，标注直接量在裁剪+缩放后的画布上
+    visible_text: 我的角色库 官方角色库 性别 年龄段 文化区域 生活方式普通人 创建新角色 添加到画布 编辑角色
+    alt: 角色造型室的第二个页签「官方角色库」（高亮）：第二排三个筛选下拉「性别 / 年龄段 / 文化区域」加一枚放大镜搜索，右上角三枚视图图标；中间横向一排五张真人立绘，左右各有一枚轮播箭头；立绘下方是当前角色名「生活方式普通人」加一枚 ✨，底下有一条横向滚动条；底栏三枚按钮：左边「创建新角色」、中间「添加到画布」、右边「编辑角色」。⭐ 这是平台自带的一批角色，不用自己建
+    sha256: ef3e314d82c8c561c218735211e7d25e8b9cae894abea8fbbffc254c74136829
+  - file: screenshots/M-378-素材库浮层-悬停出副标题.png
+    task_id: asset-library
+    step: 16
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 关掉角色造型室 → 点底栏 aria-label=素材库 → 点开之后先量「风格库」那一行里副标题 span 的 computed opacity（0）→ 把鼠标移到该行中心、停 1.2 秒 → 再量同一个 span 的 opacity（1，transition-duration 0.2s）→ 裁浮层区域，图例放在右侧留出的空画布上
+    visible_text: 素材库 风格库 新增风格节点 NEW 特效库 打开工具箱
+    alt: 底栏「素材库」点开的浮层共三行。① 鼠标正停着的那一行（风格库）高亮，它的副标题「新增风格节点」淡了进来 —— class 是 text-fg-muted text-[12px] opacity-0 transition-opacity duration-200 group-hover:opacity-100，实测 opacity 从 0 变成 1；② ③「特效库」那一行没有悬停，副标题仍然是透明的，只有主标题和 NEW 徽标。⭐ 所以「没看见副标题」是还没把鼠标放上去，按 DOM 文字做对账时也常被当成「文案不在界面上」
+    sha256: 8822b285eb4c0e01e710852dca81689826e266cb4fa35c51e86f8a6c5d35d6d2
+  - file: screenshots/M-379-添加节点里的素材库-只有两项.png
+    task_id: asset-library
+    step: 17
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 点底栏 aria-label=添加节点 → 找到面板里 innerText 以「素材库」开头、box=[492,595,206,36] 的那一行 → 点它左侧 30px 处 → 等 3 秒后全页 dump，断言「风格库」「特效库」在而「打开工具箱」不在 → 裁这一行 + 展开的子菜单
+    visible_text: 素材库 风格库 特效库 脚本 添加资源 上传 从生成历史选择
+    alt: 添加节点面板里「素材库 ›」展开出来的右侧二级子菜单：只有「风格库」「特效库」两行，没有「打开工具箱」。⭐ 左边主菜单同时能看到「脚本 ›」也带二级箭头，以及一行灰色的分组标题「添加资源」。⇒ 两个入口展开出来的东西不一样，要开工具箱只能走底栏那枚独立按钮
+    sha256: d5de3bb563dec9e3744a5f46a9a5c69a4c7888df1ece36ecef772f0fa1bdc515
+  - file: screenshots/M-380-风格广场-我的收藏-暂无素材.png
+    task_id: asset-library
+    step: 18
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: 素材库 → 风格库（落点先 document.elementFromPoint 自证属主就是「风格库」自己）→ 等 6 秒，断言 14 个广场关键词（风格广场/我的收藏/最近使用/十个分类/仅看可商用）全部命中 → 截图 → 点「我的收藏」页签 → 等 4 秒 → 截图；两张裁成同一条带后上下拼接，中间画分隔线
+    visible_text: 风格广场 我的收藏 最近使用 推荐 摄影写真 电商营销 动漫游戏 风格插画 平面设计 建筑及室内设计 创意玩法 文创周边 小说推文 仅看可商用 全部 Seedream 5.0 pro 暂无素材
+    alt: 同一账号、同一次会话里的两片拼在一起：上半片停在「风格广场」页签，首屏那张 Seedream 5.0 pro 卡右上角是一枚实心星；下半片切到「我的收藏」页签，第二个分类标签和「仅看可商用」勾选框整排消失，正中一行灰字「暂无素材」。⭐ 卡上的星是实心的，但「我的收藏」里没有它 ⇒ 不能拿卡上那颗星推断「它在不在我的收藏里」
+    sha256: b0d905e036524c1859f403816f01be2e59c4ba98ab03571412138fe2cbd938d1

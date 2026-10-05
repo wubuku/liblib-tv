@@ -1,0 +1,104 @@
+{
+  "步骤": [
+    "closePromos：[{\"模态\":false,\"文字\":\"Agent 已升级为 TV Director 全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。 知道了\",\"按钮\":\"知道了\",\"框\":[73",
+    "—— ① 底栏「素材库」——",
+    "   ✅ 断言通过：「素材库」点得中（落点自证通过）",
+    "   ✅ 断言通过：⭐ 三项全在界面上 —— 推翻 FI 的「空空如也」",
+    "   {\n \"三项\": [\n  {\n   \"名\": \"风格库\",\n   \"框\": [\n    565,\n    563,\n    222,\n    52\n   ],\n   \"innerText\": \"风格库 新增风格节点 NEW\",\n   \"aria\": null,\n   \"title\": null,\n   \"子节点\": [\n    {\n     \"tag\": \"SPAN\",\n     \"class\": \"text-fg-default text-[14px] font-medium leading-snug\",\n     \"字\": \"风格库\"\n    },\n    {\n     \"tag\": \"SPAN\",\n     \"class\": \"text-fg-muted text-[12px] leading-snug opacity-0 transition-\",\n     \"字\": \"新增风格节点\"\n    },\n    {\n     \"tag\": \"SPAN\",\n     \"class\": \"shrink-0 rounded-full px-2 py-1 text-[12px] font-medium lead\",\n     \"字\": \"NEW\"\n    }\n   ]\n  },\n  {\n   \"名\": \"特效库\",\n   \"框\": [\n    565,\n    619,\n    222,\n    52\n   ],\n   \"innerText\": \"特效库 新增特效节点 NEW\",\n   \"aria\": null,\n   \"title\": null,\n   \"子节点\": [\n    {\n     \"tag\": \"SPAN\",\n     \"class\": \"text-fg-default text-[14px] font-medium leading-snug\",\n     \"字\": \"特效库\"\n    },\n    {\n     \"tag\": \"SPAN\",\n     \"class\": \"text-fg-muted text-[12px] leading-snug opacity-0 transition-\",\n     \"字\": \"新增特效节点\"\n    },\n    {\n     \"tag\": \"SPAN\",\n     \"class\": \"shrink-0 rounded-full px-2 py-1 text-[12px] font-medium lead\",\n     \"字\": \"NEW\"\n    }\n   ]\n  },\n  {\n   \"名\": \"打开工具箱\",\n   \"框\": [\n    565,\n    675,\n    222,\n    52\n   ],\n   \"innerText\": \"打开工具箱\",\n   \"aria\": null,\n   \"title\": null,\n   \"子节点\": [\n    {\n     \"tag\": \"SPAN\",\n     \"class\": \"text-fg-default text-[14px] font-medium leading-snug\",\n     \"字\": \"打开工具箱\"\n    }\n   ]\n  }\n ],\n \"壳\": null,\n \"行\": 563\n}",
+    "   ❌ 断言失败：Escape 能关掉素材库浮层（与角色造型室不同：那个 Escape 关不掉）｜数据 90",
+    "—— ③ 走「风格库」进广场（⛔ 不点任何卡片）——",
+    "   ✅ 断言通过：重新打开素材库",
+    "   风格库落点 null",
+    "   ❌ 断言失败：「风格库」的落点属主是它自己（CV-0 那次点成了「特效库」）｜数据 null",
+    "❌ Cannot read properties of null (reading '点')",
+    "done"
+  ],
+  "读数": {
+    "素材库三项": {
+      "三项": [
+        {
+          "名": "风格库",
+          "框": [
+            565,
+            563,
+            222,
+            52
+          ],
+          "innerText": "风格库 新增风格节点 NEW",
+          "aria": null,
+          "title": null,
+          "子节点": [
+            {
+              "tag": "SPAN",
+              "class": "text-fg-default text-[14px] font-medium leading-snug",
+              "字": "风格库"
+            },
+            {
+              "tag": "SPAN",
+              "class": "text-fg-muted text-[12px] leading-snug opacity-0 transition-",
+              "字": "新增风格节点"
+            },
+            {
+              "tag": "SPAN",
+              "class": "shrink-0 rounded-full px-2 py-1 text-[12px] font-medium lead",
+              "字": "NEW"
+            }
+          ]
+        },
+        {
+          "名": "特效库",
+          "框": [
+            565,
+            619,
+            222,
+            52
+          ],
+          "innerText": "特效库 新增特效节点 NEW",
+          "aria": null,
+          "title": null,
+          "子节点": [
+            {
+              "tag": "SPAN",
+              "class": "text-fg-default text-[14px] font-medium leading-snug",
+              "字": "特效库"
+            },
+            {
+              "tag": "SPAN",
+              "class": "text-fg-muted text-[12px] leading-snug opacity-0 transition-",
+              "字": "新增特效节点"
+            },
+            {
+              "tag": "SPAN",
+              "class": "shrink-0 rounded-full px-2 py-1 text-[12px] font-medium lead",
+              "字": "NEW"
+            }
+          ]
+        },
+        {
+          "名": "打开工具箱",
+          "框": [
+            565,
+            675,
+            222,
+            52
+          ],
+          "innerText": "打开工具箱",
+          "aria": null,
+          "title": null,
+          "子节点": [
+            {
+              "tag": "SPAN",
+              "class": "text-fg-default text-[14px] font-medium leading-snug",
+              "字": "打开工具箱"
+            }
+          ]
+        }
+      ],
+      "壳": null,
+      "行": 563
+    },
+    "Escape关浮层": {
+      "关掉": false
+    }
+  }
+}
