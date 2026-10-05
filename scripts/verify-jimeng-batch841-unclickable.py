@@ -5790,6 +5790,14 @@ def main() -> int:
     #   **对 `OOOOO.2` 那两处错数的更正**（而**原文保留**、只加改写横幅）
     p982 = ROOT / "scripts/jimeng_probe982_ringlen_src.py"
     _p982 = p982.read_text(encoding="utf-8") if p982.exists() else ""
+    p982 = ROOT / "scripts/jimeng_probe982_ringlen_src.py"
+    _p982 = p982.read_text(encoding="utf-8") if p982.exists() else ""
+    # ⭐⭐⭐⭐⭐ 984：**实验室**探针 —— ⭐⭐⭐⭐⭐ **把 H₃ 的「出处」逼到一个精确位置**
+    #   ⇒ 而第一步**978 的读数就已经做完了**（`BODY` 的 `tabIndex` 是算出来的 −1）
+    #   ⚠️ 判据组 `RRRRR.3` 要钉的是**「仍未找到出处」这条边界**
+    #   （**复现 ≠ 出处**）⇒ 以及**我自己那处过宽断言的更正**
+    p984 = ROOT / "scripts/jimeng_probe984_bodytabindex_lab.py"
+    _p984 = p984.read_text(encoding="utf-8") if p984.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -10142,7 +10150,153 @@ def main() -> int:
           and '"arc_cover_num"' in _p983 and '"arc_cover_den"' in _p983
           and '"descents_on_arc"' in _p983)
 
+    # ══ RRRRR. 批 984 实验室：⭐⭐⭐⭐⭐ **把 H₃ 的「出处」逼到一个精确位置**
+    #    —— 而第一步 978 的读数就已经做完了：`BODY` 的 `tabIndex` 是**算出来的 −1**
+    #    ⇒ H₄「靠普通 tabindex 规则进环」被否；`A1`/`A3` 把 `BODY` 挪到环开头
+    #    ⇒ **它在环里完全由 `tabIndex` 决定**；⚠️ **但仍未读到源码 ⇒ 不许写「已找到出处」** ══
+    print("— RRRRR. 批 984 实验室：`BODY` 的 `ti_attr = null` 而 `ti_prop = -1` ⇒ "
+          "**不可聚焦是算出来的** ⇒ H₄ 被否；`A1`/`A3` 把它挪到环开头、"
+          "`A2`/`A4` 精确回到基线（2/2）⇒ **停靠由 `tabIndex` 决定**；"
+          "并**更正我自己一处过宽断言** ⇒ **仍未找到出处** —")
 
+    check("RRRRR.1 ⭐⭐⭐⭐⭐ **本批最要紧的一条，而 978 的读数里就已经有** —— "
+          "978 实验室（`about:blank` ＋ 3 个 `<button>`）的 `STOP_JS` "
+          "**逐格读过**两套口径：`BUTTON#lab-b1` 是 `ti_attr = null`、**`ti_prop = 0`**；"
+          "**`BODY`** 是 `ti_attr = null`、**`ti_prop = -1`** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **`BODY` 的「不可聚焦」是引擎算出来的（`tabIndex === -1`），"
+          "不是作者写上去的属性** ⇒ ⇒ ⭐⭐⭐⭐⭐ "
+          "**H₄「`BODY` 靠普通 `tabindex` 规则进 Tab 环」当场被否** —— "
+          "按普通规则 `tabIndex === -1` 的元素**根本不该是可聚焦候选** ⇒ ⇒ "
+          "⭐⭐⭐⭐ **而这正是 H₃ 整个形状的来源**：既然不是普通候选，"
+          "它必然是**焦点导航里的显式兜底** ⇒ 兜底必然被放在**环的回绕点**"
+          "（最后一个可聚焦元素之后、第一个之前）⇒ "
+          "**977 / 982 / 983 量到的位置逐格对上了**",
+          '"body_tabindex_is_computed_984"' in _ausrc
+          and "**本批最要紧的一条，而 978 的读数里就已经有**" in _ausrc
+          and "**`ti_prop = -1`**" in _ausrc
+          and "**`BODY` 的「不可聚焦」是引擎算出来的" in _ausrc
+          and "当场被否** —— 按普通规则" in _ausrc
+          and "**而这正是 H₃ 整个形状的来源**" in _ausrc
+          and "**焦点导航里的显式兜底**" in _ausrc
+          and "**977 / 982 / 983 量到的位置逐格对上了**" in _ausrc
+          # ⭐⭐ 钉探针：基线常量就是 978 那个环、继承来的 `STOP_JS` 两列都在
+          and 'BASELINE_CYCLE = ["lab-b1", "lab-b2", "lab-b3", "BODY"]' in _p984
+          and "N_BUTTONS = 3" in _p984
+          and "N_STEPS = 14" in _p984
+          and 'STOP_JS = _grab("STOP_JS", _p978)' in _p984
+          and '"a.getAttribute(\'tabindex\')" in STOP_JS' in _p984
+          and '"a.tabIndex" in STOP_JS' in _p984)
+
+    check("RRRRR.2 ⭐⭐⭐⭐⭐ **`A1` / `A3` 改写了 H₃ 的内容，而这是本批的判决** —— "
+          "五个臂 2/2 逐格相同：`A0` 环 "
+          "`['lab-b1','lab-b2','lab-b3','BODY']` 长 **4**、**逐格复现 978 的 "
+          "`cycle_sig`**、`BODY` 在**第 3 格（末尾）**、`ti_attr = null`、"
+          "`ti_prop = -1`；`A1`（`setAttribute('tabindex','0')`）与 "
+          "`A3`（**只写 IDL** `body.tabIndex = 0`）**都**让环变成 "
+          "`['BODY','lab-b1','lab-b2','lab-b3']`、**`BODY` 跑到第 0 格**；"
+          "`A2`（撤销 A1）⭐ **逐格回到 A0**；`A4`（显式 `tabIndex = -1`）⭐ "
+          "**环形状与位置与 A0 完全相同** ⇒ ⇒ ⭐⭐⭐⭐⭐ "
+          "**「`BODY` 在环里」完全由 `tabIndex` 决定**：`0` ⇒ 它是**普通** "
+          "`tabindex=0` 元素（无需解释）；**`-1` ⇒ 它仍然是停靠点** ⭐ "
+          "**这才是需要解释的那一半** ⇒ 且 **`A4` 给出很强的等价性证据**："
+          "**显式写 `tabindex=\"-1\"` 与「没写、被算成 −1」在停靠行为上完全一样** ⇒ "
+          "**兜底性质来自「计算值 −1」本身**，不是「恰好没写属性」⇒ "
+          "⭐⭐⭐⭐⭐ **顺带把 982/983 那条结构发现补上了机制**："
+          "`BODY` 是整圈 `dom_rank` **最小**的一格 ⇒ 它**一旦成为普通候选"
+          "就必然排第一** —— `A1`/`A3` 实测正是如此 ⇒ "
+          "**与 `body_is_min_rank` 完美咬合** ⇒ 而「末尾」与「开头」"
+          "**本来就是循环环上的同一个位置**",
+          '"arm_table_984"' in _ausrc
+          and "**`A0`** 基线（不动）" in _ausrc
+          and "**`A2`** `body.removeAttribute('tabindex')`（**撤销 A1**）" in _ausrc
+          and "**逐格回到 A0 的形状**" in _ausrc
+          and "**只写 IDL** `body.tabIndex = 0`" in _ausrc
+          and "**也变成了 `'0'`**" in _ausrc
+          and '"body_stop_is_governed_by_tabindex_984"' in _ausrc
+          and "**`BODY` 在环里的位置**随它的 `tabIndex` 变" in _ausrc
+          and "**它不再有任何「特殊」待遇**" in _ausrc
+          and "这件事完全由 `tabIndex` 决定**" in _ausrc
+          and "**这才是需要解释的那一半**" in _ausrc
+          and "与「没写、被算成 −1」在停靠行为上" in _ausrc
+          and "**兜底性质来自「计算值 −1」这个事实本身**" in _ausrc
+          and "**顺带把 982/983 那条结构发现补上了机制**" in _ausrc
+          and "**一旦成为普通候选就必然排第一**" in _ausrc
+          and "**与 `body_is_min_rank` 完美咬合**" in _ausrc
+          and "**「末尾」与「开头」本来就是循环环上的同一个位置**" in _ausrc
+          # ⭐⭐ 钉探针：五个臂、两个撤销臂、关系式读数
+          and '("A0", "null",' in _p984
+          and "document.body.setAttribute('tabindex', '0')" in _p984
+          and "document.body.removeAttribute('tabindex')" in _p984
+          and "document.body.tabIndex = 0" in _p984
+          and "document.body.tabIndex = -1" in _p984
+          and '"body_pos_in_cycle"' in _p984
+          and '"body_in_cycle"' in _p984
+          and '"same_as_baseline"' in _p984
+          and '"eq_baseline_cycle"' in _p984
+          and '"attr_vs_prop"' in _p984
+          and '"_p984": "scripts/jimeng_probe984_bodytabindex_lab.py",' in _anchs)
+
+    check("RRRRR.3 ⭐⭐⭐⭐⭐ **本批更正我自己一处「过宽的断言」** —— "
+          "我原写「`tabindex` 在规范里就是**两个东西**（content attribute 与 "
+          "IDL 属性）⇒ 974 那条纪律在这里**是规范本身**」⇒ ⇒ ⭐⭐⭐⭐⭐ "
+          "**`A3` 臂把它否掉了**：**只写 IDL**（不碰 content attribute）⇒ "
+          "实测 `ti_attr` **也变成了 `'0'`** ⇒ ⇒ **引擎的 `tabIndex` setter "
+          "会回写 content attribute** ⇒ 而这与 HTML 规范一致 ⇒ ⇒ "
+          "**那不是「两套口径」，是同一套规则的两个表面** ⇒ ⇒ ⭐⭐⭐⭐ "
+          "**本批真正分开的**是另外两件事：**有没有写**（`ti_attr`）vs "
+          "**算出多少**（`ti_prop`）⇒ `A0` 上 `null` 而 `-1` ⇒ "
+          "**「没写」与「算出 −1」不是一回事** ⇒ ⇒ "
+          "⚠️ **探针 docstring 与 `ruler` 里的同一句断言已一并改掉**"
+          "⇒ ⇒ **撤销结论按规矩来：改写、不删**；"
+          "⚠️⚠️⚠️⭐⭐⭐⭐⭐ **而本批没有找到出处，且必须这么写** —— "
+          "本批做的是**把问题缩小**：从「`BODY` 为什么会是停靠点？」收窄到"
+          "「**顺序焦点导航在环的回绕点上，是否接纳 `tabIndex < 0` 的 "
+          "`document.body`？**」⇒ ⇒ ⭐⭐⭐⭐⭐ "
+          "**复现 ≠ 出处、时长 ≠ 出处、比率 ≠ 出处、同构 ≠ 出处；"
+          "本批给出的是**行为刻画**，**不是源码引用** ⇒ ⇒ "
+          "⚠️⭐⭐ **明确不许写「已找到出处」**；"
+          "另两条：⭐⭐⭐ ⭐⭐⭐⭐ **过窄的门和过宽的门一样坏** —— "
+          "纯读守卫第一版用子串 `\"tabIndex =\"` 当禁词，"
+          "而 `STOP_JS` 里**读**属性那行是 `a.tabIndex === undefined` ⇒ "
+          "**那个子串恰是它的前缀** ⇒ 门红 ⇒ ⭐⭐ "
+          "**它逼我改继承来的尺子或删门 —— 两条都是更差的工程** ⇒ "
+          "**改成正则** ⇒ 成对门钉**三条**；"
+          "⭐⭐⭐⭐ **只有能按定义推出的才配当门**（`A0` 回归门 / `A2` 撤销 / "
+          "`A4` 等价性 ⇒ **真门**；`A1` 与 `A3` 属**待测事实、判据不预写**）；"
+          "⭐⭐⭐ 顺带把 **980 那 7.8% 交叉印证**上：978 的 `L3` 臂 "
+          "`n_body_stops = 2`（其余臂都是 3）⇒ 两条独立数据链互证；"
+          "⭐⭐⭐⭐⭐ **本批零计费**：`about:blank`、**不打开源站**、**零节点点击**",
+          '"correction_of_my_own_984"' in _ausrc
+          and "**本批更正我自己一处「过宽的断言」**" in _ausrc
+          and "**`A3` 臂把它否掉了**" in _ausrc
+          and "**引擎的 `tabIndex` setter 会回写 content attribute**" in _ausrc
+          and "**那不是「两套口径」，是同一套规则的两个表面**" in _ausrc
+          and "**本批真正分开的**是另外两件事" in _ausrc
+          and "**「没写」与「算出 −1」不是一回事**" in _ausrc
+          and "**探针 docstring 与 `ruler` 里的同一句断言已一并改掉**" in _ausrc
+          and "**撤销结论按规矩来：改写、不删**" in _ausrc
+          and '"still_not_the_source_984"' in _ausrc
+          and "**本批没有找到出处，而且必须这么写**" in _ausrc
+          and "**顺序焦点导航在环的回绕点上，是否接纳 " in _ausrc
+          and "**行为刻画**，**不是源码引用**" in _ausrc
+          and "**明确不许写「已找到出处」**" in _ausrc
+          and '"l3_cross_check_984"' in _ausrc
+          and "顺带把 980 那 7.8% 交叉印证上了**：978 的 `L3` 臂 " in _ausrc
+          and '"discipline_984"' in _ausrc
+          and "**「出处」要能缩小到一句话，才算有进展**" in _ausrc
+          and "**过宽的断言和过宽的门同一族**" in _ausrc
+          and "**过窄的门和过宽的门一样坏**" in _ausrc
+          and "恰是它的前缀** ⇒ 门红 ⇒ " in _ausrc
+          and "**它逼我改继承来的尺子或删门 —— 两条都是更差的工程**" in _ausrc
+          and "**只有能按定义推出的才配当门**" in _ausrc
+          and "**本批零计费**：实验室页 `about:blank`" in _ausrc
+          # ⭐⭐ 钉探针：更正留痕 + 正则守卫 + 三条成对门
+          and "**这句断言被本批自己的读数否掉了，" in _p984
+          and 'r"\\.tabIndex\\s*=(?!=)"' in _p984
+          and "**读**属性被当成**写**" in _p984
+          and "纯读守卫可能变成**恒真**" in _p984
+          and "**只有这几条能按定义推出**" in _p984
+          and "**属于**待测事实**" in _p984)
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
