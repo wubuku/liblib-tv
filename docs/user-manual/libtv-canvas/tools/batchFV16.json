@@ -1,0 +1,203 @@
+{
+  "步骤": [
+    "  开跑前：稳定在 12",
+    "开跑前 12 个：audio:音频节点 1 / audio:音频节点 1 / shot-breakdown:逐帧拉片 / script-v2:脚本 V2 1 / image:图片节点 2 / image:图片节点 2 / director-console-3d:导演台 5 / text:文本节点 2 / text:文本节点 1 / video:视频节点 3 / video-clip:智能剪辑 4 / video:视频节点 3",
+    "\naudio：目标 2，现有 2，缺 0",
+    "\ntext：目标 2，现有 2，缺 0",
+    "\n末态 12 个：",
+    "   a-GgqvrVz0pw  audio  `音频节点 1`",
+    "   a-THmbuJXQj4  audio  `音频节点 1`",
+    "   b-mfkcQNULC3  shot-breakdown  `逐帧拉片`",
+    "   b-v5Ote7oaUv  script-v2  `脚本 V2 1`",
+    "   i-9nlG6HdjK2  image  `图片节点 2`",
+    "   i-sODTbgLUm1  image  `图片节点 2`",
+    "   n-56F19pXVB4  director-console-3d  `导演台 5`",
+    "   t-BI7Pfxo0MI  text  `文本节点 2`",
+    "   t-UtVx3lZmrV  text  `文本节点 1`",
+    "   v-eMpqKtiLlx  video  `视频节点 3`",
+    "   v-oZNpH99MtM  video-clip  `智能剪辑 4`",
+    "   v-v2hlWY4Br3  video  `视频节点 3`",
+    "✅ audio = 2 —— 2 个",
+    "✅ text = 2 —— 2 个",
+    "✅ image = 2 —— 2 个",
+    "✅ video = 2 —— 2 个",
+    "✅ video-clip = 1 —— 1 个",
+    "✅ director-console-3d = 1 —— 1 个",
+    "✅ script-v2 = 1 —— 1 个",
+    "✅ shot-breakdown = 1 —— 1 个",
+    "✅ 总数 12 —— 12 个"
+  ],
+  "读数": {
+    "前": [
+      {
+        "id": "a-GgqvrVz0pw",
+        "类型": "audio",
+        "标题": "音频节点 1"
+      },
+      {
+        "id": "a-THmbuJXQj4",
+        "类型": "audio",
+        "标题": "音频节点 1"
+      },
+      {
+        "id": "b-mfkcQNULC3",
+        "类型": "shot-breakdown",
+        "标题": "逐帧拉片"
+      },
+      {
+        "id": "b-v5Ote7oaUv",
+        "类型": "script-v2",
+        "标题": "脚本 V2 1"
+      },
+      {
+        "id": "i-9nlG6HdjK2",
+        "类型": "image",
+        "标题": "图片节点 2"
+      },
+      {
+        "id": "i-sODTbgLUm1",
+        "类型": "image",
+        "标题": "图片节点 2"
+      },
+      {
+        "id": "n-56F19pXVB4",
+        "类型": "director-console-3d",
+        "标题": "导演台 5"
+      },
+      {
+        "id": "t-BI7Pfxo0MI",
+        "类型": "text",
+        "标题": "文本节点 2"
+      },
+      {
+        "id": "t-UtVx3lZmrV",
+        "类型": "text",
+        "标题": "文本节点 1"
+      },
+      {
+        "id": "v-eMpqKtiLlx",
+        "类型": "video",
+        "标题": "视频节点 3"
+      },
+      {
+        "id": "v-oZNpH99MtM",
+        "类型": "video-clip",
+        "标题": "智能剪辑 4"
+      },
+      {
+        "id": "v-v2hlWY4Br3",
+        "类型": "video",
+        "标题": "视频节点 3"
+      }
+    ],
+    "末": [
+      {
+        "id": "a-GgqvrVz0pw",
+        "类型": "audio",
+        "标题": "音频节点 1"
+      },
+      {
+        "id": "a-THmbuJXQj4",
+        "类型": "audio",
+        "标题": "音频节点 1"
+      },
+      {
+        "id": "b-mfkcQNULC3",
+        "类型": "shot-breakdown",
+        "标题": "逐帧拉片"
+      },
+      {
+        "id": "b-v5Ote7oaUv",
+        "类型": "script-v2",
+        "标题": "脚本 V2 1"
+      },
+      {
+        "id": "i-9nlG6HdjK2",
+        "类型": "image",
+        "标题": "图片节点 2"
+      },
+      {
+        "id": "i-sODTbgLUm1",
+        "类型": "image",
+        "标题": "图片节点 2"
+      },
+      {
+        "id": "n-56F19pXVB4",
+        "类型": "director-console-3d",
+        "标题": "导演台 5"
+      },
+      {
+        "id": "t-BI7Pfxo0MI",
+        "类型": "text",
+        "标题": "文本节点 2"
+      },
+      {
+        "id": "t-UtVx3lZmrV",
+        "类型": "text",
+        "标题": "文本节点 1"
+      },
+      {
+        "id": "v-eMpqKtiLlx",
+        "类型": "video",
+        "标题": "视频节点 3"
+      },
+      {
+        "id": "v-oZNpH99MtM",
+        "类型": "video-clip",
+        "标题": "智能剪辑 4"
+      },
+      {
+        "id": "v-v2hlWY4Br3",
+        "类型": "video",
+        "标题": "视频节点 3"
+      }
+    ]
+  },
+  "断言": [
+    {
+      "名": "audio = 2",
+      "过": true,
+      "明": "2 个"
+    },
+    {
+      "名": "text = 2",
+      "过": true,
+      "明": "2 个"
+    },
+    {
+      "名": "image = 2",
+      "过": true,
+      "明": "2 个"
+    },
+    {
+      "名": "video = 2",
+      "过": true,
+      "明": "2 个"
+    },
+    {
+      "名": "video-clip = 1",
+      "过": true,
+      "明": "1 个"
+    },
+    {
+      "名": "director-console-3d = 1",
+      "过": true,
+      "明": "1 个"
+    },
+    {
+      "名": "script-v2 = 1",
+      "过": true,
+      "明": "1 个"
+    },
+    {
+      "名": "shot-breakdown = 1",
+      "过": true,
+      "明": "1 个"
+    },
+    {
+      "名": "总数 12",
+      "过": true,
+      "明": "12 个"
+    }
+  ]
+}
