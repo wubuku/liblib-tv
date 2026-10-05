@@ -218,6 +218,168 @@ export async function closePromos(page) {
   return report;
 }
 
+// ---------------------------------------------------------------------------
+// ⭐⭐⭐⭐⭐ 画布节点复原：唯一正确入口（Batch FB/FD/FE/FF 连续四次事故的共同死因）
+//
+// ⛔⛔ 为什么「读误差 → 换算像素 → 再拖」的**多轮迭代**必然发散：
+//    **「请求拖 N 个屏幕像素」≠「节点真的移动了 N 个像素」。**
+//    `Math.round` 取整 + Playwright 的 move 事件合并 + React 批处理，
+//    三者叠加出一个**每轮不同、而且同号累积**的偏差。
+//    FF-1 实测两轮偏差都是 **−6 个画布单位** ⇒ 越修越远。
+//    ⛔ 而且**开态（不吸附）下也一样发散** —— 吸附只是加剧因素，不是根因。
+//    ⇒ 历史上 restore-v2～v9、FE-2、FF-1 的 `finally` 全都栽在这条上，
+//      **四次把节点推出画布，zoom 被 `⌘0` 压到 0.1，11 个节点一个都不渲染。**
+//
+// ✅ 正确的复原只有三种，按可靠性排序（本项目前九版成功轮次全部用的是 ①）：
+//
+//   ① **往返法**（最稳）：拖 +d 再拖 −d，净位移为 0。
+//      正反两次的偏差对称抵消。**做实验时优先用这个** —— 直接就不留下残差。
+//
+//   ② **一步复原**（有残差时用）：⛔ 必须先确认「网格吸附」是**开态**（不吸附），
+//      然后**用一整段大位移**走掉绝大部分，再用**单帧小步长**补最后一点。
+//      ⚠️ 最多补 3 次；补的位移**不取整**（直接用浮点 `p.x + dx/zoom`），
+//      否则 `Math.round` 会把小位移整个吞掉。
+//
+//   ③ **兜底**：产品自带的「**整理画布**」+ 弹窗里点「**保留**」。
+//      已验证 3 次都可靠，代价是整块平移、相对布局被重排。
+//      ⚠️ 「整理画布」会自己重置视口，不需要再按 `⌘0`。
+// ---------------------------------------------------------------------------
+
+/** 读某个节点当前的画布坐标；读不到返回 null（框选状态要用本函数，别用 querySelectorAll）。 */
+export async function 读画布坐标(page, id) {
+  return page.evaluate((nid) => {
+    const n = document.querySelector(`.react-flow__node[data-id="${nid}"]`);
+    if (!n) return null;
+    const t = /translate\((-?[\d.]+)px,\s*(-?[\d.]+)px\)/.exec(n.style.transform || '');
+    return t ? [Number(t[1]), Number(t[2])] : null;
+  }, id);
+}
+
+/** 读当前 zoom（从视口的 matrix 里取第一项）。 */
+export async function 读当前zoom(page) {
+  return page.evaluate(() => {
+    const v = document.querySelector('.react-flow__viewport');
+    const m = /matrix\(([^)]+)\)/.exec(v ? getComputedStyle(v).transform || '' : '');
+    return m ? Number(m[1].split(',')[0]) : 1;
+  });
+}
+
+/** 在节点框内扫 6×6 格，返回「属主对 且 无 nodrag 祖先」的落点。 */
+export async function 扫干净落点(page, id) {
+  const 框 = await page.evaluate((nid) => {
+    const n = document.querySelector(`.react-flow__node[data-id="${nid}"]`);
+    if (!n) return null;
+    const r = n.getBoundingClientRect();
+    return [Math.round(r.left), Math.round(r.top), Math.round(r.width), Math.round(r.height)];
+  }, id);
+  if (!框) return [];
+  const [L, T, W, H] = 框;
+  const 好 = [];
+  for (let r = 0; r < 6; r++) for (let c = 0; c < 6; c++) {
+    const x = L + Math.round(W * (c + 0.5) / 6), y = T + Math.round(H * (r + 0.5) / 6);
+    if (x < 4 || x > 1436 || y < 4 || y > 806) continue;
+    const ok = await page.evaluate((p) => {
+      const e = document.elementFromPoint(p[0], p[1]);
+      const n = e ? e.closest('.react-flow__node') : null;
+      return !!(n && !e.closest('.nodrag') && n.getAttribute('data-id') === p[2]);
+    }, [x, y, id]);
+    if (ok) 好.push({ x, y });
+  }
+  return 好;
+}
+
+/**
+ * ① 往返法：把节点拖 +总屏px 再拖 −总屏px，净位移应当为 0。
+ * ⭐ 每帧步长 ≤4 屏 px、帧间隔 170ms —— 单次 `mouse.move(x, y, {steps:8})` 的
+ *   8 步间隔是 0ms，React 的批量更新会把位移**整个吞掉**（实测 ±1~±30px 位移全是 0）。
+ * @returns {{净位移:number, 去:object, 回:object}}
+ */
+export async function 往返拖(page, id, 总屏px, 每帧步长 = 4, 落点 = null) {
+  const 拖一段 = async (dx) => {
+    const 落 = 落点 || (await 扫干净落点(page, id))[0];
+    if (!落) return null;
+    const 起 = await 读画布坐标(page, id);
+    const 帧数 = Math.max(2, Math.round(Math.abs(dx) / 每帧步长));
+    await page.mouse.move(落.x, 落.y); await page.waitForTimeout(280);
+    await page.mouse.down(); await page.waitForTimeout(160);
+    for (let i = 1; i <= 帧数; i++) {
+      await page.mouse.move(落.x + (dx * i) / 帧数, 落.y);
+      await page.waitForTimeout(170);
+    }
+    await page.mouse.up(); await page.waitForTimeout(600);
+    await page.mouse.move(720, 170); await page.waitForTimeout(220);
+    return { 起, 后: await 读画布坐标(page, id) };
+  };
+  const 去 = await 拖一段(总屏px);
+  const 回 = await 拖一段(-总屏px);
+  const 净 = 去 && 回 && 去.后 && 回.后 ? Number((回.后[0] - 去.起[0]).toFixed(4)) : null;
+  return { 净位移: 净, 去, 回 };
+}
+
+/**
+ * ② 一步复原：把节点拖回目标画布坐标。
+ * ⛔ 调用前**必须**确保「网格吸附」是开态（不吸附），否则落点会被栅格量化。
+ * @returns {{ok:boolean, 轮:number, 终:number[]|null, 原因?:string}}
+ */
+export async function 一步复原(page, id, 目标, { 容差 = 1.5, 最多补 = 3 } = {}) {
+  for (let 轮 = 0; 轮 <= 最多补; 轮++) {
+    const 现 = await 读画布坐标(page, id);
+    if (!现) return { ok: false, 轮, 终: null, 原因: '节点读不到（可能已被推出视口，先用「整理画布」兜底）' };
+    const dx = 目标[0] - 现[0], dy = 目标[1] - 现[1];
+    if (Math.hypot(dx, dy) <= 容差) return { ok: true, 轮, 终: 现 };
+    const z = await 读当前zoom(page);
+    const 落 = (await 扫干净落点(page, id))[0];
+    if (!落) return { ok: false, 轮, 终: 现, 原因: '框内找不到无 nodrag 的落点' };
+    // ⭐ 留 5% 余量给后面的单帧补差，别指望一段就正好到位
+    const 目标px = 轮 === 0 ? (dx / z) * 0.95 : dx / z;
+    const 帧数 = Math.max(轮 === 0 ? 6 : 1, Math.round(Math.abs(目标px) / 4));
+    await page.mouse.move(落.x, 落.y); await page.waitForTimeout(280);
+    await page.mouse.down(); await page.waitForTimeout(160);
+    for (let i = 1; i <= 帧数; i++) {
+      // ⭐ 补差阶段**不取整**：Math.round 会把小于半像素的位移整个吞掉
+      await page.mouse.move(轮 === 0 ? 落.x + (目标px * i) / 帧数 : 落.x + 目标px, 落.y);
+      await page.waitForTimeout(170);
+    }
+    await page.mouse.up(); await page.waitForTimeout(620);
+    await page.mouse.move(720, 170); await page.waitForTimeout(220);
+  }
+  const 终 = await 读画布坐标(page, id);
+  return { ok: false, 轮: 最多补 + 1, 终, 原因: '补差次数用完（请改用「整理画布」兜底）' };
+}
+
+/**
+ * ③ 兜底：产品自带的「整理画布」+ 弹窗里点「保留」。
+ * ⚠️「整理画布」会**重排相对布局并整块平移**，是最后手段。
+ * ⚠️ 弹窗里**点「保留」**（点「还原」会退回坏状态）。
+ */
+export async function 整理画布兜底(page) {
+  const btn = await page.evaluate(() => {
+    for (const x of document.querySelectorAll('button')) {
+      if ((x.getAttribute('aria-label') || '').includes('整理画布')) {
+        const r = x.getBoundingClientRect();
+        if (r.width > 0) return [Math.round(r.left + r.width / 2), Math.round(r.top + r.height / 2)];
+      }
+    }
+    return null;
+  });
+  if (!btn) return { ok: false, 原因: '找不到「整理画布」按钮' };
+  await page.mouse.click(btn[0], btn[1]);
+  await page.waitForTimeout(2500);
+  const 保留 = await page.evaluate(() => {
+    for (const x of document.querySelectorAll('button')) {
+      if ((x.innerText || '').trim() === '保留') {
+        const r = x.getBoundingClientRect();
+        if (r.width > 0) return [Math.round(r.left + r.width / 2), Math.round(r.top + r.height / 2)];
+      }
+    }
+    return null;
+  });
+  if (!保留) return { ok: false, 原因: '弹窗里找不到「保留」' };
+  await page.mouse.click(保留[0], 保留[1]);
+  await page.waitForTimeout(6000);
+  return { ok: true };
+}
+
 /** 打印页面壳信息 + 一级可交互表面，用于快速建立候选任务清单。 */
 export async function shell(page) {
   return page.evaluate(() => {
