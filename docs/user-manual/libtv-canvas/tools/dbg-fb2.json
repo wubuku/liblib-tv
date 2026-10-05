@@ -1,0 +1,39 @@
+{
+  "步骤": [
+    "开局坐标偏差：[]",
+    "viewport transform = matrix(0.458621, 0, 0, 0.458621, 884.556, -93.5213)",
+    "pattern 元素个数 = 1｜.react-flow__background 个数 = 1",
+    "背景 svg class = [\"react-flow__background\"]",
+    "--- pattern[0] 父=svg.react-flow__background",
+    "    属性={\"id\":\"pattern-1\",\"x\":\"1.7102685276284717\",\"y\":\"-13.262573208716816\",\"width\":\"16.051743489369613\",\"height\":\"16.051743489369613\",\"patternUnits\":\"userSpaceOnUse\",\"patternTransform\":\"translate(-8.025871744684807,-8.025871744684807)\"}",
+    "    外链=<pattern id=\"pattern-1\" x=\"1.7102685276284717\" y=\"-13.262573208716816\" width=\"16.051743489369613\" height=\"16.051743489369613\" patternUnits=\"userSpaceOnUse\" patternTransform=\"translate(-8.025871744684807,-8.025871744684807)\"><circle cx=\"0.2293106212767088\" cy=\"",
+    "--- background[0] = <svg class=\"react-flow__background\" data-testid=\"rf__background\" style=\"position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; --xy-background-pattern-color-props: var(--canvas-bg-dot);\"><pattern id=\"pattern-1\" x=\"1.7102685276284717\" y=\"-13.262573208716816\" width=\"16.051743489369613\" height=\"16.051743489369613\" patternUnits=\"userSpaceOnUse\" patternTransform=\"translate(-8.025871744684807,-8.025871744684807)\"><circle cx=\"0.2293106212767088\" cy=\"0.2293106212767088\" r=\"0.2293106212767088\" class=\"react-flow__background-pattern dots\"></circle></pattern><rect x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" fill=\"url(#pattern-1)\"></rect></svg>",
+    "收尾核对：[]"
+  ],
+  "读数": {
+    "viewport": "matrix(0.458621, 0, 0, 0.458621, 884.556, -93.5213)",
+    "pattern个数": 1,
+    "pats": [
+      {
+        "属性": {
+          "id": "pattern-1",
+          "x": "1.7102685276284717",
+          "y": "-13.262573208716816",
+          "width": "16.051743489369613",
+          "height": "16.051743489369613",
+          "patternUnits": "userSpaceOnUse",
+          "patternTransform": "translate(-8.025871744684807,-8.025871744684807)"
+        },
+        "外链": "<pattern id=\"pattern-1\" x=\"1.7102685276284717\" y=\"-13.262573208716816\" width=\"16.051743489369613\" height=\"16.051743489369613\" patternUnits=\"userSpaceOnUse\" patternTransform=\"translate(-8.025871744684807,-8.025871744684807)\"><circle cx=\"0.2293106212767088\" cy=\"",
+        "父": "svg.react-flow__background"
+      }
+    ],
+    "背景数": 1,
+    "bgs": [
+      "<svg class=\"react-flow__background\" data-testid=\"rf__background\" style=\"position: absolute; width: 100%; height: 100%; top: 0px; left: 0px; --xy-background-pattern-color-props: var(--canvas-bg-dot);\"><pattern id=\"pattern-1\" x=\"1.7102685276284717\" y=\"-13.262573208716816\" width=\"16.051743489369613\" height=\"16.051743489369613\" patternUnits=\"userSpaceOnUse\" patternTransform=\"translate(-8.025871744684807,-8.025871744684807)\"><circle cx=\"0.2293106212767088\" cy=\"0.2293106212767088\" r=\"0.2293106212767088\" class=\"react-flow__background-pattern dots\"></circle></pattern><rect x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" fill=\"url(#pattern-1)\"></rect></svg>"
+    ],
+    "背景类": [
+      "react-flow__background"
+    ]
+  }
+}

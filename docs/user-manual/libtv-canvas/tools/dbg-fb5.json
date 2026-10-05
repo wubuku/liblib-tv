@@ -1,0 +1,251 @@
+{
+  "步骤": [
+    "zoom = 0.458621",
+    "① 刷新前 11 节点坐标：",
+    "   a-GgqvrVz0pw 基线[719.388,1509.13] 现[719.388,1509.13]",
+    "   a-THmbuJXQj4 基线[-1356,600] 现[-1356,600]",
+    "   b-mfkcQNULC3 基线[636,300] 现[636,300]",
+    "   i-9nlG6HdjK2 基线[-1764,900] 现[-1764,900]",
+    "   i-sODTbgLUm1 基线[-168,900] 现[-168,900]",
+    "   n-56F19pXVB4 基线[-1225.03,370.975] 现[-1222.84,370.975]　⛔ 有偏差",
+    "   t-2AK3Ukyxj3 基线[-1476,1524] 现[-1476,1524]",
+    "   t-UtVx3lZmrV 基线[600,900] 现[600,900]",
+    "   v-eMpqKtiLlx 基线[-1787,900] 现[-1787,900]",
+    "   v-oZNpH99MtM 基线[132,300] 现[132,300]",
+    "   v-v2hlWY4Br3 基线[-696,300] 现[-696,300]",
+    "—— ② hover 会不会改 style.transform ——",
+    "   n-56F19pXVB4",
+    "     移开前 [-1222.84,370.975] 原文 \"translate(-1222.84px, 370.975px)\"",
+    "     鼠标停上 [-1222.84,370.975] 原文 \"translate(-1222.84px, 370.975px)\"",
+    "     再移开 [-1222.84,370.975] 原文 \"translate(-1222.84px, 370.975px)\"",
+    "     ⭐ 三次一致？ true｜原文一致？ true",
+    "   t-UtVx3lZmrV",
+    "     移开前 [600,900] 原文 \"translate(600px, 900px)\"",
+    "     鼠标停上 [600,900] 原文 \"translate(600px, 900px)\"",
+    "     再移开 [600,900] 原文 \"translate(600px, 900px)\"",
+    "     ⭐ 三次一致？ true｜原文一致？ true",
+    "—— ③ 刷新页面重读 ——",
+    "刷新后 11 节点坐标：",
+    "   a-GgqvrVz0pw 基线[719.388,1509.13] 现[719.388,1509.13]",
+    "   a-THmbuJXQj4 基线[-1356,600] 现[-1356,600]",
+    "   b-mfkcQNULC3 基线[636,300] 现[636,300]",
+    "   i-9nlG6HdjK2 基线[-1764,900] 现[-1764,900]",
+    "   i-sODTbgLUm1 基线[-168,900] 现[-168,900]",
+    "   n-56F19pXVB4 基线[-1225.03,370.975] 现[-1222.84,370.975]　⛔ 偏差 2.190",
+    "   t-2AK3Ukyxj3 基线[-1476,1524] 现[-1476,1524]",
+    "   t-UtVx3lZmrV 基线[600,900] 现[600,900]",
+    "   v-eMpqKtiLlx 基线[-1787,900] 现[-1787,900]",
+    "   v-oZNpH99MtM 基线[132,300] 现[132,300]",
+    "   v-v2hlWY4Br3 基线[-696,300] 现[-696,300]",
+    "⛔ 刷新后仍有 1 个节点对不上基线",
+    "—— finally：复原 ——",
+    "  n-56F19pXVB4 终态 [-1222.84,370.975]｜基线 [-1225.03,370.975]",
+    "⭐⭐ 静置 15s 后复核：[\"n-56F19pXVB4 基线[-1225.03,370.975] 现[-1222.84,370.975]\"]"
+  ],
+  "读数": {
+    "刷新前": {
+      "a-GgqvrVz0pw": [
+        719.388,
+        1509.13
+      ],
+      "a-THmbuJXQj4": [
+        -1356,
+        600
+      ],
+      "b-mfkcQNULC3": [
+        636,
+        300
+      ],
+      "i-9nlG6HdjK2": [
+        -1764,
+        900
+      ],
+      "i-sODTbgLUm1": [
+        -168,
+        900
+      ],
+      "n-56F19pXVB4": [
+        -1222.84,
+        370.975
+      ],
+      "t-2AK3Ukyxj3": [
+        -1476,
+        1524
+      ],
+      "t-UtVx3lZmrV": [
+        600,
+        900
+      ],
+      "v-eMpqKtiLlx": [
+        -1787,
+        900
+      ],
+      "v-oZNpH99MtM": [
+        132,
+        300
+      ],
+      "v-v2hlWY4Br3": [
+        -696,
+        300
+      ]
+    },
+    "hover_n-56F19pXVB4": {
+      "移开前": {
+        "画布": [
+          -1222.84,
+          370.975
+        ],
+        "styleTransform原文": "translate(-1222.84px, 370.975px)",
+        "框": [
+          324,
+          77,
+          161,
+          161
+        ],
+        "中心": [
+          404,
+          157
+        ],
+        "class": "react-flow__node react-flow__node-director-console-3d nopan selectable draggable"
+      },
+      "停上": {
+        "画布": [
+          -1222.84,
+          370.975
+        ],
+        "styleTransform原文": "translate(-1222.84px, 370.975px)",
+        "框": [
+          324,
+          77,
+          161,
+          161
+        ],
+        "中心": [
+          404,
+          157
+        ],
+        "class": "react-flow__node react-flow__node-director-console-3d nopan selectable draggable"
+      },
+      "再移开": {
+        "画布": [
+          -1222.84,
+          370.975
+        ],
+        "styleTransform原文": "translate(-1222.84px, 370.975px)",
+        "框": [
+          324,
+          77,
+          161,
+          161
+        ],
+        "中心": [
+          404,
+          157
+        ],
+        "class": "react-flow__node react-flow__node-director-console-3d nopan selectable draggable"
+      }
+    },
+    "hover_t-UtVx3lZmrV": {
+      "移开前": {
+        "画布": [
+          600,
+          900
+        ],
+        "styleTransform原文": "translate(600px, 900px)",
+        "框": [
+          1160,
+          319,
+          161,
+          161
+        ],
+        "中心": [
+          1240,
+          399
+        ],
+        "class": "react-flow__node react-flow__node-text nopan selectable draggable"
+      },
+      "停上": {
+        "画布": [
+          600,
+          900
+        ],
+        "styleTransform原文": "translate(600px, 900px)",
+        "框": [
+          1160,
+          319,
+          161,
+          161
+        ],
+        "中心": [
+          1240,
+          399
+        ],
+        "class": "react-flow__node react-flow__node-text nopan selectable draggable"
+      },
+      "再移开": {
+        "画布": [
+          600,
+          900
+        ],
+        "styleTransform原文": "translate(600px, 900px)",
+        "框": [
+          1160,
+          319,
+          161,
+          161
+        ],
+        "中心": [
+          1240,
+          399
+        ],
+        "class": "react-flow__node react-flow__node-text nopan selectable draggable"
+      }
+    },
+    "刷新后": {
+      "a-GgqvrVz0pw": [
+        719.388,
+        1509.13
+      ],
+      "a-THmbuJXQj4": [
+        -1356,
+        600
+      ],
+      "b-mfkcQNULC3": [
+        636,
+        300
+      ],
+      "i-9nlG6HdjK2": [
+        -1764,
+        900
+      ],
+      "i-sODTbgLUm1": [
+        -168,
+        900
+      ],
+      "n-56F19pXVB4": [
+        -1222.84,
+        370.975
+      ],
+      "t-2AK3Ukyxj3": [
+        -1476,
+        1524
+      ],
+      "t-UtVx3lZmrV": [
+        600,
+        900
+      ],
+      "v-eMpqKtiLlx": [
+        -1787,
+        900
+      ],
+      "v-oZNpH99MtM": [
+        132,
+        300
+      ],
+      "v-v2hlWY4Br3": [
+        -696,
+        300
+      ]
+    }
+  }
+}

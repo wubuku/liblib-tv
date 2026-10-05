@@ -1,0 +1,553 @@
+{
+  "步骤": [
+    "n-56F19pXVB4｜基线 [-1225.03,370.975]｜现 [-1222.84,370.975]｜框 [324,77,161,161]",
+    "节点 class = react-flow__node react-flow__node-director-console-3d nopan selectable draggable",
+    "节点全部属性 = {\"class\":\"react-flow__node react-flow__node-director-console-3d nopan selectable draggable\",\"data-id\":\"n-56F19pXVB4\",\"data-testid\":\"rf__node-n-56F19pXVB4\",\"tabindex\":\"0\",\"role\":\"group\",\"aria-roledescription\":\"node\",\"aria-describedby\":\"react-flow__node-desc-1\",\"style\":\"z-index: 0; transform: translate(-1222.84px, 370.975px); pointer-events: all; visibility: visible;\"}",
+    "① .nodrag 后代 3 个",
+    "    <DIV class=\"react-flow__handle react-flow__handle-left nodrag nopan nodrag nopan target connectable co\"> 框 [324,157,0,0]",
+    "    <BUTTON class=\"nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg border px-3 \"> 框 [383,172,42,15]",
+    "    <DIV class=\"react-flow__handle react-flow__handle-right nodrag nopan nodrag nopan source connectable c\"> 框 [484,157,0,0]",
+    "② 9×9 扫 81/81 格落在本节点；其中**无 nodrag 祖先**的 78 格",
+    "   样本：[[333,86,\"DIV\"],[351,86,\"DIV\"],[369,86,\"DIV\"],[387,86,\"DIV\"],[405,86,\"DIV\"],[422,86,\"DIV\"],[440,86,\"DIV\"],[458,86,\"DIV\"],[476,86,\"DIV\"],[333,104,\"DIV\"],[351,104,\"DIV\"],[369,104,\"DIV\"]]",
+    "③ 在 (333,86) 拖 -1px：{\"标签\":\"DIV\",\"class\":\"relative flex h-full w-full flex-col items-center justify-center gap-4 px-8 py-8 \",\"节点id\":\"n-56F19pXVB4\",\"最近nodrag\":null}",
+    "   [-1222.84,370.975] → [-1222.84,370.975]｜位移 0.0000",
+    "④ 阳性对照 t-UtVx3lZmrV 中心 +5px：[600,900] → [600,900]｜位移 0.0000",
+    "   对照节点复原到 [600,900]",
+    "⑤ 点选后 selected=true",
+    "   按 ArrowLeft 之后 [-1222.84,370.975]",
+    "   按 ArrowLeft 之后 [-1222.84,370.975]",
+    "   两次方向键合计位移 0（目标 -2.19）",
+    "终态 n-56F19pXVB4 = [-1222.84,370.975]｜基线 [-1225.03,370.975]"
+  ],
+  "读数": {
+    "节点": {
+      "画布": [
+        -1222.84,
+        370.975
+      ],
+      "框": [
+        324,
+        77,
+        161,
+        161
+      ],
+      "中心": [
+        404,
+        157
+      ],
+      "class": "react-flow__node react-flow__node-director-console-3d nopan selectable draggable",
+      "全部属性": {
+        "class": "react-flow__node react-flow__node-director-console-3d nopan selectable draggable",
+        "data-id": "n-56F19pXVB4",
+        "data-testid": "rf__node-n-56F19pXVB4",
+        "tabindex": "0",
+        "role": "group",
+        "aria-roledescription": "node",
+        "aria-describedby": "react-flow__node-desc-1",
+        "style": "z-index: 0; transform: translate(-1222.84px, 370.975px); pointer-events: all; visibility: visible;"
+      }
+    },
+    "nodrag": [
+      {
+        "标签": "DIV",
+        "class": "react-flow__handle react-flow__handle-left nodrag nopan nodrag nopan target connectable co",
+        "框": [
+          324,
+          157,
+          0,
+          0
+        ]
+      },
+      {
+        "标签": "BUTTON",
+        "class": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-center rounded-lg border px-3 ",
+        "框": [
+          383,
+          172,
+          42,
+          15
+        ]
+      },
+      {
+        "标签": "DIV",
+        "class": "react-flow__handle react-flow__handle-right nodrag nopan nodrag nopan source connectable c",
+        "框": [
+          484,
+          157,
+          0,
+          0
+        ]
+      }
+    ],
+    "净拖区": [
+      {
+        "x": 333,
+        "y": 86,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 351,
+        "y": 86,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 369,
+        "y": 86,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 387,
+        "y": 86,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 405,
+        "y": 86,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 422,
+        "y": 86,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 440,
+        "y": 86,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 458,
+        "y": 86,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 476,
+        "y": 86,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 333,
+        "y": 104,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 351,
+        "y": 104,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 369,
+        "y": 104,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 387,
+        "y": 104,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 405,
+        "y": 104,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 422,
+        "y": 104,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 440,
+        "y": 104,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 458,
+        "y": 104,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 476,
+        "y": 104,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 333,
+        "y": 122,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 351,
+        "y": 122,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 369,
+        "y": 122,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 387,
+        "y": 122,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 405,
+        "y": 122,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 422,
+        "y": 122,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 440,
+        "y": 122,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 458,
+        "y": 122,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 476,
+        "y": 122,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 333,
+        "y": 140,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 351,
+        "y": 140,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 369,
+        "y": 140,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 387,
+        "y": 140,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 405,
+        "y": 140,
+        "有nodrag": false,
+        "标签": "svg"
+      },
+      {
+        "x": 422,
+        "y": 140,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 440,
+        "y": 140,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 458,
+        "y": 140,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 476,
+        "y": 140,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 333,
+        "y": 158,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 351,
+        "y": 158,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 369,
+        "y": 158,
+        "有nodrag": false,
+        "标签": "P"
+      },
+      {
+        "x": 387,
+        "y": 158,
+        "有nodrag": false,
+        "标签": "P"
+      },
+      {
+        "x": 405,
+        "y": 158,
+        "有nodrag": false,
+        "标签": "P"
+      },
+      {
+        "x": 422,
+        "y": 158,
+        "有nodrag": false,
+        "标签": "P"
+      },
+      {
+        "x": 440,
+        "y": 158,
+        "有nodrag": false,
+        "标签": "P"
+      },
+      {
+        "x": 458,
+        "y": 158,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 476,
+        "y": 158,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 333,
+        "y": 175,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 351,
+        "y": 175,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 369,
+        "y": 175,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 440,
+        "y": 175,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 458,
+        "y": 175,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 476,
+        "y": 175,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 333,
+        "y": 193,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 351,
+        "y": 193,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 369,
+        "y": 193,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 387,
+        "y": 193,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 405,
+        "y": 193,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 422,
+        "y": 193,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 440,
+        "y": 193,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 458,
+        "y": 193,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 476,
+        "y": 193,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 333,
+        "y": 211,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 351,
+        "y": 211,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 369,
+        "y": 211,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 387,
+        "y": 211,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 405,
+        "y": 211,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 422,
+        "y": 211,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 440,
+        "y": 211,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 458,
+        "y": 211,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 476,
+        "y": 211,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 333,
+        "y": 229,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 351,
+        "y": 229,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 369,
+        "y": 229,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 387,
+        "y": 229,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 405,
+        "y": 229,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 422,
+        "y": 229,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 440,
+        "y": 229,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 458,
+        "y": 229,
+        "有nodrag": false,
+        "标签": "DIV"
+      },
+      {
+        "x": 476,
+        "y": 229,
+        "有nodrag": false,
+        "标签": "DIV"
+      }
+    ]
+  }
+}

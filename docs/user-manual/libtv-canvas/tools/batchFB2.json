@@ -1,0 +1,9 @@
+{
+  "读数": {},
+  "步骤": [
+    "开局坐标偏差：[]",
+    "⭐ 网格读数：zoom=0.458621｜pattern 宽=16.051743489369613｜patternUnits=userSpaceOnUse｜patternTransform=null",
+    "❌ Cannot read properties of null (reading '0')"
+  ],
+  "错误": "TypeError: Cannot read properties of null (reading '0')\n    at file:///Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/libtv-canvas/tools/batchFB2.mjs:130:29"
+}
