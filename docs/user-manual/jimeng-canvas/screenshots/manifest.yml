@@ -2142,3 +2142,50 @@ screenshots:
     visible_text: '在 3D 空间中设计角色、机位与镜头 进入导演台'
     alt: "节点左右两侧那两个连线热区（画布 50%）：左边橙实线框罩住 flow-node-target-handle、右边橙虚线框罩住 flow-node-source-handle，屏上各 30×60；两个框里都看不到可辨认的把手图形，左框里只有悬停后浮出的一小块淡灰底；中间是节点本体的立方体图标、说明文字与「进入导演台」按钮"
     sha256: 7a5897418235c75a99110dbf34374a3b6e57dfb4042791f0b258203da3ab5008
+  - file: screenshots/185-text-node-selected.png
+    task_id: edit-text-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T21:40:00+08:00
+    verified_locator: '画布 setZoom 到 50% 后点空白 pane 取消选中，再点 .react-flow__node[data-id="node_5gftn3dnt1"] 的 flow-node-title 中心并断言「选中数 == 1」；读出节点矩形 [394,310,160,160]、按面积排序取最大的 [data-testid="node-toolbar"] 实例（本轮共 2 个实例）作为选中态工具条；给节点画 3px solid #ff8c00 框、给工具条画 3px dashed #ff8c00 框，读回两个框的 borderStyle（solid/dashed 都被认）、borderColor 逐字 rgb(255, 140, 0)、pointer-events 均为 none、宽高为正 才 shutter'
+    visible_text: '背景色 全屏 下载 文本 3 双击编辑文本 测试文字竖排'
+    alt: "文本节点「文本 3」被选中（画布 50%）：橙实线框罩住卡片，卡片四角有八向缩放把手、卡内一圈白色选中描边；卡片上方浮着选中态工具条，橙虚线框罩住它，条上就三项——一个圆角色块加「背景色」、一个斜向双箭头「全屏」、一个向下箭头「下载」；标题「文本 3」在卡片上方，正文区里是占位灰字「双击编辑文本」和一行内容「测试文字竖排」"
+    sha256: 50a1bf7d441b56c308fbdad397ced8a02e01ec2978062af8998c488782a904f2
+
+  - file: screenshots/186-text-node-editing.png
+    task_id: edit-text-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T21:40:00+08:00
+    verified_locator: '在同一个节点上 p.mouse.dblclick(正文中心) 后等 2600ms（批次 107 实测双击进编辑态是异步的，1.6 秒会读成没生效）；此时读出 .tiptap.ProseMirror 实例数 1、.react-flow__node [contenteditable] 数 0、text-editor-toolbar 存在、document.activeElement 逐字 DIV[Text]、编辑面屏上 [394,310,160,31]、编辑面 closest(".react-flow__node") 读出 null；给节点画 3px solid 框，读回 borderStyle/borderColor/pointer-events/宽高 全对 才 shutter；裁切与 185 同为「节点 ±24px、上沿留出工具条高度」，可叠着看'
+    visible_text: '文本 3 双击编辑文本 测试文字竖排'
+    alt: "同一个节点进入编辑态（画布仍是 50%）：橙实线框罩住同一张卡片，但八向缩放把手没了、白色选中描边也没了；卡片上方换成编辑态工具条，八项——带下拉箭头的 T ˅（样式）、无序列表、有序列表、B 加粗、S 删除线、I 倾斜、U 下划线、右上角一个斜向双箭头「全屏」；卡片内容区里出现了编辑用的光标与正文"
+    sha256: 85b9778f12d9918cca2b9e8bf055afff130579a40ac377ed6bc1bfcc87f030e4
+
+  - file: screenshots/187-text-editor-portal.png
+    task_id: edit-text-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T21:40:00+08:00
+    verified_locator: '编辑态下同时读出三个矩形：.react-flow__node 卡片 [394,310,160,160]、.tiptap.ProseMirror 编辑面 [394,310,160,31]、[data-testid="text-editor-toolbar"] 工具条；给卡片画 solid 框、给编辑面与工具条各画一个 dashed 框（三框共 3 个），读回三个框的 borderStyle（solid/dashed 都被认）、borderColor 逐字 rgb(255, 140, 0)、pointer-events 均为 none、宽高为正 才 shutter；另单独读出「.react-flow__node [contenteditable] 数 = 0 而 .tiptap.ProseMirror 数 = 1」与「编辑面 closest(.react-flow__node) = null」'
+    visible_text: '全屏 文本 3 双击编辑文本 测试文字竖排 视频 1'
+    alt: "编辑态下三个矩形叠在同一张图上：最上面那条橙虚线框罩住编辑态工具条（八项，T ˅ 样式、两种列表、B/S/I/U、全屏）；中间那张橙实线框罩住 .react-flow__node 卡片本体；卡片顶部贴着的一条橙虚线框罩住真正可编辑的那一面——它只有卡片顶部一条窄带，并不是整张卡片；这三个矩形在 DOM 上互不为祖先（编辑面与工具条都是 portal 出来的浮层）"
+    sha256: 953f86c42c2e939c875a665158827c243b4f63a64131ff63b82c659f12d51d9b
+
+  - file: screenshots/188-text-rename-input.png
+    task_id: edit-text-node
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T21:40:00+08:00
+    verified_locator: '选中该节点后读出 [aria-label^="Rename "] 按钮中心并**单击**它一次、再**双击**它（批次 117 的路径②）；等 1300ms 后读出 input[aria-label="Node title"] 存在、value 逐字「文本 3」、屏上 [414,278,49,24]、document.activeElement === 该 input、且它的矩形**落在** .react-flow__node.selected [data-testid="flow-node-title"] 的矩形内（读出 true）、同一时刻 .tiptap.ProseMirror 数 = 0；给输入框画 solid 框、给标题行画 dashed 框，读回两个框的 borderStyle/borderColor/pointer-events/宽高 全对 才 shutter；拍完按 Esc 取消，复读节点 aria 仍是「文本 node: 文本 3」、标题文字仍是「文本 3」'
+    visible_text: '文本 3 文本 3'
+    alt: "文本节点「文本 3」的行内改名态：橙实线框罩住标题行里出现的那个输入框，里面是选中的「文本 3」三个字（初值就是原节点名）；橙虚线框罩住它所在的 flow-node-title 标题行，输入框整个落在标题行矩形之内 —— 这就是「按位置筛标题编辑态」的判据"
+    sha256: f5c5d197456479c818c2119775d501f495350faaa50fd5940d7b077c135a3995
