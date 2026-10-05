@@ -477,6 +477,18 @@ TDCanvas 是一个**纯本机应用**：没有账号体系，没有服务器，�
 >   第一条里当然没有 `projects`，因为它压根不是那条记录。
 > - **`tdcanvas:plugin_store` 在没装过插件的机器上不存在。** 本次实测 `app_state` 只有上面两条。
 >   它是装插件之后才写出来的，**不是「装过又被清掉了」**。
+> - **★ 2026-10-05 M252 补一条：打开 `tdcanvas` 这个库，你会看到 4 张表，不是 1 张。**
+>   实测四张依次是 **`app_state` / `image_files` / `media_files` / `local-forage-detect-blob-support`**。
+>   前三张上表都写了；**第四张是存储库自己做的功能探测留下的空壳**——它记录「这个浏览器支不支持把 Blob
+>   存进 IndexedDB」，**实测 0 条记录**，**里面不会有你的任何内容，删掉它也不影响 TDCanvas**。
+>   **看到它别以为装了什么插件**：插件表是 `tdcanvas:plugin_store`，在 `app_state` **里面**，
+>   和这张探测表**不是一回事**。
+>
+> **★ M252 同时把两条老断言又各验了一遍**（运行时直读 IndexedDB，不是只看界面）：
+> `app_state` 仍是**恰好 2 条**；两个画布项目的字段仍是**恰好 12 个**、
+> **逐个画布都一样**（`TDCanvas 1` 与 `TDCanvas 2` 的字段名逐字相同）。
+> **而源码那边也独立对上了**：`stores/canvas/use-canvas-store.ts:10` 的 `CanvasProject` 类型正好 12 个字段，
+> `use-asset-store.ts:39` 与 `use-canvas-store.ts:38` 正好是那两个键，`use-plugin-store.ts:41` 正好是第三个键。
 >
 > 读法：`F12` → Application → Storage → IndexedDB → 库 `tdcanvas` → 表 `app_state`，
 > **把每条记录的键名都点一遍**，别只看第一条。
