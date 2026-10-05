@@ -5884,6 +5884,11 @@ def main() -> int:
     #   **⇒ 所以这行读取与门里那条登记必须是同一步**
     p1009 = ROOT / "scripts/jimeng_probe1009_edit_visibility.py"
     _p1009 = p1009.read_text(encoding="utf-8") if p1009.exists() else ""
+    # ⚠️⚠️ 判据组 `O993S.2` 要钉的是**「人工挑的变异不代表日常的变异」**
+    #   ⇒ 而 1010 是**拿真实 git 历史**量的 ⇒ ⇒
+    #   **⇒ 所以这行读取与门里那条登记必须是同一步**
+    p1010 = ROOT / "scripts/jimeng_probe1010_real_history_detection.py"
+    _p1010 = p1010.read_text(encoding="utf-8") if p1010.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -14463,6 +14468,110 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **反向门**：**不许把「空字符串」当成「没什么可写」**
           and '读到空字符串说明本来就没什么可写' not in _p1009
           and '读到空字符串说明本来就没什么可写' not in _ausrc)
+
+
+    # ══ 1010 宇宙冻结点 ══
+    # ⚠️ 同 1006/1007/1008/1009 那条：**1010 报的那些数是在它的 `O993S` 判据加进去之前测的**
+    # ══ O993S. 批 1010 **把 1009 那张表从实验室搬到真实历史：九批里门看见了 0 次**
+    print("— O993S. 批 1010 真实历史的检出力："
+          "⭐⭐⭐⭐⭐ **九对相邻快照、audit 基线被动过 39 条锚点、门在 `_ausrc` 作用域上一次都没报** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 检出力 = 0.0；而 P3 说清了为什么：那 39 条**全部**是「追加」** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐⭐ **而基线自检还撞出第二个交付：1001 那一版跑今天的门会报 1 个 MISSING，"
+          "**正是 1006 亲手换掉的那条「钉门源码整行」的锚点**")
+
+    check("O993S.1 ⭐⭐⭐⭐⭐ **P1 成立：九批里 audit 基线被改动**动过**的锚点共 39 条、"
+          "**而门在 `_ausrc` 作用域上一次都没报（累计 0）** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 检出力 = 0.0** ⇒ ⇒ "
+          "**⇒ 而分母是逐条算出来的「哪些锚点的出现次数变了」、不是一个拍出来的数** ⇒ ⇒ "
+          "**⇒ 而 1002 那个注入实验的分母是 1、所以两者不能直接比大小**",
+          '"P1_detection_rate_over_real_history"' in _p1010
+          and '"p1_detection_rate_over_real_history_2010_"' in _ausrc
+          and '"P1_hold_1010"' in _p1010
+          and '"real_history_1010"' in _p1010
+          and '"n_touched_total"' in _p1010
+          and '"detection_rate"' in _p1010
+          and '"n_gate_reported_ausrc_total"' in _p1010
+          and '分母是逐条算出来的' in _p1010
+          and '检出力 = 0.0' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许拿 0.0 说成「这道门一点用没有」**
+          and '检出力 0 所以这道门一点用没有' not in _p1010
+          and '检出力 0 所以这道门一点用没有' not in _ausrc)
+
+    check("O993S.2 ⭐⭐⭐⭐⭐ **P2 成立、而它的对照我第一版写错了：真实检出力 0.0 —— "
+          "**九对快照里没有一次、门在 `_ausrc` 作用域上开过口** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐⭐ **⇒ 而 1002 在仓里只**逐类**记了检出率、没有记总计 ⇒ ⇒ "
+          "**⇒ 那个「总检出力 0.333」只活在对话里 —— 而这正是 1008 主题的又一个形态："
+          "结论甚至没进仓、就只剩记忆** ⇒ ⇒ "
+          "**⇒ 处置：「被引用的、仓里没有的数」要和「有出处的数」分开记**",
+          '"P2_real_rate_is_lower_than_the_injected_one"' in _p1010
+          and '"p2_real_rate_is_lower_than_the_injected_one_2010_"' in _ausrc
+          and '"P2_hold_1010"' in _p1010
+          and 'CITED_NOT_IN_REPO' in _p1010
+          and 'cited_not_in_repo' in _p1010
+          and '只活在对话里' in _p1010
+          and '只活在对话里' in _ausrc
+          and '被引用的、仓里没有的数' in _p1010
+          and '被引用的、仓里没有的数' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「引用一个仓里没有的数」当成「引用是合法的」**
+          and '引用了就是合法的' not in _p1010
+          and '引用了就是合法的' not in _ausrc)
+
+    check("O993S.3 ⭐⭐⭐⭐⭐ **P3 成立：门看不见的那些**全部**是「audit 基线里**追加**了新条目」** —— "
+          "**39 条动过里面有 39 条出现次数只增不减、0 条真的消失** ⇒ ⇒ "
+          "**⇒ 而追加不会让任何既有锚点从目标里消失、所以门一个字都不该报** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐⭐ **⇒ 而这就是本批的全部教训：「本会话的真正工作」是往基线里追加条目 —— "
+          "**而追加恰好是门最看不见的那一类** ⇒ ⇒ "
+          "**⇒ 所以这道门的形状决定了「它最该看的那类改动」它恰恰看不见**",
+          '"P3_the_invisible_ones_are_additions"' in _p1010
+          and '"p3_the_invisible_ones_are_additions_2010_"' in _ausrc
+          and '"P3_hold_1010"' in _p1010
+          and '"n_occurrence_increased_total"' in _p1010
+          and '本会话的真正工作' in _p1010
+          and '它最该看的那类改动' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许说「门该报而没报」就是门坏了**
+          and '门没报所以门坏了' not in _p1010
+          and '门没报所以门坏了' not in _ausrc)
+
+    check("O993S.4 ⭐⭐⭐⭐⭐ **P4 成立：拿一个真的被删掉的锚点 ⇒ `_ausrc` 作用域上门报 1 个、"
+          "**检出力 = 1.0** ⇒ ⇒ "
+          "**⇒ 而这一条是为了排除「检出力低是因为分母算错了」** ⇒ ⇒ "
+          "**⇒ 分母没算错 —— 是「动过」的 39 条里真的没有一条能让门开口** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐⭐⭐ **⇒ 而基线自检本身撞出第二个交付：1001 那一版跑今天的门会报 1 个 MISSING、"
+          "**它在 `_anchs` 上、正是 1006 亲手换掉的那条「钉门源码**整行**」的锚点** ⇒ ⇒ "
+          "**⇒ 也就是说 1006 的 P6 不只是当时的观察、它能从 git 历史里复现出来** ⇒ ⇒ "
+          "**⇒ 而复现它的办法就是「拿旧 verifier 跑今天的门」—— 零成本**",
+          '"P4_reverse_case"' in _p1010
+          and '"p4_reverse_case_2010_"' in _ausrc
+          and '"P4_hold_1010"' in _p1010
+          and '"P6_hold_1010"' in _p1010
+          and '"n_pairs_with_out_of_scope_missing"' in _p1010
+          and '拿旧 verifier 跑今天的门' in _p1010
+          and '拿旧 verifier 跑今天的门' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「越界变量的 MISSING」混进主口径的分母**
+          and '越界的 MISSING 算进分母' not in _p1010
+          and '越界的 MISSING 算进分母' not in _ausrc)
+
+    check("O993S.5 ⭐⭐⭐⭐ **P5 成立：逐对落进 "
+          "`docs/research/jimeng-canvas/real-history-detection-1010.json`、由本探针自己写** ⇒ ⇒ "
+          "⭐⭐⭐⭐ **⇒ 而它记的是「每一对动了多少、门报了几条、检出率多少」** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而本批只量 `_ausrc` 这一个目标 —— 局部读数不许长得像全局的** ⇒ ⇒ "
+          "**⇒ P7 成立：22 个手写的数、0 个没出处** ⇒ ⇒ "
+          "**而 `0.333` 被单列为「被引用、仓里没有的数」而不是混进白名单** ⇒ ⇒ "
+          "**⇒ 本批纯离线：连 `mouse.click` 都没有**",
+          '"P5_golden_and_numbers"' in _p1010
+          and '"p5_golden_2010_"' in _ausrc
+          and '"P5_hold_1010"' in _p1010
+          and '"P7_hold_1010"' in _p1010
+          and '"audit_numbers_vs_computed_1010"' in _p1010
+          and 'real-history-detection-1010.json' in _p1010
+          and 'real-history-detection-1010.json' in _ausrc
+          and '局部读数不许长得像全局的' in _p1010
+          and '局部读数不许长得像全局的' in _ausrc
+          and '本批只量 `_ausrc` 这一个目标' in _ausrc
+          and '连 `mouse.click` 都没有' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把局部的检出力说成全局的**
+          and '全局检出力就是 0.0' not in _p1010
+          and '全局检出力就是 0.0' not in _ausrc)
 
 
     print(f"\n{checks - len(failures)}/{checks}")

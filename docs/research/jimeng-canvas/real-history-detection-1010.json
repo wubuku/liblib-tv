@@ -1,0 +1,137 @@
+{
+ "generated_by": "jimeng_probe1010_real_history_detection.py",
+ "note": "⭐⭐⭐⭐⭐ **「九批里门看见了目标侧改动的几次」—— 逐对实测**",
+ "scope": "⭐ 只量 `_ausrc`（audit 基线）这一个目标",
+ "pairs": [
+  {
+   "from": "1001",
+   "to": "1002",
+   "baseline_problems_total": 1,
+   "baseline_problems_ausrc": 0,
+   "baseline_out_of_scope": 1,
+   "baseline_out_of_scope_vars": [
+    "_anchs"
+   ],
+   "gate_reported_total": 1,
+   "gate_reported_ausrc": 0,
+   "n_declared_ausrc": 3247,
+   "n_touched": 8,
+   "n_occurrence_increased": 8,
+   "n_vanished": 0,
+   "detection_rate": 0.0
+  },
+  {
+   "from": "1002",
+   "to": "1003",
+   "baseline_problems_total": 1,
+   "baseline_problems_ausrc": 0,
+   "baseline_out_of_scope": 1,
+   "baseline_out_of_scope_vars": [
+    "_anchs"
+   ],
+   "gate_reported_total": 1,
+   "gate_reported_ausrc": 0,
+   "n_declared_ausrc": 3278,
+   "n_touched": 10,
+   "n_occurrence_increased": 10,
+   "n_vanished": 0,
+   "detection_rate": 0.0
+  },
+  {
+   "from": "1003",
+   "to": "1004",
+   "baseline_problems_total": 1,
+   "baseline_problems_ausrc": 0,
+   "baseline_out_of_scope": 1,
+   "baseline_out_of_scope_vars": [
+    "_anchs"
+   ],
+   "gate_reported_total": 1,
+   "gate_reported_ausrc": 0,
+   "n_declared_ausrc": 3298,
+   "n_touched": 3,
+   "n_occurrence_increased": 3,
+   "n_vanished": 0,
+   "detection_rate": 0.0
+  },
+  {
+   "from": "1004",
+   "to": "1005",
+   "baseline_problems_total": 1,
+   "baseline_problems_ausrc": 0,
+   "baseline_out_of_scope": 1,
+   "baseline_out_of_scope_vars": [
+    "_anchs"
+   ],
+   "gate_reported_total": 1,
+   "gate_reported_ausrc": 0,
+   "n_declared_ausrc": 3312,
+   "n_touched": 2,
+   "n_occurrence_increased": 2,
+   "n_vanished": 0,
+   "detection_rate": 0.0
+  },
+  {
+   "from": "1005",
+   "to": "1006",
+   "baseline_problems_total": 1,
+   "baseline_problems_ausrc": 0,
+   "baseline_out_of_scope": 1,
+   "baseline_out_of_scope_vars": [
+    "_anchs"
+   ],
+   "gate_reported_total": 1,
+   "gate_reported_ausrc": 0,
+   "n_declared_ausrc": 3325,
+   "n_touched": 3,
+   "n_occurrence_increased": 3,
+   "n_vanished": 0,
+   "detection_rate": 0.0
+  },
+  {
+   "from": "1006",
+   "to": "1007",
+   "baseline_problems_total": 0,
+   "baseline_problems_ausrc": 0,
+   "baseline_out_of_scope": 0,
+   "baseline_out_of_scope_vars": [],
+   "gate_reported_total": 0,
+   "gate_reported_ausrc": 0,
+   "n_declared_ausrc": 3345,
+   "n_touched": 3,
+   "n_occurrence_increased": 3,
+   "n_vanished": 0,
+   "detection_rate": 0.0
+  },
+  {
+   "from": "1007",
+   "to": "1008",
+   "baseline_problems_total": 0,
+   "baseline_problems_ausrc": 0,
+   "baseline_out_of_scope": 0,
+   "baseline_out_of_scope_vars": [],
+   "gate_reported_total": 0,
+   "gate_reported_ausrc": 0,
+   "n_declared_ausrc": 3364,
+   "n_touched": 4,
+   "n_occurrence_increased": 4,
+   "n_vanished": 0,
+   "detection_rate": 0.0
+  },
+  {
+   "from": "1008",
+   "to": "1009",
+   "baseline_problems_total": 0,
+   "baseline_problems_ausrc": 0,
+   "baseline_out_of_scope": 0,
+   "baseline_out_of_scope_vars": [],
+   "gate_reported_total": 0,
+   "gate_reported_ausrc": 0,
+   "n_declared_ausrc": 3380,
+   "n_touched": 6,
+   "n_occurrence_increased": 6,
+   "n_vanished": 0,
+   "detection_rate": 0.0
+  }
+ ]
+}
