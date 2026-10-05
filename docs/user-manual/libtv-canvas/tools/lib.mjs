@@ -407,3 +407,135 @@ export async function shell(page) {
     };
   });
 }
+
+// ---------------------------------------------------------------------------
+// ⭐⭐⭐⭐⭐ 判据工具箱（Batch FN 血的教训，**所有脚本共用，禁止各写各的**）
+//
+// 背景：FM 把「只抓了一个 5904px 宽容器的可视区」当成覆盖率（1/747=0.1%），
+// FN-1 修好判据（0.1% → 3.6%）之后，FN-2 又发现**第三个陷阱**：
+// `开底栏()` 只断言「按钮的 rect 找得到」，而**上一个面板盖住底栏**时，
+// 点击落在空白处、断言照样过、**截图张冠李戴** —— 连累了 FI 那一批结论。
+// ⇒ 这里把「面板确实切了」写成**三条硬断言**，谁用都受同一套判据。
+// ---------------------------------------------------------------------------
+
+/** 全页可见文字（含 aria-label / title / placeholder / alt）。
+ *  ⛔ 默认**过滤掉 opacity ≤ 0.01 的元素** —— 这会漏掉 `group-hover:` 才显形的那一类
+ *  （素材库副标题就是，`缺陷 453`）。要抓这类请用 `全页文字(page, {含透明: true})`。 */
+export async function 全页文字(page, { 含透明 = false } = {}) {
+  return page.evaluate((含透明) => {
+    const 可见 = (el) => {
+      const r = el.getBoundingClientRect();
+      if (r.width <= 0 || r.height <= 0) return false;
+      const cs = getComputedStyle(el);
+      if (cs.visibility === 'hidden' || cs.display === 'none') return false;
+      return 含透明 || Number(cs.opacity) > 0.01;
+    };
+    const 集 = new Set();
+    for (const el of document.querySelectorAll('body *')) {
+      if (!可见(el)) continue;
+      for (const n of el.childNodes) {
+        if (n.nodeType === 3) { const t = (n.textContent || '').replace(/\s+/g, ' ').trim(); if (t) 集.add(t); }
+      }
+      for (const a of ['aria-label', 'title', 'placeholder', 'alt']) {
+        const v = (el.getAttribute && el.getAttribute(a)) || '';
+        if (v && v.trim()) 集.add(v.trim());
+      }
+    }
+    return [...集];
+  }, 含透明);
+}
+
+export const 归一 = (s) => (s || '').replace(/[\s　]+/g, '');
+
+/** 带计数的断言：数字不对就抛错，不让它变成「看起来很权威」的假结论（缺陷 445 / 447）。 */
+export function 断言器(记) {
+  const st = { 次数: 0, 失败: 0 };
+  const 断言 = (条件, 说明, 数据) => {
+    st.次数 += 1;
+    if (!条件) { st.失败 += 1; 记('   ❌ 断言失败：' + 说明 + (数据 !== undefined ? '｜数据 ' + JSON.stringify(数据) : '')); return false; }
+    记('   ✅ 断言通过：' + 说明);
+    return true;
+  };
+  断言.统计 = st;
+  return 断言;
+}
+
+/** 找一枚可点按钮并**落点自证**：elementFromPoint 读回的必须就是它自己（缺陷 449）。 */
+export async function 找可点按钮(page, aria, { 底栏 = true } = {}) {
+  return page.evaluate(([a, 底栏]) => {
+    for (const x of document.querySelectorAll('button,[role="button"]')) {
+      if ((x.getAttribute('aria-label') || '') !== a) continue;
+      const r = x.getBoundingClientRect();
+      if (!(r.width > 0 && r.height > 0)) continue;
+      if (底栏 && !(r.top > 700)) continue;
+      const cx = Math.round(r.left + r.width / 2), cy = Math.round(r.top + r.height / 2);
+      const el = document.elementFromPoint(cx, cy);
+      const btn = el && el.closest('button,[role="button"]');
+      return {
+        框: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)],
+        点: [cx, cy],
+        命中标签: btn ? btn.getAttribute('aria-label') : null,
+        命中类名: el ? String(el.className || '').slice(0, 70) : null,
+      };
+    }
+    return null;
+  }, [aria, 底栏]);
+}
+
+/**
+ * ⭐ 打开底栏面板 / 按钮，并断言「面板**确实切了**」。
+ * @param 必须消失 上一面板的**独占文案**；出现即说明根本没切（缺陷 449 的治法）
+ */
+export async function 开底栏(page, aria, { 记, 断言, 必须消失 = [], 等 = 4000 } = {}) {
+  const b = await 找可点按钮(page, aria);
+  if (!b) { if (记) 记(`   ⛔ 找不到可点的「${aria}」`); return false; }
+  if (记) 记(`   「${aria}」框 ${JSON.stringify(b.框)}｜落点 ${JSON.stringify(b.点)}｜落点属主 aria-label=${JSON.stringify(b.命中标签)}`);
+  if (断言 && !断言(b.命中标签 === aria, `「${aria}」的落点属主就是它自己（没被浮层盖住）`, b)) return false;
+  await page.mouse.click(b.点[0], b.点[1]);
+  await page.waitForTimeout(等);
+  if (必须消失.length && 断言) {
+    const 集 = new Set((await 全页文字(page)).map(归一));
+    const 还在 = 必须消失.filter((m) => 集.has(归一(m)));
+    断言(还在.length === 0, `打开「${aria}」后上一面板独占文案 ${JSON.stringify(必须消失)} 已消失`, 还在);
+  }
+  return true;
+}
+
+/** 关面板并断言独占文案真的不见了（证明确实关掉了，不是被别的盖住）。 */
+export async function 关面板(page, 独占, { 记, 断言, 等 = 1500 } = {}) {
+  await page.keyboard.press('Escape');
+  await page.waitForTimeout(等);
+  let 集 = new Set((await 全页文字(page)).map(归一));
+  if (独占.every((m) => !集.has(归一(m)))) { if (记) 记('   ✅ Escape 就关掉了'); return true; }
+  const c = await page.evaluate((独) => {
+    const 归 = (s) => (s || '').replace(/\s+/g, '');
+    for (const el of document.querySelectorAll('button')) {
+      if (!独.some((m) => 归(el.closest('div')?.innerText || '').includes(归(m)))) continue;
+      const t = 归(el.innerText) || el.getAttribute('aria-label') || 归(el.title);
+      if (!t || t.length > 4) continue;
+      const r = el.getBoundingClientRect();
+      if (!(r.width > 0 && r.height > 0)) continue;
+      return { 文字: t, 点: [Math.round(r.x + r.width / 2), Math.round(r.y + r.height / 2)] };
+    }
+    return null;
+  }, 独占);
+  if (c) { if (记) 记(`   ⛔ Escape 无效，点关闭钮 ${JSON.stringify(c.文字)}`); await page.mouse.click(c.点[0], c.点[1]); await page.waitForTimeout(等); }
+  else if (记) 记('   ⛔ Escape 无效，也没找到短文案关闭钮');
+  集 = new Set((await 全页文字(page)).map(归一));
+  return 断言 ? 断言(独占.every((m) => !集.has(归一(m))), `关面板后独占文案 ${JSON.stringify(独占)} 真的消失`, [...集].filter((t) => 独占.map(归一).includes(t))) : true;
+}
+
+/** 量一个浮层的结构：class / z / 框 / 全文。 */
+export async function 量浮层(page, 选) {
+  return page.evaluate((sel) => {
+    const 归 = (s) => (s || '').replace(/\s+/g, ' ');
+    return [...document.querySelectorAll(sel)].filter((el) => {
+      const r = el.getBoundingClientRect();
+      return r.width > 100 && r.height > 60;
+    }).map((el) => {
+      const r = el.getBoundingClientRect();
+      const cs = getComputedStyle(el);
+      return { 框: [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)], z: cs.zIndex, position: cs.position, class: String(el.className || '').slice(0, 110), 文字: 归(el.innerText).slice(0, 600) };
+    });
+  }, 选);
+}

@@ -59,6 +59,7 @@ export default defineConfig({
           { text: '整理画布：平移、缩放、小地图、资产管理', link: '/10-tasks/organize-canvas' },
           { text: '工作流与故事板两种视图', link: '/10-tasks/storyboard-mode' },
           { text: '素材库、工具箱与添加资源', link: '/10-tasks/asset-library' },
+          { text: '生成历史：找回生成过的东西', link: '/10-tasks/generate-history' },
           { text: '角色造型室', link: '/10-tasks/character-studio' },
         ],
       },

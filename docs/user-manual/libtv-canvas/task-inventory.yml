@@ -448,6 +448,7 @@ tasks:
       - '探针 p02 实测 /assets：三个入口 + 所有评级 + 排序 + tab 全部/图片/视频/音频'
     manual_pages:
       - 20-reference.md
+      - 10-tasks/generate-history.md
   # ───────────── TV Director ─────────────
   - id: agent-director
     title: 用 TV Director 让 Agent 替你操作画布

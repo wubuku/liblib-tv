@@ -14,6 +14,7 @@
 | [TV Director](agent-director.md) | 让 Agent 替你铺画布 | ⚠️ 抽屉结构实跑，任务未提交 |
 | [角色造型室](character-studio.md) | 建角色、在节点里引用 | ✅ 面板实跑 |
 | [素材库](asset-library.md) | 风格库 / 特效库 / 上传素材 | ✅ 面板实跑 |
+| [生成历史](generate-history.md) | 找回生成过的图/视频/音频、批量处理 | ✅ 面板逐控件实跑（0 条记录） |
 | [快捷键](shortcuts.md) | 四组快捷键对照 | ⚠️ 面板原文，部分实按 |
 
 ## 读之前先分清三层
