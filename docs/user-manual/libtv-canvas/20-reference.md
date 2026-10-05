@@ -1562,12 +1562,21 @@ runCount:      e.counter?.runCount,
 > JSON 本身没变（各 chunk 字节数与 FK 当年一致），是**当时算错 / 手抄错了**。
 > ⭐ 「手册没出现过」这一项**每写一批新页就会变**，过期是正常的 —— 要用就重跑。
 
-> ⛔⛔⛔ **读这份表之前必须知道三件事**：
+> ⛔⛔⛔ **读这份表之前必须知道四件事**：
 > ① 它是**某一次构建的快照**，界面可能已经改版 ——
 >    **bundle 里有 ≠ 界面上有**，只能说「产品做过」。
 > ② 本手册**没有在界面上验证过下面任何一条**，全部标 📖。
 > ③ 完整清单落在仓库里（`tools/.evidence/i18n-canvas.json`，86 万字符），
 >    供后续批次逐条核。
+> ④ ⭐⭐⭐⭐ **表里的 `key` 是「剥掉命名空间之后」的那一段**（Batch FS-2 实测）。
+>    FS 在生产 bundle 里看到代码写的是 **`common:imgEditorAnnotate`**，
+>    而表里那一行的 `key` 是 `imgEditorAnnotate` ⇒ **命名空间信息在这张表里丢了**。
+>    ⛔ 所以本节说的「`xxx*` 前缀」指的是 **key 的词干**，
+>    ⛔ **不是**命名空间（真正的命名空间至少有 `canvas:` `common:`
+>    `interactiveImageEdit:` 等多个）。推论两条：
+>    · 同一段词干可能**散落在多个命名空间**里，各自有各自的调用点；
+>    · **grep 不到某个 `xxx*` 的调用点，不能当「界面上没有」的证据** ——
+>      FS 第一遍就差点得出这个错误结论。
 
 #### ⚠️ `canvasStore` 这个前缀是**被复用的命名空间**，不能当成一组功能
 
@@ -1684,6 +1693,89 @@ runCount:      e.counter?.runCount,
 > 而生成一段真视频要花积分 —— ⛔ 不在本手册的授权范围内。
 > ⛔ `续写` 还会牵出 Seedance 承诺书签署（`请先阅读并同意 Seedance 协议`），同样不代做。
 > 📖 所以这 21 个动作**在界面上各是什么样子**，仍然全部未验。
+
+#### ⭐⭐⭐⭐ 图片编辑器（`imgEditor*`，**168 条**）—— Batch FS 从源码里读出了它的能力
+
+> ⭐⭐⭐ FS 在生产 bundle 里翻到一张**斜杠命令映射表**（`38o6e4qs2-rnf.js`），
+> 逐字形如 `{ 英文命令名: "common:imgEditorSlash…" }`。这张表把
+> [预设面板](10-tasks/image-presets.md)里那 15 张卡的**内部 id** 露出来了：
+
+| 英文命令名 | 界面上叫什么 |
+|---|---|
+| `plot_deduction_four_grid` | 剧情推演四宫格 |
+| `coherent_storyboard_25` | 25宫格连贯分镜 |
+| `cinematic_light_correction` | 电影级光影校正 |
+| `character_three_view_generate` | 角色三视图（FP 已在界面上对上） |
+
+⭐⭐⭐ 而这些命令的入口是 bundle 里一个叫 **`useImageToolbarSlashCommand`** 的 hook
+⇒ ⭐⭐⭐⭐ **在图片工具条的输入框里打 `/`，会弹出一份命令列表** ——
+**这个交互本手册一个字都没写过**，📖 未在界面上验过。
+
+##### ⚠️ 更正一处口径：这些 key 在 **`common:` 命名空间**下
+
+`AnnotateToolbar`（标注工具条）逐字的 props 是
+`{ tool, color, strokeWidth, canUndo, canRedo, onClose, onToolChange, onColorChange, onStrokeWidthChange, onUndo, onRedo, onSave }`，
+而它取的文案是 **`common:imgEditorCloseAnnotate` / `common:imgEditorAnnotate` /
+`common:imgEditorBrushTool` / `common:imgEditorRectTool` / `common:imgEditorTextTool`**。
+
+⇒ ⭐ 手册「📖 一个字都没有」的那几条，**在源码里其实找得到**，
+只是它们**不在 `canvas:` 命名空间**，而在 `common:` 下。
+
+##### ⭐⭐ 标注工具条有三种笔（源码逐字）
+
+| 内部 tool 值 | tooltip 文案 |
+|---|---|
+| `pencil` | `画笔` |
+| `rect` | `矩形` |
+| `text` | `文字` |
+
+加上 `画笔大小`（`imgEditorBrushSize`）、`保存标注`（`imgEditorSaveAnnotate`）、
+`正在保存标注...`、`上传标注图片失败`。
+另有一枚带角标的按钮 `ToolbarConfirmButton`，class 是
+`h-8 cursor-pointer rounded-lg px-4` —— ⭐ 选中中会显示一个
+`#5ddcff`（亮青）的小角标，**⛔ 那个角标显示的是什么，📖 未验**。
+
+##### ⭐⭐⭐ 宫格切分：手册 119 条没见过的东西
+
+`imgEditorGrid*` 这一族是一整套「把一张图切成 N×N 宫格、逐格再加工」的功能：
+
+| 界面文案 | 内部 key |
+|---|---|
+| 宫格切分 / 退出宫格切分 | `imgEditorGridSplit` / `imgEditorGridSplitExit` |
+| `4宫格 (2×2)` / `9宫格 (3×3)` / `16宫格 (4×4)` / `25宫格 (5×5)` | `imgEditorGridPreset4/9/16/25` |
+| `{cols}×{rows} 宫格切分` | `imgEditorGridSplitCustom` |
+| 自定义宫格 / 重置均分 | `imgEditorCustomGrid` / `imgEditorGridResetEqual` |
+| 请选择宫格进行操作 / 已选 {count} 个宫格 | `imgEditorGridSelectHint` / `imgEditorGridSelectedCount` |
+| 对选中宫格创建分镜组 | `imgEditorGridCreateStoryboardTooltip` |
+| 对选中宫格进行高清放大 | `imgEditorGridUpscaleTooltip` |
+| 宫格分镜 {row}-{col} / 宫格高清 {row}-{col} | `imgEditorGridCellNodeName` / `imgEditorGridHdNodeName` |
+| 单独生成【第{row}行第{col}列】的分镜图像 | `imgEditorGridCellPrompt` |
+| 正在裁剪并创建分镜组... | `imgEditorCropAndCreateStoryboard` |
+| 正在裁剪并上传宫格图片，准备高清放大... | `imgEditorCropAndUploadForUpscale` |
+
+> ⭐⭐ **`25宫格连贯分镜` 那张预设卡，点下去多半就是进「25 宫格切分」** ——
+> ⛔ 但这是**推断**：卡和切分功能之间的**具体连接**本手册没验过。
+> 📖 宫格切分在界面上长什么样、怎么进，**完全未验**。
+
+##### ⭐⭐ 三个此前只有「协作锁」猜测、现在有实现佐证的点
+
+| 界面文案 | 源码里的样子 |
+|---|---|
+| 等待编辑权限… / 取消等待编辑权限 / ESC 取消 | `3-mou5v69wxmq.js` 里一整块实现：黑色半透明浮层 + `aria-busy="true"` + `aria-live="polite"` + 一枚取消按钮，class `flex items-center gap-2 rounded-md border border-white/20 bg-black/40 px-3 py-2 text-xs text-white/80 backdrop-blur-sm`。⭐⭐ **FS 之前「协作锁有第三个入口」只是从文案猜的，现在有实现佐证** |
+| 请先完成 AI 水印设置 | 源码里是一个**错误码** `WATERMARK_PREF` ⇒ `Notify.warn("请先完成 AI 水印设置")`。⭐ **它是个前置设置没配，不是操作失败** |
+| 所有宫格图片均审核未通过 | 另有更细的一句 `第{row}行第{col}列图片审核未通过，已跳过` |
+
+##### ⭐⭐ 顺带挖出两个完全没听说过的东西
+
+1. **情绪**：`28xcm77zwgreb.js` 有一串情绪英文 id 映射到 `common:imgEditorEmotionNam…`，
+   逐字读到 8 个：`shakenFear`（战栗）· `startledRetreat` · `stunnedShock` ·
+   `calmComposure` · `distantColdness` · `hesitantWords` · `alertScrutiny` · `tiredBlankness`。
+   ⭐ 它们各自配一张固定 PNG。📖 完整清单和界面上怎么用，都未验。
+2. **图层**：`3e98euwoxpr21.js` 里有 `canvas:imageLayerRedraw`（图层重绘）、
+   `common:imgEditorRotate`（旋转，另有 `旋转角度（0–360 整数）` 的 aria 文案），
+   还有一整组「主光源 / 环境光 / 颜色 / 方向」的控件（`lcp-section-title` 那些）。
+   ⇒ ⭐⭐ 图片编辑器有**图层**概念和一套**打光**控件。⛔ `canvasStore*` 里那 18 个
+   工具名（扩图/擦除/抠图/…）大概就在这一带 —— 但本手册仍然**没验过它们在界面上**。
 
 #### ⭐ 图片编辑器（`imgEditor*`，手册一个字都没写；**FP 找到了同族的一组**）
 

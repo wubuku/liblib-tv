@@ -13393,3 +13393,114 @@ onContinuationClick && { key:"continuation", featureId:"video.continuation",
 | **469** | ⭐⭐ 找功能入口只能盯界面 ⇒ 明明 bundle 里写着却查不到 | 「智能续写」在界面上 0 命中；FR 改搜调用点后三句话结案 |
 | **470** | ⭐⭐ 反过来：bundle 里没有引用点 ⇒ **更接近**「界面上不会有」 | `videoContinuation` 在 155 个非文案表 chunk 里**只被 `1bzx2qa4` 引用一次** |
 | 471 | ⭐ 元素选择器用 class 精确匹配太脆 | FR-4 找 `⤢` 的 `size-[15px]` 正则没匹配上，那一条**没验成** |
+
+## §149 Batch FS —— 32 个工具条组件 + 一整张斜杠命令映射表，附一个必须更正的口径
+
+### 149.0 把 FR 的路线用满
+
+FR 证明「在生产 bundle 里找调用点」这条路走得通（零风险、信息密度高）。FS 把它用满：
+**把 155 个非文案表 chunk 全扫一遍，列出所有含 `Toolbar`/`Panel`/`Bar`/`Float` 的组件名。**
+
+### 149.1 ⭐⭐⭐ 32 个组件名，手册写过 **0** 个
+
+节点/工具类的：
+
+| 组件 | 对应什么 | 手册状态 |
+|---|---|---|
+| `VideoNodeToolbar` | 视频节点工具条（**21 个动作**，FR 已挖） | ⛔ 界面上没找到 |
+| `AudioNodeToolbar` | 音频节点工具条 | ⛔ 界面上没找到 |
+| `AnnotateToolbar` | **标注工具条**（画笔/矩形/文字） | ⛔ 界面上没找到 |
+| `useImageToolbarSlashCommand` | ⭐⭐ **图片工具条的斜杠命令** | ⛔ 界面上没找到 |
+| `PortraitTextureToolbar` | 人像纹理工具条 | ⛔ 界面上没找到 |
+| `GroupNodeToolbar` / `CharacterGroupToolbar` | 群组 / 角色组工具条 | ⛔ 界面上没找到 |
+| `SelfContainedVideoClipBar` | 自带视频剪辑条（对应 `clip*`） | ⛔ 界面上没找到 |
+| `MediaControlBar` / `LayerBatchActionBar` / `BatchSelectionBarShell` | 媒体控制 / 批量操作条 | ✅ 批量操作条 FO 已写 |
+
+> ⚠️ 提取正则 `e\.s\(\[\s*"…"\s*,\s*0\s*,` **只匹配到 20 个文件**，
+> `1bzx2qa4_zu4z.js`（`VideoNodeToolbar` 所在）**没进这个列表** ——
+> ⇒ 正则漏了它。⭐ 教训：**「我的提取没命中」≠「不存在」**（缺陷 472）。
+
+### 149.2 ⭐⭐⭐⭐⭐ 斜杠命令映射表
+
+`38o6e4qs2-rnf.js` 里一张对象字面量，逐字：
+
+```js
+{ plot_deduction_four_grid:      "common:imgEditorSlashPlotFourGrid",
+  coherent_storyboard_25:        "common:imgEditorSlashStoryboard25",
+  cinematic_light_correction:    "common:imgEditorSlashCinematicLighting",
+  character_three_view_generate: "common:imgEditorSlashCharac…" }
+```
+
+⭐⭐⭐⭐ **这是预设面板那 15 张卡的「内部英文 id」**。
+配合 `useImageToolbarSlashCommand` 这个 hook 名 ⇒
+⭐⭐⭐⭐⭐ **在图片工具条的输入框里打 `/` 会弹出命令列表** ——
+**这个交互手册一个字都没写过**。📖 未在界面上验。
+
+### 149.3 ⭐⭐⭐⭐⭐ 必须更正的一个口径：表里的 `key` 是**剥掉命名空间之后**的那一段
+
+FS-1 第一遍搜 `imgEditor` 的调用点，**返回空**。
+差一步就写下「`imgEditor*` 在界面上不存在」这个**错误结论** ——
+⛔ 可是 `imgEditorSlash*` **明明在界面上存在**（FP 已在预设面板对上 5 条）。
+
+FS-2 在同一个 chunk 里读 `AnnotateToolbar` 的 props 时，真相出来了：
+
+```js
+tooltip: x("common:imgEditorCloseAnnotate")   // 「关闭标注」
+          x("common:imgEditorAnnotate")        // 「标注」
+          x("common:imgEditorBrushTool")       // 「画笔」
+          x("common:imgEditorRectTool")        // 「矩形」
+          x("common:imgEditorTextTool")        // 「文字」
+```
+
+⭐⭐⭐⭐ **命名空间是 `common:`，不是 `canvas:`** ——
+而 FK 抓表时**把命名空间剥掉了**（`i18n-canvas.json` 的 `key` 是 `imgEditorAnnotate`），
+`分组` 字段里那个 `canvas: 87` 是**字面以 canvas 开头**的 key，不是命名空间 canvas。
+
+⇒ 已在 `20-reference.md` §④ 的「读这份表之前必须知道」里**从三条加到四条**：
+
+- ⛔ 本节的「`xxx*` 前缀」是 **key 的词干**，不是命名空间；
+- ⛔ 同一词干可能**散落在多个命名空间**，各有各的调用点；
+- ⛔⭐⭐⭐ **grep 不到某个 `xxx*` 的调用点，不能当「界面上没有」的证据**。
+
+⭐ 我一开始猜的是「key 在代码里被拼字符串拼出来了（因为 key 名带 hash）」——
+**这个假设是错的**，真原因就是命名空间。已改（`PROGRESS` 不留错结论）。
+
+### 149.4 ⭐⭐ `imgEditor*` 168 条里，手册 119 条没见过 —— 补了四块
+
+| 分块 | 内容 |
+|---|---|
+| **标注工具条** | 三种笔 `pencil`/`rect`/`text`（`画笔`/`矩形`/`文字`）+ `画笔大小` + `保存标注` + 上传失败；另有一枚 `h-8 cursor-pointer rounded-lg px-4` 的确认钮，**选中中会显示一个 `#5ddcff` 亮青小角标**（⛔ 角标内容 📖 未验） |
+| **宫格切分** | `4/9/16/25 宫格` + `{cols}×{rows}` 自定义 + `重置均分` + `请选择宫格进行操作` + `已选 {count} 个宫格` + `对选中宫格创建分镜组` + `对选中宫格进行高清放大` + `宫格分镜 {row}-{col}` + `单独生成【第{row}行第{col}列】的分镜图像` + `正在裁剪并创建分镜组...` + `正在裁剪并上传宫格图片，准备高清放大...` |
+| **协作锁** | ⭐⭐ `等待编辑权限…` 有**实现**了（不再是从文案猜的）：黑色半透明浮层 + `aria-busy="true"` + `aria-live="polite"` + 取消钮 |
+| **水印** | ⭐ `请先完成 AI 水印设置` 的真身是**错误码 `WATERMARK_PREF`** ⇒ 它是**前置设置没配**，不是操作失败 |
+| **顺带两个没听说的** | ① **情绪**：8 个情绪 id（`shakenFear`/`startledRetreat`/`stunnedShock`/`calmComposure`/`distantColdness`/`hesitantWords`/`alertScrutiny`/`tiredBlankness`）各配一张固定 PNG；② **图层**：`canvas:imageLayerRedraw` + 一整组「主光源/环境光/颜色/方向」控件 ⇒ ⭐ 那 18 个 `canvasStore*` 工具名大概就在这一带 |
+
+### 149.5 ⛔ 安全边界
+
+FS-1/FS-2 **纯只读**：只 `fetch` 155 个 chunk，不点不碰不改画布。
+⛔ 本批**零浏览器交互**。截图数不变（**256**）—— 全部结论是**源码侧**，
+⭐ 仍然**不为了凑数做图**。
+
+### 149.6 手册改动清单
+
+| 文件 | 改动 |
+|---|---|
+| `20-reference.md` | ① §④ 的「读这份表之前必须知道」**从三条加到四条**（命名空间被剥掉这件事）；② **新增一整节「图片编辑器：从斜杠命令映射表读出的能力」**：斜杠命令映射表、`common:` 命名空间更正、三种笔、宫格切分 12 条、协作锁实现、水印错误码、情绪、图层 |
+| `PROGRESS.md` | 本节 |
+
+### 149.7 四闸门
+
+| 闸门 | 结果 |
+|---|---|
+| `manifest-sync.py` | 清单 256 / 磁盘 256（未改图，幂等） |
+| `audit_manual.py --phase gate-a` | 见提交信息 |
+| `build-site.sh` | 见提交信息 |
+| `site-check.mjs` | 见提交信息 |
+
+### 149.8 缺陷续编号
+
+| 编号 | 缺陷 | 实例 |
+|---|---|---|
+| **472** | ⭐⭐ **「我的提取没命中」被当成「不存在」** | FS-1 的组件名正则漏了 `1bzx2qa4_zu4z.js`（`VideoNodeToolbar` 就在那儿）；FS-1 的 `imgEditor` 搜 `common:` 的 key 搜不到 |
+| **473** | ⭐⭐⭐ 判「界面上没有」时**只搜了 `canvas:` 命名空间** | `common:imgEditor*` 一族因此被误判为「源码里也没了」 |
+| 474 | ⭐ 先立一个猜测再去证（本轮：猜「key 被拼字符串拼出来」） | 真因是命名空间被剥掉，**猜测方向完全错了** ⇒ 写进 PROGRESS 前先对照原始读数 |
