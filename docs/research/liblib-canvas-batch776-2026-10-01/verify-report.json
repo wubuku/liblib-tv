@@ -1,0 +1,354 @@
+{
+ "batch": 776,
+ "checks": [
+  {
+   "label": "静态：Escape 分支找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 提取到的 Escape 分支**之后**紧跟本文件的 `begin()` 分支（反证：那段不是别处的同形代码）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ Escape 分支里**没有** activeRef 守卫 ⟹ 修法 (a) 尚未实现（一旦实现本条立刻变红）",
+   "pass": true,
+   "got": false,
+   "want": false
+  },
+  {
+   "label": "静态：Escape 分支仍 preventDefault（吞键的前提）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "静态：Escape 分支仍 stopPropagation（桌的阶梯看不到它的原因）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "静态：Escape 分支仍调 cancel()（手势被清空的机制）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "静态：★ `onFocus: begin` 仍在 ⟹ 修法 (b) 尚未实现（一旦实现本条立刻变红）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：onPointerUp 对 input[type=number] 的提前 return 仍在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：`{...gesture}` 恰 5 处展开",
+   "pass": true,
+   "got": 5,
+   "want": 5
+  },
+  {
+   "label": "静态：桌根仍暴露 data-director-active-gesture（本批读数方法的前提）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：store 的 GESTURE_BEGIN 段在位",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "覆盖：没有 FAILED 格（缺格会变成红，而不是崩掉）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "覆盖：普查无 FAILED",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "一致性：两轮测量一致（**已归一化**手势 id 与 tries/retried）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "一致性：两轮普查一致（同上归一化）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：族 'xf' 至少在一个上下文里**真的非空**（「全 0」长得像「不存在」，所以每族都要有一次非空）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：族 'panchor' 至少在一个上下文里**真的非空**（「全 0」长得像「不存在」，所以每族都要有一次非空）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：族 'ptransform' 至少在一个上下文里**真的非空**（「全 0」长得像「不存在」，所以每族都要有一次非空）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：族 'pose' 至少在一个上下文里**真的非空**（「全 0」长得像「不存在」，所以每族都要有一次非空）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：族 'fov' 至少在一个上下文里**真的非空**（「全 0」长得像「不存在」，所以每族都要有一次非空）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：★ 每一行都自证（0 个，或有面积且 input type 与源码标注一致）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：★ 非空行的 input type 与源码标注逐族一致（number/range 不混）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "★ 普查在**前置到位**后共找到的可用控件数 ≥ 50（5 族各至少一次非空；这是 R112「别把少测记成不存在」的量化下限）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "实验臂：每一格都真的**聚焦起了手势**（onFocus: begin ⟹ beginDirectorGesture 返回 COMMITTED）",
+   "pass": true,
+   "got": 11,
+   "want": 11
+  },
+  {
+   "label": "实验臂：★ 第 1 次 Escape —— 手势被清空，而导出面板与桌**一个都没关**（吞键的直接后果）",
+   "pass": true,
+   "got": 11,
+   "want": 11
+  },
+  {
+   "label": "★ 实验臂：第 2/3 次 Escape **全部毫无作用** —— 而那正是「(b) 单独改」之后的世界 ⟹ (b) 单独改是空操作（直接观测）",
+   "pass": true,
+   "got": 22,
+   "want": 22
+  },
+  {
+   "label": "实验臂：焦点在每次按压后都**仍在**控件上（Escape 不移焦，所以「无手势但焦点在控件上」这个状态确实可达）",
+   "pass": true,
+   "got": 33,
+   "want": 33
+  },
+  {
+   "label": "实验臂：每格都自证落点（焦点 ok、起始手势空、导出面板先开着）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "实验臂：每格都按了 3 次",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "对照臂：恰 1 格",
+   "pass": true,
+   "got": 1,
+   "want": 1
+  },
+  {
+   "label": "对照臂：★ 聚焦后**没有**手势 ⟹ 它真的是非 gesture 控件（否则对照不成立）",
+   "pass": true,
+   "got": false,
+   "want": false
+  },
+  {
+   "label": "对照臂：★ 第 1 次 Escape **关掉了导出面板** ⟹ 「实验臂什么都没发生」不是「面板本来就关不掉」",
+   "pass": true,
+   "got": false,
+   "want": false
+  },
+  {
+   "label": "对照臂：第 2 次 Escape **关掉了桌** ⟹ 桌的 Escape 阶梯本身在工作",
+   "pass": true,
+   "got": false,
+   "want": false
+  },
+  {
+   "label": "产物：runtime-audit.json 在位",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "产物：更正恰为 C776-1",
+   "pass": true,
+   "got": [
+    "C776-1"
+   ],
+   "want": [
+    "C776-1"
+   ]
+  },
+  {
+   "label": "产物：教训为 R111–R118",
+   "pass": true,
+   "got": [
+    "R111",
+    "R112",
+    "R113",
+    "R114",
+    "R115",
+    "R116",
+    "R117",
+    "R118"
+   ],
+   "want": [
+    "R111",
+    "R112",
+    "R113",
+    "R114",
+    "R115",
+    "R116",
+    "R117",
+    "R118"
+   ]
+  },
+  {
+   "label": "产物：汇编器与我**独立算出的** Escape 分支行号一致",
+   "pass": true,
+   "got": 93,
+   "want": 93
+  },
+  {
+   "label": "产物：汇编器与我独立算出的 onFocus 行号一致",
+   "pass": true,
+   "got": 79,
+   "want": 79
+  },
+  {
+   "label": "产物：★ 两轮**逐字节**并不相同（手势 id 内嵌时间戳），而归一化后一致 —— 这件事必须被记下来而不是被藏起来",
+   "pass": true,
+   "got": false,
+   "want": false
+  },
+  {
+   "label": "产物：归一化说明存在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "台账：Batch 776 恰有一行",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "台账：该行无 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "台账：该行恰 4 个竖线（3 列）",
+   "pass": true,
+   "got": 4
+  }
+ ],
+ "pass": 43,
+ "total": 43,
+ "negativeControls": [
+  {
+   "name": "把对照臂改成「1 次 Escape 没关面板也没关桌」 ⟹ 「测量有鉴别力」必须红",
+   "why": "证明那条判据不是恒真 —— 没有它，实验臂的『什么都没发生』无法区分「缺陷」与「面板本来就关不掉」",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "对照臂：★ 第 1 次 Escape **关掉了导出面板** ⟹ 「实验臂什么都没发生」不是「面板本来就关不掉」",
+    "对照臂：第 2 次 Escape **关掉了桌** ⟹ 桌的 Escape 阶梯本身在工作"
+   ],
+   "caught": true,
+   "expectFailOn": "第 1 次 Escape **关掉了导出面板**"
+  },
+  {
+   "name": "把第 2/3 次按压改成「起了作用」 ⟹ 「(b) 单独改是空操作」必须红",
+   "why": "证明本批最核心那条推论的判据真有鉴别力",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "★ 实验臂：第 2/3 次 Escape **全部毫无作用** —— 而那正是「(b) 单独改」之后的世界 ⟹ (b) 单独改是空操作（直接观测）"
+   ],
+   "caught": true,
+   "expectFailOn": "单独改"
+  },
+  {
+   "name": "把「聚焦起了手势」全改成没起 ⟹ 相关判据必须红",
+   "why": "证明「onFocus 不起手势」这个读数不会被放过（它曾差点被我当成机制）",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "实验臂：每一格都真的**聚焦起了手势**（onFocus: begin ⟹ beginDirectorGesture 返回 COMMITTED）"
+   ],
+   "caught": true,
+   "expectFailOn": "聚焦起了手势"
+  },
+  {
+   "name": "把「焦点仍在控件上」全改成 False ⟹ 该判据必须红",
+   "why": "证明「无手势但焦点在控件上」这个**可达状态**的判据不是恒真",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "实验臂：焦点在每次按压后都**仍在**控件上（Escape 不移焦，所以「无手势但焦点在控件上」这个状态确实可达）"
+   ],
+   "caught": true,
+   "expectFailOn": "焦点在每次按压后"
+  },
+  {
+   "name": "整族删掉 pose 的普查行 ⟹ 「每族至少一次非空」必须红，且不许崩",
+   "why": "证明 derive() 对缺格健壮",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "普查：族 'pose' 至少在一个上下文里**真的非空**（「全 0」长得像「不存在」，所以每族都要有一次非空）",
+    "★ 普查在**前置到位**后共找到的可用控件数 ≥ 50（5 族各至少一次非空；这是 R112「别把少测记成不存在」的量化下限）"
+   ],
+   "caught": true,
+   "expectFailOn": "至少在一个上下文里"
+  },
+  {
+   "name": "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ 不许有判据翻红",
+   "why": "mutatedAnything 为 false 时这条对照的结论是空的，必须自证出来（R108）",
+   "mutatedAnything": false,
+   "kwMatchedCount": 0,
+   "flipped": [],
+   "caught": false,
+   "expectFailOn": "__永不匹配__"
+  }
+ ],
+ "negativeCaught": 6,
+ "negativeTotal": 6,
+ "negativeKwBroken": [
+  "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ 不许有判据翻红"
+ ],
+ "negativeInert": [
+  "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ 不许有判据翻红"
+ ],
+ "rawError": null,
+ "ok": true
+}

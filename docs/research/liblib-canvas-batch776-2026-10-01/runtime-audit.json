@@ -1,0 +1,456 @@
+{
+ "batch": 776,
+ "topic": "验「D1 的两处必须一起改」这个断言本身 —— 拍板项里唯一一句从来没有证据的授权依据",
+ "generatedBy": "probes/mk776audit.py",
+ "sources": {
+  "vb776a.json": {
+   "sha16": "d59c5486df20a93f",
+   "rounds": 2,
+   "rowsPerRound": 12
+  }
+ },
+ "questions": {
+  "Q0": "「聚焦 gesture 控件会不会起手势」？（推论一的前提）",
+  "Q1": "第 1 次 Escape 之后，导出面板与桌各自发生了什么？",
+  "Q2": "★ 第 2、3 次 Escape 呢？——**那正是「(b) 单独改」的世界**",
+  "Q3": "非 gesture 的桌内控件作对照：第 1 次 Escape 能不能关掉导出面板？（测量有没有鉴别力）"
+ },
+ "comparability": {
+  "rounds": 2,
+  "rowsPerRound": 12,
+  "censusRowsPerRound": 25,
+  "gestureCells": 11,
+  "controlCells": 1,
+  "allConsistent": true,
+  "allConsistentCensus": true,
+  "normalized": "两轮比较前做了两处归一化：① 去掉 `tries`/`retried`（基础设施元数据）；② 把 `director-gesture-<时间戳>-<序号>` 归一化成 `director-gesture-<id>`（store 生成的手势 id 内嵌毫秒时间戳，逐字节比较**永远不可能相等**）。★ 归一化保留了「有没有手势」这个机制相关的全部信息，只扔掉时间戳 —— 不是把该字段整个排除掉。",
+  "rawRoundsByteIdentical": false,
+  "retryPolicy": "每格最多试 3 次（含第一次），失败后按 900×n 毫秒退避；4317 是多人共用的 dev server。★ 重试次数记进 raw 的 `tries`，但 `tries`/`retried` **排除在两轮一致性比较之外**。",
+  "retried": [],
+  "retryStats": {
+   "cells": 24,
+   "retriedCells": 0,
+   "maxTries": 1
+  },
+  "boundary": "★ **本批未改 `src/`，也没有任何注入。** 只点对象树的行、6 个 disclosure 触发器、**选中**相机/角色/道具、**切标签页**、**点预设路径造一条路径**、**选中锚点并切锚点类型**、以及**读属性**；**不点**提交/连接/添加，不做付费或真实生图生视频；导出面板的 `data-director-export-submit` **只读不点**。★ 造路径是在本地项目里**建数据**（`createMotionPath`），而 `fresh()` 每格开头清 localStorage ⟹ 不留残留。"
+ },
+ "static": {
+  "escapeBranchLine": 93,
+  "escapeBranchText": "if (event.key === \"Escape\") { event.preventDefault(); event.stopPropagation(); cancel(); return; } if ( event.key !== \"Tab\" && event.key !== \"Shift\" && event.key !== \"Alt\" && event.key !== \"Control\" && event.key !== \"Meta\" ) { begin(); } },",
+  "escapeHasActiveRefGuard": false,
+  "escapeHasPreventDefault": true,
+  "escapeHasStopPropagation": true,
+  "escapeCallsCancel": true,
+  "onFocusIsBegin": true,
+  "onFocusLine": 79,
+  "onPointerUpLine": 82,
+  "pointerUpEarlyReturnForNumber": true,
+  "numberEarlyReturnLine": 85,
+  "gestureSpreadSites": [
+   183,
+   838,
+   894,
+   1361,
+   1655
+  ],
+  "deskExposesActiveGestureAttr": true,
+  "beginReturnsCommitted": true
+ },
+ "census": {
+  "camera/fov": {
+   "ctx": "camera",
+   "id": "fov",
+   "precondition": "default",
+   "total": 1,
+   "live": 1,
+   "type": "range",
+   "wantType": "range",
+   "hasRect": true,
+   "selfJustified": true
+  },
+  "camera/panchor": {
+   "ctx": "camera",
+   "id": "panchor",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "number",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "camera/pose": {
+   "ctx": "camera",
+   "id": "pose",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "range",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "camera/ptransform": {
+   "ctx": "camera",
+   "id": "ptransform",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "number",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "camera/xf": {
+   "ctx": "camera",
+   "id": "xf",
+   "precondition": "default",
+   "total": 12,
+   "live": 12,
+   "type": "number",
+   "wantType": "number",
+   "hasRect": true,
+   "selfJustified": true
+  },
+  "camera-path/fov": {
+   "ctx": "camera-path",
+   "id": "fov",
+   "precondition": "__makepath__",
+   "total": 1,
+   "live": 1,
+   "type": "range",
+   "wantType": "range",
+   "hasRect": true,
+   "selfJustified": true
+  },
+  "camera-path/panchor": {
+   "ctx": "camera-path",
+   "id": "panchor",
+   "precondition": "__makepath__",
+   "total": 6,
+   "live": 6,
+   "type": "number",
+   "wantType": "number",
+   "hasRect": true,
+   "selfJustified": true
+  },
+  "camera-path/pose": {
+   "ctx": "camera-path",
+   "id": "pose",
+   "precondition": "__makepath__",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "range",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "camera-path/ptransform": {
+   "ctx": "camera-path",
+   "id": "ptransform",
+   "precondition": "__makepath__",
+   "total": 9,
+   "live": 9,
+   "type": "number",
+   "wantType": "number",
+   "hasRect": true,
+   "selfJustified": true
+  },
+  "camera-path/xf": {
+   "ctx": "camera-path",
+   "id": "xf",
+   "precondition": "__makepath__",
+   "total": 12,
+   "live": 12,
+   "type": "number",
+   "wantType": "number",
+   "hasRect": true,
+   "selfJustified": true
+  },
+  "character/fov": {
+   "ctx": "character",
+   "id": "fov",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "range",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "character/panchor": {
+   "ctx": "character",
+   "id": "panchor",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "number",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "character/pose": {
+   "ctx": "character",
+   "id": "pose",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "range",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "character/ptransform": {
+   "ctx": "character",
+   "id": "ptransform",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "number",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "character/xf": {
+   "ctx": "character",
+   "id": "xf",
+   "precondition": "default",
+   "total": 9,
+   "live": 9,
+   "type": "number",
+   "wantType": "number",
+   "hasRect": true,
+   "selfJustified": true
+  },
+  "character-pose/fov": {
+   "ctx": "character-pose",
+   "id": "fov",
+   "precondition": "pose",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "range",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "character-pose/panchor": {
+   "ctx": "character-pose",
+   "id": "panchor",
+   "precondition": "pose",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "number",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "character-pose/pose": {
+   "ctx": "character-pose",
+   "id": "pose",
+   "precondition": "pose",
+   "total": 25,
+   "live": 25,
+   "type": "range",
+   "wantType": "range",
+   "hasRect": true,
+   "selfJustified": true
+  },
+  "character-pose/ptransform": {
+   "ctx": "character-pose",
+   "id": "ptransform",
+   "precondition": "pose",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "number",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "character-pose/xf": {
+   "ctx": "character-pose",
+   "id": "xf",
+   "precondition": "pose",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "number",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "prop/fov": {
+   "ctx": "prop",
+   "id": "fov",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "range",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "prop/panchor": {
+   "ctx": "prop",
+   "id": "panchor",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "number",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "prop/pose": {
+   "ctx": "prop",
+   "id": "pose",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "range",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "prop/ptransform": {
+   "ctx": "prop",
+   "id": "ptransform",
+   "precondition": "default",
+   "total": 0,
+   "live": 0,
+   "type": null,
+   "wantType": "number",
+   "hasRect": false,
+   "selfJustified": true
+  },
+  "prop/xf": {
+   "ctx": "prop",
+   "id": "xf",
+   "precondition": "default",
+   "total": 9,
+   "live": 9,
+   "type": "number",
+   "wantType": "number",
+   "hasRect": true,
+   "selfJustified": true
+  }
+ },
+ "censusFailed": [],
+ "results": {
+  "gestureCells": 11,
+  "focusBeganGesture": 11,
+  "press1Inert": 11,
+  "laterPresses": 22,
+  "laterPressesInert": 22,
+  "controlFirstClosed": "export"
+ },
+ "evidenceIndex": {
+  "J1": "阶段二 + J2",
+  "J2": "阶段二",
+  "J3": "J1 + J2",
+  "J4": "阶段一 + 阶段三",
+  "J5": "阶段二",
+  "J6": "J2 + 阶段二读数"
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "text": "★ **推论一被否证**：11/11 格实测「聚焦即起手势」；而第 1 次 Escape 之后状态变成「手势空、焦点仍在控件上」——**这正是修法 (a) 会放行的状态**，且它**可达** ⟹ **(a) 单独改不是空操作**。",
+   "evidence": "阶段二 + J2"
+  },
+  {
+   "id": "J2",
+   "text": "★ **推论二成立，且是直接观测**：第 2、3 次按压共 22/22 次**什么都没发生**（手势空、面板开、桌开、焦点不动）。而那两次按压所处的世界（**永远没有活动手势**）**就是「(b) 单独改」之后的世界** ⟹ (b) 单独改是空操作。",
+   "evidence": "阶段二"
+  },
+  {
+   "id": "J3",
+   "text": "★ **「两处必须一起改」作为授权依据不成立**。准确的说法是：**只改 (a)** ⟹ 死键变成「按第 2 次生效」；**两处都改** ⟹ 按 1 次生效。**这是授权范围的缩小，不是修法的推翻。**",
+   "evidence": "J1 + J2"
+  },
+  {
+   "id": "J4",
+   "text": "★ **缺陷是跨全部 gesture 控件的**：普查在**前置到位**后共找到 **53 个**可用控件，覆盖 **5/5 族**（fov×1、panchor×6、pose×25、ptransform×9、xf×12）；每族取首末各一格 = **11 个实验格**，**11/11** 格三按全无作用。← 5 个 `{...gesture}` 展开处（3 个 number + 2 个 range）同构。",
+   "evidence": "阶段一 + 阶段三"
+  },
+  {
+   "id": "J5",
+   "text": "★ 对照臂证明**测量有鉴别力**：非 gesture 的桌内控件上，第 1 次 Escape 关掉了 export。⟹ 实验臂的「什么都没发生」**不是**「面板本来就关不掉」。",
+   "evidence": "阶段二"
+  },
+  {
+   "id": "J6",
+   "text": "★ **用户可见的严重度比「死键」还高一层**：手势在第 1 次 Escape 就被清掉了，却**没有任何反馈**（面板没关、桌没关、也没有别的提示）⟹ 用户既关不掉东西，也看不出发生了什么。",
+   "evidence": "J2 + 阶段二读数"
+  }
+ ],
+ "findings": {
+  "F1": "★ **推论一被否证 ⟹ (a) 单独改可行**（把死键变成按两次）。",
+  "F2": "★ **推论二成立 ⟹ (b) 单独改是空操作**（直接观测，非推理）。",
+  "F3": "★ **「两处必须一起改」作为授权依据不成立**；准确说法是「只改 (a) = 按两次；两处都改 = 按一次」。**这是缩小授权范围。**",
+  "F4": "★ 缺陷覆盖**全部** gesture 控件（5 个展开处同构，3 number + 2 range）。",
+  "F5": "★ 静态层证明**两处都还没实现**（Escape 分支无 `activeRef` 守卫、`onFocus: begin` 仍在）⟹ D1 一旦落地，本批静态层立刻变红。"
+ },
+ "probeLessons": [
+  {
+   "id": "R111",
+   "text": "★ **同步的 `.focus()` 之后必须等 React 重渲染再读 DOM 属性**。第一版同一次 `evaluate` 里读完就读 ⟹ 「onFocus 不起手势」—— 差一步就把 D1 的**理由**否了。「看起来是机制发现」的第一嫌疑是自己的测量时序。"
+  },
+  {
+   "id": "R112",
+   "text": "★ **「少测」与「不存在」在产物里长得一模一样**（775 的 R104 在本批复现）。姿态族与两族路径控件原本全记成 0，真实原因是它们分别卡在 `characterTab === \"pose\"`（:2339）、`paths.map`（:1041）、`selectedAnchor.type !== \"vertex\"`（:1189）后面。补上前置后是 **25 / 9 / 6** 个 ——**代价是 31 个差点被记成「不存在」的控件。**"
+  },
+  {
+   "id": "R113",
+   "text": "★ **「点不动」是没有鉴别力的失败信息**。本批连踩三次：① 拿菜单**面板**的选择器当**触发器**；② `SCAN_CLICK` **不滚动** ⟹ 折叠区外点不到；③ 锚点类型取值**猜**成 `smooth`，源码里是 `vertex`/`symmetric`/`asymmetric`。三次同一句话、三个不同原因。"
+  },
+  {
+   "id": "R114",
+   "text": "★ **`if not x != \"true\"` 是优先级陷阱**：比较先于 `not` ⟹ 解析成 `(not x) != \"true\"` ⟹ **成功反而报错**。可怕之处是「手动复现成功、函数却报失败」—— 两者不一致时**先怀疑判据**。"
+  },
+  {
+   "id": "R115",
+   "text": "★ **前置链要一层一层拆到底，不能停在「点不到」。** 本批的锚点族过了三道门（造路径 → 选中锚点 → 切锚点类型），每道门的失败信息**长得一模一样**。"
+  },
+  {
+   "id": "R116",
+   "text": "★ **内嵌时间戳的 id 会让「两轮逐字节一致」永远不可能**，而它长得像「机制不一致」。手势 id 形如 `director-gesture-<毫秒>-<序号>` ⟹ 11/11 格都「不同」。正确做法是**归一化**（只扔时间戳、保留「有没有手势」）**并把归一化写进产物** —— 不是把该字段**整个排除**，那样会让人以为那一格没被比较过。"
+  },
+  {
+   "id": "R117",
+   "text": "★ **静态扫描里「找结束标记」必须带作用域**。`block()` 找 `},` 时从文件头开始 ⟹ 匹配到起点**之前**第 90 行的另一个 `},` ⟹ 判定 `e < s` ⟹ 返回空串 ⟹ 读成「Escape 分支里没有 `preventDefault`」—— **一个假零，且方向恰好是「我们的机制不存在」。**与 R107、R110 同族：**搜索没作用域 ⟹「找不到」被读成「不存在」。**"
+  },
+  {
+   "id": "R118",
+   "text": "★ **阴性对照的 `kw` 必须取自判据标签里的字面量**，不能取自判据的「意图」。本文件第一版写 `kw=\"测量有鉴别力\"` —— 那句话只出现在 `why` 里、标签里根本没有 ⟹ 翻红列表一条都匹配不上 ⟹ 被读成「判据不灵」。**775 也踩过一次同一个坑：这是复发性陷阱，不是手滑。**"
+  }
+ ],
+ "corrections": [
+  {
+   "id": "C776-1",
+   "targets": [
+    "763 挂起的 D1 修法：「两处必须一起改」"
+   ],
+   "was": "「`useDirectorGestureBoundary` 的 Escape 分支加 `if (!activeRef.current) return;` + `onFocus` 不再 `begin()`（**两处必须一起改**）」—— 读作「(a) 单独改是空操作」。",
+   "now": "★ 据实订正：**(a) 单独改不是空操作**。第 1 次 Escape 之后（`cancel()` 清了手势、焦点不动）就落在「`activeRef` 为假」的状态，而它**可达** ⟹ (a) 单独改会把死键变成「按第 2 次生效」。**(b) 单独改仍是空操作**（第 2/3 次按压**直接观测**了那个世界：什么都没发生）。所以「必须一起」应当改写成**「只改 (a) = 按两次；两处都改 = 按一次」** —— **这是授权范围的缩小**：(a) 是可以单独做的。",
+   "evidence": "J1 + J2 + J3"
+  }
+ ],
+ "defects": [
+  {
+   "id": "D1c",
+   "severity": "中",
+   "count": "11/11 格",
+   "text": "★ **焦点在任意 gesture 控件上时，Escape 是死键**：打开导出面板后连按 3 次 Escape，导出面板与桌**一次都没关**（而同一个会话里对照臂 1 次就关掉了）。根因是 `useDirectorGestureBoundary.ts:92-98` 的 Escape 分支**无条件** `preventDefault()` + `stopPropagation()`，把桌挂在 window 上的 Escape 阶梯整段挡掉。★ 且**没有任何反馈**（手势在第 1 次就被 cancel 掉了，但用户看不到任何变化）。",
+   "evidence": "J2 + J4 + J5 + J6"
+  }
+ ],
+ "srcDiff": "**本批未改 `src/`**（工作区 `src/` 干净；`git log 29d5ff1c..HEAD -- src/` 为空）；本批**没有任何注入**",
+ "rawSha": {
+  "vb776a.json": "d59c5486df20a93f"
+ },
+ "retryStats": {
+  "cells": 24,
+  "retriedCells": 0,
+  "maxTries": 1
+ },
+ "boundary": "★ **本批未改 `src/`，也没有任何注入。** 只点对象树的行、6 个 disclosure 触发器、**选中**相机/角色/道具、**切标签页**、**点预设路径造一条路径**、**选中锚点并切锚点类型**、以及**读属性**；**不点**提交/连接/添加，不做付费或真实生图生视频；导出面板的 `data-director-export-submit` **只读不点**。★ 造路径是在本地项目里**建数据**（`createMotionPath`），而 `fresh()` 每格开头清 localStorage ⟹ 不留残留。"
+}

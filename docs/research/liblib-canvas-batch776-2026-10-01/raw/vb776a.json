@@ -1,0 +1,1557 @@
+{
+ "batch": 776,
+ "probe": "a",
+ "question": "拍板项 763 里的「D1 的两处必须一起改」这个断言成立吗？",
+ "whyItMatters": "这句话是 D1 修法的**授权依据**，却从来没有证据。它由两条推论组成：(a) Escape 加 activeRef 守卫、(b) onFocus 不再 begin()。两条都成立才需要一起改，**任一条被否证，授权范围就能缩小**。",
+ "noInjection": "★ **本批没有任何注入**，也**没有改 src/**。两条推论都能从现码直接测：Escape 分支的 cancel() 清手势却不动焦点，于是「第一次 Escape 之后」就是「方向 (b) 单独改」的世界。",
+ "readings": "手势状态用只读属性 `data-director-active-gesture`（DirectorDesk.tsx:889）读；主读数是**用户可见的后果**（导出面板/桌有没有关），不是 defaultPrevented —— 字段的 handler 会 stopPropagation，window 上的间谍**收不到**，「读不到」本身是证据。",
+ "landmarks": [
+  "DirectorDesk.tsx:889 只读手势属性",
+  "useDirectorGestureBoundary.ts:79 onFocus: begin",
+  "useDirectorGestureBoundary.ts:92-98 Escape 分支无条件吞键",
+  "useDirectorGestureBoundary.ts:82-90 onPointerUp 对 number 提前 return",
+  "directorStore.ts:3580-3592 begin 成功返回 COMMITTED"
+ ],
+ "rounds": [
+  {
+   "rows": [
+    {
+     "ctx": "prop",
+     "family": "xf",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 9,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183139941-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "prop",
+     "family": "xf",
+     "nth": 8,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 8,
+      "liveN": 9,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183155056-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "character-pose",
+     "family": "pose",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 25,
+      "type": "range",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183183559-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "character-pose",
+     "family": "pose",
+     "nth": 24,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 24,
+      "liveN": 25,
+      "type": "range",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183199357-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera",
+     "family": "xf",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 12,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183226828-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera",
+     "family": "xf",
+     "nth": 8,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 8,
+      "liveN": 12,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183244055-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera",
+     "family": "fov",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 1,
+      "type": "range",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183271332-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera-path",
+     "family": "panchor",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 6,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183305809-5",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera-path",
+     "family": "panchor",
+     "nth": 5,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 5,
+      "liveN": 6,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183324700-5",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera-path",
+     "family": "ptransform",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 9,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183358965-5",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera-path",
+     "family": "ptransform",
+     "nth": 8,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 8,
+      "liveN": 9,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183377557-5",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "desk",
+     "family": "control",
+     "nth": 0,
+     "isControl": true,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "type": "button"
+     },
+     "gestureAfterFocus": "",
+     "isGestureElement": false,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": false,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": null,
+       "exportPresent": false,
+       "deskOpen": false,
+       "focusStill": null
+      },
+      {
+       "n": 3,
+       "gesture": null,
+       "exportPresent": false,
+       "deskOpen": false,
+       "focusStill": null
+      }
+     ],
+     "tries": 1
+    }
+   ],
+   "census": [
+    {
+     "id": "xf",
+     "total": 9,
+     "live": 9,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "prop",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "panchor",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "prop",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "ptransform",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "prop",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "pose",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "prop",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "fov",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "prop",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "xf",
+     "total": 9,
+     "live": 9,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "character",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "panchor",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "character",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "ptransform",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "character",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "pose",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "character",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "fov",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "character",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "xf",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "character-pose",
+     "precondition": "pose",
+     "selfJustified": true
+    },
+    {
+     "id": "panchor",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "character-pose",
+     "precondition": "pose",
+     "selfJustified": true
+    },
+    {
+     "id": "ptransform",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "character-pose",
+     "precondition": "pose",
+     "selfJustified": true
+    },
+    {
+     "id": "pose",
+     "total": 25,
+     "live": 25,
+     "type": "range",
+     "wantType": "range",
+     "hasRect": true,
+     "ctx": "character-pose",
+     "precondition": "pose",
+     "selfJustified": true
+    },
+    {
+     "id": "fov",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "character-pose",
+     "precondition": "pose",
+     "selfJustified": true
+    },
+    {
+     "id": "xf",
+     "total": 12,
+     "live": 12,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "camera",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "panchor",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "camera",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "ptransform",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "camera",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "pose",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "camera",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "fov",
+     "total": 1,
+     "live": 1,
+     "type": "range",
+     "wantType": "range",
+     "hasRect": true,
+     "ctx": "camera",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "xf",
+     "total": 12,
+     "live": 12,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "camera-path",
+     "precondition": "__makepath__",
+     "selfJustified": true
+    },
+    {
+     "id": "panchor",
+     "total": 6,
+     "live": 6,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "camera-path",
+     "precondition": "__makepath__",
+     "selfJustified": true
+    },
+    {
+     "id": "ptransform",
+     "total": 9,
+     "live": 9,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "camera-path",
+     "precondition": "__makepath__",
+     "selfJustified": true
+    },
+    {
+     "id": "pose",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "camera-path",
+     "precondition": "__makepath__",
+     "selfJustified": true
+    },
+    {
+     "id": "fov",
+     "total": 1,
+     "live": 1,
+     "type": "range",
+     "wantType": "range",
+     "hasRect": true,
+     "ctx": "camera-path",
+     "precondition": "__makepath__",
+     "selfJustified": true
+    }
+   ]
+  },
+  {
+   "rows": [
+    {
+     "ctx": "prop",
+     "family": "xf",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 9,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183488176-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "prop",
+     "family": "xf",
+     "nth": 8,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 8,
+      "liveN": 9,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183509304-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "character-pose",
+     "family": "pose",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 25,
+      "type": "range",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183537697-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "character-pose",
+     "family": "pose",
+     "nth": 24,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 24,
+      "liveN": 25,
+      "type": "range",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183553462-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera",
+     "family": "xf",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 12,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183581146-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera",
+     "family": "xf",
+     "nth": 8,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 8,
+      "liveN": 12,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183596258-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera",
+     "family": "fov",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 1,
+      "type": "range",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183623502-1",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera-path",
+     "family": "panchor",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 6,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183657796-5",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera-path",
+     "family": "panchor",
+     "nth": 5,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 5,
+      "liveN": 6,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183676404-5",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera-path",
+     "family": "ptransform",
+     "nth": 0,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 0,
+      "liveN": 9,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183710697-5",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "camera-path",
+     "family": "ptransform",
+     "nth": 8,
+     "isControl": false,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "idx": 8,
+      "liveN": 9,
+      "type": "number",
+      "isGestureFamily": true
+     },
+     "gestureAfterFocus": "director-gesture-1791183729387-5",
+     "isGestureElement": true,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 3,
+       "gesture": "",
+       "exportPresent": true,
+       "deskOpen": true,
+       "focusStill": true
+      }
+     ],
+     "tries": 1
+    },
+    {
+     "ctx": "desk",
+     "family": "control",
+     "nth": 0,
+     "isControl": true,
+     "exportOpenBefore": true,
+     "gestureBeforeFocus": "",
+     "focus": {
+      "ok": true,
+      "type": "button"
+     },
+     "gestureAfterFocus": "",
+     "isGestureElement": false,
+     "presses": [
+      {
+       "n": 1,
+       "gesture": "",
+       "exportPresent": false,
+       "deskOpen": true,
+       "focusStill": true
+      },
+      {
+       "n": 2,
+       "gesture": null,
+       "exportPresent": false,
+       "deskOpen": false,
+       "focusStill": null
+      },
+      {
+       "n": 3,
+       "gesture": null,
+       "exportPresent": false,
+       "deskOpen": false,
+       "focusStill": null
+      }
+     ],
+     "tries": 1
+    }
+   ],
+   "census": [
+    {
+     "id": "xf",
+     "total": 9,
+     "live": 9,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "prop",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "panchor",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "prop",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "ptransform",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "prop",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "pose",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "prop",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "fov",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "prop",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "xf",
+     "total": 9,
+     "live": 9,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "character",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "panchor",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "character",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "ptransform",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "character",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "pose",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "character",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "fov",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "character",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "xf",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "character-pose",
+     "precondition": "pose",
+     "selfJustified": true
+    },
+    {
+     "id": "panchor",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "character-pose",
+     "precondition": "pose",
+     "selfJustified": true
+    },
+    {
+     "id": "ptransform",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "character-pose",
+     "precondition": "pose",
+     "selfJustified": true
+    },
+    {
+     "id": "pose",
+     "total": 25,
+     "live": 25,
+     "type": "range",
+     "wantType": "range",
+     "hasRect": true,
+     "ctx": "character-pose",
+     "precondition": "pose",
+     "selfJustified": true
+    },
+    {
+     "id": "fov",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "character-pose",
+     "precondition": "pose",
+     "selfJustified": true
+    },
+    {
+     "id": "xf",
+     "total": 12,
+     "live": 12,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "camera",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "panchor",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "camera",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "ptransform",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "number",
+     "hasRect": false,
+     "ctx": "camera",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "pose",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "camera",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "fov",
+     "total": 1,
+     "live": 1,
+     "type": "range",
+     "wantType": "range",
+     "hasRect": true,
+     "ctx": "camera",
+     "precondition": "default",
+     "selfJustified": true
+    },
+    {
+     "id": "xf",
+     "total": 12,
+     "live": 12,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "camera-path",
+     "precondition": "__makepath__",
+     "selfJustified": true
+    },
+    {
+     "id": "panchor",
+     "total": 6,
+     "live": 6,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "camera-path",
+     "precondition": "__makepath__",
+     "selfJustified": true
+    },
+    {
+     "id": "ptransform",
+     "total": 9,
+     "live": 9,
+     "type": "number",
+     "wantType": "number",
+     "hasRect": true,
+     "ctx": "camera-path",
+     "precondition": "__makepath__",
+     "selfJustified": true
+    },
+    {
+     "id": "pose",
+     "total": 0,
+     "live": 0,
+     "type": null,
+     "wantType": "range",
+     "hasRect": false,
+     "ctx": "camera-path",
+     "precondition": "__makepath__",
+     "selfJustified": true
+    },
+    {
+     "id": "fov",
+     "total": 1,
+     "live": 1,
+     "type": "range",
+     "wantType": "range",
+     "hasRect": true,
+     "ctx": "camera-path",
+     "precondition": "__makepath__",
+     "selfJustified": true
+    }
+   ]
+  }
+ ]
+}
