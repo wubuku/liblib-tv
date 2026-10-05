@@ -1,0 +1,442 @@
+{
+ "batch": 783,
+ "arms": [
+  "bothByMouse",
+  "bothByKeyboard",
+  "reverseByMouse",
+  "pathOnly"
+ ],
+ "presses": 1,
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "bothByMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondVia": "mouse",
+     "afterSecond": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "bothByKeyboard",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondFocus": {
+      "ok": true
+     },
+     "secondVia": "keyboard",
+     "afterSecond": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "reverseByMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "secondVia": "mouse",
+     "afterSecond": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "pathOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondVia": "none",
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "tries": 1,
+     "retried": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "bothByMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondVia": "mouse",
+     "afterSecond": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "bothByKeyboard",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondFocus": {
+      "ok": true
+     },
+     "secondVia": "keyboard",
+     "afterSecond": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "reverseByMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "secondVia": "mouse",
+     "afterSecond": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "pathOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondVia": "none",
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "tries": 1,
+     "retried": false
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,588 @@
+{
+ "batch": 783,
+ "verdict": "通过",
+ "criteria": {
+  "total": 65,
+  "passed": 65,
+  "failed": 0,
+  "failedLabels": []
+ },
+ "negativeControls": {
+  "total": 9,
+  "caught": 9,
+  "stale": [],
+  "kwNotUnique": [],
+  "cases": [
+   {
+    "name": "删掉 `togglePathMenu` 里的 `setPresetPanelLeft(null);`",
+    "why": "★ 「互斥的第一半」没了 ⟹ 从预设面板进去就能与路径菜单共活 ⟹ 判据必须红",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★ `togglePathMenu` 里有 `setPresetPanelLeft(null);`（互斥的第一半）",
+     "静态：★★ 两处交叉写入都**排在打开自己之前** ⟹ 「先关后开」是这条不变量能成立的**原因**，不是细节",
+     "产物：★ audit 记的交叉写入处数 = 独立字面量核对（2 处）"
+    ],
+    "caught": true,
+    "expectFailOn": "互斥的第一半"
+   },
+   {
+    "name": "删掉 `togglePresetPanel` 里的 `setPathMenuLeft(null);`",
+    "why": "★★ 「**双向**」塌成单向 ⟹ 而运行时两个方向都测了 ⟹ 判据必须红（只找到一处交叉写入会得出假结论）",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★ `togglePresetPanel` 里有 `setPathMenuLeft(null);`（互斥的第二半 ⟹ **双向**）",
+     "静态：★★ 两处交叉写入都**排在打开自己之前** ⟹ 「先关后开」是这条不变量能成立的**原因**，不是细节",
+     "产物：★ audit 记的交叉写入处数 = 独立字面量核对（2 处）"
+    ],
+    "caught": true,
+    "expectFailOn": "互斥的第二半"
+   },
+   {
+    "name": "把交叉写入挪到「打开自己」**之后**",
+    "why": "★ 「先关后开」是这条不变量能成立的**原因** ⟹ 顺序判据必须能抓",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★ `togglePathMenu` 里有 `setPresetPanelLeft(null);`（互斥的第一半）",
+     "静态：★★ 两处交叉写入都**排在打开自己之前** ⟹ 「先关后开」是这条不变量能成立的**原因**，不是细节",
+     "产物：★ audit 记的交叉写入处数 = 独立字面量核对（2 处）"
+    ],
+    "caught": true,
+    "expectFailOn": "排在打开自己之前"
+   },
+   {
+    "name": "把阶梯的 `workspaceBusy` 那道门改成永假",
+    "why": "★ 「779 漏了两道门」这条要能抓 ⟹ 否则阶梯会被继续按「四档」写",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★★ 阶梯里有 `:552` 那道 `workspaceBusy` 门",
+     "产物：★ audit 记的阶梯「额外门数」= 独立字面量核对（2）"
+    ],
+    "caught": true,
+    "expectFailOn": "workspaceBusy"
+   },
+   {
+    "name": "把阶梯的 DOM 存在性那道门改成永假",
+    "why": "★ 同上，另一道门",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★★ 阶梯里有 `:551` 那道 **DOM 存在性**门（`document.querySelector(\"[data-director-capture-viewer]\")`）",
+     "产物：★ audit 记的阶梯「额外门数」= 独立字面量核对（2）"
+    ],
+    "caught": true,
+    "expectFailOn": "DOM 存在性"
+   },
+   {
+    "name": "把键盘臂读成「两个面板同时开着」",
+    "why": "★ 本批的核心是「**预测被否掉**」⟹ 对照要能证明这条会红，否则一次把探针调偏就会静悄悄把结论翻回去",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "预测 F：★ bothByKeyboard 第 2 个面板打开后**路径菜单被关掉了** ⟹ 「键盘能绕过外点关闭」**被否**、「两者可共活」**被否**",
+     "预测 F：★★ 键盘臂与鼠标臂第 2 步读数**完全一样** ⟹ 「互斥与激活方式无关」（`pointerdown` 假设死）"
+    ],
+    "caught": true,
+    "expectFailOn": "被否**"
+   },
+   {
+    "name": "让键盘臂与鼠标臂读数不同",
+    "why": "★ 「互斥与激活方式无关」是**否掉 `pointerdown` 假设**的关键一步 ⟹ 对照要能抓",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "预测 F：★ bothByKeyboard 第 2 个面板打开后**路径菜单被关掉了** ⟹ 「键盘能绕过外点关闭」**被否**、「两者可共活」**被否**",
+     "预测 F：★★ 键盘臂与鼠标臂第 2 步读数**完全一样** ⟹ 「互斥与激活方式无关」（`pointerdown` 假设死）"
+    ],
+    "caught": true,
+    "expectFailOn": "完全一样"
+   },
+   {
+    "name": "把反向臂读成「预设仍开着」",
+    "why": "★ 「双向互斥的运行时确认」要能抓",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "预测 G：★★ reverse 臂第 2 个面板打开后**预设面板被关掉了** ⟹ 互斥**不是单向的**（与 `:695` 那行交叉写入一致）"
+    ],
+    "caught": true,
+    "expectFailOn": "不是单向的"
+   },
+   {
+    "name": "把某臂的 `win` 读成 0",
+    "why": "★ 「本批三臂没有任何 `sIP` 主人活着」是「并发不靠传播阻断」的前提 ⟹ 对照要能抓",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "逐次：pathOnly 第1次 `win>=1` ⟹ 事件**到达了 window** ⟹ 本批三臂**没有任何 `sIP` 主人活着**"
+    ],
+    "caught": true,
+    "expectFailOn": "到达了 window"
+   }
+  ]
+ },
+ "staticRecomputed": {
+  "bothOpenersFound": true,
+  "pathWritesPreset": true,
+  "presetWritesPath": true,
+  "openCallFound": true,
+  "pathOrderOk": true,
+  "presetOrderOk": true,
+  "pathGate": true,
+  "presetGate": true,
+  "gatesDontCross": true,
+  "ladderDomGuard": true,
+  "ladderBusyGuard": true,
+  "ladderRungs": 4,
+  "escapeOwnerCount": 11,
+  "sIPOwners": [
+   "app/page.tsx:1400",
+   "components/director/DirectorPhoneVcamPanel.tsx:294",
+   "components/director/DirectorViewport.tsx:2711",
+   "components/director/DirectorViewport.tsx:2748"
+  ],
+  "surfacePredInPlane": 1
+ },
+ "runtimeRecomputed": {
+  "unexpectedFailed": [],
+  "arms": {
+   "bothByMouse": [
+    {
+     "arm": "bothByMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondVia": "mouse",
+     "afterSecond": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    },
+    {
+     "arm": "bothByMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondVia": "mouse",
+     "afterSecond": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    }
+   ],
+   "bothByKeyboard": [
+    {
+     "arm": "bothByKeyboard",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondFocus": {
+      "ok": true
+     },
+     "secondVia": "keyboard",
+     "afterSecond": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    },
+    {
+     "arm": "bothByKeyboard",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondFocus": {
+      "ok": true
+     },
+     "secondVia": "keyboard",
+     "afterSecond": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    }
+   ],
+   "reverseByMouse": [
+    {
+     "arm": "reverseByMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "secondVia": "mouse",
+     "afterSecond": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    },
+    {
+     "arm": "reverseByMouse",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": false,
+      "presetExpanded": "true",
+      "presetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": true
+     },
+     "secondVia": "mouse",
+     "afterSecond": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    }
+   ],
+   "pathOnly": [
+    {
+     "arm": "pathOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondVia": "none",
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    },
+    {
+     "arm": "pathOnly",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "pathOpen": false,
+        "presetExpanded": "false",
+        "presetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusIsPreset": false
+       }
+      }
+     ],
+     "afterFirst": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     },
+     "secondVia": "none",
+     "focus": {
+      "ok": true
+     },
+     "stateBefore": {
+      "pathOpen": true,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": true,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    }
+   ]
+  },
+  "keys": [
+   "bothByKeyboard",
+   "bothByMouse",
+   "pathOnly",
+   "reverseByMouse"
+  ],
+  "rounds": 2,
+  "roundsConsistent": true,
+  "pressTotal": 8
+ },
+ "productSelfCheck": {
+  "产物：audit.batch=783": true,
+  "产物：★ audit 记的「普查看起来互不相关」= True": true,
+  "产物：★ audit 记的「预测被否掉」= True": true,
+  "产物：★ audit 记的「激活方式与互斥无关」= True": true,
+  "产物：★ audit 记的「两个方向都互斥」= True": true,
+  "产物：★ audit 记的交叉写入处数 = 独立字面量核对（2 处）": true,
+  "产物：★ audit 记的阶梯「额外门数」= 独立字面量核对（2）": true,
+  "产物：★ audit 记的格数 = 重算值": true,
+  "产物：audit 记的零 FAILED": true
+ },
+ "problems": [],
+ "srcDiff": "**验收器未改 `src/`**（对照全在内存副本上做）"
+}

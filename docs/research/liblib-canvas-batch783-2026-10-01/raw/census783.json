@@ -1,0 +1,1063 @@
+{
+ "batch": 783,
+ "escapeOwners": [
+  {
+   "short": "components/director/DirectorDesk.tsx:570",
+   "file": "src/components/director/DirectorDesk.tsx",
+   "regLine": 570,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 481,
+     "cond": "event.isComposing",
+     "returns": true
+    },
+    {
+     "line": 482,
+     "cond": "event.key === \"Escape\" && activeMobilePanel",
+     "returns": false
+    },
+    {
+     "line": 487,
+     "cond": "isEditable",
+     "returns": true
+    },
+    {
+     "line": 490,
+     "cond": "modifier && event.key.toLowerCase() === \"c\"",
+     "returns": false
+    },
+    {
+     "line": 495,
+     "cond": "modifier && event.key.toLowerCase() === \"v\"",
+     "returns": false
+    },
+    {
+     "line": 496,
+     "cond": "workspaceBusy || document.querySelector(\"[data-director-capture-viewer]\")",
+     "returns": false
+    },
+    {
+     "line": 506,
+     "cond": "modifier && event.key.toLowerCase() === \"z\"",
+     "returns": false
+    },
+    {
+     "line": 508,
+     "cond": "event.shiftKey",
+     "returns": false
+    },
+    {
+     "line": 512,
+     "cond": "modifier && event.key.toLowerCase() === \"y\"",
+     "returns": false
+    },
+    {
+     "line": 517,
+     "cond": "event.key === \"Delete\" || event.key === \"Backspace\"",
+     "returns": false
+    },
+    {
+     "line": 518,
+     "cond": "workspaceBusy || document.querySelector(\"[data-director-capture-viewer]\")",
+     "returns": false
+    },
+    {
+     "line": 525,
+     "cond": "directorState.selectedGroupId",
+     "returns": false
+    },
+    {
+     "line": 540,
+     "cond": "objectIds.length > 0",
+     "returns": false
+    },
+    {
+     "line": 549,
+     "cond": "event.key !== \"Escape\"",
+     "returns": true
+    },
+    {
+     "line": 551,
+     "cond": "document.querySelector(\"[data-director-capture-viewer]\")",
+     "returns": true
+    },
+    {
+     "line": 552,
+     "cond": "workspaceBusy",
+     "returns": true
+    },
+    {
+     "line": 553,
+     "cond": "useDirectorStore.getState().history.activeGesture",
+     "returns": false
+    },
+    {
+     "line": 557,
+     "cond": "exportPanelOpen",
+     "returns": false
+    },
+    {
+     "line": 564,
+     "cond": "followTargetId",
+     "returns": false
+    },
+    {
+     "line": 565,
+     "cond": "activeCameraId",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "capture",
+    "data",
+    "director",
+    "document",
+    "isEditable",
+    "viewer",
+    "workspaceBusy"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": []
+  },
+  {
+   "short": "components/director/DirectorInspector.tsx:406",
+   "file": "src/components/director/DirectorInspector.tsx",
+   "regLine": 406,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 402,
+     "cond": "!viewerCaptureId",
+     "returns": true
+    },
+    {
+     "line": 404,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "viewerCaptureId"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": []
+  },
+  {
+   "short": "components/director/DirectorObjectTree.tsx:213",
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "regLine": 213,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 204,
+     "cond": "!contextMenu",
+     "returns": true
+    },
+    {
+     "line": 206,
+     "cond": "contextMenuRef.current?.contains(event.target as Node)",
+     "returns": true
+    },
+    {
+     "line": 210,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "contextMenu"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": []
+  },
+  {
+   "short": "components/director/DirectorPhoneVcamPanel.tsx:294",
+   "file": "src/components/director/DirectorPhoneVcamPanel.tsx",
+   "regLine": 294,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 287,
+     "cond": "!open",
+     "returns": true
+    },
+    {
+     "line": 289,
+     "cond": "event.key !== \"Escape\"",
+     "returns": true
+    },
+    {
+     "line": 292,
+     "cond": "!recording",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "open"
+   ],
+   "sIP": true,
+   "capture": true,
+   "crossWrites": []
+  },
+  {
+   "short": "components/director/DirectorTimeline.tsx:570",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "regLine": 570,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 554,
+     "cond": "pathMenuLeft === null",
+     "returns": true
+    },
+    {
+     "line": 557,
+     "cond": "target instanceof Node && (pathMenuRef.current?.contains(target) || pathTriggerRef.current?.contains(target))",
+     "returns": false
+    },
+    {
+     "line": 567,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "pathMenuLeft"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": [
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 567,
+     "fn": "closeOnEscape",
+     "fnLine": 566,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 605,
+     "fn": "togglePathMenu",
+     "fnLine": 601,
+     "alsoWrites": [
+      "presetPanelLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 611,
+     "fn": "togglePathMenu",
+     "fnLine": 601,
+     "alsoWrites": [
+      "presetPanelLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 704,
+     "fn": "togglePresetPanel",
+     "fnLine": 695,
+     "alsoWrites": [
+      "presetPanelLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 1543,
+     "fn": "handleVisibilityChange",
+     "fnLine": 762,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 1576,
+     "fn": "handleVisibilityChange",
+     "fnLine": 762,
+     "alsoWrites": [],
+     "inEffect": false
+    }
+   ]
+  },
+  {
+   "short": "components/director/DirectorTimeline.tsx:594",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "regLine": 594,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 578,
+     "cond": "presetPanelLeft === null",
+     "returns": true
+    },
+    {
+     "line": 581,
+     "cond": "target instanceof Node && (presetPanelRef.current?.contains(target) || presetTriggerRef.current?.contains(target))",
+     "returns": false
+    },
+    {
+     "line": 591,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "presetPanelLeft"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": [
+    {
+     "state": "presetPanelLeft",
+     "setterLine": 591,
+     "fn": "closeOnEscape",
+     "fnLine": 590,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "presetPanelLeft",
+     "setterLine": 603,
+     "fn": "togglePathMenu",
+     "fnLine": 601,
+     "alsoWrites": [
+      "pathMenuLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "presetPanelLeft",
+     "setterLine": 698,
+     "fn": "togglePresetPanel",
+     "fnLine": 695,
+     "alsoWrites": [
+      "pathMenuLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "presetPanelLeft",
+     "setterLine": 705,
+     "fn": "togglePresetPanel",
+     "fnLine": 695,
+     "alsoWrites": [
+      "pathMenuLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "presetPanelLeft",
+     "setterLine": 1389,
+     "fn": "handleVisibilityChange",
+     "fnLine": 762,
+     "alsoWrites": [],
+     "inEffect": false
+    }
+   ]
+  },
+  {
+   "short": "components/director/DirectorViewport.tsx:2711",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "regLine": 2711,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 2698,
+     "cond": "!timeline.motionPathDraft",
+     "returns": true
+    },
+    {
+     "line": 2700,
+     "cond": "event.key !== \"Escape\" && event.key !== \"Enter\"",
+     "returns": true
+    },
+    {
+     "line": 2703,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "motionPathDraft",
+    "timeline"
+   ],
+   "sIP": true,
+   "capture": true,
+   "crossWrites": []
+  },
+  {
+   "short": "components/director/DirectorViewport.tsx:2748",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "regLine": 2748,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 2734,
+     "cond": "!modelLibraryOpen",
+     "returns": true
+    },
+    {
+     "line": 2736,
+     "cond": "!(event.target instanceof Node)",
+     "returns": true
+    },
+    {
+     "line": 2737,
+     "cond": "modelLibraryTriggerRef.current?.contains(event.target)",
+     "returns": true
+    },
+    {
+     "line": 2738,
+     "cond": "modelLibraryPanelRef.current?.contains(event.target)",
+     "returns": true
+    },
+    {
+     "line": 2742,
+     "cond": "event.key !== \"Escape\"",
+     "returns": true
+    }
+   ],
+   "ids": [
+    "modelLibraryOpen"
+   ],
+   "sIP": true,
+   "capture": true,
+   "crossWrites": [
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 2745,
+     "fn": "closeOnEscape",
+     "fnLine": 2741,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 2828,
+     "fn": "toggleModelLibrary",
+     "fnLine": 2825,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 2837,
+     "fn": "addModelLibraryItem",
+     "fnLine": 2835,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 2844,
+     "fn": "addModelLibraryItem",
+     "fnLine": 2835,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 3184,
+     "fn": "openLocalModelLibraryImport",
+     "fnLine": 2859,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 3538,
+     "fn": "openLocalModelLibraryImport",
+     "fnLine": 2859,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 3557,
+     "fn": "openLocalModelLibraryImport",
+     "fnLine": 2859,
+     "alsoWrites": [],
+     "inEffect": false
+    }
+   ]
+  },
+  {
+   "short": "components/director/useDirectorGestureBoundary.ts:92",
+   "file": "src/components/director/useDirectorGestureBoundary.ts",
+   "regLine": 92,
+   "scope": "director-plane",
+   "kind": "prop",
+   "conds": [
+    {
+     "line": 92,
+     "cond": "(React prop)",
+     "returns": false
+    }
+   ],
+   "ids": [],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": []
+  },
+  {
+   "short": "app/page.tsx:1400",
+   "file": "src/app/page.tsx",
+   "regLine": 1400,
+   "scope": "mount-host",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 1274,
+     "cond": "hasActiveImageSurface",
+     "returns": false
+    },
+    {
+     "line": 1283,
+     "cond": "blocksBrowserDefault",
+     "returns": false
+    },
+    {
+     "line": 1286,
+     "cond": "event.key !== \"Escape\"",
+     "returns": true
+    },
+    {
+     "line": 1287,
+     "cond": "uiState.imagePreview",
+     "returns": false
+    },
+    {
+     "line": 1288,
+     "cond": "uiState.imageAnnotate",
+     "returns": false
+    },
+    {
+     "line": 1293,
+     "cond": "event.isComposing || isLibTVEditableCommandTarget(event.target)",
+     "returns": true
+    },
+    {
+     "line": 1294,
+     "cond": "!resolveLibTVBlockingForegroundSurface(uiState)",
+     "returns": true
+    },
+    {
+     "line": 1296,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    },
+    {
+     "line": 1303,
+     "cond": "isLibTVCanvasCommandKey(event)",
+     "returns": false
+    },
+    {
+     "line": 1310,
+     "cond": "event.isComposing || isLibTVEditableCommandTarget(event.target)",
+     "returns": true
+    },
+    {
+     "line": 1312,
+     "cond": "uiState.activeDirectorNodeId",
+     "returns": true
+    },
+    {
+     "line": 1313,
+     "cond": "resolveLibTVBlockingForegroundSurface(uiState)",
+     "returns": true
+    },
+    {
+     "line": 1317,
+     "cond": "event.code === \"Space\"",
+     "returns": false
+    },
+    {
+     "line": 1319,
+     "cond": "!event.repeat",
+     "returns": false
+    },
+    {
+     "line": 1322,
+     "cond": "event.key === \"Delete\" || event.key === \"Backspace\"",
+     "returns": false
+    },
+    {
+     "line": 1324,
+     "cond": "selection.nodeIds.length > 0",
+     "returns": false
+    },
+    {
+     "line": 1329,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    },
+    {
+     "line": 1330,
+     "cond": "uiState.isFollowingSession",
+     "returns": false
+    },
+    {
+     "line": 1336,
+     "cond": "selection.kind !== \"none\"",
+     "returns": false
+    },
+    {
+     "line": 1342,
+     "cond": "modifier && event.key.toLowerCase() === \"z\"",
+     "returns": false
+    },
+    {
+     "line": 1344,
+     "cond": "event.shiftKey",
+     "returns": false
+    },
+    {
+     "line": 1347,
+     "cond": "modifier && event.key.toLowerCase() === \"y\"",
+     "returns": false
+    },
+    {
+     "line": 1351,
+     "cond": "modifier && event.key.toLowerCase() === \"d\"",
+     "returns": false
+    },
+    {
+     "line": 1353,
+     "cond": "selection.nodeIds.length > 0",
+     "returns": false
+    },
+    {
+     "line": 1358,
+     "cond": "event.key === \"Tab\"",
+     "returns": false
+    },
+    {
+     "line": 1362,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"g\"",
+     "returns": false
+    },
+    {
+     "line": 1365,
+     "cond": "event.shiftKey",
+     "returns": false
+    },
+    {
+     "line": 1368,
+     "cond": "event.altKey && event.shiftKey && event.key.toLowerCase() === \"f\"",
+     "returns": false
+    },
+    {
+     "line": 1372,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"v\"",
+     "returns": false
+    },
+    {
+     "line": 1373,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"h\"",
+     "returns": false
+    },
+    {
+     "line": 1374,
+     "cond": "modifier && event.key === \"0\"",
+     "returns": false
+    },
+    {
+     "line": 1378,
+     "cond": "modifier && (event.key === \"+\" || event.key === \"=\")",
+     "returns": false
+    },
+    {
+     "line": 1382,
+     "cond": "modifier && event.key === \"-\"",
+     "returns": false
+    },
+    {
+     "line": 1389,
+     "cond": "uiState.activeDirectorNodeId || uiState.imageAnnotate || uiState.imageElementEdit",
+     "returns": false
+    },
+    {
+     "line": 1393,
+     "cond": "event.code === \"Space\"",
+     "returns": false
+    },
+    {
+     "line": 1397,
+     "cond": "document.hidden",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "activeDirectorNodeId",
+    "resolveLibTVBlockingForegroundSurface",
+    "uiState"
+   ],
+   "sIP": true,
+   "capture": true,
+   "crossWrites": []
+  },
+  {
+   "short": "app/page.tsx:1401",
+   "file": "src/app/page.tsx",
+   "regLine": 1401,
+   "scope": "mount-host",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 1274,
+     "cond": "hasActiveImageSurface",
+     "returns": false
+    },
+    {
+     "line": 1283,
+     "cond": "blocksBrowserDefault",
+     "returns": false
+    },
+    {
+     "line": 1286,
+     "cond": "event.key !== \"Escape\"",
+     "returns": true
+    },
+    {
+     "line": 1287,
+     "cond": "uiState.imagePreview",
+     "returns": false
+    },
+    {
+     "line": 1288,
+     "cond": "uiState.imageAnnotate",
+     "returns": false
+    },
+    {
+     "line": 1293,
+     "cond": "event.isComposing || isLibTVEditableCommandTarget(event.target)",
+     "returns": true
+    },
+    {
+     "line": 1294,
+     "cond": "!resolveLibTVBlockingForegroundSurface(uiState)",
+     "returns": true
+    },
+    {
+     "line": 1296,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    },
+    {
+     "line": 1303,
+     "cond": "isLibTVCanvasCommandKey(event)",
+     "returns": false
+    },
+    {
+     "line": 1310,
+     "cond": "event.isComposing || isLibTVEditableCommandTarget(event.target)",
+     "returns": true
+    },
+    {
+     "line": 1312,
+     "cond": "uiState.activeDirectorNodeId",
+     "returns": true
+    },
+    {
+     "line": 1313,
+     "cond": "resolveLibTVBlockingForegroundSurface(uiState)",
+     "returns": true
+    },
+    {
+     "line": 1317,
+     "cond": "event.code === \"Space\"",
+     "returns": false
+    },
+    {
+     "line": 1319,
+     "cond": "!event.repeat",
+     "returns": false
+    },
+    {
+     "line": 1322,
+     "cond": "event.key === \"Delete\" || event.key === \"Backspace\"",
+     "returns": false
+    },
+    {
+     "line": 1324,
+     "cond": "selection.nodeIds.length > 0",
+     "returns": false
+    },
+    {
+     "line": 1329,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    },
+    {
+     "line": 1330,
+     "cond": "uiState.isFollowingSession",
+     "returns": false
+    },
+    {
+     "line": 1336,
+     "cond": "selection.kind !== \"none\"",
+     "returns": false
+    },
+    {
+     "line": 1342,
+     "cond": "modifier && event.key.toLowerCase() === \"z\"",
+     "returns": false
+    },
+    {
+     "line": 1344,
+     "cond": "event.shiftKey",
+     "returns": false
+    },
+    {
+     "line": 1347,
+     "cond": "modifier && event.key.toLowerCase() === \"y\"",
+     "returns": false
+    },
+    {
+     "line": 1351,
+     "cond": "modifier && event.key.toLowerCase() === \"d\"",
+     "returns": false
+    },
+    {
+     "line": 1353,
+     "cond": "selection.nodeIds.length > 0",
+     "returns": false
+    },
+    {
+     "line": 1358,
+     "cond": "event.key === \"Tab\"",
+     "returns": false
+    },
+    {
+     "line": 1362,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"g\"",
+     "returns": false
+    },
+    {
+     "line": 1365,
+     "cond": "event.shiftKey",
+     "returns": false
+    },
+    {
+     "line": 1368,
+     "cond": "event.altKey && event.shiftKey && event.key.toLowerCase() === \"f\"",
+     "returns": false
+    },
+    {
+     "line": 1372,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"v\"",
+     "returns": false
+    },
+    {
+     "line": 1373,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"h\"",
+     "returns": false
+    },
+    {
+     "line": 1374,
+     "cond": "modifier && event.key === \"0\"",
+     "returns": false
+    },
+    {
+     "line": 1378,
+     "cond": "modifier && (event.key === \"+\" || event.key === \"=\")",
+     "returns": false
+    },
+    {
+     "line": 1382,
+     "cond": "modifier && event.key === \"-\"",
+     "returns": false
+    },
+    {
+     "line": 1389,
+     "cond": "uiState.activeDirectorNodeId || uiState.imageAnnotate || uiState.imageElementEdit",
+     "returns": false
+    },
+    {
+     "line": 1393,
+     "cond": "event.code === \"Space\"",
+     "returns": false
+    },
+    {
+     "line": 1397,
+     "cond": "document.hidden",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "activeDirectorNodeId",
+    "resolveLibTVBlockingForegroundSurface",
+    "uiState"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": []
+  }
+ ],
+ "gateStates": {
+  "capture": [
+   "components/director/DirectorDesk.tsx:570"
+  ],
+  "data": [
+   "components/director/DirectorDesk.tsx:570"
+  ],
+  "director": [
+   "components/director/DirectorDesk.tsx:570"
+  ],
+  "document": [
+   "components/director/DirectorDesk.tsx:570"
+  ],
+  "isEditable": [
+   "components/director/DirectorDesk.tsx:570"
+  ],
+  "viewer": [
+   "components/director/DirectorDesk.tsx:570"
+  ],
+  "workspaceBusy": [
+   "components/director/DirectorDesk.tsx:570"
+  ],
+  "viewerCaptureId": [
+   "components/director/DirectorInspector.tsx:406"
+  ],
+  "contextMenu": [
+   "components/director/DirectorObjectTree.tsx:213"
+  ],
+  "open": [
+   "components/director/DirectorPhoneVcamPanel.tsx:294"
+  ],
+  "pathMenuLeft": [
+   "components/director/DirectorTimeline.tsx:570"
+  ],
+  "presetPanelLeft": [
+   "components/director/DirectorTimeline.tsx:594"
+  ],
+  "motionPathDraft": [
+   "components/director/DirectorViewport.tsx:2711"
+  ],
+  "timeline": [
+   "components/director/DirectorViewport.tsx:2711"
+  ],
+  "modelLibraryOpen": [
+   "components/director/DirectorViewport.tsx:2748"
+  ],
+  "activeDirectorNodeId": [
+   "app/page.tsx:1400",
+   "app/page.tsx:1401"
+  ],
+  "resolveLibTVBlockingForegroundSurface": [
+   "app/page.tsx:1400",
+   "app/page.tsx:1401"
+  ],
+  "uiState": [
+   "app/page.tsx:1400",
+   "app/page.tsx:1401"
+  ]
+ },
+ "sharedGateStates": {
+  "activeDirectorNodeId": [
+   "app/page.tsx:1400",
+   "app/page.tsx:1401"
+  ],
+  "resolveLibTVBlockingForegroundSurface": [
+   "app/page.tsx:1400",
+   "app/page.tsx:1401"
+  ],
+  "uiState": [
+   "app/page.tsx:1400",
+   "app/page.tsx:1401"
+  ]
+ },
+ "crossWriteFiles": [
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "pairs": [
+    [
+     "pathMenuLeft",
+     [],
+     "closeOnEscape",
+     566
+    ],
+    [
+     "pathMenuLeft",
+     [],
+     "handleVisibilityChange",
+     762
+    ],
+    [
+     "pathMenuLeft",
+     [
+      "presetPanelLeft"
+     ],
+     "togglePathMenu",
+     601
+    ],
+    [
+     "pathMenuLeft",
+     [
+      "presetPanelLeft"
+     ],
+     "togglePresetPanel",
+     695
+    ],
+    [
+     "presetPanelLeft",
+     [],
+     "closeOnEscape",
+     590
+    ],
+    [
+     "presetPanelLeft",
+     [],
+     "handleVisibilityChange",
+     762
+    ],
+    [
+     "presetPanelLeft",
+     [
+      "pathMenuLeft"
+     ],
+     "togglePathMenu",
+     601
+    ],
+    [
+     "presetPanelLeft",
+     [
+      "pathMenuLeft"
+     ],
+     "togglePresetPanel",
+     695
+    ]
+   ]
+  }
+ ],
+ "surfaceGated": [
+  "app/page.tsx:1400",
+  "app/page.tsx:1401"
+ ],
+ "sharedEffectOwners": [
+  "app/page.tsx:1400",
+  "app/page.tsx:1401"
+ ],
+ "method": "★ 只**采集**：每条 `if (…)` 的条件用**括号配对**取、记行号；**不做门分类**（第一版分类学与两两判据都因噪声失败）。★ 另加一层 `crossWrites`：找每个门状态的写入点落在哪个函数、那个函数**有没有顺手写另一个门状态** —— 不变量就藏在这里。",
+ "notCovered": [
+  "门的**可满足性**静态不可判 ⟹ 运行时的事",
+  "键守卫 / 分发守卫 / 输入过滤器**不分类**",
+  "本普查**只扫同一个文件内**的交叉写入"
+ ]
+}

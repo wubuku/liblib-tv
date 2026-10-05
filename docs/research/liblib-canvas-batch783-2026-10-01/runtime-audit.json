@@ -1,0 +1,1224 @@
+{
+ "batch": 783,
+ "topic": "11 个 `Escape` 主人「能不能同时活着」：**预测被否**，真机制是打开者里的双向交叉写入 ⟹「门互相独立」≠「可共活」",
+ "generatedBy": "probes/mk783audit.py",
+ "sources": {
+  "census783.json": {
+   "sha16": "bb3149ca6ba034d8",
+   "owners": 11
+  },
+  "vb783a.json": {
+   "sha16": "778c08a01a32dfbf",
+   "rounds": 2,
+   "armsPerRound": 4
+  }
+ },
+ "owners": [
+  {
+   "short": "components/director/DirectorDesk.tsx:570",
+   "file": "src/components/director/DirectorDesk.tsx",
+   "regLine": 570,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 481,
+     "cond": "event.isComposing",
+     "returns": true
+    },
+    {
+     "line": 482,
+     "cond": "event.key === \"Escape\" && activeMobilePanel",
+     "returns": false
+    },
+    {
+     "line": 487,
+     "cond": "isEditable",
+     "returns": true
+    },
+    {
+     "line": 490,
+     "cond": "modifier && event.key.toLowerCase() === \"c\"",
+     "returns": false
+    },
+    {
+     "line": 495,
+     "cond": "modifier && event.key.toLowerCase() === \"v\"",
+     "returns": false
+    },
+    {
+     "line": 496,
+     "cond": "workspaceBusy || document.querySelector(\"[data-director-capture-viewer]\")",
+     "returns": false
+    },
+    {
+     "line": 506,
+     "cond": "modifier && event.key.toLowerCase() === \"z\"",
+     "returns": false
+    },
+    {
+     "line": 508,
+     "cond": "event.shiftKey",
+     "returns": false
+    },
+    {
+     "line": 512,
+     "cond": "modifier && event.key.toLowerCase() === \"y\"",
+     "returns": false
+    },
+    {
+     "line": 517,
+     "cond": "event.key === \"Delete\" || event.key === \"Backspace\"",
+     "returns": false
+    },
+    {
+     "line": 518,
+     "cond": "workspaceBusy || document.querySelector(\"[data-director-capture-viewer]\")",
+     "returns": false
+    },
+    {
+     "line": 525,
+     "cond": "directorState.selectedGroupId",
+     "returns": false
+    },
+    {
+     "line": 540,
+     "cond": "objectIds.length > 0",
+     "returns": false
+    },
+    {
+     "line": 549,
+     "cond": "event.key !== \"Escape\"",
+     "returns": true
+    },
+    {
+     "line": 551,
+     "cond": "document.querySelector(\"[data-director-capture-viewer]\")",
+     "returns": true
+    },
+    {
+     "line": 552,
+     "cond": "workspaceBusy",
+     "returns": true
+    },
+    {
+     "line": 553,
+     "cond": "useDirectorStore.getState().history.activeGesture",
+     "returns": false
+    },
+    {
+     "line": 557,
+     "cond": "exportPanelOpen",
+     "returns": false
+    },
+    {
+     "line": 564,
+     "cond": "followTargetId",
+     "returns": false
+    },
+    {
+     "line": 565,
+     "cond": "activeCameraId",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "capture",
+    "data",
+    "director",
+    "document",
+    "isEditable",
+    "viewer",
+    "workspaceBusy"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": []
+  },
+  {
+   "short": "components/director/DirectorInspector.tsx:406",
+   "file": "src/components/director/DirectorInspector.tsx",
+   "regLine": 406,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 402,
+     "cond": "!viewerCaptureId",
+     "returns": true
+    },
+    {
+     "line": 404,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "viewerCaptureId"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": []
+  },
+  {
+   "short": "components/director/DirectorObjectTree.tsx:213",
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "regLine": 213,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 204,
+     "cond": "!contextMenu",
+     "returns": true
+    },
+    {
+     "line": 206,
+     "cond": "contextMenuRef.current?.contains(event.target as Node)",
+     "returns": true
+    },
+    {
+     "line": 210,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "contextMenu"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": []
+  },
+  {
+   "short": "components/director/DirectorPhoneVcamPanel.tsx:294",
+   "file": "src/components/director/DirectorPhoneVcamPanel.tsx",
+   "regLine": 294,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 287,
+     "cond": "!open",
+     "returns": true
+    },
+    {
+     "line": 289,
+     "cond": "event.key !== \"Escape\"",
+     "returns": true
+    },
+    {
+     "line": 292,
+     "cond": "!recording",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "open"
+   ],
+   "sIP": true,
+   "capture": true,
+   "crossWrites": []
+  },
+  {
+   "short": "components/director/DirectorTimeline.tsx:570",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "regLine": 570,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 554,
+     "cond": "pathMenuLeft === null",
+     "returns": true
+    },
+    {
+     "line": 557,
+     "cond": "target instanceof Node && (pathMenuRef.current?.contains(target) || pathTriggerRef.current?.contains(target))",
+     "returns": false
+    },
+    {
+     "line": 567,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "pathMenuLeft"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": [
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 567,
+     "fn": "closeOnEscape",
+     "fnLine": 566,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 605,
+     "fn": "togglePathMenu",
+     "fnLine": 601,
+     "alsoWrites": [
+      "presetPanelLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 611,
+     "fn": "togglePathMenu",
+     "fnLine": 601,
+     "alsoWrites": [
+      "presetPanelLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 704,
+     "fn": "togglePresetPanel",
+     "fnLine": 695,
+     "alsoWrites": [
+      "presetPanelLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 1543,
+     "fn": "handleVisibilityChange",
+     "fnLine": 762,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "pathMenuLeft",
+     "setterLine": 1576,
+     "fn": "handleVisibilityChange",
+     "fnLine": 762,
+     "alsoWrites": [],
+     "inEffect": false
+    }
+   ]
+  },
+  {
+   "short": "components/director/DirectorTimeline.tsx:594",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "regLine": 594,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 578,
+     "cond": "presetPanelLeft === null",
+     "returns": true
+    },
+    {
+     "line": 581,
+     "cond": "target instanceof Node && (presetPanelRef.current?.contains(target) || presetTriggerRef.current?.contains(target))",
+     "returns": false
+    },
+    {
+     "line": 591,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "presetPanelLeft"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": [
+    {
+     "state": "presetPanelLeft",
+     "setterLine": 591,
+     "fn": "closeOnEscape",
+     "fnLine": 590,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "presetPanelLeft",
+     "setterLine": 603,
+     "fn": "togglePathMenu",
+     "fnLine": 601,
+     "alsoWrites": [
+      "pathMenuLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "presetPanelLeft",
+     "setterLine": 698,
+     "fn": "togglePresetPanel",
+     "fnLine": 695,
+     "alsoWrites": [
+      "pathMenuLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "presetPanelLeft",
+     "setterLine": 705,
+     "fn": "togglePresetPanel",
+     "fnLine": 695,
+     "alsoWrites": [
+      "pathMenuLeft"
+     ],
+     "inEffect": false
+    },
+    {
+     "state": "presetPanelLeft",
+     "setterLine": 1389,
+     "fn": "handleVisibilityChange",
+     "fnLine": 762,
+     "alsoWrites": [],
+     "inEffect": false
+    }
+   ]
+  },
+  {
+   "short": "components/director/DirectorViewport.tsx:2711",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "regLine": 2711,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 2698,
+     "cond": "!timeline.motionPathDraft",
+     "returns": true
+    },
+    {
+     "line": 2700,
+     "cond": "event.key !== \"Escape\" && event.key !== \"Enter\"",
+     "returns": true
+    },
+    {
+     "line": 2703,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "motionPathDraft",
+    "timeline"
+   ],
+   "sIP": true,
+   "capture": true,
+   "crossWrites": []
+  },
+  {
+   "short": "components/director/DirectorViewport.tsx:2748",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "regLine": 2748,
+   "scope": "director-plane",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 2734,
+     "cond": "!modelLibraryOpen",
+     "returns": true
+    },
+    {
+     "line": 2736,
+     "cond": "!(event.target instanceof Node)",
+     "returns": true
+    },
+    {
+     "line": 2737,
+     "cond": "modelLibraryTriggerRef.current?.contains(event.target)",
+     "returns": true
+    },
+    {
+     "line": 2738,
+     "cond": "modelLibraryPanelRef.current?.contains(event.target)",
+     "returns": true
+    },
+    {
+     "line": 2742,
+     "cond": "event.key !== \"Escape\"",
+     "returns": true
+    }
+   ],
+   "ids": [
+    "modelLibraryOpen"
+   ],
+   "sIP": true,
+   "capture": true,
+   "crossWrites": [
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 2745,
+     "fn": "closeOnEscape",
+     "fnLine": 2741,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 2828,
+     "fn": "toggleModelLibrary",
+     "fnLine": 2825,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 2837,
+     "fn": "addModelLibraryItem",
+     "fnLine": 2835,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 2844,
+     "fn": "addModelLibraryItem",
+     "fnLine": 2835,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 3184,
+     "fn": "openLocalModelLibraryImport",
+     "fnLine": 2859,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 3538,
+     "fn": "openLocalModelLibraryImport",
+     "fnLine": 2859,
+     "alsoWrites": [],
+     "inEffect": false
+    },
+    {
+     "state": "modelLibraryOpen",
+     "setterLine": 3557,
+     "fn": "openLocalModelLibraryImport",
+     "fnLine": 2859,
+     "alsoWrites": [],
+     "inEffect": false
+    }
+   ]
+  },
+  {
+   "short": "components/director/useDirectorGestureBoundary.ts:92",
+   "file": "src/components/director/useDirectorGestureBoundary.ts",
+   "regLine": 92,
+   "scope": "director-plane",
+   "kind": "prop",
+   "conds": [
+    {
+     "line": 92,
+     "cond": "(React prop)",
+     "returns": false
+    }
+   ],
+   "ids": [],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": []
+  },
+  {
+   "short": "app/page.tsx:1400",
+   "file": "src/app/page.tsx",
+   "regLine": 1400,
+   "scope": "mount-host",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 1274,
+     "cond": "hasActiveImageSurface",
+     "returns": false
+    },
+    {
+     "line": 1283,
+     "cond": "blocksBrowserDefault",
+     "returns": false
+    },
+    {
+     "line": 1286,
+     "cond": "event.key !== \"Escape\"",
+     "returns": true
+    },
+    {
+     "line": 1287,
+     "cond": "uiState.imagePreview",
+     "returns": false
+    },
+    {
+     "line": 1288,
+     "cond": "uiState.imageAnnotate",
+     "returns": false
+    },
+    {
+     "line": 1293,
+     "cond": "event.isComposing || isLibTVEditableCommandTarget(event.target)",
+     "returns": true
+    },
+    {
+     "line": 1294,
+     "cond": "!resolveLibTVBlockingForegroundSurface(uiState)",
+     "returns": true
+    },
+    {
+     "line": 1296,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    },
+    {
+     "line": 1303,
+     "cond": "isLibTVCanvasCommandKey(event)",
+     "returns": false
+    },
+    {
+     "line": 1310,
+     "cond": "event.isComposing || isLibTVEditableCommandTarget(event.target)",
+     "returns": true
+    },
+    {
+     "line": 1312,
+     "cond": "uiState.activeDirectorNodeId",
+     "returns": true
+    },
+    {
+     "line": 1313,
+     "cond": "resolveLibTVBlockingForegroundSurface(uiState)",
+     "returns": true
+    },
+    {
+     "line": 1317,
+     "cond": "event.code === \"Space\"",
+     "returns": false
+    },
+    {
+     "line": 1319,
+     "cond": "!event.repeat",
+     "returns": false
+    },
+    {
+     "line": 1322,
+     "cond": "event.key === \"Delete\" || event.key === \"Backspace\"",
+     "returns": false
+    },
+    {
+     "line": 1324,
+     "cond": "selection.nodeIds.length > 0",
+     "returns": false
+    },
+    {
+     "line": 1329,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    },
+    {
+     "line": 1330,
+     "cond": "uiState.isFollowingSession",
+     "returns": false
+    },
+    {
+     "line": 1336,
+     "cond": "selection.kind !== \"none\"",
+     "returns": false
+    },
+    {
+     "line": 1342,
+     "cond": "modifier && event.key.toLowerCase() === \"z\"",
+     "returns": false
+    },
+    {
+     "line": 1344,
+     "cond": "event.shiftKey",
+     "returns": false
+    },
+    {
+     "line": 1347,
+     "cond": "modifier && event.key.toLowerCase() === \"y\"",
+     "returns": false
+    },
+    {
+     "line": 1351,
+     "cond": "modifier && event.key.toLowerCase() === \"d\"",
+     "returns": false
+    },
+    {
+     "line": 1353,
+     "cond": "selection.nodeIds.length > 0",
+     "returns": false
+    },
+    {
+     "line": 1358,
+     "cond": "event.key === \"Tab\"",
+     "returns": false
+    },
+    {
+     "line": 1362,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"g\"",
+     "returns": false
+    },
+    {
+     "line": 1365,
+     "cond": "event.shiftKey",
+     "returns": false
+    },
+    {
+     "line": 1368,
+     "cond": "event.altKey && event.shiftKey && event.key.toLowerCase() === \"f\"",
+     "returns": false
+    },
+    {
+     "line": 1372,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"v\"",
+     "returns": false
+    },
+    {
+     "line": 1373,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"h\"",
+     "returns": false
+    },
+    {
+     "line": 1374,
+     "cond": "modifier && event.key === \"0\"",
+     "returns": false
+    },
+    {
+     "line": 1378,
+     "cond": "modifier && (event.key === \"+\" || event.key === \"=\")",
+     "returns": false
+    },
+    {
+     "line": 1382,
+     "cond": "modifier && event.key === \"-\"",
+     "returns": false
+    },
+    {
+     "line": 1389,
+     "cond": "uiState.activeDirectorNodeId || uiState.imageAnnotate || uiState.imageElementEdit",
+     "returns": false
+    },
+    {
+     "line": 1393,
+     "cond": "event.code === \"Space\"",
+     "returns": false
+    },
+    {
+     "line": 1397,
+     "cond": "document.hidden",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "activeDirectorNodeId",
+    "resolveLibTVBlockingForegroundSurface",
+    "uiState"
+   ],
+   "sIP": true,
+   "capture": true,
+   "crossWrites": []
+  },
+  {
+   "short": "app/page.tsx:1401",
+   "file": "src/app/page.tsx",
+   "regLine": 1401,
+   "scope": "mount-host",
+   "kind": "effect",
+   "conds": [
+    {
+     "line": 1274,
+     "cond": "hasActiveImageSurface",
+     "returns": false
+    },
+    {
+     "line": 1283,
+     "cond": "blocksBrowserDefault",
+     "returns": false
+    },
+    {
+     "line": 1286,
+     "cond": "event.key !== \"Escape\"",
+     "returns": true
+    },
+    {
+     "line": 1287,
+     "cond": "uiState.imagePreview",
+     "returns": false
+    },
+    {
+     "line": 1288,
+     "cond": "uiState.imageAnnotate",
+     "returns": false
+    },
+    {
+     "line": 1293,
+     "cond": "event.isComposing || isLibTVEditableCommandTarget(event.target)",
+     "returns": true
+    },
+    {
+     "line": 1294,
+     "cond": "!resolveLibTVBlockingForegroundSurface(uiState)",
+     "returns": true
+    },
+    {
+     "line": 1296,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    },
+    {
+     "line": 1303,
+     "cond": "isLibTVCanvasCommandKey(event)",
+     "returns": false
+    },
+    {
+     "line": 1310,
+     "cond": "event.isComposing || isLibTVEditableCommandTarget(event.target)",
+     "returns": true
+    },
+    {
+     "line": 1312,
+     "cond": "uiState.activeDirectorNodeId",
+     "returns": true
+    },
+    {
+     "line": 1313,
+     "cond": "resolveLibTVBlockingForegroundSurface(uiState)",
+     "returns": true
+    },
+    {
+     "line": 1317,
+     "cond": "event.code === \"Space\"",
+     "returns": false
+    },
+    {
+     "line": 1319,
+     "cond": "!event.repeat",
+     "returns": false
+    },
+    {
+     "line": 1322,
+     "cond": "event.key === \"Delete\" || event.key === \"Backspace\"",
+     "returns": false
+    },
+    {
+     "line": 1324,
+     "cond": "selection.nodeIds.length > 0",
+     "returns": false
+    },
+    {
+     "line": 1329,
+     "cond": "event.key === \"Escape\"",
+     "returns": false
+    },
+    {
+     "line": 1330,
+     "cond": "uiState.isFollowingSession",
+     "returns": false
+    },
+    {
+     "line": 1336,
+     "cond": "selection.kind !== \"none\"",
+     "returns": false
+    },
+    {
+     "line": 1342,
+     "cond": "modifier && event.key.toLowerCase() === \"z\"",
+     "returns": false
+    },
+    {
+     "line": 1344,
+     "cond": "event.shiftKey",
+     "returns": false
+    },
+    {
+     "line": 1347,
+     "cond": "modifier && event.key.toLowerCase() === \"y\"",
+     "returns": false
+    },
+    {
+     "line": 1351,
+     "cond": "modifier && event.key.toLowerCase() === \"d\"",
+     "returns": false
+    },
+    {
+     "line": 1353,
+     "cond": "selection.nodeIds.length > 0",
+     "returns": false
+    },
+    {
+     "line": 1358,
+     "cond": "event.key === \"Tab\"",
+     "returns": false
+    },
+    {
+     "line": 1362,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"g\"",
+     "returns": false
+    },
+    {
+     "line": 1365,
+     "cond": "event.shiftKey",
+     "returns": false
+    },
+    {
+     "line": 1368,
+     "cond": "event.altKey && event.shiftKey && event.key.toLowerCase() === \"f\"",
+     "returns": false
+    },
+    {
+     "line": 1372,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"v\"",
+     "returns": false
+    },
+    {
+     "line": 1373,
+     "cond": "!modifier && !event.altKey && event.key.toLowerCase() === \"h\"",
+     "returns": false
+    },
+    {
+     "line": 1374,
+     "cond": "modifier && event.key === \"0\"",
+     "returns": false
+    },
+    {
+     "line": 1378,
+     "cond": "modifier && (event.key === \"+\" || event.key === \"=\")",
+     "returns": false
+    },
+    {
+     "line": 1382,
+     "cond": "modifier && event.key === \"-\"",
+     "returns": false
+    },
+    {
+     "line": 1389,
+     "cond": "uiState.activeDirectorNodeId || uiState.imageAnnotate || uiState.imageElementEdit",
+     "returns": false
+    },
+    {
+     "line": 1393,
+     "cond": "event.code === \"Space\"",
+     "returns": false
+    },
+    {
+     "line": 1397,
+     "cond": "document.hidden",
+     "returns": false
+    }
+   ],
+   "ids": [
+    "activeDirectorNodeId",
+    "resolveLibTVBlockingForegroundSurface",
+    "uiState"
+   ],
+   "sIP": false,
+   "capture": false,
+   "crossWrites": []
+  }
+ ],
+ "coLive": {
+  "censusLooksIndependent": true,
+  "pair": [
+   "components/director/DirectorTimeline.tsx:570",
+   "components/director/DirectorTimeline.tsx:594"
+  ],
+  "gateStates": [
+   [
+    "pathMenuLeft"
+   ],
+   [
+    "presetPanelLeft"
+   ]
+  ],
+  "crossWrites": [
+   {
+    "fn": "togglePathMenu",
+    "fnLine": 601,
+    "state": "pathMenuLeft",
+    "alsoWrites": [
+     "presetPanelLeft"
+    ]
+   },
+   {
+    "fn": "togglePresetPanel",
+    "fnLine": 695,
+    "state": "pathMenuLeft",
+    "alsoWrites": [
+     "presetPanelLeft"
+    ]
+   }
+  ],
+  "runtimeBothOrdersExclusive": true,
+  "activationMethodIrrelevant": true,
+  "predictionRefuted": true
+ },
+ "runtime": {
+  "bothByMouse": {
+   "first": {
+    "pathOpen": true,
+    "presetExpanded": "false",
+    "presetOpen": false,
+    "exportOpen": true,
+    "deskOpen": true,
+    "focusTag": "BUTTON",
+    "focusIsPreset": false
+   },
+   "press": [
+    {
+     "n": 1,
+     "read": {
+      "cap": 1,
+      "win": 1
+     },
+     "state": {
+      "pathOpen": false,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": false,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    }
+   ],
+   "second": {
+    "pathOpen": false,
+    "presetExpanded": "true",
+    "presetOpen": true,
+    "exportOpen": true,
+    "deskOpen": true,
+    "focusTag": "BUTTON",
+    "focusIsPreset": true
+   }
+  },
+  "bothByKeyboard": {
+   "first": {
+    "pathOpen": true,
+    "presetExpanded": "false",
+    "presetOpen": false,
+    "exportOpen": true,
+    "deskOpen": true,
+    "focusTag": "BUTTON",
+    "focusIsPreset": false
+   },
+   "press": [
+    {
+     "n": 1,
+     "read": {
+      "cap": 1,
+      "win": 1
+     },
+     "state": {
+      "pathOpen": false,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": false,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    }
+   ],
+   "second": {
+    "pathOpen": false,
+    "presetExpanded": "true",
+    "presetOpen": true,
+    "exportOpen": true,
+    "deskOpen": true,
+    "focusTag": "BUTTON",
+    "focusIsPreset": true
+   }
+  },
+  "reverseByMouse": {
+   "first": {
+    "pathOpen": false,
+    "presetExpanded": "true",
+    "presetOpen": true,
+    "exportOpen": true,
+    "deskOpen": true,
+    "focusTag": "BUTTON",
+    "focusIsPreset": true
+   },
+   "press": [
+    {
+     "n": 1,
+     "read": {
+      "cap": 1,
+      "win": 1
+     },
+     "state": {
+      "pathOpen": false,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": false,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    }
+   ],
+   "second": {
+    "pathOpen": true,
+    "presetExpanded": "false",
+    "presetOpen": false,
+    "exportOpen": true,
+    "deskOpen": true,
+    "focusTag": "BUTTON",
+    "focusIsPreset": false
+   }
+  },
+  "pathOnly": {
+   "first": {
+    "pathOpen": true,
+    "presetExpanded": "false",
+    "presetOpen": false,
+    "exportOpen": true,
+    "deskOpen": true,
+    "focusTag": "BUTTON",
+    "focusIsPreset": false
+   },
+   "press": [
+    {
+     "n": 1,
+     "read": {
+      "cap": 1,
+      "win": 1
+     },
+     "state": {
+      "pathOpen": false,
+      "presetExpanded": "false",
+      "presetOpen": false,
+      "exportOpen": false,
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusIsPreset": false
+     }
+    }
+   ]
+  }
+ },
+ "verdict": {
+  "我的预测": "★ **被否掉** —— 键盘激活**也**会关掉第一个面板，「唯一的互斥机制是 `pointerdown`」不成立",
+  "真机制": "★ **打开者里的双向显式交叉写入**（`togglePathMenu:601`、`togglePresetPanel:695`）",
+  "782 普查的效力": "★ **受限** —— 普查给的是「形态」与「门」，**不是「可达的共活集合」**；互斥不变量写在**打开者**里，任何只看主人的普查都看不见",
+  "D8 的那条伤害": "★ **撤回**（C783-1）—— 两者永不共活，D8 不会造成「一个关不掉」；D8a 的另外两半不受影响",
+  "779 的阶梯形状": "★ **不完整**（C783-2）—— 是「**两道门 + 四档**」，不是「四档」",
+  "一次 Escape 关几个": "★ **两个**（面板 + 阶梯那档），四个臂全部 `cap>=1` 且 `win>=1` ⟹ 不靠传播阻断"
+ },
+ "comparability": {
+  "rounds": 2,
+  "armsPerRound": 4,
+  "cells": 8,
+  "allConsistent": true,
+  "censusMethod": "★ 只**采集**：每条 `if (…)` 的条件用**括号配对**取、记行号；**不做门分类**（第一版分类学与两两判据都因噪声失败）。★ 另加一层 `crossWrites`：找每个门状态的写入点落在哪个函数、那个函数**有没有顺手写另一个门状态** —— 不变量就藏在这里。",
+  "censusNotCovered": [
+   "门的**可满足性**静态不可判 ⟹ 运行时的事",
+   "键守卫 / 分发守卫 / 输入过滤器**不分类**",
+   "本普查**只扫同一个文件内**的交叉写入"
+  ],
+  "retryPolicy": "每格最多试 3 次（含第一次）；`tries`/`retried` 记进 raw 但**排除在两轮一致性比较之外**。",
+  "retryStats": {
+   "cells": 8,
+   "retriedCells": 0,
+   "maxTries": 1
+  },
+  "boundary": "★ **本批未改 `src/`，也没有任何注入。** 只开/关两个时间轴面板与按 `Escape`，**不做任何破坏性操作**（不点删除/提交/连接/新增机位/导入导出，不做付费或真实生图生视频）；每格开头 `fresh()` 清 localStorage ⟹ 不留残留。"
+ },
+ "results": {
+  "escapeOwners": 11,
+  "cells": 8,
+  "arms": 4,
+  "failedCells": 0,
+  "crossWrites": 2,
+  "ladderExtraGuards": 2,
+  "predictionRefuted": true,
+  "bothOrdersExclusive": true
+ },
+ "judgments": [
+  {
+   "id": "J783-1",
+   "text": "★ **我的预测被否掉了。** 预测是「两个 Timeline Escape 主人的门状态互相独立 ⟹ 可以同时活着，而唯一的互斥机制是 `:569` 的 `pointerdown` 外点关闭 ⟹ **键盘激活不产生 `pointerdown`** ⟹ 键盘下应该能共活」。实测：`bothByMouse` 与 `bothByKeyboard` 第 2 步读数**完全一样**（路径菜单关、预设面板开）⟹ **「键盘能绕过外点关闭」不成立**，「唯一的互斥机制是 `pointerdown`」**不成立**。",
+   "evidence": "阶段六 预测 F"
+  },
+  {
+   "id": "J783-2",
+   "text": "★ **真机制是打开者里的双向显式交叉写入**：`togglePathMenu:601` 第 3 行 `setPresetPanelLeft(null);`、`togglePresetPanel:695` 第 10 行 `setPathMenuLeft(null);`，两处都**排在打开自己之前** ⟹ **双向、可证、设计好的不变量**。运行时两个方向都测到了。",
+   "evidence": "阶段三 + 阶段六 预测 G"
+  },
+  {
+   "id": "J783-3",
+   "text": "★★ **「主人的门互相独立」≠「主人可以同时活着」。** 这两个主人在普查里是**两个门状态互不相关**的主人 —— 而**任何只看 Escape 主人的普查都看不见那个不变量，因为它写在打开者里**。⟹ 这条**限制了 782 那份普查能承载多少结论**：普查给的是「形态」与「门」，**不是「可达的共活集合」**；后者只能靠运行时或专门扫打开者。",
+   "evidence": "阶段二 vs 阶段三"
+  },
+  {
+   "id": "J783-4",
+   "text": "★ **更正 779 的一处计数**：桌的阶梯除了四档，**自己还有两道门** —— `:551` `if (document.querySelector(\"[data-director-capture-viewer]\")) return;`（**DOM 存在性**，不是状态）与 `:552` `if (workspaceBusy) return;` ⟹ 「阶梯有四档」不完整。★ 这不改 779 的结论（它测的时候这两道都是假），但授权文本里描述阶梯的形状时要写全。",
+   "evidence": "阶段四"
+  },
+  {
+   "id": "J783-5",
+   "text": "★ **一次 Escape 仍然会关掉两个东西**（面板 + 阶梯那档）：四个臂全部 `cap>=1` 且 `win>=1`（**没有任何 sIP 主人活着**）⟹ 互斥**不靠传播阻断实现**，两个 bubble 主人照旧并发 ⟹ 782 的 J4（一次按压多主并发）在本批**再次成立**。",
+   "evidence": "阶段六 预测 H"
+  }
+ ],
+ "corrections": [
+  {
+   "id": "C783-1",
+   "targets": [
+    "**783 规划里写的预测**：「两个 Timeline Escape 主人可以同时活着（键盘绕过外点关闭）⟹ 若 D8 把它们改成 `sIP`，其中一个会永远关不掉」"
+   ],
+   "was": "读作「两者的互斥只靠 `:569` 的 `pointerdown` 外点关闭；键盘激活不产生 `pointerdown` ⟹ 键盘下可共活 ⟹ D8 会把「一次关两个」变成「一个关不掉」。」",
+   "now": "★ **整条撤回。** 实测两个激活方式读数**完全一样**，两者**任何时候都不同时活着** —— 互斥是 `togglePathMenu:601` 与 `togglePresetPanel:695` 里**各一行的显式交叉写入**（双向、可证）。⟹ **D8 不会**把「一次关两个」变成「一个关不掉」。\n★ **但 D8a 的另外两半不受影响**：779 的「层级优先级是产品决定」与 782 的「菜单会变成第 4/5 个 `sIP` 主人」讲的是**菜单与桌阶梯**之间的关系，不是两个菜单之间的关系 —— 782 已实测那个阻断**真的**发生（captureOwner 臂导出面板仍开）。",
+   "evidence": "J783-1 + J783-2 + 阶段六 预测 F/G"
+  },
+  {
+   "id": "C783-2",
+   "targets": [
+    "**779 对桌阶梯形状的描述**：「阶梯有四档」"
+   ],
+   "was": "读作「`DirectorDesk.tsx:549-568` 是四档：activeGesture / 导出面板 / followTarget / closeWorkspace」。",
+   "now": "★ **不完整**：四档之前还有**两道门** —— `:551` 的 `document.querySelector(\"[data-director-capture-viewer]\")`（**DOM 存在性**，不是状态）与 `:552` 的 `workspaceBusy` ⟹ 阶梯其实是「两道门 + 四档」。\n★ 不改 779 的结论（它测的时候这两道都是假），但**授权文本里描述阶梯的形状要写全** —— 否则下一个人会以为「有活动手势时 Escape 怎么走」只取决于四档。",
+   "evidence": "J783-4 + 阶段四"
+  }
+ ],
+ "findings": {
+  "F1": "★ **预测被否**：键盘激活与鼠标激活读数完全一致 ⟹ 「`pointerdown` 外点关闭是唯一互斥机制」不成立。",
+  "F2": "★ **真机制 = 打开者里的双向交叉写入**，两方向都拿到运行时读数。",
+  "F3": "★★ **「门互相独立」≠「可共活」** ⟹ 782 普查的效力被限定：它给形态与门，**不给可达的共活集合**。",
+  "F4": "★ **更正 779**：阶梯是「**两道门 + 四档**」，不是「四档」。",
+  "F5": "★ **一次 Escape 仍关两个东西**，四个臂 `cap/win` 都 ≥1 ⟹ 并发不靠传播阻断（782 的 J4 再次成立）。"
+ },
+ "probeLessons": [
+  {
+   "id": "R146",
+   "text": "★ **普查器不该做语义判断 —— 本批连踩两次。**① 第一次想给每个主人标「激活门」，规则是「提到 `event.key` 的是键守卫、其余是激活门」⟹ **正则吃不下条件里的 `)`**（`f(uiState)` 里 `uiState)` 先把 `[^)]*` 截断）⟹ `page.tsx:1400` 的门整条丢失，**而输出里仍有另一条门的标识符，看起来仍像个正常结果**；而且那个分类学本身也站不住 —— 它把桌的 `:487` `if (isEditable) return;` 也算成激活门，而那是**分发守卫**。② 第二次改成一两两判「A 的条件有没有提到 B 的状态」，被 `Escape`/`key`/`target` 淹没 —— 45 对「互相牵制」全是噪声。\n⟹ **两次都是同一族**：把「看起来能自动判的东西」交给正则。⟹ 改法是**把分类整个扔掉**，普查只采集（条件用括号配对取、记行号），**结论由汇编器用行锚定的字面量断言下**（782 验收器已验证这条路）。"
+  },
+  {
+   "id": "R147",
+   "text": "★ **普查的「不相关」不等于「可共活」—— 而这条只能靠把扫描范围挪一挪才看得见。** 两个 Timeline Escape 主人的门状态互不相关（普查如实报告了），可它们**永远不同时活着**，因为互斥写在**打开者**里（`togglePathMenu:601` / `togglePresetPanel:695` 各一行交叉写入）—— **任何只看「主人」的普查都不会去看打开者**。\n⟹ 普查器因此**加了一层** `crossWrites` 扫描（找每个门状态的写入点落在哪个函数、那个函数**有没有顺手写另一个门状态**），真机制立刻就出来了。\n★ 推论：**「我扫的东西里没有 X」不能推出「X 不存在」**，只能推出「X 不在我扫的范围里」—— 而这句话对上一批那份普查的**每一列**都成立。"
+  },
+  {
+   "id": "R148",
+   "text": "★ **预测被否掉时，先去找真机制，别急着改断言。** 本批的预测（「键盘能绕过 `pointerdown` 外点关闭」）被实测否掉，两臂读数完全一致。第一反应若是「探针没测准」就会去改探针；而两臂一致这件事**恰恰是**「互斥与激活方式无关」的强证据。\n⟹ 顺着否掉的预测往下找，30 分钟就定位到两行 `setX(null)` ⟹ 而那两行**就在源码里**，只是不在主人身上。\n★ 配套的一条：**只测一个顺序是不够的** —— 我第一版只测了「路径→预设」，静态读到反向也有交叉写入后**补了 `reverseByMouse` 臂**把结论从「静态推断」变成「两个方向都是读数」。"
+  }
+ ],
+ "defects": [],
+ "srcDiff": "**本批未改 `src/`**（工作区 `src/` 干净）；**没有任何注入**。",
+ "rawSha": {
+  "census783.json": "bb3149ca6ba034d8",
+  "vb783a.json": "778c08a01a32dfbf"
+ },
+ "retryStats": {
+  "cells": 8,
+  "retriedCells": 0,
+  "maxTries": 1
+ },
+ "boundary": "★ **本批未改 `src/`，也没有任何注入。** 只开/关两个时间轴面板与按 `Escape`，**不做任何破坏性操作**（不点删除/提交/连接/新增机位/导入导出，不做付费或真实生图生视频）；每格开头 `fresh()` 清 localStorage ⟹ 不留残留。"
+}
