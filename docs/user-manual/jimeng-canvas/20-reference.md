@@ -2703,9 +2703,11 @@ style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
 | 节点类型 | 未选中时描述逐字 | 选中时描述逐字 | 变了？ | 取消选中后 |
 |---|---|---|---|---|
 | 文本 `文本 1` | `双击编辑文本` | `双击编辑文本` | **不变** | 复原 |
-| **音频 `音频 1`** | `No resources: 0 ready, 0 processing, 0 failed. Not selected.` | `… **Selected.**` | ✅ **变了** | 复原 |
+| **音频 `音频 68`** | 🔴 **原写** `No resources: 0 ready, 0 processing, 0 failed. Not selected.` —— **已被批次 212 推翻**：那其实是**选中态**的文案。未选中时逐字是 `No resources. Current preview: 暂无音频. Not selected.` | `No resources: 0 ready, 0 processing, 0 failed. Selected.` | ✅ **变了**，且**不止末句** —— 前半句也从「`Current preview: 暂无音频`」变成「`0 ready, 0 processing, 0 failed`」 | 复原 |
 
 ⇒ **`Not selected.` 会被替换成 `Selected.`** —— 那是给读屏软件播报的选中态。
+🔴 **批次 212 收窄了这一句：只有音频／视频两类是「换个词」，媒体节点其实两句都变**
+（详见下方批次 212 小节）。
 📌 而**节点的 `aria-label` 两次都没变**（`音频 node: 音频 1` 一直不变）
 ⇒ **「名字」与「描述」是两个独立通道**，判选中态要看描述。
 📌 **文本节点不变**是合理的：它那条描述**就是可见的正文区**，不是状态播报。
