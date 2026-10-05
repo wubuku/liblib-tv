@@ -1,0 +1,1413 @@
+{
+ "产物": "b165f",
+ "目的": "源站 CSS 中所有视口相关的宽高声明清单",
+ "css字节": 584612,
+ "css来源": "https://lf3-lv-buz.vlabstatic.com/obj/image-lvweb-buz/ies/lvweb/octo_web/static/css/main.94b57a0e55.css",
+ "清单": [
+  {
+   "类名": ".\\!container",
+   "属性": "width",
+   "值": "100%!important"
+  },
+  {
+   "类名": ".container",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".size-1/2",
+   "属性": "height",
+   "值": "50%"
+  },
+  {
+   "类名": ".size-1/2",
+   "属性": "width",
+   "值": "50%"
+  },
+  {
+   "类名": ".size-full",
+   "属性": "height",
+   "值": "100%"
+  },
+  {
+   "类名": ".size-full",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".h-\\[100dvh]",
+   "属性": "height",
+   "值": "100dvh"
+  },
+  {
+   "类名": ".h-\\[64\\%]",
+   "属性": "height",
+   "值": "64%"
+  },
+  {
+   "类名": ".h-\\[90\\%]",
+   "属性": "height",
+   "值": "90%"
+  },
+  {
+   "类名": ".h-\\[calc(100\\%-16px)]",
+   "属性": "height",
+   "值": "calc(100% - 16px)"
+  },
+  {
+   "类名": ".h-\\[calc(100\\%-56px)]",
+   "属性": "height",
+   "值": "calc(100% - 56px)"
+  },
+  {
+   "类名": ".h-\\[clamp(210px,28vh,260px)]",
+   "属性": "height",
+   "值": "clamp(210px,28vh,260px)"
+  },
+  {
+   "类名": ".h-\\[min(620px,calc(100vh-32px))]",
+   "属性": "height",
+   "值": "min(620px,calc(100vh - 32px))"
+  },
+  {
+   "类名": ".h-\\[min(760px,calc(100vh-48px))]",
+   "属性": "height",
+   "值": "min(760px,calc(100vh - 48px))"
+  },
+  {
+   "类名": ".h-\\[min(780px,calc(100vh-40px))]",
+   "属性": "height",
+   "值": "min(780px,calc(100vh - 40px))"
+  },
+  {
+   "类名": ".h-\\[min(820px,85vh)]",
+   "属性": "height",
+   "值": "min(820px,85vh)"
+  },
+  {
+   "类名": ".h-canvas-search-markdown-thumbnail",
+   "属性": "height",
+   "值": "74.08%"
+  },
+  {
+   "类名": ".h-diagnosis-full",
+   "属性": "height",
+   "值": "100%"
+  },
+  {
+   "类名": ".h-dvh",
+   "属性": "height",
+   "值": "100dvh"
+  },
+  {
+   "类名": ".h-full",
+   "属性": "height",
+   "值": "100%"
+  },
+  {
+   "类名": ".h-screen",
+   "属性": "height",
+   "值": "100vh"
+  },
+  {
+   "类名": ".h-workspace-help-center",
+   "属性": "height",
+   "值": "min(648px,calc(100vh - 76px))"
+  },
+  {
+   "类名": ".max-h-\\[100vh]",
+   "属性": "max-height",
+   "值": "100vh"
+  },
+  {
+   "类名": ".max-h-\\[80vh]",
+   "属性": "max-height",
+   "值": "80vh"
+  },
+  {
+   "类名": ".max-h-\\[90\\%]",
+   "属性": "max-height",
+   "值": "90%"
+  },
+  {
+   "类名": ".max-h-\\[calc(100\\%-32px)]",
+   "属性": "max-height",
+   "值": "calc(100% - 32px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100\\%-36px)]",
+   "属性": "max-height",
+   "值": "calc(100% - 36px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100dvh-48px)]",
+   "属性": "max-height",
+   "值": "calc(100dvh - 48px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100dvh_-_48px)]",
+   "属性": "max-height",
+   "值": "calc(100dvh - 48px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100vh-16px)]",
+   "属性": "max-height",
+   "值": "calc(100vh - 16px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100vh-32px)]",
+   "属性": "max-height",
+   "值": "calc(100vh - 32px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100vh_-_16px)]",
+   "属性": "max-height",
+   "值": "calc(100vh - 16px)"
+  },
+  {
+   "类名": ".max-h-\\[min(720px,calc(100dvh-32px))]",
+   "属性": "max-height",
+   "值": "min(720px,calc(100dvh - 32px))"
+  },
+  {
+   "类名": ".max-h-\\[min(720px,calc(100dvh_-_160px))]",
+   "属性": "max-height",
+   "值": "min(720px,calc(100dvh - 160px))"
+  },
+  {
+   "类名": ".max-h-\\[min(760px,calc(100vh-32px))]",
+   "属性": "max-height",
+   "值": "min(760px,calc(100vh - 32px))"
+  },
+  {
+   "类名": ".max-h-\\[min(800px,calc(100dvh_-_160px))]",
+   "属性": "max-height",
+   "值": "min(800px,calc(100dvh - 160px))"
+  },
+  {
+   "类名": ".max-h-\\[min(90vh,860px)]",
+   "属性": "max-height",
+   "值": "min(90vh,860px)"
+  },
+  {
+   "类名": ".max-h-agent-document-preview-viewport",
+   "属性": "max-height",
+   "值": "calc(100vh - 40px)"
+  },
+  {
+   "类名": ".max-h-agent-media-hover-viewport",
+   "属性": "max-height",
+   "值": "var(--radix-tooltip-content-available-height,var(--radix-popover-content-available-height,100vh))"
+  },
+  {
+   "类名": ".max-h-agent-skill-publish",
+   "属性": "max-height",
+   "值": "min(652px,calc(100vh - 96px))"
+  },
+  {
+   "类名": ".max-h-canvas-agent-approval-hover",
+   "属性": "max-height",
+   "值": "min(380px,50vh)"
+  },
+  {
+   "类名": ".max-h-canvas-agent-approval-hover-content",
+   "属性": "max-height",
+   "值": "calc(min(380px, 50vh) - 2px)"
+  },
+  {
+   "类名": ".max-h-director-stage-help-height",
+   "属性": "max-height",
+   "值": "min(420px,calc(100dvh - 72px))"
+  },
+  {
+   "类名": ".max-h-full",
+   "属性": "max-height",
+   "值": "100%"
+  },
+  {
+   "类名": ".max-h-workspace-collaborators-roster",
+   "属性": "max-height",
+   "值": "min(340px,calc(100vh - 80px))"
+  },
+  {
+   "类名": ".max-h-workspace-project-panel",
+   "属性": "max-height",
+   "值": "calc(100vh - 96px)"
+  },
+  {
+   "类名": ".max-h-workspace-report-dialog",
+   "属性": "max-height",
+   "值": "calc(100dvh - 32px)"
+  },
+  {
+   "类名": ".min-h-\\[min(480px,calc(100dvh_-_48px))]",
+   "属性": "min-height",
+   "值": "min(480px,calc(100dvh - 48px))"
+  },
+  {
+   "类名": ".min-h-agent-document-preview-viewport",
+   "属性": "min-height",
+   "值": "calc(100vh - 40px)"
+  },
+  {
+   "类名": ".min-h-full",
+   "属性": "min-height",
+   "值": "100%"
+  },
+  {
+   "类名": ".min-h-generation-history-panel",
+   "属性": "min-height",
+   "值": "min(211px,100%)"
+  },
+  {
+   "类名": ".min-h-screen",
+   "属性": "min-height",
+   "值": "100vh"
+  },
+  {
+   "类名": ".w-\\[100dvw]",
+   "属性": "width",
+   "值": "100dvw"
+  },
+  {
+   "类名": ".w-\\[64\\%]",
+   "属性": "width",
+   "值": "64%"
+  },
+  {
+   "类名": ".w-\\[90\\%]",
+   "属性": "width",
+   "值": "90%"
+  },
+  {
+   "类名": ".w-\\[calc(100\\%-16px)]",
+   "属性": "width",
+   "值": "calc(100% - 16px)"
+  },
+  {
+   "类名": ".w-\\[min(1100px,calc(100vw-40px))]",
+   "属性": "width",
+   "值": "min(1100px,calc(100vw - 40px))"
+  },
+  {
+   "类名": ".w-\\[min(1120px,calc(100vw-48px))]",
+   "属性": "width",
+   "值": "min(1120px,calc(100vw - 48px))"
+  },
+  {
+   "类名": ".w-\\[min(220px,43vw)]",
+   "属性": "width",
+   "值": "min(220px,43vw)"
+  },
+  {
+   "类名": ".w-\\[min(420px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(420px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(420px,calc(100vw-40px))]",
+   "属性": "width",
+   "值": "min(420px,calc(100vw - 40px))"
+  },
+  {
+   "类名": ".w-\\[min(440px,calc(100vw-40px))]",
+   "属性": "width",
+   "值": "min(440px,calc(100vw - 40px))"
+  },
+  {
+   "类名": ".w-\\[min(460px,70vw)]",
+   "属性": "width",
+   "值": "min(460px,70vw)"
+  },
+  {
+   "类名": ".w-\\[min(480px,60\\%)]",
+   "属性": "width",
+   "值": "min(480px,60%)"
+  },
+  {
+   "类名": ".w-\\[min(480px,calc(100vw-40px))]",
+   "属性": "width",
+   "值": "min(480px,calc(100vw - 40px))"
+  },
+  {
+   "类名": ".w-\\[min(560px,calc(100vw-48px))]",
+   "属性": "width",
+   "值": "min(560px,calc(100vw - 48px))"
+  },
+  {
+   "类名": ".w-\\[min(680px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(680px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(801px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(801px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(820px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(820px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(900px,calc(100vw-40px))]",
+   "属性": "width",
+   "值": "min(900px,calc(100vw - 40px))"
+  },
+  {
+   "类名": ".w-\\[min(940px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(940px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(960px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(960px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(980px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(980px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-agent-older-history-skeleton-bubble-fluid",
+   "属性": "width",
+   "值": "75%"
+  },
+  {
+   "类名": ".w-agent-older-history-skeleton-short-line-fluid",
+   "属性": "width",
+   "值": "33.333333%"
+  },
+  {
+   "类名": ".w-canvas-agent-skill-source-gutter",
+   "属性": "width",
+   "值": "max(40px,calc(50% - 400px))"
+  },
+  {
+   "类名": ".w-canvas-audio-voice-catalog-content",
+   "属性": "width",
+   "值": "calc(100% - 32px)"
+  },
+  {
+   "类名": ".w-canvas-panel-loading-title-width",
+   "属性": "width",
+   "值": "60%"
+  },
+  {
+   "类名": ".w-canvas-panorama-editor",
+   "属性": "width",
+   "值": "min(680px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-canvas-video-fullscreen-media",
+   "属性": "width",
+   "值": "min(100%,calc((100vh - 40px)*var(--canvas-media-aspect-ratio)))"
+  },
+  {
+   "类名": ".w-diagnosis-full",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".w-director-stage-help-width",
+   "属性": "width",
+   "值": "min(340px,calc(100vw - 24px))"
+  },
+  {
+   "类名": ".w-full",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".w-screen",
+   "属性": "width",
+   "值": "100vw"
+  },
+  {
+   "类名": ".w-workspace-help-center",
+   "属性": "width",
+   "值": "min(360px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-workspace-user-language-scroll-content",
+   "属性": "width",
+   "值": "calc(100% + 4px)"
+  },
+  {
+   "类名": ".min-w-\\[min(100\\%,240px)]",
+   "属性": "min-width",
+   "值": "min(100%,240px)"
+  },
+  {
+   "类名": ".min-w-canvas-timeline-track",
+   "属性": "min-width",
+   "值": "calc(100% - 60px)"
+  },
+  {
+   "类名": ".min-w-full",
+   "属性": "min-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".max-w-\\[40vw]",
+   "属性": "max-width",
+   "值": "40vw"
+  },
+  {
+   "类名": ".max-w-\\[48\\%]",
+   "属性": "max-width",
+   "值": "48%"
+  },
+  {
+   "类名": ".max-w-\\[85\\%]",
+   "属性": "max-width",
+   "值": "85%"
+  },
+  {
+   "类名": ".max-w-\\[90\\%]",
+   "属性": "max-width",
+   "值": "90%"
+  },
+  {
+   "类名": ".max-w-\\[calc(100\\%-2rem)]",
+   "属性": "max-width",
+   "值": "calc(100% - 2rem)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100\\%-32px)]",
+   "属性": "max-width",
+   "值": "calc(100% - 32px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100\\%-36px)]",
+   "属性": "max-width",
+   "值": "calc(100% - 36px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100\\%-8\\.5rem)]",
+   "属性": "max-width",
+   "值": "calc(100% - 8.5rem)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100\\%_-_36px)]",
+   "属性": "max-width",
+   "值": "calc(100% - 36px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw-16px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 16px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw-24px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 24px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw-32px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw-40px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 40px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw_-_16px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 16px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw_-_32px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw_-_48px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 48px)"
+  },
+  {
+   "类名": ".max-w-\\[min(320px,_calc(100\\%_-_36px))]",
+   "属性": "max-width",
+   "值": "min(320px,calc(100% - 36px))"
+  },
+  {
+   "类名": ".max-w-\\[min(320px,calc(100\\%-36px))]",
+   "属性": "max-width",
+   "值": "min(320px,calc(100% - 36px))"
+  },
+  {
+   "类名": ".max-w-\\[min(350px,calc(100vw-32px))]",
+   "属性": "max-width",
+   "值": "min(350px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-\\[min(360px,calc(100vw-16px))]",
+   "属性": "max-width",
+   "值": "min(360px,calc(100vw - 16px))"
+  },
+  {
+   "类名": ".max-w-\\[min(680px,calc(100vw-32px))]",
+   "属性": "max-width",
+   "值": "min(680px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-\\[min(680px,calc(100vw-48px))]",
+   "属性": "max-width",
+   "值": "min(680px,calc(100vw - 48px))"
+  },
+  {
+   "类名": ".max-w-\\[min(720px,calc(100vw-32px))]",
+   "属性": "max-width",
+   "值": "min(720px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-\\[min(760px,80vw)]",
+   "属性": "max-width",
+   "值": "min(760px,80vw)"
+  },
+  {
+   "类名": ".max-w-agent-media-hover-viewport",
+   "属性": "max-width",
+   "值": "var(--radix-tooltip-content-available-width,var(--radix-popover-content-available-width,100vw))"
+  },
+  {
+   "类名": ".max-w-canvas-agent-approval-hover",
+   "属性": "max-width",
+   "值": "min(536px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-canvas-agent-skill-description-tooltip",
+   "属性": "max-width",
+   "值": "min(356px,calc(100vw - 36px))"
+  },
+  {
+   "类名": ".max-w-canvas-agent-skill-dialog-viewport",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-agent-skill-publish-viewport",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-audio-trim-panel",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-audio-voice-catalog-panel",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-generation-size-panel-viewport",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-mask-operation-status",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-media-history-header-actions",
+   "属性": "max-width",
+   "值": "75%"
+  },
+  {
+   "类名": ".max-w-canvas-post-edit-toolbar-viewport",
+   "属性": "max-width",
+   "值": "calc(100vw - 40px)"
+  },
+  {
+   "类名": ".max-w-canvas-smart-edit-cursor-guide",
+   "属性": "max-width",
+   "值": "calc(100vw - 16px)"
+  },
+  {
+   "类名": ".max-w-canvas-tag-selector",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-timeline-waveform-width",
+   "属性": "max-width",
+   "值": "calc(100% - 12px)"
+  },
+  {
+   "类名": ".max-w-canvas-video-edit-panel",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-video-edit-reference-chrome-label",
+   "属性": "max-width",
+   "值": "calc(100% - 16px)"
+  },
+  {
+   "类名": ".max-w-diagnosis-full",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".max-w-full",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[height\\:100\\%]",
+   "属性": "height",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[width\\:100\\%]",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[width\\:min(1042px,76vw,calc(var(--mask-editor-height-vh)-var(--mask-editor-height-offset)))]",
+   "属性": "width",
+   "值": "min(1042px,76vw,calc(var(--mask-editor-height-vh) - var(--mask-editor-height-offset)))"
+  },
+  {
+   "类名": ".before\\:h-full:before",
+   "属性": "height",
+   "值": "100%"
+  },
+  {
+   "类名": ".before\\:w-2/5:before",
+   "属性": "width",
+   "值": "40%"
+  },
+  {
+   "类名": ".after\\:w-full:after",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".diagnosis-compact\\:max-w-diagnosis-full",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&\\:has(\\[data-chip-layout\\=text])]\\:max-w-full:has([data-chip-layout=text])",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&\\>\\[data-slot\\=button-loading-content]]\\:w-full>[data-slot=button-loading-content]",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&\\>svg]\\:size-1/2>svg",
+   "属性": "height",
+   "值": "50%"
+  },
+  {
+   "类名": ".\\[\\&\\>svg]\\:size-1/2>svg",
+   "属性": "width",
+   "值": "50%"
+  },
+  {
+   "类名": ".\\[\\&\\>svg]\\:size-full>svg",
+   "属性": "height",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&\\>svg]\\:size-full>svg",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&\\>svg]\\:h-full>svg",
+   "属性": "height",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&\\>svg]\\:w-full>svg",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_\\.ProseMirror]\\:min-h-full .ProseMirror",
+   "属性": "min-height",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_\\.ProseMirror]\\:w-full .ProseMirror",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_\\.ProseMirror]\\:max-w-full .ProseMirror",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_\\.ProseMirror_table]\\:max-w-full .ProseMirror table",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_\\.agent-docx-wrapper\\>section\\.agent-docx]\\:w-full .agent-docx-wrapper>section.agent-docx",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_\\.agent-docx-wrapper]\\:w-full .agent-docx-wrapper",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_\\.tableWrapper]\\:max-w-full .tableWrapper",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_img]\\:\\[height\\:100\\%] img",
+   "属性": "height",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_img]\\:\\[width\\:100\\%] img",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_table]\\:w-full table",
+   "属性": "width",
+   "值": "100%"
+  },
+  {
+   "类名": ".generation-form-expanded .\\[\\.generation-form-expanded_\\&]\\:h-full",
+   "属性": "height",
+   "值": "100%"
+  },
+  {
+   "类名": ".generation-form-expanded .\\[\\.generation-form-expanded_\\&]\\:w-generation-prompt-scroll-host",
+   "属性": "width",
+   "值": "calc(100% - 14px)"
+  }
+ ],
+ "条数": 158,
+ "其中min": [
+  {
+   "类名": ".h-\\[min(620px,calc(100vh-32px))]",
+   "属性": "height",
+   "值": "min(620px,calc(100vh - 32px))"
+  },
+  {
+   "类名": ".h-\\[min(760px,calc(100vh-48px))]",
+   "属性": "height",
+   "值": "min(760px,calc(100vh - 48px))"
+  },
+  {
+   "类名": ".h-\\[min(780px,calc(100vh-40px))]",
+   "属性": "height",
+   "值": "min(780px,calc(100vh - 40px))"
+  },
+  {
+   "类名": ".h-\\[min(820px,85vh)]",
+   "属性": "height",
+   "值": "min(820px,85vh)"
+  },
+  {
+   "类名": ".h-workspace-help-center",
+   "属性": "height",
+   "值": "min(648px,calc(100vh - 76px))"
+  },
+  {
+   "类名": ".max-h-\\[min(720px,calc(100dvh-32px))]",
+   "属性": "max-height",
+   "值": "min(720px,calc(100dvh - 32px))"
+  },
+  {
+   "类名": ".max-h-\\[min(720px,calc(100dvh_-_160px))]",
+   "属性": "max-height",
+   "值": "min(720px,calc(100dvh - 160px))"
+  },
+  {
+   "类名": ".max-h-\\[min(760px,calc(100vh-32px))]",
+   "属性": "max-height",
+   "值": "min(760px,calc(100vh - 32px))"
+  },
+  {
+   "类名": ".max-h-\\[min(800px,calc(100dvh_-_160px))]",
+   "属性": "max-height",
+   "值": "min(800px,calc(100dvh - 160px))"
+  },
+  {
+   "类名": ".max-h-\\[min(90vh,860px)]",
+   "属性": "max-height",
+   "值": "min(90vh,860px)"
+  },
+  {
+   "类名": ".max-h-agent-skill-publish",
+   "属性": "max-height",
+   "值": "min(652px,calc(100vh - 96px))"
+  },
+  {
+   "类名": ".max-h-canvas-agent-approval-hover",
+   "属性": "max-height",
+   "值": "min(380px,50vh)"
+  },
+  {
+   "类名": ".max-h-canvas-agent-approval-hover-content",
+   "属性": "max-height",
+   "值": "calc(min(380px, 50vh) - 2px)"
+  },
+  {
+   "类名": ".max-h-director-stage-help-height",
+   "属性": "max-height",
+   "值": "min(420px,calc(100dvh - 72px))"
+  },
+  {
+   "类名": ".max-h-workspace-collaborators-roster",
+   "属性": "max-height",
+   "值": "min(340px,calc(100vh - 80px))"
+  },
+  {
+   "类名": ".min-h-\\[min(480px,calc(100dvh_-_48px))]",
+   "属性": "min-height",
+   "值": "min(480px,calc(100dvh - 48px))"
+  },
+  {
+   "类名": ".min-h-generation-history-panel",
+   "属性": "min-height",
+   "值": "min(211px,100%)"
+  },
+  {
+   "类名": ".w-\\[min(1100px,calc(100vw-40px))]",
+   "属性": "width",
+   "值": "min(1100px,calc(100vw - 40px))"
+  },
+  {
+   "类名": ".w-\\[min(1120px,calc(100vw-48px))]",
+   "属性": "width",
+   "值": "min(1120px,calc(100vw - 48px))"
+  },
+  {
+   "类名": ".w-\\[min(220px,43vw)]",
+   "属性": "width",
+   "值": "min(220px,43vw)"
+  },
+  {
+   "类名": ".w-\\[min(420px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(420px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(420px,calc(100vw-40px))]",
+   "属性": "width",
+   "值": "min(420px,calc(100vw - 40px))"
+  },
+  {
+   "类名": ".w-\\[min(440px,calc(100vw-40px))]",
+   "属性": "width",
+   "值": "min(440px,calc(100vw - 40px))"
+  },
+  {
+   "类名": ".w-\\[min(460px,70vw)]",
+   "属性": "width",
+   "值": "min(460px,70vw)"
+  },
+  {
+   "类名": ".w-\\[min(480px,60\\%)]",
+   "属性": "width",
+   "值": "min(480px,60%)"
+  },
+  {
+   "类名": ".w-\\[min(480px,calc(100vw-40px))]",
+   "属性": "width",
+   "值": "min(480px,calc(100vw - 40px))"
+  },
+  {
+   "类名": ".w-\\[min(560px,calc(100vw-48px))]",
+   "属性": "width",
+   "值": "min(560px,calc(100vw - 48px))"
+  },
+  {
+   "类名": ".w-\\[min(680px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(680px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(801px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(801px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(820px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(820px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(900px,calc(100vw-40px))]",
+   "属性": "width",
+   "值": "min(900px,calc(100vw - 40px))"
+  },
+  {
+   "类名": ".w-\\[min(940px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(940px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(960px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(960px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-\\[min(980px,calc(100vw-32px))]",
+   "属性": "width",
+   "值": "min(980px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-canvas-panorama-editor",
+   "属性": "width",
+   "值": "min(680px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".w-canvas-video-fullscreen-media",
+   "属性": "width",
+   "值": "min(100%,calc((100vh - 40px)*var(--canvas-media-aspect-ratio)))"
+  },
+  {
+   "类名": ".w-director-stage-help-width",
+   "属性": "width",
+   "值": "min(340px,calc(100vw - 24px))"
+  },
+  {
+   "类名": ".w-workspace-help-center",
+   "属性": "width",
+   "值": "min(360px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".min-w-\\[min(100\\%,240px)]",
+   "属性": "min-width",
+   "值": "min(100%,240px)"
+  },
+  {
+   "类名": ".max-w-\\[min(320px,_calc(100\\%_-_36px))]",
+   "属性": "max-width",
+   "值": "min(320px,calc(100% - 36px))"
+  },
+  {
+   "类名": ".max-w-\\[min(320px,calc(100\\%-36px))]",
+   "属性": "max-width",
+   "值": "min(320px,calc(100% - 36px))"
+  },
+  {
+   "类名": ".max-w-\\[min(350px,calc(100vw-32px))]",
+   "属性": "max-width",
+   "值": "min(350px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-\\[min(360px,calc(100vw-16px))]",
+   "属性": "max-width",
+   "值": "min(360px,calc(100vw - 16px))"
+  },
+  {
+   "类名": ".max-w-\\[min(680px,calc(100vw-32px))]",
+   "属性": "max-width",
+   "值": "min(680px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-\\[min(680px,calc(100vw-48px))]",
+   "属性": "max-width",
+   "值": "min(680px,calc(100vw - 48px))"
+  },
+  {
+   "类名": ".max-w-\\[min(720px,calc(100vw-32px))]",
+   "属性": "max-width",
+   "值": "min(720px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-\\[min(760px,80vw)]",
+   "属性": "max-width",
+   "值": "min(760px,80vw)"
+  },
+  {
+   "类名": ".max-w-canvas-agent-approval-hover",
+   "属性": "max-width",
+   "值": "min(536px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-canvas-agent-skill-description-tooltip",
+   "属性": "max-width",
+   "值": "min(356px,calc(100vw - 36px))"
+  },
+  {
+   "类名": ".\\[width\\:min(1042px,76vw,calc(var(--mask-editor-height-vh)-var(--mask-editor-height-offset)))]",
+   "属性": "width",
+   "值": "min(1042px,76vw,calc(var(--mask-editor-height-vh) - var(--mask-editor-height-offset)))"
+  }
+ ],
+ "其中max": [
+  {
+   "类名": ".max-h-\\[100vh]",
+   "属性": "max-height",
+   "值": "100vh"
+  },
+  {
+   "类名": ".max-h-\\[80vh]",
+   "属性": "max-height",
+   "值": "80vh"
+  },
+  {
+   "类名": ".max-h-\\[90\\%]",
+   "属性": "max-height",
+   "值": "90%"
+  },
+  {
+   "类名": ".max-h-\\[calc(100\\%-32px)]",
+   "属性": "max-height",
+   "值": "calc(100% - 32px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100\\%-36px)]",
+   "属性": "max-height",
+   "值": "calc(100% - 36px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100dvh-48px)]",
+   "属性": "max-height",
+   "值": "calc(100dvh - 48px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100dvh_-_48px)]",
+   "属性": "max-height",
+   "值": "calc(100dvh - 48px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100vh-16px)]",
+   "属性": "max-height",
+   "值": "calc(100vh - 16px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100vh-32px)]",
+   "属性": "max-height",
+   "值": "calc(100vh - 32px)"
+  },
+  {
+   "类名": ".max-h-\\[calc(100vh_-_16px)]",
+   "属性": "max-height",
+   "值": "calc(100vh - 16px)"
+  },
+  {
+   "类名": ".max-h-\\[min(720px,calc(100dvh-32px))]",
+   "属性": "max-height",
+   "值": "min(720px,calc(100dvh - 32px))"
+  },
+  {
+   "类名": ".max-h-\\[min(720px,calc(100dvh_-_160px))]",
+   "属性": "max-height",
+   "值": "min(720px,calc(100dvh - 160px))"
+  },
+  {
+   "类名": ".max-h-\\[min(760px,calc(100vh-32px))]",
+   "属性": "max-height",
+   "值": "min(760px,calc(100vh - 32px))"
+  },
+  {
+   "类名": ".max-h-\\[min(800px,calc(100dvh_-_160px))]",
+   "属性": "max-height",
+   "值": "min(800px,calc(100dvh - 160px))"
+  },
+  {
+   "类名": ".max-h-\\[min(90vh,860px)]",
+   "属性": "max-height",
+   "值": "min(90vh,860px)"
+  },
+  {
+   "类名": ".max-h-agent-document-preview-viewport",
+   "属性": "max-height",
+   "值": "calc(100vh - 40px)"
+  },
+  {
+   "类名": ".max-h-agent-media-hover-viewport",
+   "属性": "max-height",
+   "值": "var(--radix-tooltip-content-available-height,var(--radix-popover-content-available-height,100vh))"
+  },
+  {
+   "类名": ".max-h-agent-skill-publish",
+   "属性": "max-height",
+   "值": "min(652px,calc(100vh - 96px))"
+  },
+  {
+   "类名": ".max-h-canvas-agent-approval-hover",
+   "属性": "max-height",
+   "值": "min(380px,50vh)"
+  },
+  {
+   "类名": ".max-h-canvas-agent-approval-hover-content",
+   "属性": "max-height",
+   "值": "calc(min(380px, 50vh) - 2px)"
+  },
+  {
+   "类名": ".max-h-director-stage-help-height",
+   "属性": "max-height",
+   "值": "min(420px,calc(100dvh - 72px))"
+  },
+  {
+   "类名": ".max-h-full",
+   "属性": "max-height",
+   "值": "100%"
+  },
+  {
+   "类名": ".max-h-workspace-collaborators-roster",
+   "属性": "max-height",
+   "值": "min(340px,calc(100vh - 80px))"
+  },
+  {
+   "类名": ".max-h-workspace-project-panel",
+   "属性": "max-height",
+   "值": "calc(100vh - 96px)"
+  },
+  {
+   "类名": ".max-h-workspace-report-dialog",
+   "属性": "max-height",
+   "值": "calc(100dvh - 32px)"
+  },
+  {
+   "类名": ".max-w-\\[40vw]",
+   "属性": "max-width",
+   "值": "40vw"
+  },
+  {
+   "类名": ".max-w-\\[48\\%]",
+   "属性": "max-width",
+   "值": "48%"
+  },
+  {
+   "类名": ".max-w-\\[85\\%]",
+   "属性": "max-width",
+   "值": "85%"
+  },
+  {
+   "类名": ".max-w-\\[90\\%]",
+   "属性": "max-width",
+   "值": "90%"
+  },
+  {
+   "类名": ".max-w-\\[calc(100\\%-2rem)]",
+   "属性": "max-width",
+   "值": "calc(100% - 2rem)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100\\%-32px)]",
+   "属性": "max-width",
+   "值": "calc(100% - 32px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100\\%-36px)]",
+   "属性": "max-width",
+   "值": "calc(100% - 36px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100\\%-8\\.5rem)]",
+   "属性": "max-width",
+   "值": "calc(100% - 8.5rem)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100\\%_-_36px)]",
+   "属性": "max-width",
+   "值": "calc(100% - 36px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw-16px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 16px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw-24px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 24px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw-32px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw-40px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 40px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw_-_16px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 16px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw_-_32px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-\\[calc(100vw_-_48px)]",
+   "属性": "max-width",
+   "值": "calc(100vw - 48px)"
+  },
+  {
+   "类名": ".max-w-\\[min(320px,_calc(100\\%_-_36px))]",
+   "属性": "max-width",
+   "值": "min(320px,calc(100% - 36px))"
+  },
+  {
+   "类名": ".max-w-\\[min(320px,calc(100\\%-36px))]",
+   "属性": "max-width",
+   "值": "min(320px,calc(100% - 36px))"
+  },
+  {
+   "类名": ".max-w-\\[min(350px,calc(100vw-32px))]",
+   "属性": "max-width",
+   "值": "min(350px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-\\[min(360px,calc(100vw-16px))]",
+   "属性": "max-width",
+   "值": "min(360px,calc(100vw - 16px))"
+  },
+  {
+   "类名": ".max-w-\\[min(680px,calc(100vw-32px))]",
+   "属性": "max-width",
+   "值": "min(680px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-\\[min(680px,calc(100vw-48px))]",
+   "属性": "max-width",
+   "值": "min(680px,calc(100vw - 48px))"
+  },
+  {
+   "类名": ".max-w-\\[min(720px,calc(100vw-32px))]",
+   "属性": "max-width",
+   "值": "min(720px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-\\[min(760px,80vw)]",
+   "属性": "max-width",
+   "值": "min(760px,80vw)"
+  },
+  {
+   "类名": ".max-w-agent-media-hover-viewport",
+   "属性": "max-width",
+   "值": "var(--radix-tooltip-content-available-width,var(--radix-popover-content-available-width,100vw))"
+  },
+  {
+   "类名": ".max-w-canvas-agent-approval-hover",
+   "属性": "max-width",
+   "值": "min(536px,calc(100vw - 32px))"
+  },
+  {
+   "类名": ".max-w-canvas-agent-skill-description-tooltip",
+   "属性": "max-width",
+   "值": "min(356px,calc(100vw - 36px))"
+  },
+  {
+   "类名": ".max-w-canvas-agent-skill-dialog-viewport",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-agent-skill-publish-viewport",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-audio-trim-panel",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-audio-voice-catalog-panel",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-generation-size-panel-viewport",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-mask-operation-status",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-media-history-header-actions",
+   "属性": "max-width",
+   "值": "75%"
+  },
+  {
+   "类名": ".max-w-canvas-post-edit-toolbar-viewport",
+   "属性": "max-width",
+   "值": "calc(100vw - 40px)"
+  },
+  {
+   "类名": ".max-w-canvas-smart-edit-cursor-guide",
+   "属性": "max-width",
+   "值": "calc(100vw - 16px)"
+  },
+  {
+   "类名": ".max-w-canvas-tag-selector",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-timeline-waveform-width",
+   "属性": "max-width",
+   "值": "calc(100% - 12px)"
+  },
+  {
+   "类名": ".max-w-canvas-video-edit-panel",
+   "属性": "max-width",
+   "值": "calc(100vw - 32px)"
+  },
+  {
+   "类名": ".max-w-canvas-video-edit-reference-chrome-label",
+   "属性": "max-width",
+   "值": "calc(100% - 16px)"
+  },
+  {
+   "类名": ".max-w-diagnosis-full",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".max-w-full",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".diagnosis-compact\\:max-w-diagnosis-full",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&\\:has(\\[data-chip-layout\\=text])]\\:max-w-full:has([data-chip-layout=text])",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_\\.ProseMirror]\\:max-w-full .ProseMirror",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_\\.ProseMirror_table]\\:max-w-full .ProseMirror table",
+   "属性": "max-width",
+   "值": "100%"
+  },
+  {
+   "类名": ".\\[\\&_\\.tableWrapper]\\:max-w-full .tableWrapper",
+   "属性": "max-width",
+   "值": "100%"
+  }
+ ]
+}

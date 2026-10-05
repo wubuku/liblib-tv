@@ -1798,3 +1798,36 @@ screenshots:
     visible_text: '暂无图片素材'
     alt: '左栏「资产库」面板（2026-10-05 批次 162 拍）：面板打开后是空态，正中写着「暂无图片素材」，没有任何素材卡片'
     sha256: 605a7a13085c374e541674b5f9fa48a969195748d85a45adb5d6e853b100f64a
+  - file: screenshots/123-asset-library-1440x900.png
+    task_id: assets-and-upload
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1440x900@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T12:50:00+08:00
+    verified_locator: '左栏「资产库」按钮（aria-label 逐字「资产库」）点开的模态，在 1440×900 视口下读出 801×620@320,140（左右余量各 319.5、上下各 140）'
+    visible_text: '暂无图片素材'
+    alt: 窗口 1440×900 时模态仍是 801×620，只是四周留出大片黑边
+    sha256: 87f0bdbeb520447307e968310a8370a5c2d597aa1b180d96e78b388f62502759
+  - file: screenshots/123-asset-library-short-viewport.png
+    task_id: assets-and-upload
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x520@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T12:52:00+08:00
+    verified_locator: '同一模态在 1280×520 视口下读出 801×488@240,16（高度被压到 488 = 视口高 − 32）'
+    visible_text: '暂无图片素材'
+    alt: 窗口很矮（1280×520）时模态被压到 488 高，页脚仍完整留在屏内
+    sha256: 76fb5ed492596706ee7c7936fea1291dd7103bd0711a7feaf7bda43f0fd3c370
+  - file: screenshots/123-asset-library-narrow-400.png
+    task_id: assets-and-upload
+    step: 1
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 400x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T12:54:00+08:00
+    verified_locator: '同一模态在 400×720 视口下读出 368×620@16,50；命中测试逐个页签中心点，三个二级页签读出 INPUT / Search Dreamina assets'
+    visible_text: '暂无图片素材'
+    alt: 窗口 400 宽时搜索框压在「视频 / 音频 / 文档」三个页签上，这三个点不动
+    sha256: e686dad17979fc38e349cef3b521a6d9a40655b69fe1f82df74b21c6c61b7dda

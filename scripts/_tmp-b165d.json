@@ -1,0 +1,162 @@
+{
+ "批次": "165d",
+ "目的": "那个 32 到底是 rem 还是写死的 px：改根字号做区分判据",
+ "共享起点": {
+  "视口": [
+   1280,
+   720
+  ],
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "样式表": {
+  "总数": 3,
+  "同源数": 0,
+  "href样例": [
+   "https://lf3-lv-buz.vlabstatic.com/obj/image-lvweb-buz/ies/lvweb/octo_web/static/css/canvas-view.ad1b7d4e4a.css",
+   "https://lf3-lv-buz.vlabstatic.com/obj/image-lvweb-buz/ies/lvweb/octo_web/static/css/canvas-core.c1fab08d2e.css",
+   "https://lf3-lv-buz.vlabstatic.com/obj/image-lvweb-buz/ies/lvweb/octo_web/static/css/main.94b57a0e55.css"
+  ],
+  "抓到声明": []
+ },
+ "基线": [
+  {
+   "档": "窄宽500",
+   "读数": {
+    "有": true,
+    "视口": [
+     500,
+     720
+    ],
+    "盒": [
+     468,
+     620,
+     16,
+     50
+    ],
+    "用到宽": "468px",
+    "maxHeight": "688px",
+    "根字号": "16px",
+    "cls": "fixed left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col font-dreamina-cn rounded-octo-ui-panel border-oct"
+   }
+  },
+  {
+   "档": "窄高500",
+   "读数": {
+    "有": true,
+    "视口": [
+     1280,
+     500
+    ],
+    "盒": [
+     801,
+     468,
+     240,
+     16
+    ],
+    "用到宽": "801px",
+    "maxHeight": "468px",
+    "根字号": "16px",
+    "cls": "fixed left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col font-dreamina-cn rounded-octo-ui-panel border-oct"
+   }
+  }
+ ],
+ "改字号后": [
+  {
+   "档": "窄宽500",
+   "读数": {
+    "有": true,
+    "视口": [
+     500,
+     720
+    ],
+    "盒": [
+     468,
+     620,
+     16,
+     50
+    ],
+    "用到宽": "468px",
+    "maxHeight": "688px",
+    "根字号": "20px",
+    "cls": "fixed left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col font-dreamina-cn rounded-octo-ui-panel border-oct"
+   }
+  },
+  {
+   "档": "窄高500",
+   "读数": {
+    "有": true,
+    "视口": [
+     1280,
+     500
+    ],
+    "盒": [
+     801,
+     468,
+     240,
+     16
+    ],
+    "用到宽": "801px",
+    "maxHeight": "468px",
+    "根字号": "20px",
+    "cls": "fixed left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col font-dreamina-cn rounded-octo-ui-panel border-oct"
+   }
+  }
+ ],
+ "字号已改": "20px",
+ "判定": {
+  "基线宽": 468,
+  "改后宽": 468,
+  "基线高": 468,
+  "改后高": 468,
+  "预测若rem": {
+   "宽": 460,
+   "高": 460
+  },
+  "预测若px": {
+   "宽": 468,
+   "高": 468
+  }
+ },
+ "撤掉后": {
+  "根字号": "16px",
+  "读数": {
+   "有": true,
+   "视口": [
+    500,
+    720
+   ],
+   "盒": [
+    468,
+    620,
+    16,
+    50
+   ],
+   "用到宽": "468px",
+   "maxHeight": "688px",
+   "根字号": "16px",
+   "cls": "fixed left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 flex-col font-dreamina-cn rounded-octo-ui-panel border-oct"
+  }
+ },
+ "结论": "那个 32 是写死的 px（与根字号无关）",
+ "共享收尾": {
+  "视口": [
+   1282,
+   759
+  ],
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存.",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "数据不变量差异": [],
+ "复位": {
+  "w": 1280,
+  "h": 720
+ },
+ "断言全过": true
+}
