@@ -1,0 +1,716 @@
+{
+ "batch": 781,
+ "checks": [
+  {
+   "label": "静态：缺源码",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "静态：`isEditable` 守卫找得到",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ `Cmd+C` 分支排在守卫**之后**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ `Cmd+V` 分支排在守卫**之后**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ 扫了 director 面 28 个文件",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ director 面**零** `navigator.clipboard` / `writeText` / `readText` 命中 ⟹ **放行不会碰系统剪贴板**（这一条是矩阵能不能覆盖 C/V 的前提）",
+   "pass": true,
+   "got": [],
+   "want": []
+  },
+  {
+   "label": "静态：`copyDirectorSelection` 写的是**内部** clipboard 包",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：内部包类型是 `DirectorClipboardPacketV1`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ store 里有 `if (!state.clipboard)` 那道拒绝（这是「Paste 给真实消息」的机制）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：★ `getDirectorCommandFeedback` 对 `COMMITTED` 返回 null⟹ Copy 成功时面板只能显示占位文案",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：零 FAILED",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "原始：臂集合齐（6 臂）",
+   "pass": true,
+   "got": [
+    "controlCopy",
+    "controlPaste",
+    "numberCopy",
+    "numberPaste",
+    "rangeCopy",
+    "rangePaste"
+   ],
+   "want": [
+    "controlCopy",
+    "controlPaste",
+    "numberCopy",
+    "numberPaste",
+    "rangeCopy",
+    "rangePaste"
+   ]
+  },
+  {
+   "label": "原始：两轮逐字段一致",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：按压格数 = 6 臂 × 2 次",
+   "pass": true,
+   "got": 12,
+   "want": 12
+  },
+  {
+   "label": "原始：numberCopy 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：numberCopy 桌在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ numberCopy 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：numberPaste 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：numberPaste 桌在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ numberPaste 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：rangeCopy 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：rangeCopy 桌在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ rangeCopy 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：rangePaste 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：rangePaste 桌在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ rangePaste 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：controlCopy 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：controlCopy 桌在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ controlCopy 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：controlPaste 聚焦落上了",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：controlPaste 桌在",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "原始：★ controlPaste 每一次按压 `cap>=1` ⟹ 按键**真的送达了浏览器**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberCopy 第1次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberCopy 第1次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberCopy 第1次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：numberCopy 第1次 `lastDisp` 也是**陈旧值** `COMMITTED`",
+   "pass": true,
+   "got": "COMMITTED",
+   "want": "COMMITTED"
+  },
+  {
+   "label": "逐次：★ numberCopy 第1次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberCopy 第2次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberCopy 第2次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberCopy 第2次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：numberCopy 第2次 `lastDisp` 也是**陈旧值** `COMMITTED`",
+   "pass": true,
+   "got": "COMMITTED",
+   "want": "COMMITTED"
+  },
+  {
+   "label": "逐次：★ numberCopy 第2次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberPaste 第1次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberPaste 第1次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberPaste 第1次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：numberPaste 第1次 `lastDisp` 也是**陈旧值** `COMMITTED`",
+   "pass": true,
+   "got": "COMMITTED",
+   "want": "COMMITTED"
+  },
+  {
+   "label": "逐次：★ numberPaste 第1次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberPaste 第2次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberPaste 第2次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：numberPaste 第2次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：numberPaste 第2次 `lastDisp` 也是**陈旧值** `COMMITTED`",
+   "pass": true,
+   "got": "COMMITTED",
+   "want": "COMMITTED"
+  },
+  {
+   "label": "逐次：★ numberPaste 第2次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangeCopy 第1次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangeCopy 第1次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangeCopy 第1次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：rangeCopy 第1次 `lastDisp` 也是**陈旧值** `COMMITTED`",
+   "pass": true,
+   "got": "COMMITTED",
+   "want": "COMMITTED"
+  },
+  {
+   "label": "逐次：★ rangeCopy 第1次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangeCopy 第2次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangeCopy 第2次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangeCopy 第2次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：rangeCopy 第2次 `lastDisp` 也是**陈旧值** `COMMITTED`",
+   "pass": true,
+   "got": "COMMITTED",
+   "want": "COMMITTED"
+  },
+  {
+   "label": "逐次：★ rangeCopy 第2次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangePaste 第1次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangePaste 第1次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangePaste 第1次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：rangePaste 第1次 `lastDisp` 也是**陈旧值** `COMMITTED`",
+   "pass": true,
+   "got": "COMMITTED",
+   "want": "COMMITTED"
+  },
+  {
+   "label": "逐次：★ rangePaste 第1次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangePaste 第2次 `win>=1` ⟹ 事件**到达了 window**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangePaste 第2次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "逐次：rangePaste 第2次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+   "pass": true,
+   "got": "GESTURE_BEGIN",
+   "want": "GESTURE_BEGIN"
+  },
+  {
+   "label": "逐次：rangePaste 第2次 `lastDisp` 也是**陈旧值** `COMMITTED`",
+   "pass": true,
+   "got": "COMMITTED",
+   "want": "COMMITTED"
+  },
+  {
+   "label": "逐次：★ rangePaste 第2次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 780 矩阵最后一行被测出来了：gesture 臂 8/8 次 `Meta+c`/`Meta+v` **不发** ⟹ 那一行不再是「凭判据推出来的」",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 死键 **8/8** 次伴随**占位文案**「无命令反馈」⟹ 准确说法是「死键 + 面板在骗人」，不是「静默」",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "对照：controlCopy 第1次 `lastCommand=COPY_SELECTION` ⟹ 那个分支**真的跑了**",
+   "pass": true,
+   "got": "COPY_SELECTION",
+   "want": "COPY_SELECTION"
+  },
+  {
+   "label": "对照：controlCopy 第2次 `lastCommand=COPY_SELECTION` ⟹ 那个分支**真的跑了**",
+   "pass": true,
+   "got": "COPY_SELECTION",
+   "want": "COPY_SELECTION"
+  },
+  {
+   "label": "对照：controlPaste 第1次 `lastCommand=PASTE_CLIPBOARD` ⟹ 那个分支**真的跑了**",
+   "pass": true,
+   "got": "PASTE_CLIPBOARD",
+   "want": "PASTE_CLIPBOARD"
+  },
+  {
+   "label": "对照：controlPaste 第2次 `lastCommand=PASTE_CLIPBOARD` ⟹ 那个分支**真的跑了**",
+   "pass": true,
+   "got": "PASTE_CLIPBOARD",
+   "want": "PASTE_CLIPBOARD"
+  },
+  {
+   "label": "★ 判别力成立：对照臂 4/4 次 C/V **真的发生** ⟹ 「gesture 臂不发」不是「那个分支本来就不跑」",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 对照臂 `Meta+v` 的 disposition **非 `COMMITTED`**（实际 ['NOOP']）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 对照臂 `Meta+v` 的 live 区给**真实消息**（['场景描述已记录（本地草稿）', '当前没有可复制或粘贴的对象', '请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步']）而**不含**占位文案 ⟹ 桌**有**「无操作/拒绝」的反馈通道",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 差异不在「有没有反馈通道」，在「**命令有没有产生**」",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "族规模：776 普查每族都非空（逐族自证）",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "族规模：从 776 raw 重算 = 与 780 产物**一致**",
+   "pass": true,
+   "got": [
+    27,
+    26
+   ],
+   "want": [
+    27,
+    26
+   ]
+  },
+  {
+   "label": "族规模：两族合计 53",
+   "pass": true,
+   "got": 53,
+   "want": 53
+  },
+  {
+   "label": "★ 780 产物里 `Meta+c`/`Meta+v` 那一行**标着「未测」**⟹ 本批「补最后一行」的前提成立",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "★ 本批产物 `notMeasured` 为空（五个键全部有读数）",
+   "pass": true,
+   "got": [],
+   "want": []
+  },
+  {
+   "label": "矩阵：五行都在（Escape / Meta+z / Delete·Backspace / Meta+c·Meta+v） —— 第五行是新增的「反馈与内部剪贴板」",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "产物：audit.batch=781",
+   "pass": true,
+   "got": 781,
+   "want": 781
+  },
+  {
+   "label": "产物：audit 的「不发」计数 = 重算值",
+   "pass": true,
+   "got": 8,
+   "want": 8
+  },
+  {
+   "label": "产物：audit 的「占位文案」计数 = 重算值",
+   "pass": true,
+   "got": 8,
+   "want": 8
+  },
+  {
+   "label": "产物：audit 记的系统剪贴板命中数 = 静态重算",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "产物：audit 的守卫行号 = 静态重算",
+   "pass": true,
+   "got": 487,
+   "want": 487
+  },
+  {
+   "label": "产物：audit 记的零 FAILED",
+   "pass": true,
+   "got": 0,
+   "want": 0
+  },
+  {
+   "label": "台账：Batch 781 恰有一行",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "台账：该行无 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "台账：该行恰 4 个竖线（3 列）",
+   "pass": true,
+   "got": 4
+  },
+  {
+   "label": "★ README 里没有裸数字开头的 markdown 表行（会骗过 pre-commit 的 added_batch_numbers）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "README 无 U+FFFD",
+   "pass": true,
+   "got": 0
+  }
+ ],
+ "pass": 99,
+ "total": 99,
+ "negativeControls": [
+  {
+   "name": "让 gesture 臂的 `Meta+c` **真的执行** ⟹ 「最后一行被测出来了」必须红",
+   "why": "★ 漏判方向 = 矩阵最后一行**仍然是凭判据推出来的、没有读数**",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐次：numberCopy 第1次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+    "逐次：numberCopy 第1次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+    "逐次：★ numberCopy 第1次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+    "逐次：numberCopy 第2次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+    "逐次：numberCopy 第2次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+    "逐次：★ numberCopy 第2次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+    "★ 780 矩阵最后一行被测出来了：gesture 臂 6/8 次 `Meta+c`/`Meta+v` **不发** ⟹ 那一行不再是「凭判据推出来的」",
+    "★ 死键 **6/8** 次伴随**占位文案**「无命令反馈」⟹ 准确说法是「死键 + 面板在骗人」，不是「静默」",
+    "★ 差异不在「有没有反馈通道」，在「**命令有没有产生**」",
+    "产物：audit 的「不发」计数 = 重算值",
+    "产物：audit 的「占位文案」计数 = 重算值"
+   ],
+   "caught": true,
+   "expectFailOn": "最后一行被测出来了"
+  },
+  {
+   "name": "★ 对称：让 rangePaste 臂**真的执行** ⟹ 同一条必须红",
+   "why": "★ 没有这条，number 与 range 两族的读数可以单独坏掉",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐次：rangePaste 第1次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+    "逐次：rangePaste 第1次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+    "逐次：rangePaste 第1次 `lastDisp` 也是**陈旧值** `COMMITTED`",
+    "逐次：★ rangePaste 第1次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+    "逐次：rangePaste 第2次 `lastCommand` **既不是** `COPY_SELECTION` **也不是** `PASTE_CLIPBOARD`",
+    "逐次：rangePaste 第2次 `lastCommand` 是**陈旧值** `GESTURE_BEGIN`（没被这两下按键更新）",
+    "逐次：rangePaste 第2次 `lastDisp` 也是**陈旧值** `COMMITTED`",
+    "逐次：★ rangePaste 第2次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+    "★ 780 矩阵最后一行被测出来了：gesture 臂 6/8 次 `Meta+c`/`Meta+v` **不发** ⟹ 那一行不再是「凭判据推出来的」",
+    "★ 死键 **6/8** 次伴随**占位文案**「无命令反馈」⟹ 准确说法是「死键 + 面板在骗人」，不是「静默」",
+    "★ 差异不在「有没有反馈通道」，在「**命令有没有产生**」",
+    "产物：audit 的「不发」计数 = 重算值",
+    "产物：audit 的「占位文案」计数 = 重算值"
+   ],
+   "caught": true,
+   "expectFailOn": "最后一行被测出来了"
+  },
+  {
+   "name": "把 gesture 臂的 live 区改成**空** ⟹ 「面板在骗人」必须红",
+   "why": "★ 漏判方向 = 把「死键 + 占位文案」误报成「静默的死键」⟹ 777 的 D1e（占位文案那条）会被漏掉",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "逐次：★ rangeCopy 第1次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+    "逐次：★ rangeCopy 第2次 live 区**含占位文案**「无命令反馈」⟹ 不是「静默」而是**面板在骗人**",
+    "★ 死键 **6/8** 次伴随**占位文案**「无命令反馈」⟹ 准确说法是「死键 + 面板在骗人」，不是「静默」",
+    "产物：audit 的「占位文案」计数 = 重算值"
+   ],
+   "caught": true,
+   "expectFailOn": "死键 **"
+  },
+  {
+   "name": "把对照臂 `Meta+v` 的 live 区改成**占位文案** ⟹ 「桌有拒绝反馈通道」必须红",
+   "why": "★ 漏判方向 = 会得出「桌**没有**反馈通道」⟹ 修法会指向「加反馈」而不是「让命令产生」",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "★ 对照臂 `Meta+v` 的 live 区给**真实消息**（['无命令反馈']）而**不含**占位文案 ⟹ 桌**有**「无操作/拒绝」的反馈通道"
+   ],
+   "caught": true,
+   "expectFailOn": "桌**有**「无操作/拒绝」的反馈通道"
+  },
+  {
+   "name": "把对照臂 `Meta+v` 的 disposition 改成 `COMMITTED` ⟹ 「非 COMMITTED 的拒绝」必须红",
+   "why": "证明那条测的是 disposition 而不是「live 区非空」",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "★ 对照臂 `Meta+v` 的 disposition **非 `COMMITTED`**（实际 ['COMMITTED']）"
+   ],
+   "caught": true,
+   "expectFailOn": "disposition **非 `COMMITTED`**"
+  },
+  {
+   "name": "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红",
+   "why": "mutatedAnything 为 false 时这条对照的结论是空的（R108）",
+   "mutatedAnything": false,
+   "kwMatchedCount": 0,
+   "flipped": [
+    "原始：两轮逐字段一致"
+   ],
+   "caught": false,
+   "expectFailOn": "__永不匹配__"
+  },
+  {
+   "name": "★ 静态：给 director 面**注入**一个调 `navigator.clipboard` 的文件 ⟹ 「零命中」必须红",
+   "why": "★ **这一条是「带作用域的搜索」唯一真正的对照**：只改真源码里的某个字符串，命中位置会变但**命中数仍是 0** ⟹ 必须注入新文件才能验",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：`isEditable` 守卫找得到",
+    "静态：★ `Cmd+C` 分支排在守卫**之后**",
+    "静态：★ `Cmd+V` 分支排在守卫**之后**",
+    "静态：★ 扫了 director 面 -1 个文件",
+    "静态：★ director 面**零** `navigator.clipboard` / `writeText` / `readText` 命中 ⟹ **放行不会碰系统剪贴板**（这一条是矩阵能不能覆盖 C/V 的前提）",
+    "静态：`copyDirectorSelection` 写的是**内部** clipboard 包",
+    "静态：内部包类型是 `DirectorClipboardPacketV1`",
+    "静态：★ store 里有 `if (!state.clipboard)` 那道拒绝（这是「Paste 给真实消息」的机制）",
+    "静态：★ `getDirectorCommandFeedback` 对 `COMMITTED` 返回 null⟹ Copy 成功时面板只能显示占位文案",
+    "产物：audit 记的系统剪贴板命中数 = 静态重算",
+    "产物：audit 的守卫行号 = 静态重算"
+   ],
+   "caught": true,
+   "expectFailOn": "零** `navigator.clipboard`"
+  },
+  {
+   "name": "★ 静态：把守卫挪到 C/V 分支**之后** ⟹ 「C/V 排在守卫之前」必须红",
+   "why": "证明归因落在顺序上",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ `Cmd+C` 分支排在守卫**之后**",
+    "静态：★ `Cmd+V` 分支排在守卫**之后**",
+    "产物：audit 的守卫行号 = 静态重算"
+   ],
+   "caught": true,
+   "expectFailOn": "`Cmd+C` 分支排在守卫**之后**"
+  },
+  {
+   "name": "★ 静态：把内部包类型改名 ⟹ 「内部 clipboard 包」必须红",
+   "why": "证明「复制/粘贴完全内部」测的是**类型**而不是「有个 clipboard 字段」",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：内部包类型是 `DirectorClipboardPacketV1`"
+   ],
+   "caught": true,
+   "expectFailOn": "内部包类型是"
+  },
+  {
+   "name": "★ 静态：让 `getDirectorCommandFeedback` 对 COMMITTED 也返回 null 的**反面** —— 改成不返回 null ⟹ 「COMMITTED→null」必须红",
+   "why": "证明「Copy 成功时面板只能显示占位文案」有机制依据",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "静态：★ `getDirectorCommandFeedback` 对 `COMMITTED` 返回 null⟹ Copy 成功时面板只能显示占位文案"
+   ],
+   "caught": true,
+   "expectFailOn": "`COMMITTED` 返回 null"
+  }
+ ],
+ "negativeCaught": 10,
+ "negativeTotal": 10,
+ "negativeKwBroken": [
+  "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
+ ],
+ "negativeInert": [
+  "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
+ ],
+ "rawError": null,
+ "ok": true
+}

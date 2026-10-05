@@ -1,0 +1,1663 @@
+{
+ "batch": 781,
+ "probe": "a",
+ "question": "780 矩阵最后一行（`Meta+c`/`Meta+v`）在 gesture 控件上到底发不发生？以及按 780 的判据**放行**会不会引入新伤害？",
+ "whyItMatters": "★ 780 的判据是「该键有无原生兜底 ⟹ 该放行」，而 `Meta+c`/`Meta+v` 那一行被**显式标注为未测** ⟹ 它是矩阵里唯一没有读数支撑的一行，判据却已按它推过一轮。",
+ "theSafetyQuestion": "★ 更要紧：放行之后桌的 `Cmd+C` 分支（`:491`）会调 `copyDirectorSelection()`。若它写**系统剪贴板** ⟹ 用户按 `Cmd+C` 会把系统剪贴板内容换成导演台内部数据 ⟹ **「修复」变成新的伤害**。",
+ "sourceAnswer": "`copyDirectorSelection`（`src/store/directorStore.ts:3888-3946`）只写**内部**的 `clipboard: DirectorClipboardPacketV1`；★ **整个 director store 里没有任何 `navigator.clipboard` 调用**（`writeText`/`readText` 一次都没有）⟹ 导演台的复制/粘贴**完全内部** ⟹ **放行不会碰系统剪贴板** ⟹ 判据可安全覆盖全部 5 个键。",
+ "prediction": "gesture 臂（4 臂 × 2 次）事件**到达 window** 而 `lastCommand` **不出现** `COPY_SELECTION`/`PASTE_CLIPBOARD` ⟹ `:487` 吞了 ⟹ **死键且零反馈**；★ 对照臂 `Meta+c` 应出现 `COPY_SELECTION`、`Meta+v` 在内部剪贴板为空时应出现 `PASTE_CLIPBOARD` + **非 COMMITTED** ⟹ 那正是桌自己的反馈路径 ⟹ 差异是「静默死键」vs「**有反馈的拒绝**」。",
+ "rounds": [
+  {
+   "rows": [
+    {
+     "arm": "numberCopy",
+     "key": "Meta+c",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197961289-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197961289-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197961289-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "numberPaste",
+     "key": "Meta+v",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197976321-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197976321-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197976321-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "rangeCopy",
+     "key": "Meta+c",
+     "selector": "[data-director-camera-fov]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197991366-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791197991366-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791197991366-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "rangePaste",
+     "key": "Meta+v",
+     "selector": "[data-director-camera-fov]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791198006392-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791198006392-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791198006392-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "controlCopy",
+     "key": "Meta+c",
+     "selector": "[data-director-panels-toggle]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "COPY_SELECTION",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "COPY_SELECTION",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "",
+      "type": "button"
+     },
+     "stateBefore": {
+      "gesture": "",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "",
+      "lastDisp": "",
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "controlPaste",
+     "key": "Meta+v",
+     "selector": "[data-director-panels-toggle]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "PASTE_CLIPBOARD",
+        "lastDisp": "NOOP",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 5,
+        "liveTexts": [
+         "当前没有可复制或粘贴的对象",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "PASTE_CLIPBOARD",
+        "lastDisp": "NOOP",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 5,
+        "liveTexts": [
+         "当前没有可复制或粘贴的对象",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "",
+      "type": "button"
+     },
+     "stateBefore": {
+      "gesture": "",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "",
+      "lastDisp": "",
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "rows": [
+    {
+     "arm": "numberCopy",
+     "key": "Meta+c",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791198051537-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791198051537-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791198051537-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "numberPaste",
+     "key": "Meta+v",
+     "selector": "[data-director-transform-field][data-director-transform-axis=\"x\"]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791198066554-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "number"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791198066554-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "number",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "4.8",
+      "type": "number"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791198066554-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "number",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "rangeCopy",
+     "key": "Meta+c",
+     "selector": "[data-director-camera-fov]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791198081580-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791198081580-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791198081580-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "rangePaste",
+     "key": "Meta+v",
+     "selector": "[data-director-camera-fov]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791198096581-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": false,
+          "target": "INPUT",
+          "type": "range"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "director-gesture-1791198096581-1",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "GESTURE_BEGIN",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "INPUT",
+        "focusType": "range",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "43",
+      "type": "range"
+     },
+     "stateBefore": {
+      "gesture": "director-gesture-1791198096581-1",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "GESTURE_BEGIN",
+      "lastDisp": "COMMITTED",
+      "deskOpen": true,
+      "focusTag": "INPUT",
+      "focusType": "range",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "controlCopy",
+     "key": "Meta+c",
+     "selector": "[data-director-panels-toggle]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "COPY_SELECTION",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "capture",
+          "key": "c",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "c",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "COPY_SELECTION",
+        "lastDisp": "COMMITTED",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 5,
+        "liveTexts": [
+         "无命令反馈",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "",
+      "type": "button"
+     },
+     "stateBefore": {
+      "gesture": "",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "",
+      "lastDisp": "",
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "controlPaste",
+     "key": "Meta+v",
+     "selector": "[data-director-panels-toggle]",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "PASTE_CLIPBOARD",
+        "lastDisp": "NOOP",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 5,
+        "liveTexts": [
+         "当前没有可复制或粘贴的对象",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 2,
+        "win": 2,
+        "winEntryCount": 2,
+        "keys": [
+         {
+          "where": "capture",
+          "key": "Meta",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "Meta",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "capture",
+          "key": "v",
+          "prevented": false,
+          "target": "BUTTON",
+          "type": "button"
+         },
+         {
+          "where": "window",
+          "key": "v",
+          "prevented": true,
+          "target": "BUTTON",
+          "type": "button"
+         }
+        ]
+       },
+       "state": {
+        "gesture": "",
+        "past": "0",
+        "future": "0",
+        "lastCommand": "PASTE_CLIPBOARD",
+        "lastDisp": "NOOP",
+        "deskOpen": true,
+        "focusTag": "BUTTON",
+        "focusType": "button",
+        "objectCount": 5,
+        "liveTexts": [
+         "当前没有可复制或粘贴的对象",
+         "场景描述已记录（本地草稿）",
+         "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+        ]
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "value": "",
+      "type": "button"
+     },
+     "stateBefore": {
+      "gesture": "",
+      "past": "0",
+      "future": "0",
+      "lastCommand": "",
+      "lastDisp": "",
+      "deskOpen": true,
+      "focusTag": "BUTTON",
+      "focusType": "button",
+      "objectCount": 5,
+      "liveTexts": [
+       "无命令反馈",
+       "场景描述已记录（本地草稿）",
+       "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,372 @@
+{
+ "batch": 781,
+ "topic": "补上 780 矩阵最后一行（Meta+c/Meta+v），并回答「放行会不会引入新伤害」—— 答案：不会，因为导演台的复制/粘贴**完全内部**",
+ "generatedBy": "probes/mk781audit.py",
+ "sources": {
+  "vb781a.json": {
+   "sha16": "9ccde0c340664915",
+   "rounds": 2,
+   "armsPerRound": 6,
+   "pressesPerArm": 2
+  },
+  "vb776a.json": {
+   "sha16": "d59c5486df20a93f",
+   "usedFor": "★ 族规模重算并对账"
+  },
+  "batch780/runtime-audit.json": {
+   "sha16": "adb41493c570d5fa",
+   "usedFor": "确认那一行标着「未测」"
+  }
+ },
+ "theHole780Left": {
+  "row": "`Meta+c` / `Meta+v`",
+  "how780LeftIt": "**显式标注为「本批未测」** ⟹ 矩阵里唯一没有读数支撑的一行，而判据已按它推过一轮",
+  "safetyQuestion": "★ 「放行」会不会引入新伤害？若 `copyDirectorSelection` 写的是**系统剪贴板** ⟹ 用户按 `Cmd+C` 会把系统剪贴板内容换成导演台内部数据 ⟹ **「修复」变成新的伤害**。",
+  "answer": "★ **不会。** director 面 28 个文件里 `navigator.clipboard`/`writeText`/`readText` 命中 **0** 处；`copyDirectorSelection` 只写内部 `clipboard: DirectorClipboardPacketV1`（写入行 :3941）。"
+ },
+ "readings": {
+  "R-gesture": "gesture 臂 8/8 次：事件**到达 window** 而命令不发、两个读数都是**陈旧值**、live 区是**占位文案「无命令反馈」** ⟹ **死键，而且面板在骗人**",
+  "R-control": "对照臂 4/4 次：Copy 出现 `COPY_SELECTION`+`COMMITTED`（live=['场景描述已记录（本地草稿）', '无命令反馈', '请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步']）；Paste 出现 `PASTE_CLIPBOARD`+NOOP（live=['场景描述已记录（本地草稿）', '当前没有可复制或粘贴的对象', '请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步']）⟹ **桌自己那条「无操作/拒绝」的反馈通道是通的** ⟹ 差异不在「有没有通道」，在「**命令有没有产生**」"
+ },
+ "matrix": {
+  "rows": [
+   {
+    "key": "Escape",
+    "number": "**无** ⟹ 779：hook 吞，桌够不着",
+    "range": "**无** ⟹ 同左",
+    "passThrough": "**两族都该放行**",
+    "measuredIn": "779"
+   },
+   {
+    "key": "Meta+z",
+    "number": "**有**（文本撤销）⟹ 778：早退是**承重墙**",
+    "range": "**无** ⟹ D1f 死键",
+    "passThrough": "**只 range 放行**",
+    "measuredIn": "778"
+   },
+   {
+    "key": "Delete / Backspace",
+    "number": "**有**（删字符）⟹ 780：早退",
+    "range": "**无** ⟹ 780 新记录",
+    "passThrough": "**只 range 放行**",
+    "measuredIn": "780"
+   },
+   {
+    "key": "Meta+c / Meta+v",
+    "number": "**有**（文本复制/粘贴）⟹ **本批实测**：事件到达 window 而命令不发",
+    "range": "**无** ⟹ **本批实测**：同样不发、且 live 区无任何文案",
+    "passThrough": "★ **待产品决定**（见 C781-1）",
+    "measuredIn": "781"
+   }
+  ],
+  "criterion": "★ **放行判据仍是「该键在该类型上有没有原生兜底」**，本批把 `Meta+c`/`Meta+v` 也测了 ⟹ 五个键全部支持它。★ 但本批**没有**因此给出「C/V 该放行」的结论 —— 因为「放行 C/V」不是「恢复一个死键」，而是「让 `Cmd+C` 从『什么都不做』变成『把导演台选中写进内部剪贴板』」，**那是新增功能而不是修缺陷** ⟹ 属产品决定。",
+  "counts": {
+   "range": 26,
+   "number": 27
+  },
+  "notMeasured": [],
+  "noSystemClipboardColumn": "★ **矩阵里不存在「系统剪贴板被污染」这一列** —— director 面 28 个文件里 `navigator.clipboard` 命中 **0** 处 ⟹ 复制/粘贴完全内部。"
+ },
+ "verdict": {
+  "780最后一行": "**测出来了** —— `Meta+c`/`Meta+v` 在 gesture 臂上**同样是死键且零反馈**",
+  "放行是否引入新伤害": "**不会** —— 导演台的复制/粘贴**完全内部**，矩阵里不存在「系统剪贴板」这一列",
+  "C/V该不该放行": "★ **不是「修缺陷」而是「新增功能」** ⟹ 单独列为**产品决定**，不进修法",
+  "D1f键种清单": "**补全为 4 个**（`Meta+z`/`Delete`/`Backspace`/`Meta+c`·`Meta+v`）",
+  "780的判据": "**仍成立**，本批把覆盖面从 3 个键扩到 5 个"
+ },
+ "comparability": {
+  "rounds": 2,
+  "armsPerRound": 6,
+  "pressesPerArm": 2,
+  "allConsistent": true,
+  "retryPolicy": "每格最多试 3 次（含第一次），900×n 退避；`tries`/`retried` 记进 raw 但**排除在两轮一致性比较之外**。",
+  "retryStats": {
+   "cells": 12,
+   "retriedCells": 0,
+   "maxTries": 1
+  },
+  "boundary": "★ **本批未改 `src/`，也没有任何注入。** 本批**不做任何破坏性操作**（只按 `Meta+c`/`Meta+v`；`Cmd+V` 因内部剪贴板为空而被拒绝，**没有粘进任何东西**）；每格开头 `fresh()` 清 localStorage ⟹ 不留残留；**不点**提交/连接/新增机位/导入导出，不做付费或真实生图生视频。"
+ },
+ "static": {
+  "guardLine": 487,
+  "copyLine": 490,
+  "pasteLine": 495,
+  "copyCallLine": 492,
+  "pasteCallLine": 503,
+  "copyAfterGuard": true,
+  "pasteAfterGuard": true,
+  "directorFilesScanned": 28,
+  "systemClipboardHits": [],
+  "internalClipboardWriteLine": 3941,
+  "internalClipboardType": true,
+  "committedReturnsNull": true,
+  "pasteEmptyGuardLine": 3959
+ },
+ "noFire": {
+  "numberCopy": [
+   {
+    "n": 1,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "liveTexts": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   },
+   {
+    "n": 2,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "liveTexts": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   }
+  ],
+  "numberPaste": [
+   {
+    "n": 1,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "liveTexts": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   },
+   {
+    "n": 2,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "liveTexts": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   }
+  ],
+  "rangeCopy": [
+   {
+    "n": 1,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "liveTexts": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   },
+   {
+    "n": 2,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "liveTexts": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   }
+  ],
+  "rangePaste": [
+   {
+    "n": 1,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "liveTexts": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   },
+   {
+    "n": 2,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "GESTURE_BEGIN",
+    "lastDisp": "COMMITTED",
+    "liveTexts": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   }
+  ]
+ },
+ "controlArm": {
+  "controlCopy": [
+   {
+    "n": 1,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "COPY_SELECTION",
+    "lastDisp": "COMMITTED",
+    "liveTexts": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   },
+   {
+    "n": 2,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "COPY_SELECTION",
+    "lastDisp": "COMMITTED",
+    "liveTexts": [
+     "无命令反馈",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   }
+  ],
+  "controlPaste": [
+   {
+    "n": 1,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "PASTE_CLIPBOARD",
+    "lastDisp": "NOOP",
+    "liveTexts": [
+     "当前没有可复制或粘贴的对象",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   },
+   {
+    "n": 2,
+    "cap": 2,
+    "win": 2,
+    "lastCommand": "PASTE_CLIPBOARD",
+    "lastDisp": "NOOP",
+    "liveTexts": [
+     "当前没有可复制或粘贴的对象",
+     "场景描述已记录（本地草稿）",
+     "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+    ]
+   }
+  ]
+ },
+ "results": {
+  "noFirePresses": 8,
+  "placeholderPresses": 8,
+  "controlFired": 4,
+  "pasteRejected": 2,
+  "controlCopyLive": [
+   "场景描述已记录（本地草稿）",
+   "无命令反馈",
+   "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+  ],
+  "controlPasteLive": [
+   "场景描述已记录（本地草稿）",
+   "当前没有可复制或粘贴的对象",
+   "请选择一个角色或者摄像机后，可新建轨道1/5跳过下一步"
+  ],
+  "gestureLivePlaceholder": "无命令反馈",
+  "staleCommand": "GESTURE_BEGIN",
+  "staleDisposition": "COMMITTED",
+  "systemClipboardHits": 0,
+  "directorFilesScanned": 28,
+  "rangeControls": 26,
+  "numberControls": 27,
+  "failedCells": 0
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "text": "★ **780 矩阵最后一行被测出来了：gesture 臂上 `Meta+c`/`Meta+v` 同样不发**（8/8 次：事件**到达 window** 而 `lastCommand` 既不是 `COPY_SELECTION` 也不是 `PASTE_CLIPBOARD`）⟹ `:487` 把它们也吞了。★ 而且比「静默」更糟：`lastCommand`/`lastDisp` **都是陈旧值**（`GESTURE_BEGIN`/`COMMITTED`，来自聚焦时开手势那一刻），而 live 区显示的是**占位文案「无命令反馈」** ⟹ **面板在明确地告诉用户「这里什么也没发生」**。",
+   "evidence": "阶段二 预测 A"
+  },
+  {
+   "id": "J2",
+   "text": "★ **对照臂证明桌自己那条路径是通的**（4/4 次：Copy 出现 `COPY_SELECTION`；Paste 出现 `PASTE_CLIPBOARD` 且 2/2 次是**非 `COMMITTED`** 的拒绝）⟹ 差异不是「有没有功能」，而是「**静默的死键** vs **有反馈的拒绝**」。",
+   "evidence": "阶段二 预测 B"
+  },
+  {
+   "id": "J3",
+   "text": "★ **「放行会不会引入新伤害」—— 不会，而且这个结论是静态可证的。** 扫了 director 面 **28** 个文件，`navigator.clipboard` / `clipboard.writeText` / `readText` 命中 **0** 处；`copyDirectorSelection` 只写内部 `clipboard: DirectorClipboardPacketV1`（写入行 :3941）⟹ 导演台的复制/粘贴**完全内部** ⟹ **矩阵里不存在「系统剪贴板被污染」这一列**。★ 顺带说明为什么这个搜索**必须带作用域**：`app/frameos/` 与 `components/jimeng/` 里都有 `navigator.clipboard`，全仓搜会得到一个**完全相反**的结论。",
+   "evidence": "阶段三"
+  },
+  {
+   "id": "J4",
+   "text": "★ **但本批不给「C/V 该放行」的结论** —— 「放行 `Cmd+C`」不是「恢复一个死键」，而是**新增功能**（「把导演台选中写进内部剪贴板」）。780 的判据只回答「早退是否正当」，而 C/V 两族**都有原生兜底**⟹ 按判据它们**本来就该早退** ⟹ **不该放行**。★ 真正的问题被本批暴露出来的是另一件事：那 %d 个 range 滑杆上，`Meta+c`/`Meta+v` 与 `Meta+z`/`Delete` 一样是死键，而 780 记 D1f 时**只列了后两者** ⟹ **D1f 的键种清单要补全**。",
+   "evidence": "阶段四 + J1"
+  }
+ ],
+ "corrections": [
+  {
+   "id": "C781-1",
+   "targets": [
+    "**780 的 C780-2 / D1f**：「在没有原生兜底的键上，那 26 个 滑杆是死键」——本批暗示这个键种清单**不完整**"
+   ],
+   "was": "读作「死键 = `Meta+z` 与 `Delete`/`Backspace`（780 实测的两个）」。",
+   "now": "★ **`Meta+c` 与 `Meta+v` 也是死键**（%d/%d 次实测），而它们**同样没有原生兜底**（range 滑杆上不可能有文本选区）⟹ **清单要补全成四个键**。★ 但**这不改变「该放行」的结论** —— range 侧该放行的仍然是 `Meta+z`/`Delete`/`Backspace`；C/V 放行属**新增功能**而非修缺陷 ⟹ 单独列为**产品决定**。",
+   "evidence": "J1 + J4"
+  },
+  {
+   "id": "C781-2",
+   "targets": [
+    "**本批的预测**：「`Meta+c`/`Meta+v` 在 gesture 臂上是**静默的死键**（live 区无任何文案）」"
+   ],
+   "was": "读作「按下之后界面什么都不显示」—— 即「没有反馈通道」。",
+   "now": "★ **被实测否掉，而且否掉的方式让结论更准。** live 区**有文案**，是**占位文案「无命令反馈」**；而 `lastCommand`/`lastDisp` **两个读数都是陈旧值**（`GESTURE_BEGIN`/`COMMITTED`，来自聚焦时开手势那一刻）⟹ 它们**没有**被这两下按键更新。★ 对照臂给出了正确对照：`Meta+v` 在内部剪贴板为空时是 **`NOOP`**，而 live 区显示**真实消息**['场景描述已记录（本地草稿）'] ⟹ **桌是有「无操作/拒绝」反馈通道的**，只是 gesture 臂上**一个命令都没产生**，所以走不到那条通道。⟹ 准确说法是「**死键 + 面板显示占位文案**」，**不是「静默」，也不是「没有反馈通道」**。",
+   "evidence": "J1 + J2 + 阶段三"
+  }
+ ],
+ "findings": {
+  "F1": "★ **`Meta+c`/`Meta+v` 在 gesture 臂上也是死键**，而面板显示**占位文案「无命令反馈」** ⟹ 不只是没反馈，是**在骗人**。",
+  "F2": "★ **对照臂证明差异是「静默死键」vs「有反馈的拒绝」**。",
+  "F3": "★ **放行不会碰系统剪贴板**（director 面 28 文件 0 命中）⟹ 安全论证成立，矩阵没有那一列。",
+  "F4": "★ **C/V 该不该放行是产品决定**，不是修缺陷 ⟹ D1f 的键种清单补全为 4 个，但修法范围不变。",
+  "F5": "★ 780 的判据**仍成立**，覆盖面从 3 个键扩到 5 个。"
+ },
+ "probeLessons": [
+  {
+   "id": "R138",
+   "text": "★ **判据要覆盖全集才敢用。** 780 用三个键的样本立了一个判据，第四行却**没测** ⟹ 矩阵里出现一行「凭判据推出来、但没有读数」的结论。⟹ 立判据时要说清**它覆盖哪些键**，并把未覆盖的**显式列出来**（780 做对了标注，781 补上读数）。"
+  },
+  {
+   "id": "R139",
+   "text": "★ **提一条修法时先问「放行之后会发生什么」。** 780 说「`Meta+c` 无原生兜底 ⟹ 该放行」——若 `copyDirectorSelection` 写的是系统剪贴板，这条「修复」就是**新的伤害**。★ 781 静态查了 28 个 director 文件才敢下结论。"
+  },
+  {
+   "id": "R140",
+   "text": "★ **搜索带作用域在这批是生死线。** `navigator.clipboard` 在 `app/frameos/` 与 `components/jimeng/` 里都有 ⟹ 全仓搜会得到「导演台会污染系统剪贴板」的**完全相反**结论，而那会让一个正确的修法被否掉（R110/R128）。"
+  }
+ ],
+ "defects": [
+  {
+   "id": "D1f",
+   "severity": "中（★ 780 记的中，781 补全了键种清单）",
+   "text": "★ **26 个 range 族滑杆上，凡是没有原生兜底的键都是死键，且零反馈。**★ **781 补全**：死键不止 `Meta+z`（778）与 `Delete`/`Backspace`（780），**`Meta+c`/`Meta+v` 也是死键**（8/8 次实测：事件到达 window 而命令不发、live 区是占位文案）。⟹ 键种清单是 **4 个**（`Meta+z` / `Delete` / `Backspace` / `Meta+c`·`Meta+v` 的两个），不是 2 个。",
+   "evidence": "J1 + C781-1"
+  }
+ ],
+ "srcDiff": "**本批未改 `src/`**（工作区 `src/` 干净）；**没有任何注入**。",
+ "rawSha": {
+  "vb781a.json": "9ccde0c340664915",
+  "vb776a.json": "d59c5486df20a93f",
+  "batch780-audit": "adb41493c570d5fa"
+ },
+ "retryStats": {
+  "cells": 12,
+  "retriedCells": 0,
+  "maxTries": 1
+ },
+ "boundary": "★ **本批未改 `src/`，也没有任何注入。** 本批**不做任何破坏性操作**（只按 `Meta+c`/`Meta+v`；`Cmd+V` 因内部剪贴板为空而被拒绝，**没有粘进任何东西**）；每格开头 `fresh()` 清 localStorage ⟹ 不留残留；**不点**提交/连接/新增机位/导入导出，不做付费或真实生图生视频。"
+}
