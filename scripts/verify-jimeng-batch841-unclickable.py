@@ -5822,6 +5822,9 @@ def main() -> int:
     #   ⚠️ 判据组 `Y991A.4` 要钉的是**「理由错、结果撞对」**
     p991 = ROOT / "scripts/jimeng_probe991_wrapvsindex_reread.py"
     _p991 = p991.read_text(encoding="utf-8") if p991.exists() else ""
+    #   ⚠️ 判据组 `Z991A.3` 要钉的是**「990 那条只管跨构建模式」**
+    p992 = ROOT / "scripts/jimeng_probe992_seampos_crosssys_reread.py"
+    _p992 = p992.read_text(encoding="utf-8") if p992.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -11588,6 +11591,213 @@ def main() -> int:
           and "⭐⭐⭐⭐ **零计费是结构性的、不是自律的** ⇒ " in _p991
           # ⭐⭐⭐⭐ **反向门**：**990 那条「本批不是纯离线」不许被套到本批头上**
           and "**本批不是纯离线**（它要起两个服务器）" not in _p991)
+    # ══ Z991A. 批 992 **纯离线跨系统对读**（973 存档 × 974 存档）——
+    #   ⭐⭐⭐⭐⭐ **「间隙切在环的哪里」跨系统不同构** ⇒
+    #   **990 那条「`gap_from_end` 两边都是 −2」只管跨构建模式**
+    print("— Z991A. 批 992 纯离线跨系统对读："
+          "⚠️⭐⭐⭐⭐⭐ **990 的结论要收窄**（复刻 −2、源站 −12）⇒ "
+          "**而跨系统真正成立的是那两条相对关系**")
+    check("Z991A.1 ⭐⭐⭐⭐⭐ **P1 与 P2 成立：跨系统真正成立的是那两条相对关系** —— "
+          "① **下降点都落在 `BODY` 那一格**（复刻下标 **17/19**、源站下标 **6/18**，"
+          "且 973/974 各自的 `n_rank_descents` 就都是 **1**）；"
+          "② **`rf__wrapper` 在两侧的 arc 里都是最后一格** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **而 987 记的「它落在间隙之后的兜底位」两侧都成立** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **「同系统的稳定」与「可移植的规律」是两个量、"
+          "**后者不蕴含前者** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **这与 989 那条「尺子有适用范围」同族、"
+          "**而它是那条的跨系统版本**",
+          '"P1_descent_lands_on_BODY_both"' in _p992
+          and '"P2_rf_wrapper_is_last_arc_cell_both"' in _p992
+          and '"p1_descent_on_BODY_both"' in _p992
+          and '"p2_rf_wrapper_is_last_both"' in _p992
+          and "复刻下标 17/19、源站下标 6/18" in _p992
+          and "各自的 `n_rank_descents` 就都是 1" in _p992
+          and "**这是 987 那条结论的跨系统印证**" in _p992
+          and '"p1_descent_on_BODY_both_992_"' in _ausrc
+          and "**复刻下标 17/19、源站下标 6/18**" in _ausrc
+          and "**「恰好一次回绕」也是跨系统的**" in _ausrc
+          and '"p2_rf_wrapper_is_last_both_992_"' in _ausrc
+          and "**这是 987 那条结论的跨系统印证**" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「可移植」与「同系统稳定」混为一谈**
+          and "间隙位置在任何系统里都一样" not in _p992
+          and "间隙位置在任何系统里都一样" not in _ausrc)
+
+    check("Z991A.2 ⭐⭐⭐⭐⭐ **P3 成立、而它是本批的主要交付："
+          "990 那条的适用范围比它写的窄** —— "
+          "`BODY` 距 arc 末尾：**复刻 −2、源站 −12** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **「间隙紧贴最后一格之前」在源站不成立** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **三条「零例外」各有各的适用范围、不许互相顶替**："
+          "**985/986 的「间隙零例外」= 同一系统内**｜"
+          "**990 的「`gap_from_end` 都是 −2」= 同一系统跨构建模式**｜"
+          "**跨系统 = 本批量了、它不成立** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **而 990 那条本身没有被推翻、被收窄的是它的适用范围** ⇒ "
+          "**990 的判断在它自己的范围内仍然全对**",
+          '"P3_gap_from_end_differs_cross_system"' in _p992
+          and '"p3_scope_of_990_is_narrower"' in _p992
+          and "`BODY` 距 arc 末尾：复刻 **−2**、源站 **−12**" in _p992
+          and "**「间隙紧贴最后一格之前」在源站不成立**" in _p992
+          and "① 985/986 的「间隙零例外」= **同一系统内**；" in _p992
+          and "② 990 的「`gap_from_end` 都是 −2」= **同一系统跨构建模式**；" in _p992
+          and "**三条「零例外」各有各的适用范围、不许互相顶替**" in _p992
+          and "**它断言的是「不相等」" in _p992
+          and '"p3_scope_of_990_is_narrower_992_"' in _ausrc
+          and "**`BODY` 距 arc 末尾：复刻 −2、源站 −12**" in _ausrc
+          and "**「间隙紧贴最后一格之前」在源站不成立**" in _ausrc
+          and "**985/986 = 同一系统内**｜**990 = 跨构建模式**｜" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门（本批最要紧的一条）**：
+          #   **不许说 990 那条是错的** —— 它只是范围窄
+          and "990 那条结论是错的" not in _p992
+          and "990 那条结论是错的" not in _ausrc
+          and "990 的结论被推翻" not in _ausrc)
+
+    check("Z991A.3 ⭐⭐⭐⭐⭐ **P4 成立：「内层停靠」有了可操作的候选判据** —— "
+          "源站 arc **第 11/12 格 testid 相同**"
+          "（`canvas-panel-launcher`、`dom_rank` 118 与 122）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **这比 §164 的「内层停靠 14 个」可核** —— "
+          "**它能被逐格数出来** ⇒ ⇒ "
+          "⇒ ⚠️⭐⭐⭐⭐⭐ **但本批不判它成不成立**："
+          "**§164 说 14 个、本批只在 arc 这一段数到 1 处** ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **不许拿 1 去顶替 14** ⇒ "
+          "**这是 981 那条「二选一是最坏的选择、并排读出来」** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **候选判据 ≠ 结论** —— "
+          "**而这一条不许被写成「已证实」**",
+          '"P4_inner_stop_operational_criterion"' in _p992
+          and '"p4_inner_stop_criterion"' in _p992
+          and "**相邻两格 testid 相同**（源站第 11/12 格都是 `canvas-panel-launcher`、" in _p992
+          and "`canvas-panel-launcher`" in _p992
+          and "**这比 §164 的「内层停靠 14 个」可核**" in _p992
+          and "**不许拿 1 去顶替 14**" in _p992
+          and "**候选判据 ≠ 结论**" in _p992
+          and '"p4_inner_stop_criterion_992_"' in _ausrc
+          and "**源站 arc 第 11/12 格 testid 相同**" in _ausrc
+          and "**不许拿 1 去顶替 14**" in _ausrc
+          and "（981 那条「二选一是最坏的选择、并排读出来」）" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把它当成已证实的等价关系**
+          and "相邻同名就等于内层停靠" not in _p992
+          and "相邻同名就等于内层停靠" not in _ausrc)
+
+    check("Z991A.4 ⭐⭐⭐⭐ **P5 成立：复刻 arc 里有不可聚焦的 `NEXTJS-PORTAL`、"
+          "源站 arc 里没有** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **990 那枚 dev-only 元素在源站侧不存在** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **990 刚证「间隙紧贴它在后面」的那个位置、"
+          "**在源站是由 `BODY` 顶上去的** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **而这解释了 990 的一个悬案**："
+          "**990 问「多出来那一格是不是 dev-only」、"
+          "而源站那一侧压根没有这一格可问** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **「这个元素只在开发态存在」这件事、"
+          "**源站侧连对照物都没有**",
+          '"P5_replica_arc_has_PORTAL_source_does_not"' in _p992
+          and '"p5_portal_only_on_replica"' in _p992
+          and "**990 那枚 dev-only 元素在源站侧不存在**" in _p992
+          and "**在源站是由 `BODY` 顶上去的、而源站的 `BODY` 在环的中段**" in _p992
+          and '"p5_portal_only_on_replica_992_"' in _ausrc
+          and "**源站 arc 里没有**" in _ausrc
+          and "**990 那枚 dev-only 元素在源站侧不存在**" in _ausrc
+          and "**在源站是由 `BODY` 顶上去的**" in _ausrc
+          # ⭐⭐⭐⭐ **反向门**：**不许说源站有 NEXTJS-PORTAL**
+          and "源站 arc 里有 NEXTJS-PORTAL" not in _p992
+          and "源站 arc 里有 NEXTJS-PORTAL" not in _ausrc)
+
+    check("Z991A.5 ⭐⭐⭐⭐ **P6 成立：两侧 arc 的 testid 集合互有差集** —— "
+          "**复刻独有 `canvas-history-launcher`、`canvas-more-trigger`；"
+          "源站独有 `canvas-editor-menu`** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **816 记的 `KNOWN_CLONE_ONLY` 两个 testid 在这一段上"
+          "独立复现了** ⇒ ⇒ "
+          "⇒ ⚠️⭐⭐⭐⭐⭐ **而这不等于「复刻多了两个按钮」** —— "
+          "**arc 只是环的一段、不是整个顶栏** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **「`canvas-editor-menu` 是不是 `canvas-more-trigger` "
+          "的源站对应物」本批只按位置提出怀疑、"
+          "**不许判它是同一个东西**（981 那条「并排读出来」）",
+          '"P6_tid_sets_are_not_equal_both_ways"' in _p992
+          and '"p6_tid_sets_differ_both_ways"' in _p992
+          and "复刻独有 `canvas-history-launcher`、`canvas-more-trigger`" in _p992
+          and "源站独有 `canvas-editor-menu`" in _p992
+          and "**arc 只是环的一段、不是整个顶栏**" in _p992
+          and "不判它是同一个东西**" in _p992
+          and '"p6_tid_sets_differ_both_ways_992_"' in _ausrc
+          and "**复刻独有 `canvas-history-launcher`、" in _ausrc
+          and "**而这不等于「复刻多了两个按钮」**" in _ausrc
+          and "**arc 只是环的一段、不是整个顶栏**" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把差集直接读成「复刻多做了两个功能」**
+          and "复刻比源站多了两个按钮" not in _p992
+          and "复刻比源站多了两个按钮" not in _ausrc
+          and "canvas-editor-menu 就是 canvas-more-trigger" not in _p992
+          and "canvas-editor-menu 就是 canvas-more-trigger" not in _ausrc)
+
+    check("Z991A.6 ⭐⭐⭐⭐⭐ **本批如实标注：哪几条预测不是盲的** —— "
+          "**选候选时我已经看过这两张 arc 表** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **P1/P2/P3/P5 严格说不是盲预测**；"
+          "**而 P4 与 P6 是看到表之后才想出来的、它们才是可红的** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **「如实标注哪几条不是盲预测」"
+          "**比「假装全是盲预测」诚实** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **986 那条「预测要按定义写出」要加一个限定："
+          "**选候选的方式会污染预测** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **所以「怎么选候选」本身也要记下来** ⇒ "
+          "**它是和预测同等重量的元数据**",
+          '"honesty_note_992"' in _p992
+          and '"honest_blind_prediction_992"' in _p992
+          and "**选候选时我已经看过这两张 arc 表**" in _p992
+          and "P1/P2/P3/P5 严格说不是盲预测" in _p992
+          and "P4 与 P6 是看到表之后才想出来的、它们才是可红的" in _p992
+          and "**比「假装全是盲预测」诚实**" in _p992
+          and "**选候选的方式会污染预测**" in _p992
+          and '"honest_blind_prediction_992_"' in _ausrc
+          and "**而 P4 与 P6 是看到表之后才想出来的、它们才是可红的**" in _ausrc
+          and "**比「假装全是盲预测」诚实**" in _ausrc
+          and "**选候选的方式会污染预测**" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把六条全写成「按定义预写」**
+          and "六条预测全部按定义预写" not in _p992
+          and "六条预测全部按定义预写" not in _ausrc)
+
+    check("Z991A.7 ⭐⭐⭐⭐⭐ **引文门只收「前批的原文」、不许收本批自己的新结论** —— "
+          "**那是循环依赖**（本批结论由 verifier 钉、不由引文门钉）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **而本批要收窄的正是 990 那条 ⇒ 所以引文门验的就是它**："
+          "**「间隙紧贴最后一格之前」与「间隙距环尾（`gap_from_end`）」"
+          "两句都必须逐字在 README 里** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **989 栽过一次、991 又栽过一次 ⇒ "
+          "第三次仍然要跑这道门** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **它三次都是红的 ⇒ 它是真的在干活**",
+          '"quotes_992"' in _p992
+          and '"quotes_all_present_992"' in _p992
+          and '"quotes_gate_scope_992"' in _p992
+          and "**引文门只收「前批的原文」、不许收本批自己的新结论**" in _p992
+          and "间隙**紧贴最后一格之前**" in _p992
+          and "间隙距环尾（`gap_from_end`）" in _p992
+          and "**989 栽过一次、991 又栽过一次 ⇒ 第三次仍然要跑这道门**"
+          in _p992
+          and '"quotes_gate_scope_992_"' in _ausrc
+          and "**那是循环依赖**" in _ausrc
+          and "**989 栽过一次、991 又栽过一次 ⇒ " in _ausrc
+          # ⭐⭐⭐⭐ **反向门**：**不许把本批新结论列进引文门**
+          and "**下降点 == `BODY`**\",\n]" not in _p992)
+
+    check("Z991A.8 ⭐⭐⭐⭐⭐ **本批的可信度分层要说清楚："
+          "相对关系可移植、绝对下标会过期** —— "
+          "**本批全部读数都依赖 `/tmp` 里的 973/974 存档、它们不在仓库里** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **而 `dom_rank` 是绝对下标、换一次构建就可能全变** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **所以本批真正可移植的只有「相对关系」那两条**"
+          "（**下降点 == `BODY`**、**`rf__wrapper` 是末格**）⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐ **绝对下标 −2 / −12 只当作「当时量到的」** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **而 P3 的结论在这一点上反而更稳** —— "
+          "**它断言的是「两侧不相等」、而「相等」才需要精确下标** ⇒ ⇒ "
+          "⇒ ⭐⭐⭐⭐⭐ **本批纯离线**：不打开浏览器、不按任何键、"
+          "**连 `mouse.click` 都没有** ⇒ **零计费是结构性的**",
+          '"ephemeral_992"' in _p992
+          and '"offline_992"' in _p992
+          and "**而 `dom_rank` 是**绝对下标**、" in _p992
+          and "**换一次构建就可能全变**" in _p992
+          and "**所以本批真正可移植的只有「相对关系」那两条" in _p992
+          and "**绝对下标 −2 / −12 只当作「当时量到的」**" in _p992
+          and "**而 P3 的结论在这一点上反而更稳** —— " in _p992
+          and "**连 `mouse.click` 都没有**" in _p992
+          and "**零计费是结构性的、不是自律的**" in _p992
+          and '"ephemeral_992_"' in _ausrc
+          and "**绝对下标 −2 / −12 只当作「当时量到的」**" in _ausrc
+          and '"offline_992"' in _ausrc
+          and "**两侧全部用 973/974 存档**" in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把绝对下标说成是永久性质**
+          and "−2 与 −12 是两个系统的固有属性" not in _p992
+          and "−2 与 −12 是两个系统的固有属性" not in _ausrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
