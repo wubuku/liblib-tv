@@ -2084,3 +2084,14 @@ screenshots:
     visible_text: '视频 1 全屏编辑 50% 节点 76'
     alt: "点同一行结果行之后：左下角缩放读数从 26% 变成 50%；橙实线框罩住的「视频 1」节点整块落在画面里、右上角带「全屏编辑」工具条、左右各有一个圆圈加号按钮；搜索面板仍然开着，面板里那行「视频 1 / 视频」也仍然是高亮态"
     sha256: ea53349d7d38e174c1952175ff70bd01d133d89d6d9c95834c907bd99b98ea19
+  - file: screenshots/180-search-result-two-entries.png
+    task_id: navigate-canvas
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x（裁切 352×184@753,92）
+    locale: zh-CN
+    captured_at: 2026-10-05T21:10:00+08:00
+    verified_locator: '搜索框输入「视频」后读回框值逐字「视频」、结果区读出 BUTTON[data-testid="canvas-search-result-node_236ctpehgg"] 屏上 [773, 152, 312, 64] aria 逐字「视频 1, 视频」；行内读出 BUTTON/ SPAN[data-testid="canvas-search-locate-icon-node_236ctpehgg"] 屏上 [1053, 176, 16, 16]（未悬停时 opacity=0、悬停后 opacity=1，尺寸/color/visibility/display 三态逐字不变）；**把光标移回该行上**（否则图标不可见）后给整行画 3px solid #ff8c00 框、给图标画 3px dashed #ff8c00 框，读回两个框的 borderStyle 分别是 solid / dashed、pointer-events 均为 none、宽高为正 才 shutter'
+    visible_text: '全部 1 图片 视频 1 音频 文本 主体 1 视频 1 视频'
+    alt: "搜索结果行的两个入口：橙实线框罩住整行（312×64），行内左侧是类型图标「1 / 视频 1 / 视频」两行文字；橙虚线框罩住行右端那个 16×16 的 ⌖ 定位图标，它只有光标悬停在这一行上时才显影，不悬停时那个位置看起来是空的"
+    sha256: faabb29be8d1852601e0dbe61d9b195751d0bc0da03a89980af25bbeb98ae2d5

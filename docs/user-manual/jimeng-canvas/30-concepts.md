@@ -2858,3 +2858,32 @@ const 节点 = await p.evaluate((nid) => {
 
 📌 这条与立规 58 同源但不是同一件事：58 管的是**断言的集合**，
 66 管的是**代码跨执行边界时的取值**。两者都会让脚本「看起来对、实际是空转」。
+
+## 写选择器之前，**先把真实的属性值打印出来**（2026-10-05 立规 67）
+
+批次 191–192 连着踩了**三次同一类**的错误：选择器是**照着自己印象写的**，
+而产品里的真实属性值多了/少了一个字符。三次都是**整轮探针作废**：
+
+| 我写的 | 真实的 | 后果 |
+|---|---|---|
+| `input[aria="搜索"]` | `input[aria-label="搜索"]` | 恒不命中 ⇒ b 轮直接抛「搜索框不在 DOM 里」，三轮探针全废 |
+| `canvas-search-result-node-<id>` | `canvas-search-result-node_<id>` | 命中 0 条 |
+| `canvas-search-locate-icon-node-<id>` | `canvas-search-locate-icon-node_<id>` | 命中 0 条 ⇒ **误判成「手册记错了」**，差点去改一条本来正确的记录 |
+
+🔴 第三次最危险：**读数 0 条时，我第一反应是「手册写错了」**。
+**读数 0 条不能证明文档错，只能证明我的取数方式可能不对** ——
+在改任何一条已建档的结论之前，先**把真实的 testid 集合打出来**：
+
+```js
+// 先打印，再写选择器
+Array.from(new Set(Array.from(document.querySelectorAll('[data-testid]'))
+  .map((e) => e.getAttribute('data-testid')).filter((t) => t && /locate|icon|target/i.test(t)))
+// ⇒ ["canvas-search-locate-icon-node_236ctpehgg", "canvas-minimap-portal-target", …]
+```
+
+⇒ 顺手还白捡了一条：b 轮打印出行内**有 2 个 `svg`**（左侧 `20×20` 类型图标、右侧 `16×16` 定位图标），
+而手册原先只说「行内另有一个 …」，**没给尺寸、也没说它默认不可见**。
+
+📌 这条与立规 65（无效臂）、66（跨边界作用域）是同一个家族：
+**它们都会让脚本「安静地什么都没查到」**。区别是 65/66 会抛异常或留下空读数，
+而这一条**连异常都没有** —— 查询合法、只是恒不命中，最容易被当成事实。
