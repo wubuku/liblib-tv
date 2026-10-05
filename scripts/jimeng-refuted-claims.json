@@ -886,6 +886,39 @@
    "pattern_note": "两条 pattern 都锚在**订正后的正解**上（SOURCE_OBSERVATIONS §4.96.4 的 ① ② 两步、以及 PROGRESS 的立规 44 补强行），命中处紧邻「正解」「补强」等标记。都不含正则元字符。",
    "refuted_in": "批次 173（SOURCE_OBSERVATIONS.md §4.96.4；PROGRESS.md 批次 173 的「立规 44 补强」行）",
    "reason": "2026-10-05 批次 173：b 轮清理临时节点时按 id 找到目标、滚进视口、在**几何中心**右键 —— 结果**节点总数从 78 掉到 77，而目标 id 还在** ⇒ 删掉的是**另一个**节点（两个临时节点挨着，中心点落在别的节点上）。⇒ 立规 44 原来只写「按 id 认人 + 删完验明」不够，**右键落点本身也可能落到别的节点上**。补强三条：① 落点用 flow-node-title 的中心而不是几何中心（中心常被把手热区或别的节点盖住）；② 右键后读 .react-flow__node.selected 的 data-id，确认是目标再点删除；③ 删后按同一个 id 验它不在了，并顺带验原有节点还在。"
+  },
+  {
+   "id": "saved-label-proves-the-edit-landed",
+   "label": "把顶栏「已保存」这三个字当作「刚才那次改动已经存上」的凭据",
+   "patterns": [
+    "它是存没存上的凭据",
+    "证明你那次改动存上了"
+   ],
+   "pattern_note": "两条 pattern 都锚在**被订正的原句**上（90-troubleshooting「怀疑改动未保存」那条的警示行、30-concepts 补记的第 3 条），命中处紧邻「证明不了」「不能」「会丢」等标记。纯中文词组，不含任何正则元字符。",
+   "refuted_in": "批次 174（SOURCE_OBSERVATIONS.md §4.97.4；10-tasks/canvas-context.md「确认保存状态」第 4 条；90-troubleshooting.md「怀疑改动未保存」「断网时改了画布名」两条；30-concepts.md 保存与历史补记）",
+   "reason": "2026-10-05 批次 174：f 轮先跑**阳性对照**（联网改名成立、回读逐字对上）确认改名机制本身是好的，再用 CDP 断网（navigator.onLine 逐字为 false）重做一次 —— 改名**不成立**，界面直接回弹成原名、aria 也回原名；而 canvas-title-save-status 在断网期间 7.68 秒 63 次采样**一字未变地继续显示「已保存」**，全页扫「失败/重试/离线/未保存/网络异常/稍后」零命中，canvas-save-failure-anchor 全程零子元素。唯一变化的信号是状态行 Room connected → Reconnecting to room.，而状态行宿主是 sr-only（1×1、clip:rect(0px,0px,0px,0px)），**视觉用户看不到**。恢复网络后自动回到 Room connected，不补交也不重试。⇒ 断网时**它是存没存上的凭据**：唯一核对办法是刷新看结果，且必须在恢复网络之后核。"
+  },
+  {
+   "id": "reload-keeps-your-viewport",
+   "label": "以为刷新后画布会回到上次摆好的缩放与平移位置",
+   "patterns": [
+    "会保住它上次摆好的视角",
+    "回到上次的位置"
+   ],
+   "pattern_note": "两条 pattern 都锚在**被否掉的推论**上（20-reference 三层表里 ③ 纯内存那一行的括注、90-troubleshooting「刷新之后画布缩放变了」那条的「原因」段），命中处紧邻「不带进任何键」「不是 bug」等标记。纯中文词组，不含任何正则元字符。",
+   "refuted_in": "批次 174（SOURCE_OBSERVATIONS.md §4.97.5；20-reference.md「持久化：三层各存在哪」；90-troubleshooting.md「刷新之后画布缩放变了、视角没了」；30-concepts.md 保存与历史补记第 2 条）",
+   "reason": "2026-10-05 批次 174：造受控前置态（缩放 50%、平移过）后刷新，scale(0.5) → **scale(0.260267)（26%）**，视口 transform 同步改变。反向验证「它会保住它上次摆好的视角」：每轮刷新前都先把视口**改乱**成 translate(400px,300px) scale(1.2)，连做 **3 轮**，刷新后读数**逐字相同** ⇒ 26% 不是抖动，是**内容决定的确定值**。量化：76 节点 / 1280×720 下节点包围盒占视口 83.2%（宽）× 91.1%（高），四边余量 108/108/32/32；「刚好装下」的理论值按宽 0.313、按高 0.286，实测比两者都小 ⇒ 留了边距且约束在高度。⇒ 刷新是**刻意自动适配到「装得下全部节点」**，没有「记住视角」这个功能。📌 上下余量恰好 32 与批次 170 的「浮层余量 32」同族，本批只记录这个巧合、不推广（批次 170 的教训：32 是多数派不是定律）。"
+  },
+  {
+   "id": "save-failure-anchor-is-the-failure-toast",
+   "label": "看到 canvas-save-failure-anchor 这个 testid，就断定页面上存在「保存失败提示」",
+   "patterns": [
+    "存在保存失败提示",
+    "它只是定位锚"
+   ],
+   "pattern_note": "两条 pattern 都锚在**被自己否掉的推论**上（canvas-context 第 4 条末尾那句、20-reference 保存指示器与失败锚点那张表的结论列），命中处紧邻「不成立」「否掉」等标记。纯中文词组，不含任何正则元字符。",
+   "refuted_in": "批次 174（SOURCE_OBSERVATIONS.md §4.97.4 与立规 47；10-tasks/canvas-context.md「确认保存状态」第 4 条末尾；20-reference.md「保存指示器与失败锚点」）",
+   "reason": "2026-10-05 批次 174：a 轮扫 testid 时看到 canvas-save-failure-anchor，据名字推出「页面存在保存失败态」。d 轮量到它是 **0×0@1264,72、零子元素、零内文、position:absolute、pointer-events:none**，祖先只有 div[canvas-save-failure-anchor] → section[canvas-main-region] ⇒ **它只是定位锚**。f 轮断网全程采样它的子元素数与内文，**一次也没长出东西**；同时全页关键词扫描（失败/重试/离线/未保存/网络异常/稍后）**零命中**。⇒ 「存在保存失败提示」这个推断**被自己的读数否掉**：断网时页面上确实没有任何保存失败 UI。⇒ 立规 47：断言某功能存在时至少要有一条非空读数（有面积/有子元素/有内文），看见 testid 不等于功能存在。"
   }
  ]
 }
