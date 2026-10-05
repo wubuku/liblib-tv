@@ -5889,6 +5889,11 @@ def main() -> int:
     #   **⇒ 所以这行读取与门里那条登记必须是同一步**
     p1010 = ROOT / "scripts/jimeng_probe1010_real_history_detection.py"
     _p1010 = p1010.read_text(encoding="utf-8") if p1010.exists() else ""
+    # ⚠️⚠️⭐⭐⭐⭐⭐ 判据组 `P993T.1` 要钉的是**「1010 那个 39 只是九对、而十对是 45」**
+    #   ⇒ ⇒ 而 1011 是**拿同一批 git 历史**逐条复算的 ⇒ ⇒
+    #   **⇒ 所以这行读取与门里那条登记必须是同一步**
+    p1011 = ROOT / "scripts/jimeng_probe1011_change_locality.py"
+    _p1011 = p1011.read_text(encoding="utf-8") if p1011.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -14572,6 +14577,149 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **反向门**：**不许把局部的检出力说成全局的**
           and '全局检出力就是 0.0' not in _p1010
           and '全局检出力就是 0.0' not in _ausrc)
+
+
+    # ══ 1011 宇宙冻结点 ══
+    # ⚠️ 同 1006/1007/1008/1009/1010 那条：**1011 报的那些数是在它的 `P993T` 判据
+    #    加进去之前、在 1010 那一版 audit 上测的** ⇒ ⇒
+    #    **⇒ 而 1011 报的 45 次改动里没有一次来自它自己这一批 —— 因为它只读 git
+    #    历史、不改 audit 的基线条目** ⇒ ⇒ ⇒
+    #    **⇒ 这也是本批唯一一处「宇宙漂移量为零」的读数，必须和别的批次分开说**
+    # ══ P993T. 批 1011 **真实历史里门看不见的那些改动，是一批什么样的改动**
+    print("— P993T. 批 1011 改动的局部性："
+          "45 次改动只落在 8 段文本上，38 次落在 3 句计费声明上")
+    check("P993T.1 ⭐⭐⭐⭐⭐⭐⭐ **P1 成立：口径差必须显式对齐 —— 1010 记的是 39"
+          "（只算了九对快照）、本批把 1010 自己那次也算进来、逐条复算得 45，"
+          "差的 6 全部来自 `1009->1010` 那一对** ⇒ ⇒ "
+          "**⇒ 而两个数都留在仓里、不许默默把 39 改成 45**",
+          '"P1_hold_2011"' in _p1011
+          and '"n_touched_ten_pairs"' in _p1011
+          and '"n_touched_nine_pairs_2010"' in _p1011
+          and '"n_delta_ten_minus_nine"' in _p1011
+          and '"p1_denominator_is_45_not_39_2011_"' in _ausrc
+          and '逐条复算得 45' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「口径变宽」悄悄写成「口径变了结论」**
+          and '所以 1010 的结论错了' not in _p1011
+          and '所以 1010 的结论错了' not in _ausrc)
+
+    check("P993T.2 ⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立：条数 ≠ 地方数 —— 那 45 次改动只落在 8 段不同文本上，"
+          "而其中 38 次落在 3 句话上；那 3 句话是每一批都在重复写的「本批纯离线、"
+          "不打开浏览器、不按任何键、连 `mouse.click` 都没有」计费声明** ⇒ ⇒ "
+          "**⇒ 所以 1010 的 0.0 首先是「关于计费声明的 0.0」；扣掉它们后剩 7 次改动、5 段文本**",
+          '"n_distinct_anchor_texts"' in _p1011
+          and '"n_billing_texts"' in _p1011
+          and '"n_billing_records"' in _p1011
+          and '"n_nonbilling_records"' in _p1011
+          and '"n_nonbilling_texts"' in _p1011
+          and '本会话每一批都在写的' in _p1011
+          and '"p2_45_changes_land_on_8_texts_38_on_the_billing_line_2011_"' in _ausrc
+          and '条数 ≠ 地方数' in _ausrc
+          and '计费声明' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐ **反向门**：**扣减后必须和扣减前一起报** ——
+          #   **只报扣减后的 5 段，会让「8 段里 7 段命中」这个读数看起来更弱，
+          #   而它恰恰是本批最容易被拿去做路线决策的那个数**
+          and '扣掉它们之后还剩 7 次改动、5 段文本' in _ausrc)
+
+    check("P993T.3 ⭐⭐⭐⭐⭐⭐⭐ **P3 成立：45 次改动里有 43 次（95.6%）落在 occurrence ≥ 2 的锚点上，"
+          "而全集里 occurrence ≥ 2 的只有 8.6%（292/3407）—— 偏斜 11.1 倍** ⇒ ⇒ "
+          "**⇒ 而这不是随机抽样的偶然：真实工作流改的恰恰是「被反复声明」的那些句** ⇒ ⇒ "
+          "**⇒ 所以 1010 的分母天生偏在零耦合那一侧、那个 0.0 不能外推**",
+          '"n_ge2_touched"' in _p1011
+          and '"n_positive_ausrc_at_1010"' in _p1011
+          and '"n_ge2_whole_universe"' in _p1011
+          and '"rate_ge2_touched_pct"' in _p1011
+          and '"rate_ge2_whole_pct"' in _p1011
+          and '"bias_ratio"' in _p1011
+          and '"p3_touched_is_biased_to_high_occurrence_2011_"' in _ausrc
+          and '偏斜 11.1 倍' in _ausrc
+          and '不能外推' in _ausrc
+          # ⭐⭐⭐⭐⭐ **反向门**：**不许把「偏斜」写成「门只覆盖高 occurrence」** ——
+          #   **那是两回事：门覆盖的是全部 occurrence ≥ 1 的锚点**
+          and '所以门只覆盖高 occurrence 的锚点' not in _ausrc)
+
+    check("P993T.4 ⭐⭐⭐⭐⭐⭐⭐⭐ **P4 成立：按 1004 的耦合度公式（自身只出现 1 次 ? 1 : 0），"
+          "occurrence ≥ 2 的锚点耦合度本该是 0；实测门报 0 个 —— 一致** ⇒ ⇒ "
+          "**⇒ 所以「门看不见那 43 次改动」不是缺陷、是公式要求的结果** ⇒ ⇒ "
+          "**⇒ 真正的问题被换掉了：不是「门弱」，是「门唯一的不变量与真实工作流的主形态正交」**",
+          '"n_predicted_zero_coupling"' in _p1011
+          and '"P4_hold_2011"' in _p1011
+          and '"p4_invisible_is_correct_not_a_defect_2011_"' in _ausrc
+          and '不是缺陷、是公式要求的结果' in _ausrc
+          and '与真实工作流的主形态正交' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐ **反向门（本批的核心）**：**「看不见」必须先判「门弱」还是「公式要求」**
+          and '所以门坏了' not in _p1011
+          and '所以门坏了' not in _ausrc
+          and '零耦合是缺陷' not in _ausrc)
+
+    check("P993T.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 成立：这 45 次改动里出现次数增加 45、减少 0、归零 0** ⇒ ⇒ ⇒ "
+          "**⇒ 而 occurrence 就是「在几次」那个轴、它在真实工作流下单调只增** ⇒ ⇒ ⇒ "
+          "**⇒ 1009 P4 早就把这一轴指认给普查了、而它至今没有任何一条门判据覆盖** ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ 而 1008 已经为这一类判据准备好了配套：老账记成账龄、不许一次报红**",
+          '"n_increased"' in _p1011
+          and '"n_decreased"' in _p1011
+          and '"n_vanished"' in _p1011
+          and '"P5_hold_2011"' in _p1011
+          and '"p5_the_count_axis_only_grows_2011_"' in _ausrc
+          and '单调只增' in _ausrc
+          and '老账记成账龄' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **反向门**：**不许把「单调只增」说成「门应该报」** ——
+          #   **⇒ 每批都报的判据就是 1008 说的「一次报红」；正确处置是账龄，不是加严**
+          and '所以门应该开始报这条' not in _p1011
+          and '所以门应该开始报这条' not in _ausrc)
+
+    check("P993T.6 ⭐⭐⭐⭐⭐ **P6 成立：8 段里 7 段落在 1005 那份 690 行零耦合清单里"
+          "（87.5% vs 基准 12.0%；那份清单 690 行只有 658 个不同文本）** ⇒ ⇒ "
+          "**⇒ 而样本只有 8 段、扣掉计费声明后只剩 5 段 ⇒ 所以本批不据此决定"
+          "「该点修还是该普查」** ⇒ ⇒ "
+          "**⇒ 诚实的结论是：样本量不足以决定路线、只能收窄 1010 读数的适用范围**",
+          '"n_intersection"' in _p1011
+          and '"rate_intersection_pct"' in _p1011
+          and '"base_rate_1005_pct"' in _p1011
+          and '"n_rows_1005_golden"' in _p1011
+          and '"n_distinct_texts_1005_golden"' in _p1011
+          and '"p6_cross_with_1005_golden_but_too_few_to_decide_2011_"' in _ausrc
+          and '本批不据此决定' in _ausrc
+          and '样本量不足以决定路线' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **反向门（本批的诚实性闸门）** ——
+          #   **「交集高 ⇒ 该点修得完」这个推论样本量根本不够；写了就是硬给路线**
+          and '所以交集高、该点修得完' not in _p1011
+          and '所以交集高、该点修得完' not in _ausrc)
+
+    check("P993T.7 ⭐⭐⭐⭐⭐⭐⭐ **P7 成立：本批每一个读数都钉在 10 个 git 提交上，"
+          "而「钉在历史上的判据」有专属的失效形态 —— 将来 rebase 之后这些 sha 取不到、"
+          "判据不会报错、它会静静地读出空集** ⇒ ⇒ "
+          "**⇒ 所以开工前先逐个 `git cat-file` 验活，实测 10/10 全部可取**",
+          '"n_shas_alive"' in _p1011
+          and '"n_commits"' in _p1011
+          and '"P7_hold_2011"' in _p1011
+          and 'sha_alive' in _p1011
+          and 'cat-file' in _p1011
+          and '"p7_history_backed_criteria_must_verify_shas_2011_"' in _ausrc
+          and '验活' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐ **反向门**：**不许把「验活」写成「历史不会变」**
+          and '所以历史是稳定的' not in _p1011
+          and '所以历史是稳定的' not in _ausrc)
+
+    check("P993T.8 ⭐⭐⭐⭐⭐ **P8 成立：逐条落进 "
+          "`docs/research/jimeng-canvas/change-locality-1011.json`、由本探针自己写** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐⭐ **⇒ 而它记的是「每段文本被动了几次、出现在哪几对之间、是不是计费声明、"
+          "在不在 1005 那份清单里」—— 这正是 1010 记了次数却没记身份的那一层** ⇒ ⇒ "
+          "**⇒ 本批只量 `_ausrc` 这一个目标 —— 局部读数不许长得像全局的** ⇒ ⇒ "
+          "**⇒ P9 成立：判据里手写的数全部有出处**",
+          '"P8_hold_2011"' in _p1011
+          and '"P9_hold_2011"' in _p1011
+          and '"audit_numbers_vs_computed_2011"' in _p1011
+          and 'change-locality-1011.json' in _p1011
+          and 'change-locality-1011.json' in _ausrc
+          and '局部读数会长得像全局的' in _p1011
+          and '局部读数会长得像全局的' in _ausrc
+          and '本批只量 `_ausrc` 这一个目标' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐ **反向门**：**不许把局部读数说成全局的** ——
+          #   **⇒ 而 1006/1007 改过的探针侧文件根本不在本批分母里**
+          and '全局检出力就是 0.0' not in _p1011
+          and '全局检出力就是 0.0' not in _ausrc
+          and '这些读数不是全局的' in _p1011)
+
 
 
     print(f"\n{checks - len(failures)}/{checks}")

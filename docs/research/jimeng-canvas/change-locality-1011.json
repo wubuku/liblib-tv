@@ -1,0 +1,129 @@
+{
+ "generated_by": "jimeng_probe1011_change_locality.py",
+ "note": "⭐⭐⭐⭐⭐⭐⭐ **真实历史里门看不见的那些改动，是一批什么样的改动**",
+ "scope": "⭐ 只量 `_ausrc`（audit 基线）这一个目标",
+ "denominator": {
+  "n_touched_ten_pairs": 45,
+  "n_touched_nine_pairs_as_recorded_by_1010": 39,
+  "n_distinct_anchor_texts": 8
+ },
+ "per_text": [
+  {
+   "anchor": "**又一次「同一个东西要比同一个口径」**",
+   "n_changes": 1,
+   "pairs": [
+    "1002->1003"
+   ],
+   "is_billing_declaration": false,
+   "in_1005_zero_coupling_golden": true,
+   "class_1005": "P-散文/片段"
+  },
+  {
+   "anchor": "**连 `mouse.click` 都没有**",
+   "n_changes": 18,
+   "pairs": [
+    "1001->1002",
+    "1002->1003",
+    "1003->1004",
+    "1004->1005",
+    "1005->1006",
+    "1006->1007",
+    "1007->1008",
+    "1008->1009",
+    "1009->1010"
+   ],
+   "is_billing_declaration": true,
+   "in_1005_zero_coupling_golden": true,
+   "class_1005": "P-散文/片段"
+  },
+  {
+   "anchor": "**零计费是结构性的、不是自律的**",
+   "n_changes": 10,
+   "pairs": [
+    "1001->1002",
+    "1002->1003"
+   ],
+   "is_billing_declaration": true,
+   "in_1005_zero_coupling_golden": true,
+   "class_1005": "P-散文/片段"
+  },
+  {
+   "anchor": "「同一个东西要比同一个口径」",
+   "n_changes": 1,
+   "pairs": [
+    "1002->1003"
+   ],
+   "is_billing_declaration": false,
+   "in_1005_zero_coupling_golden": true,
+   "class_1005": "P-散文/片段"
+  },
+  {
+   "anchor": "任何写出临时文件的仪器都必须注册 `atexit` 清理",
+   "n_changes": 1,
+   "pairs": [
+    "1008->1009"
+   ],
+   "is_billing_declaration": false,
+   "in_1005_zero_coupling_golden": false,
+   "class_1005": null
+  },
+  {
+   "anchor": "作废",
+   "n_changes": 2,
+   "pairs": [
+    "1002->1003",
+    "1003->1004"
+   ],
+   "is_billing_declaration": false,
+   "in_1005_zero_coupling_golden": true,
+   "class_1005": "I-标识符(多处引用)"
+  },
+  {
+   "anchor": "按定义",
+   "n_changes": 2,
+   "pairs": [
+    "1001->1002",
+    "1005->1006"
+   ],
+   "is_billing_declaration": false,
+   "in_1005_zero_coupling_golden": true,
+   "class_1005": "I-标识符(多处引用)"
+  },
+  {
+   "anchor": "连 `mouse.click` 都没有",
+   "n_changes": 10,
+   "pairs": [
+    "1006->1007",
+    "1007->1008",
+    "1008->1009",
+    "1009->1010"
+   ],
+   "is_billing_declaration": true,
+   "in_1005_zero_coupling_golden": true,
+   "class_1005": "P-散文/片段"
+  }
+ ],
+ "occurrence_bias": {
+  "n_positive_ausrc_at_1010": 3407,
+  "n_ge2_whole_universe": 292,
+  "rate_whole": 0.0857,
+  "n_ge2_touched": 43,
+  "rate_touched": 0.9556,
+  "ratio": 11.15
+ },
+ "direction": {
+  "increased": 45,
+  "decreased": 0,
+  "vanished": 0,
+  "n_predicted_zero_coupling_by_1004_formula": 43
+ },
+ "cross_with_1005": {
+  "n_intersection": 7,
+  "n_universe_touched": 8,
+  "rate": 0.875,
+  "n_rows_1005": 690,
+  "n_distinct_texts_1005": 658,
+  "base_rate_1005": 0.1195,
+  "note": "⭐⭐⭐⭐⭐ **样本只有 8 段、扣掉计费声明后只剩 5 段 ⇒ ⇒ 本批不据此决定路线**"
+ }
+}
