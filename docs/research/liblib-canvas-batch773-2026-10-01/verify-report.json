@@ -1,0 +1,613 @@
+{
+ "batch": 773,
+ "checks": [
+  {
+   "label": "产物：判据 10 条且 id 齐全",
+   "pass": true,
+   "got": {
+    "got": [
+     "J1",
+     "J10",
+     "J2",
+     "J3",
+     "J4",
+     "J5",
+     "J6",
+     "J7",
+     "J8",
+     "J9"
+    ]
+   }
+  },
+  {
+   "label": "产物：verdict 与预期一致",
+   "pass": true,
+   "got": {
+    "got": {
+     "J1": "PASS",
+     "J2": "PASS",
+     "J3": "PASS",
+     "J4": "PASS",
+     "J5": "PASS",
+     "J6": "PASS",
+     "J7": "PASS",
+     "J8": "PASS",
+     "J9": "PASS",
+     "J10": "PASS"
+    }
+   }
+  },
+  {
+   "label": "产物：每条判据的 evidence 等于 findings[evidenceKey]",
+   "pass": true,
+   "got": {
+    "mismatch": []
+   }
+  },
+  {
+   "label": "产物：教训 ['R96', 'R97', 'R98', 'R99'] 齐全",
+   "pass": true,
+   "got": {
+    "got": [
+     "R96",
+     "R97",
+     "R98",
+     "R99"
+    ]
+   }
+  },
+  {
+   "label": "产物：观察 ≥3 条",
+   "pass": true,
+   "got": {
+    "got": 3
+   }
+  },
+  {
+   "label": "产物：本批无新缺陷（只是对 772 的范围更正）",
+   "pass": true,
+   "got": {
+    "got": []
+   }
+  },
+  {
+   "label": "产物：更正块 ['C773-1']",
+   "pass": true,
+   "got": {
+    "got": [
+     "C773-1"
+    ]
+   }
+  },
+  {
+   "label": "产物：C773-1 明确点名 772 的三处",
+   "pass": true,
+   "got": {
+    "got": [
+     [
+      "batch 772 findings(F6_confounded)",
+      "batch 772 defects[D14].measured",
+      "batch 772 judgments[J7]"
+     ]
+    ]
+   }
+  },
+  {
+   "label": "产物：两份 raw 的 sha 都记进产物",
+   "pass": true,
+   "got": {
+    "got": {
+     "vb773a.json": "c164af771485c7e2",
+     "vb773b.json": "55a22dc50a8b4eb8"
+    }
+   }
+  },
+  {
+   "label": "产物：探针 raw/ 与 probes/ 都在场（R43）",
+   "pass": true,
+   "got": {
+    "raw": [
+     "vb773a.json",
+     "vb773b.json"
+    ],
+    "probes": [
+     "dbg773a.py",
+     "dbg773b.py",
+     "mk773audit.py"
+    ]
+   }
+  },
+  {
+   "label": "静态：桌内只有 1 个 keydown 监听且在 window 冒泡",
+   "pass": true,
+   "got": {
+    "n": 1
+   }
+  },
+  {
+   "label": "静态：★ 5 个分支每走到一个就调一次 preventDefault（行号现读）",
+   "pass": true,
+   "got": {
+    "branches": {
+     "Meta+C": {
+      "guardLine": 490,
+      "preventDefaultLines": [
+       491,
+       502,
+       507,
+       513,
+       526,
+       541,
+       550
+      ],
+      "hasPreventDefault": true
+     },
+     "Meta+V": {
+      "guardLine": 495,
+      "preventDefaultLines": [
+       502,
+       507,
+       513,
+       526,
+       541,
+       550
+      ],
+      "hasPreventDefault": true
+     },
+     "Meta+Z": {
+      "guardLine": 506,
+      "preventDefaultLines": [
+       507,
+       513,
+       526,
+       541,
+       550
+      ],
+      "hasPreventDefault": true
+     },
+     "Meta+Y": {
+      "guardLine": 512,
+      "preventDefaultLines": [
+       513,
+       526,
+       541,
+       550
+      ],
+      "hasPreventDefault": true
+     },
+     "Delete|Backspace": {
+      "guardLine": 517,
+      "preventDefaultLines": [
+       526,
+       541,
+       550
+      ],
+      "hasPreventDefault": true
+     }
+    },
+    "pdLines": [
+     483,
+     491,
+     502,
+     507,
+     513,
+     526,
+     541,
+     550
+    ]
+   }
+  },
+  {
+   "label": "静态：isEditable 早退排在 Delete 与 Meta+C 之前",
+   "pass": true,
+   "got": {
+    "guard": true
+   }
+  },
+  {
+   "label": "静态：Tab 处理器只认 Tab ⟹ 不污染本批读数",
+   "pass": true,
+   "got": {
+    "got": true
+   }
+  },
+  {
+   "label": "产物：静态层与验收器重读的源码一致",
+   "pass": true,
+   "got": {
+    "got": [
+     483,
+     491,
+     502,
+     507,
+     513,
+     526,
+     541,
+     550
+    ]
+   }
+  },
+  {
+   "label": "原始：两个探针各自两轮逐格一致",
+   "pass": true,
+   "got": {
+    "got": true
+   }
+  },
+  {
+   "label": "原始：★ 合并规则独立复核（773a 无中性臂、SKIP 集合对、无失败）",
+   "pass": true,
+   "got": {
+    "got": []
+   }
+  },
+  {
+   "label": "原始：合并铺满 51 格，无缺格",
+   "pass": true,
+   "got": {
+    "missing": [],
+    "merged": 51
+   }
+  },
+  {
+   "label": "原始：★ R99 —— defaultPrevented 读到了**两个**不同的值（不是全 None / 全同）",
+   "pass": true,
+   "got": {
+    "dpValues": [
+     "False",
+     "True"
+    ]
+   }
+  },
+  {
+   "label": "原始：每格间谍装上了、收到了事件、目标有选中",
+   "pass": true,
+   "got": {
+    "installed": true,
+    "events": true,
+    "selected": true
+   }
+  },
+  {
+   "label": "原始：★ 中性键 F2 读到 false（6/6）",
+   "pass": true,
+   "got": {
+    "got": {
+     "export": false,
+     "preset": false,
+     "pathmenu": false,
+     "phonevcam": false,
+     "crowd": false,
+     "modellib": false
+    }
+   }
+  },
+  {
+   "label": "原始：★ 分支在 6/6 个浮层跑到了（30/30 格 dp=true）",
+   "pass": true,
+   "got": {
+    "n": 30,
+    "disclosures": [
+     "crowd",
+     "export",
+     "modellib",
+     "pathmenu",
+     "phonevcam",
+     "preset"
+    ]
+   }
+  },
+  {
+   "label": "原始：★ 守卫对全部五个键一视同仁（15/15 格 dp=false）",
+   "pass": true,
+   "got": {
+    "n": 15,
+    "mismatch": []
+   }
+  },
+  {
+   "label": "原始：★ 两个信号分开：8 格有副作用、4 格 dp=true 但无副作用",
+   "pass": true,
+   "got": {
+    "sideEffect": [
+     "crowd/noneditable/Backspace",
+     "crowd/noneditable/Delete",
+     "export/noneditable/Backspace",
+     "export/noneditable/Delete",
+     "modellib/noneditable/Backspace",
+     "modellib/noneditable/Delete",
+     "phonevcam/noneditable/Backspace",
+     "phonevcam/noneditable/Delete"
+    ],
+    "dpNoEffect": [
+     "pathmenu/noneditable/Backspace",
+     "pathmenu/noneditable/Delete",
+     "preset/noneditable/Backspace",
+     "preset/noneditable/Delete"
+    ]
+   }
+  },
+  {
+   "label": "原始：★ Meta 键单独归类（18 格 dp=true，且不混进上面两个桶）",
+   "pass": true,
+   "got": {
+    "meta": 18
+   }
+  },
+  {
+   "label": "产物：与验收器独立重算的结果一致",
+   "pass": true,
+   "got": {
+    "branch": [
+     "crowd/noneditable/Backspace",
+     "crowd/noneditable/Delete",
+     "crowd/noneditable/Meta+c",
+     "crowd/noneditable/Meta+v",
+     "crowd/noneditable/Meta+z",
+     "export/noneditable/Backspace",
+     "export/noneditable/Delete",
+     "export/noneditable/Meta+c",
+     "export/noneditable/Meta+v",
+     "export/noneditable/Meta+z",
+     "modellib/noneditable/Backspace",
+     "modellib/noneditable/Delete",
+     "modellib/noneditable/Meta+c",
+     "modellib/noneditable/Meta+v",
+     "modellib/noneditable/Meta+z",
+     "pathmenu/noneditable/Backspace",
+     "pathmenu/noneditable/Delete",
+     "pathmenu/noneditable/Meta+c",
+     "pathmenu/noneditable/Meta+v",
+     "pathmenu/noneditable/Meta+z",
+     "phonevcam/noneditable/Backspace",
+     "phonevcam/noneditable/Delete",
+     "phonevcam/noneditable/Meta+c",
+     "phonevcam/noneditable/Meta+v",
+     "phonevcam/noneditable/Meta+z",
+     "preset/noneditable/Backspace",
+     "preset/noneditable/Delete",
+     "preset/noneditable/Meta+c",
+     "preset/noneditable/Meta+v",
+     "preset/noneditable/Meta+z"
+    ],
+    "guard": [
+     "crowd/editable/Backspace",
+     "crowd/editable/Delete",
+     "crowd/editable/Meta+c",
+     "crowd/editable/Meta+v",
+     "crowd/editable/Meta+z",
+     "export/editable/Backspace",
+     "export/editable/Delete",
+     "export/editable/Meta+c",
+     "export/editable/Meta+v",
+     "export/editable/Meta+z",
+     "modellib/editable/Backspace",
+     "modellib/editable/Delete",
+     "modellib/editable/Meta+c",
+     "modellib/editable/Meta+v",
+     "modellib/editable/Meta+z"
+    ]
+   }
+  },
+  {
+   "label": "产物：分类铺满 —— 破坏性 12 格 = 副作用 8 + 无副作用 4，两桶非空且互斥",
+   "pass": true,
+   "got": {
+    "sideEffect": 8,
+    "dpNoEffect": 4,
+    "meta": 18
+   }
+  },
+  {
+   "label": "README：不含替换字符 U+FFFD",
+   "pass": true,
+   "got": {
+    "count": 0
+   }
+  },
+  {
+   "label": "README 提到「C773-1」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「6/6」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「defaultPrevented」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「R99」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README 提到「F2」",
+   "pass": true,
+   "got": null
+  },
+  {
+   "label": "README：表格首格没有裸数字（pre-commit 正则会拦）",
+   "pass": true,
+   "got": {
+    "bare": []
+   }
+  },
+  {
+   "label": "台账：Batch 773 恰好一行",
+   "pass": true,
+   "got": {
+    "count": 1
+   }
+  },
+  {
+   "label": "台账：该行不含 U+FFFD",
+   "pass": true,
+   "got": {
+    "count": 0
+   }
+  },
+  {
+   "label": "台账：首格是 `| Batch 773 |`",
+   "pass": true,
+   "got": {
+    "head": "| Batch 773 | **「分支到没到」的直接读数** —— 把 772 靠副作用反推的那 4 格变成可判，并**"
+   }
+  },
+  {
+   "label": "台账：恰好 3 列",
+   "pass": true,
+   "got": {
+    "pipes": 4
+   }
+  },
+  {
+   "label": "台账：历史 U+FFFD 仍在 9 处",
+   "pass": true,
+   "got": {
+    "count": 9
+   }
+  }
+ ],
+ "pass": 39,
+ "total": 39,
+ "negativeControls": [
+  {
+   "name": "中性键改成 true（读数方法的前提被破坏）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "中性键",
+   "stillPassing": []
+  },
+  {
+   "name": "把 preset/pathmenu 的 dp 改成 false（谎称分支没跑到）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "6/6 个浮层跑到了",
+   "stillPassing": []
+  },
+  {
+   "name": "守卫失效（可编辑落点也放行）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "五个键一视同仁",
+   "stillPassing": []
+  },
+  {
+   "name": "773b 不再补中性对照（覆盖不完整）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "合并规则独立复核",
+   "stillPassing": []
+  },
+  {
+   "name": "谎称 773a 也有中性臂（合并规则要重算）",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "合并规则独立复核",
+   "stillPassing": []
+  },
+  {
+   "name": "第二轮的读数被改掉",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "两轮逐格一致",
+   "stillPassing": []
+  },
+  {
+   "name": "★ R99：把 defaultPrevented 全改成 None",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "读到了**两个**不同的值",
+   "stillPassing": []
+  },
+  {
+   "name": "把一格的目标选中抹掉",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "目标有选中",
+   "stillPassing": []
+  },
+  {
+   "name": "让非 cameraTrack 的层也出现「dp=true 但没副作用」",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "两个信号分开",
+   "stillPassing": []
+  },
+  {
+   "name": "篡改一条判据的 evidence",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "evidence 等于 findings",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉一个 findings 键",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "evidence 等于 findings",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉更正 C773-1",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "更正块",
+   "stillPassing": []
+  },
+  {
+   "name": "给本批塞一个假的新缺陷",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "本批无新缺陷",
+   "stillPassing": []
+  },
+  {
+   "name": "删掉一条探针教训",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "教训",
+   "stillPassing": []
+  },
+  {
+   "name": "把台账 Batch 773 行改名",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "台账：Batch 773 恰好一行",
+   "stillPassing": []
+  },
+  {
+   "name": "把 README 表格首格改成裸数字",
+   "kwMatchedCount": 1,
+   "kwMatchedAnyLabel": true,
+   "caught": true,
+   "expectFailOn": "首格没有裸数字",
+   "stillPassing": []
+  }
+ ],
+ "negativeCaught": 16,
+ "negativeTotal": 16,
+ "negativeKwBroken": [],
+ "rawError": null,
+ "ok": true
+}

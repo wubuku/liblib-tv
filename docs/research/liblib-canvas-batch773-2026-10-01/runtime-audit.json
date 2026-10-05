@@ -1,0 +1,1498 @@
+{
+ "batch": 773,
+ "date": "2026-10-01",
+ "scope": "桌内那个 keydown 处理器的分支**到底到没到** —— 用 `event.defaultPrevented` 做直接读数，替 772 的「靠副作用反推」",
+ "env": {
+  "base": "http://localhost:4317",
+  "canvas": "canvas-2",
+  "viewport": "1440x1000（桌面）",
+  "player": "chromium (playwright sync_api)",
+  "srcModified": false
+ },
+ "probes": [
+  {
+   "id": "773a",
+   "file": "probes/dbg773a.py",
+   "raw": "raw/vb773a.json",
+   "rounds": 2,
+   "cells": 48,
+   "injected": true,
+   "note": "★ 注入 = 一个**纯读**间谍：window 冒泡阶段、**开完浮层之后**才注册（故排在桌内处理器之后）。主网格：6 浮层 × 2 落点 × 5 键。"
+  },
+  {
+   "id": "773b",
+   "file": "probes/dbg773b.py",
+   "raw": "raw/vb773b.json",
+   "rounds": 2,
+   "cells": 6,
+   "injected": true,
+   "note": "只补**中性键对照**（773a 的 for-want 补丁没落进文件，中性臂一次都没跑）—— 不整套重跑（R96）。"
+  }
+ ],
+ "rawSha": {
+  "vb773a.json": "c164af771485c7e2",
+  "vb773b.json": "55a22dc50a8b4eb8"
+ },
+ "comparability": {
+  "allConsistent773a": true,
+  "allConsistent773b": true,
+  "firstDiff773a": {},
+  "firstDiff773b": {},
+  "rounds": 2,
+  "cellsPerRound773a": 48,
+  "cellsPerRound773b": 6,
+  "mergedCells": 51,
+  "cellsFrom773a": 45,
+  "cellsFrom773b": 6,
+  "provenance": {
+   "export/noneditable/Delete": "773a",
+   "export/noneditable/Backspace": "773a",
+   "export/noneditable/Meta+z": "773a",
+   "export/noneditable/Meta+c": "773a",
+   "export/noneditable/Meta+v": "773a",
+   "export/editable/Delete": "773a",
+   "export/editable/Backspace": "773a",
+   "export/editable/Meta+z": "773a",
+   "export/editable/Meta+c": "773a",
+   "export/editable/Meta+v": "773a",
+   "preset/noneditable/Delete": "773a",
+   "preset/noneditable/Backspace": "773a",
+   "preset/noneditable/Meta+z": "773a",
+   "preset/noneditable/Meta+c": "773a",
+   "preset/noneditable/Meta+v": "773a",
+   "pathmenu/noneditable/Delete": "773a",
+   "pathmenu/noneditable/Backspace": "773a",
+   "pathmenu/noneditable/Meta+z": "773a",
+   "pathmenu/noneditable/Meta+c": "773a",
+   "pathmenu/noneditable/Meta+v": "773a",
+   "phonevcam/noneditable/Delete": "773a",
+   "phonevcam/noneditable/Backspace": "773a",
+   "phonevcam/noneditable/Meta+z": "773a",
+   "phonevcam/noneditable/Meta+c": "773a",
+   "phonevcam/noneditable/Meta+v": "773a",
+   "crowd/noneditable/Delete": "773a",
+   "crowd/noneditable/Backspace": "773a",
+   "crowd/noneditable/Meta+z": "773a",
+   "crowd/noneditable/Meta+c": "773a",
+   "crowd/noneditable/Meta+v": "773a",
+   "crowd/editable/Delete": "773a",
+   "crowd/editable/Backspace": "773a",
+   "crowd/editable/Meta+z": "773a",
+   "crowd/editable/Meta+c": "773a",
+   "crowd/editable/Meta+v": "773a",
+   "modellib/noneditable/Delete": "773a",
+   "modellib/noneditable/Backspace": "773a",
+   "modellib/noneditable/Meta+z": "773a",
+   "modellib/noneditable/Meta+c": "773a",
+   "modellib/noneditable/Meta+v": "773a",
+   "modellib/editable/Delete": "773a",
+   "modellib/editable/Backspace": "773a",
+   "modellib/editable/Meta+z": "773a",
+   "modellib/editable/Meta+c": "773a",
+   "modellib/editable/Meta+v": "773a",
+   "export/neutral/F2": "773b",
+   "preset/neutral/F2": "773b",
+   "pathmenu/neutral/F2": "773b",
+   "phonevcam/neutral/F2": "773b",
+   "crowd/neutral/F2": "773b",
+   "modellib/neutral/F2": "773b"
+  },
+  "protocol": "★ 每格都从**重新加载的页面**开始并清空 localStorage；每格都**点选**一个目标并回读 `selectedIds`。",
+  "spyDesign": "★ 间谍注册在 window **冒泡**阶段，且是**开完浮层之后**才装的 ⟹ 排在桌内那个处理器（挂载时注册）**之后**，读到的 defaultPrevented 已包含桌内那次的 preventDefault()",
+  "spyOrdering": "★ 同一节点（window）上的监听器按**注册顺序**触发。桌内那个处理器在**挂载时**注册（DirectorDesk.tsx:570），间谍是**开完浮层之后**才装 ⟹ 排在它**之后**，读到的 defaultPrevented 已包含桌内那次的 preventDefault()。",
+  "superseded": {
+   "what": "**中性键对照臂**（6 格）由 773b 单独补取。",
+   "why": "773a 的 for-want 循环的补丁没落进文件 ⟹ 中性臂一次都没跑（48 行/轮 = 45 实验 + 3 SKIP）。",
+   "howFixed": "补一个只跑这 6 格的探针，在汇编器里**合并**，不整套重跑（R96）。",
+   "keptFrom773a": "773a 的 45 格**全部保留**，不作废。"
+  },
+  "boundary": "只点对象树的行、6 个 disclosure 触发器、选中相机；**不点提交/连接/添加，更不做付费或真实生图生视频**。间谍是**纯读**（只加一个监听器，不改行为）。",
+  "structuralSkips": 3,
+  "deskGoneAfter": [
+   null,
+   null,
+   null,
+   null
+  ]
+ },
+ "static": {
+  "deskListenerOnWindow": true,
+  "deskListenerIsCapture": false,
+  "deskKeydownListenerCount": 1,
+  "guardIsEditableReturn": true,
+  "guardBeforeDelete": true,
+  "guardBeforeMetaC": true,
+  "preventDefaultLines": [
+   483,
+   491,
+   502,
+   507,
+   513,
+   526,
+   541,
+   550
+  ],
+  "branches": {
+   "Meta+C": {
+    "guardLine": 490,
+    "preventDefaultLines": [
+     491,
+     502,
+     507,
+     513,
+     526,
+     541,
+     550
+    ],
+    "hasPreventDefault": true
+   },
+   "Meta+V": {
+    "guardLine": 495,
+    "preventDefaultLines": [
+     502,
+     507,
+     513,
+     526,
+     541,
+     550
+    ],
+    "hasPreventDefault": true
+   },
+   "Meta+Z": {
+    "guardLine": 506,
+    "preventDefaultLines": [
+     507,
+     513,
+     526,
+     541,
+     550
+    ],
+    "hasPreventDefault": true
+   },
+   "Meta+Y": {
+    "guardLine": 512,
+    "preventDefaultLines": [
+     513,
+     526,
+     541,
+     550
+    ],
+    "hasPreventDefault": true
+   },
+   "Delete|Backspace": {
+    "guardLine": 517,
+    "preventDefaultLines": [
+     526,
+     541,
+     550
+    ],
+    "hasPreventDefault": true
+   },
+   "Escape": {
+    "guardLine": 549,
+    "preventDefaultLines": [
+     550
+    ],
+    "hasPreventDefault": true
+   }
+  },
+  "allFiveBranchesPrevent": true,
+  "focusContainmentGuardsOnTabOnly": true,
+  "focusContainmentPreventDefaults": 2,
+  "deleteGuardedBySelection": true,
+  "deleteGroupSubBranch": true,
+  "deleteObjectsSubBranch": true
+ },
+ "branchMap": {
+  "perCell": {
+   "export/noneditable/Delete": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     -1
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "export/noneditable/Backspace": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     -1
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "export/noneditable/Meta+z": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "export/noneditable/Meta+c": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "export/noneditable/Meta+v": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "preset/noneditable/Delete": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-camera-main",
+    "targetUndeletable": true
+   },
+   "preset/noneditable/Backspace": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-camera-main",
+    "targetUndeletable": true
+   },
+   "preset/noneditable/Meta+z": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-camera-main",
+    "targetUndeletable": true
+   },
+   "preset/noneditable/Meta+c": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-camera-main",
+    "targetUndeletable": true
+   },
+   "preset/noneditable/Meta+v": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-camera-main",
+    "targetUndeletable": true
+   },
+   "pathmenu/noneditable/Delete": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-camera-main",
+    "targetUndeletable": true
+   },
+   "pathmenu/noneditable/Backspace": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-camera-main",
+    "targetUndeletable": true
+   },
+   "pathmenu/noneditable/Meta+z": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-camera-main",
+    "targetUndeletable": true
+   },
+   "pathmenu/noneditable/Meta+c": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-camera-main",
+    "targetUndeletable": true
+   },
+   "pathmenu/noneditable/Meta+v": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-camera-main",
+    "targetUndeletable": true
+   },
+   "phonevcam/noneditable/Delete": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     -1
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "phonevcam/noneditable/Backspace": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     -1
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "phonevcam/noneditable/Meta+z": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "phonevcam/noneditable/Meta+c": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "phonevcam/noneditable/Meta+v": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "crowd/noneditable/Delete": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     -1
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "crowd/noneditable/Backspace": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     -1
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "crowd/noneditable/Meta+z": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "crowd/noneditable/Meta+c": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "crowd/noneditable/Meta+v": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "modellib/noneditable/Delete": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     -1
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "modellib/noneditable/Backspace": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     -1
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "modellib/noneditable/Meta+z": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "modellib/noneditable/Meta+c": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "modellib/noneditable/Meta+v": {
+    "defaultPrevented": true,
+    "focusEditable": false,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "crowd/editable/Delete": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "crowd/editable/Backspace": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "crowd/editable/Meta+z": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "crowd/editable/Meta+c": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "crowd/editable/Meta+v": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "export/editable/Delete": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "export/editable/Backspace": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "export/editable/Meta+z": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "export/editable/Meta+c": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "export/editable/Meta+v": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "modellib/editable/Delete": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "modellib/editable/Backspace": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "modellib/editable/Meta+z": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "modellib/editable/Meta+c": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   },
+   "modellib/editable/Meta+v": {
+    "defaultPrevented": false,
+    "focusEditable": true,
+    "objectsDelta": [
+     0
+    ],
+    "target": "director-character-lead",
+    "targetUndeletable": false
+   }
+  },
+  "neutralControl": {
+   "export": false,
+   "preset": false,
+   "pathmenu": false,
+   "phonevcam": false,
+   "crowd": false,
+   "modellib": false
+  },
+  "branchReachedCells": [
+   "crowd/noneditable/Backspace",
+   "crowd/noneditable/Delete",
+   "crowd/noneditable/Meta+c",
+   "crowd/noneditable/Meta+v",
+   "crowd/noneditable/Meta+z",
+   "export/noneditable/Backspace",
+   "export/noneditable/Delete",
+   "export/noneditable/Meta+c",
+   "export/noneditable/Meta+v",
+   "export/noneditable/Meta+z",
+   "modellib/noneditable/Backspace",
+   "modellib/noneditable/Delete",
+   "modellib/noneditable/Meta+c",
+   "modellib/noneditable/Meta+v",
+   "modellib/noneditable/Meta+z",
+   "pathmenu/noneditable/Backspace",
+   "pathmenu/noneditable/Delete",
+   "pathmenu/noneditable/Meta+c",
+   "pathmenu/noneditable/Meta+v",
+   "pathmenu/noneditable/Meta+z",
+   "phonevcam/noneditable/Backspace",
+   "phonevcam/noneditable/Delete",
+   "phonevcam/noneditable/Meta+c",
+   "phonevcam/noneditable/Meta+v",
+   "phonevcam/noneditable/Meta+z",
+   "preset/noneditable/Backspace",
+   "preset/noneditable/Delete",
+   "preset/noneditable/Meta+c",
+   "preset/noneditable/Meta+v",
+   "preset/noneditable/Meta+z"
+  ],
+  "branchReachedDisclosures": [
+   "crowd",
+   "export",
+   "modellib",
+   "pathmenu",
+   "phonevcam",
+   "preset"
+  ],
+  "guardHoldsCells": [
+   "crowd/editable/Backspace",
+   "crowd/editable/Delete",
+   "crowd/editable/Meta+c",
+   "crowd/editable/Meta+v",
+   "crowd/editable/Meta+z",
+   "export/editable/Backspace",
+   "export/editable/Delete",
+   "export/editable/Meta+c",
+   "export/editable/Meta+v",
+   "export/editable/Meta+z",
+   "modellib/editable/Backspace",
+   "modellib/editable/Delete",
+   "modellib/editable/Meta+c",
+   "modellib/editable/Meta+v",
+   "modellib/editable/Meta+z"
+  ],
+  "sideEffectCells": [
+   "crowd/noneditable/Backspace",
+   "crowd/noneditable/Delete",
+   "export/noneditable/Backspace",
+   "export/noneditable/Delete",
+   "modellib/noneditable/Backspace",
+   "modellib/noneditable/Delete",
+   "phonevcam/noneditable/Backspace",
+   "phonevcam/noneditable/Delete"
+  ],
+  "dpTrueButNoEffectCells": [
+   "pathmenu/noneditable/Backspace",
+   "pathmenu/noneditable/Delete",
+   "preset/noneditable/Backspace",
+   "preset/noneditable/Delete"
+  ],
+  "claim": "★ 桌内那个 keydown 处理器的分支，在**6/6 个浮层**里焦点落在非编辑框控件上时**全部都跑到了**（30/30 格 defaultPrevented=true）",
+  "note": "Delete/Backspace 的**副作用**只在 8 格看得见 —— 另外 4 格也是 dp=true，只是目标不可删 ⟹ 772 那句「preset/pathmenu 结构上不可判」指的是**副作用**不可判，**分支**是可判的。",
+  "perDisclosure": {
+   "export": {
+    "deleteBranchReached": true,
+    "metaKeysBranchReached": true,
+    "guardHolds": true,
+    "neutralFalse": true,
+    "sideEffectVisible": true
+   },
+   "preset": {
+    "deleteBranchReached": true,
+    "metaKeysBranchReached": true,
+    "guardHolds": false,
+    "neutralFalse": true,
+    "sideEffectVisible": false
+   },
+   "pathmenu": {
+    "deleteBranchReached": true,
+    "metaKeysBranchReached": true,
+    "guardHolds": false,
+    "neutralFalse": true,
+    "sideEffectVisible": false
+   },
+   "phonevcam": {
+    "deleteBranchReached": true,
+    "metaKeysBranchReached": true,
+    "guardHolds": false,
+    "neutralFalse": true,
+    "sideEffectVisible": true
+   },
+   "crowd": {
+    "deleteBranchReached": true,
+    "metaKeysBranchReached": true,
+    "guardHolds": true,
+    "neutralFalse": true,
+    "sideEffectVisible": true
+   },
+   "modellib": {
+    "deleteBranchReached": true,
+    "metaKeysBranchReached": true,
+    "guardHolds": true,
+    "neutralFalse": true,
+    "sideEffectVisible": true
+   }
+  }
+ },
+ "findings": {
+  "F0_comparable": {
+   "allConsistent773a": true,
+   "allConsistent773b": true,
+   "rounds": 2,
+   "mergedCells": 51,
+   "cellsFrom773a": 45,
+   "cellsFrom773b": 6,
+   "structuralSkips": 3,
+   "superseded": {
+    "what": "**中性键对照臂**（6 格）由 773b 单独补取。",
+    "why": "773a 的 for-want 循环的补丁没落进文件 ⟹ 中性臂一次都没跑（48 行/轮 = 45 实验 + 3 SKIP）。",
+    "howFixed": "补一个只跑这 6 格的探针，在汇编器里**合并**，不整套重跑（R96）。",
+    "keptFrom773a": "773a 的 45 格**全部保留**，不作废。"
+   },
+   "note": "51 格 × 2 轮，两个探针各自逐格归一化后 diff 均为空（R55）。其中 3 层是结构性 SKIP（没有可编辑控件）。"
+  },
+  "F1_spyValid": {
+   "claim": "★ 间谍本身可信：装上了、收到了事件、读得到 defaultPrevented",
+   "cellsChecked": 102,
+   "allInstalled": true,
+   "allSawEvent": true,
+   "allReadBoolean": true
+  },
+  "F2_neutralControl": {
+   "claim": "★ 中性键对照：桌内**不处理**的 F2 读到 defaultPrevented=false",
+   "perDisclosure": {
+    "export": false,
+    "preset": false,
+    "pathmenu": false,
+    "phonevcam": false,
+    "crowd": false,
+    "modellib": false
+   },
+   "allFalse": true,
+   "why": "这是「dp=true 就等于分支跑了」这条推理的**前提**：若连桌内不处理的键都读到 true，说明在桌内那个处理器**之前**就有人调了 `preventDefault()`，那么整批读数都不能用了。"
+  },
+  "F3_branchReached": {
+   "claim": "★ 核心：桌内那个 keydown 处理器的分支，在**6/6 个浮层**里焦点落在非编辑框控件上时**全部跑到了**",
+   "cells": [
+    "crowd/noneditable/Backspace",
+    "crowd/noneditable/Delete",
+    "crowd/noneditable/Meta+c",
+    "crowd/noneditable/Meta+v",
+    "crowd/noneditable/Meta+z",
+    "export/noneditable/Backspace",
+    "export/noneditable/Delete",
+    "export/noneditable/Meta+c",
+    "export/noneditable/Meta+v",
+    "export/noneditable/Meta+z",
+    "modellib/noneditable/Backspace",
+    "modellib/noneditable/Delete",
+    "modellib/noneditable/Meta+c",
+    "modellib/noneditable/Meta+v",
+    "modellib/noneditable/Meta+z",
+    "pathmenu/noneditable/Backspace",
+    "pathmenu/noneditable/Delete",
+    "pathmenu/noneditable/Meta+c",
+    "pathmenu/noneditable/Meta+v",
+    "pathmenu/noneditable/Meta+z",
+    "phonevcam/noneditable/Backspace",
+    "phonevcam/noneditable/Delete",
+    "phonevcam/noneditable/Meta+c",
+    "phonevcam/noneditable/Meta+v",
+    "phonevcam/noneditable/Meta+z",
+    "preset/noneditable/Backspace",
+    "preset/noneditable/Delete",
+    "preset/noneditable/Meta+c",
+    "preset/noneditable/Meta+v",
+    "preset/noneditable/Meta+z"
+   ],
+   "count": 30,
+   "total": 30,
+   "disclosures": [
+    "crowd",
+    "export",
+    "modellib",
+    "pathmenu",
+    "phonevcam",
+    "preset"
+   ],
+   "perKey": {
+    "Delete": [
+     "crowd/noneditable/Delete",
+     "export/noneditable/Delete",
+     "modellib/noneditable/Delete",
+     "pathmenu/noneditable/Delete",
+     "phonevcam/noneditable/Delete",
+     "preset/noneditable/Delete"
+    ],
+    "Backspace": [
+     "crowd/noneditable/Backspace",
+     "export/noneditable/Backspace",
+     "modellib/noneditable/Backspace",
+     "pathmenu/noneditable/Backspace",
+     "phonevcam/noneditable/Backspace",
+     "preset/noneditable/Backspace"
+    ],
+    "Meta+z": [
+     "crowd/noneditable/Meta+z",
+     "export/noneditable/Meta+z",
+     "modellib/noneditable/Meta+z",
+     "pathmenu/noneditable/Meta+z",
+     "phonevcam/noneditable/Meta+z",
+     "preset/noneditable/Meta+z"
+    ],
+    "Meta+c": [
+     "crowd/noneditable/Meta+c",
+     "export/noneditable/Meta+c",
+     "modellib/noneditable/Meta+c",
+     "pathmenu/noneditable/Meta+c",
+     "phonevcam/noneditable/Meta+c",
+     "preset/noneditable/Meta+c"
+    ],
+    "Meta+v": [
+     "crowd/noneditable/Meta+v",
+     "export/noneditable/Meta+v",
+     "modellib/noneditable/Meta+v",
+     "pathmenu/noneditable/Meta+v",
+     "phonevcam/noneditable/Meta+v",
+     "preset/noneditable/Meta+v"
+    ]
+   },
+   "note": "这条把 772 的「4/6 个浮层实测穿透」**扩到 6/6** —— 772 少的那 2 个不是安全的，只是**副作用**测不出来。"
+  },
+  "F4_guardHolds": {
+   "claim": "★ 对照：焦点落在**可编辑**控件上时，那道 `isEditable` 早退把**全部五个键**都挡住了",
+   "cells": [
+    "crowd/editable/Backspace",
+    "crowd/editable/Delete",
+    "crowd/editable/Meta+c",
+    "crowd/editable/Meta+v",
+    "crowd/editable/Meta+z",
+    "export/editable/Backspace",
+    "export/editable/Delete",
+    "export/editable/Meta+c",
+    "export/editable/Meta+v",
+    "export/editable/Meta+z",
+    "modellib/editable/Backspace",
+    "modellib/editable/Delete",
+    "modellib/editable/Meta+c",
+    "modellib/editable/Meta+v",
+    "modellib/editable/Meta+z"
+   ],
+   "count": 15,
+   "total": 15,
+   "keysGuarded": [
+    "Backspace",
+    "Delete",
+    "Meta+c",
+    "Meta+v",
+    "Meta+z"
+   ],
+   "note": "772 只量过 Delete 被挡（3/3）。本批把作用域量全了：**`Meta+C` / `Meta+V` / `Meta+Z` / `Delete` / `Backspace` 一个都没漏**。所以那道早退不是「只挡住一半」，而是「**按控件类别挡，与浮层无关**」。"
+  },
+  "F5_dpEqualsNotEditable": {
+   "claim": "★ 45/45 格上 `defaultPrevented` 恰好等于「落点非可编辑」",
+   "cellsChecked": 45,
+   "mismatches": [],
+   "perfect": true,
+   "how": "这是从源码逐行推出的**预测**（`:487` 的早退在所有分支之前），45 格全部吻合 ⟹ 桌内那个处理器**对浮层一无所知**，它唯一的输入是 `event.target` 的标签名。"
+  },
+  "F6_sideEffectVsBranch": {
+   "claim": "★ 「分支跑到了」与「东西真被删了」是**两件事**",
+   "sideEffectCells": [
+    "crowd/noneditable/Backspace",
+    "crowd/noneditable/Delete",
+    "export/noneditable/Backspace",
+    "export/noneditable/Delete",
+    "modellib/noneditable/Backspace",
+    "modellib/noneditable/Delete",
+    "phonevcam/noneditable/Backspace",
+    "phonevcam/noneditable/Delete"
+   ],
+   "dpTrueButNoEffectCells": [
+    "pathmenu/noneditable/Backspace",
+    "pathmenu/noneditable/Delete",
+    "preset/noneditable/Backspace",
+    "preset/noneditable/Delete"
+   ],
+   "sideEffectCount": 8,
+   "dpNoEffectCount": 4,
+   "note": "同样是 dp=true，8 格看得见副作用（目标可删），4 格看不见（目标=主机位，删不掉）。**772 只报了前者，于是「后者」被写成了「不可判」—— 它其实是可以判的，只要换一个与副作用无关的读数。**"
+  },
+  "F7_staticLines": {
+   "claim": "机制：桌内那个处理器的 5 个分支**每走到一个就调一次 `preventDefault()`（行号现读）",
+   "preventDefaultLines": [
+    483,
+    491,
+    502,
+    507,
+    513,
+    526,
+    541,
+    550
+   ],
+   "branches": {
+    "Meta+C": {
+     "guardLine": 490,
+     "preventDefaultLines": [
+      491,
+      502,
+      507,
+      513,
+      526,
+      541,
+      550
+     ],
+     "hasPreventDefault": true
+    },
+    "Meta+V": {
+     "guardLine": 495,
+     "preventDefaultLines": [
+      502,
+      507,
+      513,
+      526,
+      541,
+      550
+     ],
+     "hasPreventDefault": true
+    },
+    "Meta+Z": {
+     "guardLine": 506,
+     "preventDefaultLines": [
+      507,
+      513,
+      526,
+      541,
+      550
+     ],
+     "hasPreventDefault": true
+    },
+    "Meta+Y": {
+     "guardLine": 512,
+     "preventDefaultLines": [
+      513,
+      526,
+      541,
+      550
+     ],
+     "hasPreventDefault": true
+    },
+    "Delete|Backspace": {
+     "guardLine": 517,
+     "preventDefaultLines": [
+      526,
+      541,
+      550
+     ],
+     "hasPreventDefault": true
+    },
+    "Escape": {
+     "guardLine": 549,
+     "preventDefaultLines": [
+      550
+     ],
+     "hasPreventDefault": true
+    }
+   },
+   "allFivePrevent": true,
+   "guardBeforeDelete": true,
+   "guardBeforeMetaC": true,
+   "deleteSubBranches": {
+    "group": true,
+    "objects": true
+   }
+  },
+  "F8_noPollution": {
+   "claim": "读数没被别的处理器污染",
+   "focusContainmentGuardsOnTabOnly": true,
+   "neutralAllFalse": true,
+   "pageHandlerDeadWhenDeskOpen": true,
+   "why": "对话框那个 Tab 处理器（`useDirectorFocusContainment`）`if (event.key !== \"Tab\") return;` ⟹ 对本批这五个键**一次都不 preventDefault**；主画布页那条 Delete 在桌开时整条早退（772 的 F9）。加上中性键对照全 false，三个独立理由指向同一件事：**dp=true 就是桌内那个分支跑了**。"
+  }
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "statement": "两个探针的读数各自两轮逐格一致（可比性）",
+   "verdict": "PASS",
+   "evidenceKey": "F0_comparable",
+   "evidence": {
+    "allConsistent773a": true,
+    "allConsistent773b": true,
+    "rounds": 2,
+    "mergedCells": 51,
+    "cellsFrom773a": 45,
+    "cellsFrom773b": 6,
+    "structuralSkips": 3,
+    "superseded": {
+     "what": "**中性键对照臂**（6 格）由 773b 单独补取。",
+     "why": "773a 的 for-want 循环的补丁没落进文件 ⟹ 中性臂一次都没跑（48 行/轮 = 45 实验 + 3 SKIP）。",
+     "howFixed": "补一个只跑这 6 格的探针，在汇编器里**合并**，不整套重跑（R96）。",
+     "keptFrom773a": "773a 的 45 格**全部保留**，不作废。"
+    },
+    "note": "51 格 × 2 轮，两个探针各自逐格归一化后 diff 均为空（R55）。其中 3 层是结构性 SKIP（没有可编辑控件）。"
+   }
+  },
+  {
+   "id": "J2",
+   "statement": "★ 中性键对照：桌内**不处理**的 F2 读到 defaultPrevented=**false**（6/6）—— 这是「dp=true 就是分支跑了」的**前提**",
+   "verdict": "PASS",
+   "evidenceKey": "F2_neutralControl",
+   "evidence": {
+    "claim": "★ 中性键对照：桌内**不处理**的 F2 读到 defaultPrevented=false",
+    "perDisclosure": {
+     "export": false,
+     "preset": false,
+     "pathmenu": false,
+     "phonevcam": false,
+     "crowd": false,
+     "modellib": false
+    },
+    "allFalse": true,
+    "why": "这是「dp=true 就等于分支跑了」这条推理的**前提**：若连桌内不处理的键都读到 true，说明在桌内那个处理器**之前**就有人调了 `preventDefault()`，那么整批读数都不能用了。"
+   }
+  },
+  {
+   "id": "J3",
+   "statement": "间谍本身可信：每格都装上了、都收到了事件、都读得到布尔值",
+   "verdict": "PASS",
+   "evidenceKey": "F1_spyValid",
+   "evidence": {
+    "claim": "★ 间谍本身可信：装上了、收到了事件、读得到 defaultPrevented",
+    "cellsChecked": 102,
+    "allInstalled": true,
+    "allSawEvent": true,
+    "allReadBoolean": true
+   }
+  },
+  {
+   "id": "J4",
+   "statement": "★ 核心：分支在**6/6 个浮层**的**非编辑框**落点上全部跑到了（30/30 格 dp=true）",
+   "verdict": "PASS",
+   "evidenceKey": "F3_branchReached",
+   "evidence": {
+    "claim": "★ 核心：桌内那个 keydown 处理器的分支，在**6/6 个浮层**里焦点落在非编辑框控件上时**全部跑到了**",
+    "cells": [
+     "crowd/noneditable/Backspace",
+     "crowd/noneditable/Delete",
+     "crowd/noneditable/Meta+c",
+     "crowd/noneditable/Meta+v",
+     "crowd/noneditable/Meta+z",
+     "export/noneditable/Backspace",
+     "export/noneditable/Delete",
+     "export/noneditable/Meta+c",
+     "export/noneditable/Meta+v",
+     "export/noneditable/Meta+z",
+     "modellib/noneditable/Backspace",
+     "modellib/noneditable/Delete",
+     "modellib/noneditable/Meta+c",
+     "modellib/noneditable/Meta+v",
+     "modellib/noneditable/Meta+z",
+     "pathmenu/noneditable/Backspace",
+     "pathmenu/noneditable/Delete",
+     "pathmenu/noneditable/Meta+c",
+     "pathmenu/noneditable/Meta+v",
+     "pathmenu/noneditable/Meta+z",
+     "phonevcam/noneditable/Backspace",
+     "phonevcam/noneditable/Delete",
+     "phonevcam/noneditable/Meta+c",
+     "phonevcam/noneditable/Meta+v",
+     "phonevcam/noneditable/Meta+z",
+     "preset/noneditable/Backspace",
+     "preset/noneditable/Delete",
+     "preset/noneditable/Meta+c",
+     "preset/noneditable/Meta+v",
+     "preset/noneditable/Meta+z"
+    ],
+    "count": 30,
+    "total": 30,
+    "disclosures": [
+     "crowd",
+     "export",
+     "modellib",
+     "pathmenu",
+     "phonevcam",
+     "preset"
+    ],
+    "perKey": {
+     "Delete": [
+      "crowd/noneditable/Delete",
+      "export/noneditable/Delete",
+      "modellib/noneditable/Delete",
+      "pathmenu/noneditable/Delete",
+      "phonevcam/noneditable/Delete",
+      "preset/noneditable/Delete"
+     ],
+     "Backspace": [
+      "crowd/noneditable/Backspace",
+      "export/noneditable/Backspace",
+      "modellib/noneditable/Backspace",
+      "pathmenu/noneditable/Backspace",
+      "phonevcam/noneditable/Backspace",
+      "preset/noneditable/Backspace"
+     ],
+     "Meta+z": [
+      "crowd/noneditable/Meta+z",
+      "export/noneditable/Meta+z",
+      "modellib/noneditable/Meta+z",
+      "pathmenu/noneditable/Meta+z",
+      "phonevcam/noneditable/Meta+z",
+      "preset/noneditable/Meta+z"
+     ],
+     "Meta+c": [
+      "crowd/noneditable/Meta+c",
+      "export/noneditable/Meta+c",
+      "modellib/noneditable/Meta+c",
+      "pathmenu/noneditable/Meta+c",
+      "phonevcam/noneditable/Meta+c",
+      "preset/noneditable/Meta+c"
+     ],
+     "Meta+v": [
+      "crowd/noneditable/Meta+v",
+      "export/noneditable/Meta+v",
+      "modellib/noneditable/Meta+v",
+      "pathmenu/noneditable/Meta+v",
+      "phonevcam/noneditable/Meta+v",
+      "preset/noneditable/Meta+v"
+     ]
+    },
+    "note": "这条把 772 的「4/6 个浮层实测穿透」**扩到 6/6** —— 772 少的那 2 个不是安全的，只是**副作用**测不出来。"
+   }
+  },
+  {
+   "id": "J5",
+   "statement": "★ 更正 772：D14 的范围是 **6/6 个浮层**，不是 4/6 —— preset / 路径菜单不是安全的，只是**副作用**测不出来",
+   "verdict": "PASS",
+   "evidenceKey": "F3_branchReached",
+   "evidence": {
+    "claim": "★ 核心：桌内那个 keydown 处理器的分支，在**6/6 个浮层**里焦点落在非编辑框控件上时**全部跑到了**",
+    "cells": [
+     "crowd/noneditable/Backspace",
+     "crowd/noneditable/Delete",
+     "crowd/noneditable/Meta+c",
+     "crowd/noneditable/Meta+v",
+     "crowd/noneditable/Meta+z",
+     "export/noneditable/Backspace",
+     "export/noneditable/Delete",
+     "export/noneditable/Meta+c",
+     "export/noneditable/Meta+v",
+     "export/noneditable/Meta+z",
+     "modellib/noneditable/Backspace",
+     "modellib/noneditable/Delete",
+     "modellib/noneditable/Meta+c",
+     "modellib/noneditable/Meta+v",
+     "modellib/noneditable/Meta+z",
+     "pathmenu/noneditable/Backspace",
+     "pathmenu/noneditable/Delete",
+     "pathmenu/noneditable/Meta+c",
+     "pathmenu/noneditable/Meta+v",
+     "pathmenu/noneditable/Meta+z",
+     "phonevcam/noneditable/Backspace",
+     "phonevcam/noneditable/Delete",
+     "phonevcam/noneditable/Meta+c",
+     "phonevcam/noneditable/Meta+v",
+     "phonevcam/noneditable/Meta+z",
+     "preset/noneditable/Backspace",
+     "preset/noneditable/Delete",
+     "preset/noneditable/Meta+c",
+     "preset/noneditable/Meta+v",
+     "preset/noneditable/Meta+z"
+    ],
+    "count": 30,
+    "total": 30,
+    "disclosures": [
+     "crowd",
+     "export",
+     "modellib",
+     "pathmenu",
+     "phonevcam",
+     "preset"
+    ],
+    "perKey": {
+     "Delete": [
+      "crowd/noneditable/Delete",
+      "export/noneditable/Delete",
+      "modellib/noneditable/Delete",
+      "pathmenu/noneditable/Delete",
+      "phonevcam/noneditable/Delete",
+      "preset/noneditable/Delete"
+     ],
+     "Backspace": [
+      "crowd/noneditable/Backspace",
+      "export/noneditable/Backspace",
+      "modellib/noneditable/Backspace",
+      "pathmenu/noneditable/Backspace",
+      "phonevcam/noneditable/Backspace",
+      "preset/noneditable/Backspace"
+     ],
+     "Meta+z": [
+      "crowd/noneditable/Meta+z",
+      "export/noneditable/Meta+z",
+      "modellib/noneditable/Meta+z",
+      "pathmenu/noneditable/Meta+z",
+      "phonevcam/noneditable/Meta+z",
+      "preset/noneditable/Meta+z"
+     ],
+     "Meta+c": [
+      "crowd/noneditable/Meta+c",
+      "export/noneditable/Meta+c",
+      "modellib/noneditable/Meta+c",
+      "pathmenu/noneditable/Meta+c",
+      "phonevcam/noneditable/Meta+c",
+      "preset/noneditable/Meta+c"
+     ],
+     "Meta+v": [
+      "crowd/noneditable/Meta+v",
+      "export/noneditable/Meta+v",
+      "modellib/noneditable/Meta+v",
+      "pathmenu/noneditable/Meta+v",
+      "phonevcam/noneditable/Meta+v",
+      "preset/noneditable/Meta+v"
+     ]
+    },
+    "note": "这条把 772 的「4/6 个浮层实测穿透」**扩到 6/6** —— 772 少的那 2 个不是安全的，只是**副作用**测不出来。"
+   }
+  },
+  {
+   "id": "J6",
+   "statement": "★ 对照：可编辑落点上那道早退把**全部五个键**都挡住了（15/15 格 dp=false）",
+   "verdict": "PASS",
+   "evidenceKey": "F4_guardHolds",
+   "evidence": {
+    "claim": "★ 对照：焦点落在**可编辑**控件上时，那道 `isEditable` 早退把**全部五个键**都挡住了",
+    "cells": [
+     "crowd/editable/Backspace",
+     "crowd/editable/Delete",
+     "crowd/editable/Meta+c",
+     "crowd/editable/Meta+v",
+     "crowd/editable/Meta+z",
+     "export/editable/Backspace",
+     "export/editable/Delete",
+     "export/editable/Meta+c",
+     "export/editable/Meta+v",
+     "export/editable/Meta+z",
+     "modellib/editable/Backspace",
+     "modellib/editable/Delete",
+     "modellib/editable/Meta+c",
+     "modellib/editable/Meta+v",
+     "modellib/editable/Meta+z"
+    ],
+    "count": 15,
+    "total": 15,
+    "keysGuarded": [
+     "Backspace",
+     "Delete",
+     "Meta+c",
+     "Meta+v",
+     "Meta+z"
+    ],
+    "note": "772 只量过 Delete 被挡（3/3）。本批把作用域量全了：**`Meta+C` / `Meta+V` / `Meta+Z` / `Delete` / `Backspace` 一个都没漏**。所以那道早退不是「只挡住一半」，而是「**按控件类别挡，与浮层无关**」。"
+   }
+  },
+  {
+   "id": "J7",
+   "statement": "★ dp 恰好等于「落点非可编辑」，45/45 格 —— 桌内那个处理器**对浮层一无所知**",
+   "verdict": "PASS",
+   "evidenceKey": "F5_dpEqualsNotEditable",
+   "evidence": {
+    "claim": "★ 45/45 格上 `defaultPrevented` 恰好等于「落点非可编辑」",
+    "cellsChecked": 45,
+    "mismatches": [],
+    "perfect": true,
+    "how": "这是从源码逐行推出的**预测**（`:487` 的早退在所有分支之前），45 格全部吻合 ⟹ 桌内那个处理器**对浮层一无所知**，它唯一的输入是 `event.target` 的标签名。"
+   }
+  },
+  {
+   "id": "J8",
+   "statement": "★ 「分支跑到了」与「东西真被删了」分开报：8 格有副作用、4 格 dp=true 但无副作用（全部落在 cameraTrack 两层）",
+   "verdict": "PASS",
+   "evidenceKey": "F6_sideEffectVsBranch",
+   "evidence": {
+    "claim": "★ 「分支跑到了」与「东西真被删了」是**两件事**",
+    "sideEffectCells": [
+     "crowd/noneditable/Backspace",
+     "crowd/noneditable/Delete",
+     "export/noneditable/Backspace",
+     "export/noneditable/Delete",
+     "modellib/noneditable/Backspace",
+     "modellib/noneditable/Delete",
+     "phonevcam/noneditable/Backspace",
+     "phonevcam/noneditable/Delete"
+    ],
+    "dpTrueButNoEffectCells": [
+     "pathmenu/noneditable/Backspace",
+     "pathmenu/noneditable/Delete",
+     "preset/noneditable/Backspace",
+     "preset/noneditable/Delete"
+    ],
+    "sideEffectCount": 8,
+    "dpNoEffectCount": 4,
+    "note": "同样是 dp=true，8 格看得见副作用（目标可删），4 格看不见（目标=主机位，删不掉）。**772 只报了前者，于是「后者」被写成了「不可判」—— 它其实是可以判的，只要换一个与副作用无关的读数。**"
+   }
+  },
+  {
+   "id": "J9",
+   "statement": "机制：5 个分支**每走到一个就调一次** `preventDefault()`（行号现读），且都在 `:487` 那道早退**之后**",
+   "verdict": "PASS",
+   "evidenceKey": "F7_staticLines",
+   "evidence": {
+    "claim": "机制：桌内那个处理器的 5 个分支**每走到一个就调一次 `preventDefault()`（行号现读）",
+    "preventDefaultLines": [
+     483,
+     491,
+     502,
+     507,
+     513,
+     526,
+     541,
+     550
+    ],
+    "branches": {
+     "Meta+C": {
+      "guardLine": 490,
+      "preventDefaultLines": [
+       491,
+       502,
+       507,
+       513,
+       526,
+       541,
+       550
+      ],
+      "hasPreventDefault": true
+     },
+     "Meta+V": {
+      "guardLine": 495,
+      "preventDefaultLines": [
+       502,
+       507,
+       513,
+       526,
+       541,
+       550
+      ],
+      "hasPreventDefault": true
+     },
+     "Meta+Z": {
+      "guardLine": 506,
+      "preventDefaultLines": [
+       507,
+       513,
+       526,
+       541,
+       550
+      ],
+      "hasPreventDefault": true
+     },
+     "Meta+Y": {
+      "guardLine": 512,
+      "preventDefaultLines": [
+       513,
+       526,
+       541,
+       550
+      ],
+      "hasPreventDefault": true
+     },
+     "Delete|Backspace": {
+      "guardLine": 517,
+      "preventDefaultLines": [
+       526,
+       541,
+       550
+      ],
+      "hasPreventDefault": true
+     },
+     "Escape": {
+      "guardLine": 549,
+      "preventDefaultLines": [
+       550
+      ],
+      "hasPreventDefault": true
+     }
+    },
+    "allFivePrevent": true,
+    "guardBeforeDelete": true,
+    "guardBeforeMetaC": true,
+    "deleteSubBranches": {
+     "group": true,
+     "objects": true
+    }
+   }
+  },
+  {
+   "id": "J10",
+   "statement": "读数没被别的处理器污染（Tab 处理器只认 Tab + 页面那条桌开时已死 + 中性键全 false，三条独立理由）",
+   "verdict": "PASS",
+   "evidenceKey": "F8_noPollution",
+   "evidence": {
+    "claim": "读数没被别的处理器污染",
+    "focusContainmentGuardsOnTabOnly": true,
+    "neutralAllFalse": true,
+    "pageHandlerDeadWhenDeskOpen": true,
+    "why": "对话框那个 Tab 处理器（`useDirectorFocusContainment`）`if (event.key !== \"Tab\") return;` ⟹ 对本批这五个键**一次都不 preventDefault**；主画布页那条 Delete 在桌开时整条早退（772 的 F9）。加上中性键对照全 false，三个独立理由指向同一件事：**dp=true 就是桌内那个分支跑了**。"
+   }
+  }
+ ],
+ "defects": [],
+ "defectsNote": "★ 本批**没有新缺陷**。它是 772 的 D14 的**范围更正**与**读数方法**升级：4/6 → **6/6**，并把 `isEditable` 早退的作用域从「只验过 Delete」补到「五个键全部」。",
+ "corrections": [
+  {
+   "id": "C773-1",
+   "targets": [
+    "batch 772 findings(F6_confounded)",
+    "batch 772 defects[D14].measured",
+    "batch 772 judgments[J7]"
+   ],
+   "wasSaid": "「preset / pathmenu 的 4 个 Delete 格**结构上不可判**（不是『没穿透』）」；D14 的 `measured` 写的是「6 个浮层里 **4 个**实测会真删」",
+   "actual": "★ 不可判的是**副作用**，不是**分支**。这两件事必须分开：同是 `defaultPrevented=true`，8 格目标可删所以看得见副作用，4 格目标=主机位所以看不见。换一个与副作用无关的读数之后，那 4 格**也是可判的**，而且**分支确实跑到了**。",
+   "measuredBy": "臂 1（落非编辑框）在 **6/6 个浮层**读到 `defaultPrevented=true`（30/30 格）；Delete/Backspace 的副作用在 8 格可见、4 格 dp=true 但无副作用（全部落在 cameraTrack 两层）。",
+   "correctedScope": "D14 影响 **6/6 个浮层**，不是 4/6。",
+   "whyItMatters": "写成「4/6」会让人以为 preset / 路径菜单**是安全的**，从而在排期时跳过它们 —— 而它们同样会删掉工作区里选中的对象（只是种子项目里恰好没有可删目标）。"
+  }
+ ],
+ "observations": [
+  {
+   "id": "O773-1",
+   "text": "★ 桌内那个处理器**对浮层一无所知**：它唯一的输入是 `event.target` 的标签名。45/45 格上 `defaultPrevented` 恰好等于「落点非可编辑」，**与是哪个浮层完全无关**。",
+   "whyItMatters": "「按浮层逐个测」的思路在这里是浪费 —— **机制上不存在按浮层的分支**，一个守卫就能全族覆盖。"
+  },
+  {
+   "id": "O773-2",
+   "text": "★ 那道 `isEditable` 早退的作用域此前只量过一个键。本批补全：它对 `Delete`/`Backspace`/`Meta+C`/`Meta+V`/`Meta+Z` **五个键一视同仁**（可编辑落点 15/15 全挡住，非编辑落点 30/30 全放行）。",
+   "whyItMatters": "这说明它不是「只挡住一半」而是「**按控件类别整齐地挡**」—— 修 D14 时可以直接把这条守卫的判据从「标签名」换成「焦点在不在浮层内」，**行为边界不变**。"
+  },
+  {
+   "id": "O773-3",
+   "text": "★ **「分支跑到了」与「东西真被删了」是两个信号**，必须分别报。8 格两个信号同时为真，4 格只有前者 —— **只报后者就会把「测不出来」写成「没问题」。**",
+   "whyItMatters": "这是 R94 在**同一批**里的第二次成立：772 已经因为「靠副作用反推」少报了 2 个浮层。"
+  }
+ ],
+ "probeLessons": [
+  {
+   "id": "R96",
+   "text": "★ **一批读数失效时，不要整套重跑。** 773a 的中性臂一次都没跑（`for want in (...)` 那个补丁没落进文件 —— 静默的、汇总照常打印的那种失效）。做法是**补一个只跑缺失那几格的探针**，在汇编器里**合并**，并如实记下「哪些格来自哪个探针、为什么被取代」。",
+   "whyItMatters": "整套重跑会丢掉已经有效的读数，更会把「为什么失效」这段推理从产物里抹掉。"
+  },
+  {
+   "id": "R97",
+   "text": "★ **「一个读不出来」和「一个没发生」是两回事。** 772 的 4 格是靠**副作用**（对象数变化）判的，而副作用只在目标可删时才可见。修法：找一个**与副作用无关的直接读数** —— 本批用 `event.defaultPrevented`，因为桌内那个处理器**每走到一个分支就调一次** `preventDefault()`。**判别式：读数方法里有没有一个「目标本身可不可观测」的自由变量。**",
+   "whyItMatters": "副作用型读数天然带着「目标状态」这个隐藏变量；不把它分离出来，就会在目标恰好不可观测时把「没变化」误报成「没发生」。"
+  },
+  {
+   "id": "R98",
+   "text": "★ **读数方法本身要有中性对照。** 本批在断言之前先跑一格：按一个桌内**明确不处理**的键（`F2`），间谍必须读到 `defaultPrevented=false`。若读到 true，说明在桌内那个处理器**之前**就有人调了 `preventDefault()`，那么「true 就等于分支跑了」整条推理作废。**顺序型读数（监听器顺序、事件顺序）必须配一个「什么都没发生」的阴性格。**",
+   "whyItMatters": "监听器顺序是**注册顺序**决定的，而注册顺序是**时序**事实 —— 它随时可能被一次重挂载改掉，不测就会静默失效。"
+  },
+  {
+   "id": "R99",
+   "text": "★ **要读的字段必须在监听器里真的 push 它。** 第一版间谍写成 `{key, meta, shift, atEntry:false, tag, type}` —— `atEntry` 是**硬编码的字面量 false**，而 `e.defaultPrevented` **根本没记**。结果 45 格全部读成 `None`，而且**探针不报错、汇总照常打印**。★ **识别信号：某一个字段在所有格上取同一个值（尤其是 `None`/`False` 这类「看起来合理」的值），先怀疑它没被记，而不是先怀疑产品。**",
+   "whyItMatters": "R75 的加强版：判读朝「通过」方向的误报，在这里伪装成了一次「读数全为否」的**干净结论**。"
+  }
+ ]
+}
