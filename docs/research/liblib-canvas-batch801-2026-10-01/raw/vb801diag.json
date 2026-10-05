@@ -1,0 +1,167 @@
+[
+ {
+  "total": 14,
+  "selected": [
+   "storyboard-group-1791241155038-bxa1n2"
+  ],
+  "events": [
+   {
+    "key": "Meta",
+    "code": "MetaLeft",
+    "metaKey": true,
+    "ctrlKey": false,
+    "shiftKey": false,
+    "altKey": false,
+    "defaultPrevented": false,
+    "tag": "BODY"
+   },
+   {
+    "key": "d",
+    "code": "KeyD",
+    "metaKey": true,
+    "ctrlKey": false,
+    "shiftKey": false,
+    "altKey": false,
+    "defaultPrevented": false,
+    "tag": "BODY"
+   },
+   {
+    "__up": true,
+    "key": "d",
+    "metaKey": true
+   },
+   {
+    "__up": true,
+    "key": "Meta",
+    "metaKey": false
+   }
+  ]
+ },
+ {
+  "total": 17,
+  "selected": [
+   "storyboard-group-1791241155996-edjxf1"
+  ],
+  "events": [
+   {
+    "key": "Control",
+    "code": "ControlLeft",
+    "metaKey": false,
+    "ctrlKey": true,
+    "shiftKey": false,
+    "altKey": false,
+    "defaultPrevented": false,
+    "tag": "BODY"
+   },
+   {
+    "key": "d",
+    "code": "KeyD",
+    "metaKey": false,
+    "ctrlKey": true,
+    "shiftKey": false,
+    "altKey": false,
+    "defaultPrevented": false,
+    "tag": "BODY"
+   },
+   {
+    "__up": true,
+    "key": "d",
+    "metaKey": false
+   },
+   {
+    "__up": true,
+    "key": "Control",
+    "metaKey": false
+   }
+  ]
+ },
+ {
+  "total": 20,
+  "selected": [
+   "storyboard-group-1791241156957-o0ezg2"
+  ],
+  "events": [
+   {
+    "key": "Meta",
+    "code": "MetaLeft",
+    "metaKey": true,
+    "ctrlKey": false,
+    "shiftKey": false,
+    "altKey": false,
+    "defaultPrevented": false,
+    "tag": "BODY"
+   },
+   {
+    "key": "Shift",
+    "code": "ShiftLeft",
+    "metaKey": true,
+    "ctrlKey": false,
+    "shiftKey": true,
+    "altKey": false,
+    "defaultPrevented": false,
+    "tag": "BODY"
+   },
+   {
+    "key": "d",
+    "code": "KeyD",
+    "metaKey": true,
+    "ctrlKey": false,
+    "shiftKey": true,
+    "altKey": false,
+    "defaultPrevented": false,
+    "tag": "BODY"
+   },
+   {
+    "__up": true,
+    "key": "d",
+    "metaKey": true
+   },
+   {
+    "__up": true,
+    "key": "Shift",
+    "metaKey": true
+   },
+   {
+    "__up": true,
+    "key": "Meta",
+    "metaKey": false
+   }
+  ]
+ },
+ {
+  "total": 17,
+  "selected": [],
+  "events": [
+   {
+    "key": "Meta",
+    "code": "MetaLeft",
+    "metaKey": true,
+    "ctrlKey": false,
+    "shiftKey": false,
+    "altKey": false,
+    "defaultPrevented": false,
+    "tag": "BODY"
+   },
+   {
+    "key": "z",
+    "code": "KeyZ",
+    "metaKey": true,
+    "ctrlKey": false,
+    "shiftKey": false,
+    "altKey": false,
+    "defaultPrevented": false,
+    "tag": "BODY"
+   },
+   {
+    "__up": true,
+    "key": "z",
+    "metaKey": true
+   },
+   {
+    "__up": true,
+    "key": "Meta",
+    "metaKey": false
+   }
+  ]
+ }
+]

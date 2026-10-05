@@ -1,0 +1,520 @@
+{
+ "batch": 801,
+ "checks": [
+  {
+   "id": "C1:★★ 偏移由 raw **反推**得出，且所有副本**完全一致**",
+   "why": "★ 40 不写死：先按最近邻配对，再要求所有偏移相同 ⟹ 那个共同值才是偏移",
+   "pass": true,
+   "evidence": {
+    "逐臂反推": {
+     "pre copyFlatGroup#0": [
+      40,
+      40
+     ],
+     "pre copyFlatGroup#1": [
+      40,
+      40
+     ],
+     "pre copyNested#0": [
+      40,
+      40
+     ],
+     "pre copyNested#1": [
+      40,
+      40
+     ],
+     "pre copyMember#0": [
+      40,
+      40
+     ],
+     "pre copyMember#1": [
+      40,
+      40
+     ],
+     "post copyFlatGroup#0": [
+      40,
+      40
+     ],
+     "post copyFlatGroup#1": [
+      40,
+      40
+     ],
+     "post copyNested#0": [
+      40,
+      40
+     ],
+     "post copyNested#1": [
+      40,
+      40
+     ],
+     "post copyMember#0": [
+      40,
+      40
+     ],
+     "post copyMember#1": [
+      40,
+      40
+     ]
+    },
+    "共同值": [
+     [
+      40,
+      40
+     ]
+    ]
+   }
+  },
+  {
+   "id": "C2:★★ 每个副本的绝对位置 == 配对原节点 + 反推出来的偏移",
+   "why": "★ 这是「复制 = 整体平移」这句话的逐条核对",
+   "pass": true,
+   "evidence": {
+    "偏移": [
+     40,
+     40
+    ],
+    "逐条": {
+     "copyFlatGroup#0 image-1791": {
+      "配到的原": "image-1791",
+      "应有": [
+       212,
+       353
+      ],
+      "实得": [
+       212,
+       353
+      ]
+     },
+     "copyFlatGroup#0 script-179": {
+      "配到的原": "script-179",
+      "应有": [
+       188,
+       -45
+      ],
+      "实得": [
+       188,
+       -45
+      ]
+     },
+     "copyFlatGroup#0 storyboard": {
+      "配到的原": "storyboard",
+      "应有": [
+       148,
+       -85
+      ],
+      "实得": [
+       148,
+       -85
+      ]
+     },
+     "copyFlatGroup#1 image-1791": {
+      "配到的原": "image-1791",
+      "应有": [
+       212,
+       353
+      ],
+      "实得": [
+       212,
+       353
+      ]
+     },
+     "copyFlatGroup#1 script-179": {
+      "配到的原": "script-179",
+      "应有": [
+       188,
+       -45
+      ],
+      "实得": [
+       188,
+       -45
+      ]
+     },
+     "copyFlatGroup#1 storyboard": {
+      "配到的原": "storyboard",
+      "应有": [
+       148,
+       -85
+      ],
+      "实得": [
+       148,
+       -85
+      ]
+     },
+     "copyNested#0 storyboard": {
+      "配到的原": "g-inner",
+      "应有": [
+       280,
+       230
+      ],
+      "实得": [
+       280,
+       230
+      ]
+     },
+     "copyNested#0 text-17912": {
+      "配到的原": "n-m1",
+      "应有": [
+       320,
+       270
+      ],
+      "实得": [
+       320,
+       270
+      ]
+     },
+     "copyNested#1 storyboard": {
+      "配到的原": "g-outer",
+      "应有": [
+       240,
+       190
+      ],
+      "实得": [
+       240,
+       190
+      ]
+     },
+     "copyNested#1 text-17912": {
+      "配到的原": "n-loose",
+      "应有": [
+       280,
+       630
+      ],
+      "实得": [
+       280,
+       630
+      ]
+     },
+     "copyMember#0 text-17912": {
+      "配到的原": "n-m1",
+      "应有": [
+       320,
+       270
+      ],
+      "实得": [
+       320,
+       270
+      ]
+     },
+     "copyMember#1 text-17912": {
+      "配到的原": "n-m1",
+      "应有": [
+       320,
+       270
+      ],
+      "实得": [
+       320,
+       270
+      ]
+     }
+    },
+    "不符": []
+   }
+  },
+  {
+   "id": "C3:★ 阳性对照：副本 id 与原 id 全不相交，且副本数符合预期",
+   "why": "★ 没有它，「什么都没复制」也会让 C1/C2 成立",
+   "pass": true,
+   "evidence": {
+    "pre copyFlatGroup#0": {
+     "副本数": 3,
+     "预期": 3,
+     "id 与原全不相交": true
+    },
+    "pre copyFlatGroup#1": {
+     "副本数": 3,
+     "预期": 3,
+     "id 与原全不相交": true
+    },
+    "pre copyNested#0": {
+     "副本数": 5,
+     "预期": 5,
+     "id 与原全不相交": true
+    },
+    "pre copyNested#1": {
+     "副本数": 5,
+     "预期": 5,
+     "id 与原全不相交": true
+    },
+    "pre copyMember#0": {
+     "副本数": 1,
+     "预期": 1,
+     "id 与原全不相交": true
+    },
+    "pre copyMember#1": {
+     "副本数": 1,
+     "预期": 1,
+     "id 与原全不相交": true
+    },
+    "post copyFlatGroup#0": {
+     "副本数": 3,
+     "预期": 3,
+     "id 与原全不相交": true
+    },
+    "post copyFlatGroup#1": {
+     "副本数": 3,
+     "预期": 3,
+     "id 与原全不相交": true
+    },
+    "post copyNested#0": {
+     "副本数": 5,
+     "预期": 5,
+     "id 与原全不相交": true
+    },
+    "post copyNested#1": {
+     "副本数": 5,
+     "预期": 5,
+     "id 与原全不相交": true
+    },
+    "post copyMember#0": {
+     "副本数": 1,
+     "预期": 1,
+     "id 与原全不相交": true
+    },
+    "post copyMember#1": {
+     "副本数": 1,
+     "预期": 1,
+     "id 与原全不相交": true
+    }
+   }
+  },
+  {
+   "id": "C4:★★ 复制**组**时，父子关系与**深度**逐条保持",
+   "why": "★ 嵌套那条臂是关键：副本内层组的父必须是**副本外层组**，不能是原组",
+   "pass": true,
+   "evidence": {
+    "copyFlatGroup#0": {
+     "父子非空性一致": {
+      "image-1791241790490-7e52vq": [
+       true,
+       true
+      ],
+      "script-1791241790490-xsp5it": [
+       true,
+       true
+      ],
+      "storyboard-group-1791241790490-ihspsi": [
+       false,
+       false
+      ]
+     },
+     "深度一致": {
+      "image-1791241790490-7e52vq": [
+       1,
+       1
+      ],
+      "script-1791241790490-xsp5it": [
+       1,
+       1
+      ],
+      "storyboard-group-1791241790490-ihspsi": [
+       0,
+       0
+      ]
+     }
+    },
+    "copyFlatGroup#1": {
+     "父子非空性一致": {
+      "image-1791241805260-dlv5am": [
+       true,
+       true
+      ],
+      "script-1791241805260-b81u8f": [
+       true,
+       true
+      ],
+      "storyboard-group-1791241805260-304boc": [
+       false,
+       false
+      ]
+     },
+     "深度一致": {
+      "image-1791241805260-dlv5am": [
+       1,
+       1
+      ],
+      "script-1791241805260-b81u8f": [
+       1,
+       1
+      ],
+      "storyboard-group-1791241805260-304boc": [
+       0,
+       0
+      ]
+     }
+    },
+    "copyNested#0": {
+     "父子非空性一致": {
+      "storyboard-group-1791241795111-t19cb1": [
+       true,
+       true
+      ],
+      "storyboard-group-1791241795111-y75ggo": [
+       false,
+       false
+      ],
+      "text-1791241795111-4b80pf": [
+       true,
+       true
+      ],
+      "text-1791241795111-6z6137": [
+       true,
+       true
+      ],
+      "text-1791241795111-8uzovp": [
+       true,
+       true
+      ]
+     },
+     "深度一致": {
+      "storyboard-group-1791241795111-t19cb1": [
+       1,
+       1
+      ],
+      "storyboard-group-1791241795111-y75ggo": [
+       0,
+       0
+      ],
+      "text-1791241795111-4b80pf": [
+       1,
+       1
+      ],
+      "text-1791241795111-6z6137": [
+       2,
+       2
+      ],
+      "text-1791241795111-8uzovp": [
+       2,
+       2
+      ]
+     }
+    },
+    "copyNested#1": {
+     "父子非空性一致": {
+      "storyboard-group-1791241809870-fxx1ah": [
+       false,
+       false
+      ],
+      "storyboard-group-1791241809870-zlmzgo": [
+       true,
+       true
+      ],
+      "text-1791241809870-nexdkb": [
+       true,
+       true
+      ],
+      "text-1791241809870-o9shsr": [
+       true,
+       true
+      ],
+      "text-1791241809870-sz4fh9": [
+       true,
+       true
+      ]
+     },
+     "深度一致": {
+      "storyboard-group-1791241809870-fxx1ah": [
+       0,
+       0
+      ],
+      "storyboard-group-1791241809870-zlmzgo": [
+       1,
+       1
+      ],
+      "text-1791241809870-nexdkb": [
+       2,
+       2
+      ],
+      "text-1791241809870-o9shsr": [
+       1,
+       1
+      ],
+      "text-1791241809870-sz4fh9": [
+       2,
+       2
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "C5:★★ 副本的父指向**副本集合内部**（不是原组）",
+   "why": "★ 否则副本成员会挂回**原组** ⟹ 画布上两份成员挤在一个框里",
+   "pass": true,
+   "evidence": {
+    "copyFlatGroup#0": {
+     "image-1791241790490-7e52vq": true,
+     "script-1791241790490-xsp5it": true
+    },
+    "copyFlatGroup#1": {
+     "image-1791241805260-dlv5am": true,
+     "script-1791241805260-b81u8f": true
+    },
+    "copyNested#0": {
+     "storyboard-group-1791241795111-t19cb1": true,
+     "text-1791241795111-4b80pf": true,
+     "text-1791241795111-6z6137": true,
+     "text-1791241795111-8uzovp": true
+    },
+    "copyNested#1": {
+     "storyboard-group-1791241809870-zlmzgo": true,
+     "text-1791241809870-nexdkb": true,
+     "text-1791241809870-o9shsr": true,
+     "text-1791241809870-sz4fh9": true
+    }
+   }
+  },
+  {
+   "id": "C6:★ 复制组内**一个成员**时，副本**脱管**且深度为 0",
+   "why": "★ 这是**故意**的结构变化（`:889` 那个分支）⟹ 与 C4 分开判，不混成一条",
+   "pass": true,
+   "evidence": {
+    "#0": {
+     "text-1791241799704-3w22vo": [
+      null,
+      0
+     ]
+    },
+    "#1": {
+     "text-1791241814435-yaejgq": [
+      null,
+      0
+     ]
+    }
+   }
+  },
+  {
+   "id": "C7:★★ 快捷键可用：`Cmd+D` 真的复制了 3 个节点（纯 UI 路径）",
+   "why": "★ 第一版我一度以为「Cmd+D 没生效」⟹ 那是**我数错了节点基数**（种子有 2 个组、造组 +1）。诊断 `diag801.py` 逐条记了 keydown 事件，证明事件确实送达且被处理",
+   "pass": true,
+   "evidence": {
+    "#0": {
+     "造组后": 11,
+     "按 Cmd+D 后": 14,
+     "增了": 3,
+     "按 Cmd+D 前选区": [
+      "group-1791241758211-s4o4om"
+     ]
+    },
+    "#1": {
+     "造组后": 11,
+     "按 Cmd+D 后": 14,
+     "增了": 3,
+     "按 Cmd+D 前选区": [
+      "group-1791241773075-8oqnjg"
+     ]
+    }
+   }
+  },
+  {
+   "id": "C8:★★ 可复现：pre 与 post 的配对与偏移**完全一致**",
+   "why": "★ 本批**没改** `src/` ⟹ 两份 raw 应当一致 ⟹ 不一致就说明其中一份不是本批代码跑的",
+   "pass": true,
+   "evidence": {
+    "比对数": 6,
+    "不一致": []
+   }
+  }
+ ],
+ "passed": 8,
+ "total": 8
+}
