@@ -1,0 +1,654 @@
+{
+ "batch": 786,
+ "claims": {
+  "P786-1": "★ 783 的层只在 1 个文件（DirectorTimeline.tsx）里报出交叉写入；786 修好三处缺陷后报出 6 组、跨 3 个文件（DirectorDesk.tsx、DirectorTimeline.tsx、DirectorViewport.tsx）",
+  "P786-2": "★ `{modelLibraryOpen, crowdPanelOpen, phoneVcamOpen}` 构成**三向**互斥（783 那对是**双向**）",
+  "P786-3": "「能不能共活」静态不可判 ⟹ 运行时（`raw/vb786a.json`）",
+  "caveat": "★ 「无条件」只对 `toggleModelLibrary` 与 crowd 触发器成立；vcam 触发器 `:3537` 有 `if (phoneVcamRecording) return;`"
+ },
+ "crossWriteGroups": [
+  {
+   "name": "togglePathMenu",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 601,
+   "mechanism": "cross-write",
+   "members": [
+    {
+     "line": 602,
+     "needle": "if (cameraFollowActive) return;"
+    },
+    {
+     "line": 603,
+     "needle": "setPresetPanelLeft(null);"
+    },
+    {
+     "line": 605,
+     "needle": "setPathMenuLeft(null);"
+    },
+    {
+     "line": 611,
+     "needle": "setPathMenuLeft("
+    }
+   ]
+  },
+  {
+   "name": "togglePresetPanel",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 695,
+   "mechanism": "cross-write",
+   "members": [
+    {
+     "line": 696,
+     "needle": "if (selectedTrack?.kind !== \"camera\" || cameraFollowActive) return;"
+    },
+    {
+     "line": 698,
+     "needle": "setPresetPanelLeft(null);"
+    },
+    {
+     "line": 704,
+     "needle": "setPathMenuLeft(null);"
+    },
+    {
+     "line": 705,
+     "needle": "setPresetPanelLeft("
+    }
+   ]
+  },
+  {
+   "name": "toggleModelLibrary",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2825,
+   "mechanism": "cross-write",
+   "members": [
+    {
+     "line": 2826,
+     "needle": "setPhoneVcamOpen(false);"
+    },
+    {
+     "line": 2827,
+     "needle": "setCrowdPanelOpen(false);"
+    },
+    {
+     "line": 2828,
+     "needle": "setModelLibraryOpen((value) => !value);"
+    }
+   ]
+  },
+  {
+   "name": "vcamTriggerOnClick",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3536,
+   "mechanism": "cross-write",
+   "members": [
+    {
+     "line": 3537,
+     "needle": "if (phoneVcamRecording) return;"
+    },
+    {
+     "line": 3538,
+     "needle": "setModelLibraryOpen(false);"
+    },
+    {
+     "line": 3539,
+     "needle": "setCrowdPanelOpen(false);"
+    },
+    {
+     "line": 3540,
+     "needle": "setPhoneVcamOpen((value) => !value);"
+    }
+   ]
+  },
+  {
+   "name": "crowdTriggerOnClick",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3556,
+   "mechanism": "cross-write",
+   "members": [
+    {
+     "line": 3557,
+     "needle": "setModelLibraryOpen(false);"
+    },
+    {
+     "line": 3558,
+     "needle": "setPhoneVcamOpen(false);"
+    },
+    {
+     "line": 3559,
+     "needle": "setCrowdPanelOpen((value) => !value);"
+    }
+   ]
+  },
+  {
+   "name": "handleKeyDown",
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 473,
+   "mechanism": "early-return-ladder",
+   "members": [
+    {
+     "line": 557,
+     "needle": "if (exportPanelOpen) {"
+    },
+    {
+     "line": 558,
+     "needle": "setExportPanelOpen(false);"
+    },
+    {
+     "line": 559,
+     "needle": "return;"
+    },
+    {
+     "line": 564,
+     "needle": "if (followTargetId) {"
+    },
+    {
+     "line": 565,
+     "needle": "if (activeCameraId) updateCamera(activeCameraId, { followTargetId: null });"
+    },
+    {
+     "line": 566,
+     "needle": "return;"
+    }
+   ]
+  }
+ ],
+ "triangle": [
+  {
+   "group": "toggleModelLibrary",
+   "opensSelf": 2828,
+   "closes": [
+    2826,
+    2827
+   ]
+  },
+  {
+   "group": "vcamTriggerOnClick",
+   "opensSelf": 3540,
+   "closes": [
+    3538,
+    3539
+   ]
+  },
+  {
+   "group": "crowdTriggerOnClick",
+   "opensSelf": 3559,
+   "closes": [
+    3557,
+    3558
+   ]
+  }
+ ],
+ "runtime": {
+  "probe": "raw/vb786a.json",
+  "arms": null,
+  "note": "本汇编器**不**读运行时 raw；运行时结论由 `verify-liblib-batch786.py` 从 raw **重算**"
+ },
+ "checks": [
+  {
+   "id": "A:togglePathMenu",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 601,
+   "ok": true,
+   "n": 4,
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 602,
+     "needle": "if (cameraFollowActive) return;",
+     "ok": true,
+     "code": "if (cameraFollowActive) return;"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 603,
+     "needle": "setPresetPanelLeft(null);",
+     "ok": true,
+     "code": "setPresetPanelLeft(null);"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 605,
+     "needle": "setPathMenuLeft(null);",
+     "ok": true,
+     "code": "setPathMenuLeft(null);"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 611,
+     "needle": "setPathMenuLeft(",
+     "ok": true,
+     "code": "setPathMenuLeft("
+    }
+   ]
+  },
+  {
+   "id": "A:togglePresetPanel",
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 695,
+   "ok": true,
+   "n": 4,
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 696,
+     "needle": "if (selectedTrack?.kind !== \"camera\" || cameraFollowActive) return;",
+     "ok": true,
+     "code": "if (selectedTrack?.kind !== \"camera\" || cameraFollowActive) return;"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 698,
+     "needle": "setPresetPanelLeft(null);",
+     "ok": true,
+     "code": "setPresetPanelLeft(null);"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 704,
+     "needle": "setPathMenuLeft(null);",
+     "ok": true,
+     "code": "setPathMenuLeft(null);"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 705,
+     "needle": "setPresetPanelLeft(",
+     "ok": true,
+     "code": "setPresetPanelLeft("
+    }
+   ]
+  },
+  {
+   "id": "A:toggleModelLibrary",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2825,
+   "ok": true,
+   "n": 3,
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2826,
+     "needle": "setPhoneVcamOpen(false);",
+     "ok": true,
+     "code": "setPhoneVcamOpen(false);"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2827,
+     "needle": "setCrowdPanelOpen(false);",
+     "ok": true,
+     "code": "setCrowdPanelOpen(false);"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2828,
+     "needle": "setModelLibraryOpen((value) => !value);",
+     "ok": true,
+     "code": "setModelLibraryOpen((value) => !value);"
+    }
+   ]
+  },
+  {
+   "id": "A:vcamTriggerOnClick",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3536,
+   "ok": true,
+   "n": 4,
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 3537,
+     "needle": "if (phoneVcamRecording) return;",
+     "ok": true,
+     "code": "if (phoneVcamRecording) return;"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 3538,
+     "needle": "setModelLibraryOpen(false);",
+     "ok": true,
+     "code": "setModelLibraryOpen(false);"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 3539,
+     "needle": "setCrowdPanelOpen(false);",
+     "ok": true,
+     "code": "setCrowdPanelOpen(false);"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 3540,
+     "needle": "setPhoneVcamOpen((value) => !value);",
+     "ok": true,
+     "code": "setPhoneVcamOpen((value) => !value);"
+    }
+   ]
+  },
+  {
+   "id": "A:crowdTriggerOnClick",
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3556,
+   "ok": true,
+   "n": 3,
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 3557,
+     "needle": "setModelLibraryOpen(false);",
+     "ok": true,
+     "code": "setModelLibraryOpen(false);"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 3558,
+     "needle": "setPhoneVcamOpen(false);",
+     "ok": true,
+     "code": "setPhoneVcamOpen(false);"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 3559,
+     "needle": "setCrowdPanelOpen((value) => !value);",
+     "ok": true,
+     "code": "setCrowdPanelOpen((value) => !value);"
+    }
+   ]
+  },
+  {
+   "id": "B:三向互斥的顺序",
+   "ok": true,
+   "n": 3,
+   "anchors": [
+    {
+     "group": "toggleModelLibrary",
+     "closes": [
+      2826,
+      2827
+     ],
+     "opensSelf": 2828,
+     "ok": true
+    },
+    {
+     "group": "vcamTriggerOnClick",
+     "closes": [
+      3538,
+      3539
+     ],
+     "opensSelf": 3540,
+     "ok": true
+    },
+    {
+     "group": "crowdTriggerOnClick",
+     "closes": [
+      3557,
+      3558
+     ],
+     "opensSelf": 3559,
+     "ok": true
+    }
+   ],
+   "claim": "★ 每个打开者**先关掉另外两个、再打开自己** ⟹ 三向互斥"
+  },
+  {
+   "id": "C:vcam 打开者带门",
+   "ok": true,
+   "n": 2,
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 3536,
+     "needle": "onClick={() => {",
+     "ok": true,
+     "code": "onClick={() => {"
+    },
+    {
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 3537,
+     "needle": "if (phoneVcamRecording) return;",
+     "ok": true,
+     "code": "if (phoneVcamRecording) return;"
+    }
+   ],
+   "claim": "★ vcam 触发器 `:3537` 有 `if (phoneVcamRecording) return;` ⟹ **录制中点它什么都不会发生**，所以「无条件」只对另外两个成立"
+  },
+  {
+   "id": "F:Timeline 两个打开者不对称",
+   "ok": true,
+   "n": 5,
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 603,
+     "needle": "setPresetPanelLeft(null);",
+     "ok": true,
+     "code": "setPresetPanelLeft(null);"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 604,
+     "needle": "if (pathMenuLeft !== null) {",
+     "ok": true,
+     "code": "if (pathMenuLeft !== null) {"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 697,
+     "needle": "if (presetPanelLeft !== null) {",
+     "ok": true,
+     "code": "if (presetPanelLeft !== null) {"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 698,
+     "needle": "setPresetPanelLeft(null);",
+     "ok": true,
+     "code": "setPresetPanelLeft(null);"
+    },
+    {
+     "file": "src/components/director/DirectorTimeline.tsx",
+     "line": 704,
+     "needle": "setPathMenuLeft(null);",
+     "ok": true,
+     "code": "setPathMenuLeft(null);"
+    }
+   ],
+   "claim": "★ 783 说的「双向」在**写入对方状态**这件事上成立，但**关闭方向不对称**：`togglePathMenu:603` 在早退**之前** ⟹ 关路径菜单会连带关掉预设面板；`togglePresetPanel:704` 在早退**之后** ⟹ 关预设面板**不会**关掉路径菜单。★ 两个打开者都带 `cameraFollowActive` 门（`:602` / `:696`）"
+  },
+  {
+   "id": "D:P786-1 修好后报得更多",
+   "ok": true,
+   "n": 1,
+   "detail": {
+    "c783_crossWriteFiles": [
+     "DirectorTimeline.tsx"
+    ],
+    "c783_pairs": [
+     [
+      "pathMenuLeft",
+      [
+       "presetPanelLeft"
+      ],
+      "togglePathMenu",
+      601
+     ],
+     [
+      "pathMenuLeft",
+      [
+       "presetPanelLeft"
+      ],
+      "togglePresetPanel",
+      695
+     ],
+     [
+      "presetPanelLeft",
+      [
+       "pathMenuLeft"
+      ],
+      "togglePathMenu",
+      601
+     ],
+     [
+      "presetPanelLeft",
+      [
+       "pathMenuLeft"
+      ],
+      "togglePresetPanel",
+      695
+     ]
+    ],
+    "c786_crossWriteGroups": 6,
+    "c786_files": [
+     "DirectorDesk.tsx",
+     "DirectorTimeline.tsx",
+     "DirectorViewport.tsx"
+    ],
+    "misattributedSetts": [
+     {
+      "state": "modelLibraryOpen",
+      "setterLine": 3184,
+      "fn": "openLocalModelLibraryImport",
+      "fnLine": 2859,
+      "alsoWrites": [],
+      "inEffect": false
+     },
+     {
+      "state": "modelLibraryOpen",
+      "setterLine": 3538,
+      "fn": "openLocalModelLibraryImport",
+      "fnLine": 2859,
+      "alsoWrites": [],
+      "inEffect": false
+     },
+     {
+      "state": "modelLibraryOpen",
+      "setterLine": 3557,
+      "fn": "openLocalModelLibraryImport",
+      "fnLine": 2859,
+      "alsoWrites": [],
+      "inEffect": false
+     }
+    ]
+   },
+   "claim": "★ 783 的层只在 1 个文件（DirectorTimeline.tsx）里报出交叉写入；786 修好三处缺陷后报出 6 组、跨 3 个文件（DirectorDesk.tsx、DirectorTimeline.tsx、DirectorViewport.tsx）"
+  },
+  {
+   "id": "E:与普查器对账",
+   "ok": true,
+   "n": 1,
+   "detail": {
+    "assemblerGroups": [
+     "crowdTriggerOnClick",
+     "toggleModelLibrary",
+     "togglePathMenu",
+     "togglePresetPanel",
+     "vcamTriggerOnClick"
+    ],
+    "censusGroups": [
+     "handleKeyDown",
+     "line3536",
+     "line3556",
+     "toggleModelLibrary",
+     "togglePathMenu",
+     "togglePresetPanel"
+    ],
+    "censusCount": 6,
+    "filesAssembler": [
+     "DirectorDesk.tsx",
+     "DirectorTimeline.tsx",
+     "DirectorViewport.tsx"
+    ],
+    "filesCensus": [
+     "DirectorDesk.tsx",
+     "DirectorTimeline.tsx",
+     "DirectorViewport.tsx"
+    ]
+   },
+   "claim": "★ 组数与所属文件必须一致（**名字**可能因内联箭头而无名 ⟹ 对账只比「文件 + 组数」，名字不比）"
+  },
+  {
+   "id": "H:早退阶梯（不是交叉写入）",
+   "ok": true,
+   "n": 6,
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 473,
+   "name": "handleKeyDown",
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorDesk.tsx",
+     "line": 557,
+     "needle": "if (exportPanelOpen) {",
+     "ok": true,
+     "code": "if (exportPanelOpen) {"
+    },
+    {
+     "file": "src/components/director/DirectorDesk.tsx",
+     "line": 558,
+     "needle": "setExportPanelOpen(false);",
+     "ok": true,
+     "code": "setExportPanelOpen(false);"
+    },
+    {
+     "file": "src/components/director/DirectorDesk.tsx",
+     "line": 559,
+     "needle": "return;",
+     "ok": true,
+     "code": "return;"
+    },
+    {
+     "file": "src/components/director/DirectorDesk.tsx",
+     "line": 564,
+     "needle": "if (followTargetId) {",
+     "ok": true,
+     "code": "if (followTargetId) {"
+    },
+    {
+     "file": "src/components/director/DirectorDesk.tsx",
+     "line": 565,
+     "needle": "if (activeCameraId) updateCamera(activeCameraId, { followTargetId: null });",
+     "ok": true,
+     "code": "if (activeCameraId) updateCamera(activeCameraId, { followTargetId: null });"
+    },
+    {
+     "file": "src/components/director/DirectorDesk.tsx",
+     "line": 566,
+     "needle": "return;",
+     "ok": true,
+     "code": "return;"
+    }
+   ],
+   "claim": "★ `DirectorDesk.tsx:473` 的 `handleKeyDown`（Escape 阶梯）写了 `exportPanelOpen`(`:558`) 与 `followTargetId`(`:565`) 两个门状态，但**每一档后面都 `return`**（`:559` / `:566`）⟹ 一次按键最多走一档 ⟹ 两者**互相排斥**、**不是**交叉写入。★ 第一版普查器用「以 `;` 结尾」判类型注解，把 `:565` 那条**真的**写入也杀了 ⟹ 组数**恰好**对上了、**理由却是错的**"
+  },
+  {
+   "id": "I:类型标注判据（第一版会误杀）",
+   "ok": true,
+   "n": 2,
+   "anchors": [
+    {
+     "file": "src/components/director/DirectorPhoneVcamPanel.tsx",
+     "line": 99,
+     "needle": "open: boolean;",
+     "ok": true,
+     "code": "open: boolean;"
+    },
+    {
+     "file": "src/components/director/DirectorDesk.tsx",
+     "line": 565,
+     "needle": "if (activeCameraId) updateCamera(activeCameraId, { followTargetId: null });",
+     "ok": true,
+     "code": "if (activeCameraId) updateCamera(activeCameraId, { followTargetId: null });"
+    }
+   ],
+   "bothEndWithSemicolon": [
+    true,
+    true
+   ],
+   "claim": "★ `open: boolean;` 与 `…{ followTargetId: null });` **都以 `;` 结尾**⟹ 「以 `;` 结尾」这个判据**分不开**它们；真正的分界是「类型标注里不会出现 `(` 或 `=>`」"
+  }
+ ],
+ "totals": {
+  "checks": 12,
+  "assertedAnchors": 38,
+  "failed": 0
+ }
+}

@@ -1,0 +1,1016 @@
+{
+ "batch": 786,
+ "arms": [
+  "only_lib",
+  "only_vcam",
+  "only_crowd",
+  "libThenvcam",
+  "libThencrowd",
+  "vcamThenlib",
+  "vcamThencrowd",
+  "crowdThenlib",
+  "crowdThenvcam"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "only_lib",
+     "order": [
+      "lib"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "lib",
+       "read": {
+        "lib": "true",
+        "vcam": "false",
+        "crowd": "false",
+        "libPanel": true,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "true",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": true,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": true,
+      "vcam": false,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "自己开、另外两个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "only_vcam",
+     "order": [
+      "vcam"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "vcam",
+       "read": {
+        "lib": "false",
+        "vcam": "true",
+        "crowd": "false",
+        "libPanel": false,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "true",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": true,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "自己开、另外两个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "only_crowd",
+     "order": [
+      "crowd"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "crowd",
+       "read": {
+        "lib": "false",
+        "vcam": "false",
+        "crowd": "true",
+        "libPanel": false,
+        "crowdPanel": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "true",
+      "libPanel": false,
+      "crowdPanel": true,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": false,
+      "crowd": true
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "自己开、另外两个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "libThenvcam",
+     "order": [
+      "lib",
+      "vcam"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "lib",
+       "read": {
+        "lib": "true",
+        "vcam": "false",
+        "crowd": "false",
+        "libPanel": true,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "vcam",
+       "read": {
+        "lib": "false",
+        "vcam": "true",
+        "crowd": "false",
+        "libPanel": false,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "true",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": true,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "modelLibraryOpen 被 phoneVcamOpen 关掉、phoneVcamOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "libThencrowd",
+     "order": [
+      "lib",
+      "crowd"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "lib",
+       "read": {
+        "lib": "true",
+        "vcam": "false",
+        "crowd": "false",
+        "libPanel": true,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "crowd",
+       "read": {
+        "lib": "false",
+        "vcam": "false",
+        "crowd": "true",
+        "libPanel": false,
+        "crowdPanel": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "true",
+      "libPanel": false,
+      "crowdPanel": true,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": false,
+      "crowd": true
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "modelLibraryOpen 被 crowdPanelOpen 关掉、crowdPanelOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "vcamThenlib",
+     "order": [
+      "vcam",
+      "lib"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "vcam",
+       "read": {
+        "lib": "false",
+        "vcam": "true",
+        "crowd": "false",
+        "libPanel": false,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "lib",
+       "read": {
+        "lib": "true",
+        "vcam": "false",
+        "crowd": "false",
+        "libPanel": true,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "true",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": true,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": true,
+      "vcam": false,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "phoneVcamOpen 被 modelLibraryOpen 关掉、modelLibraryOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "vcamThencrowd",
+     "order": [
+      "vcam",
+      "crowd"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "vcam",
+       "read": {
+        "lib": "false",
+        "vcam": "true",
+        "crowd": "false",
+        "libPanel": false,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "crowd",
+       "read": {
+        "lib": "false",
+        "vcam": "false",
+        "crowd": "true",
+        "libPanel": false,
+        "crowdPanel": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "true",
+      "libPanel": false,
+      "crowdPanel": true,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": false,
+      "crowd": true
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "phoneVcamOpen 被 crowdPanelOpen 关掉、crowdPanelOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "crowdThenlib",
+     "order": [
+      "crowd",
+      "lib"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "crowd",
+       "read": {
+        "lib": "false",
+        "vcam": "false",
+        "crowd": "true",
+        "libPanel": false,
+        "crowdPanel": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "lib",
+       "read": {
+        "lib": "true",
+        "vcam": "false",
+        "crowd": "false",
+        "libPanel": true,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "true",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": true,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": true,
+      "vcam": false,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "crowdPanelOpen 被 modelLibraryOpen 关掉、modelLibraryOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "crowdThenvcam",
+     "order": [
+      "crowd",
+      "vcam"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "crowd",
+       "read": {
+        "lib": "false",
+        "vcam": "false",
+        "crowd": "true",
+        "libPanel": false,
+        "crowdPanel": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "vcam",
+       "read": {
+        "lib": "false",
+        "vcam": "true",
+        "crowd": "false",
+        "libPanel": false,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "true",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": true,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "crowdPanelOpen 被 phoneVcamOpen 关掉、phoneVcamOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "only_lib",
+     "order": [
+      "lib"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "lib",
+       "read": {
+        "lib": "true",
+        "vcam": "false",
+        "crowd": "false",
+        "libPanel": true,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "true",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": true,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": true,
+      "vcam": false,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "自己开、另外两个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "only_vcam",
+     "order": [
+      "vcam"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "vcam",
+       "read": {
+        "lib": "false",
+        "vcam": "true",
+        "crowd": "false",
+        "libPanel": false,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "true",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": true,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "自己开、另外两个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "only_crowd",
+     "order": [
+      "crowd"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "crowd",
+       "read": {
+        "lib": "false",
+        "vcam": "false",
+        "crowd": "true",
+        "libPanel": false,
+        "crowdPanel": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "true",
+      "libPanel": false,
+      "crowdPanel": true,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": false,
+      "crowd": true
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "自己开、另外两个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "libThenvcam",
+     "order": [
+      "lib",
+      "vcam"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "lib",
+       "read": {
+        "lib": "true",
+        "vcam": "false",
+        "crowd": "false",
+        "libPanel": true,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "vcam",
+       "read": {
+        "lib": "false",
+        "vcam": "true",
+        "crowd": "false",
+        "libPanel": false,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "true",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": true,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "modelLibraryOpen 被 phoneVcamOpen 关掉、phoneVcamOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "libThencrowd",
+     "order": [
+      "lib",
+      "crowd"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "lib",
+       "read": {
+        "lib": "true",
+        "vcam": "false",
+        "crowd": "false",
+        "libPanel": true,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "crowd",
+       "read": {
+        "lib": "false",
+        "vcam": "false",
+        "crowd": "true",
+        "libPanel": false,
+        "crowdPanel": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "true",
+      "libPanel": false,
+      "crowdPanel": true,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": false,
+      "crowd": true
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "modelLibraryOpen 被 crowdPanelOpen 关掉、crowdPanelOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "vcamThenlib",
+     "order": [
+      "vcam",
+      "lib"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "vcam",
+       "read": {
+        "lib": "false",
+        "vcam": "true",
+        "crowd": "false",
+        "libPanel": false,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "lib",
+       "read": {
+        "lib": "true",
+        "vcam": "false",
+        "crowd": "false",
+        "libPanel": true,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "true",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": true,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": true,
+      "vcam": false,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "phoneVcamOpen 被 modelLibraryOpen 关掉、modelLibraryOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "vcamThencrowd",
+     "order": [
+      "vcam",
+      "crowd"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "vcam",
+       "read": {
+        "lib": "false",
+        "vcam": "true",
+        "crowd": "false",
+        "libPanel": false,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "crowd",
+       "read": {
+        "lib": "false",
+        "vcam": "false",
+        "crowd": "true",
+        "libPanel": false,
+        "crowdPanel": true,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "true",
+      "libPanel": false,
+      "crowdPanel": true,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": false,
+      "crowd": true
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "phoneVcamOpen 被 crowdPanelOpen 关掉、crowdPanelOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "crowdThenlib",
+     "order": [
+      "crowd",
+      "lib"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "crowd",
+       "read": {
+        "lib": "false",
+        "vcam": "false",
+        "crowd": "true",
+        "libPanel": false,
+        "crowdPanel": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "lib",
+       "read": {
+        "lib": "true",
+        "vcam": "false",
+        "crowd": "false",
+        "libPanel": true,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "true",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": true,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": true,
+      "vcam": false,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "crowdPanelOpen 被 modelLibraryOpen 关掉、modelLibraryOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    },
+    {
+     "arm": "crowdThenvcam",
+     "order": [
+      "crowd",
+      "vcam"
+     ],
+     "before": {
+      "lib": "false",
+      "vcam": "false",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "steps": [
+      {
+       "clicked": "crowd",
+       "read": {
+        "lib": "false",
+        "vcam": "false",
+        "crowd": "true",
+        "libPanel": false,
+        "crowdPanel": true,
+        "deskOpen": true
+       }
+      },
+      {
+       "clicked": "vcam",
+       "read": {
+        "lib": "false",
+        "vcam": "true",
+        "crowd": "false",
+        "libPanel": false,
+        "crowdPanel": false,
+        "deskOpen": true
+       }
+      }
+     ],
+     "after": {
+      "lib": "false",
+      "vcam": "true",
+      "crowd": "false",
+      "libPanel": false,
+      "crowdPanel": false,
+      "deskOpen": true
+     },
+     "openAfter": {
+      "lib": false,
+      "vcam": true,
+      "crowd": false
+     },
+     "simultaneouslyOpen": 1,
+     "coLive": false,
+     "expect": "crowdPanelOpen 被 phoneVcamOpen 关掉、phoneVcamOpen 开、第三个仍关",
+     "verdict": true,
+     "discriminator": true,
+     "tries": 1,
+     "retried": false
+    }
+   ]
+  }
+ ]
+}

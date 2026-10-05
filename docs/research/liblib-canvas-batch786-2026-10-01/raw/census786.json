@@ -1,0 +1,777 @@
+{
+ "batch": 786,
+ "domain": {
+  "files": 14,
+  "dir": "src/components/director",
+  "plus": "src/app/page.tsx"
+ },
+ "gates": [
+  "activeDirectorNodeId",
+  "contextMenu",
+  "crowdPanelOpen",
+  "exportPanelOpen",
+  "followTargetId",
+  "modelLibraryOpen",
+  "motionPathDraft",
+  "pathMenuLeft",
+  "phoneVcamOpen",
+  "presetPanelLeft",
+  "viewerCaptureId"
+ ],
+ "groupsTouchingGates": 31,
+ "crossWriteGroups": 6,
+ "crossWrites": [
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 473,
+   "kind": "named-arrow",
+   "name": "handleKeyDown",
+   "writesMulti": [
+    "exportPanelOpen",
+    "followTargetId"
+   ],
+   "earlyReturnRungs": 2,
+   "mechanism": "early-return-ladder"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 601,
+   "kind": "named-arrow",
+   "name": "togglePathMenu",
+   "writesMulti": [
+    "pathMenuLeft",
+    "presetPanelLeft"
+   ],
+   "earlyReturnRungs": 1,
+   "mechanism": "cross-write+ladders"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 695,
+   "kind": "named-arrow",
+   "name": "togglePresetPanel",
+   "writesMulti": [
+    "pathMenuLeft",
+    "presetPanelLeft"
+   ],
+   "earlyReturnRungs": 1,
+   "mechanism": "cross-write+ladders"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2825,
+   "kind": "named-arrow",
+   "name": "toggleModelLibrary",
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3536,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3556,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  }
+ ],
+ "allGroups": [
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 473,
+   "kind": "named-arrow",
+   "name": "handleKeyDown",
+   "writesMulti": [
+    "exportPanelOpen",
+    "followTargetId"
+   ],
+   "members": [
+    {
+     "state": "exportPanelOpen",
+     "form": "setter",
+     "line": 558,
+     "arg": "setExportPanelOpen("
+    },
+    {
+     "state": "followTargetId",
+     "form": "objectKey",
+     "line": 565,
+     "arg": "followTargetId:"
+    }
+   ],
+   "earlyReturnRungs": 2,
+   "mechanism": "early-return-ladder"
+  },
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 622,
+   "kind": "named-arrow",
+   "name": "toggleExportPanel",
+   "writesMulti": [
+    "exportPanelOpen"
+   ],
+   "members": [
+    {
+     "state": "exportPanelOpen",
+     "form": "setter",
+     "line": 624,
+     "arg": "setExportPanelOpen("
+    }
+   ],
+   "earlyReturnRungs": 1,
+   "mechanism": "early-return-ladder"
+  },
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "startLine": 1405,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "followTargetId"
+   ],
+   "members": [
+    {
+     "state": "followTargetId",
+     "form": "objectKey",
+     "line": 1407,
+     "arg": "followTargetId:"
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 403,
+   "kind": "named-arrow",
+   "name": "handleKeyDown",
+   "writesMulti": [
+    "viewerCaptureId"
+   ],
+   "members": [
+    {
+     "state": "viewerCaptureId",
+     "form": "setter",
+     "line": 404,
+     "arg": "setViewerCaptureId("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 410,
+   "kind": "named-arrow",
+   "name": "closeViewer",
+   "writesMulti": [
+    "viewerCaptureId"
+   ],
+   "members": [
+    {
+     "state": "viewerCaptureId",
+     "form": "setter",
+     "line": 410,
+     "arg": "setViewerCaptureId("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 578,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "viewerCaptureId"
+   ],
+   "members": [
+    {
+     "state": "viewerCaptureId",
+     "form": "setter",
+     "line": 580,
+     "arg": "setViewerCaptureId("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "startLine": 2472,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "followTargetId"
+   ],
+   "members": [
+    {
+     "state": "followTargetId",
+     "form": "objectKey",
+     "line": 2473,
+     "arg": "followTargetId:"
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 205,
+   "kind": "named-arrow",
+   "name": "close",
+   "writesMulti": [
+    "contextMenu"
+   ],
+   "members": [
+    {
+     "state": "contextMenu",
+     "form": "setter",
+     "line": 207,
+     "arg": "setContextMenu("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 209,
+   "kind": "named-arrow",
+   "name": "esc",
+   "writesMulti": [
+    "contextMenu"
+   ],
+   "members": [
+    {
+     "state": "contextMenu",
+     "form": "setter",
+     "line": 210,
+     "arg": "setContextMenu("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 475,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "contextMenu"
+   ],
+   "members": [
+    {
+     "state": "contextMenu",
+     "form": "setter",
+     "line": 479,
+     "arg": "setContextMenu("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "startLine": 617,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "contextMenu"
+   ],
+   "members": [
+    {
+     "state": "contextMenu",
+     "form": "setter",
+     "line": 619,
+     "arg": "setContextMenu("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 555,
+   "kind": "named-arrow",
+   "name": "close",
+   "writesMulti": [
+    "pathMenuLeft"
+   ],
+   "members": [
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 564,
+     "arg": "setPathMenuLeft("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 566,
+   "kind": "named-arrow",
+   "name": "closeOnEscape",
+   "writesMulti": [
+    "pathMenuLeft"
+   ],
+   "members": [
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 567,
+     "arg": "setPathMenuLeft("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 579,
+   "kind": "named-arrow",
+   "name": "close",
+   "writesMulti": [
+    "presetPanelLeft"
+   ],
+   "members": [
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 588,
+     "arg": "setPresetPanelLeft("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 590,
+   "kind": "named-arrow",
+   "name": "closeOnEscape",
+   "writesMulti": [
+    "presetPanelLeft"
+   ],
+   "members": [
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 591,
+     "arg": "setPresetPanelLeft("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 601,
+   "kind": "named-arrow",
+   "name": "togglePathMenu",
+   "writesMulti": [
+    "pathMenuLeft",
+    "presetPanelLeft"
+   ],
+   "members": [
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 603,
+     "arg": "setPresetPanelLeft("
+    },
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 605,
+     "arg": "setPathMenuLeft("
+    },
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 611,
+     "arg": "setPathMenuLeft("
+    }
+   ],
+   "earlyReturnRungs": 1,
+   "mechanism": "cross-write+ladders"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 695,
+   "kind": "named-arrow",
+   "name": "togglePresetPanel",
+   "writesMulti": [
+    "pathMenuLeft",
+    "presetPanelLeft"
+   ],
+   "members": [
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 698,
+     "arg": "setPresetPanelLeft("
+    },
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 704,
+     "arg": "setPathMenuLeft("
+    },
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 705,
+     "arg": "setPresetPanelLeft("
+    }
+   ],
+   "earlyReturnRungs": 1,
+   "mechanism": "cross-write+ladders"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1389,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "presetPanelLeft"
+   ],
+   "members": [
+    {
+     "state": "presetPanelLeft",
+     "form": "setter",
+     "line": 1389,
+     "arg": "setPresetPanelLeft("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1532,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "pathMenuLeft"
+   ],
+   "members": [
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 1543,
+     "arg": "setPathMenuLeft("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "startLine": 1574,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "pathMenuLeft"
+   ],
+   "members": [
+    {
+     "state": "pathMenuLeft",
+     "form": "setter",
+     "line": 1576,
+     "arg": "setPathMenuLeft("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2735,
+   "kind": "named-arrow",
+   "name": "closeOnOutsidePointerDown",
+   "writesMulti": [
+    "modelLibraryOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 2739,
+     "arg": "setModelLibraryOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2741,
+   "kind": "named-arrow",
+   "name": "closeOnEscape",
+   "writesMulti": [
+    "modelLibraryOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 2745,
+     "arg": "setModelLibraryOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2816,
+   "kind": "named-arrow",
+   "name": "addCrowd",
+   "writesMulti": [
+    "crowdPanelOpen"
+   ],
+   "members": [
+    {
+     "state": "crowdPanelOpen",
+     "form": "setter",
+     "line": 2822,
+     "arg": "setCrowdPanelOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2825,
+   "kind": "named-arrow",
+   "name": "toggleModelLibrary",
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "members": [
+    {
+     "state": "phoneVcamOpen",
+     "form": "setter",
+     "line": 2826,
+     "arg": "setPhoneVcamOpen("
+    },
+    {
+     "state": "crowdPanelOpen",
+     "form": "setter",
+     "line": 2827,
+     "arg": "setCrowdPanelOpen("
+    },
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 2828,
+     "arg": "setModelLibraryOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2835,
+   "kind": "named-arrow",
+   "name": "addModelLibraryItem",
+   "writesMulti": [
+    "modelLibraryOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 2837,
+     "arg": "setModelLibraryOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 2842,
+   "kind": "named-arrow",
+   "name": "addLocalModelLibraryItemToScene",
+   "writesMulti": [
+    "modelLibraryOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 2844,
+     "arg": "setModelLibraryOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3081,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "phoneVcamOpen"
+   ],
+   "members": [
+    {
+     "state": "phoneVcamOpen",
+     "form": "setter",
+     "line": 3081,
+     "arg": "setPhoneVcamOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3144,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "crowdPanelOpen"
+   ],
+   "members": [
+    {
+     "state": "crowdPanelOpen",
+     "form": "setter",
+     "line": 3144,
+     "arg": "setCrowdPanelOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3184,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "modelLibraryOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 3184,
+     "arg": "setModelLibraryOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3536,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 3538,
+     "arg": "setModelLibraryOpen("
+    },
+    {
+     "state": "crowdPanelOpen",
+     "form": "setter",
+     "line": 3539,
+     "arg": "setCrowdPanelOpen("
+    },
+    {
+     "state": "phoneVcamOpen",
+     "form": "setter",
+     "line": 3540,
+     "arg": "setPhoneVcamOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "startLine": 3556,
+   "kind": "anonymous-arrow",
+   "name": null,
+   "writesMulti": [
+    "crowdPanelOpen",
+    "modelLibraryOpen",
+    "phoneVcamOpen"
+   ],
+   "members": [
+    {
+     "state": "modelLibraryOpen",
+     "form": "setter",
+     "line": 3557,
+     "arg": "setModelLibraryOpen("
+    },
+    {
+     "state": "phoneVcamOpen",
+     "form": "setter",
+     "line": 3558,
+     "arg": "setPhoneVcamOpen("
+    },
+    {
+     "state": "crowdPanelOpen",
+     "form": "setter",
+     "line": 3559,
+     "arg": "setCrowdPanelOpen("
+    }
+   ],
+   "earlyReturnRungs": 0,
+   "mechanism": "cross-write"
+  }
+ ],
+ "fixesVs783": [
+  "✗第①道 prop 名当状态名 ⟹ 改用 785 更正过的 `phoneVcamOpen`",
+  "✗第②道 内联 JSX 箭头不被包裹函数正则匹配 ⟹ 改用**括号链 + `=>` 判定**（783 把 `:3538` 误归到 `openLocalModelLibraryImport:2859`）",
+  "✗第③道 状态集按文件切 ⟹ 改成**全域** 11 个门状态",
+  "＋ 补一条**简写箭头体**路径（`() => set({...})` 没有块体）"
+ ],
+ "method": "★ **只采集**：写入点 → **括号链**定函数体（`{` 前是不是 `=>`） ⟹ 天然认得出 JSX 内联箭头；简写箭头体单走一条路。★ 交叉写入 = **同一个函数体**里写了 ≥2 个门状态。",
+ "notCovered": [
+  "「两个状态能不能同时活着」是**可达性**，静态不可判 ⟹ 运行时",
+  "本普查**只采集**，行锚定的结论由汇编器下"
+ ]
+}

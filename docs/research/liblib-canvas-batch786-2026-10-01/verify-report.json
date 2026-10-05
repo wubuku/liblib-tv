@@ -1,0 +1,603 @@
+{
+ "batch": 786,
+ "checks": [
+  {
+   "id": "S1:重算出 6 组「同一函数体写 ≥2 个门状态」",
+   "desc": "★ 缩进列分组必须找出 6 组（Desk 1 + Timeline 2 + Viewport 3）",
+   "ok": true,
+   "detail": {
+    "n": 6,
+    "keys": [
+     "DirectorDesk.tsx:473:473",
+     "DirectorTimeline.tsx:601:601",
+     "DirectorTimeline.tsx:695:695",
+     "DirectorViewport.tsx:2825:2825",
+     "DirectorViewport.tsx:3536:3536",
+     "DirectorViewport.tsx:3556:3556"
+    ]
+   }
+  },
+  {
+   "id": "S2:跨三个文件",
+   "desc": "★ P786-1：783 的层只在 DirectorTimeline.tsx 报出 ⟹ 修好后必须多出 DirectorViewport.tsx 的三组**和** DirectorDesk.tsx 的一组",
+   "ok": true,
+   "detail": [
+    "DirectorDesk.tsx",
+    "DirectorTimeline.tsx",
+    "DirectorViewport.tsx"
+   ]
+  },
+  {
+   "id": "S3:三向互斥的三组都在",
+   "desc": "★ `{modelLibraryOpen, crowdPanelOpen, phoneVcamOpen}` 的三个打开者必须**各自**都写出全部三个",
+   "ok": true,
+   "detail": [
+    "DirectorViewport.tsx:2825",
+    "DirectorViewport.tsx:3536",
+    "DirectorViewport.tsx:3556"
+   ]
+  },
+  {
+   "id": "S4:都是「先关另外两个、再开自己」",
+   "desc": "★ 每个打开者里**恰好一个** toggle 写入（打开自己），且**另外两个**的 `(false)` 写入行号都**更小**（排在打开自己之前）",
+   "ok": true,
+   "detail": [
+    {
+     "group": "DirectorViewport.tsx:2825",
+     "members": [
+      [
+       "phoneVcamOpen",
+       2826,
+       false
+      ],
+      [
+       "crowdPanelOpen",
+       2827,
+       false
+      ],
+      [
+       "modelLibraryOpen",
+       2828,
+       true
+      ]
+     ],
+     "selfLine": 2828,
+     "others": [
+      2826,
+      2827
+     ],
+     "ok": true
+    },
+    {
+     "group": "DirectorViewport.tsx:3536",
+     "members": [
+      [
+       "modelLibraryOpen",
+       3538,
+       false
+      ],
+      [
+       "crowdPanelOpen",
+       3539,
+       false
+      ],
+      [
+       "phoneVcamOpen",
+       3540,
+       true
+      ]
+     ],
+     "selfLine": 3540,
+     "others": [
+      3538,
+      3539
+     ],
+     "ok": true
+    },
+    {
+     "group": "DirectorViewport.tsx:3556",
+     "members": [
+      [
+       "modelLibraryOpen",
+       3557,
+       false
+      ],
+      [
+       "phoneVcamOpen",
+       3558,
+       false
+      ],
+      [
+       "crowdPanelOpen",
+       3559,
+       true
+      ]
+     ],
+     "selfLine": 3559,
+     "others": [
+      3557,
+      3558
+     ],
+     "ok": true
+    }
+   ]
+  },
+  {
+   "id": "S17:三种互斥机制分得开",
+   "desc": "★ 6 组里必须**恰好** 1 组是早退阶梯（DirectorDesk 的 Escape 阶梯）、3 组是纯交叉写入（Viewport 的三向）、2 组是混合（Timeline 那对）",
+   "ok": true,
+   "detail": {
+    "earlyReturnLadder": [
+     "src/components/director/DirectorDesk.tsx:473"
+    ],
+    "crossWrite": [
+     "src/components/director/DirectorViewport.tsx:2825",
+     "src/components/director/DirectorViewport.tsx:3536",
+     "src/components/director/DirectorViewport.tsx:3556"
+    ],
+    "mixed": [
+     "src/components/director/DirectorTimeline.tsx:601",
+     "src/components/director/DirectorTimeline.tsx:695"
+    ]
+   }
+  },
+  {
+   "id": "S18:早退阶梯的两档都带 `if (…) {`",
+   "desc": "★ `DirectorDesk.tsx` 的 `handleKeyDown` 写 `exportPanelOpen` 与 `followTargetId` 两处，但两处**都在 `if (…) {` 里** ⟹ 一次 Escape 最多走一档 ⟹ 它们**互相排斥**、**不是**交叉写入。★ 这正是第一版普查器**误判**的地方：它用「以 `;` 结尾」当类型标注判据，把 `:565` 那条**真的**写入也杀了 ⟹ 数字对上了，**理由是错的**",
+   "ok": true,
+   "detail": {
+    "members": [
+     {
+      "line": 558,
+      "state": "exportPanelOpen",
+      "toggle": false,
+      "rung": true,
+      "code": "setExportPanelOpen(false);"
+     },
+     {
+      "line": 565,
+      "state": "followTargetId",
+      "toggle": false,
+      "rung": true,
+      "code": "if (activeCameraId) updateCamera(activeCameraId, { followTargetId: null });"
+     }
+    ]
+   }
+  },
+  {
+   "id": "S19:类型标注判据两个方向都对",
+   "desc": "★ `open: boolean;`（`DirectorPhoneVcamPanel.tsx:99`）判成**标注**，而 `DirectorDesk.tsx:565` 的 `…{ followTargetId: null });` 判成**写入**",
+   "ok": true,
+   "detail": {
+    "openBooleanIsType": true,
+    "followTargetWriteIsWrite": true
+   }
+  },
+  {
+   "id": "S5:vcam 打开者带门",
+   "desc": "★ 「无条件」这个说法**不成立**：`DirectorViewport.tsx` 的 vcam 触发器里必须有 `if (phoneVcamRecording) return;`",
+   "ok": true,
+   "detail": {
+    "lines": [
+     3537
+    ]
+   }
+  },
+  {
+   "id": "S6:三方对账（汇编器 / 普查器 / 验收器）",
+   "desc": "三个**独立**实现必须给出同一组「文件:起始行」",
+   "ok": true,
+   "detail": {
+    "census": [
+     "src/components/director/DirectorDesk.tsx:473",
+     "src/components/director/DirectorTimeline.tsx:601",
+     "src/components/director/DirectorTimeline.tsx:695",
+     "src/components/director/DirectorViewport.tsx:2825",
+     "src/components/director/DirectorViewport.tsx:3536",
+     "src/components/director/DirectorViewport.tsx:3556"
+    ],
+    "audit": [
+     "src/components/director/DirectorDesk.tsx:473",
+     "src/components/director/DirectorTimeline.tsx:601",
+     "src/components/director/DirectorTimeline.tsx:695",
+     "src/components/director/DirectorViewport.tsx:2825",
+     "src/components/director/DirectorViewport.tsx:3536",
+     "src/components/director/DirectorViewport.tsx:3556"
+    ],
+    "verifier": [
+     "src/components/director/DirectorDesk.tsx:473",
+     "src/components/director/DirectorTimeline.tsx:601",
+     "src/components/director/DirectorTimeline.tsx:695",
+     "src/components/director/DirectorViewport.tsx:2825",
+     "src/components/director/DirectorViewport.tsx:3536",
+     "src/components/director/DirectorViewport.tsx:3556"
+    ]
+   }
+  },
+  {
+   "id": "S7:783 的基线是 1 个文件",
+   "desc": "P786-1 的对照：783 raw 里 crossWriteFiles 必须只含 DirectorTimeline.tsx",
+   "ok": true,
+   "detail": [
+    "DirectorTimeline.tsx"
+   ]
+  },
+  {
+   "id": "S8:没有 FAILED 的格",
+   "desc": "★ 探针每格都必须跑出读数",
+   "ok": true,
+   "detail": {
+    "failed": []
+   }
+  },
+  {
+   "id": "S9:重算与探针派生字段一致",
+   "desc": "★ raw 里的 `verdict`/`openAfter`/`coLive` 必须与我们**从 `steps[].read` 重算**的结果逐字段相同（R149）",
+   "ok": true,
+   "detail": {
+    "mismatch": []
+   }
+  },
+  {
+   "id": "S10:9 格都在（3 单点 + 6 有序对）",
+   "desc": "★ 单点给判别力、**有序对**才测得到「能不能共活」；格型按**实际 order 长度**数，不按臂名",
+   "ok": true,
+   "detail": {
+    "singles": [
+     "only_crowd",
+     "only_lib",
+     "only_vcam"
+    ],
+    "pairs": [
+     "crowdThenlib",
+     "crowdThenvcam",
+     "libThencrowd",
+     "libThenvcam",
+     "vcamThencrowd",
+     "vcamThenlib"
+    ]
+   }
+  },
+  {
+   "id": "S11:P786-2 六个有序对全部互斥",
+   "desc": "★ 点开 A 再点 B，读数必须是「A 已关、B 已开、第三个仍关」",
+   "ok": true,
+   "detail": {
+    "violations": []
+   }
+  },
+  {
+   "id": "S12:没有任何一格出现共活",
+   "desc": "★ 三者**永不**同时开着",
+   "ok": true,
+   "detail": {
+    "coLiveCells": []
+   }
+  },
+  {
+   "id": "S13:判别力都成立",
+   "desc": "★ 有序对必须**真的**先开成 A 再点 B，否则「被关掉」不是一次转变",
+   "ok": true,
+   "detail": {
+    "noDiscriminator": []
+   }
+  },
+  {
+   "id": "S14:两轮逐臂一致",
+   "desc": "★ 同一个臂两轮的 `openAfter` 必须完全一样",
+   "ok": true,
+   "detail": {
+    "only_lib": 1,
+    "only_vcam": 1,
+    "only_crowd": 1,
+    "libThenvcam": 1,
+    "libThencrowd": 1,
+    "vcamThenlib": 1,
+    "vcamThencrowd": 1,
+    "crowdThenlib": 1,
+    "crowdThenvcam": 1
+   }
+  },
+  {
+   "id": "S15:汇编器零失败",
+   "desc": "汇编器自己的断言必须全绿",
+   "ok": true,
+   "detail": {
+    "checks": 12,
+    "assertedAnchors": 38,
+    "failed": 0
+   }
+  },
+  {
+   "id": "S16:阴性对照已复原（源码 + raw）",
+   "desc": "★ 阴性对照改过的源码与 raw 必须字节级还原",
+   "ok": true,
+   "detail": {
+    "driftedSrc": [],
+    "driftedRaw": false
+   }
+  }
+ ],
+ "totals": {
+  "checks": 19,
+  "passed": 19,
+  "failed": 0
+ },
+ "negativeControls": {
+  "total": 7,
+  "caught": 7,
+  "detail": [
+   {
+    "name": "N1 三向里少一个写入",
+    "why": "验证 S3/S4 真的在看三个状态都在",
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 3539,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "/* 群众面板那行被删了 */"
+     }
+    ],
+    "expectFlipped": "S3:三向互斥的三组都在",
+    "flipped": [
+     "S3:三向互斥的三组都在"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:重算出 6 组「同一函数体写 ≥2 个门状态」",
+     "S2:跨三个文件",
+     "S4:都是「先关另外两个、再开自己」",
+     "S17:三种互斥机制分得开",
+     "S18:早退阶梯的两档都带 `if (…) {`",
+     "S19:类型标注判据两个方向都对",
+     "S5:vcam 打开者带门",
+     "S6:三方对账（汇编器 / 普查器 / 验收器）",
+     "S7:783 的基线是 1 个文件",
+     "S8:没有 FAILED 的格",
+     "S9:重算与探针派生字段一致",
+     "S10:9 格都在（3 单点 + 6 有序对）",
+     "S11:P786-2 六个有序对全部互斥",
+     "S12:没有任何一格出现共活",
+     "S13:判别力都成立",
+     "S14:两轮逐臂一致",
+     "S15:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N2 顺序倒过来（先开自己再关别人）",
+    "why": "验证 S4 真的在断言行号顺序",
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 3540,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "setCrowdPanelOpen(false);"
+     },
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 3539,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "setPhoneVcamOpen((value) => !value);"
+     }
+    ],
+    "expectFlipped": "S4:都是「先关另外两个、再开自己」",
+    "flipped": [
+     "S4:都是「先关另外两个、再开自己」"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:重算出 6 组「同一函数体写 ≥2 个门状态」",
+     "S2:跨三个文件",
+     "S3:三向互斥的三组都在",
+     "S17:三种互斥机制分得开",
+     "S18:早退阶梯的两档都带 `if (…) {`",
+     "S19:类型标注判据两个方向都对",
+     "S5:vcam 打开者带门",
+     "S6:三方对账（汇编器 / 普查器 / 验收器）",
+     "S7:783 的基线是 1 个文件",
+     "S8:没有 FAILED 的格",
+     "S9:重算与探针派生字段一致",
+     "S10:9 格都在（3 单点 + 6 有序对）",
+     "S11:P786-2 六个有序对全部互斥",
+     "S12:没有任何一格出现共活",
+     "S13:判别力都成立",
+     "S14:两轮逐臂一致",
+     "S15:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N3 vcam 触发器的门被删掉",
+    "why": "验证 S5 真的在断言那道门**在源码里**（而不是靠推断）",
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 3537,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "/* 门没了 */"
+     }
+    ],
+    "expectFlipped": "S5:vcam 打开者带门",
+    "flipped": [
+     "S5:vcam 打开者带门"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:重算出 6 组「同一函数体写 ≥2 个门状态」",
+     "S2:跨三个文件",
+     "S3:三向互斥的三组都在",
+     "S4:都是「先关另外两个、再开自己」",
+     "S17:三种互斥机制分得开",
+     "S18:早退阶梯的两档都带 `if (…) {`",
+     "S19:类型标注判据两个方向都对",
+     "S6:三方对账（汇编器 / 普查器 / 验收器）",
+     "S7:783 的基线是 1 个文件",
+     "S8:没有 FAILED 的格",
+     "S9:重算与探针派生字段一致",
+     "S10:9 格都在（3 单点 + 6 有序对）",
+     "S11:P786-2 六个有序对全部互斥",
+     "S12:没有任何一格出现共活",
+     "S13:判别力都成立",
+     "S14:两轮逐臂一致",
+     "S15:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N6 真写入被改成类型标注",
+    "why": "★ 验证 S1/S18：把 `DirectorDesk.tsx:565` 那条真的 `followTargetId` 写入换成一条**类型标注** ⟹ 组数必须掉一个（第一版普查器正是被这个 bug 掩盖成「数字恰好对」）",
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorDesk.tsx",
+      "line": 565,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "const followTargetId: string | null;"
+     }
+    ],
+    "expectFlipped": "S1:重算出 6 组「同一函数体写 ≥2 个门状态」",
+    "flipped": [
+     "S1:重算出 6 组「同一函数体写 ≥2 个门状态」",
+     "S2:跨三个文件",
+     "S17:三种互斥机制分得开",
+     "S18:早退阶梯的两档都带 `if (…) {`",
+     "S19:类型标注判据两个方向都对",
+     "S6:三方对账（汇编器 / 普查器 / 验收器）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S3:三向互斥的三组都在",
+     "S4:都是「先关另外两个、再开自己」",
+     "S5:vcam 打开者带门",
+     "S7:783 的基线是 1 个文件",
+     "S8:没有 FAILED 的格",
+     "S9:重算与探针派生字段一致",
+     "S10:9 格都在（3 单点 + 6 有序对）",
+     "S11:P786-2 六个有序对全部互斥",
+     "S12:没有任何一格出现共活",
+     "S13:判别力都成立",
+     "S14:两轮逐臂一致",
+     "S15:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N7 早退阶梯的一档 `if (…) {` 被拆成 `if (…)`",
+    "why": "★ 验证 S17/S18 的机制分类靠的是「这一档是不是**包在 `if (…) {` 里**」（★ 不是「后面有没有 return」——那是普查器的另一套判据，本验收器看不见，第一版把 N7 写成删 `return;`，结果一条都没翻）",
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorDesk.tsx",
+      "line": 557,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "if (exportPanelOpen)"
+     }
+    ],
+    "expectFlipped": "S17:三种互斥机制分得开",
+    "flipped": [
+     "S17:三种互斥机制分得开",
+     "S18:早退阶梯的两档都带 `if (…) {`"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:重算出 6 组「同一函数体写 ≥2 个门状态」",
+     "S2:跨三个文件",
+     "S3:三向互斥的三组都在",
+     "S4:都是「先关另外两个、再开自己」",
+     "S19:类型标注判据两个方向都对",
+     "S5:vcam 打开者带门",
+     "S6:三方对账（汇编器 / 普查器 / 验收器）",
+     "S7:783 的基线是 1 个文件",
+     "S8:没有 FAILED 的格",
+     "S9:重算与探针派生字段一致",
+     "S10:9 格都在（3 单点 + 6 有序对）",
+     "S11:P786-2 六个有序对全部互斥",
+     "S12:没有任何一格出现共活",
+     "S13:判别力都成立",
+     "S14:两轮逐臂一致",
+     "S15:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N4 raw：派生字段 coLive 被翻",
+    "why": "验证 S9（派生字段要对账）真的在比",
+    "evidence": {
+     "hit": 2
+    },
+    "expectFlipped": "S9:重算与探针派生字段一致",
+    "flipped": [
+     "S9:重算与探针派生字段一致"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:重算出 6 组「同一函数体写 ≥2 个门状态」",
+     "S2:跨三个文件",
+     "S3:三向互斥的三组都在",
+     "S4:都是「先关另外两个、再开自己」",
+     "S17:三种互斥机制分得开",
+     "S18:早退阶梯的两档都带 `if (…) {`",
+     "S19:类型标注判据两个方向都对",
+     "S5:vcam 打开者带门",
+     "S6:三方对账（汇编器 / 普查器 / 验收器）",
+     "S7:783 的基线是 1 个文件",
+     "S8:没有 FAILED 的格",
+     "S10:9 格都在（3 单点 + 6 有序对）",
+     "S11:P786-2 六个有序对全部互斥",
+     "S12:没有任何一格出现共活",
+     "S13:判别力都成立",
+     "S14:两轮逐臂一致",
+     "S15:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N5 raw：有序对被压成单点",
+    "why": "★ 验证 S10 真的在数「有序对」这个格型（单点臂读数无法区分「本来就关」与「被关掉」）",
+    "evidence": {
+     "hit": 12
+    },
+    "expectFlipped": "S10:9 格都在（3 单点 + 6 有序对）",
+    "flipped": [
+     "S9:重算与探针派生字段一致",
+     "S10:9 格都在（3 单点 + 6 有序对）",
+     "S11:P786-2 六个有序对全部互斥"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:重算出 6 组「同一函数体写 ≥2 个门状态」",
+     "S2:跨三个文件",
+     "S3:三向互斥的三组都在",
+     "S4:都是「先关另外两个、再开自己」",
+     "S17:三种互斥机制分得开",
+     "S18:早退阶梯的两档都带 `if (…) {`",
+     "S19:类型标注判据两个方向都对",
+     "S5:vcam 打开者带门",
+     "S6:三方对账（汇编器 / 普查器 / 验收器）",
+     "S7:783 的基线是 1 个文件",
+     "S8:没有 FAILED 的格",
+     "S12:没有任何一格出现共活",
+     "S13:判别力都成立",
+     "S14:两轮逐臂一致",
+     "S15:汇编器零失败"
+    ]
+   }
+  ]
+ },
+ "static": {
+  "crossWriteGroups": 6,
+  "keys": [
+   "src/components/director/DirectorDesk.tsx:473",
+   "src/components/director/DirectorTimeline.tsx:601",
+   "src/components/director/DirectorTimeline.tsx:695",
+   "src/components/director/DirectorViewport.tsx:2825",
+   "src/components/director/DirectorViewport.tsx:3536",
+   "src/components/director/DirectorViewport.tsx:3556"
+  ]
+ }
+}
