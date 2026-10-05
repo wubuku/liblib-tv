@@ -1637,6 +1637,7 @@ RETRACTIONS: list[dict[str, str]] = [
         "allow_in": [
             "SOURCE_OBSERVATIONS.md#在正文里原样写着，门禁没有任何理由判它错",
             "SOURCE_OBSERVATIONS.md#发现手册那张自称「**穷尽",
+            "SOURCE_OBSERVATIONS.md#种组合」漏了一档，**R104",
         ],
     },
     {

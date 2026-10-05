@@ -1720,6 +1720,34 @@ def mutate_ledger_evidence_placeholder(root: Path) -> None:
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
+def mutate_absolute_qualifier_deleted(root: Path) -> None:
+    """绝对断言的限定词被删掉时必须拦下（M254）。
+
+    R103 / R104 是同一种病：把带条件的结论写成了不带条件的。
+    本用例删掉**正文里那句限定词**，而登记表还指着它——
+    **这正是「订正块被误删」在现实里的样子**。
+    """
+
+    path = root / "10-tasks" / "shortcuts-help.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("全部落在遮罩上", "全都不见了", 1)
+    assert patched != text, "注入失败：没找到那段限定词"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_absolute_row_ok(root: Path) -> None:
+    """限定词还在时不该误报（M254 的不误报对照）。
+
+    ★ **正向那一侧必须有对照**：只测「删掉会被抓到」，那道闸可能只是**永远报错**。
+    """
+
+    path = root / "10-tasks" / "shortcuts-help.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("一律不变（仍可见）", "一律不变（依旧可见）", 1)
+    assert patched != text, "注入失败：锚点短语没找到"
+    path.write_text(patched, encoding="utf-8")
+
+
 def mutate_ledger_points_to_progress(root: Path) -> None:
     """重述位置指向内部账本而不是对外发布页时必须拦下。
 
@@ -2166,6 +2194,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("页面清单是字面量改动时仍只提醒不阻断（不误报，M241）", mutate_page_list_literal_change_ok, "pagecoverage", EXPECT_PASS),
     ("不可逆按钮白名单在运行时被清空，契约门禁必须发现（M242）", mutate_destructive_cleared_at_runtime, "probecontracts", "两个读数不一致"),
     ("注释里提到白名单改写不该被当成真代码（不误报，M242）", mutate_destructive_mentioned_in_comment_ok, "probecontracts", EXPECT_PASS),
+    ("绝对断言的限定词被删掉（订正块被误删的样子，M254）", mutate_absolute_qualifier_deleted, "absclaim", "限定词在"),
+    ("限定词还在时不该被误报（不误报，M254）", mutate_absolute_row_ok, "absclaim", EXPECT_PASS),
 ]
 
 
@@ -2214,6 +2244,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-gate-silence.py"), str(root)]
     elif which == "factledger":
         cmd = [sys.executable, str(root / "scripts/check-fact-ledger.py"), str(root)]
+    elif which == "absclaim":
+        cmd = [sys.executable, str(root / "scripts/check-absolute-claims.py"), str(root)]
     elif which == "dupeline":
         cmd = [sys.executable, str(root / "scripts/check-duplicate-lines.py"), str(root)]
     elif which == "internallists":
