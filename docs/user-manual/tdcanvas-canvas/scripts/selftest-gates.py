@@ -1697,11 +1697,27 @@ def mutate_ledger_evidence_placeholder(root: Path) -> None:
 
     path = root / "SOURCE_OBSERVATIONS.md"
     text = path.read_text(encoding="utf-8")
-    patched = text.replace(
-        "运行时实测 M136 / M137 / M194；`scripts/probe-node-toolbars.js` 逐项读可见文字",
-        "待补", 1)
-    assert patched != text, "注入失败：没找到 F01 的依据整格"
-    path.write_text(patched, encoding="utf-8")
+    # ★ **M250 改：按行定位 + 整格替换，不再靠一句固定原文当锚点。**
+    #   上一版替换的是「运行时实测 M136 / M137 / M194；`scripts/probe-node-toolbars.js` 逐项读可见文字」
+    #   这一句——**而 M250 给 F01 的依据追加了源码第三条读数，那句后面又跟了一大段**，
+    #   于是「替换那一段」只换掉了前半截，依据格变成「待补 + 一整段方法」，
+    #   **门禁放行是对的，坏的是注入**（M193 的老教训第三次换马甲）。
+    #   修法与本函数文档里写的一样：**整格替换**，且**按行定位**，
+    #   这样以后往依据里追加任何内容都不会再让这个用例悄悄失效。
+    lines = text.split("\n")
+    hit = 0
+    for i, line in enumerate(lines):
+        if not line.startswith("| F01 |"):
+            continue
+        cells = line.split("|")
+        if len(cells) < 5:
+            continue
+        cells[3] = " 待补 "
+        lines[i] = "|".join(cells)
+        hit += 1
+        break
+    assert hit, "注入失败：没找到 F01 那一行"
+    path.write_text("\n".join(lines), encoding="utf-8")
 
 
 def mutate_ledger_points_to_progress(root: Path) -> None:

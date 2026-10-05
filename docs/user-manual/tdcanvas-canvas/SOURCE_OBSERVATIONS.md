@@ -555,6 +555,20 @@ M199 之前，只有截图和 `PROGRESS.md` 里的批次记录能追到某个数
 **判据：重述位置用逐字短语，不用行号也不用整句。** 行号会随上方任何编辑失效，
 整句会在改写措辞时失效，而短语只要那句话还在就成立。
 
+### 13.0.4 它也不校验「陈述与实测值」这一格里那个数本身对不对（M250 新增）
+
+M250 拿源码当第三条读数去对账，**第一条就撞上一个台账自己的陈旧值**：
+F18 的「陈述与实测值」写着「界面节点类型 **9 种**」，
+而**正文 `30-concepts.md:154` 早在 2026-10-01 就写着「「九种」这个说法不成立——实际是七种」**——
+**台账记的是一个已经被自己正文驳倒的数，却一直绿着**。
+
+**为什么门禁拦不住**：它查的是三件事——重述位置的短语**逐字命中**、声明条数与表体行数一致、
+实测值与**所在那一行**对得上。**这三件全都不涉及「这个数是不是真的」**，
+而 §13.0 第 1、2 条否掉的正是「自动核对数字」这条路（锚点式与字面量式都会造假失败）。
+
+★ **所以这一格的正确读法是**：「台账说 9、正文说 7」**不是矛盾，是台账陈旧**——
+**引用台账的人必须自己去正文看那一段**。台账在这里的角色是**线索**，不是**结论**。
+
 ### 13.0 这道门禁不管什么（必须先读，否则会高估它）
 
 M199 先试过把「扫描正文里所有可数断言」做成**覆盖率**门禁，**两个设计都被否掉了**——
@@ -950,27 +964,27 @@ M203 的做法是——只把 R31 的 needle 换成读者真读到的形态、�
 
 | 事实 ID | 陈述与实测值 | 依据 | 重述位置（文件 + 逐字短语） |
 |---|---|---|---|
-| F01 | 图片节点悬浮工具条：空 4 个 / 有图 13 个，差的那 9 个全都依赖图片内容 | 运行时实测 M136 / M137 / M194；`scripts/probe-node-toolbars.js` 逐项读可见文字 | `10-tasks/edit-nodes.md`「工具条**只有 4 个按钮**」；`10-tasks/edit-nodes.md`「13 个按钮立刻齐了」；`20-reference.md`「空节点上的那 9 个按钮要等真的有一张图才出现」；`10-tasks/create-canvas-project.md`「那时只有 4 个按钮：信息、删除、编辑、上传图片」；`10-tasks/image-operations.md`「有图时是 13 个按钮」；`20-reference.md`「从 **2 个到 13 个不等**」 |
+| F01 | 图片节点悬浮工具条：空 4 个 / 有图 13 个，差的那 9 个全都依赖图片内容 | 运行时实测 M136 / M137 / M194；`scripts/probe-node-toolbars.js` 逐项读可见文字；**M250 补第三条读数（源码条件逐条展开，4 与 13 都复原）**：`canvas-node-hover-toolbar.tsx:146-194` 的 `baseToolbarTools` 里 `info`/`delete` 无条件，「存资产」的条件是**有图、有视频或是文本**三者之一（**音频不在内**），「下载」的条件是**有图、有视频、有音频或有文件**四者之一，`edit` 条件是 「编辑」的条件 `canOpenDialog` 是**文本、图片、视频、音频**四者之一，`uploadImage` 条件是 `isImage && !hasImage`；**空图片节点于是正好 4 个**（信息/删除/编辑/上传）。有图时 `:194` 用 `quickImageToolIdSet` 过滤，见 F12 | `10-tasks/edit-nodes.md`「工具条**只有 4 个按钮**」；`10-tasks/edit-nodes.md`「13 个按钮立刻齐了」；`20-reference.md`「空节点上的那 9 个按钮要等真的有一张图才出现」；`10-tasks/create-canvas-project.md`「那时只有 4 个按钮：信息、删除、编辑、上传图片」；`10-tasks/image-operations.md`「有图时是 13 个按钮」；`20-reference.md`「从 **2 个到 13 个不等**」 |
 | F02 | 同一条工具条的按钮长度**默认配置下**共 6 档：2 / 4 / 5 / 6 / 8 / 13（★ M208 补：可配置，改「自定义工具栏」会出现第 7 档 14，见 F12） | 运行时实测 M194 逐节点点选；`scripts/probe-node-toolbars.js`；M208 补边界：默认勾 12 项 + 「更多」= 13，勾上多角度即 14 | `20-reference.md`「默认配置下变出 6 种长度」；`10-tasks/edit-nodes.md`「按上表逐个数是 6 种」；`10-tasks/edit-nodes.md`「**默认配置下共 6 种**」 |
 | F03 | 工具条组合共 9 种（类型 × 有无内容展开后） | 运行时实测 M194；由 20-reference 长度速查表 7 行展开得到 | `10-tasks/edit-nodes.md`「穷尽 9 种组合」；`20-reference.md`「完整的 9 种组合」 |
-| F04 | 文本节点悬浮工具条恒为 8 个按钮（唯一有没有内容都一样的一类） | 运行时实测；20-reference 长度速查表 | `20-reference.md`「恒 8 个」；`10-tasks/edit-nodes.md`「单选 1 个时工具条有 8 个按钮」；`90-troubleshooting.md`「单选 1 个时有 8 个按钮」 |
-| F05 | 组节点悬浮工具条只有 2 个按钮（信息、删除） | 运行时实测；20-reference 长度速查表 | `20-reference.md`「只剩「信息 · 删除」，最简的一种」；`10-tasks/edit-nodes.md`「选中组节点则只剩最左边的两个」 |
-| F06 | 音频节点：空 4 个 / 放上音频后 5 个，且**没有「存资产」** | 运行时实测 M94 / M197（真 WAV 上传后读节点内 audio 计数）；源码条件 `hasImage`、`hasVideo`、`isText` 三者取或，音频不在内 | `20-reference.md`「比图片/视频少一个「存资产」」；`10-tasks/edit-nodes.md`「它放上音频后是 5 个按钮」；`10-tasks/use-prompt-library.md`「音频节点放上音频后是 5 个按钮」；`10-tasks/edit-nodes.md`「确实只有 4 个按钮（信息 / 删除 / 编辑 / 上传）」 |
-| F07 | 视频节点：空 4 个 / 放上视频后 6 个 | 运行时实测 M197（真 MP4 上传后读节点内 video 计数） | `20-reference.md`「有「存资产」和「下载」」；`10-tasks/edit-nodes.md`「视频变 6 个、音频变 5 个」 |
+| F04 | 文本节点悬浮工具条恒为 8 个按钮（唯一有没有内容都一样的一类） | 运行时实测；20-reference 长度速查表；**M250 源码第三条读数**：`canvas-node-hover-toolbar.tsx` 里 `isText` 为真时命中 `info`/`delete`/`saveAsset`(`isText`)/`edit`(`isText`)/`editText`/`generateImage`/`decreaseFont`/`increaseFont` 共 **8** 项，而 「下载」的条件是**有图、有视频、有音频或有文件**四者之一，**对文本节点一个都不成立**——**所以「恒 8」是条件写死的，不是碰巧** | `20-reference.md`「恒 8 个」；`10-tasks/edit-nodes.md`「单选 1 个时工具条有 8 个按钮」；`90-troubleshooting.md`「单选 1 个时有 8 个按钮」 |
+| F05 | 组节点悬浮工具条只有 2 个按钮（信息、删除） | 运行时实测；20-reference 长度速查表；**M250 源码第三条读数**：组节点既非文本/图片/视频/音频/配置，`:146-147` 的 `info` 与 `delete` 是**仅有的两个无条件项**，其余每一条都带类型或内容条件——**「最简的一种」在源码里就是字面意义上的最简** | `20-reference.md`「只剩「信息 · 删除」，最简的一种」；`10-tasks/edit-nodes.md`「选中组节点则只剩最左边的两个」 |
+| F06 | 音频节点：空 4 个 / 放上音频后 5 个，且**没有「存资产」** | 运行时实测 M94 / M197（真 WAV 上传后读节点内 audio 计数）；**M250 源码第三条读数**：`canvas-node-hover-toolbar.tsx:151` 的 「存资产」的条件是**有图、有视频或是文本**三者之一——**音频确实不在内**，而 `:152` 的 `download` 条件里有 `hasAudio`——**于是空音频 4 个（信息/删除/编辑/上传）、放上音频 5 个，且那第 5 个是「下载」不是「存资产」**，与手册逐项对上 | `20-reference.md`「比图片/视频少一个「存资产」」；`10-tasks/edit-nodes.md`「它放上音频后是 5 个按钮」；`10-tasks/use-prompt-library.md`「音频节点放上音频后是 5 个按钮」；`10-tasks/edit-nodes.md`「确实只有 4 个按钮（信息 / 删除 / 编辑 / 上传）」 |
+| F07 | 视频节点：空 4 个 / 放上视频后 6 个 | 运行时实测 M197（真 MP4 上传后读节点内 video 计数）；**M250 源码第三条读数**：`hasVideo` 同时命中 `saveAsset`(`:151`) 与 `download`(`:152`)，空视频只满足 `canOpenDialog`(`:163`) + `uploadVideo`——**空 4 / 有视频 6，且多出来的两个正是「存资产」与「下载」** | `20-reference.md`「有「存资产」和「下载」」；`10-tasks/edit-nodes.md`「视频变 6 个、音频变 5 个」 |
 | F08 | 左下角缩放条 4 个**视图控制**（小地图 / 连线 / 网格吸附 / 重置视图）——★ M249 补：**整条缩放条里是 5 个按钮**，第 5 个是「快捷键」 | 运行时实测 M196 / M198；`data-canvas-view-control` 四个；`scripts/probe-canvas-chrome.js`；**M249 三条读数对齐**：① 源码 `canvas-zoom-controls.tsx:40-102` 里 `Button` 恰好 5 个、其中 4 个带 `data-canvas-view-control`（`:50/:63/:76/:80`），第 5 个是 `:100` 的 HelpCircle 快捷键按钮；② 运行时方法 A（结构族）数容器得 **5**；③ 方法 B（指针族）也得 **5** | `10-tasks/create-canvas-project.md`「左下角那 4 个视图控制按钮」；`10-tasks/shortcuts-help.md`「缩放条那 4 个按钮的 `visibility` / `opacity` 一律不变」 |
 | F09 | 左侧 Dock：未选中 8 个 / 只要有选中就是 9 个（多选、全选同为 9） | 运行时实测 M196 / M198，M200 复测（无选中时逐个读 aria-label 仍是 8 个）；容器 `.td-canvas-dock`；`scripts/probe-canvas-chrome.js`；**M217 补源码侧第二条独立依据** `web/src/components/canvas/canvas-toolbar.tsx:258-261` 把 `tool-delete` 整个包在 `{selectedCount ? … : null}` 里——**9 与 8 的差就是这一个按钮**，而 `:264` 的 `tool-clear` 无条件渲染 | `10-tasks/create-canvas-project.md`「未选中 8 个 → 单选 9 个 → Shift 真多选仍是 9 个」；`10-tasks/create-canvas-project.md`「上表 9 行的悬停提示一个都不缺」；`10-tasks/create-canvas-project.md`「读出 8 个按钮」；`10-tasks/shortcuts-help.md`「Dock 那 8 个按钮和缩放条那 4 个按钮」 |
 | F10 | 顶栏**容器内恒 10 个**可点物；**「一共 11 个」只在右侧 Agent 面板打开时成立**（面板收起时那个把手整条在视口外且容器 `pointer-events:none`，真按下去事件不落在它身上） | 运行时实测 M196；9 个停上去有名字、2 个什么都不给；**M249 补第二条读数**：① 源码 `canvas-top-bar.tsx:70` 起逐个点名对得上 10 个（左 4：主页 / 画布菜单 / 标题 / Codex 状态灯；右 5：`user-status-actions.tsx:38-72` 的 配置·中·主题·版本·快捷键，`DownloadFolderAction` 因 `:31 if (!isTauriRuntime()) return null` 在浏览器里不渲染；再加 Agent 按钮 1），`UserStatusActions` 里另有插件按钮与文档 `<a>` 因未传 props / `DOCS_URL` 为空而不出现；② 方法 A（结构族）容器内 10，**「矩形相交」划范围时容器外是 2 个把手**（左 + 右），**中心点划范围时是 0 个**；③ **捕获阶段 `pointerdown` 落点**：收起态按右侧把手落点 `html`（其 rect `(1593,0,16,1000)`，可见宽仅 7px、中心 x=1601 已在 1600 宽视口外），打开态同一元素移到 `(1152,0,16,1000)`、落点正正是 `button「调整右侧面板宽度」`；④ 阳性对照：同一监听器按顶栏主页按钮，落点是 `button「主页」` 里的图标 | `10-tasks/create-canvas-project.md`「顶栏有 **10 个可点的东西**」；`10-tasks/create-canvas-project.md`「面板开着 11 = 容器内 10 + 容器外 1」；`10-tasks/create-canvas-project.md`「顶栏这一行真正收得到指针的，恒是 10 个」 |
 | F11 | 全应用 36 个不同可见图标中，9 个被用在了不止一个功能上 | 运行时实测 M128（三种状态各扫一遍 svg，按 lucide 类名分组）；M160 订正像素列 | `10-tasks/create-canvas-project.md`「9 个图标被用在了不止一个功能上」；`10-tasks/create-canvas-project.md`「全应用 36 个可见图标」 |
-| F12 | 「更多 → 自定义工具栏」弹窗列 14 项，默认勾上 12 项（未勾：锁比例、多角度） | 运行时实测 M121 / M197；弹窗自写的 12/14 与工具条 13 分开读数对账 | `90-troubleshooting.md`「14 个工具逐个看过」；`10-tasks/image-operations.md`「弹窗里列的是 **14 项**」 |
+| F12 | 「更多 → 自定义工具栏」弹窗列 14 项，默认勾上 12 项（未勾：锁比例、多角度）；勾满 14 时图片节点工具条是 13 个 | 运行时实测 M121 / M197；弹窗自写的 12/14 与工具条 13 分开读数对账；**M250 补第三条读数（源码把 14 / 12 / 2 / 13 四个数一次复原，且点名了那两项是谁）**：`canvas-image-toolbar-tools.tsx:39` 的 `defaultBaseToolIds` = 5 个（info/delete/saveAsset/download/edit），同文件 `:41-115` 的 `imageToolDefinitions` 共 **9** 个、其中 `defaultVisible: true` **7** 个、**false 恰 2 个**——`resize` 与 `angle`；于是 `:117` 的 `defaultImageQuickToolIds` = 5+7 = **12**，`:131` 的 `allIds` = 5+9 = **14**，而工具条 12 + 「更多」1 = **13**。★ **`resize` 就是「锁比例」、`angle` 就是「多角度」——与手册写的未勾两项逐字对上** | `90-troubleshooting.md`「14 个工具逐个看过」；`10-tasks/image-operations.md`「弹窗里列的是 **14 项**」 |
 | F13 | 全应用 7 条路由（含 `*` 兜底 404） | 运行时实测 M196 源码 + 运行时双查；`web/src/router.tsx:25-34` | `10-tasks/use-agent.md`「全应用就 7 条路由」；`20-reference.md`「TDCanvas 一共 7 条路由」；`20-reference.md`「7 条路由全部为 0」；`90-troubleshooting.md`「实测 7 条路由**可见残留全为 0**」 |
 | F14 | 英文界面残留中文：可见文字 0；aria-label 层 6 条路由各 1 处，`/canvas/:id` 是 3 处 | 运行时实测 M95；端口 title 没走 i18n，`web/src/components/canvas/canvas-node.tsx:1111` | `20-reference.md`「6 条路由各 **1 处**」；`20-reference.md`「是 3 处」 |
 | F15 | Agent 面板顶端 7 个按钮全是纯图标，中英两语同序同数 | 运行时实测 M197 / M199；限定面板容器内枚举；`scripts/probe-agent-i18n.js`；**M217 复测并扩到 6 个页面**（`/assets` `/prompts` `/config` `/comfyui-local` `/canvas` `/canvas/:id` 各读一遍，面板内 7 个逐字相同、恒定），并查源码 `web/src/components/agent/local-agent-panel.tsx:1291-1327`：`leading` 的机器人标志是 `<span>`（`:1294`，**不是按钮**）+ 独立的连接设置 Button（`:1301`）、`items` 4 项（`:1307-1311`）、`right` 新对话与收起（`:1320`/`:1325`）——**7 个按钮 + 1 个标志 = 图上一排 8 个图标**。★ 顶栏的「打开 Agent」在面板之外，故**全页合计是非画布页 8 个、画布页 9 个**（画布页顶栏多一个状态灯） | `10-tasks/use-agent.md`「从左到右共 7 个」；`90-troubleshooting.md`「面板内还有 7 个同样只有图标」；`20-reference.md`「Agent 面板 7 个图标按钮的 `aria-label` **全部已本地化**」 |
 | F16 | 画布项目落库 12 个字段 | 运行时实测 M114 / M188；**M200 逐个画布复测：5 个画布全是 12 个字段**（M114 只看了第一个）；直读 IndexedDB 的 `tdcanvas` / `app_state`；`scripts/probe-storage-shape.js` | `10-tasks/undo-persistence.md`「一个画布项目在数据库里一共 **12 个字段**」；`10-tasks/undo-persistence.md`「项目对象带 **12 个字段**」 |
 | F17 | ComfyUI 本地页：Agent 面板**收起**时视口内 6 个按钮、**打开**后 17 个，两种状态下落在 `<main>` 内容区内的恒为 0 | 运行时实测 M57；**M229 订正**——M57 的判据只查几何与 `visibility` / `opacity`、**没查是否落在视口内**，而收起的面板按 440px 排在 x=1280 起（视口宽 1280），11 个面板按钮全在视口外却被算成「可见」；M229 在 1280x900 下逐个比 rect 与 `window.innerWidth`，并点开「打开 Agent」复测（面板移到 839,0,440,900）再收起还原 | `20-reference.md`「**默认态（面板收起）视口内只有 6 个按钮**」 |
-| F18 | 界面节点类型 9 种，创建菜单只给 7 项（菜单少了生成配置与 AI 土豆任务，多了 ComfyUI 工作流与上传素材） | 运行时实测 M41 / M75，M200 复测（菜单逐项读回仍是 7 项）；运行时逐条点名右键菜单与「添加节点」子菜单 | `30-concepts.md`「枚举有 7 种，菜单给 7 项」；`30-concepts.md`「注册表里露出的 5 种 + **ComfyUI 工作流** + **上传素材**」 |
+| F18 | ★ **M250 订正：不是「9 种」。节点类型在应用里有四层，四层的数量各不相同**——类型枚举 **7** / 节点注册表 **6** / 创建菜单 **7** / 左侧面板类型筛选 **7**（含「全部」）。枚举与菜单**数量相同但内容不同**：菜单少了「生成配置」「AI 土豆任务」，多了「ComfyUI 工作流」「上传素材」 | 运行时实测 M41 / M75，M200 复测（菜单逐项读回仍是 7 项）；**M250 补第三条读数（源码逐层点名，四层全中）**：① `types/canvas.ts:12-20` 的 `CanvasNodeType` 枚举 **7** 个（Image/Text/Config/Video/Audio/Aitudou/Group）；② `builtin-nodes.tsx:22` 的 `BUILTIN_DEFINITIONS` 只有 **6** 个（**Aitudou 有枚举、有文案、`constant/canvas.ts` 里还有完整规格，却没有注册项也没有渲染组件**）；③ `canvas-toolbar.tsx:272-283` 创建菜单 = 4 项固定（文本/图片/视频/音频）+ `primaryExtensionDefs` + 分组 + 上传素材；④ `canvas-side-panel.tsx:150` 的 `NODE_FILTER_VALUES` 恰好 **7** 个（all + 6 类）。★ **「9 种」是已被正文驳倒的旧值**：`30-concepts.md:154` 早就写着「**「九种」这个说法不成立——实际是七种**」 | `30-concepts.md`「枚举有 7 种，菜单给 7 项」；`30-concepts.md`「注册表里露出的 5 种 + **ComfyUI 工作流** + **上传素材**」 |
 | F19 | 文本 / 图片 / 视频 / 音频两两互连 16 组全部连得上，无类型限制 | 运行时实测 M107 全矩阵（每组一张干净画布，连线数取 `path[data-connection-id]`） | `20-reference.md`「两两互连 16 种组合全部连得上」 |
 | F20 | 选中 2 个及以上节点时，悬浮工具条整个消失（单选 8 → 多选 0） | 运行时实测 M194；用节点工具条数量当独立读数区分「真多选」与「点空白取消选中」 | `10-tasks/edit-nodes.md`「悬浮工具条会完全消失」；`90-troubleshooting.md`「工具条整个消失」 |
-| F22 | ComfyUI 工作流空节点工具条 4 个：信息 / 删除 / 运行 / 参数（**没有「编辑」也没有「上传」**） | 运行时实测 **M137 首次实测，M200 独立复测（逐项逐序全对）**；**浏览器里不装 ComfyUI 也能建出这个节点**（空状态就是出厂状态），逐个读 id、面上文字与读屏标签；id 读回 `info` / `delete` / `comfy-run` / `comfy-parameters`。「选上工作流之后」那一档仍未测（依赖本机 ComfyUI） | `10-tasks/edit-nodes.md`「`comfy-run`「运行」」；`20-reference.md`「这一行 **M137 已首次实测**」 |
+| F22 | ComfyUI 工作流空节点工具条 4 个：信息 / 删除 / 运行 / 参数（**没有「编辑」也没有「上传」**） | 运行时实测 **M137 首次实测，M200 独立复测（逐项逐序全对）**；**浏览器里不装 ComfyUI 也能建出这个节点**（空状态就是出厂状态），逐个读 id、面上文字与读屏标签；id 读回 `info` / `delete` / `comfy-run` / `comfy-parameters`。**M250 源码第三条读数**：`integrations/comfyui-local/canvas-node.tsx:56` 的 `toolbar` 回调**恰好返回 2 项**（`comfy-run` 与 `comfy-parameters`），加上 `baseToolbarTools` 里无条件的 `info`/`delete` 共 **4**；而 `use-plugin-host.tsx:131` 的交互/移动开关还要求 `node.metadata?.content` 存在——**空节点正好不满足，所以是 4 而不是 5**。★ 顺带记一条状态细节：`comfy-run` 在运行中会变成 `comfy-stop`，**按 id 抓按钮的探针会在运行态读到另一个 id**。「选上工作流之后」那一档仍未测（依赖本机 ComfyUI） | `10-tasks/edit-nodes.md`「`comfy-run`「运行」」；`20-reference.md`「这一行 **M137 已首次实测**」 |
 | F23 | `app_state` 表里有 2 条记录：`tdcanvas:canvas_store`（state 里是 projects）与 `tdcanvas:asset_store`（state 里是 assets）；没装过插件时不存在第 3 条 | 运行时实测 M200；`scripts/probe-storage-shape.js` 读 `getAllKeys()`（只给值不给键，要另取键名） | `20-reference.md`「这张表里同时躺着 2 条记录」；`10-tasks/undo-persistence.md`「一个画布项目在数据库里一共 **12 个字段**」 |
 | F21 | Agent 面板 7 个读屏名里，只有「连接设置」那一个带连接状态后缀、会变 | 运行时实测 M199；英文 `Connection settings. Current status: Disconnected`／中文「连接设置，当前未连接」；`scripts/probe-agent-i18n.js` | `20-reference.md`「它是七个里唯一会变的那个」 |
 
@@ -2300,3 +2314,12 @@ M203 的做法是——只把 R31 的 needle 换成读者真读到的形态、�
   - ★ 代价也要记：**探针纪律里「扫源码前剥注释」「源码是 frameos 不是本仓」这些提醒仍然成立**，
     新增的是**一条可用通道**，不是**一条可以跳过运行时验证的理由**——
     源码能告诉你「有几个」，**告诉不了你「默认状态是哪个」**（F56 的老问题）。
+
+- ★★★ **F64：把源码条件写进表格时，`||` 就是一根字面竖线——本批第四次栽在同一处**
+  - M250 要在台账里记「`saveAsset` 的条件是 `hasImage || hasVideo || isText`」，
+    **这串源码里最自然的写法，在 Markdown 表格里就是三根会劈开单元格的竖线**。
+  - ★ 修法只有一个：**把源码表达式改写成文字**（「有图、有视频或是文本三者之一」）。
+    **转义不管用**（`\|` 仍然是字面竖线，Markdown 表格不认 C 风格转义）。
+  - ★ 这是**同一处第四次**（M244 / M245 / M246 各栽过同类），所以它不是运气：
+    **写表格行之前必须先断言「每格无字面竖线」，而不是写完再让门禁来报**。
+    门禁报得很快，但它报的是**你已经改完的文本**，不是**你写它时的判断**。
