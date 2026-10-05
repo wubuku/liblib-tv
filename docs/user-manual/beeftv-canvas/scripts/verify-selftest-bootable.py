@@ -356,7 +356,7 @@ SELFTEST_COSTS = {
     "selftest-scope.py": 0.4,
     "selftest-screenshots-literals.py": 14.0,   # **Batch 275 重测三次：13.33 / 13.16 / 13.82 秒，取大并留余量**。原登记 30.1 秒，**而它已从 SLOW 里移出**（实测早已掉到阈值下）
     "selftest-screenshots.py": 0.7,
-    "selftest-selftest-bootable.py": 1668.0,   # **Batch 281 重测：43 例实测 1668.0 秒**（此前 384.0 是 **Batch 210 的 26 例基线**，而 Batch 254 已实测 877 秒**却只改了 `SLOW` 没改这一处**——**方向四e 报绿只是因为那个过期值偏低**，把比值压到了 3.0 倍上限之下，纪律 310 的又一个假绿）。**Batch 282 重测：45 例 1512 秒**（比 43 例的 1668 **更快**——**真跑搬进副本树顺带快了 12 秒**），**按纪律 204 保留较大的那个作为高水位，不下调**）
+    "selftest-selftest-bootable.py": 1668.0,   # **Batch 281 重测：43 例实测 1668.0 秒**（此前 384.0 是 **Batch 210 的 26 例基线**，而 Batch 254 已实测 877 秒**却只改了 `SLOW` 没改这一处**——**方向四e 报绿只是因为那个过期值偏低**，把比值压到了 3.0 倍上限之下，纪律 310 的又一个假绿）。**Batch 282 重测：45 例 1512 秒**（比 43 例的 1668 **更快**——**真跑搬进副本树顺带快了 12 秒**），**按纪律 204 保留较大的那个作为高水位，不下调**。**Batch 283 重测：49 例 1461 秒**（又快了 51 秒——**本批加的 4 例只花 13.3 秒，而用例 24/26 各自要在沙箱里真跑整个闸 18**；**快的那部分来自把 `_real_repo` 做成 `rev-parse`**），**同样保留 1668.0 不下调**——**下调要的是同一套测法重测三遍，不是一次更快的数**）
     #: **Batch 247 重测**：三次实测 7.33 / 6.95 / 7.11 秒，**而原登记值是 0.7——低估了十倍**。
     #: 9 例里每例都 `copytree` 一整份 `scripts/`（103 个 selftest-* 加 36 个闸）再起一个子进程跑被测闸，
     #: **耗时几乎全在重复拷贝上**。**`seconds` 是预算上限而不是实测均值，
@@ -892,16 +892,78 @@ def _dirty_paths():
 #: **而本表的含义是「构建在副本树上跑它，而它要读的那份历史副本树没有」**。
 #: **两份合起来才是「本轮一份没跑」的全部理由**，**而只报其中一半
 #: 会让人以为另一半也跑了**（纪律 291：数与列出来的东西对不上）。
+#: **方向十六真跑时必须留在真实手册树上的反验**——**Batch 283 起本表为空**。
+#:
+#: **它曾经有一份，而那份的理由本批被证伪了。** 原理由写的是
+#: 「实测给它 alternates 之后锚点提交可见，**它却又报出另一个问题，而本批不追**」——
+#: **那个「另一个问题」本批追了，答案是：方向三的 OFF_TASK 反向核
+#: 报「`24-video-process-menu.png` 最后一次被改动的提交是 `d2eb84a3`，
+#: 而免检表登的是 `761106b9`」。**
+#: 而 `d2eb84a3` **在真仓里根本不存在**——它是 `git init` 造出来的那棵基线提交。
+#: **换句话说，那不是「另一个问题」，而是同一件事的另一半**：
+#: alternates 让锚点提交**可见**，却没让**历史**存在，
+#: 于是遍历只能停在副本树自己的基线上，**方向三照报不误**。
+#:
+#: **修法在 `_make_fleet_tree()`**：改用 `git clone --shared` 借对象（0.08 秒），
+#: **历史于是是真的**，两个方向同时转绿。**本表因此清空**——
+#: **纪律的前提会过期，而照搬前提就是照搬过期理由**（Batch 282 清空豁免表是同一条）。
+#:
+#: **表本身留着**，因为机制还在：方向十六为「慢」硬排除一份（`SLOW`）、
+#: 为「防无限递归」硬排除一份，**本表是第三类理由的登记处**。
+#: **而留着空表的价值不在于它现在有几条，而在于下次再加一条时不用重新发明机制。**
 FLEET_NEEDS_REAL_HISTORY = {
-    "selftest-shot-version-source.py":
-        "用例 `real-67` 要从**真实** git 历史推拍摄版本，而副本树只有一棵"
-        "新建的基线提交——实测给它 alternates 之后锚点提交可见，"
-        "**它却又报出另一个问题，而本批不追**（**如实登记，不装作它能跑**）",
 }
 
 
+def _real_repo():
+    """真仓根与手册树在真仓里的相对路径——`git clone --shared` 两样都要。
+
+    **⚠️ 两边都必须先 `realpath`，否则相对路径会算成一串 `../../..`——
+    这是用例 49 撞出来的（Batch 283）**：macOS 上 `tempfile.mkdtemp` 给的是
+    `/var/folders/...`，而 `git rev-parse --show-toplevel` 回的是
+    `/private/var/folders/...`（**`/var` 是 `/private/var` 的软链**），
+    **`relpath("/var/.../X", "/private/var/.../X")` 于是返回一长串 `../..`**
+    ——**而那不是一个「路径不对」的报错，它会让 `os.path.join` 指到树外**，
+    **后面 `copytree` 与 `git add` 相继失败，最后落到 `return None`**。
+    **症状是「建不出副本树」，而真因在两行之前的一个函数里**——
+    **这正是纪律 291 说的那种「数与列出来的东西对不上」的近亲。**
+
+
+    **不用 `ROOT/../../../..` 数层数**：那种写法在手册树被挪位置时
+    会静默指到别处，而 `git rev-parse` 是**问出来的**。
+    **问不出来就返回 `(None, None)`，而调用方必须把它当成「建不出树」**。
+    """
+    p = subprocess.run(["git", "-C", ROOT, "rev-parse", "--show-toplevel"],
+                       capture_output=True, text=True)
+    top = p.stdout.strip()
+    if p.returncode != 0 or not top or not os.path.isdir(os.path.join(top, ".git")):
+        return None, None
+    #: **两边都取 `realpath`**——理由见 docstring 那段：`/var` 与 `/private/var`
+    #: 是同一个目录的两个名字，**而 git 只回后者**。
+    top, here = os.path.realpath(top), os.path.realpath(ROOT)
+    rel = os.path.relpath(here, top)
+    #: **顺带钉一句**：`rel` 里有 `..` 就说明手册树**不在**那个仓里
+    #: （例如它被软链到了外面）。**那种情况下 `manual` 会指到临时目录之外**，
+    #: **所以这里宁可返回「建不出」，也不让它去拼一个树外的路径。**
+    if rel.startswith(".."):
+        return None, None
+    return top, rel
+
+
 def _make_fleet_tree():
-    """为方向十六的真跑建一棵**完整**手册树副本（**Batch 282 新增**）。
+    """为方向十六的真跑建一棵**完整**手册树副本（**Batch 282 新建，283 改造**）。
+
+    **Batch 283 把它从「复制 + `git init`」换成「`git clone --shared` + 覆盖」**，
+    唯一的原因是**历史**：
+
+    | 做法 | 代价 | 那 67 张截图「最后一次被改动的提交」 |
+    |---|---|---|
+    | 复制 + `git init` + 基线提交（282） | 复制全树 | **基线提交自己**（真仓里不存在） |
+    | `git clone --shared` + 覆盖 + 提交（283） | **0.60 秒** | **真仓里那个真提交** |
+
+    **`--shared` 借对象不复制，所以 1.4 GB 的历史只付 0.08 秒**——
+    **而这一条把 39 份变成 39 份全跑**（实测 `real-67` 由 rc=1 转 rc=0，
+    且 109 份非慢反验在新副本树上的 rc 与真树**逐一相同，0 份不同**）。
 
     **三个环境条件，每一个都是量出来的，不是想出来的**：
       ① **`node_modules` / `dist` / `.git` 不搬**（前者是依赖，后两者是产物与仓）；
@@ -909,33 +971,185 @@ def _make_fleet_tree():
          `selftest-current-version.py` 与 `selftest-shot-version.py` 直接 rc=1
          （**它们读 `config.mjs`**，而「反验的沙箱里没有手册正文」那个理由
          在这里的具体形态就是「没有发布配置」）；
-      ③ **必须 `git init` + 一次基线提交**——实测没有 git 仓时
-         `selftest-shot-version-source.py` 报「fatal: not a git repository」。
+      ③ **必须有真实历史**——`--shared` 只借对象，
+         **副本树的 HEAD 因此就落在真仓 HEAD 上**，
+         **「某张图最后一次被改动的提交」查出来是真仓里那个真提交**
+         （实测 `24-video-process-menu.png` = `761106b9`，
+         **而 `git init` 那种假历史查出来是副本树自己的基线提交，真仓里根本不存在**）；
+         **工作区则由下面那次覆盖全量建出来**（手册 499 个文件、35 MB，
+         **`node_modules` 不在其内**），
+         **而 `git add` + 一次提交把「当前工作区」盖上去**，
+         **于是同事那两处未提交 WIP 也在副本里**（它们是文档记录过的注入实验）。
 
+    **返回 `(真仓根的临时目录, 手册目录)` 两个值**：
+    **副本树的 git 根与手册根从此不是同一个目录**，而调用方要同时用两个。
     **建不出来就返回 `None`，而调用方必须把它当成「本轮不跑」而不是「放行」**。
     """
+    top, rel = _real_repo()
+    if top is None:
+        return None
     tmp = tempfile.mkdtemp(prefix="beef-fleet.")
     try:
-        for f in os.listdir(ROOT):
-            if f in ("node_modules", "dist", ".git"):
-                continue
-            s = os.path.join(ROOT, f)
-            d = os.path.join(tmp, f)
-            (shutil.copytree if os.path.isdir(s) else shutil.copy)(s, d)
+        r = subprocess.run(["git", "clone", "-q", "--shared", "--no-checkout", top, tmp],
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            raise OSError("clone 失败：%s" % (r.stderr or "")[:200])
+        manual = os.path.join(tmp, rel) if rel != "." else tmp
         env = dict(os.environ)
         env.setdefault("GIT_AUTHOR_NAME", "beef-gate")
         env.setdefault("GIT_COMMITTER_NAME", "beef-gate")
         env.setdefault("GIT_AUTHOR_EMAIL", "gate@local")
         env.setdefault("GIT_COMMITTER_EMAIL", "gate@local")
-        for cmd in (["git", "init", "-q"],
-                    ["git", "add", "-A", "-f"],
-                    ["git", "commit", "-q", "-m", "闸 18 真跑副本树基线"]):
-            subprocess.run(cmd, cwd=tmp, env=env, capture_output=True)
-        return tmp
+        #: **⚠️ 这里原来有一句 `git checkout <子树>`，本批把它删了，而不是把它修好。**
+        #:
+        #: **`--no-checkout` 之后索引是空的，于是 pathspec 检出必然失败**——
+        #: 实测 `error: pathspec 'docs/user-manual/beeftv-canvas' did not match
+        #: any file(s) known to git`。**而它是静默空转**：返回码没查，
+        #: **副本照样完全可用**——因为下面那一步覆盖自己就把文件全建出来了
+        #: （`copytree` 会连父目录一起建）。
+        #:
+        #: **删它比修它好，理由是那句纪律本身**：
+        #: **一个不做事却让人以为「不覆盖也能用」的步骤，比没有它更坏**——
+        #: 下一个人看到「已经有 checkout 了」，就会以为「不覆盖也保险」。
+        #: **而真正让副本可信的是覆盖，不是检出**——
+        #: **检出只会在「有东西要检出」的时候才做事，而这里恰恰是空的。**
+        #: **顺带省掉一次全树写出**（实测 clone + 覆盖 + 提交共 0.60 秒）。
+        #: **覆盖：把真树**当前**内容搬进去**（含未提交 WIP），再提交一次。
+        #: **`git add` 之后提交是有意的**——它让副本树的 HEAD 落在真仓 HEAD 之上，
+        #: **于是「最后一次被改动的提交」对真仓里没动过的文件仍然是真仓那个**。
+        for f in os.listdir(ROOT):
+            if f in ("node_modules", "dist", ".git"):
+                continue
+            s = os.path.join(ROOT, f)
+            d = os.path.join(manual, f)
+            (shutil.copytree if os.path.isdir(s) else shutil.copy)(s, d)
+        for cmd in (["git", "add", "-A", "-f", rel],
+                    ["git", "commit", "-q", "-m", "闸 18 真跑副本树覆盖"]):
+            if subprocess.run(cmd, cwd=tmp, env=env, capture_output=True).returncode != 0:
+                raise OSError("提交覆盖层失败：%s" % cmd[0])
+        return tmp, manual
     except OSError:
         shutil.rmtree(tmp, ignore_errors=True)
         return None
 
+
+
+def _check_fleet_env(fleet_repo, fleet_manual):
+    """副本树的两条环境性质（**Batch 283 新增**）。返回问题列表，**空 = 通过**。
+
+    **为什么必须是判据而不是注释**：本批的收益是「39 份全跑」，
+    而**它的成本是「有人下一次把 clone 改回 `git init`」**——
+    **而那个改动的症状是 `real-67` 悄悄变红，别的什么都不变**，
+    **足以让人得出「反验坏了」而去找错的方向**。
+
+    **① 历史**：真仓 HEAD 必须是副本树 HEAD 的祖先。
+    **`merge-base --is-ancestor` 一条命令分得开真假**——
+    **`git init` 造的假历史里，真仓那个提交根本不可达，退出码非 0**。
+
+    **② 内容**：副本树与真树逐文件一致。
+    **只比 `sha1` 与大小，不比 `mtime`**——`shutil.copy` 不带 `mtime`
+    （`copy2` 才带），**而比 `mtime` 会让这条判据恒为红**。
+    **沿用 `_tree_fingerprint()` 的跳过表**，**否则 `.vitepress` 与 `__pycache__`
+    会在两边不对称**（前者副本树有、指纹跳过；后者只在跑过之后才出现）。
+
+    **⚠️ 抽样还是全量**：**全量**，实测 0.5 秒/树。
+    **一个判据不该为了覆盖边角而把每次构建的墙钟抬起来**——
+    **但这条不是边角**：它核的正是「副本能不能代表真树」，
+    **而抽样会让「恰好抽到没被覆盖的那几个文件」变成常态。**
+    """
+    import hashlib
+    problems = []
+    top, _rel = _real_repo()
+    if top is None:
+        return ["副本树环境性质：**真仓问不出来**（`git rev-parse --show-toplevel` 失败）"
+                "　→ 本轮不跑，不拿「跑不了」当「跑过了」（纪律 156）"]
+    real_head = subprocess.run(["git", "-C", top, "rev-parse", "HEAD"],
+                               capture_output=True, text=True).stdout.strip()
+    anc = subprocess.run(["git", "-C", fleet_repo, "merge-base", "--is-ancestor",
+                          real_head, "HEAD"], capture_output=True, text=True)
+    if anc.returncode != 0:
+        problems.append(
+            "方向十六：副本树**没有真实历史**——真仓 HEAD %s 不是副本树 HEAD 的祖先"
+            "　→ 用 `git clone --shared` 借对象重建，**不要用 `git init` 造一棵假历史**"
+            "（假历史会让方向三把「副本树自己的基线提交」当成那张图最后一次被改动的提交，"
+            "**报出一个真仓里根本不存在的提交号**）" % (real_head[:8] or "未知"))
+
+    def _fp(root):
+        out = {}
+        for dirpath, dirnames, filenames in os.walk(root):
+            dirnames[:] = [d for d in dirnames if d not in _FP_SKIP_DIRS]
+            for fn in filenames:
+                if fn.endswith(_FP_SKIP_SUFFIX):
+                    continue
+                p = os.path.join(dirpath, fn)
+                try:
+                    st = os.stat(p)
+                except OSError:
+                    continue
+                h = None
+                if st.st_size <= 65536:
+                    try:
+                        with open(p, "rb") as fh:
+                            h = hashlib.sha1(fh.read()).hexdigest()
+                    except OSError:
+                        h = None
+                out[os.path.relpath(p, root)] = (st.st_size, h)
+        return out
+
+    a, b = _fp(ROOT), _fp(fleet_manual)
+    only_real = sorted(set(a) - set(b))
+    only_fleet = sorted(set(b) - set(a))
+    diff = sorted(k for k in set(a) & set(b) if a[k] != b[k])
+    if only_real or only_fleet or diff:
+        problems.append(
+            "方向十六：副本树内容与真树不一致——**只真树有 %d、只副本有 %d、内容不同 %d**"
+            "（%s%s%s）"
+            "　→ 副本树必须**把真树当前工作区整份覆盖进去**再提交一次，"
+            "**否则 39 份真跑核的是上一次提交的手册，而构建照样报绿**"
+            % (len(only_real), len(only_fleet), len(diff),
+               "、".join(only_real[:2]) or "-",
+               "、" + "、".join(only_fleet[:2]) if only_fleet else "",
+               "、" + "、".join(diff[:2]) if diff else ""))
+    return problems
+
+
+#: `_check_fleet_env` 与 `_tree_fingerprint` **必须用同一张跳过表**——
+#: **两张表不一样的话，「只真树有」会凭空多出一整类**，而那与覆盖有没有生效无关。
+_FP_SKIP_DIRS = (".git", "node_modules", ".vitepress", "dist", "__pycache__",
+                 ".pytest_cache")
+_FP_SKIP_SUFFIX = (".pyc", ".pyo", ".pyd", ".log", ".tmp", ".swp")
+
+
+def _not_run_reasons(fleet_all, fleet):
+    """**没跑的每一份，按它**真正**的理由分类列出来**（**Batch 283 新增**）。
+
+    **Batch 282 埋下、本批拆掉的一个雷**：那一行原来硬编码
+    「**另有 N 份按 SLOW 登记没跑**」，而列表算的是
+    `fleet_all - fleet`——**里面混着三类完全不同的理由**：
+    慢（`SLOW`）、需要真实历史（`FLEET_NEEDS_REAL_HISTORY`）、防无限递归。
+
+    **本批实测的伤害**：`selftest-shot-version-source.py` 被报成「按 SLOW 没跑」，
+    **而它根本不在 SLOW 里**——
+    **一个想给构建提速的人去 `SLOW` 里找它，找不到，
+    而日志明明白白写着「按 SLOW 登记」**。**理由与事实对不上，
+    排查就从正确的地方岔开了**（纪律 291：数与列出来的东西要对得上）。
+    """
+    done = set(fleet)
+    slow = sorted(n for n in fleet_all if n not in done and n in SLOW)
+    hist = sorted(n for n in fleet_all
+                  if n not in done and n not in SLOW
+                  and n in FLEET_NEEDS_REAL_HISTORY)
+    rest = sorted(n for n in fleet_all
+                  if n not in done and n not in SLOW
+                  and n not in FLEET_NEEDS_REAL_HISTORY)
+    parts = []
+    if slow:
+        parts.append("慢 %d 份（%s）" % (len(slow), "、".join(slow)))
+    if hist:
+        parts.append("需真实历史 %d 份（%s）" % (len(hist), "、".join(hist)))
+    if rest:
+        parts.append("**其余 %d 份**（%s）" % (len(rest), "、".join(rest)))
+    return "；".join(parts) if parts else "无"
 
 
 def _tree_fingerprint():
@@ -1938,8 +2152,21 @@ def main():
     #: **于是一条命中就等于「有反验用绝对路径逃出了副本树」，那才是真信号**。
     #: **`fleet` 已经空的时候不建树**——`sandbox()` 那种只有 `scripts/` 的沙箱
     #: 会在上面被清空，**而这里再搬 15 MB 加一次 git 提交是纯浪费**。
-    fleet_root = _make_fleet_tree() if fleet else None
-    fleet_cwd = os.path.join(fleet_root, "scripts") if fleet_root else None
+    #: **⚠️ 这行第一版写成 `fleet_root, fleet_manual = _make_fleet_tree() if fleet else (None, None)`**——
+    #: **而 `_make_fleet_tree()` 建不出来时返回的是单个 `None`，不是 `(None, None)`**，
+    #: **于是解包炸 `TypeError: cannot unpack non-iterable NoneType object`，
+    #: 整份闸崩掉、方向十六那一行都没打出来**（用例 49 实测）。
+    #: **而 Batch 282 写下的契约原话是「建不出来就返回 `None`，
+    #: 而调用方必须把它当成「本轮不跑」而不是「放行」」——
+    #: **本批改返回值形状的时候把这条契约一起改了，而没人回头看它。**
+    #: **「改了签名」与「改了契约」是两件事，而只有后者会静悄悄地坏掉。**
+    _fleet = _make_fleet_tree() if fleet else None
+    fleet_root, fleet_manual = _fleet if _fleet else (None, None)
+    #: **Batch 283：`cwd` 必须是**手册**目录，而不再是副本树的 git 根**——
+    #: 反验一律用 `HERE = dirname(abspath(__file__))` 推 `ROOT`，
+    #: **它们读的是自己脚下那份树，与 `cwd` 无关**；但 `cwd` 决定相对路径解析，
+    #: **而闸 18 自己就是按 `fleet_cwd` 拼脚本路径的**。
+    fleet_cwd = os.path.join(fleet_manual, "scripts") if fleet_manual else None
     #: **⚠️ Batch 282 踩到：`fleet` 已经空的时候**（`sandbox()` 那种只有 `scripts/`
     #: 的沙箱在上面被清空了）**根本不该走到这里报「建不出副本树」**——
     #: **第一版只判 `if not fleet_root`，于是 12 条「必须不报」的用例一起变红**，
@@ -1953,6 +2180,23 @@ def main():
               "**「没跑」与「跑了」必须分开**")
     if not fleet_root:
         fleet = []
+    if fleet_root:
+        #: **Batch 283 新增：真跑之前先核副本树的两条环境性质。**
+        #:
+        #: **判据问的是「这份副本还能不能代表真树」，而那正是它存在的前提**——
+        #: **① 历史**：真仓 HEAD 必须是副本树 HEAD 的祖先（`merge-base --is-ancestor`），
+        #: **一条命令就分得开「真历史」与「`git init` 造的假历史」**；
+        #: **② 内容**：副本树必须与真树逐文件一致。
+        #:
+        #: **② 治的是「忘了覆盖」**：只 clone 不覆盖的话，副本里是**上一次提交的状态**，
+        #: **于是 39 份真跑核的是上一批的手册，而构建照样报绿**——
+        #: **这是比反验坏了更坏的一种错，因为它没有任何症状。**
+        _envp = _check_fleet_env(fleet_root, fleet_manual)
+        if _envp:
+            problems.extend(_envp)
+            print("  方向十六：副本树环境性质不成立，本轮一份都不跑——%s"
+                  % "；".join(x.split("\n")[0] for x in _envp))
+            fleet = []
     for fn in fleet:
         if fn in FLEET_NEEDS_REAL_HISTORY:
             continue
@@ -1970,6 +2214,7 @@ def main():
         #:（**而它们恰恰是最危险的一类：被 kill 的那一次不会有还原**）。
         _f0 = time.time()
         _fp0 = _tree_fingerprint()
+        _f1 = time.time()   # 第一张指纹取完
         t0 = time.time()
         try:
             r = subprocess.run(
@@ -1979,8 +2224,18 @@ def main():
             rc, out = r.returncode, (r.stdout or "") + (r.stderr or "")
         except subprocess.TimeoutExpired:
             rc, out = None, ""
+        _a2 = time.time()   # 真跑结束（第二张指纹之前）
         _fp1 = _tree_fingerprint()
-        fp_cost += time.time() - _f0 - (time.time() - t0)
+        _a3 = time.time()
+        #: **Batch 283 修一个记账 bug**：`fp_cost` 原来只算了**跑之前那一张**指纹。
+        #: 展开就是 `(a3-a0) - (a3-a1) = a1-a0`——
+        #: **而第二张指纹在 `t0` 之后取的，所以它被一并减掉了**；
+        #: **与此同时 `d = time.time() - t0`（真跑耗时）却把它算进了总账**。
+        #: **于是「指纹代价」这个数恰好是真相的一半**，
+        #: **而它正是用来回答「这套机制每次构建要付多少」的那个数**。
+        #: **低报的方向是唯一危险的那个**（与 `SELFTEST_COSTS` 同一条纪律，Batch 275）——
+        #: **一个让人以为「加指纹很便宜」的数，比没有这个数更坏。**
+        fp_cost += (_f1 - _f0) + (_a3 - _a2)
         _chg, _del, _newf = _tree_delta(_fp0, _fp1)
         if _chg or _del or _newf:
             tree_writes[fn] = (_chg + _del + _newf)[:6]
@@ -2192,9 +2447,8 @@ def main():
 
     print("  方向十六：真跑 %d 份非慢反验，%d 份 rc=0，用时 %.1f 秒%s%s"
           % (ran, ok, fleet_cost,
-             ("；**另有 %d 份按 SLOW 登记没跑**（%s）"
-              % (len(fleet_all) - ran,
-                 "、".join(sorted(n for n in fleet_all if n not in fleet)))
+             ("；**另有 %d 份没跑**（%s）"
+              % (len(fleet_all) - ran, _not_run_reasons(fleet_all, fleet))
               if fleet else "；**本轮一份都没跑**"),
              ("" if not unverified else
               "；**%d 份本轮未能核对（rc=2，不是不一致）**（%s）"

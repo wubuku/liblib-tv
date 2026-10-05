@@ -687,6 +687,22 @@ _GAP_MARK = "一个候选都不成立时是"
 KNOWN_ENV_GAPS = {
     "selftest-current-version.py",
     "selftest-shot-version.py",
+    #: **Batch 283 加的这一条，而它的原因与上面两条不是同一类**
+    #: （**上面两条是「沙箱里没有 `.vitepress`」；这一条是「沙箱自己就是假仓」**）。
+    #:
+    #: **实测链条**：`sandbox_full()` 用 `_git_init()` 给沙箱造了**一棵只有一次提交的仓**；
+    #: 闸 18 的副本树改用 `git clone --shared` 之后，**它克隆的正是这棵假仓**——
+    #: **于是副本树的「真实历史」是沙箱那一次提交**，
+    #: 而 `selftest-shot-version-source.py` 的用例 `real-67`
+    #: 要从**真仓**的提交历史推拍摄版本（锚点 `570d6579`），**于是必然跑不通**。
+    #:
+    #: **而新判据 `_check_fleet_env` 查不出来——这不是它漏了，是它的能力上限**：
+    #: **它问的是「副本树是否忠实于它所复制的源」，
+    #: 而源本身就是假的**。**一份「忠于假源」的副本树，判据无从区分。**
+    #: **所以真树上的 39 份里它是 rc=0，只有沙箱里才掉出来。**
+    #:
+    #: **如实登记，不装作它能跑**（Batch 254 立这条表的规矩）。
+    "selftest-shot-version-source.py",
 }
 
 
@@ -1382,6 +1398,158 @@ def m_fleet_exclusion_accounted_as_by_design():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 46–49 副本树的两条环境性质（**Batch 283**）─────────────────────────
+#: **那张图在真仓里最后一次被改动的提交**——**它必须能在副本树里原样查出来**。
+#: 写死提交号而不是问真仓，是因为**这条用例要问的是「历史是不是真的」**：
+#: 若改成「问真仓再比」，真仓一改提交号这条就跟着改，**而它要守的东西不会变**。
+_PNG = "screenshots/24-video-process-menu.png"
+_PNG_COMMIT = "761106b9"
+
+
+def _load_gate():
+    """把闸当模块装进来——**只为调它的两个函数**，不改它一个字节。"""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("gate283", GATE)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def _fake_history_tree():
+    """照 Batch 282 的老办法造一棵**假历史**树——**它正是本批要拆掉的那个做法**。"""
+    tmp = tempfile.mkdtemp(prefix="beef-b283-fake.")
+    for f in os.listdir(ROOT):
+        if f in ("node_modules", "dist", ".git"):
+            continue
+        s, d = os.path.join(ROOT, f), os.path.join(tmp, f)
+        (shutil.copytree if os.path.isdir(s) else shutil.copy)(s, d)
+    _git_init(tmp)
+    return tmp
+
+
+def m_fleet_fake_history_reported():
+    """**能抓 ①**：`git init` 造的假历史必须被报出来。
+
+    **本批的起因就是它**：Batch 282 把 `selftest-shot-version-source.py`
+    登记进 `FLEET_NEEDS_REAL_HISTORY`，理由写着「给它 alternates 之后
+    **它却又报出另一个问题，而本批不追**」。**本批追了**——
+    那个「另一个问题」是方向三报
+    「`24-video-process-menu.png` 最后一次被改动的提交是 `d2eb84a3`」，
+    **而 `d2eb84a3` 在真仓里根本不存在，它是这棵假树自己的基线提交**。
+    """
+    check_anchor()
+    g = _load_gate()
+    tmp = _fake_history_tree()
+    try:
+        probs = g._check_fleet_env(tmp, tmp)
+        record("46 副本树用 git init 造的假历史→必报",
+               any("没有真实历史" in x for x in probs),
+               "报了 %d 条%s" % (len(probs),
+                                ("：%s" % probs[0][:60]) if probs else "（一条都没报）"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_fleet_stale_overlay_reported():
+    """**能抓 ②**：副本树没覆盖当前工作区 → 必须报「内容与真树不一致」。
+
+    **这一条治的错比第一条更安静**：只 clone 不覆盖的话，
+    **副本里是上一次提交的状态，于是 39 份真跑核的是上一批的手册**，
+    **而构建照样全绿**——**没有任何症状**。
+    **注入形态是「把一个文件改回 HEAD~1」**，
+    **而它模拟的正是「checkout 之后忘了覆盖」那个真实场景。**
+    """
+    check_anchor()
+    g = _load_gate()
+    res = g._make_fleet_tree()
+    assert res, "前提失配：副本树建不出来"
+    repo, manual = res
+    try:
+        t = "scripts/verify-selftest-bootable.py"
+        rel = os.path.join(os.path.relpath(ROOT, g._real_repo()[0]), t)
+        old = subprocess.run(["git", "-C", repo, "show", "HEAD~1:" + rel],
+                             capture_output=True, text=True).stdout
+        assert old, ("前提失配：副本树里 `HEAD~1:%s` 取不到——"
+                     "**真仓历史不足两提交，锚点不成立**" % rel)
+        write(os.path.join(manual, t), old)
+        probs = g._check_fleet_env(repo, manual)
+        record("47 副本树停在上一提交（忘了覆盖）→必报",
+               any("内容与真树不一致" in x for x in probs),
+               "报了 %d 条%s" % (len(probs),
+                                ("：%s" % probs[0][:60]) if probs else "（一条都没报）"))
+    finally:
+        shutil.rmtree(repo, ignore_errors=True)
+
+
+def m_fleet_real_history_not_reported():
+    """**不误伤**：正确建出来的副本树，一条都不许报——**且真提交号要看得见**。
+
+    **只断言「没报」是不够的**：一个恒真「永远报问题」的判据也能过那条。
+    **所以这里额外断言那句 PNG 的最后提交查出来就是 `_PNG_COMMIT`**——
+    **那是本批收益的可执行形态**（Batch 282 的假历史下它是基线提交，真仓里查无此提交）。
+    """
+    check_anchor()
+    g = _load_gate()
+    res = g._make_fleet_tree()
+    assert res, "前提失配：副本树建不出来"
+    repo, manual = res
+    try:
+        probs = g._check_fleet_env(repo, manual)
+        rel = os.path.join(os.path.relpath(ROOT, g._real_repo()[0]), _PNG)
+        #: **用 `%H` 全量而不是 `%h`**——实测 `%h` 在这个仓里回的是 **8 位**
+        #: （`761106b9`），而我第一版拿 `_PNG_COMMIT[:7]` 去比，**于是值明明对上了却判红**。
+        #: **缩写长度是配置决定的**（`core.abbrev`），**拿它当断言就是在断言一个可配置项**。
+        got = subprocess.run(["git", "-C", repo, "log", "-1", "--format=%H", "--", rel],
+                             capture_output=True, text=True).stdout.strip()
+        record("48 正确的副本树一条都不报，且真实提交可见",
+               not probs and got.startswith(_PNG_COMMIT),
+               "报了 %d 条；%s 最后提交=%s（期望以 %s 开头）"
+               % (len(probs), os.path.basename(_PNG), got[:12] or "查不到",
+                  _PNG_COMMIT))
+    finally:
+        shutil.rmtree(repo, ignore_errors=True)
+
+
+def m_fleet_broken_builder_wired():
+    """**端到端**：真仓问不出来时，闸必须说「建不出、一份都不跑」，**不许拿假树凑合**。
+
+    **前三条直接调函数，而一个「写了但没接上」的判据照样三条全过**——
+    **它们测的是判据的逻辑，不是判据与闸的连线。** 这一条钉连线。
+
+    **注入方式本批改过一次，而改的理由是纪律，不是方便**：
+    第一版注入的是**闸源码里那一句 `git clone`**（把它换成 `git init`），
+    **而那句话只在新闸里存在**——**于是对照组记成「作废」而不是「红」**，
+    **而「作废」的意思是「前提不成立、这条什么都没验」**（Batch 282 立的锚点规矩）。
+    **现在改成「把沙箱的 `.git` 删掉」**：**它不需要任何源码锚点**，
+    **改前改后都成立**，**而它测的正是本批真踩到的那条契约**——
+    `_make_fleet_tree()` 建不出来时返回**单个 `None`**，
+    **调用方第一版写成 `a, b = _make_fleet_tree() if fleet else (None, None)`，
+    直接炸 `TypeError: cannot unpack non-iterable NoneType object`，
+    整份闸崩掉、方向十六那一行都没打出来。**
+    **闸 18 现在返回 `None` 的唯一路径就是这一条**，所以它测得到。
+
+    **顺带钉住纪律 156 的另一半**：真仓问不出来时，
+    **输出必须明说「一份都不跑」**——**「建不出来」与「跑过了」在报告上完全不同**。
+    """
+    check_anchor()
+    tmp = sandbox_full()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        write(p, _pin_fleet(read(p)))
+        gitdir = os.path.join(tmp, ".git")
+        assert os.path.isdir(gitdir), "前提失配：沙箱里没有 .git（sandbox_full 变了？）"
+        shutil.rmtree(gitdir, ignore_errors=True)
+        rc, out = run_in_env(tmp)
+        told = "建不出" in out and "一份" in out
+        record("49 真仓问不出副本树→闸必须报「建不出、一份都不跑」",
+               rc == 1 and told and "Traceback" not in out,
+               "rc=%d 报出=%s 崩了=%s"
+               % (rc, "有" if told else "**无**",
+                  "**是**" if "Traceback" in out else "否"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def check_own_ledger_row():
     """本反验**自己核自己那一行**的「例数」——因为方向十七够不到它。
 
@@ -1429,7 +1597,9 @@ def main():
              m_tree_write_reported, m_tree_write_exempt_not_reported,
              m_exempt_reasons_not_empty,
              m_fleet_copy_leaves_real_tree_untouched,
-             m_fleet_exclusion_accounted_as_by_design]
+             m_fleet_exclusion_accounted_as_by_design,
+             m_fleet_fake_history_reported, m_fleet_stale_overlay_reported,
+             m_fleet_real_history_not_reported, m_fleet_broken_builder_wired]
     for t in tests:
         try:
             t()
