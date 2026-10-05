@@ -1,0 +1,454 @@
+{
+ "batch": 798,
+ "phase": "pre",
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "sizeVsGrid",
+     "gid": "group-1791235041102-r07ra7",
+     "memberIds": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ],
+     "snapUI": {
+      "ok": true,
+      "ariaPressed": "true"
+     },
+     "settled": {
+      "snapToGrid": true,
+      "groupStore": {
+       "pos": {
+        "x": 220,
+        "y": -160
+       },
+       "w": 738,
+       "h": 830,
+       "styleW": 738,
+       "styleH": 830
+      },
+      "groupDom": {
+       "w": 276.98236083984375,
+       "h": 311.5113525390625
+      },
+      "resizeHandles": 0,
+      "resizeAny": 0,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 300,
+         "y": 280
+        },
+        "w": 618,
+        "h": 350,
+        "pos": {
+         "x": 80,
+         "y": 440
+        }
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 260,
+         "y": -120
+        },
+        "w": 350,
+        "h": 200,
+        "pos": {
+         "x": 40,
+         "y": 40
+        }
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "resizeAffordance",
+     "gid": "group-1791235047434-v2nmmr",
+     "snapUI": {
+      "ok": true,
+      "ariaPressed": "true"
+     },
+     "before": {
+      "snapToGrid": true,
+      "groupStore": {
+       "pos": {
+        "x": 68,
+        "y": -165
+       },
+       "w": 722,
+       "h": 828,
+       "styleW": 722,
+       "styleH": 828
+      },
+      "groupDom": {
+       "w": 270.9773254394531,
+       "h": 310.7607421875
+      },
+      "resizeHandles": 0,
+      "resizeAny": 0,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "pos": {
+         "x": 64,
+         "y": 438
+        }
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "pos": {
+         "x": 40,
+         "y": 40
+        }
+       }
+      ]
+     },
+     "after": {
+      "snapToGrid": true,
+      "groupStore": {
+       "pos": {
+        "x": 68,
+        "y": -165
+       },
+       "w": 722,
+       "h": 828,
+       "styleW": 722,
+       "styleH": 828
+      },
+      "groupDom": {
+       "w": 270.9773254394531,
+       "h": 310.7607421875
+      },
+      "resizeHandles": 0,
+      "resizeAny": 0,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "pos": {
+         "x": 64,
+         "y": 438
+        }
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "pos": {
+         "x": 40,
+         "y": 40
+        }
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "snapOffSize",
+     "gid": "group-1791235051421-0mw6w0",
+     "snapUI": {
+      "ok": true,
+      "ariaPressed": "false"
+     },
+     "settled": {
+      "snapToGrid": false,
+      "groupStore": {
+       "pos": {
+        "x": 68,
+        "y": -165
+       },
+       "w": 722,
+       "h": 828,
+       "styleW": 722,
+       "styleH": 828
+      },
+      "groupDom": {
+       "w": 270.9773254394531,
+       "h": 310.7607421875
+      },
+      "resizeHandles": 0,
+      "resizeAny": 0,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "pos": {
+         "x": 64,
+         "y": 438
+        }
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "pos": {
+         "x": 40,
+         "y": 40
+        }
+       }
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "sizeVsGrid",
+     "gid": "group-1791235055315-4yplrl",
+     "memberIds": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ],
+     "snapUI": {
+      "ok": true,
+      "ariaPressed": "true"
+     },
+     "settled": {
+      "snapToGrid": true,
+      "groupStore": {
+       "pos": {
+        "x": 220,
+        "y": -160
+       },
+       "w": 738,
+       "h": 830,
+       "styleW": 738,
+       "styleH": 830
+      },
+      "groupDom": {
+       "w": 276.98236083984375,
+       "h": 311.5113525390625
+      },
+      "resizeHandles": 0,
+      "resizeAny": 0,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 300,
+         "y": 280
+        },
+        "w": 618,
+        "h": 350,
+        "pos": {
+         "x": 80,
+         "y": 440
+        }
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 260,
+         "y": -120
+        },
+        "w": 350,
+        "h": 200,
+        "pos": {
+         "x": 40,
+         "y": 40
+        }
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "resizeAffordance",
+     "gid": "group-1791235061695-y3fmsf",
+     "snapUI": {
+      "ok": true,
+      "ariaPressed": "true"
+     },
+     "before": {
+      "snapToGrid": true,
+      "groupStore": {
+       "pos": {
+        "x": 68,
+        "y": -165
+       },
+       "w": 722,
+       "h": 828,
+       "styleW": 722,
+       "styleH": 828
+      },
+      "groupDom": {
+       "w": 270.9773254394531,
+       "h": 310.7607421875
+      },
+      "resizeHandles": 0,
+      "resizeAny": 0,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "pos": {
+         "x": 64,
+         "y": 438
+        }
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "pos": {
+         "x": 40,
+         "y": 40
+        }
+       }
+      ]
+     },
+     "after": {
+      "snapToGrid": true,
+      "groupStore": {
+       "pos": {
+        "x": 68,
+        "y": -165
+       },
+       "w": 722,
+       "h": 828,
+       "styleW": 722,
+       "styleH": 828
+      },
+      "groupDom": {
+       "w": 270.9773254394531,
+       "h": 310.7607421875
+      },
+      "resizeHandles": 0,
+      "resizeAny": 0,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "pos": {
+         "x": 64,
+         "y": 438
+        }
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "pos": {
+         "x": 40,
+         "y": 40
+        }
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "snapOffSize",
+     "gid": "group-1791235065671-nnjgat",
+     "snapUI": {
+      "ok": true,
+      "ariaPressed": "false"
+     },
+     "settled": {
+      "snapToGrid": false,
+      "groupStore": {
+       "pos": {
+        "x": 68,
+        "y": -165
+       },
+       "w": 722,
+       "h": 828,
+       "styleW": 722,
+       "styleH": 828
+      },
+      "groupDom": {
+       "w": 270.9773254394531,
+       "h": 310.7607421875
+      },
+      "resizeHandles": 0,
+      "resizeAny": 0,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "pos": {
+         "x": 64,
+         "y": 438
+        }
+       },
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "pos": {
+         "x": 40,
+         "y": 40
+        }
+       }
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}
