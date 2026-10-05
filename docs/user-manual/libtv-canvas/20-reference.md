@@ -1607,19 +1607,83 @@ runCount:      e.counter?.runCount,
 > ⛔ 这 348 条里**时间线、字幕轨、快捷键那一大半本手册仍然没验过** ——
 > 它们要**先连一个视频节点**才会出现，而本手册从未把视频连进智能剪辑节点。
 
-#### ⭐ 视频「智能续写」（`videoContinuation*`，**20 条**，本手册一个字都没写）
+#### ⭐⭐ 视频「智能续写」（`videoContinuation*`，**20 条**）—— Batch FR 把它结案了
 
-`智能续写` · `请截取续写前置视频` · `确认续写` · `请输入需要续写的内容` ·
-`退出续写模式` · `当前模型或模式不支持智能续写` · `续写内容已变更，请重新生成` ·
-`裁剪视频合规认证失败，请重试`
+> ⭐⭐⭐ **FR-1/FQ-6 原来的疑问是**：`videoContinuation*` 这 20 条文案，
+> 在主画布**全页文字（含 `opacity: 0` 的那些）里一次都没出现**。
+> FR 改成去**真实生产 bundle 里找调用点**（只 GET，不碰界面），
+> 于是这个问题**有答案了** —— 答案是三句话：
 
-> ⛔ **Batch FQ-1 实测：在主画布上，全页文字（含 `opacity: 0` 的那些）里
-> 「续写」两个字出现 0 次。** 它不是底栏、不是添加节点面板里的一行，
-> 也**不是视频节点的默认状态**。
-> ⛔ 而且 `videoContinuationAgreementRequired = 请先阅读并同意 Seedance 协议`
-> 说明「确认续写」会牵出 **Seedance 承诺书签署** ——
-> 那是本手册⛔明确不代做的事（见下方「需要你授权」那张表）。
-> 📖 入口在哪、以及进续写模式要什么前置，仍未知。
+**① 它挂在视频节点的一条悬浮工具条上，那条工具条本手册一个字都没写过。**
+
+生产 bundle 里有个组件叫 `VideoNodeToolbar`，逐字读它的 props
+就得到**这条工具条的完整能力清单（21 项）**：
+
+| # | 动作 | 对应的 prop |
+|---|---|---|
+| 1 | 片段重剪 | `onSegmentRemakeClick` / `segmentRemakeDisabled` |
+| 2 | 智能续写 | `onContinuationClick` / `continuationDisabled` |
+| 3 | 片段截取 | `onClipClick` |
+| 4 | 裁剪 | `onCropClick` |
+| 5 | 下载 | `onDownloadClick` / `isDownloading` |
+| 6 | 增强 | `onEnhanceClick` / `showEnhance` |
+| 7 | 分离音视频 | `onSeparateAvClick` / `isSeparatingAv` / `separateAvDisabledReason` |
+| 8 | 人声分离 | `onVocalSplitClick` / `isVocalSplitting` / `vocalSplitDisabledReason` |
+| 9 | 展开 | `onExpandClick` |
+| 10 | 字幕擦除 | `onSubtitleEraseClick` / `subtitleEraseDisabledReason` / `subtitleEraseTooltip` |
+| 11 | 图片编辑 | `onPictureEditClick` / `pictureEditDisabledReason` |
+| 12 | 抠图 | `onMattingClick` |
+| 13 | 分镜拆解 | `onShotBreakdownClick` |
+| 14 | 开场 | `onOpeningClick` / `openingHasContent` |
+| 15 | 深度图参考 | `onDepthMapRefClick` / `depthMapRefDisabledReason` |
+| 16–18 | 抽首帧 / 抽尾帧 / 抽当前帧 | `onCaptureFirstFrame` / `onCaptureLastFrame` / `onCaptureCurrentFrame` |
+| 19 | 评分 | `ratingNodeId` |
+| 20 | 只显示下载 | `downloadOnly` |
+| 21 | 解析 | `showParse` |
+
+> ⭐⭐⭐ **注意每一项几乎都配一个 `*DisabledReason`** ——
+> 禁用时会给 tooltip 说明原因（和[图片节点的「预设」面板](10-tasks/image-presets.md)
+> 那 15 张卡的灰态一个套路）。**但「智能续写」那一项只有 `disabled`、没有 `title`** ——
+> ⭐ 它禁用时**不给解释**，是这排里唯一的例外。
+
+**② 主画布上读不到「续写」不是手册漏了，是当前状态下那一项压根没渲染。**
+
+菜单项的代码是 `onContinuationClick && { key: "continuation", … }`
+⇒ **父组件不传这个 prop，这一项就不出现在菜单里。**
+本轮实测（FR-3/FR-4）：把视频节点选中、悬停、打开 `⤢` 大编辑器都试过，
+节点**外面**的可点元素只有顶栏 6 枚 + 底栏 7 枚 + 左下角 6 枚 + 右侧 TV Director 抽屉 24 枚，
+**没有工具条**。
+
+**③ 它不是「源视频上的一个模式」，而是新建一个续写节点。**
+
+代码里那个动作叫 `planCreateVideoContinuation`，它做三件事：
+
+- 建一条连线：`source` = 源视频节点，`target` = **新建的续写节点**；
+- 在新节点上挂一个 `extension`：
+  `{ kind, version: 1, sourceNodeId, sourceToTargetEdgeId, range }`；
+- 三个字段任一为空就抛 `invalid_video_continuation_range`。
+
+可用性判据是三个独立函数：
+
+| 判据函数 | 检查什么 |
+|---|---|
+| `isVideoContinuationRangeSupported` | 选区本身合不合法 |
+| `isVideoContinuationSourceDurationSupported` | 源视频时长够不够 |
+| `isVideoContinuationSelectionSupported` | `前两个 && range.endSec <= sourceDuration` |
+
+⇒ ⭐ 对上文案表里那几条：
+`请截取续写前置视频` 就是让人在源视频上拖一个 `range`；
+`退出续写模式` 是退出这个截取状态；
+`续写 {nodeLabel}` 里的 `nodeLabel` 是**源视频的名字**
+（所以续写是一个**新节点**，名字带源视频名）；
+`当前模型或模式不支持智能续写` 对应 `continuationDisabled`。
+
+> ⛔ **本手册没有一条是在界面上验的**（除「界面上没有」这一条）。
+> 原因很实在：**工具条要给「已经有视频内容」的节点用**，
+> 而本手册画布上的两个视频节点**都是空态**（卡片上只有播放三角 + 「尝试：」三项），
+> 而生成一段真视频要花积分 —— ⛔ 不在本手册的授权范围内。
+> ⛔ `续写` 还会牵出 Seedance 承诺书签署（`请先阅读并同意 Seedance 协议`），同样不代做。
+> 📖 所以这 21 个动作**在界面上各是什么样子**，仍然全部未验。
 
 #### ⭐ 图片编辑器（`imgEditor*`，手册一个字都没写；**FP 找到了同族的一组**）
 
@@ -1679,7 +1743,7 @@ runCount:      e.counter?.runCount,
 |---|---|---|
 | `characterStudio*`（角色造型室） | **747**（最大的一块） | `正在准备实时预览…` · `退出多选` · `暂无我的角色` · `查看角色资产` · `生成新角色` · `创建你的新角色` · `描述你的角色特征` |
 | `chatTool*`（Agent 工具调用） | 127 | `正在编排画布` · `画布编排已完成` · `画布已创建` · `正在查找画布` · `画布节点已读取` · `正在搭建3D场景` |
-| `scriptV2*`（脚本 V2） | **93** | `自己编写分镜脚本` · `批量生成分镜` · `批量生视频` · `画幅比例` |
+| `scriptV2*`（脚本 V2） | **93** | ⭐ **FQ 已结案**：就是「脚本生成器」节点，详见 [脚本节点](10-tasks/script-node.md) |
 | `createSubject*` | 80 | 主体创建相关 |
 | `publish*` / `share*` | 80 / 59 | 手册对应章节已覆盖，此处不重复 |
 
