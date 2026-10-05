@@ -1406,13 +1406,23 @@ _PNG = "screenshots/24-video-process-menu.png"
 _PNG_COMMIT = "761106b9"
 
 
-def _load_gate():
-    """把闸当模块装进来——**只为调它的两个函数**，不改它一个字节。"""
+def _load_gate(path=None):
+    """把闸当模块装进来——**只为调它的函数**，不改它一个字节。
+
+    **Batch 284 加了 `path` 参数**：用例 52 要在**沙箱里**装闸，
+    **因为它得看沙箱自己的树**（`_tree_fingerprint()` 恒等于「闸自己脚下那棵树」，
+    **而那正是它的设计**——**判据量的是自己所在的那棵树，不接受外部指定**）。
+    """
     import importlib.util
-    spec = importlib.util.spec_from_file_location("gate283", GATE)
+    p = path or GATE
+    spec = importlib.util.spec_from_file_location("gate_b283_%d" % abs(hash(p)), p)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
+
+
+def _load_gate_from(path):
+    return _load_gate(path)
 
 
 def _fake_history_tree():
@@ -1550,6 +1560,109 @@ def m_fleet_broken_builder_wired():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 50–52 指纹跳过表（**Batch 284**）─────────────────────────────────
+def m_skip_table_tracked_file_reported():
+    """**能抓**：跳过表里塞一个装着已入库文件的目录名 → 必须点名那个文件。
+
+    **本批的起因**：`.vitepress` 被当成构建产物整目录跳过，
+    **而它里面唯一的已入库文件是 `.vitepress/config.mjs`**——
+    **一份手维护的发布配置，14 份闸与反验读它**（语言 / 部署模式 / 特性开关 / 错误分类）。
+    **跳整目录 = 方向十九对它失明**，而「改它」正是会让多个闸基线前提失效的那种动作。
+
+    **注入直接在内存里做**（`g._FP_SKIP_DIRS = (".vitepress",) + ...`），
+    **不碰闸的源码**——**所以它不需要任何源码锚点，改前改后都成立**，
+    **而对照组记成「红」而不是「作废」**（纪律：作废 = 这条什么都没验）。
+    """
+    check_anchor()
+    g = _load_gate()
+    orig = g._FP_SKIP_DIRS
+    g._FP_SKIP_DIRS = (".vitepress",) + orig
+    try:
+        probs = g._check_skip_table()[0]
+        record("50 跳过表里塞进装着源文件的目录→必报并点名",
+               any("没有" not in x and ".vitepress" in x and "config.mjs" in x
+                   for x in probs),
+               "报了 %d 条%s" % (len(probs),
+                                ("：%s" % probs[0][:70]) if probs else "（一条都没报）"))
+    finally:
+        g._FP_SKIP_DIRS = orig
+
+
+def m_skip_table_clean_and_config_fingerprinted():
+    """**不误伤**：现状一条都不报，**而且 `.vitepress/config.mjs` 必须在指纹里**。
+
+    **后半句才是这条用例的真正内容**：
+    **只断言「没报」的话，一个「压根没看见那个文件」的判据也能过**——
+    **而那正是本批要治的病**（它在改之前就是那样的）。
+    **所以这里把「它必须被看见」直接钉成断言。**
+
+    **指纹里那 284 条是量出来的，不是写死的**——
+    **写死条目数会在手册长一篇文章时立刻过期，而那与本条要验的性质无关**
+    （同族：`_fleet_in_sandbox()` 把「真跑份数」从硬编码改成读输出）。
+    """
+    check_anchor()
+    g = _load_gate()
+    probs = g._check_skip_table()[0]
+    fp = g._tree_fingerprint()
+    key = ".vitepress/config.mjs"
+    record("51 现状一条不报，且 config.mjs 确实进了指纹",
+           not probs and key in fp,
+           "报了 %d 条；指纹 %d 条；%s %s"
+           % (len(probs), len(fp), key,
+              "在里面" if key in fp else "**不在里面（方向十九对它失明）**"))
+    assert len(fp) > 200, "前提失配：指纹只有 %d 条，沙箱大概没建起来" % len(fp)
+
+
+def m_skip_nested_filter_works():
+    """**嵌套过滤真的生效**——**今天它在手册树里是死的**。
+
+    **为什么现在就得测**：表里新加的 `.vitepress/cache` / `.vitepress/dist`
+    **在手册树里一个都不存在**，所以**「按相对路径过滤」这个改动今天不改变任何指纹结果**。
+    **而一个不改变任何结果的改动，下一个人会以为它已经「验过了」**——
+    **它没有，它只是还没被触发。**
+
+    **所以本例自己造那三个目录**：在沙箱里建 `.vitepress/cache/x.png`，
+    **断言它不在指纹里，而同目录的 `config.mjs` 在**。
+    **一个「连父目录一起跳」的写法会在这里露馅**（`x.png` 和 `config.mjs` 一起消失）。
+    """
+    check_anchor()
+    #: **必须是 `sandbox_full()` 而不是 `sandbox()`**——**第一版用了后者，红了**：
+    #: `sandbox()` 只搬 `scripts/`，**而本例要验的恰恰是 `.vitepress/` 底下有没有被跳**，
+    #: **那棵树里压根没有 `.vitepress`，于是「config.mjs 不在指纹里」不是因为被跳了，
+    #: 而是因为它不存在**——**两种「不在」在报告上完全一样**
+    #: （与 Batch 281 那次「建不出树」与「没东西要跑」必须分开，同一条）。
+    tmp = sandbox_full()
+    try:
+        #: **`sandbox_full()` 有意排除 `.vitepress`**（Batch 254 立的规矩，
+        #: 正是那份排除让两份反验在沙箱里跑不通）——
+        #: **而本例要验的就是 `.vitepress/` 底下有没有被跳**，
+        #: **所以必须自己把它搬进去**。
+        #: **第二版栽在同一个地方**：先用了 `sandbox()`（只搬 `scripts/`），
+        #: **于是「config.mjs 不在指纹里」不是因为被跳，而是因为它压根不存在——
+        #: **而这两种「不在」在报告上完全一样**。
+        shutil.copytree(os.path.join(ROOT, ".vitepress"),
+                        os.path.join(tmp, ".vitepress"))
+        for d in ("cache", "dist", ".temp"):
+            p = os.path.join(tmp, ".vitepress", d)
+            os.makedirs(p, exist_ok=True)
+            with open(os.path.join(p, "x.png"), "w", encoding="utf-8") as fh:
+                fh.write("fake cache artifact")
+        g = _load_gate_from(os.path.join(tmp, "scripts",
+                                         "verify-selftest-bootable.py"))
+        fp = g._tree_fingerprint()
+        gone = [k for k in fp if k.startswith(".vitepress/")]
+        cache_seen = any("cache" in k for k in gone)
+        cfg_seen = ".vitepress/config.mjs" in fp
+        record("52 产物子目录被跳、同目录的 config.mjs 仍进指纹",
+               (not cache_seen) and cfg_seen,
+               "指纹里 .vitepress/* 剩 %d 条：%s；config.mjs %s"
+               % (len(gone), gone[:3] or "无",
+                  "在内" if cfg_seen else "**不在**"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+
 def check_own_ledger_row():
     """本反验**自己核自己那一行**的「例数」——因为方向十七够不到它。
 
@@ -1599,7 +1712,10 @@ def main():
              m_fleet_copy_leaves_real_tree_untouched,
              m_fleet_exclusion_accounted_as_by_design,
              m_fleet_fake_history_reported, m_fleet_stale_overlay_reported,
-             m_fleet_real_history_not_reported, m_fleet_broken_builder_wired]
+             m_fleet_real_history_not_reported, m_fleet_broken_builder_wired,
+             m_skip_table_tracked_file_reported,
+             m_skip_table_clean_and_config_fingerprinted,
+             m_skip_nested_filter_works]
     for t in tests:
         try:
             t()

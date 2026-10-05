@@ -356,7 +356,7 @@ SELFTEST_COSTS = {
     "selftest-scope.py": 0.4,
     "selftest-screenshots-literals.py": 14.0,   # **Batch 275 重测三次：13.33 / 13.16 / 13.82 秒，取大并留余量**。原登记 30.1 秒，**而它已从 SLOW 里移出**（实测早已掉到阈值下）
     "selftest-screenshots.py": 0.7,
-    "selftest-selftest-bootable.py": 1668.0,   # **Batch 281 重测：43 例实测 1668.0 秒**（此前 384.0 是 **Batch 210 的 26 例基线**，而 Batch 254 已实测 877 秒**却只改了 `SLOW` 没改这一处**——**方向四e 报绿只是因为那个过期值偏低**，把比值压到了 3.0 倍上限之下，纪律 310 的又一个假绿）。**Batch 282 重测：45 例 1512 秒**（比 43 例的 1668 **更快**——**真跑搬进副本树顺带快了 12 秒**），**按纪律 204 保留较大的那个作为高水位，不下调**。**Batch 283 重测：49 例 1461 秒**（又快了 51 秒——**本批加的 4 例只花 13.3 秒，而用例 24/26 各自要在沙箱里真跑整个闸 18**；**快的那部分来自把 `_real_repo` 做成 `rev-parse`**），**同样保留 1668.0 不下调**——**下调要的是同一套测法重测三遍，不是一次更快的数**）
+    "selftest-selftest-bootable.py": 1668.0,   # **Batch 281 重测：43 例实测 1668.0 秒**（此前 384.0 是 **Batch 210 的 26 例基线**，而 Batch 254 已实测 877 秒**却只改了 `SLOW` 没改这一处**——**方向四e 报绿只是因为那个过期值偏低**，把比值压到了 3.0 倍上限之下，纪律 310 的又一个假绿）。**Batch 282 重测：45 例 1512 秒**（比 43 例的 1668 **更快**——**真跑搬进副本树顺带快了 12 秒**），**按纪律 204 保留较大的那个作为高水位，不下调**。**Batch 283 重测：49 例 1461 秒**（又快了 51 秒——**本批加的 4 例只花 13.3 秒，而用例 24/26 各自要在沙箱里真跑整个闸 18**；**快的那部分来自把 `_real_repo` 做成 `rev-parse`**），**同样保留 1668.0 不下调**——**下调要的是同一套测法重测三遍，不是一次更快的数**。**Batch 284 重测：52 例 1539 秒**（比 49 例的 1461 慢——**本批加的 3 例只花 1.0 秒，慢的那部分来自把方向二十一接进每次闸运行**，而它自己只要 0.022 秒；**余下的是机器波动，同一批的两轮差 5%**））
     #: **Batch 247 重测**：三次实测 7.33 / 6.95 / 7.11 秒，**而原登记值是 0.7——低估了十倍**。
     #: 9 例里每例都 `copytree` 一整份 `scripts/`（103 个 selftest-* 加 36 个闸）再起一个子进程跑被测闸，
     #: **耗时几乎全在重复拷贝上**。**`seconds` 是预算上限而不是实测均值，
@@ -1034,6 +1034,69 @@ def _make_fleet_tree():
 
 
 
+def _check_skip_table():
+    """**方向二十一（Batch 284 新增）**：指纹跳过表里**每一项都必须不含已入库文件**。
+
+    **为什么要有这道闸，而不只是把 `.vitepress` 改对一次**：
+    **跳过表是一句断言，而断言会过期。**
+    **Batch 281 写上 `.vitepress` 的理由是「它看起来像构建产物」**，
+    **而那个目录里唯一的已入库文件是一份手维护的发布配置**
+    （`config.mjs`：语言 / 部署模式 / 特性开关 / 错误分类，**14 份闸与反验读它**）。
+    **跳整目录 = 方向十九对它失明**，
+    **而「改它」恰好是会让多个闸的基线前提失效的那种动作**。
+
+    **判据问的是「表里那些名字底下有没有人」，而不是「它们像不像产物」**——
+    **「像不像」是判断，「有没有人」是事实，而只有事实能核。**
+
+    **两个方向缺一不可**：
+      **能抓**：往表里塞一个装着已入库文件的目录名 → 点名那个文件；
+      **不误伤**：现状一条不报，**并且顺带报出「表里有几项在树里根本不存在」**——
+      **那不是错，而是一条有用的信息**（**它说明那几项是「防未来」而不是「现在有用」**）。
+
+    **⚠️ 它只核**目录**表，不核后缀表**——**而那一项也查过**：
+    六个后缀（`.pyc` / `.pyo` / `.pyd` / `.log` / `.tmp` / `.swp`）实测各 0 份已入库。
+    **留一句在这儿，是因为「只查了一半」本身要写出来**
+    （**数与列出来的东西要对得上**，纪律 291）。
+
+    **代价**：一次 `git ls-files`（手册树 499 个文件），**毫秒级**。
+    """
+    r = subprocess.run(["git", "-C", ROOT, "ls-files"],
+                       capture_output=True, text=True)
+    if r.returncode != 0:
+        #: **返回形状不因「问不出来」而改变**——**三段固定，
+        #: `covered` 为 `None` 表示整轮没核**（纪律 156：
+        #: **「问不出来」不许长得像「核过了」**）。
+        #: **⚠️ Batch 284 整轮红了的教训（第一版）**：这里原本返回一条**问题**，
+        #: **而那行 `problems` 一非空，闸末尾整个「反验启动核对」明细块就被换成
+        #: 「有 1 处问题」+ 一行 ✗**——**于是 6 个毫不相干的检查从输出里一起消失**，
+        #: **5 条「必须不报」的反验用例与 2 条前提用例一起变红/作废**。
+        #: **一个方向的「本轮没核」不该有能力关掉别人方向的输出。**
+        #:
+        #: **改法照闸里既有的先例**（方向十五/十六/十七在这同一种环境下的写法）：
+        #: **打一行 `[不适用] …本轮没核——如实报出，不装作核过了`，不进 `problems`。**
+        #: **纪律 156 的原话是「没核 ≠ 核过」，而它没说「没核 = 查出问题」。**
+        return ([], None, None,
+                "问不出已入库文件清单（`git ls-files` 失败）")
+    tracked = [x for x in r.stdout.splitlines() if x]
+    problems = []
+    covered = []
+    for d in _FP_SKIP_DIRS:
+        pre = d.rstrip("/") + "/"
+        hit = [x for x in tracked if x == d or x.startswith(pre)]
+        if hit:
+            problems.append(
+                "方向二十一：指纹跳过表里的 `%s` **底下有 %d 份已入库文件**"
+                "（%s）　→ 方向十九因此对它失明；"
+                "**产物目录请写精确到子目录**（如 `.vitepress/cache`），"
+                "**别连父目录一起跳**——**父目录里往往还住着源文件**"
+                % (d, len(hit), "、".join(hit[:3])))
+        else:
+            covered.append(d)
+    absent = [d for d in covered
+              if not os.path.isdir(os.path.join(ROOT, *d.split("/")))]
+    return problems, covered, absent, None
+
+
 def _check_fleet_env(fleet_repo, fleet_manual):
     """副本树的两条环境性质（**Batch 283 新增**）。返回问题列表，**空 = 通过**。
 
@@ -1115,9 +1178,34 @@ def _check_fleet_env(fleet_repo, fleet_manual):
 
 #: `_check_fleet_env` 与 `_tree_fingerprint` **必须用同一张跳过表**——
 #: **两张表不一样的话，「只真树有」会凭空多出一整类**，而那与覆盖有没有生效无关。
-_FP_SKIP_DIRS = (".git", "node_modules", ".vitepress", "dist", "__pycache__",
-                 ".pytest_cache")
-_FP_SKIP_SUFFIX = (".pyc", ".pyo", ".pyd", ".log", ".tmp", ".swp")
+#: **Batch 284 把 `.vitepress` 从这里拿掉了**——**它是这张表里唯一一个
+#: 装着已入库文件的条目**（`.vitepress/config.mjs`，4808 字节，
+#: **手维护的发布配置，14 份闸与反验读它**：语言 / 部署模式 / 特性开关 / 错误分类都在里面）。
+#:
+#: **当初为什么写上它**：`.vitepress` 这个名字看起来像构建产物，
+#: **而 Batch 281 上线首跑撞到的假红确实是 `__pycache__/*.pyc`**，
+#: **顺手把 vitepress 的缓存目录也一起跳了**——
+#: **于是「跳 `.vitepress/cache`」被写成了「跳 `.vitepress`」**。
+#: **目录里现在只剩一个手维护的 `config.mjs`，产物目录一个都没有**
+#: （实测 `git ls-files .vitepress/` 只回 1 份，且 `cache` / `dist` 在树里不存在）。
+#:
+#: **这就是纪律 288 的第四个形态**（前三个：豁免表的前提过期、方向四g 的理由过期、
+#: 「已经实现」不等于「已验证」）：**照搬一条过期的理由，就是照搬一个看不见的洞**。
+#:
+#: **改成精确到产物子目录**——**而这两个目录现在都不存在**，
+#: **所以这条改动今天不改变任何指纹结果，它改的是「明天 `.vitepress` 里多一个源文件时」的命运**。
+_FP_SKIP_DIRS = (".git", "node_modules", "dist", "__pycache__", ".pytest_cache",
+                 ".vitepress/cache", ".vitepress/dist", ".vitepress/.temp",
+                 ".vitepress/.vitepress-temp")
+#: **Batch 284 补上 `.DS_Store`**——**而它是一个「文档早就写了、代码一直没做」的那一类**：
+#: `_tree_fingerprint()` 的 docstring 从 Batch 281 起就列着 `.DS_Store`，
+#: **而 `skip_suffix` 里从头到尾没有它**。
+#: **实测树里真有两份**（`screenshots/.DS_Store`、`.vitepress/.DS_Store`，均未入库），
+#: **而 macOS 会在任何目录列表变化时重写它**——**一次假红的现成配方**。
+#: **本批把 `.vitepress` 从跳过表里拿出来之后，这个风险从「理论上」变成「更可能」**：
+#: **那份 `.DS_Store` 正在 `.vitepress/` 里**。
+#: **文档与代码不一致，是「那句话说了不算」的一种**（纪律 107 的注释版）。
+_FP_SKIP_SUFFIX = (".pyc", ".pyo", ".pyd", ".log", ".tmp", ".swp", ".DS_Store")
 
 
 def _not_run_reasons(fleet_all, fleet):
@@ -1174,18 +1262,32 @@ def _tree_fingerprint():
     **而一个每次都喊「有东西变了」的判据，只会教人学会忽略它**
     ——**这正是纪律 143 的原话，而它这次是本批自己撞上的**。
     **所以跳过表扩成「解释器与构建工具自己产生的产物」**：
-    `.git` / `node_modules` / `.vitepress` / `dist` / `__pycache__` / `*.pyc` / `.DS_Store`。
+    `.git` / `node_modules` / `dist` / `__pycache__` / `*.pyc` / `.DS_Store`。
+
+    **⚠️ Batch 284 从这张表里拿掉了 `.vitepress`**（**Batch 281 写上它时是个静默的错误**）：
+    **该目录里唯一的已入库文件是 `.vitepress/config.mjs`——一份手维护的发布配置，
+    14 份闸与反验读它**。**跳过整目录等于让方向十九对它失明**，
+    **而「改它」正是会让多个闸的基线前提失效的那种动作。**
+    **产物目录另有其名**（`cache` / `dist` / `.temp`），已逐个列进 `_FP_SKIP_DIRS`。
+    **而方向二十一负责让这张表以后不再骗人**（见 `_check_skip_table()`）。
     **边界照写清楚**：**本方向数的是「手册的原有文件」**，
     **而这三类产物都不在其中**（**真要连未跟踪文件一起管，那是闸 38 的活**）。
     """
     import hashlib
     out = {}
-    skip_dirs = (".git", "node_modules", ".vitepress", "dist", "__pycache__",
-                 ".pytest_cache")
+    skip_dirs = _FP_SKIP_DIRS
     #: **`:memory:` 之外的字节码后缀**：不是目录，而是文件名的一部分。
-    skip_suffix = (".pyc", ".pyo", ".pyd", ".log", ".tmp", ".swp")
+    skip_suffix = _FP_SKIP_SUFFIX
     for dirpath, dirnames, filenames in os.walk(ROOT):
-        dirnames[:] = [d for d in dirnames if d not in skip_dirs]
+        #: **Batch 284：按**相对路径**过滤，而不是按目录名过滤**——
+        #: **表里现在有 `.vitepress/cache` 这种带层级的名字**，
+        #: **而 `d not in skip_dirs` 那种写法永远匹配不上它们**
+        #: （**`d` 只是最后一段的名字**——**那正是当初把
+        #: 「跳 `.vitepress/cache`」写成「跳 `.vitepress`」的技术原因，
+        #: 而技术原因最容易伪装成纪律**）。
+        rel = os.path.relpath(dirpath, ROOT)
+        dirnames[:] = [d for d in dirnames
+                       if os.path.normpath(os.path.join(rel, d)) not in skip_dirs]
         for fn in filenames:
             if fn.endswith(skip_suffix):
                 continue
@@ -2431,6 +2533,19 @@ def main():
     if fleet_root:
         shutil.rmtree(fleet_root, ignore_errors=True)
     _stale = sorted(set(TREE_WRITE_EXEMPT) - set(tree_writes))
+    #: **方向二十一（Batch 284）**：指纹跳过表本身要被守着。
+    _skip_p, _skip_cov, _skip_absent, _skip_note = _check_skip_table()
+    problems.extend(_skip_p)
+    if _skip_note is not None:
+        #: **[不适用] 的措辞照抄方向十五/十六/十七**——**闸里已经有这个先例，
+        #: 而一个「新方向」不按已有先例写，就要靠一轮 52 例才发现它会误伤**。
+        print("  方向二十一：[不适用] %s，**「跳过表有没有藏人」这一项本轮没核**"
+              "——如实报出，不装作核过了" % _skip_note)
+    else:
+        print("  方向二十一：指纹跳过表 %d 项，**含已入库文件的 %d 项**"
+              "（另有 %d 项在树里根本不存在——**那不是错，"
+              "那说明它们是「防未来」而不是「现在有用」）"
+              % (len(_FP_SKIP_DIRS), len(_skip_p), len(_skip_absent)))
     print("  方向十九：真跑期间 **%d 份**反验改动了手册树"
           "（已登记豁免 %d、新命中 %d）；指纹代价 %.2f 秒；%s%s"
           % (len(tree_writes), len(tree_writes) - len(_new), len(_new), fp_cost,
