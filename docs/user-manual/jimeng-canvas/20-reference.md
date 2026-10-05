@@ -2419,6 +2419,7 @@ style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
 | **`external`（导演台）** | 1 | **`No resources: 0 ready, 0 processing, 0 failed. Not selected.`** | ❌ sr-only |
 | `text` | 3 | `双击编辑文本` ×2、`测试文字样例` ×1 | ✅ **看得见** |
 | **`image`（`b22-upload`）** | 1 | *(宿主存在，`innerText` **为空**)* —— 🔴 批次 181 订正：这**只是取数方法的缺陷**，`alt` 上逐字是 `1 resource. Current preview: 图片已就绪. Not selected.` | 有面积 `148×83`、**正文无字但 `alt` 有字** |
+| 🆕 **`subject`（主体）** | **0（普查时画布上没有这种节点）** | 🔴 **批次 187 补测**：临时建一个空主体节点读到 `SPAN.sr-only`、`0×0`，逐字 **`Empty subject: main missing, 0 auxiliaries, voice missing. Selected.`**（末尾 `Selected.` 是因为新建节点**自动选中**） | ❌ sr-only（但同一段文字**也出现在节点可见区域**） |
 
 ⇒ **每个类型只有 1 种描述**，唯一的例外是 `text`（2 种）—— 而那 2 种**就是节点自己的正文**
 （`双击编辑文本` 是空文本节点的占位、`测试文字样例` 是它的内容）。
