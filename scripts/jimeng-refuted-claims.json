@@ -864,6 +864,28 @@
    "pattern_note": "两条 pattern 都是**纯中文词组、不含任何正则元字符**：第一条命中 SOURCE_OBSERVATIONS §4.95.2 的小节标题「✅ 入口链：**必须新建节点**，点已有节点弹不出来」；第二条命中 90-troubleshooting.md 的条目标题。🔴 本条 pattern 改了**两次**才过门：v1「点已有的节点弹不出来」在我写的正文里是**逐字加粗**的（`点**已有的**图片节点**不会**弹出`），所以字面串匹配不到；v2 干脆把加粗也放进 pattern ⇒ **`*` 是正则元字符，门直接 SyntaxError 崩**。⇒ 立规补充：**pattern 里既不能有括号，也不能有 `*` `+` `?` `[` `]` `{` `}` `|` `^` `$` `\\` `.`；最稳的做法是只挑那些**没有加粗标记**的中文词组当锚点。",
    "refuted_in": "批次 172（SOURCE_OBSERVATIONS.md §4.95.2；10-tasks/prepare-generation.md 新增「「图片尺寸选项」面板的尺寸机制」整节；90-troubleshooting.md 新增「点已有的图片节点，找不到「比例 / 分辨率」那个按钮」）",
    "reason": "2026-10-05 批次 172：a 轮点那个**已经出好图**的图片节点（b22-upload，带 317px 的 IMG），参数行里**只有缩放菜单、没有尺寸按钮**；c 轮按批次 134 的护栏**新建**一个图片节点，生成表单自动展开，参数行里才出现 aria 逐字「图片尺寸选项: 1:1 · 2K · 1」的按钮。⇒ 这类参数面板是**空节点/新建态**才有的，找入口时只试「点已有节点」会直接判成「没有这个功能」。同批还踩到第二个坑：建**文本**节点同样不弹（只有图片节点才自动弹表单），所以入口要连「建哪种节点」一起试。"
+  },
+  {
+   "id": "size-panel-video-renders-outside-node-toolbar",
+   "label": "把「视频尺寸选项渲染在 node-toolbar 外部、图片在内部」当成两者的结构差异",
+   "patterns": [
+    "渲染在 `node-toolbar` 外部",
+    "渲染位置相反"
+   ],
+   "pattern_note": "两条 pattern 都锚在**被订正的原文**上（任务页那张表的容器行、以及小节引言那句「渲染位置相反」），命中处紧邻「已订正」「两侧都在」等标记。都不含正则元字符。",
+   "refuted_in": "批次 173（SOURCE_OBSERVATIONS.md §4.96.2；10-tasks/prepare-generation.md 订正那张表并新增「两侧不是同一套实现」整节）",
+   "reason": "2026-10-05 批次 173：a 轮量到视频侧 面板.closest('[data-testid=node-toolbar]') === true，与手册原写相反；因为批次 162 记过 node-toolbar 这个 testid 被复用、页面同时有两个实例，所以 b 轮两侧用同一套代码把祖先链逐层打出来 —— 两侧完全同形（role=dialog → relative w-full min-w-0 → relative min-w-0 flex-1 → flex min-h-8 w-full → flex w-full shrink-0 → FORM → generation-input-panel-shell → node-toolbar-feature-host → node-toolbar → react-flow__renderer），唯一差别是第 5 层 FORM 的 testid（video-generation-form vs generation-form）。⇒ 原写那行已订正。真正的差异在宽度机制：图片侧是内联 width:432px 加 class 夹取 max-w-canvas-generation-size-panel-viewport（即 min(432,100vw−32)，门槛 464），视频侧只有 class w-[334px]、**完全没有夹取**（computed max-width: none），八档实测恒 334；按 min(334,vw−32) 预测 360 档应为 328，实测 334，预测被否。"
+  },
+  {
+   "id": "delete-node-by-id-is-enough",
+   "label": "以为「按 node id 认人 + 右键几何中心点删除」就足以删对节点",
+   "patterns": [
+    "读 `.react-flow__node.selected` 的 `data-id`",
+    "落点用标题"
+   ],
+   "pattern_note": "两条 pattern 都锚在**订正后的正解**上（SOURCE_OBSERVATIONS §4.96.4 的 ① ② 两步、以及 PROGRESS 的立规 44 补强行），命中处紧邻「正解」「补强」等标记。都不含正则元字符。",
+   "refuted_in": "批次 173（SOURCE_OBSERVATIONS.md §4.96.4；PROGRESS.md 批次 173 的「立规 44 补强」行）",
+   "reason": "2026-10-05 批次 173：b 轮清理临时节点时按 id 找到目标、滚进视口、在**几何中心**右键 —— 结果**节点总数从 78 掉到 77，而目标 id 还在** ⇒ 删掉的是**另一个**节点（两个临时节点挨着，中心点落在别的节点上）。⇒ 立规 44 原来只写「按 id 认人 + 删完验明」不够，**右键落点本身也可能落到别的节点上**。补强三条：① 落点用 flow-node-title 的中心而不是几何中心（中心常被把手热区或别的节点盖住）；② 右键后读 .react-flow__node.selected 的 data-id，确认是目标再点删除；③ 删后按同一个 id 验它不在了，并顺带验原有节点还在。"
   }
  ]
 }

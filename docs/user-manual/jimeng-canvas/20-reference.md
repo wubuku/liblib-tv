@@ -2176,3 +2176,28 @@ style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
 
 ⇒ **两处都验证了「定尺与夹取写在同一个元素上」**（一个走 class、一个走内联 style），
 **没有「包裹层 vs 面板本体」的分家**。
+
+### ⚠️ 同名弹层、不同实现：图片 vs 视频 的「尺寸选项」（批次 172–173 对照实测）
+
+两个面板**条目结构相同**（`role="dialog"` ＋ 三个 `role="listbox"`：**选择比例 / 选择分辨率 / 选择生成数量 options**），
+**祖先链也逐层相同**（都挂在 `FORM[video-generation-form]` 或 `FORM[generation-form]`
+→ `generation-input-panel-shell` → `node-toolbar-feature-host` → **`node-toolbar`** 里），
+🔴 **但宽度机制是两套写法**：
+
+| | 图片 `图片尺寸选项` | 视频 `视频尺寸选项` |
+|---|---|---|
+| 尺寸 | 432×292 | 334×292 |
+| **定尺来源** | **内联 `style="width: 432px"`** | **class `w-[334px]`** |
+| **视口夹取** | class `max-w-canvas-generation-size-panel-viewport`（= `calc(100vw − 32px)`） | **没有** ⇒ `max-width: none` |
+| **公式** | `min(432, 100vw−32)`，门槛 **464** | **334 恒定**（8 档全中；360 宽时仍 334） |
+| **横向对齐** | `left-0`（左对齐按钮） | `left-[var(--generation-parameter-panel-anchor-x)]` ＋ `-translate-x-1/2`（**居中**） |
+| 纵向 | 都 `bottom-full`（从按钮上方弹出） | 同 |
+| FIELDSET 宽 | 400 | 302 |
+| 变窄后 | 压缩，不滚动 | **不压缩、不滚动，会溢出屏幕** |
+
+🔴 **同一个页面上两个功能表现不一致**：窄窗口下图片面板会缩、视频面板会伸出屏幕。
+⇒ **记浮层时「同名 + 同结构」不等于「同一套机制」**（与批次 170 的余量普查同源：
+静态类名相似，实现可能分属两个组件）。
+
+📌 另注：页面同时存在 **2 个** `node-toolbar` 实例，判断「面板挂在哪个工具条里」要用
+`node.contains(面板)`，**别用「第一个 `node-toolbar`」**（与批次 162 的复用记录一致）。
