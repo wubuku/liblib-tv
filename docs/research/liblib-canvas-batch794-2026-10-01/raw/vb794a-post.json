@@ -1,0 +1,540 @@
+{
+ "batch": 794,
+ "phase": "post",
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "arm": "groupTwoDeleteOne",
+     "gid": "group-1791225634843-lqslv6",
+     "victim": "t-9j2MoccxBj",
+     "survivor": [
+      "i-1FQ9tErTcC"
+     ],
+     "before": {
+      "past": 1,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "groupDom": {
+       "t": 107,
+       "l": 148,
+       "w": 265,
+       "h": 305,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 2,
+      "members": [
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "inside": true
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "after": {
+      "past": 2,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 100,
+        "y": 241
+       },
+       "w": 682,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 256,
+       "l": 157,
+       "w": 256,
+       "h": 155,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 1,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "groupTwoDeleteOneUndo",
+     "gid": "group-1791225638724-ocelhn",
+     "victim": "t-9j2MoccxBj",
+     "before": {
+      "past": 1,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "groupDom": {
+       "t": 107,
+       "l": 148,
+       "w": 265,
+       "h": 305,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 2,
+      "members": [
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "inside": true
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "afterDelete": {
+      "past": 2,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 100,
+        "y": 241
+       },
+       "w": 682,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 256,
+       "l": 157,
+       "w": 256,
+       "h": 155,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 1,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "after": {
+      "past": 1,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "groupDom": {
+       "t": 107,
+       "l": 148,
+       "w": 265,
+       "h": 305,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 2,
+      "members": [
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "inside": true
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "groupTwoNoDelete",
+     "gid": "group-1791225643070-8fmhu6",
+     "memberIds": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ],
+     "state": {
+      "past": 1,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "groupDom": {
+       "t": 107,
+       "l": 148,
+       "w": 265,
+       "h": 305,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 2,
+      "members": [
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "inside": true
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "arm": "groupTwoDeleteOne",
+     "gid": "group-1791225646746-cbxuj5",
+     "victim": "t-9j2MoccxBj",
+     "survivor": [
+      "i-1FQ9tErTcC"
+     ],
+     "before": {
+      "past": 1,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "groupDom": {
+       "t": 107,
+       "l": 148,
+       "w": 265,
+       "h": 305,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 2,
+      "members": [
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "inside": true
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "after": {
+      "past": 2,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 100,
+        "y": 241
+       },
+       "w": 682,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 256,
+       "l": 157,
+       "w": 256,
+       "h": 155,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 1,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "groupTwoDeleteOneUndo",
+     "gid": "group-1791225650592-0nvyjo",
+     "victim": "t-9j2MoccxBj",
+     "before": {
+      "past": 1,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "groupDom": {
+       "t": 107,
+       "l": 148,
+       "w": 265,
+       "h": 305,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 2,
+      "members": [
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "inside": true
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "afterDelete": {
+      "past": 2,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 100,
+        "y": 241
+       },
+       "w": 682,
+       "h": 414
+      },
+      "groupDom": {
+       "t": 256,
+       "l": 157,
+       "w": 256,
+       "h": 155,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 1,
+      "members": [
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "after": {
+      "past": 1,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "groupDom": {
+       "t": 107,
+       "l": 148,
+       "w": 265,
+       "h": 305,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 2,
+      "members": [
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "inside": true
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    },
+    {
+     "arm": "groupTwoNoDelete",
+     "gid": "group-1791225655037-dpbm0x",
+     "memberIds": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ],
+     "state": {
+      "past": 1,
+      "groupExists": true,
+      "groupStore": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "groupDom": {
+       "t": 107,
+       "l": 148,
+       "w": 265,
+       "h": 305,
+       "b": 411,
+       "r": 413
+      },
+      "memberCount": 2,
+      "members": [
+       {
+        "id": "t-9j2MoccxBj",
+        "abs": {
+         "x": 108,
+         "y": -125
+        },
+        "w": 350,
+        "h": 200,
+        "inside": true
+       },
+       {
+        "id": "i-1FQ9tErTcC",
+        "abs": {
+         "x": 132,
+         "y": 273
+        },
+        "w": 618,
+        "h": 350,
+        "inside": true
+       }
+      ]
+     },
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}

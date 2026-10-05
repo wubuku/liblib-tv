@@ -3324,7 +3324,9 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
           canvas.id === activeCanvasId
             ? {
                 ...canvas,
-                nodes: canvas.nodes.filter((node) => !removedIds.has(node.id)),
+                nodes: fitStoryboardGroupsToChildren(
+                  canvas.nodes.filter((node) => !removedIds.has(node.id)),
+                ),
                 edges: nextEdges,
               }
             : canvas,
@@ -3358,7 +3360,9 @@ export const useCanvasStore = create<CanvasState>((set, get) => ({
           canvas.id === activeCanvasId
             ? {
                 ...canvas,
-                nodes: canvas.nodes.filter((node) => !removedIds.has(node.id)),
+                nodes: fitStoryboardGroupsToChildren(
+                  canvas.nodes.filter((node) => !removedIds.has(node.id)),
+                ),
                 edges: canvas.edges.filter(
                   (edge) => !removedIds.has(edge.source) && !removedIds.has(edge.target),
                 ),

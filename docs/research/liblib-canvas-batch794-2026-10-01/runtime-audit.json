@@ -1,0 +1,548 @@
+{
+ "batch": 794,
+ "kind": "★ 第五批改 src/ 的批次（删除路径 + 写点普查）",
+ "claims": {
+  "D794-1": "★ 删掉一个成员之后分组框**完全不收拢**（pre：框 `(76,-157) 706×812` 一动不动，而幸存者的贴合值是 `{100,241,682,414}`）",
+  "C794-2": "★ 修法 = 把同一个纯函数挂到**两个**删除写点（`removeNode` + `removeSelectedNodes`）⟹ 只修一个就是半个修复",
+  "★ 普查": "★ `canvasStore` 里把 `nodes` 写进 canvas 的地方共 17 处；本批覆盖 3 处（拖拽 1 + 删除 2），**其余 14 处未普查**",
+  "★ 撤销": "★ 撤销臂确认**框**也跟着回来（成员 2→2、框复原 `706×812`）—— 756 的教训是「唯一出路是撤销」，所以这条必须单独验",
+  "★ 未碰": "★ **0 成员的组仍然不动**（793 边界 1 / 757 待拍板 ②）⟹ 本批只修「成员减少但仍 ≥1」这一段"
+ },
+ "checks": [
+  {
+   "id": "A:★ 写点普查：共 17 处、本批覆盖 3 处、未普查 14 处",
+   "desc": "★ 普查器只**采集**，不做语义判断：把 nodes 写进 canvas 的源码形态全部列出，再由 B 逐处判定覆盖与否",
+   "ok": true,
+   "detail": {
+    "total": 17,
+    "covered": 3,
+    "uncovered": 14,
+    "sites": [
+     {
+      "line": 1176,
+      "covered": false,
+      "code": "nodes: restored.nodes,",
+      "arg": "edges: restored.edges,       viewport: restored.viewport,"
+     },
+     {
+      "line": 1422,
+      "covered": false,
+      "code": "? { ...canvas, nodes: [...canvas.nodes, textNode, scriptNode] }",
+      "arg": ": canvas,         ),"
+     },
+     {
+      "line": 1629,
+      "covered": false,
+      "code": "? { ...canvas, nodes: [...canvas.nodes, group, child] }",
+      "arg": ": canvas,         ),"
+     },
+     {
+      "line": 1677,
+      "covered": false,
+      "code": "nodes: canvas.nodes.map((node) =>",
+      "arg": "node.id === videoNodeId                     ? { ...node, data: { ...node.data, attempt: null } }"
+     },
+     {
+      "line": 1714,
+      "covered": false,
+      "code": "? { ...canvas, nodes: [...canvas.nodes, newNode] }",
+      "arg": ": canvas,         ),"
+     },
+     {
+      "line": 3112,
+      "covered": false,
+      "code": "nodes: canvas.nodes.map((node) => {",
+      "arg": "if (node.id !== targetId) return node;                   const nextData = { ...node.data };"
+     },
+     {
+      "line": 3256,
+      "covered": false,
+      "code": "? { ...canvas, nodes: [...canvas.nodes, copiedNode], edges: [...canvas.edges, ...copiedE",
+      "arg": ": canvas,         ),"
+     },
+     {
+      "line": 3291,
+      "covered": false,
+      "code": "nodes: [...canvas.nodes, ...result.copiedNodes],",
+      "arg": "edges: [...canvas.edges, ...result.copiedEdges],               }"
+     },
+     {
+      "line": 3327,
+      "covered": true,
+      "code": "nodes: fitStoryboardGroupsToChildren(",
+      "arg": "canvas.nodes.filter((node) => !removedIds.has(node.id)),                 ),"
+     },
+     {
+      "line": 3363,
+      "covered": true,
+      "code": "nodes: fitStoryboardGroupsToChildren(",
+      "arg": "canvas.nodes.filter((node) => !removedIds.has(node.id)),                 ),"
+     },
+     {
+      "line": 3455,
+      "covered": false,
+      "code": "? { ...canvas, nodes: [groupNode, ...nextNodes] }",
+      "arg": ": canvas,         ),"
+     },
+     {
+      "line": 3496,
+      "covered": false,
+      "code": "canvas.id === activeCanvasId ? { ...canvas, nodes: nextNodes } : canvas,",
+      "arg": "),         selectedNodeIds: childIds,"
+     },
+     {
+      "line": 3516,
+      "covered": false,
+      "code": "nodes: canvas.nodes.map((node) =>",
+      "arg": "node.id === nodeId ? { ...node, data: { ...node.data, ...data } } : node,                 ),"
+     },
+     {
+      "line": 3540,
+      "covered": false,
+      "code": "? { ...canvas, nodes: storedNodes }",
+      "arg": ": canvas,         ),"
+     },
+     {
+      "line": 3742,
+      "covered": true,
+      "code": "nodes: fitStoryboardGroupsToChildren(",
+      "arg": "plan.nextNodes.map(withoutStoredNodeSelection),                     ),"
+     },
+     {
+      "line": 3827,
+      "covered": false,
+      "code": "? { ...canvas, nodes: previous.nodes, edges: previous.edges }",
+      "arg": ": canvas,         ),"
+     },
+     {
+      "line": 3854,
+      "covered": false,
+      "code": "? { ...canvas, nodes: next.nodes, edges: next.edges }",
+      "arg": ": canvas,         ),"
+     }
+    ]
+   },
+   "claim": "★ 覆盖面是**从源码数出来的**，不是手写数字。★ 未普查的 14 处**不许**被说成「也覆盖了」"
+  },
+  {
+   "id": "B:★ 两个删除写点**都**挂了重算",
+   "desc": "★ `removeNode` 与 `removeSelectedNodes` 是同一条路径的两个半边；只修一个就是半个修复（791 的教训）",
+   "ok": true,
+   "detail": {
+    "删除写点": [
+     {
+      "line": 3327,
+      "arg": "canvas.nodes.filter((node) => !removedIds.has(node.id)),                 ),"
+     },
+     {
+      "line": 3363,
+      "arg": "canvas.nodes.filter((node) => !removedIds.has(node.id)),                 ),"
+     }
+    ],
+    "拖拽写点": [
+     3742
+    ],
+    "covered": 3,
+    "判据": "实参含 removedIds.has(node.id)"
+   }
+  },
+  {
+   "id": "B2:★★ 两个删除写点分属**两个不同的函数**",
+   "desc": "★ 同名函数里数出两处 ⟹ 可能只是同一处被写了两遍；必须确认是 `removeNode` 与 `removeSelectedNodes` 两个函数",
+   "ok": true,
+   "detail": {
+    "函数": [
+     "removeNode",
+     "removeSelectedNodes"
+    ],
+    "行": [
+     3327,
+     3363
+    ],
+    "判据": "向上找最近一个**恰好 2 空格**缩进的 `name: (` 顶层 action"
+   }
+  },
+  {
+   "id": "C:★★ post 的框精确等于按 padding 独立重算的贴合值，pre 不等",
+   "desc": "★ 用 raw 里的幸存者读数重算，**不依赖**源码公式 ⟹ 公式写错也会被抓出来",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "evidence": [
+     {
+      "phase": "pre",
+      "group": {
+       "x": 76,
+       "y": -157,
+       "w": 706,
+       "h": 812
+      },
+      "tightFit": {
+       "x": 100,
+       "y": 241,
+       "w": 682,
+       "h": 414
+      },
+      "equals": false
+     },
+     {
+      "phase": "pre",
+      "group": {
+       "x": 76,
+       "y": -157,
+       "w": 706,
+       "h": 812
+      },
+      "tightFit": {
+       "x": 100,
+       "y": 241,
+       "w": 682,
+       "h": 414
+      },
+      "equals": false
+     },
+     {
+      "phase": "post",
+      "group": {
+       "x": 100,
+       "y": 241,
+       "w": 682,
+       "h": 414
+      },
+      "tightFit": {
+       "x": 100,
+       "y": 241,
+       "w": 682,
+       "h": 414
+      },
+      "equals": true
+     },
+     {
+      "phase": "post",
+      "group": {
+       "x": 100,
+       "y": 241,
+       "w": 682,
+       "h": 414
+      },
+      "tightFit": {
+       "x": 100,
+       "y": 241,
+       "w": 682,
+       "h": 414
+      },
+      "equals": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "D:★★ 处理臂：pre 框不动、post 框收拢，且幸存者仍在框内",
+   "desc": "★ 「成员 2→1」两阶段都成立；要判的是**框有没有跟着变**",
+   "ok": true,
+   "detail": {
+    "pre": [
+     {
+      "m": [
+       2,
+       1
+      ],
+      "same": true,
+      "inside": [
+       true
+      ]
+     },
+     {
+      "m": [
+       2,
+       1
+      ],
+      "same": true,
+      "inside": [
+       true
+      ]
+     }
+    ],
+    "post": [
+     {
+      "m": [
+       2,
+       1
+      ],
+      "same": false,
+      "inside": [
+       true
+      ]
+     },
+     {
+      "m": [
+       2,
+       1
+      ],
+      "same": false,
+      "inside": [
+       true
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "E:★★ 撤销臂：成员与**框**都回来，且 `past` 真的退了一格",
+   "desc": "★ 756 的教训：「用户最自然的补救动作无效，唯一出路是撤销」——所以撤销臂必须同时验**成员**与**框**",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "evidence": [
+     {
+      "phase": "pre",
+      "before": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "afterDelete": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "afterUndo": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "members": [
+       2,
+       2
+      ],
+      "past": [
+       1,
+       1
+      ],
+      "frameRestored": true
+     },
+     {
+      "phase": "pre",
+      "before": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "afterDelete": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "afterUndo": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "members": [
+       2,
+       2
+      ],
+      "past": [
+       1,
+       1
+      ],
+      "frameRestored": true
+     },
+     {
+      "phase": "post",
+      "before": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "afterDelete": {
+       "pos": {
+        "x": 100,
+        "y": 241
+       },
+       "w": 682,
+       "h": 414
+      },
+      "afterUndo": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "members": [
+       2,
+       2
+      ],
+      "past": [
+       1,
+       1
+      ],
+      "frameRestored": true
+     },
+     {
+      "phase": "post",
+      "before": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "afterDelete": {
+       "pos": {
+        "x": 100,
+        "y": 241
+       },
+       "w": 682,
+       "h": 414
+      },
+      "afterUndo": {
+       "pos": {
+        "x": 76,
+        "y": -157
+       },
+       "w": 706,
+       "h": 812
+      },
+      "members": [
+       2,
+       2
+      ],
+      "past": [
+       1,
+       1
+      ],
+      "frameRestored": true
+     }
+    ]
+   }
+  },
+  {
+   "id": "F:★ 前置对照：造出的两成员框就是贴合值，且两阶段一致",
+   "desc": "★ 没有它，「处理臂的框变了」可能只是造组那一步本来就错",
+   "ok": true,
+   "detail": {
+    "bad": [],
+    "evidence": [
+     {
+      "phase": "pre",
+      "group": {
+       "x": 76,
+       "y": -157,
+       "w": 706,
+       "h": 812
+      },
+      "tightFit": {
+       "x": 76,
+       "y": -157,
+       "w": 706,
+       "h": 812
+      },
+      "equals": true,
+      "inside": [
+       true,
+       true
+      ]
+     },
+     {
+      "phase": "pre",
+      "group": {
+       "x": 76,
+       "y": -157,
+       "w": 706,
+       "h": 812
+      },
+      "tightFit": {
+       "x": 76,
+       "y": -157,
+       "w": 706,
+       "h": 812
+      },
+      "equals": true,
+      "inside": [
+       true,
+       true
+      ]
+     },
+     {
+      "phase": "post",
+      "group": {
+       "x": 76,
+       "y": -157,
+       "w": 706,
+       "h": 812
+      },
+      "tightFit": {
+       "x": 76,
+       "y": -157,
+       "w": 706,
+       "h": 812
+      },
+      "equals": true,
+      "inside": [
+       true,
+       true
+      ]
+     },
+     {
+      "phase": "post",
+      "group": {
+       "x": 76,
+       "y": -157,
+       "w": 706,
+       "h": 812
+      },
+      "tightFit": {
+       "x": 76,
+       "y": -157,
+       "w": 706,
+       "h": 812
+      },
+      "equals": true,
+      "inside": [
+       true,
+       true
+      ]
+     }
+    ]
+   }
+  },
+  {
+   "id": "G:两阶段各 3 臂 × 2 轮且无 FAILED",
+   "desc": "★ 探针 FAILED 就是**空读数**",
+   "ok": true,
+   "detail": {
+    "bad": []
+   }
+  }
+ ],
+ "totals": {
+  "checks": 8,
+  "assertedAnchors": 17,
+  "failed": 0
+ }
+}
