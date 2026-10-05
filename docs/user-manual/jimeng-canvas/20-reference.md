@@ -2350,30 +2350,60 @@ style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
 但它还有**第二半**：`aria-describedby` 指向的 `canvas-node-description-<节点 id>`。
 批次 176 普查发现**全页 77 个描述宿主，其中 76 个恰好等于节点数** —— 即**每个节点一条**。
 
-### 七种描述文案（76 个节点逐条统计）
+### 类型 × 描述文案：交叉表（2026-10-05 批次 180 逐 id 重建）
 
-| 描述逐字 | 几个 | 节点类型 | 画布上看得见吗 |
+🔴 **这张表是批次 180 重建的**。批次 176 原来是「**先按文案分组、再凭印象把类型补上去**」，
+而这两件事是**独立**的 —— 分组只告诉你「有几种文案」，不告诉你「哪种类型用哪一种」。
+批次 179 就是在这个缺口上翻的车：它把 `0 ready` 那一条归给**图片**、
+把「空描述」归给**导演台**，**两处都写反了**（已订正，见下）。
+
+**逐个节点**读 `id` ＋ 类型 class ＋ 描述，建出来的交叉表：
+
+| 类型 class | 节点数 | 描述逐字 | 画布上看得见吗 |
 |---|---|---|---|
-| `No resources. Current preview: 暂无音频. Not selected.` | **68** | 音频 | ❌ sr-only |
-| `双击编辑文本` | 2 | 文本 | ✅ **看得见** |
-| `时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.` | 2 | 时间线 | ❌ sr-only |
-| `No resources. Current preview: 暂无视频. Not selected.` | 1 | 视频 | ❌ sr-only |
-| `测试文字样例` | 1 | 文本 | ✅ **看得见** |
-| `No resources: 0 ready, 0 processing, 0 failed. Not selected.` | 1 | **导演台** 🔴 | ❌ sr-only |
-| *(innerText 为空)* | 1 | **图片 `b22-upload`** 🔴 | ❌（但有面积 `148×83`） |
+| `audio` | **68** | `No resources. Current preview: 暂无音频. Not selected.` | ❌ sr-only |
+| `video` | 1 | `No resources. Current preview: 暂无视频. Not selected.` | ❌ sr-only |
+| `timeline` | 2 | `时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.` | ❌ sr-only |
+| **`external`（导演台）** | 1 | **`No resources: 0 ready, 0 processing, 0 failed. Not selected.`** | ❌ sr-only |
+| `text` | 3 | `双击编辑文本` ×2、`测试文字样例` ×1 | ✅ **看得见** |
+| **`image`（`b22-upload`）** | 1 | *(宿主存在，`innerText` **为空**)* | 有面积 `148×83`、**无文字** |
 
-🔴 **「没有资源」有两套完全不同的措辞**，而且**手册只记了其中一套**：
-- 音频（68）/ 视频（1）走 **`No resources. Current preview: 暂无音频.`**（带「当前预览」）
-- **导演台**走 **`No resources: 0 ready, 0 processing, 0 failed.`**（带三个计数器）
+⇒ **每个类型只有 1 种描述**，唯一的例外是 `text`（2 种）—— 而那 2 种**就是节点自己的正文**
+（`双击编辑文本` 是空文本节点的占位、`测试文字样例` 是它的内容）。
+⇒ **`Current preview: 暂无<类型>` 这套是音视频共用的**；
+**三个计数器那套只属于 `external`（导演台）**。
 
-⇒ 手册里那句 `No resources: 0 ready, 0 processing, 0 failed.` **只对导演台节点成立**，
-音频与视频节点**从来不是这句话**（已订正）。自动化里按这一句判「空壳」会漏掉 69 个节点。
-
-🔴 **订正两处类型归属（2026-10-05 批次 179，逐 id 核对）**：
-本节初版把 `0 ready` 那一条归给图片、把「空描述」归给导演台，**两处都写反了**。
+🔴 **订正两处类型归属（2026-10-05 批次 179 逐 id 核对）**：
+批次 176 初版把 `0 ready` 那一条归给图片、把「空描述」归给导演台，**两处都写反了**。
 实测：`0 ready` 属于 **`node_pxvkay973v`（导演台）**；
 而 **`b22-upload`（图片）的 `innerText` 是空的**（有面积 `148×83`、无文字）。
-⇒ 上面那张表最后两行的类型已改正。
+⇒ 上面这张交叉表是**订正后**的版本。
+
+📌 手册另一处仍写着「`0 ready` 那句**只对导演台成立**」的提醒，
+与本表一致（批次 179 已同步订正）。
+
+🔴 **实操后果**：手册从批次 135 起一直记着那句
+`No resources: 0 ready, 0 processing, 0 failed.`，
+而它**只对导演台成立** ⇒ 自动化里按**这一句**判「空壳」**会漏掉 69 个节点**
+（68 个音频 + 1 个视频**全部漏掉**）。这条是**已订正**的旧结论。
+
+#### 两条「有元素 ≠ 有内容」的读数
+
+- **`aria-describedby` 指向 100% 符合命名规律**：
+  76/76 个节点的 `aria-describedby` 逐字等于 `canvas-node-description-<它自己的 id>`，
+  **零例外**。
+- **`image` 节点有描述宿主、有面积 `148×83`，但 `innerText` 是空的** ——
+  和批次 175 的「看见 testid ≠ 功能存在」、批次 177 的「有面积 ≠ 有原因文字」同族。
+
+#### 模板拆解：五句都以 `Not selected.` 结尾
+
+| 逐字 | 拆成句段 |
+|---|---|
+| `No resources. Current preview: 暂无视频. Not selected.` | `No resources` ／ `Current preview: 暂无视频` ／ `Not selected.` |
+| `No resources. Current preview: 暂无音频. Not selected.` | 同上，`暂无音频` |
+| `时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.` | `时间线: …0 clips` ／ `Not selected.` |
+| `No resources: 0 ready, 0 processing, 0 failed. Not selected.` | `No resources: …0 failed` ／ `Not selected.` |
+| `双击编辑文本` ／ `测试文字样例` | **无尾段**（它们是正文，不是状态播报） |
 
 ### 看得见的描述只有 3 条，全在文本节点上
 

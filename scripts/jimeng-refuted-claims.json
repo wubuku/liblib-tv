@@ -946,11 +946,11 @@
    "id": "no-resources-phrasing-is-one-sentence",
    "label": "把节点的「没有资源」当成固定的一句 No resources: 0 ready, 0 processing, 0 failed.",
    "patterns": [
-    "只对图片节点成立",
-    "这一句判「空壳」会漏掉"
+    "只对导演台成立",
+    "判「空壳」"
    ],
-   "pattern_note": "两条 pattern 都锚在**订正说明**上（20-reference「七种描述文案」小节里那两行），命中处紧邻「手册只记了其中一套」「两套完全不同的措辞」等标记。纯中文词组，不含正则元字符。",
-   "refuted_in": "批次 176（SOURCE_OBSERVATIONS.md §4.99.2；20-reference.md「每个节点都有一条描述通道」）",
+   "pattern_note": "两条 pattern 都锚在**被订正的结论**上（20-reference 交叉表下那段「实操后果」，它明说这句**只对导演台成立**、按**判「空壳」**会漏 69 个节点），命中处紧邻「已订正」标记。⚠️ 第一版 pattern 取自加粗之间的片段（`按**这一句**判…`），而 `*` 是正则元字符、且加粗会把连续片段打断 ⇒ 改成正文里**逐字连续**的短片段。均为纯中文词组，不含正则元字符。",
+   "refuted_in": "批次 179/180（SOURCE_OBSERVATIONS.md §4.102.3 与 §4.103.2；20-reference.md「类型 × 描述文案：交叉表」下方的「实操后果」段）",
    "reason": "2026-10-05 批次 176：普查 aria-describedby 的 77 个宿主（76 个 = canvas-node-description-<节点 id>，逐条对应节点），得到**七种描述文案**。其中「没有资源」是**两套不同措辞**：音频 68 个 + 视频 1 个走 `No resources. Current preview: 暂无音频.` / `暂无视频.`（带「当前预览」），而图片 1 个走 `No resources: 0 ready, 0 processing, 0 failed.`（带三个计数器）。⇒ 手册从批次 135 起一直记的那一句只对图片节点成立，音频与视频节点从来不是这句话；自动化按它判「空壳」会漏掉 69 个节点。同一批还发现：看得见的描述只有 3 条且全在文本节点上（描述元素就是节点正文区 83×83）；空闲页上 aria-disabled / :disabled 计数为零，即所有禁用态都在浮层里（立规 48 的又一次印证）。"
   },
   {
