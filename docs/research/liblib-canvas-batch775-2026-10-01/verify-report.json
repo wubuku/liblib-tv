@@ -1,0 +1,378 @@
+{
+ "batch": 775,
+ "checks": [
+  {
+   "label": "静态：DirectorDesk.tsx 恰有一处 `if (isEditable) return;`",
+   "pass": true,
+   "got": 1,
+   "want": 1
+  },
+  {
+   "label": "静态：守卫在第 487 行（R102：抹白不删，注释不漂行号）",
+   "pass": true,
+   "got": 487,
+   "want": 487
+  },
+  {
+   "label": "静态：判据找得到且含 isContentEditable",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：判据的标签集合恰为 INPUT/SELECT/TEXTAREA（无第五类）",
+   "pass": true,
+   "got": [
+    "INPUT",
+    "SELECT",
+    "TEXTAREA"
+   ],
+   "want": [
+    "INPUT",
+    "SELECT",
+    "TEXTAREA"
+   ]
+  },
+  {
+   "label": "静态：★ 判据里**没有任何**「是否在浮层内」的判断（方向① 未被实现；一旦实现本条立刻变红）",
+   "pass": true,
+   "got": [],
+   "want": []
+  },
+  {
+   "label": "静态：守卫排在 C/V/Z/Y 分支（490）与 Delete/Backspace（527）**之后**—— 即 D14 的每一个键都在守卫之下",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：守卫排在 Escape 阶梯（549）之前",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "静态：★ 已记录的**例外**——移动端抽屉的 Escape 分支（482）排在守卫（487）之前 ⟹ 桌内唯一一处「Escape 不经 isEditable 守卫」的处理，即 C774-1「Escape 必须分段」的**同仓结构先例**",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "静态：isComposing 早退也在守卫之前",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "静态：6 个浮层 panel 选择器都在源码里",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "覆盖：每轮 66 格、两轮全在（缺格/多格皆为红）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "覆盖：两轮一致（已排除 tries/retried 元数据）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：6 个浮层都测到了（无一 FAILED）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：6 个浮层**都没有非控件区** ⟹ 「层内落非控件处」产品里不存在",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：★ 每行都自证非空（控件数 > 0 且面板矩形有面积）—— 防「浮层不在 DOM / 控件数为 0 / 矩形为空」的静默通过",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "普查：★ 浮层根本来就没有 tabindex（6/6 实测 hadTabindexBefore=false）⟹ layerRoot 那个状态是**探针合成**的",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "臂 base：6/6 defaultPrevented=true（读数方法还活着，R99 的同族）",
+   "pass": true,
+   "got": 6,
+   "want": 6
+  },
+  {
+   "label": "臂 base：6/6 无 FAILED",
+   "pass": true,
+   "got": 6,
+   "want": 6
+  },
+  {
+   "label": "臂 landing：30/30 defaultPrevented=true（守卫在这五类落点上**不**触发）",
+   "pass": true,
+   "got": 30,
+   "want": 30
+  },
+  {
+   "label": "臂 landing：30/30 无 FAILED",
+   "pass": true,
+   "got": 30,
+   "want": 30
+  },
+  {
+   "label": "臂 neutral：30/30 defaultPrevented=false",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "臂 neutral：★ 30/30 键流里**确实含 F2**（否则 false 只说明键没送到，不说明判据灵）",
+   "pass": true,
+   "got": 30,
+   "want": 30
+  },
+  {
+   "label": "臂 landing：伤害格 Δ=−1 的有 20 格",
+   "pass": true,
+   "got": 20,
+   "want": 20
+  },
+  {
+   "label": "臂 landing：无伤格 Δ=0 的有 10 格",
+   "pass": true,
+   "got": 10,
+   "want": 10
+  },
+  {
+   "label": "臂 landing：★ Δ=0 的 10 格**恰好**是「目标不可删」的两层（preset/pathmenu × 5 落点）⟹ 「没伤害」≠「分支没跑」（R97）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "★ activeInLayer **只在 layerRoot 上成立**（其余 24 格为假）⟹ 「用户可达 ∧ 方向① 覆盖」这一格在这五类落点里是空的",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "前置①：30 格浮层**仍然开着**（落点动作没顺手关掉它）",
+   "pass": true,
+   "got": 30,
+   "want": 30
+  },
+  {
+   "label": "前置②：30 格**选中未变**（落点动作没改选中）",
+   "pass": true,
+   "got": 30,
+   "want": 30
+  },
+  {
+   "label": "★ raw 里**没有** userReachable 字段（可达性由落点名推导，单一真相源）",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "跨批：774 的 raw 在位",
+   "pass": true,
+   "got": true,
+   "want": true
+  },
+  {
+   "label": "跨批：774 臂 A 基线 6/6 dp=true（现算，不手抄）",
+   "pass": true,
+   "got": 12,
+   "want": 12
+  },
+  {
+   "label": "跨批：774 α 臂 dp 全为 false（现算）",
+   "pass": true,
+   "got": 60,
+   "want": 60
+  },
+  {
+   "label": "跨批：774 α 臂对象数零变化（现算）",
+   "pass": true,
+   "got": 60,
+   "want": 60
+  },
+  {
+   "label": "跨批：774 α 臂选中集零变化（现算）",
+   "pass": true,
+   "got": 60,
+   "want": 60
+  },
+  {
+   "label": "跨批：★ 774 的死键集合现算恰为 {crowd, export}（α 臂 outcome=nothing）—— 独立复现 774 的四桶结论，不引用其正文",
+   "pass": true,
+   "got": [
+    "crowd",
+    "export"
+   ],
+   "want": [
+    "crowd",
+    "export"
+   ]
+  },
+  {
+   "label": "产物：runtime-audit.json 在位",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "产物：README.md 在位",
+   "pass": true,
+   "got": true
+  },
+  {
+   "label": "产物：汇编器声明 0 个新缺陷（推翻的是我自己的暗示，记 C775-1）",
+   "pass": true,
+   "got": [],
+   "want": []
+  },
+  {
+   "label": "产物：更正恰为 C775-1（订正 774 的落点暗示）与 C775-2（收窄 774 关于守卫位置的措辞）",
+   "pass": true,
+   "got": [
+    "C775-1",
+    "C775-2"
+   ],
+   "want": [
+    "C775-1",
+    "C775-2"
+   ]
+  },
+  {
+   "label": "产物：教训为 R103/R104",
+   "pass": true,
+   "got": [
+    "R103",
+    "R104"
+   ],
+   "want": [
+    "R103",
+    "R104"
+   ]
+  },
+  {
+   "label": "产物：汇编器与我的静态读数**一致**（独立实现对上了）",
+   "pass": true,
+   "got": 487,
+   "want": 487
+  },
+  {
+   "label": "台账：Batch 775 恰有一行",
+   "pass": true,
+   "got": 1
+  },
+  {
+   "label": "台账：该行无 U+FFFD",
+   "pass": true,
+   "got": 0
+  },
+  {
+   "label": "台账：该行恰 4 个竖线（3 列）",
+   "pass": true,
+   "got": 4
+  },
+  {
+   "label": "★ README 里没有裸数字开头的 markdown 表行（会骗过 pre-commit 的 added_batch_numbers）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "README 无 U+FFFD",
+   "pass": true,
+   "got": 0
+  }
+ ],
+ "pass": 46,
+ "total": 46,
+ "negativeControls": [
+  {
+   "name": "把 landing 臂的对象变化全改成 0 ⟹ 伤害分布判据必须红",
+   "why": "证明「Δ=−1 的恰好 20 格 / Δ=0 的恰好 10 格」这条判据真有鉴别力",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "臂 landing：伤害格 Δ=−1 的有 20 格",
+    "臂 landing：无伤格 Δ=0 的有 10 格",
+    "臂 landing：★ Δ=0 的 10 格**恰好**是「目标不可删」的两层（preset/pathmenu × 5 落点）⟹ 「没伤害」≠「分支没跑」（R97）"
+   ],
+   "caught": true,
+   "expectFailOn": "伤害格 Δ=−1"
+  },
+  {
+   "name": "把 landing 臂的 defaultPrevented 全改成 false ⟹ 守卫未触发判据必须红",
+   "why": "证明「30/30 dp=true」不是恒真",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "臂 landing：30/30 defaultPrevented=true（守卫在这五类落点上**不**触发）"
+   ],
+   "caught": true,
+   "expectFailOn": "守卫在这五类落点上"
+  },
+  {
+   "name": "把 landing 臂的 activeInLayer 全改成 true ⟹ 「只在 layerRoot 成立」必须红",
+   "why": "证明「只在 layerRoot 成立」不是恒真",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "★ activeInLayer **只在 layerRoot 上成立**（其余 24 格为假）⟹ 「用户可达 ∧ 方向① 覆盖」这一格在这五类落点里是空的"
+   ],
+   "caught": true,
+   "expectFailOn": "activeInLayer"
+  },
+  {
+   "name": "整臂删掉 neutral ⟹ 覆盖判据必须红，且**验收器不许崩**",
+   "why": "证明 derive() 对缺格健壮（崩掉就等于没测到目标判据）；删一臂会连带让两条 neutral 判据一起红，这是预期的",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "覆盖：每轮 66 格、两轮全在（缺格/多格皆为红）",
+    "臂 neutral：30/30 defaultPrevented=false",
+    "臂 neutral：★ 30/30 键流里**确实含 F2**（否则 false 只说明键没送到，不说明判据灵）"
+   ],
+   "caught": true,
+   "expectFailOn": "覆盖：每轮"
+  },
+  {
+   "name": "把普查的 noBlank 全翻成 false ⟹ 「6/6 没有非控件区」必须红",
+   "why": "证明普查结论不是恒真",
+   "mutatedAnything": true,
+   "kwMatchedCount": 1,
+   "flipped": [
+    "普查：6 个浮层**都没有非控件区** ⟹ 「层内落非控件处」产品里不存在"
+   ],
+   "caught": true,
+   "expectFailOn": "没有非控件区"
+  },
+  {
+   "name": "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ **不许**有判据翻红",
+   "why": "区分「判据不灵」与「对照自己没改成」；mutatedAnything 为 false 时这条对照的结论是空的",
+   "mutatedAnything": false,
+   "kwMatchedCount": 0,
+   "flipped": [],
+   "caught": false,
+   "expectFailOn": "__永不匹配__"
+  }
+ ],
+ "negativeCaught": 6,
+ "negativeTotal": 6,
+ "negativeKwBroken": [
+  "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ **不许**有判据翻红"
+ ],
+ "negativeInert": [
+  "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ **不许**有判据翻红"
+ ],
+ "rawError": null,
+ "ok": true
+}
