@@ -1831,3 +1831,25 @@ screenshots:
     visible_text: '暂无图片素材'
     alt: 窗口 400 宽时搜索框压在「视频 / 音频 / 文档」三个页签上，这三个点不动
     sha256: e686dad17979fc38e349cef3b521a6d9a40655b69fe1f82df74b21c6c61b7dda
+  - file: screenshots/124-project-info-dialog-sections.png
+    task_id: canvas-context
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T13:15:00+08:00
+    verified_locator: '顶栏「更多」→ 菜单项「项目信息」点开的对话框，读出 800×546@240,87，四个直接子高度 68 / 36 / 382 / 60'
+    visible_text: '项目信息 基础信息 积分消耗'
+    alt: 项目信息对话框在 1280×720 下的四段结构：标题行 68、页签行 36、中段 382、页脚 60，合计 546
+    sha256: 1cea302ff987fe5a29208cb041c248be070b3d3345ac4ee60e3627faffe7bcd5
+  - file: screenshots/124-project-info-dialog-short-viewport.png
+    task_id: canvas-context
+    step: 3
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1280x600@2x
+    locale: zh-CN
+    captured_at: 2026-10-05T13:16:00+08:00
+    verified_locator: '同一对话框在 1280×600 视口下读出 800×480@240,60（被 max-h-[80vh] 压到 0.8×600），四段高度变成 68 / 36 / 316 / 60'
+    visible_text: '项目信息 基础信息 积分消耗'
+    alt: 窗口压到 1280×600 时对话框变成 800×480，只有中段从 382 缩到 316，标题、页签、页脚三段高度不变
+    sha256: ab9e4e0bfd42f33e689aad1b627f131c276e413b0f9a9e6b9b86bec164c91493
