@@ -358,6 +358,17 @@ RENDER_OUT="$(python3 scripts/check-render.py . 2>&1)" || fail "产物渲染体�
 $RENDER_OUT"
 echo "$RENDER_OUT" | sed 's/^/  /'
 
+# 内部名单校验（第二十六道门禁，M240 新增）：「哪些 md 是内部资料、不发布」
+# 只有一个事实源——.vitepress/config.mjs 的 srcExclude。
+# M240 实测：曾有三道门禁各自手抄一份，三份互不一致。
+# 最重的一处是 check-emphasis.py 把正在发布的 README.md（站点首页）当成内部资料，
+# 于是**那道专门抓「源文件没事、产物坏了」的门禁跳过了整个首页**——
+# 注入一个必定违规的 ** 跨度，全量构建 exit=0，而产物首页里留着字面量 **。
+# 本门禁守住「排除名单不许有第二份」，以及那三道门禁确实在从事实推导。
+INTLIST_OUT="$(python3 scripts/check-internal-lists.py . 2>&1)" || fail "内部资料名单校验未通过（有人手抄了 srcExclude，或该推导的门禁没在推导）：
+$INTLIST_OUT"
+echo "$INTLIST_OUT" | sed 's/^/  /'
+
 # ---------- 完成 ----------
 log "════════════════════════════════════════════"
 ok "构建成功！发布产物: $SCRIPT_DIR/.vitepress/dist"

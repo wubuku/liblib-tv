@@ -1828,6 +1828,54 @@ def mutate_duplicate_blank_lines_ok(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_internal_list_hardcoded(root: Path) -> None:
+    """有人又手抄了一份「内部资料」名单，且与 `srcExclude` 不一致（M240）。
+
+    ★ **这正是 M240 抓到的真实病**：三道门禁各抄一份，其中 `check-emphasis.py`
+    那份把**正在发布的 `README.md`（站点首页）**当成了内部资料。
+    注入到 `check-fact-ledger.py` 是为了证明**判据不看脚本名**——
+    只要名字形如 `INTERNAL` / `INTERNAL_PAGES` 且是模块级字面量，就会被抓。
+    """
+
+    path = root / "scripts" / "check-fact-ledger.py"
+    path.write_text(
+        path.read_text(encoding="utf-8")
+        + '\nINTERNAL = {"AUDIT.md", "PROGRESS.md"}\n',
+        encoding="utf-8",
+    )
+
+
+def mutate_internal_list_derivation_removed(root: Path) -> None:
+    """把 `check-emphasis.py` 的推导悄悄改回「不推导」（M240 判据 2）。
+
+    ★ **与上一例是两种不同的病**：那里的名单**是错的**，
+    而这里名单**可能恰好是对的**——**只有「必须真的 import 共享模块」才抓得到**。
+    """
+
+    path = root / "scripts" / "check-emphasis.py"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace(
+        "from _site_exclude import is_excluded, read_src_exclude  # noqa: E402",
+        "# 假装还在推导（M240 自检注入）",
+    )
+    assert patched != text, "注入失败：没找到 _site_exclude 的 import 行"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_src_exclude_removed(root: Path) -> None:
+    """事实源 `srcExclude` 被改坏时，**推导它的门禁必须判失败而不是默默换覆盖面**（M240）。
+
+    ★ **这一例守的是 F42**：「没查」与「查了没问题」在输出里必须长得不一样。
+    **默默退回硬编码名单或默默当成空集，都属于「门禁自己骗自己」。**
+    """
+
+    path = root / ".vitepress" / "config.mjs"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("srcExclude:", "srcExcludeX:")
+    assert patched != text, "注入失败：config.mjs 里没找到 srcExclude"
+    path.write_text(patched, encoding="utf-8")
+
+
 def mutate_retraction_notation_needle(root: Path) -> None:
     """needle 退化成**纯「键=数字」的取证记法**时必须被拦下（M203）。
 
@@ -2008,6 +2056,9 @@ CASES: list[tuple[str, object, str, str]] = [
     ("正文里连续两行一模一样（M201 实测事故）", mutate_duplicate_line_in_prose, "dupeline", "连续重复行"),
     ("围栏代码块里两行相同不该被误报（不误报）", mutate_duplicate_line_in_code_fence_ok, "dupeline", EXPECT_PASS),
     ("连续两个空行不该被算成重复行（不误报）", mutate_duplicate_blank_lines_ok, "dupeline", EXPECT_PASS),
+    ("又手抄了一份与 srcExclude 不一致的内部名单（M240）", mutate_internal_list_hardcoded, "internallists", "手抄的内部名单"),
+    ("该推导的门禁被改回不推导，判据 2 必须抓到（M240）", mutate_internal_list_derivation_removed, "internallists", "没有 import"),
+    ("事实源 srcExclude 被改坏，推导它的门禁必须判失败（M240）", mutate_src_exclude_removed, "emphasis", "读不到"),
 ]
 
 
@@ -2058,6 +2109,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-fact-ledger.py"), str(root)]
     elif which == "dupeline":
         cmd = [sys.executable, str(root / "scripts/check-duplicate-lines.py"), str(root)]
+    elif which == "internallists":
+        cmd = [sys.executable, str(root / "scripts/check-internal-lists.py"), str(root)]
     else:
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
     done = subprocess.run(cmd, capture_output=True, text=True)

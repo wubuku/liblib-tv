@@ -42,17 +42,28 @@ import subprocess
 import sys
 from pathlib import Path
 
+# ★ **M240：内部页名单从 config.mjs 推导，不再手抄（见模块内 INTERNAL 的注释）。**
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _site_exclude import is_excluded, read_src_exclude  # noqa: E402
+
 MAN_DIR = "docs/user-manual/tdcanvas-canvas/"
 BODY_PREFIXES = (
     "10-tasks/", "README.md", "00-quickstart.md", "20-reference.md",
     "30-concepts.md", "90-troubleshooting.md",
 )
 LEDGER = "task-inventory.yml"
-INTERNAL = ("AUDIT.md", "PROGRESS.md", "PUBLISH.md", "SOURCE_OBSERVATIONS.md")
+# ★ **M240：这份名单原先是手抄的，且漏了 `TEST_MEDIA_ASSETS.md`。**
+# 漏了它在这里其实**不产生行为差异**——`BODY_PREFIXES` 里没有任何内部文件能匹配上，
+# 所以 `not f.startswith(INTERNAL)` 是一层**冗余的兜底过滤**，从来不会滤掉任何东西。
+# ★ **但它是一份「假装自己是内部名单」的手抄件**，而本仓库已经因为同型手抄件翻过车：
+# `check-emphasis.py` 那份把正在发布的 `README.md` 当成内部资料，
+# **导致整道门禁跳过了站点首页，构建 exit=0 而产物里留着字面量 `**`**（M240）。
+# **宁可让它从事实推导，也不要留一份会悄悄过期的副本。**
+INTERNAL = None      # ★ 由 main() 从 .vitepress/config.mjs 的 srcExclude 填入
 DEPTH = 40
 
 
-def collect(repo: Path) -> list[tuple[str, str, list[str], list[str]]]:
+def collect(repo: Path, internal: frozenset[str]) -> list[tuple[str, str, list[str], list[str]]]:
     """返回 [(批次号, 标题, 改过的正文页, 是否动了账本)]。"""
     try:
         done = subprocess.run(
@@ -82,7 +93,7 @@ def collect(repo: Path) -> list[tuple[str, str, list[str], list[str]]]:
     rows = []
     for c in commits:
         body = [f for f in c["files"]
-                if f.startswith(BODY_PREFIXES) and not f.startswith(INTERNAL)]
+                if f.startswith(BODY_PREFIXES) and Path(f).name not in internal]
         if not body:
             continue
         led = [f for f in c["files"] if f == LEDGER]
@@ -93,6 +104,22 @@ def collect(repo: Path) -> list[tuple[str, str, list[str], list[str]]]:
 
 def main() -> int:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
+    # ★ **M240：内部页名单从 `.vitepress/config.mjs` 的 `srcExclude` 读，不再手抄。**
+    patterns = read_src_exclude(root)
+    if patterns is None:
+        # ★ **F42：读不到要说清「没查」，不能和「查了没问题」长得一样。**
+        # 本门禁是提示性的（退出码恒为 0），所以这里不阻断构建——但必须点名。
+        print("  [账本同步] **没查**：读不到 .vitepress/config.mjs 里的 srcExclude，"
+              "不知道哪些文件是内部资料。请先修 config.mjs。")
+        return 0
+    internal = frozenset(
+        Path(rel).name
+        for rel in (
+            p.relative_to(root).as_posix()
+            for p in root.rglob("*.md")
+            if is_excluded(p.relative_to(root).as_posix(), patterns)
+        )
+    )
     repo = root
     for _ in range(6):  # scripts/ → tdcanvas-canvas/ → user-manual/ → docs/ → 仓根
         if (repo / ".git").exists():
@@ -102,7 +129,7 @@ def main() -> int:
         print("  [账本同步] 没找到 .git，跳过（手册仓不带版本历史时无从核对）")
         return 0
 
-    rows = collect(repo)
+    rows = collect(repo, internal)
     if not rows:
         print("  [账本同步] 无可核对的历史提交，跳过")
         return 0

@@ -36,6 +36,11 @@ import re
 import sys
 from pathlib import Path
 
+# ★ **M240：排除名单不再自己抄，改为读 `.vitepress/config.mjs` 的 `srcExclude`。**
+# 读法、匹配语义与「读不到就判失败」的取舍都写在共享模块里。
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _site_exclude import is_excluded, read_src_exclude  # noqa: E402
+
 # Unicode 标点类 + ASCII 常用标点（会触发 flanking 判定）
 PUNCT = set(
     "，。、；：？！「」『』（）《》〈〉【】〔〕…—～·"
@@ -49,11 +54,14 @@ SPAN_RE = re.compile(r"\*\*(?P<body>[^*\n]+?)\*\*")
 SKIP_DIRS = {"node_modules", ".vitepress", "dist", ".git", "screenshots"}
 FENCE_RE = re.compile(r"^\s*(```|~~~)")
 
-# 内部资料不发布、不渲染，扫它们只会制造噪声（M90 第一版 382 条假阳性全来自这里）
-INTERNAL = {
-    "AUDIT.md", "PROGRESS.md", "PUBLISH.md",
-    "SOURCE_OBSERVATIONS.md", "README.md", "TEST_MEDIA_ASSETS.md",
-}
+# ★ **M240：这里原先有一份手抄的 `INTERNAL` 名单，现在没有了。**
+# 排除哪些页面**不是本脚本该决定的事**——那是 `.vitepress/config.mjs` 的
+# `srcExclude` 说了算（见 `read_src_exclude`）。
+# **手抄一份的代价，本批已经付过一次**：
+# 那份名单把 `README.md` 当内部资料，而它其实是被发布的首页，
+# 于是本脚本跳过了首页与 `10-tasks/README.md`，
+# 注入一个必定违规的跨度进去，**构建 exit=0、产物里留着字面量 `**`，门禁却报「均成立」**。
+# **「不扫哪些文件」这种名单，永远要从事实推导，而不是另抄一份。**
 
 
 def left_flanking(prev: str, nxt: str) -> bool:
@@ -141,11 +149,20 @@ def check_vue_interpolation(
 
 def main() -> int:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
-    md_files = sorted(
+    excluded_patterns = read_src_exclude(root)
+    if excluded_patterns is None:
+        print("  [渲染陷阱] 读不到 .vitepress/config.mjs 里的 srcExclude —— "
+              "**判据不知道哪些页面会被发布**，不敢扫（扫全库会重现 M90 的 382 条假阳性），"
+              "也不敢按旧名单硬扫（那正是 M240 抓到的假阴性）。请先修 config.mjs。")
+        return 1
+    all_md = sorted(
         p for p in root.rglob("*.md")
-        if p.name not in INTERNAL
-        and not SKIP_DIRS.intersection(p.relative_to(root).parts)
+        if not SKIP_DIRS.intersection(p.relative_to(root).parts)
     )
+    md_files = [
+        p for p in all_md
+        if not is_excluded(p.relative_to(root).as_posix(), excluded_patterns)
+    ]
     if not md_files:
         print("  [渲染陷阱] 没有找到任何待检查的 .md 页面")
         return 1
@@ -190,6 +207,21 @@ def main() -> int:
     print(
         f"  [ ok ] 渲染陷阱校验：{span_count} 个 `**…**` 跨度 flanking 均成立，"
         "且无会被 Vue 吞掉的裸双花括号插值"
+    )
+    # ★ **F41 纪律：报「通过」必须同时报「看到了多少」**（M240）。
+    # 旧判据只报跨度数——**而跨度数与「扫了哪些页面」没有对应关系**：
+    # 少扫一个页面，跨度数只会少几十，**看上去仍是「均成立」**。
+    # 本次假阴性正是这样藏住的：产物首页里留着字面量 `**`，报读却一切正常。
+    # ★ **所以这里必须点名页面数，并把被排除的名单原样打出来**——
+    # **排除名单一旦与 `srcExclude` 脱节，这一行就会露馅。**
+    excluded_names = sorted(
+        {p.relative_to(root).as_posix() for p in all_md}
+        - {p.relative_to(root).as_posix() for p in md_files}
+    )
+    print(
+        f"         覆盖面：扫了 {len(md_files)} 个已发布页面"
+        f"（另有 {len(excluded_names)} 个按 .vitepress/config.mjs 的 srcExclude 排除："
+        f"{'、'.join(Path(n).name for n in excluded_names)}）"
     )
     return 0
 

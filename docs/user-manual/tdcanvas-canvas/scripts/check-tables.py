@@ -35,6 +35,10 @@ import re
 import sys
 from pathlib import Path
 
+# ★ **M240：内部页名单从 `.vitepress/config.mjs` 的 `srcExclude` 读，不再手抄。**
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _site_exclude import is_excluded, read_src_exclude  # noqa: E402
+
 DELIMITER_CELL_RE = re.compile(r"^:?-{1,}:?$")
 
 
@@ -162,19 +166,53 @@ def check_code_spans(lines: list[str], code: set[int], rel: str) -> list[str]:
     return problems
 
 
-# M184：这四份是**内部账本**，由 config.mjs 的 srcExclude 排除、读者看不到。
+# M184：这几份是**内部账本**，由 config.mjs 的 srcExclude 排除、读者看不到。
 # 它们的表格欠账是 M65 就在册的历史问题（表被引用块从中间劈开的 61 行），
 # 一次性清完不属于本门禁的职责；**但欠账不许再长**——
 # 超过下面这个基线仍然报错，并在输出里逐处点名。
-INTERNAL_PAGES = {"AUDIT.md", "PROGRESS.md", "SOURCE_OBSERVATIONS.md", "TEST_MEDIA_ASSETS.md"}
-
+#
+# ★★ **M240：这份名单原先是手抄的四个文件，与 `srcExclude` 不一致——漏了 `PUBLISH.md`。**
+# **后果不是漏报而是贴错标签**：`PUBLISH.md` 的表格缺陷被当成「发布页、读者看得见」，
+# ★ **而 M239 正是照着这条报错文案，在账本里写下了「会从发布页上消失」这句假断言**
+# ——**`PUBLISH.md` 在 `srcExclude` 里，从来不发布。**
+# 教训与 `check-emphasis.py` 那份完全同源：**「不扫哪些文件」要从事实推导，不能另抄一份。**
+# ★ 现在这份名单由 `read_internal_pages()` 从 config.mjs 读出，本文件不硬编码任何文件名。
+#
 # 基线 = 引入本检查时各内部页的「格子数多于表头」存量条数。
 # **刻意用计数而不是行号**：这些文件天天在追加，行号会漂，计数不会。
 # 有人顺手修掉一处，计数下降是好事；门禁只在**增长**时报错。
-KNOWN_MORE_CELLS_BASELINE = {"AUDIT.md": 0, "PROGRESS.md": 0, "SOURCE_OBSERVATIONS.md": 0, "TEST_MEDIA_ASSETS.md": 0}
+# ★ **键必须覆盖 `srcExclude` 里的每一个文件**——
+# 少登记一个，那个文件就会走「基线未登记 = 漏登记」的分支（见 main 里的点名）。
+KNOWN_MORE_CELLS_BASELINE = {
+    "AUDIT.md": 0, "PROGRESS.md": 0, "PUBLISH.md": 0,
+    "SOURCE_OBSERVATIONS.md": 0, "TEST_MEDIA_ASSETS.md": 0,
+}
 
 
-def check_file(path: Path, rel: str, known: dict | None = None, short: dict | None = None) -> list[str]:
+def read_internal_pages(root: Path) -> set[str] | None:
+    """内部页名单 = `srcExclude` 命中的那些文件（**不硬编码**）。
+
+    **读不到就返回 `None`，由 main 判失败**——既不退回旧名单（那正是 M240 的病根），
+    也不默默当成空集（那会让内部页全部按发布页处理，等于把欠账当错误）。
+    """
+    patterns = read_src_exclude(root)
+    if patterns is None:
+        return None
+    root_md = {
+        p.relative_to(root).as_posix()
+        for p in root.rglob("*.md")
+        if not SKIP_DIRS.intersection(p.relative_to(root).parts)
+    }
+    return {rel for rel in root_md if is_excluded(rel, patterns)}
+
+
+def check_file(
+    path: Path,
+    rel: str,
+    known: dict | None = None,
+    short: dict | None = None,
+    internal: frozenset[str] = frozenset(),
+) -> list[str]:
     # M184 自己踩过的坑：**形参同名局部变量会把传进来的字典整个遮掉**，
     # 收集器永远填不上、统计恒为 0，而门禁照样报 ok——**静默失效最难发现**。
     # 这里的两个收集器都必须挂在形参上，任何「再起一个同名变量」的写法都不许回来。
@@ -226,14 +264,26 @@ def check_file(path: Path, rel: str, known: dict | None = None, short: dict | No
                     # 一律报错会让这道门禁变成噪声源，而噪声源会被无视。
                     short_rows.setdefault(rel, []).append(f"{rel}:{start + 1 + offset}")
                     continue
+                # ★★ **M240：`detail` 同时被内部页与发布页两条分支复用，
+                # 所以「谁会丢」这句话必须按 `rel` 分流。**
+                # 原先是无条件写「会被渲染器直接丢弃」，
+                # ★ **M239 就是照这句在账本里写下了假断言**（「会从发布页上消失」），
+                # **而 `PUBLISH.md` 恰恰在 `srcExclude` 里、从来不发布**。
+                # **报错文案说的必须是「这件事实际会怎样」，不是它的通用形态**（F49 同族）。
+                consequence = (
+                    "**本页在 srcExclude 里、不会被发布，所以读者看不到这一处**——"
+                    "但在 GitHub 上看源码时，那一格连同内容会从表格里消失。"
+                    if rel in internal else
+                    "**多余的格子连同里面的内容会被渲染器直接丢弃**——"
+                    "最常见的原因是**把两行拼成了一行**："
+                    "相邻两行各以竖线结尾又以竖线开头，中间就成了两个相连的竖线"
+                )
                 detail = (
                     f"{rel}:{start + 1 + offset}: 这一行有 {cols} 个格子，"
                     f"而表头是 {head_cols} 列（第 {start + 1 + offset} 行起算于表头）。"
-                    f"**多余的格子连同里面的内容会被渲染器直接丢弃**——"
-                    f"最常见的原因是**把两行拼成了一行**："
-                    f"相邻两行各以竖线结尾又以竖线开头，中间就成了两个相连的竖线"
+                    f"{consequence}"
                 )
-                if rel in INTERNAL_PAGES:
+                if rel in internal:
                     # 内部页：只记进欠账，**但不让它再长**
                     known.setdefault(rel, []).append(detail)
                 else:
@@ -245,6 +295,12 @@ def check_file(path: Path, rel: str, known: dict | None = None, short: dict | No
 
 def main() -> int:
     root = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
+    internal = read_internal_pages(root)
+    if internal is None:
+        print("  [表格] 读不到 .vitepress/config.mjs 里的 srcExclude —— "
+              "**判据不知道哪些页面读者看得见**，不敢把内部账本的存量欠账当发布页错误，"
+              "也不敢退回旧名单（那正是 M240 抓到的贴错标签）。请先修 config.mjs。")
+        return 1
     md_files = sorted(
         path
         for path in root.rglob("*.md")
@@ -270,14 +326,14 @@ def main() -> int:
             table_count += 1
             while index < len(lines) and is_table_row(lines[index]):
                 index += 1
-        problems.extend(check_file(path, rel, known, short))
+        problems.extend(check_file(path, rel, known, short, internal))
 
     # M184：内部账本的存量欠账**逐处点名**——不点名就等于「已知不管」，
     # 而点名之后，谁新增了一处一眼就能看见，也就不用等到计数越线才知道。
-    for rel in sorted(INTERNAL_PAGES):
+    for rel in sorted(internal):
         items = known.get(rel, [])
         base = KNOWN_MORE_CELLS_BASELINE.get(rel)
-        tag = "内部页" if rel in INTERNAL_PAGES else "发布页"
+        tag = "内部页"          # 这一圈只遍历 internal，tag 恒为「内部页」
         if base is None:
             print(f"  [表格欠账·{tag}] {rel}：{len(items)} 处，但基线未登记（这本身是漏登记）")
             problems.append(
