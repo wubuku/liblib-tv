@@ -2832,3 +2832,25 @@ screenshots:
     visible_text: 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15
     alt: ⭐⭐⭐ 选中图片节点后浮在节点下方的一整块编辑区，本手册此前从未完整描述过。① `+参考` ② `标记` ③ `风格` 三枚胶囊按钮（rounded-full px-2 py-1）。④ 一句占位「可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜」—— ⭐⭐⭐ **「按文字指令编辑图片」这个用法手册一个字都没写过**。⑤ 模型下拉 ⑥ 规格四段 ⑦ 一枚带蓝点的纯图标（含义未验）⑧ 一枚无字无 aria 的圆形图标 ⑨ 文A ⑩ 滑块形图标 ⑪ 圆形上箭头提交键，⭐ **本手册第一次读到它的禁用态**（disabled:true + cursor:not-allowed）⑫ 右上角 ⤢ 展开箭头。⭐⭐ 浮层壳 [655,506,660,192]，祖父 class `node-floating-ui nodrag nowheel nopan … absolute -bottom-4 left-1/2 z-20 -translate-x-1/2` ⇒ **node-floating-ui 是这类浮层的统一 class 名**。⛔ 本轮一个会消耗积分或改内容的按钮都没点
     sha256: 7ef7694ec0ef78de3c1a6effbbec29bc3cb1f1771a04dbe6334e81e83b3b9b65
+  - file: screenshots/M-391-底部中央七枚工具按钮.png
+    task_id: create-nodes
+    step: 29
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: batchFW1：关掉右侧抽屉与通知横幅 → 读全 `[aria-label]` 且 y 在 750~800 的可点元素 → 取 x 在 400~1000 的排成底部中央七枚 → 逐枚悬停读 tooltip → 沿每个按钮中心做 elementFromPoint 遮挡采样（0 个被抽屉挡）→ 按整排外扩 14px 裁图。⚠️ 裁剪坐标乘 K=2
+    visible_text: 添加节点 移动 素材库 角色造型室 生成历史 快捷键 教程
+    alt: 底部中央一条圆角工具条，从左到右七枚 32×32 图标按钮：①「＋」白底高亮（添加节点，当前页唯一高亮的一枚）②纸飞机状（移动，也就是整理画布）③四个小方块带加号（素材库）④笑脸，右上角带一枚青点（角色造型室）⑤时钟（生成历史）⑥键盘（快捷键）⑦问号（教程）。⑤与⑥之间夹一条竖分隔线。⭐ 每枚的 aria 与图标给人的印象并不一一对应，尤其 ② 叫「移动」实际是整理画布
+    sha256: 99a67073adc9955cc2557d858b17457f7b1a1c03fe2ba7e088f60dcc217cea89
+  - file: screenshots/M-392-左下角六枚工具按钮.png
+    task_id: create-nodes
+    step: 30
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-02T03:01:00+08:00
+    verified_locator: batchFW1：同一轮读数里 x 在 0~400 的那六枚 → 逐枚悬停读 tooltip → 遮挡采样（0 个被抽屉挡）→ 按整排外扩 14px 裁图。⚠️ 裁剪坐标乘 K=2
+    visible_text: 资产管理 整理画布 切换小地图 隐藏节点连线 网格吸附 48%
+    alt: 画布左下角一条工具行，共六项：①「资产管理」是一个 94×28 的**文字按钮**（不是纯图标）②宫格图标 ③定位图钉 ④滑块 ⑤磁吸状图标 ⑥「48%」缩放百分比。⭐ ②③④⑤四枚纯图标完全无文字，只有悬停才出名字：②悬停写「整理画布 ⌥⇧F」、③悬停写「画布小地图」（**与它的 aria「切换小地图」不同名**）、④「隐藏节点连线」、⑤「网格吸附」。⭐⭐ 另外每枚的提示末尾都带一句「按 ESC 退出」—— ⛔ 也就是说这一排是用 Esc 关闭的，不用点
+    sha256: 2dd21dde5ae3ea341e593aa329a756d1dd617301786b744e6d054ed7d42f78b0
