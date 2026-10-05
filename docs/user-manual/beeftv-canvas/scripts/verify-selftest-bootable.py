@@ -95,6 +95,53 @@ SCRIPTS = os.path.join(ROOT, "scripts")
 #  ② 阈值本身写在表里、且**必须与实测分档对得上**（见 SLOW_BUDGET_SEC）。
 # **判据锚的是「谁慢、慢多少」这个可测事实，而不是一个我拍出来的数。**
 SLOW_BUDGET_SEC = 30
+#: **方向十九的豁免表（**Batch 281 实测登记**）。
+#:
+#: **这张表是普查的结果，不是设计的结果**——实测手段是
+#: 「隔离副本树 + `sys.addaudithook` 逐份真跑，只算基线提交里已跟踪的路径」
+#: （探针与它的三次修正见环境记录 244）。**73 份 python 反验里 26 份命中**。
+#:
+#: **它为什么存在**：方向十九要能抓住**第 27 份**，就必须先承认前 26 份。
+#: **而承认的方式必须逐条写出理由**——一张没有理由的名单，
+#: 下一个人只会照着它继续加（纪律 305：**登记是它诚实的形态，而不是绕过**）。
+#:
+#: **⚠️ 覆盖面必须写在这里**：**它只罩 python 反验的普查口径**，
+#: **而 `selftest-meta.sh` 会原地改 15 个真实文件**（已登记进 `SLOW`，
+#: **不在方向十六的真跑名单里**，所以方向十九数不到它）。
+#: **`.sh` 反验在方向十九的运行时是罩得住的**（指纹法不看解释器），
+#: **而本批的普查没跑它们**——**这是本方向的已知盲区，不装作没有**。
+TREE_WRITE_EXEMPT = {
+    "selftest-baseline-landmark.py": "把 `20-reference.md` 当夹具删掉再还原",
+    "selftest-baseline.py": "改写 `20-reference.md` / `README.md` 与两个被测闸",
+    "selftest-batch-rows.py": "改写 `PROGRESS.md`",
+    "selftest-beefsrc.py": "删掉 `README.md` 再还原",
+    "selftest-container-closers.py": "删掉 4 个内容页（`README` / `20-reference` / `30-concepts` / `90-troubleshooting`）再还原",
+    "selftest-endpoints.py": "删掉 `20-reference.md` 再还原",
+    "selftest-error-copy.py": "改写 `90-troubleshooting.md` 与被测闸",
+    "selftest-exclusions.py": "删掉 4 个内容页再还原",
+    "selftest-feature-flags.py": "删掉 `20-reference.md` 再还原",
+    "selftest-heading-uniqueness.py": "删掉 4 个内容页再还原",
+    "selftest-ledger-refs.py": "改写 `AUDIT.md` / `PROGRESS.md` / `SOURCE_OBSERVATIONS.md`",
+    "selftest-line-counts.py": "删掉 `20-reference.md` 再还原",
+    "selftest-query-params.py": "删掉 4 个内容页再还原",
+    "selftest-quota-tables.py": "删掉 `20-reference.md` 再还原",
+    "selftest-quote-punct.py": "改写 `README.md` 与 `10-tasks/timeline-export.md`（**SLOW 登记，不在方向十六真跑名单里**）",
+    "selftest-route-notation.py": "删掉 `20-reference.md` 与 `task-inventory.yml` 再还原",
+    "selftest-runtime-policy.py": "删掉 `20-reference.md` 再还原",
+    "selftest-scope.py": "删掉 `PUBLISH.md` / `README.md` / `AUDIT.md` / `20-reference.md` 再还原",
+    "selftest-screenshots.py": "删掉 `PROGRESS.md` 再还原",
+    "selftest-selftest-bootable.py": "方向十六跑它就会无限递归，**本方向跑不到它**；名单保留是为了让「它也有这份性质」这件事有案可查",
+    "selftest-shortcuts.py": "删掉 `FINAL-REPORT.md` / `90-troubleshooting.md` / `PUBLISH.md` / `PROGRESS.md` 再还原",
+    "selftest-shot-drift.py": "改写被测闸、`screenshots/manifest.yml` 与 `10-tasks/director-basics.md`（**Batch 280 那次被 kill 的就是它**）",
+    "selftest-shot-version-source.py": "删掉 `task-inventory.yml` 再还原",
+    "selftest-shot-version.py": "改写被测闸、`screenshots/manifest.yml` 与页面"
+                                "（**Batch 281 上线首跑就抓到它，而一小时的普查没量到**"
+                                "——**它在副本树里因环境缺口提前退出，真树上才动到树**）",
+    "selftest-version-coverage.py": "删掉 `README.md` 与 `20-reference.md` 再还原",
+    "selftest-worktree-state.py": "删掉 `README.md` 再还原（**而它守的正是「工作区脏不脏」**）",
+    "selftest-zero-input.py": "方向三在真实手册树上跑，**而它的前提就是手册树正常**（`SLOW` 登记，不在方向十六真跑名单里）",
+}
+
 SLOW = {
     "selftest-zero-input.py": {
         # **Batch 202 把这个数字的来历写清楚，因为它此前一直没人核**
@@ -166,7 +213,7 @@ SLOW = {
         #: 与 802.3 秒（真树，同事的 WIP 让 3 条用例更早返回）**——
         #: **两次都低于登记的 950，故预算不动**（纪律 204：漂的时候倒向安全那侧，
         #: **而这次漂的方向是变小，不需要动**）。
-        "seconds": 950,
+        "seconds": 1810,
         "why": "每一例都要 `copytree` 整份 `scripts/`（87 个文件）进沙箱再跑一遍闸 18，"
                "**而闸 18 现在还会在沙箱里重放慢反验的夹具前提**。"
                "已越过 30 秒阈值，**放进构建会让每次构建多花三分之一时间**。"
@@ -180,7 +227,7 @@ SLOW = {
                "已改锚键（锚键不锚值），两条重新真跑，登记值按新实测据实上调。",
         "anchor": ("selftest-selftest-bootable.py", "m_slow_feature_missing"),
         #: 单项 = 未分拆（Batch 278 无分段实测，**不编**）。详见上面 `cost_split` 那段说明。
-        "cost_split": {"def sandbox():": 950.0},
+        "cost_split": {"def sandbox():": 1810.0},
     },
     "selftest-unreachable.sh": {
         "seconds": 1500,          # 实测约 25 分钟（Batch 179）
@@ -330,7 +377,7 @@ SELFTEST_COSTS = {
     "selftest-scope.py": 0.4,
     "selftest-screenshots-literals.py": 14.0,   # **Batch 275 重测三次：13.33 / 13.16 / 13.82 秒，取大并留余量**。原登记 30.1 秒，**而它已从 SLOW 里移出**（实测早已掉到阈值下）
     "selftest-screenshots.py": 0.7,
-    "selftest-selftest-bootable.py": 384.0,   # Batch 210 重测：209.3 / 383.7 秒（**两次取大**；**同一天 1.8 倍漂**，纪律 136）
+    "selftest-selftest-bootable.py": 1668.0,   # **Batch 281 重测：43 例实测 1668.0 秒**（此前 384.0 是 **Batch 210 的 26 例基线**，而 Batch 254 已实测 877 秒**却只改了 `SLOW` 没改这一处**——**方向四e 报绿只是因为那个过期值偏低**，把比值压到了 3.0 倍上限之下，纪律 310 的又一个假绿）
     #: **Batch 247 重测**：三次实测 7.33 / 6.95 / 7.11 秒，**而原登记值是 0.7——低估了十倍**。
     #: 9 例里每例都 `copytree` 一整份 `scripts/`（103 个 selftest-* 加 36 个闸）再起一个子进程跑被测闸，
     #: **耗时几乎全在重复拷贝上**。**`seconds` 是预算上限而不是实测均值，
@@ -856,6 +903,67 @@ def _dirty_paths():
         path = line[3:].strip()
         out.add(path.split(" -> ")[-1])
     return out
+
+
+def _tree_fingerprint():
+    """手册树的一份指纹：`相对路径 -> (mtime_ns, 大小, 小文件 sha1 或 None)`。
+
+    **为什么要 `mtime` 而不只是内容**：判据要问的是「**它动过没有**」，
+    **而绝大多数反验是「改完立刻还原」**——内容一模一样，
+    **只比内容的话这一类全部看不见**（而它们恰恰是最危险的一类：
+    **被 kill 的那一次不会有还原**）。`mtime` 把「动过又还原」与「没动」分开。
+
+    **为什么小文件还要 sha1**：`shutil.copy2` / `copystat` **会把 mtime 一起搬过去**，
+    **于是「用 copy2 覆盖一个真文件」在只比 mtime 时是隐形的**。
+    **64 KB 这个上限是量的**：手册里 `.md` 与 `.py` 绝大多数在这个量级内，
+    **而截图动辄几百 KB——给 67 张 PNG 算 sha1 是纯浪费**
+    （**一个判据不该为了覆盖边角而把每次构建的墙钟抬起来**）。
+
+    **⚠️ 跳过表里为什么必须有 `__pycache__`（**Batch 281 上线首跑当场踩到**）**：
+    **本方向第一次跑就报出两份「新命中」，而它们是
+    `scripts/__pycache__/*.pyc`**——**Python 每 import 一个模块就自己写一份字节码缓存**，
+    **于是每一份反验跑完都会多出几个 `.pyc`**，而副本树里它们一开始根本不存在。
+    **把它们算进来是纯噪声**：**不进版本库、被删了立刻重建、且与手册内容毫无关系**。
+    **而一个每次都喊「有东西变了」的判据，只会教人学会忽略它**
+    ——**这正是纪律 143 的原话，而它这次是本批自己撞上的**。
+    **所以跳过表扩成「解释器与构建工具自己产生的产物」**：
+    `.git` / `node_modules` / `.vitepress` / `dist` / `__pycache__` / `*.pyc` / `.DS_Store`。
+    **边界照写清楚**：**本方向数的是「手册的原有文件」**，
+    **而这三类产物都不在其中**（**真要连未跟踪文件一起管，那是闸 38 的活**）。
+    """
+    import hashlib
+    out = {}
+    skip_dirs = (".git", "node_modules", ".vitepress", "dist", "__pycache__",
+                 ".pytest_cache")
+    #: **`:memory:` 之外的字节码后缀**：不是目录，而是文件名的一部分。
+    skip_suffix = (".pyc", ".pyo", ".pyd", ".log", ".tmp", ".swp")
+    for dirpath, dirnames, filenames in os.walk(ROOT):
+        dirnames[:] = [d for d in dirnames if d not in skip_dirs]
+        for fn in filenames:
+            if fn.endswith(skip_suffix):
+                continue
+            p = os.path.join(dirpath, fn)
+            try:
+                st = os.stat(p)
+            except OSError:
+                continue
+            h = None
+            if st.st_size <= 65536:
+                try:
+                    with open(p, "rb") as fh:
+                        h = hashlib.sha1(fh.read()).hexdigest()
+                except OSError:
+                    h = None
+            out[os.path.relpath(p, ROOT)] = (st.st_mtime_ns, st.st_size, h)
+    return out
+
+
+def _tree_delta(before, after):
+    """返回 `(被改的, 被删的, 被新建的)` 三个已排序的列表。"""
+    b, a = set(before), set(after)
+    changed = sorted(p for p in b & a if before[p] != after[p])
+    return changed, sorted(b - a), sorted(a - b)
+
 
 
 def _repo_rel(path):
@@ -1776,6 +1884,12 @@ def main():
     # 单份上限 120 秒防的是另一件事：**某一份卡死**（实测最慢的一份 11.7 秒）。
     budget = 600.0            # **超了要报，不能默默不跑**
     per = 120.0               # 单份上限（秒）：实测最慢的一份 11.7 秒，这里留 10 倍
+    #: **方向十九的账（**Batch 281 新增**）**：`反验名 -> 它动过的手册文件`。
+    #: **为什么要在这里顺手量**：方向十六本来就要把每份非慢反验在**真实手册树上**
+    #: 真跑一遍，**而「它跑的时候有没有动这棵树」是同一个循环里的另一个观察**——
+    #: **另起一遍普查就是同一件事做两遍**（**Batch 281 的普查实测跑了一小时**）。
+    tree_writes = {}
+    fp_cost = 0.0
     for fn in fleet:
         if budget - fleet_cost <= 0:
             problems.append(
@@ -1785,6 +1899,12 @@ def main():
                 "（预算 600 秒 ≈ 观测最大值 84.8 秒的 7 倍）；"
                 "真要提速就把慢的那几份登记进 SLOW")
             break
+        #: **跑之前拍一张指纹**——判据问的是「它动过没有」，
+        #: **而绝大多数反验是「改完立刻还原」**：
+        #: **只比跑完之后的内容，这一类一份也看不见**
+        #:（**而它们恰恰是最危险的一类：被 kill 的那一次不会有还原**）。
+        _f0 = time.time()
+        _fp0 = _tree_fingerprint()
         t0 = time.time()
         try:
             r = subprocess.run(
@@ -1794,6 +1914,11 @@ def main():
             rc, out = r.returncode, (r.stdout or "") + (r.stderr or "")
         except subprocess.TimeoutExpired:
             rc, out = None, ""
+        _fp1 = _tree_fingerprint()
+        fp_cost += time.time() - _f0 - (time.time() - t0)
+        _chg, _del, _newf = _tree_delta(_fp0, _fp1)
+        if _chg or _del or _newf:
+            tree_writes[fn] = (_chg + _del + _newf)[:6]
         d = time.time() - t0
         fleet_cost += d
         ran += 1
@@ -1956,6 +2081,46 @@ def main():
                   "（%d 处不一致、%d 份解析不出）；%s"
                   % (len(claim), checked, mismatch, unparsed, "；".join(parts)))
 
+
+    #: **方向十九（**Batch 281 新增**）：真跑期间不得改动手册树。**
+    #:
+    #: **它治的是 Batch 280 那次事故的根**：那次是「跑闸 18 被前台超时杀掉，
+    #: `selftest-shot-drift.py` 的注入留在树上」，**而下一轮闸 18 报的是
+    #: 「`selftest-shot-drift.py` 真跑没跑通」——报的是后果不是原因**。
+    #:
+    #: **实测规模**（隔离副本树 + 审计钩子逐份真跑，只算基线提交里已跟踪的路径）：
+    #: **73 份 python 反验里 26 份改动手册树里原有的文件**，
+    #: **而 `20-reference.md` 被 8 份碰**——**它是基线声明文件，
+    #: 8 道闸靠它解析上游，一次中断就能让全树变成 rc=2「未能核对」**。
+    #:
+    #: **为什么本批不把它们全改掉，而先立判据**：26 份逐一改是几个批次的活，
+    #: **而「第 27 份」今天就能抓**。**豁免表逐条写了理由**——
+    #: **一张没有理由的名单，下一个人只会照着它继续加**（纪律 305）。
+    _new = sorted(n for n in tree_writes if n not in TREE_WRITE_EXEMPT)
+    for _n in _new:
+        problems.append(
+            "方向十九：反验 `%s` **真跑期间改动了手册树里的文件**（%s）"
+            "　→ **反验只该在临时目录里动手脚**。"
+            "**它改的是真实手册树，于是「跑完 git status 干净」全靠 finally 兜着，"
+            "而 finally 在被 kill / 超时 / Ctrl-C 时不执行**"
+            "（Batch 280 实测：一次超时就在树里留下了注入，"
+            "而下一轮闸 18 报的是「那份反验没跑通」——**报的是后果不是原因**）。"
+            "**修法是给它建沙箱**；确实必须写真树的，登记进 `TREE_WRITE_EXEMPT` 并写明理由"
+            % (_n, "、".join(tree_writes[_n][:4])))
+    _stale = sorted(set(TREE_WRITE_EXEMPT) - set(tree_writes))
+    print("  方向十九：真跑期间 **%d 份**反验改动了手册树"
+          "（已登记豁免 %d、新命中 %d）；指纹代价 %.2f 秒；%s%s"
+          % (len(tree_writes), len(tree_writes) - len(_new), len(_new), fp_cost,
+             "**有新命中**" if _new else "**没有新命中**",
+             ("；**豁免表里 %d 份本轮没命中**（%s%s）——"
+              "**这不等于它们已经安全**：本方向数的是「真树这一轮有没有动到」，"
+              "**而一份反验在什么条件下动树是可以变的**"
+              "（实测就有三份在副本树里因环境缺口提前退出、普查量不到，真树上才动到）。"
+              "**所以这张表宁可宽，不可删**——**删一条的代价是一次假红，"
+              "而留一条的代价只是一行「本轮没命中」**（纪律 143）"
+              % (len(_stale), "、".join(_stale[:4]),
+                 " 等" if len(_stale) > 4 else "")
+              if _stale else "")))
 
     print("  方向十六：真跑 %d 份非慢反验，%d 份 rc=0，用时 %.1f 秒%s%s"
           % (ran, ok, fleet_cost,

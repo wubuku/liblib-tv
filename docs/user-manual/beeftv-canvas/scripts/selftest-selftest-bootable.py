@@ -335,12 +335,25 @@ def m_never_measured():
     try:
         p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
         t = read(p)
-        new, k = re.subn(r"^\s*" + re.escape(COST_KEY) + r"[^\n]*\n", "", t, count=1,
-                         flags=re.M)
-        assert k == 1, "注入未生效：耗时条目 %s 没删掉（k=%d）" % (COST_KEY, k)
-        write(p, new)
+        #: **锚点必须锚到「值是秒数的那一行」**（`SELFTEST_COSTS` 的条目形如
+        #: `"selftest-x.py": 2.0,`），**而不是「键名相同的头一行」**。
+        #: **本批新增的 `TREE_WRITE_EXEMPT` 里就有同名键且排在前面**——
+        #: 于是 `count=1` 删掉的是豁免项的第一行，**而那一项是三行的
+        #: → 闸当场 `SyntaxError` → rc=1**，
+        #: **而用例要的是「报缺实测耗时」：两个条件一个都不满足，
+        #: 报告上却只是一条红，看起来像判据坏了。**
+        #: **同一个键名在一份文件里出现两次，是这个项目反复踩的那一类**
+        #: （纪律 107 的升级版：**锚点不只要稳定，还要唯一**）。
+        m = re.search(r"^\s*" + re.escape(COST_KEY) + r"\s*[\d.]+,[^\n]*\n", t, re.M)
+        assert m, "注入未生效：闸里找不到 `%s` 的耗时条目" % COST_KEY
+        #: **这个键在闸里一共出现几次，如实报进 detail**——
+        #: **它现在 >1 是事实而不是错误**（豁免表本来就要列同一批文件名），
+        #: **而哪天有人再加一个同名结构，这条 detail 就是预警**。
+        same_key = len(re.findall(r"^\s*" + re.escape(COST_KEY) + r"[^\n]*\n", t, re.M))
+        write(p, t[:m.start()] + t[m.end():])
         rc, out = run_in(tmp)
-        record("10 缺实测耗时→必报", rc == 1 and "没有它的实测耗时" in out, f"rc={rc}")
+        record("10 缺实测耗时→必报", rc == 1 and "没有它的实测耗时" in out,
+               "rc=%d 同名键在闸里出现 %d 次（只认值是秒数的那一行）" % (rc, same_key))
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -1173,6 +1186,125 @@ def m_build_secs_mechanism_clean():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+# ── 41–43 构建墙钟之外的另一半：反验不许写真册树（**Batch 281，方向十九**）────
+#
+# **为什么这两条「能抓 / 不误伤」只要 2 秒而不是 155 秒**：
+# 方向十九长在方向十六的真跑循环里，**而方向十六一跑就是 39 份、151 秒**。
+# **照默认配置跑一遍当然最真，可是一条用例 151 秒意味着这份反验多出 5 分钟**——
+# **判据的代价必须先量**（Batch 278 那条 `cost_split` 就是这么来的）。
+# **做法：把注入闸的 `names` 缩成一份**（`names = ["selftest-batch-rows.py"]`）。
+# **这不会让方向十九失效**——**它问的是「这一份动没动手册树」，
+# 而一份就够回答**；**而方向十六的其余 38 份由另外那些用例与每次真构建覆盖**。
+# **⚠️ 这条缩窄必须写在这里**：**它意味着本对用例验的是方向十九的报告逻辑，
+# 不是「39 份一起跑时它还成立」**——后者由每次真构建守着。
+_ONE = "selftest-batch-rows.py"
+_FLEET_ANCHOR = "    names = selftests()"
+
+
+def _pin_fleet(t):
+    """把注入闸的真跑名单缩成一份。**锚点必须在改前改后都在**——
+    `names = selftests()` 这行从 Batch 179 就在，与本批无关。"""
+    assert _FLEET_ANCHOR in t, "前提失配：闸里找不到 `%s`" % _FLEET_ANCHOR.strip()
+    return t.replace(_FLEET_ANCHOR,
+                     '    names = ["%s"]  # Batch 281 用例 41/42 注入' % _ONE, 1)
+
+
+def m_tree_write_reported():
+    """能抓①：一份**没登记豁免**的反验改了手册树 → 方向十九必须点名它。
+
+    **注入是「把豁免表里那一条删掉」**，而不是「造一份会写树的反验」——
+    **因为真有一份会写树的**：`selftest-batch-rows.py` 实测改写 `PROGRESS.md`
+    （Batch 281 普查，`73 份里 26 份`）。
+    **用现成的那一份而不是新造一份**：新造的反验要多写一个文件、多注册一行映射，
+    **而它验的性质与现成那份完全一样**。
+    """
+    check_anchor()
+    tmp = sandbox_full()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        t = _pin_fleet(read(p))
+        new, k = re.subn(r'^    "%s": .*\n' % re.escape(_ONE), "", t, count=1, flags=re.M)
+        assert k == 1, "注入未生效：豁免表里没有 `%s` 那一行（k=%d）" % (_ONE, k)
+        write(p, new)
+        rc, out = run_in_env(tmp)
+        record("41 改了手册树又没登记豁免→必报",
+               rc == 1 and "方向十九" in out and "真跑期间改动了手册树里的文件" in out
+               and _ONE in out,
+               "rc=%d" % rc)
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_tree_write_exempt_not_reported():
+    """**不误伤**：同一份反验、同样改了手册树，**但它登记在豁免表里** → 一条都不许报。
+
+    **与 Batch 280 用例 40 同一个坑的另一个版本**：上一批踩的是
+    「断言写了 `方向四g` 不许出现在输出里，而闸正常时会打印方向四g 的绿行」。
+    **本例的对应形态是**：方向十九**无论报不报都会打一行汇总**，
+    **所以断言必须问「报问题的那句在不在」，不能问「方向十九在不在」**。
+    **而两者只差几个字，差的是这句话会不会被写错方向。**
+
+    **⚠️ `rc=1` 在本例是预期的，不是缺陷**：注入把 `names` 缩成一份之后，
+    方向十一 / 方向十七那些按名单逐条核的方向必然对不上而报错。
+    **所以本例断言的是「方向十九那句在不在」，而不是 `rc == 0`**——
+    **在别的方向因为注入而报错的场合要求 rc=0，等于要求注入不生效**
+    （而它恰恰要生效）。
+    """
+    check_anchor()
+    tmp = sandbox_full()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        write(p, _pin_fleet(read(p)))
+        rc, out = run_in_env(tmp)
+        #: **这里刻意不 `assert`「方向十九跑过了」**（与 Batch 280 用例 40 同一条纪律）：
+        #: **改前闸根本没有这个方向**，而 assert 落空会把本例在对照组上记成**「作废」**——
+        #: **而「作废」的意思是「前提不成立、这条什么都没验」**。
+        #: **可这里前提是成立的**：**判据不存在时它当然不会误报，那正是不误伤**。
+        #: **所以断言只问「报问题的那句在不在」**（改前改后都成立），
+        #: **而「方向十九到底跑没跑」放进 detail**——
+        #: **于是读的人不必猜这一条是「验过了」还是「压根没执行」**。
+        #: **detail 原来写的是 `_ONE in out`，而汇总行只报两个数、不列名字**——
+        #: **于是它在「豁免表里有它」的时候也打印「豁免表里没有它」**，
+        #: **一行 detail 说了假话，而它就印在那条通过的用例后面**。
+        #: **改成直接读注入闸的源码**：这句话要说的就是表里有没有那一条。
+        in_table = ('"%s"' % _ONE) in read(p)
+        record("42 改了手册树但已登记豁免→一条都不许报",
+               "真跑期间改动了手册树里的文件" not in out,
+               "rc=%d 豁免表里%s它；方向十九%s执行"
+               % (rc, "有" if in_table else "**没有**",
+                  "" if "方向十九：" in out else "**没**"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+def m_exempt_reasons_not_empty():
+    """豁免表里每一条都要有理由，**一条空的都不许**。
+
+    **这一条不跑闸**（它只读闸的源码），**所以它几乎不要钱**，
+    **而它守着的是这张表唯一的刹车**：
+    **一张只列名字的豁免表，下一个人只会照着它继续加**
+    ——**而「为什么这份必须写真册树」正是该不该加它的唯一依据**（纪律 305）。
+    """
+    check_anchor()
+    t = read(GATE)
+    m = re.search(r"TREE_WRITE_EXEMPT = \{", t)
+    if not m:
+        #: **改前闸没有这张表，而本例第一版会把它记成「作废」**——
+        #: **而「空集合上每一条都有理由」是恒真的**，0 条就是 0 条空理由。
+        #: **如实报成「本轮 0 条」而不是「前提失配」**：
+        #: **「作废」的意思是「前提不成立、这条什么都没验」，
+        #: 而这里前提是成立的——它就是一张空表**（这一条是对照组能读懂本批的地方）。
+        record("43 豁免表 0 条（改前闸没有这张表）", True, "表不存在，空集合恒真")
+        return
+    body = t[m.end():]
+    body = body[:body.index("\n}")]
+    empty = re.findall(r'^    "[^"]+":\s*",?\s*$', body, re.M)
+    n = len(re.findall(r'^    "[^"]+":', body, re.M))
+    record("43 豁免表 %d 条每条都有理由" % n,
+           n > 0 and not empty,
+           "空理由 %d 条" % len(empty))
+
+
 def check_own_ledger_row():
     """本反验**自己核自己那一行**的「例数」——因为方向十七够不到它。
 
@@ -1216,7 +1348,9 @@ def main():
              m_cost_split_anchor_absent, m_cost_split_sum_off,
              m_cost_split_absent, m_cost_split_clean_not_reported,
              m_build_secs_flag_removed, m_build_secs_not_forwarded,
-             m_build_secs_mechanism_clean]
+             m_build_secs_mechanism_clean,
+             m_tree_write_reported, m_tree_write_exempt_not_reported,
+             m_exempt_reasons_not_empty]
     for t in tests:
         try:
             t()
