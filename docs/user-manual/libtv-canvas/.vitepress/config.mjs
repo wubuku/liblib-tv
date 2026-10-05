@@ -49,6 +49,7 @@ export default defineConfig({
         text: '节点与连线',
         items: [
           { text: '创建九类节点', link: '/10-tasks/create-nodes' },
+          { text: '图片节点的「预设」面板', link: '/10-tasks/image-presets' },
           { text: '连接节点', link: '/10-tasks/connect-nodes' },
           { text: '生成图片 / 视频 / 音频', link: '/10-tasks/generate-media' },
         ],

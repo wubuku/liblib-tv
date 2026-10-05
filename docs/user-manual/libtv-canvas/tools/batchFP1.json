@@ -1,0 +1,1831 @@
+{
+  "步骤": [
+    "closePromos：[{\"模态\":false,\"文字\":\"Agent 已升级为 TV Director 全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Dir",
+    "—— ① 选中一个图片节点 ——",
+    "   节点 {\"id\":\"i-9nlG6HdjK2\",\"框\":[65,329,300,169]}",
+    "   ✅ 断言通过：图片节点选上了",
+    "   节点框 [65,329,300,169]",
+    "   · {\"名\":\"参考\",\"框\":[-102,519,54,26],\"aria\":null,\"title\":null}",
+    "   · {\"名\":\"标记\",\"框\":[-44,519,54,26],\"aria\":null,\"title\":null}",
+    "   · {\"名\":\"风格\",\"框\":[14,519,54,26],\"aria\":null,\"title\":null}",
+    "   · {\"名\":\"Lib Image 2.5 Pro\",\"框\":[-106,657,159,32],\"aria\":null,\"title\":null}",
+    "   · {\"名\":\"16:9 · 标准画质 · 2K · 1张\",\"框\":[63,657,201,32],\"aria\":null,\"title\":null}",
+    "   · {\"名\":\"预设\",\"框\":[273,657,32,32],\"aria\":\"预设\",\"title\":null}",
+    "   · {\"名\":\"\",\"框\":[309,657,32,32],\"aria\":null,\"title\":null}",
+    "   · {\"名\":\"\",\"框\":[384,657,32,32],\"aria\":null,\"title\":null}",
+    "   · {\"名\":\"\",\"框\":[424,657,32,32],\"aria\":null,\"title\":null}",
+    "   · {\"名\":\"\",\"框\":[504,657,32,32],\"aria\":null,\"title\":null}",
+    "   · {\"名\":\"智能引用 AutoLink\",\"框\":[490,730,38,20],\"aria\":\"智能引用 AutoLink\",\"title\":null}",
+    "   · {\"名\":\"\",\"框\":[508,515,28,28],\"aria\":null,\"title\":null}",
+    "—— ② 点 ⤢ ——",
+    "   ⤢ 候选 {\"框\":[273,657,32,32],\"点\":[289,673],\"命中\":\"预设\"}",
+    "   浮层 4 → 4 个",
+    "   # {\"框\":[96378,-76,695,391],\"z\":\"auto\",\"position\":\"absolute\",\"class\":\"react-flow__edgelabel-renderer\",\"文字\":\"\"}",
+    "   # {\"框\":[96378,-76,695,391],\"z\":\"auto\",\"position\":\"absolute\",\"class\":\"react-flow__nodes\",\"文字\":\"音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 图片节点 2 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 图片节点 2 尝试： 图生图 图片高清 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： \"}",
+    "   # {\"框\":[96378,-76,695,391],\"z\":\"auto\",\"position\":\"absolute\",\"class\":\"react-flow__viewport-portal\",\"文字\":\"\"}",
+    "   # {\"框\":[0,0,1440,810],\"z\":\"180\",\"position\":\"fixed\",\"class\":\"pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:duration-200\",\"文字\":\"\"}",
+    "   ❌ 断言失败：⭐ 点 ⤢ 之后确实多出一个浮层｜数据 {\"前层\":4,\"后\":4}",
+    "   大编辑器里可见控件 87 枚",
+    "   · {\"名\":\"项目名称\",\"框\":[70,13,86,21],\"tag\":\"INPUT\",\"role\":null,\"aria\":\"项目名称\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"hover:border-canvas-controls-border min-w-[30px] max-w-[100p\"}",
+    "   · {\"名\":\"画布 2\",\"框\":[165,8,69,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/canvas-chip hover:bg-canvas-controls-hover data-open:b\"}",
+    "   · {\"名\":\"工作流\",\"框\":[244,8,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"工作流\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgb(54, 54, 54)\",\"opacity\":\"1\",\"class\":\"flex size-8 items-center justify-center rounded-lg bg-clip-c\"}",
+    "   · {\"名\":\"故事板\",\"框\":[276,8,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"故事板\",\"title\":null,\"字色\":\"rgb(145, 145, 145)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex size-8 items-center justify-center rounded-lg bg-clip-c\"}",
+    "   · {\"名\":\"发布与分享\",\"框\":[1087,8,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"发布与分享\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"color(srgb 0.14902 0.14902 0.14902 / 0.8)\",\"opacity\":\"1\",\"class\":\"border-(--topnav-btn-border) relative flex items-center just\"}",
+    "   · {\"名\":\"积分超市\",\"框\":[1127,8,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"积分超市\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"color(srgb 0.14902 0.14902 0.14902 / 0.8)\",\"opacity\":\"1\",\"class\":\"border-border-neutral-l1 text-nt-text-default flex h-8 curso\"}",
+    "   · {\"名\":\"20\",\"框\":[1334,8,58,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"color(srgb 0.14902 0.14902 0.14902 / 0.8)\",\"opacity\":\"1\",\"class\":\"border-border-neutral-l1 text-nt-text-default flex h-8 curso\"}",
+    "   · {\"名\":\"添加节点\",\"框\":[580,757,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"添加节点\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"relative flex items-center justify-center rounded-lg transit\"}",
+    "   · {\"名\":\"移动\",\"框\":[620,757,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"移动\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"relative flex items-center justify-center rounded-lg transit\"}",
+    "   · {\"名\":\"素材库\",\"框\":[660,757,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"素材库\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"relative flex items-center justify-center rounded-lg transit\"}",
+    "   · {\"名\":\"角色造型室\",\"框\":[700,757,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"角色造型室\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"relative flex items-center justify-center rounded-lg transit\"}",
+    "   · {\"名\":\"生成历史\",\"框\":[740,757,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"生成历史\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"relative flex items-center justify-center rounded-lg transit\"}",
+    "   · {\"名\":\"快捷键\",\"框\":[789,757,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"快捷键\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"relative flex items-center justify-center rounded-lg transit\"}",
+    "   · {\"名\":\"教程\",\"框\":[829,757,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"教程\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"relative flex items-center justify-center rounded-lg transit\"}",
+    "   · {\"名\":\"音频生视频\",\"框\":[77,670,56,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"音频生视频\",\"框\":[1183,167,56,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"上传视频后开始\",\"框\":[708,109,142,80],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"nodrag nopan flex aspect-[294/165] w-full flex-col items-cen\"}",
+    "   · {\"名\":\"分镜\",\"框\":[708,208,45,15],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(93, 220, 255)\",\"底色\":\"rgba(19, 213, 255, 0.12)\",\"opacity\":\"1\",\"class\":\"nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justi\"}",
+    "   · {\"名\":\"动态\",\"框\":[757,208,45,15],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(93, 220, 255)\",\"底色\":\"rgba(19, 213, 255, 0.12)\",\"opacity\":\"1\",\"class\":\"nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justi\"}",
+    "   · {\"名\":\"音乐\",\"框\":[806,208,45,15],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(93, 220, 255)\",\"底色\":\"rgba(19, 213, 255, 0.12)\",\"opacity\":\"1\",\"class\":\"nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justi\"}",
+    "   · {\"名\":\"开始拉片\",\"框\":[708,233,142,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(82, 82, 82)\",\"底色\":\"rgba(255, 255, 255, 0.08)\",\"opacity\":\"1\",\"class\":\"nodrag nopan flex h-9 w-full items-center justify-center rou\"}",
+    "   · {\"名\":\"参考\",\"框\":[-102,519,54,26],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(255, 255, 255, 0.05)\",\"opacity\":\"1\",\"class\":\"flex shrink-0 items-center justify-center gap-0.5 rounded-fu\"}",
+    "   · {\"名\":\"标记\",\"框\":[-44,519,54,26],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(255, 255, 255, 0.05)\",\"opacity\":\"1\",\"class\":\"flex shrink-0 items-center justify-center gap-0.5 rounded-fu\"}",
+    "   · {\"名\":\"风格\",\"框\":[14,519,54,26],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(255, 255, 255, 0.05)\",\"opacity\":\"1\",\"class\":\"flex shrink-0 items-center justify-center gap-0.5 rounded-fu\"}",
+    "   · {\"名\":\"Lib Image 2.5 Pro\",\"框\":[-106,657,159,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex items-center justify-between bg-transparent transition-\"}",
+    "   · {\"名\":\"16:9 · 标准画质 · 2K · 1张\",\"框\":[63,657,201,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex h-8 min-w-0 shrink items-center justify-between gap-1 b\"}",
+    "   · {\"名\":\"预设\",\"框\":[273,657,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"预设\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(255, 255, 255, 0.1)\",\"opacity\":\"1\",\"class\":\"text-canvas-controls-text relative flex size-8 shrink-0 item\"}",
+    "   · {\"名\":\"智能引用 AutoLink\",\"框\":[490,730,38,20],\"tag\":\"INPUT\",\"role\":\"switch\",\"aria\":\"智能引用 AutoLink\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0\",\"class\":\"m_926b4011 mantine-Switch-input\"}",
+    "   · {\"名\":\"图生图\",\"框\":[847,428,42,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"图片高清\",\"框\":[847,447,50,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"打开导演台\",\"框\":[991,169,44,15],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"lab(100 -0.0000298023 0.0000119209 / 0.85)\",\"底色\":\"lab(100 -0.0000298023 0.0000119209 / 0.1)\",\"opacity\":\"1\",\"class\":\"nodrag relative z-10 flex h-8 min-w-12 items-center justify-\"}",
+    "   · {\"名\":\"自己编写内容\",\"框\":[320,652,63,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"文生视频\",\"框\":[320,671,49,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"图片反推提示词\",\"框\":[320,690,70,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"文字生音乐\",\"框\":[320,710,56,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"自己编写内容\",\"框\":[1218,408,63,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"文生视频\",\"框\":[1218,428,49,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"图片反推提示词\",\"框\":[1218,447,70,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"文字生音乐\",\"框\":[1218,466,56,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"讲解视频\",\"框\":[481,151,42,14],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"text-fg-default hover:enabled:bg-btn-ghost-hover flex items-\"}",
+    "   · {\"名\":\"批量广告\",\"框\":[481,167,42,14],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"text-fg-default hover:enabled:bg-btn-ghost-hover flex items-\"}",
+    "   · {\"名\":\"口播视频\",\"框\":[481,182,42,14],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"text-fg-default hover:enabled:bg-btn-ghost-hover flex items-\"}",
+    "   · {\"名\":\"素材混剪\",\"框\":[481,198,42,14],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"text-fg-default hover:enabled:bg-btn-ghost-hover flex items-\"}",
+    "   · {\"名\":\"5分钟超长视频\",\"框\":[77,151,67,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"首尾帧生成视频\",\"框\":[77,170,70,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"首帧生成视频\",\"框\":[77,190,63,17],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"group/btn text-fg-default hover:bg-canvas-controls-hover fle\"}",
+    "   · {\"名\":\"资产管理\",\"框\":[14,764,94,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"资产管理\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"hover:bg-canvas-controls-hover relative flex items-center ro\"}",
+    "   · {\"名\":\"整理画布，Option+Shift+F\",\"框\":[112,764,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"整理画布，Option+Shift+F\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex items-center justify-center rounded-lg transition-color\"}",
+    "   · {\"名\":\"切换小地图\",\"框\":[144,764,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"切换小地图\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex items-center justify-center rounded-lg transition-color\"}",
+    "   · {\"名\":\"隐藏节点连线\",\"框\":[176,764,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"隐藏节点连线\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"hover:bg-canvas-controls-hover flex items-center justify-cen\"}",
+    "   · {\"名\":\"网格吸附\",\"框\":[208,764,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"网格吸附\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"hover:bg-canvas-controls-hover flex items-center justify-cen\"}",
+    "   · {\"名\":\"48%\",\"框\":[240,764,36,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"缩放选项\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"hover:bg-canvas-controls-hover flex items-center justify-cen\"}",
+    "   · {\"名\":\"当前已是新对话\",\"框\":[1199,165,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"当前已是新对话\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.4\",\"class\":\"flex size-7 shrink-0 items-center justify-center rounded-lg \"}",
+    "   · {\"名\":\"历史对话\",\"框\":[1229,165,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"历史对话\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex size-7 shrink-0 items-center justify-center rounded-lg \"}",
+    "   · {\"名\":\"新对话无法分享\",\"框\":[1259,165,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"新对话无法分享\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.4\",\"class\":\"flex size-7 shrink-0 items-center justify-center rounded-lg \"}",
+    "   · {\"名\":\"TV Director 全局设置\",\"框\":[1289,165,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"TV Director 全局设置\",\"title\":\"TV Director 全局设置\",\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"hover:bg-canvas-controls-hover flex size-7 shrink-0 cursor-p\"}",
+    "   · {\"名\":\"LibTV Plugin\",\"框\":[1319,165,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"LibTV Plugin\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"installed-app-hidden flex size-7 shrink-0 cursor-pointer ite\"}",
+    "   · {\"名\":\"停靠到右侧\",\"框\":[1349,165,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"停靠到右侧\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex size-7 shrink-0 cursor-pointer items-center justify-cen\"}",
+    "   · {\"名\":\"关闭\",\"框\":[1379,165,28,28],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"关闭\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex size-7 shrink-0 cursor-pointer items-center justify-cen\"}",
+    "   · {\"名\":\"感知画布开始创作\",\"框\":[1041,443,366,39],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":\"感知画布开始创作\",\"字色\":\"lab(100 -0.0000298023 0.0000119209 / 0.6)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 te\"}",
+    "   · {\"名\":\"从爆款预设开始剧本原创\",\"框\":[1041,482,366,39],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":\"从爆款预设开始剧本原创\",\"字色\":\"lab(100 -0.0000298023 0.0000119209 / 0.6)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 te\"}",
+    "   · {\"名\":\"上传故事来改编\",\"框\":[1041,521,366,39],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":\"上传故事来改编\",\"字色\":\"lab(100 -0.0000298023 0.0000119209 / 0.6)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 te\"}",
+    "   · {\"名\":\"批量优化提示词\",\"框\":[1041,560,366,39],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":\"批量优化提示词\",\"字色\":\"lab(100 -0.0000298023 0.0000119209 / 0.6)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 te\"}",
+    "   · {\"名\":\"开启\",\"框\":[1269,622,26,18],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"h-[18px] shrink-0 whitespace-nowrap border-0 bg-transparent \"}",
+    "   · {\"名\":\"关闭浏览器通知提示\",\"框\":[1383,619,24,24],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"关闭浏览器通知提示\",\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"box-border flex size-6 shrink-0 items-center justify-center \"}",
+    "   · {\"名\":\"添加附件\",\"框\":[1042,740,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"添加附件\",\"title\":null,\"字色\":\"rgb(145, 145, 145)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-de\"}",
+    "   · {\"名\":\"全能创作\",\"框\":[1077,740,81,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"选择创作模式\",\"title\":null,\"字色\":\"rgb(247, 247, 247)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"relative flex h-8 min-w-0 items-center gap-px pl-2 pr-1 tran\"}",
+    "   · {\"名\":\"选择模型\",\"框\":[1161,740,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"选择模型\",\"title\":null,\"字色\":\"rgb(145, 145, 145)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-de\"}",
+    "   · {\"名\":\"Skill\",\"框\":[1196,740,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"Skill\",\"title\":null,\"字色\":\"rgb(145, 145, 145)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-de\"}",
+    "   · {\"名\":\"手动生成\",\"框\":[1231,740,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"手动生成\",\"title\":null,\"字色\":\"rgb(145, 145, 145)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"1\",\"class\":\"text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-de\"}",
+    "   · {\"名\":\"Send\",\"框\":[1374,740,32,32],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"Send\",\"title\":null,\"字色\":\"rgb(23, 23, 23)\",\"底色\":\"rgb(247, 247, 247)\",\"opacity\":\"1\",\"class\":\"copilotKitInputControlButton copilotKitInputSendButton curso\"}",
+    "   · {\"名\":\"取消ESC\",\"框\":[730,9,64,16],\"tag\":\"BUTTON\",\"role\":null,\"aria\":\"退出跟随\",\"title\":null,\"字色\":\"lab(8.11897 0.811279 -12.254)\",\"底色\":\"rgb(255, 255, 255)\",\"opacity\":\"1\",\"class\":\"peer rounded-full bg-white px-2 py-0.5 text-xs font-medium l\"}",
+    "   · {\"名\":\"调度故事板 生成带有运动轨迹等调度草图分镜\",\"框\":[282,155,238,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"故事板 生成完整剧情片段\",\"框\":[282,211,238,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"25宫格连贯分镜 生成连续分镜长图\",\"框\":[282,267,238,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"剧情推演四宫格 生成四格剧情推演\",\"框\":[282,323,238,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"画面推演 - 3秒后 推演画面后续动作\",\"框\":[282,379,238,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"画面推演 - 5秒前 还原画面前置状态\",\"框\":[282,435,238,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"人像质感调节 降低 AI 感，优化人物质感与光影\",\"框\":[282,532,238,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"电影级光影校正 调整画面光影质感\",\"框\":[282,588,238,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"720全景 生成全景场景图\",\"框\":[528,155,250,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"多机位九宫格 生成多视角机位图\",\"框\":[528,211,250,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"角色脸部三视图 基于一张参考图生成脸部细节三视图\",\"框\":[528,308,250,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"角色设定图 角色主视觉与设定拆解\",\"框\":[528,364,250,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"角色三视图 正侧背视图与脸部特写\",\"框\":[528,420,250,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"场景设定图 角色主视觉与设定拆解\",\"框\":[528,476,250,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "   · {\"名\":\"产品设定图 角色主视觉与设定拆解\",\"框\":[528,532,250,52],\"tag\":\"BUTTON\",\"role\":null,\"aria\":null,\"title\":null,\"字色\":\"rgb(255, 255, 255)\",\"底色\":\"rgba(0, 0, 0, 0)\",\"opacity\":\"0.45\",\"class\":\"text-canvas-controls-text group flex h-[52px] w-full items-c\"}",
+    "—— ③ 与文案表对账 ——",
+    "   ⭐ img* 组命中 5 条（可见文字共 129 条）",
+    "   ✅ imgEditorSlashCinematicLighting = 电影级光影校正",
+    "   ✅ imgEditorSlashFrameMinus5s = 画面推演-5秒前",
+    "   ✅ imgEditorSlashFramePlus3s = 画面推演-3秒后",
+    "   ✅ imgEditorSlashPlotFourGrid = 剧情推演四宫格",
+    "   ✅ imgEditorSlashStoryboard25 = 25宫格连贯分镜",
+    "   ⭐⭐ 十八枚编辑工具命中 0/21：",
+    "—— 共跑了 2 条断言，失败 1 条 ——",
+    "done"
+  ],
+  "读数": {
+    "节点控件": {
+      "节点框": [
+        65,
+        329,
+        300,
+        169
+      ],
+      "控件": [
+        {
+          "名": "参考",
+          "框": [
+            -102,
+            519,
+            54,
+            26
+          ],
+          "aria": null,
+          "title": null
+        },
+        {
+          "名": "标记",
+          "框": [
+            -44,
+            519,
+            54,
+            26
+          ],
+          "aria": null,
+          "title": null
+        },
+        {
+          "名": "风格",
+          "框": [
+            14,
+            519,
+            54,
+            26
+          ],
+          "aria": null,
+          "title": null
+        },
+        {
+          "名": "Lib Image 2.5 Pro",
+          "框": [
+            -106,
+            657,
+            159,
+            32
+          ],
+          "aria": null,
+          "title": null
+        },
+        {
+          "名": "16:9 · 标准画质 · 2K · 1张",
+          "框": [
+            63,
+            657,
+            201,
+            32
+          ],
+          "aria": null,
+          "title": null
+        },
+        {
+          "名": "预设",
+          "框": [
+            273,
+            657,
+            32,
+            32
+          ],
+          "aria": "预设",
+          "title": null
+        },
+        {
+          "名": "",
+          "框": [
+            309,
+            657,
+            32,
+            32
+          ],
+          "aria": null,
+          "title": null
+        },
+        {
+          "名": "",
+          "框": [
+            384,
+            657,
+            32,
+            32
+          ],
+          "aria": null,
+          "title": null
+        },
+        {
+          "名": "",
+          "框": [
+            424,
+            657,
+            32,
+            32
+          ],
+          "aria": null,
+          "title": null
+        },
+        {
+          "名": "",
+          "框": [
+            504,
+            657,
+            32,
+            32
+          ],
+          "aria": null,
+          "title": null
+        },
+        {
+          "名": "智能引用 AutoLink",
+          "框": [
+            490,
+            730,
+            38,
+            20
+          ],
+          "aria": "智能引用 AutoLink",
+          "title": null
+        },
+        {
+          "名": "",
+          "框": [
+            508,
+            515,
+            28,
+            28
+          ],
+          "aria": null,
+          "title": null
+        }
+      ]
+    },
+    "大编辑器浮层": [
+      {
+        "框": [
+          96378,
+          -76,
+          695,
+          391
+        ],
+        "z": "auto",
+        "position": "absolute",
+        "class": "react-flow__edgelabel-renderer",
+        "文字": ""
+      },
+      {
+        "框": [
+          96378,
+          -76,
+          695,
+          391
+        ],
+        "z": "auto",
+        "position": "absolute",
+        "class": "react-flow__nodes",
+        "文字": "音频节点 1 尝试： 音频生视频 音频节点 1 尝试： 音频生视频 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 图片节点 2 参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink 图片节点 2 尝试： 图生图 图片高清 导演台 5 在3D空间中搭建场景并进行多视角截图 打开导演台 文本节点 1 尝试： "
+      },
+      {
+        "框": [
+          96378,
+          -76,
+          695,
+          391
+        ],
+        "z": "auto",
+        "position": "absolute",
+        "class": "react-flow__viewport-portal",
+        "文字": ""
+      },
+      {
+        "框": [
+          0,
+          0,
+          1440,
+          810
+        ],
+        "z": "180",
+        "position": "fixed",
+        "class": "pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:duration-200",
+        "文字": ""
+      }
+    ],
+    "大编辑器控件": [
+      {
+        "名": "项目名称",
+        "框": [
+          70,
+          13,
+          86,
+          21
+        ],
+        "tag": "INPUT",
+        "role": null,
+        "aria": "项目名称",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "hover:border-canvas-controls-border min-w-[30px] max-w-[100p"
+      },
+      {
+        "名": "画布 2",
+        "框": [
+          165,
+          8,
+          69,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/canvas-chip hover:bg-canvas-controls-hover data-open:b"
+      },
+      {
+        "名": "工作流",
+        "框": [
+          244,
+          8,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "工作流",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgb(54, 54, 54)",
+        "opacity": "1",
+        "class": "flex size-8 items-center justify-center rounded-lg bg-clip-c"
+      },
+      {
+        "名": "故事板",
+        "框": [
+          276,
+          8,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "故事板",
+        "title": null,
+        "字色": "rgb(145, 145, 145)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex size-8 items-center justify-center rounded-lg bg-clip-c"
+      },
+      {
+        "名": "发布与分享",
+        "框": [
+          1087,
+          8,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "发布与分享",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "color(srgb 0.14902 0.14902 0.14902 / 0.8)",
+        "opacity": "1",
+        "class": "border-(--topnav-btn-border) relative flex items-center just"
+      },
+      {
+        "名": "积分超市",
+        "框": [
+          1127,
+          8,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "积分超市",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "color(srgb 0.14902 0.14902 0.14902 / 0.8)",
+        "opacity": "1",
+        "class": "border-border-neutral-l1 text-nt-text-default flex h-8 curso"
+      },
+      {
+        "名": "20",
+        "框": [
+          1334,
+          8,
+          58,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "color(srgb 0.14902 0.14902 0.14902 / 0.8)",
+        "opacity": "1",
+        "class": "border-border-neutral-l1 text-nt-text-default flex h-8 curso"
+      },
+      {
+        "名": "添加节点",
+        "框": [
+          580,
+          757,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "添加节点",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "relative flex items-center justify-center rounded-lg transit"
+      },
+      {
+        "名": "移动",
+        "框": [
+          620,
+          757,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "移动",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "relative flex items-center justify-center rounded-lg transit"
+      },
+      {
+        "名": "素材库",
+        "框": [
+          660,
+          757,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "素材库",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "relative flex items-center justify-center rounded-lg transit"
+      },
+      {
+        "名": "角色造型室",
+        "框": [
+          700,
+          757,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "角色造型室",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "relative flex items-center justify-center rounded-lg transit"
+      },
+      {
+        "名": "生成历史",
+        "框": [
+          740,
+          757,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "生成历史",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "relative flex items-center justify-center rounded-lg transit"
+      },
+      {
+        "名": "快捷键",
+        "框": [
+          789,
+          757,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "快捷键",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "relative flex items-center justify-center rounded-lg transit"
+      },
+      {
+        "名": "教程",
+        "框": [
+          829,
+          757,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "教程",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "relative flex items-center justify-center rounded-lg transit"
+      },
+      {
+        "名": "音频生视频",
+        "框": [
+          77,
+          670,
+          56,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "音频生视频",
+        "框": [
+          1183,
+          167,
+          56,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "上传视频后开始",
+        "框": [
+          708,
+          109,
+          142,
+          80
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "nodrag nopan flex aspect-[294/165] w-full flex-col items-cen"
+      },
+      {
+        "名": "分镜",
+        "框": [
+          708,
+          208,
+          45,
+          15
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(93, 220, 255)",
+        "底色": "rgba(19, 213, 255, 0.12)",
+        "opacity": "1",
+        "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justi"
+      },
+      {
+        "名": "动态",
+        "框": [
+          757,
+          208,
+          45,
+          15
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(93, 220, 255)",
+        "底色": "rgba(19, 213, 255, 0.12)",
+        "opacity": "1",
+        "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justi"
+      },
+      {
+        "名": "音乐",
+        "框": [
+          806,
+          208,
+          45,
+          15
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(93, 220, 255)",
+        "底色": "rgba(19, 213, 255, 0.12)",
+        "opacity": "1",
+        "class": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justi"
+      },
+      {
+        "名": "开始拉片",
+        "框": [
+          708,
+          233,
+          142,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(82, 82, 82)",
+        "底色": "rgba(255, 255, 255, 0.08)",
+        "opacity": "1",
+        "class": "nodrag nopan flex h-9 w-full items-center justify-center rou"
+      },
+      {
+        "名": "参考",
+        "框": [
+          -102,
+          519,
+          54,
+          26
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(255, 255, 255, 0.05)",
+        "opacity": "1",
+        "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-fu"
+      },
+      {
+        "名": "标记",
+        "框": [
+          -44,
+          519,
+          54,
+          26
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(255, 255, 255, 0.05)",
+        "opacity": "1",
+        "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-fu"
+      },
+      {
+        "名": "风格",
+        "框": [
+          14,
+          519,
+          54,
+          26
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(255, 255, 255, 0.05)",
+        "opacity": "1",
+        "class": "flex shrink-0 items-center justify-center gap-0.5 rounded-fu"
+      },
+      {
+        "名": "Lib Image 2.5 Pro",
+        "框": [
+          -106,
+          657,
+          159,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex items-center justify-between bg-transparent transition-"
+      },
+      {
+        "名": "16:9 · 标准画质 · 2K · 1张",
+        "框": [
+          63,
+          657,
+          201,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex h-8 min-w-0 shrink items-center justify-between gap-1 b"
+      },
+      {
+        "名": "预设",
+        "框": [
+          273,
+          657,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "预设",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(255, 255, 255, 0.1)",
+        "opacity": "1",
+        "class": "text-canvas-controls-text relative flex size-8 shrink-0 item"
+      },
+      {
+        "名": "智能引用 AutoLink",
+        "框": [
+          490,
+          730,
+          38,
+          20
+        ],
+        "tag": "INPUT",
+        "role": "switch",
+        "aria": "智能引用 AutoLink",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0",
+        "class": "m_926b4011 mantine-Switch-input"
+      },
+      {
+        "名": "图生图",
+        "框": [
+          847,
+          428,
+          42,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "图片高清",
+        "框": [
+          847,
+          447,
+          50,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "打开导演台",
+        "框": [
+          991,
+          169,
+          44,
+          15
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "lab(100 -0.0000298023 0.0000119209 / 0.85)",
+        "底色": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+        "opacity": "1",
+        "class": "nodrag relative z-10 flex h-8 min-w-12 items-center justify-"
+      },
+      {
+        "名": "自己编写内容",
+        "框": [
+          320,
+          652,
+          63,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "文生视频",
+        "框": [
+          320,
+          671,
+          49,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "图片反推提示词",
+        "框": [
+          320,
+          690,
+          70,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "文字生音乐",
+        "框": [
+          320,
+          710,
+          56,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "自己编写内容",
+        "框": [
+          1218,
+          408,
+          63,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "文生视频",
+        "框": [
+          1218,
+          428,
+          49,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "图片反推提示词",
+        "框": [
+          1218,
+          447,
+          70,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "文字生音乐",
+        "框": [
+          1218,
+          466,
+          56,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "讲解视频",
+        "框": [
+          481,
+          151,
+          42,
+          14
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-"
+      },
+      {
+        "名": "批量广告",
+        "框": [
+          481,
+          167,
+          42,
+          14
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-"
+      },
+      {
+        "名": "口播视频",
+        "框": [
+          481,
+          182,
+          42,
+          14
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-"
+      },
+      {
+        "名": "素材混剪",
+        "框": [
+          481,
+          198,
+          42,
+          14
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "text-fg-default hover:enabled:bg-btn-ghost-hover flex items-"
+      },
+      {
+        "名": "5分钟超长视频",
+        "框": [
+          77,
+          151,
+          67,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "首尾帧生成视频",
+        "框": [
+          77,
+          170,
+          70,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "首帧生成视频",
+        "框": [
+          77,
+          190,
+          63,
+          17
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "group/btn text-fg-default hover:bg-canvas-controls-hover fle"
+      },
+      {
+        "名": "资产管理",
+        "框": [
+          14,
+          764,
+          94,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "资产管理",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "hover:bg-canvas-controls-hover relative flex items-center ro"
+      },
+      {
+        "名": "整理画布，Option+Shift+F",
+        "框": [
+          112,
+          764,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "整理画布，Option+Shift+F",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex items-center justify-center rounded-lg transition-color"
+      },
+      {
+        "名": "切换小地图",
+        "框": [
+          144,
+          764,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "切换小地图",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex items-center justify-center rounded-lg transition-color"
+      },
+      {
+        "名": "隐藏节点连线",
+        "框": [
+          176,
+          764,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "隐藏节点连线",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "hover:bg-canvas-controls-hover flex items-center justify-cen"
+      },
+      {
+        "名": "网格吸附",
+        "框": [
+          208,
+          764,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "网格吸附",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "hover:bg-canvas-controls-hover flex items-center justify-cen"
+      },
+      {
+        "名": "48%",
+        "框": [
+          240,
+          764,
+          36,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "缩放选项",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "hover:bg-canvas-controls-hover flex items-center justify-cen"
+      },
+      {
+        "名": "当前已是新对话",
+        "框": [
+          1199,
+          165,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "当前已是新对话",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.4",
+        "class": "flex size-7 shrink-0 items-center justify-center rounded-lg "
+      },
+      {
+        "名": "历史对话",
+        "框": [
+          1229,
+          165,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "历史对话",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex size-7 shrink-0 items-center justify-center rounded-lg "
+      },
+      {
+        "名": "新对话无法分享",
+        "框": [
+          1259,
+          165,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "新对话无法分享",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.4",
+        "class": "flex size-7 shrink-0 items-center justify-center rounded-lg "
+      },
+      {
+        "名": "TV Director 全局设置",
+        "框": [
+          1289,
+          165,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "TV Director 全局设置",
+        "title": "TV Director 全局设置",
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "hover:bg-canvas-controls-hover flex size-7 shrink-0 cursor-p"
+      },
+      {
+        "名": "LibTV Plugin",
+        "框": [
+          1319,
+          165,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "LibTV Plugin",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "installed-app-hidden flex size-7 shrink-0 cursor-pointer ite"
+      },
+      {
+        "名": "停靠到右侧",
+        "框": [
+          1349,
+          165,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "停靠到右侧",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex size-7 shrink-0 cursor-pointer items-center justify-cen"
+      },
+      {
+        "名": "关闭",
+        "框": [
+          1379,
+          165,
+          28,
+          28
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "关闭",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex size-7 shrink-0 cursor-pointer items-center justify-cen"
+      },
+      {
+        "名": "感知画布开始创作",
+        "框": [
+          1041,
+          443,
+          366,
+          39
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": "感知画布开始创作",
+        "字色": "lab(100 -0.0000298023 0.0000119209 / 0.6)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 te"
+      },
+      {
+        "名": "从爆款预设开始剧本原创",
+        "框": [
+          1041,
+          482,
+          366,
+          39
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": "从爆款预设开始剧本原创",
+        "字色": "lab(100 -0.0000298023 0.0000119209 / 0.6)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 te"
+      },
+      {
+        "名": "上传故事来改编",
+        "框": [
+          1041,
+          521,
+          366,
+          39
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": "上传故事来改编",
+        "字色": "lab(100 -0.0000298023 0.0000119209 / 0.6)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 te"
+      },
+      {
+        "名": "批量优化提示词",
+        "框": [
+          1041,
+          560,
+          366,
+          39
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": "批量优化提示词",
+        "字色": "lab(100 -0.0000298023 0.0000119209 / 0.6)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "flex h-[39px] w-full items-center gap-2.5 rounded-xl px-3 te"
+      },
+      {
+        "名": "开启",
+        "框": [
+          1269,
+          622,
+          26,
+          18
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "h-[18px] shrink-0 whitespace-nowrap border-0 bg-transparent "
+      },
+      {
+        "名": "关闭浏览器通知提示",
+        "框": [
+          1383,
+          619,
+          24,
+          24
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "关闭浏览器通知提示",
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "box-border flex size-6 shrink-0 items-center justify-center "
+      },
+      {
+        "名": "添加附件",
+        "框": [
+          1042,
+          740,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "添加附件",
+        "title": null,
+        "字色": "rgb(145, 145, 145)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-de"
+      },
+      {
+        "名": "全能创作",
+        "框": [
+          1077,
+          740,
+          81,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "选择创作模式",
+        "title": null,
+        "字色": "rgb(247, 247, 247)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "relative flex h-8 min-w-0 items-center gap-px pl-2 pr-1 tran"
+      },
+      {
+        "名": "选择模型",
+        "框": [
+          1161,
+          740,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "选择模型",
+        "title": null,
+        "字色": "rgb(145, 145, 145)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-de"
+      },
+      {
+        "名": "Skill",
+        "框": [
+          1196,
+          740,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "Skill",
+        "title": null,
+        "字色": "rgb(145, 145, 145)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-de"
+      },
+      {
+        "名": "手动生成",
+        "框": [
+          1231,
+          740,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "手动生成",
+        "title": null,
+        "字色": "rgb(145, 145, 145)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "1",
+        "class": "text-fg-muted hover:bg-bg-surface-secondary hover:text-fg-de"
+      },
+      {
+        "名": "Send",
+        "框": [
+          1374,
+          740,
+          32,
+          32
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "Send",
+        "title": null,
+        "字色": "rgb(23, 23, 23)",
+        "底色": "rgb(247, 247, 247)",
+        "opacity": "1",
+        "class": "copilotKitInputControlButton copilotKitInputSendButton curso"
+      },
+      {
+        "名": "取消ESC",
+        "框": [
+          730,
+          9,
+          64,
+          16
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": "退出跟随",
+        "title": null,
+        "字色": "lab(8.11897 0.811279 -12.254)",
+        "底色": "rgb(255, 255, 255)",
+        "opacity": "1",
+        "class": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium l"
+      },
+      {
+        "名": "调度故事板 生成带有运动轨迹等调度草图分镜",
+        "框": [
+          282,
+          155,
+          238,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "故事板 生成完整剧情片段",
+        "框": [
+          282,
+          211,
+          238,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "25宫格连贯分镜 生成连续分镜长图",
+        "框": [
+          282,
+          267,
+          238,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "剧情推演四宫格 生成四格剧情推演",
+        "框": [
+          282,
+          323,
+          238,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "画面推演 - 3秒后 推演画面后续动作",
+        "框": [
+          282,
+          379,
+          238,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "画面推演 - 5秒前 还原画面前置状态",
+        "框": [
+          282,
+          435,
+          238,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "人像质感调节 降低 AI 感，优化人物质感与光影",
+        "框": [
+          282,
+          532,
+          238,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "电影级光影校正 调整画面光影质感",
+        "框": [
+          282,
+          588,
+          238,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "720全景 生成全景场景图",
+        "框": [
+          528,
+          155,
+          250,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "多机位九宫格 生成多视角机位图",
+        "框": [
+          528,
+          211,
+          250,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "角色脸部三视图 基于一张参考图生成脸部细节三视图",
+        "框": [
+          528,
+          308,
+          250,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "角色设定图 角色主视觉与设定拆解",
+        "框": [
+          528,
+          364,
+          250,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "角色三视图 正侧背视图与脸部特写",
+        "框": [
+          528,
+          420,
+          250,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "场景设定图 角色主视觉与设定拆解",
+        "框": [
+          528,
+          476,
+          250,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      },
+      {
+        "名": "产品设定图 角色主视觉与设定拆解",
+        "框": [
+          528,
+          532,
+          250,
+          52
+        ],
+        "tag": "BUTTON",
+        "role": null,
+        "aria": null,
+        "title": null,
+        "字色": "rgb(255, 255, 255)",
+        "底色": "rgba(0, 0, 0, 0)",
+        "opacity": "0.45",
+        "class": "text-canvas-controls-text group flex h-[52px] w-full items-c"
+      }
+    ],
+    "对账": {
+      "可见文字数": 129,
+      "命中数": 5,
+      "命中": [
+        [
+          "imgEditorSlashCinematicLighting",
+          "电影级光影校正"
+        ],
+        [
+          "imgEditorSlashFrameMinus5s",
+          "画面推演-5秒前"
+        ],
+        [
+          "imgEditorSlashFramePlus3s",
+          "画面推演-3秒后"
+        ],
+        [
+          "imgEditorSlashPlotFourGrid",
+          "剧情推演四宫格"
+        ],
+        [
+          "imgEditorSlashStoryboard25",
+          "25宫格连贯分镜"
+        ]
+      ]
+    },
+    "十八工具": {
+      "命中": []
+    }
+  }
+}

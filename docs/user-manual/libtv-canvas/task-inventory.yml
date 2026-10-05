@@ -264,6 +264,7 @@ tasks:
       - 'batchBK3：📖 **断线入口仍未找到** —— 一次读到悬停连线时落点是 `DIV.scissors-enter`（像是剪刀按钮），但**换一轮读不到**：同坐标有时是 `path`、有时是 class 为空的 `DIV`，而 `querySelectorAll("[class*=scissors]")` **实查 0 个**。属**瞬态元素**，读不准，**不能作为断线依据**。本轮未改动画布（前后连线逐条一致）'
       - 'batchBJ2：⭐ 智能剪辑的生成按钮 **`aria-label="发送"`**（`[1042,438,32×32]`），是五类节点里唯一给生成按钮写了这个名的；规格那枚带 `data-practice-anchor="gen.params.count"`。'
     manual_pages:
+      - 10-tasks/image-presets.md
       - 10-tasks/create-nodes.md
     node_types:
       - '文本 —— 尝试：自己编写内容 / 文生视频 / 图片反推提示词 / 文字生音乐'
