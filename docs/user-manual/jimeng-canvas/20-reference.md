@@ -2555,13 +2555,27 @@ style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
 | **`external`**（导演台） | 1 | `SPAN.sr-only` | **（无）**，**与 audio 同一串 class** |
 | `video` | 1 | `SPAN.sr-only` | `video-flow-node-surface` |
 | `timeline` | 2 | `SPAN.sr-only` | `timeline-flow-node` |
-| `text` | 3 | **`DIV[data-testid=text-flow-node-compact]`** | 就是 `rf__node-node_<id>`（**描述宿主自己就是节点第一层**） |
-| `image` | 1 | **`IMG[data-testid=image-node-compact]`** | `image-primary-preview-viewport` |
+| `text` | 3 | **`DIV[data-testid=text-flow-node-compact]`** ⚠️ **已订正（批次 203：这是 `26%` 档未点过那一格，不是定值）** | 就是 `rf__node-node_<id>`（**描述宿主自己就是节点第一层**）⚠️ **已订正（`full` 变体下它在第二层）** |
+| `image` | 1 | **`IMG[data-testid=image-node-compact]`** ⚠️ **已订正（批次 203：`≥50%` 档是 `image-node-result`）** | `image-primary-preview-viewport` |
+
+> 🔴 **批次 203 订正**：上表 `text` / `image` 两行的 testid **只在 `26%` 档、且该节点还没被点过时成立**。
+> 节点渲染变体是「**缩放档 × 是否已点过**」的函数（SOURCE_OBSERVATIONS.md §4.126.4 矩阵）：
+>
+> | 缩放 | 未点过 | 点过一次 |
+> |---|---|---|
+> | `26%` | `text-flow-node-compact`（**第一层**） | `text-flow-node-full`（**第二层**，父元素不是节点根） |
+> | `≥50%` | `text-flow-node-full`（第二层） | `text-flow-node-full`（第二层） |
+>
+> 📌 变体**互斥**：`26%` 档 compact `3` / full `0`，`50%` 与 `100%` 档 compact `0` / full `3`，
+> **数量逐字相同** ⇒ 是同一批节点换实现，**不是**节点增减。
+> 📌 `26%` 档需要三步才进编辑：**单击①只把 compact 展开成 full（不选中）→ 单击②才选中
+> → 双击才进编辑态**（§4.126.5 六步逐字表）。
 
 ⇒ **三类实现**：
 ① **`sr-only` 播报 `SPAN`**（音视频 / 时间线 / 导演台，共 **71** 个）——
    其中 `video` / `timeline` 的父壳**有 testid**，而**音频与导演台共用一个没有 testid 的壳**；
-② **正文容器本身**（`text`）—— `aria-describedby` 指的是**节点第一层那个 `div`**；
+② **正文容器本身**（`text`）—— `aria-describedby` 指的是**节点第一层那个 `div`**
+   ⚠️ **已订正（批次 203：这只在 `26%` 档未点过时成立；`full` 变体下指的是第二层）**；
 ③ **`<img>` 元素本身**（`image`）—— 指的是**那张图**，文案在它的 `alt` 上。
 
 📌 顺带一个**逐字可笑的读数**：图片节点的 `aria-label` 把它自己 `alt` 的内容
