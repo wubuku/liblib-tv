@@ -1,0 +1,510 @@
+{
+ "batch": 785,
+ "checks": [
+  {
+   "id": "S1:4 有外点关闭",
+   "desc": "重算清单必须正好是 contextMenu / modelLibraryOpen / pathMenuLeft / presetPanelLeft",
+   "ok": true,
+   "detail": {
+    "got": [
+     "contextMenu",
+     "modelLibraryOpen",
+     "pathMenuLeft",
+     "presetPanelLeft"
+    ],
+    "want": [
+     "contextMenu",
+     "modelLibraryOpen",
+     "pathMenuLeft",
+     "presetPanelLeft"
+    ]
+   }
+  },
+  {
+   "id": "S2:6 无外点关闭",
+   "desc": "重算清单必须正好是另外 6 个（**含 phoneVcamOpen**）",
+   "ok": true,
+   "detail": {
+    "got": [
+     "activeDirectorNodeId",
+     "exportPanelOpen",
+     "followTargetId",
+     "motionPathDraft",
+     "phoneVcamOpen",
+     "viewerCaptureId"
+    ],
+    "want": [
+     "activeDirectorNodeId",
+     "exportPanelOpen",
+     "followTargetId",
+     "motionPathDraft",
+     "phoneVcamOpen",
+     "viewerCaptureId"
+    ]
+   }
+  },
+  {
+   "id": "S3:modelLibraryOpen 计入",
+   "desc": "★ `setModelLibraryOpen(false)` 是「关掉」⟹ 模型库**有**外点关闭（784 的假阴性）",
+   "ok": true,
+   "detail": [
+    {
+     "event": "pointerdown",
+     "file": "src/components/director/DirectorViewport.tsx",
+     "line": 2739,
+     "arg": "false"
+    }
+   ]
+  },
+  {
+   "id": "S4:phoneVcamOpen 留在分母",
+   "desc": "★ `open` 要**改名**成 `phoneVcamOpen` 而不是丢掉 ⟹ 它必须在「无外点关闭」里，**而且必须真的可写**（`DirectorViewport.tsx:3081` 那个 falsy 关闭写入得在）",
+   "ok": true,
+   "detail": {
+    "inWithout": true,
+    "falsyWriteAt": 2826
+   }
+  },
+  {
+   "id": "S5:`open` 不是可写状态",
+   "desc": "★ `setOpen(` 在面板文件里 0 次 ⟹ 784 那个 key 是 prop",
+   "ok": true,
+   "detail": {
+    "file": "src/components/director/DirectorPhoneVcamPanel.tsx"
+   }
+  },
+  {
+   "id": "S6:事件全是 pointer 类",
+   "desc": "★ 4 个外点关闭的事件必须全在 mousedown/pointerdown/click/touchstart 里 ⟹ 键盘一律绕过",
+   "ok": true,
+   "detail": {
+    "contextMenu": [
+     "mousedown"
+    ],
+    "modelLibraryOpen": [
+     "pointerdown"
+    ],
+    "pathMenuLeft": [
+     "pointerdown"
+    ],
+    "presetPanelLeft": [
+     "pointerdown"
+    ]
+   }
+  },
+  {
+   "id": "S7:784 基线是 3/7",
+   "desc": "784 的 raw 必须真的说 3 有 / 7 没有（否则更正无从谈起）",
+   "ok": true,
+   "detail": {
+    "with": 3,
+    "without": 7
+   }
+  },
+  {
+   "id": "S8:784 把 `open` 记成「没有」",
+   "desc": "★ 归属更正：784 raw 里 `open` 在 without 里 ⟹ **没发生撞名**，错在**整个漏掉一个门状态**",
+   "ok": true,
+   "detail": {
+    "with": [
+     "contextMenu",
+     "pathMenuLeft",
+     "presetPanelLeft"
+    ],
+    "without": [
+     "activeDirectorNodeId",
+     "exportPanelOpen",
+     "followTargetId",
+     "modelLibraryOpen",
+     "motionPathDraft",
+     "open",
+     "viewerCaptureId"
+    ]
+   }
+  },
+  {
+   "id": "S9:更正后 4/6",
+   "desc": "更正必须是从 3/7 变成 **4/6**（不是 4/5 ⟹ 那会把 vcam 面板藏掉）",
+   "ok": true,
+   "detail": {
+    "got": [
+     4,
+     6
+    ]
+   }
+  },
+  {
+   "id": "S10:纯鼠标 D1i 第 1 次",
+   "desc": "★ 从 782 raw **重算**：第 1 次 Escape `cap=0`（阶梯跑不到）、模型库已关、**导出面板仍在**",
+   "ok": true,
+   "detail": {
+    "cap": 0,
+    "win": 0,
+    "targetOpen": false,
+    "exportOpen": true,
+    "exportOpen2": false
+   }
+  },
+  {
+   "id": "S11:纯鼠标 D1i 第 2 次",
+   "desc": "第 2 次 Escape 才把导出面板关掉",
+   "ok": true,
+   "detail": {
+    "cap": 0,
+    "win": 0,
+    "targetOpen": false,
+    "exportOpen": true,
+    "exportOpen2": false
+   }
+  },
+  {
+   "id": "S12:三方对账（汇编器 / 普查器 / 验收器）",
+   "desc": "★ 三个**独立**实现必须给出同一份清单：汇编器（源码行锚定）、普查器（正则扫描）、本验收器（状态优先重算）",
+   "ok": true,
+   "detail": {
+    "audit": {
+     "withOutsideClose": [
+      "contextMenu",
+      "modelLibraryOpen",
+      "pathMenuLeft",
+      "presetPanelLeft"
+     ],
+     "withoutOutsideClose": [
+      "activeDirectorNodeId",
+      "exportPanelOpen",
+      "followTargetId",
+      "motionPathDraft",
+      "phoneVcamOpen",
+      "viewerCaptureId"
+     ],
+     "count": {
+      "with": 4,
+      "without": 6,
+      "total": 10
+     }
+    },
+    "census": [
+     "contextMenu",
+     "modelLibraryOpen",
+     "pathMenuLeft",
+     "presetPanelLeft"
+    ],
+    "verifier": {
+     "with": [
+      "contextMenu",
+      "modelLibraryOpen",
+      "pathMenuLeft",
+      "presetPanelLeft"
+     ],
+     "without": [
+      "activeDirectorNodeId",
+      "exportPanelOpen",
+      "followTargetId",
+      "motionPathDraft",
+      "phoneVcamOpen",
+      "viewerCaptureId"
+     ]
+    }
+   }
+  },
+  {
+   "id": "S13:汇编器零失败",
+   "desc": "汇编器自己的断言必须全绿",
+   "ok": true,
+   "detail": {
+    "checks": 16,
+    "assertedAnchors": 27,
+    "failed": 0
+   }
+  },
+  {
+   "id": "S14:阴性对照已复原源码",
+   "desc": "★ 阴性对照改过的源码必须字节级还原，否则后续结论都跑在污染源上",
+   "ok": true,
+   "detail": {
+    "drifted": []
+   }
+  }
+ ],
+ "totals": {
+  "checks": 14,
+  "passed": 14,
+  "failed": 0
+ },
+ "negativeControls": {
+  "total": 7,
+  "caught": 7,
+  "detail": [
+   {
+    "name": "N1 模型库关闭改成非 falsy",
+    "why": "验证 S1/S3 真的在看 `false` 这个形态",
+    "mutatedAnything": true,
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 2739,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "setModelLibraryOpen(true);"
+     }
+    ],
+    "expectFlipped": "S1:4 有外点关闭",
+    "flipped": [
+     "S1:4 有外点关闭",
+     "S2:6 无外点关闭",
+     "S3:modelLibraryOpen 计入",
+     "S9:更正后 4/6"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S4:phoneVcamOpen 留在分母",
+     "S5:`open` 不是可写状态",
+     "S6:事件全是 pointer 类",
+     "S7:784 基线是 3/7",
+     "S8:784 把 `open` 记成「没有」",
+     "S10:纯鼠标 D1i 第 1 次",
+     "S11:纯鼠标 D1i 第 2 次",
+     "S12:三方对账（汇编器 / 普查器 / 验收器）",
+     "S13:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N2 右键菜单关闭改成非 falsy",
+    "why": "验证 S1 真的在看树那条",
+    "mutatedAnything": true,
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorObjectTree.tsx",
+      "line": 207,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "setContextMenu(KEEP);"
+     }
+    ],
+    "expectFlipped": "S1:4 有外点关闭",
+    "flipped": [
+     "S1:4 有外点关闭",
+     "S2:6 无外点关闭",
+     "S9:更正后 4/6"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S3:modelLibraryOpen 计入",
+     "S4:phoneVcamOpen 留在分母",
+     "S5:`open` 不是可写状态",
+     "S6:事件全是 pointer 类",
+     "S7:784 基线是 3/7",
+     "S8:784 把 `open` 记成「没有」",
+     "S10:纯鼠标 D1i 第 1 次",
+     "S11:纯鼠标 D1i 第 2 次",
+     "S12:三方对账（汇编器 / 普查器 / 验收器）",
+     "S13:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N3 两处 pointerdown 换成 pointerenter",
+    "why": "验证 S6/S1 的 pointer 判据（**同名处理器两处一起改**才真改到性质）",
+    "mutatedAnything": true,
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorTimeline.tsx",
+      "line": 569,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "window.addEventListener(\"pointerenter\", close);"
+     },
+     {
+      "file": "src/components/director/DirectorTimeline.tsx",
+      "line": 593,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "window.addEventListener(\"pointerenter\", close);"
+     }
+    ],
+    "expectFlipped": "S1:4 有外点关闭",
+    "flipped": [
+     "S1:4 有外点关闭",
+     "S2:6 无外点关闭",
+     "S9:更正后 4/6"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S3:modelLibraryOpen 计入",
+     "S4:phoneVcamOpen 留在分母",
+     "S5:`open` 不是可写状态",
+     "S6:事件全是 pointer 类",
+     "S7:784 基线是 3/7",
+     "S8:784 把 `open` 记成「没有」",
+     "S10:纯鼠标 D1i 第 1 次",
+     "S11:纯鼠标 D1i 第 2 次",
+     "S12:三方对账（汇编器 / 普查器 / 验收器）",
+     "S13:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N4 phoneVcamOpen 全部 falsy 写入被切断",
+    "why": "★ 验证 S4 靠的是「它确实有 falsy 写入」而不是靠清单里有个名字",
+    "mutatedAnything": true,
+    "evidence": [
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 2826,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "setPhoneVcamOpen(true);"
+     },
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 3081,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "onClose={() => setPhoneVcamOpen(true)}"
+     },
+     {
+      "file": "src/components/director/DirectorViewport.tsx",
+      "line": 3558,
+      "oldPresentBefore": true,
+      "oldPresentAfter": false,
+      "newPresentAfter": true,
+      "codeAfter": "setPhoneVcamOpen(true);"
+     }
+    ],
+    "expectFlipped": "S4:phoneVcamOpen 留在分母",
+    "flipped": [
+     "S4:phoneVcamOpen 留在分母"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:4 有外点关闭",
+     "S2:6 无外点关闭",
+     "S3:modelLibraryOpen 计入",
+     "S5:`open` 不是可写状态",
+     "S6:事件全是 pointer 类",
+     "S7:784 基线是 3/7",
+     "S8:784 把 `open` 记成「没有」",
+     "S9:更正后 4/6",
+     "S10:纯鼠标 D1i 第 1 次",
+     "S11:纯鼠标 D1i 第 2 次",
+     "S12:三方对账（汇编器 / 普查器 / 验收器）",
+     "S13:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N5 raw：导出面板「仍在」翻成 False",
+    "why": "验证 S10 真的在读这个字段",
+    "mutatedAnything": true,
+    "evidence": {
+     "arm": "captureOwner",
+     "press": 0,
+     "where": null,
+     "field": "exportOpen",
+     "before": true,
+     "after": false,
+     "reallyChanged": true
+    },
+    "expectFlipped": "S10:纯鼠标 D1i 第 1 次",
+    "flipped": [
+     "S10:纯鼠标 D1i 第 1 次"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:4 有外点关闭",
+     "S2:6 无外点关闭",
+     "S3:modelLibraryOpen 计入",
+     "S4:phoneVcamOpen 留在分母",
+     "S5:`open` 不是可写状态",
+     "S6:事件全是 pointer 类",
+     "S7:784 基线是 3/7",
+     "S8:784 把 `open` 记成「没有」",
+     "S9:更正后 4/6",
+     "S11:纯鼠标 D1i 第 2 次",
+     "S12:三方对账（汇编器 / 普查器 / 验收器）",
+     "S13:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N6 raw：cap=0 翻成 cap=1",
+    "why": "★ 验证「`cap` 在 `read` 层」这个指认是对的（第一版没指明层，变异打在 `state` 上，翻不了）",
+    "mutatedAnything": true,
+    "evidence": {
+     "arm": "captureOwner",
+     "press": 0,
+     "where": "read",
+     "field": "cap",
+     "before": 0,
+     "after": 1,
+     "reallyChanged": true
+    },
+    "expectFlipped": "S10:纯鼠标 D1i 第 1 次",
+    "flipped": [
+     "S10:纯鼠标 D1i 第 1 次"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:4 有外点关闭",
+     "S2:6 无外点关闭",
+     "S3:modelLibraryOpen 计入",
+     "S4:phoneVcamOpen 留在分母",
+     "S5:`open` 不是可写状态",
+     "S6:事件全是 pointer 类",
+     "S7:784 基线是 3/7",
+     "S8:784 把 `open` 记成「没有」",
+     "S9:更正后 4/6",
+     "S11:纯鼠标 D1i 第 2 次",
+     "S12:三方对账（汇编器 / 普查器 / 验收器）",
+     "S13:汇编器零失败"
+    ]
+   },
+   {
+    "name": "N7 普查清单退回 784 的 3 个",
+    "why": "★ 验证 S12 的三方对账**真的读了** raw/census785.json（第一版 S12 只比汇编器 ⟹ 这个变异打在没人读的文件上）",
+    "mutatedAnything": true,
+    "expectFlipped": "S12:三方对账（汇编器 / 普查器 / 验收器）",
+    "flipped": [
+     "S12:三方对账（汇编器 / 普查器 / 验收器）"
+    ],
+    "ok": true,
+    "stillPassing": [
+     "S1:4 有外点关闭",
+     "S2:6 无外点关闭",
+     "S3:modelLibraryOpen 计入",
+     "S4:phoneVcamOpen 留在分母",
+     "S5:`open` 不是可写状态",
+     "S6:事件全是 pointer 类",
+     "S7:784 基线是 3/7",
+     "S8:784 把 `open` 记成「没有」",
+     "S9:更正后 4/6",
+     "S10:纯鼠标 D1i 第 1 次",
+     "S11:纯鼠标 D1i 第 2 次",
+     "S13:汇编器零失败"
+    ]
+   }
+  ]
+ },
+ "static": {
+  "withOutsideClose": [
+   "contextMenu",
+   "modelLibraryOpen",
+   "pathMenuLeft",
+   "presetPanelLeft"
+  ],
+  "withoutOutsideClose": [
+   "activeDirectorNodeId",
+   "exportPanelOpen",
+   "followTargetId",
+   "motionPathDraft",
+   "phoneVcamOpen",
+   "viewerCaptureId"
+  ],
+  "count": {
+   "with": 4,
+   "without": 6
+  }
+ }
+}
