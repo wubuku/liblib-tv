@@ -1,0 +1,104 @@
+{
+ "批次": "211b",
+ "目的": "同缩放下测 before/after ⊕，带阳性对照",
+ "目标集": [
+  {
+   "名": "b22-upload",
+   "搜索词": "b22",
+   "预期": "🔴 只有 after（手册：带内容的图片节点没有 before）"
+  },
+  {
+   "名": "视频 1",
+   "搜索词": "视频",
+   "预期": "✅ 阳性对照：before + after 都有"
+  }
+ ],
+ "臂": {
+  "b22-upload": {
+   "id": "node_gref4sw056",
+   "预期": "🔴 只有 after（手册：带内容的图片节点没有 before）",
+   "取景行": "canvas-search-result-node_tadm1nyykc",
+   "点位": {
+    "中心": [
+     2377,
+     1593
+    ],
+    "屏上": [
+     2092,
+     1433,
+     569,
+     320
+    ]
+   },
+   "点前": 1,
+   "选中数": 1,
+   "补点": 0,
+   "硬断言选中过": true,
+   "读": {
+    "本节点before": [],
+    "本节点after": [],
+    "全页before": 1,
+    "全页after": 1,
+    "资源账": null,
+    "有audio": false,
+    "有img": true,
+    "空态testid": [],
+    "测量时缩放": "Zoom options, 100%",
+    "内文": "b22-upload"
+   }
+  },
+  "视频 1": {
+   "id": "node_236ctpehgg",
+   "预期": "✅ 阳性对照：before + after 都有",
+   "取景行": "canvas-search-result-node_tadm1nyykc",
+   "点位": {
+    "中心": [
+     -445,
+     123
+    ],
+    "屏上": [
+     -605,
+     -161,
+     320,
+     569
+    ]
+   },
+   "点前": 1,
+   "选中数": 1,
+   "补点": 0,
+   "硬断言选中过": true,
+   "读": {
+    "本节点before": [],
+    "本节点after": [],
+    "全页before": 1,
+    "全页after": 1,
+    "资源账": "0 ready, 0 processing, 0 failed. Not selected.",
+    "有audio": false,
+    "有img": false,
+    "空态testid": [
+     "video-node-empty"
+    ],
+    "测量时缩放": "Zoom options, 100%",
+    "内文": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   }
+  }
+ },
+ "无效臂": 0,
+ "起点": {
+  "缩放原": "Zoom options, 26%",
+  "节点数": 76,
+  "选中": 0,
+  "积分": "Credits: 791 · 基础会员",
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ },
+ "起点缩放原": "Zoom options, 26%",
+ "测时缩放": "Zoom options, 100%",
+ "收尾": {
+  "缩放": "Zoom options, 26%",
+  "节点数": 76,
+  "选中": 1,
+  "积分": "Credits: 791 · 基础会员",
+  "状态行": "76 nodes, 0 edges, 1 selected. Editable. Room connected. 已保存."
+ },
+ "断言全过": false
+}

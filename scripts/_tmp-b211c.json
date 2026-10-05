@@ -1,0 +1,203 @@
+{
+ "批次": "211c",
+ "测的量": "flow-node-{target,source}-connection-menu-button 计数",
+ "作废的b轮": "兜底 `|| all[0]` 导致两臂都测了「音频 68」却读在目标节点上（立规 90）",
+ "目标集": [
+  {
+   "标题": "b22-upload",
+   "预期": "🔴 手册：带内容的图片节点只有 after"
+  },
+  {
+   "标题": "视频 1",
+   "预期": "✅ 手册矩阵：视频 before + after"
+  },
+  {
+   "标题": "音频 68",
+   "预期": "✅ 手册矩阵：音频 before + after（本轮新测）"
+  },
+  {
+   "标题": "文本 1",
+   "预期": "✅ 手册矩阵：文本只有 after"
+  }
+ ],
+ "臂": {
+  "b22-upload": {
+   "id": "node_gref4sw056",
+   "预期": "🔴 手册：带内容的图片节点只有 after",
+   "屏上": [
+    1018,
+    636,
+    148,
+    83
+   ],
+   "归属候选点数": 24,
+   "用了点": [
+    1040,
+    648
+   ],
+   "补点次数": 1,
+   "选中数": 1,
+   "选中集": [
+    "node_gref4sw056"
+   ],
+   "硬断言选中过": true,
+   "读": {
+    "本节点before": [],
+    "本节点after": [
+     {
+      "aria": "Create connected node after b22-upload",
+      "尺寸": [
+       19,
+       19
+      ]
+     }
+    ],
+    "全页before": 0,
+    "全页after": 1,
+    "资源账": null,
+    "有img": true,
+    "有audio": false,
+    "有video": false,
+    "空态testid": [],
+    "媒体层": true,
+    "测量时缩放": "Zoom options, 26%",
+    "内文": "b22-upload"
+   }
+  },
+  "视频 1": {
+   "id": "node_236ctpehgg",
+   "预期": "✅ 手册矩阵：视频 before + after",
+   "屏上": [
+    316,
+    225,
+    83,
+    148
+   ],
+   "归属候选点数": 24,
+   "用了点": [
+    329,
+    247
+   ],
+   "补点次数": 1,
+   "选中数": 1,
+   "选中集": [
+    "node_236ctpehgg"
+   ],
+   "硬断言选中过": true,
+   "读": {
+    "本节点before": [
+     {
+      "aria": "Create connected node before 视频 1",
+      "尺寸": [
+       19,
+       19
+      ]
+     }
+    ],
+    "本节点after": [
+     {
+      "aria": "Create connected node after 视频 1",
+      "尺寸": [
+       19,
+       19
+      ]
+     }
+    ],
+    "全页before": 1,
+    "全页after": 1,
+    "资源账": "0 ready, 0 processing, 0 failed. ",
+    "有img": false,
+    "有audio": false,
+    "有video": false,
+    "空态testid": [
+     "video-node-empty"
+    ],
+    "媒体层": true,
+    "测量时缩放": "Zoom options, 26%",
+    "内文": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Selected."
+   }
+  },
+  "音频 68": {
+   "id": "node_tadm1nyykc",
+   "预期": "✅ 手册矩阵：音频 before + after（本轮新测）",
+   "屏上": [
+    555,
+    289,
+    83,
+    83
+   ],
+   "归属候选点数": 24,
+   "用了点": [
+    568,
+    302
+   ],
+   "补点次数": 1,
+   "选中数": 1,
+   "选中集": [
+    "node_tadm1nyykc"
+   ],
+   "硬断言选中过": true,
+   "读": {
+    "本节点before": [
+     {
+      "aria": "Create connected node before 音频 68",
+      "尺寸": [
+       19,
+       19
+      ]
+     }
+    ],
+    "本节点after": [
+     {
+      "aria": "Create connected node after 音频 68",
+      "尺寸": [
+       19,
+       19
+      ]
+     }
+    ],
+    "全页before": 1,
+    "全页after": 1,
+    "资源账": "0 ready, 0 processing, 0 failed. ",
+    "有img": false,
+    "有audio": false,
+    "有video": false,
+    "空态testid": [
+     "audio-node-empty"
+    ],
+    "媒体层": true,
+    "测量时缩放": "Zoom options, 26%",
+    "内文": "音频 68 No resources: 0 ready, 0 processing, 0 failed. Selected."
+   }
+  },
+  "文本 1": {
+   "无效": "24 个候选点没有一个归属本节点（被别的节点盖住）",
+   "id": "node_3bfb9r79qe",
+   "候选": {
+    "屏上": [
+     216,
+     183,
+     83,
+     83
+    ],
+    "好点": [],
+    "候选总数": 36
+   }
+  }
+ },
+ "无效臂": 1,
+ "起点": {
+  "缩放": "Zoom options, 26%",
+  "节点数": 76,
+  "选中": 0,
+  "积分": "Credits: 791 · 基础会员"
+ },
+ "收尾": {
+  "缩放": "Zoom options, 26%",
+  "节点数": 76,
+  "选中": 0,
+  "积分": "Credits: 791 · 基础会员",
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ },
+ "断言全过": true
+}

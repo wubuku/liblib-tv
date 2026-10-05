@@ -1,0 +1,831 @@
+{
+ "轮次": "b211a2",
+ "订正": "a 轮判据写错（句式不对恒假）",
+ "账A句式": "/(\\d+)\\s*resource[s]?:[^\\n]*/",
+ "账B句式": "/(\\d+)\\s*ready,\\s*(\\d+)\\s*processing,\\s*(\\d+)\\s*failed/",
+ "节点数": 76,
+ "按类型": {
+  "文本": {
+   "总": 3,
+   "账A": 0,
+   "有媒体": 0,
+   "空态": 0,
+   "例": [
+    "文本 1",
+    "文本 2",
+    "文本 3"
+   ]
+  },
+  "时间线": {
+   "总": 2,
+   "账A": 0,
+   "有媒体": 0,
+   "空态": 0,
+   "例": [
+    "时间线 1",
+    "时间线 2"
+   ]
+  },
+  "音频": {
+   "总": 68,
+   "账A": 0,
+   "有媒体": 0,
+   "空态": 0,
+   "例": [
+    "音频 1",
+    "音频 2",
+    "音频 3"
+   ]
+  },
+  "图片": {
+   "总": 1,
+   "账A": 0,
+   "有媒体": 0,
+   "空态": 0,
+   "例": [
+    "b22-upload"
+   ]
+  },
+  "导演台": {
+   "总": 1,
+   "账A": 0,
+   "有媒体": 0,
+   "空态": 0,
+   "例": [
+    "导演台"
+   ]
+  },
+  "视频": {
+   "总": 1,
+   "账A": 0,
+   "有媒体": 0,
+   "空态": 0,
+   "例": [
+    "视频 1"
+   ]
+  }
+ },
+ "有账A的节点": [],
+ "清单": [
+  {
+   "id": "node_3bfb9r79qe",
+   "类型": "文本",
+   "标题": "文本 1",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_cdwf8x6fbj",
+   "类型": "时间线",
+   "标题": "时间线 1",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_aw29cp094x",
+   "类型": "文本",
+   "标题": "文本 2",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_5gftn3dnt1",
+   "类型": "文本",
+   "标题": "文本 3",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_ay7f1jn45r",
+   "类型": "音频",
+   "标题": "音频 1",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_w6b1h9fvzw",
+   "类型": "音频",
+   "标题": "音频 2",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_dt0wpmba0d",
+   "类型": "音频",
+   "标题": "音频 3",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_kdgnjkfng2",
+   "类型": "音频",
+   "标题": "音频 4",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_gp499g9p3m",
+   "类型": "音频",
+   "标题": "音频 5",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_9y4j9jf0qv",
+   "类型": "音频",
+   "标题": "音频 6",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_gref4sw056",
+   "类型": "图片",
+   "标题": "b22-upload",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_20sb5adarj",
+   "类型": "音频",
+   "标题": "音频 7",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_y2n170za3z",
+   "类型": "音频",
+   "标题": "音频 8",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_1c5zafa3zk",
+   "类型": "音频",
+   "标题": "音频 9",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_fg4h8gry6x",
+   "类型": "音频",
+   "标题": "音频 10",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_kx0gzwzf7a",
+   "类型": "音频",
+   "标题": "音频 11",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_97x9w2s8dc",
+   "类型": "音频",
+   "标题": "音频 12",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_gnykygt88s",
+   "类型": "音频",
+   "标题": "音频 13",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_52g5ng3hxa",
+   "类型": "音频",
+   "标题": "音频 14",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_m14qwkmz4p",
+   "类型": "音频",
+   "标题": "音频 15",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_d4tjtpnatq",
+   "类型": "时间线",
+   "标题": "时间线 2",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_sc4w9xkaxd",
+   "类型": "音频",
+   "标题": "音频 16",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_y261jwxjpn",
+   "类型": "音频",
+   "标题": "音频 17",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_3f44mcptgc",
+   "类型": "音频",
+   "标题": "音频 18",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_e78c3z4gap",
+   "类型": "音频",
+   "标题": "音频 19",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_5h8sbgy7pd",
+   "类型": "音频",
+   "标题": "音频 20",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_zb8pfc1tf6",
+   "类型": "音频",
+   "标题": "音频 21",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_v1wkbg1mbm",
+   "类型": "音频",
+   "标题": "音频 22",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_v5ewe33jbw",
+   "类型": "音频",
+   "标题": "音频 23",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_3rs2xvb3wm",
+   "类型": "音频",
+   "标题": "音频 24",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_e90a7f1gyf",
+   "类型": "音频",
+   "标题": "音频 25",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_5g0yrqgc6c",
+   "类型": "音频",
+   "标题": "音频 26",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_anmp0m801c",
+   "类型": "音频",
+   "标题": "音频 27",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_tqqd4fedbn",
+   "类型": "音频",
+   "标题": "音频 28",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_68van5z657",
+   "类型": "音频",
+   "标题": "音频 29",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_xe755vzsmx",
+   "类型": "音频",
+   "标题": "音频 30",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_3p3sa1sgsv",
+   "类型": "音频",
+   "标题": "音频 31",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_jphxcmk27v",
+   "类型": "音频",
+   "标题": "音频 32",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_9b2ajtyqwj",
+   "类型": "音频",
+   "标题": "音频 33",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_srx8z3gx8g",
+   "类型": "音频",
+   "标题": "音频 34",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_qf32ccpxmm",
+   "类型": "音频",
+   "标题": "音频 35",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_r6dtesbzac",
+   "类型": "音频",
+   "标题": "音频 36",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_20pw32f1y5",
+   "类型": "音频",
+   "标题": "音频 37",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_kgsv6w4ach",
+   "类型": "音频",
+   "标题": "音频 38",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_80vczsczbr",
+   "类型": "音频",
+   "标题": "音频 39",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_7w0kc2m903",
+   "类型": "音频",
+   "标题": "音频 40",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_r6qqyk3v98",
+   "类型": "音频",
+   "标题": "音频 41",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_thtydf4663",
+   "类型": "音频",
+   "标题": "音频 42",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_5na1wezb9q",
+   "类型": "音频",
+   "标题": "音频 43",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_ky7dvkppj1",
+   "类型": "音频",
+   "标题": "音频 44",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_tnh6v3rm7v",
+   "类型": "音频",
+   "标题": "音频 45",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_mwz4689zqr",
+   "类型": "音频",
+   "标题": "音频 46",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_7y6fhyn18z",
+   "类型": "音频",
+   "标题": "音频 47",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_qe1kf9ywek",
+   "类型": "音频",
+   "标题": "音频 48",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_w7s8mxphwh",
+   "类型": "音频",
+   "标题": "音频 49",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_p4xg96c73x",
+   "类型": "音频",
+   "标题": "音频 50",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_rs637eg7me",
+   "类型": "音频",
+   "标题": "音频 51",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_wdqa2gne4s",
+   "类型": "音频",
+   "标题": "音频 52",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_fd0p2amd3p",
+   "类型": "音频",
+   "标题": "音频 53",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_pz48stvt07",
+   "类型": "音频",
+   "标题": "音频 54",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_2x3hae9jhe",
+   "类型": "音频",
+   "标题": "音频 55",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_jx5amm7m9j",
+   "类型": "音频",
+   "标题": "音频 56",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_2vbd2rqk7q",
+   "类型": "音频",
+   "标题": "音频 57",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_kpfbgmkkr3",
+   "类型": "音频",
+   "标题": "音频 58",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_1yw4ntm88n",
+   "类型": "音频",
+   "标题": "音频 59",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_fyy39951ae",
+   "类型": "音频",
+   "标题": "音频 60",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_jc6t41x8d2",
+   "类型": "音频",
+   "标题": "音频 61",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_kk2xhkrdtn",
+   "类型": "音频",
+   "标题": "音频 62",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_qs4x5t988q",
+   "类型": "音频",
+   "标题": "音频 63",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_9rxgrvfe4y",
+   "类型": "音频",
+   "标题": "音频 64",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_n0x3zqajjy",
+   "类型": "音频",
+   "标题": "音频 65",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_3cc0k9cfgb",
+   "类型": "音频",
+   "标题": "音频 66",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_ae08gp8ke3",
+   "类型": "音频",
+   "标题": "音频 67",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_tadm1nyykc",
+   "类型": "音频",
+   "标题": "音频 68",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_pxvkay973v",
+   "类型": "导演台",
+   "标题": "导演台",
+   "账A": null,
+   "账B": "0 ready, 0 processing, 0 failed",
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  },
+  {
+   "id": "node_236ctpehgg",
+   "类型": "视频",
+   "标题": "视频 1",
+   "账A": null,
+   "账B": null,
+   "空态testid": [],
+   "有audio": false,
+   "有video": false
+  }
+ ]
+}

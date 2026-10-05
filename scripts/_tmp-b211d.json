@@ -1,0 +1,256 @@
+{
+ "批次": "211d",
+ "假设": "H：before ⊕ 是「喂素材」的入口；节点自己有素材后它变成了上下文提供者，于是这个入口对它自己消失",
+ "判据": "看带素材的 b22-upload 在别人的「添加上下文」菜单里是不是可选项",
+ "目标集": [
+  "视频 1",
+  "音频 68"
+ ],
+ "菜单": {
+  "视频 1": {
+   "id": "node_236ctpehgg",
+   "before按钮": {
+    "aria": "Create connected node before 视频 1",
+    "尺寸": [
+     19,
+     19
+    ],
+    "点": [
+     300,
+     294
+    ]
+   },
+   "补点": 1,
+   "浮层数": 1,
+   "菜单": {
+    "testid": "canvas-context-menu",
+    "role": "menu",
+    "标题": "添加上下文",
+    "盒": [
+     200,
+     316
+    ],
+    "display": "flex",
+    "项数": 7,
+    "项": [
+     {
+      "内文": "文本",
+      "aria": "文本",
+      "ariaDisabled": null,
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgb(255, 255, 255)",
+      "cursor": "pointer",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "图片",
+      "aria": "图片",
+      "ariaDisabled": null,
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgb(255, 255, 255)",
+      "cursor": "pointer",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "视频",
+      "aria": "视频",
+      "ariaDisabled": null,
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgb(255, 255, 255)",
+      "cursor": "pointer",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "音频",
+      "aria": "音频",
+      "ariaDisabled": null,
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgb(255, 255, 255)",
+      "cursor": "pointer",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "时间线 无法连接这些节点",
+      "aria": "时间线",
+      "ariaDisabled": "true",
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgba(255, 255, 255, 0.2)",
+      "cursor": "not-allowed",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "主体 无法连接这些节点",
+      "aria": "主体",
+      "ariaDisabled": "true",
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgba(255, 255, 255, 0.2)",
+      "cursor": "not-allowed",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "导演台 无法连接这些节点",
+      "aria": "导演台",
+      "ariaDisabled": "true",
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgba(255, 255, 255, 0.2)",
+      "cursor": "not-allowed",
+      "pointerEvents": "auto"
+     }
+    ]
+   },
+   "关后浮层数": 0
+  },
+  "音频 68": {
+   "id": "node_tadm1nyykc",
+   "before按钮": {
+    "aria": "Create connected node before 音频 68",
+    "尺寸": [
+     19,
+     19
+    ],
+    "点": [
+     539,
+     326
+    ]
+   },
+   "补点": 1,
+   "浮层数": 1,
+   "菜单": {
+    "testid": "canvas-context-menu",
+    "role": "menu",
+    "标题": "添加上下文",
+    "盒": [
+     200,
+     316
+    ],
+    "display": "flex",
+    "项数": 7,
+    "项": [
+     {
+      "内文": "文本 无法连接这些节点",
+      "aria": "文本",
+      "ariaDisabled": "true",
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgba(255, 255, 255, 0.2)",
+      "cursor": "not-allowed",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "图片",
+      "aria": "图片",
+      "ariaDisabled": null,
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgb(255, 255, 255)",
+      "cursor": "pointer",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "视频 无法连接这些节点",
+      "aria": "视频",
+      "ariaDisabled": "true",
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgba(255, 255, 255, 0.2)",
+      "cursor": "not-allowed",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "音频",
+      "aria": "音频",
+      "ariaDisabled": null,
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgb(255, 255, 255)",
+      "cursor": "pointer",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "时间线 无法连接这些节点",
+      "aria": "时间线",
+      "ariaDisabled": "true",
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgba(255, 255, 255, 0.2)",
+      "cursor": "not-allowed",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "主体 无法连接这些节点",
+      "aria": "主体",
+      "ariaDisabled": "true",
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgba(255, 255, 255, 0.2)",
+      "cursor": "not-allowed",
+      "pointerEvents": "auto"
+     },
+     {
+      "内文": "导演台 无法连接这些节点",
+      "aria": "导演台",
+      "ariaDisabled": "true",
+      "尺寸": [
+       192,
+       36
+      ],
+      "颜色": "rgba(255, 255, 255, 0.2)",
+      "cursor": "not-allowed",
+      "pointerEvents": "auto"
+     }
+    ]
+   },
+   "关后浮层数": 0
+  }
+ },
+ "无效臂": 0,
+ "起点": {
+  "缩放": "Zoom options, 26%",
+  "节点数": 76,
+  "选中": 0,
+  "积分": "Credits: 791 · 基础会员",
+  "浮层": 0
+ },
+ "收尾": {
+  "缩放": "Zoom options, 26%",
+  "节点数": 76,
+  "选中": 0,
+  "浮层": 0,
+  "积分": "Credits: 791 · 基础会员",
+  "状态行": "76 nodes, 0 edges, 0 selected. Editable. Room connected. 已保存."
+ },
+ "断言全过": true
+}
