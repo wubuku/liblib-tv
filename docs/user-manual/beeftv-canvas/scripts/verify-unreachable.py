@@ -155,6 +155,43 @@ def zero_call_setters(src):
     return hits
 
 
+def _declared_once_never_called(src, name):
+    """这个 setter 名在 web/src 下**只被声明过一次**，且**全库零调用**。
+
+    ⚠️ **Batch 295：它量的是与 `zero_call_setters` 不同的作用域，而登记表两种都要。**
+    `zero_call_setters` 量的是「**声明所在文件内**零调用」——那是**页内作用域**，
+    登记表里 `setSort` / `setProjectFilter` 两条要的正是它。
+    而 `setArtCritiqueStartRequest` 那条要的是「**全库**零调用」：
+    **实测 origin/main 上它被搬到了 `web/src/pages/canvas/use-canvas-project-dialogs.ts`
+    并在同文件第 126 行被 return 出去**——**return 不是调用**，
+    可页内扫描只数「出现次数」，于是它从 1 次变成 2 次，扫描不再认它，
+    闸便报「登记表项的扫描键本轮未被扫到 → 登记与现状不一致」。
+    **而那句话是假的**：实测全库 5 处出现里**没有一处是调用**。
+
+    **为什么不能把 `zero_call_setters` 直接改成全库口径**：
+    `setSort` 与 `setProjectFilter` **各有 3 处同名声明**（画布库 / 项目库 / 素材库 / 任务页），
+    全库计数会被同名声明撑大，**那两条本来正确的页内断言会一起变成「未被扫到」**——
+    **把 1 处误报换成 2 处**。所以两个作用域必须分开量。
+    **判「调用」而不是判「引用」**：`name` 后面紧跟 `(` 且前面不是 `.`／词字符才算调用。
+    """
+    decl = _git_grep_run(
+        ["git", "grep", "-n", "-E",
+         r"const \[[A-Za-z_$][A-Za-z0-9_$]*, *(" + re.escape(name) + r")\] *= *useState",
+         REF, "--", "web/src"], cwd=src, capture_output=True, text=True)
+    sites = [x for x in (decl.stdout or "").split("\n") if x.strip()]
+    if len(sites) != 1:            # 同名多处声明 → 认不出来，如实说认不出来
+        return False
+    m = re.match(rf"^{re.escape(REF)}:(.+?):(\d+):", sites[0])
+    if not m:
+        return False
+    home = m.group(1)
+    callers = _git_grep_run(
+        ["git", "grep", "-n", "-E", r"(^|[^A-Za-z0-9_$.])" + re.escape(name) + r"\(",
+         REF, "--", "web/src"], cwd=src, capture_output=True, text=True)
+    hits = [x for x in (callers.stdout or "").split("\n") if x.strip()]
+    return not hits
+
+
 # ── 已登记的「不可达」断言 ───────────────────────────────────────────
 # 每条 = (id, 说明, 判据函数)。判据返回 True = 仍然不可达（手册断言仍成立）。
 
@@ -1687,13 +1724,30 @@ def main():
                     )
         scan_covered = {k for k in by_key}
         actual = {(f, sname) for f, names in hits.items() for sname in names}
+        # **Batch 295：页内扫描认不出来的键，再用「全库零调用」复核一遍。**
+        # **原式直接把它算成「登记与现状不一致」**——而登记表里两种作用域都有
+        # （setSort / setProjectFilter 是页内，setArtCritiqueStartRequest 是全库），
+        # **原来只有一种口径，于是另一种作用域的键一被上游重构就必然误报。**
+        resolved, still_missing = [], []
         for key in sorted(scan_covered - actual):
+            if _declared_once_never_called(src, key[1]):
+                resolved.append(key)
+            else:
+                still_missing.append(key)
+        for key in still_missing:
             problems.append(
                 f"[scan] 登记表项 {by_key[key]} 的扫描键 {key[1]} 本轮未被扫到 → "
                 f"该断言可能已失效或登记键写错，登记与现状不一致"
             )
-        notes.append(f"  全量 setter 零调用扫描：{len(actual)} 处命中，"
-                     f"与登记表中 {len(scan_covered)} 个可扫描条目双向一致"
+        for key in resolved:
+            notes.append(
+                f"  [scan] 登记表项 {by_key[key]} 的扫描键 {key[1]} 页内扫描认不到，"
+                f"**全库零调用复核成立**（声明唯一、无任何调用点）→ 断言仍成立；"
+                f"**注意键里那个文件已过时**（上游把声明搬了家）")
+        notes.append(f"  全量 setter 零调用扫描：{len(actual)} 处命中；"
+                     f"登记表中 {len(scan_covered)} 个可扫描条目 = "
+                     f"页内命中 {len(actual & scan_covered)} + 全库复核 {len(resolved)}"
+                     f" + 对不上 {len(still_missing)}"
                      f"（另有 {len(REGISTRY) - len(scan_covered)} 条为专属判据，setter 扫描照不到）")
 
     # —— 方向三：URL 参数只读不写，须全部归类 ——
