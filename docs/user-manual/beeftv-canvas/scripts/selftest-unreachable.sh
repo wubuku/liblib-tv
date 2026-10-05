@@ -53,6 +53,39 @@ build_ref() {  # $1=path  $2=变换脚本路径 → 成功时 stdout 输出 comm
 
 PASS=0; VOID=0; FAIL=0
 
+# ── Batch 290：环境基线（实测支撑，别删这段注释再照抄回旧写法）────────────
+#
+# **本文件的两族用例跑在两个不同的 ref 上，而基线那段量的是第三个**：
+#   · `run_case` / `run_pass_case` 的合成 ref 一律由 **`origin/main`** 派生
+#     （`build_ref()` 里 `base=$(git rev-parse "origin/main^{tree}")`）；
+#   · 而闸的**默认 ref 是手册声明的提交**——`baseline.py` 明写
+#     「优先级：BEEFTV_REF > 手册声明的提交；读不到声明 → BaselineError，
+#     **绝不**静悄悄退回 `origin/main`」；
+#   · 旧基线那段**两个都没钉**，却打印「真实 origin/main 应当通过 / ✓ origin/main 通过」——
+#     **而它量的是默认 ref。那句在撒谎（纪律 191：实测数据的来源）。**
+#
+# **Batch 290 实测**（同一台机器、同一分钟）：
+#   · 默认 ref（＝手册声明的提交）→ **rc=0**，32 条断言仍成立；
+#   · `BEEFTV_REF=origin/main`     → **rc=1**，**8 处不一致**；
+#   · 一棵**与 origin/main 同树**的合成 ref → **rc=1，同样 8 处不一致**
+#     （这一条是必要的：它排除了「合成 ref 有什么特殊之处」这个解释）。
+#
+# **而这直接决定了 `run_pass_case` 那一族能不能判定**：
+# **那一族要求 rc=0，而 rc=0 的前提是被测闸在它跑的 ref 上本来就全绿。**
+# 实测该族 **3 条**（3b / 31 / 34）**整族全红，一条不漏**——
+# **而 `run_case` 那一族 30 条全过**（它们本来就期望闸变红）。
+# **所以那 3 条红不是「闸门误伤」，是「这一族在本环境下不可判定」。**
+ENVDC_PROBED=0; ENVRC=0; ENVN=0
+probe_env_baseline() {
+  local out rc
+  out=$(BEEFTV_REF=origin/main python3 "$GATE" 2>&1); rc=$?
+  ENVRC=$rc
+  ENVN=$(printf '%s\n' "$out" \
+         | sed -n 's/.*不可达声明核对：\([0-9][0-9]*\) 处不一致.*/\1/p' | head -1)
+  [ -n "$ENVN" ] || ENVN=0
+  ENVDC_PROBED=1
+}
+
 run_case() {  # 说明 path 变换脚本 修复特征 期望失效的登记id
   local desc="$1" path="$2" tf="$3" feature="$4" want="$5" c out rc
   CASE=$((CASE+1))
@@ -97,7 +130,16 @@ run_pass_case() {  # 说明 path 变换脚本 注入特征 期望**仍然成立*
   fi
   echo "  前提成立：合成 ref 的 $path 已含 [$feature]"
   out=$(BEEFTV_REF="$TMPREF" python3 "$GATE" 2>&1); rc=$?
-  if [ "$rc" -ne 0 ]; then
+  if [ "$rc" -ne 0 ] && [ "$ENVRC" -ne 0 ]; then
+    # **Batch 290**：**这一族要求 rc=0，而 rc=0 的前提是「注入前的 origin/main 就全绿」。**
+    # **实测本环境下那条前提不成立（${ENVN} 处不一致）**，
+    # **于是分不清这次红是注入造成的还是上游漂移造成的**——
+    # **而把它记成「误伤」就是替上游的漂移背书**（纪律 156：没核 ≠ 核过）。
+    echo "  — ${desc}：**本环境下不可判定**（注入前的 origin/main 本来就有 ${ENVN} 处不一致）"
+    echo "     → **不是「闸门误伤」**：这一族要求 rc=0，而 rc=0 的前提今天不成立"
+    echo "     → 记**作废**（前提不成立），**不记失败**——**分不清成因就不许下结论**"
+    VOID=$((VOID+1))
+  elif [ "$rc" -ne 0 ]; then
     echo "  ✗ ${desc}：闸门**误伤**了（期望照旧通过，却退出码 ${rc}）；实际："
     echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
   elif echo "$out" | grep -F "$want" >/dev/null; then
@@ -107,6 +149,18 @@ run_pass_case() {  # 说明 path 变换脚本 注入特征 期望**仍然成立*
   fi
   git update-ref -d "$TMPREF" >/dev/null 2>&1
 }
+
+# ── Batch 290：**探针必须在这里跑，不能放到末尾的基线段** ──────────────────
+# **踩过的坑**：第一版把 `probe_env_baseline` 放在基线 A/B 段，
+# **而基线段在 33 条用例之后才执行**——于是每一条用例跑的时候 `ENVRC` 还是初值 0，
+# **新加的「环境不绿 → 记作废」那条分支一次都不会走**，
+# **而一份全绿的报告会看起来完全正常**。
+# **「一个不会执行的分支会给你一个漂亮的 0」**（纪律 155 换个方向再踩一次）。
+probe_env_baseline
+if [ "$ENVRC" -ne 0 ]; then
+  echo "  （预先告知：注入前的 origin/main 有 ${ENVN} 处不一致，"
+  echo "    所以 \`run_pass_case\` 那一族在本环境下**不可判定**，会记作废而不是失败）"
+fi
 
 run_case "1) setSort 补上调用" web/src/pages/canvas/index.tsx "$HERE/selftest-fix-1-setsort.py" "void setSort" "canvas-library-no-sort-filter"
 # 用例 2 已于 Batch 207 删除：它指向的断言 `canvas-library-no-import-entry`
@@ -163,8 +217,29 @@ run_pass_case "34) 不误伤：只在注释里写 ?fixture=（注释不是界面
 # 用这个框架注入会直接锚点失配。它归 selftest-meta.sh（那边已把
 # scripts/verify-unreachable.py 纳入快照范围）。
 
-echo "=== 基线：真实 origin/main 应当通过 ==="
-if python3 "$GATE" >/dev/null 2>&1; then echo "  ✓ origin/main 通过"; else echo "  ✗ origin/main 未通过"; FAIL=$((FAIL+1)); fi
+# ── Batch 290：这里有**两条**基线，因为本文件量的是**两个不同的 ref** ──────
+echo "=== 基线 A：手册声明的提交（闸的默认 ref）应当通过 ==="
+# **措辞按实际写**：旧版这一段打印「真实 origin/main 应当通过 / ✓ origin/main 通过」，
+# **而它一个 BEEFTV_REF 都没设，量的是默认 ref。**
+# **实测：默认 ref rc=0 / 32 条断言成立；而 origin/main 是 8 处不一致。**
+if python3 "$GATE" >/dev/null 2>&1; then
+  echo "  ✓ 手册声明的那一版通过（这才是本段实际量的东西）"
+else
+  echo "  ✗ 手册声明的那一版**未通过**——**这不是上游漂移，是声明与现状分家了**"
+  FAIL=$((FAIL+1))
+fi
+
+echo "=== 基线 B：origin/main（**本文件全部用例的合成 ref 都由它派生**）==="
+# **探针已在第一条用例之前跑过**（见下方「探针必须在这里跑」那段），
+# **这里只把结论再说一遍**，不再跑第二次——省一次全量扫描，也免得两处数字打架。
+if [ "$ENVRC" -eq 0 ]; then
+  echo "  ✓ origin/main 0 处不一致 → \`run_pass_case\` 那一族在本环境下可判定"
+else
+  echo "  ⚠ origin/main **${ENVN} 处不一致** → \`run_pass_case\` 那一族**在本环境下不可判定**"
+  echo "     （它要求 rc=0，而 rc=0 的前提是「注入前就全绿」——**今天那条前提不成立**）"
+  echo "     **这 ${ENVN} 条是上游漂移，不是闸门缺陷**；处置是升版并重做增量对账，"
+  echo "     **不是把判据放宽**（放宽会让真缺陷一起过去）"
+fi
 
 git update-ref -d "$TMPREF" >/dev/null 2>&1
 echo "=== 结果：通过 $PASS / 作废 $VOID / 失败 $FAIL ==="

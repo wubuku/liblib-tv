@@ -164,9 +164,16 @@ def m_py_syntax_reported():
 # ── 3) 能抓（装体·sh）────────────────────────────────────────────────────
 def m_sh_syntax_reported():
     tmp = sandbox()
+    #: **锚点换成 `build_ref` 里的 plumbing 行，不是基线段那行标题**
+    #: （**Batch 290 实测踩的**：第一版锚在「基线：真实 origin/main 应当通过」，
+    #: **而 Batch 290 恰好把基线段改写了**——于是这条用例当场作废，
+    #: **锚点失配被 `edit_one` 的 assert 抓住，而不是静悄悄地空转**）。
+    #: **跨文件锚点是耦合：改一处会静默废掉另一处**，
+    #: **而「废掉」的表现是这一族用例集体转红，报错指向的是被改的那份文件**——
+    #: **所以锚点要选结构行（plumbing、函数骨架），别选人类会重写的那段文字**。
     edit_one(os.path.join(tmp, "scripts", "selftest-unreachable.sh"),
-             'echo "=== 基线：真实 origin/main 应当通过 ==="',
-             'echo "=== 基线：真实 origin/main 应当通过 ==="\nif true; then')
+             'IDX="${IDXBASE}.${CASE}.index"',
+             'IDX="${IDXBASE}.${CASE}.index"\nif true; then')
     expect("能抓·.sh 语法错", tmp, 1, must=["selftest-unreachable.sh", "bash -n 失败"])
 
 
