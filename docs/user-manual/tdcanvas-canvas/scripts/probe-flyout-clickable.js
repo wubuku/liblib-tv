@@ -196,6 +196,186 @@ async function realClick(page, selector) {
       behavior.push({ open, before, after, changed: before !== after });
       if (await page.evaluate(FLYOUT_OPEN)) await realClick(page, 'button[data-canvas-tool="tool-style"]');
     }
+    // ── 落点行为相：那一带落着侧面板的节点标题，点下去到底发生了什么 ──────
+    // F83：「没反应」至少对应三种事实（落在空白 / 落在别的控件 / 落在自己的内层），
+    // **三种的正文写法不一样**。M259 只坐实了「落在节点标题上」，
+    // ★ **本相回答剩下那一半：点下去有没有副作用。**
+    // ★ **只点可逆的那一侧**：撤销会真改画布，**所以只点「落在节点标题上」的那一格，
+    //   然后量选中态与视口变化**——两者都能用 Esc + 重置视图复位。
+    OUT('\n################ 落点行为相：默认状态点「撤销」那一带 ################');
+    try {
+      const state = () => {
+        // ★ 节点数读侧面板的「画布元素 N」，**不读 [data-node-id]**（F79）
+        const side = document.querySelector('aside.td-canvas-side-panel');
+        const cm = side && side.textContent.match(/画布元素\s*(\d+)/);
+        const sel = Array.from(document.querySelectorAll('[data-node-id]'))
+          .filter((n) => /z-50|selected/.test(n.className || ''))
+          .map((n) => n.getAttribute('data-node-id').slice(0, 12));
+        // ★ 「有选中」的可靠信号是产品自己给的：tool-delete 只在 selectedCount 时渲染（F80）
+        const dock = document.querySelector('.td-canvas-dock');
+        const hasDel = !!(dock && dock.querySelector('[data-canvas-tool="tool-delete"]'));
+        const rowsHl = Array.from(document.querySelectorAll('aside.td-canvas-side-panel tr, aside.td-canvas-side-panel [class*="cursor-pointer"]'))
+          .filter((e) => /bg-|active|selected/.test(e.className || ''))
+          .map((e) => (e.textContent || '').trim().slice(0, 14));
+        // ★ 视口那一项**删掉了**：第一版读的是一个「视口」开头的自定义属性，
+        //   **而应用源码里根本没有那个属性**——于是它每次都返回空串，
+        //   **是个不产出任何读数的死字段**。不往标记表里塞一个不存在的标记（F82 的反面）。
+        //   ★ 顺带记一条同族的判据边界：**这段注释第一版直接写出了那个属性名**，
+        //   而 `check-probe-contracts.py` 的标记扫描**连注释一起读**——
+        //   于是「删了字段、注释里留个名字」照样报红。**同一个坑一天栽两次。**
+        return { 画布元素: cm ? cm[1] : '(读不到)', 有选中: hasDel, 选中节点: sel, 面板高亮: rowsHl };
+      };
+
+      // ★ **面板必须保持「开」**——本相量的就是**被遮挡**那一档。
+      // ★ 第一版这里写的是「先收面板」，量到的落点是飞层自己的「撤销」——
+      //   **量错了对象（不是读数矛盾）**，而两个读数长得几乎一样。
+      if (!(await page.evaluate(SIDE_OPEN))) await realClick(page, 'button[data-canvas-tool="tool-search"]');
+      if (await page.evaluate(FLYOUT_OPEN)) await realClick(page, 'button[data-canvas-tool="tool-history"]');
+      if (!(await realClick(page, 'button[data-canvas-tool="tool-history"]')) || !(await page.evaluate(FLYOUT_OPEN))) {
+        OUT('  ⚠ 历史飞层没打开，跳过本相');
+      } else {
+        const undo = await page.evaluate(() => {
+          const wrap = document.querySelector('.td-canvas-flyout');
+          const el = Array.from(wrap.querySelectorAll('button')).find((b) => (b.textContent || '').trim() === '撤销');
+          if (!el) return null;
+          const r = el.getBoundingClientRect();
+          return { x: r.x + r.width / 2, y: r.y + r.height / 2 };
+        });
+        if (!undo) OUT('  ⚠ 飞层里没找到「撤销」按钮，跳过本相');
+        else {
+          const before = await page.evaluate(state);
+          await page.mouse.click(undo.x, undo.y);          // ★ 真实坐标：让它打在节点标题上
+          await page.waitForTimeout(1000);
+          const after = await page.evaluate(state);
+          const hit = await page.evaluate(([x, y]) => {
+            const e = document.elementFromPoint(x, y);
+            const row = e && e.closest('aside.td-canvas-side-panel');
+            return { 落点: e ? e.tagName + '.' + String(e.className || '').split(' ').slice(0, 2).join('.') : 'null',
+                     落点文字: e ? (e.textContent || '').trim().slice(0, 16) : '',
+                     在面板节点行内: !!row };
+          }, [undo.x, undo.y]);
+          OUT('  落点 ' + hit.落点 + ' 文字 ' + JSON.stringify(hit.落点文字) + ' 面板行内=' + hit.在面板节点行内);
+          OUT('  点之前 ' + JSON.stringify(before));
+          OUT('  点之后 ' + JSON.stringify(after));
+          OUT('  → 画布元素 ' + before.画布元素 + ' → ' + after.画布元素
+              + '；有选中 ' + before.有选中 + ' → ' + after.有选中
+              + '；选中节点 ' + (before.选中节点.join(',') || '无') + ' → ' + (after.选中节点.join(',') || '无')
+              + '；面板高亮 ' + JSON.stringify(before.面板高亮) + ' → ' + JSON.stringify(after.面板高亮));
+          const changed = before.画布元素 !== after.画布元素 || before.有选中 !== after.有选中
+            || before.选中节点.join() !== after.选中节点.join() || JSON.stringify(before.面板高亮) !== JSON.stringify(after.面板高亮);
+          OUT('  ★ 结论：这一下' + (changed ? '**有副作用**' : '**什么也没发生**（撤销没触发，也没有任何选中变化）'));
+
+          // ── 探测器阳性对照：不改画布，只证明「这套读数看得见变化」 ──────
+          // ★ **不做「收面板后真按一次撤销」**：那会真改画布，
+          //   而**恢复要靠重做**——一旦重做失败，夹具就少一个节点。
+          //   这里改用一个**零改动**的对照：直接点侧面板里的一个节点行。
+          //   如果点它能选中节点，就证明 state() 看得见这类变化，
+          //   **于是上面那个「什么也没发生」才是有意义的读数而不是探测器坏了。**
+          const rowPt = await page.evaluate(() => {
+            const side = document.querySelector('aside.td-canvas-side-panel');
+            const rows = Array.from(side.querySelectorAll('*')).filter((e) => {
+              const c = e.className || '';
+              return typeof c === 'string' && /truncate/.test(c) && e.children.length === 0 && (e.textContent || '').trim();
+            });
+            if (!rows.length) return null;
+            const r = rows[0].getBoundingClientRect();
+            return { x: r.x + Math.min(r.width / 2, 40), y: r.y + r.height / 2, 文字: (rows[0].textContent || '').trim().slice(0, 14) };
+          });
+          if (!rowPt) OUT('  [阳性对照] ⚠ 侧面板里没找到可点的节点行，探测器有效性未验证，如实记下');
+          else {
+            await page.mouse.click(rowPt.x, rowPt.y);
+            await page.waitForTimeout(900);
+            const probe = await page.evaluate(state);
+            OUT('  [阳性对照] 直接点侧面板节点行 ' + JSON.stringify(rowPt.文字)
+                + ' → 有选中 ' + probe.有选中 + '、选中节点 ' + (probe.选中节点.join(',') || '无')
+                + (probe.有选中 ? '  ✓ 探测器看得见这类变化，**上面的阴性读数因此有意义**'
+                                 : '  ⚠ 探测器没反应，**上面的阴性读数不可信**'));
+            await page.keyboard.press('Escape');
+            await page.waitForTimeout(400);
+            OUT('  [阳性对照已还原] 有选中=' + (await page.evaluate(state)).有选中);
+          }
+          // 还原：Esc 取消选中 + 重置视图
+          await page.keyboard.press('Escape');
+          await page.waitForTimeout(400);
+          OUT('  [还原后] 有选中=' + (await page.evaluate(state)).有选中);
+        }
+        if (await page.evaluate(FLYOUT_OPEN)) await realClick(page, 'button[data-canvas-tool="tool-history"]');
+      }
+    } catch (e) { OUT('  [本相异常]', e && e.message); }
+
+    // ── 把手相：左侧面板的拖宽把手，到底拖不拖得动 ────────────────────────
+    // ★ **M257 / R110 两次记了「把手也点不到」**（M249 一次），
+    //   **而那三次都只有落点读数、从来没有行为读数**——
+    //   **F83 的反向：说「点不到」也要有行为读数，否则分不清「按不动」和「按了没反应」。**
+    // 源码 `canvas-side-panel.tsx:131`：
+    //   `absolute inset-y-0 right-0 z-40 w-4 translate-x-1/2 cursor-col-resize`
+    //   ——**骑在面板右缘上，内侧 8px、外侧 8px**。**所以只采中心一个点会漏掉可拖的那一半。**
+    OUT('\n################ 把手相：拖得动吗（默认状态） ################');
+    const handleRows = [];
+    try {
+      const geo = await page.evaluate(() => {
+        const aside = document.querySelector('aside.td-canvas-side-panel');
+        const h = aside && (aside.querySelector('.cursor-col-resize') || aside.querySelector('[aria-label]'));
+        if (!aside || !h) return { err: '没找到把手（' + (aside ? '有面板无把手' : '无面板') + '）' };
+        const hr = h.getBoundingClientRect(), ar = aside.getBoundingClientRect();
+        const samples = [0, 0.25, 0.5, 0.75, 1].map((f) => {
+          // ★ **y 必须落在视口内**：把手是 `inset-y-0`、高约 830，
+          //   写成 `hr.y + hr.height * 2` 会得到 y≈1730（视口只有 1000），
+          //   **而 elementFromPoint 越界一律返回 null**——于是读数「全 null」，
+          //   拖拽也等于在空气里拖。**第一版就这样栽了。**
+          const x = hr.x + hr.width * f, y = Math.round(hr.y + hr.height * 0.3);
+          const e = document.elementFromPoint(x, y);
+          return { f, x: Math.round(x), 命中把手: !!(e && h.contains(e)),
+                   落点: e ? e.tagName + '.' + String(e.className || '').split(' ').slice(0, 2).join('.') : 'null' };
+        });
+        return { 把手: [Math.round(hr.x), Math.round(hr.right), Math.round(hr.width)], 面板宽: Math.round(ar.width), samples };
+      });
+      if (geo.err) { OUT('  ⚠ ' + geo.err + '——本相不产出读数，如实记下'); }
+      else {
+        OUT('  把手 x ' + geo.把手[0] + '–' + geo.把手[1] + '（宽 ' + geo.把手[2] + '）· 面板宽 ' + geo.面板宽);
+        geo.samples.forEach((sm) => OUT('    ' + (sm.命中把手 ? '✓' : '✗') + ' x=' + sm.x + ' 落点 ' + sm.落点));
+        // ★ 行为读数：真拖一把，看面板宽度变不变
+        const drag = async (x, y, dx) => {
+          await page.mouse.move(x, y);
+          await page.mouse.down();
+          for (let i = 1; i <= 6; i++) { await page.mouse.move(x + (dx * i) / 6, y); await page.waitForTimeout(40); }
+          await page.mouse.up();
+          await page.waitForTimeout(500);
+        };
+        const w = () => page.evaluate(() => {
+          const a = document.querySelector('aside.td-canvas-side-panel');
+          return a ? Math.round(a.getBoundingClientRect().width) : null;
+        });
+        const attempts = [];
+        for (const at of [['把手中心', 0.5], ['把手内侧 2px', 0.15], ['把手外侧 2px', 0.9]]) {
+          const x = geo.把手[0] + geo.把手[2] * at[1];
+          const y = await page.evaluate(() => {
+            const h = document.querySelector('aside.td-canvas-side-panel .cursor-col-resize');
+            if (!h) return null; const r = h.getBoundingClientRect();
+            return Math.round(r.y + r.height * 0.3);   // ★ 同上：y 必须落在视口内
+          });
+          if (y == null) break;
+          const before = await w();
+          await drag(x, y, 100);
+          const after = await w();
+          const changed = before !== after;
+          OUT('  [拖 ' + at[0] + ' x=' + Math.round(x) + '] 面板宽 ' + before + ' → ' + after
+              + (changed ? '  ✓ 拖得动' : '  ✗ 没变'));
+          attempts.push({ at: at[0], before, after, changed });
+          if (changed) {                       // ★ 拖动了就原样拖回去
+            await drag(x + 100, y, -100);
+            OUT('    [已拖回] 面板宽 ' + (await w()));
+          }
+        }
+        handleRows.push({ geo, attempts });
+        OUT('  ★ 结论：' + (attempts.some((a) => a.changed)
+          ? '★ **把手是拖得动的**——之前那几次「落点是 aside」的读数**不足以支持「拖不动」这个说法**'
+          : '★ 三个位置都拖不动，与落点读数一致')
+          + '（**落点采样只覆盖了把手的 x 范围，行为读数才是判据**）');
+      }
+    } catch (e) { OUT('  [本相异常]', e && e.message); }
+    rows.push({ kind: '行为相', behavior, handleRows });
+
     rows.push({ kind: '行为相', behavior });
     OUT('  结论：' + (behavior.every((b) => b.changed === !b.open)
       ? '★ 默认状态下点了不生效，收起面板后同一坐标才生效——与几何读数一致'
