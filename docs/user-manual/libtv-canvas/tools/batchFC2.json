@@ -1,0 +1,163 @@
+{
+  "步骤": [
+    "zoom = 0.482682｜1 屏px = 2.0718 画布单位",
+    "—— ① 挑「框内有干净落点」的节点 ——",
+    "   v-oZNpH99MtM 干净落点 36/36 个",
+    "   n-56F19pXVB4 干净落点 26/36 个",
+    "   b-mfkcQNULC3 干净落点 6/36 个",
+    "   a-THmbuJXQj4 干净落点 18/36 个",
+    "   ⭐ 选中 v-oZNpH99MtM、n-56F19pXVB4、b-mfkcQNULC3、a-THmbuJXQj4",
+    "—— ② 三档开关态 A/B（初始 svg 数 1）——",
+    "—— 节点 v-oZNpH99MtM（基线 [-48684,300]）——",
+    "   【关】svg 数 1｜起 -48684",
+    "      轨迹 [-48684,-48684,-48672,-48672,-48672,-48658,-48658]",
+    "      落点 -48658｜预测 -48660｜命中？ false｜是 12 倍数？ false｜位移 26.00（自由值 26.93）",
+    "      往返净位移 0.0000",
+    "   ⭐ 点开关：svg 数 1 → 2｜外链变了？ true",
+    "   【开】svg 数 2｜起 -48684",
+    "      轨迹 [-48684,-48679.9,-48675.7,-48673.6,-48669.5,-48665.4,-48661.2]",
+    "      落点 -48661.2｜预测 -48660｜命中？ false｜是 12 倍数？ false｜位移 22.80（自由值 26.93）",
+    "      往返净位移 0.0000",
+    "   ⭐ 点回开关：svg 数 1｜与初始外链一致？ true",
+    "   【关2】svg 数 1｜起 -48684",
+    "      轨迹 [-48684,-48684,-48672,-48672,-48672,-48658,-48658]",
+    "      落点 -48658｜预测 -48660｜命中？ false｜是 12 倍数？ false｜位移 26.00（自由值 26.93）",
+    "      往返净位移 0.0000",
+    "   ⭐⭐⭐⭐ v-oZNpH99MtM：关态落点 -48658｜开态落点 -48661.2｜**相同？ false**",
+    "      逐帧轨迹完全相同？ false",
+    "   v-oZNpH99MtM 复原：{\"ok\":true,\"轮\":1,\"终\":[-48684,300]}",
+    "—— 节点 n-56F19pXVB4（基线 [-47724,300]）——",
+    "   【关】svg 数 1｜起 -47724",
+    "      轨迹 [-47724,-47724,-47712,-47712,-47712,-47700,-47700]",
+    "      落点 -47700｜预测 -47700｜命中？ true｜是 12 倍数？ true｜位移 24.00（自由值 26.93）",
+    "      往返净位移 0.0000",
+    "   ⭐ 点开关：svg 数 1 → 2｜外链变了？ true",
+    "   【开】svg 数 2｜起 -47724",
+    "      轨迹 [-47724,-47719.9,-47715.7,-47713.6,-47709.5,-47705.4,-47701.2]",
+    "      落点 -47701.2｜预测 -47700｜命中？ false｜是 12 倍数？ false｜位移 22.80（自由值 26.93）",
+    "      往返净位移 0.0000",
+    "   ⭐ 点回开关：svg 数 1｜与初始外链一致？ true",
+    "   【关2】svg 数 1｜起 -47724",
+    "      轨迹 [-47724,-47724,-47712,-47712,-47712,-47700,-47700]",
+    "      落点 -47700｜预测 -47700｜命中？ true｜是 12 倍数？ true｜位移 24.00（自由值 26.93）",
+    "      往返净位移 0.0000",
+    "   ⭐⭐⭐⭐ n-56F19pXVB4：关态落点 -47700｜开态落点 -47701.2｜**相同？ false**",
+    "      逐帧轨迹完全相同？ false",
+    "   n-56F19pXVB4 复原：{\"ok\":true,\"轮\":1,\"终\":[-47724,300]}",
+    "⭐⭐ 静置 15s 后坐标复核：[]（全部一致）"
+  ],
+  "读数": {
+    "开关关": {
+      "svg数": 1,
+      "外链": "<button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height: 14px; color: var(--canvas-controls-icon);\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"color: var(--canvas-controls-icon);\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4\"></path></svg></span></button>",
+      "中心": [
+        222,
+        778
+      ]
+    },
+    "开关开": {
+      "svg数": 2,
+      "外链": "<button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height: 14px; color: var(--canvas-controls-icon);\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"color: var(--canvas-controls-icon);\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4\"></path></svg><svg class=\"absolute inset-0\" width=\"14\" height=\"14\" viewBox=\"0 0 14 14\"><line x1=\"1\" y1=\"1\" x2=\"13\" y2=\"13\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" opacity=\"0.6\"></line></svg></span></button>",
+      "中心": [
+        222,
+        778
+      ]
+    },
+    "开关回": {
+      "svg数": 1,
+      "外链": "<button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height: 14px; color: var(--canvas-controls-icon);\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"color: var(--canvas-controls-icon);\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4\"></path></svg></span></button>",
+      "中心": [
+        222,
+        778
+      ]
+    },
+    "节点_v-oZNpH99MtM": {
+      "关": {
+        "轨迹": [
+          -48684,
+          -48684,
+          -48672,
+          -48672,
+          -48672,
+          -48658,
+          -48658
+        ],
+        "落点": -48658,
+        "预测": -48660,
+        "净": 0
+      },
+      "开": {
+        "轨迹": [
+          -48684,
+          -48679.9,
+          -48675.7,
+          -48673.6,
+          -48669.5,
+          -48665.4,
+          -48661.2
+        ],
+        "落点": -48661.2,
+        "预测": -48660,
+        "净": 0
+      },
+      "关2": {
+        "轨迹": [
+          -48684,
+          -48684,
+          -48672,
+          -48672,
+          -48672,
+          -48658,
+          -48658
+        ],
+        "落点": -48658,
+        "预测": -48660,
+        "净": 0
+      }
+    },
+    "节点_n-56F19pXVB4": {
+      "关": {
+        "轨迹": [
+          -47724,
+          -47724,
+          -47712,
+          -47712,
+          -47712,
+          -47700,
+          -47700
+        ],
+        "落点": -47700,
+        "预测": -47700,
+        "净": 0
+      },
+      "开": {
+        "轨迹": [
+          -47724,
+          -47719.9,
+          -47715.7,
+          -47713.6,
+          -47709.5,
+          -47705.4,
+          -47701.2
+        ],
+        "落点": -47701.2,
+        "预测": -47700,
+        "净": 0
+      },
+      "关2": {
+        "轨迹": [
+          -47724,
+          -47724,
+          -47712,
+          -47712,
+          -47712,
+          -47700,
+          -47700
+        ],
+        "落点": -47700,
+        "预测": -47700,
+        "净": 0
+      }
+    }
+  }
+}

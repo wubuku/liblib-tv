@@ -1,0 +1,55 @@
+{
+  "步骤": [
+    "zoom = 0.482682｜1 屏px = 2.0718 画布单位",
+    "—— ① 11 个节点的屏幕框，看有没有互相遮挡 ——",
+    "   a-GgqvrVz0pw [-49512,1344] → 框 [65,572,169,169]",
+    "   a-THmbuJXQj4 [-47220,300] → 框 [1171,69,169,169]",
+    "   b-mfkcQNULC3 [-48192,300] → 框 [702,69,154,188]",
+    "   i-9nlG6HdjK2 [-49512,840] → 框 [65,329,300,169]",
+    "   i-sODTbgLUm1 [-47916,840] → 框 [835,329,300,169]",
+    "   n-56F19pXVB4 [-47724,300] → 框 [928,69,169,169]",
+    "   t-2AK3Ukyxj3 [-49008,1344] → 框 [308,572,169,169]",
+    "   t-UtVx3lZmrV [-47148,840] → 框 [1206,329,169,169]",
+    "   v-eMpqKtiLlx [-48684,840] → 框 [465,329,300,169]",
+    "   v-oZNpH99MtM [-48684,300] → 框 [465,69,169,169]",
+    "   v-v2hlWY4Br3 [-49512,300] → 框 [65,69,300,169]",
+    "   ⭐ 两两重叠 0 对 ⇒ **没有遮挡**，落点好找",
+    "—— ② 目标节点 t-UtVx3lZmrV ——",
+    "   开关外链（关）：svg 数 1",
+    "   <button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height…",
+    "   【关】⛔ 找不到落点",
+    "   ⭐ 点开关后：svg 数 2｜外链变了？ true",
+    "   【开】⛔ 找不到落点",
+    "   ⭐ 点回开关：svg 数 1｜外链与初始一致？ true",
+    "   【关2】⛔ 找不到落点",
+    "⭐⭐ 静置 15s 后坐标复核：[]（全部一致）"
+  ],
+  "读数": {
+    "重叠": [],
+    "开关关": {
+      "svg数": 1,
+      "外链": "<button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height: 14px; color: var(--canvas-controls-icon);\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"color: var(--canvas-controls-icon);\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4\"></path></svg></span></button>",
+      "中心": [
+        222,
+        778
+      ]
+    },
+    "开关开": {
+      "svg数": 2,
+      "外链": "<button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height: 14px; color: var(--canvas-controls-icon);\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"color: var(--canvas-controls-icon);\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4\"></path></svg><svg class=\"absolute inset-0\" width=\"14\" height=\"14\" viewBox=\"0 0 14 14\"><line x1=\"1\" y1=\"1\" x2=\"13\" y2=\"13\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" opacity=\"0.6\"></line></svg></span></button>",
+      "中心": [
+        222,
+        778
+      ]
+    },
+    "开关回": {
+      "svg数": 1,
+      "外链": "<button class=\"hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors\" aria-label=\"网格吸附\" style=\"width: 28px; height: 28px;\"><span class=\"relative flex items-center justify-center overflow-hidden\" style=\"width: 14px; height: 14px; color: var(--canvas-controls-icon);\"><svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" aria-hidden=\"true\" role=\"img\" class=\"iconify iconify--lucide pointer-events-none \" width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" style=\"color: var(--canvas-controls-icon);\"><path fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"2\" d=\"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4\"></path></svg></span></button>",
+      "中心": [
+        222,
+        778
+      ]
+    },
+    "对照": {}
+  }
+}
