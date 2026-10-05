@@ -198,6 +198,138 @@
 > ⛔ 本轮**没有**在这层里点过任何会消耗积分或改内容的按钮：
 > 「参考」「标记」「风格」「预设」「提交」「⤢」一个都没点。
 
+## ⭐⭐⭐ 这层浮层背后还有一层：源码里解出的完整工具条清单
+
+> 下面这张表**不是**在界面上点出来的，是**读生产 bundle 的组件定义**解出来的
+> （Batch FU，`tools/batchFU1.mjs` → `batchFU2.mjs` → `i18n-toolbar.py`，
+> 三步都可重跑）。⛔ 只做 GET，一个界面元素都没点。
+>
+> **为什么要这么做**：本手册有一批功能**界面上碰不到**（要先生成内容才出现），
+> 但它们确实存在。与其空着「📖 未验」，不如把源码里**确实写着**的部分先落成文档，
+> 并**逐条标清哪些是源码证据、哪些仍未验**。
+
+### 图片工具条上那枚「蓝点图标」和「滑块图标」—— 📖 名字找到了
+
+`PortraitTextureToolbar`（人像质感工具条）的 props 逐字是：
+
+```
+portraitDisabled:e=!1, portraitDisabledReason:t, onPortraitAdjust:n, onMoodAdjust:a
+```
+
+它内部用到的三个 i18n key，逐字翻译成界面文案是：
+
+| 源码 key | 界面文案 |
+|---|---|
+| `common:imgEditorPortraitAdjust` | **人像调节** |
+| `common:imgEditorMoodAdjust` | **情绪调节** |
+| `canvas:slashScenePortraitTextureAdjustment` | **人像质感调节** |
+
+⭐⭐⭐ **推论（📖 仍属推断，未在界面上验）**：上面 M-390 里的
+⑦ 号「带蓝点的图标」与 ⑩ 号「滑块形图标」，
+和 `PortraitTextureToolbar` 的**两枚按钮**（`onPortraitAdjust` / `onMoodAdjust`）在数量与位置上都对得上。
+
+> ⛔⚠️ **但这仍然是推断，不是实测**。理由有二：
+> ① 组件名是 `PortraitTexture`（人像**质感**），而 ⑦ 号在 `Lib Image 2.5 Pro` 下是**灰的**，
+> 与「不支持时置灰」的规律一致，但**没验过它是不是真的置灰**；
+> ② `slashScenePortraitTextureAdjustment` 里的 `slash` 说明这个组件同时服务**斜杠命令**，
+> 也就是说它可能**有两条出现路径**（工具条按钮 / 输入 `/` 弹命令列表）。
+> ⇒ 两条路径都碰过之后，这条推论才成立。
+
+### 标注工具条（`AnnotateToolbar`）—— 完整的 12 个 key
+
+⛔ 界面上没碰到（要先生成图片才出现标注入口）。
+但源码把它的**全部文案**写清楚了，props 逐字是
+`tool, color, strokeWidth, canUndo, canRedo, onClose, onToolChange, onColorChange, onStrokeWidthChange, onUndo, onRedo, onSave`：
+
+| 界面文案 | 源码 key | 是什么 |
+|---|---|---|
+| 标注 | `common:imgEditorAnnotate` | 入口 |
+| 关闭标注 | `common:imgEditorCloseAnnotate` | 退出 |
+| **画笔** | `common:imgEditorBrushTool` | 三种笔之一 |
+| **矩形** | `common:imgEditorRectTool` | 三种笔之一 |
+| **文字** | `common:imgEditorTextTool` | 三种笔之一 |
+| 颜色 | `common:color` | 取色 |
+| 线宽 | `common:imgEditorLineWidth` | 笔画粗细 |
+| 撤销 / 重做 / 保存 | `common:undo` / `redo` / `save` | 三个标准动作 |
+| 保存标注 | `common:imgEditorSaveAnnotate` | 存盘 |
+
+⭐ **这坐实了本手册一处旧说法**：手册此前写「图片编辑器有三种笔：`pencil` / `rect` / `text`」，
+那是代码里的枚举值；**界面上用户看到的是「画笔 / 矩形 / 文字」**，两个都要写。
+
+### 音频节点工具条（`AudioNodeToolbar`）—— ⭐ 本批最有价值的一张表
+
+⛔ 主画布上的音频节点**全是空态**，工具条没出现（要先生成音频）。
+但源码 props 逐字是
+`downloadOnly, onLyricsSplitClick, onCustomSplitClick, onTrimClick, onVariableSpeedClick, isVariableSpeedDisabled, isLyricsSplitDisabled, onDownloadClick, ratingNodeId`，
+内部 13 个 key 翻出来是：
+
+| 界面文案 | 源码 key | 说明 |
+|---|---|---|
+| **智能切分** | `canvas:audioSmartSplitTitle` | 对应 `onLyricsSplitClick` |
+| **结合歌词句与节拍自动进行切分** | `canvas:audioSmartSplitTooltip` | ⭐ **这是全手册第一条「按歌词与节拍自动切」的说明**，此前一个字没写 |
+| **自定义切分** | `canvas:audioEditCustomSplitTitle` | 对应 `onCustomSplitClick` |
+| **截取** | `common:clipTrimTitle` | 对应 `onTrimClick` |
+| **变速** | `common:clipSpeedTitle` | 对应 `onVariableSpeedClick` |
+| 关闭变速 / 选择变速倍率 / 输入变速倍率 / 确认变速 | `canvas:audioNodeSharedClose` / `Select` / `Input` / `Confirm` | ⭐ 变速是个**四步子面板** |
+| 关闭截取 / 生成截取音频 | `canvas:audioNodeSharedClose2` / `AudioGenerate` | ⭐ 截取也是子面板，且**真会生成新音频**（⛔ 会消耗积分） |
+| 下载 | `canvas:scriptV2FloatingToolbarDownload` | ⭐ 注意它**复用了脚本节点那枚 key** |
+| 生成 | `canvas:videoNodeGenerate` | ⭐⭐ **音频节点借用的是 `videoNode` 的 key** —— 别按 key 名里的 `video` 以为是视频节点 |
+
+> ⛔⚠️ **安全边界**：上表里「生成截取音频」与「生成」**会真实消耗积分，本轮一次都没点过**。
+> 而且它们很可能要一段**已有音频**才出现。
+
+### 组操作条与批量操作条 —— 补上三处此前没写清的文案
+
+`GroupNodeToolbar`（组操作条）的 props 逐字有 **24 个**，
+其中 ⭐⭐ **有 5 个 prop 是本手册从未提过的组操作**：
+
+| 界面文案 | 源码 key | 本手册此前 |
+|---|---|---|
+| **添加到团队工具箱** | `canvas:groupAddToTeamToolbox` | ⛔ 没写过。手册只写过「添加到工具箱」 |
+| 更新工具箱 | `canvas:groupUpdateToolbox` | ✅ 写过 |
+| **转分镜组** | `canvas:groupConvertToStoryboard` | ✅ 写过 |
+| 解组 / 批量下载 | `canvas:groupUngroup` / `groupBatchDownload` | ✅ 写过 |
+| 批量生成视频 | `canvas:groupBatchGenerateVideo` | ⛔ 没写过。⛔ **会真实跑生成，不点** |
+| **组内须全部为图片节点** | `canvas:groupNeedAllImageNodes` | ⛔ 没写过 —— 这是「转分镜组」的**前置条件提示** |
+| 当前选区无可下载的资源 | `canvas:noDownloadableInSelection` | ⛔ 没写过。批量下载的**禁用原因** |
+
+`BatchSelectionBarShell`（批量选择条外壳）的三个 key 翻出来是
+**退出批量操作 / 已选择 {count} 项 / 全选当前页**。
+⭐ `已选择 {count} 项` 的 `{count}` 是**插值占位符** ——
+这与 M-383 实测到的「已选择 0 项」是同一枚，逐字对得上。
+
+`LayerBatchActionBar`（图层批量操作条）的三个 key 是
+**关闭 / 合并 / 「调整图层位置或尺寸，合并生成新图片（不消耗积分）」**。
+⭐⭐ 最后那句里的 **「（不消耗积分）」** 很重要 ——
+它说明**图层合并是少数几个明确标注不扣积分的操作**，
+而它恰好就是本手册一直标着「需要真实图片才能验」的那一项。
+
+### 其余几个组件的定位
+
+| 组件 | 在哪个 chunk | 手册状态 |
+|---|---|---|
+| `SelfContainedVideoClipBar`（自带视频剪辑条） | `1bzx2qa4_zu4z.js` | 📖 未碰。props 逐字是 `presentationContainer` 转发 |
+| `VideoTimelineTrack`（时间线轨） | 同上 | 📖 未碰 |
+| `MediaControlBar`（媒体播放条） | `0mfjq9o8b1v3d.js` | 📖 未碰。同一处还导出 `MediaFullscreenButton` / `MediaPlayButton` / `MediaTimeDisplay` / `MediaTimeRange` |
+| `CharacterGroupToolbar`（角色组工具条） | `1an1x1akb2vnr.js` | 📖 未碰。props 只有 `groupNodeId / asset / onUngroup`；key 里有「编辑角色」「可更新」「引用 {count}」「下游引用 {number}」「同步此引用到当前版本」 |
+
+> ⭐ `CharacterGroupToolbar` 的 ⭐⭐⭐ **`同步此引用到当前版本`** 是本批读到的
+> **最重要的一条新概念**：它说明角色引用**带版本**，
+> 下游引用别人的角色时**可能拿到的是旧版本**，需要手动同步。
+> ⛔ 界面上完全没碰过（要一个角色被两个节点引用才会出现），📖 记在这里。
+
+### 复算方式
+
+```bash
+cd docs/user-manual/libtv-canvas
+python3 tools/i18n-toolbar.py   # 50 个 key → 界面文案，命中 49 缺 1
+```
+
+⛔ 唯一没查到的是 `canvas:groupNodeToolbarPromptReferenceimageGenerateConnect`。
+⚠️ **别把它当「不存在」** —— 这个 key 名长得像
+`groupNodeToolbarPrompt` + `ReferenceimageGenerateConnect` **三段拼起来的**，
+而 FQ 已经立过一条规矩：**带 hash / 拼接痕迹的 key，grep 不到不代表界面上没有**。
+
 ## 📖 没有验证的部分
 
 | 项 | 为什么没验 |
@@ -208,6 +340,12 @@
 | ② 号（摄像机）按钮点开会是什么 | 气泡内容不像按钮名 |
 | ④ 号（无气泡那枚）是什么 | ⛔ 界面上真的没有它的名字 |
 | 这个面板在**视频 / 音频**节点上是不是同一套 | 本轮只测了图片节点 |
+| ⭐ ⑦⑩ 号图标**就是**「人像调节 / 情绪调节」 | 见上，**是源码数量与位置对得上的推断，不是实测** |
+| ⭐ 标注工具条 | 要先生成图片才有入口 |
+| ⭐ 音频工具条（智能切分 / 自定义切分 / 截取 / 变速） | 要先生成音频；且「生成截取音频」会扣积分 |
+| ⭐ 「添加到团队工具箱」「批量生成视频」 | 批量生成视频会真实跑生成 |
+| ⭐ 「同步此引用到当前版本」 | 要一个角色被两个节点引用 |
+
 
 ---
 

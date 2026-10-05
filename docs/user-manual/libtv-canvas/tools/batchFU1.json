@@ -1,0 +1,171 @@
+{
+  "步骤": [
+    "页面挂了 156 个 script",
+    "扫了 151 个非文案表 chunk",
+    "",
+    "=== AudioNodeToolbar：定义 0 处 / 引用 1 处 ===",
+    "   【引用】2-4l878iuf97g.js @62236\n     …colors hover:bg-white/10 disabled:cursor-not-allowed disabled:hover:bg-transparent\",onMouseDown:s,onClick:e=>{e.stopPropagation(),l()},children:(0,t.jsx)(\"span\",{className:\"flex size-3 shrink-0 items-center justify-center\",children:(0,t.jsx)(o.Icons.DownL,{width:8,height:8,className:v})})})]})}e.s([\"AudioNodeToolbar\",0,function({downloadOnly:e=!1,onLyricsSplitClick:a,onCustomSplitClick:l,onTrimClick:s,onVariableSpeedClick:p,isVariableSpeedDisabled:h,isLyricsSplitDisabled:g,onDownloadClick:f,ratingNodeId:m}){let{t:v}=(0,n.useI18n)();return(0,t.jsx)(\"div\",{className:\"flex w-max items-center\",chi…",
+    "",
+    "=== SelfContainedVideoClipBar：定义 0 处 / 引用 1 处 ===",
+    "   【引用】1bzx2qa4_zu4z.js @31703\n     …:`${c}%`,background:m?\"#141414\":\"#fff\"}})}),(0,l.jsx)(\"div\",{className:`mt-1 text-center text-[11px] ${m?\"text-fg-muted\":\"opacity-40\"}`,children:(0,ea.translate)(\"canvas:videoClipBarEncoding\",{percent:c})})]})]})})}e.s([\"VideoTimelineTrack\",0,em,\"resolveTimelineSelectionGeometry\",0,ev],353061),e.s([\"SelfContainedVideoClipBar\",0,function(e){return(0,l.jsx)(ex,{...e,presentationContainer:eg})},\"VideoClipBar\",0,ex],419065);let ew={async create(t){let a,{AVEditor:n,createAVWorker:r}=await e.A(490917);try{a=r()}catch(e){}try{return new n({...t,worker:a})}catch(e){throw a?.terminate(),e}}},ek={phase…",
+    "",
+    "=== MediaControlBar：定义 0 处 / 引用 1 处 ===",
+    "   【引用】0mfjq9o8b1v3d.js @202909\n     …s:{suppressHydrationWarning:!0}});t$({tagName:\"media-volume-range\",elementClass:nr,react:tU.default,toAttributeValue:nn,defaultProps:{suppressHydrationWarning:!0}}),t$({tagName:\"media-loop-button\",elementClass:ns,react:tU.default,toAttributeValue:nn,defaultProps:{suppressHydrationWarning:!0}}),e.s([\"MediaControlBar\",0,nl,\"MediaController\",0,no,\"MediaFullscreenButton\",0,nd,\"MediaPlayButton\",0,nu,\"MediaTimeDisplay\",0,nh,\"MediaTimeRange\",0,nc],3684);var nm=e.i(705762),np=e.i(135122);function nv(e,t,i,a){if(e<=0||t<=0||i<=0||a<=0)return{width:e,height:t,offsetX:0,offsetY:0};let r=Math.min(e/i,t/a)…",
+    "",
+    "=== LayerBatchActionBar：定义 0 处 / 引用 1 处 ===",
+    "   【引用】1an1x1akb2vnr.js @44427\n     …/svg\",width:8.667,height:8.667,fill:\"none\",viewBox:\"0 0 8.667 8.667\"},e),t||(t=a.createElement(\"path\",{fill:\"currentColor\",d:\"M7.813.146a.5.5 0 1 1 .707.707l-3.48 3.48 3.48 3.48a.5.5 0 1 1-.707.707l-3.48-3.48-3.48 3.48a.5.5 0 1 1-.707-.707l3.48-3.48L.146.853A.5.5 0 1 1 .853.146l3.48 3.48z\"})));e.s([\"LayerBatchActionBar\",0,function({mergeEnabled:e,onClose:t,onMerge:a}){let{t:o}=(0,r.useI18n)();return(0,n.jsxs)(\"div\",{\"data-testid\":\"layer-batch-action-bar\",\"data-figma-node-id\":\"6066:120234\",className:(0,l.cn)(\"bg-panel-background border-canvas-controls-border text-canvas-controls-text mt-3 flex …",
+    "",
+    "=== BatchSelectionBarShell：定义 0 处 / 引用 1 处 ===",
+    "   【引用】0qme_d9a8um1y.js @58301\n     …invert-text)_40%,transparent)]\"),children:[eD&&(0,t.jsx)(i.Icons.Loading,{width:14,height:14,className:\"animate-spin\"}),eD?X(\"common:saving\"):X(\"common:save\")]})]})]})]})]})}):null}],653044)},413807,123043,e=>{\"use strict\";var t=e.i(705762),s=e.i(321476),a=e.i(41671),r=e.i(722573),n=e.i(41114);e.s([\"BatchSelectionBarShell\",0,function({children:e,bottomClassName:s=\"bottom-4\"}){return(0,t.jsx)(\"div\",{className:(0,n.cn)(\"pointer-events-none absolute inset-x-0 z-30 flex justify-center px-4\",s),children:(0,t.jsx)(\"div\",{className:\"border-canvas-controls-border bg-canvas-controls pointer-events-auto…",
+    "",
+    "=== PortraitTextureToolbar：定义 0 处 / 引用 1 处 ===",
+    "   【引用】1an1x1akb2vnr.js @208081\n     …text-fg-default min-w-0 flex-1 text-[14px] font-normal leading-snug\",a&&\"text-fg-disabled\")})]})})}function n4(e){if(!Number.isFinite(e)||e<=0)return{rows:1,cols:1};let t=Math.max(1,Math.floor(Math.sqrt(e)));return{rows:Math.ceil(e/t),cols:t}}function n6(e,t,n){return Math.min(n,Math.max(t,e))}e.s([\"PortraitTextureToolbar\",0,function({portraitDisabled:e=!1,portraitDisabledReason:t,onPortraitAdjust:n,onMoodAdjust:a}){let r=(0,tv.useCanvasThemeStore)(e=>e.theme),{t:s}=(0,d.useI18n)(),{menuOpen:l,setMenuOpen:c,scheduleOpen:u,scheduleClose:h,cancelTimers:f}=nb({practiceExempt:()=>(0,n0.isPracticeF…",
+    "",
+    "=== GroupNodeToolbar：定义 0 处 / 引用 1 处 ===",
+    "   【引用】1an1x1akb2vnr.js @813808\n     …ontrols-text hover:bg-canvas-controls-hover flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors\",onClick:t=>{t.stopPropagation(),e(\"vertical\")},children:[(0,t.jsx)(i.Icons.list,{width:16,height:16}),(0,t.jsx)(\"span\",{children:a(\"canvas:layoutVertical\")})]})]})}e.s([\"GroupNodeToolbar\",0,function({groupColor:e=null,workflowUuid:h,isGroupRunning:y=!1,isStoryboardGroup:N=!1,isStoryboardImageGroup:S=!1,sourceScriptVersion:T,anyChildHasContent:M=!1,pipelineProgress:R,onColorChange:P,onRunGroup:A,onCreateWorkflow:D,onUngroup:L,onLayoutChange:_,onBatchGenerateVideo:O,…",
+    "",
+    "=== CharacterGroupToolbar：定义 0 处 / 引用 1 处 ===",
+    "   【引用】1an1x1akb2vnr.js @60099\n     …nvasSessionClipboard\",0,function(e){return i.add(e),()=>i.delete(e)}],312776)},656285,581906,936797,197935,696507,700819,e=>{\"use strict\";var t=e.i(705762),n=e.i(924998),a=e.i(321476),r=e.i(597308),o=e.i(41671),i=e.i(216257),s=e.i(473062),l=e.i(111581),d=e.i(890544),c=e.i(397289),u=e.i(474750);e.s([\"CharacterGroupToolbar\",0,function({groupNodeId:e,asset:p,onUngroup:m}){let{t:h}=(0,a.useI18n)(),{takeSnapshot:f}=(0,l.useCanvasCallbacks)(),g=(0,i.useCanvasStore)((0,r.useShallow)(t=>t.edges.filter(t=>t.source===e))),x=(0,i.useCanvasStore)(e=>e.updateEdge),v=(0,i.useCanvasStore)(e=>e.recalcIncoming…",
+    "",
+    "=== AnnotateToolbar：定义 0 处 / 引用 1 处 ===",
+    "   【引用】1an1x1akb2vnr.js @240479\n     …Fang_SC',sans-serif] text-[11px] font-normal leading-normal text-black\",\"whitespace-nowrap\"),children:d})}),document.body);return d?(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(\"div\",{ref:p,className:(0,m.cn)(\"inline-flex shrink-0\",l),children:v}),b]}):v}e.s([\"ToolbarConfirmButton\",0,ag],735278),e.s([\"AnnotateToolbar\",0,function({tool:e,color:t,strokeWidth:n,canUndo:a,canRedo:r,onClose:s,onToolChange:l,onColorChange:c,onStrokeWidthChange:u,onUndo:h,onRedo:f,onSave:g}){let{t:x}=(0,d.useI18n)(),v=(0,tv.useCanvasThemeStore)(e=>e.theme),b=\"light\"===v?\"border-canvas-controls-border\":\"border-white/20\"…",
+    "",
+    "=== useImageToolbarSlashCommand：定义 0 处 / 引用 1 处 ===",
+    "   【引用】1an1x1akb2vnr.js @258237\n     …seRef)(n);return d.current=n,(0,i.useEffect)(()=>{s&&(e()&&o(nV.ElementTool.Light),l(!1))},[e,s]),(0,i.useEffect)(()=>{s||d.current?.(r)},[r,s]),{currentTool:r,setCurrentTool:o}}],694904);var aA=e.i(20028),aD=e.i(111134),aL=e.i(91134),a_=e.i(493983),aO=e.i(677418),aF=e.i(741747),aU=e.i(706900);e.s([\"useImageToolbarSlashCommand\",0,function(e,t,n){let a=e??\"\",r=(0,h.useCanvasStore)(e=>e.projectId),o=(0,h.useCanvasStore)(e=>e.projectTeamId),s=(0,h.useCanvasStore)(e=>e.updateNodeData),l=(0,h.useGlobalStore)(e=>e.defaultModel.image),d=(0,h.useGlobalStore)(e=>e.getModel),c=(0,h.useCanvasStore)((0,A.…",
+    ""
+  ],
+  "读数": {
+    "汇总": [
+      {
+        "名": "AudioNodeToolbar",
+        "定义数": 0,
+        "调用数": 1,
+        "定义": [],
+        "调用": [
+          {
+            "file": "2-4l878iuf97g.js",
+            "位置": 62236,
+            "原文": "ouseDown:s,onClick:e=>{e.stopPropagation(),r()},children:(0,t.jsx)(\"span\",{className:\"flex size-3 shrink-0 items-center justify-center\",children:(0,t.jsx)(o.Icons.UpL,{width:8,height:8,className:v})})}),(0,t.jsx)(\"button\",{type:\"button\",tabIndex:-1,\"aria-label\":i(\"canvas:audioNodeSharedText9ece7c\"),disabled:!a,className:\"group/step flex min-h-0 w-full flex-1 items-center justify-center transition-colors hover:bg-white/10 disabled:cursor-not-allowed disabled:hover:bg-transparent\",onMouseDown:s,onClick:e=>{e.stopPropagation(),l()},children:(0,t.jsx)(\"span\",{className:\"flex size-3 shrink-0 items-center justify-center\",children:(0,t.jsx)(o.Icons.DownL,{width:8,height:8,className:v})})})]})}e.s([\"AudioNodeToolbar\",0,function({downloadOnly:e=!1,onLyricsSplitClick:a,onCustomSplitClick:l,onTrimClick:s,onVariableSpeedClick:p,isVariableSpeedDisabled:h,isLyricsSplitDisabled:g,onDownloadClick:f,ratingNodeId:m}){let{t:v}=(0,n.useI18n)();return(0,t.jsx)(\"div\",{className:\"flex w-max items-center\",children:(0,t.jsxs)(\"div\",{className:\"flex items-center justify-center gap-1\",style:c,children:[!e&&(0,t.jsxs)(t.Fragment,{children:[(0,t.jsxs)(\"button\",{type:\"button\",onClick:s,className:d,children:[(0,t.jsx)(o.Icons.scissors,{className:\"h-4 w-4 shrink-0\"}),(0,t.jsx)(\"span\",{className:\"whitespace-nowrap\",children:v(\"common:clipTrimTitle\")})]}),(0,t.jsxs)(\"button\",{type:\"button\",onClick:p,disabled:h,"
+          }
+        ]
+      },
+      {
+        "名": "SelfContainedVideoClipBar",
+        "定义数": 0,
+        "调用数": 1,
+        "定义": [],
+        "调用": [
+          {
+            "file": "1bzx2qa4_zu4z.js",
+            "位置": 31703,
+            "原文": ",d:\"M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z\"})]}):(0,l.jsx)(h.Icons.lucideCheck,{width:24,height:24})})]})]}),s&&null!=c&&(0,l.jsxs)(\"div\",{className:\"px-2 pt-3\",children:[(0,l.jsx)(\"div\",{className:\"h-1 overflow-hidden rounded-full\",style:{background:m?\"var(--border-default)\":\"var(--canvas-controls-border)\"},children:(0,l.jsx)(\"div\",{className:\"h-full rounded-full transition-all\",style:{width:`${c}%`,background:m?\"#141414\":\"#fff\"}})}),(0,l.jsx)(\"div\",{className:`mt-1 text-center text-[11px] ${m?\"text-fg-muted\":\"opacity-40\"}`,children:(0,ea.translate)(\"canvas:videoClipBarEncoding\",{percent:c})})]})]})})}e.s([\"VideoTimelineTrack\",0,em,\"resolveTimelineSelectionGeometry\",0,ev],353061),e.s([\"SelfContainedVideoClipBar\",0,function(e){return(0,l.jsx)(ex,{...e,presentationContainer:eg})},\"VideoClipBar\",0,ex],419065);let ew={async create(t){let a,{AVEditor:n,createAVWorker:r}=await e.A(490917);try{a=r()}catch(e){}try{return new n({...t,worker:a})}catch(e){throw a?.terminate(),e}}},ek={phase:\"idle\",sourceIdentity:null,active:null,frameSource:null};e.s([\"isVideoTimelineSessionForSource\",0,function(e,t){return e.sourceIdentity?.url===t.url&&e.sourceIdentity.duration===t.duration},\"resolveActiveVideoTimelineEditor\",0,function(e,t){return e?.sourceIdentity.url!==t.url||e.sourceIdentity.duration!==t.duration?null:e.editor},\"useVideoTimelineSession\",0,function(e=ew){let[t,a]=(0,d.useState)"
+          }
+        ]
+      },
+      {
+        "名": "MediaControlBar",
+        "定义数": 0,
+        "调用数": 1,
+        "定义": [],
+        "调用": [
+          {
+            "file": "0mfjq9o8b1v3d.js",
+            "位置": 202909,
+            "原文": "essHydrationWarning:!0}}),t$({tagName:\"media-seek-forward-button\",elementClass:sB,react:tU.default,toAttributeValue:nn,defaultProps:{suppressHydrationWarning:!0}});let nh=t$({tagName:\"media-time-display\",elementClass:sJ,react:tU.default,toAttributeValue:nn,defaultProps:{suppressHydrationWarning:!0}}),nc=t$({tagName:\"media-time-range\",elementClass:ni,react:tU.default,toAttributeValue:nn,defaultProps:{suppressHydrationWarning:!0}});t$({tagName:\"media-volume-range\",elementClass:nr,react:tU.default,toAttributeValue:nn,defaultProps:{suppressHydrationWarning:!0}}),t$({tagName:\"media-loop-button\",elementClass:ns,react:tU.default,toAttributeValue:nn,defaultProps:{suppressHydrationWarning:!0}}),e.s([\"MediaControlBar\",0,nl,\"MediaController\",0,no,\"MediaFullscreenButton\",0,nd,\"MediaPlayButton\",0,nu,\"MediaTimeDisplay\",0,nh,\"MediaTimeRange\",0,nc],3684);var nm=e.i(705762),np=e.i(135122);function nv(e,t,i,a){if(e<=0||t<=0||i<=0||a<=0)return{width:e,height:t,offsetX:0,offsetY:0};let r=Math.min(e/i,t/a),s=i*r,n=a*r;return{width:s,height:n,offsetX:(e-s)/2,offsetY:(t-n)/2}}e.s([\"computeObjectContainLayout\",0,nv],266929);var nE=e.i(41114);function nb(e,t){return i=>{e?.(i),t(i)}}let ng=(0,tU.memo)(function({showWatermark:e=!1,forceHide:t=!1,fit:i=\"fill\",mediaWidth:a,mediaHeight:r,className:s,style:n,onContextMenu:o,children:l}){let d=(0,tU.useRef)(null),[u,h]=(0,tU.useState)({w:0,h:0}),[c,m]=(0,tU."
+          }
+        ]
+      },
+      {
+        "名": "LayerBatchActionBar",
+        "定义数": 0,
+        "调用数": 1,
+        "定义": [],
+        "调用": [
+          {
+            "file": "1an1x1akb2vnr.js",
+            "位置": 44427,
+            "原文": "positionDropTarget\",0,function(e){return R(t=>t.dropTargetNodeId===e)},\"useLayerCompositionSelectedLayerId\",0,function(e){return R(t=>t.selectedCompositionNodeId===e?t.selectedLayerId:null)},\"useLayerCompositionSelection\",0,function(){return{compositionNodeId:R(e=>e.selectedCompositionNodeId),layerId:R(e=>e.selectedLayerId)}}],554822);let D=e=>a.createElement(\"svg\",A({xmlns:\"http://www.w3.org/2000/svg\",width:8.667,height:8.667,fill:\"none\",viewBox:\"0 0 8.667 8.667\"},e),t||(t=a.createElement(\"path\",{fill:\"currentColor\",d:\"M7.813.146a.5.5 0 1 1 .707.707l-3.48 3.48 3.48 3.48a.5.5 0 1 1-.707.707l-3.48-3.48-3.48 3.48a.5.5 0 1 1-.707-.707l3.48-3.48L.146.853A.5.5 0 1 1 .853.146l3.48 3.48z\"})));e.s([\"LayerBatchActionBar\",0,function({mergeEnabled:e,onClose:t,onMerge:a}){let{t:o}=(0,r.useI18n)();return(0,n.jsxs)(\"div\",{\"data-testid\":\"layer-batch-action-bar\",\"data-figma-node-id\":\"6066:120234\",className:(0,l.cn)(\"bg-panel-background border-canvas-controls-border text-canvas-controls-text mt-3 flex h-12 flex-none items-center gap-1.5 whitespace-nowrap rounded-2xl border px-1.5 py-2 shadow-[var(--canvas-shadow-dropdown)]\",\"w-[464px]\"),children:[(0,n.jsxs)(\"div\",{className:\"flex min-w-0 flex-1 items-center gap-0.5\",children:[(0,n.jsx)(\"button\",{type:\"button\",onClick:t,\"aria-label\":o(\"common:close\"),className:\"hover:bg-btn-ghost-hover flex size-7 shrink-0 items-center justify-center rounded-lg\""
+          }
+        ]
+      },
+      {
+        "名": "BatchSelectionBarShell",
+        "定义数": 0,
+        "调用数": 1,
+        "定义": [],
+        "调用": [
+          {
+            "file": "0qme_d9a8um1y.js",
+            "位置": 58301,
+            "原文": ",children:X(\"common:cancel\")}),(0,t.jsxs)(\"button\",{type:\"button\",disabled:!eX||eD||eR,onClick:()=>void eJ(),className:(0,g.cn)(\"flex h-8 items-center gap-1 rounded-lg px-3 text-[13px] transition-colors disabled:cursor-not-allowed\",eX&&!eD?q?\"bg-fg-default hover:bg-fg-emphasis text-white\":\"bg-white text-black hover:bg-white/90\":\"bg-[var(--btn-invert-bg-disabled)] text-[color-mix(in_srgb,var(--btn-invert-text)_40%,transparent)]\"),children:[eD&&(0,t.jsx)(i.Icons.Loading,{width:14,height:14,className:\"animate-spin\"}),eD?X(\"common:saving\"):X(\"common:save\")]})]})]})]})]})}):null}],653044)},413807,123043,e=>{\"use strict\";var t=e.i(705762),s=e.i(321476),a=e.i(41671),r=e.i(722573),n=e.i(41114);e.s([\"BatchSelectionBarShell\",0,function({children:e,bottomClassName:s=\"bottom-4\"}){return(0,t.jsx)(\"div\",{className:(0,n.cn)(\"pointer-events-none absolute inset-x-0 z-30 flex justify-center px-4\",s),children:(0,t.jsx)(\"div\",{className:\"border-canvas-controls-border bg-canvas-controls pointer-events-auto flex w-[640px] max-w-[calc(100%_-_32px)] items-center justify-between rounded-2xl border p-2 shadow-[0_16px_24px_-8px_rgba(0,0,0,0.06),0_4px_8px_-4px_rgba(0,0,0,0.04),0_1px_1px_0_rgba(0,0,0,0.02)]\",children:e})})},\"BatchSelectionSummary\",0,function({selectedCount:e,selectableCount:l,allSelected:i,submitting:o=!1,onCancel:c,onToggleAll:d}){let{t:u}=(0,s.useI18n)();return(0,t.jsxs)(\"div\",{className"
+          }
+        ]
+      },
+      {
+        "名": "PortraitTextureToolbar",
+        "定义数": 0,
+        "调用数": 1,
+        "定义": [],
+        "调用": [
+          {
+            "file": "1an1x1akb2vnr.js",
+            "位置": 208081,
+            "原文": "controls-hover active:bg-canvas-controls-active cursor-pointer\"),disabled:a,onMouseDown:e=>{e.preventDefault(),e.stopPropagation(),0!==e.button||a||i()},onPointerDown:e=>e.stopPropagation(),children:[(0,o.jsx)(\"span\",{className:(0,m.cn)(\"flex size-4 shrink-0 items-center justify-center\",a?\"text-fg-disabled\":\"text-fg-default\"),children:e}),(0,o.jsx)(ng,{label:t,disableTooltip:a,className:(0,m.cn)(\"text-fg-default min-w-0 flex-1 text-[14px] font-normal leading-snug\",a&&\"text-fg-disabled\")})]})})}function n4(e){if(!Number.isFinite(e)||e<=0)return{rows:1,cols:1};let t=Math.max(1,Math.floor(Math.sqrt(e)));return{rows:Math.ceil(e/t),cols:t}}function n6(e,t,n){return Math.min(n,Math.max(t,e))}e.s([\"PortraitTextureToolbar\",0,function({portraitDisabled:e=!1,portraitDisabledReason:t,onPortraitAdjust:n,onMoodAdjust:a}){let r=(0,tv.useCanvasThemeStore)(e=>e.theme),{t:s}=(0,d.useI18n)(),{menuOpen:l,setMenuOpen:c,scheduleOpen:u,scheduleClose:h,cancelTimers:f}=nb({practiceExempt:()=>(0,n0.isPracticeFreeUnlockedAnchor)(n1.PRACTICE_ANCHORS.IMG_PORTRAIT_ADJUST),guideFeatureIds:(0,i.useMemo)(()=>n2.map(n3),[])}),g=(0,n0.usePracticeAnchorAutoOpen)(n1.PRACTICE_ANCHORS.IMG_PORTRAIT_ADJUST),x=l||g,v=(0,i.useRef)(null),b=(0,i.useRef)(null);(0,i.useEffect)(()=>{if(!l)return;let e=e=>{let t=e.target;!t||v.current?.contains(t)||b.current?.contains(t)||c(!1)};return document.addEventListener(\"pointerdown\""
+          }
+        ]
+      },
+      {
+        "名": "GroupNodeToolbar",
+        "定义数": 0,
+        "调用数": 1,
+        "定义": [],
+        "调用": [
+          {
+            "file": "1an1x1akb2vnr.js",
+            "位置": 813808,
+            "原文": "youtGrid\")})]}),(0,t.jsxs)(\"div\",{className:\"text-canvas-controls-text hover:bg-canvas-controls-hover flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors\",onClick:t=>{t.stopPropagation(),e(\"horizontal\")},children:[(0,t.jsx)(i.Icons.workflow,{width:16,height:16}),(0,t.jsx)(\"span\",{children:a(\"canvas:layoutHorizontal\")})]}),(0,t.jsxs)(\"div\",{className:\"text-canvas-controls-text hover:bg-canvas-controls-hover flex cursor-pointer items-center gap-2 rounded-md px-3 py-2 text-sm transition-colors\",onClick:t=>{t.stopPropagation(),e(\"vertical\")},children:[(0,t.jsx)(i.Icons.list,{width:16,height:16}),(0,t.jsx)(\"span\",{children:a(\"canvas:layoutVertical\")})]})]})}e.s([\"GroupNodeToolbar\",0,function({groupColor:e=null,workflowUuid:h,isGroupRunning:y=!1,isStoryboardGroup:N=!1,isStoryboardImageGroup:S=!1,sourceScriptVersion:T,anyChildHasContent:M=!1,pipelineProgress:R,onColorChange:P,onRunGroup:A,onCreateWorkflow:D,onUngroup:L,onLayoutChange:_,onBatchGenerateVideo:O,canGenerateVideo:F=!1,videoGenerationDisabledReason:U,showBatchGenerateVideo:G=!1,groupNodeId:z,canDownloadAll:V=!0,onDownloadAll:B,allChildrenAreImageNodes:H=!1,isStandaloneStoryboardImageGrid:$=!1,onConvertToStoryboardGroup:W}){let K,Y,q,X,{t:Z}=(0,r.useI18n)(),J=(0,c.useCanvasThemeStore)(e=>e.theme),Q=(0,o.useStore)(e=>{let t=e.transform,n=e.nodeLookup.get(z);return[t[0],t[1],t[2],n?.position.x"
+          }
+        ]
+      },
+      {
+        "名": "CharacterGroupToolbar",
+        "定义数": 0,
+        "调用数": 1,
+        "定义": [],
+        "调用": [
+          {
+            "file": "1an1x1akb2vnr.js",
+            "位置": 60099,
+            "原文": "tion(e){let{pointer:t,stageRect:n}=e;return t?n&&t.x>=n.left&&t.x<=n.right&&t.y>=n.top&&t.y<=n.bottom?{kind:\"composition\",clientPoint:t}:e.pointerOverCanvas?{kind:\"canvas\",clientPoint:t}:{kind:\"offset\"}:{kind:\"offset\"}},\"setCanvasNodesClipboard\",0,function(e,t){o={kind:\"nodes\",nodes:s(e),edges:s(t)},l()},\"setLayerClipboardSnapshot\",0,function(e){o={kind:\"layer\",snapshot:s(e)},r(),l()},\"subscribeCanvasSessionClipboard\",0,function(e){return i.add(e),()=>i.delete(e)}],312776)},656285,581906,936797,197935,696507,700819,e=>{\"use strict\";var t=e.i(705762),n=e.i(924998),a=e.i(321476),r=e.i(597308),o=e.i(41671),i=e.i(216257),s=e.i(473062),l=e.i(111581),d=e.i(890544),c=e.i(397289),u=e.i(474750);e.s([\"CharacterGroupToolbar\",0,function({groupNodeId:e,asset:p,onUngroup:m}){let{t:h}=(0,a.useI18n)(),{takeSnapshot:f}=(0,l.useCanvasCallbacks)(),g=(0,i.useCanvasStore)((0,r.useShallow)(t=>t.edges.filter(t=>t.source===e))),x=(0,i.useCanvasStore)(e=>e.updateEdge),v=(0,i.useCanvasStore)(e=>e.recalcIncomingForTarget),b=(0,s.useCharacterLibraryStore)(e=>e.openPanel),y=(0,u.useCharacterStudioStore)(e=>e.roles.find(e=>e.characterUuid===p.characterUuid||e.id===p.roleId)),w=(0,u.useCharacterStudioStore)(e=>e.roleSummaries.find(e=>e.characterUuid===p.characterUuid)),C=(0,u.useCharacterStudioStore)(e=>e.loadRoleDetail),k=!!(w&&w.currentVersion>p.version||p.characterUuid&&p.latestKnownVersionId&&p.latestKno"
+          }
+        ]
+      },
+      {
+        "名": "AnnotateToolbar",
+        "定义数": 0,
+        "调用数": 1,
+        "定义": [],
+        "调用": [
+          {
+            "file": "1an1x1akb2vnr.js",
+            "位置": 240479,
+            "原文": "\">typeof document&&(0,f.createPortal)((0,o.jsx)(\"div\",{className:\"z-10050 pointer-events-none fixed\",style:{top:h.top,left:h.left,width:h.width,height:h.height},children:(0,o.jsx)(\"span\",{className:(0,m.cn)(\"pointer-events-none absolute -right-2.5 -top-4\",\"inline-flex items-center justify-center bg-[#5ddcff] px-1.5 py-[3px]\",\"rounded-bl-[2px] rounded-br-lg rounded-tl-lg rounded-tr-lg\",\"font-['PingFang_SC',sans-serif] text-[11px] font-normal leading-normal text-black\",\"whitespace-nowrap\"),children:d})}),document.body);return d?(0,o.jsxs)(o.Fragment,{children:[(0,o.jsx)(\"div\",{ref:p,className:(0,m.cn)(\"inline-flex shrink-0\",l),children:v}),b]}):v}e.s([\"ToolbarConfirmButton\",0,ag],735278),e.s([\"AnnotateToolbar\",0,function({tool:e,color:t,strokeWidth:n,canUndo:a,canRedo:r,onClose:s,onToolChange:l,onColorChange:c,onStrokeWidthChange:u,onUndo:h,onRedo:f,onSave:g}){let{t:x}=(0,d.useI18n)(),v=(0,tv.useCanvasThemeStore)(e=>e.theme),b=\"light\"===v?\"border-canvas-controls-border\":\"border-white/20\",[y,w]=(0,i.useState)(!1),C=52*Math.max(0,Math.min(1,(n-1)/39));return(0,o.jsxs)(\"div\",{className:(0,m.cn)(\"border-hair bg-panel-background border-canvas-controls-border flex w-fit items-center gap-2 rounded-xl p-2\",\"shadow-md\"),children:[(0,o.jsxs)(np,{className:\"gap-2\",tooltip:x(\"common:imgEditorCloseAnnotate\"),onClick:s,children:[(0,o.jsx)(p.Icons.Close,{className:\"h-3 w-3 shrink-0\"}),(0,o.jsx)"
+          }
+        ]
+      },
+      {
+        "名": "useImageToolbarSlashCommand",
+        "定义数": 0,
+        "调用数": 1,
+        "定义": [],
+        "调用": [
+          {
+            "file": "1an1x1akb2vnr.js",
+            "位置": 258237,
+            "原文": "),(0,aR.useShortcut)(\"image-editor.redo\",()=>{c.current===nV.ElementTool.SmartRemove?n.current?.redo():c.current===nV.ElementTool.Annotate?r():c.current===nV.ElementTool.EditElements&&s()})}],276672),e.s([\"useImageEditorToolState\",0,function({ensureLightingAvailable:e,initialTool:t,onToolChange:n}){let a=t===nV.ElementTool.Light,[r,o]=(0,i.useState)(a?null:t??null),[s,l]=(0,i.useState)(a),d=(0,i.useRef)(n);return d.current=n,(0,i.useEffect)(()=>{s&&(e()&&o(nV.ElementTool.Light),l(!1))},[e,s]),(0,i.useEffect)(()=>{s||d.current?.(r)},[r,s]),{currentTool:r,setCurrentTool:o}}],694904);var aA=e.i(20028),aD=e.i(111134),aL=e.i(91134),a_=e.i(493983),aO=e.i(677418),aF=e.i(741747),aU=e.i(706900);e.s([\"useImageToolbarSlashCommand\",0,function(e,t,n){let a=e??\"\",r=(0,h.useCanvasStore)(e=>e.projectId),o=(0,h.useCanvasStore)(e=>e.projectTeamId),s=(0,h.useCanvasStore)(e=>e.updateNodeData),l=(0,h.useGlobalStore)(e=>e.defaultModel.image),d=(0,h.useGlobalStore)(e=>e.getModel),c=(0,h.useCanvasStore)((0,A.selectNodeData)(a)),u=(0,tt.useIncomingNodeData)(a),p=(0,i.useMemo)(()=>{if(a&&t){let e=\"string\"==typeof c?.name?c.name:\"\";return{...u,imageList:[{nodeId:a,url:t,label:e}]}}return u},[u,a,t,c?.name]),m=(0,h.useGlobalStore)(e=>e.cameraControl),f=(0,i.useCallback)((e,t)=>!((t.incomingData.imageList?.length??0)>0)||(0,a_.isImageModelEnabledForMedia)(e,{imageList:t.incomingData.imageList}),[]),g=(0,aA"
+          }
+        ]
+      }
+    ]
+  }
+}

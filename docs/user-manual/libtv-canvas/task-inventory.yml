@@ -270,6 +270,12 @@ tasks:
       - 'batchFQ5：⚠️⚠️ **测试画布 a4ef3de0… 已判死** —— 21 个节点两两大面积重叠（105 对，重叠比 0.27~1.00），`⌘0` 后 zoom 仍是 0.985（fit view 没铺开）。⛔ 以后不要在它上面取证，改用主画布 34226ef1…（建前重叠 0 对）'
       - 'batchFQ3/FQ4：⭐⭐⭐ **缺陷 463：拍节点前必须验「中心落点属主就是它」** —— FQ-3 按节点框裁图、文件名写「脚本V2节点」，**拍到的是智能剪辑节点**（两者重叠，且**被选中节点 `z-index: 1000`**）。治法已固化进 `tools/lib.mjs` 的 `中心属主` / `拍节点` / `查重叠`'
       - 'batchFQ3：⭐ **第四次灰态反例，推翻「灰 = opacity 0.45」** —— `开始拉片` 是 `disabled: true` + **`opacity: 1.00`** + `cursor: not-allowed`。⇒ 判灰要看 `disabled` + `cursor`，**`opacity` 不是判据**'
+      - 'batchFU1/FU2：⭐⭐⭐ **FS 列出的工具条组件，10 个全部定位到 chunk 并解出 props 逐字** —— `AudioNodeToolbar`=`2-4l878iuf97g.js`、`SelfContainedVideoClipBar`/`VideoTimelineTrack`=`1bzx2qa4_zu4z.js`、`MediaControlBar`=`0mfjq9o8b1v3d.js`、`BatchSelectionBarShell`=`0qme_d9a8um1y.js`、`LayerBatchActionBar`/`PortraitTextureToolbar`/`GroupNodeToolbar`/`CharacterGroupToolbar`/`AnnotateToolbar`/`useImageToolbarSlashCommand`=`1an1x1akb2vnr.js`。⛔ 全程只 GET'
+      - 'batchFU3：⭐⭐⭐ **`tools/i18n-toolbar.py` 把 50 个组件 i18n key 翻成界面文案，命中 49 缺 1**。逐字解出：音频工具条 = 智能切分/自定义切分/截取/变速 + 「结合歌词句与节拍自动进行切分」；标注工具条 12 个 key（画笔/矩形/文字 三种笔）；组操作条另有「添加到团队工具箱」「批量生成视频」「当前选区无可下载的资源」「组内须全部为图片节点」四个正文从未写过的；批量条 = 退出批量操作/已选择 {count} 项/全选当前页；图层条 = 合并 +「调整图层位置或尺寸，合并生成新图片（**不消耗积分**）」'
+      - 'batchFU3：⭐⭐ **`GroupNodeToolbar` 的 24 个 props 证明组操作条实测只有 7 个、源码里最多 10 个** —— 长期只写 7 个。`groupAddToTeamToolbox` / `groupBatchGenerateVideo` 从未在界面上出现过'
+      - 'batchFU3：⭐⭐⭐ **读出「同步此引用到当前版本」（`canvas:characterStudioSyncReference`）—— 角色引用带版本，下游可能拿到旧版本需手动同步。⛔ 界面上完全没碰过（要一个角色被两个节点引用）**'
+      - 'batchFU3：⚠️ **`canvas:videoNodeGenerate` 被音频节点借用**（生成按钮），`canvas:scriptV2FloatingToolbarDownload` 被音频工具条的下载借用 ⇒ **别按 key 名里的 `video`/`scriptV2` 推断归属组件**'
+      - 'batchFU3：⛔ 唯一查不到的是 `canvas:groupNodeToolbarPromptReferenceimageGenerateConnect`，但它名长得像三段拼接 ⇒ 按 FQ 定的规矩，**grep 不到不代表界面上没有**'
     manual_pages:
       - 10-tasks/image-presets.md
       - 10-tasks/create-nodes.md

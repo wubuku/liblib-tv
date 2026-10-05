@@ -1,0 +1,200 @@
+{
+  "步骤": [
+    "",
+    "═══ SelfContainedVideoClipBar（1bzx2qa4_zu4z.js，定义体 328 字符）═══",
+    "   props: ⛔ 没解析出来",
+    "   调函数 key (0): ",
+    "   全部 key (0): ",
+    "",
+    "═══ VideoTimelineTrack（1bzx2qa4_zu4z.js，定义体 279 字符）═══",
+    "   props: ⛔ 没解析出来",
+    "   调函数 key (0): ",
+    "   全部 key (0): ",
+    "",
+    "═══ BatchSelectionBarShell（0qme_d9a8um1y.js，定义体 2164 字符）═══",
+    "   props: children:e,bottomClassName:s=\"bottom-4\"",
+    "   调函数 key (0): ",
+    "   全部 key (3): common:exitBatchOperation | canvas:selectedCount | canvas:selectAllCurrentPage",
+    "",
+    "═══ LayerBatchActionBar（1an1x1akb2vnr.js，定义体 1605 字符）═══",
+    "   props: mergeEnabled:e,onClose:t,onMerge:a",
+    "   调函数 key (0): ",
+    "   全部 key (3): common:close | canvas:imageLayerEditorHint | canvas:imageLayerMerge",
+    "",
+    "═══ PortraitTextureToolbar（1an1x1akb2vnr.js，定义体 3127 字符）═══",
+    "   props: portraitDisabled:e=!1,portraitDisabledReason:t,onPortraitAdjust:n,onMoodAdjust:a",
+    "   调函数 key (0): ",
+    "   全部 key (3): canvas:slashScenePortraitTextureAdjustment | common:imgEditorPortraitAdjust | common:imgEditorMoodAdjust",
+    "",
+    "═══ GroupNodeToolbar（1an1x1akb2vnr.js，定义体 7308 字符）═══",
+    "   props: groupColor:e=null,workflowUuid:h,isGroupRunning:y=!1,isStoryboardGroup:N=!1,isStoryboardImageGroup:S=!1,sourceScriptVersion:T,anyChildHasContent:M=!1,pipelineProgress:R,onColorChange:P,onRunGroup:A,onCreateWorkflow:D,onUngroup:L,onLayoutChange:_,onBatchGenerateVideo:O,canGenerateVideo:F=!1,videoGenerationDisabledReason:U,showBatchGenerateVideo:G=!1,groupNodeId:z,canDownloadAll:V=!0,onDownloadAll:B,allChildrenAreImageNodes:H=!1,isStandaloneStoryboardImageGrid:$=!1,onConvertToStoryboardGroup:W",
+    "   调函数 key (0): ",
+    "   全部 key (11): canvas:groupNodeToolbarPromptReferenceimageGenerateConnect | canvas:groupBatchGenerateVideo | canvas:groupUpdateToolbox | canvas:groupAddToTeamToolbox | canvas:groupAddToToolbox | canvas:groupNeedAllImageNodes | canvas:groupConvertToStoryboard | canvas:groupUngroup | canvas:groupBatchDownload | canvas:noDownloadableInSelection | canvas-light",
+    "",
+    "═══ CharacterGroupToolbar（1an1x1akb2vnr.js，定义体 4359 字符）═══",
+    "   props: groupNodeId:e,asset:p,onUngroup:m",
+    "   调函数 key (0): ",
+    "   全部 key (8): canvas:characterStudioEdit | canvas:characterStudioUpdateAvailable | common:loading | common:loadFailedPleaseRetry | canvas:characterStudioReferences | canvas:characterStudioReferenceNumber | canvas:characterStudioSyncReference | canvas:groupUngroup",
+    "",
+    "═══ AnnotateToolbar（1an1x1akb2vnr.js，定义体 4561 字符）═══",
+    "   props: tool:e,color:t,strokeWidth:n,canUndo:a,canRedo:r,onClose:s,onToolChange:l,onColorChange:c,onStrokeWidthChange:u,onUndo:h,onRedo:f,onSave:g",
+    "   调函数 key (0): ",
+    "   全部 key (12): common:imgEditorCloseAnnotate | common:imgEditorAnnotate | common:imgEditorBrushTool | common:imgEditorRectTool | common:imgEditorTextTool | common:color | canvas-light | common:imgEditorLineWidth | common:undo | common:redo | common:save | common:imgEditorSaveAnnotate",
+    "",
+    "═══ useImageToolbarSlashCommand（1an1x1akb2vnr.js，定义体 3995 字符）═══",
+    "   props: ⛔ 没解析出来",
+    "   调函数 key (0): ",
+    "   全部 key (0): ",
+    "",
+    "═══ MediaControlBar（0mfjq9o8b1v3d.js，定义体 355 字符）═══",
+    "   props: ⛔ 没解析出来",
+    "   调函数 key (0): ",
+    "   全部 key (0): ",
+    "",
+    "═══ AudioNodeToolbar（2-4l878iuf97g.js，定义体 9782 字符）═══",
+    "   props: downloadOnly:e=!1,onLyricsSplitClick:a,onCustomSplitClick:l,onTrimClick:s,onVariableSpeedClick:p,isVariableSpeedDisabled:h,isLyricsSplitDisabled:g,onDownloadClick:f,ratingNodeId:m",
+    "   调函数 key (0): ",
+    "   全部 key (13): common:clipTrimTitle | common:clipSpeedTitle | canvas:audioSmartSplitTooltip | canvas:audioSmartSplitTitle | canvas:audioEditCustomSplitTitle | canvas:scriptV2FloatingToolbarDownload | canvas:audioNodeSharedClose | canvas:audioNodeSharedSelect | canvas:audioNodeSharedInput | canvas:audioNodeSharedConfirm | canvas:audioNodeSharedClose2 | canvas:audioNodeSharedAudioGenerate | canvas:videoNodeGenerate"
+  ],
+  "读数": {
+    "组件": {
+      "SelfContainedVideoClipBar": {
+        "chunk": "1bzx2qa4_zu4z.js",
+        "字节": 328,
+        "props": null,
+        "调函数里的key": [],
+        "全部key": []
+      },
+      "VideoTimelineTrack": {
+        "chunk": "1bzx2qa4_zu4z.js",
+        "字节": 279,
+        "props": null,
+        "调函数里的key": [],
+        "全部key": []
+      },
+      "BatchSelectionBarShell": {
+        "chunk": "0qme_d9a8um1y.js",
+        "字节": 2164,
+        "props": "children:e,bottomClassName:s=\"bottom-4\"",
+        "调函数里的key": [],
+        "全部key": [
+          "common:exitBatchOperation",
+          "canvas:selectedCount",
+          "canvas:selectAllCurrentPage"
+        ]
+      },
+      "LayerBatchActionBar": {
+        "chunk": "1an1x1akb2vnr.js",
+        "字节": 1605,
+        "props": "mergeEnabled:e,onClose:t,onMerge:a",
+        "调函数里的key": [],
+        "全部key": [
+          "common:close",
+          "canvas:imageLayerEditorHint",
+          "canvas:imageLayerMerge"
+        ]
+      },
+      "PortraitTextureToolbar": {
+        "chunk": "1an1x1akb2vnr.js",
+        "字节": 3127,
+        "props": "portraitDisabled:e=!1,portraitDisabledReason:t,onPortraitAdjust:n,onMoodAdjust:a",
+        "调函数里的key": [],
+        "全部key": [
+          "canvas:slashScenePortraitTextureAdjustment",
+          "common:imgEditorPortraitAdjust",
+          "common:imgEditorMoodAdjust"
+        ]
+      },
+      "GroupNodeToolbar": {
+        "chunk": "1an1x1akb2vnr.js",
+        "字节": 7308,
+        "props": "groupColor:e=null,workflowUuid:h,isGroupRunning:y=!1,isStoryboardGroup:N=!1,isStoryboardImageGroup:S=!1,sourceScriptVersion:T,anyChildHasContent:M=!1,pipelineProgress:R,onColorChange:P,onRunGroup:A,onCreateWorkflow:D,onUngroup:L,onLayoutChange:_,onBatchGenerateVideo:O,canGenerateVideo:F=!1,videoGenerationDisabledReason:U,showBatchGenerateVideo:G=!1,groupNodeId:z,canDownloadAll:V=!0,onDownloadAll:B,allChildrenAreImageNodes:H=!1,isStandaloneStoryboardImageGrid:$=!1,onConvertToStoryboardGroup:W",
+        "调函数里的key": [],
+        "全部key": [
+          "canvas:groupNodeToolbarPromptReferenceimageGenerateConnect",
+          "canvas:groupBatchGenerateVideo",
+          "canvas:groupUpdateToolbox",
+          "canvas:groupAddToTeamToolbox",
+          "canvas:groupAddToToolbox",
+          "canvas:groupNeedAllImageNodes",
+          "canvas:groupConvertToStoryboard",
+          "canvas:groupUngroup",
+          "canvas:groupBatchDownload",
+          "canvas:noDownloadableInSelection",
+          "canvas-light"
+        ]
+      },
+      "CharacterGroupToolbar": {
+        "chunk": "1an1x1akb2vnr.js",
+        "字节": 4359,
+        "props": "groupNodeId:e,asset:p,onUngroup:m",
+        "调函数里的key": [],
+        "全部key": [
+          "canvas:characterStudioEdit",
+          "canvas:characterStudioUpdateAvailable",
+          "common:loading",
+          "common:loadFailedPleaseRetry",
+          "canvas:characterStudioReferences",
+          "canvas:characterStudioReferenceNumber",
+          "canvas:characterStudioSyncReference",
+          "canvas:groupUngroup"
+        ]
+      },
+      "AnnotateToolbar": {
+        "chunk": "1an1x1akb2vnr.js",
+        "字节": 4561,
+        "props": "tool:e,color:t,strokeWidth:n,canUndo:a,canRedo:r,onClose:s,onToolChange:l,onColorChange:c,onStrokeWidthChange:u,onUndo:h,onRedo:f,onSave:g",
+        "调函数里的key": [],
+        "全部key": [
+          "common:imgEditorCloseAnnotate",
+          "common:imgEditorAnnotate",
+          "common:imgEditorBrushTool",
+          "common:imgEditorRectTool",
+          "common:imgEditorTextTool",
+          "common:color",
+          "canvas-light",
+          "common:imgEditorLineWidth",
+          "common:undo",
+          "common:redo",
+          "common:save",
+          "common:imgEditorSaveAnnotate"
+        ]
+      },
+      "useImageToolbarSlashCommand": {
+        "chunk": "1an1x1akb2vnr.js",
+        "字节": 3995,
+        "props": null,
+        "调函数里的key": [],
+        "全部key": []
+      },
+      "MediaControlBar": {
+        "chunk": "0mfjq9o8b1v3d.js",
+        "字节": 355,
+        "props": null,
+        "调函数里的key": [],
+        "全部key": []
+      },
+      "AudioNodeToolbar": {
+        "chunk": "2-4l878iuf97g.js",
+        "字节": 9782,
+        "props": "downloadOnly:e=!1,onLyricsSplitClick:a,onCustomSplitClick:l,onTrimClick:s,onVariableSpeedClick:p,isVariableSpeedDisabled:h,isLyricsSplitDisabled:g,onDownloadClick:f,ratingNodeId:m",
+        "调函数里的key": [],
+        "全部key": [
+          "common:clipTrimTitle",
+          "common:clipSpeedTitle",
+          "canvas:audioSmartSplitTooltip",
+          "canvas:audioSmartSplitTitle",
+          "canvas:audioEditCustomSplitTitle",
+          "canvas:scriptV2FloatingToolbarDownload",
+          "canvas:audioNodeSharedClose",
+          "canvas:audioNodeSharedSelect",
+          "canvas:audioNodeSharedInput",
+          "canvas:audioNodeSharedConfirm",
+          "canvas:audioNodeSharedClose2",
+          "canvas:audioNodeSharedAudioGenerate",
+          "canvas:videoNodeGenerate"
+        ]
+      }
+    }
+  }
+}
