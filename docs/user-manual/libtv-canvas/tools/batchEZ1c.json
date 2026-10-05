@@ -1,0 +1,121 @@
+{
+  "读数": {
+    "Tab轨迹": [
+      {
+        "次": 1,
+        "选中": [],
+        "焦点": "antialiased"
+      },
+      {
+        "次": 2,
+        "选中": [],
+        "焦点": "e-5U2jB82fuL"
+      },
+      {
+        "次": 3,
+        "选中": [],
+        "焦点": "e-Y2tJjtGxbL"
+      },
+      {
+        "次": 4,
+        "选中": [],
+        "焦点": "a-GgqvrVz0pw"
+      },
+      {
+        "次": 5,
+        "选中": [],
+        "焦点": "group/btn text-fg-default hover:bg-canva"
+      },
+      {
+        "次": 6,
+        "选中": [],
+        "焦点": "a-THmbuJXQj4"
+      },
+      {
+        "次": 7,
+        "选中": [],
+        "焦点": "group/btn text-fg-default hover:bg-canva"
+      },
+      {
+        "次": 8,
+        "选中": [],
+        "焦点": "b-mfkcQNULC3"
+      },
+      {
+        "次": 9,
+        "选中": [],
+        "焦点": "nodrag nopan flex aspect-[294/165] w-ful"
+      },
+      {
+        "次": 10,
+        "选中": [],
+        "焦点": "nodrag nopan flex h-8 min-w-[60px] flex-"
+      },
+      {
+        "次": 11,
+        "选中": [],
+        "焦点": "nodrag nopan flex h-8 min-w-[60px] flex-"
+      },
+      {
+        "次": 12,
+        "选中": [],
+        "焦点": "nodrag nopan flex h-8 min-w-[60px] flex-"
+      },
+      {
+        "次": 13,
+        "选中": [],
+        "焦点": "i-9nlG6HdjK2"
+      },
+      {
+        "次": 14,
+        "选中": [],
+        "焦点": "i-sODTbgLUm1"
+      },
+      {
+        "次": 15,
+        "选中": [],
+        "焦点": "group/btn text-fg-default hover:bg-canva"
+      },
+      {
+        "次": 16,
+        "选中": [],
+        "焦点": "group/btn text-fg-default hover:bg-canva"
+      }
+    ],
+    "能到达": [],
+    "图B可点": [
+      "i-sODTbgLUm1"
+    ]
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "点空白后：{\"选中\":[],\"焦点\":\"antialiased\"}",
+    "  Tab#1 → 选中 []｜焦点 antialiased",
+    "  Tab#2 → 选中 []｜焦点 e-5U2jB82fuL",
+    "  Tab#3 → 选中 []｜焦点 e-Y2tJjtGxbL",
+    "  Tab#4 → 选中 []｜焦点 a-GgqvrVz0pw",
+    "  Tab#5 → 选中 []｜焦点 group/btn text-fg-default hover:bg-canva",
+    "  Tab#6 → 选中 []｜焦点 a-THmbuJXQj4",
+    "  Tab#7 → 选中 []｜焦点 group/btn text-fg-default hover:bg-canva",
+    "  Tab#8 → 选中 []｜焦点 b-mfkcQNULC3",
+    "  Tab#9 → 选中 []｜焦点 nodrag nopan flex aspect-[294/165] w-ful",
+    "  Tab#10 → 选中 []｜焦点 nodrag nopan flex h-8 min-w-[60px] flex-",
+    "  Tab#11 → 选中 []｜焦点 nodrag nopan flex h-8 min-w-[60px] flex-",
+    "  Tab#12 → 选中 []｜焦点 nodrag nopan flex h-8 min-w-[60px] flex-",
+    "  Tab#13 → 选中 []｜焦点 i-9nlG6HdjK2",
+    "  Tab#14 → 选中 []｜焦点 i-sODTbgLUm1",
+    "  Tab#15 → 选中 []｜焦点 group/btn text-fg-default hover:bg-canva",
+    "  Tab#16 → 选中 []｜焦点 group/btn text-fg-default hover:bg-canva",
+    "Tab 一共能到达的节点：[]",
+    "—— 对照：普通点击图 B ——",
+    "  图 B 落点自证：{\"id\":\"i-sODTbgLUm1\",\"tag\":\"DIV\"}",
+    "  ⭐ 选中结果：[\"i-sODTbgLUm1\"]",
+    "  已拍 ez1c-图B-普通点击选中.png",
+    "清选区后：{\"选中\":[\"i-sODTbgLUm1\"],\"焦点\":\"antialiased\"}",
+    "⭐⭐ 静置 15s 后坐标复核：[]"
+  ],
+  "收尾": {
+    "偏差": [],
+    "已渲染": 11
+  }
+}

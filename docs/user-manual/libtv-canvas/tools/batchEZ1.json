@@ -1,0 +1,113 @@
+{
+  "读数": {
+    "节点": [
+      {
+        "id": "a-GgqvrVz0pw",
+        "box": [
+          1214,
+          599,
+          161,
+          161
+        ]
+      },
+      {
+        "id": "a-THmbuJXQj4",
+        "box": [
+          263,
+          182,
+          161,
+          161
+        ]
+      },
+      {
+        "id": "b-mfkcQNULC3",
+        "box": [
+          1176,
+          44,
+          147,
+          178
+        ]
+      },
+      {
+        "id": "i-9nlG6HdjK2",
+        "box": [
+          76,
+          319,
+          285,
+          161
+        ]
+      },
+      {
+        "id": "i-sODTbgLUm1",
+        "box": [
+          808,
+          319,
+          285,
+          161
+        ]
+      },
+      {
+        "id": "n-56F19pXVB4",
+        "box": [
+          323,
+          77,
+          161,
+          161
+        ]
+      },
+      {
+        "id": "t-2AK3Ukyxj3",
+        "box": [
+          208,
+          605,
+          161,
+          161
+        ]
+      },
+      {
+        "id": "t-UtVx3lZmrV",
+        "box": [
+          1160,
+          319,
+          161,
+          161
+        ]
+      },
+      {
+        "id": "v-eMpqKtiLlx",
+        "box": [
+          65,
+          319,
+          285,
+          161
+        ]
+      },
+      {
+        "id": "v-oZNpH99MtM",
+        "box": [
+          945,
+          44,
+          161,
+          161
+        ]
+      },
+      {
+        "id": "v-v2hlWY4Br3",
+        "box": [
+          565,
+          44,
+          285,
+          161
+        ]
+      }
+    ]
+  },
+  "步骤": [
+    "开局坐标偏差：[]",
+    "渲染中 11 个节点：[[\"a-GgqvrVz0pw\",\"1214,599,161,161\",false],[\"a-THmbuJXQj4\",\"263,182,161,161\",false],[\"b-mfkcQNULC3\",\"1176,44,147,178\",false],[\"i-9nlG6HdjK2\",\"76,319,285,161\",false],[\"i-sODTbgLUm1\",\"808,319,285,161\",false],[\"n-56F19pXVB4\",\"323,77,161,161\",false],[\"t-2AK3Ukyxj3\",\"208,605,161,161\",false],[\"t-UtVx3lZmrV\",\"1160,319,161,161\",false],[\"v-eMpqKtiLlx\",\"65,319,285,161\",false],[\"v-oZNpH99MtM\",\"945,44,161,161\",false],[\"v-v2hlWY4Br3\",\"565,44,285,161\",false]]",
+    "图A i-9nlG6HdjK2 [76,319,285,161]｜图B i-sODTbgLUm1 [808,319,285,161]",
+    "—— 阶段 1：只点图 A ——",
+    "❌ 落点自证失败：期望节点 i-9nlG6HdjK2，实得 v-eMpqKtiLlx"
+  ],
+  "错误": "Error: 落点自证失败：期望节点 i-9nlG6HdjK2，实得 v-eMpqKtiLlx\n    at 点击 (file:///Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/libtv-canvas/tools/batchEZ1.mjs:96:34)\n    at async file:///Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/libtv-canvas/tools/batchEZ1.mjs:136:3"
+}
