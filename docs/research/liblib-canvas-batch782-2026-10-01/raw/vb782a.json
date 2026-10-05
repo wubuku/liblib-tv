@@ -1,0 +1,337 @@
+{
+ "batch": 782,
+ "probe": "a",
+ "question": "静态普查说 Escape 主人分两种（3 个 capture 相位的**排他**、6 个冒泡的**不排他**）—— 运行时到底是不是这样？",
+ "prediction": "★ **capture 相位那 3 个主人激活时，冒泡相位的 6 个 Escape 主人（含 `DirectorDesk` 的阶梯）会一个都跑不到**；而**不排他**的主人开着时，一次按压会被多个主人同时处理。",
+ "arms": [
+  {
+   "id": "captureOwner",
+   "why": "`DirectorViewport:2748`（模型库）是 capture+pD+**sIP** ⟹ 预测：模型库关，而**桌的阶梯跑不到**"
+  },
+  {
+   "id": "bubbleOwner",
+   "why": "`DirectorTimeline:570/594`（路径菜单）是 bubble、**不**排他 ⟹ 预测：菜单关，而**桌的阶梯照跑**（导出面板也关）"
+  },
+  {
+   "id": "none",
+   "why": "★ **鉴别力对照**：什么都不开 ⟹ 阶梯跑完"
+  }
+ ],
+ "loadBearing": "`cap`/`win` 确认按键送达与事件到达 window；**目标浮层的开合**判「谁的主人跑了」；**导出面板/桌的开合**判「阶梯跑没跑」；`lastCommand` 兜底。",
+ "rounds": [
+  {
+   "rows": [
+    {
+     "arm": "captureOwner",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "targetOpen": false,
+        "exportOpen": true,
+        "deskOpen": true,
+        "lastCommand": "",
+        "gesture": "",
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "targetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "lastCommand": "",
+        "gesture": "",
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "type": "button"
+     },
+     "stateBefore": {
+      "targetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "lastCommand": "",
+      "gesture": "",
+      "focusTag": "BUTTON",
+      "focusType": "button"
+     },
+     "tries": 1
+    },
+    {
+     "arm": "bubbleOwner",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "targetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "lastCommand": "",
+        "gesture": "",
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "targetOpen": false,
+        "exportOpen": false,
+        "deskOpen": false,
+        "lastCommand": null,
+        "gesture": null,
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "type": "button"
+     },
+     "stateBefore": {
+      "targetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "lastCommand": "",
+      "gesture": "",
+      "focusTag": "BUTTON",
+      "focusType": "button"
+     },
+     "tries": 1
+    },
+    {
+     "arm": "none",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "targetOpen": null,
+        "exportOpen": false,
+        "deskOpen": true,
+        "lastCommand": "",
+        "gesture": "",
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "targetOpen": null,
+        "exportOpen": false,
+        "deskOpen": false,
+        "lastCommand": null,
+        "gesture": null,
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "type": "button"
+     },
+     "stateBefore": {
+      "targetOpen": null,
+      "exportOpen": true,
+      "deskOpen": true,
+      "lastCommand": "",
+      "gesture": "",
+      "focusTag": "BUTTON",
+      "focusType": "button"
+     },
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "rows": [
+    {
+     "arm": "captureOwner",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 0,
+        "win": 0
+       },
+       "state": {
+        "targetOpen": false,
+        "exportOpen": true,
+        "deskOpen": true,
+        "lastCommand": "",
+        "gesture": "",
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "targetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "lastCommand": "",
+        "gesture": "",
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "type": "button"
+     },
+     "stateBefore": {
+      "targetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "lastCommand": "",
+      "gesture": "",
+      "focusTag": "BUTTON",
+      "focusType": "button"
+     },
+     "tries": 1
+    },
+    {
+     "arm": "bubbleOwner",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "targetOpen": false,
+        "exportOpen": false,
+        "deskOpen": true,
+        "lastCommand": "",
+        "gesture": "",
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "targetOpen": false,
+        "exportOpen": false,
+        "deskOpen": false,
+        "lastCommand": null,
+        "gesture": null,
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "type": "button"
+     },
+     "stateBefore": {
+      "targetOpen": true,
+      "exportOpen": true,
+      "deskOpen": true,
+      "lastCommand": "",
+      "gesture": "",
+      "focusTag": "BUTTON",
+      "focusType": "button"
+     },
+     "tries": 1
+    },
+    {
+     "arm": "none",
+     "presses": [
+      {
+       "n": 1,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "targetOpen": null,
+        "exportOpen": false,
+        "deskOpen": true,
+        "lastCommand": "",
+        "gesture": "",
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      },
+      {
+       "n": 2,
+       "read": {
+        "cap": 1,
+        "win": 1
+       },
+       "state": {
+        "targetOpen": null,
+        "exportOpen": false,
+        "deskOpen": false,
+        "lastCommand": null,
+        "gesture": null,
+        "focusTag": "BUTTON",
+        "focusType": "button"
+       }
+      }
+     ],
+     "focus": {
+      "ok": true,
+      "type": "button"
+     },
+     "stateBefore": {
+      "targetOpen": null,
+      "exportOpen": true,
+      "deskOpen": true,
+      "lastCommand": "",
+      "gesture": "",
+      "focusTag": "BUTTON",
+      "focusType": "button"
+     },
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}

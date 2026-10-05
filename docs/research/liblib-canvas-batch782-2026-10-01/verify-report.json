@@ -1,0 +1,416 @@
+{
+ "batch": 782,
+ "verdict": "通过",
+ "criteria": {
+  "total": 70,
+  "passed": 70,
+  "failed": 0,
+  "failedLabels": []
+ },
+ "negativeControls": {
+  "total": 9,
+  "caught": 9,
+  "stale": [],
+  "kwNotUnique": [],
+  "cases": [
+   {
+    "name": "把导演台登记进阻塞面枚举",
+    "why": "★ D1h 的**反证**：枚举里一旦出现 `director`，「`:1400` 靠遗漏休眠」与「缺陷 D1h 存在」两条都要塌 ⟹ 判据必须红",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★★ `LibTVBlockingForegroundSurface` 的 11 个成员里**没有导演台** ⟹ `:1400` 休眠是**遗漏**不是设计（D1h 的载荷）",
+     "产物：★ audit 的阻塞面枚举 = 静态重算"
+    ],
+    "caught": true,
+    "expectFailOn": "没有导演台"
+   },
+   {
+    "name": "删掉 `page.tsx:1312` 的 `activeDirectorNodeId` 早退",
+    "why": "★ 两道门里那道**可靠**的没了 ⟹ `:1401` 会在导演台打开时抢走那 4 个键 ⟹ 「显式让位」这条判据必须红",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★ `src/app/page.tsx:1401` 的门是 `if (uiState.activeDirectorNodeId) return;` ⟹ **显式以导演台开着为条件**（可靠让位）"
+    ],
+    "caught": true,
+    "expectFailOn": "显式以导演台"
+   },
+   {
+    "name": "把 `DirectorViewport` 的一处 `stopImmediatePropagation()` 删掉",
+    "why": "D8 的「同仓先例」是照抄的依据；先例少一处 ⟹ 计数判据必须红",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★ `DirectorViewport` 有 1 处 `stopImmediatePropagation()`",
+     "产物：★ audit 记的 `Escape` `sIP` 数 = 独立字面量重算（director 面 2 + 宿主页 1）",
+     "静态：★★ D8 的同仓先例**只数 director 面**（2 处），宿主页那处**不算**（语义不同：一个是页面 chrome 的门）",
+     "产物：★ audit 记的 D8 先例数 = 独立字面量重算"
+    ],
+    "caught": true,
+    "expectFailOn": "只数 director 面"
+   },
+   {
+    "name": "把 `useDirectorGestureBoundary` 的 `!== \"Tab\"` 改成 `=== \"Tab\"`",
+    "why": "★ 排除清单一旦变成归属，`Tab` 就真的多一个主人 ⟹ 「第一版那个第二主人是假的」必须红",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★ `useDirectorGestureBoundary` 的 `!== \"Tab\"` 是**排除清单**（`:92` **不**认领 `Tab`）⟹ 第一版那个「`Tab` 第二主人」是假的"
+    ],
+    "caught": true,
+    "expectFailOn": "第一版那个"
+   },
+   {
+    "name": "给宿主页的 capture handler 加上 `Meta+c` 认领",
+    "why": "★ 「`Meta+c` 的主人**真的唯一**」是**负向**断言 ⟹ 必须能被抓到（负向断言最容易写成恒真）",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★★ 宿主页两个 handler 体里**没有任何 `\"c\"` 字面量** ⟹ `Meta+c` 的主人在挂载域里**真的唯一**"
+    ],
+    "caught": true,
+    "expectFailOn": "真的唯一"
+   },
+   {
+    "name": "把 `useDirectorFocusContainment` 的调用点改名",
+    "why": "★ 调用点在**调用方文件**里这条要能验：改掉调用点后「3 个调用点」必须红（第一版搜错了文件，永远发现不了）",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "静态：★ 焦点容器的 3 个调用点在**调用方文件**里，而 hook 自己的文件里**一个都不是**",
+     "静态：`useDirectorFocusContainment` 在 `DirectorDesk.tsx` 里 3 个调用点",
+     "静态：★ 其中 2 个开 `stopPropagation`，且**都受 `activeMobileFocusScope` 门控**（都是移动端焦点域）"
+    ],
+    "caught": true,
+    "expectFailOn": "调用点在**调用方文件**里"
+   },
+   {
+    "name": "把 captureOwner 第 1 次的 `cap` 读成 1",
+    "why": "★ 「`sIP` 把整条链截断」是本批最容易被当成**坏测量**删掉的读数（R143a）⟹ 对照必须能证明它红",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "预测 F：captureOwner 第 1 次 `cap==0` **且** `win==0` ⟹ capture 相位的 `sIP` 把**整条链**截断（含 capture 相位上更早的监听器）⟹ 「排他性真的发生」"
+    ],
+    "caught": true,
+    "expectFailOn": "预测 F"
+   },
+   {
+    "name": "把对照臂第 1 次的导出面板读成「仍开着」",
+    "why": "★ D1h 的「当前不可达」**只有**这一条运行时证据 ⟹ 它必须能红，否则整条结论无依据",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "预测 H：none 臂第 1 次关掉导出面板",
+     "预测 I：★★ 对照臂第 1 次 `cap>=1` **且**导出面板真的关了 ⟹ `src/app/page.tsx:1400` **当时没跑** ⟹ 缺陷 D1h 的「当前不可达」有运行时证据"
+    ],
+    "caught": true,
+    "expectFailOn": "预测 I"
+   },
+   {
+    "name": "把 bubbleOwner 第 1 次的导出面板读成「仍开着」",
+    "why": "★ 「不排他的主人与阶梯并发」是 J4 ⟹ 对照要能证明它红",
+    "mutatedAnything": true,
+    "kwMatchedCount": 1,
+    "flipped": [
+     "预测 G：★ bubbleOwner 第 1 次后**导出面板也关掉了** ⟹ 一次按压里两个主人同时处理（不排他 ⟹ 并发）"
+    ],
+    "caught": true,
+    "expectFailOn": "预测 G"
+   }
+  ]
+ },
+ "staticRecomputed": {
+  "mountHosts": [
+   "src/app/page.tsx"
+  ],
+  "sitesPerFile": {
+   "src/components/director/directorCameraFollow.ts": 0,
+   "src/components/director/directorCameraPresets.ts": 0,
+   "src/components/director/directorCameraPreview.ts": 0,
+   "src/components/director/directorGroupMath.ts": 0,
+   "src/components/director/directorLocalModelImport.ts": 0,
+   "src/components/director/directorModelLibrary.ts": 0,
+   "src/components/director/directorMotionMath.ts": 0,
+   "src/components/director/directorPhoneVcamMath.ts": 0,
+   "src/components/director/directorPose.ts": 0,
+   "src/components/director/directorTimelineMath.ts": 0,
+   "src/components/director/directorVideoExport.ts": 0,
+   "src/components/director/directorViewportMath.ts": 0,
+   "src/components/director/useDirectorFocusContainment.ts": 1,
+   "src/components/director/useDirectorGestureBoundary.ts": 1,
+   "src/components/director/DirectorAiImportModal.tsx": 0,
+   "src/components/director/DirectorCameraMotionTab.tsx": 0,
+   "src/components/director/DirectorCurveEditor.tsx": 0,
+   "src/components/director/DirectorDesk.tsx": 1,
+   "src/components/director/DirectorExportPanel.tsx": 0,
+   "src/components/director/DirectorIconRail.tsx": 0,
+   "src/components/director/DirectorInspector.tsx": 1,
+   "src/components/director/DirectorMannequin.tsx": 0,
+   "src/components/director/DirectorObjectTree.tsx": 1,
+   "src/components/director/DirectorPhoneVcamPanel.tsx": 1,
+   "src/components/director/DirectorScenePromptBar.tsx": 0,
+   "src/components/director/DirectorTimeline.tsx": 2,
+   "src/components/director/DirectorViewport.tsx": 2,
+   "src/app/page.tsx": 3
+  },
+  "siteTotal": 13,
+  "typeDeclSitesExcluded": 1,
+  "hostCaptureRegExists": true,
+  "hostBubbleRegExists": true,
+  "hostCaptureIsCapture": true,
+  "hostBubbleIsCapture": false,
+  "hostCaptureHandler": "handleActiveImageSurfaceKeyDown",
+  "hostBubbleHandler": "handleKeyDown",
+  "hostCaptureDecl": 1268,
+  "hostBubbleDecl": 1309,
+  "hostCaptureBodyLen": 1217,
+  "hostBubbleBodyLen": 2299,
+  "literals": {
+   "hostCap_escape": true,
+   "hostCap_delete": true,
+   "hostCap_backspace": true,
+   "hostCap_tab": true,
+   "hostCap_meta_zyx": true,
+   "hostCap_no_c_literal": false,
+   "hostCap_no_v_literal": false,
+   "hostBub_escape": true,
+   "hostBub_delete": true,
+   "hostBub_tab": true,
+   "hostBub_meta_z": true,
+   "hostBub_meta_y": true,
+   "hostBub_bare_v": true,
+   "hostBub_no_c_literal": false,
+   "desk_meta_c": true,
+   "desk_meta_v": true,
+   "desk_meta_z": true,
+   "desk_meta_y": true,
+   "desk_delete": true,
+   "desk_escape": true
+  },
+  "gateBubbleLiteral": true,
+  "gateCaptureLiteral": true,
+  "gateBubGlobalCount": 1,
+  "gateCapGlobalCount": 1,
+  "unionMembers": [
+   "add-node",
+   "canvas-dropdown",
+   "follow-banner",
+   "notification",
+   "primary-panel",
+   "share",
+   "shortcuts",
+   "storyboard-editor",
+   "user-menu",
+   "zoom-menu"
+  ],
+  "unionMentionsDirector": false,
+  "snapshotMentionsActiveDirectorNodeId": false,
+  "viewportCaptureSites": [
+   2711,
+   2748
+  ],
+  "viewportSipCount": 2,
+  "gestureHasSip": false,
+  "gestureHasSprop": true,
+  "gestureExcludesTab": true,
+  "gestureClaimsTab": false,
+  "phoneVcamSip": true,
+  "captureBodySip": true,
+  "d8PrecedentsInPlane": 3,
+  "d8PrecedentsIncludingHost": 4,
+  "fcCallCount": 3,
+  "fcWithStop": 2,
+  "fcStopAllMobileGated": true,
+  "fcDefaultFalse": true,
+  "fcDefIsNotACall": true,
+  "blockingFlagHits": [],
+  "deskIsFullScreenZ100": true
+ },
+ "runtimeRecomputed": {
+  "unexpectedFailed": [],
+  "arms": {
+   "captureOwner": {
+    "arm": "captureOwner",
+    "presses": [
+     {
+      "n": 1,
+      "read": {
+       "cap": 0,
+       "win": 0
+      },
+      "state": {
+       "targetOpen": false,
+       "exportOpen": true,
+       "deskOpen": true,
+       "lastCommand": "",
+       "gesture": "",
+       "focusTag": "BUTTON",
+       "focusType": "button"
+      }
+     },
+     {
+      "n": 2,
+      "read": {
+       "cap": 1,
+       "win": 1
+      },
+      "state": {
+       "targetOpen": false,
+       "exportOpen": false,
+       "deskOpen": true,
+       "lastCommand": "",
+       "gesture": "",
+       "focusTag": "BUTTON",
+       "focusType": "button"
+      }
+     }
+    ],
+    "focus": {
+     "ok": true,
+     "type": "button"
+    },
+    "stateBefore": {
+     "targetOpen": true,
+     "exportOpen": true,
+     "deskOpen": true,
+     "lastCommand": "",
+     "gesture": "",
+     "focusTag": "BUTTON",
+     "focusType": "button"
+    }
+   },
+   "bubbleOwner": {
+    "arm": "bubbleOwner",
+    "presses": [
+     {
+      "n": 1,
+      "read": {
+       "cap": 1,
+       "win": 1
+      },
+      "state": {
+       "targetOpen": false,
+       "exportOpen": false,
+       "deskOpen": true,
+       "lastCommand": "",
+       "gesture": "",
+       "focusTag": "BUTTON",
+       "focusType": "button"
+      }
+     },
+     {
+      "n": 2,
+      "read": {
+       "cap": 1,
+       "win": 1
+      },
+      "state": {
+       "targetOpen": false,
+       "exportOpen": false,
+       "deskOpen": false,
+       "lastCommand": null,
+       "gesture": null,
+       "focusTag": "BUTTON",
+       "focusType": "button"
+      }
+     }
+    ],
+    "focus": {
+     "ok": true,
+     "type": "button"
+    },
+    "stateBefore": {
+     "targetOpen": true,
+     "exportOpen": true,
+     "deskOpen": true,
+     "lastCommand": "",
+     "gesture": "",
+     "focusTag": "BUTTON",
+     "focusType": "button"
+    }
+   },
+   "none": {
+    "arm": "none",
+    "presses": [
+     {
+      "n": 1,
+      "read": {
+       "cap": 1,
+       "win": 1
+      },
+      "state": {
+       "targetOpen": null,
+       "exportOpen": false,
+       "deskOpen": true,
+       "lastCommand": "",
+       "gesture": "",
+       "focusTag": "BUTTON",
+       "focusType": "button"
+      }
+     },
+     {
+      "n": 2,
+      "read": {
+       "cap": 1,
+       "win": 1
+      },
+      "state": {
+       "targetOpen": null,
+       "exportOpen": false,
+       "deskOpen": false,
+       "lastCommand": null,
+       "gesture": null,
+       "focusTag": "BUTTON",
+       "focusType": "button"
+      }
+     }
+    ],
+    "focus": {
+     "ok": true,
+     "type": "button"
+    },
+    "stateBefore": {
+     "targetOpen": null,
+     "exportOpen": true,
+     "deskOpen": true,
+     "lastCommand": "",
+     "gesture": "",
+     "focusTag": "BUTTON",
+     "focusType": "button"
+    }
+   }
+  },
+  "keys": [
+   "bubbleOwner",
+   "captureOwner",
+   "none"
+  ],
+  "rounds": 2,
+  "roundsConsistent": true,
+  "pressPerRound": 6,
+  "pressTotal": 12,
+  "startExportOpen": {
+   "captureOwner": true,
+   "bubbleOwner": true,
+   "none": true
+  }
+ },
+ "productSelfCheck": {
+  "产物：audit.batch=782": true,
+  "产物：★ audit 记的挂载页与静态重算一致": true,
+  "产物：★ audit 记的单主人键 = ['Meta+c', 'Meta+v']": true,
+  "产物：★ audit 记的多主人计数 = 独立发现的主人数": true,
+  "产物：★ audit 记的 `Escape` `sIP` 数 = 独立字面量重算（director 面 3 + 宿主页 1）": true,
+  "产物：★ audit 记的 D8 先例数 = 独立字面量重算": true,
+  "产物：★ audit 记的格数（**跨轮**）= 重算值": true,
+  "产物：★ audit 记的每轮按压数 = 重算值": true,
+  "产物：★ audit 记的「宿主页门此刻关着」= True": true,
+  "产物：audit 记的零 FAILED": true,
+  "产物：★ audit 的阻塞面枚举 = 静态重算": true,
+  "产物：★ audit 记的 director 面阻塞面命中 = 静态重算": true
+ },
+ "problems": [],
+ "srcDiff": "**验收器未改 `src/`**（对照全在内存副本上做）"
+}

@@ -1,0 +1,726 @@
+{
+ "batch": 782,
+ "topic": "键盘主人全量普查（**挂载域**）：四批共同依赖的「那 6 个键只有一个主人」**被推翻一半**；归因仍成立但依据换成了两道运行时门；新缺陷 D1h",
+ "generatedBy": "probes/mk782audit.py",
+ "sources": {
+  "census782.json": {
+   "sha16": "462ebf7d5fc3cd91",
+   "owners": 13
+  },
+  "vb782a.json": {
+   "sha16": "4c88f48f78397427",
+   "rounds": 2,
+   "armsPerRound": 3
+  }
+ },
+ "owners": [
+  {
+   "file": "src/components/director/DirectorDesk.tsx",
+   "scope": "director-plane",
+   "regLine": 570,
+   "handler": "handleKeyDown",
+   "event": "keydown",
+   "capture": false,
+   "regTarget": "window",
+   "declLine": 473,
+   "bodyEnd": 569,
+   "keys": [
+    "Backspace",
+    "Delete",
+    "Escape",
+    "Meta+c",
+    "Meta+v",
+    "Meta+y",
+    "Meta+z"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": true,
+   "stopsPropagation": false,
+   "stopsImmediate": false,
+   "consultsType": true,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": false
+  },
+  {
+   "file": "src/components/director/DirectorInspector.tsx",
+   "scope": "director-plane",
+   "regLine": 406,
+   "handler": "handleKeyDown",
+   "event": "keydown",
+   "capture": false,
+   "regTarget": "window",
+   "declLine": 403,
+   "bodyEnd": 405,
+   "keys": [
+    "Escape"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": false,
+   "stopsPropagation": false,
+   "stopsImmediate": false,
+   "consultsType": false,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": false
+  },
+  {
+   "file": "src/components/director/DirectorObjectTree.tsx",
+   "scope": "director-plane",
+   "regLine": 213,
+   "handler": "esc",
+   "event": "keydown",
+   "capture": false,
+   "regTarget": "window",
+   "declLine": 209,
+   "bodyEnd": 211,
+   "keys": [
+    "Escape"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": false,
+   "stopsPropagation": false,
+   "stopsImmediate": false,
+   "consultsType": false,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": false
+  },
+  {
+   "file": "src/components/director/DirectorPhoneVcamPanel.tsx",
+   "scope": "director-plane",
+   "regLine": 294,
+   "handler": "closeOnEscape",
+   "event": "keydown",
+   "capture": true,
+   "regTarget": "window",
+   "declLine": 288,
+   "bodyEnd": 293,
+   "keys": [
+    "Escape"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": true,
+   "stopsPropagation": false,
+   "stopsImmediate": true,
+   "consultsType": false,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": false
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "scope": "director-plane",
+   "regLine": 570,
+   "handler": "closeOnEscape",
+   "event": "keydown",
+   "capture": false,
+   "regTarget": "window",
+   "declLine": 566,
+   "bodyEnd": 568,
+   "keys": [
+    "Escape"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": false,
+   "stopsPropagation": false,
+   "stopsImmediate": false,
+   "consultsType": false,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": false
+  },
+  {
+   "file": "src/components/director/DirectorTimeline.tsx",
+   "scope": "director-plane",
+   "regLine": 594,
+   "handler": "closeOnEscape",
+   "event": "keydown",
+   "capture": false,
+   "regTarget": "window",
+   "declLine": 590,
+   "bodyEnd": 592,
+   "keys": [
+    "Escape"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": false,
+   "stopsPropagation": false,
+   "stopsImmediate": false,
+   "consultsType": false,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": false
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "scope": "director-plane",
+   "regLine": 2711,
+   "handler": "handleKeyDown",
+   "event": "keydown",
+   "capture": true,
+   "regTarget": "window",
+   "declLine": 2699,
+   "bodyEnd": 2710,
+   "keys": [
+    "Enter",
+    "Escape"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": true,
+   "stopsPropagation": false,
+   "stopsImmediate": true,
+   "consultsType": false,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": false
+  },
+  {
+   "file": "src/components/director/DirectorViewport.tsx",
+   "scope": "director-plane",
+   "regLine": 2748,
+   "handler": "closeOnEscape",
+   "event": "keydown",
+   "capture": true,
+   "regTarget": "window",
+   "declLine": 2741,
+   "bodyEnd": 2746,
+   "keys": [
+    "Escape"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": true,
+   "stopsPropagation": false,
+   "stopsImmediate": true,
+   "consultsType": false,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": false
+  },
+  {
+   "file": "src/components/director/useDirectorFocusContainment.ts",
+   "scope": "director-plane",
+   "regLine": 174,
+   "handler": "handleKeyDown",
+   "event": "keydown",
+   "capture": false,
+   "regTarget": "root",
+   "declLine": 149,
+   "bodyEnd": 172,
+   "keys": [
+    "Tab"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": true,
+   "stopsPropagation": true,
+   "stopsImmediate": false,
+   "consultsType": false,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": false
+  },
+  {
+   "file": "src/components/director/useDirectorGestureBoundary.ts",
+   "scope": "director-plane",
+   "regLine": 92,
+   "handler": "inline",
+   "event": "keydown",
+   "capture": false,
+   "regTarget": "root",
+   "declLine": 92,
+   "bodyEnd": 108,
+   "keys": [
+    "Escape"
+   ],
+   "keysExcluded": [
+    "Alt",
+    "Control",
+    "Meta",
+    "Shift",
+    "Tab"
+   ],
+   "delegates": {},
+   "preventsDefault": true,
+   "stopsPropagation": true,
+   "stopsImmediate": false,
+   "consultsType": false,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": false
+  },
+  {
+   "file": "src/app/page.tsx",
+   "scope": "mount-host",
+   "regLine": 1400,
+   "handler": "handleActiveImageSurfaceKeyDown",
+   "event": "keydown",
+   "capture": true,
+   "regTarget": "window",
+   "declLine": 1268,
+   "bodyEnd": 1307,
+   "keys": [
+    "Backspace",
+    "Delete",
+    "Escape",
+    "Meta++",
+    "Meta+-",
+    "Meta+0",
+    "Meta+=",
+    "Meta+d",
+    "Meta+y",
+    "Meta+z",
+    "Space",
+    "Tab",
+    "f",
+    "g",
+    "h",
+    "v"
+   ],
+   "keysExcluded": [],
+   "delegates": {
+    "isLibTVCanvasCommandKey": {
+     "file": "src/lib/libtvSelectionCommandContext.ts",
+     "keys": [
+      "Backspace",
+      "Delete",
+      "Meta++",
+      "Meta+-",
+      "Meta+0",
+      "Meta+=",
+      "Meta+d",
+      "Meta+y",
+      "Meta+z",
+      "f",
+      "g",
+      "h",
+      "v"
+     ],
+     "keysExcluded": []
+    }
+   },
+   "preventsDefault": true,
+   "stopsPropagation": false,
+   "stopsImmediate": true,
+   "consultsType": false,
+   "gatedOnActiveDirector": false,
+   "gatedOnBlockingSurface": true
+  },
+  {
+   "file": "src/app/page.tsx",
+   "scope": "mount-host",
+   "regLine": 1401,
+   "handler": "handleKeyDown",
+   "event": "keydown",
+   "capture": false,
+   "regTarget": "window",
+   "declLine": 1309,
+   "bodyEnd": 1386,
+   "keys": [
+    "+",
+    "-",
+    "0",
+    "=",
+    "Backspace",
+    "Delete",
+    "Escape",
+    "Meta+d",
+    "Meta+f",
+    "Meta+y",
+    "Meta+z",
+    "Space",
+    "Tab",
+    "g",
+    "h",
+    "v"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": true,
+   "stopsPropagation": false,
+   "stopsImmediate": false,
+   "consultsType": false,
+   "gatedOnActiveDirector": true,
+   "gatedOnBlockingSurface": true
+  },
+  {
+   "file": "src/app/page.tsx",
+   "scope": "mount-host",
+   "regLine": 1402,
+   "handler": "handleKeyUp",
+   "event": "keyup",
+   "capture": false,
+   "regTarget": "window",
+   "declLine": 1387,
+   "bodyEnd": 1394,
+   "keys": [
+    "Space"
+   ],
+   "keysExcluded": [],
+   "delegates": {},
+   "preventsDefault": false,
+   "stopsPropagation": false,
+   "stopsImmediate": false,
+   "consultsType": false,
+   "gatedOnActiveDirector": true,
+   "gatedOnBlockingSurface": false
+  }
+ ],
+ "ownership": {
+  "domain": {
+   "directorPlane": 10,
+   "mountHost": 3,
+   "mountHosts": [
+    "src/app/page.tsx"
+   ],
+   "note": "★ 同域 = 共用同一个 `window`；只扫 director 目录会漏掉挂载页上那 3 个主人（C782-1 的成因）"
+  },
+  "bearingKeys": [
+   "Meta+c",
+   "Meta+v",
+   "Meta+z",
+   "Meta+y",
+   "Delete",
+   "Backspace"
+  ],
+  "singleOwnerKeys": [
+   "Meta+c",
+   "Meta+v"
+  ],
+  "multiOwnerKeys": {
+   "Meta+z": [
+    "components/director/DirectorDesk.tsx:570",
+    "app/page.tsx:1400",
+    "app/page.tsx:1401"
+   ],
+   "Meta+y": [
+    "components/director/DirectorDesk.tsx:570",
+    "app/page.tsx:1400",
+    "app/page.tsx:1401"
+   ],
+   "Delete": [
+    "components/director/DirectorDesk.tsx:570",
+    "app/page.tsx:1400",
+    "app/page.tsx:1401"
+   ],
+   "Backspace": [
+    "components/director/DirectorDesk.tsx:570",
+    "app/page.tsx:1400",
+    "app/page.tsx:1401"
+   ]
+  },
+  "multiOwnerCount": 3,
+  "deskOwner": "components/director/DirectorDesk.tsx:570",
+  "typeAwareOwners": [
+   "components/director/DirectorDesk.tsx:570"
+  ],
+  "hostGates": {
+   "app/page.tsx:1401": {
+    "gate": "activeDirectorNodeId",
+    "keyedOnDeskBeingOpen": true,
+    "source": "src/app/page.tsx:1312"
+   },
+   "app/page.tsx:1400": {
+    "gate": "resolveLibTVBlockingForegroundSurface",
+    "keyedOnDeskBeingOpen": false,
+    "unionMentionsDirector": false,
+    "blockingSurfaceUnion": [
+     "add-node",
+     "canvas-dropdown",
+     "follow-banner",
+     "notification",
+     "primary-panel",
+     "share",
+     "shortcuts",
+     "storyboard-editor",
+     "user-menu",
+     "zoom-menu"
+    ],
+    "source": "src/app/page.tsx:1294"
+   }
+  },
+  "escapeOwners": [
+   "components/director/DirectorDesk.tsx:570",
+   "components/director/DirectorInspector.tsx:406",
+   "components/director/DirectorObjectTree.tsx:213",
+   "components/director/DirectorPhoneVcamPanel.tsx:294",
+   "components/director/DirectorTimeline.tsx:570",
+   "components/director/DirectorTimeline.tsx:594",
+   "components/director/DirectorViewport.tsx:2711",
+   "components/director/DirectorViewport.tsx:2748",
+   "components/director/useDirectorGestureBoundary.ts:92",
+   "app/page.tsx:1400",
+   "app/page.tsx:1401"
+  ],
+  "escapeOwnerCount": 11,
+  "escapeCapture": [
+   "components/director/DirectorPhoneVcamPanel.tsx:294",
+   "components/director/DirectorViewport.tsx:2711",
+   "components/director/DirectorViewport.tsx:2748",
+   "app/page.tsx:1400"
+  ],
+  "escapeBubble": [
+   "components/director/DirectorDesk.tsx:570",
+   "components/director/DirectorInspector.tsx:406",
+   "components/director/DirectorObjectTree.tsx:213",
+   "components/director/DirectorTimeline.tsx:570",
+   "components/director/DirectorTimeline.tsx:594",
+   "components/director/useDirectorGestureBoundary.ts:92",
+   "app/page.tsx:1401"
+  ],
+  "escapeStopImmediate": [
+   "components/director/DirectorPhoneVcamPanel.tsx:294",
+   "components/director/DirectorViewport.tsx:2711",
+   "components/director/DirectorViewport.tsx:2748",
+   "app/page.tsx:1400"
+  ],
+  "escapeStopPropagationOnly": [
+   "components/director/useDirectorGestureBoundary.ts:92"
+  ],
+  "tabOwners": [
+   "components/director/useDirectorFocusContainment.ts:174",
+   "app/page.tsx:1400",
+   "app/page.tsx:1401"
+  ],
+  "falseTabOwner": {
+   "file": "components/director/useDirectorGestureBoundary.ts:92",
+   "keysExcluded": [
+    "Alt",
+    "Control",
+    "Meta",
+    "Shift",
+    "Tab"
+   ]
+  },
+  "d8ShapePrecedents": [
+   "components/director/DirectorPhoneVcamPanel.tsx:294",
+   "components/director/DirectorViewport.tsx:2711",
+   "components/director/DirectorViewport.tsx:2748"
+  ],
+  "blockingFlagsInDirectorPlane": {}
+ },
+ "runtime": {
+  "captureOwner": [
+   {
+    "n": 1,
+    "cap": 0,
+    "win": 0,
+    "targetOpen": false,
+    "exportOpen": true,
+    "deskOpen": true,
+    "lastCommand": ""
+   },
+   {
+    "n": 2,
+    "cap": 1,
+    "win": 1,
+    "targetOpen": false,
+    "exportOpen": false,
+    "deskOpen": true,
+    "lastCommand": ""
+   }
+  ],
+  "bubbleOwner": [
+   {
+    "n": 1,
+    "cap": 1,
+    "win": 1,
+    "targetOpen": false,
+    "exportOpen": false,
+    "deskOpen": true,
+    "lastCommand": ""
+   },
+   {
+    "n": 2,
+    "cap": 1,
+    "win": 1,
+    "targetOpen": false,
+    "exportOpen": false,
+    "deskOpen": false,
+    "lastCommand": null
+   }
+  ],
+  "none": [
+   {
+    "n": 1,
+    "cap": 1,
+    "win": 1,
+    "targetOpen": null,
+    "exportOpen": false,
+    "deskOpen": true,
+    "lastCommand": ""
+   },
+   {
+    "n": 2,
+    "cap": 1,
+    "win": 1,
+    "targetOpen": null,
+    "exportOpen": false,
+    "deskOpen": false,
+    "lastCommand": null
+   }
+  ],
+  "ladderBlockedBySip": true,
+  "concurrentOwners": true,
+  "positiveControlAlsoCut": true,
+  "hostGateClosedNow": true
+ },
+ "verdict": {
+  "四批共同依赖的默认": "★ **被推翻一半**：`Meta+c`/`Meta+v` 主人唯一；`Meta+z`/`Meta+y`/`Delete`/`Backspace` 主人在**挂载域**里是 3 个（director 目录只有 1 个，挂载页 `page.tsx` 还有 2 个）",
+  "779/780/781的归因": "★ **仍然成立**（不是部分归因）—— 但依据从「代码里只有一个主人」换成「另外两个宿主页主人**都被门挡住了**」⟹ 结论一样，**性质更脆**",
+  "两道门的性质": "★ `page.tsx:1401` 以 `activeDirectorNodeId` 为条件（**显式让位**，可靠）；`page.tsx:1400` 以`LibTVBlockingForegroundSurface` 为条件，而**那张表里没有导演台**（**靠遗漏**）",
+  "Escape主人": "11 个；阻断强度分**两类**：`sIP` 4 个（全在 capture 相位，截断整条链）/ `sP` 1 个（components/director/useDirectorGestureBoundary.ts:92，**在目标上**，只挡越过目标的冒泡）",
+  "排他性是否真的发生": "★ **是** —— captureOwner 臂第 1 次：目标浮层关、**导出面板仍开** ⟹ 阶梯被挡住；且 `cap` 也为 0 ⟹ 连 capture 相位上更早的监听器都没跑到",
+  "D8": "★ **是照抄**（director 面已有 3 处），但会**引入一条它没提的层级优先级",
+  "Tab": "主人 3 个（焦点容器 + 页面两个门），**桌面上不排他**（默认值 false，只有两个移动端调用点开了）；第一版那个「第二主人」是 `useDirectorGestureBoundary:92` 的**排除清单**，已剔除",
+  "新缺陷 D1h": "★ 导演台的 Escape 阶梯靠「导演台没被登记为阻塞面」这个**遗漏**才成立；登记后 `:1400` 会在 window 捕获相位`sIP` 掉整条链。当前不可达（运行时已证），但只差一行枚举"
+ },
+ "comparability": {
+  "rounds": 2,
+  "armsPerRound": 3,
+  "cells": 12,
+  "allConsistent": true,
+  "censusMethod": "★ 函数体用**括号配对**取；普查域 = director 目录 ∪ **渲染了 `<DirectorDesk` 的挂载页**（同域共用一个 window）；`!==` 按「该 if 的语句体是不是 return」区分**归属/排除**。",
+  "censusSelfJustification": "★ 普查**逐个自证非空**：13 个监听点全部由`addEventListener`/`onKeyDown` 的**代码**匹配到（行注释先抹掉），并逐个用**括号配对**取函数体；★ 普查域 = director 目录 ∪ **渲染了 `<DirectorDesk` 的挂载页**（同域共用一个 window）；★ 验收器用**另一种方法**独立重算承重三列。",
+  "retryPolicy": "每格最多试 3 次（含第一次），900×n 退避；`tries`/`retried` 记进 raw 但**排除在两轮一致性比较之外**。",
+  "retryStats": {
+   "cells": 6,
+   "retriedCells": 0,
+   "maxTries": 1
+  },
+  "boundary": "★ **本批未改 `src/`，也没有任何注入。** 只开/关浮层与按 Escape，**不做任何破坏性操作**（不点删除/提交/连接/新增机位/导入导出，不做付费或真实生图生视频）；每格开头 `fresh()` 清 localStorage ⟹ 不留残留。"
+ },
+ "results": {
+  "owners": 13,
+  "directorPlaneOwners": 10,
+  "mountHostOwners": 3,
+  "singleOwnerKeys": 2,
+  "multiOwnerKeys": 4,
+  "typeAwareOwners": 1,
+  "escapeOwners": 11,
+  "escapeStopImmediate": 4,
+  "escapeStopPropagationOnly": 1,
+  "d8Precedents": 3,
+  "ladderBlocked": true,
+  "capAlsoCut": true,
+  "hostGateClosedNow": true,
+  "concurrent": true,
+  "cells": 12,
+  "failedCells": 0
+ },
+ "judgments": [
+  {
+   "id": "J1",
+   "text": "★ **四批的默认被推翻一半，但归因仍然成立 —— 成立的原因换了。**在**挂载域**里：`Meta+c`/`Meta+v` 的主人**确实唯一**（components/director/DirectorDesk.tsx:570），而 `Meta+z`/`Meta+y`/`Delete`/`Backspace` 的主人是 **3 个**（多出 `app/page.tsx:1400` 与 `app/page.tsx:1401`）。⟹ 「桌的 `:487` 吞了」不是部分归因，**但它成立是因为另外两个主人都恰好被门挡住了**，而不是因为代码里只有它一个主人。",
+   "evidence": "阶段二 预测 A / A'"
+  },
+  {
+   "id": "J2",
+   "text": "★ **两个宿主页主人的门性质不同，这正是 D1h 的根据。**`app/page.tsx:1401` 的门是 `activeDirectorNodeId`（`:1312` 的早退）⟹ **它正是为了「导演台在时让位」而存在**的，可靠；`app/page.tsx:1400` 的门是 `resolveLibTVBlockingForegroundSurface` 返回的那张枚举，而**那张表里没有导演台**（枚举 10 个成员，实测 `unionMentionsDirector=False`、`snapshotMentionsActiveDirectorNodeId=False`）⟹ **它休眠是遗漏，不是设计**。",
+   "evidence": "阶段二 预测 A'' + 阶段五 预测 I"
+  },
+  {
+   "id": "J3",
+   "text": "★ **`Escape` 的阻断强度分两类，不是「排他/不排他」两类。**`sIP`（`stopImmediatePropagation`）4 个，**全在 capture 相位**，它把**整条链**截断（含 capture 相位上更早的监听器）⟹ 实测那条臂 `cap=0`；而 `sP`（`stopPropagation`）只有 components/director/useDirectorGestureBoundary.ts:92 一个，它在**目标上**，只能挡住「越过目标继续冒泡」⟹ **挡不住 capture 相位已经跑过的监听器**。★ 第一版把两者合称「排他」，于是断言「排他的一定在 capture 相位」炸掉 —— **炸的是分类，不是机制**（R144）。",
+   "evidence": "阶段三 + 阶段五 预测 F"
+  },
+  {
+   "id": "J4",
+   "text": "★ **不排他的主人会与阶梯并发**：bubbleOwner 臂第 1 次按压，**路径菜单关了、导出面板也关了** ⟹ **一次按压里两个主人同时处理**。⟹ 「层内 Escape 只关层」并不是靠阻断实现的，而是靠**恰好那个主人的状态是激活的**——不激活时它就是个旁观者。",
+   "evidence": "阶段五 预测 G + 774"
+  },
+  {
+   "id": "J5",
+   "text": "★ **D8 要引入的形状在 director 面已有 %d 处**（%r）⟹ `DirectorTimeline:570/594` 改 capture+pD+**sIP** **不是新机制，是照抄** ⟹ C775-2「同仓先例」模式的**第三次**成立。★ 先例**只在 director 面数**：挂载页那两个是「页面 chrome 的门」，语义不同，不能算作导演台内的先例。",
+   "evidence": "阶段四 预测 D"
+  },
+  {
+   "id": "J6",
+   "text": "★ **`Tab` 的主人是 3 个**（`components/director/useDirectorFocusContainment.ts:174` + 页面两个门），而焦点容器**桌面上不排他**（默认值 false，三个调用点里只有两个移动端开了 `stopPropagation`）。★ 另有一条**假主人**被第一版算进来了：`useDirectorGestureBoundary:92` 的 `:100-104` 是**排除清单**（`if (key !== \"Tab\" && …) { begin(); }`），它**不认领** `Tab`。",
+   "evidence": "阶段四 预测 E"
+  }
+ ],
+ "corrections": [
+  {
+   "id": "C782-1",
+   "targets": [
+    "**778–781 四批共同依赖的默认**：「那 6 个非 Escape 键的主人只有一个」"
+   ],
+   "was": "读作「director 面里那 6 个键的主人**只有** `DirectorDesk.tsx:570` 一个」——该普查只扫了 `src/components/director/` 目录。",
+   "now": "★ **普查域划错了**：导演台是被 `src/app/page.tsx:1655` 渲染的，**那个文件自己就注册了 3 个 window 键盘主人**。⟹ 在**挂载域**里，`Meta+z`/`Meta+y`/`Delete`/`Backspace` 的主人是 **3 个**（多出 `page.tsx:1400`（**capture + `sIP`**）与 `page.tsx:1401`）；只有 `Meta+c`/`Meta+v` 仍是真·单主人。\n★ **但归因不撤销**：两个宿主页主人都带**运行时门**，导演台打开时两道门都关着，且**阶段五预测 I 有运行时证据**（对照臂第 1 次 `cap>=1` 且导出面板真的关了 ⟹ `page.tsx:1400` 当时**没跑**）。\n⟹ 归因的**依据**从「代码里只有一个主人」变成「另外两个主人都恰好被门挡住了」—— 结论一样，**性质更脆**（见 D1h）。",
+   "evidence": "J1 + J2 + 阶段二 + 阶段五 预测 I"
+  },
+  {
+   "id": "C782-2",
+   "targets": [
+    "**挂起项 D8**：「`DirectorTimeline.tsx:570/594` 改 window 捕获+preventDefault+stopImmediatePropagation」"
+   ],
+   "was": "读作「把三处**不合规**的监听器改成**合规**形状」（合规 = 与 774 测到的 2/6 一致）。",
+   "now": "★ **两处补充，都要写进授权文本**：① **这个形状在 director 面已经有 3 处**（['components/director/DirectorPhoneVcamPanel.tsx:294', 'components/director/DirectorViewport.tsx:2711', 'components/director/DirectorViewport.tsx:2748']）⟹ D8 是**照抄**不是发明，**同仓先例的把握很高**（C775-2 第三次成立）；② ★ **但它会引入一个 D8 没提的副作用**：照抄之后路径菜单就成了**第 5、6 个 `sIP` 主人** ⟹ **路径菜单开着时按 Escape，桌的阶梯再也不会跑**（取消手势、关导出面板都失效）——runtime 已实测 `sIP` **真的**会挡住阶梯（captureOwner 臂）。\n⟹ **D8 的真实代价是「引入一条层级优先级」**，而 779 的 C779-2 已经把「层级优先级」标成**产品决定** ⟹ **这两项是同一个待决问题的两半，不该各自拍板。**",
+   "evidence": "J3 + J5 + 阶段五 预测 F"
+  },
+  {
+   "id": "C782-3",
+   "targets": [
+    "**第一版普查的键集**（「`Escape` 主人的排他集合」）"
+   ],
+   "was": "把 `sIP`（`stopImmediatePropagation`）与 `sP`（`stopPropagation`）**合称「排他」**，并断言「排他的一定在 capture 相位」。",
+   "now": "★ **两者机制不同，必须分开**：`sIP` 在 capture 相位会截断**整条链**（实测那条臂连 capture 相位的 document 监听器一起没跑，`cap=0`）；`sP` 那个（`useDirectorGestureBoundary.ts:92`）在**目标上**，只能挡住「越过目标继续冒泡」⟹ 两者对同一次按压的**后果不同**。\n★ 断言炸掉时**炸的是分类、不是机制** —— 这条是本批最贵的教训之一：**断言必须先定义清楚它在断言哪一类**。",
+   "evidence": "阶段三 + R144"
+  }
+ ],
+ "findings": {
+  "F1": "★ **四批的默认被推翻一半**：`Meta+c`/`Meta+v` 主人唯一（真·单主人），而 `Meta+z`/`Meta+y`/`Delete`/`Backspace` 在**挂载域**里是 **3 个**。⟹ 成因是**普查域划错了**（只扫 director 目录，漏掉挂载页那 3 个）。",
+  "F2": "★ **归因仍然成立**，但依据换成「两道运行时门都关着」，且阶段五预测 I 给了**运行时**证据（对照臂 `cap>=1` + 导出面板真关）⟹ 结论一样，**性质更脆**。",
+  "F3": "★ **两个宿主页主人的门性质不同**：`:1401` 显式以导演台开着为条件（可靠让位），`:1400` 靠**枚举里没有导演台**（遗漏）⟹ 缺陷 D1h。",
+  "F4": "★ **Escape 的阻断强度分两类**：`sIP`（capture，截断整条链，实测 `cap=0`）与 `sP`（目标上，只挡越过目标的冒泡）⟹ 第一版合称「排他」是错的分类，**断言炸的是分类不是机制**（R144）。",
+  "F5": "★ **不排他的主人会与阶梯并发**（一次按压关掉两个东西）。",
+  "F6": "★ **D8 是照抄**（director 面已有 3 处），但会引入一条它没提的层级优先级。",
+  "F7": "★ **`Tab` 有 3 个真主人**，第一版那个「第二主人」是`useDirectorGestureBoundary:92` 的**排除清单**⟹ 假主人，R144 的第二个实例。"
+ },
+ "probeLessons": [
+  {
+   "id": "R141",
+   "text": "★ **普查的函数体必须用括号配对取，不能用行数窗口。**第一版用「从注册行往上/往下 N 行」猜函数体，于是切掉了 `DirectorViewport:2702/2744` 的 `stopImmediatePropagation()` ⟹ 得出一条**完全相反**的结论（「没有排他主人 ⟹ D8 是新机制」）。★ 若照那条写下去，会给出一条「别照抄，没有先例」的建议 —— 而先例就在文件里。"
+  },
+  {
+   "id": "R142",
+   "text": "★ **同一个函数体要两种视图。** 数**调用**（`preventDefault()`）要用「抹掉字符串」的视图，而数**键名字面量**（`key === \"Escape\"`）要用「只抹注释、保留字符串」的视图。★ 两次都用错视图：先是用抹掉字符串的视图去匹配 `addEventListener(\"keydown\")` ⟹ 普查只找到 1 个主人；再用抹掉字符串的视图去找 `\"Escape\"` ⟹ 键列全空。⟹ **加工顺序错了，输出看起来仍像个正常结果。**"
+  },
+  {
+   "id": "R143a",
+   "text": "★ **正向对照不是**普遍**的 —— 有一条路径能把它自己关掉。** 我把 `cap`（capture 相位的 document 监听器）当成了「按键送达了」的通用正向对照；可 capture 相位上的 `stopImmediatePropagation` 会把**整条链**（含它自己）一起截断 ⟹ 那个臂 `cap=0`。★ 一开始我差点把它当**坏测量**删掉，而它恰恰是**排他性最强的证据**。⟹ 正向对照要**逐臂**声明，并**显式预测**哪条臂会把它自己关掉。"
+  },
+  {
+   "id": "R144",
+   "text": "★ **`!==` 有两种相反语义，混成一个集合就会造出**假主人**。** `if (key !== \"X\") return;` 是**早退守卫**⟹ 认领 `X`；而 `if (key !== \"A\" && …) { … }` 是**排除清单** ⟹ **不**认领。第一版把两者收进同一个集合，于是 `useDirectorGestureBoundary:100-104` 那 5 个排除条件被算成「主人」⟹ `Tab` 主人变成 2 个、`Escape` 的「排他」集合里混进一个 bubble 相位的。\n★ **它炸的方式很典型**：断言挂掉时我第一反应是「断言的分类写错了，改断言」——方向对，但**只改了一半**：真正的错在**普查器**，若只改断言就会把假主人固化下来。\n⟹ 判据：断言与采集器**谁**先错，要看**炸掉的那一层是不是被当成了事实**。"
+  },
+  {
+   "id": "R145",
+   "text": "★ **「没找到」与「不存在」在普查里长得一样（R104/R112 的新变体）。** 前几次错法都表现为「结果很干净」——1 个主人、键列全空、`Tab` 恰好 1 个主人 —— 而**一个明显偏小的计数**本身就是「我的匹配写错了」的信号。\n★ 本批在同一处连踩**三种**认领形态：`===`、早退 `!==`、以及**成员式**`[\"z\",\"y\",\"d\"].includes(k)`；还漏了**修饰键极性**（`!modifier && k === \"v\"` 是**裸** `v`，不是 `Meta+v`）——而那个 handler 正是本批承重的那个，方向刚好反。⟹ 普查结果要带**自证**：逐个自证非空 + **用另一种方法独立重算**。"
+  }
+ ],
+ "defects": [
+  {
+   "id": "D1h",
+   "severity": "中·潜伏回归（本批新提）",
+   "text": "★ **导演台的 Escape 阶梯能工作，靠的是一个「没人登记过」的前提。**`src/app/page.tsx:1400` 是 **window + capture + `sIP`** 的主人，认领 `Escape`/`Delete`/`Backspace`/`Meta+z`/`Meta+y`/`Tab`，而它唯一的门是 `resolveLibTVBlockingForegroundSurface(uiState)`（`:1294`）—— 那张 `LibTVBlockingForegroundSurface` 枚举（10 个成员）**里没有导演台**，`LibTVForegroundSurfaceSnapshot` 里也**没有** `activeDirectorNodeId` ⟹ 门是**关着的**。\n★ 对照之下 `:1401` 的门是 `:1312` 的 `if (uiState.activeDirectorNodeId) return;` ⟹ **那正是「导演台在时让位」，是显式的、可靠的**。\n⟹ **同一个页面两个主人，一个显式让位、一个靠遗漏休眠** —— 而导演台恰恰是 `fixed inset-0 z-[100]` 的全屏模态，**登记为阻塞面是很自然的重构**。一旦登记：\n  ① `:1400` 在 **window 捕获相位** `sIP` ⟹ 桌的**整个阶梯**（`activeGesture`/导出面板/followTarget/closeWorkspace 四档）**一次都跑不到**，且**没有报错、没有反馈**；\n  ② `closeTopForegroundSurface()` 会把导演台**当成阻塞面关掉**，`focusCanvasRoot()` 把焦点甩到**模态后面的画布**上。\n★ **当前不可达**（有运行时证据）：导演台打开时对照臂 `cap>=1` 且导出面板真的关了 ⟹ `:1400` 当时没跑；且 director 面**不写**任何阻塞面开关（10 个标志全 0 命中），画布 chrome 被 `z-[100]` 盖住。\n⟹ 但**闸门只差一行枚举**，而这一行没有测试守着。",
+   "evidence": "J2 + 阶段二 预测 B + 阶段五 预测 I"
+  },
+  {
+   "id": "D8a",
+   "severity": "待拍板（本批为其补授权文本）",
+   "text": "★ **D8 会引入一条它没提的层级优先级。** `sIP` 在 director 面**已经存在** 3 处（['components/director/DirectorPhoneVcamPanel.tsx:294', 'components/director/DirectorViewport.tsx:2711', 'components/director/DirectorViewport.tsx:2748']），而 runtime 已实测它**真的**会挡住桌的阶梯 ⟹ 照抄到 `DirectorTimeline:570/594` 之后，**路径菜单开着的状态下 Escape 将不再能取消手势或关导出面板**。⟹ D8 与 779 的 C779-2（「有活动手势时 Escape 要不要也关层」=**产品决定**）是**同一个待决问题的两半**。",
+   "evidence": "C782-2 + J3 + J5"
+  }
+ ],
+ "srcDiff": "**本批未改 `src/`**（工作区 `src/` 干净）；**没有任何注入**。",
+ "rawSha": {
+  "census782.json": "462ebf7d5fc3cd91",
+  "vb782a.json": "4c88f48f78397427"
+ },
+ "retryStats": {
+  "cells": 6,
+  "retriedCells": 0,
+  "maxTries": 1
+ },
+ "boundary": "★ **本批未改 `src/`，也没有任何注入。** 只开/关浮层与按 Escape，**不做任何破坏性操作**（不点删除/提交/连接/新增机位/导入导出，不做付费或真实生图生视频）；每格开头 `fresh()` 清 localStorage ⟹ 不留残留。"
+}
