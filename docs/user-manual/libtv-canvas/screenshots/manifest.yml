@@ -2865,3 +2865,47 @@ screenshots:
     visible_text: 画布小地图 48%
     alt: 画布左下角浮起一块 150×110 的小地图面板，里面按比例画出 12 个灰色方块（每个 16×16），正对画布上的 12 个节点；面板正下方就是那排工具按钮，宫格、定位图钉（深色圆底＝当前高亮）、滑块、磁吸、以及「48%」。⭐ 面板把后面的节点卡片盖住了一部分。⭐⭐ 这块面板在**左下角**，而它的 class 写的是 bottom right —— 本手册此前因此把位置写成了「右下角」
     sha256: f212c6de297c44be66dbc0e50ee0d9d53132e5b26ae4f030b3e336ad16692a51
+  - file: screenshots/M-394-新建画布-行内命名框.png
+    task_id: manage-canvases
+    step: 4
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-06T03:10:00+08:00
+    verified_locator: batchGA8：等画布节点数稳定→打开画布下拉→点 button[aria-label="新建画布"]→读 input[aria-label="画布名称"] 的 value/maxLength/selectionStart/End→injectHighlight 高亮该输入框→按框外扩裁图。⚠️ 裁剪起点 x=150 y=38，做圈号时要减掉它再乘 K=2
+    visible_text: 画布 画布 67 999 GA改名Enter 画布 66 画布 65 画布 64
+    alt: 点下「+」之后**没有弹窗**：画布下拉列表的第一行就地变成了一个输入框，里面已经填好下一个编号「画布 67」并整段全选。面板右上角那枚加号（aria="新建画布"）在标题「画布」右侧。⭐ 这张图同时暴露出「新建的画布排在列表最前」，所以第一行原本要让位给刚建的那张
+    sha256: e9bd06c55c377bcf385f849e70b3ef7a80586ed75fb625888a11c23f0e411201
+  - file: screenshots/M-395-画布下拉-更多操作悬停才显现.png
+    task_id: manage-canvases
+    step: 1
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-06T03:10:00+08:00
+    verified_locator: batchGA8：打开画布下拉→整面板截一张→page.locator(...).nth(2).hover() 悬停第三行→读全部 button[aria-label="更多操作"] 的 computed opacity，确认**只有第 3 枚**变成 1→再截一张→PIL 左右并排加圈号。⚠️ 两张证据图 clip 起点同为 x=150 y=38，K=2
+    visible_text: 画布 999 GA改名Enter 画布 66 画布 65 画布 64
+    alt: 左右两张是同一个画布下拉的同一瞬间，区别只有鼠标位置。左图刚展开，第三行右端什么也没有；右图把鼠标移到第三行，该行右端浮出**一枚**更多操作按钮，而它上面两行仍然空着。⭐ 面板只有 214×274，列表可视窗 212×220，36px 的行步进 ⇒ **只看得到 6 行左右**
+    sha256: dd422d3efe0b6e2b02441b7ff43adb3573a3afa013ac7f401ced089ec07a6e2c
+  - file: screenshots/M-396-画布名-自定义与重名.png
+    task_id: manage-canvases
+    step: 2
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-06T03:10:00+08:00
+    verified_locator: batchGA8b：改名 GA-同步测试 + Enter 建一张→读顶栏按钮（按**位置** [165,8] 取，不靠文字正则）→刷新后再读→打开下拉截列表头部。⚠️ 裁剪起点 x=150 y=38
+    visible_text: GA-同步测试 999 999 GA改名Enter 画布 66 画布 65
+    alt: 画布列表最前面四行：① 自定义名「GA-同步测试」原样保留；② 纯数字名「999」**没有被改写成「画布 999」**；③④ **两张名字完全相同的画布上下相邻**，站点不阻止重名
+    sha256: eed461fc2f43ec4f4e6bb24940feaf7ad6a7eb8eb220e71bb246e7069b8012a3
+  - file: screenshots/M-397-删除画布-二次确认复核.png
+    task_id: manage-canvases
+    step: 6
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-06T03:10:00+08:00
+    verified_locator: batchGA9：下拉→hover 目标行→读 opacity=1 的「更多操作」→elementFromPoint 自证落点→点开菜单→按 innerText 精确等于「删除画布」筛出该项→点它→读 .mantine-Modal-content 全文与按钮框→对「确认」做 elementFromPoint 自证→整页截图后按框外扩 70 设备像素裁切。⚠️ 这张图是**设备像素**（@2x），裁剪起点 = (513,304) 页面 px，圈号要减掉它再乘 K=2
+    visible_text: 删除画布 确定要删除画布「画布 66」吗？此操作不可恢复。 取消 确认
+    alt: 居中的删除确认框：左侧一枚红色感叹号图标，标题「删除画布」，正文「确定要删除画布「画布 66」吗？此操作不可恢复。」，右下角灰色「取消」和红色「确认」两枚按钮。⭐⭐ 正文里逐字带上了要删的那张画布的名字 —— 这是核对「别删错」的唯一现场依据
+    sha256: bc30c3465e98d9e031f5a729f03203a078265e6572734cfbfa40e1d4812bad19
