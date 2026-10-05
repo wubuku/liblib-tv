@@ -2359,15 +2359,21 @@ style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
 | `时间线: 1 visual track, 0 audio tracks, 0 clips. Not selected.` | 2 | 时间线 | ❌ sr-only |
 | `No resources. Current preview: 暂无视频. Not selected.` | 1 | 视频 | ❌ sr-only |
 | `测试文字样例` | 1 | 文本 | ✅ **看得见** |
-| `No resources: 0 ready, 0 processing, 0 failed. Not selected.` | 1 | 图片 | ❌ sr-only |
-| *(innerText 为空)* | 1 | 导演台 | ❌ |
+| `No resources: 0 ready, 0 processing, 0 failed. Not selected.` | 1 | **导演台** 🔴 | ❌ sr-only |
+| *(innerText 为空)* | 1 | **图片 `b22-upload`** 🔴 | ❌（但有面积 `148×83`） |
 
 🔴 **「没有资源」有两套完全不同的措辞**，而且**手册只记了其中一套**：
-- 音频 / 视频走 **`No resources. Current preview: 暂无音频.`**（带「当前预览」）
-- 图片走 **`No resources: 0 ready, 0 processing, 0 failed.`**（带三个计数器）
+- 音频（68）/ 视频（1）走 **`No resources. Current preview: 暂无音频.`**（带「当前预览」）
+- **导演台**走 **`No resources: 0 ready, 0 processing, 0 failed.`**（带三个计数器）
 
-⇒ 手册里那句 `No resources: 0 ready, 0 processing, 0 failed.` **只对图片节点成立**，
+⇒ 手册里那句 `No resources: 0 ready, 0 processing, 0 failed.` **只对导演台节点成立**，
 音频与视频节点**从来不是这句话**（已订正）。自动化里按这一句判「空壳」会漏掉 69 个节点。
+
+🔴 **订正两处类型归属（2026-10-05 批次 179，逐 id 核对）**：
+本节初版把 `0 ready` 那一条归给图片、把「空描述」归给导演台，**两处都写反了**。
+实测：`0 ready` 属于 **`node_pxvkay973v`（导演台）**；
+而 **`b22-upload`（图片）的 `innerText` 是空的**（有面积 `148×83`、无文字）。
+⇒ 上面那张表最后两行的类型已改正。
 
 ### 看得见的描述只有 3 条，全在文本节点上
 
@@ -2487,9 +2493,16 @@ style 逐字：left: …; top: …; visibility: visible; z-index: 200030;
 ⇒ **「名字」与「描述」是两个独立通道**，判选中态要看描述。
 📌 **文本节点不变**是合理的：它那条描述**就是可见的正文区**，不是状态播报。
 
-⚠️ **一处未解释的差异（如实留白，不硬圆）**：批次 176 的普查里，
-68 个音频节点的描述逐字是 **`No resources. Current preview: 暂无音频. Not selected.`**；
-而批次 178 读同一个 `音频 1`，逐字却是
-**`No resources: 0 ready, 0 processing, 0 failed. …`**（**图片那套措辞**）。
-两批之间**夹着若干次刷新与选中操作**，本批**没有控住「刷新会不会改这段文案」这个变量**
-⇒ 只能记成**未解释的差异**，不能据此说「176 统计错了」或「节点状态变了」。
+✅ **批次 179 已把这个变量控住**（只改「刷不刷新」一个变量，其余全固定）：
+
+| 组 | 读数 |
+|---|---|
+| A 不刷新，连读 3 次 | `No resources. Current preview: 暂无音频. Not selected.` ×3，**逐字相同** |
+| B 刷新 1 次 | **逐字相同** |
+| C 再刷新 1 次 | **逐字相同** |
+| 76 节点全量普查 | 刷新前 / 刷新 1 次 / 刷新 2 次，**三种状态下分组逐字相同**（`68/2/2/1/1/1/1`） |
+
+⇒ **刷新不会改这段文案**；批次 176 的普查**是对的**。
+⇒ 🔴 但**批次 178 那一次读到的 `0 ready` 归属（「音频 1」）与这个稳定读数不符，
+本批**没能复现它**** ⇒ 记为**一次未能复现的读数**，不写成结论、也不去圆它。
+真正的错误在别处：批次 178 把**导演台**那条误记到了音频节点头上（见上面的类型订正）。
