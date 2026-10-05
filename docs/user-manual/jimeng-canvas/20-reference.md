@@ -1601,7 +1601,7 @@ https://v3-dreamina-de.jianying.com/<hash>/6ac00098/video/tos/cn/tos-cn-v-148450
 
 ⚠️ **所以写任何「本应用共 N 个 testid」之前，必须先声明状态。**
 📌 收尾核对时**先把鼠标移出画布**，否则会误判成「多了一个元素」。
-📌 完整 18 态读数见 [SOURCE_OBSERVATIONS §4.49](SOURCE_OBSERVATIONS.md#449-批次-1292026-10-03--全文档-testid-种类数不是稳定量--两条受控实验顺带查出手册第一条确凿的过时-testid)。
+📌 完整 18 态读数见 `SOURCE_OBSERVATIONS.md` §4.49（批次 129；该账本不进发布产物）。
 
 ### 二、已知改名 1 条（**是改名，不是删除**）
 

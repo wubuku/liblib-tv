@@ -64,7 +64,7 @@ const run = (label, cmd, args) => {
 // ---------- 1. alt 审计 ----------
 {
   const r = run('alt', process.execPath, [join('scripts', 'jimeng-alt-audit.mjs')]);
-  record('1/10 截图 alt 审计', r.ok, (r.out.match(/截图总数.*|无冲突|无问题/g) || [r.out.trim().split('\n').pop()]).join(' / '));
+  record('1/11 截图 alt 审计', r.ok, (r.out.match(/截图总数.*|无冲突|无问题/g) || [r.out.trim().split('\n').pop()]).join(' / '));
 }
 // ---------- 2. 交叉一致性（批次 66 起：不再是纯扫读器） ----------
 // 🔧 **批次 66 把这道门从「恒绿」改成「会红」**。
@@ -84,14 +84,14 @@ const run = (label, cmd, args) => {
   const mLed = r.out.match(/台账（豁免，只计数）：\d+ 处/) || [];
   const mVerdict = r.out.match(/(✅ 交叉一致性双向门通过[^\n]*|🔴 双向门不通过)/) || [];
   const mScan = scan.out.match(/v2 覆盖 \d+ 个文件 → \d+ 处命中/) || [];
-  record('2/10 交叉一致性双向门（未判读命中 0 且白名单无陈旧条目才算通过）', r.ok,
+  record('2/11 交叉一致性双向门（未判读命中 0 且白名单无陈旧条目才算通过）', r.ok,
     [mGate[0], mLed[0], mUser[0], `v2 扫读器：${mScan[0] || '?'}`, mVerdict[0]].filter(Boolean).join(' ｜ '));
 }
 // ---------- 3/4. gate-a 与 final ----------
 for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
   const r = run(phase, 'python3', ['.agents/skills/web-studio-user-manual/scripts/audit_manual.py', 'docs/user-manual/jimeng-canvas', '--phase', phase]);
   const m = r.out.match(/OK \((?:gate-a|final)\).*/);
-  record(`${idx}/10 ${phase}`, r.ok, m ? m[0] : r.out.trim().split('\n').slice(0, 2).join(' '));
+  record(`${idx}/11 ${phase}`, r.ok, m ? m[0] : r.out.trim().split('\n').slice(0, 2).join(' '));
 }
 // ---------- 5. 死链（独立扫描，排除 node_modules/dist/site） ----------
 {
@@ -117,7 +117,7 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
       if (u.split('#')[0] && !statSync(target, { throwIfNoEntry: false })) dead.push(`${f} -> ${u}`);
     }
   }
-  record('5/10 死链扫描', dead.length === 0, `扫描 ${md.length} 个 Markdown，链接 ${total} 条，死链 ${dead.length}${dead.length ? '\n' + dead.join('\n') : ''}`);
+  record('5/11 死链扫描', dead.length === 0, `扫描 ${md.length} 个 Markdown，链接 ${total} 条，死链 ${dead.length}${dead.length ? '\n' + dead.join('\n') : ''}`);
 }
 // ---------- 6. U+FFFD 乱码（第 7 道门，批次 48 新增） ----------
 {
@@ -132,7 +132,7 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
     }
   })(MANUAL);
   const hits = md.filter((f) => readFileSync(f, 'utf8').includes('�'));
-  record('6/10 乱码扫描（U+FFFD）', hits.length === 0,
+  record('6/11 乱码扫描（U+FFFD）', hits.length === 0,
     hits.length === 0 ? `${md.length} 个 Markdown 全部无替换字符` : `命中 ${hits.length} 个文件：\n${hits.join('\n')}`);
 }
 // ---------- 7. 站点构建 ----------
@@ -140,7 +140,7 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
   const r = spawnSync('bash', [join('docs/user-manual/jimeng-canvas/build-site.sh')], { cwd: ROOT, encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
   const out = `${r.stdout || ''}${r.stderr || ''}`;
   const m = out.match(/dist 页面数: \d+[\s\S]*?示意图 alt 与正文引用逐字一致/);
-  record('7/10 站点构建', r.status === 0, r.status === 0 ? (m ? m[0].replace(/\x1b\[[0-9;]*m/g, '') : '退出码 0') : `退出码 ${r.status}\n${out.split('\n').slice(-8).join('\n')}`);
+  record('7/11 站点构建', r.status === 0, r.status === 0 ? (m ? m[0].replace(/\x1b\[[0-9;]*m/g, '') : '退出码 0') : `退出码 ${r.status}\n${out.split('\n').slice(-8).join('\n')}`);
 }
 // ---------- 8. 订正回填门（批次 75 新增） ----------
 {
@@ -148,7 +148,7 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
   const mScan = r.out.match(/扫描 .*命中 \d+ 处/) || [];
   const mVerdict = r.out.match(/(✅ 订正回填门通过[^\n]*|🔴 订正回填门不通过)/) || [];
   const mBad = r.out.match(/⛔ [^\n]*/g) || [];
-  record('8/10 订正回填门（被推翻的结论，原始记录处必须带内联订正标记）', r.ok,
+  record('8/11 订正回填门（被推翻的结论，原始记录处必须带内联订正标记）', r.ok,
     [mScan[0], mVerdict[0], ...mBad.slice(0, 4)].filter(Boolean).join(' ｜ '));
 }
 // ---------- 10. 截图 manifest 真解析门（批次 154 新增） ----------
@@ -160,8 +160,27 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
   const mInfo = r.out.match(/manifest 解析成功：\d+ 条/) || [];
   const mStat = r.out.match(/存在性：[^\n]+/) || [];
   const mBad = r.out.match(/^\s{2}[①②③④⑤⑥⑦][^\n]*/gm) || [];
-  record('10/10 截图 manifest 真解析门（YAML 语法 + 必填字段 + sha256 + 正文 alt 逐字一致）', r.ok,
+  record('10/11 截图 manifest 真解析门（YAML 语法 + 必填字段 + sha256 + 正文 alt 逐字一致）', r.ok,
     [mInfo[0], mStat[0], ...mBad.slice(0, 3)].filter(Boolean).join(' ｜ ') || (r.ok ? '退出码 0' : r.out.split('\n').slice(-6).join('\n')));
+}
+
+// ---------- 11. 产物级死链门（批次 227 新增） ----------
+// 🔴 第 5 道门（源级死链）有一个**结构性盲区**，批次 227 实测抓到 5 条它看不见的断链：
+//   源级门只验证「相对链接指向的源文件存在」，而构建之后有两类链接会凭空断掉——
+//     ① 指向 `srcExclude` 排除的页面：config.mjs 明确把 SOURCE_OBSERVATIONS.md 等
+//        工作账本排除出站点（dist 里根本没有 SOURCE_OBSERVATIONS.html），
+//        而正文里的 `[…](SOURCE_OBSERVATIONS.md)` 会被改写成 `.html` ⇒ 读者一点 404，
+//        且 `ignoreDeadLinks: true` 让它**连构建期都不报错**；
+//     ② 普通链接指向被哈希化的资源：VitePress 只改写 `![]()` 的 src，不改写 `[文字](x.png)`，
+//        而同一张图被 `![]()` 引用时已搬进 `assets/` 并加哈希 ⇒ 那个链接永远指向不存在的路径。
+//   两类都在源级门全绿时让产物带病 ⇒ 这不是重复劳动，是补一个真实的洞。
+// 自检：`node scripts/jimeng-dist-link-gate.mjs --probe`（注入坏链探针，验证这道门会红）。
+{
+  const r = run('dist-link-gate', process.execPath, [join('scripts', 'jimeng-dist-link-gate.mjs')]);
+  const mPass = r.out.match(/产物级死链门通过[^\n]*/) || [];
+  const mBad = r.out.match(/^\s{2}⛔ [^\n]*/gm) || [];
+  record('11/11 产物级死链门（dist HTML 里的站内链必须真打得开——srcExclude 与哈希化资源只有这道门看得见）', r.ok,
+    [mPass[0], ...mBad.slice(0, 6)].filter(Boolean).join(' ｜ ') || (r.ok ? '退出码 0' : r.out.split('\n').slice(-8).join('\n')));
 }
 
 // ---------- 9. 画布：焦点守卫 + 节点位置比对（第 9 道，批次 48 新增） ----------
@@ -170,19 +189,19 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
   try {
     b = await chromium.connectOverCDP(`http://127.0.0.1:${PORT}`);
   } catch (e) {
-    record('9/10 画布焦点守卫 + 位置比对', false, `无法连接 CDP ${PORT}：${e.message}`);
+    record('9/11 画布焦点守卫 + 位置比对', false, `无法连接 CDP ${PORT}：${e.message}`);
     b = null;
   }
   if (b) {
     const page = b.contexts()[0].pages().find((p) => p.url().includes('ai-canvas'));
     if (!page) {
-      record('9/10 画布焦点守卫 + 位置比对', false, '找不到画布页面');
+      record('9/11 画布焦点守卫 + 位置比对', false, '找不到画布页面');
     } else {
       const { keyGuard, canvasBaseline, diffNodePositions, pinViewport } = await import('./jimeng-safe-keys.mjs');
       let vp = null, vErr = null;
       try { vp = await pinViewport(page); } catch (e) { vErr = e.message; }
       if (vErr) {
-        record('9/10 画布焦点守卫 + 位置比对', false, vErr);
+        record('9/11 画布焦点守卫 + 位置比对', false, vErr);
       } else {
         const g = await keyGuard(page);
         const base = JSON.parse(readFileSync(BASELINE, 'utf8'));
@@ -253,7 +272,7 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
           `节点 canvas 坐标：`,
           ...cur.nodes.map((n) => `    ${n.id}  [${n.canvas ? n.canvas.join(', ') : '?'}]  ${JSON.stringify(n.title)}`),
         ];
-        record('9/10 画布焦点守卫 + 位置比对', ok, lines.join('\n'));
+        record('9/11 画布焦点守卫 + 位置比对', ok, lines.join('\n'));
       }
     }
     await b.close();
