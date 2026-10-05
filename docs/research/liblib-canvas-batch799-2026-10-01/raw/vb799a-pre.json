@@ -1,0 +1,1896 @@
+{
+ "batch": 799,
+ "phase": "pre",
+ "rounds": [
+  {
+   "round": 1,
+   "rows": [
+    {
+     "spec": {
+      "kind": "single"
+     },
+     "target": "s-m1",
+     "steps": 2,
+     "seq": [
+      {
+       "step": 0,
+       "state": {
+        "nodes": [
+         {
+          "id": "g-single",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": -40,
+           "y": -40
+          },
+          "abs": {
+           "x": -40,
+           "y": -40
+          },
+          "depth": 0,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "s-m1",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 0,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "s-m2",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 400,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 3,
+        "groupCount": 1
+       }
+      },
+      {
+       "step": 1,
+       "key": "ArrowRight",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-single",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": -39,
+           "y": -40
+          },
+          "abs": {
+           "x": -39,
+           "y": -40
+          },
+          "depth": 0,
+          "w": 679,
+          "h": 180
+         },
+         {
+          "id": "s-m1",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 1,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "s-m2",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 439,
+           "y": 40
+          },
+          "abs": {
+           "x": 400,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 3,
+        "groupCount": 1
+       }
+      },
+      {
+       "step": 2,
+       "key": "ArrowLeft",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-single",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": -40,
+           "y": -40
+          },
+          "abs": {
+           "x": -40,
+           "y": -40
+          },
+          "depth": 0,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "s-m1",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 0,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "s-m2",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 400,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 3,
+        "groupCount": 1
+       }
+      }
+     ],
+     "arm": "singleNudge",
+     "tries": 1
+    },
+    {
+     "spec": {
+      "kind": "nest",
+      "ox": 0,
+      "oy": 0
+     },
+     "target": "n-m1",
+     "steps": 2,
+     "seq": [
+      {
+       "step": 0,
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 40,
+           "y": 40
+          },
+          "depth": 1,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 0,
+           "y": 0
+          },
+          "abs": {
+           "x": 0,
+           "y": 0
+          },
+          "depth": 0,
+          "w": 760,
+          "h": 580
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 440
+          },
+          "abs": {
+           "x": 40,
+           "y": 440
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 80,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 480,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      },
+      {
+       "step": 1,
+       "key": "ArrowRight",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 41,
+           "y": 40
+          },
+          "abs": {
+           "x": 41,
+           "y": 40
+          },
+          "depth": 1,
+          "w": 679,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 0,
+           "y": 0
+          },
+          "abs": {
+           "x": 0,
+           "y": 0
+          },
+          "depth": 0,
+          "w": 760,
+          "h": 580
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 440
+          },
+          "abs": {
+           "x": 40,
+           "y": 440
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 81,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 439,
+           "y": 40
+          },
+          "abs": {
+           "x": 480,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      },
+      {
+       "step": 2,
+       "key": "ArrowLeft",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 40,
+           "y": 40
+          },
+          "depth": 1,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 0,
+           "y": 0
+          },
+          "abs": {
+           "x": 0,
+           "y": 0
+          },
+          "depth": 0,
+          "w": 760,
+          "h": 580
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 440
+          },
+          "abs": {
+           "x": 40,
+           "y": 440
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 80,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 480,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      }
+     ],
+     "arm": "nestedOrigin",
+     "tries": 1
+    },
+    {
+     "spec": {
+      "kind": "nest",
+      "ox": 200,
+      "oy": 150
+     },
+     "target": "n-m1",
+     "steps": 1,
+     "seq": [
+      {
+       "step": 0,
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 8840,
+           "y": 23190
+          },
+          "abs": {
+           "x": 9040,
+           "y": 23740
+          },
+          "depth": 1,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 200,
+           "y": 550
+          },
+          "abs": {
+           "x": 200,
+           "y": 550
+          },
+          "depth": 0,
+          "w": 9360,
+          "h": 22860
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 240,
+           "y": 590
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 9080,
+           "y": 23780
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 9480,
+           "y": 23780
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      },
+      {
+       "step": 1,
+       "key": "ArrowRight",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 17641,
+           "y": 47390
+          },
+          "abs": {
+           "x": 17841,
+           "y": 47940
+          },
+          "depth": 1,
+          "w": 679,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 200,
+           "y": 550
+          },
+          "abs": {
+           "x": 200,
+           "y": 550
+          },
+          "depth": 0,
+          "w": 18160,
+          "h": 47060
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 240,
+           "y": 590
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 17881,
+           "y": 47980
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 439,
+           "y": 40
+          },
+          "abs": {
+           "x": 18280,
+           "y": 47980
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      }
+     ],
+     "arm": "nestedOffsetOnce",
+     "tries": 1
+    },
+    {
+     "spec": {
+      "kind": "nest",
+      "ox": 200,
+      "oy": 150
+     },
+     "target": "n-m1",
+     "steps": 2,
+     "seq": [
+      {
+       "step": 0,
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 8640,
+           "y": 22640
+          },
+          "abs": {
+           "x": 8840,
+           "y": 23190
+          },
+          "depth": 1,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 200,
+           "y": 550
+          },
+          "abs": {
+           "x": 200,
+           "y": 550
+          },
+          "depth": 0,
+          "w": 9160,
+          "h": 22310
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 240,
+           "y": 590
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 8880,
+           "y": 23230
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 9280,
+           "y": 23230
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      },
+      {
+       "step": 1,
+       "key": "ArrowRight",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 17441,
+           "y": 46840
+          },
+          "abs": {
+           "x": 17641,
+           "y": 47390
+          },
+          "depth": 1,
+          "w": 679,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 200,
+           "y": 550
+          },
+          "abs": {
+           "x": 200,
+           "y": 550
+          },
+          "depth": 0,
+          "w": 17960,
+          "h": 46510
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 240,
+           "y": 590
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 17681,
+           "y": 47430
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 439,
+           "y": 40
+          },
+          "abs": {
+           "x": 18080,
+           "y": 47430
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      },
+      {
+       "step": 2,
+       "key": "ArrowLeft",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 26440,
+           "y": 71590
+          },
+          "abs": {
+           "x": 26640,
+           "y": 72140
+          },
+          "depth": 1,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 200,
+           "y": 550
+          },
+          "abs": {
+           "x": 200,
+           "y": 550
+          },
+          "depth": 0,
+          "w": 26960,
+          "h": 71260
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 240,
+           "y": 590
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 26680,
+           "y": 72180
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 27080,
+           "y": 72180
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      }
+     ],
+     "arm": "nestedOffsetTwice",
+     "tries": 1
+    }
+   ]
+  },
+  {
+   "round": 2,
+   "rows": [
+    {
+     "spec": {
+      "kind": "single"
+     },
+     "target": "s-m1",
+     "steps": 2,
+     "seq": [
+      {
+       "step": 0,
+       "state": {
+        "nodes": [
+         {
+          "id": "g-single",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": -40,
+           "y": -40
+          },
+          "abs": {
+           "x": -40,
+           "y": -40
+          },
+          "depth": 0,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "s-m1",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 0,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "s-m2",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 400,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 3,
+        "groupCount": 1
+       }
+      },
+      {
+       "step": 1,
+       "key": "ArrowRight",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-single",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": -39,
+           "y": -40
+          },
+          "abs": {
+           "x": -39,
+           "y": -40
+          },
+          "depth": 0,
+          "w": 679,
+          "h": 180
+         },
+         {
+          "id": "s-m1",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 1,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "s-m2",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 439,
+           "y": 40
+          },
+          "abs": {
+           "x": 400,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 3,
+        "groupCount": 1
+       }
+      },
+      {
+       "step": 2,
+       "key": "ArrowLeft",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-single",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": -40,
+           "y": -40
+          },
+          "abs": {
+           "x": -40,
+           "y": -40
+          },
+          "depth": 0,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "s-m1",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 0,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "s-m2",
+          "type": "text",
+          "parentId": "g-single",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 400,
+           "y": 0
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 3,
+        "groupCount": 1
+       }
+      }
+     ],
+     "arm": "singleNudge",
+     "tries": 1
+    },
+    {
+     "spec": {
+      "kind": "nest",
+      "ox": 0,
+      "oy": 0
+     },
+     "target": "n-m1",
+     "steps": 2,
+     "seq": [
+      {
+       "step": 0,
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 40,
+           "y": 40
+          },
+          "depth": 1,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 0,
+           "y": 0
+          },
+          "abs": {
+           "x": 0,
+           "y": 0
+          },
+          "depth": 0,
+          "w": 760,
+          "h": 580
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 440
+          },
+          "abs": {
+           "x": 40,
+           "y": 440
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 80,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 480,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      },
+      {
+       "step": 1,
+       "key": "ArrowRight",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 41,
+           "y": 40
+          },
+          "abs": {
+           "x": 41,
+           "y": 40
+          },
+          "depth": 1,
+          "w": 679,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 0,
+           "y": 0
+          },
+          "abs": {
+           "x": 0,
+           "y": 0
+          },
+          "depth": 0,
+          "w": 760,
+          "h": 580
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 440
+          },
+          "abs": {
+           "x": 40,
+           "y": 440
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 81,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 439,
+           "y": 40
+          },
+          "abs": {
+           "x": 480,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      },
+      {
+       "step": 2,
+       "key": "ArrowLeft",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 40,
+           "y": 40
+          },
+          "depth": 1,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 0,
+           "y": 0
+          },
+          "abs": {
+           "x": 0,
+           "y": 0
+          },
+          "depth": 0,
+          "w": 760,
+          "h": 580
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 440
+          },
+          "abs": {
+           "x": 40,
+           "y": 440
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 80,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 480,
+           "y": 80
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      }
+     ],
+     "arm": "nestedOrigin",
+     "tries": 1
+    },
+    {
+     "spec": {
+      "kind": "nest",
+      "ox": 200,
+      "oy": 150
+     },
+     "target": "n-m1",
+     "steps": 1,
+     "seq": [
+      {
+       "step": 0,
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 8640,
+           "y": 22640
+          },
+          "abs": {
+           "x": 8840,
+           "y": 23190
+          },
+          "depth": 1,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 200,
+           "y": 550
+          },
+          "abs": {
+           "x": 200,
+           "y": 550
+          },
+          "depth": 0,
+          "w": 9160,
+          "h": 22310
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 240,
+           "y": 590
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 8880,
+           "y": 23230
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 9280,
+           "y": 23230
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      },
+      {
+       "step": 1,
+       "key": "ArrowRight",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 17441,
+           "y": 46840
+          },
+          "abs": {
+           "x": 17641,
+           "y": 47390
+          },
+          "depth": 1,
+          "w": 679,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 200,
+           "y": 550
+          },
+          "abs": {
+           "x": 200,
+           "y": 550
+          },
+          "depth": 0,
+          "w": 17960,
+          "h": 46510
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 240,
+           "y": 590
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 17681,
+           "y": 47430
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 439,
+           "y": 40
+          },
+          "abs": {
+           "x": 18080,
+           "y": 47430
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      }
+     ],
+     "arm": "nestedOffsetOnce",
+     "tries": 1
+    },
+    {
+     "spec": {
+      "kind": "nest",
+      "ox": 200,
+      "oy": 150
+     },
+     "target": "n-m1",
+     "steps": 2,
+     "seq": [
+      {
+       "step": 0,
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 8640,
+           "y": 22640
+          },
+          "abs": {
+           "x": 8840,
+           "y": 23190
+          },
+          "depth": 1,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 200,
+           "y": 550
+          },
+          "abs": {
+           "x": 200,
+           "y": 550
+          },
+          "depth": 0,
+          "w": 9160,
+          "h": 22310
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 240,
+           "y": 590
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 8880,
+           "y": 23230
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 9280,
+           "y": 23230
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      },
+      {
+       "step": 1,
+       "key": "ArrowRight",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 17241,
+           "y": 46290
+          },
+          "abs": {
+           "x": 17441,
+           "y": 46840
+          },
+          "depth": 1,
+          "w": 679,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 200,
+           "y": 550
+          },
+          "abs": {
+           "x": 200,
+           "y": 550
+          },
+          "depth": 0,
+          "w": 17760,
+          "h": 45960
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 240,
+           "y": 590
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 17481,
+           "y": 46880
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 439,
+           "y": 40
+          },
+          "abs": {
+           "x": 17880,
+           "y": 46880
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      },
+      {
+       "step": 2,
+       "key": "ArrowLeft",
+       "state": {
+        "nodes": [
+         {
+          "id": "g-inner",
+          "type": "storyboard-group",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 26240,
+           "y": 71040
+          },
+          "abs": {
+           "x": 26440,
+           "y": 71590
+          },
+          "depth": 1,
+          "w": 680,
+          "h": 180
+         },
+         {
+          "id": "g-outer",
+          "type": "storyboard-group",
+          "parentId": null,
+          "pos": {
+           "x": 200,
+           "y": 550
+          },
+          "abs": {
+           "x": 200,
+           "y": 550
+          },
+          "depth": 0,
+          "w": 26760,
+          "h": 70710
+         },
+         {
+          "id": "n-loose",
+          "type": "text",
+          "parentId": "g-outer",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 240,
+           "y": 590
+          },
+          "depth": 1,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m1",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 40,
+           "y": 40
+          },
+          "abs": {
+           "x": 26480,
+           "y": 71630
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         },
+         {
+          "id": "n-m2",
+          "type": "text",
+          "parentId": "g-inner",
+          "pos": {
+           "x": 440,
+           "y": 40
+          },
+          "abs": {
+           "x": 26880,
+           "y": 71630
+          },
+          "depth": 2,
+          "w": 200,
+          "h": 100
+         }
+        ],
+        "total": 5,
+        "groupCount": 2
+       }
+      }
+     ],
+     "arm": "nestedOffsetTwice",
+     "tries": 1
+    }
+   ]
+  }
+ ]
+}

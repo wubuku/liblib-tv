@@ -710,8 +710,20 @@ const GROUP_PADDING = 40;
  * 两条刻意的边界：
  * 1. **0 成员的组不动**。收缩/隐藏空组是 757 待拍板 ② 的问题，源站未采样，
  *    本批不碰；空组保持原样（本批实测空组仍画完整框）。
- * 2. **组的顺序按「先外后内」**，每轮都**重新**从当前列表算绝对位置，
- *    这样嵌套时内层拿到的绝对位置已经是对的。
+ * 2. **组的顺序按「先外后内」**，每轮都**重新**从当前列表算绝对位置。
+ *
+ * ★★ Batch 799 **修正**了这里原来的说法。793 当年写的是「这样嵌套时内层拿到的
+ *   绝对位置已经是对的」——**读**绝对位置确实一直是对的（`getAbsoluteNodePosition`
+ *   没问题），错的是**写回**：原来的 `nextPosition` 是绝对坐标，却被原样写进组的
+ *   `position`，而 `position` 的语义是**相对直接父节点**。单层组没有父节点，
+ *   `parentAbs` 恰好为 0，两者相等 ⟹ **793–798 六批造的组全都没有父节点**，
+ *   没有一批能碰到它；嵌套且外层不在原点时，外层位移被**重复计入**。
+ *   修复见下方 `parentAbs`。
+ * 3. **单趟不足，靠反馈补齐**。`routeReactFlowChanges` 每次 react-flow 变化
+ *   （含 DOM 测量产生的 `dimensions` change）都会再跑一次本函数，而本函数会改
+ *   `style.width/height` ⟹ DOM 重排 ⟹ react-flow 再量 ⟹ 再跑。实测这条反馈会让
+ *   嵌套结构在第 2 趟收敛、外层用上内层的最终尺寸（280x580 → 760x580）。
+ *   ★ 也就是说「先外后内 + 每轮重算」单跑一趟是**不够**的，正确性依赖那条反馈。
  *
  * 拖**组本身**时成员的绝对位置没变 ⟹ 算出来与现状相同 ⟹ 整段是 no-op。
  */
@@ -741,9 +753,14 @@ function fitStoryboardGroupsToChildren(nodes: Node[]): Node[] {
     const kids = current.filter((node) => node.parentId === group.id);
     if (kids.length === 0) continue;               // ★ 边界 1：空组不动
     const byId = new Map(current.map((node) => [node.id, node]));
-    const absolutePositions = new Map(
-      kids.map((node) => [node.id, getAbsoluteNodePosition(node, byId)]),
-    );
+    // ★★ Batch 799：组的 `position` 语义是「相对**直接父节点**」
+    //   （`getAbsoluteNodePosition` `:569`），而 `minX/minY` 是 kids 的
+    //   **绝对**坐标 ⟹ 写回去之前必须减掉父组的绝对位置，否则外层位移
+    //   会被**重复计入**。单层（无父）时 `parentAbs` 为 0 ⟹ 行为不变。
+    const parentNode = group.parentId ? byId.get(group.parentId) : undefined;
+    const parentAbs = parentNode ? getAbsoluteNodePosition(parentNode, byId) : { x: 0, y: 0 };
+    const absolutePositions = new Map(kids.map(
+      (node) => [node.id, getAbsoluteNodePosition(node, byId)]));
     const minX = Math.min(
       ...kids.map((node) => absolutePositions.get(node.id)?.x ?? node.position.x),
     );
@@ -777,8 +794,8 @@ function fitStoryboardGroupsToChildren(nodes: Node[]): Node[] {
       typeof a === "number" && Math.abs(a - b) <= EPS;
     if (
       live &&
-      near(live.position.x, nextPosition.x) &&
-      near(live.position.y, nextPosition.y) &&
+      near(live.position.x + parentAbs.x, nextPosition.x) &&
+      near(live.position.y + parentAbs.y, nextPosition.y) &&
       near(live.width, nextWidth) &&
       near(live.height, nextHeight)
     ) {
@@ -788,7 +805,7 @@ function fitStoryboardGroupsToChildren(nodes: Node[]): Node[] {
       if (node.id === group.id) {
         return {
           ...node,
-          position: nextPosition,
+          position: { x: nextPosition.x - parentAbs.x, y: nextPosition.y - parentAbs.y },
           width: nextWidth,
           height: nextHeight,
           style: {

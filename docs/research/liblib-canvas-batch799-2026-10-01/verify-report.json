@@ -1,0 +1,321 @@
+{
+ "batch": 799,
+ "totals": {
+  "passed": 15,
+  "total": 15
+ },
+ "checks": [
+  {
+   "id": "S1:pad 由 raw 反推且唯一",
+   "why": "★ 不能写死 40（798 的教训）：16 个候选里必须唯一命中",
+   "ok": true,
+   "evidence": {
+    "候选域": [
+     0,
+     4,
+     8,
+     10,
+     12,
+     16,
+     20,
+     24,
+     28,
+     32,
+     36,
+     40,
+     44,
+     48,
+     56,
+     64
+    ],
+    "逐轮命中": [
+     [
+      40
+     ],
+     [
+      40
+     ]
+    ],
+    "反推值": 40
+   }
+  },
+  {
+   "id": "S2:★★ 阴性对照前提：`nestedOrigin` 的外层组在 (0,0)",
+   "why": "★ 该臂全绿**证明不了修复有效**（parentAbs==0 时新旧写法等价），只证明探针没坏 ⟹ 必须把「它落在特例上」钉死",
+   "ok": true,
+   "evidence": [
+    null,
+    null
+   ]
+  },
+  {
+   "id": "S3:阳性对照：单层组 pre 全对",
+   "why": "★ 单层本来就对（没父节点）⟹ 它绿是「机制没坏」而不是「修复生效」",
+   "ok": true,
+   "evidence": [
+    {
+     "越界": [],
+     "不贴合": []
+    },
+    {
+     "越界": [],
+     "不贴合": []
+    }
+   ]
+  },
+  {
+   "id": "S4:★★ 缺陷复现：pre 偏移臂成员/子组越出父组框",
+   "why": "★ 这是 793–798 六批全都测不到的那一类（它们的组都没有父节点）",
+   "ok": true,
+   "evidence": {
+    "nestedOffsetOnce#0": [
+     "g-inner 越出 g-outer（右超 160、下超 510）"
+    ],
+    "nestedOffsetOnce#1": [
+     "g-inner 越出 g-outer（右超 160、下超 510）"
+    ],
+    "nestedOffsetTwice#0": [
+     "g-inner 越出 g-outer（右超 160、下超 510）"
+    ],
+    "nestedOffsetTwice#1": [
+     "g-inner 越出 g-outer（右超 160、下超 510）"
+    ]
+   }
+  },
+  {
+   "id": "S5:★★ 缺陷在**注入后首读**就已越界（自动 fit 就够）",
+   "why": "★ `routeReactFlowChanges` 每次 react-flow 变化（含 DOM 测量）都跑 fit ⟹ 不需要用户动作就会引爆",
+   "ok": true,
+   "evidence": {
+    "nestedOffsetOnce#0": 1,
+    "nestedOffsetOnce#1": 1,
+    "nestedOffsetTwice#0": 1,
+    "nestedOffsetTwice#1": 1
+   }
+  },
+  {
+   "id": "S6:★★★ 修复生效：post 全部嵌套臂两条不变量全程成立",
+   "why": "★ 判据全用绝对几何表述 ⟹ 改对改错都判得出来",
+   "ok": true,
+   "evidence": {
+    "nestedOrigin#0": [],
+    "nestedOrigin#1": [],
+    "nestedOffsetOnce#0": [],
+    "nestedOffsetOnce#1": [],
+    "nestedOffsetTwice#0": [],
+    "nestedOffsetTwice#1": []
+   }
+  },
+  {
+   "id": "S7:★★ 无回归：单层臂与 origin 臂 pre/post **逐位相同**",
+   "why": "★ 修复对 parentAbs==0 必须是**恒等**变换 ⟹ 逐位相同是最强的证据",
+   "ok": true,
+   "evidence": {
+    "比对组数": 12,
+    "不一致": []
+   }
+  },
+  {
+   "id": "S8:★★★ 完整路径：原始注入态 →自动多趟→ 稳定态（post 逐位吻合）",
+   "why": "★ `setNodes` 不同 tick 读是 w=10（原始态），30ms 后已贴合 ⟹ 路径必须能从「注入」一路验到「稳定」",
+   "ok": true,
+   "evidence": {
+    "origin": {
+     "稳定趟数": 3,
+     "逐位相同": true,
+     "差异": ""
+    },
+    "offset": {
+     "稳定趟数": 3,
+     "逐位相同": true,
+     "差异": ""
+    }
+   }
+  },
+  {
+   "id": "S9:★ 同一模拟对 pre 偏移臂**对不上**",
+   "why": "★ 证明模拟抓的是真缺陷，不是口径差异（origin 臂仍应吻合）",
+   "ok": true,
+   "evidence": {
+    "origin": true,
+    "offset": false
+   }
+  },
+  {
+   "id": "S10:★ 旧实现（不相对化）的稳定态被复刻",
+   "why": "★ 同一个模拟器开关 relativize 就能解释修复前后的读数 ⟹ 「模拟吻合实测」不是橡皮章",
+   "ok": true,
+   "evidence": {
+    "嵌套层数": 2,
+    "命中趟数": "2..40"
+   }
+  },
+  {
+   "id": "S11:★ 如实记账：发散中间态不可逐位复刻，但**性质**一致",
+   "why": "★ 同一份代码两次跑 t=700 读数不同（g-inner rel 分别是 (8840,23190) 与 (9040,23740)）⟹ 反馈趟数依赖 DOM 测量时序，不硬凑逐位吻合",
+   "ok": true,
+   "evidence": {
+    "相对化模拟命中趟数": [],
+    "旧实现模拟中越界的趟数": "1..40",
+    "两次实测": {
+     "第一次": "g-inner rel(8840,23190)",
+     "第二次": "g-inner rel(9040,23740)"
+    }
+   }
+  },
+  {
+   "id": "S12:★★ 静态锚点：`parentAbs` 在**三处**都用上",
+   "why": "★ 漏掉 no-op 判定那两处会导致「已贴合」判错、每趟白白重建对象；漏掉写回那处就是缺陷本身",
+   "ok": true,
+   "evidence": {
+    "写回": true,
+    "nearX": true,
+    "nearY": true,
+    "声明": true
+   }
+  },
+  {
+   "id": "S13:静态锚点：子节点重基仍以 `nextPosition`（绝对）为准",
+   "why": "★ `nextPosition` 保持绝对语义，只在**写进组自己**时才减父位置",
+   "ok": true,
+   "evidence": {
+    "命中": true
+   }
+  },
+  {
+   "id": "S14:★★ 记账：792 记的「嵌套组合没实现」**今天仍然成立**",
+   "why": "★ 本批只修 fit 的坐标系，**没有**让 UI 能创建嵌套组 ⟹ 799 的结论只覆盖「已有嵌套数据时的几何」，不覆盖「造得出来」",
+   "ok": true,
+   "evidence": {
+    "groupSelectedNodes 里仍有 `type !== 'storyboard-group'` 过滤": true
+   }
+  },
+  {
+   "id": "S15:记账：改动面",
+   "why": "★ 单点改动（一个函数内的写回坐标系）+ 注释更正；未新增 API、未改 UI",
+   "ok": true,
+   "evidence": {
+    "改动文件": [
+     "src/store/canvasStore.ts"
+    ],
+    "改动函数": [
+     "fitStoryboardGroupsToChildren"
+    ],
+    "改动性质": [
+     "写回用相对父节点的坐标",
+     "no-op 判定补上父节点偏移"
+    ],
+    "顺带更正": [
+     "793 注释里「嵌套时内层拿到的绝对位置已经是对的」被 799 证伪"
+    ],
+    "没有改": [
+     "UI 造嵌套组的能力（792 遗留，仍未实现）",
+     "GROUP_PADDING（仍是 797 定下的 40）",
+     "组框尺寸吸附（798 拍板：不该吸）"
+    ],
+    "源站对照": "★ 未做（源站需登录）⟹ 「嵌套组应当如何表现」是工程判断"
+   }
+  }
+ ],
+ "negatives": [
+  {
+   "name": "N1 ★★ 源码回退：写回不再减父节点位置",
+   "why": "★ 端到端证据已在 pre/post raw 里；这条验的是**静态锚点**能抓住回退",
+   "evidence": {
+    "新的在": true,
+    "行数中性": true,
+    "旧的不在": true
+   },
+   "expectFlipped": "S12:★★ 静态锚点：`parentAbs` 在**三处**都用上",
+   "flipped": [
+    "S12:★★ 静态锚点：`parentAbs` 在**三处**都用上"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N2 ★★ 源码只改一半：漏掉 no-op 判定里的父偏移",
+   "why": "★ 漏这两处不会立刻坏掉（多重建一次对象而已）⟹ 正因如此必须由锚点守住",
+   "evidence": {
+    "新的在": true,
+    "行数中性": true,
+    "旧的不在": true
+   },
+   "expectFlipped": "S12:★★ 静态锚点：`parentAbs` 在**三处**都用上",
+   "flipped": [
+    "S12:★★ 静态锚点：`parentAbs` 在**三处**都用上"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N3 ★★ post raw：把内层组的相对位置挪 +400",
+   "why": "★ 验证 S6（修复生效）真的在看几何：几何一坏它就必须红",
+   "evidence": {
+    "file": "vb799a-post.json",
+    "hit": true
+   },
+   "expectFlipped": "S6:★★★ 修复生效：post 全部嵌套臂两条不变量全程成立",
+   "flipped": [
+    "S6:★★★ 修复生效：post 全部嵌套臂两条不变量全程成立"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N4 ★★ pre raw：把 origin 臂的外层组挪到 (200,150)",
+   "why": "★ 验证 S2：这条断言就是「阴性对照真的落在特例上」的唯一保证",
+   "evidence": {
+    "file": "vb799a-pre.json",
+    "hit": true
+   },
+   "expectFlipped": "S2:★★ 阴性对照前提：`nestedOrigin` 的外层组在 (0,0)",
+   "flipped": [
+    "S2:★★ 阴性对照前提：`nestedOrigin` 的外层组在 (0,0)",
+    "S7:★★ 无回归：单层臂与 origin 臂 pre/post **逐位相同**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N5 ★★ 反向对照：只改 `parentAbs` 那段注释的文字",
+   "why": "★ 证明 S12 锚的是**表达式**不是某段文本 —— 否则改个注释就全红",
+   "evidence": {
+    "新的在": true,
+    "行数中性": true,
+    "旧串仍在（预期）": true
+   },
+   "expectFlipped": "（反向对照：期望不翻）",
+   "flipped": [],
+   "ok": true
+  },
+  {
+   "name": "N6 ★★ 反向对照：`GROUP_PADDING` 改成 60（仍是 20 的倍数）",
+   "why": "★ 判据是「几何自洽」不是「== 40」⟹ 改常量不该让任何一条翻红",
+   "evidence": {
+    "新的在": true,
+    "行数中性": true,
+    "旧的不在": true
+   },
+   "expectFlipped": "（反向对照：期望不翻）",
+   "flipped": [],
+   "ok": true
+  }
+ ],
+ "negativesOk": 6,
+ "negativesTotal": 6,
+ "auditSummary": {
+  "passed": 14,
+  "total": 14
+ },
+ "restoreSha": {
+  "src": "1531400c97a40c3f8bdd2da823a8d6156656a1f8a80784810a4141cc6a43dc77",
+  "pre": "9df2e6f95d0b73916725d11b3f2d742294c6fbc1d8a1e1a0eb64bc77c430df80",
+  "post": "967529d4bfb16a4742ce8a08365c3268dff318b34beecd32250a0cf21fb89420",
+  "diagPre": "36d85af4296479204c709d885081c0cc1ca852adf7577b352408bb544b8d73ae",
+  "diagPost": "bdb5730b7c7e8a643a0849e76dbb390597bc1aa0968840fd038ecf37bf91ac94",
+  "ok": {
+   "cs": true,
+   "pre": true,
+   "post": true,
+   "diagPre": true,
+   "diagPost": true
+  }
+ }
+}

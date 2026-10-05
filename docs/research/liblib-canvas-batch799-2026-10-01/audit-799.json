@@ -1,0 +1,157 @@
+{
+ "batch": 799,
+ "inferredGroupPadding": 40,
+ "inferredFromCandidates": [
+  0,
+  4,
+  8,
+  10,
+  12,
+  16,
+  20,
+  24,
+  28,
+  32,
+  36,
+  40,
+  44,
+  48,
+  56,
+  64
+ ],
+ "checks": [
+  {
+   "id": "P1",
+   "title": "GROUP_PADDING 由 raw 反推得出（不写死常量）",
+   "pass": true,
+   "detail": "两轮反推结果：[(1, [40]), (2, [40])]；候选域 [0, 4, 8, 10, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 56, 64]",
+   "anchors": [
+    "probes/dbg799a.py:ARMS[nestedOrigin]",
+    "src/store/canvasStore.ts:fitStoryboardGroupsToChildren"
+   ]
+  },
+  {
+   "id": "P2",
+   "title": "★ 阴性对照前提：nestedOrigin 的外层组**确实**在原点（parentAbs==0）",
+   "pass": true,
+   "detail": "逐轮核对：[(1, None), (2, None)]",
+   "anchors": [
+    "probes/dbg799a.py:MAKE_GRAPH(outer@spec.ox,spec.oy)"
+   ]
+  },
+  {
+   "id": "P3",
+   "title": "阳性对照：单层组（无父节点）pre 已全对",
+   "pass": true,
+   "detail": "r1 A=无 B=无；r2 A=无 B=无",
+   "anchors": [
+    "probes/dbg799a.py:ARMS[singleNudge]",
+    "src/store/canvasStore.ts:fitStoryboardGroupsToChildren"
+   ]
+  },
+  {
+   "id": "B1",
+   "title": "★ 缺陷复现：pre 的「外层有偏移」臂违反不变量 A（成员/子组在框外）",
+   "pass": true,
+   "detail": "nestedOffsetOnce r1 末步 A违规 1 条；nestedOffsetOnce r2 末步 A违规 1 条；nestedOffsetTwice r1 末步 A违规 1 条；nestedOffsetTwice r2 末步 A违规 1 条",
+   "anchors": [
+    "probes/dbg799a.py:ARMS[nestedOffsetOnce/Twice]"
+   ]
+  },
+  {
+   "id": "B2",
+   "title": "★ 缺陷不必等用户动作：**注入后的首读**就已越界（自动 fit 就够）",
+   "pass": true,
+   "detail": "注入后首读的不变量 A 违规条数（臂, 轮, 条数）：[('nestedOffsetOnce', 1, 1), ('nestedOffsetOnce', 2, 1), ('nestedOffsetTwice', 1, 1), ('nestedOffsetTwice', 2, 1)]",
+   "anchors": [
+    "probes/dbg799diag.py:t=0 vs t=30",
+    "src/store/canvasStore.ts:3819"
+   ]
+  },
+  {
+   "id": "F1",
+   "title": "★ 修复生效：post 的全部嵌套臂（含偏移）两条不变量全程成立",
+   "pass": true,
+   "detail": "nestedOrigin r1 违规 0 条；nestedOrigin r2 违规 0 条；nestedOffsetOnce r1 违规 0 条；nestedOffsetOnce r2 违规 0 条；nestedOffsetTwice r1 违规 0 条；nestedOffsetTwice r2 违规 0 条",
+   "anchors": [
+    "src/store/canvasStore.ts:parentAbs",
+    "src/store/canvasStore.ts:fitStoryboardGroupsToChildren"
+   ]
+  },
+  {
+   "id": "R1",
+   "title": "★ 无回归：单层臂与 nestedOrigin 的 pre/post **逐位相同**",
+   "pass": true,
+   "detail": "共比对 12 组读数；差异：无",
+   "anchors": [
+    "src/store/canvasStore.ts:parentAbs（parentAbs==0 时为恒等）"
+   ]
+  },
+  {
+   "id": "C1",
+   "title": "★ 独立重算逐位吻合：本文件自写的 fit 模拟复刻了 post 的实测",
+   "pass": true,
+   "detail": "nestedOrigin 收敛用了 1 趟；逐位比对 相同；nestedOffsetOnce 收敛用了 1 趟；逐位比对 相同；nestedOffsetTwice 收敛用了 1 趟；逐位比对 相同",
+   "anchors": [
+    "probes/mk799audit.py:_sim_settle"
+   ]
+  },
+  {
+   "id": "C2",
+   "title": "★ 同一模拟对 pre 的偏移臂**对不上**（证明模拟抓的是真缺陷，不是口径差异）",
+   "pass": true,
+   "detail": "「模拟 == pre 实测」逐臂结果：[('nestedOrigin', True), ('nestedOffsetOnce', False)]",
+   "anchors": [
+    "probes/mk799audit.py:_sim_settle"
+   ]
+  },
+  {
+   "id": "C3",
+   "title": "★ 完整路径：原始注入态 →（自动多趟）→ 稳定态，post 侧逐位吻合",
+   "pass": true,
+   "detail": "origin 收敛于第 3 趟；逐位相同；offset 收敛于第 3 趟；逐位相同",
+   "anchors": [
+    "probes/dbg799diag.py:t=0 → t=700",
+    "probes/mk799audit.py:_sim_settle"
+   ]
+  },
+  {
+   "id": "C4",
+   "title": "★ 旧实现的稳定态被复刻：origin 臂的稳定趟数 == 嵌套层数",
+   "pass": true,
+   "detail": "origin 嵌套层数 2；不相对化模拟的命中趟数 [2, 3, 4, '…', 40]；offset 嵌套层数 2；不相对化模拟的命中趟数 []",
+   "anchors": [
+    "probes/mk799audit.py:_sim_n(relativize=False)"
+   ]
+  },
+  {
+   "id": "C4b",
+   "title": "★ 如实记账：发散中间态**不可逐位复刻**（时序依赖），只判性质",
+   "pass": true,
+   "detail": "不相对化模拟对 pre 偏移臂的命中趟数：空（空=逐位复刻不了）。两次 pre diag 实测 t=700 的 g-inner rel 分别是 (8840,23190) 与 (9040,23740) ⟹ 中间态随 DOM 测量时序变化。",
+   "anchors": [
+    "probes/dbg799diag.py:两次 pre 运行"
+   ]
+  },
+  {
+   "id": "C4c",
+   "title": "★ 性质一致：旧实现模拟出的态**也**违反不变量 A（越界）",
+   "pass": true,
+   "detail": "不相对化模拟中越界的趟数：[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40]",
+   "anchors": [
+    "probes/mk799audit.py:_violations"
+   ]
+  },
+  {
+   "id": "C5",
+   "title": "★ 阴性对照：相对化的模拟对 pre 偏移臂**一趟都不该命中**",
+   "pass": true,
+   "detail": "相对化模拟命中 pre 偏移臂的趟数：[]",
+   "anchors": [
+    "probes/mk799audit.py:_sim_n(relativize=True)"
+   ]
+  }
+ ],
+ "passed": 14,
+ "total": 14
+}

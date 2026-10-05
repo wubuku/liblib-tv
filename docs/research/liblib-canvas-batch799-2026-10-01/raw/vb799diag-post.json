@@ -1,0 +1,1016 @@
+[
+ {
+  "tag": "origin",
+  "ox": 0,
+  "oy": 0,
+  "seq": [
+   {
+    "t": 0,
+    "nodes": [
+     {
+      "id": "g-inner",
+      "type": "storyboard-group",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 40,
+       "y": 40
+      },
+      "w": 10,
+      "h": 10,
+      "styleW": 10,
+      "styleH": 10,
+      "measuredW": null,
+      "measuredH": null
+     },
+     {
+      "id": "g-outer",
+      "type": "storyboard-group",
+      "parentId": null,
+      "rel": {
+       "x": 0,
+       "y": 0
+      },
+      "abs": {
+       "x": 0,
+       "y": 0
+      },
+      "w": 10,
+      "h": 10,
+      "styleW": 10,
+      "styleH": 10,
+      "measuredW": null,
+      "measuredH": null
+     },
+     {
+      "id": "n-loose",
+      "type": "text",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 440
+      },
+      "abs": {
+       "x": 40,
+       "y": 440
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": null,
+      "measuredH": null
+     },
+     {
+      "id": "n-m1",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 80,
+       "y": 80
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": null,
+      "measuredH": null
+     },
+     {
+      "id": "n-m2",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 440,
+       "y": 40
+      },
+      "abs": {
+       "x": 480,
+       "y": 80
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": null,
+      "measuredH": null
+     }
+    ]
+   },
+   {
+    "t": 30,
+    "nodes": [
+     {
+      "id": "g-inner",
+      "type": "storyboard-group",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 40,
+       "y": 40
+      },
+      "w": 680,
+      "h": 180,
+      "styleW": 680,
+      "styleH": 180,
+      "measuredW": 680,
+      "measuredH": 180
+     },
+     {
+      "id": "g-outer",
+      "type": "storyboard-group",
+      "parentId": null,
+      "rel": {
+       "x": 0,
+       "y": 0
+      },
+      "abs": {
+       "x": 0,
+       "y": 0
+      },
+      "w": 760,
+      "h": 580,
+      "styleW": 760,
+      "styleH": 580,
+      "measuredW": 760,
+      "measuredH": 580
+     },
+     {
+      "id": "n-loose",
+      "type": "text",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 440
+      },
+      "abs": {
+       "x": 40,
+       "y": 440
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m1",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 80,
+       "y": 80
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m2",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 440,
+       "y": 40
+      },
+      "abs": {
+       "x": 480,
+       "y": 80
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     }
+    ]
+   },
+   {
+    "t": 250,
+    "nodes": [
+     {
+      "id": "g-inner",
+      "type": "storyboard-group",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 40,
+       "y": 40
+      },
+      "w": 680,
+      "h": 180,
+      "styleW": 680,
+      "styleH": 180,
+      "measuredW": 680,
+      "measuredH": 180
+     },
+     {
+      "id": "g-outer",
+      "type": "storyboard-group",
+      "parentId": null,
+      "rel": {
+       "x": 0,
+       "y": 0
+      },
+      "abs": {
+       "x": 0,
+       "y": 0
+      },
+      "w": 760,
+      "h": 580,
+      "styleW": 760,
+      "styleH": 580,
+      "measuredW": 760,
+      "measuredH": 580
+     },
+     {
+      "id": "n-loose",
+      "type": "text",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 440
+      },
+      "abs": {
+       "x": 40,
+       "y": 440
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m1",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 80,
+       "y": 80
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m2",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 440,
+       "y": 40
+      },
+      "abs": {
+       "x": 480,
+       "y": 80
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     }
+    ]
+   },
+   {
+    "t": 700,
+    "nodes": [
+     {
+      "id": "g-inner",
+      "type": "storyboard-group",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 40,
+       "y": 40
+      },
+      "w": 680,
+      "h": 180,
+      "styleW": 680,
+      "styleH": 180,
+      "measuredW": 680,
+      "measuredH": 180
+     },
+     {
+      "id": "g-outer",
+      "type": "storyboard-group",
+      "parentId": null,
+      "rel": {
+       "x": 0,
+       "y": 0
+      },
+      "abs": {
+       "x": 0,
+       "y": 0
+      },
+      "w": 760,
+      "h": 580,
+      "styleW": 760,
+      "styleH": 580,
+      "measuredW": 760,
+      "measuredH": 580
+     },
+     {
+      "id": "n-loose",
+      "type": "text",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 440
+      },
+      "abs": {
+       "x": 40,
+       "y": 440
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m1",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 80,
+       "y": 80
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m2",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 440,
+       "y": 40
+      },
+      "abs": {
+       "x": 480,
+       "y": 80
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     }
+    ]
+   },
+   {
+    "t": 1500,
+    "nodes": [
+     {
+      "id": "g-inner",
+      "type": "storyboard-group",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 40,
+       "y": 40
+      },
+      "w": 680,
+      "h": 180,
+      "styleW": 680,
+      "styleH": 180,
+      "measuredW": 680,
+      "measuredH": 180
+     },
+     {
+      "id": "g-outer",
+      "type": "storyboard-group",
+      "parentId": null,
+      "rel": {
+       "x": 0,
+       "y": 0
+      },
+      "abs": {
+       "x": 0,
+       "y": 0
+      },
+      "w": 760,
+      "h": 580,
+      "styleW": 760,
+      "styleH": 580,
+      "measuredW": 760,
+      "measuredH": 580
+     },
+     {
+      "id": "n-loose",
+      "type": "text",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 440
+      },
+      "abs": {
+       "x": 40,
+       "y": 440
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m1",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 80,
+       "y": 80
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m2",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 440,
+       "y": 40
+      },
+      "abs": {
+       "x": 480,
+       "y": 80
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "tag": "offset",
+  "ox": 200,
+  "oy": 150,
+  "seq": [
+   {
+    "t": 0,
+    "nodes": [
+     {
+      "id": "g-inner",
+      "type": "storyboard-group",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 240,
+       "y": 190
+      },
+      "w": 10,
+      "h": 10,
+      "styleW": 10,
+      "styleH": 10,
+      "measuredW": null,
+      "measuredH": null
+     },
+     {
+      "id": "g-outer",
+      "type": "storyboard-group",
+      "parentId": null,
+      "rel": {
+       "x": 200,
+       "y": 150
+      },
+      "abs": {
+       "x": 200,
+       "y": 150
+      },
+      "w": 10,
+      "h": 10,
+      "styleW": 10,
+      "styleH": 10,
+      "measuredW": null,
+      "measuredH": null
+     },
+     {
+      "id": "n-loose",
+      "type": "text",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 440
+      },
+      "abs": {
+       "x": 240,
+       "y": 590
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": null,
+      "measuredH": null
+     },
+     {
+      "id": "n-m1",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 280,
+       "y": 230
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": null,
+      "measuredH": null
+     },
+     {
+      "id": "n-m2",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 440,
+       "y": 40
+      },
+      "abs": {
+       "x": 680,
+       "y": 230
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": null,
+      "measuredH": null
+     }
+    ]
+   },
+   {
+    "t": 30,
+    "nodes": [
+     {
+      "id": "g-inner",
+      "type": "storyboard-group",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 240,
+       "y": 190
+      },
+      "w": 680,
+      "h": 180,
+      "styleW": 680,
+      "styleH": 180,
+      "measuredW": 680,
+      "measuredH": 180
+     },
+     {
+      "id": "g-outer",
+      "type": "storyboard-group",
+      "parentId": null,
+      "rel": {
+       "x": 200,
+       "y": 150
+      },
+      "abs": {
+       "x": 200,
+       "y": 150
+      },
+      "w": 760,
+      "h": 580,
+      "styleW": 760,
+      "styleH": 580,
+      "measuredW": 760,
+      "measuredH": 580
+     },
+     {
+      "id": "n-loose",
+      "type": "text",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 440
+      },
+      "abs": {
+       "x": 240,
+       "y": 590
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m1",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 280,
+       "y": 230
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m2",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 440,
+       "y": 40
+      },
+      "abs": {
+       "x": 680,
+       "y": 230
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     }
+    ]
+   },
+   {
+    "t": 250,
+    "nodes": [
+     {
+      "id": "g-inner",
+      "type": "storyboard-group",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 240,
+       "y": 190
+      },
+      "w": 680,
+      "h": 180,
+      "styleW": 680,
+      "styleH": 180,
+      "measuredW": 680,
+      "measuredH": 180
+     },
+     {
+      "id": "g-outer",
+      "type": "storyboard-group",
+      "parentId": null,
+      "rel": {
+       "x": 200,
+       "y": 150
+      },
+      "abs": {
+       "x": 200,
+       "y": 150
+      },
+      "w": 760,
+      "h": 580,
+      "styleW": 760,
+      "styleH": 580,
+      "measuredW": 760,
+      "measuredH": 580
+     },
+     {
+      "id": "n-loose",
+      "type": "text",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 440
+      },
+      "abs": {
+       "x": 240,
+       "y": 590
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m1",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 280,
+       "y": 230
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m2",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 440,
+       "y": 40
+      },
+      "abs": {
+       "x": 680,
+       "y": 230
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     }
+    ]
+   },
+   {
+    "t": 700,
+    "nodes": [
+     {
+      "id": "g-inner",
+      "type": "storyboard-group",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 240,
+       "y": 190
+      },
+      "w": 680,
+      "h": 180,
+      "styleW": 680,
+      "styleH": 180,
+      "measuredW": 680,
+      "measuredH": 180
+     },
+     {
+      "id": "g-outer",
+      "type": "storyboard-group",
+      "parentId": null,
+      "rel": {
+       "x": 200,
+       "y": 150
+      },
+      "abs": {
+       "x": 200,
+       "y": 150
+      },
+      "w": 760,
+      "h": 580,
+      "styleW": 760,
+      "styleH": 580,
+      "measuredW": 760,
+      "measuredH": 580
+     },
+     {
+      "id": "n-loose",
+      "type": "text",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 440
+      },
+      "abs": {
+       "x": 240,
+       "y": 590
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m1",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 280,
+       "y": 230
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m2",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 440,
+       "y": 40
+      },
+      "abs": {
+       "x": 680,
+       "y": 230
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     }
+    ]
+   },
+   {
+    "t": 1500,
+    "nodes": [
+     {
+      "id": "g-inner",
+      "type": "storyboard-group",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 240,
+       "y": 190
+      },
+      "w": 680,
+      "h": 180,
+      "styleW": 680,
+      "styleH": 180,
+      "measuredW": 680,
+      "measuredH": 180
+     },
+     {
+      "id": "g-outer",
+      "type": "storyboard-group",
+      "parentId": null,
+      "rel": {
+       "x": 200,
+       "y": 150
+      },
+      "abs": {
+       "x": 200,
+       "y": 150
+      },
+      "w": 760,
+      "h": 580,
+      "styleW": 760,
+      "styleH": 580,
+      "measuredW": 760,
+      "measuredH": 580
+     },
+     {
+      "id": "n-loose",
+      "type": "text",
+      "parentId": "g-outer",
+      "rel": {
+       "x": 40,
+       "y": 440
+      },
+      "abs": {
+       "x": 240,
+       "y": 590
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m1",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 280,
+       "y": 230
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     },
+     {
+      "id": "n-m2",
+      "type": "text",
+      "parentId": "g-inner",
+      "rel": {
+       "x": 440,
+       "y": 40
+      },
+      "abs": {
+       "x": 680,
+       "y": 230
+      },
+      "w": 200,
+      "h": 100,
+      "styleW": null,
+      "styleH": null,
+      "measuredW": 200,
+      "measuredH": 100
+     }
+    ]
+   }
+  ]
+ }
+]
