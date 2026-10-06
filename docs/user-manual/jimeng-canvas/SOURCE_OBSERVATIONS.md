@@ -9952,6 +9952,11 @@ HTML 逐字：`<p>普通正文行。</p>` → `<h1>…</h1>` → `<h2>…</h2>` 
 - **Shift+点乙** ⇒ 选中 `[node_d6cn9z91w6, node_8vwsfmqc24]` ✅ **恰好本轮那两个**
 - 多选工具条逐字：`node-toolbar` 4 项 **编组 ｜ 布局 ｜ 下载 ｜ Add tags**；
   `selection-context-toolbar` 3 项 **编组 ｜ 布局 ｜ 下载**
+  📌 **批次 264 消歧（这两个是**不同**的工具条，别当成一句）**：
+  手册说的「**多选工具条**」指的是 **`selection-context-toolbar`（3 项、无 `Add tags`）**，
+  那才是台账 `multi-selection-toolbar-has-no-add-tags` 推翻的对象；
+  **本行的 `node-toolbar`（4 项、含 `Add tags`）是另一个工具条，不是被推翻的那句**，
+  与 `20-reference.md`「多选工具条的 `Add tags` ｜ **无**（属性缺失）」并不矛盾。
 - `keyGuard` 放行（焦点 `DIV[rf__wrapper] aria="Canvas"`）后按 `⌘G`
 
 ### 4.28.5 🔴 `⌘G` 之后：`.react-flow__node` +2，状态行只 +1
