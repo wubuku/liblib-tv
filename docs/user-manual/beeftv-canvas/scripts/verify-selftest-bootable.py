@@ -401,6 +401,11 @@ SELFTEST_COSTS = {
     #: **Batch 236 新增**：三次实测 1.31 / 1.35 / 1.17 秒，**按纪律 204 取最大 1.4**。
     #: 它每例起临时目录并搬 manifest + 账本 + 参考页；被测闸门每例读一次上游 router.tsx。
     "selftest-route-notation.py": 1.4,
+    #: **Batch 304 重测：27.5 秒（7 → 9 例，其中 2 例跑在合成上游仓上）**。
+    #: **本值与上面那个 38 的预算都不下调**：语料确实小了（判据剔掉测试文件后
+    #: 13.4M → 10.2M 字符，`LITERAL_RE.findall` 跑在更短的串上），
+    #: **而机器高负载下 27.5 秒只能当上界**——**下调要的是同一套测法重测三遍，
+    #: 不是一次更快的数**（Batch 282 / 283 的同一条规矩，纪律 204）。
     "selftest-quote-punct.py": 37.1,
     "selftest-runtime-policy.py": 1.0,
     "selftest-scope.py": 0.4,

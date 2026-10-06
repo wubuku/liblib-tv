@@ -42,6 +42,36 @@
 后端**。实测把搜索面扩到 `web + backend` 后多命中 **10 条**（`Agent 能力已下线…`、
 `云端画布已有更新…`、`本地转写服务未配置：…` 等），**这 10 条是前端搜索永远够不到的**。
 
+**Batch 304 补一条范围纪律：测试文件不进语料。**
+这条不是「顺手收紧一下」，是实测出来的**判据形状问题**：本闸的两条臂读的不是同一份东西。
+
+  · 第一臂「`part in corpus`」读的是**整份源码文本**——所以 JSX 渲染的文案（`>新建</Button>`）
+    对它是可见的，逐字命中走的就是这一臂；
+  · 第二臂「`norm(part) in norm_literals`」读的是**带引号的字符串字面量集合**——
+    而 **JSX 文本根本没有引号**，所以第二臂对 JSX 文案**结构性不可见**。
+
+于是「这条文案在上游存在吗」这件事在第二臂上只能靠**别处恰好有一个同字的带引号字面量**来回答。
+而**测试文件正是最容易提供这种巧合字面量的地方**：上游 `web/test/canvas-folder-storage.test.ts`
+里有 4 处恰好是 `新建` 的字面量（给测试文件夹起的名字），于是 `norm_literals` 里第一次出现了 `新建`，
+把本闸一条**从未触发过**的分支激活，误报 `asset-library.md` 的两处「+ 新建」——
+**而上游渲染的是 `{<Plus />}>新建</Button>`，那个 `+` 是图标，不是文案里的字符。**
+（实测：`origin/main` 上 `新建` 的带引号字面量**全库只有那一个测试文件里有**，
+产品代码里 **0 处**；基线 `bcc3b05` 上则是 **两处都没有**——所以这条误报在基线上一直潜伏着。）
+
+**为什么剔测试文件是修对而不是掩盖**：测试文件**不是产品**，
+而本闸问的是「读者拿手册里这句话去和屏幕上的字比对，对不对得上」。
+**只在测试里被引号引起来的那条文案，恰恰说明上游是把它当 JSX 文本渲染的**——
+**没有引号的源码里不存在标点，于是从那种证人推出来的「标点漂移」，是在一个不可能有标点漂移的源上推的。**
+
+**剔的范围是量过的，不是拍的**（`origin/main`，两个 ref 各量一遍）：
+
+  · 剔掉的 **882** 个文件里有 **76808** 个字面量、**20999** 个归一化文案**只由测试提供**
+    （全量去重 46017 → 产品去重 25018，**人口缩 46%**）；
+  · **手册 947 段被检文案，剔完之后新增 0 条、消失 2 条**——消失的正是那两处误报，
+    **而那两个 ref 上没有任何一条真漂移被顺带削掉**（origin/main 全量语料下本来就只报这 2 条）；
+  · 反验 5 条能抓用例的证人**逐条查过在产品侧**（用例 1/2/6 的 norm 都在产品字面量集里），
+    方向二的自检 `PROBE` 也在产品语料里——**所以剔测试没有削掉任何一条鉴别力**。
+
 退出码：0 无标点漂移；1 有漂移；2 未能核对（语料读不到或自检探针失配，不等于通过）。
 """
 
@@ -85,6 +115,17 @@ LITERAL_RE = re.compile("[`'\"]" + "([^`'\"\n]{2,80})" + "[`'\"]")
 SPLIT_RE = re.compile("[/→]")
 SRC_EXT = (".ts", ".tsx", ".go")
 
+# **Batch 304：测试文件不进语料**（理由见文件头）。
+# **三种形态都要覆盖，缺一种就等于放行那一类**——实测 `origin/main` 上被判成测试的是
+# 882 个文件（`web/test/` 目录型 + `*_test.go` + `*.test.ts(x)` / `*.spec.ts(x)`）。
+# **刻意不按「文件名里有没有 test」这种宽形态收**：那会把 `latest.tsx`、
+# `contest.ts` 这类正当产品文件一起剔掉，而**误剔的后果是让判据变瞎，且没人会发现**。
+TEST_PATH_RE = re.compile(
+    r"(^|/)(tests?|__tests__|testdata|e2e)(/|$)"      # 目录型
+    r"|(_test\.go$)"                                  # Go 惯例
+    r"|(\.(test|spec)\.[cm]?[tj]sx?$)"                # JS/TS 惯例
+)
+
 # 方向二的自检探针：**只存在于 backend 的**一条文案。
 # 选它是因为它同时证明两件事——语料读到了 backend，且逐字比对这条链路是通的。
 PROBE = "云端画布已有更新，已停止覆盖；请保留本地草稿并加载最新版本"
@@ -95,7 +136,15 @@ def norm(s):
 
 
 def load_corpus(src, ref):
-    """把上游 web/ 与 backend/ 的源码一次性读进内存（batchread：两次进程调用）。"""
+    """把上游 web/ 与 backend/ 的**产品**源码一次性读进内存（batchread：两次进程调用）。
+
+    返回 `(语料, 参与的文件数, 剔掉的测试文件数)`——**第三个返回值是刻意给的**：
+    本批把「剔测试」当成一条范围纪律，而**一条没人能核的收紧就是又一次静默失效**
+    （纪律 101：范围变了必须看得见）。剔除量会打进输出。
+
+    **仍然一次 `read_many` 读完再筛，而不是分两次读**：分两次要多两次子进程调用，
+    而筛选是纯内存判断——**这里该省的是进程，不是那点字节**（Batch 181 的同一条教训）。
+    """
     import subprocess
     r = subprocess.run(["git", "ls-tree", "-r", "--name-only", ref],
                        cwd=src, capture_output=True, text=True)
@@ -108,7 +157,12 @@ def load_corpus(src, ref):
     blobs = read_many(src, ref, files)
     if not blobs:
         raise RuntimeError("批量读取返回 0 个文件")
-    return "\n".join(b.decode("utf-8", "replace") for b in blobs.values())
+    kept = [f for f in files if f in blobs and not TEST_PATH_RE.search(f)]
+    dropped = [f for f in files if f in blobs and TEST_PATH_RE.search(f)]
+    if not kept:
+        raise RuntimeError("剔掉测试文件之后一个产品文件都不剩——剔除条件退化了")
+    corpus = "\n".join(blobs[f].decode("utf-8", "replace") for f in kept)
+    return corpus, len(kept), len(dropped)
 
 
 def main():
@@ -132,7 +186,7 @@ def main():
         # （不是元组——我第一版写成 `resolve_ref()[1]`，取到的是第二个字符 "c"，
         # 于是 git ls-tree 报「Not a valid object name c」）
         ref = os.environ.get("BEEFTV_REF") or resolve_ref()
-        corpus = load_corpus(src, ref)
+        corpus, n_kept, n_dropped = load_corpus(src, ref)
     except (RuntimeError, BaselineError, OSError) as exc:
         print("[未能核对] %s" % exc)
         return 2
@@ -154,7 +208,8 @@ def main():
         print("[未能核对] 从语料里只抽到 %d 个字符串字面量——提取规则退化了" % len(literals))
         return 2
     norm_literals = {norm(x) for x in literals}
-    print("  语料字符串字面量 %d 个" % len(literals))
+    print("  语料字符串字面量 %d 个（产品源文件 %d 个，已剔测试文件 %d 个）"
+          % (len(literals), n_kept, n_dropped))
     problems = []
     checked = 0
     import glob as _glob
