@@ -1,0 +1,75 @@
+{
+  "_唯一真值": "纪律 332 那张「升版要过的门」矩阵的机器可读登记。AUDIT-RULES.md 纪律 332② 是 Batch 297 的历史实测（8 道 / 32 条），**不改**（证据处留痕）；当前值以本文件为准，订正见纪律 346。",
+  "_为什么要指纹": "这张表登记的是**闸的行为**（某 ref 上报几条），而闸本身会被改。**改闸不会自动作废这张表**——实测 Batch 304 改了 verify-quote-punct.py，它那一行随即从 2 条变成 0 条，表上却一直写着 2，过期了 7 个批次而没有任何东西会报。",
+  "_重测方法": "python3 scripts/remeasure-gate-registry.py（需先逐闸落盘两个 ref 的输出）",
+  "measured_at": "Batch 311",
+  "baseline_ref": "bcc3b05",
+  "upstream_ref": "origin/main",
+  "gates": [
+    {
+      "gate": "verify-error-copy.py",
+      "upstream_items": 2,
+      "measured_form": "红态",
+      "red_sentence": "错误分类文案核对：(\\d+) 处不一致",
+      "green_sentence": "错误分类文案核对通过：",
+      "gate_sha256": "6ecc1252a5d294c307032d4831161f05af12cabf7313254b9ecc7c827a446dc1"
+    },
+    {
+      "gate": "verify-label-drift.py",
+      "upstream_items": 2,
+      "measured_form": "红态",
+      "red_sentence": "标签漂移核对：(\\d+) 项需要处理",
+      "green_sentence": "标签漂移核对：(\\d+) 项跨文件分歧全部与登记一致",
+      "gate_sha256": "5848fe23f8dc4b51c3c7a5105ce65b021c7c44dd7b184985646e130d2e0d8ff1"
+    },
+    {
+      "gate": "verify-line-counts.py",
+      "upstream_items": 5,
+      "measured_form": "红态",
+      "red_sentence": "上游行数核对：(\\d+)/\\d+ 条声明与上游不符",
+      "green_sentence": "上游行数核对通过：",
+      "gate_sha256": "4a20b26f6155f6ec70ae86c2615dcc7879da4ab68f77dc22ce95b66b2d9e861c"
+    },
+    {
+      "gate": "verify-quota-tables.py",
+      "upstream_items": 3,
+      "measured_form": "红态",
+      "red_sentence": "账号配额核对：(\\d+) 处声明与上游不符",
+      "green_sentence": "账号配额核对通过：",
+      "gate_sha256": "41d0895acc00f6514d457d7bb859922bcbd994957e4fd8577fd127234ec1b241"
+    },
+    {
+      "gate": "verify-quote-punct.py",
+      "upstream_items": 0,
+      "measured_form": "绿态",
+      "red_sentence": "标点漂移核对：(\\d+) 处",
+      "green_sentence": "标点漂移核对通过：",
+      "gate_sha256": "b3df2dffd339465ab4bab23ad1a0f31ffd65f535427ba76fabd508453e14296c"
+    },
+    {
+      "gate": "verify-screenshots-literals.py",
+      "upstream_items": 2,
+      "measured_form": "红态",
+      "red_sentence": "截图取证文案核对：(\\d+) 处需处理",
+      "green_sentence": "截图取证文案核对：(\\d+) 个保守形态片段全部在上游存在",
+      "gate_sha256": "d7ca3c289fac6869b78afc1f5a7a180b7ee68f19adae8bc778a51af15839c851"
+    },
+    {
+      "gate": "verify-shot-drift.py",
+      "upstream_items": 12,
+      "measured_form": "红态",
+      "red_sentence": "截图布局漂移核对：(\\d+) 处问题",
+      "green_sentence": "截图布局漂移核对通过：",
+      "gate_sha256": "d513b9c8fea967bb6161f0d98f8337a8032de1cea0eef5f770227213fefa2e40"
+    },
+    {
+      "gate": "verify-unreachable.py",
+      "upstream_items": 4,
+      "measured_form": "红态",
+      "red_sentence": "不可达声明核对：(\\d+) 处不一致",
+      "green_sentence": "不可达声明核对：(\\d+) 条断言仍成立",
+      "gate_sha256": "d1393a42d6a861c84a533b3c69b796734ed9391543870474ab61fad758bd7f75"
+    }
+  ],
+  "total": 30
+}
