@@ -240,7 +240,7 @@ BeefTV 会读一批 URL 查询参数，其中有几个**没有任何界面动作
 |---|---|---|
 | `web/src/pages/canvas` | 17122 | 画布工作区是最大的页面目录 |
 | `web/src/pages/projects` | 5192 | 项目工作区，位次第二 |
-| `web/src/pages/create` | 2790 | `create-workspace.md`「体量第三大的页面目录」 |
+| `web/src/pages/create` | 2790 | `10-tasks/create-workspace.md`「体量第三大的页面目录」 |
 | `web/src/pages/settings/channel-settings-pane.tsx` | 738 | `10-tasks/model-channels.md`「渠道设置」 |
 | `web/src/pages/settings/runninghub-settings-pane.tsx` | 357 | `10-tasks/model-channels.md`「RunningHub 设置」 |
 | `web/src/pages/tasks` | 1221 | 已退场路由对应的源码仍在仓库里 |

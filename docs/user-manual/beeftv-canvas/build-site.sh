@@ -251,6 +251,20 @@ run_gate verify-unreachable.py 不可达断言
 # 那时要更新快照表或删掉那句话里的论据，**不要放宽判据**。
 run_gate verify-line-counts.py 上游行数
 
+# 第四十三道闸（Batch 301 新增）：**序关系断言与快照表指针**。
+# 起因是纪律 335 查出的两处「从来没人看守」：
+# `10-tasks/model-channels.md` 曾写「本页是产品里源码量第三大的界面页」，
+# **而按闸 11 那张表自己定义的口径，`web/src/pages/settings` 在 v1.6.16 / v1.6.22 /
+# `origin/main` 三个 ref 上都是第 5 位**——**它不是漂移，它写下那天就是错的**；
+# 而快照表第三列（`model-channels.md`）指向的文件早搬到 `10-tasks/`，
+# **写成反引号不是 Markdown 链接，所以闸 6 的链接核对看不见它**。
+# **闸 11 核的是「表里的数 == 上游的数」；而「第三大」这个词既不在表里、也不在任何判据里。**
+# 本闸三个方向：①活断言必须自带对照集（Batch 300 实测那正是唯一错的一条）
+# ②能抽出对照集的现场重数复核 ③快照表第三列里的 `.md` 必须全树唯一命中。
+# **代价实测 0.30 秒**（三遍 0.31 / 0.30 / 0.30）——第一版逐文件 `git show` 是 3.0 秒，
+# **改成「一次 ls-tree + 一次 batchread.read_many」之后 10 倍，而结论逐字相同**。
+run_gate verify-rank-claims.py 序关系断言与快照表指针
+
 # 第十二道闸（Batch 172 新增）：随部署模式而变的策略常量。
 # 服务端有两套策略——DefaultRuntimePolicy()（默认部署）与 selfUseRuntimePolicy()（**本地部署**），
 # 切换判据是 `RuntimePolicy()` 里 `if s.localMode { … }`，而 NewLocal() 正是以 localMode=true 构造的。
