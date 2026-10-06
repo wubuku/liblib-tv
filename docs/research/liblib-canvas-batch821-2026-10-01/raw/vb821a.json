@@ -1,0 +1,437 @@
+{
+ "base": "http://localhost:4317",
+ "cells": [
+  {
+   "读取": [
+    {
+     "时刻": "序0·刚打开导演台、什么都还没点",
+     "store": {
+      "选中轨道": "director-track-camera-main",
+      "轨道关键帧数": 3,
+      "相机对象": "director-camera-main",
+      "相机锁定": false,
+      "跟随目标": null,
+      "presetError": null,
+      "lastCommand": null
+     },
+     "dom": {
+      "提示": [],
+      "面板开着": false,
+      "开关按钮存在": true,
+      "开关按钮disabled": true,
+      "开关按钮title": null,
+      "★ 扫描器自检": true,
+      "★ 探针被扫到几个": 2
+     },
+     "所有可见提示": [],
+     "★ 预设错误提示": [],
+     "★ 命令反馈": [],
+     "★ 面板外的提示": [],
+     "★ 面板内的提示": []
+    },
+    {
+     "时刻": "序0b·选中了相机轨道、还没点任何按钮",
+     "store": {
+      "选中轨道": "director-track-camera-main",
+      "轨道关键帧数": 3,
+      "相机对象": "director-camera-main",
+      "相机锁定": false,
+      "跟随目标": null,
+      "presetError": null,
+      "lastCommand": null
+     },
+     "dom": {
+      "提示": [],
+      "面板开着": false,
+      "开关按钮存在": true,
+      "开关按钮disabled": false,
+      "开关按钮title": null,
+      "★ 扫描器自检": true,
+      "★ 探针被扫到几个": 2
+     },
+     "所有可见提示": [],
+     "★ 预设错误提示": [],
+     "★ 命令反馈": [],
+     "★ 面板外的提示": [],
+     "★ 面板内的提示": []
+    },
+    {
+     "时刻": "臂1·设了跟随目标、**一个按钮都还没点**",
+     "store": {
+      "选中轨道": "director-track-camera-main",
+      "轨道关键帧数": 3,
+      "相机对象": "director-camera-main",
+      "相机锁定": false,
+      "跟随目标": "director-character-lead",
+      "presetError": null,
+      "lastCommand": {
+       "kind": "UPDATE_CAMERA",
+       "disposition": "COMMITTED",
+       "reason": null
+      }
+     },
+     "dom": {
+      "提示": [
+       {
+        "通道": "预设错误提示",
+        "文本": "跟随目标时不可使用预设运镜",
+        "在预设面板内部": false
+       }
+      ],
+      "面板开着": false,
+      "开关按钮存在": true,
+      "开关按钮disabled": true,
+      "开关按钮title": "跟随目标时不可使用预设运镜",
+      "★ 扫描器自检": true,
+      "★ 探针被扫到几个": 2
+     },
+     "所有可见提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": false
+      }
+     ],
+     "★ 预设错误提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": false
+      }
+     ],
+     "★ 命令反馈": [],
+     "★ 面板外的提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": false
+      }
+     ],
+     "★ 面板内的提示": []
+    },
+    {
+     "时刻": "臂1b·程序化调过预设之后",
+     "store": {
+      "选中轨道": "director-track-camera-main",
+      "轨道关键帧数": 3,
+      "相机对象": "director-camera-main",
+      "相机锁定": false,
+      "跟随目标": "director-character-lead",
+      "presetError": {
+       "trackId": "director-track-camera-main",
+       "preset": "orbit",
+       "mode": "replace",
+       "message": "跟随目标时不可使用预设运镜"
+      },
+      "lastCommand": {
+       "kind": "UPDATE_CAMERA",
+       "disposition": "COMMITTED",
+       "reason": null
+      }
+     },
+     "dom": {
+      "提示": [
+       {
+        "通道": "预设错误提示",
+        "文本": "跟随目标时不可使用预设运镜",
+        "在预设面板内部": false
+       }
+      ],
+      "面板开着": false,
+      "开关按钮存在": true,
+      "开关按钮disabled": true,
+      "开关按钮title": "跟随目标时不可使用预设运镜",
+      "★ 扫描器自检": true,
+      "★ 探针被扫到几个": 2
+     },
+     "所有可见提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": false
+      }
+     ],
+     "★ 预设错误提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": false
+      }
+     ],
+     "★ 命令反馈": [],
+     "★ 面板外的提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": false
+      }
+     ],
+     "★ 面板内的提示": []
+    },
+    {
+     "时刻": "臂1c·清掉跟随目标之后",
+     "store": {
+      "选中轨道": "director-track-camera-main",
+      "轨道关键帧数": 3,
+      "相机对象": "director-camera-main",
+      "相机锁定": false,
+      "跟随目标": null,
+      "presetError": {
+       "trackId": "director-track-camera-main",
+       "preset": "orbit",
+       "mode": "replace",
+       "message": "跟随目标时不可使用预设运镜"
+      },
+      "lastCommand": {
+       "kind": "UPDATE_CAMERA",
+       "disposition": "COMMITTED",
+       "reason": null
+      }
+     },
+     "dom": {
+      "提示": [],
+      "面板开着": false,
+      "开关按钮存在": true,
+      "开关按钮disabled": false,
+      "开关按钮title": null,
+      "★ 扫描器自检": true,
+      "★ 探针被扫到几个": 2
+     },
+     "所有可见提示": [],
+     "★ 预设错误提示": [],
+     "★ 命令反馈": [],
+     "★ 面板外的提示": [],
+     "★ 面板内的提示": []
+    },
+    {
+     "时刻": "臂2·锁住相机、还没按预设",
+     "store": {
+      "选中轨道": "director-track-camera-main",
+      "轨道关键帧数": 3,
+      "相机对象": "director-camera-main",
+      "相机锁定": true,
+      "跟随目标": null,
+      "presetError": {
+       "trackId": "director-track-camera-main",
+       "preset": "orbit",
+       "mode": "replace",
+       "message": "跟随目标时不可使用预设运镜"
+      },
+      "lastCommand": {
+       "kind": "UPDATE_OBJECT",
+       "disposition": "COMMITTED",
+       "reason": null
+      }
+     },
+     "dom": {
+      "提示": [],
+      "面板开着": false,
+      "开关按钮存在": true,
+      "开关按钮disabled": false,
+      "开关按钮title": null,
+      "★ 扫描器自检": true,
+      "★ 探针被扫到几个": 2
+     },
+     "所有可见提示": [],
+     "★ 预设错误提示": [],
+     "★ 命令反馈": [],
+     "★ 面板外的提示": [],
+     "★ 面板内的提示": []
+    },
+    {
+     "时刻": "臂2b·打开预设面板之后",
+     "store": {
+      "选中轨道": "director-track-camera-main",
+      "轨道关键帧数": 3,
+      "相机对象": "director-camera-main",
+      "相机锁定": true,
+      "跟随目标": null,
+      "presetError": {
+       "trackId": "director-track-camera-main",
+       "preset": "orbit",
+       "mode": "replace",
+       "message": "跟随目标时不可使用预设运镜"
+      },
+      "lastCommand": {
+       "kind": "UPDATE_OBJECT",
+       "disposition": "COMMITTED",
+       "reason": null
+      }
+     },
+     "dom": {
+      "提示": [
+       {
+        "通道": "预设错误提示",
+        "文本": "跟随目标时不可使用预设运镜",
+        "在预设面板内部": true
+       }
+      ],
+      "面板开着": true,
+      "开关按钮存在": true,
+      "开关按钮disabled": false,
+      "开关按钮title": null,
+      "★ 扫描器自检": true,
+      "★ 探针被扫到几个": 2
+     },
+     "所有可见提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": true
+      }
+     ],
+     "★ 预设错误提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": true
+      }
+     ],
+     "★ 命令反馈": [],
+     "★ 面板外的提示": [],
+     "★ 面板内的提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": true
+      }
+     ]
+    },
+    {
+     "时刻": "臂2c·锁定状态下按了预设之后",
+     "store": {
+      "选中轨道": "director-track-camera-main",
+      "轨道关键帧数": 3,
+      "相机对象": "director-camera-main",
+      "相机锁定": true,
+      "跟随目标": null,
+      "presetError": {
+       "trackId": "director-track-camera-main",
+       "preset": "orbit",
+       "mode": "replace",
+       "message": "跟随目标时不可使用预设运镜"
+      },
+      "lastCommand": {
+       "kind": "APPLY_CAMERA_MOTION_PRESET",
+       "disposition": "REJECTED",
+       "reason": "DIRECTOR_TARGET_LOCKED"
+      }
+     },
+     "dom": {
+      "提示": [
+       {
+        "通道": "预设错误提示",
+        "文本": "跟随目标时不可使用预设运镜",
+        "在预设面板内部": true
+       },
+       {
+        "通道": "命令反馈",
+        "文本": "目标对象已锁定，未应用修改",
+        "处置": "REJECTED",
+        "理由": "DIRECTOR_TARGET_LOCKED",
+        "在预设面板内部": false
+       }
+      ],
+      "面板开着": true,
+      "开关按钮存在": true,
+      "开关按钮disabled": false,
+      "开关按钮title": null,
+      "★ 扫描器自检": true,
+      "★ 探针被扫到几个": 2
+     },
+     "所有可见提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": true
+      },
+      {
+       "通道": "命令反馈",
+       "文本": "目标对象已锁定，未应用修改",
+       "处置": "REJECTED",
+       "理由": "DIRECTOR_TARGET_LOCKED",
+       "在预设面板内部": false
+      }
+     ],
+     "★ 预设错误提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": true
+      }
+     ],
+     "★ 命令反馈": [
+      {
+       "通道": "命令反馈",
+       "文本": "目标对象已锁定，未应用修改",
+       "处置": "REJECTED",
+       "理由": "DIRECTOR_TARGET_LOCKED",
+       "在预设面板内部": false
+      }
+     ],
+     "★ 面板外的提示": [
+      {
+       "通道": "命令反馈",
+       "文本": "目标对象已锁定，未应用修改",
+       "处置": "REJECTED",
+       "理由": "DIRECTOR_TARGET_LOCKED",
+       "在预设面板内部": false
+      }
+     ],
+     "★ 面板内的提示": [
+      {
+       "通道": "预设错误提示",
+       "文本": "跟随目标时不可使用预设运镜",
+       "在预设面板内部": true
+      }
+     ]
+    },
+    {
+     "时刻": "臂2d·解锁后按预设（成功路径）",
+     "store": {
+      "选中轨道": "director-track-camera-main",
+      "轨道关键帧数": 9,
+      "相机对象": "director-camera-main",
+      "相机锁定": false,
+      "跟随目标": null,
+      "presetError": null,
+      "lastCommand": {
+       "kind": "PROJECT_MUTATION",
+       "disposition": "COMMITTED",
+       "reason": null
+      }
+     },
+     "dom": {
+      "提示": [],
+      "面板开着": true,
+      "开关按钮存在": true,
+      "开关按钮disabled": false,
+      "开关按钮title": null,
+      "★ 扫描器自检": true,
+      "★ 探针被扫到几个": 2
+     },
+     "所有可见提示": [],
+     "★ 预设错误提示": [],
+     "★ 命令反馈": [],
+     "★ 面板外的提示": [],
+     "★ 面板内的提示": []
+    }
+   ],
+   "操作": {
+    "选中相机轨道": "director-track-camera-main",
+    "相机对象": "director-camera-main",
+    "跟随目标": "director-character-lead",
+    "程序化 applyCameraMotionPreset": {
+     "返回": false,
+     "presetError": "跟随目标时不可使用预设运镜",
+     "lastCommand": null
+    },
+    "开面板": "clicked",
+    "按预设": "clicked",
+    "解锁后再按预设": "clicked"
+   },
+   "round": 0,
+   "secs": 15.8
+  }
+ ]
+}
