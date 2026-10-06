@@ -10778,3 +10778,38 @@ Batch 249 加的）、`run_two_file_case`（3 条，**没有**）、用例 7 内
     而正则找的是「零处调用」——**数出 0 处，实测 4 处**。
     **纪律 337**。
 
+
+266. **纪律 332 剩下 11 条的实测（ref = `origin/main`）**：
+    **`verify-quota-tables`（3 处）**：上游有配额文案的字段 **9 个**
+    （`APICallLogCount` `AssetCount` `CanvasCount` `DailyUploadMB`
+    `GeneratedFileMB` `ResourceUploadMB` `StructuredDataMB` `TaskCount` `TaskDataGB`），
+    手册 `10-tasks/storage-quota.md` 的配额表 **10 行**。
+    **差额有解释**：「账号存储总量 20 GB」是**总量**、上游没有对应的「超过」类文案；
+    「单个生成文件 / 资源 < 64 MB」是 **`GeneratedFileMB` + `ResourceUploadMB` 两字段合写一格**。
+    **所以这一族既不是「漏写」也不是「多写」，是「一格对两字段」加一格无对应文案。**
+    **`verify-error-copy`（2 类）**：上游 **30** 类 / 手册 **25** 类；
+    缺 `canvas_conflict`（「生成结果已保留，画布尚未更新｜请先使用画布最新版本，
+    再重新加载资源，不要重新生成」）与 `local_storage`（「本地数据库无法读写｜
+    请重启应用；若仍失败，请保留排查信息并联系支持，不要重复生成」）。
+    **落点**：`canvas_conflict` **1 处**（`90-troubleshooting.md`）；
+    **`local_storage` 0 处——那条文案根本没进过手册**，
+    而 `90-troubleshooting.md:65` 只有一句泛泛的「失败发生在把任务写进本地数据库那一步」。
+    **`verify-label-drift`（2 项）**：`gemini`（Gemini / Gemini 原生）与
+    `openai`（OpenAI / OpenAI 兼容），两处分歧都在
+    `channel-settings-pane.tsx` 与 `model-service-editor.tsx`。
+    **手册里 `Gemini` 3 处、`OpenAI 兼容` 8 处，而「Gemini 原生」0 处。**
+    **`verify-screenshots-literals`（2 条）**：`拉取全部` / `新增渠道`
+    在 `origin/main` 的 `web/src` 上 **0 命中**（Batch 298 已独立实测同一处）。
+    **落点 7 处**（`model-channels.md` / `plugins-management.md` / `create-workspace.md`）。
+    **`verify-quote-punct`（2 处）＝误报**：
+    | 量 | `bcc3b05` | `origin/main` |
+    | --- | --- | --- |
+    | `+ 新建` 逐字在语料里 | **False** | **False** |
+    | `norm('新建')` 在 `norm_literals` 里 | **False** | **True** |
+    | 归一化后等于它的字面量 | **0 个** | **4 个** |
+    **那 4 个全在 `web/test/canvas-folder-storage.test.ts`**（测试夹具里的文件夹名），
+    **而闸的语料范围含 `web/test/`**；**而上游渲染的是 `={<Plus />}>新建</Button>`，
+    那个 `+` 是图标**。
+    **WIP 已排除**：HEAD 版树上同样报 2 处（行号 8/27，而工作区版是 9/28）。
+    **纪律 338**。
+
