@@ -2909,3 +2909,36 @@ screenshots:
     visible_text: 删除画布 确定要删除画布「画布 66」吗？此操作不可恢复。 取消 确认
     alt: 居中的删除确认框：左侧一枚红色感叹号图标，标题「删除画布」，正文「确定要删除画布「画布 66」吗？此操作不可恢复。」，右下角灰色「取消」和红色「确认」两枚按钮。⭐⭐ 正文里逐字带上了要删的那张画布的名字 —— 这是核对「别删错」的唯一现场依据
     sha256: bc30c3465e98d9e031f5a729f03203a078265e6572734cfbfa40e1d4812bad19
+  - file: screenshots/M-398-空画布-中央生成芯片五连排.png
+    task_id: create-nodes
+    step: 3
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-06T09:50:00+08:00
+    verified_locator: batchGC8：建一张全新空画布→等节点数连续 3 次不变（缺陷 491）→按文字逐字找五枚芯片的 BUTTON→量框→对中心做 elementFromPoint 自证→按框外扩裁图。⚠️ 裁剪起点 x=180 y=330，圈号要减掉它再乘 K=2
+    visible_text: 双击画布 自由生成节点 图片生成 视频生成 音频生成 剧本生成 智能剪辑
+    alt: 一张空画布的正中央横着一排五枚芯片，每枚是一张 200×56 的圆角卡片（左边一个小图标、右边文字），从左到右：图片生成 / 视频生成 / 音频生成 / 剧本生成 / 智能剪辑，卡片之间相隔 8px（步进 208）。⭐ 正上方还有一行小字「双击画布 自由生成节点」。⭐⭐ 这排芯片**只在空画布上出现** —— 一旦画布上有了节点，它就消失
+    sha256: 924a33d7a80063409a71d8d84c7ed70be1004049784506bf271659711d6e11d8
+  - file: screenshots/M-399-空画布-第五枚芯片被抽屉压住.png
+    task_id: create-nodes
+    step: 3
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-06T09:50:00+08:00
+    verified_locator: batchGC8：在**抽屉打开**的状态下截全景（clip 180,330,1080,290）与特写（clip 960,380,320,120）→再点抽屉右上角 button[aria-label="关闭"]→复测芯片 5 的 elementFromPoint 属主（变成芯片自身）→拍无遮挡版。⚠️ 全景 clip 起点 x=180 y=330，特写 x=960 y=380，两个起点不同
+    visible_text: 双击画布 自由生成节点 图片生成 视频生成 音频生成 剧本生成 让 TV Director 辅助你的无限创意 选择Skill开始创作 从爆款预设开始剧本原创 上传故事来改编 批量创建分镜
+    alt: 左边是 TV Director 对话抽屉打开时的全景：芯片排只看得见前四枚，第五枚「智能剪辑」被抽屉压在下面。右边是放大的接缝处 —— 抽屉的左边缘正好切在「智能剪辑」卡片中间，卡片左边还露出一点点，右边几乎全被盖住。抽屉的欢迎语「让 TV Director 辅助你的无限创意」和四个入口（选择Skill开始创作 / 从爆款预设开始剧本原创 / 上传故事来改编 / 批量创建分镜）就写在被盖住的位置上方
+    sha256: 56a69c07b51dca11baf29430d4757eece8f95b6a7198258050b675c35bd1efb2
+  - file: screenshots/M-400-空画布-点芯片建出智能剪辑节点.png
+    task_id: create-nodes
+    step: 3
+    route: /canvas?spaceId=…&projectId=…
+    viewport: 1440x810@2x
+    locale: zh-CN
+    captured_at: 2026-10-06T09:50:00+08:00
+    verified_locator: batchGC5/GC6：在**已关掉抽屉**的同一张空画布上点第 5 枚芯片→等 3 秒→读 .react-flow__node 的 class 取类型→按节点框外扩 40 裁图。⚠️ clip 由脚本算出 = (505,218)，圈号要减掉它再乘 K=2
+    visible_text: 智能剪辑 1 空空如也，请连接视频节点后操作 尝试 讲解视频 批量广告 口播视频 素材混剪
+    alt: 画布正中央出现一个 350×350 的方形节点卡片，标题「智能剪辑 1」，正文「空空如也，请连接视频节点后操作」，下面还列了四个可试的示例：讲解视频 / 批量广告 / 口播视频 / 素材混剪。⭐ 点芯片只**建出一个空节点**，卡片自己会提示还要先接视频；整个过程**没有发出任何生成请求**
+    sha256: 2763003c7fdebbbc31d1326c4767638b68ea5f5c8dbef6ef93887a83daafedcf
