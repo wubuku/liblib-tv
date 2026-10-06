@@ -5928,6 +5928,9 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ 1018：那 24 条「在读原型源码」的判据，验的是字还是行为
     p1018 = ROOT / "scripts/jimeng_probe1018_assertion_vs_behavior.py"
     _p1018 = p1018.read_text(encoding="utf-8") if p1018.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1019：第一次在装置上动手改 —— 抽函数真身 + 最小 stub + node 真跑
+    p1019 = ROOT / "scripts/jimeng_probe1019_behavior_harness.py"
+    _p1019 = p1019.read_text(encoding="utf-8") if p1019.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -15596,6 +15599,100 @@ def main() -> int:
           and 'assertion-vs-behavior-1018.json' in _ausrc
           and '"generated_by": "jimeng_probe1018_assertion_vs_behavior.py"' in _p1018
           and '零浏览器 / 零按键 / 零网络；' in _ausrc)
+
+    # ══ Y993C. 批 1019 第一次动手改：把一条判据从「字面量存在性」升级成「真行为验证」
+    #    两个「0 锚点」的补丁：行为检查红了，而读 _wsrc 的 7 条判据 7/7 全绿
+    print("— Y993C. 批 1019 行为 harness：抽函数真身 + 最小 DOM stub + node 真跑；"
+          "8 个行为格基线全绿；两个 0 锚点补丁各被行为检查抓住（2 条 / 1 条），"
+          "而 7 条字面量判据始终 7/7 全绿")
+
+    check("Y993C.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立 —— "
+          "本批第一次在装置上「动手改」：把一条判据从「字面量存在性」升级成「真行为验证」。** "
+          "按函数名 + 括号配平**抽出函数真身**（不是转写）+ 最小 DOM stub + node 真跑 ⇒ "
+          "8 个行为格基线 8/8 全绿",
+          '"p1_first_real_upgrade_2019_"' in _ausrc
+          and '"behavior_harness_2019"' in _ausrc
+          and 'def extract_fn(src, name):' in _p1019
+          and 'return src[m.start():j + 1]' in _p1019
+          and 'FN_BODY = FN_ALL + ' in _p1019
+          and 'harness-%s.ts' in _p1019
+          and 'P1 = (N_SCEN >= 7 and not BASE_FAIL)' in _p1019)
+
+    check("Y993C.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 —— 本批的读数："
+          "两个「改了行为、却一个锚点都没碰」的补丁，行为检查各红 2 / 1 条，"
+          "而同一时刻读 `_wsrc` 的 7 条判据 7/7 全绿** ⇒ "
+          "**「字面量判据全绿」与「行为已经坏了」是可以同时成立的**",
+          '"p2_behavior_check_sees_what_strings_cannot_2019_"' in _ausrc
+          and 'MUT_B_PLACEHOLDER' not in _p1019
+          and 'MUTS = {' in _p1019
+          and 'A_step_doubled' in _p1019
+          and 'B_end_guard_removed' in _p1019
+          and '"anchors_touched": 0' in _p1019
+          and 'P2 = (len(A_FAIL) > 0)' in _p1019
+          and 'P3 = (len(B_FAIL) > 0 and "focus_node4_forward_end_untouched" in B_FAIL)' in _p1019
+          and '「字面量判据全绿」与「行为已经坏了」是可' in _ausrc)
+
+    check("Y993C.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 —— 而补丁 Ⓑ 不是随手找的**：去掉末尾守卫后，"
+          "焦点在末尾按 Tab ⇒ `next` 越界 ⇒ `armAll(nodes, 越界)` 把**整块画布**写成全 `-1` ⇒ "
+          "**画布彻底不可聚焦** —— 而这是**严重行为回归，现有 7 条判据一条都看不见它**",
+          '"p3_why_patch_B_matters_2019_"' in _ausrc
+          and 'MUT_A, MUT_B' not in _p1019
+          and '"if (next < 0 || next >= nodes.length) return;"' in _p1019
+          and '"if (next < 0) return;"' in _p1019
+          and 'P6 = bool(re.search(r"next >= nodes' in _p1019
+          and '**现有 7 条判据一条都看不见它**' in _ausrc)
+
+    check("Y993C.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4：「字面量判据会不会红」这一格是测出来的、"
+          "不是假定的** ⇒ 逐条 eval 那 7 条的原始条件表达式 ⇒ "
+          "**⚠️ 诚实标注：三个变体下的结果必然逐条相同**（补丁只改内存里抽出的函数体、"
+          "`_wsrc` 一个字节没动）⇒ **那三行不是三次独立测量**；"
+          "而**同源的两边不许互相证明（1012）** ⇒ 真正有意义的是行为侧真的红了、且那两条互不靠",
+          '"p4_measured_not_assumed_2019_"' in _ausrc
+          and 'def eval_ws(src_text):' in _p1019
+          and 'code = compile(ast.Expression(body=c["node"]), "<c1019>", "eval")' in _p1019
+          and '"after_patch_note"' in _p1019
+          and '**⇒⇒⇒⇒⇒⇒⇒ 那三行不是三次独立测量；跑三遍只为让「一致」由仪器证实' in _ausrc
+          and '**⇒⇒⇒⇒⇒⇒⇒⇒ 而「同源的两边」不许互相证明（1012）' in _ausrc)
+
+    check("Y993C.5 ⭐⭐⭐⭐⭐⭐⭐ **P5 —— 本批踩到一次「门红先判门错还是数据错」**："
+          "第一版只给三个变量 ⇒ `GGGGG.2` 直接 `NameError: _p973` ⇒ **那是仪器错、不是判据红** ⇒ "
+          "处置 = 改用 1018 那套已验证的加载法 ⇒ **而如果当时直接写成「有一条判据是红的」，"
+          "那就是 1018 刚撤回的那种假发现**",
+          '"p5_instrument_error_first_2019_"' in _ausrc
+          and 'def _verifier_globals():' in _p1019
+          and 'VG = _verifier_globals()' in _p1019
+          and '**那是本探针的仪器错、不是判据红**' in _ausrc
+          and '那就是 1018 刚撤回的那种假发现' in _ausrc)
+
+    check("Y993C.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 本批自己的仪器同一天栽了两次，"
+          "都栽在「抽出来的不是函数真身」上**：① `extract_fn` 返回**从 `{` 开始的函数体** ⇒ "
+          "拼出来是两块裸语句、顶层 `return` 直接 SyntaxError；② 抽出的 TS 带类型标注 ⇒ "
+          "**第一版想用正则手术去掉，而正则手术有可能手术出第二种真身** ⇒ "
+          "处置 = 改用 `.ts` + Node 24 原生擦除类型 ⇒ **一个字的类型都不动**",
+          '"p6_two_instrument_bugs_2019_"' in _ausrc
+          and '**⇒⇒⇒⇒⇒ 处置 = 改用 `.ts` 后缀 + Node 24 原生擦除类型 ⇒ 一个字的类型都不动**' in _ausrc
+          and '**而正则手术有可能手术出第二种真身**' in _ausrc
+          and 'harness-%s.ts' in _p1019)
+
+    check("Y993C.7 ⭐⭐⭐⭐⭐ **P7：口径边界** —— 测的是**真函数体**但跑在 **stub** 上 ⇒ "
+          "验的是步进与两端守卫的逻辑、**不是真实浏览器语义、不许当 e2e**；"
+          "只跑了 1 个函数 / 8 个场景 ⇒ **不把「一条判据升级了」说成「原型被验过了」**；"
+          "反向用例**只在内存里改文本，一个字节都不动仓里的原型文件**",
+          '"p7_scope_2019_"' in _ausrc
+          and '"dom_surface_used"' in _p1019
+          and '它验的是**步进与两端守卫的逻辑**' in _ausrc
+          and '**不把「一条判据升级了」说成「原型被验过了」**' in _ausrc
+          and '一个字节都不动仓里的原型文件**' in _ausrc)
+
+    check("Y993C.8 ⭐⭐⭐⭐⭐ **P8 纯离线** —— node + 只读仓里两个文件、**不装任何依赖**"
+          "（仓里没有 jsdom / 测试框架 ⇒ 只给最小 stub、不引入新的失败面）、"
+          "临时目录注册 `atexit` 清理；**P9 逐条落进 `behavior-harness-1019.json`、本探针自己写**",
+          '"p8_offline_2019_"' in _ausrc
+          and '"p9_golden_2019_"' in _ausrc
+          and 'atexit.register(shutil.rmtree, str(TMPDIR), ignore_errors=True)' in _p1019
+          and 'behavior-harness-1019.json' in _p1019
+          and 'behavior-harness-1019.json' in _ausrc
+          and '**不装任何依赖**' in _ausrc)
 
 
 
