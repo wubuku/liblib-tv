@@ -70,7 +70,14 @@ VOID=0
 # **还原的基准必须是「进来时什么样」，而不是「仓库里已提交什么样」**——
 # 否则这个脚本就成了一个会吃掉未提交改动的工具，而它本该是被信任的检查工具。
 SNAP="$(mktemp -d "${TMPDIR:-/tmp}/beef-meta-selftest.XXXXXX")"
-SNAP_FILES=(README.md 10-tasks/README.md 10-tasks/asset-library.md 10-tasks/timeline-editing.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py scripts/verify-screenshots.py)
+SNAP_FILES=(README.md 10-tasks/README.md 10-tasks/asset-library.md 10-tasks/timeline-editing.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py scripts/verify-screenshots.py scripts/verify-tables.py)
+
+# **Batch 320 往 SNAP_FILES 里补了 `scripts/verify-tables.py`**——
+# 方向十三那两条用例要改它的 docstring，而它原本不在快照里。
+# **后果有两层，第二层严重**：`run_file_case` 的「注入空转」判定靠 SNAP_FILES 的 md5，
+# 文件不在其中则锚点失配也检测不出来（**锚点失配的用例会伪装成一次真实通过**）；
+# 而 `restore()` 只还原 SNAP_FILES 里的文件——**用例跑完那份被改坏的闸脚本就留在树上了**。
+# **这与 Batch 250 加 `asset-library.md` 时是同一条纪律，一个批次之后它又触发了一次。**
 
 # **Batch 250 往 SNAP_FILES 里加了一行，而加它的理由本身就是一条纪律。**
 # 方向四的 4 条新用例都要改 `10-tasks/asset-library.md`，而它**原本不在快照里**。
@@ -660,6 +667,25 @@ run_file_case "48) 闸清单表第 9、10 两行对调（方向十二必须报�
 
 run_file_pass_case "49) 只改闸清单表一行的说明文字（方向十二只读行位置↔脚本，必须放行）" \
   "AUDIT-RULES.md" "$HERE/selftest-meta-fix-49-inventory-text-only.py"
+
+# 50/51 是 Batch 320 加的方向十三那对，**成对**：
+#   50) 能抓：把 `verify-tables.py` docstring 自称的「第八道闸」改成「第七道闸」
+#       → 方向十三必须报。**这就是 Batch 319 对照实验的 C 臂**，
+#          而那一臂实测「44 道闸新增报红 0 道」——**这一族当时无人守**。
+#       **注入必须改「那一行」而不是全局替换**：`verify-tables.py` 的 docstring 里
+#       还留着「本文原先自称『第七道闸』」这句 Batch 246 的订正说明，
+#       全局替换会把订正一起改掉，**而输出看起来一模一样**。
+#   51) 不误伤：**同一行、只改冒号之后的说明，闸号一个字不动**。
+#       它比「改 docstring 别的行」更强一档——**改的就是方向十三读的那一行**。
+#       **方向十三必须只认那个 N，不能认整行也不能认首行长度**。
+#       而**前 49 例一条都碰不到 docstring**（它们改 README / 索引 / 侧栏 / H1 /
+#       例数 / 表格行序），**所以方向十三自己引入的误伤风险此前无人验过**。
+run_file_case "50) 闸脚本 docstring 自称的闸号被改错（方向十三必须报）" \
+  "scripts/verify-tables.py" "$HERE/selftest-meta-fix-50-gate-selfname-wrong.py" \
+  "它自己的 docstring 自称"
+
+run_file_pass_case "51) 只改 docstring 首行的说明、闸号不动（方向十三只认 N，必须放行）" \
+  "scripts/verify-tables.py" "$HERE/selftest-meta-fix-51-gate-selfname-text.py"
 
 echo "=== 基线：真实仓库应当通过 ==="
 restore

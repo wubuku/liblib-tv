@@ -43,6 +43,10 @@ Batch 143 立过一条「六道闸全绿不等于发布物正确」，
   方向十二（Batch 319 新增）：「**闸号 ↔ 闸脚本**」在三份抄本里必须指同一道闸
     （覆盖度表 / 对应关系表 / 闸清单表）。**实测本批上线前有 10 行行序与闸号不符而构建全绿**，
     而方向十一之③只把「编号集合 == `run_gate` 行数」对上——**那把两把不同的尺子对上了**。
+  方向十三（Batch 320 新增）：**闸脚本 docstring 自称的「第 N 道闸」必须等于真实闸号**
+    （实测 44 个里 34 个有自称、10 个没有，**没自称的一律跳过并在输出里报出份数**）。
+    **它的由来是 Batch 319 对照实验的 C 臂**：把自称从「第八道闸」改成「第七道闸」，
+    **44 道闸新增报红 0 道**——Batch 319 自己写错闸号的正是同一个家族。
 
 **方向二为什么只扫「参与发布的」页面**——这是本闸最容易写坏的地方，
 Batch 139/141/142/143 已连续四次栽在「判据过严」（详见 AUDIT-RULES 第 23 条）：
@@ -949,6 +953,99 @@ def gate_number_map_check(root):
     return problems, None
 
 
+# ── 方向十三（Batch 320 新增）：闸脚本自称的「第 N 道闸」必须等于真实闸号 ────
+#
+# **为什么要有它**：Batch 319 的起因就是**上一批自己写错了一个闸号**——
+# 纪律 353⑨ 与批次行里把 `verify-tables.py` 写成了「闸 7」而它是闸 8。
+# 而那道对照实验的 **C 臂实测：把 `verify-tables.py` 的自称从「第八道闸」改成
+# 「第七道闸」，44 道闸新增报红 0 道**——**这一族至今无人守**。
+#
+# **为什么是「docstring 自称」而不是「正文里的闸号」**：正文里写「闸 9 方向三」时，
+# 那句话**只在人脑里有对应关系**（哪个方向属于哪道闸不在任何机器可读的地方），
+# **判据能核的只有形态**（纪律 352⑤ 同源）。
+# 而 docstring 的自称是**一个脚本文件里的一个字符串**，它与真实闸号的对应
+# **可以完全由现场事实算出来**（方向十二已经把闸号 ↔ 脚本映射出来了）。
+#
+# **覆盖面 34/44**：实测 44 个闸脚本里 **34 个**在 docstring 首行自称「第 N 道闸」，
+# 另 **10 个**没有（它们写的是「XX 核对闸」这类不含编号的首行）。
+# **那 10 个一律跳过并在输出里报出份数——**「没自称」不等于「自称错了」，
+# **而把两者混为一谈就会逼出一张「谁必须自称」的登记表**（纪律 242 禁止）。
+#
+# **解析不出来必须是 rc=2 而不是 rc=1**（纪律 101）：
+# 本方向的第一版探针把中文数字只认到「十」，
+# **而 34 个自称里有 24 个在 11 以上**，于是它把 31 条全报成「自称错」——
+# **真缺陷一条没有，而输出看起来像抓到了 31 个**。
+# **中文数字解析与脚本名归一化都写成下面两个带自检的函数**——
+# **2026-10-07 一天之内，同一个「形态归一化」的错一共犯了五次**
+# （前四次见纪律 354⑨ 与纪律 355），**每一次都是因为没当场自检**。
+_CN_DIGIT13 = {"一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5,
+               "六": 6, "七": 7, "八": 8, "九": 9}
+_CN_SELFNAME_RE = re.compile(r"第\s*([一二三四五六七八九十]+|\d+)\s*道闸")
+
+
+def cn_num13(s):
+    """中文数字 → int；**读不出来返回 None，而调用方必须把 None 当「未能核对」**。"""
+    if s.isdigit():
+        return int(s)
+    if "十" in s:
+        a, _, b = s.partition("十")
+        tens = _CN_DIGIT13.get(a, 1) if a else 1
+        ones = _CN_DIGIT13.get(b, 0) if b else 0
+        return tens * 10 + ones
+    return _CN_DIGIT13.get(s)
+
+
+def _selfname_check_one(path):
+    """返回 (自称的 N 或 None, 首行, 是否含「第 N 道闸」形态)。**`path` 是绝对路径**。
+
+    第一版让它收**文件名**再自己拼 `scripts/`，而本闸是从任意 root 跑的
+    （沙箱把闸搬进临时目录），**拼相对路径就会读错树**——
+    **而这类错在真树上完全看不出来**（Batch 281 的「真树回归跑不出这个洞」同族）。
+    """
+    import ast
+    src = open(path, encoding="utf-8").read()
+    doc = ast.get_docstring(ast.parse(src), clean=False) or ""
+    first = doc.strip().split("\n")[0] if doc.strip() else ""
+    m = _CN_SELFNAME_RE.search(first)
+    if not m:
+        return None, first, False
+    return cn_num13(m.group(1)), first, True
+
+
+def gate_selfname_check(root):
+    """返回 (问题列表, 未能核对, 已核份数, 跳过份数)。"""
+    rules = os.path.join(root, "AUDIT-RULES.md")
+    order = []
+    for line in open(rules, encoding="utf-8").read().split("\n"):
+        m2 = re.match(r"^\|\s*[^|]*?\s*\|\s*`scripts/(verify-[a-z0-9-]+\.py)`\s*\|", line)
+        if m2:
+            order.append((len(order) + 1, m2.group(1)))
+    if not order:
+        return [], "闸清单表里一行闸脚本都抽不出来", 0, 0
+    problems, unreadable = [], []
+    checked = skipped = 0
+    for num, name in order:
+        path = os.path.join(root, "scripts", name)
+        if not os.path.isfile(path):
+            problems.append(f"闸清单表第 {num} 行认领的 `{name}` **在 `scripts/` 下不存在**")
+            continue
+        said, first, has = _selfname_check_one(path)
+        if not has:
+            skipped += 1
+            continue
+        if said is None:
+            # **读不出来 = 我不会读，不是文档写错了**——判 rc=2 而不是 rc=1（纪律 101）
+            unreadable.append(f"{name} 的自称「{first[:40]}」里的中文数字读不出来")
+            continue
+        checked += 1
+        if said != num:
+            problems.append(f"闸清单表第 {num} 行是 `{name}`，"
+                            f"**而它自己的 docstring 自称「第 {said} 道闸」**"
+                            f"　→ **自称是给人读的，闸号是给人查的，两处对不上时"
+                            f"没有一道闸会报**（Batch 319 的 C 臂实测新增报红 0 道）")
+    return problems, (unreadable if unreadable else None), checked, skipped
+
+
 # ── 方向八：闸门不得在「无法核对」时返回 0 ────────────────────────────
 # **不变式**：闸门打印了 `[skip]`，退出码就**不能是 0**。
 #
@@ -1550,12 +1647,26 @@ def main():
               "与闸清单表 44 行的行号逐行相符，且清单表每一行都被认领"
               "（**闸号由行位置隐含，所以这一条核的是「顺序」而不只是「数」**）")
 
+    # ── 方向十三：闸脚本自称的「第 N 道闸」必须等于真实闸号 ──
+    print("-" * 62)
+    sn_problems, sn_void, sn_n, sn_skip = gate_selfname_check(root)
+    if sn_void:
+        for why in sn_void:
+            fail(f"[skip] 闸脚本自称读不出来（**这不是「自称错了」**，纪律 101）：{why}")
+    for why in sn_problems:
+        fail(f"闸脚本自称与真实闸号不符：{why}")
+    if not sn_problems and not sn_void:
+        print(f"  ✓ 闸脚本自称与真实闸号一致：{sn_n} 个脚本的 docstring 首行自称"
+              f"「第 N 道闸」，N 与闸清单表行号逐个相符"
+              f"（另有 {sn_skip} 个**没有自称**——**已跳过，不是「自称错了」**，"
+              f"而把它们算成缺陷就得维护一张「谁必须自称」的登记表，纪律 242 禁止）")
+
     if _FAILS:
         print(f"元数据核对：登记表 {total} 条中 {total - count_fails} 条计数一致"
-              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八/九/十/十二）")
+              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八/九/十/十二/十三）")
         return 1
     print(f"元数据核对：登记表 {total} 条计数全部与现场重数一致，"
-          f"且方向三/四/四之二/五/六/七/八/九/十/十一/十一之二/十二亦全部通过")
+          f"且方向三/四/四之二/五/六/七/八/九/十/十一/十一之二/十二/十三亦全部通过")
     return 0
 
 
