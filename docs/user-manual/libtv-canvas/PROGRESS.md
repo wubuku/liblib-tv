@@ -15231,3 +15231,32 @@ GL-1 用 `filter({hasText:'TV Director'})` 点开抽屉后，DOM 尾部同时出
   画布 12 节点坐标、矩阵 `0.482682, 0, 0, 0.482682, 96377.5, -76.2343`
   **三项复原守卫全部通过**（节点坐标回基线 / 矩阵回基线 / 全程无节点被拖动）
 - 📖 遗留：按钮背景色到底代表什么；FV-6 原始脚本的复算
+
+### 170.8 ⭐⭐⭐⭐ 缺陷 494 又复发了一次：提交 `52e0000d` 混进了别人的 4 个文件
+
+`52e0000d`（「Batch GM 补交 stdout 原文」）**只应该含 1 个文件**（`PROGRESS.md`），
+守卫也确实在紧挨 commit 之前报了「index 1 个，非我的 0 个」。
+
+但 commit 提交的是**整个 index**，而在那一步和 commit 执行**之间**，
+另一位开发者 `git add` 了自己的文件。⇒ 提交里实际有 **5 个**：
+
+```
+docs/user-manual/libtv-canvas/PROGRESS.md          ← 我的
+docs/user-manual/tdcanvas-canvas/20-reference.md          ← 别人的
+docs/user-manual/tdcanvas-canvas/AUDIT.md                ← 别人的
+docs/user-manual/tdcanvas-canvas/PROGRESS.md             ← 别人的
+docs/user-manual/tdcanvas-canvas/SOURCE_OBSERVATIONS.md  ← 别人的
+```
+
+⭐⭐⭐⭐ **处置：什么都不做。** 内容**一字未改**，只是归属标记错了。
+⛔ 绝不 `revert` / `reset` / `--amend` —— 那会把这些内容从历史里摘掉，
+而他们本地还带着这些文件 ⇒ 下次 pull 必冲突，**等于干扰别人的工作**。
+（回滚造成的伤害远大于「一条提交信息归属错了」。）
+也**不用** `git commit -- <路径>` 来「限定范围」：本仓库的 pre-commit 本来就在失败，
+而它在失败时会把暂存区一起清空 —— 那是更严重的事故。
+
+✅ 后续两个提交（`e020b139` / 本批）都重跑了越界自检，**均为 0**。
+
+⭐ 这已经是同一扇竞态窗口第二次撞上（第一次是 FX `c0e308ef`，混进 9 个别人的文件）。
+守卫能做的都做了 —— 它报 0 是**真的**报 0，文件是在守卫**之后**进去的。
+**这个窗口在共享仓库里关不掉，只能靠撞上之后不乱动。**
