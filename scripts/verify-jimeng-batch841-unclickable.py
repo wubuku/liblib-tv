@@ -5946,6 +5946,9 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ 1025：量「判据的方向」—— 936 条 check() 里多少条钉的是易变量
     p1025 = ROOT / "scripts/jimeng_probe1025_criterion_direction.py"
     _p1025 = p1025.read_text(encoding="utf-8") if p1025.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1026：量「探针 P 判据的含金量」—— 18 条 P 是写死的 True
+    p1026 = ROOT / "scripts/jimeng_probe1026_criterion_effectiveness.py"
+    _p1026 = p1026.read_text(encoding="utf-8") if p1026.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -16164,6 +16167,72 @@ def main() -> int:
           and '"p5_one_instance_was_fixed_but_the_class_was_never_counted_2025_"' in _ausrc
           and '"p6_scope_and_offline_1025_"' in _ausrc
           and '"p7_golden_1025_"' in _ausrc)
+    print("— DD993J. 批 1026 量「探针 P 判据的含金量」：每个探针都报「P 全 True」，"
+          "**⇒⇒⇒⇒⇒ 那句话里有几条是真的在判东西？**；⭐⭐⭐⭐⭐ "
+          "**实测 158 条 P 判据里 18 条右值是字面量 `True` —— 而这 18 条的标签"
+          "自己就写着 `scope_declared` / `offline` / `hold`，"
+          "**⇒ 一个诚实的命名，配上不诚实的汇总**")
+    check("DD993J.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**一条写死的 `P6 = True` 是比装饰更隐蔽的一种装饰：它让读数更好看** ⇒ ⇒⇒⇒⇒⇒⇒ **⇒ 每次报「P1–P8 全 True」时，应当同时报「其中几条是写死的 True」** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **不报这个数，那句「全 True」就比它听起来更漂亮**",
+      '⇒⇒⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **而一条写死的 `P6 = True` 是比装饰更隐蔽的一种装饰：' in _p1026
+      and '"decorative"' in _p1026
+      and '"axis_3_effective_weight"' in _p1026
+      and '"n_effective"' in _p1026
+      and '"n_decorative"' in _p1026
+      and 'print("⭐ **写死的恒真 `P` = %d 条** ⇒ 有效判据 %d/%d"' in _p1026
+      and '"P1_every_P_criterion_is_extracted_with_its_probe_1026"' in _p1026
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p1_a_hardcoded_true_is_the_worst_decoration_2026_"' in _ausrc
+      and '"criterion_effectiveness_1026"' in _ausrc)
+    check("DD993J.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐ 那 18 条装饰的标签自己就写着 `scope_declared` / `offline` / `hold`** ⇒ ⇒⇒⇒⇒⇒⇒ **它们从命名上就承认了自己不是判据，却仍然被计入「P 全 True」** ⇒ ⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐ **⇒ 一个诚实的命名，配上不诚实的汇总 ⇒ 错的是汇总那一层，不是这几条本身** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 处置不是删掉它们（它们确实在声明 scope 与 offline），是让汇总里把「装饰」单独数出来**",
+      'DECOR_LABEL_PAT = re.compile(r"_(scope_declared|offline|hold)_")' in _p1026
+      and 'DECOR_SELF_DECLARED = [r for r in DECORATIVE if DECOR_LABEL_PAT.search(r["label"])]' in _p1026
+      and '"n_decorative_that_self_declare_it"' in _p1026
+      and '"n_decorative_that_do_not"' in _p1026
+      and '#   **一个诚实的命名，配上不诚实的汇总** ⇒ 错的是汇总那一层，不是这几条本身**' in _p1026
+      and '#   **一个诚实的命名，配上不诚实的汇总** ⇒ 错的是汇总那一层，不是这几条本身**' in _p1026
+      and '"**⇒⇒⇒⇒⇒⇒⇒⇒ 处置不是删掉它们（它们确实在声明 scope 与 offline），"' in _p1026
+      and '"P5_decorative_criteria_exist_and_lower_the_effective_count_1026"' in _p1026
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p2_honest_name_honest_summary_2026_"' in _ausrc)
+    check("DD993J.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐ 断言我没验证过的事，会当场变红，而变红的原因与判据本意无关** —— 第一版 `P2` 要求「每条 P 都有 `OUT` 标签」，实测有 55 条没有；查清了：那批旧探针用 `P943` 这种**批次号**命名、且不建 `OUT` 字典 ⇒ ⇒⇒⇒⇒⇒⇒ **⇒ 处置：标签覆盖率改成「量出来的读数」，不是「必须满足的条件」；两种命名法（序号 / 批次号）也分开记**",
+      '# ⚠️⚠️ **仪器 bug 1（第一版）：`sum(PER_PROBE.values(), 0)`**' in _p1026
+      and '#   （它只是想表达「有数据」）⇒⇒⇒⇒⇒⇒ **⇒ 「写一句看起来像断言的话」是最容易的假货**' in _p1026
+      and '#   ⇒⇒⇒⇒⇒⇒ **⇒ 「断言我没验证过的事」会当场变红，而变红的原因与判据本意无关**' in _p1026
+      and 'N_NO_LABEL = sum(1 for r in ROWS if not r["label"])' in _p1026
+      and '"naming_split"' in _p1026
+      and '"n_without_label"' in _p1026
+      and '"**⇒⇒⇒⇒⇒ 第一版的 P2 就是反例：它断言了我没验证过的事，"' in _p1026
+      and '"P2_every_P_criterion_has_a_kind_evidence_and_label_1026"' in _p1026
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p3_asserting_what_i_never_verified_2026_"' in _ausrc)
+    check("DD993J.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**阳性对照要两条，缺一不可** —— 甲：**不告知答案**，自己找到 1025 探针里那条已知的 `P6 = True`；乙：**对分类器本身做植入自检**（喂五条人工构造的 P，逐条断言分类结果）⇒ ⇒⇒⇒⇒⇒⇒ **否则「恒真 = 18 条」可能来自一个根本分不清恒真的分类器** ⇒ ⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐ **1024 说过「阳性对照不是装饰」，本批把它加严了一层：阳性对照还要能证明「判它的那个东西本身没坏」**",
+      'PC_A = found_known' in _p1026
+      and 'PC_B = all(r["ok"] for r in plant_rows)' in _p1026
+      and '"A_find_the_known_decorative_without_being_told"' in _p1026
+      and '"B_planted_self_check_of_the_classifier"' in _p1026
+      and '"P3_positive_control_both_the_known_instance_and_the_classifier_1026"' in _p1026
+      and '⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **1024 的头号结论是「阳性对照不是装饰，它是『扫描器自己坏没坏』的判据」**' in _p1026
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p4_positive_control_gets_one_layer_stricter_2026_"' in _ausrc)
+    check("DD993J.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**词法轴只产出「值得人去看一眼」的名单，不产出判决** ⇒ **⇒⇒⇒⇒⇒⇒ 「非空断言 ∩ 标签说的是缺陷」是候选不是缺口** ⇒ ⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐ **而 1024 恰好提供了两个已判决的样本：Ⓐ 的 `N_UNUSED >= 1` 是**缺口**（删掉例外就红），而 Ⓑ 的阳性对照 `len(CONTRADICTED) >= 1` 是**必要的**⇒⇒⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐ **同一个形状，一类是病、一类是命门 —— 这就是「形状代替语义」的全部内容**",
+      '"what"' in _p1026
+      and '"honest_boundary"' in _p1026
+      and '"⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐ **而 1024 恰好提供了两个已判决的样本："' in _p1026
+      and '"**同一个形状，一类是病、一类是命门 —— 这就是「形状代替语义」的全部内容**"' in _p1026
+      and '"axis_2_lexical_lead_not_verdict"' in _p1026
+      and '"**⇒ 这条轴不产出判决，只产出「值得人去看一眼」的名单** ⇒ "' in _p1026
+      and '"the_candidate_that_matters_most"' in _p1026
+      and '"P6_scope_declared_2026"' in _p1026
+      and '"P7_offline_2026"' in _p1026
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p5_candidate_is_not_a_gap_2026_"' in _ausrc
+      and '"p6_scope_and_offline_2026_"' in _ausrc
+      and '"p7_golden_2026_"' in _ausrc)
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

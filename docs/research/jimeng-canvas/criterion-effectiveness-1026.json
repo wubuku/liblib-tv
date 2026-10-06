@@ -1,0 +1,2475 @@
+{
+  "generated_by": "jimeng_probe1026_criterion_effectiveness.py",
+  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **量「探针 P 判据的含金量」** —— 每个探针最后都报一句「P 全 True」，**⇒⇒⇒⇒⇒ 那句话里，有几条是真的在判东西？**",
+  "question_1026": "探针自己那些 P1..Pn，有几条是写死的 True（装饰），几条会因为「真修好」而变红？",
+  "how": "⭐⭐⭐⭐⭐ **只 `ast.parse` 仓内已有的探针脚本 + 正则**；**零安装、零网络、零浏览器**；**不写任何临时文件、不改任何探针**",
+  "scope_declared": "⚠️⭐⭐⭐⭐⭐ 量的是**用 `P1..Pn` + `OUT` 这套写法的探针**（仓里 220 个探针中的一部分）；**旧探针用的 `ASSERTIONS` / `EXPECTED_STATES` 等别的写法不在本批口径内** ⇒ **⇒ 报的是这一层的下限，不是全部**（承 1025 的口径纪律）",
+  "axis_1_shape_mechanical": {
+    "what": "⭐⭐⭐⭐⭐ **形状轴（机械）** —— 把每条 P 的右值按 AST 分类",
+    "n_P_criteria": 158,
+    "counts_by_kind": {
+      "other": 99,
+      "pin_eq": 3,
+      "zero": 7,
+      "nonempty+pin_eq": 3,
+      "mechanism": 5,
+      "decorative": 18,
+      "nonempty": 18,
+      "nonempty+mechanism": 2,
+      "nonempty+zero": 2,
+      "nonempty+zero+pin_eq": 1
+    },
+    "naming_split": {
+      "indexed": 103,
+      "batch_tagged": 55
+    },
+    "n_without_label": 55,
+    "label_note": "⭐⭐⭐ **有 55 条没有 `OUT` 标签** —— 查清了：那批探针用 `P943` 这种**批次号**命名、且不建 `OUT` 字典 ⇒ **⇒ 标签覆盖率是「量出来的读数」，不是「必须满足的条件」** ⇒ **⇒⇒⇒⇒⇒ 第一版的 P2 就是反例：它断言了我没验证过的事，而它变红的原因与判据本意毫无关系**",
+    "kind_glossary": {
+      "decorative": "⭐⭐⭐⭐⭐ **右值是字面量 `True`** ⇒ 不看任何读数 ⇒ 恒绿",
+      "nonempty": "`X > 0` / `X >= 1` ⇒ 断言某个东西**非空**",
+      "zero": "`not X` / `X == 0` / `X is None` ⇒ 断言某个东西**不存在**",
+      "pin_eq": "`X == <非 0/None 的常量>` ⇒ 钉死一个等值",
+      "mechanism": "`\"字面量\" in <东西>` ⇒ 只验某段文本在不在",
+      "other": "以上都不是（**不许临时发明类别，认不出来就归这里**）"
+    },
+    "conservatism_note": "⭐⭐⭐⭐⭐ **恒真的判定刻意做得很窄**：只认「右值字面上就是 `True`（或全是 `True` 的 `and`）」⇒⇒⇒⇒⇒⇒ **报出来的**一定是恒真；**多报的**才是问题 ⇒ **⇒⇒⇒⇒⇒⇒ 宁可少报，不可虚报**",
+    "all": [
+      {
+        "probe": "jimeng_probe1011_change_locality.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 196,
+        "label": "p1_denominator_is_45_not_39_1011_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐ **1010 在仓里记的分母是 39（它只算了九对快照），而本批把 1010 自己那一次提交也算了进来、十对 ⇒ 逐条复算得 %d** ⇒ ⇒ **⇒ 差 %d 全部来自 `1009->1010` 那一对 ⇒ ⇒ **⇒ "
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐ **1010 在仓里记的分母是 39（它只算了九对快照），而本批把 1010 自己那一次提交也算了进来、十对 ⇒ 逐条复算得 %d** ⇒ ⇒ **⇒ 差 %d 全部来自 `1009->1010` 那一对 ⇒ ⇒ **⇒ 口径必须显式对齐：不许默默把 39 改成 %d**' % (",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1011_change_locality.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 202,
+        "label": "p2_45_changes_land_on_8_texts_38_on_the_billing_line_1011_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐ **那 %d 次改动只落在 %d 段不同文本上 —— 而其中 %d 次落在 %d 句话上** ⇒ ⇒ **⇒ 而那 %d 句话是每一批都在重复写的「本批纯离线、不打开浏览器、不按任何键、连 `mouse.click` 都"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐ **那 %d 次改动只落在 %d 段不同文本上 —— 而其中 %d 次落在 %d 句话上** ⇒ ⇒ **⇒ 而那 %d 句话是每一批都在重复写的「本批纯离线、不打开浏览器、不按任何键、连 `mouse.click` 都没有」计费声明** ⇒ ⇒ **⇒ ⇒ ⇒ 所以 1010 ",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1011_change_locality.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 210,
+        "label": "p3_touched_is_biased_to_high_occurrence_1011_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐ **45 次改动里 %d 次（%.1f%%）落在 occurrence ≥ 2 的锚点上，而全集里 occurrence ≥ 2 的只有 %.1f%%（%d/%d）—— 偏斜 %.1f 倍** ⇒ ⇒ **⇒ 而这不是随机"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐ **45 次改动里 %d 次（%.1f%%）落在 occurrence ≥ 2 的锚点上，而全集里 occurrence ≥ 2 的只有 %.1f%%（%d/%d）—— 偏斜 %.1f 倍** ⇒ ⇒ **⇒ 而这不是随机抽样的偶然：真实工作流改的恰恰是「被反复声明」的那些句**'",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1011_change_locality.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 216,
+        "label": "p4_invisible_is_correct_not_a_defect_1011_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐ **按 1004 的耦合度公式（自身只出现 1 次 ? 1 : 0），occurrence ≥ 2 的锚点耦合度**本该**是 0** ⇒ ⇒ 实测门报 %d 个 —— **一致** ⇒ ⇒ **⇒ ⇒ ⇒ 所以「门看不"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐ **按 1004 的耦合度公式（自身只出现 1 次 ? 1 : 0），occurrence ≥ 2 的锚点耦合度**本该**是 0** ⇒ ⇒ 实测门报 %d 个 —— **一致** ⇒ ⇒ **⇒ ⇒ ⇒ 所以「门看不见那 %d 次改动」不是缺陷、是公式要求的结果** ⇒ ⇒ ",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1011_change_locality.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 222,
+        "label": "p5_the_count_axis_only_grows_1011_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这 %d 次改动里：出现次数**增加** %d、**减少** %d、**归零** %d ⇒ ⇒ ⇒ **⇒ 而 occurrence 是「在几次」那个轴、它在真实工作流下单调只增** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ "
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这 %d 次改动里：出现次数**增加** %d、**减少** %d、**归零** %d ⇒ ⇒ ⇒ **⇒ 而 occurrence 是「在几次」那个轴、它在真实工作流下单调只增** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 1009 P4 早就把这一轴指认给普查了（「门管在不在、普查",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1011_change_locality.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 229,
+        "label": "p6_cross_with_1005_golden_but_too_few_to_decide_1011_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐ **%d 段里 %d 段落在 1005 那份 %d 行零耦合清单里（%.1f%% vs 基准 %.1f%%）⇒ ⇒ 而**样本只有 %d 段**、且扣掉计费声明后只剩 %d 段 ⇒ ⇒ **⇒ ⇒ ⇒ 所以本批**不**据此决"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐ **%d 段里 %d 段落在 1005 那份 %d 行零耦合清单里（%.1f%% vs 基准 %.1f%%）⇒ ⇒ 而**样本只有 %d 段**、且扣掉计费声明后只剩 %d 段 ⇒ ⇒ **⇒ ⇒ ⇒ 所以本批**不**据此决定「该点修还是该普查」** —— **⇒ 而诚实的结论是：样",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1011_change_locality.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 236,
+        "label": "p7_history_backed_criteria_must_verify_shas_2011_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐ **本批每一个读数都钉在 %d 个 git 提交上 ⇒ ⇒ 而「钉在历史上的判据」有它专属的失效形态：将来 rebase 之后这些 sha 取不到、判据不会报错、它会静静地读出空集** ⇒ ⇒ **⇒ 所以开工前先逐个 `"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐ **本批每一个读数都钉在 %d 个 git 提交上 ⇒ ⇒ 而「钉在历史上的判据」有它专属的失效形态：将来 rebase 之后这些 sha 取不到、判据不会报错、它会静静地读出空集** ⇒ ⇒ **⇒ 所以开工前先逐个 `git cat-file` 验活**⇒ ⇒ 实测 %d/%d",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 169,
+        "label": "p1_global_rate_is_not_zero_2012_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐ **扩到全局之后：%d 对快照、%d 个目标变量、声明锚点 %d 条次，被动过 %d 次、真正消失 %d 次 ⇒ 全局真实检出力 = %s** ⇒ ⇒ **⇒ 而 1010 记的是 0.0 —— 那不是 0，那是一个只量"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐ **扩到全局之后：%d 对快照、%d 个目标变量、声明锚点 %d 条次，被动过 %d 次、真正消失 %d 次 ⇒ 全局真实检出力 = %s** ⇒ ⇒ **⇒ 而 1010 记的是 0.0 —— 那不是 0，那是一个只量了 1 个目标的局部读数**' % (N_PAIRS, le",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 174,
+        "label": "p2_side_by_side_must_be_reported_together_2012_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **分侧读数必须一起报：`_ausrc` 侧 %d 次被动过、消失 %d 次（检出力 %s），而其余 %d 个目标变量侧 %d 次被动过、消失 %d 次（检出力 %s）** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 所以「门一"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **分侧读数必须一起报：`_ausrc` 侧 %d 次被动过、消失 %d 次（检出力 %s），而其余 %d 个目标变量侧 %d 次被动过、消失 %d 次（检出力 %s）** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 所以「门一次都没开口」这句话在全局口径上是错的 —— 它开口了 %d ",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 181,
+        "label": "p3_probe_side_is_not_rewritten_each_batch_2012_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **❌ 我的预期被否：本批开工时我以为「每批都在重写整个探针文件、所以探针侧的改动形态是重写而不是追加、应该产生大量真消失」** ⇒ ⇒ **⇒ 实测：%d 对快照里、探针侧总共只被动过 %d 次、真正消失 %d"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **❌ 我的预期被否：本批开工时我以为「每批都在重写整个探针文件、所以探针侧的改动形态是重写而不是追加、应该产生大量真消失」** ⇒ ⇒ **⇒ 实测：%d 对快照里、探针侧总共只被动过 %d 次、真正消失 %d 次** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 「我以为我知道",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 187,
+        "label": "p4_the_only_vanished_one_is_the_1006_anchor_2012_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **那唯一 %d 次消失是谁：%s** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 而它和 1010 的 P6 是同一件事的两条完全独立的路径** —— 1010 从「拿旧 verifier 跑今天的门」发现它，本批从「真实改动"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **那唯一 %d 次消失是谁：%s** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 而它和 1010 的 P6 是同一件事的两条完全独立的路径** —— 1010 从「拿旧 verifier 跑今天的门」发现它，本批从「真实改动里数消失」发现它 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 零成本的复",
+        "label_hint_defect_words": [
+          "vanished"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 195,
+        "label": "p5_route_decision_2012_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 路线决定（兑现 1011 的欠账）：门没有「盲区」** —— 它按设计不报追加（那 %d 次）、按设计报真消失（那 %d 次、报对了 %d 次）⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 所以对策既不是「给门搬 18"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 路线决定（兑现 1011 的欠账）：门没有「盲区」** —— 它按设计不报追加（那 %d 次）、按设计报真消失（那 %d 次、报对了 %d 次）⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 所以对策既不是「给门搬 187 条重复告警」、也不是「加严门」** ⇒ ⇒ ⇒ ⇒ ⇒ ",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 280,
+        "label": "p6_static_model_matches_a_real_gate_run_2012_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 成立：静态模型（「正向 MISSING ⟺ occurrence == 0」）与**真跑门**逐条对上了 —— 对账的那一对 `%s->%s` 静态说该消失 %d 条、真跑门报的 MISSING 减去基线自"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 成立：静态模型（「正向 MISSING ⟺ occurrence == 0」）与**真跑门**逐条对上了 —— 对账的那一对 `%s->%s` 静态说该消失 %d 条、真跑门报的 MISSING 减去基线自带的那 %d 条之后，两边逐条相同** ⇒ ⇒ **⇒ 而「",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 299,
+        "label": "p7_reverse_case_same_scope_2012_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P7 反向用例成立：在 `%s` 自己的目标文件里真删掉那一条、再跑门，MISSING 减去基线自带的那 %d 条之后正好多出 %d 条、且就是删掉的那一条** ⇒ ⇒ **⇒ ⇒ ⇒ 而这一条是为了排除「那 %"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P7 反向用例成立：在 `%s` 自己的目标文件里真删掉那一条、再跑门，MISSING 减去基线自带的那 %d 条之后正好多出 %d 条、且就是删掉的那一条** ⇒ ⇒ **⇒ ⇒ ⇒ 而这一条是为了排除「那 %d 次消失是分母算错了」** ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 分",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1013_occurrence_ledger.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 174,
+        "label": "p1_kinds_are_disjoint_and_exhaustive_2013_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：分类互斥且完备 —— 四类计数之和 %d == 改动总数 %d，且没有第五类** ⇒ ⇒ **⇒ 而完备性是用加法验出来的、不是靠人说「分完了」** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 四类：`bo"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：分类互斥且完备 —— 四类计数之和 %d == 改动总数 %d，且没有第五类** ⇒ ⇒ **⇒ 而完备性是用加法验出来的、不是靠人说「分完了」** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 四类：`born` %d / `grown` %d / `shrank`",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1013_occurrence_ledger.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 180,
+        "label": "p2_ledger_red_equals_gate_vanished_2013_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立：账本的 `red` 与门会报的那些**完全重合** —— 对称差 %d（账本报了门没报的 %d 条、门报了账本没报的 %d 条）** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 也就是说：在 `vani"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立：账本的 `red` 与门会报的那些**完全重合** —— 对称差 %d（账本报了门没报的 %d 条、门报了账本没报的 %d 条）** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 也就是说：在 `vanished` 这一类上，账本没有比门多看见任何东西** ⇒ ⇒",
+        "label_hint_defect_words": [
+          "vanished"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1013_occurrence_ledger.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 187,
+        "label": "p3_aging_is_not_needed_at_this_scale_2013_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 是**否证**：账龄机制（1008 立的那条处方）在当前规模下**用不上** —— %d 对历史里账本只在 %d 个批次报红，而那 %d 个是一次性的、下一对就不再红** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ "
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 是**否证**：账龄机制（1008 立的那条处方）在当前规模下**用不上** —— %d 对历史里账本只在 %d 个批次报红，而那 %d 个是一次性的、下一对就不再红** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 而这一批否掉的正是自己上一批的处方：1012 说「登",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1013_occurrence_ledger.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 194,
+        "label": "p4_the_three_silent_classes_are_the_real_output_2013_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4：账本真正的产出是那三类不报红的账 —— `born` %d 条、`grown` %d 条、`shrank` %d 条，合计 %d 条** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 而这 %d 条正是 1009/1011"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4：账本真正的产出是那三类不报红的账 —— `born` %d 条、`grown` %d 条、`shrank` %d 条，合计 %d 条** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 而这 %d 条正是 1009/1011 说的那类「门按设计不报」的改动** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1013_occurrence_ledger.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 202,
+        "label": "p5_reverse_case_born_is_recorded_but_not_red_2013_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 反向用例成立：`born`（%d → %d）这类改动**记进了账、但 `red` 为假** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 而这一条是为了排除「账本是个恒红的报警器」或者「账本什么都记所以等于没筛」这两个"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 反向用例成立：`born`（%d → %d）这类改动**记进了账、但 `red` 为假** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 而这一条是为了排除「账本是个恒红的报警器」或者「账本什么都记所以等于没筛」这两个相反的坏形态** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1013_occurrence_ledger.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 208,
+        "label": "p6_full_recompute_does_not_fix_expiry_2013_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 本批最深的一层：「每次全量重算」并不能消除1008 说的「清单会过期」，它只是把「内容错了」换成了「历史被截断了」** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 一本纯历史账本的 `retired"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 本批最深的一层：「每次全量重算」并不能消除1008 说的「清单会过期」，它只是把「内容错了」换成了「历史被截断了」** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 一本纯历史账本的 `retired` 集合**恒为空**（历史是固定的、过去发生过的改动不会「",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1014_empty_ambiguity.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 179,
+        "label": "p1_only_one_empty_field_is_unverifiable_2014_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：普查 %d 个 golden、%d 个空 list 字段、%d 个 null 字段 —— 其中可自证 %d 个、**不可自证 %d 个**（就是 1013 刚写的 `retired`）** "
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：普查 %d 个 golden、%d 个空 list 字段、%d 个 null 字段 —— 其中可自证 %d 个、**不可自证 %d 个**（就是 1013 刚写的 `retired`）** ⇒ ⇒ ⇒ ⇒ ⇒ 而可自证的判据不是「旁边有说明」、而是「",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1014_empty_ambiguity.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 187,
+        "label": "p2_computed_and_never_computed_are_byte_identical_2014_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立（这是本批的病根）：「真的算过、结果是空」与「根本没算」这两份账，`retired` 字段序列化之后**逐字节相同**（实测判定 = %d）⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 也就是说：读"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立（这是本批的病根）：「真的算过、结果是空」与「根本没算」这两份账，`retired` 字段序列化之后**逐字节相同**（实测判定 = %d）⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 也就是说：读 JSON 的人拿到 `retired: []` 时，无法区",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1014_empty_ambiguity.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 195,
+        "label": "p3_companion_fields_make_it_distinguishable_2014_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 成立：处置是给账本加 companion 字段（`retired_computed` + `retired_n`），加上之后两份账**可区分**（实测判定 = %d）；而且 companion 自"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 成立：处置是给账本加 companion 字段（`retired_computed` + `retired_n`），加上之后两份账**可区分**（实测判定 = %d）；而且 companion 自己也要能区分「算了是 0」与「算了但算错了」—— 那一条也验",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1014_empty_ambiguity.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 204,
+        "label": "p4_reverse_case_classifier_is_not_constant_2014_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4 反向用例成立：造一份 `retired` **非空**的真账，分类器必须把它判成「可自证」—— 而当前版本判不了（companion 尚未进判据）** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 而这一条是为了排除「"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4 反向用例成立：造一份 `retired` **非空**的真账，分类器必须把它判成「可自证」—— 而当前版本判不了（companion 尚未进判据）** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 而这一条是为了排除「普查恒判『不可自证』」—— 那会让 %d 个字段看起来全都一",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1014_empty_ambiguity.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 211,
+        "label": "p5_null_is_the_same_disease_2014_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐ **P5：这条规矩不只管空 list —— **`null` 是同一个病的另一种形态**，而它同样分不清「算出来是 null」和「没算」** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而本批的普查已经把 null 一并"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐ **P5：这条规矩不只管空 list —— **`null` 是同一个病的另一种形态**，而它同样分不清「算出来是 null」和「没算」** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而本批的普查已经把 null 一并数进去了（%d 个）**' % n_empty_null",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1014_empty_ambiguity.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 215,
+        "label": "p6_the_previous_batch_artifact_is_itself_a_victim_2014_",
+        "kind": "other",
+        "evidence": [
+          "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 而最要紧的一句是：**1013 刚刚做出来的那本账，自己就带着这个毛病** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而这说明「刚做完的东西也是会犯的」不是假设、是本会话第三次撞上**（前两次"
+        ],
+        "rhs": "'⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 而最要紧的一句是：**1013 刚刚做出来的那本账，自己就带着这个毛病** ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而这说明「刚做完的东西也是会犯的」不是假设、是本会话第三次撞上**（前两次：1012 的探针覆盖表是空的、1013 的断言里硬写了目标",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1016_baseline_host_misuse.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 147,
+        "label": "P1_host_is_a_drawer_1016",
+        "kind": "pin_eq",
+        "evidence": [
+          "N_LAYERS == 17"
+        ],
+        "rhs": "N_LAYERS == 17 and MAX_KEYS > MEDIAN_KEYS * 4",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1016_baseline_host_misuse.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 148,
+        "label": "P2_no_duplicate_keys_now_1016",
+        "kind": "zero",
+        "evidence": [
+          "len(DUP_CUR) == 0"
+        ],
+        "rhs": "len(DUP_CUR) == 0",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1016_baseline_host_misuse.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 149,
+        "label": "P3_duplicate_existed_at_head_1016",
+        "kind": "pin_eq",
+        "evidence": [
+          "len(DEAD_LINES_HEAD) == 2"
+        ],
+        "rhs": "BEFORE_PINNED_OK and len(DUP_HEAD) == 1 and (DUP_HEAD[0]['key'] == DEAD_KEY) and (DUP_HEAD[0]['layer'] == HEAD_LAYER) and (len(DEAD_LINES_HEAD) == 2)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1016_baseline_host_misuse.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 153,
+        "label": "P4_one_key_was_unreachable_at_head_1016",
+        "kind": "other",
+        "evidence": [
+          "HEAD_REACHABLE == HEAD_WRITTEN - 1"
+        ],
+        "rhs": "HEAD_REACHABLE == HEAD_WRITTEN - 1",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1016_baseline_host_misuse.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 154,
+        "label": "P5_same_name_last_wins_is_silent_1016",
+        "kind": "other",
+        "evidence": [
+          "bool(REVERSE_LAST_WINS and REVERSE_SILENT and _reverse_construction_ok)"
+        ],
+        "rhs": "bool(REVERSE_LAST_WINS and REVERSE_SILENT and _reverse_construction_ok)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1016_baseline_host_misuse.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 164,
+        "label": "P6_misplaced_9xx_keys_measured_1016",
+        "kind": "nonempty+pin_eq",
+        "evidence": [
+          "MISP_BY_LAYER.get('canvas-context-menu', 0) >= 1",
+          "N_MISP == 43",
+          "N_MISP_DEBT == 40",
+          "N_MISP_ELSEWHERE == 3"
+        ],
+        "rhs": "N_MISP == 43 and N_MISP_DEBT == 40 and (N_MISP_ELSEWHERE == 3) and (MISP_BY_LAYER.get('canvas-context-menu', 0) >= 1)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1016_baseline_host_misuse.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 166,
+        "label": "P7_original_is_reachable_now_1016",
+        "kind": "mechanism",
+        "evidence": [
+          "DEAD_KEY in {e['key'] for lay in CUR for e in CUR[lay]}"
+        ],
+        "rhs": "DEAD_KEY in {e['key'] for lay in CUR for e in CUR[lay]}",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1016_baseline_host_misuse.py",
+        "var": "P8",
+        "naming": "indexed",
+        "lineno": 167,
+        "label": "P8_hold_1016",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 237,
+        "label": "P1_three_denominators_measured_1017",
+        "kind": "nonempty+pin_eq",
+        "evidence": [
+          "PCT_SPREAD > 0.0",
+          "COVERAGE[k]['n_files_uncovered'] > 0",
+          "len(DENOMS) == 3"
+        ],
+        "rhs": "len(DENOMS) == 3 and all((COVERAGE[k]['n_files_uncovered'] > 0 for k in DENOMS)) and (PCT_SPREAD > 0.0)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 240,
+        "label": "P2_glob_deflates_the_metric_1017",
+        "kind": "nonempty",
+        "evidence": [
+          "len(GLOB_HITS) > 0"
+        ],
+        "rhs": "len(GLOB_HITS) > 0 and GLOB_MAKES_IT_JUMP and BARE_BASE_PRESENT and BARE_BASE_WOULD_DEFLATE",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 242,
+        "label": "P3_criteria_object_of_test_1017",
+        "kind": "nonempty",
+        "evidence": [
+          "N_CHECKS > 0"
+        ],
+        "rhs": "N_CHECKS > 0 and 0 < N_PROTO_CHECKS <= N_CHECKS",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 243,
+        "label": "P4_text_read_but_never_in_a_criterion_2017",
+        "kind": "other",
+        "evidence": [
+          "bool(_text_vars) and bool(UNUSED_TEXT_VARS) and (set(UNUSED_TEXT_VARS) <= _text_vars)"
+        ],
+        "rhs": "bool(_text_vars) and bool(UNUSED_TEXT_VARS) and (set(UNUSED_TEXT_VARS) <= _text_vars)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 245,
+        "label": "P5_coverage_is_concentrated_1017",
+        "kind": "nonempty",
+        "evidence": [
+          "TOP_N > 1"
+        ],
+        "rhs": "bool(CONCENTRATION) and TOP_N > 1",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 246,
+        "label": "P6_denominator_nonempty_1017",
+        "kind": "nonempty",
+        "evidence": [
+          "len(VERIFIER) > 0",
+          "TOT_FILES > 0",
+          "TOT_LINES > 0"
+        ],
+        "rhs": "len(VERIFIER) > 0 and TOT_FILES > 0 and (TOT_LINES > 0)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 249,
+        "label": "P7_uncovered_list_reconciles_2017",
+        "kind": "nonempty",
+        "evidence": [
+          "len(v) > 0"
+        ],
+        "rhs": "set(DENOMS['one_gate_only']) <= set(DENOMS['one_gate_plus_audit']) <= set(DENOMS['whole_apparatus']) and all((len(v) > 0 for v in DENOMS.values()))",
+        "label_hint_defect_words": [
+          "uncovered"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P8",
+        "naming": "indexed",
+        "lineno": 252,
+        "label": "P8_hold_1017",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 230,
+        "label": "P1_baseline_all_green_1018",
+        "kind": "pin_eq",
+        "evidence": [
+          "N == 24"
+        ],
+        "rhs": "N == 24 and N_PASS == N",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 231,
+        "label": "P2_behavior_change_is_invisible_1018",
+        "kind": "other",
+        "evidence": [
+          "bool(A_APPLIED) and bool(A_INVISIBLE) and (N_A_PASS == N_PASS)"
+        ],
+        "rhs": "bool(A_APPLIED) and bool(A_INVISIBLE) and (N_A_PASS == N_PASS)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 232,
+        "label": "P3_rename_breaks_it_2018",
+        "kind": "other",
+        "evidence": [
+          "bool(B_APPLIED) and bool(B_BREAKS)"
+        ],
+        "rhs": "bool(B_APPLIED) and bool(B_BREAKS)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 233,
+        "label": "P4_some_checks_read_the_audit_not_the_prototype_2018",
+        "kind": "nonempty",
+        "evidence": [
+          "N_ON_AUDIT > 0",
+          "N_ONLY_AUDIT > 0"
+        ],
+        "rhs": "N_ON_AUDIT > 0 and N_ONLY_AUDIT > 0",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 234,
+        "label": "P5_some_anchors_are_prose_2018",
+        "kind": "other",
+        "evidence": [
+          "bool(N_PROSE)"
+        ],
+        "rhs": "bool(N_PROSE)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 235,
+        "label": "P6_scope_declared_1018",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 236,
+        "label": "P7_offline_1018",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P8",
+        "naming": "indexed",
+        "lineno": 237,
+        "label": "P8_hold_1018",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 296,
+        "label": "P1_behavior_baseline_all_green_2019",
+        "kind": "zero",
+        "evidence": [
+          "not BASE_FAIL"
+        ],
+        "rhs": "N_SCEN >= 7 and (not BASE_FAIL)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 297,
+        "label": "P2_behavior_check_sees_a_behavior_change_2019",
+        "kind": "nonempty",
+        "evidence": [
+          "len(A_FAIL) > 0"
+        ],
+        "rhs": "len(A_FAIL) > 0",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 298,
+        "label": "P3_end_guard_removed_is_caught_2019",
+        "kind": "nonempty+mechanism",
+        "evidence": [
+          "len(B_FAIL) > 0",
+          "'focus_node4_forward_end_untouched' in B_FAIL"
+        ],
+        "rhs": "len(B_FAIL) > 0 and 'focus_node4_forward_end_untouched' in B_FAIL",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 299,
+        "label": "P4_ws_string_criteria_green_at_baseline_2019",
+        "kind": "nonempty",
+        "evidence": [
+          "N_WS_CHECKS > 0"
+        ],
+        "rhs": "N_WS_CHECKS > 0 and N_WS_BASE_PASS == N_WS_CHECKS",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 300,
+        "label": "P5_ws_string_criteria_cannot_see_either_patch_2019",
+        "kind": "other",
+        "evidence": [
+          "N_WS_BASE_PASS == N_WS_CHECKS"
+        ],
+        "rhs": "N_WS_BASE_PASS == N_WS_CHECKS",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 301,
+        "label": "P6_the_guard_really_is_in_the_function_2019",
+        "kind": "other",
+        "evidence": [
+          "bool(re.search('next >= nodes\\\\.length', FN_BODY))"
+        ],
+        "rhs": "bool(re.search('next >= nodes\\\\.length', FN_BODY))",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 302,
+        "label": "P7_scope_declared_2019",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "var": "P8",
+        "naming": "indexed",
+        "lineno": 303,
+        "label": "P8_offline_2019",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 491,
+        "label": "P1_stub_and_dom_disagree_exactly_on_depth2_2020",
+        "kind": "nonempty",
+        "evidence": [
+          "N_DISAGREE > 0"
+        ],
+        "rhs": "N_DISAGREE > 0 and DISAGREE_KINDS == ['inner2']",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 492,
+        "label": "P2_1019_eight_expectations_hold_under_the_faithful_stub_2020",
+        "kind": "zero",
+        "evidence": [
+          "N_CELL_BAD_DEEP == 0"
+        ],
+        "rhs": "BASE_ALL_GREEN and N_CELL_BAD_DEEP == 0",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 493,
+        "label": "P3_both_stubs_can_kill_mutants_2020",
+        "kind": "nonempty",
+        "evidence": [
+          "N_TESTABLE > 0",
+          "N_K_SHALLOW > 0",
+          "N_K_DEEP > 0"
+        ],
+        "rhs": "N_TESTABLE > 0 and N_K_SHALLOW > 0 and (N_K_DEEP > 0)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 494,
+        "label": "P4_there_are_surviving_mutants_2020",
+        "kind": "nonempty",
+        "evidence": [
+          "len(SURV_SHALLOW) > 0"
+        ],
+        "rhs": "len(SURV_SHALLOW) > 0",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 495,
+        "label": "P5_branch_coverage_is_six_of_seven_and_the_missing_one_is_dead_code_2020",
+        "kind": "zero",
+        "evidence": [
+          "not HIT['!flow']"
+        ],
+        "rhs": "N_BRANCH_HIT == N_BRANCH - 1 and (not HIT['!flow']) and FLOW_NULL_REACHED",
+        "label_hint_defect_words": [
+          "missing"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 496,
+        "label": "P6_differential_grid_cannot_kill_mutants_by_construction_2020",
+        "kind": "nonempty",
+        "evidence": [
+          "N_COMMENT_LINES > 0",
+          "N_DIFF_BASE > 0"
+        ],
+        "rhs": "N_COMMENT_LINES > 0 and N_DIFF_BASE > 0",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 497,
+        "label": "P7_one_sample_depth_flips_a_verdict_2020",
+        "kind": "other",
+        "evidence": [
+          "VERDICT_FORK and D1_AGREE"
+        ],
+        "rhs": "VERDICT_FORK and D1_AGREE",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P8",
+        "naming": "indexed",
+        "lineno": 498,
+        "label": "P8_two_more_cells_buy_more_discriminating_power_2020",
+        "kind": "nonempty",
+        "evidence": [
+          "len(NEWLY_KILLED) > 0"
+        ],
+        "rhs": "PLUS_BASE_GREEN and N_KP_SHALLOW > N_K_SHALLOW and (len(NEWLY_KILLED) > 0)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P9",
+        "naming": "indexed",
+        "lineno": 499,
+        "label": "P9_string_versus_integer_tabindex_disagrees_2020",
+        "kind": "nonempty",
+        "evidence": [
+          "len(TAB_DISAGREE) > 0"
+        ],
+        "rhs": "len(TAB_DISAGREE) > 0",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P10",
+        "naming": "indexed",
+        "lineno": 500,
+        "label": "P10_offline_2020",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 199,
+        "label": "P1_driver_is_faithful_and_coverage_floor_held_1021",
+        "kind": "other",
+        "evidence": [
+          "SELFCHECK and FLOOR_HELD"
+        ],
+        "rhs": "SELFCHECK and FLOOR_HELD",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 200,
+        "label": "P2_at_least_three_ways_to_weaken_a_criterion_stay_green_2021",
+        "kind": "other",
+        "evidence": [
+          "len(SILENT) >= 3"
+        ],
+        "rhs": "len(SILENT) >= 3",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 201,
+        "label": "P3_removing_anchors_shrinks_coverage_without_raising_problems_2021",
+        "kind": "nonempty+zero",
+        "evidence": [
+          "s['anchors_dropped'] > 0",
+          "s['n_problems'] == 0"
+        ],
+        "rhs": "any((s['anchors_dropped'] > 0 and s['n_problems'] == 0 for s in SHORTHAND))",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 202,
+        "label": "P4_the_gate_does_catch_a_flipped_anchor_2021",
+        "kind": "mechanism",
+        "evidence": [
+          "'G_flip_in_to_not_in_1021' in CAUGHT"
+        ],
+        "rhs": "'G_flip_in_to_not_in_1021' in CAUGHT",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 203,
+        "label": "P5_every_variant_ran_2021",
+        "kind": "mechanism",
+        "evidence": [
+          "r['rc'] in (0, 1)"
+        ],
+        "rhs": "all((r['rc'] in (0, 1) for r in ROWS)) and len(ROWS) == 1 + len(MUTS)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 204,
+        "label": "P6_scope_declared_2021",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 205,
+        "label": "P7_offline_2021",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 192,
+        "label": "P1_typescript_installed_and_repo_is_type_clean_1023",
+        "kind": "zero",
+        "evidence": [
+          "REPO_TSC['rc'] == 0"
+        ],
+        "rhs": "SELFCHECK and REPO_TSC['rc'] == 0",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 193,
+        "label": "P2_check_has_chained_typecheck_1023",
+        "kind": "other",
+        "evidence": [
+          "bool(WIRING['node_modules/typescript']) and bool(WIRING['typecheck 脚本内容']) and WIRING['check 链了 typecheck']"
+        ],
+        "rhs": "bool(WIRING['node_modules/typescript']) and bool(WIRING['typecheck 脚本内容']) and WIRING['check 链了 typecheck']",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 195,
+        "label": "P3_type_layer_catches_some_and_misses_some_1023",
+        "kind": "nonempty+zero+pin_eq",
+        "evidence": [
+          "len(T_SURVIVED) >= 1",
+          "len(T1020_SURVIVED) == 0",
+          "len(T1020_CAUGHT) == 4"
+        ],
+        "rhs": "len(T1020_CAUGHT) == 4 and len(T1020_SURVIVED) == 0 and (len(T_SURVIVED) >= 1)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 197,
+        "label": "P4_local_commit_gate_never_calls_tsc_but_ci_does_1023",
+        "kind": "zero",
+        "evidence": [
+          "not WIRING['本地 pre-commit 调过 tsc']"
+        ],
+        "rhs": "not WIRING['本地 pre-commit 调过 tsc'] and WIRING['CI 调过 typecheck'] and WIRING['CI 在 push 上触发']",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 199,
+        "label": "P5_a_never_true_premise_is_what_a_criterion_leans_on_1023",
+        "kind": "other",
+        "evidence": [
+          "CLAIM_NEVER_TRUE and SENTENCE_IN_SRC and CC9_ANCHORS_ON_EXISTENCE"
+        ],
+        "rhs": "CLAIM_NEVER_TRUE and SENTENCE_IN_SRC and CC9_ANCHORS_ON_EXISTENCE",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 200,
+        "label": "P6_scope_declared_1023",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 201,
+        "label": "P7_offline_1023",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 321,
+        "label": "P1_eslint_runs_and_sees_the_unused_directive_1024",
+        "kind": "nonempty+zero",
+        "evidence": [
+          "N_DIS > 0",
+          "RC_PLAIN == 0"
+        ],
+        "rhs": "N_DIS > 0 and RC_PLAIN == 0 and (RC_MW0 != 0)",
+        "label_hint_defect_words": [
+          "unused"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 322,
+        "label": "P2_unused_directives_are_located_back_to_their_text_1024",
+        "kind": "other",
+        "evidence": [
+          "PC_A and N_UNUSED <= UNUSED_CEILING and all((u['directive_text'] for u in UNUSED))"
+        ],
+        "rhs": "PC_A and N_UNUSED <= UNUSED_CEILING and all((u['directive_text'] for u in UNUSED))",
+        "label_hint_defect_words": [
+          "unused"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 325,
+        "label": "P3_positive_control_the_scan_finds_1023_finding_on_its_own_1024",
+        "kind": "other",
+        "evidence": [
+          "POSITIVE_CONTROL"
+        ],
+        "rhs": "POSITIVE_CONTROL",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 326,
+        "label": "P4_every_path_claim_in_a_comment_still_exists_1024",
+        "kind": "nonempty+mechanism",
+        "evidence": [
+          "N_EVID > 0",
+          "len(MISSING_EVID) > 0",
+          "'in_git_history' in e"
+        ],
+        "rhs": "N_EVID > 0 and len(MISSING_EVID) > 0 and all(('in_git_history' in e for e in MISSING_EVID))",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 328,
+        "label": "P5_the_lint_gate_is_configured_not_to_fail_on_warnings_1024",
+        "kind": "zero",
+        "evidence": [
+          "not LINT_HAS_MAXWARN",
+          "RC_PLAIN == 0"
+        ],
+        "rhs": "not LINT_HAS_MAXWARN and RC_PLAIN == 0 and (RC_MW0 != 0)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 329,
+        "label": "P6_scope_declared_1024",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 330,
+        "label": "P7_offline_1024",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 192,
+        "label": "P1_every_check_is_classed_live_or_anchor_only_1025",
+        "kind": "nonempty",
+        "evidence": [
+          "N_ALL > 0"
+        ],
+        "rhs": "N_ALL > 0 and len(LIVE) + len(ANCHOR_ONLY) == N_ALL",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 193,
+        "label": "P2_anchor_only_means_no_live_condition_1025",
+        "kind": "nonempty+pin_eq",
+        "evidence": [
+          "r['n_live_cond_args'] >= 1",
+          "r['kind'] == 'anchor_only'"
+        ],
+        "rhs": "all((r['kind'] == 'anchor_only' or r['n_live_cond_args'] >= 1 for r in CHECKS))",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 194,
+        "label": "P3_positive_control_the_scan_finds_the_volatile_criterion_on_its_own_1025",
+        "kind": "other",
+        "evidence": [
+          "POSITIVE_CONTROL and MARKER_IN_SRC"
+        ],
+        "rhs": "POSITIVE_CONTROL and MARKER_IN_SRC",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 195,
+        "label": "P4_every_count_pinning_says_which_volatility_it_assumed_1025",
+        "kind": "mechanism",
+        "evidence": [
+          "s['shape'] in ('pinned_eq', 'floor')"
+        ],
+        "rhs": "all((s.get('volatility') for r in LIVE for s in r['shapes'] if s['shape'] in ('pinned_eq', 'floor')))",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 196,
+        "label": "P5_source_text_counting_is_distinguished_from_runtime_measuring_1025",
+        "kind": "nonempty",
+        "evidence": [
+          "len(PINNED_EQ_SOURCE) >= 1"
+        ],
+        "rhs": "len(PINNED_EQ_SOURCE) >= 1",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 197,
+        "label": "P6_scope_declared_2025",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 198,
+        "label": "P7_offline_2025",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 231,
+        "label": "P1_every_P_criterion_is_extracted_with_its_probe_1026",
+        "kind": "nonempty",
+        "evidence": [
+          "N_P > 0"
+        ],
+        "rhs": "N_P > 0 and sum((v['n'] for v in PER_PROBE.values())) == N_P and (sum((v['n_deco'] for v in PER_PROBE.values())) == N_DECORATIVE)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 239,
+        "label": "P2_every_P_criterion_has_a_kind_evidence_and_label_1026",
+        "kind": "other",
+        "evidence": [
+          "all((r['kind'] and r['evidence'] for r in ROWS))"
+        ],
+        "rhs": "all((r['kind'] and r['evidence'] for r in ROWS))",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 240,
+        "label": "P3_positive_control_both_the_known_instance_and_the_classifier_1026",
+        "kind": "other",
+        "evidence": [
+          "PC_A and PC_B"
+        ],
+        "rhs": "PC_A and PC_B",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 241,
+        "label": "P4_the_lexical_axis_is_recorded_as_a_lead_not_a_verdict_1026",
+        "kind": "mechanism",
+        "evidence": [
+          "'label_hint_defect_words' in r"
+        ],
+        "rhs": "all(('label_hint_defect_words' in r for r in ROWS))",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 242,
+        "label": "P5_decorative_criteria_exist_and_lower_the_effective_count_1026",
+        "kind": "nonempty",
+        "evidence": [
+          "N_DECORATIVE >= 1"
+        ],
+        "rhs": "N_DECORATIVE >= 1 and EFFECTIVE < N_P",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 243,
+        "label": "P6_scope_declared_2026",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 244,
+        "label": "P7_offline_2026",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe944b_mouse_axes_src.py",
+        "var": "P943",
+        "naming": "batch_tagged",
+        "lineno": 94,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe943_arm_relation_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe943_arm_relation_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe945_comp_scale_split_src.py",
+        "var": "P943",
+        "naming": "batch_tagged",
+        "lineno": 79,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe943_arm_relation_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe943_arm_relation_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe946_prestate_src.py",
+        "var": "P945",
+        "naming": "batch_tagged",
+        "lineno": 76,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe945_comp_scale_split_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe945_comp_scale_split_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe947_stablewait_src.py",
+        "var": "P946",
+        "naming": "batch_tagged",
+        "lineno": 71,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe946_prestate_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe946_prestate_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe948_settle_landing_src.py",
+        "var": "P947",
+        "naming": "batch_tagged",
+        "lineno": 80,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe947_stablewait_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe947_stablewait_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe949_replay944_src.py",
+        "var": "P948",
+        "naming": "batch_tagged",
+        "lineno": 61,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe948_settle_landing_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe948_settle_landing_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe950_coldwindow_src.py",
+        "var": "P949",
+        "naming": "batch_tagged",
+        "lineno": 70,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe949_replay944_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe949_replay944_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe951_focus_gate_src.py",
+        "var": "P950",
+        "naming": "batch_tagged",
+        "lineno": 76,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe950_coldwindow_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe950_coldwindow_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe952_freeze_who_src.py",
+        "var": "P951",
+        "naming": "batch_tagged",
+        "lineno": 82,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe951_focus_gate_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe951_focus_gate_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe953_roving_ring_ck.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 143,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe954_source_ring_src.py",
+        "var": "P953",
+        "naming": "batch_tagged",
+        "lineno": 101,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe953_roving_ring_ck.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe953_roving_ring_ck.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe954_source_ring_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 102,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe955_onekey_inner_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 89,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe956_replica_ring_ck.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 92,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe956_replica_ring_ck.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 93,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe957_rail_roving_src.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 105,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe957_rail_roving_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 106,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe957_rail_roving_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 107,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe958_rail_roving_ck.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 92,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe958_rail_roving_ck.py",
+        "var": "P957",
+        "naming": "batch_tagged",
+        "lineno": 93,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe957_rail_roving_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe957_rail_roving_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe958_rail_roving_ck.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 94,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe959_domorder_src.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 105,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe959_domorder_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 106,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe959_domorder_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 107,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe960_taborder_src.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 106,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe960_taborder_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 107,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe960_taborder_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 108,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe961_ticensus_src.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 105,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe961_ticensus_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 106,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe961_ticensus_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 107,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe962_focusmove_src.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 107,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe962_focusmove_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 108,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe962_focusmove_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 109,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe963_nodecensus_src.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 107,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe963_nodecensus_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 108,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe963_nodecensus_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 109,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe964_skipwhy_src.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 107,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe964_skipwhy_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 108,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe964_skipwhy_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 109,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe965_focusable_src.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 107,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe965_focusable_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 108,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe965_focusable_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 109,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe966_clicksel_src.py",
+        "var": "P955",
+        "naming": "batch_tagged",
+        "lineno": 107,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe955_onekey_inner_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe966_clicksel_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 108,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe966_clicksel_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 109,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe967_armptr_src.py",
+        "var": "P966",
+        "naming": "batch_tagged",
+        "lineno": 80,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe966_clicksel_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe966_clicksel_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe967_armptr_src.py",
+        "var": "P952",
+        "naming": "batch_tagged",
+        "lineno": 81,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe952_freeze_who_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe968_replica_armptr_ck.py",
+        "var": "P967",
+        "naming": "batch_tagged",
+        "lineno": 78,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe967_armptr_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe967_armptr_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe968_replica_armptr_ck.py",
+        "var": "P966",
+        "naming": "batch_tagged",
+        "lineno": 79,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe966_clicksel_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe966_clicksel_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe968_replica_armptr_ck.py",
+        "var": "P958",
+        "naming": "batch_tagged",
+        "lineno": 80,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe958_rail_roving_ck.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe958_rail_roving_ck.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe969_projectpanel_src.py",
+        "var": "P967",
+        "naming": "batch_tagged",
+        "lineno": 64,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe967_armptr_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe967_armptr_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe970_owntid_ck.py",
+        "var": "P967",
+        "naming": "batch_tagged",
+        "lineno": 75,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe967_armptr_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe967_armptr_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe971_savestate_src.py",
+        "var": "P967",
+        "naming": "batch_tagged",
+        "lineno": 70,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe967_armptr_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe967_armptr_src.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe971_savestate_src.py",
+        "var": "P970",
+        "naming": "batch_tagged",
+        "lineno": 71,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe970_owntid_ck.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe970_owntid_ck.py')",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe971_savestate_src.py",
+        "var": "P954",
+        "naming": "batch_tagged",
+        "lineno": 72,
+        "label": "",
+        "kind": "other",
+        "evidence": [
+          "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')"
+        ],
+        "rhs": "pathlib.Path(__file__).with_name('jimeng_probe954_source_ring_src.py')",
+        "label_hint_defect_words": []
+      }
+    ]
+  },
+  "axis_2_lexical_lead_not_verdict": {
+    "what": "⭐⭐⭐⭐⭐ **线索轴（词法、明确不是判决）** —— 只看 `OUT` 键的标签文本里有没有缺陷词（drift/violation/bad/wrong/deficit/uncovered/missing/false/crashed/vanished/unused/unnecessary…）⇒⇒⇒⇒⇒ **「它标的是缺陷还是库存」是语义问题，词法只能给线索**",
+    "words": [
+      "drift",
+      "violat",
+      "bad",
+      "wrong",
+      "deficit",
+      "uncovered",
+      "missing",
+      "false",
+      "drifted",
+      "crashed",
+      "vanished",
+      "unused",
+      "unnecessary",
+      "false_alarm",
+      "regress"
+    ],
+    "n_with_defect_words_in_label": 6,
+    "cases": [
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "var": "P4",
+        "lineno": 187,
+        "label": "p4_the_only_vanished_one_is_the_1006_anchor_2012_",
+        "kind": "other",
+        "words": [
+          "vanished"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1013_occurrence_ledger.py",
+        "var": "P2",
+        "lineno": 180,
+        "label": "p2_ledger_red_equals_gate_vanished_2013_",
+        "kind": "other",
+        "words": [
+          "vanished"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P7",
+        "lineno": 249,
+        "label": "P7_uncovered_list_reconciles_2017",
+        "kind": "nonempty",
+        "words": [
+          "uncovered"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P5",
+        "lineno": 495,
+        "label": "P5_branch_coverage_is_six_of_seven_and_the_missing_one_is_dead_code_2020",
+        "kind": "zero",
+        "words": [
+          "missing"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P1",
+        "lineno": 321,
+        "label": "P1_eslint_runs_and_sees_the_unused_directive_1024",
+        "kind": "nonempty+zero",
+        "words": [
+          "unused"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P2",
+        "lineno": 322,
+        "label": "P2_unused_directives_are_located_back_to_their_text_1024",
+        "kind": "other",
+        "words": [
+          "unused"
+        ]
+      }
+    ],
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 这条轴不产出判决，只产出「值得人去看一眼」的名单** ⇒ **⇒⇒⇒⇒⇒⇒ 承 1025：形状机械可判、语义不可判 ⇒ **不许让一条词法轴假装成结论**"
+  },
+  "axis_3_effective_weight": {
+    "what": "⭐⭐⭐⭐⭐ **含金量轴** —— 有效判据数 = P 总数 − 恒真条数",
+    "n_P_criteria": 158,
+    "n_decorative": 18,
+    "n_decorative_that_self_declare_it": 18,
+    "n_decorative_that_do_not": 0,
+    "the_self_declared_ones": [
+      {
+        "probe": "jimeng_probe1016_baseline_host_misuse.py",
+        "var": "P8",
+        "lineno": 167,
+        "label": "P8_hold_1016"
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P8",
+        "lineno": 252,
+        "label": "P8_hold_1017"
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P6",
+        "lineno": 235,
+        "label": "P6_scope_declared_1018"
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P7",
+        "lineno": 236,
+        "label": "P7_offline_1018"
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "var": "P8",
+        "lineno": 237,
+        "label": "P8_hold_1018"
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "var": "P7",
+        "lineno": 302,
+        "label": "P7_scope_declared_2019"
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "var": "P8",
+        "lineno": 303,
+        "label": "P8_offline_2019"
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "var": "P10",
+        "lineno": 500,
+        "label": "P10_offline_2020"
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "var": "P6",
+        "lineno": 204,
+        "label": "P6_scope_declared_2021"
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "var": "P7",
+        "lineno": 205,
+        "label": "P7_offline_2021"
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "var": "P6",
+        "lineno": 200,
+        "label": "P6_scope_declared_1023"
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "var": "P7",
+        "lineno": 201,
+        "label": "P7_offline_1023"
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P6",
+        "lineno": 329,
+        "label": "P6_scope_declared_1024"
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P7",
+        "lineno": 330,
+        "label": "P7_offline_1024"
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "var": "P6",
+        "lineno": 197,
+        "label": "P6_scope_declared_2025"
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "var": "P7",
+        "lineno": 198,
+        "label": "P7_offline_2025"
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "var": "P6",
+        "lineno": 243,
+        "label": "P6_scope_declared_2026"
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "var": "P7",
+        "lineno": 244,
+        "label": "P7_offline_2026"
+      }
+    ],
+    "self_declared_reading": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 那 18 条装饰的标签自己就写着 `scope_declared` / `offline` / `hold`** ⇒⇒⇒⇒⇒⇒ **⇒ 一个诚实的命名，配上不诚实的汇总** ⇒ **错的是汇总那一层，不是这几条本身** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒ 处置不是删掉它们（它们确实在声明 scope 与 offline），是让汇总里把「装饰」单独数出来**",
+    "n_effective": 140,
+    "ratio_decorative": "18/158",
+    "reading": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 每次报「P1–P8 全 True」时，应当同时报「其中 18 条是写死的 True」** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 不报这个数，那句「全 True」就比它听起来更漂亮**",
+    "per_probe": [
+      {
+        "probe": "jimeng_probe1016_baseline_host_misuse.py",
+        "n_P": 8,
+        "n_decorative": 1,
+        "effective": 7,
+        "note": "⭐ 「P 全 True」这句话里，有 1 条是写死的 True"
+      },
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "n_P": 8,
+        "n_decorative": 1,
+        "effective": 7,
+        "note": "⭐ 「P 全 True」这句话里，有 1 条是写死的 True"
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "n_P": 8,
+        "n_decorative": 3,
+        "effective": 5,
+        "note": "⭐ 「P 全 True」这句话里，有 3 条是写死的 True"
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "n_P": 8,
+        "n_decorative": 2,
+        "effective": 6,
+        "note": "⭐ 「P 全 True」这句话里，有 2 条是写死的 True"
+      },
+      {
+        "probe": "jimeng_probe1020_harness_fidelity.py",
+        "n_P": 10,
+        "n_decorative": 1,
+        "effective": 9,
+        "note": "⭐ 「P 全 True」这句话里，有 1 条是写死的 True"
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "n_P": 7,
+        "n_decorative": 2,
+        "effective": 5,
+        "note": "⭐ 「P 全 True」这句话里，有 2 条是写死的 True"
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "n_P": 7,
+        "n_decorative": 2,
+        "effective": 5,
+        "note": "⭐ 「P 全 True」这句话里，有 2 条是写死的 True"
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "n_P": 7,
+        "n_decorative": 2,
+        "effective": 5,
+        "note": "⭐ 「P 全 True」这句话里，有 2 条是写死的 True"
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "n_P": 7,
+        "n_decorative": 2,
+        "effective": 5,
+        "note": "⭐ 「P 全 True」这句话里，有 2 条是写死的 True"
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "n_P": 7,
+        "n_decorative": 2,
+        "effective": 5,
+        "note": "⭐ 「P 全 True」这句话里，有 2 条是写死的 True"
+      }
+    ]
+  },
+  "the_candidate_that_matters_most": {
+    "what": "⭐⭐⭐⭐⭐⭐⭐ **非空断言 ∩ 标签说的是缺陷 = 「被测对象修好了、判据反而转红」的候选**",
+    "n": 2,
+    "cases": [
+      {
+        "probe": "jimeng_probe1017_replica_coverage.py",
+        "var": "P7",
+        "lineno": 249,
+        "label": "P7_uncovered_list_reconciles_2017",
+        "evidence": [
+          "len(v) > 0"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "var": "P1",
+        "lineno": 321,
+        "label": "P1_eslint_runs_and_sees_the_unused_directive_1024",
+        "evidence": [
+          "N_DIS > 0",
+          "RC_PLAIN == 0"
+        ]
+      }
+    ],
+    "honest_boundary": "⚠️⭐⭐⭐⭐⭐ **这是「候选」不是「缺口」**：一条判据断言「缺陷数 > 0」有时是**故意的**（比如它证明「扫描器确实抓到了东西」）⇒ **⇒⇒⇒⇒⇒⇒ 要判它是不是缺口，得逐条读：这个量是「缺陷」还是「被缺陷污染的环境」**⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐ **而 1024 恰好提供了两个已判决的样本：Ⓐ 的 `N_UNUSED >= 1` 是**缺口**（删掉例外就红），而 Ⓑ 的阳性对照 `len(CONTRADICTED) >= 1` 是**必要的**（找不到已知答案才该红）⇒⇒⇒⇒⇒⇒⇒⇒⇒ **同一个形状，一类是病、一类是命门 —— 这就是「形状代替语义」的全部内容**"
+  },
+  "positive_control": {
+    "A_find_the_known_decorative_without_being_told": {
+      "probe": "jimeng_probe1025_criterion_direction.py",
+      "var": "P6",
+      "found": true,
+      "rule": "⭐⭐⭐⭐⭐ **不告知答案**：分类器必须自己把这一条认成 `decorative`**"
+    },
+    "B_planted_self_check_of_the_classifier": {
+      "what": "⭐⭐⭐⭐⭐ **对分类器本身做植入自检** —— 喂进去五条人工构造的 P，逐条断言分类结果⇒⇒⇒⇒⇒⇒ **否则「恒真 = 18 条」这个读数可能来自一个根本分不清恒真的分类器**",
+      "cases": [
+        {
+          "src": "P9 = True",
+          "expected_contains": "decorative",
+          "got": "decorative",
+          "ok": true
+        },
+        {
+          "src": "P9 = (N_DRIFT > 0 and RC == 0)",
+          "expected_contains": "nonempty",
+          "got": "nonempty+zero",
+          "ok": true
+        },
+        {
+          "src": "P9 = (not RC)",
+          "expected_contains": "zero",
+          "got": "zero",
+          "ok": true
+        },
+        {
+          "src": "P9 = (N_A == 3)",
+          "expected_contains": "pin_eq",
+          "got": "pin_eq",
+          "ok": true
+        },
+        {
+          "src": "P9 = ('anchor' in SRC)",
+          "expected_contains": "mechanism",
+          "got": "mechanism",
+          "ok": true
+        }
+      ],
+      "all_ok": true
+    },
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **1024 说过「阳性对照不是装饰」，本批把它加严了一层：阳性对照还要能证明「判它的那个东西本身没坏」**"
+  },
+  "offline": "**只 `ast.parse` 仓内已有文件 + 正则**；零安装、零网络、零浏览器；不写任何临时文件；不改任何探针"
+}
