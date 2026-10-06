@@ -95,7 +95,21 @@ function check({ hits }, claims) {
       if (!hits.some((h) => h.id === c.id && h.pat === pat)) ghostPatterns.push({ id: c.id, pat });
     }
   }
-  return { ok: !unmarked.length && !ghost.length && !ghostPatterns.length, unmarked, ghost, ghostPatterns, total: hits.length };
+  // 🔴🔴 批次 236 新增：**漏匹配**（under-coverage）—— 上一条只抓「一个都没命中」，
+  //    抓不住「命中了 2 处、其实该命中 4 处」。批次 236 实测踩到：台账 pattern 手打错一个字
+  //    （漏了「我」），claim 在 30-concepts.md 里有 3 处却只被 PROGRESS/AUDIT 的 2 处盖住，
+  //    而**那 2 处都有订正标记 ⇒ 门照样全绿**。⇒ 静默的漏覆盖是这道门原来的盲区。
+  //    处置：entry 可**声明式**写 `min_hits`（我这次到底订正了几处），声明了就必须够数。
+  const under = [];
+  for (const c of claims.entries) {
+    if (typeof c.min_hits !== 'number') continue;   // 未声明 = 不检查（向后兼容）
+    const got = hits.filter((h) => h.id === c.id).length;
+    if (got < c.min_hits) under.push({ id: c.id, 声明: c.min_hits, 实到: got });
+  }
+  return {
+    ok: !unmarked.length && !ghost.length && !ghostPatterns.length && !under.length,
+    unmarked, ghost, ghostPatterns, under, total: hits.length,
+  };
 }
 
 // ---------- 阳性对照：证明这道门真的会红 ----------
@@ -155,6 +169,20 @@ function selftest() {
     results.push(['③' + "' 没有任何 entry 列出多个 pattern ⇒ 用例无法构造（**台账该补多 pattern 条目**）", false]);
   }
 
+  // 用例 3''（批次 236 新增）：entry 声明了 `min_hits`，但实际命中**少于**声明数
+  //   ⇒ 漏覆盖必须红。⚠️ 这正是本批踩到的：pattern 手打错一个字，claim 在 3 个文件里出现，
+  //   只有 2 处被 pattern 盖住，而那 2 处都带订正标记 ⇒ 旧的门**全绿放行**。
+  const 有声明 = claims.entries.find((c) => typeof c.min_hits === 'number');
+  if (有声明) {
+    const 抬到 = { ...claims, entries: claims.entries.map((c) => c.id === 有声明.id
+      ? { ...c, min_hits: c.min_hits + 5 } : c) };
+    const r36 = check(scan(抬到), 抬到);
+    results.push([`③'' entry「${有声明.id}」声明的 min_hits 被抬高到实到之上 → 门必须红`,
+      !r36.ok && r36.under.length === 1]);
+  } else {
+    results.push(["③'' 台账里没有任何 entry 声明 min_hits ⇒ 用例无法构造（**新条目该声明它**）", false]);
+  }
+
   // 用例 4：原样 ⇒ 必须绿
   const r4 = check(scan(claims), claims);
   results.push(['④ 未改动 ⇒ 门必须绿', r4.ok === base.ok]);
@@ -188,8 +216,12 @@ if (r.ghostPatterns.length) {
   console.log(`\n⛔ ${r.ghostPatterns.length} 个 pattern 匹配不到任何命中（它在假装覆盖别处的旧结论）：`);
   for (const g of r.ghostPatterns) console.log(`  [${g.id}] pattern: ${g.pat}`);
 }
+if (r.under.length) {
+  console.log(`\n⛔ ${r.under.length} 条 entry 声明的 min_hits 够不着（**漏覆盖：pattern 没盖住全部出现处**）：`);
+  for (const u of r.under) console.log(`  [${u.id}] 声明至少 ${u.声明} 处，实际只命中 ${u.实到} 处`);
+}
 if (r.ok) {
-  console.log(`\n✅ 订正回填门通过：${s.hits.length} 处命中全部带内联订正标记，${claims.entries.length} 条 entry 均对得上真实命中（且每个 pattern 都至少命中一处）`);
+  console.log(`\n✅ 订正回填门通过：${s.hits.length} 处命中全部带内联订正标记，${claims.entries.length} 条 entry 均对得上真实命中（且每个 pattern 都至少命中一处、声明了 min_hits 的都够数）`);
 } else {
   console.log('\n🔴 订正回填门不通过 —— 退出码 1');
   process.exit(1);
