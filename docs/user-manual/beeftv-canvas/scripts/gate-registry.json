@@ -40,7 +40,7 @@
       "measured_form": "红态",
       "red_sentence": "账号配额核对：(\\d+) 处声明与上游不符",
       "green_sentence": "账号配额核对通过：",
-      "gate_sha256": "41d0895acc00f6514d457d7bb859922bcbd994957e4fd8577fd127234ec1b241"
+      "gate_sha256": "33ac7a3cdeba93eeeaf8d2dbe31cdf2d110f1f0ff6b49c1026c80d82afb28bd6"
     },
     {
       "gate": "verify-quote-punct.py",

@@ -8,7 +8,7 @@ Batch 233 给 `storage-quota.md` 的配额表建了这道闸，而**这道闸的
 而是**「它报的是不是真问题」**：配额表是要给读者当排查依据用的，
 **把正确的东西报成缺陷，危害比缺陷本身大**（纪律 248）。
 
-  能抓 5 条：
+  能抓 6 条：
     1) 删掉「任务历史数据（文本）」整行 → 必须报「表里没有这条文案」
     2) 删掉「单个生成资源超过 64MB」那半句 → 必须报漏写
        （**这正是本批真实修掉的第二个缺陷**，判据抓不抓得到它要单独钉）
@@ -16,7 +16,7 @@ Batch 233 给 `storage-quota.md` 的配额表建了这道闸，而**这道闸的
        （方向③：两列各说各话时必须能抓）
     4) 某行文案改一个字 → 必须报「上游渲染不出这句」
     5) 规范表的表头改掉 → 必须 **rc=2 未能核对**，而**不是**「没找到表所以通过」
-  不误伤 3 条：
+  不误伤 4 条：
     6) 改第一列的配额名称 → 必须放行（判据核的是文案与数值，不是叫法）
     7) 默认值 `**20 GB**` 改成 `**20GB**` → 必须放行（**核的是数字不是写法**）
     8) 调换两行顺序 → 必须放行（判据不核顺序）
@@ -54,11 +54,32 @@ def _cksum(text):
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def run(desc, want, expect_fail=True, want_rc=1, transform=None):
+def run(desc, want, expect_fail=True, want_rc=1, transform=None, also=None):
     global PASS, VOID, FAIL
     with open(os.path.join(ROOT, MANUAL_REL), encoding="utf-8") as fh:
         base = fh.read()
     text = base
+    #: **`also` 是第二个文件的注入**（Batch 318 新增）。
+    #: **为什么需要它**：方向五扫的是**全树读者页**，而本沙箱只搬了
+    #: `storage-quota.md` 一个——**那么 `90-troubleshooting.md` 里那处「十项配额」
+    #: 在沙箱里根本不存在**，**跨页那半边就成了没人验过的**（Batch 316 的同一课：
+    #: **少搬一份文件，会让某条方向在沙箱里恒真**）。
+    also_text = None
+    if also is not None:
+        rel2, fn2 = also
+        with open(os.path.join(ROOT, rel2), encoding="utf-8") as fh:
+            base2 = fh.read()
+        try:
+            also_text = fn2(base2)
+        except AssertionError as exc:
+            print("  ✗ %s：第二个文件锚点未命中 → **本用例作废**（%s）" % (desc, exc))
+            VOID += 1
+            return
+        if _cksum(also_text) == _cksum(base2):
+            print("  ✗ %s：第二个文件注入前后逐字相同 → **本用例作废**" % desc)
+            VOID += 1
+            return
+
     if transform is not None:
         try:
             text = transform(base)
@@ -92,6 +113,13 @@ def run(desc, want, expect_fail=True, want_rc=1, transform=None):
         #: 值得记的是它**没有假装通过**（rc=2 而不是 0），所以这批失败是可见的；
         #: **但闸 17 只核 Python 模块的搬运，看不见数据文件**——反验的沙箱不只有一种坏法。
         shutil.copy(os.path.join(ROOT, BASELINE_REL), os.path.join(tmp, BASELINE_REL))
+        #: **Batch 318 补搬 `90-troubleshooting.md`**——方向五扫全树读者页，
+        #: 而那一页里就有一处「十项配额」。**不搬它，跨页那半边在沙箱里恒真。**
+        ALSO_REL = "90-troubleshooting.md"
+        if also is not None:
+            shutil.copy(os.path.join(ROOT, ALSO_REL), os.path.join(tmp, ALSO_REL))
+            with open(os.path.join(tmp, ALSO_REL), "w", encoding="utf-8") as fh:
+                fh.write(also_text)
         with open(os.path.join(tmp, MANUAL_REL), "w", encoding="utf-8") as fh:
             fh.write(text)
 
@@ -174,6 +202,34 @@ def t_number_same_unit_style(s):
     return s.replace(a, "| 账号存储总量 | **20GB** |", 1)
 
 
+def t_wrong_quota_count(s):
+    """**方向五（Batch 318）**：小节标题的「十项」改成「九项」。
+
+    **这一支钉的是那个一直没人接的数**：`storage-quota.md` 有一节叫
+    「账号有**十项**配额」，而**闸 30 的输出里一直印着「配额表 10 行」**——
+    **信息在判据的屏幕上，而这句话在手册里，中间没有任何东西把两者连起来**。
+    而本闸自己的报错文案里一直写着「把「N 项配额」的 N 改成表的实际行数」，
+    **那句话一直是在指使人，不是在自己动手**。
+    """
+    a = "## 账号有十项配额"
+    assert a in s, "锚点未命中：找不到「## 账号有十项配额」"
+    return s.replace(a, "## 账号有九项配额", 1)
+
+
+def t_tweak_enumerated_values(s):
+    """**不误伤那一半**：改动 `90-troubleshooting.md` 那段散文列举的**条目数值**。
+
+    **本闸的文件头明确声明「刻意不核」那一段**——理由是要核条目就得维护
+    一张「缩写名 → 字段」登记表，**而登记表正是纪律 242 禁止的**。
+
+    **方向五只核那个「个数」，不核那些条目**——**这一支就是那份声明的锚点**：
+    若方向五越界去比条目数值，它就会在这里误伤，**而误伤配额表比漏项更坏**。
+    """
+    a = "存储总量 20GB、结构化数据 256MB"
+    assert a in s, "锚点未命中：找不到那段散文列举"
+    return s.replace(a, "存储总量 40GB、结构化数据 512MB", 1)
+
+
 def t_swap_two_rows(s):
     a = "| 画布数量 | **1000 个** | 账号画布数量已达到 1000 个上限 / 账号画布数量不能超过 1000 个 |\n"
     b = "| 任务历史条数 | **20000 条** | 账号任务历史已达到 20000 条上限，请联系管理员归档 |\n"
@@ -211,6 +267,11 @@ def main():
         "账号配额核对通过", expect_fail=False, transform=t_number_same_unit_style)
     run("8) 不误伤：调换两行顺序（必须放行）",
         "账号配额核对通过", expect_fail=False, transform=t_swap_two_rows)
+    run("9) 能抓：正文里「十项配额」被改成「九项」（方向五）",
+        "而配额表实际有 10 行", transform=t_wrong_quota_count)
+    run("10) 不误伤：改 90-troubleshooting.md 那段散文列举的条目数值（方向五只核个数、不核条目）",
+        "账号配额核对通过", expect_fail=False,
+        also=("90-troubleshooting.md", t_tweak_enumerated_values))
 
     print("=== 结果：通过 %d / 失败 %d / 作废 %d ===" % (PASS, FAIL, VOID))
     return 1 if (FAIL or VOID) else 0

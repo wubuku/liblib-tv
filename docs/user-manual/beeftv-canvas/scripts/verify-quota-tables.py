@@ -17,13 +17,27 @@
     **讽刺的是同一页下面就有一个 tip 专门讲「两种写法、同一条限制」**，
     而它举的例子只有素材数与画布数——**现象存在，只是漏认了一处**。
 
-**本闸判什么**（三个方向，缺一不可）：
+**本闸判什么**（**五个方向**，缺一不可）：
   ① **完整**：上游每一条渲染出来的配额报错文案，手册表里必须都出现
      （这一条就是本批真缺陷的来源——**它抓的是「手册没写」，而单边判据抓不到**）；
   ② **准确**：手册表里每一条文案，上游必须真的渲染得出
      （防上游改文案后手册留着旧版，**与①方向相反，两边都核**）；
   ③ **数值**：每行的「默认值」格必须等于该行文案所绑定字段的上游默认取值
-     （防「默认值」列与「报错」列各说各话）。
+     （防「默认值」列与「报错」列各说各话）；
+  ④ **行数**（Batch 233 加，与①③同期）：表里的**行数**必须等于**上游有文案的字段数**
+     ——①②③逐条核，但**表里少一整行、且那一行对应的文案上游还没写**时三条都发现不了，
+     而「一共就这 N 条」仍然是假的（**穷举声明的形状**）；
+  ⑤ **个数（Batch 318 新增）**：**全树读者页里「N 项配额 / N 个配额」的 N，
+     必须等于本表实际行数**（实测命中 4 处，全是「十项配额」）。
+
+     **它接的是纪律 351④ 说的第二种形状**：**信息已经在本闸的输出里**
+     ——「配额表 10 行」这句话每次构建都在打——**而手册在另外 4 处把它写成
+     「十项配额」，中间没有任何东西把两者连起来**。
+     **不接的后果可以逐字推演**：上游加第 11 个字段 → 方向四红 → 人加第 11 行表 →
+     **那 4 句「十项」原地不动地变成假话，而构建照绿。**
+
+     **而本闸自己的报错文案里一直写着「把「N 项配额」的 N 改成表的实际行数」**
+     ——**那句话从 Batch 233 起就在指使人，而从没有自己动手。**
 
 **合法集从上游自己算出来，不建人工登记表**（纪律 242）：字段集取自
 `RuntimeResourcePolicy` 结构体定义、文案集取自**绑定到这些字段的字面量**，
@@ -36,9 +50,13 @@
     （「存储总量 20GB、结构化数据 256MB…」），**刻意不核**——它把 2048MB 写成「2GB」是合法编辑选择，
     要匹配就得手工维护一张「缩写名 → 字段」的登记表，**而登记表正是纪律 242 禁止的东西**。
     **判据把正确的东西报成缺陷，危害比缺陷本身大**（纪律 248）；
+    **⚠️ Batch 318 把这条边界说准了**：**上面说的「不核」针对的是那段散文的「条目」，
+    不是它的「个数」。** 方向五核的是 `90-troubleshooting.md` 里那句
+    「服务端强制**十项**配额」的**十**——**而核一个数不需要任何登记表**，
+    那个数就写在句子里。**改那段列举的条目数值仍然放行**（反验第 10 例钉住这一半）。
   · 不核「本地部署那一套取值」——那是闸 12 `verify-runtime-policy.py` 的职责（它在 20-reference 上核两套）。
 
-退出码：0 三方向全相符；1 有不符；2 未能核对（找不到源码 / 结构体 / 规范表 / 抽取有解析缺口）。
+退出码：0 五方向全相符；1 有不符；2 未能核对（找不到源码 / 结构体 / 规范表 / 抽取有解析缺口）。
 """
 import os
 import re
@@ -300,6 +318,56 @@ def _has_number(cell, value):
     return re.search(r"(?<!\d)%d(?!\d)" % value, cell) is not None
 
 
+#: **方向五（Batch 318）**只认这两个紧邻形态，其余一律不看：
+#: 「N 项配额」与「N 个配额」。**实测全树命中 4 处，全是「十项配额」**。
+QUOTA_COUNT_RE = re.compile(
+    r"([一二三四五六七八九十两\d]{1,3})\s*(?:项配额|个配额)")
+#: 中文数字→阿拉伯数字。**只够 1～99**，而**读不出来就报「读不出来」而不是当成通过**
+#: （纪律 101：解析器退化必须表现为失败）。
+_CN_DIGIT = {"一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5,
+             "六": 6, "七": 7, "八": 8, "九": 9}
+
+
+def _cn_int(s):
+    if s.isdigit():
+        return int(s)
+    if "十" in s:
+        a, _, b = s.partition("十")
+        tens = _CN_DIGIT.get(a, 1) if a else 1
+        ones = _CN_DIGIT.get(b, 0) if b else 0
+        return tens * 10 + ones
+    if len(s) == 1 and s in _CN_DIGIT:
+        return _CN_DIGIT[s]
+    return None
+
+
+def _quota_count_claims():
+    """扫**读者页**里「N 项配额 / N 个配额」，产出 `(文件, 行号, 原样文字, 值或 None)`。
+
+    **排除内部台账**（`AUDIT.md` / `AUDIT-RULES.md` / `PROGRESS.md` …）
+    ——**它们天然含历史叙述**，而本方向核的是**对读者生效的那句话**。
+    """
+    import os
+    internal = {"AUDIT.md", "AUDIT-RULES.md", "PROGRESS.md", "FINAL-REPORT.md",
+                "SOURCE-OBSERVATIONS.md"}
+    skip_dirs = {".git", "node_modules", ".vitepress", "dist", ".agents",
+                 "__pycache__", "screenshots", "scripts"}
+    out = []
+    for dp, dn, fns in os.walk(ROOT):
+        dn[:] = [d for d in dn if d not in skip_dirs]
+        for fn in sorted(fns):
+            if not fn.endswith(".md") or fn in internal:
+                continue
+            p = os.path.join(dp, fn)
+            rel = os.path.relpath(p, ROOT)
+            with open(p, encoding="utf-8") as fh:
+                for i, line in enumerate(fh.read().split("\n"), 1):
+                    for m in QUOTA_COUNT_RE.finditer(line):
+                        tok = m.group(0)
+                        out.append((rel, i, tok, _cn_int(m.group(1))))
+    return out
+
+
 @baseline_guard
 def main():
     announce_fallback()
@@ -381,10 +449,33 @@ def main():
         extra.append(f"表里 {len(rows)} 行，上游有配额文案的字段却只有 "
                      f"{len(fields_in_upstream)} 个：{sorted(fields_in_upstream)}")
 
-    bad = missing + extra + numbad
+    # ---- 方向五（Batch 318 新增）：正文里「N 项配额」的 N 必须等于表的实际行数
+    # **而本方向只核那一个数，不核 `90-troubleshooting.md` 那段散文列举的条目**
+    # ——**文件头声明的边界针对的是「条目」，不是「个数」**：
+    # 要核条目就得维护一张「缩写名 → 字段」登记表，**而登记表正是纪律 242 禁止的**；
+    # **核一个数不需要任何登记表**，那个数就写在句子里。
+    # **这正是纪律 351④ 说的第二种形状**：**信息已经在本闸的输出里**
+    # （「配额表 10 行」），**而手册在另外 4 处把它写成了「十项配额」，
+    # 中间没有任何东西把两者连起来**。
+    # **不接的后果具体可推演**：上游加第 11 个字段 → 本闸方向四红 →
+    # 人加第 11 行表 → **那 4 句「十项」原地不动地变成假话**，而构建照绿。
+    countbad = []
+    n_rows = len(rows)
+    for rel, lineno, tok, val in _quota_count_claims():
+        if val is None:
+            countbad.append(f"{rel} 第 {lineno} 行：「{tok}」的个数读不出来")
+            continue
+        if val != n_rows:
+            countbad.append(
+                f"{rel} 第 {lineno} 行写「{tok}」，**而配额表实际有 {n_rows} 行**"
+                "——**这个数是「一共就这 N 项」的读者依据**"
+                "（本闸的报错文案里一直写着「把「N 项配额」的 N 改成表的实际行数」，"
+                "**而那句话一直是在指使人，不是在自己动手**）")
+    bad = missing + extra + numbad + countbad
     if bad:
         print(f"账号配额核对：{len(bad)} 处声明与上游不符"
-              f"（漏写 {len(missing)} / 多写或行数不符 {len(extra)} / 数值不符 {len(numbad)}）")
+              f"（漏写 {len(missing)} / 多写或行数不符 {len(extra)} / "
+              f"数值不符 {len(numbad)} / 个数不符 {len(countbad)}）")
         for b in bad:
             print("  " + b)
         print("→ 更新 10-tasks/storage-quota.md 的配额表：**每一条上游文案都要在表里出现**，"
@@ -393,11 +484,11 @@ def main():
         return 1
     if gaps:
         print(f"[skip] {len(gaps)} 行本轮未能解析，"
-              f"其余 {len(messages)} 条文案三方向都相符 —— **不是全部通过**")
+              f"其余 {len(messages)} 条文案五方向都相符 —— **不是全部通过**")
         return 2
     print(f"账号配额核对通过：上游 {len(fields_in_upstream)} 个配额字段 / "
           f"{len(messages)} 条报错文案，与配额表 {len(rows)} 行在"
-          f"**完整性、准确性、数值**三个方向都与 {REF} 相符")
+          f"**完整性、准确性、数值、行数、个数**五个方向都与 {REF} 相符")
     return 0
 
 
