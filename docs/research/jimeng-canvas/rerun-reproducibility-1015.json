@@ -6,16 +6,16 @@
  "rule3": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「探针跑成功了」不等于「产物被刷新了」—— 只能靠重跑后比对字节、或看 mtime 变没变来判，不许看退出码**",
  "pen_is_the_book": {
   "n_zero_coupling_head": 810,
-  "n_zero_coupling_now": 820,
+  "n_zero_coupling_now": 823,
   "n_positive_present_head": 6451,
-  "n_positive_present_now": 6630,
-  "n_audit_2015_lines": 1600,
+  "n_positive_present_now": 6673,
+  "n_audit_2015_lines": 1692,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **被测的账和记账的笔是同一份文件时，往笔上多写一句，被测的那些账就跟着重算** —— 1005 普查的是 `_ausrc`，而本批往 audit 里塞了判据 ⇒ ⇒ ⇒ ⇒ ⇒ 所以它的读数必然跟着变"
  },
  "discovery": {
-  "channel_a_goldens": 16,
-  "channel_b_probes": 217,
-  "n_owned": 15,
+  "channel_a_goldens": 17,
+  "channel_b_probes": 218,
+  "n_owned": 16,
   "n_excluded_self": 1,
   "n_unparsable": 0,
   "n_no_generated_by": 0,
@@ -231,33 +231,12 @@
  "rounds": [
   {
    "round": 1,
-   "n_drifted": 7,
-   "drifted": [
-    "edit-visibility-1009.json",
-    "empty-ambiguity-1014.json",
-    "global-detection-1012.json",
-    "golden-freshness-1008.json",
-    "occurrence-ledger-1013.json",
-    "replica-coverage-1017.json",
-    "zero-coupling-anchors-1005.json"
-   ]
-  },
-  {
-   "round": 2,
-   "n_drifted": 2,
-   "drifted": [
-    "change-locality-1011.json",
-    "golden-freshness-1008.json"
-   ]
-  },
-  {
-   "round": 3,
    "n_drifted": 0,
    "drifted": []
   }
  ],
  "converged": true,
- "n_rounds": 3,
+ "n_rounds": 1,
  "max_rounds": 6,
  "fixed_point_rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **整轮重跑直到某一轮零漂移为止 —— 因为 1015 在整轮结束后才写自己那本，1014 在整轮里读到的永远是 1015 的上一版 ⇒ 每本账都落后它上游一轮**",
  "books": [
@@ -344,8 +323,8 @@
    "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 15694,
-   "n_bytes_fresh": 15694,
+   "n_bytes": 17082,
+   "n_bytes_fresh": 17082,
    "state": "reproduced",
    "tail": [
     "P1..P8 = [False, True, True, False, True, True, True, False]",
@@ -444,12 +423,25 @@
    ]
   },
   {
+   "golden": "type-layer-gate-1023.json",
+   "probe": "scripts/jimeng_probe1023_type_layer_gate.py",
+   "rc": 0,
+   "wrote_golden": true,
+   "n_bytes": 9205,
+   "n_bytes_fresh": 9205,
+   "state": "reproduced",
+   "tail": [
+    "产物可复现自检：无随机临时目录名残留 ✓",
+    "PROBE_1023_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/type-layer-gate-1023.json"
+   ]
+  },
+  {
    "golden": "zero-coupling-anchors-1005.json",
    "probe": "scripts/jimeng_probe1005_zero_coupling_census.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 126051,
-   "n_bytes_fresh": 126051,
+   "n_bytes": 126485,
+   "n_bytes_fresh": 126485,
    "state": "reproduced",
    "tail": [
     "P1..P5 = [True, False, True, True, True]",
@@ -458,12 +450,12 @@
   }
  ],
  "totals": {
-  "n_books": 15,
-  "reproduced": 15,
+  "n_books": 16,
+  "reproduced": 16,
   "drifted": 0,
   "crashed": 0,
   "vanished": 0,
-  "sum_states": 15
+  "sum_states": 16
  },
  "diff_shape": {
   "n_keys_added": 0,
@@ -523,7 +515,7 @@
   "chinese_numerals_out_of_scope": "⭐⭐⭐⭐⭐ `_NUMRE` 只认阿拉伯数字 ⇒ 「五条」与「5 条」在检查里长得一样 ⇒ 本批判据里就有一处「三条」是错的而 P6 全程报绿",
   "zero_in_sources": true,
   "one_in_sources": true,
-  "zero_entered_via": "第 3 轮里漂移的本数",
+  "zero_entered_via": "第 1 轮里漂移的本数",
   "one_entered_via": "第 1 轮的轮号",
   "what_is_actually_enforced": "⭐ 判据里的每个数要么等于某个**实测值**、要么不在出处表里",
   "what_is_not_enforced": "⭐⭐⭐⭐⭐ 「0 和 1 也必须有出处」—— 出处表按值索引，而任一实测读数为 0/1 就会把 0/1 登记进去 ⇒ 判据里别处的 0/1 一律通过",
@@ -535,8 +527,8 @@
   "second_copy_rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐ **同一条判据在 audit 与 verifier 里各有一份文本，而口径默认只覆盖前者** ⇒ ⇒ ⇒ 「改写横幅只挂在 audit 那一份」⇒ ⇒ ⇒ ⇒ verifier 那一份会静静地继续显示旧读数、且门不会报红（断言体只钉机制、不钉读数）⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 本批自己撞上了：U993Y.3 摘要里的 `1 → 2` / `实测 3 轮` / `/books/[2]/keys_added` 全是收敛前的旧读数**"
  },
  "p8_invariants_invisible_to_1014": {
-  "census_n_goldens": 15,
-  "census_n_ambiguous": 35,
+  "census_n_goldens": 16,
+  "census_n_ambiguous": 39,
   "census_n_self_provable": 9,
   "self_ambiguous": 6,
   "self_ambiguous_paths": [
@@ -551,38 +543,38 @@
   "n_invariables_1014_cannot_see": 1,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **产物里写着不变式 ≠ 普查看得见不变式** —— 1014 的 `INVARIANTS` 是一张硬编码表，它不读产物里的 `empty_list_invariants`",
   "p8_saw_artifact_with_n_rounds": 3,
-  "p8_this_artifact_has_n_rounds": 3,
-  "p8_reading_lag_rounds": 0,
+  "p8_this_artifact_has_n_rounds": 1,
+  "p8_reading_lag_rounds": -2,
   "p8_lag_is_structural": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这不是 bug、是没关严** —— 要把这条读数追平，就得「写完产物再跑一次 1014」，而那会改写 1014 那本账 ⇒ ⇒ ⇒ 又触发新一轮 ⇒ ⇒ ⇒ ⇒ **⇒ 所以只有把它记成一个读数，才不至于让产物自己和自己矛盾**"
  },
  "number_sources": {
   "211": "1015 提交时（sha `2b52f492`）实测的通道 B 探针数 —— 此后新增探针会让它变大，而**出处的含义是「那一刻的实测读数」**，不是白名单",
-  "2": "第 2 轮里漂移的本数",
-  "3": "第 3 轮的轮号",
+  "2": "1015 那次跑出不动点的轮数 —— 现读数见产物 `n_rounds`",
+  "3": "1015 那次修好的 `generated_by` 条数 —— 修完就是 0，**这不是矛盾，是「修完了」**",
   "690": "1015 提交时（sha `2b52f492`）1005 的 `n_zero_coupling` —— 往 audit 里写判据就会把它顶高",
   "10": "⚠️⭐⭐⭐⭐⭐⭐ **这一条是 1017 逼出来的第三次**：1015 的 `p2_…` 判据里本来就有一个「10」，而它一直没有单独的出处 —— **它是被「实测值恰好等于 10」顺带放行的**（当时 `n_owned` = 10）⇒ ⇒⇒⇒ 1017 加了第 12 本探针、`n_owned` 变成 11 ⇒⇒⇒⇒ **那一刻它才暴露出来：「碰巧对上了」和「有出处」在检查里长得一样** ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒ 所以出处的数量比想象中要紧 —— 一个数能活多久，取决于它碰巧撞上了哪个实测值**",
   "5": "⚠️⭐⭐⭐⭐⭐⭐ **第四次、也是最不该发生的一次**：`p8_…` 判据里那个「5」是 `self_ambiguous` 在 1015 提交时（sha `2b52f492`）的读数，1018 跑完已变成 6 ⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒ 同一个病：读数一变、判据里的数就没出处** ⇒⇒⇒⇒⇒⇒ ⇒ 处置与其他几条一致：登记成带 sha 的历史实测读数，**不进白名单**",
-  "16": "通道 A：docs/research/jimeng-canvas/*.json 的文件数",
-  "217": "通道 B：scripts/jimeng_probe*.py 的文件数",
-  "15": "1014 普查看到的 golden 本数（已排除它自己那本）",
+  "17": "通道 A：docs/research/jimeng-canvas/*.json 的文件数",
+  "218": "通道 B：scripts/jimeng_probe*.py 的文件数",
+  "16": "1014 普查看到的 golden 本数（已排除它自己那本）",
   "1": "第 1 轮的轮号",
-  "0": "第 3 轮里漂移的本数",
+  "0": "第 1 轮里漂移的本数",
   "201": "通道 B 有探针而通道 A 无对应 golden 的个数",
   "6": "1014 那台普查判本探针产物「不可自证」的条数",
-  "0/16": "被拒绝认领的比例（分母 = 通道 A）",
-  "15/16": "认领到的比例（分母 = 通道 A）",
+  "0/17": "被拒绝认领的比例（分母 = 通道 A）",
+  "16/17": "认领到的比例（分母 = 通道 A）",
   "8": "第一版探针认领到的本数（仪器故障期，已修）",
   "4": "本探针在产物里登记的不变式条数",
-  "35": "1014 普查口径下全部账里「不可自证」的总数",
+  "39": "1014 普查口径下全部账里「不可自证」的总数",
   "9": "1014 普查口径下「可自证」的总数",
   "810": "1005 golden 在 git HEAD 上的 `n_zero_coupling`",
-  "820": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
+  "823": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
   "6451": "1005 golden 在 git HEAD 上的 `n_positive_present`",
-  "6630": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
+  "6673": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
   "4/9": "1015 上一版的不动点漂移比例（已挂【1015 改写横幅】，原文保留）",
   "2/9": "曾观测到的一轮漂移比例（分母 = 认领到的本数）",
   "0/9": "末轮的漂移比例（分母 = 认领到的本数）",
-  "7": "第 1 轮里漂移的本数",
+  "7": "曾观测到的不动点漂移序列 7 → 1 → 2 → 0 里的第一个数（**历史观测**，不是当前读数；当前读数在产物的 `rounds` 块里",
   "998/1004": "引用的批次对：998/1004 那条「否的信息量在规则不对」",
   "1005/1007": "引用的批次对：1005 与 1007 两本 golden",
   "990": "批号",
@@ -615,8 +607,6 @@
   "1017": "批号",
   "1018": "批号",
   "1019": "批号",
-  "7/15": "第 1 轮的漂移比例（分母 = 认领到的本数）",
-  "2/15": "第 2 轮的漂移比例（分母 = 认领到的本数）",
-  "0/15": "第 3 轮的漂移比例（分母 = 认领到的本数）"
+  "0/16": "第 1 轮的漂移比例（分母 = 认领到的本数）"
  }
 }

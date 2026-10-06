@@ -3,12 +3,12 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census": {
-  "n_goldens": 12,
+  "n_goldens": 16,
   "n_excluded_self": 1,
-  "n_empty_list": 16,
-  "n_empty_null": 1,
+  "n_empty_list": 22,
+  "n_empty_null": 26,
   "n_self_provable": 9,
-  "n_ambiguous": 8
+  "n_ambiguous": 39
  },
  "rows": [
   {
@@ -24,6 +24,195 @@
    "kind": "list",
    "self_provable": true,
    "invariant": "delta_matches_static 与 gate_missing 一起把差集钉死"
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[0]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[0]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[1]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[1]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[2]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[2]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[3]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[3]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[4]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[4]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[5]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[5]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[6]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[6]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[7]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[7]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[8]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[8]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[9]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[9]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[10]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[10]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/the_verdict_fork/depth1_1019_original/got/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/the_verdict_fork/depth2_under_1019_stub/got/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/the_verdict_fork/depth2_under_faithful_stub/got/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/discriminating_power/mutants/timeout_names",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/discriminating_power/disagreeing_examples",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
   },
   {
    "golden": "occurrence-ledger-1013.json",
@@ -129,12 +318,229 @@
    "kind": "list",
    "self_provable": true,
    "invariant": "triggers == [] ⟺ about_self == False"
+  },
+  {
+   "golden": "type-layer-gate-1023.json",
+   "path": "/self_check/whole_repo_tsc/first",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "type-layer-gate-1023.json",
+   "path": "/self_check/unmutated_copy_tsc/first",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "type-layer-gate-1023.json",
+   "path": "/type_layer_experiment/mutants/[6]/first",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "type-layer-gate-1023.json",
+   "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
   }
  ],
  "ambiguous": [
   {
    "golden": "baseline-host-misuse-1016.json",
    "path": "/duplicate_now",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[0]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[0]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[1]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[1]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[2]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[2]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[3]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[3]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[4]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[4]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[5]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[5]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[6]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[6]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[7]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[7]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[8]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[8]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[9]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[9]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[10]/shallow/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/fidelity/grid/disagreements/[10]/deep/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/the_verdict_fork/depth1_1019_original/got/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/the_verdict_fork/depth2_under_1019_stub/got/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/the_verdict_fork/depth2_under_faithful_stub/got/err",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/discriminating_power/mutants/timeout_names",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "harness-fidelity-1020.json",
+   "path": "/discriminating_power/disagreeing_examples",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -184,6 +590,34 @@
   {
    "golden": "rerun-reproducibility-1015.json",
    "path": "/repaired_generated_by",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "type-layer-gate-1023.json",
+   "path": "/self_check/whole_repo_tsc/first",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "type-layer-gate-1023.json",
+   "path": "/self_check/unmutated_copy_tsc/first",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "type-layer-gate-1023.json",
+   "path": "/type_layer_experiment/mutants/[6]/first",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "type-layer-gate-1023.json",
+   "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
    "kind": "list",
    "self_provable": false,
    "invariant": null

@@ -5937,6 +5937,9 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ 1021：第一次量「门自己」—— 官方锚点门对「判据变弱」的敏感度
     p1021 = ROOT / "scripts/jimeng_probe1021_anchor_gate_coverage.py"
     _p1021 = p1021.read_text(encoding="utf-8") if p1021.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1023：量「类型层」那一道闸 —— tsc 早就装好了
+    p1023 = ROOT / "scripts/jimeng_probe1023_type_layer_gate.py"
+    _p1023 = p1023.read_text(encoding="utf-8") if p1023.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -15930,6 +15933,81 @@ def main() -> int:
           and '**⇒⇒⇒⇒⇒⇒ 1020 的全部读数在今天依然成立**' in _ausrc
           and '补的格**在基线上先跑一遍确认全绿' in _ausrc
           and 'atexit.register(shutil.rmtree, str(TMPDIR), ignore_errors=True)' in _p1019)
+
+
+    # ══ CC993G. 批 1023 量「类型层」那一道闸：tsc 早就装好了，而一条判据把一句从没成立过的话当成了前提
+    print("— CC993G. 批 1023 量类型层：tsc 早就在、整仓零错误；"
+          "1020 那 4 个「等价变异体」被类型层 4/4 全抓住；而「npm run check 不跑 tsc」从来没成立过")
+    check("CC993G.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P1 成立 —— 本批量「类型层」那一道闸。** 两条基线都必须先干净："
+          "**整仓 `tsc --noEmit` rc=0 零错误**、**未变异副本也 rc=0** ⇒ 不干净则"
+          "**「tsc 抓到了」可能只是副本装置坏了 ⇒ 后面全部作废、立刻停**；"
+          "⭐ **零安装零网络** —— 用的是仓里**早就装好的** `typescript` 与根 `tsconfig.json`",
+          'def whole_repo_tsc()' in _p1023
+          and 'self_test' not in _p1023          # 不许有那个字段名（避免判据自我锚定）
+          and 'SELFCHECK = (REPO_TSC["rc"] == 0 and COPY_TSC["rc"] == 0)' in _p1023
+          and 'raise SystemExit("自检失败：仓当前就有类型错误、或副本装置不干净，先停。%r / %r"' in _p1023
+          and 'TMPDIR = Path(tempfile.mkdtemp(prefix="b1023-", dir=str(ROOT)))' in _p1023
+          and 'atexit.register(shutil.rmtree, str(TMPDIR), ignore_errors=True)' in _p1023
+          and '**零安装、零网络** —— 用的是仓里**早就装好的** `typescript`' in _ausrc
+          and '"p1_tsc_is_already_here_and_the_repo_is_clean_2023_"' in _ausrc)
+    check("CC993G.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P2 成立 —— 1020 那 4 个「运行期不可区分」的类型变异体，**tsc 全部抓到（4/4）** ⇒ "
+          "**⇒⇒⇒⇒⇒ 1020 那句「它们是等价变异体、不算判别力缺口」只在运行期成立** ⇒ "
+          "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 真正的结论不是「缺口没人管」，是「工具早就在、只是没人调」**",
+          'T1020 = [r for r in TMUT_ROWS if r["name"] in' in _p1023
+          and 'T1020_CAUGHT = [r["name"] for r in T1020 if r["rc"] != 0]' in _p1023
+          and 'P2 = bool(WIRING["node_modules/typescript"])' in _p1023
+          and '"the_four_from_1020"' in _p1023
+          and '**⇒⇒⇒⇒⇒ 1020 那句「它们是等价变异体、不算判别力缺口」' in _p1023
+          and '真正的结论不是「缺口没人管」，是「工具早就在、只是没人调」**' in _p1023
+          and '"p2_type_layer_catches_all_four_2023_"' in _ausrc)
+    check("CC993G.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P3 —— 而类型层也不是全覆盖的**：7 个类型变异体里 **tsc 抓到 6、存活 1** ⇒ "
+          "**收窄型全抓住、放宽型（`dir: number`）活下来** ⇒ "
+          "**⇒ 「没有任何一层能抓的变异体」是存在的一类，不能因为多了一道门就说抓全了**",
+          '("T7_dir_widened_to_number", "dir: 1 | -1", "dir: number")' in _p1023
+          and '"n_caught_by_tsc": len(T_CAUGHT)' in _p1023
+          and '"n_survived_tsc": len(T_SURVIVED)' in _p1023
+          and '"the_honest_boundary"' in _p1023
+          and '"predicted_wrong"' in _p1023
+          and '**收窄型（把能接的接得变少）全部被抓住；' in _p1023
+          and '**「没有任何一层能抓的变异体」是存在的一类' in _p1023
+          and '我第一版预测 T4（`1 | -2`）会存活**' in _p1023
+          and '"p3_the_honest_boundary_2023_"' in _ausrc
+          and '"p4_prediction_was_wrong_2023_"' in _ausrc)
+    check("CC993G.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P5 成立 —— 接线盘点**：`typescript` 在、`typecheck` 在、`check` 链了它、"
+          "CI **调了**且**在 `push` 上触发** ⇒ ⭐ **但本地 `pre-commit` 一次都没调过 tsc** ⇒ "
+          "**⇒⇒⇒⇒⇒ 本地提交门看不见类型层、远端能看见** ⇒ "
+          "**而本仓所有会话都是直推 master ⇒ 类型错误要等远端 CI 才发现**",
+          'PRECOMMIT = ROOT / ".git/hooks/pre-commit"' in _p1023
+          and '"本地 pre-commit 调过 tsc": bool(re.search(r"\\btsc\\b|typecheck", PRE_SRC))' in _p1023
+          and '"CI 调过 typecheck"' in _p1023
+          and '"CI 在 push 上触发"' in _p1023
+          and '"check 链了 typecheck"' in _p1023
+          and '**本地提交门看不见类型层、远端能看见**' in _ausrc
+          and '"p5_wiring_census_2023_"' in _ausrc)
+    check("CC993G.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P6 —— 而顺手挖出一条「从来没成立过的前提」**：源码里那句"
+          "**「`npm run check` 是 eslint、不跑 tsc」**，判据 `CC.9` 把"
+          "**那句注释还在不在**当成凭据 ⇒⇒⇒⇒⇒ "
+          "**而初始提交 `523fc473` 的 `check` 就是 `npm run lint && npm run typecheck && npm run build`** ⇒ "
+          "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 那句话从来就不成立，而判据会永远绿**；"
+          "⚠️ **匹配前必须去掉两侧空白** —— **那句话在源码里跨了两行**，第一版精确 `in` 返回 `False`",
+          'AGP_FLAT = re.sub(r"\\s+", "", AGP_SRC)' in _p1023
+          and 'SENTENCE_IN_SRC = re.sub(r"\\s+", "", STALE_SENTENCE) in AGP_FLAT' in _p1023
+          and 'CC9_ANCHORS_ON_EXISTENCE = \'"不跑 tsc" in _agp_raw\' in VER_SRC' in _p1023
+          and 'def git_show(rev, path):' in _p1023
+          and '"rev-list", "--max-parents=0", "HEAD"' in _p1023
+          and '**判据锚的是「注释还在」，不是「注释说的对」**' in _p1023
+          and '拿代码自己的注释当证据」是第二种循环**' in _p1023
+          and '"p6_a_never_true_premise_2023_"' in _ausrc
+          and '"p7_second_way_of_being_circular_2023_"' in _ausrc
+          and '"p8_a_measurement_mistake_2023_"' in _ausrc
+          and '"p9_scope_and_offline_2023_"' in _ausrc
+          and '"p10_golden_2023_"' in _ausrc
+          and 'anchor-gate-coverage-1021.json' not in _p1023)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

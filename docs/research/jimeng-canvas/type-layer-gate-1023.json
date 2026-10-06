@@ -1,0 +1,145 @@
+{
+  "generated_by": "jimeng_probe1023_type_layer_gate.py",
+  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **量类型层那一道闸** —— tsc 早就装好、`check` 从**初始提交**起就链着它、CI 在 `push` 上跑它；而一条判据把**一句从没成立过的话**当成了自己的凭据。",
+  "question_2023": "1020 那 4 个「运行期不可区分」的类型变异体，类型层抓不抓得住？以及：类型层到底有没有被接上？",
+  "self_check": {
+    "whole_repo_tsc": {
+      "rc": 0,
+      "n_errors": 0,
+      "first": []
+    },
+    "unmutated_copy_tsc": {
+      "rc": 0,
+      "n_errors": 0,
+      "first": []
+    },
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **两格基线都必须先干净**（整仓 EXIT=0、未变异副本也 EXIT=0）⇒ 否则「tsc 抓到了」可能只是因为副本装置本身坏了 ⇒ **后面全部作废、立刻停**"
+  },
+  "type_layer_experiment": {
+    "runtime": "仓里**早就装好的** `typescript` + 根 `tsconfig.json`；**零安装、零网络**",
+    "method": "⭐ 变异副本**放在仓根的临时目录**（`@/*` 要靠根 tsconfig 解析）⇒ **原型源文件一个字节都没动**；临时目录注册 `atexit` 清理",
+    "mutants": [
+      {
+        "rc": 2,
+        "n_errors": 2,
+        "first": [
+          "MUT/T1_dir_1_to_0.tsx(166,9): error TS2367: This comparison appears to be unintentional because the types '0 | -1' and '1' have no overlap.",
+          "MUT/T1_dir_1_to_0.tsx(224,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '0 | -1'."
+        ],
+        "name": "T1_dir_1_to_0",
+        "before": "dir: 1 | -1",
+        "after": "dir: 0 | -1"
+      },
+      {
+        "rc": 2,
+        "n_errors": 2,
+        "first": [
+          "MUT/T2_dir_1_to_2.tsx(166,9): error TS2367: This comparison appears to be unintentional because the types '2 | -1' and '1' have no overlap.",
+          "MUT/T2_dir_1_to_2.tsx(224,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '2 | -1'."
+        ],
+        "name": "T2_dir_1_to_2",
+        "before": "dir: 1 | -1",
+        "after": "dir: 2 | -1"
+      },
+      {
+        "rc": 2,
+        "n_errors": 1,
+        "first": [
+          "MUT/T3_neg1_to_0.tsx(224,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '0 | 1'."
+        ],
+        "name": "T3_neg1_to_0",
+        "before": "dir: 1 | -1",
+        "after": "dir: 1 | -0"
+      },
+      {
+        "rc": 2,
+        "n_errors": 1,
+        "first": [
+          "MUT/T4_neg1_to_2.tsx(224,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '1 | -2'."
+        ],
+        "name": "T4_neg1_to_2",
+        "before": "dir: 1 | -1",
+        "after": "dir: 1 | -2"
+      },
+      {
+        "rc": 2,
+        "n_errors": 3,
+        "first": [
+          "MUT/T5_nodes_to_string.tsx(167,12): error TS2345: Argument of type 'HTMLElement[]' is not assignable to parameter of type 'string[]'.",
+          "MUT/T5_nodes_to_string.tsx(172,10): error TS2345: Argument of type 'HTMLElement[]' is not assignable to parameter of type 'string[]'.",
+          "MUT/T5_nodes_to_string.tsx(178,14): error TS2339: Property 'setAttribute' does not exist on type 'string'."
+        ],
+        "name": "T5_nodes_to_string",
+        "before": "nodes: HTMLElement[]",
+        "after": "nodes: string[]"
+      },
+      {
+        "rc": 2,
+        "n_errors": 3,
+        "first": [
+          "MUT/T6_keep_to_string.tsx(167,19): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
+          "MUT/T6_keep_to_string.tsx(172,17): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
+          "MUT/T6_keep_to_string.tsx(178,39): error TS2367: This comparison appears to be unintentional because the types 'number' and 'string' have no overlap."
+        ],
+        "name": "T6_keep_to_string",
+        "before": "keep: number",
+        "after": "keep: string"
+      },
+      {
+        "rc": 0,
+        "n_errors": 0,
+        "first": [],
+        "name": "T7_dir_widened_to_number",
+        "before": "dir: 1 | -1",
+        "after": "dir: number"
+      }
+    ],
+    "n_mutants": 7,
+    "n_caught_by_tsc": 6,
+    "n_survived_tsc": 1,
+    "the_four_from_1020": {
+      "which": [
+        "T1_dir_1_to_0",
+        "T2_dir_1_to_2",
+        "T3_neg1_to_0",
+        "T4_neg1_to_2"
+      ],
+      "caught_by_tsc": [
+        "T1_dir_1_to_0",
+        "T2_dir_1_to_2",
+        "T3_neg1_to_0",
+        "T4_neg1_to_2"
+      ],
+      "survived_tsc": [],
+      "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒⇒⇒⇒⇒ 1020 那句「它们是等价变异体、不算判别力缺口」只在运行期成立** —— **在类型层它们根本不是一回事**，而且仓里**早就有一个工具能看出来** ⇒⇒⇒⇒⇒⇒⇒ **⇒ 真正的结论不是「缺口没人管」，是「工具早就在、只是没人调」**"
+    },
+    "the_honest_boundary": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⚠️ 第一版我在这段里先写了一句话：「一个『改宽了而不是改窄了』的类型改动仍然哪一层都逃掉」—— 而那句话当时是**我的断言、不是实测**⇒⇒⇒⇒⇒ **⇒ 处置 = 把它变成一个真跑的变异体（`T7_dir_widened_to_number`），让这句话由实测决定，而不是由我先写下来** ⇒ **⇒⇒⇒⇒⇒⇒ 这是 1018 撤回过的那种「先有结论后找证据」的同一形状。**⇒⇒⇒⇒⇒⇒⇒ 实测结论：**收窄型（把能接的接得变少）全部被抓住；放宽型（把能接的接得变多）活下来** ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **「没有任何一层能抓的变异体」是存在的一类，不能因为多了一道门就说抓全了**",
+    "predicted_wrong": "⭐⭐⭐⭐⭐ **我第一版预测 T4（`1 | -2`）会存活** —— **错了**：`1 | -2` 一样**接不下 `-1`** ⇒ 六个收窄型一个不漏全被抓到⇒⇒⇒⇒⇒ **⇒ 「我以为会活下来」和「我以为会红」是同一种错**，两边都得让机器去判"
+  },
+  "wiring": {
+    "node_modules/typescript": true,
+    "package.json 有 typecheck 脚本": true,
+    "typecheck 脚本内容": "tsc --noEmit",
+    "check 链了 typecheck": true,
+    "本地 pre-commit 调过 tsc": false,
+    "CI 调过 typecheck": true,
+    "CI 在 push 上触发": true,
+    "reading": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **本地 `pre-commit` 钩子一次都没调过 tsc，而 CI 在 `push` 上调** ⇒ **⇒⇒⇒⇒⇒ 本地提交门看不见类型层、远端能看见** ⇒ **⇒⇒⇒⇒⇒⇒⇒ 而「本地看不见」不是小问题：这个仓里所有会话都是**直推 master**，**类型错误要等到远端 CI 才发现**",
+    "first_commit": {
+      "sha": "523fc473c33ef595c23325ece2b09a9f1d22cba7",
+      "check": "npm run lint && npm run typecheck && npm run build"
+    },
+    "never_true_claim": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **那句「`npm run check` 是 eslint、不跑 tsc」从来就不成立** —— 初始提交 `check` 就是 `npm run lint && npm run typecheck && npm run build`"
+  },
+  "the_never_true_premise": {
+    "where": "src/components/jimeng/JimengAudioGenPanel.tsx 第 239 行",
+    "sentence": "`npm run check` 是 eslint、不跑 tsc",
+    "sentence_present_in_source": true,
+    "which_criterion_leans_on_it": "`CC.9`（判据正文把那句话整段引了过去）",
+    "criterion_anchors_on": "`\"不跑 tsc\" in _agp_raw` ⇔ **「那句注释还在不在」**",
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **判据锚的是「注释还在」，不是「注释说的对」** ⇒ **⇒⇒⇒⇒⇒ 它会永远绿** —— 这是 1018「门验的是那段字还在、不是行为还对」的又一个实例，⭐⭐⭐⭐⭐ **而这一次，证据本身就在被测文件里、且证据是错的** ⇒ **⇒⇒⇒⇒⇒⇒⇒ 「拿代码自己的注释当证据」是第二种循环**",
+    "honest": "⚠️⭐⭐⭐⭐⭐ **本批不删那句注释、也不改判据** —— 按「撤销只挂横幅、原文一字不删」，**处置是加一条测出「那句话从来没成立过」的读数**，让下一个人不必重新翻 `git log` 才知道"
+  },
+  "scope": "⚠️⭐⭐⭐⭐⭐ 本批量的是**类型层这一道闸**；变异集合是**本探针手挑的若干个形状**、**不是**穷举；**不动原型源文件**，不替项目改注释或改判据",
+  "offline": "只跑仓里**已经装好的** `./node_modules/.bin/tsc` + `git show`（本地）；**零安装、零网络、零浏览器**；临时目录注册 `atexit` 清理"
+}

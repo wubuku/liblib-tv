@@ -1,20 +1,20 @@
 {
  "generated_by": "jimeng_probe1005_zero_coupling_census.py",
- "n_zero_coupling": 810,
- "n_positive_present": 6451,
- "n_distinct_keys": 6288,
+ "n_zero_coupling": 823,
+ "n_positive_present": 6673,
+ "n_distinct_keys": 6508,
  "by_class": {
-  "I-标识符(多处引用)": 395,
-  "P-散文/片段": 415
+  "I-标识符(多处引用)": 401,
+  "P-散文/片段": 422
  },
  "class_x_gap": {
-  "I-标识符(多处引用)|21–200": 147,
-  "I-标识符(多处引用)|4–20": 92,
-  "I-标识符(多处引用)|>200": 59,
+  "I-标识符(多处引用)|21–200": 149,
+  "I-标识符(多处引用)|4–20": 93,
+  "I-标识符(多处引用)|>200": 62,
   "I-标识符(多处引用)|≤3": 97,
-  "P-散文/片段|21–200": 211,
-  "P-散文/片段|4–20": 60,
-  "P-散文/片段|>200": 126,
+  "P-散文/片段|21–200": 216,
+  "P-散文/片段|4–20": 61,
+  "P-散文/片段|>200": 127,
   "P-散文/片段|≤3": 18
  },
  "anchor_text": "⭐⭐⭐⭐⭐ **存**全量**、不截断** —— **而第一版截断到 40 字符、于是比较时凭空「变了 11 条」**",
@@ -443,7 +443,7 @@
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "作废",
-   "occurrences": 38,
+   "occurrences": 40,
    "min_line_gap": 1
   },
   {
@@ -1872,7 +1872,7 @@
    "var": "_vsrc",
    "anchor": "\"只有 1 项\" in asrc)",
    "occurrences": 2,
-   "min_line_gap": 6635
+   "min_line_gap": 6647
   },
   {
    "class": "P-散文/片段",
@@ -1880,6 +1880,13 @@
    "anchor": "rec.post_dispatch = WHO(document.activeElement);",
    "occurrences": 2,
    "min_line_gap": 19
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_ausrc",
+   "anchor": "**恒真**",
+   "occurrences": 2,
+   "min_line_gap": 529
   },
   {
    "class": "P-散文/片段",
@@ -1900,7 +1907,7 @@
    "var": "_ausrc",
    "anchor": "**「A ≠ B」不等于「A 能把 A 从 C 里挑出来」**",
    "occurrences": 2,
-   "min_line_gap": 5277
+   "min_line_gap": 5703
   },
   {
    "class": "P-散文/片段",
@@ -1914,14 +1921,14 @@
    "var": "_ausrc",
    "anchor": "`el.tabIndex === -1`",
    "occurrences": 2,
-   "min_line_gap": 5256
+   "min_line_gap": 5682
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**应用必须自己调 `focus()`**",
    "occurrences": 2,
-   "min_line_gap": 5256
+   "min_line_gap": 5682
   },
   {
    "class": "P-散文/片段",
@@ -2397,7 +2404,7 @@
    "var": "_ausrc",
    "anchor": "**当场判红**",
    "occurrences": 2,
-   "min_line_gap": 4738
+   "min_line_gap": 5164
   },
   {
    "class": "P-散文/片段",
@@ -5497,7 +5504,7 @@
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "原文一字不删",
-   "occurrences": 6,
+   "occurrences": 8,
    "min_line_gap": 9
   },
   {
@@ -5688,6 +5695,90 @@
    "anchor": "零浏览器 / 零按键 / 零网络",
    "occurrences": 2,
    "min_line_gap": 63
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1019",
+   "anchor": "A_step_doubled",
+   "occurrences": 3,
+   "min_line_gap": 109
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1019",
+   "anchor": "B_end_guard_removed",
+   "occurrences": 3,
+   "min_line_gap": 108
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_p1019",
+   "anchor": "\"anchors_touched\": 0",
+   "occurrences": 2,
+   "min_line_gap": 9
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_ausrc",
+   "anchor": "一个字节都不动仓里的原型文件**",
+   "occurrences": 3,
+   "min_line_gap": 71
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_ausrc",
+   "anchor": "behavior-harness-1019.json",
+   "occurrences": 2,
+   "min_line_gap": 257
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_ausrc",
+   "anchor": "从不断言「非布防节点被写成什么」",
+   "occurrences": 2,
+   "min_line_gap": 176
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1020",
+   "anchor": "focus_node1_backward_arms_0",
+   "occurrences": 2,
+   "min_line_gap": 4
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1019",
+   "anchor": "focus_node1_backward_arms_0",
+   "occurrences": 2,
+   "min_line_gap": 211
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1019",
+   "anchor": "focus_node2_forward_others_minus1",
+   "occurrences": 2,
+   "min_line_gap": 211
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_p1023",
+   "anchor": "\"CI 调过 typecheck\"",
+   "occurrences": 2,
+   "min_line_gap": 45
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_p1023",
+   "anchor": "\"CI 在 push 上触发\"",
+   "occurrences": 2,
+   "min_line_gap": 45
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_p1023",
+   "anchor": "\"check 链了 typecheck\"",
+   "occurrences": 2,
+   "min_line_gap": 44
   }
  ]
 }
