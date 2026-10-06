@@ -1,0 +1,535 @@
+{
+  "generated_by": "jimeng_probe1020_harness_fidelity.py",
+  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **把 1019 那 8 个行为格本身当被测对象** —— 量这个 harness 的**保真度**（同一个函数真身、同一批输入，两条 stub 的答案在哪些格上分叉）与**判别力**（系统枚举的变异体，8 个格杀死了几个）。",
+  "question_2020": "1019 把一条判据升级成「真行为验证」之后，那个验证器本身有多可靠？",
+  "under_test": {
+    "delivered_by": "batch 1019",
+    "cells": 8,
+    "harness": "shallow stub（`contains` 只认直接父节点）+ 8 个手写期望的格",
+    "file_under_test": "scripts/jimeng_probe1019_behavior_harness.py 的 HARNESS_HEAD"
+  },
+  "fidelity": {
+    "the_only_difference": "⭐⭐⭐⭐⭐⭐⭐ **`contains` 的语义** —— `shallow`: `el.__parent === this`（只认直接父节点、**不含自身**）；`deep`: 沿父链上溯、**含自身**（真 DOM `Node.contains` 的语义）",
+    "contains_probe_measured_not_reasoned": {
+      "shallow": {
+        "self": false,
+        "depth1": true,
+        "depth2": false,
+        "unrelated": false
+      },
+      "deep": {
+        "self": true,
+        "depth1": true,
+        "depth2": true,
+        "unrelated": false
+      },
+      "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「含不含自身」「含不含子孙」这两条是量出来的，不是推理出来的** —— shallow 在 `self` 与 `depth2` 上与 deep **分叉**，在 `depth1` 与 `unrelated` 上一致"
+    },
+    "grid": {
+      "rule": "⭐ 明写口径：n ∈ {0,1,2,3,5}；焦点 5 类（node/inner1/inner2/root/other）× dir ∈ {+1,−1}",
+      "n_points": 86,
+      "n_disagreements": 11,
+      "disagreement_kinds": [
+        "inner2"
+      ],
+      "disagreements": [
+        {
+          "n": 1,
+          "kind": "inner2",
+          "idx": 0,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 1,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        },
+        {
+          "n": 2,
+          "kind": "inner2",
+          "idx": 0,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 2,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        },
+        {
+          "n": 2,
+          "kind": "inner2",
+          "idx": 1,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 2,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        },
+        {
+          "n": 3,
+          "kind": "inner2",
+          "idx": 0,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 3,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        },
+        {
+          "n": 3,
+          "kind": "inner2",
+          "idx": 1,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 3,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        },
+        {
+          "n": 3,
+          "kind": "inner2",
+          "idx": 2,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 3,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        },
+        {
+          "n": 5,
+          "kind": "inner2",
+          "idx": 0,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 5,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        },
+        {
+          "n": 5,
+          "kind": "inner2",
+          "idx": 1,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 5,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        },
+        {
+          "n": 5,
+          "kind": "inner2",
+          "idx": 2,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 5,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        },
+        {
+          "n": 5,
+          "kind": "inner2",
+          "idx": 3,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 5,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        },
+        {
+          "n": 5,
+          "kind": "inner2",
+          "idx": 4,
+          "dir": 1,
+          "shallow": {
+            "armed": 0,
+            "writes": 5,
+            "err": null
+          },
+          "deep": {
+            "armed": -1,
+            "writes": 0,
+            "err": null
+          }
+        }
+      ],
+      "rule2": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **分歧只出现在 `inner2`（深度 ≥2 的内层控件）** —— 而 1019 那条 906 关键格用的是 `inner1`（深度 1）⇒ **harness 的保真度问题，恰好落在它唯一测过的那一格的邻居上、而在它测过的那一格上它是对的**"
+    },
+    "why_it_matters": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 906 那条源站事实是「焦点在节点**内层控件** ⇒ 一次都不布」，而 906 自己量的是**两种口径**（`closest` 与 `contains`）的差。⇒ **真身里那段注释防的正是「`contains` 用错」** ⇒ ⇒⇒⇒⇒⇒ **而 1019 的 stub 自己就把 `contains` 用错了 —— 只是错的方向恰好被它测的那一格掩盖了**"
+  },
+  "the_fix_measured": {
+    "where": "⭐⭐⭐⭐⭐⭐⭐ **在 1020 自己的 harness 上加格，一个字都不动 1019** —— 因为 1019 的产物与判据里**写死了「8 个行为格」**，加格会让那个数过期；⇒⇒⇒⇒⇒ **「随重跑变化的读数不许写死进判据或文档」这条通则，在写它自己那批时就该想到**",
+    "baseline_of_the_new_cells": {
+      "n_cells": 10,
+      "all_green": true,
+      "new_cells": [
+        "focus_node1_backward_arms_0",
+        "focus_node2_forward_others_minus1"
+      ]
+    },
+    "score_before": {
+      "cells": 8,
+      "killed_shallow": 23
+    },
+    "score_after": {
+      "cells": 10,
+      "killed_shallow": 26,
+      "killed_deep": 26
+    },
+    "newly_killed": [
+      {
+        "name": "tok_2_59_1_to_0",
+        "line": 2,
+        "before": "nodes[i].setAttribute(\"tabindex\", i === keep ? \"0\" : \"-1\");",
+        "after": "nodes[i].setAttribute(\"tabindex\", i === keep ? \"0\" : \"-0\");",
+        "shallow_by": [
+          "focus_node2_forward_others_minus1"
+        ]
+      },
+      {
+        "name": "tok_2_59_1_to_2",
+        "line": 2,
+        "before": "nodes[i].setAttribute(\"tabindex\", i === keep ? \"0\" : \"-1\");",
+        "after": "nodes[i].setAttribute(\"tabindex\", i === keep ? \"0\" : \"-2\");",
+        "shallow_by": [
+          "focus_node2_forward_others_minus1"
+        ]
+      },
+      {
+        "name": "tok_36_13_0_to_1",
+        "line": 36,
+        "before": "if (next < 0 || next >= nodes.length) return; // ④ 撒手（908：这一格仍成立）",
+        "after": "if (next < 1 || next >= nodes.length) return; // ④ 撒手（908：这一格仍成立）",
+        "shallow_by": [
+          "focus_node1_backward_arms_0"
+        ]
+      }
+    ],
+    "per_cell_kill_count_plus_shallow": {
+      "focus_canvas_root_forward_arms_0": 15,
+      "focus_node1_backward_arms_0": 15,
+      "focus_node2_forward_others_minus1": 18,
+      "focus_node2_forward_arms_3": 15,
+      "focus_node2_backward_arms_1": 15,
+      "focus_node4_forward_end_untouched": 7,
+      "focus_node0_backward_start_untouched": 6,
+      "focus_canvas_root_backward_untouched": 3,
+      "focus_inner_control_untouched_906": 6,
+      "no_nodes_untouched": 2
+    },
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **补两格把 mutation score 从 23/30 抬到 26/30**⇒⇒⇒⇒⇒⇒⇒ **而这两格各自对准的是一个**实测存活**的变异体**，不是「感觉这里该补」",
+    "gate_before_credit": "⭐⭐⭐⭐⭐⭐⭐⭐⭐ **补的格自己必须先在基线上全绿**（`all_green=True`）—— 否则「它能杀变异体」就是拿一个**本身就红的格**在说，那正是 1018 刚撤回过的那种假发现"
+  },
+  "tabindex_fidelity": {
+    "measured": [
+      {
+        "value": "0",
+        "harness_string_eq_0": true,
+        "browser_int_eq_0": true,
+        "agree": true
+      },
+      {
+        "value": "-1",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": false,
+        "agree": true
+      },
+      {
+        "value": "-0",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": true,
+        "agree": false
+      },
+      {
+        "value": "1",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": false,
+        "agree": true
+      },
+      {
+        "value": "00",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": true,
+        "agree": false
+      },
+      {
+        "value": "-2",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": false,
+        "agree": true
+      },
+      {
+        "value": "+0",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": true,
+        "agree": false
+      },
+      {
+        "value": " 0",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": true,
+        "agree": false
+      }
+    ],
+    "disagreements": [
+      {
+        "value": "-0",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": true,
+        "agree": false
+      },
+      {
+        "value": "00",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": true,
+        "agree": false
+      },
+      {
+        "value": "+0",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": true,
+        "agree": false
+      },
+      {
+        "value": " 0",
+        "harness_string_eq_0": false,
+        "browser_int_eq_0": true,
+        "agree": false
+      }
+    ],
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **第二处 stub 保真度缺口：`tabindex` 在真 DOM 里是一个**整数**，浏览器会做整数解析；而 harness 判的是**字符串相等** `\"0\"`** ⇒ **`-0`、`00`、`+0`、`\" 0\"` 在 stub 里都不等于 `\"0\"`，在浏览器里都等于 0。**⇒⇒⇒⇒⇒⇒⇒ **而这正好是上面那个存活变异体 `\"-1\" → \"-0\"` 藏身的地方**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **同一个值，在 stub 里能骗过 8 格，在真 DOM 里会让整块画布全部可 Tab**",
+    "scope_caveat": "⭐⭐⭐⭐⭐ **上面这句里「会让整块画布全部可 Tab」是**按 HTML 的整数解析规则**推的**，本批**没有在浏览器里实测**（零浏览器、纯离线）⇒ **报成「两套口径不一致」这个实测事实，不报「复刻坏了」**"
+  },
+  "the_verdict_fork": {
+    "what_was_done": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **不是新增一个格，是把已有那条 906 的格「样本深度 1 → 2」换掉** ⇒ **期望一个字没动**（仍是 `armed:-1, writes:0`）",
+    "depth1_1019_original": {
+      "got": {
+        "armed": -1,
+        "writes": 0,
+        "err": null
+      },
+      "ok": true
+    },
+    "depth2_under_1019_stub": {
+      "got": {
+        "armed": 0,
+        "writes": 5,
+        "err": null
+      },
+      "ok": false
+    },
+    "depth2_under_faithful_stub": {
+      "got": {
+        "armed": -1,
+        "writes": 0,
+        "err": null
+      },
+      "ok": true
+    },
+    "verdict_fork": true,
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **同一条期望、同一个函数、只换一个样本深度 ⇒ 两条 stub 给出相反的通过/不通过。**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 而 1019 那 8 格在**两条** stub 下都 8/8 全绿⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **这 11 格分歧当前一条都没影响判别结论** —— **它是潜在的、不是已发生的**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **但它离「变成已发生」只差一个样本**",
+    "honest_caveat": "⭐⭐⭐⭐⭐⭐⭐ **我不报「复刻在真实控件上错了」** —— 「节点内层控件的真实嵌套深度」本批**没有量**（离线、零浏览器）⇒ 只报「**harness 在这一类状态上不保真，且该类状态正好是 906 那条格守的东西**」"
+  },
+  "discriminating_power": {
+    "mutants": {
+      "rule": "⭐⭐⭐⭐⭐⭐⭐ **机器按 token 规则系统生成**（`===`/`!==`/`<`/`>=`/`||`/`<=>`/`&&`/`+`/一元`!`/整数字面量 各换一个值，外加整行删除守卫/调用行）⇒ **不是手挑**，分母由探针生成、不由我断言",
+      "n_generated": 40,
+      "n_testable": 30,
+      "n_syntax_error_under_both": 10,
+      "n_timeout_under_both": 0,
+      "timeout_names": [],
+      "rule_timeout": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「把 `i += 1` 变异成 `i += 0`」会让 `armAll` 永不退出** —— ⭐ **1019 的 harness 没有死循环护栏**，真跑一次是「挂住整个探针」，不是「报红」。⇒⇒⇒⇒⇒ 本探针把护栏放在 **stub 的 `setAttribute`** 里（**一个字节都不动被测函数体**）⇒ 死循环变成一次普通抛错 ⇒⇒⇒⇒⇒⇒ **对判别器来说「挂死」和「报错」是同一件事：行为坏了**"
+    },
+    "score_shallow_1019_harness": {
+      "killed": 23,
+      "of": 30,
+      "survived": 7
+    },
+    "score_deep_faithful_stub": {
+      "killed": 23,
+      "of": 30,
+      "survived": 7
+    },
+    "per_cell_kill_count_shallow": {
+      "focus_canvas_root_forward_arms_0": 15,
+      "focus_node2_forward_arms_3": 15,
+      "focus_node2_backward_arms_1": 15,
+      "focus_node4_forward_end_untouched": 7,
+      "focus_node0_backward_start_untouched": 6,
+      "focus_canvas_root_backward_untouched": 3,
+      "focus_inner_control_untouched_906": 6,
+      "no_nodes_untouched": 2
+    },
+    "per_cell_kill_count_deep": {
+      "focus_canvas_root_forward_arms_0": 15,
+      "focus_node2_forward_arms_3": 15,
+      "focus_node2_backward_arms_1": 15,
+      "focus_node4_forward_end_untouched": 6,
+      "focus_node0_backward_start_untouched": 6,
+      "focus_canvas_root_backward_untouched": 3,
+      "focus_inner_control_untouched_906": 6,
+      "no_nodes_untouched": 2
+    },
+    "survivors_shallow": [
+      "tok_2_59_1_to_0",
+      "tok_2_59_1_to_2",
+      "tok_6_58_1_to_0",
+      "tok_6_58_1_to_2",
+      "tok_6_63_1_to_0",
+      "tok_6_63_1_to_2",
+      "tok_36_13_0_to_1"
+    ],
+    "survivors_with_diff": [
+      {
+        "name": "tok_2_59_1_to_0",
+        "line": 2,
+        "before": "nodes[i].setAttribute(\"tabindex\", i === keep ? \"0\" : \"-1\");",
+        "after": "nodes[i].setAttribute(\"tabindex\", i === keep ? \"0\" : \"-0\");"
+      },
+      {
+        "name": "tok_2_59_1_to_2",
+        "line": 2,
+        "before": "nodes[i].setAttribute(\"tabindex\", i === keep ? \"0\" : \"-1\");",
+        "after": "nodes[i].setAttribute(\"tabindex\", i === keep ? \"0\" : \"-2\");"
+      },
+      {
+        "name": "tok_6_58_1_to_0",
+        "line": 6,
+        "before": "function armRovingTabindex(flow: HTMLElement | null, dir: 1 | -1): void {",
+        "after": "function armRovingTabindex(flow: HTMLElement | null, dir: 0 | -1): void {"
+      },
+      {
+        "name": "tok_6_58_1_to_2",
+        "line": 6,
+        "before": "function armRovingTabindex(flow: HTMLElement | null, dir: 1 | -1): void {",
+        "after": "function armRovingTabindex(flow: HTMLElement | null, dir: 2 | -1): void {"
+      },
+      {
+        "name": "tok_6_63_1_to_0",
+        "line": 6,
+        "before": "function armRovingTabindex(flow: HTMLElement | null, dir: 1 | -1): void {",
+        "after": "function armRovingTabindex(flow: HTMLElement | null, dir: 1 | -0): void {"
+      },
+      {
+        "name": "tok_6_63_1_to_2",
+        "line": 6,
+        "before": "function armRovingTabindex(flow: HTMLElement | null, dir: 1 | -1): void {",
+        "after": "function armRovingTabindex(flow: HTMLElement | null, dir: 1 | -2): void {"
+      },
+      {
+        "name": "tok_36_13_0_to_1",
+        "line": 36,
+        "before": "if (next < 0 || next >= nodes.length) return; // ④ 撒手（908：这一格仍成立）",
+        "after": "if (next < 1 || next >= nodes.length) return; // ④ 撒手（908：这一格仍成立）"
+      }
+    ],
+    "survivor_rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **存活变异体要看它改的是哪一行** —— 把「突变体名字」当结论报出去，等于报了一个没法复核的东西。⇒ 产物里逐个附上 `before` / `after` 两行原文",
+    "n_disagreeing_on_verdict": 0,
+    "disagreeing_examples": [],
+    "honest_negative": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **两条 stub 的判别力在我的变异体集合下完全一样**（杀 23 / 存活 7，两边逐个相同，判别结论不一致的 0 个） ⇒⇒⇒⇒⇒⇒ **不要把这个读成「stub 保真度不影响判别力」** —— **它只说明：我这 30 个变异体里没有一个落在这 11 格的区域上**",
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「保真度缺口」和「判别力缺口」是两个独立的量** —— 前者靠**换更真的 stub** 才有，后者靠**补样本/补期望** 才有 ⇒ **本批两条 stub 判别力相同，但保真度差 11 格 ⇒ 报一个不许替另一个说话**"
+  },
+  "the_structural_finding": {
+    "handwritten_cells": "8 个**手写期望**的格 = **判别器**：期望是人（或源站实测记录）定的，所以变异体改了行为就会红",
+    "machine_grid": "86 个**枚举**的格 = **差分器**：它只能回答「两条 stub 差在哪」，**结构上杀不死任何变异体** —— 它的判据就是「与基准不同」，而基准自己就是被测对象的一部分",
+    "n_differential_disagreements_at_baseline": 11,
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **把覆盖从 8 格拉到 86 格，不等于多了一个字的判别力。** ⇒ ⇒⇒⇒⇒⇒⇒ 覆盖率与判别力是**两个不同的量**，报一个不许替另一个说话（1017）",
+    "in_1019": "⭐ 1019 报的是「8 个行为格基线 8/8 全绿」⇒ **它报的是判别器的基线，没有一个字在说判别器有多强** ⇒ **「全绿」和「够强」是两回事**"
+  },
+  "branch_coverage": {
+    "branches": [
+      "!flow",
+      "!nodes.length",
+      "cur===-1 & contains-inner",
+      "cur===-1 & dir!==1",
+      "cur===-1 & dir===1",
+      "cur>=0 & 越界",
+      "cur>=0 & 区间内"
+    ],
+    "hit_by_1019_eight_cells": {
+      "!flow": false,
+      "!nodes.length": true,
+      "cur===-1 & contains-inner": true,
+      "cur===-1 & dir!==1": true,
+      "cur===-1 & dir===1": true,
+      "cur>=0 & 越界": true,
+      "cur>=0 & 区间内": true
+    },
+    "n_hit": 6,
+    "n_total": 7,
+    "the_missing_one": "!flow",
+    "added_by_this_probe": {
+      "flow_null_probe": {
+        "threw": false,
+        "writes": 0
+      },
+      "reached": true
+    },
+    "why_acceptable": "⭐⭐⭐⭐⭐ 真调用点 `const flow = t?.closest?.('.react-flow'); if (!flow) return;` **已经先挡了一道** ⇒ `armRovingTabindex` 里的 `if (!flow) return;` **在生产里是死代码** ⇒⇒⇒⇒⇒ 补这一格不会提高判别力，**但补它会让「分支覆盖」这个数好看 —— 而好看不是理由**",
+    "honest_note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐ **我第一版把本探针自己加的 `flowNull` 探针算进了「1019 的分支覆盖」里，量出 7/7** ⇒ **那是我在给自己的格记 1019 的功劳** ⇒ 改成只按那 8 个格算，**是 6/7**"
+  },
+  "self_audit": {
+    "n_comment_lines_in_extracted_body": 16,
+    "n_code_lines": 22,
+    "rule": "⭐ 1018 量到「13 条判据的锚点本身就是中文注释」⇒ 本探针把**函数体里有多少是散文**一并报出来：同一份文本，散文占多数"
+  },
+  "scope": "⚠️⭐⭐⭐⭐⭐⭐⭐ **两条 stub 都不是浏览器** ⇒ 本批量的是「stub 之间的分歧」，**不是**「真浏览器会怎样」⇒ **不报「复刻真的错了」**，只报**「harness 在这一格上不保真、且这个偏差方向会掩盖 906 关键格」**；「节点内层的真实嵌套深度」本批**没有量**（离线、零浏览器）⇒ **不推断复刻在真实控件上的对错**",
+  "offline": "node + 只读仓里一个文件；变异体**只在内存里改文本**，**一个字节都不动仓里的原型文件**；临时目录注册 atexit 清理"
+}

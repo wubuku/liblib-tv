@@ -296,6 +296,7 @@ PROBE_VARS = {
     "_p1017": "scripts/jimeng_probe1017_replica_coverage.py",
     "_p1018": "scripts/jimeng_probe1018_assertion_vs_behavior.py",
     "_p1019": "scripts/jimeng_probe1019_behavior_harness.py",
+    "_p1020": "scripts/jimeng_probe1020_harness_fidelity.py",
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。

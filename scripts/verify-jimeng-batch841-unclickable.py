@@ -5931,6 +5931,9 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ 1019：第一次在装置上动手改 —— 抽函数真身 + 最小 stub + node 真跑
     p1019 = ROOT / "scripts/jimeng_probe1019_behavior_harness.py"
     _p1019 = p1019.read_text(encoding="utf-8") if p1019.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1020：把 1019 那个 harness **本身**当被测对象 —— 两条 stub 对账 + 变异测试
+    p1020 = ROOT / "scripts/jimeng_probe1020_harness_fidelity.py"
+    _p1020 = p1020.read_text(encoding="utf-8") if p1020.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -15696,6 +15699,113 @@ def main() -> int:
 
 
 
+
+
+    # ══ Z993D. 批 1020 把 1019 那个 harness 本身当被测对象：保真度 + 判别力
+    print("— Z993D. 批 1020 harness 保真度与判别力：两条 stub 在 86 格枚举里分歧 11 格（全是 depth≥2 的内层控件）；"
+          "系统枚举的变异体 8 格杀 23/30；补两格抬到 26/30")
+    check("Z993D.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P1 成立 —— 本批把 1019 那个 harness 本身当被测对象。** 两条 stub **唯一的差别**是 "
+          "`contains` 的语义：shallow = `el.__parent === this`（**只认直接父节点、且不含自身**）、"
+          "deep = 沿父链上溯且**含自身** ⇒⇒⇒⇒⇒ **86 格枚举里分歧 11 格，类别只有 `inner2`**；"
+          "`contains` 四问**直接量出来**：`self`/`depth2` 不一致、`depth1`/`unrelated` 一致",
+          'def gen_mutants(body):' in _p1020
+          and 'TOKEN_OPTS = {' in _p1020
+          and 'el.contains = function (o) { return !!o && o.__parent === this; };' in _p1020
+          and 'for (let p = o; p; p = p.__parent) { if (p === this) { return true; } }' in _p1020
+          and 'const NS = [0, 1, 2, 3, 5];' in _p1020
+          and 'P1 = (N_DISAGREE > 0 and DISAGREE_KINDS == ["inner2"])' in _p1020
+          and 'N_DISAGREE = len(DISAGREE)' in _p1020
+          and '"n_disagreements": N_DISAGREE' in _p1020
+          and '"p1_stub_fidelity_gap_2020_"' in _ausrc
+          and '**86 格枚举里分歧 11 格，类别只有 `inner2`（深度 ≥2 的内层控件）**' in _ausrc)
+    check("Z993D.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 —— 而 1019 那 8 条"
+          "**手写期望**本身是对的**：在**两条** stub 下都 **8/8 全绿** ⇒⇒⇒⇒⇒⇒⇒⇒⇒ "
+          "**错的不是期望，是它没被测到的那一类状态** ⇒⇒⇒⇒⇒⇒ "
+          "**「保真度」和「期望对不对」是两个独立的量，必须分开报**",
+          'P2 = (BASE_ALL_GREEN and N_CELL_BAD_DEEP == 0)' in _p1020
+          and 'N_CELL_BAD_DEEP = sum(1 for v in CELLS_DEEP.values() if not v)' in _p1020
+          and 'BASE_ALL_GREEN = all(SH_CELLS0.values())' in _p1020
+          and '"n_criteria_reading_wsrc"' not in _p1020
+          and '而 1019 那 8 条**手写期望**本身是对的**' in _ausrc
+          and '"p2_1019_expectations_are_right_2020_"' in _ausrc)
+    check("Z993D.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 —— 判别力："
+          "变异体是**按 token 规则系统枚举**的 ⇒ **不是手挑，分母由探针生成、不由我断言**；"
+          "**存活变异体逐个附上 `before`/`after` 两行原文** —— "
+          "把「突变体名字」当结论报出去，等于报了一个没法复核的东西",
+          'N_MUT = len(MUTANTS)' in _p1020
+          and '"n_generated": N_MUT' in _p1020
+          and '"n_testable": N_TESTABLE' in _p1020
+          and '"n_syntax_error_under_both": N_SYNTAX' in _p1020
+          and '"survivors_with_diff"' in _p1020
+          and '"before": before.strip(), "after": after.strip()' in _p1020
+          and 'P3 = (N_TESTABLE > 0 and N_K_SHALLOW > 0 and N_K_DEEP > 0)' in _p1020
+          and 'P4 = len(SURV_SHALLOW) > 0' in _p1020
+          and '**存活变异体逐个附上 `before`/`after` 两行原文**' in _ausrc
+          and '从不断言「非布防节点被写成什么」' in _ausrc
+          and '"p3_discriminating_power_2020_"' in _ausrc
+          and '"p4_survivors_are_named_2020_"' in _ausrc)
+    check("Z993D.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 —— 分支覆盖是 **6/7**，未覆盖的是 `!flow`；"
+          "⚠️ **我第一版把本探针自己加的 `flowNull` 探针算进了「1019 的分支覆盖」里，量出 7/7** ⇒ "
+          "**那是我在给自己的格记 1019 的功劳** ⇒ 而 `!flow` **在生产里是死代码**",
+          'P5 = (N_BRANCH_HIT == N_BRANCH - 1 and not HIT["!flow"] and FLOW_NULL_REACHED)' in _p1020
+          and '"hit_by_1019_eight_cells": HIT' in _p1020
+          and '"added_by_this_probe"' in _p1020
+          and '"p5_branch_coverage_credit_2020_"' in _ausrc
+          and '**我第一版把本探针自己加的 `flowNull` 探针算进了' in _ausrc
+          and '而好看不是理由' in _ausrc)
+    check("Z993D.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P6 —— 本批的核心结构性发现：8 个**手写期望**的格 = **判别器**；"
+          "86 个**机器枚举**的格 = **差分器** ⇒⇒⇒⇒⇒ "
+          "**⇒ 差分器在结构上永远杀不死任何变异体。** ⇒⇒⇒⇒⇒ "
+          "**把覆盖从 8 格拉到 86 格，不等于多了一个字的判别力。**",
+          '"the_structural_finding"' in _p1020
+          and '"handwritten_cells"' in _p1020
+          and '"machine_grid"' in _p1020
+          and '**把覆盖从 8 格拉到 86 格，不等于多了一个字的判别力。**' in _ausrc
+          and '"p6_differential_vs_discriminating_2020_"' in _ausrc
+          and '**「全绿」和「够强」是两回事**' in _ausrc)
+    check("Z993D.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P7 —— 判决分叉的实测**：**不是新增一个格，是把已有那条 906 的格「样本深度 1 → 2」换掉**，"
+          "期望一个字没动 ⇒⇒⇒⇒⇒ **深度 1 样本两条 stub 都绿；深度 2 样本 shallow 转红、deep 保持绿**"
+          "⇒⇒⇒⇒⇒⇒⇒ **它是潜在的、不是已发生的** —— **但它离「变成已发生」只差一个样本**",
+          'P7 = VERDICT_FORK and D1_AGREE' in _p1020
+          and '"the_verdict_fork"' in _p1020
+          and '"verdict_fork": VERDICT_FORK' in _p1020
+          and 'const g6 = probe(w6, "inner1", 1, 1);' in _p1020
+          and 'const g6b = probe(w6b, "inner2", 1, 1);' in _p1020
+          and '**不是新增一个格，是把已有那条 906 的格' in _ausrc
+          and '"p7_one_sample_depth_flips_a_verdict_2020_"' in _ausrc
+          and '只是错的方向恰好被它测的那一格掩盖了' in _ausrc)
+    check("Z993D.7 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P8 —— 补两格，"
+          "并且量出「买到多少判别力」**：**在 1020 自己的 harness 上加格，一个字都不动 1019** "
+          "⇒⇒⇒⇒⇒ **mutation score 从 23/30 抬到 26/30**；⚠️ "
+          "**补的格自己必须先在基线上全绿**，否则就是拿一个**本身就红的格**在说",
+          'NEW_CELLS = [n for n in N_CELL_PLUS_NAMES if n not in SH_CELLS0]' in _p1020
+          and 'focus_node1_backward_arms_0' in _p1020
+          and 'focus_node2_forward_others_minus1' in _p1020
+          and 'P8 = (PLUS_BASE_GREEN and N_KP_SHALLOW > N_K_SHALLOW and len(NEWLY_KILLED) > 0)' in _p1020
+          and 'PLUS_BASE_GREEN = all(SH_PLUS0.values()) and all(DP_PLUS0.values())' in _p1020
+          and '"the_fix_measured"' in _p1020
+          and '⇒⇒⇒⇒⇒⇒ **mutation score 从 23/30 抬到 26/30，新杀 3 个' in _ausrc
+          and '**mutation score 从 23/30 抬到 26/30，新杀 3 个' in _ausrc
+          and '"p8_the_fix_measured_2020_"' in _ausrc)
+    check("Z993D.8 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **第二处 stub 保真度缺口："
+          "`tabindex` 在真 DOM 里是**整数**而 harness 判的是**字符串相等** ⇒ 实测 "
+          "`-0`/`00`/`+0`/`\" 0\"` 两套口径不一致；⚠️ **不报「复刻坏了」，只报「两套口径不一致」**"
+          "；且 **纯离线、一个字节都不动仓里的原型文件**、**逐条落进产物**",
+          'P9 = len(TAB_DISAGREE) > 0' in _p1020
+          and 'TAB_DISAGREE = [t for t in TAB_FID if not t["agree"]]' in _p1020
+          and 'harness_string_eq_0: v === "0"' in _p1020
+          and 'browser_int_eq_0: parseInt(v, 10) === 0' in _p1020
+          and 'P10 = True' in _p1020
+          and 'atexit.register(shutil.rmtree, str(TMPDIR), ignore_errors=True)' in _p1020
+          and 'harness-fidelity-1020.json' in _p1020
+          and '"tabindex_fidelity"' in _p1020
+          and '"p9_tabindex_string_versus_integer_2020_"' in _ausrc
+          and '"p10_honest_notes_2020_"' in _ausrc
+          and '"p11_scope_and_offline_2020_"' in _ausrc
+          and '"p12_golden_2020_"' in _ausrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
