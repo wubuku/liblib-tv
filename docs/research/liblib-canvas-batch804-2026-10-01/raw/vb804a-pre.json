@@ -1,0 +1,125 @@
+{
+ "batch": 804,
+ "phase": "pre",
+ "base": "http://localhost:4317",
+ "rounds": [
+  {
+   "round": 0,
+   "cards": [
+    {
+     "id": "canvas-1",
+     "text": "0 个节点画布 12026-10-06"
+    },
+    {
+     "id": "canvas-2",
+     "text": "10 个节点画布 22026-10-06"
+    }
+   ],
+   "arms": [
+    {
+     "target": "canvas-1",
+     "sameTabAfterClick": {
+      "dropdownOpened": false,
+      "activeCanvasId": null,
+      "visibleRows": 0,
+      "allRowIds": [],
+      "reactFlowNodes": 0
+     },
+     "newTab": {
+      "dropdownOpened": true,
+      "activeCanvasId": "canvas-2",
+      "visibleRows": 2,
+      "allRowIds": [
+       "canvas-2",
+       "canvas-1"
+      ],
+      "reactFlowNodes": 10
+     },
+     "newTabUrl": "http://localhost:4317/",
+     "showsTarget": false
+    },
+    {
+     "target": "canvas-2",
+     "sameTabAfterClick": {
+      "dropdownOpened": false,
+      "activeCanvasId": null,
+      "visibleRows": 0,
+      "allRowIds": [],
+      "reactFlowNodes": 0
+     },
+     "newTab": {
+      "dropdownOpened": true,
+      "activeCanvasId": "canvas-2",
+      "visibleRows": 2,
+      "allRowIds": [
+       "canvas-2",
+       "canvas-1"
+      ],
+      "reactFlowNodes": 10
+     },
+     "newTabUrl": "http://localhost:4317/",
+     "showsTarget": true
+    }
+   ]
+  },
+  {
+   "round": 1,
+   "cards": [
+    {
+     "id": "canvas-1",
+     "text": "0 个节点画布 12026-10-06"
+    },
+    {
+     "id": "canvas-2",
+     "text": "10 个节点画布 22026-10-06"
+    }
+   ],
+   "arms": [
+    {
+     "target": "canvas-1",
+     "sameTabAfterClick": {
+      "dropdownOpened": false,
+      "activeCanvasId": null,
+      "visibleRows": 0,
+      "allRowIds": [],
+      "reactFlowNodes": 0
+     },
+     "newTab": {
+      "dropdownOpened": true,
+      "activeCanvasId": "canvas-2",
+      "visibleRows": 2,
+      "allRowIds": [
+       "canvas-2",
+       "canvas-1"
+      ],
+      "reactFlowNodes": 10
+     },
+     "newTabUrl": "http://localhost:4317/",
+     "showsTarget": false
+    },
+    {
+     "target": "canvas-2",
+     "sameTabAfterClick": {
+      "dropdownOpened": false,
+      "activeCanvasId": null,
+      "visibleRows": 0,
+      "allRowIds": [],
+      "reactFlowNodes": 0
+     },
+     "newTab": {
+      "dropdownOpened": true,
+      "activeCanvasId": "canvas-2",
+      "visibleRows": 2,
+      "allRowIds": [
+       "canvas-2",
+       "canvas-1"
+      ],
+      "reactFlowNodes": 10
+     },
+     "newTabUrl": "http://localhost:4317/",
+     "showsTarget": true
+    }
+   ]
+  }
+ ]
+}

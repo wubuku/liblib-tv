@@ -424,6 +424,30 @@ export default function Home() {
   const flowRef = useRef<ReactFlowInstance<Node, Edge> | null>(null);
   const flowContainerRef = useRef<HTMLElement | null>(null);
 
+  // ★★ Batch 804（修 759 ①「点项目卡，新标签页不是你点的那张」）：
+  //   `/project` 的画布卡把目标 id 放进 `?canvas=`（源站的画布地址本身就带
+  //   `projectId` 查询参数，「用 URL 指定画布」是源站形状），这里在挂载时消费它。
+  //
+  //   为什么必须有这一段：`activeCanvasId` 只活在**当前标签页的内存**里，
+  //   `window.open` 开出来的新标签页有**自己的 store 实例**，从
+  //   `createInitialState` 的默认值起步（`canvasStore.ts:1175`
+  //   `activeCanvasId: "canvas-2"`）⟹ 光在 `/project` 里 `setActiveCanvas`
+  //   对新标签页毫无作用。
+  //
+  //   三条边界：
+  //   ① 认不出来的 id **静默忽略并保留默认画布** —— 不能因为一个坏参数
+  //      就白屏或崩；② 已经是当前画布就**不重复切**；③ 用 `getState()` 取，
+  //      不把 `canvases` 引进依赖数组，否则每张画布变动都重跑这段。
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const wanted = new URLSearchParams(window.location.search).get("canvas");
+    if (!wanted) return;
+    const state = useCanvasStore.getState();
+    if (state.activeCanvasId === wanted) return;
+    if (!state.canvases.some((canvas) => canvas.id === wanted)) return;
+    state.setActiveCanvas(wanted);
+  }, []);
+
   // Batch 115: 源站空画布双击 = 打开添加节点面板（2026-09-06 采样）。
   //
   // Batch 791（修 batch 758 记的高严重度缺陷「双击入口从未触发」）：

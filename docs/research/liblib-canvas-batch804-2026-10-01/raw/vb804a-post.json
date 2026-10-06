@@ -1,0 +1,151 @@
+{
+ "batch": 804,
+ "phase": "post",
+ "base": "http://localhost:4317",
+ "rounds": [
+  {
+   "round": 0,
+   "cards": [
+    {
+     "id": "canvas-1",
+     "text": "0 个节点画布 12026-10-06"
+    },
+    {
+     "id": "canvas-2",
+     "text": "10 个节点画布 22026-10-06"
+    }
+   ],
+   "arms": [
+    {
+     "target": "canvas-1",
+     "sameTabAfterClick": {
+      "storeFound": true,
+      "activeCanvasId": "canvas-1",
+      "canvasCount": 2
+     },
+     "newTab": {
+      "dropdownOpened": true,
+      "activeCanvasId": "canvas-1",
+      "visibleRows": 2,
+      "allRowIds": [
+       "canvas-2",
+       "canvas-1"
+      ],
+      "reactFlowNodes": 0
+     },
+     "newTabUrl": "http://localhost:4317/?canvas=canvas-1",
+     "showsTarget": true,
+     "sameTabFollowed": true
+    },
+    {
+     "target": "canvas-2",
+     "sameTabAfterClick": {
+      "storeFound": true,
+      "activeCanvasId": "canvas-2",
+      "canvasCount": 2
+     },
+     "newTab": {
+      "dropdownOpened": true,
+      "activeCanvasId": "canvas-2",
+      "visibleRows": 2,
+      "allRowIds": [
+       "canvas-2",
+       "canvas-1"
+      ],
+      "reactFlowNodes": 10
+     },
+     "newTabUrl": "http://localhost:4317/?canvas=canvas-2",
+     "showsTarget": true,
+     "sameTabFollowed": true
+    }
+   ],
+   "invalidParam": {
+    "target": "canvas-does-not-exist",
+    "newTab": {
+     "dropdownOpened": true,
+     "activeCanvasId": "canvas-2",
+     "visibleRows": 2,
+     "allRowIds": [
+      "canvas-2",
+      "canvas-1"
+     ],
+     "reactFlowNodes": 10
+    },
+    "rendered": true,
+    "fellBackToSomeCanvas": true
+   }
+  },
+  {
+   "round": 1,
+   "cards": [
+    {
+     "id": "canvas-1",
+     "text": "0 个节点画布 12026-10-06"
+    },
+    {
+     "id": "canvas-2",
+     "text": "10 个节点画布 22026-10-06"
+    }
+   ],
+   "arms": [
+    {
+     "target": "canvas-1",
+     "sameTabAfterClick": {
+      "storeFound": true,
+      "activeCanvasId": "canvas-1",
+      "canvasCount": 2
+     },
+     "newTab": {
+      "dropdownOpened": true,
+      "activeCanvasId": "canvas-1",
+      "visibleRows": 2,
+      "allRowIds": [
+       "canvas-2",
+       "canvas-1"
+      ],
+      "reactFlowNodes": 0
+     },
+     "newTabUrl": "http://localhost:4317/?canvas=canvas-1",
+     "showsTarget": true,
+     "sameTabFollowed": true
+    },
+    {
+     "target": "canvas-2",
+     "sameTabAfterClick": {
+      "storeFound": true,
+      "activeCanvasId": "canvas-2",
+      "canvasCount": 2
+     },
+     "newTab": {
+      "dropdownOpened": true,
+      "activeCanvasId": "canvas-2",
+      "visibleRows": 2,
+      "allRowIds": [
+       "canvas-2",
+       "canvas-1"
+      ],
+      "reactFlowNodes": 10
+     },
+     "newTabUrl": "http://localhost:4317/?canvas=canvas-2",
+     "showsTarget": true,
+     "sameTabFollowed": true
+    }
+   ],
+   "invalidParam": {
+    "target": "canvas-does-not-exist",
+    "newTab": {
+     "dropdownOpened": true,
+     "activeCanvasId": "canvas-2",
+     "visibleRows": 2,
+     "allRowIds": [
+      "canvas-2",
+      "canvas-1"
+     ],
+     "reactFlowNodes": 10
+    },
+    "rendered": true,
+    "fellBackToSomeCanvas": true
+   }
+  }
+ ]
+}

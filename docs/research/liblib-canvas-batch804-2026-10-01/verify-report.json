@@ -1,0 +1,297 @@
+{
+ "batch": 804,
+ "totals": {
+  "passed": 8,
+  "total": 8
+ },
+ "checks": [
+  {
+   "id": "S1:★★ 缺陷复现：pre 里点一张卡，新标签页显示的是**另一张**",
+   "why": "★ 缺陷本体，全部用 DOM 读数判定（不读 store）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "target": "canvas-1",
+     "新标签页显示": "canvas-2",
+     "节点": 10,
+     "★ 不是点的": true
+    },
+    {
+     "round": 1,
+     "target": "canvas-1",
+     "新标签页显示": "canvas-2",
+     "节点": 10,
+     "★ 不是点的": true
+    }
+   ]
+  },
+  {
+   "id": "S2:★★★ pre 里「点 canvas-2」那条臂是**默认蒙对**，不构成功能证据",
+   "why": "★★★ 默认 active 就是 canvas-2 ⟹ 只跑这一个方向会把「完全没修」判成「已修」。★ 判据不是「这条臂红不红」，而是「它绿的时候，URL 里到底有没有携带目标」",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "target": "canvas-2",
+     "★ 新标签页 URL": "http://localhost:4317/",
+     "URL 里带目标参数": false,
+     "结论": "pre 里这条臂是绿的，但 URL 里根本没有目标参数 ⟹ 它只是**默认 active 恰好就是这张**，不构成功能证据"
+    },
+    {
+     "round": 1,
+     "target": "canvas-2",
+     "★ 新标签页 URL": "http://localhost:4317/",
+     "URL 里带目标参数": false,
+     "结论": "pre 里这条臂是绿的，但 URL 里根本没有目标参数 ⟹ 它只是**默认 active 恰好就是这张**，不构成功能证据"
+    }
+   ]
+  },
+  {
+   "id": "S3:★★★ 修复生效：post 里**两个方向**都显示你点的那张",
+   "why": "★ 两个方向都要跑 —— 单方向有「默认蒙对」的假绿（见 S2）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "target": "canvas-1",
+     "新标签页显示": "canvas-1",
+     "★ 显示的就是点的": true
+    },
+    {
+     "round": 0,
+     "target": "canvas-2",
+     "新标签页显示": "canvas-2",
+     "★ 显示的就是点的": true
+    },
+    {
+     "round": 1,
+     "target": "canvas-1",
+     "新标签页显示": "canvas-1",
+     "★ 显示的就是点的": true
+    },
+    {
+     "round": 1,
+     "target": "canvas-2",
+     "新标签页显示": "canvas-2",
+     "★ 显示的就是点的": true
+    }
+   ]
+  },
+  {
+   "id": "S4:★★ 不只是 id 对了 —— **内容**也跟着换（两张画布节点数互不相同）",
+   "why": "★★ 「activeCanvasId 等于目标」也可能只是把标签换了个字符串；种子数据里 canvas-1 是 0 节点、canvas-2 是 10 节点 ⟹ 两者互不相同且两轮稳定，才能说明画布真的换了",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "逐张": {
+      "canvas-1": 0,
+      "canvas-2": 10
+     },
+     "逐张id": {
+      "canvas-1": "canvas-1",
+      "canvas-2": "canvas-2"
+     },
+     "★ 节点数互不相同": true,
+     "两轮稳定": true,
+     "★ 内容确实换了": true
+    },
+    {
+     "round": 1,
+     "逐张": {
+      "canvas-1": 0,
+      "canvas-2": 10
+     },
+     "逐张id": {
+      "canvas-1": "canvas-1",
+      "canvas-2": "canvas-2"
+     },
+     "★ 节点数互不相同": true,
+     "两轮稳定": true,
+     "★ 内容确实换了": true
+    }
+   ]
+  },
+  {
+   "id": "S5:★★ post 里新标签页 URL 真的带上了 `?canvas=<目标>`",
+   "why": "★ 机制证据：修复就是把 id 放进 URL，由根页消费",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "target": "canvas-1",
+     "URL": "http://localhost:4317/?canvas=canvas-1",
+     "★ 带了": true
+    },
+    {
+     "round": 0,
+     "target": "canvas-2",
+     "URL": "http://localhost:4317/?canvas=canvas-2",
+     "★ 带了": true
+    },
+    {
+     "round": 1,
+     "target": "canvas-1",
+     "URL": "http://localhost:4317/?canvas=canvas-1",
+     "★ 带了": true
+    },
+    {
+     "round": 1,
+     "target": "canvas-2",
+     "URL": "http://localhost:4317/?canvas=canvas-2",
+     "★ 带了": true
+    }
+   ]
+  },
+  {
+   "id": "S6:★★ 无回归：post 里**本标签页**仍然跟着点的那张走",
+   "why": "★ 这条读 store（`/project` 页面上没有画布页的 `[data-canvas-trigger]`，DOM 上读不到）；★ 而它必须有证据 —— 第一版的 `sameTabAfterClick` 在`/project` 上找那个钩子、恒为 null，是一条**恒定无信息**的读数",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "target": "canvas-1",
+     "本标签页 active": "canvas-1",
+     "storeFound": true,
+     "★ 跟着走": true
+    },
+    {
+     "round": 0,
+     "target": "canvas-2",
+     "本标签页 active": "canvas-2",
+     "storeFound": true,
+     "★ 跟着走": true
+    },
+    {
+     "round": 1,
+     "target": "canvas-1",
+     "本标签页 active": "canvas-1",
+     "storeFound": true,
+     "★ 跟着走": true
+    },
+    {
+     "round": 1,
+     "target": "canvas-2",
+     "本标签页 active": "canvas-2",
+     "storeFound": true,
+     "★ 跟着走": true
+    }
+   ]
+  },
+  {
+   "id": "S7:★★ 坏参数回落：认不出来的 `?canvas=` 不会白屏或崩，回落到默认画布",
+   "why": "★★ 修复**引入了一条新路径**（从 URL 读 id 并切画布）⟹ 它自带一个新失败模式。★ 不测它等于把新风险放进代码却不看它。（pre 探针未含此臂：这条路径在 pre 里根本不存在）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "参数": "canvas-does-not-exist",
+     "回落到": "canvas-2",
+     "可见画布行": 2,
+     "节点": 10,
+     "★ 页面正常": true,
+     "★ 回落到某张画布": true,
+     "★ 没跟着坏参数跑": true
+    },
+    {
+     "round": 1,
+     "参数": "canvas-does-not-exist",
+     "回落到": "canvas-2",
+     "可见画布行": 2,
+     "节点": 10,
+     "★ 页面正常": true,
+     "★ 回落到某张画布": true,
+     "★ 没跟着坏参数跑": true
+    }
+   ]
+  },
+  {
+   "id": "S8:★★ 静态锚点：`/project` 把 id 放进 URL，根页挂载时消费它",
+   "why": "★ 两处缺一不可：只改 `/project` 等于把参数丢进虚空",
+   "ok": true,
+   "evidence": {
+    "/project 里 open 带 ?canvas=": true,
+    "根页消费 ?canvas=": true
+   }
+  }
+ ],
+ "negatives": [
+  {
+   "name": "N1 ★★ post raw：声称点 canvas-1 打开的是 canvas-2",
+   "why": "★ 验证 S3 抓的是「新标签页显示的是不是目标」",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S3:★★★ 修复生效：post 里**两个方向**都显示你点的那张",
+   "flipped": [
+    "S3:★★★ 修复生效：post 里**两个方向**都显示你点的那张"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N2 ★★ post raw：声称坏参数没有回落到任何画布",
+   "why": "★ 验证 S7 抓的是「有没有回落」",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S7:★★ 坏参数回落：认不出来的 `?canvas=` 不会白屏或崩，回落到默认画布",
+   "flipped": [
+    "S7:★★ 坏参数回落：认不出来的 `?canvas=` 不会白屏或崩，回落到默认画布"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N3 ★★ pre raw：声称 pre 里点 canvas-1 打开的就是 canvas-1",
+   "why": "★ 验证 S1 抓的确实是「新标签页开错画布」这件事",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S1:★★ 缺陷复现：pre 里点一张卡，新标签页显示的是**另一张**",
+   "flipped": [
+    "S1:★★ 缺陷复现：pre 里点一张卡，新标签页显示的是**另一张**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N4 ★★ post raw：把两臂的节点数改成相同",
+   "why": "★★ 验证 S4 抓的是「内容真的换了」，而不是「id 字符串换了」",
+   "evidence": {
+    "hit": 4
+   },
+   "expectFlipped": "S4:★★ 不只是 id 对了 —— **内容**也跟着换（两张画布节点数互不相同）",
+   "flipped": [
+    "S4:★★ 不只是 id 对了 —— **内容**也跟着换（两张画布节点数互不相同）"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N5 ★★ post raw：声称本标签页没跟着走",
+   "why": "★ 验证 S6 无回归不是空转",
+   "evidence": {
+    "hit": 4
+   },
+   "expectFlipped": "S6:★★ 无回归：post 里**本标签页**仍然跟着点的那张走",
+   "flipped": [
+    "S6:★★ 无回归：post 里**本标签页**仍然跟着点的那张走"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N6 ★★ 反向对照：只动一个与判据无关的字段（cards）",
+   "why": "★ 证明判据锚的是读数、不是某段文本",
+   "evidence": {
+    "hit": true
+   },
+   "expectFlipped": "（反向对照：期望不翻）",
+   "flipped": [],
+   "ok": true
+  }
+ ],
+ "negativesOk": 6,
+ "negativesTotal": 6,
+ "rawSha": {
+  "pre": "ed41d03113d673361129fb99fdfd30e03b5b3309327031ea26c534b14f88963c",
+  "post": "7699d8965899fb1873c9fb5e18ac14010661f702927d0091fcdaa7286dba559c"
+ }
+}

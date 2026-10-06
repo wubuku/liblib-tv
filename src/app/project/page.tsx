@@ -27,7 +27,19 @@ export default function ProjectListPage() {
   // Batch 150: 源站 2026-09-07 实拍——/project 画布卡点击在新标签页打开画布。
   const openCanvas = (canvasId: string) => {
     setActiveCanvas(canvasId);
-    window.open("/", "_blank");
+    // ★★ Batch 804（修 759 ①「点项目卡，新标签页不是你点的那张」）：
+    //   `activeCanvasId` **只活在当前标签页的内存里**（`canvasStore.ts` 全文
+    //   没有 persist / localStorage），而 `window.open` 打开的新标签页有
+    //   **自己的 store 实例**，从 `createInitialState` 的默认值起步
+    //   （`:1175` `activeCanvasId: "canvas-2"`）⟹ 原来这一行开出来的永远是
+    //   canvas-2。实测：点 `canvas-1` 的卡，新标签页显示 `canvas-2`、10 个节点
+    //   （点 `canvas-2` 反而「对」，那只是**默认蒙对**，不是功能生效）。
+    //   ⟹ 把目标 id 放进 URL，由根页在挂载时消费。
+    //   ★ 依据不是发明：源站的画布地址本身就带查询参数
+    //   （`https://www.liblib.tv/canvas?spaceId=…&projectId=…`），
+    //   「用 URL 指定画布」是**源站形状**。
+    //   `setActiveCanvas` 仍然要调用 —— 本标签页跟着点的那张走，是对的。
+    window.open(`/?canvas=${encodeURIComponent(canvasId)}`, "_blank");
   };
 
   return (
