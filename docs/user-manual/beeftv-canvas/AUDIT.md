@@ -10740,3 +10740,41 @@ Batch 249 加的）、`run_two_file_case`（3 条，**没有**）、用例 7 内
     **闸 17 首跑抓到反验的真缺陷**：起子进程没设 `BEEFTV_MANUAL_ROOT`（已按纪律 284
     改自己的代码，不动判据）。**纪律 336**。
 
+
+265. **`verify-unreachable` 的 4 条逐条落到子条件、四种失效形态与 16 处正文落点**
+    （Batch 302，ref = `origin/main`）：
+    **闸自己的措辞**：`⚠ [键] …… —— **判据已不成立**，上游可能已修复，
+    手册对应断言需回走核实后更新`（4 条同形）。
+    **逐条的子条件断点**：
+    | 键 | 断掉的子条件 | 实测依据 |
+    | --- | --- | --- |
+    | `canvas-folders-local-only` | (d) 服务端零处画布文件夹端点 | **`/canvas-folders` 命中 4 处**：`backend/handler/api_test.go`、`handler/canvas_library.go`、`handler/openapi.yaml`、`web/src/services/api/workspace-data.ts`；前端 73/77/81 行是 `GET`/`PUT`/`DELETE` |
+    | `asset-sync-gated-off` | (d2)(e)(f) | `enabled: remoteMode` 在 `assets/index.tsx` 上 **0 命中**（换成 `canonicalReads = usesWorkspaceAssetLibraryApi()`）；**而三个常量逐字未变** |
+    | `asset-list-endpoint-uncalled` | (a1)(a2)(b) | 路由搬到了 **`handler/user_data.go:276`**（判据钉的是 `asset.go`）；前端 `workspace-assets.ts:37` **真的调 `GET /assets`** |
+    | `channel-page-three-names` | (c) | 那句三元已被 `<h2>模型服务</h2>` + `<h3>个人工作流渠道</h3>` 取代（Batch 298 已实测） |
+    **四种失效形态**：**整句失效 2 条**（①③）、**半句失效 1 条**（②）、
+    **描述失效 1 条**（④）。
+    **②的机制链（`origin/main`）**：`enabled: remoteMode` →
+    `canonicalReads = usesWorkspaceAssetLibraryApi()` →
+    `!usesBrowserLocalResourceStore()` →
+    `isLocalRuntimeMode() && !isNativeDesktopRuntime()`；
+    而 `isLocalRuntimeMode()` = `localFirstBuild || storageMode === "local" || username === "local"`，
+    `localFirstBuild = import.meta.env.VITE_CANVAS_LOCAL_MODE !== "false"`——
+    **默认即为 true，所以浏览器里仍走本地，而桌面端不走**。
+    **这两个函数在 `bcc3b05` 上逐字相同**（不是新增），
+    **而 `web/src/services/workspace-asset-read.ts` 是上游新增的**
+    （基线上不存在，基线素材页 `canonicalReads` **0 命中**）。
+    **正文落点 16 处 / 7 个文件**：
+    | 键 | 落点 | 文件 |
+    | --- | --- | --- |
+    | ① | **5** | `asset-library.md`、`manage-canvases.md`、`30-concepts.md`、`90-troubleshooting.md` |
+    | ② | **2** | `asset-library.md` |
+    | ③ | **4** | `asset-library.md`、`30-concepts.md` |
+    | ④ | **5** | `generate-video.md`、`model-channels.md`、`plugins-management.md` |
+    **而闸报的是「4 处不一致」——4 与 16 差着四倍。**
+    **探针这一批的错**：照判据里**写死的文件路径**去查，得出「10 条子条件断了」，
+    **其中 7 条是路径/签名过期**（③ 的 `asset.go` 已搬走；② 的两个函数各加了参数）。
+    **另一次漂亮的 0**：③的正文写「前端没有任何一处去调它」，
+    而正则找的是「零处调用」——**数出 0 处，实测 4 处**。
+    **纪律 337**。
+

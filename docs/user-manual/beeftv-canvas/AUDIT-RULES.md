@@ -6569,3 +6569,68 @@ git commit -F /tmp/msg.txt -- <我这次改动的全部路径，逐个列出>
     **对插入式注入恒假**（新串本来就包含旧串），把用例 8 判死——
     **而它是靠「收尾必须接住一切异常」接住的，不是自己发现的**。
 
+337. **「有几处不一致」与「要改几句正文」之间差着四倍，而那个映射一次都没量过**
+    （Batch 302，处置纪律 332 矩阵里第三大的一族 `verify-unreachable` 的 4 条）：
+    **①第三次量坍缩，而三族的坍缩比与方向各不相同**：
+    `shot-drift` **12 条 → 4 张**真偏旧（处置是「就地说明图偏旧」）；
+    `line-counts` **5 条 → 0 条**声明失效（处置是「只要更新快照表的数」）；
+    `unreachable` **4 条 → 2 整句失效 + 1 半句失效 + 1 描述失效**
+    （处置是「改正文」，而**正文落点 16 处**）。
+    **所以「32 条」既不是工作量，也不是要改的句数——它连单位都不是一个。**
+    **②闸输出的是一句提示，而 `rc=1` 让它与「声明错了」不可分**：
+    原文是「**判据已不成立**，上游可能已修复，手册对应断言需回走核实后更新」——
+    **这句话本身是对的**（它说的是「判据不成立」，不是「声明错了」），
+    **而下一个人读到的往往只有那个 `1`**。
+    **③4 条逐条落到四种失效形态，而「半句失效」是前两族都没有的新形态**：
+    **①`canvas-folders-local-only` 整句失效**——
+    `origin/main` 上 `/canvas-folders` 已有 `GET`/`PUT`/`DELETE`
+    （`web/src/services/api/workspace-data.ts:73/77/81`），
+    服务端有 `handler/canvas_library.go` + `local_schema_canvas_library.go` +
+    `model.CanvasLibraryFolder`，**而画布库页真的 `import` 了
+    `createCanvasLibraryFolder` / `deleteCanvasLibraryFolder` / `hydrateCanvasLibraryFolders`**
+    （`pages/canvas/index.tsx:18`）——**「服务端没有画布文件夹这个概念」已完全不成立**；
+    **③`asset-list-endpoint-uncalled` 整句失效**——
+    前端 `workspace-assets.ts:37` 的 `listWorkspaceAssetsPage()` **真的调 `GET /assets`**
+    （带 page/pageSize/kind/category/folderId 等筛选），
+    后端 `handler/user_data.go:276` 注册了路由并带 `hasUserAssetPageFilters` + `UserAssetsPage`；
+    **②`asset-sync-gated-off` 半句失效**——
+    **机制那半句不成立了**：`enabled: remoteMode` 换成了
+    `canonicalReads = usesWorkspaceAssetLibraryApi()`，
+    而它 = `!usesBrowserLocalResourceStore()` = `!(isLocalRuntimeMode() && !isNativeDesktopRuntime())`——
+    **「写死的常量」换成了运行时判定**；
+    **而结果那半句在源码上仍然成立**：那三个常量
+    （`hasRemoteUserDataSyncSession()` → `return false`、
+    `isLocalWorkspaceMode()` → `return true`、`WorkspaceCapabilities = { local: true; … }`）
+    **在 `origin/main` 上逐字未变**；
+    **④`channel-page-three-names` 描述失效**——
+    大标题那句 `localMode ? "本地模型渠道" : "个人渠道"` 已被
+    `<h2>模型服务</h2>` + `<h3>个人工作流渠道</h3>` 取代（Batch 298 实测）。
+    **「半句失效」要写进手册而不是删掉那半句**：
+    **②的处置是「机制换了、浏览器里的结果没换」**，
+    **删掉机制那半句会让人以为素材从此有服务端出口，而改掉结果那半句会骗桌面端用户。**
+    **④4 条登记断言在正文里落成 16 处、7 个文件**：
+    ①**5 处**（`asset-library.md:131`、`manage-canvases.md:101`、`30-concepts.md:260/261`、
+    `90-troubleshooting.md:314`）／②**2 处**（`asset-library.md:121/129`）／
+    ③**4 处**（`30-concepts.md:282/286`、`asset-library.md:119` 等）／
+    ④**5 处**（`generate-video.md:79`、`model-channels.md:10/104`、
+    `plugins-management.md:48/55`）——
+    **而闸报的是「4 处不一致」，4 与 16 差着四倍。**
+    **⑤判据钉「写法」与钉「路径」各有一处自己的坑，而它们的红与「声明真的错了」在 rc 上一样**：
+    **②的 (d2) `enabled: remoteMode` 在上游整个没了、(e)(f) 的函数签名各加了一个参数**；
+    **③的判据钉死了 `backend/internal/handler/asset.go`，而那段路由搬到了 `user_data.go`**——
+    **换句话说，「判据不成立」里有相当一部分是「判据跟不上重构」**，
+    **照着它去改手册会把一条仍然成立的声明改错**。
+    **⑥运行时实测证据与机制声明要分开**：`90-troubleshooting.md:312` 那句
+    「实测：新建文件夹、把画布移进去，对后端接口的写请求数都是 0」
+    **在 v1.6.14 上仍然成立、并没有过期**——**过期的是它所描述的那个机制在上游变了**
+    （纪律 288：**过期的理由比没有理由更坏**，而这里过期的不是那个数）。
+    **⑦文本挖掘漏掉了「同一句话的不同写法」**：③的正文写的是
+    「前端没有任何一处去调它」，而我第一遍的正则找的是「零处调用」——
+    **于是数出 0 处，一个漂亮的 0**（而实测 4 处）。
+    **⑧处置**：**本批只出映射与形态，不改正文、不改判据**——
+    **①③ 归入升版清单**（正文 9 处）、**②要写清新旧机制**（2 处）、
+    **④改描述**（5 处）；**而 ②③ 的判据子条件另有 7 处要跟**，
+    **按纪律 284 不在本批动共用判据，据实记账**。
+    **判据说「判据已不成立」时，要紧的是那句话的后半句**——
+    **「手册对应断言需回走核实后更新」是它给出的处置方向，而核实才是本批做的事。**
+
