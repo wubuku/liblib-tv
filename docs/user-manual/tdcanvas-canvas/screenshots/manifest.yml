@@ -1455,3 +1455,27 @@ screenshots:
     visible_text: '画布 资产 提示词库 画布元素 4 连接 TDCanvas Agent'
     alt: Agent 面板展开时的整页画布：左侧竖栏第五个时钟图标被红框标出，标注「左栏历史 32 乘 32，只换左侧面板」；右上角 Agent 面板顶部的时钟图标被橙框标出，标注「Agent 页签历史 32 乘 48，只换 Agent 面板」；两个按钮读起来都是「历史」，但位置一左一右、大小不同
     sha256: 444229e80e01eca4cc3df6fb865bd20ce8b9a0a4c2be9cfad11103fc2aa38aa1
+
+  - file: screenshots/10-navigate-canvas-connection-copied.png
+    task_id: navigate-canvas
+    step: 建两个文本节点「端点 A」「端点 B」并拖出一条连线；两个端点一起选中后 Ctrl+C、Ctrl+V；把原件上移一行让副本露出来，再整页截图，按探针当场实测的四个 rect 画三个框加标签
+    route: '/canvas/:id'
+    viewport: '1600x900 视口，deviceScaleFactor=2，输出 3200x1800'
+    locale: zh-CN
+    captured_at: '2026-10-07'
+    verified_locator: '两个端点实测 @(356,300) 与 (1056,300)、各 520x300，间距 180px（间隙是硬性验收项，实测 gapMin=180、ok=true）；端口实测 output (854.88,428.88) 拖到 input (1034.88,428.88)，连线数 0 变 1；两端一起选中（选中态计数实测 2）后 Ctrl+C、Ctrl+V：节点 2 变 4、连线 1 变 2，新增那条的两端都是 -0- / -1- 开头的新建 id，即连的是副本与副本；两个副本实测 @(190,300) 与 (890,300)，副本连线实测 rect (710,450,180,0)；三个框与标签位置全部取自这四个实测 rect，未肉眼估；截图前做了可见性阳性对照——沿副本连线取 t=0.3 处 (764,450)，elementFromPoint 命中的就是这条连线本身（ok=true），否则拍到的会是压在上面的别的东西'
+    visible_text: '画布 资产 提示词库 画布元素 4 端点 A 端点 B 端点 A Copy 端点 B Copy 生图'
+    alt: 画布上分两行：上面一行是原件端点 A、端点 B 和两者之间那条连线；下面一行是两个被红框标出的副本端点 A Copy、端点 B Copy，绿框圈住副本之间新长出来的那条连线，标注写着「两端都选中 → 节点 +2、连线 +1，而且这条线连的是两个副本」
+    sha256: ee30e8c7e69b37ee3bb1cb5caa8276bb43269ac769109b6122489a7336492a3d
+
+  - file: screenshots/10-navigate-canvas-lonely-copy.png
+    task_id: navigate-canvas
+    step: 同一个场景里只选中「端点 A」一个端点，Ctrl+C、Ctrl+V；把落下来的副本下移 250px，点空白取消选中让原连线露出来，再整页截图并按实测 rect 画框加标签
+    route: '/canvas/:id'
+    viewport: '1600x900 视口，deviceScaleFactor=2，输出 3200x1800'
+    locale: zh-CN
+    captured_at: '2026-10-07'
+    verified_locator: '只选中 1 个端点时（选中态计数实测 1）Ctrl+C、Ctrl+V：节点 2 变 3、连线数恒为 1、悬空连线 0 条；副本实测 @(536,550) 520x300，它左右都没有连线；标注框位置不是估的——它的浮动标题 span 实测 (572,512,79.9,22)，框的 y 由该 rect 反算（512 - 10 - 72 = 430），并断言框与标题不相交（intersectsTitle=false）；该断言有阳性对照：同一判定函数把 y 换成上一版估出来的 454 时返回 true，说明它不是恒假。另外全页同一句文案有 2 处（另一处在左侧节点列表），按「在副本节点上边、且在左侧面板右边」才筛出画布上那 1 处'
+    visible_text: '画布 资产 提示词库 画布元素 3 端点 A 端点 B 端点 A Copy 生图'
+    alt: 画布上方是原件端点 A、端点 B 和两者之间那条连线；下方橙框圈着一个新出现的端点 A Copy，它左右两侧都没有任何连线，标注写着「只复制出这个孤立副本 / 它旁边一条线都没有」；左侧节点列表显示画布元素 3
+    sha256: 81b03537ca411b27337c8037016c5353cc4ccba666fe284655abd9f157d63b2e
