@@ -10584,3 +10584,51 @@ Batch 249 加的）、`run_two_file_case`（3 条，**没有**）、用例 7 内
     **同一个量（闸 7 的「处不一致」）走过 8（Batch 290）→ 7（Batch 294）→ 4（现在）**，
     **变的不是上游而是闸**——`verify-unreachable.py` 在 Batch 294/295 各被改过一次，
     **三次测量在当时都是对的**。**纪律 332**。
+
+261. **`verify-shot-drift` 的 12 条拆到「处置」这一层，三次坍缩**（Batch 298）：
+    **闸的三个数**：`检出漂移 15 张 / DRIFT 登记 3 条 / 报出 12 处问题`（15 − 3 = 12）。
+    **拍摄版本分布**：12 张里 **4 张拍于 v1.6.6**（`20`/`21`/`22`/`28`）、
+    **8 张拍于 v1.6.14**（其余）。
+    **lost 行 21 条的四档分布**：`R2`（同文件里该文案还在）**12** /
+    `R3`（只在别的文件出现）**4** / `R4`（全库都没有）**5**。
+    **按闸的粒度（截图 × 文案）**：
+    | 图 | 文案 | 判 |
+    | --- | --- | --- |
+    | `20-assets-page` | 个人资产库 | R2 |
+    | `21-model-config-full` | 本地模型渠道 | R3→**实为真漂移** |
+    | `22-settings-channels` | 本地模型渠道 | R3→**实为真漂移** |
+    | `28-generation-history-modal` | 从生成历史选择 | R2 |
+    | `31-director-templates` | 选择镜头模板 | R4（**已登记**） |
+    | `33-director-workbench` | 3D导演台 | R2（**已登记**） |
+    | `36-pose-panel` | 姿势预设 | R2（**已登记**） |
+    | `52-canvas-library-selection` | 新建文件夹 / 全部项目 | R2 / R2 |
+    | `53-canvas-library` | 全部项目 / 新建文件夹 | R2 / R2 |
+    | `58-asset-library-empty` | 个人资产库 | R2 |
+    | `59-asset-library-cards` | 个人资产库 | R2 |
+    | `60-asset-batch-upload` | 未分类 | R2 |
+    | `65-model-channels` | 本地模型渠道 / 拉取全部 / 新增渠道 | R3 / R4 / R4 |
+    | `68-settings-continue` | 本地模型渠道 / 拉取全部 / 新增渠道 | R3 / R4 / R4 |
+    | `69-art-critique-add-node` | 从生成历史选择 | R2 |
+    **真漂移 4 张**：`21` `22` `65` `68`，**同源于
+    `web/src/pages/settings/channel-settings-pane.tsx`（738 → 782 行）**——
+    `<h2>{localMode ? "本地模型渠道" : "个人渠道"}</h2>` 改成
+    **`<h2>模型服务</h2>` + `<h3>个人工作流渠道</h3>`**，
+    `拉取全部` 与 `新增渠道` 在 `origin/main` 的 `web/src` 上**实测 0 命中**。
+    **`R3` 整档被证伪的证据**：`本地模型渠道` 在 `origin/main` 上只剩两处形态——
+    说明句「添加本地模型渠道，配置生图、视频和文本的默认模型。」
+    与按钮「前往添加本地模型渠道」，**没有一处还是那个标题**。
+    **跨页串味的证据**：`52`/`53` 是画布库截图，触发它们的行在素材页
+    `web/src/pages/assets/index.tsx`（v1.6.14 第 836 行 → `origin/main` 第 1053 行，
+    `{activeAssets.length}` → `{allProjectsCount}`）；
+    **画布页自己的 3 处 `全部项目` 实测逐字未变（3/3，已用 `assert` 钉死）**。
+    **计数取值来源变了的 6 张**：`20`/`58`/`59`（`{assets.length}` → `{libraryTotal}`）、
+    `52`/`53`、`60`（`remoteReady ? folderCounts[""] ?? 0 : activeAssets.filter(...)`）。
+    **行为变更、界面未变的 2 张**：`28`/`69` 的 `onCancel={onClose}` →
+    `onCancel={() => { cancelSelection(); onClose(); }}`；
+    **新增了 `cancelSelection`（`selectionEpoch` 自增 + 中断在途请求），
+    且 `useEffect(() => () => cancelSelection(), [open, projectId, scope])` 也会调它——
+    两条路是否重复、时序如何，源码上判不了，运行时取证才能定（付费边界）。**
+    **探针的三次形状**：①量出 0（比对端用错 ref）②21 条全落 R4 并打「全库已无该文案」
+    （`for g in up_by_line` 迭代了键而不是文件，`R3` 恒为 0）③期望 12 量到 15
+    （**锚点写错，该卡的是「检出 − 已登记」**）。**纪律 333**。
+
