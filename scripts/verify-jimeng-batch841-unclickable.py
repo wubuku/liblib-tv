@@ -5934,6 +5934,9 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ 1020：把 1019 那个 harness **本身**当被测对象 —— 两条 stub 对账 + 变异测试
     p1020 = ROOT / "scripts/jimeng_probe1020_harness_fidelity.py"
     _p1020 = p1020.read_text(encoding="utf-8") if p1020.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1021：第一次量「门自己」—— 官方锚点门对「判据变弱」的敏感度
+    p1021 = ROOT / "scripts/jimeng_probe1021_anchor_gate_coverage.py"
+    _p1021 = p1021.read_text(encoding="utf-8") if p1021.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -15806,6 +15809,76 @@ def main() -> int:
           and '"p10_honest_notes_2020_"' in _ausrc
           and '"p11_scope_and_offline_2020_"' in _ausrc
           and '"p12_golden_2020_"' in _ausrc)
+
+
+    # ══ AA993E. 批 1021 第一次量「门自己」：官方锚点门对「判据变弱」的敏感度
+    print("— AA993E. 批 1021 量门自己：6 个变弱形状里 4 个让官方锚点门继续报「问题 0 个」；"
+          "删整组 8 条判据 ⇒ 少查 69 条锚点而问题数纹丝不动")
+    check("AA993E.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P1 —— 本批第一次量「门自己」**：变异版 verifier 写到临时文件、用 `argv[1]` 喂给"
+          "**官方门本体**（不是重写一份）⇒ **避免「我以为门是这样工作的」**；"
+          "⚠️ **自检：未变异那一格必须逐字复现官方门自己报的数**，不忠实就**立刻停**",
+          'def run_gate(vpath):' in _p1021
+          and 'str(GATE), str(vpath), str(AUDIT)' in _p1021
+          and 'SELFCHECK = (' in _p1021
+          and 'raise SystemExit("自检失败：驱动方式不忠实，先停。%r / 树上 check 数 %d"' in _p1021
+          and '"self_check"' in _p1021
+          and '"baseline_reproduced": SELFCHECK' in _p1021
+          and '**P1 —— 本批第一次量「门自己」。**' in _ausrc
+          and '"p1_driver_is_faithful_2021_"' in _ausrc)
+    check("AA993E.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P2 成立 —— 官方锚点门的 `collect()` 只收「还被 `check()` 引用的」锚点 "
+          "⇒ 「把判据变弱」的典型手法恰恰是「少引用一条锚点」** ⇒ 实测 6 个变弱形状，"
+          "**4 个让门继续报「问题 0 个」**：Ⓐ 删整条、Ⓑ 删整组、Ⓒ 删一个合取项、"
+          "Ⓔ 把锚点换成**确实存在、但说的是别的事**的串",
+          'SILENT = [r["tag"] for r in ROWS[1:]' in _p1021
+          and 'if r["n_problems"] == 0 and r["would_fail"] == 0 and r["missing"] == 0]' in _p1021
+          and '"anchors_dropped": BASE["n_anchors"] - r["n_anchors"]' in _p1021
+          and '"checks_dropped": BASE["n_checks"] - r["n_checks"]' in _p1021
+          and 'P2 = len(SILENT) >= 3' in _p1021
+          and '「把判据变弱」的典型手法恰恰是「少引用一条锚点」。**' in _ausrc
+          and '"p2_four_ways_to_weaken_stay_green_2021_"' in _ausrc)
+    check("AA993E.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **门只抓到 2 个形状**："
+          "Ⓕ 加**恒真**判据（**1002 那条 SHAPE 普查干的**）、Ⓖ 把 `in` 翻成 `not in` "
+          "⇒⇒⇒⇒⇒ **「加错的」抓得住，「少对的」抓不住** ⇒ "
+          "**这是 1016「同名键的失败形态是安静」的同一种病、换了个宿主**",
+          'CAUGHT = [r["tag"] for r in ROWS[1:] if r["tag"] not in SILENT]' in _p1021
+          and 'check("Z993E.9 恒真", True)' in _p1021
+          and '"caught": CAUGHT' in _p1021
+          and 'P4 = "G_flip_in_to_not_in_1021" in CAUGHT' in _p1021
+          and '**「加错的」抓得住，「少对的」抓不住**' in _ausrc
+          and '**少写一条、没有任何东西会告诉你**」' in _ausrc
+          and '"p3_only_two_shapes_are_caught_2021_"' in _ausrc)
+    check("AA993E.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P4 —— 唯一会变的读数是汇总行里的 `check(N)`，而没有任何门在比对这个数** ⇒ "
+          "**「门少了 8 条检查」与「门报 0 个问题」可以同时成立**；"
+          "⭐⭐⭐ **覆盖面缩得比判据数快得多**：删 8 条 ⇒ 少查 **69** 条锚点（约 **8.6** 倍）"
+          "⇒ **所以 `check(N)` 不是够用的基线，**受检锚点数**才是**",
+          '"shorthand": SHORTHAND' in _p1021
+          and 'P3 = any(s["anchors_dropped"] > 0 and s["n_problems"] == 0 for s in SHORTHAND)' in _p1021
+          and '"delivered"' in _p1021
+          and '"countermeasure"' in _p1021
+          and '而没有任何门在比对这个数**' in _ausrc
+          and '**覆盖面缩得比判据数快得多**' in _ausrc
+          and '受检锚点数**才是**' in _ausrc
+          and '"p4_the_only_moving_reading_2021_"' in _ausrc)
+    check("AA993E.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **处置**：把 `check(N)` **与受检锚点数**一起"
+          "**登记进产物并钉住当前基线** ⇒ ⭐ **通则：门的覆盖面必须是一个被登记的量** —— "
+          "**「门还在跑」不等于「门查得和昨天一样多」**；且 ⚠️ "
+          "**变异集合是手挑的 6 个形状、不是穷举 ⇒ 不许把结论说成「只有这几种能溜过去」**；"
+          "**纯离线、变异只在临时文件里、逐条落进产物**",
+          'P5 = all(r["rc"] in (0, 1) for r in ROWS) and len(ROWS) == 1 + len(MUTS)' in _p1021
+          and 'P6 = True' in _p1021
+          and 'P7 = True' in _p1021
+          and 'atexit.register(shutil.rmtree, str(TMPDIR), ignore_errors=True)' in _p1021
+          and 'anchor-gate-coverage-1021.json' in _p1021
+          and '**处置不是「登记」，是「做成一道会红的闸」**' in _ausrc
+          and '**「门还在跑」不等于「门查得和昨天一样多」**' in _ausrc
+          and '不许说成「只有这几种能溜过去」**' in _ausrc
+          and '"p5_countermeasure_2021_"' in _ausrc
+          and '"p6_scope_2021_"' in _ausrc
+          and '"p7_offline_2021_"' in _ausrc
+          and '"p8_golden_2021_"' in _ausrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

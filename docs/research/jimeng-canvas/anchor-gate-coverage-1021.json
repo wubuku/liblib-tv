@@ -1,0 +1,200 @@
+{
+  "generated_by": "jimeng_probe1021_anchor_gate_coverage.py",
+  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **量门自己** —— 官方锚点门 `collect()` 只收**还被 `check()` 引用的**锚点 ⇒⇒⇒⇒⇒ **「把判据变弱」的典型手法恰恰是「少引用一条锚点」。** ⇒ 本批逐个把 verifier 变弱，看**真门**报不报。",
+  "question_2021": "官方锚点门能发现「锚点被改坏」，能不能发现「判据被改弱」？",
+  "how": "⭐⭐⭐⭐⭐ **不重写门** —— 变异版 verifier 写到临时文件，用 `argv[1]` 喂给**官方门本体**（`jimeng_check_verifier_anchors.py`）⇒ ⇒⇒⇒⇒⇒ **避免「我以为门是这样工作的」**（1019 栽过两次）",
+  "self_check": {
+    "baseline_reproduced": true,
+    "row": {
+      "rc": 0,
+      "n_anchors": 7037,
+      "n_ausrc": 3844,
+      "n_problems": 0,
+      "n_skipped": 143,
+      "n_checks": 921,
+      "n_bare_ok": 0,
+      "would_fail": 0,
+      "missing": 0,
+      "tag": "base"
+    },
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **未变异那一格必须逐字复现官方门自己报的数** —— 否则说明这套驱动方式不忠实 ⇒ **后面全部作废、立刻停**"
+  },
+  "rows": [
+    {
+      "tag": "base",
+      "what": "**未变异的基线**（用来验证驱动方式忠实）",
+      "rc": 0,
+      "n_anchors": 7037,
+      "n_ausrc": 3844,
+      "n_problems": 0,
+      "n_skipped": 143,
+      "n_checks": 921,
+      "n_bare_ok": 0,
+      "would_fail": 0,
+      "missing": 0,
+      "verdict": "门抓到了"
+    },
+    {
+      "tag": "A_drop_one_criterion_1021",
+      "what": "删掉整条 `Z993D.7` 判据（**判据数 −1**）",
+      "rc": 0,
+      "n_anchors": 7028,
+      "n_ausrc": 3841,
+      "n_problems": 0,
+      "n_skipped": 143,
+      "n_checks": 920,
+      "n_bare_ok": 0,
+      "would_fail": 0,
+      "missing": 0,
+      "verdict": "⚠️ **门继续报 0 问题**"
+    },
+    {
+      "tag": "B_drop_whole_group_1021",
+      "what": "删掉整组 `Z993D.1`–`Z993D.8`（**判据数 −8**）",
+      "rc": 0,
+      "n_anchors": 6968,
+      "n_ausrc": 3820,
+      "n_problems": 0,
+      "n_skipped": 143,
+      "n_checks": 913,
+      "n_bare_ok": 0,
+      "would_fail": 0,
+      "missing": 0,
+      "verdict": "⚠️ **门继续报 0 问题**"
+    },
+    {
+      "tag": "C_drop_one_conjunct_1021",
+      "what": "删掉 `Z993D.1` 里的**一个** `and '<锚点>' in _ausrc` 合取项（**判据数不变**）",
+      "rc": 0,
+      "n_anchors": 7036,
+      "n_ausrc": 3843,
+      "n_problems": 0,
+      "n_skipped": 143,
+      "n_checks": 921,
+      "n_bare_ok": 0,
+      "would_fail": 0,
+      "missing": 0,
+      "verdict": "⚠️ **门继续报 0 问题**"
+    },
+    {
+      "tag": "E_swap_anchor_to_one_that_exists_1021",
+      "what": "把 `Z993D.1` 的一条 `_ausrc` 锚点换成**确实存在、但说的是别的事**的串",
+      "rc": 0,
+      "n_anchors": 7037,
+      "n_ausrc": 3844,
+      "n_problems": 0,
+      "n_skipped": 143,
+      "n_checks": 921,
+      "n_bare_ok": 0,
+      "would_fail": 0,
+      "missing": 0,
+      "verdict": "⚠️ **门继续报 0 问题**"
+    },
+    {
+      "tag": "F_add_tautology_1021",
+      "what": "加一条 `ok=True` 的**恒真**判据",
+      "rc": 1,
+      "n_anchors": 7037,
+      "n_ausrc": 3844,
+      "n_problems": 1,
+      "n_skipped": 143,
+      "n_checks": 922,
+      "n_bare_ok": 1,
+      "would_fail": 0,
+      "missing": 0,
+      "verdict": "门抓到了"
+    },
+    {
+      "tag": "G_flip_in_to_not_in_1021",
+      "what": "把一条 `_ausrc` 锚点的 `in` 翻成 `not in`（**该被门抓住**的一类）",
+      "rc": 1,
+      "n_anchors": 7037,
+      "n_ausrc": 3844,
+      "n_problems": 1,
+      "n_skipped": 143,
+      "n_checks": 921,
+      "n_bare_ok": 0,
+      "would_fail": 1,
+      "missing": 0,
+      "verdict": "门抓到了"
+    }
+  ],
+  "silent_weakenings": [
+    "A_drop_one_criterion_1021",
+    "B_drop_whole_group_1021",
+    "C_drop_one_conjunct_1021",
+    "E_swap_anchor_to_one_that_exists_1021"
+  ],
+  "caught": [
+    "F_add_tautology_1021",
+    "G_flip_in_to_not_in_1021"
+  ],
+  "shorthand": [
+    {
+      "tag": "A_drop_one_criterion_1021",
+      "n_anchors": 7028,
+      "n_checks": 920,
+      "n_problems": 0,
+      "anchors_dropped": 9,
+      "checks_dropped": 1
+    },
+    {
+      "tag": "B_drop_whole_group_1021",
+      "n_anchors": 6968,
+      "n_checks": 913,
+      "n_problems": 0,
+      "anchors_dropped": 69,
+      "checks_dropped": 8
+    },
+    {
+      "tag": "C_drop_one_conjunct_1021",
+      "n_anchors": 7036,
+      "n_checks": 921,
+      "n_problems": 0,
+      "anchors_dropped": 1,
+      "checks_dropped": 0
+    },
+    {
+      "tag": "E_swap_anchor_to_one_that_exists_1021",
+      "n_anchors": 7037,
+      "n_checks": 921,
+      "n_problems": 0,
+      "anchors_dropped": 0,
+      "checks_dropped": 0
+    },
+    {
+      "tag": "F_add_tautology_1021",
+      "n_anchors": 7037,
+      "n_checks": 922,
+      "n_problems": 1,
+      "anchors_dropped": 0,
+      "checks_dropped": -1
+    },
+    {
+      "tag": "G_flip_in_to_not_in_1021",
+      "n_anchors": 7037,
+      "n_checks": 921,
+      "n_problems": 1,
+      "anchors_dropped": 0,
+      "checks_dropped": 0
+    }
+  ],
+  "reading": [
+    "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **`collect()` 只收还被引用的锚点** ⇒ **一条锚点被从判据里删掉，它就不再进入普查** ⇒ **门的覆盖面会随着判据说弱而缩小，而「问题数」纹丝不动**",
+    "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **唯一会变的读数是汇总行里的 `check(N)`** —— 而**没有任何门在比对这个数** ⇒ **「门少了 N 条检查」和「门报 0 问题」可以同时成立**",
+    "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这是 1016「同名键的失败形态是安静」的同一种病，换了个宿主** —— 那次是「写了两遍、后一条吃掉前一条」，这次是「少写一条、没有任何东西会告诉你」⇒ **⇒⇒⇒⇒⇒ 同一个治法：把可变的读数登记成基线，而不是指望门报出来**"
+  ],
+  "delivered": {
+    "countermeasure": "⭐ 本批把 `check(N)` **与受检锚点数**做成了**一道真的闸**：探针里的 `FLOOR`，**只许涨不许跌** ⇒ 基线被跌破就直接 `SystemExit` 并打印三条处置说明",
+    "floor": {
+      "n_anchors": 7037,
+      "n_checks": 921
+    },
+    "floor_held": true,
+    "why_only_down": "⭐⭐⭐⭐⭐ **只拦「跌」不拦「涨」** ⇒ 并行会话正常加判据时**不会误报** ⇒ **一道会误报的闸等于没有闸**",
+    "not_just_recorded": "⭐⭐⭐⭐⭐⭐ **「登记而不校验」就是本批正在批评的「写下来了 ≠ 存在过」** ⇒⇒⇒⇒⇒ 所以这一步必须是会红的代码，不是一段说明文字",
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **门的覆盖面必须是一个被登记**、**且会被校验****的量** —— **「门还在跑」不等于「门查得和昨天一样多」**"
+  },
+  "scope": "⚠️⭐⭐⭐⭐⭐ 本批量的是**门对「判据变弱」的敏感度**，**不是**「判据本身对不对」；变异集合是**本探针手挑的 6 个形状**，**不是**穷举 ⇒ **「只有这 6 个形状能溜过去」是本口径内的结论，不许说成「只有这几种能溜过去」**",
+  "offline": "纯 subprocess + 只读仓里三个脚本；变异**只在临时文件里**，**一个字节都不动仓里的任何脚本**；临时目录注册 atexit 清理"
+}
