@@ -1,0 +1,298 @@
+{
+  "generated_by": "jimeng_probe1016_baseline_host_misuse.py",
+  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **`SOURCE_BASELINE` 是「层表」，却被当成通用抽屉用** —— 900–939 的结论键全挂在音色筛选下拉那一条下面，而其中一条**键名被写了两次**，后一条把 931 的正文整个吃掉了。",
+  "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **顶层键 = 层 testid，不是通用命名空间** —— 凡不是「这一层的实测读数」的东西挂进去，按层取就取不到、而它又污染那一个条目的语义",
+  "rule2": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **Python dict 字面量里的同名键是静默后覆盖前** —— 不抛错、不告警、没有任何一行代码会告诉你有一条被吃了；而「保留原文」的惯用写法（同一条记录里再补一段收窄说明）**恰好就是同名写入** ⇒ 意图与机制直接打架，机制静默赢了",
+  "head_readable": true,
+  "n_layers": 17,
+  "per_layer_key_counts": {
+    "audio-all-voices-listbox": 9,
+    "audio-gen-mode-listbox": 8,
+    "audio-music-model-listbox": 8,
+    "audio-voice-filter-listbox": 104,
+    "audio-voice-model-listbox": 8,
+    "canvas-context-menu": 9,
+    "canvas-user-menu": 8,
+    "canvas-zoom-menu": 8,
+    "gen-duration-listbox": 8,
+    "gen-mode-listbox": 8,
+    "gen-model-listbox": 8,
+    "gen-video-size-listbox": 8,
+    "jimeng-search-overlay": 8,
+    "text-bg-palette": 8,
+    "topbar-history-menu": 10,
+    "topbar-more-menu": 8,
+    "topbar-share-panel": 8
+  },
+  "median_keys_per_layer": 8,
+  "max_layer": "audio-voice-filter-listbox",
+  "max_layer_keys": 104,
+  "misplaced_9xx_keys": [
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "replica_roving_implemented_901",
+      "line": 2517
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_shift_tab_from_non_node_902",
+      "line": 2570
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_roving_pointer_carries_state_902",
+      "line": 2581
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_roving_reentry_start_unstable_904",
+      "line": 2612
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_reentry_arm_pattern_confirmed_905",
+      "line": 2659
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_roving_direction_asymmetry_906",
+      "line": 2706
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_roving_wraps_at_canvas_root_908",
+      "line": 2762
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_endpoint_start_sweep_void_907",
+      "line": 2803
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "replica_roving_strict_wrapper_909",
+      "line": 2827
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_endpoint_to_start_threshold_910",
+      "line": 2871
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_endpoint_to_start_three_bands_911",
+      "line": 2905
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_endpoint_to_start_bands_1wide_912",
+      "line": 2936
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_endpoint_start_not_a_pure_function_913",
+      "line": 2962
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_endpoint_start_invariant_to_history_914",
+      "line": 2994
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_prehistory_irrelevance_915",
+      "line": 3043
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_bite_walkback_prehistory_916",
+      "line": 3098
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_focus_trace_dead_presses_917",
+      "line": 3153
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_movedonly_retreat3_918",
+      "line": 3207
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_inner_control_anatomy_919",
+      "line": 3251
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_focus_always_on_armed_920",
+      "line": 3296
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_tabindex_rolling_window_921",
+      "line": 3330
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_reverse_cannot_enter_canvas_922",
+      "line": 3369
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_rolling_window_direction_symmetric_923",
+      "line": 3427
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_both_boundaries_stop_no_wrap_924",
+      "line": 3465
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_past_zero_boundary_focus_returns_but_no_arm_925",
+      "line": 3518
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_window_survives_boundary_freeze_926",
+      "line": 3568
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_early_writeback_not_per_loop_927",
+      "line": 3612
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_replica_same_ruler_928",
+      "line": 3659
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_wrap_after_end_confirmed_929",
+      "line": 3697
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_wrap_cycle_is_constant_930",
+      "line": 3741
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_reverse_lap_cycle_is_constant_931",
+      "line": 3800
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_reverse_lap_cycle_narrowed_by_932",
+      "line": 3861
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_27_cycle_is_one_loop_932",
+      "line": 3875
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_body_stop_absent_933",
+      "line": 3930
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_body_own_attrs_falsified_934",
+      "line": 3969
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_body_stop_not_in_dom_935",
+      "line": 4010
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_inlayer_occlusion_absent_936",
+      "line": 4072
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_transient_layers_exclusive_agent_panel_not_937",
+      "line": 4121
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "replica_transient_layers_exclusive_938",
+      "line": 4175
+    },
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "unarmed_nodes_have_no_dom_reason_900",
+      "line": 4350
+    },
+    {
+      "layer": "canvas-context-menu",
+      "key": "src_context_menu_unreachable_by_tab_939",
+      "line": 5044
+    },
+    {
+      "layer": "topbar-history-menu",
+      "key": "src_roving_single_pointer_and_focus_matrix_940",
+      "line": 4769
+    },
+    {
+      "layer": "topbar-history-menu",
+      "key": "src_layer_identity_criterion_941",
+      "line": 4937
+    }
+  ],
+  "n_misplaced_9xx_keys": 43,
+  "n_misplaced_9xx_keys_in_voice_filter": 40,
+  "n_misplaced_9xx_keys_elsewhere": 3,
+  "misplaced_by_layer": {
+    "audio-voice-filter-listbox": 40,
+    "canvas-context-menu": 1,
+    "topbar-history-menu": 2
+  },
+  "misplaced_layers": [
+    "audio-voice-filter-listbox",
+    "canvas-context-menu",
+    "topbar-history-menu"
+  ],
+  "misplaced_policy": "⚠️ **本批只记账、不搬**：实测按层取的唯一消费点是 `SOURCE_BASELINE.get(tid)`，而那 40 条从未被按层读过 ⇒ 错位是**语义污染**而非读数错误 ⇒ 搬它属于纯大改、零读数收益 ⇒ 按 1012 那条 P5 的处置路线，登记成账而不是现在动它",
+  "duplicate_now": [],
+  "duplicate_at_head": [
+    {
+      "layer": "audio-voice-filter-listbox",
+      "key": "source_reverse_lap_cycle_is_constant_931",
+      "times": 2,
+      "lines": [
+        3800,
+        3855
+      ]
+    }
+  ],
+  "dead_key_at_head": {
+    "key": "source_reverse_lap_cycle_is_constant_931",
+    "layer": "audio-voice-filter-listbox",
+    "lines": [
+      3800,
+      3855
+    ],
+    "written_at_head": 104,
+    "reachable_at_head": 103,
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐ **字面量写了 104 条、实际只有 103 条可达** —— 少的那一条不是被删了，是**被同名的后一条顶掉了**，而它自己的横幅写着「原文保留在这里当历史记录、不许删」",
+    "fix": "**改名**（`source_reverse_lap_cycle_narrowed_by_932`）、一个字不删"
+  },
+  "reverse_case": {
+    "dict_literal": "{'keep_me': '第一次写的', 'keep_me': '第二次写的'}",
+    "value_read_back": "第二次写的",
+    "last_wins": true,
+    "raised_nothing": true,
+    "rule": "⭐⭐⭐⭐⭐ **同名键的失败形态是「安静」**：不抛错、不告警、不改变任何一条已有的门 ⇒ 要抓它只能靠**对键名本身去重**"
+  },
+  "consumer": {
+    "only_read_site": "`SOURCE_BASELINE.get(tid)`（`jimeng_unclickable_audit.py` 按层查）",
+    "whole_table_dumped": true,
+    "dump_site": "读数文件里的 `source_baseline` 字段（dump 的是求值后的 dict）",
+    "rule": "⭐⭐⭐⭐⭐⭐ **所以被顶掉的那条不只是取不到、它也从来没进过任何产物** —— 「写下来了」在这个结构里不等于「存在过」"
+  }
+}

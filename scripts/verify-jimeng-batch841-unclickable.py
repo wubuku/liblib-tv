@@ -5916,6 +5916,11 @@ def main() -> int:
     #   ⇒ ⇒ ⇒ **⇒ 所以这行读取与门里那条登记必须是同一步**
     p1015 = ROOT / "scripts/jimeng_probe1015_rerun_reproducibility.py"
     _p1015 = p1015.read_text(encoding="utf-8") if p1015.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1016：`SOURCE_BASELINE` 被当成通用抽屉 + 一个键名被写了两遍
+    #   ⇒ 「★读这一行」与「★把 `_p1016` 登记进 `PROBE_VARS`」必须是同一步，
+    #   否则门会拿一个空串去判（1006 那条：门报红 ≠ 数据错，先判门错还是数据错）
+    p1016 = ROOT / "scripts/jimeng_probe1016_baseline_host_misuse.py"
+    _p1016 = p1016.read_text(encoding="utf-8") if p1016.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -15315,6 +15320,95 @@ def main() -> int:
           and 'P8_OK = bool(_AMB_1014) and N_SELF_AMB > 0 and N_INV_INVISIBLE > 0' in _p1015
           and '所以在产物里写不变式就够了' not in _p1015
           and '所以在产物里写不变式就够了' not in _ausrc)
+
+    # ══ V993Z. 批 1016 `SOURCE_BASELINE` 被当成通用抽屉：一个键名被写了两遍，
+    #    后一条把 931 的正文整个吃掉 —— 而没有任何一行代码会告诉你
+    print("— V993Z. 批 1016 层表被当抽屉：17 层里音色筛选那条挂 104 个键；"
+          "一条 9xx 结论键**同名写了两次**，后一条把 931 正文顶掉了（实测 HEAD：写了 104、只可达 103）")
+
+    check("V993Z.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：`SOURCE_BASELINE` 顶层 17 键"
+          "全是层 `data-testid`，却被当成了通用抽屉** —— 900–939 的结论键挂在音色筛选下拉那一条下，"
+          "⇒ ⇒ ⇒ ⇒ **⇒ 「顶层键 = 层」这个性质一破，就再也塞不回去了**",
+          '"p1_layer_table_used_as_drawer_2016_"' in _ausrc
+          and '"baseline_host_2016"' in _ausrc
+          and 'MISP_BY_LAYER' in _p1016
+          and 'PER_LAYER = {lay: len(CUR[lay]) for lay in LAYERS}' in _p1016
+          and 'MEDIAN_KEYS' in _p1016)
+
+    check("V993Z.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立（本批才发现的那条）："
+          "那批键里有一条**键名被写了两次** —— Python dict 字面量保留最后一条 ⇒ "
+          "931 的正文永远取不到 ⇒ 而整表 dump 的是求值后的 dict ⇒ "
+          "**它从来没进过任何产物：「写下来了」不等于「存在过」**",
+          '"p2_duplicate_key_fixed_2016_"' in _ausrc
+          and 'collections.Counter(e["key"] for e in entries if e["key"])' in _p1016
+          and 'dup.append({"layer": layer, "key": name, "times": times, "lines": lines})' in _p1016
+          and 'HEAD_REACHABLE = HEAD_WRITTEN - sum(' in _p1016
+          and '"reachable_at_head"' in _p1016
+          and '"whole_table_dumped"' in _p1016)
+
+    check("V993Z.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 成立：before 是量出来的、不靠记忆，"
+          "而且钉在固定 sha 上** ⇒ 「字面量写了多少」与「实际可达多少」是两个数，"
+          "而只有一个被看见 —— 【1015 那条「不许出现会因判据自身变化而改变的数」在时间轴上的形态："
+          "不是「重算变一变」，是**处置本身把证据擦掉了**】⇒ 处置 = 钉 sha + 要求它是 HEAD 的祖先",
+          '"p3_before_measured_not_remembered_2016_"' in _ausrc
+          and 'def _git_show(rev):' in _p1016
+          and '"%s:%s" % (rev, AUDIT)' in _p1016
+          and 'BEFORE_SHA = "2b52f492"' in _p1016
+          and 'BEFORE_PINNED_OK = _is_ancestor(BEFORE_SHA)' in _p1016
+          and '"before_sha_is_ancestor_of_head"' in _p1016
+          and '"written_at_head"' in _p1016
+          and '的那一条不是被删了，是**被同名的后一条顶掉了**' in _p1016
+          # ⭐ 反向门：**不许悄悄退回读 HEAD** —— 那正是把证据擦掉的那个写法
+          and '"HEAD:" + AUDIT' not in _p1016
+          and 'git show HEAD:…' in _p1016)
+
+    check("V993Z.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4 —— 而最扎人的是那句横幅本身："
+          "被吃掉的那条写着「原文保留在这里当历史记录、不许删」，"
+          "而「保留原文」的惯用写法（同一条记录里再补一段收窄说明）**恰好就是同名写入** ⇒ "
+          "意图与机制直接打架、机制静默赢了",
+          '"p4_intent_and_mechanism_fought_2016_"' in _ausrc
+          and '原文保留在这里当历史记录、不许删' in _ausrc
+          and '意图是保留、机制是同名覆盖' in _ausrc
+          and '机制静默赢了' in _ausrc
+          and 'source_reverse_lap_cycle_narrowed_by_932' in _ausrc)
+
+    check("V993Z.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 反向用例成立：同名键的读回值是后写的那条，"
+          "而整个过程不抛错、不告警、不改变任何一条已有的门** ⇒ "
+          "要抓它只能靠「对键名本身去重」，不可能靠「跑一遍看有没有报错」",
+          '"p5_same_name_failure_is_silent_2016_"' in _ausrc
+          and 'REVERSE_DUP = {"keep_me": "第一次写的", "keep_me": "第二次写的"}' in _p1016
+          and 'P5 = bool(REVERSE_LAST_WINS and REVERSE_SILENT and _reverse_construction_ok)' in _p1016
+          and '要抓它只能靠**对键名本身去重**' in _p1016)
+
+    check("V993Z.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 而这一条的第一版预期是错的**："
+          "我照抄 939 那句散文写「错挂 40 条、全在音色筛选层」，探针当场报假 ⇒ 实测 43 条 / 3 个宿主 ⇒ "
+          "**939 那条处置其实生效了、只是从来没人记过** ⇒ "
+          "**「照抄散文里的预期」和「量出来」在同一个探针里长得一样**",
+          '"p6_misplacement_measured_43_not_40_2016_"' in _ausrc
+          and 'P6 = (N_MISP == 43 and N_MISP_DEBT == 40 and N_MISP_ELSEWHERE == 3' in _p1016
+          and '"n_misplaced_9xx_keys_in_voice_filter"' in _p1016
+          and '"misplaced_by_layer"' in _p1016
+          and '**939 那条处置确实生效了，只是没人记过这件事。**' in _p1016)
+
+    check("V993Z.7 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P7：本批只记账、不搬那 40 条** —— "
+          "实测 `SOURCE_BASELINE` 的唯一按层消费点是 `get(tid)`、而那 40 条从未被按层读过 ⇒ "
+          "错位是语义污染、不是读数错误 ⇒ 搬它属于纯大改、零读数收益 ⇒ 按 1012 的路线登记成账",
+          '"p7_registered_not_moved_2016_"' in _ausrc
+          and '"misplaced_policy"' in _p1016
+          and '语义污染**而非读数错误' in _p1016
+          and '登记成账而不是现在动它' in _p1016
+          # ⭐ 反向门：判据必须真的钉住「不搬」这个决定，否则下一批会顺手把它搬了
+          and 'DISPOSITION = "register_only"' not in _p1016)
+
+    check("V993Z.8 ⭐⭐⭐⭐⭐ **P8 成立：纯离线 —— 只读仓里两个文件 + `git show`（**钉在固定 sha 上**），"
+          "不开浏览器、不联网、不按任何键；逐条落进 "
+          "`docs/research/jimeng-canvas/baseline-host-misuse-1016.json`、由本探针自己写**",
+          '"p8_offline_2016_"' in _ausrc
+          and '"p9_readings_land_in_artifact_2016_"' in _ausrc
+          and 'baseline-host-misuse-1016.json' in _p1016
+          and 'baseline-host-misuse-1016.json' in _ausrc
+          and '"generated_by": "jimeng_probe1016_baseline_host_misuse.py"' in _p1016
+          and '不开浏览器、不联网' in _ausrc)
 
 
 
