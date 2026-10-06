@@ -1,0 +1,287 @@
+{
+ "batch": 805,
+ "phase": "post",
+ "base": "http://localhost:4317",
+ "rounds": [
+  {
+   "round": 0,
+   "realDelete": {
+    "deleteFlow": {
+     "ok": true,
+     "stage": "trigger clicked",
+     "pickRow": {
+      "ok": true,
+      "deletedCandidate": "canvas-2"
+     },
+     "pickRemoveItem": {
+      "ok": true
+     },
+     "openProjectMenu": {
+      "ok": true
+     }
+    },
+    "confirm": {
+     "ok": true,
+     "clicked": "确认",
+     "labels": [
+      "取消",
+      "确认"
+     ]
+    },
+    "gotoProject": {
+     "ok": true
+    },
+    "recycle": {
+     "open": true,
+     "headText": "仅显示最近 30 天内删除的内容",
+     "titleDays": 30,
+     "empty": false,
+     "items": [
+      {
+       "id": "canvas-2",
+       "shownName": "画布 22026-10-06 · 剩余 ",
+       "shownRemaining": 30,
+       "shownDate": "2026-10-06"
+      }
+     ]
+    }
+   },
+   "aging": {
+    "ages": [
+     0,
+     1,
+     7,
+     29
+    ],
+    "seed": {
+     "ok": true,
+     "made": [
+      {
+       "id": "aged-0",
+       "removedAt": "2026-10-06"
+      },
+      {
+       "id": "aged-1",
+       "removedAt": "2026-10-05"
+      },
+      {
+       "id": "aged-2",
+       "removedAt": "2026-09-29"
+      },
+      {
+       "id": "aged-3",
+       "removedAt": "2026-09-07"
+      }
+     ],
+     "today": "2026-10-06"
+    },
+    "recycle": {
+     "open": true,
+     "headText": "仅显示最近 30 天内删除的内容",
+     "titleDays": 30,
+     "empty": false,
+     "items": [
+      {
+       "id": "aged-0",
+       "shownName": "老化样本0(提前0天)2026-10-0",
+       "shownRemaining": 30,
+       "shownDate": "2026-10-06"
+      },
+      {
+       "id": "aged-1",
+       "shownName": "老化样本1(提前1天)2026-10-0",
+       "shownRemaining": 29,
+       "shownDate": "2026-10-05"
+      },
+      {
+       "id": "aged-2",
+       "shownName": "老化样本2(提前7天)2026-09-2",
+       "shownRemaining": 23,
+       "shownDate": "2026-09-29"
+      },
+      {
+       "id": "aged-3",
+       "shownName": "老化样本3(提前29天)2026-09-",
+       "shownRemaining": 1,
+       "shownDate": "2026-09-07"
+      }
+     ]
+    }
+   },
+   "boundary": {
+    "ages": [
+     29,
+     30
+    ],
+    "seed": {
+     "ok": true,
+     "made": [
+      {
+       "id": "aged-0",
+       "removedAt": "2026-09-07"
+      },
+      {
+       "id": "aged-1",
+       "removedAt": "2026-09-06"
+      }
+     ],
+     "today": "2026-10-06"
+    },
+    "recycle": {
+     "open": true,
+     "headText": "仅显示最近 30 天内删除的内容",
+     "titleDays": 30,
+     "empty": false,
+     "items": [
+      {
+       "id": "aged-0",
+       "shownName": "老化样本0(提前29天)2026-09-",
+       "shownRemaining": 1,
+       "shownDate": "2026-09-07"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "round": 1,
+   "realDelete": {
+    "deleteFlow": {
+     "ok": true,
+     "stage": "trigger clicked",
+     "pickRow": {
+      "ok": true,
+      "deletedCandidate": "canvas-2"
+     },
+     "pickRemoveItem": {
+      "ok": true
+     },
+     "openProjectMenu": {
+      "ok": true
+     }
+    },
+    "confirm": {
+     "ok": true,
+     "clicked": "确认",
+     "labels": [
+      "取消",
+      "确认"
+     ]
+    },
+    "gotoProject": {
+     "ok": true
+    },
+    "recycle": {
+     "open": true,
+     "headText": "仅显示最近 30 天内删除的内容",
+     "titleDays": 30,
+     "empty": false,
+     "items": [
+      {
+       "id": "canvas-2",
+       "shownName": "画布 22026-10-06 · 剩余 ",
+       "shownRemaining": 30,
+       "shownDate": "2026-10-06"
+      }
+     ]
+    }
+   },
+   "aging": {
+    "ages": [
+     0,
+     1,
+     7,
+     29
+    ],
+    "seed": {
+     "ok": true,
+     "made": [
+      {
+       "id": "aged-0",
+       "removedAt": "2026-10-06"
+      },
+      {
+       "id": "aged-1",
+       "removedAt": "2026-10-05"
+      },
+      {
+       "id": "aged-2",
+       "removedAt": "2026-09-29"
+      },
+      {
+       "id": "aged-3",
+       "removedAt": "2026-09-07"
+      }
+     ],
+     "today": "2026-10-06"
+    },
+    "recycle": {
+     "open": true,
+     "headText": "仅显示最近 30 天内删除的内容",
+     "titleDays": 30,
+     "empty": false,
+     "items": [
+      {
+       "id": "aged-0",
+       "shownName": "老化样本0(提前0天)2026-10-0",
+       "shownRemaining": 30,
+       "shownDate": "2026-10-06"
+      },
+      {
+       "id": "aged-1",
+       "shownName": "老化样本1(提前1天)2026-10-0",
+       "shownRemaining": 29,
+       "shownDate": "2026-10-05"
+      },
+      {
+       "id": "aged-2",
+       "shownName": "老化样本2(提前7天)2026-09-2",
+       "shownRemaining": 23,
+       "shownDate": "2026-09-29"
+      },
+      {
+       "id": "aged-3",
+       "shownName": "老化样本3(提前29天)2026-09-",
+       "shownRemaining": 1,
+       "shownDate": "2026-09-07"
+      }
+     ]
+    }
+   },
+   "boundary": {
+    "ages": [
+     29,
+     30
+    ],
+    "seed": {
+     "ok": true,
+     "made": [
+      {
+       "id": "aged-0",
+       "removedAt": "2026-09-07"
+      },
+      {
+       "id": "aged-1",
+       "removedAt": "2026-09-06"
+      }
+     ],
+     "today": "2026-10-06"
+    },
+    "recycle": {
+     "open": true,
+     "headText": "仅显示最近 30 天内删除的内容",
+     "titleDays": 30,
+     "empty": false,
+     "items": [
+      {
+       "id": "aged-0",
+       "shownName": "老化样本0(提前29天)2026-09-",
+       "shownRemaining": 1,
+       "shownDate": "2026-09-07"
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

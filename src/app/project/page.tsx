@@ -24,6 +24,33 @@ export default function ProjectListPage() {
   const [selectedRemoved, setSelectedRemoved] = useState<string[]>([]);
   const today = new Date().toISOString().slice(0, 10);
 
+  // ★★ Batch 805：让回收站那句「30 天」从**字面量**变成真的。
+  //
+  // 759 ② 记的缺陷：面板写「仅显示最近 30 天内删除的内容」、每项写「· 剩余 30 天」，
+  // **两处都是字面量** —— 周边 160 字符内没有任何 Date/diff/减法，`removedCanvases`
+  // 只有 `.map` **没有 `.filter`**。老化实验（把 `removedAt` 改成 20 个月前）后，
+  // 「剩余 **30** 天」**一字未变**，条目照样列在面板里。
+  //
+  // `removedAt` 是 `new Date().toISOString().slice(0, 10)`（`canvasStore.ts:1239`），
+  // 即 **UTC 日粒度的 `YYYY-MM-DD`** ⟹ 天数差可以**纯整数**算，不涉及时区。
+  // 两个字符串都按 `T00:00:00Z` 解析，避免浏览器本地时区把结果挪一天。
+  //
+  // ★ 边界约定（**待与源站对照**）：剩余 0 天的条目**不再列出**，
+  //   与面板那句「仅显示最近 30 天内」一致 ⟹ 面板里永远不会出现「剩余 0 天」。
+  //   恰好第 30 天算「已过期」，这条是我定的约定，不是源站实测值。
+  const RECYCLE_TTL_DAYS = 30;
+  const daysBetween = (fromIso: string, toIso: string) =>
+    Math.round(
+      (Date.parse(`${toIso}T00:00:00Z`) - Date.parse(`${fromIso}T00:00:00Z`))
+        / 86400000,
+    );
+  /** 剩余天数：当天删除 ⟹ 恰好等于 TTL（与修复前字面量显示的一致，不回退）。 */
+  const remainingDays = (removedAt: string) =>
+    RECYCLE_TTL_DAYS - daysBetween(removedAt, today);
+  const visibleRemoved = removedCanvases.filter(
+    (canvas) => remainingDays(canvas.removedAt) > 0,
+  );
+
   // Batch 150: 源站 2026-09-07 实拍——/project 画布卡点击在新标签页打开画布。
   const openCanvas = (canvasId: string) => {
     setActiveCanvas(canvasId);
@@ -160,8 +187,10 @@ export default function ProjectListPage() {
 
       {recycleOpen && (
         <div data-recycle-panel className="mb-6 rounded-xl border border-white/[0.08] bg-[#1f1f1f] p-4">
-          <p className="text-[11px] text-[#8c8c8c]">仅显示最近 30 天内删除的内容</p>
-          {removedCanvases.length === 0 ? (
+          <p className="text-[11px] text-[#8c8c8c]">
+            仅显示最近 {RECYCLE_TTL_DAYS} 天内删除的内容
+          </p>
+          {visibleRemoved.length === 0 ? (
             <p data-recycle-empty className="py-4 text-xs text-[#666]">
               回收站为空
             </p>
@@ -171,7 +200,7 @@ export default function ProjectListPage() {
                 已选择 {selectedRemoved.length} 项
               </p>
               <ul className="mt-2 space-y-2">
-                {removedCanvases.map((canvas) => (
+                {visibleRemoved.map((canvas) => (
                   <li
                     key={canvas.id}
                     data-recycle-item={canvas.id}
@@ -194,7 +223,7 @@ export default function ProjectListPage() {
                       <span className="min-w-0 truncate text-xs text-[#d8d8d8]">
                         {canvas.name}
                         <span className="ml-2 text-[10px] text-[#777]">
-                          {canvas.removedAt} · 剩余 30 天
+                          {canvas.removedAt} · 剩余 {remainingDays(canvas.removedAt)} 天
                         </span>
                       </span>
                     </span>
