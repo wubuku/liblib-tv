@@ -1,0 +1,296 @@
+{
+  "R1 起点（只读）": {
+    "总时长": 8,
+    "★ 总时长×1000": 8000,
+    "播放头": 0,
+    "选中轨道": "director-track-camera-main",
+    "相机轨道id": "director-track-camera-main",
+    "轨道关键帧数": 3,
+    "★ 关键帧时间": [
+      0,
+      4,
+      8
+    ],
+    "★ 末关键帧时间": 8,
+    "★ 差（末关键帧 - 总时长）": 0,
+    "★ 拒绝条件 last >= dur-0.001": "true",
+    "★ 若把总时长设为末关键帧+0.001 仍拒": "true",
+    "★ 若把总时长设为末关键帧+0.002 可过": "true",
+    "所有轨道": [
+      {
+        "id": "director-track-character-lead-transform",
+        "kind": "transform",
+        "n": 3,
+        "last": 8
+      },
+      {
+        "id": "director-track-camera-main",
+        "kind": "camera",
+        "n": 3,
+        "last": 8
+      }
+    ]
+  },
+  "R2 时间框·默认单位": {
+    "时间框": [
+      {
+        "字段": "time",
+        "aria": "播放头位置",
+        "显示值": "0",
+        "单位": "ms",
+        "data时间": "0.000",
+        "data时长": null,
+        "宽": 46,
+        "高": 24,
+        "readOnly": false,
+        "type": "text"
+      },
+      {
+        "字段": "duration",
+        "aria": "总时长",
+        "显示值": "8000",
+        "单位": "ms",
+        "data时间": null,
+        "data时长": "8.000",
+        "宽": 46,
+        "高": 24,
+        "readOnly": false,
+        "type": "text"
+      }
+    ],
+    "单位按钮": {
+      "文本": "ms",
+      "aria": "切换时间单位为 s"
+    }
+  },
+  "R2b 切单位前文本": "ms",
+  "R2c 时间框·ms 单位": {
+    "时间框": [
+      {
+        "字段": "time",
+        "aria": "播放头位置",
+        "显示值": "0.00",
+        "单位": "s",
+        "data时间": "0.000",
+        "data时长": null,
+        "宽": 46,
+        "高": 24,
+        "readOnly": false,
+        "type": "text"
+      },
+      {
+        "字段": "duration",
+        "aria": "总时长",
+        "显示值": "8.00",
+        "单位": "s",
+        "data时间": null,
+        "data时长": "8.000",
+        "宽": 46,
+        "高": 24,
+        "readOnly": false,
+        "type": "text"
+      }
+    ],
+    "单位按钮": {
+      "文本": "s",
+      "aria": "切换时间单位为 ms"
+    }
+  },
+  "R3 逐字符提交": [
+    {
+      "敲入": "9",
+      "★ 输入框显示": "8.90",
+      "★ store 总时长": 8.9,
+      "★ DOM data 时长": "8.900"
+    },
+    {
+      "敲入": "0",
+      "★ 输入框显示": "8.900",
+      "★ store 总时长": 8.9,
+      "★ DOM data 时长": "8.900"
+    },
+    {
+      "敲入": "0",
+      "★ 输入框显示": "8.9000",
+      "★ store 总时长": 8.9,
+      "★ DOM data 时长": "8.900"
+    },
+    {
+      "敲入": "0",
+      "★ 输入框显示": "8.90000",
+      "★ store 总时长": 8.9,
+      "★ DOM data 时长": "8.900"
+    }
+  ],
+  "R3b 敲完之后": {
+    "store": {
+      "总时长": 8.9,
+      "★ 总时长×1000": 8900,
+      "播放头": 0,
+      "选中轨道": "director-track-camera-main",
+      "相机轨道id": "director-track-camera-main",
+      "轨道关键帧数": 3,
+      "★ 关键帧时间": [
+        0,
+        4,
+        8
+      ],
+      "★ 末关键帧时间": 8,
+      "★ 差（末关键帧 - 总时长）": -0.9000000000000004,
+      "★ 拒绝条件 last >= dur-0.001": "false",
+      "★ 若把总时长设为末关键帧+0.001 仍拒": "true",
+      "★ 若把总时长设为末关键帧+0.002 可过": "true",
+      "所有轨道": [
+        {
+          "id": "director-track-character-lead-transform",
+          "kind": "transform",
+          "n": 3,
+          "last": 8
+        },
+        {
+          "id": "director-track-camera-main",
+          "kind": "camera",
+          "n": 3,
+          "last": 8
+        }
+      ]
+    },
+    "时间框": {
+      "时间框": [
+        {
+          "字段": "time",
+          "aria": "播放头位置",
+          "显示值": "0.00",
+          "单位": "s",
+          "data时间": "0.000",
+          "data时长": null,
+          "宽": 46,
+          "高": 24,
+          "readOnly": false,
+          "type": "text"
+        },
+        {
+          "字段": "duration",
+          "aria": "总时长",
+          "显示值": "8.90000",
+          "单位": "s",
+          "data时间": null,
+          "data时长": "8.900",
+          "宽": 46,
+          "高": 24,
+          "readOnly": false,
+          "type": "text"
+        }
+      ],
+      "单位按钮": {
+        "文本": "s",
+        "aria": "切换时间单位为 ms"
+      }
+    }
+  },
+  "R3c ms 模式能不能敲小数": [
+    {
+      "★ 敲入": "9000.5",
+      "★ 输入框显示": "900.00",
+      "★ store 总时长": 900.005,
+      "★ DOM data 时长": "900.005"
+    }
+  ],
+  "R4a 触发按钮": {
+    "disabled": false,
+    "title": null
+  },
+  "R4b 面板": {
+    "面板开着": true,
+    "面板mode": "replace",
+    "面板mode属性": "replace",
+    "模式选项": [
+      {
+        "mode": "replace",
+        "文本": "替换运镜",
+        "ariaPressed": "true"
+      },
+      {
+        "mode": "append",
+        "文本": "追加运镜",
+        "ariaPressed": "false"
+      }
+    ],
+    "预设按钮": [
+      {
+        "preset": "orbit",
+        "文本": "环绕",
+        "ariaPressed": "false",
+        "disabled": false
+      },
+      {
+        "preset": "half-arc",
+        "文本": "半弧",
+        "ariaPressed": "false",
+        "disabled": false
+      },
+      {
+        "preset": "push-in",
+        "文本": "推近",
+        "ariaPressed": "false",
+        "disabled": false
+      },
+      {
+        "preset": "pull-out",
+        "文本": "拉远",
+        "ariaPressed": "false",
+        "disabled": false
+      },
+      {
+        "preset": "pedestal-up",
+        "文本": "升降",
+        "ariaPressed": "false",
+        "disabled": false
+      },
+      {
+        "preset": "truck-right",
+        "文本": "横移",
+        "ariaPressed": "false",
+        "disabled": false
+      },
+      {
+        "preset": "spiral-up",
+        "文本": "螺旋上升",
+        "ariaPressed": "false",
+        "disabled": false
+      }
+    ]
+  },
+  "R5 面板开着时的几何": {
+    "总时长": 900.005,
+    "★ 总时长×1000": 900005,
+    "播放头": 0,
+    "选中轨道": "director-track-camera-main",
+    "相机轨道id": "director-track-camera-main",
+    "轨道关键帧数": 3,
+    "★ 关键帧时间": [
+      0,
+      4,
+      8
+    ],
+    "★ 末关键帧时间": 8,
+    "★ 差（末关键帧 - 总时长）": -892.005,
+    "★ 拒绝条件 last >= dur-0.001": "false",
+    "★ 若把总时长设为末关键帧+0.001 仍拒": "true",
+    "★ 若把总时长设为末关键帧+0.002 可过": "true",
+    "所有轨道": [
+      {
+        "id": "director-track-character-lead-transform",
+        "kind": "transform",
+        "n": 3,
+        "last": 8
+      },
+      {
+        "id": "director-track-camera-main",
+        "kind": "camera",
+        "n": 3,
+        "last": 8
+      }
+    ]
+  }
+}
