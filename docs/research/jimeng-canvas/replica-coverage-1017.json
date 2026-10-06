@@ -1,0 +1,485 @@
+{
+  "generated_by": "jimeng_probe1017_replica_coverage.py",
+  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **第一次把这套门禁的被测对象点一遍名**：判据绝大多数在验研究装置（audit 判据文本 / 探针源码 / golden 字节），**原型本体几乎没进过被测对象**。",
+  "question_1017": "883 条判据里，有多少条的被测对象是原型代码？",
+  "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「覆盖率」这个词有两个意思，必须先钉死** —— 「这个文件有没有被显式点名」与「这个文件的行为有没有被验过」**不是一件事**：一条 `src/components/jimeng/**/*.tsx` 就能让前者归零，而那不代表后者为零",
+  "rule2": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **分母不许同源**（1012）—— 文件清单走文件系统、引用清单走脚本文本，两条通道；而分母取哪一组脚本，读数就差好几个百分点",
+  "denominator_channels_1017": {
+    "one_gate_only": {
+      "n_scripts": 1,
+      "n_path_refs": 17,
+      "n_files_covered": 22,
+      "n_files_uncovered": 35,
+      "pct_files_covered": 38.6,
+      "uncovered_lines": 5439,
+      "pct_uncovered_lines": 39.7,
+      "uncovered_files": [
+        "src/app/jimeng/canvas/[id]/page.tsx",
+        "src/app/jimeng/layout.tsx",
+        "src/app/jimeng/page.tsx",
+        "src/components/jimeng/JimengAccountPanels.tsx",
+        "src/components/jimeng/JimengAiButton.tsx",
+        "src/components/jimeng/JimengAiDrawer.tsx",
+        "src/components/jimeng/JimengConnectHandles.tsx",
+        "src/components/jimeng/JimengContextMenu.tsx",
+        "src/components/jimeng/JimengEdge.tsx",
+        "src/components/jimeng/JimengFramePicker.tsx",
+        "src/components/jimeng/JimengGroupFrames.tsx",
+        "src/components/jimeng/JimengHelpMenu.tsx",
+        "src/components/jimeng/JimengImageGenPanel.tsx",
+        "src/components/jimeng/JimengImageNodeToolbar.tsx",
+        "src/components/jimeng/JimengInferPanel.tsx",
+        "src/components/jimeng/JimengInsertMenu.tsx",
+        "src/components/jimeng/JimengMemberModal.tsx",
+        "src/components/jimeng/JimengMoreMenu.tsx",
+        "src/components/jimeng/JimengMultiSelectToolbar.tsx",
+        "src/components/jimeng/JimengNodeSummaryPopover.tsx",
+        "src/components/jimeng/JimengNodeToolbar.tsx",
+        "src/components/jimeng/JimengOfflineDialog.tsx",
+        "src/components/jimeng/JimengPaneContextMenu.tsx",
+        "src/components/jimeng/JimengProjectPanel.tsx",
+        "src/components/jimeng/JimengRepaintPanel.tsx",
+        "src/components/jimeng/JimengSelectionOutline.tsx",
+        "src/components/jimeng/JimengSharePanel.tsx",
+        "src/components/jimeng/JimengShortcutsPanel.tsx",
+        "src/components/jimeng/JimengTaskToast.tsx",
+        "src/components/jimeng/JimengTrimPanel.tsx",
+        "src/components/jimeng/JimengVideoEditMode.tsx",
+        "src/components/jimeng/JimengZoomMenu.tsx",
+        "src/components/jimeng/icons.tsx",
+        "src/components/jimeng/jimengFeedback.ts",
+        "src/components/jimeng/nodeChrome.ts"
+      ]
+    },
+    "one_gate_plus_audit": {
+      "n_scripts": 2,
+      "n_path_refs": 17,
+      "n_files_covered": 22,
+      "n_files_uncovered": 35,
+      "pct_files_covered": 38.6,
+      "uncovered_lines": 5439,
+      "pct_uncovered_lines": 39.7,
+      "uncovered_files": [
+        "src/app/jimeng/canvas/[id]/page.tsx",
+        "src/app/jimeng/layout.tsx",
+        "src/app/jimeng/page.tsx",
+        "src/components/jimeng/JimengAccountPanels.tsx",
+        "src/components/jimeng/JimengAiButton.tsx",
+        "src/components/jimeng/JimengAiDrawer.tsx",
+        "src/components/jimeng/JimengConnectHandles.tsx",
+        "src/components/jimeng/JimengContextMenu.tsx",
+        "src/components/jimeng/JimengEdge.tsx",
+        "src/components/jimeng/JimengFramePicker.tsx",
+        "src/components/jimeng/JimengGroupFrames.tsx",
+        "src/components/jimeng/JimengHelpMenu.tsx",
+        "src/components/jimeng/JimengImageGenPanel.tsx",
+        "src/components/jimeng/JimengImageNodeToolbar.tsx",
+        "src/components/jimeng/JimengInferPanel.tsx",
+        "src/components/jimeng/JimengInsertMenu.tsx",
+        "src/components/jimeng/JimengMemberModal.tsx",
+        "src/components/jimeng/JimengMoreMenu.tsx",
+        "src/components/jimeng/JimengMultiSelectToolbar.tsx",
+        "src/components/jimeng/JimengNodeSummaryPopover.tsx",
+        "src/components/jimeng/JimengNodeToolbar.tsx",
+        "src/components/jimeng/JimengOfflineDialog.tsx",
+        "src/components/jimeng/JimengPaneContextMenu.tsx",
+        "src/components/jimeng/JimengProjectPanel.tsx",
+        "src/components/jimeng/JimengRepaintPanel.tsx",
+        "src/components/jimeng/JimengSelectionOutline.tsx",
+        "src/components/jimeng/JimengSharePanel.tsx",
+        "src/components/jimeng/JimengShortcutsPanel.tsx",
+        "src/components/jimeng/JimengTaskToast.tsx",
+        "src/components/jimeng/JimengTrimPanel.tsx",
+        "src/components/jimeng/JimengVideoEditMode.tsx",
+        "src/components/jimeng/JimengZoomMenu.tsx",
+        "src/components/jimeng/icons.tsx",
+        "src/components/jimeng/jimengFeedback.ts",
+        "src/components/jimeng/nodeChrome.ts"
+      ]
+    },
+    "whole_apparatus": {
+      "n_scripts": 399,
+      "n_path_refs": 29,
+      "n_files_covered": 29,
+      "n_files_uncovered": 28,
+      "pct_files_covered": 50.9,
+      "uncovered_lines": 4125,
+      "pct_uncovered_lines": 30.1,
+      "uncovered_files": [
+        "src/app/jimeng/canvas/[id]/page.tsx",
+        "src/app/jimeng/layout.tsx",
+        "src/app/jimeng/page.tsx",
+        "src/components/jimeng/JimengAccountPanels.tsx",
+        "src/components/jimeng/JimengAiButton.tsx",
+        "src/components/jimeng/JimengAiDrawer.tsx",
+        "src/components/jimeng/JimengConnectHandles.tsx",
+        "src/components/jimeng/JimengContextMenu.tsx",
+        "src/components/jimeng/JimengEdge.tsx",
+        "src/components/jimeng/JimengFramePicker.tsx",
+        "src/components/jimeng/JimengGroupFrames.tsx",
+        "src/components/jimeng/JimengImageNodeToolbar.tsx",
+        "src/components/jimeng/JimengInferPanel.tsx",
+        "src/components/jimeng/JimengInsertMenu.tsx",
+        "src/components/jimeng/JimengMemberModal.tsx",
+        "src/components/jimeng/JimengMoreMenu.tsx",
+        "src/components/jimeng/JimengMultiSelectToolbar.tsx",
+        "src/components/jimeng/JimengNodeSummaryPopover.tsx",
+        "src/components/jimeng/JimengOfflineDialog.tsx",
+        "src/components/jimeng/JimengProjectPanel.tsx",
+        "src/components/jimeng/JimengRepaintPanel.tsx",
+        "src/components/jimeng/JimengSelectionOutline.tsx",
+        "src/components/jimeng/JimengSharePanel.tsx",
+        "src/components/jimeng/JimengShortcutsPanel.tsx",
+        "src/components/jimeng/JimengTaskToast.tsx",
+        "src/components/jimeng/JimengTrimPanel.tsx",
+        "src/components/jimeng/JimengVideoEditMode.tsx",
+        "src/components/jimeng/icons.tsx"
+      ]
+    }
+  },
+  "denominator_spread_pp": 9.6,
+  "n_prototype_files": 57,
+  "n_prototype_lines": 13692,
+  "glob_evidence": [
+    {
+      "script": "scripts/jimeng-b165i-bands.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_835_canvas_census.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_835_panel_probe.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_836_placeholder_probe.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_838_refpopover_probe.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_839_refsource.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_840_addsource.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_a11y_census.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_auth.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_check_comment_anchors.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_check_strip_comments.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_check_strip_comments.py",
+      "token": "*.tsx"
+    },
+    {
+      "script": "scripts/jimeng_check_strip_comments.py",
+      "token": "*.ts"
+    },
+    {
+      "script": "scripts/jimeng_check_verifier_anchors.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_chrome_probe.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_dead_button_audit.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_deep_snapshot.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_floating_layer_audit.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_frame_probe.py",
+      "token": "**"
+    },
+    {
+      "script": "scripts/jimeng_gates.py",
+      "token": "**"
+    }
+  ],
+  "n_glob_evidence": 320,
+  "bare_base_refs": {
+    "n_found_in_repo": 4,
+    "would_deflate_metric": true,
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「描述这个 bug 的文字本身会污染口径」** —— 本批判据正文里为了说明「glob 被降级成目录前缀」而写了裸目录串 `src/components/jimeng/`，它被 `refs_in` 当成真实引用、再拿它做前缀，57 个文件就重新变成全覆盖（0.3%），P1/P2 当场转红 ⇒ ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⭐ 处置是显式排除它（`is_bare_base`），而不是去改文档措辞 —— 因为下一次描述别的 bug 时还会再写一遍**"
+  },
+  "glob_counterfactual": {
+    "added_glob": [
+      "src/components/jimeng/**/*.tsx",
+      "src/app/jimeng/**/*.tsx"
+    ],
+    "pct_files_covered_before": 38.6,
+    "pct_files_covered_after": 100.0,
+    "jump_pp": 61.4,
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **加一条 glob，覆盖率从「不到一半」跳到接近全覆盖** ⇒ **⇒⇒⇒⇒ 这个指标量的是「有没有被点名」，不是「有没有被验过」** ⇒ 把它当成「产品有多少没被验过」是**错的**"
+  },
+  "criteria_object_of_test": {
+    "n_check_calls": 892,
+    "n_with_prototype_object": 24,
+    "pct_with_prototype_object": 2.7,
+    "checks": [
+      {
+        "name": "\"J.6",
+        "vars": [
+          "csrc"
+        ]
+      },
+      {
+        "name": "\"J.7",
+        "vars": [
+          "gsrc"
+        ]
+      },
+      {
+        "name": "\"J.8",
+        "vars": [
+          "gsrc"
+        ]
+      },
+      {
+        "name": "\"K.6",
+        "vars": [
+          "asrc2"
+        ]
+      },
+      {
+        "name": "\"L.5",
+        "vars": [
+          "csrc2"
+        ]
+      },
+      {
+        "name": "\"L.6",
+        "vars": [
+          "a2",
+          "g2"
+        ]
+      },
+      {
+        "name": "\"L.7",
+        "vars": [
+          "g2"
+        ]
+      },
+      {
+        "name": "\"L.8",
+        "vars": [
+          "a2"
+        ]
+      },
+      {
+        "name": "\"P.11",
+        "vars": [
+          "vcode"
+        ]
+      },
+      {
+        "name": "\"P.14",
+        "vars": [
+          "ssrc"
+        ]
+      },
+      {
+        "name": "\"P.15",
+        "vars": [
+          "ssrc"
+        ]
+      },
+      {
+        "name": "\"Q.8",
+        "vars": [
+          "amsrc"
+        ]
+      },
+      {
+        "name": "\"T.11",
+        "vars": [
+          "_tlc"
+        ]
+      },
+      {
+        "name": "\"DD.6",
+        "vars": [
+          "_jws_raw"
+        ]
+      },
+      {
+        "name": "\"OO.1",
+        "vars": [
+          "_wsrc"
+        ]
+      },
+      {
+        "name": "\"OO.2",
+        "vars": [
+          "_wsrc"
+        ]
+      },
+      {
+        "name": "\"VV.1",
+        "vars": [
+          "_wsrc"
+        ]
+      },
+      {
+        "name": "\"VV.2",
+        "vars": [
+          "_wsrc"
+        ]
+      },
+      {
+        "name": "\"JJJ.3",
+        "vars": [
+          "_wsrc"
+        ]
+      },
+      {
+        "name": "\"TTTT.1",
+        "vars": [
+          "c958"
+        ]
+      },
+      {
+        "name": "\"ZZZZZ.3",
+        "vars": [
+          "_wsrc"
+        ]
+      },
+      {
+        "name": "\"GGGGG.2",
+        "vars": [
+          "_wsrc"
+        ]
+      },
+      {
+        "name": "\"CC.7",
+        "vars": [
+          "_agp_raw"
+        ]
+      },
+      {
+        "name": "\"CC.9",
+        "vars": [
+          "_agp_raw"
+        ]
+      }
+    ],
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **判据的「被测对象」必须能被机器认出来** —— 本探针的口径是「check() 的条件表达式里出现了持有原型源码文本的变量」，**这是可判的**，而「这条判据在验产品」这种说法不判"
+  },
+  "text_vars": {
+    "n_path_vars": 10,
+    "n_text_vars": 16,
+    "text_vars": [
+      "_agp_raw",
+      "_jws_raw",
+      "_tlc",
+      "_wsrc",
+      "a2",
+      "amsrc",
+      "asrc2",
+      "c958",
+      "csrc",
+      "csrc2",
+      "g2",
+      "gsrc",
+      "hsrc",
+      "pisrc",
+      "ssrc",
+      "vcode"
+    ],
+    "read_but_never_in_a_criterion": [
+      "hsrc",
+      "pisrc"
+    ],
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「读了」「算了」「进了判据」是三件事** —— 1015 量到过「读了没用」，本批先照抄那个说法写了个粗口径，**自己把自己数成 10 个、实测只有 2 个**（粗口径数的是 Path 变量，而真正装文本的是另外一层变量）⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ **这就是 1016 那条「照抄散文里的预期和量出来长得一样」在方法上的版本**"
+  },
+  "concentration": {
+    "by_var": [
+      [
+        "_wsrc",
+        7
+      ],
+      [
+        "gsrc",
+        2
+      ],
+      [
+        "a2",
+        2
+      ],
+      [
+        "g2",
+        2
+      ],
+      [
+        "ssrc",
+        2
+      ],
+      [
+        "_agp_raw",
+        2
+      ],
+      [
+        "csrc",
+        1
+      ],
+      [
+        "asrc2",
+        1
+      ],
+      [
+        "csrc2",
+        1
+      ],
+      [
+        "vcode",
+        1
+      ],
+      [
+        "amsrc",
+        1
+      ],
+      [
+        "_tlc",
+        1
+      ],
+      [
+        "_jws_raw",
+        1
+      ],
+      [
+        "c958",
+        1
+      ]
+    ],
+    "top_var": "_wsrc",
+    "top_n": 7,
+    "rule": "⭐⭐⭐⭐⭐ **覆盖高度集中**：极少数文件吃掉绝大多数「以原型为被测对象」的判据 ⇒ ⇒ 报「2.7%」时必须同时报「集中在谁身上」，否则这个数会让人以为覆盖是均匀稀薄的"
+  },
+  "honest_scope": "⚠️⭐⭐⭐⭐⭐ **本探针量的不是「原型有多少行为没被验过」** —— 那需要逐条判据去问「它断言的那个行为，在这个文件里实现了吗」，属于交互式判读、不在这台普查的口径内。**本探针量的是两件可机读的事**：① 判据的被测对象分布；② 「按点名算的覆盖率」在不同分母下怎么动。**不把前者说成后者。**"
+}

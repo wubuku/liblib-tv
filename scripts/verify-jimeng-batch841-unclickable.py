@@ -5921,6 +5921,10 @@ def main() -> int:
     #   否则门会拿一个空串去判（1006 那条：门报红 ≠ 数据错，先判门错还是数据错）
     p1016 = ROOT / "scripts/jimeng_probe1016_baseline_host_misuse.py"
     _p1016 = p1016.read_text(encoding="utf-8") if p1016.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1017：第一次把这套门禁的**被测对象**点一遍名 ——
+    #   原型本体（`src/components/jimeng/`）从来没进过被测对象
+    p1017 = ROOT / "scripts/jimeng_probe1017_replica_coverage.py"
+    _p1017 = p1017.read_text(encoding="utf-8") if p1017.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -15409,6 +15413,108 @@ def main() -> int:
           and 'baseline-host-misuse-1016.json' in _ausrc
           and '"generated_by": "jimeng_probe1016_baseline_host_misuse.py"' in _p1016
           and '不开浏览器、不联网' in _ausrc)
+
+    # ══ W993A. 批 1017 把「被测对象」点一遍名：883 条判据里只有 24 条在读原型源码（2.7%），
+    #    而「原型没被任何脚本点名」只剩 0.3% —— 两个数讲相反的故事，漂亮的那个差点被汇报
+    print("— W993A. 批 1017 被测对象普查：判据绝大多数在验研究装置；"
+          "同一个「覆盖率」在不同分母下差 39.4 个百分点；路径正则漏了 `*` 让覆盖率假性变成 94.7%")
+
+    check("W993A.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：同一个「覆盖率」"
+          "在不同分母下差 39.4 个百分点** —— 只数一个门时未覆盖 39.7% 的行、数整套装置时只剩 0.3% ⇒ "
+          "**「原型有多少没被覆盖」这句话，缺了分母就没有意义**",
+          '"p1_three_denominators_2017_"' in _ausrc
+          and '"replica_coverage_2017"' in _ausrc
+          and 'DENOMS = {' in _p1017
+          and '"one_gate_only"' in _p1017
+          and '"whole_apparatus"' in _p1017
+          and 'PCT_SPREAD = round(abs(PCT_ONE - PCT_ALL), 1)' in _p1017
+          and '分母取哪一组脚本必须和读数一起报' in _ausrc)
+
+    check("W993A.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 —— 而本批第一版自己就栽在这个坑上，"
+          "而且栽得悄无声息：路径正则的字符类里漏了 `*`** ⇒ glob 被降级成目录前缀 ⇒ "
+          "**覆盖率假性变成 94.7%，318 处 glob 证据一条都没生效** ⇒⇒ "
+          "这是 1016 刚修完的「静默吃掉一条」在同一台仪器上的同款病",
+          '"p2_glob_deflates_the_metric_2017_"' in _ausrc
+          and 'PATH_RE = re.compile(r"src/(?:components|app)/jimeng/[A-Za-z0-9_./\\[\\]*?-]*")' in _p1017
+          and 'def is_glob(ref):' in _p1017
+          and 'plain = {r for r in refs if not is_glob(r) and not is_bare_base(r)}' in _p1017
+          and 'GLOB_MAKES_IT_JUMP = _pct_plus > COVERAGE["one_gate_only"]["pct_files_covered"] + 30' in _p1017
+          and '覆盖率假性变成 **94.7%**' in _ausrc
+          and '不报错、不变红，是一个正则悄悄把 glob 降级成目录前缀' in _ausrc)
+
+    check("W993A.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 成立 —— 本批最要紧的一条："
+          "判据的「被测对象」必须能被机器认出来。** 口径 =「`check()` 的条件里出现了"
+          "持有原型源码文本的变量」⇒ 实测 883 条里只有 24 条 ⇒ **其余 859 条在验研究装置本身** ⇒ "
+          "而「这条判据在验产品」这种说法**不判 —— 不判的东西不能拿来汇报**",
+          '"p3_object_of_test_2017_"' in _ausrc
+          and '_text_vars = set()' in _p1017
+          and 'if isinstance(n, ast.Call) and isinstance(n.func, ast.Name)' in _p1017
+          and 'PROTO_CHECKS.append({"name"' in _p1017
+          and 'PCT_PROTO = round(100.0 * N_PROTO_CHECKS / N_CHECKS, 1)' in _p1017
+          and '**883 条判据里只有 24 条' in _ausrc
+          and '**⇒ 1015、1016 连续两批验的都是那 859 条那一侧**' in _ausrc)
+
+    check("W993A.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4：「读了」「算了」「进了判据」是三件事。** "
+          "本批第一版照抄 1015 那句「读了不用」写了个粗口径、自己把自己数成 10 个 ⇒ 实测只有 2 个 ⇒ "
+          "错因是量错了变量层（Path 变量 vs 装文本的那一层）⇒ "
+          "**这就是 1016 那条「照抄散文里的预期和量出来长得一样」在方法上的版本，而它这次伪装成了新发现**",
+          '"p4_read_computed_entered_are_three_2017_"' in _ausrc
+          and 'UNUSED_TEXT_VARS = sorted(_text_vars - _used)' in _p1017
+          and 'P4 = (bool(_text_vars) and bool(UNUSED_TEXT_VARS)' in _p1017
+          and '**自己把自己数成 10 个**' in _ausrc
+          and '它这次伪装成了「又一条新发现」' in _ausrc)
+
+    check("W993A.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5：覆盖高度集中** —— 报「2.7%」时必须同时报"
+          "「集中在谁身上」，否则这个数会让人以为覆盖是均匀稀薄的",
+          '"p5_coverage_is_concentrated_2017_"' in _ausrc
+          and 'CONCENTRATION = sorted(_by_var.items(), key=lambda kv: -kv[1])' in _p1017
+          and 'P5 = (bool(CONCENTRATION) and TOP_N > 1)' in _p1017
+          and '否则这个数会让人以为覆盖是均匀稀薄的' in _ausrc)
+
+    check("W993A.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 而本批真正的那句话是："
+          "「原型没被任何脚本点名」与「判据在验产品」是两个数，它们讲相反的故事。** "
+          "前者未提及只剩 0.3%（看起来漂亮极了），后者只有 2.7% ⇒ "
+          "**而 0.3% 那个数漂亮到足以骗人 —— 它正是本批差点拿去汇报的那一个**",
+          '"p6_two_numbers_tell_opposite_stories_2017_"' in _ausrc
+          and '"uncovered_lines": unc_lines' in _p1017
+          and '"pct_uncovered_lines"' in _p1017
+          and '它正是本批差点拿去汇报的那一个' in _ausrc
+          and '「一个文件被某个脚本提到过」与「这个文件的行为被某条判据验过」' in _ausrc)
+
+    check("W993A.7 ⭐⭐⭐⭐⭐ **P7：三档分母是嵌套的，判据钉的是这个结构性质** —— "
+          "因为「差几个百分点」那句话没有分母就没有含义；**P8：口径边界写进产物、不含糊** ⇒ "
+          "本探针量的不是「原型有多少行为没被验过」，**不把前者说成后者**",
+          '"p7_denominators_are_nested_2017_"' in _ausrc
+          and '"p8_scope_not_claimed_2017_"' in _ausrc
+          and 'set(DENOMS["one_gate_only"]) <= set(DENOMS["one_gate_plus_audit"])' in _p1017
+          and 'and all(len(v) > 0 for v in DENOMS.values())' in _p1017
+          and '"honest_scope"' in _p1017
+          and '不把前者说成后者**（1006：不许让门看起来比它实际更强）' in _ausrc)
+
+    check("W993A.8 ⭐⭐⭐⭐⭐ **P9 成立：纯离线** —— 只读仓里的脚本与原型源码，零浏览器/零按键/零网络；"
+          "**P10 逐条落进 `replica-coverage-1017.json`、由本探针自己写**",
+          '"p9_offline_2017_"' in _ausrc
+          and '"p10_golden_2017_"' in _ausrc
+          and 'replica-coverage-1017.json' in _p1017
+          and 'replica-coverage-1017.json' in _ausrc
+          and '"generated_by": "jimeng_probe1017_replica_coverage.py"' in _p1017
+          and '零浏览器 / 零按键 / 零网络' in _ausrc)
+
+    check("W993A.9 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P11 —— 而这是本批栽的"
+          "第二次、也更阴的一次：把 `*` 修好之后覆盖率回到真值，可**本批判据的正文里**"
+          "为了说明「glob 被降级成目录前缀」**写了裸目录串** ⇒ 57 个文件重新变成全覆盖、"
+          "P1/P2 当场转红 ⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⭐ 「描述这个 bug 的文字本身会污染口径」** ⇒ "
+          "处置 = 口径里显式排除裸基目录 + 钉一条「不排除就会塌」的反证，**而不是去改文档措辞**",
+          '"p11_describing_the_bug_pollutes_the_metric_2017_"' in _ausrc
+          and 'def is_bare_base(ref):' in _p1017
+          and 'plain = {r for r in refs if not is_glob(r) and not is_bare_base(r)}' in _p1017
+          and 'BARE_BASE_PRESENT and BARE_BASE_WOULD_DEFLATE' in _p1017
+          and '"bare_base_refs"' in _p1017
+          and '**⇒⇒⇒⇒⇒⇒⇒⭐ 「描述这个 bug 的文字本身会污染口径」**' in _ausrc
+          # ⭐⭐ 反向门：**反证不许走打过补丁的那条路** —— 它已经把路堵上了，演示不出塌掉
+          and 'def _covered_raw(refs):' in _p1017
+          and '去做反证是**无效的反证**' in _p1017
+          and '本批自己又撞到一次「反向用例必须真的走一遍被测代码」' in _ausrc)
 
 
 
