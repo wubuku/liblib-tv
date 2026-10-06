@@ -17,7 +17,7 @@
 // 退出码：0 = 全部通过；1 = 有门失败；2 = 环境问题（找不到画布 / 视口被污染）
 import { execFileSync, spawnSync } from 'node:child_process';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
-import { join, resolve, dirname, normalize } from 'node:path';
+import { join, resolve, dirname, normalize, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 
@@ -119,7 +119,7 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
   }
   record('5/11 死链扫描', dead.length === 0, `扫描 ${md.length} 个 Markdown，链接 ${total} 条，死链 ${dead.length}${dead.length ? '\n' + dead.join('\n') : ''}`);
 }
-// ---------- 6. U+FFFD 乱码（第 7 道门，批次 48 新增） ----------
+// ---------- 6. U+FFFD 乱码（第 7 道门，批次 48 新增；批次 249 扩到探针脚本） ----------
 {
   const SKIP = new Set(['node_modules', 'dist', 'site', '.git', '.vitepress']);
   const md = [];
@@ -131,9 +131,45 @@ for (const [idx, phase] of [[3, 'gate-a'], [4, 'final']]) {
       else if (e.endsWith('.md')) md.push(p);
     }
   })(MANUAL);
-  const hits = md.filter((f) => readFileSync(f, 'utf8').includes('�'));
-  record('6/11 乱码扫描（U+FFFD）', hits.length === 0,
-    hits.length === 0 ? `${md.length} 个 Markdown 全部无替换字符` : `命中 ${hits.length} 个文件：\n${hits.join('\n')}`);
+  // 🔴 批次 249 扩的覆盖面：**这道门原先只扫手册目录下的 `.md`**，
+  //   而探针脚本 `scripts/jimeng-*.mjs` 与台账 JSON **全在覆盖之外**
+  //   ⇒ 批次 248 就这样把 3 个 U+FFFD 一路提交进了 `scripts/jimeng-b248.mjs`，11 道门**全绿**。
+  // ⚠️ 只收 `jimeng-*` 前缀的脚本：**别人的 WIP 不由这道门判负。**
+  const 脚本 = readdirSync(HERE)
+    .filter((e) => /^jimeng-.*\.(mjs|js|json)$/.test(e))
+    .map((e) => join(HERE, e));
+
+  // 🔴 白名单机制（与第 2 道门「白名单无陈旧条目」同一条纪律）：
+  //   命中分成两类 —— ①**有意的检测器/夹具**（脚本里 `/\uFFFD/` 这种正则与字符串本身就是
+  //   被检出的目标）；②**早期写入时损坏的历史字符**（在注释里，原字已不可复原）。
+  //   ②**不猜**（立规 113：来源没测过就不编机制，同理「原字没保存就不编字」），
+  //   而是逐文件登记在白名单里；**登记与实测必须逐文件对上**，
+  //   对不上（要么修好了、要么新增了）一律判负 ⇒ 「白名单不能变成藏污纳垢的地方」。
+  const WL = join(HERE, 'jimeng-fffd-allowlist.json');
+  let 白名单 = {};
+  try {
+    const j = JSON.parse(readFileSync(WL, 'utf8'));
+    for (const [k, v] of Object.entries(j.entries || {})) 白名单[k] = v;
+  } catch (e) {
+    白名单 = null;
+  }
+
+  const 实测 = new Map();       // 相对路径 -> U+FFFD 个数
+  for (const f of [...md, ...脚本]) {
+    const n = [...readFileSync(f, 'utf8')].filter((c) => c === '�').length;
+    if (n) 实测.set(relative(ROOT, f), n);
+  }
+  const 白内 = [], 白外 = [], 陈旧 = [];
+  for (const [k, n] of 实测) if (白名单 && k in 白名单) 白内.push(`${k} (${n}/${白名单[k].登记数})`); else 白外.push(`${k} (${n})`);
+  for (const [k, v] of Object.entries(白名单 || {})) if (!实测.has(k)) 陈旧.push(k);
+
+  record('6/11 乱码扫描（U+FFFD）', 白外.length === 0 && 陈旧.length === 0,
+    白名单 === null
+      ? `读不到白名单 ${relative(ROOT, WL)}（${e.message}）`
+      : `扫 ${md.length} 个 Markdown + ${脚本.length} 个 jimeng-* 脚本/数据文件；`
+        + `白名单内 ${白内.length} 个（有意检测器或历史损坏，已登记）、白名单外 ${白外.length} 个、陈旧条目 ${陈旧.length} 个`
+        + ((白外.length || 陈旧.length) ? `：\n  未登记：${白外.join('\n  ') || '（无）'}\n  已修好可从白名单删掉：${陈旧.join('\n  ') || '（无）'}` : '')
+        + (白内.length ? `\n  白名单内明细：\n  ${白内.join('\n  ')}` : ''));
 }
 // ---------- 7. 站点构建 ----------
 {
