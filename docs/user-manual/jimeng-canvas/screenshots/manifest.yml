@@ -2285,3 +2285,27 @@ screenshots:
     visible_text: 'Import assets 资产 主体 图片 视频 音频 文档 暂无视频素材 已选择 0 个素材 确认'
     alt: "资产库「时间」筛选展开后的五个控件：日期输入框「开始日期」下面是四个整宽的快捷档——全部、最近一周、最近一个月、最近三个月；橙实线与橙虚线交替框住其中三个快捷档"
     sha256: 209c2c31091169b1867d7f38ada8a8d93038e2bee31f67298189c8c6856992a7
+
+  - file: screenshots/197-framing-zoom-1215-inside-notch.png
+    task_id: navigate-canvas
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1215x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-06T22:05:00+08:00
+    verified_locator: '开页后点顶栏 aria-label="搜索" 的按钮（canvas-panel-launcher），在 canvas-search-panel 的 input 里逐字键入「音频 68」并等 2200ms；断言 [data-testid="canvas-search-result-node_tadm1nyykc] 存在 **且** input 回读逐字等于「音频 68」 才点它的中心；点后等 5000ms 取景动画走完，断言 .react-flow__viewport 的 transform 里 scale 逐字等于 0.289269（期望值 0.289269，吻合才继续）**且** [data-testid="canvas-zoom-percent"] 的 aria 逐字是 "Zoom options, 29%"；两条都过才注入固定定位的画框层，框住缩放读数（框 54x34@121,670）与节点中心（框 58x58@413,229），读回两框宽高均 >0 且层元素数 ===1 才 shutter'
+    visible_text: '测试项目 节点 76 已保存 分享 813 基础会员 音频 68 29%'
+    alt: "窗口宽 1215 时用搜索定位「音频 68」之后的画面：左下角缩放读数被橙框圈出，逐字是 29%（不是常见的 50%），画布中央的「音频 68」节点也被橙框圈住，看起来只有周围几个音频节点的一半大 —— 和右图是同一个节点、同一个动作，唯一的差别只有窗口宽度"
+    sha256: 2d049820a7e9734c20d5631cc6e6fbdca77ec3d97881c9c4815e9069f27f7f65
+
+  - file: screenshots/198-framing-zoom-1235-capped.png
+    task_id: navigate-canvas
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 1235x720@2x
+    locale: zh-CN
+    captured_at: 2026-10-06T22:06:00+08:00
+    verified_locator: '与上一张**完全相同的定位流程**，只把视口宽从 1215 改成 1235：断言 [data-testid="canvas-search-result-node_tadm1nyykc] 存在 **且** input 回读逐字等于「音频 68」才点行；点后等 5000ms，断言 .react-flow__viewport 的 scale 逐字等于 0.5 **且** [data-testid="canvas-zoom-percent"] 的 aria 逐字是 "Zoom options, 50%"；两条都过才注入画框层，框住缩放读数（框 54x34@121,670）与节点中心（框 58x58@423,231），读回两框宽高均 >0 且层元素数 ===1 才 shutter'
+    visible_text: '测试项目 节点 76 已保存 分享 813 基础会员 音频 68 50%'
+    alt: "窗口宽 1235 时用搜索定位同一个「音频 68」节点之后的画面：左下角缩放读数被橙框圈出，逐字是 50%，画布中央的节点也被橙框圈住，尺寸比左图里大一倍 —— 两图唯一的差别只有窗口宽度"
+    sha256: 0ab9115c05678e8edf7afa5f5ec7f934fd185e8ac38c56450da68b3c5cfb500b
