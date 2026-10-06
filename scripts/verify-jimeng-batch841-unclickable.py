@@ -5943,6 +5943,9 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ 1024：普查「豁免声明」—— 门看见了、被配成不算数，是同一种病的第三形态
     p1024 = ROOT / "scripts/jimeng_probe1024_exemption_claims.py"
     _p1024 = p1024.read_text(encoding="utf-8") if p1024.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1025：量「判据的方向」—— 936 条 check() 里多少条钉的是易变量
+    p1025 = ROOT / "scripts/jimeng_probe1025_criterion_direction.py"
+    _p1025 = p1025.read_text(encoding="utf-8") if p1025.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -16092,6 +16095,75 @@ def main() -> int:
           '"class_D_is_the_gate_wired_to_fail": {' in _p1024
           and '"p10_golden_1024_"' in _ausrc
           and '"p9_scope_and_offline_1024_"' in _ausrc)
+    print("— DD993I. 批 1025 量「判据的方向」：verifier 936 条 check() 里，"
+          "**钉死等值 `== N` 且 N 是易变量**的有几条；⭐⭐⭐⭐⭐ 关键是"
+          "**「== N」这个形状本身不是缺口，缺口是「== N」且 N 是易变量** ⇒ "
+          "**⇒ 形状机械可判、语义不可判 ⇒ 分类器认不出来的必须老实写 `unknown`**")
+    check("DD993I.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**先把「锚点型」和「活判据型」分开，判据要机械** —— 把条件里的字符串字面量"
+          "全部摘掉之后，**剩下 `Call`/`Subscript`/`Attribute`/非字符串常量的才是活的**；"
+          "**只剩 `Name` 的是锚点** ⇒⇒⇒⇒⇒ `_pXXXX` 是**预读源码字符串**，"
+          "在它身上做 `in` 验的是「那段字还在」不是行为（1018）",
+          '① **锚点型** vs **活判据型** —— 前者只验「那段字还在」，后者验「那个性质还成立」' in _p1025
+          and '⭐⭐⭐⭐⭐ **口径：把全部字符串字面量摘掉，看剩下什么形状**' in _p1025
+          and '剩 ⇒ 活的（真的会被求值）；不剩 ⇒ 锚点（只验「那段字还在」）' in _p1025
+          and '只剩 `Name`（纯变量引用）⇒ **锚点**' in _p1025
+          and '**在它身上做 `in` 验的是「那段字还在」，不是行为**（1018 的原话）' in _p1025
+          and '"axis_A_anchor_only_vs_live"' in _p1025
+          and '"n_live": len(LIVE)' in _p1025
+          and '"n_anchor_only": len(ANCHOR_ONLY)' in _p1025
+          and '"P1_every_check_is_classed_live_or_anchor_only_1025"' in _p1025
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被一条判据引用** ——
+          #   1021 的教训：「登记必须会红」，没人引用的键会静默烂掉
+          and '"p1_first_split_anchor_from_live_2025_"' in _ausrc
+          and '"criterion_direction_1025": {' in _ausrc)
+    check("DD993I.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**「== N」这个形状本身不是缺口，缺口是「== N」且 N 是易变量** ⇒ "
+          "⇒⇒⇒⇒⇒⇒ **两类必须分开报：把 `X.count()==2` 当成和 `len(实测)==2` 同一种病，"
+          "是「用形状代替语义」—— 而形状是机械可判的、语义不是** ⇒ "
+          "⇒⇒⇒⇒⇒⇒⇒⇒ **本批只分类、不判决：「不会漂」与「对」是两件事，"
+          "机械分类只能证明前一件**",
+          '"**⇒ 「== N」这个形状本身不是缺口，缺口是「== N」且 N 是易变量** ⇒ "' in _p1025
+          and '"是**用形状代替语义**——而形状是机械可判的、语义不是**"' in _p1025
+          and '"axis_C_which_volatility_is_pinned"' in _p1025
+          and '"n_pinned_eq_on_runtime_measured": len(PINNED_EQ_RUNTIME)' in _p1025
+          and '"n_pinned_eq_on_source_text": len(PINNED_EQ_SOURCE)' in _p1025
+          and '"what_this_does_not_claim"' in _p1025
+          and '"p2_the_shape_is_not_the_gap_2025_"' in _ausrc
+          and '"**不代表它对，只代表「它不会因为跑第二轮而变」** ⇒ "' in _p1025)
+    check("DD993I.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐ 分类器把自己搞不清的归进危险那一类，是一个会自己制造结论的偏差** —— "
+          "**它让读数看起来更严重，而更严重的读数更容易被采信** ⇒ "
+          "⇒⇒⇒⇒⇒⇒ **处置：只认两种有把握的形状，认不出来的老实写 `unknown`** "
+          "⇒⇒⇒⇒⇒⇒⇒⭐ **而本批三版分类器各错一次，全部是「安静的失败形态」**："
+          "① `seg(c)` 未绑定 ⇒ 某个形状一个都没命中；"
+          "② 把预读源码当活的 ⇒ 「936 条全是活的、锚点 0 条」**那个结论假得很整齐**；"
+          "③ 启发式太宽 ⇒ 把数源码出现次数的判据误判成易变量",
+          '⚠️⚠️⚠️ **仪器 bug 3（第三版）：第一版有一句 `"(" in lhs.split(".")[0]`' in _p1025
+          and '**「分类器把自己搞不清的归进危险那一类」是一个会自己' in _p1025
+          and '制造结论的偏差** —— 它让读数看起来更严重，而**更严重的读数更容易被采信**' in _p1025
+          and '⚠️⚠️⚠️⚠️ **仪器 bug 2（第二版）：第一版用「子树里有没有 `Name`」判活**' in _p1025
+          and '⇒ `"x" in _p1024` 里有个 `Name(_p1024)` ⇒ **936 条全被判成活的、锚点型 0 条**' in _p1025
+          and '⇒⇒⇒⇒⇒ **那个结论是假的，而且假得「很整齐」—— 整齐本身就是该怀疑的信号**' in _p1025
+          and '⚠️⚠️ **仪器 bug 1（第一版）：末尾写的是 `seg(c)`，而 `c` 只在上面的' in _p1025
+          and '"p3_the_classifier_fabricated_a_conclusion_2025_"' in _ausrc
+          and '"p4_positive_control_must_also_verify_the_citation_2025_"' in _ausrc)
+    check("DD993I.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**阳性对照：不告知答案，得自己找到 §83 那条已知为真的「易变量判据」** ⇒ "
+          "⇒ **而且顺带独立核对那段「易变量写成了断言」的原文确实在源码里** "
+          "（不许凭记忆断言它存在）⇒⇒⇒⇒⇒ "
+          "**⇒ 「找得到已知答案」与「那段记录确实在」是两件都要验的事**",
+          'KNOWN_TRUE_MARKER = "易变量写成了断言"' in _p1025
+          and 'POSITIVE_CONTROL = bool(pc_hits)' in _p1025
+          and 'P3 = POSITIVE_CONTROL and MARKER_IN_SRC' in _p1025
+          and 'if KNOWN_TRUE_MARKER in l or "钉条数就是把易变量当契约" in l:' in _p1025
+          and '"P3_positive_control_the_scan_finds_the_volatile_criterion_on_its_own_1025"' in _p1025
+          and '"marker_in_source"' in _p1025
+          and '"P6_scope_declared_2025"' in _p1025
+          and '"axis_B_shape_of_live_conditions"' in _p1025
+          and '"p5_one_instance_was_fixed_but_the_class_was_never_counted_2025_"' in _ausrc
+          and '"p6_scope_and_offline_1025_"' in _ausrc
+          and '"p7_golden_1025_"' in _ausrc)
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

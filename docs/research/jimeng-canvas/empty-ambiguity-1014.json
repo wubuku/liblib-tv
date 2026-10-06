@@ -3,7 +3,7 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census": {
-  "n_goldens": 17,
+  "n_goldens": 18,
   "n_excluded_self": 1,
   "n_empty_list": 22,
   "n_empty_null": 26,
@@ -265,7 +265,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[0]/drifted",
+   "path": "/rounds/[1]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -561,7 +561,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[0]/drifted",
+   "path": "/rounds/[1]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
