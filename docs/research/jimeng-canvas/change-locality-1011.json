@@ -121,9 +121,9 @@
   "n_intersection": 8,
   "n_universe_touched": 8,
   "rate": 1.0,
-  "n_rows_1005": 796,
-  "n_distinct_texts_1005": 754,
-  "base_rate_1005": 0.1261,
+  "n_rows_1005": 810,
+  "n_distinct_texts_1005": 767,
+  "base_rate_1005": 0.1256,
   "note": "⭐⭐⭐⭐⭐ **样本只有 8 段、扣掉计费声明后只剩 5 段 ⇒ ⇒ 本批不据此决定路线**"
  }
 }

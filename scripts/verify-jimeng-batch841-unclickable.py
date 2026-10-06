@@ -5925,6 +5925,9 @@ def main() -> int:
     #   原型本体（`src/components/jimeng/`）从来没进过被测对象
     p1017 = ROOT / "scripts/jimeng_probe1017_replica_coverage.py"
     _p1017 = p1017.read_text(encoding="utf-8") if p1017.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1018：那 24 条「在读原型源码」的判据，验的是字还是行为
+    p1018 = ROOT / "scripts/jimeng_probe1018_assertion_vs_behavior.py"
+    _p1018 = p1018.read_text(encoding="utf-8") if p1018.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -15515,6 +15518,84 @@ def main() -> int:
           and 'def _covered_raw(refs):' in _p1017
           and '去做反证是**无效的反证**' in _p1017
           and '本批自己又撞到一次「反向用例必须真的走一遍被测代码」' in _ausrc)
+
+    # ══ X993B. 批 1018 那 24 条「在读原型源码」的判据：只改行为全绿、只改名转红
+    #    ⇒ 它们是字面量存在性检查，不是行为回归测试
+    print("— X993B. 批 1018 断言 vs 行为：24 条里 8 条同时断 audit 散文、2 条只断 audit、"
+          "13 条锚点本身是中文注释；反向用例 Ⓐ 改行为 24 条全绿、Ⓑ 改名 2 条转红")
+
+    check("X993B.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立 —— 本批要验的命题："
+          "那 24 条验的是「那段字还在」，不是「这个行为还对」。** 口径 = 逐条 eval 判据的"
+          "**原始条件表达式**（AST 取节点 → `ast.unparse` → 内存里换文本后执行，"
+          "**不是转述、不是重写**）",
+          '"p1_the_claim_2018_"' in _ausrc
+          and '"assertion_vs_behavior_2018"' in _ausrc
+          and 'code = compile(ast.Expression(body=c["node"]), "<c1018>", "eval")' in _p1018
+          and '"expr": ast.unparse(cond)' in _p1018
+          and 'exec(compile(code, "<v1018-read>", "exec"), g)' in _p1018
+          and 'P1 = (N == 24 and N_PASS == N)' in _p1018)
+
+    check("X993B.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 反向用例 Ⓐ —— "
+          "只改行为、不动任何锚点（步进 `cur + dir` → `cur + dir * 2`，焦点一次跨两个）"
+          "⇒ 24 条一条没红、仍全绿 ⇒⇒⇒⇒⇒ **这 24 条看不见行为变更**",
+          '"p2_behavior_change_is_invisible_2018_"' in _ausrc
+          and 'ANCHOR_LINE = "const next = cur + dir;"' in _p1018
+          and 'MUT_A = "const next = cur + dir * 2;"' in _p1018
+          and 'A_INVISIBLE = (A_APPLIED and N_A_PASS == N_PASS)' in _p1018
+          and 'n_anchors_touched' in _p1018
+          and '这 24 条看不见行为变更 ⇒ 它们不是行为回归测试' in _ausrc)
+
+    check("X993B.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 反向用例 Ⓑ —— "
+          "只改名、不改行为 ⇒ 2 条转红 ⇒⇒⇒⇒⇒ **门对「重命名」敏感、对「改错」不敏感**",
+          '"p3_rename_breaks_it_2018_"' in _ausrc
+          and 'MUT_B = "function armRovingTabindexV2("' in _p1018
+          and 'B_BREAKS = (B_APPLIED and (B_STATES.get("fail", 0) + B_STATES.get("crash", 0)) > 0)' in _p1018
+          and '这 24 条看不见行为变更 ⇒ 它们不是行为回归测试' in _ausrc
+          and '门对「重命名」敏感、对「改错」不敏感' in _ausrc)
+
+    check("X993B.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4：「在读原型源码」还要再切一刀** —— "
+          "8 条同时断 audit 判据文本里的散文、**其中 2 条根本只断 audit 文本** ⇒ "
+          "**24 这个数已经是上界，真·验代码的比它更小**",
+          '"p4_some_read_the_audit_not_the_prototype_2018_"' in _ausrc
+          and 'cont = n.comparators[0] if n.comparators else None' in _p1018
+          and 'N_ONLY_AUDIT = sum(1 for c in CLASS' in _p1018
+          and '真·验代码的比它更小' in _ausrc)
+
+    check("X993B.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 —— 而其中 13 条的锚点本身就是中文散文**"
+          "（「批 967 改写上面那段…」「别复制第二份」「不跑 tsc」）⇒ **注释被当成了实现** ⇒ "
+          "**而它们能长期为绿，是因为「注释不许被删」这条纪律正好和「锚点必须在」重合**",
+          '"p5_comments_counted_as_implementation_2018_"' in _ausrc
+          and 'N_PROSE = sum(1 for c in CLASS if c["n_prose_literals"] > 0)' in _p1018
+          and 'CJK = re.compile(r"[\\u4e00-\\u9fff]|\\*\\*")' in _p1018
+          and '注释被当成了实现**' in _ausrc
+          and '两条纪律的交集成了它的护身符' in _ausrc)
+
+    check("X993B.6 ⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 而本批有一条必须诚实撤回的结论**：我第一版口头说过"
+          "「纯改名会让门直接 `IndexError` 崩掉」⇒ **那是仪器自己的 bug**"
+          "（`main` 里的赋值没被执行全、基线本来就崩 24 条）⇒ 照抄到结论里就成了假发现 ⇒ "
+          "**「`crashed` 必须单列」仍然成立，但「这个反向用例会崩」这个结论已撤回**",
+          '"p6_honest_retraction_2018_"' in _ausrc
+          and '"crash_note"' in _p1018
+          and 'B_CRASHES = B_STATES.get("crash", 0) > 0' in _p1018
+          and '「我以为发生过的事」都会变成假发现**' in _ausrc
+          and '**⇒ 诚实更正：本次两个反向用例里 `crash` = %d。**' not in _p1018
+          and '"crash_note": "⚠️⭐⭐⭐⭐⭐ **诚实更正：本次两个反向用例里 `crash` = ' in _p1018)
+
+    check("X993B.7 ⭐⭐⭐⭐⭐ **P7：口径边界** —— 本批只验「判据看得见/看不见行为变更」，"
+          "**没有**验「原型实现的行为本身对不对」⇒ **不把「字面量在」说成「行为对」**；"
+          "反向用例**全部在内存里改文本，一个字节都不动仓里的原型文件**",
+          '"p7_scope_2018_"' in _ausrc
+          and '"scope": "⚠️⭐⭐⭐⭐⭐ **本探针只做到这一步**' in _p1018
+          and '反向用例**全部在内存里改文本，一个字节都不动仓里文件**' in _p1018
+          and 'P7 = True' in _p1018)
+
+    check("X993B.8 ⭐⭐⭐⭐⭐ **P8 成立：纯离线** —— 零浏览器 / 零按键 / 零网络；"
+          "逐条落进 `assertion-vs-behavior-1018.json`、由本探针自己写",
+          '"p8_offline_2018_"' in _ausrc
+          and 'assertion-vs-behavior-1018.json' in _p1018
+          and 'assertion-vs-behavior-1018.json' in _ausrc
+          and '"generated_by": "jimeng_probe1018_assertion_vs_behavior.py"' in _p1018
+          and '零浏览器 / 零按键 / 零网络；' in _ausrc)
 
 
 

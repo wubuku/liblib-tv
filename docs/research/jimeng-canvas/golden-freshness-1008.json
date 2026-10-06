@@ -4,51 +4,51 @@
  "rows": [
   {
    "snapshot": "e7e8c779",
-   "n_golden": 796,
+   "n_golden": 810,
    "n_current": 698,
    "n_added": 0,
-   "n_removed": 98,
+   "n_removed": 112,
    "stale": true
   },
   {
    "snapshot": "76a0988a",
-   "n_golden": 796,
+   "n_golden": 810,
    "n_current": 710,
    "n_added": 0,
-   "n_removed": 86,
+   "n_removed": 100,
    "stale": true
   },
   {
    "snapshot": "9f180577",
-   "n_golden": 796,
+   "n_golden": 810,
    "n_current": 718,
    "n_added": 0,
-   "n_removed": 78,
+   "n_removed": 92,
    "stale": true
   },
   {
    "snapshot": "HEAD",
-   "n_golden": 796,
+   "n_golden": 810,
    "n_current": 718,
    "n_added": 0,
-   "n_removed": 78,
+   "n_removed": 92,
    "stale": true
   },
   {
    "snapshot": "EDIT-IN-PLACE-ONE-ANCHOR",
-   "n_golden": 796,
+   "n_golden": 810,
    "n_current": 717,
    "n_added": 0,
-   "n_removed": 79,
+   "n_removed": 93,
    "stale": true,
    "note": "⭐ 就地改字：门报 1 个 MISSING、清单报 1 条消失"
   },
   {
    "snapshot": "APPEND-ONLY-ONE-ANCHOR",
-   "n_golden": 796,
+   "n_golden": 810,
    "n_current": 718,
    "n_added": 0,
-   "n_removed": 78,
+   "n_removed": 92,
    "stale": false,
    "note": "⭐⭐⭐ 只追加：门报 0、清单报 0 —— 而它**本该**是过期的"
   }

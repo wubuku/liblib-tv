@@ -1,0 +1,480 @@
+{
+  "generated_by": "jimeng_probe1018_assertion_vs_behavior.py",
+  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **那 24 条「在读原型源码」的判据，验的是「那段字还在」，不是「这个行为还对」** —— 两个反向用例把它钉死了。",
+  "question_1018": "891 条判据里唯一那 24 条，它们断言的是代码行为，还是源码里的字符串？",
+  "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个 `'<字面量>' in <源码文本>` 形式的判据，它验的是「这段字还在」** ⇒ 改行为而保留字面量 ⇒ 照绿；保留行为而改掉字面量 ⇒ 变红或崩",
+  "n_checks": 24,
+  "baseline": {
+    "n_pass": 24,
+    "n_fail": 0,
+    "n_crash": 0,
+    "rows": [
+      {
+        "name": "\"J.6",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"J.7",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"J.8",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"K.6",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"L.5",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"L.6",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"L.7",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"L.8",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"P.11",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"P.14",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"P.15",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"Q.8",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"T.11",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"DD.6",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"OO.1",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"OO.2",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"VV.1",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"VV.2",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"JJJ.3",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"TTTT.1",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"ZZZZZ.3",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"GGGGG.2",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"CC.7",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"CC.9",
+        "state": "pass",
+        "value": "True"
+      }
+    ]
+  },
+  "reverse_A_behavior_only": {
+    "mutation": "`const next = cur + dir;` → `const next = cur + dir * 2;`",
+    "line_found_in_prototype": true,
+    "what_it_changes": "焦点在节点序列里**一次跨两个**（步进 1 → 2）—— 行为实打实变了",
+    "n_anchors_touched": 0,
+    "n_pass_after": 24,
+    "all_still_green": true,
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **改完之后 24 条一条没红** ⇒ **⇒⇒⇒⇒⇒ 这 24 条看不见行为变更** ⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒ 它们不是行为回归测试，是字面量存在性检查**"
+  },
+  "reverse_B_rename_only": {
+    "mutation": "`function armRovingTabindex(` → `function armRovingTabindexV2(`",
+    "applied": true,
+    "what_it_changes": "**行为完全没动**，只改了一个函数名",
+    "states": {
+      "pass": 22,
+      "fail": 2
+    },
+    "breaks_something": true,
+    "any_crash": false,
+    "rows": [
+      {
+        "name": "\"J.6",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"J.7",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"J.8",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"K.6",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"L.5",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"L.6",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"L.7",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"L.8",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"P.11",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"P.14",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"P.15",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"Q.8",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"T.11",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"DD.6",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"OO.1",
+        "state": "fail",
+        "value": "False"
+      },
+      {
+        "name": "\"OO.2",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"VV.1",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"VV.2",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"JJJ.3",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"TTTT.1",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"ZZZZZ.3",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"GGGGG.2",
+        "state": "fail",
+        "value": "False"
+      },
+      {
+        "name": "\"CC.7",
+        "state": "pass",
+        "value": "True"
+      },
+      {
+        "name": "\"CC.9",
+        "state": "pass",
+        "value": "True"
+      }
+    ],
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **纯重命名就把它们打断了** ⇒ **⇒⇒⇒⇒⇒ 门对「重命名」敏感、对「改错」不敏感**",
+    "crash_note": "⚠️⭐⭐⭐⭐⭐ **诚实更正：本次两个反向用例里 `crash` = 0。** 我第一版**口头说过「改名会让门直接 `IndexError` 崩掉」** —— 那是**仪器自己的 bug**（`main` 里的赋值没被执行全、基线本来就崩），**照抄到结论里就成了假发现** ⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ 1012 那条「`crashed` 必须单列」在这里仍然成立**（分类器确实是三态、第一版确实崩了 24 条），**但「这个反向用例会崩」这个结论是错的、已撤回** ⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒ 这正是 1016 那条「照抄散文里的预期和量出来长得一样」在我自己的推演上的版本 —— 连「我以为发生过的事」都会变成假发现**"
+  },
+  "what_is_actually_asserted": {
+    "per_check": [
+      {
+        "expr": "'export function useTakeFocusAtOpen' in csrc",
+        "n_literals": 1,
+        "n_memberships_on_prototype": 1,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 1
+      },
+      {
+        "expr": "all((f'useTakeFocusAtOpen({v}' in gsrc for v in ('modelBoxRef', 'ratioBoxRef', 'modeBoxRef', 'durBoxRef')))",
+        "n_literals": 5,
+        "n_memberships_on_prototype": 1,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 5
+      },
+      {
+        "expr": "all((f'ref={{{v}}}' in gsrc for v in ('modelBoxRef', 'ratioBoxRef', 'modeBoxRef', 'durBoxRef')))",
+        "n_literals": 6,
+        "n_memberships_on_prototype": 1,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 6
+      },
+      {
+        "expr": "all((f'useTakeFocusAtOpen({v}' in asrc2 for v in ('voiceBoxRef', 'dubBoxRef', 'musicBoxRef'))) and all((f'ref={{{v}}}' i",
+        "n_literals": 9,
+        "n_memberships_on_prototype": 2,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 9
+      },
+      {
+        "expr": "'export function useArrowKeys' in csrc2",
+        "n_literals": 1,
+        "n_memberships_on_prototype": 1,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 1
+      },
+      {
+        "expr": "sum((f'useArrowKeys({v}' in g2 + a2 for v in ('modelBoxRef', 'ratioBoxRef', 'modeBoxRef', 'voiceBoxRef', 'dubBoxRef'))) ",
+        "n_literals": 6,
+        "n_memberships_on_prototype": 0,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 6
+      },
+      {
+        "expr": "'useArrowKeys(durBoxRef' not in g2",
+        "n_literals": 1,
+        "n_memberships_on_prototype": 0,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 1
+      },
+      {
+        "expr": "n_opt == 1 and '上百个预设音色，让你玩转人声配音' in a2",
+        "n_literals": 1,
+        "n_memberships_on_prototype": 1,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 1,
+        "n_code_literals": 0
+      },
+      {
+        "expr": "'useModalFocusTrap(' in vcode and 'export function useModalFocusTrap' in ccode",
+        "n_literals": 2,
+        "n_memberships_on_prototype": 1,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 2
+      },
+      {
+        "expr": "\"maxHeight: '1084px'\" not in ssrc and '100vh - 72px' in ssrc",
+        "n_literals": 2,
+        "n_memberships_on_prototype": 1,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 2
+      },
+      {
+        "expr": "'paddingRight' in ssrc and '分类' in ssrc",
+        "n_literals": 2,
+        "n_memberships_on_prototype": 2,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 1,
+        "n_code_literals": 1
+      },
+      {
+        "expr": "'absolute inset-0 bg-black/' in amsrc.replace('\\n', ' ') or ('inset-0' in amsrc and 'bg-black/' in amsrc)",
+        "n_literals": 5,
+        "n_memberships_on_prototype": 2,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 5
+      },
+      {
+        "expr": "'useTakeFocusAtOpen(' in _tlc",
+        "n_literals": 1,
+        "n_memberships_on_prototype": 1,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 0,
+        "n_code_literals": 1
+      },
+      {
+        "expr": "'el.setAttribute(\"tabindex\", \"0\")' in _jws_raw and '801 只抄了 role/aria，**漏了 tabindex**' in _jws_raw and ('if (!el.hasAttr",
+        "n_literals": 4,
+        "n_memberships_on_prototype": 3,
+        "n_memberships_on_audit": 1,
+        "n_prose_literals": 1,
+        "n_code_literals": 3
+      },
+      {
+        "expr": "'nodesFocusable={false}' in _wsrc and 'function armRovingTabindex(' in _wsrc and ('addEventListener(\"keydown\", onKeyDown",
+        "n_literals": 6,
+        "n_memberships_on_prototype": 3,
+        "n_memberships_on_audit": 3,
+        "n_prose_literals": 2,
+        "n_code_literals": 4
+      },
+      {
+        "expr": "'preventDefault' not in _wsrc.split('function armRovingTabindex')[1].split('\\n}')[0] and '**不** `preventDefault()`' in _",
+        "n_literals": 6,
+        "n_memberships_on_prototype": 0,
+        "n_memberships_on_audit": 3,
+        "n_prose_literals": 3,
+        "n_code_literals": 3
+      },
+      {
+        "expr": "'const cur = nodes.findIndex((n) => n === active);' in _wsrc and 'n === active || n.contains(active)' not in _wsrc and (",
+        "n_literals": 5,
+        "n_memberships_on_prototype": 3,
+        "n_memberships_on_audit": 1,
+        "n_prose_literals": 3,
+        "n_code_literals": 2
+      },
+      {
+        "expr": "'for (const n of nodes) {' in _wsrc and 'if (n.contains(active)) return;' in _wsrc and ('**899 当年还断言了「绝不绕回」，908 已撤回**' i",
+        "n_literals": 6,
+        "n_memberships_on_prototype": 4,
+        "n_memberships_on_audit": 2,
+        "n_prose_literals": 4,
+        "n_code_literals": 2
+      },
+      {
+        "expr": "'**下标 12 在正反两向都被跳过**' in _ausrc and '此前**只观察到正向**跳过它' in _ausrc and ('**成因仍未查明**' in _ausrc) and ('**不许**编一个 DOM 层判据去「对齐",
+        "n_literals": 6,
+        "n_memberships_on_prototype": 0,
+        "n_memberships_on_audit": 4,
+        "n_prose_literals": 4,
+        "n_code_literals": 2
+      },
+      {
+        "expr": "'\"replica_rail_roving_installed_958\": (' in _ausrc and '**957→958：952 以来第一次产出**实际产品改动**' in _ausrc and ('**`0`×1 + `-1`×",
+        "n_literals": 17,
+        "n_memberships_on_prototype": 8,
+        "n_memberships_on_audit": 7,
+        "n_prose_literals": 9,
+        "n_code_literals": 8
+      },
+      {
+        "expr": "'**批 967 改写上面那段（原文保留、不删；下面这段取代它的结论）**' in _wsrc and '上面那段把 `b22-upload` 与 `音频 61` **当成同一类**了，**那是错的**' in _wsrc and ('它*",
+        "n_literals": 11,
+        "n_memberships_on_prototype": 11,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 11,
+        "n_code_literals": 0
+      },
+      {
+        "expr": "'\"wrapper_is_first_in_dom_973\"' in _ausrc and '**972 悬的那件事有答案了：' in _ausrc and ('**它是整个环里 `dom_rank` 最小的真 UI 停靠点**' in _",
+        "n_literals": 19,
+        "n_memberships_on_prototype": 3,
+        "n_memberships_on_audit": 13,
+        "n_prose_literals": 12,
+        "n_code_literals": 7
+      },
+      {
+        "expr": "'别复制第二份' in _agp_raw and '匹配到了自己' in _agp_raw and ('function refocusToNodeFromToolbar(' in _agp_raw) and (_agp_raw.count",
+        "n_literals": 4,
+        "n_memberships_on_prototype": 3,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 2,
+        "n_code_literals": 2
+      },
+      {
+        "expr": "'Record<string, string | null | undefined>' in _agp_raw and '不跑 tsc' in _agp_raw",
+        "n_literals": 2,
+        "n_memberships_on_prototype": 2,
+        "n_memberships_on_audit": 0,
+        "n_prose_literals": 1,
+        "n_code_literals": 1
+      }
+    ],
+    "n_checks_touching_audit_text": 8,
+    "n_checks_touching_ONLY_audit_text": 2,
+    "n_checks_with_prose_literals": 13,
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「在读原型源码」这个说法还要再切一刀**：① 有 8 条**同时断 audit 判据文本里的散文** —— 它们断的是「那条批注还在」，与原型无关；② 有 2 条**根本只断 audit 文本**；③ 有 13 条的锚点**本身是中文散文**（比如原型源码里那句「批 967 改写上面那段…」、「别复制第二份」「不跑 tsc」—— **注释被当成了实现**）⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒ 24 这个数已经是上界，而真·验代码的比它更小**"
+  },
+  "scope": "⚠️⭐⭐⭐⭐⭐ **本探针只做到这一步**：它验证「判据看得见/看不见行为变更」，**没有**验证「原型实现的行为本身对不对」—— 那需要真跑起来、对源站与复刻各测一遍，属交互式判读，不在这台普查的口径内 ⇒ **不把「字面量在」说成「行为对」**",
+  "offline": "只读仓里的脚本与原型源码；反向用例**全部在内存里改文本，一个字节都不动仓里文件**"
+}

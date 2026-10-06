@@ -1,20 +1,20 @@
 {
  "generated_by": "jimeng_probe1005_zero_coupling_census.py",
- "n_zero_coupling": 796,
- "n_positive_present": 6311,
- "n_distinct_keys": 6150,
+ "n_zero_coupling": 810,
+ "n_positive_present": 6451,
+ "n_distinct_keys": 6288,
  "by_class": {
-  "I-标识符(多处引用)": 386,
-  "P-散文/片段": 410
+  "I-标识符(多处引用)": 395,
+  "P-散文/片段": 415
  },
  "class_x_gap": {
-  "I-标识符(多处引用)|21–200": 146,
-  "I-标识符(多处引用)|4–20": 89,
-  "I-标识符(多处引用)|>200": 56,
-  "I-标识符(多处引用)|≤3": 95,
-  "P-散文/片段|21–200": 210,
-  "P-散文/片段|4–20": 58,
-  "P-散文/片段|>200": 124,
+  "I-标识符(多处引用)|21–200": 147,
+  "I-标识符(多处引用)|4–20": 92,
+  "I-标识符(多处引用)|>200": 59,
+  "I-标识符(多处引用)|≤3": 97,
+  "P-散文/片段|21–200": 211,
+  "P-散文/片段|4–20": 60,
+  "P-散文/片段|>200": 126,
   "P-散文/片段|≤3": 18
  },
  "anchor_text": "⭐⭐⭐⭐⭐ **存**全量**、不截断** —— **而第一版截断到 40 字符、于是比较时凭空「变了 11 条」**",
@@ -94,7 +94,7 @@
    "var": "asrc",
    "anchor": "b.left - 1",
    "occurrences": 2,
-   "min_line_gap": 10153
+   "min_line_gap": 10159
   },
   {
    "class": "P-散文/片段",
@@ -276,7 +276,7 @@
    "var": "asrc",
    "anchor": "blockers.some(bk => bk.in_layer)",
    "occurrences": 2,
-   "min_line_gap": 3065
+   "min_line_gap": 3071
   },
   {
    "class": "I-标识符(多处引用)",
@@ -451,7 +451,7 @@
    "var": "_ausrc",
    "anchor": "不是**差异",
    "occurrences": 2,
-   "min_line_gap": 4077
+   "min_line_gap": 4083
   },
   {
    "class": "I-标识符(多处引用)",
@@ -549,7 +549,7 @@
    "var": "_ausrc",
    "anchor": "**仍未查清**",
    "occurrences": 2,
-   "min_line_gap": 1764
+   "min_line_gap": 1770
   },
   {
    "class": "I-标识符(多处引用)",
@@ -633,7 +633,7 @@
    "var": "_ausrc",
    "anchor": "跨时刻读数混比",
    "occurrences": 2,
-   "min_line_gap": 1977
+   "min_line_gap": 1983
   },
   {
    "class": "I-标识符(多处引用)",
@@ -654,14 +654,14 @@
    "var": "_ausrc",
    "anchor": "**无处可移**",
    "occurrences": 2,
-   "min_line_gap": 2025
+   "min_line_gap": 2031
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "不可 Tab 到达",
    "occurrences": 2,
-   "min_line_gap": 2581
+   "min_line_gap": 2587
   },
   {
    "class": "I-标识符(多处引用)",
@@ -675,7 +675,7 @@
    "var": "_ausrc",
    "anchor": "**已由 897 补齐**",
    "occurrences": 2,
-   "min_line_gap": 1728
+   "min_line_gap": 1734
   },
   {
    "class": "I-标识符(多处引用)",
@@ -724,14 +724,14 @@
    "var": "_ausrc",
    "anchor": "按 Tab 才把画布装进 Tab 序列",
    "occurrences": 2,
-   "min_line_gap": 1942
+   "min_line_gap": 1948
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "错的**单方**方案",
    "occurrences": 2,
-   "min_line_gap": 1932
+   "min_line_gap": 1938
   },
   {
    "class": "P-散文/片段",
@@ -787,14 +787,14 @@
    "var": "_ausrc",
    "anchor": "**8/8 全部 `[0,1,2]`**",
    "occurrences": 2,
-   "min_line_gap": 1987
+   "min_line_gap": 1993
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**停在 58 vs 59**",
    "occurrences": 2,
-   "min_line_gap": 1986
+   "min_line_gap": 1992
   },
   {
    "class": "P-散文/片段",
@@ -808,7 +808,7 @@
    "var": "_ausrc",
    "anchor": "`endpoint = 88 − k`",
    "occurrences": 2,
-   "min_line_gap": 1967
+   "min_line_gap": 1973
   },
   {
    "class": "P-散文/片段",
@@ -822,14 +822,14 @@
    "var": "_ausrc",
    "anchor": "**4 臂里只有 1 臂从 0 开始**",
    "occurrences": 2,
-   "min_line_gap": 1957
+   "min_line_gap": 1963
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**「从 0 开始」确实不是无条件成立**",
    "occurrences": 2,
-   "min_line_gap": 1960
+   "min_line_gap": 1966
   },
   {
    "class": "I-标识符(多处引用)",
@@ -871,7 +871,7 @@
    "var": "_ausrc",
    "anchor": "**一个能区分的终点都没扫到**",
    "occurrences": 2,
-   "min_line_gap": 1821
+   "min_line_gap": 1827
   },
   {
    "class": "P-散文/片段",
@@ -885,7 +885,7 @@
    "var": "_ausrc",
    "anchor": "**结构上撞不上绕回**",
    "occurrences": 2,
-   "min_line_gap": 1792
+   "min_line_gap": 1798
   },
   {
    "class": "P-散文/片段",
@@ -906,21 +906,21 @@
    "var": "_ausrc",
    "anchor": "**走查停止条件不能拍脑袋给次数**",
    "occurrences": 2,
-   "min_line_gap": 1775
+   "min_line_gap": 1781
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**两个边界仍未夹逼**",
    "occurrences": 2,
-   "min_line_gap": 1770
+   "min_line_gap": 1776
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**900 那条要按这个口径读**",
    "occurrences": 2,
-   "min_line_gap": 1767
+   "min_line_gap": 1773
   },
   {
    "class": "I-标识符(多处引用)",
@@ -941,14 +941,14 @@
    "var": "_ausrc",
    "anchor": "「往回按了 0 次」",
    "occurrences": 2,
-   "min_line_gap": 1727
+   "min_line_gap": 1733
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**`A` 与 `B` 实际是同一条路线**",
    "occurrences": 2,
-   "min_line_gap": 1726
+   "min_line_gap": 1732
   },
   {
    "class": "I-标识符(多处引用)",
@@ -1004,21 +1004,21 @@
    "var": "_ausrc",
    "anchor": "**反向走是严格 `−1`**",
    "occurrences": 2,
-   "min_line_gap": 1701
+   "min_line_gap": 1707
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "`46→45→44→43→42→41→40`",
    "occurrences": 2,
-   "min_line_gap": 1703
+   "min_line_gap": 1709
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "`56→55→54→53→52→51`",
    "occurrences": 2,
-   "min_line_gap": 1703
+   "min_line_gap": 1709
   },
   {
    "class": "I-标识符(多处引用)",
@@ -1088,7 +1088,7 @@
    "var": "_ausrc",
    "anchor": "**两个数各自都对、只是口径不同**",
    "occurrences": 2,
-   "min_line_gap": 1834
+   "min_line_gap": 1840
   },
   {
    "class": "P-散文/片段",
@@ -1158,7 +1158,7 @@
    "var": "_ausrc",
    "anchor": "**不是无条件的**",
    "occurrences": 2,
-   "min_line_gap": 1012
+   "min_line_gap": 1018
   },
   {
    "class": "I-标识符(多处引用)",
@@ -1200,7 +1200,7 @@
    "var": "_ausrc",
    "anchor": "source_roving_wraps_at_canvas_root_908",
    "occurrences": 2,
-   "min_line_gap": 1547
+   "min_line_gap": 1553
   },
   {
    "class": "P-散文/片段",
@@ -1262,8 +1262,8 @@
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "source_reverse_lap_cycle_is_constant_931",
-   "occurrences": 3,
-   "min_line_gap": 2
+   "occurrences": 4,
+   "min_line_gap": 8
   },
   {
    "class": "I-标识符(多处引用)",
@@ -1291,14 +1291,14 @@
    "var": "_ausrc",
    "anchor": "**但不许据此说「节点 12 特殊」**",
    "occurrences": 2,
-   "min_line_gap": 508
+   "min_line_gap": 514
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "⇒ **最简读法是位置性的**",
    "occurrences": 2,
-   "min_line_gap": 509
+   "min_line_gap": 515
   },
   {
    "class": "I-标识符(多处引用)",
@@ -1500,7 +1500,7 @@
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "已撤回",
-   "occurrences": 4,
+   "occurrences": 5,
    "min_line_gap": 19
   },
   {
@@ -1872,7 +1872,7 @@
    "var": "_vsrc",
    "anchor": "\"只有 1 项\" in asrc)",
    "occurrences": 2,
-   "min_line_gap": 6623
+   "min_line_gap": 6635
   },
   {
    "class": "P-散文/片段",
@@ -1900,7 +1900,7 @@
    "var": "_ausrc",
    "anchor": "**「A ≠ B」不等于「A 能把 A 从 C 里挑出来」**",
    "occurrences": 2,
-   "min_line_gap": 5041
+   "min_line_gap": 5277
   },
   {
    "class": "P-散文/片段",
@@ -1914,14 +1914,14 @@
    "var": "_ausrc",
    "anchor": "`el.tabIndex === -1`",
    "occurrences": 2,
-   "min_line_gap": 5020
+   "min_line_gap": 5256
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**应用必须自己调 `focus()`**",
    "occurrences": 2,
-   "min_line_gap": 5020
+   "min_line_gap": 5256
   },
   {
    "class": "P-散文/片段",
@@ -2208,7 +2208,7 @@
    "var": "_ausrc",
    "anchor": "max_dom_idx_armed = 75",
    "occurrences": 2,
-   "min_line_gap": 821
+   "min_line_gap": 827
   },
   {
    "class": "P-散文/片段",
@@ -2271,7 +2271,7 @@
    "var": "_ausrc",
    "anchor": "**如实记为已知差异**",
    "occurrences": 2,
-   "min_line_gap": 908
+   "min_line_gap": 914
   },
   {
    "class": "P-散文/片段",
@@ -2397,7 +2397,7 @@
    "var": "_ausrc",
    "anchor": "**当场判红**",
    "occurrences": 2,
-   "min_line_gap": 4502
+   "min_line_gap": 4738
   },
   {
    "class": "P-散文/片段",
@@ -4868,7 +4868,7 @@
    "var": "_ausrc",
    "anchor": "zero-coupling-anchors-1005.json",
    "occurrences": 3,
-   "min_line_gap": 144
+   "min_line_gap": 156
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5043,7 +5043,7 @@
    "var": "_ausrc",
    "anchor": "stem-attribution-1007.json",
    "occurrences": 2,
-   "min_line_gap": 678
+   "min_line_gap": 690
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5099,7 +5099,7 @@
    "var": "_ausrc",
    "anchor": "golden-freshness-1008.json",
    "occurrences": 2,
-   "min_line_gap": 601
+   "min_line_gap": 613
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5453,6 +5453,13 @@
   },
   {
    "class": "I-标识符(多处引用)",
+   "var": "_ausrc",
+   "anchor": "不许让门看起来比它实际更强",
+   "occurrences": 2,
+   "min_line_gap": 2272
+  },
+  {
+   "class": "I-标识符(多处引用)",
    "var": "_p1014",
    "anchor": "\"n_excluded_self\"",
    "occurrences": 2,
@@ -5490,8 +5497,8 @@
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "原文一字不删",
-   "occurrences": 4,
-   "min_line_gap": 29
+   "occurrences": 6,
+   "min_line_gap": 9
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5554,14 +5561,14 @@
    "var": "_ausrc",
    "anchor": "手写清单写错会当场炸",
    "occurrences": 2,
-   "min_line_gap": 249
+   "min_line_gap": 261
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "自动发现写错只会安静地少算",
    "occurrences": 2,
-   "min_line_gap": 249
+   "min_line_gap": 261
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5582,7 +5589,7 @@
    "var": "_ausrc",
    "anchor": "处置要落在生成器里、不落在产物",
    "occurrences": 2,
-   "min_line_gap": 190
+   "min_line_gap": 202
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5590,6 +5597,97 @@
    "anchor": "本批纯离线",
    "occurrences": 34,
    "min_line_gap": 14
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1015",
+   "anchor": "empty-ambiguity-1014.json",
+   "occurrences": 2,
+   "min_line_gap": 25
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1016",
+   "anchor": "MISP_BY_LAYER",
+   "occurrences": 5,
+   "min_line_gap": 1
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1016",
+   "anchor": "MEDIAN_KEYS",
+   "occurrences": 4,
+   "min_line_gap": 33
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_p1016",
+   "anchor": "git show HEAD:…",
+   "occurrences": 2,
+   "min_line_gap": 157
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_ausrc",
+   "anchor": "原文保留在这里当历史记录、不许删",
+   "occurrences": 3,
+   "min_line_gap": 8
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_ausrc",
+   "anchor": "意图是保留、机制是同名覆盖",
+   "occurrences": 2,
+   "min_line_gap": 8043
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_ausrc",
+   "anchor": "机制静默赢了",
+   "occurrences": 2,
+   "min_line_gap": 8045
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_ausrc",
+   "anchor": "source_reverse_lap_cycle_narrowed_by_932",
+   "occurrences": 2,
+   "min_line_gap": 8023
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1017",
+   "anchor": "\"one_gate_only\"",
+   "occurrences": 7,
+   "min_line_gap": 2
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1017",
+   "anchor": "\"whole_apparatus\"",
+   "occurrences": 3,
+   "min_line_gap": 19
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_p1017",
+   "anchor": "if isinstance(n, ast.Call) and isinstance(n.func, ast.Name)",
+   "occurrences": 2,
+   "min_line_gap": 14
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1017",
+   "anchor": "\"pct_uncovered_lines\"",
+   "occurrences": 4,
+   "min_line_gap": 1
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_ausrc",
+   "anchor": "零浏览器 / 零按键 / 零网络",
+   "occurrences": 2,
+   "min_line_gap": 63
   }
  ]
 }
