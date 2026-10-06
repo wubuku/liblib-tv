@@ -591,15 +591,16 @@ run_gate verify-gate-alive.py 真闸可观察性
 # Batch 142 在 PROGRESS.md 里撞见 5 行这样的历史损坏，20-reference.md 里也有 1 行
 # （一个含 `|` 的端点 URL 把行切断了）。判据只拦「多于表头」：
 # 少于一列会被 GFM 补空单元格，渲染正常（PROGRESS 里大量「状态」列留空即属此类）。
-if TB_OUT="$(python3 scripts/verify-tables.py 2>&1)"; then
-  ok "$TB_OUT"
-else
-  while IFS= read -r line; do
-    [ -n "$line" ] && warn "表格结构 $line"
-  done <<< "$TB_OUT"
-
-  fail "表格被未转义的竖线截断——单元格内的 | 要写成 \| （代码段里的 || 写成 \|\|）"
-fi
+# **Batch 306：这一段原来是内联执行的 `if TB_OUT="$(python3 scripts/verify-tables.py 2>&1)"`。**
+# **而内联写法有两个洞，且两个都是活着的**（实测：`verify-tables.py` 与 `verify-meta.py`
+# 各有 `return 2` 的路径，而 rc=2「未能核对」在内联写法里与 rc=1 不可分）：
+#   ① **rc 被整个丢掉**，于是「未能核对」被当成「不一致」——
+#      **那会把人引去手册里找根本不存在的问题**（Batch 160 立这个码的理由）；
+#   ② **没有那道「rc=0 却一句话都没说」的守卫**（它写在 `run_gate` 里）——
+#      **而 Batch 266 实测撞过两次「判据崩了却 rc=0、两次构建全绿」**。
+# **而 Batch 305 刚给那道守卫配了第一条用例——却量出它只覆盖走了 `run_gate` 的 41 道闸。**
+# 改法：走 `run_gate`，**不多写一行逻辑**，只是不再绕开那个函数。
+run_gate verify-tables.py 表格结构
 
 # 第八道闸：手册元数据自洽。前面七道查的都是**关于产品**的断言
 # （端点怎么注册、功能有没有入口、界面文字漂没漂），这一道查
@@ -613,18 +614,9 @@ fi
 #
 # 与 Batch 143 立的「六道闸全绿不等于发布物正确」同源：
 # **七道闸全绿也不等于账本自洽。**
-if MT_OUT="$(python3 scripts/verify-meta.py 2>&1)"; then
-  while IFS= read -r line; do
-    [ -n "$line" ] && ok "元数据 $line"
-  done <<< "$MT_OUT"
-
-else
-  while IFS= read -r line; do
-    [ -n "$line" ] && warn "元数据 $line"
-  done <<< "$MT_OUT"
-
-  fail "手册自报的计数与现场重数不一致（或有未登记的计数表述）——重数后更新对应页面"
-fi
+#
+# **Batch 306：这一段原来也是内联执行的，同上两个洞**（rc 被丢掉 + 没有零输出守卫）。
+run_gate verify-meta.py 元数据
 
 # ---------- 完成 ----------
 # ── Batch 255：把这次构建的结果记进 `.git/beeftv-build-record` ─────────

@@ -2227,6 +2227,59 @@ def main():
             "**它属于 rc=2 而不是 rc=1**：这不是「查出问题」，是「根本没查」"
             "（Batch 160 立 rc=2 的理由）" % rcs)
 
+    # **方向十三之五（Batch 306 新增）：**「rc=0 却一句话都没说」这道守卫写在
+    # **`run_gate` 函数体里**，所以**它的作用域是「走了 run_gate 的那些闸」，
+    # 而不是「构建里执行的全部闸」**。而 Batch 305 刚给那道守卫配了第一条用例——
+    # **用例通过不等于守卫覆盖了全部**。
+    #: **Batch 306 实测**：构建里有 **2 道闸是内联执行的**
+    #: （`verify-tables.py`、`verify-meta.py`，原式 `if X="$(python3 scripts/… 2>&1)"`），
+    #: 它们 **①rc 被整个丢掉**（于是 rc=2「未能核对」与 rc=1 不可分——
+    #: 而**这两道闸都声明了 `return 2`**），
+    #: **②没有那道零输出守卫**——**于是 Batch 266 撞过两次的「判据崩了却 rc=0、
+    #: 构建全绿」在这两道闸上今天仍然畅通**。
+    #: **第一版这里写的是 `_bs = BUILD`，而闸里没有 `BUILD` 这个常量**
+    #: （它是在 556 行与 855 行内联 `os.path.join(ROOT, "build-site.sh")` 读的）——
+    #: **于是 `NameError`，判据自己崩了，而 rc 仍然是 1**，
+    #: **用例确实判了失败（对的），但理由是「崩了」而不是「方向报出来了」**
+    #: （纪律 155 那一族：rc≠0 不等于真值在里面）。
+    #: **而这份反验的沙箱里恰好没有 build-site.sh 时，报错会长得一模一样。**
+    try:
+        with open(os.path.join(ROOT, "build-site.sh"), encoding="utf-8") as _fh:
+            _bstext = _fh.read()
+    except OSError as exc:
+        problems.append(
+            "方向十三之五：读不到 build-site.sh：%s　→ "
+            "**这道方向一整轮都没核过**（而不是「没问题」）" % exc)
+        _bstext = ""
+    if _bstext:
+        # **先把 run_gate 的函数体摘掉**——它自己那行 `out="$(python3 "scripts/$script" …)"`
+        # 是合法的一处，**不能连它一起判成绕过**
+        _rg = re.search(r"run_gate\(\)\s*\{(.*?)\n\}", _bstext, re.S)
+        _outside = _bstext.replace(_rg.group(0), "") if _rg else _bstext
+        if _rg is None:
+            problems.append(
+                "方向十三之五：build-site.sh 里抠不出 `run_gate()` 的函数体——"
+                "**那道零输出守卫就在它里面**，抠不出来就等于这道方向没有核过")
+        else:
+            # **注释必须先排掉**：本方向的修法注释里**原文引用了被删掉的那句内联写法**
+            # （「这一段原来是内联执行的 `if X="$(python3 …)"`」），
+            # 而**判据扫的是文本**——**首跑它把自己写的那段说明报成了绕过**
+            # （实测 1 条假阳性，而真绕过是 0 条）。
+            #: **判据要看代码，不看注释里引用的旧写法。**
+            for _no, _l in enumerate(_outside.split("\n"), 1):
+                _s = _l.lstrip()
+                if _s.startswith("#"):
+                    continue
+                _m = re.search(r"\$\(\s*python3\s+scripts/(verify-[A-Za-z0-9_.\-]+\.py)", _l)
+                if _m:
+                    problems.append(
+                        "方向十三之五：`%s` 在构建里是**内联执行**的，没走 `run_gate`　→ "
+                        "**①rc=2「未能核对」与 rc=1「不一致」在它眼里是同一件事**"
+                        "（会把人引去手册里找根本不存在的问题，Batch 160 立 rc=2 的理由）；"
+                        "**②没有「rc=0 却一句话都没说」那道守卫**"
+                        "（Batch 266 实测两次构建全绿）。"
+                        "**改法是走 `run_gate`，不多写一行逻辑。**" % _m.group(1))
+
     # 方向十四（**Batch 205 新增**）：**shell 脚本里不得有会在 UTF-8 locale 下炸掉的变量展开**。
     # 背景是实测事故：三份 shell 反验共 33 处 `$var：`，
     # 在 `LC_CTYPE=C.UTF-8` 下 `set -u` 直接报「`desc?: unbound variable`」——

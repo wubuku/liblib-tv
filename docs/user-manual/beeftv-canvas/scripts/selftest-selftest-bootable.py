@@ -542,6 +542,42 @@ def m_silent_rc0_treated_as_pass():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+#: 一处**内联执行**闸脚本的写法（Batch 306 用来钉 方向十三之五）。
+#: **刻意沿用构建里原来那两道的写法**——`if X="$(python3 …)"`
+#: 只区分成功与失败，**rc=2 与 rc=1 不可分**，
+#: 而 `ok "$X"` 对空输出照打绿灯。
+_INLINE_GATE = '\nif INJ_OUT="$(python3 scripts/verify-shortcuts.py 2>&1)"; then\n  ok "$INJ_OUT"\nfi\n'
+
+
+def m_inline_gate_bypasses_run_gate():
+    """**能抓（Batch 306 新增）**：闸脚本内联执行、绕过 `run_gate` → 必须报（方向十三之五）。
+
+    **为什么要有这一条**：方向十三之四那道「rc=0 却一句话都没说」的守卫
+    **写在 `run_gate` 函数体里**，于是它的作用域是「走了 `run_gate` 的那些闸」，
+    **而不是「构建里执行的全部闸」**。
+    **Batch 305 刚给那道守卫配了第一条用例——而用例通过不等于守卫覆盖了全部**：
+    实测构建里有 **2 道闸是内联执行的**（`verify-tables.py` / `verify-meta.py`），
+    **两道都声明了 `return 2`**，也就是说 **rc=2「未能核对」在它们身上被当成「不一致」**，
+    而 Batch 266 撞过两次的「判据崩了却 rc=0、构建全绿」**在它们身上今天仍然畅通**。
+    本批已把那两道改成走 `run_gate`（**不多写一行逻辑**），这一条钉住它不被改回去。
+
+    **断言钉的是 `方向十三之五` 这个标签本身**，不是「方向十三」——
+    **Batch 305 的教训：前缀是父子共用的，钉前缀等于没钉**。
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "build-site.sh")
+        write(p, read(p) + _INLINE_GATE)
+        after = read(p)
+        assert _INLINE_GATE in after, "前提失配：注入没生效"
+        rc, out = run_in(tmp)
+        record("56 闸脚本内联执行绕过 run_gate→必报（方向十三之五）",
+               rc == 1 and "方向十三之五" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def m_run_gate_reports():
     """**不误伤的那一半**：修 `run_gate` 时最容易顺手把成功路径也弄坏。"""
     check_anchor()
@@ -1834,6 +1870,7 @@ def main():
              m_slow_fixture_crashes, m_slow_feature_missing,
              m_run_gate_silent, m_run_gate_reports, m_run_gate_confuses_codes,
              m_silent_rc0_treated_as_pass,          # **Batch 305 新增**：方向十三之四
+             m_inline_gate_bypasses_run_gate,       # **Batch 306 新增**：方向十三之五
              m_shell_unsafe_var, m_shell_safe_var,
              m_deleted_fixture_ref, m_live_fixture_ref_not_reported,
              m_broken_selftest_caught, m_clean_fleet_not_reported,
