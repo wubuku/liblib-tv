@@ -25,15 +25,35 @@ Batch 311–320 的绿构建 wrapper 里各有一组「搭完树当场核对」�
 
 **所以本脚本照纪律 355 的形状写**：形态归一化是**一个**函数、
 **内部当场用已知答案自检**；整套核对另有一个 `--self-test`
-（**一正一负两个已知答案样本**，纪律 350：判别式没被两个样本验过就只是写法）。
+（**一正一负成对的已知答案样本**，纪律 350：判别式没被样本验过就只是写法）。
+
+**Batch 322 补的 `--expect-case`（纪律 357）**：把上面 ① 那条恒假的
+「副本树有没有第 N 例」收进来。**而收它之前先量了三件事**：
+  · 真实的 `selftest-meta.sh` 实跑是「**通过 51**」，
+    **而只认执行器形态的探针只数出 47**——漏掉的 12/16/19/20 是**手写内联块**
+    （自己 `echo "  ✓ N) …"` 再 `PASS=$((PASS+1))`，其中 20 那条连标记都没有）。
+  · **`^N)` 恒假，而它的反面 `N)` 恒真**：`selftest-meta.sh` 头部有一份
+    **22 行的计划清单**（`#   50) 能抓：…`），**和可执行行长得几乎一样**。
+    **两种直觉写法一假一真、方向相反，而「都报绿」这个后果完全一样。**
+  · 对应关系表 47 行里，**只有 1 行的「例数」能被静态重数**——
+    其余 46 份是 Python 驱动，形态各不相同。
+    **所以「例数重数」这个闸否掉了**：立了会 46/47 恒为「未能核对」，
+    **而一条恒为「未能核对」的闸等于没有（纪律 352⑤ / 310）**。
 
 **它不检查什么（如实说明）**：
   · **不跑构建**（那是 wrapper 的事，4 分钟）；
   · **不核批次专用的断言**（「副本树的方向十三必须报 34/10」那种每批不同）——
     **把它们塞进来会让这个脚本每批都要改，于是它又回到「手抄」的状态**。
+  · **`--expect-case` 只认两支形态**（执行器 / 手写内联块），
+    **对 Python 驱动的用例形态一律不认**——
+    **而它对认不出的东西必须报「未能核对」而不是「不存在」**（纪律 101）：
+    实测 `selftest-meta.sh` 的**例号 12 只存在于头部注释计划清单里，
+    从来没有可执行实现**，判据如实报它「只在注释行里出现过」。
+    **这条不是判据的缺陷，是本项目用例编号的一个真事实（纪律 357 如实记下）。**
 """
 import argparse
 import os
+import re
 import subprocess
 import sys
 
@@ -68,6 +88,75 @@ for _raw, _want in [
 #: **幂等**：归一化两次必须与一次相同
 assert norm_rel(norm_rel("./a//b/")) == "a/b"
 print("形态归一化自检：4 个已知答案 + 幂等，全过")
+
+
+# ── 「第 N 例真的存在」：两支形态，各带当场自检 ──────────────────────────
+#: **为什么是两支**：2026-10-07 实测 `selftest-meta.sh` 真跑「通过 51」，
+#: 而只认执行器形态的探针只数出 **47**——漏掉的 12/16/19/20 是
+#: **手写内联块**（自己 `echo "  ✓ N) …"` 再 `PASS=$((PASS+1))`）。
+#: **这不是假设，是当场量出来的差**。
+CASE_HELPER_RE = re.compile(r'^\s*run_(?:file_)?(?:fail_|pass_)?case\s+"?(\d+)\)')
+CASE_INLINE_RE = re.compile(r'^\s*(?:echo|printf)\b.*?[✓✗]\s(\d+)\)')
+#: **注释里的例号**：`#   50) 能抓：…` 这种形态在 `selftest-meta.sh` 里有 22 行。
+COMMENT_NUM_RE = re.compile(r'(?:^#\s*|\s)(\d+)\)')
+
+#: **当场自检（纪律 355：一个函数 + 已知答案，不许「两份各写一遍」）**。
+#: 逐字照抄真实文件里的行；`\` 在行尾是 shell 续行。
+for _txt, _want in [
+    ('run_file_case "50) 闸脚本 docstring 自称的闸号被改错" \\', 50),
+    ('run_file_pass_case "51) 只改说明、闸号不动" \\', 51),
+    ('run_fail_case "6) 标题的闸数与表行数差 1" "道闸"，清单表却有" \\', 6),
+    ('run_pass_case "9) 索引里的「标题（提示）」形态（必须不报）" \\', 9),
+]:
+    _m = CASE_HELPER_RE.match(_txt)
+    assert _m and int(_m.group(1)) == _want, ("执行器形态自检失败", _txt, _m)
+for _txt, _want in [
+    ('    echo "  ✓ 16) 模式非法：闸门正确报出 [判据执行异常]"; PASS=$((PASS+1))', 16),
+    ('    echo "  ✗ 20) 去掉首页豁免后仍报通过"; FAIL=$((FAIL+1))', 20),
+]:
+    _m = CASE_INLINE_RE.match(_txt)
+    assert _m and int(_m.group(1)) == _want, ("内联形态自检失败", _txt, _m)
+#: **反向自检（这一条才是本函数存在的理由）**：
+#: 注释行**不许**被两支形态认领，裸数字也不许——
+#: **Batch 320 栽的 `grep -q "^50)"` 是恒假**（用例行以 `run_file_case` 开头），
+#: **而它的反面 `grep -q "50)"` 是恒真**（撞上头部注释那 22 行）。
+#: **两种直觉写法一假一真，方向相反，而「都报绿」这个后果一样。**
+assert not CASE_HELPER_RE.match("#   50) 能抓：把闸清单表的第 9、10 两行对调")
+assert not CASE_INLINE_RE.match("#  12) 能抓：把被引用的那句「运行时实证」改掉")
+assert COMMENT_NUM_RE.search("#   50) 能抓：把闸清单表的第 9、10 两行对调")
+print("用例定位自检：执行器 4 个 + 内联 2 个 + 注释反向 3 个，全过")
+
+
+def find_case(path, n):
+    """第 `n` 例在这个驱动里到底怎么出现的。
+
+    返回 `(状态, 说明)`，状态 ∈ `{"ok", "missing", "unreadable"}`：
+      · `ok`         = 在**可执行行**里找到了
+      · `missing`    = 没有（**并区分「只在注释里」**——那是最容易骗过人的一种）
+      · `unreadable` = **读不出来**（文件不在 / 打不开）
+
+    **后两个必须分开**：纪律 101 说解析器退化的表现必须是「未能核对」而不是
+    「不一致」——**一次形态错会把真信号淹掉**。
+    """
+    try:
+        with open(path, encoding="utf-8", errors="replace") as fh:
+            lines = fh.read().split("\n")
+    except OSError as e:
+        return "unreadable", "打不开：%s" % e
+    saw_comment = False
+    for line in lines:
+        if line.lstrip().startswith("#"):
+            m = COMMENT_NUM_RE.search(line)
+            if m and int(m.group(1)) == n:
+                saw_comment = True
+            continue
+        m = CASE_HELPER_RE.match(line) or CASE_INLINE_RE.match(line)
+        if m and int(m.group(1)) == n:
+            how = "执行器形态" if CASE_HELPER_RE.match(line) else "手写内联块形态"
+            return "ok", how
+    if saw_comment:
+        return "missing", "**只在注释行里出现过**——注释不是执行"
+    return "missing", "可执行行里找不到"
 
 
 def read_list(path):
@@ -111,9 +200,12 @@ def run_gate(out_dir, sub, script):
     return r.returncode, r.stdout + r.stderr
 
 
-def preflight(repo, sub, out, files, wip, run_tables_gate=True):
+def preflight(repo, sub, out, files, wip, run_tables_gate=True, expect_case=()):
     """返回 (问题列表, 信息行列表)。**信息行与问题行必须分开**——
-    2026-10-07 第一版把两者混在一个列表里，于是「说反」的错误没人当场发现。"""
+    2026-10-07 第一版把两者混在一个列表里，于是「说反」的错误没人当场发现。
+
+    `expect_case` 是 `["<相对路径>:<例号>", …]`，每一项去**副本树**里核那一例。
+    """
     problems, notes = [], []
     mine = set(files)
     wip_set = set(wip)
@@ -158,6 +250,20 @@ def preflight(repo, sub, out, files, wip, run_tables_gate=True):
             continue
         if os.path.exists(os.path.join(out, p)):
             problems.append("副本树里出现了同事的**未跟踪**文件 %s —— 叠加写错了" % p)
+
+    # ⑥ 「第 N 例真的存在」——**副本树里查，不是工作区**
+    #    （查工作区就是查「我这批改了没有」，而副本树查的才是「构建跑的那份」）
+    for spec in expect_case:
+        drv, _, num = spec.rpartition(":")
+        n = int(num)
+        state, why = find_case(os.path.join(out, drv), n)
+        if state == "ok":
+            notes.append("反验第 %d 例在副本树里存在（%s）：%s" % (n, drv, why))
+        elif state == "unreadable":
+            problems.append("反验第 %d 例**未能核对**（%s）：%s —— "
+                            "读不出来不等于不存在（纪律 101）" % (n, drv, why))
+        else:
+            problems.append("副本树的 %s 里第 %d 例%s" % (drv, n, why))
 
     # ⑤ 闸 8（表格结构）：0.5 秒，而它在本项目里至少抓到过三处我自己写坏的表格
     if run_tables_gate:
@@ -276,11 +382,62 @@ def self_test():
     p6, _ = preflight(repo, sub, out, files, wip)
     assert not p6, p6
 
+    # ── 反验⑤：「第 N 例真的存在」四支样本 ──────────────────────────
+    #: 夹具刻意照抄 `selftest-meta.sh` 的**两种真实形态**：
+    #: 执行器调用、头部注释里的同名例号、手写内联块。
+    drv_rel = os.path.join(sub, "scripts", "selftest-1.sh")
+    drv_body = (
+        "# 反验 1\n"
+        "#   1) 能抓：把标题数改小 —— **这一行是注释，但它长得跟可执行行一样**\n"
+        "run_fail_case \"1) 能抓：标题数改小\" \"实际 9\" \\\n"
+        "  \"true\"\n"
+        "#   3) 能抓：**这一例只写在注释里**（夹具刻意造的，对应真文件里\n"
+        "#        头部那 22 行 `#   N)` 计划清单）\n"
+        "    echo \"  ✓ 7) 内联块形态也算存在\"; PASS=$((PASS+1))\n"
+    )
+    drv = os.path.join(repo, sub, "scripts", "selftest-1.sh")
+    with open(drv, "w", encoding="utf-8") as fh:
+        fh.write(drv_body)
+    shutil.copyfile(drv, os.path.join(out, sub, "scripts", "selftest-1.sh"))
+
+    # 负样本：执行器形态的第 1 例 + 内联块形态的第 7 例，都必须判「存在」
+    # **它必须同时进 `files`**——夹具是在 commit 之后造的，所以它是未跟踪的，
+    # **而判据①（漏叠加）会当场把它报出来**（第一版就栽在这里）。
+    # **在夹具的设定里它确实就是「本批文件」**，所以放进 `files` 是如实的，
+    # **不是为了让断言过而放宽判据**。
+    files2 = files + [drv_rel]
+    p7, n7 = preflight(repo, sub, out, files2, wip, run_tables_gate=False,
+                       expect_case=["%s:1" % drv_rel, "%s:7" % drv_rel])
+    assert not p7, p7
+    assert any("执行器形态" in x for x in n7), n7
+    assert any("内联块形态" in x for x in n7), n7
+
+    # 正样本⑤：**第 3 例只写在注释里** → 必须点名它，且必须说清「只在注释里」。
+    #: **这是本组判据存在的全部理由**：Batch 320 写的 `grep -q "^50)"` 是恒假，
+    #: 而它的反面 `grep -q "50)"` 是恒真（撞上头部注释那 22 行）——
+    #: **两种直觉写法一假一真，方向相反，而「都报绿」这个后果一样。**
+    p8, _ = preflight(repo, sub, out, files2, wip, run_tables_gate=False,
+                      expect_case=["%s:3" % drv_rel])
+    assert len(p8) == 1 and "第 3 例" in p8[0] and "只在注释行里" in p8[0], p8
+
+    # 正样本⑥：例号根本不存在 → 报「可执行行里找不到」
+    p9, _ = preflight(repo, sub, out, files2, wip, run_tables_gate=False,
+                      expect_case=["%s:99" % drv_rel])
+    assert len(p9) == 1 and "可执行行里找不到" in p9[0], p9
+
+    # 正样本⑦：驱动文件不在副本树里 → **必须报「未能核对」而不是「不存在」**
+    #: （纪律 101：解析器退化的表现是 rc=2「未能核对」，不是 rc=1「不一致」）
+    p10, _ = preflight(repo, sub, out, files2, wip, run_tables_gate=False,
+                       expect_case=["%s:1" % os.path.join(sub, "scripts", "没有这个.sh")])
+    assert len(p10) == 1 and "未能核对" in p10[0], p10
+
     shutil.rmtree(base, ignore_errors=True)
-    print("自测 6 个样本全过：负样本 0 问题（且 ` M` 的 WIP 在副本树里**不**误报）；"
+    print("自测 10 个样本全过：负样本 0 问题（且 ` M` 的 WIP 在副本树里**不**误报）；"
           "正样本①漏叠加、正样本②名单漏了 WIP、"
           "正样本③名单过期（走 notes 不走 problems）、"
-          "正样本④副本树混进未跟踪文件（抓得到，且拿掉就恢复 0 问题）")
+          "正样本④副本树混进未跟踪文件（抓得到，且拿掉就恢复 0 问题）、"
+          "⑤例号只在注释里（恒真的反面）、⑥例号根本不存在、"
+          "⑦驱动读不出来（报未能核对而非不存在）")
 
 
 def main():
@@ -291,6 +448,11 @@ def main():
     ap.add_argument("--files", help="一行一个相对路径：本批要叠加的文件")
     ap.add_argument("--wip", help="一行一个相对路径：同事的未提交 WIP（显式排除）")
     ap.add_argument("--no-gate", action="store_true", help="不跑闸 8")
+    ap.add_argument("--expect-case", action="append", default=[],
+                    metavar="驱动:例号",
+                    help="在副本树里核「第 N 例真的存在」，可重复。"
+                         "**两支形态都认**（执行器 / 手写内联块），"
+                         "**且注释行不算存在**")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
 
@@ -301,7 +463,8 @@ def main():
         ap.error("需要 --out --files --wip（或用 --self-test）")
 
     problems, notes = preflight(a.repo, a.sub, a.out, read_list(a.files),
-                                read_list(a.wip), run_tables_gate=not a.no_gate)
+                                read_list(a.wip), run_tables_gate=not a.no_gate,
+                                expect_case=a.expect_case)
     for n in notes:
         print("  ℹ " + n)
     for p in problems:
