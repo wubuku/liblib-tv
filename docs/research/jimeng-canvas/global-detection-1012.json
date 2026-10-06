@@ -1,7 +1,7 @@
 {
  "generated_by": "jimeng_probe1012_global_detection.py",
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐ **门在十批真实历史里、在全局口径上开口过几次**",
- "scope": "⭐ 本批扩到全部 187 个目标变量（1010/1011 只量了 1 个）",
+ "scope": "⭐ 本批扩到全部 191 个目标变量（1010/1011 只量了 1 个）",
  "pairs": [
   {
    "from": "1001",
@@ -88,7 +88,7 @@
    "rate": 0.0
   },
   "other": {
-   "n_vars": 186,
+   "n_vars": 190,
    "touched": 4,
    "vanished": 1,
    "rate": 0.25

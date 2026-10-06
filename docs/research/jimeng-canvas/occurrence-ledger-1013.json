@@ -1,7 +1,7 @@
 {
  "generated_by": "jimeng_probe1013_occurrence_ledger.py",
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐ **1012 的处方「把追加登记成账」跑起来会不会自己变成噪声源**",
- "scope": "⭐ 全部 188 个目标变量、11 对快照",
+ "scope": "⭐ 全部 191 个目标变量、11 对快照",
  "fingerprint_2013": {
   "n_commits": 12,
   "commits": [
@@ -803,5 +803,7 @@
   }
  ],
  "retired": [],
+ "retired_computed": true,
+ "retired_n": 0,
  "retired_note": "⭐⭐⭐⭐⭐⭐⭐⭐ **纯历史账本的 `retired` 恒为空 —— 这正是 P6 的内容：全量重算把「清单会过期」换成了「历史被截断」，而后者由 `fingerprint_2013` 的 sha 兜底**"
 }

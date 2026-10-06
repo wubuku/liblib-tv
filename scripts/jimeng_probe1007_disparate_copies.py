@@ -413,8 +413,13 @@ for a, vs in sorted(clean["inconsistent"].items()):
                      "len_anchor": len(a)})
 GOLDEN.parent.mkdir(parents=True, exist_ok=True)
 with open(GOLDEN, "w", encoding="utf-8") as f:
-    json.dump({"generated_by": "jimeng_probe1007_disparate_copies.py "
-                               "（写它的仪器就是读它的那个）",
+    # ⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **1015 修的：这一行原来把散文粘在了 `generated_by` 后面 ——
+    #   「（写它的仪器就是读它的那个）」 ⇒ ⇒ 而 1015 按这个字段反查探针时
+    #   ⇒ ⇒ ⇒ 拼出来的路径不存在 ⇒ ⇒ ⇒ ⇒ 这本 golden 被**静默**排除在普查之外
+    #   ⇒ ⇒ ⇒ ⇒ ⇒ 而套件照样报 all-green ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+    #   **⇒ ⇒ ⇒ 散文可以待在散文字段里，但渗进标识符字段会让机器那一侧静默失联**
+    #   ⇒ ⇒ ⇒ ⇒ ⇒ 处置：`generated_by` 只放纯文件名，散文挪进 `note`
+    json.dump({"generated_by": "jimeng_probe1007_disparate_copies.py",
                "note": "⭐⭐⭐⭐⭐ **干净词表下「同一条句子在多个副本里提到谁不一致」的**"
                        "逐条**清单**",
                "n_rows": len(rows), "rows": rows},

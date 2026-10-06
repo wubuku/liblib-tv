@@ -374,8 +374,11 @@ out["P5_hold_1008"] = bool(len(_added) > 0 and len(_synth["rows"]) == len(_G["ro
 GOLDEN1008 = ROOT / "docs/research/jimeng-canvas/golden-freshness-1008.json"
 with io.open(GOLDEN1008, "w", encoding="utf-8") as f:
     json.dump({
-        "generated_by": "jimeng_probe1008_golden_freshness.py "
-                        "（写它的仪器就是读它的那个）",
+        # ⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **1015 修的：散文粘在 `generated_by` 后面 ⇒ ⇒ 而
+        #   1015 按这个字段反查探针时拼出的路径不存在 ⇒ ⇒ ⇒ 这本账被静默排除
+        #   ⇒ ⇒ ⇒ ⇒ 而那本账正是 1013 的 P3 里「当前用不上」的那本 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+        #   **⇒ ⇒ ⇒ ⇒ 「当前用不上」和「机器已经联系不上」是两件事、不许混为一谈**
+        "generated_by": "jimeng_probe1008_golden_freshness.py",
         "note": "⭐⭐⭐⭐⭐ **「哪份清单在哪个宇宙上还准」的逐条记录 —— "
                 "而它记录的是**账龄**、不是「过没过」**",
         "rows": [{"snapshot": r["snapshot"], "n_golden": len(_G["rows"]),

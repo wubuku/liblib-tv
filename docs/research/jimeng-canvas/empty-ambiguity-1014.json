@@ -3,21 +3,14 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census": {
-  "n_goldens": 8,
+  "n_goldens": 9,
   "n_excluded_self": 1,
-  "n_empty_list": 11,
+  "n_empty_list": 14,
   "n_empty_null": 1,
-  "n_self_provable": 11,
-  "n_ambiguous": 1
+  "n_self_provable": 9,
+  "n_ambiguous": 6
  },
  "rows": [
-  {
-   "golden": "change-locality-1011.json",
-   "path": "/per_text/[4]/class_1005",
-   "kind": "null",
-   "self_provable": true,
-   "invariant": "class_1005 is None ⟺ in_1005_zero_coupling_golden == False"
-  },
   {
    "golden": "global-detection-1012.json",
    "path": "/gate_cross_check/gate_baseline_missing",
@@ -68,6 +61,41 @@
    "invariant": "baseline_out_of_scope == len(baseline_out_of_scope_vars)"
   },
   {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/discovery/unlinked",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/rounds/[1]/drifted",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/diff_shape/drifted_books",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/diff_shape/paths_touched",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/empty_list_invariants/tail_is_empty_iff_probe_printed_nothing",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "stem-attribution-1007.json",
    "path": "/rows/[2]/triggers",
    "kind": "list",
@@ -76,21 +104,14 @@
   },
   {
    "golden": "stem-attribution-1007.json",
-   "path": "/rows/[3]/triggers",
+   "path": "/rows/[4]/triggers",
    "kind": "list",
    "self_provable": true,
    "invariant": "triggers == [] ⟺ about_self == False"
   },
   {
    "golden": "stem-attribution-1007.json",
-   "path": "/rows/[6]/triggers",
-   "kind": "list",
-   "self_provable": true,
-   "invariant": "triggers == [] ⟺ about_self == False"
-  },
-  {
-   "golden": "stem-attribution-1007.json",
-   "path": "/rows/[7]/triggers",
+   "path": "/rows/[5]/triggers",
    "kind": "list",
    "self_provable": true,
    "invariant": "triggers == [] ⟺ about_self == False"
@@ -101,6 +122,41 @@
    "golden": "occurrence-ledger-1013.json",
    "path": "/retired",
    "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/discovery/unlinked",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/rounds/[1]/drifted",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/diff_shape/drifted_books",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/diff_shape/paths_touched",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/empty_list_invariants/tail_is_empty_iff_probe_printed_nothing",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   }

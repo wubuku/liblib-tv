@@ -1,7 +1,7 @@
 {
- "generated_by": "jimeng_probe1007_disparate_copies.py （写它的仪器就是读它的那个）",
+ "generated_by": "jimeng_probe1007_disparate_copies.py",
  "note": "⭐⭐⭐⭐⭐ **干净词表下「同一条句子在多个副本里提到谁不一致」的**逐条**清单**",
- "n_rows": 9,
+ "n_rows": 7,
  "rows": [
   {
    "anchor": "elementFromPoint",
@@ -28,23 +28,6 @@
    "about_self": false,
    "triggers": [],
    "len_anchor": 16
-  },
-  {
-   "anchor": "一个截断的清单和一个全量的清单相比、永远在「变」",
-   "var": "_ausrc",
-   "about_self": false,
-   "triggers": [],
-   "len_anchor": 24
-  },
-  {
-   "anchor": "一个截断的清单和一个全量的清单相比、永远在「变」",
-   "var": "_p1005",
-   "about_self": true,
-   "triggers": [
-    "jimeng_probe1005",
-    "probe1005"
-   ],
-   "len_anchor": 24
   },
   {
    "anchor": "探针**只输出读数**，判读留给基线",

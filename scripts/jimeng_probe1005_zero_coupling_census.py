@@ -201,7 +201,13 @@ out["P2_falsified_1005"] = {
 if "--write-golden" in sys.argv:
     GOLDEN.parent.mkdir(parents=True, exist_ok=True)
     GOLDEN.write_text(json.dumps({
-        "generated_by": "scripts/jimeng_probe1005_zero_coupling_census.py",
+        # ⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **1015 修的：这一行原来带 `scripts/` 前缀 ⇒ ⇒
+        #   而仓里另外 13 本 golden 的 `generated_by` 都是**纯文件名** ⇒ ⇒ ⇒
+        #   ⇒ ⇒ 1015 按 `scripts/<generated_by>` 反查时这一本拼成了
+        #   ⇒ ⇒ ⇒ ⇒ `scripts/scripts/...` ⇒ ⇒ ⇒ ⇒ ⇒ **被静默排除**
+        #   ⇒ ⇒ ⇒ ⇒ ⇒ **字段格式没有约定时，「自动发现」比手写清单更危险** ——
+        #   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 手写清单写错会当场炸，自动发现写错只会安静地少算
+        "generated_by": "jimeng_probe1005_zero_coupling_census.py",
         "n_zero_coupling": cur["n_zero"],
         "n_positive_present": cur["n_positive_present"],
         "n_distinct_keys": cur["n_distinct_keys"],

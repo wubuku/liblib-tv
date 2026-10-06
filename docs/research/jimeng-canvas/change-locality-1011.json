@@ -64,8 +64,8 @@
     "1008->1009"
    ],
    "is_billing_declaration": false,
-   "in_1005_zero_coupling_golden": false,
-   "class_1005": null
+   "in_1005_zero_coupling_golden": true,
+   "class_1005": "P-散文/片段"
   },
   {
    "anchor": "作废",
@@ -118,12 +118,12 @@
   "n_predicted_zero_coupling_by_1004_formula": 43
  },
  "cross_with_1005": {
-  "n_intersection": 7,
+  "n_intersection": 8,
   "n_universe_touched": 8,
-  "rate": 0.875,
-  "n_rows_1005": 690,
-  "n_distinct_texts_1005": 658,
-  "base_rate_1005": 0.1195,
+  "rate": 1.0,
+  "n_rows_1005": 796,
+  "n_distinct_texts_1005": 754,
+  "base_rate_1005": 0.1261,
   "note": "⭐⭐⭐⭐⭐ **样本只有 8 段、扣掉计费声明后只剩 5 段 ⇒ ⇒ 本批不据此决定路线**"
  }
 }

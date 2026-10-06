@@ -5910,6 +5910,12 @@ def main() -> int:
     #   **⇒ 所以这行读取与门里那条登记必须是同一步**
     p1014 = ROOT / "scripts/jimeng_probe1014_empty_ambiguity.py"
     _p1014 = p1014.read_text(encoding="utf-8") if p1014.exists() else ""
+    # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 判据组 `U993Y.1` 要钉的是**「套件的完备性靠加法验、
+    #   而加法两边不许同源」**
+    #   ⇒ ⇒ 而 1015 自己就是靠一条 `generated_by` 反查来认领 9 本 golden 的
+    #   ⇒ ⇒ ⇒ **⇒ 所以这行读取与门里那条登记必须是同一步**
+    p1015 = ROOT / "scripts/jimeng_probe1015_rerun_reproducibility.py"
+    _p1015 = p1015.read_text(encoding="utf-8") if p1015.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -15114,6 +15120,203 @@ def main() -> int:
           #   **而排除的依据必须是 `generated_by`、不是文件名**
           and '"fix_lands_in_why"' in _p1014
           and '每次运行都会被探针整个重写' in _ausrc)
+
+    # ══ 1015 宇宙冻结点 ══
+    # ⚠️ 同 1006–1014 那条：**1015 报的那些数是在它的 `U993Y` 判据加进去之前测的**
+    #    ⇒ ⇒ 而 1015 多一个自由度：**它是唯一一台会把**别人**的产物整个重写的仪器**
+    #    ⇒ ⇒ ⇒ **⇒ 所以它必须自带快照 + `atexit` 还原 —— 否则「量可复现性」这个动作
+    #    ⇒ ⇒ ⇒ ⇒ 本身就会改掉被量的东西**
+    # ══ U993Y. 批 1015 **把 1014 的 P6 落成代码 —— 然后立刻被 1014 那台普查反过来咬了一口**
+    print("— U993Y. 批 1015 重跑可复现性：9 本 golden 逐本重跑，四态 9/0/0/0；"
+          "否掉「自动发现更安全」与「加法验完备性」，不动点跑了 3 轮")
+    check("U993Y.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：四态 reproduced / drifted / "
+          "crashed / vanished 互斥且穷尽（sum_states 9 == n_books 9），"
+          "而「跑不起来」必须单列** ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ 探针崩了不告诉你数据有没有变，并进任何一态都等于把仪器故障"
+          "报成数据结论** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 沿用 1006 那条：门报红 ≠ 数据错**",
+          '"P1_hold_1015"' in _p1015
+          and 'N_STATES_SUM = N_REPRODUCED + N_DRIFTED + N_CRASHED + N_VANISHED' in _p1015
+          and '"sum_states"' in _p1015
+          and '"P2_hold_1015"' in _p1015
+          and 'if rc != 0:' in _p1015
+          and '"crashed"' in _p1015
+          and '"vanished"' in _p1015
+          and '"p1_states_are_four_and_exhaustive_2015_"' in _ausrc
+          and '并进任何一态都等于把仪器故障报成数据结论' in _ausrc
+          and '门报红 ≠ 数据错' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+          #   **反向门**：**不许把 rc≠0 并进 vanished 那一态** ——
+          #   一旦写成 `if rc != 0 or post is None:` 就再也分不开「崩了」和「没写出来」
+          and 'if rc != 0 or post is None:' not in _p1015)
+
+    check("U993Y.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立（本批最痛的一条）："
+          "第一版按 `generated_by` 自动反查探针，9 本只认领 8 本、静默丢掉 1 本"
+          "（1005 的 `generated_by` 带 `scripts/` 前缀），而它照样报 all-green** ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 「手写清单写错会当场炸、自动发现写错只会安静地少算」** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 处置 = 双通道对账 + 一条「不合规要报错而不是跳过」的反向门**",
+          '"n_unlinked_rejected"' in _p1015
+          and '"channel_a_goldens"' in _p1015
+          and '"channel_b_probes"' in _p1015
+          and '"probes_without_golden"' in _p1015
+          and 'if "/" in _gb or not _gb.endswith(".py") or _gb not in _PROBES:' in _p1015
+          and '"P2_hold_1015"' in _p1015
+          and '"p2_discovery_must_not_be_silent_2015_"' in _ausrc
+          and '手写清单写错会当场炸' in _ausrc
+          and '自动发现写错只会安静地少算' in _ausrc
+          and '不合规要报错而不是被跳过' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+          #   **反向门**：**发现失败必须报错、不许被跳过** ——
+          #   一旦改成「解析不了就当它没有」，1015 第一版那个 bug 会原样回来
+          and '所以解析不了就跳过' not in _p1015
+          and '所以解析不了就跳过' not in _ausrc)
+
+    check("U993Y.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 / P4 成立：1014 那台普查反过来抓住了"
+          "1015 的产物（`n_goldens` 8 → 9、不可自证空集合 1 → 2，新加那条是 1015 自己的"
+          "`/books/[2]/keys_added`），根因是顺序 —— 每本账都落后它上游一轮** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 处置 = 整轮重跑到零漂移为止，"
+          "并把「跑了几轮才不动点」本身当成读数报出来（实测 3 轮、上限 6）**"
+          "【1015 改写横幅 —— 上面三个读数（`1 → 2`、`实测 3 轮`、`/books/[2]/keys_added`）"
+          "是 1015 那本刚写下时的值，原文一字不删；收敛后的现读数是 `1 → 6`，"
+          "而轮数**刻意不写在这里**（它每次重跑都会变）—— 请读产物 `n_rounds` / `rounds`，"
+          "现不可自证路径里已经没有 `/books/[2]/keys_added` 这条** "
+          "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而漏掉横幅的是这份副本：同一条判据在 audit 侧挂过横幅、"
+          "verifier 侧的人读摘要没挂；且断言体只钉机制（`converged` / `n_rounds` / `max_rounds` / "
+          "`fixed_point_rule` / 退出条件）、不钉读数 ⇒ ⇒ ⇒ ⇒ **所以门不会报红，"
+          "「横幅也会过期」的新形态是「没人忘挂，而是只挂在了副本之一」**",
+          '"converged"' in _p1015
+          and '"n_rounds"' in _p1015
+          and '"max_rounds"' in _p1015
+          and '"fixed_point_rule"' in _p1015
+          and 'for _i in range(1, MAX_ROUNDS + 1):' in _p1015
+          and 'if _d == 0:' in _p1015
+          and 'MAX_ROUNDS = 6' in _p1015
+          and '"P3_hold_1015"' in _p1015
+          and '"P4_hold_1015"' in _p1015
+          and '"p3_fixed_point_exists_2015_"' in _ausrc
+          and '"p4_fixed_point_iteration_2015_"' in _ausrc
+          and '在账本上长得和「没算过」一模一样' in _ausrc
+          and '每本账都落后它上游一轮' in _ausrc
+          and '并把「跑了几轮才不动点」本身当成读数报出来' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+          #   **反向门**：**跑一轮就收工是不行的** ——
+          #   只跑一轮得到的是「上一轮的账」，正好是 P3 那条病
+          and '只跑一轮就够了' not in _p1015
+          and '只跑一轮就够了' not in _ausrc)
+
+    check("U993Y.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 成立：反向用例对四种人工构造分别给出"
+          "drifted（新增键）/ drifted（改已有叶子）/ crashed（rc≠0）/ vanished（产物缺失）"
+          "—— 而我第一版的反向用例是坏的（把 `books` 整个换掉，测到的还是「新增键」）** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 处置 = 挑一个真的存在于该本里的叶子改值，"
+          "并且整条断言外面套 `bool()`（`and` 链返回最后一个操作数，它可能是 list 而不是 bool）**",
+          '"PROBE_1015_FORCED_EXTRA_KEY"' in _p1015
+          and '"modify_value_state"' in _p1015
+          and '"modified_path"' in _p1015
+          and '"old_value"' in _p1015
+          and 'P5_OK = bool(' in _p1015
+          and '"P5_hold_1015"' in _p1015
+          and '"p5_reverse_classifier_is_not_constant_2015_"' in _ausrc
+          and '分类器对四种人工构造分别给出 drifted' in _ausrc
+          and '整个换成一个新列表' in _ausrc
+          and '断言要用 `bool()` 包住' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+          #   **反向门**：**断言不许交给 `and` 链去决定类型** ——
+          #   不套 `bool()` 时 JSON 里 `[]` 和 `false` 长得不一样，恒真的判据就这样混进去
+          and '所以 P5 不用包 bool' not in _p1015
+          and '所以 P5 不用包 bool' not in _ausrc)
+
+    check("U993Y.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 成立、而它是本批踩到的第三个坑："
+          "`jimeng_probe1005_...` 把落仓门控在 `if \"--write-golden\" in sys.argv` 上，"
+          "不带这个 flag 时它 rc=0、打印 DONE、只写 /tmp，仓里的产物一个字节都不动** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 「探针跑成功了」不等于「产物被刷新了」—— "
+          "只能靠重跑后比对字节、或看 mtime 变没变来判，不许看退出码** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以套件统一带 `--write-golden`，并逐本记 `wrote_golden`**",
+          '[PY, "-u", str(probe), "--write-golden"]' in _p1015
+          and 'golden.stat().st_mtime_ns != pre_mtime' in _p1015
+          and '"wrote_golden"' in _p1015
+          and '"n_books_never_wrote_golden"' in _p1015
+          and 'pre_mtime = golden.stat().st_mtime_ns' in _p1015
+          and '"p6_argv_gated_golden_2015_"' in _ausrc
+          and '只写 /tmp' in _ausrc
+          and '仓里的产物一个字节都不动' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+          #   **反向门**：**不许拿退出码当「产物被刷新了」的证据**
+          and '所以看退出码就够了' not in _p1015
+          and '所以看退出码就够了' not in _ausrc)
+
+    check("U993Y.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P7 成立：3 本 golden 的 `generated_by` 相对 HEAD 被修过，"
+          "before/after 逐条从 `git show HEAD:` 取、不靠记忆** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 处置仍然落在生成器里、不落在产物上"
+          "（产物每次都会被重写）；而第一版那批读数（认领 8 / 静默丢 1）也如实登记进 `number_sources`、"
+          "不当作没发生过** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ P8："
+          "判据里手写的数全部有出处，且刻意不把 0/1 放进去（放了门就会放过判据里任何一个 0 或 1）**",
+          '"P7_hold_1015"' in _p1015
+          and '"P6_hold_1015"' in _p1015
+          and '"repaired_generated_by"' in _p1015
+          and '"number_sources"' in _p1015
+          and '"empty_list_invariants"' in _p1015
+          and '"show", "HEAD:%s" % rel' in _p1015
+          and 'rerun-reproducibility-1015.json' in _p1015
+          and '"p7_repaired_generated_by_2015_"' in _ausrc
+          and '"golden_2015_"' in _ausrc
+          and '处置要落在生成器里、不落在产物' in _ausrc
+          and '刻意不把 0/1 放进去' in _ausrc
+          and '第一版（仪器故障期）的读数如实登记' in _p1015
+          and '刻意不把 0 和 1 加进出处表' in _p1015
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+          #   **反向门**：**不许为了让门过而把 0 和 1 塞进出处表** ——
+          #   那是 1006 反过来那条「不许让门看起来比它实际更强」的一个新形态
+          and '所以把 0 和 1 也登记进去' not in _p1015
+          and '所以把 0 和 1 也登记进去' not in _ausrc)
+
+    check("U993Y.7 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P9 成立：整套东西纯离线 —— "
+          "不打开浏览器、不按任何键、连 `mouse.click` 都没有，源站登录态仍然没有** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 源站登录态仍然没有，而本会话一次都没启动过浏览器**",
+          '"offline_2015"' in _ausrc
+          and '"discipline_2015"' in _ausrc
+          and '本批纯离线' in _ausrc
+          and '连 `mouse.click` 都没有' in _ausrc
+          and '完备性用加法验的时候，两边不许同源' in _ausrc
+          and '断言要用 `bool()` 包住' in _ausrc
+          and '「自己验过」不算数' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+          #   **反向门**：**这套套件不许碰浏览器 / 网络** —— 离线性是它唯一的取证前提
+          and 'playwright' not in _p1015
+          and 'sync_playwright' not in _p1015
+          and 'requests.get' not in _p1015
+          #   ⭐⭐⭐⭐⭐⭐ **反向门**：**加法的两边不许同源** ——
+          #   一旦分母也出自这台仪器，完备性就退化成恒真
+          and '所以分母也用它自己数就够了' not in _ausrc)
+
+    check("U993Y.8 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P8 成立、而它是 1014 那台普查主动报上来的："
+          "普查把 1015 自己的产物判成 5 条「不可自证」的空集合 —— 而 1015 明明在产物里"
+          "写了一个 `empty_list_invariants` 块把其中一条钉住了** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 那份不变式是写给人和自己看的，"
+          "普查那台仪器并不读它** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 这是 1013 那条"
+          "「处置要落在生成器里、不落在产物上」的第四个形态：自证不变式必须登记在"
+          "**普查的规则**里，否则它对普查而言不存在**",
+          '"P8_hold_1015"' in _p1015
+          and '"p8_invariants_invisible_to_1014"' in _p1015
+          and '"n_invariants_declared_in_artifact"' in _p1015
+          and '"n_invariables_1014_cannot_see"' in _p1015
+          and '"empty_list_invariants"' in _p1015
+          and 'empty-ambiguity-1014.json' in _p1015
+          and 'def _rows_of_1014' in _p1015
+          and 'r.get("golden") == GOLDEN.name' in _p1015
+          and '"p8_invariants_invisible_to_census_2015_"' in _ausrc
+          and '那份不变式是写给人和自己看的' in _ausrc
+          and '普查那台仪器并不读它' in _ausrc
+          and '自证不变式必须登记在' in _ausrc
+          and '否则它对普查而言不存在' in _ausrc
+          # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+          #   **反向门**：**P8 必须真的量到「差集非零」** —— 只登记一个不变式块就报绿，
+          #   等于把「我写了处置」当成「处置生效了」，而 1008/1013 各栽过一次
+          and 'P8_OK = bool(_AMB_1014) and N_SELF_AMB > 0 and N_INV_INVISIBLE > 0' in _p1015
+          and '所以在产物里写不变式就够了' not in _p1015
+          and '所以在产物里写不变式就够了' not in _ausrc)
+
+
 
 
     print(f"\n{checks - len(failures)}/{checks}")
