@@ -483,7 +483,61 @@ def m_run_gate_silent():
         assert t.count(_OLD_RUN_GATE) == 1, "前提失配：build-site.sh 里那个 `|| rc=$?` 不见了"
         write(p, t.replace(_OLD_RUN_GATE, _NEW_RUN_GATE))
         rc, out = run_in(tmp)
-        record("16 构建出口哑了→必报", rc == 1 and "方向十三" in out, f"rc={rc}")
+        # **Batch 305：断言从 `"方向十三" in out` 收紧成 `"没有把它说出来" in out`。**
+        # 原断言的前缀**方向十三底下有三处 `problems.append`**
+        # （rc=1 / rc=2 / rc=0 三支），而这个注入只弄坏 rc 捕获那一步——
+        # 实测它同时报出 rc=1 与 rc=2 两条，**所以旧断言分不出自己踩的是哪一支**，
+        # 删掉任何一支它照样通过。`没有把它说出来` 这串全闸只出现 1 次
+        # （`verify-selftest-bootable.py:2191`），钉的是 rc=1 那一支。
+        # **顺带量掉一个误判**：我第一版把它收紧成 `"方向十三之四"`，结果**对照也红**——
+        # 因为这个场景根本不是 之四 那一支（它报的是 方向十三 的两支）。
+        # **方向十三之四 是另一处发射点，另配一条用例（`m_silent_rc0_treated_as_pass`）。**
+        record("16 构建出口哑了→必报",
+               rc == 1 and "没有把它说出来" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
+#: `run_gate` 里 Batch 267 加的那道守卫：**rc=0 但一句话都没说 → 判 rc=2**。
+#: **锚点必须改前改后都存在**，所以断言它的出现次数而不是「它在不在」。
+_SILENCE_GUARD = '    if [ -z "${out//[[:space:]]/}" ]; then\n'
+_SILENCE_GUARD_OFF = "    if false; then  # Batch 305 注入：把这道守卫关掉\n"
+
+
+def m_silent_rc0_treated_as_pass():
+    """**能抓（Batch 305 新增）**：方向十三之四（rc=0 却一句话都没说）此前**一条用例都没有**。
+
+    **怎么发现的**：普查闸 18 的 49 处 `problems.append`，方向十三之四
+    **不在任何一条用例的引用范围内**——而逐条读原文后发现方向一/二/二之二/二十一
+    其实都被用例按「它们弄坏什么」覆盖着，**只有 之四 是真空的**。
+    实验坐实：把 之四 那处 `problems.append` 的触发条件换成恒假，
+    `m_run_gate_silent` **照样判通过**（它的断言是 `"方向十三" in out`，
+    而 之四 的消息前缀「方向十三之四」也含这个子串）。
+
+    **注入点为什么是 `build-site.sh` 而不是闸**：之四 那一支问的是
+    **「构建有没有把『rc=0 且零输出』当成通过」**，而这件事发生在 `run_gate` 里。
+    只把它自己的 `problems.append` 关掉是测不出用例的——**要测的是被测行为，不是准备动作**。
+    所以注入把 `run_gate` 的那道守卫换成恒假：**零输出的闸于是被 `ok "$out"` 收下、
+    rc=0**，之四 必须报出来。
+
+    **不能顺带弄坏方向十三**：注入刻意只动那一个 `if` 的条件，
+    `|| rc=$?` 与 rc=1/rc=2 两支原样保留——**否则这条用例会在两处发射点上一起红，
+    而分不清是哪一处被钉住了**。
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "build-site.sh")
+        t = read(p)
+        assert t.count(_SILENCE_GUARD) == 1, \
+            "前提失配：build-site.sh 里那道「零输出」守卫出现 %d 次（期望 1）" % t.count(_SILENCE_GUARD)
+        write(p, t.replace(_SILENCE_GUARD, _SILENCE_GUARD_OFF))
+        after = read(p)
+        assert _SILENCE_GUARD_OFF in after, "前提失配：注入没生效"
+        assert _SILENCE_GUARD not in after, "前提失配：注入把锚点也留下了"
+        rc, out = run_in(tmp)
+        record("55 rc=0 零输出被当通过→必报（方向十三之四）",
+               rc == 1 and "方向十三之四" in out, f"rc={rc}")
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
 
@@ -1779,6 +1833,7 @@ def main():
              m_fixture_anchor_missed, m_no_fixture_triples,
              m_slow_fixture_crashes, m_slow_feature_missing,
              m_run_gate_silent, m_run_gate_reports, m_run_gate_confuses_codes,
+             m_silent_rc0_treated_as_pass,          # **Batch 305 新增**：方向十三之四
              m_shell_unsafe_var, m_shell_safe_var,
              m_deleted_fixture_ref, m_live_fixture_ref_not_reported,
              m_broken_selftest_caught, m_clean_fleet_not_reported,
