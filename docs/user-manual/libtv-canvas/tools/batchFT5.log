@@ -1,0 +1,33 @@
+· === ① 关 TV Director 抽屉 ===
+·    抽屉 {"框":[1024,154,400,640]}
+·    关闭钮落点 [1393,179]
+·    ✅ 断言通过：抽屉上找得到 aria=关闭 的那枚按钮
+·    关掉之后抽屉还在吗：true
+·    ❌ 断言失败：⭐ TV Director 抽屉真的关掉了｜数据 true
+· === ② 选最靠右的图片节点 ===
+·    图片节点 [{"id":"i-sODTbgLUm1","类":"image","框":[835.3671875,329.2188415527344,300.2265625,168.9388427734375]},{"id":"i-9nlG6HdjK2","类":"image","框":[65.0078125,329.2188415527344,300.2265625,168.9388427734375]}]｜选 i-sODTbgLUm1
+·    ✅ 断言通过：i-sODTbgLUm1 中心落点属主就是它自己
+· === ③ 量浮层 + 验没被遮 ===
+·    ⭐ 浮层 {
+ "框": [
+  656,
+  507,
+  658,
+  190
+ ],
+ "壳框": [
+  655,
+  506,
+  660,
+  192
+ ],
+ "壳class": "node-floating-ui nodrag nowheel nopan origin-top transition-[transform,opacity] duration-150 ease-out absolute -bottom-4 left-1/2 z-20 -translate-x-1/2 translate-y-full w-full min-w-[660px] max-w-[660",
+ "全文": "参考 标记 风格 可直接文字生图，或上传图片输入文字指令对图片进行编辑，如：将背景改为雪夜 Lib Image 2.5 Pro 16:9 · 标准画质 · 2K · 1张 15 高级设置 智能引用 AutoLink"
+}
+·    ✅ 断言通过：找得到编辑区浮层（最小命中）
+·    ⭐ 沿浮层取 5 个采样点：[{"x":766,"y":602,"命中类":"text-fg-default wrap-break-word cursor-a","在抽屉内":false},{"x":875,"y":602,"命中类":"text-fg-default wrap-break-word cursor-a","在抽屉内":false},{"x":985,"y":602,"命中类":"text-fg-default wrap-break-word cursor-a","在抽屉内":false},{"x":1095,"y":602,"命中类":"text-fg-default wrap-break-word cursor-a","在抽屉内":false},{"x":1204,"y":602,"命中类":"text-fg-default wrap-break-word cursor-a","在抽屉内":false}]
+·    ❌ 断言失败：⭐ 浮层上 5 个采样点全部没被抽屉遮住｜数据 [{"x":766,"y":602,"命中类":"text-fg-default wrap-break-word cursor-a","在抽屉内":false},{"x":875,"y":602,"命中类":"text-fg-default wrap-break-word cursor-a","在抽屉内":false},{"x":985,"y":602,"命中类":"text-fg-default wrap-break-word cursor-a","在抽屉内":false},{"x":1095,"y":602,"命中类":"text-fg-default wrap-break-word cursor-a","在抽屉内":false},{"x":1204,"y":602,"命中类":"text-fg-default wrap-break-word cursor-a","在抽屉内":false}]
+·    📷 ft5-0-图片编辑区浮层-无抽屉.png｜壳 [655,506,660,192]｜裁剪 {"x":637,"y":488,"width":696,"height":228}
+· 断言统计 {"次数":5,"失败":2}
+
+完成。

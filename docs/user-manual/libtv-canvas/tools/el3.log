@@ -1,0 +1,75 @@
+· 开局坐标偏差：[]
+· 铁律②复核：i-sODTbgLUm1 的安全落点 = [836,335]
+· 点击后选中：["i-sODTbgLUm1"] ✅
+· 
+⭐ i-sODTbgLUm1 卡片内小尺寸可点容器 17 个：
+· 　<DIV> box=[771,381,37,37] 文字="" 光标=crosshair 不透明度=1
+· 　　　非 class 属性：style
+· 　　　svg path：M10 6.5v7M6.5 10h7
+· 　<BUTTON> box=[819,413,40,17] 文字="图生图" 光标=pointer 不透明度=1
+· 　　　非 class 属性：type
+· 　　　svg path：M1.8 16.9A1.1 1.1 0 0 0 2.9 18
+· 　<BUTTON> box=[819,431,48,17] 文字="图片高清" 光标=pointer 不透明度=1
+· 　　　非 class 属性：type
+· 　　　svg path：M16.75 0C18.55 0 20 1.45 20 3.
+· 　<DIV> box=[1093,381,37,37] 文字="" 光标=crosshair 不透明度=1
+· 　　　非 class 属性：style
+· 　　　svg path：M10 6.5v7M6.5 10h7
+· 　<BUTTON> box=[633,500,54,26] 文字="参考" 光标=pointer 不透明度=1
+· 　　　非 class 属性：type
+· 　　　svg path：M8.5 0c.5 0 .9.48.9 1.06V7.6h6
+· 　<BUTTON> box=[691,500,54,26] 文字="标记" 光标=pointer 不透明度=1
+· 　　　非 class 属性：type
+· 　　　svg path：M5.1 0a5.1 5.1 0 0 1 5.1 5.12v
+· 　<BUTTON> box=[749,500,54,26] 文字="风格" 光标=pointer 不透明度=1
+· 　　　非 class 属性：type
+· 　　　svg path：M4.89258 0.218709C5.39592 -0.0
+· 　<BUTTON> box=[1008,638,32,32] 文字="" 光标=pointer 不透明度=1
+· 　　　非 class 属性：type,aria-label,data-feature-id
+· 　　　svg path：M5.12 7.8c.74 0 1.34.59 1.34 1
+· 　<SPAN> box=[1012,642,24,24] 文字="" 光标=pointer 不透明度=1
+· 　　　非 class 属性：（无）
+· 　　　svg path：M5.12 7.8c.74 0 1.34.59 1.34 1
+· 　<BUTTON> box=[1044,638,32,32] 文字="" 光标=pointer 不透明度=1
+· 　　　非 class 属性：type
+· 　　　svg path：（无 path）
+· 　<SPAN> box=[1052,646,16,16] 文字="" 光标=pointer 不透明度=1
+· 　　　非 class 属性：style
+· 　　　svg path：（无 path）
+· 　<BUTTON> box=[1119,638,32,32] 文字="" 光标=pointer 不透明度=1
+· 　　　非 class 属性：type,data-practice-generator-lock
+· 　　　svg path：M15.52 7.2c.16 0 .31.1.37.26l3
+· 　<BUTTON> box=[1159,638,32,32] 文字="" 光标=pointer 不透明度=1
+· 　　　非 class 属性：type,data-practice-generator-lock,aria-disabled
+· 　　　svg path：M14 17H5M19 7h-9
+· 　<BUTTON> box=[1239,638,32,32] 文字="" 光标=not-allowed 不透明度=0.5
+· 　　　非 class 属性：type,disabled,data-quick-guide-anchor,data-practice-anchor
+· 　　　svg path：M8.3.3a1 1 0 0 1 1.4 0l8 8a1 1
+· 　<SPAN> box=[1225,711,38,20] 文字="" 光标=default 不透明度=1
+· 　　　非 class 属性：data-label-position,data-without-labels,aria-hidden,style
+· 　　　svg path：（无 path）
+· 　<SPAN> box=[1247,714,14,14] 文字="" 光标=default 不透明度=1
+· 　　　非 class 属性：data-reduce-motion,style
+· 　　　svg path：（无 path）
+· 　<BUTTON> box=[1243,496,28,28] 文字="" 光标=pointer 不透明度=1
+· 　　　非 class 属性：type
+· 　　　svg path：M1.4 8.9c.22 0 .4.18.4.4v5.54l
+· 
+⭐ 阳性对照目标：文字="图生图" box=[819,413,40,17]
+· 
+　[阳性对照] 悬停 box=[819,413,40,17] → 新出现 0 个：
+· 
+　定位「高级设置滑块」：{"tag":"BUTTON","box":[1159,638,32,32],"svg":"M14 17H5M19 7h-9"}
+· 　定位「展开/收起箭头」：{"tag":"BUTTON","box":[1243,496,28,28],"cls":"bg-panel-background absolute right-2 top-2 z-10 flex size-7 "}
+· 　　滑块 的非 class 属性共 3 个：type="button" data-practice-generator-lock="" aria-disabled="false"
+· 　　箭头 的非 class 属性共 1 个：type="button"
+· 
+　[高级设置滑块] 悬停 box=[1159,638,32,32] → 新出现 0 个：
+· 
+　[展开收起箭头] 悬停 box=[1243,496,28,28] → 新出现 0 个：
+· 
+✅ 每枚都已留下全视口截图 + 近景截图（含阴性）
+· ⏳ 静置 15s 后复核坐标（三铁律③）…
+· ⭐ 收尾坐标偏差：[]
+
+=== 已写 tools/batchEL3.json ===

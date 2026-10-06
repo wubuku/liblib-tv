@@ -1,0 +1,19 @@
+· 开局坐标偏差：[]
+· ⭐ 开态前：内容类型 = circle｜步长 35.0000 画布单位
+·    圆阵相位（画布单位）= [4.2292,-28.4184]｜半径 0.5000
+·    tile 原点（画布单位）= [3.7292,-28.9184]
+· ⭐⭐ 按钮中心 = [222,778]｜框 [208,764,28,28]
+·   层0 <BUTTON class="hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors" aria="网格吸附" pressed="null"> 样式 {"bg":"rgba(0, 0, 0, 0)","color":"rgb(247, 247, 247)","opacity":"1","cursor":"pointer"}
+·   层1 <DIV class="flex items-center gap-1 rounded-xl p-[6px]" aria="null" pressed="null"> 样式 {"bg":"color(srgb 0.0784314 0.0784314 0.0784314 / 0.7)","color":"rgb(247, 247, 247)","opacity":"1","cursor":"auto"}
+·   层2 <DIV class="flex flex-col items-start gap-1" aria="null" pressed="null"> 样式 {"bg":"rgba(0, 0, 0, 0)","color":"rgb(247, 247, 247)","opacity":"1","cursor":"auto"}
+·   层3 <DIV class="fixed bottom-3 z-10 flex items-end gap-2" aria="null" pressed="null"> 样式 {"bg":"rgba(0, 0, 0, 0)","color":"rgb(247, 247, 247)","opacity":"1","cursor":"auto"}
+·   ⭐ 自证落点：move 之前「SPAN||closest按钮=网格吸附」→ move 之后「SPAN||closest按钮=网格吸附」
+· ⭐⭐⭐ 点击后：内容类型 = circle（背景没变）
+·    步长 35.0000 画布单位｜圆阵相位 [4.2292,-28.4184]
+·    逐层对照：
+·     层0：无变化
+·     层1：无变化
+·     层2：无变化
+·     层3：无变化
+· 已拍 fb3-01-网格吸附关.png / fb3-02-网格吸附开.png
+· 收尾核对：[]

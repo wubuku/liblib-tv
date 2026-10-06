@@ -1,0 +1,35 @@
+· 开局坐标偏差：[]
+· ⭐ 气泡框 [541,191,114,27]　卡框 [565,44,285,161]　相对卡 [-24,147]
+· 卡内后代共 104 个（含 0 尺寸）。离气泡最近的 14 个：
+·   深度10 SPAN [565,225,66,26] 66×26 文字"角色库" 光标grab displayblock
+·       cls=
+·   深度11 BUTTON [565,225,66,26] 66×26 文字"角色库" 光标pointer displayflex
+·       cls=flex shrink-0 items-center justify-center gap-0.5 rounded-full px-2 py-1 transit
+·   深度12 SPAN [587,229,36,18] 36×18 文字"角色库" 光标pointer displayblock
+·       cls=whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral
+·   深度8 BUTTON [577,159,60,17] 60×17 文字"首帧生成视频" 光标pointer displayflex
+·       cls=group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center
+·   深度12 svg [573,232,12,12] 12×12 文字"" 光标pointer displayblock
+·       cls=[object SVGAnimatedString]
+·   深度9 SPAN [592,163,39,9] 39×9 文字"首帧生成视频" 光标pointer displayblock
+·       cls=
+·   深度9 svg [582,164,6,6] 6×6 文字"" 光标pointer displayblock
+·       cls=[object SVGAnimatedString]
+·   深度10 path [582,164,6,6] 6×6 文字"" 光标pointer displayinline
+·       cls=[object SVGAnimatedString]
+·   深度8 BUTTON [577,141,66,17] 66×17 文字"首尾帧生成视频" 光标pointer displayflex
+·       cls=group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit items-center
+·   深度10 path [583,146,6,6] 6×6 文字"" 光标pointer displayinline
+·       cls=[object SVGAnimatedString]
+·   深度9 svg [582,146,6,6] 6×6 文字"" 光标pointer displayblock
+·       cls=[object SVGAnimatedString]
+·   深度9 SPAN [592,145,45,9] 45×9 文字"首尾帧生成视频" 光标pointer displayblock
+·       cls=
+·   深度12 svg [643,232,12,12] 12×12 文字"" 光标pointer displayblock
+·       cls=[object SVGAnimatedString]
+·   深度12 SPAN [529,229,24,18] 24×18 文字"特效" 光标pointer displayblock
+·       cls=whitespace-nowrap text-xs leading-normal text-fg-muted canvas-light:text-neutral
+· 已拍 ew8-卡片与气泡.png
+· ⭐⭐ 静置 15s 后坐标复核：[]
+
+=== 已写 tools/batchEW8.json ===

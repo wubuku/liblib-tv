@@ -1,0 +1,44 @@
+· TV Director 浮层 = {"找到浮层":true,"有按钮":true,"中心":[962,725]}
+·    ⭐ 点「知道了」之后浮层还在？ false
+· ⭐⭐ 框选后 .selected = 11
+· —— 诊断落点为什么不合格 ——
+· 已选：["a-GgqvrVz0pw","a-THmbuJXQj4","b-mfkcQNULC3","i-9nlG6HdjK2","i-sODTbgLUm1","n-56F19pXVB4","t-2AK3Ukyxj3","t-UtVx3lZmrV","v-eMpqKtiLlx","v-oZNpH99MtM","v-v2hlWY4Br3"]
+·    a-GgqvrVz0pw 中心 (37,649)：
+·       属主 = null｜有 nodrag = false｜在 selection 里 = false｜在 pane 里 = false
+·       0 <DIV data-id=null selected=false class="absolute inset-0 rounded-lg border-dashed">
+·       1 <DIV data-id=null selected=false class="pointer-events-none absolute z-30">
+·       2 <DIV data-id=null selected=false class="react-flow light">
+·       3 <DIV data-id=null selected=false class="relative h-screen w-screen">
+·       4 <DIV data-id=null selected=false class="relative h-screen w-screen">
+·       5 <DIV data-id=null selected=false class="h-screen w-screen">
+·       6 <DIV data-id=null selected=false class="">
+·       7 <BODY data-id=null selected=false class="antialiased">
+·       8 <HTML data-id=null selected=false class="dark">
+·    a-THmbuJXQj4 中心 (1144,146)：
+·       属主 = null｜有 nodrag = false｜在 selection 里 = false｜在 pane 里 = false
+·       0 <DIV data-id=null selected=false class="absolute inset-0 rounded-lg border-dashed">
+·       1 <DIV data-id=null selected=false class="pointer-events-none absolute z-30">
+·       2 <DIV data-id=null selected=false class="react-flow light">
+·       3 <DIV data-id=null selected=false class="relative h-screen w-screen">
+·       4 <DIV data-id=null selected=false class="relative h-screen w-screen">
+·       5 <DIV data-id=null selected=false class="h-screen w-screen">
+·       6 <DIV data-id=null selected=false class="">
+·       7 <BODY data-id=null selected=false class="antialiased">
+·       8 <HTML data-id=null selected=false class="dark">
+·    b-mfkcQNULC3 中心 (666,155)：
+·       属主 = null｜有 nodrag = false｜在 selection 里 = false｜在 pane 里 = false
+·       0 <DIV data-id=null selected=false class="absolute inset-0 rounded-lg border-dashed">
+·       1 <DIV data-id=null selected=false class="pointer-events-none absolute z-30">
+·       2 <DIV data-id=null selected=false class="react-flow light">
+·       3 <DIV data-id=null selected=false class="relative h-screen w-screen">
+·       4 <DIV data-id=null selected=false class="relative h-screen w-screen">
+·       5 <DIV data-id=null selected=false class="h-screen w-screen">
+·       6 <DIV data-id=null selected=false class="">
+·       7 <BODY data-id=null selected=false class="antialiased">
+·       8 <HTML data-id=null selected=false class="dark">
+·    ⭐ 候选落点共 118 个，合格 0 个
+·    不合格原因分布：{"null|nodrag=false":118}
+·    ⛔ 仍然没有合格落点
+· ⭐⭐ 静置 15s 后坐标复核：[]（全部一致）
+
+=== 已写 tools/batchFD3.json ===

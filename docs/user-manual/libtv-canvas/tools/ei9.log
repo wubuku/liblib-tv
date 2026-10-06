@@ -1,0 +1,8 @@
+· 图片节点 box：[82,317,292,164] / [831,317,292,164]
+· ① 单击 1 个图片 → 选中 ["i-9nlG6HdjK2"]；工具条带：[]
+· ② Shift 加选 → 选中 ["i-9nlG6HdjK2","i-sODTbgLUm1"]；工具条带：[]
+· ③ 角点 Shift 加选 → 选中 ["i-9nlG6HdjK2","i-sODTbgLUm1"]；工具条带：[]
+· ④ 框选 → 选中 ["a-GgqvrVz0pw","a-THmbuJXQj4","i-9nlG6HdjK2","i-sODTbgLUm1","v-eMpqKtiLlx"]（5 个）；工具条带：[{"文字":"","box":[290,91,30,32]},{"文字":"保存到资产","box":[341,91,103,32]},{"文字":"创建副本","box":[452,91,88,32]},{"文字":"打组","box":[561,91,82,32]},{"文字":"","box":[651,91,32,32]},{"文字":"添加到Chat","box":[704,91,104,32]},{"文字":"创建为Skill","box":[815,91,100,32]}]
+· ⑤ 框选态下的下拉：[{"文本":"打组","opacity":"1","cursor":"pointer","disabled":false,"ariaDis":null},{"文本":"合并分镜组","opacity":"0.45","cursor":"not-allowed","disabled":false,"ariaDis":null}]
+
+=== 已写 tools/batchEI9.json ===

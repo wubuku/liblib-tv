@@ -1,0 +1,21 @@
+· === 阶段 1：测试画布 a4ef3de0… 建脚本节点 ===
+· closePromos：[{"模态":false,"文字":"Agent 已升级为 TV Director 全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。 知道了
+·    ✅ 断言通过：测试画布可以进（没被「单画布单编辑者」遮罩挡住）
+·    建之前测试画布上的节点：["a-AElgbCSXvN","a-nSyEzEK8Wm","a-saZRm3Jupl","b-7D0ceXXQ1M","b-C84sIw083h","b-t5FEGbSmXC","i-Ooj7A4NQ8M","i-VcM4Z9uRNi","n-qdZN8YcaJQ","n-uKULXVeHP9","n-WCZVVvyTGd","t-8PvU31NCQI","t-zuYTrSJlKv","v-3gO0c0s7iS","v-8nyi72id00","v-CZogA2Nk43","v-G9EfnBBYUB","v-k2vgxqBYjU","v-Yjz6Y6g4ql"]
+·    「添加节点」按钮落点 [596,773]
+·    「脚本」行 {"文字":"脚本","框":[492,559,206,36],"点":[595,577],"命中文字":"脚本","有箭头":false}
+·    ✅ 断言通过：添加节点面板里找得到「脚本」这一行
+·    ✅ 断言通过：「脚本」行的落点属主就是它自己（没被别的浮层盖住）
+·    脚本子菜单：[{"框":[492,559,206,36],"文字":"脚本 脚本 NEW 脚本（旧版） Beta"},{"框":[698,559,228,86],"文字":"脚本 NEW 脚本（旧版） Beta"},{"框":[706,559,220,86],"文字":"脚本 NEW 脚本（旧版） Beta"}]
+·    ⛔ 脚本子菜单打开时：页面上真实可点的危险按钮 0 枚 []
+·    「脚本 NEW」落点 {"文字":"脚本NEW","点":[816,584],"框":[713,566,206,36]}
+·    建后页面前若干文本 ["项目名称","手册取证画布","工作流","故事板","发布与分享","积分超市","开通会员","限时 45 折","20","avatar","添加节点","移动","素材库","角色造型室","生成历史","快捷键","教程","脚本生成器","尝试：","剧本生成分镜脚本"]
+·    ⛔ 建完是否自动开跑：["积分超市"]
+·    ⛔ 脚本节点建完：页面上真实可点的危险按钮 0 枚 []
+·    建后节点 [{"id":"b-znqkD9onom","框":[721,403,345,345],"类":"react-flow__node react-flow__node-script-v2 nopan selected selectable draggable"},{"id":"a-AElgbCSXvN","框":[307,142,345,345],"类":"react-flow__node react-flow__node-audio nopan selectable draggable"},{"id":"a-nSyEzEK8Wm","框":[626,391,345,345],"类":"react-flow__node react-flow__node-audio nopan selectable draggable"},{"id":"a-saZRm3Jupl","框":[626,391,345,345],"类":"react-flow__node react-flow__node-audio nopan selectable draggable"},{"id":"b-7D0ceXXQ1M","框":[626,367,315,383],"类":"react-flow__node react-flow__node-shot-breakdown nopan selectable draggable"},{"id":"b-C84sIw083h","框":[626,391,315,383],"类":"react-flow__node react-flow__node-shot-breakdown nopan selectable draggable"},{"id":"b-t5FEGbSmXC","框":[307,119,315,383],"类":"react-flow__node react-flow__node-shot-breakdown nopan selectable draggable"},{"id":"i-Ooj7A4NQ8M","框":[307,142,613,345],"类":"react-flow__node react-flow__node-image nopan selectable draggable"},{"id":"i-VcM4Z9uRNi","框":[626,391,613,345],"类":"react-flow__node react-flow__node-image nopan selectable draggable"},{"id":"n-qdZN8YcaJQ","框":[307,107,345,345],"类":"react-flow__node react-flow__node-director-console-3d nopan selectable draggable"},{"id":"n-uKULXVeHP9","框":[626,343,345,345],"类":"react-flow__node react-flow__node-director-console-3d nopan selectable draggable"},{"id":"n-WCZVVvyTGd","框":[626,391,345,345],"类":"react-flow__node react-flow__node-director-console-3d nopan selectable draggable"},{"id":"t-8PvU31NCQI","框":[307,142,345,345],"类":"react-flow__node react-flow__node-text nopan selectable draggable"},{"id":"t-zuYTrSJlKv","框":[626,391,345,345],"类":"react-flow__node react-flow__node-text nopan selectable draggable"},{"id":"v-3gO0c0s7iS","框":[626,391,613,345],"类":"react-flow__node react-flow__node-video nopan selectable draggable"},{"id":"v-8nyi72id00","框":[449,225,613,345],"类":"react-flow__node react-flow__node-video nopan selectable draggable"},{"id":"v-CZogA2Nk43","框":[307,83,345,345],"类":"react-flow__node react-flow__node-video-clip nopan selectable draggable"},{"id":"v-G9EfnBBYUB","框":[626,308,345,345],"类":"react-flow__node react-flow__node-video-clip nopan selectable draggable"},{"id":"v-k2vgxqBYjU","框":[626,391,345,345],"类":"react-flow__node react-flow__node-video-clip nopan selectable draggable"},{"id":"v-Yjz6Y6g4ql","框":[201,36,613,345],"类":"react-flow__node react-flow__node-video nopan selectable draggable"}]
+· === 阶段 2：主画布只读，找智能续写入口 ===
+·    主画布节点 [{"id":"a-GgqvrVz0pw","框":[65,572,169,169]},{"id":"a-THmbuJXQj4","框":[1171,69,169,169]},{"id":"b-mfkcQNULC3","框":[702,69,154,188]},{"id":"i-9nlG6HdjK2","框":[65,329,300,169]},{"id":"i-sODTbgLUm1","框":[835,329,300,169]},{"id":"n-56F19pXVB4","框":[928,69,169,169]},{"id":"t-2AK3Ukyxj3","框":[308,572,169,169]},{"id":"t-UtVx3lZmrV","框":[1206,329,169,169]},{"id":"v-eMpqKtiLlx","框":[465,329,300,169]},{"id":"v-oZNpH99MtM","框":[465,69,169,169]},{"id":"v-v2hlWY4Br3","框":[65,69,300,169]}]
+·    主画布全页（含透明）里带「续写」的文本 []
+· 断言统计 {"次数":3,"失败":0}
+
+完成。

@@ -1,0 +1,37 @@
+· 坐标偏差：[]
+· 
+视口内节点 11 / 共 11
+· 　a-GgqvrVz0pw box=[1214,599,161,161] z=0 dom序=0 视口内
+· 　a-THmbuJXQj4 box=[263,182,161,161] z=0 dom序=1 视口内
+· 　b-mfkcQNULC3 box=[1176,44,147,178] z=0 dom序=2 视口内
+· 　i-9nlG6HdjK2 box=[76,319,285,161] z=0 dom序=3 视口内
+· 　i-sODTbgLUm1 box=[808,319,285,161] z=0 dom序=4 视口内
+· 　n-56F19pXVB4 box=[323,77,161,161] z=0 dom序=5 视口内
+· 　t-2AK3Ukyxj3 box=[208,605,161,161] z=0 dom序=6 视口内
+· 　t-UtVx3lZmrV box=[1160,319,161,161] z=0 dom序=7 视口内
+· 　v-eMpqKtiLlx box=[65,319,285,161] z=0 dom序=8 视口内
+· 　v-oZNpH99MtM box=[945,44,161,161] z=0 dom序=9 视口内
+· 　v-v2hlWY4Br3 box=[565,44,285,161] z=0 dom序=10 视口内
+· 
+⭐ 图片节点 i-9nlG6HdjK2 视口框 [76,319,285,161]，7×7 落点归属（行=上→下，列=左→右）：
+· 　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         
+· 　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         
+· 　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         
+· 　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         
+· 　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         
+· 　v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  v-eMpqKtiLlx  (非节点)         
+· 　a-THmbuJXQj4  (非节点)         (非节点)         v-eMpqKtiLlx  (非节点)         (非节点)         (非节点)         
+· 
+⭐ 图片节点 i-sODTbgLUm1 视口框 [808,319,285,161]，7×7 落点归属：
+· 　自己            自己            自己            自己            自己            自己            (非节点)         
+· 　自己            自己            自己            自己            自己            自己            (非节点)         
+· 　自己            自己            自己            自己            自己            自己            (非节点)         
+· 　自己            自己            自己            自己            自己            自己            (非节点)         
+· 　自己            自己            自己            自己            自己            自己            (非节点)         
+· 　自己            自己            自己            自己            自己            自己            (非节点)         
+· 　(非节点)         (非节点)         (非节点)         自己            (非节点)         (非节点)         (非节点)         
+· 
+✅ 只读诊断，未点击任何节点
+· ⭐ 收尾坐标偏差：[]
+
+=== 已写 tools/batchEL2.json ===

@@ -1,0 +1,89 @@
+·    视频节点候选（按重叠数升序）：[{"id":"v-v2hlWY4Br3","类":"video","框":[65.0078125,68.57038116455078,300.2265625,168.93881225585938],"重叠数":0},{"id":"v-eMpqKtiLlx","类":"video","框":[464.6640625,329.2188415527344,300.2265625,168.9388427734375],"重叠数":1}]
+·    ✅ 断言通过：画布上有 video 节点
+·    ⭐ 选重叠最少的：v-v2hlWY4Br3 框 [65,69,300,169] 与 0 个节点相交
+· === ① 悬浮视频节点，找工具条 ===
+·    悬浮前全页可点元素 68 个
+·    悬浮后全页可点元素 68 个（基线 68，没变）
+·    ⭐ 节点外的可点元素 39 枚
+·    [0] {"文字":"画布 2","featureId":"","框":[165,8,69,32],"父类":"flex items-center gap-1 transition-colors h-8 rounded-lg p-0 border-hair border-(--topnav-","父父类":"duration-250 flex items-center gap-1 transition-all ease-in-out"}
+·    [1] {"文字":"工作流","featureId":"","框":[244,8,32,32],"父类":"flex items-center border-[0.5px] border-[var(--seg-control-border)] h-8 gap-0 rounded-lg p","父父类":"pointer-events-auto shrink-0"}
+·    [2] {"文字":"故事板","featureId":"","框":[276,8,32,32],"父类":"flex items-center border-[0.5px] border-[var(--seg-control-border)] h-8 gap-0 rounded-lg p","父父类":"pointer-events-auto shrink-0"}
+·    [3] {"文字":"发布与分享","featureId":"","框":[1087,8,32,32],"父类":"pointer-events-auto flex shrink-0 items-center gap-2","父父类":"pointer-events-none absolute left-0 right-0 z-40 flex items-center justify-between"}
+·    [4] {"文字":"积分超市","featureId":"","框":[1127,8,32,32],"父类":"mantine-visible-from-md","父父类":"b640:gap-2 gap-2 text-[12px] m_4081bf90 mantine-Group-root"}
+·    [5] {"文字":"20","featureId":"","框":[1334,8,58,32],"父类":"flex items-center gap-2 mantine-visible-from-md","父父类":"b640:gap-2 gap-2 text-[12px] m_4081bf90 mantine-Group-root"}
+·    [6] {"文字":"添加节点","featureId":"","框":[580,757,32,32],"父类":"b768:bottom-3 border-hair border-(--topnav-btn-border) fixed bottom-[52px] left-1/2 z-20 f","父父类":"relative h-screen w-screen"}
+·    [7] {"文字":"移动","featureId":"","框":[620,757,32,32],"父类":"b768:bottom-3 border-hair border-(--topnav-btn-border) fixed bottom-[52px] left-1/2 z-20 f","父父类":"relative h-screen w-screen"}
+·    [8] {"文字":"素材库","featureId":"","框":[660,757,32,32],"父类":"b768:bottom-3 border-hair border-(--topnav-btn-border) fixed bottom-[52px] left-1/2 z-20 f","父父类":"relative h-screen w-screen"}
+·    [9] {"文字":"角色造型室","featureId":"","框":[700,757,32,32],"父类":"relative","父父类":"b768:bottom-3 border-hair border-(--topnav-btn-border) fixed bottom-[52px] left-1/2 z-20 f"}
+·    [10] {"文字":"生成历史","featureId":"","框":[740,757,32,32],"父类":"b768:bottom-3 border-hair border-(--topnav-btn-border) fixed bottom-[52px] left-1/2 z-20 f","父父类":"relative h-screen w-screen"}
+·    [11] {"文字":"快捷键","featureId":"","框":[789,757,32,32],"父类":"b768:bottom-3 border-hair border-(--topnav-btn-border) fixed bottom-[52px] left-1/2 z-20 f","父父类":"relative h-screen w-screen"}
+·    [12] {"文字":"教程","featureId":"","框":[829,757,32,32],"父类":"b768:bottom-3 border-hair border-(--topnav-btn-border) fixed bottom-[52px] left-1/2 z-20 f","父父类":"relative h-screen w-screen"}
+·    [13] {"文字":"资产管理","featureId":"","框":[14,764,94,28],"父类":"flex items-center gap-1 rounded-xl p-[6px]","父父类":"flex flex-col items-start gap-1"}
+·    [14] {"文字":"整理画布，Option+Shift+F","featureId":"","框":[112,764,28,28],"父类":"flex items-center gap-1 rounded-xl p-[6px]","父父类":"flex flex-col items-start gap-1"}
+·    [15] {"文字":"切换小地图","featureId":"","框":[144,764,28,28],"父类":"relative","父父类":"flex items-center gap-1 rounded-xl p-[6px]"}
+·    [16] {"文字":"隐藏节点连线","featureId":"","框":[176,764,28,28],"父类":"relative","父父类":"flex items-center gap-1 rounded-xl p-[6px]"}
+·    [17] {"文字":"网格吸附","featureId":"","框":[208,764,28,28],"父类":"flex items-center gap-1 rounded-xl p-[6px]","父父类":"flex flex-col items-start gap-1"}
+·    [18] {"文字":"48%","featureId":"","框":[240,764,36,28],"父类":"flex items-center gap-1 rounded-xl p-[6px]","父父类":"flex flex-col items-start gap-1"}
+·    [19] {"文字":"当前已是新对话","featureId":"","框":[1199,165,28,28],"父类":"flex shrink-0 items-center gap-0.5","父父类":"flex w-full min-w-0 items-center justify-between gap-2 pb-3.5 pl-4 pr-4 pt-2.5"}
+·    [20] {"文字":"历史对话","featureId":"","框":[1229,165,28,28],"父类":"flex shrink-0 items-center gap-0.5","父父类":"flex w-full min-w-0 items-center justify-between gap-2 pb-3.5 pl-4 pr-4 pt-2.5"}
+·    [21] {"文字":"新对话无法分享","featureId":"","框":[1259,165,28,28],"父类":"flex shrink-0 items-center gap-0.5","父父类":"flex w-full min-w-0 items-center justify-between gap-2 pb-3.5 pl-4 pr-4 pt-2.5"}
+·    [22] {"文字":"TV Director 全局设置","featureId":"","框":[1289,165,28,28],"父类":"flex shrink-0 items-center gap-0.5","父父类":"flex w-full min-w-0 items-center justify-between gap-2 pb-3.5 pl-4 pr-4 pt-2.5"}
+·    [23] {"文字":"LibTV Plugin","featureId":"","框":[1319,165,28,28],"父类":"flex shrink-0 items-center gap-0.5","父父类":"flex w-full min-w-0 items-center justify-between gap-2 pb-3.5 pl-4 pr-4 pt-2.5"}
+·    [24] {"文字":"停靠到右侧","featureId":"","框":[1349,165,28,28],"父类":"inline-flex","父父类":"flex shrink-0 items-center gap-0.5"}
+·    [25] {"文字":"关闭","featureId":"","框":[1379,165,28,28],"父类":"flex shrink-0 items-center gap-0.5","父父类":"flex w-full min-w-0 items-center justify-between gap-2 pb-3.5 pl-4 pr-4 pt-2.5"}
+·    [26] {"文字":"感知画布开始创作","featureId":"","框":[1041,443,366,39],"父类":"flex w-full flex-col","父父类":"chat-welcome-root flex w-full flex-col items-center gap-5"}
+·    [27] {"文字":"从爆款预设开始剧本原创","featureId":"","框":[1041,482,366,39],"父类":"flex w-full flex-col","父父类":"chat-welcome-root flex w-full flex-col items-center gap-5"}
+·    [28] {"文字":"上传故事来改编","featureId":"","框":[1041,521,366,39],"父类":"flex w-full flex-col","父父类":"chat-welcome-root flex w-full flex-col items-center gap-5"}
+·    [29] {"文字":"批量优化提示词","featureId":"","框":[1041,560,366,39],"父类":"flex w-full flex-col","父父类":"chat-welcome-root flex w-full flex-col items-center gap-5"}
+·    [30] {"文字":"开启","featureId":"","框":[1269,622,26,18],"父类":"box-border flex h-[18px] min-w-0 flex-[1_0_0] items-center gap-3 px-2","父父类":"mb-2 box-border flex h-10 w-full shrink-0 items-center gap-2.5 overflow-hidden rounded-xl "}
+·    [31] {"文字":"关闭浏览器通知提示","featureId":"","框":[1383,619,24,24],"父类":"mb-2 box-border flex h-10 w-full shrink-0 items-center gap-2.5 overflow-hidden rounded-xl ","父父类":"copilotKitInputContainer !px-2"}
+·    [32] {"文字":"添加附件","featureId":"","框":[1042,740,32,32],"父类":"inline-flex","父父类":"copilotKitInputControls min-w-0 items-center"}
+·    [33] {"文字":"全能创作","featureId":"","框":[1077,740,81,32],"父类":"copilotKitInputControls min-w-0 items-center","父父类":"copilotKitInput @container relative z-[1] !mx-0 flex !w-full flex-col gap-2 !px-2 !py-2"}
+·    [34] {"文字":"选择模型","featureId":"","框":[1161,740,32,32],"父类":"inline-flex","父父类":"inline-flex min-w-0"}
+·    [35] {"文字":"Skill","featureId":"","框":[1196,740,32,32],"父类":"inline-flex","父父类":"copilotKitInputControls min-w-0 items-center"}
+·    [36] {"文字":"手动生成","featureId":"","框":[1231,740,32,32],"父类":"inline-flex","父父类":"inline-flex"}
+·    [37] {"文字":"Send","featureId":"","框":[1374,740,32,32],"父类":"copilotKitInputControls min-w-0 items-center","父父类":"copilotKitInput @container relative z-[1] !mx-0 flex !w-full flex-col gap-2 !px-2 !py-2"}
+·    [38] {"文字":"取消ESC","featureId":"","框":[730,9,64,16],"父类":"relative ml-1 inline-flex","父父类":"flex items-center gap-2 rounded-b-xl border px-3 py-1.5 text-white shadow-md pointer-event"}
+·    ⭐ 工具条浮层候选：[
+ {
+  "框": [
+   571,
+   748,
+   299,
+   50
+  ],
+  "z": "20",
+  "class": "b768:bottom-3 border-hair border-(--topnav-btn-border) fixed bottom-[52px] left-1/2 z-20 flex flex-row items-center gap-",
+  "按钮数": 7,
+  "文字": ""
+ },
+ {
+  "框": [
+   8,
+   758,
+   274,
+   40
+  ],
+  "z": "10",
+  "class": "fixed bottom-3 z-10 flex items-end gap-2",
+  "按钮数": 6,
+  "文字": "资产管理 48%"
+ },
+ {
+  "框": [
+   1033,
+   659,
+   382,
+   122
+  ],
+  "z": "1",
+  "class": "copilotKitInput @container relative z-[1] !mx-0 flex !w-full flex-col gap-2 !px-2 !py-2",
+  "按钮数": 6,
+  "文字": " 全能创作"
+ }
+]
+·    ⛔ 悬浮后：危险按钮 0 枚 []
+·    📷 fr3-0-视频节点悬浮全景.png
+· 断言统计 {"次数":1,"失败":0}
+
+完成。

@@ -1,0 +1,54 @@
+· 两枚下拉触发器：["Lib Image 2.5 Pro","16:9 · 标准画质 · 2K · 1张"]
+· 
+———— 模型下拉：每行的样式读数 ————
+· 读到 57 行
+· ⭐ 按 background-color 分组：
+· 　rgba(255, 255, 255, 0.15) → 1 行：["Lib Image 2.5 Pro 30s 精准生成"]
+· 　rgba(0, 0, 0, 0) → 56 行：["Lib Image 2.5 Pro 30s 精准生成","Lib Image 2.5 Pro 30s 精准生成","Lib Image 2.5 Fast 20s 极速高","Lib Image 2.5 Fast 20s 极速高","Lib Image 2.5 Fast 20s 极速高","Lib Image 60s 最新图片模型、长文本能力","Lib Image 60s 最新图片模型、长文本能力","Lib Image 60s 最新图片模型、长文本能力","General image Pro 50s 最强图片","General image Pro 50s 最强图片","General image Pro 50s 最强图片","General image V2 25s 支持联网搜","General image V2 25s 支持联网搜","General image V2 25s 支持联网搜","Seedream 5.0 Pro 20s 精准交互式","Seedream 5.0 Pro 20s 精准交互式","Seedream 5.0 Pro 20s 精准交互式","Genesis F.3 30s 角色稳定一致，支持局","Genesis F.3 30s 角色稳定一致，支持局","Genesis F.3 30s 角色稳定一致，支持局","Qwen image 3.0 上新 60s 擅长复杂","Qwen image 3.0 上新 60s 擅长复杂","Qwen image 3.0 上新 60s 擅长复杂","Style Image V8.2 50s 电影感全面","Style Image V8.2 50s 电影感全面","Style Image V8.2 50s 电影感全面","Style Image V8.1 50s 生图更连贯","Style Image V8.1 50s 生图更连贯","Style Image V8.1 50s 生图更连贯","Style Image V7 50s 最佳美学，电影","Style Image V7 50s 最佳美学，电影","Style Image V7 50s 最佳美学，电影","Style Image Niji 7 50s 动漫高","Style Image Niji 7 50s 动漫高","Style Image Niji 7 50s 动漫高","Seedream 4.6 20s 提升人像一致性、平","Seedream 4.6 20s 提升人像一致性、平","Seedream 4.6 20s 提升人像一致性、平","Seedream 5.0 Lite 20s 支持联网","Seedream 5.0 Lite 20s 支持联网","Seedream 5.0 Lite 20s 支持联网","Seedream 4.5 限时5折 15s 多角色一","Seedream 4.5 限时5折 15s 多角色一","Seedream 4.5 限时5折 15s 多角色一","Z-image Turbo 10s 极速生成，适合真","Z-image Turbo 10s 极速生成，适合真","Z-image Turbo 10s 极速生成，适合真","Qwen Image 60s Qwen 生图模型，文","Qwen Image 60s Qwen 生图模型，文","Qwen Image 60s Qwen 生图模型，文","Qwen Edit 60s Qwen系编辑模型，精细","Qwen Edit 60s Qwen系编辑模型，精细","Qwen Edit 60s Qwen系编辑模型，精细","Seedream 4.0 15s 极速高质出图，支持","Seedream 4.0 15s 极速高质出图，支持","Seedream 4.0 15s 极速高质出图，支持"]
+· ⭐ 唯一的「异类」组：[["rgba(255, 255, 255, 0.15)",["Lib Image 2.5 Pro 30s 精准生成"]]]
+· ⭐ 触发按钮上的文字是「Lib Image 2.5 Pro」⇒ ✅ 对得上
+· ⭐ 含勾的行：[]
+· ⭐ 有 aria-selected / role=option 的行：[]
+· ⭐ 行高分组：{"36":38,"52":19}
+· ⭐ 图标块数量分组：{"0":38,"1":19}
+· 
+———— 参数面板：逐组逐项的样式读数 ————
+· 面板框 undefined，读到 5 组
+· 　【画质】5 项｜样式种类 2：["rgb(82, 82, 82)|1px|rgba(0, 0, 0, 0)","rgb(255, 255, 255)|1px|rgba(255, 255, 255, 0.1)"]
+· 　　「低画质」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「标准画质」 边框=rgb(255, 255, 255) 1px 背景=rgba(255, 255, 255, 0.1) 样式组#1 ⭐ aria-pressed=— data=（无）
+· 　　「高画质」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「超高画质」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「极致画质」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　【清晰度】3 项｜样式种类 2：["rgb(82, 82, 82)|1px|rgba(0, 0, 0, 0)","rgb(255, 255, 255)|1px|rgba(255, 255, 255, 0.1)"]
+· 　　「1K」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「2K」 边框=rgb(255, 255, 255) 1px 背景=rgba(255, 255, 255, 0.1) 样式组#1 ⭐ aria-pressed=— data=（无）
+· 　　「4K」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　【背景】3 项｜样式种类 2：["rgb(255, 255, 255)|1px|rgba(255, 255, 255, 0.1)","rgb(82, 82, 82)|1px|rgba(0, 0, 0, 0)"]
+· 　　「自动」 边框=rgb(255, 255, 255) 1px 背景=rgba(255, 255, 255, 0.1) 样式组#0  aria-pressed=— data=（无）
+· 　　「保留背景」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#1 ⭐ aria-pressed=— data=（无）
+· 　　「透明背景」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#1 ⭐ aria-pressed=— data=（无）
+· 　【比例】13 项｜样式种类 2：["rgb(82, 82, 82)|1px|rgba(0, 0, 0, 0)","rgb(255, 255, 255)|1px|rgba(255, 255, 255, 0.1)"]
+· 　　「1:1」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「1:2」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「2:1」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「9:16」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「16:9」 边框=rgb(255, 255, 255) 1px 背景=rgba(255, 255, 255, 0.1) 样式组#1 ⭐ aria-pressed=— data=（无）
+· 　　「3:4」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「4:3」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「3:2」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「2:3」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「5:4」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「4:5」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「21:9」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　　「9:21」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#0  aria-pressed=— data=（无）
+· 　【生成数量】3 项｜样式种类 2：["rgb(255, 255, 255)|1px|rgba(255, 255, 255, 0.1)","rgb(82, 82, 82)|1px|rgba(0, 0, 0, 0)"]
+· 　　「1张」 边框=rgb(255, 255, 255) 1px 背景=rgba(255, 255, 255, 0.1) 样式组#0  aria-pressed=— data=data-practice-anchor=gen.params.count
+· 　　「2张」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#1 ⭐ aria-pressed=— data=（无）
+· 　　「4张」 边框=rgb(82, 82, 82) 1px 背景=rgba(0, 0, 0, 0) 样式组#1 ⭐ aria-pressed=— data=（无）
+· 
+✅ 完成（未点任何一项，没有换过模型/参数）
+· ⏳ ⌘0 复位 + 静置 15s（三铁律③）…
+· ⭐ 真的被移动：0 个 []
+
+=== 已写 tools/batchEN2.json ===

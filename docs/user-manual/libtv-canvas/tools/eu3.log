@@ -1,0 +1,23 @@
+· 开局坐标偏差：[]
+· 
+════ ① 当前状态（EU-2 留下的残留）════
+· 　　【当前】底栏 7 枚：
+· 　　<BUTTON> 「资产管理」 aria="资产管理" title=null box=[14,764,94,28] 子数=2 svg数=1 背景=rgba(0, 0, 0, 0)
+· 　　<BUTTON> 「」 aria="整理画布，Option+Shift+F" title=null box=[112,764,28,28] 子数=1 svg数=1 背景=rgba(0, 0, 0, 0)
+· 　　<BUTTON> 「」 aria="切换小地图" title=null box=[144,764,28,28] 子数=1 svg数=1 背景=rgba(0, 0, 0, 0)
+· 　　<BUTTON> 「」 aria="隐藏节点连线" title=null box=[176,764,28,28] 子数=1 svg数=1 背景=rgba(0, 0, 0, 0)
+· 　　<BUTTON> 「」 aria="网格吸附" title=null box=[208,764,28,28] 子数=1 svg数=1 背景=rgba(0, 0, 0, 0)
+· 　　<BUTTON> 「文字生音乐」 aria=null title=null box=[219,736,53,17] 子数=2 svg数=1 背景=rgba(0, 0, 0, 0)
+· 　　<BUTTON> 「46%」 aria="缩放选项" title=null box=[240,764,36,28] 子数=0 svg数=0 背景=rgba(0, 0, 0, 0)
+· 　　⭐ 连线读数：{"共":2,"可见":0,"样本":[{"cls":"[object SVGAnimatedString]","尺寸":[312,0],"描边":"none","不透明":"1","可见性":"visible"},{"cls":"[object SVGAnimatedString]","尺寸":[95,0],"描边":"none","不透明":"1","可见性":"visible"}]}
+· 　　疑似开态的按钮：[]
+· 
+════ ② 反向 A/B：再点一次拿另一态 ════
+· 　　当前开态：[]
+· 　　（当前没有开态按钮，无需再点）
+· 
+✅ 完成（只点纯视图开关，已复原）
+· ⏳ ⌘0 复位 + 静置 15s…
+· ⭐ 真的被移动：0 个 []
+
+=== 已写 tools/batchEU3.json ===

@@ -1,0 +1,27 @@
+· —— 拖之前 ——
+·    节点 11 个：["a-GgqvrVz0pw","a-THmbuJXQj4","b-mfkcQNULC3","i-9nlG6HdjK2","i-sODTbgLUm1","n-56F19pXVB4","t-2AK3Ukyxj3","t-UtVx3lZmrV","v-eMpqKtiLlx","v-oZNpH99MtM","v-v2hlWY4Br3"]
+·    连线 2 条｜句柄 22 个｜面板 ["新对话 让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词 开启浏览器通知，及时获取最新消息"]
+· —— 点选 v-v2hlWY4Br3，从 [215,153] 拖到 [1013,153]（落在 n-56F19pXVB4 正中心）——
+·    ⭐ 起点落点自证：{"属主":"v-v2hlWY4Br3","有nodrag":false,"标签":"DIV"}
+·    点选后 selected = true
+·    ⭐⭐ 悬停在 n-56F19pXVB4 上时：命中属主 null｜靶 outline null
+·       投放类提示浮层：["智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频 批量广告 口播视频 素材混剪","智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频 批量广告 口播视频 素材混剪","智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频 批量广告 口播视频 素材混剪","智能剪辑 4 空空如也，请连接视频节点后操作 尝试： 讲解视频 批量广告 口播视频 素材混剪","空空如也，请连接视频节点后操作 尝试： 讲解视频 批量广告 口播视频 素材混剪","空空如也，请连接视频节点后操作 尝试： 讲解视频 批量广告 口播视频 素材混剪"]
+· —— 松手之后 ——
+·    节点 11 个：["a-GgqvrVz0pw","a-THmbuJXQj4","b-mfkcQNULC3","i-9nlG6HdjK2","i-sODTbgLUm1","n-56F19pXVB4","t-2AK3Ukyxj3","t-UtVx3lZmrV","v-eMpqKtiLlx","v-oZNpH99MtM","v-v2hlWY4Br3"]
+·    连线 2 条｜句柄 22 个
+·    面板 ["新对话 让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词 开启浏览器通知，及时获取最新消息"]
+·    相关工具条 ["生成历史","网格吸附","手动生成"]
+·    ⭐⭐⭐ 节点数 11 → 11｜**新增 []｜消失 []**
+·    ⭐⭐⭐ 连线数 2 → 2｜差 0
+·    ⭐ 移动了 1 个基线节点：[["v-v2hlWY4Br3",[1516,0]]]
+· —— finally：有 1 个节点偏离基线 [{"id":"v-v2hlWY4Br3","d":[1516,0]}] ——
+/Users/yangjiefeng/node_modules/playwright-core/lib/client/jsHandle.js:97
+    throw new Error("Too many arguments. If you need to pass more than 1 argument to the function wrap them in an object.");
+          ^
+
+Error: Too many arguments. If you need to pass more than 1 argument to the function wrap them in an object.
+    at assertMaxArguments (/Users/yangjiefeng/node_modules/playwright-core/lib/client/jsHandle.js:97:11)
+    at Page.evaluate (/Users/yangjiefeng/node_modules/playwright-core/lib/client/page.js:399:44)
+    at file:///Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/libtv-canvas/tools/batchFD5.mjs:167:29
+
+Node.js v22.15.1

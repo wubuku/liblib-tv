@@ -1,0 +1,25 @@
+· zoom = 0.482682｜1 屏px = 2.0718 画布单位
+· —— ① 11 个节点的屏幕框，看有没有互相遮挡 ——
+·    a-GgqvrVz0pw [-49512,1344] → 框 [65,572,169,169]
+·    a-THmbuJXQj4 [-47220,300] → 框 [1171,69,169,169]
+·    b-mfkcQNULC3 [-48192,300] → 框 [702,69,154,188]
+·    i-9nlG6HdjK2 [-49512,840] → 框 [65,329,300,169]
+·    i-sODTbgLUm1 [-47916,840] → 框 [835,329,300,169]
+·    n-56F19pXVB4 [-47724,300] → 框 [928,69,169,169]
+·    t-2AK3Ukyxj3 [-49008,1344] → 框 [308,572,169,169]
+·    t-UtVx3lZmrV [-47148,840] → 框 [1206,329,169,169]
+·    v-eMpqKtiLlx [-48684,840] → 框 [465,329,300,169]
+·    v-oZNpH99MtM [-48684,300] → 框 [465,69,169,169]
+·    v-v2hlWY4Br3 [-49512,300] → 框 [65,69,300,169]
+·    ⭐ 两两重叠 0 对 ⇒ **没有遮挡**，落点好找
+· —— ② 目标节点 t-UtVx3lZmrV ——
+·    开关外链（关）：svg 数 1
+·    <button class="hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors" aria-label="网格吸附" style="width: 28px; height: 28px;"><span class="relative flex items-center justify-center overflow-hidden" style="width: 14px; height…
+·    【关】⛔ 找不到落点
+·    ⭐ 点开关后：svg 数 2｜外链变了？ true
+·    【开】⛔ 找不到落点
+·    ⭐ 点回开关：svg 数 1｜外链与初始一致？ true
+·    【关2】⛔ 找不到落点
+· ⭐⭐ 静置 15s 后坐标复核：[]（全部一致）
+
+=== 已写 tools/batchFC1.json ===

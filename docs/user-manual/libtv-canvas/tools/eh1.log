@@ -1,0 +1,10 @@
+· 开前 网格吸附：{"存在":true,"box":[28,28],"svg数":1,"svg":["iconify iconify--lucide pointer-events-none "],"背景":"rgba(0, 0, 0, 0)"}
+·   对照 隐藏节点连线：{"存在":true,"box":[28,28],"svg数":1,"svg":["iconify iconify--libtv"],"背景":"rgba(0, 0, 0, 0)"}
+· 点了：true → 网格吸附：{"存在":true,"box":[28,28],"svg数":2,"svg":["iconify iconify--lucide pointer-events-none ","absolute inset-0"],"背景":"rgba(0, 0, 0, 0)"}
+· ⭐ 按钮视觉是否变化：✅ 变了
+· ⭐ 阳性对照（隐藏节点连线）点后："按钮不存在"
+·   它的 aria 是否变成了 showNodeEdges：见 aria 读数
+· 复原后 隐藏节点连线：{"存在":true,"box":[28,28],"svg数":1,"svg":["iconify iconify--libtv"],"背景":"rgba(0, 0, 0, 0)"}
+· 点回后 网格吸附：{"存在":true,"box":[28,28],"svg数":1,"svg":["iconify iconify--lucide pointer-events-none "],"背景":"rgba(0, 0, 0, 0)"}
+
+=== 已写 tools/batchEH1.json ===

@@ -1,0 +1,54 @@
+· closePromos：[{"模态":false,"文字":"Agent 已升级为 TV Director 全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。 知道了","按钮":"知道
+· —— ① 角色造型室 ——
+·    ✅ 断言通过：「角色造型室」按钮能打开
+·    全页 dump：127 条
+·    ✅ 断言通过：全页 dump 到的文字数够（≥40），判据没失效
+·    横滚目标：宽 5904px｜scrollWidth 5904｜class absolute left-1/2 top-0 flex h-[434px] w-max will-change-tra
+·    横滚 6 次后累计可见文字 131 条
+·    ⭐ 合并后可见文字 132 条
+· ⭐ characterStudio* 命中率：27 / 747 = 3.6%
+·    ✅ characterStudioTitle = 角色造型室
+·    ✅ characterStudioLibraryTitle = 角色造型室
+·    ✅ characterStudioMyLibrary = 我的角色库
+·    ✅ characterStudioOfficialLibrary = 官方角色库
+·    ✅ characterStudioMultiSelect = 多选
+·    ✅ characterStudioSearchPlaceholder = 搜索角色名称或描述
+·    ✅ characterStudioAddToCanvas = 添加到画布
+·    ✅ characterStudioViewAssets = 查看角色资产
+·    ✅ characterStudioCreateRole = 创建新角色
+·    ✅ characterStudioCharacterList = 角色列表
+·    ✅ characterStudioAgeTeen = 少年
+·    ✅ characterStudioAgeYoung = 青年
+·    ✅ characterStudioAgeMiddle = 中年
+·    ✅ characterStudioAgeSenior = 老年
+·    ✅ characterStudioNeutral = 中性
+·    ✅ characterStudioEastAsia = 东亚
+·    ✅ characterStudioEurope = 欧美
+·    ✅ characterStudioMiddleEast = 中东
+·    ✅ characterStudioAfrica = 非洲
+·    ✅ characterStudioOther = 其他
+·    ✅ characterStudioQuickAgeTip = 生成其他年龄版本
+·    ✅ characterStudioViewModeCarousel = 列表模式
+·    ✅ characterStudioViewModeGrid = 宫格模式
+·    ✅ characterStudioVoiceGenerationHistory = 生成历史
+·    ✅ characterStudioStyleChildren = 儿童
+·    ✅ characterStudioEdit = 编辑角色
+·    ✅ characterStudioMaterialWesternGlam = 欧美
+· —— ② 全量 8189 条对账（只对这一个面板的状态）——
+·    ⭐ 全表命中 135 / 8189 = 1.65%
+· —— ③ 扫「生成历史」——
+·    ✅ 断言通过：「生成历史」dump 到的文字数够（≥12）
+·    可见文字 131 条
+·    ⭐ 生成历史 组命中率：2 / 39
+·       ✅ historyRecords = 生成历史
+·       ✅ historyAssets = 生成历史
+· —— ③ 扫「素材库」——
+·    ✅ 断言通过：「素材库」dump 到的文字数够（≥12）
+·    可见文字 108 条
+·    ⭐ 素材库 组命中率：4 / 230
+·       ✅ assetLibrary = 素材库
+·       ✅ assetManagement = 资产管理
+·       ✅ assetBoardModeWorkflow = 工作流
+·       ✅ assetBoardModeStoryboard = 故事板
+· —— 共跑了 4 条断言，全部通过 ——
+· done

@@ -1,0 +1,11 @@
+· 开局坐标偏差：[]
+· 图A 框 [76,319,285,161]，按 6px 扫了 1296 格
+· ⭐ 命中分布：{"v-eMpqKtiLlx":1250,"i-9nlG6HdjK2":46}
+· ⭐⭐ 真正落在图 A 上的格数：46
+·    x ∈ [352, 358]，y ∈ [320, 476]
+·    这片区域的质心 = [355,398]（点它应该能选中图 A）
+·    该点 elementFromPoint 自证：{"tag":"circle","id":"v-eMpqKtiLlx","cls":"[object SVGAnimatedString]"}
+·    已拍 ez1b-图A被视频节点盖住的现场.png
+· ⭐⭐ 静置 15s 后坐标复核：[]
+
+=== 已写 tools/batchEZ1b.json ===

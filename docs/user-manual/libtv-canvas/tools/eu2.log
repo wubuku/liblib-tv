@@ -1,0 +1,43 @@
+· 开局坐标偏差：[]
+· 
+════ ① 视频节点 ⚙ 里的三个开关（只读形态）════
+· 　平移视频节点：true
+· 　选中 ["v-v2hlWY4Br3"]
+· 　⚙ 中心 [555,485]
+· 　点之前：[{"行高":"0px","高":0,"文字":"高级设置 联网搜索 自动校验素材 智能引用 AutoLink"}]
+· 　点之后：[{"行高":"157px","高":157,"文字":"高级设置 联网搜索 自动校验素材 智能引用 AutoLink"}]
+· 　⭐ 展开判定（grid-template-rows ≠ 0px）= ✅ 已展开
+· 　　联网搜索：DIV.flex items-center gap-1 box=[30,550,56,20] role=null aria-checked=null aria-pressed=null data-state=null
+· 　　　子数=1 svg数=0 背景=rgba(0, 0, 0, 0) 边框=rgb(82, 82, 82)/0px 不透明=1 光标=grab
+· 　　　svg：[]
+· 　　　cls：flex items-center gap-1
+· 　　自动校验素材：DIV.flex items-center gap-1 box=[30,590,100,20] role=null aria-checked=null aria-pressed=null data-state=null
+· 　　　子数=2 svg数=1 背景=rgba(0, 0, 0, 0) 边框=rgb(82, 82, 82)/0px 不透明=1 光标=grab
+· 　　　svg：[{"尺寸":[12,12],"pathd":"M8.5 0a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17m0 1.3a7.2 7.2 0"}]
+· 　　　cls：flex items-center gap-1
+· 　　智能引用 AutoLink：DIV.flex items-center gap-1 box=[30,630,134,20] role=null aria-checked=null aria-pressed=null data-state=null
+· 　　　子数=2 svg数=1 背景=rgba(0, 0, 0, 0) 边框=rgb(82, 82, 82)/0px 不透明=1 光标=grab
+· 　　　svg：[{"尺寸":[14,14],"pathd":"M8.5 0a8.5 8.5 0 1 1 0 17 8.5 8.5 0 0 1 0-17m0 1.3a7.2 7.2 0"}]
+· 　　　cls：flex items-center gap-1
+· 
+════ ② 底栏两枚开关 A/B（纯视图开关，收尾必须复原）════
+· 　【起始】网格吸附 aria="网格吸附" svg数=1 背景=rgba(0, 0, 0, 0) 子数=1 cls含active=false
+· 　　　　　隐藏节点连线 aria="隐藏节点连线" svg数=1 背景=rgba(0, 0, 0, 0) 子数=1
+· 　　点 隐藏节点连线 中心 [190,778]｜elementFromPoint 自证落在 "隐藏节点连线"
+· 　【之后】隐藏节点连线 aria=null svg数=null 背景=null 子数=null
+· 　　　　　svg：null
+· 　⛔ 找不到 隐藏节点连线
+· 　　点 网格吸附 中心 [222,778]｜elementFromPoint 自证落在 "网格吸附"
+· 　【开】网格吸附 aria="网格吸附" svg数=2 背景=rgba(255, 255, 255, 0.1) 子数=1 cls含active=false
+· 　　　svg：[{"尺寸":[14,14],"pathd":"m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.29"},{"尺寸":[14,14],"pathd":null}]
+· 　　　子cls：["relative flex items-center justify-center overflow"]
+· 　　点 网格吸附 中心 [222,778]｜elementFromPoint 自证落在 "网格吸附"
+· 　【复原】网格吸附 aria="网格吸附" svg数=1 子数=1 cls含active=false
+· 
+⭐⭐ 收尾复核：隐藏节点连线 aria=null（应为 隐藏节点连线）｜网格吸附 aria="网格吸附" 子数=1（起始应为 1）
+· 
+✅ 完成（只点了底栏两枚纯视图开关，已复原）
+· ⏳ ⌘0 复位 + 静置 15s…
+· ⭐ 真的被移动：0 个 []
+
+=== 已写 tools/batchEU2.json ===

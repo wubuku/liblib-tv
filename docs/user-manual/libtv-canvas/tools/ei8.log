@@ -1,0 +1,24 @@
+· 节点类型：["a-GgqvrVz0pw=audio","a-THmbuJXQj4=audio","b-mfkcQNULC3=shot","i-9nlG6HdjK2=image","i-sODTbgLUm1=image","n-56F19pXVB4=director","t-2AK3Ukyxj3=text","t-UtVx3lZmrV=text","v-eMpqKtiLlx=video","v-oZNpH99MtM=video","v-v2hlWY4Br3=video"]
+· 
+【A 两个图片节点】选中 2 个：["i-9nlG6HdjK2","i-sODTbgLUm1"]
+· 　类型：["image","image"]
+· 　下拉：{"错":"工具条上没有「打组」"}
+· 
+【B 一个图片 + 一个文本】选中 2 个：["i-9nlG6HdjK2","t-2AK3Ukyxj3"]
+· 　类型：["image","text"]
+· 　下拉：{"错":"工具条上没有「打组」"}
+· 
+【C 只选一个图片节点】选中 1 个：["i-9nlG6HdjK2"]
+· 　类型：["image"]
+· 　下拉：{"错":"工具条上没有「打组」"}
+· 
+【D 全部（阳性对照：应为灰）】选中 8 个：["a-GgqvrVz0pw","a-THmbuJXQj4","i-9nlG6HdjK2","i-sODTbgLUm1","n-56F19pXVB4","v-eMpqKtiLlx","v-oZNpH99MtM","v-v2hlWY4Br3"]
+· 　类型：["audio","audio","image","image","director","video","video","video"]
+· 　下拉：{"错":"菜单没开"}
+❌ page.evaluate: TypeError: Cannot read properties of undefined (reading 'getBoundingClientRect')
+    at eval (eval at evaluate (:302:30), <anonymous>:3:17)
+    at UtilityScript.evaluate (<anonymous>:304:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/libtv-canvas/tools/batchEI8.mjs:124:24
+
+=== 已写 tools/batchEI8.json ===

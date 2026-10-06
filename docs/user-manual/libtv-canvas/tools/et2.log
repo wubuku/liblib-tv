@@ -1,0 +1,41 @@
+· 开局坐标偏差：[]
+· 
+════ ① 视频参数面板：ⓘ 与「新功能」提示条归属（纯 DOM 关系）════
+· 　平移视频节点：true
+· 　选中 ["v-v2hlWY4Br3"]
+· 　面板 [234,-19,342,488]｜"比例 Auto 16:9 4:3 1:1 3:4 9:16 21:9 清晰度 480P 720P 1080P 4K 视频时长 s 生成音频 开启 关闭 生成数量 1个 2个 4个"
+· 　提示条 {"文字":"新功能：支持真人","box":[176,297,114,27],"父cls":"","父文字":"新功能：支持真人 比例 Auto 16:9 4:3 1:1 3:4 9:16 21:9 清晰度 480P 720P 10"}
+· 　⭐⭐ **归属判定**：提示条在面板内=false｜面板在提示条内=false
+· 　　两者的共同祖先 = {"tag":"DIV","cls":"","文字":"新功能：支持真人 比例 Auto 16:9 4:3 1:1 3:4 9:16 21:9 清晰度 48"}
+· 　　提示条与「生成音频」标题的共同祖先 = {"tag":"DIV","cls":"","文字":"新功能：支持真人 比例 Auto 16:9 4:3 1:1 3:4 9:16 21:9 清晰度 48"}
+· 　「生成音频」标题本身 {"文字":"生成音频","box":[247,328,56,20],"父cls":"text-fg-muted flex items-center gap-1.5 text-sm font-medium"}
+· 　⭐ 该行里 4~26px 的小元素 3 个：
+· 　　<DIV> 文字="" box=[309,332,12,12] 有svg=true title=null aria=null cls=cursor-help path=M11 0a11 11 0 1 1 0 22 11 11 0 0 1 0-22m0 1.8a9.2 9.2 0 1 0 0 18.4 9.2
+· 　　<svg> 文字="" box=[309,332,12,12] 有svg=false title=null aria=null cls=[object SVGAnimatedString] path=M11 0a11 11 0 1 1 0 22 11 11 0 0 1 0-22m0 1.8a9.2 9.2 0 1 0 0 18.4 9.2
+· 　　<path> 文字="" box=[309,332,12,12] 有svg=false title=null aria=null cls=[object SVGAnimatedString] path=null
+· 　　滑杆 <DIV role=slider> aria=[4 ~ 15] now=5｜input 原生[null~null] value=null｜短文祖先链=[{"文字":"s","粗":"400","号":"16px"},{"文字":"视频时长 s","粗":"400","号":"16px"}]
+· 　　滑杆 <INPUT role=null> aria=[null ~ null] now=null｜input 原生[4~15] value=5｜短文祖先链=[{"文字":"s","粗":"400","号":"16px"},{"文字":"s","粗":"400","号":"16px"},{"文字":"视频时长 s","粗":"400","号":"16px"}]
+· 
+════ ② 音频节点 ⚙ 高级设置（a-THmbuJXQj4）════
+· 　平移音频节点：true
+· 　安全落点 [216,166]
+· 　选中 ["a-THmbuJXQj4"]
+· 　参数条上共 8 枚按钮：
+· 　　「音频生视频」 box=[211,243,53,17] 可见=true aria=null title=null cls=group/btn text-fg-default hover:bg-canvas-co
+· 　　「参考」 box=[-41,327,54,26] 可见=true aria=null title=null cls=flex shrink-0 items-center justify-center ga
+· 　　「Seed Audio 1.0」 box=[-41,465,144,32] 可见=true aria=null title=null cls=flex items-center justify-between bg-transpa
+· 　　「中文 · 24k · wav」 box=[106,465,128,32] 可见=true aria=null title=null cls=flex h-8 min-w-0 shrink items-center justify
+· 　　「」 box=[389,465,32,32] 可见=true aria=null title=null cls=flex size-8 shrink-0 cursor-pointer items-ce
+· 　　「」 box=[433,465,32,32] 可见=true aria=null title=null cls=text-canvas-controls-text mx-1 flex size-8 s
+· 　　「」 box=[569,465,32,32] 可见=true aria=null title=null cls=bg-btn-invert-bg flex size-8 shrink-0 cursor
+· 　　「」 box=[573,327,28,28] 可见=true aria=null title=null cls=bg-panel-background absolute right-2 top-2 z
+· 　高级设置面板 null：null
+· 　　滑杆 <DIV role=slider> aria=[0.5 ~ 2] now=1｜input 原生[null~null] value=null｜短文祖先链=[{"文字":"语速","粗":"400","号":"16px"}]
+· 　　滑杆 <DIV role=slider> aria=[-12 ~ 12] now=0｜input 原生[null~null] value=null｜短文祖先链=[{"文字":"声调","粗":"400","号":"16px"}]
+· 　　滑杆 <DIV role=slider> aria=[0.01 ~ 10] now=6.2｜input 原生[null~null] value=null｜短文祖先链=[{"文字":"音量","粗":"400","号":"16px"}]
+· 
+✅ 完成（未拖滑块、未点开关）
+· ⏳ ⌘0 复位 + 静置 15s…
+· ⭐ 真的被移动：0 个 []
+
+=== 已写 tools/batchET2.json ===

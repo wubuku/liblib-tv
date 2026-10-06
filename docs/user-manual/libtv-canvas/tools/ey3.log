@@ -1,0 +1,42 @@
+· 开局坐标偏差：[]
+· 已开特效广场
+· 开完门牌自证：{"dialog":3,"卡数":42,"全页该类":72,"页签":["特效广场","我的收藏","最近使用"]}
+· ⭐ 视口内真卡片 42 张
+· 特效广场：aria/文字含「详情」的按钮 0 个；自有文本节点含「详情」的元素 0 个
+· 第 1 张卡："小蜜蜂运镜 商用 vibe fckuing 3500" box=[117,197,191,240]
+·    卡内按钮：[{"aria":null,"title":null,"文字":"","box":[130,210,24,24],"中心":[142,222],"svg数":1,"path":"M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0","op":"1","dis":false},{"aria":"收藏","title":null,"文字":"","box":[271,210,24,24],"中心":[283,222],"svg数":1,"path":"M9.65.87a1.58 1.58 0 0 1 2.83 0l2.57","op":"0","dis":false}]
+· 悬停后该卡按钮：[{"aria":null,"title":null,"文字":"","box":[130,210,24,24],"中心":[142,222],"svg数":1,"path":"M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0","op":"1","dis":false},{"aria":"收藏","title":null,"文字":"","box":[271,210,24,24],"中心":[283,222],"svg数":1,"path":"M9.65.87a1.58 1.58 0 0 1 2.83 0l2.57","op":"1","dis":false}]
+· 已拍 ey3-特效卡悬停.png
+· 悬停后 aria 含「详情」的按钮：[]
+· 点 \u22ef 前：{"aria":null,"title":null,"文字":"","box":[130,210,24,24],"中心":[142,222],"svg数":1,"path":"M2 0a2 2 0 1 1 0 4 2 2 0 0 1 0-4m7 0","op":"1","dis":false}
+· ⋯ 自证={"tag":"BUTTON","文字":"","aria":null,"命中":true}
+· ⋯ 落点是 button：true
+· 点 ⋯ 后 innerHTML 长度 1026280 -> 1026191
+· ⭐ ⋯ 菜单里的条目：
+·    [button] "画布 2" box=[165,8,69,32] cursor=pointer
+·    [div] "开通会员
+限时 45 折" box=[1167,8,159,32] cursor=pointer
+·    [button] "20" box=[1334,8,58,32] cursor=pointer
+·    [div] "逐帧拉片
+SD 2.5" box=[1177,45,146,23] cursor=grab
+·    [button] "资产管理" box=[14,764,94,28] cursor=pointer
+·    [button] "感知画布开始创作" box=[1041,443,366,39] cursor=pointer
+·    [button] "从爆款预设开始剧本原创" box=[1041,482,366,39] cursor=pointer
+·    [button] "上传故事来改编" box=[1041,521,366,39] cursor=pointer
+·    [button] "批量优化提示词" box=[1041,560,366,39] cursor=pointer
+·    [button] "全能创作" box=[1077,740,81,32] cursor=pointer
+·    [button] "特效广场" box=[122,96,92,32] cursor=pointer
+·    [button] "我的收藏" box=[218,96,92,32] cursor=pointer
+·    [button] "最近使用" box=[314,96,92,32] cursor=pointer
+·    [button] "推荐" box=[117,157,50,28] cursor=pointer
+·    [button] "全部" box=[1269,157,54,28] cursor=pointer
+·    [button] "知道了" box=[928,709,67,32] cursor=pointer
+· 已拍 ey3-省略号菜单.png
+· 开 ⋯ 菜单后，全页文本含「详情」的元素：[]
+· 切 我的收藏：按钮不存在
+· 切 最近使用：按钮不存在
+· ⭐⭐⭐【阳性对照·风格广场】卡片 30 张；aria 含「详情」按钮 30 个；文本含「详情」元素 0 个
+·    前 3 枚详情按钮：[{"aria":"详情","文字":"","box":[271,413,24,24],"vis":true},{"aria":"详情","文字":"","box":[474,413,24,24],"vis":true},{"aria":"详情","文字":"","box":[677,413,24,24],"vis":true}]
+· ⭐⭐ 静置 15s 后坐标复核：[]
+
+=== 已写 tools/batchEY3.json ===

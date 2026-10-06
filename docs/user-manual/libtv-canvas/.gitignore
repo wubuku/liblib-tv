@@ -3,3 +3,8 @@ node_modules/
 .vitepress/dist/
 .vitepress/cache/
 tools/.evidence/
+
+# ⭐ 取证 stdout 必须随脚本进仓库：正文里每个实测数字都要能回查
+# （否则就只剩「可重跑」，没有「跑出来的原文」）
+# ⚠️ 用户全局 ~/.gitignore_global:14 有 *.log，会把它们全排除掉
+!tools/*.log

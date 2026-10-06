@@ -1,0 +1,46 @@
+· closePromos：[{"模态":false,"文字":"Agent 已升级为 TV Director 全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Dir
+·    建前主画布节点 [{"id":"a-GgqvrVz0pw","类":"audio","框":[65,572,169,169]},{"id":"a-THmbuJXQj4","类":"audio","框":[1171,69,169,169]},{"id":"b-mfkcQNULC3","类":"shot-breakdown","框":[702,69,154,188]},{"id":"i-9nlG6HdjK2","类":"image","框":[65,329,300,169]},{"id":"i-sODTbgLUm1","类":"image","框":[835,329,300,169]},{"id":"n-56F19pXVB4","类":"director-console-3d","框":[928,69,169,169]},{"id":"t-2AK3Ukyxj3","类":"text","框":[308,572,169,169]},{"id":"t-UtVx3lZmrV","类":"text","框":[1206,329,169,169]},{"id":"v-eMpqKtiLlx","类":"video","框":[465,329,300,169]},{"id":"v-oZNpH99MtM","类":"video-clip","框":[465,69,169,169]},{"id":"v-v2hlWY4Br3","类":"video","框":[65,69,300,169]}]
+·    建前重叠对数 0
+·    ✅ 断言通过：主画布建前没有大面积重叠（测试画布有 105 对）
+·    ⌘0 后 transform "translate(96377.5px, -76.2343px) scale(0.482682)"
+· === 建「智能剪辑」节点 ===
+·    「智能剪辑」行 {"文字":"智能剪辑4","框":[465,43,169,23],"点":[549,55],"命中文字":"智能剪辑4"}
+·    ✅ 断言通过：添加节点面板里找得到「智能剪辑」这一行
+·    ✅ 断言通过：「智能剪辑」行的落点属主就是它自己
+·    ⛔ 建智能剪辑后：危险按钮 4 枚 [{"文字":"开始拉片","禁用":true,"opacity":"1.00","cursor":"not-allowed"},{"文字":"首尾帧生成视频","禁用":false,"opacity":"1.00","cursor":"pointer"},{"文字":"首帧生成视频","禁用":false,"opacity":"1.00","cursor":"pointer"},{"文字":"感知画布开始创作","禁用":false,"opacity":"1.00","cursor":"pointer"}]
+·    建出来的 video-clip 节点 id = v-oZNpH99MtM
+·    ✅ 断言通过：主画布上现在有 video-clip 节点了
+· === 建「逐帧拉片」节点 ===
+·    「逐帧拉片」行 {"文字":"逐帧拉片","框":[702,43,154,23],"点":[779,55],"命中文字":"逐帧拉片"}
+·    ✅ 断言通过：添加节点面板里找得到「逐帧拉片」这一行
+·    ✅ 断言通过：「逐帧拉片」行的落点属主就是它自己
+·    ⛔ 建逐帧拉片后：危险按钮 3 枚 [{"文字":"开始拉片","禁用":true,"opacity":"1.00","cursor":"not-allowed"},{"文字":"首尾帧生成视频","禁用":false,"opacity":"1.00","cursor":"pointer"},{"文字":"首帧生成视频","禁用":false,"opacity":"1.00","cursor":"pointer"}]
+·    建出来的 shot-breakdown 节点 id = b-mfkcQNULC3
+·    ✅ 断言通过：主画布上现在有 shot-breakdown 节点了
+· === 建「脚本 NEW」节点 ===
+·    「脚本」行 {"文字":"脚本","框":[492,559,206,36],"点":[595,577],"命中文字":"脚本"}
+·    ✅ 断言通过：添加节点面板里找得到「脚本」这一行
+·    ✅ 断言通过：「脚本」行的落点属主就是它自己
+·    「脚本 NEW」{"点":[816,584],"框":[713,566,206,36]}
+·    ⛔ 建脚本 V2 后：危险按钮 3 枚 [{"文字":"开始拉片","禁用":true,"opacity":"1.00","cursor":"not-allowed"},{"文字":"首尾帧生成视频","禁用":false,"opacity":"1.00","cursor":"pointer"},{"文字":"首帧生成视频","禁用":false,"opacity":"1.00","cursor":"pointer"}]
+·    建出来的 script-v2 节点 id = b-v5Ote7oaUv
+·    ✅ 断言通过：主画布上现在有 script-v2 节点了
+· === 建完重新 ⌘0 并量重叠 ===
+·    建后节点 [{"id":"b-v5Ote7oaUv","类":"script-v2","框":[720,405,169,169]},{"id":"a-GgqvrVz0pw","类":"audio","框":[65,572,169,169]},{"id":"a-THmbuJXQj4","类":"audio","框":[1171,69,169,169]},{"id":"b-mfkcQNULC3","类":"shot-breakdown","框":[702,69,154,188]},{"id":"i-9nlG6HdjK2","类":"image","框":[65,329,300,169]},{"id":"i-sODTbgLUm1","类":"image","框":[835,329,300,169]},{"id":"n-56F19pXVB4","类":"director-console-3d","框":[928,69,169,169]},{"id":"t-2AK3Ukyxj3","类":"text","框":[308,572,169,169]},{"id":"t-UtVx3lZmrV","类":"text","框":[1206,329,169,169]},{"id":"v-eMpqKtiLlx","类":"video","框":[465,329,300,169]},{"id":"v-oZNpH99MtM","类":"video-clip","框":[465,69,169,169]},{"id":"v-v2hlWY4Br3","类":"video","框":[65,69,300,169]}]
+·    ⛔ 建后重叠对：[]
+·    建后 transform "translate(96377.5px, -76.2343px) scale(0.482682)"
+· === 拍三个新节点 ===
+·    中心落点自证 {"中心":[804,489],"框":[720,405,169,169],"z":"1000","属主":"b-v5Ote7oaUv","属主类":"react-flow__node react-flow__node-script-v2 nopan selected selectable "}
+·    ✅ 断言通过：「node-script-v2」(b-v5Ote7oaUv) 的中心落点属主就是它自己（没被别的节点盖住）
+·    📷 fq5-1-脚本V2节点.png｜id b-v5Ote7oaUv｜裁剪 {"x":694,"y":379,"width":221,"height":221}
+·    中心落点自证 {"中心":[549,153],"框":[465,69,169,169],"z":"1000","属主":"v-oZNpH99MtM","属主类":"react-flow__node react-flow__node-video-clip nopan selected selectable"}
+·    ✅ 断言通过：「node-video-clip」(v-oZNpH99MtM) 的中心落点属主就是它自己（没被别的节点盖住）
+·    📷 fq5-2-智能剪辑节点.png｜id v-oZNpH99MtM｜裁剪 {"x":439,"y":43,"width":221,"height":221}
+·    中心落点自证 {"中心":[779,162],"框":[702,69,154,188],"z":"1000","属主":"b-mfkcQNULC3","属主类":"react-flow__node react-flow__node-shot-breakdown nopan selected select"}
+·    ✅ 断言通过：「node-shot-breakdown」(b-mfkcQNULC3) 的中心落点属主就是它自己（没被别的节点盖住）
+·    📷 fq5-3-逐帧拉片节点.png｜id b-mfkcQNULC3｜裁剪 {"x":676,"y":43,"width":206,"height":240}
+·    ⛔ 拍完三个：危险按钮 3 枚 [{"文字":"开始拉片","禁用":true,"opacity":"1.00","cursor":"not-allowed"},{"文字":"首尾帧生成视频","禁用":false,"opacity":"1.00","cursor":"pointer"},{"文字":"首帧生成视频","禁用":false,"opacity":"1.00","cursor":"pointer"}]
+·    📷 fq5-0-主画布建完全景.png
+· 断言统计 {"次数":13,"失败":0}
+
+完成。

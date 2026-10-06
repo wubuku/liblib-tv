@@ -1,0 +1,26 @@
+· 视口 transform：translate(909.423px, -104.661px) scale(0.468869)
+· 原始位置：{"i-9nlG6HdjK2":{"transform":"translate(-1764px, 900px)","box":[82,317,292,164]},"i-sODTbgLUm1":{"transform":"translate(-168px, 900px)","box":[831,317,292,164]}}
+· ① 挪两个图片节点到空区：
+·   挪 i-9nlG6HdjK2 第 1 轮：目标 [430,520]，实际误差 [-21,-11]
+·   挪 i-9nlG6HdjK2 第 2 轮：目标 [430,520]，实际误差 [-4,0]
+·   挪 i-9nlG6HdjK2 第 3 轮：目标 [430,520]，实际误差 [1,0]
+· 　i-9nlG6HdjK2: 已到位
+·   挪 i-sODTbgLUm1 第 1 轮：目标 [760,520]，实际误差 [2,-11]
+·   挪 i-sODTbgLUm1 第 2 轮：目标 [760,520]，实际误差 [2,0]
+· 　i-sODTbgLUm1: 已到位
+· 挪完：{"i-9nlG6HdjK2":{"transform":"translate(-1020px, 1332px)","box":[431,520,292,164]},"i-sODTbgLUm1":{"transform":"translate(-314px, 1332px)","box":[762,520,292,164]}}
+· 
+⭐ 框选结果：[{"id":"a-GgqvrVz0pw","类型":"audio"},{"id":"i-9nlG6HdjK2","类型":"image"},{"id":"i-sODTbgLUm1","类型":"image"}]
+· 工具条：[421,313,643,50] 按钮 ["(无名)","保存到资产","创建副本","打组","批量下载","添加到Chat","创建为Skill"]
+· 
+⭐⭐【真值表】选区只有 2 个图片节点时，「打组」下拉：[{"文本":"打组","opacity":"1","cursor":"pointer","disabled":false},{"文本":"合并分镜组","opacity":"0.45","cursor":"not-allowed","disabled":false}]
+· ✅ 已拍两图下拉（干净 + 裁图）
+· 
+③ 复原位置：
+· 　i-9nlG6HdjK2 第 1 轮回移，位移 -349,-203
+· 　i-9nlG6HdjK2 已回到原位（误差 0,0）
+· 　i-sODTbgLUm1 第 1 轮回移，位移 418,0
+· 　i-sODTbgLUm1 已回到原位（误差 0,0）
+· 复原核对：{"i-9nlG6HdjK2":{"原transform":"translate(-1764px, 900px)","现transform":"translate(-872.837px, 899.043px)","差":[891,-1]},"i-sODTbgLUm1":{"原transform":"translate(-168px, 900px)","现transform":"translate(-166.837px, 899.043px)","差":[1,-1]}}
+
+=== 已写 tools/batchEI12.json ===

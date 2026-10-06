@@ -1,0 +1,68 @@
+· script 156 个，排除文案表主源后待抓 155 个
+· 实际拉下 151 个 chunk
+· ⭐⭐ 挖到 32 个含 Toolbar/Panel/Bar/Float 的组件名：
+·    · AccordionPanel
+·    · AnnotateToolbar
+·    · AudioNodeToolbar
+·    · BatchSelectionBarShell
+·    · CharacterGroupToolbar
+·    · CheckoutScanPanel
+·    · CoursePowerPanel
+·    · CreditProgressBar
+·    · CustomerServiceLoadingPanel
+·    · FloatingPanel
+·    · GlobalNoticeBar
+·    · GroupListPanel
+·    · GroupMembersPanel
+·    · GroupNodeToolbar
+·    · LayerBatchActionBar
+·    · MediaControlBar
+·    · PortraitTextureToolbar
+·    · SearchBar
+·    · SelfContainedVideoClipBar
+·    · TooltipFloating
+·    · canvasPanelStyles
+·    · clampWorkspacePanelWidth
+·    · computePanelFocusViewport
+·    · emitWorkspacePanelSync
+·    · getFloatingPosition
+·    · getFloatingValue
+·    · selectCharacterPanelVisible
+·    · useImageToolbarSlashCommand
+·    · useMaterialPanelConfig
+·    · useOpenCharacterPanel
+·    · useOpenMaterialPanel
+·    · useWorkspacePanelSyncRefresh
+· --- 按文件分组 ---
+·    0p_bztaupj2yb.js：["TooltipFloating","getFloatingPosition"]
+·    3k420t408y8hm.js：["getFloatingValue"]
+·    1an1x1akb2vnr.js：["LayerBatchActionBar","CharacterGroupToolbar","computePanelFocusViewport","selectCharacterPanelVisible","PortraitTextureToolbar","AnnotateToolbar","useImageToolbarSlashCommand","useWorkspacePanelSyncRefresh","GroupNodeToolbar"]
+·    1al6tu79axqkm.js：["FloatingPanel"]
+·    2-4l878iuf97g.js：["AudioNodeToolbar"]
+·    3wa_634ll7vgh.js：["getFloatingValue"]
+·    2fvb-l-9n4op5.js：["TooltipFloating","getFloatingPosition"]
+· --- imgEditor 调用点 ---
+·    38o6e4qs2-rnf.js（70001 字节）：4 段
+·      [0] …(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,420154,e=>{"use strict";var t=e.i(207240);let a={plot_deduction_four_grid:"common:imgEditorSlashPlotFourGrid",coherent_storyboard_25:"common:imgEditorSlashStoryboard25",cinematic_light_correction:"common:imgE…
+·      [1] …(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,420154,e=>{"use strict";var t=e.i(207240);let a={plot_deduction_four_grid:"common:imgEditorSlashPlotFourGrid",coherent_storyboard_25:"common:imgEditorSlashStoryboard25",cinematic_light_correction:"common:imgE…
+·      [2] …OPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,420154,e=>{"use strict";var t=e.i(207240);let a={plot_deduction_four_grid:"common:imgEditorSlashPlotFourGrid",coherent_storyboard_25:"common:imgEditorSlashStoryboard25",cinematic_light_correction:"common:imgEditorSlashCinema…
+·      [3] …ent.currentScript:void 0,420154,e=>{"use strict";var t=e.i(207240);let a={plot_deduction_four_grid:"common:imgEditorSlashPlotFourGrid",coherent_storyboard_25:"common:imgEditorSlashStoryboard25",cinematic_light_correction:"common:imgEditorSlashCinematicLighting",character_three_view_generate:"common:imgEditorSlashCharac…
+·    28xcm77zwgreb.js（42952 字节）：1 段
+·      [0] …ief","shakenFear","startledRetreat","stunnedShock","calmComposure","distantColdness","hesitantWords","alertScrutiny","tiredBlankness"].map(e=>({url:"https://libtv-res.liblib.art/upload-images/8244a30ac2e94d9289e7216922b50a09/6ebdb61a23803d8d2a2d5b762a1d423cd09e9445.png",name:(0,r.translate)(`common:imgEditortEmotionNam…
+·    1567g0tai1ywb.js（70776 字节）：2 段
+·      [0] …0,o.submitGenerationTask)((0,a.attachCollabTeamId)({params:{count:1,model:m,imageList:r,scene:"character_description"},metadata:{node_id:"",project_id:""},provider:"qwen",model:m,taskType:"text",requestId:(0,l.genRequestId)()},e.teamId));if(!i.success)throw Error(i.errorMsg??(0,t.translate)("common:imgEditorCreateTaskF…
+·      [1] …g(e,r){let i=r?.teamId,n=await (0,o.submitGenerationTask)((0,a.attachCollabTeamId)({params:{imageList:[e]},metadata:{node_id:"",project_id:""},provider:"kling",model:"kling-multi-shot",taskType:"image",requestId:(0,l.genRequestId)()},i));if(!n.success)throw Error(n.errorMsg??(0,t.translate)("common:imgEditorCreateTaskF…
+·    1an1x1akb2vnr.js（1687293 字节）：4 段
+·      [0] …y{let t=await (0,h.uploadInteractiveImageEditReference)(n,a.signal);if(a.signal.aborted)return;let r=n.name.lastIndexOf("."),o=(r>0?n.name.slice(0,r):n.name).trim()||n.name;v(e.id,{name:o,url:t})}catch(e){if(a.signal.aborted||e instanceof Error&&"AbortError"===e.name)return;i.Notify.error(p("common:imgEditorReferenceUp…
+·      [1] …eWidth:"1"})]}),nN=(0,o.jsx)("svg",{width:"16",height:"16",viewBox:"0 0 16 16",fill:"none",children:(0,o.jsx)("rect",{x:"3",y:"3",width:"10",height:"10",rx:"1",stroke:"currentColor",strokeWidth:"1.2",strokeDasharray:"2 1.5"})}),nS={"common:customLabel":(0,tb.translate)("common:customLabel"),"common:imgEditorRatioOrigin…
+·      [2] …ight:"16",viewBox:"0 0 16 16",fill:"none",children:(0,o.jsx)("rect",{x:"3",y:"3",width:"10",height:"10",rx:"1",stroke:"currentColor",strokeWidth:"1.2",strokeDasharray:"2 1.5"})}),nS={"common:customLabel":(0,tb.translate)("common:customLabel"),"common:imgEditorRatioOriginal":(0,tb.translate)("common:imgEditorRatioOrigin…
+·      [3] …l:"none",children:(0,o.jsx)("rect",{x:"3",y:"3",width:"10",height:"10",rx:"1",stroke:"currentColor",strokeWidth:"1.2",strokeDasharray:"2 1.5"})}),nS={"common:customLabel":(0,tb.translate)("common:customLabel"),"common:imgEditorRatioOriginal":(0,tb.translate)("common:imgEditorRatioOriginal"),"common:imgEditorRatioAuto":…
+·    3-mou5v69wxmq.js（970309 字节）：4 段
+·      [0] ….jsxs)("div",{className:"flex items-center gap-2 rounded-md border border-white/20 bg-black/40 px-3 py-2 text-xs text-white/80 backdrop-blur-sm",style:{minWidth:200,minHeight:36,pointerEvents:"all",cursor:"wait"},"aria-busy":"true","aria-live":"polite",children:[(0,v.jsx)("span",{children:i("canvas:imgEditorWaitingPerm…
+·      [1] …usy":"true","aria-live":"polite",children:[(0,v.jsx)("span",{children:i("canvas:imgEditorWaitingPermission")}),(0,v.jsx)("button",{type:"button",className:"rounded border border-white/30 px-1.5 py-0.5 text-[11px] hover:bg-white/10",style:{cursor:"pointer"},onClick:()=>m(null),"aria-label":i("canvas:imgEditorCancelWaiti…
+·      [2] …span",{children:i("canvas:imgEditorWaitingPermission")}),(0,v.jsx)("button",{type:"button",className:"rounded border border-white/30 px-1.5 py-0.5 text-[11px] hover:bg-white/10",style:{cursor:"pointer"},onClick:()=>m(null),"aria-label":i("canvas:imgEditorCancelWaitingPermission"),children:i("canvas:imgEditorWaitingPerm…
+·      [3] …ipAbortReason}(m);if(n.current===m&&(n.current=null),o.current=!1,i.current=null,s.current=null,a({status:"idle"}),pp(),pl.notifications.hide(h),(0,iX.isBatchDownloadAbortError)(e)){"user"===r&&T.Notify.info(t("canvas:downloadCancelled"));return}e?.message==="WATERMARK_PREF"?T.Notify.warn(t("common:imgEditorCompleteWat…
+·    3e98euwoxpr21.js（139060 字节）：1 段
+·      [0] …nts-none disabled:opacity-40 ${n?"bg-nt-bg-overlay-hover":""}`,children:[(0,t.jsx)(eX.LayerRedrawIcon,{className:"size-5"}),o("canvas:imageLayerRedraw")]}),(0,t.jsx)("span",{className:"bg-nt-border-neutral-l1 mx-0.5 h-5 w-px"}),(0,t.jsx)("button",{type:"button",onClick:a,className:d,title:o("common:imgEditorRotate"),ch…
+
+完成。

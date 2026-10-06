@@ -1,0 +1,27 @@
+· ⭐ zoom = 0.458621｜1 屏幕像素 = 2.1804 画布单位
+· —— 开关外观：完整 outerHTML 归一化 diff ——
+·   外链完全相同？ false
+·   前：<button class="hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors" aria-label="网格吸附" style="width: 28px; height: 28px;"><span class="relative flex items-center justify-center overflow-hidden" style="width: 14px; height: 14px; color: var(--canvas-controls-icon);"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--lucide pointer-events-none " width="14" height="14" viewBox="0 0 24 24" style="color: var(--canvas-controls-icon);"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4"></path></svg></span></button>
+·   后：<button class="hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg transition-colors" aria-label="网格吸附" style="width: 28px; height: 28px;"><span class="relative flex items-center justify-center overflow-hidden" style="width: 14px; height: 14px; color: var(--canvas-controls-icon);"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--lucide pointer-events-none " width="14" height="14" viewBox="0 0 24 24" style="color: var(--canvas-controls-icon);"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m12 15l4 4M2.352 10.648a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.029-6.029a1 1 0 1 1 3 3l-6.029 6.029a1.205 1.205 0 0 0 0 1.704l2.296 2.296a1.205 1.205 0 0 0 1.704 0l6.365-6.367A1 1 0 0 0 8.716 4.282zM5 8l4 4"></path></svg><svg class="absolute inset-0" width="14" height="14" viewBox="0 0 14 14"><line x1="1" y1="1" x2="13" y2="13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.6"></line></svg></span></button>
+· —— ① 微拖落点序列：n-56F19pXVB4 ——
+·   细探（+1px ×10）每次画布增量：[0,0,0,0,0,0,0,0,0,0]
+·   粗探（+3px ×10）每次画布增量：[2.19,0,null]
+·   ⭐ 增量取值集合 = [0,2.19]
+·   ⭐ 期望的**无吸附**增量：+1px → 2.1804，+3px → 6.5413
+·   判据 p= 5（相位 0）：离格距离 min=0.030 max=2.160｜<0.5 的有 10/12
+·   判据 p=10（相位 0）：离格距离 min=2.840 max=4.970｜<0.5 的有 0/12
+·   判据 p=15（相位 0）：离格距离 min=4.970 max=7.160｜<0.5 的有 0/12
+·   判据 p=20（相位 0）：离格距离 min=2.840 max=5.030｜<0.5 的有 0/12
+·   判据 p=25（相位 0）：离格距离 min=0.030 max=2.160｜<0.5 的有 10/12
+·   判据 p=35（相位 0）：离格距离 min=0.030 max=2.160｜<0.5 的有 10/12
+·   判据 p=50（相位 0）：离格距离 min=22.840 max=24.970｜<0.5 的有 0/12
+· —— ② 按住 Alt 再拖 6 次 ——
+·   Alt 增量：[null]
+· 已拍 fb3-01/02/03/04
+· —— finally：复原 ——
+·   ⛔ 复原抛错：z is not defined
+·   ✅ t-UtVx3lZmrV 复原到位（轮 1）→ [600,900]
+·   t-UtVx3lZmrV 基线 [600,900] → 现在 [600,900]
+· ⭐⭐ 静置 15s 后坐标复核：["n-56F19pXVB4 基线[-1225.03,370.975] 现[-1222.84,370.975]"]
+
+=== 已写 tools/batchFB3.json ===

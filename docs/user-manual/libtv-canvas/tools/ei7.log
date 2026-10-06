@@ -1,0 +1,16 @@
+· 点了「知道了」
+· 遮挡残留：false
+· [290,91,30,32] innerText="" 裸文本节点=[] 圆点=[]
+·    全html: <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--libtv pointer-events-none " width="14" height="14" viewBox="0 0 20.8 20.8"><path d="M7.2 10.9c1.5 0 2.7 1.2 2.7 2.7v4.5c0 1.5-1.2 2.7-2.7 2.7H2.7A2.7 2.7 0 0 1 0 18.1v-4.5c0-1.5 1.2-2.7 2.7-2.7zm10.9 0c1.5 0 2.7 1.2 2.7 2.7v4.5c0 1.5-1.2 2.7-2.7 2.7h-4.5a2.7 2.7 
+· [341,91,103,32] innerText="保存到资产" 裸文本节点=[] 圆点=[{"cls":"","背景":"rgba(0, 0, 0, 0)","尺寸":[65,20],"位置":[371,97]}]
+· [452,91,88,32] innerText="创建副本" 裸文本节点=[] 圆点=[{"cls":"","背景":"rgba(0, 0, 0, 0)","尺寸":[52,20],"位置":[480,97]}]
+· [561,91,82,32] innerText="打组" 裸文本节点=[] 圆点=[{"cls":"pointer-events-none absolute right-1 top-1 block size-1 shrink-0 round","背景":"rgb(93, 220, 255)","尺寸":[4,4],"位置":[635,95]},{"cls":"","背景":"rgba(0, 0, 0, 0)","尺寸":[26,20],"位置":[591,97]}]
+· [651,91,32,32] innerText="" 裸文本节点=[] 圆点=[]
+·    全html: <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--libtv pointer-events-none " width="20" height="20" viewBox="0 0 20 20"><path d="M2.5 14.38v-2.09a.62.62 0 1 1 1.25 0v2.09c0 1.03.84 1.87 1.88 1.87h8.75c1.03 0 1.87-.84 1.87-1.87v-2.09a.62.62 0 1 1 1.25 0v2.09c0 1.72-1.4 3.12-3.12 3.12H5.62a3.1 3.1 0 0 1-3.12-3.12
+· [704,91,104,32] innerText="添加到Chat" 裸文本节点=[] 圆点=[{"cls":"","背景":"rgba(0, 0, 0, 0)","尺寸":[68,20],"位置":[732,97]}]
+· [815,91,100,32] innerText="创建为Skill" 裸文本节点=[] 圆点=[{"cls":"","背景":"rgba(0, 0, 0, 0)","尺寸":[64,20],"位置":[843,97]}]
+· 悬停 [290,91,30,32]：附近前 6 条 → 新出现 []
+· 悬停 [651,91,32,32]：附近前 12 条 → 新出现 [{"文本":"当前选区无可下载的资源","cls":"m_1b3c8819 mantine-Tooltip-tooltip","box":[592,59,150,27]}]
+·    ⭐ 气泡读数：box=[592,59,150,27] 文本="当前选区无可下载的资源"
+
+=== 已写 tools/batchEI7.json ===

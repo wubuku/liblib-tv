@@ -1,0 +1,12 @@
+· 节点布局：[["audio",[1214,599,161,161]],["audio",[263,182,161,161]],["shot",[1176,44,147,178]],["image",[76,319,285,161]],["image",[808,319,285,161]],["director",[323,77,161,161]],["text",[208,605,161,161]],["text",[1160,319,161,161]],["video",[65,319,285,161]],["video",[945,44,161,161]],["video",[565,44,285,161]]]
+· 框选矩形 [47,305,1111,494]
+· 框选后：["a-THmbuJXQj4","i-9nlG6HdjK2","i-sODTbgLUm1","v-eMpqKtiLlx"]（4 个）
+· Shift 键共移出 0/2 个；现在选区 ["a-THmbuJXQj4","i-9nlG6HdjK2","i-sODTbgLUm1","v-eMpqKtiLlx"]，工具条 在
+· Meta 键共移出 0/2 个；现在选区 ["a-THmbuJXQj4","i-9nlG6HdjK2","v-eMpqKtiLlx"]，工具条 在
+· 　Alt+点 v-eMpqKtiLlx ⇒ 已移出选区，剩 ["a-THmbuJXQj4"]
+· Alt 键共移出 1/2 个；现在选区 ["a-THmbuJXQj4"]，工具条 无
+· 
+终态：选区 []，工具条 无
+· 收尾坐标：[["a-GgqvrVz0pw",[719.388,1509.13]],["a-THmbuJXQj4",[963.997,1012.1]],["b-mfkcQNULC3",[636,300]],["i-9nlG6HdjK2",[555.997,1312.1]],["n-56F19pXVB4",[-1225.03,370.975]],["t-2AK3Ukyxj3",[-1476,1524]],["t-UtVx3lZmrV",[600,900]],["v-eMpqKtiLlx",[532.997,1312.1]],["v-oZNpH99MtM",[132,300]],["v-v2hlWY4Br3",[-696,300]]]
+
+=== 已写 tools/batchEI17.json ===

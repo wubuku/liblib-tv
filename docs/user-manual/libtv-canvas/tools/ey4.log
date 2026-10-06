@@ -1,0 +1,29 @@
+· 开局坐标偏差：[]
+· 【特效广场·默认】卡片 42；详情按钮 0；收藏星 42；空态 ["没有工作的天","没有工作的天","没有更多了"]
+·         页签：[{"t":"特效广场","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"我的收藏","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"最近使用","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"}]
+· 已拍 ey4-特效广场.png
+· 【特效广场·我的收藏】卡片 0；详情按钮 0；收藏星 0；空态 ["暂无素材"]
+·         页签：[{"t":"特效广场","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"我的收藏","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"最近使用","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"}]
+· 已拍 ey4-特效-我的收藏-空.png
+· 【特效广场·最近使用】卡片 0；详情按钮 0；收藏星 0；空态 ["暂无素材"]
+·         页签：[{"t":"特效广场","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"我的收藏","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"最近使用","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"}]
+· 已拍 ey4-特效-最近使用.png
+· 回到特效广场，真卡片 42 张
+· 收藏后 toast：[]
+· 已拍 ey4-收藏成功.png
+· 【特效广场·我的收藏（收藏 1 张之后）】卡片 1；详情按钮 0；收藏星 0；空态 ["没有更多了"]
+·         页签：[{"t":"特效广场","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"我的收藏","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"最近使用","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"}]
+· 已拍 ey4-特效-我的收藏-有1张.png
+· 收藏页里那张卡的按钮：[{"aria":null,"box":[130,210,24,24],"中心":[142,222],"op":"1"},{"aria":"取消收藏","box":[271,210,24,24],"中心":[283,222],"op":"1"}]
+· 取消收藏后 toast：[]
+· 【特效广场·我的收藏（取消收藏之后）】卡片 0；详情按钮 0；收藏星 0；空态 ["暂无素材"]
+·         页签：[{"t":"特效广场","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"我的收藏","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"最近使用","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"}]
+· 已拍 ey4-特效-我的收藏-复原.png
+· 【风格广场·默认】卡片 30；详情按钮 30；收藏星 29；空态 []
+·         页签：[{"t":"风格广场","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"我的收藏","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"最近使用","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"}]
+· 【风格广场·我的收藏】卡片 0；详情按钮 0；收藏星 0；空态 ["暂无素材"]
+·         页签：[{"t":"风格广场","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"我的收藏","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"},{"t":"最近使用","选中":false,"cls":"flex min-w-12 items-center justify-center whitespa"}]
+· 已拍 ey4-风格-我的收藏.png
+· ⭐⭐ 静置 15s 后坐标复核：[]
+
+=== 已写 tools/batchEY4.json ===

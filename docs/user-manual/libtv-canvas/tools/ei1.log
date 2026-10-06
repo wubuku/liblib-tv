@@ -1,0 +1,25 @@
+· 图片节点 2 个：["i-9nlG6HdjK2","i-sODTbgLUm1"]
+· 非图片节点 9 个：["a-GgqvrVz0pw","a-THmbuJXQj4","b-mfkcQNULC3","n-56F19pXVB4","t-2AK3Ukyxj3","t-UtVx3lZmrV","v-eMpqKtiLlx","v-oZNpH99MtM","v-v2hlWY4Br3"]
+· ① 选中 2 个图片节点 → 实际选中 ["i-9nlG6HdjK2","i-sODTbgLUm1"]
+·    「转分镜组」：{"找到":false}
+· ② 选中 2 个非图片节点 → 实际选中 ["a-GgqvrVz0pw","n-56F19pXVB4"]
+·    「转分镜组」：{"找到":false}
+· ③ 选中 1 个图片节点 → 实际选中 ["i-9nlG6HdjK2"]
+·    「转分镜组」：{"找到":false}
+· ⭐ 阳性对照：选中 2 个图片节点时，操作条上所有按钮的可用状态：
+     「画布 2」disabled=false opacity=1 cursor=pointer
+     「开通会员」disabled=false opacity=1 cursor=pointer
+     「20」disabled=false opacity=1 cursor=pointer
+     「20」disabled=false opacity=1 cursor=pointer
+     「音频生视频」disabled=false opacity=1 cursor=pointer
+     「音频生视频」disabled=false opacity=1 cursor=pointer
+     「上传视频后开始」disabled=false opacity=1 cursor=pointer
+     「分镜」disabled=false opacity=1 cursor=pointer
+     「动态」disabled=false opacity=1 cursor=pointer
+     「音乐」disabled=false opacity=1 cursor=pointer
+     「开始拉片」disabled=true opacity=1 cursor=not-allowed
+     「图生图」disabled=false opacity=1 cursor=pointer
+     「图片高清」disabled=false opacity=1 cursor=pointer
+     「打开导演台」disabled=false opacity=1 cursor=pointer
+
+=== 已写 tools/batchEI1.json ===

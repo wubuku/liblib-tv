@@ -1,0 +1,70 @@
+· 开局坐标偏差：[]
+· TV Director 顶排相关按钮（抽屉未开时）：[
+ {
+  "aria": "当前已是新对话",
+  "box": [
+   1199,
+   165,
+   28,
+   28
+  ],
+  "disabled": true,
+  "ariaDisabled": null,
+  "不透明": "0.4",
+  "光标": "not-allowed",
+  "pointerEvents": "all",
+  "背景": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "新对话无法分享",
+  "box": [
+   1259,
+   165,
+   28,
+   28
+  ],
+  "disabled": true,
+  "ariaDisabled": null,
+  "不透明": "0.4",
+  "光标": "not-allowed",
+  "pointerEvents": "all",
+  "背景": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "TV Director 全局设置",
+  "box": [
+   1289,
+   165,
+   28,
+   28
+  ],
+  "disabled": false,
+  "ariaDisabled": null,
+  "不透明": "1",
+  "光标": "pointer",
+  "pointerEvents": "all",
+  "背景": "rgba(0, 0, 0, 0)"
+ },
+ {
+  "aria": "停靠到右侧",
+  "box": [
+   1349,
+   165,
+   28,
+   28
+  ],
+  "disabled": false,
+  "ariaDisabled": null,
+  "不透明": "1",
+  "光标": "pointer",
+  "pointerEvents": "all",
+  "背景": "rgba(0, 0, 0, 0)"
+ }
+]
+·   悬停「当前已是新对话」 disabled=true ariaDisabled=null opacity=0.4 cursor=not-allowed → 气泡=[{"文字":"当前已是新对话","box":[1162,200,102,27]}]
+·   悬停「新对话无法分享」 disabled=true ariaDisabled=null opacity=0.4 cursor=not-allowed → 气泡=[{"文字":"新对话无法分享","box":[1222,193,102,27]}]
+·   悬停「TV Director 全局设置」 disabled=false ariaDisabled=null opacity=1 cursor=pointer → 气泡=[]
+·   悬停「停靠到右侧」 disabled=false ariaDisabled=null opacity=1 cursor=pointer → 气泡=[{"文字":"停靠到右侧","box":[1324,200,78,27]}]
+· ❌ (intermediate value) is not iterable
+
+=== 已写 tools/batchEX2.json ===

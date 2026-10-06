@@ -1,0 +1,47 @@
+· —— ① 画面上盖着哪些非节点浮层 ——
+·    z=0 框[65,329,300,169] class="react-flow__node react-flow__node-image nopan selectable draggable" 文字「图片节点 2」
+·    z=auto 框[65,329,300,169] class="" 文字「图片节点 2」
+·    z=auto 框[65,329,300,169] class="" 文字「图片节点 2」
+·    z=auto 框[65,329,300,169] class="node-shell relative" 文字「图片节点 2」
+·    z=0 框[835,329,300,169] class="react-flow__node react-flow__node-image nopan selectable draggable" 文字「图片节点 2 尝试： 图生图 图片高清」
+·    z=auto 框[835,329,300,169] class="" 文字「图片节点 2 尝试： 图生图 图片高清」
+·    z=auto 框[835,329,300,169] class="" 文字「图片节点 2 尝试： 图生图 图片高清」
+·    z=auto 框[835,329,300,169] class="node-shell relative" 文字「图片节点 2 尝试： 图生图 图片高清」
+·    z=auto 框[835,329,300,169] class="group overflow-visible rounded-xl" 文字「尝试： 图生图 图片高清」
+·    z=auto 框[836,330,299,168] class="flex h-full flex-col items-center justify-center px-6" 文字「尝试： 图生图 图片高清」
+·    z=0 框[465,329,300,169] class="react-flow__node react-flow__node-video nopan selectable draggable" 文字「视频节点 3」
+·    z=auto 框[465,329,300,169] class="" 文字「视频节点 3」
+·    z=auto 框[465,329,300,169] class="" 文字「视频节点 3」
+·    z=auto 框[465,329,300,169] class="node-shell relative" 文字「视频节点 3」
+·    z=0 框[65,69,300,169] class="react-flow__node react-flow__node-video nopan selectable draggable" 文字「视频节点 3 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频」
+·    z=auto 框[65,69,300,169] class="" 文字「视频节点 3 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频」
+·    z=auto 框[65,69,300,169] class="" 文字「视频节点 3 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频」
+·    z=auto 框[65,69,300,169] class="node-shell relative" 文字「视频节点 3 尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频」
+·    z=auto 框[65,69,300,169] class="group overflow-visible rounded-xl" 文字「尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频」
+·    z=auto 框[65,69,299,168] class="flex h-full flex-col items-center justify-center px-6" 文字「尝试： 5分钟超长视频 首尾帧生成视频 首帧生成视频」
+·    z=100 框[1024,154,400,640] class="m_60c222c7 m_31cd769a mantine-Drawer-inner" 文字「新对话 让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词 开启浏览器通知，及时获取最新消息 开启 全能创作」
+·    z=auto 框[1025,207,398,586] class="m_5df29311 mantine-Drawer-body" 文字「让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词 开启浏览器通知，及时获取最新消息 开启 全能创作」
+·    z=auto 框[1025,207,398,586] class="canvas-agent-drawer-chat relative flex min-h-0 flex-1 flex-col [&_.cop" 文字「让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词 开启浏览器通知，及时获取最新消息 开启 全能创作」
+·    z=30 框[1025,207,398,586] class="copilotKitChat flex h-full min-h-0 w-full flex-1 flex-col overflow-hid" 文字「让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词 开启浏览器通知，及时获取最新消息 开启 全能创作」
+·    z=auto 框[1025,207,398,400] class="chatViewFadeIn flex min-h-0 flex-1 flex-col" 文字「让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词」
+·    z=1 框[1025,207,398,400] class="copilotKitMessages" 文字「让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词」
+·    z=auto 框[1025,207,398,400] class="copilotKitMessagesContainer" 文字「让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词」
+·    z=auto 框[1041,347,366,252] class="chat-welcome-root flex w-full flex-col items-center gap-5" 文字「让 TV Director 辅助你的无限创意 感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词」
+·    z=auto 框[1041,443,366,156] class="flex w-full flex-col" 文字「感知画布开始创作 从爆款预设开始剧本原创 上传故事来改编 批量优化提示词」
+·    z=auto 框[1025,607,398,186] class="copilotKitInputContainer !px-2" 文字「开启浏览器通知，及时获取最新消息 开启 全能创作」
+·    z=101 框[732,447,280,311] class="fixed w-[280px] max-w-[calc(100vw-24px)]" 文字「Agent 已升级为 TV Director 全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。 知道了」
+·    z=auto 框[732,447,280,311] class="border-hair border-(--canvas-controls-border) rounded-xl p-1 shadow-[0" 文字「Agent 已升级为 TV Director 全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。 知道了」
+· —— ② 关掉漏网浮层 ——
+·    候选关闭按钮：[{"文字":"关闭","aria":"关闭","中心":[1393,179],"框":[1379,165,28,28]},{"文字":"关闭浏览器通知提示","aria":"关闭浏览器通知提示","中心":[1395,631],"框":[1383,619,24,24]},{"文字":"知道了","aria":null,"中心":[962,725],"框":[928,709,67,32]}]
+·    ⭐ 自证落点 = "知道了"
+·    点完之后还在的浮层 30 个：["图片节点 2","图片节点 2","图片节点 2","图片节点 2","图片节点 2 尝试： 图生图 图片高清","图片节点 2 尝试： 图生图 图片高清","图片节点 2 尝试： 图生图 图片高清","图片节点 2 尝试： 图生图 图片高清","尝试： 图生图 图片高清","尝试： 图生图 图片高清","视频节点 3","视频节点 3","视频节点 3","视频节点 3","视频节点 3 尝试： 5分钟超长视频 首","视频节点 3 尝试： 5分钟超长视频 首","视频节点 3 尝试： 5分钟超长视频 首","视频节点 3 尝试： 5分钟超长视频 首","尝试： 5分钟超长视频 首尾帧生成视频 ","尝试： 5分钟超长视频 首尾帧生成视频 ","新对话 让 TV Director 辅助","让 TV Director 辅助你的无限","让 TV Director 辅助你的无限","让 TV Director 辅助你的无限","让 TV Director 辅助你的无限","让 TV Director 辅助你的无限","让 TV Director 辅助你的无限","让 TV Director 辅助你的无限","感知画布开始创作 从爆款预设开始剧本原创","开启浏览器通知，及时获取最新消息 开启 "]
+· —— ③ 框选全部 11 个 ——
+·    ⭐ 起点 (12,64)｜终点 (1430,735) —— 两点都在 pane 空白且不在任何节点框里
+·    框内含 11 个节点中心
+·    ⭐⭐ 框完后 .selected = 11 个
+·    被选中的：["a-GgqvrVz0pw","a-THmbuJXQj4","b-mfkcQNULC3","i-9nlG6HdjK2","i-sODTbgLUm1","n-56F19pXVB4","t-2AK3Ukyxj3","t-UtVx3lZmrV","v-eMpqKtiLlx","v-oZNpH99MtM","v-v2hlWY4Br3"]
+· —— ④ 拖其中一个已选节点 ——
+·    ⛔ 已选节点里找不到可拖落点
+· ⭐⭐ 静置 15s 后坐标复核：[]（全部一致）
+
+=== 已写 tools/batchFD2.json ===

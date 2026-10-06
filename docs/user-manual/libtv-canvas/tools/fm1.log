@@ -1,0 +1,69 @@
+· 清单里 characterStudio* 共 747 条
+· closePromos：[{"模态":false,"文字":"Agent 已升级为 TV Director 全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。 知道了","按钮":"知道了","框":[73
+· 点底栏「角色造型室」[716,773]
+· 面板容器 "absolute left-1/2 top-0 flex h-[434px] w-max will-change-transform" 框 [597,186,5904,434]，可见文字 18 条
+·    · 创建新角色
+·    · 甜妹/清新少女
+·    · 霸总/精英大佬
+·    · 温柔熟男/理想男友
+·    · 清冷千金/白切黑女主
+·    · 古风男主
+·    · 古风女主
+·    · 恶毒女配/白莲花
+·    · 正派长辈/父
+·    · 正派长辈/母
+·    · 反派长辈/势利亲戚
+·    · 生活方式普通人
+·    · 时尚感亚洲男生
+·    · 时尚感亚洲女生
+·    · 时尚感欧美男生
+·    · 时尚感欧美女生
+·    · 小男孩
+·    · 小女孩
+· —— 对账：命中 1 / 747（0.1%）——
+·    ✅ characterStudioCreateRole = 创建新角色
+· —— 前 25 条未命中（清单里有、界面上没找到）——
+·    ❌ characterStudioFacePreviewLoading = 正在准备实时预览…
+·    ❌ characterStudioFacePreviewFallback = 实时预览暂不可用，仍可确认生成
+·    ❌ characterStudioFacePreviewDisclaimer = 实时预览仅供参考，最终效果以生成为准
+·    ❌ characterStudioFacePreviewAfterGeneration = 该调整不支持预览，需要生成后生效
+·    ❌ characterStudioTitle = 角色造型室
+·    ❌ characterStudioLibraryTitle = 角色造型室
+·    ❌ characterStudioLibraryDescription = 创建、管理并复用角色的造型、状态与音色
+·    ❌ characterStudioMyLibrary = 我的角色库
+·    ❌ characterStudioOfficialLibrary = 官方角色库
+·    ❌ characterStudioMultiSelect = 多选
+·    ❌ characterStudioExitMultiSelect = 退出多选
+·    ❌ characterStudioSelectedRoleCount = 已选中 {selected} 位角色
+·    ❌ characterStudioSelectAllRoleCount = 全选共 {total} 位角色
+·    ❌ characterStudioDeleteSelectedConfirm = 确定删除已选中的 {selected} 位角色吗？删除后无法恢复。
+·    ❌ characterStudioSearchPlaceholder = 搜索角色名称或描述
+·    ❌ characterStudioMyLibraryEmpty = 暂无我的角色
+·    ❌ characterStudioRoleCount = 共 {count} 个角色
+·    ❌ characterStudioMemoryFallback = IndexedDB 暂不可用，未保存草稿仅在当前会话保留
+·    ❌ characterStudioAddToCanvas = 添加到画布
+·    ❌ characterStudioViewAssets = 查看角色资产
+·    ❌ characterStudioAssetsDetail = 角色资产详情
+·    ❌ characterStudioCloseAssets = 关闭角色资产
+·    ❌ characterStudioNewRoleSlot = 新角色
+·    ❌ characterStudioGenerateNewRole = 生成新角色
+·    ❌ characterStudioCreateYourNewRole = 创建你的新角色
+· —— 反向：界面上出现但清单里没有的 17 条 ——
+·    ↩ 甜妹/清新少女
+·    ↩ 霸总/精英大佬
+·    ↩ 温柔熟男/理想男友
+·    ↩ 清冷千金/白切黑女主
+·    ↩ 古风男主
+·    ↩ 古风女主
+·    ↩ 恶毒女配/白莲花
+·    ↩ 正派长辈/父
+·    ↩ 正派长辈/母
+·    ↩ 反派长辈/势利亲戚
+·    ↩ 生活方式普通人
+·    ↩ 时尚感亚洲男生
+·    ↩ 时尚感亚洲女生
+·    ↩ 时尚感欧美男生
+·    ↩ 时尚感欧美女生
+·    ↩ 小男孩
+·    ↩ 小女孩
+· done

@@ -1,0 +1,7 @@
+· 开局坐标偏差：[]
+· 渲染中 11 个节点：[["a-GgqvrVz0pw","1214,599,161,161",false],["a-THmbuJXQj4","263,182,161,161",false],["b-mfkcQNULC3","1176,44,147,178",false],["i-9nlG6HdjK2","76,319,285,161",false],["i-sODTbgLUm1","808,319,285,161",false],["n-56F19pXVB4","323,77,161,161",false],["t-2AK3Ukyxj3","208,605,161,161",false],["t-UtVx3lZmrV","1160,319,161,161",false],["v-eMpqKtiLlx","65,319,285,161",false],["v-oZNpH99MtM","945,44,161,161",false],["v-v2hlWY4Br3","565,44,285,161",false]]
+· 图A i-9nlG6HdjK2 [76,319,285,161]｜图B i-sODTbgLUm1 [808,319,285,161]
+· —— 阶段 1：只点图 A ——
+· ❌ 落点自证失败：期望节点 i-9nlG6HdjK2，实得 v-eMpqKtiLlx
+
+=== 已写 tools/batchEZ1.json ===

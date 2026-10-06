@@ -1,0 +1,15 @@
+· 开局：11 个节点；与标准不符的：[{"id":"v-eMpqKtiLlx","标准":[-1787,900],"现":[252,1260]}]
+· 　v-eMpqKtiLlx 第 1 轮画布差 -2039.0,-360.0（zoom 0.4623）
+· 　v-eMpqKtiLlx 第 2 轮画布差 -115.0,-24.0（zoom 0.4623）
+· ✅ v-eMpqKtiLlx 已复原，残差 0.00,0.00
+· 静置 15s 等落盘…
+· ⭐ 静置后仍不符的：[]
+· 
+全框选后：["v-eMpqKtiLlx"]
+· ⭐ ⌘-点移出后，选区：[{"id":"a-GgqvrVz0pw","类":"audio"},{"id":"a-THmbuJXQj4","类":"audio"},{"id":"n-56F19pXVB4","类":"director"},{"id":"t-2AK3Ukyxj3","类":"text"},{"id":"t-UtVx3lZmrV","类":"text"},{"id":"v-eMpqKtiLlx","类":"video"},{"id":"v-oZNpH99MtM","类":"video"},{"id":"v-v2hlWY4Br3","类":"video"}]
+· 工具条：消失
+· ⚠️ 没拿到「纯 2 图」选区（下拉仍可读，作为对照）：{"错":"工具条上没有「打组」"}
+· 
+收尾位置核查：[]
+
+=== 已写 tools/batchEI16.json ===

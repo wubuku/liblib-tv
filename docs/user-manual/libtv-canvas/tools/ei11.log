@@ -1,0 +1,11 @@
+· 框选后选中 ["a-GgqvrVz0pw","a-THmbuJXQj4","i-9nlG6HdjK2","i-sODTbgLUm1","n-56F19pXVB4","v-eMpqKtiLlx","v-oZNpH99MtM","v-v2hlWY4Br3"]
+· 最左按钮：{"文字":"(无名)","aria":"","box":[296,-50,30,32]}（aria=无）
+· ⭐ 排列菜单项：[]
+· 
+⭐ Shift 点掉 3 个后：选中 ["a-GgqvrVz0pw","a-THmbuJXQj4","i-9nlG6HdjK2","i-sODTbgLUm1","n-56F19pXVB4","v-eMpqKtiLlx","v-oZNpH99MtM","v-v2hlWY4Br3"]（8 个）；工具条 仍在
+· ⭐【真值表】只剩 2 个图片节点时，下拉：{"错":"菜单没开"}
+· 
+成组前：节点数=11，提示点键=null
+· 菜单里「打组」项：null
+
+=== 已写 tools/batchEI11.json ===

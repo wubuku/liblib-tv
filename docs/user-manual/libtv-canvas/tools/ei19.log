@@ -1,0 +1,35 @@
+· 开局 11 个节点
+· 要归位：[["a-THmbuJXQj4",[963.997,1012.1],[-1356,600]],["i-9nlG6HdjK2",[555.997,1312.1],[-1764,900]],["v-eMpqKtiLlx",[532.997,1312.1],[-1787,900]]]
+· 　　a-THmbuJXQj4 第 1 轮画布差 -2320.0,-412.1（zoom 0.3082）
+· 　　a-THmbuJXQj4 第 2 轮画布差 -96.0,-12.0（zoom 0.3082）
+· 　a-THmbuJXQj4: 已到位（残差 0.00,0.00）
+· 　　i-9nlG6HdjK2 第 1 轮画布差 -2320.0,-412.1（zoom 0.3082）
+· 　　i-9nlG6HdjK2 第 2 轮画布差 -2320.0,-412.1（zoom 0.3082）
+· 　　i-9nlG6HdjK2 第 3 轮画布差 -97.0,-12.0（zoom 0.3082）
+· 　　i-9nlG6HdjK2 第 4 轮画布差 -16.0,0.0（zoom 0.3082）
+· 　　i-9nlG6HdjK2 第 5 轮画布差 -16.0,0.0（zoom 0.3082）
+· 　　i-9nlG6HdjK2 第 6 轮画布差 -16.0,0.0（zoom 0.3082）
+· 　i-9nlG6HdjK2: 多轮后仍有误差
+· 　　v-eMpqKtiLlx 第 1 轮画布差 -95.0,-12.0（zoom 0.3082）
+· 　　v-eMpqKtiLlx 第 2 轮画布差 -95.0,-12.0（zoom 0.3082）
+· 　　v-eMpqKtiLlx 第 3 轮画布差 -95.0,-12.0（zoom 0.3082）
+· 　　v-eMpqKtiLlx 第 4 轮画布差 -95.0,-12.0（zoom 0.3082）
+· 　v-eMpqKtiLlx: 已到位（残差 0.00,0.00）
+· 
+现有图片节点：[["i-9nlG6HdjK2","图片节点 2",[-2028,864]],["i-sODTbgLUm1","图片节点 2",[2152,1312.1]]]
+· 
+静置 15s 等落盘…
+· 终检：共 11 个节点
+· 　a-GgqvrVz0pw     audio     [719.388,1509.13] 标题=音频节点 1
+· 　a-THmbuJXQj4     audio     [-1356,600] 标题=音频节点 1
+· 　b-mfkcQNULC3     shot      [636,300] 标题=逐帧拉片
+· 　i-9nlG6HdjK2     image     [-2028,864] 标题=图片节点 2
+· 　i-sODTbgLUm1     image     [2152,1312.1] 标题=图片节点 2
+· 　n-56F19pXVB4     director  [-1225.03,370.975] 标题=导演台 5
+· 　t-2AK3Ukyxj3     text      [-1476,1524] 标题=文本节点 1
+· 　t-UtVx3lZmrV     text      [600,900] 标题=文本节点 1
+· 　v-eMpqKtiLlx     video     [-1787,900] 标题=视频节点 3
+· 　v-oZNpH99MtM     video     [132,300] 标题=智能剪辑 4
+· 　v-v2hlWY4Br3     video     [-696,300] 标题=视频节点 3
+
+=== 已写 tools/batchEI19.json ===

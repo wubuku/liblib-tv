@@ -1,0 +1,26 @@
+· 开局坐标偏差：[]
+· 
+════ ① 基线（什么都没选中）════
+· 　全视口滑杆/数值框候选 0 个
+· 
+════ ② 视频节点参数面板（v-v2hlWY4Br3）★对照组 ════
+· 　摘要「16:9 · 720P · 5s · 1个 ·」
+· 　　<DIV role=slider type=null cls=mantine-focus-auto m_c9a9a60a mant> 组标题="s" aria=[4 ~ 15] now=5 valuetext=null 原生[null~null] value=null
+· 　　<INPUT role=null type=number cls=text-fg-default bg-fg-muted/10 foc> 组标题="s" aria=[null ~ null] now=null valuetext=null 原生[4~15] value=5
+· 　⭐ 问号图标 0 枚 / 「新功能」提示条 1 条 / 两者矩形重叠 null
+· 　　提示条「新功能：支持真人」 box=[176,297,114,27]
+· 
+════ ③ 智能剪辑参数面板（v-oZNpH99MtM）════
+· 　摘要「16:9 · 720P · 30s」
+· 　　<DIV role=slider type=null cls=mantine-focus-auto m_c9a9a60a mant> 组标题="s" aria=[0 ~ 300] now=30 valuetext=null 原生[null~null] value=null
+· 　　<INPUT role=null type=number cls=text-fg-default bg-fg-muted/10 foc> 组标题="s" aria=[null ~ null] now=null valuetext=null 原生[0~300] value=30
+· 
+════ ④ 音频节点 ⚙ 高级设置（a-THmbuJXQj4）════
+· 
+⭐⭐ 滑杆/数值框读数合计 4 条，按场景：{"视频参数面板":2,"智能剪辑参数面板":2}
+· 
+✅ 完成（未拖任何滑块、未改任何数值）
+· ⏳ ⌘0 复位 + 静置 15s…
+· ⭐ 真的被移动：0 个 []
+
+=== 已写 tools/batchET1.json ===

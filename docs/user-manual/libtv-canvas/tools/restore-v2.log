@@ -1,0 +1,15 @@
+· v-oZNpH99MtM｜目标 [132,300]｜起步 [180,300]
+· 第 1 轮：现 [180,300] 误差 48.0000｜落点 {"x":1048,"y":125}｜拖 -105,0px
+·    → [-48,300]
+· 第 2 轮：现 [-48,300] 误差 180.0000｜落点 {"x":944,"y":125}｜拖 392,0px
+·    → [804,300]
+· 第 3 轮：现 [804,300] 误差 672.0000｜落点 {"x":1334,"y":125}｜拖 -1465,0px
+· ❌ page.waitForTimeout: Target page, context or browser has been closed
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+keyboard.press: Target page, context or browser has been closed
+    at /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/user-manual/libtv-canvas/tools/restore-v2.mjs:89:23
+
+Node.js v22.15.1

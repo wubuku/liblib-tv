@@ -1,0 +1,13 @@
+· 【A 点选 + Shift 加选两个图片】：工具条 没有，选区 2 个
+· 【B 框选（尽量只框两个图片）】：选区包围盒 [82,177,1040,395]（顶边 y=177，中心 x=602，5 个）
+· 　　工具条 box=[281,82,643,50]；横向差=0.5px，纵向差（选区顶边 − 工具条底边）=45px
+· 　　style=padding: 8px; gap: 8px; border-radius: 12px; border: 0.5px solid var(--canvas-controls-border); background: var(--canvas-controls-bg); box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 10px 0px; backdrop-filter: blur(16px); left: 602.314px; top: 146.087px; transform: translate(-50%, -100%) translateY(-14px);
+· 　　按钮：["(无名)","保存到资产","创建副本","打组","批量下载","添加到Chat","创建为Skill"]
+· 　　aria：["无","无","无","打组菜单","批量下载","无","无"]
+· 
+【真值表·全是图片】选区 ["a-GgqvrVz0pw","a-THmbuJXQj4","i-9nlG6HdjK2","i-sODTbgLUm1","v-eMpqKtiLlx"] → 下拉：[{"文本":"打组","opacity":"1","cursor":"pointer","disabled":false},{"文本":"合并分镜组","opacity":"0.45","cursor":"not-allowed","disabled":false}]
+· 
+⭐ 开菜单前：「打组菜单」按钮蓝点=[{"尺寸":[4,4],"背景":"rgb(93, 220, 255)"}]；相关 localStorage 键=["libtv_login_guide_popup","guide_pop_viewed_key"]
+· ⭐ 开过一次菜单并关掉后：蓝点=[{"尺寸":[4,4],"背景":"rgb(93, 220, 255)"}]；localStorage={"libtv_login_guide_popup":"{\"lastDate\":\"2026-09-24\"}","guide_pop_viewed_key":"{\"319\":1}"}
+
+=== 已写 tools/batchEI10.json ===

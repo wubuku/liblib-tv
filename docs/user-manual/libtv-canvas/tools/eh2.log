@@ -1,0 +1,9 @@
+关态: {"svg数":1,"cls":["iconify iconify--lucide pointer-events-none "],"box":[208,764,28,28]}
+已拍关态
+开态: {"svg数":2,"cls":["iconify iconify--lucide pointer-events-none ","absolute inset-0"],"box":[208,764,28,28]}
+已拍开态
+还原后: {"svg数":1,"cls":["iconify iconify--lucide pointer-events-none "],"box":[208,764,28,28]}
+
+两张对比图在 tools/.evidence/eh2-1-关.png 与 eh2-2-开.png
+
+=== 已写 tools/batchEH2.json ===
