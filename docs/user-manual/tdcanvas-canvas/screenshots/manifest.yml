@@ -1479,3 +1479,27 @@ screenshots:
     visible_text: '画布 资产 提示词库 画布元素 3 端点 A 端点 B 端点 A Copy 生图'
     alt: 画布上方是原件端点 A、端点 B 和两者之间那条连线；下方橙框圈着一个新出现的端点 A Copy，它左右两侧都没有任何连线，标注写着「只复制出这个孤立副本 / 它旁边一条线都没有」；左侧节点列表显示画布元素 3
     sha256: 81b03537ca411b27337c8037016c5353cc4ccba666fe284655abd9f157d63b2e
+
+  - file: screenshots/10-organize-canvas-video-drag-zones.png
+    task_id: organize-canvas
+    step: 在视频节点上按实测分界线画两块：画面区（可拖）与底部播放控件条（拖不动），再整页截图；标注落点由页面内扫描找不压任何节点与左侧面板的空位
+    route: '/canvas/:id'
+    viewport: '1600x900 视口，deviceScaleFactor=2，输出 3200x1800'
+    locale: zh-CN
+    captured_at: '2026-10-07'
+    verified_locator: '视频节点实测 @(180,171) 660x379（画布坐标 30,75.56）；分界线由拖拽实测夹逼得到：从顶边往下 302 像素按住拖 +60,+40 节点移动且位移逐位相符，310 像素处同样操作纹丝不动，继续夹逼得 302 可拖 / 304 不可拖，故底部约 76 像素是播放控件条；绿框 (180,171,660,303)、橙框 (180,474,660,76) 两个矩形全部由这两个实测值算出；截图前做了可见性阳性对照——上下两块此刻 elementFromPoint 命中的都是 video 元素本身且认主为该节点；出图前另跑一条断言：两个标注框不得与任何节点矩形、左侧面板（x<336）、顶栏（h=64）相交，实测相交数 0'
+    visible_text: '画布 资产 提示词库 画布元素 4 m247-audio.wav 音频 文本 m247-video.mp4 视频 音频'
+    alt: 画布上一个视频节点：绿框圈住上面的画面区，标注「按住拖，节点会移动」；橙框圈住最底下那一条，标注「底部这条是播放控件（进度条、播放键），按住拖，节点纹丝不动」
+    sha256: fb28136b162cc32f71b1a0171b57bd28ba39d4b360e4ae35142a8a0f79239f95
+
+  - file: screenshots/10-organize-canvas-audio-drag-zones.png
+    task_id: organize-canvas
+    step: 先把视频节点用数据库写入挪开以露出音频节点，再按实测矩形画两块（整个节点 / 播放器控件条），整页截图
+    route: '/canvas/:id'
+    viewport: '1600x900 视口，deviceScaleFactor=2，输出 3200x1800'
+    locale: zh-CN
+    captured_at: '2026-10-07'
+    verified_locator: '音频节点实测 @(480,280) 540x160；节点内的 audio 元素实测矩形 504x54、位于节点内距顶 69 像素、距左 18 像素（DOM 直接量得，非网格采样）；蓝框即节点矩形、橙框即 audio 元素矩形，两者都取自实测；截图前可见性阳性对照：播放器中心点 elementFromPoint 命中的就是 audio 元素本身且认主为该节点；拖拽对照读数——按在 audio 元素上拖动节点纹丝不动，按在它上下的 div 区域拖动节点移动且 Ctrl+Z 一次还原；标注框同样经断言与节点矩形、左侧面板、顶栏零相交'
+    visible_text: '画布 资产 提示词库 画布元素 4 m247-audio.wav 音频 文本 m247-video.mp4 视频 音频'
+    alt: 画布上一个音频节点：蓝框圈住整个节点，橙框圈住中间那条播放器控件（进度条、音量、更多按钮），标注「播放器这一条：按住拖，节点不动」
+    sha256: 9bf49419a5e71fcbf58dd2d82b34c02c009cdfe14d57a721a6f548ede7799ef8
