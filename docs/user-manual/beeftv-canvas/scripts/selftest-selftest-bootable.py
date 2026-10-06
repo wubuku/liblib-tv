@@ -578,6 +578,46 @@ def m_inline_gate_bypasses_run_gate():
         shutil.rmtree(tmp, ignore_errors=True)
 
 
+#: SLOW 里某一项的 `measured_at` 那一行（Batch 308 用来钉 方向四h）。
+#: **锚点必须改前改后都存在**：它在 Batch 307 之后才出现，
+#: **所以在改前那棵闸树上这条用例会「作废」而不是「红」——**
+#: **而作废被计成失败，于是它不会静悄悄空转**（纪律 102）。
+_MEASURED_AT_LINE = ('        "measured_at": "Batch 275（实测 100.8）",\n')
+
+
+def m_slow_entry_without_measured_at():
+    """**能抓（Batch 308 新增）**：SLOW 的某一项没写 `measured_at` → 必须报（方向四h）。
+
+    **为什么这一条非加不可**：方向四h 治的病是「判据的输入是一份手抄的实测值，
+    而它只可能在有人重测之后才变」——**而方向四h 自己刚上线时，
+    它就是闸 18 里唯一一个「新增了却没有用例守着」的方向**。
+    **一个只能靠人推动更新的方向，和它自己要治的病是同一种病。**
+    Batch 307 那一批只用了「同逻辑复刻件」验它的鉴别力，并把「没有专属用例」
+    当作已知缺口写进纪律 342；**本批把那笔账还上。**
+
+    **注入方式**：从沙箱里的闸源码里**删掉 `selftest-meta.sh` 那一项的 `measured_at` 行**。
+    **不用「把它改成空串」**——空串与缺字段是两种形态，
+    **而判据用同一句 `.strip()` 把两者判成同一件事**（那是有意的：
+    **两种都该报，报成同一条比分成两条更省事**）。
+    **所以本例只钉「缺字段」这一支**，**空串那一支由 Batch 307 的复刻件验过**。
+    """
+    check_anchor()
+    tmp = sandbox()
+    try:
+        p = os.path.join(tmp, "scripts", "verify-selftest-bootable.py")
+        t = read(p)
+        assert t.count(_MEASURED_AT_LINE) == 1, \
+            "前提失配：闸里那行 measured_at 出现 %d 次（期望 1）" % t.count(_MEASURED_AT_LINE)
+        write(p, t.replace(_MEASURED_AT_LINE, ""))
+        after = read(p)
+        assert _MEASURED_AT_LINE not in after, "前提失配：注入没生效"
+        rc, out = run_in(tmp)
+        record("57 SLOW 某项没写 measured_at→必报（方向四h）",
+               rc == 1 and "方向四h" in out and "selftest-meta.sh" in out, f"rc={rc}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def m_run_gate_reports():
     """**不误伤的那一半**：修 `run_gate` 时最容易顺手把成功路径也弄坏。"""
     check_anchor()
@@ -1871,6 +1911,7 @@ def main():
              m_run_gate_silent, m_run_gate_reports, m_run_gate_confuses_codes,
              m_silent_rc0_treated_as_pass,          # **Batch 305 新增**：方向十三之四
              m_inline_gate_bypasses_run_gate,       # **Batch 306 新增**：方向十三之五
+             m_slow_entry_without_measured_at,   # **Batch 308 新增**：方向四h
              m_shell_unsafe_var, m_shell_safe_var,
              m_deleted_fixture_ref, m_live_fixture_ref_not_reported,
              m_broken_selftest_caught, m_clean_fleet_not_reported,
