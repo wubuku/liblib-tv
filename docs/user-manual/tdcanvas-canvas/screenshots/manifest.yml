@@ -1432,3 +1432,26 @@ screenshots:
     visible_text: 'API 配置 设置 TDCanvas 调用 AI 土豆服务所需的唯一密钥 / API 服务密钥 保存后，图片、视频、音频和其他画布能力将统一使用此密钥 / 连接 TDCanvas Agent / 方式一：在 Codex 中使用插件 / Codex 插件提醒 / 移除插件 codex plugin remove tdcanvas / 移除手动 MCP codex mcp remove tdcanvas / 方式二：本地运行 TDCanvas Agent'
     alt: 左边是配置页，右边是展开的 Agent 面板：配置区里一个「插件」都没有，7 处「插件」全在右边的面板里，其中「移除插件」那一行右边是复制图标、不是按钮
     sha256: d6c2e7300a7badbf76e13f57f964a162423d8dde5486fe72604f67f62936816c
+  - file: screenshots/11-shortcuts-two-dialogs.png
+    task_id: shortcuts-help
+    step: 分别点顶栏键盘图标与左下角 Dock 问号圆，各按弹窗自身边界框裁剪后并排拼成一张对照图，下方逐条列出短的那个少掉哪 7 条
+    route: '/canvas/:id'
+    viewport: '1600x900 视口；左图裁剪 520x749、右图裁剪 520x293（均为 CSS px），deviceScaleFactor=2'
+    locale: zh-CN
+    captured_at: '2026-10-06'
+    verified_locator: '可见的那一个 .ant-modal-wrap .ant-modal —— 顶栏入口实测 520x749 @(540,76)、内部行数 13；Dock 入口实测 520x293 @(540,304)、内部行数 6；两者标题均为「快捷键」/ 两者按钮 aria-label 均为「快捷键」/ 三档窗口高度 700·900·1200 下两个尺寸各自不变 / 源码 canvas-top-bar.tsx:147 13 条、canvas-zoom-controls.tsx:103 6 条'
+    visible_text: '拖动画布 滚轮 缩放滑杆 Ctrl / Cmd + 拖动 Shift / Ctrl / Cmd + 点击 Ctrl / Cmd + A Ctrl / Cmd + C / V Ctrl / Cmd + Z Ctrl / Cmd + Shift + Z Ctrl / Cmd + Y Delete / Backspace Esc 拖入图片/视频/音频'
+    alt: 同一页面上两个都叫「快捷键」的弹窗并排对照：左边是顶栏键盘图标打开的，十三行键位，520 乘 749 像素；右边是左下角问号圆打开的，只有六行，520 乘 293 像素，右图外面套了一圈橙色描边，下方逐条列出右图少掉的七条
+    sha256: d967102811e40755fe33105714eb807bbf865a070c0c531b9a099837d9c00aca
+
+  - file: screenshots/16-two-history-buttons.png
+    task_id: use-agent
+    step: 展开右侧 Agent 面板后整页截图，再按探针实测的两个 rect 画框加标签：左栏第 5 项「历史」与面板顶部页签「历史」
+    route: '/canvas/:id'
+    viewport: '1600x900 视口，deviceScaleFactor=2，输出 3200x1800'
+    locale: zh-CN
+    captured_at: '2026-10-06'
+    verified_locator: '左栏那个 data-canvas-tool="tool-history" 实测 @(24,455) 32x32，aria-label="历史"；Agent 面板页签 nav[aria-label="Agent 内容"] 内 aria-label="历史" 实测 @(1347,0) 32x48；两者 aria-label 字面相同、同时可见；框与标签位置全部取自这两个实测 rect，未肉眼估'
+    visible_text: '画布 资产 提示词库 画布元素 4 连接 TDCanvas Agent'
+    alt: Agent 面板展开时的整页画布：左侧竖栏第五个时钟图标被红框标出，标注「左栏历史 32 乘 32，只换左侧面板」；右上角 Agent 面板顶部的时钟图标被橙框标出，标注「Agent 页签历史 32 乘 48，只换 Agent 面板」；两个按钮读起来都是「历史」，但位置一左一右、大小不同
+    sha256: 444229e80e01eca4cc3df6fb865bd20ce8b9a0a4c2be9cfad11103fc2aa38aa1
