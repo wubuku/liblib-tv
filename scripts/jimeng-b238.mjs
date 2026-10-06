@@ -26,6 +26,12 @@ import { chromium } from 'playwright';
 
 const URL = 'https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f';
 const 靶 = { id: 'node_d4tjtpnatq', 名: '时间线 2', 词: ['时间线 2', '时间线'] };
+// 批次 243：靶子切到「导演台」(`external` / `320×320` / `z=74`)。
+// 📌 目的：批次 235/236 的 `740`–`1235` 是 **20px 步长**，而文本族那条异常带只有 **8px** 宽
+//   ⇒ **理论上可能被整段跳过**。批次 242 把这条列成「未测」⇒ 本批改成**每 8px 一档**（`63` 档），
+//   **任意 8px 宽的窗口必含至少一个采样点** ⇒ 「无遗漏覆盖」由构造保证，不靠运气。
+const 靶导 = { id: 'node_pxvkay973v', 名: '导演台', 词: ['导演台', '导演'] };
+const 用导 = process.env.B243 === '1';
 // 批次 239：把目标换成「时间线 1」—— 与「时间线 2」同族同尺寸（1200×207 / timeline），
 // 但画布坐标迥异（[40.06, 370.5] vs [1282.76, 998.61]）、z-index 也不同（1 vs 20）。
 // 📌 目的：验证**族内两个节点是否逐字相同**（批次 238 只测了一个，没验证过族内一致性）。
@@ -47,8 +53,8 @@ const 靶文1 = { id: 'node_3bfb9r79qe', 名: '文本 1', 词: ['文本'] };
 const 用文1 = process.env.B240B === '1';
 // ⚠️ 声明顺序有讲究：`用一` / `靶节点` / `OUT` 都必须在**被用到之前** const，
 //    否则是 TDZ（暂时性死区）运行期报错 —— 批次 239 第一版就踩了这个。
-const 靶节点 = 用文1 ? 靶文1 : (用文 ? 靶文 : (用一 ? 靶1 : 靶));
-const OUT = 用文1 ? '/tmp/b240b.json' : (用文 ? '/tmp/b240.json' : (用一 ? '/tmp/b239.json' : '/tmp/b238.json'));
+const 靶节点 = 用导 ? 靶导 : (用文1 ? 靶文1 : (用文 ? 靶文 : (用一 ? 靶1 : 靶)));
+const OUT = 用导 ? '/tmp/b243.json' : (用文1 ? '/tmp/b240b.json' : (用文 ? '/tmp/b240.json' : (用一 ? '/tmp/b239.json' : '/tmp/b238.json')));
 /** 与批次 235/236 的 `导演台` 负结论**用同一组档位**，两条才能直接对比。 */
 const 默认档位 = [1235, 1215, 1200, 1180, 1160, 1140, 1120, 1100, 1080, 1060, 1040, 1020, 1000, 960, 920,
   900, 860, 820, 780, 740];
@@ -58,7 +64,7 @@ const 封顶 = 0.5;
 const 封顶容差 = 1e-4;
 
 const log = (...a) => console.log(a.join(' '));
-const out = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : { 轮次: 用文1 ? 'b240b' : (用文 ? 'b240' : (用一 ? 'b239' : 'b238')), 靶: 靶节点.名, 臂: [] };
+const out = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : { 轮次: 用导 ? 'b243' : (用文1 ? 'b240b' : (用文 ? 'b240' : (用一 ? 'b239' : 'b238'))), 靶: 靶节点.名, 臂: [] };
 const 存 = () => fs.writeFileSync(OUT, JSON.stringify(out, null, 1));
 
 const b = await chromium.connectOverCDP('http://127.0.0.1:9444');
