@@ -1,0 +1,1198 @@
+{
+ "batch": 807,
+ "base": "http://localhost:4317",
+ "rounds": [
+  {
+   "round": 0,
+   "makeHost": {
+    "picked": [
+     "t-9j2MoccxBj",
+     "i-1FQ9tErTcC"
+    ],
+    "groupsBefore": 2,
+    "groupsAfter": 3,
+    "host": {
+     "id": "group-1791250324433-eg9fgb",
+     "parentId": null,
+     "kids": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ]
+    }
+   },
+   "withHostMember": {
+    "selected": [
+     "t-9j2MoccxBj",
+     "i-lBzmo67AHv"
+    ],
+    "beforeAbs": {
+     "t-9j2MoccxBj": [
+      {
+       "x": 108,
+       "y": -125,
+       "depth": 1
+      },
+      350,
+      200
+     ],
+     "i-lBzmo67AHv": [
+      {
+       "x": 410,
+       "y": 932,
+       "depth": 0
+      },
+      618,
+      350
+     ]
+    },
+    "beforeHost": {
+     "id": "group-1791250324433-eg9fgb",
+     "type": "storyboard-group",
+     "parentId": null,
+     "pos": {
+      "x": 68,
+      "y": -165
+     },
+     "abs": {
+      "x": 68,
+      "y": -165,
+      "depth": 0
+     },
+     "w": 722,
+     "h": 828,
+     "kids": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ]
+    },
+    "afterNodes": [
+     {
+      "id": "group-1791250325841-o70fn9",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 68,
+       "y": -165
+      },
+      "abs": {
+       "x": 68,
+       "y": -165,
+       "depth": 0
+      },
+      "w": 1000,
+      "h": 1487,
+      "kids": [
+       "t-9j2MoccxBj",
+       "i-lBzmo67AHv"
+      ]
+     },
+     {
+      "id": "group-1791250324433-eg9fgb",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 92,
+       "y": 233
+      },
+      "abs": {
+       "x": 92,
+       "y": 233,
+       "depth": 0
+      },
+      "w": 698,
+      "h": 430,
+      "kids": [
+       "i-1FQ9tErTcC"
+      ]
+     },
+     {
+      "id": "g-245IDFh8sB",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 2112,
+       "y": 656
+      },
+      "abs": {
+       "x": 2112,
+       "y": 656,
+       "depth": 0
+      },
+      "w": 430,
+      "h": 452,
+      "kids": []
+     },
+     {
+      "id": "g-EFbbHpwq5w",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 2396,
+       "y": 10
+      },
+      "abs": {
+       "x": 2396,
+       "y": 10,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430,
+      "kids": [
+       "v-UGQZzZOpbv"
+      ]
+     },
+     {
+      "id": "t-9j2MoccxBj",
+      "type": "script",
+      "parentId": "group-1791250325841-o70fn9",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 108,
+       "y": -125,
+       "depth": 1
+      },
+      "w": 350,
+      "h": 200,
+      "kids": []
+     },
+     {
+      "id": "i-1FQ9tErTcC",
+      "type": "image",
+      "parentId": "group-1791250324433-eg9fgb",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 132,
+       "y": 273,
+       "depth": 1
+      },
+      "w": 618,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-lBzmo67AHv",
+      "type": "image",
+      "parentId": "group-1791250325841-o70fn9",
+      "pos": {
+       "x": 342,
+       "y": 1097
+      },
+      "abs": {
+       "x": 410,
+       "y": 932,
+       "depth": 1
+      },
+      "w": 618,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-dnwoZQ7jsG",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 410,
+       "y": 1332
+      },
+      "abs": {
+       "x": 410,
+       "y": 1332,
+       "depth": 0
+      },
+      "w": 700,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-vxeeCnxySa",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 410,
+       "y": 1732
+      },
+      "abs": {
+       "x": 410,
+       "y": 1732,
+       "depth": 0
+      },
+      "w": 700,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "b-bTLLuU4w5q",
+      "type": "script-execution",
+      "parentId": null,
+      "pos": {
+       "x": 1068,
+       "y": -187
+      },
+      "abs": {
+       "x": 1068,
+       "y": -187,
+       "depth": 0
+      },
+      "w": 350,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-YDfWhFlthe",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 1580,
+       "y": -300
+      },
+      "abs": {
+       "x": 1580,
+       "y": -300,
+       "depth": 0
+      },
+      "w": 622,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "v-UGQZzZOpbv",
+      "type": "video",
+      "parentId": "g-EFbbHpwq5w",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 2436,
+       "y": 50,
+       "depth": 1
+      },
+      "w": 622,
+      "h": 350,
+      "kids": []
+     }
+    ],
+    "afterHost": {
+     "id": "group-1791250324433-eg9fgb",
+     "type": "storyboard-group",
+     "parentId": null,
+     "pos": {
+      "x": 92,
+      "y": 233
+     },
+     "abs": {
+      "x": 92,
+      "y": 233,
+      "depth": 0
+     },
+     "w": 698,
+     "h": 430,
+     "kids": [
+      "i-1FQ9tErTcC"
+     ]
+    },
+    "nodeCountDelta": 1,
+    "newFeedbackKeys": [
+     "data-id=1-group-1791250325841-o70fn9-source-source",
+     "data-id=1-group-1791250325841-o70fn9-target-target",
+     "data-id=group-1791250325841-o70fn9",
+     "data-nodeid=group-1791250325841-o70fn9",
+     "data-testid=rf__node-group-1791250325841-o70fn9"
+    ],
+    "statusChanged": true,
+    "statusAfter": "画布 2 开通会员 限时 45 折 100 Agent 组合节点 组合节点 分镜图 · 第一集：咖啡馆对峙-图片组 视频组 · 第一集：咖啡馆对峙-视频组 剧本 第一集：咖啡馆对峙 角色：陈默(男主,面容冷峻)、林小婉(女主,眼神忧郁) 场景1：咖啡馆 陈默坐在窗边，咖啡已凉。林小婉走进来，走到他对面坐下。 林小婉提高音量说：\"你到底还要躲我到什么时候？\" 陈默不正眼看她，声音低沉：\"我没有躲你。\" 林小婉眼眶红了，说：\"你知道我有多担"
+   },
+   "twoHostMembers": {
+    "host": "group-1791250325841-o70fn9",
+    "selected": [
+     "t-9j2MoccxBj",
+     "i-lBzmo67AHv"
+    ],
+    "beforeAbs": {
+     "t-9j2MoccxBj": [
+      {
+       "x": 108,
+       "y": -125,
+       "depth": 1
+      },
+      350,
+      200
+     ],
+     "i-lBzmo67AHv": [
+      {
+       "x": 410,
+       "y": 932,
+       "depth": 1
+      },
+      618,
+      350
+     ]
+    },
+    "afterNodes": [
+     {
+      "id": "group-1791250327237-igzohs",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 68,
+       "y": -165
+      },
+      "abs": {
+       "x": 68,
+       "y": -165,
+       "depth": 0
+      },
+      "w": 1000,
+      "h": 1487,
+      "kids": [
+       "t-9j2MoccxBj",
+       "i-lBzmo67AHv"
+      ]
+     },
+     {
+      "id": "group-1791250325841-o70fn9",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 68,
+       "y": -165
+      },
+      "abs": {
+       "x": 68,
+       "y": -165,
+       "depth": 0
+      },
+      "w": 1000,
+      "h": 1487,
+      "kids": []
+     },
+     {
+      "id": "group-1791250324433-eg9fgb",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 92,
+       "y": 233
+      },
+      "abs": {
+       "x": 92,
+       "y": 233,
+       "depth": 0
+      },
+      "w": 698,
+      "h": 430,
+      "kids": [
+       "i-1FQ9tErTcC"
+      ]
+     },
+     {
+      "id": "g-245IDFh8sB",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 2112,
+       "y": 656
+      },
+      "abs": {
+       "x": 2112,
+       "y": 656,
+       "depth": 0
+      },
+      "w": 430,
+      "h": 452,
+      "kids": []
+     },
+     {
+      "id": "g-EFbbHpwq5w",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 2396,
+       "y": 10
+      },
+      "abs": {
+       "x": 2396,
+       "y": 10,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430,
+      "kids": [
+       "v-UGQZzZOpbv"
+      ]
+     },
+     {
+      "id": "t-9j2MoccxBj",
+      "type": "script",
+      "parentId": "group-1791250327237-igzohs",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 108,
+       "y": -125,
+       "depth": 1
+      },
+      "w": 350,
+      "h": 200,
+      "kids": []
+     },
+     {
+      "id": "i-1FQ9tErTcC",
+      "type": "image",
+      "parentId": "group-1791250324433-eg9fgb",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 132,
+       "y": 273,
+       "depth": 1
+      },
+      "w": 618,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-lBzmo67AHv",
+      "type": "image",
+      "parentId": "group-1791250327237-igzohs",
+      "pos": {
+       "x": 342,
+       "y": 1097
+      },
+      "abs": {
+       "x": 410,
+       "y": 932,
+       "depth": 1
+      },
+      "w": 618,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-dnwoZQ7jsG",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 410,
+       "y": 1332
+      },
+      "abs": {
+       "x": 410,
+       "y": 1332,
+       "depth": 0
+      },
+      "w": 700,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-vxeeCnxySa",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 410,
+       "y": 1732
+      },
+      "abs": {
+       "x": 410,
+       "y": 1732,
+       "depth": 0
+      },
+      "w": 700,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "b-bTLLuU4w5q",
+      "type": "script-execution",
+      "parentId": null,
+      "pos": {
+       "x": 1068,
+       "y": -187
+      },
+      "abs": {
+       "x": 1068,
+       "y": -187,
+       "depth": 0
+      },
+      "w": 350,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-YDfWhFlthe",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 1580,
+       "y": -300
+      },
+      "abs": {
+       "x": 1580,
+       "y": -300,
+       "depth": 0
+      },
+      "w": 622,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "v-UGQZzZOpbv",
+      "type": "video",
+      "parentId": "g-EFbbHpwq5w",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 2436,
+       "y": 50,
+       "depth": 1
+      },
+      "w": 622,
+      "h": 350,
+      "kids": []
+     }
+    ],
+    "nodeCountDelta": 1,
+    "hostAfter": {
+     "id": "group-1791250325841-o70fn9",
+     "type": "storyboard-group",
+     "parentId": null,
+     "pos": {
+      "x": 68,
+      "y": -165
+     },
+     "abs": {
+      "x": 68,
+      "y": -165,
+      "depth": 0
+     },
+     "w": 1000,
+     "h": 1487,
+     "kids": []
+    }
+   },
+   "groupPlusOne": {
+    "selected": [
+     "group-1791250327237-igzohs",
+     "t-9j2MoccxBj"
+    ],
+    "nodeCountDelta": 0,
+    "selectedAfter": [
+     "group-1791250327237-igzohs",
+     "t-9j2MoccxBj"
+    ],
+    "newFeedbackKeys": [],
+    "statusChanged": false,
+    "statusAfter": "画布 2 开通会员 限时 45 折 100 Agent 组合节点 组合节点 组合节点 分镜图 · 第一集：咖啡馆对峙-图片组 视频组 · 第一集：咖啡馆对峙-视频组 剧本 第一集：咖啡馆对峙 角色：陈默(男主,面容冷峻)、林小婉(女主,眼神忧郁) 场景1：咖啡馆 陈默坐在窗边，咖啡已凉。林小婉走进来，走到他对面坐下。 林小婉提高音量说：\"你到底还要躲我到什么时候？\" 陈默不正眼看她，声音低沉：\"我没有躲你。\" 林小婉眼眶红了，说：\"你知"
+   }
+  },
+  {
+   "round": 1,
+   "makeHost": {
+    "picked": [
+     "t-9j2MoccxBj",
+     "i-1FQ9tErTcC"
+    ],
+    "groupsBefore": 2,
+    "groupsAfter": 3,
+    "host": {
+     "id": "group-1791250332184-g8uisv",
+     "parentId": null,
+     "kids": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ]
+    }
+   },
+   "withHostMember": {
+    "selected": [
+     "t-9j2MoccxBj",
+     "i-lBzmo67AHv"
+    ],
+    "beforeAbs": {
+     "t-9j2MoccxBj": [
+      {
+       "x": 108,
+       "y": -125,
+       "depth": 1
+      },
+      350,
+      200
+     ],
+     "i-lBzmo67AHv": [
+      {
+       "x": 410,
+       "y": 932,
+       "depth": 0
+      },
+      618,
+      350
+     ]
+    },
+    "beforeHost": {
+     "id": "group-1791250332184-g8uisv",
+     "type": "storyboard-group",
+     "parentId": null,
+     "pos": {
+      "x": 68,
+      "y": -165
+     },
+     "abs": {
+      "x": 68,
+      "y": -165,
+      "depth": 0
+     },
+     "w": 722,
+     "h": 828,
+     "kids": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ]
+    },
+    "afterNodes": [
+     {
+      "id": "group-1791250333582-jx6nco",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 68,
+       "y": -165
+      },
+      "abs": {
+       "x": 68,
+       "y": -165,
+       "depth": 0
+      },
+      "w": 1000,
+      "h": 1487,
+      "kids": [
+       "t-9j2MoccxBj",
+       "i-lBzmo67AHv"
+      ]
+     },
+     {
+      "id": "group-1791250332184-g8uisv",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 92,
+       "y": 233
+      },
+      "abs": {
+       "x": 92,
+       "y": 233,
+       "depth": 0
+      },
+      "w": 698,
+      "h": 430,
+      "kids": [
+       "i-1FQ9tErTcC"
+      ]
+     },
+     {
+      "id": "g-245IDFh8sB",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 2112,
+       "y": 656
+      },
+      "abs": {
+       "x": 2112,
+       "y": 656,
+       "depth": 0
+      },
+      "w": 430,
+      "h": 452,
+      "kids": []
+     },
+     {
+      "id": "g-EFbbHpwq5w",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 2396,
+       "y": 10
+      },
+      "abs": {
+       "x": 2396,
+       "y": 10,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430,
+      "kids": [
+       "v-UGQZzZOpbv"
+      ]
+     },
+     {
+      "id": "t-9j2MoccxBj",
+      "type": "script",
+      "parentId": "group-1791250333582-jx6nco",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 108,
+       "y": -125,
+       "depth": 1
+      },
+      "w": 350,
+      "h": 200,
+      "kids": []
+     },
+     {
+      "id": "i-1FQ9tErTcC",
+      "type": "image",
+      "parentId": "group-1791250332184-g8uisv",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 132,
+       "y": 273,
+       "depth": 1
+      },
+      "w": 618,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-lBzmo67AHv",
+      "type": "image",
+      "parentId": "group-1791250333582-jx6nco",
+      "pos": {
+       "x": 342,
+       "y": 1097
+      },
+      "abs": {
+       "x": 410,
+       "y": 932,
+       "depth": 1
+      },
+      "w": 618,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-dnwoZQ7jsG",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 410,
+       "y": 1332
+      },
+      "abs": {
+       "x": 410,
+       "y": 1332,
+       "depth": 0
+      },
+      "w": 700,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-vxeeCnxySa",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 410,
+       "y": 1732
+      },
+      "abs": {
+       "x": 410,
+       "y": 1732,
+       "depth": 0
+      },
+      "w": 700,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "b-bTLLuU4w5q",
+      "type": "script-execution",
+      "parentId": null,
+      "pos": {
+       "x": 1068,
+       "y": -187
+      },
+      "abs": {
+       "x": 1068,
+       "y": -187,
+       "depth": 0
+      },
+      "w": 350,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-YDfWhFlthe",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 1580,
+       "y": -300
+      },
+      "abs": {
+       "x": 1580,
+       "y": -300,
+       "depth": 0
+      },
+      "w": 622,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "v-UGQZzZOpbv",
+      "type": "video",
+      "parentId": "g-EFbbHpwq5w",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 2436,
+       "y": 50,
+       "depth": 1
+      },
+      "w": 622,
+      "h": 350,
+      "kids": []
+     }
+    ],
+    "afterHost": {
+     "id": "group-1791250332184-g8uisv",
+     "type": "storyboard-group",
+     "parentId": null,
+     "pos": {
+      "x": 92,
+      "y": 233
+     },
+     "abs": {
+      "x": 92,
+      "y": 233,
+      "depth": 0
+     },
+     "w": 698,
+     "h": 430,
+     "kids": [
+      "i-1FQ9tErTcC"
+     ]
+    },
+    "nodeCountDelta": 1,
+    "newFeedbackKeys": [
+     "data-id=1-group-1791250333582-jx6nco-source-source",
+     "data-id=1-group-1791250333582-jx6nco-target-target",
+     "data-id=group-1791250333582-jx6nco",
+     "data-nodeid=group-1791250333582-jx6nco",
+     "data-testid=rf__node-group-1791250333582-jx6nco"
+    ],
+    "statusChanged": true,
+    "statusAfter": "画布 2 开通会员 限时 45 折 100 Agent 组合节点 组合节点 分镜图 · 第一集：咖啡馆对峙-图片组 视频组 · 第一集：咖啡馆对峙-视频组 剧本 第一集：咖啡馆对峙 角色：陈默(男主,面容冷峻)、林小婉(女主,眼神忧郁) 场景1：咖啡馆 陈默坐在窗边，咖啡已凉。林小婉走进来，走到他对面坐下。 林小婉提高音量说：\"你到底还要躲我到什么时候？\" 陈默不正眼看她，声音低沉：\"我没有躲你。\" 林小婉眼眶红了，说：\"你知道我有多担"
+   },
+   "twoHostMembers": {
+    "host": "group-1791250333582-jx6nco",
+    "selected": [
+     "t-9j2MoccxBj",
+     "i-lBzmo67AHv"
+    ],
+    "beforeAbs": {
+     "t-9j2MoccxBj": [
+      {
+       "x": 108,
+       "y": -125,
+       "depth": 1
+      },
+      350,
+      200
+     ],
+     "i-lBzmo67AHv": [
+      {
+       "x": 410,
+       "y": 932,
+       "depth": 1
+      },
+      618,
+      350
+     ]
+    },
+    "afterNodes": [
+     {
+      "id": "group-1791250334973-eq3o6k",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 68,
+       "y": -165
+      },
+      "abs": {
+       "x": 68,
+       "y": -165,
+       "depth": 0
+      },
+      "w": 1000,
+      "h": 1487,
+      "kids": [
+       "t-9j2MoccxBj",
+       "i-lBzmo67AHv"
+      ]
+     },
+     {
+      "id": "group-1791250333582-jx6nco",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 68,
+       "y": -165
+      },
+      "abs": {
+       "x": 68,
+       "y": -165,
+       "depth": 0
+      },
+      "w": 1000,
+      "h": 1487,
+      "kids": []
+     },
+     {
+      "id": "group-1791250332184-g8uisv",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 92,
+       "y": 233
+      },
+      "abs": {
+       "x": 92,
+       "y": 233,
+       "depth": 0
+      },
+      "w": 698,
+      "h": 430,
+      "kids": [
+       "i-1FQ9tErTcC"
+      ]
+     },
+     {
+      "id": "g-245IDFh8sB",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 2112,
+       "y": 656
+      },
+      "abs": {
+       "x": 2112,
+       "y": 656,
+       "depth": 0
+      },
+      "w": 430,
+      "h": 452,
+      "kids": []
+     },
+     {
+      "id": "g-EFbbHpwq5w",
+      "type": "storyboard-group",
+      "parentId": null,
+      "pos": {
+       "x": 2396,
+       "y": 10
+      },
+      "abs": {
+       "x": 2396,
+       "y": 10,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430,
+      "kids": [
+       "v-UGQZzZOpbv"
+      ]
+     },
+     {
+      "id": "t-9j2MoccxBj",
+      "type": "script",
+      "parentId": "group-1791250334973-eq3o6k",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 108,
+       "y": -125,
+       "depth": 1
+      },
+      "w": 350,
+      "h": 200,
+      "kids": []
+     },
+     {
+      "id": "i-1FQ9tErTcC",
+      "type": "image",
+      "parentId": "group-1791250332184-g8uisv",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 132,
+       "y": 273,
+       "depth": 1
+      },
+      "w": 618,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-lBzmo67AHv",
+      "type": "image",
+      "parentId": "group-1791250334973-eq3o6k",
+      "pos": {
+       "x": 342,
+       "y": 1097
+      },
+      "abs": {
+       "x": 410,
+       "y": 932,
+       "depth": 1
+      },
+      "w": 618,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-dnwoZQ7jsG",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 410,
+       "y": 1332
+      },
+      "abs": {
+       "x": 410,
+       "y": 1332,
+       "depth": 0
+      },
+      "w": 700,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-vxeeCnxySa",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 410,
+       "y": 1732
+      },
+      "abs": {
+       "x": 410,
+       "y": 1732,
+       "depth": 0
+      },
+      "w": 700,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "b-bTLLuU4w5q",
+      "type": "script-execution",
+      "parentId": null,
+      "pos": {
+       "x": 1068,
+       "y": -187
+      },
+      "abs": {
+       "x": 1068,
+       "y": -187,
+       "depth": 0
+      },
+      "w": 350,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "i-YDfWhFlthe",
+      "type": "image",
+      "parentId": null,
+      "pos": {
+       "x": 1580,
+       "y": -300
+      },
+      "abs": {
+       "x": 1580,
+       "y": -300,
+       "depth": 0
+      },
+      "w": 622,
+      "h": 350,
+      "kids": []
+     },
+     {
+      "id": "v-UGQZzZOpbv",
+      "type": "video",
+      "parentId": "g-EFbbHpwq5w",
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 2436,
+       "y": 50,
+       "depth": 1
+      },
+      "w": 622,
+      "h": 350,
+      "kids": []
+     }
+    ],
+    "nodeCountDelta": 1,
+    "hostAfter": {
+     "id": "group-1791250333582-jx6nco",
+     "type": "storyboard-group",
+     "parentId": null,
+     "pos": {
+      "x": 68,
+      "y": -165
+     },
+     "abs": {
+      "x": 68,
+      "y": -165,
+      "depth": 0
+     },
+     "w": 1000,
+     "h": 1487,
+     "kids": []
+    }
+   },
+   "groupPlusOne": {
+    "selected": [
+     "group-1791250334973-eq3o6k",
+     "t-9j2MoccxBj"
+    ],
+    "nodeCountDelta": 0,
+    "selectedAfter": [
+     "group-1791250334973-eq3o6k",
+     "t-9j2MoccxBj"
+    ],
+    "newFeedbackKeys": [],
+    "statusChanged": false,
+    "statusAfter": "画布 2 开通会员 限时 45 折 100 Agent 组合节点 组合节点 组合节点 分镜图 · 第一集：咖啡馆对峙-图片组 视频组 · 第一集：咖啡馆对峙-视频组 剧本 第一集：咖啡馆对峙 角色：陈默(男主,面容冷峻)、林小婉(女主,眼神忧郁) 场景1：咖啡馆 陈默坐在窗边，咖啡已凉。林小婉走进来，走到他对面坐下。 林小婉提高音量说：\"你到底还要躲我到什么时候？\" 陈默不正眼看她，声音低沉：\"我没有躲你。\" 林小婉眼眶红了，说：\"你知"
+   }
+  }
+ ]
+}
