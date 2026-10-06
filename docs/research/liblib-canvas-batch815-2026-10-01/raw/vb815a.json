@@ -1,0 +1,3394 @@
+{
+ "base": "http://localhost:4317",
+ "img": "i-1FQ9tErTcC",
+ "cells": [
+  {
+   "label": "旋转",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268712242"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268714316"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268716437"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "aria"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "aria"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "aria"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268712242",
+    "image-1791268714316",
+    "image-1791268716437"
+   ],
+   "可见文本": {
+    "image-1791268712242": {
+     "text": "旋转与镜像1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268714316": {
+     "text": "旋转与镜像1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268716437": {
+     "text": "旋转与镜像1808 × 1024标记风格Lib Image 2.5 Pro16:9 · 标准画质 · 2K · 1张",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268712242": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268714316": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268716437": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 0,
+   "secs": 10.3
+  },
+  {
+   "label": "全景",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268721833"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268723815"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268725816"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268721833",
+    "image-1791268723815",
+    "image-1791268725816"
+   ],
+   "可见文本": {
+    "image-1791268721833": {
+     "text": "720°全景图700 × 350",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268723815": {
+     "text": "720°全景图700 × 350",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268725816": {
+     "text": "720°全景图700 × 350尝试：图生图HD图片高清+参考1720720全景点击生成，直接将场景图像转为720全景图，支持文生/参考图Lib Image2:",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268721833": {
+     "x": 445,
+     "y": 227,
+     "w": 263,
+     "h": 131
+    },
+    "image-1791268723815": {
+     "x": 445,
+     "y": 227,
+     "w": 263,
+     "h": 131
+    },
+    "image-1791268725816": {
+     "x": 445,
+     "y": 227,
+     "w": 263,
+     "h": 131
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 0,
+   "secs": 9.4
+  },
+  {
+   "label": "多角度",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268731116"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268733082"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268735066"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268731116",
+    "image-1791268733082",
+    "image-1791268735066"
+   ],
+   "可见文本": {
+    "image-1791268731116": {
+     "text": "多角度展示图1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268733082": {
+     "text": "多角度展示图1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268735066": {
+     "text": "多角度展示图1808 × 1024参考标记风格1保持主体造型一致，生成正面、侧面、背面和三分之二视角的多角度展示。Lib Image 2.5 Pro16:9 ·",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268731116": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268733082": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268735066": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 0,
+   "secs": 9.2
+  },
+  {
+   "label": "打光",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268740418"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268742364"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268744365"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268740418",
+    "image-1791268742364",
+    "image-1791268744365"
+   ],
+   "可见文本": {
+    "image-1791268740418": {
+     "text": "智能打光1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268742364": {
+     "text": "智能打光1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268744365": {
+     "text": "智能打光1808 × 1024参考标记风格1保持主体与构图不变，增强电影级侧逆光、轮廓光与自然环境反射。Lib Image 2.5 Pro16:9 · 标准画质",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268740418": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268742364": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268744365": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 0,
+   "secs": 9.3
+  },
+  {
+   "label": "九宫格",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268749532"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268751480"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268753446"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268749532",
+    "image-1791268751480",
+    "image-1791268753446"
+   ],
+   "可见文本": {
+    "image-1791268749532": {
+     "text": "九宫格分镜1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268751480": {
+     "text": "九宫格分镜1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268753446": {
+     "text": "九宫格分镜1808 × 1024参考标记风格1保持角色和场景连续，生成九宫格镜头探索图，覆盖景别与机位变化。Lib Image 2.5 Pro16:9 · 标准",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268749532": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268751480": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268753446": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 0,
+   "secs": 9.1
+  },
+  {
+   "label": "高清",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268759116"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268761129"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268763198"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268759116",
+    "image-1791268761129",
+    "image-1791268763198"
+   ],
+   "可见文本": {
+    "image-1791268759116": {
+     "text": "高清放大1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268761129": {
+     "text": "高清放大1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268763198": {
+     "text": "高清放大1808 × 1024参考标记风格1对当前图片进行高清修复与细节增强，保持原始构图和人物一致性。Lib Image 2.5 Pro16:9 · 标准画质",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268759116": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268761129": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268763198": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 0,
+   "secs": 9.7
+  },
+  {
+   "label": "宫格切分",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268768781"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268770745"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268772795"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268768781",
+    "image-1791268770745",
+    "image-1791268772795"
+   ],
+   "可见文本": {
+    "image-1791268768781": {
+     "text": "宫格切分结果1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268770745": {
+     "text": "宫格切分结果1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268772795": {
+     "text": "宫格切分结果1808 × 1024参考标记风格1将当前宫格图拆分为可独立引用的镜头素材。Lib Image 2.5 Pro16:9 · 标准画质 · 2K · ",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268768781": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268770745": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268772795": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 0,
+   "secs": 9.6
+  },
+  {
+   "label": "旋转",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268778012"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268779928"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268781893"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "aria"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "aria"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "aria"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268778012",
+    "image-1791268779928",
+    "image-1791268781893"
+   ],
+   "可见文本": {
+    "image-1791268778012": {
+     "text": "旋转与镜像1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268779928": {
+     "text": "旋转与镜像1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268781893": {
+     "text": "旋转与镜像1808 × 1024标记风格Lib Image 2.5 Pro16:9 · 标准画质 · 2K · 1张",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268778012": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268779928": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268781893": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 1,
+   "secs": 9.0
+  },
+  {
+   "label": "全景",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268787012"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268788927"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268790860"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268787012",
+    "image-1791268788927",
+    "image-1791268790860"
+   ],
+   "可见文本": {
+    "image-1791268787012": {
+     "text": "720°全景图700 × 350",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268788927": {
+     "text": "720°全景图700 × 350",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268790860": {
+     "text": "720°全景图700 × 350尝试：图生图HD图片高清+参考1720720全景点击生成，直接将场景图像转为720全景图，支持文生/参考图Lib Image2:",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268787012": {
+     "x": 445,
+     "y": 227,
+     "w": 263,
+     "h": 131
+    },
+    "image-1791268788927": {
+     "x": 445,
+     "y": 227,
+     "w": 263,
+     "h": 131
+    },
+    "image-1791268790860": {
+     "x": 445,
+     "y": 227,
+     "w": 263,
+     "h": 131
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 1,
+   "secs": 9.0
+  },
+  {
+   "label": "多角度",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268795994"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268797877"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268799827"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268795994",
+    "image-1791268797877",
+    "image-1791268799827"
+   ],
+   "可见文本": {
+    "image-1791268795994": {
+     "text": "多角度展示图1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268797877": {
+     "text": "多角度展示图1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268799827": {
+     "text": "多角度展示图1808 × 1024参考标记风格1保持主体造型一致，生成正面、侧面、背面和三分之二视角的多角度展示。Lib Image 2.5 Pro16:9 ·",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268795994": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268797877": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268799827": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 1,
+   "secs": 9.0
+  },
+  {
+   "label": "打光",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268804895"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268806843"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268808792"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268804895",
+    "image-1791268806843",
+    "image-1791268808792"
+   ],
+   "可见文本": {
+    "image-1791268804895": {
+     "text": "智能打光1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268806843": {
+     "text": "智能打光1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268808792": {
+     "text": "智能打光1808 × 1024参考标记风格1保持主体与构图不变，增强电影级侧逆光、轮廓光与自然环境反射。Lib Image 2.5 Pro16:9 · 标准画质",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268804895": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268806843": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268808792": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 1,
+   "secs": 9.0
+  },
+  {
+   "label": "九宫格",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268813911"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268815810"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268817759"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268813911",
+    "image-1791268815810",
+    "image-1791268817759"
+   ],
+   "可见文本": {
+    "image-1791268813911": {
+     "text": "九宫格分镜1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268815810": {
+     "text": "九宫格分镜1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268817759": {
+     "text": "九宫格分镜1808 × 1024参考标记风格1保持角色和场景连续，生成九宫格镜头探索图，覆盖景别与机位变化。Lib Image 2.5 Pro16:9 · 标准",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268813911": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268815810": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268817759": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 1,
+   "secs": 9.0
+  },
+  {
+   "label": "高清",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268822826"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268824725"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268826692"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268822826",
+    "image-1791268824725",
+    "image-1791268826692"
+   ],
+   "可见文本": {
+    "image-1791268822826": {
+     "text": "高清放大1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268824725": {
+     "text": "高清放大1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268826692": {
+     "text": "高清放大1808 × 1024参考标记风格1对当前图片进行高清修复与细节增强，保持原始构图和人物一致性。Lib Image 2.5 Pro16:9 · 标准画质",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268822826": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268824725": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268826692": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 1,
+   "secs": 8.9
+  },
+  {
+   "label": "宫格切分",
+   "工具栏按钮": [
+    {
+     "label": "人像质感调节NEW",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": "false",
+     "testid": "image-toolbar-portrait-texture"
+    },
+    {
+     "label": "全景",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-panorama-slash"
+    },
+    {
+     "label": "多角度",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-angle"
+    },
+    {
+     "label": "打光",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-light"
+    },
+    {
+     "label": "九宫格",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-nine-grid"
+    },
+    {
+     "label": "高清",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-editor-primary-tool-trigger"
+    },
+    {
+     "label": "元素编辑",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-interactive-edit"
+    },
+    {
+     "label": "图层分离",
+     "aria": "",
+     "title": "",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-layer-separation"
+    },
+    {
+     "label": "宫格切分",
+     "aria": "",
+     "title": "",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-grid-split"
+    },
+    {
+     "label": "",
+     "aria": "标注",
+     "title": "标注",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-annotate"
+    },
+    {
+     "label": "",
+     "aria": "旋转",
+     "title": "旋转",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-rotate"
+    },
+    {
+     "label": "",
+     "aria": "下载",
+     "title": "下载",
+     "disabled": true,
+     "pressed": null,
+     "testid": "image-toolbar-download"
+    },
+    {
+     "label": "",
+     "aria": "预览",
+     "title": "预览",
+     "disabled": false,
+     "pressed": null,
+     "testid": "image-toolbar-preview"
+    }
+   ],
+   "marks": [
+    {
+     "第几次": 1,
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史": [
+      0,
+      1
+     ],
+     "这次新建了": [
+      "image-1791268831826"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 2,
+     "节点": [
+      11,
+      12
+     ],
+     "边": [
+      12,
+      13
+     ],
+     "历史": [
+      1,
+      2
+     ],
+     "这次新建了": [
+      "image-1791268833742"
+     ],
+     "这次新建了几个": 1
+    },
+    {
+     "第几次": 3,
+     "节点": [
+      12,
+      13
+     ],
+     "边": [
+      13,
+      14
+     ],
+     "历史": [
+      2,
+      3
+     ],
+     "这次新建了": [
+      "image-1791268835707"
+     ],
+     "这次新建了几个": 1
+    }
+   ],
+   "UI 结局": [],
+   "命中路径": [
+    {
+     "第几次": 1,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 2,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    },
+    {
+     "第几次": 3,
+     "结果": "clicked",
+     "★ 命中路径": "文字"
+    }
+   ],
+   "建出来的 id": [
+    "image-1791268831826",
+    "image-1791268833742",
+    "image-1791268835707"
+   ],
+   "可见文本": {
+    "image-1791268831826": {
+     "text": "宫格切分结果1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268833742": {
+     "text": "宫格切分结果1808 × 1024",
+     "type": "image",
+     "selected": false
+    },
+    "image-1791268835707": {
+     "text": "宫格切分结果1808 × 1024参考标记风格1将当前宫格图拆分为可独立引用的镜头素材。Lib Image 2.5 Pro16:9 · 标准画质 · 2K · ",
+     "type": "image",
+     "selected": true
+    }
+   },
+   "绝对几何": {
+    "image-1791268831826": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268833742": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    },
+    "image-1791268835707": {
+     "x": 445,
+     "y": 268,
+     "w": 192,
+     "h": 108
+    }
+   },
+   "★ 第一下建了东西": true,
+   "★ 逐次递增": false,
+   "★ 每个 kind 只有一种文本": true,
+   "★ 同一 kind 出现过两次以上": true,
+   "★ 三份的 x 全同（叠在一起）": true,
+   "x 序列": [
+    445,
+    445,
+    445
+   ],
+   "一共建了几份": 3,
+   "★ 每一份都建成了 1 个节点": true,
+   "round": 1,
+   "secs": 9.0
+  }
+ ]
+}
