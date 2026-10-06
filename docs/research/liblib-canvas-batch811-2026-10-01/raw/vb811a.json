@@ -1,0 +1,1867 @@
+{
+ "base": "http://localhost:4317",
+ "undo": [
+  {
+   "key": "u_firstFrame",
+   "name": "createFirstFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 8,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791261511536-u02jm6",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 9,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 8
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 8,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 0,
+   "secs": 5.8
+  },
+  {
+   "key": "u_firstLast",
+   "name": "createFirstLastFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 8,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791261520747-8j35f4",
+     "image-1791261520747-kzh73b",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 10,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 8
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 8,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 0,
+   "secs": 9.2
+  },
+  {
+   "key": "u_breakdown",
+   "name": "addDerivedNode(shot-breakdown)",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791261526533",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 12,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "shot-breakdown",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 11
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 0,
+   "secs": 6.0
+  },
+  {
+   "key": "u_continuation",
+   "name": "createVideoContinuation",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv",
+     "video-continuation-1791261532628-49c8yq"
+    ],
+    "edges": 12,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 11
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 0,
+   "secs": 5.9
+  },
+  {
+   "key": "u_subtitle",
+   "name": "createSubtitleErase",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "subtitle-erase-1791261538412-mp3ht8",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 12,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 11
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 0,
+   "secs": 5.8
+  },
+  {
+   "key": "u_audio",
+   "name": "createAudioSplit",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "audio-split-1791261544725-j8ynse",
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "silent-video-1791261544725-smbugl",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 13,
+    "types": [
+     "audio",
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 11
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 0,
+   "secs": 7.4
+  },
+  {
+   "key": "u_shotComplete",
+   "name": "completeShotBreakdown",
+   "srcId": "shot-breakdown-1791261551512",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791261551512",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 12,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "shot-breakdown",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 1
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791261551512",
+     "shot-breakdown-result-1791261554130-5q0pai",
+     "shot-breakdown-result-1791261554130-iva6ck",
+     "shot-breakdown-result-1791261554130-kjqhzu",
+     "shot-breakdown-result-1791261554130-lboi9o",
+     "shot-breakdown-result-1791261554130-p1ktvm",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 17,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "shot-breakdown",
+     "shot-breakdown-result",
+     "shot-breakdown-result",
+     "shot-breakdown-result",
+     "shot-breakdown-result",
+     "shot-breakdown-result",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 2
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "shot-breakdown-1791261551512",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 12
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791261551512",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 12,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "shot-breakdown",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 1
+   },
+   "round": 0,
+   "secs": 7.9
+  },
+  {
+   "key": "u_firstFrame",
+   "name": "createFirstFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 8,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791261575627-fmtsyh",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 9,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 8
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 8,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 1,
+   "secs": 5.5
+  },
+  {
+   "key": "u_firstLast",
+   "name": "createFirstLastFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 8,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791261581093-1stzaf",
+     "image-1791261581093-j3tr4t",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 10,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 8
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 8,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 1,
+   "secs": 5.5
+  },
+  {
+   "key": "u_breakdown",
+   "name": "addDerivedNode(shot-breakdown)",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791261586859",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 12,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "shot-breakdown",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 11
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 1,
+   "secs": 6.0
+  },
+  {
+   "key": "u_continuation",
+   "name": "createVideoContinuation",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv",
+     "video-continuation-1791261592908-5zjad5"
+    ],
+    "edges": 12,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 11
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 1,
+   "secs": 5.8
+  },
+  {
+   "key": "u_subtitle",
+   "name": "createSubtitleErase",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "subtitle-erase-1791261598658-7c9qzf",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 12,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 11
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 1,
+   "secs": 5.7
+  },
+  {
+   "key": "u_audio",
+   "name": "createAudioSplit",
+   "srcId": "v-UGQZzZOpbv",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "after": {
+    "nodeIds": [
+     "audio-split-1791261604954-3arlay",
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "silent-video-1791261604954-bcygug",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 13,
+    "types": [
+     "audio",
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video",
+     "video"
+    ],
+    "past": 1
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 11
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 11,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 0
+   },
+   "round": 1,
+   "secs": 7.3
+  },
+  {
+   "key": "u_shotComplete",
+   "name": "completeShotBreakdown",
+   "srcId": "shot-breakdown-1791261611691",
+   "before": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791261611691",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 12,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "shot-breakdown",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 1
+   },
+   "after": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791261611691",
+     "shot-breakdown-result-1791261614291-71q7if",
+     "shot-breakdown-result-1791261614291-ery9al",
+     "shot-breakdown-result-1791261614291-ev3513",
+     "shot-breakdown-result-1791261614291-hlvjag",
+     "shot-breakdown-result-1791261614291-zdss2n",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 17,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "shot-breakdown",
+     "shot-breakdown-result",
+     "shot-breakdown-result",
+     "shot-breakdown-result",
+     "shot-breakdown-result",
+     "shot-breakdown-result",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 2
+   },
+   "★ 动作真的建了东西": true,
+   "★ 历史真的多了一条": true,
+   "undoPresses": [
+    {
+     "第几次": 1,
+     "节点 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "shot-breakdown-1791261611691",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边数": 12
+    }
+   ],
+   "★ 按了几次才回到动作前": 1,
+   "final": {
+    "nodeIds": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791261611691",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "edges": 12,
+    "types": [
+     "image",
+     "image",
+     "image",
+     "image",
+     "image",
+     "script",
+     "script-execution",
+     "shot-breakdown",
+     "storyboard-group",
+     "storyboard-group",
+     "video"
+    ],
+    "past": 1
+   },
+   "round": 1,
+   "secs": 7.8
+  }
+ ],
+ "cross": [
+  {
+   "key": "crossSwitch",
+   "源画布": "canvas-2",
+   "切过去的画布": "canvas-1",
+   "before": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 10,
+     "e": 11,
+     "past": 0
+    }
+   },
+   "after": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 10,
+     "e": 11,
+     "past": 0
+    }
+   },
+   "activeAfter": "canvas-1",
+   "selAfter": [],
+   "dom": {
+    "画布下拉": [],
+    "DOM 节点": []
+   },
+   "在当前画布按 Cmd+Z 之后": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 10,
+     "e": 11,
+     "past": 0
+    }
+   },
+   "round": 0,
+   "secs": 8.2
+  },
+  {
+   "key": "crossStay",
+   "源画布": "canvas-2",
+   "切过去的画布": "canvas-2",
+   "before": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 10,
+     "e": 11,
+     "past": 0
+    }
+   },
+   "after": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 12,
+     "e": 13,
+     "past": 1
+    }
+   },
+   "activeAfter": "canvas-2",
+   "selAfter": [
+    "silent-video-1791261568192-pvcl7o"
+   ],
+   "dom": {
+    "画布下拉": [],
+    "DOM 节点": [
+     "audio-split-1791261568192-2aplj7",
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "silent-video-1791261568192-pvcl7o",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ]
+   },
+   "在当前画布按 Cmd+Z 之后": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 10,
+     "e": 11,
+     "past": 0
+    }
+   },
+   "round": 0,
+   "secs": 8.3
+  },
+  {
+   "key": "crossSwitch",
+   "源画布": "canvas-2",
+   "切过去的画布": "canvas-1",
+   "before": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 10,
+     "e": 11,
+     "past": 0
+    }
+   },
+   "after": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 10,
+     "e": 11,
+     "past": 0
+    }
+   },
+   "activeAfter": "canvas-1",
+   "selAfter": [],
+   "dom": {
+    "画布下拉": [],
+    "DOM 节点": []
+   },
+   "在当前画布按 Cmd+Z 之后": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 10,
+     "e": 11,
+     "past": 0
+    }
+   },
+   "round": 1,
+   "secs": 8.3
+  },
+  {
+   "key": "crossStay",
+   "源画布": "canvas-2",
+   "切过去的画布": "canvas-2",
+   "before": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 10,
+     "e": 11,
+     "past": 0
+    }
+   },
+   "after": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 12,
+     "e": 13,
+     "past": 1
+    }
+   },
+   "activeAfter": "canvas-2",
+   "selAfter": [
+    "silent-video-1791261629019-je13z6"
+   ],
+   "dom": {
+    "画布下拉": [],
+    "DOM 节点": [
+     "audio-split-1791261629019-a3ovot",
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "silent-video-1791261629019-je13z6",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ]
+   },
+   "在当前画布按 Cmd+Z 之后": {
+    "canvas-1": {
+     "n": 0,
+     "e": 0,
+     "past": 0
+    },
+    "canvas-2": {
+     "n": 10,
+     "e": 11,
+     "past": 0
+    }
+   },
+   "round": 1,
+   "secs": 8.8
+  }
+ ]
+}

@@ -1,0 +1,1400 @@
+{
+ "batch": 811,
+ "totals": {
+  "passed": 7,
+  "total": 7
+ },
+ "checks": [
+  {
+   "id": "S1:★★ 阳性对照：7 个动作每个都**真的建了东西**、历史**真的 +1**",
+   "why": "★★ 没有这条，「一次 Cmd+Z 就还原了」可能只是「压根什么都没发生、按 Cmd+Z 也没东西可按」⟹ ★ 809 记的「防重分支」让这件事**真的可能发生**（`createSubtitleErase` 指纹去重、`completeShotBreakdown` 已有结果就 return）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      8,
+      9
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 1,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "节点": [
+      10,
+      12
+     ],
+     "边": [
+      8,
+      10
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 2,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 1,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 1,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 1,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "节点": [
+      10,
+      12
+     ],
+     "边": [
+      11,
+      13
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 2,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "节点": [
+      11,
+      16
+     ],
+     "边": [
+      12,
+      17
+     ],
+     "历史长度": [
+      1,
+      2
+     ],
+     "新建了几个": 5,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      8,
+      9
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 1,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "节点": [
+      10,
+      12
+     ],
+     "边": [
+      8,
+      10
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 2,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 1,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 1,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "节点": [
+      10,
+      11
+     ],
+     "边": [
+      11,
+      12
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 1,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "节点": [
+      10,
+      12
+     ],
+     "边": [
+      11,
+      13
+     ],
+     "历史长度": [
+      0,
+      1
+     ],
+     "新建了几个": 2,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "节点": [
+      11,
+      16
+     ],
+     "边": [
+      12,
+      17
+     ],
+     "历史长度": [
+      1,
+      2
+     ],
+     "新建了几个": 5,
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    }
+   ]
+  },
+  {
+   "id": "S2:★★★ 主判据甲：**一次** `Cmd+Z` 就让节点 id 集合与边数**逐位回到动作前**",
+   "why": "★★★ 809 验的是几何、没验撤销；★ 判「id 集合」而不是「节点数」——数量相同但换了内容是另一种坏；★ 判「一次」而不是「按到回到为止」——后者会把「第一次按掉的是上一次别的操作」也判成通过；★ 809 的防重分支让「压根没发生、按 Cmd+Z 也没东西可按」**真的可能**，所以 S1 的阳性对照不可省",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "image-1791261511536-u02jm6",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      8,
+      8
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "image-1791261520747-8j35f4",
+      "image-1791261520747-kzh73b",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      8,
+      8
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "shot-breakdown-1791261526533",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      11,
+      11
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv",
+      "video-continuation-1791261532628-49c8yq"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      11,
+      11
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "subtitle-erase-1791261538412-mp3ht8",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      11,
+      11
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "★ 动作后 id 集合": [
+      "audio-split-1791261544725-j8ynse",
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "silent-video-1791261544725-smbugl",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      11,
+      11
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "shot-breakdown-1791261551512",
+      "shot-breakdown-result-1791261554130-5q0pai",
+      "shot-breakdown-result-1791261554130-iva6ck",
+      "shot-breakdown-result-1791261554130-kjqhzu",
+      "shot-breakdown-result-1791261554130-lboi9o",
+      "shot-breakdown-result-1791261554130-p1ktvm",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "shot-breakdown-1791261551512",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "shot-breakdown-1791261551512",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      12,
+      12
+     ],
+     "历史（动作前→按后）": [
+      1,
+      1
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "image-1791261575627-fmtsyh",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      8,
+      8
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "image-1791261581093-1stzaf",
+      "image-1791261581093-j3tr4t",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      8,
+      8
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "shot-breakdown-1791261586859",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      11,
+      11
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv",
+      "video-continuation-1791261592908-5zjad5"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      11,
+      11
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "subtitle-erase-1791261598658-7c9qzf",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      11,
+      11
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "★ 动作后 id 集合": [
+      "audio-split-1791261604954-3arlay",
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "silent-video-1791261604954-bcygug",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      11,
+      11
+     ],
+     "历史（动作前→按后）": [
+      0,
+      0
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "★ 动作后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "shot-breakdown-1791261611691",
+      "shot-breakdown-result-1791261614291-71q7if",
+      "shot-breakdown-result-1791261614291-ery9al",
+      "shot-breakdown-result-1791261614291-ev3513",
+      "shot-breakdown-result-1791261614291-hlvjag",
+      "shot-breakdown-result-1791261614291-zdss2n",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 按 1 次之后 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "shot-breakdown-1791261611691",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "★ 动作前 id 集合": [
+      "b-bTLLuU4w5q",
+      "g-245IDFh8sB",
+      "g-EFbbHpwq5w",
+      "i-1FQ9tErTcC",
+      "i-YDfWhFlthe",
+      "i-dnwoZQ7jsG",
+      "i-lBzmo67AHv",
+      "i-vxeeCnxySa",
+      "shot-breakdown-1791261611691",
+      "t-9j2MoccxBj",
+      "v-UGQZzZOpbv"
+     ],
+     "边（动作前→按后）": [
+      12,
+      12
+     ],
+     "历史（动作前→按后）": [
+      1,
+      1
+     ],
+     "★ 按了几次": 1,
+     "★ 一次就回到": true,
+     "★ id 集合逐位相同": true,
+     "★ 边数相同": true,
+     "★ 三件同时": true
+    }
+   ]
+  },
+  {
+   "id": "S3:★★★ 对照组（不切画布）：音视频分离**落在源画布**（+2 节点 / +2 边 / 历史 +1）、别的画布没被动、选区指向**新建的无声视频节点**",
+   "why": "★★★ 这是 S4 的对照：没有它，「切画布臂什么都没发生」可能只是「音视频分离压根不工作」；★ `createAudioSplit` 的选区更新被 `canvas.id === activeCanvasId` 守着（`canvasStore.ts:2177`），对照组正是「守卫生效」的那一档",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "源画布": "canvas-2",
+     "切过去的画布": "canvas-2",
+     "★ 对照组没真的切": true,
+     "源画布 节点（之前→之后）": [
+      10,
+      12
+     ],
+     "源画布 边（之前→之后）": [
+      11,
+      13
+     ],
+     "源画布 历史（之前→之后）": [
+      0,
+      1
+     ],
+     "★ 落在源画布": true,
+     "★ 别的画布没被动": true,
+     "★ 当前画布的选区指向新建的无声视频": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "源画布": "canvas-2",
+     "切过去的画布": "canvas-2",
+     "★ 对照组没真的切": true,
+     "源画布 节点（之前→之后）": [
+      10,
+      12
+     ],
+     "源画布 边（之前→之后）": [
+      11,
+      13
+     ],
+     "源画布 历史（之前→之后）": [
+      0,
+      1
+     ],
+     "★ 落在源画布": true,
+     "★ 别的画布没被动": true,
+     "★ 当前画布的选区指向新建的无声视频": true,
+     "★ 三件同时": true
+    }
+   ]
+  },
+  {
+   "id": "S4:★★★ 切画布臂：延迟内切走画布，**两张画布的节点、边、历史三项全都不变**",
+   "why": "★★★ 源码侧对应物：`VideoNode.tsx:175-198` 的 unmount cleanup 对 `audioSplitOpRef` 调 `cancel()`，`acceptLibTVOperation` 于是 `clearTimeout` ⟹ **整个操作被取消、压根没提交**；★ 而 `VideoNode.tsx:177-179` 的注释明写这是 **batch 449 的已声明处置**（contract §5.7）⟹ **本条不是缺陷，是行为**；★ 本批要钉住的是「它到底是不是真的被取消了」，而不是「我以为它会怎样」",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "源画布": "canvas-2",
+     "切过去的画布": "canvas-1",
+     "★ 对照组确实切了": true,
+     "active 确实是切过去那张": true,
+     "before": {
+      "canvas-1": {
+       "n": 0,
+       "e": 0,
+       "past": 0
+      },
+      "canvas-2": {
+       "n": 10,
+       "e": 11,
+       "past": 0
+      }
+     },
+     "after": {
+      "canvas-1": {
+       "n": 0,
+       "e": 0,
+       "past": 0
+      },
+      "canvas-2": {
+       "n": 10,
+       "e": 11,
+       "past": 0
+      }
+     },
+     "★ 两张画布三项全不变": true
+    },
+    {
+     "round": 1,
+     "源画布": "canvas-2",
+     "切过去的画布": "canvas-1",
+     "★ 对照组确实切了": true,
+     "active 确实是切过去那张": true,
+     "before": {
+      "canvas-1": {
+       "n": 0,
+       "e": 0,
+       "past": 0
+      },
+      "canvas-2": {
+       "n": 10,
+       "e": 11,
+       "past": 0
+      }
+     },
+     "after": {
+      "canvas-1": {
+       "n": 0,
+       "e": 0,
+       "past": 0
+      },
+      "canvas-2": {
+       "n": 10,
+       "e": 11,
+       "past": 0
+      }
+     },
+     "★ 两张画布三项全不变": true
+    }
+   ]
+  },
+  {
+   "id": "S5:★★ 用户看得见的读数：切过去之后是**一张空画布、选区空的、零提示**",
+   "why": "★★ S4 说「什么都没发生」，S5 说「**用户看见的**也是什么都没发生」；★ 判据优先用 **DOM** 读数（能读 DOM 就不只读 store）；★ 「取消要不要给用户一句话」是**产品决策**、且要源站依据 ⟹ 本批只报读数、不发明提示文案",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "切过去的画布": "canvas-1",
+     "当前画布选区": [],
+     "DOM 里的节点数": 0,
+     "DOM 画布下拉读数": [],
+     "★ 选区是空的": true,
+     "★ DOM 里也是空的": true,
+     "★ 切走之后没有任何提示": true
+    },
+    {
+     "round": 1,
+     "切过去的画布": "canvas-1",
+     "当前画布选区": [],
+     "DOM 里的节点数": 0,
+     "DOM 画布下拉读数": [],
+     "★ 选区是空的": true,
+     "★ DOM 里也是空的": true,
+     "★ 切走之后没有任何提示": true
+    }
+   ]
+  },
+  {
+   "id": "S6:★★ 切过去之后按 `Cmd+Z` **不会误伤**任何一张画布",
+   "why": "★★ `undo()` 作用在 `activeCanvasId` 的历史上（`canvasStore.ts:3923`）而那张画布**根本没有历史**（`past=0`）⟹ 按了是 no-op；★ 这条把「跨会话/跨画布撤销」（796 遗留）的一个具体子情形钉成了**读数**：**空历史时按 Cmd+Z 是安全的 no-op**，不会回退到别的画布上",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "按之前": {
+      "canvas-1": {
+       "n": 0,
+       "e": 0,
+       "past": 0
+      },
+      "canvas-2": {
+       "n": 10,
+       "e": 11,
+       "past": 0
+      }
+     },
+     "★ 按 Cmd+Z 之后": {
+      "canvas-1": {
+       "n": 0,
+       "e": 0,
+       "past": 0
+      },
+      "canvas-2": {
+       "n": 10,
+       "e": 11,
+       "past": 0
+      }
+     },
+     "★ 两张画布都没变": true
+    },
+    {
+     "round": 1,
+     "按之前": {
+      "canvas-1": {
+       "n": 0,
+       "e": 0,
+       "past": 0
+      },
+      "canvas-2": {
+       "n": 10,
+       "e": 11,
+       "past": 0
+      }
+     },
+     "★ 按 Cmd+Z 之后": {
+      "canvas-1": {
+       "n": 0,
+       "e": 0,
+       "past": 0
+      },
+      "canvas-2": {
+       "n": 10,
+       "e": 11,
+       "past": 0
+      }
+     },
+     "★ 两张画布都没变": true
+    }
+   ]
+  },
+  {
+   "id": "S7:★★ 静态锚点：「unmount 就 cancel 挂起的操作」这条链在源码里",
+   "why": "★ 静态证据**不能**替代 S4 的行为证据（794 的硬规矩），它的作用是把 S4 的结论**归因**到具体那两行而不是「反正就是没发生」；★ 一律取实现（`cancel` 的实现用 `rfind`）",
+   "ok": true,
+   "evidence": {
+    "audioSplitOpRef 出现次数": 4,
+    "★ 取的是第一次（cleanup 里的那个）": true,
+    "cleanup 段里有 handle?.cancel()": true,
+    "cancel 实现里有 clearTimeout": true
+   }
+  }
+ ],
+ "negatives": [
+  {
+   "name": "N1",
+   "why": "★ 阳性对照：伪造「动作压根没建东西」⟹ S1 翻红（S2 在这种情况下会**假绿**：没东西可按，自然回到动作前）",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S1",
+   "flipped": [
+    "S1:★★ 阳性对照：7 个动作每个都**真的建了东西**、历史**真的 +1**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N2",
+   "why": "伪造「要按两次才回到」⟹ S2 翻红（795 撤销粒度那条）",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S2",
+   "flipped": [
+    "S2:★★★ 主判据甲：**一次** `Cmd+Z` 就让节点 id 集合与边数**逐位回到动作前**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N3",
+   "why": "伪造「撤销后残留一个节点」⟹ S2 翻红（判 id 集合而不是只判数量）",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S2",
+   "flipped": [
+    "S2:★★★ 主判据甲：**一次** `Cmd+Z` 就让节点 id 集合与边数**逐位回到动作前**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N4",
+   "why": "★ 伪造「切画布臂其实提交了」⟹ S4 翻红",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S4",
+   "flipped": [
+    "S4:★★★ 切画布臂：延迟内切走画布，**两张画布的节点、边、历史三项全都不变**",
+    "S6:★★ 切过去之后按 `Cmd+Z` **不会误伤**任何一张画布"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N5",
+   "why": "★ 伪造「切画布臂其实没切」⟹ S4 翻红（否则「没变化」只是没切）",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S4",
+   "flipped": [
+    "S4:★★★ 切画布臂：延迟内切走画布，**两张画布的节点、边、历史三项全都不变**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N6",
+   "why": "伪造「切走之后给了提示」（选区非空）⟹ S5 翻红",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S5",
+   "flipped": [
+    "S5:★★ 用户看得见的读数：切过去之后是**一张空画布、选区空的、零提示**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N7",
+   "why": "伪造「切过去按 Cmd+Z 误伤了」⟹ S6 翻红",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S6",
+   "flipped": [
+    "S6:★★ 切过去之后按 `Cmd+Z` **不会误伤**任何一张画布"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N8",
+   "why": "反向对照：只动 `secs` 这个无关字段 ⟹ 期望不翻",
+   "evidence": {
+    "hit": 18
+   },
+   "expectFlipped": "（反向对照：期望不翻）",
+   "flipped": [],
+   "ok": true
+  }
+ ],
+ "negativesOk": 8,
+ "negativesTotal": 8,
+ "rawSha": "0da92cd8f37d92aba3822f4c7e4db71317de8a5a92f82e4920c47fd0b40d2f2f"
+}
