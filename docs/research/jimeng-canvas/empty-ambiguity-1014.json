@@ -3,17 +3,1137 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census": {
-  "n_goldens": 18,
+  "n_goldens": 20,
   "n_excluded_self": 1,
-  "n_empty_list": 22,
-  "n_empty_null": 26,
+  "n_empty_list": 182,
+  "n_empty_null": 28,
   "n_self_provable": 9,
-  "n_ambiguous": 39
+  "n_ambiguous": 201
  },
  "rows": [
   {
    "golden": "baseline-host-misuse-1016.json",
    "path": "/duplicate_now",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[0]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[1]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[2]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[3]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[4]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[5]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[6]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[7]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[8]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[9]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[11]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[12]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[13]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[14]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[16]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[17]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[18]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[19]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[20]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[21]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[22]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[23]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[24]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[25]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[26]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[27]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[28]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[29]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[30]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[31]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[32]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[33]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[34]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[35]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[36]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[37]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[38]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[39]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[41]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[42]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[43]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[44]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[45]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[46]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[47]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[48]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[49]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[50]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[51]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[52]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[53]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[54]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[55]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[56]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[57]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[58]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[59]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[60]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[61]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[63]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[64]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[65]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[66]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[67]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[68]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[69]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[70]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[71]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[72]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[73]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[74]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[75]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[76]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[77]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[78]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[79]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[80]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[81]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[84]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[85]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[86]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[87]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[88]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[89]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[90]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[91]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[92]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[93]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[94]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[95]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[96]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[97]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[98]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[99]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[100]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[101]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[102]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[103]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[104]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[105]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[106]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[107]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[108]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[109]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[110]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[111]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[112]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[113]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[114]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[115]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[116]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[117]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[118]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[119]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[120]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[121]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[122]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[123]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[124]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[125]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[126]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[127]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[128]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[129]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[130]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[131]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[132]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[133]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[134]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[135]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[136]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[137]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[138]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[139]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[140]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[141]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[142]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[143]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[144]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[145]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[146]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[147]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[148]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[149]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[150]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[151]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[152]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[153]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[154]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[155]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[156]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[157]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[158]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[159]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[160]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[161]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[162]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[163]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[164]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[165]/label_hint_defect_words",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -299,6 +1419,20 @@
    "invariant": null
   },
   {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/p8_invariants_invisible_to_1014/p8_saw_artifact_with_n_rounds",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/p8_invariants_invisible_to_1014/p8_reading_lag_rounds",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "stem-attribution-1007.json",
    "path": "/rows/[2]/triggers",
    "kind": "list",
@@ -352,6 +1486,1126 @@
   {
    "golden": "baseline-host-misuse-1016.json",
    "path": "/duplicate_now",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[0]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[1]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[2]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[3]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[4]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[5]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[6]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[7]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[8]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[9]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[11]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[12]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[13]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[14]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[16]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[17]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[18]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[19]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[20]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[21]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[22]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[23]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[24]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[25]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[26]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[27]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[28]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[29]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[30]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[31]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[32]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[33]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[34]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[35]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[36]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[37]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[38]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[39]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[41]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[42]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[43]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[44]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[45]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[46]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[47]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[48]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[49]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[50]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[51]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[52]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[53]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[54]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[55]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[56]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[57]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[58]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[59]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[60]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[61]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[63]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[64]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[65]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[66]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[67]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[68]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[69]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[70]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[71]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[72]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[73]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[74]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[75]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[76]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[77]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[78]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[79]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[80]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[81]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[84]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[85]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[86]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[87]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[88]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[89]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[90]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[91]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[92]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[93]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[94]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[95]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[96]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[97]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[98]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[99]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[100]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[101]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[102]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[103]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[104]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[105]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[106]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[107]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[108]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[109]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[110]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[111]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[112]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[113]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[114]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[115]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[116]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[117]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[118]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[119]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[120]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[121]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[122]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[123]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[124]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[125]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[126]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[127]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[128]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[129]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[130]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[131]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[132]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[133]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[134]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[135]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[136]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[137]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[138]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[139]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[140]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[141]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[142]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[143]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[144]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[145]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[146]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[147]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[148]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[149]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[150]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[151]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[152]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[153]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[154]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[155]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[156]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[157]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[158]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[159]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[160]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[161]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[162]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[163]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[164]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[165]/label_hint_defect_words",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -591,6 +2845,20 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/repaired_generated_by",
    "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/p8_invariants_invisible_to_1014/p8_saw_artifact_with_n_rounds",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/p8_invariants_invisible_to_1014/p8_reading_lag_rounds",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },

@@ -133,7 +133,28 @@ N_GOLDENS = len(_ALL)
 _PROBES = sorted(p.name for p in (ROOT / "scripts").glob("jimeng_probe*.py"))
 SELF = Path(__file__).name
 
-_OWNED, _N_SKIPPED, _N_UNPARSED, _UNLINKED = [], 0, 0, []
+# ── ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 【1027 改写横幅】把 1027 从本套件里排除，并**登记为什么**
+#   实测：1027 进套件之后，6 轮**每轮都报 `golden-freshness-1027.json` 漂移**、
+#   `P3`（`CONVERGED`）转红 ⇒⇒⇒ **而单跑它 rc=0、两次跑逐字节相同**
+#   ⇒⇒⇒⇒⇒⇒ 根因不在 1027 的代码，而在**两道门的输入集合没有交集约定**：
+#     · 1015 的前提是「所有输入都是常量」（它验的是**可复现**）
+#     · 1027 的输入按定义就是「仓库当前状态」（它验的是**新鲜度**）：
+#         变更集默认取 `git diff --name-only HEAD~3`，而**共享仓里别的会话
+#         每隔几分钟就提交一次** ⇒⇒⇒ 套件那 25 分钟里变更集一直在动；
+#         耦合面里的 `scripts/*.mjs` glob 也会把别的会话新加的文件吸进来
+#         ⇒⇒⇒ 实测两次跑的差分正是 `docs/user-manual/…` 少几个、
+#         `scripts/jimeng-b248.mjs` 多几个，`n_files_it_reads` 4999 → 5000
+#   ⇒⇒⇒⇒⇒⇒⭐⭐⭐ **⇒ 处置：双向排除**（1027 早就把 1015 排除了，现在轮到 1015 排 1027）
+#     ⇒ **不许默默摘掉**：下面这条登记本身要被 `_EXCL_OK` 守着，
+#       少写理由、把键拼错、或者哪天真能同存了，门都会红
+_EXCLUDE_INPUT_CONFLICT = {
+    "jimeng_probe1027_freshness_gate.py": (
+        "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一道门的输入若是另一道门假定为常量的东西，它就不可能进那道门** —— "
+        "1015 验「同一份输入下两次跑是否一致」，而 1027 的输入**按定义就是**「仓库当前状态」"
+    ),
+}
+_EXCLUDED, _N_SKIPPED, _N_UNPARSED, _UNLINKED = [], 0, 0, []
+_OWNED = []
 for _f in _ALL:
     try:
         _d = json.loads(_f.read_text(encoding="utf-8"))
@@ -152,8 +173,20 @@ for _f in _ALL:
         _UNLINKED.append({"golden": _f.name, "generated_by": _gb,
                           "why": "不是 `scripts/` 下某个 `jimeng_probe*.py` 的文件名"})
         continue
+    # ⭐⭐⭐⭐⭐ 排除必须在**合规检查之后** —— 不然一个拼错的键会顺手把
+    #   「unlinked」这条反向门也一起关掉（而那正是 1015 第一版丢 1 本的原因）
+    if _gb in _EXCLUDE_INPUT_CONFLICT:
+        _EXCLUDED.append({"golden": _f.name, "generated_by": _gb,
+                          "why": _EXCLUDE_INPUT_CONFLICT[_gb]})
+        continue
     _OWNED.append((_f, _gb, ROOT / "scripts" / _gb))
 N_EXCLUDED_SELF = 1
+# ⭐⭐⭐⭐⭐⭐ **登记不是摆设**：每条排除都必须（a）键真的存在、（b）理由非空、
+#   （c）真的命中了某本 golden。少任何一条，`_EXCL_OK` 转红 ⇒ 排除不许悄悄扩大
+_EXCL_OK = (all(k in _PROBES for k in _EXCLUDE_INPUT_CONFLICT)
+            and all(str(v).strip() for v in _EXCLUDE_INPUT_CONFLICT.values())
+            and {e["generated_by"] for e in _EXCLUDED} == set(_EXCLUDE_INPUT_CONFLICT))
+N_EXCLUDED_CONFLICT = len(_EXCLUDED)
 N_OWNED = len(_OWNED)
 N_UNLINKED = len(_UNLINKED)
 for _f, _, _ in _OWNED:
@@ -475,6 +508,7 @@ for _v, _w in [(N_GOLDENS, "通道 A：docs/research/jimeng-canvas/*.json 的文
                (len(_PROBES), "通道 B：scripts/jimeng_probe*.py 的文件数"),
                (N_OWNED, "通道 A 里 `generated_by` 合规因而认领到的本数"),
                (N_EXCLUDED_SELF, "排除自己那本（靠 `generated_by`）"),
+               (N_EXCLUDED_CONFLICT, "因**输入集合冲突**被排除的本数（登记见 `excluded`）"),
                (len(BOOKS), "认领到的本数 == 实际重跑的本数"),
                (N_REPRODUCED, "四态里 state == reproduced 的计数"),
                (N_DRIFTED, "四态里 state == drifted 的计数"),
@@ -627,7 +661,10 @@ DISCIPLINE = {
                         "`/books/[2]/keys_added` 全是收敛前的旧读数**",
 }
 
-out = {"P1_hold_1015": N_STATES_SUM == len(BOOKS) and len(BOOKS) > 0,
+out = {"P1_hold_1015": (N_STATES_SUM == len(BOOKS) and len(BOOKS) > 0
+                        # ⭐⭐⭐⭐⭐ **排除不许悄悄扩大**：登记的每一条都必须键真存在、
+                        #   理由非空、且真的命中了某本 golden —— 三条里少任何一条就红
+                        and _EXCL_OK),
        "P2_hold_1015": N_UNLINKED == 0,
        # ⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **【1016 改写横幅】**
        #   第一版是 `CONVERGED and N_ROUNDS >= 2` ⇒ ⇒ 那是本批判据里**又一处
@@ -680,6 +717,14 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
         "channel_b_probes": len(_PROBES),
         "n_owned": N_OWNED,
         "n_excluded_self": N_EXCLUDED_SELF,
+        "n_excluded_input_conflict": N_EXCLUDED_CONFLICT,
+        "excluded": _EXCLUDED,
+        "exclusion_rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+                          "**一道门的输入若是另一道门假定为常量的东西，它就不可能进那道门** —— "
+                          "1015 验「可复现」，1027 验「新鲜度」，而 1027 的输入按定义就是仓库当前状态，"
+                          "共享仓里它每时每刻都在被别人改 ⇒ 两者必须双向排除，"
+                          "而**排除必须连理由一起登记，且登记本身要被 P1 守着**",
+        "exclusion_registry_is_checked": _EXCL_OK,
         "n_unparsable": _N_UNPARSED,
         "n_no_generated_by": _N_SKIPPED,
         "n_unlinked_rejected": N_UNLINKED,
@@ -750,6 +795,8 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
 _restore()
 print("goldens=%d probes=%d owned=%d unlinked=%d" %
       (N_GOLDENS, len(_PROBES), N_OWNED, N_UNLINKED))
+for e in _EXCLUDED:
+    print("  EXCLUDED %-32s 输入集合与本套件前提冲突" % e["golden"])
 for u in _UNLINKED:
     print("  UNLINKED %-32s generated_by=%r" % (u["golden"], u["generated_by"]))
 print("rounds=%d converged=%s" % (N_ROUNDS, CONVERGED))

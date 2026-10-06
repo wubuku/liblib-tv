@@ -1,15 +1,15 @@
 {
  "generated_by": "jimeng_probe1005_zero_coupling_census.py",
- "n_zero_coupling": 823,
- "n_positive_present": 6737,
- "n_distinct_keys": 6572,
+ "n_zero_coupling": 828,
+ "n_positive_present": 6837,
+ "n_distinct_keys": 6670,
  "by_class": {
-  "I-标识符(多处引用)": 401,
+  "I-标识符(多处引用)": 406,
   "P-散文/片段": 422
  },
  "class_x_gap": {
-  "I-标识符(多处引用)|21–200": 149,
-  "I-标识符(多处引用)|4–20": 93,
+  "I-标识符(多处引用)|21–200": 150,
+  "I-标识符(多处引用)|4–20": 97,
   "I-标识符(多处引用)|>200": 62,
   "I-标识符(多处引用)|≤3": 97,
   "P-散文/片段|21–200": 216,
@@ -1872,7 +1872,7 @@
    "var": "_vsrc",
    "anchor": "\"只有 1 项\" in asrc)",
    "occurrences": 2,
-   "min_line_gap": 6653
+   "min_line_gap": 6659
   },
   {
    "class": "P-散文/片段",
@@ -1886,7 +1886,7 @@
    "var": "_ausrc",
    "anchor": "**恒真**",
    "occurrences": 2,
-   "min_line_gap": 732
+   "min_line_gap": 969
   },
   {
    "class": "P-散文/片段",
@@ -1907,7 +1907,7 @@
    "var": "_ausrc",
    "anchor": "**「A ≠ B」不等于「A 能把 A 从 C 里挑出来」**",
    "occurrences": 2,
-   "min_line_gap": 5906
+   "min_line_gap": 6143
   },
   {
    "class": "P-散文/片段",
@@ -1921,14 +1921,14 @@
    "var": "_ausrc",
    "anchor": "`el.tabIndex === -1`",
    "occurrences": 2,
-   "min_line_gap": 5885
+   "min_line_gap": 6122
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**应用必须自己调 `focus()`**",
    "occurrences": 2,
-   "min_line_gap": 5885
+   "min_line_gap": 6122
   },
   {
    "class": "P-散文/片段",
@@ -2235,7 +2235,7 @@
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "按定义",
-   "occurrences": 17,
+   "occurrences": 18,
    "min_line_gap": 12
   },
   {
@@ -2404,7 +2404,7 @@
    "var": "_ausrc",
    "anchor": "**当场判红**",
    "occurrences": 2,
-   "min_line_gap": 5367
+   "min_line_gap": 5604
   },
   {
    "class": "P-散文/片段",
@@ -5488,6 +5488,13 @@
   },
   {
    "class": "I-标识符(多处引用)",
+   "var": "_ausrc",
+   "anchor": "逐字节相同",
+   "occurrences": 5,
+   "min_line_gap": 5
+  },
+  {
+   "class": "I-标识符(多处引用)",
    "var": "_p1014",
    "anchor": "\"retired_computed\"",
    "occurrences": 3,
@@ -5554,14 +5561,14 @@
    "var": "_p1015",
    "anchor": "\"crashed\"",
    "occurrences": 4,
-   "min_line_gap": 107
+   "min_line_gap": 116
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1015",
    "anchor": "\"vanished\"",
    "occurrences": 4,
-   "min_line_gap": 106
+   "min_line_gap": 115
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5779,6 +5786,34 @@
    "anchor": "\"check 链了 typecheck\"",
    "occurrences": 2,
    "min_line_gap": 44
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1026",
+   "anchor": "\"decorative\"",
+   "occurrences": 6,
+   "min_line_gap": 5
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1026",
+   "anchor": "\"n_decorative\"",
+   "occurrences": 2,
+   "min_line_gap": 62
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1026",
+   "anchor": "\"what\"",
+   "occurrences": 5,
+   "min_line_gap": 15
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1027",
+   "anchor": "\"stale_vs_committed\"",
+   "occurrences": 4,
+   "min_line_gap": 7
   }
  ]
 }

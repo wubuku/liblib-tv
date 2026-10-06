@@ -5949,6 +5949,9 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ 1026：量「探针 P 判据的含金量」—— 18 条 P 是写死的 True
     p1026 = ROOT / "scripts/jimeng_probe1026_criterion_effectiveness.py"
     _p1026 = p1026.read_text(encoding="utf-8") if p1026.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1027：给「产物新鲜度」补闸 —— 套件只验可复现、不验「是否还与当前源码一致」
+    p1027 = ROOT / "scripts/jimeng_probe1027_freshness_gate.py"
+    _p1027 = p1027.read_text(encoding="utf-8") if p1027.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -16233,6 +16236,89 @@ def main() -> int:
       and '"p5_candidate_is_not_a_gap_2026_"' in _ausrc
       and '"p6_scope_and_offline_2026_"' in _ausrc
       and '"p7_golden_2026_"' in _ausrc)
+    print("— DD993K. 批 1027 给「产物新鲜度」补一道会红的闸：**1026 查清 1015 套件退出时会把 golden 还原掉 ⇒ 它验的是「可复现」不是「当前」**；"
+          "⭐⭐⭐⭐⭐ 实测「最近 3 个提交」触及 12 本、真跑比对 ⇒ **已过期 5 本** ⇒ "
+          "**⇒⇒⇒⇒⇒ 「可复现」与「当前」是两个性质，前者不蕴含后者**")
+    check("DD993K.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**1026 查清：`jimeng_probe1015` 退出时 `_restore()` 把每本 golden 还原成运行前的字节** ⇒ ⇒⇒⇒⇒⇒⇒ **⇒ 它验的是「同一份输入下两次跑是否一致」，不验「产物是否还与当前源码一致」** ⇒ ⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐ **⇒⇒⇒⇒⇒ 「可复现」与「当前」是两个性质，前者不蕴含后者** ⇒ ⇒⇒⇒⇒⇒⇒⇒⭐ **⇒ 一本因为被测对象变了而过期的 golden，对套件完全不可见**",
+      '1026 查清了一件事：`jimeng_probe1015` 退出时 `_restore()` 把每本 golden 还原成运行前的字节' in _p1027
+      and '"axis_3_the_gate_itself"' in _p1027
+      and '"why_cheap"' in _p1027
+      and '"P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027"' in _p1027
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p1_the_gate_is_about_currentness_not_reproducibility_2027_"' in _ausrc
+      and '"golden_freshness_1027"' in _ausrc)
+    check("DD993K.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐⭐⭐⭐ 闸的第一版拿「工作区那本」当比对基准 ⇒ 报出假阴性** —— 第一版跑出「1013 一致」，而实际上 **`HEAD` 里记的是 200 个目标变量、现在的事实是 201**；**而它误报只因为我先前为了计时手动跑过一次 1013、把工作区那本刷新了** ⇒ ⇒⇒⇒⇒⇒⇒ **⇒ 「闸被测量者自己的先前动作遮住」是一个新的失效形态** ⇒ ⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐ **⇒ 处置：比对基准必须是 `git show HEAD:<golden>`，因为那才是别人 clone 到的东西**",
+      '# ⚠️⚠️⚠️⚠️ **仪器 bug 2（第一版）：拿工作区那本作基准 ⇒ 假阴性**' in _p1027
+      and '#   把工作区那本刷新成了 201** ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **闸被我自己先前的动作遮住了**' in _p1027
+      and '#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐ **⇒ 「别人 clone 到的」才是该守的东西**' in _p1027
+      and '"stale_vs_committed"' in _p1027
+      and '"P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027"' in _p1027
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p3_the_gate_was_blinded_by_my_own_earlier_run_2027_"' in _ausrc)
+    check("DD993K.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 本批四个仪器 bug，而它们是同一条纪律的三次复发**：① 变更集默认取 `git diff --name-only HEAD~1` ⇒ **实测那是别的会话的提交** ⇒ **「上一次提交」≠「我这次改了什么」**；② 产物里写了 `seconds`（耗时）⇒ **两次跑逐字节不同**，而**「一个随机量足以毁掉一整份可复现性」** ⇒ **⇒⇒⇒⇒⇒ 随机量检查必须逐字段做，不能靠「整体跑一次比一比」**；③ 变更集来自 `git diff` ⇒ **共享仓里它每时每刻被别人改** ⇒ **⇒ 「可复现」在这里的准确口径是「同一份 argv 下两次跑逐字节相同」**",
+      '# ⚠️⚠️⚠️⚠️ **仪器 bug 1（第一版）：默认取 `git diff --name-only HEAD~1`**' in _p1027
+      and '#   ⇒⇒⇒⇒⇒⇒ **⇒ 共享仓里「上一次提交」≠「我这次改了什么」** ⇒ 第一版的变更集整个是别人的' in _p1027
+      and '# ⚠️⚠️⚠️ **仪器 bug 3：把耗时 `seconds` 写进了产物**' in _p1027
+      and '#   ⇒⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒⇒⇒⇒⇒ 「一个随机量足以毁掉一整份可复现性」——' in _p1027
+      and '# ⚠️⚠️⚠️⚠️ **仪器 bug 4：变更集来自 `git diff HEAD~3` ⇒ 两次跑会不一样**' in _p1027
+      and '#   **同一份 argv 下两次跑逐字节相同**，而不是「两次跑相同」**' in _p1027
+      and '"P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027"' in _p1027
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p4_two_instrument_bugs_and_what_they_share_2027_"' in _ausrc)
+    check("DD993K.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐⭐⭐ 「每批都重跑全部探针」既不必要也不便宜 ⇒ 成本必须正比于「本次改动触及了几个探针」，而不是「一共有多少个探针」** ⇒ ⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ 这就是「能常驻」与「只能手工跑一次」的分界线** ⇒ ⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐ 三条阳性对照：甲 = **自己**认出 1013；乙 = **注入式**（把 verifier 路径塞进变更集）；丙 = **交集必须窄于全体**，否则它退化成一个更贵的全量重跑",
+      '"⇒⇒⇒⇒⇒⇒⇒⇒⇒ 「每批都重跑全部探针」既不必要也不便宜，"' in _p1027
+      and '"**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 这就是「能常驻」与「只能手工跑一次」的分界**"' in _p1027
+      and '"A_find_the_real_stale_one_without_being_told"' in _p1027
+      and '"B_injected_path_is_selected_by_the_coupling_scan"' in _p1027
+      and '"C_intersection_is_narrower_than_everything"' in _p1027
+      and '"P2_every_touched_probe_was_re_run_and_reported_1027"' in _p1027
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p5_incremental_is_what_makes_it_affordable_2027_"' in _ausrc)
+    check("DD993K.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐⭐⭐ 还原不是缺点，「还原之前不留证据」才是** —— 每个 golden 先快照、跑完原样还原，**和 1015 的 `_restore()` 同一个做法**；**差别只有一处，但那是全部：1015 还原得很干净、干净到把过期一起还原掉了** ⇒ ⇒⇒⇒⇒⇒⇒ **⇒ 本批把三条已知局限明写进产物**：只抓「因源码变化而过期」抓不到「因环境变化而过期」、耦合按路径判定不追执行所以是下限、**1015 自己被排除所以它自己的新鲜度本批管不了**",
+      '"「还原之前不留证据」才是**"' in _p1027
+      and '"known_limits"' in _p1027
+      and '"⚠️ **它只抓「因为源码变了而过期」的 golden**，"' in _p1027
+      and '# ⚠️ 1015 自己被排除：它会重跑所有探针并**自己还原**，本批口径外' in _p1027
+      and '"P4_touched_list_is_recorded_for_every_golden_owning_probe_1027"' in _p1027
+      and '"P5_one_run_per_golden_no_double_counting_1027"' in _p1027
+      and '"P6_scope_declared_1027"' in _p1027
+      and '"P7_offline_1027"' in _p1027
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p6_scope_and_offline_2027_"' in _ausrc
+      and '"p7_golden_2027_"' in _ausrc
+      and '"p2_the_measured_answer_five_were_already_stale_2027_"' in _ausrc)
+    check("DD993K.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐⭐⭐⭐ 双向排除必须有证据，而证据本身也会坏** —— 两把门互斥（**1015 假定一切恒定、1027 的输入按定义就是仓库当前状态**）⇒⇒⇒⇒⇒⇒ 单向排除等于没排 ⇒ 1015 侧登记 `_EXCLUDE_INPUT_CONFLICT` 并由 `_EXCL_OK` 三条守卫看着、1027 侧新增 P8 **直接读 1015 的源码**⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 反向核对必须读「配置」不能读「产物」**：1015 的 golden 会被它自己重跑刷新 ⇒ 拿它的产物当它的配置等于让它自己给自己作证；⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐ 而 P8 自己又是个仪器 bug**：第二个合取项写成了「我排了我自己吗」⇒ **恒假** ⇒ 第一次自跑 rc=1、`P8=False`，而三个兄弟合取项当场都是 True ⇒ **⇒ 「门红先判门错还是数据错」的答案是门错；恒真与恒假是同一种病的两副面孔** ⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 处置：改判据 + 补阳性对照丁（抹对方登记、清空自己 EXCLUDE，两侧都必须转红）⇒ 「恒假」只能靠注入式变异当场暴露**",
+      '⭐⭐⭐⭐⭐ **仪器 bug 8（第八个，也是 1027 自己跑出来的）**：' in _p1027
+      and '⇒⇒⇒⇒⇒⇒ **⇒ 恒假**：`my_exclude` 里装的是**对方**的名字，从来不含我自己' in _p1027
+      and 'and other_name in my_exclude)            # 我排了它' in _p1027
+      and '"P8_i_exclude_the_other"' in _p1027
+      and '"D_bilateral_exclusion_turns_red_on_either_side"' in _p1027
+      and 'P3 = PC_A and PC_B and PC_C and PC_D' in _p1027
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"p8_exclusion_must_be_bilateral_2027_"' in _ausrc
+      and '"p9_the_bilateral_check_itself_was_vacuously_false_2027_"' in _ausrc)
+    check("DD993K.7 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐⭐⭐⭐ 第九个仪器 bug 有两半，第二半比第一半更隐蔽** —— 第一半：1014 用 `print` 印出了 P1..P8 的读数，**却从来没有 `sys.exit`** ⇒⇒⇒⇒⇒⇒ 退出码恒 0 ⇒ **红读数无法让任何东西变红** ⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 而另一头叠着「1015 只比两轮产物是否逐字节相同」⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 一个恒红的 P 它照样记成 `reproduced` ⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 「可复现」不蕴含「绿」**；处置是收集「以 `P` 开头、以 `_hold_2014` 结尾」的键（不写死 `range(1,9)`，否则下次加第 9 条 P 会漏掉它）⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 第二半：`P1`/`P4`/`P8` 拿「今天的普查读数」去卡一段****第 1014 批当时的历史记录** ⇒ 仓里长到 20 本 golden 之后必然转红，**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 而它红了十几个 batch 没有人发现** ⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 处置分三刀：① 判据不许钉会漂的数 ⇒ 改成**结构不变式**（自己跟自己算账）；② 「不是恒判」的正确形式是**两类都非空**，不是「正好一个」；③ 历史记录不因被测对象后来变了就过期 ⇒ **不改散文，给它配 companion** `historical_readings_2014`（复用 1014 自己发明的 companion 模式用在它自己身上）⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 而 companion 逼出了一个自己都没想到的发现：p4 同一段里先写「会让 4 个字段看起来有问题」、随即在同一句里改成「12 个」—— **被划掉的草稿数还留在文件里** ⇒ 处置是**声明它**（`then_p4_superseded_draft`）不是删它（1013 立了「原文不删」）⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 「改过的句子还留着旧数」本身就是 1014 这条要猎的病**",
+      '# **仪器 bug 9 的另一半：「印出来的读数」不等于「接了线的读数」**' in _p1014
+      and '_N_FALSE_2014 = sorted(k for k, v in out.items()' in _p1014
+      and 'print("P 为假的：", _N_FALSE_2014 or "无", "| 共 %d 条 P 判据" % _N_P_2014)' in _p1014
+      and 'sys.exit(1 if _N_FALSE_2014 else 0)' in _p1014
+      and 'and n_selfprovable + N_AMBIG == n_empty_list + n_empty_null' in _p1014
+      and 'out["P4_hold_2014"] = bool(n_selfprovable >= 1 and N_AMBIG >= 1)' in _p1014
+      and '_NULL_CLASSIFIER_WORKS = find_empty({"x": None, "y": [], "z": [None]}) == [' in _p1014
+      and '_HIST = _AB.get("historical_readings_2014") or {}' in _p1014
+      and '# ⚠️⚠️⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **仪器 bug 9 的另一半：`P8` 拿「今天的读数」去卡一段历史记录**' in _p1014
+      and 'out["P8_hold_2014"] = bool(not _bad and _HIST)' in _p1014
+      and 'if k.startswith("P") and k.endswith("_hold_2014") and not v)' in _p1014
+      # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+      and '"historical_readings_2014"' in _ausrc
+      and '"then_p4_superseded_draft"' in _ausrc)
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

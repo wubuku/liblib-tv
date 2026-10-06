@@ -6,21 +6,22 @@
   "scope_declared": "⚠️⭐⭐⭐⭐⭐ 量的是**用 `P1..Pn` + `OUT` 这套写法的探针**（仓里 220 个探针中的一部分）；**旧探针用的 `ASSERTIONS` / `EXPECTED_STATES` 等别的写法不在本批口径内** ⇒ **⇒ 报的是这一层的下限，不是全部**（承 1025 的口径纪律）",
   "axis_1_shape_mechanical": {
     "what": "⭐⭐⭐⭐⭐ **形状轴（机械）** —— 把每条 P 的右值按 AST 分类",
-    "n_P_criteria": 158,
+    "n_P_criteria": 166,
     "counts_by_kind": {
-      "other": 99,
+      "other": 101,
       "pin_eq": 3,
       "zero": 7,
       "nonempty+pin_eq": 3,
-      "mechanism": 5,
-      "decorative": 18,
-      "nonempty": 18,
-      "nonempty+mechanism": 2,
+      "mechanism": 6,
+      "decorative": 20,
+      "nonempty": 19,
+      "nonempty+mechanism": 3,
       "nonempty+zero": 2,
-      "nonempty+zero+pin_eq": 1
+      "nonempty+zero+pin_eq": 1,
+      "nonempty+zero+mechanism": 1
     },
     "naming_split": {
-      "indexed": 103,
+      "indexed": 111,
       "batch_tagged": 55
     },
     "n_without_label": 55,
@@ -303,7 +304,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P1",
         "naming": "indexed",
-        "lineno": 179,
+        "lineno": 180,
         "label": "p1_only_one_empty_field_is_unverifiable_2014_",
         "kind": "other",
         "evidence": [
@@ -316,7 +317,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P2",
         "naming": "indexed",
-        "lineno": 187,
+        "lineno": 188,
         "label": "p2_computed_and_never_computed_are_byte_identical_2014_",
         "kind": "other",
         "evidence": [
@@ -329,7 +330,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P3",
         "naming": "indexed",
-        "lineno": 195,
+        "lineno": 196,
         "label": "p3_companion_fields_make_it_distinguishable_2014_",
         "kind": "other",
         "evidence": [
@@ -342,7 +343,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P4",
         "naming": "indexed",
-        "lineno": 204,
+        "lineno": 205,
         "label": "p4_reverse_case_classifier_is_not_constant_2014_",
         "kind": "other",
         "evidence": [
@@ -355,7 +356,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P5",
         "naming": "indexed",
-        "lineno": 211,
+        "lineno": 212,
         "label": "p5_null_is_the_same_disease_2014_",
         "kind": "other",
         "evidence": [
@@ -368,7 +369,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P6",
         "naming": "indexed",
-        "lineno": 215,
+        "lineno": 216,
         "label": "p6_the_previous_batch_artifact_is_itself_a_victim_2014_",
         "kind": "other",
         "evidence": [
@@ -1407,6 +1408,114 @@
         "label_hint_defect_words": []
       },
       {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P1",
+        "naming": "indexed",
+        "lineno": 277,
+        "label": "P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027",
+        "kind": "nonempty+mechanism",
+        "evidence": [
+          "len(CHANGED_SET) > 0",
+          "c['probe'] in CHANGED_SET"
+        ],
+        "rhs": "len(CHANGED_SET) > 0 and all((c['reads'] for c in COUPLING.values())) and all((c['probe'] in CHANGED_SET or True for c in COUPLING.values()))",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P2",
+        "naming": "indexed",
+        "lineno": 281,
+        "label": "P2_every_touched_probe_was_re_run_and_reported_1027",
+        "kind": "nonempty+zero+mechanism",
+        "evidence": [
+          "N_CHECKED > 0",
+          "N_TOUCHED >= 0",
+          "not UNDER_SUITE",
+          "N_CHECKED == 0"
+        ],
+        "rhs": "N_CHECKED > 0 and all(('stale_vs_committed' in r and r['rc'] == 0 for r in RESULTS)) and all((r['in_git_head'] for r in RESULTS)) if not UNDER_SUITE e",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P8",
+        "naming": "indexed",
+        "lineno": 319,
+        "label": "P8_exclusion_is_bilateral_and_1015_declares_it_too_1027",
+        "kind": "other",
+        "evidence": [
+          "_excl_is_bilateral(_1015_SRC, _1015_NAME, EXCLUDE, SELF)"
+        ],
+        "rhs": "_excl_is_bilateral(_1015_SRC, _1015_NAME, EXCLUDE, SELF)",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P3",
+        "naming": "indexed",
+        "lineno": 328,
+        "label": "P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027",
+        "kind": "other",
+        "evidence": [
+          "PC_A and PC_B and PC_C and PC_D"
+        ],
+        "rhs": "PC_A and PC_B and PC_C and PC_D",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P4",
+        "naming": "indexed",
+        "lineno": 329,
+        "label": "P4_touched_list_is_recorded_for_every_golden_owning_probe_1027",
+        "kind": "mechanism",
+        "evidence": [
+          "'touched_by_this_change' in COUPLING[n]"
+        ],
+        "rhs": "all(('touched_by_this_change' in COUPLING[n] for n in HAS_GOLDEN))",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P5",
+        "naming": "indexed",
+        "lineno": 330,
+        "label": "P5_one_run_per_golden_no_double_counting_1027",
+        "kind": "nonempty",
+        "evidence": [
+          "N_STALE >= 0"
+        ],
+        "rhs": "N_STALE >= 0 and len({r['golden'] for r in RESULTS}) == N_CHECKED",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P6",
+        "naming": "indexed",
+        "lineno": 331,
+        "label": "P6_scope_declared_1027",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P7",
+        "naming": "indexed",
+        "lineno": 332,
+        "label": "P7_offline_1027",
+        "kind": "decorative",
+        "evidence": [
+          "右值是字面量 True"
+        ],
+        "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
         "probe": "jimeng_probe944b_mouse_axes_src.py",
         "var": "P943",
         "naming": "batch_tagged",
@@ -2209,9 +2318,9 @@
   },
   "axis_3_effective_weight": {
     "what": "⭐⭐⭐⭐⭐ **含金量轴** —— 有效判据数 = P 总数 − 恒真条数",
-    "n_P_criteria": 158,
-    "n_decorative": 18,
-    "n_decorative_that_self_declare_it": 18,
+    "n_P_criteria": 166,
+    "n_decorative": 20,
+    "n_decorative_that_self_declare_it": 20,
     "n_decorative_that_do_not": 0,
     "the_self_declared_ones": [
       {
@@ -2321,12 +2430,24 @@
         "var": "P7",
         "lineno": 244,
         "label": "P7_offline_2026"
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P6",
+        "lineno": 331,
+        "label": "P6_scope_declared_1027"
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P7",
+        "lineno": 332,
+        "label": "P7_offline_1027"
       }
     ],
-    "self_declared_reading": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 那 18 条装饰的标签自己就写着 `scope_declared` / `offline` / `hold`** ⇒⇒⇒⇒⇒⇒ **⇒ 一个诚实的命名，配上不诚实的汇总** ⇒ **错的是汇总那一层，不是这几条本身** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒ 处置不是删掉它们（它们确实在声明 scope 与 offline），是让汇总里把「装饰」单独数出来**",
-    "n_effective": 140,
-    "ratio_decorative": "18/158",
-    "reading": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 每次报「P1–P8 全 True」时，应当同时报「其中 18 条是写死的 True」** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 不报这个数，那句「全 True」就比它听起来更漂亮**",
+    "self_declared_reading": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 那 20 条装饰的标签自己就写着 `scope_declared` / `offline` / `hold`** ⇒⇒⇒⇒⇒⇒ **⇒ 一个诚实的命名，配上不诚实的汇总** ⇒ **错的是汇总那一层，不是这几条本身** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒ 处置不是删掉它们（它们确实在声明 scope 与 offline），是让汇总里把「装饰」单独数出来**",
+    "n_effective": 146,
+    "ratio_decorative": "20/166",
+    "reading": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 每次报「P1–P8 全 True」时，应当同时报「其中 20 条是写死的 True」** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 不报这个数，那句「全 True」就比它听起来更漂亮**",
     "per_probe": [
       {
         "probe": "jimeng_probe1016_baseline_host_misuse.py",
@@ -2397,6 +2518,13 @@
         "n_decorative": 2,
         "effective": 5,
         "note": "⭐ 「P 全 True」这句话里，有 2 条是写死的 True"
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "n_P": 8,
+        "n_decorative": 2,
+        "effective": 6,
+        "note": "⭐ 「P 全 True」这句话里，有 2 条是写死的 True"
       }
     ]
   },
@@ -2434,7 +2562,7 @@
       "rule": "⭐⭐⭐⭐⭐ **不告知答案**：分类器必须自己把这一条认成 `decorative`**"
     },
     "B_planted_self_check_of_the_classifier": {
-      "what": "⭐⭐⭐⭐⭐ **对分类器本身做植入自检** —— 喂进去五条人工构造的 P，逐条断言分类结果⇒⇒⇒⇒⇒⇒ **否则「恒真 = 18 条」这个读数可能来自一个根本分不清恒真的分类器**",
+      "what": "⭐⭐⭐⭐⭐ **对分类器本身做植入自检** —— 喂进去五条人工构造的 P，逐条断言分类结果⇒⇒⇒⇒⇒⇒ **否则「恒真 = 20 条」这个读数可能来自一个根本分不清恒真的分类器**",
       "cases": [
         {
           "src": "P9 = True",

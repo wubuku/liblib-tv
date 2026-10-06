@@ -24,6 +24,7 @@ import collections
 import io
 import json
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -229,13 +230,29 @@ out["verdicts_2014"] = {
     "offline_2014": "⭐⭐⭐⭐⭐ **本批纯离线**：不打开浏览器、不按任何键、"
                     "**连 `mouse.click` 都没有**",
 }
-out["P1_hold_2014"] = bool(N_GOLDENS == 8 and N_AMBIG == 1
-                           and n_selfprovable == n_empty_list + n_empty_null - 1)
+# ⚠️⚠️⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **仪器 bug 9（第九个）：`P1`/`P4`/`P5` 全是时间耦合的，
+#   而 `sys.exit` 压根没接** ⇒⇒⇒⇒⇒⇒⇒⇒⇒ 三条在第 1014 批写下时成立（`N_GOLDENS=8`、`N_AMBIG=1`），
+#   而仓里长到 20 本 golden 之后它们**必然**转红 ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒
+#   **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 而它们红了十几个 batch 没有人发现**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 「印出来的读数」与「接了线的读数」是两件事**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐ 「可复现」也不蕴含「绿」：
+#   1015 只比「两轮产物是否逐字节相同」，一个恒红的 `P` 它照样记成 `reproduced`**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 处置：判据改成**结构不变式**（自己跟自己算账），不钉任何绝对数**
+out["P1_hold_2014"] = bool(N_AMBIG == len(AMBIGUOUS)          # 普查自洽：报了几个就是几个
+                           and n_selfprovable + N_AMBIG == n_empty_list + n_empty_null
+                           and N_AMBIG >= 1)                  # 这门确实抓到了东西
 out["P2_hold_2014"] = bool(SAME_BYTES)
 out["P3_hold_2014"] = bool(DIFFERENT and COMPANION_SELFTEST
                            and "retired_computed" in PROBE13.read_text(encoding="utf-8"))
-out["P4_hold_2014"] = bool(N_AMBIG == 1 and n_selfprovable >= 3)
-out["P5_hold_2014"] = bool(n_empty_null == 0 or n_empty_null >= 0)
+# ⭐⭐ `P4` 的原话是「排除恒判『不可自证』」⇒ **它的正确形式就是「两类都非空」**，
+#   而原式 `N_AMBIG == 1 and n_selfprovable >= 3` 把「不是恒判」错写成了「正好一个」
+out["P4_hold_2014"] = bool(n_selfprovable >= 1 and N_AMBIG >= 1)
+# ⭐⭐ `P5` 原式 `n_empty_null == 0 or n_empty_null >= 0` 是**恒真**（对任何非负数都成立）
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 而它想说的是「`null` 被一并数进去了」⇒ 那是**分类器行为**，
+#   该在分类器上验，而不是在计数上用一个恒真式子表态**
+_NULL_CLASSIFIER_WORKS = find_empty({"x": None, "y": [], "z": [None]}) == [
+    ("/x", "null"), ("/y", "list"), ("/z/[0]", "null")]
+out["P5_hold_2014"] = bool(n_empty_null > 0 and _NULL_CLASSIFIER_WORKS)
 out["P6_hold_2014"] = bool(any(r["golden"] == "occurrence-ledger-1013.json"
                                and r["path"] == "/retired" for r in AMBIGUOUS))
 
@@ -316,6 +333,21 @@ _allowed |= set("0123456789") | {
     "1008", "1011", "1012", "1013", "1014",
 }
 _allowed |= set(re.findall(r'check\("[A-Z](\d{3})[A-Z]\.', VERIFIER_TXT))
+
+# ⚠️⚠️⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **仪器 bug 9 的另一半：`P8` 拿「今天的读数」去卡一段历史记录**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒ 而 `empty_ambiguity_2014` 那段散文记的是**第 1014 批当时**的读数
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ （8 个 golden、11 个空 list、1 个 null）⇒ 仓里长起来之后必然对不上
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 而「历史实测记录不因被测对象后来变了就过期」是我自己那条规矩**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 处置不是改散文（那是历史记录，一字不删），**
+#   **⇒ 而是给散文配一个 companion：它自己声明「我当时读到的是这几个数」**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐**
+#   **⇒ 这正是 1014 自己发明的那个 companion 模式（`retired_computed` + `retired_n`），**
+#   **⇒ 用在它自己身上 —— 「处置落在探针里、不落在账本上」**
+_HIST = _AB.get("historical_readings_2014") or {}
+assert isinstance(_HIST, dict) and _HIST, (
+    "⭐⭐⭐⭐⭐ audit 的 `empty_ambiguity_2014` 块里必须有 `historical_readings_2014` companion")
+_allowed |= {str(v) for v in _HIST.values()
+             if isinstance(v, (int, float)) and not isinstance(v, bool)}
 _bad, _n_tot = {}, 0
 for _k in out["verdicts_2014"]:
     _got = sorted(set(_NUMRE.findall(_AB.get(_k) or "")), key=float)
@@ -328,8 +360,14 @@ out["audit_numbers_vs_computed_2014"] = {
     "n_numbers_total": _n_tot,
     "n_keys_with_unjustified_number": len(_bad),
     "unjustified": _bad,
+    "historical_readings_declared": _HIST,
+    "historical_readings_why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+                               "**⇒ 散文里的数要么是「当次实测」、要么在 companion 里声明过；"
+                               "两头都不沾的才算没有出处** ⇒ "
+                               "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 「历史记录不因为后来变了就过期」与"
+                               "「手写的数必须有出处」不是冲突的，前提是历史记录自己声明了它当时的数**",
 }
-out["P8_hold_2014"] = bool(not _bad)
+out["P8_hold_2014"] = bool(not _bad and _HIST)
 
 io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
 print("goldens=%d empty_list=%d null=%d selfprovable=%d ambiguous=%d"
@@ -339,3 +377,22 @@ print("byte-identical(算了 vs 没算) =", SAME_BYTES,
       "| companion 可区分 =", DIFFERENT, "| companion 抓错数 =", COMPANION_SELFTEST)
 print("P1..P8 =", [out["P%d_hold_2014" % i] for i in range(1, 9)])
 print("PROBE_1014_DONE ->", OUT)
+
+# ⚠️⚠️⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+# **仪器 bug 9 的另一半：「印出来的读数」不等于「接了线的读数」**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 这个文件从第 1014 批起就 `print("P1..P8 =", ...)`，
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **但从来没有 `sys.exit`** ⇒ 退出码恒 0
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 红读数无法让任何东西变红 ⇒ P1/P4/P8 红了十几个 batch 没人发现**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 另一头还叠着 **仪器 bug 8：1015 只比「两轮产物逐字节相同」**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 一个恒红的 P 它照样记 `reproduced`
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐**
+#   **⇒ 「可复现」不蕴含「绿」⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 这里把线接上：任一 `P*_hold_2014` 为假 ⇒ 退出码 1**
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 收集范围是「以 `P` 开头、以 `_hold_2014` 结尾」的键，
+#   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 写死 `range(1,9)` 的话下次加第 9 条 P 会漏掉它**
+_N_FALSE_2014 = sorted(k for k, v in out.items()
+                       if k.startswith("P") and k.endswith("_hold_2014") and not v)
+_N_P_2014 = sum(1 for k in out if k.startswith("P") and k.endswith("_hold_2014"))
+print("P 为假的：", _N_FALSE_2014 or "无", "| 共 %d 条 P 判据" % _N_P_2014)
+assert _N_P_2014 >= 8, "⭐⭐⭐ P 判据条数掉到 8 以下了：%d" % _N_P_2014
+sys.exit(1 if _N_FALSE_2014 else 0)

@@ -1,0 +1,2442 @@
+{
+  "generated_by": "jimeng_probe1027_freshness_gate.py",
+  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **给「产物新鲜度」补一道会红的闸** —— 1026 查清 1015 套件退出时会把 golden **还原成运行前的字节**，所以它验的是「可复现」而不是「当前」⇒⇒⇒⇒⇒⇒⇒⇒⇒ **「可复现」与「当前」是两个性质，前者不蕴含后者**",
+  "question_1027": "哪些 golden 天然容易过期？现在有几本已经过期了？怎么让这道闸足够便宜？",
+  "how": "⭐⭐⭐⭐⭐ **增量式**：变更集 = `git diff --name-only HEAD~1`；对每个有 golden 的探针算出它**读到的文件集合**，**只跑被本次变更触及的那些**；比对完**原样还原**（还原之前先把新内容留下）",
+  "the_changed_set": [
+    "scripts/verify-jimeng-batch841-unclickable.py",
+    "scripts/jimeng_unclickable_audit.py",
+    "scripts/jimeng_check_verifier_anchors.py",
+    "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+    "scripts/jimeng_probe1025_criterion_direction.py",
+    "scripts/jimeng_probe1026_criterion_effectiveness.py",
+    "scripts/jimeng_probe1027_freshness_gate.py"
+  ],
+  "changed_set_from_argv": true,
+  "n_argv_flags_received": 0,
+  "ran_under_the_suite": false,
+  "changed_set_note": "⭐⭐⭐⭐⭐ **变更集以 `argv` 为准**；没给 argv 时兜底取 `git diff HEAD~3` ⇒ **共享仓里那会被别人的提交改掉** ⇒ **⇒ 可复现性在这里的准确口径是「同一份 argv 下两次跑逐字节相同」**",
+  "axis_1_coupling_census": {
+    "what": "⭐⭐⭐⭐⭐ **耦合普查** —— 一个探针读到的仓内文件越多，越容易被「别人的改动」带偏 ⇒ **这是「容易过期」的结构性原因**",
+    "n_probes_censused": 221,
+    "n_with_golden": 16,
+    "n_excluded": [
+      "jimeng_probe1015_rerun_reproducibility.py"
+    ],
+    "n_probes_with_no_input": 193,
+    "n_probes_with_golden": 16,
+    "no_input_note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 绝大多数探针在耦合正则下「一个输入都抽不到」** —— 第一版把它们各写成几个空列表，1014 的普查立刻报出 627 条「说不清」⇒ **⇒⇒⇒⇒⇒⇒ 「空」不是信息，重复几百次的空更不是** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 处置：空列表折成计数，只在非空时保留列表本身**",
+    "per_probe": [
+      {
+        "probe": "scripts/jimeng_probe1000_negative_census_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1001_repeat_shape_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1002_mutation_coverage.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1003_anchor_teeth.py",
+        "has_golden": false,
+        "n_named": 3,
+        "n_globs": 0,
+        "n_files_it_reads": 4,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1004_anchor_coupling.py",
+        "has_golden": false,
+        "n_named": 3,
+        "n_globs": 0,
+        "n_files_it_reads": 4,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1005_zero_coupling_census.py",
+        "has_golden": true,
+        "n_named": 4,
+        "n_globs": 0,
+        "n_files_it_reads": 5,
+        "n_touched_by_this_change": 3,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_unclickable_audit.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1006_duplicate_anchors.py",
+        "has_golden": false,
+        "n_named": 3,
+        "n_globs": 0,
+        "n_files_it_reads": 4,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1007_disparate_copies.py",
+        "has_golden": true,
+        "n_named": 4,
+        "n_globs": 0,
+        "n_files_it_reads": 5,
+        "n_touched_by_this_change": 3,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_unclickable_audit.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1008_golden_freshness.py",
+        "has_golden": false,
+        "n_named": 7,
+        "n_globs": 0,
+        "n_files_it_reads": 8,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1009_edit_visibility.py",
+        "has_golden": false,
+        "n_named": 5,
+        "n_globs": 0,
+        "n_files_it_reads": 6,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1010_real_history_detection.py",
+        "has_golden": true,
+        "n_named": 3,
+        "n_globs": 0,
+        "n_files_it_reads": 4,
+        "n_touched_by_this_change": 2,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_unclickable_audit.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1011_change_locality.py",
+        "has_golden": true,
+        "n_named": 3,
+        "n_globs": 1,
+        "n_files_it_reads": 4,
+        "n_touched_by_this_change": 1,
+        "in_exclude": false,
+        "globs": [
+          "b1011-*"
+        ],
+        "touched_by_this_change": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1012_global_detection.py",
+        "has_golden": true,
+        "n_named": 2,
+        "n_globs": 0,
+        "n_files_it_reads": 3,
+        "n_touched_by_this_change": 1,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1013_occurrence_ledger.py",
+        "has_golden": true,
+        "n_named": 2,
+        "n_globs": 0,
+        "n_files_it_reads": 3,
+        "n_touched_by_this_change": 1,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
+        "has_golden": false,
+        "n_named": 5,
+        "n_globs": 1,
+        "n_files_it_reads": 5013,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false,
+        "globs": [
+          "*.json"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1015_rerun_reproducibility.py",
+        "has_golden": false,
+        "n_named": 2,
+        "n_globs": 3,
+        "n_files_it_reads": 5237,
+        "n_touched_by_this_change": 0,
+        "in_exclude": true,
+        "globs": [
+          "*.json",
+          "jimeng_probe*.py",
+          "scripts/jimeng_probe*.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1016_baseline_host_misuse.py",
+        "has_golden": true,
+        "n_named": 1,
+        "n_globs": 0,
+        "n_files_it_reads": 2,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1017_replica_coverage.py",
+        "has_golden": true,
+        "n_named": 2,
+        "n_globs": 0,
+        "n_files_it_reads": 3,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1018_assertion_vs_behavior.py",
+        "has_golden": true,
+        "n_named": 2,
+        "n_globs": 0,
+        "n_files_it_reads": 3,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1019_behavior_harness.py",
+        "has_golden": true,
+        "n_named": 2,
+        "n_globs": 0,
+        "n_files_it_reads": 3,
+        "n_touched_by_this_change": 1,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "scripts/jimeng_unclickable_audit.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1020_harness_fidelity.py",
+        "has_golden": true,
+        "n_named": 1,
+        "n_globs": 0,
+        "n_files_it_reads": 2,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+        "has_golden": true,
+        "n_named": 4,
+        "n_globs": 0,
+        "n_files_it_reads": 5,
+        "n_touched_by_this_change": 4,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_unclickable_audit.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1023_type_layer_gate.py",
+        "has_golden": true,
+        "n_named": 7,
+        "n_globs": 0,
+        "n_files_it_reads": 8,
+        "n_touched_by_this_change": 1,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1024_exemption_claims.py",
+        "has_golden": true,
+        "n_named": 5,
+        "n_globs": 4,
+        "n_files_it_reads": 15537,
+        "n_touched_by_this_change": 6,
+        "in_exclude": false,
+        "globs": [
+          "*.ts",
+          "*.tsx",
+          "jimeng_*.py",
+          "scripts/jimeng_*.py"
+        ],
+        "touched_by_this_change": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/jimeng_probe1026_criterion_effectiveness.py",
+          "scripts/jimeng_probe1027_freshness_gate.py",
+          "scripts/jimeng_unclickable_audit.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1025_criterion_direction.py",
+        "has_golden": true,
+        "n_named": 2,
+        "n_globs": 0,
+        "n_files_it_reads": 3,
+        "n_touched_by_this_change": 2,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1026_criterion_effectiveness.py",
+        "has_golden": true,
+        "n_named": 2,
+        "n_globs": 1,
+        "n_files_it_reads": 230,
+        "n_touched_by_this_change": 4,
+        "in_exclude": false,
+        "globs": [
+          "jimeng_probe*.py"
+        ],
+        "touched_by_this_change": [
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/jimeng_probe1026_criterion_effectiveness.py",
+          "scripts/jimeng_probe1027_freshness_gate.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe794_menus.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe794_titlerow.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe794_topbar.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe795_agentpanel.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe795_avatarpill.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe797_copytoast.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe797_moremenu.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe804_nodesummary.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe804_popoverformula.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe832_gendropdowns.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe832_noderoledropdowns.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe833_gentriggers.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe835_panexclusive.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe836_bgcolorrole.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe836_nodetoolbar.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe840_fullscreen.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe840_fullscreen2.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe841_aiDrawerTids.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe845_focusocclusion.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe845b_focustrap.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe845c_stacktruth.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe846_focustrap.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe846_focustrap2.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe846c_clone_esc.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe847_videofs.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe847b_discover.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe847c_baseline.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe847d_baseline2.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe848_toolbars.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe848b_textpalette.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe849_openlayer.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe849b_ctxmenu.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe850_genpanel_kb.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe851a_audioscan.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe851b_audiopanel_kb.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe852_arrowdiag.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe853a_audiostruct.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe853b_audiostruct_kb.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe854_voicegeom.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe855_topbar_recon.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe855b_history_kb.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe856a_search_recon.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe857_skinwhy.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe860_autofocus.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe861_stealwho.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe864_modaltrap.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 1,
+        "n_files_it_reads": 167,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false,
+        "globs": [
+          "src/**/*.tsx"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe865_modalsh.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe867_dialogs.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe868_textbar.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe869_drawerpanels.py",
+        "has_golden": false,
+        "n_named": 1,
+        "n_globs": 0,
+        "n_files_it_reads": 2,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe870_voicefilter.py",
+        "has_golden": false,
+        "n_named": 1,
+        "n_globs": 0,
+        "n_files_it_reads": 2,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe870_voicefilter_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe871_voicefilter_kb.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe872_voicefilters_kb.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe873_voiceselect.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe874_escvalue.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe875_clearfilter.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe875_clearfilter_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe876_clearfilter_kb.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe876b_clearfilter_mech.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe876c_clearfilter_kb2.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe876c_clearfilter_kb2_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe877_clearfilter_kb_all.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe878_nodefocus_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe879_reachnode_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe880_escfocus_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe881_domreplace_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe882_whostealsfocus_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe883_escselect_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe884_selectnode_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe885_escselect2_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe886_esconchip_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe887_esconchip_val_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe888_reopen_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe889_esclanding_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe889_esclanding_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe889b_esclanding2_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe889b_esclanding_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe889c_blankvar_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe889d_canvasfocus_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe890_nodefocus_why_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe890b_nodefocus_why2_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe890c_nodefocus_why_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe891_mousedown_rule_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe892_preventdefault_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe893_clickmoment_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe894_node_tabindex_matrix_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe895_node_tabindex_matrix_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe896_roving_tabindex_policy_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe897_ck_type_coverage.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe898_ck_focus_lands_on_wrapper.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe899_roving_next_rule_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe900_unarmed_nodes_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe901_roving_impl_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe902_unmeasured_cells_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe903_carried_state_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe904_endpoint_condition_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe905_reentry_focus_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe906_direction_asymmetry_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe907_endpoint_to_start_map_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe908_wrap_around_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe909_canvas_root_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe910_endpoint_to_start_rescan_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe911_threshold_bisect_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe912_threshold_bisect2_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe913_same_endpoint_two_routes_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe914_two_routes_real_backwalk_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe915_prehistory_irrelevance_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe916_bite_then_walkback_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe917_multi_bite_focus_trace_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe918_movedonly_and_taborder_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe919_inner_control_anatomy_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe920_per_press_wrapper_census_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe921_full_table_and_delta_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe922_reverse_arm_window_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe923_continuous_arm_stream_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe924_both_boundaries_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe925_past_zero_boundary_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe926_window_survives_freeze_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe927_early_writeback_repro_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe928_replica_same_ruler.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe929_long_tail_wrap_or_not_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe930_second_wrap_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe931_reverse_lap_cycle_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe932_same_27_cycle_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe933_body_stop_rate_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe934_body_own_attrs_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe935_body_stop_sweep_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe936_inlayer_occlusion_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe937_layer_exclusivity_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe938_replica_layer_exclusivity.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe939_tab_distance_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe939b_tab_constitution_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe940_tabindex_rewrite_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe941_layer_identity_probe_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe943_arm_relation_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe944a_node_inner_scan_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe944b_mouse_axes_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe945_comp_scale_split_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe946_prestate_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe947_stablewait_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe948_settle_landing_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe949_replay944_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe950_coldwindow_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe951_focus_gate_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe952_freeze_who_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe953_roving_ring_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe954_source_ring_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe955_onekey_inner_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe956_replica_ring_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe957_rail_roving_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe958_rail_roving_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe959_domorder_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe960_taborder_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe961_ticensus_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe962_focusmove_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe963_nodecensus_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe964_skipwhy_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe965_focusable_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe966_clicksel_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe967_armptr_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe968_replica_armptr_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe968b_nextjsportal_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe969_projectpanel_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe970_owntid_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe971_savestate_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe972_seam_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe973_ringorder_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe974_source_domrank_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe975_scope_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe976_counterfactual_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe977_h3anchor_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe978_lab_body_stop.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe979_dwell_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe980_rate_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe981_srcrate_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe982_ringlen_src.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe983_wrapcmp_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe984_bodytabindex_lab.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe985_bodynotacell_lab.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe986_gaprate_lab.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe987_wrapcause_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe988_arcdenom_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe989_ruler_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe990_prodbuild_ck.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe991_wrapvsindex_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe992_seampos_crosssys_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe993_zeroexception_scope_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe994_scope_presupposition_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe995_wording_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe996_regguard_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe997_skipcensus_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe998_derivesrc_reread.py",
+        "has_golden": false,
+        "n_named": 1,
+        "n_globs": 0,
+        "n_files_it_reads": 2,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe999_whowouldfail_reread.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 0,
+        "n_files_it_reads": 1,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe_js_syntax_check.py",
+        "has_golden": false,
+        "n_named": 0,
+        "n_globs": 1,
+        "n_files_it_reads": 228,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false,
+        "globs": [
+          "jimeng_probe*.py"
+        ]
+      }
+    ],
+    "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 耦合面 × 改动面 决定过期概率 ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒ 「每批都重跑全部探针」既不必要也不便宜，**取交集才是对的成本**"
+  },
+  "axis_2_the_measured_re_run": {
+    "what": "⭐⭐⭐⭐⭐⭐⭐ **实测：对「被本次变更触及的」那些真跑一遍，与仓库里那本逐字节比对 ⇒ 列出现在已经过期的**",
+    "n_touched": 12,
+    "n_re_run": 12,
+    "ran_under_the_suite": false,
+    "n_stale": 8,
+    "per_probe_timeout": 300,
+    "results": [
+      {
+        "probe": "jimeng_probe1005_zero_coupling_census.py",
+        "golden": "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 127207,
+        "n_bytes_committed": 126485,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_unclickable_audit.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1007_disparate_copies.py",
+        "golden": "docs/research/jimeng-canvas/stem-attribution-1007.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": false,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 1272,
+        "n_bytes_committed": 1272,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_unclickable_audit.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1010_real_history_detection.py",
+        "golden": "docs/research/jimeng-canvas/real-history-detection-1010.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": false,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 3232,
+        "n_bytes_committed": 3232,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_unclickable_audit.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1011_change_locality.py",
+        "golden": "docs/research/jimeng-canvas/change-locality-1011.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 3092,
+        "n_bytes_committed": 3092,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "golden": "docs/research/jimeng-canvas/global-detection-1012.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 2350,
+        "n_bytes_committed": 2350,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1013_occurrence_ledger.py",
+        "golden": "docs/research/jimeng-canvas/occurrence-ledger-1013.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 20268,
+        "n_bytes_committed": 20268,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1019_behavior_harness.py",
+        "golden": "docs/research/jimeng-canvas/behavior-harness-1019.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": false,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 8980,
+        "n_bytes_committed": 8980,
+        "touched_by": [
+          "scripts/jimeng_unclickable_audit.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "golden": "docs/research/jimeng-canvas/anchor-gate-coverage-1021.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 7532,
+        "n_bytes_committed": 7532,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_unclickable_audit.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1023_type_layer_gate.py",
+        "golden": "docs/research/jimeng-canvas/type-layer-gate-1023.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": false,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 9205,
+        "n_bytes_committed": 9205,
+        "touched_by": [
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "golden": "docs/research/jimeng-canvas/exemption-claims-1024.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 18972,
+        "n_bytes_committed": 18972,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/jimeng_probe1026_criterion_effectiveness.py",
+          "scripts/jimeng_probe1027_freshness_gate.py",
+          "scripts/jimeng_unclickable_audit.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "golden": "docs/research/jimeng-canvas/criterion-direction-1025.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 312720,
+        "n_bytes_committed": 310129,
+        "touched_by": [
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "golden": "docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
+        "rc": 0,
+        "in_git_head": true,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 100099,
+        "n_bytes_committed": 95891,
+        "touched_by": [
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/jimeng_probe1026_criterion_effectiveness.py",
+          "scripts/jimeng_probe1027_freshness_gate.py"
+        ]
+      }
+    ],
+    "stale": [
+      {
+        "probe": "jimeng_probe1005_zero_coupling_census.py",
+        "golden": "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_unclickable_audit.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1011_change_locality.py",
+        "golden": "docs/research/jimeng-canvas/change-locality-1011.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "golden": "docs/research/jimeng-canvas/global-detection-1012.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1013_occurrence_ledger.py",
+        "golden": "docs/research/jimeng-canvas/occurrence-ledger-1013.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1021_anchor_gate_coverage.py",
+        "golden": "docs/research/jimeng-canvas/anchor-gate-coverage-1021.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_unclickable_audit.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "golden": "docs/research/jimeng-canvas/exemption-claims-1024.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/jimeng_probe1026_criterion_effectiveness.py",
+          "scripts/jimeng_probe1027_freshness_gate.py",
+          "scripts/jimeng_unclickable_audit.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1025_criterion_direction.py",
+        "golden": "docs/research/jimeng-canvas/criterion-direction-1025.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "golden": "docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/jimeng_probe1026_criterion_effectiveness.py",
+          "scripts/jimeng_probe1027_freshness_gate.py"
+        ]
+      }
+    ],
+    "stale_vs_worktree_note": "⭐⭐⭐⭐⭐ **同时记下「与工作区那本比」的读数** —— 第一版就是拿工作区那本作基准 ⇒ **假阴性**：HEAD 记 200 个目标变量、事实已是 201，而只因为我先前为计时手动跑过一次、工作区那本已被刷新 ⇒ 闸被遮住了 ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 「闸被测量者自己的先前动作遮住」是一个新的失效形态**",
+    "restore_discipline": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **每个 golden 先快照、跑完原样还原 —— 和 1015 的 `_restore()` 同一个做法** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 差别只有一处，但那是全部：****1015 还原得很干净、干净到把过期一起还原掉了；本批在还原之前先把新内容留下来比过了** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 「还原」不是缺点，「还原之前不留证据」才是**"
+  },
+  "axis_3_the_gate_itself": {
+    "what": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这道闸怎么才算装上了？** —— 不是「我今天查了一遍」，是**它明天、后天仍然会红**",
+    "the_mechanism": "增量式：变更集 × 耦合面 ⇒ 只跑被触及的那些 ⇒ 比对 ⇒ 报 stale",
+    "why_cheap": "⭐⭐⭐⭐⭐ **成本正比于「本次改动触及了几个探针」，不是「一共有多少个探针」** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 这就是「能常驻」与「只能手工跑一次」的分界**",
+    "known_limits": [
+      "⚠️ **它只抓「因为源码变了而过期」的 golden**，抓不到「因为环境变了而过期」的那个（例如依赖版本）",
+      "⚠️ **它按路径耦合判定**，而点名的路径与实际读到的可能不一致 ⇒ 报的是下限",
+      "⚠️ **1015 自己被排除**（它会重跑全部并自己还原）⇒ 它自己的新鲜度本批管不了",
+      "⚠️⚠️⚠️ **本探针自己的 `P6`（范围已声明）与 `P7`（纯离线）是恒真的** —— 「声明了」与「没联网」都是**声明**，不是**测量** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 这两条不判任何东西，读到它们为 `True` 不构成任何证据** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 它们的病是 1026 已经公开量过的那个（探针 P 的含金量），本批只登记、不假装修好了**"
+    ]
+  },
+  "positive_control": {
+    "A_find_the_real_stale_one_without_being_told": {
+      "probe": "jimeng_probe1013_occurrence_ledger.py",
+      "found": true,
+      "why_it_must_be_found": "⭐⭐⭐⭐⭐ **那一行的 diff 就是`目标变量 200 → 201`** —— 因为本批新增了 `_p1026` ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **每一批新增一个探针变量，都会让 1013 的产物过期一格** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐ 这条耦合是结构性的、不是偶然的**",
+      "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **不告知答案**：耦合扫描必须自己把 1013 列进「被触及」名单"
+    },
+    "B_injected_path_is_selected_by_the_coupling_scan": {
+      "injected_path": "scripts/verify-jimeng-batch841-unclickable.py",
+      "n_selected": 12,
+      "selected": [
+        "jimeng_probe1005_zero_coupling_census.py",
+        "jimeng_probe1007_disparate_copies.py",
+        "jimeng_probe1010_real_history_detection.py",
+        "jimeng_probe1011_change_locality.py",
+        "jimeng_probe1012_global_detection.py",
+        "jimeng_probe1013_occurrence_ledger.py",
+        "jimeng_probe1019_behavior_harness.py",
+        "jimeng_probe1021_anchor_gate_coverage.py",
+        "jimeng_probe1023_type_layer_gate.py",
+        "jimeng_probe1024_exemption_claims.py",
+        "jimeng_probe1025_criterion_direction.py",
+        "jimeng_probe1026_criterion_effectiveness.py"
+      ],
+      "ok": true,
+      "rule": "⭐⭐⭐⭐⭐ **注入式自检**：把 verifier 路径塞进变更集，要求扫描器认出所有与它耦合的探针 ⇒ **⇒ 验的是「取交集这一步本身通不通」，而不依赖「这次提交恰好是谁的」** ⇒ **⇒⇒⇒⇒⇒⇒ 这一条正是对「仪器 bug 1」的回归防护**"
+    },
+    "C_intersection_is_narrower_than_everything": {
+      "n_touched": 12,
+      "n_with_golden": 16,
+      "ok": true,
+      "rule": "⭐⭐⭐⭐⭐ **取交集必须比「全部」小** —— 否则它退化成一个更贵的全量重跑 ⇒ **这本身是一条判据**"
+    },
+    "D_bilateral_exclusion_turns_red_on_either_side": {
+      "ok": true,
+      "n_times_1027_name_appears_in_1015_src": 1,
+      "rule": "⭐⭐⭐⭐⭐ **注入式** —— 把对方登记里我的名字换掉 ⇒ 判据必须转红；把自己的 `EXCLUDE` 清空 ⇒ 也必须转红 ⇒ **两侧都是活的**",
+      "why_this_exists": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P8 第一版是恒假的**（第二半问的是「我排了我自己吗」）⇒ 它永远报「双向排除没做」，而实际已经做完 ⇒ **⇒ 这一条阳性对照就是为了让「恒假」当场暴露，而不是靠人眼发现**"
+    },
+    "P8_bilateral_now": true,
+    "P8_registry_key_found_in_1015_src": true,
+    "P8_i_exclude_the_other": true,
+    "P8_it_excludes_me": true
+  },
+  "scope_declared": "⚠️⭐⭐⭐⭐⭐ 量的是**有 golden 且不在排除名单里的探针**；**1015 自己被排除**（它会重跑全部并自己还原）；**耦合按源码里出现的路径与 glob 判定**，不追执行 ⇒ **报的是下限**；**只抓「因源码变化而过期」，不抓「因环境变化而过期」**；**本批不替项目改任何文件**（每个 golden 跑完原样还原）",
+  "offline": "**只读仓内文件 + 起仓内已有的探针 + `git`（本地）**；零安装、零网络、零浏览器；**产物里不写临时目录名、时间戳、pid**",
+  "verdicts_1027": {
+    "P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027": true,
+    "P2_every_touched_probe_was_re_run_and_reported_1027": true,
+    "P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027": true,
+    "P4_touched_list_is_recorded_for_every_golden_owning_probe_1027": true,
+    "P5_one_run_per_golden_no_double_counting_1027": true,
+    "P6_scope_declared_1027": true,
+    "P7_offline_1027": true,
+    "P8_exclusion_is_bilateral_and_1015_declares_it_too_1027": true,
+    "P9_my_own_payload_has_no_null_no_empty_list_no_random_named_key_1027": true,
+    "P10_writing_the_verdicts_back_did_not_break_my_own_hygiene_1027": true
+  },
+  "payload_hygiene_scan": {
+    "what": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **本产物不许留下「说不清」的字段** —— 三类：`null`、空列表、字段名像随机量",
+    "n_null_or_random_named": 0,
+    "n_empty_list": 0,
+    "scanned_twice_note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 扫描器自己也守同一条规矩**，否则「空路径列表」自己就成了一条空列表",
+    "why_this_is_a_gate": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 这一版是被 1014 的普查抓出来的（13 处）** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 「自己验过」不算数，被下一道门抓过才算数**"
+  }
+}

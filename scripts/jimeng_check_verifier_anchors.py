@@ -302,6 +302,7 @@ PROBE_VARS = {
     "_p1024": "scripts/jimeng_probe1024_exemption_claims.py",
     "_p1025": "scripts/jimeng_probe1025_criterion_direction.py",
     "_p1026": "scripts/jimeng_probe1026_criterion_effectiveness.py",
+    "_p1027": "scripts/jimeng_probe1027_freshness_gate.py",
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。
