@@ -1,0 +1,2565 @@
+{
+ "base": "http://localhost:4317",
+ "cells": [
+  {
+   "key": "u_firstFrame",
+   "name": "createFirstFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 8,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 8
+    }
+   },
+   "s1": {
+    "n": 11,
+    "e": 9,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791262880721-4d3g5p",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "true"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 9
+    }
+   },
+   "s2": {
+    "n": 11,
+    "e": 9,
+    "past": 2,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791262880721-4d3g5p",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "true"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 9
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": true,
+    "★ attempt 芯片还在": true,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": false,
+    "★ 拉片按钮还在": false,
+    "★ 拉片按钮的文案": []
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    11,
+    8,
+    9,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    11,
+    9,
+    9,
+    1,
+    2
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "store 第二下": {
+    "before": {
+     "n": 11,
+     "e": 9,
+     "past": 2
+    },
+    "after": {
+     "n": 11,
+     "e": 9,
+     "past": 3
+    },
+    "建了东西": false,
+    "历史加1": true
+   },
+   "round": 0,
+   "secs": 5.9
+  },
+  {
+   "key": "u_firstLast",
+   "name": "createFirstLastFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 8,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 8
+    }
+   },
+   "s1": {
+    "n": 12,
+    "e": 10,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791262887103-np1eyf",
+     "image-1791262887103-y9pwk2",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "true"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 12,
+     "edgeCount": 10
+    }
+   },
+   "s2": {
+    "n": 12,
+    "e": 10,
+    "past": 2,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791262887103-np1eyf",
+     "image-1791262887103-y9pwk2",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "true"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 12,
+     "edgeCount": 10
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": true,
+    "★ attempt 芯片还在": true,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": false,
+    "★ 拉片按钮还在": false,
+    "★ 拉片按钮的文案": []
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    12,
+    8,
+    10,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    12,
+    12,
+    10,
+    10,
+    1,
+    2
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "store 第二下": {
+    "before": {
+     "n": 12,
+     "e": 10,
+     "past": 2
+    },
+    "after": {
+     "n": 12,
+     "e": 10,
+     "past": 3
+    },
+    "建了东西": false,
+    "历史加1": true
+   },
+   "round": 0,
+   "secs": 6.4
+  },
+  {
+   "key": "u_breakdown",
+   "name": "addDerivedNode(shot-breakdown)",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 11,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 1,
+     "subtitleTriggers": 1,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 11
+    }
+   },
+   "s1": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791262893052",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 1,
+     "shotStart": 1,
+     "shotMedia": [
+      ""
+     ],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "s2": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791262893052",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 1,
+     "shotStart": 1,
+     "shotMedia": [
+      ""
+     ],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": true,
+    "★ attempt 芯片还在": false,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": true,
+    "★ 拉片按钮还在": true,
+    "★ 拉片按钮的文案": [
+     ""
+    ]
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    11,
+    11,
+    12,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    11,
+    12,
+    12,
+    1,
+    1
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "RuntimeError: 找不到「逐帧拉片」"
+   },
+   "★ UI 第二下点不动": true,
+   "store 第二下": {
+    "before": {
+     "n": 11,
+     "e": 12,
+     "past": 1
+    },
+    "after": {
+     "n": 12,
+     "e": 13,
+     "past": 2
+    },
+    "建了东西": true,
+    "历史加1": true
+   },
+   "round": 0,
+   "secs": 5.3
+  },
+  {
+   "key": "u_continuation",
+   "name": "createVideoContinuation",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 11,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 1,
+     "subtitleTriggers": 1,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 11
+    }
+   },
+   "s1": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv",
+     "video-continuation-1791262898402-dyqgu6"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "s2": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv",
+     "video-continuation-1791262898402-dyqgu6"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": true,
+    "★ attempt 芯片还在": true,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": false,
+    "★ 拉片按钮还在": false,
+    "★ 拉片按钮的文案": []
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    11,
+    11,
+    12,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    11,
+    12,
+    12,
+    1,
+    1
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "RuntimeError: 找不到「智能续写」"
+   },
+   "★ UI 第二下点不动": true,
+   "store 第二下": {
+    "before": {
+     "n": 11,
+     "e": 12,
+     "past": 1
+    },
+    "after": {
+     "n": 12,
+     "e": 13,
+     "past": 2
+    },
+    "建了东西": true,
+    "历史加1": true
+   },
+   "round": 0,
+   "secs": 5.1
+  },
+  {
+   "key": "u_subtitle",
+   "name": "createSubtitleErase",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 11,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 1,
+     "subtitleTriggers": 1,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 11
+    }
+   },
+   "s1": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "subtitle-erase-1791262903501-ijz4dm",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [
+      {
+       "mode": "smart"
+      }
+     ],
+     "subtitlePending": [
+      "点击生成自动去除字幕"
+     ],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "s2": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "subtitle-erase-1791262903501-ijz4dm",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [
+      {
+       "mode": "smart"
+      }
+     ],
+     "subtitlePending": [
+      "点击生成自动去除字幕"
+     ],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": false,
+    "★ attempt 芯片还在": false,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": false,
+    "★ 拉片按钮还在": false,
+    "★ 拉片按钮的文案": []
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    11,
+    11,
+    12,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    11,
+    12,
+    12,
+    1,
+    1
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "TimeoutError: Page.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-video-subtitle-menu-trigger]\")\n"
+   },
+   "★ UI 第二下点不动": true,
+   "store 第二下": {
+    "before": {
+     "n": 11,
+     "e": 12,
+     "past": 1
+    },
+    "after": {
+     "n": 11,
+     "e": 12,
+     "past": 1
+    },
+    "建了东西": false,
+    "历史加1": false
+   },
+   "round": 0,
+   "secs": 34.9
+  },
+  {
+   "key": "u_audio",
+   "name": "createAudioSplit",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 11,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 1,
+     "subtitleTriggers": 1,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 11
+    }
+   },
+   "s1": {
+    "n": 12,
+    "e": 13,
+    "past": 1,
+    "ids": [
+     "audio-split-1791262939049-4h90na",
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "silent-video-1791262939049-37ngds",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [
+      {
+       "mode": "av",
+       "kind": "audio"
+      },
+      {
+       "mode": "av",
+       "kind": "silent-video"
+      }
+     ],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 12,
+     "edgeCount": 13
+    }
+   },
+   "s2": {
+    "n": 12,
+    "e": 13,
+    "past": 1,
+    "ids": [
+     "audio-split-1791262939049-4h90na",
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "silent-video-1791262939049-37ngds",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [
+      {
+       "mode": "av",
+       "kind": "audio"
+      },
+      {
+       "mode": "av",
+       "kind": "silent-video"
+      }
+     ],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 12,
+     "edgeCount": 13
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": false,
+    "★ attempt 芯片还在": false,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": false,
+    "★ 拉片按钮还在": false,
+    "★ 拉片按钮的文案": []
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    12,
+    11,
+    13,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    12,
+    12,
+    13,
+    13,
+    1,
+    1
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "TimeoutError: Page.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-video-audio-menu-trigger]\")\n"
+   },
+   "★ UI 第二下点不动": true,
+   "store 第二下": {
+    "before": {
+     "n": 12,
+     "e": 13,
+     "past": 1
+    },
+    "after": {
+     "n": 14,
+     "e": 15,
+     "past": 2
+    },
+    "建了东西": true,
+    "历史加1": true
+   },
+   "round": 0,
+   "secs": 36.7
+  },
+  {
+   "key": "u_shotComplete",
+   "name": "completeShotBreakdown",
+   "srcId": "shot-breakdown-1791262975432",
+   "s0": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791262975432",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 1,
+     "shotStart": 1,
+     "shotMedia": [
+      ""
+     ],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "s1": {
+    "n": 16,
+    "e": 17,
+    "past": 2,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791262975432",
+     "shot-breakdown-result-1791262978116-16zpad",
+     "shot-breakdown-result-1791262978116-8yn04e",
+     "shot-breakdown-result-1791262978116-m0il9j",
+     "shot-breakdown-result-1791262978116-pza6xv",
+     "shot-breakdown-result-1791262978116-qb2szm",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 1,
+     "shotStart": 1,
+     "shotMedia": [
+      ""
+     ],
+     "nodeCount": 16,
+     "edgeCount": 17
+    }
+   },
+   "s2": {
+    "n": 16,
+    "e": 17,
+    "past": 2,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791262975432",
+     "shot-breakdown-result-1791262978116-16zpad",
+     "shot-breakdown-result-1791262978116-8yn04e",
+     "shot-breakdown-result-1791262978116-m0il9j",
+     "shot-breakdown-result-1791262978116-pza6xv",
+     "shot-breakdown-result-1791262978116-qb2szm",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 1,
+     "shotStart": 1,
+     "shotMedia": [
+      ""
+     ],
+     "nodeCount": 16,
+     "edgeCount": 17
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": true,
+    "★ attempt 芯片还在": false,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": true,
+    "★ 拉片按钮还在": true,
+    "★ 拉片按钮的文案": [
+     ""
+    ]
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    11,
+    16,
+    12,
+    17,
+    1,
+    2
+   ],
+   "第二下之后（节点/边/历史）": [
+    16,
+    16,
+    17,
+    17,
+    2,
+    2
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "TimeoutError: Page.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-shot-breakdown-start]\")\n  -     - locator resolved to <button disabled type=\"button\" data-shot-breakdown-start=\"true\" class=\"no"
+   },
+   "★ UI 第二下点不动": true,
+   "store 第二下": {
+    "before": {
+     "n": 16,
+     "e": 17,
+     "past": 2
+    },
+    "after": {
+     "n": 16,
+     "e": 17,
+     "past": 2
+    },
+    "建了东西": false,
+    "历史加1": false
+   },
+   "round": 0,
+   "secs": 37.5
+  },
+  {
+   "key": "u_firstFrame",
+   "name": "createFirstFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 8,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 8
+    }
+   },
+   "s1": {
+    "n": 11,
+    "e": 9,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791263012496-vng6wl",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "true"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 9
+    }
+   },
+   "s2": {
+    "n": 11,
+    "e": 9,
+    "past": 2,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791263012496-vng6wl",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "true"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 9
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": true,
+    "★ attempt 芯片还在": true,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": false,
+    "★ 拉片按钮还在": false,
+    "★ 拉片按钮的文案": []
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    11,
+    8,
+    9,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    11,
+    9,
+    9,
+    1,
+    2
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "store 第二下": {
+    "before": {
+     "n": 11,
+     "e": 9,
+     "past": 2
+    },
+    "after": {
+     "n": 11,
+     "e": 9,
+     "past": 3
+    },
+    "建了东西": false,
+    "历史加1": true
+   },
+   "round": 1,
+   "secs": 5.8
+  },
+  {
+   "key": "u_firstLast",
+   "name": "createFirstLastFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 8,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 8
+    }
+   },
+   "s1": {
+    "n": 12,
+    "e": 10,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791263018396-pjcdtg",
+     "image-1791263018396-yno1c3",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "true"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 12,
+     "edgeCount": 10
+    }
+   },
+   "s2": {
+    "n": 12,
+    "e": 10,
+    "past": 2,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "image-1791263018396-pjcdtg",
+     "image-1791263018396-yno1c3",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "true"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 12,
+     "edgeCount": 10
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": true,
+    "★ attempt 芯片还在": true,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": false,
+    "★ 拉片按钮还在": false,
+    "★ 拉片按钮的文案": []
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    12,
+    8,
+    10,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    12,
+    12,
+    10,
+    10,
+    1,
+    2
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "store 第二下": {
+    "before": {
+     "n": 12,
+     "e": 10,
+     "past": 2
+    },
+    "after": {
+     "n": 12,
+     "e": 10,
+     "past": 3
+    },
+    "建了东西": false,
+    "历史加1": true
+   },
+   "round": 1,
+   "secs": 5.9
+  },
+  {
+   "key": "u_breakdown",
+   "name": "addDerivedNode(shot-breakdown)",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 11,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 1,
+     "subtitleTriggers": 1,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 11
+    }
+   },
+   "s1": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791263024545",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 1,
+     "shotStart": 1,
+     "shotMedia": [
+      ""
+     ],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "s2": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791263024545",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 1,
+     "shotStart": 1,
+     "shotMedia": [
+      ""
+     ],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": true,
+    "★ attempt 芯片还在": false,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": true,
+    "★ 拉片按钮还在": true,
+    "★ 拉片按钮的文案": [
+     ""
+    ]
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    11,
+    11,
+    12,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    11,
+    12,
+    12,
+    1,
+    1
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "RuntimeError: 找不到「逐帧拉片」"
+   },
+   "★ UI 第二下点不动": true,
+   "store 第二下": {
+    "before": {
+     "n": 11,
+     "e": 12,
+     "past": 1
+    },
+    "after": {
+     "n": 12,
+     "e": 13,
+     "past": 2
+    },
+    "建了东西": true,
+    "历史加1": true
+   },
+   "round": 1,
+   "secs": 5.5
+  },
+  {
+   "key": "u_continuation",
+   "name": "createVideoContinuation",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 11,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 1,
+     "subtitleTriggers": 1,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 11
+    }
+   },
+   "s1": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv",
+     "video-continuation-1791263030061-be2hsr"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "s2": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv",
+     "video-continuation-1791263030061-be2hsr"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": true,
+    "★ attempt 芯片还在": true,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": false,
+    "★ 拉片按钮还在": false,
+    "★ 拉片按钮的文案": []
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    11,
+    11,
+    12,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    11,
+    12,
+    12,
+    1,
+    1
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "RuntimeError: 找不到「智能续写」"
+   },
+   "★ UI 第二下点不动": true,
+   "store 第二下": {
+    "before": {
+     "n": 11,
+     "e": 12,
+     "past": 1
+    },
+    "after": {
+     "n": 12,
+     "e": 13,
+     "past": 2
+    },
+    "建了东西": true,
+    "历史加1": true
+   },
+   "round": 1,
+   "secs": 5.3
+  },
+  {
+   "key": "u_subtitle",
+   "name": "createSubtitleErase",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 11,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 1,
+     "subtitleTriggers": 1,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 11
+    }
+   },
+   "s1": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "subtitle-erase-1791263035244-5dgkoc",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [
+      {
+       "mode": "smart"
+      }
+     ],
+     "subtitlePending": [
+      "点击生成自动去除字幕"
+     ],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "s2": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "subtitle-erase-1791263035244-5dgkoc",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [
+      {
+       "mode": "smart"
+      }
+     ],
+     "subtitlePending": [
+      "点击生成自动去除字幕"
+     ],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": false,
+    "★ attempt 芯片还在": false,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": false,
+    "★ 拉片按钮还在": false,
+    "★ 拉片按钮的文案": []
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    11,
+    11,
+    12,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    11,
+    12,
+    12,
+    1,
+    1
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "TimeoutError: Page.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-video-subtitle-menu-trigger]\")\n"
+   },
+   "★ UI 第二下点不动": true,
+   "store 第二下": {
+    "before": {
+     "n": 11,
+     "e": 12,
+     "past": 1
+    },
+    "after": {
+     "n": 11,
+     "e": 12,
+     "past": 1
+    },
+    "建了东西": false,
+    "历史加1": false
+   },
+   "round": 1,
+   "secs": 35.0
+  },
+  {
+   "key": "u_audio",
+   "name": "createAudioSplit",
+   "srcId": "v-UGQZzZOpbv",
+   "s0": {
+    "n": 10,
+    "e": 11,
+    "past": 0,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "audioTriggers": 1,
+     "subtitleTriggers": 1,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 10,
+     "edgeCount": 11
+    }
+   },
+   "s1": {
+    "n": 12,
+    "e": 13,
+    "past": 1,
+    "ids": [
+     "audio-split-1791263070812-zj8h5c",
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "silent-video-1791263070812-0hwih1",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [
+      {
+       "mode": "av",
+       "kind": "audio"
+      },
+      {
+       "mode": "av",
+       "kind": "silent-video"
+      }
+     ],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 12,
+     "edgeCount": 13
+    }
+   },
+   "s2": {
+    "n": 12,
+    "e": 13,
+    "past": 1,
+    "ids": [
+     "audio-split-1791263070812-zj8h5c",
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "silent-video-1791263070812-0hwih1",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [
+      {
+       "mode": "av",
+       "kind": "audio"
+      },
+      {
+       "mode": "av",
+       "kind": "silent-video"
+      }
+     ],
+     "shotNodes": 0,
+     "shotStart": 0,
+     "shotMedia": [],
+     "nodeCount": 12,
+     "edgeCount": 13
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": false,
+    "★ attempt 芯片还在": false,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": false,
+    "★ 拉片按钮还在": false,
+    "★ 拉片按钮的文案": []
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    10,
+    12,
+    11,
+    13,
+    0,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    12,
+    12,
+    13,
+    13,
+    1,
+    1
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "TimeoutError: Page.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-video-audio-menu-trigger]\")\n"
+   },
+   "★ UI 第二下点不动": true,
+   "store 第二下": {
+    "before": {
+     "n": 12,
+     "e": 13,
+     "past": 1
+    },
+    "after": {
+     "n": 14,
+     "e": 15,
+     "past": 2
+    },
+    "建了东西": true,
+    "历史加1": true
+   },
+   "round": 1,
+   "secs": 36.8
+  },
+  {
+   "key": "u_shotComplete",
+   "name": "completeShotBreakdown",
+   "srcId": "shot-breakdown-1791263107043",
+   "s0": {
+    "n": 11,
+    "e": 12,
+    "past": 1,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791263107043",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 1,
+     "shotStart": 1,
+     "shotMedia": [
+      ""
+     ],
+     "nodeCount": 11,
+     "edgeCount": 12
+    }
+   },
+   "s1": {
+    "n": 16,
+    "e": 17,
+    "past": 2,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791263107043",
+     "shot-breakdown-result-1791263109674-2fnfl1",
+     "shot-breakdown-result-1791263109674-km8nj3",
+     "shot-breakdown-result-1791263109674-qtm7po",
+     "shot-breakdown-result-1791263109674-swnx11",
+     "shot-breakdown-result-1791263109674-tskw4p",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 1,
+     "shotStart": 1,
+     "shotMedia": [
+      ""
+     ],
+     "nodeCount": 16,
+     "edgeCount": 17
+    }
+   },
+   "s2": {
+    "n": 16,
+    "e": 17,
+    "past": 2,
+    "ids": [
+     "b-bTLLuU4w5q",
+     "g-245IDFh8sB",
+     "g-EFbbHpwq5w",
+     "i-1FQ9tErTcC",
+     "i-YDfWhFlthe",
+     "i-dnwoZQ7jsG",
+     "i-lBzmo67AHv",
+     "i-vxeeCnxySa",
+     "shot-breakdown-1791263107043",
+     "shot-breakdown-result-1791263109674-2fnfl1",
+     "shot-breakdown-result-1791263109674-km8nj3",
+     "shot-breakdown-result-1791263109674-qtm7po",
+     "shot-breakdown-result-1791263109674-swnx11",
+     "shot-breakdown-result-1791263109674-tskw4p",
+     "t-9j2MoccxBj",
+     "v-UGQZzZOpbv"
+    ],
+    "fb": {
+     "attemptChips": [],
+     "audioTriggers": 0,
+     "subtitleTriggers": 0,
+     "subtitleTarget": [],
+     "subtitlePending": [],
+     "audioOutputs": [],
+     "shotNodes": 1,
+     "shotStart": 1,
+     "shotMedia": [
+      ""
+     ],
+     "nodeCount": 16,
+     "edgeCount": 17
+    }
+   },
+   "入口还在吗（第一次之后）": {
+    "entryStillThere": true,
+    "★ attempt 芯片还在": false,
+    "★ 工具栏触发器还在": false,
+    "★ 拉片节点还在": true,
+    "★ 拉片按钮还在": true,
+    "★ 拉片按钮的文案": [
+     ""
+    ]
+   },
+   "★ 第一下真的建了东西": true,
+   "★ 第一下历史 +1": true,
+   "第一下之后（节点/边/历史）": [
+    11,
+    16,
+    12,
+    17,
+    1,
+    2
+   ],
+   "第二下之后（节点/边/历史）": [
+    16,
+    16,
+    17,
+    17,
+    2,
+    2
+   ],
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "★ 第二下**零**可见反馈": true,
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "TimeoutError: Page.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-shot-breakdown-start]\")\n  -     - locator resolved to <button disabled type=\"button\" data-shot-breakdown-start=\"true\" class=\"no"
+   },
+   "★ UI 第二下点不动": true,
+   "store 第二下": {
+    "before": {
+     "n": 16,
+     "e": 17,
+     "past": 2
+    },
+    "after": {
+     "n": 16,
+     "e": 17,
+     "past": 2
+    },
+    "建了东西": false,
+    "历史加1": false
+   },
+   "round": 1,
+   "secs": 37.2
+  }
+ ],
+ "emptyRecordUndo": [
+  {
+   "round": 0,
+   "新建了几个（第一下）": 1,
+   "节点": [
+    10,
+    11,
+    11,
+    11,
+    10
+   ],
+   "边": [
+    8,
+    9,
+    9,
+    9,
+    8
+   ],
+   "历史": [
+    0,
+    1,
+    2,
+    1,
+    0
+   ],
+   "★ 第二下没建东西但历史 +1": true,
+   "★ 一次 Cmd+Z 之后新建的那个 image 还在吗": true,
+   "★ 两次 Cmd+Z 之后才回到动作前": true
+  },
+  {
+   "round": 1,
+   "新建了几个（第一下）": 1,
+   "节点": [
+    10,
+    11,
+    11,
+    11,
+    10
+   ],
+   "边": [
+    8,
+    9,
+    9,
+    9,
+    8
+   ],
+   "历史": [
+    0,
+    1,
+    2,
+    1,
+    0
+   ],
+   "★ 第二下没建东西但历史 +1": true,
+   "★ 一次 Cmd+Z 之后新建的那个 image 还在吗": true,
+   "★ 两次 Cmd+Z 之后才回到动作前": true
+  }
+ ]
+}

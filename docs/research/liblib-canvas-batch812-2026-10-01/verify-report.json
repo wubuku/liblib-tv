@@ -1,0 +1,1079 @@
+{
+ "batch": 812,
+ "totals": {
+  "passed": 7,
+  "total": 7
+ },
+ "checks": [
+  {
+   "id": "S1:★★★ 阳性对照：第一下**真的建了东西**、历史**真的 +1**",
+   "why": "★★★ 没有这条，「第二下什么都没发生」可以是废话 —— 而 809 已经证明「压根没发生」在这族动作里**真的可能**（首帧芯片的 `hasImageRef` 防重分支）；★ 判的是**第一下**，不是第二下",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "第一下（节点/边/历史）": [
+      10,
+      11,
+      8,
+      9,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "第一下（节点/边/历史）": [
+      10,
+      12,
+      8,
+      10,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "第一下（节点/边/历史）": [
+      10,
+      11,
+      11,
+      12,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "第一下（节点/边/历史）": [
+      10,
+      11,
+      11,
+      12,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "第一下（节点/边/历史）": [
+      10,
+      11,
+      11,
+      12,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "第一下（节点/边/历史）": [
+      10,
+      12,
+      11,
+      13,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "第一下（节点/边/历史）": [
+      11,
+      16,
+      12,
+      17,
+      1,
+      2
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "第一下（节点/边/历史）": [
+      10,
+      11,
+      8,
+      9,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "第一下（节点/边/历史）": [
+      10,
+      12,
+      8,
+      10,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "第一下（节点/边/历史）": [
+      10,
+      11,
+      11,
+      12,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "第一下（节点/边/历史）": [
+      10,
+      11,
+      11,
+      12,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "第一下（节点/边/历史）": [
+      10,
+      11,
+      11,
+      12,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "第一下（节点/边/历史）": [
+      10,
+      12,
+      11,
+      13,
+      0,
+      1
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "第一下（节点/边/历史）": [
+      11,
+      16,
+      12,
+      17,
+      1,
+      2
+     ],
+     "★ 建了东西": true,
+     "★ 历史 +1": true,
+     "★ 两件同时": true
+    }
+   ]
+  },
+  {
+   "id": "S2:★★ 入口普查：第一次触发之后，**每条臂的入口状态都读到了**",
+   "why": "★★ 这是 806 立的那条纪律在**另一个方向**上的应用：条件渲染的入口会因为状态变化而**消失** ⟹ 「第二下点不动」可能只是「按钮没了」；★ 本条只要求「**读到了**」，**不判该不该在** —— 「在不在」是事实，「该不该在」才是产品决策；★ 所以阴性对照打的是「**读不到**」而不是「读成 false」（把真读数改成 false 仍然是**有效读数**，判据不该翻）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "第一次之后的入口读数": {
+      "attemptChips": 3,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 0,
+      "shotNodes": 0
+     },
+     "★ 入口还在": true
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "第一次之后的入口读数": {
+      "attemptChips": 3,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 0,
+      "shotNodes": 0
+     },
+     "★ 入口还在": true
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "第一次之后的入口读数": {
+      "attemptChips": 0,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 1,
+      "shotNodes": 1
+     },
+     "★ 入口还在": true
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "第一次之后的入口读数": {
+      "attemptChips": 3,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 0,
+      "shotNodes": 0
+     },
+     "★ 入口还在": true
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "第一次之后的入口读数": {
+      "attemptChips": 0,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 0,
+      "shotNodes": 0
+     },
+     "★ 入口还在": false
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "第一次之后的入口读数": {
+      "attemptChips": 0,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 0,
+      "shotNodes": 0
+     },
+     "★ 入口还在": false
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "第一次之后的入口读数": {
+      "attemptChips": 0,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 1,
+      "shotNodes": 1
+     },
+     "★ 入口还在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "第一次之后的入口读数": {
+      "attemptChips": 3,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 0,
+      "shotNodes": 0
+     },
+     "★ 入口还在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "第一次之后的入口读数": {
+      "attemptChips": 3,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 0,
+      "shotNodes": 0
+     },
+     "★ 入口还在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "第一次之后的入口读数": {
+      "attemptChips": 0,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 1,
+      "shotNodes": 1
+     },
+     "★ 入口还在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "第一次之后的入口读数": {
+      "attemptChips": 3,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 0,
+      "shotNodes": 0
+     },
+     "★ 入口还在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "第一次之后的入口读数": {
+      "attemptChips": 0,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 0,
+      "shotNodes": 0
+     },
+     "★ 入口还在": false
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "第一次之后的入口读数": {
+      "attemptChips": 0,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 0,
+      "shotNodes": 0
+     },
+     "★ 入口还在": false
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "第一次之后的入口读数": {
+      "attemptChips": 0,
+      "audioTriggers": 0,
+      "subtitleTriggers": 0,
+      "shotStart": 1,
+      "shotNodes": 1
+     },
+     "★ 入口还在": true
+    }
+   ]
+  },
+  {
+   "id": "S3:★★★ 第二下的结局有**三**种（拦住 / 没拦 / **空记录**），每条臂都必须落在其中之一",
+   "why": "★★★ 这是本批的核心读数：**哪些动作防重、哪些不防重、哪些塞空记录**；★ ★ 我第一版只写了**两种**结局，把真实测到的「没建东西、**但历史 +1**」判成红 ⟹ **我预设的半截状态方向反了**（我防的是「建了东西但没进历史」，真实发生的是反过来）⟹ 判据改成三态并**报出是哪一态**；★ 「防重」不是缺陷、「不防重」也不是 —— 本条**只报事实，不做价值判断**",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "★ 结局": "★ 空记录（没建东西但历史 +1）",
+     "第二下（节点/边/历史）": [
+      11,
+      11,
+      9,
+      9,
+      1,
+      2
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "★ 结局": "★ 空记录（没建东西但历史 +1）",
+     "第二下（节点/边/历史）": [
+      12,
+      12,
+      10,
+      10,
+      1,
+      2
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "★ 结局": "被守卫拦住",
+     "第二下（节点/边/历史）": [
+      11,
+      11,
+      12,
+      12,
+      1,
+      1
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "★ 结局": "被守卫拦住",
+     "第二下（节点/边/历史）": [
+      11,
+      11,
+      12,
+      12,
+      1,
+      1
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "★ 结局": "被守卫拦住",
+     "第二下（节点/边/历史）": [
+      11,
+      11,
+      12,
+      12,
+      1,
+      1
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "★ 结局": "被守卫拦住",
+     "第二下（节点/边/历史）": [
+      12,
+      12,
+      13,
+      13,
+      1,
+      1
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "★ 结局": "被守卫拦住",
+     "第二下（节点/边/历史）": [
+      16,
+      16,
+      17,
+      17,
+      2,
+      2
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "★ 结局": "★ 空记录（没建东西但历史 +1）",
+     "第二下（节点/边/历史）": [
+      11,
+      11,
+      9,
+      9,
+      1,
+      2
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "★ 结局": "★ 空记录（没建东西但历史 +1）",
+     "第二下（节点/边/历史）": [
+      12,
+      12,
+      10,
+      10,
+      1,
+      2
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "★ 结局": "被守卫拦住",
+     "第二下（节点/边/历史）": [
+      11,
+      11,
+      12,
+      12,
+      1,
+      1
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "★ 结局": "被守卫拦住",
+     "第二下（节点/边/历史）": [
+      11,
+      11,
+      12,
+      12,
+      1,
+      1
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "★ 结局": "被守卫拦住",
+     "第二下（节点/边/历史）": [
+      11,
+      11,
+      12,
+      12,
+      1,
+      1
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "★ 结局": "被守卫拦住",
+     "第二下（节点/边/历史）": [
+      12,
+      12,
+      13,
+      13,
+      1,
+      1
+     ],
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "★ 结局": "被守卫拦住",
+     "第二下（节点/边/历史）": [
+      16,
+      16,
+      17,
+      17,
+      2,
+      2
+     ],
+     "★ 落在三态之内": true
+    }
+   ]
+  },
+  {
+   "id": "S4:★★ UI 层第二下要么**点得到**、要么**点不动**（入口会消失或被禁用）",
+   "why": "★★ 这是 806 那条纪律的回报：条件渲染的入口会因为状态变化而**消失**或**变成 disabled 且改文案**（实测「拉片完成」）⟹ 「第二下点不动」**不是探针坏了，是读数**；★ 第一版探针把「点不动」当成 `FAILED`、于是 7 条臂里 5 条报了 RuntimeError/Timeout ⟹ **前提不满足的臂必须显式作废、不能当成故障**（802 起立的规矩）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "★ UI 第二下的结局": "clicked",
+     "入口读数（第一次之后）": {
+      "entryStillThere": true,
+      "★ attempt 芯片还在": true,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": false,
+      "★ 拉片按钮还在": false,
+      "★ 拉片按钮的文案": []
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "★ UI 第二下的结局": "clicked",
+     "入口读数（第一次之后）": {
+      "entryStillThere": true,
+      "★ attempt 芯片还在": true,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": false,
+      "★ 拉片按钮还在": false,
+      "★ 拉片按钮的文案": []
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "★ UI 第二下的结局": "★ 点不动",
+     "入口读数（第一次之后）": {
+      "entryStillThere": true,
+      "★ attempt 芯片还在": false,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": true,
+      "★ 拉片按钮还在": true,
+      "★ 拉片按钮的文案": [
+       ""
+      ]
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "★ UI 第二下的结局": "★ 点不动",
+     "入口读数（第一次之后）": {
+      "entryStillThere": true,
+      "★ attempt 芯片还在": true,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": false,
+      "★ 拉片按钮还在": false,
+      "★ 拉片按钮的文案": []
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "★ UI 第二下的结局": "★ 点不动",
+     "入口读数（第一次之后）": {
+      "entryStillThere": false,
+      "★ attempt 芯片还在": false,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": false,
+      "★ 拉片按钮还在": false,
+      "★ 拉片按钮的文案": []
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "★ UI 第二下的结局": "★ 点不动",
+     "入口读数（第一次之后）": {
+      "entryStillThere": false,
+      "★ attempt 芯片还在": false,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": false,
+      "★ 拉片按钮还在": false,
+      "★ 拉片按钮的文案": []
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "★ UI 第二下的结局": "★ 点不动",
+     "入口读数（第一次之后）": {
+      "entryStillThere": true,
+      "★ attempt 芯片还在": false,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": true,
+      "★ 拉片按钮还在": true,
+      "★ 拉片按钮的文案": [
+       ""
+      ]
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "★ UI 第二下的结局": "clicked",
+     "入口读数（第一次之后）": {
+      "entryStillThere": true,
+      "★ attempt 芯片还在": true,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": false,
+      "★ 拉片按钮还在": false,
+      "★ 拉片按钮的文案": []
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "★ UI 第二下的结局": "clicked",
+     "入口读数（第一次之后）": {
+      "entryStillThere": true,
+      "★ attempt 芯片还在": true,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": false,
+      "★ 拉片按钮还在": false,
+      "★ 拉片按钮的文案": []
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "★ UI 第二下的结局": "★ 点不动",
+     "入口读数（第一次之后）": {
+      "entryStillThere": true,
+      "★ attempt 芯片还在": false,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": true,
+      "★ 拉片按钮还在": true,
+      "★ 拉片按钮的文案": [
+       ""
+      ]
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "★ UI 第二下的结局": "★ 点不动",
+     "入口读数（第一次之后）": {
+      "entryStillThere": true,
+      "★ attempt 芯片还在": true,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": false,
+      "★ 拉片按钮还在": false,
+      "★ 拉片按钮的文案": []
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "★ UI 第二下的结局": "★ 点不动",
+     "入口读数（第一次之后）": {
+      "entryStillThere": false,
+      "★ attempt 芯片还在": false,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": false,
+      "★ 拉片按钮还在": false,
+      "★ 拉片按钮的文案": []
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "★ UI 第二下的结局": "★ 点不动",
+     "入口读数（第一次之后）": {
+      "entryStillThere": false,
+      "★ attempt 芯片还在": false,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": false,
+      "★ 拉片按钮还在": false,
+      "★ 拉片按钮的文案": []
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "★ UI 第二下的结局": "★ 点不动",
+     "入口读数（第一次之后）": {
+      "entryStillThere": true,
+      "★ attempt 芯片还在": false,
+      "★ 工具栏触发器还在": false,
+      "★ 拉片节点还在": true,
+      "★ 拉片按钮还在": true,
+      "★ 拉片按钮的文案": [
+       ""
+      ]
+     },
+     "第二下的可见反馈变化": {},
+     "★ 落在两态之内": true
+    }
+   ]
+  },
+  {
+   "id": "S4b:★★★ store 层：绕开 UI 直接再调一次，**必须给出确定读数**",
+   "why": "★★★ UI 层可能已经把入口禁掉了 ⟹ 那时 store 层的守卫**永远观察不到**；★ 判据只要求「读数在」，**不要求是哪一态** —— 哪一态由 S3 的三态承担；★ ★ 顺带给出一个**用户看得见的后果**：首帧芯片连点两下会塞一条**空历史记录**，于是**一次 `Cmd+Z` 撤不掉新建的 image 节点**，要按两次（S6）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "★ store 第二下建了东西": false,
+     "★ store 第二下历史 +1": true,
+     "★ 读数在": true
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "★ store 第二下建了东西": false,
+     "★ store 第二下历史 +1": true,
+     "★ 读数在": true
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "★ store 第二下建了东西": true,
+     "★ store 第二下历史 +1": true,
+     "★ 读数在": true
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "★ store 第二下建了东西": true,
+     "★ store 第二下历史 +1": true,
+     "★ 读数在": true
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "★ store 第二下建了东西": false,
+     "★ store 第二下历史 +1": false,
+     "★ 读数在": true
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "★ store 第二下建了东西": true,
+     "★ store 第二下历史 +1": true,
+     "★ 读数在": true
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "★ store 第二下建了东西": false,
+     "★ store 第二下历史 +1": false,
+     "★ 读数在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "★ store 第二下建了东西": false,
+     "★ store 第二下历史 +1": true,
+     "★ 读数在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "★ store 第二下建了东西": false,
+     "★ store 第二下历史 +1": true,
+     "★ 读数在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "★ store 第二下建了东西": true,
+     "★ store 第二下历史 +1": true,
+     "★ 读数在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "★ store 第二下建了东西": true,
+     "★ store 第二下历史 +1": true,
+     "★ 读数在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "★ store 第二下建了东西": false,
+     "★ store 第二下历史 +1": false,
+     "★ 读数在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "★ store 第二下建了东西": true,
+     "★ store 第二下历史 +1": true,
+     "★ 读数在": true
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "★ store 第二下建了东西": false,
+     "★ store 第二下历史 +1": false,
+     "★ 读数在": true
+    }
+   ]
+  },
+  {
+   "id": "S5:★★ 静态锚点：源码里那两个**防重守卫**确实在",
+   "why": "★ 静态证据**不能**替代 S3／S4 的行为证据（794 的硬规矩）；它的作用是把 S3 的「哪些被拦住」**归因**到具体那两段；★ 一律 `rfind`（取实现）—— 第八次「同名锚点」提醒",
+   "ok": true,
+   "evidence": [
+    {
+     "动作": "u_subtitle",
+     "锚点": "requestFingerprint",
+     "出现次数": 4,
+     "★ 取的是最后一次": true,
+     "★ 锚点在实现里": true
+    },
+    {
+     "动作": "u_shotComplete",
+     "锚点": "if (existingResults.length > 0) return state;",
+     "出现次数": 1,
+     "★ 取的是最后一次": true,
+     "★ 锚点在实现里": true
+    }
+   ]
+  },
+  {
+   "id": "S6:★★★ 空记录的用户可见后果：首帧芯片连点两下后，**一次 `Cmd+Z` 撤不掉新建的 image 节点，要按两次**",
+   "why": "★★★ 这是本批**唯一一条真正影响用户操作**的读数；★ 它和 811 的「撤销粒度 = 1 动作 = 1 次」**不矛盾但有边界**：811 量的是**单次**触发，812 量的是**连点两下**；★ 判据要求三件同时成立，否则「一次就撤掉了」会与「两次才撤掉」互相掩盖",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "节点（动作前/下1/下2/撤1次/撤2次）": [
+      10,
+      11,
+      11,
+      11,
+      10
+     ],
+     "历史（同上）": [
+      0,
+      1,
+      2,
+      1,
+      0
+     ],
+     "★ 第二下没建东西但历史 +1": true,
+     "★ 一次 Cmd+Z 之后那个 image 还在": true,
+     "★ 要按两次才回到动作前": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "节点（动作前/下1/下2/撤1次/撤2次）": [
+      10,
+      11,
+      11,
+      11,
+      10
+     ],
+     "历史（同上）": [
+      0,
+      1,
+      2,
+      1,
+      0
+     ],
+     "★ 第二下没建东西但历史 +1": true,
+     "★ 一次 Cmd+Z 之后那个 image 还在": true,
+     "★ 要按两次才回到动作前": true,
+     "★ 三件同时": true
+    }
+   ]
+  }
+ ],
+ "negatives": [
+  {
+   "name": "N1",
+   "why": "★ 阳性对照的对照：伪造「第一下压根没发生」⟹ S1 翻红（S3 在这种情况下会**假绿**：没建东西也没进历史 = 「被守卫拦住」）",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S1",
+   "flipped": [
+    "S1:★★★ 阳性对照：第一下**真的建了东西**、历史**真的 +1**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N2",
+   "why": "★ 伪造「store 第二下没有确定读数」⟹ S4b 必须翻红（这正是第一版把「点不动」当 FAILED 时的处境）",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S4b",
+   "flipped": [
+    "S4b:★★★ store 层：绕开 UI 直接再调一次，**必须给出确定读数**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N3",
+   "why": "伪造「UI 第二下的结局是第三种」⟹ S4 必须翻红",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S4",
+   "flipped": [
+    "S4:★★ UI 层第二下要么**点得到**、要么**点不动**（入口会消失或被禁用）"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N4",
+   "why": "★ 伪造「入口状态读不到」⟹ S2 翻红（**不能**打「读成 false」——那是有效读数，判据不该翻）",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S2",
+   "flipped": [
+    "S2:★★ 入口普查：第一次触发之后，**每条臂的入口状态都读到了**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N5",
+   "why": "★ 伪造「一次 Cmd+Z 就撤掉了」⟹ S6 必须翻红（否则「要按两次」会被「一次就够」掩盖）",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S6",
+   "flipped": [
+    "S6:★★★ 空记录的用户可见后果：首帧芯片连点两下后，**一次 `Cmd+Z` 撤不掉新建的 image 节点，要按两次**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N6",
+   "why": "反向对照：只动 `secs` 这个无关字段 ⟹ 期望不翻",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "（反向对照：期望不翻）",
+   "flipped": [],
+   "ok": true
+  }
+ ],
+ "negativesOk": 6,
+ "negativesTotal": 6,
+ "rawSha": "b2ab486ec8b7335eaa28054b52dfba5ad7e676c877e616140447309511ceef6d"
+}
