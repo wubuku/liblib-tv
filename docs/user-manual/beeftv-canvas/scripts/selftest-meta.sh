@@ -70,7 +70,7 @@ VOID=0
 # **还原的基准必须是「进来时什么样」，而不是「仓库里已提交什么样」**——
 # 否则这个脚本就成了一个会吃掉未提交改动的工具，而它本该是被信任的检查工具。
 SNAP="$(mktemp -d "${TMPDIR:-/tmp}/beef-meta-selftest.XXXXXX")"
-SNAP_FILES=(README.md 10-tasks/README.md 10-tasks/asset-library.md 10-tasks/timeline-editing.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py scripts/verify-screenshots.py scripts/verify-tables.py)
+SNAP_FILES=(README.md 10-tasks/README.md 10-tasks/asset-library.md 10-tasks/timeline-editing.md FINAL-REPORT.md AUDIT-RULES.md AUDIT.md PROGRESS.md 00-quickstart.md 30-concepts.md build-site.sh .vitepress/config.mjs scripts/verify-unreachable.py scripts/verify-meta.py scripts/verify-endpoints.py scripts/verify-shortcuts.py scripts/verify-screenshots.py scripts/verify-tables.py 10-tasks/director-basics.md)
 
 # **Batch 320 往 SNAP_FILES 里补了 `scripts/verify-tables.py`**——
 # 方向十三那两条用例要改它的 docstring，而它原本不在快照里。
@@ -686,6 +686,13 @@ run_file_case "50) 闸脚本 docstring 自称的闸号被改错（方向十三�
 
 run_file_pass_case "51) 只改 docstring 首行的说明、闸号不动（方向十三只认 N，必须放行）" \
   "scripts/verify-tables.py" "$HERE/selftest-meta-fix-51-gate-selfname-text.py"
+
+run_file_case "52) 版本标注用了一个上游不存在的 tag（方向十四必须报）" \
+  "10-tasks/director-basics.md" "$HERE/selftest-meta-fix-52-bogus-version-annot.py" \
+  "上游"
+
+run_file_pass_case "53) 只改版本标注那一行的说明、版本号一个字不动（方向十四只认版本号，必须放行）" \
+  "10-tasks/director-basics.md" "$HERE/selftest-meta-fix-53-version-annot-text-only.py"
 
 echo "=== 基线：真实仓库应当通过 ==="
 restore

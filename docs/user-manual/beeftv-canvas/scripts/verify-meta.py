@@ -79,9 +79,11 @@ import ast
 import glob
 import os
 import re
+import subprocess
 import sys
 
 from headingkey import first_h1, norm_inline, rendered_key
+import beefsrc
 #: **Batch 258 新增**：与闸 18 共用「是不是注入夹具」这一条判据
 #: （原先两份 `FIXTURE_RE` 逐字相同）。**能直接 import 是因为本行上一条
 #: `from headingkey import …` 已经这么干了**——**这不是新引入的依赖形态**。
@@ -953,6 +955,112 @@ def gate_number_map_check(root):
     return problems, None
 
 
+# ── 方向十四（Batch 325 新增）：任务页上的「vX.Y.Z 起」标注，版本号必须真实存在 ──
+#
+# **为什么要有它**：Batch 324 查出 3 条否定式断言在 v1.7.3 上已经不成立，
+# 而**处置本该是「按手册已有的约定就地标注」**——
+# 那套约定**早就在用**（`create-nodes.md` 的「⚠️ v1.6.22 起这层弹窗已被上游删除
+# ……如果你没看到这个弹窗，不是你点错了」），**只是从来没被任何判据守着**。
+# 纪律 359⑥ 一度断言「版本化标注机制本项目还没有」，**而实测它是存在的**
+# ——**一个「据我印象」的机制判断，被三行 grep 推翻**。
+#
+# **本方向核的只有一件事**：标注里的版本号**落在「基线 ∪ 参考页版本清单」里吗**。
+# 不落在，只有三种可能，而三种都该拦下：
+#   ① 版本号写错了（多一位、少一段）；
+#   ② 那个版本**根本不存在**（凭空写的）；
+#   ③ **那个版本真实存在，而参考页的版本清单漏了它**——
+#      **这正是纪律 274 的形状：同一个版本事实在两处各写一遍，其中一处漏了。**
+#
+# **不核什么（如实说明）**：
+#  · **不核标注说的那件事在源码里是否成立**——那是闸 7 / 闸 23 的活；
+#  · **不核「被标注的那句话是不是真的在标注上面」**——
+#    标注是就地跟在声明后面的引用块，而「哪句是声明」只存在于人脑里，
+#    **判据能核的只有形态**（纪律 352⑤ 同源）；
+#  · **不建「哪些页必须有标注」的登记表**（纪律 242）——
+#    「哪些声明在基线之后失效了」只有等真的去量才知道，
+#    **而 Batch 324 已经把那 3 条量出来了，写在参考页那一节里。**
+#
+# **解析不出来必须是 rc=2 而不是 rc=1**（纪律 101）：
+# 抽不到基线或抽不到版本清单时，**本方向本轮什么都没核对**，报绿是错的。
+
+#: 标注形态：**只认引用块行**（以 `>` 开头）里的「vX.Y.Z 起」——
+#: **正文里写「本手册照 v1.6.22 写」不算标注**，那是取证基线的正常表述。
+_ANNOT_RE = re.compile(r"(?:⚠\s*)?\*{0,2}(?:自\s*)?v(\d+)\.(\d+)\.(\d+)\s*起")
+#: **当场自检（纪律 355：一个函数 + 已知答案，不许「两份各写一遍」）**——
+#: 逐条照抄 `10-tasks/director-basics.md` 里的真实行。
+for _txt, _want in [
+    ("> **v1.6.22 起不再弹「选择镜头模板」**——点「导演台」会**直接建出空场景节点**，",
+     (1, 6, 22)),
+    ("> **⚠️ v1.7.3 起服务端已接入 `/canvas-folders`**——**你看到的是正常的**。",
+     (1, 7, 3)),
+    ("  > **自 v1.6.22 起这个弹窗已被上游删除**（2026-09-29 实拍）。", (1, 6, 22)),
+]:
+    _m = _ANNOT_RE.search(_txt)
+    assert _m and tuple(int(x) for x in _m.groups()) == _want, \
+        ("标注形态自检失败", _txt, _m)
+#: **反向自检**：非引用块行、以及「版本基线」那种不带「起」的表述，都不许被认领
+assert not _ANNOT_RE.search("本手册的正文是照 v1.6.22 这个版本逐条核对写成的")
+assert not _ANNOT_RE.search("> 适用角色：所有用户。快捷键均已实际核对实现代码。")
+print("版本标注形态自检：3 个已知答案 + 2 个反向，全过")
+
+
+def version_annotation_check(root):
+    """返回 (问题列表, 未能核对, 已核份数, 用到的版本数)。
+
+    **全集 = 上游真实存在的 git tag**。
+    **这个全集换过两次，每次都是被真数据逼的，如实记下**：
+      ① 第一版取「取证基线 ∪ 参考页的版本沿革清单」——
+         **在真树上立刻误伤 2 处**（`generate-images.md` 的 v1.6.14、
+         `generate-video.md` 的 v1.6.7，**而这两个都是真版本**：
+         本手册的截图就拍于 v1.6.14、导演台入口 v1.6.7 解禁）。
+      ② 第二版取「参考页里出现过的所有版本号」——
+         **还是误伤 2 处**（v1.6.7、v1.5.8），
+         **因为历史版本不会都列进参考页**（参考页的沿革清单只列基线之后）。
+         **而实测上游有 34 个 tag，v1.5.8 与 v1.6.7 都在其中**。
+    **两次都是「负样本（真树）失败 ⇒ 先怀疑判据」（纪律 344）**，
+    **而两次的错都是同一个：拿「文档里记了哪些版本」当「世界上有哪些版本」。**
+    **正确的全集只有一个来源：上游自己的 tag。**
+    """
+    src, _fallback = beefsrc.resolve_src()
+    if not src or not os.path.isdir(os.path.join(src, ".git")):
+        return [], ("找不到可用的 BeefTV 源码仓，**上游 tag 读不出来**，"
+                   "本方向本轮未能进行"), 0, 0
+    try:
+        r = subprocess.run(["git", "-C", src, "tag", "-l"],
+                           capture_output=True, text=True, timeout=120)
+    except (OSError, subprocess.TimeoutExpired):
+        return [], "读上游 tag 失败，本方向本轮未能进行", 0, 0
+    tags = {t.strip() for t in r.stdout.split("\n") if t.strip().startswith("v")}
+    if not tags:
+        return [], ("上游一个 v 开头的 tag 都没有——"
+                   "**这不是「没有版本」而是没读到**"), 0, 0
+
+    problems, checked, hits = [], 0, {}
+    tasks = os.path.join(root, "10-tasks")
+    if not os.path.isdir(tasks):
+        return [], "找不到 10-tasks/，标注一个都扫不到", 0, 0
+    for name in sorted(os.listdir(tasks)):
+        if not name.endswith(".md"):
+            continue
+        for i, line in enumerate(open(os.path.join(tasks, name), encoding="utf-8"), 1):
+            if not line.lstrip().startswith(">"):
+                continue
+            m = _ANNOT_RE.search(line)
+            if not m:
+                continue
+            checked += 1
+            ver = "v%s.%s.%s" % m.groups()
+            hits[ver] = hits.get(ver, 0) + 1
+            if ver not in tags:
+                problems.append(
+                    f"`10-tasks/{name}` 第 {i} 行的版本标注 **用了 {ver}，"
+                    f"而上游 {len(tags)} 个 tag 里没有它**"
+                    f"　→ 版本号写错了、或者那个版本根本不存在。"
+                    f"**这条只核「版本存不存在」，不核「它说的那件事成不成立」"
+                    f"（那是闸 7 / 闸 23 的活）**")
+    return problems, None, checked, len(hits)
+
+
 # ── 方向十三（Batch 320 新增）：闸脚本自称的「第 N 道闸」必须等于真实闸号 ────
 #
 # **为什么要有它**：Batch 319 的起因就是**上一批自己写错了一个闸号**——
@@ -1661,12 +1769,29 @@ def main():
               f"（另有 {sn_skip} 个**没有自称**——**已跳过，不是「自称错了」**，"
               f"而把它们算成缺陷就得维护一张「谁必须自称」的登记表，纪律 242 禁止）")
 
+    # ── 方向十四（Batch 325 新增）：任务页「vX.Y.Z 起」标注的版本号必须真实存在 ──
+    print("-" * 62)
+    va_problems, va_void, va_n, va_v = version_annotation_check(root)
+    if va_void:
+        fail(f"  [skip] {va_void}，本方向本轮未能进行")
+    for why in va_problems:
+        fail(f"版本标注的版本号不存在：{why}")
+    if not va_problems and not va_void:
+        print(f"  ✓ 版本标注的版本号都真实存在：{va_n} 处引用块标注，"
+              f"覆盖 {va_v} 个版本、**0 处不存在**"
+              f"（**全集 = 上游自己的 git tag**；"
+              f"**前两版拿「参考页记了哪些版本」当全集，"
+              f"在真树上各误伤 2 处**——而 v1.5.8 / v1.6.7 都是真 tag）"
+              f"——**只核「这个版本存不存在」，不核「它说的那件事成不成立」**"
+              f"（后者是闸 7 / 闸 23 的活），"
+              f"**也不建「哪些页必须有标注」的登记表**（纪律 242）")
+
     if _FAILS:
         print(f"元数据核对：登记表 {total} 条中 {total - count_fails} 条计数一致"
-              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八/九/十/十二/十三）")
+              f"（{count_fails} 条不一致）；另有 {len(_FAILS) - count_fails} 处属方向三/四/四之二/五/六/七/八/九/十/十二/十三/十四）")
         return 1
     print(f"元数据核对：登记表 {total} 条计数全部与现场重数一致，"
-          f"且方向三/四/四之二/五/六/七/八/九/十/十一/十一之二/十二/十三亦全部通过")
+          f"且方向三/四/四之二/五/六/七/八/九/十/十一/十一之二/十二/十三/十四亦全部通过")
     return 0
 
 
