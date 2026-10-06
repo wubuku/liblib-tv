@@ -25,8 +25,16 @@ import fs from 'node:fs';
 import { chromium } from 'playwright';
 
 const URL = 'https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f';
-const OUT = '/tmp/b238.json';
 const 靶 = { id: 'node_d4tjtpnatq', 名: '时间线 2', 词: ['时间线 2', '时间线'] };
+// 批次 239：把目标换成「时间线 1」—— 与「时间线 2」同族同尺寸（1200×207 / timeline），
+// 但画布坐标迥异（[40.06, 370.5] vs [1282.76, 998.61]）、z-index 也不同（1 vs 20）。
+// 📌 目的：验证**族内两个节点是否逐字相同**（批次 238 只测了一个，没验证过族内一致性）。
+const 靶1 = { id: 'node_cdwf8x6fbj', 名: '时间线 1', 词: ['时间线 1', '时间线'] };
+const 用一 = process.env.B239 === '1';
+// ⚠️ 声明顺序有讲究：`用一` / `靶节点` / `OUT` 都必须在**被用到之前** const，
+//    否则是 TDZ（暂时性死区）运行期报错 —— 批次 239 第一版就踩了这个。
+const 靶节点 = 用一 ? 靶1 : 靶;
+const OUT = 用一 ? '/tmp/b239.json' : '/tmp/b238.json';
 /** 与批次 235/236 的 `导演台` 负结论**用同一组档位**，两条才能直接对比。 */
 const 默认档位 = [1235, 1215, 1200, 1180, 1160, 1140, 1120, 1100, 1080, 1060, 1040, 1020, 1000, 960, 920,
   900, 860, 820, 780, 740];
@@ -36,7 +44,7 @@ const 封顶 = 0.5;
 const 封顶容差 = 1e-4;
 
 const log = (...a) => console.log(a.join(' '));
-const out = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : { 轮次: 'b238', 靶: 靶.名, 臂: [] };
+const out = fs.existsSync(OUT) ? JSON.parse(fs.readFileSync(OUT, 'utf8')) : { 轮次: 用一 ? 'b239' : 'b238', 靶: 靶节点.名, 臂: [] };
 const 存 = () => fs.writeFileSync(OUT, JSON.stringify(out, null, 1));
 
 const b = await chromium.connectOverCDP('http://127.0.0.1:9444');
@@ -66,9 +74,9 @@ async function 一臂(p, w) {
   });
   if (!有框) throw new Error('找不到搜索输入框');
 
-  const 短名 = 靶.id.replace(/^node_/, '');
+  const 短名 = 靶节点.id.replace(/^node_/, '');
   let 点 = null;
-  for (const 词 of 靶.词) {
+  for (const 词 of 靶节点.词) {
     await p.evaluate(() => {
       const inp = document.querySelector('[data-testid="canvas-search-panel"] input');
       if (inp) { inp.focus(); inp.select(); }
@@ -111,7 +119,7 @@ async function 一臂(p, w) {
       innerW: window.innerWidth,
       URL没变: location.href.includes('/ai-canvas/'),
     };
-  }, 靶.id);
+  }, 靶节点.id);
 }
 
 for (const w of 要跑) {
