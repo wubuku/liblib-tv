@@ -10429,6 +10429,7 @@ Batch 249 加的）、`run_two_file_case`（3 条，**没有**）、用例 7 内
     **`BEEFTV_REF=origin/main` rc=1 / 8 处不一致**（7 条「判据已不成立」+ 1 条扫描键没扫到）；
     **一棵与 `origin/main` 同树的合成 ref rc=1 / 同样 8 处不一致**——
     **最后一条排除了「合成 ref 有什么特殊」**。**而 33 条用例的合成 ref 全由 `origin/main` 派生**。
+    **⚠️ Batch 297 订正本条里的「8 处不一致」：现在实测 4 处**（闸在 Batch 294/295 各被改过一次；8 → 7 → 4，每一次在当时都是对的）。
     **实测 `run_case` 30 条全过、`run_pass_case` 3 条全红，一条不漏**——
     **「一条不漏」是签名**：红只落在要求 rc=0 的那一族上。
     **所以那 3 条是「不可判定」而不是「误伤」**；而旧基线段
@@ -10572,3 +10573,14 @@ Batch 249 加的）、`run_two_file_case`（3 条，**没有**）、用例 7 内
     （`web/src/pages/canvas/project.tsx`）**在 v1.7.3 上已不含该声明**，
     新判据的 note 里已逐条打出「**注意键里那个文件已过时**」——
     **登记表本身还没改（本批只改闸），这件事写在这里等人处理。**
+
+260. **19 道读上游的闸逐道在「声明基线 / `origin/main`」两个 ref 上对跑，8 道变红、合计 32 条**
+    （Batch 297）：
+    **逐道**：`verify-error-copy` 2 · `verify-label-drift` 2 · `verify-line-counts` 5 ·
+    `verify-quota-tables` 3 · `verify-quote-punct` 2 · `verify-screenshots-literals` 2 ·
+    **`verify-shot-drift` 12** · `verify-unreachable` 4 = **32 条**。
+    **11 道不变红，两种成因在 rc 上不可分**（核的不在上游 / 上游那一片恰好没变）。
+    **闸 18 两个 ref 上都红，是工作区里别人的未提交 WIP，不是漂移。**
+    **同一个量（闸 7 的「处不一致」）走过 8（Batch 290）→ 7（Batch 294）→ 4（现在）**，
+    **变的不是上游而是闸**——`verify-unreachable.py` 在 Batch 294/295 各被改过一次，
+    **三次测量在当时都是对的**。**纪律 332**。
