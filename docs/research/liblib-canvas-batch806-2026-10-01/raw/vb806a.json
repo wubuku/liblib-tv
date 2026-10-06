@@ -1,0 +1,352 @@
+{
+ "batch": 806,
+ "base": "http://localhost:4317",
+ "rounds": [
+  {
+   "round": 0,
+   "deleteConfirmCopy": {
+    "open": true,
+    "text": "删除画布确定要删除画布「画布 2」吗？此操作不可恢复。取消确认",
+    "saysUnrecoverable": true
+   },
+   "state0": {
+    "canvases": 1,
+    "removed": 1,
+    "activeCanvasId": "canvas-1"
+   },
+   "census": {
+    "open": true,
+    "total": 2,
+    "rows": [
+     {
+      "i": 0,
+      "tag": "INPUT",
+      "type": "checkbox",
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "data": {
+       "data-recycle-check": "canvas-2"
+      },
+      "text": "",
+      "rect": {
+       "w": 14,
+       "h": 14
+      }
+     },
+     {
+      "i": 1,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "data": {
+       "data-recycle-restore": "canvas-2"
+      },
+      "text": "恢复",
+      "rect": {
+       "w": 40,
+       "h": 27
+      }
+     }
+    ],
+    "purgeLike": []
+   },
+   "items0": {
+    "open": true,
+    "empty": false,
+    "ids": [
+     "canvas-2"
+    ]
+   },
+   "restoreSingle": {
+    "clicked": "canvas-2",
+    "itemsAfter": {
+     "open": true,
+     "empty": true,
+     "ids": []
+    },
+    "stateAfter": {
+     "canvases": 2,
+     "removed": 0,
+     "activeCanvasId": "canvas-1"
+    }
+   },
+   "items1": {
+    "open": true,
+    "empty": false,
+    "ids": [
+     "canvas-2"
+    ]
+   },
+   "censusAfterSelect": {
+    "open": true,
+    "total": 3,
+    "rows": [
+     {
+      "i": 0,
+      "tag": "INPUT",
+      "type": "checkbox",
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "data": {
+       "data-recycle-check": "canvas-2"
+      },
+      "text": "",
+      "rect": {
+       "w": 14,
+       "h": 14
+      }
+     },
+     {
+      "i": 1,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "data": {
+       "data-recycle-restore": "canvas-2"
+      },
+      "text": "恢复",
+      "rect": {
+       "w": 40,
+       "h": 27
+      }
+     },
+     {
+      "i": 2,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "data": {
+       "data-recycle-restore-selected": "true"
+      },
+      "text": "恢复所选 1 项",
+      "rect": {
+       "w": 93,
+       "h": 31
+      }
+     }
+    ],
+    "purgeLike": []
+   },
+   "batchRestore": {
+    "selectionText": "已选择 1 项",
+    "click": {
+     "ok": true
+    },
+    "itemsAfter": {
+     "open": true,
+     "empty": true,
+     "ids": []
+    },
+    "stateAfter": {
+     "canvases": 2,
+     "removed": 0,
+     "activeCanvasId": "canvas-1"
+    }
+   },
+   "purgeViaStore": {
+    "ok": true,
+    "id": "canvas-2",
+    "wasRemoved": true,
+    "wasLive": false,
+    "snapshotNodes": 10,
+    "stillInRemoved": false,
+    "appearedInLive": false,
+    "removedCountBefore": 1,
+    "removedCountAfter": 0
+   },
+   "afterPurge": {
+    "items": {
+     "open": true,
+     "empty": true,
+     "ids": []
+    },
+    "state": {
+     "canvases": 1,
+     "removed": 0,
+     "activeCanvasId": "canvas-1"
+    }
+   }
+  },
+  {
+   "round": 1,
+   "deleteConfirmCopy": {
+    "open": true,
+    "text": "删除画布确定要删除画布「画布 2」吗？此操作不可恢复。取消确认",
+    "saysUnrecoverable": true
+   },
+   "state0": {
+    "canvases": 1,
+    "removed": 1,
+    "activeCanvasId": "canvas-1"
+   },
+   "census": {
+    "open": true,
+    "total": 2,
+    "rows": [
+     {
+      "i": 0,
+      "tag": "INPUT",
+      "type": "checkbox",
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "data": {
+       "data-recycle-check": "canvas-2"
+      },
+      "text": "",
+      "rect": {
+       "w": 14,
+       "h": 14
+      }
+     },
+     {
+      "i": 1,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "data": {
+       "data-recycle-restore": "canvas-2"
+      },
+      "text": "恢复",
+      "rect": {
+       "w": 40,
+       "h": 27
+      }
+     }
+    ],
+    "purgeLike": []
+   },
+   "items0": {
+    "open": true,
+    "empty": false,
+    "ids": [
+     "canvas-2"
+    ]
+   },
+   "restoreSingle": {
+    "clicked": "canvas-2",
+    "itemsAfter": {
+     "open": true,
+     "empty": true,
+     "ids": []
+    },
+    "stateAfter": {
+     "canvases": 2,
+     "removed": 0,
+     "activeCanvasId": "canvas-1"
+    }
+   },
+   "items1": {
+    "open": true,
+    "empty": false,
+    "ids": [
+     "canvas-2"
+    ]
+   },
+   "censusAfterSelect": {
+    "open": true,
+    "total": 3,
+    "rows": [
+     {
+      "i": 0,
+      "tag": "INPUT",
+      "type": "checkbox",
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "data": {
+       "data-recycle-check": "canvas-2"
+      },
+      "text": "",
+      "rect": {
+       "w": 14,
+       "h": 14
+      }
+     },
+     {
+      "i": 1,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "data": {
+       "data-recycle-restore": "canvas-2"
+      },
+      "text": "恢复",
+      "rect": {
+       "w": 40,
+       "h": 27
+      }
+     },
+     {
+      "i": 2,
+      "tag": "BUTTON",
+      "type": "button",
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "data": {
+       "data-recycle-restore-selected": "true"
+      },
+      "text": "恢复所选 1 项",
+      "rect": {
+       "w": 93,
+       "h": 31
+      }
+     }
+    ],
+    "purgeLike": []
+   },
+   "batchRestore": {
+    "selectionText": "已选择 1 项",
+    "click": {
+     "ok": true
+    },
+    "itemsAfter": {
+     "open": true,
+     "empty": true,
+     "ids": []
+    },
+    "stateAfter": {
+     "canvases": 2,
+     "removed": 0,
+     "activeCanvasId": "canvas-1"
+    }
+   },
+   "purgeViaStore": {
+    "ok": true,
+    "id": "canvas-2",
+    "wasRemoved": true,
+    "wasLive": false,
+    "snapshotNodes": 10,
+    "stillInRemoved": false,
+    "appearedInLive": false,
+    "removedCountBefore": 1,
+    "removedCountAfter": 0
+   },
+   "afterPurge": {
+    "items": {
+     "open": true,
+     "empty": true,
+     "ids": []
+    },
+    "state": {
+     "canvases": 1,
+     "removed": 0,
+     "activeCanvasId": "canvas-1"
+    }
+   }
+  }
+ ]
+}
