@@ -1,0 +1,698 @@
+{
+ "batch": 803,
+ "phase": "pre",
+ "base": "http://localhost:4317",
+ "rounds": [
+  {
+   "round": 0,
+   "headerRightColumn": {
+    "found": true,
+    "col": {
+     "rect": {
+      "x": 1160,
+      "y": 0,
+      "w": 280,
+      "h": 51
+     },
+     "className": "flex h-full min-w-0 items-center justify-end gap-2 max-[899px]:px-2 min-[899px]:w-[280px] min-[899px]:shrink-0 min-[899px]:justify-between min-[899px]:px-3 min-[899px]:justify-self-end",
+     "computed": {
+      "width": "280px",
+      "padding": "0px 12px",
+      "gap": "8px",
+      "justifyContent": "space-between",
+      "overflow": "visible",
+      "boxSizing": "border-box"
+     }
+    },
+    "budget": {
+     "inner": 256,
+     "kidsWidth": 248.671875,
+     "gaps": 32,
+     "slack": 7.328125
+    },
+    "kids": [
+     {
+      "i": 0,
+      "tag": "SPAN",
+      "data": {
+       "data-director-header-object-name": "true"
+      },
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "text": "角色01 · 陈默",
+      "rect": {
+       "x": 1172,
+       "y": 14.25,
+       "w": 88.671875,
+       "h": 22.5
+      },
+      "nested": [],
+      "computed": {
+       "width": "88.6719px",
+       "minWidth": "0px",
+       "maxWidth": "none",
+       "flex": "0 1 auto",
+       "gap": "normal",
+       "padding": "0px",
+       "justifyContent": "normal",
+       "overflow": "hidden"
+      }
+     },
+     {
+      "i": 1,
+      "tag": "DIV",
+      "data": {
+       "data-director-capture-status": "empty"
+      },
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "text": "尚无构图",
+      "rect": {
+       "x": 1269.5,
+       "y": 18,
+       "w": 56,
+       "h": 15
+      },
+      "nested": [],
+      "computed": {
+       "width": "56px",
+       "minWidth": "0px",
+       "maxWidth": "none",
+       "flex": "0 1 auto",
+       "gap": "6px",
+       "padding": "0px 8px",
+       "justifyContent": "normal",
+       "overflow": "visible"
+      }
+     },
+     {
+      "i": 2,
+      "tag": "DIV",
+      "data": {},
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "text": "",
+      "rect": {
+       "x": 1338.328125,
+       "y": 9.5,
+       "w": 32,
+       "h": 32
+      },
+      "nested": [
+       {
+        "tag": "BUTTON",
+        "ariaLabel": "导出导演台项目",
+        "title": "导出项目 JSON",
+        "text": ""
+       }
+      ],
+      "computed": {
+       "width": "32px",
+       "minWidth": "auto",
+       "maxWidth": "none",
+       "flex": "0 1 auto",
+       "gap": "normal",
+       "padding": "0px",
+       "justifyContent": "normal",
+       "overflow": "visible"
+      }
+     },
+     {
+      "i": 3,
+      "tag": "BUTTON",
+      "data": {
+       "data-director-project-import": "true"
+      },
+      "ariaLabel": "导入导演台项目",
+      "title": "导入项目 JSON",
+      "disabled": false,
+      "text": "",
+      "rect": {
+       "x": 1379.15625,
+       "y": 9.5,
+       "w": 32,
+       "h": 32
+      },
+      "nested": [],
+      "computed": {
+       "width": "32px",
+       "minWidth": "auto",
+       "maxWidth": "none",
+       "flex": "0 1 auto",
+       "gap": "normal",
+       "padding": "0px",
+       "justifyContent": "center",
+       "overflow": "visible"
+      }
+     },
+     {
+      "i": 4,
+      "tag": "DIV",
+      "data": {
+       "data-director-project-io-feedback": "true"
+      },
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "text": "",
+      "rect": {
+       "x": 1419.984375,
+       "y": 25.5,
+       "w": 8,
+       "h": 0
+      },
+      "nested": [],
+      "computed": {
+       "width": "8px",
+       "minWidth": "auto",
+       "maxWidth": "120px",
+       "flex": "0 1 auto",
+       "gap": "normal",
+       "padding": "0px 4px",
+       "justifyContent": "normal",
+       "overflow": "hidden"
+      }
+     }
+    ]
+   },
+   "interactiveCensus": {
+    "open": true,
+    "total": 136,
+    "hits": 0,
+    "which": [],
+    "sample": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": "关闭",
+      "title": "关闭",
+      "type": "button",
+      "disabled": false,
+      "data": {
+       "data-close-director": "true"
+      },
+      "text": ""
+     },
+     {
+      "i": 1,
+      "tag": "BUTTON",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": "收起",
+      "title": "收起",
+      "type": "button",
+      "disabled": false,
+      "data": {
+       "data-director-panels-toggle": "true"
+      },
+      "text": ""
+     },
+     {
+      "i": 2,
+      "tag": "BUTTON",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": null,
+      "title": null,
+      "type": "button",
+      "disabled": false,
+      "data": {
+       "data-director-view-mode": "director"
+      },
+      "text": "导演视角"
+     },
+     {
+      "i": 3,
+      "tag": "BUTTON",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": null,
+      "title": null,
+      "type": "button",
+      "disabled": false,
+      "data": {
+       "data-director-view-mode": "camera"
+      },
+      "text": "机位视角"
+     },
+     {
+      "i": 4,
+      "tag": "INPUT",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": null,
+      "title": null,
+      "type": "file",
+      "disabled": false,
+      "data": {
+       "data-director-project-import-input": "true"
+      },
+      "text": ""
+     },
+     {
+      "i": 5,
+      "tag": "BUTTON",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": "导出导演台项目",
+      "title": "导出项目 JSON",
+      "type": "button",
+      "disabled": false,
+      "data": {
+       "data-director-project-export": "true"
+      },
+      "text": ""
+     }
+    ]
+   },
+   "undoKeyboard": {
+    "FAILED": null,
+    "ensureZero": {
+     "ok": true,
+     "tries": 0,
+     "seen": [
+      0
+     ]
+    },
+    "before": {
+     "present": true,
+     "count": 0
+    },
+    "pickedTrack": {
+     "ok": true,
+     "title": "机位01 · 对峙中景",
+     "text": "机位01 · 对峙中景"
+    },
+    "openedMenu": {
+     "ok": true
+    },
+    "clickedPreset": {
+     "ok": true,
+     "preset": "line",
+     "label": "直线路径",
+     "indexInGroup": 0,
+     "groupSize": 3,
+     "allLabels": [
+      "line|直线路径",
+      "ring|圆环路径",
+      "rectangle|矩形路径"
+     ]
+    },
+    "afterCreate": {
+     "present": true,
+     "count": 1
+    },
+    "afterUndo": {
+     "present": true,
+     "count": 0
+    },
+    "afterRedo": {
+     "present": true,
+     "count": 1
+    }
+   },
+   "reloadPersistence": {
+    "FAILED": null,
+    "start": {
+     "present": true,
+     "count": 0
+    },
+    "afterCreate": {
+     "present": true,
+     "count": 1
+    },
+    "inCellUndo": {
+     "present": true,
+     "count": 0
+    },
+    "inCellRedo": {
+     "present": true,
+     "count": 1
+    },
+    "afterReload": {
+     "present": true,
+     "count": 1
+    },
+    "undoAfterReload": [
+     1,
+     1,
+     1
+    ],
+    "inCellUndoWorked": true,
+    "documentSurvivedReload": true,
+    "undoAliveAfterReload": false
+   }
+  },
+  {
+   "round": 1,
+   "headerRightColumn": {
+    "found": true,
+    "col": {
+     "rect": {
+      "x": 1160,
+      "y": 0,
+      "w": 280,
+      "h": 51
+     },
+     "className": "flex h-full min-w-0 items-center justify-end gap-2 max-[899px]:px-2 min-[899px]:w-[280px] min-[899px]:shrink-0 min-[899px]:justify-between min-[899px]:px-3 min-[899px]:justify-self-end",
+     "computed": {
+      "width": "280px",
+      "padding": "0px 12px",
+      "gap": "8px",
+      "justifyContent": "space-between",
+      "overflow": "visible",
+      "boxSizing": "border-box"
+     }
+    },
+    "budget": {
+     "inner": 256,
+     "kidsWidth": 248.671875,
+     "gaps": 32,
+     "slack": 7.328125
+    },
+    "kids": [
+     {
+      "i": 0,
+      "tag": "SPAN",
+      "data": {
+       "data-director-header-object-name": "true"
+      },
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "text": "角色01 · 陈默",
+      "rect": {
+       "x": 1172,
+       "y": 14.25,
+       "w": 88.671875,
+       "h": 22.5
+      },
+      "nested": [],
+      "computed": {
+       "width": "88.6719px",
+       "minWidth": "0px",
+       "maxWidth": "none",
+       "flex": "0 1 auto",
+       "gap": "normal",
+       "padding": "0px",
+       "justifyContent": "normal",
+       "overflow": "hidden"
+      }
+     },
+     {
+      "i": 1,
+      "tag": "DIV",
+      "data": {
+       "data-director-capture-status": "empty"
+      },
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "text": "尚无构图",
+      "rect": {
+       "x": 1269.5,
+       "y": 18,
+       "w": 56,
+       "h": 15
+      },
+      "nested": [],
+      "computed": {
+       "width": "56px",
+       "minWidth": "0px",
+       "maxWidth": "none",
+       "flex": "0 1 auto",
+       "gap": "6px",
+       "padding": "0px 8px",
+       "justifyContent": "normal",
+       "overflow": "visible"
+      }
+     },
+     {
+      "i": 2,
+      "tag": "DIV",
+      "data": {},
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "text": "",
+      "rect": {
+       "x": 1338.328125,
+       "y": 9.5,
+       "w": 32,
+       "h": 32
+      },
+      "nested": [
+       {
+        "tag": "BUTTON",
+        "ariaLabel": "导出导演台项目",
+        "title": "导出项目 JSON",
+        "text": ""
+       }
+      ],
+      "computed": {
+       "width": "32px",
+       "minWidth": "auto",
+       "maxWidth": "none",
+       "flex": "0 1 auto",
+       "gap": "normal",
+       "padding": "0px",
+       "justifyContent": "normal",
+       "overflow": "visible"
+      }
+     },
+     {
+      "i": 3,
+      "tag": "BUTTON",
+      "data": {
+       "data-director-project-import": "true"
+      },
+      "ariaLabel": "导入导演台项目",
+      "title": "导入项目 JSON",
+      "disabled": false,
+      "text": "",
+      "rect": {
+       "x": 1379.15625,
+       "y": 9.5,
+       "w": 32,
+       "h": 32
+      },
+      "nested": [],
+      "computed": {
+       "width": "32px",
+       "minWidth": "auto",
+       "maxWidth": "none",
+       "flex": "0 1 auto",
+       "gap": "normal",
+       "padding": "0px",
+       "justifyContent": "center",
+       "overflow": "visible"
+      }
+     },
+     {
+      "i": 4,
+      "tag": "DIV",
+      "data": {
+       "data-director-project-io-feedback": "true"
+      },
+      "ariaLabel": null,
+      "title": null,
+      "disabled": false,
+      "text": "",
+      "rect": {
+       "x": 1419.984375,
+       "y": 25.5,
+       "w": 8,
+       "h": 0
+      },
+      "nested": [],
+      "computed": {
+       "width": "8px",
+       "minWidth": "auto",
+       "maxWidth": "120px",
+       "flex": "0 1 auto",
+       "gap": "normal",
+       "padding": "0px 4px",
+       "justifyContent": "normal",
+       "overflow": "hidden"
+      }
+     }
+    ]
+   },
+   "interactiveCensus": {
+    "open": true,
+    "total": 136,
+    "hits": 0,
+    "which": [],
+    "sample": [
+     {
+      "i": 0,
+      "tag": "BUTTON",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": "关闭",
+      "title": "关闭",
+      "type": "button",
+      "disabled": false,
+      "data": {
+       "data-close-director": "true"
+      },
+      "text": ""
+     },
+     {
+      "i": 1,
+      "tag": "BUTTON",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": "收起",
+      "title": "收起",
+      "type": "button",
+      "disabled": false,
+      "data": {
+       "data-director-panels-toggle": "true"
+      },
+      "text": ""
+     },
+     {
+      "i": 2,
+      "tag": "BUTTON",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": null,
+      "title": null,
+      "type": "button",
+      "disabled": false,
+      "data": {
+       "data-director-view-mode": "director"
+      },
+      "text": "导演视角"
+     },
+     {
+      "i": 3,
+      "tag": "BUTTON",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": null,
+      "title": null,
+      "type": "button",
+      "disabled": false,
+      "data": {
+       "data-director-view-mode": "camera"
+      },
+      "text": "机位视角"
+     },
+     {
+      "i": 4,
+      "tag": "INPUT",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": null,
+      "title": null,
+      "type": "file",
+      "disabled": false,
+      "data": {
+       "data-director-project-import-input": "true"
+      },
+      "text": ""
+     },
+     {
+      "i": 5,
+      "tag": "BUTTON",
+      "role": null,
+      "tabindex": null,
+      "ariaLabel": "导出导演台项目",
+      "title": "导出项目 JSON",
+      "type": "button",
+      "disabled": false,
+      "data": {
+       "data-director-project-export": "true"
+      },
+      "text": ""
+     }
+    ]
+   },
+   "undoKeyboard": {
+    "FAILED": null,
+    "ensureZero": {
+     "ok": true,
+     "tries": 0,
+     "seen": [
+      0
+     ]
+    },
+    "before": {
+     "present": true,
+     "count": 0
+    },
+    "pickedTrack": {
+     "ok": true,
+     "title": "机位01 · 对峙中景",
+     "text": "机位01 · 对峙中景"
+    },
+    "openedMenu": {
+     "ok": true
+    },
+    "clickedPreset": {
+     "ok": true,
+     "preset": "line",
+     "label": "直线路径",
+     "indexInGroup": 0,
+     "groupSize": 3,
+     "allLabels": [
+      "line|直线路径",
+      "ring|圆环路径",
+      "rectangle|矩形路径"
+     ]
+    },
+    "afterCreate": {
+     "present": true,
+     "count": 1
+    },
+    "afterUndo": {
+     "present": true,
+     "count": 0
+    },
+    "afterRedo": {
+     "present": true,
+     "count": 1
+    }
+   },
+   "reloadPersistence": {
+    "FAILED": null,
+    "start": {
+     "present": true,
+     "count": 0
+    },
+    "afterCreate": {
+     "present": true,
+     "count": 1
+    },
+    "inCellUndo": {
+     "present": true,
+     "count": 0
+    },
+    "inCellRedo": {
+     "present": true,
+     "count": 1
+    },
+    "afterReload": {
+     "present": true,
+     "count": 1
+    },
+    "undoAfterReload": [
+     1,
+     1,
+     1
+    ],
+    "inCellUndoWorked": true,
+    "documentSurvivedReload": true,
+    "undoAliveAfterReload": false
+   }
+  }
+ ],
+ "browserState": {}
+}
