@@ -41,6 +41,10 @@ Batch 307 的方向四h 给前者配了用例；本闸给后者配。
 方向五 · **正文对账**：`AUDIT-RULES.md` 里那条「闸门登记现状」必须存在且唯一，
 且它写的道数 / 红态数 / 条数 / `measured_at` 必须与本登记逐个相符。
 方向六 · **自检**：登记读不到、字段缺失、判别式失效 → rc=2「未能核对」。
+方向七 · **生成器指纹**（Batch 312 新增）：登记自己必须带**产出它的那个脚本**
+的 sha256。**上一批只给「产出那些条数的 8 道闸」打了指纹，却没给「产出那些条的脚本」打**
+——**而后者才是链子的最后一环**：改了它，「重测」就换了做法，
+而闸会照旧说「每行的产出闸都没变过」。
 
 ## 方向五为什么要存在
 
@@ -188,6 +192,33 @@ def check_prose(reg):
         notes.append("  订正行里没有写 measured_at（%s）" % at)
 
 
+def check_generator(reg):
+    """方向七 · 生成器指纹。
+
+    **为什么它是独立的一向而不是并进方向一**：方向一钉的是「产出条数的闸」，
+    这一向钉的是「产出登记的脚本」。**两者是链子上相邻的两环**，
+    而**漏掉任何一环，整条链就有一处不被看守的接缝**——
+    漏掉这一环的后果具体是：改了重测脚本，「重测」换了做法，
+    而闸 44 照旧报「每行的产出闸都没变过」。
+    """
+    gen = reg.get("generator")
+    if not isinstance(gen, dict) or not gen.get("script") or not gen.get("sha256"):
+        fail("  ✗ 登记里没有 `generator`（产出它自己的那个脚本）——"
+             "**指纹链在最后一环是断的**")
+        return
+    name = gen["script"]
+    path = os.path.join(SD, name)
+    if not os.path.isfile(path):
+        fail("  ✗ 登记指名的生成器 `%s` 不存在——**登记说的「怎么重测」已经无处可执行**"
+             % name)
+        return
+    got = sha256_of(path)
+    if got != gen["sha256"]:
+        fail("  ✗ 生成器 `%s` 已改而登记没跟上（登记 %s…，现场 %s…）——"
+             "**处置是重跑一次重测脚本**，不是把指纹改回去"
+             % (name, gen["sha256"][:16], got[:16]))
+
+
 def main():
     reg, err = load_registry()
     if err:
@@ -196,6 +227,7 @@ def main():
         return 2
 
     n = check_rows(reg)
+    check_generator(reg)
     check_prose(reg)
 
     measured = "%s／基线 %s" % (reg.get("measured_at"), reg.get("baseline_ref"))

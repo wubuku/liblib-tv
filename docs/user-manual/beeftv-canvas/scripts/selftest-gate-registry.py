@@ -25,10 +25,17 @@
      所以唯一能让读的人看见订正的办法，就是把「订还在不在」变成可判的事实。
   6) **rc 语义**：把登记文件删掉 → 必须 **rc=2 而不是 rc=1**。
      「读不出登记」不是「查出问题」，是「根本没得查」（纪律 101）。
-  7) **不误伤**：改一道**未登记**的闸（`verify-tables.py`）**并在 AUDIT-RULES.md
+  7) **能抓·生成器指纹（Batch 312 新增）**：把 `remeasure-gate-registry.py`
+     在沙箱里改一个字节 → 必须 rc=1 并说「生成器已改而登记没跟上」。
+     **这一支守的是指纹链的最后一环**：Batch 311 只给「产出条数的 8 道闸」打了指纹，
+     **却没给「产出登记的脚本」打**——改了它，「重测」就换了做法，
+     而闸照旧报「每行的产出闸都没变过」。
+     **而它与用例 1 必须成对**：用例 1 改的是「闸」，这一支改的是「工具」，
+     **只钉住前者就等于说「指纹链已经完整」——而它当时并不完整。**
+  8) **不误伤**：改一道**未登记**的闸（`verify-tables.py`）**并在 AUDIT-RULES.md
      末尾追加一段不碰标记行的文字** → 必须 rc=0。
-     **这一支比「不误伤」更重要**：它证明本闸只钉住登记里那 8 道，
-     **不会退化成「任何编辑都报错」的噪声源**——
+     **这一支比「不误伤」更重要**：它证明本闸只钉住登记里那 8 道
+     **加上那一个生成器**，**不会退化成「任何编辑都报错」的噪声源**——
      而一个天天误报的判据，人就会学会忽略它（纪律 297）。
 
 **注入没打中判用例失败，不判通过**：每个 `edit_one` 都断言锚点在改前改后
@@ -137,6 +144,10 @@ def expect_red(tmp, want, case):
 
 
 TAIL = 'if __name__ == "__main__":\n    sys.exit(main())\n'
+#: **重测脚本的尾行形态与闸不同**（它 `main()` 不 `sys.exit`），
+#: 所以锚点必须照抄它自己的真实字节——**照抄闸的尾行会打不中**，
+#: 而「打不中」按纪律判用例失败、不判通过（第一版就是这么被抓的）。
+GEN_TAIL = 'if __name__ == "__main__":\n    main()'
 INJECT_COMMENT = "# 反验注入：模拟「产出登记的那道闸在测量之后被改过」\n"
 
 
@@ -221,7 +232,16 @@ def main():
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
-        # 7) 不误伤：改未登记的闸 + 追加不碰标记行的正文
+        # 7) 能抓·生成器指纹（Batch 312 新增）
+        tmp = sandbox()
+        try:
+            edit_one(os.path.join(tmp, "scripts", "remeasure-gate-registry.py"),
+                     GEN_TAIL, GEN_TAIL + "\n# 反验注入：模拟「重测脚本被改而登记没跟上」\n")
+            expect_red(tmp, "生成器", "能抓·生成器指纹（改重测脚本）")
+        finally:
+            shutil.rmtree(tmp, ignore_errors=True)
+
+        # 8) 不误伤：改未登记的闸 + 追加不碰标记行的正文
         tmp = sandbox()
         try:
             edit_one(os.path.join(tmp, "scripts", "verify-tables.py"),
@@ -238,7 +258,7 @@ def main():
 
         # ---- 收尾自检：必须接住一切异常 ----
         n = len(results)
-        assert n == 8, "收尾自检：用例数应为 8，实测 %d" % n
+        assert n == 9, "收尾自检：用例数应为 9，实测 %d" % n
         bad = [r for r in results if r[1] == "失败"]
         void = [r for r in results if r[1] == "作废"]
         print("=" * 68)

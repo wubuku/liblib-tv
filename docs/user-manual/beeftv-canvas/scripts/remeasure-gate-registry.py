@@ -155,6 +155,14 @@ def main():
         raise SystemExit(1)
 
     total = sum(e["upstream_items"] for e in entries)
+    #: **Batch 312 补：登记自己的指纹。**
+    #: **上一批只给「产出那些条数的 8 道闸」打了指纹，却没给「产出那些条的脚本」打**——
+    #: **而后者才是链子的最后一环**：改了它，「重测」就换了做法，
+    #: 而闸 44 会照旧说「每行的产出闸都没变过」。
+    #: **自指不构成悖论**：这里记的是**本脚本文件的当前 sha256**，
+    #: 改动本脚本就会让登记过期并要求重跑——**而重跑正好把新指纹写进去。**
+    #: **这与「改了闸却不改登记」是同一件事，只是被测对象从闸换成了工具。**
+    gen_name = os.path.basename(os.path.abspath(__file__))
     reg = {
         "_唯一真值": "纪律 332 那张「升版要过的门」矩阵的机器可读登记。"
                      "AUDIT-RULES.md 纪律 332② 是 Batch 297 的历史实测（8 道 / 32 条），"
@@ -167,6 +175,8 @@ def main():
         "measured_at": "Batch 311",
         "baseline_ref": BASELINE,
         "upstream_ref": UPSTREAM,
+        "generator": {"script": gen_name,
+                      "sha256": sha256_of(os.path.abspath(__file__))},
         "gates": entries,
         "total": total,
     }

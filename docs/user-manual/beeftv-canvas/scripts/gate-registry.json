@@ -5,6 +5,10 @@
   "measured_at": "Batch 311",
   "baseline_ref": "bcc3b05",
   "upstream_ref": "origin/main",
+  "generator": {
+    "script": "remeasure-gate-registry.py",
+    "sha256": "3fe1509720413a1853ddafcaad08203ed87e4d4d3d3cff06a9c863593ebda4ef"
+  },
   "gates": [
     {
       "gate": "verify-error-copy.py",
