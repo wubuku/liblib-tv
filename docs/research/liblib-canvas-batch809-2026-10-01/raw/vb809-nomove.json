@@ -1,0 +1,2288 @@
+{
+ "base": "http://localhost:4317",
+ "pos": {
+  "A": [
+   300,
+   200
+  ],
+  "B": [
+   300,
+   200
+  ]
+ },
+ "rounds": [
+  {
+   "round": 0,
+   "cells": [
+    {
+     "key": "firstFrameKeepRef",
+     "name": "createFirstFrameReference(有 image 入边)",
+     "pos": "A",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": "首帧生成视频"
+     },
+     "chipsAfter": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "true"
+      }
+     ],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 10,
+     "fresh": [],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "firstFrameKeepRef",
+     "name": "createFirstFrameReference(有 image 入边)",
+     "pos": "B",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": "首帧生成视频"
+     },
+     "chipsAfter": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "true"
+      }
+     ],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 10,
+     "fresh": [],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "firstFrame",
+     "name": "createFirstFrameReference",
+     "pos": "A",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": "首帧生成视频"
+     },
+     "chipsAfter": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "true"
+      }
+     ],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 11,
+     "fresh": [
+      {
+       "type": "image",
+       "pos": {
+        "x": -252,
+        "y": 240
+       },
+       "abs": {
+        "x": -252,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "image-1791257967768-8deqs4": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 128.13,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "firstFrame",
+     "name": "createFirstFrameReference",
+     "pos": "B",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": "首帧生成视频"
+     },
+     "chipsAfter": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "true"
+      }
+     ],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 11,
+     "fresh": [
+      {
+       "type": "image",
+       "pos": {
+        "x": -252,
+        "y": 240
+       },
+       "abs": {
+        "x": -252,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "image-1791257974151-aice2k": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 128.13,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "firstLastKeepRef",
+     "name": "createFirstLastFrameReference(有 image 入边)",
+     "pos": "A",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": "首尾帧生成视频"
+     },
+     "chipsAfter": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "true"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 10,
+     "fresh": [],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "firstLastKeepRef",
+     "name": "createFirstLastFrameReference(有 image 入边)",
+     "pos": "B",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": "首尾帧生成视频"
+     },
+     "chipsAfter": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "true"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 10,
+     "fresh": [],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "firstLast",
+     "name": "createFirstLastFrameReference",
+     "pos": "A",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": "首尾帧生成视频"
+     },
+     "chipsAfter": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "true"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 12,
+     "fresh": [
+      {
+       "type": "image",
+       "pos": {
+        "x": -252,
+        "y": 76
+       },
+       "abs": {
+        "x": -252,
+        "y": 76,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "image",
+       "pos": {
+        "x": -252,
+        "y": 404
+       },
+       "abs": {
+        "x": -252,
+        "y": 404,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "image-1791257991935-1i418d": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 128.13,
+       "y": 194.12
+      },
+      "image-1791257991935-qct4gi": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 128.13,
+       "y": 317.22
+      }
+     }
+    },
+    {
+     "key": "firstLast",
+     "name": "createFirstLastFrameReference",
+     "pos": "B",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": "首尾帧生成视频"
+     },
+     "chipsAfter": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "true"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 12,
+     "fresh": [
+      {
+       "type": "image",
+       "pos": {
+        "x": -252,
+        "y": 76
+       },
+       "abs": {
+        "x": -252,
+        "y": 76,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "image",
+       "pos": {
+        "x": -252,
+        "y": 404
+       },
+       "abs": {
+        "x": -252,
+        "y": 404,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "image-1791257998317-s036gc": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 128.13,
+       "y": 194.12
+      },
+      "image-1791257998317-anwg8f": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 128.13,
+       "y": 317.22
+      }
+     }
+    },
+    {
+     "key": "breakdown",
+     "name": "addDerivedNode(shot-breakdown)",
+     "pos": "A",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": null
+     },
+     "chipsAfter": [],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 5,
+      "breakdownBtn": 1,
+      "contBtn": 1,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 1
+     },
+     "beforeCount": 10,
+     "afterCount": 11,
+     "fresh": [
+      {
+       "type": "shot-breakdown",
+       "pos": {
+        "x": 1082,
+        "y": 240
+       },
+       "abs": {
+        "x": 1082,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 320,
+       "h": 389,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "shot-breakdown-1791258005135": {
+       "w": 120.1,
+       "h": 146,
+       "x": 628.8,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "breakdown",
+     "name": "addDerivedNode(shot-breakdown)",
+     "pos": "B",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": null
+     },
+     "chipsAfter": [],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 5,
+      "breakdownBtn": 1,
+      "contBtn": 1,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 1
+     },
+     "beforeCount": 10,
+     "afterCount": 11,
+     "fresh": [
+      {
+       "type": "shot-breakdown",
+       "pos": {
+        "x": 1082,
+        "y": 240
+       },
+       "abs": {
+        "x": 1082,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 320,
+       "h": 389,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "shot-breakdown-1791258012051": {
+       "w": 120.1,
+       "h": 146,
+       "x": 628.8,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "continuation",
+     "name": "createVideoContinuation",
+     "pos": "A",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": null
+     },
+     "chipsAfter": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 5,
+      "breakdownBtn": 1,
+      "contBtn": 1,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 11,
+     "fresh": [
+      {
+       "type": "video",
+       "pos": {
+        "x": 1082,
+        "y": 240
+       },
+       "abs": {
+        "x": 1082,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": null,
+       "cont": 1,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "video-continuation-1791258019050-tjw6dg": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 628.8,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "continuation",
+     "name": "createVideoContinuation",
+     "pos": "B",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": null
+     },
+     "chipsAfter": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 5,
+      "breakdownBtn": 1,
+      "contBtn": 1,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 11,
+     "fresh": [
+      {
+       "type": "video",
+       "pos": {
+        "x": 1082,
+        "y": 240
+       },
+       "abs": {
+        "x": 1082,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": null,
+       "cont": 1,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "video-continuation-1791258025850-kjpjoe": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 628.8,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "subtitle",
+     "name": "createSubtitleErase",
+     "pos": "A",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": null
+     },
+     "chipsAfter": [],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 5,
+      "breakdownBtn": 1,
+      "contBtn": 1,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 11,
+     "fresh": [
+      {
+       "type": "video",
+       "pos": {
+        "x": 1082,
+        "y": 240
+       },
+       "abs": {
+        "x": 1082,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": "SUBTITLE_ERASE",
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "subtitle-erase-1791258032484-tt3xy0": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 628.8,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "subtitle",
+     "name": "createSubtitleErase",
+     "pos": "B",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": null
+     },
+     "chipsAfter": [],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 5,
+      "breakdownBtn": 1,
+      "contBtn": 1,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 11,
+     "fresh": [
+      {
+       "type": "video",
+       "pos": {
+        "x": 1082,
+        "y": 240
+       },
+       "abs": {
+        "x": 1082,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": "SUBTITLE_ERASE",
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "subtitle-erase-1791258039098-qdxiz8": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 628.8,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "audio",
+     "name": "createAudioSplit",
+     "pos": "A",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": null
+     },
+     "chipsAfter": [],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 5,
+      "breakdownBtn": 1,
+      "contBtn": 1,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 12,
+     "fresh": [
+      {
+       "type": "audio",
+       "pos": {
+        "x": 1082,
+        "y": 240
+       },
+       "abs": {
+        "x": 1082,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 350,
+       "h": 140,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "video",
+       "pos": {
+        "x": 1552,
+        "y": 240
+       },
+       "abs": {
+        "x": 1552,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": "AUDIO_SPLIT",
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "audio-split-1791258046357-k4ojyc": {
+       "w": 131.36,
+       "h": 52.54,
+       "x": 628.8,
+       "y": 255.67
+      },
+      "silent-video-1791258046357-24el11": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 805.2,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "audio",
+     "name": "createAudioSplit",
+     "pos": "B",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "v-UGQZzZOpbv",
+     "src": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "w": 622,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 40,
+       "y": 40
+      },
+      "abs": {
+       "x": 340,
+       "y": 240,
+       "depth": 1
+      },
+      "attempt": null
+     },
+     "chipsAfter": [],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 702,
+      "h": 430
+     },
+     "hostId": "g-EFbbHpwq5w",
+     "beforeEntry": {
+      "attempt": [
+       "5分钟超长视频",
+       "首尾帧生成视频",
+       "首帧生成视频"
+      ],
+      "triggers": 5,
+      "breakdownBtn": 1,
+      "contBtn": 1,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "afterEntry": {
+      "attempt": [],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 0
+     },
+     "beforeCount": 10,
+     "afterCount": 12,
+     "fresh": [
+      {
+       "type": "audio",
+       "pos": {
+        "x": 1082,
+        "y": 240
+       },
+       "abs": {
+        "x": 1082,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 350,
+       "h": 140,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "video",
+       "pos": {
+        "x": 1552,
+        "y": 240
+       },
+       "abs": {
+        "x": 1552,
+        "y": 240,
+        "depth": 0
+       },
+       "w": 512,
+       "h": 288,
+       "gen": "AUDIO_SPLIT",
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "v-UGQZzZOpbv": {
+       "w": 233.45,
+       "h": 131.36,
+       "x": 350.31,
+       "y": 255.67
+      },
+      "audio-split-1791258054592-2t8m94": {
+       "w": 131.36,
+       "h": 52.54,
+       "x": 628.8,
+       "y": 255.67
+      },
+      "silent-video-1791258054592-lbzptm": {
+       "w": 192.16,
+       "h": 108.09,
+       "x": 805.2,
+       "y": 255.67
+      }
+     }
+    },
+    {
+     "key": "shotComplete",
+     "name": "completeShotBreakdown",
+     "pos": "A",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "shot-breakdown-1791258060565",
+     "src": {
+      "pos": {
+       "x": 3110,
+       "y": 215
+      },
+      "abs": {
+       "x": 3410,
+       "y": 415,
+       "depth": 1
+      },
+      "w": 320,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 3110,
+       "y": 215
+      },
+      "abs": {
+       "x": 3410,
+       "y": 415,
+       "depth": 1
+      },
+      "attempt": null
+     },
+     "chipsAfter": [],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 3470,
+      "h": 644
+     },
+     "hostId": "group-1791258062595-1yn68x",
+     "beforeEntry": {
+      "attempt": [],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 1
+     },
+     "afterEntry": {
+      "attempt": [],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 1
+     },
+     "beforeCount": 12,
+     "afterCount": 17,
+     "fresh": [
+      {
+       "type": "shot-breakdown-result",
+       "pos": {
+        "x": 3850,
+        "y": 335
+       },
+       "abs": {
+        "x": 3850,
+        "y": 335,
+        "depth": 0
+       },
+       "w": 1040,
+       "h": 680,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "shot-breakdown-result",
+       "pos": {
+        "x": 3850,
+        "y": 1063
+       },
+       "abs": {
+        "x": 3850,
+        "y": 1063,
+        "depth": 0
+       },
+       "w": 1040,
+       "h": 680,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "shot-breakdown-result",
+       "pos": {
+        "x": 3850,
+        "y": 1791
+       },
+       "abs": {
+        "x": 3850,
+        "y": 1791,
+        "depth": 0
+       },
+       "w": 1040,
+       "h": 350,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "shot-breakdown-result",
+       "pos": {
+        "x": 3850,
+        "y": 2189
+       },
+       "abs": {
+        "x": 3850,
+        "y": 2189,
+        "depth": 0
+       },
+       "w": 1040,
+       "h": 680,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "shot-breakdown-result",
+       "pos": {
+        "x": 3850,
+        "y": 2917
+       },
+       "abs": {
+        "x": 3850,
+        "y": 2917,
+        "depth": 0
+       },
+       "w": 324,
+       "h": 220,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "shot-breakdown-1791258060565": {
+       "w": 168.32,
+       "h": 204.61,
+       "x": 1209.86,
+       "y": 479.09
+      },
+      "shot-breakdown-result-1791258066332-2hfqns": {
+       "w": 547.04,
+       "h": 357.68,
+       "x": 1441.3,
+       "y": 437.01
+      },
+      "shot-breakdown-result-1791258066332-qy7hwq": {
+       "w": 547.04,
+       "h": 357.68,
+       "x": 1441.3,
+       "y": 819.94
+      },
+      "shot-breakdown-result-1791258066332-1znbgd": {
+       "w": 547.04,
+       "h": 184.1,
+       "x": 1441.3,
+       "y": 1202.87
+      },
+      "shot-breakdown-result-1791258066332-k4ztle": {
+       "w": 547.04,
+       "h": 357.68,
+       "x": 1441.3,
+       "y": 1412.21
+      },
+      "shot-breakdown-result-1791258066332-h4uvh0": {
+       "w": 170.42,
+       "h": 115.72,
+       "x": 1441.3,
+       "y": 1795.14
+      }
+     }
+    },
+    {
+     "key": "shotComplete",
+     "name": "completeShotBreakdown",
+     "pos": "B",
+     "hostPos": [
+      300,
+      200
+     ],
+     "srcId": "shot-breakdown-1791258070780",
+     "src": {
+      "pos": {
+       "x": 3110,
+       "y": 215
+      },
+      "abs": {
+       "x": 3410,
+       "y": 415,
+       "depth": 1
+      },
+      "w": 320,
+      "attempt": null
+     },
+     "srcAfter": {
+      "pos": {
+       "x": 3110,
+       "y": 215
+      },
+      "abs": {
+       "x": 3410,
+       "y": 415,
+       "depth": 1
+      },
+      "attempt": null
+     },
+     "chipsAfter": [],
+     "host": {
+      "pos": {
+       "x": 300,
+       "y": 200
+      },
+      "abs": {
+       "x": 300,
+       "y": 200,
+       "depth": 0
+      },
+      "w": 3470,
+      "h": 644
+     },
+     "hostId": "group-1791258072804-7o2qfe",
+     "beforeEntry": {
+      "attempt": [],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 1
+     },
+     "afterEntry": {
+      "attempt": [],
+      "triggers": 0,
+      "breakdownBtn": 0,
+      "contBtn": 0,
+      "contSelector": 0,
+      "subtitlePanel": 0,
+      "shotStart": 1
+     },
+     "beforeCount": 12,
+     "afterCount": 17,
+     "fresh": [
+      {
+       "type": "shot-breakdown-result",
+       "pos": {
+        "x": 3850,
+        "y": 335
+       },
+       "abs": {
+        "x": 3850,
+        "y": 335,
+        "depth": 0
+       },
+       "w": 1040,
+       "h": 680,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "shot-breakdown-result",
+       "pos": {
+        "x": 3850,
+        "y": 1063
+       },
+       "abs": {
+        "x": 3850,
+        "y": 1063,
+        "depth": 0
+       },
+       "w": 1040,
+       "h": 680,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "shot-breakdown-result",
+       "pos": {
+        "x": 3850,
+        "y": 1791
+       },
+       "abs": {
+        "x": 3850,
+        "y": 1791,
+        "depth": 0
+       },
+       "w": 1040,
+       "h": 350,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "shot-breakdown-result",
+       "pos": {
+        "x": 3850,
+        "y": 2189
+       },
+       "abs": {
+        "x": 3850,
+        "y": 2189,
+        "depth": 0
+       },
+       "w": 1040,
+       "h": 680,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      },
+      {
+       "type": "shot-breakdown-result",
+       "pos": {
+        "x": 3850,
+        "y": 2917
+       },
+       "abs": {
+        "x": 3850,
+        "y": 2917,
+        "depth": 0
+       },
+       "w": 324,
+       "h": 220,
+       "gen": null,
+       "cont": 0,
+       "parentId": null
+      }
+     ],
+     "dom": {
+      "shot-breakdown-1791258070780": {
+       "w": 168.32,
+       "h": 204.61,
+       "x": 1209.86,
+       "y": 479.09
+      },
+      "shot-breakdown-result-1791258076550-74rhbg": {
+       "w": 547.04,
+       "h": 357.68,
+       "x": 1441.3,
+       "y": 437.01
+      },
+      "shot-breakdown-result-1791258076550-jzsj8y": {
+       "w": 547.04,
+       "h": 357.68,
+       "x": 1441.3,
+       "y": 819.94
+      },
+      "shot-breakdown-result-1791258076550-4nfov9": {
+       "w": 547.04,
+       "h": 184.1,
+       "x": 1441.3,
+       "y": 1202.87
+      },
+      "shot-breakdown-result-1791258076550-ir8ig1": {
+       "w": 547.04,
+       "h": 357.68,
+       "x": 1441.3,
+       "y": 1412.21
+      },
+      "shot-breakdown-result-1791258076550-g4u4sk": {
+       "w": 170.42,
+       "h": 115.72,
+       "x": 1441.3,
+       "y": 1795.14
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

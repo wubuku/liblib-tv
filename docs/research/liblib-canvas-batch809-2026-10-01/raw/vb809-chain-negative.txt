@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch809.py", line 464, in <module>
+    sys.exit(main())
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch809.py", line 308, in main
+    assert nPass == len(checks), (
+AssertionError: ★ 基线有 1 项红（['S1:★★ 阳性对照：宿主组真的被挪了、源是组内节点（depth=1）且跟着组一起动']）
+chain-neg EXIT=1

@@ -1,0 +1,550 @@
+{
+ "base": "http://localhost:4317",
+ "vid": "v-UGQZzZOpbv",
+ "grp": "g-EFbbHpwq5w",
+ "steps": [
+  {
+   "s": "boot",
+   "nodes": [
+    {
+     "id": "g-245IDFh8sB",
+     "type": "storyboard-group",
+     "parentId": null,
+     "pos": {
+      "x": 2112,
+      "y": 656
+     },
+     "abs": {
+      "x": 2112,
+      "y": 656,
+      "depth": 0
+     },
+     "w": 430,
+     "h": 452,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "g-EFbbHpwq5w",
+     "type": "storyboard-group",
+     "parentId": null,
+     "pos": {
+      "x": 2396,
+      "y": 10
+     },
+     "abs": {
+      "x": 2396,
+      "y": 10,
+      "depth": 0
+     },
+     "w": 702,
+     "h": 430,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "t-9j2MoccxBj",
+     "type": "script",
+     "parentId": null,
+     "pos": {
+      "x": 108,
+      "y": -125
+     },
+     "abs": {
+      "x": 108,
+      "y": -125,
+      "depth": 0
+     },
+     "w": 350,
+     "h": 200,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "i-1FQ9tErTcC",
+     "type": "image",
+     "parentId": null,
+     "pos": {
+      "x": 132,
+      "y": 273
+     },
+     "abs": {
+      "x": 132,
+      "y": 273,
+      "depth": 0
+     },
+     "w": 618,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "i-lBzmo67AHv",
+     "type": "image",
+     "parentId": null,
+     "pos": {
+      "x": 410,
+      "y": 932
+     },
+     "abs": {
+      "x": 410,
+      "y": 932,
+      "depth": 0
+     },
+     "w": 618,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "i-dnwoZQ7jsG",
+     "type": "image",
+     "parentId": null,
+     "pos": {
+      "x": 410,
+      "y": 1332
+     },
+     "abs": {
+      "x": 410,
+      "y": 1332,
+      "depth": 0
+     },
+     "w": 700,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "i-vxeeCnxySa",
+     "type": "image",
+     "parentId": null,
+     "pos": {
+      "x": 410,
+      "y": 1732
+     },
+     "abs": {
+      "x": 410,
+      "y": 1732,
+      "depth": 0
+     },
+     "w": 700,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "b-bTLLuU4w5q",
+     "type": "script-execution",
+     "parentId": null,
+     "pos": {
+      "x": 1068,
+      "y": -187
+     },
+     "abs": {
+      "x": 1068,
+      "y": -187,
+      "depth": 0
+     },
+     "w": 350,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "i-YDfWhFlthe",
+     "type": "image",
+     "parentId": null,
+     "pos": {
+      "x": 1580,
+      "y": -300
+     },
+     "abs": {
+      "x": 1580,
+      "y": -300,
+      "depth": 0
+     },
+     "w": 622,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "v-UGQZzZOpbv",
+     "type": "video",
+     "parentId": "g-EFbbHpwq5w",
+     "pos": {
+      "x": 40,
+      "y": 40
+     },
+     "abs": {
+      "x": 2436,
+      "y": 50,
+      "depth": 1
+     },
+     "w": 622,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    }
+   ]
+  },
+  {
+   "s": "select",
+   "r": {
+    "sel": []
+   }
+  },
+  {
+   "s": "survey-selected(failed)",
+   "r": {
+    "selectedCount": 1,
+    "attempt": [
+     {
+      "tag": "button",
+      "txt": "5分钟超长视频",
+      "rect": {
+       "w": 50,
+       "h": 14
+      }
+     },
+     {
+      "tag": "button",
+      "txt": "首尾帧生成视频",
+      "rect": {
+       "w": 51,
+       "h": 14
+      }
+     },
+     {
+      "tag": "button",
+      "txt": "首帧生成视频",
+      "rect": {
+       "w": 47,
+       "h": 14
+      }
+     }
+    ],
+    "toolbar": [],
+    "anyData": [],
+    "breakdownByText": [],
+    "contByText": []
+   }
+  },
+  {
+   "s": "prep",
+   "r": {
+    "ok": true,
+    "status": "failed"
+   }
+  },
+  {
+   "s": "survey-ready",
+   "r": {
+    "selectedCount": 1,
+    "attempt": [
+     {
+      "tag": "button",
+      "txt": "5分钟超长视频",
+      "rect": {
+       "w": 50,
+       "h": 14
+      }
+     },
+     {
+      "tag": "button",
+      "txt": "首尾帧生成视频",
+      "rect": {
+       "w": 51,
+       "h": 14
+      }
+     },
+     {
+      "tag": "button",
+      "txt": "首帧生成视频",
+      "rect": {
+       "w": 47,
+       "h": 14
+      }
+     }
+    ],
+    "toolbar": [
+     {
+      "tag": "button",
+      "txt": "智能去字幕",
+      "rect": {
+       "w": 108,
+       "h": 32
+      }
+     },
+     {
+      "tag": "button",
+      "txt": "深度动作捕捉",
+      "rect": {
+       "w": 122,
+       "h": 32
+      }
+     },
+     {
+      "tag": "button",
+      "txt": "音视频分离",
+      "rect": {
+       "w": 126,
+       "h": 32
+      }
+     },
+     {
+      "tag": "button",
+      "txt": "主体消除",
+      "rect": {
+       "w": 112,
+       "h": 32
+      }
+     },
+     {
+      "tag": "button",
+      "txt": "截取首帧",
+      "rect": {
+       "w": 112,
+       "h": 32
+      }
+     }
+    ],
+    "anyData": [],
+    "breakdownByText": [],
+    "contByText": []
+   }
+  },
+  {
+   "s": "after-breakdown",
+   "r": {
+    "selectedCount": 1,
+    "attempt": [],
+    "toolbar": [],
+    "anyData": [],
+    "breakdownByText": [],
+    "contByText": []
+   },
+   "nodes": [
+    {
+     "id": "g-245IDFh8sB",
+     "type": "storyboard-group",
+     "parentId": null,
+     "pos": {
+      "x": 2112,
+      "y": 656
+     },
+     "abs": {
+      "x": 2112,
+      "y": 656,
+      "depth": 0
+     },
+     "w": 430,
+     "h": 452,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "g-EFbbHpwq5w",
+     "type": "storyboard-group",
+     "parentId": null,
+     "pos": {
+      "x": 2396,
+      "y": 10
+     },
+     "abs": {
+      "x": 2396,
+      "y": 10,
+      "depth": 0
+     },
+     "w": 702,
+     "h": 430,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "t-9j2MoccxBj",
+     "type": "script",
+     "parentId": null,
+     "pos": {
+      "x": 108,
+      "y": -125
+     },
+     "abs": {
+      "x": 108,
+      "y": -125,
+      "depth": 0
+     },
+     "w": 350,
+     "h": 200,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "i-1FQ9tErTcC",
+     "type": "image",
+     "parentId": null,
+     "pos": {
+      "x": 132,
+      "y": 273
+     },
+     "abs": {
+      "x": 132,
+      "y": 273,
+      "depth": 0
+     },
+     "w": 618,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "i-lBzmo67AHv",
+     "type": "image",
+     "parentId": null,
+     "pos": {
+      "x": 410,
+      "y": 932
+     },
+     "abs": {
+      "x": 410,
+      "y": 932,
+      "depth": 0
+     },
+     "w": 618,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "i-dnwoZQ7jsG",
+     "type": "image",
+     "parentId": null,
+     "pos": {
+      "x": 410,
+      "y": 1332
+     },
+     "abs": {
+      "x": 410,
+      "y": 1332,
+      "depth": 0
+     },
+     "w": 700,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "i-vxeeCnxySa",
+     "type": "image",
+     "parentId": null,
+     "pos": {
+      "x": 410,
+      "y": 1732
+     },
+     "abs": {
+      "x": 410,
+      "y": 1732,
+      "depth": 0
+     },
+     "w": 700,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "b-bTLLuU4w5q",
+     "type": "script-execution",
+     "parentId": null,
+     "pos": {
+      "x": 1068,
+      "y": -187
+     },
+     "abs": {
+      "x": 1068,
+      "y": -187,
+      "depth": 0
+     },
+     "w": 350,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "i-YDfWhFlthe",
+     "type": "image",
+     "parentId": null,
+     "pos": {
+      "x": 1580,
+      "y": -300
+     },
+     "abs": {
+      "x": 1580,
+      "y": -300,
+      "depth": 0
+     },
+     "w": 622,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "v-UGQZzZOpbv",
+     "type": "video",
+     "parentId": "g-EFbbHpwq5w",
+     "pos": {
+      "x": 40,
+      "y": 40
+     },
+     "abs": {
+      "x": 2436,
+      "y": 50,
+      "depth": 1
+     },
+     "w": 622,
+     "h": 350,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    },
+    {
+     "id": "shot-breakdown-1791254263033",
+     "type": "shot-breakdown",
+     "parentId": null,
+     "pos": {
+      "x": 3178,
+      "y": 50
+     },
+     "abs": {
+      "x": 3178,
+      "y": 50,
+      "depth": 0
+     },
+     "w": 320,
+     "h": 389,
+     "gen": null,
+     "cont": 0,
+     "sb": null
+    }
+   ]
+  }
+ ]
+}
