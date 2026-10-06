@@ -5940,6 +5940,9 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ 1023：量「类型层」那一道闸 —— tsc 早就装好了
     p1023 = ROOT / "scripts/jimeng_probe1023_type_layer_gate.py"
     _p1023 = p1023.read_text(encoding="utf-8") if p1023.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1024：普查「豁免声明」—— 门看见了、被配成不算数，是同一种病的第三形态
+    p1024 = ROOT / "scripts/jimeng_probe1024_exemption_claims.py"
+    _p1024 = p1024.read_text(encoding="utf-8") if p1024.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -16009,6 +16012,86 @@ def main() -> int:
           and '"p10_golden_2023_"' in _ausrc
           and 'anchor-gate-coverage-1021.json' not in _p1023)
 
+    print("— DD993H. 批 1024 普查「豁免声明」：把 1018「没看见」/ 1023「看不见」/"
+          "本批「看见了、被配成不算数」三种形态分清；⭐⭐⭐⭐⭐ 本批最值钱的一条读数是"
+          "**阳性对照红了两轮、每一轮逼出一个仪器 bug** ⇒ 处置是把切分单位从物理行换成逻辑单元")
+    check("DD993H.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**「门看不见」必须分清三种形态** —— ① **没看见**（1018）；② **看不见**（1023）；"
+          "③ **看见了、并且被配成不算数**（本批 `lint` 是裸 `eslint`、"
+          "`--max-warnings` 没配 ⇒ **每一条 warning 都不影响 exit code**）⇒ "
+          "⇒ **只报「看不见」会整类漏掉「③」，而它恰恰是三者里最容易修的**",
+          '⇒ **「门看见了，但它被配置成不报错」** —— 这是同一种病的**第三种形态**：' in _p1024
+          and '不是「没看见」，也不是「看不见」，是「看见了、并且被配成不算数」。' in _p1024
+          and 'LINT_HAS_MAXWARN = "--max-warnings" in LINT_SCRIPT' in _p1024
+          and 'P5 = (not LINT_HAS_MAXWARN) and RC_PLAIN == 0 and RC_MW0 != 0' in _p1024
+          # ⭐⭐⭐⭐⭐ **负向锚点：判据/产物散文里不许再写死绝对读数** ——
+          #   我第一版把「15 条 warning」写进了 `third_shape` 的解释里
+          #   ⇒ 那条数会随别人修 warning 而漂移 ⇒ **按批自己立的纪律处置：只钉机制**
+          and '**15 条 warning 一条都不影响 exit code**' not in _p1024
+          and '"p1_three_shapes_of_the_gate_being_blind_2024_"' in _ausrc
+          and '"p6_tightening_the_gate_is_the_projects_call_2024_"' in _ausrc)
+    check("DD993H.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**阳性对照是常驻闸，且它红过两轮、每一轮逼出一个仪器 bug** —— "
+          "⭐ 第一轮**整行看不见**；⭐⭐⭐⭐⭐⭐ **第二轮更隐蔽：两行都抽到了，"
+          "却因为「这句话点名了哪个脚本」按**行**解析而看不见两行的关系**；"
+          "⭐⭐⭐⭐⭐⭐⭐ **第三轮又一层：工具在不在脚本里按**字符串包含**判，"
+          "而 `tsc` 是**隔着 `npm run typecheck` 间接接进去的** ⇒ "
+          "⇒ **三次都是同一个病的加深 ⇒ 「逐行正则」有结构性上限，不是「我这次写漏了」** ⇒ "
+          "⇒ **处置不是「再小心一次」，是把切分单位从物理行换成逻辑单元** ⇒ "
+          "⇒ **这是本项目第四次栽在「跨行」上面**",
+          'POSITIVE_CONTROL = found_independently and len(CONTRADICTED) >= 1' in _p1024
+          and 'KNOWN_FALSE_SIGNATURE = "不跑 tsc"' in _p1024
+          and '⇒ 返回 `(行号, 文本, 逻辑块号)`：**行注释各自成块**，**连续 `//` 行归成同一块**，块注释整块一块' in _p1024
+          and '⇒ 处置：`comment_lines` 改为返回 `(行号, 文本, 逻辑块号)`，按**逻辑注释块**解析。' in _p1024
+          and '⇒⇒⇒⇒⇒⇒⇒⇒⇒ 判据必须按**调用链**解析，不能按字符串包含解析' in _p1024
+          and '**「工具在不在这条脚本的调用链闭包里」**。' in _p1024
+          and '**阳性对照 `P3` 是常驻闸**：' in _p1024
+          and 'the_hard_won_rule' in _p1024
+          and 'n_caught_by_positive_control' in _p1024
+          # ⭐⭐⭐⭐⭐ **负向锚点：「闸失败了几轮」是它的履历、不是它的判据 ⇒ 键名里不许出现这个数**
+          and 'p4_positive_control_caught_two_instrument_bugs_2024_' not in _ausrc
+          and 'note_that_number_will_drift' in _p1024
+          and '**这已经是本项目第四次栽在它上面（1023 一次、1024 三次）** ⇒ ' in _p1024
+          and '"p4_positive_control_caught_the_instrument_bugs_2024_"' in _ausrc
+          and '"p7_the_rule_itself_needed_upgrading_2024_"' in _ausrc
+          and '"p8_a_count_i_remembered_wrong_2024_"' in _ausrc)
+    check("DD993H.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**Ⓐ「豁免指令本身是一句断言」：逐条判定必须用 eslint 自己的 `Unused eslint-disable directive`，"
+          "不是我的正则** ⇒ ⇒ **代码后来修好了、豁免还留着，这句话就变成了假的** ⇒ "
+          "⇒⇒⇒⇒⇒ **这一类与 1023 那条过期注释是同一个形状，"
+          "只不过这一条 eslint 会主动报** ⇒ "
+          "⇒⇒⇒⇒⇒⇒⇒⇒⇒ **「机制能看见」与「机制被当成了依据」是两件事**",
+          '⇒ 用 **eslint 自己**的 `Unused eslint-disable directive` 警告逐条判定。' in _p1024
+          and '"p2_an_escape_hatch_that_is_now_unnecessary_2024_"' in _ausrc)
+    check("DD993H.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**Ⓒ「打不开的证据」有两种，不是一种** ⇒ "
+          "**「引用了一份谁都打不开的证据」与「引用了但后来被删」不是同一种债** —— "
+          "**前一种更难受：复核者连「它以前长什么样」都无从知道** ⇒ "
+          "⇒⇒⇒⇒⇒⇒ **所以每条打不开的都必须再查一次 `git log --all`，"
+          "且「从来没进过仓」必须单独成一个计数器**",
+          'def in_git_history(path):' in _p1024
+          and 'N_NEVER_IN_GIT = sum(1 for e in MISSING_EVID if not e["in_git_history"])' in _p1024
+          and '"n_missing_that_never_existed_in_git": N_NEVER_IN_GIT,' in _p1024
+          and '"p5_a_citation_nobody_ever_had_2024_"' in _ausrc)
+    check("DD993H.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**Ⓑ 那条已知为假的断言在源码里有两处（块注释一处、行注释一处），"
+          "而 1023 只报了其中一处** ⇒ ⇒ "
+          "**⇒ 「按条数清账」这件事本身会漏；删掉其中一条并不能让这句话恢复成真的** ⇒ "
+          "⇒⇒⇒⇒⇒ **探针与产物都按机制钉：把「同一个错误在两个语法位置各出现一次」记成结构事实，"
+          "而不是记成「2 条」这个会漂移的数**",
+          '"p3_the_same_false_sentence_lives_in_two_places_2024_"' in _ausrc
+          and 'class_B_toolchain_claims_in_comments' in _p1024
+          # ⭐ 判据把**两个口径的读数都留下**：调用链闭包（真）与同一行字面包含（那个会漏的粗口径）
+          and 'tool_in_named_script_by_literal_substring' in _p1024
+          and 'resolved_script_body' in _p1024)
+    check("DD993H.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**「这个工具在不在这个脚本里」是个陷阱问句，除非先说清「在哪一层」** —— "
+          "**1023 说「工具早就在、只是没人调」；本批说「工具早就在、只是没人在同一行看见它」** ⇒ "
+          "⇒⇒⇒⇒⇒⇒⇒ **两条合起来是一句更硬的话：接线是**传递**的，判断接线却是**逐行**的** ⇒ "
+          "⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 与 1018「等价变异体是相对某一层说的」是同一个陷阱的两副面孔**",
+          '"class_D_is_the_gate_wired_to_fail": {' in _p1024
+          and '"p10_golden_1024_"' in _ausrc
+          and '"p9_scope_and_offline_1024_"' in _ausrc)
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

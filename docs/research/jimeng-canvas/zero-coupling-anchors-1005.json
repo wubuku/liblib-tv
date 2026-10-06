@@ -1,8 +1,8 @@
 {
  "generated_by": "jimeng_probe1005_zero_coupling_census.py",
  "n_zero_coupling": 823,
- "n_positive_present": 6673,
- "n_distinct_keys": 6508,
+ "n_positive_present": 6706,
+ "n_distinct_keys": 6541,
  "by_class": {
   "I-标识符(多处引用)": 401,
   "P-散文/片段": 422
@@ -1872,7 +1872,7 @@
    "var": "_vsrc",
    "anchor": "\"只有 1 项\" in asrc)",
    "occurrences": 2,
-   "min_line_gap": 6647
+   "min_line_gap": 6650
   },
   {
    "class": "P-散文/片段",
@@ -1886,7 +1886,7 @@
    "var": "_ausrc",
    "anchor": "**恒真**",
    "occurrences": 2,
-   "min_line_gap": 529
+   "min_line_gap": 648
   },
   {
    "class": "P-散文/片段",
@@ -1907,7 +1907,7 @@
    "var": "_ausrc",
    "anchor": "**「A ≠ B」不等于「A 能把 A 从 C 里挑出来」**",
    "occurrences": 2,
-   "min_line_gap": 5703
+   "min_line_gap": 5822
   },
   {
    "class": "P-散文/片段",
@@ -1921,14 +1921,14 @@
    "var": "_ausrc",
    "anchor": "`el.tabIndex === -1`",
    "occurrences": 2,
-   "min_line_gap": 5682
+   "min_line_gap": 5801
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**应用必须自己调 `focus()`**",
    "occurrences": 2,
-   "min_line_gap": 5682
+   "min_line_gap": 5801
   },
   {
    "class": "P-散文/片段",
@@ -2404,7 +2404,7 @@
    "var": "_ausrc",
    "anchor": "**当场判红**",
    "occurrences": 2,
-   "min_line_gap": 5164
+   "min_line_gap": 5283
   },
   {
    "class": "P-散文/片段",

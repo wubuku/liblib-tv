@@ -98,7 +98,7 @@
       ]
     },
     "whole_apparatus": {
-      "n_scripts": 404,
+      "n_scripts": 405,
       "n_path_refs": 29,
       "n_files_covered": 29,
       "n_files_uncovered": 28,
@@ -222,7 +222,7 @@
       "token": "**"
     }
   ],
-  "n_glob_evidence": 325,
+  "n_glob_evidence": 328,
   "bare_base_refs": {
     "n_found_in_repo": 4,
     "would_deflate_metric": true,
@@ -239,7 +239,7 @@
     "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **加一条 glob，覆盖率从「不到一半」跳到接近全覆盖** ⇒ **⇒⇒⇒⇒ 这个指标量的是「有没有被点名」，不是「有没有被验过」** ⇒ 把它当成「产品有多少没被验过」是**错的**"
   },
   "criteria_object_of_test": {
-    "n_check_calls": 930,
+    "n_check_calls": 936,
     "n_with_prototype_object": 24,
     "pct_with_prototype_object": 2.6,
     "checks": [
