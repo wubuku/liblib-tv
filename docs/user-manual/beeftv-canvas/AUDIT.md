@@ -10580,6 +10580,12 @@ Batch 249 加的）、`run_two_file_case`（3 条，**没有**）、用例 7 内
     `verify-quota-tables` 3 · `verify-quote-punct` 2 · `verify-screenshots-literals` 2 ·
     **`verify-shot-drift` 12** · `verify-unreachable` 4 = **32 条**。
     **11 道不变红，两种成因在 rc 上不可分**（核的不在上游 / 上游那一片恰好没变）。
+    **⚠️ Batch 299 订正本句：「11 道不变红」应为 10 道不变红 + 1 道（闸 18）两 ref 都红；
+    而「两个 ref 上都红 ⇒ 不是漂移」是错的**——
+    闸 18 在 `bcc3b05` 上 1 条问题、在 `origin/main` 上 7 条，
+    **多出来的 6 条正是上面那 8 道变红闸的反验**（`quote-punct` 与 `unreachable` 的反验在慢名单里，
+    方向十六只跑 39 份非慢反验，所以那 2 条没出现）。
+    **11 道逐道拆成四类见环境记录 262；纪律 334**。
     **闸 18 两个 ref 上都红，是工作区里别人的未提交 WIP，不是漂移。**
     **同一个量（闸 7 的「处不一致」）走过 8（Batch 290）→ 7（Batch 294）→ 4（现在）**，
     **变的不是上游而是闸**——`verify-unreachable.py` 在 Batch 294/295 各被改过一次，
@@ -10631,4 +10637,37 @@ Batch 249 加的）、`run_two_file_case`（3 条，**没有**）、用例 7 内
     **探针的三次形状**：①量出 0（比对端用错 ref）②21 条全落 R4 并打「全库已无该文案」
     （`for g in up_by_line` 迭代了键而不是文件，`R3` 恒为 0）③期望 12 量到 15
     （**锚点写错，该卡的是「检出 − 已登记」**）。**纪律 333**。
+
+
+262. **纪律 332 那 11 道「不变红」逐道拆成四类（Batch 299）**：
+    **rc 上**：11 道里 **10 道两个 ref 都是 0**、**1 道（闸 18）两个 ref 都是 1**——
+    **所以纪律 332 写的「11 道不变红」应订正为「10 道不变红 + 1 道两 ref 都红」**。
+    **闸 18 的问题条数**：`bcc3b05` 上 **1 条**（`selftest-encoding.py`，0.6 秒）、
+    `origin/main` 上 **7 条**（`selftest-encoding.py` 0.5 秒、
+    `selftest-error-copy.py` 1.0 秒、`selftest-label-drift.py` 2.8 秒、
+    `selftest-line-counts.py` 10.8 秒、`selftest-quota-tables.py` 1.1 秒、
+    `selftest-screenshots-literals.py` 14.1 秒、`selftest-shot-drift.py` 12.2 秒）。
+    **多出来的 6 条 = 纪律 332 那 8 道变红闸里的 6 个反验**
+    （`error-copy` `label-drift` `line-counts` `quota-tables`
+    `screenshots-literals` `shot-drift`）；
+    **剩下 2 道没出现的，其反验都在慢名单里**
+    （`selftest-quote-punct.py` / `selftest-unreachable.sh`，
+    慢名单共 5 份：`selftest-meta.sh`、`selftest-quote-punct.py`、
+    `selftest-selftest-deps.py`、`selftest-unreachable.sh`、`selftest-zero-input.py`），
+    **而方向十六只跑 39 份非慢反验**。
+    **闸 18 的另外两个随 ref 变的数**：
+    方向十七「核到 **37** 行 / 另有 **8** 行核不到」→「核到 **31** 行 / 另有 **14** 行核不到」；
+    方向十六「39 份非慢反验，**37** 份 rc=0，用时 **202.5** 秒」→「**31** 份 rc=0，
+    用时 **184.7** 秒」；方向十九的指纹代价 **1.86 → 1.09 秒**。
+    **四类归属与实测差值**：
+    | 类 | 道数 | 闸 | 实测差值 |
+    | --- | --- | --- | --- |
+    | A 数据源是手册树自己 | **3** | `baseline` `shot-version` `selftest-deps` | 上游内容不影响判据 |
+    | B 读上游、那几样没变 | **3** | `query-params` `feature-flags` `runtime-policy` | **输出差异只有 ref 名** |
+    | C 读上游、看见了变化、判定无害 | **4** | `endpoints` `exclusions` `route-notation` `shortcuts` | 路由 **135→160**；`router.tsx` **24→26 条**；快捷键 **14→15**；新增 **2** 条 agent 路由被主动排除 |
+    | D 两个 ref 上都红、构成随 ref 变 | **1** | `selftest-bootable` | 问题 **1→7 条** |
+    **3 + 3 + 4 + 1 = 11。**
+    **方法代价**：`verify-selftest-bootable` 单 ref **129–203 秒**，
+    11 道 × 2 ref 一次跑不完撞 **290 秒**上限；改成先落盘再只读盘比对。
+    **纪律 334**。
 
