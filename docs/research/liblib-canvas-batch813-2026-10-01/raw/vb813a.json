@@ -1,0 +1,1990 @@
+{
+ "base": "http://localhost:4317",
+ "cells": [
+  {
+   "key": "u_firstFrame",
+   "name": "createFirstFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    8,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    11,
+    9,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    11,
+    9,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    9,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "true"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 11
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "true"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 11
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {},
+   "round": 0,
+   "secs": 6.9
+  },
+  {
+   "key": "u_firstLast",
+   "name": "createFirstLastFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    8,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    12,
+    10,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    12,
+    10,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    12,
+    10,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "true"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 12
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "true"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 12
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {},
+   "round": 0,
+   "secs": 6.5
+  },
+  {
+   "key": "u_breakdown",
+   "name": "addDerivedNode(shot-breakdown)",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    11,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    12,
+    13,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [
+     {
+      "disabled": false,
+      "text": "开始拉片"
+     }
+    ],
+    "contextMenu": [],
+    "shotNodes": 1,
+    "nodeCount": 11
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [
+     {
+      "disabled": false,
+      "text": "开始拉片"
+     },
+     {
+      "disabled": false,
+      "text": "开始拉片"
+     }
+    ],
+    "contextMenu": [],
+    "shotNodes": 2,
+    "nodeCount": 12
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": true,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {
+    "shotStart": {
+     "之前": 1,
+     "之后": 2
+    },
+    "edgeCount": {
+     "之前": 12,
+     "之后": 13
+    },
+    "nodeCount": {
+     "之前": 11,
+     "之后": 12
+    },
+    "shotNodes": {
+     "之前": 1,
+     "之后": 2
+    },
+    "shotMedia": {
+     "之前": [
+      ""
+     ],
+     "之后": [
+      "",
+      ""
+     ]
+    }
+   },
+   "round": 0,
+   "secs": 7.4
+  },
+  {
+   "key": "u_continuation",
+   "name": "createVideoContinuation",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    11,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    12,
+    13,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 11
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 12
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": true,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {
+    "edgeCount": {
+     "之前": 12,
+     "之后": 13
+    },
+    "nodeCount": {
+     "之前": 11,
+     "之后": 12
+    }
+   },
+   "round": 0,
+   "secs": 7.2
+  },
+  {
+   "key": "u_subtitle",
+   "name": "createSubtitleErase",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    11,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 11
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 11
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {
+    "subtitleTriggers": {
+     "之前": 0,
+     "之后": 1
+    },
+    "audioTriggers": {
+     "之前": 0,
+     "之后": 1
+    },
+    "attemptChips": {
+     "之前": [],
+     "之后": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ]
+    }
+   },
+   "round": 0,
+   "secs": 6.9
+  },
+  {
+   "key": "u_audio",
+   "name": "createAudioSplit",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    11,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    12,
+    13,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    12,
+    13,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    14,
+    15,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 12
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 14
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": true,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {
+    "edgeCount": {
+     "之前": 13,
+     "之后": 15
+    },
+    "nodeCount": {
+     "之前": 12,
+     "之后": 14
+    },
+    "audioOutputs": {
+     "之前": [
+      {
+       "mode": "av",
+       "kind": "audio"
+      },
+      {
+       "mode": "av",
+       "kind": "silent-video"
+      }
+     ],
+     "之后": [
+      {
+       "mode": "av",
+       "kind": "audio"
+      },
+      {
+       "mode": "av",
+       "kind": "silent-video"
+      },
+      {
+       "mode": "av",
+       "kind": "audio"
+      },
+      {
+       "mode": "av",
+       "kind": "silent-video"
+      }
+     ]
+    }
+   },
+   "round": 0,
+   "secs": 10.3
+  },
+  {
+   "key": "u_shotComplete",
+   "name": "completeShotBreakdown",
+   "srcId": "shot-breakdown-1791264745941",
+   "第一次之前（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "第一次之后（节点/边/历史）": [
+    16,
+    17,
+    2
+   ],
+   "重新选中之后（节点/边/历史）": [
+    16,
+    17,
+    2
+   ],
+   "第二下之后（节点/边/历史）": [
+    16,
+    17,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [
+     {
+      "disabled": false,
+      "text": "开始拉片"
+     }
+    ],
+    "contextMenu": [],
+    "shotNodes": 1,
+    "nodeCount": 11
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [
+     {
+      "disabled": true,
+      "text": "拉片完成"
+     }
+    ],
+    "contextMenu": [],
+    "shotNodes": 1,
+    "nodeCount": 16
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [
+     {
+      "disabled": true,
+      "text": "拉片完成"
+     }
+    ],
+    "contextMenu": [],
+    "shotNodes": 1,
+    "nodeCount": 16
+   },
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "TimeoutError: Page.click: Timeout 25000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-shot-breakdown-start]\")\n  -     - locator resolved to <button disabled type=\"button\" data-shot-breakdown-st"
+   },
+   "★ UI 第二下点不动": true,
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "round": 0,
+   "secs": 33.6
+  },
+  {
+   "key": "u_firstFrame",
+   "name": "createFirstFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    8,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    11,
+    9,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    11,
+    9,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    9,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "true"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 11
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "true"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 11
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {},
+   "round": 1,
+   "secs": 6.7
+  },
+  {
+   "key": "u_firstLast",
+   "name": "createFirstLastFrameReference",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    8,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    12,
+    10,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    12,
+    10,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    12,
+    10,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "true"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 12
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "true"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 12
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {},
+   "round": 1,
+   "secs": 6.6
+  },
+  {
+   "key": "u_breakdown",
+   "name": "addDerivedNode(shot-breakdown)",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    11,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    12,
+    13,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [
+     {
+      "disabled": false,
+      "text": "开始拉片"
+     }
+    ],
+    "contextMenu": [],
+    "shotNodes": 1,
+    "nodeCount": 11
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [
+     {
+      "disabled": false,
+      "text": "开始拉片"
+     },
+     {
+      "disabled": false,
+      "text": "开始拉片"
+     }
+    ],
+    "contextMenu": [],
+    "shotNodes": 2,
+    "nodeCount": 12
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": true,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {
+    "shotStart": {
+     "之前": 1,
+     "之后": 2
+    },
+    "edgeCount": {
+     "之前": 12,
+     "之后": 13
+    },
+    "nodeCount": {
+     "之前": 11,
+     "之后": 12
+    },
+    "shotNodes": {
+     "之前": 1,
+     "之后": 2
+    },
+    "shotMedia": {
+     "之前": [
+      ""
+     ],
+     "之后": [
+      "",
+      ""
+     ]
+    }
+   },
+   "round": 1,
+   "secs": 7.5
+  },
+  {
+   "key": "u_continuation",
+   "name": "createVideoContinuation",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    11,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    12,
+    13,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 11
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 12
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": true,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {
+    "edgeCount": {
+     "之前": 12,
+     "之后": 13
+    },
+    "nodeCount": {
+     "之前": 11,
+     "之后": 12
+    }
+   },
+   "round": 1,
+   "secs": 7.3
+  },
+  {
+   "key": "u_subtitle",
+   "name": "createSubtitleErase",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    11,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 11
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 11
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {
+    "subtitleTriggers": {
+     "之前": 0,
+     "之后": 1
+    },
+    "audioTriggers": {
+     "之前": 0,
+     "之后": 1
+    },
+    "attemptChips": {
+     "之前": [],
+     "之后": [
+      {
+       "label": "5分钟超长视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首尾帧生成视频",
+       "pressed": "false"
+      },
+      {
+       "label": "首帧生成视频",
+       "pressed": "false"
+      }
+     ]
+    }
+   },
+   "round": 1,
+   "secs": 7.2
+  },
+  {
+   "key": "u_audio",
+   "name": "createAudioSplit",
+   "srcId": "v-UGQZzZOpbv",
+   "第一次之前（节点/边/历史）": [
+    10,
+    11,
+    0
+   ],
+   "第一次之后（节点/边/历史）": [
+    12,
+    13,
+    1
+   ],
+   "重新选中之后（节点/边/历史）": [
+    12,
+    13,
+    1
+   ],
+   "第二下之后（节点/边/历史）": [
+    14,
+    15,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 10
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [
+     {
+      "label": "5分钟超长视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首尾帧生成视频",
+      "pressed": "false"
+     },
+     {
+      "label": "首帧生成视频",
+      "pressed": "false"
+     }
+    ],
+    "breakdown": [
+     {
+      "txt": "逐帧拉片",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "continuation": [
+     {
+      "txt": "智能续写",
+      "disabled": false,
+      "pressed": null
+     }
+    ],
+    "audioTriggers": [
+     "音视频分离"
+    ],
+    "audioModes": [],
+    "subtitleTriggers": [
+     "智能去字幕"
+    ],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 12
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [],
+    "contextMenu": [],
+    "shotNodes": 0,
+    "nodeCount": 14
+   },
+   "UI 第二下": {
+    "outcome": "clicked",
+    "error": null
+   },
+   "★ UI 第二下点不动": false,
+   "★ 第二下建了东西": true,
+   "★ 第二下历史 +1": true,
+   "★ 第二下的可见反馈变化": {
+    "edgeCount": {
+     "之前": 13,
+     "之后": 15
+    },
+    "nodeCount": {
+     "之前": 12,
+     "之后": 14
+    },
+    "audioOutputs": {
+     "之前": [
+      {
+       "mode": "av",
+       "kind": "audio"
+      },
+      {
+       "mode": "av",
+       "kind": "silent-video"
+      }
+     ],
+     "之后": [
+      {
+       "mode": "av",
+       "kind": "audio"
+      },
+      {
+       "mode": "av",
+       "kind": "silent-video"
+      },
+      {
+       "mode": "av",
+       "kind": "audio"
+      },
+      {
+       "mode": "av",
+       "kind": "silent-video"
+      }
+     ]
+    }
+   },
+   "round": 1,
+   "secs": 10.5
+  },
+  {
+   "key": "u_shotComplete",
+   "name": "completeShotBreakdown",
+   "srcId": "shot-breakdown-1791264825069",
+   "第一次之前（节点/边/历史）": [
+    11,
+    12,
+    1
+   ],
+   "第一次之后（节点/边/历史）": [
+    16,
+    17,
+    2
+   ],
+   "重新选中之后（节点/边/历史）": [
+    16,
+    17,
+    2
+   ],
+   "第二下之后（节点/边/历史）": [
+    16,
+    17,
+    2
+   ],
+   "★ 第一下建了东西": true,
+   "★ 重新选中**没改**任何东西": true,
+   "入口（第一次之前）": {
+    "attemptChips": [],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [
+     {
+      "disabled": false,
+      "text": "开始拉片"
+     }
+    ],
+    "contextMenu": [],
+    "shotNodes": 1,
+    "nodeCount": 11
+   },
+   "入口（重新选中之后）": {
+    "attemptChips": [],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [
+     {
+      "disabled": true,
+      "text": "拉片完成"
+     }
+    ],
+    "contextMenu": [],
+    "shotNodes": 1,
+    "nodeCount": 16
+   },
+   "入口（第二下之后）": {
+    "attemptChips": [],
+    "breakdown": [],
+    "continuation": [],
+    "audioTriggers": [],
+    "audioModes": [],
+    "subtitleTriggers": [],
+    "shotStart": [
+     {
+      "disabled": true,
+      "text": "拉片完成"
+     }
+    ],
+    "contextMenu": [],
+    "shotNodes": 1,
+    "nodeCount": 16
+   },
+   "UI 第二下": {
+    "outcome": "★ 点不动",
+    "error": "TimeoutError: Page.click: Timeout 25000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-shot-breakdown-start]\")\n  -     - locator resolved to <button disabled type=\"button\" data-shot-breakdown-st"
+   },
+   "★ UI 第二下点不动": true,
+   "★ 第二下建了东西": false,
+   "★ 第二下历史 +1": false,
+   "★ 第二下的可见反馈变化": {},
+   "round": 1,
+   "secs": 33.3
+  }
+ ],
+ "census": {}
+}

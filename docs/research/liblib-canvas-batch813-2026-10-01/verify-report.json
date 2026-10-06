@@ -1,0 +1,1127 @@
+{
+ "batch": 813,
+ "totals": {
+  "passed": 6,
+  "total": 6
+ },
+ "checks": [
+  {
+   "id": "S1:★★★ 阳性对照：第一下建了东西，且「**重新选中**」本身**没改任何东西**",
+   "why": "★★★ 「重新选中没改任何东西」这条不可省 ⟹ 否则「第二下建出来的节点」可能其实是**选中动作**带来的，而不是第二次触发带来的；★ 判据盯的是节点 id 集合与边数（探针侧已逐位记录）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "第一次之前": [
+      10,
+      8,
+      0
+     ],
+     "第一次之后": [
+      11,
+      9,
+      1
+     ],
+     "重新选中之后": [
+      11,
+      9,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "第一次之前": [
+      10,
+      8,
+      0
+     ],
+     "第一次之后": [
+      12,
+      10,
+      1
+     ],
+     "重新选中之后": [
+      12,
+      10,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "第一次之前": [
+      10,
+      11,
+      0
+     ],
+     "第一次之后": [
+      11,
+      12,
+      1
+     ],
+     "重新选中之后": [
+      11,
+      12,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "第一次之前": [
+      10,
+      11,
+      0
+     ],
+     "第一次之后": [
+      11,
+      12,
+      1
+     ],
+     "重新选中之后": [
+      11,
+      12,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "第一次之前": [
+      10,
+      11,
+      0
+     ],
+     "第一次之后": [
+      11,
+      12,
+      1
+     ],
+     "重新选中之后": [
+      11,
+      12,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "第一次之前": [
+      10,
+      11,
+      0
+     ],
+     "第一次之后": [
+      12,
+      13,
+      1
+     ],
+     "重新选中之后": [
+      12,
+      13,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "第一次之前": [
+      11,
+      12,
+      1
+     ],
+     "第一次之后": [
+      16,
+      17,
+      2
+     ],
+     "重新选中之后": [
+      16,
+      17,
+      2
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "第一次之前": [
+      10,
+      8,
+      0
+     ],
+     "第一次之后": [
+      11,
+      9,
+      1
+     ],
+     "重新选中之后": [
+      11,
+      9,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "第一次之前": [
+      10,
+      8,
+      0
+     ],
+     "第一次之后": [
+      12,
+      10,
+      1
+     ],
+     "重新选中之后": [
+      12,
+      10,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "第一次之前": [
+      10,
+      11,
+      0
+     ],
+     "第一次之后": [
+      11,
+      12,
+      1
+     ],
+     "重新选中之后": [
+      11,
+      12,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "第一次之前": [
+      10,
+      11,
+      0
+     ],
+     "第一次之后": [
+      11,
+      12,
+      1
+     ],
+     "重新选中之后": [
+      11,
+      12,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "第一次之前": [
+      10,
+      11,
+      0
+     ],
+     "第一次之后": [
+      11,
+      12,
+      1
+     ],
+     "重新选中之后": [
+      11,
+      12,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "第一次之前": [
+      10,
+      11,
+      0
+     ],
+     "第一次之后": [
+      12,
+      13,
+      1
+     ],
+     "重新选中之后": [
+      12,
+      13,
+      1
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "第一次之前": [
+      11,
+      12,
+      1
+     ],
+     "第一次之后": [
+      16,
+      17,
+      2
+     ],
+     "重新选中之后": [
+      16,
+      17,
+      2
+     ],
+     "★ 第一下建了东西": true,
+     "★ 重新选中**没改**任何东西": true,
+     "★ 两件同时": true
+    }
+   ]
+  },
+  {
+   "id": "S2:★★★ 重新选中源节点之后，**入口回来了**",
+   "why": "★★★ 这条直接推翻 812 的推理：812 看到的是「入口消失」，而那只是**选区迁到新节点**的暂时结果 ⟹ ★ **「条件渲染的入口不见了」不等于「这条路走不到」** —— 重新选中原节点它就回来了（806 那条纪律要这么用：记两个状态，别只记动作后）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "逐帧拉片": [],
+     "智能续写": [],
+     "音视频触发器": false,
+     "去字幕触发器": false,
+     "attempt 芯片": 3,
+     "拉片按钮": [],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "逐帧拉片": [],
+     "智能续写": [],
+     "音视频触发器": false,
+     "去字幕触发器": false,
+     "attempt 芯片": 3,
+     "拉片按钮": [],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "逐帧拉片": [
+      {
+       "txt": "逐帧拉片",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "智能续写": [
+      {
+       "txt": "智能续写",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "音视频触发器": true,
+     "去字幕触发器": true,
+     "attempt 芯片": 3,
+     "拉片按钮": [
+      [
+       false,
+       "开始拉片"
+      ]
+     ],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "逐帧拉片": [
+      {
+       "txt": "逐帧拉片",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "智能续写": [
+      {
+       "txt": "智能续写",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "音视频触发器": true,
+     "去字幕触发器": true,
+     "attempt 芯片": 3,
+     "拉片按钮": [],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "逐帧拉片": [
+      {
+       "txt": "逐帧拉片",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "智能续写": [
+      {
+       "txt": "智能续写",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "音视频触发器": true,
+     "去字幕触发器": true,
+     "attempt 芯片": 3,
+     "拉片按钮": [],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "逐帧拉片": [
+      {
+       "txt": "逐帧拉片",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "智能续写": [
+      {
+       "txt": "智能续写",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "音视频触发器": true,
+     "去字幕触发器": true,
+     "attempt 芯片": 3,
+     "拉片按钮": [],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "逐帧拉片": [],
+     "智能续写": [],
+     "音视频触发器": false,
+     "去字幕触发器": false,
+     "attempt 芯片": 0,
+     "拉片按钮": [
+      [
+       true,
+       "拉片完成"
+      ]
+     ],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": false
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "逐帧拉片": [],
+     "智能续写": [],
+     "音视频触发器": false,
+     "去字幕触发器": false,
+     "attempt 芯片": 3,
+     "拉片按钮": [],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "逐帧拉片": [],
+     "智能续写": [],
+     "音视频触发器": false,
+     "去字幕触发器": false,
+     "attempt 芯片": 3,
+     "拉片按钮": [],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "逐帧拉片": [
+      {
+       "txt": "逐帧拉片",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "智能续写": [
+      {
+       "txt": "智能续写",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "音视频触发器": true,
+     "去字幕触发器": true,
+     "attempt 芯片": 3,
+     "拉片按钮": [
+      [
+       false,
+       "开始拉片"
+      ]
+     ],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "逐帧拉片": [
+      {
+       "txt": "逐帧拉片",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "智能续写": [
+      {
+       "txt": "智能续写",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "音视频触发器": true,
+     "去字幕触发器": true,
+     "attempt 芯片": 3,
+     "拉片按钮": [],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "逐帧拉片": [
+      {
+       "txt": "逐帧拉片",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "智能续写": [
+      {
+       "txt": "智能续写",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "音视频触发器": true,
+     "去字幕触发器": true,
+     "attempt 芯片": 3,
+     "拉片按钮": [],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "逐帧拉片": [
+      {
+       "txt": "逐帧拉片",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "智能续写": [
+      {
+       "txt": "智能续写",
+       "disabled": false,
+       "pressed": null
+      }
+     ],
+     "音视频触发器": true,
+     "去字幕触发器": true,
+     "attempt 芯片": 3,
+     "拉片按钮": [],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": true
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "逐帧拉片": [],
+     "智能续写": [],
+     "音视频触发器": false,
+     "去字幕触发器": false,
+     "attempt 芯片": 0,
+     "拉片按钮": [
+      [
+       true,
+       "拉片完成"
+      ]
+     ],
+     "★ 入口回来了": true,
+     "★ 回来且**可点**": false
+    }
+   ]
+  },
+  {
+   "id": "S3:★★★ 第二下的结局落在三态之内（拦住 / 没拦 / 空记录）",
+   "why": "★★★ 与 812 用**同一套三态** ⟹ 这样两批可以对照：812 测的是「紧接着点」，813 测的是「重新选中后点」；★ 本批**只报事实**，不判「不防重」是对是错",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "第一下之后": [
+      11,
+      9,
+      1
+     ],
+     "第二下之后": [
+      11,
+      9,
+      2
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "★ 空记录（没建东西但历史 +1）",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "第一下之后": [
+      12,
+      10,
+      1
+     ],
+     "第二下之后": [
+      12,
+      10,
+      2
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "★ 空记录（没建东西但历史 +1）",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "第一下之后": [
+      11,
+      12,
+      1
+     ],
+     "第二下之后": [
+      12,
+      13,
+      2
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "完全没拦（又建了一遍）",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "第一下之后": [
+      11,
+      12,
+      1
+     ],
+     "第二下之后": [
+      12,
+      13,
+      2
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "完全没拦（又建了一遍）",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "第一下之后": [
+      11,
+      12,
+      1
+     ],
+     "第二下之后": [
+      11,
+      12,
+      1
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "被守卫拦住",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "第一下之后": [
+      12,
+      13,
+      1
+     ],
+     "第二下之后": [
+      14,
+      15,
+      2
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "完全没拦（又建了一遍）",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "第一下之后": [
+      16,
+      17,
+      2
+     ],
+     "第二下之后": [
+      16,
+      17,
+      2
+     ],
+     "UI 第二下": "★ 点不动",
+     "★ 结局": "被守卫拦住",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "第一下之后": [
+      11,
+      9,
+      1
+     ],
+     "第二下之后": [
+      11,
+      9,
+      2
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "★ 空记录（没建东西但历史 +1）",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "第一下之后": [
+      12,
+      10,
+      1
+     ],
+     "第二下之后": [
+      12,
+      10,
+      2
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "★ 空记录（没建东西但历史 +1）",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "第一下之后": [
+      11,
+      12,
+      1
+     ],
+     "第二下之后": [
+      12,
+      13,
+      2
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "完全没拦（又建了一遍）",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "第一下之后": [
+      11,
+      12,
+      1
+     ],
+     "第二下之后": [
+      12,
+      13,
+      2
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "完全没拦（又建了一遍）",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "第一下之后": [
+      11,
+      12,
+      1
+     ],
+     "第二下之后": [
+      11,
+      12,
+      1
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "被守卫拦住",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "第一下之后": [
+      12,
+      13,
+      1
+     ],
+     "第二下之后": [
+      14,
+      15,
+      2
+     ],
+     "UI 第二下": "clicked",
+     "★ 结局": "完全没拦（又建了一遍）",
+     "★ 落在三态之内": true
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "第一下之后": [
+      16,
+      17,
+      2
+     ],
+     "第二下之后": [
+      16,
+      17,
+      2
+     ],
+     "UI 第二下": "★ 点不动",
+     "★ 结局": "被守卫拦住",
+     "★ 落在三态之内": true
+    }
+   ]
+  },
+  {
+   "id": "S4:★★★ 「重新选中后再点」在**可达路径**上建出了**重复产物**的动作清单",
+   "why": "★★★ 这是本批**推翻 812 结论**的那条：812 写「用户走不到」，实测**走得到**、而且真的建出了第二份；★ 判据要求每条臂的 Δ 落在 {建出第二份 / 空记录 / 被拦住} 三者之一，并把「建出第二份」的那几条**显式列出来**（清单本身就是交付物）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "动作": "u_firstFrame",
+     "第二下的节点 Δ": 0,
+     "第二下的边 Δ": 0,
+     "★ 建出了第二份": false,
+     "★ 或只是塞了空记录": true,
+     "★ 或被拦住了": false
+    },
+    {
+     "round": 0,
+     "动作": "u_firstLast",
+     "第二下的节点 Δ": 0,
+     "第二下的边 Δ": 0,
+     "★ 建出了第二份": false,
+     "★ 或只是塞了空记录": true,
+     "★ 或被拦住了": false
+    },
+    {
+     "round": 0,
+     "动作": "u_breakdown",
+     "第二下的节点 Δ": 1,
+     "第二下的边 Δ": 1,
+     "★ 建出了第二份": true,
+     "★ 或只是塞了空记录": false,
+     "★ 或被拦住了": false
+    },
+    {
+     "round": 0,
+     "动作": "u_continuation",
+     "第二下的节点 Δ": 1,
+     "第二下的边 Δ": 1,
+     "★ 建出了第二份": true,
+     "★ 或只是塞了空记录": false,
+     "★ 或被拦住了": false
+    },
+    {
+     "round": 0,
+     "动作": "u_subtitle",
+     "第二下的节点 Δ": 0,
+     "第二下的边 Δ": 0,
+     "★ 建出了第二份": false,
+     "★ 或只是塞了空记录": false,
+     "★ 或被拦住了": true
+    },
+    {
+     "round": 0,
+     "动作": "u_audio",
+     "第二下的节点 Δ": 2,
+     "第二下的边 Δ": 2,
+     "★ 建出了第二份": true,
+     "★ 或只是塞了空记录": false,
+     "★ 或被拦住了": false
+    },
+    {
+     "round": 0,
+     "动作": "u_shotComplete",
+     "第二下的节点 Δ": 0,
+     "第二下的边 Δ": 0,
+     "★ 建出了第二份": false,
+     "★ 或只是塞了空记录": false,
+     "★ 或被拦住了": true
+    },
+    {
+     "round": 1,
+     "动作": "u_firstFrame",
+     "第二下的节点 Δ": 0,
+     "第二下的边 Δ": 0,
+     "★ 建出了第二份": false,
+     "★ 或只是塞了空记录": true,
+     "★ 或被拦住了": false
+    },
+    {
+     "round": 1,
+     "动作": "u_firstLast",
+     "第二下的节点 Δ": 0,
+     "第二下的边 Δ": 0,
+     "★ 建出了第二份": false,
+     "★ 或只是塞了空记录": true,
+     "★ 或被拦住了": false
+    },
+    {
+     "round": 1,
+     "动作": "u_breakdown",
+     "第二下的节点 Δ": 1,
+     "第二下的边 Δ": 1,
+     "★ 建出了第二份": true,
+     "★ 或只是塞了空记录": false,
+     "★ 或被拦住了": false
+    },
+    {
+     "round": 1,
+     "动作": "u_continuation",
+     "第二下的节点 Δ": 1,
+     "第二下的边 Δ": 1,
+     "★ 建出了第二份": true,
+     "★ 或只是塞了空记录": false,
+     "★ 或被拦住了": false
+    },
+    {
+     "round": 1,
+     "动作": "u_subtitle",
+     "第二下的节点 Δ": 0,
+     "第二下的边 Δ": 0,
+     "★ 建出了第二份": false,
+     "★ 或只是塞了空记录": false,
+     "★ 或被拦住了": true
+    },
+    {
+     "round": 1,
+     "动作": "u_audio",
+     "第二下的节点 Δ": 2,
+     "第二下的边 Δ": 2,
+     "★ 建出了第二份": true,
+     "★ 或只是塞了空记录": false,
+     "★ 或被拦住了": false
+    },
+    {
+     "round": 1,
+     "动作": "u_shotComplete",
+     "第二下的节点 Δ": 0,
+     "第二下的边 Δ": 0,
+     "★ 建出了第二份": false,
+     "★ 或只是塞了空记录": false,
+     "★ 或被拦住了": true
+    }
+   ]
+  },
+  {
+   "id": "S5:★★ 静态普查：那三个动作**各只有一个调用点**",
+   "why": "★★ 这条是 813 的前提：812 说「用户走不到」时，我需要先知道**是不是根本没有别的入口** ⟹ 普查结论是「没有第二条入口，但**同一条入口可以被走第二次**」；★ 调用点数由验收器**自己逐文件数**（不抄探针的输出）；★ ★ **按「动作 + 区分参数」数**，不是按动作名 —— 第一版按动作名数，`addDerivedNode` 数出 **4 个**（`ImageNode.tsx:142/162/187` 那三个是**旋转／全景／派生**，跟逐帧拉片不是同一个动作），⟹ 那是**我自己造的假红**",
+   "ok": true,
+   "evidence": [
+    {
+     "UI 动作": "逐帧拉片 addDerivedNode(shot-breakdown)",
+     "调用点数": 1,
+     "位置": [
+      "src/components/nodes/VideoNode.tsx:201"
+     ],
+     "★ 只有一个": true
+    },
+    {
+     "UI 动作": "智能续写 createVideoContinuation",
+     "调用点数": 1,
+     "位置": [
+      "src/components/nodes/VideoNode.tsx:219"
+     ],
+     "★ 只有一个": true
+    },
+    {
+     "UI 动作": "音视频分离 createAudioSplit",
+     "调用点数": 1,
+     "位置": [
+      "src/components/nodes/VideoNode.tsx:257"
+     ],
+     "★ 只有一个": true
+    }
+   ]
+  },
+  {
+   "id": "S6:★★ 静态锚点：两个**防重守卫**仍在实现里（`rfind` 取实现）",
+   "why": "★ 静态证据**不能**替代 S3／S4 的行为证据（794 的硬规矩）；它的作用是把 S3 里「被拦住」的那两条**归因**到具体代码；★ 一律 `rfind`",
+   "ok": true,
+   "evidence": {
+    "指纹去重位置": 87726,
+    "「existingTarget」在段内": true,
+    "拉片守卫位置": 98553
+   }
+  }
+ ],
+ "negatives": [
+  {
+   "name": "N1",
+   "why": "★ 伪造「重新选中改了东西」⟹ S1 翻红",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S1",
+   "flipped": [
+    "S1:★★★ 阳性对照：第一下建了东西，且「**重新选中**」本身**没改任何东西**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N2",
+   "why": "★ 伪造「入口没回来」⟹ S2 翻红（这正是 812 当时的观察）",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S2",
+   "flipped": [
+    "S2:★★★ 重新选中源节点之后，**入口回来了**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N3",
+   "why": "★ 伪造「可达路径上建不出第二份」⟹ S3／S4 翻红",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S4",
+   "flipped": [
+    "S4:★★★ 「重新选中后再点」在**可达路径**上建出了**重复产物**的动作清单"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N4",
+   "why": "伪造「第一下压根没发生」⟹ S1 翻红",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "S1",
+   "flipped": [
+    "S1:★★★ 阳性对照：第一下建了东西，且「**重新选中**」本身**没改任何东西**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N5",
+   "why": "反向对照：只动 `secs` 这个无关字段 ⟹ 期望不翻",
+   "evidence": {
+    "hit": 14
+   },
+   "expectFlipped": "（反向对照：期望不翻）",
+   "flipped": [],
+   "ok": true
+  }
+ ],
+ "negativesOk": 5,
+ "negativesTotal": 5,
+ "callSites": {
+  "_arg_around": {
+   "src/components/nodes/VideoNode.tsx:201": " addDerivedNode(id, \"shot-breakdown\", {\n      title: `逐帧拉片 · ${filename}`,\n      // Batch 455 (VR-021 Slice E): graph-de",
+   "src/components/nodes/ImageNode.tsx:142": " addDerivedNode(id, \"image\", {\n        filename: \"旋转与镜像\",\n        width,\n        height,\n        imageUrl,\n        water",
+   "src/components/nodes/ImageNode.tsx:162": " addDerivedNode(\n        id,\n        \"image\",\n        {\n          filename: \"720°全景图\",\n          width: 700,\n          h",
+   "src/components/nodes/ImageNode.tsx:187": " addDerivedNode(id, \"image\", {\n      filename: derived.filename,\n      width,\n      height,\n      imageUrl,\n      waterm",
+   "src/components/nodes/VideoNode.tsx:219": " createVideoContinuation(id, startSeconds, endSeconds);\n  };\n\n  const confirmSubtitleErase = (\n    mode: SubtitleEraseMo",
+   "src/components/nodes/VideoNode.tsx:257": " createAudioSplit(id, mode);\n        setAudioSplittingMode(null);\n      },\n    });\n  };\n\n  const openDepthMotionCapture "
+  },
+  "addDerivedNode": [
+   "src/components/nodes/VideoNode.tsx:201",
+   "src/components/nodes/ImageNode.tsx:142",
+   "src/components/nodes/ImageNode.tsx:162",
+   "src/components/nodes/ImageNode.tsx:187"
+  ],
+  "createVideoContinuation": [
+   "src/components/nodes/VideoNode.tsx:219"
+  ],
+  "createAudioSplit": [
+   "src/components/nodes/VideoNode.tsx:257"
+  ],
+  "_arg_shot-breakdown": [
+   "src/components/nodes/VideoNode.tsx:201"
+  ],
+  "_arg_image": [
+   "src/components/nodes/ImageNode.tsx:142",
+   "src/components/nodes/ImageNode.tsx:162",
+   "src/components/nodes/ImageNode.tsx:187"
+  ]
+ },
+ "rawSha": "467632358ce83346294a63a7607b3d6fcce7ecfa0aa8c499910c46a86533b5c7"
+}
