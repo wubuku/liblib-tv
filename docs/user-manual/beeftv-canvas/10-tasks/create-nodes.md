@@ -91,6 +91,10 @@
 
 ![生成历史弹窗：搜索框与空态](../screenshots/28-generation-history-modal.png)
 
+> **⚠️ v1.7.3 起 `28-generation-history-modal.png` 这一张图偏旧**：图上的「从生成历史选择」在 v1.7.3 的源码里**已经找不到那一行**——
+> **所以如果你跑的是 v1.7.3 或更新，界面上看不到这几个字、不是你搞错了。**
+> （本图拍于取证基线版本；2026-10-07 逐行比对上游 `origin/main` 实测。**图与你的版本不一致时请一律以界面为准**，同一份实测清单见 [参考：快捷键全表、路由与端点](../20-reference.md) 的「已经对不上的地方」。）
+
 ![添加节点菜单（列表形态，右上角搜索）](../screenshots/03-add-node-menu.png)
 
 ![搜索画布节点 modal：最近编辑条目含缩略图与时间戳](../screenshots/25-search-modal.png)
