@@ -6,10 +6,10 @@
  "rule3": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「探针跑成功了」不等于「产物被刷新了」—— 只能靠重跑后比对字节、或看 mtime 变没变来判，不许看退出码**",
  "pen_is_the_book": {
   "n_zero_coupling_head": 810,
-  "n_zero_coupling_now": 816,
+  "n_zero_coupling_now": 820,
   "n_positive_present_head": 6451,
-  "n_positive_present_now": 6607,
-  "n_audit_2015_lines": 1536,
+  "n_positive_present_now": 6630,
+  "n_audit_2015_lines": 1600,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **被测的账和记账的笔是同一份文件时，往笔上多写一句，被测的那些账就跟着重算** —— 1005 普查的是 `_ausrc`，而本批往 audit 里塞了判据 ⇒ ⇒ ⇒ ⇒ ⇒ 所以它的读数必然跟着变"
  },
  "discovery": {
@@ -305,8 +305,8 @@
    "probe": "scripts/jimeng_probe1019_behavior_harness.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 7548,
-   "n_bytes_fresh": 7548,
+   "n_bytes": 8980,
+   "n_bytes_fresh": 8980,
    "state": "reproduced",
    "tail": [
     "P1..P8 = [True, True, True, True, True, True, True, True]",
@@ -370,8 +370,8 @@
    "probe": "scripts/jimeng_probe1008_golden_freshness.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 1211,
-   "n_bytes_fresh": 1211,
+   "n_bytes": 1215,
+   "n_bytes_fresh": 1215,
    "state": "reproduced",
    "tail": [
     "P1..P7 = [False, False, False, True, False, True, False]",
@@ -448,8 +448,8 @@
    "probe": "scripts/jimeng_probe1005_zero_coupling_census.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 125401,
-   "n_bytes_fresh": 125401,
+   "n_bytes": 126051,
+   "n_bytes_fresh": 126051,
    "state": "reproduced",
    "tail": [
     "P1..P5 = [True, False, True, True, True]",
@@ -576,9 +576,9 @@
   "35": "1014 普查口径下全部账里「不可自证」的总数",
   "9": "1014 普查口径下「可自证」的总数",
   "810": "1005 golden 在 git HEAD 上的 `n_zero_coupling`",
-  "816": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
+  "820": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
   "6451": "1005 golden 在 git HEAD 上的 `n_positive_present`",
-  "6607": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
+  "6630": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
   "4/9": "1015 上一版的不动点漂移比例（已挂【1015 改写横幅】，原文保留）",
   "2/9": "曾观测到的一轮漂移比例（分母 = 认领到的本数）",
   "0/9": "末轮的漂移比例（分母 = 认领到的本数）",

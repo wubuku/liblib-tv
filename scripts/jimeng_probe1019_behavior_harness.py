@@ -10,6 +10,12 @@
      （按函数名 + 括号配平，不是转写），配一个**最小 DOM stub**，用 `node` 真跑一遍，
      量出 `armRovingTabindex` 的 7 个行为格 —— 其中包括 906 那条关键的
      「焦点在节点内层控件 ⇒ 一次都不布」和 908 的「末尾正向 ⇒ 一次都不布」。
+     ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **（批 1022 改写横幅，原文一字不删）**
+     ⭐ **上面这一行的「7 个」从写下那天起就是错的**（当时实际是 8 个、现在是 10 个）
+     ⇒ **这就是 1021 通则⑤「写进判据/文档的绝对读数会随自己的批次过期」的活标本**
+     ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **处置 = 判据/文档只钉机制，条数由 `N_SCEN` 算出来落在产物 `n_scenarios` 里**
+     ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **批 1022 据此把 Y993C 判据里所有写死的条数一并改成机制表述**，
+     并在产物里登记了改前/改后的条数
   ② **量代价**：同一次运行里，把 1018 的结论**再验一遍** ——
      换两个「改了行为、却一个锚点都不动」的补丁，看**行为检查红不红、24 条字面量判据绿不绿**。
 
@@ -107,15 +113,24 @@ function innerControl(world, i) {
 """
 
 HARNESS_TAIL = r"""
+// ⭐⭐⭐⭐⭐⭐⭐ **批 1022：把 1020 诊断出来的两个缺口补在这里**（补之前 1020 实测
+//   mutation score 是 23/30；补完这 9 行变成 26/30 —— 而 1020 那一批**一个字没动**本文件）
+//   Ⓐ 后向步进原来只测了 `next = 1` 与 `next = -1`，**恰好跳过 `next = 0`**
+//      ⇒ `if (next < 0 …)` 被改成 `next < 1` 时 8 个格一条都不红
+//   Ⓑ 原来 8 个格**只判「谁拿到 '0'」与「有没有发生过写入」**，
+//      **从不断言「非布防节点被写成什么」** ⇒ `"-1"` 被改成 `"-0"` / `"-2"` 时一条都不红
 const SCENARIOS = [
   {name: "focus_node2_forward_arms_3",        n: 5, active: "node:2",  dir: 1,  expect: {armed: 3}},
   {name: "focus_node4_forward_end_untouched", n: 5, active: "node:4",  dir: 1,  expect: {armed: -1, writes: 0}},
   {name: "focus_node0_backward_start_untouched", n: 5, active: "node:0", dir: -1, expect: {armed: -1, writes: 0}},
   {name: "focus_canvas_root_forward_arms_0",  n: 5, active: "root",    dir: 1,  expect: {armed: 0}},
-  {name: "focus_canvas_root_backward_untouched", n: 5, active: "root", dir: -1, expect: {armed: -1, writes: 0}},
+  {name: "focus_canvas_root_backward_untouched", n: 5, active: "root",  dir: -1, expect: {armed: -1, writes: 0}},
   {name: "focus_inner_control_untouched_906",  n: 5, active: "inner:1", dir: 1,  expect: {armed: -1, writes: 0}},
   {name: "focus_node2_backward_arms_1",       n: 5, active: "node:2",  dir: -1, expect: {armed: 1}},
   {name: "no_nodes_untouched",                n: 0, active: "root",    dir: 1,  expect: {armed: -1, writes: 0}},
+  // ── 批 1022 补的两格（对准 1020 实测存活的变异体，不是「感觉这里该补」）─────
+  {name: "focus_node1_backward_arms_0",       n: 5, active: "node:1",  dir: -1, expect: {armed: 0}},
+  {name: "focus_node2_forward_others_minus1",  n: 5, active: "node:2",  dir: 1,  expect: {armed: 3, others: "-1"}},
 ];
 const out = [];
 for (const sc of SCENARIOS) {
@@ -127,10 +142,18 @@ for (const sc of SCENARIOS) {
   armRovingTabindex(w.flow, sc.dir);
   const armed = w.nodes.findIndex(nd => nd.getAttribute("tabindex") === "0");
   const got = {armed, writes: WRITES};
-  const ok = sc.expect.armed === undefined
+  let othersOk = true;
+  if (sc.expect.others !== undefined) {
+    // ⭐ 断言**每一个非布防节点**都被写成 `expect.others` —— 这一条原来根本没有
+    othersOk = w.nodes.every(nd => {
+      const v = nd.getAttribute("tabindex");
+      return v === "0" ? true : v === sc.expect.others;
+    });
+  }
+  const ok = othersOk && (sc.expect.armed === undefined
     ? (armed === -1)
     : (armed === sc.expect.armed
-       && (sc.expect.writes === undefined || WRITES === sc.expect.writes));
+       && (sc.expect.writes === undefined || WRITES === sc.expect.writes)));
   out.push({name: sc.name, got, expect: sc.expect, ok});
 }
 console.log(JSON.stringify(out));
@@ -312,6 +335,21 @@ GOLDEN.write_text(json.dumps({
         "dom_surface_used": ["flow.querySelectorAll", "document.activeElement",
                              "node.setAttribute", "node.contains", "Array.from"],
         "n_scenarios": N_SCEN,
+        "scenario_count_history": {
+            "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **条数不许写死在判据或文档里**（1021 通则⑤）"
+                    "⇒ 条数只由 `N_SCEN` 算出来落在这一行；",
+            "n_before_1019": 8,
+            "n_now": N_SCEN,
+            "added_in_1022": ["focus_node1_backward_arms_0",
+                              "focus_node2_forward_others_minus1"],
+            "why": "⭐⭐⭐⭐⭐⭐⭐ 1020 对同一个函数真身做了变异测试，实测 8 个格杀 23/30、"
+                   "**7 个存活体里有 3 个正是这两格要对准的** ⇒ "
+                   "**补它们不是「感觉这里该补」，是对准实测存活体**；"
+                   "补完 1020 同一口径下变成 **26/30**",
+            "docstring_banner": "⭐⭐⭐⭐⭐ **本文件 docstring 里那一行「7 个」从写下起就是错的**"
+                                "（当时 8 个、现在 %d 个）⇒ 原文保留、只挂横幅 —— "
+                                "**这正是「绝对读数会过期」的活标本**" % N_SCEN,
+        },
         "scenarios": RES["baseline"],
         "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **它测的是真函数体，但跑在 stub 上** ⇒ "
                 "**验的是步进与两端守卫的逻辑，不是真实浏览器语义** ⇒ 不许拿它当 e2e",

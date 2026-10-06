@@ -15609,13 +15609,13 @@ def main() -> int:
     # ══ Y993C. 批 1019 第一次动手改：把一条判据从「字面量存在性」升级成「真行为验证」
     #    两个「0 锚点」的补丁：行为检查红了，而读 _wsrc 的 7 条判据 7/7 全绿
     print("— Y993C. 批 1019 行为 harness：抽函数真身 + 最小 DOM stub + node 真跑；"
-          "8 个行为格基线全绿；两个 0 锚点补丁各被行为检查抓住（2 条 / 1 条），"
+          "行为格基线全绿；两个 0 锚点补丁各被行为检查抓住，"
           "而 7 条字面量判据始终 7/7 全绿")
 
     check("Y993C.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立 —— "
           "本批第一次在装置上「动手改」：把一条判据从「字面量存在性」升级成「真行为验证」。** "
           "按函数名 + 括号配平**抽出函数真身**（不是转写）+ 最小 DOM stub + node 真跑 ⇒ "
-          "8 个行为格基线 8/8 全绿",
+          "行为格基线全绿（条数由产物给出，判据不写死 —— 1021 通则⑤）",
           '"p1_first_real_upgrade_2019_"' in _ausrc
           and '"behavior_harness_2019"' in _ausrc
           and 'def extract_fn(src, name):' in _p1019
@@ -15682,7 +15682,8 @@ def main() -> int:
 
     check("Y993C.7 ⭐⭐⭐⭐⭐ **P7：口径边界** —— 测的是**真函数体**但跑在 **stub** 上 ⇒ "
           "验的是步进与两端守卫的逻辑、**不是真实浏览器语义、不许当 e2e**；"
-          "只跑了 1 个函数 / 8 个场景 ⇒ **不把「一条判据升级了」说成「原型被验过了」**；"
+          "只跑了 1 个函数、一小批场景（条数见产物）⇒ "
+          "**不把「一条判据升级了」说成「原型被验过了」**；"
           "反向用例**只在内存里改文本，一个字节都不动仓里的原型文件**",
           '"p7_scope_2019_"' in _ausrc
           and '"dom_surface_used"' in _p1019
@@ -15879,6 +15880,56 @@ def main() -> int:
           and '"p6_scope_2021_"' in _ausrc
           and '"p7_offline_2021_"' in _ausrc
           and '"p8_golden_2021_"' in _ausrc)
+
+
+    # ══ BB993F. 批 1022 把 1020 诊断出来的缺口真正补上，并让 1021 通则⑤自己兑现一遍
+    print("— BB993F. 批 1022 把 1020 诊断出的两格落进 1019（各对准一个实测存活体）；"
+          "并把 Y993C 判据里写死的条数改成机制表述")
+    check("BB993F.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P1 成立 —— 本批把 1020 诊断出来的缺口真正补上。** 两格落进 "
+          "`jimeng_probe1019_behavior_harness.py`：Ⓐ `focus_node1_backward_arms_0` 对准 "
+          "`next < 1` 那个存活体；Ⓑ `focus_node2_forward_others_minus1` 对准 `\"-1\"` 的两个存活体；"
+          "⭐ **补完基线仍全绿**，**补丁 Ⓐ 被抓的行为格从 2 条增到 4 条**",
+          'focus_node1_backward_arms_0' in _p1019
+          and 'focus_node2_forward_others_minus1' in _p1019
+          and 'othersOk = w.nodes.every(function(nd)' not in _p1019
+          and 'othersOk = w.nodes.every(nd =>' in _p1019
+          and '批 1022 补的两格（对准 1020 实测存活的变异体' in _p1019
+          and '**⇒⇒⇒⇒⇒ 「补哪一格」必须有实测存活体撑着' in _ausrc
+          and '"p1_the_fix_actually_landed_2022_"' in _ausrc
+          and '"p2_not_handed_2022_"' in _ausrc)
+    check("BB993F.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P2 —— 而 1019 docstring 里那一行「7 个行为格」从写下那天起就是错的** "
+          "⇒⇒⇒⇒⇒ **原文一字不删、只挂改写横幅；条数由 `N_SCEN` 算出来落在产物 "
+          "`n_scenarios` / `scenario_count_history` 里** ⇒⇒⇒⇒⇒⇒⇒ "
+          "**并把 Y993C 判据与 audit 散文里所有写死的条数一并改成机制表述**"
+          "（**1021 通则⑤在它自己身上兑现了一遍**）",
+          'scenario_count_history' in _p1019
+          and '"n_before_1019": 8' in _p1019
+          and '批 1022 改写横幅，原文一字不删' in _p1019
+          and '**（批 1022 改写横幅：原文写的条数已被改成机制表述' in _ausrc
+          and '一小批场景（条数见产物）**' in _ausrc
+          and '"p3_absolute_readings_expire_here_2022_"' in _ausrc)
+    check("BB993F.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P3 —— 哪些数字一个字没动、为什么**：`Z993D` 里引用「1019 那 8 条 / 8/8 全绿」的话，"
+          "**是 1020 当时对 1019 那个状态的实测记录、今天仍然是真的** ⇒ "
+          "**⇒ 「撤销只挂横幅」在这里的正确用法是「那几条别动」**；"
+          "唯一加横幅的是「当时没敢动 1019」那一条 —— **本批真的动了 ⇒ 它的处境变了**",
+          '"p4_what_was_not_changed_2022_"' in _ausrc
+          and '「撤销只挂横幅、原文一字不删」在这里的正确用法是' in _ausrc
+          and '**批 1022 已经把那两格真的落进 1019 了 ⇒ 上面这句的处境变了' in _ausrc
+          and '"p5_scope_2022_"' in _ausrc
+          and '"p6_offline_2022_"' in _ausrc
+          and '"p7_golden_2022_"' in _ausrc)
+    check("BB993F.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **口径边界**："
+          "**只动了 1019 那份 harness 的场景表与判分函数**，**没改被测函数真身、没改 stub、"
+          "没改 1020 的任何一行** ⇒ **⇒⇒⇒⇒⇒ 1020 的全部读数在今天依然成立**"
+          "（它量的是「1020 当时的 1019」，而那正是它被要求量的）；"
+          "**补的格在基线上先跑一遍确认全绿再提交**；**纯离线、零浏览器**",
+          '**没有**改被测的函数真身' in _ausrc
+          and '**⇒⇒⇒⇒⇒⇒ 1020 的全部读数在今天依然成立**' in _ausrc
+          and '补的格**在基线上先跑一遍确认全绿' in _ausrc
+          and 'atexit.register(shutil.rmtree, str(TMPDIR), ignore_errors=True)' in _p1019)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

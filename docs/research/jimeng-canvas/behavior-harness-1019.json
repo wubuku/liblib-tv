@@ -18,7 +18,18 @@
       "node.contains",
       "Array.from"
     ],
-    "n_scenarios": 8,
+    "n_scenarios": 10,
+    "scenario_count_history": {
+      "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **条数不许写死在判据或文档里**（1021 通则⑤）⇒ 条数只由 `N_SCEN` 算出来落在这一行；",
+      "n_before_1019": 8,
+      "n_now": 10,
+      "added_in_1022": [
+        "focus_node1_backward_arms_0",
+        "focus_node2_forward_others_minus1"
+      ],
+      "why": "⭐⭐⭐⭐⭐⭐⭐ 1020 对同一个函数真身做了变异测试，实测 8 个格杀 23/30、**7 个存活体里有 3 个正是这两格要对准的** ⇒ **补它们不是「感觉这里该补」，是对准实测存活体**；补完 1020 同一口径下变成 **26/30**",
+      "docstring_banner": "⭐⭐⭐⭐⭐ **本文件 docstring 里那一行「7 个」从写下起就是错的**（当时 8 个、现在 10 个）⇒ 原文保留、只挂横幅 —— **这正是「绝对读数会过期」的活标本**"
+    },
     "scenarios": [
       {
         "name": "focus_node2_forward_arms_3",
@@ -112,6 +123,29 @@
           "writes": 0
         },
         "ok": true
+      },
+      {
+        "name": "focus_node1_backward_arms_0",
+        "got": {
+          "armed": 0,
+          "writes": 5
+        },
+        "expect": {
+          "armed": 0
+        },
+        "ok": true
+      },
+      {
+        "name": "focus_node2_forward_others_minus1",
+        "got": {
+          "armed": 3,
+          "writes": 5
+        },
+        "expect": {
+          "armed": 3,
+          "others": "-1"
+        },
+        "ok": true
       }
     ],
     "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **它测的是真函数体，但跑在 stub 上** ⇒ **验的是步进与两端守卫的逻辑，不是真实浏览器语义** ⇒ 不许拿它当 e2e"
@@ -122,7 +156,9 @@
       "anchors_touched": 0,
       "behavior_failures": [
         "focus_node2_forward_arms_3",
-        "focus_node2_backward_arms_1"
+        "focus_node2_backward_arms_1",
+        "focus_node1_backward_arms_0",
+        "focus_node2_forward_others_minus1"
       ],
       "behavior_catches_it": true
     },
