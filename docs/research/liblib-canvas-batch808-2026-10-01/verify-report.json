@@ -1,0 +1,362 @@
+{
+ "batch": 808,
+ "totals": {
+  "passed": 8,
+  "total": 8
+ },
+ "checks": [
+  {
+   "id": "S1:★★ 删掉一个**带成员的组**：成员**被连坐删除**，但 `Cmd+Z` **能完全撤销**",
+   "why": "★★ 这是「级联删除」这个高风险行为的完整刻画：连坐**确实发生**、Δ **正好是 -(1+成员数)**（不多不少）、而且**能撤销回来**；★ 键盘删除路径（`page.tsx:1376`）**没有任何确认框**——对比「删画布」**有**确认框，所以「组会带走它的成员」这件事**用户事前得不到任何告知**",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "组": "group-1791251738048-7r93ab",
+     "成员": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ],
+     "节点数 Δ": -3,
+     "成员还在吗": {
+      "t-9j2MoccxBj": false,
+      "i-1FQ9tErTcC": false
+     },
+     "undo": {
+      "节点数": 11,
+      "组回来了": true,
+      "★ 成员全回来了": true,
+      "★ 能完全撤销": true
+     },
+     "★ 连坐": true,
+     "★ Δ 正好是 -(1+成员数)": true,
+     "★ 撤销后全回来了": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "组": "group-1791251753396-mcfwvk",
+     "成员": [
+      "t-9j2MoccxBj",
+      "i-1FQ9tErTcC"
+     ],
+     "节点数 Δ": -3,
+     "成员还在吗": {
+      "t-9j2MoccxBj": false,
+      "i-1FQ9tErTcC": false
+     },
+     "undo": {
+      "节点数": 11,
+      "组回来了": true,
+      "★ 成员全回来了": true,
+      "★ 能完全撤销": true
+     },
+     "★ 连坐": true,
+     "★ Δ 正好是 -(1+成员数)": true,
+     "★ 撤销后全回来了": true,
+     "★ 三件同时": true
+    }
+   ]
+  },
+  {
+   "id": "S2:★★ 阳性对照：组还剩成员时，删掉一个成员会让框**收缩贴合剩下的**",
+   "why": "★★ 没有这条，「空组框不变」可能只是「框从来就不变」⟹ ★ 而它同时证明**fit 对非空组是活的**（源码 `kids.length === 0 → continue` 只跳过空组）",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "删掉的成员": "t-9j2MoccxBj",
+     "组还剩几个": 1,
+     "框（删之前）": [
+      722,
+      828
+     ],
+     "框（删之后）": [
+      698,
+      430
+     ],
+     "★ 真的删掉了": true,
+     "★ 框收缩贴合了": true
+    },
+    {
+     "round": 1,
+     "删掉的成员": "t-9j2MoccxBj",
+     "组还剩几个": 1,
+     "框（删之前）": [
+      722,
+      828
+     ],
+     "框（删之后）": [
+      698,
+      430
+     ],
+     "★ 真的删掉了": true,
+     "★ 框收缩贴合了": true
+    }
+   ]
+  },
+  {
+   "id": "S3:★★★ 空组**还在**，框**一个像素都没变**、也没塌成 0",
+   "why": "★★★ 源码侧对应 `fitStoryboardGroupsToChildren` 的「★ 边界 1：`if (kids.length === 0) continue;` 空组不动」；★ 这是 793 待拍板 ②（空组要不要收缩/弱化）的实测读数 —— 现状是**完全不动**，本批只报事实、不判对错",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "空组还在吗": true,
+     "框（还有 1 个成员时）": [
+      698,
+      430
+     ],
+     "框（空组）": [
+      698,
+      430
+     ],
+     "★ 还活着": true,
+     "★ 框一个像素都没变": true,
+     "★ 且框非零": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "空组还在吗": true,
+     "框（还有 1 个成员时）": [
+      698,
+      430
+     ],
+     "框（空组）": [
+      698,
+      430
+     ],
+     "★ 还活着": true,
+     "★ 框一个像素都没变": true,
+     "★ 且框非零": true,
+     "★ 三件同时": true
+    }
+   ]
+  },
+  {
+   "id": "S4:★★★ 空组**仍然渲染连线 handle**（并证明 DOM 的框没在骗人）",
+   "why": "★★★ 这是 793 待拍板 ② 的另一半（「0 成员组的连线 handle 要不要一起去掉」）的实测读数；★★ store 的框与 DOM 的 rect **差一个 zoom**（两个方向比值必须一致，否则说明框真的塌了）⟹ 这一条顺带排除「空组其实没渲染」的误读",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "handleCount": 2,
+     "handles": [
+      {
+       "cls": "react-flow__handle react-flow__handle-left nodrag nopan targ",
+       "type": "target"
+      },
+      {
+       "cls": "react-flow__handle react-flow__handle-right nodrag nopan sou",
+       "type": "source"
+      }
+     ],
+     "DOM rect": {
+      "w": 367,
+      "h": 226
+     },
+     "store 框": [
+      698,
+      430
+     ],
+     "两个方向的比值": [
+      0.5257879656160458,
+      0.5255813953488372
+     ],
+     "比值说明": "两个方向都算出来了",
+     "★ 同一个 zoom 解释两者": true,
+     "★ handle 数 > 0": true,
+     "★ 且每个都能说出类型": true,
+     "★ 三件同时": true
+    },
+    {
+     "round": 1,
+     "handleCount": 2,
+     "handles": [
+      {
+       "cls": "react-flow__handle react-flow__handle-left nodrag nopan targ",
+       "type": "target"
+      },
+      {
+       "cls": "react-flow__handle react-flow__handle-right nodrag nopan sou",
+       "type": "source"
+      }
+     ],
+     "DOM rect": {
+      "w": 367,
+      "h": 226
+     },
+     "store 框": [
+      698,
+      430
+     ],
+     "两个方向的比值": [
+      0.5257879656160458,
+      0.5255813953488372
+     ],
+     "比值说明": "两个方向都算出来了",
+     "★ 同一个 zoom 解释两者": true,
+     "★ handle 数 > 0": true,
+     "★ 且每个都能说出类型": true,
+     "★ 三件同时": true
+    }
+   ]
+  },
+  {
+   "id": "S5:★★ 空组**删得掉**（按 `Delete` 能删掉，不是死路）",
+   "why": "★ 这条是为了排除「空组是个用户清不掉的陷阱」这个猜测；★ 它同时让 S6 的「取消分组静默」有对照 —— 删得掉、但取消分组不作用",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "按 Delete 后节点数": 8,
+     "空组还在吗": false,
+     "★ 删得掉": true
+    },
+    {
+     "round": 1,
+     "按 Delete 后节点数": 8,
+     "空组还在吗": false,
+     "★ 删得掉": true
+    }
+   ]
+  },
+  {
+   "id": "S6:★★ 空组按 `Shift+G`（取消分组）—— 节点数不变、组也还在 ⟹ **静默**",
+   "why": "★★ 源码侧对应 `ungroupSelectedNodes` 的 `if (!group || children.length === 0) return state;`；★ 这是**第三个**同族静默（807 记的第二个：选区含组时按 `G`）；★ 注意它和 S5 是一对：有 S5 才知道「用户其实能删掉它」，所以这条是「缺一条提示」而不是「清不掉」",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "节点数 Δ": 0,
+     "空组还在吗": true,
+     "★ 静默": true
+    },
+    {
+     "round": 1,
+     "节点数 Δ": 0,
+     "空组还在吗": true,
+     "★ 静默": true
+    }
+   ]
+  },
+  {
+   "id": "S7:★★★ 作废闸：右键菜单那条臂**探针没打开菜单** ⟹ 显式作废、不得据此下结论",
+   "why": "★★★ 源码里**确实有** `data-canvas-context-item=\"删除\"`（`CanvasContextMenu.tsx:191`）⟹ 空读数极易被写成「菜单里没有删除项」，那是**错的结论**；★ 按 802 起的「前提不满足的臂显式作废」，把它做成断言",
+   "ok": true,
+   "evidence": [
+    {
+     "round": 0,
+     "menuItems": [],
+     "★ 该臂作废（菜单没打开、没测到东西）": true
+    },
+    {
+     "round": 1,
+     "menuItems": [],
+     "★ 该臂作废（菜单没打开、没测到东西）": true
+    }
+   ]
+  },
+  {
+   "id": "S8:★★ 静态锚点：两条「空就跳过」的边界都在源码里",
+   "why": "★ fit 的 `kids.length === 0 → continue`（空组不动）与 `ungroupSelectedNodes` 的 `children.length === 0 → return state` （取消分组无作用）⟹ S3 与 S6 各有对应的静态侧证据",
+   "ok": true,
+   "evidence": {
+    "fit 的空组跳过": true,
+    "fit 段长": 260,
+    "同名锚点出现次数": 2,
+    "★ 取的是最后一次（实现）": true,
+    "ungroup 的空组返回": true
+   }
+  }
+ ],
+ "negatives": [
+  {
+   "name": "N1 ★★ raw：声称撤销后成员没全回来",
+   "why": "★ 验证 S1 守的不只是「连坐」，还有「**能撤销**」这半句",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S1:★★ 删掉一个**带成员的组**：成员**被连坐删除**，但 `Cmd+Z` **能完全撤销**",
+   "flipped": [
+    "S1:★★ 删掉一个**带成员的组**：成员**被连坐删除**，但 `Cmd+Z` **能完全撤销**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N2 ★★ raw：声称非空组删成员后框没变",
+   "why": "★★ 验证 S2 的阳性对照不是空转",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S2:★★ 阳性对照：组还剩成员时，删掉一个成员会让框**收缩贴合剩下的**",
+   "flipped": [
+    "S2:★★ 阳性对照：组还剩成员时，删掉一个成员会让框**收缩贴合剩下的**"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N3 ★★★ raw：把空组框改成 [0,0] 且声称没变",
+   "why": "★★★ 验证 S3 抓的是「框一个像素都没变、也没塌」",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S3:★★★ 空组**还在**，框**一个像素都没变**、也没塌成 0",
+   "flipped": [
+    "S3:★★★ 空组**还在**，框**一个像素都没变**、也没塌成 0",
+    "S4:★★★ 空组**仍然渲染连线 handle**（并证明 DOM 的框没在骗人）"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N4 ★★★ raw：声称空组没有 handle 了",
+   "why": "★★★ 验证 S4 抓的是「空组仍渲染 handle」这条读数",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S4:★★★ 空组**仍然渲染连线 handle**（并证明 DOM 的框没在骗人）",
+   "flipped": [
+    "S4:★★★ 空组**仍然渲染连线 handle**（并证明 DOM 的框没在骗人）"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N5 ★★ raw：声称空组删不掉",
+   "why": "★ 验证 S5 守的是「不是死路」这半句",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S5:★★ 空组**删得掉**（按 `Delete` 能删掉，不是死路）",
+   "flipped": [
+    "S5:★★ 空组**删得掉**（按 `Delete` 能删掉，不是死路）"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N6 ★★★ raw：伪造「菜单里有其它项」（即那臂其实测到了东西）",
+   "why": "★★★ 验证 S7 的作废闸：一旦那臂不再为空，就必须因为「没测到删除项」而翻红 ⟹ 防止有人拿空读数编出「菜单里没有删除项」",
+   "evidence": {
+    "hit": 2
+   },
+   "expectFlipped": "S7:★★★ 作废闸：右键菜单那条臂**探针没打开菜单** ⟹ 显式作废、不得据此下结论",
+   "flipped": [
+    "S7:★★★ 作废闸：右键菜单那条臂**探针没打开菜单** ⟹ 显式作废、不得据此下结论"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N7 ★★ 反向对照：只动与判据无关的字段（note）",
+   "why": "★ 证明判据锚的是读数、不是某段文本",
+   "evidence": {
+    "hit": true
+   },
+   "expectFlipped": "（反向对照：期望不翻）",
+   "flipped": [],
+   "ok": true
+  }
+ ],
+ "negativesOk": 7,
+ "negativesTotal": 7,
+ "rawSha": "6941a45c313cb3bc2c91ee8e95276a82d7318ccd7e12cdbc4e6185e44b9f3aac"
+}

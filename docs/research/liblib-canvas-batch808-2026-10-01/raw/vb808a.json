@@ -1,0 +1,228 @@
+{
+ "batch": 808,
+ "base": "http://localhost:4317",
+ "rounds": [
+  {
+   "round": 0,
+   "makeHost": {
+    "host": "group-1791251738048-7r93ab",
+    "kids": [
+     "t-9j2MoccxBj",
+     "i-1FQ9tErTcC"
+    ]
+   },
+   "deleteGroupWithMembers": {
+    "删掉的组": "group-1791251738048-7r93ab",
+    "它原来的成员": [
+     "t-9j2MoccxBj",
+     "i-1FQ9tErTcC"
+    ],
+    "成员还在吗": {
+     "t-9j2MoccxBj": false,
+     "i-1FQ9tErTcC": false
+    },
+    "节点数 Δ": -3,
+    "组还在吗": false,
+    "★ 预期 Δ = -(1+成员数)": true,
+    "★ 成员被连坐": true,
+    "undo": {
+     "节点数": 11,
+     "组回来了": true,
+     "★ 成员全回来了": true,
+     "★ 能完全撤销": true
+    }
+   },
+   "deleteLastMember_step1": {
+    "删掉的成员": "t-9j2MoccxBj",
+    "组还剩几个": 1,
+    "组框": [
+     698,
+     430
+    ],
+    "原来的框": [
+     722,
+     828
+    ],
+    "★ 框变了（贴合剩下的）": true,
+    "★ 删一个成员真的生效了": true
+   },
+   "deleteLastMember": {
+    "删掉的成员": "i-1FQ9tErTcC",
+    "空组还在吗": true,
+    "空组框": [
+     698,
+     430
+    ],
+    "一步之前的框": [
+     698,
+     430
+    ],
+    "★ 框没变（沿用还剩一个时的）": true,
+    "边数": 8,
+    "DOM": {
+     "present": true,
+     "rect": {
+      "w": 367,
+      "h": 226
+     },
+     "handleCount": 2,
+     "handles": [
+      {
+       "cls": "react-flow__handle react-flow__handle-left nodrag nopan targ",
+       "type": "target"
+      },
+      {
+       "cls": "react-flow__handle react-flow__handle-right nodrag nopan sou",
+       "type": "source"
+      }
+     ],
+     "selected": false
+    },
+    "★ 节点数 Δ（相对一步之前）": -1
+   },
+   "cleanupEmptyGroup": {
+    "按 Delete 后节点数": 8,
+    "空组还在吗": false,
+    "★ 删得掉": true
+   },
+   "emptyGroupUngroup": {
+    "节点数 Δ": 0,
+    "空组还在吗": true,
+    "★ 取消分组没作用": true
+   },
+   "contextMenuOnEmptyGroup": {
+    "menuItems": [],
+    "groupDom": {
+     "present": true,
+     "rect": {
+      "w": 367,
+      "h": 226
+     },
+     "handleCount": 2,
+     "handles": [
+      {
+       "cls": "react-flow__handle react-flow__handle-left nodrag nopan targ",
+       "type": "target"
+      },
+      {
+       "cls": "react-flow__handle react-flow__handle-right nodrag nopan sou",
+       "type": "source"
+      }
+     ],
+     "selected": true
+    }
+   }
+  },
+  {
+   "round": 1,
+   "makeHost": {
+    "host": "group-1791251753396-mcfwvk",
+    "kids": [
+     "t-9j2MoccxBj",
+     "i-1FQ9tErTcC"
+    ]
+   },
+   "deleteGroupWithMembers": {
+    "删掉的组": "group-1791251753396-mcfwvk",
+    "它原来的成员": [
+     "t-9j2MoccxBj",
+     "i-1FQ9tErTcC"
+    ],
+    "成员还在吗": {
+     "t-9j2MoccxBj": false,
+     "i-1FQ9tErTcC": false
+    },
+    "节点数 Δ": -3,
+    "组还在吗": false,
+    "★ 预期 Δ = -(1+成员数)": true,
+    "★ 成员被连坐": true,
+    "undo": {
+     "节点数": 11,
+     "组回来了": true,
+     "★ 成员全回来了": true,
+     "★ 能完全撤销": true
+    }
+   },
+   "deleteLastMember_step1": {
+    "删掉的成员": "t-9j2MoccxBj",
+    "组还剩几个": 1,
+    "组框": [
+     698,
+     430
+    ],
+    "原来的框": [
+     722,
+     828
+    ],
+    "★ 框变了（贴合剩下的）": true,
+    "★ 删一个成员真的生效了": true
+   },
+   "deleteLastMember": {
+    "删掉的成员": "i-1FQ9tErTcC",
+    "空组还在吗": true,
+    "空组框": [
+     698,
+     430
+    ],
+    "一步之前的框": [
+     698,
+     430
+    ],
+    "★ 框没变（沿用还剩一个时的）": true,
+    "边数": 8,
+    "DOM": {
+     "present": true,
+     "rect": {
+      "w": 367,
+      "h": 226
+     },
+     "handleCount": 2,
+     "handles": [
+      {
+       "cls": "react-flow__handle react-flow__handle-left nodrag nopan targ",
+       "type": "target"
+      },
+      {
+       "cls": "react-flow__handle react-flow__handle-right nodrag nopan sou",
+       "type": "source"
+      }
+     ],
+     "selected": false
+    },
+    "★ 节点数 Δ（相对一步之前）": -1
+   },
+   "cleanupEmptyGroup": {
+    "按 Delete 后节点数": 8,
+    "空组还在吗": false,
+    "★ 删得掉": true
+   },
+   "emptyGroupUngroup": {
+    "节点数 Δ": 0,
+    "空组还在吗": true,
+    "★ 取消分组没作用": true
+   },
+   "contextMenuOnEmptyGroup": {
+    "menuItems": [],
+    "groupDom": {
+     "present": true,
+     "rect": {
+      "w": 367,
+      "h": 226
+     },
+     "handleCount": 2,
+     "handles": [
+      {
+       "cls": "react-flow__handle react-flow__handle-left nodrag nopan targ",
+       "type": "target"
+      },
+      {
+       "cls": "react-flow__handle react-flow__handle-right nodrag nopan sou",
+       "type": "source"
+      }
+     ],
+     "selected": true
+    }
+   }
+  }
+ ]
+}
