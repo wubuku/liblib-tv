@@ -33,6 +33,17 @@
   （工具刻意不量它的消费者，所以它那一行不在矩阵里）。
   **把正当例外和真不读一起判红，就是陪绑**。
 
+## 「不作数」那一侧现在有数了（纪律 370）
+
+工具对**哨兵下 rc 未变**的那些闸**再跑一遍真实漂移 ref**，于是那一侧被拆成三类：
+- **A**：哨兵下 rc 变 → **真读，且读不到时会响**；
+- **B**：哨兵下 rc 未变、而漂移 ref 下 rc 变 → **读到了真实漂移，却在「读不到」时沉默**
+  ——**本闸对这一类判红**，它是本项目最坏的一类（平时绿、真上游坏了也绿）；
+- **C**：两边都无反应 → **而这一句推不出「它不读」**（纪律 365⑦：
+  也可能读了、只是比的东西与那个 ref 无关），所以它**只列不判红**。
+**而第三遍要有一个存在性守卫**：漂移参照不存在时那一列会整列 rc=2，
+**那会被误读成「全部都在沉默」——那是最坏的一种假红**（纪律 330 的同款处置）。
+
 ## 三态退出码（纪律 101）
 
 - **0**：清单没漏，实测矩阵也是新鲜的；
@@ -269,12 +280,46 @@ def main():
             mark = "　← **本闸自己**" if g == SELF else ""
             print("     · %s%s" % (g, mark))
 
+    # ⑥ 三分类里唯一判红的一类：B（哨兵下没变、而真实漂移 ref 下变了）
+    # **它是「读到了却在「读不到」时沉默」**——平时绿、真上游坏了也绿（纪律 365⑦）
+    silent = []
+    for r in rows:
+        d = r.get("drift")
+        if r.get("changed") or r.get("unusable") or not isinstance(d, dict):
+            continue
+        if d.get("rc") not in (0, None):
+            silent.append((r["gate"], d.get("rc")))
+    buckets = {"A": 0, "B": 0, "C": 0, "未测": 0}
+    for r in rows:
+        if r.get("unusable"):
+            continue
+        if r.get("changed"):
+            buckets["A"] += 1
+        elif isinstance(r.get("drift"), dict):
+            buckets["B" if r["drift"].get("rc") not in (0, None) else "C"] += 1
+        else:
+            buckets["未测"] += 1
+    print("三分类：A 真读且响 %d 道 / B 未变但对真实漂移有反应 %d 道 / C 两边都无反应 %d 道"
+          % (buckets["A"], buckets["B"], buckets["C"]))
+    if buckets["未测"]:
+        print("     另有 %d 道**没跑第三遍**（漂移参照不存在）——**这一类不作数**" % buckets["未测"])
+    print("     **而 C 类那一句「两边都无反应」推不出「它不读」**（纪律 365⑦）")
+
     if missed:
         print("→ ✗ 痕迹清单**漏了 %d 道实测会读的闸**：" % len(missed))
         for g in missed:
             print("     · %s" % g)
         print("   处置是给 `UPSTREAM_MARKERS` 补标记并重测，"
               "**不是删掉实测**——实测那一侧是运行时事实")
+        print("痕迹清单核对：1 处不一致")
+        return 1
+
+    if silent:
+        print("→ ✗ **%d 道闸「读到了却在『读不到』时沉默」**（B 类）：" % len(silent))
+        for g, rc in silent:
+            print("     · %s —— 哨兵下 rc 不变，而真实漂移 ref 下 rc=%s" % (g, rc))
+        print("   **这类闸平时绿、真上游坏了也绿**，是本项目最坏的一类（纪律 365⑦）；")
+        print("   处置是**把那道闸改成读不到时 rc=2**，**不是把它从清单里去掉**")
         print("痕迹清单核对：1 处不一致")
         return 1
 

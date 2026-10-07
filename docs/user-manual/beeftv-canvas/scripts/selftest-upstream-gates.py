@@ -12,6 +12,7 @@
 | 3 | 某道闸的指纹与矩阵记录不符 | **rc=2** | **退化必须报「未能核对」**（纪律 101） |
 | 4 | 矩阵里有一行标着「红基线上量的」 | **rc=2** | **证据不完整 ≠ 没发现问题**（纪律 367②） |
 | 5 | 矩阵里的 `tree_digest` / `shared_digest` 与现场重算的对不上 | **rc=2** | **改手册正文 / 改反验也算「过期」**（纪律 368） |
+| 6 | 某道闸哨兵下 rc 未变、而漂移 ref 下 rc 变了（B 类） | **rc=1** | **读到了却在「读不到」时沉默 ⇒ 判红**（纪律 370） |
 
 **第 3 支尤其重要，而且它的成因是一次实测**：
 第一次试图用「把某道闸的 `module_ref()` 藏起来」来制造第 2 支的场景，
@@ -112,8 +113,9 @@ def clone(dst):
     rows = [{"gate": g,
              "normal": {"rc": 0, "tail": ["夹具"], "sec": 0.0},
              "sentinel": {"rc": 0, "tail": ["夹具"], "sec": 0.0},
+             "drift": {"rc": 0, "tail": ["夹具"], "sec": 0.0},
              "changed": False, "unusable": None,
-             "measured_at": "夹具（反验自造，不是落盘实测）", "reused": False} for g in gates]
+             "measured_at": "夹具（反验自造，不是落盘实测）"} for g in gates]
     d = {"measured_at": "夹具（反验自造，不是落盘实测）",
          "sentinel": "zzz-not-a-real-ref-9f3a", "rows": rows,
          "mode": "fixture", "reused": [],
@@ -249,9 +251,35 @@ def case_digest():
     return False
 
 
+def case_silent():
+    """把一行做成 B 类形态：哨兵下 rc 未变、而漂移 ref 下 rc 变了。
+    **闸 45 必须判红并点名**——**因为这一类是本项目最坏的一类**：
+    它平时绿、真上游坏了也绿（纪律 365⑦），而在此之前它只有名字、没有判据。"""
+    td = clone(os.path.join(tempfile.gettempdir(), "sug-selftest-silent"))
+    p = os.path.join(td, "scripts", os.path.basename(MATRIX))
+    d = json.load(open(p, encoding="utf-8"))
+    if not d["rows"] or "drift" not in d["rows"][0]:
+        print("  ✗ 夹具矩阵里没有 `drift` 列 —— 夹具前提不成立，**作废**")
+        shutil.rmtree(td, ignore_errors=True)
+        return False
+    target = d["rows"][0]
+    target["drift"] = dict(target["drift"], rc=1)
+    json.dump(d, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    rc, out = run(td)
+    shutil.rmtree(td, ignore_errors=True)
+    if rc == 1 and target["gate"] in out and "沉默" in out:
+        print("  ✓ B 类必判红：%s 哨兵下不变、漂移 ref 下变 → rc=1 并点名"
+              "（**这一类此前只有名字，没有判据**）" % target["gate"])
+        return True
+    print("  ✗ B 类：期望 rc=1 且点名且说「沉默」，实测 rc=%d" % rc)
+    print(out[-600:])
+    return False
+
+
 def main():
-    print("闸 45 反向验证：5 例（1 基线 / 1 能抓 / 3 退化必报 rc=2）")
-    results = [case_baseline(), case_missed(), case_stale(), case_unusable(), case_digest()]
+    print("闸 45 反向验证：6 例（1 基线 / 2 能抓 / 3 退化必报 rc=2）")
+    results = [case_baseline(), case_missed(), case_silent(),
+               case_stale(), case_unusable(), case_digest()]
     ok = sum(1 for r in results if r)
     bad = sum(1 for r in results if not r)
     # **末尾这一行的写法有硬要求（闸 18 方向十七实测）**：
@@ -261,7 +289,7 @@ def main():
     # 而那个形态的后果**不是构建变红，是那一列例数从此没人核**
     # （闸自己的报错原话：「别让『解析不到』变成一个没人知道的静默缺口」）。
     print("闸 45 反验：通过 %d / 失败 %d / 作废 0 = %d" % (ok, bad, ok + bad))
-    if ok != 5:
+    if ok != 6:
         print("→ 有用例没过 —— 闸 45 上线前必须全过")
         return 1
     return 0

@@ -99,6 +99,13 @@ MAN = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SD = os.path.join(MAN, "scripts")
 OUT = os.path.join(SD, "upstream-gates-sentinel.json")
 SENTINEL = "zzz-not-a-real-ref-9f3a"
+# **漂移参照**：一个**真实存在**、但内容与基线不同的 ref。
+# **它的作用是把「两次 rc 相同」这一侧拆开**（纪律 364⑥ 一直说这一侧不作数）：
+#   · 哨兵 rc 变了 → **真读，且读不到时会响**；
+#   · 哨兵 rc 没变、而漂移 ref 下 rc 变了 → **它读到了真实漂移，却在「读不到」时沉默**
+#     ← **这就是本项目反复说「最危险」的那一类，而它此前只有名字、没有名单**；
+#   · 两边都没变 → **没有反应**（注意：这**推不出「它不读」**，见下面那句）
+DRIFT_REF = "origin/main"
 TIMEOUT = 300
 
 # 下面两个**不被测量**，理由不同，所以分开写——
@@ -215,6 +222,39 @@ def shared_digest(sd=None):
     return _digest_of_files(out), [r for r, _ in out]
 
 
+def ref_exists(ref):
+    """漂移参照**必须真的存在**——**它不存在的话，26 道闸会一起 rc=2，
+    而那一列会被误读成「26 道都在对「读不到」沉默」**，那是最坏的一种假红。
+    **所以先问它存不存在，问不到就不跑第三遍**（纪律 330 的同款处置）。"""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("bl_probe", os.path.join(SD, "baseline.py"))
+    m = importlib.util.module_from_spec(spec)
+    # **必须先把 `scripts/` 挂进 `sys.path`**——`baseline.py` 里有 `import beefsrc`，
+    # **而它那个 import 是同层相对导入**（纪律 226 那个坑：importlib 单独 exec 一个文件
+    # 不会把它的兄弟模块放进搜索路径）。第一版就栽在这里，症状是
+    # 「一跑就 ModuleNotFoundError: beefsrc」，而报错信息里完全没有线索指向真正的处置。
+    sys.path.insert(0, SD)
+    try:
+        spec.loader.exec_module(m)
+        return bool(m.commit_exists(ref))
+    except Exception:  # noqa: BLE001
+        return False
+    finally:
+        sys.path.remove(SD)
+
+
+def classify(row, drift_ok):
+    """把一行归到三类之一。**而第三类必须写成「没有反应」而不是「真不读」**——
+    「两次都绿」推不出「它不读」（纪律 365⑦ 的原话：也可能是读了但比的东西与 ref 无关）。"""
+    if row.get("changed"):
+        return "A 真读且响（哨兵下 rc 变）"
+    if not drift_ok:
+        return "— 未测（漂移参照不存在）"
+    if (row.get("drift") or {}).get("rc") not in (0, None):
+        return "B 未变但对真实漂移有反应 ← **读到了却在「读不到」时沉默**"
+    return "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
+
+
 def run(name, env_ref):
     env = dict(os.environ)
     if env_ref is None:
@@ -251,7 +291,10 @@ def main(argv=None):
     names = measured_gates()
     td = tree_digest()
     sh, shared_names = shared_digest()
-    print("哨兵 ref = %s" % SENTINEL)
+    drift_ok = ref_exists(DRIFT_REF)
+    print("哨兵 ref = %s（不存在，用来抓「读不到」）" % SENTINEL)
+    print("漂移参照 = %s（%s，用来抓「读到了却对读不到沉默」）"
+          % (DRIFT_REF, "存在" if drift_ok else "**不存在 → 第三遍不跑**"))
     print("内容摘要 = %s…（%d 个文件）" % (td[:16], len(content_files())))
     print("共享摘要 = %s…（%d 个文件）" % (sh[:16], len(shared_names)))
     print("逐道实测 %d 道闸（各两遍，最坏 %d 秒/遍）\n" % (len(names), TIMEOUT))
@@ -266,13 +309,20 @@ def main(argv=None):
             # **红基线上的行不是证据**（纪律 367②）：两种成因被搅成一种
             row["unusable"] = "正常那一遍 rc=%s（**在红基线上量的行证明不了任何事**）" % a["rc"]
             row["changed"] = None
+        elif drift_ok and not row["changed"]:
+            # **只给「哨兵下没变」的那些加第三遍**——实测这 26 道合计 68 秒，
+            # **而闸 18（242 秒）恰好在「变了」那一侧**，所以这一遍几乎不要钱
+            row["drift"] = run(name, DRIFT_REF)
+        row["class"] = classify(row, drift_ok)
         rows.append(row)
         if row["unusable"]:
             mark = "**作废（红基线）**"
         elif row["changed"]:
             mark = "变了"
         else:
-            mark = ""
+            mark = "**%s**" % row["class"].split("（")[0]
+            if "drift" in row:
+                mark += "（漂移 rc=%s）" % row["drift"]["rc"]
         print("[%2d/%2d] %-34s 正常 rc=%-4s → 哨兵 rc=%-4s %s"
               % (i, len(names), name, row["normal"]["rc"], row["sentinel"]["rc"], mark))
         sys.stdout.flush()
@@ -302,6 +352,14 @@ def main(argv=None):
         print("   **不是把那些行删掉**——删掉就是在假装那几道量过了。")
     else:
         print("全部 %d 行的正常基线都是 rc=0，**没有一行作废**。" % len(rows))
+    buckets = {}
+    for r in usable:
+        buckets.setdefault(r["class"], []).append(r["gate"])
+    print("\n---- 三分类（纪律 364⑥ 那一侧从「不作数」变成有数）----")
+    for k in sorted(buckets):
+        print("  %-46s %2d 道" % (k, len(buckets[k])))
+    if buckets.get("B 未变但对真实漂移有反应 ← **读到了却在「读不到」时沉默**"):
+        print("  → B 类是**本项目最坏的一类**（平时绿、真上游坏了也绿），闸 45 对它判红")
     print("落盘：%s（%d 个指纹 / 内容摘要 %s… / 共享摘要 %s…）"
           % (OUT, len(names), td[:12], sh[:12]))
     return 1 if bad else 0
