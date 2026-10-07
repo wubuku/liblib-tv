@@ -6,9 +6,9 @@
   "n_goldens": 20,
   "n_excluded_self": 1,
   "n_empty_list": 182,
-  "n_empty_null": 28,
+  "n_empty_null": 26,
   "n_self_provable": 9,
-  "n_ambiguous": 201
+  "n_ambiguous": 199
  },
  "rows": [
   {
@@ -1385,7 +1385,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[1]/drifted",
+   "path": "/rounds/[2]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -1415,20 +1415,6 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/repaired_generated_by",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/p8_invariants_invisible_to_1014/p8_saw_artifact_with_n_rounds",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/p8_invariants_invisible_to_1014/p8_reading_lag_rounds",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -2815,7 +2801,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[1]/drifted",
+   "path": "/rounds/[2]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2845,20 +2831,6 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/repaired_generated_by",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/p8_invariants_invisible_to_1014/p8_saw_artifact_with_n_rounds",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/p8_invariants_invisible_to_1014/p8_reading_lag_rounds",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },

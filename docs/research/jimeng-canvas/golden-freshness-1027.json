@@ -2103,7 +2103,7 @@
     "n_touched": 12,
     "n_re_run": 12,
     "ran_under_the_suite": false,
-    "n_stale": 8,
+    "n_stale": 2,
     "per_probe_timeout": 300,
     "results": [
       {
@@ -2111,10 +2111,10 @@
         "golden": "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
         "rc": 0,
         "in_git_head": true,
-        "stale_vs_committed": true,
+        "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 127207,
-        "n_bytes_committed": 126485,
+        "n_bytes_committed": 127207,
         "touched_by": [
           "scripts/jimeng_check_verifier_anchors.py",
           "scripts/jimeng_unclickable_audit.py",
@@ -2155,7 +2155,7 @@
         "golden": "docs/research/jimeng-canvas/change-locality-1011.json",
         "rc": 0,
         "in_git_head": true,
-        "stale_vs_committed": true,
+        "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 3092,
         "n_bytes_committed": 3092,
@@ -2168,7 +2168,7 @@
         "golden": "docs/research/jimeng-canvas/global-detection-1012.json",
         "rc": 0,
         "in_git_head": true,
-        "stale_vs_committed": true,
+        "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 2350,
         "n_bytes_committed": 2350,
@@ -2181,7 +2181,7 @@
         "golden": "docs/research/jimeng-canvas/occurrence-ledger-1013.json",
         "rc": 0,
         "in_git_head": true,
-        "stale_vs_committed": true,
+        "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 20268,
         "n_bytes_committed": 20268,
@@ -2208,7 +2208,7 @@
         "rc": 0,
         "in_git_head": true,
         "stale_vs_committed": true,
-        "stale_vs_worktree": false,
+        "stale_vs_worktree": true,
         "n_bytes_fresh": 7532,
         "n_bytes_committed": 7532,
         "touched_by": [
@@ -2236,7 +2236,7 @@
         "golden": "docs/research/jimeng-canvas/exemption-claims-1024.json",
         "rc": 0,
         "in_git_head": true,
-        "stale_vs_committed": true,
+        "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 18972,
         "n_bytes_committed": 18972,
@@ -2255,9 +2255,9 @@
         "rc": 0,
         "in_git_head": true,
         "stale_vs_committed": true,
-        "stale_vs_worktree": false,
-        "n_bytes_fresh": 312720,
-        "n_bytes_committed": 310129,
+        "stale_vs_worktree": true,
+        "n_bytes_fresh": 313095,
+        "n_bytes_committed": 312720,
         "touched_by": [
           "scripts/jimeng_probe1025_criterion_direction.py",
           "scripts/verify-jimeng-batch841-unclickable.py"
@@ -2268,10 +2268,10 @@
         "golden": "docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
         "rc": 0,
         "in_git_head": true,
-        "stale_vs_committed": true,
+        "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 100099,
-        "n_bytes_committed": 95891,
+        "n_bytes_committed": 100099,
         "touched_by": [
           "scripts/jimeng_probe1021_anchor_gate_coverage.py",
           "scripts/jimeng_probe1025_criterion_direction.py",
@@ -2281,40 +2281,6 @@
       }
     ],
     "stale": [
-      {
-        "probe": "jimeng_probe1005_zero_coupling_census.py",
-        "golden": "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
-        "rc": 0,
-        "touched_by": [
-          "scripts/jimeng_check_verifier_anchors.py",
-          "scripts/jimeng_unclickable_audit.py",
-          "scripts/verify-jimeng-batch841-unclickable.py"
-        ]
-      },
-      {
-        "probe": "jimeng_probe1011_change_locality.py",
-        "golden": "docs/research/jimeng-canvas/change-locality-1011.json",
-        "rc": 0,
-        "touched_by": [
-          "scripts/jimeng_check_verifier_anchors.py"
-        ]
-      },
-      {
-        "probe": "jimeng_probe1012_global_detection.py",
-        "golden": "docs/research/jimeng-canvas/global-detection-1012.json",
-        "rc": 0,
-        "touched_by": [
-          "scripts/jimeng_check_verifier_anchors.py"
-        ]
-      },
-      {
-        "probe": "jimeng_probe1013_occurrence_ledger.py",
-        "golden": "docs/research/jimeng-canvas/occurrence-ledger-1013.json",
-        "rc": 0,
-        "touched_by": [
-          "scripts/jimeng_check_verifier_anchors.py"
-        ]
-      },
       {
         "probe": "jimeng_probe1021_anchor_gate_coverage.py",
         "golden": "docs/research/jimeng-canvas/anchor-gate-coverage-1021.json",
@@ -2327,36 +2293,12 @@
         ]
       },
       {
-        "probe": "jimeng_probe1024_exemption_claims.py",
-        "golden": "docs/research/jimeng-canvas/exemption-claims-1024.json",
-        "rc": 0,
-        "touched_by": [
-          "scripts/jimeng_check_verifier_anchors.py",
-          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
-          "scripts/jimeng_probe1025_criterion_direction.py",
-          "scripts/jimeng_probe1026_criterion_effectiveness.py",
-          "scripts/jimeng_probe1027_freshness_gate.py",
-          "scripts/jimeng_unclickable_audit.py"
-        ]
-      },
-      {
         "probe": "jimeng_probe1025_criterion_direction.py",
         "golden": "docs/research/jimeng-canvas/criterion-direction-1025.json",
         "rc": 0,
         "touched_by": [
           "scripts/jimeng_probe1025_criterion_direction.py",
           "scripts/verify-jimeng-batch841-unclickable.py"
-        ]
-      },
-      {
-        "probe": "jimeng_probe1026_criterion_effectiveness.py",
-        "golden": "docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
-        "rc": 0,
-        "touched_by": [
-          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
-          "scripts/jimeng_probe1025_criterion_direction.py",
-          "scripts/jimeng_probe1026_criterion_effectiveness.py",
-          "scripts/jimeng_probe1027_freshness_gate.py"
         ]
       }
     ],
