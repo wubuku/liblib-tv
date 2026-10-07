@@ -1927,6 +1927,64 @@ def mutate_gate_fallback_restored(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_image_ref_outside_root(root: Path) -> None:
+    """根目录页把 `./screenshots/` 写成 `../screenshots/` 时必须拦下（M308，F136 同族）。
+
+    ★ **这是 M307 真实撞上的那个 bug**：★★ **30 道门禁全过、自检全过，
+    ★ **★ 只有 vitepress 打包时报 `Could not resolve`、★★ **整轮构建 exit = 1。**
+
+    ★ **★ needle 现算不写死（F134）**：★★ **从根目录 md 里当场读出第一条
+    ★ **★ `./screenshots/…` 引用再改写，★★ **所以它不会随内容长大而失效。
+    """
+
+    import re as _re
+
+    for page in sorted(root.glob("*.md")):
+        text = page.read_text(encoding="utf-8")
+        m = _re.search(r"!\[[^\]]*\]\((\./screenshots/[^)\s]+)\)", text)
+        if not m:
+            continue
+        bad = "../" + m.group(1)[2:]
+        patched = text.replace(m.group(1), bad, 1)
+        assert patched != text
+        page.write_text(patched, encoding="utf-8")
+        return
+    raise AssertionError("注入失败：根目录下找不到任何 ./screenshots/ 引用")
+
+
+def mutate_image_ref_missing(root: Path) -> None:
+    """引用的图片文件名不存在时必须拦下（M308）。"""
+
+    import re as _re
+
+    for page in sorted(root.glob("*.md")):
+        text = page.read_text(encoding="utf-8")
+        m = _re.search(r"!\[[^\]]*\]\((\./?screenshots/[^)\s]+)\)", text)
+        if not m:
+            continue
+        bad = m.group(1).rsplit("/", 1)[0] + "/这张图不存在.png"
+        patched = text.replace(m.group(1), bad, 1)
+        assert patched != text
+        page.write_text(patched, encoding="utf-8")
+        return
+    raise AssertionError("注入失败：找不到任何 screenshots/ 引用")
+
+
+def mutate_image_ref_inside_fence(root: Path) -> None:
+    """伪引用写在围栏代码块里时**必须放过**（M308 的阴性对照）。
+
+    ★ **★ 判据只认「读者真的会看到的那张图」——★★ **一段演示 Markdown 语法的
+    ★ **★ 代码块里的 `![](…)` 不是图，★★★ **而这一格正是 M308 实测的 0 条
+    ★ **★ 现存引用：**它是给将来留的，不是给现在这批数据用的。
+    """
+
+    page = root / "00-quickstart.md"
+    text = page.read_text(encoding="utf-8")
+    tail = "\n```md\n![示例](screenshots/这张图不存在.png)\n```\n"
+    assert tail not in text, "注入失败：这段围栏示例已经存在"
+    page.write_text(text + tail, encoding="utf-8")
+
+
 def mutate_multiple_ratio_wrong(root: Path) -> None:
     """正文里显式算式的结论被改错时必须拦下（M297）。
 
@@ -2415,6 +2473,9 @@ CASES: list[tuple[str, object, str, str]] = [
     ("run_gate 少了一道门禁的分支（M303）", mutate_drop_gate_branch, "gateself", "自检框架跑不到这道门禁：run_gate 里没有它的分支"),
     ("run_gate 分支的 which 拼错一个字（M303）", mutate_gate_branch_which_typo, "gateself", "它的分支，但没有任何 CASES 用例指向那个 which"),
     ("run_gate 兜底分支又指回具体门禁（M303）", mutate_gate_fallback_restored, "gateself", "兜底分支里给 cmd 赋了具体门禁"),
+    ("页面把图片引用写到了手册根目录之外（M307 实撞）", mutate_image_ref_outside_root, "imagerefs", "引用解析到了手册根目录之外"),
+    ("引用的图片文件名不存在（M308）", mutate_image_ref_missing, "imagerefs", "引用的图片不存在"),
+    ("伪引用写在围栏代码块里不该被误报（不误报，M308）", mutate_image_ref_inside_fence, "imagerefs", EXPECT_PASS),
 ]
 
 
@@ -2481,6 +2542,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         # ★ **本门禁必须把自己也纳入覆盖**——M303 首跑时它就报出了自己（M303 实测）。
         # ★ **★ 这不是巧合而是必然**：★★ **一道刚写出来的门禁不可能已经有覆盖。**
         cmd = [sys.executable, str(root / "scripts/check-gate-self-coverage.py"), str(root)]
+    elif which == "imagerefs":
+        cmd = [sys.executable, str(root / "scripts/check-image-refs.py"), str(root)]
     else:
         # ★★★★★ **M303 修掉一个会骗人的兜底**（F141）。
         #
