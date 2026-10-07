@@ -130,7 +130,7 @@
 
 两套文件夹、两个存储位置、两个名字，**但今天都换不了设备**。画布库那套还额外受限于「服务端压根没有画布文件夹这个概念」，见 [画布库](manage-canvases.md)。
 
-> **而最后这半句对 v1.6.22 成立，对 v1.7.3 已经不成立**：v1.7.3 的服务端有了 `GET` / `PUT` / `DELETE /canvas-folders`（`backend/internal/handler/canvas_library.go`，已写进 `openapi.yaml`），**而且前端确实在调**（`web/src/services/api/workspace-data.ts`）——**基线上那个后端文件根本不存在**。逐条见 [参考：快捷键全表、路由与端点](../20-reference.md)。
+> **而最后这半句对 v1.6.22 成立，对 v1.7.3 已经不成立**：v1.7.3 的服务端有了 `GET` / `PUT` / `DELETE /canvas-folders`（`backend/internal/handler/canvas_library.go`，已写进 `backend/internal/handler/openapi.yaml`），**而且前端确实在调**（`web/src/services/api/workspace-data.ts`）——**基线上那个后端文件根本不存在**。逐条见 [参考：快捷键全表、路由与端点](../20-reference.md)。
 :::
 
 ## 相关页面

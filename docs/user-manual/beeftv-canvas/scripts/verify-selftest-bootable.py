@@ -412,6 +412,7 @@ SELFTEST_COSTS = {
     #: **预算按「有子进程 + 有 copytree」这一侧取，宁大勿小**（纪律 204）——
     #: **取值与 Batch 331 那条 `selftest-upstream-gates.py` 同为 3.0，理由同形。**
     "selftest-list-selfcount.py": 3.0,
+    "selftest-upstream-citations.py": 3.0,
     "selftest-query-params.py": 0.8,
     "selftest-container-closers.py": 1.13,
     "selftest-heading-uniqueness.py": 1.10,
