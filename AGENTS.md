@@ -118,6 +118,29 @@ Recovery, if you already committed someone else's work and have **not** pushed:
 stage only your own hunks, then plain `git commit`. If you have already pushed,
 do not rewrite shared history — leave it and tell them.
 
+**The index is shared too, so the check above is a TOCTOU race.** Batch 295
+(2026-10-07) used exactly the correct sequence above and still swept in 8 files
+from a parallel agent: `git diff --cached --name-only` listed only its own 4
+paths, but between that check and `git commit` the other agent staged its files
+into the *same* index, and the plain commit took all 12. Two habits close it:
+
+- Chain the verification into the **same shell command** as the commit, and abort
+  if the path list is not exactly yours:
+
+  ```bash
+  git add -- <only your paths> \
+    && { git diff --cached --name-only | grep -qv -e '^docs/user-manual/jimeng-canvas/' -e '^scripts/jimeng-b295' \
+         && { echo "ABORT: index holds foreign paths"; git diff --cached --name-only; exit 1; }; } \
+    && git commit -F /tmp/my-msg.txt
+  ```
+
+- Never leave a long gap between the check and the commit — writing a multi-KB
+  commit message with a heredoc or a Python heredoc is exactly that gap. Build
+  the message file *first*, then do `add → check → commit` back to back.
+
+If it already happened and you pushed: do not rewrite. Record it in the batch
+note (what was swept in, and that nothing was lost) and tell them.
+
 Other shared-workspace rules:
 
 - A batch/section number is not reserved by asking; two agents will pick the same
