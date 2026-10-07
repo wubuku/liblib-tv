@@ -1777,6 +1777,44 @@ def mutate_absolute_anchor_rotten(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_inline_corr_unregistered(root: Path) -> None:
+    """就地订正只在这一页留痕、却没有任何 R 登记时必须拦下（M299）。
+
+    ★ **M298 抓到的那处就是这么漏下来的**：★ **M280 就地更正过同一件事，
+    ★ **而那次订正没登记 R——★ **于是同一件事的旧说法在另一页一直活着，
+    ★ **而订正回归门禁从未报过它，★ **因为那道门禁根本不知道它存在过。**
+
+    ★ **本用例注入的是「完全没有归属」的那种**：★ **既没有对应的 needle，
+    ★ **订正块也没有自报 R 编号，★ **那段引述也不在任何一条 R 的 why 里。**
+    """
+
+    path = root / "10-tasks" / "manage-assets.md"
+    text = path.read_text(encoding="utf-8")
+    probe = "\n> 探针注入句：此前写「资产卡片一屏能放 12 张」，那是错的，已订正。\n"
+    assert "此前写" not in text, "注入失败：★ **这页已经有就地订正痕迹了，★ **注入会混进既有的那条"
+    path.write_text(text + probe, encoding="utf-8")
+
+
+def mutate_inline_corr_selfreport_ok(root: Path) -> None:
+    """订正块自报 R 编号的不该被误报（不误报对照，M299）。
+
+    ★ **口径二的存在理由**：★ **R44 的 needle 记的是「按钮计数」那条错法，
+    ★ **而 `create-canvas-project.md` 的订正块引述的却是「别指望它、走右键菜单」——
+    ★ **★ 同一条 R 覆盖两种错法，★ **而 needle 只记了其中一种。**
+    ★ **所以光靠 needle 匹配会把这处误报出来；★ **必须认「见 R44」这个自报。**
+
+    ★ **本用例把自报的编号改成一个不存在的**：★ **★ 那样它就该被拦下——
+    ★ **这才是「如实放过」的对立面，★ **也钉住了「编号必须真实存在」这一条。**
+    """
+
+    path = root / "10-tasks" / "create-canvas-project.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("走右键菜单」，那是错的，已订正（见 R44）",
+                           "走右键菜单」，那是错的，已订正（见 R999）", 1)
+    assert patched != text, "注入失败：没找到那句自报 R 编号的订正块"
+    path.write_text(patched, encoding="utf-8")
+
+
 def mutate_multiple_ratio_wrong(root: Path) -> None:
     """正文里显式算式的结论被改错时必须拦下（M297）。
 
@@ -2259,6 +2297,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("登记表里的锚点指着一句已改掉的话（锚点腐化，M296）", mutate_absolute_anchor_rotten, "absclaim", "锚点片段在"),
     ("算式的结论被改错（两个乘数没动，M297）", mutate_multiple_ratio_wrong, "multiples", "算式验算不过"),
     ("不在台账里的 N 倍不该被误报（不误报，M297）", mutate_multiple_unlisted_ok, "multiples", EXPECT_PASS),
+    ("就地订正没有 R 登记（只有痕迹没有守卫，M299）", mutate_inline_corr_unregistered, "inlinecorr", "找不到对应的 R 登记"),
+    ("订正块自报一个不存在的 R 编号（M299）", mutate_inline_corr_selfreport_ok, "inlinecorr", "找不到对应的 R 登记"),
 ]
 
 
@@ -2311,6 +2351,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-absolute-claims.py"), str(root)]
     elif which == "multiples":
         cmd = [sys.executable, str(root / "scripts/check-multiples.py"), str(root)]
+    elif which == "inlinecorr":
+        cmd = [sys.executable, str(root / "scripts/check-inline-corrections.py"), str(root)]
     elif which == "dupeline":
         cmd = [sys.executable, str(root / "scripts/check-duplicate-lines.py"), str(root)]
     elif which == "internallists":

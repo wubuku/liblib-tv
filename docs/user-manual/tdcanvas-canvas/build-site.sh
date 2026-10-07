@@ -246,6 +246,16 @@ MULTIPLES_OUT="$(python3 scripts/check-multiples.py . 2>&1)" || fail "倍数与�
 $MULTIPLES_OUT"
 echo "$MULTIPLES_OUT" | sed 's/^/  /'
 
+# 就地订正必须登记 R：M299 新增（F136 的门禁化）。
+# 起因是 M280 查清「左侧面板高度其实是视口高的函数」并在 30-concepts 就地更正过，
+# 但那次订正没有登记 R——于是同一件事的旧说法在 create-nodes.md 一直活着，
+# 而订正回归门禁从未报过它，因为那道门禁根本不知道这个错误说法存在过。
+# 「归属」认三条口径：needle / 订正块自报的 R 编号 / 该条 R 的 why（M299 实测缺一条就误报）。
+# ★ R 表由 importlib 从 check-retractions.py 直接读，本脚本不手抄第二份。
+INLINECORR_OUT="$(python3 scripts/check-inline-corrections.py . 2>&1)" || fail "就地订正的 R 登记校验未通过（有订正只在这一页留痕、没有守卫）：
+$INLINECORR_OUT"
+echo "$INLINECORR_OUT" | sed 's/^/  /'
+
 # 源码引用：手册里每处 `文件.ts:行号` 必须指向应用仓里真实存在的那一行。
 # 2026-10-02 M109 新增。账本锁定门禁只在应用仓 HEAD 变化时报错，可一旦有人把
 # 账本 sha 一起更新到新提交，那道门禁重新变绿，正文里那几十处行号却可能早已
