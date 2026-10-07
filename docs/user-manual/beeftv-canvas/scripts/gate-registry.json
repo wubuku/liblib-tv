@@ -72,7 +72,7 @@
       "measured_form": "红态",
       "red_sentence": "不可达声明核对：(\\d+) 处不一致",
       "green_sentence": "不可达声明核对：(\\d+) 条断言仍成立",
-      "gate_sha256": "5cb00a7eaaba94a51b84511a3f11314207d1d7bed24feb5a0d79c6b1c26e745c"
+      "gate_sha256": "cc85be14689dad54be507f94d641456a758ec2213bfe862cc248133cde9bdecc"
     }
   ],
   "total": 30
