@@ -113,7 +113,14 @@ def main():
     # Batch 167 普查发现本闸是**十道闸里唯一一道完全没有反向验证的**——
     # 而它恰恰是唯一一道 ref 写死、连注入都做不了的。补上这个口子，
     # 闸门的能力才谈得上被验证。
-    ref = os.environ.get("BEEFTV_REF") or resolve_ref()
+    # **Batch 330 改这一行的理由**：原先写的是
+    # `ref = os.environ.get("BEEFTV_REF") or resolve_ref()`——
+    # **它自己又实现了一遍 ref 的优先级，而 `resolve_ref()` 本身就已经优先 `BEEFTV_REF`**
+    # （纪律 355：**同一个概念只能有一份实现**）。
+    # **代价是实测出来的**：它因此绕过了 `resolve_ref()` 里新加的存在性校验，
+    # 于是 `BEEFTV_REF` 指向一个不存在的 ref 时，**它会把「上游一个字节都没读到」
+    # 报成「27 条已登记断言全部失效」**——这是本项目里最坏的一种假消息。
+    ref = resolve_ref()
 
     tree = subprocess.run(["git", "ls-tree", "-r", ref, "--name-only"],
                           cwd=src, capture_output=True, text=True).stdout.split("\n")

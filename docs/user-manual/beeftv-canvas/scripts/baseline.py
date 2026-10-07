@@ -130,6 +130,23 @@ def resolve_ref():
     """
     override = os.environ.get("BEEFTV_REF")
     if override:
+        # **Batch 330 新增这一支**。原先这里是 `if override: return override`——
+        # **不校验存在性**。后果实测（BEEFTV_REF 指向一个不存在的 ref）：
+        # `resolve_ref()` 顺利返回一个不存在的 ref，闸走到 `git grep` / `git ls-tree`
+        # 才失败，而那抛的是 **`RuntimeError` 而不是 `BaselineError`**，
+        # **`baseline_guard` 只接 `BaselineError`，于是兜不住**，
+        # 闸以 **rc=1「核过、核出不一致」** 退出。
+        # **而实际发生的事是「上游一个字节都没读到，本轮根本没开始核」**
+        # ——两种说法把排查引向完全不同的方向（纪律 101）。
+        # 实测有 **4 道闸**走这条路：`verify-screenshots-literals` / `verify-unreachable` /
+        # `verify-label-drift` / `verify-query-params`。
+        # **反向验证（Batch 163 的用法）不受影响**：它指向的是**真实存在的合成 ref**。
+        if not commit_exists(override):
+            raise BaselineError(
+                f"环境变量 `BEEFTV_REF` 指向的 ref {override} 在 {SRC} 里不存在。"
+                "**一个读不到的 ref 不是「上游变了」，而是本轮根本没开始核**——"
+                "按约定这必须报 rc=2「未能核对」（纪律 101），"
+                "而不是让它掉到 rc=1 去骗人说「核出不一致」。")
         return override
     if SRC is None:
         # **Batch 197 新增的这一支**。原先没有它，于是 `commit_exists` 会拿

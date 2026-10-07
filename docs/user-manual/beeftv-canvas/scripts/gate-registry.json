@@ -24,7 +24,7 @@
       "measured_form": "红态",
       "red_sentence": "标签漂移核对：(\\d+) 项需要处理",
       "green_sentence": "标签漂移核对：(\\d+) 项跨文件分歧全部与登记一致",
-      "gate_sha256": "5848fe23f8dc4b51c3c7a5105ce65b021c7c44dd7b184985646e130d2e0d8ff1"
+      "gate_sha256": "5ded7c32bc58571f2c617eb22a86037da6a9265eadc567c129b708bbae07bd9c"
     },
     {
       "gate": "verify-line-counts.py",
