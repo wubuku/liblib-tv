@@ -471,7 +471,10 @@ def mut_lines(*specs):
         evidence.append(ev)
     for ev in evidence:                                # 最后统一核对一遍
         cur = (ROOT / ev["file"]).read_text(encoding="utf-8")
-        assert ev["newPresentAfter"] and not ev["oldPresentAfter"] or True
+        assert ev["newPresentAfter"] and not ev["oldPresentAfter"], \
+            "★ 变异证据状态失真：%r" % ev
+        assert ev["codeAfter"] in cur, \
+            "★ 变异后的代码没有留在文件中：%r" % ev
 
     def restore():
         for rel, txt in orig.items():

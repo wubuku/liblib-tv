@@ -32,5 +32,17 @@ jobs:
       - name: Type check
         run: npm run typecheck
 
+      # Batch 336: 断言质量门禁 —— 拦截恒真断言 (count() >= 0 / or True)。
+      # 没有它，恒真断言会在覆盖矩阵里显示为「✅ 已覆盖」却对任何实现都通过。
+      # 已在干净 checkout（git archive）上验证：451 个验证器脚本，EXIT=0。
+      - name: Assertion quality gate
+        run: python3 scripts/verify-assertions.py
+
+      # ⚠️ 刻意**不**在 CI 跑 verify-docs.py（Batch 337 实测结论）：
+      # 它在干净 checkout 上会失败 —— 手册引用了 gitignore 掉的截图
+      # （docs/user-manual/*/screenshots/*.png）以及未初始化的 submodule
+      # （research/upstream/*）。本地能过是因为工作区有这些产物。
+      # 若要纳入 CI，需先让脚本区分「产物缺失」与「链接写错」。
+
       - name: Build
         run: npm run build

@@ -144,7 +144,7 @@ def build_checks(st, src):
         dur["min"] == "0.1" and dur["max"] == "10"
         and ms["min"] == 0 and ms["max"] == 10
         and "源站 range 实测" not in (ms["line"] or "")
-        and "时长" in st["deadButtons"]["presetLabel"] or True,
+        and "时长" in st["deadButtons"]["presetLabel"],
         {"source": dur, "clone": ms})
 
     add("C8 源站运动轨迹页签**没有「创建运动轨迹」按钮** ⟹ clone 的 "

@@ -88,6 +88,10 @@ def main() -> int:
         for lineno, line in enumerate(lines, 1):
             if is_comment_or_doc(line):
                 continue
+            # Ignore trailing comments.  A verifier may deliberately assert
+            # that the literal text ``or True`` is absent; the annotation on
+            # that assertion must not become a false positive itself.
+            line = line.split("#", 1)[0]
             for rule, pattern, why in RULES:
                 if pattern.search(line):
                     findings.append((rule, lineno, why, line.strip()[:100]))

@@ -157,28 +157,24 @@
           true
         ]
       ],
-      "coveredByBottomBar": [
+      "coveredByViewportSqueeze": [
         [
           "X 正向",
-          true,
           true,
           90
         ],
         [
           "X 反向",
           true,
-          true,
           90
         ],
         [
           "Z 正向",
           true,
-          true,
           90
         ],
         [
           "Z 反向",
-          true,
           true,
           90
         ]
@@ -272,22 +268,19 @@
           true
         ]
       ],
-      "coveredByBottomBar": [
+      "coveredByViewportSqueeze": [
         [
           "X 正向",
-          true,
           true,
           110
         ],
         [
           "Y 反向",
           true,
-          true,
           110
         ],
         [
           "Z 正向",
-          true,
           true,
           110
         ]
@@ -361,10 +354,9 @@
           true
         ]
       ],
-      "coveredByBottomBar": [
+      "coveredByViewportSqueeze": [
         [
           "Y 反向",
-          true,
           true,
           130
         ]
@@ -438,10 +430,9 @@
           true
         ]
       ],
-      "coveredByBottomBar": [
+      "coveredByViewportSqueeze": [
         [
           "重置视角",
-          true,
           true,
           150
         ]
@@ -525,10 +516,9 @@
           true
         ]
       ],
-      "coveredByBottomBar": [
+      "coveredByViewportSqueeze": [
         [
           "重置视角",
-          true,
           true,
           170
         ]
@@ -612,7 +602,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@480": {
       "total": 130,
@@ -672,7 +662,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@500": {
       "total": 130,
@@ -732,7 +722,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@520": {
       "total": 130,
@@ -777,7 +767,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@540": {
       "total": 130,
@@ -807,7 +797,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@560": {
       "total": 130,
@@ -837,7 +827,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@580": {
       "total": 130,
@@ -867,7 +857,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@600": {
       "total": 130,
@@ -897,7 +887,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@620": {
       "total": 130,
@@ -912,7 +902,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@640": {
       "total": 130,
@@ -927,7 +917,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@660": {
       "total": 130,
@@ -942,7 +932,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@680": {
       "total": 130,
@@ -957,7 +947,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@700": {
       "total": 130,
@@ -972,7 +962,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@720": {
       "total": 130,
@@ -987,7 +977,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@740": {
       "total": 130,
@@ -1002,7 +992,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@760": {
       "total": 130,
@@ -1017,7 +1007,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@778": {
       "total": 130,
@@ -1032,7 +1022,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@779": {
       "total": 130,
@@ -1047,7 +1037,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@780": {
       "total": 130,
@@ -1062,7 +1052,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@781": {
       "total": 130,
@@ -1077,7 +1067,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@782": {
       "total": 130,
@@ -1092,7 +1082,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@783": {
       "total": 130,
@@ -1107,7 +1097,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@784": {
       "total": 130,
@@ -1122,7 +1112,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@785": {
       "total": 130,
@@ -1137,7 +1127,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@786": {
       "total": 130,
@@ -1152,7 +1142,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@787": {
       "total": 130,
@@ -1167,7 +1157,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@788": {
       "total": 130,
@@ -1182,7 +1172,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@789": {
       "total": 130,
@@ -1197,7 +1187,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@790": {
       "total": 130,
@@ -1212,7 +1202,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@791": {
       "total": 130,
@@ -1227,7 +1217,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@792": {
       "total": 130,
@@ -1242,7 +1232,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@793": {
       "total": 130,
@@ -1257,7 +1247,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@794": {
       "total": 130,
@@ -1272,7 +1262,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@795": {
       "total": 130,
@@ -1287,7 +1277,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@796": {
       "total": 130,
@@ -1302,7 +1292,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@797": {
       "total": 130,
@@ -1317,7 +1307,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@798": {
       "total": 130,
@@ -1332,7 +1322,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@799": {
       "total": 130,
@@ -1347,7 +1337,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@800": {
       "total": 130,
@@ -1362,7 +1352,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@820": {
       "total": 130,
@@ -1377,7 +1367,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@840": {
       "total": 130,
@@ -1392,7 +1382,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@860": {
       "total": 130,
@@ -1407,7 +1397,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@880": {
       "total": 130,
@@ -1422,7 +1412,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@900": {
       "total": 130,
@@ -1437,7 +1427,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@920": {
       "total": 130,
@@ -1452,7 +1442,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@940": {
       "total": 130,
@@ -1467,7 +1457,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@960": {
       "total": 130,
@@ -1482,7 +1472,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@980": {
       "total": 130,
@@ -1497,7 +1487,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1000": {
       "total": 130,
@@ -1512,7 +1502,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1020": {
       "total": 130,
@@ -1527,7 +1517,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1040": {
       "total": 130,
@@ -1542,7 +1532,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1060": {
       "total": 130,
@@ -1557,7 +1547,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1080": {
       "total": 130,
@@ -1572,7 +1562,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1100": {
       "total": 130,
@@ -1587,7 +1577,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1120": {
       "total": 130,
@@ -1602,7 +1592,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1140": {
       "total": 130,
@@ -1617,7 +1607,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1150": {
       "total": 130,
@@ -1632,7 +1622,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1160": {
       "total": 130,
@@ -1647,7 +1637,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1180": {
       "total": 130,
@@ -1662,7 +1652,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1200": {
       "total": 130,
@@ -1677,7 +1667,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1220": {
       "total": 130,
@@ -1692,7 +1682,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1240": {
       "total": 130,
@@ -1707,7 +1697,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1260": {
       "total": 130,
@@ -1722,7 +1712,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1280": {
       "total": 130,
@@ -1737,7 +1727,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1300": {
       "total": 130,
@@ -1752,7 +1742,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1320": {
       "total": 130,
@@ -1767,7 +1757,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1340": {
       "total": 130,
@@ -1782,7 +1772,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1360": {
       "total": 130,
@@ -1797,7 +1787,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1380": {
       "total": 130,
@@ -1812,7 +1802,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1400": {
       "total": 130,
@@ -1827,7 +1817,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@360": {
       "total": 124,
@@ -1877,7 +1867,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@380": {
       "total": 124,
@@ -1927,7 +1917,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@400": {
       "total": 124,
@@ -1972,7 +1962,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@420": {
       "total": 124,
@@ -2002,7 +1992,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@440": {
       "total": 124,
@@ -2047,7 +2037,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@460": {
       "total": 124,
@@ -2077,7 +2067,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@480": {
       "total": 124,
@@ -2107,7 +2097,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@500": {
       "total": 124,
@@ -2137,7 +2127,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@520": {
       "total": 124,
@@ -2152,7 +2142,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@540": {
       "total": 124,
@@ -2167,7 +2157,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@560": {
       "total": 124,
@@ -2182,7 +2172,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@580": {
       "total": 124,
@@ -2197,7 +2187,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@600": {
       "total": 124,
@@ -2212,7 +2202,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@620": {
       "total": 124,
@@ -2227,7 +2217,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@640": {
       "total": 124,
@@ -2242,7 +2232,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@660": {
       "total": 124,
@@ -2257,7 +2247,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@680": {
       "total": 124,
@@ -2272,7 +2262,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@700": {
       "total": 124,
@@ -2287,7 +2277,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@720": {
       "total": 124,
@@ -2302,7 +2292,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@740": {
       "total": 124,
@@ -2317,7 +2307,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@760": {
       "total": 124,
@@ -2332,7 +2322,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@778": {
       "total": 124,
@@ -2347,7 +2337,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@779": {
       "total": 124,
@@ -2362,7 +2352,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@780": {
       "total": 124,
@@ -2377,7 +2367,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@781": {
       "total": 124,
@@ -2392,7 +2382,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@782": {
       "total": 124,
@@ -2407,7 +2397,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@783": {
       "total": 124,
@@ -2422,7 +2412,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@784": {
       "total": 124,
@@ -2437,7 +2427,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@785": {
       "total": 124,
@@ -2452,7 +2442,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@786": {
       "total": 124,
@@ -2467,7 +2457,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@787": {
       "total": 124,
@@ -2482,7 +2472,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@788": {
       "total": 124,
@@ -2497,7 +2487,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@789": {
       "total": 124,
@@ -2512,7 +2502,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@790": {
       "total": 124,
@@ -2527,7 +2517,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@791": {
       "total": 124,
@@ -2542,7 +2532,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@792": {
       "total": 124,
@@ -2557,7 +2547,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@793": {
       "total": 124,
@@ -2572,7 +2562,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@794": {
       "total": 124,
@@ -2587,7 +2577,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@795": {
       "total": 124,
@@ -2602,7 +2592,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@796": {
       "total": 124,
@@ -2617,7 +2607,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@797": {
       "total": 124,
@@ -2632,7 +2622,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@798": {
       "total": 124,
@@ -2647,7 +2637,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@799": {
       "total": 124,
@@ -2662,7 +2652,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@800": {
       "total": 124,
@@ -2677,7 +2667,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@820": {
       "total": 124,
@@ -2692,7 +2682,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@840": {
       "total": 124,
@@ -2707,7 +2697,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@860": {
       "total": 124,
@@ -2722,7 +2712,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@880": {
       "total": 124,
@@ -2737,7 +2727,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@900": {
       "total": 124,
@@ -2752,7 +2742,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@920": {
       "total": 124,
@@ -2767,7 +2757,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@940": {
       "total": 124,
@@ -2782,7 +2772,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@960": {
       "total": 124,
@@ -2797,7 +2787,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@980": {
       "total": 124,
@@ -2812,7 +2802,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1000": {
       "total": 124,
@@ -2827,7 +2817,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1020": {
       "total": 124,
@@ -2842,7 +2832,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1040": {
       "total": 124,
@@ -2857,7 +2847,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1060": {
       "total": 124,
@@ -2872,7 +2862,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1080": {
       "total": 124,
@@ -2887,7 +2877,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1100": {
       "total": 124,
@@ -2902,7 +2892,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1120": {
       "total": 124,
@@ -2917,7 +2907,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1140": {
       "total": 124,
@@ -2932,7 +2922,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1150": {
       "total": 124,
@@ -2947,7 +2937,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1160": {
       "total": 124,
@@ -2962,7 +2952,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1180": {
       "total": 124,
@@ -2977,7 +2967,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1200": {
       "total": 124,
@@ -2992,7 +2982,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1220": {
       "total": 124,
@@ -3007,7 +2997,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1240": {
       "total": 124,
@@ -3022,7 +3012,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1260": {
       "total": 124,
@@ -3037,7 +3027,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1280": {
       "total": 124,
@@ -3052,7 +3042,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1300": {
       "total": 124,
@@ -3067,7 +3057,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1320": {
       "total": 124,
@@ -3082,7 +3072,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1340": {
       "total": 124,
@@ -3097,7 +3087,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1360": {
       "total": 124,
@@ -3112,7 +3102,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1380": {
       "total": 124,
@@ -3127,7 +3117,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1400": {
       "total": 124,
@@ -3142,7 +3132,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     }
   },
   "freshLoadCrosscheck": {
@@ -3219,28 +3209,24 @@
           true
         ]
       ],
-      "coveredByBottomBar": [
+      "coveredByViewportSqueeze": [
         [
           "X 正向",
-          true,
           true,
           90
         ],
         [
           "X 反向",
           true,
-          true,
           90
         ],
         [
           "Z 正向",
           true,
-          true,
           90
         ],
         [
           "Z 反向",
-          true,
           true,
           90
         ]
@@ -3314,10 +3300,9 @@
           true
         ]
       ],
-      "coveredByBottomBar": [
+      "coveredByViewportSqueeze": [
         [
           "Y 反向",
-          true,
           true,
           130
         ]
@@ -3351,7 +3336,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@600": {
       "total": 130,
@@ -3381,7 +3366,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@700": {
       "total": 130,
@@ -3396,7 +3381,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@785": {
       "total": 130,
@@ -3411,7 +3396,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@786": {
       "total": 130,
@@ -3426,7 +3411,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@787": {
       "total": 130,
@@ -3441,7 +3426,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@900": {
       "total": 130,
@@ -3456,7 +3441,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1000": {
       "total": 130,
@@ -3471,7 +3456,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "expanded@1150": {
       "total": 130,
@@ -3486,7 +3471,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@360": {
       "total": 124,
@@ -3536,7 +3521,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@400": {
       "total": 124,
@@ -3581,7 +3566,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@540": {
       "total": 124,
@@ -3596,7 +3581,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@600": {
       "total": 124,
@@ -3611,7 +3596,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@700": {
       "total": 124,
@@ -3626,7 +3611,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@785": {
       "total": 124,
@@ -3641,7 +3626,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@786": {
       "total": 124,
@@ -3656,7 +3641,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@787": {
       "total": 124,
@@ -3671,7 +3656,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@900": {
       "total": 124,
@@ -3686,7 +3671,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1000": {
       "total": 124,
@@ -3701,7 +3686,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     },
     "collapsed@1150": {
       "total": 124,
@@ -3716,7 +3701,7 @@
           true
         ]
       ],
-      "coveredByBottomBar": []
+      "coveredByViewportSqueeze": []
     }
   },
   "checks": {
@@ -3744,7 +3729,7 @@
       "ok": true,
       "detail": "299 controls explained across 150 cells"
     },
-    "the-bottom-bar-squeeze-stops-at-one-height": {
+    "the-viewport-squeeze-stops-at-one-height": {
       "ok": true,
       "detail": {
         "bound": 440,
@@ -3758,11 +3743,11 @@
         ]
       }
     },
-    "every-bottom-bar-exemption-has-both-halves": {
+    "every-viewport-exemption-is-inside-the-viewport": {
       "ok": true,
       "detail": {}
     },
-    "the-bottom-bar-squeeze-is-actually-exercised": {
+    "the-viewport-squeeze-is-actually-exercised": {
       "ok": true,
       "detail": {
         "heights": [

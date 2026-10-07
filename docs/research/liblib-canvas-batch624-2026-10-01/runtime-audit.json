@@ -277,7 +277,7 @@
         "total": 123,
         "unexpected": [],
         "covered": [],
-        "clipped": 81,
+        "clipped": 72,
         "openOverlays": 0,
         "pageErrors": []
       },
@@ -316,9 +316,7 @@
         "state": "export-panel",
         "total": 135,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 17,
         "openOverlays": 1,
         "pageErrors": []
@@ -328,9 +326,7 @@
         "state": "rail-panorama",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
@@ -340,9 +336,7 @@
         "state": "rail-aspect",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
@@ -352,9 +346,7 @@
         "state": "rail-add-character",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
@@ -374,9 +366,7 @@
         "state": "tree-context-menu",
         "total": 135,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
@@ -386,9 +376,7 @@
         "state": "export-panel",
         "total": 135,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 17,
         "openOverlays": 1,
         "pageErrors": []
@@ -398,9 +386,7 @@
         "state": "rail-panorama",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
@@ -410,9 +396,7 @@
         "state": "rail-aspect",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
@@ -422,9 +406,7 @@
         "state": "rail-add-character",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
@@ -444,9 +426,7 @@
         "state": "tree-context-menu",
         "total": 135,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 23,
         "openOverlays": 1,
         "pageErrors": []
@@ -456,9 +436,7 @@
         "state": "export-panel",
         "total": 135,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 14,
         "openOverlays": 1,
         "pageErrors": []
@@ -468,9 +446,7 @@
         "state": "rail-panorama",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 19,
         "openOverlays": 1,
         "pageErrors": []
@@ -480,9 +456,7 @@
         "state": "rail-aspect",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 19,
         "openOverlays": 1,
         "pageErrors": []
@@ -492,9 +466,7 @@
         "state": "rail-add-character",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 19,
         "openOverlays": 1,
         "pageErrors": []
@@ -514,9 +486,7 @@
         "state": "tree-context-menu",
         "total": 135,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 19,
         "openOverlays": 1,
         "pageErrors": []
@@ -526,9 +496,7 @@
         "state": "export-panel",
         "total": 135,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
@@ -538,9 +506,7 @@
         "state": "rail-panorama",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 11,
         "openOverlays": 1,
         "pageErrors": []
@@ -550,9 +516,7 @@
         "state": "rail-aspect",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 11,
         "openOverlays": 1,
         "pageErrors": []
@@ -562,9 +526,7 @@
         "state": "rail-add-character",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 11,
         "openOverlays": 1,
         "pageErrors": []
@@ -584,9 +546,7 @@
         "state": "tree-context-menu",
         "total": 135,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 11,
         "openOverlays": 1,
         "pageErrors": []
@@ -596,9 +556,7 @@
         "state": "export-panel",
         "total": 135,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
@@ -608,9 +566,7 @@
         "state": "rail-panorama",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
@@ -620,9 +576,7 @@
         "state": "rail-aspect",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
@@ -632,9 +586,7 @@
         "state": "rail-add-character",
         "total": 130,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []
@@ -654,9 +606,7 @@
         "state": "tree-context-menu",
         "total": 135,
         "unexpected": [],
-        "covered": [
-          "帮助"
-        ],
+        "covered": [],
         "clipped": 10,
         "openOverlays": 1,
         "pageErrors": []

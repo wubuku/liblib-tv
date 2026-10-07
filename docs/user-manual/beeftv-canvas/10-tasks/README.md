@@ -6,7 +6,7 @@
 
 | 阶段 | 页面 |
 |---|---|
-| 画布基础 | [创建各类节点](create-nodes.md) · [平移、缩放与小地图导航](navigate-canvas.md) · [上传本地图片、视频、音频](upload-materials.md) · [素材库（资产页）](asset-library.md) · [画布库：搜索、文件夹与导入导出](manage-canvases.md) · [连线引用：拖线、吸附、快速创建与批量连线](connect-references.md) · [提示词与 @mention](prompts-and-mentions.md) |
+| 画布基础 | [创建各类节点](create-nodes.md) · [平移、缩放与小地图导航](navigate-canvas.md) · [上传本地图片、视频、音频](upload-materials.md) · [素材库（错的）](asset-library.md) · [画布库：搜索、文件夹与导入导出](manage-canvases.md) · [连线引用：拖线、吸附、快速创建与批量连线](connect-references.md) · [提示词与 @mention](prompts-and-mentions.md) |
 | 生成 | [新建创作（`/create`）](create-workspace.md) · [发起图片生成：任务状态、批量与重试](generate-images.md) · [发起视频生成与素材限制](generate-video.md) · [发起音频生成：音色、格式、语速与声音指令](generate-audio.md) · [媒体版本族与重试](media-versions.md) |
 | 整理与历史 | [整理画布、Frame 分组与外观](organize-canvas.md) · [撤销重做、版本历史与回收站](undo-history-versions.md) · [只读画布与画布副本（无入口，副本不上传）](readonly-canvas.md) · [账号存储、容量与配额](storage-quota.md) · [快捷键与帮助中心](shortcuts-help.md) |
 | 时间线 | [时间线剪辑器：轨道、片段与预览](timeline-editing.md) · [字幕关键词高亮与 SRT 导入导出](subtitle-highlights.md) · [时间线导出 MP4 与白膜视频录制](timeline-export.md) |

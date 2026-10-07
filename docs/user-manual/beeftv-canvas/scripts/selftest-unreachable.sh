@@ -34,19 +34,24 @@ IDXBASE="${TMPDIR:-/tmp}/beef-gate-selftest"
 cd "$SRC" || exit 1
 CASE=0
 
-build_ref() {  # $1=path  $2=变换脚本路径 → 成功时 stdout 输出 commit sha
-  local path="$1" tf="$2" base blob tree commit IDX
+build_ref() {  # $1=path  $2=变换脚本路径 [$3=基线 ref，默认 origin/main] → 成功时 stdout 输出 commit sha
+  # **Batch 296：第三个参数是基线 ref。** 原式把 `origin/main` 写死在函数体里，
+  # 于是「必须造在基线上的 ref」根本造不出来——而 Batch 294/295 的鉴别力
+  # **全都必须在基线上造**：旧闸在 origin/main 上本来就是红的（那正是要修的误报），
+  # **在它已经红的树上注入，量不出假绿**（假绿只能在它还绿的那棵树上演示）。
+  # **默认值保留 origin/main，所以原有 33 条用例的调用点一个字都不用改。**
+  local path="$1" tf="$2" base_ref="${3:-origin/main}" base blob tree commit IDX
   # 每个用例用**独立** index：共用一个时，第 5 条用例的前提校验会莫名失败
   # （单独跑同一套 plumbing 完全正常），属串扰而非闸门缺陷。宁可不共享。
   IDX="${IDXBASE}.${CASE}.index"
-  base=$(git rev-parse "origin/main^{tree}") || return 1
-  blob=$(git show "origin/main:$path" | python3 "$tf" | git hash-object -w --stdin) || return 1
+  base=$(git rev-parse "${base_ref}^{tree}") || return 1
+  blob=$(git show "${base_ref}:$path" | python3 "$tf" | git hash-object -w --stdin) || return 1
   [ -n "$blob" ] || return 1
   GIT_INDEX_FILE="$IDX" git read-tree "$base" || return 1
   GIT_INDEX_FILE="$IDX" git update-index --add --cacheinfo "100644,$blob,$path" || return 1
   tree=$(GIT_INDEX_FILE="$IDX" git write-tree) || return 1
   [ -n "$tree" ] || return 1
-  commit=$(echo "gate selftest" | git commit-tree "$tree" -p "$(git rev-parse origin/main)") || return 1
+  commit=$(echo "gate selftest" | git commit-tree "$tree" -p "$(git rev-parse "$base_ref")") || return 1
   git update-ref "$TMPREF" "$commit" || return 1
   echo "$commit"
 }
@@ -86,10 +91,10 @@ probe_env_baseline() {
   ENVDC_PROBED=1
 }
 
-run_case() {  # 说明 path 变换脚本 修复特征 期望失效的登记id
-  local desc="$1" path="$2" tf="$3" feature="$4" want="$5" c out rc
+run_case() {  # 说明 path 变换脚本 修复特征 期望失效的登记id [$4=基线 ref]
+  local desc="$1" path="$2" tf="$3" feature="$4" want="$5" base="${6:-origin/main}" c out rc
   CASE=$((CASE+1))
-  if ! c=$(build_ref "$path" "$tf"); then
+  if ! c=$(build_ref "$path" "$tf" "$base"); then
     echo "  ✗ ${desc}：合成 ref 失败，前提不成立，**本次验证作废**"; VOID=$((VOID+1))
     git update-ref -d "$TMPREF" >/dev/null 2>&1; return
   fi
@@ -146,6 +151,72 @@ run_pass_case() {  # 说明 path 变换脚本 注入特征 期望**仍然成立*
     echo "  ✓ ${desc}：闸门未误伤，[$want] 仍被正确判为成立"; PASS=$((PASS+1))
   else
     echo "  ✗ ${desc}：虽通过但输出里找不到 [$want]；实际："; echo "$out" | sed 's/^/      /'; FAIL=$((FAIL+1))
+  fi
+  git update-ref -d "$TMPREF" >/dev/null 2>&1
+}
+
+# ── Batch 296：第三族 `run_id_case`——**只判一条断言的结论，不看整体 rc** ─────
+#
+# **为什么需要它**：`run_pass_case` 那一族要求 rc=0，而 rc=0 的前提是「注入前的
+# origin/main 就全绿」——本环境下不成立（实测 ${ENVN} 处不一致），于是那一族整族
+# **不可判定、记作废**。**但「不可判定」的原因是它判了太多东西**：
+# 「`canvas-copy-never-uploaded` 这**一条**在 origin/main 上仍成立吗」这个问题，
+# **根本不需要整棵树全绿也能回答**——答案就写在那一条的结论行里。
+#
+# **所以这一族只 grep 那一条 id 的结论行**：期望 `成立` 就查 `  <id>：… 仍成立`，
+# 期望 `失效` 就查 `⚠ [<id>]`。
+#
+# **这不是把判据放松，而是把判定的对象缩小到它真正要问的那一条**
+# （纪律 156：没核 ≠ 核过——而「整棵树红」不等于「这一条红」）。
+run_id_case() {  # 说明 基线 path 变换脚本 注入特征 登记id 期望(成立|失效) 判定串
+  # 判定串是可选的第 7 参：不给就按 id 的结论行判；给了就用它（用于 [scan] 那种
+  # 挂在 id 上但措辞另有一套的行）。
+  local desc="$1" base="$2" path="$3" tf="$4" feature="$5" id="$6" want="$7" key="$8"
+  local c out rc line
+  CASE=$((CASE+1))
+  if [ -z "$tf" ]; then          # 不注入：跑的就是基线原样那一棵树
+    if ! c=$(git rev-parse "$base"); then
+      echo "  ✗ ${desc}：取不到 ref [$base]，前提不成立，**本次验证作废**"; VOID=$((VOID+1)); return
+    fi
+    git update-ref "$TMPREF" "$c" >/dev/null 2>&1
+  else
+    if ! c=$(build_ref "$path" "$tf" "$base"); then
+      echo "  ✗ ${desc}：合成 ref 失败，前提不成立，**本次验证作废**"; VOID=$((VOID+1))
+      git update-ref -d "$TMPREF" >/dev/null 2>&1; return
+    fi
+    if ! git show "$TMPREF:$path" 2>/dev/null | grep -F "$feature" >/dev/null; then
+      echo "  ✗ ${desc}：合成 ref 里找不到注入特征 [$feature] → 前提不成立，**本次验证作废**"
+      VOID=$((VOID+1)); git update-ref -d "$TMPREF" >/dev/null 2>&1; return
+    fi
+    echo "  前提成立：合成 ref（基线 ${base}）的 $path 已含 [$feature]"
+  fi
+  out=$(BEEFTV_REF="$TMPREF" python3 "$GATE" 2>&1); rc=$?
+  if [ -n "$key" ]; then
+    if printf '%s\n' "$out" | grep -F "$key" >/dev/null; then
+      echo "  ✓ ${desc}：输出里找到了 [$key]（退出码 ${rc}，**本族只看这一条，不看整体 rc**）"
+      PASS=$((PASS+1))
+    else
+      echo "  ✗ ${desc}：输出里找不到 [$key]；实际相关行："
+      printf '%s\n' "$out" | grep -F "$id" | sed 's/^/      /' | head -5
+      FAIL=$((FAIL+1))
+    fi
+  elif [ "$want" = "成立" ]; then
+    line=$(printf '%s\n' "$out" | grep -F "  ${id}：" | grep -F "仍成立" | head -1)
+    if [ -n "$line" ]; then
+      echo "  ✓ ${desc}：[$id] 仍被正确判为成立（退出码 ${rc}）"; PASS=$((PASS+1))
+    else
+      echo "  ✗ ${desc}：[$id] 没有被判为成立；实际相关行："
+      printf '%s\n' "$out" | grep -F "$id" | sed 's/^/      /' | head -5
+      FAIL=$((FAIL+1))
+    fi
+  else
+    if printf '%s\n' "$out" | grep -F "⚠ [${id}]" >/dev/null; then
+      echo "  ✓ ${desc}：[$id] 仍被正确判为失效（退出码 ${rc}）"; PASS=$((PASS+1))
+    else
+      echo "  ✗ ${desc}：[$id] 没有被判为失效；实际相关行："
+      printf '%s\n' "$out" | grep -F "$id" | sed 's/^/      /' | head -5
+      FAIL=$((FAIL+1))
+    fi
   fi
   git update-ref -d "$TMPREF" >/dev/null 2>&1
 }
@@ -210,6 +281,30 @@ run_pass_case "31) 不误伤：只加比较式 starterMode === \"guided\"（不�
 # 34 正是把「注释不是界面入口」钉成用例——**它比 33 更该在**。
 run_case "33) 代码里补一个真的 ?fixture= 写出点（必须报：该参数已脱零写）" web/src/pages/assets/index.tsx "$HERE/selftest-unreachable-fix-33-fixture-writer.py" '__fixtureEntry' "已被扫到写出点"
 run_pass_case "34) 不误伤：只在注释里写 ?fixture=（注释不是界面入口）" web/src/pages/assets/index.tsx "$HERE/selftest-unreachable-fix-34-fixture-in-comment.py" '仅注释，不是界面入口' "9 个参数零写出"
+
+# ── Batch 296：Batch 294/295 的鉴别力，从临时脚本搬成常驻用例 ────────────────
+#
+# **搬的理由不是「顺手」**：那 8 例原先跑在 `/tmp` 的一次性脚本里，
+# **它们是 4 处判据改动的全部证据**——不搬进来，下一次有人把 `CANVAS_SYNC_CALL`
+# 改回写死函数名，构建照样全绿（**判据本身没有被任何常驻用例看着**）。
+#
+# **35/36/37 必须在基线上造**：旧闸在 origin/main 上本来就是红的（那正是要修的误报），
+# **在它已经红的树上注入，量不出假绿**（纪律 330 ⑧）。
+# 用例 7 与 11 仍在 origin/main 上跑（它们验的是「新符号出现后闸仍能报失效」的前身），
+# **而 35 是它的另一半**——同一个洞的另一侧：新符号被复制路径用上。
+BASE_REF=bcc3b05
+run_case "35) 复制入口改调**新** sync 符号（认事实，不是认函数名）" web/src/pages/canvas/project.tsx "$HERE/selftest-fix-35-copy-sync-newsym.py" "void syncLocalCanvasProject(id" "canvas-copy-never-uploaded" "$BASE_REF"
+run_case "36) dev 隔离判断比对错路径（认事实后牙齿还在）" web/src/components/layout/app-providers.tsx "$HERE/selftest-fix-36-devlab-wrong-path.py" '=== "/dev/somewhere-else"' "dev-lab-routes-no-entry" "$BASE_REF"
+run_case "37) 后端真的注册了 /canvas-folders（服务端有了画布文件夹）" backend/internal/handler/user_data.go "$HERE/selftest-fix-37-canvas-folder-endpoint.py" 'r.GET("/canvas-folders"' "canvas-folders-local-only" "$BASE_REF"
+
+# 38–41 走第三族：**不注入，跑 origin/main 原样，只判那一条断言的结论。**
+# **它们本来属于 `run_pass_case` 那一族（要求 rc=0），而本环境下 rc=0 的前提不成立**，
+# **于是那一族整族记作废**——但「这一条在 origin/main 上仍成立吗」这个问题
+# **根本不需要整棵树全绿也能回答**，答案就写在那一条的结论行里（纪律 156）。
+run_id_case "38) origin/main 原样：复制动作仍不上传（三处误报之一已消失）" origin/main "" "" "" "canvas-copy-never-uploaded" "成立"
+run_id_case "39) origin/main 原样：改名动作仍不上传（同一条对照组）" origin/main "" "" "" "canvas-rename-never-uploaded" "成立"
+run_id_case "40) origin/main 原样：dev 隔离仍被 DEV 包着" origin/main "" "" "" "dev-lab-routes-no-entry" "成立"
+run_id_case "41) 注入真实调用点后：全库零调用复核必须不再成立" origin/main web/src/pages/canvas/use-canvas-project-dialogs.ts "$HERE/selftest-fix-41-artcritique-autostart-called.py" "__b295_probe" "art-critique-no-autostart" "" "setArtCritiqueStartRequest 本轮未被扫到"
 
 # 关于「工具失败必须与干净的否定结果可区分」：用例 32 **不放这里**。
 # 本脚本的框架是往 **BeefTV 源码**注入再重建临时 ref，而那条用例要改的是

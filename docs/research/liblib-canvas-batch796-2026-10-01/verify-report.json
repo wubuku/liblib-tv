@@ -774,7 +774,7 @@
   "post": "a30f7c777258d0b866e03bea2c15a420f64815ed0654c911cb71810ad82e600f",
   "src": {
    "src/app/page.tsx": "86230807ae59ff2c8c524fcb8fe92bb4e6ec3e826629c88726e83bdcbc8b947b",
-   "src/store/canvasStore.ts": "5051a9877f8ad879a755cf0f3f20e8a899add88ea5c333ac16dcad260f271f1e"
+   "src/store/canvasStore.ts": "942c15059f63c2faeb73198e9b65de230a62681b95410762cee371c0d46fc43b"
   },
   "ok": {
    "pre": true,

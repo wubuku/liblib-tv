@@ -374,7 +374,7 @@ def run_checks(a, st, rw):
       rw["leftDialog"] == [] and tt.get("leftTheDialog") == [],
       {"raw": rw["leftDialog"], "artifact": tt.get("leftTheDialog")})
     C("★ 所有逃逸落点仍在对话框内",
-      all(c["path"][0]["inDialog"] or True for v in rw["cells"].values()
+      all(c["path"][0]["inDialog"] for v in rw["cells"].values()
           for c in v)
       and tt.get("escapeTargetsAllInDialog") is True,
       tt.get("escapeTargetsAllInDialog"))

@@ -9,8 +9,8 @@
     "ok": true,
     "detail": {
      "命中行": [
-      3327,
-      3363
+      3345,
+      3381
      ],
      "原文": [
       "                nodes: fitStoryboardGroupsToChildren(",
@@ -472,7 +472,7 @@
     "detail": {
      "page.tsx 里 removeSelectedNodes 调用数": 2,
      "page.tsx 里 removeNode 调用数": 0,
-     "Delete 键实际调用行": 1348,
+     "Delete 键实际调用行": 1356,
      "删除键走的函数": "removeSelectedNodes",
      "removeNode 的证据等级": "★ 仅静态（S1/S4），无行为证据",
      "结論": "本批只证明了 `removeSelectedNodes` 那处的行为；`removeNode` 那处按「同一条路径两个半边一起改」处理，是**一致性**修法，不是被测出来的行为"
@@ -488,11 +488,11 @@
    "why": "★ 验证 S1：同一条路径的两个半边只修一个 ⟹ 断言必须翻。★ 本变异按**行号**定位，所以 `removeSelectedNodes` 那处**保持已修**状态 ⟹ S5/S6/S7 仍绿（那几条只读 raw），连带翻掉的 S2/S4 是「两处都在」这个前提的连带",
    "evidence": {
     "改前命中": [
-     3327,
-     3363
+     3345,
+     3381
     ],
     "改后命中": [
-     3363
+     3381
     ],
     "行数中性": true,
     "只掉一处": true
@@ -520,11 +520,11 @@
    "why": "★ 验证 S1 的另一半：N1 与 N2 分别打掉不同的那一处，两次都必须翻 ⟹ 说明断言盯的是**两处**而不是某一处",
    "evidence": {
     "改前命中": [
-     3327,
-     3363
+     3345,
+     3381
     ],
     "改后命中": [
-     3327
+     3345
     ],
     "行数中性": true,
     "只掉一处": true
@@ -551,7 +551,7 @@
    "name": "N3 ★ 打断 793 的拖拽收口那处",
    "why": "★ 验证 S2：两处删除路径加进来时**不能**把 793 那半边弄坏",
    "evidence": {
-    "行": 3742,
+    "行": 3820,
     "行数中性": true,
     "拖拽收口还在": false,
     "删除写点数": 2
@@ -730,8 +730,8 @@
   "passed": 9
  },
  "restoreSha": {
-  "src": "735b2a6a6cfc63fb5432b36187c2ab6a28ee208473bd03351d86fa86b45d9f0e",
-  "page": "bc7410dd6813533a03a10bdc2fcef20a67658e8b8ac9056df8e489590b67f8df",
+  "src": "942c15059f63c2faeb73198e9b65de230a62681b95410762cee371c0d46fc43b",
+  "page": "86230807ae59ff2c8c524fcb8fe92bb4e6ec3e826629c88726e83bdcbc8b947b",
   "pre": "429344af8e53830db4cf4daf17af5e74b7e17366e094b01daddff08c1f348d61",
   "post": "02ba841c2b3092cb151e1e51c6341638ae133e21342678e913c91913357225f2",
   "ok": {
