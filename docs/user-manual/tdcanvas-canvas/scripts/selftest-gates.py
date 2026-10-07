@@ -1739,12 +1739,41 @@ def mutate_absolute_row_ok(root: Path) -> None:
     """限定词还在时不该误报（M254 的不误报对照）。
 
     ★ **正向那一侧必须有对照**：只测「删掉会被抓到」，那道闸可能只是**永远报错**。
+
+    ★ **M296 改过一次注入方式**：★ **第一版把锚点短语 `一律不变（仍可见）` 改成
+    ★ `一律不变（依旧可见）`，★ **而那正好把 A27 的锚点片段也一起改坏了——
+    ★ **于是 M296 新加的「锚点片段也要校验」把这条不误报用例拦下了，**
+    ★ **自检 99 个里死了 1 个（错在我，不在判据）。**
+    ★ **★ 现在改成在锚点短语**前面**加字：★ **锚点片段作为子串仍然完整，
+    ★ **限定词也仍然在，★ **而门禁确实读到了一个被改写的正文句子。**
+    ★ **★ 这样它同时守住新判据的不误报侧**：★ **锚点片段还在就该放过。**
     """
 
     path = root / "10-tasks" / "shortcuts-help.md"
     text = path.read_text(encoding="utf-8")
-    patched = text.replace("一律不变（仍可见）", "一律不变（依旧可见）", 1)
+    patched = text.replace("一律不变（仍可见）", "前后一律不变（仍可见）", 1)
     assert patched != text, "注入失败：锚点短语没找到"
+    assert "一律不变（仍可见）" in patched, "注入失败：★ **锚点片段被弄丢了，★ **这条用例就名存实亡了"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_absolute_anchor_rotten(root: Path) -> None:
+    """登记表里的锚点片段指着一句已经不存在的话时必须拦下（M296）。
+
+    ★ **M296 撞上的就是这个洞**：★ **那一格明明写着「文件#行内片段」，
+    ★ **而脚本只拿 `#` 前半段去找文件、后半段 `strip_markup` 之后就直接丢弃——
+    ★ **所以改了正文之后锚点会静默腐化，★ **而门禁一路报 ok。**
+
+    ★ **本用例改的是登记表那一格**（而不是正文），★ **模拟的正是现实里的形态：
+    ★ **正文被改了、台账没跟着改，于是「#」后面那截指着一句不存在的话。**
+    """
+
+    path = root / "SOURCE_OBSERVATIONS.md"
+    text = path.read_text(encoding="utf-8")
+    good = "`10-tasks/shortcuts-help.md#一律不变（仍可见）`"
+    bad = "`10-tasks/shortcuts-help.md#这句锚点被故意改坏了`"
+    patched = text.replace(good, bad, 1)
+    assert patched != text, "注入失败：没找到 A27 的锚点"
     path.write_text(patched, encoding="utf-8")
 
 
@@ -2196,6 +2225,7 @@ CASES: list[tuple[str, object, str, str]] = [
     ("注释里提到白名单改写不该被当成真代码（不误报，M242）", mutate_destructive_mentioned_in_comment_ok, "probecontracts", EXPECT_PASS),
     ("绝对断言的限定词被删掉（订正块被误删的样子，M254）", mutate_absolute_qualifier_deleted, "absclaim", "限定词在"),
     ("限定词还在时不该被误报（不误报，M254）", mutate_absolute_row_ok, "absclaim", EXPECT_PASS),
+    ("登记表里的锚点指着一句已改掉的话（锚点腐化，M296）", mutate_absolute_anchor_rotten, "absclaim", "锚点片段在"),
 ]
 
 

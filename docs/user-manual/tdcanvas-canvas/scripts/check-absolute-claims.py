@@ -120,6 +120,20 @@ def main() -> int:
             problems.append(f"[{rid}] 指向的文件不存在：{fname}")
             continue
         ttext = target.read_text(encoding="utf-8")
+        # ★ **M296 补：锚点片段本身也要逐字命中它指向的那一页。**
+        #   此前 `#` 后半段只被 `strip_markup` 处理、**从未参与任何查找**——
+        #   而表里那一格明明写成「文件#行内片段」，读者会以为它是受校验的。
+        #   **后果是锚点会静默腐化**：改掉了被引用的那句话之后，表里仍显示旧句，
+        #   而这道门禁一路报 ok。**M296 改 `connect-references.md` 的措辞时当场撞上了这个洞**——
+        #   A28 的锚点已经不指向任何现存句子了，而门禁当时一声不吭。
+        #   **只查长度 ≥ 6 的片段**：太短的锚点会假失败（与下面 needles 用同一个下限）。
+        a_needle = anchor.strip()
+        if len(a_needle) >= 6:
+            if a_needle not in strip_markup(ttext):
+                problems.append(
+                    f"[{rid}] 锚点片段在 {fname} 里已找不到：{a_needle!r}\n"
+                    f"        → 引用的那句话被改写了（锚点腐化）。这一格是给人读的，"
+                    f"**此前机器一个字都不校验**，所以它腐化时不报任何错")
         hay = strip_markup(qual)
         needles = [n.strip() for n in re.split(r"[；;]", hay) if len(n.strip()) >= 6]
         if not needles:
