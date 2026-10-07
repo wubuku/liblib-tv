@@ -1,4 +1,45 @@
 {
  "generated_by": "jimeng_probe1031_live_canvas_contract.py",
- "fatal": "契约文件不存在：/tmp/b1031-nonexistent.json"
+ "contract_file": "docs/research/jimeng-canvas/contracts/live-canvas-contract-1031.json",
+ "contract_counts": {
+  "n_testids": 13,
+  "n_aria_literals": 24,
+  "n_aria_shapes": 3,
+  "n_node_kinds": 3
+ },
+ "aria_literals_carrying_a_digit": [],
+ "P9_no_literal_aria_carries_a_driftable_number_1031": true,
+ "contract_parses_as_python_ast": true,
+ "P7_contract_is_parseable_by_both_readers_1031": true,
+ "duplicate_keys_in_gate_sources": [],
+ "P8_gate_sources_have_no_duplicate_keys_1031": true,
+ "P1_contract_is_wellformed_1031": true,
+ "P2_status_shape_is_a_shape_not_a_number_1031": true,
+ "P3_contract_carries_no_generation_action_1031": true,
+ "p3_offending_items": [],
+ "live_source": "live",
+ "live_available": true,
+ "live_1031": {
+  "contract_counts_checked": {
+   "testids": 13,
+   "aria_literals": 24,
+   "aria_shapes": 3,
+   "node_kinds": 3
+  },
+  "missing_testids": [],
+  "missing_aria": [],
+  "missing_aria_shapes": [],
+  "all_aria_shapes_found": true,
+  "missing_node_kinds": [],
+  "all_testids_found": true,
+  "all_aria_found": true,
+  "all_node_kinds_found": true,
+  "engine_found": true,
+  "status_line_shape_matched": true
+ },
+ "P4_live_matches_contract_1031": true,
+ "P5_live_status_line_shape_1031": true,
+ "duplicate_keys_in_audit_block": [],
+ "P6_no_duplicate_keys_in_contract_block_1031": true,
+ "downgraded": "⚠️⭐⭐⭐⭐⭐ **本轮没有浏览器通路，P4/P5 记 `null` 而不是 `False`** —— 记成 `False` 就是「没跑过」与「跑过没过」混成同一件事，而这正是这套门最贵的那种失败"
 }

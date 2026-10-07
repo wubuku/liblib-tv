@@ -5959,6 +5959,13 @@ def main() -> int:
     # ⭐⭐⭐ 1031：第一道**直接验被复刻的那个东西**（即梦画布的可交互契约）的门
     p1031 = ROOT / "scripts/jimeng_probe1031_live_canvas_contract.py"
     _p1031 = p1031.read_text(encoding="utf-8") if p1031.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1031-④b：原型侧探针（同一份契约，第二个被测对象）
+    p1031d = ROOT / "scripts/jimeng_probe1031d_replica_contract.py"
+    _p1031d = p1031d.read_text(encoding="utf-8") if p1031d.exists() else ""
+    # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
+    _ws = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(encoding="utf-8")
+    _tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
+    _sl = (ROOT / "src/components/jimeng/JimengStatusLine.tsx").read_text(encoding="utf-8")
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -16453,7 +16460,47 @@ def main() -> int:
           and "missing_aria_shapes\": missing_s," in _p1031
           and "assert len(_P) >= 9," in _p1031
           and '"p20_the_contract_had_three_driftable_aria_not_one_1031_" in _ausrc'
+          # ⭐⭐⭐⭐⭐ p21（量法错 ⇒ 报「产品是死的」）与 p22 也必须被引用（1025 规则）
+          and '"p21_the_wrong_measuring_instrument_reported_the_product_as_dead_1031_" in _ausrc'
 )
+    _needa = ['NODE_SCOPED = C.get("node_scoped", {}) or {}' in _p1031d,
+              'out["P7_calibers_do_not_overlap_1031d"] = bool(not _overlap_t and not _overlap_a)' in _p1031d,
+              'KNOWN = {NUM_RE.sub("N", "0 nodes, 0 edges, 0 selected.' in _p1031d,
+              'out["P8_node_scoped_present_when_node_exists_1031d"] = None' in _p1031d,
+              'assert len(_P) >= 7,' in _p1031d,
+              'if not tid_list and isinstance(live.get("n_testids"), int):' in _p1031d,
+              'aria-label="Agent"' in _ws,
+              'data-testid="canvas-main-region"' in _ws,
+              'Canvas editing area' in _ws,
+              'aria-label="全屏编辑"' in _tb,
+              'const nodes = useJimengStore((s) => s.nodes.length);' in _sl,
+              'JimengStatusLine' in _ws]
+    check("DD993R.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "同一个契约，两个被测对象：真实站与原型读同一份契约文件 "
+          "1031 验的是源站画布的可交互契约；104b 把**原型**也拉进同一份契约的对账 "
+          "⇒ 此前所有门都在验研究装置自己或源站，**从来没验过我们做出来的东西像不像源站** ⇒⇒⇒⇒⇒ "
+          "**⇒⇒⇒⇒⇒ 契约因此被迫长出第三种口径**（前两种是区域级字面量与形状）："
+          "**节点级** —— 全屏编辑 / 导出时间线 / 替换媒体 / 添加素材到时间线 / 静音 / "
+          "timeline-mute-button / flow-node-title 只有在**选中对应类型节点**时才出现在 DOM 里 "
+          "⇒⇒⇒⇒⇒ 混在 required 里就会**恒缺**、对账永远红、久了变成「知道它红但没人管」的死判据 "
+          "⇒⇒⇒⇒⇒ 拆出来之后：区域级恒该有、形状口径只比形状、节点级在当前页面**没有那种节点**时记 "
+          "**null（没测到）而不是 False（测了、没有）** ⇒⇒⇒⇒⇒ "
+          "**⇒⇒⇒⇒⇒ 探针 P1..P8：P7 守住三种口径的键不许重叠**（重叠意味着同一条契约在两种口径里各当权威，"
+          "而判法不同 ⇒ 迟早一边误判）；**P5 守「数字真的接在 store 上」** —— 第一版它要求所有样本都命中"
+          "已保存形状，而「保存中…」本来**就是另一种形状** ⇒ 一旦页面处于保存中态必红；"
+          "改成「多样本 + 每个样本的脱敏形状都属于已知集合」⇒ **一段写死的文案只能产出一个样本，照样红** "
+          "⇒⇒⇒⇒⇒ "
+          "**⇒⇒⇒⇒⇒ 六个变异体当场分清**：区域级缺 testid → P3；状态行少一个结尾句点 → P4；"
+          "只留一个样本 → P5；未知状态形状 → P5 且 unknown_status_shapes 非空；口径重叠 → P7；"
+          "**读数全变而形状不变（节点 76/77、edges 12、selected 3/0）⇒ rc=0 不红** ⇒⇒⇒⇒⇒ "
+          "**⇒⇒⇒⇒⇒ 原型侧本批补上**：左下角**状态行**（数字全部现算自 store）、canvas-main-region、"
+          "Agent 与 Canvas editing area 两个区域 aria，并把 全屏预览 从 CLONE_DECISION 升成 SOURCE_FACT "
+          "（源站实况是 全屏编辑）⇒⇒⇒⇒⇒ **而这条链上我自己踩了两次**："
+          "① zustand 选择器返回**新对象** ⇒ Object.is 恒不等 ⇒ Maximum update depth exceeded、整页挂掉"
+          "（注释里那个「避免分三次订阅」的理由恰恰害了我）；"
+          "② 读数脚本里 const midClick 落在 try 块内 ⇒ 块级作用域 ⇒ 外部 ReferenceError "
+          "⇒ 探针读到**上一轮的旧读数**而报「缺 13 个 testid」",
+          all(_needa))
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

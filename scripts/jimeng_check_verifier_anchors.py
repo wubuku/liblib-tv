@@ -305,6 +305,7 @@ PROBE_VARS = {
     "_p1027": "scripts/jimeng_probe1027_freshness_gate.py",
     "_p1030": "scripts/jimeng_probe1030_anchor_identity.py",
     "_p1031": "scripts/jimeng_probe1031_live_canvas_contract.py",
+    "_p1031d": "scripts/jimeng_probe1031d_replica_contract.py",
     # ⚠️⚠️⚠️⚠️⚠️⚠️ 这一行曾被**连着写了两遍**（`&&` 链把生成脚本跑了两次的老毛病），
     #   而字典字面量里的重复键 Python 会静默吞掉 ⇒ 官方锚点门**照样全绿**、**不报错**、
     #   也不会让任何一条判据变红 ⇒ 纯无声损坏 ⇒ 与 1031 探针的 `P6` 同一个形状

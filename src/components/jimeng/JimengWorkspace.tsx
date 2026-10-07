@@ -25,6 +25,7 @@ import { JimengEdge } from "@/components/jimeng/JimengEdge";
 import { JimengTopBar } from "@/components/jimeng/JimengTopBar";
 import { JimengToolRail } from "@/components/jimeng/JimengToolRail";
 import { JimengBottomDock } from "@/components/jimeng/JimengBottomDock";
+import { JimengStatusLine } from "@/components/jimeng/JimengStatusLine";
 import { JimengAiButton } from "@/components/jimeng/JimengAiButton";
 import {
   JimengContextMenu,
@@ -202,6 +203,13 @@ function JimengFlow() {
     // 889d：源站 `tabindex="0"`。用 `if (!hasAttribute)` 而不是直接覆盖 ——
     // 万一 xyflow 哪天自己给了值，别把它踩掉。
     if (!el.hasAttribute("tabindex")) el.setAttribute("tabindex", "0");
+    // ⭐ 1031 SOURCE_FACT：源站在画布**可编辑区**上另有一条 `Canvas editing area`
+    //   —— 它与画布根的 `Canvas` 不是同一个节点：根说的是「这是画布」，
+    //   editing area 说的是「这里能编辑」。两者的落点不同，焦点与读屏都靠它区分。
+    //   ⚠️ xyflow 没开放这个属性的 prop，只能在 DOM 上挂（同上面 aria-label 的理由）。
+    const pane = el.querySelector(".react-flow__pane") ?? el;
+    pane.setAttribute("aria-label", "Canvas editing area");
+    if (!pane.getAttribute("role")) pane.setAttribute("role", "region");
   }, []);
 
   const nodes = useJimengStore((s) => s.nodes);
@@ -564,6 +572,7 @@ function JimengFlow() {
   return (
     <div
       ref={canvasBoxRef}
+      data-testid="canvas-main-region"
       className={`jimeng-canvas relative h-full w-full ${
         refPicking ? "ring-2 ring-inset ring-[#0A5CD6]" : ""
       }`}
@@ -752,11 +761,19 @@ export function JimengWorkspace() {
   // chrome 组件 (底栏缩放菜单) 需要 useReactFlow，整体包在 Provider 内
   return (
     <ReactFlowProvider>
-      <div className="relative h-screen w-screen overflow-hidden">
+      {/* ⭐ 1031 SOURCE_FACT：源站最外层是 `aria-label="Agent"` 的应用壳 —— 它是
+          「谁在驱动这块画布」的落点。原型此前没有这一层，
+          而契约把 `Agent` 列进了必需 aria。 */}
+      <div
+        aria-label="Agent"
+        className="relative h-screen w-screen overflow-hidden"
+      >
         <JimengFlow />
         <JimengTopBar />
         <JimengToolRail />
         <JimengBottomDock />
+        {/* ⭐ 1031 SOURCE_FACT：左下角状态行，登记的是**形状**不是读数 */}
+        <JimengStatusLine />
         {aiDrawerOpen ? null : <JimengAiButton />}
         {aiDrawerOpen ? (
           <JimengAiDrawer

@@ -3,9 +3,9 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census_inputs_2029": {
-  "n_fingerprinted": 22,
+  "n_fingerprinted": 23,
   "n_unreadable": 0,
-  "n_from_probe_products": 22,
+  "n_from_probe_products": 23,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
     "sha256_12": "41073e1a98c8",
@@ -56,16 +56,16 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "3ab438b4cfaa",
-    "bytes": 78957
+    "sha256_12": "996ef8ec92eb",
+    "bytes": 78647
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
     "bytes": 21313
    },
    "live-canvas-check-1031.json": {
-    "sha256_12": "aaab13be33b0",
-    "bytes": 128
+    "sha256_12": "e75acd23eeb8",
+    "bytes": 1614
    },
    "occurrence-ledger-1013.json": {
     "sha256_12": "c17ac6ba9a00",
@@ -75,12 +75,16 @@
     "sha256_12": "74ac31678fd4",
     "bytes": 3232
    },
+   "replica-contract-1031d.json": {
+    "sha256_12": "d0198725eac3",
+    "bytes": 2002
+   },
    "replica-coverage-1017.json": {
     "sha256_12": "5512e3d3a607",
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "e1d05a6f5e3e",
+    "sha256_12": "a79923af7a76",
     "bytes": 30297
    },
    "stem-attribution-1007.json": {
@@ -99,12 +103,12 @@
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 22,
+  "n_goldens": 23,
   "n_excluded_self": 1,
-  "n_empty_list": 182,
-  "n_empty_null": 26,
+  "n_empty_list": 197,
+  "n_empty_null": 27,
   "n_self_provable": 9,
-  "n_ambiguous": 199
+  "n_ambiguous": 215
  },
  "rows": [
   {
@@ -1431,6 +1435,62 @@
    "invariant": null
   },
   {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/aria_literals_carrying_a_digit",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/duplicate_keys_in_gate_sources",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/p3_offending_items",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/live_1031/missing_testids",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/live_1031/missing_aria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/live_1031/missing_aria_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/live_1031/missing_node_kinds",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/duplicate_keys_in_audit_block",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "occurrence-ledger-1013.json",
    "path": "/cross_with_gate/only_ledger",
    "kind": "list",
@@ -1471,6 +1531,62 @@
    "kind": "list",
    "self_provable": true,
    "invariant": "baseline_out_of_scope == len(baseline_out_of_scope_vars)"
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/caliber_overlap/testids",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/caliber_overlap/aria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/aria_literals_carrying_a_digit",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/replica_1031d/missing_testids",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/replica_1031d/missing_aria_literals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/replica_1031d/missing_aria_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/P8_node_scoped_present_when_node_exists_1031d",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/unknown_status_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
@@ -2882,8 +2998,120 @@
    "invariant": null
   },
   {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/aria_literals_carrying_a_digit",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/duplicate_keys_in_gate_sources",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/p3_offending_items",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/live_1031/missing_testids",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/live_1031/missing_aria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/live_1031/missing_aria_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/live_1031/missing_node_kinds",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/duplicate_keys_in_audit_block",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "occurrence-ledger-1013.json",
    "path": "/retired",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/caliber_overlap/testids",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/caliber_overlap/aria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/aria_literals_carrying_a_digit",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/replica_1031d/missing_testids",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/replica_1031d/missing_aria_literals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/replica_1031d/missing_aria_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/P8_node_scoped_present_when_node_exists_1031d",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/unknown_status_shapes",
    "kind": "list",
    "self_provable": false,
    "invariant": null
