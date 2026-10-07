@@ -635,6 +635,13 @@ run_gate verify-meta.py 元数据
 # 与 Batch 307 方向四h 那个方向的上限相同（纪律 346⑥）。
 run_gate verify-gate-registry.py 闸门行为登记新鲜度
 
+# ── Batch 331：痕迹清单与实测的一致性 ──────────────────────
+# **这张痕迹清单错过两次**（Batch 329 漏 `module_ref(` 少扫 4 道；
+# Batch 331 量出它还多算 4 道），而**两种失效都不会让任何东西报错**。
+# 旁边那份实测矩阵由 `scripts/remeasure-upstream-gates.py` 生成，
+# **矩阵过期时报 rc=2 而不是 rc=1**（纪律 101）。
+run_gate verify-upstream-gates.py 痕迹清单有没有漏掉实测会读的闸
+
 # ---------- 完成 ----------
 # ── Batch 255：把这次构建的结果记进 `.git/beeftv-build-record` ─────────
 # **能走到这一行本身就是 rc=0 的证明**（`fail()` 会 `exit 1`），

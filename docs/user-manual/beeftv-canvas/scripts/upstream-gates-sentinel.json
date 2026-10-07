@@ -1,0 +1,888 @@
+{
+ "measured_at": "2026-10-07 13:07:47",
+ "sentinel": "zzz-not-a-real-ref-9f3a",
+ "rows": [
+  {
+   "gate": "verify-baseline-landmark.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "  **本闸只过「读者有机会顺着版本号找到这次改了什么」，不过「手册讲对了」**——那句说明的内容不在机械判据的射程内"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "  **本闸只过「读者有机会顺着版本号找到这次改了什么」，不过「手册讲对了」**——那句说明的内容不在机械判据的射程内"
+    ],
+    "sec": 0.1
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-baseline.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "  ℹ 上游 origin/main 已领先本基线 34 个提交（顶端 3b4c79a）——**这不是错误**：基线锁定的是正文照哪版写的。要跟上游就该升版并重做增量对账，而不是改判据。"
+    ],
+    "sec": 0.2
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "  ℹ 上游 origin/main 已领先本基线 34 个提交（顶端 3b4c79a）——**这不是错误**：基线锁定的是正文照哪版写的。要跟上游就该升版并重做增量对账，而不是改判据。"
+    ],
+    "sec": 0.2
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-batch-rows.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "批次账本行核对通过：每个批次号只登记一次，形态全部合法，列数与表头一致"
+    ],
+    "sec": 0.0
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "批次账本行核对通过：每个批次号只登记一次，形态全部合法，列数与表头一致"
+    ],
+    "sec": 0.0
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-container-closers.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "自定义容器闭合核对：100 个容器，没有多余的闭合符（34 个正文页）"
+    ],
+    "sec": 0.0
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "自定义容器闭合核对：100 个容器，没有多余的闭合符（34 个正文页）"
+    ],
+    "sec": 0.0
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-current-version.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "「当前版本」核对通过：35 个发布页里 1 处「当前 X 版本」全部指向取证基线 v1.6.22"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "「当前版本」核对通过：35 个发布页里 1 处「当前 X 版本」全部指向取证基线 v1.6.22"
+    ],
+    "sec": 0.1
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-deadlinks.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "站内死链核对通过：36 个页面的 href 逐个解析后全部可达（VitePress 的 ignoreDeadLinks 放过的那类也已兜住）"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "站内死链核对通过：36 个页面的 href 逐个解析后全部可达（VitePress 的 ignoreDeadLinks 放过的那类也已兜住）"
+    ],
+    "sec": 0.0
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-duplication.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "判据重复核对通过：跨文件重复的 0 条字面量全部在登记表里且带理由；登记表的 0 条也全部对得上现实（无孤儿登记）"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "判据重复核对通过：跨文件重复的 0 条字面量全部在登记表里且带理由；登记表的 0 条也全部对得上现实（无孤儿登记）"
+    ],
+    "sec": 0.1
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-empty-tree.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "  · 实测 6.8s（含建空树与搬运；**Batch 278 同一份计时里这一半是 5～7 秒**）"
+    ],
+    "sec": 6.8
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "  · 实测 7.4s（含建空树与搬运；**Batch 278 同一份计时里这一半是 5～7 秒**）"
+    ],
+    "sec": 7.5
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-encoding.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "编码完整性核对通过：全部文本文件是合法 UTF-8，无替换字符、无 NUL 字节、无 C0 控制字符"
+    ],
+    "sec": 0.2
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "编码完整性核对通过：全部文本文件是合法 UTF-8，无替换字符、无 NUL 字节、无 C0 控制字符"
+    ],
+    "sec": 0.2
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-endpoints.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "  · 豁免：/runtime/session/*（本地伴随进程的会话端点，强制 127.0.0.1:17371 精确回环，由独立进程提供、不经过本后端（本闸抽的是后端路由注册））"
+    ],
+    "sec": 0.3
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-error-copy.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "  手册未逐字抄的 3 类请确认是有意省略，而非漏写"
+    ],
+    "sec": 0.2
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-exclusions.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "excluded 解禁条件核对：4 个任务共 4 条可机械判定的条件全部仍成立（另有 2 条已登记免检：art-critique, media-versions——付费边界，不机械判定）"
+    ],
+    "sec": 0.6
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-feature-flags.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "特性开关默认值核对通过：7 个开关的默认值与 bcc3b05 逐一相符（其中默认关闭的只有 FrontendModelsEnabled）"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-gate-alive.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "    **理由**：它们要真跑几十份反验，单道几分钟；**而闸 18 方向十三之四已在构造层覆盖 `run_gate` 的行为**。**这是取舍不是遗漏**——写下来，下一个人才不会以为「38 道都验过了」"
+    ],
+    "sec": 6.6
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "    **理由**：它们要真跑几十份反验，单道几分钟；**而闸 18 方向十三之四已在构造层覆盖 `run_gate` 的行为**。**这是取舍不是遗漏**——写下来，下一个人才不会以为「38 道都验过了」"
+    ],
+    "sec": 6.1
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-gate-registry.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "闸门行为登记新鲜度核对通过：每行的产出闸都没变过，合计自洽，正文订正与登记相符"
+    ],
+    "sec": 0.0
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "闸门行为登记新鲜度核对通过：每行的产出闸都没变过，合计自洽，正文订正与登记相符"
+    ],
+    "sec": 0.0
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-heading-uniqueness.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "页内标题核对：34 个正文页、381 个标题，页内无同名标题、层级无跳级、每页恰好一个 H1"
+    ],
+    "sec": 0.0
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "页内标题核对：34 个正文页、381 个标题，页内无同名标题、层级无跳级、每页恰好一个 H1"
+    ],
+    "sec": 0.0
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-label-drift.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "标签漂移核对：27 项跨文件分歧全部与登记一致（11 项有意两套叫法 / 16 项同值巧合）"
+    ],
+    "sec": 0.3
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-ledger-refs.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "账本交叉引用核对通过：239 条环境记录、367 条纪律（编号 1..367，其中 230 条带批次标注且全部已登记）——纪律数**不再含普通编号列表**（Batch 194）"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "账本交叉引用核对通过：239 条环境记录、367 条纪律（编号 1..367，其中 230 条带批次标注且全部已登记）——纪律数**不再含普通编号列表**（Batch 194）"
+    ],
+    "sec": 0.1
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-line-counts.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "上游行数核对通过：7 条声明的行数与 bcc3b05 逐一相符（目录按 .ts/.tsx 求和，文件按自身）"
+    ],
+    "sec": 2.1
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-link-labels.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "正文内链文字核对：212 条内链的文字全部是目标页的真名（34 个正文页，含任务索引）"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "正文内链文字核对：212 条内链的文字全部是目标页的真名（34 个正文页，含任务索引）"
+    ],
+    "sec": 0.1
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-meta.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "元数据核对：登记表 8 条计数全部与现场重数一致，且方向三/四/四之二/五/六/七/八/九/十/十一/十一之二/十二/十三/十四亦全部通过"
+    ],
+    "sec": 1.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "元数据核对：登记表 8 条计数全部与现场重数一致，且方向三/四/四之二/五/六/七/八/九/十/十一/十一之二/十二/十三/十四亦全部通过"
+    ],
+    "sec": 1.0
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-query-params.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "查询参数核对：手册 10 个参数名在上游均有读点（apiKey/baseUrl/continue/fixture/history/mode/readonly/section/stay/tab），1 处可数声明与上游字面量个数一致"
+    ],
+    "sec": 0.2
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-quota-tables.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "账号配额核对通过：上游 10 个配额字段 / 13 条报错文案，与配额表 10 行在**完整性、准确性、数值、行数、个数**五个方向都与 bcc3b05 相符"
+    ],
+    "sec": 0.2
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-quote-punct.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "标点漂移核对通过：引号文案凡在上游存在的，逐字都对得上"
+    ],
+    "sec": 4.8
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "[未能核对] git ls-tree 失败：fatal: Not a valid object name zzz-not-a-real-ref-9f3a"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-rank-claims.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "序关系断言核对通过：活断言 1 条全部自带对照集且实测相符，快照表 7 行指针全部有效"
+    ],
+    "sec": 0.2
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "[未能核对] 环境变量 `BEEFTV_REF` 指向的 ref zzz-not-a-real-ref-9f3a 在 /Users/yangjiefeng/Documents/glanderness/BeefTV 里不存在。**一个读不到的 ref 不是「上游变了」，而是本轮根本没开始核**——按约定这必须报 rc=2「未能核对」（纪律 101），而不是让它掉到 rc=1 去骗人说「核出不一致」。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-retracted-claims.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "被撤回说法的泄漏：46 个闸脚本的可执行文本，5 条已撤回说法，零处泄漏"
+    ],
+    "sec": 0.2
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "被撤回说法的泄漏：46 个闸脚本的可执行文本，5 条已撤回说法，零处泄漏"
+    ],
+    "sec": 0.2
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-route-notation.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "路由写法核对通过：102 处登记的前端路由，占位风格与 bcc3b05 的 web/src/router.tsx（24 条声明）一致，且都能匹配上某一条已声明路由"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "[skip] 在 None:web/src/router.tsx 里抽不到 path 声明，路由写法核对本轮未能进行"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-runtime-policy.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "部署模式策略核对通过：6 个策略项在**默认部署与本地部署两套取值**下都与 bcc3b05 相符"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-scope.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "发布范围一致：srcExclude 排除 6 个 .md（AUDIT-RULES.md、AUDIT.md、FINAL-REPORT.md、PROGRESS.md、PUBLISH.md、SOURCE_OBSERVATIONS.md）与 1 个 yml；发布范围 35 个 .md（树内共 41 个 .md，去重后 40 个基名）"
+    ],
+    "sec": 0.2
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "发布范围一致：srcExclude 排除 6 个 .md（AUDIT-RULES.md、AUDIT.md、FINAL-REPORT.md、PROGRESS.md、PUBLISH.md、SOURCE_OBSERVATIONS.md）与 1 个 yml；发布范围 35 个 .md（树内共 41 个 .md，去重后 40 个基名）"
+    ],
+    "sec": 0.2
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-screenshots-literals.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "截图取证文案核对：82 个保守形态片段全部在上游存在（免检 5 条已登记，97 个动态/拼接片段按形态不检查）"
+    ],
+    "sec": 2.9
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-screenshots.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "截图四方一致：库内 67 张 / manifest 67 条（**唯一 67 个、无重复**）/ 发布页引用 67 张 / dist 67 张；67 条记录的 8 个取证字段齐全"
+    ],
+    "sec": 1.4
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "截图四方一致：库内 67 张 / manifest 67 条（**唯一 67 个、无重复**）/ 发布页引用 67 张 / dist 67 张；67 条记录的 8 个取证字段齐全"
+    ],
+    "sec": 1.4
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-selftest-bootable.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "  慢反验前提核对（方向五/五之二，**只查前提不查结果**）：`selftest-meta.sh` 39 个夹具锚点、0 个因目标不在场跳过；`selftest-unreachable.sh` 30/33 个用例前提成立、3 个跳过"
+    ],
+    "sec": 140.2
+   },
+   "sentinel": {
+    "rc": 1,
+    "tail": [
+     "→ **反验不在构建路径上，它坏了不会让构建变红**——所以「它至少能启动」这件事必须由构建来保证（Batch 178 实测 34 例静默失效）"
+    ],
+    "sec": 95.4
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-selftest-deps.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "    **S1 搬的是「被跑的代码」、S2 搬的是「被核对的数据」、S3 造的是「合成的输入」——三者互不替代，而共同点是：注入没有一处直接打在真树上**。**这一族在方向一之前从未被量过**（方向三）"
+    ],
+    "sec": 1.4
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "    **S1 搬的是「被跑的代码」、S2 搬的是「被核对的数据」、S3 造的是「合成的输入」——三者互不替代，而共同点是：注入没有一处直接打在真树上**。**这一族在方向一之前从未被量过**（方向三）"
+    ],
+    "sec": 1.3
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-shortcuts.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "快捷键前缀核对通过：上游 14 个必须带 Ctrl/Cmd 的键（+/-/0/1/2/3/=/_/a/c/s/v/y/z），手册写法均已带前缀"
+    ],
+    "sec": 1.4
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-shot-drift.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "截图布局漂移核对通过：未登记的漂移 0 条，登记的 3 条全部仍有效且就地说明齐备"
+    ],
+    "sec": 1.9
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "[未能核对] 环境变量 `BEEFTV_REF` 指向的 ref zzz-not-a-real-ref-9f3a 在 /Users/yangjiefeng/Documents/glanderness/BeefTV 里不存在。**一个读不到的 ref 不是「上游变了」，而是本轮根本没开始核**——按约定这必须报 rc=2「未能核对」（纪律 101），而不是让它掉到 rc=1 去骗人说「核出不一致」。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-shot-integrity.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "截图登记核对通过：67 张的两项登记事实（sha256 的值、viewport 与真实尺寸）都与文件相符"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "截图登记核对通过：67 张的两项登记事实（sha256 的值、viewport 与真实尺寸）都与文件相符"
+    ],
+    "sec": 0.1
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-shot-pixels.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "截图像素核对：67 张全部有内容（每像素字节数与主色占比均在阈值内；像素统计只看顶部 40 行）"
+    ],
+    "sec": 4.5
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "截图像素核对：67 张全部有内容（每像素字节数与主色占比均在阈值内；像素统计只看顶部 40 行）"
+    ],
+    "sec": 4.5
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-shot-version-source.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "截图拍摄版本依据核对通过：67 张登记的拍摄版本都落在其最后一次被改动的提交所处的版本区间；账本能核的 12 张全部相符"
+    ],
+    "sec": 4.8
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "截图拍摄版本依据核对通过：67 张登记的拍摄版本都落在其最后一次被改动的提交所处的版本区间；账本能核的 12 张全部相符"
+    ],
+    "sec": 4.7
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-shot-version.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "截图版本登记核对通过：67 张截图均登记了拍摄版本；已登记失效的 1 张均在**每一个**引用它的发布页就地说明了；正文的「截图拍于 + 分布」与 manifest 对得上"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-slow-bootable.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "✓ 6 份慢反验都装得上体、都报得出标签齐全的合计"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "✓ 6 份慢反验都装得上体、都报得出标签齐全的合计"
+    ],
+    "sec": 0.1
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-tables.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "表格结构核对：41 个文件、全部表格结构一致"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "表格结构核对：41 个文件、全部表格结构一致"
+    ],
+    "sec": 0.1
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-unreachable.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "不可达声明核对：32 条断言仍成立，setter 扫描与 URL 参数扫描均双向一致（不覆盖运行时行为与 pages/projects 目录级死代码，见脚本头声明）"
+    ],
+    "sec": 30.0
+   },
+   "sentinel": {
+    "rc": 2,
+    "tail": [
+     "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
+    ],
+    "sec": 0.1
+   },
+   "changed": true,
+   "unusable": null
+  },
+  {
+   "gate": "verify-version-coverage.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "版本覆盖核对通过：下界 v1.6.6 之后到基线 v1.6.22 的 15 个版本，凡是 `web/src` 改了用户可见中文字面量的都列进了 README 的增量清单（0 增减的版本**不要求**列——实测 v1.6.9 / v1.6.18 / v1.6.20 就是这种；**清单里主动列了也不影响判据**）；另有 1 处 tag 归属有偏移（见上——**标签不精确 ≠ 核对不完整**，缺口那一版的改动随它的后继版本一起被要求列出）"
+    ],
+    "sec": 0.5
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "版本覆盖核对通过：下界 v1.6.6 之后到基线 v1.6.22 的 15 个版本，凡是 `web/src` 改了用户可见中文字面量的都列进了 README 的增量清单（0 增减的版本**不要求**列——实测 v1.6.9 / v1.6.18 / v1.6.20 就是这种；**清单里主动列了也不影响判据**）；另有 1 处 tag 归属有偏移（见上——**标签不精确 ≠ 核对不完整**，缺口那一版的改动随它的后继版本一起被要求列出）"
+    ],
+    "sec": 0.5
+   },
+   "changed": false,
+   "unusable": null
+  },
+  {
+   "gate": "verify-worktree-state.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "    · ……还有 8459 处"
+    ],
+    "sec": 0.2
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "    · ……还有 8459 处"
+    ],
+    "sec": 0.1
+   },
+   "changed": false,
+   "unusable": null
+  }
+ ],
+ "fingerprints": {
+  "verify-baseline-landmark.py": "eca4e39fe527aa0574509a65af3a0644b2417a35fb22b32be23e46e10b24e8af",
+  "verify-baseline.py": "e1a8912b2660ee6e143f9f3c32864887303c32ed39772baf0e7683266b3ec38f",
+  "verify-batch-rows.py": "74fb4b4960b54c99079197bdef1bdf8c8e407b9025024faea397a6ab77187553",
+  "verify-container-closers.py": "e90af775e3aad9bd3a16583d56caaf5c861ec132bf50b283709d1bc064ad4f99",
+  "verify-current-version.py": "dcb5312d46083b59f11230d3252c2e7386542d90d7c0230b0969392331fc9a22",
+  "verify-deadlinks.py": "1703c375a76f6c17e57259e272da5db256717840b2a6c013864236004f9314c3",
+  "verify-duplication.py": "68218d4f3a9fe0b2f94b89009fd724c179bebd5f63f9fe448a28f9e2ce1f096d",
+  "verify-empty-tree.py": "30ed0a280abf6de285c08f61da86b1a894fcb5a852b84cbb9aa38050fd0307b5",
+  "verify-encoding.py": "8a3f5fba6591fbaaabbace4d7f795400896db17b303d354b6269e63422a6ee95",
+  "verify-endpoints.py": "38332bb4c52d4972b1c71c3314dc5244f2f2a08ffcd6c601eeba887493c66a53",
+  "verify-error-copy.py": "6ecc1252a5d294c307032d4831161f05af12cabf7313254b9ecc7c827a446dc1",
+  "verify-exclusions.py": "9a2c78fa50b5cc641d6276d6d176910bcddf785fd04bcadb670c922975b95bf8",
+  "verify-feature-flags.py": "98dca6f913d220bbd25082dd9498b243c72b99d51e005545924009c069f7328a",
+  "verify-gate-alive.py": "8e436cb0bddebb07d9a5c1a43d66bcc60ffd261ad445a6954927d28851624bc8",
+  "verify-gate-registry.py": "d53d0a8952ef9894361deb9c3abd2efa79ae569b2b89f1e38425ff663290577e",
+  "verify-heading-uniqueness.py": "303e2f46528624d76455dc545c600ee643fa1886e40356014dd2683e4c2f3ecf",
+  "verify-label-drift.py": "5ded7c32bc58571f2c617eb22a86037da6a9265eadc567c129b708bbae07bd9c",
+  "verify-ledger-refs.py": "54fe59b05c1e63c0eed7d1e5243fc5521bc99c0d46750ec4b3fb5874392b3127",
+  "verify-line-counts.py": "4cd827e3647dd5ca1000d8b60e4c826b9482a34aa02e5469e47992348d9201b5",
+  "verify-link-labels.py": "e55706b58a6ab2a566cc00758253d09b71da490f84a5592715ffe0363ea72400",
+  "verify-meta.py": "834eaa6e2b5bd179c8f990b336aea40e03ac903b43da1114e3bf2834d3db3542",
+  "verify-query-params.py": "a87f6717fe9419d22e62515300861e27b5d737ec049cbed4c8b7a11a252b5c0d",
+  "verify-quota-tables.py": "33ac7a3cdeba93eeeaf8d2dbe31cdf2d110f1f0ff6b49c1026c80d82afb28bd6",
+  "verify-quote-punct.py": "b3df2dffd339465ab4bab23ad1a0f31ffd65f535427ba76fabd508453e14296c",
+  "verify-rank-claims.py": "d657dd477be0f927d92fc21707ebff23f84584f9f2b4c112cea01e8b63fe83fa",
+  "verify-retracted-claims.py": "558276e738503469d43bd6d67883d34b7aae968c069608a0e9b9f56c2faf850f",
+  "verify-route-notation.py": "f2183f2e08b6713e6cddccb920c079afc85d0be43ea2c4a09d064a202f8f5ab6",
+  "verify-runtime-policy.py": "9f73b0eb93c326c96ea9a75e16727f740c120baeb24225054f5d3a881a73e89d",
+  "verify-scope.py": "bd7c188fa5845b089238e7b2b187e2090631a05120f8865f92f3f9436f1400fc",
+  "verify-screenshots-literals.py": "d7ca3c289fac6869b78afc1f5a7a180b7ee68f19adae8bc778a51af15839c851",
+  "verify-screenshots.py": "5f23afee71fdb6be2c2cc04a4fdd3afd22973de11a02fb52ce99a5451bca16f4",
+  "verify-selftest-bootable.py": "2fb9bac81e914331307de3abbc2e3f354d1bf67b3eebaea155492721be85f53a",
+  "verify-selftest-deps.py": "88a44e80ef3cd8d756bc97fdf417fae291fe6ff38984ec14be0c2c3613244b6b",
+  "verify-shortcuts.py": "347d8b6d14faae632b0698ccb0e7341f62fe2feecd00530b591ba2d9cea08dfd",
+  "verify-shot-drift.py": "d513b9c8fea967bb6161f0d98f8337a8032de1cea0eef5f770227213fefa2e40",
+  "verify-shot-integrity.py": "495a3927e7db12f00cca9bec154af9dba83fc4b5b95117e78e2dde0257516123",
+  "verify-shot-pixels.py": "0d49734233e5ce35fb3a816d404431328da07acda50641dc32f39e08e3ebf713",
+  "verify-shot-version-source.py": "7d678f6a729037ac5393e52a0d7d1f4d3248b1f6a7e4f8115942c4e8ef399bd5",
+  "verify-shot-version.py": "1538b334d245f2a6dee8b5f8b00ea337957b3fdf5642371b411336f17e0cb3dd",
+  "verify-slow-bootable.py": "5c24328bc688f2b21f33ca2e7b07fa68f9e74fc4b2cec75582201cb9a5a79589",
+  "verify-tables.py": "c62410b1082498e3cf60a0d3b4d6f542d2be395e12e3f32a0e58b349baf50ead",
+  "verify-unreachable.py": "cc85be14689dad54be507f94d641456a758ec2213bfe862cc248133cde9bdecc",
+  "verify-version-coverage.py": "202468534a18f0d41834f5d4a58c79665621cecdd2ac6a10ea6929450e2056a6",
+  "verify-worktree-state.py": "0701486a958a25c8b272d8bedd67c3e49285ea15401a2e12b84b73eb6fe291e4"
+ }
+}
