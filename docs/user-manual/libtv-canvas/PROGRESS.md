@@ -15384,3 +15384,28 @@ AFTER=$(git ls-files -s | md5)           # 必须与 BEFORE 逐字相同
 ⇒ ⭐⭐⭐⭐ **`lib.mjs` 头部当年写的「这扇竞态窗口关不掉」是错的**，已就地更正。
 这跟缺陷 494 的关系是：**494 说的是「混入了只能不乱动」，那仍然成立；
 但「只能等」不成立 —— 可以绕开。**
+
+### 171.7 ⭐⭐⭐ 缺陷 532：中文 heredoc 写 commit message 会混进 U+FFFD
+
+`b441afa1` 的 commit message 第 11 行出现了
+「所以「等守卫变绿」这条`<U+FFFD><U+FFFD><U+FFFD>`在本仓库不成立」
+—— 三个字节被替换成了 U+FFFDFFFD。
+
+ⓘ 原因：我用 `cat > /tmp/msg.txt <<'MSG' … MSG` 写中文 commit message。
+⇩ **而本手册 `PROGRESS.md` 里早就写死了「中文 heredoc 之后查 U+FFFD」这条规矩** ——
+我在同一个提交里既引用了这条规矩，又违反了它。
+
+⛔ 不能 `--amend`（规矩），所以那条 message 里的错字就留在历史里了。
+⭐ 更值得记的是治法：
+
+```bash
+# ⛔ 别用：cat > /tmp/msg.txt <<'MSG' … MSG
+# ✅ 改用 Python 显式写 UTF-8，写完立刻自查
+python3 - <<'PY'
+msg = """…中文正文…"""
+open('/tmp/msg.txt','w',encoding='utf-8').write(msg)
+assert '�' not in msg, 'message 含 U+FFFD，别提交'
+PY
+```
+
+⭐ 以后**每次** commit 前统一跑一遍 `git log -1 --format=%B | grep -c $'�'`，不为 0 就先改再提。
