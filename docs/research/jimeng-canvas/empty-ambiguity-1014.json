@@ -56,7 +56,7 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "f1d985f81e9b",
+    "sha256_12": "3ab438b4cfaa",
     "bytes": 78957
    },
    "harness-fidelity-1020.json": {
@@ -80,8 +80,8 @@
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "b3b97961b441",
-    "bytes": 30243
+    "sha256_12": "e1d05a6f5e3e",
+    "bytes": 30297
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",

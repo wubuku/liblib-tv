@@ -2125,7 +2125,7 @@
     "n_touched": 13,
     "n_re_run": 13,
     "ran_under_the_suite": false,
-    "n_stale": 5,
+    "n_stale": 4,
     "n_probes_new_this_change": 0,
     "per_probe_timeout": 300,
     "results": [
@@ -2320,10 +2320,10 @@
         "rc": 0,
         "in_git_head": true,
         "is_new_probe": false,
-        "stale_vs_committed": true,
+        "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 61453,
-        "n_bytes_committed": 61393,
+        "n_bytes_committed": 61453,
         "touched_by": [
           "scripts/jimeng_check_verifier_anchors.py",
           "scripts/verify-jimeng-batch841-unclickable.py"
@@ -2364,15 +2364,6 @@
         "rc": 0,
         "touched_by": [
           "scripts/jimeng_probe1025_criterion_direction.py",
-          "scripts/verify-jimeng-batch841-unclickable.py"
-        ]
-      },
-      {
-        "probe": "jimeng_probe1030_anchor_identity.py",
-        "golden": "docs/research/jimeng-canvas/anchor-identity-1030.json",
-        "rc": 0,
-        "touched_by": [
-          "scripts/jimeng_check_verifier_anchors.py",
           "scripts/verify-jimeng-batch841-unclickable.py"
         ]
       }

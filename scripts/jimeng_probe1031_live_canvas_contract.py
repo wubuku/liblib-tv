@@ -123,8 +123,21 @@ KINDS = list(C.get("node_kinds", []))
 out["contract_file"] = (str(CONTRACT.relative_to(ROOT))
                        if str(CONTRACT).startswith(str(ROOT))
                        else str(CONTRACT))
-out["contract_counts"] = {"n_testids": len(REQ_T), "n_aria": len(REQ_A),
+# ⭐⭐⭐⭐⭐ aria 分**两种口径**：字面量集合 与 形状集合 —— 不能合到一起数，也不能合到一起比
+#   （钉了会漂的数若留在字面量集合里，对应读数一变就必然转红）
+SHAPES = C.get("aria_shapes", {}) or {}
+out["contract_counts"] = {"n_testids": len(REQ_T),
+                          "n_aria_literals": len(REQ_A),
+                          "n_aria_shapes": len(SHAPES),
                           "n_node_kinds": len(KINDS)}
+
+# ⭐⭐⭐⭐⭐ **把这条规矩钉成判据，而不是靠自觉**
+#   契约自己写着「登记的是形状不是读数」⇒ 那么**字面量 aria 集合里就不该出现数字**
+#   ⇒ 它一旦出现，要么该挪进 `aria_shapes`，要么是没想清楚 ⇒ 报红
+_ARIA_DIGIT = re.compile(r"\d")
+out["aria_literals_carrying_a_digit"] = [a for a in REQ_A if _ARIA_DIGIT.search(a)]
+out["P9_no_literal_aria_carries_a_driftable_number_1031"] = bool(
+    not out["aria_literals_carrying_a_digit"])
 
 # ⇒ 重复键检测直接做在 **AST** 上（而不是被 `literal_eval` 后的 dict 上）
 #   ⇒⇒⇒ 因为 Python 的 dict 字面量会静静把后一个同名键覆盖掉，`literal_eval` 之后看不到任何痕痕
@@ -211,15 +224,23 @@ if live is not None:
     body = live.get("body_head", "")
     missing_t = [t for t in REQ_T if t not in got_t]
     missing_a = [a for a in REQ_A if a not in got_a]
+    # 形状口径用 `re.match` 而不是 `in` —— 读数是多少都算命中，形状不对才算缺
+    _all_a = sorted(got_a)
+    missing_s = [k for k, v in SHAPES.items()
+                 if not any(re.match(v.get("pattern", r"(?!)"), a) for a in _all_a)]
     missing_k = [k for k in KINDS if k not in body]
     # ⭐⭐⭐⭐⭐ **这份产物逐字节参与 1015 的可复现判定 ⇒ 只许留形状与布尔**
     #   `title` / `n_clickables: 112` / `76 nodes, ...` 每次跑都会变
     #   ⇒⇒⇒ 留在产物里会让 1015 永远判 drifted ⇒ 原始读数放**契约**（一次性取证的快照）
     out["live_1031"] = {
-        "contract_counts_checked": {"testids": len(REQ_T), "aria": len(REQ_A),
+        "contract_counts_checked": {"testids": len(REQ_T),
+                                    "aria_literals": len(REQ_A),
+                                    "aria_shapes": len(SHAPES),
                                     "node_kinds": len(KINDS)},
         "missing_testids": missing_t,
         "missing_aria": missing_a,
+        "missing_aria_shapes": missing_s,
+        "all_aria_shapes_found": bool(not missing_s),
         "missing_node_kinds": missing_k,
         "all_testids_found": bool(not missing_t),
         "all_aria_found": bool(not missing_a),
@@ -229,7 +250,7 @@ if live is not None:
         "status_line_shape_matched": bool(status_lines(live)),
     }
     out["P4_live_matches_contract_1031"] = bool(
-        not missing_t and not missing_a and not missing_k
+        not missing_t and not missing_a and not missing_s and not missing_k
         and out["live_1031"]["engine_found"])
     out["P5_live_status_line_shape_1031"] = bool(status_lines(live))
 else:
@@ -264,7 +285,7 @@ _P = [(k, v) for k, v in sorted(out.items())
 _bad = [k for k, v in _P if v is False]
 print("P 判据 = %s" % json.dumps([v for _k, v in _P], ensure_ascii=False))
 print("P 为假的：", _bad or "无", "| 共 %d 条" % len(_P))
-assert len(_P) >= 8, "P 判据条数掉到 8 以下了：%d" % len(_P)
+assert len(_P) >= 9, "P 判据条数掉到 9 以下了：%d" % len(_P)
 print("退出码约定：0=全绿 1=有 P 判据为假 2=探针崩了/契约不是合法 JSON"
       "（JIMENG_FORCE_CRASH=1 可现场验证 2 号出口）")
 print("PROBE_1031_DONE ->", OUT)

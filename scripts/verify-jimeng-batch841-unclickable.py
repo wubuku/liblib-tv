@@ -16428,7 +16428,6 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ P8：同一把尺子量到**门自己**（重复键的真正高发地是这套门的源码）
           and "out[\"P8_gate_sources_have_no_duplicate_keys_1031\"] = bool(not _SELF_DUP)" in _p1031
           and "_SELF_FILES = [\"scripts/jimeng_unclickable_audit.py\"" in _p1031
-          and "assert len(_P) >= 8," in _p1031
           # ⭐⭐⭐⭐⭐ 退出码三态：0=绿 1=有判据为假 2=探针崩了/契约不是合法 JSON
           and "JIMENG_FORCE_CRASH" in _p1031
           and "sys.exit(2)" in _p1031
@@ -16446,6 +16445,14 @@ def main() -> int:
           and '"n_clickables"' not in _p1031      # ⭐ 易变原始读数**不许进产物**（逐字节参与可复现判定）
           and '"status_lines_found"' not in _p1031
           and '"p19_three_gates_turned_red_in_a_row_and_my_own_new_evidence_was_the_cause_1031_" in _ausrc'
+          # ⭐⭐⭐⭐⭐ aria 分两种口径：字面量 / 形状；带漂的数只许出现在形状里
+          and "out[\"P9_no_literal_aria_carries_a_driftable_number_1031\"] = bool(" in _p1031
+          and "SHAPES = C.get(\"aria_shapes\", {}) or {}" in _p1031
+          and "\"n_aria_literals\": len(REQ_A)," in _p1031
+          and "\"n_aria_shapes\": len(SHAPES)," in _p1031
+          and "missing_aria_shapes\": missing_s," in _p1031
+          and "assert len(_P) >= 9," in _p1031
+          and '"p20_the_contract_had_three_driftable_aria_not_one_1031_" in _ausrc'
 )
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
