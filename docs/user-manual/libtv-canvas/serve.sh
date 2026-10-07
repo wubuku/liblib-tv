@@ -50,7 +50,19 @@ while [ $# -gt 0 ]; do
     --no-build)  DO_BUILD=0; shift ;;
     --stop)      ACT="stop"; shift ;;
     --status)    ACT="status"; shift ;;
-    -h|--help)   sed -n '2,30p' "$0"; exit 0 ;;
+    -h|--help)   cat <<'H'
+LibTV 画布用户手册 —— 一键启动
+
+  ./serve.sh                 构建站点 + 起本地预览（默认 http://127.0.0.1:4189/）
+  ./serve.sh --no-build      跳过构建，直接用现有 dist 起服务（改完正文想立刻看）
+  ./serve.sh --port 5000     指定端口
+  ./serve.sh --status        看现在跑没跑、在哪个端口
+  ./serve.sh --stop          停掉本脚本自己起过的服务
+
+端口被占时不会杀任何进程，只打印「谁在占」并自动往后找空闲端口。
+默认 4189 —— 4188 是另一本手册（Flowable Trial 原站）的，别开错。
+H
+    exit 0 ;;
     *) fail "不认识的参数：$1（用 --help 看用法）" ;;
   esac
 done
