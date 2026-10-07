@@ -16329,7 +16329,8 @@ def main() -> int:
           "这已经是同一条纪律第三次漏了：第一次是 `argv_flags_received`，第二次是 `_per_probe_row`，第三次是 `stale` ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 「修过一次」不等于「处处都修了」，靠人记住逐处折是守不住的** ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 处置：抽出 `_stale_block()`，与前两次同一形态 —— **计数无条件保留、列表只在非空时保留** ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒  "
           "修完之后 `stale` 键整个不存在，探针再读这个字段拿到的是「没测过」而不是「测过、是空的」⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 重跑：rc=0、已过期 0 本、P1..P10 全 True ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒  "
           "而这次最值得记的是：P9 上线后第一次真的抓到东西，抓的是它自己写的代码 ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒  "
-          "顺手把前两次的处置一起钉进判据 —— 三处同一形态必须在同一道 check 里同时被看见，否则第三次就会重演 ",
+          "顺手把前两次的处置一起钉进判据 —— 三处同一形态必须在同一道 check 里同时被看见，否则第三次就会重演 "
+          " ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **1031 更新：这条判据已改名并扩义** —— 原名 `P2_silent_rewrite_is_red_1030`（只抓 swap）现在是 `P2_weakening_is_red_1030`（一条规则覆盖 `A`/`B`/`C`/`E` 四种削弱形状）⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 锚点跟着改，是因为判据本身变了，不是因为它该被糊弄过去**",
           'def _stale_block():' in _p1027
           and '        **_stale_block(),' in _p1027
           and '**⇒ 这是 P9 上线后第一次真的抓到东西' in _p1027
@@ -16367,7 +16368,7 @@ def main() -> int:
           'def anchors_of_check(call):' in _p1030
           and 'def label_of(call):' in _p1030
           and 'def compute(text):' in _p1030
-          and 'out["P2_silent_rewrite_is_red_1030"] = bool(not _silent)' in _p1030
+          and 'out["P2_weakening_is_red_1030"] = bool(not _red)' in _p1030
           and 'out["P3_identity_is_line_independent_1030"] = bool(' in _p1030
           and 'out["P4_same_caliber_as_official_gate_1030"] = bool(OFFICIAL_TOTAL == N_ANCHORS)' in _p1030
           and 'out["P6_golden_tamper_is_caught_1030"] = bool(_caught)' in _p1030
@@ -16388,6 +16389,23 @@ def main() -> int:
           and "\"n_probes_new_this_change\": N_NEW_PROBE," in _p1027
           # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
           and '"p13_the_gate_turned_red_because_this_batch_added_a_probe_1031_" in _ausrc'
+)
+    check("DD993P.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "一条规则同时覆盖四种「判据被削弱」的形状 "
+          "1021 量到官方锚点门对 `A_drop_one_criterion` / `B_drop_whole_group` / `C_drop_one_conjunct` / `E_swap_anchor_to_one_that_exists` **全部报「问题 0 个」** ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒ 而它们的共同形状只有一个：某个老身份在当前集合里找不到精确命中、也找不到任何**剩余计数 > 0** 且锚点更多的身份** ⇒⇒⇒⇒⇒⇒⇒⇒⇒ 精确命中算纯移动、有更大的算真扩容（都不红），其余全部转红 ⇒⇒⇒⇒⇒⇒⇒⇒⇒ 实测（真实变异体）：`A`/`B`/`C`/`E` 四个全部当场转红、`rc=1` ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 其中 `C` 与 `E` 的判据数与锚点数一个都没变**（`C` 是 7319 → 7318、`E` 完全不变）—— 而它们正好是官方门报「问题 0」的那两种 ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 实质上：计数不变的形状才是真正需要看「身份」的那些** "
+          "**而这次最值钱的一条是：对照验的不是判红用的那一份** ⇒⇒ 第一批把形状判定写成了**两份**（主流程一份、内部对照一份），两份都在查「有没有锚点更多的后继」时**漏了过滤「已被精确匹配消耗成 0」的项** ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 精确匹配会把当前集合里对应项消耗到 0，而它们仍带着自己的锚点数参与判断** ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 一个已被消耗掉的身份会替一个被削弱的身份顶包** ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ 削弱被当成扩容 ⇒ 不红 ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 是合成样本 `E_swap_anchor` 与 `C_drop_one_conjunct` 当场报 0 抓出来的** ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 处置：判定逻辑收敛成唯一一份，判红与内部对照都调它** "
+          "附带一条关于**变异体本身**的纪律：外部对照的 `E` 变异体第一版把两条锚点换在了**同一条 check** 里 ⇒ 交换之后那条 check 的锚点**多重集不变** ⇒ 计数与摘要都不动 ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 表现是「没转红」，很容易被误读成「门失灵」，而真相是「变异体根本没生效」** ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 变异体必须自证「我确实改动了东西」**",
+          "def _weakened(old_pairs, cur_pairs):" in _p1030
+          and "_red, _n_exact_move = _weakened(_OLD_PAIRS, _CUR_PAIRS)" in _p1030
+          and "out[\"P2_weakening_is_red_1030\"] = bool(not _red)" in _p1030
+          and "left = [(k, v) for k, v in cur.items() if v > 0]" in _p1030
+          and "out[\"P7_weakening_shapes_1030\"] = bool(" in _p1030
+          and "out[\"P6_golden_tamper_is_caught_1030\"] = bool(_caught)" in _p1030
+          and "assert _N_P_1030 >= 7," in _p1030
+          and "_OLD_PAIRS = [(rec.get(\"n\"), rec.get(\"digest\")) for rec in _g.values()]" in _p1030
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+          and '"p14_one_rule_covers_all_four_weakening_shapes_1031_" in _ausrc'
+          and '"p15_the_control_and_the_gate_ran_different_implementations_1031_" in _ausrc'
 )
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

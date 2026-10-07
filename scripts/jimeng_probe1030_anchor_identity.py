@@ -11,6 +11,7 @@
 **锚点数不变而摘要变了 ⇒ 转红**（那正是 swap 的形状）。
 """
 import ast
+import collections
 import hashlib
 import importlib.util
 import io
@@ -128,32 +129,78 @@ OLD_MULTI = {}
 for lb, rec in _g.items():
     OLD_MULTI.setdefault((rec.get("n"), rec.get("digest")), []).append(lb)
 
-_silent, _gone = [], []
-for key, labs in sorted(OLD_MULTI.items(), key=lambda kv: str(kv[0])):
-    if key in CUR_MULTI:
-        continue
-    same_n_now = [k for k in CUR_MULTI if k[0] == key[0]]
-    if same_n_now:
-        _silent.append({"old_n": key[0], "old_digest": key[1],
-                        "old_labels": labs[:3],
-                        "new_labels": [CUR_MULTI[k][0] for k in same_n_now][:3],
-                        "new_digests": sorted(k[1] for k in same_n_now)[:3]})
-    else:
-        _gone.append({"old_n": key[0], "old_digest": key[1],
-                      "old_labels": labs[:3]})
+# ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一条规则同时覆盖四种「判据被削弱」的形状**
+#   1021 量到官方门漏掉的不止 swap（`E`），还有：
+#     `A_drop_one_criterion`（删掉一整条 check）、`B_drop_whole_group`（删掉整组）、
+#     `C_drop_one_conjunct`（从一条 check 里拿掉一个 and 出来的合取项）。
+#   ⇒ 而它们的**共同形状只有一个**：某个老身份在当前集合里**找不到任何锚点数更大的后继**。
+#   - 精确命中            ⇒ 纯移动，不红
+#   - 有 n 更大的当前身份  ⇒ 真扩容，不红
+#   - 其它（n 变小 / 换了摘要 / 彻底没了）⇒ **转红**
+# ⚠️ 与上一版相比的关键差别：上一版只看「同 n 有没有别的身份顶上」，
+#   于是**少一个合取项**（n 变小）会被归到「老身份不见了、也没有同 n 的替补」⇒ 只记成读数、不转红。
+def _weakened(old_pairs, cur_pairs):
+    """⭐ **唯一的判定实现**：判红与内部对照都调它。
+
+    返回 `(red, n_exact_move)`。`red` 里每一项是一个**老身份**，
+    它在当前集合里找不到精确匹配、也找不到任何**剩余计数 > 0** 且锚点更多的身份
+    ⇒ 那就是「这条判据被削弱了，或者没了」。
+
+    ⚠️⚠️⚠️ **「剩余计数 > 0」这个条件是本函数唯一的难点，也是第一版漏掉的那一处**：
+    精确匹配会把 `cur` 里对应项消耗到 0；若不过滤，它们仍然带着 `n` 参与
+    「有没有更大的后继」判断 ⇒ **一个已被消耗掉的身份会替一个被削弱的身份顶包**
+    ⇒ 削弱被当成扩容 ⇒ 不红。合成样本 `E_swap_anchor` 与 `C_drop_one_conjunct`
+    当场就抓到了这一处。
+    """
+    cur = collections.Counter(cur_pairs)
+    old = collections.Counter(old_pairs)
+    n_exact = 0
+    for key in list(old):
+        if old[key] == 0:
+            continue
+        take = min(old[key], cur.get(key, 0))
+        if take:
+            n_exact += take
+            cur[key] -= take
+            old[key] -= take
+    red = []
+    for key in list(old):
+        if old[key] == 0:
+            continue
+        left = [(k, v) for k, v in cur.items() if v > 0]
+        bigger = [k for k, v in left
+                  if k[0] is not None and key[0] is not None and k[0] > key[0]]
+        if not bigger:
+            red.append({"old_n": key[0], "old_digest": key[1],
+                        "n_left_untouched": old[key],
+                        "n_bigger_left": 0})
+        cur = collections.Counter({k: v for k, v in cur.items() if v > 0})
+    return red, n_exact
+
+
+_OLD_PAIRS = [(rec.get("n"), rec.get("digest")) for rec in _g.values()]
+_CUR_PAIRS = list(NOW.values())
+_red, _n_exact_move = _weakened(_OLD_PAIRS, _CUR_PAIRS)
 
 _n_old = len(_g)
 out["delta_1030"] = {
     "n_checks_in_golden": _n_old, "n_checks_now": N_CHECKS,
     "delta": N_CHECKS - _n_old,
-    "n_silently_rewritten": len(_silent), "silently_rewritten": _silent[:20],
-    "n_no_longer_present": len(_gone), "no_longer_present": _gone[:20],
-    "identity_rule": "⭐⭐⭐⭐⭐ 身份 = (n_anchors, digest) 这一对，"
-                     "**不是行号、也不是标签** ⇒ 纯移动（两者都没变）不红、"
-                     "真扩容（n 变大）不红、**同 n 换摘要必红**",
+    "n_red": len(_red), "red": _red[:20],
+    "n_exact_move": _n_exact_move,
+    "identity_rule": "\u2b50\u2b50\u2b50\u2b50\u2b50 \u8eab\u4efd = (n_anchors, digest) "
+                     "\u8fd9\u4e00\u5bf9\uff0c**\u4e0d\u662f\u884c\u53f7\u3001\u4e5f\u4e0d\u662f\u6807\u7b7e** "
+                     "\u21d2 \u7eaf\u79fb\u52a8\u4e0d\u7ea2\u3001\u771f\u6269\u5bb9\u4e0d\u7ea2\u3001"
+                     "**\u540c n \u6362\u6458\u8981 / n \u53d8\u5c0f / \u6574\u6761\u6d88\u5931 \u5168\u90e8\u8f6c\u7ea2**",
+    "single_implementation": "\u2b50\u2b50\u2b50\u2b50\u2b50 **\u5224\u5b9a\u903b\u8f91\u53ea\u6709\u4e00\u4efd**"
+                              "\uff08`_weakened`\uff09\uff0c\u5224\u7ea2\u4e0e\u5185\u90e8\u5bf9\u7167\u90fd\u8c03\u5b83 "
+                              "\u21d2 \u7b2c\u4e00\u7248\u5199\u4e86\u4e24\u4efd\u3001\u4e24\u4efd\u90fd\u6f0f\u4e86\u540c\u4e00\u5904 "
+                              "\u21d2 **\u5bf9\u7167\u9a8c\u7684\u4e0d\u662f\u5224\u7ea2\u7528\u7684\u90a3\u4e00\u4efd**",
 }
 out["P1_floor_1030"] = bool(N_CHECKS >= _n_old)
-out["P2_silent_rewrite_is_red_1030"] = bool(not _silent)
+out["P2_weakening_is_red_1030"] = bool(not _red)
+_silent = _red          # ⭐ 保留旧名，供已写好的 README / 判据引用
+_gone = []
 
 # ── P3：身份与行号无关 —— 在文件头插一行注释，身份集合必须一模一样 ─────────
 _moved, _moved_checks = compute("# \u4e34\u65f6\u6ce8\u91ca\u4e00\u884c\n" + VTXT)
@@ -185,37 +232,54 @@ if len(_all) >= 2:
     }
 out["P5_swap_moves_the_digest_1030"] = bool(_swapped)
 
+
+
+_S = [(3, "aaa111111111"), (5, "bbb222222222"), (7, "ccc333333333")]
+_CASES = {
+    "exact_move": (_S, _S),
+    "grew": (_S, [(3, "aaa111111111"), (5, "bbb222222222"), (7, "ccc333333333"),
+                  (9, "ddd444444444")]),
+    "E_swap_anchor": (_S, [(3, "zzz999999999"), (5, "bbb222222222"), (7, "ccc333333333")]),
+    "A_drop_one_criterion": (_S, [(3, "aaa111111111"), (5, "bbb222222222")]),
+    "B_drop_whole_group": (_S, [(3, "aaa111111111")]),
+    "C_drop_one_conjunct": (_S, [(2, "xxx555555555"), (5, "bbb222222222"),
+                                 (7, "ccc333333333")]),
+}
+_case_red = {k: len(_weakened(o, c)[0]) for k, (o, c) in _CASES.items()}
+out["weakening_shapes_control_1030"] = {
+    "n_red_per_shape": _case_red,
+    "must_be_zero": ["exact_move", "grew"],
+    "must_be_positive": ["E_swap_anchor", "A_drop_one_criterion",
+                          "B_drop_whole_group", "C_drop_one_conjunct"],
+    "why": "\u2b50\u2b50\u2b50\u2b50\u2b50 1021 \u91cf\u5230\u5b98\u65b9\u95e8\u5bf9\u8fd9\u56db\u79cd\u5f62\u72b6\u5168\u90e8\u62a5\u300c\u95ee\u9898 0 \u4e2a\u300d "
+           "\u21d2\u21d2 \u8fd9\u91cc\u628a\u5b83\u4eec\u56fa\u5b9a\u6210\u5185\u90e8\u5bf9\u7167\uff0c"
+           "\u5e76\u4e14\u540c\u65f6\u628a\u300c\u7eaf\u79fb\u52a8\u300d\u4e0e\u300c\u771f\u6269\u5bb9\u300d\u4e5f\u653e\u8fdb\u53bb \u2014\u2014 "
+           "**\u53ea\u8981\u89c4\u5219\u5bf9\u5408\u6cd5\u53d8\u5316\u4e5f\u62a5\u7ea2\uff0c\u5b83就\u662f\u4e00\u9053\u65e0\u5dee\u522b\u62a5\u8b66\u7684门**",
+}
+out["P7_weakening_shapes_1030"] = bool(
+    all(_case_red[k] == 0 for k in ("exact_move", "grew"))
+    and all(_case_red[k] > 0 for k in ("E_swap_anchor", "A_drop_one_criterion",
+                                       "B_drop_whole_group", "C_drop_one_conjunct")))
+
 # ── P6 阳性对照：把仓库里那本的摘要抹成常量，**模拟一遍检测逻辑**必须抓到 ──
 def _simulate(old_multi):
     """与主流程完全同一套判定（⭐⭐ 同一个东西要比同一个口径）。"""
-    hit = []
-    for key in old_multi:
-        if key in CUR_MULTI:
-            continue
-        if [k for k in CUR_MULTI if k[0] == key[0]]:
-            hit.append(key)
-    return hit
+    return _weakened(list(old_multi), list(CUR_MULTI_FOR_CTRL))[0]
 
 
-_tampered = {k: list(v) for k, v in OLD_MULTI.items()}
-_tk = None
-if _tampered:
-    _tk = sorted(_tampered)[0]
-    _n0, _d0 = _tk
-    _tampered[(_n0, "0" * 12)] = _tampered.pop(_tk)
-# ⭐⭐⭐⭐⭐ 只断言「篡改后必被抓到」**这一件事**
-#   —— 第一版顺手把「真实 golden 当前必须 0 命中」也塞进同一个合取项，
-#   结果**真出现一次 swap 时 P6 跟着一起红**，而它红的原因跟篡改毫无关系 ⇒ **噪声**
-_caught = bool(_tampered) and bool(_simulate(_tampered))
+_cur_now = collections.Counter(NOW.values())
+CUR_MULTI_FOR_CTRL = [(k[0], k[1]) for k in _cur_now.elements()]
+_tampered = {}
+for _k in _OLD_PAIRS:
+    _tampered[(_k[0], "0" * 12)] = 1
+_caught = bool(_tampered) and bool(_simulate(list(_tampered)))
 out["golden_tamper_control_1030"] = {
-    "label_tampered": (_tk[1] if _tk else None),
-    "tampered_digest": "0" * 12,
-    "simulated_with_tampered": len(_simulate(_tampered)),
-    "simulated_with_real": len(_simulate(OLD_MULTI)),
+    "n_tampered": len(_tampered),
+    "simulated_with_tampered": len(_simulate(list(_tampered))),
     "caught": _caught,
-    "why": "⭐⭐⭐⭐⭐ 抹成常量之后，老身份 (n, 000000000000) 在当前集合里找不到同 n 的对应物 "
-           "⇒ P2 红；⭐⭐ 而**真实 golden 跑同一套判定必须是 0 命中** "
-           "—— ⭐⭐ 真实 golden 当前有多少待办由 `delta_1030.n_silently_rewritten` 报，不塞进这条",
+    "why": "⭐⭐ 抹成常量之后，老身份 (n, 000000000000) 在当前集合里找不到同 n 的对应物 ⇒ P2 红；"
+           "⭐⭐⭐⭐⭐ 而这一条**复用主流程那个 `_weakened`** —— "
+           "**1031 第一版正因为对照与判红各写了一份，才让「对照通过了」变成一句假话**",
 }
 out["P6_golden_tamper_is_caught_1030"] = bool(_caught)
 
@@ -246,6 +310,6 @@ if _silent:
     print("⚠️ 同锚点数却换了摘要（= swap）：", _silent[:3])
 print("P1..P%d = %s" % (_N_P_1030, [v for _k, v in _P_ALL]))
 print("P 为假的：", _N_FALSE_1030 or "无", "| 共 %d 条 P 判据" % _N_P_1030)
-assert _N_P_1030 >= 6, "P 判据条数掉到 6 以下了：%d" % _N_P_1030
+assert _N_P_1030 >= 7, "P 判据条数掉到 7 以下了：%d" % _N_P_1030
 print("PROBE_1030_DONE ->", OUT)
 sys.exit(1 if _N_FALSE_1030 else 0)
