@@ -10269,9 +10269,137 @@ function vl(e,t,i,r){
 
 ### ⚠️ 仍未测（如实记账）
 
-- 🔴 **`visibilityGuard` 的实际尺寸与来源** —— 它是画布实测的，还是按侧栏算出来的？未测；
+- ~~🔴 **`visibilityGuard` 的实际尺寸与来源** —— 它是画布实测的，还是按侧栏算出来的？未测；~~
+  ✅ **已被批次 310 解答**：它是 **`i.compound` 本身**（`@797742` 逐字
+  `s={...s,anchor:"primaryNodeAboveCenter",mode:"anchor",target:i.primary,visibilityGuard:i.compound}`）
+  ⇒ 📌 即 **`guard` 与 `target` 在 anchor 路径下取的是同一个量**，
+  📌 🔴 **这正是批次 309 反解不出常数 guard 的原因**（见批次 310 小节）；
 - 🔴 **低分支 `≈1.55636` 的成因** —— 未测；📌 已知它稳定、`≠ vs`、与等待时长无关、与滚轮无关；
 - 🔴 **`z0 ∈ (1.93, 2.316)` 的 UI 读数** —— 滚轮路线已排除；
 - 🔴 **批次 305 结论的适用范围** —— 立规 188 第 ④ 条已把它标为待重审，
   📌 但**本批没有测到足以推翻它的数据**，📌 **不擅自推翻，只标范围**。
+
+
+## 🔴 把整条链在 bundle 里读通了，但运行时那一层**读不到** —— 以及我那 22 条全是 padding 的「命中」（2026-10-07 立规 189）
+
+### 📌 起意：批次 309 找到了机制的名字，但拿不到它的值
+
+批次 309 在 bundle 里定位到 `visibilityGuard` 与 `vs` 的第三项，
+🔴 **但 `attachedInsets` 的实际值读不到** —— 📌 它在运行时注入，只能实测。
+
+### ✅ 结果一：整条链读通了，`compound` 的算子逐字拿到
+
+📌 `@799451` 逐字：
+
+```js
+o = this.boundsIndex.getNodesBounds(e.nodeIds, []),      // 📌 空 roles ⇒ 不含任何装饰
+a = this.boundsIndex.getNodesBounds(e.nodeIds, i, r);    // 📌 带 roles 与第三参 r
+compound = vO(a, e.attachedInsets, e.nodeChromeInsets, r)
+primary  = vO(o, e.attachedInsets, e.nodeChromeInsets, r)
+```
+
+📌 而 `vO`（`@799451` 附近）逐字是**四边各自独立**算：
+
+```js
+function vO(e,t,i,r){
+  let g = (0,g8.f0)(r);                    // f0 = 1/max(r,.5)
+  v = t?.bottom + i?.bottom * g
+  y = t?.left   + i?.left   * g
+  b = t?.right  + i?.right  * g
+  I = t?.top    + i?.top    * g
+  return {space:"canvas", x:e.x-y, y:e.y-I, width:e.width+y+b, height:e.height+I+v}
+}
+```
+
+⇒ 📌 **每一边的 inset = `attached` + `chrome × (1/max(r,.5))`**，
+📌 🔴 **四个方向的值互不相干** —— 📌 这解释了为什么盒子看着是方的、`compound` 却不方。
+
+### 🔴 结果二：找到了 `retry:"withoutScreenFixed"` 的实体 —— 悬了很久的疑案落地
+
+📌 `@799924` 逐字：
+
+```js
+resolveNonScreenFixedDecorationRoles(e,t){
+  return "nodes"!==e.kind ? t : t.filter(t => !this.hasScreenFixedDecoration(e.nodeIds,[t]))
+}
+```
+
+⇒ 📌 **`hasScreenFixedDecoration` 为真的 role，会被从 roles 里【剔除】**
+⇒ 📌 所以 `getNodesBounds(nodeIds, [], r)`（空 roles）与
+📌 `getNodesBounds(nodeIds, roles, r)` 的差别，📌 **就是屏幕固定装饰有没有被算进去的差别**
+⇒ 🔴 **而 `@796992` 那句 `retry:"withoutScreenFixed"` 就在同一个函数里**
+⇒ 📌 **「屏幕固定」不是 UI 层的显示属性，它参与几何计算，且算错时会触发重试。**
+
+### 🔴🔴 结果三：🔴 我的 P1 判据把 **22 条 padding** 当成了「命中 44 条」
+
+📌 本批去运行时抓 inset，抓到 `22` 条 CSS 变量，判据只查「名字里有没有 `inset|chrome`」
+⇒ 🔴 **全部命中**，脚本报「✅ P1：运行时抓到 `44` 条 inset 线索」。
+
+📌 **但那 22 条逐字是**：
+
+```
+--octo-search-badge-padding-inline = 2px
+--octo-search-input-padding-end    = 44px
+--octo-workbench-chrome            = #292929      ← 这是个颜色，不是 inset
+--octo-search-badge-inset          = 1px          ← 徽章的内嵌，不是画布 inset
+--tw-ring-inset                    = (空)
+--dreamina-geometry-tooltip-padding-inline = 16px
+…（其余全是 padding）
+```
+
+⇒ 🔴 **一条画布 inset 都没有。** 🔴 **全局键 `0` 条、react props `0` 条。**
+
+📌 **这是立规 183 的第三次现形**：📌 批次 305 是「指标被无关量支配」，
+📌 批次 310 是**「过滤器太宽，等于没过滤」** —— 🔴 两者都在说同一件事：
+📌 **一个宽松的判据不会报错，它只会安静地给你一个好看的数字。**
+
+📌 **修正**：判据改用**画布专属白名单**
+（`nodeChromeInsets|attachedInsets|visibilityGuard|safeAreaInsets|originSafeCanvasRect|canvas-safe|node-inset`），
+📌 修正后 ⇒ 🔴 **P2 触发：运行时没有任何画布专属 inset 挂载点。**
+📌 ⇒ **「静态与运行时之间有一层未打通」，不拿 bundle 里的 `{top:24}` 冒充实测值**（立规 113）。
+
+### ✅ 结果四：低分支的第 12 个读数又落在原处
+
+📌 本批 `z0 = 1.93` 读得 **`1.55942`**，🔴 对照臂 `z0 = 2.779` 读得 **`1.75`**（距 `vs` 为 `0`，尺子没漂）。
+
+📌 合并**十二个**读数：
+
+| 统计量 | 值 |
+|---|---|
+| 区间 | **`[1.53807, 1.56098]`** |
+| 极差 | `0.02291` |
+| 相对极差 | **`1.4895%`** |
+| 中位数 | **`1.55944`** |
+| 中心 | `1.55661` |
+
+⇒ ✅ **又落回同一个区间**，📌 **批次 308 的图景没有被本批动摇。**
+
+### ⚠️ 结果五：`nodeChromeInsets:{top:24}` 的适用范围，🔴 **未确认**
+
+📌 搜到唯一一处字面值（`@1089897`）：
+
+```js
+n = y.editor.viewport.begin({scenario:"editTarget"})
+n.present({kind:"nodes", nodeIds:[e], nodeChromeInsets:{top:24}})
+```
+
+⇒ 📌 `24` 这个数与批次 299 测到的 `flow-node-title` 屏幕 `32` 像素在正上方**量级相合**。
+🔴 **但它明确绑在 `scenario:"editTarget"` 上**，📌 **我这条路径走的是搜索结果点击，不一定是同一个场景**
+⇒ 🔴 **不拿它当本路径的 inset**。📌 代入验算也对不上：即使取 `r=1.0`、`g=1`，
+`compoundH = 320+24 = 344` ⇒ 落点 `560/344 = 1.62791`，📌 **与低分支 `1.55918` 不符**。
+
+### 📕 立规 189：判据的**过滤器太宽，等于没有过滤器**
+
+📌 本批 P1 的过滤器是 `/inset|chrome/i`，🔴 后果是 **`22` 条 padding 全被算成命中**，
+📌 而脚本输出的是「✅ 抓到 `44` 条」—— 🔴 **一个错误的判据不会失败，它会成功。**
+
+做法（本批已用）：
+① 🔴 **过滤器必须用【对象专属白名单】，不能用【通用关键词】** ——
+📌 `padding-inline` / `badge-inset` / `workbench-chrome` 里**都有** `inset`/`chrome` 字样；
+② 📌 **白名单里的每一项都要能说出「为什么它属于这个对象」** ——
+📌 `nodeChromeInsets` 能，`badge-inset` 不能；
+③ 📌 **报「命中 N 条」时必须同时报「剔除了哪些」** ——
+📌 本批剔除 `17` 条（去重后），📌 **只报分子不报分母，就是在报一个好看的数字**；
+④ 📌 **判据改了要重跑判定，而不是改结论** ——
+📌 按批次 307 的规矩，读数已落盘 ⇒ **写复算器重算，不重跑浏览器**。
 
