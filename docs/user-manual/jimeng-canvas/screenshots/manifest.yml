@@ -2309,3 +2309,27 @@ screenshots:
     visible_text: '测试项目 节点 76 已保存 分享 813 基础会员 音频 68 50%'
     alt: "窗口宽 1235 时用搜索定位同一个「音频 68」节点之后的画面：左下角缩放读数被橙框圈出，逐字是 50%，画布中央的节点也被橙框圈住，尺寸比左图里大一倍 —— 两图唯一的差别只有窗口宽度"
     sha256: 0ab9115c05678e8edf7afa5f5ec7f934fd185e8ac38c56450da68b3c5cfb500b
+
+  - file: screenshots/199-search-row-covered-248.png
+    task_id: navigate-canvas
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 460x248@2x
+    locale: zh-CN
+    captured_at: 2026-10-07T08:35:00+08:00
+    verified_locator: '开页后点顶栏 aria-label="搜索" 的按钮，在 canvas-search-panel 的 input 里逐字键入「视频 1」并等 2200ms；断言 [data-testid="canvas-search-result-node_236ctpehgg] 存在、input 回读逐字等于「视频 1」，并断言它的 getBoundingClientRect 逐字等于 x=16, y=152, w=304, h=64（两档一致）才继续；读出 [data-testid="canvas-search-results-viewport] 的 getBoundingClientRect 与 overflow-y，在行中心 (168,184) 上做一次 document.elementFromPoint 记下落点；然后注入一层 position:fixed、border:3px solid #ff8c00、pointer-events:none 的画框层罩住整行，**读回画框层元素数 === 1、宽高均 > 0、borderTopStyle 逐字 solid、borderTopColor 逐字 rgb(255, 140, 0)** 四个条件全过才 shutter；截图后立刻移除画框层。⚠️ 这一档点这一行**不会有任何反应**（选中数保持 0），所以截图前**不能**点它'
+    visible_text: '测试项目 节点 76 已保存 分享 725 基础会员 视频 1 全部 1 图片 视频 1 音频 文本 主体 时间线 组 其他 与 AI 对话'
+    alt: "窗口高 248、顶栏点开搜索面板并在框里输入「视频 1」之后的画面：结果区那一行「视频 1」（左边一个方块小图标、右边两个字）被橙色方框完整圈住、清楚可见，可点它没有任何反应；面板下半部分（页签行与右下角「与 AI 对话」按钮的上半截）已经压在窗口底边上"
+    sha256: 53273f0ea59be77fd4239f953a3787d857c45b0ef18fa196e1732a9480418d0a
+
+  - file: screenshots/200-search-row-clickable-249.png
+    task_id: navigate-canvas
+    step: 5
+    route: /ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f
+    viewport: 460x249@2x
+    locale: zh-CN
+    captured_at: 2026-10-07T08:35:00+08:00
+    verified_locator: '开页后点顶栏 aria-label="搜索" 的按钮，在 canvas-search-panel 的 input 里逐字键入「视频 1」并等 2200ms；断言 [data-testid="canvas-search-result-node_236ctpehgg] 存在、input 回读逐字等于「视频 1」，并断言它的 getBoundingClientRect 逐字等于 x=16, y=152, w=304, h=64（两档一致）才继续；读出 [data-testid="canvas-search-results-viewport] 的 getBoundingClientRect 与 overflow-y，在行中心 (168,184) 上做一次 document.elementFromPoint 记下落点；然后注入一层 position:fixed、border:3px solid #ff8c00、pointer-events:none 的画框层罩住整行，**读回画框层元素数 === 1、宽高均 > 0、borderTopStyle 逐字 solid、borderTopColor 逐字 rgb(255, 140, 0)** 四个条件全过才 shutter；截图后立刻移除画框层。⚠️ 这一档点这一行**不会有任何反应**（选中数保持 0），所以截图前**不能**点它'
+    visible_text: '测试项目 节点 76 已保存 分享 725 基础会员 视频 1 全部 1 图片 视频 1 音频 文本 主体 时间线 组 其他 与 AI 对话'
+    alt: "同一个画面在窗口高 249 时的样子 —— 结果区那一行「视频 1」被同样颜色的橙框圈住，位置和左图一模一样，点它就生效；面板下半部分（页签行与右下角「与 AI 对话」按钮的上半截）同样压在窗口底边上"
+    sha256: 2d3416a7f7e11863e847354b52344393f43dd1c95e8451fddf9fb6db4ea009d9
