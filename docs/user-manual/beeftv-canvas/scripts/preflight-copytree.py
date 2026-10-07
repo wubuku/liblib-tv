@@ -52,6 +52,7 @@ Batch 311–320 的绿构建 wrapper 里各有一组「搭完树当场核对」�
     **这条不是判据的缺陷，是本项目用例编号的一个真事实（纪律 357 如实记下）。**
 """
 import argparse
+import re
 import os
 import re
 import subprocess
@@ -200,7 +201,8 @@ def run_gate(out_dir, sub, script):
     return r.returncode, r.stdout + r.stderr
 
 
-def preflight(repo, sub, out, files, wip, run_tables_gate=True, expect_case=()):
+def preflight(repo, sub, out, files, wip, run_tables_gate=True, expect_case=(),
+              expect_batch_row=None):
     """返回 (问题列表, 信息行列表)。**信息行与问题行必须分开**——
     2026-10-07 第一版把两者混在一个列表里，于是「说反」的错误没人当场发现。
 
@@ -264,6 +266,43 @@ def preflight(repo, sub, out, files, wip, run_tables_gate=True, expect_case=()):
                             "读不出来不等于不存在（纪律 101）" % (n, drv, why))
         else:
             problems.append("副本树的 %s 里第 %d 例%s" % (drv, n, why))
+
+    # ⑦ 纪律编号连续（9..max 无缺漏、无重复）——**原先是每批 wrapper 里手抄的一段**，
+    #    **而 wrapper 住在 /tmp，下一批就没有了**（纪律 371：判据写在会被丢掉的地方，
+    #    等于没有判据）。**它必须住在这个入仓的工具里。**
+    rules = os.path.join(out, sub, "AUDIT-RULES.md")
+    if os.path.exists(rules):
+        text = open(rules, encoding="utf-8").read()
+        seen = {}
+        for m in re.finditer(r"^(\d+)\. ", text, re.M):
+            k = int(m.group(1))
+            seen[k] = seen.get(k, 0) + 1
+        top = max(seen) if seen else 0
+        dup = sorted(k for k, v in seen.items() if k >= 9 and v > 1)
+        gap = [n for n in range(9, top + 1) if n not in seen]
+        if gap or dup:
+            problems.append("纪律编号 9..%d 缺失 %s、重复 %s（副本树的 AUDIT-RULES.md）"
+                            % (top, gap, dup))
+        else:
+            notes.append("纪律编号 9..%d 连续无缺漏、无重复（读的是副本树那份）" % top)
+    else:
+        notes.append("纪律编号连续性：**跳过**（副本树里没有 AUDIT-RULES.md）"
+                     "——**没跑就是没跑，不当通过**")
+
+    # ⑧ 本批的批次行必须在副本树里（`--expect-batch-row N`）
+    if expect_batch_row:
+        prog = os.path.join(out, sub, "PROGRESS.md")
+        if not os.path.exists(prog):
+            problems.append("**未能核对**本批批次行：副本树里没有 PROGRESS.md"
+                            "（读不出来不等于存在，纪律 101）")
+        else:
+            ptext = open(prog, encoding="utf-8").read()
+            if re.search(r"^\|\s*%d\s*\|" % expect_batch_row, ptext, re.M):
+                notes.append("副本树含 Batch %d 的批次行" % expect_batch_row)
+            else:
+                problems.append("副本树的 PROGRESS.md 里**没有** Batch %d 的批次行"
+                                "—— 构建跑的那棵树里没有这一批的账本行，"
+                                "**而提交后它就成了唯一一份记录**" % expect_batch_row)
 
     # ⑤ 闸 8（表格结构）：0.5 秒，而它在本项目里至少抓到过三处我自己写坏的表格
     if run_tables_gate:
@@ -337,7 +376,22 @@ def self_test():
                 open(os.path.join(out, sub, name), "w") as d:
             d.write(s.read())
 
-    files = [os.path.join(sub, "mine-a.md"), os.path.join(sub, "mine-b.md")]
+    # 夹具：纪律表与账本（判据⑦⑧ 的输入）——**必须造，否则那两条判据在自测里
+    # 只会走「跳过」分支，等于没被验过**（纪律 265：覆盖范围只等于被造出来的形态）
+    rules_body = "".join("%d. 第 %d 条\n    说明\n\n" % (n, n) for n in range(1, 13))
+    with open(os.path.join(repo, sub, "AUDIT-RULES.md"), "w", encoding="utf-8") as fh:
+        fh.write(rules_body)
+    with open(os.path.join(repo, sub, "PROGRESS.md"), "w", encoding="utf-8") as fh:
+        fh.write("| 7 | 有一批 | x |\n| 8 | 有一批 | x |\n")
+    for name in ("AUDIT-RULES.md", "PROGRESS.md"):
+        shutil.copyfile(os.path.join(repo, sub, name), os.path.join(out, sub, name))
+
+    #: **刚造的两个夹具文件也在 `files` 里**——它们是在 commit **之后**建的，
+    #: **所以在判据①（漏叠加）眼里就是「本批改了却没登记」**（第一版就栽在这里，
+    #: 负样本当场判失败）。**而那个失败是对的**：判据抓到了「副本树会跑上一批的版本」，
+    #: **错的是夹具没把它们登记成「本批文件」**——**在夹具的设定里它们确实是**。
+    files = [os.path.join(sub, "mine-a.md"), os.path.join(sub, "mine-b.md"),
+             os.path.join(sub, "AUDIT-RULES.md"), os.path.join(sub, "PROGRESS.md")]
     #: **`??`（未跟踪）与 ` M`（已入库但被改）两种状态都要在名单里**——
     #: 它们在判据①②里待遇相同，在判据④里**必须分开**。
     wip = [os.path.join(sub, "wip.md"), os.path.join(sub, "wip-tracked.md")]
@@ -351,7 +405,12 @@ def self_test():
     assert any("KNOWN_WIP 生效中" in x and "已入库文件被改" in x for x in n1), n1
 
     # 正样本①：FILES 漏掉 mine-b → 必须点名它
-    p2, _ = preflight(repo, sub, out, files[:1], wip)
+    # **只摘掉 mine-b 一个**——`files[:1]` 在夹具加了纪律表与账本之后会**连那两个一起摘掉**，
+    # **于是这条断言从「1 个问题」变成「3 个问题」而失败**；
+    # **而那个失败又一次是对的**：判据①忠实地报出了全部三个漏登记的文件，
+    # **错的是样本想表达的「只漏一个」**（纪律 344：负样本失败时先怀疑夹具）。
+    only_b_dropped = [f for f in files if not f.endswith("mine-b.md")]
+    p2, _ = preflight(repo, sub, out, only_b_dropped, wip)
     assert len(p2) == 1 and "mine-b.md" in p2[0], p2
 
     # 正样本②：把同事的 WIP 从名单里去掉 → 必须报「漏叠加」并点名它们
@@ -431,13 +490,68 @@ def self_test():
                        expect_case=["%s:1" % os.path.join(sub, "scripts", "没有这个.sh")])
     assert len(p10) == 1 and "未能核对" in p10[0], p10
 
+    # ── 反验⑦⑧：纪律编号连续 / 本批批次行 ──────────────────────────
+    # 负样本：夹具里纪律 1..12 连续、账本里有第 7、8 批 → 0 问题
+    #: **用 `files2` 而不是 `files`**——`selftest-1.sh` 是上面反验⑤造的夹具（commit 之后），
+    #: **它也在「本批改动」里**，而用 `files` 会让判据①报它（第一版就栽在这里）
+    p11, n11 = preflight(repo, sub, out, files2, wip, run_tables_gate=False,
+                         expect_batch_row=8)
+    assert not p11, p11
+    assert any("纪律编号 9..12 连续" in x for x in n11), n11
+    assert any("副本树含 Batch 8" in x for x in n11), n11
+
+    # 正样本⑧：**纪律表里挖掉第 11 条** → 必须报「缺失 11」并点名
+    # **两棵树都要挖**——只挖副本树的话，判据③（逐字节 cmp）会先报「不一致」，
+    # **于是这条样本量到的其实是③而不是⑦**（第一版就栽在这里：断言写的是「1 个问题」，
+    # **而实测是 2 个，而多出来的那个是对的**——**注入必须只让目标判据失败**，
+    # 否则「样本过了」证明不了任何事，纪律 344）。
+    needle = "11. 第 11 条\n    说明\n\n"
+    #: **注入前先把干净内容存下来**——两棵树都被挖过，
+    #: **而「补回去」那一步只补了副本树的话，工作区那份仍然是缺的**，
+    #: **于是反向样本报的仍然是「缺失 11」**（第一版就栽在这里：
+    #: **反向验证的失败形态是「我以为复原了，其实只复原了一半」**）。
+    pristine = open(os.path.join(repo, sub, "AUDIT-RULES.md"), encoding="utf-8").read()
+    assert needle in pristine, "注入锚点不存在（纪律 344：先怀疑夹具）"
+    for tree in (repo, out):
+        with open(os.path.join(tree, sub, "AUDIT-RULES.md"), "w", encoding="utf-8") as fh:
+            fh.write(pristine.replace(needle, "", 1))
+    p12, _ = preflight(repo, sub, out, files2, wip, run_tables_gate=False)
+    assert len(p12) == 1 and "缺失 [11]" in p12[0], p12
+    # **反向再确认一次**：补回去就恢复 0 问题——否则上面那条可能只是「碰巧报了别的东西」
+    for tree in (repo, out):
+        with open(os.path.join(tree, sub, "AUDIT-RULES.md"), "w", encoding="utf-8") as fh:
+            fh.write(pristine)
+    p13, _ = preflight(repo, sub, out, files2, wip, run_tables_gate=False)
+    assert not p13, p13
+
+    # 正样本⑨：**问一个账本里没有的批次** → 必须点名它
+    p14, _ = preflight(repo, sub, out, files2, wip, run_tables_gate=False,
+                       expect_batch_row=99)
+    assert len(p14) == 1 and "没有" in p14[0] and "Batch 99" in p14[0], p14
+
+    # 正样本⑩：**PROGRESS.md 不在副本树里** → 必须报「未能核对」而不是「不存在」
+    #: **这里只断言「目标那条在」，不钉问题总数**——删掉一个已登记的文件会**同时**触发
+    #: 判据③（逐字节 cmp 报「副本树里没有它」），**而那一条是对的**。
+    #: **钉总数会把「顺手多报一条」变成失败，而那可能不是缺陷**（纪律 344 的姊妹条：
+    #: **断言要钉目标判据，钉总数钉的是巧合**）。
+    os.remove(os.path.join(out, sub, "PROGRESS.md"))
+    p15, _ = preflight(repo, sub, out, files2, wip, run_tables_gate=False,
+                       expect_batch_row=8)
+    assert any("未能核对" in x and "PROGRESS.md" in x for x in p15), p15
+    shutil.copyfile(os.path.join(repo, sub, "PROGRESS.md"),
+                    os.path.join(out, sub, "PROGRESS.md"))
+
     shutil.rmtree(base, ignore_errors=True)
-    print("自测 10 个样本全过：负样本 0 问题（且 ` M` 的 WIP 在副本树里**不**误报）；"
+    print("自测 15 个样本全过：负样本 0 问题（且 ` M` 的 WIP 在副本树里**不**误报）；"
           "正样本①漏叠加、正样本②名单漏了 WIP、"
           "正样本③名单过期（走 notes 不走 problems）、"
           "正样本④副本树混进未跟踪文件（抓得到，且拿掉就恢复 0 问题）、"
           "⑤例号只在注释里（恒真的反面）、⑥例号根本不存在、"
-          "⑦驱动读不出来（报未能核对而非不存在）")
+          "⑦驱动读不出来（报未能核对而非不存在）、"
+          "⑧纪律表挖掉一条（且**两棵树都挖**，否则量到的是 cmp 那条）、"
+          "⑨问一个账本里没有的批次、⑩账本文件不在副本树里（报未能核对）；"
+          "**另有一对反向**：补回去 / 放回去都必须恢复 0 问题，"
+          "**而第一版的反向样本报的仍然是缺陷——因为「补回去」只补了副本树那一棵**")
 
 
 def main():
@@ -453,6 +567,10 @@ def main():
                     help="在副本树里核「第 N 例真的存在」，可重复。"
                          "**两支形态都认**（执行器 / 手写内联块），"
                          "**且注释行不算存在**")
+    ap.add_argument("--expect-batch-row", type=int, default=None, metavar="N",
+                    help="副本树的 PROGRESS.md 里必须有 Batch N 的批次行。"
+                         "**原先它只活在每批的临时 wrapper 里，而 wrapper 住在 /tmp，"
+                         "下一批就没有了**（纪律 371）")
     ap.add_argument("--self-test", action="store_true")
     a = ap.parse_args()
 
@@ -464,7 +582,8 @@ def main():
 
     problems, notes = preflight(a.repo, a.sub, a.out, read_list(a.files),
                                 read_list(a.wip), run_tables_gate=not a.no_gate,
-                                expect_case=a.expect_case)
+                                expect_case=a.expect_case,
+                                expect_batch_row=a.expect_batch_row)
     for n in notes:
         print("  ℹ " + n)
     for p in problems:
