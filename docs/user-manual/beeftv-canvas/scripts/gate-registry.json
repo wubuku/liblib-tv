@@ -32,7 +32,7 @@
       "measured_form": "红态",
       "red_sentence": "上游行数核对：(\\d+)/\\d+ 条声明与上游不符",
       "green_sentence": "上游行数核对通过：",
-      "gate_sha256": "4a20b26f6155f6ec70ae86c2615dcc7879da4ab68f77dc22ce95b66b2d9e861c"
+      "gate_sha256": "4cd827e3647dd5ca1000d8b60e4c826b9482a34aa02e5469e47992348d9201b5"
     },
     {
       "gate": "verify-quota-tables.py",
@@ -72,7 +72,7 @@
       "measured_form": "红态",
       "red_sentence": "不可达声明核对：(\\d+) 处不一致",
       "green_sentence": "不可达声明核对：(\\d+) 条断言仍成立",
-      "gate_sha256": "d1393a42d6a861c84a533b3c69b796734ed9391543870474ab61fad758bd7f75"
+      "gate_sha256": "5cb00a7eaaba94a51b84511a3f11314207d1d7bed24feb5a0d79c6b1c26e745c"
     }
   ],
   "total": 30
