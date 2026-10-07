@@ -1815,6 +1815,118 @@ def mutate_inline_corr_selfreport_ok(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_shot_hash_wrong(root: Path) -> None:
+    """截图清单里的 sha256 与实物对不上时必须拦下（M303）。
+
+    ★ **它是 29 道里唯一一道「靠读图片实物」的门禁**，★ **而它此前没有任何自检用例**——
+    ★ **★ 也就是说它坏了不会有人知道**（自检框架连它的分支都没有）。
+
+    ★ **注入方式**：★ **把某一条 sha256 的末位改成另一个十六进制字符**，★ **长度保持不变。
+    ★ **★ 为什么改末位而不是整条替换**：★ **整条替换容易命中「格式异常」那一类，
+    ★ **★ 而这里要考的是「哈希与实物不符」这一条判据本身。**
+    """
+
+    import re as _re
+
+    path = root / "screenshots" / "manifest.yml"
+    text = path.read_text(encoding="utf-8")
+    m = _re.search(r"(sha256:\s*)([0-9a-f]{64})", text)
+    assert m, "注入失败：manifest.yml 里没找到 64 位 sha256"
+    old = m.group(2)
+    flipped = old[:-1] + ("0" if old[-1] != "0" else "1")
+    patched = text[: m.start(2)] + flipped + text[m.end(2):]
+    assert patched != text
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_drop_gate_branch(root: Path) -> None:
+    """run_gate 里少了一道门禁的分支时必须拦下（M303）。
+
+    ★ **这正是本门禁要防的那一格**：门禁文件还在、脚本还在，★★ **只是自检框架再也跑不到它。**
+
+    ★ **注入方式**：★ **把 `multiples` 那条 elif 分支整条删掉**——
+    ★ **★ 故意挑一道既不是本门禁、也不是本门禁自身分支的那道门禁**，
+    ★ **免得测出来的结论其实是「自指」而不是「机制」。**
+
+    ★ **★★ 定位必须行首锚定（F142，本批第二次栽在同一处）**：★ **`text.index("...")`
+    ★ **取的是文件里第一处文本出现的位置，★★ **而「本文件」正包含本函数自己——
+    ★ **★ 下面第一行要找的那个字面量 ★ **★★ 就写在它自己这一行里**，
+    ★ **★★ 于是它删掉的是「从自己源码中间一直到真分支」的整整一大段（含 CASES 表），
+    ★ **★★ 注入完的文件根本不是合法 Python，门禁只会报一个 SyntaxError。**
+
+    ★ **★ 教训（F142 的通用形态）**：★★ **在被检索的文件里搜索一个字面量之前，
+    ★ **★ 先问一句「这段字面量会不会也出现在检索代码自己的源码里」——
+    ★ **★★ 自测脚本是最容易中招的那种代码，★★ **因为它必然要提到它要找的东西。**
+    """
+
+    import re as _re
+
+    path = root / "scripts" / "selftest-gates.py"
+    text = path.read_text(encoding="utf-8")
+    head = _re.search(r'^    elif which == "multiples":$', text, _re.M)
+    assert head, "注入失败：selftest-gates.py 里找不到 multiples 那条 elif 分支"
+    nxt = _re.search(r"^    elif which == ", text[head.end():], _re.M)
+    assert nxt, "注入失败：multiples 之后找不到下一条 elif 分支"
+    patched = text[:head.start()] + text[head.end() + nxt.start():]
+    assert patched != text
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_gate_branch_which_typo(root: Path) -> None:
+    """run_gate 分支的 which 拼错一个字时必须拦下（M303，F139 的第二种形态）。
+
+    ★ **这与「删掉整条分支」是两种不同的失效**：★ **分支还在、门禁还跑得起来、
+    ★ **脚本一个字都没坏——★★ **只是自检框架再也叫不到它。**
+    ★ **★ 而这一形态比删分支更危险：★ **删分支会留下明显的代码空洞，
+    ★ **★ 拼错一个字符则什么都看不出来。**
+
+    ★ **注入方式**：★ **只把分支里的 which 改一个字（`multiples` → `multiplesX`），
+    ★ **★ 故意不去动 CASES 里的那一处**——★ **两边不一致，正是这种故障的真实形态。**
+    """
+
+    import re as _re
+
+    path = root / "scripts" / "selftest-gates.py"
+    text = path.read_text(encoding="utf-8")
+    m = _re.search(r'^    elif which == "multiples":$', text, _re.M)
+    assert m, "注入失败：selftest-gates.py 里找不到 multiples 那条 elif 分支"
+    patched = text[:m.start()] + '    elif which == "multiplesX":' + text[m.end():]
+    assert patched != text
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_gate_fallback_restored(root: Path) -> None:
+    """run_gate 的兜底分支又指回某道具体门禁时必须拦下（M303，F141）。
+
+    ★ **注入方式**：★ **在 `else:` 后面加回一行 `cmd = [... check-claims.py ...]`。**
+
+    ★ **★★ 注入必须保证整份文件仍是合法 Python**：★ **本门禁开头就 `ast.parse`
+    ★ **整份 selftest-gates.py**，★ **★ 语法坏了它会当场抛异常，而不是报出它真正要报的那条问题**——
+    ★ **★ 而「抛异常」和「报 fail」在 `run_gate` 的调用方眼里是两回事**：
+    ★ **★ 前者的退出码是 1（因为 except 兜住了），★★ **看起来同样像「抓住了」，
+    ★ **★ 但它抓住的是语法错，不是 F141。** ★ **换句话说，★★ **这条用例的判据
+    ★ **必须挑一个只有 F141 检测才能报出来的字样。**
+
+    ★ **★★ 定位 `def run_gate` 必须行首锚定（F142）**：★ **`text.index("def run_gate(")`
+    ★ **取的是本文件里第一处文本出现的位置，★★ **而「本文件」正包含本函数自己——
+    ★ **★ 于是它会找到自己源码里那一句，切出一段从自己中间开始的「函数体」。**
+    """
+
+    import re as _re
+
+    path = root / "scripts" / "selftest-gates.py"
+    text = path.read_text(encoding="utf-8")
+    head = _re.search(r"^def run_gate\(", text, _re.M)
+    assert head, "注入失败：selftest-gates.py 里找不到行首的 def run_gate("
+    else_line = _re.search(r"^    else:$", text[head.start():], _re.M)
+    assert else_line, "注入失败：run_gate 里找不到 else 兜底分支"
+    at = head.start() + else_line.start()
+    inject = '    else:\n        cmd = [sys.executable, str(root / "scripts/check-claims.py")]\n'
+    patched = text[:at] + inject + text[at + len("    else:\n"):]
+    assert patched != text
+    path.write_text(patched, encoding="utf-8")
+
+
 def mutate_multiple_ratio_wrong(root: Path) -> None:
     """正文里显式算式的结论被改错时必须拦下（M297）。
 
@@ -2299,6 +2411,10 @@ CASES: list[tuple[str, object, str, str]] = [
     ("不在台账里的 N 倍不该被误报（不误报，M297）", mutate_multiple_unlisted_ok, "multiples", EXPECT_PASS),
     ("就地订正没有 R 登记（只有痕迹没有守卫，M299）", mutate_inline_corr_unregistered, "inlinecorr", "找不到对应的 R 登记"),
     ("订正块自报一个不存在的 R 编号（M299）", mutate_inline_corr_selfreport_ok, "inlinecorr", "找不到对应的 R 登记"),
+    ("截图清单的 sha256 与实物不符（M303）", mutate_shot_hash_wrong, "shothashes", "登记的 sha256 是"),
+    ("run_gate 少了一道门禁的分支（M303）", mutate_drop_gate_branch, "gateself", "自检框架跑不到这道门禁：run_gate 里没有它的分支"),
+    ("run_gate 分支的 which 拼错一个字（M303）", mutate_gate_branch_which_typo, "gateself", "它的分支，但没有任何 CASES 用例指向那个 which"),
+    ("run_gate 兜底分支又指回具体门禁（M303）", mutate_gate_fallback_restored, "gateself", "兜底分支里给 cmd 赋了具体门禁"),
 ]
 
 
@@ -2357,8 +2473,31 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-duplicate-lines.py"), str(root)]
     elif which == "internallists":
         cmd = [sys.executable, str(root / "scripts/check-internal-lists.py"), str(root)]
-    else:
+    elif which == "claims":
         cmd = [sys.executable, str(root / "scripts/check-claims.py"), str(root)]
+    elif which == "shothashes":
+        cmd = [sys.executable, str(root / "scripts/check-shot-hashes.py"), str(root)]
+    elif which == "gateself":
+        # ★ **本门禁必须把自己也纳入覆盖**——M303 首跑时它就报出了自己（M303 实测）。
+        # ★ **★ 这不是巧合而是必然**：★★ **一道刚写出来的门禁不可能已经有覆盖。**
+        cmd = [sys.executable, str(root / "scripts/check-gate-self-coverage.py"), str(root)]
+    else:
+        # ★★★★★ **M303 修掉一个会骗人的兜底**（F141）。
+        #
+        # ★ **此前这里是 `else: cmd = [... check-claims.py ...]`** ——
+        #   ★ **也就是说：任何没列进上面分支的 which，★ **都会被当成「跑 check-claims」。**
+        #   ★ **★★ 后果**：★ **新加一道门禁 + 新加一条用例、★★ **却忘了给 run_gate 加分支时，
+        #   ★ **★ 那条用例实际在跑另一道门禁**——★ **★ 它要么报出别的理由（会被「错因」抓到，
+        #   ★ **算运气好），★★ **要么理由字样恰好相同（★ **那就是彻底的假通过**）。
+        #   ★ **★★ 而「拼错的 which」与「删掉的用例」走的是同一条路：★ **静默跑错门禁。**
+        #
+        # ★ **★ 未知 which 是编程错误，不该有任何默认行为**：★ **raise 出来，
+        # ★ **★ 让人在写用例时就看见（`check-gate-self-coverage.py` 也会独立查一遍覆盖）。
+        raise KeyError(
+            f"run_gate 没有 which={which!r} 的分支。★ **这是编程错误，不是门禁失败**——"
+            f"请在 run_gate 里给它加一条 `elif which == \"{which}\":`，"
+            f"否则这条用例会静默去跑别的门禁（F141）"
+        )
     done = subprocess.run(cmd, capture_output=True, text=True)
     return done.returncode, done.stdout + done.stderr
 

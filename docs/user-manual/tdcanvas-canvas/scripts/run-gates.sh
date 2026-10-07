@@ -26,7 +26,7 @@ for a in "$@"; do
   [ "$a" = "--quiet" ] && QUIET=1
 done
 
-[ -d "$ROOT/scripts" ] || { echo "用法：bash scripts/run-gates.py <手册根目录>"; exit 2; }
+[ -d "$ROOT/scripts" ] || { echo "用法：bash scripts/run-gates.sh <手册根目录> [--quiet]"; exit 2; }
 
 fail_names=""
 total=0
