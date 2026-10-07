@@ -590,7 +590,7 @@ def _extract_fn(src, name):
     return src[start + 1:end + 3]
 
 
-def _run_gate_probe(stub_rc, silent=False):
+def _run_gate_probe(stub_rc, silent=False, crash=False):
     """**把 `build-site.sh` 的真 `run_gate` 抠出来跑一遍**，问它一道指定退出码的闸会怎样。
 
     **为什么不 grep 判写法**：`out="$(...)"` 后面跟不跟 `|| rc=$?` 是写法，
@@ -615,11 +615,21 @@ def _run_gate_probe(stub_rc, silent=False):
         #: **`silent` 时一个字都不 print**——**而 `main()` 第一行就 `return 0`**，
         #: **所以语法完全合法、`ast.parse` 通过、`rc=0`**：
         #: **这道闸在所有「核写法」的判据眼里都是健康的**。
-        body = ("import sys\ndef main():\n    return 0\n"
-                "if __name__ == '__main__':\n    sys.exit(main())\n"
-                if silent else
-                "import sys\nprint('闸的输出：某某与手册对不上')\n"
-                "print('第二行')\nsys.exit(%d)\n" % stub_rc)
+        #: **`crash=True`（Batch 338 新增）：造一个「抛异常且退出码是 1」的闸。**
+        #: **这才是 Python 崩掉的真实形态**：未捕获异常 → traceback 打到 stderr →
+        #: **退出码 1**——**而 1 在构建的语义里是「核对不一致」**。
+        #: **第一行特意让它先 print 正常的核对输出**：**崩溃的闸往往已经说了半句话**，
+        #: **而那半句正是「人会被引去手册里」的那半句**。
+        if crash:
+            body = ("import sys\nprint('闸的输出：某某与手册对不上')\n"
+                    "print('第二行')\n"
+                    "raise NameError(\"name 'FOO' is not defined\")\n")
+        elif silent:
+            body = ("import sys\ndef main():\n    return 0\n"
+                    "if __name__ == '__main__':\n    sys.exit(main())\n")
+        else:
+            body = ("import sys\nprint('闸的输出：某某与手册对不上')\n"
+                    "print('第二行')\nsys.exit(%d)\n" % stub_rc)
         with open(os.path.join(tmp, "scripts", "stub.py"), "w", encoding="utf-8") as fh:
             fh.write(body)
         probe = ('set -euo pipefail\nTS="00:00:00"\n' + fns + 'run_gate "stub.py" "试闸"\n')
@@ -2353,6 +2363,34 @@ def main():
                         "**②没有「rc=0 却一句话都没说」那道守卫**"
                         "（Batch 266 实测两次构建全绿）。"
                         "**改法是走 `run_gate`，不多写一行逻辑。**" % _m.group(1))
+
+    # **方向十三之六（Batch 338 新增）：rc=1 有两种成因，而只有一种是「核对不一致」。**
+    # **背景是实测出来的规模**：本机 `scripts/` 下 189 个 `.py`、98 个有 `__main__`，
+    # **入口包了 `try` 的只有 2 个**——**所以「某道闸崩了」不是假设，是迟早**。
+    # **本项目自己撞过**：Batch 337 给 `remeasure-upstream-gates.py` 加 `--verify` 的
+    # 第一版忘了 `import re`，`NameError` 走的正是 rc=1（纪律 373⑤）。
+    # **而崩溃与「核对不一致」在退出码上完全同形**，于是构建把崩溃说成
+    # 「核对不一致——详见上方」，**读者就去手册里找一个根本不存在的问题**。
+    # **本方向核「说法」而不是「写法」**：`run_gate` 拿输出里的 traceback 特征判。
+    rcc, outc = _try(1, crash=True)
+    if "判据自己崩了" not in outc:
+        problems.append(
+            "方向十三之六：闸**抛异常**（rc=%d、输出里有 Python traceback）时，"
+            "构建**没有把它与「核对不一致」区分开**"
+            "　→ 未捕获异常的退出码就是 1，**而 1 在这里被一律说成「核对不一致」**；"
+            "**那会把人引去手册里找根本不存在的问题，而真原因在闸脚本里**。"
+            "**实测这个形态天天存在**：`scripts/` 下 98 个带 `__main__` 的 .py，"
+            "入口包了 `try` 的只有 2 个" % rcc)
+    #: **这一支是「不误伤」**：崩了仍然必须 **fail**（rc=1），
+    #: **不许因为「它不是核对不一致」就放它过去**——
+    #: **而本批刻意**没有**把它归成 rc=2**：rc=2 的语义是「未能核对」，
+    #: **而那带一扇逃生门 `ALLOW_UNVERIFIED=1`，是给「没有上游检出」这种环境问题开的**。
+    #: **崩溃是代码问题，不该走那扇门**——**所以只改消息、不改退出码**。
+    if rcc != 1:
+        problems.append(
+            "方向十三之六：闸崩溃时构建的退出码是 %d —— **必须仍然是 1（fail）**；"
+            "**改成 2 等于给代码 bug 开了一扇「我确认可以放行」的门**"
+            "（`ALLOW_UNVERIFIED=1` 是给环境问题开的，Batch 160 立 rc=2 的理由）" % rcc)
 
     # 方向十四（**Batch 205 新增**）：**shell 脚本里不得有会在 UTF-8 locale 下炸掉的变量展开**。
     # 背景是实测事故：三份 shell 反验共 33 处 `$var：`，
