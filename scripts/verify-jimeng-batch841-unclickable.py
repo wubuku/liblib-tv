@@ -5952,6 +5952,10 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ 1027：给「产物新鲜度」补闸 —— 套件只验可复现、不验「是否还与当前源码一致」
     p1027 = ROOT / "scripts/jimeng_probe1027_freshness_gate.py"
     _p1027 = p1027.read_text(encoding="utf-8") if p1027.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1030：给 `check()` 的锚点**身份**补一道闸 ——
+    #   官方门只验「锚点在不在」，不验「是不是原来那个」
+    p1030 = ROOT / "scripts/jimeng_probe1030_anchor_identity.py"
+    _p1030 = p1030.read_text(encoding="utf-8") if p1030.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -16354,6 +16358,36 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
           and "p9_the_census_reading_carried_no_record_of_which_bytes_produced_it_1029_" in _ausrc
           and "p10_the_positive_control_caught_p9_verifying_a_different_fingerprint_2029_" in _ausrc
+)
+    check("DD993N.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "官方锚点门验的是「锚点在不在」，不是「锚点是不是原来那个」 "
+          "1021 用注入式变异量到：把一条判据里的锚点**换成另一个同样存在的字符串**，官方门完全看不见 ——锚点数没变、每条锚点都还在源文件里、问题 0 个、全通 ✓ ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ 处置：新探针给每条 `check()` 记一个锚点集合摘要，「锚点计数不变而摘要变了 ⇒ 转红」** ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ 实测：合法变异体（`ast.parse` 通过、锚点数 7305 → 7305、每条仍存在）⇒ `P2` 当场转红、`rc=1`** ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ 而且抽锚点直接复用官方门那套过滤与符号表，不另写一套 ⇒ 「同一个东西要比同一个口径」；两边总数必须相等，由 `P4` 当场核账** "
+          "**这条门的第一版自己就是噪声源，而那是本次最值钱的读数** ⇒⇒ 给没有 `DD…` 前缀的判据用 `check@L<行号>` 当身份，结果**在它上面插一行代码它就「消失」**、`P2` 当场转红，而仓里其实什么都没坏 ⇒⇒⇒⇒⇒ 改成 doc 摘要之后，仍有 24 条判据首参不是字面量、只能退回行号，噪声照旧 ⇒⇒⇒⇒⇒ **⇒ 最终把身份定为 `(n_anchors, digest)` 这一对 —— 行号不是身份，标签也不是** ⇒⇒⇒⇒⇒ **⇒ 并用一条 P 判据把这个性质钉进仪器：在文件头插一行注释，身份集合必须一模一样** "
+          "附带一条必须写下来的：**注入式变异必须先过 `ast.parse` 自检** ⇒⇒ 第一版对照换掉的是一段**语法就坏掉**的文本，`rc=1` 来自 `SyntaxError` 而不是判据转红 ⇒⇒⇒⇒⇒ **⇒ 「红了」与「崩了」必须分开看，否则正向对照本身就是个诱饵**",
+          'def anchors_of_check(call):' in _p1030
+          and 'def label_of(call):' in _p1030
+          and 'def compute(text):' in _p1030
+          and 'out["P2_silent_rewrite_is_red_1030"] = bool(not _silent)' in _p1030
+          and 'out["P3_identity_is_line_independent_1030"] = bool(' in _p1030
+          and 'out["P4_same_caliber_as_official_gate_1030"] = bool(OFFICIAL_TOTAL == N_ANCHORS)' in _p1030
+          and 'out["P6_golden_tamper_is_caught_1030"] = bool(_caught)' in _p1030
+          and 'E_swap_anchor_to_one_that_exists' in _p1030
+          and 'VERIFIER = Path(os.environ.get("JIMENG_VERIFIER_SRC")' in _p1030
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+          and '"p11_the_official_gate_checks_that_anchors_exist_not_which_ones_1030_" in _ausrc'
+          and '"p12_line_numbers_are_not_identity_1030_" in _ausrc'
+)
+    check("DD993O.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "第十二条仪器 bug：**一道门在「你做了正确的事」时转红** "
+          "本批新增了探针 1030，重跑 1027 得到 `P2=False`、`rc=1` ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ 门红先判「门错还是数据错」的答案是门错**：`P2` 的原式是 **「每个结果都要进 HEAD」这个合取项**（字段名 `in_git_head`）表示「这本 golden 进过 HEAD 没有」⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒ 新增探针的 golden 当然不在 HEAD ⇒ `P2` 立刻转红** ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒ 判据本意是「每本被重跑的探针都成功、且产物在版本控制里」，而「新增一个探针」正是产品 —— 会让它永远拿不到状态** ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 这是「最该绿时转红」的第二个实例**（第一个是 1028 的 `stale`） "
+          "处置是**区分两种情况**而不是把判据删掉：① 本批新增的探针（依据 = **探针源码自己也进过 HEAD 没有**）允许通过；② 原本在 HEAD 的 golden 不见了，仍然转红 ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 删掉 `in_git_head` 整个合取项是错的 —— 那样「删了一本 golden」就再也没人报红** ⇒⇒⇒⇒⇒⇒⇒⇒⇒ 同时把「本次新增了几个探针」登记成**读数**（`n_probes_new_this_change`）而不是判据",
+          "is_new_probe = _s.returncode != 0" in _p1027
+          and "\"is_new_probe\": is_new_probe," in _p1027
+          and "N_NEW_PROBE = sum(1 for r in RESULTS if r.get(\"is_new_probe\"))" in _p1027
+          and "and all(r[\"in_git_head\"] or r[\"is_new_probe\"] for r in RESULTS))" in _p1027
+          and "\"n_probes_new_this_change\": N_NEW_PROBE," in _p1027
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+          and '"p13_the_gate_turned_red_because_this_batch_added_a_probe_1031_" in _ausrc'
 )
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

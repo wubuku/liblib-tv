@@ -192,7 +192,7 @@
   },
   "class_C_evidence_file_citations": {
     "what": "⭐⭐⭐⭐⭐ **口径比第一版宽**：不只扫「注释里的代码路径」，而是扫 **`src/**` 注释 + `scripts/jimeng_*.py` 全文**里形如 `docs/research/…json` 的**证据文件引用** ⇒ 真正要紧的不是「代码路径在不在」，是**「SOURCE_FACT 指着的那份实测记录」还在不在**",
-    "n_citations": 60,
+    "n_citations": 61,
     "n_missing": 1,
     "missing": [
       {

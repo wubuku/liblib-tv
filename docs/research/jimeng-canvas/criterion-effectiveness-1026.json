@@ -304,7 +304,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P1",
         "naming": "indexed",
-        "lineno": 180,
+        "lineno": 217,
         "label": "p1_only_one_empty_field_is_unverifiable_2014_",
         "kind": "other",
         "evidence": [
@@ -317,7 +317,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P2",
         "naming": "indexed",
-        "lineno": 188,
+        "lineno": 225,
         "label": "p2_computed_and_never_computed_are_byte_identical_2014_",
         "kind": "other",
         "evidence": [
@@ -330,7 +330,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P3",
         "naming": "indexed",
-        "lineno": 196,
+        "lineno": 233,
         "label": "p3_companion_fields_make_it_distinguishable_2014_",
         "kind": "other",
         "evidence": [
@@ -343,7 +343,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P4",
         "naming": "indexed",
-        "lineno": 205,
+        "lineno": 242,
         "label": "p4_reverse_case_classifier_is_not_constant_2014_",
         "kind": "other",
         "evidence": [
@@ -356,7 +356,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P5",
         "naming": "indexed",
-        "lineno": 212,
+        "lineno": 249,
         "label": "p5_null_is_the_same_disease_2014_",
         "kind": "other",
         "evidence": [
@@ -369,7 +369,7 @@
         "probe": "jimeng_probe1014_empty_ambiguity.py",
         "var": "P6",
         "naming": "indexed",
-        "lineno": 216,
+        "lineno": 253,
         "label": "p6_the_previous_batch_artifact_is_itself_a_victim_2014_",
         "kind": "other",
         "evidence": [
@@ -1411,7 +1411,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P1",
         "naming": "indexed",
-        "lineno": 277,
+        "lineno": 289,
         "label": "P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027",
         "kind": "nonempty+mechanism",
         "evidence": [
@@ -1425,7 +1425,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P2",
         "naming": "indexed",
-        "lineno": 281,
+        "lineno": 302,
         "label": "P2_every_touched_probe_was_re_run_and_reported_1027",
         "kind": "nonempty+zero+mechanism",
         "evidence": [
@@ -1434,14 +1434,14 @@
           "not UNDER_SUITE",
           "N_CHECKED == 0"
         ],
-        "rhs": "N_CHECKED > 0 and all(('stale_vs_committed' in r and r['rc'] == 0 for r in RESULTS)) and all((r['in_git_head'] for r in RESULTS)) if not UNDER_SUITE e",
+        "rhs": "N_CHECKED > 0 and all(('stale_vs_committed' in r and r['rc'] == 0 for r in RESULTS)) and all((r['in_git_head'] or r['is_new_probe'] for r in RESULTS))",
         "label_hint_defect_words": []
       },
       {
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P8",
         "naming": "indexed",
-        "lineno": 319,
+        "lineno": 340,
         "label": "P8_exclusion_is_bilateral_and_1015_declares_it_too_1027",
         "kind": "other",
         "evidence": [
@@ -1454,7 +1454,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P3",
         "naming": "indexed",
-        "lineno": 328,
+        "lineno": 349,
         "label": "P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027",
         "kind": "other",
         "evidence": [
@@ -1467,7 +1467,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P4",
         "naming": "indexed",
-        "lineno": 329,
+        "lineno": 350,
         "label": "P4_touched_list_is_recorded_for_every_golden_owning_probe_1027",
         "kind": "mechanism",
         "evidence": [
@@ -1480,7 +1480,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P5",
         "naming": "indexed",
-        "lineno": 330,
+        "lineno": 351,
         "label": "P5_one_run_per_golden_no_double_counting_1027",
         "kind": "nonempty",
         "evidence": [
@@ -1493,7 +1493,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P6",
         "naming": "indexed",
-        "lineno": 331,
+        "lineno": 352,
         "label": "P6_scope_declared_1027",
         "kind": "decorative",
         "evidence": [
@@ -1506,7 +1506,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P7",
         "naming": "indexed",
-        "lineno": 332,
+        "lineno": 353,
         "label": "P7_offline_1027",
         "kind": "decorative",
         "evidence": [
@@ -2434,13 +2434,13 @@
       {
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P6",
-        "lineno": 331,
+        "lineno": 352,
         "label": "P6_scope_declared_1027"
       },
       {
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P7",
-        "lineno": 332,
+        "lineno": 353,
         "label": "P7_offline_1027"
       }
     ],

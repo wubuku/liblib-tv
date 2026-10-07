@@ -3,13 +3,17 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census_inputs_2029": {
-  "n_fingerprinted": 20,
+  "n_fingerprinted": 21,
   "n_unreadable": 0,
-  "n_from_probe_products": 20,
+  "n_from_probe_products": 21,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "f10dd922ce28",
+    "sha256_12": "41073e1a98c8",
     "bytes": 7532
+   },
+   "anchor-identity-1030.json": {
+    "sha256_12": "8454e8e8ae5e",
+    "bytes": 61333
    },
    "assertion-vs-behavior-1018.json": {
     "sha256_12": "e875252725a4",
@@ -24,15 +28,15 @@
     "bytes": 8980
    },
    "change-locality-1011.json": {
-    "sha256_12": "d5fc8b61219b",
+    "sha256_12": "24e23080fb1d",
     "bytes": 3092
    },
    "criterion-direction-1025.json": {
-    "sha256_12": "a8b961a8c483",
-    "bytes": 312720
+    "sha256_12": "7c4929ed4d2a",
+    "bytes": 314218
    },
    "criterion-effectiveness-1026.json": {
-    "sha256_12": "342f03831176",
+    "sha256_12": "0af4a7694c1c",
     "bytes": 100099
    },
    "edit-visibility-1009.json": {
@@ -40,27 +44,27 @@
     "bytes": 1437
    },
    "exemption-claims-1024.json": {
-    "sha256_12": "783863355a4c",
+    "sha256_12": "8a47856f2010",
     "bytes": 18972
    },
    "global-detection-1012.json": {
-    "sha256_12": "ba257e5e3f2d",
+    "sha256_12": "bb0b3ab2605d",
     "bytes": 2350
    },
    "golden-freshness-1008.json": {
-    "sha256_12": "08ac1ccf36b3",
+    "sha256_12": "589f53eec93b",
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "30baab529e1d",
-    "bytes": 76964
+    "sha256_12": "4746fe483e3c",
+    "bytes": 79391
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
     "bytes": 21313
    },
    "occurrence-ledger-1013.json": {
-    "sha256_12": "14c223301b84",
+    "sha256_12": "c17ac6ba9a00",
     "bytes": 20268
    },
    "real-history-detection-1010.json": {
@@ -68,12 +72,12 @@
     "bytes": 3232
    },
    "replica-coverage-1017.json": {
-    "sha256_12": "cb163d4ece8d",
+    "sha256_12": "5512e3d3a607",
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "ae9eabc9f31f",
-    "bytes": 28875
+    "sha256_12": "cdf5a424bca5",
+    "bytes": 28901
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -84,14 +88,14 @@
     "bytes": 9205
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "172e334b072e",
-    "bytes": 127207
+    "sha256_12": "75d939966aee",
+    "bytes": 127346
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 20,
+  "n_goldens": 21,
   "n_excluded_self": 1,
   "n_empty_list": 182,
   "n_empty_null": 26,
@@ -1473,7 +1477,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[2]/drifted",
+   "path": "/rounds/[0]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2889,7 +2893,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[2]/drifted",
+   "path": "/rounds/[0]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null

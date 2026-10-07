@@ -180,6 +180,15 @@ for n in (sorted(COUPLED_TO_CHANGED) if not UNDER_SUITE else []):
                         capture_output=True, timeout=120)
     committed = _g.stdout if _g.returncode == 0 else worktree
     in_head = _g.returncode == 0
+    # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 第十二条仪器 bug 的另一半：
+    #   判断「这本 golden 进过 HEAD 没有」必须区分两种情况。
+    #   ⇒⇒ ① 新增探针（**本批刚建的，它的 golden 当然不在 HEAD）**——合法；
+    #   ⇒⇒ ② 原本在 HEAD 的 golden 不见了（删除/改名）——真异常。
+    #   ⇒⇒ 而区分两者的唯一可靠信号是**探针源码自己进过 HEAD 没有**。
+    _sp = "scripts/%s" % n
+    _s = subprocess.run(["git", "-C", str(ROOT), "show", "HEAD:%s" % _sp],
+                        capture_output=True, timeout=120)
+    is_new_probe = _s.returncode != 0
     t0 = time.time()
     try:
         r = subprocess.run([PY, str(SCRIPTS / n)], capture_output=True,
@@ -212,6 +221,7 @@ for n in (sorted(COUPLED_TO_CHANGED) if not UNDER_SUITE else []):
         #   **⇒ 处置：键整个删掉，让「没有这个量」由「键不存在」自证，**
         #   **并由 `P9`（扫描全部键名里像随机量的）当场可验**
         "in_git_head": in_head,
+        "is_new_probe": is_new_probe,
         "stale_vs_committed": (after != committed),
         "stale_vs_worktree": (after != worktree),
         "n_bytes_fresh": len(after),
@@ -219,6 +229,8 @@ for n in (sorted(COUPLED_TO_CHANGED) if not UNDER_SUITE else []):
         "touched_by": c["touched_by_this_change"],
     })
 
+# ⭐⭐⭐⭐⭐ 登记：本次被重跑的探针里，有多少是「本批新增」的
+#   一旦就是 0，说明本批没有新增探针→ 那时 `P2` 就只能拿「重跑成功 + golden 在 HEAD」当依据
 STALE = [r for r in RESULTS if r["stale_vs_committed"]]
 N_STALE = len(STALE)
 N_CHECKED = len(RESULTS)
@@ -278,9 +290,18 @@ P1 = (len(CHANGED_SET) > 0
       and all(c["reads"] for c in COUPLING.values())
       and all(c["probe"] in CHANGED_SET or True for c in COUPLING.values()))
 # ⭐ 套件语境下 P2 退化为「确实没重跑」（那就是它该做的）
+# ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 第十二条仪器 bug：**一道门在「你做了正确的事」时转红**
+#   第一版的 `P2` 是 `all(r["in_git_head"] ...)`，而 `in_git_head` 表示「这本 golden 进过 HEAD 没有」
+#   ⇒⇒⇒⇒ 而**本批新增了一个探针**（1030）→ 它的 golden 当然不在 HEAD → `P2` 立刻转红
+#   ⇒⇒⇒⇒⇒⇒ **转红的原因与判据本意无关：判据本意是「每本被重跑的探针都成功且产物在版本控制里」，**
+#   **而「新增探针」正是产品，会让它永远拿不到状态** ⇒⇒⇒⇒⇒⇒⇒⇒⇒
+#   ⇒⇒⇒⇒⇒⇒⇒ **且这是第十一条「最该绿时转红」的第二个实例**（第一个是 1028 的 `stale`）
+#   ⇒⇒⇒⇒⇒⇒ ⇒ **处置：接受「本批新增的探针」**（依据 = 探针源码也进过 HEAD 没有），
+#   而**不是把 `in_git_head` 整个删掉** —— 删掉它就会让「删了一本 golden」无人报红。
+N_NEW_PROBE = sum(1 for r in RESULTS if r.get("is_new_probe"))
 P2 = ((N_CHECKED > 0
        and all("stale_vs_committed" in r and r["rc"] == 0 for r in RESULTS)
-       and all(r["in_git_head"] for r in RESULTS))
+       and all(r["in_git_head"] or r["is_new_probe"] for r in RESULTS))
       if not UNDER_SUITE else (N_CHECKED == 0 and N_TOUCHED >= 0))
 # ⭐⭐⭐⭐⭐⭐ **P8：双向排除必须是「两边都排」，而且要能证明对方也排了**
 #   本批第一版只有单向（1027 排 1015）⇒ 那是**我的一厢情愿**：1015 照收不误，
@@ -452,6 +473,7 @@ _PAYLOAD = {
         "n_re_run": N_CHECKED,
         "ran_under_the_suite": UNDER_SUITE,
         "n_stale": N_STALE,
+        "n_probes_new_this_change": N_NEW_PROBE,
         "per_probe_timeout": PER_PROBE_TIMEOUT,
         "results": RESULTS,
         # ⚠️⚠️⚠️ 第十一条仪器 bug：**这道门在「一切新鲜」时转红** ⇒ 它惩罚成功

@@ -18,13 +18,13 @@
   "changed_set_note": "⭐⭐⭐⭐⭐ **变更集以 `argv` 为准**；没给 argv 时兜底取 `git diff HEAD~3` ⇒ **共享仓里那会被别人的提交改掉** ⇒ **⇒ 可复现性在这里的准确口径是「同一份 argv 下两次跑逐字节相同」**",
   "axis_1_coupling_census": {
     "what": "⭐⭐⭐⭐⭐ **耦合普查** —— 一个探针读到的仓内文件越多，越容易被「别人的改动」带偏 ⇒ **这是「容易过期」的结构性原因**",
-    "n_probes_censused": 221,
-    "n_with_golden": 16,
+    "n_probes_censused": 222,
+    "n_with_golden": 17,
     "n_excluded": [
       "jimeng_probe1015_rerun_reproducibility.py"
     ],
     "n_probes_with_no_input": 193,
-    "n_probes_with_golden": 16,
+    "n_probes_with_golden": 17,
     "no_input_note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 绝大多数探针在耦合正则下「一个输入都抽不到」** —— 第一版把它们各写成几个空列表，1014 的普查立刻报出 627 条「说不清」⇒ **⇒⇒⇒⇒⇒⇒ 「空」不是信息，重复几百次的空更不是** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 处置：空列表折成计数，只在非空时保留列表本身**",
     "per_probe": [
       {
@@ -184,7 +184,7 @@
         "has_golden": false,
         "n_named": 5,
         "n_globs": 1,
-        "n_files_it_reads": 5013,
+        "n_files_it_reads": 5015,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -196,7 +196,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 3,
-        "n_files_it_reads": 5237,
+        "n_files_it_reads": 5240,
         "n_touched_by_this_change": 0,
         "in_exclude": true,
         "globs": [
@@ -285,7 +285,7 @@
         "has_golden": true,
         "n_named": 5,
         "n_globs": 4,
-        "n_files_it_reads": 15537,
+        "n_files_it_reads": 15538,
         "n_touched_by_this_change": 6,
         "in_exclude": false,
         "globs": [
@@ -321,7 +321,7 @@
         "has_golden": true,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 230,
+        "n_files_it_reads": 231,
         "n_touched_by_this_change": 4,
         "in_exclude": false,
         "globs": [
@@ -332,6 +332,19 @@
           "scripts/jimeng_probe1025_criterion_direction.py",
           "scripts/jimeng_probe1026_criterion_effectiveness.py",
           "scripts/jimeng_probe1027_freshness_gate.py"
+        ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1030_anchor_identity.py",
+        "has_golden": true,
+        "n_named": 3,
+        "n_globs": 0,
+        "n_files_it_reads": 4,
+        "n_touched_by_this_change": 2,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
         ]
       },
       {
@@ -2088,7 +2101,7 @@
         "has_golden": false,
         "n_named": 0,
         "n_globs": 1,
-        "n_files_it_reads": 228,
+        "n_files_it_reads": 229,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -2100,10 +2113,11 @@
   },
   "axis_2_the_measured_re_run": {
     "what": "⭐⭐⭐⭐⭐⭐⭐ **实测：对「被本次变更触及的」那些真跑一遍，与仓库里那本逐字节比对 ⇒ 列出现在已经过期的**",
-    "n_touched": 12,
-    "n_re_run": 12,
+    "n_touched": 13,
+    "n_re_run": 13,
     "ran_under_the_suite": false,
-    "n_stale": 3,
+    "n_stale": 6,
+    "n_probes_new_this_change": 1,
     "per_probe_timeout": 300,
     "results": [
       {
@@ -2111,6 +2125,7 @@
         "golden": "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
         "rc": 0,
         "in_git_head": true,
+        "is_new_probe": false,
         "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 127207,
@@ -2126,6 +2141,7 @@
         "golden": "docs/research/jimeng-canvas/stem-attribution-1007.json",
         "rc": 0,
         "in_git_head": true,
+        "is_new_probe": false,
         "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 1272,
@@ -2141,6 +2157,7 @@
         "golden": "docs/research/jimeng-canvas/real-history-detection-1010.json",
         "rc": 0,
         "in_git_head": true,
+        "is_new_probe": false,
         "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 3232,
@@ -2155,6 +2172,7 @@
         "golden": "docs/research/jimeng-canvas/change-locality-1011.json",
         "rc": 0,
         "in_git_head": true,
+        "is_new_probe": false,
         "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 3092,
@@ -2168,8 +2186,9 @@
         "golden": "docs/research/jimeng-canvas/global-detection-1012.json",
         "rc": 0,
         "in_git_head": true,
-        "stale_vs_committed": false,
-        "stale_vs_worktree": false,
+        "is_new_probe": false,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": true,
         "n_bytes_fresh": 2350,
         "n_bytes_committed": 2350,
         "touched_by": [
@@ -2181,8 +2200,9 @@
         "golden": "docs/research/jimeng-canvas/occurrence-ledger-1013.json",
         "rc": 0,
         "in_git_head": true,
-        "stale_vs_committed": false,
-        "stale_vs_worktree": false,
+        "is_new_probe": false,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": true,
         "n_bytes_fresh": 20268,
         "n_bytes_committed": 20268,
         "touched_by": [
@@ -2194,6 +2214,7 @@
         "golden": "docs/research/jimeng-canvas/behavior-harness-1019.json",
         "rc": 0,
         "in_git_head": true,
+        "is_new_probe": false,
         "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 8980,
@@ -2207,6 +2228,7 @@
         "golden": "docs/research/jimeng-canvas/anchor-gate-coverage-1021.json",
         "rc": 0,
         "in_git_head": true,
+        "is_new_probe": false,
         "stale_vs_committed": true,
         "stale_vs_worktree": true,
         "n_bytes_fresh": 7532,
@@ -2223,6 +2245,7 @@
         "golden": "docs/research/jimeng-canvas/type-layer-gate-1023.json",
         "rc": 0,
         "in_git_head": true,
+        "is_new_probe": false,
         "stale_vs_committed": false,
         "stale_vs_worktree": false,
         "n_bytes_fresh": 9205,
@@ -2236,8 +2259,9 @@
         "golden": "docs/research/jimeng-canvas/exemption-claims-1024.json",
         "rc": 0,
         "in_git_head": true,
-        "stale_vs_committed": false,
-        "stale_vs_worktree": false,
+        "is_new_probe": false,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": true,
         "n_bytes_fresh": 18972,
         "n_bytes_committed": 18972,
         "touched_by": [
@@ -2254,9 +2278,10 @@
         "golden": "docs/research/jimeng-canvas/criterion-direction-1025.json",
         "rc": 0,
         "in_git_head": true,
+        "is_new_probe": false,
         "stale_vs_committed": true,
         "stale_vs_worktree": true,
-        "n_bytes_fresh": 313462,
+        "n_bytes_fresh": 314218,
         "n_bytes_committed": 312720,
         "touched_by": [
           "scripts/jimeng_probe1025_criterion_direction.py",
@@ -2268,6 +2293,7 @@
         "golden": "docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
         "rc": 0,
         "in_git_head": true,
+        "is_new_probe": false,
         "stale_vs_committed": true,
         "stale_vs_worktree": true,
         "n_bytes_fresh": 100099,
@@ -2278,9 +2304,40 @@
           "scripts/jimeng_probe1026_criterion_effectiveness.py",
           "scripts/jimeng_probe1027_freshness_gate.py"
         ]
+      },
+      {
+        "probe": "jimeng_probe1030_anchor_identity.py",
+        "golden": "docs/research/jimeng-canvas/anchor-identity-1030.json",
+        "rc": 0,
+        "in_git_head": false,
+        "is_new_probe": true,
+        "stale_vs_committed": false,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 61333,
+        "n_bytes_committed": 61333,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
       }
     ],
     "stale": [
+      {
+        "probe": "jimeng_probe1012_global_detection.py",
+        "golden": "docs/research/jimeng-canvas/global-detection-1012.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1013_occurrence_ledger.py",
+        "golden": "docs/research/jimeng-canvas/occurrence-ledger-1013.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
       {
         "probe": "jimeng_probe1021_anchor_gate_coverage.py",
         "golden": "docs/research/jimeng-canvas/anchor-gate-coverage-1021.json",
@@ -2290,6 +2347,19 @@
           "scripts/jimeng_probe1021_anchor_gate_coverage.py",
           "scripts/jimeng_unclickable_audit.py",
           "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "golden": "docs/research/jimeng-canvas/exemption-claims-1024.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/jimeng_probe1026_criterion_effectiveness.py",
+          "scripts/jimeng_probe1027_freshness_gate.py",
+          "scripts/jimeng_unclickable_audit.py"
         ]
       },
       {
@@ -2336,7 +2406,7 @@
     },
     "B_injected_path_is_selected_by_the_coupling_scan": {
       "injected_path": "scripts/verify-jimeng-batch841-unclickable.py",
-      "n_selected": 12,
+      "n_selected": 13,
       "selected": [
         "jimeng_probe1005_zero_coupling_census.py",
         "jimeng_probe1007_disparate_copies.py",
@@ -2349,14 +2419,15 @@
         "jimeng_probe1023_type_layer_gate.py",
         "jimeng_probe1024_exemption_claims.py",
         "jimeng_probe1025_criterion_direction.py",
-        "jimeng_probe1026_criterion_effectiveness.py"
+        "jimeng_probe1026_criterion_effectiveness.py",
+        "jimeng_probe1030_anchor_identity.py"
       ],
       "ok": true,
       "rule": "⭐⭐⭐⭐⭐ **注入式自检**：把 verifier 路径塞进变更集，要求扫描器认出所有与它耦合的探针 ⇒ **⇒ 验的是「取交集这一步本身通不通」，而不依赖「这次提交恰好是谁的」** ⇒ **⇒⇒⇒⇒⇒⇒ 这一条正是对「仪器 bug 1」的回归防护**"
     },
     "C_intersection_is_narrower_than_everything": {
-      "n_touched": 12,
-      "n_with_golden": 16,
+      "n_touched": 13,
+      "n_with_golden": 17,
       "ok": true,
       "rule": "⭐⭐⭐⭐⭐ **取交集必须比「全部」小** —— 否则它退化成一个更贵的全量重跑 ⇒ **这本身是一条判据**"
     },

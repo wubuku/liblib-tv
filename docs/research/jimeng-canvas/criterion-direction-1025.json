@@ -5,9 +5,9 @@
   "how": "⭐⭐⭐⭐⭐ **只跑 `ast` 与正则解析 verifier 本体**；**零安装、零网络、零浏览器**；**不改 verifier 一个字**",
   "axis_A_anchor_only_vs_live": {
     "what": "⭐⭐⭐⭐⭐ **锚点型 vs 活判据型** —— 判定口径是把条件里的**字符串字面量全部去掉之后还剩不剩东西**：剩 ⇒ 活的（真的会被求值）；不剩 ⇒ 锚点（只验「那段字还在」）⇒⇒⇒⇒⇒ 这是 1018 那条纪律的机械化",
-    "n_checks": 952,
+    "n_checks": 956,
     "n_live": 180,
-    "n_anchor_only": 772,
+    "n_anchor_only": 776,
     "note_about_anchor_only": "⭐⭐⭐⭐⭐ **`anchor_only` 少，不代表锚点少** —— 绝大多数 `check()` 都同时含活条件与锚点，只有整条都只验文本的才归这一类 ⇒ **⇒ 「936 条判据」这个说法本身把两种东西混在了一起**",
     "all": [
       {
@@ -2332,2423 +2332,2443 @@
       },
       {
         "kind": "anchor_only",
-        "lineno": 5984,
+        "lineno": 5988,
         "label_head": "\"HHHH.1 ⚠️⚠️⚠️ **本批的设计有一处真缺陷，如实记账**：`warm ∈ {0,1,2,6}` \" \"**全都 ≤ boot 之后的自然值 76** ⇒ 预热循环**一次都没进**\" \"（`warm_pre"
       },
       {
         "kind": "anchor_only",
-        "lineno": 5999,
+        "lineno": 6003,
         "label_head": "\"HHHH.2 ⭐⭐⭐⭐ **sham 格（`scale=0`、**零点击**）推翻了一个隐含前提**：\" \"刚 `boot()` 完按第 1 下 `Tab`，「不带 ti」**76 → 0**、第 2 下 `0 → 1"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6016,
+        "lineno": 6020,
         "label_head": "\"HHHH.3 ⭐⭐⭐ **「前置态」是真的、落差极大**（虽然**不是**按设计操控出来的，\" \"是 boot 的自然状态替我们动了它）：**刚 boot 完 = 76**（76 个节点全都没有 \" \"`tabinde"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6028,
+        "lineno": 6032,
         "label_head": "\"HHHH.4 ⭐⭐⭐⭐⭐ **944 那个矛盾在 946 原样重现**：格 0 **两轮不一致** —— \" \"rep1 第 1 击 `Tab` **75 → 1**、rep2 **75 → 8**（**停在 8、不补"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6044,
+        "lineno": 6048,
         "label_head": "\"HHHH.5 ⚠️⚠️ **`added=0` 在这一批是 `delta()` 的**构造性产物**、不是现象**：\" \"`delta()` 在 `identity_stable=False` 时**按构造**返回空三"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6057,
+        "lineno": 6061,
         "label_head": "\"HHHH.6 ⭐⭐ **两处「门等于没有」被自己抓住**（不是被别人抓的）：\" \"① 945 只把 `reps_identical` **声明**进 `DERIVED_KEYS` 却**从没赋值** \" \"⇒ 那道门等"
       },
       {
         "kind": "live",
-        "lineno": 6075,
+        "lineno": 6079,
         "label_head": "\"HHHH.7 ⭐⭐⭐ **锚点自查的绑定表停在 `_p941` 就是个真口子** —— \" \"943 / 944a / 944b / 945 / 946 这五个探针**一个都没登记** ⇒ \" \"它们身上的锚文**从来"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6114,
+        "lineno": 6118,
         "label_head": "\"IIII.1 ✅⭐⭐⭐ **「连点期间身份在不在动」被排除**：\" \"`wait_stable=False`（只等 350ms）与 `wait_stable=True`\" \"（轮询到**连续两次身份表相同**）两格的 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 6133,
+        "lineno": 6137,
         "label_head": "\"IIII.2 ⭐⭐⭐ **settle 轨迹本身成了读数**（946 只知道两个端点）：\" \"**刚 `boot()` 完 `不带 ti` = 76，按 1 下 `Tab` 之后 = 0**（轨迹 `[76, 0]`）"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6146,
+        "lineno": 6150,
         "label_head": "\"IIII.3 ⭐⭐⭐⭐⭐ **跨批对照表成形**（`就绪不带 ti` vs 有没有矛盾）：\" \"**945** 就绪 0/咬 8/`added=8` **无矛盾**；**947** 就绪 0/咬 4/\" \"`added"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6162,
+        "lineno": 6166,
         "label_head": "\"IIII.4 ⭐ **§156 挂的「第一击不咬」答掉了**：每格第 1 击都是 \" \"`i=0 / bit=False / identity_stable=False`，**12 个格次 2/2 逐条相同**\" \"（"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6176,
+        "lineno": 6180,
         "label_head": "\"IIII.5 ⭐⭐ **本批自己设计的「反恒绿门」生效了**\" \"（`manip_moved_something`）：`wait_stable=True` 那一格如果\" \"**测不出任何差别**，那道门就恒绿了（和 9"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6195,
+        "lineno": 6199,
         "label_head": "\"JJJJ.1 ⭐⭐⭐⭐⭐ **受控落点对照表**（2/2，别的全固定，只改按压下数）：\" \"`n_settle=0/1/2` ⇒ 就绪 `不带 ti` = **76 / 0 / 1**（逐按落点 \" \"`[76,0]`"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6214,
+        "lineno": 6218,
         "label_head": "\"JJJJ.2 ⭐⭐⭐⭐⭐ **944 那个挂了四批的矛盾结案了 —— 它是一个误读**：\" \"947 说「矛盾只在就绪 ≠ 0 那侧」⇒ **本批推翻**：`n_settle=2` 就绪 = **1**\" \"（正是 9"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6238,
+        "lineno": 6242,
         "label_head": "\"JJJJ.3 ⭐⭐⭐ **`settle_stable_ok = False`** —— settle 那几按的 \" \"`identity_stable` **全为 `False`** ⇒ **`76 → 0 → 1`"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6255,
+        "lineno": 6259,
         "label_head": "\"JJJJ.4 ⭐ 「第一击咬不咬」**也分 regime**（2/2）：就绪 **0** 与 **1** 两格\" \"第 1 击都是 `i=0 / bit=False / identity_stable=False`（*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6269,
+        "lineno": 6273,
         "label_head": "\"JJJJ.5 ⭐⭐ **基线里不许同时留「未结案」与「已结案」**：944 那条矛盾键已改名 \" \"`compensation_scale_threshold_RESOLVED_944b_948`、且**旧名字必须已经"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6286,
+        "lineno": 6290,
         "label_head": "\"KKKK.1 ⭐⭐⭐ **格 0 用的就是 944 自己那组数字**（`n_settle=2` ⇒ 就绪 \" \"`不带 ti` = **1**、`scale=13`、连按 **6** 下 `Tab`），\" \"格 1 是"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6302,
+        "lineno": 6306,
         "label_head": "\"KKKK.2 ⭐⭐⭐⭐ **944 那次读数不可复现**（2/2，逐条相同）：格 0 就绪 **1**、\" \"点 13 次**落点 10、咬到 9**、连点后 `不带 ti = 10` ⇒ \" \"第 1 击 **`ad"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6318,
+        "lineno": 6322,
         "label_head": "\"KKKK.3 ⚠️⚠️ **944 自己就记下了它那一格不满足条件**，本批只是把它指出来：\" \"它写的是「**两轮不一致**、所以**不许**下结论」，而 949 用**同一组数字**\" \"测到的是 **2/2 逐条"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6334,
+        "lineno": 6338,
         "label_head": "\"KKKK.4 ⭐⭐ **同一次跑里的对照格与 948 格 2 逐条相同**（就绪 1、落点 5、\" \"咬到 4、连点后 5、`added=5` 5→1、`added=1` 1→1、末击 `added=0`）⇒ ⇒ \" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 6352,
+        "lineno": 6356,
         "label_head": "\"KKKK.5 ⚠️⭐⭐ **门禁红了、而把它的每条条件单独求值都成立时，\" \"第一动作是「重跑」，不是「改判据」** —— 本批的门禁第一次跑出 \" \"**509/514**（JJJJ.2 + KKKK.1~4 五条红"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6371,
+        "lineno": 6375,
         "label_head": "\"LLLL.1 ⭐⭐⭐⭐⭐ **「冷启动铺窗口」的完整规则**（**零点击**、2/2 逐条相同）：\" \"`不带 ti` 曲线 = **[76, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6389,
+        "lineno": 6393,
         "label_head": "\"LLLL.2 ⭐⭐⭐⭐⭐ **指针会冻住 —— 而且冻在「焦点落在节点内部按钮」的那几按**：\" \"指针序列 `[] → [0] → [1] → [2] → [2] → [2] → [2] → [2] → [3] → "
       },
       {
         "kind": "anchor_only",
-        "lineno": 6407,
+        "lineno": 6411,
         "label_head": "\"LLLL.3 ⚠️⭐⭐ **本批自己设计的可红门真的红了** —— 这正是它存在的意义：\" \"判据写的是「**「没有 tabindex 的那个下标每按一次就变」**」，\" \"而实测 `pointer_walks = *"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6427,
+        "lineno": 6431,
         "label_head": "\"LLLL.4 ⭐⭐⭐⭐⭐ **944 那次「连按 6 下 `added` 恒 0」现在有了解释**：\" \"只要按 Tab 之前焦点落在内部 `BUTTON` 上，**连按 5 下指针都不动**\" \"（三元组自然全空）⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6448,
+        "lineno": 6452,
         "label_head": "\"LLLL.5 ⭐ 本批**零节点点击**（只点一次画布空白去焦点，943 起的标准前置）⇒ \" \"设计门 `zero_node_clicks` 在**每一轮**都为 True；⚠️ 且「无 ti 下标」\" \"那份读数*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6464,
+        "lineno": 6468,
         "label_head": "\"MMMM.1 ⚠️⭐⭐⭐ **`arm_focus` 这个自变量在 944 的条件下是个 **no-op**：**\" \"格 0（**不**程序化聚焦，照 944）实测读到 \" \"`focus_skipped = {'a"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6484,
+        "lineno": 6488,
         "label_head": "\"MMMM.2 ⚠️⚠️⚠️ **撤回 950 那条推断**（承 §77 + 950 自己写下的\" \"「**这三条链接都是推断、不是实测**」）：950 说「焦点落在内部 `BUTTON` 上 \" \"⇒ 指针冻住」⇒ *"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6509,
+        "lineno": 6513,
         "label_head": "\"MMMM.3 ⚠️⭐⭐⭐ **更要紧的一条：写 950 那条推断之前，我**没有先查基线里\" \"有没有反例** —— 而 945 早就把这条读数**写进基线**了\" \"（**「点击之后焦点本来就在节点本体上」**），\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 6527,
+        "lineno": 6531,
         "label_head": "\"MMMM.4 ⚠️⚠️⚠️ **「944 自己那次为何不补」仍然未查明**，而且本批**给它补了一条\" \"负面证据**：在 **944 的数字**（就绪 1、13 连点、6 下 `Tab`）下，\" \"**2/2 逐条相"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6552,
+        "lineno": 6556,
         "label_head": "\"NNNN.1 ⭐⭐⭐⭐⭐ **那不是「卡住」，是 `Tab` **正常走完了节点工具条** ——**\" \"冻结段的 4 个元素身份**逐一取到**（全是**时间线节点** \" \"`node_index=2`「时间线 n"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6574,
+        "lineno": 6578,
         "label_head": "\"NNNN.2 ⭐⭐⭐⭐⭐ **指针只在「从节点本体 `DIV` 出发的那一按」上 +1**：\" \"按 1~4 每按 +1；按 5/6/7（**在工具条的 3 个按钮之间**）指针**恒 `[2]`**；\" \"按 8（*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6592,
+        "lineno": 6596,
         "label_head": "\"NNNN.3 ⭐⭐ 判别组（2/2 逐条相同）：**`Shift+Tab` 焦点**立刻**离开工具条**\" \"（落到 `aria='Canvas'`）而指针**仍不动** ⇒ **反向臂有效、且同样不推指针**；\" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 6622,
+        "lineno": 6626,
         "label_head": "\"NNNN.4 ⚠️⚠️⚠️ **本条整条已被 953 撤回**（承 HH.4，判据随之改钉改写横幅）：\" \"**`Tab` 周期 = 10** 与 **「周期长度 = 节点数 + 带工具条的节点数」**\\n\" \"⚠️ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 6661,
+        "lineno": 6665,
         "label_head": "\"NNNN.5 ⚠️⭐⭐⭐ **`active_before == active_after` 并不代表焦点没动** —— \" \"这是 950 那个「被 `Tab` 吞了」说法的**来源**，上一批是**读图说话**：\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 6710,
+        "lineno": 6714,
         "label_head": "\"OOOO.1 ⭐⭐⭐ 本批**不是**再取一次样，是**拿 952 的尺子量复刻**：\" \"**七段 JS 全部与 952 逐字相同**（本批**零**新件 JS）、\" \"**七个 Python 助手也逐字相同**（用"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6740,
+        "lineno": 6744,
         "label_head": "\"OOOO.2 ⚠️⭐⭐⭐ **指针的定义两边不同，写出来才不许糊过去**：\" \"源站解除布防是**把 `tabindex` 属性摘掉** ⇒ 指针 = **第一个没有 `tabindex` \" \"的下标**；复刻的 `"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6764,
+        "lineno": 6768,
         "label_head": "\"OOOO.3 ⭐⭐⭐⭐ **复刻的 `Tab` 环是开环**：走完画布内**全部 24 个停靠点**\" \"之后，焦点**离开画布**、进入全局 chrome ⇒ **「周期」这个量在复刻侧\" \"根本不存在**（`rin"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6791,
+        "lineno": 6795,
         "label_head": "\"OOOO.4 ⚠️⭐⭐ **逐字那道 `curve_reproducible` 在复刻上恒红** —— \" \"而那**不是**「读数不稳」，是**被测对象**不稳定：\" \"复刻节点 `data-testid` **带时"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6815,
+        "lineno": 6819,
         "label_head": "\"OOOO.5 ⭐⭐ 补预算而不是改判据（901 的先例）：第一版 `N_PRESS_BASE=14` \" \"**走不完一圈**（环 24 个停靠点）⇒ 加到 24 **仍差一按**（第 24 按落在\" \"**最后一个*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6841,
+        "lineno": 6845,
         "label_head": "\"OOOO.6 ⚠️⭐⭐⭐ **两条要改写成「位置相关」**（原文保留，承 HH.4）：\\n\" \"① **「`Shift+Tab` 焦点立刻离开工具条」是位置相关的** —— \" \"源站那按是从**第一个**按钮（`导出"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6877,
+        "lineno": 6881,
         "label_head": "\"PPPP.1 ⭐⭐⭐⭐ **源站的 `Tab` 环 = 102 下**（2/2 逐条相同、\" \"`curve_reproducible` 绿、`ruler_actually_moved` 绿）：120 按里\" \"**节"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6907,
+        "lineno": 6911,
         "label_head": "\"PPPP.2 ⚠️⚠️⚠️ **952 的「`Tab` 周期 = 10」被同一把尺子彻底推翻**：\" \"954 用的就是 952/953 那把尺子（**逐字复用**），只把 URL 换回源站、\" \"预算补到 §139 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 6925,
+        "lineno": 6929,
         "label_head": "\"PPPP.3 ⚠️⭐⭐⭐ **要更正 953 的一条措辞**：953 写「复刻的环是开环」时，\" \"把「源站是不是也开环」列成了**待查**。**现在查到了：源站也开环** —— \" \"走完节点段后焦点**进入顶栏**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 6948,
+        "lineno": 6952,
         "label_head": "\"PPPP.4 ⚠️⚠️⚠️⚠️ **本批自己犯了和 952 一模一样的错，如实记账** —— \" \"而它正是本批要修的那个 bug：格 1 的按键顺序是 `Shift+Tab` → `Escape` → `Tab`，\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 6983,
+        "lineno": 6987,
         "label_head": "\"PPPP.5 ⭐⭐ **两条被独立复现的读数**（2/2 逐条相同）：\\n\" \"① **`Shift+Tab` 从工具条**第一个**按钮按 ⇒ 立刻离开工具条**、\" \"落到 `out:Canvas`（弱判据与强判据"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7014,
+        "lineno": 7018,
         "label_head": "\"QQQQ.1 ⭐⭐⭐⭐ **空着的那一格补上了：`Escape` 在工具条里按不动焦点**\" \"（4 个内层停靠点**逐个**测、2/2 逐格相同、位置门与「只按一键」两门全绿）：\" \"`导出时间线` / `全屏编辑`"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7045,
+        "lineno": 7049,
         "label_head": "\"QQQQ.2 ⭐⭐⭐⭐ **`Shift+Tab` 的规则在源站侧**完整**成立**\" \"（2/2 逐格相同、4 个位置**各判各的**）：第 1 个 `导出时间线` → \" \"**`out:Canvas`（离开内层"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7068,
+        "lineno": 7072,
         "label_head": "\"QQQQ.3 ⚠️⭐⭐⭐ **逐字与归一化两道都在**源站**上红**，\" \"而那**不是**「读数不稳」，是**被测对象**在动：差异字段**只有** \" \"`identity_stable` / `bit` / `"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7111,
+        "lineno": 7115,
         "label_head": "\"QQQQ.4 ⭐⭐⭐ **本批的设计就是「让 954 那个错在结构上不可能发生」**，\" \"而且**自己抓到了两个自身缺陷**：\\n\" \"① ⚠️⚠️ **第一版把两轮比较和设计门写在了 `for rep` 循环里面还"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7143,
+        "lineno": 7147,
         "label_head": "\"RRRR.1 ⭐⭐⭐⭐⭐ **954 点名的那个格子：复刻的 `Tab` 环闭合、`Shift+Tab` 回得来** —— \" \"954 亲手写的「**不许**拿 953 的 28 下断言复刻回不来」是**对的**，\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7159,
+        "lineno": 7163,
         "label_head": "\"RRRR.2 ⭐⭐⭐⭐ **`Shift+Tab` 按**停靠点**去重、不是按序号** —— \" \"第一版按序号去重 ⇒ 3 次探针**全落在同一个点上**；\" \"且 `came_back` **只能**读成「出画布"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7174,
+        "lineno": 7178,
         "label_head": "\"RRRR.3 ⭐⭐⭐⭐ **两边真正的差异是「环的权重」，不是「开环」、\" \"也不是「回不回得来」**；且 952 那个「差 10 倍」的直觉**对象错了**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7197,
+        "lineno": 7201,
         "label_head": "\"RRRR.4 ⭐⭐⭐⭐ **第四道门（只比节点段）2/2 逐格相同**，\" \"而**出画布段逐轮会变** ⇒ **绝对环长不是稳定量，绝不能当「周期」断言**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7210,
+        "lineno": 7214,
         "label_head": "\"RRRR.5 ⚠️⭐⭐⭐ **`curve_key` 的覆盖面只有 4/13，如实数出来**；\" \"且**第一版的行为门差点恒真**（照抄 955 的 `_BEHAVIOR` 会让 956 整片 `None`）\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7227,
+        "lineno": 7231,
         "label_head": "\"RRRR.6 ⚠️⚠️ **写完自查抓到 6 个自身缺陷，`py_compile` 全都抓不到** —— \" \"其中 ① 根本没有 `sync_playwright` ⇒ `page` 永远 `None` ⇒ **一格"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7249,
+        "lineno": 7253,
         "label_head": "\"SSSS.1 ⭐⭐⭐⭐⭐ **源站左栏是标准 ARIA roving tabindex** —— \" \"956 那个「复刻 9 个 / 源站 1 个」的差异**机制查死了**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7268,
+        "lineno": 7272,
         "label_head": "\"SSSS.2 ⭐⭐⭐⭐ **`ArrowDown` 在左栏内移动焦点**（roving 的另一半），\" \"而**弱判据第三次说错**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7285,
+        "lineno": 7289,
         "label_head": "\"SSSS.3 ⚠️⚠️⚠️⭐⭐ **`ARM_FOCUS_JS` 会把焦点从左栏拽回节点** ⇒ \" \"954/955/956 那把尺子有一个**从没验过的隐含前提**，在左栏位置是**假的**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7305,
+        "lineno": 7309,
         "label_head": "\"SSSS.4 ⚠️⚠️ **第一版 4 个坑，其中「读数对、标签错」和「读数错」一样危险**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7329,
+        "lineno": 7333,
         "label_head": "\"TTTT.1 ⭐⭐⭐⭐⭐ **复刻左栏装上了 roving tabindex**，\" \"**形状与源站 957 逐条相同**（改前可聚焦 9 枚、改后 1 枚）\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7352,
+        "lineno": 7356,
         "label_head": "\"TTTT.2 ⭐⭐⭐⭐ **`ArrowDown` 在复刻左栏内移动焦点，与源站 957 逐条相同**；\" \"**弱判据第三次说错这件事在复刻侧也照样发生**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7368,
+        "lineno": 7372,
         "label_head": "\"TTTT.3 ⭐⭐⭐⭐ **一圈：左栏 9 → 1、出画布段 27 → 19**（源站 1 / 18）⇒ \" \"**净多 9 降到净多 1**；但**顺序差异没被本批修掉**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7387,
+        "lineno": 7391,
         "label_head": "\"TTTT.4 ⚠️⚠️⚠️⭐⭐ **957 查红的那条在**复刻**侧同样成立** —— 而我\" \"**第一版是拿推断当读数**的\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7407,
+        "lineno": 7411,
         "label_head": "\"TTTT.5 ⚠️⚠️ **两道既有门都只认自己看得见的形状** ⇒ \" \"切片拼出来的 `RAIL_JS` **它俩都是瞎的**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7425,
+        "lineno": 7429,
         "label_head": "\"UUUU.1 ⭐⭐⭐⭐⭐ **「`Tab` 顺序 == DOM 顺序」在源站是假的**（2/2）—— \" \"**本批推翻了自己 958 结尾写下的那个猜想**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7441,
+        "lineno": 7445,
         "label_head": "\"UUUU.2 ⭐⭐⭐⭐ **out 段被切成两段**：第 2 段**就是** DOM 序（严格单调）\" \"⇒ **只有第 1 段被提前了**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7457,
+        "lineno": 7461,
         "label_head": "\"UUUU.3 ⚠️⚠️⚠️ **机制未验死，而最顺手那个解释已被读数否掉** —— \" \"**「未查明」与「否掉了」是两件不同的事**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7472,
+        "lineno": 7476,
         "label_head": "\"UUUU.4 ⚠️⚠️⭐ **DOM 绝对下标逐轮整体偏移 2** ⇒ **只能比相对大小关系**；\" \"且**源站环长逐轮在变**（≈57 vs 954 的 102）\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7495,
+        "lineno": 7499,
         "label_head": "\"VVVV.1 ⭐⭐⭐⭐ **「shadow root」被否掉** ⇒ **959 的 `dom_index` 口径成立**、\" \"**读数不需要重做**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7514,
+        "lineno": 7518,
         "label_head": "\"VVVV.2 ⭐⭐⭐⭐ **「keydown 里改 `tabindex`」也被否掉**，\" \"且把 959 的否掉**补强成更彻底**的否掉\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7532,
+        "lineno": 7536,
         "label_head": "\"VVVV.3 ⚠️⚠️⚠️⭐⭐ **机制仍未查明，且三条事实凑成矛盾** —— \" \"**原样记账，不许圆**；「A、C 都对而 B 也对」本身就是线索\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7544,
+        "lineno": 7548,
         "label_head": "\"VVVV.4 ⚠️⚠️⚠️⭐⭐ **第一版判据是错的，被自己抓住**：把**两个不同元素**的 \" \"ti 当成**同一元素**的前后变化；**改法不是放宽判据，是改「盯谁」**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7560,
+        "lineno": 7564,
         "label_head": "\"VVVV.5 ⚠️⚠️⚠️ **操作事故：960 把 `OUT` 照抄成 959 的路径，\" \"把 959 的读数覆盖了** ⇒ **`cp` 做基底时那三样必须逐个核**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 7583,
+        "lineno": 7587,
         "label_head": "\"WWWW.1 ⭐⭐⭐⭐ **959/960 的读法盲区被堵上 —— 而盲区里是空的**：\" \"它们只读**焦点所在那一枚**的 `tabindex` ⇒ 「没有正 ti」只覆盖\" \"「各自获得焦点的那一刻」；961 *"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7622,
+        "lineno": 7626,
         "label_head": "\"WWWW.2 ⚠️⚠️⚠️⭐⭐ **矛盾加强了，而且只剩一个方向**：\" \"A′（无正 ti）+ C（**没** `preventDefault`）⇒ 浏览器**本该严格**按 DOM 序走，\" \"与 B（959/96"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7647,
+        "lineno": 7651,
         "label_head": "\"WWWW.3 ⚠️⚠️⚠️ **更正出处时我自己也犯了「只查一处」的错**：\" \"960 §二 写 896，而 **896 确实测过**（明写用 892 的取法、\" \"结论全 `False`）⇒ 960 那处引用**不"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7674,
+        "lineno": 7678,
         "label_head": "\"WWWW.4 ⚠️⚠️ **同一次跑里有两个普查，数字不可比**；\" \"且 961 **自己抓到两个缺陷**（`domidx_note` 是 960 照抄残留、\" \"探针**没有给 961 判决自己的门**）⇒ 都改了"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7703,
+        "lineno": 7707,
         "label_head": "\"WWWW.5 ⭐⭐ **零计费与纯读纪律 961 继续守住**：新件 `TICENSUS_JS` \" \"**只读不写**、判别键**绕开 `press_row`**（它带 `el.focus()` 会改被测对象）、\" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 7718,
+        "lineno": 7722,
         "label_head": "\"WWWW.6 ⚠️⚠️⚠️⭐⭐ **锚点自查里那个「静默跳过」的洞被堵上了**：\" \"未登记变量原本是**裸 `continue`** ⇒ `_p957`–`_p960` **四批**的探针锚点\" \"**一次都没被查过"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7758,
+        "lineno": 7762,
         "label_head": "\"XXXX.1 ⭐⭐⭐⭐ **判据本身**：`Tab` 的原生移焦是 keydown 的**默认动作**、\" \"在**派发彻底结束之后**才做 ⇒ 在派发末尾读 `activeElement` 就能分辨\" \"「脚本搬的」"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7780,
+        "lineno": 7784,
         "label_head": "\"XXXX.2 ⭐⭐⭐⭐⭐ **959 的 B 被否掉，而且否它的是「关系」不是绝对值**：\" \"整条走查 `dom_index` **下降恰好 1 次**、且是**高索引跳回低索引**\" \"（文档尾部折返回头部）⇒ 画"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7803,
+        "lineno": 7807,
         "label_head": "\"XXXX.3 ⭐⭐⭐⭐ **两条独立证据互相印证**：out 段那 18 个 chrome 停靠点\" \"**派发内被搬的 = 0**（**全部**是浏览器原生移焦）＋ 时序与形状吻合；\" \"⇒ **961 那个「只剩一"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7832,
+        "lineno": 7836,
         "label_head": "\"XXXX.4 ⚠️⚠️⚠️⭐⭐ **第一版的仪器有致命 bug，而门却是绿的**：\" \"`__fm` 闩锁是**粘的** ⇒ 140 按里**只测到第 1 按**；\" \"而那道门写的是 `n_fm_armed == n"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7854,
+        "lineno": 7858,
         "label_head": "\"XXXX.5 ⚠️⚠️ **第一版的「摘干净」守卫写错了，被自己抓住**：\" \"数的是 `__fm_off` 这个**名字**出现几次 ⇒ 量不到「监听摘没摘干净」\" \"⇒ 改成量 `add`/`removeEvent"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7869,
+        "lineno": 7873,
         "label_head": "\"XXXX.7 ⚠️ **两根红着的门，原因已查明、如实记**（\" \"`focusin_heard_every_press` 红在「1 按没听到 `focusin`」、\" \"`app_moves_focus_before"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7888,
+        "lineno": 7892,
         "label_head": "\"XXXX.6 ⚠️⚠️⚠️⭐⭐ **同一个坑，隔一层又踩了一次**：\" \"962 写完判据后锚点自查报 **0 问题**（**假绿**），真正暴露它的是\" \"**verifier 跑出一条 FAIL** ⇒ 根因：**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7911,
+        "lineno": 7915,
         "label_head": "\"XXXX.8 ⚠️⚠️ **照抄基底留下的两样「产物级」残留，962 一并清了**：\" \"① docstring 头**连错三批**（959/960/961 都还写着「batch 957」）\" \"② 4 处**真坏字节"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7935,
+        "lineno": 7939,
         "label_head": "\"YYYY.1 ⭐⭐⭐⭐⭐ **落点序列 = 全量 DOM 序，只少一枚** —— \" \"**NN.2 的「跳过 2 个」被精确成「恰好 1 个」**；\" \"而**被跳过的那一枚在 DOM 上与邻居完全同构** ⇒ \" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 7970,
+        "lineno": 7974,
         "label_head": "\"YYYY.2 ⚠️⚠️⚠️ **第一版的对账判据（「连续前缀」）是错的，被读数否掉** —— \" \"而那个 `False` **并不代表有 bug**（走查绕了圈 ⇒「前缀」不成立）；\" \"**门也一起换成独立分母**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 7998,
+        "lineno": 8002,
         "label_head": "\"ZZZZ.1 ⭐⭐⭐⭐ **`tabindex` 维度已穷尽后换非 `tabindex` 维度**（几何 / \" \"可见性 / 计算样式 / 属性集 / 类名 / 子节点 / 文本 / 内部可聚焦数 / \" \"是否被选"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8021,
+        "lineno": 8025,
         "label_head": "\"ZZZZ.2 ⚠️⚠️⚠️ **「A ≠ B」不等于「A 能把 A 从 C 里挑出来」** —— \" \"第一版把「字典整体不等」当成了「有差异」，**位置噪声被当成了原因**；\" \"⇒ 加**第二层判据「可区分」**（"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8043,
+        "lineno": 8047,
         "label_head": "\"ZZZZ.3 ⭐⭐⭐⭐ **本批的诚实结论：可区分项全是「按位置必然不同」的量** ⇒ \" \"**没有一个是内在属性** ⇒ **DOM 上依然查不到** ⇒ **原因不在 DOM**；\" \"⚠️ **记「仍未查明」，"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8053,
+        "lineno": 8057,
         "label_head": "\"ZZZZ.4 ⚠️⚠️ **探针在跑之前就被自己的切片守卫拦下** —— \" \"`(p.className || '').toString().slice(...)` 中间插了个 `.toString()` \" \"就与"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8073,
+        "lineno": 8077,
         "label_head": "\"AAAA.1 ⭐⭐⭐⭐⭐ **两个候选机制全被否掉**：963 观察到「从 67 按 Tab \" \"落到 69」，可能是 (a) **根本不可聚焦** 或 (b) **被 `focusin` 拽走**；\" \"⇒ 实测 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 8098,
+        "lineno": 8102,
         "label_head": "\"AAAA.2 ⚠️⚠️⚠️⭐⭐⭐ **第一版的汇总层把判决整个说反了** —— \" \"而**原始读数其实是对的**：`READ_FT_JS` 返回的是**整张以 tid 为键的表**，\" \"我却当单条记录用 ⇒ `sy"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8122,
+        "lineno": 8126,
         "label_head": "\"AAAA.3 ⚠️⚠️⚠️ **第一版的 `FOCUSTEST_JS` 有结构性错误**：`micro` / `task` / \" \"`frame` 写成局部变量再 `return` ⇒ 赋值在 **return 之后"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8140,
+        "lineno": 8144,
         "label_head": "\"AAAA.4 ⭐⭐⭐⭐ **顺带钉住一条机制事实**：被跳过的那枚 \" \"`el.tabIndex === -1`（**而** `getAttribute('tabindex')` \" \"⇒ 浏览器**原生 `Tab`"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8157,
+        "lineno": 8161,
         "label_head": "\"YYYYY.1 ⭐⭐⭐⭐ **行为侧也查不出**：三枚点完**逐项一致** —— \" \"都**被自己选中**（`n_selected 0 → 1`）、都**不把焦点搬进节点**、\" \"都**不开新层** ⇒ 那枚在**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8180,
+        "lineno": 8184,
         "label_head": "\"YYYYY.2 ⭐⭐⭐⭐ **三条路全部走完的总结**（963 `tabindex` / 964 解剖 / \" \"965 可聚焦性 / 966 行为）⇒ **那枚与邻居在**所有可观察维度**上无异** ⇒ \" \"**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8190,
+        "lineno": 8194,
         "label_head": "\"YYYYY.3 ⚠️⚠️⚠️ 966 在**跑起来之前**又踩三个坑，三个都**当场抓住**：\" \"① `READ_FM_JS` 的**名字**被写成 `READ_FT_JS`（**函数体却是前者的**）\" \"⇒ 同名"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8223,
+        "lineno": 8227,
         "label_head": "\"ZZZZZ.1 ⭐⭐⭐⭐⭐ **900 与 963 都没错 —— 它们量的不是同一件事**（源站 2/2 \" \"逐项一致）：「被布上 `'0'`」漏 **2** 枚（`b22-upload`、`音频 61`）、\" \"「"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8246,
+        "lineno": 8250,
         "label_head": "\"ZZZZZ.2 ⭐⭐⭐⭐ **顺带否掉 965 §二 的越界推论**（965 **主判决不动**）：\" \"那个 `el.tabIndex === -1` 读自**孤立的 `focus()` 测试**（那一瞬间节点身上\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 8266,
+        "lineno": 8270,
         "label_head": "\"ZZZZZ.3 ⭐⭐⭐⭐ **产品改动落地**（不只研究）：`JimengWorkspace.tsx` 的\" \"「已知差异」块**原文保留 + 加改写横幅**（承 HH.4）⇒ 把「900 的 2 个」\" \"改成「**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8283,
+        "lineno": 8287,
         "label_head": "\"ZZZZZ.4 ⚠️⚠️ 967 的门**有牙**（不是恒真门）：干跑喂**假数据**时 \" \"`armed_read_is_live` / `landing_channels_both_present` **直接判红"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8303,
+        "lineno": 8307,
         "label_head": "\"ZZZZZ.5 ⭐⭐ **判词不许预写**：探针只输出 `recon`（**纯数字**），\" \"audit 里那几段判词是**读过 `/tmp/b967-armptr.json` 的原始读数之后**才写的 \" \"⇒ 这"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8316,
+        "lineno": 8320,
         "label_head": "\"AAAAA.1 ⭐⭐⭐⭐ **967 那两条机制规则在复刻侧同样成立**（2/2 逐项一致）：\" \"**布防 ⇒ 落焦** `self_eq_armed` = `n_self_rows` = **14/14**；\" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 8338,
+        "lineno": 8342,
         "label_head": "\"AAAAA.2 ⭐⭐⭐⭐ **步长：复刻严格按纯 DOM 序** —— `step_hist` = \" \"`{\\\"+1\\\": 12, \\\"wrap\\\": 1}`、**`gt2` = 0、`+2` = 0**（2/2）\""
       },
       {
         "kind": "live",
-        "lineno": 8359,
+        "lineno": 8363,
         "label_head": "\"AAAAA.3 ⭐⭐⭐⭐⭐ **拆穿一个「数目相等」的假匹配** ⇒ 长期待办\" \"「复刻缺的项目面板停靠点」**差点被错关掉**：复刻 out 段实测 **18 个**、\" \"源站也 **18 个**，但第 17 个"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8383,
+        "lineno": 8387,
         "label_head": "\"CCCCC.1 ⭐⭐⭐⭐⭐ **同口径重做那张表之后，结论完全变了**：复刻的 \" \"`文本` 那枚**两侧完全一致**（源站**自身 `None`** / 祖先 \" \"`canvas-fixed-toolbar`；复"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8405,
+        "lineno": 8409,
         "label_head": "\"CCCCC.2 ⭐⭐⭐⭐⭐ **真正剩下的差异只有两处，而且 816 都明确记录过、\" \"都有理由 ⇒ 都不该改**：`更多`（源站自身无 tid、祖先 \" \"`canvas-editor-menu`；复刻自造 `ca"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8428,
+        "lineno": 8432,
         "label_head": "\"CCCCC.3 ⭐⭐⭐⭐⭐ **两次同一种错，归成一条纪律**：968b 拿 **954 的历史\" \"基线**当本轮源站一侧的对照 ⇒ 把「**基线过期**」误读成「**实现有缺陷**」；\" \"969 拿复刻的**自身"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8463,
+        "lineno": 8467,
         "label_head": "\"EEEEE.1 ⭐⭐⭐⭐⭐ **954 记的 `out:测试项目…已保存…分享` 不是 UI 元素 \" \"—— 它就是 `document.body` 本身**：三条独立读数同指一枚（k=90，两轮逐字相同）\" \"——"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8498,
+        "lineno": 8502,
         "label_head": "\"EEEEE.2 ⭐⭐⭐⭐⭐ **954 那句「源站多出 1」的成因终于说得出机制了 —— \" \"两侧的「名字」用了不同口径（这是这一族错的**最早一次**，954 就是源头）**：\" \"**源站侧**用 `WHOAMI"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8536,
+        "lineno": 8540,
         "label_head": "\"EEEEE.3 ⭐⭐⭐⭐⭐ **本批最系统的一条：任何用 `WHOAMI_JS` 的 `aria` 做 \" \"out 段停靠点统计的批次，都必须先排除 `tag == 'BODY'`** \" \"—— 954 / 959"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8574,
+        "lineno": 8578,
         "label_head": "\"FFFFF.1 ⭐⭐⭐⭐⭐ **接缝的座位查实了，而且它不是末尾兜底**：环长 **18** 枚，\" \"`el === document.body` 的那一格落在**下标 6**（**第 7 枚**）、两轮相同 ⇒ \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 8606,
+        "lineno": 8610,
         "label_head": "\"FFFFF.2 ⭐⭐⭐⭐⭐ **同一族错的第六次，而且这次把机制说死了 —— 969 不是\" \"「没量到」，是「量到了但被一个代理条件滤掉了」**：969 的 out 段是\" \"用 `for L in (r.get(\\"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8646,
+        "lineno": 8650,
         "label_head": "\"FFFFF.3 ⭐⭐⭐⭐⭐ **把两侧的环旋到同一起点逐格对齐之后：是同一条环**，\" \"复刻只差两处 —— ① 多一枚 **0×0 的 `NEXTJS-PORTAL`**（968b 已证是 \" \"**Next.js "
       },
       {
         "kind": "anchor_only",
-        "lineno": 8684,
+        "lineno": 8688,
         "label_head": "\"GGGGG.1 ⭐⭐⭐⭐⭐ **复刻的环序就是 DOM 序** —— 而这条是**第一次**\" \"**直接**被证实（967 当时是**靠步长推**的，步长对得上**不等于**\" \"顺序的来源被验过）：⭐⭐⭐ 证据取的"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8716,
+        "lineno": 8720,
         "label_head": "\"GGGGG.2 ⭐⭐⭐⭐⭐ **972 悬的那件事有答案了：`rf__wrapper` 的位置差异是 \" \"DOM 摆放差异（**实现差异**），不是口径差异**：复刻侧它的 \" \"`dom_rank` = **42*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8749,
+        "lineno": 8753,
         "label_head": "\"GGGGG.3 ⭐⭐⭐⭐⭐ **顺手挖到一件更大的：复刻侧那枚 `BODY` 很可能整个是\" \"开发态产物的连带效应** —— `BODY` 那一格的前一格 = **`NEXTJS-PORTAL`**\" \"（`dom_"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8794,
+        "lineno": 8798,
         "label_head": "\"HHHHH.1 ⭐⭐⭐⭐⭐ **两侧的环都是 DOM 序** —— 而 973 只证了复刻侧、\" \"**源站那一侧的 `dom_rank` 它自己写明了没量** ⇒ 本批补上：探针 974，\" \"**源站**，2 轮 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 8828,
+        "lineno": 8832,
         "label_head": "\"IIIII.1 ⭐⭐⭐⭐⭐ **H₁ 被判否**，而这是本批最大的收获：H₁ 原话是\" \"「`与 AI 对话` 的某个祖先带**正 `tabindex`** ⇒ 形成**独立的顺序焦点导航\" \"作用域** ⇒ 出作用域"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8863,
+        "lineno": 8867,
         "label_head": "\"IIIII.2 ⭐⭐⭐⭐⭐ **方法上有一处值得单独记**：`SCOPE_JS` 把每一层\" \"**同时**读 `ti_attr`（`getAttribute('tabindex')` ⇒ **属性在不在 / 是什么*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8889,
+        "lineno": 8893,
         "label_head": "\"IIIII.3 ⭐⭐⭐⭐⭐ **本批我自己写反了一道门，而处置过程本身就是一条纪律**：\" \"第一版写的是 `body_precedes_sidecar`（`BODY` 在 `与 AI 对话` 之前）⇒ \" \"**它判"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8934,
+        "lineno": 8938,
         "label_head": "\"HHHHH.2 ⭐⭐⭐⭐⭐ **`rf__wrapper` 的位置差异 = 实现差异，两侧各测一轮钉住了；\" \"而且差别是「两端对调」**：**源站**它在环的**最后一位**、`dom_rank` = \" \"177/"
       },
       {
         "kind": "anchor_only",
-        "lineno": 8961,
+        "lineno": 8965,
         "label_head": "\"HHHHH.3 ⭐⭐⭐⭐⭐ **两侧那枚 `BODY` 都是「DOM 序的回绕点」—— \" \"而 973 说「很可能不是同一个机制」，本批把它改掉**：\" \"**结构角色两侧相同**（前一格 `dom_rank` 是环"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9009,
+        "lineno": 9013,
         "label_head": "\"AAAAA.4 ⚠️⚠️ **步长那道门第一版太弱，是干跑当场抓到的**：它只查 \" \"`n_step_gt2 == 0` ⇒ 在「**全部是 `wrap`、`+1` 一次都没有**」的\" \"**退化数据**上**照样"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9027,
+        "lineno": 9031,
         "label_head": "\"BBBBB.1 ⭐⭐⭐⭐⭐ **969 的判决是一条否定结果，而且它推翻的是上一批\" \"自己刚下的结论**：源站 out 段本轮 **17** 个停靠点**全都带真 \" \"`data-testid`**、**`host"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9057,
+        "lineno": 9061,
         "label_head": "\"BBBBB.2 ⭐⭐⭐⭐⭐ **968b 那句「复刻 17 / 源站 18 / 差的那一个仍然是\" \"项目面板」是错的** —— 错因：**拿 954 的历史基线当本轮对照，没有在同一轮\" \"重新量源站** ⇒ 本轮*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9079,
+        "lineno": 9083,
         "label_head": "\"BBBBB.3 ⭐⭐⭐ **唯一真实的结构差异：「更多」的 `data-testid` 不一致** —— \" \"源站 **`canvas-editor-menu`**、复刻 **`canvas-more-trigger"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9095,
+        "lineno": 9099,
         "label_head": "\"BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**：\" \"游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\\\"0\\\"` **只 +1"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9110,
+        "lineno": 9114,
         "label_head": "\"BBBB.2 ⭐⭐ **第一张跨层焦点矩阵**（5 个层，两轮逐项相同）—— \" \"**「开层即接管焦点」与「冷启动可达」是两件完全独立的事**；\" \"顺带把 939 的「0 命中」**升级**成 `wrapped`（"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9126,
+        "lineno": 9130,
         "label_head": "\"BBBB.3 ⚠️⚠️ **阴阳对照门连改四版都错** ⇒ 沉淀成一条通用纪律：\" \"**两个答案必须来自两个不同的集合**（同一个集合里的两种答案不构成对照，\" \"机制可以让它们同向变化）；且 v4 用的 `n_ma"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9141,
+        "lineno": 9145,
         "label_head": "\"BBBB.4 ⚠️⚠️ **订正 939 的两处归因**（原文一字未删，批注写进基线）：\" \"① 方向错 —— 不是「-1 改写成 0」，节点初始是「**根本没有** tabindex」；\" \"② 「K=26 是假集合"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9154,
+        "lineno": 9158,
         "label_head": "\"BBBB.5 ⚠️⚠️ **探针踩的坑与未解决项都留痕**：\" \"免疫针**连抓三次**（含「只从 DERIVED 删、忘加 RAW」）＋\" \"静态复核脚本自己也有盲区（只认对象字面量、不认 `out.key =`）；"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9177,
+        "lineno": 9181,
         "label_head": "\"ZZZ.1 ✅⭐⭐⭐ **939：源站右键菜单的键盘可达性查清了 —— 答案不是「要按很多次」，\" \"是「按多少次都到不了」** —— 2 轮 × 150 步冷启动 Tab = **300 步 0 次进菜单**，\" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 9192,
+        "lineno": 9196,
         "label_head": "\"ZZZ.2 ⭐⭐ **机制：开菜单后 `role=menuitem` 从 0 → 13，而 300 步 0 命中** ⇒ \" \"那 13 项**压根不在 Tab 序列里** ⇒ 源站的可达性**完全依赖「开层即接管焦点"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9204,
+        "lineno": 9208,
         "label_head": "\"ZZZ.3 ⚠️⚠️ **订正 §148 待办第 4 条 —— 它的前提就错了**（源站早已取样两轮），\" \"而 10272 行那句「真要解，得问源站冷启动同样要按几次」**本身问错了**；\" \"顺带把**源站 / 复"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9213,
+        "lineno": 9217,
         "label_head": "\"ZZZ.4 ⚠️⚠️ **939 第一版整个作废**（`K=26` 造不出 95+ 个落点）；\" \"而它的 `reps_identical_ok=True` 是**空门**（比对了全 `null` 的字段，\" \"真正不"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9229,
+        "lineno": 9233,
         "label_head": "\"ZZZ.5 ⚠️⚠️ **实测撞到计费入口在 Tab 序列第 16 站**（`805\\\\n基础会员`，2/2 逐字相同；\" \"本批只按 Tab、零 click ⇒ 未计费）⇒ 暴露一条边界：`FORBIDDEN_TID"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9249,
+        "lineno": 9253,
         "label_head": "\"VVV.1 ✅⭐⭐⭐ **935 把「原理上不可从 DOM 查明」从**假设**升级成\" \"**测出来的结论**（对这批量而言）** —— \" \"在「从 BODY 之前那一站出发」那一刻的 `pre` 状态里，\" \"*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9264,
+        "lineno": 9268,
         "label_head": "\"VVV.2 ⚠️⚠️⚠️ **935 的定位轴第一版选错了、而且错得「看起来能跑」**：\" \"原本想找「`post.dom_sig` == 参照圈 `BODY` 那一站 `dom_sig`」的那次按压；\" \"**但 9"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9281,
+        "lineno": 9285,
         "label_head": "\"VVV.3 ⚠️⚠️ **`post` 侧那两处差别（`active_rect` / `has_focus`）\" \"是**必然的因果后果**、不是相关量** —— 因为「焦点有没有落到 `BODY`」\" \"**本身就是"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9297,
+        "lineno": 9301,
         "label_head": "\"VVV.4 ⚠️⚠️⚠️ **935 探针自己踩的两个坑都要留痕**：\" \"**（a）`KeyError: 'pre_dom_sig'` ⇒ 整轮 9 分钟读数全丢** —— \" \"根因是**把「census 原始键」"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9320,
+        "lineno": 9324,
         "label_head": "\"VVV.5 ⚠️⚠️⚠️ **935 只说「这 17 个量查不出来」，\" \"**没说「任何量都查不出来」** ⇒ **不许**把「这一批查不出来」读成\" \"「原理上必然查不出来」（那仍然是 §122 那种断言、只是换了"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9342,
+        "lineno": 9346,
         "label_head": "\"MM.1 「算下一个」的规则要以**实测读数**写进基线：① 顺序**≈DOM 序**\" \"（按 `data-testid` 换算下标，不钉序号本身）；② **到末尾就停手、\" \"绝不绕回**（`max_dom_idx"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9359,
+        "lineno": 9363,
         "label_head": "\"MM.2 ⚠️⚠️ **两条未解释，不许编机制**：① 76 个节点里有 **2 个整轮\" \"从没被布上 `'0'`** —— `图片 node: b22-upload`（焦点**第 17 步走到过**\" \"它、但它从"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9373,
+        "lineno": 9377,
         "label_head": "\"MM.3 ⚠️ 899 第一版自己踩的两个坑必须留痕：① `OVERRUN=5` **不够** —— \" \"81 次按压里只有 72 次真正推进指针（其余是「原地重写同一个已有 `'0'` 的\" \"节点」），指针只走到"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9392,
+        "lineno": 9396,
         "label_head": "\"MM.4 ⚠️ 899 汇总代码第一版还会**崩**：`seq` 里可能有 `None`\" \"（布 `'0'` 的目标**不在**本轮记录的 DOM 序里 —— 走查途中节点被 \" \"React 重建就会这样，本轮实测"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9406,
+        "lineno": 9410,
         "label_head": "\"NN.1 ✅ **900 把「那 2 个节点为什么整轮没被布上 `'0'`」推到了\" \"**能推的边界**并**排除了一个方向**（各 2/2）：① **它们在应用的\" \"节点表里** —— 第一次 Tab 时应用给*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9421,
+        "lineno": 9425,
         "label_head": "\"NN.2 ⚠️⚠️ 由此得到一条**实现层的硬约束**：这一条是「**仍未查明**」、\" \"而且是**原理上不可从 DOM 查明**的那一种（原因在**应用自己的节点表\" \"顺序/指针**里）⇒ 复刻**没法**复刻这"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9434,
+        "lineno": 9438,
         "label_head": "\"NN.3 📌 顺带一条**对 896 规则②的修正**（900 实测 2/2）：\" \"「**每次 keydown 都布 `'0'`」不是无条件的** —— 从画布**中途**\" \"连按 30 次 `Shift+Tab`"
       },
       {
         "kind": "live",
-        "lineno": 9446,
+        "lineno": 9450,
         "label_head": "\"NN.4 ⚠️ **900 第一版自己踩的坑**：结尾把一大坨 `json.dumps(summary)` \" \"**打到 stdout**，而输出**管道给 `tail`** ⇒ `tail` 早退出、管道写不进\" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 9458,
+        "lineno": 9462,
         "label_head": "\"KK.4 896 必须把 894 判据里那个**洞**留痕：`summarize()` 用 \" \"`v[\\\"tabindex\\\"].add(...)` **只收集合、丢掉计数**，而「各有几个 `0`」\" \"恰好是区分"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9471,
+        "lineno": 9475,
         "label_head": "\"HH.4 基线里**不许**留一条「仍未解决」跟结论打架：矛盾条目已改名 \" \"`..._RESOLVED_893`，且旧名字**必须已经不在**基线里。\" \"⚠️ 判据要跟上事实（钉假设的措辞会把判据锁死在过时状态）"
       },
       {
         "kind": "live",
-        "lineno": 9480,
+        "lineno": 9484,
         "label_head": "\"CC.7 886 的教训落地：**组件内凡是要复用，就该提到模块级，\" \"别复制第二份** —— 886 第一版把实现抽成组件内闭包，结果它和 Clear \" \"内联那段是**复制粘贴关系**，按内容替换**匹配到了自"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9494,
+        "lineno": 9498,
         "label_head": "\"CC.8 「芯片上按 Esc **值还在不在**」源站**未取样**，不许与\" \"「落点」那次的证据合并成一句 —— 886 的 `Clear 还在=False` 只是\" \"**层关了导致控件消失**，**推不出**值"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9502,
+        "lineno": 9506,
         "label_head": "\"CC.9 `filterSel` 的类型**含 `undefined`**（870 那个「开 ↔ 关」切换会\" \"写进 `undefined`）—— ⚠️ `npm run check` 跑的是 **eslint、不跑"
       },
       {
         "kind": "live",
-        "lineno": 9508,
+        "lineno": 9512,
         "label_head": "\"BB.10 882 探针用**劫持 prototype** 抓调用栈定位到那个 handler，\" \"而且**每段测完自己 reload 恢复**（诊断动作不许留痕）；\" \"另有**不按 Esc 的对照组**——焦点不"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9521,
+        "lineno": 9525,
         "label_head": "\"JJJJJ.1 ⭐⭐⭐⭐⭐ **H₂ 被判否** —— 而办法是**干预**，不是再测一遍：\" \"975 留下的 A（开头那段没有可聚焦元素）与 B（无条件出现）**读起来一模一样** \" \"⇒ 往 `<body>` "
       },
       {
         "kind": "anchor_only",
-        "lineno": 9552,
+        "lineno": 9556,
         "label_head": "\"JJJJJ.2 ⭐⭐⭐⭐⭐ **H₃ 的证据来自一道判红的门** —— \" \"而「门红先判门还是数据」这一族本批**又兑现了一次**：\" \"第一版钉的是「注入件应排在 `BODY` **之前**」⇒ **它真的判红了*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9577,
+        "lineno": 9581,
         "label_head": "\"JJJJJ.3 ⭐⭐⭐⭐⭐ **本批自己踩的 4 个坑，全部落进基线** —— \" \"而其中两个是**反复出现**的那一族：\" \"(a) ⭐⭐⭐ **汇总层取值错了、原始读数里答案一直在**（**第四次**：\" \"96"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9615,
+        "lineno": 9619,
         "label_head": "\"KKKKK.1 ⭐⭐⭐⭐⭐ **臂 B 才是 H₃ 的正面检验，而它扛住了** —— \" \"做法是把「DOM 里第一个可聚焦元素」临时设成 `tabindex=\\\"-1\\\"`\" \"（**纯 JS、可还原**、**原属性"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9639,
+        "lineno": 9643,
         "label_head": "\"KKKKK.2 ⭐⭐⭐⭐⭐ **臂 A 单独看分不开任何东西，而本批实测印证了这一点** —— \" \"「回绕途经点」与「无条件途经点」在**两枚**的情况下**预测完全一样** ⇒ \" \"臂 A 只留下「计数与座位」（"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9661,
+        "lineno": 9665,
         "label_head": "\"KKKKK.3 ⭐⭐⭐⭐⭐ **「守卫会命中自己」有第三种形态，本批连撞两次** —— \" \"976 那种是「守卫那行**自己**在源码里」；本批这种是\" \"「**注释里抄了一遍被禁的写法原文**」⇒ 子串匹配把**注"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9686,
+        "lineno": 9690,
         "label_head": "\"LLLLL.1 ⭐⭐⭐⭐⭐ **空白页上完整复现了那枚 `BODY` 停靠点** —— \" \"而这就是「出处」能往前走的那一步：`about:blank` ＋ `set_content`、\" \"**三个 `<butto"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9710,
+        "lineno": 9714,
         "label_head": "\"LLLLL.2 ⭐⭐⭐⭐⭐ **「可滚动」这条假设被否** —— 而它本来是本批\" \"最像样的候选（`tabIndex = -1` 却能接到焦点，**应用层解释不通**）：\" \"实测 `L0` 不可滚 / `L1` 可"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9732,
+        "lineno": 9736,
         "label_head": "\"LLLLL.3 ⭐⭐⭐⭐⭐ **本批的门一共判红四次，四次都是「门错」\" \"或「那一臂没做到设计意图」** —— 而处置**全部**是\" \"「改精确 / 改那一臂」，**没有一次是删门或放宽**：\" \"(a) ⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9767,
+        "lineno": 9771,
         "label_head": "\"MMMMM.1 ⭐⭐⭐⭐⭐ **`BODY` 不是一个短暂状态** —— \" \"实测 `body_dwell_ms` = 249/252、250/249、251、250/250、250/250，\" \"而**其他每一格*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9791,
+        "lineno": 9795,
         "label_head": "\"MMMMM.2 ⭐⭐⭐⭐⭐ **本批把设计换掉了，而换的理由必须写清楚**：\" \"978 原计划是「同一批臂跑**两种 settle 时长**做对照」，\" \"⭐⭐⭐ **而两种 settle 只告诉你「哪一档更准」、\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 9816,
+        "lineno": 9820,
         "label_head": "\"MMMMM.3 ⭐⭐⭐⭐⭐ **本批自纠 4 个，其中三个是**反复出现**的那一族**：\" \"(a) ⭐⭐⭐⭐⭐ **汇总层又漏了「末态」** ⇒ 每一格只有一个状态时 \" \"`body_dwell_ms` **整个"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9851,
+        "lineno": 9855,
         "label_head": "\"NNNNN.1 ⭐⭐⭐⭐⭐ **「那枚 `BODY` 不是每次都在」这句话终于有了数字** —— \" \"一个 2 vs 3 撑不起它：L0 **18 圈里 17 / 16 圈有**，\" \"L2 **两轮各 14 圈里 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 9880,
+        "lineno": 9884,
         "label_head": "\"NNNNN.2 ⭐⭐⭐⭐⭐ **一条门只能管一件事** —— 而这一条是本批\" \"**最值钱的方法结论**：第一版的完整性门是「每一圈都覆盖环里每一格」\" \"⇒ **它判红了** ⇒ ⭐⭐ **门红先判门还是数据**："
       },
       {
         "kind": "anchor_only",
-        "lineno": 9906,
+        "lineno": 9910,
         "label_head": "\"NNNNN.3 ⭐⭐⭐⭐⭐ **切圈这种「自己给自己当分母」的逻辑必须有自测** —— \" \"而我**把期望值写错了四次**（把残段当完整圈、圈数多算一圈、\" \"把下标数错、拿 `set('abcBab')` 想凑 3"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9937,
+        "lineno": 9941,
         "label_head": "\"OOOOO.1 ⭐⭐⭐⭐⭐ **本批的答案是「没量到」，而必须这么记** —— \" \"源站实测（2/2 逐格相同）**240 步 = 1 个完整顺序环、环长 101 格**、\" \"`BODY` 落 2 次、停留 **1"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9962,
+        "lineno": 9966,
         "label_head": "\"OOOOO.2 ⭐⭐⭐⭐⭐ **本批最要紧的发现，而且它改的是历史记录**：\" \"**973–977 那个「走满一圈」不是整圈** —— 那一批的切法是\" \"「`own.closest_tid == canvas-fi"
       },
       {
         "kind": "anchor_only",
-        "lineno": 9990,
+        "lineno": 9994,
         "label_head": "\"OOOOO.3 ⭐⭐⭐⭐⭐ **974 那条纪律的第四次复发**（「同一个东西要比同一个口径」）\" \"—— 973–977 判「一圈」用的是 `closest('[data-testid]')`（**容器**），\" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 10028,
+        "lineno": 10032,
         "label_head": "\"PPPPP.1 ⭐⭐⭐⭐⭐ **本批把「一圈」定义成了一个不变量** —— \" \"**圈长 p := 满足「∀i: seq[i] == seq[i % p]」的最小 p**：\" \"它是**不变量**（旋转不变、与步数无"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10074,
+        "lineno": 10078,
         "label_head": "\"PPPPP.2 ⭐⭐⭐⭐⭐ **本批更正 981 挂错的一个数（而它是最要紧的一个）**\" \" —— 981 原话是「左栏容器 `canvas-fixed-toolbar` \" \"**一圈里被命中约 2 次**（三个左"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10127,
+        "lineno": 10131,
         "label_head": "\"PPPPP.3 ⭐⭐⭐⭐⭐ **本批最漂亮的一条：结论是被加强，不是被推翻** —— \" \"982 实测（2/2，**整圈 101 格**上）**`descents_on_full_lap = 1`**、\" \"`unk"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10188,
+        "lineno": 10192,
         "label_head": "\"QQQQQ.1 ⭐⭐⭐⭐⭐ **本批的全部三条预测都命中（2/2 逐格相同）** ⇒ \" \"982 那条推论**在两个被测系统上同构成立** ⇒ \" \"**它从「一个系统上的一次观察」升级成规律**：\\n\" \" · ⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10224,
+        "lineno": 10228,
         "label_head": "\"QQQQQ.2 ⭐⭐⭐⭐⭐ **本批的新件 `_grab_def`，以及它的代价必须说清** —— \" \"`_grab` 只认**字面量赋值** ⇒ 982 那三个**纯 python** 新件抠不到 ⇒ \" \"本批按"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10265,
+        "lineno": 10269,
         "label_head": "\"QQQQQ.3 ⭐⭐⭐⭐⭐ **一个直接服务于产品决策的副产品** —— \" \"**复刻侧也有 `BODY` 那一格**、且它的 `dom_rank` **也是整圈最小**（37）\" \"⇒ `body_is_min_r"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10324,
+        "lineno": 10328,
         "label_head": "\"RRRRR.1 ⭐⭐⭐⭐⭐ **本批最要紧的一条，而 978 的读数里就已经有** —— \" \"978 实验室（`about:blank` ＋ 3 个 `<button>`）的 `STOP_JS` \" \"**逐格读过*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10352,
+        "lineno": 10356,
         "label_head": "\"RRRRR.2 ⭐⭐⭐⭐⭐ **`A1` / `A3` 改写了 H₃ 的内容，而这是本批的判决** —— \" \"五个臂 2/2 逐格相同：`A0` 环 \" \"`['lab-b1','lab-b2','lab-b3','"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10401,
+        "lineno": 10405,
         "label_head": "\"RRRRR.3 ⭐⭐⭐⭐⭐ **本批更正我自己一处「过宽的断言」** —— \" \"我原写「`tabindex` 在规范里就是**两个东西**（content attribute 与 \" \"IDL 属性）⇒ 974 那条"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10471,
+        "lineno": 10475,
         "label_head": "\"SSSSS.1 ⭐⭐⭐⭐⭐⭐ **本批要推翻的是我自己 976–984 的同一个隐含前提** —— \" \"**`BODY` 根本不是一格**：实验室 2/2 逐格相同，\" \"`obs = ['lab-b1','lab-"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10519,
+        "lineno": 10523,
         "label_head": "\"SSSSS.2 ⭐⭐⭐⭐⭐ **H₃ 的「出处」至此落定，而且是三件齐的** —— \" \"① `element.cc` 的 `Element::SupportsFocus` 对 `document.body` 返回 \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 10568,
+        "lineno": 10572,
         "label_head": "\"SSSSS.3 ⭐⭐⭐⭐⭐ **本批把计数口径整个换掉**（974 那条纪律的**第六次**应用）—— \" \"**旧口径**（976–984）环长 = 观察到的停靠点数（**含 `BODY`**）\" \"⇒ 源站 101"
       },
       {
         "kind": "live",
-        "lineno": 10644,
+        "lineno": 10648,
         "label_head": "\"TTTTT.1 ⭐⭐⭐⭐⭐ **本批按定义预写三条预测、全部命中** —— \" \"P1 **缺失率归零**（旧口径把间隙算成一格 ⇒「少一格」只可能是\" \"「这一圈没有间隙」）；P2 **间隙落在回绕点**（`_cyc"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10660,
+        "lineno": 10664,
         "label_head": "\"TTTTT.2 ⭐⭐⭐⭐⭐ **缺失率在新口径下恒为 0** —— \" \"P1 命中：986 新跑 84 圈 `new_laps_missing_a_stop = 0`、\" \"**980 原始数据离线重算 64 圈也是"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10676,
+        "lineno": 10680,
         "label_head": "\"TTTTT.3 ⭐⭐⭐⭐⭐ **P2 命中，而且它是本批的新量** —— \" \"**间隙的位置**（980 只量了「有没有间隙」、**从没量过位置**）：\" \"新跑 42 圈 + 980 的 59 圈，`n_gaps_"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10693,
+        "lineno": 10697,
         "label_head": "\"TTTTT.4 ⭐⭐⭐⭐⭐ **「不重跑也能换算」—— 用同一套纯函数离线重算 980** —— \" \"980 的原始读数留在 `/tmp` 里 ⇒ 本批用**上面那四个纯函数**\" \"把那 64 圈重算一遍 ⇒ ⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 10707,
+        "lineno": 10711,
         "label_head": "\"TTTTT.5 ⭐⭐⭐⭐⭐ **新口径的「位置门」是旋转不变的** —— \" \"判据用「有间隙时它**必是倒数第二枚**、收尾键恒为 `keys[0]`」，\" \"**不钉绝对下标**（980 的教训：起点会旋转）⇒ \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 10720,
+        "lineno": 10724,
         "label_head": "\"TTTTT.6 ⭐⭐⭐⭐⭐ **新口径的「门②」做成了一对** —— \" \"有间隙那侧：每个间隙的停留都 ≥ 可见下限；**无间隙那侧**（对偶）：\" \"「回绕前那一枚停靠点」的停留也 ≥ 下限 ⇒ ⇒ \" \"⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10735,
+        "lineno": 10739,
         "label_head": "\"TTTTT.7 ⭐⭐⭐⭐⭐ **那道红门是「门的问题」、处置是「改精确、不放宽」** —— \" \"第一版把「现象出现了但没过」与「现象一次都没出现」**混成了一件事**\" \"⇒ 而本轮 84 圈里无间隙圈**一次都没出"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10750,
+        "lineno": 10754,
         "label_head": "\"TTTTT.8 ⭐⭐⭐⭐⭐ **⭐ 比率不复现，而这是本批顺手查实的第二件事** —— \" \"同一个量：986 这轮 84 圈「无间隙」**一次都没出现**（0/84），\" \"980 的 64 圈里有 5 圈（5/64"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10767,
+        "lineno": 10771,
         "label_head": "\"TTTTT.9 ⭐⭐⭐⭐ **两件仪器必须逐格一致** —— \" \"每一步在轮询之后**额外问一次 985 那一问**（`:focus` 在谁身上）⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **新口径的「间隙」由证据判定、不由名字判定"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10780,
+        "lineno": 10784,
         "label_head": "\"TTTTT.10 ⭐⭐⭐⭐ **注释里也可能带着一个已被推翻的数** —— \" \"980 的臂表 `note` 原文写着「4 格环」「5 格环」⇒ **那正是旧口径**\" \"⇒ ⇒ ⭐⭐⭐⭐⭐ **「同一个东西要比同一"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10796,
+        "lineno": 10800,
         "label_head": "\"TTTTT.11 ⭐⭐⭐⭐ **自测的期望值按定义逐句推（第七次复发照旧照抄）** —— \" \"⭐⭐⭐⭐⭐ 而本批**又栽了一次、且栽在「用例自己错」上**：\" \"「有间隙的圈不进对偶读数」那个用例里，我传的 `fla"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10810,
+        "lineno": 10814,
         "label_head": "\"TTTTT.12 ⭐⭐⭐ **带下标版切圈器不许另写一套切法** —— \" \"成对门要**按位置**取停留时长 ⇒ 需要下标 ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ 但**绝不能另写一套切法**（否则同一个东西两个口径）⇒ \" \"改"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10823,
+        "lineno": 10827,
         "label_head": "\"TTTTT.13 ⭐⭐⭐ **零停靠点页面：新口径必须给 0（不是 1）** —— \" \"这是 985 那个「旧口径会把「零」报成「一」」的**自测延续** ⇒ \" \"全 `GAP` 的序列，新口径 `ring_sto"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10832,
+        "lineno": 10836,
         "label_head": "\"TTTTT.14 ⭐⭐⭐⭐⭐ **同义反复 ≠ 不可证伪** —— 本批的方法论落点：\" \"「间隙按构造就在最后一个与第一个之间」作为**「间隙」这个词的定义**\" \"是同义反复（985 这句对）；但**「间隙出现在环"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10847,
+        "lineno": 10851,
         "label_head": "\"TTTTT.15 ⭐⭐⭐⭐⭐ **本批零计费** —— `about:blank`、\" \"**只按 `Tab`**、**连 `mouse.click` 都没有**；\" \"**源站侧没测到（登录态过期，985 已确认）—"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10871,
+        "lineno": 10875,
         "label_head": "\"UUUUU.1 ⭐⭐⭐⭐⭐ **本批要回答的是「为什么」、而 983 只答了「谁在前」** —— \" \"983 量到 `dom_rank` 级相对次序两侧不同（源站 logo 68 < wrap 177；\" \"复刻 w"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10885,
+        "lineno": 10889,
         "label_head": "\"UUUUU.2 ⭐⭐⭐⭐⭐ **P1 被数据否掉了、而否掉它的正是 986 的发现** —— \" \"我预测「去掉 `BODY` 后整圈 `dom_rank` 严格递增」，\" \"实测**去 `BODY` 后仍有 1 次下"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10905,
+        "lineno": 10909,
         "label_head": "\"UUUUU.3 ⭐⭐⭐⭐⭐ **P2 被精确修正** —— 「环内序号 == `dom_rank` 排名」\" \"在**参与排序的 25 格里只对 24 格成立、1 格例外**\" \"（`rf__wrapper`：ring"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10922,
+        "lineno": 10926,
         "label_head": "\"UUUUU.4 ⭐⭐⭐⭐⭐ **P3 命中，而且成因钉在源码的一行** —— \" \"源码实测 **`<JimengFlow />` 第 756 行、`<JimengTopBar />` 第 757 行** ⇒ \" \"*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10941,
+        "lineno": 10945,
         "label_head": "\"UUUUU.5 ⭐⭐⭐⭐⭐ **「没测到」有第三个分支：没问对对象** —— \" \"第一版误用 `READ_JS` 当就绪探针 ⇒ **两格全 `has_flow=False`** ⇒ \" \"而 `READ_JS` 读"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10960,
+        "lineno": 10964,
         "label_head": "\"UUUUU.6 ⭐⭐⭐⭐ **仪器读不到 ≠ 事实不成立** —— \" \"`logo_is_focusable=False` 是**仪器读不到**、**不是不可聚焦** ⇒ \" \"`DOMRANK_JS` **不读 `"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10976,
+        "lineno": 10980,
         "label_head": "\"UUUUU.7 ⭐⭐⭐⭐⭐ **期望值错了、自测就是假绿（第三次复发）** —— \" \"P1 我按「去掉 `BODY` 就该递增」推，**漏了「回绕兜底那一格本身的前驱是间隙」** \" \"⇒ ⇒ ⭐⭐⭐⭐⭐ **「去掉"
       },
       {
         "kind": "anchor_only",
-        "lineno": 10991,
+        "lineno": 10995,
         "label_head": "\"UUUUU.8 ⭐⭐⭐⭐⭐ **本批零计费、且读数逐格一致** —— \" \"复刻侧 2/2：`min_period = 26`、`laps_identical = True`、\" \"`rf__wrapper` ring"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11022,
+        "lineno": 11026,
         "label_head": "\"VVVVV.1 ⭐⭐⭐⭐⭐ **第一版算出来的东西比「分母减一」更深：分子也要减** —— \" \"我第一版以为「分母减一、分子不动」⇒ **两处都错**；\" \"错二是 ⭐⭐⭐⭐⭐ **因为弧里本来就有间隙** ⇒ 实测"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11041,
+        "lineno": 11045,
         "label_head": "\"VVVVV.2 ⭐⭐⭐⭐⭐ **P2 的方向我推错了、而这是可贵的** —— \" \"我推「分母减一 ⇒ 覆盖率**必然上升**」⇒ 实测源站 17.8%→**17.0%**、\" \"复刻 73.1%→**72.0%** "
       },
       {
         "kind": "anchor_only",
-        "lineno": 11058,
+        "lineno": 11062,
         "label_head": "\"VVVVV.3 ⭐⭐⭐⭐⭐ **成对门抓到我一处真错 —— 而两个数都没错** —— \" \"复刻侧 `is_body` 的座位是**整圈内**的（0-based = 24）、\" \"按 `dom_rank` 数出来的是*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11076,
+        "lineno": 11080,
         "label_head": "\"VVVVV.4 ⭐⭐⭐⭐ **「覆盖率」这个名本身有误导性 ⇒ 本批正名** —— \" \"982 已证 18 格**不是圈** ⇒ ⇒ **它不是「环被覆盖了百分之多少」** ⇒ \" \"**`arc` 的定义是「`ou"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11093,
+        "lineno": 11097,
         "label_head": "\"VVVVV.5 ⭐⭐⭐⭐⭐ **期望值按定义推错、而且连错两次** —— \" \"① 第一版以为「`_arc_of` 不连续 ⇒ 空弧」⇒ 实际**第一枚无条件收下**；\" \"② 第二版以为「`_arc_of` 要求 k"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11115,
+        "lineno": 11119,
         "label_head": "\"VVVVV.6 ⭐⭐⭐⭐⭐ **P1 与 P3 命中：分子分母各减一、定性结论不变** —— \" \"纯离线重算 974/983 存档（各 2/2 逐格相同）：\" \"**源站 `18/101 = 17.8%` ⇒ 新 `"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11135,
+        "lineno": 11139,
         "label_head": "\"VVVVV.7 ⭐⭐⭐⭐⭐ **本批纯离线、零计费是结构性的** —— \" \"**不打开浏览器**、**不按任何键**、**连 `mouse.click` 都没有** ⇒ ⇒ \" \"⚠️⭐⭐⭐⭐⭐ **源站侧用的是 9"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11152,
+        "lineno": 11156,
         "label_head": "\"VVVVV.8 ⭐⭐⭐⭐⭐ **「分子分母要一起看」是本批最该带走的一条** —— \" \"我第一版**只盯着分母**、以为「减一」就完了 ⇒ \" \"**而弧里本来就含间隙 ⇒ 分子也得减** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11178,
+        "lineno": 11182,
         "label_head": "\"WWWWW.1 ⭐⭐⭐⭐⭐ **本批最值钱的一步是「尺子管不管这一批」** —— \" \"988 的尺子是「某一批报的数，分子分母各自有没有含那一格间隙」⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **而这个问句对每一批的答案不一定相同*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11196,
+        "lineno": 11200,
         "label_head": "\"WWWWW.2 ⭐⭐⭐⭐⭐ **两批不适用、而这是本批的核心结论** —— \" \"**961** 报的是 `tabindex` **普查**（`n_native` / `positive_tids = []`）\" \"⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11215,
+        "lineno": 11219,
         "label_head": "\"WWWWW.3 ⭐⭐⭐⭐⭐ **本批真正改掉的两个数** —— \" \"**954 的环长 102 → 101**（旧口径把间隙算成一格 ⇒ \" \"可聚焦停靠点数 = 旧 − 1）；**954/959 的 out 段 1"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11236,
+        "lineno": 11240,
         "label_head": "\"WWWWW.4 ⭐⭐⭐⭐⭐ **口径不同的两个数不许并成一个** —— \" \"**「102 为什么比 101 多 1」本批定不了** —— \" \"**102 是「回卷点位置」、101 是「圈长」，口径不同** ⇒ \" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 11255,
+        "lineno": 11259,
         "label_head": "\"WWWWW.5 ⭐⭐⭐⭐⭐ **逐节引文这道门抓到的是我自己的记忆不准** —— \" \"我凭记忆写「`out 段 18 个`」、而 954 原文是\" \"「**节点停靠 88 个 + 内层停靠 14 个 + 出画布 18"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11274,
+        "lineno": 11278,
         "label_head": "\"WWWWW.6 ⭐⭐⭐⭐ **两批适用的处置完全相同、因为它们报的是同一个数** —— \" \"**954 报「出画布 18 个」、959 报「out 段 18 个停靠点」** ⇒ \" \"⇒ ⭐⭐⭐⭐ **这是同一个数、"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11288,
+        "lineno": 11292,
         "label_head": "\"WWWWW.7 ⭐⭐⭐⭐⭐ **本批纯离线、零计费是结构性的** —— \" \"**不打开浏览器**、**不按任何键**、**连 `mouse.click` 都没有** ⇒ ⇒ \" \"⚠️⭐⭐⭐⭐⭐ **源站侧全部用 9"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11309,
+        "lineno": 11313,
         "label_head": "\"XXXXX.1 ⭐⭐⭐⭐⭐ **P1 成立：间隙在生产构建里仍然在** —— \" \"dev `gap_steps = 5`、prod `gap_steps = 5`（2/2 逐格相同）⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11331,
+        "lineno": 11335,
         "label_head": "\"XXXXX.2 ⭐⭐⭐⭐⭐ **本批最值钱的一步是「先量新鲜度、再量内容」** —— \" \"仓里那个 `.next` 生产产物是**过期的**（产物 `Oct 3 05:57`、\" \"而 `JimengWorkspac"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11349,
+        "lineno": 11353,
         "label_head": "\"XXXXX.3 ⭐⭐⭐⭐⭐ **本批踩的第一个坑：Turbopack 拒绝指向项目根外的\" \"`node_modules` 符号链接** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ 改用 `cp -Rc`（APFS 写时复制）**真"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11365,
+        "lineno": 11369,
         "label_head": "\"XXXXX.4 ⭐⭐⭐⭐⭐ **本批最要紧的一条纪律：两次都改成「在一次性副本里改」、\" \"而不是改仓库** —— ① 符号链接不行 ⇒ 用副本里的真克隆；\" \"② `output: standalone` 下 `ne"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11388,
+        "lineno": 11392,
         "label_head": "\"XXXXX.5 ⭐⭐⭐⭐⭐ **P2 与 P3 都被否掉了、而否掉它们的读数是本批第二件值钱的事** —— \" \"我第一版的 `dev_only` 判据是「在不在 shadow root / \" \"宿主名含不含 `ne"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11416,
+        "lineno": 11420,
         "label_head": "\"XXXXX.6 ⭐⭐⭐⭐⭐ **「dev-only」不是任何单边 DOM 里能认出来的东西** —— \" \"**它是「这一格在 dev 有、在 prod 没有」这件事本身** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **所以判据"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11441,
+        "lineno": 11445,
         "label_head": "\"XXXXX.7 ⭐⭐⭐⭐⭐ **本批冒出来的一条限定、而它限制的是 985/986 自己的读数** —— \" \"985/986 量「间隙落在环的哪一格上」**零例外** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **而那句话说的是"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11466,
+        "lineno": 11470,
         "label_head": "\"XXXXX.8 ⭐⭐⭐⭐ **本批第二个仪器坑、而且是我自己新写的读数** —— \" \"我第一版取「那一格的 key」、取的却是 `one_lap[i][key]` ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **而那个字段是「按了"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11491,
+        "lineno": 11495,
         "label_head": "\"XXXXX.9 ⭐⭐⭐⭐⭐ **本批不是纯离线、而零计费仍是结构性的** —— \" \"它要起**两个**服务器（dev 4317 + 一次性副本上的 prod 4318）⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐ **但仍然零计费**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11523,
+        "lineno": 11527,
         "label_head": "\"Y991A.1 ⭐⭐⭐⭐⭐ **本批的门是「引文与数字都从原文抠」** —— \" \"989 栽过一次（凭记忆写「out 段 18 个」、原文是三段相加）⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **所以本批连数字都不写死**：\" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 11548,
+        "lineno": 11552,
         "label_head": "\"Y991A.2 ⭐⭐⭐⭐⭐ **P1 成立：out 段那 18 按不在周期内** —— \" \"**节点停靠 88 + 内层停靠 14 = 102**、\" \"而 §164 自己写「**回卷点 = 第 102 按**」⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 11570,
+        "lineno": 11574,
         "label_head": "\"Y991A.3 ⭐⭐⭐⭐⭐ **P2 成立：§164 这一节自己驳了自己** —— \" \"同一节里「**它含节点段 + 内层控件段 + 顶栏那一段**」与 \" \"「88 + 14 = 102 = 回卷点下标」**互相排"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11594,
+        "lineno": 11598,
         "label_head": "\"Y991A.4 ⭐⭐⭐⭐⭐ **本批最该带走的一条：\" \"989 把两条成因不同、结果相同的「−1」并成了一次改写** —— \" \"① **102 → 101 是「序号与间隔之差」**\" \"（`node#0` 第 1 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 11630,
+        "lineno": 11634,
         "label_head": "\"Y991A.5 ⭐⭐⭐⭐ **P4 成立：间隙不在回卷点上** —— \" \"974 存档里源站 out 段**唯一的 dom_rank 下降**落在 **BODY** 那一格\" \"（`n_rank_descents ="
       },
       {
         "kind": "anchor_only",
-        "lineno": 11662,
+        "lineno": 11666,
         "label_head": "\"Y991A.6 ⭐⭐⭐⭐⭐ **989 那条「不许并」仍然成立 —— \" \"本批只是把它升级成「并排读出来、并说清各自的成因」** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **「不许并」是对的、但它只说「不许」、没说「那差 1 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 11684,
+        "lineno": 11688,
         "label_head": "\"Y991A.7 ⭐⭐⭐⭐⭐ **本批的局限要说清楚、P4 与 P1/P2/P3 的可信度不同** —— \" \"**P4 依赖 `/tmp/b974-source-domrank.json`、而它不在仓库里** \" \"⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11707,
+        "lineno": 11711,
         "label_head": "\"Y991A.8 ⭐⭐⭐⭐⭐ **本批纯离线、零计费是结构性的** —— \" \"**不打开浏览器**、**不按任何键**、**连 `mouse.click` 都没有** ⇒ ⇒ \" \"⚠️⭐⭐⭐⭐⭐ **源站侧全部用 9"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11735,
+        "lineno": 11739,
         "label_head": "\"Z991A.1 ⭐⭐⭐⭐⭐ **P1 与 P2 成立：跨系统真正成立的是那两条相对关系** —— \" \"① **下降点都落在 `BODY` 那一格**（复刻下标 **17/19**、源站下标 **6/18**，\" \"且"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11760,
+        "lineno": 11764,
         "label_head": "\"Z991A.2 ⭐⭐⭐⭐⭐ **P3 成立、而它是本批的主要交付：\" \"990 那条的适用范围比它写的窄** —— \" \"`BODY` 距 arc 末尾：**复刻 −2、源站 −12** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 11788,
+        "lineno": 11792,
         "label_head": "\"Z991A.3 ⭐⭐⭐⭐⭐ **P4 成立：「内层停靠」有了可操作的候选判据** —— \" \"源站 arc **第 11/12 格 testid 相同**\" \"（`canvas-panel-launcher`、`dom"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11814,
+        "lineno": 11818,
         "label_head": "\"Z991A.4 ⭐⭐⭐⭐ **P5 成立：复刻 arc 里有不可聚焦的 `NEXTJS-PORTAL`、\" \"源站 arc 里没有** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **990 那枚 dev-only 元素在源站侧不存"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11836,
+        "lineno": 11840,
         "label_head": "\"Z991A.5 ⭐⭐⭐⭐ **P6 成立：两侧 arc 的 testid 集合互有差集** —— \" \"**复刻独有 `canvas-history-launcher`、`canvas-more-trigger`；\" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 11862,
+        "lineno": 11866,
         "label_head": "\"Z991A.6 ⭐⭐⭐⭐⭐ **本批如实标注：哪几条预测不是盲的** —— \" \"**选候选时我已经看过这两张 arc 表** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **P1/P2/P3/P5 严格说不是盲预测**；\" \"**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11887,
+        "lineno": 11891,
         "label_head": "\"Z991A.7 ⭐⭐⭐⭐⭐ **引文门只收「前批的原文」、不许收本批自己的新结论** —— \" \"**那是循环依赖**（本批结论由 verifier 钉、不由引文门钉）⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **而本批要收窄的正"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11909,
+        "lineno": 11913,
         "label_head": "\"Z991A.8 ⭐⭐⭐⭐⭐ **本批的可信度分层要说清楚：\" \"相对关系可移植、绝对下标会过期** —— \" \"**本批全部读数都依赖 `/tmp` 里的 973/974 存档、它们不在仓库里** ⇒ ⇒ \" \"⇒ ⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11942,
+        "lineno": 11946,
         "label_head": "\"X992A.1 ⭐⭐⭐⭐⭐ **本批把 992 的单条发现系统化成一张分类表** —— \" \"**A-cross**（自带范围**且同时给出两侧**，1 条、批 966）｜\" \"**A-one-side**（只限定了哪"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11964,
+        "lineno": 11968,
         "label_head": "\"X992A.2 ⭐⭐⭐⭐⭐ **A-cross 那一条就是正面样板、而且它早就写好了** —— \" \"「**两条机制规则在复刻侧零例外成立**\" \"（**源站是 104/104 与 140/140**）」\" \"⇒ **"
       },
       {
         "kind": "anchor_only",
-        "lineno": 11986,
+        "lineno": 11990,
         "label_head": "\"X992A.3 ⭐⭐⭐⭐⭐ **P4 按原文写被否、而门红的第一问是「门错还是数据错」\" \"—— 本批是门错** —— \" \"我第一版把 `复刻侧`/`源站侧` 放进了「跨系统证据词」⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12015,
+        "lineno": 12019,
         "label_head": "\"X992A.4 ⭐⭐⭐⭐⭐ **P4 的真答案不是 0、而是 1 —— 而那一条来自批 966、\" \"**并且它是绿的**（复刻侧 0 差异、源站 104/104 与 140/140）⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12040,
+        "lineno": 12044,
         "label_head": "\"X992A.5 ⭐⭐⭐⭐⭐ **P5 也被否：992 不是第一次跨系统验证** —— \" \"**批 966 早就做过一次、而它是绿的** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **所以 992 的新颖之处不在「第一次跨系统」、"
       },
       {
         "kind": "live",
-        "lineno": 12061,
+        "lineno": 12065,
         "label_head": "\"X992A.6 ⭐⭐⭐⭐⭐ **C 类是本批第二件值钱的事：\" \"「独立」与「跨系统」是两个词** —— \" \"§196（批 986）写「**在两个独立数据集上零例外**」⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **而那两个数据"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12086,
+        "lineno": 12090,
         "label_head": "\"X992A.7 ⭐⭐⭐⭐⭐ **判据必须取两行窗口 —— 而这是本批第二个仪器坑** —— \" \"966 那条的**「源站是 104/104 与 140/140」在下一行** ⇒ \" \"**只看一行会把一条跨侧断言误判"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12108,
+        "lineno": 12112,
         "label_head": "\"X992A.8 ⭐⭐⭐⭐⭐ **本批沿用 992 的自省、且它在这里更有必要** —— \" \"**选候选时我已看过那 47 行命中的分布** ⇒ \" \"**P1/P2/P3 是按分布写的、严格说不是盲预测** ⇒ ⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 12143,
+        "lineno": 12147,
         "label_head": "\"Y992B.1 ⭐⭐⭐⭐⭐ **P1 成立：993 那条处置的前提不成立** —— \" \"**10 条 B-unscoped 里、真在讲间隙位置的只有 2 条** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **而 993 写的是「"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12166,
+        "lineno": 12170,
         "label_head": "\"Y992B.2 ⭐⭐⭐⭐⭐ **本批最狠的一条：一次扫描会改变它所扫描的对象** —— \" \"993 那次扫描**压根扫不到自己那一节**（**探针先跑、§203 后写**）⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **所以「命中"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12199,
+        "lineno": 12203,
         "label_head": "\"Y992B.3 ⭐⭐⭐⭐⭐ **而「重跑」的前提是「尺子逐字相同」** —— \" \"本批**逐字复用** 993 的正则与词表（`CLAIM_RE` / `SCOPE_WORDS` / \" \"`CROSS_SYSTEM"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12222,
+        "lineno": 12226,
         "label_head": "\"Y992B.4 ⭐⭐⭐⭐⭐ **P3 成立：至少一条讲的是完全不同的性质** —— \" \"**「透明 ⇒ 观感零差异」是像素层面的、与 Tab 环无关**\" \"（「瞬时浮层互斥 24/24」同理）⇒ ⇒ \" \"⇒ ⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12245,
+        "lineno": 12249,
         "label_head": "\"Y992B.5 ⭐⭐⭐⭐⭐ **P4 与 P5 成立：处置必须分四类、而 993 那条纪律⑤必须收窄** —— \" \"**T-table**（同一个性质 ⇒ §202 的范围表适用）｜\" \"**S-self**（自我指"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12273,
+        "lineno": 12277,
         "label_head": "\"Y992B.6 ⭐⭐⭐⭐⭐ **「自我指涉」本身是一个该单列的类别** —— \" \"**一条扫描会把自己的结论重新扫进来** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **而它与 993 那条「引文门只收前批原文」\" \"**是同一"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12297,
+        "lineno": 12301,
         "label_head": "\"Y992B.7 ⭐⭐⭐⭐ **本批沿用 992/993 的自省、而且它在这里是必需的** —— \" \"**写判据前我已看过那 12 条断言的全文** ⇒ \" \"**P1/P3/P4 不是盲预测** ⇒ ⇒ \" \"⇒ ⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12322,
+        "lineno": 12326,
         "label_head": "\"Y992B.8 ⭐⭐⭐⭐⭐ **本批纯离线、而且它比前几批多一条好处** —— \" \"**不打开浏览器**、**不按任何键**、**连 `mouse.click` 都没有**、\" \"**只扫文本、不重跑任何测量** ⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12354,
+        "lineno": 12358,
         "label_head": "\"Z992C.1 ⭐⭐⭐⭐⭐ **P1 成立：两套措辞的命中行交集是 0** —— \" \"**族 A（`零例外` 族）25 行、族 B（一致/无差别族）63 行、A ∩ B = 0** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12379,
+        "lineno": 12383,
         "label_head": "\"Z992C.2 ⭐⭐⭐⭐⭐ **P3 成立、而它是本批最要紧的一层：\" \"`恒为 X` 是一句读数、`零例外` 是一条断言** —— \" \"**判据：族 C 的 40 行里 35 行含一个「量」（`ratio = 0."
       },
       {
         "kind": "anchor_only",
-        "lineno": 12408,
+        "lineno": 12412,
         "label_head": "\"Z992C.3 ⭐⭐⭐⭐⭐ **P4 成立：「零例外」的总量\" \"不是文档的客观属性、**是检索词的选择的属性** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **所以任何「共 N 条」的说法都必须同时给出检索词** ⇒ ⇒ \" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 12428,
+        "lineno": 12432,
         "label_head": "\"Z992C.4 ⭐⭐⭐⭐⭐ **P5 成立、并与 994 合起来是一句更狠的话** —— \" \"**§203 那张分类表只覆盖族 A、而它当时给人的印象是「全部」** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **这是 994 那"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12452,
+        "lineno": 12456,
         "label_head": "\"Z992C.5 ⭐⭐⭐⭐⭐ **本批自己那条「一半对」的怀疑要照实记** —— \" \"我看到 `ratio = 1.0` 就怀疑判据恒真\" \"（以为正则里那两个引号是空串备选、匹配一切）⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐ **"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12485,
+        "lineno": 12489,
         "label_head": "\"Z992C.6 ⭐⭐⭐⭐⭐ **而本批同样逐字写死三套措辞、不放宽** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐ **免得又造一把不同的尺子、\" \"**然后把差异误读成「事实变了」** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **这是 994"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12508,
+        "lineno": 12512,
         "label_head": "\"Z992C.7 ⭐⭐⭐⭐⭐ **本批沿用 992/993/994 的自省、而它在这里更要紧** —— \" \"**写判据前我已看过这次扫描的命中分布** ⇒ \" \"**P1/P2/P4/P5 严格说不是盲预测** ⇒ ⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12532,
+        "lineno": 12536,
         "label_head": "\"Z992C.8 ⭐⭐⭐⭐⭐ **本批把「钉探针 ≠ 钉 audit」栽到了第五次、\" \"也是最隐蔽的一次** —— \" \"**写判据时我漏了 verifier 里读 `_p995` 的那一行** ⇒ ⇒ \" \"⇒ ⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12575,
+        "lineno": 12579,
         "label_head": "\"Z992C.9 ⭐⭐⭐⭐⭐ **本批把自省推到了尽头、而那条副作用必须写下来** —— \" \"**我先看到了「交集是 0」才去问「是不是找齐了」** ⇒ \" \"**⇒ 而如果没有那个先看到的结果、我根本不会想到要问**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12605,
+        "lineno": 12609,
         "label_head": "\"A993D.1 ⭐⭐⭐⭐⭐ **P1 成立：现状是 0 缺失** —— \" \"**120 个被引用的 `_pNNN`、121 行读取、124 条 `PROBE_VARS` 登记、\" \"两处都齐** ⇒ ⇒ \" \"⇒ ⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12623,
+        "lineno": 12627,
         "label_head": "\"A993D.2 ⭐⭐⭐⭐⭐ **P2 成立、而它是本批最要紧的一条：\" \"「0 缺失」与「门压根没在跑」在输出上不可区分** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **这与 985 那条「恒假的读数要留」、\" \"990 那条「"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12647,
+        "lineno": 12651,
         "label_head": "\"A993D.3 ⭐⭐⭐⭐⭐ **P3 连否两次、而两次都不是事实否的** —— \" \"**第一版假名 `_pXXX` 不符合被检的正则 ⇒ 门压根没看见它**；\" \"**第二版我把「读取行」也一起注入了 ⇒ 那正好补上"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12688,
+        "lineno": 12692,
         "label_head": "\"A993D.4 ⭐⭐⭐⭐⭐ **P4 与 P5 成立：「两处都要齐」可静态检出、\" \"**「漏登记」于是从「靠人记」变成「有门」** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐ **而它也是 995 那个根因的正面对策**：\" \"**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12717,
+        "lineno": 12721,
         "label_head": "\"A993D.5 ⭐⭐⭐⭐⭐ **本批沿用 992–995 的自省、而它在这里有个新的形状** —— \" \"**写判据前我已知修完之后状态是齐的** ⇒ \" \"**P1 严格说不是盲预测（我看过状态）** ⇒ ⇒ \" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 12744,
+        "lineno": 12748,
         "label_head": "\"A993D.6 ⭐⭐⭐⭐ **本批纯离线、而且它比 993–995 那几批还轻** —— \" \"**不打开浏览器**、**不按任何键**、**连 `mouse.click` 都没有**、\" \"**只读两个脚本文本** "
       },
       {
         "kind": "anchor_only",
-        "lineno": 12774,
+        "lineno": 12778,
         "label_head": "\"A993D.7 ⭐⭐⭐⭐⭐ **P6 不是预测、是门当场报的 —— \" \"**「用正则扫判据正文」把散文里的举例当成了真引用** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **而这就是 995 那条根因的镜像**：\" \"**995"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12800,
+        "lineno": 12804,
         "label_head": "\"A993D.8 ⭐⭐⭐⭐⭐ **P7 也是当场撞的、而它比 P6 更值钱** —— \" \"**我第一版 AST 多加了一道「左边必须是字符串常量」的过滤** ⇒ ⇒ \" \"⇒ **它把 `all(block in _p"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12825,
+        "lineno": 12829,
         "label_head": "\"A993D.9 ⭐⭐⭐⭐⭐ **P8 是本批最结构性的发现 —— \" \"**「现状是 0 缺失」这个读数在判据被插进去的那一刻就不再是同一个数** ⇒ ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **⇒ 而 994 那条「一次扫描会改变"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12850,
+        "lineno": 12854,
         "label_head": "\"A993D.10 ⭐⭐⭐⭐⭐ **最后一条门自己长出来：键名逐字比对** —— ⇒ \" \"⇒ ⭐⭐⭐⭐⭐ **而它是补 P3 自己点出来的那个漏洞**：\" \"**P3 里我写过「第二版把 `FAKE` 改成 `_p99"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12886,
+        "lineno": 12890,
         "label_head": "\"B993E.1 ⭐⭐⭐⭐⭐ **P1/P2/P3 成立：「31 个未登记变量」不是一个同质的集合** ⇒ ⇒ \" \"**A 有一行普通 `read_text` 的 1 个（`_p870s`）｜B 派生物 22 个｜\" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 12909,
+        "lineno": 12913,
         "label_head": "\"B993E.2 ⭐⭐⭐⭐⭐ **P4 被否、而这个「否」是本批最有价值的读数** ⇒ \" \"**补登记之后官方门报的「问题」数仍然是 0** ⇒ ⇒ \" \"**⇒ 而 961 那次补完 59 个立刻报出了问题、962 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 12928,
+        "lineno": 12932,
         "label_head": "\"B993E.3 ⭐⭐⭐⭐⭐ **P5 成立：补登记会改变门的行为 ⇒ 而这正是 996 P8 的第二次施用** ⇒ ⇒ \" \"**锚点 5390 → 5416（+26）、跳过 169 → 143 条 / 31 → 29"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12946,
+        "lineno": 12950,
         "label_head": "\"B993E.4 ⭐⭐⭐⭐⭐ **补登记既不是空动作、也不是「修好了」** ⇒ ⇒ \" \"**它确实让 26 条锚点第一次被查、而它一次也没红** ⇒ ⇒ \" \"**⇒ 而后者才是本批要说的：一条锚点「从来没被查过」与「"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12963,
+        "lineno": 12967,
         "label_head": "\"B993E.5 ⭐⭐⭐⭐⭐ **P7 是本批最结构的一条：「两个尺子一致」是最容易骗人的证据类型** ⇒ ⇒ \" \"**⇒ 本批真的出现过「差集 = 0」的状态、而那是最坏的状态** ⇒ ⇒ \" \"**⇒ 根因是「两份"
       },
       {
         "kind": "anchor_only",
-        "lineno": 12988,
+        "lineno": 12992,
         "label_head": "\"B993E.6 ⭐⭐⭐⭐⭐ **P8：「补完之后 A 类是 0」是一个恒真的读数** ⇒ ⇒ \" \"**「A 类是 0」与「A 类这一栏没有意义」在输出上完全一样** ⇒ ⇒ \" \"**⇒ 而真实原因只是「我刚把唯一那"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13006,
+        "lineno": 13010,
         "label_head": "\"B993E.7 ⭐⭐⭐⭐⭐ **本批自己出了一次 996 P6 的实例、而且是反向的** ⇒ ⇒ \" \"**我在给 audit 插入新块时、把整个 `regguard_996` 删掉了** ⇒ ⇒ \" \"**⇒ 官方门"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13024,
+        "lineno": 13028,
         "label_head": "\"B993E.8 ⭐⭐⭐⭐⭐ **本批纯离线、而且它比 993–996 那几批还轻** ⇒ ⇒ \" \"**不打开浏览器**、**不按任何键**、**连 `mouse.click` 都没有**、\" \"**只读门与 veri"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13053,
+        "lineno": 13057,
         "label_head": "\"C993F.1 ⭐⭐⭐⭐⭐ **P1 按它写下来的形式被否了、而这次否证没有信息量** ⇒ ⇒ \" \"**⇒ 因为判据里写死了「不可定位的 ≤ 6 个」、而那个 6 是我拍的** ⇒ ⇒ \" \"**⇒ 实测是 10 个"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13074,
+        "lineno": 13078,
         "label_head": "\"C993F.2 ⭐⭐⭐⭐⭐ **P2 被否、而它否掉的是我自己写下的那条推理** ⇒ ⇒ \" \"**⇒ 我写的是「派生物 ⊆ 原文（`strip_comments` 只会删）」** ⇒ ⇒ \" \"**⇒ 实测 110 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 13096,
+        "lineno": 13100,
         "label_head": "\"C993F.3 ⭐⭐⭐⭐⭐ **P3 成立、而它是本批的主要交付：\" \"**13 条反向锚点里有 1 条在原始全文上会命中** ⇒ ⇒ \" \"**⇒ 「改成引用原文是安全的」这个默认假设是错的** ⇒ ⇒ \" \"**⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13114,
+        "lineno": 13118,
         "label_head": "\"C993F.4 ⭐⭐⭐⭐⭐ **P4 成立：预演是零副作用的 ⇒ \" \"**所以处置可以从「先改再说」变成「先量再决定」** ⇒ ⇒ \" \"**⇒ 而「清单取自真的门、预演自己写」这件事必须标注出来** ⇒ ⇒ \" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 13131,
+        "lineno": 13135,
         "label_head": "\"C993F.5 ⭐⭐⭐⭐⭐ **本批的第一次反向用例、我把三个答案都写死成了 `True`** ⇒ ⇒ \" \"**⇒ 而那正是 997 刚批过的「恒真的读数」—— 我自己又犯了一次** ⇒ ⇒ \" \"**⇒ 处置：构造"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13149,
+        "lineno": 13153,
         "label_head": "\"C993F.6 ⭐⭐⭐⭐⭐ **本批纯离线、而且它比 993–997 那几批还轻** ⇒ ⇒ \" \"**不打开浏览器**、**不按任何键**、**连 `mouse.click` 都没有**、\" \"**只读门与判据的文本"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13176,
+        "lineno": 13180,
         "label_head": "\"D993G.1 ⭐⭐⭐⭐⭐ **P1 成立：那 1 条能被唯一定位** ⇒ ⇒ \" \"**变量 `picode`｜锚点 `bg-black/`｜判据组 `Q`｜那条判据是 `Q.10`** ⇒ ⇒ \" \"**⇒ 同一个"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13193,
+        "lineno": 13197,
         "label_head": "\"D993G.2 ⭐⭐⭐⭐⭐ **P2 按它写下来的形式被否了、而被否之后有更好的说法** ⇒ ⇒ \" \"**⇒ 我写的是「那 1 条的源头是判据里的一段字面量」** ⇒ ⇒ \" \"**⇒ 实测它的源头是一个真文件** "
       },
       {
         "kind": "anchor_only",
-        "lineno": 13215,
+        "lineno": 13219,
         "label_head": "\"D993G.3 ⭐⭐⭐⭐⭐ **P9 不是预测 —— 那 1 条是判据「对注释免疫」的设计** ⇒ ⇒ \" \"**⇒ 那行注释写的是「资产库有 `bg-black/55` 全屏遮罩、\" \"**实测 11 个焦点位看不见"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13238,
+        "lineno": 13242,
         "label_head": "\"D993G.4 ⭐⭐⭐⭐⭐ **P3 成立：「回溯不到」能拆成若干类、\" \"**而且拆到「赋值处」那一层才是有用的粒度** ⇒ ⇒ \" \"**⇒ 因为同一个名字在不同赋值处形状不同** ⇒ ⇒ \" \"**⇒ 所以「这个"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13257,
+        "lineno": 13261,
         "label_head": "\"D993G.5 ⭐⭐⭐⭐⭐ **P10：仪器又栽了两次、而且「用可见的形状当判据」\" \"**这是第四次** ⇒ ⇒ \" \"**① 「这行开头有没有 `//` `*` `/*`」⇒ 而目标那行是块注释的**最后一行**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 13280,
+        "lineno": 13284,
         "label_head": "\"D993G.6 ⭐⭐⭐⭐⭐ **而本批开工第一件事就踩了「读到 0」** ⇒ ⇒ \" \"**我用 `tree.body` 找 `check(...)`、结果一条都没找到** ⇒ ⇒ \" \"**⇒ 因为判据全在 `mai"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13298,
+        "lineno": 13302,
         "label_head": "\"D993G.7 ⭐⭐⭐⭐⭐ **P4 成立：有了身份之后、处置是可以写出来的** ⇒ ⇒ \" \"**⇒ 而处置是：这条判据**不要改** —— 它查的是剥离注释后的文本、\" \"**而那正是它该查的** ⇒ ⇒ \" \"*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13329,
+        "lineno": 13333,
         "label_head": "\"E993H.1 ⭐⭐⭐⭐⭐ **P2 被否、而它否出来的东西比预测更好** ⇒ ⇒ \" \"**⇒ 我写的是「反向锚点里挂在剥离注释后的文本上的占多数」** ⇒ ⇒ \" \"**⇒ 实测 206 条已登记的反向断言、206"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13351,
+        "lineno": 13355,
         "label_head": "\"E993H.2 ⭐⭐⭐⭐⭐ **P3 / P4 被否、而否证的是我的模式不是世界** ⇒ ⇒ \" \"**⇒ 我列的两族只覆盖 13/206 = 6%、那条「读数」正则量到的是「含数字」** ⇒ ⇒ \" \"**⇒ 第二版"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13375,
+        "lineno": 13379,
         "label_head": "\"E993H.3 ⭐⭐⭐⭐⭐ **P5 被否、而这次是关于世界的** ⇒ ⇒ \" \"**⇒ 实测 25 个组、前三名占 34% —— 而 34% 不是「高度集中」** ⇒ ⇒ \" \"**⇒ 所以 P5 的否与 P3/P4"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13393,
+        "lineno": 13397,
         "label_head": "\"E993H.4 ⭐⭐⭐⭐⭐ **反向用例：证明 `is_stripped()` 能返回 True** ⇒ ⇒ \" \"**⇒ `picode`（仓里真实存在的 `strip_comments` 变量）返回 True** "
       },
       {
         "kind": "anchor_only",
-        "lineno": 13409,
+        "lineno": 13413,
         "label_head": "\"E993H.5 ⭐⭐⭐⭐⭐ **而本批的仪器先坏过一次** ⇒ ⇒ \" \"**`is_stripped()` 的 `IfExp` 分支把 `unparse(body)` 当变量名传下去** ⇒ ⇒ \" \"**⇒ `am"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13427,
+        "lineno": 13431,
         "label_head": "\"E993H.6 ⭐⭐⭐⭐⭐ **P1 成立：反向锚点比正向少一个量级（1 : 24.23）** ⇒ ⇒ \" \"**⇒ 而这与「反向断言是逐条刻意加的」一致** ⇒ ⇒ \" \"**⇒ 一个 1:24 的类别、不可能靠「顺"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13457,
+        "lineno": 13461,
         "label_head": "\"F993J.1 ⭐⭐⭐⭐⭐ **P1 成立、而它读的是改之前的数：\" \"**`PROBE_VARS` 里有 6 个键在源码文本里出现两次、而那个 dict 只有一个键** ⇒ ⇒ \" \"**⇒ 6 条被静默覆盖 ⇒ 「"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13476,
+        "lineno": 13480,
         "label_head": "\"F993J.2 ⭐⭐⭐⭐⭐ **P3 成立、而它是本批的主要交付：** \" \"**4 个真有歧义（同名字、不同形状）的变量、\" \"**全部落在「未登记」那一类里（已登记的 0 个）** ⇒ ⇒ \" \"**⇒ 「歧义」与"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13498,
+        "lineno": 13502,
         "label_head": "\"F993J.3 ⭐⭐⭐⭐⭐ **P4 成立：删掉 6 个重复键与 5 对相邻重复赋值（10 行）之后、\" \"**官方门报的锚点数、问题数、跳过数全部不变** ⇒ ⇒ \" \"**⇒ 而这正是「无害的重复」的定义** ⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 13518,
+        "lineno": 13522,
         "label_head": "\"F993J.4 ⭐⭐⭐⭐⭐ **P5 成立：「静默覆盖」的反向用例通过了** ⇒ ⇒ \" \"**⇒ 在一段内存文本里塞一个重复键、\" \"**数键的判据报出「源码 3 行、dict 2 个键、重复 1 个」** ⇒ ⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 13540,
+        "lineno": 13544,
         "label_head": "\"F993J.5 ⭐⭐⭐⭐⭐ **P2 成立：那 10 处重复赋值的右值完全相同、\" \"**而且都在同一个作用域（`main`）里** ⇒ ⇒ \" \"**⇒ 那是无害的重复、不是语义分叉** ⇒ ⇒ \" \"**⇒ 而「同"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13557,
+        "lineno": 13561,
         "label_head": "\"F993J.6 ⭐⭐⭐⭐⭐ **本批纯离线：不打开浏览器、不按任何键、**连 `mouse.click` 都没有**、\" \"**只读判据与门两个文本、再跑一次门** ⇒ ⇒ \" \"⭐⭐⭐⭐ **零计费是结构性的、不是自"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13577,
+        "lineno": 13581,
         "label_head": "\"F993J.7 ⭐⭐⭐⭐⭐ **P6 成立、而它是本批最大的一条：「用可见的形状当判据」\" \"**栽了第六次、而且这次栽在我自己写的探针上** ⇒ ⇒ \" \"**⇒ 本探针第一版数 `PROBE_VARS` 键名用的就"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13633,
+        "lineno": 13637,
         "label_head": "\"G993K.1 ⭐⭐⭐⭐⭐ **P1 成立：活文件里 `check(...)` 的 `ok` 是裸字面量的 0 条** ⇒ ⇒ \" \"**⇒ 而这个 0 现在由门自己每次打印、而不是靠我记着** ⇒ ⇒ \" \"⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13651,
+        "lineno": 13655,
         "label_head": "\"G993K.2 ⭐⭐⭐⭐⭐ **P2/P3 成立：改之前「`ok` 整条写成字符串」检出率 = 0、改之后 = 100%** ⇒ ⇒ \" \"**⇒ 而这就是 1001 那三次「全通」的机制** ⇒ ⇒ \" \"⭐⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13674,
+        "lineno": 13678,
         "label_head": "\"G993K.3 ⭐⭐⭐⭐⭐ **P4 成立、而它否的是我自己的门：把锚点换成一个确实存在的串 ⇒ \" \"改前改后都检不出** ⇒ ⇒ \" \"**⇒ 「这条锚点在不在」按定义问不到「它的内容是不是必然为真」** ⇒ ⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 13704,
+        "lineno": 13708,
         "label_head": "\"G993K.4 ⭐⭐⭐⭐⭐ **P5 成立：「指向未登记变量」不产生 problem、但会打印 SKIPPED** ⇒ ⇒ \" \"**⇒ 「可见」与「检出」是两个量、必须分开数** ⇒ ⇒ \" \"**⇒ 而 961 那"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13727,
+        "lineno": 13731,
         "label_head": "\"G993K.5 ⭐⭐⭐⭐⭐ **本批的仪器自己也栽了两次、而两次都是被自己的断言抓住的** ⇒ ⇒ \" \"**① `before` 一律 2343 —— 成因是我给「改之前」那一路传了空的 `probes` 字典\" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 13757,
+        "lineno": 13761,
         "label_head": "\"G993K.6 ⭐⭐⭐⭐⭐ **本批纯离线：不打开浏览器、不按任何键、**连 `mouse.click` 都没有**、\" \"**只读判据与门两个文本、跑 7 次门（1 基线 + 6 变异）** ⇒ ⇒ \" \"⭐⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13786,
+        "lineno": 13790,
         "label_head": "\"H993L.1 ⭐⭐⭐⭐⭐ **P1 被否、而否出来的东西比预测更好：\" \"**5928 条锚点里 83.3% 只出现 1 次、最多的也只 36 次、>100 次的 0 条** ⇒ ⇒ \" \"**⇒ 「锚点纪律」这件事"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13805,
+        "lineno": 13809,
         "label_head": "\"H993L.2 ⭐⭐⭐⭐⭐ **P2 成立：「单点编辑能骗过它」的判据数 = 732 条\" \"**（681 个不同锚点、275 条指向 `_ausrc`）** ⇒ ⇒ \" \"**⇒ 而「没牙」要逐条列、不许只报比例**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13823,
+        "lineno": 13827,
         "label_head": "\"H993L.3 ⭐⭐⭐⭐⭐ **P3 被否、而否出来的机制比预测更细：\" \"**12 个不同锚点里 11 个保持绿、1 个变红** ⇒ ⇒ \" \"**⇒ 真凶不是「推导错了」、是「推导的粒度错了」：\" \"**`「同一个"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13843,
+        "lineno": 13847,
         "label_head": "\"H993L.4 ⭐⭐⭐⭐⭐ **⚠️ 而本批的仪器第一版自己犯了 1001 的头号毛病：\" \"**把 (目标变量, 锚点, 方向) 三元组当 dict 键、5928 条判据被压成 5777 个键** ⇒ ⇒ \" \"**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13873,
+        "lineno": 13877,
         "label_head": "\"H993L.5 ⭐⭐⭐⭐⭐ **P4 成立、而它是本批的前提：\" \"**先拿一条只出现 1 次的锚点、把它从目标里删掉、门如实报了 MISSING** ⇒ ⇒ \" \"**⇒ 不先做这一步、后面 12 条抽样就毫无信息量"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13904,
+        "lineno": 13908,
         "label_head": "\"I993M.1 ⭐⭐⭐⭐⭐ **P1 成立：全部正向锚点里的包含关系只有 121 对、\" \"**涉及 24 个目标变量（`_ausrc` 占 90）、82 个子串 = 全部 5332 个不同锚点的 1.54%** ⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 13919,
+        "lineno": 13923,
         "label_head": "\"I993M.2 ⭐⭐⭐⭐⭐ **❌ P2 被否、而否掉它的那个 90% 是**我拍的阈值**：\" \"**实测「打红 1 条」占 87.3%、不到 90%** ⇒ ⇒ \" \"**⇒ 998 那条纪律第二次施用：这次「否」"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13944,
+        "lineno": 13948,
         "label_head": "\"I993M.3 ⭐⭐⭐⭐⭐ **P3 成立、而它是在修好公式之后才成立的：抽样 15 个、真跑门、15/15 一致** ⇒ ⇒ \" \"**⇒ 而修之前是 9/15 —— 6 条不吻合全部是自身出现 ≥2 次的那些** "
       },
       {
         "kind": "anchor_only",
-        "lineno": 13964,
+        "lineno": 13968,
         "label_head": "\"I993M.4 ⭐⭐⭐⭐⭐ **P4/P5 成立：基线先自检为 0、反向用例断言「**恰好** 1 个问题」** ⇒ ⇒ \" \"**⇒ 而第一版控制组漏了「自身必须只出现 1 次」这个前提、\" \"**于是挑中的是 `作"
       },
       {
         "kind": "anchor_only",
-        "lineno": 13993,
+        "lineno": 13997,
         "label_head": "\"J993N.1 ⭐⭐⭐⭐⭐ **P1 成立：零耦合锚点分成两类 —— \" \"**「标识符（多处引用）」301 条与「散文/片段」389 条** ⇒ ⇒ \" \"**⇒ 而前一类是**语义使然**：判据本来就在问「这个东西"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14012,
+        "lineno": 14016,
         "label_head": "\"J993N.2 ⭐⭐⭐⭐⭐ **❌ P2 被否、而方向和我猜的相反：\" \"**「最小行距」不但分不开两类、相邻档反而在标识符类里更多（82 vs 18）** ⇒ ⇒ \" \"**⇒ 因为相邻两行代码用同一个 token "
       },
       {
         "kind": "anchor_only",
-        "lineno": 14037,
+        "lineno": 14041,
         "label_head": "\"J993N.3 ⭐⭐⭐⭐⭐ **P3 成立：清单由**本探针自己**写、逐条一致（新增 0、消失 0）** ⇒ ⇒ \" \"**⇒ 而第一版那份是临时脚本落的、它把锚点截断到 40 字符** ⇒ ⇒ \" \"**⇒ 后果是"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14056,
+        "lineno": 14060,
         "label_head": "\"J993N.4 ⭐⭐⭐⭐⭐ **P4 成立、而它的第一版报 delta=0：注入必须**动两侧**\" \"** ⇒ ⇒ **⇒ 普查的宇宙是「verifier 里声明、且在目标里存在」的锚点**\" \"** ⇒ ⇒ **⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14093,
+        "lineno": 14097,
         "label_head": "\"K993O.1 ⭐⭐⭐⭐⭐ **P1 成立：同一段锚点文字被钉在 2 个以上目标上的有 238 段、\" \"**而最多的那一段出现在 8 个目标上、其中 187 段跨 audit↔probe** ⇒ ⇒ \" \"**⇒ 也"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14108,
+        "lineno": 14112,
         "label_head": "\"K993O.2 ⭐⭐⭐⭐⭐ **P2 成立、而它把 P1 的结论**劈成两半**：\" \"**498 个「锚点-目标」对里、上下文提到该文件自己的只有 84 个（16.9%）** ⇒ ⇒ \" \"**⇒ 而样板句天然无害："
       },
       {
         "kind": "anchor_only",
-        "lineno": 14124,
+        "lineno": 14128,
         "label_head": "\"K993O.3 ⭐⭐⭐⭐⭐ **P3 成立、而这个不对称是**可解释的**：\" \"**探针侧「提到自己」只有 1.9%、audit 侧是 41.7%** ⇒ ⇒ \" \"**⇒ 因为 audit 侧是「基线说明」、它本来"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14139,
+        "lineno": 14143,
         "label_head": "\"K993O.4 ⭐⭐⭐⭐⭐ **P4 成立：注入一条「跨目标重复、两边上下文都提到各自文件」的锚点、\" \"**普查把它挑了出来、而门对它报 0 问题** ⇒ ⇒ \" \"⭐⭐⭐⭐⭐ **⇒ 而这个 0 正是 P5 的一半"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14156,
+        "lineno": 14160,
         "label_head": "\"K993O.5 ⭐⭐⭐⭐⭐ **P5 成立、而这是本批的核心交付：**\" \"**把一个跨目标重复锚点在 8 个目标之一里的**全部出现**改掉、真跑门 ⇒ \" \"**门只报受害目标那 1 个、而对其余 7 个目标里的副"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14179,
+        "lineno": 14183,
         "label_head": "\"K993O.6 ⭐⭐⭐⭐⭐ **P6 成立、而它是开工第一分钟就撞上的：**\" \"**verifier 有一条锚点钉的是**门自己源码的一整行 ⇒ 我给门加 `argv[3]` 的那一刻它就打红了** ⇒ ⇒ \" \"*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14216,
+        "lineno": 14220,
         "label_head": "\"L993P.1 ❌ **P1 被否：同一条句子在多个副本里「提到谁」前后不一致的占 33.8%、\" \"**而不是我预测的「少数」** ⇒ ⇒ \" \"**⇒ 而否掉它的那把刀本身就是错的 —— 见 P3**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 14227,
+        "lineno": 14231,
         "label_head": "\"L993P.2 ⭐⭐⭐⭐⭐ **P2 成立、而它否掉的是 1006 自己写下的「可解释」：\" \"**77/78 = 98.7% 的 audit 侧「提到自己」只被通用词点亮** ⇒ ⇒ \" \"**⇒ `判据` 点亮 7"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14250,
+        "lineno": 14254,
         "label_head": "\"L993P.3 ❌⭐⭐⭐⭐⭐ **P3 被否的是我 1006 的判据口径：\" \"**窗口 0/40/120/260/600 ⇒ audit 侧 0.0/7.9/24.7/41.1/62.6%** ⇒ ⇒ \" \"**⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 14273,
+        "lineno": 14277,
         "label_head": "\"L993P.4 ⭐⭐⭐⭐⭐ **P5 成立、而它的第一版是假的：\" \"**注入一条「在副本 B 的上下文里点名了 A（而 B 不是 A）」的锚点 ⇒ \" \"**门对它报 0（它确实在两处都存在）、而轴同时报「不一致」与"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14293,
+        "lineno": 14297,
         "label_head": "\"L993P.5 ⭐⭐⭐⭐ **P6 成立：清单逐条落进 \" \"`docs/research/jimeng-canvas/stem-attribution-1007.json`、由写它的探针自己写** ⇒ ⇒ \" \"⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14311,
+        "lineno": 14315,
         "label_head": "\"L993P.6 ⭐⭐⭐⭐⭐ **本批否掉的是我自己上一批写的判据** ⇒ ⇒ \" \"**⇒ 而 1006 的 P1/P4/P5/P6（重复存在、样板无害、反向用例、盲区）不受影响** ⇒ ⇒ \" \"⭐⭐⭐⭐⭐ **⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 14339,
+        "lineno": 14343,
         "label_head": "\"M993Q.1 ⭐⭐⭐⭐⭐ **P1 成立：1005 那份落进仓的逐条清单、**\" \"**从它自己落地那一刻起就少 7 条、此刻少 26 条** ⇒ ⇒ \" \"**⇒ 而量法是「**同一台仪器**（1005 那个探针）"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14357,
+        "lineno": 14361,
         "label_head": "\"M993Q.2 ⭐⭐⭐⭐⭐ **P2 成立：`added` 单调 7→19→26→26、而 `removed` 四个快照全是 0** ⇒ ⇒ \" \"**⇒ 所以「消失 0」是**不承载信息**的那一半、而「新增 0」是"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14374,
+        "lineno": 14378,
         "label_head": "\"M993Q.3 ⭐⭐⭐⭐⭐⭐ **P3 是本批最锋利的一条，而它由两个子实验构成：**\" \"**① P3a 把锚点**就地改字** ⇒ 门报 1 个 MISSING、清单报 1 条消失** ⇒ ⇒ \" \"**⇒ 所以「"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14397,
+        "lineno": 14401,
         "label_head": "\"M993Q.4 ⭐⭐⭐⭐⭐ **P4 成立：门报 0、而清单此刻少 26 条 ⇒ ⇒ \" \"**⇒ 所以门绿不是它测得粗、是它测的东西一半不承载信息** ⇒ ⇒ \" \"**⇒ 而 1005 的纪律「写它的仪器必须就是读"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14412,
+        "lineno": 14416,
         "label_head": "\"M993Q.5 ⭐⭐⭐⭐ **P5 成立：判据是「一份清单逐条比对今天的普查、**新增与消失都要报**」⇒ ⇒ \" \"**⇒ 而今天这一比就是：新增 26、消失 0** ⇒ ⇒ \" \"⭐⭐⭐⭐⭐ **⇒ 而处置不是「把"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14431,
+        "lineno": 14435,
         "label_head": "\"M993Q.6 ⭐⭐⭐⭐⭐ **本批否的是 1005 给那份清单配的那条判据、**\" \"**不是 1005 的发现** ⇒ ⇒ \" \"**⇒ 而 1005 的 P1/P2/P4/P5（两类、否掉行距、注入动两侧、分母都"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14458,
+        "lineno": 14462,
         "label_head": "\"N993R.1 ⭐⭐⭐⭐⭐ **P1 成立（而我第一版把它算错了）：`_ausrc` 侧 3380 条正向锚点、\" \"**其中 285 条（8.4%）在 audit 里出现 2 次以上** ⇒ ⇒ \" \"**⇒ 而门对"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14475,
+        "lineno": 14479,
         "label_head": "\"N993R.2 ❌⭐⭐⭐⭐⭐ **P2 被否：把门从「在不在」升级成「必须恰好 N 次」补不上这个洞** ⇒ ⇒ \" \"**⇒ 因为「只在末尾追加」根本不改 N、而它对门完全隐形** ⇒ ⇒ \" \"**⇒ 所以那不是「"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14495,
+        "lineno": 14499,
         "label_head": "\"N993R.3 ⭐⭐⭐⭐⭐ **P4 成立：在目标里把锚点**复制一份** ⇒ 门**仍然报 0** ⇒ ⇒ \" \"**⇒ 而这是唯一一种「门看不见、但**普查**看得见」的编辑** ⇒ ⇒ \" \"**⇒ 因为它把「零"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14514,
+        "lineno": 14518,
         "label_head": "\"N993R.4 ⭐⭐⭐⭐⭐ **P6 成立：逐行落进 \" \"`docs/research/jimeng-canvas/edit-visibility-1009.json`、由写它的探针自己写** ⇒ ⇒ \" \"⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14545,
+        "lineno": 14549,
         "label_head": "\"O993S.1 ⭐⭐⭐⭐⭐ **P1 成立：九批里 audit 基线被改动**动过**的锚点共 39 条、\" \"**而门在 `_ausrc` 作用域上一次都没报（累计 0）** ⇒ ⇒ \" \"⭐⭐⭐⭐⭐ **⇒ 检出力"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14563,
+        "lineno": 14567,
         "label_head": "\"O993S.2 ⭐⭐⭐⭐⭐ **P2 成立、而它的对照我第一版写错了：真实检出力 0.0 —— \" \"**九对快照里没有一次、门在 `_ausrc` 作用域上开过口** ⇒ ⇒ \" \"⭐⭐⭐⭐⭐⭐ **⇒ 而 1002"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14582,
+        "lineno": 14586,
         "label_head": "\"O993S.3 ⭐⭐⭐⭐⭐ **P3 成立：门看不见的那些**全部**是「audit 基线里**追加**了新条目」** —— \" \"**39 条动过里面有 39 条出现次数只增不减、0 条真的消失** ⇒ ⇒ \" \"*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14598,
+        "lineno": 14602,
         "label_head": "\"O993S.4 ⭐⭐⭐⭐⭐ **P4 成立：拿一个真的被删掉的锚点 ⇒ `_ausrc` 作用域上门报 1 个、\" \"**检出力 = 1.0** ⇒ ⇒ \" \"**⇒ 而这一条是为了排除「检出力低是因为分母算错了」**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14617,
+        "lineno": 14621,
         "label_head": "\"O993S.5 ⭐⭐⭐⭐ **P5 成立：逐对落进 \" \"`docs/research/jimeng-canvas/real-history-detection-1010.json`、由本探针自己写** ⇒ ⇒ \" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 14649,
+        "lineno": 14653,
         "label_head": "\"P993T.1 ⭐⭐⭐⭐⭐⭐⭐ **P1 成立：口径差必须显式对齐 —— 1010 记的是 39\" \"（只算了九对快照）、本批把 1010 自己那次也算进来、逐条复算得 45，\" \"差的 6 全部来自 `1009->1"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14663,
+        "lineno": 14667,
         "label_head": "\"P993T.2 ⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立：条数 ≠ 地方数 —— 那 45 次改动只落在 8 段不同文本上，\" \"而其中 38 次落在 3 句话上；那 3 句话是每一批都在重复写的「本批纯离线、\" \"不打开浏览"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14681,
+        "lineno": 14685,
         "label_head": "\"P993T.3 ⭐⭐⭐⭐⭐⭐⭐ **P3 成立：45 次改动里有 43 次（95.6%）落在 occurrence ≥ 2 的锚点上，\" \"而全集里 occurrence ≥ 2 的只有 8.6%（292/3407）—"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14698,
+        "lineno": 14702,
         "label_head": "\"P993T.4 ⭐⭐⭐⭐⭐⭐⭐⭐ **P4 成立：按 1004 的耦合度公式（自身只出现 1 次 ? 1 : 0），\" \"occurrence ≥ 2 的锚点耦合度本该是 0；实测门报 0 个 —— 一致** ⇒ ⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 14712,
+        "lineno": 14716,
         "label_head": "\"P993T.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 成立：这 45 次改动里出现次数增加 45、减少 0、归零 0** ⇒ ⇒ ⇒ \" \"**⇒ 而 occurrence 就是「在几次」那个轴、它在真实工作流下单调只增**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14728,
+        "lineno": 14732,
         "label_head": "\"P993T.6 ⭐⭐⭐⭐⭐ **P6 成立：8 段里 7 段落在 1005 那份 690 行零耦合清单里\" \"（87.5% vs 基准 12.0%；那份清单 690 行只有 658 个不同文本）** ⇒ ⇒ \" \"**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14746,
+        "lineno": 14750,
         "label_head": "\"P993T.7 ⭐⭐⭐⭐⭐⭐⭐ **P7 成立：本批每一个读数都钉在 10 个 git 提交上，\" \"而「钉在历史上的判据」有专属的失效形态 —— 将来 rebase 之后这些 sha 取不到、\" \"判据不会报错、它会"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14761,
+        "lineno": 14765,
         "label_head": "\"P993T.8 ⭐⭐⭐⭐⭐ **P8 成立：逐条落进 \" \"`docs/research/jimeng-canvas/change-locality-1011.json`、由本探针自己写** ⇒ ⇒ \" \"⭐⭐⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14792,
+        "lineno": 14796,
         "label_head": "\"Q993U.1 ⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：扩到全局之后 —— 10 对快照、187 个目标变量、\" \"声明锚点 58315 条次，被动过 58 次、真正消失 1 次 ⇒ 全局真实检出力 = 1/58** ⇒ ⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14809,
+        "lineno": 14813,
         "label_head": "\"Q993U.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立：分侧读数必须一起报 —— `_ausrc` 侧 54 次被动过、\" \"消失 0 次（检出力 0.0）；而其余 186 个目标变量侧 4 次被动过、消失 1 次（检出"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14825,
+        "lineno": 14829,
         "label_head": "\"Q993U.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 成立（而它是**被否**的预期）：\" \"本批开工时我以为「每批都在重写整个探针文件、所以探针侧的改动形态是重写而不是追加、\" \"应该产生大量真消失」** ⇒ ⇒ **"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14839,
+        "lineno": 14843,
         "label_head": "\"Q993U.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4 成立：那唯一 1 次消失在 `1005->1006` 那一对、\" \"`_anchs` 变量上；而它和 1010 的 P6 是同一件事的两条完全独立的路径** —— \" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 14852,
+        "lineno": 14856,
         "label_head": "\"Q993U.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 成立 —— 而它是路线决定（兑现 1011 的欠账）：\" \"门没有「盲区」—— 它按设计不报 `_ausrc` 上那 54 次追加、按设计报真消失\" \"（1 次、报对"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14869,
+        "lineno": 14873,
         "label_head": "\"Q993U.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 成立：静态模型（「正向 MISSING ⟺ occurrence == 0」）\" \"与**真跑门**逐条对上了 —— 对账的那一对静态说该消失的、真跑门报的 MISSIN"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14884,
+        "lineno": 14888,
         "label_head": "\"Q993U.7 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P7 反向用例成立：在 `_anchs` 自己的目标文件里真删掉那一条、\" \"再跑门，MISSING 减去基线自带的那批之后正好多出 1 条、且就是删掉的那一条** ⇒ ⇒ \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 14897,
+        "lineno": 14901,
         "label_head": "\"Q993U.8 ⭐⭐⭐⭐⭐ **P8 成立：逐条落进 \" \"`docs/research/jimeng-canvas/global-detection-1012.json`、由本探针自己写** ⇒ ⇒ \" \"⭐⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14925,
+        "lineno": 14929,
         "label_head": "\"R993V.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：分类互斥且完备 —— \" \"四类计数之和 68 == 改动总数 68，且没有第五类；\" \"`born` 0 / `grown` 67 / `shrank` 0"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14938,
+        "lineno": 14942,
         "label_head": "\"R993V.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立：账本的 `red` 与门会报的那些完全重合 —— \" \"对称差 0（账本报了门没报的 0 条、门报了账本没报的 0 条）** ⇒ ⇒ ⇒ \" \"**⇒ ⇒ ⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14956,
+        "lineno": 14960,
         "label_head": "\"R993V.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 是否证：账龄机制（1008 立的那条处方）\" \"在当前规模下用不上 —— 11 对历史里账本只在 1 个批次报红，\" \"而那 1 个是一次性的、下一对就不再红** "
       },
       {
         "kind": "anchor_only",
-        "lineno": 14971,
+        "lineno": 14975,
         "label_head": "\"R993V.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4：账本真正的产出是那三类不报红的账 —— \" \"`born` 0 条、`grown` 67 条、`shrank` 0 条，合计 67 条** ⇒ ⇒ ⇒ \" \"**⇒ ⇒ ⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 14983,
+        "lineno": 14987,
         "label_head": "\"R993V.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 反向用例成立：`born`（0 → 1）这类改动记进了账、\" \"但 `red` 为假** ⇒ ⇒ ⇒ \" \"**⇒ ⇒ ⇒ ⇒ ⇒ 而这一条是为了排除「账本是个恒红的报警器"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15001,
+        "lineno": 15005,
         "label_head": "\"R993V.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 本批最深的一层：\" \"「每次全量重算」并不能消除 1008 说的「清单会过期」，\" \"它只是把「内容错了」换成了「历史被截断了」** ⇒ ⇒ ⇒ \" \"*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15019,
+        "lineno": 15023,
         "label_head": "\"R993V.7 ⭐⭐⭐⭐⭐ **P7 成立：逐条落进 \" \"`docs/research/jimeng-canvas/occurrence-ledger-1013.json`、由本探针自己写** ⇒ ⇒ \" \"⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15051,
+        "lineno": 15055,
         "label_head": "\"S993W.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：普查 8 个 golden\" \"（已排除本探针自己那本）、11 个空 list 字段、1 个 null 字段 —— \" \"其中可自证 11 个、不可自证 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 15069,
+        "lineno": 15073,
         "label_head": "\"S993W.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立（这是本批的病根）：\" \"「真的算过、结果是空」与「根本没算」这两份账，`retired` 字段序列化之后\" \"逐字节相同** ⇒ ⇒ ⇒ \" \"**⇒ ⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15086,
+        "lineno": 15090,
         "label_head": "\"S993W.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 成立：处置是给账本加 companion 字段\" \"（`retired_computed` + `retired_n`），加上之后两份账可区分；\" \"而且 co"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15103,
+        "lineno": 15107,
         "label_head": "\"S993W.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4 反向用例成立：造一份 `retired` 非空的真账，\" \"分类器必须把它判成「可自证」—— 而当前版本判不了（companion 尚未进判据）** ⇒ ⇒ ⇒ \" \"**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15117,
+        "lineno": 15121,
         "label_head": "\"S993W.5 ⭐⭐⭐⭐⭐⭐⭐⭐ **P5：这条规矩不只管空 list —— `null` 是同一个病的\" \"另一种形态，而它同样分不清「算出来是 null」和「没算」** ⇒ ⇒ ⇒ \" \"**⇒ ⇒ ⇒ ⇒ ⇒ ⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15129,
+        "lineno": 15133,
         "label_head": "\"S993W.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 而最要紧的一句是：\" \"1013 刚刚做出来的那本账，自己就带着这个毛病** ⇒ ⇒ ⇒ \" \"**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而这说明「刚做完的东西也是会犯"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15145,
+        "lineno": 15149,
         "label_head": "\"S993W.7 ⭐⭐⭐⭐⭐ **P7 成立：逐条落进 \" \"`docs/research/jimeng-canvas/empty-ambiguity-1014.json`、由本探针自己写** ⇒ ⇒ \" \"⭐⭐⭐⭐⭐⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15168,
+        "lineno": 15172,
         "label_head": "\"U993Y.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：四态 reproduced / drifted / \" \"crashed / vanished 互斥且穷尽（sum_states 9 == n_books"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15188,
+        "lineno": 15192,
         "label_head": "\"U993Y.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立（本批最痛的一条）：\" \"第一版按 `generated_by` 自动反查探针，9 本只认领 8 本、静默丢掉 1 本\" \"（1005 的 `genera"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15209,
+        "lineno": 15213,
         "label_head": "\"U993Y.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 / P4 成立：1014 那台普查反过来抓住了\" \"1015 的产物（`n_goldens` 8 → 9、不可自证空集合 1 → 2，新加那条是 1015 自己"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15242,
+        "lineno": 15246,
         "label_head": "\"U993Y.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 成立：反向用例对四种人工构造分别给出\" \"drifted（新增键）/ drifted（改已有叶子）/ crashed（rc≠0）/ vanished（产物缺失）\" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 15263,
+        "lineno": 15267,
         "label_head": "\"U993Y.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 成立、而它是本批踩到的第三个坑：\" \"`jimeng_probe1005_...` 把落仓门控在 `if \\\"--write-golden\\\" in sys.a"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15282,
+        "lineno": 15286,
         "label_head": "\"U993Y.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P7 成立：3 本 golden 的 `generated_by` 相对 HEAD 被修过，\" \"before/after 逐条从 `git show HEAD:` 取、"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15308,
+        "lineno": 15312,
         "label_head": "\"U993Y.7 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P9 成立：整套东西纯离线 —— \" \"不打开浏览器、不按任何键、连 `mouse.click` 都没有，源站登录态仍然没有** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 15327,
+        "lineno": 15331,
         "label_head": "\"U993Y.8 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P8 成立、而它是 1014 那台普查主动报上来的：\" \"普查把 1015 自己的产物判成 5 条「不可自证」的空集合 —— 而 1015 明明在产物里\" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 15360,
+        "lineno": 15364,
         "label_head": "\"V993Z.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：`SOURCE_BASELINE` 顶层 17 键\" \"全是层 `data-testid`，却被当成了通用抽屉** —— 900–939 的结论键挂"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15369,
+        "lineno": 15373,
         "label_head": "\"V993Z.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 成立（本批才发现的那条）：\" \"那批键里有一条**键名被写了两次** —— Python dict 字面量保留最后一条 ⇒ \" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 15380,
+        "lineno": 15384,
         "label_head": "\"V993Z.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 成立：before 是量出来的、不靠记忆，\" \"而且钉在固定 sha 上** ⇒ 「字面量写了多少」与「实际可达多少」是两个数，\" \"而只有一个被看见 —— 【"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15396,
+        "lineno": 15400,
         "label_head": "\"V993Z.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4 —— 而最扎人的是那句横幅本身：\" \"被吃掉的那条写着「原文保留在这里当历史记录、不许删」，\" \"而「保留原文」的惯用写法（同一条记录里再补一段"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15406,
+        "lineno": 15410,
         "label_head": "\"V993Z.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 反向用例成立：同名键的读回值是后写的那条，\" \"而整个过程不抛错、不告警、不改变任何一条已有的门** ⇒ \" \"要抓它只能靠「对键名本身去重」，不可能靠「跑一遍看"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15414,
+        "lineno": 15418,
         "label_head": "\"V993Z.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 而这一条的第一版预期是错的**：\" \"我照抄 939 那句散文写「错挂 40 条、全在音色筛选层」，探针当场报假 ⇒ 实测 43 条 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 15424,
+        "lineno": 15428,
         "label_head": "\"V993Z.7 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P7：本批只记账、不搬那 40 条** —— \" \"实测 `SOURCE_BASELINE` 的唯一按层消费点是 `get(tid)`、而那 40 条从未被按层读"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15434,
+        "lineno": 15438,
         "label_head": "\"V993Z.8 ⭐⭐⭐⭐⭐ **P8 成立：纯离线 —— 只读仓里两个文件 + `git show`（**钉在固定 sha 上**），\" \"不开浏览器、不联网、不按任何键；逐条落进 \" \"`docs/research/"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15449,
+        "lineno": 15453,
         "label_head": "\"W993A.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：同一个「覆盖率」\" \"在不同分母下差 39.4 个百分点** —— 只数一个门时未覆盖 39.7% 的行、数整套装置时只剩 0.3%"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15460,
+        "lineno": 15464,
         "label_head": "\"W993A.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 —— 而本批第一版自己就栽在这个坑上，\" \"而且栽得悄无声息：路径正则的字符类里漏了 `*`** ⇒ glob 被降级成目录前缀 ⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15472,
+        "lineno": 15476,
         "label_head": "\"W993A.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 成立 —— 本批最要紧的一条：\" \"判据的「被测对象」必须能被机器认出来。** 口径 =「`check()` 的条件里出现了\" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 15484,
+        "lineno": 15488,
         "label_head": "\"W993A.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4：「读了」「算了」「进了判据」是三件事。** \" \"本批第一版照抄 1015 那句「读了不用」写了个粗口径、自己把自己数成 10 个 ⇒ 实测只有 2 个 ⇒ \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 15494,
+        "lineno": 15498,
         "label_head": "\"W993A.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5：覆盖高度集中** —— 报「2.7%」时必须同时报\" \"「集中在谁身上」，否则这个数会让人以为覆盖是均匀稀薄的\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 15501,
+        "lineno": 15505,
         "label_head": "\"W993A.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 而本批真正的那句话是：\" \"「原型没被任何脚本点名」与「判据在验产品」是两个数，它们讲相反的故事。** \" \"前者未提及只剩"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15511,
+        "lineno": 15515,
         "label_head": "\"W993A.7 ⭐⭐⭐⭐⭐ **P7：三档分母是嵌套的，判据钉的是这个结构性质** —— \" \"因为「差几个百分点」那句话没有分母就没有含义；**P8：口径边界写进产物、不含糊** ⇒ \" \"本探针量的不是「原型有多少"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15521,
+        "lineno": 15525,
         "label_head": "\"W993A.8 ⭐⭐⭐⭐⭐ **P9 成立：纯离线** —— 只读仓里的脚本与原型源码，零浏览器/零按键/零网络；\" \"**P10 逐条落进 `replica-coverage-1017.json`、由本探针自己写**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15530,
+        "lineno": 15534,
         "label_head": "\"W993A.9 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P11 —— 而这是本批栽的\" \"第二次、也更阴的一次：把 `*` 修好之后覆盖率回到真值，可**本批判据的正文里**\" \"为了"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15551,
+        "lineno": 15555,
         "label_head": "\"X993B.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立 —— 本批要验的命题：\" \"那 24 条验的是「那段字还在」，不是「这个行为还对」。** 口径 = 逐条 eval 判据的\" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 15562,
+        "lineno": 15566,
         "label_head": "\"X993B.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 反向用例 Ⓐ —— \" \"只改行为、不动任何锚点（步进 `cur + dir` → `cur + dir * 2`，焦点一次跨两个"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15572,
+        "lineno": 15576,
         "label_head": "\"X993B.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 反向用例 Ⓑ —— \" \"只改名、不改行为 ⇒ 2 条转红 ⇒⇒⇒⇒⇒ **门对「重命名」敏感、对「改错」不敏感**\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 15580,
+        "lineno": 15584,
         "label_head": "\"X993B.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4：「在读原型源码」还要再切一刀** —— \" \"8 条同时断 audit 判据文本里的散文、**其中 2 条根本只断 audit 文本** ⇒ \" \"**24 这"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15588,
+        "lineno": 15592,
         "label_head": "\"X993B.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 —— 而其中 13 条的锚点本身就是中文散文**\" \"（「批 967 改写上面那段…」「别复制第二份」「不跑 tsc」）⇒ **注释被当成了实现** ⇒ \" \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 15597,
+        "lineno": 15601,
         "label_head": "\"X993B.6 ⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 而本批有一条必须诚实撤回的结论**：我第一版口头说过\" \"「纯改名会让门直接 `IndexError` 崩掉」⇒ **那是仪器自己的 bug**\" \"（`main` 里"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15608,
+        "lineno": 15612,
         "label_head": "\"X993B.7 ⭐⭐⭐⭐⭐ **P7：口径边界** —— 本批只验「判据看得见/看不见行为变更」，\" \"**没有**验「原型实现的行为本身对不对」⇒ **不把「字面量在」说成「行为对」**；\" \"反向用例**全部在内存"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15616,
+        "lineno": 15620,
         "label_head": "\"X993B.8 ⭐⭐⭐⭐⭐ **P8 成立：纯离线** —— 零浏览器 / 零按键 / 零网络；\" \"逐条落进 `assertion-vs-behavior-1018.json`、由本探针自己写\""
       },
       {
         "kind": "anchor_only",
-        "lineno": 15630,
+        "lineno": 15634,
         "label_head": "\"Y993C.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立 —— \" \"本批第一次在装置上「动手改」：把一条判据从「字面量存在性」升级成「真行为验证」。** \" \"按函数名 + 括号配"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15642,
+        "lineno": 15646,
         "label_head": "\"Y993C.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 —— 本批的读数：\" \"两个「改了行为、却一个锚点都没碰」的补丁，行为检查各红 2 / 1 条，\" \"而同一时刻读 `_wsrc`"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15656,
+        "lineno": 15660,
         "label_head": "\"Y993C.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 —— 而补丁 Ⓑ 不是随手找的**：去掉末尾守卫后，\" \"焦点在末尾按 Tab ⇒ `next` 越界 ⇒ `armAll(nodes, 越界)` 把**整块画布"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15666,
+        "lineno": 15670,
         "label_head": "\"Y993C.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P4：「字面量判据会不会红」这一格是测出来的、\" \"不是假定的** ⇒ 逐条 eval 那 7 条的原始条件表达式 ⇒ \" \"**⚠️ 诚实标注：三个变体下的结果必然"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15678,
+        "lineno": 15682,
         "label_head": "\"Y993C.5 ⭐⭐⭐⭐⭐⭐⭐ **P5 —— 本批踩到一次「门红先判门错还是数据错」**：\" \"第一版只给三个变量 ⇒ `GGGGG.2` 直接 `NameError: _p973` ⇒ **那是仪器错、不是判据红*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15688,
+        "lineno": 15692,
         "label_head": "\"Y993C.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P6 —— 本批自己的仪器同一天栽了两次，\" \"都栽在「抽出来的不是函数真身」上**：① `extract_fn` 返回**从 `{` 开始的函数体** ⇒ \" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 15698,
+        "lineno": 15702,
         "label_head": "\"Y993C.7 ⭐⭐⭐⭐⭐ **P7：口径边界** —— 测的是**真函数体**但跑在 **stub** 上 ⇒ \" \"验的是步进与两端守卫的逻辑、**不是真实浏览器语义、不许当 e2e**；\" \"只跑了 1 个函数、"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15709,
+        "lineno": 15713,
         "label_head": "\"Y993C.8 ⭐⭐⭐⭐⭐ **P8 纯离线** —— node + 只读仓里两个文件、**不装任何依赖**\" \"（仓里没有 jsdom / 测试框架 ⇒ 只给最小 stub、不引入新的失败面）、\" \"临时目录注册 `"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15726,
+        "lineno": 15730,
         "label_head": "\"Z993D.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P1 成立 —— 本批把 1019 那个 harness 本身当被测对象。** 两条 st"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15741,
+        "lineno": 15745,
         "label_head": "\"Z993D.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 —— 而 1019 那 8 条\" \"**手写期望**本身是对的**：在**两条** stub 下都 **8/8 全绿** "
       },
       {
         "kind": "anchor_only",
-        "lineno": 15751,
+        "lineno": 15755,
         "label_head": "\"Z993D.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P3 —— 判别力：\" \"变异体是**按 token 规则系统枚举**的 ⇒ **不是手挑，分母由探针生成、不由我断言**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15767,
+        "lineno": 15771,
         "label_head": "\"Z993D.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P5 —— 分支覆盖是 **6/7**，未覆盖的是 `!flow`；\" \"⚠️ **我第一版把本探针自己加的 `flowNull` 探针算进了「1019 的分支覆"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15776,
+        "lineno": 15780,
         "label_head": "\"Z993D.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P6 —— 本批的核心结构性发现：8 个**手写期望**的格 = **判别器*"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15787,
+        "lineno": 15791,
         "label_head": "\"Z993D.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P7 —— 判决分叉的实测**：**不是新增一个格，是把已有那条 906 的格"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15799,
+        "lineno": 15803,
         "label_head": "\"Z993D.7 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P8 —— 补两格，\" \"并且量出「买到多少判别力」**：**在 1020 自己的 harness 上加格，一个字都不"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15812,
+        "lineno": 15816,
         "label_head": "\"Z993D.8 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **第二处 stub 保真度缺口：\" \"`tabindex` 在真 DOM 里是**整数**而 harness 判的是**字符"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15833,
+        "lineno": 15837,
         "label_head": "\"AA993E.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P1 —— 本批第一次量「门自己」**：变异版 verifier 写到临时文"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15845,
+        "lineno": 15849,
         "label_head": "\"AA993E.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P2 成立 —— 官方锚点门的 `collect()` 只收「还被 `che"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15857,
+        "lineno": 15861,
         "label_head": "\"AA993E.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **门只抓到 2 个形状**：\" \"Ⓕ 加**恒真**判据（**1002 那条 SHAPE 普查干的**）、Ⓖ 把 `in` 翻成"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15868,
+        "lineno": 15872,
         "label_head": "\"AA993E.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P4 —— 唯一会变的读数是汇总行里的 `check(N)`，而没有任何门在"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15881,
+        "lineno": 15885,
         "label_head": "\"AA993E.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **处置**：把 `check(N)` **与受检锚点数**一起\" \"**登记进产物并钉住当前基线** ⇒ ⭐ **通则：门的覆盖面必须是一个被登记的量** ——"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15903,
+        "lineno": 15907,
         "label_head": "\"BB993F.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P1 成立 —— 本批把 1020 诊断出来的缺口真正补上。** 两格落进 \" \"`ji"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15916,
+        "lineno": 15920,
         "label_head": "\"BB993F.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P2 —— 而 1019 docstring 里那一行「7 个行为格」从写下"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15928,
+        "lineno": 15932,
         "label_head": "\"BB993F.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P3 —— 哪些数字一个字没动、为什么**：`Z993D` 里引用「1019"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15939,
+        "lineno": 15943,
         "label_head": "\"BB993F.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **口径边界**：\" \"**只动了 1019 那份 harness 的场景表与判分函数**，**没改被测函数真身、没改 stub、"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15953,
+        "lineno": 15957,
         "label_head": "\"CC993G.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P1 成立 —— 本批量「类型层」那一道闸。** 两条基线都必须先干净：\" "
       },
       {
         "kind": "anchor_only",
-        "lineno": 15966,
+        "lineno": 15970,
         "label_head": "\"CC993G.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P2 成立 —— 1020 那 4 个「运行期不可区分」的类型变异体，**t"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15977,
+        "lineno": 15981,
         "label_head": "\"CC993G.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P3 —— 而类型层也不是全覆盖的**：7 个类型变异体里 **tsc 抓到"
       },
       {
         "kind": "anchor_only",
-        "lineno": 15991,
+        "lineno": 15995,
         "label_head": "\"CC993G.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P5 成立 —— 接线盘点**：`typescript` 在、`typech"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16003,
+        "lineno": 16007,
         "label_head": "\"CC993G.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**P6 —— 而顺手挖出一条「从来没成立过的前提」**：源码里那句\" \"**「"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16027,
+        "lineno": 16031,
         "label_head": "\"DD993H.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**「门看不见」必须分清三种形态** —— ① **没看见**（1018）；② *"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16042,
+        "lineno": 16046,
         "label_head": "\"DD993H.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**阳性对照是常驻闸，且它红过两轮、每一轮逼出一个仪器 bug** —— \" \"⭐"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16067,
+        "lineno": 16071,
         "label_head": "\"DD993H.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**Ⓐ「豁免指令本身是一句断言」：逐条判定必须用 eslint 自己的 `Unus"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16075,
+        "lineno": 16079,
         "label_head": "\"DD993H.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**Ⓒ「打不开的证据」有两种，不是一种** ⇒ \" \"**「引用了一份谁都打不开的"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16085,
+        "lineno": 16089,
         "label_head": "\"DD993H.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**Ⓑ 那条已知为假的断言在源码里有两处（块注释一处、行注释一处），\" \"而 10"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16096,
+        "lineno": 16100,
         "label_head": "\"DD993H.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**「这个工具在不在这个脚本里」是个陷阱问句，除非先说清「在哪一层」** —— \""
       },
       {
         "kind": "anchor_only",
-        "lineno": 16108,
+        "lineno": 16112,
         "label_head": "\"DD993I.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**先把「锚点型」和「活判据型」分开，判据要机械** —— 把条件里的字符串字面量"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16126,
+        "lineno": 16130,
         "label_head": "\"DD993I.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**「== N」这个形状本身不是缺口，缺口是「== N」且 N 是易变量** ⇒ "
       },
       {
         "kind": "anchor_only",
-        "lineno": 16140,
+        "lineno": 16144,
         "label_head": "\"DD993I.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**⭐⭐⭐⭐⭐ 分类器把自己搞不清的归进危险那一类，是一个会自己制造结论的偏差**"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16157,
+        "lineno": 16161,
         "label_head": "\"DD993I.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**阳性对照：不告知答案，得自己找到 §83 那条已知为真的「易变量判据」** ⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16178,
+        "lineno": 16182,
         "label_head": "\"DD993J.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**一条写死的 `P6 = True` 是比装饰更隐蔽的一种装饰：它让读数更好看** ⇒ ⇒⇒⇒⇒⇒⇒"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16190,
+        "lineno": 16194,
         "label_head": "\"DD993J.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**⭐⭐⭐⭐⭐ 那 18 条装饰的标签自己就写着 `scope_declared` / `offlin"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16202,
+        "lineno": 16206,
         "label_head": "\"DD993J.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**⭐⭐⭐ 断言我没验证过的事，会当场变红，而变红的原因与判据本意无关** —— 第一版 `P2` 要"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16214,
+        "lineno": 16218,
         "label_head": "\"DD993J.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**阳性对照要两条，缺一不可** —— 甲：**不告知答案**，自己找到 1025 探针里那条已知的 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 16224,
+        "lineno": 16228,
         "label_head": "\"DD993J.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**词法轴只产出「值得人去看一眼」的名单，不产出判决** ⇒ **⇒⇒⇒⇒⇒⇒ 「非空断言 ∩ 标签说"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16242,
+        "lineno": 16246,
         "label_head": "\"DD993K.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**1026 查清：`jimeng_probe1015` 退出时 `_restore()` 把每本 g"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16251,
+        "lineno": 16255,
         "label_head": "\"DD993K.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**⭐⭐⭐⭐⭐⭐⭐⭐ 闸的第一版拿「工作区那本」当比对基准 ⇒ 报出假阴性** —— 第一版跑出「10"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16260,
+        "lineno": 16264,
         "label_head": "\"DD993K.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 本批四个仪器 bug，而它们是同一条纪律的三次复发**：① 变更集默认取 "
       },
       {
         "kind": "anchor_only",
-        "lineno": 16271,
+        "lineno": 16275,
         "label_head": "\"DD993K.4 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**⭐⭐⭐⭐⭐⭐⭐ 「每批都重跑全部探针」既不必要也不便宜 ⇒ 成本必须正比于「本次改动触及了几个探针"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16281,
+        "lineno": 16285,
         "label_head": "\"DD993K.5 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**⭐⭐⭐⭐⭐⭐⭐ 还原不是缺点，「还原之前不留证据」才是** —— 每个 golden 先快照、跑完"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16295,
+        "lineno": 16299,
         "label_head": "\"DD993K.6 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**⭐⭐⭐⭐⭐⭐⭐⭐ 双向排除必须有证据，而证据本身也会坏** —— 两把门互斥（**1015 假定一"
       },
       {
         "kind": "anchor_only",
-        "lineno": 16306,
+        "lineno": 16310,
         "label_head": "\"DD993K.7 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"**⭐⭐⭐⭐⭐⭐⭐⭐ 第九个仪器 bug 有两半，第二半比第一半更隐蔽** —— 第一半：1014 用"
+      },
+      {
+        "kind": "anchor_only",
+        "lineno": 16326,
+        "label_head": "\"DD993L.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"第十个仪器 bug 是「读数没落盘」，第十一个却是「门在一切新鲜时转红」 \" \"提交 1027 之后重"
+      },
+      {
+        "kind": "anchor_only",
+        "lineno": 16344,
+        "label_head": "\"DD993M.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"本批给 1014 补了一件它一直缺的东西：**读数必须带着它算在哪一批字节上** \" \"1014 的普"
+      },
+      {
+        "kind": "anchor_only",
+        "lineno": 16362,
+        "label_head": "\"DD993N.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"官方锚点门验的是「锚点在不在」，不是「锚点是不是原来那个」 \" \"1021 用注入式变异量到：把一条判"
+      },
+      {
+        "kind": "anchor_only",
+        "lineno": 16380,
+        "label_head": "\"DD993O.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ \" \"第十二条仪器 bug：**一道门在「你做了正确的事」时转红** \" \"本批新增了探针 1030，重跑 "
       },
       {
         "kind": "live",
@@ -5051,7 +5071,7 @@
         ]
       },
       {
-        "lineno": 9480,
+        "lineno": 9484,
         "label_head": "\"CC.7 886 的教训落地：**组件内凡是要复用，就该提到模块级，\" \"别复制第二份** —— 886 第一版把实现抽成组件内闭包，结果它和 Clear \" \"内联那段是**复制粘贴关系**，按内容替换**匹配到了自",
         "shapes": [
           {
@@ -5291,7 +5311,7 @@
         ]
       },
       {
-        "lineno": 10644,
+        "lineno": 10648,
         "label_head": "\"TTTTT.1 ⭐⭐⭐⭐⭐ **本批按定义预写三条预测、全部命中** —— \" \"P1 **缺失率归零**（旧口径把间隙算成一格 ⇒「少一格」只可能是\" \"「这一圈没有间隙」）；P2 **间隙落在回绕点**（`_cyc",
         "shapes": [
           {
@@ -5409,15 +5429,15 @@
           "text": "f\"4 和 8 都是真的；钉条数就是把易变量当契约）\","
         },
         {
-          "lineno": 16159,
+          "lineno": 16163,
           "text": "\"⇒ **而且顺带独立核对那段「易变量写成了断言」的原文确实在源码里** \""
         },
         {
-          "lineno": 16162,
+          "lineno": 16166,
           "text": "'KNOWN_TRUE_MARKER = \"易变量写成了断言\"' in _p1025"
         },
         {
-          "lineno": 16165,
+          "lineno": 16169,
           "text": "and 'if KNOWN_TRUE_MARKER in l or \"钉条数就是把易变量当契约\" in l:' in _p1025"
         }
       ]
