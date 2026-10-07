@@ -13,10 +13,22 @@
 **于是「把闸指向 v1.7.3」不需要改任何一行判据。**
 
 **为什么不用登记表指明要跑哪些闸**（纪律 242）：
-**闸的集合是扫出来的**——`verify-*.py` 里出现 `resolve_ref(` / `BEEFTV_REF` /
-`git_grep` / `beefsrc` 的那道才会读上游，
+**闸的集合是扫出来的**——`verify-*.py` 里出现 `resolve_ref(` / `module_ref(` /
+`BEEFTV_REF` / `git_grep` / `beefsrc` 的那道才会读上游，
 **而「哪道闸读上游」是那 20 行代码的事实，不该另抄一份**。
 多写几遍是病因不是解药（纪律 355）。
+
+**Batch 329 修的漏：`module_ref(` 曾经不在标记里，于是 4 道闸被漏扫**：
+Batch 197 把 `REF = os.environ.get("BEEFTV_REF") or resolve_ref()`（**模块级每次调用都解析**）
+改成了模块级缓存的 `REF = module_ref()`，**而这份标记表没跟着加**。
+实测漏掉的是 `verify-runtime-policy.py` / `verify-feature-flags.py` /
+`verify-route-notation.py` / `verify-screenshots-literals.py` —— **闸 12、闸 13 都在其中**。
+**这个漏的失效形态是零告警**：工具照常输出一份「升版要过的门」清单，
+**只是少了几行**，而报告读起来完全正常。
+**它已经造成了读者可见的后果**：`20-reference.md`「已经对不上的地方」那份清单
+**少了 `verify-screenshots-literals` 的 2 处**——因为那道闸压根没被跑。
+**而这类漏不可能靠「再小心」避免**：标记表是一张**手工维护的清单**，
+**它的形状必须跟着代码演化而变，而没有任何东西会提醒它**（纪律 364）。
 
 **第一版栽在哪（2026-10-07，如实记下）**：它数「输出里带 `✗` / `⚠` 的行数」，
 **而 `verify-line-counts.py` 与 `verify-quota-tables.py` 的明细行不带任何前缀**
@@ -56,7 +68,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 SELF_NAME = os.path.basename(__file__)
 
 #: **会在源码里读上游的判据痕迹**——扫出来的那一道才会读上游
-UPSTREAM_MARKERS = ("resolve_ref(", "BEEFTV_REF", "git_grep", "beefsrc")
+UPSTREAM_MARKERS = ("resolve_ref(", "module_ref(", "BEEFTV_REF", "git_grep", "beefsrc")
 
 
 def upstream_gates(root):
@@ -117,6 +129,11 @@ def main():
     print("基线 = 手册声明的提交；对账目标 = %s\n" % a.ref)
 
     changed, same, broke = [], 0, []
+    #: **Batch 329 新增**：两个 ref 上**都是非 0** 的闸。
+    #: 它们**不算「变红」**（rc 没变），但**绝不代表没问题**——
+    #: rc 上只有「0」与「非 0」两种，**「非 0 → 非 0」在 rc 上与「0 → 0」长得一样**，
+    #: 所以只按「rc 变没变」分类，就会把它们混进「两版一致」那一堆里。
+    both_red = []
     for name in gates:
         rc_b, _, err_b = run_gate(root, name, None)
         if rc_b is None or err_b:
@@ -126,7 +143,12 @@ def main():
         rc_n, out_n, _ = run_gate(root, name, a.ref)
         if rc_n == rc_b:
             same += 1
-            print("  =   %-30s 基线 rc=%d → %s rc=%d" % (name, rc_b, a.ref, rc_n))
+            if rc_b != 0:
+                both_red.append(name)
+            print("  %-4s %-30s 基线 rc=%d → %s rc=%d%s"
+                  % ("= !" if rc_b != 0 else "=", name, rc_b, a.ref, rc_n,
+                     "　← **两个 ref 上都是红的**（不是变红，但也不代表没问题）"
+                     if rc_b != 0 else ""))
         else:
             changed.append(name)
             print("  ≠   %-30s 基线 rc=%d → %s rc=%d" % (name, rc_b, a.ref, rc_n))
@@ -136,11 +158,16 @@ def main():
     print("\n==== 汇总 ====")
     print("共 %d 道：%d 道两版一致、%d 道在 %s 上变红、%d 道基线那遍没跑起来"
           % (len(gates), same, len(changed), a.ref, len(broke)))
+    if both_red:
+        print("**其中 %d 道在两个 ref 上都是 rc≠0**（%s）——"
+              % (len(both_red), "、".join(both_red)))
+        print("**它们不在「变红」那一类里（rc 没变），但它们也不代表没问题。**")
+        print("**红的原因可能是上游、也可能是工作区里的未提交改动或环境**——")
+        print("**而本工具只比对 ref、不比对工作区，所以它分不出来，也不替它猜。**")
     print("**变红不等于手册写错了**：多数是「上游真的变了」，而这正是升版要处置的活；")
     print("**但也不等于「全都能算进升版工单」**——")
-    print("**实测里就有一道（`verify-selftest-bootable.py`）红的原因是"
-          "「反验的底被 `BEEFTV_REF` 换掉了」，不是产品变了。**")
-    print("**逐道分类是人的活，本工具不替它做。**")
+    print("**本工具唯一能替你做的就是把三种状态分开列出来**"
+          "（变红 / 两版都红 / 两版都绿），**逐道分类仍然是人的活**。")
     if broke:
         for n, e in broke:
             print("  ! %s：%s" % (n, e))
