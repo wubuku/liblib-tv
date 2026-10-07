@@ -56,8 +56,8 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "996ef8ec92eb",
-    "bytes": 78647
+    "sha256_12": "629b1fd50b17",
+    "bytes": 79156
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
@@ -76,16 +76,16 @@
     "bytes": 3232
    },
    "replica-contract-1031d.json": {
-    "sha256_12": "d0198725eac3",
-    "bytes": 2002
+    "sha256_12": "7d3368159261",
+    "bytes": 2036
    },
    "replica-coverage-1017.json": {
     "sha256_12": "5512e3d3a607",
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "a79923af7a76",
-    "bytes": 30297
+    "sha256_12": "6bd200092272",
+    "bytes": 30262
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -105,10 +105,10 @@
  "census": {
   "n_goldens": 23,
   "n_excluded_self": 1,
-  "n_empty_list": 197,
-  "n_empty_null": 27,
+  "n_empty_list": 200,
+  "n_empty_null": 26,
   "n_self_provable": 9,
-  "n_ambiguous": 215
+  "n_ambiguous": 217
  },
  "rows": [
   {
@@ -1555,6 +1555,13 @@
   },
   {
    "golden": "replica-contract-1031d.json",
+   "path": "/contract_sourcing/unsourced",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
    "path": "/replica_1031d/missing_testids",
    "kind": "list",
    "self_provable": false,
@@ -1576,8 +1583,15 @@
   },
   {
    "golden": "replica-contract-1031d.json",
-   "path": "/P8_node_scoped_present_when_node_exists_1031d",
-   "kind": "null",
+   "path": "/node_scoped_missing/testids",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/node_scoped_missing/aria",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
@@ -3083,6 +3097,13 @@
   },
   {
    "golden": "replica-contract-1031d.json",
+   "path": "/contract_sourcing/unsourced",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
    "path": "/replica_1031d/missing_testids",
    "kind": "list",
    "self_provable": false,
@@ -3104,8 +3125,15 @@
   },
   {
    "golden": "replica-contract-1031d.json",
-   "path": "/P8_node_scoped_present_when_node_exists_1031d",
-   "kind": "null",
+   "path": "/node_scoped_missing/testids",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "replica-contract-1031d.json",
+   "path": "/node_scoped_missing/aria",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },

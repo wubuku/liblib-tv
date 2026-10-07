@@ -65,10 +65,25 @@ out["P7_calibers_do_not_overlap_1031d"] = bool(not _overlap_t and not _overlap_a
 
 def _node_kinds_present(live):
     """当前 mock 页面是否已经有**文本/时间线/音频**这类节点？
-    只有有这类节点，「选中它们才出现的 aria」才是「测了没有」而不是「没测到」。"""
-    kinds = live.get("node_kinds_present") or []
+    只有有这类节点，「选中它们才出现的 aria」才是「测了没有」而不是「没测到」。
+
+    ⚠️⚠️⚠️ **104c 更正一处口径错配** —— 原来这里读 `node_kinds_present`
+    （store 内部英文 kind：video/text/timeline/audio），而契约 `node_kinds`
+    是**源站 DOM 上的中文标题词**（文本/时间线/音频）
+    ⇒ 两边量的是**不同的东西** ⇒ `want & set(kinds)` 恒为空
+    ⇒ P8 永远记 `null`（「没测到」）⇒ **一条永远拿不到读数的死判据**，
+    而且它长得像「测过了、结论是没测到」，比直接红还难发现。
+
+    ⭐⭐⭐⭐⭐ **判据的量程必须与契约站在同一侧**：契约记的是 DOM 上看得见的
+    标题词，读数侧就也量 DOM 上的标题文本（`node_titles`），
+    而不是量 store 的内部实现细节 —— 后者是原型自己的私有表示，
+    换一种实现（但 DOM 完全一致）就会让这条判据无声失效。
+    """
+    titles = live.get("node_titles") or []
     want = set(C.get("node_kinds", [])) - {"文本"}  # 文本节点工具条与其它不同
-    return bool(want & set(kinds))
+    if not titles or not want:
+        return False
+    return any(w in t for t in titles for w in want)
 
 
 live = None
@@ -82,6 +97,64 @@ out["aria_literals_carrying_a_digit"] = [a for a in REQ_A if DIGIT_RE.search(a)]
 out["P1_no_literal_aria_carries_a_driftable_number_1031d"] = bool(
     not out["aria_literals_carrying_a_digit"])
 out["P2_contract_has_both_calibers_1031d"] = bool(REQ_T and REQ_A and SHAPES and KINDS)
+
+# ===== 104c：契约出处校验 ==========================================
+# ⭐⭐⭐⭐⭐ **本批最大的发现不是「原型缺一个功能」，是「契约里有一条根本不存在的东西」**。
+#   104c 收尾时对账，`替换媒体` 一直判「缺」⇒ 上批的结论是「原型真缺该功能，如实留红」。
+#   回头去 1036 个 `docs/research/**/*.json` 里逐条找出处时发现：
+#     `全屏编辑` 15 处、`导出时间线` 11 处、`添加素材到时间线` 12 处、`静音` 12 处、
+#     `timeline-mute-button` 7 处、`flow-node-title` 4 处 —— **只有 `替换媒体` 0 处**。
+#   ⇒ 它是 104b 手写契约时**凭空塞进去**的一条，源站从来没有这个东西。
+#   ⇒ 正确处置是**从契约删掉**，而不是让原型去实现一个源站不存在的功能。
+#
+# ⭐⭐⭐⭐⭐ **它为什么能一路活到被删？** 因为所有门都只做「原型 vs 契约」，
+#   **没有任何一道门做「契约 vs 源站证据」** ⇒ 凭空加一条，门不但不红，
+#   还会反过来**要求原型必须实现它** ⇒⇒⇒ **越诚实地复刻，越会被自己编的契约判红。**
+#   ⇒ P9 把这条回路关上：契约里每一条字面量都必须能在源站取证快照里找到出处。
+#
+# ⚠️ **白名单只认 `jimeng-canvas-batch*/`**（37 个目录、57 份源站快照），
+#   判据产物目录 `docs/research/jimeng-canvas/`（24 份）**全部不算出处** ——
+#   否则契约会在「自己的产物文件」里找到自己 ⇒ P9 变成一道恒绿的门。
+#   这条边界本身由 P10 守着。
+_RDIR = ROOT / "docs/research"
+# ⚠️ 白名单做成**可注入**（`JIMENG_SNAPSHOT_GLOB`）不是图省事，是为了让阳性对照
+#   **不必改源码** —— 改源码的对照实验总有一次「改完忘了还原」，
+#   而那次会静默地把一道变异体留进判据里（104b 的 `_p1031d` 被登记 4 条就是这么来的）。
+_SNAP_GLOB = os.environ.get("JIMENG_SNAPSHOT_GLOB") or "jimeng-canvas-batch*"
+_SNAP_DIRS = sorted(p for p in _RDIR.glob(_SNAP_GLOB) if p.is_dir())
+_SNAP_FILES = [f for d in _SNAP_DIRS for f in sorted(d.glob("*.json")) if f.is_file()]
+_SNAP_BLOB = "".join(
+    f.read_text(encoding="utf-8", errors="replace") for f in _SNAP_FILES
+)
+_LITEMS = ([("required_testids", t) for t in REQ_T]
+           + [("required_aria", a) for a in REQ_A]
+           + [("node_scoped.testids", t) for t in NODE_T]
+           + [("node_scoped.aria", a) for a in NODE_A])
+_UNSOURCED = [{"caliber": c, "literal": x}
+              for c, x in _LITEMS if x not in _SNAP_BLOB]
+out["contract_sourcing"] = {
+    # ⚠️ **不记快照文件数**：后续每批取证都会往这个目录里加文件，
+    #   落进产物就是一个每次都变的读数 ⇒ 可复现性门会误判「同输入不同产物」。
+    #   只记布尔与真实缺陷。
+    "snapshot_source": "docs/research/" + _SNAP_GLOB + "/*.json",
+    "snapshot_found": bool(_SNAP_FILES),
+    "n_literals": len(_LITEMS),
+    "unsourced": _UNSOURCED,
+    "unsourced_count": len(_UNSOURCED),
+}
+# ⚠️ **三个条件都要真**：_LITEMS 非空（否则清空契约就恒绿）、
+#   _SNAP_FILES 非空（否则出处集合为空、字面量必然全部「缺出处」）、
+#   且真的没有无出处的条目。
+out["P9_every_contract_literal_is_traceable_to_source_evidence_1031d"] = bool(
+    _LITEMS and _SNAP_FILES and not _UNSOURCED)
+# ⭐⭐⭐⭐⭐ **P10 守的是 P9 自己**：白名单这条边界哪天被放宽成 `docs/research/**/*.json`，
+#   契约就能在判据产物里找到自己 ⇒ P9 **永久恒绿**且没有任何门会发现 ——
+#   这正是 1031 探针 `P6`「量程太窄」与 `P8`「同一把尺子量门自己」的同型复发，
+#   只是这次发生在**白名单**而不是判据上。
+_CRES = [f for f in _SNAP_FILES
+         if GDIR.resolve() == f.parent.resolve() or f.resolve() == CONTRACT.resolve()]
+out["P10_source_allowlist_excludes_criterion_artifacts_1031d"] = bool(
+    _SNAP_FILES and not _CRES)
 
 if live is None:
     out["P3_replica_matches_contract_1031d"] = None
@@ -127,9 +200,19 @@ else:
     else:
         out["P8_node_scoped_present_when_node_exists_1031d"] = None
         out["node_scoped_not_measured_because"] = (
-            "当前 mock 页面只有 video 节点；契约要求 node_kinds=%s "
-            "⇒ 选中那些节点才出现的条目属于「没测到」，不是「测了没有」" % (KINDS,))
+            "页面上没有契约 node_kinds=%s 里那些类型的中文节点标题；"
+            "选中那些节点才出现的条目属于「没测到」，不是「测了没有」"
+            "（实测到的节点标题见 replica_node_titles）" % (KINDS,))
+        out["replica_node_titles"] = sorted(set(live.get("node_titles") or []))
 
+    # ⭐⭐⭐⭐⭐ **结论要落证据**，否则 P8=true 也无法复核它到底测了什么。
+    #   ⚠️ 节点标题**不能**直接落盘：mock 里有一个节点的标题是素材 id
+    #   （形如 `sb_51810...20260622155459-tf5q2`）⇒ 那是**随机量**，
+    #   落进产物就会让可复现性门在第二次跑时红。
+    #   ⇒ 只落**契约词与实测标题的交集**：既是稳定的证据，又不含随机量。
+    _titles = list(live.get("node_titles") or [])
+    out["node_kinds_matched"] = sorted(k for k in KINDS if any(k in t for t in _titles))
+    out["n_node_titles_seen"] = bool(_titles)
     lines = list(live.get("status_lines_found", []) or [])
     saved_lines = [l for l in lines if l.endswith(SAVED_SUFFIX)]
     other_lines = [l for l in lines if not l.endswith(SAVED_SUFFIX)]
@@ -171,7 +254,7 @@ _bad = [k for k, v in _P if v is False]
 io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
 print("P 判据 = %s" % json.dumps([v for _k, v in _P], ensure_ascii=False))
 print("P 为假的：", _bad or "无", "| 共 %d 条" % len(_P))
-assert len(_P) >= 7, "P 判据条数掉到 7 以下了：%d" % len(_P)
+assert len(_P) >= 10, "P 判据条数掉到 10 以下了：%d" % len(_P)
 print("退出码约定：0=全绿 1=有 P 判据为假 2=探针崩了/契约不是合法 JSON")
 print("PROBE_1031D_DONE ->", OUT)
 sys.exit(1 if _bad else 0)

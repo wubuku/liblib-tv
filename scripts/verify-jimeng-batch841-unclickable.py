@@ -16467,7 +16467,11 @@ def main() -> int:
               'out["P7_calibers_do_not_overlap_1031d"] = bool(not _overlap_t and not _overlap_a)' in _p1031d,
               'KNOWN = {NUM_RE.sub("N", "0 nodes, 0 edges, 0 selected.' in _p1031d,
               'out["P8_node_scoped_present_when_node_exists_1031d"] = None' in _p1031d,
-              'assert len(_P) >= 7,' in _p1031d,
+              'assert len(_P) >= 10,' in _p1031d,
+              # ⭐⭐⭐⭐⭐ 104c：`替换媒体` 被删**不是**原型变好了，是契约里那条**根本不存在**
+              'P9_every_contract_literal_is_traceable_to_source_evidence_1031d' in _p1031d,
+              'P10_source_allowlist_excludes_criterion_artifacts_1031d' in _p1031d,
+              '_SNAP_GLOB = os.environ.get("JIMENG_SNAPSHOT_GLOB")' in _p1031d,
               'if not tid_list and isinstance(live.get("n_testids"), int):' in _p1031d,
               'aria-label="Agent"' in _ws,
               'data-testid="canvas-main-region"' in _ws,
@@ -16480,7 +16484,7 @@ def main() -> int:
           "1031 验的是源站画布的可交互契约；104b 把**原型**也拉进同一份契约的对账 "
           "⇒ 此前所有门都在验研究装置自己或源站，**从来没验过我们做出来的东西像不像源站** ⇒⇒⇒⇒⇒ "
           "**⇒⇒⇒⇒⇒ 契约因此被迫长出第三种口径**（前两种是区域级字面量与形状）："
-          "**节点级** —— 全屏编辑 / 导出时间线 / 替换媒体 / 添加素材到时间线 / 静音 / "
+          "**节点级** —— 全屏编辑 / 导出时间线 / 添加素材到时间线 / 静音 / "
           "timeline-mute-button / flow-node-title 只有在**选中对应类型节点**时才出现在 DOM 里 "
           "⇒⇒⇒⇒⇒ 混在 required 里就会**恒缺**、对账永远红、久了变成「知道它红但没人管」的死判据 "
           "⇒⇒⇒⇒⇒ 拆出来之后：区域级恒该有、形状口径只比形状、节点级在当前页面**没有那种节点**时记 "
@@ -16499,7 +16503,13 @@ def main() -> int:
           "① zustand 选择器返回**新对象** ⇒ Object.is 恒不等 ⇒ Maximum update depth exceeded、整页挂掉"
           "（注释里那个「避免分三次订阅」的理由恰恰害了我）；"
           "② 读数脚本里 const midClick 落在 try 块内 ⇒ 块级作用域 ⇒ 外部 ReferenceError "
-          "⇒ 探针读到**上一轮的旧读数**而报「缺 13 个 testid」",
+          "⇒ 探针读到**上一轮的旧读数**而报「缺 13 个 testid」"
+          "**⇒⇒ 104c 最大的发现不是「原型缺一个功能」，是「契约里有一条根本不存在的东西」**：对账时 `替换媒体` 一直判「缺」⇒ 104b 的结论是「原型真缺该功能，如实留红」；回头去 1036 个 `docs/research/**/*.json` 里逐条找出处时发现：`全屏编辑` 15 处、`导出时间线` 11 处、`添加素材到时间线` 12 处、`静音` 12 处、`timeline-mute-button` 7 处、`flow-node-title` 4 处 —— **只有 `替换媒体` 0 处** ⇒ 它是 104b 手写契约时**凭空塞进去**的一条。"
+          "⇒⇒ **它为什么能一路活到被删？** 因为所有门都只做「原型 vs 契约」，**没有任何一道门做「契约 vs 源站证据」** ⇒ 凭空加一条，门不但不红，还会反过来**要求原型必须实现它** ⇒⇒⇒ **越诚实复刻，越会被自己编的契约判红**。"
+          "⇒⇒ **P9** 把这条回路关上：契约里每一条字面量都必须能在 `docs/research/jimeng-canvas-batch*/` 的源站快照里找到出处；**P10** 守的是 P9 自己 —— 白名单若被放宽成 `docs/research/**/*.json`，契约就能在**自己的判据产物**里找到自己 ⇒ P9 永久恒绿。"
+          "⇒⇒ **六个变异体当场分清**：契约塞无出处的字面量 ⇒ **P9 红**（并点名那一条，P8 同红属同根因）；白名单放宽 ⇒ **P10 红**；**放宽 + 塞坏条目** ⇒ **P9 被蒙混成绿**（因为前一个变异已把那条写过产物了），**只有 P10 拦得住** —— 这就是 P10 是不是多余的的实证；加一条**源站有 + 原型也有**的条目 ⇒ **rc=0 不红**（P9 不恐红）；节点级加一条**源站有 + 原型没有**的条目 ⇒ **P8 红而 P9 绿**（两口径分离）；快照目录取不到 ⇒ **P9 红**（fail-loud，不是恒真）；对照后重跑默认版 ⇒ **产物逐字节相同**。"
+          "⇒⇒ 另修一处**口径错配**：P8 原来读 `node_kinds_present` **（store 内部英文 kind）** 而契约 `node_kinds` 是**源站 DOM 上的中文标题词** ⇒ 交集恒为空 ⇒ P8 **永远记 null**（「没测到」）⇒ **一条永远拿不到读数的死判据**，而它长得像「测过了、结论是没测到」，比直接红还难发现 ⇒ 改成量 DOM 上的 `node_titles`，**判据的量程必须与契约站在同一侧**（原型 store 的私有表示换一种实现就会让它无声失效）。实测节点标题 `视频 1 / 文本 1 / 时间线 1 / 音频 1` ⇒ `node_kinds_matched` 三词全命中。"
+          "⇒⇒ 另修 `JimengNodeTitle`：104c 第一版只加了 class `flow-node-title` 并在注释里声称「源站容器 class 是 flow-node-title」—— **那是假陈述**（源站取证里它的字段是 `tid` = data-testid）⇒ 补 data-testid 并把那段注释换成据实陈述。",
           all(_needa))
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

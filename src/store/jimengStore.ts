@@ -49,7 +49,7 @@ export type JimengTransientLayer =
 
 export interface JimengCanvasState {
   /** 画布元信息 (顶栏) */
-  project: { name: string; nodeCount: number; saved: boolean };
+  project: { name: string; saved: boolean };
 
   nodes: JimengNode[];
   edges: Edge[];
@@ -339,6 +339,49 @@ const initialNodes: JimengNode[] = [
     },
     selected: false,
   },
+  // ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **Batch 1031-④c：补上契约要求的另外三种节点类型**
+  //   契约 `node_kinds` 是 `["文本", "时间线", "音频"]`，而此前初始 mock **只有 video**
+  //   ⇒ 节点级契约（`全屏编辑` / `导出时间线` / `静音` / `替换媒体` / `添加素材到时间线`）
+  //   永远量不到 ⇒ 探针 1031d 的 `P8` 只能记 `null`（「没测到」）⇒ 原型永远不被验到这一层。
+  //   ⚠️ 下面的 `data` 形状**不是猜的**，逐条照本文件 `insertNode(kind)` 的既有分支抄：
+  //   text `{title, text, width:368, height:368}` / timeline `{title, width:1200, height:207,
+  //   duration:0, clips:[]}` / audio `{title, duration:15, width:368, height:368}`
+  //   ⇒ mock 初始态与「点左栏插入」**同构** ⇒ 验的是同一条路径。
+  {
+    id: "text-1",
+    type: "text",
+    position: { x: 120.5, y: 160.2 },
+    data: { title: "文本 1", text: "", width: 368, height: 368 },
+    selected: false,
+  },
+  {
+    id: "timeline-1",
+    type: "timeline",
+    // ⚠️⚠️⚠️ 104c 第一版写的是 x=110.8 ⇒ 渲染后节点左缘落在 x≈20，
+    //   而左栏按钮在 x=16..56 ⇒ **这个节点有一部分压在左栏底下** ⇒
+    //   它顶行右簇与静音按钮（源站实测 rect 就在 x=134 一带）被
+    //   `rail-beta-badge` 挡住 ⇒ verifier 的 S.8（项目信息模态下
+    //   「未确认」必须为 0）当场转红：by_layer=9 / 仍留未确认=2。
+    //
+    //   ⇒ 根因是**我随手写的坐标**，不是门：门量的是「这个状态有没有分好桶」。
+    //   ⚠️ 而且这个红**长得像门的问题**（因为 S.8 自己都说
+    //   「demo 画布逐轮动态插节点」），很容易顺手去把门的强度调松 ——
+    //   那是 866 那次刚踩过的坑（「钉条数就是把易变量当契约」）。
+    //
+    //   ⇒ 改坐标而不是改门：源站 `source-canvas-census.json` 里
+    //     `timeline-flow-node` rect = **121, 265, 1200×207**
+    //     —— 源站的时间线节点**本来就不贴左缘**，是我这份 mock 贴太近了。
+    position: { x: 240, y: 700.4 },
+    data: { title: "时间线 1", width: 1200, height: 207, duration: 0, clips: [] },
+    selected: false,
+  },
+  {
+    id: "audio-1",
+    type: "audio",
+    position: { x: 1560.4, y: 180.6 },
+    data: { title: "音频 1", duration: 15, width: 368, height: 368 },
+    selected: false,
+  },
 ];
 
 
@@ -349,7 +392,12 @@ const withCopyTitle = (data: Record<string, unknown>): Record<string, unknown> =
     : data;
 
 export const useJimengStore = create<JimengCanvasState>((set) => ({
-  project: { name: "测试项目", nodeCount: 2, saved: true },
+  // ⚠️⭐⭐⭐⭐⭐ **这里原来有 `nodeCount: 2`，1031-④c 删掉了。**
+  //   全仓无人读它 —— 顶栏用的是 `s.nodes.length + groups.size` 现算。
+  //   而它硬编码成 `2`：**节点数一变它就是谎话**，谁哪天图省事改成读它，
+  //   顶栏立刻开始撒谎（插三个节点它仍然显示 2）。
+  //   ⇒ 「一个数字如果只是被**声明**在某处而没有从**源头**算出来，它就只是一段注释。」
+  project: { name: "测试项目", saved: true },
 
   nodes: initialNodes,
   edges: [],

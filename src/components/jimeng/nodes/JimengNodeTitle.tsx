@@ -95,7 +95,19 @@ export function JimengNodeTitle({ id, title }: { id: string; title: string }) {
           startRename();
         }}
         onMouseDown={(e) => e.stopPropagation()}
-        className="flex h-8 max-w-full items-start rounded-lg text-left"
+        // Batch 1031-④c：补 `data-testid="flow-node-title"`（节点级契约口径）。
+        //
+        // 更正一条自己写错的注释：④c 第一版只加了 class 名 `flow-node-title`，
+        // 并在注释里声称「源站节点标题的容器 class 是 flow-node-title」——
+        // **那是假陈述**。源站取证 `source-canvas-census.json` 里这一条的字段
+        // 是 `tid`（= data-testid），不是 class；`source-addsource-probe.json`
+        // 也是把它列在 testids 数组里。全仓没有任何一条源站证据记录过这个 class。
+        //
+        // 症状极具欺骗性：class 加上了、DOM 里也真能 querySelector 到，
+        // 但判据查的是 testid ⇒ 仍判「缺」⇒ 差一点就当成「判据坏了」去改判据。
+        // class 保留（同名的语义钩子，调试时好定位），但契约依据的是 testid。
+        data-testid="flow-node-title"
+        className="flow-node-title flex h-8 max-w-full items-start rounded-lg text-left"
       >
         <span className={textClass} title={title} data-testid="node-title-text">
           {title}

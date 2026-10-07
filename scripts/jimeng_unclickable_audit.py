@@ -1463,10 +1463,27 @@ def main() -> int:
             ("文本·全屏编辑", "文本", "text-fullscreen",
              '[data-testid="text-expand"]', "文本节点工具条第 8 枚（aria=全屏）"),
             ("时间线·全屏", "时间线", "timeline-fullscreen",
-             'button[aria-label="全屏编辑"]', "时间线顶行右簇"),
+             '.react-flow__node[data-testid="{nid}"] '
+             '[data-testid="timeline-fullscreen-trigger"]',
+             "时间线顶行右簇（**限定在本节点内**）"),
             ("主体·元数据编辑器", "主体", "subject-metadata-editor",
              '[data-testid="subject-meta-trigger"]', "主体节点「编辑主体」"),
         ]:
+            # ⚠️⚠️⚠️ 104c：trig 里可以有 `{nid}` 占位，**入口必须限定在目标节点内**。
+            #   原来时间线那条写的是全局 `button[aria-label="全屏编辑"]` + `.first`
+            #   ⇒ 页面上**每有一个时间线节点就多一个同名按钮**，`.first` 命中哪一个
+            #     只取决于 DOM 顺序 —— 那是个**与被测行为无关的偶然量**。
+            #   104c 给 initialNodes 补了 mock 时间线节点之后，页面上同时有两个，
+            #   `.first` 命中的是 mock 那个（可能还被别的节点挡住）
+            #   ⇒ 点了等于没点 ⇒ 这条状态被记成「点不到或点了层没出现」。
+            #   ⚠️ 同一个列表里**文本那条早就是限定在节点内的**
+            #   （`.react-flow__node[data-testid="{nid}"]`）⇒ 两种口径混用，
+            #     而 864 的注释恰恰写着「候选写错 ≠ 产品没有」——
+            #     同一个教训，同一处，隔着一行。
+            #   ⇒ 这次也顺手**从文案定位换成 testid 定位**：
+            #     源站取证里这个入口是 `timeline-fullscreen-trigger`
+            #     （`clone-timeline.json`：aria=全屏编辑 / tid=timeline-fullscreen-trigger），
+            #     文案会随本地化改、testid 不会。
             nid = insert(kind)
             if not nid:
                 skipped.append(f"{tag}（插不出 {kind} 节点 —— 前置态没成立，"
@@ -1475,6 +1492,7 @@ def main() -> int:
             if not select_node(nid):
                 skipped.append(f"{tag}（{kind} 节点插出来了但选不中）")
                 continue
+            trig2 = trig.replace("{nid}", nid)
             # ⚠️⚠️ 文本节点：入口按钮**只在编辑态里存在**。这一条是本批
             #    查出来的**机制**（不是推测，源码 + 探针 + 现场转储三方对齐）：
             #      · 源码 `JimengTextNode.tsx:390` 起是 `{editing ? (…格式
@@ -1505,16 +1523,16 @@ def main() -> int:
                 if not (page.locator(
                         f'.react-flow__node[data-testid="{nid}"].selected'
                 ).count() or select_node_soft(nid)):
-                    _d = j_ctx_dump(nid, trig)
+                    _d = j_ctx_dump(nid, trig2)
                     skipped.append(
                         f"{tag}（进了编辑态但节点掉选中："
                         f"编辑面 {_d.get('editing')}）")
                     continue
             # ⚠️ 入口点之前**先问它在不在**：不在就**不点**（点了也没用，
             #    而且会把「前置态没成立」记成「入口坏了」）。
-            t = page.locator(trig)
+            t = page.locator(trig2)
             if not t.count():
-                _d = j_ctx_dump(nid, trig)
+                _d = j_ctx_dump(nid, trig2)
                 skipped.append(f"{tag}（{why}：入口按钮**压根不在 DOM 里** —— "
                                f"前置态没成立，**不是**「入口没有」；现场="
                                f"节点 {_d.get('nodes')}/文本 "

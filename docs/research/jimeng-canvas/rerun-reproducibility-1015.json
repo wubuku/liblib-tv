@@ -257,8 +257,9 @@
   },
   {
    "round": 2,
-   "n_drifted": 3,
+   "n_drifted": 4,
    "drifted": [
+    "anchor-gate-coverage-1021.json",
     "change-locality-1011.json",
     "empty-ambiguity-1014.json",
     "golden-freshness-1008.json"
@@ -404,8 +405,8 @@
    "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 88321,
-   "n_bytes_fresh": 88321,
+   "n_bytes": 88931,
+   "n_bytes_fresh": 88931,
    "state": "reproduced",
    "tail": [
     "P1..P9 = [True, True, True, True, True, True, True, True, True]",
@@ -508,8 +509,8 @@
    "probe": "scripts/jimeng_probe1031d_replica_contract.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 2002,
-   "n_bytes_fresh": 2002,
+   "n_bytes": 2036,
+   "n_bytes_fresh": 2036,
    "state": "reproduced",
    "tail": [
     "退出码约定：0=全绿 1=有 P 判据为假 2=探针崩了/契约不是合法 JSON",
@@ -648,7 +649,7 @@
  },
  "p8_invariants_invisible_to_1014": {
   "census_n_goldens": 23,
-  "census_n_ambiguous": 215,
+  "census_n_ambiguous": 217,
   "census_n_self_provable": 9,
   "self_ambiguous": 6,
   "self_ambiguous_paths": [
@@ -685,7 +686,7 @@
   "0/24": "被拒绝认领的比例（分母 = 通道 A）",
   "22/24": "认领到的比例（分母 = 通道 A）",
   "8": "第一版探针认领到的本数（仪器故障期，已修）",
-  "215": "1014 普查口径下全部账里「不可自证」的总数",
+  "217": "1014 普查口径下全部账里「不可自证」的总数",
   "9": "1014 普查口径下「可自证」的总数",
   "23": "1014 普查看到的 golden 本数（已排除它自己那本）",
   "829": "1005 golden 在 git HEAD 上的 `n_zero_coupling`",
@@ -729,7 +730,7 @@
   "1018": "批号",
   "1019": "批号",
   "10/22": "第 1 轮的漂移比例（分母 = 认领到的本数）",
-  "3/22": "第 2 轮的漂移比例（分母 = 认领到的本数）",
+  "4/22": "第 2 轮的漂移比例（分母 = 认领到的本数）",
   "1/22": "第 3 轮的漂移比例（分母 = 认领到的本数）",
   "0/22": "第 4 轮的漂移比例（分母 = 认领到的本数）"
  }

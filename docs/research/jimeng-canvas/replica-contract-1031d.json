@@ -6,7 +6,7 @@
   "n_aria_literals": 24,
   "n_aria_shapes": 3,
   "n_node_scoped_testids": 2,
-  "n_node_scoped_aria": 5,
+  "n_node_scoped_aria": 4,
   "n_node_kinds": 3
  },
  "caliber_overlap": {
@@ -17,6 +17,15 @@
  "aria_literals_carrying_a_digit": [],
  "P1_no_literal_aria_carries_a_driftable_number_1031d": true,
  "P2_contract_has_both_calibers_1031d": true,
+ "contract_sourcing": {
+  "snapshot_source": "docs/research/jimeng-canvas-batch*/*.json",
+  "snapshot_found": true,
+  "n_literals": 43,
+  "unsourced": [],
+  "unsourced_count": 0
+ },
+ "P9_every_contract_literal_is_traceable_to_source_evidence_1031d": true,
+ "P10_source_allowlist_excludes_criterion_artifacts_1031d": true,
  "replica_readings_file": "/tmp/b1031d-local-fresh.json",
  "replica_1031d": {
   "has_nodes": true,
@@ -27,31 +36,27 @@
  },
  "P3_replica_matches_contract_1031d": true,
  "node_scoped_missing": {
-  "testids": [
-   "timeline-mute-button",
-   "flow-node-title"
-  ],
-  "aria": [
-   "全屏编辑",
-   "导出时间线",
-   "替换媒体",
-   "添加素材到时间线",
-   "静音"
-  ]
+  "testids": [],
+  "aria": []
  },
- "P8_node_scoped_present_when_node_exists_1031d": null,
- "node_scoped_not_measured_because": "当前 mock 页面只有 video 节点；契约要求 node_kinds=['文本', '时间线', '音频'] ⇒ 选中那些节点才出现的条目属于「没测到」，不是「测了没有」",
+ "P8_node_scoped_present_when_node_exists_1031d": true,
+ "node_kinds_matched": [
+  "文本",
+  "时间线",
+  "音频"
+ ],
+ "n_node_titles_seen": true,
  "status_line_shapes_saved": [
   "N nodes, N edges, N selected. Editable. Room connected. 已保存."
  ],
  "status_line_shapes_other": [
   "N nodes, N edges, N selected. Editable. Room connected. 保存中…"
  ],
- "n_saved_samples": 1,
+ "n_saved_samples": 2,
  "n_other_samples": 1,
  "P4_replica_status_line_shape_1031d": true,
- "n_status_line_samples": 2,
- "n_distinct_status_lines": 2,
+ "n_status_line_samples": 3,
+ "n_distinct_status_lines": 3,
  "status_shapes_seen": [
   "N nodes, N edges, N selected. Editable. Room connected. 保存中…",
   "N nodes, N edges, N selected. Editable. Room connected. 已保存."
