@@ -1777,6 +1777,37 @@ def mutate_absolute_anchor_rotten(root: Path) -> None:
     path.write_text(patched, encoding="utf-8")
 
 
+def mutate_multiple_ratio_wrong(root: Path) -> None:
+    """正文里显式算式的结论被改错时必须拦下（M297）。
+
+    ★ **M296 订正的那处算术错的形态**：★ **左边两个乘数一个没动，
+    ★ **只有除完之后的结论被写错了**——★ **而按「值」建的判据全都看不见这件事**
+    （★ **它们问的是「这个数对不对」，★ **而这里错的是「算出来对不对」**）。
+    """
+
+    path = root / "30-concepts.md"
+    text = path.read_text(encoding="utf-8")
+    patched = text.replace("8 ÷ 2 = 4", "8 ÷ 2 = 8", 1)
+    assert patched != text, "注入失败：没找到那条显式算式"
+    path.write_text(patched, encoding="utf-8")
+
+
+def mutate_multiple_unlisted_ok(root: Path) -> None:
+    """不在台账里的「N 倍」不该被误报（不误报对照，M297）。
+
+    ★ **正向那一侧必须有对照**：★ **只测「算错会抓到」，★ **那道闸可能只是永远报错。**
+    ★ **而这一条钉住的是判据二的边界**：★ **它守的是「那 7 条不许悄悄改」，
+    ★ **不是「所有倍数句都要进表」**——★ **正文里本就有一处「把那一行裁出来放大 4 倍」，
+    ★ **那是操作建议、不是测量断言，★ **而它一直没被报过。**
+    """
+
+    path = root / "10-tasks" / "manage-assets.md"
+    text = path.read_text(encoding="utf-8")
+    probe = "\n- 探针注入句：把这块区域放大 6 倍就能看清差别。\n"
+    assert "放大 4 倍" in text, "注入失败：★ **那处既有的不误报对照已经不在了**"
+    path.write_text(text + probe, encoding="utf-8")
+
+
 def mutate_ledger_points_to_progress(root: Path) -> None:
     """重述位置指向内部账本而不是对外发布页时必须拦下。
 
@@ -2226,6 +2257,8 @@ CASES: list[tuple[str, object, str, str]] = [
     ("绝对断言的限定词被删掉（订正块被误删的样子，M254）", mutate_absolute_qualifier_deleted, "absclaim", "限定词在"),
     ("限定词还在时不该被误报（不误报，M254）", mutate_absolute_row_ok, "absclaim", EXPECT_PASS),
     ("登记表里的锚点指着一句已改掉的话（锚点腐化，M296）", mutate_absolute_anchor_rotten, "absclaim", "锚点片段在"),
+    ("算式的结论被改错（两个乘数没动，M297）", mutate_multiple_ratio_wrong, "multiples", "算式验算不过"),
+    ("不在台账里的 N 倍不该被误报（不误报，M297）", mutate_multiple_unlisted_ok, "multiples", EXPECT_PASS),
 ]
 
 
@@ -2276,6 +2309,8 @@ def run_gate(root: Path, which: str) -> tuple[int, str]:
         cmd = [sys.executable, str(root / "scripts/check-fact-ledger.py"), str(root)]
     elif which == "absclaim":
         cmd = [sys.executable, str(root / "scripts/check-absolute-claims.py"), str(root)]
+    elif which == "multiples":
+        cmd = [sys.executable, str(root / "scripts/check-multiples.py"), str(root)]
     elif which == "dupeline":
         cmd = [sys.executable, str(root / "scripts/check-duplicate-lines.py"), str(root)]
     elif which == "internallists":
