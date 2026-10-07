@@ -141,6 +141,32 @@ into the *same* index, and the plain commit took all 12. Two habits close it:
 If it already happened and you pushed: do not rewrite. Record it in the batch
 note (what was swept in, and that nothing was lost) and tell them.
 
+**When the index already holds someone else's staged files, aborting is not
+enough — you still owe them a commit.** Batch 312 (2026-10-07) hit exactly this:
+a parallel agent had staged 5 `tdcanvas-canvas` files, so the guard fired and
+refused to commit. But `git commit` (plain) would have taken *their* files too,
+and `git commit -- <path>` is banned above. The fix is a **private index**: build
+a throwaway index from `HEAD`, stage only your own paths into it, and commit from
+it — **the shared `.git/index` is never read as the commit source, so their
+staged state is left exactly as it was.**
+
+```bash
+TMPIDX=$(python3 -c "import tempfile; print(tempfile.mktemp(prefix='idx-'))")
+export GIT_INDEX_FILE="$TMPIDX"
+git read-tree HEAD                      # start from HEAD, not from the shared index
+git add -- <only your paths>            # your paths only
+git diff --cached --name-only           # guard again, inside the private index
+[ "$(git diff --cached --name-only | wc -l)" = "<your count>" ] || { echo ABORT; exit 1; }
+git commit -F /tmp/my-msg.txt
+unset GIT_INDEX_FILE                    # leave the temp file for /tmp to reap
+```
+
+Then **verify their staged files survived**: `git diff --cached --name-only`
+must still list their paths, and `git diff --cached --numstat -- <their dir>`
+must still show their numbers. Two cautions: build the message file *before*
+entering the block (the `read-tree`/`add` window is short but non-zero), and
+**do not `rm` the temp path** — pass cleanup to `python3` or let the OS reap it.
+
 Other shared-workspace rules:
 
 - A batch/section number is not reserved by asking; two agents will pick the same
