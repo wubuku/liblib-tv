@@ -8,10 +8,17 @@
 
 ```bash
 cd docs/user-manual/libtv-canvas
-./build-site.sh --preview      # 构建 + 本地预览 http://localhost:4173
+./serve.sh                    # 构建 + 本地预览 http://127.0.0.1:4189/
 ```
 
 产物在 `.vitepress/dist/`，**整个目录拷到任意静态 Web 服务器就是发布完成**。
+
+> ⭐ **`serve.sh` 才是日常用的启动方式。** `build-site.sh --preview` 也能起预览，
+> 但它硬编码 4173，而且**端口撞了不会告诉你** —— 本仓库里多本手册并存，
+> 4173 / 4188 都可能已经被别人占着。`serve.sh` 会打印是谁在占、并自动往后找空闲端口。
+>
+> ⛔ **4188 是 Flowable Trial 原站那本手册的**，打开它不是这一本。
+> 先看标签页标题：LibTV 这本应该是「LibTV 画布用户手册」。
 
 ---
 
@@ -22,6 +29,7 @@ cd docs/user-manual/libtv-canvas
 | `package.json` | 只声明一个 devDependency：`vitepress` | 几乎不改 |
 | `.vitepress/config.mjs` | 站点标题、侧边栏结构、搜索、发布排除项 | **加新页面时改这里** |
 | `build-site.sh` | 六步构建 + 四道产物校验 | 加新门禁时改这里 |
+| `serve.sh` | ⭐ **一键启动**：构建 + 起本地预览（默认 :4189），端口被占时自动避让 | 换默认端口时改这里 |
 | `PUBLISH.md` | 本文件 | 换发布方式时改这里 |
 
 新增一篇正文（比如 `10-tasks/xxx.md`）时，**必须同时**：
@@ -72,17 +80,36 @@ cd docs/user-manual/libtv-canvas
 ## 本地预览
 
 ```bash
-./build-site.sh --preview      # 构建完直接起 :4173
-# 或
-npx vitepress dev              # 开发模式，改 Markdown 即时热更新
+./serve.sh                 # ⭐ 日常就用这个：构建 + 起 :4189
+./serve.sh --no-build      # 改了正文想立刻看：不重新构建
+./serve.sh --status        # 看跑没跑、在哪个端口
+./serve.sh --stop          # 停掉
 ```
 
-> ⚠️ **每次重新构建后要重启预览进程。**
+底层用的是 `python3 -m http.server`，**无缓存**，所以改完刷新就能看到，
+**不需要重启预览进程**。
+
+> ⚠️⚠️ **端口别搞混。** 本仓库里同时存在多本用户手册，每本都可能起着自己的预览：
+>
+> | 端口 | 是谁的 |
+> |---|---|
+> | **4189** | ✅ **LibTV 画布手册（本手册的默认端口）** |
+> | 4188 | ⛔ Flowable Trial 原站手册 —— 打开它不是这一本 |
+> | 4173 | `build-site.sh --preview` 硬编码的端口，撞了不报错 |
+>
+> 打开后先看标签页标题确认：LibTV 这本是「**LibTV 画布用户手册**」。
+
+### 想要热更新（改 Markdown 即时刷新）
+
+```bash
+npx vitepress dev
+```
+
+> ⚠️ **别用 `./build-site.sh --preview`。**
 > `vite preview`（含 `--preview`）底层是 sirv，**在启动时缓存文件清单**。
 > 构建产物更新后（新增文件或改了哈希的资产），旧预览进程会对新文件返回 404。
 > 诊断特征很典型：磁盘上文件存在、页面里引用的哈希也对得上，但 HTTP 就是 404。
-> 规避办法：用 `./build-site.sh --preview` 每次都重新起，或者干脆用无缓存的
-> `python3 -m http.server 4173 -d .vitepress/dist`。
+> 规避办法就是用 `./serve.sh`（无缓存），或者开发时用上面的 `vitepress dev`。
 
 ---
 

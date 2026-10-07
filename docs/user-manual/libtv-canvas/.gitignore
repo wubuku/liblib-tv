@@ -4,6 +4,11 @@ node_modules/
 .vitepress/cache/
 tools/.evidence/
 
+# ⭐ serve.sh 的运行时状态（pid / 端口 / 日志）—— 每次启动都变，不该进版本库
+.vitepress/serve.pid
+.vitepress/serve.port
+.vitepress/serve.log
+
 # ⭐ 取证 stdout 必须随脚本进仓库：正文里每个实测数字都要能回查
 # （否则就只剩「可重跑」，没有「跑出来的原文」）
 # ⚠️ 用户全局 ~/.gitignore_global:14 有 *.log，会把它们全排除掉
