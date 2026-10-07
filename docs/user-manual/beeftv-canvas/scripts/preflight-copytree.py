@@ -52,11 +52,22 @@ Batch 311–320 的绿构建 wrapper 里各有一组「搭完树当场核对」�
     **这条不是判据的缺陷，是本项目用例编号的一个真事实（纪律 357 如实记下）。**
 """
 import argparse
-import re
+import ast
 import os
 import re
 import subprocess
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+#: **「是不是注入夹具」只有一份判据**（Batch 258 收敛进 `selftestnames`）——
+#: **本判据用它而不用自己重刻一个正则**：本批先按「文件名不以 `fix-` 开头即反验」
+#: 扫了一遍，得出「80 份未登记」——**而那 80 份全是 `selftest-*-fix-*` 夹具**
+#: （Batch 256 记过同一个坑：58 份夹具被当成反验，判据报了 58 处）。
+#: **而它与闸 18 用的是同一个模块**——本判据与闸 18 判「反验还是夹具」的口径
+#: **因此不可能对不上**（纪律 355：同一份判据只写一份）。
+#: **注意它 import 的是这个纯常量模块、不是闸 18 本身**：
+#: 闸 42 记过「两道闸不该互相 import，因为 import 会执行对方模块顶层的代码」。
+from selftestnames import FIXTURE_RE
 
 REPO_DEFAULT = "/Users/yangjiefeng/Documents/wubuku/liblib-tv"
 
@@ -201,6 +212,37 @@ def run_gate(out_dir, sub, script):
     return r.returncode, r.stdout + r.stderr
 
 
+def registered_costs(gate18_path):
+    """从**闸 18 的源码**读出 `SLOW` 与 `SELFTEST_COSTS` 两张表的键。
+
+    **用 `ast` 而不 `import`**（闸 42 记过：两道闸不该互相 import，
+    因为 import 会执行对方模块顶层的代码——而 `verify-selftest-bootable.py` 顶上
+    `import beefsrc`，那会让本工具**依赖上游检出是否存在**，
+    **而本工具的职责只是搭副本树，不该多出一个环境前提**）。
+
+    **只认 `ast.Dict` 形态的赋值**：闸 42 那条判据读 SLOW 名单用的也是这个办法
+    （`SLOW.seconds` 那种写法本函数读不出来——**而那正是它该报「未能核对」而不是
+    悄悄返回空集的情形**）。
+    """
+    with open(gate18_path, encoding="utf-8") as fh:
+        tree = ast.parse(fh.read())
+    out = set()
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Assign):
+            continue
+        names = [t.id for t in node.targets
+                 if isinstance(t, ast.Name) and t.id in ("SLOW", "SELFTEST_COSTS")]
+        if not names or not isinstance(node.value, ast.Dict):
+            continue
+        for k in node.value.keys:
+            if isinstance(k, ast.Constant) and isinstance(k.value, str):
+                out.add(k.value)
+    if not out:
+        raise ValueError("闸 18 源码里没有 `SLOW` / `SELFTEST_COSTS` 的字典字面量"
+                         "（**读不出来不等于「一个都没登记」**，纪律 101）")
+    return out
+
+
 def preflight(repo, sub, out, files, wip, run_tables_gate=True, expect_case=(),
               expect_batch_row=None):
     """返回 (问题列表, 信息行列表)。**信息行与问题行必须分开**——
@@ -266,6 +308,51 @@ def preflight(repo, sub, out, files, wip, run_tables_gate=True, expect_case=(),
                             "读不出来不等于不存在（纪律 101）" % (n, drv, why))
         else:
             problems.append("副本树的 %s 里第 %d 例%s" % (drv, n, why))
+
+    # ⑨ **新增的反验必须在闸 18 的实测耗时表里有条目**（Batch 337）——
+    #    **本条治的正是本批自己付过的那笔账**：Batch 336 加了闸 46 与它的反验，
+    #    而那 8 例没登记 `SELFTEST_COSTS`，于是闸 18 方向四d 报红，
+    #    **绿构建跑满 12 分钟、还作废了一次矩阵重测（红基线上量的行不算证据）**，
+    #    **而这条义务在闸 18 自己的报错原话里写着**（「跑一次把秒数填进去即可」）。
+    #    **而闸 18 是构建里最靠后的一道**：它要真跑所有反验，排在最后。
+    #    **也就是说：一条要在 12 分钟后才报的义务，等于没有及时提醒。**
+    #    **本条把同一个判断挪到第 30 秒**（preflight 在副本树建好后就跑）。
+    #
+    #    **只核「新增的」，不核存量**：存量 49 份早就在表里，
+    #    而「已存在反验的耗时漂了」是闸 18 方向四d 在跑时核的另一族（它的判据是运行时实测）。
+    new_relt = sorted(
+        p for p in changed_set
+        if p.startswith(os.path.join(sub, "scripts", "selftest-"))
+        and changed[p] == "??"
+        and FIXTURE_RE.match(os.path.basename(p)) is None)
+    if new_relt:
+        gate18 = os.path.join(out, sub, "scripts", "verify-selftest-bootable.py")
+        if not os.path.exists(gate18):
+            problems.append("副本树里没有闸 18（%s）—— **判据⑨ 读不到事实源即未能核对**，"
+                            "本批新增反验 %s 有没有登记无从核对（纪律 101）"
+                            % (os.path.join(sub, "scripts", "verify-selftest-bootable.py"),
+                               [os.path.basename(x) for x in new_relt]))
+        else:
+            try:
+                reg = registered_costs(gate18)
+            except (OSError, SyntaxError, ValueError) as exc:
+                problems.append("闸 18 源码里读不出 `SLOW` / `SELFTEST_COSTS`（%s）——未能核对"
+                                % exc)
+            else:
+                miss = [os.path.basename(x) for x in new_relt
+                        if os.path.basename(x) not in reg]
+                if miss:
+                    problems.append(
+                        "本批新增反验 %s 没有在闸 18 的 `SELFTEST_COSTS` / `SLOW` 里登记 —— "
+                        "**不登记的后果是闸 18 方向四d 报红，而那要等构建跑满全程才看得到；"
+                        "先跑一次它、把秒数填进去即可**（`seconds` 是上限，宁大勿小，纪律 204）"
+                        % miss)
+                else:
+                    notes.append("本批新增反验 %d 份都已在闸 18 的实测耗时表里登记"
+                                 % len(new_relt))
+    else:
+        notes.append("判据⑨：本批没有新增反验（存量不在本判据范围内，"
+                     "「已存在反验的耗时漂了」由闸 18 方向四d 在运行时核）")
 
     # ⑦ 纪律编号连续（9..max 无缺漏、无重复）——**原先是每批 wrapper 里手抄的一段**，
     #    **而 wrapper 住在 /tmp，下一批就没有了**（纪律 371：判据写在会被丢掉的地方，
@@ -335,6 +422,17 @@ def self_test():
     with open(os.path.join(repo, sub, "scripts", "verify-tables.py"), "w",
               encoding="utf-8") as fh:
         fh.write("import sys\nprint('ok')\nsys.exit(0)\n")
+    #: **闸 18 夹具**——判据⑨ 的事实源。**必须在 commit 之前造**：
+    #: 它是已入库文件，真实的 `git archive HEAD` 必然带上它，
+    #: **而副本树里没有它就意味着「副本树建错了」或「闸 18 被删了」**（那正是判据⑨ 该报的）。
+    #: **第一版没造它，于是判据⑨ 把反验⑤ 专门造的 `selftest-1.sh` 报成
+    #: 「读不到事实源」**——**那个失败是对的，而缺的是夹具不是判据**（纪律 344）。
+    #: 登记 `selftest-1.sh` 是**如实**：在夹具的设定里它确实是一份新增反验。
+    with open(os.path.join(repo, sub, "scripts", "verify-selftest-bootable.py"), "w",
+              encoding="utf-8") as fh:
+        fh.write('SLOW = {\n    "selftest-slow-one.py": {"seconds": 30},\n}\n'
+                 'SELFTEST_COSTS = {\n    "selftest-1.sh": 1.0,\n'
+                 '    "selftest-new-thing.py": 1.0,\n}\n')
     # 两个本批文件（会被改脏）
     for name in ("mine-a.md", "mine-b.md"):
         with open(os.path.join(repo, sub, name), "w", encoding="utf-8") as fh:
@@ -468,6 +566,7 @@ def self_test():
     p7, n7 = preflight(repo, sub, out, files2, wip, run_tables_gate=False,
                        expect_case=["%s:1" % drv_rel, "%s:7" % drv_rel])
     assert not p7, p7
+
     assert any("执行器形态" in x for x in n7), n7
     assert any("内联块形态" in x for x in n7), n7
 
@@ -541,8 +640,68 @@ def self_test():
     shutil.copyfile(os.path.join(repo, sub, "PROGRESS.md"),
                     os.path.join(out, sub, "PROGRESS.md"))
 
+    # ── 反验⑪（Batch 337 新增）：「新增反验有没有登记实测耗时」四支样本 ──
+    #: **两份新增文件，一份是反验、一份是注入夹具**——**夹具那一份刻意不登记**：
+    #: 判据⑨ 若不认夹具，它会被要求登记，于是**「不误伤」那一半根本验不到**
+    #: （判据⑨ 用 `selftestnames.FIXTURE_RE` 而不是自己重刻正则，
+    #: **而那正是本批先栽过的地方**：第一遍按「文件名不以 `fix-` 开头即反验」扫，
+    #: 得出「80 份未登记」，**而那 80 份全是夹具**——Batch 256 记过同一个坑）。
+    new_real = os.path.join(sub, "scripts", "selftest-new-thing.py")
+    new_fix = os.path.join(sub, "scripts", "selftest-9-fix-3-thing.py")
+    for rel, body in ((new_real, "print('x')\n"), (new_fix, "print('fixture')\n")):
+        with open(os.path.join(repo, rel), "w", encoding="utf-8") as fh:
+            fh.write(body)
+        shutil.copyfile(os.path.join(repo, rel), os.path.join(out, rel))
+    #: **`new_real` / `new_fix` 已经是「相对仓库根」的路径**（`sub` 已在里面），
+    #: **所以只拼 `repo` / `out`，不多拼一次 `sub`**：
+    #: 第一版写成 `os.path.join(repo, sub, rel)`，路径变成 `repo/sub/sub/scripts/…`，
+    #: 报出来的是 `FileNotFoundError`——**而真实原因离得很远**
+    #: （纪律 157 同族：「目录不存在」听着像环境问题，其实是这一行多拼了一段）。
+    #: **闸 18 也要进 `files`**：下面正样本会把它改脏，而它在夹具里是 commit 之前造的
+    #: 已入库文件——**忘了加，判据① 就会如实多报一条「漏叠加」**。
+    g18_rel = os.path.join(sub, "scripts", "verify-selftest-bootable.py")
+    files3 = files2 + [new_real, new_fix, g18_rel]
+
+    # 负样本：反验已登记、夹具不在表里（而它不该被要求登记）→ 0 问题
+    p16, n16 = preflight(repo, sub, out, files3, wip, run_tables_gate=False)
+    assert not p16, p16
+    #: **是「至少 1 份」不是「1 份」**：反验⑤ 那个 `selftest-1.sh` 也是一份未跟踪的
+    #: 新增反验（它刻意照抄 `selftest-meta.sh` 的执行器形态），**而它在闸 18 夹具里已登记**。
+    #: **第一版断言写成「1 份」而判据如实报了 2 份**——
+    #: **失败的是断言不是判据**（纪律 344：先怀疑夹具与样本，再怀疑判据）。
+    assert any("都已" in x and "登记" in x for x in n16), n16
+
+    # 正样本⑪-a：把那份新增反验从闸 18 的表里删掉 → 必须点名它，且**不能**点名那个夹具
+    g18_repo = os.path.join(repo, g18_rel)
+    g18 = os.path.join(out, g18_rel)
+    orig = open(g18_repo, encoding="utf-8").read()
+    with open(g18_repo, "w", encoding="utf-8") as fh:
+        fh.write(orig.replace('    "selftest-new-thing.py": 1.0,\n', ""))
+    shutil.copyfile(g18_repo, g18)
+    p17, _ = preflight(repo, sub, out, files3, wip, run_tables_gate=False)
+    assert any("selftest-new-thing.py" in x and "登记" in x for x in p17), p17
+    #: **这一条是「不误伤」的反向断言**：那个 `-fix-` 夹具从头到尾就不在表里，
+    #: **而判据不许要求它登记**——**若报的是它的名字，说明判据把夹具也管起来了**。
+    assert not any("fix-3" in x for x in p17), p17
+    with open(g18_repo, "w", encoding="utf-8") as fh:
+        fh.write(orig)
+    shutil.copyfile(g18_repo, g18)
+
+    # 正样本⑪-b（退化）：副本树里没有闸 18 → 必须报「未能核对」
+    #: **只钉目标那一条，不钉问题总数**（沿用正样本⑩ 写下的约定）：
+    #: 判据③（副本树里必须有 `FILES` 的每个文件）**也会报**，而那一条是对的；
+    #: **第一版钉了「1 个问题」于是数到 2 当场失败**——**那是样本期望值写错，不是判据**。
+    #: **而 ⑨ 那一支不可省**：闸 18 若没被本批改动就不在 `FILES` 里，
+    #: 副本树里可能有它的 HEAD 版，**那时 ③ 不会报、只有 ⑨ 会报**。
+    os.remove(g18)
+    p18, _ = preflight(repo, sub, out, files3, wip, run_tables_gate=False)
+    assert any("未能核对" in x and "闸 18" in x for x in p18), p18
+    shutil.copyfile(g18_repo, g18)
+    p19, _ = preflight(repo, sub, out, files3, wip, run_tables_gate=False)
+    assert not p19, p19
+
     shutil.rmtree(base, ignore_errors=True)
-    print("自测 15 个样本全过：负样本 0 问题（且 ` M` 的 WIP 在副本树里**不**误报）；"
+    print("自测 19 个样本全过：负样本 0 问题（且 ` M` 的 WIP 在副本树里**不**误报）；"
           "正样本①漏叠加、正样本②名单漏了 WIP、"
           "正样本③名单过期（走 notes 不走 problems）、"
           "正样本④副本树混进未跟踪文件（抓得到，且拿掉就恢复 0 问题）、"
@@ -551,7 +710,9 @@ def self_test():
           "⑧纪律表挖掉一条（且**两棵树都挖**，否则量到的是 cmp 那条）、"
           "⑨问一个账本里没有的批次、⑩账本文件不在副本树里（报未能核对）；"
           "**另有一对反向**：补回去 / 放回去都必须恢复 0 问题，"
-          "**而第一版的反向样本报的仍然是缺陷——因为「补回去」只补了副本树那一棵**")
+          "**而第一版的反向样本报的仍然是缺陷——因为「补回去」只补了副本树那一棵**；"
+          "**⑪新增反验未登记实测耗时（负样本 + 能抓 + **反向断言不许把注入夹具也管起来** "
+          "+ 退化必报未能核对）**")
 
 
 def main():

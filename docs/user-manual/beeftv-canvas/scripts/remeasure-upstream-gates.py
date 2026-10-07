@@ -91,6 +91,7 @@ Batch 330 又实测出**它至少多算 2 道**（`verify-meta` / `verify-baseli
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -365,5 +366,177 @@ def main(argv=None):
     return 1 if bad else 0
 
 
+# ── Batch 337：落盘矩阵的形状核对搬进本工具 ────────────────────────────
+# **为什么搬**（纪律 371 的第二次应验）：那段核对原先只活在 `/tmp` 的绿构建 wrapper 里，
+# **十一句判据里有两处硬编码**——「45 行 / 45 指纹」与「18 道真读」。
+# **实测代价就是本批自己付的**：Batch 336 加了闸 46，矩阵变成 45 行，
+# **wrapper 仍写着 44 → 绿构建跑到第 11 分钟才报「覆盖不是 44/44」**。
+# **而 `/tmp` 会被清理、下一个批次不会去看上一批的 wrapper**（纪律 156 的同型）。
+#
+# **搬进来之后，那两处硬编码一个都不需要了**：
+#   · 行数用 `measured_gates()` **当场自算**——而它本来就是枚举闸的唯一事实源
+#     （纪律 355：枚举只写一份，闸 45 也是 importlib 调它）；
+#   · A 类数改成**从 `20-reference.md` 现场抽那个数再与矩阵比对**，
+#     于是「参考页写死的 18」从一个「每批要记得手改的数」变成**机械可核的登记**。
+#     **而这一条比原来那条更强**：原来只核「A == 18」，现在核的是
+#     **「参考页说的 A 与这次实测的 A 是同一个数」**——**参考页改错了也报**。
+REF_A_RE = re.compile(r"A\s*(\d+)\s*道")
+#: 闸 45 自己——**矩阵里量它就是自指**（纪律 367③：判据读的那份实测不能被它自己量）。
+SELF_GATE = "verify-upstream-gates.py"
+
+
+def verify_shape(data, expect_rows, ref_a, path="<夹具>"):
+    """核落盘矩阵的形状。**返回问题列表，空列表即相符**。
+
+    **刻意做成纯函数**（`data` / 期望值都从外面进）：这样自检探针能造一份
+    **夹具**去测它，而不必去改真实矩阵——**探针与判据共用一段拼装逻辑的话，
+    那不叫独立**（Batch 335 记过「判据对、样本错」那类坑）。
+
+    `expect_rows` 由调用方用 `measured_gates()` 当场算，`ref_a` 由调用方从参考页抽；
+    **本函数自己一个数都不硬编码**。
+    """
+    problems = []
+    if not isinstance(data, dict) or not isinstance(data.get("rows"), list):
+        return ["矩阵结构读不出来（`rows` 不是列表）"]
+    rows, fps = data["rows"], data.get("fingerprints")
+    if not isinstance(fps, dict):
+        return ["矩阵缺 `fingerprints` 或它不是字典"]
+
+    bad = [r.get("gate") for r in rows if r.get("unusable")]
+    if bad:
+        problems.append("有作废行：%s" % bad)
+    if not (len(rows) == len(fps) == expect_rows):
+        problems.append("覆盖不是 %d/%d —— 实测 %d 行 / %d 个指纹，而 `%s` 下的闸是 %d 道"
+                        % (expect_rows, expect_rows, len(rows), len(fps),
+                           os.path.basename(SD), expect_rows))
+    if SELF_GATE in {r.get("gate") for r in rows}:
+        problems.append("矩阵里量了闸 45 自己（自指，纪律 367③）")
+    missing_class = [r.get("gate") for r in rows if not r.get("class")]
+    if missing_class:
+        problems.append("有行没有 `class` —— 三分类（纪律 370）少了一类：%s" % missing_class)
+    missing_ts = [r.get("gate") for r in rows if not r.get("measured_at")]
+    if missing_ts:
+        problems.append("有行没有自己的 `measured_at`（纪律 368④）：%s" % missing_ts)
+
+    a_cnt = len([r for r in rows if r.get("changed") is True])
+    b_cnt = len([r for r in rows if str(r.get("class", "")).startswith("B")])
+    c_cnt = len(rows) - a_cnt - b_cnt
+    if a_cnt + b_cnt + c_cnt != len(rows):
+        problems.append("三分类之和 %d ≠ 行数 %d" % (a_cnt + b_cnt + c_cnt, len(rows)))
+    if b_cnt:
+        problems.append("B 类（读到却在读不到时沉默）%d 道 —— 闸 45 会判红，不猜" % b_cnt)
+    #: **A 类数与参考页现场抽出来的那个数必须相等**——**这一条替代了原先硬写的 18**。
+    if a_cnt != ref_a:
+        problems.append("实测 A 类 %d 道，而参考页写的是 A %d 道 —— "
+                        "**这两处必须同时改**（改一个不改另一个，读者看到的与实测就对不上）"
+                        % (a_cnt, ref_a))
+    for k in ("tree_digest", "shared_digest"):
+        if not data.get(k):
+            problems.append("矩阵缺 `%s` —— 纪律 368 的三类 freshness 少了一类" % k)
+    #: **纪律 369**：复用分支已撤掉，落盘里也就不该再有 `mode` / `reused`——
+    #: **留着它们等于宣称「这份矩阵是增量更新过的」，而那份文件再没有那种逻辑了**。
+    for k in ("mode", "reused"):
+        if k in data:
+            problems.append("矩阵里还有 `%s` 字段 —— 复用逻辑已撤掉（纪律 369），这是残留" % k)
+    return problems
+
+
+def _self_test():
+    """自检：正反两支。**反验是本工具的一部分**（纪律 350：判别式没被样本验过就只是写法）。"""
+    good = {"rows": [{"gate": "a.py", "changed": True, "class": "A", "measured_at": "t"},
+                     {"gate": "b.py", "changed": False, "class": "C", "measured_at": "t"}],
+            "fingerprints": {"a.py": "x", "b.py": "y"},
+            "tree_digest": "d", "shared_digest": "s"}
+    p = verify_shape(good, 2, 1, "正向")
+    if p:
+        print("  ✗ 自检：一份自洽夹具被判为 %s —— **判据比声称的严**" % p)
+        return 1
+    print("  ok   自检：一份自洽夹具通过（2 行 / A 1 道）")
+    # 反向 ①：A 类数与参考页对不上（**这正是原先那处硬编码 18 要抓的东西**）
+    p = verify_shape(good, 2, 18, "反向")
+    if not any("参考页写的是 A 18" in x for x in p):
+        print("  ✗ 自检：A 类数与参考页不符却没报 —— **判据在这条上不成立**")
+        return 1
+    print("  ok   自检：A 类数与参考页不符必报（反向探针命中）")
+    # 反向 ②：行数少一行
+    p = verify_shape(good, 3, 1, "反向")
+    if not any("覆盖不是" in x for x in p):
+        print("  ✗ 自检：覆盖不足却没报")
+        return 1
+    # 反向 ③：量了闸 45 自己
+    bad = dict(good, rows=good["rows"] + [{"gate": SELF_GATE, "changed": False,
+                                           "class": "C", "measured_at": "t"}],
+               fingerprints=dict(good["fingerprints"], **{SELF_GATE: "z"}))
+    p = verify_shape(bad, 3, 1, "反向")
+    if not any("自指" in x for x in p):
+        print("  ✗ 自检：量了闸 45 自己却没报")
+        return 1
+    print("  ok   自检：覆盖不足 / 自指 / A 类数不符，三支反向探针全命中")
+    return 0
+
+
+def verify(path=None):
+    """`--verify`：读落盘矩阵核形状。**rc 三段**：0 相符 / 1 不符 / 2 未能核对。"""
+    path = path or OUT
+    if _self_test():
+        print("[skip] 自检没过，判据自身不可用，本轮未能核对")
+        return 2
+    if not os.path.exists(path):
+        print("[skip] 读不到矩阵 %s —— 没量过不等于形状对" % path)
+        return 2
+    try:
+        with open(path, encoding="utf-8") as fh:
+            data = json.load(fh)
+    except (OSError, ValueError) as exc:
+        print("[skip] 矩阵读不出来（%s），本轮未能核对" % exc)
+        return 2
+    ref = os.path.join(os.path.dirname(SD), "20-reference.md")
+    try:
+        with open(ref, encoding="utf-8") as fh:
+            m = REF_A_RE.search(fh.read())
+    except OSError as exc:
+        print("[skip] 读不到参考页 %s（%s），本轮未能核对" % (ref, exc))
+        return 2
+    if not m:
+        print("[skip] 参考页里抽不出「A N 道」——**措辞变了就核不了**，本轮未能核对"
+              "（读不出来不等于通过，纪律 101）")
+        return 2
+    ref_a = int(m.group(1))
+    rows = data.get("rows") or []
+    a_cnt = len([r for r in rows if r.get("changed") is True])
+    b_cnt = len([r for r in rows if str(r.get("class", "")).startswith("B")])
+    print("    矩阵：%s，%d 行 / %d 个指纹 / A %d / B %d / C %d"
+          % (data.get("measured_at"), len(rows), len(data.get("fingerprints") or {}),
+             a_cnt, b_cnt, len(rows) - a_cnt - b_cnt))
+    problems = verify_shape(data, len(measured_gates()), ref_a, path)
+    if problems:
+        print("落盘矩阵形状核对：%d 处不符" % len(problems))
+        for x in problems:
+            print("  ✗ " + x)
+        return 1
+    print("  ok   落盘矩阵形状：%d 行 / %d 指纹 / A %d（与参考页同一个数）/ B 0 / 0 行作废，"
+          "不含闸 45 自己，无 mode·reused 残留"
+          % (len(rows), len(data.get("fingerprints") or {}), ref_a))
+    return 0
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    #: **整个入口包在 try 里**：第一版没有包，于是 `REF_A_RE = re.compile(...)`
+    #: 因为忘了 `import re` 直接抛 `NameError`，而 **Python 对未捕获异常的退出码是 1
+    #: ——在 `--verify` 的语义里 1 是「核出形状不符」，而真实含义是「判据自己没跑起来」**。
+    #: **同一个批次里这件事已经栽过一次**：Batch 336 那道新闸写完 docstring 第一段就是
+    #: 「任何异常都收成 rc=2，不许它走 1」，**转头在这个工具里又让异常走了 1**。
+    #: **所以「知道一条纪律」与「写代码时遵守它」是两件事**——
+    #: **而唯一能保证后者的办法是让入口自己兜住**，因为人不会每次都记得。
+    #: 判据的「说谎」比判据的「崩溃」更难发现：崩溃会留 traceback，说谎只留一个退出码。
+    try:
+        if "--verify" in sys.argv:
+            rest = sys.argv[1:]
+            sys.exit(verify(rest[0] if rest and not rest[0].startswith("-") else None))
+        sys.exit(main())
+    except SystemExit:
+        raise
+    except BaseException as exc:                    # noqa: BLE001 —— 入口兜底即 rc=2
+        print("[skip] 工具自身抛 %s（%s）——**没跑起来不等于形状对**（纪律 101）"
+              % (type(exc).__name__, exc), file=sys.stderr)
+        sys.exit(2)
