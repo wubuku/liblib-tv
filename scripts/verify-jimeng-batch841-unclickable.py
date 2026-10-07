@@ -5956,6 +5956,9 @@ def main() -> int:
     #   官方门只验「锚点在不在」，不验「是不是原来那个」
     p1030 = ROOT / "scripts/jimeng_probe1030_anchor_identity.py"
     _p1030 = p1030.read_text(encoding="utf-8") if p1030.exists() else ""
+    # ⭐⭐⭐ 1031：第一道**直接验被复刻的那个东西**（即梦画布的可交互契约）的门
+    p1031 = ROOT / "scripts/jimeng_probe1031_live_canvas_contract.py"
+    _p1031 = p1031.read_text(encoding="utf-8") if p1031.exists() else ""
     # ⭐⭐⭐⭐⭐ 983：**复刻侧**探针 —— ⭐⭐⭐⭐⭐ **在第二个被测系统上独立复验
     #   982 那条结构发现** ⇒ 同构 ⇒ 它是**规律**，不是源站特有的巧合
     #   ⚠️ 判据组 `QQQQQ.2` 要钉的是 **`_grab_def` 那个更弱的保证**
@@ -16406,6 +16409,43 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
           and '"p14_one_rule_covers_all_four_weakening_shapes_1031_" in _ausrc'
           and '"p15_the_control_and_the_gate_ran_different_implementations_1031_" in _ausrc'
+)
+    check("DD993Q.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "第一次直接验「被复刻的那个东西」 "
+          "前面所有门都在验**研究装置自己**；1031 新增的这道第一次直接验**即梦画布的可交互契约**—— 不是截图、不是文案，而是 `data-testid` / 节点类型 / 状态行**形状** / 工具条构成 ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 实测（无头 + 独立 profile，只读）：112 个可点元素、18 个 testid 全中、32 个 aria 全中、节点类型（文本/时间线/音频）无缺、React Flow 引擎确认** ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 状态行登记的是**形状**而不是读数** —— 节点数每次跑都会变，钉死数字就会像 1014 那三条 P 一样必然过期 "
+          "三条纪律各自都有一处「我自己当天就踩了」：① **期望值只有一个真源**（契约文件），探针**不抄第二份** ⇒ 否则契约改了探针不会跟着改，就成了两处期望值各说各话；② **读数可指向候选副本**（`JIMENG_FORENSICS_JSON` / `JIMENG_CONTRACT_JSON`），注入式变异要能问「你会拿它当红」；③ **无浏览器通路时 P4/P5 记 `null` 而不是 `False`** ⇒ 记成 `False` 就是把「没跑过」与「跑过没过」混成同一件事 "
+          "阳性对照四份坏契约：坏 testid → P4、坏状态行形状 → P2、塞进生成类动作 → P3、重复 testid → P1，**每个只被唯一一条判据精确抓住** ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 而这两条判据写完当天就红了一回**：`P3` 把条件写在了错的变量上（「词」去比「条目」）、`P4` 拿 `innerText` 去找一个 class 名 ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 两次都是「判据写错了」而不是「数据错了」**  **而 `P6` 的阳性对照第一次量到的不是「门失灵」，是「门红与探针崩了退出码一样」** —— 语法坏契约（Traceback）与真重复键（`P6` 报红）**退出码都是 1** ⇒ 改为三态 `0/1/2`，并用 `JIMENG_FORCE_CRASH=1` 把 2 号出口**真的走一遍**，让这个约定自己被测过；同时把 `P6` 的隐式前提（`ast.parse` 成功）显式登记成 `P7`——前提一旦炸掉，`_DUP_KEYS` 恒为 `[]`，`P6` 会因「什么都没看见」而**转绿****   **而 `P6` 第一版只查证据文件，范围本身就窄了** —— 就在写 `P6` 的同一批里，`jimeng_check_verifier_anchors.py` 的 `PROBE_VARS` 中 `_p1031` 被**连着写了两遍**，字典字面量静默吞掉它、官方锚点门照样全绿 ⇒ 新增 `P8`：同一把尺子量**门自己的四个源码文件**，注入式变异（把那行再写一遍）当场转红、还原后逐字节相同**",
+          "CONTRACT = Path(os.environ.get(\"JIMENG_CONTRACT_JSON\")" in _p1031
+          and "out[\"P1_contract_is_wellformed_1031\"] = bool(" in _p1031
+          and "out[\"P2_status_shape_is_a_shape_not_a_number_1031\"] = bool(" in _p1031
+          and "out[\"P3_contract_carries_no_generation_action_1031\"] = bool(not _BAD_ITEMS)" in _p1031
+          and "out[\"P4_live_matches_contract_1031\"] = bool(" in _p1031
+          and "out[\"P5_live_status_line_shape_1031\"] = bool(status_lines(live))" in _p1031
+          and "out[\"downgraded\"] = (" in _p1031
+          # ⭐⭐⭐⭐⭐ P6 重复键：跑在 AST 上，且它的**前提本身**必须被显式登记
+          and "out[\"P6_no_duplicate_keys_in_contract_block_1031\"] = bool(not _DUP_KEYS)" in _p1031
+          and "out[\"P7_contract_is_parseable_by_both_readers_1031\"] = bool(_AST_OK)" in _p1031
+          # ⭐⭐⭐⭐⭐ P8：同一把尺子量到**门自己**（重复键的真正高发地是这套门的源码）
+          and "out[\"P8_gate_sources_have_no_duplicate_keys_1031\"] = bool(not _SELF_DUP)" in _p1031
+          and "_SELF_FILES = [\"scripts/jimeng_unclickable_audit.py\"" in _p1031
+          and "assert len(_P) >= 8," in _p1031
+          # ⭐⭐⭐⭐⭐ 退出码三态：0=绿 1=有判据为假 2=探针崩了/契约不是合法 JSON
+          and "JIMENG_FORCE_CRASH" in _p1031
+          and "sys.exit(2)" in _p1031
+          and "CONTRACT_BAD_JSON" in _p1031
+          and "CONTRACT_MISSING" in _p1031
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+          and '"p16_the_first_gate_that_checks_the_thing_being_replicated_1031_" in _ausrc'
+          and '"p17_exit_code_must_separate_a_red_gate_from_a_crashed_probe_1031_" in _ausrc'
+          and '"p18_the_same_ruler_must_measure_the_ruler_itself_1031_" in _ausrc'
+          # ⭐⭐⭐⭐⭐ **期望值与实测必须分家**：契约在 contracts/（不参与 1015 通道 A 的不递归 glob），
+          #   探针产物另落仓 —— 混在一份文件里，探针就能通过改期望值让自己变绿
+          and 'OUT = str(GDIR / "live-canvas-check-1031.json")' in _p1031
+          and 'GDIR / "contracts" / "live-canvas-contract-1031.json"' in _p1031
+          and '"status_line_shape_matched": bool(status_lines(live))' in _p1031
+          and '"n_clickables"' not in _p1031      # ⭐ 易变原始读数**不许进产物**（逐字节参与可复现判定）
+          and '"status_lines_found"' not in _p1031
+          and '"p19_three_gates_turned_red_in_a_row_and_my_own_new_evidence_was_the_cause_1031_" in _ausrc'
 )
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

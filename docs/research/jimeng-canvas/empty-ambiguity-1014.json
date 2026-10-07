@@ -3,17 +3,17 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census_inputs_2029": {
-  "n_fingerprinted": 21,
+  "n_fingerprinted": 22,
   "n_unreadable": 0,
-  "n_from_probe_products": 21,
+  "n_from_probe_products": 22,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
     "sha256_12": "41073e1a98c8",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
-    "sha256_12": "882b5d4628d9",
-    "bytes": 61393
+    "sha256_12": "f3f82bfcb7a7",
+    "bytes": 61453
    },
    "assertion-vs-behavior-1018.json": {
     "sha256_12": "e875252725a4",
@@ -56,12 +56,16 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "4746fe483e3c",
-    "bytes": 79391
+    "sha256_12": "f1d985f81e9b",
+    "bytes": 78957
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
     "bytes": 21313
+   },
+   "live-canvas-check-1031.json": {
+    "sha256_12": "aaab13be33b0",
+    "bytes": 128
    },
    "occurrence-ledger-1013.json": {
     "sha256_12": "c17ac6ba9a00",
@@ -76,8 +80,8 @@
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "cdf5a424bca5",
-    "bytes": 28901
+    "sha256_12": "b3b97961b441",
+    "bytes": 30243
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -95,7 +99,7 @@
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 21,
+  "n_goldens": 22,
   "n_excluded_self": 1,
   "n_empty_list": 182,
   "n_empty_null": 26,
@@ -1477,7 +1481,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[0]/drifted",
+   "path": "/rounds/[3]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2893,7 +2897,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[0]/drifted",
+   "path": "/rounds/[3]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null

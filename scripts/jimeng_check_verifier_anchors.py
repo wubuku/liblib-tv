@@ -304,6 +304,11 @@ PROBE_VARS = {
     "_p1026": "scripts/jimeng_probe1026_criterion_effectiveness.py",
     "_p1027": "scripts/jimeng_probe1027_freshness_gate.py",
     "_p1030": "scripts/jimeng_probe1030_anchor_identity.py",
+    "_p1031": "scripts/jimeng_probe1031_live_canvas_contract.py",
+    # ⚠️⚠️⚠️⚠️⚠️⚠️ 这一行曾被**连着写了两遍**（`&&` 链把生成脚本跑了两次的老毛病），
+    #   而字典字面量里的重复键 Python 会静默吞掉 ⇒ 官方锚点门**照样全绿**、**不报错**、
+    #   也不会让任何一条判据变红 ⇒ 纯无声损坏 ⇒ 与 1031 探针的 `P6` 同一个形状
+    #   ⇒⇒⇒ 处置：这里去重；并把「探针文件里有没有重复键」纳入探针自己的 P 判据
     # ⚠️⚠️⚠️⚠️⚠️ **`_p816` 漏登记 ⇒ 它的锚点被**静默跳过** ⇒ 锚点自查报「0 问题」**
     #   而 verifier 那条判据**真的红了**（`CCCCC.2`）⇒ **同一个坑的第五次**。
     # ⇒ 结论：**锚点自查报 0 ≠ 全部被查过** —— **它只查「已登记」的那些**。
