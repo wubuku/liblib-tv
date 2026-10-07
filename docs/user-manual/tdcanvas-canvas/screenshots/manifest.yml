@@ -1503,3 +1503,16 @@ screenshots:
     visible_text: '画布 资产 提示词库 画布元素 4 m247-audio.wav 音频 文本 m247-video.mp4 视频 音频'
     alt: 画布上一个音频节点：蓝框圈住整个节点，橙框圈住中间那条播放器控件（进度条、音量、更多按钮），标注「播放器这一条：按住拖，节点不动」
     sha256: 9bf49419a5e71fcbf58dd2d82b34c02c009cdfe14d57a721a6f548ede7799ef8
+
+  - file: screenshots/07-connect-references-hit-band-4x.png
+    task_id: connect-references
+    step: 画布上两个文本节点之间的一条未选中连线，叠加半透明色带标出那条看不见的命中带；连线中段标出「偏 8 像素仍命中」的法线刻度，右下角是同一处横截面放大 6 倍的比例尺
+    route: '/canvas/:id'
+    viewport: 1440x900（deviceScaleFactor 2，成图 2880x1800）
+    locale: zh-CN
+    captured_at: '2026-10-07'
+    m305_note: 'M305 新拍，全库第一张画出「命中带 : 可见线 = 8 : 1」这个比例的图。**图上每个数字都取自同一次实测**（scripts/probe-hit-band.js，标注框数字不写死，F129）。**用 2 倍像素密度而不改画布缩放**：像素密度只影响采样密度、不改变任何几何，所以图里的 8 像素仍然是实测的 8 像素。**节点从 520 收到 300**：默认宽度下 1440 视口里「Dock 336 + 两个节点 1040」只剩 64 像素留给连线裸露段，图上根本看不出那条带子。**overlay 是注入的 SVG**，不是后期画的。'
+    verified_locator: '命中层 path[data-connection-id] 实测 stroke=transparent stroke-width=16px pointer-events=stroke；同 d 的可见层 stroke-width=2px pointer-events=none（未选中态；源码 canvas-connections.tsx:62 是 active?3:2，**选中态那条线是 3 像素，所以这张图必须先脱选才拍**）；沿法线逐 0.5 像素扫 5 个采样点，偏 0 到 8 全部命中、8.5 起全部落空，5/5 读数都是 8 像素，与 16÷2 一致；命中半宽 8 ÷ 可见线全宽 2 = 4.000'
+    visible_text: '命中带 16 像素，透明，你看不见 / 可见线 2 像素，就是你看见的那条 / 命中半宽 8 ÷ 2 = 4 倍 / 偏 8 仍命中 / 横截面 · 放大 6 倍 / 黄 96 : 红 12 = 8 : 1'
+    alt: 画布上两个文本节点之间的一条连线，线上覆盖着一条半透明的黄褐色宽带（那条看不见的命中带），带子正中那条细红线才是真正能看见的线；连线中段标出一条竖直刻度写着「偏 8 仍命中」，左下角标注「命中带 16 像素」「可见线 2 像素」「命中半宽 8 ÷ 2 = 4 倍」，右下角是同一处横截面放大 6 倍的示意，黄块 96 比红条 12 即 8 比 1
+    sha256: b473e9c8b7e1e0624dee8d81cd8d0b4bef7150e77f02accde7806e3ef3b2bfc4
