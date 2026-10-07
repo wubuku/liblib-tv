@@ -300,7 +300,7 @@ tasks:
     routes:
       - '/canvas/:id'
     status: verified
-    screenshot_count: 4
+    screenshot_count: 5
     review_note: '2026-09-27 快捷键弹窗打开并逐字核对本页速查表（与官方 canvas-shortcuts 文档一致）；截图入 manifest。 2026-10-01 M60 订正一处界面文案漂移：本页与 20-reference 三处把节点右键的复制操作写成「**制作副本**」，而应用实际文案是「**复制**」（i18n `canvas.controls.duplicate: "复制"`，运行时菜单项实测为「复制」）——读者按手册右键找「制作副本」根本找不到。已三处同步订正。操作本身没错（duplicateNode 偏移仍是 +36,+36，project.tsx:1034），只是名字对不上。2026-10-01 M78 逐条实测「弹窗没写但确实能用的三条」全部成立（第 13 次否证）：双击标题后 `document.activeElement` 为 INPUT（值为现标题）、双击内容区后为 TEXTAREA；连点四次右键复制实测坐标 (540,350)→(576,386)→(612,422)→(648,458)→(684,494)，**每级 dx=dy=36 恒定**。新发现手册未记的行为：**副本标题在现标题后追加英文 ` Copy` 而非加序号**，连点会叠成「文本 Copy Copy Copy Copy」。已补两张对照表 + 一张截图（共 3 张）。'
     manual_pages:
       - 10-tasks/shortcuts-help.md
