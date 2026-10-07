@@ -404,6 +404,14 @@ SELFTEST_COSTS = {
     "selftest-ledger-refs.py": 0.3,
     "selftest-line-counts.py": 4.8,
     "selftest-link-labels.sh": 2.4,
+    #: **Batch 336 新增**（闸 18 方向四d 要求的实测耗时，闸自己的报错原话是
+    #: 「跑一次把秒数填进去即可」）。实测两遍 **0.58 / 0.60 秒**——
+    #: **而这 8 例里每一例都要起一个临时树再起子进程跑一遍闸，用例 8 还要
+    #: 把 5 个模块 `copytree` 进沙箱**（它要改坏判据自己的正则），
+    #: **所以秒数小不是因为它便宜，是因为本机闸脚本起得快**。
+    #: **预算按「有子进程 + 有 copytree」这一侧取，宁大勿小**（纪律 204）——
+    #: **取值与 Batch 331 那条 `selftest-upstream-gates.py` 同为 3.0，理由同形。**
+    "selftest-list-selfcount.py": 3.0,
     "selftest-query-params.py": 0.8,
     "selftest-container-closers.py": 1.13,
     "selftest-heading-uniqueness.py": 1.10,

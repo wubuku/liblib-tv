@@ -1,5 +1,5 @@
 {
- "measured_at": "2026-10-07 15:24:58",
+ "measured_at": "2026-10-07 17:16:40",
  "sentinel": "zzz-not-a-real-ref-9f3a",
  "rows": [
   {
@@ -20,7 +20,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:18:10",
+   "measured_at": "2026-10-07 17:09:52",
    "drift": {
     "rc": 0,
     "tail": [
@@ -48,7 +48,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:18:10",
+   "measured_at": "2026-10-07 17:09:53",
    "drift": {
     "rc": 0,
     "tail": [
@@ -76,13 +76,13 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:18:10",
+   "measured_at": "2026-10-07 17:09:53",
    "drift": {
     "rc": 0,
     "tail": [
      "批次账本行核对通过：每个批次号只登记一次，形态全部合法，列数与表头一致"
     ],
-    "sec": 0.1
+    "sec": 0.0
    },
    "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
   },
@@ -104,7 +104,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:18:10",
+   "measured_at": "2026-10-07 17:09:53",
    "drift": {
     "rc": 0,
     "tail": [
@@ -132,7 +132,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:18:11",
+   "measured_at": "2026-10-07 17:09:53",
    "drift": {
     "rc": 0,
     "tail": [
@@ -160,7 +160,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:18:11",
+   "measured_at": "2026-10-07 17:09:53",
    "drift": {
     "rc": 0,
     "tail": [
@@ -188,7 +188,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:18:11",
+   "measured_at": "2026-10-07 17:09:54",
    "drift": {
     "rc": 0,
     "tail": [
@@ -203,26 +203,26 @@
    "normal": {
     "rc": 0,
     "tail": [
-     "  · 实测 6.7s（含建空树与搬运；**Batch 278 同一份计时里这一半是 5～7 秒**）"
+     "  · 实测 6.5s（含建空树与搬运；**Batch 278 同一份计时里这一半是 5～7 秒**）"
     ],
-    "sec": 6.8
+    "sec": 6.5
    },
    "sentinel": {
     "rc": 0,
     "tail": [
-     "  · 实测 7.3s（含建空树与搬运；**Batch 278 同一份计时里这一半是 5～7 秒**）"
+     "  · 实测 7.2s（含建空树与搬运；**Batch 278 同一份计时里这一半是 5～7 秒**）"
     ],
-    "sec": 7.3
+    "sec": 7.2
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:18:25",
+   "measured_at": "2026-10-07 17:10:08",
    "drift": {
     "rc": 0,
     "tail": [
-     "  · 实测 43.2s（含建空树与搬运；**Batch 278 同一份计时里这一半是 5～7 秒**）"
+     "  · 实测 40.2s（含建空树与搬运；**Batch 278 同一份计时里这一半是 5～7 秒**）"
     ],
-    "sec": 43.2
+    "sec": 40.2
    },
    "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
   },
@@ -233,7 +233,7 @@
     "tail": [
      "编码完整性核对通过：全部文本文件是合法 UTF-8，无替换字符、无 NUL 字节、无 C0 控制字符"
     ],
-    "sec": 0.2
+    "sec": 0.3
    },
    "sentinel": {
     "rc": 0,
@@ -244,13 +244,13 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:09",
+   "measured_at": "2026-10-07 17:10:48",
    "drift": {
     "rc": 0,
     "tail": [
      "编码完整性核对通过：全部文本文件是合法 UTF-8，无替换字符、无 NUL 字节、无 C0 控制字符"
     ],
-    "sec": 0.3
+    "sec": 0.2
    },
    "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
   },
@@ -272,7 +272,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:09",
+   "measured_at": "2026-10-07 17:10:49",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -293,7 +293,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:10",
+   "measured_at": "2026-10-07 17:10:49",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -310,11 +310,11 @@
     "tail": [
      "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
     ],
-    "sec": 0.2
+    "sec": 0.1
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:10",
+   "measured_at": "2026-10-07 17:10:50",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -335,7 +335,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:11",
+   "measured_at": "2026-10-07 17:10:50",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -345,24 +345,24 @@
     "tail": [
      "    **理由**：它们要真跑几十份反验，单道几分钟；**而闸 18 方向十三之四已在构造层覆盖 `run_gate` 的行为**。**这是取舍不是遗漏**——写下来，下一个人才不会以为「38 道都验过了」"
     ],
-    "sec": 6.0
+    "sec": 5.7
    },
    "sentinel": {
     "rc": 0,
     "tail": [
      "    **理由**：它们要真跑几十份反验，单道几分钟；**而闸 18 方向十三之四已在构造层覆盖 `run_gate` 的行为**。**这是取舍不是遗漏**——写下来，下一个人才不会以为「38 道都验过了」"
     ],
-    "sec": 6.5
+    "sec": 6.0
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:23",
+   "measured_at": "2026-10-07 17:11:02",
    "drift": {
     "rc": 0,
     "tail": [
      "    **理由**：它们要真跑几十份反验，单道几分钟；**而闸 18 方向十三之四已在构造层覆盖 `run_gate` 的行为**。**这是取舍不是遗漏**——写下来，下一个人才不会以为「38 道都验过了」"
     ],
-    "sec": 5.0
+    "sec": 4.8
    },
    "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
   },
@@ -384,13 +384,13 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:28",
+   "measured_at": "2026-10-07 17:11:06",
    "drift": {
     "rc": 0,
     "tail": [
      "闸门行为登记新鲜度核对通过：每行的产出闸都没变过，合计自洽，正文订正与登记相符"
     ],
-    "sec": 0.1
+    "sec": 0.0
    },
    "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
   },
@@ -401,24 +401,24 @@
     "tail": [
      "页内标题核对：34 个正文页、381 个标题，页内无同名标题、层级无跳级、每页恰好一个 H1"
     ],
-    "sec": 0.1
+    "sec": 0.0
    },
    "sentinel": {
     "rc": 0,
     "tail": [
      "页内标题核对：34 个正文页、381 个标题，页内无同名标题、层级无跳级、每页恰好一个 H1"
     ],
-    "sec": 0.1
+    "sec": 0.0
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:28",
+   "measured_at": "2026-10-07 17:11:07",
    "drift": {
     "rc": 0,
     "tail": [
      "页内标题核对：34 个正文页、381 个标题，页内无同名标题、层级无跳级、每页恰好一个 H1"
     ],
-    "sec": 0.1
+    "sec": 0.0
    },
    "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
   },
@@ -429,7 +429,7 @@
     "tail": [
      "标签漂移核对：27 项跨文件分歧全部与登记一致（11 项有意两套叫法 / 16 项同值巧合）"
     ],
-    "sec": 0.4
+    "sec": 0.3
    },
    "sentinel": {
     "rc": 2,
@@ -440,7 +440,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:29",
+   "measured_at": "2026-10-07 17:11:07",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -448,24 +448,24 @@
    "normal": {
     "rc": 0,
     "tail": [
-     "账本交叉引用核对通过：239 条环境记录、371 条纪律（编号 1..371，其中 230 条带批次标注且全部已登记）——纪律数**不再含普通编号列表**（Batch 194）"
+     "账本交叉引用核对通过：240 条环境记录、372 条纪律（编号 1..372，其中 230 条带批次标注且全部已登记）——纪律数**不再含普通编号列表**（Batch 194）"
     ],
     "sec": 0.1
    },
    "sentinel": {
     "rc": 0,
     "tail": [
-     "账本交叉引用核对通过：239 条环境记录、371 条纪律（编号 1..371，其中 230 条带批次标注且全部已登记）——纪律数**不再含普通编号列表**（Batch 194）"
+     "账本交叉引用核对通过：240 条环境记录、372 条纪律（编号 1..372，其中 230 条带批次标注且全部已登记）——纪律数**不再含普通编号列表**（Batch 194）"
     ],
     "sec": 0.1
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:29",
+   "measured_at": "2026-10-07 17:11:07",
    "drift": {
     "rc": 0,
     "tail": [
-     "账本交叉引用核对通过：239 条环境记录、371 条纪律（编号 1..371，其中 230 条带批次标注且全部已登记）——纪律数**不再含普通编号列表**（Batch 194）"
+     "账本交叉引用核对通过：240 条环境记录、372 条纪律（编号 1..372，其中 230 条带批次标注且全部已登记）——纪律数**不再含普通编号列表**（Batch 194）"
     ],
     "sec": 0.1
    },
@@ -489,7 +489,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:32",
+   "measured_at": "2026-10-07 17:11:10",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -510,11 +510,39 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:32",
+   "measured_at": "2026-10-07 17:11:10",
    "drift": {
     "rc": 0,
     "tail": [
      "正文内链文字核对：212 条内链的文字全部是目标页的真名（34 个正文页，含任务索引）"
+    ],
+    "sec": 0.1
+   },
+   "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
+  },
+  {
+   "gate": "verify-list-selfcount.py",
+   "normal": {
+    "rc": 0,
+    "tail": [
+     "清单自述条数核对通过：35 个发布页里 2 处「这 N 条」与所回指的列表行数一致"
+    ],
+    "sec": 0.1
+   },
+   "sentinel": {
+    "rc": 0,
+    "tail": [
+     "清单自述条数核对通过：35 个发布页里 2 处「这 N 条」与所回指的列表行数一致"
+    ],
+    "sec": 0.1
+   },
+   "changed": false,
+   "unusable": null,
+   "measured_at": "2026-10-07 17:11:10",
+   "drift": {
+    "rc": 0,
+    "tail": [
+     "清单自述条数核对通过：35 个发布页里 2 处「这 N 条」与所回指的列表行数一致"
     ],
     "sec": 0.1
    },
@@ -527,7 +555,7 @@
     "tail": [
      "元数据核对：登记表 8 条计数全部与现场重数一致，且方向三/四/四之二/五/六/七/八/九/十/十一/十一之二/十二/十三/十四亦全部通过"
     ],
-    "sec": 1.0
+    "sec": 1.1
    },
    "sentinel": {
     "rc": 0,
@@ -538,13 +566,13 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:34",
+   "measured_at": "2026-10-07 17:11:12",
    "drift": {
     "rc": 0,
     "tail": [
      "元数据核对：登记表 8 条计数全部与现场重数一致，且方向三/四/四之二/五/六/七/八/九/十/十一/十一之二/十二/十三/十四亦全部通过"
     ],
-    "sec": 1.1
+    "sec": 1.0
    },
    "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
   },
@@ -566,7 +594,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:35",
+   "measured_at": "2026-10-07 17:11:13",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -587,7 +615,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:35",
+   "measured_at": "2026-10-07 17:11:14",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -597,7 +625,7 @@
     "tail": [
      "标点漂移核对通过：引号文案凡在上游存在的，逐字都对得上"
     ],
-    "sec": 4.8
+    "sec": 4.6
    },
    "sentinel": {
     "rc": 2,
@@ -608,7 +636,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:40",
+   "measured_at": "2026-10-07 17:11:18",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -629,7 +657,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:41",
+   "measured_at": "2026-10-07 17:11:19",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -637,24 +665,24 @@
    "normal": {
     "rc": 0,
     "tail": [
-     "被撤回说法的泄漏：46 个闸脚本的可执行文本，5 条已撤回说法，零处泄漏"
+     "被撤回说法的泄漏：47 个闸脚本的可执行文本，5 条已撤回说法，零处泄漏"
     ],
     "sec": 0.2
    },
    "sentinel": {
     "rc": 0,
     "tail": [
-     "被撤回说法的泄漏：46 个闸脚本的可执行文本，5 条已撤回说法，零处泄漏"
+     "被撤回说法的泄漏：47 个闸脚本的可执行文本，5 条已撤回说法，零处泄漏"
     ],
     "sec": 0.2
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:41",
+   "measured_at": "2026-10-07 17:11:19",
    "drift": {
     "rc": 0,
     "tail": [
-     "被撤回说法的泄漏：46 个闸脚本的可执行文本，5 条已撤回说法，零处泄漏"
+     "被撤回说法的泄漏：47 个闸脚本的可执行文本，5 条已撤回说法，零处泄漏"
     ],
     "sec": 0.2
    },
@@ -678,7 +706,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:41",
+   "measured_at": "2026-10-07 17:11:19",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -699,7 +727,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:42",
+   "measured_at": "2026-10-07 17:11:20",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -720,7 +748,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:42",
+   "measured_at": "2026-10-07 17:11:20",
    "drift": {
     "rc": 0,
     "tail": [
@@ -737,7 +765,7 @@
     "tail": [
      "截图取证文案核对：82 个保守形态片段全部在上游存在（免检 5 条已登记，97 个动态/拼接片段按形态不检查）"
     ],
-    "sec": 2.7
+    "sec": 2.8
    },
    "sentinel": {
     "rc": 2,
@@ -748,7 +776,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:45",
+   "measured_at": "2026-10-07 17:11:23",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -769,7 +797,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:19:48",
+   "measured_at": "2026-10-07 17:11:26",
    "drift": {
     "rc": 0,
     "tail": [
@@ -786,18 +814,18 @@
     "tail": [
      "  慢反验前提核对（方向五/五之二，**只查前提不查结果**）：`selftest-meta.sh` 39 个夹具锚点、0 个因目标不在场跳过；`selftest-unreachable.sh` 30/33 个用例前提成立、3 个跳过"
     ],
-    "sec": 136.7
+    "sec": 143.2
    },
    "sentinel": {
     "rc": 1,
     "tail": [
      "→ **反验不在构建路径上，它坏了不会让构建变红**——所以「它至少能启动」这件事必须由构建来保证（Batch 178 实测 34 例静默失效）"
     ],
-    "sec": 96.9
+    "sec": 100.0
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:23:43",
+   "measured_at": "2026-10-07 17:15:31",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -818,7 +846,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:23:45",
+   "measured_at": "2026-10-07 17:15:33",
    "drift": {
     "rc": 0,
     "tail": [
@@ -835,7 +863,7 @@
     "tail": [
      "快捷键前缀核对通过：上游 14 个必须带 Ctrl/Cmd 的键（+/-/0/1/2/3/=/_/a/c/s/v/y/z），手册写法均已带前缀"
     ],
-    "sec": 1.5
+    "sec": 1.4
    },
    "sentinel": {
     "rc": 2,
@@ -846,7 +874,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:23:48",
+   "measured_at": "2026-10-07 17:15:36",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -867,7 +895,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:23:50",
+   "measured_at": "2026-10-07 17:15:38",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -888,7 +916,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:23:50",
+   "measured_at": "2026-10-07 17:15:38",
    "drift": {
     "rc": 0,
     "tail": [
@@ -905,24 +933,24 @@
     "tail": [
      "截图像素核对：67 张全部有内容（每像素字节数与主色占比均在阈值内；像素统计只看顶部 40 行）"
     ],
-    "sec": 4.3
+    "sec": 4.1
    },
    "sentinel": {
     "rc": 0,
     "tail": [
      "截图像素核对：67 张全部有内容（每像素字节数与主色占比均在阈值内；像素统计只看顶部 40 行）"
     ],
-    "sec": 4.4
+    "sec": 4.1
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:23:59",
+   "measured_at": "2026-10-07 17:15:46",
    "drift": {
     "rc": 0,
     "tail": [
      "截图像素核对：67 张全部有内容（每像素字节数与主色占比均在阈值内；像素统计只看顶部 40 行）"
     ],
-    "sec": 4.4
+    "sec": 4.2
    },
    "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
   },
@@ -944,13 +972,13 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:24:14",
+   "measured_at": "2026-10-07 17:16:01",
    "drift": {
     "rc": 0,
     "tail": [
      "截图拍摄版本依据核对通过：67 张登记的拍摄版本都落在其最后一次被改动的提交所处的版本区间；账本能核的 12 张全部相符"
     ],
-    "sec": 5.2
+    "sec": 5.0
    },
    "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
   },
@@ -961,7 +989,7 @@
     "tail": [
      "截图版本登记核对通过：67 张截图均登记了拍摄版本；已登记失效的 1 张均在**每一个**引用它的发布页就地说明了；正文的「截图拍于 + 分布」与 manifest 对得上"
     ],
-    "sec": 0.2
+    "sec": 0.1
    },
    "sentinel": {
     "rc": 2,
@@ -972,7 +1000,7 @@
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:24:19",
+   "measured_at": "2026-10-07 17:16:06",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -993,7 +1021,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:24:19",
+   "measured_at": "2026-10-07 17:16:06",
    "drift": {
     "rc": 0,
     "tail": [
@@ -1021,7 +1049,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:24:20",
+   "measured_at": "2026-10-07 17:16:06",
    "drift": {
     "rc": 0,
     "tail": [
@@ -1038,18 +1066,18 @@
     "tail": [
      "不可达声明核对：32 条断言仍成立，setter 扫描与 URL 参数扫描均双向一致（不覆盖运行时行为与 pages/projects 目录级死代码，见脚本头声明）"
     ],
-    "sec": 35.8
+    "sec": 31.6
    },
    "sentinel": {
     "rc": 2,
     "tail": [
      "  → 本闸本轮没有核对任何断言。**这不是「核对通过」，也不是「核出不一致」**——它说的是「取证基线读不到」，修法在手册的「取证基线」小节或上游仓，不在正文。"
     ],
-    "sec": 0.2
+    "sec": 0.1
    },
    "changed": true,
    "unusable": null,
-   "measured_at": "2026-10-07 15:24:56",
+   "measured_at": "2026-10-07 17:16:38",
    "class": "A 真读且响（哨兵下 rc 变）"
   },
   {
@@ -1059,7 +1087,7 @@
     "tail": [
      "版本覆盖核对通过：下界 v1.6.6 之后到基线 v1.6.22 的 15 个版本，凡是 `web/src` 改了用户可见中文字面量的都列进了 README 的增量清单（0 增减的版本**不要求**列——实测 v1.6.9 / v1.6.18 / v1.6.20 就是这种；**清单里主动列了也不影响判据**）；另有 1 处 tag 归属有偏移（见上——**标签不精确 ≠ 核对不完整**，缺口那一版的改动随它的后继版本一起被要求列出）"
     ],
-    "sec": 0.7
+    "sec": 0.6
    },
    "sentinel": {
     "rc": 0,
@@ -1070,7 +1098,7 @@
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:24:57",
+   "measured_at": "2026-10-07 17:16:39",
    "drift": {
     "rc": 0,
     "tail": [
@@ -1085,32 +1113,32 @@
    "normal": {
     "rc": 0,
     "tail": [
-     "    · ……还有 8474 处"
+     "    · ……还有 8489 处"
     ],
-    "sec": 0.1
+    "sec": 0.3
    },
    "sentinel": {
     "rc": 0,
     "tail": [
-     "    · ……还有 8474 处"
+     "    · ……还有 8489 处"
     ],
     "sec": 0.1
    },
    "changed": false,
    "unusable": null,
-   "measured_at": "2026-10-07 15:24:58",
+   "measured_at": "2026-10-07 17:16:40",
    "drift": {
     "rc": 0,
     "tail": [
-     "    · ……还有 8474 处"
+     "    · ……还有 8489 处"
     ],
     "sec": 0.1
    },
    "class": "C 未变且对真实漂移无反应（**这推不出「它不读**」）"
   }
  ],
- "tree_digest": "26ac7831d13d004f3f23060c56011ce8a9cb9f8dd95ee8efbd44a4386fe0814d",
- "shared_digest": "5bd631fe0365f37531b4998d80c0e0d01bf1720e06c25332d87713e725d994b8",
+ "tree_digest": "1cbbdbb640c1dedeaf896af3d8e77cc655fce554b7d27afc76cb7a7736ca6210",
+ "shared_digest": "ed03d8120c21cdef97467a802a4b7efb99381a8cd52a78d6ad42b1b22f7e5612",
  "fingerprints": {
   "verify-baseline-landmark.py": "eca4e39fe527aa0574509a65af3a0644b2417a35fb22b32be23e46e10b24e8af",
   "verify-baseline.py": "e1a8912b2660ee6e143f9f3c32864887303c32ed39772baf0e7683266b3ec38f",
@@ -1132,6 +1160,7 @@
   "verify-ledger-refs.py": "54fe59b05c1e63c0eed7d1e5243fc5521bc99c0d46750ec4b3fb5874392b3127",
   "verify-line-counts.py": "4cd827e3647dd5ca1000d8b60e4c826b9482a34aa02e5469e47992348d9201b5",
   "verify-link-labels.py": "e55706b58a6ab2a566cc00758253d09b71da490f84a5592715ffe0363ea72400",
+  "verify-list-selfcount.py": "c67a8bf005b98b9f1b9c90eef0978ece2e3ec02194b8657105015aa095c569f9",
   "verify-meta.py": "834eaa6e2b5bd179c8f990b336aea40e03ac903b43da1114e3bf2834d3db3542",
   "verify-query-params.py": "a87f6717fe9419d22e62515300861e27b5d737ec049cbed4c8b7a11a252b5c0d",
   "verify-quota-tables.py": "33ac7a3cdeba93eeeaf8d2dbe31cdf2d110f1f0ff6b49c1026c80d82afb28bd6",
@@ -1143,7 +1172,7 @@
   "verify-scope.py": "bd7c188fa5845b089238e7b2b187e2090631a05120f8865f92f3f9436f1400fc",
   "verify-screenshots-literals.py": "d7ca3c289fac6869b78afc1f5a7a180b7ee68f19adae8bc778a51af15839c851",
   "verify-screenshots.py": "5f23afee71fdb6be2c2cc04a4fdd3afd22973de11a02fb52ce99a5451bca16f4",
-  "verify-selftest-bootable.py": "2fb9bac81e914331307de3abbc2e3f354d1bf67b3eebaea155492721be85f53a",
+  "verify-selftest-bootable.py": "c3a406fd39eeabba49ac9b5d3263709f3283236b0e926c8cee6d0e901ec7f56a",
   "verify-selftest-deps.py": "88a44e80ef3cd8d756bc97fdf417fae291fe6ff38984ec14be0c2c3613244b6b",
   "verify-shortcuts.py": "347d8b6d14faae632b0698ccb0e7341f62fe2feecd00530b591ba2d9cea08dfd",
   "verify-shot-drift.py": "d513b9c8fea967bb6161f0d98f8337a8032de1cea0eef5f770227213fefa2e40",
