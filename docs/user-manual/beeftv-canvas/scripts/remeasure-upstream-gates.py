@@ -233,80 +233,52 @@ def run(name, env_ref):
         return {"rc": None, "tail": ["<timeout>"], "sec": TIMEOUT}
 
 
-def load_prev():
-    """读上一份落盘矩阵（读不出来就算没有——**一份坏数据不该让重测拒绝干活**）。"""
-    if not os.path.exists(OUT):
-        return None
-    try:
-        d = json.load(open(OUT, encoding="utf-8"))
-    except Exception:  # noqa: BLE001
-        return None
-    return d if isinstance(d, dict) and isinstance(d.get("rows"), list) else None
-
-
 def main(argv=None):
-    full = "--full" in (argv if argv is not None else sys.argv[1:])
+    """**这里曾经有一段「按文件粒度复用没变过的行」的逻辑，Batch 333 把它撤掉了。**
+
+    **它撤掉的理由是可注入证明的**（纪律 369）：
+    复用条件是「这一行自己的闸源码没变 + 两类摘要没变」，
+    **而实测证明闸与闸之间有依赖**——只把 `verify-tables.py` docstring 的
+    「第八道闸」改成「第九道闸」（**只改那一行**），**闸 9 `verify-meta` 就从 rc=0 变成 rc=1**
+    （它核「闸脚本自称与真实闸号一致」，**而它读的是别的闸的源码**）。
+    **于是在那个规则下，闸 9 那一行会被原样留下——记着「正常那一遍 rc=0」，
+    而实际已经是 rc=1**：**一行「看着是实测、其实是过期」的数据，
+    而且它的失效形态正是本项目最怕的那一类：不是报错，是照旧参与判断。**
+    **而 `scripts/` 下的闸文件若并进共享摘要，复用就永远不成立**
+    （任何一道闸的改动都会让全部行作废）——**所以那不是「复用」，那是「一个永远不触发的分支」**。
+    **结论：这份实测只能全量重测（355 秒），而这条结论是被注入量出来的，不是想出来的。**
+    """
     names = measured_gates()
     td = tree_digest()
     sh, shared_names = shared_digest()
-    prev = load_prev()
-    prev_rows = {r.get("gate"): r for r in (prev or {}).get("rows", []) if isinstance(r, dict)}
-    prev_fps = (prev or {}).get("fingerprints") or {}
-    # **复用条件三条同时成立**：共享摘要没变、手册内容摘要没变、这一行自己的指纹没变。
-    # **少一条就是「拿旧数据冒充新数据」**（纪律 368①）
-    reusable = bool(prev) and not full \
-        and prev.get("shared_digest") == sh and prev.get("tree_digest") == td \
-        and prev.get("sentinel") == SENTINEL
-    if prev and not reusable and not full:
-        why = []
-        if prev.get("sentinel") != SENTINEL:
-            why.append("哨兵 ref 换了")
-        if prev.get("shared_digest") != sh:
-            why.append("scripts/ 下有文件变了（共享实现 / 反验 / 夹具）")
-        if prev.get("tree_digest") != td:
-            why.append("手册内容变了")
-        print("上一份矩阵**不能复用**（%s）→ 本次全量重测" % "、".join(why))
-    if full:
-        print("--full：强制全量重测")
     print("哨兵 ref = %s" % SENTINEL)
     print("内容摘要 = %s…（%d 个文件）" % (td[:16], len(content_files())))
     print("共享摘要 = %s…（%d 个文件）" % (sh[:16], len(shared_names)))
     print("逐道实测 %d 道闸（各两遍，最坏 %d 秒/遍）\n" % (len(names), TIMEOUT))
     rows = []
-    n_reuse = 0
     for i, name in enumerate(names, 1):
-        fp = sha256_of(os.path.join(SD, name))
-        old = prev_rows.get(name)
-        if reusable and old is not None and prev_fps.get(name) == fp and not old.get("unusable"):
-            # **复用**：这一行的一切输入（自己的源码 / 共享实现 / 手册内容）都没变
-            row = dict(old, gate=name, measured_at=old.get("measured_at", "?"), reused=True)
-            n_reuse += 1
-        else:
-            a = run(name, None)
-            b = run(name, SENTINEL)
-            row = {"gate": name, "normal": a, "sentinel": b,
-                   "changed": a["rc"] != b["rc"], "unusable": None,
-                   "measured_at": time.strftime("%Y-%m-%d %H:%M:%S"), "reused": False}
-            if a["rc"] != 0:
-                # **红基线上的行不是证据**（纪律 367②）：两种成因被搅成一种
-                row["unusable"] = "正常那一遍 rc=%s（**在红基线上量的行证明不了任何事**）" % a["rc"]
-                row["changed"] = None
+        a = run(name, None)
+        b = run(name, SENTINEL)
+        row = {"gate": name, "normal": a, "sentinel": b,
+               "changed": a["rc"] != b["rc"], "unusable": None,
+               "measured_at": time.strftime("%Y-%m-%d %H:%M:%S")}
+        if a["rc"] != 0:
+            # **红基线上的行不是证据**（纪律 367②）：两种成因被搅成一种
+            row["unusable"] = "正常那一遍 rc=%s（**在红基线上量的行证明不了任何事**）" % a["rc"]
+            row["changed"] = None
         rows.append(row)
-        tag = "（复用 %s）" % row["measured_at"] if row["reused"] else ""
         if row["unusable"]:
             mark = "**作废（红基线）**"
         elif row["changed"]:
             mark = "变了"
         else:
             mark = ""
-        print("[%2d/%2d] %-34s 正常 rc=%-4s → 哨兵 rc=%-4s %s%s"
-              % (i, len(names), name, row["normal"]["rc"], row["sentinel"]["rc"], mark, tag))
+        print("[%2d/%2d] %-34s 正常 rc=%-4s → 哨兵 rc=%-4s %s"
+              % (i, len(names), name, row["normal"]["rc"], row["sentinel"]["rc"], mark))
         sys.stdout.flush()
         with open(OUT, "w", encoding="utf-8") as fh:
             json.dump({"measured_at": time.strftime("%Y-%m-%d %H:%M:%S"),
                        "sentinel": SENTINEL, "rows": rows,
-                       "mode": "full" if (full or not reusable) else "incremental",
-                       "reused": [r["gate"] for r in rows if r["reused"]],
                        "tree_digest": td, "shared_digest": sh,
                        "fingerprints": {r["gate"]: sha256_of(os.path.join(SD, r["gate"]))
                                         for r in rows}},
@@ -317,8 +289,8 @@ def main(argv=None):
     to2 = [r["gate"] for r in usable if r["sentinel"]["rc"] == 2]
     bad = [r for r in rows if r["unusable"]]
     print("\n==== 汇总 ====")
-    print("共 %d 道：**%d 道 rc 变了**（其中 %d 道变为 2）；**复用 %d 行 / 重跑 %d 行**"
-          % (len(rows), len(changed), len(to2), n_reuse, len(rows) - n_reuse))
+    print("共 %d 道：**%d 道 rc 变了**（其中 %d 道变为 2）"
+          % (len(rows), len(changed), len(to2)))
     print("**这一侧是「真读了那个 ref」的证据**；")
     print("**「rc 没变」这一侧不作数**——它可能是「不读」，也可能是「读了然后静默降级」，")
     print("**而本工具不替它猜**（逐道分类仍然是人的活，纪律 364⑥）。")
