@@ -9051,3 +9051,167 @@ zoom_after = min( max(z0, 0.5) , vs )
 **177 说「别把派生量之间的相关性当成因子」** ——
 🔴 **同一个病根：复合结构里各条通道的自由度，从来没人负责数一遍。**
 
+
+## 去 bundle 里看：`w ≥ 1212` 上音频/视频多出来的那一条，是**节点外框**，而且它是个**定点迭代**（2026-10-07 立规 178）
+
+### 📌 起意：前 `13` 批都在黑盒测，该去看代码了
+
+批次 295–297 把「跳变」这件事测到了「类内一致」「跨遍不落定」「落点无自由度」，
+🔴 **但成因仍然没测**。📌 本批换手段：**不点浏览器，直接读构建产物**。
+构建标识沿用批次 286 当天那份：`canvas-core.1f223ad77e.js`（`2,007,843` 字符）、
+`canvas-view.25249acfc0.js`（`560,421` 字符）。
+
+### 📌 读出来的四段代码（逐字摘录，偏移是字符偏移）
+
+**① `vs` / `vf` —— 缩放本身**（`@779698` / `@781068`）
+
+```js
+function vs(e,t){let i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:1/0;
+  return vf(Math.min(e.width/t.width,e.height/t.height,i))}
+function vf(e){return Math.min(8,Math.max(.08,e))}
+```
+
+**② `locateContent` 的落点与缩放**（`@778423`）
+
+```js
+if("locateContent"===e.mode){let t=vs(l,e.target);
+  if(!Number.isFinite(t)||t<=0)return{status:"invalid"}
+  let i=vf(Math.max(e.viewport.zoom,.5));
+  return va(vd(e.target,l,Math.min(i,t)),e.viewport)}
+```
+
+📌 **与此前实测一致**：`zoom = min( vf(max(当前缩放, .5)), vs )`，下限 `.5` 在 `min` **外面**（批次 287 的结论）。
+
+**③ 安全区 `ve` —— insets 直接相减**（`@775285`）
+
+```js
+function ve(e,t){let i=vn(t.left),r=vn(t.right),n=vn(t.top),o=vn(t.bottom),
+  a=e.width-i-r,s=e.height-n-o;
+  return a<=0||s<=0?null:{x:vn(e.surfaceOffsetLeft)+i,y:vn(e.surfaceOffsetTop)+n,width:a,height:s}}
+```
+
+🔴 **这是 `safeH = H − 160` 第一次有出处**：安全区 = 视口矩形**四边各减一个 inset**。
+📌 批次 297 实测「垂直内缩上下各 `80`」⇒ **`insets.top = insets.bottom = 80`，
+`160 = 80 × 2`**，且 `vd` 把目标**居中**在 `[80, 640]` ⇒ 中心 `360` ⇒ **顶边落在 `80`** ✅ 三条互相对得上。
+
+**④ 🔴🔴 `target` 不是节点盒，是 `compound`**（`@797561` / `@799451` / `@813405`）
+
+```js
+target: i.compound                                   // @797570
+compound: vO(a, e.attachedInsets, e.nodeChromeInsets, r)   // @799451
+
+function vO(e,t,i,r){                                 // @813405
+  let g=(0,g8.f0)(r);                                 // r = zoom
+  v = vL(t.bottom) + vL(i.bottom)*g;                  // attached + chrome × g(zoom)
+  y = vL(t.left)   + vL(i.left)*g;
+  b = vL(t.right)  + vL(i.right)*g;
+  I = vL(t.top)    + vL(i.top)*g;
+  ...}
+```
+
+而 `g8 = i(83399)`，模块 `83399`（`@1429`）里**逐字**是：
+
+```js
+function a(e){return 1/Math.max(Number.isFinite(e)&&e>0?e:1,.5)}
+```
+
+⇒ 📌 **`g(zoom) = 1 / max(zoom, .5)`**，它就是 CSS 变量
+`--octo-canvas-node-chrome-counter-scale`（`canvas-view.js` 里 `setProperty(nS.RA, String(f0(zoom)))`）。
+
+🔴 **所以 `compound` = 节点盒四边各外扩 `attachedInsets + nodeChromeInsets × 1/max(zoom, .5)`**，
+**而 `vs` 用的是 `compound`、不是节点盒。**
+
+### ✅ 用实测数据反推 `nodeChromeInsets`（与代码对上）
+
+由 `vd` 居中的是 `compound`、而批次 297 实测的节点中心 Y 不是 `360`，可反推：
+
+> `(compound.height − 节点盒高) / 2 × z = 360 − 节点中心Y`
+
+| 节点 | `z` | 节点中心 Y | ⇒ `compound.height` | DOM 盒高 | **多出来的（屏幕像素）** |
+|---|---|---|---|---|---|
+| `文本 1`（不跳） | `1.75` | `360` | **`320`** | `320` | **`0`** ✅ |
+| `音频 1` | `1.10407` | `256.65` | **`≈507.2`** | `320` | **`≈207`** |
+| `视频 1` | `0.603293` | `251.6` | **`≈928.4`** | `569` | **`≈217`** |
+
+📌 顺带验证闭式：用 `compound.height` 代进去，
+`560/507.2 = 1.10407`、`560/928.4 = 0.60326` ⇒ **与实测逐字吻合** ✅
+🔴 **「`w ≥ 1212` 上闭式缺的那不止一条」，就是这一条：`Hc` 该换成 `compound.height`，而它多出的是节点外框。**
+
+### 🔴🔴 结论一：「跳变按 `kind` 走」的成因，就在 `hasNodeToolbar` 上
+
+同一段代码里（`@799451` 下一行）：
+
+```js
+hasNodeToolbar: this.hasDecorationGeometryForRoles(e.nodeIds,["nodeToolbar"])
+```
+
+⇒ 📌 **只有带 `nodeToolbar` 外框的节点，`nodeChromeInsets` 才非零。**
+🔴 批次 295 的分类由此**第一次有了机制**：
+`音频` / `视频` 有工具条 ⇒ `compound` 明显更大 ⇒ 高度项 `safeH/compound.height` 变小 ⇒ 跳变；
+`文本` / `图片` / `时间线` 实测 `compound.height` **恰好等于 DOM 盒高** ⇒ 不跳。
+⚠️ **仍不是逐条证明**（`外部` 只测了不跳，没测它的 `compound`），但**相关性第一次落到了代码结构上**。
+
+### 🔴🔴 结论二：跨遍不落定的机制找到了 —— 它是个**定点迭代**
+
+调用侧 `resolveProjectedPresentation`（`@796555`）逐字：
+
+```js
+for(let r=0;r<24;r+=1){
+  let r=this.resolvePresentationValue(e,i,o);        // 🔴 内层 r 遮蔽了循环变量
+  if("invalid"===r.status)return{outcome:vz("invalidGeometry",…)}
+  if(s=r,"resolved"!==r.status||"nodes"!==t.kind)return{value:r};
+  let l=r.viewport.zoom;
+  if(1e-7>=Math.abs(l-a)){
+    if(o.hasScreenFixedDecoration&&!this.targetFitsSafeViewport(i,o.compound,r.viewport)&&!d)
+      return{retry:"withoutScreenFixed"};
+    return{value:r}}
+  a=l;                                              // 上一轮的 zoom
+  let u=this.resolveTargetBounds(t,i,n,a,!1);        // 🔴 用它重算 compound
+  if(!u)return{outcome:vU("targetUnavailable")}
+  o=u}
+return s                                            // 🔴 24 轮用尽 ⇒ 返回最后一轮
+```
+
+🔴 **这是一个「zoom → 重算 compound → 得到新 zoom」的反馈环，最多 `24` 轮**，
+⚠️ 注意循环变量 `r` 被内层 `let r=` **遮蔽**了 —— 📌 **读这段时极易把「迭代轮数」看成「迭代结果」，
+而这正是它容易看漏的原因**；
+收敛判据是 `|Δzoom| ≤ 1e-7`，🔴 **不收敛时直接返回最后一轮的值**。
+📌 **这正好解释批次 296 的全部现象**：
+不跳的 `文本` 外框为 `0` ⇒ `compound` 与 zoom 无关 ⇒ **一轮就精确收敛**（极差 `0`）；
+有工具条的 `音频`/`视频` 外框随 `1/max(zoom,.5)` 变化 ⇒ **真正在迭代** ⇒
+🔴 **落点与终点都随起点与浮点细节漂** ⇒ 跨遍极差 `≈0.02`。
+
+⚠️ **「不收敛」这一步尚未实测**（`立规 113`，不编）：📌 **下一批该打的是收敛判据本身** ——
+🔴 **要么在 bundle 里数迭代轮数，要么找一个能让它必然收敛 / 必然不收敛的配置做对照。**
+
+⚠️ **同一段里还有一条没读的分支**：`retry:"withoutScreenFixed"` ——
+🔴 **它在「带屏幕固定外框」且「放不进安全区」时会要求去掉外框重试**。
+📌 **这可能就是「`w ≤ 1211` 与 `w ≥ 1212` 走的是两条路」的分界**，
+🔴 **但本批没有测到它，不编** —— 📌 这是下一批最该打的一枪。
+
+### 📕 立规 178
+
+**闭合到一个带反馈的公式时，要先确认它的迭代结构 —— 「A 决定 B、B 又决定 A」这类定点，
+天然不落定；只测一遍拿到的是轨迹上的一个点，不是终点。**
+
+做法（本批已用）：
+
+1. 🔴 **公式里只要出现「同一个量在两侧」，先数迭代轮数与收敛判据** ——
+   本批 `zoom → compound(zoom) → zoom`，`24` 轮、`|Δzoom| ≤ 1e-7`；
+2. 🔴 **「重复测量不一致」有三种可能，代码能分开它们** ——
+   ① 测量噪声 ｜ ② 迭代未收敛 ｜ ③ 走了另一条分支
+   ⇒ 📌 **本批用代码把 ② 单独拎了出来，而 ③（`retry:"withoutScreenFixed"`）还开着**；
+3. 📌 **黑盒测到「不落定」之后，去找那个把两条方程连起来的乘子** ——
+   📌 本批的乘子是 `1/max(zoom,.5)`，它同时出现在 CSS 变量名里
+   （`--octo-canvas-node-chrome-counter-scale`）⇒ 📌 **同一个常数在两处以不同身份出现时，
+   往往就是闭环的那个接口**；
+4. 📌 **代码读出来的常数要拿黑盒读数反推一遍** ——
+   📌 本批用 `compound.height` 代进闭式得到 `1.10407` / `0.60326`，与实测逐字吻合。
+
+⇒ 📌 **通用句：一个看起来「测不准」的量，先别当它测不准 ——
+去读它是不是一个还没跑完的循环。**
+⇒ 📌 **与立规 171/176 是一条线的第三段**：171 说「没过跨重复的读数只能报区间」，
+176 说「报『不可复现』之前要有正交对照」，
+**178 说「而不可复现本身可能是一个有收敛判据的迭代，它还没跑完」** ——
+📌 **三段合起来才是完整的：** 「没落定」既可能是**性质**，也可能是**没跑完**，**必须分开**。
+
