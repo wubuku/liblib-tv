@@ -60,6 +60,18 @@ Batch 330 又实测出**它至少多算 2 道**（`verify-meta` / `verify-baseli
 **顺带一条现实约束**：这份实测**依赖手册树的内容**（闸读的是手册文件），
 **所以在有他人未提交 WIP 的工作区里量出来的矩阵，别人根本复现不出来**。
 
+**⑤「过期了没有」要按「变化能从哪些地方传进来」列全，而四条一起上（纪律 368）**：
+原先只逐行记闸自己源码的 sha256，**于是改手册正文不会让矩阵过期**——
+**而闸读的就是手册正文**（闸 1 / 2 / 6 / 9 / 22 / 23 … 全都读它），
+**改一行正文就可能改掉某道闸的 rc，而它自己的文件一个字节没动**。
+所以现在多落两类摘要：`tree_digest`（手册内容）与 `shared_digest`
+（`scripts/` 下**除闸自己与这份矩阵之外的一切**——
+**共享实现、反验、夹具、其它工具全在里面，而闸 18 在构建里真跑每一份反验**）。
+**实测两份摘要各 0.07 秒 / 0.02 秒，所以闸每次跑都算得起。**
+**而这一刀也顺带给出了复用规则**：三个条件同时成立才复用一行
+（闸自己指纹没变 + 两份摘要都没变），
+**于是「加一道闸」「改一道闸」不必全量重测，而「改手册正文」必须全量——不是嫌慢，是那条路上复用就是撒谎。**
+
 **⓪而「全绿」这个前提自己也有前置条件（本批第三次重测才撞上，纪律 367⑦）**：
 `verify-deadlinks.py`（闸 1）与 `verify-screenshots.py`（闸 2）**读的是 `dist/`**，
 而 dist 不在时它们**返回 rc=2「跳过」**——
@@ -116,6 +128,93 @@ def sha256_of(path):
     return h.hexdigest()
 
 
+# 摘要要略过的目录：**产物与依赖**（它们不是「这棵树的一部分」，
+# 而闸 1 / 闸 2 恰恰要读 `dist/`——**所以 dist 不进摘要，闸 2 的结论就不受构建产物影响**）
+SKIP_DIRS = {".git", "node_modules", "dist", "__pycache__", ".vitepress"}
+
+# **「这棵树」这个集合本身也要挑，而这一条是实测出来的**（纪律 368⑦）：
+# 副本树 113 个内容文件、仓库 114 个，**差的那一个是 `screenshots/.DS_Store`**——
+# **它是 macOS Finder 写的、git 不跟踪、而「在 Finder 里点过这个目录」就会变**。
+# **所以它进了 `tree_digest` 的话，那道判据的红与「谁碰过这个文件夹」绑定**——
+# **而一个天天因为环境噪声红的守卫，等于没有守卫**（纪律 156 的变体：
+# 一个恒红的判据会被人当成环境问题绕过去）。
+# **为什么是列文件名而不是「问 git 要跟踪列表」**：副本树把 `.git` 软链到真仓库，
+# **`git ls-files` 在那里会列出真仓库的文件（而它们在副本树里并不存在）**——
+# **实测出来的，不是想出来的。**
+# **而这份名单漏了一种噪声的失效方向是「响」不是「静」**：新噪声进来 → 摘要变 → rc=2，
+# **它不会让一道真不一致溜过去**，所以名单不全的代价是「偶尔白跑一次重测」。
+NOISE_FILES = {".DS_Store", "Thumbs.db", "desktop.ini", ".Spotlight-V100"}
+
+SELF_NAME = os.path.basename(__file__)
+MATRIX_NAME = os.path.basename(OUT)
+
+
+def _digest_of_files(pairs):
+    """对一组 `(相对路径, 绝对路径)` 求摘要——**路径也进哈希**，
+    因为「同一个文件换了名」与「文件没变」在内容摘要上长得一样。"""
+    h = hashlib.sha256()
+    for rel, path in pairs:
+        h.update(rel.encode("utf-8"))
+        h.update(b"\0")
+        h.update(sha256_of(path).encode("ascii"))
+        h.update(b"\n")
+    return h.hexdigest()
+
+
+def content_files(root=None):
+    """手册**内容**文件（不含 `scripts/`、不含产物与依赖）。
+    **默认参数是必须的**：`main()` 要打印「这份摘要覆盖了几个文件」，
+    而第一版把它写成必填 —— 于是**一跑就 TypeError**（Batch 332 实测，
+    **而且是副本树里那遍才暴露出来**：真树上我先跑的是 `tree_digest()`，没走 `main()`）。"""
+    root = root or MAN
+    out = []
+    for r, ds, fs in os.walk(root):
+        ds[:] = sorted(d for d in ds if d not in SKIP_DIRS)
+        rel_dir = os.path.relpath(r, root)
+        if rel_dir == ".":
+            rel_dir = ""
+        if rel_dir.split(os.sep)[0] == "scripts":
+            continue
+        for f in sorted(fs):
+            if f.endswith(".pyc") or f in NOISE_FILES or f.startswith("._"):
+                continue
+            p = os.path.join(r, f)
+            out.append((os.path.join(rel_dir, f).replace(os.sep, "/"), p))
+    return sorted(out)
+
+
+def tree_digest(root=None):
+    """手册内容的摘要——**「这份实测是在哪棵内容树上量的」**（纪律 367⑥）。
+    实测 114 个文件 / 15.8 MB，**0.07 秒**，所以闸每次跑都算得起。"""
+    return _digest_of_files(content_files(root or MAN))
+
+
+def shared_digest(sd=None):
+    """`scripts/` 下**除闸自己与这份矩阵之外**的一切文件的摘要。
+
+    **为什么是「除闸自己与这份矩阵之外的一切」**（纪律 368）：
+    **判据的「过期了没有」必须按「变化能从哪些地方传进来」列全**，而实测列出来是四条：
+      ① **闸自己的源码** → 逐行记 sha256（`fingerprints`）；
+      ② **共享实现**（`baseline.py` / `headingkey.py` / `scope.py` …）——
+         改一个 `resolve_ref()`，**所有**闸的读法都变了，而它们自己的文件一个字节没动；
+      ③ **反验与夹具**（`selftest-*.py` / `selftest-fix-*.py` / `*.sh`）——
+         **闸 18 在构建里真跑每一份**，改一份就改闸 18 的 rc；
+      ④ **手册内容**（`tree_digest`）——闸读的就是那些 `.md` 与截图。
+    **而「除闸自己与这份矩阵之外的一切」这一刀，正好把 ②③ 一次性圈住**：
+    **列全的代价是零，漏一条的代价是「拿旧数据冒充新数据」**。
+    **矩阵自己必须排除**——它进自己的摘要就是自指。
+    """
+    sd = sd or SD
+    out = []
+    for n in sorted(os.listdir(sd)):
+        if n == MATRIX_NAME or not os.path.isfile(os.path.join(sd, n)):
+            continue
+        if n.startswith("verify-") and n.endswith(".py"):
+            continue  # ① 逐行 sha256 已覆盖
+        out.append(("scripts/" + n, os.path.join(sd, n)))
+    return _digest_of_files(out), [r for r, _ in out]
+
+
 def run(name, env_ref):
     env = dict(os.environ)
     if env_ref is None:
@@ -134,29 +233,83 @@ def run(name, env_ref):
         return {"rc": None, "tail": ["<timeout>"], "sec": TIMEOUT}
 
 
-def main():
+def load_prev():
+    """读上一份落盘矩阵（读不出来就算没有——**一份坏数据不该让重测拒绝干活**）。"""
+    if not os.path.exists(OUT):
+        return None
+    try:
+        d = json.load(open(OUT, encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return None
+    return d if isinstance(d, dict) and isinstance(d.get("rows"), list) else None
+
+
+def main(argv=None):
+    full = "--full" in (argv if argv is not None else sys.argv[1:])
     names = measured_gates()
+    td = tree_digest()
+    sh, shared_names = shared_digest()
+    prev = load_prev()
+    prev_rows = {r.get("gate"): r for r in (prev or {}).get("rows", []) if isinstance(r, dict)}
+    prev_fps = (prev or {}).get("fingerprints") or {}
+    # **复用条件三条同时成立**：共享摘要没变、手册内容摘要没变、这一行自己的指纹没变。
+    # **少一条就是「拿旧数据冒充新数据」**（纪律 368①）
+    reusable = bool(prev) and not full \
+        and prev.get("shared_digest") == sh and prev.get("tree_digest") == td \
+        and prev.get("sentinel") == SENTINEL
+    if prev and not reusable and not full:
+        why = []
+        if prev.get("sentinel") != SENTINEL:
+            why.append("哨兵 ref 换了")
+        if prev.get("shared_digest") != sh:
+            why.append("scripts/ 下有文件变了（共享实现 / 反验 / 夹具）")
+        if prev.get("tree_digest") != td:
+            why.append("手册内容变了")
+        print("上一份矩阵**不能复用**（%s）→ 本次全量重测" % "、".join(why))
+    if full:
+        print("--full：强制全量重测")
     print("哨兵 ref = %s" % SENTINEL)
+    print("内容摘要 = %s…（%d 个文件）" % (td[:16], len(content_files())))
+    print("共享摘要 = %s…（%d 个文件）" % (sh[:16], len(shared_names)))
     print("逐道实测 %d 道闸（各两遍，最坏 %d 秒/遍）\n" % (len(names), TIMEOUT))
     rows = []
+    n_reuse = 0
     for i, name in enumerate(names, 1):
-        a = run(name, None)
-        b = run(name, SENTINEL)
-        row = {"gate": name, "normal": a, "sentinel": b,
-               "changed": a["rc"] != b["rc"], "unusable": None}
-        if a["rc"] != 0:
-            # **红基线上的行不是证据**（纪律 367②）：两种成因被搅成一种
-            row["unusable"] = "正常那一遍 rc=%s（**在红基线上量的行证明不了任何事**）" % a["rc"]
-            row["changed"] = None
+        fp = sha256_of(os.path.join(SD, name))
+        old = prev_rows.get(name)
+        if reusable and old is not None and prev_fps.get(name) == fp and not old.get("unusable"):
+            # **复用**：这一行的一切输入（自己的源码 / 共享实现 / 手册内容）都没变
+            row = dict(old, gate=name, measured_at=old.get("measured_at", "?"), reused=True)
+            n_reuse += 1
+        else:
+            a = run(name, None)
+            b = run(name, SENTINEL)
+            row = {"gate": name, "normal": a, "sentinel": b,
+                   "changed": a["rc"] != b["rc"], "unusable": None,
+                   "measured_at": time.strftime("%Y-%m-%d %H:%M:%S"), "reused": False}
+            if a["rc"] != 0:
+                # **红基线上的行不是证据**（纪律 367②）：两种成因被搅成一种
+                row["unusable"] = "正常那一遍 rc=%s（**在红基线上量的行证明不了任何事**）" % a["rc"]
+                row["changed"] = None
         rows.append(row)
-        print("[%2d/%2d] %-34s 正常 rc=%-4s → 哨兵 rc=%-4s %s"
-              % (i, len(names), name, a["rc"], b["rc"],
-                 "变了" if row["changed"] else ("**作废（红基线）**" if row["unusable"] else "")))
+        tag = "（复用 %s）" % row["measured_at"] if row["reused"] else ""
+        if row["unusable"]:
+            mark = "**作废（红基线）**"
+        elif row["changed"]:
+            mark = "变了"
+        else:
+            mark = ""
+        print("[%2d/%2d] %-34s 正常 rc=%-4s → 哨兵 rc=%-4s %s%s"
+              % (i, len(names), name, row["normal"]["rc"], row["sentinel"]["rc"], mark, tag))
         sys.stdout.flush()
         with open(OUT, "w", encoding="utf-8") as fh:
             json.dump({"measured_at": time.strftime("%Y-%m-%d %H:%M:%S"),
                        "sentinel": SENTINEL, "rows": rows,
-                       "fingerprints": {n: sha256_of(os.path.join(SD, n)) for n in names}},
+                       "mode": "full" if (full or not reusable) else "incremental",
+                       "reused": [r["gate"] for r in rows if r["reused"]],
+                       "tree_digest": td, "shared_digest": sh,
+                       "fingerprints": {r["gate"]: sha256_of(os.path.join(SD, r["gate"]))
+                                        for r in rows}},
                       fh, ensure_ascii=False, indent=1)
 
     usable = [r for r in rows if not r["unusable"]]
@@ -164,8 +317,8 @@ def main():
     to2 = [r["gate"] for r in usable if r["sentinel"]["rc"] == 2]
     bad = [r for r in rows if r["unusable"]]
     print("\n==== 汇总 ====")
-    print("共 %d 道：**%d 道 rc 变了**（其中 %d 道变为 2）"
-          % (len(rows), len(changed), len(to2)))
+    print("共 %d 道：**%d 道 rc 变了**（其中 %d 道变为 2）；**复用 %d 行 / 重跑 %d 行**"
+          % (len(rows), len(changed), len(to2), n_reuse, len(rows) - n_reuse))
     print("**这一侧是「真读了那个 ref」的证据**；")
     print("**「rc 没变」这一侧不作数**——它可能是「不读」，也可能是「读了然后静默降级」，")
     print("**而本工具不替它猜**（逐道分类仍然是人的活，纪律 364⑥）。")
@@ -177,7 +330,8 @@ def main():
         print("   **不是把那些行删掉**——删掉就是在假装那几道量过了。")
     else:
         print("全部 %d 行的正常基线都是 rc=0，**没有一行作废**。" % len(rows))
-    print("落盘：%s（含 %d 个指纹）" % (OUT, len(names)))
+    print("落盘：%s（%d 个指纹 / 内容摘要 %s… / 共享摘要 %s…）"
+          % (OUT, len(names), td[:12], sh[:12]))
     return 1 if bad else 0
 
 

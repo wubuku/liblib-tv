@@ -46,6 +46,11 @@
 - **红基线**：矩阵里若有行标着 `unusable`（正常那一遍不是 rc=0），
   **那种行证明不了任何事**——「rc 没变」本来就有两种成因（真不读 / 读了但静默降级），
   **而红基线把两种搅成一种**。所以它不是「没发现问题」，是**证据不完整**。
+- **两类摘要**（纪律 368）：`tree_digest`（手册内容）与 `shared_digest`
+  （`scripts/` 下除闸自己与这份矩阵之外的一切）必须与现场重算的一致。
+  **只核闸自己的 sha256 是不够的**——**改一行手册正文就可能改掉某道闸的 rc，
+  而那个闸的文件一个字节没动**；而 `scripts/` 下改一份反验，**闸 18 的 rc 就变**
+  （它在构建里真跑每一份）。
 - **覆盖**：矩阵必须**恰好**盖住 `remeasure-upstream-gates.py` 说的那批闸。
   **少盖**是「新加的闸没量」（新闸到底读不读上游，没人知道），
   **多盖**是「矩阵里有已经不存在的闸」（这份实测描述的不是这棵树）。
@@ -99,6 +104,19 @@ def expected_gates():
     return set(m.measured_gates(SD))
 
 
+def digests_now():
+    """现场重算两类摘要——**「过期了没有」要按「变化能从哪些地方传进来」列全**（纪律 368）：
+    只核闸自己的源码是不够的，**改一行手册正文就可能改掉某道闸的 rc，
+    而它自己的文件一个字节没动**。
+    **实测代价 0.07 + 0.02 秒，所以闸每次跑都算得起**——而算不起的 freshness
+    就等于没有 freshness（那是纪律 265 的老形态：只有真出现时才炸的洞没人守）。"""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("rm_digest", MEASURE)
+    m = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(m)
+    return m.tree_digest(ROOT), m.shared_digest(SD)[0]
+
+
 def main():
     if not os.path.exists(MATRIX):
         print("[skip] 还没有实测矩阵 %s" % MATRIX)
@@ -132,6 +150,32 @@ def main():
             print("         %s" % g)
         print("→ 处置是**重测**（`python3 scripts/remeasure-upstream-gates.py`），"
               "不是把指纹改回去——改回去等于让过期值继续冒充实测值")
+        return 2
+
+    # ①之二 两类摘要：手册内容 / scripts 里的共享实现与反验（纪律 368）
+    try:
+        td_now, sh_now = digests_now()
+    except Exception as e:  # noqa: BLE001
+        print("[skip] 算不出两类摘要：%s" % e)
+        return 2
+    if data.get("tree_digest") is None or data.get("shared_digest") is None:
+        # **缺键与「值对不上」要分开说**：缺键是**格式旧**，而对不上是**内容变了**，
+        # **混在一张单子里，读者会去查「我改了什么」，而他真正该做的是重测**
+        print("[skip] 矩阵里**没有** `tree_digest` / `shared_digest`（那是上一版的格式）")
+        print("→ 处置是**重测**（`python3 scripts/remeasure-upstream-gates.py`）")
+        return 2
+    drift = []
+    if data.get("tree_digest") != td_now:
+        drift.append("**手册内容**变了（`tree_digest` 对不上）")
+    if data.get("shared_digest") != sh_now:
+        drift.append("**`scripts/` 下有文件变了**（共享实现 / 反验 / 夹具 / 其它工具，`shared_digest` 对不上）")
+    if drift:
+        print("[skip] 实测矩阵与这棵树已经对不上：%d 处" % len(drift))
+        for d in drift:
+            print("         · %s" % d)
+        print("→ **改手册正文与改反验都会改掉某道闸的 rc，而闸自己的文件一个字节没动**——")
+        print("  所以处置是**重测**（`python3 scripts/remeasure-upstream-gates.py`），")
+        print("  **不是把摘要改回去**——改回去就是让过期值继续冒充实测值")
         return 2
 
     # ② 形状不对的行：读不出来不等于 0

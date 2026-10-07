@@ -11,6 +11,7 @@
 | 2 | 矩阵里多一道「实测会读」、而痕迹清单里没有它 | **rc=1** | **能抓漏**（而且必须是 1，不是 2） |
 | 3 | 某道闸的指纹与矩阵记录不符 | **rc=2** | **退化必须报「未能核对」**（纪律 101） |
 | 4 | 矩阵里有一行标着「红基线上量的」 | **rc=2** | **证据不完整 ≠ 没发现问题**（纪律 367②） |
+| 5 | 矩阵里的 `tree_digest` / `shared_digest` 与现场重算的对不上 | **rc=2** | **改手册正文 / 改反验也算「过期」**（纪律 368） |
 
 **第 3 支尤其重要，而且它的成因是一次实测**：
 第一次试图用「把某道闸的 `module_ref()` 藏起来」来制造第 2 支的场景，
@@ -47,6 +48,7 @@
 **换句话说：判断与数据分开验，分不开就会死锁。**
 """
 import hashlib
+import importlib.util
 import json
 import os
 import shutil
@@ -73,24 +75,49 @@ def _measured_gates_in(sd):
 
 
 def clone(dst):
+    """克隆整棵手册树（**不是只克隆 `scripts/`**——闸 45 现在要重算 `tree_digest`，
+    而那要读手册内容；**只克隆 scripts/ 会让摘要算不出来，于是第 1 支永远过不了**）。
+    产物与依赖不搬：它们不是「这棵树的一部分」。"""
     if os.path.isdir(dst):
         shutil.rmtree(dst)
-    s = os.path.join(dst, "scripts")
-    os.makedirs(s)
-    for n in os.listdir(SD):
-        if n.endswith(".py") or n.endswith(".json"):
-            shutil.copy(os.path.join(SD, n), os.path.join(s, n))
+    skip = {".git", "node_modules", "dist", "__pycache__", ".vitepress"}
+    for r, ds, fs in os.walk(ROOT):
+        rel = os.path.relpath(r, ROOT)
+        parts = [] if rel == "." else rel.split(os.sep)
+        ds[:] = [d for d in ds if d not in skip]
+        if parts and parts[0] in skip:
+            continue
+        os.makedirs(os.path.join(dst, rel) if rel != "." else dst, exist_ok=True)
+        for f in fs:
+            if f.endswith(".pyc"):
+                continue
+            shutil.copy(os.path.join(r, f), os.path.join(dst, rel, f))
     # **自造夹具矩阵**（理由见文件头，纪律 367⑧）：
-    # 覆盖恰好等于工具说的那批、每行两遍都 rc=0、指纹按克隆体现算
+    # 覆盖恰好等于工具说的那批、每行两遍都 rc=0、指纹按克隆体现算、
+    # **两类摘要也按克隆体现算**（纪律 368：不这么做，第 1 支就不是在验「判据的判断」）
+    s = os.path.join(dst, "scripts")
     gates = _measured_gates_in(s)
     if not gates:
         return dst
+    sys.path.insert(0, s)
+    try:
+        spec = importlib.util.spec_from_file_location(
+            "rm_clone", os.path.join(s, "remeasure-upstream-gates.py"))
+        rm = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(rm)
+        td = rm.tree_digest(dst)
+        sh = rm.shared_digest(s)[0]
+    finally:
+        sys.path.pop(0)
     rows = [{"gate": g,
              "normal": {"rc": 0, "tail": ["夹具"], "sec": 0.0},
              "sentinel": {"rc": 0, "tail": ["夹具"], "sec": 0.0},
-             "changed": False, "unusable": None} for g in gates]
+             "changed": False, "unusable": None,
+             "measured_at": "夹具（反验自造，不是落盘实测）", "reused": False} for g in gates]
     d = {"measured_at": "夹具（反验自造，不是落盘实测）",
          "sentinel": "zzz-not-a-real-ref-9f3a", "rows": rows,
+         "mode": "fixture", "reused": [],
+         "tree_digest": td, "shared_digest": sh,
          "fingerprints": {g: hashlib.sha256(open(os.path.join(s, g), "rb").read()).hexdigest()
                           for g in gates}}
     json.dump(d, open(os.path.join(s, os.path.basename(MATRIX)), "w", encoding="utf-8"),
@@ -196,9 +223,35 @@ def case_unusable():
     return False
 
 
+def case_digest():
+    """把 `tree_digest` 改掉——闸 45 必须报 rc=2「这棵树已经对不上」，
+    **而不是**照旧跑完核对并给出一个 rc=0/1。
+    **而这一支是本批（Batch 332）新加判据的唯一鉴别力证据**：
+    **只篡改一个 sha256 就能过的那道 freshness 检查，等于没有那道检查**。"""
+    td = clone(os.path.join(tempfile.gettempdir(), "sug-selftest-digest"))
+    p = os.path.join(td, "scripts", os.path.basename(MATRIX))
+    d = json.load(open(p, encoding="utf-8"))
+    # **注入锚点用 assert 钉死**：没有这两个键就作废（纪律 265）
+    if "tree_digest" not in d or "shared_digest" not in d:
+        print("  ✗ 夹具矩阵里没有两类摘要 —— 夹具前提不成立，**作废**")
+        shutil.rmtree(td, ignore_errors=True)
+        return False
+    d["tree_digest"] = "0" * 64
+    json.dump(d, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+    rc, out = run(td)
+    shutil.rmtree(td, ignore_errors=True)
+    if rc == 2 and "手册内容" in out:
+        print("  ✓ 摘要对不上必报 rc=2：tree_digest 被改 → 「手册内容变了」，"
+              "**没有**照旧报成 rc=0/1")
+        return True
+    print("  ✗ 摘要：期望 rc=2 且点名「手册内容」，实测 rc=%d" % rc)
+    print(out[-600:])
+    return False
+
+
 def main():
-    print("闸 45 反向验证：4 例（1 基线 / 1 能抓 / 2 退化必报 rc=2）")
-    results = [case_baseline(), case_missed(), case_stale(), case_unusable()]
+    print("闸 45 反向验证：5 例（1 基线 / 1 能抓 / 3 退化必报 rc=2）")
+    results = [case_baseline(), case_missed(), case_stale(), case_unusable(), case_digest()]
     ok = sum(1 for r in results if r)
     bad = sum(1 for r in results if not r)
     # **末尾这一行的写法有硬要求（闸 18 方向十七实测）**：
@@ -208,7 +261,7 @@ def main():
     # 而那个形态的后果**不是构建变红，是那一列例数从此没人核**
     # （闸自己的报错原话：「别让『解析不到』变成一个没人知道的静默缺口」）。
     print("闸 45 反验：通过 %d / 失败 %d / 作废 0 = %d" % (ok, bad, ok + bad))
-    if ok != 4:
+    if ok != 5:
         print("→ 有用例没过 —— 闸 45 上线前必须全过")
         return 1
     return 0
