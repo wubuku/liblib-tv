@@ -16337,6 +16337,24 @@ def main() -> int:
           and "p10_the_verdicts_were_printed_but_never_persisted_1027_" in _ausrc
           and "p11_the_gate_turned_red_exactly_when_everything_was_fresh_1027_" in _ausrc
 )
+    check("DD993M.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "本批给 1014 补了一件它一直缺的东西：**读数必须带着它算在哪一批字节上** "
+          "1014 的普查输入是整目录 `GDIR.glob(*.json)`，本批量到**全部 20 本（含账本自己）**都是**别的探针每跑一次就重写的产物**（`generated_by` 全部指向 `jimeng_probe*.py`，**没有一本是手写的静态输入**）⇒⇒⇒ 所以 `n_empty_list` / `n_empty_null` 这两个数**不自己说明自己算在哪一批字节上** ⇒⇒⇒⇒⇒ 下次看到它变了，分不清是「输入变了」还是「类型器不对了」 ⇒⇒⇒⇒ **⇒⇒⇒ 而本批自己撞上了：1028 把 1027 产物里那两个 null 修掉之后，`n_empty_null` 从 28 变成 26 —— 没有指纹的话，这次变动会被当成一个待解的异常** ⇒⇒⇒⇒⇒ 处置：每本的 `sha256_12` + `bytes` 一起写进产物 `census_inputs_2029`，并且把普查循环抽成唯一口径 `_census()`，主读数与对照组必须调同一个函数 "
+          "**然后阳性对照第一次真的抓到东西，而且抓的是这条新判据本身** ⇒ 新增的 `P9` 有四个合取项，全部写完后第一件事是问「它会红吗」⇒⇒⇒ 答案是**不会**：把 `_fp_of` 的 `sha256_12` 换成常量后 `P9` 照样绿 ⇒⇒⇒⇒ **⇒⇒⇒⇒ 而原因是：`_FP_MOVES` 自己又算了一遍哈希、核对的是另一处，而不是它登记进产物的那个指纹** ⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ 这是「同一个东西要比同一个口径」的第四次复发** ⇒⇒⇒⇒⇒ 修掉之后又连续两次没转红，两次都是真病：第一次是「验了另一处的哈希」（上述），第二次是**同一个字典里的 `bytes` 字段恰好也随内容变**，把被常量化的 `sha256_12` 挡在后面 ⇒⇒⇒⇒⇒ 最后只比 `sha256_12` 这一个内容寻址字段才转红 ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ 现在 6 个变异体全部当场转红** ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ 而这条也逼出一句必须写下的自认：我第一版的两个对照本身就是坏的**（把真值合取项换成字面 `True` 本来就不应该变色） "
+          "附带一条：**audit 的数据块必须保持 `ast.literal_eval` 能解** —— 第一版我把三个数字写成 `%d` 配 `% (20, 28, 26)`，结果整块变成 `BinOp`，1014 的 `audit_block()` 当场崩 ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒ 所以 audit 里不许做字符串格式化**，要数字就写字面量",
+          'def _census(pairs):' in _p1014
+          and 'def _fp_of(raw):' in _p1014
+          and '_FP[_f.name] = _fp_of(_f.read_bytes())' in _p1014
+          and '_FP_MOVES = (_fp_of(_pl.encode())["sha256_12"]' in _p1014
+          and '_MUT_SEEN = (_b_n == _a_n + 1)' in _p1014
+          and '_MAIN_READS_BOOKS = (len(rows) - len(_rest) == len(_ONLY0))' in _p1014
+          and 'out["P9_hold_2014"] = bool(_MUT_SEEN and _FP_MOVES and _MAIN_READS_BOOKS' in _p1014
+          and '"census_inputs_2029": {' in _p1014
+          and 'assert _N_P_2014 >= 9,' in _p1014
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+          and "p9_the_census_reading_carried_no_record_of_which_bytes_produced_it_1029_" in _ausrc
+          and "p10_the_positive_control_caught_p9_verifying_a_different_fingerprint_2029_" in _ausrc
+)
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

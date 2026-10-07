@@ -21,6 +21,7 @@
 """
 import ast
 import collections
+import hashlib
 import io
 import json
 import re
@@ -129,24 +130,60 @@ assert not any(_is_own(f) for f in GOLDENS), \
     "⭐⭐⭐⭐⭐ **普查输入里还混着自己**"
 N_GOLDENS = len(GOLDENS)
 N_EXCLUDED_SELF = len(_SELF_SEEN)
-rows, n_empty_list, n_empty_null, n_selfprovable, n_ambiguous = [], 0, 0, 0, 0
-for f in GOLDENS:
+def _census(pairs):
+    """⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **普查的**唯一口径**：主读数与「注入式变异对照」必须调同一个函数
+    ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 否则对照组量的就不是主读数量的那个东西，对照就白做了**"""
+    r, el, en, sp, am = [], 0, 0, 0, 0
+    for name, d in pairs:
+        for path, kind in find_empty(d):
+            parent = d
+            ps = path.strip("/").split("/")[:-1]
+            for part in ps:
+                parent = parent[int(part[1:-1])] if part.startswith("[") else parent[part]
+            ok, inv_txt = classify(path, parent)
+            el += int(kind == "list")
+            en += int(kind == "null")
+            sp += int(ok)
+            am += int(not ok)
+            r.append({"golden": name, "path": path, "kind": kind,
+                      "self_provable": ok, "invariant": inv_txt})
+    return r, el, en, sp, am
+
+
+_BOOKS = []
+for _f in GOLDENS:
     try:
-        d = json.loads(f.read_text(encoding="utf-8"))
+        _BOOKS.append((_f.name, json.loads(_f.read_text(encoding="utf-8"))))
     except Exception:
         continue
-    for path, kind in find_empty(d):
-        parent = d
-        ps = path.strip("/").split("/")[:-1]
-        for part in ps:
-            parent = parent[int(part[1:-1])] if part.startswith("[") else parent[part]
-        ok, inv_txt = classify(path, parent)
-        n_empty_list += int(kind == "list")
-        n_empty_null += int(kind == "null")
-        n_selfprovable += int(ok)
-        n_ambiguous += int(not ok)
-        rows.append({"golden": f.name, "path": path, "kind": kind,
-                     "self_provable": ok, "invariant": inv_txt})
+rows, n_empty_list, n_empty_null, n_selfprovable, n_ambiguous = _census(_BOOKS)
+
+
+def _gb_of(d):
+    return d.get("generated_by") if isinstance(d, dict) else None
+
+
+# ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数必须带着它算在哪一批字节上** —— 本探针的输入集是**整目录 glob**
+#   ⇒⇒⇒⇒⇒ 而本批量到：它读的 N_GOLDENS 本，**每一本都是别的探针每跑一次就重写的产物**（连账本自己也是）
+#   ⇒⇒⇒⇒⇒ 所以 `n_empty_list=182` / `n_empty_null=28` 这两个数它们**不自己说明自己算在哪一批字节上**
+#   ⇒⇒⇒⇒⇒⇒⇒ 下次看到它变了，无法区分「输入变了」和「类型器不对了」
+#   ⇒⇒⇒⇒⇒⇒⇒ **⇒ 处置：把每本的 sha256/bytes 一起写进产物** —— 读数与它的输入指纹绑成一份
+def _fp_of(raw):
+    return {"sha256_12": hashlib.sha256(raw).hexdigest()[:12], "bytes": len(raw)}
+
+
+_FP, _FP_BAD = {}, []
+for _f in GOLDENS:
+    try:
+        _FP[_f.name] = _fp_of(_f.read_bytes())
+    except Exception:
+        _FP_BAD.append(_f.name)
+N_FP = len(_FP)
+_N_FROM_PROBES = sum(1 for _n, _d in _BOOKS
+                     if isinstance(_gb_of(_d), str)
+                     and _gb_of(_d).startswith("jimeng_probe")
+                     and _gb_of(_d).endswith(".py"))
+
 
 AMBIGUOUS = [r for r in rows if not r["self_provable"]]
 N_AMBIG = len(AMBIGUOUS)
@@ -256,12 +293,37 @@ out["P5_hold_2014"] = bool(n_empty_null > 0 and _NULL_CLASSIFIER_WORKS)
 out["P6_hold_2014"] = bool(any(r["golden"] == "occurrence-ledger-1013.json"
                                and r["path"] == "/retired" for r in AMBIGUOUS))
 
+# ── ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ P9：注入式变异 —— 证明普查**真的在读那些书**，而不是只在数自己的输出
+_bk = _BOOKS[0][1]
+_pl = json.dumps(_bk, sort_keys=True, ensure_ascii=False)
+_inj = dict(_bk)
+_inj["_injected_null_2029"] = None
+_ij = json.dumps(_inj, sort_keys=True, ensure_ascii=False)
+_a_r, _a_l, _a_n, _a_s, _a_m = _census([("", json.loads(_pl))])
+_b_r, _b_l, _b_n, _b_s, _b_m = _census([("", json.loads(_ij))])
+_MUT_SEEN = (_b_n == _a_n + 1)          # 注入一个 null → null 计数恰好 +1
+_FP_MOVES = (_fp_of(_pl.encode())["sha256_12"]
+             != _fp_of(_ij.encode())["sha256_12"])   # 指纹钉在字节上，不是常量
+_rest = _census([(n, d) for n, d in _BOOKS if n != _BOOKS[0][0]])[0]
+_ONLY0 = _census([_BOOKS[0]])[0]
+_MAIN_READS_BOOKS = (len(rows) - len(_rest) == len(_ONLY0))      # 拿掉第一本，总数恰好少它那一段
+out["P9_hold_2014"] = bool(_MUT_SEEN and _FP_MOVES and _MAIN_READS_BOOKS
+                            and n_empty_null >= 1
+                            and N_FP + len(_FP_BAD) == N_GOLDENS)
+
+
 io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
     "generated_by": "jimeng_probe1014_empty_ambiguity.py",
     "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，"
             "在仓里长得一模一样**",
     "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；"
             "散文说明不算（它与「没算过」完全兼容）**",
+    "census_inputs_2029": {
+        "n_fingerprinted": N_FP, "n_unreadable": len(_FP_BAD),
+        "n_from_probe_products": _N_FROM_PROBES,
+        "fingerprints": _FP,
+        "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」",
+    },
     "census": {"n_goldens": N_GOLDENS,
                "n_excluded_self": N_EXCLUDED_SELF, "n_empty_list": n_empty_list,
                "n_empty_null": n_empty_null,
@@ -326,6 +388,8 @@ out["readings_2014"] = {
     "n_empty_null": n_empty_null, "n_self_provable": n_selfprovable,
     "n_empty_total": n_empty_list + n_empty_null,
     "n_ambiguous": N_AMBIG,
+    "n_fingerprinted": N_FP,
+    "n_from_probe_products": _N_FROM_PROBES,
 }
 _allowed = _nums({k: v for k, v in out.items()
                   if k != "verdicts_2014"}, set())
@@ -375,7 +439,6 @@ print("goldens=%d empty_list=%d null=%d selfprovable=%d ambiguous=%d"
 print("ambiguous:", [(r["golden"], r["path"]) for r in AMBIGUOUS])
 print("byte-identical(算了 vs 没算) =", SAME_BYTES,
       "| companion 可区分 =", DIFFERENT, "| companion 抓错数 =", COMPANION_SELFTEST)
-print("P1..P8 =", [out["P%d_hold_2014" % i] for i in range(1, 9)])
 print("PROBE_1014_DONE ->", OUT)
 
 # ⚠️⚠️⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
@@ -393,6 +456,9 @@ print("PROBE_1014_DONE ->", OUT)
 _N_FALSE_2014 = sorted(k for k, v in out.items()
                        if k.startswith("P") and k.endswith("_hold_2014") and not v)
 _N_P_2014 = sum(1 for k in out if k.startswith("P") and k.endswith("_hold_2014"))
+_P_ALL = [(k, v) for k, v in sorted(out.items())
+          if k.startswith("P") and k.endswith("_hold_2014")]
+print("P1..P%d =" % _N_P_2014, [v for _k, v in _P_ALL])
 print("P 为假的：", _N_FALSE_2014 or "无", "| 共 %d 条 P 判据" % _N_P_2014)
-assert _N_P_2014 >= 8, "⭐⭐⭐ P 判据条数掉到 8 以下了：%d" % _N_P_2014
+assert _N_P_2014 >= 9, "⭐⭐⭐ P 判据条数掉到 9 以下了：%d" % _N_P_2014
 sys.exit(1 if _N_FALSE_2014 else 0)

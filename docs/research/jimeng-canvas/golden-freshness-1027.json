@@ -2103,7 +2103,7 @@
     "n_touched": 12,
     "n_re_run": 12,
     "ran_under_the_suite": false,
-    "n_stale": 2,
+    "n_stale": 3,
     "per_probe_timeout": 300,
     "results": [
       {
@@ -2256,7 +2256,7 @@
         "in_git_head": true,
         "stale_vs_committed": true,
         "stale_vs_worktree": true,
-        "n_bytes_fresh": 313095,
+        "n_bytes_fresh": 313462,
         "n_bytes_committed": 312720,
         "touched_by": [
           "scripts/jimeng_probe1025_criterion_direction.py",
@@ -2268,8 +2268,8 @@
         "golden": "docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
         "rc": 0,
         "in_git_head": true,
-        "stale_vs_committed": false,
-        "stale_vs_worktree": false,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": true,
         "n_bytes_fresh": 100099,
         "n_bytes_committed": 100099,
         "touched_by": [
@@ -2299,6 +2299,17 @@
         "touched_by": [
           "scripts/jimeng_probe1025_criterion_direction.py",
           "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "golden": "docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_probe1021_anchor_gate_coverage.py",
+          "scripts/jimeng_probe1025_criterion_direction.py",
+          "scripts/jimeng_probe1026_criterion_effectiveness.py",
+          "scripts/jimeng_probe1027_freshness_gate.py"
         ]
       }
     ],
