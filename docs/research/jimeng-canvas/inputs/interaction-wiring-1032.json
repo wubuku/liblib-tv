@@ -18,7 +18,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{label}"
+   "label": "{label}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAssetsModal.tsx#{label}#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -28,7 +30,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"展开面板\""
+   "label": "\"展开面板\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -38,7 +42,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"添加参考\""
+   "label": "\"添加参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"添加参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -48,7 +54,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"引用参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -58,7 +66,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"引用参考\"#1"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -68,7 +78,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"显示折扣详情\""
+   "label": "\"显示折扣详情\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"显示折扣详情\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -78,7 +90,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"展开面板\""
+   "label": "\"展开面板\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"展开面板\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -88,7 +102,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"上传参考图\""
+   "label": "\"上传参考图\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"上传参考图\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -98,7 +114,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"展开视频生成器\""
+   "label": "\"展开视频生成器\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"展开视频生成器\"#0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -108,7 +126,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"展开面板\""
+   "label": "\"展开面板\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"展开面板\"#0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -118,7 +138,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"添加参考\""
+   "label": "\"添加参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"添加参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -128,7 +150,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"引用参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -138,7 +162,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"引用参考\"#1"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -148,7 +174,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{canSend ? \"生成\" : \"请输入提示词\"}"
+   "label": "{canSend ? \"生成\" : \"请输入提示词\"}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? \"生成\" : \"请输入提示词\"}#0"
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
@@ -158,7 +186,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
@@ -168,7 +198,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
@@ -178,7 +210,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 2,
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##2"
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
@@ -188,7 +222,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"添加参考图\""
+   "label": "\"添加参考图\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#\"添加参考图\"#0"
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
@@ -198,7 +234,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
@@ -208,7 +246,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
@@ -218,7 +258,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"提及主体\""
+   "label": "\"提及主体\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#\"提及主体\"#0"
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
@@ -228,7 +270,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"上传参考内容\""
+   "label": "\"上传参考内容\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"上传参考内容\"#0"
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
@@ -238,7 +282,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"引用参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
@@ -248,7 +294,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"提及主体\""
+   "label": "\"提及主体\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"提及主体\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
@@ -258,7 +306,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"下载\""
+   "label": "\"下载\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#\"下载\"#0"
   }
  ],
  "unknown_spread": [],
@@ -273,7 +323,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"关闭帮助中心\""
+   "label": "\"关闭帮助中心\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAccountPanels.tsx#\"关闭帮助中心\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAccountPanels.tsx",
@@ -285,7 +337,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"Close watermark settings\""
+   "label": "\"Close watermark settings\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAccountPanels.tsx#\"Close watermark settings\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAccountPanels.tsx",
@@ -297,7 +351,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"导出内容去除AI生成水印\""
+   "label": "\"导出内容去除AI生成水印\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAccountPanels.tsx#\"导出内容去除AI生成水印\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAccountPanels.tsx",
@@ -309,7 +365,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"保存设置\""
+   "label": "\"保存设置\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAccountPanels.tsx#\"保存设置\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAiButton.tsx",
@@ -321,7 +379,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"与 AI 对话\""
+   "label": "\"与 AI 对话\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiButton.tsx#\"与 AI 对话\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -333,7 +393,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "\"会话列表\""
+   "label": "\"会话列表\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#\"会话列表\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -345,7 +407,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "\"新建会话\""
+   "label": "\"新建会话\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#\"新建会话\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -357,7 +421,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"收起\""
+   "label": "\"收起\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#\"收起\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -369,7 +435,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"canvas-agent-mode-action\""
+   "label": "\"canvas-agent-mode-action\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#\"canvas-agent-mode-action\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -381,7 +449,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`canvas-agent-session-row-${s.id}`}"
+   "label": "{`canvas-agent-session-row-${s.id}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#{`canvas-agent-session-row-${s.id}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -393,7 +463,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"agent-skill-item\""
+   "label": "\"agent-skill-item\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#\"agent-skill-item\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -405,7 +477,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`agent-add-${src}`}"
+   "label": "{`agent-add-${src}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#{`agent-add-${src}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -417,7 +491,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`agent-ref-kind-${k}`}"
+   "label": "{`agent-ref-kind-${k}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#{`agent-ref-kind-${k}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -429,7 +505,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`agent-ref-item-${title}`}"
+   "label": "{`agent-ref-item-${title}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#{`agent-ref-item-${title}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -441,7 +519,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`移除 ${t}`}"
+   "label": "{`移除 ${t}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#{`移除 ${t}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -453,7 +533,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#\"引用参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -465,7 +547,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"从本地、画布或资产库添加\""
+   "label": "\"从本地、画布或资产库添加\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#\"从本地、画布或资产库添加\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -477,7 +561,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"使用技能\""
+   "label": "\"使用技能\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#\"使用技能\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -489,7 +575,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#\"引用参考\"#1"
   },
   {
    "file": "src/components/jimeng/JimengAiDrawer.tsx",
@@ -501,7 +589,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "\"发送消息\""
+   "label": "\"发送消息\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAiDrawer.tsx#\"发送消息\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
@@ -513,7 +603,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`assets-tab-${t}`}"
+   "label": "{`assets-tab-${t}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAssetsModal.tsx#{`assets-tab-${t}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
@@ -525,7 +617,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"关闭\""
+   "label": "\"关闭\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAssetsModal.tsx#\"关闭\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
@@ -537,7 +631,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`assets-filter-${f}`}"
+   "label": "{`assets-filter-${f}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAssetsModal.tsx#{`assets-filter-${f}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
@@ -547,7 +643,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{label}"
+   "label": "{label}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAssetsModal.tsx#{label}#0"
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
@@ -557,7 +655,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "\"assets-confirm\""
+   "label": "\"assets-confirm\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAssetsModal.tsx#\"assets-confirm\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -567,7 +667,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"展开面板\""
+   "label": "\"展开面板\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -577,7 +679,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"添加参考\""
+   "label": "\"添加参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"添加参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -589,7 +693,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`创作类型: ${genKind}`}"
+   "label": "{`创作类型: ${genKind}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#{`创作类型: ${genKind}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -601,7 +707,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -613,7 +721,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"选择模型: SeedMusic 1.0 Preview\""
+   "label": "\"选择模型: SeedMusic 1.0 Preview\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"选择模型: SeedMusic 1.0 Preview\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -625,7 +735,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -637,7 +749,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`选择时长: ${duration}s`}"
+   "label": "{`选择时长: ${duration}s`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#{`选择时长: ${duration}s`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -649,7 +763,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"选择模型: SeedAudio 1.0, New\""
+   "label": "\"选择模型: SeedAudio 1.0, New\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"选择模型: SeedAudio 1.0, New\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -661,7 +777,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 2,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx##2"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -673,7 +791,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"Seed TTS, 上百个预设音色，让你玩转人声配音\""
+   "label": "\"Seed TTS, 上百个预设音色，让你玩转人声配音\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"Seed TTS, 上百个预设音色，让你玩转人声配音\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -685,7 +805,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"音频生成: 全能配音\""
+   "label": "\"音频生成: 全能配音\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"音频生成: 全能配音\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -697,7 +819,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 3,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx##3"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -707,7 +831,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"引用参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -719,7 +845,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"音色: 音色库\""
+   "label": "\"音色: 音色库\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"音色: 音色库\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -732,7 +860,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`${label}: ${curFilterVal(label)}`}"
+   "label": "{`${label}: ${curFilterVal(label)}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#{`${label}: ${curFilterVal(label)}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -745,7 +875,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`Clear ${label} filter`}"
+   "label": "{`Clear ${label} filter`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#{`Clear ${label} filter`}#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -757,7 +889,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 4,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx##4"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -769,7 +903,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 5,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx##5"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -779,7 +915,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"引用参考\"#1"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -789,7 +927,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"显示折扣详情\""
+   "label": "\"显示折扣详情\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"显示折扣详情\"#0"
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -801,7 +941,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{canSend ? \"生成\" : \"请输入提示词\"}"
+   "label": "{canSend ? \"生成\" : \"请输入提示词\"}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#{canSend ? \"生成\" : \"请输入提示词\"}#0"
   },
   {
    "file": "src/components/jimeng/JimengBottomDock.tsx",
@@ -813,7 +955,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"选择工具\""
+   "label": "\"选择工具\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengBottomDock.tsx#\"选择工具\"#0"
   },
   {
    "file": "src/components/jimeng/JimengBottomDock.tsx",
@@ -825,7 +969,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"小地图\""
+   "label": "\"小地图\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengBottomDock.tsx#\"小地图\"#0"
   },
   {
    "file": "src/components/jimeng/JimengBottomDock.tsx",
@@ -837,7 +983,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"显示连线\""
+   "label": "\"显示连线\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengBottomDock.tsx#\"显示连线\"#0"
   },
   {
    "file": "src/components/jimeng/JimengBottomDock.tsx",
@@ -849,7 +997,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`Zoom options, ${zoomPercent}%`}"
+   "label": "{`Zoom options, ${zoomPercent}%`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengBottomDock.tsx#{`Zoom options, ${zoomPercent}%`}#0"
   },
   {
    "file": "src/components/jimeng/JimengConnectHandles.tsx",
@@ -862,7 +1012,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`Create connected node ${which === \"left\" ? \"before\" : \"after\"} ${title}`}"
+   "label": "{`Create connected node ${which === \"left\" ? \"before\" : \"after\"} ${title}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengConnectHandles.tsx#{`Create connected node ${which === \"left\" ? \"before\" : \"after\"} ${title}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengContextMenu.tsx",
@@ -874,7 +1026,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "{row.title}"
+   "label": "{row.title}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengContextMenu.tsx#{row.title}#0"
   },
   {
    "file": "src/components/jimeng/JimengFramePicker.tsx",
@@ -886,7 +1040,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengFramePicker.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengFramePicker.tsx",
@@ -898,7 +1054,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengFramePicker.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -908,7 +1066,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"展开面板\""
+   "label": "\"展开面板\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"展开面板\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -920,7 +1080,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`Remove ${chip.name}`}"
+   "label": "{`Remove ${chip.name}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#{`Remove ${chip.name}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -932,7 +1094,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"添加参考\""
+   "label": "\"添加参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"添加参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -944,7 +1108,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -954,7 +1120,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"上传参考图\""
+   "label": "\"上传参考图\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"上传参考图\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -966,7 +1134,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -978,7 +1148,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 2,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx##2"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -990,7 +1162,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 3,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx##3"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1000,7 +1174,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"展开视频生成器\""
+   "label": "\"展开视频生成器\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"展开视频生成器\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1012,7 +1188,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"选择模型: 即梦 Seedance 2.0 VIP, Standard-only model\""
+   "label": "\"选择模型: 即梦 Seedance 2.0 VIP, Standard-only model\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"选择模型: 即梦 Seedance 2.0 VIP, Standard-only model\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1024,7 +1202,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 4,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx##4"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1036,7 +1216,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"视频尺寸选项: 16:9 · 720P · 1, Standard-only model\""
+   "label": "\"视频尺寸选项: 16:9 · 720P · 1, Standard-only model\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"视频尺寸选项: 16:9 · 720P · 1, Standard-only model\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1048,7 +1230,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 5,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx##5"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1060,7 +1244,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"生成模式: 全能参考\""
+   "label": "\"生成模式: 全能参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"生成模式: 全能参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1072,7 +1258,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 6,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx##6"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1084,7 +1272,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"选择视频生成时长: 4s\""
+   "label": "\"选择视频生成时长: 4s\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"选择视频生成时长: 4s\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1096,7 +1286,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 7,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx##7"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1108,7 +1300,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"引用参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -1118,7 +1312,9 @@
    "delegated_by": "",
    "type": "submit",
    "disabled": true,
-   "label": "\"生成\""
+   "label": "\"生成\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"生成\"#0"
   },
   {
    "file": "src/components/jimeng/JimengHelpMenu.tsx",
@@ -1130,7 +1326,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`account-menu-item-${label}`}"
+   "label": "{`account-menu-item-${label}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengHelpMenu.tsx#{`account-menu-item-${label}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengHistoryMenu.tsx",
@@ -1142,7 +1340,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengHistoryMenu.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -1152,7 +1352,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"展开面板\""
+   "label": "\"展开面板\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"展开面板\"#0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -1162,7 +1364,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"添加参考\""
+   "label": "\"添加参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"添加参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -1174,7 +1378,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"选择模型: Seedream 5.0 Lite\""
+   "label": "\"选择模型: Seedream 5.0 Lite\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"选择模型: Seedream 5.0 Lite\"#0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -1186,7 +1392,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -1198,7 +1406,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"图片尺寸选项: 1:1 · 2K · 1\""
+   "label": "\"图片尺寸选项: 1:1 · 2K · 1\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"图片尺寸选项: 1:1 · 2K · 1\"#0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -1210,7 +1420,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -1220,7 +1432,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"引用参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -1230,7 +1444,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"引用参考\"#1"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
@@ -1240,7 +1456,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{canSend ? \"生成\" : \"请输入提示词\"}"
+   "label": "{canSend ? \"生成\" : \"请输入提示词\"}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? \"生成\" : \"请输入提示词\"}#0"
   },
   {
    "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
@@ -1252,7 +1470,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageNodeToolbar.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
@@ -1264,7 +1484,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengImageNodeToolbar.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
@@ -1276,7 +1498,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"全屏预览\""
+   "label": "\"全屏预览\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageNodeToolbar.tsx#\"全屏预览\"#0"
   },
   {
    "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
@@ -1288,7 +1512,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "\"下载\""
+   "label": "\"下载\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageNodeToolbar.tsx#\"下载\"#0"
   },
   {
    "file": "src/components/jimeng/JimengInferPanel.tsx",
@@ -1300,7 +1526,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"关闭反推面板\""
+   "label": "\"关闭反推面板\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengInferPanel.tsx#\"关闭反推面板\"#0"
   },
   {
    "file": "src/components/jimeng/JimengInferPanel.tsx",
@@ -1312,7 +1540,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengInferPanel.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengInsertMenu.tsx",
@@ -1324,7 +1554,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengInsertMenu.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengInsertMenu.tsx",
@@ -1336,7 +1568,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengInsertMenu.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
@@ -1348,7 +1582,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"关闭订阅页\""
+   "label": "\"关闭订阅页\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx#\"关闭订阅页\"#0"
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
@@ -1358,7 +1594,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
@@ -1368,7 +1606,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
@@ -1378,7 +1618,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 2,
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##2"
   },
   {
    "file": "src/components/jimeng/jimengMenuChrome.tsx",
@@ -1390,7 +1632,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "{label}"
+   "label": "{label}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/jimengMenuChrome.tsx#{label}#0"
   },
   {
    "file": "src/components/jimeng/JimengMoreMenu.tsx",
@@ -1402,7 +1646,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMoreMenu.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
@@ -1414,7 +1660,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"multi-ungroup\""
+   "label": "\"multi-ungroup\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMultiSelectToolbar.tsx#\"multi-ungroup\"#0"
   },
   {
    "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
@@ -1426,7 +1674,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"multi-group\""
+   "label": "\"multi-group\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMultiSelectToolbar.tsx#\"multi-group\"#0"
   },
   {
    "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
@@ -1438,7 +1688,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"multi-layout\""
+   "label": "\"multi-layout\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMultiSelectToolbar.tsx#\"multi-layout\"#0"
   },
   {
    "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
@@ -1450,7 +1702,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"multi-arrange-grid\""
+   "label": "\"multi-arrange-grid\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMultiSelectToolbar.tsx#\"multi-arrange-grid\"#0"
   },
   {
    "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
@@ -1462,7 +1716,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"multi-arrange-smart\""
+   "label": "\"multi-arrange-smart\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMultiSelectToolbar.tsx#\"multi-arrange-smart\"#0"
   },
   {
    "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
@@ -1474,7 +1730,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"multi-bgcolor\""
+   "label": "\"multi-bgcolor\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMultiSelectToolbar.tsx#\"multi-bgcolor\"#0"
   },
   {
    "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
@@ -1486,7 +1744,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "\"下载\""
+   "label": "\"下载\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMultiSelectToolbar.tsx#\"下载\"#0"
   },
   {
    "file": "src/components/jimeng/JimengNodeSummaryPopover.tsx",
@@ -1498,7 +1758,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengNodeSummaryPopover.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengNodeSummaryPopover.tsx",
@@ -1510,7 +1772,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengNodeSummaryPopover.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengNodeToolbar.tsx",
@@ -1522,7 +1786,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengNodeToolbar.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengNodeToolbar.tsx",
@@ -1534,7 +1800,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengNodeToolbar.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengNodeToolbar.tsx",
@@ -1546,7 +1814,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 2,
+   "stable_key": "src/components/jimeng/JimengNodeToolbar.tsx##2"
   },
   {
    "file": "src/components/jimeng/JimengNodeToolbar.tsx",
@@ -1558,7 +1828,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 3,
+   "stable_key": "src/components/jimeng/JimengNodeToolbar.tsx##3"
   },
   {
    "file": "src/components/jimeng/JimengNodeToolbar.tsx",
@@ -1570,7 +1842,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 4,
+   "stable_key": "src/components/jimeng/JimengNodeToolbar.tsx##4"
   },
   {
    "file": "src/components/jimeng/JimengNodeToolbar.tsx",
@@ -1582,7 +1856,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 5,
+   "stable_key": "src/components/jimeng/JimengNodeToolbar.tsx##5"
   },
   {
    "file": "src/components/jimeng/JimengNodeToolbar.tsx",
@@ -1594,7 +1870,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"全屏编辑\""
+   "label": "\"全屏编辑\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengNodeToolbar.tsx#\"全屏编辑\"#0"
   },
   {
    "file": "src/components/jimeng/JimengNodeToolbar.tsx",
@@ -1606,7 +1884,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "\"下载\""
+   "label": "\"下载\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengNodeToolbar.tsx#\"下载\"#0"
   },
   {
    "file": "src/components/jimeng/JimengOfflineDialog.tsx",
@@ -1618,7 +1898,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"offline-discard\""
+   "label": "\"offline-discard\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengOfflineDialog.tsx#\"offline-discard\"#0"
   },
   {
    "file": "src/components/jimeng/JimengOfflineDialog.tsx",
@@ -1630,7 +1912,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"offline-keep\""
+   "label": "\"offline-keep\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengOfflineDialog.tsx#\"offline-keep\"#0"
   },
   {
    "file": "src/components/jimeng/JimengProjectInfoModal.tsx",
@@ -1642,7 +1926,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"关闭项目信息\""
+   "label": "\"关闭项目信息\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengProjectInfoModal.tsx#\"关闭项目信息\"#0"
   },
   {
    "file": "src/components/jimeng/JimengProjectInfoModal.tsx",
@@ -1654,7 +1940,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{label}"
+   "label": "{label}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengProjectInfoModal.tsx#{label}#0"
   },
   {
    "file": "src/components/jimeng/JimengProjectInfoModal.tsx",
@@ -1666,7 +1954,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengProjectInfoModal.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengProjectPanel.tsx",
@@ -1678,7 +1968,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengProjectPanel.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengProjectPanel.tsx",
@@ -1690,7 +1982,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengProjectPanel.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengProjectPanel.tsx",
@@ -1702,7 +1996,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 2,
+   "stable_key": "src/components/jimeng/JimengProjectPanel.tsx##2"
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
@@ -1712,7 +2008,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"添加参考图\""
+   "label": "\"添加参考图\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#\"添加参考图\"#0"
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
@@ -1722,7 +2020,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
@@ -1732,7 +2032,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
@@ -1742,7 +2044,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"提及主体\""
+   "label": "\"提及主体\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#\"提及主体\"#0"
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
@@ -1752,7 +2056,9 @@
    "delegated_by": "",
    "type": "submit",
    "disabled": false,
-   "label": "{canSend ? \"生成\" : \"Prompt is required\"}"
+   "label": "{canSend ? \"生成\" : \"Prompt is required\"}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#{canSend ? \"生成\" : \"Prompt is required\"}#0"
   },
   {
    "file": "src/components/jimeng/JimengSearchOverlay.tsx",
@@ -1764,7 +2070,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`${c.label} ${countOf(c.key)}`}"
+   "label": "{`${c.label} ${countOf(c.key)}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengSearchOverlay.tsx#{`${c.label} ${countOf(c.key)}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengSearchOverlay.tsx",
@@ -1776,7 +2084,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"Next search categories\""
+   "label": "\"Next search categories\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengSearchOverlay.tsx#\"Next search categories\"#0"
   },
   {
    "file": "src/components/jimeng/JimengSearchOverlay.tsx",
@@ -1788,7 +2098,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{nodeLabel(n)}"
+   "label": "{nodeLabel(n)}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengSearchOverlay.tsx#{nodeLabel(n)}#0"
   },
   {
    "file": "src/components/jimeng/JimengSearchOverlay.tsx",
@@ -1800,7 +2112,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "\"前往上一页\""
+   "label": "\"前往上一页\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengSearchOverlay.tsx#\"前往上一页\"#0"
   },
   {
    "file": "src/components/jimeng/JimengSearchOverlay.tsx",
@@ -1812,7 +2126,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "\"前往下一页\""
+   "label": "\"前往下一页\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengSearchOverlay.tsx#\"前往下一页\"#0"
   },
   {
    "file": "src/components/jimeng/JimengSharePanel.tsx",
@@ -1824,7 +2140,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"复制链接\""
+   "label": "\"复制链接\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengSharePanel.tsx#\"复制链接\"#0"
   },
   {
    "file": "src/components/jimeng/JimengSharePanel.tsx",
@@ -1836,7 +2154,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"share-perm-trigger\""
+   "label": "\"share-perm-trigger\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengSharePanel.tsx#\"share-perm-trigger\"#0"
   },
   {
    "file": "src/components/jimeng/JimengSharePanel.tsx",
@@ -1848,7 +2168,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"share-perm-option\""
+   "label": "\"share-perm-option\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengSharePanel.tsx#\"share-perm-option\"#0"
   },
   {
    "file": "src/components/jimeng/JimengSharePanel.tsx",
@@ -1860,7 +2182,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"创建团队\""
+   "label": "\"创建团队\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengSharePanel.tsx#\"创建团队\"#0"
   },
   {
    "file": "src/components/jimeng/JimengShortcutsPanel.tsx",
@@ -1872,7 +2196,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"关闭快捷键面板\""
+   "label": "\"关闭快捷键面板\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengShortcutsPanel.tsx#\"关闭快捷键面板\"#0"
   },
   {
    "file": "src/components/jimeng/JimengToolRail.tsx",
@@ -1884,7 +2210,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{label}"
+   "label": "{label}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengToolRail.tsx#{label}#0"
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
@@ -1896,7 +2224,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`Canvas title: ${project.name}`}"
+   "label": "{`Canvas title: ${project.name}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengTopBar.tsx#{`Canvas title: ${project.name}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
@@ -1908,7 +2238,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"项目\""
+   "label": "\"项目\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengTopBar.tsx#\"项目\"#0"
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
@@ -1920,7 +2252,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`Canvas node summary: 节点 ${nodeCount}`}"
+   "label": "{`Canvas node summary: 节点 ${nodeCount}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengTopBar.tsx#{`Canvas node summary: 节点 ${nodeCount}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
@@ -1932,7 +2266,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"搜索\""
+   "label": "\"搜索\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengTopBar.tsx#\"搜索\"#0"
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
@@ -1944,7 +2280,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"生成历史\""
+   "label": "\"生成历史\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengTopBar.tsx#\"生成历史\"#0"
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
@@ -1956,7 +2294,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"分享\""
+   "label": "\"分享\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengTopBar.tsx#\"分享\"#0"
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
@@ -1968,7 +2308,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"更多\""
+   "label": "\"更多\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengTopBar.tsx#\"更多\"#0"
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
@@ -1980,7 +2322,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`Credits: ${CREDITS} · 基础会员`}"
+   "label": "{`Credits: ${CREDITS} · 基础会员`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengTopBar.tsx#{`Credits: ${CREDITS} · 基础会员`}#0"
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
@@ -1992,7 +2336,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"用户菜单\""
+   "label": "\"用户菜单\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengTopBar.tsx#\"用户菜单\"#0"
   },
   {
    "file": "src/components/jimeng/JimengTrimPanel.tsx",
@@ -2004,7 +2350,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengTrimPanel.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
@@ -2016,7 +2364,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{label}"
+   "label": "{label}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#{label}#0"
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
@@ -2026,7 +2376,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"上传参考内容\""
+   "label": "\"上传参考内容\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"上传参考内容\"#0"
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
@@ -2036,7 +2388,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"引用参考\""
+   "label": "\"引用参考\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"引用参考\"#0"
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
@@ -2046,7 +2400,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"提及主体\""
+   "label": "\"提及主体\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"提及主体\"#0"
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
@@ -2056,7 +2412,9 @@
    "delegated_by": "",
    "type": "submit",
    "disabled": false,
-   "label": "\"生成\""
+   "label": "\"生成\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"生成\"#0"
   },
   {
    "file": "src/components/jimeng/JimengVideoPreview.tsx",
@@ -2068,7 +2426,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{playing ? \"全屏暂停\" : \"全屏播放\"}"
+   "label": "{playing ? \"全屏暂停\" : \"全屏播放\"}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoPreview.tsx#{playing ? \"全屏暂停\" : \"全屏播放\"}#0"
   },
   {
    "file": "src/components/jimeng/JimengVideoPreview.tsx",
@@ -2080,7 +2440,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{muted ? \"取消静音\" : \"静音\"}"
+   "label": "{muted ? \"取消静音\" : \"静音\"}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoPreview.tsx#{muted ? \"取消静音\" : \"静音\"}#0"
   },
   {
    "file": "src/components/jimeng/JimengVideoPreview.tsx",
@@ -2092,7 +2454,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"退出全屏预览\""
+   "label": "\"退出全屏预览\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoPreview.tsx#\"退出全屏预览\"#0"
   },
   {
    "file": "src/components/jimeng/JimengWorkspace.tsx",
@@ -2104,7 +2468,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"取消从画布选择\""
+   "label": "\"取消从画布选择\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengWorkspace.tsx#\"取消从画布选择\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengAudioNode.tsx",
@@ -2116,7 +2482,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"Add tags\""
+   "label": "\"Add tags\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengAudioNode.tsx#\"Add tags\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengAudioNode.tsx",
@@ -2128,7 +2496,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"清除颜色标记\""
+   "label": "\"清除颜色标记\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengAudioNode.tsx#\"清除颜色标记\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengDirectorNode.tsx",
@@ -2140,7 +2510,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"director-enter\""
+   "label": "\"director-enter\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengDirectorNode.tsx#\"director-enter\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengNodeTitle.tsx",
@@ -2153,7 +2525,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`Rename ${title}`}"
+   "label": "{`Rename ${title}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengNodeTitle.tsx#{`Rename ${title}`}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengSubjectNode.tsx",
@@ -2165,7 +2539,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"编辑主体\""
+   "label": "\"编辑主体\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengSubjectNode.tsx#\"编辑主体\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengSubjectNode.tsx",
@@ -2177,7 +2553,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{label}"
+   "label": "{label}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengSubjectNode.tsx#{label}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengSubjectNode.tsx",
@@ -2189,7 +2567,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"subject-meta-save\""
+   "label": "\"subject-meta-save\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengSubjectNode.tsx#\"subject-meta-save\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
@@ -2201,7 +2581,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"背景色\""
+   "label": "\"背景色\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#\"背景色\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
@@ -2213,7 +2595,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`背景色 ${label}`}"
+   "label": "{`背景色 ${label}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#{`背景色 ${label}`}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
@@ -2225,7 +2609,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"展开文本面板\""
+   "label": "\"展开文本面板\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#\"展开文本面板\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
@@ -2235,7 +2621,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"下载\""
+   "label": "\"下载\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#\"下载\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
@@ -2248,7 +2636,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"Text style\""
+   "label": "\"Text style\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#\"Text style\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
@@ -2261,7 +2651,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`字体 ${label}`}"
+   "label": "{`字体 ${label}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#{`字体 ${label}`}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
@@ -2274,7 +2666,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{label}"
+   "label": "{label}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#{label}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
@@ -2287,7 +2681,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"全屏\""
+   "label": "\"全屏\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#\"全屏\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
@@ -2299,7 +2695,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"关闭全屏编辑\""
+   "label": "\"关闭全屏编辑\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#\"关闭全屏编辑\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2311,7 +2709,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"导入\""
+   "label": "\"导入\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"导入\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2323,7 +2723,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"删除时间线\""
+   "label": "\"删除时间线\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"删除时间线\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2335,7 +2737,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"导出时间线\""
+   "label": "\"导出时间线\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"导出时间线\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2347,7 +2751,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx##0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2359,7 +2765,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx##1"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2371,7 +2779,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": ""
+   "label": "",
+   "ordinal": 2,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx##2"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2383,7 +2793,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"全屏编辑\""
+   "label": "\"全屏编辑\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"全屏编辑\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2395,7 +2807,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{muted ? \"取消静音\" : \"静音\"}"
+   "label": "{muted ? \"取消静音\" : \"静音\"}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#{muted ? \"取消静音\" : \"静音\"}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2407,7 +2821,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`移除 ${c.label}`}"
+   "label": "{`移除 ${c.label}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#{`移除 ${c.label}`}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2419,7 +2835,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"timeline-add-clip\""
+   "label": "\"timeline-add-clip\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"timeline-add-clip\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2431,7 +2849,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"添加素材到时间线\""
+   "label": "\"添加素材到时间线\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"添加素材到时间线\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2443,7 +2863,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"导出时间线\""
+   "label": "\"导出时间线\"",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"导出时间线\"#1"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2455,7 +2877,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"Close timeline editor\""
+   "label": "\"Close timeline editor\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"Close timeline editor\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2467,7 +2891,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`timeline-fs-source-${sname}`}"
+   "label": "{`timeline-fs-source-${sname}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#{`timeline-fs-source-${sname}`}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2479,7 +2905,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`timeline-fs-kind-${k}`}"
+   "label": "{`timeline-fs-kind-${k}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#{`timeline-fs-kind-${k}`}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2491,7 +2919,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{`timeline-fs-asset-row-${a.id}`}"
+   "label": "{`timeline-fs-asset-row-${a.id}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#{`timeline-fs-asset-row-${a.id}`}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2503,7 +2933,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"timeline-fs-import\""
+   "label": "\"timeline-fs-import\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"timeline-fs-import\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2515,7 +2947,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": true,
-   "label": "{t.label}"
+   "label": "{t.label}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#{t.label}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2527,7 +2961,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"关闭自动吸附\""
+   "label": "\"关闭自动吸附\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"关闭自动吸附\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2539,7 +2975,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"缩小视图\""
+   "label": "\"缩小视图\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"缩小视图\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2551,7 +2989,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"放大视图\""
+   "label": "\"放大视图\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"放大视图\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2563,7 +3003,9 @@
    "delegated_by": "div",
    "type": "button",
    "disabled": false,
-   "label": "{muted ? \"取消静音\" : \"静音\"}"
+   "label": "{muted ? \"取消静音\" : \"静音\"}",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#{muted ? \"取消静音\" : \"静音\"}#1"
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
@@ -2575,7 +3017,9 @@
    "delegated_by": "div",
    "type": "button",
    "disabled": false,
-   "label": "\"添加素材到时间线\""
+   "label": "\"添加素材到时间线\"",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/nodes/JimengTimelineNode.tsx#\"添加素材到时间线\"#1"
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
@@ -2587,7 +3031,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{playing ? \"暂停\" : \"播放\"}"
+   "label": "{playing ? \"暂停\" : \"播放\"}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx#{playing ? \"暂停\" : \"播放\"}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
@@ -2599,7 +3045,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{playing ? \"底部暂停\" : \"底部播放\"}"
+   "label": "{playing ? \"底部暂停\" : \"底部播放\"}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx#{playing ? \"底部暂停\" : \"底部播放\"}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
@@ -2611,7 +3059,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "{d.muted ? \"取消静音\" : \"静音\"}"
+   "label": "{d.muted ? \"取消静音\" : \"静音\"}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx#{d.muted ? \"取消静音\" : \"静音\"}#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
@@ -2623,7 +3073,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"全屏预览\""
+   "label": "\"全屏预览\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx#\"全屏预览\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
@@ -2635,7 +3087,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"media-error-retry\""
+   "label": "\"media-error-retry\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx#\"media-error-retry\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoTitleRow.tsx",
@@ -2647,7 +3101,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"Add tags\""
+   "label": "\"Add tags\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengVideoTitleRow.tsx#\"Add tags\"#0"
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoTitleRow.tsx",
@@ -2659,7 +3115,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "\"清除颜色标记\""
+   "label": "\"清除颜色标记\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/nodes/JimengVideoTitleRow.tsx#\"清除颜色标记\"#0"
   }
  ]
 }

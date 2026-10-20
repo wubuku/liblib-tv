@@ -12,10 +12,24 @@
   "new_dead": [],
   "stale_allow": []
  },
+ "P1_source_of_truth": "⭐⭐⭐ 比的是生成器源码里的 NOTES（真源），不是白名单 JSON（产物）",
  "P4_injected_dead_button_is_caught_1032": true,
+ "P6_more_than_source_is_red_1032": true,
+ "P6_detail": {
+  "victim": "src/components/jimeng/JimengAssetsModal.tsx#{label}#0",
+  "new_dead": [
+   "src/components/jimeng/JimengAssetsModal.tsx#{label}#0"
+  ]
+ },
+ "P7_fewer_than_source_is_red_1032": true,
+ "P7_detail": {
+  "stale_allow": [
+   "__fake_entry__"
+  ]
+ },
  "P4_detail": {
   "injected_new_dead": [
-   "src/components/jimeng/__probe_injected__.tsx:1"
+   "src/components/jimeng/__probe_injected__.tsx#__injected_probe__#0"
   ]
  },
  "P5_every_allowlist_entry_still_exists_1032": true,
@@ -214,6 +228,6 @@
   ],
   "why_green_is_not_clean": "⭐⭐ **本门绿 ≠ 克隆版没有糊弄** —— 它只说明「死按钮的数量与清单一致」，而上面三类糊弄**静态不可判**，必须靠运行时探针。"
  },
- "n_p_criteria": 5,
+ "n_p_criteria": 7,
  "failed_criteria": []
 }

@@ -5,6 +5,7 @@
  "n": 25,
  "entries": [
   {
+   "stable_key": "src/components/jimeng/JimengAssetsModal.tsx#{label}#0",
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
    "line": 132,
    "verdict": "DEAD_NO_HANDLER",
@@ -13,6 +14,7 @@
    "note": "时间/筛选图标钮无 onClick（aria-label={label}）"
   },
   {
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0",
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
    "line": 316,
    "verdict": "DEAD_NO_HANDLER",
@@ -21,6 +23,7 @@
    "note": "『展开面板』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"添加参考\"#0",
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
    "line": 337,
    "verdict": "DEAD_NO_HANDLER",
@@ -29,6 +32,7 @@
    "note": "『添加参考』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"引用参考\"#0",
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
    "line": 670,
    "verdict": "DEAD_NO_HANDLER",
@@ -37,6 +41,7 @@
    "note": "『引用参考』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"引用参考\"#1",
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
    "line": 1145,
    "verdict": "DEAD_NO_HANDLER",
@@ -45,6 +50,7 @@
    "note": "『引用参考』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"显示折扣详情\"#0",
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
    "line": 1161,
    "verdict": "DEAD_NO_HANDLER",
@@ -53,6 +59,7 @@
    "note": "『显示折扣详情』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"展开面板\"#0",
    "file": "src/components/jimeng/JimengGenPanel.tsx",
    "line": 218,
    "verdict": "DEAD_NO_HANDLER",
@@ -61,6 +68,7 @@
    "note": "『展开面板』无 onClick（视频生成面板里也有一个）"
   },
   {
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"上传参考图\"#0",
    "file": "src/components/jimeng/JimengGenPanel.tsx",
    "line": 317,
    "verdict": "DEAD_NO_HANDLER",
@@ -69,6 +77,7 @@
    "note": "『上传参考图』无 onClick —— 而同一面板的 chip 行『＋』是真接了 file input ⇒ **同一个面板里两种行为**"
   },
   {
+   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"展开视频生成器\"#0",
    "file": "src/components/jimeng/JimengGenPanel.tsx",
    "line": 409,
    "verdict": "DEAD_NO_HANDLER",
@@ -77,6 +86,7 @@
    "note": "『展开视频生成器』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"展开面板\"#0",
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
    "line": 31,
    "verdict": "DEAD_NO_HANDLER",
@@ -85,6 +95,7 @@
    "note": "『展开面板』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"添加参考\"#0",
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
    "line": 47,
    "verdict": "DEAD_NO_HANDLER",
@@ -93,6 +104,7 @@
    "note": "『添加参考』无 onClick ⇒ 参考图这条链整条断"
   },
   {
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"引用参考\"#0",
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
    "line": 139,
    "verdict": "DEAD_NO_HANDLER",
@@ -101,6 +113,7 @@
    "note": "『引用参考』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"引用参考\"#1",
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
    "line": 162,
    "verdict": "DEAD_NO_HANDLER",
@@ -109,6 +122,7 @@
    "note": "『引用参考』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? \"生成\" : \"请输入提示词\"}#0",
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
    "line": 169,
    "verdict": "DEAD_NO_HANDLER",
@@ -117,6 +131,7 @@
    "note": "图片生成『生成』：用户输入提示词按发送**什么都没发生、连提示都没有**（按钮无 onClick）⇒ 本批最高优先级"
   },
   {
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##0",
    "file": "src/components/jimeng/JimengMemberModal.tsx",
    "line": 136,
    "verdict": "DEAD_NO_HANDLER",
@@ -125,6 +140,7 @@
    "note": "『购买积分』CTA 无 onClick —— 计费动作**绝不能真做** ⇒ 正确处置是 disabled + 说明，而不是能点没反应"
   },
   {
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##1",
    "file": "src/components/jimeng/JimengMemberModal.tsx",
    "line": 142,
    "verdict": "DEAD_NO_HANDLER",
@@ -133,6 +149,7 @@
    "note": "『订阅管理』CTA 无 onClick —— 同上"
   },
   {
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##2",
    "file": "src/components/jimeng/JimengMemberModal.tsx",
    "line": 182,
    "verdict": "DEAD_NO_HANDLER",
@@ -141,6 +158,7 @@
    "note": "四个计费 tab 无 onClick，只有 i===2 常亮 ⇒ 看着像能切，切不动"
   },
   {
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#\"添加参考图\"#0",
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
    "line": 90,
    "verdict": "DEAD_NO_HANDLER",
@@ -149,6 +167,7 @@
    "note": "『添加参考图』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx##0",
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
    "line": 125,
    "verdict": "DEAD_NO_HANDLER",
@@ -157,6 +176,7 @@
    "note": "模型钮『即梦 Seedance 2.5』带 ChevronDown 像下拉，实则无 onClick ⇒ **视觉在骗人**"
   },
   {
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx##1",
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
    "line": 133,
    "verdict": "DEAD_NO_HANDLER",
@@ -165,6 +185,7 @@
    "note": "『6s』时长钮无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#\"提及主体\"#0",
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
    "line": 139,
    "verdict": "DEAD_NO_HANDLER",
@@ -173,6 +194,7 @@
    "note": "『@ 提及主体』无 onClick"
   },
   {
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"上传参考内容\"#0",
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
    "line": 87,
    "verdict": "DEAD_NO_HANDLER",
@@ -181,6 +203,7 @@
    "note": "『上传参考内容』无 onClick（子代理 B 漏掉、AST 扫出来的）"
   },
   {
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"引用参考\"#0",
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
    "line": 100,
    "verdict": "DEAD_NO_HANDLER",
@@ -189,6 +212,7 @@
    "note": "『引用参考』无 onClick（同上）"
   },
   {
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"提及主体\"#0",
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
    "line": 107,
    "verdict": "DEAD_NO_HANDLER",
@@ -197,6 +221,7 @@
    "note": "『提及主体』无 onClick（同上）"
   },
   {
+   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#\"下载\"#0",
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
    "line": 364,
    "verdict": "DEAD_NO_HANDLER",

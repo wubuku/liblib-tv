@@ -34,31 +34,31 @@ ALLOW = GDIR / "inputs" / "interaction-wiring-allowlist-1032.json"
 #   类别：NO_EFFECT = 点了什么都不会发生（最坏：用户以为坏了）
 #         BILLING   = 计费类，**绝不能真做**，正确处置是 disabled + 说明
 NOTES = {
-    ("JimengImageGenPanel.tsx", 169): ("NO_EFFECT", "图片生成『生成』：用户输入提示词按发送**什么都没发生、连提示都没有**（按钮无 onClick）⇒ 本批最高优先级"),
-    ("JimengImageGenPanel.tsx", 31): ("NO_EFFECT", "『展开面板』无 onClick"),
-    ("JimengImageGenPanel.tsx", 47): ("NO_EFFECT", "『添加参考』无 onClick ⇒ 参考图这条链整条断"),
-    ("JimengImageGenPanel.tsx", 139): ("NO_EFFECT", "『引用参考』无 onClick"),
-    ("JimengImageGenPanel.tsx", 162): ("NO_EFFECT", "『引用参考』无 onClick"),
-    ("JimengAudioGenPanel.tsx", 337): ("NO_EFFECT", "『添加参考』无 onClick"),
-    ("JimengAudioGenPanel.tsx", 670): ("NO_EFFECT", "『引用参考』无 onClick"),
-    ("JimengAudioGenPanel.tsx", 1145): ("NO_EFFECT", "『引用参考』无 onClick"),
-    ("JimengAudioGenPanel.tsx", 316): ("NO_EFFECT", "『展开面板』无 onClick"),
-    ("JimengAudioGenPanel.tsx", 1161): ("NO_EFFECT", "『显示折扣详情』无 onClick"),
-    ("JimengGenPanel.tsx", 218): ("NO_EFFECT", "『展开面板』无 onClick（视频生成面板里也有一个）"),
-    ("JimengGenPanel.tsx", 317): ("NO_EFFECT", "『上传参考图』无 onClick —— 而同一面板的 chip 行『＋』是真接了 file input ⇒ **同一个面板里两种行为**"),
-    ("JimengGenPanel.tsx", 409): ("NO_EFFECT", "『展开视频生成器』无 onClick"),
-    ("JimengRepaintPanel.tsx", 90): ("NO_EFFECT", "『添加参考图』无 onClick"),
-    ("JimengRepaintPanel.tsx", 125): ("NO_EFFECT", "模型钮『即梦 Seedance 2.5』带 ChevronDown 像下拉，实则无 onClick ⇒ **视觉在骗人**"),
-    ("JimengRepaintPanel.tsx", 133): ("NO_EFFECT", "『6s』时长钮无 onClick"),
-    ("JimengRepaintPanel.tsx", 139): ("NO_EFFECT", "『@ 提及主体』无 onClick"),
-    ("JimengVideoEditMode.tsx", 87): ("NO_EFFECT", "『上传参考内容』无 onClick（子代理 B 漏掉、AST 扫出来的）"),
-    ("JimengVideoEditMode.tsx", 100): ("NO_EFFECT", "『引用参考』无 onClick（同上）"),
-    ("JimengVideoEditMode.tsx", 107): ("NO_EFFECT", "『提及主体』无 onClick（同上）"),
-    ("nodes/JimengTextNode.tsx", 364): ("NO_EFFECT", "文本节点『下载』整枚无 onClick"),
-    ("JimengMemberModal.tsx", 136): ("BILLING", "『购买积分』CTA 无 onClick —— 计费动作**绝不能真做** ⇒ 正确处置是 disabled + 说明，而不是能点没反应"),
-    ("JimengMemberModal.tsx", 142): ("BILLING", "『订阅管理』CTA 无 onClick —— 同上"),
-    ("JimengMemberModal.tsx", 182): ("BILLING", "四个计费 tab 无 onClick，只有 i===2 常亮 ⇒ 看着像能切，切不动"),
-    ("JimengAssetsModal.tsx", 132): ("NO_EFFECT", "时间/筛选图标钮无 onClick（aria-label={label}）"),
+    'src/components/jimeng/JimengAssetsModal.tsx#{label}#0': ('NO_EFFECT', '时间/筛选图标钮无 onClick（aria-label={label}）'),
+    'src/components/jimeng/JimengAudioGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick'),
+    'src/components/jimeng/JimengAudioGenPanel.tsx#"引用参考"#0': ('NO_EFFECT', '『引用参考』无 onClick'),
+    'src/components/jimeng/JimengAudioGenPanel.tsx#"引用参考"#1': ('NO_EFFECT', '『引用参考』无 onClick'),
+    'src/components/jimeng/JimengAudioGenPanel.tsx#"显示折扣详情"#0': ('NO_EFFECT', '『显示折扣详情』无 onClick'),
+    'src/components/jimeng/JimengAudioGenPanel.tsx#"添加参考"#0': ('NO_EFFECT', '『添加参考』无 onClick'),
+    'src/components/jimeng/JimengGenPanel.tsx#"上传参考图"#0': ('NO_EFFECT', '『上传参考图』无 onClick —— 而同一面板的 chip 行『＋』是真接了 file input ⇒ **同一个面板里两种行为**'),
+    'src/components/jimeng/JimengGenPanel.tsx#"展开视频生成器"#0': ('NO_EFFECT', '『展开视频生成器』无 onClick'),
+    'src/components/jimeng/JimengGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick（视频生成面板里也有一个）'),
+    'src/components/jimeng/JimengImageGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick'),
+    'src/components/jimeng/JimengImageGenPanel.tsx#"引用参考"#0': ('NO_EFFECT', '『引用参考』无 onClick'),
+    'src/components/jimeng/JimengImageGenPanel.tsx#"引用参考"#1': ('NO_EFFECT', '『引用参考』无 onClick'),
+    'src/components/jimeng/JimengImageGenPanel.tsx#"添加参考"#0': ('NO_EFFECT', '『添加参考』无 onClick ⇒ 参考图这条链整条断'),
+    'src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? "生成" : "请输入提示词"}#0': ('NO_EFFECT', '图片生成『生成』：用户输入提示词按发送**什么都没发生、连提示都没有**（按钮无 onClick）⇒ 本批最高优先级'),
+    'src/components/jimeng/JimengMemberModal.tsx##0': ('BILLING', '『购买积分』CTA 无 onClick —— 计费动作**绝不能真做** ⇒ 正确处置是 disabled + 说明，而不是能点没反应'),
+    'src/components/jimeng/JimengMemberModal.tsx##1': ('BILLING', '『订阅管理』CTA 无 onClick —— 同上'),
+    'src/components/jimeng/JimengMemberModal.tsx##2': ('BILLING', '四个计费 tab 无 onClick，只有 i===2 常亮 ⇒ 看着像能切，切不动'),
+    'src/components/jimeng/JimengRepaintPanel.tsx#"提及主体"#0': ('NO_EFFECT', '『@ 提及主体』无 onClick'),
+    'src/components/jimeng/JimengRepaintPanel.tsx#"添加参考图"#0': ('NO_EFFECT', '『添加参考图』无 onClick'),
+    'src/components/jimeng/JimengRepaintPanel.tsx##0': ('NO_EFFECT', '模型钮『即梦 Seedance 2.5』带 ChevronDown 像下拉，实则无 onClick ⇒ **视觉在骗人**'),
+    'src/components/jimeng/JimengRepaintPanel.tsx##1': ('NO_EFFECT', '『6s』时长钮无 onClick'),
+    'src/components/jimeng/JimengVideoEditMode.tsx#"上传参考内容"#0': ('NO_EFFECT', '『上传参考内容』无 onClick（子代理 B 漏掉、AST 扫出来的）'),
+    'src/components/jimeng/JimengVideoEditMode.tsx#"引用参考"#0': ('NO_EFFECT', '『引用参考』无 onClick（同上）'),
+    'src/components/jimeng/JimengVideoEditMode.tsx#"提及主体"#0': ('NO_EFFECT', '『提及主体』无 onClick（同上）'),
+    'src/components/jimeng/nodes/JimengTextNode.tsx#"下载"#0': ('NO_EFFECT', '文本节点『下载』整枚无 onClick'),
 }
 
 
@@ -80,16 +80,21 @@ def main() -> int:
         notes.pop(victim)
         print("self-test: 故意移除标注", victim)
 
+    # ⭐⭐⭐⭐⭐ Batch 1032-②b-0: **键从「(文件名, 行号)」换成「稳定键」** ——
+    #   行号是**位置**不是**身份**（1021/1030 栽过一次；这里是同一形状的复发）。
+    #   ⇒ 改一行代码 ⇒ 全部标注错位 ⇒ 每一处都被当成「新增糊弄」
+    #   ⇒ ⇒ **修按钮的过程本身会一直误报** ⇒ ⇒ 所以必须先换键再动手修。
+    #   ⇒ 稳定键 = `文件#可访问名#同文件同名出现序号`（由 AST 探针给出）。
     rows = []
     unmatched = []
     for r in dead:
-        fname = r["file"].split("src/components/jimeng/")[-1]
-        key = (fname, r["line"])
-        if key not in notes:
-            unmatched.append("%s:%s" % key)
+        sk = r.get("stable_key")
+        if sk not in notes:
+            unmatched.append(sk or ("%s:%s" % (r["file"], r["line"])))
             continue
-        kind, note = notes[key]
+        kind, note = notes[sk]
         rows.append(collections.OrderedDict([
+            ("stable_key", sk),
             ("file", r["file"]), ("line", r["line"]), ("verdict", r["verdict"]),
             ("label", r["label"]), ("kind", kind), ("note", note),
         ]))
@@ -98,12 +103,13 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ **修好的自查**：原来写成 `any((A, B) for ...)` ——
     #   那是**元组非空即真**，⇒ 这句检查恒真、永远报「无缺失」。
     #   现在必须是 `A and B`；而且下面还有一条阳性对照证明它能失败。
-    missing_notes = [k for k in notes
-                     if not any((e["file"].split("src/components/jimeng/")[-1] == k[0]
-                                 and e["line"] == k[1]) for e in rows)]
-    leftover = ["%s:%s" % (r["file"].split("src/components/jimeng/")[-1], r["line"])
-                for r in dead
-                if (r["file"].split("src/components/jimeng/")[-1], r["line"]) not in notes]
+    # ⭐ 1032-②b-0: 语义也改了 ——
+    #   `orphan`（标注里有、现状里没有）= **已修好、可以销账**的那几条
+    #   ⇒ ⇒ 而 `unmatched`（现状里有、标注里没有）= **新增糊弄**
+    #   ⇒ ⇒ 两者**方向相反**，以前把它们混在一个「missing_notes」里。
+    _dead_keys = {r.get("stable_key") for r in dead}
+    missing_notes = sorted(k for k in notes if k not in _dead_keys)
+    leftover = list(unmatched)
 
     honest = []
     for b in scan.get("buttons") or []:

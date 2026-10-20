@@ -29,6 +29,7 @@
 退出码三态（与 1031 探针同一套约定）
     0 = 全绿；1 = 有 P 判据为假；2 = 探针崩了 / 数据不是合法 JSON
 """
+import ast
 import json
 import os
 import sys
@@ -39,6 +40,14 @@ GDIR = ROOT / "docs/research/jimeng-canvas"
 SCAN = GDIR / "inputs" / "interaction-wiring-1032.json"
 ALLOW = GDIR / "inputs" / "interaction-wiring-allowlist-1032.json"
 OUT = GDIR / "interaction-wiring-check-1032.json"
+# ⭐⭐⭐⭐⭐ Batch 1032-②b-0: **真源是生成器源码里的 `NOTES`，不是白名单 JSON** ——
+#   白名单 JSON 是**产物**（生成器每次都会把它同步成「现状」）⇒ ⇒ 若门比 JSON，
+#   ⇒ ⇒ 「少一条（修好了却没销账）也红」这条判据**根本不成立**
+#   ⇒ ⇒ ⇒ 1032-① 的 commit message 与 README 里那句话**当时是假的**。
+#   ⇒ ⇒ ⇒ 改比 `NOTES`（源码里的真源）⇒ ⇒ ⇒ **两条判据才都真**：
+#   ⇒ ⇒ ⇒ ① 现状多出一条、`NOTES` 里没有 ⇒ **新增糊弄** ⇒ 红；
+#   ⇒ ⇒ ⇒ ② 修好一条（现状少了）而 `NOTES` 里还留着标注 ⇒ **该销账了** ⇒ 红。
+GEN = ROOT / "scripts/jimeng_probe1032_build_allowlist.py"
 
 
 def _load(p: Path, what: str):
@@ -59,8 +68,39 @@ buttons = scan.get("buttons") or []
 allow_entries = allow.get("entries") or []
 
 
+def _load_notes():
+    """从生成器源码里取出 `NOTES`（真源）。纯字面量 ⇒ `literal_eval` 可解。"""
+    if not GEN.exists():
+        sys.stderr.write("GEN_MISSING (data-side error, rc=2)\n")
+        sys.exit(2)
+    tree = ast.parse(GEN.read_text(encoding="utf-8"))
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Assign) and any(
+                getattr(t, "id", "") == "NOTES" for t in node.targets):
+            try:
+                return ast.literal_eval(node.value)
+            except (ValueError, SyntaxError) as e:
+                sys.stderr.write("NOTES_NOT_LITERAL (rc=2): %s\n" % e)
+                sys.exit(2)
+    sys.stderr.write("NOTES_MISSING (data-side error, rc=2)\n")
+    sys.exit(2)
+
+
+NOTES = _load_notes()
+# ⭐ 键是**稳定键**（见 1032-②b-0：行号是位置不是身份）
+notes_keys = set(NOTES.keys())
+
+
 def _key(entry):
-    return (entry.get("file"), entry.get("line"))
+    # ⭐⭐⭐⭐⭐ Batch 1032-②b-0: **键 = 稳定键**，不是 `(file, line)` ——
+    #   行号是**位置**不是**身份**（1021/1030 栽过一次；这里是同一形状的复发）：
+    #   在判据上方插一行代码，那个判据就「消失」了。
+    #   ⇒ 而死按钮的白名单若按行号索引 ⇒ ⇒ 改一行代码 ⇒ 全部标注错位
+    #   ⇒ ⇒ ⇒ 每一处都被当成「新增糊弄」⇒ ⇒ ⇒ **修按钮的过程本身会一直误报**。
+    #   ⇒ 稳定键 = `文件#可访问名#同文件同名出现序号`（AST 探针给出）。
+    #   ⚠️ **不 fallback 到行号** —— 两种口径混用 ⇒ 「谁算糊弄」没人说得清；
+    #   ⇒ 键缺失时门会红（提示：先跑 `jimeng_probe1032_build_allowlist.py` 重建白名单）。
+    return entry.get("stable_key") or ""
 
 
 def dead_set(btns):
@@ -68,16 +108,20 @@ def dead_set(btns):
     #   两边口径不同 ⇒ 门开张就红，而且红的原因（「谁算糊弄」）没人说得清。
     #   ⭐ `DISABLED_NO_HANDLER` **不算糊弄**：明确禁用是诚实（用户看得到禁用态），
     #   它与「能点但毫无反应」不是一回事。
-    return {(b.get("file"), b.get("line")) for b in btns
+    return {b.get("stable_key") or "" for b in btns
             if b.get("verdict") in ("DEAD_NO_HANDLER", "DEAD_EMPTY_INLINE")}
 
 
-def p1_exact(btns, allow_entries):
-    """死按钮集合必须**恰好**等于白名单集合。"""
+def p1_exact(btns, allowed_keys):
+    """死按钮集合必须**恰好**等于「真源标注集合」。
+
+    ⚠️⭐⭐⭐⭐⭐ 比的是 **`NOTES`（源码真源）**，不是白名单 JSON（产物）：
+      JSON 每次都被生成器同步成「现状」⇒ ⇒ 比它的话，「少一条也红」永远不成立。
+    """
     code = dead_set(btns)
-    allowed = {_key(e) for e in allow_entries}
-    return code == allowed, {"new_dead": sorted("%s:%s" % k for k in (code - allowed)),
-                             "stale_allow": sorted("%s:%s" % k for k in (allowed - code))}
+    allowed = set(allowed_keys)
+    return code == allowed, {"new_dead": sorted(code - allowed),
+                             "stale_allow": sorted(allowed - code)}
 
 
 out = {"generated_by": "jimeng_probe1032_interaction_wiring.py"}
@@ -94,16 +138,40 @@ out["n_unknown_spread"] = n_spread
 out["P3_no_spread_buttons_1032"] = bool(n_spread == 0)
 
 # ── P1：死按钮集合 == 白名单集合 ─────────────────────────────────────
-p1_ok, p1_detail = p1_exact(buttons, allow_entries)
+p1_ok, p1_detail = p1_exact(buttons, notes_keys)
 out["P1_dead_buttons_match_allowlist_1032"] = p1_ok
 out["P1_detail"] = p1_detail
+out["P1_source_of_truth"] = "⭐⭐⭐ 比的是生成器源码里的 NOTES（真源），不是白名单 JSON（产物）"
 
 # ── P4：阳性对照 —— 注入一条**不在白名单里**的死按钮，P1 必须变红 ────
+# ⚠️ 注入的那条必须带**稳定键** —— 门现在按稳定键判等
+#   ⇒ ⇒ 少了这个字段，它会落进「空键」那一类 ⇒ ⇒ 注入就**不再**是「一条新的糊弄」
+#   ⇒ ⇒ ⇒ 阳性对照会**假绿**（它必须让 P1 变红才算数）。
 _injected = list(buttons) + [{"file": "src/components/jimeng/__probe_injected__.tsx",
                                "line": 1, "verdict": "DEAD_NO_HANDLER",
-                               "label": "__injected_probe__"}]
-_inj_ok, _inj_detail = p1_exact(_injected, allow_entries)
+                               "label": "__injected_probe__",
+                               "stable_key": "src/components/jimeng/__probe_injected__.tsx#__injected_probe__#0"}]
+_inj_ok, _inj_detail = p1_exact(_injected, notes_keys)
 out["P4_injected_dead_button_is_caught_1032"] = bool(p1_ok and (not _inj_ok))
+
+# ── P6/P7：**双向**阳性对照 ——
+# ⚠️⭐⭐⭐⭐⭐ 1032-① 只验了**正向**（P4 注入一条新死按钮 ⇒ 必须红）
+#   ⇒⇒ 「少一条（修好了却没销账）也红」那条**从没被验过**
+#   ⇒⇒⇒ 而它**当时根本不成立** —— 门比的是**产物 JSON**，而生成器每次都把它
+#   ⇒⇒⇒⇒ 同步成「现状」⇒ ⇒⇒ 「少一条」永远不出现 ⇒ ⇒⇒ 那条判据形同虚设。
+#   ⇒⇒⇒⇒ ⇒ 本批把门改成比**源码里的 `NOTES`（真源）**，并补上**双向**对照：
+#   ⇒⇒⇒⇒ ① 从 `NOTES` 删一条 ⇒ 现状比真源多一条 ⇒ **必须红**（= 新增糊弄）
+#   ⇒⇒⇒⇒ ② 往 `NOTES` 加一条不存在的 ⇒ 真源比现状多一条 ⇒ **必须红**（= 该销账了）
+#   ⇒⇒⇒⇒ ⇒⇒ 两边都红 ⇒⇒ 「多一条红」与「少一条红」**两条都真**。
+_victim = sorted(notes_keys)[0] if notes_keys else ""
+_m_del_ok, m_del = p1_exact(buttons, notes_keys - {_victim})
+_m_add_ok, m_add = p1_exact(buttons, notes_keys | {"__fake_entry__"})
+out["P6_more_than_source_is_red_1032"] = bool(
+    (not _m_del_ok) and _victim in m_del.get("new_dead", []))
+out["P6_detail"] = {"victim": _victim, "new_dead": m_del.get("new_dead", [])[:5]}
+out["P7_fewer_than_source_is_red_1032"] = bool(
+    (not _m_add_ok) and "__fake_entry__" in m_add.get("stale_allow", []))
+out["P7_detail"] = {"stale_allow": m_add.get("stale_allow", [])[:5]}
 out["P4_detail"] = {"injected_new_dead": _inj_detail["new_dead"]}
 
 # ── P5：白名单里每条都必须仍能在代码里找到对应按钮（防止销账时删掉真问题）──

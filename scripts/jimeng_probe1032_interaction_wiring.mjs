@@ -52,6 +52,10 @@ function walk(dir, out = []) {
 
 const files = walk(SRC).sort();
 const rows = [];
+// ⭐⭐⭐⭐⭐ Batch 1032-②b-0: **稳定键的序号计数器** ——
+//   key = `文件\0可访问名` ⇒ 跨文件天然不混；值 = 该名字在本文件里**按源码顺序**
+//   第几次出现（对**全部**按钮计数，不只是死按钮）⇒ ⇒ 保证键在文件内唯一。
+const labelOrdinals = new Map();
 
 for (const file of files) {
   const text = fs.readFileSync(file, 'utf8');
@@ -135,6 +139,17 @@ for (const file of files) {
         else if (hasDisabled) verdict = 'DISABLED_NO_HANDLER';
         else verdict = 'DEAD_NO_HANDLER';
         const { line } = sf.getLineAndCharacterOfPosition(node.pos);
+        // ⭐⭐⭐⭐⭐ Batch 1032-②b-0: **稳定键** ——
+        //   `line` 是**位置**，不是**身份**（1021/1030 已经为这件事栽过一次：
+        //   在判据上方插一行代码，那个判据就「消失」了）。
+        //   ⇒ 门与白名单若都按行号索引 ⇒ ⇒ 改一行代码 ⇒ ⇒ 全部标注错位
+        //   ⇒ ⇒ ⇒ 每一处都被当成「新增糊弄」⇒ ⇒ ⇒ 修按钮的过程本身会一直误报。
+        //   ⇒ 稳定键 = `文件#可访问名#同文件同名的出现序号`（序号按**源码顺序**，
+        //   ⇒ 对**全部**按钮计数 ⇒ ⇒ 这样它在「同一个文件里」唯一）。
+        const label = aria || tid || title || '';
+        const ordinalKey = path.relative(ROOT, file) + '\u0000' + label;
+        const ordinal = (labelOrdinals.get(ordinalKey) || 0);
+        labelOrdinals.set(ordinalKey, ordinal + 1);
         rows.push({
           file: path.relative(ROOT, file),
           line: line + 1,
@@ -143,7 +158,9 @@ for (const file of files) {
           delegated_by: delegatedBy,
           type: typeAttr,
           disabled: hasDisabled,
-          label: aria || tid || title || '',
+          label,
+          ordinal,
+          stable_key: path.relative(ROOT, file) + '#' + label + '#' + ordinal,
         });
       }
     }
