@@ -839,3 +839,12 @@ print("  ⚠️ P8 那条读数**落后一代**（结构性的，加轮数关不
       % (_P8_SAW_ROUNDS, N_ROUNDS))
 print("P1..P8 =", [out["P%d_hold_1015" % i] for i in range(1, 9)])
 print("PROBE_1015_DONE ->", GOLDEN)
+# ⭐⭐⭐⭐⭐ **1032-① 修一个「门在说谎」的 bug：1015 探针此前**没有 sys.exit**，
+#   它的退出码**恒为 0** —— 无论 P1..P8 是真是假。
+#   ⇒ 上批看到「rc=0 + P 全 True」就以为退出码正常，**其实它一直是恒 0**。
+#   ⇒ 这是「**恒零读数比没有读数更危险**」：它让人以为「跑过了 ⇒ 绿」，
+#   而 1032-① 这一批就撞上了：P2（两个新产物没被认领）为 False，**门却报 0**。
+#   ⇒ 现在：任何 P 判据为 False ⇒ rc=1；探针自身崩 ⇒ 由解释器给非 0；
+#   **降级记 null 不算红**（记成红才是把「没测到」当「测了没过」）。
+_BAD_P = [k for k, v in out.items() if k.startswith("P") and v is False]
+sys.exit(1 if _BAD_P else 0)

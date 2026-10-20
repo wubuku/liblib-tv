@@ -18,7 +18,7 @@
   "changed_set_note": "⭐⭐⭐⭐⭐ **变更集以 `argv` 为准**；没给 argv 时兜底取 `git diff HEAD~3` ⇒ **共享仓里那会被别人的提交改掉** ⇒ **⇒ 可复现性在这里的准确口径是「同一份 argv 下两次跑逐字节相同」**",
   "axis_1_coupling_census": {
     "what": "⭐⭐⭐⭐⭐ **耦合普查** —— 一个探针读到的仓内文件越多，越容易被「别人的改动」带偏 ⇒ **这是「容易过期」的结构性原因**",
-    "n_probes_censused": 224,
+    "n_probes_censused": 227,
     "n_with_golden": 17,
     "n_excluded": [
       "jimeng_probe1015_rerun_reproducibility.py"
@@ -158,14 +158,23 @@
       {
         "probe": "scripts/jimeng_probe1012_global_detection.py",
         "has_golden": true,
-        "n_named": 2,
+        "n_named": 3,
         "n_globs": 0,
-        "n_files_it_reads": 3,
+        "n_files_it_reads": 4,
         "n_touched_by_this_change": 1,
         "in_exclude": false,
         "touched_by_this_change": [
           "scripts/jimeng_check_verifier_anchors.py"
         ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1012_mutation_selfcheck.py",
+        "has_golden": true,
+        "n_named": 2,
+        "n_globs": 0,
+        "n_files_it_reads": 3,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1013_occurrence_ledger.py",
@@ -184,7 +193,7 @@
         "has_golden": false,
         "n_named": 5,
         "n_globs": 1,
-        "n_files_it_reads": 5023,
+        "n_files_it_reads": 5038,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -196,7 +205,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 3,
-        "n_files_it_reads": 5250,
+        "n_files_it_reads": 5268,
         "n_touched_by_this_change": 0,
         "in_exclude": true,
         "globs": [
@@ -285,7 +294,7 @@
         "has_golden": true,
         "n_named": 5,
         "n_globs": 4,
-        "n_files_it_reads": 15541,
+        "n_files_it_reads": 15544,
         "n_touched_by_this_change": 6,
         "in_exclude": false,
         "globs": [
@@ -321,7 +330,7 @@
         "has_golden": true,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 233,
+        "n_files_it_reads": 236,
         "n_touched_by_this_change": 4,
         "in_exclude": false,
         "globs": [
@@ -361,12 +370,30 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 5020,
+        "n_files_it_reads": 5035,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
           "*.json"
         ]
+      },
+      {
+        "probe": "scripts/jimeng_probe1032_build_allowlist.py",
+        "has_golden": false,
+        "n_named": 1,
+        "n_globs": 0,
+        "n_files_it_reads": 2,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
+      },
+      {
+        "probe": "scripts/jimeng_probe1032_interaction_wiring.py",
+        "has_golden": false,
+        "n_named": 1,
+        "n_globs": 0,
+        "n_files_it_reads": 2,
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe794_menus.py",
@@ -2122,7 +2149,7 @@
         "has_golden": false,
         "n_named": 0,
         "n_globs": 1,
-        "n_files_it_reads": 231,
+        "n_files_it_reads": 234,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -2137,7 +2164,7 @@
     "n_touched": 13,
     "n_re_run": 13,
     "ran_under_the_suite": false,
-    "n_stale": 6,
+    "n_stale": 5,
     "n_probes_new_this_change": 0,
     "per_probe_timeout": 300,
     "results": [
@@ -2209,8 +2236,8 @@
         "in_git_head": true,
         "is_new_probe": false,
         "stale_vs_committed": true,
-        "stale_vs_worktree": true,
-        "n_bytes_fresh": 2350,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 4489,
         "n_bytes_committed": 2350,
         "touched_by": [
           "scripts/jimeng_check_verifier_anchors.py"
@@ -2251,7 +2278,7 @@
         "in_git_head": true,
         "is_new_probe": false,
         "stale_vs_committed": true,
-        "stale_vs_worktree": true,
+        "stale_vs_worktree": false,
         "n_bytes_fresh": 7532,
         "n_bytes_committed": 7532,
         "touched_by": [
@@ -2268,7 +2295,7 @@
         "in_git_head": true,
         "is_new_probe": false,
         "stale_vs_committed": true,
-        "stale_vs_worktree": true,
+        "stale_vs_worktree": false,
         "n_bytes_fresh": 9205,
         "n_bytes_committed": 9205,
         "touched_by": [
@@ -2302,7 +2329,7 @@
         "is_new_probe": false,
         "stale_vs_committed": true,
         "stale_vs_worktree": false,
-        "n_bytes_fresh": 315337,
+        "n_bytes_fresh": 315713,
         "n_bytes_committed": 314218,
         "touched_by": [
           "scripts/jimeng_probe1025_criterion_direction.py",
@@ -2332,9 +2359,9 @@
         "rc": 0,
         "in_git_head": true,
         "is_new_probe": false,
-        "stale_vs_committed": true,
+        "stale_vs_committed": false,
         "stale_vs_worktree": false,
-        "n_bytes_fresh": 61515,
+        "n_bytes_fresh": 61453,
         "n_bytes_committed": 61453,
         "touched_by": [
           "scripts/jimeng_check_verifier_anchors.py",
@@ -2384,15 +2411,6 @@
         "rc": 0,
         "touched_by": [
           "scripts/jimeng_probe1025_criterion_direction.py",
-          "scripts/verify-jimeng-batch841-unclickable.py"
-        ]
-      },
-      {
-        "probe": "jimeng_probe1030_anchor_identity.py",
-        "golden": "docs/research/jimeng-canvas/anchor-identity-1030.json",
-        "rc": 0,
-        "touched_by": [
-          "scripts/jimeng_check_verifier_anchors.py",
           "scripts/verify-jimeng-batch841-unclickable.py"
         ]
       }

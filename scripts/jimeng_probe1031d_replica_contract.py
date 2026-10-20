@@ -24,7 +24,8 @@ ROOT = Path(__file__).resolve().parents[1]
 GDIR = ROOT / "docs/research/jimeng-canvas"
 CONTRACT = Path(os.environ.get("JIMENG_CONTRACT_JSON")
                 or (GDIR / "contracts" / "live-canvas-contract-1031.json"))
-READINGS = Path(os.environ.get("JIMENG_REPLICA_JSON", "/tmp/b1031d-local-fresh.json"))
+READINGS = Path(os.environ.get("JIMENG_REPLICA_JSON",
+                str(GDIR / "inputs" / "replica-readings-1031d.json")))
 OUT = GDIR / "replica-contract-1031d.json"
 
 if not CONTRACT.exists():
@@ -164,7 +165,13 @@ if live is None:
     out["P8_node_scoped_present_when_node_exists_1031d"] = None
     out["downgraded"] = ("no browser readings => P3..P6 recorded null (downgrade, not failure)")
 else:
-    out["replica_readings_file"] = str(READINGS)
+    # ⭐⭐⭐⭐⭐ **记仓内相对路径**：绝对路径会把本机用户名写进产物
+    #   ⇒ 换机就不可复现，而且和同一份产物里的 `contract_file`（相对路径）风格不一致。
+    try:
+        out["replica_readings_file"] = str(READINGS.relative_to(ROOT))
+    except ValueError:
+        out["replica_readings_file"] = str(READINGS)
+    out["replica_readings_file_exists"] = READINGS.exists()
     tid_list = live.get("testids", [])
     aria_list = live.get("aria", [])
     if not tid_list and isinstance(live.get("n_testids"), int):

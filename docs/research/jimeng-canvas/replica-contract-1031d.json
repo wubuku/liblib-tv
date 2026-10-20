@@ -26,7 +26,7 @@
  },
  "P9_every_contract_literal_is_traceable_to_source_evidence_1031d": true,
  "P10_source_allowlist_excludes_criterion_artifacts_1031d": true,
- "replica_readings_file": "/tmp/b1031d-local-fresh.json",
+ "replica_readings_file": "/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/inputs/replica-readings-1031d.json",
  "replica_1031d": {
   "has_nodes": true,
   "missing_testids": [],

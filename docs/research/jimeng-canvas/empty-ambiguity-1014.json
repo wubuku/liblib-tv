@@ -3,12 +3,12 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census_inputs_2029": {
-  "n_fingerprinted": 23,
+  "n_fingerprinted": 24,
   "n_unreadable": 0,
-  "n_from_probe_products": 23,
+  "n_from_probe_products": 24,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "41073e1a98c8",
+    "sha256_12": "8432935d26a2",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
@@ -32,8 +32,8 @@
     "bytes": 3092
    },
    "criterion-direction-1025.json": {
-    "sha256_12": "7c4929ed4d2a",
-    "bytes": 314218
+    "sha256_12": "8386941df6c6",
+    "bytes": 315713
    },
    "criterion-effectiveness-1026.json": {
     "sha256_12": "0af4a7694c1c",
@@ -48,27 +48,31 @@
     "bytes": 18972
    },
    "global-detection-1012.json": {
-    "sha256_12": "bb0b3ab2605d",
-    "bytes": 2350
+    "sha256_12": "403e1d44d11b",
+    "bytes": 4489
    },
    "golden-freshness-1008.json": {
     "sha256_12": "589f53eec93b",
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "629b1fd50b17",
-    "bytes": 79156
+    "sha256_12": "0fb4d9e9b731",
+    "bytes": 79973
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
     "bytes": 21313
+   },
+   "interaction-wiring-check-1032.json": {
+    "sha256_12": "ae819eea0d7d",
+    "bytes": 5551
    },
    "live-canvas-check-1031.json": {
     "sha256_12": "e75acd23eeb8",
     "bytes": 1614
    },
    "occurrence-ledger-1013.json": {
-    "sha256_12": "c17ac6ba9a00",
+    "sha256_12": "95c9fefab197",
     "bytes": 20268
    },
    "real-history-detection-1010.json": {
@@ -76,23 +80,23 @@
     "bytes": 3232
    },
    "replica-contract-1031d.json": {
-    "sha256_12": "7d3368159261",
-    "bytes": 2036
+    "sha256_12": "5e30ada2193f",
+    "bytes": 2116
    },
    "replica-coverage-1017.json": {
     "sha256_12": "5512e3d3a607",
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "6bd200092272",
-    "bytes": 30262
+    "sha256_12": "d60a451c0b44",
+    "bytes": 31165
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
     "bytes": 1272
    },
    "type-layer-gate-1023.json": {
-    "sha256_12": "f1272cb3b38f",
+    "sha256_12": "0905c8a667e8",
     "bytes": 9205
    },
    "zero-coupling-anchors-1005.json": {
@@ -103,12 +107,12 @@
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 23,
+  "n_goldens": 24,
   "n_excluded_self": 1,
-  "n_empty_list": 200,
+  "n_empty_list": 204,
   "n_empty_null": 26,
   "n_self_provable": 9,
-  "n_ambiguous": 217
+  "n_ambiguous": 221
  },
  "rows": [
   {
@@ -1430,6 +1434,34 @@
   {
    "golden": "harness-fidelity-1020.json",
    "path": "/discriminating_power/disagreeing_examples",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "interaction-wiring-check-1032.json",
+   "path": "/P1_detail/new_dead",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "interaction-wiring-check-1032.json",
+   "path": "/P1_detail/stale_allow",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "interaction-wiring-check-1032.json",
+   "path": "/P5_missing",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "interaction-wiring-check-1032.json",
+   "path": "/failed_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -3007,6 +3039,34 @@
   {
    "golden": "harness-fidelity-1020.json",
    "path": "/discriminating_power/disagreeing_examples",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "interaction-wiring-check-1032.json",
+   "path": "/P1_detail/new_dead",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "interaction-wiring-check-1032.json",
+   "path": "/P1_detail/stale_allow",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "interaction-wiring-check-1032.json",
+   "path": "/P5_missing",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "interaction-wiring-check-1032.json",
+   "path": "/failed_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null

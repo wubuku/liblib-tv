@@ -1,0 +1,216 @@
+{
+ "generated_by": "jimeng_probe1032_build_allowlist.py（entries 为人工标注，honest_disabled 自动同步）",
+ "purpose": "⭐⭐ 白名单**同时是修复清单**：每条写明它属于哪类糊弄、为什么。",
+ "rule": "⭐ 门 P1：代码里的死按钮必须**恰好**等于 entries —— 多一条（新增糊弄）红、少一条（修好了却没销账）也红。",
+ "n": 25,
+ "entries": [
+  {
+   "file": "src/components/jimeng/JimengAssetsModal.tsx",
+   "line": 132,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "{label}",
+   "kind": "NO_EFFECT",
+   "note": "时间/筛选图标钮无 onClick（aria-label={label}）"
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 316,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"展开面板\"",
+   "kind": "NO_EFFECT",
+   "note": "『展开面板』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 337,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"添加参考\"",
+   "kind": "NO_EFFECT",
+   "note": "『添加参考』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 670,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"引用参考\"",
+   "kind": "NO_EFFECT",
+   "note": "『引用参考』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 1145,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"引用参考\"",
+   "kind": "NO_EFFECT",
+   "note": "『引用参考』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 1161,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"显示折扣详情\"",
+   "kind": "NO_EFFECT",
+   "note": "『显示折扣详情』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 218,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"展开面板\"",
+   "kind": "NO_EFFECT",
+   "note": "『展开面板』无 onClick（视频生成面板里也有一个）"
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 317,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"上传参考图\"",
+   "kind": "NO_EFFECT",
+   "note": "『上传参考图』无 onClick —— 而同一面板的 chip 行『＋』是真接了 file input ⇒ **同一个面板里两种行为**"
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 409,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"展开视频生成器\"",
+   "kind": "NO_EFFECT",
+   "note": "『展开视频生成器』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 31,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"展开面板\"",
+   "kind": "NO_EFFECT",
+   "note": "『展开面板』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 47,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"添加参考\"",
+   "kind": "NO_EFFECT",
+   "note": "『添加参考』无 onClick ⇒ 参考图这条链整条断"
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 139,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"引用参考\"",
+   "kind": "NO_EFFECT",
+   "note": "『引用参考』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 162,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"引用参考\"",
+   "kind": "NO_EFFECT",
+   "note": "『引用参考』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 169,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "{canSend ? \"生成\" : \"请输入提示词\"}",
+   "kind": "NO_EFFECT",
+   "note": "图片生成『生成』：用户输入提示词按发送**什么都没发生、连提示都没有**（按钮无 onClick）⇒ 本批最高优先级"
+  },
+  {
+   "file": "src/components/jimeng/JimengMemberModal.tsx",
+   "line": 136,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "",
+   "kind": "BILLING",
+   "note": "『购买积分』CTA 无 onClick —— 计费动作**绝不能真做** ⇒ 正确处置是 disabled + 说明，而不是能点没反应"
+  },
+  {
+   "file": "src/components/jimeng/JimengMemberModal.tsx",
+   "line": 142,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "",
+   "kind": "BILLING",
+   "note": "『订阅管理』CTA 无 onClick —— 同上"
+  },
+  {
+   "file": "src/components/jimeng/JimengMemberModal.tsx",
+   "line": 182,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "",
+   "kind": "BILLING",
+   "note": "四个计费 tab 无 onClick，只有 i===2 常亮 ⇒ 看着像能切，切不动"
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 90,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"添加参考图\"",
+   "kind": "NO_EFFECT",
+   "note": "『添加参考图』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 125,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "",
+   "kind": "NO_EFFECT",
+   "note": "模型钮『即梦 Seedance 2.5』带 ChevronDown 像下拉，实则无 onClick ⇒ **视觉在骗人**"
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 133,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "",
+   "kind": "NO_EFFECT",
+   "note": "『6s』时长钮无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 139,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"提及主体\"",
+   "kind": "NO_EFFECT",
+   "note": "『@ 提及主体』无 onClick"
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 87,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"上传参考内容\"",
+   "kind": "NO_EFFECT",
+   "note": "『上传参考内容』无 onClick（子代理 B 漏掉、AST 扫出来的）"
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 100,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"引用参考\"",
+   "kind": "NO_EFFECT",
+   "note": "『引用参考』无 onClick（同上）"
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 107,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"提及主体\"",
+   "kind": "NO_EFFECT",
+   "note": "『提及主体』无 onClick（同上）"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 364,
+   "verdict": "DEAD_NO_HANDLER",
+   "label": "\"下载\"",
+   "kind": "NO_EFFECT",
+   "note": "文本节点『下载』整枚无 onClick"
+  }
+ ],
+ "honest_disabled": [
+  {
+   "file": "src/components/jimeng/JimengAssetsModal.tsx",
+   "line": 185,
+   "label": "\"assets-confirm\"",
+   "why_not_a_lie": "⭐ 明确 disabled 是**诚实**（用户看得到禁用态）；它与「能点但毫无反应」不是一回事 ⇒ 登记但不判红"
+  }
+ ]
+}

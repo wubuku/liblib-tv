@@ -289,6 +289,10 @@ PROBE_VARS = {
     "_p1010": "scripts/jimeng_probe1010_real_history_detection.py",
     "_p1011": "scripts/jimeng_probe1011_change_locality.py",
     "_p1012": "scripts/jimeng_probe1012_global_detection.py",
+    # ⭐⭐⭐⭐⭐ 1032-①：1012 的**变异阳性对照**也是一个探针文件 ⇒ 同样必须登记 ——
+    #   否则将来 verifier 里引用它的锚文时，官方锚点门会**静默跳过**（老坑的第五次：
+    #   未登记 ⇒ 锚点一条都不查 ⇒ 而门照样报「0 问题」）。
+    "_p1012s": "scripts/jimeng_probe1012_mutation_selfcheck.py",
     "_p1013": "scripts/jimeng_probe1013_occurrence_ledger.py",
     "_p1014": "scripts/jimeng_probe1014_empty_ambiguity.py",
     "_p1015": "scripts/jimeng_probe1015_rerun_reproducibility.py",
@@ -306,6 +310,13 @@ PROBE_VARS = {
     "_p1030": "scripts/jimeng_probe1030_anchor_identity.py",
     "_p1031": "scripts/jimeng_probe1031_live_canvas_contract.py",
     "_p1031d": "scripts/jimeng_probe1031d_replica_contract.py",
+    # ⭐⭐⭐⭐⭐ 1032-①：这两个**必须登记** —— verifier 里 `DD993S.1` 的锚文
+    #   是 `"..." in _p1032` / `"..." in _p1032m` 形式 ⇒ 官方锚点门会拿它们当锚点；
+    #   而**没登记的变量，它的锚点会被静默跳过**（本项目同一个坑的第五次：
+    #   `_p816` 漏登记 ⇒ 整组锚点没查过，而门照样报「0 问题」）。
+    "_p1032": "scripts/jimeng_probe1032_interaction_wiring.py",
+    "_p1032m": "scripts/jimeng_probe1032_interaction_wiring.mjs",
+    "_p1032b": "scripts/jimeng_probe1032_build_allowlist.py",
     # ⚠️⚠️⚠️⚠️⚠️⚠️ 这一行曾被**连着写了两遍**（`&&` 链把生成脚本跑了两次的老毛病），
     #   而字典字面量里的重复键 Python 会静默吞掉 ⇒ 官方锚点门**照样全绿**、**不报错**、
     #   也不会让任何一条判据变红 ⇒ 纯无声损坏 ⇒ 与 1031 探针的 `P6` 同一个形状

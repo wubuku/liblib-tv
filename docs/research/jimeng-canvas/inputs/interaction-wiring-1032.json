@@ -1,0 +1,2665 @@
+{
+ "generated_by": "jimeng_probe1032_interaction_wiring.mjs",
+ "scan_scope": "src/components/jimeng/**/*.tsx",
+ "n_files": 53,
+ "n_buttons": 204,
+ "counts": {
+  "WIRED": 175,
+  "DEAD_NO_HANDLER": 25,
+  "DISABLED_NO_HANDLER": 1,
+  "FORM_SUBMIT": 3
+ },
+ "dead_buttons": [
+  {
+   "file": "src/components/jimeng/JimengAssetsModal.tsx",
+   "line": 132,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{label}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 316,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"展开面板\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 337,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"添加参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 670,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 1145,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 1161,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"显示折扣详情\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 218,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"展开面板\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 317,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"上传参考图\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 409,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"展开视频生成器\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 31,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"展开面板\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 47,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"添加参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 139,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 162,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 169,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{canSend ? \"生成\" : \"请输入提示词\"}"
+  },
+  {
+   "file": "src/components/jimeng/JimengMemberModal.tsx",
+   "line": 136,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengMemberModal.tsx",
+   "line": 142,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengMemberModal.tsx",
+   "line": 182,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 90,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"添加参考图\""
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 125,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 133,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 139,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"提及主体\""
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 87,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"上传参考内容\""
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 100,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 107,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"提及主体\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 364,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"下载\""
+  }
+ ],
+ "unknown_spread": [],
+ "buttons": [
+  {
+   "file": "src/components/jimeng/JimengAccountPanels.tsx",
+   "line": 52,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"关闭帮助中心\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAccountPanels.tsx",
+   "line": 105,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"Close watermark settings\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAccountPanels.tsx",
+   "line": 121,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"导出内容去除AI生成水印\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAccountPanels.tsx",
+   "line": 147,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"保存设置\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiButton.tsx",
+   "line": 61,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"与 AI 对话\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 216,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "\"会话列表\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 234,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "\"新建会话\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 252,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"收起\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 308,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"canvas-agent-mode-action\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 354,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`canvas-agent-session-row-${s.id}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 406,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"agent-skill-item\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 432,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`agent-add-${src}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 512,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`agent-ref-kind-${k}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 550,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`agent-ref-item-${title}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 598,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`移除 ${t}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 693,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 720,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"从本地、画布或资产库添加\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 730,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"使用技能\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 745,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAiDrawer.tsx",
+   "line": 755,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "\"发送消息\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAssetsModal.tsx",
+   "line": 68,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`assets-tab-${t}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAssetsModal.tsx",
+   "line": 85,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"关闭\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAssetsModal.tsx",
+   "line": 99,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`assets-filter-${f}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAssetsModal.tsx",
+   "line": 132,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{label}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAssetsModal.tsx",
+   "line": 185,
+   "verdict": "DISABLED_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "\"assets-confirm\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 316,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"展开面板\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 337,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"添加参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 369,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`创作类型: ${genKind}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 387,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 412,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"选择模型: SeedMusic 1.0 Preview\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 431,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 450,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`选择时长: ${duration}s`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 569,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"选择模型: SeedAudio 1.0, New\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 591,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 617,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"Seed TTS, 上百个预设音色，让你玩转人声配音\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 637,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"音频生成: 全能配音\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 658,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 670,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 679,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"音色: 音色库\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 716,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick",
+    "onKeyDown"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`${label}: ${curFilterVal(label)}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 856,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick",
+    "onKeyDown"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`Clear ${label} filter`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 1057,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 1113,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 1145,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 1161,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"显示折扣详情\""
+  },
+  {
+   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
+   "line": 1188,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{canSend ? \"生成\" : \"请输入提示词\"}"
+  },
+  {
+   "file": "src/components/jimeng/JimengBottomDock.tsx",
+   "line": 38,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"选择工具\""
+  },
+  {
+   "file": "src/components/jimeng/JimengBottomDock.tsx",
+   "line": 67,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"小地图\""
+  },
+  {
+   "file": "src/components/jimeng/JimengBottomDock.tsx",
+   "line": 82,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"显示连线\""
+  },
+  {
+   "file": "src/components/jimeng/JimengBottomDock.tsx",
+   "line": 97,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`Zoom options, ${zoomPercent}%`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengConnectHandles.tsx",
+   "line": 111,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick",
+    "onMouseDown"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`Create connected node ${which === \"left\" ? \"before\" : \"after\"} ${title}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengContextMenu.tsx",
+   "line": 135,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "{row.title}"
+  },
+  {
+   "file": "src/components/jimeng/JimengFramePicker.tsx",
+   "line": 90,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengFramePicker.tsx",
+   "line": 110,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 218,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"展开面板\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 262,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`Remove ${chip.name}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 273,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"添加参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 293,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 317,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"上传参考图\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 336,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 356,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 382,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 409,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"展开视频生成器\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 452,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"选择模型: 即梦 Seedance 2.0 VIP, Standard-only model\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 488,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 515,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"视频尺寸选项: 16:9 · 720P · 1, Standard-only model\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 556,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 586,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"生成模式: 全能参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 613,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 635,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"选择视频生成时长: 4s\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 663,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 686,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengGenPanel.tsx",
+   "line": 718,
+   "verdict": "FORM_SUBMIT",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "submit",
+   "disabled": true,
+   "label": "\"生成\""
+  },
+  {
+   "file": "src/components/jimeng/JimengHelpMenu.tsx",
+   "line": 138,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`account-menu-item-${label}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengHistoryMenu.tsx",
+   "line": 70,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 31,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"展开面板\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 47,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"添加参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 72,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"选择模型: Seedream 5.0 Lite\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 92,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 106,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"图片尺寸选项: 1:1 · 2K · 1\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 126,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 139,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 162,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
+   "line": 169,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{canSend ? \"生成\" : \"请输入提示词\"}"
+  },
+  {
+   "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
+   "line": 104,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
+   "line": 139,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
+   "line": 165,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"全屏预览\""
+  },
+  {
+   "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
+   "line": 173,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "\"下载\""
+  },
+  {
+   "file": "src/components/jimeng/JimengInferPanel.tsx",
+   "line": 42,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"关闭反推面板\""
+  },
+  {
+   "file": "src/components/jimeng/JimengInferPanel.tsx",
+   "line": 63,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengInsertMenu.tsx",
+   "line": 62,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengInsertMenu.tsx",
+   "line": 80,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengMemberModal.tsx",
+   "line": 106,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"关闭订阅页\""
+  },
+  {
+   "file": "src/components/jimeng/JimengMemberModal.tsx",
+   "line": 136,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengMemberModal.tsx",
+   "line": 142,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengMemberModal.tsx",
+   "line": 182,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/jimengMenuChrome.tsx",
+   "line": 86,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "{label}"
+  },
+  {
+   "file": "src/components/jimeng/JimengMoreMenu.tsx",
+   "line": 61,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
+   "line": 135,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"multi-ungroup\""
+  },
+  {
+   "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
+   "line": 145,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"multi-group\""
+  },
+  {
+   "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
+   "line": 157,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"multi-layout\""
+  },
+  {
+   "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
+   "line": 178,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"multi-arrange-grid\""
+  },
+  {
+   "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
+   "line": 190,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"multi-arrange-smart\""
+  },
+  {
+   "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
+   "line": 207,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"multi-bgcolor\""
+  },
+  {
+   "file": "src/components/jimeng/JimengMultiSelectToolbar.tsx",
+   "line": 260,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "\"下载\""
+  },
+  {
+   "file": "src/components/jimeng/JimengNodeSummaryPopover.tsx",
+   "line": 69,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengNodeSummaryPopover.tsx",
+   "line": 87,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengNodeToolbar.tsx",
+   "line": 89,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengNodeToolbar.tsx",
+   "line": 130,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengNodeToolbar.tsx",
+   "line": 150,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengNodeToolbar.tsx",
+   "line": 168,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengNodeToolbar.tsx",
+   "line": 177,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengNodeToolbar.tsx",
+   "line": 186,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengNodeToolbar.tsx",
+   "line": 200,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"全屏编辑\""
+  },
+  {
+   "file": "src/components/jimeng/JimengNodeToolbar.tsx",
+   "line": 219,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "\"下载\""
+  },
+  {
+   "file": "src/components/jimeng/JimengOfflineDialog.tsx",
+   "line": 47,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"offline-discard\""
+  },
+  {
+   "file": "src/components/jimeng/JimengOfflineDialog.tsx",
+   "line": 55,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"offline-keep\""
+  },
+  {
+   "file": "src/components/jimeng/JimengProjectInfoModal.tsx",
+   "line": 90,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"关闭项目信息\""
+  },
+  {
+   "file": "src/components/jimeng/JimengProjectInfoModal.tsx",
+   "line": 106,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{label}"
+  },
+  {
+   "file": "src/components/jimeng/JimengProjectInfoModal.tsx",
+   "line": 151,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengProjectPanel.tsx",
+   "line": 56,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengProjectPanel.tsx",
+   "line": 63,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengProjectPanel.tsx",
+   "line": 72,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 90,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"添加参考图\""
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 125,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 133,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 139,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"提及主体\""
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 149,
+   "verdict": "FORM_SUBMIT",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "submit",
+   "disabled": false,
+   "label": "{canSend ? \"生成\" : \"Prompt is required\"}"
+  },
+  {
+   "file": "src/components/jimeng/JimengSearchOverlay.tsx",
+   "line": 201,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`${c.label} ${countOf(c.key)}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengSearchOverlay.tsx",
+   "line": 222,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"Next search categories\""
+  },
+  {
+   "file": "src/components/jimeng/JimengSearchOverlay.tsx",
+   "line": 249,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{nodeLabel(n)}"
+  },
+  {
+   "file": "src/components/jimeng/JimengSearchOverlay.tsx",
+   "line": 276,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "\"前往上一页\""
+  },
+  {
+   "file": "src/components/jimeng/JimengSearchOverlay.tsx",
+   "line": 288,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "\"前往下一页\""
+  },
+  {
+   "file": "src/components/jimeng/JimengSharePanel.tsx",
+   "line": 185,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"复制链接\""
+  },
+  {
+   "file": "src/components/jimeng/JimengSharePanel.tsx",
+   "line": 207,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"share-perm-trigger\""
+  },
+  {
+   "file": "src/components/jimeng/JimengSharePanel.tsx",
+   "line": 228,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"share-perm-option\""
+  },
+  {
+   "file": "src/components/jimeng/JimengSharePanel.tsx",
+   "line": 275,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"创建团队\""
+  },
+  {
+   "file": "src/components/jimeng/JimengShortcutsPanel.tsx",
+   "line": 121,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"关闭快捷键面板\""
+  },
+  {
+   "file": "src/components/jimeng/JimengToolRail.tsx",
+   "line": 243,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{label}"
+  },
+  {
+   "file": "src/components/jimeng/JimengTopBar.tsx",
+   "line": 197,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`Canvas title: ${project.name}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengTopBar.tsx",
+   "line": 209,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"项目\""
+  },
+  {
+   "file": "src/components/jimeng/JimengTopBar.tsx",
+   "line": 246,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`Canvas node summary: 节点 ${nodeCount}`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengTopBar.tsx",
+   "line": 307,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"搜索\""
+  },
+  {
+   "file": "src/components/jimeng/JimengTopBar.tsx",
+   "line": 353,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"生成历史\""
+  },
+  {
+   "file": "src/components/jimeng/JimengTopBar.tsx",
+   "line": 383,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"分享\""
+  },
+  {
+   "file": "src/components/jimeng/JimengTopBar.tsx",
+   "line": 421,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"更多\""
+  },
+  {
+   "file": "src/components/jimeng/JimengTopBar.tsx",
+   "line": 446,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`Credits: ${CREDITS} · 基础会员`}"
+  },
+  {
+   "file": "src/components/jimeng/JimengTopBar.tsx",
+   "line": 465,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"用户菜单\""
+  },
+  {
+   "file": "src/components/jimeng/JimengTrimPanel.tsx",
+   "line": 132,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 60,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{label}"
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 87,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"上传参考内容\""
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 100,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"引用参考\""
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 107,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"提及主体\""
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 119,
+   "verdict": "FORM_SUBMIT",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "submit",
+   "disabled": false,
+   "label": "\"生成\""
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoPreview.tsx",
+   "line": 126,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{playing ? \"全屏暂停\" : \"全屏播放\"}"
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoPreview.tsx",
+   "line": 143,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{muted ? \"取消静音\" : \"静音\"}"
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoPreview.tsx",
+   "line": 165,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"退出全屏预览\""
+  },
+  {
+   "file": "src/components/jimeng/JimengWorkspace.tsx",
+   "line": 682,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"取消从画布选择\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengAudioNode.tsx",
+   "line": 48,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"Add tags\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengAudioNode.tsx",
+   "line": 78,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"清除颜色标记\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengDirectorNode.tsx",
+   "line": 55,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"director-enter\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengNodeTitle.tsx",
+   "line": 89,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick",
+    "onMouseDown"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`Rename ${title}`}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengSubjectNode.tsx",
+   "line": 91,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"编辑主体\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengSubjectNode.tsx",
+   "line": 116,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{label}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengSubjectNode.tsx",
+   "line": 163,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"subject-meta-save\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 316,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"背景色\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 334,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`背景色 ${label}`}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 356,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"展开文本面板\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 364,
+   "verdict": "DEAD_NO_HANDLER",
+   "event_attrs": [],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"下载\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 398,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onMouseDown",
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"Text style\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 425,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onMouseDown",
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`字体 ${label}`}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 451,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onMouseDown",
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{label}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 468,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onMouseDown",
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"全屏\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
+   "line": 548,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"关闭全屏编辑\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 528,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"导入\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 536,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"删除时间线\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 563,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"导出时间线\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 580,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 599,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 612,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": ""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 628,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"全屏编辑\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 690,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{muted ? \"取消静音\" : \"静音\"}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 835,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`移除 ${c.label}`}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 845,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"timeline-add-clip\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 860,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"添加素材到时间线\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 900,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"导出时间线\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 921,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"Close timeline editor\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 944,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`timeline-fs-source-${sname}`}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 959,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`timeline-fs-kind-${k}`}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 1014,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`timeline-fs-asset-row-${a.id}`}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 1042,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"timeline-fs-import\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 1155,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": true,
+   "label": "{t.label}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 1178,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"关闭自动吸附\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 1189,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"缩小视图\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 1204,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"放大视图\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 1260,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "div",
+   "type": "button",
+   "disabled": false,
+   "label": "{muted ? \"取消静音\" : \"静音\"}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
+   "line": 1309,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "div",
+   "type": "button",
+   "disabled": false,
+   "label": "\"添加素材到时间线\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
+   "line": 70,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{playing ? \"暂停\" : \"播放\"}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
+   "line": 94,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{playing ? \"底部暂停\" : \"底部播放\"}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
+   "line": 115,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{d.muted ? \"取消静音\" : \"静音\"}"
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
+   "line": 127,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"全屏预览\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
+   "line": 211,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"media-error-retry\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengVideoTitleRow.tsx",
+   "line": 54,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"Add tags\""
+  },
+  {
+   "file": "src/components/jimeng/nodes/JimengVideoTitleRow.tsx",
+   "line": 85,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "\"清除颜色标记\""
+  }
+ ]
+}

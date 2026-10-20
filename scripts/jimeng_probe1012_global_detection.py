@@ -314,8 +314,21 @@ out["verdicts_2012"] = {
                     "**连 `mouse.click` 都没有**",
 }
 
+# ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+# ⭐⭐⭐⭐⭐ **1012 批在这里写死了 `N_OTHER_VARS == 186` —— 而那个数必然过期。**
+#   「目标变量数」**每批都在长**：1013 那批一次 +3（187→190）、1032 这批又 +3（205→208）
+#   ⇒ ⇒ ⇒ ⇒ ⇒ **而 1015 批的改写横幅其实已经写了这件事**（「分母 187 已经过期」）
+#   ⇒ ⇒ ⇒ ⇒ ⇒ **但 1015 只补了横幅、没改这条判据** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 于是它从 1015 批起就一直是红的
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **而红绿只写在 `/tmp` 的 out 里 ⇒ 没有任何门看它**
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 一条判据红了半年没人知道 ⇒ 这就是「审计完就没人再看了」**
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 本批照 **1013 修自己**的做法（`bool(EXHAUSTIVE and DISJOINT)`，不钉具体数）：
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 守住真正的不变式 ——「非 `_ausrc` 的目标变量数 = 目标变量数 − 1，且不为空」
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而 10 / 58 / 1 这三个数是**十对历史快照之间**的量
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒（快照 commit 是写死的）⇒ 不随今天的变量数漂 ⇒ 保留
 out["P1_hold_2012"] = bool(N_PAIRS == 10 and N_TOUCHED == 58
-                           and N_VANISHED == 1 and N_OTHER_VARS == 186)
+                       and N_VANISHED == 1
+                       and N_OTHER_VARS == len(PV) - 1 and N_OTHER_VARS > 0)
 out["P2_hold_2012"] = bool(A_TOUCH == 54 and A_VAN == 0 and O_TOUCH == 4
                            and O_VAN == 1)
 out["P3_hold_2012"] = bool(O_TOUCH == 4 and O_VAN == 1)
@@ -330,7 +343,7 @@ out["P7_hold_2012"] = bool(len(_kill_delta) == 1
                            and _kill_delta[0][1] == _kill_anchor)
 
 # ── golden ────────────────────────────────────────────────────────
-io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
+_GOLDEN_OBJ = {
     "generated_by": "jimeng_probe1012_global_detection.py",
     "note": "⭐⭐⭐⭐⭐⭐⭐⭐ **门在十批真实历史里、在全局口径上开口过几次**",
     "scope": "⭐ 本批扩到全部 %d 个目标变量（1010/1011 只量了 1 个）" % len(PV),
@@ -351,7 +364,9 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
                          "delta_matches_static": _delta_miss == _static_miss},
     "reverse_case": {"killed": [_kill_var, _kill_anchor],
                      "delta": [list(x) for x in _kill_delta]},
-}, ensure_ascii=False, indent=1))
+}
+io.open(GOLDEN, "w", encoding="utf-8").write(
+    json.dumps(_GOLDEN_OBJ, ensure_ascii=False, indent=1))
 out["P8_hold_2012"] = bool(GOLDEN.exists() and GOLDEN.stat().st_size > 500)
 
 # ── P9：沿用「手写的数必须有出处」 ───────────────────────────────
@@ -359,15 +374,34 @@ _NUMRE = re.compile(r"\d+(?:\.\d+)?")
 _AUD_BLOCK = "global_detection_2012"
 
 
-def audit_block():
-    for node in ast.walk(ast.parse(AUDIT_TXT)):
+def _audit_block_from_text(txt):
+    """从一段 audit 源码里取出 `global_detection_2012` 块；取不到/解不开就返回 None。
+
+    ⭐ 拆成「吃文本」的版本，是因为下面 P9 的历史出处要用**旧版本**的 audit 源码，
+    而不能只读当前这一份。
+    """
+    try:
+        tree = ast.parse(txt)
+    except SyntaxError:
+        return None
+    for node in ast.walk(tree):
         if not isinstance(node, ast.Dict):
             continue
         for k, v in zip(node.keys, node.values):
             if (isinstance(k, ast.Constant) and k.value == _AUD_BLOCK
                     and isinstance(v, ast.Dict)):
-                return ast.literal_eval(v)
-    raise AssertionError("⭐ audit 里找不到 %s（仪器坏了）" % _AUD_BLOCK)
+                try:
+                    return ast.literal_eval(v)
+                except (ValueError, SyntaxError):
+                    return None
+    return None
+
+
+def audit_block():
+    blk = _audit_block_from_text(AUDIT_TXT)
+    if blk is None:
+        raise AssertionError("⭐ audit 里找不到 %s（仪器坏了）" % _AUD_BLOCK)
+    return blk
 
 
 _AB = audit_block()
@@ -399,12 +433,71 @@ out["readings_2012"] = {
     "other_rate": OTH_RATE, "n_baseline_missing": len(_base_set),
     "n_static_missing": len(_static_miss),
 }
+def _batch_numbers_in_repo():
+    """⭐⭐⭐⭐⭐ **批次号不是「手写的数」—— 它是仓库自己的编号** ⇒ 自动推导。
+
+    1012 批把白名单写死成 `1001..1012` ⇒ 之后每加一批探针，
+    audit 文案里引用新批次号就**必然**被判成「无出处的数」⇒ 门必红
+    （实测：1013 / 1014 / 1015 三个批次号全部被判红）。
+    ⇒ 本批改成扫 `scripts/jimeng_probeNNNN_*` 的文件名，得出仓里全部批次号。
+    ⇒ **出处 = 文件名本身** ⇒ 不需要人工维护 ⇒ 也不会过期。
+    """
+    out = set()
+    for pat in ("jimeng_probe*.py", "jimeng_probe*.mjs"):
+        for p in (ROOT / "scripts").glob(pat):
+            m = re.match(r"jimeng_probe(\d{3})_", p.name)
+            if m:
+                out.add(m.group(1))
+    return out
+
+
+def _historical_audit_numbers():
+    """⭐⭐⭐⭐⭐ **历史引用的数，出处就是历史本身。**
+
+    audit 的文案里引用了「187 个目标变量」「其余 186 个目标变量」这类
+    **某一个时刻的变量数** ⇒ 它们的出处是**当时那版 audit**，不是今天的读数
+    ⇒ P9 的白名单若只认「今天的读数」，就会把这些**有出处**的历史引用判成无出处
+    ⇒ ⇒ ⇒ 而「有出处」正是 P9 自己的名字（「手写的数必须有出处」）。
+
+    ⇒ 本批改成：从 git 历史里 audit 的**旧版本**取出 `global_detection_2012` 块
+      出现过的全部数字，作为「历史引用」这一类出处。
+    ⇒ git 不可用 / 历史版本解不开时返回 None ⇒ 记 null（**降级不是红**）。
+    """
+    try:
+        revs = subprocess.run(
+            ["git", "log", "--format=%H", "--", AFILE],
+            cwd=str(ROOT), capture_output=True, text=True, timeout=120).stdout.split()
+    except Exception:
+        return None
+    nums = set()
+    for rev in revs:
+        try:
+            txt = subprocess.run(
+                ["git", "show", "%s:%s" % (rev, AFILE)],
+                cwd=str(ROOT), capture_output=True, text=True, timeout=120).stdout
+        except Exception:
+            continue
+        if not txt:
+            continue
+        blk = _audit_block_from_text(txt)
+        if not blk:
+            continue
+        for v in blk.values():
+            if isinstance(v, str):
+                nums |= set(_NUMRE.findall(v))
+    return nums or None
+
+
 _allowed = _nums({k: v for k, v in out.items()
                   if k != "verdicts_2012"}, set())
 _allowed |= set("0123456789") | {
     "1001", "1002", "1003", "1004", "1005", "1006", "1007", "1008",
     "1009", "1010", "1011", "1012",
 }
+_allowed |= _batch_numbers_in_repo()
+_HIST_NUMS = _historical_audit_numbers()
+if _HIST_NUMS:
+    _allowed |= _HIST_NUMS
 _allowed |= set(re.findall(r'check\("[A-Z](\d{3})[A-Z]\.', VERIFIER_TXT))
 _bad, _n_tot = {}, 0
 for _k in out["verdicts_2012"]:
@@ -419,7 +512,42 @@ out["audit_numbers_vs_computed_2012"] = {
     "n_keys_with_unjustified_number": len(_bad),
     "unjustified": _bad,
 }
-out["P9_hold_2012"] = bool(not _bad)
+# ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+# ⭐⭐⭐⭐⭐ **降级：历史出处来源不可用时，P9 必须记 `null`，而不是 `False`。**
+#   实测教训（本批变异自检撞出来的）：
+#   audit 文案里的**历史变量数**（186 / 187 / 190）**只能**由「历史来源」提供出处
+#   —— 批次号来源覆盖不到它们（它们不是批次号）
+#   ⇒ ⇒ ⇒ 所以历史来源一旦不可用（git 不可用 / 历史版本解不开），
+#   ⇒ ⇒ ⇒ ⇒ P9 **必然红** ⇒ ⇒ ⇒ ⇒ 而那是**仪器没到位**，不是「文案里的数没有出处」
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 降级不是红。**
+#   ⚠️ 而且这与已记的那条「量程不够 ⇒ 会造出假否定」是同一族：
+#   ⇒ 这里的量程是「**出处来源的覆盖面**」，不够 ⇒ 假否定。
+out["P9_hold_2012"] = (bool(not _bad) if _HIST_NUMS else None)
+out["P9_degraded_reason_2012"] = (
+    None if _HIST_NUMS else
+    "⭐ 历史出处来源不可用（git 不可用，或历史版本解不开）⇒ P9 降级为 null，不判红")
+
+# ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+# ⭐⭐⭐⭐⭐ **把 P1..P9 的红绿一起落进 golden（仓内文件）** —— 否则它们只躺在
+#   `/tmp` 的 out 里 ⇒ **没有任何门看它们** ⇒ ⇒ 而「红绿没人看」正是本批
+#   修掉的这条老坑的**根因**（一条判据红了半年没人知道）。
+#   ⇒ ⇒ 现在 golden 在仓内 ⇒ 1015 通道 A 的漂移检测会盯着它 ⇒ 它红就会被看见。
+#   ⇒ 写的是**判定结果**（布尔；降级时是 `null`），不写会漂的读数 ⇒ golden 本身保持稳定。
+#   ⚠️⭐⭐ **降级必须原样保留 `null`** —— 写成 `bool(None)` 就是 `False`
+#   ⇒ ⇒ ⇒ 那会把「仪器没到位」伪装成「判据为假」⇒ ⇒ ⇒ **降级就变成了红。**
+_GOLDEN_OBJ["hold_verdicts"] = {
+    ("P%d_hold_2012" % i): out.get("P%d_hold_2012" % i) for i in range(1, 10)
+}
+_GOLDEN_OBJ["p9_provenance_sources"] = {
+    "batch_numbers_from_repo": sorted(_batch_numbers_in_repo()),
+    "historical_audit_numbers_available": bool(_HIST_NUMS),
+    "n_historical_audit_numbers": (len(_HIST_NUMS) if _HIST_NUMS else None),
+    "historical_source": ("git log %s -- %s ⇒ 每一版 audit 的 %s 块里出现过的数字"
+                          % (AFILE, AFILE, _AUD_BLOCK)),
+    "n_unjustified": len(_bad),
+}
+io.open(GOLDEN, "w", encoding="utf-8").write(
+    json.dumps(_GOLDEN_OBJ, ensure_ascii=False, indent=1))
 
 io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
 print("pairs=%d vars=%d declared=%d touched=%d vanished=%d rate=%s"

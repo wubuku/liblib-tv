@@ -5962,6 +5962,15 @@ def main() -> int:
     # ⭐⭐⭐⭐⭐ 1031-④b：原型侧探针（同一份契约，第二个被测对象）
     p1031d = ROOT / "scripts/jimeng_probe1031d_replica_contract.py"
     _p1031d = p1031d.read_text(encoding="utf-8") if p1031d.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-①：「克隆版里有多少糊弄」的**静态那部分**门
+    #   （死按钮：既无自身事件属性、祖先也无 onClick 委托、也不在 form 里 ⇒ 点不动的壳）
+    p1032 = ROOT / "scripts/jimeng_probe1032_interaction_wiring.py"
+    _p1032 = p1032.read_text(encoding="utf-8") if p1032.exists() else ""
+    p1032m = ROOT / "scripts/jimeng_probe1032_interaction_wiring.mjs"
+    _p1032m = p1032m.read_text(encoding="utf-8") if p1032m.exists() else ""
+    # ⭐ 白名单生成器：它守着「死按钮清单」这份**真源**
+    p1032b = ROOT / "scripts/jimeng_probe1032_build_allowlist.py"
+    _p1032b = p1032b.read_text(encoding="utf-8") if p1032b.exists() else ""
     # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
     _ws = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(encoding="utf-8")
     _tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
@@ -16462,6 +16471,8 @@ def main() -> int:
           and '"p20_the_contract_had_three_driftable_aria_not_one_1031_" in _ausrc'
           # ⭐⭐⭐⭐⭐ p21（量法错 ⇒ 报「产品是死的」）与 p22 也必须被引用（1025 规则）
           and '"p21_the_wrong_measuring_instrument_reported_the_product_as_dead_1031_" in _ausrc'
+          # ⭐⭐⭐⭐⭐ p22（一次审计不算数 / 自查里的恒真判据 / 测试不许改真源）必须被引用
+          and '"p22_an_audit_is_not_a_gate_and_a_self_check_can_be_vacuous_1032_" in _ausrc'
 )
     _needa = ['NODE_SCOPED = C.get("node_scoped", {}) or {}' in _p1031d,
               'out["P7_calibers_do_not_overlap_1031d"] = bool(not _overlap_t and not _overlap_a)' in _p1031d,
@@ -16511,6 +16522,57 @@ def main() -> int:
           "⇒⇒ 另修一处**口径错配**：P8 原来读 `node_kinds_present` **（store 内部英文 kind）** 而契约 `node_kinds` 是**源站 DOM 上的中文标题词** ⇒ 交集恒为空 ⇒ P8 **永远记 null**（「没测到」）⇒ **一条永远拿不到读数的死判据**，而它长得像「测过了、结论是没测到」，比直接红还难发现 ⇒ 改成量 DOM 上的 `node_titles`，**判据的量程必须与契约站在同一侧**（原型 store 的私有表示换一种实现就会让它无声失效）。实测节点标题 `视频 1 / 文本 1 / 时间线 1 / 音频 1` ⇒ `node_kinds_matched` 三词全命中。"
           "⇒⇒ 另修 `JimengNodeTitle`：104c 第一版只加了 class `flow-node-title` 并在注释里声称「源站容器 class 是 flow-node-title」—— **那是假陈述**（源站取证里它的字段是 `tid` = data-testid）⇒ 补 data-testid 并把那段注释换成据实陈述。",
           all(_needa))
+    # ── S. 1032-①：「糊弄」的第一类 —— **死按钮** ─────────────────────
+    #   一次只读审计（三个审计者 + TypeScript AST 独立扫一遍）得出：
+    #   克隆版里「用户能点、但点下去什么都不会发生」的元素大量存在。
+    #   其中**完全可机检**的一类是「死按钮」。
+    #   ⇒ 本条钉的是**那道门本身**（探针在、白名单在、判据全绿）。
+    def _p1032_out_ok() -> bool:
+        """1032 门的**产物**也要绿 —— 光有探针源码不够。
+
+        ⚠️ 产物里的 P 判据必须**全为 true**，且「死按钮数 == 白名单条数」。
+        ⚠️ 判据不许钉会漂的数：这里钉的是**两个计数的相等**，
+           不是某个具体数字 ⇒ 白名单从 25 条变成 20 条（修好了 5 个）时，
+           只要 allowlist 也同步成 20 条，这门仍然是绿的。
+        """
+        _pp = ROOT / "docs/research/jimeng-canvas/interaction-wiring-check-1032.json"
+        if not _pp.exists():
+            return False
+        try:
+            _dd = json.loads(_pp.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _ps = [v for k, v in _dd.items() if k.startswith("P") and isinstance(v, bool)]
+        if not _ps or not all(_ps):
+            return False
+        return _dd.get("n_dead_buttons") == _dd.get("n_allowlist_entries")
+
+    _p1032_ok = (
+        'P1_dead_buttons_match_allowlist_1032' in _p1032
+        and 'P4_injected_dead_button_is_caught_1032' in _p1032
+        and 'DISABLED_NO_HANDLER' in _p1032
+        # ⭐ 白名单生成器的**自查必须真的能失败**（第一版是 `any((A,B) for ...)` ⇒ 恒真）
+        and '--self-test' in _p1032b
+        # ⭐⭐⭐⭐⭐ self-test **不许改写真源**（第一版它照写不误 ⇒ 跑一次白名单就少一条）
+        and 'if not args.self_test:' in _p1032b
+        and 'DEAD_EMPTY_INLINE' in _p1032m
+        and 'WIRED_VIA_DELEGATION' in _p1032m
+    )
+    check("DD993S.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「克隆版是不是糊弄」这件事**必须由门来回答**，而不是由一次审计来回答："
+          "1032-① 把**可静态机检的那一类糊弄**（死按钮：既无自身事件属性、祖先也无 onClick 委托、"
+          "也不在 form 里 ⇒ 它在 DOM 里就是个点不动的壳）做成一条门："
+          "**死按钮集合必须恰好等于白名单** —— 多一条（新增糊弄）红、少一条（修好了却没销账）也红 ⇒ "
+          "白名单因此**同时是修复清单**。"
+          "⭐ 判据强度经过三重交叉验证：① 三个只读审计者各自读源码；② TypeScript AST 独立扫一遍；"
+          "③ **两种假阴性被逐一排除** —— React 的**事件委托**（祖先带 onClick ⇒ 按钮其实可点）"
+          "与 **`<button>` 缺省 type=submit**（在 form 里 ⇒ 点它会提交表单）"
+          "⇒ 25 条死按钮在三种口径下**数目不变**。"
+          "⚠️ **本门绿 ≠ 克隆版没有糊弄** —— 它只覆盖「压根没接线」这一类；"
+          "「弹一句『已执行』但什么都没做」「写死读数冒充状态」「整个功能不存在"
+          "（`<ReactFlow>` 没有 onConnect ⇒ 连不出边）」这三类**静态不可判**，必须靠运行时探针 ⇒ "
+          "**「本门绿」与「克隆版可用」是两个不同的结论，绝不可混用**。",
+          _p1032_ok and _p1032_out_ok())
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
