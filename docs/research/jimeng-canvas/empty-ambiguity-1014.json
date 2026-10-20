@@ -3,9 +3,9 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census_inputs_2029": {
-  "n_fingerprinted": 24,
+  "n_fingerprinted": 25,
   "n_unreadable": 0,
-  "n_from_probe_products": 24,
+  "n_from_probe_products": 25,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
     "sha256_12": "8432935d26a2",
@@ -31,9 +31,13 @@
     "sha256_12": "24e23080fb1d",
     "bytes": 3092
    },
+   "connect-contract-1032a.json": {
+    "sha256_12": "1048709c9bc0",
+    "bytes": 1193
+   },
    "criterion-direction-1025.json": {
-    "sha256_12": "8386941df6c6",
-    "bytes": 315713
+    "sha256_12": "4f8a955f0c2f",
+    "bytes": 316099
    },
    "criterion-effectiveness-1026.json": {
     "sha256_12": "0af4a7694c1c",
@@ -48,7 +52,7 @@
     "bytes": 18972
    },
    "global-detection-1012.json": {
-    "sha256_12": "403e1d44d11b",
+    "sha256_12": "1fd1895b1887",
     "bytes": 4489
    },
    "golden-freshness-1008.json": {
@@ -56,8 +60,8 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "0fb4d9e9b731",
-    "bytes": 79973
+    "sha256_12": "b329edd531ed",
+    "bytes": 80225
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
@@ -88,8 +92,8 @@
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "d60a451c0b44",
-    "bytes": 31165
+    "sha256_12": "e1b100f13df3",
+    "bytes": 31767
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -107,17 +111,31 @@
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 24,
+  "n_goldens": 25,
   "n_excluded_self": 1,
-  "n_empty_list": 204,
+  "n_empty_list": 206,
   "n_empty_null": 26,
   "n_self_provable": 9,
-  "n_ambiguous": 221
+  "n_ambiguous": 223
  },
  "rows": [
   {
    "golden": "baseline-host-misuse-1016.json",
    "path": "/duplicate_now",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "connect-contract-1032a.json",
+   "path": "/false_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "connect-contract-1032a.json",
+   "path": "/degraded_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -1730,6 +1748,20 @@
   {
    "golden": "baseline-host-misuse-1016.json",
    "path": "/duplicate_now",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "connect-contract-1032a.json",
+   "path": "/false_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "connect-contract-1032a.json",
+   "path": "/degraded_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null

@@ -5971,6 +5971,12 @@ def main() -> int:
     # ⭐ 白名单生成器：它守着「死按钮清单」这份**真源**
     p1032b = ROOT / "scripts/jimeng_probe1032_build_allowlist.py"
     _p1032b = p1032b.read_text(encoding="utf-8") if p1032b.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②a：「用户能不能真的拖出一条连线」的门（**运行时**那一条）
+    #   ⚠️ 必须**同时登记 .py 与 .mjs**：.py 是判据、.mjs 是真去拖一把的那个探针
+    p1032a = ROOT / "scripts/jimeng_probe1032a_connect_contract.py"
+    _p1032a = p1032a.read_text(encoding="utf-8") if p1032a.exists() else ""
+    p1032ar = ROOT / "scripts/jimeng_probe1032a_connect_runtime.mjs"
+    _p1032ar = p1032ar.read_text(encoding="utf-8") if p1032ar.exists() else ""
     # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
     _ws = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(encoding="utf-8")
     _tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
@@ -16571,8 +16577,60 @@ def main() -> int:
           "⚠️ **本门绿 ≠ 克隆版没有糊弄** —— 它只覆盖「压根没接线」这一类；"
           "「弹一句『已执行』但什么都没做」「写死读数冒充状态」「整个功能不存在"
           "（`<ReactFlow>` 没有 onConnect ⇒ 连不出边）」这三类**静态不可判**，必须靠运行时探针 ⇒ "
-          "**「本门绿」与「克隆版可用」是两个不同的结论，绝不可混用**。",
+          "**「本门绿」与「克隆版可用」是两个不同的结论，绝不可混用**。"
+          "⚠️⭐⭐⭐⭐⭐ **1032-②a 的更正（原文保留，一个字不删）**："
+          "上面那句「`<ReactFlow>` 没有 onConnect ⇒ 连不出边」**在 1032-②a 已被修掉**"
+          "⇒ ⇒ ⇒ 那一条现在改由 `DD993T.1` 守着（运行时**真拖一把**）"
+          "⇒ ⇒ ⇒ ⇒ 而本段其余部分（哪几类糊弄**静态不可判**、必须靠运行时探针）**仍然成立**。",
           _p1032_ok and _p1032_out_ok())
+
+    # ⭐⭐⭐⭐⭐ 1032-②a：这条判据守着「**连线**真的能用」——
+    #   ⚠️ 注意它与 DD993S.1 的分工：S.1 管「压根没接线」，T.1 管「接了但用不了」
+    def _p1032a_out_ok() -> bool:
+        _pa = ROOT / "docs/research/jimeng-canvas/connect-contract-1032a.json"
+        if not _pa.exists():
+            return False
+        try:
+            _da = json.loads(_pa.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _ca = _da.get("criteria") or {}
+        if not _ca:
+            return False
+        return all(v is True for v in _ca.values())
+
+    _p1032a_ok = (
+        "drag_valid" in _p1032a
+        and "expected_id_present" in _p1032a
+        and "drag_duplicate" in _p1032a
+        and "drag_to_void" in _p1032a
+        and "p7_mutation" in _p1032a
+        # ⭐⭐⭐⭐⭐ 运行时探针必须**真的去拖一把** —— 不能只是读 DOM 计数
+        and "page.mouse.down" in _p1032ar
+        and "page.mouse.up" in _p1032ar
+        and "react-flow__handle-right" in _p1032ar
+        and "react-flow__handle-left" in _p1032ar
+    )
+    check("DD993T.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「画布能不能连出边」这件事**必须由运行时来回答**，而不是由「源码里有 onConnect」来回答："
+          "1032-②a 给 `<ReactFlow>` 补上了 `onConnect`（此前**根本没有** ⇒ "
+          "节点有 `<Handle>`、用户能拖，**却一条边也建不出来**）⇒ "
+          "⚠️ 但「代码里写了 onConnect」**不等于**「用户拖得出一条边」—— "
+          "handle 口径（`<Handle>` **没有 id** ⇒ React Flow 交回 `null`）、"
+          "React Flow 的连线事件、store 的判重，任何一处不对，用户看到的仍然是「拖了没反应」。"
+          "⇒ ⇒ ⇒ 所以新门**自己跑一个真去拖一把的探针**（`jimeng_probe1032a_connect_runtime.mjs`），"
+          "用 **Playwright 的真实鼠标事件**拖 ⇒ 判据一律用**相对差**（不钉会漂的绝对边数）："
+          "① 有效拖一次 ⇒ Δ=+1 且新边 id == `e-<源>-<目标>`（⇒ source/target 正确）；"
+          "② **同一对再拖一次** ⇒ Δ=0（判重生效）；"
+          "③ **拖到画布空白处** ⇒ Δ=0（负控 ⇒ 证明「+1」不是因为什么都会 +1）。"
+          "⭐ 并且把**判据本身**也过一遍变异（把 Δ 改成 +2 ⇒ 同一条判据必须红）⇒ "
+          "⇒ 证明「Δ=+1」不是恒真。"
+          "⚠️⭐⭐ 诚实标注边界：那条变异是**判据级**的；**探针级**的真变异"
+          "（把 `onConnect` 从页面源码里拿掉）需要改真实源码 ⇒ 留待单独一笔。"
+          "⚠️⭐⭐⭐⭐⭐ **handle 口径不能照抄别处**："
+          "`src/app/frameos/canvas/[id]/page.tsx` 那份实现**带** `sourceHandle`/`targetHandle`"
+          "⇒ ⇒ 那是**有 id 的 Handle** 的口径 ⇒ ⇒ 照抄 ⇒ 连不上。",
+          _p1032a_ok and _p1032a_out_ok())
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

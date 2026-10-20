@@ -10,7 +10,12 @@ import {
   PanOnScrollMode,
   SelectionMode,
 } from "@xyflow/react";
-import type { NodeMouseHandler, OnConnectEnd, OnMove } from "@xyflow/react";
+import type {
+  NodeMouseHandler,
+  OnConnect,
+  OnConnectEnd,
+  OnMove,
+} from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 
 import { useJimengStore } from "@/store/jimengStore";
@@ -330,6 +335,32 @@ function JimengFlow() {
     [screenToFlowPosition],
   );
 
+  // ⭐⭐⭐⭐⭐ Batch 1032-②a: **画布连线** ——
+  //   `<ReactFlow>` 此前**没有 `onConnect`** ⇒ 节点明明有 `JimengConnectHandles`
+  //   （两个 `<Handle>` 都在）、用户明明能拖出连线的样子，
+  //   ⇒ ⇒ **却一条边也建不出来** ⇒ 这是「FEATURE_MISSING」里最伤的一条：
+  //   ⇒ ⇒ ⇒ 画布的核心交互（把两个节点连起来）整个不存在。
+  //
+  // ⚠️ **handle 口径**：本仓的 `<Handle>`（`JimengConnectHandles.tsx`）**根本没有 id**
+  //   ⇒ ⇒ React Flow 交回来的 `sourceHandle`/`targetHandle` 是 `null`
+  //   ⇒ ⇒ 显式归一化成 `null`，与 store 里已有那条边**同口径**
+  //   ⇒ ⇒ ⇒ 否则官方 `addEdge` 的判重（它比 handle 相等）会失效。
+  // ⚠️ **不照抄 frameos 那份**：那边的实现带 `sourceHandle`/`targetHandle`
+  //   ⇒ ⇒ 那是**有 id 的 Handle** 的口径 ⇒ ⇒ 不同口径照抄 ⇒ 会连不上。
+  const addEdge = useJimengStore((s) => s.addEdge);
+  const onConnectHandler = useCallback<OnConnect>(
+    (params) => {
+      addEdge({
+        id: `e-${params.source}-${params.target}`,
+        source: params.source,
+        target: params.target,
+        sourceHandle: params.sourceHandle ?? null,
+        targetHandle: params.targetHandle ?? null,
+      });
+    },
+    [addEdge],
+  );
+
   // 批 230 SOURCE_FACT: 无效连接尝试 → toast「无法连接这些节点」
   const onConnectEndHandler = useCallback<OnConnectEnd>((_event, state) => {
     if (state.isValid === false) {
@@ -613,6 +644,7 @@ function JimengFlow() {
         zoomOnPinch
         onNodesChange={onNodesChange}
         onEdgesChange={onEdgesChange}
+        onConnect={onConnectHandler}
         onConnectEnd={onConnectEndHandler}
         onPaneClick={onPaneClick}
         onNodeClick={onNodeClick}

@@ -1,7 +1,11 @@
 "use client";
 
 import { create } from "zustand";
-import { applyEdgeChanges, applyNodeChanges } from "@xyflow/react";
+import {
+  applyEdgeChanges,
+  applyNodeChanges,
+  addEdge as addEdgeRf,
+} from "@xyflow/react";
 import type { Edge, EdgeChange, NodeChange } from "@xyflow/react";
 import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
@@ -71,6 +75,23 @@ export interface JimengCanvasState {
   // ───── Actions ─────
   onNodesChange: (changes: NodeChange<JimengNode>[]) => void;
   onEdgesChange: (changes: EdgeChange[]) => void;
+  /** Batch 1032-②a: 用户在画布上**拖出一条连线** ⇒ 落一条边。
+   *
+   *  ⚠️⭐⭐ 此前 `<ReactFlow>` **没有 `onConnect`** ⇒ 节点明明有
+   *   `JimengConnectHandles`（两个 `<Handle>` 都在）、用户明明能拖出连线的样子，
+   *   **却一条边也建不出来** ⇒ 这是「FEATURE_MISSING」那一类里最伤的一条：
+   *   画布的核心交互（把两个节点连起来）整个不存在。
+   *
+   *  ⚠️ 边的形状照抄 `addVideoNodeAfter` 里已有那条（`{id, source, target}`）
+   *   ⇒ **不带 `sourceHandle` / `targetHandle`** ——
+   *   本仓的 `<Handle>`（见 `JimengConnectHandles.tsx`）**根本没有 id**
+   *   ⇒ ⇒ React Flow 的 handle 匹配按 `null` 走
+   *   ⇒ ⇒ ⇒ 而 `src/app/frameos/canvas/[id]/page.tsx` 那份实现**带** handle
+   *   ⇒ ⇒ ⇒ **不同口径，不能照抄**（照抄会把 handle 传成不存在的 id）。
+   *
+   *  重复边用 React Flow 官方的 `addEdge` 判重（同 id 即视为重复）
+   *  ⇒ ⇒ **不自己写一套判重**（「同一个东西要比同一个口径」）。 */
+  addEdge: (edge: Edge) => void;
   selectNode: (id: string | null) => void;
   /** Batch 803: 顶栏「节点摘要」弹层点节点 → 选中并聚焦该节点。
    *  nonce 用于重复点同一节点时也能重新触发（否则值不变、effect 不跑）。 */
@@ -467,6 +488,21 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   onEdgesChange: (changes) =>
     set((state) => ({ edges: applyEdgeChanges(changes, state.edges) })),
 
+  addEdge: (edge) =>
+    set((state) => {
+      // ⭐ 用 **React Flow 官方的 `addEdge`** 判重，不自己写一套
+      //   ⇒ 官方遇到重复会**原样返回旧数组**（同一引用）⇒ 指针没变
+      //   ⇒ ⇒ 重复边**不进历史栈**（否则「撤销」会撤掉一个不存在的动作）
+      const next = addEdgeRf(edge, state.edges);
+      if (next === state.edges) return {};
+      return {
+        ...markDirty(state),
+        past: [...state.past, { nodes: state.nodes, edges: state.edges }],
+        future: [],
+        edges: next,
+      };
+    }),
+
   focusNodeRequest: null,
 
   requestFocusNode: (id) =>
@@ -564,6 +600,13 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
             id: `e-${sourceId}-${id}`,
             source: sourceId,
             target: id,
+            // ⭐⭐ Batch 1032-②a: **handle 口径归一化** ——
+            //   官方 `addEdge` 的判重条件含 `sourceHandle`/`targetHandle` 相等
+            //   ⇒ 若这条边是 `undefined` 而用户拖出来的是 `null`，
+            //   ⇒ ⇒ `undefined === null` 为 false ⇒ ⇒ **判重失效** ⇒ ⇒ 能连出重复边
+            //   ⇒ ⇒ ⇒ ⇒ 所以这里显式写成 `null`，与 `onConnect` 建的那条同口径。
+            sourceHandle: null,
+            targetHandle: null,
           },
         ],
       };
