@@ -1,0 +1,259 @@
+{
+  "batch": 823,
+  "totals": {
+    "passed": 9,
+    "total": 9
+  },
+  "阴性对照": {
+    "passed": 3,
+    "total": 3
+  },
+  "checks": [
+    {
+      "id": "S1:★★ **前提**：18 个时刻**按顺序一个不缺**、探针源码里**零 store 写调用**（正则自证）",
+      "why": "★★ 807 起立的规矩：**前提不满足的臂显式作废**。★ 时刻写死**顺序**而不是索引 ⟹ 探针中途少读一个就判红、而不是让后面的读数悄悄错位。★★ 「零 store 写调用」是**本批的立身之本** ⟹ 靠**扫源码**自证，不靠口头保证：允许 `getState()`，**禁止任何 action 形式的调用**",
+      "ok": true,
+      "evidence": {
+        "时刻": [
+          "A0·刚打开画布（**纯 UI 起点**）",
+          "A2·点节点中心（纯 UI 选中）",
+          "A3·真实鼠标拖拽 +108px/+72px",
+          "A4·按 Delete 键",
+          "A5·按 Cmd+Z 撤销",
+          "A6·按 Cmd+Shift+Z 重做",
+          "A7·纯 UI 从 source handle 拖到 target handle",
+          "B1·点「打开导演台」",
+          "B2·★ 点时间轴上的相机对象行（纯 UI 选相机）",
+          "B3·在检查器里选跟随目标（纯 UI）",
+          "B4·点检查器里的锁定按钮（纯 UI）",
+          "B5·点预设运镜开关",
+          "B6a·append 被拒（★ 面板内应有提示）",
+          "B6b·★★ 纯 UI 点跟随 select 之后",
+          "B7·★ 点跟随横幅上的取消（纯 UI 清跟随）",
+          "B8·★★ 无跟随时开面板 + append ⟹ 面板内应有「没有可追加的时长」",
+          "B9·★★★ 纯 UI 点跟随 select 之后（★ 面板还开着吗）",
+          "B10·★★★ **真实鼠标**点跟随 select（★ 面板被点关了吗）"
+        ],
+        "★ 与写死的顺序一致": true,
+        "★ 扫到的 store 引用次数": 4,
+        "★ 扫到的 action 形式调用": [],
+        "★ getState 之后的链式调用": [],
+        "★ 零写调用": true
+      }
+    },
+    {
+      "id": "S2:★ 画布·纯 UI 选中：点节点中心 ⟹ `selectedNodeIds` 里出现那个节点 id",
+      "why": "★ 判据只认**绝对读数**（选中的 id），不靠「看起来有高亮」。★ 这是本批最基础的一条：**如果连点都点不中，后面所有画布结论都无从谈起**",
+      "ok": true,
+      "evidence": {
+        "★ 选中节点": [
+          "v-UGQZzZOpbv"
+        ],
+        "★ 节点数": 10
+      }
+    },
+    {
+      "id": "S3:★ 画布·纯 UI 拖拽：**至少一个节点的坐标真的变了**",
+      "why": "★ 用**逐节点的前后坐标**判，而不是「列表不一样」⟹ 后者可能只是顺序变了。★ 画布节点的坐标是**画布坐标**（不是屏幕坐标）⟹ 拖拽真生效的话它必然变",
+      "ok": true,
+      "evidence": {
+        "★ 动了的节点": {
+          "g-EFbbHpwq5w": {
+            "从": [
+              2396,
+              10
+            ],
+            "到": [
+              2601,
+              147
+            ]
+          }
+        },
+        "★ 拖之前": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group",
+            "x": 2112,
+            "y": 656
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group",
+            "x": 2396,
+            "y": 10
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script",
+            "x": 108,
+            "y": -125
+          }
+        ],
+        "★ 拖之后": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group",
+            "x": 2112,
+            "y": 656
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group",
+            "x": 2601,
+            "y": 147
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script",
+            "x": 108,
+            "y": -125
+          }
+        ]
+      }
+    },
+    {
+      "id": "S4:★★ 画布·删除／撤销／重做：**节点数 10→9→10→9**",
+      "why": "★ 判据只认**节点数**这一条绝对读数，三步各自成立。★ 这一条同时排除了「撤销只是把选中态清了」这种假象（809/810 的老坑：**读数对不上先怀疑自己**）",
+      "ok": true,
+      "evidence": {
+        "删除前": 10,
+        "删除后": 9,
+        "撤销后": 10,
+        "重做后": 9
+      }
+    },
+    {
+      "id": "S5:★★★ **起点**：导演台打开后默认选中的是**角色轨道**（`transform`），**不是相机轨道**",
+      "why": "★★★ 这是本批**最要紧的一条反省**：821/822 全部导演台读数的起点「相机轨道已选中」是**后门替用户选好的** ⟹ 而纯 UI 下默认是角色 ⟹ ⟹ ★ **「用户第一次打开导演台看到什么」之前从没量过**。★ 判据要求**显式断言它是 transform** —— 判「不是相机」太弱（可能什么都没选中）",
+      "ok": true,
+      "evidence": {
+        "★ 默认选中轨道": "director-track-character-lead-transform",
+        "★ 相机轨道 id": "director-track-camera-main",
+        "★ 默认选中对象": "director-character-lead",
+        "★ 默认选中对象类型": "?",
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ]
+      }
+    },
+    {
+      "id": "S6:★★★ 导演台三个功能**纯 UI 可达**：① 点**对象名**选中相机轨道 ② 检查器 select 设跟随目标 ③ 检查器按钮锁相机",
+      "why": "★★ 枢纽问题：「用户能不能纯 UI 选中相机轨道？」—— **能**，但**要点对地方**：★ 行首那个位置是**展开/收起箭头**（aria「展开属性」）⟹ 点它只 toggle、不选轨道；★ 真入口是 `[data-director-timeline-object-name]`（`DirectorTimeline.tsx:1664`，onClick → `selectTimelineTrack(group.tracks[0].id)`）。★ 我第一、二版探针点的是行首 ⟹ 读数「没变」⟹ ★ **差点把「纯 UI 选不中」写成结论**",
+      "ok": true,
+      "evidence": {
+        "B2 选中轨道": "director-track-camera-main",
+        "B2 选中对象": "director-camera-main",
+        "B2 对象类型": "camera",
+        "B3 跟随目标": "director-character-lead",
+        "B4 相机锁定": true,
+        "★ 用的入口": {
+          "选轨道": "data-director-timeline-object-name",
+          "跟随": "data-director-camera-follow-target",
+          "锁定": "data-director-inspector-lock"
+        }
+      }
+    },
+    {
+      "id": "S7:★★★ ★★ **「两句同屏」纯 UI 造不出来** —— B9（`select_option()`）能造出来、B10（**真实鼠标**）造不出来",
+      "why": "★★★ 本批最重要的发现。★ 两条纯 UI 路径都被堵死：① 先让 append 被拒、再设跟随 ⟹ 设跟随要点**检查器**的 select ⟹ 那一下 pointerdown **落在面板外** ⟹ `:576` **当场关掉面板** ⟹ 面板内那句随之消失；② 先设跟随 ⟹ 开关 **disabled** ⟹ 面板根本开不了。★★ 而 **B9 与 B10 的差别只有「有没有产生 pointerdown」** ⟹ ⟹ ★★ **「用了 Playwright 的 API」不等于「纯 UI」**：`select_option()` 是**程序化设值**、**不产生 pointerdown** ⟹ 它**绕过了**外部点击关闭",
+      "ok": true,
+      "evidence": {
+        "B8 面板开着": true,
+        "B8 提示": [
+          {
+            "文本": "当前时间轴没有可追加的时长",
+            "在面板内": true
+          }
+        ],
+        "B9 两句同屏": true,
+        "B9 提示": [
+          {
+            "文本": "跟随目标时不可使用预设运镜",
+            "在面板内": false
+          },
+          {
+            "文本": "当前时间轴没有可追加的时长",
+            "在面板内": true
+          }
+        ],
+        "B10 点击前面板开着": true,
+        "B10 点击后面板开着": false,
+        "B10 面板被真实点击关掉了": true,
+        "B10 两句同屏": false,
+        "B10 提示": [
+          {
+            "文本": "跟随目标时不可使用预设运镜",
+            "在面板内": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "S8:★★ 跟随横幅上的「退出跟随」按钮**纯 UI 点得动**（清掉了跟随目标）",
+      "why": "★ `DirectorDesk.tsx:1390` 的注释说：源站那枚按钮**继承了 `pointer-events: none`**（源站本身点不动），clone 是**有意偏离**。★ 本条只判 **clone 自身**的点得动，★ **不声称源站点得动**（未对照）",
+      "ok": true,
+      "evidence": {
+        "★ 跟随目标清了吗": true,
+        "★ 按钮": {
+          "存在": true,
+          "aria": "退出跟随"
+        },
+        "★ 矩形": {
+          "x": 650.125,
+          "y": 9,
+          "width": 63.75,
+          "height": 16
+        }
+      }
+    },
+    {
+      "id": "S9:★ 静态锚点：对象名的标记与 onClick、面板的外部点击关闭、跟随横幅取消按钮、以及**后门是我自己挂的**",
+      "why": "★ 静态锚点与运行时读数**互为独立来源**。★ 特别把「`window.__libtv_store` 是 clone 源码里挂的」这条**写进锚点** ⟹ 因为它是**本批全部反省的根据**：源站产品里根本没有这个全局 ⟹ 任何依赖它的探针**都不能**证明「用户能走到那里」",
+      "ok": true,
+      "evidence": {
+        "DirectorTimeline.tsx: 对象名带 data-director-timeline-object-name": true,
+        "DirectorTimeline.tsx: 对象名 onClick 选的是 group.tracks[0]": true,
+        "DirectorTimeline.tsx: 面板的 pointerdown 外部点击关闭": true,
+        "DirectorDesk.tsx: 跟随横幅上的取消按钮": true,
+        "canvasStore.ts: 后门是我挂的（不是源站产品的一部分）": true
+      }
+    }
+  ],
+  "阴性": [
+    {
+      "name": "N9 把 B10「面板被真实点击关掉了」改成 False ⟹ S7 翻红",
+      "期望翻红": "S7",
+      "实际翻红": [
+        "S7"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N10 把 B5 的默认选中轨道改成相机 ⟹ S5 翻红",
+      "期望翻红": "S5",
+      "实际翻红": [
+        "S5"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N11 把 B3 的跟随目标抹成 null ⟹ S6 翻红",
+      "期望翻红": "S6",
+      "实际翻红": [
+        "S6"
+      ],
+      "ok": true
+    }
+  ]
+}

@@ -1,0 +1,1642 @@
+{
+  "画布": [
+    {
+      "步骤": "A0·刚打开画布（**纯 UI 起点**）",
+      "读数": {
+        "画布id": "canvas-2",
+        "画布数": 2,
+        "★ 节点数": 10,
+        "★ 节点类型": [
+          "storyboard-group",
+          "storyboard-group",
+          "script",
+          "image",
+          "image",
+          "image",
+          "image",
+          "script-execution",
+          "image",
+          "video"
+        ],
+        "★ 节点位置": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group",
+            "x": 2112,
+            "y": 656
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group",
+            "x": 2396,
+            "y": 10
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script",
+            "x": 108,
+            "y": -125
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image",
+            "x": 132,
+            "y": 273
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image",
+            "x": 410,
+            "y": 932
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image",
+            "x": 410,
+            "y": 1332
+          },
+          {
+            "id": "i-vxeeCnxySa",
+            "type": "image",
+            "x": 410,
+            "y": 1732
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution",
+            "x": 1068,
+            "y": -187
+          }
+        ],
+        "★ 选中节点": [],
+        "★ 边数": 11,
+        "★ 历史长度": 0
+      },
+      "★ 添加入口候选": {
+        "选择器": "[data-add-node-entry]",
+        "全部个数": 0,
+        "可见个数": 0,
+        "可见文字": [],
+        "可见标签": []
+      },
+      "★ 面板类 data- 元素": [],
+      "★ 画布上所有可见 data- 元素（前 40）": [
+        {
+          "tag": "BUTTON",
+          "data": "data-project-menu-trigger=true",
+          "text": "",
+          "aria": "项目菜单",
+          "title": "项目菜单",
+          "rect": {
+            "x": 60,
+            "y": 16,
+            "w": 20,
+            "h": 32
+          }
+        },
+        {
+          "tag": "INPUT",
+          "data": "data-workspace-name=true",
+          "text": "",
+          "aria": "工作区名称",
+          "title": "",
+          "rect": {
+            "x": 84,
+            "y": 22,
+            "w": 100,
+            "h": 21
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-canvas-trigger=true",
+          "text": "画布 2",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 188,
+            "y": 16,
+            "w": 76,
+            "h": 32
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-liblib-topnav-actions=true",
+          "text": "开通会员限时 45 折100Agent",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 897,
+            "y": 16,
+            "w": 367,
+            "h": 32
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-inert=true",
+          "text": "开通会员限时 45 折",
+          "aria": "开通会员 限时 45 折",
+          "title": "开通会员为付费操作，克隆侧不提供",
+          "rect": {
+            "x": 937,
+            "y": 16,
+            "w": 157,
+            "h": 32
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-inert=true",
+          "text": "100",
+          "aria": "积分余额",
+          "title": "积分余额（读数，无可点操作）",
+          "rect": {
+            "x": 1101,
+            "y": 16,
+            "w": 67,
+            "h": 32
+          }
+        },
+        {
+          "tag": "MAIN",
+          "data": "data-libtv-canvas-focus-root=true",
+          "text": "分镜图 · 第一集：咖啡馆对峙-图片组视频组 · 第",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1280,
+            "h": 720
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-testid=rf__wrapper data-libtv-react-flow-host=true data-canvas-tool=select data-tempo",
+          "text": "分镜图 · 第一集：咖啡馆对峙-图片组视频组 · 第",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 0,
+            "y": 0,
+            "w": 1280,
+            "h": 720
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-8IgMkf6Vbj data-testid=rf__edge-e-8IgMkf6Vbj",
+          "text": "",
+          "aria": "Edge from i-1FQ9tErTcC to b-bTLLuU4w5q",
+          "title": "",
+          "rect": {
+            "x": -185,
+            "y": 254,
+            "w": 158,
+            "h": 242
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-abKze5c8Ug data-testid=rf__edge-e-abKze5c8Ug",
+          "text": "",
+          "aria": "Edge from i-1FQ9tErTcC to i-YDfWhFlthe",
+          "title": "",
+          "rect": {
+            "x": -185,
+            "y": 195,
+            "w": 427,
+            "h": 301
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-AQmdIgKtl2 data-testid=rf__edge-e-AQmdIgKtl2",
+          "text": "",
+          "aria": "Edge from b-bTLLuU4w5q to g-245IDFh8sB",
+          "title": "",
+          "rect": {
+            "x": 167,
+            "y": 254,
+            "w": 356,
+            "h": 470
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-m2wWA2wIBA data-testid=rf__edge-e-m2wWA2wIBA",
+          "text": "",
+          "aria": "Edge from i-dnwoZQ7jsG to b-bTLLuU4w5q",
+          "title": "",
+          "rect": {
+            "x": -32,
+            "y": 254,
+            "w": 41,
+            "h": 799
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-nlMX3rEjwN data-testid=rf__edge-e-nlMX3rEjwN",
+          "text": "",
+          "aria": "Edge from i-vxeeCnxySa to b-bTLLuU4w5q",
+          "title": "",
+          "rect": {
+            "x": -32,
+            "y": 254,
+            "w": 41,
+            "h": 1009
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-OwhsBRzrTz data-testid=rf__edge-e-OwhsBRzrTz",
+          "text": "",
+          "aria": "Edge from i-1FQ9tErTcC to v-UGQZzZOpbv",
+          "title": "",
+          "rect": {
+            "x": -185,
+            "y": 379,
+            "w": 877,
+            "h": 117
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-QzX895ot0u data-testid=rf__edge-e-QzX895ot0u",
+          "text": "",
+          "aria": "Edge from i-lBzmo67AHv to b-bTLLuU4w5q",
+          "title": "",
+          "rect": {
+            "x": -38,
+            "y": 254,
+            "w": 12,
+            "h": 589
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-VQACH36eJC data-testid=rf__edge-e-VQACH36eJC",
+          "text": "",
+          "aria": "Edge from i-dnwoZQ7jsG to v-UGQZzZOpbv",
+          "title": "",
+          "rect": {
+            "x": 5,
+            "y": 379,
+            "w": 688,
+            "h": 674
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-XmiJkHfFAL data-testid=rf__edge-e-XmiJkHfFAL",
+          "text": "",
+          "aria": "Edge from i-YDfWhFlthe to v-UGQZzZOpbv",
+          "title": "",
+          "rect": {
+            "x": 579,
+            "y": 195,
+            "w": 114,
+            "h": 184
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-xNVTHNFZZl data-testid=rf__edge-e-xNVTHNFZZl",
+          "text": "",
+          "aria": "Edge from i-dnwoZQ7jsG to i-YDfWhFlthe",
+          "title": "",
+          "rect": {
+            "x": 5,
+            "y": 195,
+            "w": 238,
+            "h": 858
+          }
+        },
+        {
+          "tag": "g",
+          "data": "data-id=e-yEqrTOR2Ya data-testid=rf__edge-e-yEqrTOR2Ya",
+          "text": "",
+          "aria": "Edge from b-bTLLuU4w5q to g-EFbbHpwq5w",
+          "title": "",
+          "rect": {
+            "x": 167,
+            "y": 254,
+            "w": 505,
+            "h": 125
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-8IgMkf6Vbj",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": -110,
+            "y": 371,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-abKze5c8Ug",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": 25,
+            "y": 342,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-AQmdIgKtl2",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": 340,
+            "y": 485,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-m2wWA2wIBA",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": -15,
+            "y": 650,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-nlMX3rEjwN",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": -15,
+            "y": 755,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-OwhsBRzrTz",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": 250,
+            "y": 434,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-QzX895ot0u",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": -37,
+            "y": 545,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-VQACH36eJC",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": 345,
+            "y": 712,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-XmiJkHfFAL",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": 632,
+            "y": 283,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-xNVTHNFZZl",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": 119,
+            "y": 620,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "BUTTON",
+          "data": "data-edge-delete=e-yEqrTOR2Ya",
+          "text": "",
+          "aria": "删除连线",
+          "title": "",
+          "rect": {
+            "x": 415,
+            "y": 313,
+            "w": 8,
+            "h": 8
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-id=g-245IDFh8sB data-testid=rf__node-g-245IDFh8sB",
+          "text": "分镜图 · 第一集：咖啡馆对峙-图片组",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 527,
+            "y": 606,
+            "w": 226,
+            "h": 238
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-handleid=target data-nodeid=g-245IDFh8sB data-handlepos=left data-id=1-g-245IDFh8sB-t",
+          "text": "",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 522,
+            "y": 719,
+            "w": 11,
+            "h": 11
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-handleid=source data-nodeid=g-245IDFh8sB data-handlepos=right data-id=1-g-245IDFh8sB-",
+          "text": "",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 748,
+            "y": 719,
+            "w": 11,
+            "h": 11
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-id=g-EFbbHpwq5w data-testid=rf__node-g-EFbbHpwq5w",
+          "text": "视频组 · 第一集：咖啡馆对峙-视频组",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 676,
+            "y": 266,
+            "w": 369,
+            "h": 226
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-handleid=target data-nodeid=g-EFbbHpwq5w data-handlepos=left data-id=1-g-EFbbHpwq5w-t",
+          "text": "",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 672,
+            "y": 374,
+            "w": 11,
+            "h": 11
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-handleid=source data-nodeid=g-EFbbHpwq5w data-handlepos=right data-id=1-g-EFbbHpwq5w-",
+          "text": "",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": 1040,
+            "y": 374,
+            "w": 11,
+            "h": 11
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-id=t-9j2MoccxBj data-testid=rf__node-t-9j2MoccxBj",
+          "text": "剧本第一集：咖啡馆对峙 角色：陈默(男主,面容冷峻)",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": -527,
+            "y": 195,
+            "w": 184,
+            "h": 105
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-handleid=target data-nodeid=t-9j2MoccxBj data-handlepos=left data-id=1-t-9j2MoccxBj-t",
+          "text": "",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": -532,
+            "y": 242,
+            "w": 11,
+            "h": 11
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-handleid=source data-nodeid=t-9j2MoccxBj data-handlepos=right data-id=1-t-9j2MoccxBj-",
+          "text": "",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": -349,
+            "y": 242,
+            "w": 11,
+            "h": 11
+          }
+        },
+        {
+          "tag": "DIV",
+          "data": "data-id=i-1FQ9tErTcC data-testid=rf__node-i-1FQ9tErTcC",
+          "text": "image_2026-06-15T11-22-001",
+          "aria": "",
+          "title": "",
+          "rect": {
+            "x": -514,
+            "y": 404,
+            "w": 325,
+            "h": 184
+          }
+        }
+      ]
+    },
+    {
+      "步骤": "A2·点节点中心（纯 UI 选中）",
+      "读数": {
+        "画布id": "canvas-2",
+        "画布数": 2,
+        "★ 节点数": 10,
+        "★ 节点类型": [
+          "storyboard-group",
+          "storyboard-group",
+          "script",
+          "image",
+          "image",
+          "image",
+          "image",
+          "script-execution",
+          "image",
+          "video"
+        ],
+        "★ 节点位置": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group",
+            "x": 2112,
+            "y": 656
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group",
+            "x": 2396,
+            "y": 10
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script",
+            "x": 108,
+            "y": -125
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image",
+            "x": 132,
+            "y": 273
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image",
+            "x": 410,
+            "y": 932
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image",
+            "x": 410,
+            "y": 1332
+          },
+          {
+            "id": "i-vxeeCnxySa",
+            "type": "image",
+            "x": 410,
+            "y": 1732
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution",
+            "x": 1068,
+            "y": -187
+          }
+        ],
+        "★ 选中节点": [
+          "v-UGQZzZOpbv"
+        ],
+        "★ 边数": 11,
+        "★ 历史长度": 0
+      },
+      "★ 选中节点": [
+        "v-UGQZzZOpbv"
+      ]
+    },
+    {
+      "步骤": "A3·真实鼠标拖拽 +108px/+72px",
+      "★ 拖之前": [
+        {
+          "id": "g-245IDFh8sB",
+          "type": "storyboard-group",
+          "x": 2112,
+          "y": 656
+        },
+        {
+          "id": "g-EFbbHpwq5w",
+          "type": "storyboard-group",
+          "x": 2396,
+          "y": 10
+        },
+        {
+          "id": "t-9j2MoccxBj",
+          "type": "script",
+          "x": 108,
+          "y": -125
+        },
+        {
+          "id": "i-1FQ9tErTcC",
+          "type": "image",
+          "x": 132,
+          "y": 273
+        },
+        {
+          "id": "i-lBzmo67AHv",
+          "type": "image",
+          "x": 410,
+          "y": 932
+        },
+        {
+          "id": "i-dnwoZQ7jsG",
+          "type": "image",
+          "x": 410,
+          "y": 1332
+        },
+        {
+          "id": "i-vxeeCnxySa",
+          "type": "image",
+          "x": 410,
+          "y": 1732
+        },
+        {
+          "id": "b-bTLLuU4w5q",
+          "type": "script-execution",
+          "x": 1068,
+          "y": -187
+        }
+      ],
+      "★ 拖之后": [
+        {
+          "id": "g-245IDFh8sB",
+          "type": "storyboard-group",
+          "x": 2112,
+          "y": 656
+        },
+        {
+          "id": "g-EFbbHpwq5w",
+          "type": "storyboard-group",
+          "x": 2601,
+          "y": 147
+        },
+        {
+          "id": "t-9j2MoccxBj",
+          "type": "script",
+          "x": 108,
+          "y": -125
+        },
+        {
+          "id": "i-1FQ9tErTcC",
+          "type": "image",
+          "x": 132,
+          "y": 273
+        },
+        {
+          "id": "i-lBzmo67AHv",
+          "type": "image",
+          "x": 410,
+          "y": 932
+        },
+        {
+          "id": "i-dnwoZQ7jsG",
+          "type": "image",
+          "x": 410,
+          "y": 1332
+        },
+        {
+          "id": "i-vxeeCnxySa",
+          "type": "image",
+          "x": 410,
+          "y": 1732
+        },
+        {
+          "id": "b-bTLLuU4w5q",
+          "type": "script-execution",
+          "x": 1068,
+          "y": -187
+        }
+      ],
+      "★ 位置变了": true
+    },
+    {
+      "步骤": "A4·按 Delete 键",
+      "★ 删除前节点数": 10,
+      "★ 删除后节点数": 9,
+      "★ 少了": 1,
+      "读数": {
+        "画布id": "canvas-2",
+        "画布数": 2,
+        "★ 节点数": 9,
+        "★ 节点类型": [
+          "storyboard-group",
+          "storyboard-group",
+          "script",
+          "image",
+          "image",
+          "image",
+          "image",
+          "script-execution",
+          "image"
+        ],
+        "★ 节点位置": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group",
+            "x": 2112,
+            "y": 656
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group",
+            "x": 2601,
+            "y": 147
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script",
+            "x": 108,
+            "y": -125
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image",
+            "x": 132,
+            "y": 273
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image",
+            "x": 410,
+            "y": 932
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image",
+            "x": 410,
+            "y": 1332
+          },
+          {
+            "id": "i-vxeeCnxySa",
+            "type": "image",
+            "x": 410,
+            "y": 1732
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution",
+            "x": 1068,
+            "y": -187
+          }
+        ],
+        "★ 选中节点": [],
+        "★ 边数": 8,
+        "★ 历史长度": 0
+      }
+    },
+    {
+      "步骤": "A5·按 Cmd+Z 撤销",
+      "★ 撤销后节点数": 10,
+      "★ 回到删除前": true,
+      "读数": {
+        "画布id": "canvas-2",
+        "画布数": 2,
+        "★ 节点数": 10,
+        "★ 节点类型": [
+          "storyboard-group",
+          "storyboard-group",
+          "script",
+          "image",
+          "image",
+          "image",
+          "image",
+          "script-execution",
+          "image",
+          "video"
+        ],
+        "★ 节点位置": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group",
+            "x": 2112,
+            "y": 656
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group",
+            "x": 2601,
+            "y": 147
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script",
+            "x": 108,
+            "y": -125
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image",
+            "x": 132,
+            "y": 273
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image",
+            "x": 410,
+            "y": 932
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image",
+            "x": 410,
+            "y": 1332
+          },
+          {
+            "id": "i-vxeeCnxySa",
+            "type": "image",
+            "x": 410,
+            "y": 1732
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution",
+            "x": 1068,
+            "y": -187
+          }
+        ],
+        "★ 选中节点": [],
+        "★ 边数": 11,
+        "★ 历史长度": 0
+      }
+    },
+    {
+      "步骤": "A6·按 Cmd+Shift+Z 重做",
+      "★ 重做后节点数": 9,
+      "★ 等于删除后": true,
+      "读数": {
+        "画布id": "canvas-2",
+        "画布数": 2,
+        "★ 节点数": 9,
+        "★ 节点类型": [
+          "storyboard-group",
+          "storyboard-group",
+          "script",
+          "image",
+          "image",
+          "image",
+          "image",
+          "script-execution",
+          "image"
+        ],
+        "★ 节点位置": [
+          {
+            "id": "g-245IDFh8sB",
+            "type": "storyboard-group",
+            "x": 2112,
+            "y": 656
+          },
+          {
+            "id": "g-EFbbHpwq5w",
+            "type": "storyboard-group",
+            "x": 2601,
+            "y": 147
+          },
+          {
+            "id": "t-9j2MoccxBj",
+            "type": "script",
+            "x": 108,
+            "y": -125
+          },
+          {
+            "id": "i-1FQ9tErTcC",
+            "type": "image",
+            "x": 132,
+            "y": 273
+          },
+          {
+            "id": "i-lBzmo67AHv",
+            "type": "image",
+            "x": 410,
+            "y": 932
+          },
+          {
+            "id": "i-dnwoZQ7jsG",
+            "type": "image",
+            "x": 410,
+            "y": 1332
+          },
+          {
+            "id": "i-vxeeCnxySa",
+            "type": "image",
+            "x": 410,
+            "y": 1732
+          },
+          {
+            "id": "b-bTLLuU4w5q",
+            "type": "script-execution",
+            "x": 1068,
+            "y": -187
+          }
+        ],
+        "★ 选中节点": [],
+        "★ 边数": 8,
+        "★ 历史长度": 0
+      }
+    },
+    {
+      "步骤": "A7·纯 UI 从 source handle 拖到 target handle",
+      "★ 真的拖了": true,
+      "★ 连线前边数": 8,
+      "★ 连线后边数": 8,
+      "★ 多了": 0
+    }
+  ],
+  "导演台": [
+    {
+      "步骤": "B1·点「打开导演台」",
+      "★ 导演台开了": true,
+      "读数": {
+        "选中轨道": "director-track-character-lead-transform",
+        "轨道数": 2,
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ],
+        "相机轨道id": "director-track-camera-main",
+        "★ 关键帧数": 3,
+        "★ 末关键帧毫秒": 8000,
+        "总时长毫秒": 8000,
+        "★ 选中对象": "director-character-lead",
+        "★ 选中对象类型": "?",
+        "★ 相机锁定": false,
+        "★ 跟随目标": null,
+        "presetError": null
+      },
+      "★ 时间轴对象行候选": {
+        "选择器": "[data-director-timeline-object-row]",
+        "全部个数": 2,
+        "可见个数": 2,
+        "可见文字": [
+          "角色01 · 陈默",
+          "机位01 · 对峙中景绘制轨迹"
+        ],
+        "可见标签": [
+          "",
+          ""
+        ]
+      }
+    },
+    {
+      "步骤": "B2·★ 点时间轴上的相机对象行（纯 UI 选相机）",
+      "★ 点了哪一行": {
+        "对象id": "director-camera-main",
+        "选中": "false",
+        "文本": "机位01 · 对峙中景绘制轨迹",
+        "rect": {
+          "x": 0,
+          "y": 675,
+          "w": 320,
+          "h": 32
+        }
+      },
+      "读数": {
+        "选中轨道": "director-track-camera-main",
+        "轨道数": 2,
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ],
+        "相机轨道id": "director-track-camera-main",
+        "★ 关键帧数": 3,
+        "★ 末关键帧毫秒": 8000,
+        "总时长毫秒": 8000,
+        "★ 选中对象": "director-camera-main",
+        "★ 选中对象类型": "camera",
+        "★ 相机锁定": false,
+        "★ 跟随目标": null,
+        "presetError": null
+      },
+      "★ 选中轨道变了": true,
+      "★ 选中对象变了": true
+    },
+    {
+      "步骤": "B3·在检查器里选跟随目标（纯 UI）",
+      "读数": {
+        "选中轨道": "director-track-camera-main",
+        "轨道数": 2,
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ],
+        "相机轨道id": "director-track-camera-main",
+        "★ 关键帧数": 3,
+        "★ 末关键帧毫秒": 8000,
+        "总时长毫秒": 8000,
+        "★ 选中对象": "director-camera-main",
+        "★ 选中对象类型": "camera",
+        "★ 相机锁定": false,
+        "★ 跟随目标": "director-character-lead",
+        "presetError": null
+      },
+      "★ 跟随目标变了": true
+    },
+    {
+      "步骤": "B4·点检查器里的锁定按钮（纯 UI）",
+      "读数": {
+        "选中轨道": "director-track-camera-main",
+        "轨道数": 2,
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ],
+        "相机轨道id": "director-track-camera-main",
+        "★ 关键帧数": 3,
+        "★ 末关键帧毫秒": 8000,
+        "总时长毫秒": 8000,
+        "★ 选中对象": "director-camera-main",
+        "★ 选中对象类型": "camera",
+        "★ 相机锁定": true,
+        "★ 跟随目标": "director-character-lead",
+        "presetError": null
+      },
+      "★ 相机锁定变了": true
+    },
+    {
+      "步骤": "B5·点预设运镜开关",
+      "★ 面板开了": false,
+      "读数": {
+        "选中轨道": "director-track-camera-main",
+        "轨道数": 2,
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ],
+        "相机轨道id": "director-track-camera-main",
+        "★ 关键帧数": 3,
+        "★ 末关键帧毫秒": 8000,
+        "总时长毫秒": 8000,
+        "★ 选中对象": "director-camera-main",
+        "★ 选中对象类型": "camera",
+        "★ 相机锁定": false,
+        "★ 跟随目标": "director-character-lead",
+        "presetError": null
+      },
+      "★ 面板内提示": [
+        "跟随目标时不可使用预设运镜"
+      ]
+    },
+    {
+      "步骤": "B6a·append 被拒（★ 面板内应有提示）",
+      "★ 面板还开着": false,
+      "读数": {
+        "选中轨道": "director-track-camera-main",
+        "轨道数": 2,
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ],
+        "相机轨道id": "director-track-camera-main",
+        "★ 关键帧数": 3,
+        "★ 末关键帧毫秒": 8000,
+        "总时长毫秒": 8000,
+        "★ 选中对象": "director-camera-main",
+        "★ 选中对象类型": "camera",
+        "★ 相机锁定": false,
+        "★ 跟随目标": "director-character-lead",
+        "presetError": null
+      },
+      "★ 屏幕上的提示": [
+        {
+          "文本": "跟随目标时不可使用预设运镜",
+          "在面板内": false
+        }
+      ]
+    },
+    {
+      "步骤": "B6b·★★ 纯 UI 点跟随 select 之后",
+      "★ 面板还开着": false,
+      "★ 屏幕上的提示": [
+        {
+          "文本": "跟随目标时不可使用预设运镜",
+          "在面板内": false
+        }
+      ],
+      "读数": {
+        "选中轨道": "director-track-camera-main",
+        "轨道数": 2,
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ],
+        "相机轨道id": "director-track-camera-main",
+        "★ 关键帧数": 3,
+        "★ 末关键帧毫秒": 8000,
+        "总时长毫秒": 8000,
+        "★ 选中对象": "director-camera-main",
+        "★ 选中对象类型": "camera",
+        "★ 相机锁定": false,
+        "★ 跟随目标": "director-character-lead",
+        "presetError": null
+      },
+      "★ 两句同屏了吗": false
+    },
+    {
+      "步骤": "B7·★ 点跟随横幅上的取消（纯 UI 清跟随）",
+      "读数": {
+        "选中轨道": "director-track-camera-main",
+        "轨道数": 2,
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ],
+        "相机轨道id": "director-track-camera-main",
+        "★ 关键帧数": 3,
+        "★ 末关键帧毫秒": 8000,
+        "总时长毫秒": 8000,
+        "★ 选中对象": "director-camera-main",
+        "★ 选中对象类型": "camera",
+        "★ 相机锁定": false,
+        "★ 跟随目标": null,
+        "presetError": null
+      },
+      "★ 跟随目标清了吗": true
+    },
+    {
+      "步骤": "B8·★★ 无跟随时开面板 + append ⟹ 面板内应有「没有可追加的时长」",
+      "★ 面板开着": true,
+      "读数": {
+        "选中轨道": "director-track-camera-main",
+        "轨道数": 2,
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ],
+        "相机轨道id": "director-track-camera-main",
+        "★ 关键帧数": 3,
+        "★ 末关键帧毫秒": 8000,
+        "总时长毫秒": 8000,
+        "★ 选中对象": "director-camera-main",
+        "★ 选中对象类型": "camera",
+        "★ 相机锁定": false,
+        "★ 跟随目标": null,
+        "presetError": "当前时间轴没有可追加的时长"
+      },
+      "★ 屏幕上的提示": [
+        {
+          "文本": "当前时间轴没有可追加的时长",
+          "在面板内": true
+        }
+      ]
+    },
+    {
+      "步骤": "B9·★★★ 纯 UI 点跟随 select 之后（★ 面板还开着吗）",
+      "★ 面板还开着": true,
+      "★ 屏幕上的提示": [
+        {
+          "文本": "跟随目标时不可使用预设运镜",
+          "在面板内": false
+        },
+        {
+          "文本": "当前时间轴没有可追加的时长",
+          "在面板内": true
+        }
+      ],
+      "读数": {
+        "选中轨道": "director-track-camera-main",
+        "轨道数": 2,
+        "★ 轨道清单": [
+          {
+            "id": "director-track-character-lead-transform",
+            "kind": "transform",
+            "对象": "director-character-lead",
+            "n": 3
+          },
+          {
+            "id": "director-track-camera-main",
+            "kind": "camera",
+            "对象": "director-camera-main",
+            "n": 3
+          }
+        ],
+        "相机轨道id": "director-track-camera-main",
+        "★ 关键帧数": 3,
+        "★ 末关键帧毫秒": 8000,
+        "总时长毫秒": 8000,
+        "★ 选中对象": "director-camera-main",
+        "★ 选中对象类型": "camera",
+        "★ 相机锁定": false,
+        "★ 跟随目标": "director-character-lead",
+        "presetError": "当前时间轴没有可追加的时长"
+      },
+      "★ 两句同屏了吗": true,
+      "★ 面板内那句还在吗": true
+    },
+    {
+      "步骤": "B10·★★★ **真实鼠标**点跟随 select（★ 面板被点关了吗）",
+      "★ 点击前面板开着": true,
+      "★ 点击后面板开着": false,
+      "★ 面板被真实点击关掉了": true,
+      "★ 屏幕上的提示": [
+        {
+          "文本": "跟随目标时不可使用预设运镜",
+          "在面板内": false
+        }
+      ],
+      "★ 两句同屏了吗": false,
+      "★ 面板内那句还在吗": false
+    }
+  ],
+  "操作": {
+    "A2 节点矩形": {
+      "x": 861,
+      "y": 379,
+      "id": "v-UGQZzZOpbv",
+      "w": 327,
+      "h": 184
+    },
+    "A7 source handle": [
+      {
+        "节点": "g-245IDFh8sB",
+        "x": 753,
+        "y": 725
+      },
+      {
+        "节点": "g-EFbbHpwq5w",
+        "x": 1153,
+        "y": 451
+      },
+      {
+        "节点": "t-9j2MoccxBj",
+        "x": -343,
+        "y": 248
+      },
+      {
+        "节点": "i-1FQ9tErTcC",
+        "x": -190,
+        "y": 496
+      },
+      {
+        "节点": "i-lBzmo67AHv",
+        "x": -44,
+        "y": 843
+      },
+      {
+        "节点": "i-dnwoZQ7jsG",
+        "x": -0.0,
+        "y": 1053
+      },
+      {
+        "节点": "i-vxeeCnxySa",
+        "x": -0.0,
+        "y": 1264
+      },
+      {
+        "节点": "b-bTLLuU4w5q",
+        "x": 162,
+        "y": 254
+      },
+      {
+        "节点": "i-YDfWhFlthe",
+        "x": 574,
+        "y": 195
+      }
+    ],
+    "A7 target handle": [
+      {
+        "节点": "g-245IDFh8sB",
+        "x": 528,
+        "y": 725
+      },
+      {
+        "节点": "g-EFbbHpwq5w",
+        "x": 785,
+        "y": 451
+      },
+      {
+        "节点": "t-9j2MoccxBj",
+        "x": -526,
+        "y": 248
+      },
+      {
+        "节点": "i-1FQ9tErTcC",
+        "x": -514,
+        "y": 496
+      },
+      {
+        "节点": "i-lBzmo67AHv",
+        "x": -368,
+        "y": 843
+      },
+      {
+        "节点": "i-dnwoZQ7jsG",
+        "x": -368,
+        "y": 1053
+      },
+      {
+        "节点": "i-vxeeCnxySa",
+        "x": -368,
+        "y": 1264
+      },
+      {
+        "节点": "b-bTLLuU4w5q",
+        "x": -22,
+        "y": 254
+      },
+      {
+        "节点": "i-YDfWhFlthe",
+        "x": 248,
+        "y": 195
+      }
+    ],
+    "B1 打开导演台": {
+      "结果": "clicked",
+      "选择器": "[data-open-director]"
+    },
+    "B2 时间轴对象行": [
+      {
+        "对象id": "director-character-lead",
+        "选中": "true",
+        "文本": "角色01 · 陈默",
+        "rect": {
+          "x": 0,
+          "y": 611,
+          "w": 320,
+          "h": 32
+        }
+      },
+      {
+        "对象id": "director-camera-main",
+        "选中": "false",
+        "文本": "机位01 · 对峙中景绘制轨迹",
+        "rect": {
+          "x": 0,
+          "y": 675,
+          "w": 320,
+          "h": 32
+        }
+      }
+    ],
+    "B2 相机轨道对应的对象 id": "director-camera-main",
+    "B2 匹配到的那一行": {
+      "对象id": "director-camera-main",
+      "选中": "false",
+      "文本": "机位01 · 对峙中景绘制轨迹",
+      "rect": {
+        "x": 0,
+        "y": 675,
+        "w": 320,
+        "h": 32
+      }
+    },
+    "B2 对象名元素": {
+      "存在": true,
+      "aria": "机位01 · 对峙中景"
+    },
+    "B2 对象名矩形": {
+      "x": 28,
+      "y": 682,
+      "width": 60,
+      "height": 18
+    },
+    "B3 跟随目标 select": {
+      "存在": true,
+      "disabled": false,
+      "选项": [
+        "",
+        "director-character-lead",
+        "director-prop-table",
+        "director-prop-mug",
+        "director-prop-wall"
+      ]
+    },
+    "B4 锁定按钮": {
+      "存在": true,
+      "aria": "锁定对象",
+      "disabled": false
+    },
+    "B4 点击": {
+      "结果": "clicked",
+      "选择器": "[data-director-inspector-lock]"
+    },
+    "B5b 解锁": {
+      "结果": "clicked",
+      "选择器": "[data-director-inspector-lock]"
+    },
+    "B5 预设开关": {
+      "存在": true,
+      "disabled": true
+    },
+    "B6a 切append": {
+      "结果": "not-found",
+      "选择器": "[data-director-camera-preset-mode-option=\"append\"]"
+    },
+    "B6a 按orbit": {
+      "结果": "not-found",
+      "选择器": "[data-director-camera-preset-option=\"orbit\"]"
+    },
+    "B6 跟随 select 现在": {
+      "存在": true,
+      "disabled": false
+    },
+    "B7 跟随横幅取消按钮": {
+      "存在": true,
+      "aria": "退出跟随"
+    },
+    "B7 取消按钮矩形": {
+      "x": 650.125,
+      "y": 9,
+      "width": 63.75,
+      "height": 16
+    },
+    "B7 点击取消": {
+      "结果": "clicked",
+      "选择器": "[data-director-follow-cancel]"
+    },
+    "B8 预设开关": {
+      "存在": true,
+      "disabled": false
+    },
+    "B8 点击": {
+      "结果": "clicked",
+      "选择器": "[data-director-camera-preset-trigger]"
+    },
+    "B8a 切append": {
+      "结果": "clicked",
+      "选择器": "[data-director-camera-preset-mode-option=\"append\"]"
+    },
+    "B8a 按orbit": {
+      "结果": "clicked",
+      "选择器": "[data-director-camera-preset-option=\"orbit\"]"
+    },
+    "B9 跟随 select": {
+      "存在": true,
+      "disabled": false
+    },
+    "B10 跟随 select": {
+      "存在": true,
+      "disabled": false
+    },
+    "B10 select 矩形": {
+      "x": 1016,
+      "y": 500,
+      "width": 248,
+      "height": 28
+    }
+  }
+}
