@@ -24,6 +24,22 @@ visible text.
 
 ## 2. The 「正在跟随」 banner
 
+★★ **Batch 825 更正（2026-10-21，源站代码 + 源站运行时双证据）——本节下面这段
+描述有两处需要更正，详见 `docs/research/liblib-canvas-batch825-2026-10-01/README.md`：
+
+① ★★ 源站这条横幅是 **`collab-follow-banner`**（**协作**跟随，跟别人的视角），
+   **不是**「机位跟随目标」时的横幅：它的唯一调用点传的是
+   `prefix = 正在定位/正在跟随`、`nickname = 对方昵称`、`colorHex = 对方颜色`
+   ⟹ ⟹ ★★ **源站的「机位跟随目标」根本没有这条横幅**（源站的机位跟随在检查器里：
+   跟随目标／不跟随／跟随视角／跟随偏移 ＋ 时间轴前缀「跟随：」）。
+   ⟹ 下面那句「the source pins an orange banner **while the camera follows a
+   target**」的**归因是错的**；★ 那个橙色 `#E46525` 在源站的 JS 里**一个字节都没有**
+   ⟹ ⟹ 它是运行时传进去的 `colorHex`。
+② ★★ 下面量到的 `pointer-events:none` 是**未激活**那块横幅的状态
+   （opacity 0 / aria-hidden / inert）⟹ ★★ 源站**激活时**的面板是
+   `pointer-events-auto`（bundle 原文：`${active ? "pointer-events-auto" :
+   "pointer-events-none"}`），那枚「取消」**点得动**、它的 peer-hover 提示**真会显形**。
+
 While the camera follows a target the source pins an orange banner to the top
 centre of the viewport, above everything (z-305):
 
@@ -90,7 +106,16 @@ SOURCE_ORANGE = "228, 101, 37"
 # Measured on the source site (probe60): the 取消 pill inherits
 # pointer-events:none, and elementFromPoint at its centre returns the
 # 机位视角 button underneath. See the module docstring.
+#
+# ★★ Batch 825 更正（2026-10-21）：**这个读数量的是「未激活」那块横幅**。
+#   源站的**代码**（bundle 片段 `raw/source-825-followbanner.js`）写的是
+#   面板 `${active ? "pointer-events-auto" : "pointer-events-none"}`，
+#   按钮自己**没写** pointer-events ⟹ ★★ **激活时那枚「取消」是点得动的**，
+#   而未激活时（opacity 0 / aria-hidden / inert）命中穿透是**设计如此**。
+#   ⟹ ★★ 下面的常量**只代表未激活态**；★ 下面那条断言现在按**激活态**判。
 SOURCE_CANCEL_POINTER_EVENTS = "none"
+# ★ 源站**激活态**的读数（2026-10-21，源站 bundle 原文）：面板 auto、按钮不写。
+SOURCE_CANCEL_POINTER_EVENTS_ACTIVE = "auto"
 
 
 def alpha_of(colour: str) -> float:
@@ -344,11 +369,21 @@ def run_desktop(page: Page) -> dict[str, Any]:
             and banner["zIndex"] == "305",
             detail=f"{banner['position']} z={banner['zIndex']}",
         )
+        # ★★ Batch 825 更正（2026-10-21，源站代码 + 源站运行时双证据）：
+        #   这一条原本断言「横幅**和面板**都写 pointer-events-none」。
+        #   ★★ 源站的**代码**写的是
+        #   `${active ? "pointer-events-auto" : "pointer-events-none"}`
+        #   （bundle 片段：`raw/source-825-followbanner.js`）⟹ ★★ **激活时面板是 auto**。
+        #   ★★ 605 当初量到的是**未激活**那块横幅（opacity 0 / aria-hidden / inert），
+        #   把「未激活态」当成了常态 ⟹ ★★ 同一个误解既生成了那条
+        #   「源站这枚取消根本点不动」的结论，也生成了这条断言。
+        #   ⟹ ★★ 现在：**外层容器**固定 none（与源站同），
+        #   **面板**在显示时是 auto（与源站的激活态同）。
         check(
             "banner:pointer-events-none",
             "pointer-events-none" in banner["className"]
             and panel is not None
-            and "pointer-events-none" in panel["className"],
+            and "pointer-events-auto" in panel["className"],
         )
         check(
             "banner:panel-orange-#E46525",
@@ -425,15 +460,19 @@ def run_desktop(page: Page) -> dict[str, Any]:
             "banner:cancel-pointer-events-auto",
             on["cancel"] is not None
             and on["cancel"]["pointerEvents"] == "auto",
-            # SOURCE_POINTER_EVENTS_FACT was measured on the source site with
-            # /tmp/src593/probe60.py, not read back from the clone.
-            detail="deliberate deviation: the source's own 取消 pill inherits "
-            f"pointer-events:{SOURCE_CANCEL_POINTER_EVENTS} from the banner "
-            "panel (panel and banner both write pointer-events-none, the button "
-            "does not re-enable it), and elementFromPoint at the pill centre "
-            "lands on the 机位视角 button underneath — so the source's cancel is "
-            "unclickable and its peer-hover hint can never appear. Geometry and "
-            "styling are copied verbatim; only hit-testing is opened.",
+            # ★★ Batch 825 更正：这条**曾经**的 detail 写的是「源站那枚胶囊
+            #   继承 pointer-events:none，所以根本点不动」——**那是错的**，
+            #   错在把**未激活**的横幅当成了常态（源站代码：面板
+            #   `${active ? auto : none}`，按钮自己没写 ⟹ 激活时点得动）。
+            #   ⟹ ★★ 现在 clone 与源站**激活态同构**：面板 auto、按钮不写。
+            detail="same as the source's ACTIVE state: the panel is "
+            f"pointer-events:{SOURCE_CANCEL_POINTER_EVENTS_ACTIVE} and the "
+            "button itself writes no pointer-events (source bundle, "
+            "raw/source-825-followbanner.js). The source's *inactive* banner "
+            f"(opacity 0 / aria-hidden / inert) measures "
+            f"pointer-events:{SOURCE_CANCEL_POINTER_EVENTS} — that is the state "
+            "605 happened to sample, and reading it as the steady state is what "
+            "produced the wrong 'unclickable' claim.",
         )
         check(
             "banner:hit-testable-cancel",

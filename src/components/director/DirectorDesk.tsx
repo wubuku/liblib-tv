@@ -1394,7 +1394,11 @@ export default function DirectorDesk({
             data-director-follow-banner
             className="pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 motion-safe:transition-opacity motion-safe:duration-200"
           >
-            <div className="pointer-events-none flex items-center gap-2 rounded-b-xl border border-[#e46525] bg-[#e46525] px-3 py-1.5 text-white shadow-md">
+            {/* ★★ Batch 825：源站的**结构**是「**面板**在激活时 pointer-events-auto，
+                **按钮自己没写** pointer-events」⟹ ★ clone 改成同样的结构
+                （面板 auto ＋ 按钮不写）⟹ ⟹ ★★ 两者**逐字同构**，
+                ⟹ 此前那个「有意偏离」的说法**整个不成立**，不需要再解释。 */}
+            <div className="pointer-events-auto flex items-center gap-2 rounded-b-xl border border-[#e46525] bg-[#e46525] px-3 py-1.5 text-white shadow-md">
               <span className="inline-block size-2 shrink-0 rounded-full bg-white" />
               <span className="text-sm">正在跟随</span>
               <span className="relative ml-1 inline-flex">
@@ -1402,27 +1406,52 @@ export default function DirectorDesk({
                   type="button"
                   data-director-follow-cancel
                   aria-label="退出跟随"
+                  aria-keyshortcuts="Escape"
                   onClick={() => {
                     if (activeCameraId) {
                       updateCamera(activeCameraId, { followTargetId: null });
                     }
                   }}
-                  // 有意偏离源站一处：源站这枚按钮从浮层继承到
-                  // `pointer-events: none`（浮层与面板都写了
-                  // pointer-events-none，按钮自身没写 auto），实测
-                  // elementFromPoint 落在按钮中心命中的是它**底下**的
-                  // 「机位视角」，也就是说源站这枚「取消」根本点不动，
-                  // 那句 peer-hover 的「按 ESC 退出」也因此永远显不出来。
-                  // 几何、配色、文案全部照抄，只把命中打开——一个死按钮
-                  // 不算可复刻的体验。ESC 键退出在源站是真实语义，已接上。
-                  className="pointer-events-auto peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/90"
+                  // ★★ Batch 825 更正（2026-10-21，源站代码 + 源站运行时双证据）：
+                  // ★★ 此前这里写的是「源站这枚按钮继承 pointer-events:none、按不到它」——
+                  // ★★ **那是错的**，错在两处：
+                  // ① 源站那条横幅是 **collab-follow-banner**（协作跟随），
+                  //    它的**内层面板**在 `active` 时是 `pointer-events-auto`
+                  //    （源站 bundle 原文：`${active ? "pointer-events-auto"
+                  //    : "pointer-events-none"}`）⟹ ★★ **源站在显示时，那枚
+                  //    「取消」是点得动的**；按钮自己**没写** pointer-events，
+                  //    是从面板继承的 auto。
+                  // ② batch 605 那次量的「命中的是它底下的『机位视角』」
+                  //    量的是**未激活**的那块横幅（opacity 0 / aria-hidden /
+                  //    inert / pe:none）⟹ 命中穿透是**设计如此**，不是缺陷。
+                  // ⟹ ★★ 所以 clone 这枚按钮**不写** pointer-events
+                  //    （与源站同构：命中由**面板**的 auto 提供），
+                  //    ⟹ **不再是「有意偏离源站」，而是与源站的激活态等价**。
+                  //
+                  // ★★ **但真正的差异在别处**（这一条更要紧）：
+                  // ★★ 源站的这条横幅**只属于协作跟随**（跟别人的视角）：
+                  //    它的唯一调用点传的是 `prefix = 正在定位/正在跟随`、
+                  //    `nickname = 对方昵称`、`colorHex = 对方颜色`。
+                  // ★★ **源站的「机位跟随目标」根本没有这条横幅** ——
+                  //    它的机位跟随状态在**检查器**里（跟随目标／不跟随／
+                  //    跟随视角／跟随偏移）＋ 时间轴上的「跟随：」前缀。
+                  // ⟹ ★★ clone 这条横幅是 **clone-only 的额外物**，
+                  //    皮肤照抄了源站的协作横幅 ⟹ **它不是源站机位跟随的复刻**。
+                  //    ★ 本批把这件事**记下来**（batch 825 README），
+                  //    ★ 「要不要删掉这条 clone-only 横幅」是**产品决策**，
+                  //    ★ 不在代码里替用户发明。
+                  className="peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/90"
                 >
                   {/* Batch 612 复测：源站这枚胶囊是**单文本节点**
                       `取消ESC`（own='取消ESC'，无子元素，整枚 12px/12px/500）；
                       此前 clone 拆成「取消 + 10px 的 ESC」，宽度与字重都对不上。 */}
                   取消ESC
                 </button>
-                <span className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-xs font-normal text-white opacity-0 shadow-md transition-opacity peer-hover:opacity-100 peer-focus-visible:opacity-100">
+                <span
+                  role="tooltip"
+                  data-director-follow-hint
+                  className="pointer-events-none absolute left-1/2 top-full z-10 mt-2 -translate-x-1/2 whitespace-nowrap rounded-md bg-black/90 px-2 py-1 text-xs font-normal text-white opacity-0 shadow-md transition-opacity peer-hover:opacity-100 peer-focus-visible:opacity-100"
+                >
                   按 ESC 退出
                 </span>
               </span>

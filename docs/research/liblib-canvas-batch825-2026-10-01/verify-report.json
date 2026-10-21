@@ -1,0 +1,268 @@
+{
+  "batch": 825,
+  "totals": {
+    "passed": 9,
+    "total": 9
+  },
+  "阴性对照": {
+    "passed": 4,
+    "total": 4
+  },
+  "checks": [
+    {
+      "id": "S1:★★ **前提**：4 个时刻**按顺序一个不缺**、探针源码里**零 store 写调用**",
+      "why": "★★ 807 起立的规矩：**前提不满足的臂显式作废**。★ 本批的探针只读 store（`__director_store.getState()`）⟹ 靠**扫源码**自证：允许 getState、**禁止任何 action 形式调用**",
+      "ok": true,
+      "evidence": {
+        "时刻": [
+          "C0·★ 起点：导演台里相机的跟随目标为空、横幅**不在**",
+          "C1·★★ 设上跟随目标 ⟹ 横幅**应当出现**",
+          "C2·★★ **真实鼠标**悬停 ⟹ 「按 ESC 退出」应当显形",
+          "C3·★★ **真实鼠标点**取消 ⟹ 横幅应当消失、跟随退出"
+        ],
+        "★ 与写死的顺序一致": true,
+        "★ 扫到的 action 形式调用": [],
+        "★ getState 之后的链式调用": [],
+        "★ 零写调用": true
+      }
+    },
+    {
+      "id": "S2:★★ 起点：跟随目标**为空** ⟹ 顶部横幅**不在**",
+      "why": "★★ 前提的另一半：横幅是**跟随状态**的产物 ⟹ 起点必须是「没有跟随」⟹ 否则后面「点取消 ⟹ 横幅消失」就没有意义（它本来就该在）",
+      "ok": true,
+      "evidence": {
+        "★ 横幅": {
+          "存在": false
+        },
+        "★ store 读数": {
+          "★ 相机对象": "director-camera-main",
+          "★ 跟随目标": null,
+          "★ 对象数": 5
+        },
+        "★ 下拉当前值": ""
+      }
+    },
+    {
+      "id": "S3:★★★ **源站对照**：横幅 173.75x34、按钮 63.75x16 —— 与源站那块**逐字同形**",
+      "why": "★★★ 判据的期望值**从源站运行时读数算出来**（源站那块协作横幅此刻就在DOM 里，rect %sx%s @(x=%s)）⟹ 「clone 与源站同形」可复算。★ 横向坐标**不该直接比**（源站那个视口是 1920、clone 是 1440）⟹ 比**宽高**与**水平居中**",
+      "ok": true,
+      "evidence": {
+        "★ 源站横幅 rect": {
+          "x": 713,
+          "y": 0,
+          "w": 174,
+          "h": 34
+        },
+        "★ 源站按钮 rect": {
+          "x": 810,
+          "y": 9,
+          "w": 64,
+          "h": 16
+        },
+        "★ clone 横幅 rect": {
+          "x": 553.13,
+          "y": 0,
+          "w": 173.75,
+          "h": 34,
+          "cx": 640,
+          "cy": 17
+        },
+        "★ clone 按钮 rect": {
+          "x": 650.13,
+          "y": 9,
+          "w": 63.75,
+          "h": 16,
+          "cx": 682,
+          "cy": 17
+        },
+        "★ clone 提示 rect": {
+          "x": 640.93,
+          "y": 33,
+          "w": 82.14,
+          "h": 24,
+          "cx": 682,
+          "cy": 45
+        },
+        "★ clone 视口": [
+          1280,
+          720
+        ]
+      }
+    },
+    {
+      "id": "S4:★★ 那枚「取消ESC」**命中就是它**（点得动），且**类里没有 pointer-events**（与源站同构：命中由**面板**的 auto 提供）",
+      "why": "★★ 这一条**直接反驳** batch 605 记的那句「源站这枚取消根本点不动」：★ clone 的 computed pointer-events = **auto** ⟹ 命中测试落在按钮自己身上（`命中.就是它` = true）⟹ ★★ **点得动**。★★ 而且现在 clone 的**按钮自己不写** pointer-events、**面板**写 `pointer-events-auto` ⟹ ⟹ ★★ 与源站**逐字同构**（源站：面板 `${active ? pointer-events-auto : pointer-events-none}`、按钮无 pointer-events 类）",
+      "ok": true,
+      "evidence": {
+        "★ 命中": {
+          "标签": "BUTTON",
+          "testid": "",
+          "文字": "取消ESC",
+          "就是它": true
+        },
+        "★ 按钮样式": {
+          "pe": "auto",
+          "aria": "退出跟随",
+          "ariaKeyShortcuts": "Escape",
+          "cls": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/9",
+          "own": "取消ESC",
+          "子元素数": 0
+        },
+        "★ 横幅的 pe": "none",
+        "★ 源站按钮类（同一段代码）": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/90"
+      }
+    },
+    {
+      "id": "S5:★★ **真实鼠标**悬停 ⟹ 「按 ESC 退出」显形（opacity 0 → 1）",
+      "why": "★★ 这是源站的 **peer-hover** 契约（源站片段：提示 span 是 `opacity-0 … peer-hover:opacity-100 peer-focus-visible:opacity-100`）⟹ ★ 源站那枚按钮**点得动**，所以它的提示**真的显形**；★ 605 记的「提示因此永远显不出来」**只对未激活态成立**。★ 判据只认**前后两次computed opacity**",
+      "ok": true,
+      "evidence": {
+        "★ 悬停": {
+          "结果": "hovered",
+          "矩形": {
+            "x": 650.125,
+            "y": 9,
+            "width": 63.75,
+            "height": 16
+          },
+          "★ 悬停前提示": {
+            "opacity": "0",
+            "rect": {
+              "x": 641,
+              "y": 33,
+              "w": 82,
+              "h": 24
+            }
+          },
+          "★ 悬停后提示": {
+            "opacity": "1"
+          }
+        },
+        "★ 提示样式": {
+          "opacity": "1",
+          "role": "tooltip",
+          "pe": "none"
+        }
+      }
+    },
+    {
+      "id": "S6:★★ **真实鼠标点**「取消ESC」 ⟹ 横幅**消失**、跟随**退出**",
+      "why": "★★ 这一步**全程真实鼠标**（`mouse.move` + `mouse.down` + `mouse.up`）⟹ ★ 是真 pointerdown ⟹ ★ 823 的「纯 UI」判据在这一步**成立**。★★ 判据看**两处**：横幅从 DOM 里没了 ＋ **store 读数**里跟随目标回 null",
+      "ok": true,
+      "evidence": {
+        "★ 点击": {
+          "结果": "clicked",
+          "选择器": "[data-director-follow-cancel]",
+          "矩形": {
+            "x": 650.125,
+            "y": 9,
+            "width": 63.75,
+            "height": 16
+          }
+        },
+        "★ 点之后的横幅": {
+          "存在": false
+        },
+        "★ store 读数": {
+          "★ 相机对象": "director-camera-main",
+          "★ 跟随目标": null,
+          "★ 对象数": 5
+        }
+      }
+    },
+    {
+      "id": "S7:★★★ **源站对照**（读**入库的 bundle 片段**）：源站那枚按钮**自己没写**pointer-events；**面板在 active 时是 pointer-events-auto** ⟹ 「源站点不动」**只对未激活态成立**",
+      "why": "★★★ 「clone 与源站一致」必须**可复算** ⟹ 判据直接读入库的源站代码片段。★★ 而 605 那句「按钮从浮层继承 pointer-events:none，所以根本点不动」**错在没分激活态**：★ 源站的写法是 `${active ? 'pointer-events-auto' : 'pointer-events-none'}` ⟹ ★ **显示时**面板是 auto ⟹ 按钮**点得动**；★ 605 量的是**未激活**那块（opacity 0 / aria-hidden / inert / pe:none）⟹ 命中穿透是**设计如此**",
+      "ok": true,
+      "evidence": {
+        "★ 源站片段取自": "入库文件 docs/research/liblib-canvas-batch825-2026-10-01/raw/source-825-followbanner.js",
+        "★ 片段里 pointer-events-auto": 1,
+        "★ 片段里按钮类": "relative ml-1 inline-flex",
+        "★ 按钮自己带 pointer-events 吗": false,
+        "★ 源站运行时那块横幅的状态": {
+          "opacity": "0",
+          "pe": "none",
+          "ariaHidden": "true",
+          "inert": true,
+          "★ 命中穿透到": "脚本 V2 11确认镜头2准备资产3合成"
+        }
+      }
+    },
+    {
+      "id": "S8:★★★ **源站对照**：源站这条横幅**只有一个调用点**、prefix 是**协作**文案 ⟹ ⟹ **源站的「机位跟随目标」根本没有这条横幅**（导演台那套 i18n 里**一个 banner 键都没有**）⟹ ⟹ clone 这条是 **clone-only**",
+      "why": "★★★ 这是本批**最要紧**的一条：★ 源站的横幅组件 `collab-follow-banner` 只服务**协作跟随**（跟别人的视角）⟹ 它的 prefix 是「正在定位/正在跟随」＋**对方昵称**、颜色是运行时的 `colorHex`（那个橙色 #E46525 在源站 JS 里**一个字节都没有**）⟹ ⟹ ★★ **源站的机位跟随**走的是另一套：检查器里的「跟随目标／不跟随／跟随视角／跟随偏移」＋ 时间轴上的「跟随：」前缀 ⟹ ⟹ ★★ clone 这条横幅是**照抄了协作横幅的皮肤**，**不是源站机位跟随的复刻**⟹ ★ 「要不要删掉它」是**产品决策**，本批**只记不发明**",
+      "ok": true,
+      "evidence": {
+        "★ 源站片段里的调用点数": 1,
+        "★ 导演台机位跟随的 i18n 键": [
+          "directorCameraFollowTarget",
+          "directorCameraFollowNone",
+          "directorCameraFollowOffset",
+          "directorCameraFollowViewMode",
+          "directorCameraFollowThirdPerson",
+          "directorCameraFollowFirstPerson",
+          "directorCameraFollowDisableBeforePathBind"
+        ],
+        "★ 其中带 banner 的": [],
+        "★ 源站 i18n 里与跟随有关的键数": 61,
+        "★ 关键协作键": {
+          "directorTimelineFollowTargetPrefix": "跟随：",
+          "directorCameraFollowTarget": "跟随目标",
+          "directorCameraFollowNone": "不跟随",
+          "collabFollowBannerLogout2": "退出跟随",
+          "collabFollowControllerProcessing2": "正在跟随",
+          "collabFollowBannerCancelEsc": "取消ESC",
+          "collabFollowBannerPressEsc": "按 ESC 退出"
+        }
+      }
+    },
+    {
+      "id": "S9:★ 静态锚点：注释**不再说错话**、源站那两个属性已加、按钮/面板的pointer-events **与源站同构**",
+      "why": "★ 静态锚点与运行时读数**互为独立来源**。★★ 特别把「**注释不再说错话**」写成锚点 ⟹ 因为 605 那条错结论**就写在这段注释里** ⟹ ⟹ ★ 错的话留在代码里，下一个人会继续照着它做决定",
+      "ok": true,
+      "evidence": {
+        "DirectorDesk.tsx: 横幅那段注释**不再**声称「源站那枚取消点不动」": true,
+        "DirectorDesk.tsx: 注释写明了真实原因（面板 active 时 auto）": true,
+        "DirectorDesk.tsx: 注释写明「源站的机位跟随没有这条横幅」": true,
+        "DirectorDesk.tsx: 取消按钮带 aria-keyshortcuts=\"Escape\"（源站同款）": true,
+        "DirectorDesk.tsx: 提示 span 带 role=\"tooltip\"（源站同款）": true,
+        "DirectorDesk.tsx: 按钮**自己没写** pointer-events（与源站同构）": true,
+        "DirectorDesk.tsx: 横幅**面板**写 pointer-events-auto（与源站同构）": true
+      }
+    }
+  ],
+  "阴性": [
+    {
+      "name": "N1 把「点之后横幅还在」⟹ S6 翻红",
+      "期望翻红": "S6",
+      "实际翻红": [
+        "S6"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N2 把源站片段的 pointer-events-auto 换掉 ⟹ S7 翻红（源站对照真被读）",
+      "期望翻红": "S7",
+      "实际翻红": [
+        "S7"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N3 把源站片段的调用点数改成 2 ⟹ S8 翻红",
+      "期望翻红": "S8",
+      "实际翻红": [
+        "S8"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N4 把悬停后提示 opacity 改成 0 ⟹ S5 翻红",
+      "期望翻红": "S5",
+      "实际翻红": [
+        "S5"
+      ],
+      "ok": true
+    }
+  ]
+}

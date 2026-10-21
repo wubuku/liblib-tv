@@ -1,0 +1,283 @@
+{
+  "步骤": [
+    {
+      "步骤": "C0·★ 起点：导演台里相机的跟随目标为空、横幅**不在**",
+      "★ 跟随目标下拉": {
+        "存在": true,
+        "disabled": false,
+        "value": "",
+        "options": [
+          {
+            "v": "",
+            "t": "不跟随"
+          },
+          {
+            "v": "director-character-lead",
+            "t": "角色01 · 陈默"
+          },
+          {
+            "v": "director-prop-table",
+            "t": "咖啡桌"
+          },
+          {
+            "v": "director-prop-mug",
+            "t": "冷掉的咖啡"
+          },
+          {
+            "v": "director-prop-wall",
+            "t": "咖啡馆背景"
+          }
+        ]
+      },
+      "★ 跟随目标值": "",
+      "★ 横幅": {
+        "存在": false
+      },
+      "★ store 读数": {
+        "★ 相机对象": "director-camera-main",
+        "★ 跟随目标": null,
+        "★ 对象数": 5
+      }
+    },
+    {
+      "步骤": "C1·★★ 设上跟随目标 ⟹ 横幅**应当出现**",
+      "★ 铺夹具": {
+        "结果": "keyboard-ArrowDown",
+        "★ macOS 上 ArrowDown 是弹下拉、不是改值": true,
+        "★ 选之前": "",
+        "★ 键盘之后": "",
+        "★ 值变了": false,
+        "★ 铺夹具用的方式": "select_option（程序化，已标注）",
+        "★ 铺夹具之后": "director-character-lead",
+        "★ 铺夹具成功": true
+      },
+      "★ 横幅": {
+        "存在": true,
+        "可见": true,
+        "视口宽": 1280,
+        "视口高": 720,
+        "横幅矩形": {
+          "x": 553.13,
+          "y": 0,
+          "w": 173.75,
+          "h": 34,
+          "cx": 640,
+          "cy": 17
+        },
+        "横幅样式": {
+          "opacity": "1",
+          "pe": "none",
+          "z": "305",
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        "文案": "正在跟随取消ESC按 ESC 退出",
+        "按钮": {
+          "x": 650.13,
+          "y": 9,
+          "w": 63.75,
+          "h": 16,
+          "cx": 682,
+          "cy": 17
+        },
+        "按钮样式": {
+          "pe": "auto",
+          "aria": "退出跟随",
+          "ariaKeyShortcuts": "Escape",
+          "cls": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/9",
+          "own": "取消ESC",
+          "子元素数": 0
+        },
+        "提示": {
+          "x": 640.93,
+          "y": 33,
+          "w": 82.14,
+          "h": 24,
+          "cx": 682,
+          "cy": 45
+        },
+        "提示样式": {
+          "opacity": "0",
+          "role": "tooltip",
+          "pe": "none"
+        },
+        "命中": {
+          "标签": "BUTTON",
+          "testid": "",
+          "文字": "取消ESC",
+          "就是它": true
+        }
+      },
+      "★ store 读数": {
+        "★ 相机对象": "director-camera-main",
+        "★ 跟随目标": "director-character-lead",
+        "★ 对象数": 5
+      }
+    },
+    {
+      "步骤": "C2·★★ **真实鼠标**悬停 ⟹ 「按 ESC 退出」应当显形",
+      "★ 悬停": {
+        "结果": "hovered",
+        "矩形": {
+          "x": 650.125,
+          "y": 9,
+          "width": 63.75,
+          "height": 16
+        },
+        "★ 悬停前提示": {
+          "opacity": "0",
+          "rect": {
+            "x": 641,
+            "y": 33,
+            "w": 82,
+            "h": 24
+          }
+        },
+        "★ 悬停后提示": {
+          "opacity": "1"
+        }
+      },
+      "★ 悬停时的横幅": {
+        "存在": true,
+        "可见": true,
+        "视口宽": 1280,
+        "视口高": 720,
+        "横幅矩形": {
+          "x": 553.13,
+          "y": 0,
+          "w": 173.75,
+          "h": 34,
+          "cx": 640,
+          "cy": 17
+        },
+        "横幅样式": {
+          "opacity": "1",
+          "pe": "none",
+          "z": "305",
+          "bg": "rgba(0, 0, 0, 0)"
+        },
+        "文案": "正在跟随取消ESC按 ESC 退出",
+        "按钮": {
+          "x": 650.13,
+          "y": 9,
+          "w": 63.75,
+          "h": 16,
+          "cx": 682,
+          "cy": 17
+        },
+        "按钮样式": {
+          "pe": "auto",
+          "aria": "退出跟随",
+          "ariaKeyShortcuts": "Escape",
+          "cls": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/9",
+          "own": "取消ESC",
+          "子元素数": 0
+        },
+        "提示": {
+          "x": 640.93,
+          "y": 33,
+          "w": 82.14,
+          "h": 24,
+          "cx": 682,
+          "cy": 45
+        },
+        "提示样式": {
+          "opacity": "1",
+          "role": "tooltip",
+          "pe": "none"
+        },
+        "命中": {
+          "标签": "BUTTON",
+          "testid": "",
+          "文字": "取消ESC",
+          "就是它": true
+        }
+      }
+    },
+    {
+      "步骤": "C3·★★ **真实鼠标点**取消 ⟹ 横幅应当消失、跟随退出",
+      "★ 点击": {
+        "结果": "clicked",
+        "选择器": "[data-director-follow-cancel]",
+        "矩形": {
+          "x": 650.125,
+          "y": 9,
+          "width": 63.75,
+          "height": 16
+        }
+      },
+      "★ 点之后的横幅": {
+        "存在": false
+      },
+      "★ store 读数": {
+        "★ 相机对象": "director-camera-main",
+        "★ 跟随目标": null,
+        "★ 对象数": 5
+      }
+    }
+  ],
+  "操作": {
+    "C0 开导演台": {
+      "结果": "clicked",
+      "选择器": "[data-open-director]",
+      "矩形": {
+        "x": -13.0899658203125,
+        "y": 318.65997314453125,
+        "width": 166.21600341796875,
+        "height": 18.93603515625
+      }
+    },
+    "C0 导演台开了": true,
+    "C0 相机对象 id": "director-camera-main",
+    "C0 选相机": {
+      "结果": "clicked",
+      "选择器": "[data-director-timeline-object-name=\"director-camera-main\"]",
+      "矩形": {
+        "x": 28,
+        "y": 682,
+        "width": 60,
+        "height": 18
+      }
+    },
+    "C1 铺夹具：设跟随目标": {
+      "结果": "keyboard-ArrowDown",
+      "★ macOS 上 ArrowDown 是弹下拉、不是改值": true,
+      "★ 选之前": "",
+      "★ 键盘之后": "",
+      "★ 值变了": false,
+      "★ 铺夹具用的方式": "select_option（程序化，已标注）",
+      "★ 铺夹具之后": "director-character-lead",
+      "★ 铺夹具成功": true
+    },
+    "C2 悬停": {
+      "结果": "hovered",
+      "矩形": {
+        "x": 650.125,
+        "y": 9,
+        "width": 63.75,
+        "height": 16
+      },
+      "★ 悬停前提示": {
+        "opacity": "0",
+        "rect": {
+          "x": 641,
+          "y": 33,
+          "w": 82,
+          "h": 24
+        }
+      },
+      "★ 悬停后提示": {
+        "opacity": "1"
+      }
+    },
+    "C3 点取消": {
+      "结果": "clicked",
+      "选择器": "[data-director-follow-cancel]",
+      "矩形": {
+        "x": 650.125,
+        "y": 9,
+        "width": 63.75,
+        "height": 16
+      }
+    }
+  }
+}

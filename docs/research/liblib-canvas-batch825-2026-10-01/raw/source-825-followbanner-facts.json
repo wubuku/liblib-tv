@@ -1,0 +1,18 @@
+{
+ "源文件": "93fb61aec8_1197ptof95hg0.js.js",
+ "横幅组件源码已存": "source-825-followbanner.js",
+ "★ 面板按 active 切 pointer-events": true,
+ "★ 取消按钮**自己**没写 pointer-events": true,
+ "★ 取消按钮带 aria-keyshortcuts=Escape": true,
+ "★ 提示 span 带 role=tooltip": true,
+ "★ 横幅容器固定 pointer-events-none（只有内层面板在 active 时才 auto）": true,
+ "★ 横幅是 portal 到 document.body": true,
+ "★ 提示是 peer-hover / peer-focus-visible 才显形": true,
+ "★ prefix: 出现次数": 2,
+ "★ 参数解构那处（不算调用点）": 1,
+ "★ 调用点数": 1,
+ "★ 片段是否含调用点": true,
+ "★ 调用点里的 prefix 是**运行时变量**": true,
+ "★ prefix 取的是协作 i18n 键": true,
+ "★ 片段字节数": 9997
+}

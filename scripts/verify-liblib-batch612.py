@@ -395,8 +395,13 @@ def run(page: Page) -> dict[str, Any]:
         v.check("follow:radius-full", pill_radius(cancel["radius"]),
                 detail=cancel["radius"])
         v.check("follow:white-fill", cancel["bg"] == "rgb(255, 255, 255)", detail=cancel["bg"])
-        # the documented clone deviation: the source's capsule inherits
-        # pointer-events:none and cannot be clicked at all
+        # ★★ Batch 825 更正（2026-10-21）：这条**曾经**被写成「clone 的有意偏离
+        #   —— 源站那枚胶囊继承 pointer-events:none、根本点不动」⟹ ★★ **那是错的**：
+        #   源站**代码**写的是面板 `${active ? pointer-events-auto :
+        #   pointer-events-none}`、按钮自己**没写** pointer-events ⟹ ★★ 激活时
+        #   那枚「取消」**点得动**；612 当年量到 none 的是**未激活**那块横幅
+        #   （opacity 0 / aria-hidden / inert）⟹ ⟹ ★★ 现在 clone 与源站**激活态
+        #   同构**（面板 auto、按钮不写），**不再是有意偏离**。
         v.check("follow:clone-keeps-hit-area", cancel["pe"] == "auto", detail=cancel["pe"])
     page.locator("[data-director-follow-cancel]").click()
     page.wait_for_timeout(500)
@@ -477,8 +482,11 @@ def main() -> None:
                 "the clone-only 打开工具箱 button is kept, so the "
                 "bottom-centre cluster stays 20px left of the source's; only "
                 "the metrics are compared",
-                "the clone keeps pointer-events-auto on the follow capsule — "
-                "the source's inherits pointer-events:none and is a dead button",
+                "the clone keeps the follow capsule hit-testable — and since "
+                "batch 825 that is no longer a deviation: the source's panel is "
+                "pointer-events:auto when the banner is active (the button "
+                "itself writes no pointer-events), so the clone is structurally "
+                "identical to the source's active state",
             ],
             "sourceSideObservations": [
                 "the follow capsule's accessible name (退出跟随) disagrees with "

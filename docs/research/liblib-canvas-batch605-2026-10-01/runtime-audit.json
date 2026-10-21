@@ -171,7 +171,7 @@
     {
       "name": "banner:cancel-pointer-events-auto",
       "ok": true,
-      "detail": "deliberate deviation: the source's own 取消 pill inherits pointer-events:none from the banner panel (panel and banner both write pointer-events-none, the button does not re-enable it), and elementFromPoint at the pill centre lands on the 机位视角 button underneath — so the source's cancel is unclickable and its peer-hover hint can never appear. Geometry and styling are copied verbatim; only hit-testing is opened."
+      "detail": "same as the source's ACTIVE state: the panel is pointer-events:auto and the button itself writes no pointer-events (source bundle, raw/source-825-followbanner.js). The source's *inactive* banner (opacity 0 / aria-hidden / inert) measures pointer-events:none — that is the state 605 happened to sample, and reading it as the steady state is what produced the wrong 'unclickable' claim."
     },
     {
       "name": "banner:hit-testable-cancel",
@@ -368,7 +368,7 @@
         "position": "static",
         "zIndex": "auto",
         "opacity": "1",
-        "pointerEvents": "none",
+        "pointerEvents": "auto",
         "fontSize": "16px",
         "fontWeight": "400",
         "lineHeight": "24px",
@@ -377,7 +377,7 @@
         "borderBottomLeftRadius": "12px",
         "borderBottomRightRadius": "12px",
         "animationName": "none",
-        "className": "pointer-events-none flex items-center gap-2 rounded-b-xl border border-[#e46525] bg-[#e46525] px-3 py-1.5 text-white shadow-md"
+        "className": "pointer-events-auto flex items-center gap-2 rounded-b-xl border border-[#e46525] bg-[#e46525] px-3 py-1.5 text-white shadow-md"
       },
       "dot": {
         "box": {
@@ -397,7 +397,7 @@
         "position": "static",
         "zIndex": "auto",
         "opacity": "1",
-        "pointerEvents": "none",
+        "pointerEvents": "auto",
         "fontSize": "16px",
         "fontWeight": "400",
         "lineHeight": "24px",
@@ -426,7 +426,7 @@
         "position": "static",
         "zIndex": "auto",
         "opacity": "1",
-        "pointerEvents": "none",
+        "pointerEvents": "auto",
         "fontSize": "14px",
         "fontWeight": "400",
         "lineHeight": "20px",
@@ -464,7 +464,7 @@
         "borderBottomLeftRadius": "3.35544e+07px",
         "borderBottomRightRadius": "3.35544e+07px",
         "animationName": "none",
-        "className": "pointer-events-auto peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/90"
+        "className": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/90"
       },
       "hint": {
         "box": {

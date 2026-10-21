@@ -17,7 +17,7 @@
     ],
     "cloneDecision": [
       "the clone-only 打开工具箱 button is kept, so the bottom-centre cluster stays 20px left of the source's; only the metrics are compared",
-      "the clone keeps pointer-events-auto on the follow capsule — the source's inherits pointer-events:none and is a dead button"
+      "the clone keeps the follow capsule hit-testable — and since batch 825 that is no longer a deviation: the source's panel is pointer-events:auto when the banner is active (the button itself writes no pointer-events), so the clone is structurally identical to the source's active state"
     ],
     "sourceSideObservations": [
       "the follow capsule's accessible name (退出跟随) disagrees with its visible label (取消ESC); recorded, not silently corrected in either direction"

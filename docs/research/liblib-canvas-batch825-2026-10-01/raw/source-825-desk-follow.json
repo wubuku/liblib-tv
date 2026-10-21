@@ -1,0 +1,200 @@
+{
+ "A 画布页读数": {
+  "url": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+  "有工作台": false,
+  "跟随横幅候选（含未激活）": [
+   {
+    "tag": "DIV",
+    "text": "正在跟随取消ESC按 ESC 退出",
+    "testid": "collab-follow-banner",
+    "cls": "pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 motion-safe:transition-opacity motion-safe:duration-200",
+    "rect": {
+     "x": 713,
+     "y": 0,
+     "w": 174,
+     "h": 34
+    },
+    "opacity": "0",
+    "bg": "rgba(0, 0, 0, 0)",
+    "pe": "none",
+    "z": "305",
+    "ariaHidden": "true",
+    "inert": true,
+    "visible": false
+   }
+  ],
+  "取消按钮": {
+   "存在": true,
+   "rect": {
+    "x": 810,
+    "y": 9,
+    "w": 64,
+    "h": 16
+   },
+   "own": "取消ESC",
+   "aria": "退出跟随",
+   "ariaKeyShortcuts": "Escape",
+   "cls": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/90",
+   "pe": "none",
+   "命中标签": "DIV",
+   "命中testid": "",
+   "命中文字": "脚本 V2 11确认镜头2准备资产3合成",
+   "命中就是它": false
+  },
+  "跟随相关控件": [
+   {
+    "tag": "BUTTON",
+    "text": "退出跟随 取消ESC",
+    "testid": "collab-follow-banner-close",
+    "aria": "退出跟随",
+    "value": "",
+    "options": null,
+    "rect": {
+     "x": 810,
+     "y": 9,
+     "w": 64,
+     "h": 16
+    },
+    "visible": true
+   }
+  ]
+ },
+ "B 点击的入口": "text=打开导演台",
+ "C 点完之后": {
+  "url": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+  "有工作台": false,
+  "跟随横幅候选（含未激活）": [
+   {
+    "tag": "DIV",
+    "text": "正在跟随取消ESC按 ESC 退出",
+    "testid": "collab-follow-banner",
+    "cls": "pointer-events-none fixed left-1/2 top-0 z-[305] -translate-x-1/2 motion-safe:transition-opacity motion-safe:duration-200",
+    "rect": {
+     "x": 713,
+     "y": 0,
+     "w": 174,
+     "h": 34
+    },
+    "opacity": "0",
+    "bg": "rgba(0, 0, 0, 0)",
+    "pe": "none",
+    "z": "305",
+    "ariaHidden": "true",
+    "inert": true,
+    "visible": false
+   }
+  ],
+  "取消按钮": {
+   "存在": true,
+   "rect": {
+    "x": 810,
+    "y": 9,
+    "w": 64,
+    "h": 16
+   },
+   "own": "取消ESC",
+   "aria": "退出跟随",
+   "ariaKeyShortcuts": "Escape",
+   "cls": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-none text-gray-900 transition-colors hover:bg-white/90",
+   "pe": "none",
+   "命中标签": "BUTTON",
+   "命中testid": "",
+   "命中文字": "机位视角",
+   "命中就是它": false
+  },
+  "跟随相关控件": [
+   {
+    "tag": "BUTTON",
+    "text": "退出跟随 取消ESC",
+    "testid": "collab-follow-banner-close",
+    "aria": "退出跟随",
+    "value": "",
+    "options": null,
+    "rect": {
+     "x": 810,
+     "y": 9,
+     "w": 64,
+     "h": 16
+    },
+    "visible": true
+   },
+   {
+    "tag": "BUTTON",
+    "text": "导演视角",
+    "testid": "",
+    "aria": "",
+    "value": "",
+    "options": null,
+    "rect": {
+     "x": 718,
+     "y": 10,
+     "w": 81,
+     "h": 32
+    },
+    "visible": true
+   },
+   {
+    "tag": "BUTTON",
+    "text": "机位视角",
+    "testid": "",
+    "aria": "",
+    "value": "",
+    "options": null,
+    "rect": {
+     "x": 801,
+     "y": 10,
+     "w": 81,
+     "h": 32
+    },
+    "visible": true
+   },
+   {
+    "tag": "BUTTON",
+    "text": "添加机位",
+    "testid": "",
+    "aria": "添加机位",
+    "value": "",
+    "options": null,
+    "rect": {
+     "x": 8,
+     "y": 156,
+     "w": 32,
+     "h": 32
+    },
+    "visible": true
+   },
+   {
+    "tag": "DIV",
+    "text": "机位1",
+    "testid": "",
+    "aria": "",
+    "value": "",
+    "options": null,
+    "rect": {
+     "x": 56,
+     "y": 144,
+     "w": 216,
+     "h": 32
+    },
+    "visible": true
+   },
+   {
+    "tag": "BUTTON",
+    "text": "重置视角",
+    "testid": "",
+    "aria": "",
+    "value": "",
+    "options": null,
+    "rect": {
+     "x": 1227,
+     "y": 94,
+     "w": 72,
+     "h": 21
+    },
+    "visible": true
+   }
+  ]
+ },
+ "C 导演台开了吗": false,
+ "D 导演台里的 select": []
+}
