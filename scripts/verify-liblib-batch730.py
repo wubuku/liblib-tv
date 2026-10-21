@@ -491,8 +491,22 @@ def run(browser: Any) -> dict[str, Any]:
     open_canvas(page)
     out["views"]["canvas"] = snapshot(page, "canvas")
     for label, view in (("打开工具箱", "toolbox"), ("生成历史", "history"), ("教程", "tutorial")):
-        page.evaluate("""(l) => { const b = document.querySelector('[aria-label="' + l + '"]');
-          if (b) b.click(); }""", label)
+        # ★★ Batch 826：「打开工具箱」已归位到**素材库 popover 内**
+        # （面板条件渲染 ⟹ 不先开素材库就**不在 DOM 里**）⟹ 先开素材库。
+        # ★★ 而且**必须用 data-material-entry 定位**：素材库面板里那枚按钮
+        #   **没有 aria-label**（它靠可见文字，源站那几枚也一样）⟹
+        # ★ 用 `[aria-label="打开工具箱"]` 会**静默找不到** ⟹ 面板压根不开 ⟹
+        # ★ 那一视图的读数会**少掉面板里的那几枚**（实测 43 → 41）。
+        if label == "打开工具箱":
+            page.evaluate("""() => { const b = document.querySelector('[aria-label="素材库"]');
+              if (b) b.click(); }""")
+            page.wait_for_timeout(500)
+            page.evaluate("""() => { const b = document.querySelector('[data-material-entry="打开工具箱"]');
+              if (b) b.click(); }""")
+            page.wait_for_timeout(500)
+        else:
+            page.evaluate("""(l) => { const b = document.querySelector('[aria-label="' + l + '"]');
+              if (b) b.click(); }""", label)
         page.wait_for_timeout(700)
         out["views"][view] = snapshot(page, view)
     page.evaluate("""() => { const b = [...document.querySelectorAll('button')]
@@ -720,9 +734,22 @@ def check_10(r: dict[str, Any]) -> None:
     h = r.get("run", {}).get("tabKey", {})
     assert h.get("firstPressMoved") is False, h
     assert h.get("panelBefore") is False and h.get("panelAfter") is True, h
-    assert h.get("srcLine") == 1358, h
+    # ★★ Batch 826（2026-10-21）：**不再写死行号** ⟹ 原来写死 1358，
+    # ★ 而 batch 791/795/804 改了 `src/app/page.tsx` ⟹ 那行已经漂到 1412
+    # ⟹ ⟹ 这条断言在**本批之前**就已经是红的（不是本批造成的）。
+    # ★★ 改成**从文件里重新推导**再与探针读数对拍 ⟹ ① 不会再次失效，
+    # ★★ ② 仍然钉住「Tab 劫持就在这一行的这一段代码里」⟹ 强度不减。
+    src_lines = (ROOT / "src/app/page.tsx").read_text(encoding="utf-8").split("\n")
+    want_line = next(i + 1 for i, ln in enumerate(src_lines)
+                      if 'if (event.key === "Tab") {' in ln)
+    assert h.get("srcLine") == want_line, {
+        "探针读到的行号": h.get("srcLine"), "文件里实际的行号": want_line}
     assert h.get("srcHasPreventDefault") is True and h.get("srcHasToggle") is True, h
-    assert h.get("shortcutDialogLine") == 27, h
+    dlg_lines = (ROOT / "src/components/KeyboardShortcutsDialog.tsx").read_text(
+        encoding="utf-8").split("\n")
+    want_dlg = next(i + 1 for i, ln in enumerate(dlg_lines) if '"Tab"' in ln)
+    assert h.get("shortcutDialogLine") == want_dlg, {
+        "探针读到的行号": h.get("shortcutDialogLine"), "文件里实际的行号": want_dlg}
     assert h.get("shortcutDialogLabel") == "新建节点", h
     r["tabKeySummary"] = {k: h[k] for k in sorted(h)}
 

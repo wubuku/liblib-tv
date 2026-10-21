@@ -135,14 +135,24 @@ const [selectedIndex, setSelectedIndex] = useState(0);
   return (
     <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-3 backdrop-blur-[3px]" onMouseDown={onClose}>
       <section
-        aria-label="角色库"
+        aria-label="角色造型室"
         data-liblib-overlay="primary:character"
         // Batch 212: 源站模态三档视口直采恒 1280×720、水平居中、y=90。
         className="relative flex h-[min(720px,calc(100vh-169px))] max-h-[calc(100vh-24px)] w-[min(1280px,calc(100vw-136px))] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#222] text-[#ededed] shadow-[0_28px_80px_rgba(0,0,0,0.6)]"
         onMouseDown={(event) => event.stopPropagation()}
       >
         <header className="flex h-12 shrink-0 items-center justify-between border-b border-white/[0.08] px-4">
-          {/* Batch 169: 源站页签 chrome（公共角色库 / Seedance2.0&2.5合规素材库，gap-9 14px）。 */}
+          {/* Batch 169: 源站页签 chrome（公共角色库 / Seedance2.0&2.5合规素材库，gap-9 14px）。
+              ★★ Batch 826（源站 2026-10-21 运行时实测 + 源站 i18n 交叉核对）：
+              源站**当前**构建的这两个页签逐字是「**我的角色库**」「**官方角色库**」
+              （i18n：`characterStudioMyLibrary` / `characterStudioOfficialLibrary`），
+              而「公共角色库」(`publicCharacterLibrary`) 与「角色库」
+              (`characterLibraryTitle`) 在**当前**构建里**只存在于 i18n 字典**、
+              活体 UI 上 0 命中（实测全页逐字搜索 0 处）⟹ ⟹ 那是**旧形态的遗留键**。
+              ⟹ ★★ 本批把第一个页签改成源站当前词汇「官方角色库」。
+              ★ ★★ **第二个页签（Seedance2.0&2.5合规素材库 + 承诺书门）本批不动**：
+              源站当前构建里**没有**对应的第二页签 ⟹ 删不删属于**产品/法务决策**
+              （承诺书门是合规确认，clone 单方面删掉不合适）⟹ ★ 只记不改、不发明。 */}
           <div className="flex items-center gap-9 text-[14px]" data-clib-tabs>
             <button
               type="button"
@@ -153,7 +163,7 @@ const [selectedIndex, setSelectedIndex] = useState(0);
                 tab === "public" ? "font-medium text-[#ededed]" : "text-[#9a9a9a] hover:text-[#d8d8d8]",
               )}
             >
-              公共角色库
+              官方角色库
             </button>
             <button
               type="button"

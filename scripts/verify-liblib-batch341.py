@@ -9,6 +9,13 @@ Source evidence (2026-09-11 live aria-label dump of the workbench):
   生成历史, 快捷键, 教程
 Batch 341 fixes two drifted clone labels: 显示缩略图 → 切换小地图,
 吸附到网格 → 网格吸附.
+
+★★ Batch 826 更正（2026-10-21，源站**当前**构建的 `data-sidebar-btn`
+  逐枚枚举）：center cluster 现在是 **7 枚** —— 添加节点 / 移动 / 素材库 /
+  **角色造型室** / 生成历史 / 快捷键 / 教程，而「打开工具箱」在源站位于
+  **素材库 popover 内**（第 3 枚）⟹ clone 同步归位 ⟹ ★ 本脚本的
+  **期望值**随之更新，★ ★★ **断言强度不变**（仍然逐枚要求这一簇里
+  每一枚按钮都能按 aria-label 定位到）。
 """
 
 from __future__ import annotations
@@ -40,9 +47,8 @@ LEFT_CLUSTER = [
 CENTER_CLUSTER = [
     "添加节点",
     "移动",
-    "打开工具箱",
     "素材库",
-    "角色库",
+    "角色造型室",
     "生成历史",
     "快捷键",
     "教程",

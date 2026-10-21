@@ -1,0 +1,1115 @@
+{
+ "A 我的角色库页签": {
+  "锚点": true,
+  "面板根": {
+   "tag": "DIV",
+   "rect": {
+    "x": 361,
+    "y": 161,
+    "w": 1198,
+    "h": 758
+   },
+   "cls": "Ias-7a_screenEnter relative flex min-h-0 flex-1 flex-col",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px"
+  },
+  "可点元素": [
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "我的角色库",
+    "testid": "",
+    "rect": {
+     "x": 385,
+     "y": 183,
+     "w": 90,
+     "h": 26
+    },
+    "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:opacity-100 text-can"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "官方角色库",
+    "testid": "",
+    "rect": {
+     "x": 508,
+     "y": 183,
+     "w": 90,
+     "h": 26
+    },
+    "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:opacity-100 text-fg-"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "搜索角色名称或描述",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 636,
+     "y": 231,
+     "w": 32,
+     "h": 32
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-8 shrink-0 items-center justify-center rounded-fu"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "多选",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 1438,
+     "y": 231,
+     "w": 32,
+     "h": 32
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-full bg-[va"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "列表模式",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 1477,
+     "y": 234,
+     "w": 26,
+     "h": 26
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-[26px] items-center justify-center rounded-full t"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "宫格模式",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 1510,
+     "y": 234,
+     "w": 26,
+     "h": 26
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-[26px] items-center justify-center rounded-full t"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 395,
+     "y": 328,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 467,
+     "y": 328,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 552,
+     "y": 328,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 395,
+     "y": 364,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 467,
+     "y": 364,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 552,
+     "y": 364,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 395,
+     "y": 400,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 467,
+     "y": 400,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 552,
+     "y": 400,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 467,
+     "y": 436,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 552,
+     "y": 436,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 467,
+     "y": 472,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 552,
+     "y": 472,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 381,
+     "y": 524,
+     "w": 28,
+     "h": 28
+    },
+    "cls": "Ias-7a_carouselArrow pointer-events-auto flex size-7 items-center justify-center rounded-f"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 1511,
+     "y": 524,
+     "w": 28,
+     "h": 28
+    },
+    "cls": "Ias-7a_carouselArrow pointer-events-auto flex size-7 items-center justify-center rounded-f"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "角色列表",
+    "placeholder": "",
+    "type": "range",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 381,
+     "y": 819,
+     "w": 1158,
+     "h": 12
+    },
+    "cls": "Ias-7a_carouselScrollbar absolute bottom-0 left-5 right-5 z-20"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "创建新角色",
+    "testid": "",
+    "rect": {
+     "x": 902,
+     "y": 856,
+     "w": 116,
+     "h": 40
+    },
+    "cls": "bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover active:bg-btn-primary-acti"
+   }
+  ],
+  "叶子文本": [
+   {
+    "tag": "SPAN",
+    "text": "男",
+    "rect": {
+     "x": 396,
+     "y": 318,
+     "w": 14,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "儿童",
+    "rect": {
+     "x": 468,
+     "y": 318,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "东亚",
+    "rect": {
+     "x": 553,
+     "y": 318,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "女",
+    "rect": {
+     "x": 396,
+     "y": 354,
+     "w": 14,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "少年",
+    "rect": {
+     "x": 468,
+     "y": 354,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "欧美",
+    "rect": {
+     "x": 553,
+     "y": 354,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "中性",
+    "rect": {
+     "x": 396,
+     "y": 390,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "青年",
+    "rect": {
+     "x": 468,
+     "y": 390,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "中东",
+    "rect": {
+     "x": 553,
+     "y": 390,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "中年",
+    "rect": {
+     "x": 468,
+     "y": 426,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "非洲",
+    "rect": {
+     "x": 553,
+     "y": 426,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "老年",
+    "rect": {
+     "x": 468,
+     "y": 462,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "其他",
+    "rect": {
+     "x": 553,
+     "y": 462,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "创建新角色",
+    "rect": {
+     "x": 925,
+     "y": 783,
+     "w": 70,
+     "h": 22
+    }
+   }
+  ]
+ },
+ "B 点了官方角色库": true,
+ "C 官方角色库页签": {
+  "锚点": true,
+  "面板根": {
+   "tag": "DIV",
+   "rect": {
+    "x": 361,
+    "y": 161,
+    "w": 1198,
+    "h": 758
+   },
+   "cls": "Ias-7a_screenEnter relative flex min-h-0 flex-1 flex-col",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px"
+  },
+  "可点元素": [
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "我的角色库",
+    "testid": "",
+    "rect": {
+     "x": 385,
+     "y": 183,
+     "w": 90,
+     "h": 26
+    },
+    "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:opacity-100 text-fg-"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "官方角色库",
+    "testid": "",
+    "rect": {
+     "x": 508,
+     "y": 183,
+     "w": 90,
+     "h": 26
+    },
+    "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:opacity-100 text-can"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "搜索角色名称或描述",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 636,
+     "y": 231,
+     "w": 32,
+     "h": 32
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-8 shrink-0 items-center justify-center rounded-fu"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "多选",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 1438,
+     "y": 231,
+     "w": 32,
+     "h": 32
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-full bg-[va"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "列表模式",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 1477,
+     "y": 234,
+     "w": 26,
+     "h": 26
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-[26px] items-center justify-center rounded-full t"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "宫格模式",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 1510,
+     "y": 234,
+     "w": 26,
+     "h": 26
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-[26px] items-center justify-center rounded-full t"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 395,
+     "y": 328,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 467,
+     "y": 328,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 552,
+     "y": 328,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 395,
+     "y": 364,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 467,
+     "y": 364,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 552,
+     "y": 364,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 395,
+     "y": 400,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 467,
+     "y": 400,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 552,
+     "y": 400,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 467,
+     "y": 436,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 552,
+     "y": 436,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 467,
+     "y": 472,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "checkbox",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 552,
+     "y": 472,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "sr-only"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 381,
+     "y": 524,
+     "w": 28,
+     "h": 28
+    },
+    "cls": "Ias-7a_carouselArrow pointer-events-auto flex size-7 items-center justify-center rounded-f"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 1511,
+     "y": 524,
+     "w": 28,
+     "h": 28
+    },
+    "cls": "Ias-7a_carouselArrow pointer-events-auto flex size-7 items-center justify-center rounded-f"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "生成其他年龄版本",
+    "placeholder": "",
+    "type": "button",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 993,
+     "y": 781,
+     "w": 26,
+     "h": 26
+    },
+    "cls": "flex size-[26px] items-center justify-center rounded-lg hover:bg-[var(--character-studio-b"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "aria": "角色列表",
+    "placeholder": "",
+    "type": "range",
+    "text": "",
+    "testid": "",
+    "rect": {
+     "x": 381,
+     "y": 819,
+     "w": 1158,
+     "h": 12
+    },
+    "cls": "Ias-7a_carouselScrollbar absolute bottom-0 left-5 right-5 z-20"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "创建新角色",
+    "testid": "",
+    "rect": {
+     "x": 385,
+     "y": 856,
+     "w": 120,
+     "h": 40
+    },
+    "cls": "hover:bg-canvas-controls-hover disabled:hover:bg-transparent flex h-10 items-center gap-2 "
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "添加到画布",
+    "testid": "",
+    "rect": {
+     "x": 843,
+     "y": 856,
+     "w": 120,
+     "h": 40
+    },
+    "cls": "hover:bg-canvas-controls-hover flex h-10 items-center gap-2 rounded-xl bg-[var(--character"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "aria": "",
+    "placeholder": "",
+    "type": "button",
+    "text": "编辑角色",
+    "testid": "",
+    "rect": {
+     "x": 971,
+     "y": 856,
+     "w": 106,
+     "h": 40
+    },
+    "cls": "bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover flex h-10 items-center gap"
+   }
+  ],
+  "叶子文本": [
+   {
+    "tag": "SPAN",
+    "text": "男",
+    "rect": {
+     "x": 396,
+     "y": 318,
+     "w": 14,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "儿童",
+    "rect": {
+     "x": 468,
+     "y": 318,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "东亚",
+    "rect": {
+     "x": 553,
+     "y": 318,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "女",
+    "rect": {
+     "x": 396,
+     "y": 354,
+     "w": 14,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "少年",
+    "rect": {
+     "x": 468,
+     "y": 354,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "欧美",
+    "rect": {
+     "x": 553,
+     "y": 354,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "中性",
+    "rect": {
+     "x": 396,
+     "y": 390,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "青年",
+    "rect": {
+     "x": 468,
+     "y": 390,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "中东",
+    "rect": {
+     "x": 553,
+     "y": 390,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "中年",
+    "rect": {
+     "x": 468,
+     "y": 426,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "非洲",
+    "rect": {
+     "x": 553,
+     "y": 426,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "老年",
+    "rect": {
+     "x": 468,
+     "y": 462,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "奇幻",
+    "rect": {
+     "x": 553,
+     "y": 462,
+     "w": 28,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "查看角色资产",
+    "rect": {
+     "x": 925,
+     "y": 528,
+     "w": 86,
+     "h": 20
+    }
+   },
+   {
+    "tag": "SPAN",
+    "text": "甜妹/清新少女",
+    "rect": {
+     "x": 901,
+     "y": 783,
+     "w": 88,
+     "h": 22
+    }
+   }
+  ]
+ }
+}

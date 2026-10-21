@@ -139,10 +139,16 @@ def build_checks(raw):
     src_tv_btn = [d for d in src_buttons if d["aria"] == "TV Director"]
     src_tv_names = [d["aria"] for d in src_buttons]
     clone_names = [d[K_ARIA] for d in bar]
-    shared = ["添加节点", "移动", "素材库", "生成历史", "快捷键", "教程"]
+    # ★★ Batch 826：共享项从 6 枚变成 **7 枚** —— 源站那一簇是 7 枚
+    # （add-node / tool-mode / open-asset / character-library / history /
+    # keyboard / contact），第 4 枚的 aria 逐字是「**角色造型室**」
+    # （batch 824 的入库 raw 里本来就写着它，只是当时 clone 叫「角色库」⟹
+    # 那时只记不改）⟹ ★★ 现在 clone 也逐字改成「角色造型室」⟹
+    # ★★ 断言**加强**（要求 7 枚逐字同名，而不是 6 枚）。
+    shared = ["添加节点", "移动", "素材库", "角色造型室", "生成历史", "快捷键", "教程"]
     C.append(ok(
-        "S6:★★★ **源站对照**（读**入库的源站读数**，不是我的印象）：源站底部工具条 8 枚、含 48×48 的「TV Director」；clone 底部**也有**这一枚，且共享的 6 枚**逐项同名**",
-        "★★★ 「clone 与源站一致」这句话**必须可复算** ⟹ 所以判据直接读**入库的源站 raw**。★ 共享项：添加节点／移动／素材库／生成历史／快捷键／教程（★ clone 叫「角色库」、源站叫「角色造型室」⟹ **名字有差**，本批**只记不改**；★ clone 多「打开工具箱」，源站没有 ⟹ 同上）",
+        "S6:★★★ **源站对照**（读**入库的源站读数**，不是我的印象）：源站底部工具条 8 枚、含 48×48 的「TV Director」；clone 底部**也有**这一枚，且共享的 7 枚**逐项同名**",
+        "★★★ 「clone 与源站一致」这句话**必须可复算** ⟹ 所以判据直接读**入库的源站 raw**。★ 共享项（Batch 826 起是 7 枚）：添加节点／移动／素材库／角色造型室／生成历史／快捷键／教程 ⟹ ★★ clone 那枚 clone-only 的「打开工具箱」**已归位**到素材库 popover 内（源站它就在那儿）⟹ ★★ **逐字同构**",
         len(src_tv_btn) == 1
         and src_tv_btn[0]["矩形"]["w"] == 48
         and src_tv_btn[0]["矩形"]["h"] == 48
@@ -153,8 +159,8 @@ def build_checks(raw):
          "★ 源站读数取自": src_bar_src,
          "★ 源站 TV Director 按钮": src_tv_btn,
          "★ clone 底部工具条可及名": clone_names,
-         "★ 共享的 6 枚": shared,
-         "★ 名字有差": {"源站": "角色造型室", "clone": "角色库"},
+         "★ 共享的 7 枚": shared,
+         "★ 逐字同构的 7 枚都在": all(n in clone_names for n in shared),
          "★ clone 多出": [n for n in clone_names if n not in src_tv_names]}))
 
     # ── S7 ★ 源站对照：那个胶囊点开的是「新对话」抽屉，不是导演台

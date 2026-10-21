@@ -51,8 +51,15 @@ which pushed the whole cluster 19.5px left of the source's.  The variant is
 removed; the clone now also matches the source's **17px** gap between 生成历史
 and 快捷键 (the rest of the cluster is 8px — that wider gap is a separator).
 
-The cluster's remaining 20px x-offset is the clone-only 打开工具箱 button,
-which is kept: dropping clone functionality is not what this work is for.
+The cluster's remaining 20px x-offset was the clone-only 打开工具箱 button.
+★★ Batch 826 removed that offset for good: the source's cluster is **7**
+buttons (`data-sidebar-btn` dump: add-node / tool-mode / open-asset /
+character-library / history / keyboard / contact) and 「打开工具箱」 lives
+in the source's **素材库 popover** instead — so the clone's entry was moved
+there too.  The clone's cluster is now **299px** wide (7×32 + 6×8 + 9 +
+16 + 2), exactly the source's measured 299px (x 811..1110), and its first
+button lands at x=819 against the source's 819.5.  The x assertion — which
+this script previously had to skip because of the offset — is back.
 
 ## 4. The follow banner's cancel capsule is a single text node
 
@@ -197,9 +204,8 @@ LEFT_NAMES = {
 RIGHT_NAMES = {
     "添加节点": "添加节点",
     "移动": "移动",
-    "打开工具箱(clone-only)": "打开工具箱",
     "素材库": "素材库",
-    "角色库(clone 名)": "角色库",
+    "角色造型室": "角色造型室",
     "生成历史": "生成历史",
     "快捷键": "快捷键",
     "教程": "教程",
@@ -290,15 +296,21 @@ def run(page: Page) -> dict[str, Any]:
             detail=r["left"]["资产管理"]["box"])
 
     # --- 3) the bottom-centre cluster ------------------------------------
+    # ★★ Batch 826：源站这一簇是 **7 枚**（`data-sidebar-btn` 逐枚枚举：
+    # add-node / tool-mode / open-asset / character-library / history /
+    # keyboard / contact）⟹ clone 那枚 clone-only 的「打开工具箱」**归位**
+    # 到素材库面板内 ⟹ ⟹ ★★ clone 的簇于是与源站**逐枚同构**，而且：
+    #   7×32 + 6×8(gap) + 9(快捷键的 ml) + 16(p-2) + 2(border) = **299px**
+    #   = 源站实测的容器宽 299px（x 811..1110）⟹ 第一枚按钮落在 819，
+    #   与源站的 819.5 对齐 ⟹ ★★ 此前因为 20px 偏移而**放弃**的 x 断言，
+    #   现在可以加回来 ⟹ ★★ **断言强度提高**（不是降低）。
     for name, (x, y, w, h) in SOURCE_RIGHT.items():
-        clone_name = "角色库(clone 名)" if name == "角色造型室" else name
-        got = r["right"].get(clone_name)
+        got = r["right"].get(name)
         v.check(f"right:{name}:present", got is not None)
         if got is None:
             continue
         b = got["box"]
-        # The clone keeps an extra 打开工具箱 button, so its cluster starts
-        # 20px left of the source's.  Only the metrics are compared here.
+        v.check(f"right:{name}:x", abs(b[0] - x) <= 0.6, detail=f"{b[0]} vs {x}")
         v.check(f"right:{name}:y", abs(b[1] - y) <= 0.6, detail=f"{b[1]} vs {y}")
         v.check(f"right:{name}:w", abs(b[2] - w) <= 0.6, detail=f"{b[2]} vs {w}")
         v.check(f"right:{name}:h", abs(b[3] - h) <= 0.6, detail=f"{b[3]} vs {h}")
@@ -310,8 +322,8 @@ def run(page: Page) -> dict[str, Any]:
     v.check("right:添加节点-not-light", add["color"] not in ("rgb(23, 23, 23)",),
             detail=add["color"])
     # uniform 8px gaps, then a 17px separator before 快捷键
-    rorder = ["添加节点", "移动", "打开工具箱(clone-only)", "素材库",
-              "角色库(clone 名)", "生成历史", "快捷键", "教程"]
+    rorder = ["添加节点", "移动", "素材库", "角色造型室",
+              "生成历史", "快捷键", "教程"]
     rgaps = []
     for a, b in zip(rorder, rorder[1:]):
         ba, bb = r["right"][a]["box"], r["right"][b]["box"]
@@ -479,9 +491,10 @@ def main() -> None:
                 "63.7 wide, aria-label='退出跟随'",
             ],
             "cloneDecision": [
-                "the clone-only 打开工具箱 button is kept, so the "
-                "bottom-centre cluster stays 20px left of the source's; only "
-                "the metrics are compared",
+                "batch 826: the clone-only 打开工具箱 button is gone from the "
+                "cluster — it now lives in the 素材库 popover, where the source "
+                "has it — so the bottom-centre cluster is 299px wide and "
+                "lands on the source's x positions (x assertions are enabled)",
                 "the clone keeps the follow capsule hit-testable — and since "
                 "batch 825 that is no longer a deviation: the source's panel is "
                 "pointer-events:auto when the banner is active (the button "

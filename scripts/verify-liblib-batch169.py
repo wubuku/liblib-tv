@@ -8,6 +8,19 @@ briefly unthrottled):
   (公共角色库 / Seedance2.0&2.5合规素材库, gap-9, 14px).
 - The 素材库 tab is gated by a Seedance2.0 承诺书 dialog (738px, 3 clauses,
   不同意 / 同意并使用). Clone replicates the gate as local-only state.
+
+★★ Batch 826 更正（2026-10-21，源站**当前**构建实测 + 源站 i18n 交叉核对）：
+  源站**当前**构建里这两个页签逐字是「**我的角色库**」「**官方角色库**」
+  （i18n：`characterStudioMyLibrary` / `characterStudioOfficialLibrary`）；
+  而「公共角色库」(`publicCharacterLibrary`) 与「角色库」(`characterLibraryTitle`)
+  在**当前**构建里**只剩 i18n 字典**、活体 UI 上逐字搜索 0 命中 ⟹ ⟹
+  上面那段 2026-09-07 的采样是**旧形态**。
+  ⟹ ★★ clone 的第一个页签已改成源站当前词汇「**官方角色库**」
+  （内容不变：公共/official 角色卡）⟹ ★ 本脚本的**期望值**随之更新，
+  ★★ **断言强度没有降低**（仍然逐字比对两个页签的文字、仍然断言选中态
+  类名、仍然钉住承诺书门的开合与三个条款）。
+  ★ ★★ 第二个页签（Seedance2.0&2.5合规素材库 + 承诺书门）**本批不动**：
+  源站当前构建没有对应页签 ⟹ 删不删是产品/法务决策 ⟹ 只记不改。
 """
 
 from __future__ import annotations
@@ -54,8 +67,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.goto(BASE_URL, wait_until="networkidle")
     page.wait_for_timeout(400)
 
-    # 打开角色库（左侧栏入口）
-    page.get_by_role("button", name="角色库").first.click()
+    # 打开角色造型室（底部工具条入口；Batch 826：源站这一枚逐字是「角色造型室」）
+    page.get_by_role("button", name="角色造型室").first.click()
     page.wait_for_timeout(800)
 
     tabs = page.locator("[data-clib-tabs] button")
@@ -63,7 +76,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check(
         "tabs:labels",
         [tabs.nth(i).inner_text().strip() for i in range(2)]
-        == ["公共角色库", "Seedance2.0&2.5合规素材库"],
+        == ["官方角色库", "Seedance2.0&2.5合规素材库"],
     )
     check(
         "tabs:public-active",

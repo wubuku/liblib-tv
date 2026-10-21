@@ -140,7 +140,7 @@
    },
    {
     "file": "src/components/LeftSidebar.tsx",
-    "line": 101,
+    "line": 110,
     "attrs": "key={label} type=\"button\" title={why} data-inert=\"true\" className={inert}"
    },
    {
@@ -3064,7 +3064,7 @@
    ],
    "panelBefore": false,
    "panelAfter": true,
-   "srcLine": 1358,
+   "srcLine": 1412,
    "srcHasPreventDefault": true,
    "srcHasToggle": true,
    "srcWindow": "if (event.key === \"Tab\") {\n        event.preventDefault();\n        toggleAddNodePanel();\n      }",
@@ -3216,7 +3216,7 @@
   "shortcutDialogLine": 27,
   "srcHasPreventDefault": true,
   "srcHasToggle": true,
-  "srcLine": 1358,
+  "srcLine": 1412,
   "srcWindow": "if (event.key === \"Tab\") {\n        event.preventDefault();\n        toggleAddNodePanel();\n      }"
  },
  "summary": {

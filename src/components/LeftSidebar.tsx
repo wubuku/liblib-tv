@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import {
   CircleHelp,
   Hand,
@@ -8,8 +9,7 @@ import {
   MousePointer2,
   Plus,
   Shapes,
-  UserRound,
-  WandSparkles,
+  Smile,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { type PrimaryPanel, useUIStore } from "@/store/uiStore";
@@ -31,6 +31,15 @@ interface ToolButtonProps {
 interface LeftSidebarProps {
   onAddNode: (type: string, data?: Record<string, unknown>) => void;
 }
+
+// ★★ Batch 826（源站 2026-10-21 实测 + 源站 bundle 交叉核对）：
+// 源站这一簇是 **7 枚** —— `data-sidebar-btn` 逐枚枚举：
+//   add-node「添加节点」/ tool-mode「移动」/ open-asset「素材库」/
+//   character-library「**角色造型室**」/ history「生成历史」/
+//   keyboard「快捷键」/ contact「教程」，**外加**一枚药丸外的 agent-entry。
+// ★ 「打开工具箱」**不在这一簇里** ⟹ 它在**素材库面板内**（第 3 枚），
+//   ⟹ 本批把它从 rail 挪进素材库面板 ⟹ clone 的簇**逐枚与源站同构**。
+const STUDIO_NEW_DOT_KEY = "libtv:character-library-new-dot-dismissed";
 
 // Batch 612（源站 2026-10-01 实测 probe612c）：这一簇**每一枚都是
 // 32×32 的幽灵按钮** `relative flex items-center justify-center rounded-lg
@@ -143,6 +152,28 @@ export function LeftSidebar({ onAddNode }: LeftSidebarProps) {
     setPrimaryPanel(null);
   };
 
+  // ★★ Batch 826：源站「角色造型室」那枚带一枚**可消的蓝点 new-dot**
+  // （源站 bundle：`localStorage["libtv:character-library-new-dot-dismissed"]`，
+  // 点这枚入口即写入并消失）⟹ 这里照抄同一套记忆与消点时机。
+  const [studioNewDotDismissed, setStudioNewDotDismissed] = useState(false);
+  useEffect(() => {
+    try {
+      setStudioNewDotDismissed(
+        window.localStorage.getItem(STUDIO_NEW_DOT_KEY) === "1",
+      );
+    } catch {
+      setStudioNewDotDismissed(false);
+    }
+  }, []);
+  const dismissStudioNewDot = () => {
+    setStudioNewDotDismissed(true);
+    try {
+      window.localStorage.setItem(STUDIO_NEW_DOT_KEY, "1");
+    } catch {
+      /* 隐私模式下写不进去：忽略（源站同样会失败） */
+    }
+  };
+
   return (
     <>
       <div
@@ -158,14 +189,39 @@ export function LeftSidebar({ onAddNode }: LeftSidebarProps) {
         <ToolButton label={canvasTool === "pan" ? "抓手工具" : "移动"} active={activePrimaryPanel === "move"} onClick={() => togglePanel("move")}>
           {canvasTool === "pan" ? <Hand size={20} /> : <MousePointer2 size={20} />}
         </ToolButton>
-        <ToolButton label="打开工具箱" active={activePrimaryPanel === "toolbox"} onClick={() => togglePanel("toolbox")}>
-          <WandSparkles size={20} />
-        </ToolButton>
         <ToolButton label="素材库" active={activePrimaryPanel === "material"} onClick={() => togglePanel("material")}>
           <Shapes size={20} />
         </ToolButton>
-        <ToolButton label="角色库" active={activePrimaryPanel === "character"} onClick={() => togglePanel("character")}>
-          <UserRound size={20} />
+        {/* ★★ Batch 826（源站 2026-10-21 实测 + 源站 bundle 交叉核对）：
+            源站这一枚的 aria-label 逐字是「**角色造型室**」（`data-sidebar-btn`
+            = `character-library`），此前 clone 写的是「角色库」⟹ 本批改成逐字对齐。
+
+            ★★ 源站这枚的**图标渲染成一张笑脸**（源站 bundle：`icon: G.p.HatGlasses`，
+            实际渲染出来是「圆脸 + 两点眼睛 + 笑嘴」，见 batch 826 的截图放大）
+            ⟹ clone 此前用的是 `UserRound`（人像）⟹ 本批改成 `Smile`。
+
+            ★★ 源站这枚还带**一枚蓝色 new-dot 徽标**（源站 bundle：
+            `na="libtv:character-library-new-dot-dismissed"`、点这枚即消、
+            记忆在 localStorage；截图放大实测：直径 8px、圆心在按钮右上角）。
+            ⟹ 本批照抄；★ 徽标走 **inline style**（不用 Tailwind 类）⟹
+            ★ 对 4317 上那个**冻结的 Tailwind 扫描器**免疫（见 batch 824）。 */}
+        <ToolButton
+          label="角色造型室"
+          active={activePrimaryPanel === "character"}
+          onClick={() => {
+            dismissStudioNewDot();
+            togglePanel("character");
+          }}
+        >
+          <Smile size={20} />
+          {!studioNewDotDismissed && (
+            <span
+              aria-hidden="true"
+              data-studio-new-dot
+              className="pointer-events-none absolute rounded-full"
+              style={{ width: 8, height: 8, right: -1, top: -1, backgroundColor: "#09caf5" }}
+            />
+          )}
         </ToolButton>
         {/* Batch 101: 2026-09-05 源站底部工具条该入口名为「生成历史」。 */}
         <ToolButton label="生成历史" active={activePrimaryPanel === "history"} onClick={() => togglePanel("history")}>

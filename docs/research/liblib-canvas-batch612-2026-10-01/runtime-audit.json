@@ -16,7 +16,7 @@
       "follow cancel capsule: single text node '取消ESC', 12px/12px/500, 63.7 wide, aria-label='退出跟随'"
     ],
     "cloneDecision": [
-      "the clone-only 打开工具箱 button is kept, so the bottom-centre cluster stays 20px left of the source's; only the metrics are compared",
+      "batch 826: the clone-only 打开工具箱 button is gone from the cluster — it now lives in the 素材库 popover, where the source has it — so the bottom-centre cluster is 299px wide and lands on the source's x positions (x assertions are enabled)",
       "the clone keeps the follow capsule hit-testable — and since batch 825 that is no longer a deviation: the source's panel is pointer-events:auto when the banner is active (the button itself writes no pointer-events), so the clone is structurally identical to the source's active state"
     ],
     "sourceSideObservations": [
@@ -151,7 +151,7 @@
       "right": {
         "添加节点": {
           "box": [
-            799.5,
+            819.5,
             1097.5,
             32,
             32
@@ -171,27 +171,7 @@
         },
         "移动": {
           "box": [
-            839.5,
-            1097.5,
-            32,
-            32
-          ],
-          "radius": "8px",
-          "bg": "rgba(0, 0, 0, 0)",
-          "color": "rgb(212, 212, 212)",
-          "minWidth": "auto",
-          "pad": "0px",
-          "font": "16px/24px/400",
-          "tabular": "normal",
-          "svg": [
-            20,
-            20
-          ],
-          "kids": 1
-        },
-        "打开工具箱(clone-only)": {
-          "box": [
-            879.5,
+            859.5,
             1097.5,
             32,
             32
@@ -211,7 +191,7 @@
         },
         "素材库": {
           "box": [
-            919.5,
+            899.5,
             1097.5,
             32,
             32
@@ -229,9 +209,9 @@
           ],
           "kids": 1
         },
-        "角色库(clone 名)": {
+        "角色造型室": {
           "box": [
-            959.5,
+            939.5,
             1097.5,
             32,
             32
@@ -247,11 +227,11 @@
             20,
             20
           ],
-          "kids": 1
+          "kids": 2
         },
         "生成历史": {
           "box": [
-            999.5,
+            979.5,
             1097.5,
             32,
             32
@@ -271,7 +251,7 @@
         },
         "快捷键": {
           "box": [
-            1048.5,
+            1028.5,
             1097.5,
             32,
             32
@@ -291,7 +271,7 @@
         },
         "教程": {
           "box": [
-            1088.5,
+            1068.5,
             1097.5,
             32,
             32
@@ -523,6 +503,10 @@
       "ok": true,
       "detail": ""
     },
+    "right:添加节点:x": {
+      "ok": true,
+      "detail": "819.5 vs 819.5"
+    },
     "right:添加节点:y": {
       "ok": true,
       "detail": "1097.5 vs 1097.5"
@@ -549,6 +533,10 @@
     "right:移动:present": {
       "ok": true,
       "detail": ""
+    },
+    "right:移动:x": {
+      "ok": true,
+      "detail": "859.5 vs 859.5"
     },
     "right:移动:y": {
       "ok": true,
@@ -577,6 +565,10 @@
       "ok": true,
       "detail": ""
     },
+    "right:素材库:x": {
+      "ok": true,
+      "detail": "899.5 vs 899.5"
+    },
     "right:素材库:y": {
       "ok": true,
       "detail": "1097.5 vs 1097.5"
@@ -603,6 +595,10 @@
     "right:角色造型室:present": {
       "ok": true,
       "detail": ""
+    },
+    "right:角色造型室:x": {
+      "ok": true,
+      "detail": "939.5 vs 939.5"
     },
     "right:角色造型室:y": {
       "ok": true,
@@ -631,6 +627,10 @@
       "ok": true,
       "detail": ""
     },
+    "right:生成历史:x": {
+      "ok": true,
+      "detail": "979.5 vs 979.5"
+    },
     "right:生成历史:y": {
       "ok": true,
       "detail": "1097.5 vs 1097.5"
@@ -657,6 +657,10 @@
     "right:快捷键:present": {
       "ok": true,
       "detail": ""
+    },
+    "right:快捷键:x": {
+      "ok": true,
+      "detail": "1028.5 vs 1028.5"
     },
     "right:快捷键:y": {
       "ok": true,
@@ -697,19 +701,15 @@
           8.0
         ],
         [
-          "移动->打开工具箱(clone-only)",
+          "移动->素材库",
           8.0
         ],
         [
-          "打开工具箱(clone-only)->素材库",
+          "素材库->角色造型室",
           8.0
         ],
         [
-          "素材库->角色库(clone 名)",
-          8.0
-        ],
-        [
-          "角色库(clone 名)->生成历史",
+          "角色造型室->生成历史",
           8.0
         ],
         [
@@ -874,7 +874,7 @@
       "pageErrors": 0
     },
     "_summary": {
-      "checks": 112,
+      "checks": 118,
       "failures": []
     }
   }

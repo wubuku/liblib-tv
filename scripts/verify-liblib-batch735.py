@@ -205,7 +205,19 @@ def newest_id(page, node_type):
 
 
 def click_dock(page, label):
-    page.evaluate("""(l)=>{const b=document.querySelector('[aria-label="'+l+'"]'); if(b)b.click();}""", label)
+    # ★★ Batch 826：源站的「打开工具箱」不在底部那一簇里，而在**素材库
+    # popover 内**（第 3 枚）⟹ clone 同步归位 ⟹ 这里点它之前必须先开
+    # 「素材库」，否则那枚按钮**根本不在 DOM 里**（面板是条件渲染的）
+    # ⟹ ★ 注意：不加这一步的话，脚本会**静默地**采到画布而不是工具箱。
+    if label == "打开工具箱":
+        page.evaluate("""()=>{const b=document.querySelector('[aria-label="素材库"]'); if(b)b.click();}""")
+        page.wait_for_timeout(500)
+        # ★★ 必须用 data-material-entry：素材库面板里那枚按钮**没有 aria-label**
+        #   （靠可见文字，源站那几枚也一样）⟹ 用 aria-label 会**静默找不到**。
+        page.evaluate("""()=>{const b=document.querySelector('[data-material-entry="打开工具箱"]'); if(b)b.click();}""")
+        page.wait_for_timeout(500)
+    else:
+        page.evaluate("""(l)=>{const b=document.querySelector('[aria-label="'+l+'"]'); if(b)b.click();}""", label)
     page.wait_for_timeout(700)
 
 

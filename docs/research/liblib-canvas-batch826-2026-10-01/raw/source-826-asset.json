@@ -1,0 +1,106 @@
+{
+ "素材库popover": {
+  "锚点": true,
+  "祖先链": [
+   {
+    "tag": "SPAN",
+    "w": 112,
+    "h": 19,
+    "pos": "static",
+    "z": "auto"
+   },
+   {
+    "tag": "DIV",
+    "w": 112,
+    "h": 36,
+    "pos": "static",
+    "z": "auto"
+   },
+   {
+    "tag": "BUTTON",
+    "w": 222,
+    "h": 52,
+    "pos": "static",
+    "z": "auto"
+   },
+   {
+    "tag": "DIV",
+    "w": 222,
+    "h": 164,
+    "pos": "static",
+    "z": "auto"
+   }
+  ],
+  "popover": {
+   "tag": "DIV",
+   "rect": {
+    "x": 805,
+    "y": 833,
+    "w": 222,
+    "h": 164
+   },
+   "cls": "flex flex-col gap-1",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px"
+  },
+  "入口": [
+   {
+    "text": "风格库新增风格节点NEW",
+    "leaves": [
+     "风格库",
+     "NEW"
+    ],
+    "hasNEW": true,
+    "svg": [
+     20,
+     20
+    ],
+    "rect": {
+     "x": 805,
+     "y": 833,
+     "w": 222,
+     "h": 52
+    },
+    "可见": true
+   },
+   {
+    "text": "特效库新增特效节点NEW",
+    "leaves": [
+     "特效库",
+     "NEW"
+    ],
+    "hasNEW": true,
+    "svg": [
+     20,
+     20
+    ],
+    "rect": {
+     "x": 805,
+     "y": 889,
+     "w": 222,
+     "h": 52
+    },
+    "可见": true
+   },
+   {
+    "text": "打开工具箱",
+    "leaves": [
+     "打开工具箱"
+    ],
+    "hasNEW": false,
+    "svg": [
+     20,
+     20
+    ],
+    "rect": {
+     "x": 805,
+     "y": 945,
+     "w": 222,
+     "h": 52
+    },
+    "可见": true
+   }
+  ],
+  "标题": "风格库"
+ }
+}

@@ -260,7 +260,7 @@ def run_compatibility_add(page: Page):
 def run_character(page: Page, asset_open=False):
     reset_fixture(page)
     asset_panel = open_asset_manager(page) if asset_open else None
-    page.get_by_role("button", name="角色库").click()
+    page.get_by_role("button", name="角色造型室").click()
     panel = page.locator('[data-liblib-overlay="primary:character"]')
     assert panel.is_visible()
     if asset_panel:

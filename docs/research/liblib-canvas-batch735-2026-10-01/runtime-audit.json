@@ -93,7 +93,7 @@
    },
    {
     "file": "src/components/LeftSidebar.tsx",
-    "line": 101,
+    "line": 110,
     "tag": "<button key={label} type=\"button\" title={why} data-inert=\"true\" className={inert} >"
    },
    {

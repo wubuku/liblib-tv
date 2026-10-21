@@ -52,7 +52,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.goto(BASE_URL, wait_until="networkidle")
     page.wait_for_timeout(400)
 
-    page.get_by_role("button", name="角色库").click()
+    page.get_by_role("button", name="角色造型室").click()
     modal = page.locator('[data-liblib-overlay="primary:character"]')
     assert modal.is_visible()
 

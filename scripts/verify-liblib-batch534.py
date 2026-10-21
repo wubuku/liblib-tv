@@ -102,6 +102,10 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("converted:open-button", "打开脚本节点" in open_button.inner_text())
 
     # 转换持久：打开工具箱面板不回退（closedOverlayState 不重置会话标记）
+    # ★★ Batch 826：「打开工具箱」已归位到**素材库 popover 内**（条件渲染
+    # ⟹ 不先开素材库就不在 DOM 里）⟹ 先开素材库再点它。
+    page.get_by_role("button", name="素材库").click()
+    page.wait_for_timeout(300)
     page.get_by_role("button", name="打开工具箱").click()
     page.wait_for_timeout(300)
     page.keyboard.press("Escape")

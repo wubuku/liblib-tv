@@ -50,7 +50,7 @@
 | 簇 | 位置 | 枚数 | 清单 |
 |---|---|---|---|
 | 顶栏 | y≈16 | **8** | 项目菜单 / 画布 2 / 工作流 / 故事板 / 发布与分享 / 开通会员 限时 45 折 / 积分余额 / Agent |
-| 底部坞 | y≈1098 | **8** | 添加节点 / 移动 / 打开工具箱 / 素材库 / 角色库 / 生成历史 / 快捷键 / 教程 |
+| 底部坞 | y≈1098 | **7** | 添加节点 / 移动 / 素材库 / 角色造型室 / 生成历史 / 快捷键 / 教程 |
 | 左下控制 | y≈1104 | **6** | 资产管理 / 整理画布，Option+Shift+F / 切换小地图 / 隐藏节点连线 / 网格吸附 / 缩放选项 |
 | **连线删除手柄** | 散布 | **11** | 全部 `aria-label="删除连线"`，**各 8×8** |
 | 杂项 | @(645,9) | 1 | `取消 ESC` 55×16（中心命中 `div`，不是自己） |
@@ -245,21 +245,28 @@ def check_4(r: dict[str, Any]) -> None:
 
 
 def check_5(r: dict[str, Any]) -> None:
-    """画布外壳 35 枚按钮分五簇：顶栏 8 / 底部坞 8 / 左下 6 / 连线手柄 11 / 杂项 2。
+    """画布外壳 34 枚按钮分五簇：顶栏 8 / 底部坞 7 / 左下 6 / 连线手柄 11 / 杂项 2。
 
-    ★★ Batch 824（2026-10-21）起这里是 **35 而不是 34**：clone 补上了
+    ★★ Batch 824（2026-10-21）起这里是 34 枚而不是 33 枚：clone 补上了
     **源站本来就有**的那枚「TV Director」入口 —— 源站实测（2026-10-21，
     无头 + 登录态）：底部工具条的**药丸之外**隔 **14px** 单独挂一枚
     **48×48** 的圆钮，读数见
     `docs/research/liblib-canvas-batch824-2026-10-01/raw/source-824-bottombar.json`。
-    ⟹ ★ 它**不算底部坞那一枚**：坞里那 8 枚都是 y=1098 的 32×32，
+    ⟹ ★ 它**不算底部坞那一枚**：坞里那 7 枚都是 y=1098 的 32×32，
     而它是 **48×48**、与坞的按钮行**同轴**（中心 y 相同）⟹ 它的 y 是 1090，
-    ⟹ 于是落进「杂项」簇 ⟹ ★★ **底部坞仍然是 8 枚**，只是杂项从 1 变成 2。
+    ⟹ 于是落进「杂项」簇 ⟹ ★★ **底部坞仍然是 7 枚**，只是杂项从 1 变成 2。
+
+    ★★ Batch 826（2026-10-21）起这里又回到 **34 枚 / 坞 7 枚**：源站那一簇
+    经 `data-sidebar-btn` 逐枚枚举是 **7 枚**（add-node / tool-mode /
+    open-asset / character-library / history / keyboard / contact），而 clone
+    此前多出的那枚「打开工具箱」在**源站是素材库 popover 内**的第 3 枚
+    ⟹ ⟹ clone 把它归位 ⟹ 坞从 8 枚变回 **7 枚**、总数 35 → **34**
+    （杂项仍是 2 枚：取消 ESC + TV Director）。
     ⟹ ★ 这条普查的**性质**（几枚按钮、分几簇）没有被推翻，被推翻的只是
-    「总数 34」这个**观测值** ⟹ ★ 期望值跟着实现更新，门禁照样有牙。
+    「总数 35 / 坞 8」这两个**观测值** ⟹ ★ 期望值跟着实现更新，门禁照样有牙。
     """
     ch = r["chrome"]
-    assert len(ch) == 35, len(ch)
+    assert len(ch) == 34, len(ch)
     handles = [b for b in ch if b["label"] == "删除连线"]
     assert len(handles) == 11, len(handles)
     top = [b for b in ch if 16 <= b["y"] <= 18]
@@ -268,7 +275,7 @@ def check_5(r: dict[str, Any]) -> None:
     other = [b for b in ch
              if b not in handles and b not in top
              and b not in dock and b not in left]
-    assert (len(top), len(dock), len(left)) == (8, 8, 6), (
+    assert (len(top), len(dock), len(left)) == (8, 7, 6), (
         len(top), len(dock), len(left))
     assert len(other) == 2, other
     assert {b["label"] for b in other} == {"取消 ESC", "TV Director"}, other

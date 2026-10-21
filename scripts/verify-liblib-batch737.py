@@ -406,8 +406,13 @@ def main() -> int:
          f"出现={summary['poseAdded']}(preset {summary['posePreset']}+control "
          f"{summary['poseControl']}) 消失={summary['poseRemoved']} 净增={summary['poseDelta']} "
          f"可逆={summary['poseReversible']}"),
-        ("C10 台外 37 枚（关闭态）/ 48 枚（flyout 开着），其中 11 枚是连线删除手柄",
-         summary["outRootClosed"] == 37 and summary["outRootFlyout"] == 48
+        ("C10 台外 36 枚（关闭态）/ 47 枚（flyout 开着），其中 11 枚是连线删除手柄",
+         # ★★ Batch 826（2026-10-21）：**36 / 47**（此前 37 / 48）——
+         # ★ 原因可数：底部那一簇少了一枚可聚焦按钮（「打开工具箱」按源站归位
+         #   到素材库面板内，而那个面板关闭时**不在 DOM 里**）⟹ 台外少 1 枚。
+         # ★ ★★ 注意：这个「少 1」是**源站对齐的结果**，不是退化 —— 源站那一簇
+         #   本来就是 7 枚（`data-sidebar-btn` 逐枚枚举，见 batch 826）。
+         summary["outRootClosed"] == 36 and summary["outRootFlyout"] == 47
          and Counter(closed_state["outNames"])["删除连线"] == 11
          # ★ Batch 824 起 +1：那枚「TV Director」入口（源站本来就有，clone 补上了）
          and Counter(closed_state["outNames"])["TV Director"] == 1,

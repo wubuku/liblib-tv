@@ -290,8 +290,22 @@ def run(browser: Any) -> dict[str, Any]:
     for label, view in ((None, "canvas"), ("打开工具箱", "toolbox"),
                         ("生成历史", "history"), ("教程", "tutorial")):
         if label:
-            page.evaluate("""(l) => { const b = document.querySelector('[aria-label="' + l + '"]');
-              if (b) b.click(); }""", label)
+            # ★★ Batch 826：「打开工具箱」已归位到**素材库 popover 内**
+            # （面板条件渲染 ⟹ 不先开素材库就**不在 DOM 里**）⟹ 先开素材库。
+            if label == "打开工具箱":
+                page.evaluate("""() => { const b = document.querySelector('[aria-label="素材库"]');
+                  if (b) b.click(); }""")
+                page.wait_for_timeout(500)
+                # ★★ 必须用 data-material-entry：素材库面板里那枚按钮
+                #   **没有 aria-label**（靠可见文字，源站那几枚也一样）⟹
+                # ★★ 用 aria-label 会**静默找不到** ⟹ 工具箱面板压根不开 ⟹
+                # ★★ 那一视图的读数会少掉面板里的两枚（实测 43 → 41）。
+                page.evaluate("""() => { const b = document.querySelector('[data-material-entry="打开工具箱"]');
+                  if (b) b.click(); }""")
+                page.wait_for_timeout(500)
+            else:
+                page.evaluate("""(l) => { const b = document.querySelector('[aria-label="' + l + '"]');
+                  if (b) b.click(); }""", label)
             page.wait_for_timeout(700)
         out["views"][view] = collect(page, cdp)
     page.evaluate("""() => { const b = [...document.querySelectorAll('button')]

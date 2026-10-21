@@ -1,0 +1,27 @@
+{
+ "i18n_chunk": "e602a5b3e0_3sqc5lvxsgmdw.js.js",
+ "i18n_chunk_bytes": 357251,
+ "抽出的键": {
+  "characterLibraryTitle": "角色库",
+  "characterStudioTitle": "角色造型室",
+  "characterStudioLibraryTitle": "角色造型室",
+  "characterStudioLibraryDescription": "创建、管理并复用角色的造型、状态与音色",
+  "characterStudioMyLibrary": "我的角色库",
+  "characterStudioOfficialLibrary": "官方角色库",
+  "characterStudioMultiSelect": "多选",
+  "characterStudioExitMultiSelect": "退出多选",
+  "characterStudioSearchPlaceholder": "搜索角色名称或描述",
+  "characterStudioAddToCanvas": "添加到画布",
+  "characterStudioViewAssets": "查看角色资产",
+  "publicCharacterLibrary": "公共角色库",
+  "seedanceComplianceLibrary": "Seedance、Seedance 2.5 合规素材库",
+  "characterApplyToCanvas": "应用至画布",
+  "characterFilterGender": "性别",
+  "characterFilterAgeGroup": "年龄段",
+  "characterFilterCultureRegion": "文化区域"
+ },
+ "含 CharacterLibrary/CharacterStudio 的键": {
+  "publicCharacterLibrary": "公共角色库",
+  "publicCharacterLibrarySource": "来自公共角色库"
+ }
+}

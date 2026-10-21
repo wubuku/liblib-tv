@@ -55,6 +55,13 @@ def run_desktop(page: Page):
     page.wait_for_timeout(400)
     assert_graph_unchanged(page)
 
+    # ★★ Batch 826：源站底部工具条那一簇是 **7 枚**（`data-sidebar-btn`
+    # 逐枚枚举：add-node / tool-mode / open-asset / character-library /
+    # history / keyboard / contact），**没有**「打开工具箱」⟹ 那枚在源站
+    # 位于**素材库面板内**（第 3 枚）⟹ clone 同步归位 ⟹ 这里改成
+    # 「先开素材库，再点面板里的『打开工具箱』」，**断言强度不变**
+    # （仍然断言「工具箱面板是唯一打开的浮层」）。
+    page.get_by_role("button", name="素材库").click()
     page.get_by_role("button", name="打开工具箱").click()
     assert_only_overlay(page, "primary:toolbox")
 
@@ -77,7 +84,7 @@ def run_desktop(page: Page):
     page.get_by_role("button", name="快捷键").click()
     assert_only_overlay(page, "shortcuts")
 
-    page.get_by_role("button", name="角色库").click()
+    page.get_by_role("button", name="角色造型室").click()
     assert_only_overlay(page, "primary:character")
     # Batch 111: 源站 2026-09-05 复核角色库关闭按钮 aria 为 "close"。
     page.get_by_role("button", name="close", exact=True).click()
@@ -122,6 +129,8 @@ def run_mobile(page: Page):
     page.wait_for_timeout(400)
     assert_graph_unchanged(page)
 
+    # ★★ Batch 826：同上一处 —— 「打开工具箱」已归位到素材库面板内。
+    page.get_by_role("button", name="素材库").click()
     page.get_by_role("button", name="打开工具箱").click()
     assert_only_overlay(page, "primary:toolbox")
     page.get_by_role("button", name="快捷键").click()

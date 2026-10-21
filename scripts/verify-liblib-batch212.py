@@ -63,7 +63,10 @@ def run_desktop(page: Page) -> dict[str, Any]:
     check("modal:height-720", abs(mb["height"] - 720) <= 8)
 
     # tabs + public tab content
-    check("tabs:public", page.get_by_text("公共角色库", exact=True).count() >= 1)
+    # ★★ Batch 826：源站**当前**构建里第一个页签逐字是「官方角色库」
+    # （旧的「公共角色库」在当前构建的活体 UI 上 0 命中）⟹ 期望值更新，
+    # ★★ 断言强度不变（仍然逐字计数）。
+    check("tabs:public", page.get_by_text("官方角色库", exact=True).count() >= 1)
     check("tabs:compliance", page.get_by_text("Seedance2.0&2.5合规素材库", exact=True).count() >= 1)
 
     page.keyboard.press("Escape")

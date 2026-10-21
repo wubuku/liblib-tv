@@ -113,11 +113,11 @@
     "data-director-keyframe-id": 6
    },
    "outRoot": {
-    "root": 36,
+    "root": 35,
     "data-director-node": 1
    },
    "inRootTotal": 142,
-   "outRootTotal": 37,
+   "outRootTotal": 36,
    "outNames": [
     "项目菜单",
     "工作区名称",
@@ -143,9 +143,8 @@
     "取消 ESC",
     "添加节点",
     "移动",
-    "打开工具箱",
     "素材库",
-    "角色库",
+    "角色造型室",
     "生成历史",
     "快捷键",
     "教程",
@@ -228,12 +227,12 @@
     "data-director-keyframe-id": 6
    },
    "outRoot": {
-    "root": 36,
+    "root": 35,
     "data-director-node": 1,
     "data-director-character-option": 11
    },
    "inRootTotal": 142,
-   "outRootTotal": 48,
+   "outRootTotal": 47,
    "outNames": [
     "项目菜单",
     "工作区名称",
@@ -259,9 +258,8 @@
     "取消 ESC",
     "添加节点",
     "移动",
-    "打开工具箱",
     "素材库",
-    "角色库",
+    "角色造型室",
     "生成历史",
     "快捷键",
     "教程",
@@ -508,9 +506,9 @@
   "createPortalLine": 308,
   "railEntries": 6,
   "inRootClosed": 142,
-  "outRootClosed": 37,
+  "outRootClosed": 36,
   "inRootFlyout": 142,
-  "outRootFlyout": 48,
+  "outRootFlyout": 47,
   "flyoutOutAdded": 11,
   "flyoutOutNames": 11,
   "insideCapture": 0,
