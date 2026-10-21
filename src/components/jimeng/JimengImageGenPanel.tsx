@@ -37,7 +37,7 @@ export function JimengImageGenPanel({
      「展开面板」「添加参考」「引用参考」×2 + 「生成」。
      本批接中间三个（引用类）：走 `startRefPicking()` —— 与视频生成面板的
      「从画布选择」同一套 store 机制（进点选模式 ⇒ 点画布上任一个媒体节点即引用）。
-     「展开面板」要开「已展开的生成器」浮层 ⇒ ⇒ 留到 ②b-4。
+     「展开面板」⇒ **1032-②b-4 已接**：开「已展开的图片生成器」浮层。
      ⚠️ **不用空 handler 骗门**：那样它们会从「死按钮清单」里消失，
      而用户点下去仍然什么都不会发生 ⇒ ⇒ 那比死按钮更坏。 */
   const startRefPicking = useJimengStore((s) => s.startRefPicking);
@@ -45,6 +45,7 @@ export function JimengImageGenPanel({
      ⇒ ⇒ 走 store 的 `generateImageInto`：节点进入「生成中」，
      3s 后变成**有画面的**图片节点（页面上的 `<img>` 真的多出来一张）。 */
   const generateImageInto = useJimengStore((s) => s.generateImageInto);
+  const openExpandedGenLayer = useJimengStore((s) => s.openExpandedGenLayer);
   const pushToast = useJimengStore((s) => s.pushToast);
   /* 批 835 SOURCE_FACT：这两个下拉在源站上**互斥**（开下一个 ⇒ 上一个关闭），
      复刻此前是两个独立 state，能同时开着。收成一个。 */
@@ -56,6 +57,7 @@ export function JimengImageGenPanel({
         <button
           type="button"
           aria-label="展开面板"
+          onClick={() => openExpandedGenLayer("image", nodeId)}
           className="absolute -top-1.5 right-0 z-[2] flex size-10 items-center justify-center"
         >
           <span className="flex size-6 items-center justify-center rounded-full text-white/60">

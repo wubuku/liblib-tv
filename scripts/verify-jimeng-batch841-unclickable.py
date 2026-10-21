@@ -6018,6 +6018,12 @@ def main() -> int:
     _p1032b3s = p1032b3s.read_text(encoding="utf-8") if p1032b3s.exists() else ""
     p1032b3f = ROOT / "scripts/jimeng_probe1032b3_fake_crash_probe.mjs"
     _p1032b3f = p1032b3f.read_text(encoding="utf-8") if p1032b3f.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②b-4：「已展开的生成器」浮层那道门（**运行时**那一条）
+    #   ⚠️ 必须**同时登记 .py 与 .mjs**：.py 是判据、.mjs 是真去点一遍的那个探针
+    p1032b4 = ROOT / "scripts/jimeng_probe1032b4_expanded_contract.py"
+    _p1032b4 = p1032b4.read_text(encoding="utf-8") if p1032b4.exists() else ""
+    p1032b4r = ROOT / "scripts/jimeng_probe1032b4_expanded_runtime.mjs"
+    _p1032b4r = p1032b4r.read_text(encoding="utf-8") if p1032b4r.exists() else ""
     # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
     _ws = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(encoding="utf-8")
     _tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
@@ -16930,6 +16936,96 @@ def main() -> int:
           "**不等于**「复刻与源站逐字一致」。",
           _p1032b3_ok and _p1032b3_out_ok() and _p1032b3_writeoff_ok()
           and _p1032b3s_out_ok())
+    # ⭐⭐⭐⭐⭐ 1032-②b-4：这条判据守着「**已展开的生成器**浮层点了到底有没有发生事」
+    def _p1032b4_out_ok() -> bool:
+        _pb = ROOT / "docs/research/jimeng-canvas/expanded-contract-1032b4.json"
+        if not _pb.exists():
+            return False
+        try:
+            _db = json.loads(_pb.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _cb = _db.get("P") or {}
+        if not _cb:
+            return False
+        return all(v is True for v in _cb.values())
+
+    def _p1032b4_writeoff_ok() -> bool:
+        """销账证明：那几枚「展开面板」/「展开视频生成器」**真的从白名单里没了**。"""
+        _al = ROOT / "docs/research/jimeng-canvas/inputs/interaction-wiring-allowlist-1032.json"
+        _ck = ROOT / "docs/research/jimeng-canvas/interaction-wiring-check-1032.json"
+        if not _al.exists() or not _ck.exists():
+            return False
+        try:
+            _a = json.loads(_al.read_text(encoding="utf-8"))
+            _c = json.loads(_ck.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _keys = [e.get("stable_key") for e in (_a.get("entries") or [])]
+        _expand = [k for k in _keys
+                   if k and ("展开面板" in k or "展开视频生成器" in k)]
+        _n_dead = _c.get("n_dead_buttons")
+        return (
+            # ⭐ 那几枚**真的从白名单里没了**
+            not _expand
+            # ⭐ 死按钮数与白名单条目数必须**对得上**（同一件事的两份读数）
+            and _a.get("n") == _n_dead == _c.get("n_allowlist_entries")
+            # ⭐⭐ **不钉具体数字** —— 死按钮数会合法地变小
+            and isinstance(_n_dead, int) and _n_dead <= 4
+        )
+
+    _p1032b4_ok = (
+        # ⭐⭐⭐⭐⭐ 运行时探针必须**真的去点一遍** —— 不能只是读源码
+        "expand_button_opens_layer" in _p1032b4r
+        and "layer_is_dialog_with_source_aria" in _p1032b4r
+        and "layer_geometry_matches_source" in _p1032b4r
+        and "layer_has_no_input_or_textarea" in _p1032b4r
+        and "layer_has_five_ref_type_buttons" in _p1032b4r
+        and "ref_type_switch_is_observable" in _p1032b4r
+        and "empty_prompt_generate_does_nothing" in _p1032b4r
+        and "generate_enters_generating" in _p1032b4r
+        and "collapse_button_closes_layer" in _p1032b4r
+        and "escape_closes_layer_but_keeps_edit_mode" in _p1032b4r
+        and "backdrop_click_closes_layer" in _p1032b4r
+        and "insert_selects_only_the_new_node" in _p1032b4r
+        # ⭐⭐⭐⭐⭐ 「仪器没跑 ≠ 产品坏了」必须**自己被量**
+        and "probe_actually_ran" in _p1032b4r
+        # ⭐⭐⭐⭐⭐ 判据必须**自己从原始字段重算**（不信探针给的 ok 标志）
+        and "j_geometry" in _p1032b4
+        and "upstream_ok_flag_left_untouched" in _p1032b4
+        # ⭐⭐⭐⭐⭐ 阳性对照必须**改原始字段**（不是改 ok 标志）
+        and "field_actually_changed" in _p1032b4
+        # ⭐⭐⭐⭐⭐ **裸子串对前缀型注入恒真** ⇒ 必须用带引号的完整 token
+        and '"P15_mutation_makes_judgement_red_1032b4"' in _p1032b4
+        # ⭐⭐⭐⭐⭐ 关键尺寸必须走 inline style ⇒ 不依赖 CSS 构建产物
+        #   （本仓 dev server 是 Next.js + Tailwind v4 + **PostCSS** ⇒ **不监听新内容文件**
+        #     ⇒ 新建组件的类名不进生成的 CSS ⇒ 量几何会读到陈旧 CSS ⇒ 假阴性）
+        and "不依赖 CSS 构建产物" in _p1032b4r
+    )
+    check("DD993X.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「已展开的生成器」浮层这件事**必须由运行时来回答**："
+          "1032-②b-4 把三条「展开面板」+ 一条「展开视频生成器」接上了"
+          "⇒ ⇒ 死按钮 4 → 0（静态门 DD993S.1 那一栏销账、白名单清空）。"
+          "⭐⭐⭐⭐⭐ 但「有 onClick」**不等于**「点了有反应」⇒ ⇒ 所以新门**真点一遍**："
+          "点「展开」⇒ ⇒ 浮层出现（`[data-testid=\"expanded-gen-layer\"]`）；"
+          "它是 `role=\"dialog\"`、aria 逐字「已展开的视频生成器」（SOURCE_FACT 批次 1032-②b-1）；"
+          "几何 **920×480 / radius 20px / position fixed / z 50 / 相对视口居中**；"
+          "浮层内**没有 input/textarea**（提示词区是 contenteditable）；"
+          "5 枚 **42×36** 的普通按钮（全部/图片/视频/音频/文本，**没有** role=tab）；"
+          "点一枚类型钮 ⇒ ⇒ 「引用参考」的 aria-label **真的变了**。"
+          "⭐⭐⭐⭐⭐ **负控**：提示词为空点「生成」⇒ ⇒ **什么也不该发生**；"
+          "打了字点「生成」⇒ ⇒ 节点**真的出现「生成中…」**；"
+          "`Esc` ⇒ ⇒ 浮层关、**且那个节点仍在选中态**（编辑态**没退**）。"
+          "⭐⭐⭐⭐⭐ 判据**自己从原始字段重算**（不信探针给的 `ok` 标志）"
+          "⇒ ⇒ 阳性对照**改原始字段**（几何的 `w`）、**不碰上游标志**"
+          "⇒ ⇒ 变异后上游标志仍是 `true` 而门仍判红 ⇒ ⇒ 这才证明门是**重算**的。"
+          "⭐⭐⭐⭐⭐ 顺带修掉一个**真缺陷**：插入节点时旧节点**没被取消选中**"
+          "⇒ ⇒ 两个 selected ⇒ 按 SOURCE_FACT 批 62「多选时不显示生成面板」"
+          "⇒ ⇒ **任何节点都不显示面板** ⇒ 新插的节点等于废掉"
+          "⇒ ⇒ 判据 `P13` 把「插入后只有一个节点被选中」钉住。"
+          "⚠️⭐⭐ 诚实标注边界：源站只实测过**视频**这一种浮层（图片/音频是 CLONE_DECISION）；"
+          "5 枚类型按钮的**确切作用未逐项验证**；「Esc 关浮层但提示词不保留」是 CLONE_DECISION。",
+          _p1032b4_ok and _p1032b4_out_ok() and _p1032b4_writeoff_ok())
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

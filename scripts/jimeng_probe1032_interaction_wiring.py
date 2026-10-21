@@ -164,11 +164,31 @@ out["P4_injected_dead_button_is_caught_1032"] = bool(p1_ok and (not _inj_ok))
 #   ⇒⇒⇒⇒ ② 往 `NOTES` 加一条不存在的 ⇒ 真源比现状多一条 ⇒ **必须红**（= 该销账了）
 #   ⇒⇒⇒⇒ ⇒⇒ 两边都红 ⇒⇒ 「多一条红」与「少一条红」**两条都真**。
 _victim = sorted(notes_keys)[0] if notes_keys else ""
-_m_del_ok, m_del = p1_exact(buttons, notes_keys - {_victim})
+# ⭐⭐⭐⭐⭐ 1032-②b-4：白名单**清空**之后，「从 `NOTES` **删一条**」这个对照
+#   **无从下手** ⇒ ⇒ `_victim` 是空串 ⇒ ⇒ `notes_keys - {""}` == 空集
+#   ⇒ ⇒ 而现状（死按钮）也恰好是空集 ⇒ ⇒ **两个集合相等**
+#   ⇒ ⇒ ⇒ `p1_exact` 返回「一致」⇒ ⇒ ⇒ **那半句恒真** ⇒ ⇒ ⇒ **门红**。
+# ⇒ ⇒⇒ **「恒真」和「不适用」必须分开** —— 恒真是病，不适用是事实。
+# ⇒ ⇒⇒⇒ 处置：表为空时，那半句记为 **not_applicable**（**不是通过**），
+#   而「现状多一条」这个方向**由 P4 的注入覆盖**（P4 往现状里注入一条死按钮
+#   ⇒ ⇒ 必须红）⇒ ⇒⇒ 两个方向仍然都有阳性对照。
+_del_applicable = bool(_victim)
+if _del_applicable:
+    _m_del_ok, m_del = p1_exact(buttons, notes_keys - {_victim})
+    _p6_ok = (not _m_del_ok) and _victim in m_del.get("new_dead", [])
+else:
+    _m_del_ok, m_del = None, {}
+    _p6_ok = True
 _m_add_ok, m_add = p1_exact(buttons, notes_keys | {"__fake_entry__"})
-out["P6_more_than_source_is_red_1032"] = bool(
-    (not _m_del_ok) and _victim in m_del.get("new_dead", []))
-out["P6_detail"] = {"victim": _victim, "new_dead": m_del.get("new_dead", [])[:5]}
+out["P6_more_than_source_is_red_1032"] = bool(_p6_ok)
+# ⭐⭐⭐ 读数必须**自报**「两半里几半适用」—— 与 1026 那条纪律同款：
+#   报「P 全 True」而不报「其中几条是恒真/不适用」，那句话就比它听起来更漂亮。
+out["P6_detail"] = {"victim": _victim, "new_dead": m_del.get("new_dead", [])[:5],
+                     "del_half_applicable": _del_applicable,
+                     "add_half_applicable": True,
+                     "n_halves_applicable": (1 if _del_applicable else 0) + 1,
+                     "note": "⭐ 表为空时「删一条」那半句**不适用**（不是通过）；"
+                             "「现状多一条」那个方向由 P4 的注入覆盖"}
 out["P7_fewer_than_source_is_red_1032"] = bool(
     (not _m_add_ok) and "__fake_entry__" in m_add.get("stale_allow", []))
 out["P7_detail"] = {"stale_allow": m_add.get("stale_allow", [])[:5]}

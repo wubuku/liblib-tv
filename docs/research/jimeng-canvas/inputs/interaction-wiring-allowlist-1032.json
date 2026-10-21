@@ -2,45 +2,8 @@
  "generated_by": "jimeng_probe1032_build_allowlist.py（entries 为人工标注，honest_disabled 自动同步）",
  "purpose": "⭐⭐ 白名单**同时是修复清单**：每条写明它属于哪类糊弄、为什么。",
  "rule": "⭐ 门 P1：代码里的死按钮必须**恰好**等于 entries —— 多一条（新增糊弄）红、少一条（修好了却没销账）也红。",
- "n": 4,
- "entries": [
-  {
-   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0",
-   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 344,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"展开面板\"",
-   "kind": "NO_EFFECT",
-   "note": "『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4"
-  },
-  {
-   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"展开面板\"#0",
-   "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 218,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"展开面板\"",
-   "kind": "NO_EFFECT",
-   "note": "『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4"
-  },
-  {
-   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"展开视频生成器\"#0",
-   "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 410,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"展开视频生成器\"",
-   "kind": "NO_EFFECT",
-   "note": "『展开视频生成器』无 onClick —— 源站实测点它开「已展开的视频生成器」浮层（role=dialog / 920×480 / 内含 全部·图片·视频·音频·文本 参考 tab）⇒ 浮层组件尚未做 ⇒ 留到 ②b-4"
-  },
-  {
-   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"展开面板\"#0",
-   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 56,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"展开面板\"",
-   "kind": "NO_EFFECT",
-   "note": "『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4"
-  }
- ],
+ "n": 0,
+ "entries": [],
  "honest_disabled": [
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",

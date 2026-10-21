@@ -237,13 +237,14 @@ export function JimengAudioGenPanel({
        点一个媒体节点即引用；与视频生成面板的「从画布选择」同一套 store 机制）
      · 显示折扣详情 → 本地展开层，把折扣详情显出来（源站那枚 1px 裁切叶
        「Current price 12. Original 24」一直都在 DOM 里，只是看不见）
-     「展开面板」要开「已展开的生成器」浮层 ⇒ 留到 ②b-2（要先有那个浮层组件）。
+     「展开面板」⇒ **1032-②b-4 已接**：开「已展开的音频生成器」浮层。
      ⚠️ 音频面板的「生成」钮虽有 onClick，但**函数体是空的**（注释写着
-     「mock: 音频生成流程未接入」）⇒ 那是另一类糊弄（NOOP），本门扫不到，
-     留到 ②b-2 一起接。 */
+     「mock: 音频生成流程未接入」）⇒ 那是另一类糊弄（NOOP），本门扫不到
+     ⇒ **1032-②b-2 已接上**（`generateAudioInto`）。 */
   const startRefPicking = useJimengStore((s) => s.startRefPicking);
   /* ⭐⭐⭐ Batch 1032-②b-2：音频「生成」接**真 action**（此前是空 handler）。 */
   const generateAudioInto = useJimengStore((s) => s.generateAudioInto);
+  const openExpandedGenLayer = useJimengStore((s) => s.openExpandedGenLayer);
   const pushToast = useJimengStore((s) => s.pushToast);
   const [discountOpen, setDiscountOpen] = useState(false);
   const [genKind, setGenKind] = useState("音频生成");
@@ -344,6 +345,7 @@ export function JimengAudioGenPanel({
         <button
           type="button"
           aria-label="展开面板"
+          onClick={() => openExpandedGenLayer("audio", nodeId)}
           className="absolute -top-1.5 right-0 z-[2] flex size-10 items-center justify-center"
         >
           <span className="flex size-6 items-center justify-center rounded-full text-white/60">
@@ -864,7 +866,7 @@ export function JimengAudioGenPanel({
                                 <ChevronDown size={10} className="text-white/50" />
                               </button>
                               {/* ⚠️⚠️ 批 875 SOURCE_FACT：源站选中一个值之后，
-                                 芯片**右边**会冒出���个 16×16 的清除钮，
+                                 芯片**右边**会冒出一个 16×16 的清除钮，
                                  `aria-label="Clear {筛选名} filter"`（英文，
                                  逐字照抄；探针 875 四个筛选钮**逐个**量到，
                                  4/4 一致，不是拿性别外推的）。

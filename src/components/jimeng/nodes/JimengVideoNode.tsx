@@ -241,6 +241,23 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
         minimal={editMode}
       />
 
+      {/* ⭐⭐⭐ 1032-②b-4：视频节点的「生成中…」覆盖层 ——
+          此前**根本没有**这个覆盖层 ⇒ ⇒ `generateInto()` 写进了 store
+          （`data.generating = true`）⇒ ⇒ **而页面上看不到任何变化**
+          ⇒ ⇒ 「点了没反应」—— **那一类比死按钮更坏**（死按钮一看就知道点不动）。
+          ⇒ ⇒ 照图片侧（`data-jimeng-image-generating`）补一枚同款锚点
+          ⇒ ⇒ 于是「生成」这件事**可观察**了 ⇒ ⇒ 门才验得了它。
+          ⚠️ 源站这个态要付费才能看到 ⇒ ⇒ CLONE_DECISION。 */}
+      {d.generating ? (
+        <div
+          className="absolute inset-0 z-[3] flex flex-col items-center justify-center gap-2 rounded-lg bg-black/55"
+          data-jimeng-video-generating=""
+        >
+          <span className="size-6 animate-spin rounded-full border-2 border-white/25 border-t-white" />
+          <span className="text-[12px] text-white/85">生成中…</span>
+        </div>
+      ) : null}
+
       {/* 连接热区 (隐形 60×120) + 「Create connected node」+ 环钮
           (Batch 804: 源站实名/两侧都有/仅选中挂载/贴缘外 3px) */}
       <JimengConnectHandles

@@ -224,6 +224,21 @@ export interface JimengCanvasState {
   mentionPanelOpen: boolean;
   /** 开/关 @ 面板（开=面板当前挂在某处；关=没有） */
   setMentionPanelOpen: (open: boolean) => void;
+  /**
+   * ⭐⭐⭐ Batch 1032-②b-4：「**已展开的生成器**」浮层（SOURCE_FACT 批次 1032-②b-1：
+   * 源站点「展开视频生成器」⇒ 出一个 `role="dialog"` / `aria-label="已展开的视频生成器"`
+   * / `position: fixed` / 920×480 / radius 20 / z 50 的**居中浮动面板**）。
+   *
+   * ⭐⭐⭐ **为什么它必须住在 store 里**（与 `mentionPanelOpen` 同一个理由）：
+   * 源站的退出路径是**分级的** —— `Esc` 先关**最上层浮层**、**不退编辑态**
+   * ⇒ ⇒ 而 `Esc` 的总调度在 workspace ⇒ ⇒ **组件本地 state 会被 workspace 看不见**
+   * ⇒ ⇒ ⇒ 于是 Esc 会直接退出整个编辑态 ⇒ ⇒ **与源站不符**。
+   */
+  expandedGenLayer: { kind: "video" | "image" | "audio"; nodeId: string } | null;
+  /** 打开「已展开的生成器」浮层（kind = 从哪枚面板打开的） */
+  openExpandedGenLayer: (kind: "video" | "image" | "audio", nodeId: string) => void;
+  /** 关闭「已展开的生成器」浮层 */
+  closeExpandedGenLayer: () => void;
   /** 离线编辑冲突对话框 (Batch 82, SOURCE_FACT 81-after-reload-state.png)；
       复刻侧无真实离线态，经 dev window hook 触发 */
   offlineDialogOpen: boolean;
@@ -1235,6 +1250,11 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   mentionPanelOpen: false,
   setMentionPanelOpen: (open) => set({ mentionPanelOpen: open }),
 
+  // Batch 1032-②b-4: 「已展开的生成器」浮层（Esc 分级退出的**最上层**）
+  expandedGenLayer: null,
+  openExpandedGenLayer: (kind, nodeId) => set({ expandedGenLayer: { kind, nodeId } }),
+  closeExpandedGenLayer: () => set({ expandedGenLayer: null }),
+
   offlineDialogOpen: false,
 
   setOfflineDialog: (open) => set({ offlineDialogOpen: open }),
@@ -1456,8 +1476,17 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           ...markDirty(state),
           past: [...state.past, { nodes: state.nodes, edges: state.edges }],
           future: [],
+          // ⭐⭐⭐ Batch 1032-②b-4 修掉的**真缺陷**：此前 `addNodeAt`
+          // 只把新节点设成 `selected: true`，**没有取消旧节点的选中态**
+          // ⇒ ⇒ 插入后 store 里**有两个** selected
+          // ⇒ ⇒ `soloSelected`（selected 数量 === 1）变成 false
+          // ⇒ ⇒ 按 SOURCE_FACT 批 62（多选时不显示生成面板）
+          // ⇒ ⇒ **任何节点都不显示生成面板/工具条** ⇒ 新插的节点等于废掉。
+          // ⇒ ⇒ 同时补上 `selectedNodeId`：否则 ⌘C/⌘D/Delete 仍作用在**旧**节点上。
+          selectedNodeId: id,
           nodes: [
-            ...state.nodes,
+            // ⭐⭐⭐ 取消旧节点的选中态（详见上面 `selectedNodeId` 处的说明）
+            ...state.nodes.map((n) => (n.selected ? { ...n, selected: false } : n)),
             {
               ...base,
               type: "video" as const,
@@ -1477,8 +1506,17 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           ...markDirty(state),
           past: [...state.past, { nodes: state.nodes, edges: state.edges }],
           future: [],
+          // ⭐⭐⭐ Batch 1032-②b-4 修掉的**真缺陷**：此前 `addNodeAt`
+          // 只把新节点设成 `selected: true`，**没有取消旧节点的选中态**
+          // ⇒ ⇒ 插入后 store 里**有两个** selected
+          // ⇒ ⇒ `soloSelected`（selected 数量 === 1）变成 false
+          // ⇒ ⇒ 按 SOURCE_FACT 批 62（多选时不显示生成面板）
+          // ⇒ ⇒ **任何节点都不显示生成面板/工具条** ⇒ 新插的节点等于废掉。
+          // ⇒ ⇒ 同时补上 `selectedNodeId`：否则 ⌘C/⌘D/Delete 仍作用在**旧**节点上。
+          selectedNodeId: id,
           nodes: [
-            ...state.nodes,
+            // ⭐⭐⭐ 取消旧节点的选中态（详见上面 `selectedNodeId` 处的说明）
+            ...state.nodes.map((n) => (n.selected ? { ...n, selected: false } : n)),
             {
               ...base,
               type: "image" as const,
@@ -1492,8 +1530,17 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           ...markDirty(state),
           past: [...state.past, { nodes: state.nodes, edges: state.edges }],
           future: [],
+          // ⭐⭐⭐ Batch 1032-②b-4 修掉的**真缺陷**：此前 `addNodeAt`
+          // 只把新节点设成 `selected: true`，**没有取消旧节点的选中态**
+          // ⇒ ⇒ 插入后 store 里**有两个** selected
+          // ⇒ ⇒ `soloSelected`（selected 数量 === 1）变成 false
+          // ⇒ ⇒ 按 SOURCE_FACT 批 62（多选时不显示生成面板）
+          // ⇒ ⇒ **任何节点都不显示生成面板/工具条** ⇒ 新插的节点等于废掉。
+          // ⇒ ⇒ 同时补上 `selectedNodeId`：否则 ⌘C/⌘D/Delete 仍作用在**旧**节点上。
+          selectedNodeId: id,
           nodes: [
-            ...state.nodes,
+            // ⭐⭐⭐ 取消旧节点的选中态（详见上面 `selectedNodeId` 处的说明）
+            ...state.nodes.map((n) => (n.selected ? { ...n, selected: false } : n)),
             {
               ...base,
               type: "audio" as const,
@@ -1508,8 +1555,17 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           ...markDirty(state),
           past: [...state.past, { nodes: state.nodes, edges: state.edges }],
           future: [],
+          // ⭐⭐⭐ Batch 1032-②b-4 修掉的**真缺陷**：此前 `addNodeAt`
+          // 只把新节点设成 `selected: true`，**没有取消旧节点的选中态**
+          // ⇒ ⇒ 插入后 store 里**有两个** selected
+          // ⇒ ⇒ `soloSelected`（selected 数量 === 1）变成 false
+          // ⇒ ⇒ 按 SOURCE_FACT 批 62（多选时不显示生成面板）
+          // ⇒ ⇒ **任何节点都不显示生成面板/工具条** ⇒ 新插的节点等于废掉。
+          // ⇒ ⇒ 同时补上 `selectedNodeId`：否则 ⌘C/⌘D/Delete 仍作用在**旧**节点上。
+          selectedNodeId: id,
           nodes: [
-            ...state.nodes,
+            // ⭐⭐⭐ 取消旧节点的选中态（详见上面 `selectedNodeId` 处的说明）
+            ...state.nodes.map((n) => (n.selected ? { ...n, selected: false } : n)),
             {
               ...base,
               type: "timeline" as const,
@@ -1523,8 +1579,17 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           ...markDirty(state),
           past: [...state.past, { nodes: state.nodes, edges: state.edges }],
           future: [],
+          // ⭐⭐⭐ Batch 1032-②b-4 修掉的**真缺陷**：此前 `addNodeAt`
+          // 只把新节点设成 `selected: true`，**没有取消旧节点的选中态**
+          // ⇒ ⇒ 插入后 store 里**有两个** selected
+          // ⇒ ⇒ `soloSelected`（selected 数量 === 1）变成 false
+          // ⇒ ⇒ 按 SOURCE_FACT 批 62（多选时不显示生成面板）
+          // ⇒ ⇒ **任何节点都不显示生成面板/工具条** ⇒ 新插的节点等于废掉。
+          // ⇒ ⇒ 同时补上 `selectedNodeId`：否则 ⌘C/⌘D/Delete 仍作用在**旧**节点上。
+          selectedNodeId: id,
           nodes: [
-            ...state.nodes,
+            // ⭐⭐⭐ 取消旧节点的选中态（详见上面 `selectedNodeId` 处的说明）
+            ...state.nodes.map((n) => (n.selected ? { ...n, selected: false } : n)),
             {
               ...base,
               type: "subject" as const,
@@ -1538,8 +1603,17 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           ...markDirty(state),
           past: [...state.past, { nodes: state.nodes, edges: state.edges }],
           future: [],
+          // ⭐⭐⭐ Batch 1032-②b-4 修掉的**真缺陷**：此前 `addNodeAt`
+          // 只把新节点设成 `selected: true`，**没有取消旧节点的选中态**
+          // ⇒ ⇒ 插入后 store 里**有两个** selected
+          // ⇒ ⇒ `soloSelected`（selected 数量 === 1）变成 false
+          // ⇒ ⇒ 按 SOURCE_FACT 批 62（多选时不显示生成面板）
+          // ⇒ ⇒ **任何节点都不显示生成面板/工具条** ⇒ 新插的节点等于废掉。
+          // ⇒ ⇒ 同时补上 `selectedNodeId`：否则 ⌘C/⌘D/Delete 仍作用在**旧**节点上。
+          selectedNodeId: id,
           nodes: [
-            ...state.nodes,
+            // ⭐⭐⭐ 取消旧节点的选中态（详见上面 `selectedNodeId` 处的说明）
+            ...state.nodes.map((n) => (n.selected ? { ...n, selected: false } : n)),
             {
               ...base,
               type: "director" as const,
@@ -1552,8 +1626,17 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         ...markDirty(state),
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
         future: [],
+        // ⭐⭐⭐ Batch 1032-②b-4 修掉的**真缺陷**：此前 `addNodeAt`
+        // 只把新节点设成 `selected: true`，**没有取消旧节点的选中态**
+        // ⇒ ⇒ 插入后 store 里**有两个** selected
+        // ⇒ ⇒ `soloSelected`（selected 数量 === 1）变成 false
+        // ⇒ ⇒ 按 SOURCE_FACT 批 62（多选时不显示生成面板）
+        // ⇒ ⇒ **任何节点都不显示生成面板/工具条** ⇒ 新插的节点等于废掉。
+        // ⇒ ⇒ 同时补上 `selectedNodeId`：否则 ⌘C/⌘D/Delete 仍作用在**旧**节点上。
+        selectedNodeId: id,
         nodes: [
-          ...state.nodes,
+          // ⭐⭐⭐ 取消旧节点的选中态（详见上面 `selectedNodeId` 处的说明）
+          ...state.nodes.map((n) => (n.selected ? { ...n, selected: false } : n)),
           {
             ...base,
             type: "text" as const,

@@ -1,8 +1,8 @@
 {
  "generated_by": "jimeng_probe1032_interaction_wiring.py",
  "scan_coverage": {
-  "n_files": 54,
-  "n_buttons": 212
+  "n_files": 55,
+  "n_buttons": 220
  },
  "P2_scan_is_not_empty_1032": true,
  "n_unknown_spread": 0,
@@ -16,10 +16,12 @@
  "P4_injected_dead_button_is_caught_1032": true,
  "P6_more_than_source_is_red_1032": true,
  "P6_detail": {
-  "victim": "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0",
-  "new_dead": [
-   "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0"
-  ]
+  "victim": "",
+  "new_dead": [],
+  "del_half_applicable": false,
+  "add_half_applicable": true,
+  "n_halves_applicable": 1,
+  "note": "⭐ 表为空时「删一条」那半句**不适用**（不是通过）；「现状多一条」那个方向由 P4 的注入覆盖"
  },
  "P7_fewer_than_source_is_red_1032": true,
  "P7_detail": {
@@ -35,43 +37,13 @@
  "P5_every_allowlist_entry_still_exists_1032": true,
  "P5_missing": [],
  "button_counts": {
-  "WIRED": 202,
+  "WIRED": 214,
   "DISABLED_NO_HANDLER": 3,
-  "DEAD_NO_HANDLER": 4,
   "FORM_SUBMIT": 3
  },
- "n_dead_buttons": 4,
- "n_allowlist_entries": 4,
- "dead_buttons": [
-  {
-   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 344,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"展开面板\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 218,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"展开面板\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 410,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"展开视频生成器\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 56,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"展开面板\"",
-   "kind": "NO_EFFECT"
-  }
- ],
+ "n_dead_buttons": 0,
+ "n_allowlist_entries": 0,
+ "dead_buttons": [],
  "notes": {
   "scope": "本门只覆盖「压根没接线」这一类糊弄",
   "not_covered": [

@@ -2,6 +2,23 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+   **排除 `docs/user-manual` —— 否则整站 500。**
+   那个目录是**另一个应用**（手册站，自带 `node_modules`），里面有一个
+   **自指的符号链接** `node_modules/node_modules -> …/node_modules`
+   ⇒ ⇒ Tailwind v4 扫源码时 glob 进去 ⇒ ⇒ Turbopack 的 `track_glob`
+   跟着符号链接走进**死循环** ⇒ ⇒ 抛
+   `TurbopackInternalError: … is a symlink causes that causes an infinite loop!`
+   ⇒ ⇒ ⇒ **凡是引用 `globals.css` 的页面全部 500**（实测 `/` 与 `/jimeng/canvas/demo` 都是 500）。
+   ⚠️ 它**不是本应用的源码**（有自己的一套构建与 node_modules）
+   ⇒ ⇒ ⇒ 排除它对 Tailwind 的类名覆盖**没有任何影响**，只是别让扫描器踩进去。
+   ⚠️⚠️ **`git checkout -- src/app/globals.css` 会把这行一起还原 ⇒ ⇒ 整站又 500**
+   ⇒ ⇒ ⇒ **改这个文件前先想清楚：这一行是「活着」的，不是装饰。**
+   ⚠️ 这条也解释了另一件怪事：本仓 dev server 是 **Next.js + Tailwind v4 + PostCSS**
+   ⇒ ⇒ **PostCSS 那条路不监听新出现的内容文件** ⇒ 新建组件的类名要等
+   「CSS 文件自身发生内容变化」才被重新扫描生成（见 batch 1032-②b-4 的门禁记录）。 */
+@source not "../../docs/user-manual";
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

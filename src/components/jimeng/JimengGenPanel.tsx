@@ -99,6 +99,7 @@ export function JimengGenPanel({
   // Batch 40/50: 提示词可输入；发送 → generateInto (mock 全流程)
   const [prompt, setPrompt] = useState("");
   const generateInto = useJimengStore((s) => s.generateInto);
+  const openExpandedGenLayer = useJimengStore((s) => s.openExpandedGenLayer);
   // Batch 41/61: 模型下拉，选择持久化到 store
   /* 批 835 SOURCE_FACT：这一块面板里的 4 个下拉在源站上是**互斥**的 ——
      开下一个，上一个自动关闭。源站实测（`jimeng_probe835_panexclusive.py`，
@@ -218,6 +219,7 @@ export function JimengGenPanel({
         <button
           type="button"
           aria-label="展开面板"
+          onClick={() => openExpandedGenLayer("video", nodeId)}
           className="absolute -top-1.5 right-0 z-[2] flex size-10 items-center justify-center"
         >
           <span className="flex size-6 items-center justify-center rounded-full text-white/60">
@@ -412,6 +414,7 @@ export function JimengGenPanel({
                       <button
                         type="button"
                         aria-label="展开视频生成器"
+                        onClick={() => openExpandedGenLayer("video", nodeId)}
                         className="mt-auto flex size-10 items-center justify-center self-end rounded-lg text-white/60 hover:bg-white/10"
                       >
                         <Maximize2 size={16} />

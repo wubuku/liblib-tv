@@ -37,6 +37,7 @@ import {
 } from "@/components/jimeng/JimengContextMenu";
 import type { JimengContextMenuState } from "@/components/jimeng/JimengContextMenu";
 import { JimengTaskToast } from "@/components/jimeng/JimengTaskToast";
+import { JimengExpandedGenLayer } from "@/components/jimeng/JimengExpandedGenLayer";
 import { JimengAiDrawer } from "@/components/jimeng/JimengAiDrawer";
 import {
   JimengPaneContextMenu,
@@ -313,6 +314,10 @@ function JimengFlow() {
   // Batch 1032-②b-3: @ 提及面板开着吗？（Esc 分级退出：只关面板、不退编辑态）
   const mentionPanelOpen = useJimengStore((s) => s.mentionPanelOpen);
   const setMentionPanelOpen = useJimengStore((s) => s.setMentionPanelOpen);
+  // ⭐⭐⭐ Batch 1032-②b-4：「已展开的生成器」浮层开着吗？
+  //   它是**最上层** ⇒ ⇒ Esc 的分级顺序是「浮层 → @ 面板 → 退出编辑态」。
+  const expandedGenLayer = useJimengStore((s) => s.expandedGenLayer);
+  const closeExpandedGenLayer = useJimengStore((s) => s.closeExpandedGenLayer);
   // Batch 66: 保存状态门控下载 (导出前请保存画布)
   const saved = useJimengStore((s) => s.project.saved);
 
@@ -323,9 +328,12 @@ function JimengFlow() {
     exitInfer();
     exitFramePicker();
     exitTrim();
+    // ⭐⭐⭐ Batch 1032-②b-4：点画布空白 ⇒ 「已展开的生成器」浮层也关
+    //   （它在 workspace 层、不随面板卸载而消失 ⇒ ⇒ 必须显式关）。
+    closeExpandedGenLayer();
     setContextMenu(null);
     setPaneMenu(null);
-  }, [selectNode, exitRepaint, exitEdit, exitInfer, exitFramePicker, exitTrim]);
+  }, [selectNode, exitRepaint, exitEdit, exitInfer, exitFramePicker, exitTrim, closeExpandedGenLayer]);
 
   // 空白右键菜单 (SOURCE_FACT batch 25): 记录屏幕坐标 + 对应画布坐标
   const onPaneContextMenu = useCallback(
@@ -500,6 +508,14 @@ function JimengFlow() {
         e.preventDefault();
         selectAll();
       } else if (e.key === "Escape") {
+        // ⭐⭐⭐ Batch 1032-②b-4：「已展开的生成器」浮层是**最上层** ⇒ ⇒
+        //   Esc **先关它**、**不退编辑态**（源站退出路径是**分级的**）。
+        //   ⚠️ 诚实标注：源站的「退出路径」表只覆盖了 @ 面板，
+        //   **浮层这一态未取证** ⇒ ⇒ 这里「Esc 关浮层但提示词不保留」是 CLONE_DECISION。
+        if (expandedGenLayer) {
+          closeExpandedGenLayer();
+          return;
+        }
         // ⭐⭐⭐ Batch 1032-②b-3：@ 提及面板开着时，Esc **只关面板**
         //   （源站退出路径表：`Esc` → 面板**关**、提示词**保留**）
         //   ⇒ ⇒ **不退出编辑态**、不清空提示词。
@@ -576,6 +592,8 @@ function JimengFlow() {
     cancelRefPicking,
     mentionPanelOpen,
     setMentionPanelOpen,
+    expandedGenLayer,
+    closeExpandedGenLayer,
   ]);
 
   // Batch 799 SOURCE_FACT: 点阵网格是**世界锚定**的 —— 源站实测 100% 缩放下
@@ -793,6 +811,11 @@ function JimengFlow() {
         />
       ) : null}
       <JimengTaskToast />
+      {/* ⭐⭐⭐ Batch 1032-②b-4：「已展开的生成器」浮层 —— 渲染在 **workspace 层**
+          （它在 store 里，与节点选中与否解耦）⇒ ⇒ 由组件自己 portal 到 body。
+          ⭐ **条件挂载**：浮层开着才挂 ⇒ ⇒ 于是组件的 `useState` 初值就是对的
+          ⇒ ⇒ 不用「挂载后用 effect 补一轮派生状态」那个形状。 */}
+      {expandedGenLayer ? <JimengExpandedGenLayer /> : null}
     </div>
   );
 }

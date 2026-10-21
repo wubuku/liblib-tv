@@ -1,0 +1,143 @@
+{
+ "generated_by": "jimeng_probe1032b4_expanded_runtime.mjs",
+ "note": "⭐ 判据是「某个可观察的东西变了」；负控验「不该发生时**不**发生」。浮层规格 = SOURCE_FACT 批次 1032-②b-1（**只覆盖视频这一种**）。",
+ "checks": {
+  "probe_actually_ran": {
+   "ok": true,
+   "n_nodes": 5,
+   "layer_at_start": 0,
+   "pageerrors": 0
+  },
+  "empty_video_node_inserted": {
+   "ok": true,
+   "before": 5,
+   "after": 6
+  },
+  "video_node_selected": {
+   "ok": true,
+   "n_video_nodes": 3
+  },
+  "expand_button_opens_layer": {
+   "ok": true,
+   "clicked": true,
+   "layer_count": 1,
+   "layer_visible": true
+  },
+  "layer_is_dialog_with_source_aria": {
+   "ok": true,
+   "role": "dialog",
+   "aria": "已展开的视频生成器",
+   "w": 920,
+   "h": 480,
+   "position": "fixed",
+   "z_index": "50",
+   "border_radius": "20px"
+  },
+  "layer_geometry_matches_source": {
+   "ok": true,
+   "w": 920,
+   "h": 480,
+   "position": "fixed",
+   "z_index": "50",
+   "border_radius": "20px",
+   "center_dx": 0,
+   "center_dy": 0
+  },
+  "layer_has_no_input_or_textarea": {
+   "ok": true,
+   "n_input": 0,
+   "n_textarea": 0,
+   "n_contenteditable": 1
+  },
+  "layer_has_five_ref_type_buttons": {
+   "ok": true,
+   "found": [
+    {
+     "t": "全部",
+     "w": 42,
+     "h": 36,
+     "role": null
+    },
+    {
+     "t": "图片",
+     "w": 42,
+     "h": 36,
+     "role": null
+    },
+    {
+     "t": "视频",
+     "w": 42,
+     "h": 36,
+     "role": null
+    },
+    {
+     "t": "音频",
+     "w": 42,
+     "h": 36,
+     "role": null
+    },
+    {
+     "t": "文本",
+     "w": 42,
+     "h": 36,
+     "role": null
+    }
+   ],
+   "bad": [],
+   "n_tab": 0
+  },
+  "ref_type_switch_is_observable": {
+   "ok": true,
+   "clicked": true,
+   "aria_before": "引用参考",
+   "aria_after": "引用参考: 视频"
+  },
+  "empty_prompt_generate_does_nothing": {
+   "ok": true,
+   "clicked": true,
+   "generating_visible": false
+  },
+  "generate_enters_generating": {
+   "ok": true,
+   "contenteditable_found": true,
+   "typed": true,
+   "clicked": true,
+   "generating_visible": true
+  },
+  "collapse_button_closes_layer": {
+   "ok": true,
+   "has": true,
+   "clicked": true,
+   "layer_count": 0
+  },
+  "insert_selects_only_the_new_node": {
+   "ok": true,
+   "new_node_id_is_new": true,
+   "n_selected": 1,
+   "new_is_selected": true
+  },
+  "escape_closes_layer_but_keeps_edit_mode": {
+   "ok": true,
+   "clicked": true,
+   "has_btn": true,
+   "layer_before": 1,
+   "layer_after": 0,
+   "node_still_selected": true
+  },
+  "backdrop_click_closes_layer": {
+   "ok": true,
+   "has_btn": true,
+   "clicked": true,
+   "backdrop_clicked": true,
+   "layer_before": 1,
+   "layer_after": 0
+  },
+  "no_page_errors": {
+   "ok": true,
+   "n": 0
+  }
+ },
+ "n_checks": 16,
+ "n_failed": 0,
+ "pageerrors": []
+}

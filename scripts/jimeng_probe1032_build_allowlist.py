@@ -43,12 +43,25 @@ ALLOW = GDIR / "inputs" / "interaction-wiring-allowlist-1032.json"
 #   33/34/113/114：两级定步选择器 / `可能@的内容` / 只列有资源的节点 /
 #   空态逐字「暂无相关节点」），选中候选 ⇒ 提示词行插入**引用 chip**。
 #   ⇒ ⇒ 死按钮 6 → 4。**不是拿空 handler 去骗门** ⇒ 有运行时门真点一遍。
-NOTES = {
-    'src/components/jimeng/JimengAudioGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4'),
-    'src/components/jimeng/JimengGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4'),
-    'src/components/jimeng/JimengGenPanel.tsx#"展开视频生成器"#0': ('NO_EFFECT', '『展开视频生成器』无 onClick —— 源站实测点它开「已展开的视频生成器」浮层（role=dialog / 920×480 / 内含 全部·图片·视频·音频·文本 参考 tab）⇒ 浮层组件尚未做 ⇒ 留到 ②b-4'),
-    'src/components/jimeng/JimengImageGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4'),
-}
+# ⭐⭐⭐⭐⭐ Batch 1032-②b-4 **销账（最后 4 条）**：三条「展开面板」+
+#   一条「展开视频生成器」此前**整枚没有 onClick**（死按钮）⇒ 现在接上
+#   **真的「已展开的生成器」浮层**（`src/components/jimeng/JimengExpandedGenLayer.tsx`，
+#   SOURCE_FACT 批次 1032-②b-1 实测：点它开 `role="dialog"` /
+#   `aria-label="已展开的视频生成器"` / `position: fixed` / **920×480** /
+#   radius **20px** / z **50** 的**居中浮动面板**；内含 5 枚 42×36 的普通按钮
+#   全部·图片·视频·音频·文本、36×36「折叠视频生成器」、48×48「添加参考」、
+#   24×24 与 32×32 两枚「引用参考」、184×32 模型、129×32 尺寸、80×32 模式、
+#   46×32 时长、32×32「生成」）⇒ ⇒ 浮层里的「生成」**接真 action**
+#   （视频 `generateInto` / 图片 `generateImageInto` / 音频 `generateAudioInto`）
+#   ⇒ ⇒ **死按钮 4 → 0**。
+# ⇒ ⇒⇒ **这张表现在是空的** —— ⭐ 而「空」本身**必须被门看见**：
+#   门比的是「代码里的死按钮集合」与「这张表」**逐条对账**
+#   ⇒ ⇒ 将来**新增**一条糊弄 ⇒ ⇒ 表是空的 ⇒ ⇒ **多一条** ⇒ ⇒ 门会红。
+# ⚠️ 保持成**普通赋值**（`NOTES = {}`）而不是带注解的 `AnnAssign` ——
+#   加载器 `jimeng_probe1032_interaction_wiring.py` 的 `_load_notes()` 只认
+#   `ast.Assign` ⇒ ⇒ 写成 `NOTES: dict[...] = {}` 就会被它判成
+#   「NOTES_MISSING (data-side error, rc=2)」⇒ ⇒ **加个类型注解会让门找不到表。**
+NOTES = {}
 
 
 def main() -> int:
@@ -65,9 +78,18 @@ def main() -> int:
 
     notes = dict(NOTES)
     if args.self_test:
-        victim = sorted(notes)[0]
-        notes.pop(victim)
-        print("self-test: 故意移除标注", victim)
+        if notes:
+            victim = sorted(notes)[0]
+            notes.pop(victim)
+            print("self-test: 故意移除标注", victim)
+        else:
+            # ⭐⭐⭐⭐⭐ **表已经清空**（死按钮全修完）⇒ ⇒ 「移除一条」无从移除
+            #   ⇒ ⇒ 改用**反向**的阳性对照：注入一条**代码里不存在**的标注
+            #   ⇒ ⇒ 门必须把它报成「标注里有代码里已不存在的条目」
+            #   ⇒ ⇒⇒ **一个空表如果没有配套的阳性对照，它就等于「没有门」**
+            victim = 'src/components/jimeng/__probe_injected__.tsx#"__injected_probe__"#0'
+            notes[victim] = ('NO_EFFECT', 'self-test 注入：代码里不存在的标注')
+            print("self-test: 故意注入一条不存在的标注", victim)
 
     # ⭐⭐⭐⭐⭐ Batch 1032-②b-0: **键从「(文件名, 行号)」换成「稳定键」** ——
     #   行号是**位置**不是**身份**（1021/1030 栽过一次；这里是同一形状的复发）。
@@ -131,14 +153,20 @@ def main() -> int:
     if leftover:
         print("⚠️ 代码里的死按钮没有对应标注:", leftover)
     if missing_notes:
+        # ⚠️⚠️⚠️ **这条报错路径此前从未被执行过** —— 而它一执行就崩：
+        #   `"%s:%s" % k` 假定 `k` 是**二元组**；而 `missing_notes` 装的是
+        #   **稳定键字符串** ⇒ ⇒ `%` 收到一个字符串 ⇒ ⇒ `TypeError: not enough
+        #   arguments for format string` ⇒ ⇒ **脚本崩掉、退出码 1**
+        #   ⇒ ⇒ 而「崩」与「红」长得一样 ⇒ ⇒ 读数上分不出「它抓到了」与「它坏了」。
+        # ⇒ ⇒ 修法：键与说明**分别取**（键是字符串、说明在 `notes` 里）。
         print("⚠️ 标注里有**代码里已不存在**的条目（应销账）:",
-              ["%s:%s" % k for k in missing_notes])
+              ["%s: %s" % (k, (notes.get(k) or ("", ""))[1]) for k in missing_notes])
 
     # ⭐ 阳性对照：--self-test 时，注入的那条缺失**必须被报出来**
     if args.self_test:
         # ⚠️ 注入的缺失表现为「代码里有死按钮但没标注」⇒ 落在 unmatched/leftover，
         #   **不是** missing_notes（那个是反向：标注了但代码里已没有）。
-        ok = bool(unmatched or leftover)
+        ok = bool(unmatched or leftover or missing_notes)
         print("self-test: 缺失标注是否被抓到 =", ok,
               "| unmatched:", unmatched, "| leftover:", leftover)
         print("self-test: 真实白名单**未被改写** =", True)
