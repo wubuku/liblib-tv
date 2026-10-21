@@ -119,6 +119,8 @@ export function LeftSidebar({ onAddNode }: LeftSidebarProps) {
     isAddNodePanelOpen,
     isShortcutsPanelOpen,
     isAssetPanelOpen,
+    toggleAgent,
+    isAgentOpen,
     canvasTool,
     setCanvasTool,
     activePrimaryPanel,
@@ -183,6 +185,91 @@ export function LeftSidebar({ onAddNode }: LeftSidebarProps) {
         <ToolButton label="教程" active={activePrimaryPanel === "tutorial"} onClick={() => togglePanel("tutorial")}>
           <CircleHelp size={20} />
         </ToolButton>
+
+        {/* ★★ Batch 824（源站 2026-10-21 实测，DOM 读数 + 计算样式 + 截图放大）：
+            源站画布**底部工具条右端**还有一枚入口，它**不在药丸里**——
+            药丸（添加节点／移动／素材库／角色造型室／生成历史｜分隔线｜快捷键／教程）
+            结束**之后**，隔 **14px** 单独挂一枚 **48×48 的圆钮**。
+
+            ★★ 那枚圆钮的源站计算样式（recon824d 实测，逐字）：
+              bg `rgb(38,38,38)`、border `1px solid rgb(54,54,54)`、
+              borderRadius `9999px`（正圆）、padding `0 9px`、
+              内含一个 **28×28** 的液态青球
+              （`--liquid-state-color:#00e5ff`、highlight `#a4fff3`），
+              外面**再套一层** 28×28 的 DIV（`relative z-[2] size-7`）。
+            ★★ 圆钮里还有一段文字「TV Director」，但它是
+              **`width:0` + `opacity:0`** 的 ⟹ **视觉上没有文字**
+              （源站截图放大核对：只有一颗球，**旁边是空的**），
+              而 textContent 仍逐字是「TV Director」⟹
+              可及名靠 aria-label，视觉只出图标。
+
+            ★★ 点它打开的是**右侧「新对话」AI 抽屉**
+            （标题「新对话」、「让 TV Director 辅助你的无限创意」、
+            4 个引导入口：感知画布开始创作／从爆款预设开始剧本原创／
+            上传故事来改编／批量优化提示词）——
+            ★★ **不是导演台**（点它 URL 不变、画布节点数不变）。
+
+            ⟹ ★ 那正是 clone 的 `AgentDrawer`（其标题逐字就是「新对话」）。
+            ⟹ ★★ 所以 clone **不是缺这个面板**，而是**缺这个入口按钮**：
+            clone 的入口在**顶部导航**（文案「Agent」），
+            而源站在**画布底部**。⟹ ★★ 这是「有功能、用户找不到」的典型形态。
+
+            ★ 顶部那枚「Agent」按钮**不能删** —— 它被历史门禁钉住
+            （batch723/737/649/280 的 runtime-audit 都记着它）⟹
+            ★ 这里**增量**补一枚与源站同位同形的入口，不动顶部。
+            ★ 抽屉开着时源站这枚圆钮**消失**（截图实测：底部工具条只剩
+            7 枚）⟹ 这里照做。
+            ★ 定位用 `absolute left-full` ⟹ 它**不吃药丸的流式布局**，
+            药丸的圆角/背景/宽度**不会**被它撑大（源站就是这样：
+            药丸在 x=909..941 结束，球在 955）。 */}
+        {!isAgentOpen ? (
+          <button
+            type="button"
+            aria-label="TV Director"
+            data-guide-target="agent-entry"
+            data-tv-director-trigger
+            onClick={toggleAgent}
+            className="absolute left-full ml-[6px] top-1/2 flex h-12 w-12 min-w-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border border-[#363636] bg-[#262626] px-[9px] transition-colors hover:bg-[#383838]"
+          >
+            <span
+              aria-hidden="true"
+              data-testid="canvas-agent-orb-entry"
+              className="relative z-[2] size-7 shrink-0"
+            >
+              {/* ★★ 渐变与光晕走 **inline style**，不用 Tailwind 任意值。
+                  理由（2026-10-21 实测，4317 上）：
+                  ★★ **dev server 的 Tailwind 扫描是冻结的** —— 4317 那个
+                  `next dev` 进程从 **2026-10-07** 起就没重扫过（磁盘上的
+                  CSS chunk 还是 10/07 的）⟹ ★★ **任何新加的 Tailwind 类
+                  在 4317 上都不生效**，而 prod 构建照常生成 ⟹ 同一个组件
+                  在 dev 上「没颜色」、在 prod 上「有颜色」。
+                  ★ 实测：`bg-[radial-gradient(circle_at_36%_28%,#d8fffb_0%,…)]`
+                  与 `bg-radial from-[#d8fffb] …` **dev CSS 里一条都没有**
+                  （连标准类 `bg-radial` 都没有）⟹ 球在 dev 上 computed
+                  backgroundColor = rgba(0,0,0,0)，截图里那颗球是**空的**。
+                  ★ 同族：`top-[23.5px]` 这种**带小数**的任意值在 dev 也被丢。
+                  ⟹ ★★ 结论：★ **inline style 对这个扫描器免疫**，
+                  ★ 且仓库里已有先例（frameos 画布的渐变就是 inline 的）。
+                  ★ 所以本批**一个新增 Tailwind 类都不引入** ⟹
+                  ★ dev 与 prod 渲染**完全一致**。 */}
+              <span
+                className="block size-7 rounded-full"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(circle at 36% 28%, #d8fffb 0%, "
+                    + "#a4fff3 12%, #00e5ff 38%, #0a7ef0 72%, #0646c9 100%)",
+                  boxShadow: "0 0 10px rgba(0, 229, 255, 0.55)",
+                }}
+              />
+            </span>
+            {/* ★ 源站的文字是 `width:0 + opacity:0` ⟹ 视觉上没有字，
+                但 textContent 逐字是「TV Director」⟹ 这里照抄这个做法。
+                ★ 源站那个 span 的**矩形宽读数是 0**（外层 w-0，内层再套一层
+                带 padding 的 span）⟹ 这里不写 padding，矩形宽就正好是 0。 */}
+            <span className="block w-0 overflow-hidden whitespace-nowrap text-sm font-medium opacity-0">
+              TV Director
+            </span>          </button>
+        ) : null}
       </div>
 
       {isAddNodePanelOpen && <AddNodePanel onAddNode={onAddNode} />}

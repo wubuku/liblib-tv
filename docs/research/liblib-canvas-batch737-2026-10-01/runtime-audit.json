@@ -113,11 +113,11 @@
     "data-director-keyframe-id": 6
    },
    "outRoot": {
-    "root": 35,
+    "root": 36,
     "data-director-node": 1
    },
    "inRootTotal": 142,
-   "outRootTotal": 36,
+   "outRootTotal": 37,
    "outNames": [
     "项目菜单",
     "工作区名称",
@@ -149,6 +149,7 @@
     "生成历史",
     "快捷键",
     "教程",
+    "TV Director",
     "资产管理",
     "整理画布，Option+Shift+F",
     "切换小地图",
@@ -227,12 +228,12 @@
     "data-director-keyframe-id": 6
    },
    "outRoot": {
-    "root": 35,
+    "root": 36,
     "data-director-node": 1,
     "data-director-character-option": 11
    },
    "inRootTotal": 142,
-   "outRootTotal": 47,
+   "outRootTotal": 48,
    "outNames": [
     "项目菜单",
     "工作区名称",
@@ -264,6 +265,7 @@
     "生成历史",
     "快捷键",
     "教程",
+    "TV Director",
     "资产管理",
     "整理画布，Option+Shift+F",
     "切换小地图",
@@ -506,9 +508,9 @@
   "createPortalLine": 308,
   "railEntries": 6,
   "inRootClosed": 142,
-  "outRootClosed": 36,
+  "outRootClosed": 37,
   "inRootFlyout": 142,
-  "outRootFlyout": 47,
+  "outRootFlyout": 48,
   "flyoutOutAdded": 11,
   "flyoutOutNames": 11,
   "insideCapture": 0,

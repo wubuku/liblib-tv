@@ -1,0 +1,190 @@
+{
+ "胶囊": {
+  "tag": "BUTTON",
+  "box": {
+   "x": 955,
+   "y": 889,
+   "w": 48,
+   "h": 48
+  },
+  "cls": "vCoIiq_pill border-hair border-(--topnav-btn-border) flex h-12 min-w-12 cursor-pointer ite",
+  "bg": "rgb(38, 38, 38)",
+  "bgImage": "none",
+  "border": "1px solid rgb(54, 54, 54)",
+  "borderRadius": "9999px",
+  "boxShadow": "none",
+  "position": "relative",
+  "overflow": "visible",
+  "w": "48px",
+  "h": "48px",
+  "padding": "0px 9px",
+  "font": "16px/24.8px/400",
+  "color": "rgb(255, 255, 255)",
+  "opacity": "1",
+  "zIndex": "auto",
+  "pointerEvents": "auto",
+  "clipPath": "none",
+  "clip": "auto",
+  "text": "TV Director"
+ },
+ "教程按钮": {
+  "tag": "BUTTON",
+  "box": {
+   "x": 909,
+   "y": 897,
+   "w": 32,
+   "h": 32
+  },
+  "cls": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 hover:bg-ca",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bgImage": "none",
+  "border": "0px solid rgb(82, 82, 82)",
+  "borderRadius": "8px",
+  "boxShadow": "none",
+  "position": "relative",
+  "overflow": "visible",
+  "w": "32px",
+  "h": "32px",
+  "padding": "0px",
+  "font": "16px/24.8px/400",
+  "color": "rgb(247, 247, 247)",
+  "opacity": "1",
+  "zIndex": "auto",
+  "pointerEvents": "auto",
+  "clipPath": "none",
+  "clip": "auto",
+  "text": ""
+ },
+ "子元素": [
+  {
+   "tag": "DIV",
+   "box": {
+    "x": 965,
+    "y": 899,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "relative z-[2] size-7 shrink-0",
+   "bg": "rgba(0, 0, 0, 0)",
+   "bgImage": "none",
+   "border": "0px solid rgb(82, 82, 82)",
+   "borderRadius": "0px",
+   "boxShadow": "none",
+   "position": "relative",
+   "overflow": "visible",
+   "w": "28px",
+   "h": "28px",
+   "padding": "0px",
+   "font": "16px/24.8px/400",
+   "color": "rgb(255, 255, 255)",
+   "opacity": "1",
+   "zIndex": "2",
+   "pointerEvents": "auto",
+   "clipPath": "none",
+   "clip": "auto",
+   "text": ""
+  },
+  {
+   "tag": "SPAN",
+   "box": {
+    "x": 993,
+    "y": 903,
+    "w": 0,
+    "h": 20
+   },
+   "cls": "relative z-[2] block shrink-0 overflow-hidden",
+   "bg": "rgba(0, 0, 0, 0)",
+   "bgImage": "none",
+   "border": "0px solid rgb(82, 82, 82)",
+   "borderRadius": "0px",
+   "boxShadow": "none",
+   "position": "relative",
+   "overflow": "hidden",
+   "w": "0px",
+   "h": "20px",
+   "padding": "0px",
+   "font": "16px/24.8px/400",
+   "color": "rgb(255, 255, 255)",
+   "opacity": "0",
+   "zIndex": "2",
+   "pointerEvents": "auto",
+   "clipPath": "none",
+   "clip": "auto",
+   "text": "TV Director"
+  }
+ ],
+ "svg": [
+  {
+   "i": 0,
+   "box": {
+    "x": 965,
+    "y": 899,
+    "w": 0,
+    "h": 0
+   },
+   "cls": "absolute",
+   "fill": "",
+   "viewBox": null,
+   "innerHTML": "<defs><filter id=\"liquid-dissolve-_r_61_\" x=\"-200%\" y=\"-200%\" width=\"500%\" height=\"500%\" color-interpolation-filters=\"sR"
+  },
+  {
+   "i": 1,
+   "box": {
+    "x": 960,
+    "y": 895,
+    "w": 31,
+    "h": 31
+   },
+   "cls": "JiGsiG_orbit JiGsiG_orbitOuter",
+   "fill": "",
+   "viewBox": "0 0 90 90",
+   "innerHTML": "<path data-liquid-orbit=\"true\" class=\"JiGsiG_orbitPath JiGsiG_animated\" d=\"M 8 45 A 34 34 0 0 1 82 45\" fill=\"none\" strok"
+  },
+  {
+   "i": 2,
+   "box": {
+    "x": 965,
+    "y": 899,
+    "w": 31,
+    "h": 31
+   },
+   "cls": "JiGsiG_orbit JiGsiG_orbitInner",
+   "fill": "",
+   "viewBox": "0 0 90 90",
+   "innerHTML": "<path data-liquid-orbit=\"true\" class=\"JiGsiG_orbitPath JiGsiG_animated\" d=\"M 15 70 A 40 40 0 0 1 75 20\" fill=\"none\" stro"
+  }
+ ],
+ "文字节点": [
+  "TV Director"
+ ],
+ "文字承载元素": {
+  "tag": "SPAN",
+  "box": {
+   "x": 993,
+   "y": 903,
+   "w": 8,
+   "h": 20
+  },
+  "cls": "block whitespace-nowrap pl-1.5 pr-0.5 text-sm font-medium",
+  "bg": "rgba(0, 0, 0, 0)",
+  "bgImage": "none",
+  "border": "0px solid rgb(82, 82, 82)",
+  "borderRadius": "0px",
+  "boxShadow": "none",
+  "position": "static",
+  "overflow": "visible",
+  "w": "8px",
+  "h": "20px",
+  "padding": "0px 2px 0px 6px",
+  "font": "14px/20px/500",
+  "color": "rgb(255, 255, 255)",
+  "opacity": "1",
+  "zIndex": "auto",
+  "pointerEvents": "auto",
+  "clipPath": "none",
+  "clip": "auto",
+  "text": "TV Director"
+ },
+ "文字承载元素HTML": "<span class=\"block whitespace-nowrap pl-1.5 pr-0.5 text-sm font-medium\">TV Director</span>",
+ "胶囊整段HTML": "<button type=\"button\" data-guide-target=\"agent-entry\" aria-label=\"TV Director\" class=\"vCoIiq_pill border-hair border-(--topnav-btn-border) flex h-12 min-w-12 cursor-pointer items-center justify-center rounded-full px-[9px] transition-colors\" style=\"background-color: var(--panel-background); color: var(--canvas-controls-text);\"><div class=\"relative z-[2] size-7 shrink-0\" data-testid=\"canvas-agent-orb-entry\" data-orb-state=\"static\"><div aria-hidden=\"true\" data-testid=\"agent-orb\" data-renderer=\"liquid\" data-liquid-speed=\"0.4\" data-orb-state=\"static\" data-paused=\"true\" data-motion-paused=\"false\" data-particles-paused=\"false\" class=\"JiGsiG_viewport\" style=\"width: 28px; height: 28px; background-color: transparent; --liquid-state-color: #00e5ff; --liquid-state-highlight: #a4fff3; --liquid-state-cycle: 8.5s; --liquid-state-flow: 1.5909090909090906s;\"><div class=\"JiGsiG_stateHalo JiGsiG_animated\""
+}

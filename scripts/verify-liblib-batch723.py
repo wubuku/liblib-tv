@@ -245,9 +245,21 @@ def check_4(r: dict[str, Any]) -> None:
 
 
 def check_5(r: dict[str, Any]) -> None:
-    """画布外壳 34 枚按钮分五簇：顶栏 8 / 底部坞 8 / 左下 6 / 连线手柄 11 / 杂项 1。"""
+    """画布外壳 35 枚按钮分五簇：顶栏 8 / 底部坞 8 / 左下 6 / 连线手柄 11 / 杂项 2。
+
+    ★★ Batch 824（2026-10-21）起这里是 **35 而不是 34**：clone 补上了
+    **源站本来就有**的那枚「TV Director」入口 —— 源站实测（2026-10-21，
+    无头 + 登录态）：底部工具条的**药丸之外**隔 **14px** 单独挂一枚
+    **48×48** 的圆钮，读数见
+    `docs/research/liblib-canvas-batch824-2026-10-01/raw/source-824-bottombar.json`。
+    ⟹ ★ 它**不算底部坞那一枚**：坞里那 8 枚都是 y=1098 的 32×32，
+    而它是 **48×48**、与坞的按钮行**同轴**（中心 y 相同）⟹ 它的 y 是 1090，
+    ⟹ 于是落进「杂项」簇 ⟹ ★★ **底部坞仍然是 8 枚**，只是杂项从 1 变成 2。
+    ⟹ ★ 这条普查的**性质**（几枚按钮、分几簇）没有被推翻，被推翻的只是
+    「总数 34」这个**观测值** ⟹ ★ 期望值跟着实现更新，门禁照样有牙。
+    """
     ch = r["chrome"]
-    assert len(ch) == 34, len(ch)
+    assert len(ch) == 35, len(ch)
     handles = [b for b in ch if b["label"] == "删除连线"]
     assert len(handles) == 11, len(handles)
     top = [b for b in ch if 16 <= b["y"] <= 18]
@@ -258,9 +270,14 @@ def check_5(r: dict[str, Any]) -> None:
              and b not in dock and b not in left]
     assert (len(top), len(dock), len(left)) == (8, 8, 6), (
         len(top), len(dock), len(left))
-    assert len(other) == 1, other
-    assert other[0]["label"] == "取消 ESC", other
-    assert (other[0]["w"], other[0]["h"]) == (55, 16), other
+    assert len(other) == 2, other
+    assert {b["label"] for b in other} == {"取消 ESC", "TV Director"}, other
+    cancel = [b for b in other if b["label"] == "取消 ESC"][0]
+    assert (cancel["w"], cancel["h"]) == (55, 16), cancel
+    # ★ 新增的那一枚：48×48 的圆钮，且**不在**坞那一行（y≠1098）
+    tvd = [b for b in other if b["label"] == "TV Director"][0]
+    assert (tvd["w"], tvd["h"]) == (48, 48), tvd
+    assert tvd["y"] != 1098, tvd
     assert r["store"]["nEdges"] == len(handles)
 
 

@@ -51,8 +51,8 @@
     {
      "id": "g-EFbbHpwq5w",
      "type": "storyboard-group",
-     "x": 2374,
-     "y": -12,
+     "x": 2396,
+     "y": 10,
      "hasTitle": true
     },
     {
@@ -107,8 +107,8 @@
     {
      "id": "v-UGQZzZOpbv",
      "type": "video",
-     "x": 62,
-     "y": 62,
+     "x": 40,
+     "y": 40,
      "hasTitle": false
     }
    ],
@@ -127,10 +127,10 @@
    },
    {
     "id": "g-EFbbHpwq5w",
-    "w": 380,
-    "h": 242,
-    "x": 665,
-    "y": 254,
+    "w": 369,
+    "h": 226,
+    "x": 676,
+    "y": 266,
     "text": "视频组 · 第一集：咖啡馆对峙-视频组",
     "nBtns": 0,
     "btns": []
@@ -412,8 +412,8 @@
     "label": "删除连线",
     "w": 8,
     "h": 8,
-    "x": 409,
-    "y": 311,
+    "x": 415,
+    "y": 313,
     "onScreen": true,
     "hitSelf": false,
     "hitTag": "path"
@@ -507,6 +507,16 @@
     "onScreen": true,
     "hitSelf": true,
     "hitTag": "path"
+   },
+   {
+    "label": "TV Director",
+    "w": 48,
+    "h": 48,
+    "x": 815,
+    "y": 1090,
+    "onScreen": true,
+    "hitSelf": true,
+    "hitTag": "span"
    },
    {
     "label": "资产管理",

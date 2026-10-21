@@ -1,0 +1,197 @@
+{
+ "视口": [
+  1600,
+  950
+ ],
+ "底部按钮名": [
+  "添加节点",
+  "移动",
+  "素材库",
+  "角色造型室",
+  "生成历史",
+  "快捷键",
+  "教程",
+  "TV Director",
+  "资产管理",
+  "整理画布，Option+Shift+F",
+  "切换小地图",
+  "隐藏节点连线",
+  "网格吸附",
+  "缩放选项"
+ ],
+ "球": {
+  "x": 954.5,
+  "y": 889,
+  "w": 48,
+  "h": 48,
+  "cx": 978.5,
+  "cy": 913
+ },
+ "教程": {
+  "x": 908.5,
+  "y": 897,
+  "w": 32,
+  "h": 32,
+  "cx": 924.5,
+  "cy": 913
+ },
+ "药丸": {
+  "x": 650.5,
+  "y": 888,
+  "w": 299,
+  "h": 50,
+  "cx": 800,
+  "cy": 913
+ },
+ "药丸样式": {
+  "bg": "rgb(38, 38, 38)",
+  "radius": "12px",
+  "padding": "8px",
+  "overflow": "visible",
+  "position": "fixed",
+  "cls": "b768:bottom-3 border-hair border-(--topnav-btn-border) fixed bottom-[52px] left-"
+ },
+ "按钮到球间隙": 14,
+ "药丸到球间隙": 5,
+ "同轴偏差": 0,
+ "球在药丸之外": true,
+ "球是药丸的后代": false,
+ "父链": [
+  {
+   "tag": "BUTTON",
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors h-8 w-8 h",
+   "box": {
+    "x": 908.5,
+    "y": 897,
+    "w": 32,
+    "h": 32,
+    "cx": 924.5,
+    "cy": 913
+   },
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "8px",
+   "padding": "0px",
+   "overflow": "visible",
+   "position": "relative"
+  },
+  {
+   "tag": "DIV",
+   "cls": "b768:bottom-3 border-hair border-(--topnav-btn-border) fixed bottom-[52px] left-",
+   "box": {
+    "x": 650.5,
+    "y": 888,
+    "w": 299,
+    "h": 50,
+    "cx": 800,
+    "cy": 913
+   },
+   "bg": "rgb(38, 38, 38)",
+   "radius": "12px",
+   "padding": "8px",
+   "overflow": "visible",
+   "position": "fixed"
+  },
+  {
+   "tag": "DIV",
+   "cls": "relative h-screen w-screen",
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 1600,
+    "h": 950,
+    "cx": 800,
+    "cy": 475
+   },
+   "bg": "rgb(20, 20, 20)",
+   "radius": "0px",
+   "padding": "0px",
+   "overflow": "visible",
+   "position": "relative"
+  },
+  {
+   "tag": "DIV",
+   "cls": "relative h-screen w-screen",
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 1600,
+    "h": 950,
+    "cx": 800,
+    "cy": 475
+   },
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "padding": "0px",
+   "overflow": "visible",
+   "position": "relative"
+  },
+  {
+   "tag": "DIV",
+   "cls": "h-screen w-screen",
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 1600,
+    "h": 950,
+    "cx": 800,
+    "cy": 475
+   },
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "padding": "0px",
+   "overflow": "visible",
+   "position": "static"
+  },
+  {
+   "tag": "DIV",
+   "cls": "",
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0,
+    "cx": 0,
+    "cy": 0
+   },
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "padding": "0px",
+   "overflow": "visible",
+   "position": "static"
+  },
+  {
+   "tag": "BODY",
+   "cls": "antialiased",
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 1600,
+    "h": 950,
+    "cx": 800,
+    "cy": 475
+   },
+   "bg": "rgb(20, 20, 20)",
+   "radius": "0px",
+   "padding": "0px",
+   "overflow": "visible",
+   "position": "static"
+  },
+  {
+   "tag": "HTML",
+   "cls": "dark",
+   "box": {
+    "x": 0,
+    "y": 0,
+    "w": 1600,
+    "h": 950,
+    "cx": 800,
+    "cy": 475
+   },
+   "bg": "color(srgb 0.19451 0.19451 0.196078)",
+   "radius": "0px",
+   "padding": "0px",
+   "overflow": "visible",
+   "position": "static"
+  }
+ ]
+}

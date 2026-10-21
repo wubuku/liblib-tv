@@ -48,9 +48,11 @@
 ⟹ 围栏**不能把已经在台外的焦点拉回来**（台外按 Tab 一路走在画布控件上）；
 但**反向能进** —— 从台外往回走 2 步就跨进台内，一进去就被接管。
 
-### ⑥ 台外那 47 枚是真实存在的
+### ⑥ 台外那 48 枚是真实存在的
 11 个 `删除连线` + 画布顶栏 8（项目菜单/工作区名称/画布 2/工作流/故事板/发布与分享/开通会员/积分余额）
 + 底部坞 6（打开工具箱/素材库/角色库/生成历史/快捷键/教程）+ 添加节点/移动/打开导演台→/取消 ESC 等。
+★ **Batch 824（2026-10-21）起是 48（关闭态 37）**：clone 补上了**源站本来就有**的
+那枚「TV Director」入口（源站：底部药丸之外隔 14px 单独挂一枚 48×48 的圆钮）⟹ **+1**。
 
 ### ⑦ 键盘**走不到**台外那个状态
 点开「添加角色」flyout 后焦点**留在台内**（停在轨按钮上），
@@ -68,7 +70,7 @@ C6  反向能进：起点「项目菜单」、flyout 关闭时 Shift+Tab 20 步�
 C7  捕获阶段读 defaultPrevented 恒 0（测法错的证据，与 C4 同一组数据）
 C8  键盘走不到台外：flyout 开着时 30 步 Tab 全在台内 + 8 轮开关焦点不回退
 C9  「姿势」页签：出现 45 / 消失 33 / 净增 12 / 切回属性页可逆
-C10 台外 36 枚（关闭态）/ 47 枚（flyout 开着），其中 11 枚是连线删除手柄
+C10 台外 37 枚（关闭态）/ 48 枚（flyout 开着），其中 11 枚是连线删除手柄（★ Batch 824 起 +1 枚「TV Director」）
 """
 
 import json
@@ -404,11 +406,14 @@ def main() -> int:
          f"出现={summary['poseAdded']}(preset {summary['posePreset']}+control "
          f"{summary['poseControl']}) 消失={summary['poseRemoved']} 净增={summary['poseDelta']} "
          f"可逆={summary['poseReversible']}"),
-        ("C10 台外 36 枚（关闭态）/ 47 枚（flyout 开着），其中 11 枚是连线删除手柄",
-         summary["outRootClosed"] == 36 and summary["outRootFlyout"] == 47
-         and Counter(closed_state["outNames"])["删除连线"] == 11,
+        ("C10 台外 37 枚（关闭态）/ 48 枚（flyout 开着），其中 11 枚是连线删除手柄",
+         summary["outRootClosed"] == 37 and summary["outRootFlyout"] == 48
+         and Counter(closed_state["outNames"])["删除连线"] == 11
+         # ★ Batch 824 起 +1：那枚「TV Director」入口（源站本来就有，clone 补上了）
+         and Counter(closed_state["outNames"])["TV Director"] == 1,
          f"关闭态根外 {summary['outRootClosed']} 枚 / flyout 开着 {summary['outRootFlyout']} 枚；"
-         f"删除连线 {Counter(closed_state['outNames'])['删除连线']} 枚"),
+         f"删除连线 {Counter(closed_state['outNames'])['删除连线']} 枚；"
+         f"TV Director {Counter(closed_state['outNames'])['TV Director']} 枚"),
     ]
 
     print("\n=== 判据 ===")
