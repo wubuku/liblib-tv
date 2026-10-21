@@ -1,0 +1,271 @@
+{
+ "①所有节点标题": [
+  {
+   "kind": "script-v2",
+   "title": "脚本 V2 1",
+   "data": {
+    "id": "b-007xQ4Z8ZW",
+    "testid": "rf__node-b-007xQ4Z8ZW"
+   },
+   "box": [
+    410,
+    328,
+    133,
+    133
+   ],
+   "fullText": "脚本 V2 11确认镜头2准备资产3合成提示词打开脚本节点 →"
+  },
+  {
+   "kind": "shot-breakdown",
+   "title": "逐帧拉片",
+   "data": {
+    "id": "b-FDdyX7NtZM",
+    "testid": "rf__node-b-FDdyX7NtZM"
+   },
+   "box": [
+    99,
+    563,
+    122,
+    148
+   ],
+   "fullText": "逐帧拉片逐帧拉片SD 2.5视频素材上传视频后开始拆解维度分镜动态音乐开始拉片"
+  },
+  {
+   "kind": "image",
+   "title": "陈默_01KT17FN",
+   "data": {
+    "id": "i-q4vzv4WVBZ",
+    "testid": "rf__node-i-q4vzv4WVBZ"
+   },
+   "box": [
+    465,
+    557,
+    235,
+    133
+   ],
+   "fullText": "陈默_01KT17FN1808 × 1024"
+  },
+  {
+   "kind": "image",
+   "title": "图片节点 1",
+   "data": {
+    "id": "i-wkVAUQMDMw",
+    "testid": "rf__node-i-wkVAUQMDMw"
+   },
+   "box": [
+    26,
+    337,
+    237,
+    133
+   ],
+   "fullText": "图片节点 1尝试：图生图图片高清"
+  },
+  {
+   "kind": "material-lens",
+   "title": "素材-特效-瞳孔异变",
+   "data": {
+    "id": "m-t5vHSaN6Y7",
+    "testid": "rf__node-m-t5vHSaN6Y7"
+   },
+   "box": [
+    282,
+    588,
+    92,
+    92
+   ],
+   "fullText": "素材-特效-瞳孔异变"
+  },
+  {
+   "kind": "director-console-3d",
+   "title": "导演台 2",
+   "data": {
+    "id": "n-gYB1c2Peq9",
+    "testid": "rf__node-n-gYB1c2Peq9"
+   },
+   "box": [
+    503,
+    127,
+    133,
+    178
+   ],
+   "fullText": "导演台 2打开导演台"
+  },
+  {
+   "kind": "video",
+   "title": "S83·镜2",
+   "data": {
+    "id": "v-3CmzlptLJl",
+    "testid": "rf__node-v-3CmzlptLJl"
+   },
+   "box": [
+    113,
+    122,
+    232,
+    133
+   ],
+   "fullText": "S83·镜2864 × 496"
+  }
+ ],
+ "②节点React数据": [
+  {
+   "kind": "script-v2",
+   "payload": {
+    "__propKeys": [
+     "className",
+     "ref",
+     "style",
+     "data-id",
+     "data-testid",
+     "onMouseEnter",
+     "onMouseMove",
+     "onMouseLeave",
+     "onContextMenu",
+     "onClick",
+     "onDoubleClick",
+     "onKeyDown",
+     "tabIndex",
+     "onFocus",
+     "role",
+     "aria-roledescription",
+     "aria-describedby",
+     "aria-label",
+     "children"
+    ],
+    "className": "react-flow__node react-flow__node-script-v2 nopan selectable draggable",
+    "data-id": "b-007xQ4Z8ZW",
+    "data-testid": "rf__node-b-007xQ4Z8ZW",
+    "tabIndex": 0,
+    "role": "group",
+    "aria-roledescription": "node",
+    "aria-describedby": "react-flow__node-desc-1"
+   }
+  },
+  {
+   "kind": "shot-breakdown",
+   "payload": {
+    "__propKeys": [
+     "className",
+     "ref",
+     "style",
+     "data-id",
+     "data-testid",
+     "onMouseEnter",
+     "onMouseMove",
+     "onMouseLeave",
+     "onContextMenu",
+     "onClick",
+     "onDoubleClick",
+     "onKeyDown",
+     "tabIndex",
+     "onFocus",
+     "role",
+     "aria-roledescription",
+     "aria-describedby",
+     "aria-label",
+     "children"
+    ],
+    "className": "react-flow__node react-flow__node-shot-breakdown nopan selectable draggable",
+    "data-id": "b-FDdyX7NtZM",
+    "data-testid": "rf__node-b-FDdyX7NtZM",
+    "tabIndex": 0,
+    "role": "group",
+    "aria-roledescription": "node",
+    "aria-describedby": "react-flow__node-desc-1"
+   }
+  },
+  {
+   "kind": "video",
+   "payload": {
+    "__propKeys": [
+     "className",
+     "ref",
+     "style",
+     "data-id",
+     "data-testid",
+     "onMouseEnter",
+     "onMouseMove",
+     "onMouseLeave",
+     "onContextMenu",
+     "onClick",
+     "onDoubleClick",
+     "onKeyDown",
+     "tabIndex",
+     "onFocus",
+     "role",
+     "aria-roledescription",
+     "aria-describedby",
+     "aria-label",
+     "children"
+    ],
+    "className": "react-flow__node react-flow__node-video nopan selectable draggable",
+    "data-id": "v-3CmzlptLJl",
+    "data-testid": "rf__node-v-3CmzlptLJl",
+    "tabIndex": 0,
+    "role": "group",
+    "aria-roledescription": "node",
+    "aria-describedby": "react-flow__node-desc-1"
+   }
+  }
+ ],
+ "③逐帧拉片节点": {
+  "box": [
+   99,
+   563,
+   122,
+   148
+  ],
+  "texts": [
+   {
+    "text": "逐帧拉片",
+    "x": 14,
+    "y": -18
+   },
+   {
+    "text": "逐帧拉片",
+    "x": 16,
+    "y": 6
+   },
+   {
+    "text": "SD 2.5",
+    "x": 55,
+    "y": 8
+   },
+   {
+    "text": "视频素材",
+    "x": 6,
+    "y": 22
+   },
+   {
+    "text": "上传视频后开始",
+    "x": 45,
+    "y": 66
+   },
+   {
+    "text": "拆解维度",
+    "x": 6,
+    "y": 100
+   },
+   {
+    "text": "分镜",
+    "x": 22,
+    "y": 112
+   },
+   {
+    "text": "动态",
+    "x": 60,
+    "y": 112
+   },
+   {
+    "text": "音乐",
+    "x": 99,
+    "y": 112
+   },
+   {
+    "text": "开始拉片",
+    "x": 5,
+    "y": 130
+   }
+  ]
+ },
+ "截图": "/tmp/liblib_source_shotname838b.png"
+}

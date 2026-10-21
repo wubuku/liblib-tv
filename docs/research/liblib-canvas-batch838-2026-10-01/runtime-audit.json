@@ -1,0 +1,412 @@
+{
+ "batch": 838,
+ "title": "把 clone 的默认角色名改成源站口径「角色A」；★ 并**更正 batch 837 的一条结论**（「S83·镜2」不是源站命名体系，那是用户上传的 mp4 文件名）",
+ "verdict": "7/7",
+ "static": {
+  "种子角色名": "角色A",
+  "种子角色名是否角色A": true,
+  "角色轨道label派生式": true,
+  "姿态轨道label派生式": true,
+  "★产品字面量": [
+   "角色A",
+   "label: `${object.name} · 变换`",
+   "label: `${object.name} · 姿态`"
+  ],
+  "★产品字面量里是否还有角色01": false,
+  "720_FIXTURE字面量": [
+   "角色A",
+   "咖啡桌",
+   "冷掉的咖啡",
+   "咖啡馆背景",
+   "机位1"
+  ],
+  "720_FIXTURE含角色A": true,
+  "720_FIXTURE是否仍含角色01": false,
+  "42_姿态轨道label字面量": "角色A · 姿态",
+  "★42_是否成功抽出": true,
+  "42_是否角色A · 姿态": true,
+  "43_option列表含角色A": true,
+  "43_是否仍含角色01": false,
+  "★本批README含S83更正": true,
+  "★本批README声明源站无镜头实体": true
+ },
+ "runtime": {
+  "导演台已打开": true,
+  "①基线_store": {
+   "chars": [
+    {
+     "id": "director-character-lead",
+     "name": "角色A"
+    }
+   ],
+   "tracks": [
+    {
+     "id": "director-track-character-lead-transform",
+     "kind": "transform",
+     "label": "角色A · 变换",
+     "objectId": "director-character-lead"
+    },
+    {
+     "id": "director-track-camera-main",
+     "kind": "camera",
+     "label": "机位1 · 机位",
+     "objectId": "director-camera-main"
+    }
+   ],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "name": "角色A",
+     "kind": "character"
+    },
+    {
+     "id": "director-prop-table",
+     "name": "咖啡桌",
+     "kind": "prop"
+    },
+    {
+     "id": "director-prop-mug",
+     "name": "冷掉的咖啡",
+     "kind": "prop"
+    },
+    {
+     "id": "director-prop-wall",
+     "name": "咖啡馆背景",
+     "kind": "prop"
+    },
+    {
+     "id": "director-camera-main",
+     "name": "机位1",
+     "kind": "camera"
+    }
+   ]
+  },
+  "②默认角色": {
+   "id": "director-character-lead",
+   "name": "角色A"
+  },
+  "②默认角色名": "角色A",
+  "②默认角色名是否角色A": true,
+  "③变换轨道label": [
+   "角色A · 变换"
+  ],
+  "③变换轨道label是否角色A · 变换": true,
+  "③姿态轨道label": [],
+  "③姿态轨道label是否角色A · 姿态": false,
+  "⑤DOM_场景树文本": [
+   {
+    "text": "画布 2",
+    "x": 196,
+    "y": 22
+   },
+   {
+    "text": "4 个场景对象",
+    "x": 33,
+    "y": 297
+   },
+   {
+    "text": "1 个机位",
+    "x": 85,
+    "y": 297
+   },
+   {
+    "text": "→",
+    "x": 84,
+    "y": 324
+   },
+   {
+    "text": "分镜 #2",
+    "x": 258,
+    "y": 90
+   },
+   {
+    "text": "资产管理",
+    "x": 44,
+    "y": 858
+   },
+   {
+    "text": "53%",
+    "x": 240,
+    "y": 854
+   },
+   {
+    "text": "镜头",
+    "x": 293,
+    "y": 62
+   },
+   {
+    "text": "1 个对象已选",
+    "x": 56,
+    "y": 146
+   },
+   {
+    "text": "角色",
+    "x": 84,
+    "y": 178
+   },
+   {
+    "text": "1",
+    "x": 253,
+    "y": 178
+   },
+   {
+    "text": "角色A",
+    "x": 88,
+    "y": 208
+   },
+   {
+    "text": "场景物体",
+    "x": 84,
+    "y": 250
+   },
+   {
+    "text": "3",
+    "x": 253,
+    "y": 250
+   },
+   {
+    "text": "咖啡桌",
+    "x": 88,
+    "y": 280
+   },
+   {
+    "text": "冷掉的咖啡",
+    "x": 88,
+    "y": 312
+   },
+   {
+    "text": "咖啡馆背景",
+    "x": 88,
+    "y": 344
+   },
+   {
+    "text": "摄像机",
+    "x": 84,
+    "y": 386
+   },
+   {
+    "text": "1",
+    "x": 253,
+    "y": 386
+   },
+   {
+    "text": "机位1",
+    "x": 88,
+    "y": 416
+   },
+   {
+    "text": "ready",
+    "x": 280,
+    "y": 87
+   },
+   {
+    "text": "ms",
+    "x": 182,
+    "y": 725
+   },
+   {
+    "text": "角色A",
+    "x": 28,
+    "y": 799
+   },
+   {
+    "text": "变换",
+    "x": 52,
+    "y": 831
+   },
+   {
+    "text": "-1.25,0,0.2",
+    "x": 174,
+    "y": 829
+   },
+   {
+    "text": "机位1",
+    "x": 28,
+    "y": 863
+   },
+   {
+    "text": "绘制轨迹",
+    "x": 252,
+    "y": 865
+   },
+   {
+    "text": "机位",
+    "x": 52,
+    "y": 895
+   },
+   {
+    "text": "4.8,2.65,6.9",
+    "x": 174,
+    "y": 893
+   },
+   {
+    "text": "0s",
+    "x": 315,
+    "y": 760
+   },
+   {
+    "text": "请选择一个角色或者摄像机后，可新建轨道",
+    "x": 180,
+    "y": 633
+   },
+   {
+    "text": "1/5",
+    "x": 180,
+    "y": 693
+   },
+   {
+    "text": "跳过",
+    "x": 289,
+    "y": 685
+   }
+  ],
+  "⑤DOM_场景树角色名": [
+   "角色",
+   "角色A"
+  ],
+  "⑤DOM_是否角色A": true
+ },
+ "source": {
+  "nodes": [
+   {
+    "nodeKey": "b-007xQ4Z8ZW",
+    "type": 21,
+    "name": "脚本 V2 1"
+   },
+   {
+    "nodeKey": "b-FDdyX7NtZM",
+    "type": 45,
+    "name": "逐帧拉片"
+   },
+   {
+    "nodeKey": "i-q4vzv4WVBZ",
+    "type": 2,
+    "name": "陈默_01KT17FN"
+   },
+   {
+    "nodeKey": "i-wkVAUQMDMw",
+    "type": 2,
+    "name": "图片节点 1"
+   },
+   {
+    "nodeKey": "m-t5vHSaN6Y7",
+    "type": 1,
+    "name": "素材-特效-瞳孔异变"
+   },
+   {
+    "nodeKey": "n-gYB1c2Peq9",
+    "type": 36,
+    "name": "导演台 2"
+   },
+   {
+    "nodeKey": "v-3CmzlptLJl",
+    "type": 3,
+    "name": "S83·镜2"
+   }
+  ],
+  "videoData": {
+   "type": "video",
+   "name": "S83·镜2",
+   "url": [
+    "https://libtv-res.liblib.art/upload-images/0a8471b054964ae9b9079af74a9ed84e/e4a7b968c20c7ee11be5059fd91021d377851d68.mp4"
+   ],
+   "poster": "",
+   "action": "video_resource",
+   "generatorType": "default",
+   "alt": "S83·镜2.mp4",
+   "_explicitContentDims": true,
+   "contentWidth": 610,
+   "contentHeight": 350,
+   "uploaded": true,
+   "protectionType": "",
+   "_updatedAtMs": 1790349530000,
+   "_lastAppliedFullyAtMs": 1790349530000,
+   "videoHasAudioTrack": true,
+   "_resourceMeta": {
+    "items": [
+     {
+      "kind": "video",
+      "mimeType": "video/mp4",
+      "byteSize": 809635,
+      "extension": "mp4",
+      "width": 864,
+      "height": 496,
+      "durationSec": 4.096,
+      "hashSha1": "e4a7b968c20c7ee11be5059fd91021d377851d68"
+     }
+    ]
+   }
+  },
+  "compositionDataKeys": [
+   "animation",
+   "cameras",
+   "characterGroups",
+   "characters",
+   "environment",
+   "props"
+  ],
+  "cameraLabels": [
+   "机位1",
+   "机位2"
+  ],
+  "characterLabels": [
+   "角色A"
+  ]
+ },
+ "checks": [
+  {
+   "label": "S1 ★★★ **「S83·镜2」是用户上传的 mp4 文件名，不是命名规则**：权威 raw 里该 video 节点的 `alt` 带 `.mp4` 扩展名、`action` 是 `video_resource`、`uploaded` 为真 ⟹ ⟹ batch 837 那句「源站用 S83·镜2 体系」**不成立**",
+   "pass": true,
+   "detail": "{\"视频节点名\": \"S83·镜2\", \"★alt字段\": \"S83·镜2.mp4\", \"★alt是否带mp4扩展名\": true, \"★action\": \"video_resource\", \"★action是否video_resource\": true, \"★uploaded\": true, \"★uploaded是否为真\": true, \"★generatorType\": \"default\"}"
+  },
+  {
+   "label": "S2 ★★ **源站没有「镜头」实体**：导演台权威数据 `compositionData` 的顶层键**不含**任何 shot 类键（顶层 6 个键 + animation 的 8 个子键都已枚举）⟹ ⟹ clone 的 `shots[]` 是**借自 StoryAI 上游**的分层 ⟹ **镜头名无源站口径可对齐**⟹ 本批**不改**它",
+   "pass": true,
+   "detail": "{\"compositionData顶层键\": [\"animation\", \"cameras\", \"characterGroups\", \"characters\", \"environment\", \"props\"], \"★是否含shot类键\": false, \"★animation的子键\": [\"activeCameraTrackId\", \"cameraTracks\", \"characterTracks\", \"duration\", \"groupTracks\", \"motionPaths\", \"propTracks\", \"version\"], \"★animation是否含shots\": false, \"★扫描覆盖度_顶层键数\": 6}"
+  },
+  {
+   "label": "S3 ★★ **源站的命名口径**：`cameras[].label` 全部是「机位N」（纯数字）、`characters[].label` 全部是「角色 + 单个大写字母」⟹ ⟹ 与 clone 的自拟名不同口径",
+   "pass": true,
+   "detail": "{\"相机label\": [\"机位1\", \"机位2\"], \"角色label\": [\"角色A\"], \"★相机label是否机位N\": true, \"★角色label是否角色+字母\": true, \"★相机数\": 2, \"★角色数\": 1}"
+  },
+  {
+   "label": "S4 ★★★ **源站角色默认名规则 = 「角色 + 字母序号」**（★ **权威 API 口径**）：清理后基线**只剩**「角色A」⟹ 新建后**权威 API 里真多了一个**角色（轮询达成 ⟹ 已落盘）⟹ ★ **重算关系**：那个角色的 `label` **==** 右栏「名称」输入框读到的值 == 「角色B」⟹ ⟹ 字母序号递进成立；★ 且收尾**已复原**（**独立进程**再读 API ⟹ 服务端状态，不是内存残留）",
+   "pass": true,
+   "detail": "{\"★清理后基线_角色\": [{\"id\": \"xqns9rxe\", \"label\": \"角色A\"}], \"★清理后基线_标签\": [\"角色A\"], \"★新建后API里的角色\": [{\"id\": \"xqns9rxe\", \"label\": \"角色A\"}, {\"id\": \"p6past1f\", \"label\": \"角色B\"}], \"★API轮询是否达成\": true, \"★新增的角色\": [{\"id\": \"p6past1f\", \"label\": \"角色B\"}], \"★右栏读到的默认名\": \"角色B\", \"★右栏面板标题是角色\": true, \"★raw里存的关系结论(仅交叉印证)\": true, \"★清理脚本_最终标签\": [\"角色A\"], \"★清理脚本_是否已复原\": true, \"★独立复核_角色\": [{\"id\": \"xqns9rxe\", \"label\": \"角色A\"}], \"★独立复核_角色标签\": [\"角色A\"], \"★独立复核_相机标签\": [\"机位1\", \"机位2\"], \"★独立复核_是否只剩角色A\": true, \"★①基线只剩角色A\": true, \"★②权威API里真多了一个\": true, \"★③新增角色label等于右栏读到的名\": true, \"★④递进_新名是角色B\": true, \"★⑤收尾已复原_独立进程复核\": true}"
+  },
+  {
+   "label": "S5 ★★ **clone 默认角色名 == 「角色A」**；★ **派生量跟随**（变换轨道 label == 「角色A · 变换」；姿态轨道 label **若存在**则必须是「角色A · 姿态」—— ★ 它在**选中角色**后按需生成，不是种子就有的 ⟹ **不要求它存在**，其存在性由 **42 门禁**覆盖）；且**在 DOM 上可见**（⟹ 不是只有 store 改了）",
+   "pass": true,
+   "detail": "{\"静态_种子角色名\": \"角色A\", \"静态_是否角色A\": true, \"★产品字面量里是否还有角色01\": false, \"运行时_角色名\": \"角色A\", \"运行时_是否角色A\": true, \"运行时_变换轨道label\": [\"角色A · 变换\"], \"运行时_变换轨道label是否角色A · 变换\": true, \"★姿态轨道label\": [], \"★姿态轨道_若存在则必须匹配\": true, \"★DOM上的角色名\": [\"角色\", \"角色A\"], \"★DOM上是否角色A\": true}"
+  },
+  {
+   "label": "S6 ★★ **被改的三处旧门禁期望值已同步**：720 的 `FIXTURE`、42 的姿态轨道 label、43 的 option 列表（★ 且 42 那条**成功抽出**了期望值 ⟹ 不是「抽不出而静默通过」）",
+   "pass": true,
+   "detail": "{\"720_FIXTURE含角色A\": true, \"720_不再含角色01\": true, \"42_姿态轨道label\": \"角色A · 姿态\", \"★42_成功抽出\": true, \"42_是否角色A · 姿态\": true, \"43_option列表含角色A\": true, \"43_不再含角色01\": true}"
+  },
+  {
+   "label": "S7 ★★★ **否定性结论的扫描器有效性 ＋ 更正已落地**：「源站没有镜头实体」的前提是扫描**覆盖了**那一类键 ⟹ 证明顶层 6 个键与 animation 的 8 个子键**都已枚举**、权威 raw 里有 7 个节点（类型 [1, 2, 3, 21, 36, 45]）⟹ 零命中**不是因为扫不到**；★ 且本批 README 里**含对 837 的更正声明**；★ 而 **837 的 README 未被改写**（那条原始结论原样还在 ⟹ 更正只落在本批 ＋ 台账）",
+   "pass": true,
+   "detail": "{\"★扫描覆盖度_compositionData顶层键数\": 6, \"★顶层键样本\": [\"animation\", \"cameras\", \"characterGroups\", \"characters\", \"environment\", \"props\"], \"★animation子键样本\": [\"activeCameraTrackId\", \"cameraTracks\", \"characterTracks\", \"duration\", \"groupTracks\", \"motionPaths\", \"propTracks\", \"version\"], \"★权威raw里的节点数\": 7, \"★节点类型样本\": [1, 2, 3, 21, 36, 45], \"★更正声明在本批README\": true, \"★声明源站无镜头实体\": true, \"★837的README未被改写\": true}"
+  }
+ ],
+ "conclusions": [
+  "★★★ **「S83·镜2」是用户上传的 mp4 文件名，不是源站的命名体系** —— 权威 raw（`api/canvas/project/detail-by-space`）里那个 video 节点的 `alt` 是「S83·镜2.mp4」、`action` 是 `video_resource`、`uploaded` 为真 ⟹ ★ **batch 837 README 里「源站用 S83·镜2 体系」那句不成立** ⟹ 本批更正。",
+  "★★ **源站根本没有「镜头」实体** —— 导演台权威数据 `compositionData` 的顶层只有 characters / characterGroups / cameras / props / animation / environment ⟹ ⟹ clone 的 `shots[]` 是**借自 StoryAI 上游**的分层（batch 96 PLAN.md 明说）⟹ ★ **镜头名无源站口径可对齐** ⟹ 本批**不改**它（不制造一个假的「对齐」）。",
+  "★★ **源站的命名口径**：相机 `label` 是「机位N」（纯数字）、角色 `label` 是「角色 + 字母」。",
+  "★★★ **角色默认名规则 = 「角色 + 字母序号」** —— 单趟闭环实测：选体型预设后树区**真多了一行**、那一行的文本 == 右栏「名称」输入框的值 == 「角色B」（进站基线是「角色A」）⟹ ⟹ 字母序号递进成立。",
+  "★★ **clone 的默认角色名由「角色01 · 陈默」改成「角色A」**，派生的变换/姿态轨道 label 自动跟随。",
+  "★ **源站的保存机制查清了**：导演台改动靠**约 30 秒延迟**的 `POST /api/canvas/nodes/batch` 自动保存（保存的是导演台节点 `n-gYB1c2Peq9` 的 compositionData）⟹ ⟹ 「跨刷新复验」必须等够时间，否则会把「还没落盘」误判成「没删掉」。"
+ ],
+ "notClaimed": [
+  "**不声称**源站的角色名一定是「角色A/B/C」字母表 —— 只实测了 A→B 这一步递进。",
+  "**不声称**源站的机位名在任何情形下都唯一（batch 836 已证它会重名）。",
+  "**不声称** clone 的镜头命名体系已对齐源站 —— 源站**没有**镜头实体可比。",
+  "**不声称** crowd（群众）的成员命名已对齐 —— 源站的 crowd 命名**未测** ⟹ 未改。",
+  "**不声称** 837 的 README 已被更正 —— 旧批次 README 不可重写 ⟹ 更正写在本批 ＋ 台账。"
+ ],
+ "environment": [
+  "源站项目在本次实验中**被完整复原**（跨刷新复验：场景树 == 进站基线）。",
+  "源站有**并发活动**（batch 837 时基线已是两台机位）⟹ 全程以**进站基线**为准，只删本批新建的那一个。"
+ ]
+}

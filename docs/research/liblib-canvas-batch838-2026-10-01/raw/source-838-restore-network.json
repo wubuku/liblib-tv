@@ -1,0 +1,92 @@
+{
+ "①进站_行名": [
+  "机位1",
+  "机位2",
+  "角色A"
+ ],
+ "①★进站_行数": 3,
+ "②★角色B候选数": 0,
+ "②删除后_行名": [
+  "机位1",
+  "机位2",
+  "角色A"
+ ],
+ "②★删除后_行数": 3,
+ "②★删除期间api调用": [],
+ "③★等待25秒后的api调用": [
+  {
+   "m": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "st": 200,
+   "body": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"E4z9KFkHBwIFg1pJfBsU\",\"timestamp\":1792617792699}",
+   "t": 1792617814.063164
+  },
+  {
+   "m": "POST",
+   "url": "https://api.liblib.tv/api/canvas/nodes/batch",
+   "st": 200,
+   "body": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"nodes\":{\"update\":[{\"nodeKey\":\"n-gYB1c2Peq9\",\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"type\":36,\"name\":\"导演台 2\",\"position\":{\"positionX\":\"1060\",\"positionY\":\"252\"},\"measured\":{\"width\":\"350\",\"height\":\"466\"},\"parentKey\":\"\",\"data\":\"{\\\"type\\\":\\\"director-console-3d\\\",\\\"name\\\":\\\"导演台 2\\\",\\\"action\\\":\\\"director_console_panorama_input\\\",\\\"contentWidth\\\":350,\\\"contentHeight\\\":350,\\\"_updatedAtMs\\\":1792617738000,\\\"_lastAppliedFullyAtMs\\\":1792617738000,\\\"compositionData\\\":{\\\"characters\\\":[{\\\"id\\\":\\\"xqns9rxe\\\",\\\"label\\\":\\\"角色A\\\",\\\"color\\\":\\\"#4F8EF7\\\",\\\"bodyType\\\":\\\"mannequin\\\",\\\"modelUrl\\\":\\\"/assets/3d-characters/1-%E7%94%B7%E6%80%A7-%E4%BD%8E%E6%A8%A1.glb\\\",\\\"modelName\\\":\\\"标准男性\\\",\\\"pose\\\":\\\"stand\\\",\\\"jointAngles\\\":{\\\"body\\\":{\\\"bend\\\":0,\\\"turn\\\":0,\\\"t",
+   "t": 1792617814.815093
+  },
+  {
+   "m": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "st": 200,
+   "body": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"E4z9KFkHBwIFg1pJfBsU\",\"timestamp\":1792617792699}",
+   "t": 1792617819.1212249
+  },
+  {
+   "m": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "st": 200,
+   "body": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"E4z9KFkHBwIFg1pJfBsU\",\"timestamp\":1792617792699}",
+   "t": 1792617824.182397
+  },
+  {
+   "m": "POST",
+   "url": "https://api.liblib.tv/api/canvas/nodes/batch",
+   "st": 200,
+   "body": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"nodes\":{\"update\":[{\"nodeKey\":\"n-gYB1c2Peq9\",\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"type\":36,\"name\":\"导演台 2\",\"position\":{\"positionX\":\"1060\",\"positionY\":\"252\"},\"measured\":{\"width\":\"350\",\"height\":\"466\"},\"parentKey\":\"\",\"data\":\"{\\\"type\\\":\\\"director-console-3d\\\",\\\"name\\\":\\\"导演台 2\\\",\\\"action\\\":\\\"director_console_panorama_input\\\",\\\"contentWidth\\\":350,\\\"contentHeight\\\":350,\\\"_updatedAtMs\\\":1792617738000,\\\"_lastAppliedFullyAtMs\\\":1792617738000,\\\"compositionData\\\":{\\\"characters\\\":[{\\\"id\\\":\\\"xqns9rxe\\\",\\\"label\\\":\\\"角色A\\\",\\\"color\\\":\\\"#4F8EF7\\\",\\\"bodyType\\\":\\\"mannequin\\\",\\\"modelUrl\\\":\\\"/assets/3d-characters/1-%E7%94%B7%E6%80%A7-%E4%BD%8E%E6%A8%A1.glb\\\",\\\"modelName\\\":\\\"标准男性\\\",\\\"pose\\\":\\\"stand\\\",\\\"jointAngles\\\":{\\\"body\\\":{\\\"bend\\\":0,\\\"turn\\\":0,\\\"t",
+   "t": 1792617824.763249
+  },
+  {
+   "m": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "st": 200,
+   "body": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"E4z9KFkHBwIFg1pJfBsU\",\"timestamp\":1792617792699}",
+   "t": 1792617829.242966
+  },
+  {
+   "m": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "st": 200,
+   "body": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"E4z9KFkHBwIFg1pJfBsU\",\"timestamp\":1792617792699}",
+   "t": 1792617834.3038132
+  },
+  {
+   "m": "POST",
+   "url": "https://api.liblib.tv/api/canvas/nodes/batch",
+   "st": 200,
+   "body": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"nodes\":{\"update\":[{\"nodeKey\":\"n-gYB1c2Peq9\",\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"type\":36,\"name\":\"导演台 2\",\"position\":{\"positionX\":\"1060\",\"positionY\":\"252\"},\"measured\":{\"width\":\"350\",\"height\":\"466\"},\"parentKey\":\"\",\"data\":\"{\\\"type\\\":\\\"director-console-3d\\\",\\\"name\\\":\\\"导演台 2\\\",\\\"action\\\":\\\"director_console_panorama_input\\\",\\\"contentWidth\\\":350,\\\"contentHeight\\\":350,\\\"_updatedAtMs\\\":1792617738000,\\\"_lastAppliedFullyAtMs\\\":1792617738000,\\\"compositionData\\\":{\\\"characters\\\":[{\\\"id\\\":\\\"xqns9rxe\\\",\\\"label\\\":\\\"角色A\\\",\\\"color\\\":\\\"#4F8EF7\\\",\\\"bodyType\\\":\\\"mannequin\\\",\\\"modelUrl\\\":\\\"/assets/3d-characters/1-%E7%94%B7%E6%80%A7-%E4%BD%8E%E6%A8%A1.glb\\\",\\\"modelName\\\":\\\"标准男性\\\",\\\"pose\\\":\\\"stand\\\",\\\"jointAngles\\\":{\\\"body\\\":{\\\"bend\\\":0,\\\"turn\\\":0,\\\"t",
+   "t": 1792617834.76413
+  }
+ ],
+ "④关闭_异常": "Locator.click: Timeout 8000ms exceeded.\nCall log:\n  - waiting for locator(\"button[aria-label='关闭']\").first\n  -     - locator resolved to <button type=\"button\" aria-label=\"关闭\" class=\"flex size-7 shrink-0 cursor-pointer items-center justify-center rounded-lg transition-colors hover:bg-white/10\">…</button>\n  -   - attempting click action\n  -     2 × waiting for element to be visible, enabled and stable\n  -       - element is not visible\n  -     - retrying click action\n  -     - waiting 20ms\n  -     2 × waiting for element to be visible, enabled and stable\n  -       - element is not visible\n  -     - retrying click action\n  -       - waiting 100ms\n  -     15 × waiting for element to be visible, enabled and stable\n  -        - element is not visible\n  -      - retrying click action\n  -        - waiting 500ms\n",
+ "④★是否关台成功": false,
+ "④★关台后的api调用": [
+  {
+   "m": "POST",
+   "url": "https://api.liblib.tv/api/canvas/nodes/batch",
+   "st": 200,
+   "body": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"nodes\":{\"update\":[{\"nodeKey\":\"n-gYB1c2Peq9\",\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"type\":36,\"name\":\"导演台 2\",\"position\":{\"positionX\":\"1060\",\"positionY\":\"252\"},\"measured\":{\"width\":\"350\",\"height\":\"466\"},\"parentKey\":\"\",\"data\":\"{\\\"type\\\":\\\"director-console-3d\\\",\\\"name\\\":\\\"导演台 2\\\",\\\"action\\\":\\\"director_console_panorama_input\\\",\\\"contentWidth\\\":350,\\\"contentHeight\\\":350,\\\"_updatedAtMs\\\":1792617738000,\\\"_lastAppliedFullyAtMs\\\":1792617738000,\\\"compositionData\\\":{\\\"characters\\\":[{\\\"id\\\":\\\"xqns9rxe\\\",\\\"label\\\":\\\"角色A\\\",\\\"color\\\":\\\"#4F8EF7\\\",\\\"bodyType\\\":\\\"mannequin\\\",\\\"modelUrl\\\":\\\"/assets/3d-characters/1-%E7%94%B7%E6%80%A7-%E4%BD%8E%E6%A8%A1.glb\\\",\\\"modelName\\\":\\\"标准男性\\\",\\\"pose\\\":\\\"stand\\\",\\\"jointAngles\\\":{\\\"body\\\":{\\\"bend\\\":0,\\\"turn\\\":0,\\\"t",
+   "t": 1792617844.80493
+  },
+  {
+   "m": "POST",
+   "url": "https://api.liblib.tv/api/canvas/nodes/batch",
+   "st": 200,
+   "body": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"nodes\":{\"update\":[{\"nodeKey\":\"n-gYB1c2Peq9\",\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"type\":36,\"name\":\"导演台 2\",\"position\":{\"positionX\":\"1060\",\"positionY\":\"252\"},\"measured\":{\"width\":\"350\",\"height\":\"466\"},\"parentKey\":\"\",\"data\":\"{\\\"type\\\":\\\"director-console-3d\\\",\\\"name\\\":\\\"导演台 2\\\",\\\"action\\\":\\\"director_console_panorama_input\\\",\\\"contentWidth\\\":350,\\\"contentHeight\\\":350,\\\"_updatedAtMs\\\":1792617738000,\\\"_lastAppliedFullyAtMs\\\":1792617738000,\\\"compositionData\\\":{\\\"characters\\\":[{\\\"id\\\":\\\"xqns9rxe\\\",\\\"label\\\":\\\"角色A\\\",\\\"color\\\":\\\"#4F8EF7\\\",\\\"bodyType\\\":\\\"mannequin\\\",\\\"modelUrl\\\":\\\"/assets/3d-characters/1-%E7%94%B7%E6%80%A7-%E4%BD%8E%E6%A8%A1.glb\\\",\\\"modelName\\\":\\\"标准男性\\\",\\\"pose\\\":\\\"stand\\\",\\\"jointAngles\\\":{\\\"body\\\":{\\\"bend\\\":0,\\\"turn\\\":0,\\\"t",
+   "t": 1792617854.806704
+  }
+ ]
+}

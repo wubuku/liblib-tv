@@ -1,0 +1,551 @@
+{
+ "①基线_ShotLike文本": [
+  {
+   "text": "S83·镜2",
+   "x": 127,
+   "y": 104,
+   "w": 37,
+   "h": 15,
+   "cls": "text-[13px] cursor-text pointer-events-auto",
+   "tag": "SPAN"
+  }
+ ],
+ "①基线_ShotLike数量": 1,
+ "①基线_画布节点": [
+  {
+   "cls": "react-flow__node react-flow__node-script-v2 nopan selectable draggable",
+   "box": [
+    410,
+    328,
+    133,
+    133
+   ],
+   "text": "脚本 V2 11确认镜头2准备资产3合成提示词打开脚本节点 →"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-shot-breakdown nopan selectable draggable",
+   "box": [
+    99,
+    563,
+    122,
+    148
+   ],
+   "text": "逐帧拉片逐帧拉片SD 2.5视频素材上传视频后开始拆解维度分镜动态音乐开始拉片"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-image nopan selectable draggable",
+   "box": [
+    465,
+    557,
+    235,
+    133
+   ],
+   "text": "陈默_01KT17FN1808 × 1024"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-image nopan selectable draggable",
+   "box": [
+    26,
+    337,
+    237,
+    133
+   ],
+   "text": "图片节点 1尝试：图生图图片高清"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-material-lens nopan selectable draggable",
+   "box": [
+    282,
+    588,
+    92,
+    92
+   ],
+   "text": "素材-特效-瞳孔异变"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-director-console-3d nopan selected selectable draggable",
+   "box": [
+    503,
+    127,
+    133,
+    178
+   ],
+   "text": "导演台 2打开导演台"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+   "box": [
+    113,
+    122,
+    232,
+    133
+   ],
+   "text": "S83·镜2864 × 496"
+  }
+ ],
+ "①基线_左栏文本": [
+  {
+   "text": "画布 1",
+   "x": 173,
+   "y": 14
+  },
+  {
+   "text": "逐帧拉片",
+   "x": 113,
+   "y": 545
+  },
+  {
+   "text": "逐帧拉片",
+   "x": 115,
+   "y": 570
+  },
+  {
+   "text": "SD 2.5",
+   "x": 154,
+   "y": 571
+  },
+  {
+   "text": "视频素材",
+   "x": 105,
+   "y": 586
+  },
+  {
+   "text": "上传视频后开始",
+   "x": 144,
+   "y": 630
+  },
+  {
+   "text": "拆解维度",
+   "x": 105,
+   "y": 664
+  },
+  {
+   "text": "分镜",
+   "x": 121,
+   "y": 675
+  },
+  {
+   "text": "动态",
+   "x": 159,
+   "y": 675
+  },
+  {
+   "text": "音乐",
+   "x": 197,
+   "y": 675
+  },
+  {
+   "text": "开始拉片",
+   "x": 104,
+   "y": 693
+  },
+  {
+   "text": "图片节点 1",
+   "x": 39,
+   "y": 319
+  },
+  {
+   "text": "尝试：",
+   "x": 35,
+   "y": 404
+  },
+  {
+   "text": "图生图",
+   "x": 48,
+   "y": 418
+  },
+  {
+   "text": "图片高清",
+   "x": 49,
+   "y": 433
+  },
+  {
+   "text": "素材-特效-瞳孔异变",
+   "x": 295,
+   "y": 570
+  },
+  {
+   "text": "S83·镜2",
+   "x": 127,
+   "y": 104
+  },
+  {
+   "text": "864 × 496",
+   "x": 304,
+   "y": 105
+  },
+  {
+   "text": "资产管理",
+   "x": 44,
+   "y": 1038
+  },
+  {
+   "text": "38%",
+   "x": 240,
+   "y": 1034
+  },
+  {
+   "text": "3D导演台",
+   "x": -1,
+   "y": -1
+  },
+  {
+   "text": "3D导演台",
+   "x": 40,
+   "y": 15
+  },
+  {
+   "text": "场景",
+   "x": 60,
+   "y": 66
+  },
+  {
+   "text": "搜索场景对象",
+   "x": 55,
+   "y": 99
+  },
+  {
+   "text": "机位1",
+   "x": 96,
+   "y": 154
+  },
+  {
+   "text": "机位2",
+   "x": 96,
+   "y": 186
+  },
+  {
+   "text": "角色A",
+   "x": 96,
+   "y": 218
+  }
+ ],
+ "①目标文本": "S83·镜2",
+ "②目标祖先链": [
+  {
+   "tag": "DIV",
+   "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+   "dataKeys": [],
+   "contentEditable": null,
+   "text": "S83·镜2",
+   "box": [
+    113,
+    104,
+    187,
+    15
+   ]
+  },
+  {
+   "tag": "DIV",
+   "cls": "text-fg-muted flex w-full min-w-0 items-center gap-1 cursor-pointer",
+   "dataKeys": [],
+   "contentEditable": null,
+   "text": "S83·镜2864 × 496",
+   "box": [
+    113,
+    102,
+    232,
+    18
+   ]
+  },
+  {
+   "tag": "DIV",
+   "cls": "node-floating-ui transition-[transform,opacity] duration-150 ease-out absolute left-0 origin-bottom-left",
+   "dataKeys": [],
+   "contentEditable": null,
+   "text": "S83·镜2864 × 496",
+   "box": [
+    113,
+    102,
+    232,
+    18
+   ]
+  },
+  {
+   "tag": "DIV",
+   "cls": "node-shell relative",
+   "dataKeys": [
+    "nodeid",
+    "longpressContextmenu"
+   ],
+   "contentEditable": null,
+   "text": "S83·镜2864 × 496",
+   "box": [
+    113,
+    122,
+    232,
+    133
+   ]
+  },
+  {
+   "tag": "DIV",
+   "cls": "",
+   "dataKeys": [],
+   "contentEditable": null,
+   "text": "S83·镜2864 × 496",
+   "box": [
+    113,
+    122,
+    232,
+    133
+   ]
+  },
+  {
+   "tag": "DIV",
+   "cls": "",
+   "dataKeys": [],
+   "contentEditable": null,
+   "text": "S83·镜2864 × 496",
+   "box": [
+    113,
+    122,
+    232,
+    133
+   ]
+  },
+  {
+   "tag": "DIV",
+   "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+   "dataKeys": [
+    "id",
+    "testid"
+   ],
+   "contentEditable": null,
+   "text": "S83·镜2864 × 496",
+   "box": [
+    113,
+    122,
+    232,
+    133
+   ]
+  },
+  {
+   "tag": "DIV",
+   "cls": "react-flow__nodes",
+   "dataKeys": [],
+   "contentEditable": null,
+   "text": "脚本 V2 11确认镜头2准备资产3合成提示词打开脚本节点 →逐帧拉片逐帧拉片S",
+   "box": [
+    99,
+    31,
+    732,
+    411
+   ]
+  }
+ ],
+ "③新建前_ShotLike集合": [
+  "S83·镜2"
+ ],
+ "③机位面板_异常": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"[aria-label='机位']\").first\n",
+ "③新建_异常": "Locator.click: Timeout 30000ms exceeded.\nCall log:\n  - waiting for get_by_text(\"新增机位\").first\n",
+ "③新建后_左栏文本": [
+  {
+   "text": "画布 1",
+   "x": 173,
+   "y": 14
+  },
+  {
+   "text": "逐帧拉片",
+   "x": 113,
+   "y": 545
+  },
+  {
+   "text": "逐帧拉片",
+   "x": 115,
+   "y": 570
+  },
+  {
+   "text": "SD 2.5",
+   "x": 154,
+   "y": 571
+  },
+  {
+   "text": "视频素材",
+   "x": 105,
+   "y": 586
+  },
+  {
+   "text": "上传视频后开始",
+   "x": 144,
+   "y": 630
+  },
+  {
+   "text": "拆解维度",
+   "x": 105,
+   "y": 664
+  },
+  {
+   "text": "分镜",
+   "x": 121,
+   "y": 675
+  },
+  {
+   "text": "动态",
+   "x": 159,
+   "y": 675
+  },
+  {
+   "text": "音乐",
+   "x": 197,
+   "y": 675
+  },
+  {
+   "text": "开始拉片",
+   "x": 104,
+   "y": 693
+  },
+  {
+   "text": "图片节点 1",
+   "x": 39,
+   "y": 319
+  },
+  {
+   "text": "尝试：",
+   "x": 35,
+   "y": 404
+  },
+  {
+   "text": "图生图",
+   "x": 48,
+   "y": 418
+  },
+  {
+   "text": "图片高清",
+   "x": 49,
+   "y": 433
+  },
+  {
+   "text": "素材-特效-瞳孔异变",
+   "x": 295,
+   "y": 570
+  },
+  {
+   "text": "S83·镜2",
+   "x": 127,
+   "y": 104
+  },
+  {
+   "text": "864 × 496",
+   "x": 304,
+   "y": 105
+  },
+  {
+   "text": "资产管理",
+   "x": 44,
+   "y": 1038
+  },
+  {
+   "text": "38%",
+   "x": 240,
+   "y": 1034
+  },
+  {
+   "text": "3D导演台",
+   "x": -1,
+   "y": -1
+  },
+  {
+   "text": "3D导演台",
+   "x": 40,
+   "y": 15
+  },
+  {
+   "text": "场景",
+   "x": 60,
+   "y": 66
+  },
+  {
+   "text": "搜索场景对象",
+   "x": 55,
+   "y": 99
+  },
+  {
+   "text": "机位1",
+   "x": 96,
+   "y": 154
+  },
+  {
+   "text": "机位2",
+   "x": 96,
+   "y": 186
+  },
+  {
+   "text": "角色A",
+   "x": 96,
+   "y": 218
+  }
+ ],
+ "③新建后_画布节点": [
+  {
+   "cls": "react-flow__node react-flow__node-script-v2 nopan selectable draggable",
+   "box": [
+    410,
+    328,
+    133,
+    133
+   ],
+   "text": "脚本 V2 11确认镜头2准备资产3合成提示词打开脚本节点 →"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-shot-breakdown nopan selectable draggable",
+   "box": [
+    99,
+    563,
+    122,
+    148
+   ],
+   "text": "逐帧拉片逐帧拉片SD 2.5视频素材上传视频后开始拆解维度分镜动态音乐开始拉片"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-image nopan selectable draggable",
+   "box": [
+    465,
+    557,
+    235,
+    133
+   ],
+   "text": "陈默_01KT17FN1808 × 1024"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-image nopan selectable draggable",
+   "box": [
+    26,
+    337,
+    237,
+    133
+   ],
+   "text": "图片节点 1尝试：图生图图片高清"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-material-lens nopan selectable draggable",
+   "box": [
+    282,
+    588,
+    92,
+    92
+   ],
+   "text": "素材-特效-瞳孔异变"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-director-console-3d nopan selected selectable draggable",
+   "box": [
+    503,
+    127,
+    133,
+    178
+   ],
+   "text": "导演台 2打开导演台"
+  },
+  {
+   "cls": "react-flow__node react-flow__node-video nopan selectable draggable",
+   "box": [
+    113,
+    122,
+    232,
+    133
+   ],
+   "text": "S83·镜2864 × 496"
+  }
+ ],
+ "截图": "/tmp/liblib_source_shotname838.png"
+}

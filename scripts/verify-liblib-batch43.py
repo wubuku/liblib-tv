@@ -182,7 +182,7 @@ def run_desktop(page: Page):
     assert look_at.locator("option").all_text_contents() == [
         "手动坐标",
         "手动旋转",
-        "角色01 · 陈默",
+        "角色A",
         "咖啡桌",
         "冷掉的咖啡",
         "咖啡馆背景",

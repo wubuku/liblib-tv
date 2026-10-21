@@ -803,7 +803,22 @@ interface DirectorState {
 const defaultObjects: DirectorObject[] = [
   {
     id: "director-character-lead",
-    name: "角色01 · 陈默",
+    // ★★ Batch 838：源站实测的**第一个角色叫「角色A」**（**字母**序号，不是数字、不是语义后缀）。
+    //   依据（源站 2026-10-22 活体实测，见
+    //   docs/research/liblib-canvas-batch838-2026-10-01/）：
+    //   - 源站场景树实测是「机位1 / 机位2 / **角色A**」；
+    //   - ★★ 在源站**新建**一个角色（选体型预设「标准男性」）⟹ 右栏「名称」输入框的值
+    //     变成「**角色B**」⟹ ⟹ 默认名规则是「**角色 + 字母序号**」。
+    //   ⟹ 旧名「角色01 · 陈默」是 clone 的**自拟名**（数字序号 ＋ 语义后缀）⟹ 与源站不同口径。
+    // ★ ★ 顺带更正 batch 837 的一条结论：源站画布上那个「**S83·镜2**」**不是**镜头名 ——
+    //   权威数据（`api/canvas/project/detail-by-space` 的响应）里它的 `alt` 是
+    //   「**S83·镜2.mp4**」⟹ 那是**用户上传的 mp4 文件名**（一个 video 节点的标题），
+    //   **不是**任何系统命名规则 ⟹ batch 837 README 里「源站用 S83·镜2 体系」那句**不成立**。
+    //   ★ 源站**根本没有「镜头」实体**：导演台的权威数据 `compositionData` 只有
+    //   characters / characterGroups / cameras / props / animation / environment ⟹
+    //   clone 的 `shots[]` 是**借自 StoryAI 上游**的分层设计（见 batch 96 PLAN.md），
+    //   **不是**源站事实 ⟹ 故 clone 的镜头名**无源站口径可对齐**，本批**不改**它。
+    name: "角色A",
     kind: "character",
     primitive: "character",
     color: "#8696a8",

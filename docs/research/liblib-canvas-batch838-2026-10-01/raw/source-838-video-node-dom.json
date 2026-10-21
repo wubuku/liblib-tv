@@ -1,0 +1,313 @@
+{
+ "①video节点HTML": {
+  "attrs": {
+   "class": "react-flow__node react-flow__node-video nopan selectable draggable",
+   "data-id": "v-3CmzlptLJl",
+   "data-testid": "rf__node-v-3CmzlptLJl",
+   "tabindex": "0",
+   "role": "group",
+   "aria-roledescription": "node",
+   "aria-describedby": "react-flow__node-desc-1",
+   "style": "z-index: 0; transform: translate(38px, 240px); pointer-events: all; visibility: visible;"
+  },
+  "box": [
+   113,
+   122,
+   232,
+   133
+  ],
+  "inner": [
+   {
+    "tag": "DIV",
+    "text": "S83·镜2864 × 496",
+    "title": null,
+    "aria": null,
+    "cls": "",
+    "box": [
+     113,
+     122,
+     232,
+     133
+    ]
+   },
+   {
+    "tag": "DIV",
+    "text": "S83·镜2864 × 496",
+    "title": null,
+    "aria": null,
+    "cls": "",
+    "box": [
+     113,
+     122,
+     232,
+     133
+    ]
+   },
+   {
+    "tag": "DIV",
+    "text": "S83·镜2864 × 496",
+    "title": null,
+    "aria": null,
+    "cls": "node-shell relative",
+    "box": [
+     113,
+     122,
+     232,
+     133
+    ]
+   },
+   {
+    "tag": "DIV",
+    "text": "S83·镜2864 × 496",
+    "title": null,
+    "aria": null,
+    "cls": "node-floating-ui transition-[transform,opacity] duration-150 ease-out absolute l",
+    "box": [
+     113,
+     102,
+     232,
+     18
+    ]
+   },
+   {
+    "tag": "DIV",
+    "text": "S83·镜2864 × 496",
+    "title": null,
+    "aria": null,
+    "cls": "text-fg-muted flex w-full min-w-0 items-center gap-1 cursor-pointer",
+    "box": [
+     113,
+     102,
+     232,
+     18
+    ]
+   },
+   {
+    "tag": "DIV",
+    "text": "S83·镜2",
+    "title": null,
+    "aria": null,
+    "cls": "flex min-w-0 flex-1 items-center gap-1 cursor-pointer",
+    "box": [
+     113,
+     104,
+     187,
+     15
+    ]
+   },
+   {
+    "tag": "SPAN",
+    "text": "S83·镜2",
+    "title": "S83·镜2",
+    "aria": null,
+    "cls": "text-[13px] cursor-text pointer-events-auto",
+    "box": [
+     127,
+     104,
+     37,
+     15
+    ]
+   },
+   {
+    "tag": "SPAN",
+    "text": "864 × 496",
+    "title": "864 × 496",
+    "aria": null,
+    "cls": "text-fg-muted shrink-0 whitespace-nowrap text-[11px] tabular-nums opacity-80",
+    "box": [
+     304,
+     105,
+     42,
+     13
+    ]
+   }
+  ]
+ },
+ "②video节点Fiber": [
+  {
+   "kind": "video",
+   "layers": [
+    {
+     "up": 0,
+     "tag": 5,
+     "type": "div",
+     "picked": {},
+     "propKeys": [
+      "className",
+      "ref",
+      "style",
+      "data-id",
+      "data-testid",
+      "onMouseEnter",
+      "onMouseMove",
+      "onMouseLeave",
+      "onContextMenu",
+      "onClick",
+      "onDoubleClick",
+      "onKeyDown",
+      "tabIndex",
+      "onFocus",
+      "role",
+      "aria-roledescription",
+      "aria-describedby",
+      "aria-label",
+      "children"
+     ]
+    },
+    {
+     "up": 1,
+     "tag": 15,
+     "type": "?",
+     "picked": {
+      "id": "v-3CmzlptLJl"
+     },
+     "propKeys": [
+      "id",
+      "nodeTypes",
+      "nodeExtent",
+      "onClick",
+      "onMouseEnter",
+      "onMouseMove",
+      "onMouseLeave",
+      "onContextMenu",
+      "onDoubleClick",
+      "noDragClassName",
+      "noPanClassName",
+      "rfId",
+      "disableKeyboardA11y",
+      "resizeObserver",
+      "nodesDraggable",
+      "nodesConnectable",
+      "nodesFocusable",
+      "elementsSelectable",
+      "nodeClickDistance",
+      "onError"
+     ]
+    },
+    {
+     "up": 2,
+     "tag": 5,
+     "type": "div",
+     "picked": {},
+     "propKeys": [
+      "className",
+      "style",
+      "children"
+     ]
+    },
+    {
+     "up": 3,
+     "tag": 15,
+     "type": "NodeRenderer",
+     "picked": {},
+     "propKeys": [
+      "nodeTypes",
+      "onNodeClick",
+      "onNodeDoubleClick",
+      "onNodeMouseEnter",
+      "onNodeMouseMove",
+      "onNodeMouseLeave",
+      "onNodeContextMenu",
+      "nodeClickDistance",
+      "onlyRenderVisibleElements",
+      "noPanClassName",
+      "noDragClassName",
+      "disableKeyboardA11y",
+      "nodeExtent",
+      "rfId",
+      "nodesDraggable"
+     ]
+    },
+    {
+     "up": 4,
+     "tag": 5,
+     "type": "div",
+     "picked": {},
+     "propKeys": [
+      "ref",
+      "className",
+      "style",
+      "children"
+     ]
+    },
+    {
+     "up": 5,
+     "tag": 0,
+     "type": "ts",
+     "picked": {},
+     "propKeys": [
+      "children"
+     ]
+    },
+    {
+     "up": 6,
+     "tag": 7,
+     "type": "?",
+     "picked": {},
+     "propKeys": [
+      "0",
+      "1"
+     ]
+    },
+    {
+     "up": 7,
+     "tag": 5,
+     "type": "div",
+     "picked": {},
+     "propKeys": [
+      "className",
+      "onClick",
+      "onContextMenu",
+      "onWheel",
+      "onPointerEnter",
+      "onPointerMove",
+      "onPointerUp",
+      "onPointerCancel",
+      "onPointerDownCapture",
+      "onClickCapture",
+      "onPointerLeave",
+      "ref",
+      "style",
+      "children"
+     ]
+    },
+    {
+     "up": 8,
+     "tag": 0,
+     "type": "eh",
+     "picked": {},
+     "propKeys": [
+      "onSelectionStart",
+      "onSelectionEnd",
+      "onPaneClick",
+      "onPaneMouseEnter",
+      "onPaneMouseMove",
+      "onPaneMouseLeave",
+      "onPaneContextMenu",
+      "onPaneScroll",
+      "panOnDrag",
+      "autoPanOnSelection",
+      "isSelecting",
+      "selectionMode",
+      "selectionKeyPressed",
+      "paneClickDistance",
+      "selectionOnDrag",
+      "children"
+     ]
+    },
+    {
+     "up": 9,
+     "tag": 5,
+     "type": "div",
+     "picked": {},
+     "propKeys": [
+      "className",
+      "ref",
+      "style",
+      "children"
+     ]
+    }
+   ]
+  }
+ ]
+}

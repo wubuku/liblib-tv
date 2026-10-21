@@ -1,0 +1,579 @@
+{
+ "①进站基线_场景树名字": [
+  "画布 1",
+  "搜索场景对象",
+  "S83·镜2",
+  "机位1",
+  "机位2",
+  "角色A",
+  "逐帧拉片",
+  "素材-特效-瞳孔异变",
+  "SD 2.5",
+  "视频素材",
+  "上传视频后开始",
+  "拆解维度",
+  "分镜",
+  "动态",
+  "音乐",
+  "开始拉片",
+  "38%"
+ ],
+ "①进站基线_场景树文本": [
+  {
+   "text": "3D导演台",
+   "x": -1,
+   "y": -1,
+   "cls": "sr-only",
+   "tag": "SPAN"
+  },
+  {
+   "text": "画布 1",
+   "x": 173,
+   "y": 14,
+   "cls": "text-canvas-controls-text min-w-0 truncate text-[13px] font-normal max-w-[160px]",
+   "tag": "SPAN"
+  },
+  {
+   "text": "3D导演台",
+   "x": 40,
+   "y": 15,
+   "cls": "min-w-0 flex-1 truncate text-[14px] leading-[22px] text-white/90",
+   "tag": "DIV"
+  },
+  {
+   "text": "场景",
+   "x": 60,
+   "y": 66,
+   "cls": "min-w-0 flex-1 text-[12px] leading-5 text-white/85",
+   "tag": "DIV"
+  },
+  {
+   "text": "搜索场景对象",
+   "x": 55,
+   "y": 99,
+   "cls": "sr-only",
+   "tag": "SPAN"
+  },
+  {
+   "text": "S83·镜2",
+   "x": 127,
+   "y": 104,
+   "cls": "text-[13px] cursor-text pointer-events-auto",
+   "tag": "SPAN"
+  },
+  {
+   "text": "机位1",
+   "x": 96,
+   "y": 154,
+   "cls": "z-10 min-w-0 flex-1 truncate pl-1",
+   "tag": "SPAN"
+  },
+  {
+   "text": "机位2",
+   "x": 96,
+   "y": 186,
+   "cls": "z-10 min-w-0 flex-1 truncate pl-1",
+   "tag": "SPAN"
+  },
+  {
+   "text": "角色A",
+   "x": 96,
+   "y": 218,
+   "cls": "z-10 min-w-0 flex-1 truncate pl-1",
+   "tag": "SPAN"
+  },
+  {
+   "text": "图片节点 1",
+   "x": 39,
+   "y": 319,
+   "cls": "text-[13px] cursor-text pointer-events-auto",
+   "tag": "SPAN"
+  },
+  {
+   "text": "尝试：",
+   "x": 35,
+   "y": 404,
+   "cls": "text-fg-muted mb-2 text-sm",
+   "tag": "DIV"
+  },
+  {
+   "text": "图生图",
+   "x": 48,
+   "y": 418,
+   "cls": "",
+   "tag": "SPAN"
+  },
+  {
+   "text": "图片高清",
+   "x": 49,
+   "y": 433,
+   "cls": "",
+   "tag": "SPAN"
+  },
+  {
+   "text": "逐帧拉片",
+   "x": 113,
+   "y": 545,
+   "cls": "text-[13px] cursor-text pointer-events-auto",
+   "tag": "SPAN"
+  },
+  {
+   "text": "逐帧拉片",
+   "x": 115,
+   "y": 570,
+   "cls": "text-fg-default text-[14px] font-semibold leading-[22px]",
+   "tag": "SPAN"
+  },
+  {
+   "text": "素材-特效-瞳孔异变",
+   "x": 295,
+   "y": 570,
+   "cls": "text-[13px] cursor-text pointer-events-auto",
+   "tag": "SPAN"
+  },
+  {
+   "text": "SD 2.5",
+   "x": 154,
+   "y": 571,
+   "cls": "text-[11px] leading-4",
+   "tag": "SPAN"
+  },
+  {
+   "text": "视频素材",
+   "x": 105,
+   "y": 586,
+   "cls": "text-fg-muted flex-1 truncate text-[12px] leading-[18px]",
+   "tag": "SPAN"
+  },
+  {
+   "text": "上传视频后开始",
+   "x": 144,
+   "y": 630,
+   "cls": "text-fg-muted text-[12px] leading-[18px]",
+   "tag": "SPAN"
+  },
+  {
+   "text": "拆解维度",
+   "x": 105,
+   "y": 664,
+   "cls": "text-fg-muted flex-1 truncate text-[12px] leading-[18px]",
+   "tag": "SPAN"
+  },
+  {
+   "text": "分镜",
+   "x": 121,
+   "y": 675,
+   "cls": "",
+   "tag": "SPAN"
+  },
+  {
+   "text": "动态",
+   "x": 159,
+   "y": 675,
+   "cls": "",
+   "tag": "SPAN"
+  },
+  {
+   "text": "音乐",
+   "x": 197,
+   "y": 675,
+   "cls": "",
+   "tag": "SPAN"
+  },
+  {
+   "text": "开始拉片",
+   "x": 104,
+   "y": 693,
+   "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14",
+   "tag": "BUTTON"
+  },
+  {
+   "text": "38%",
+   "x": 240,
+   "y": 1034,
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 ",
+   "tag": "BUTTON"
+  },
+  {
+   "text": "资产管理",
+   "x": 44,
+   "y": 1038,
+   "cls": "whitespace-nowrap text-[13px] leading-normal",
+   "tag": "SPAN"
+  }
+ ],
+ "②资源栏": [
+  {
+   "text": "3D导演台",
+   "aria": "",
+   "title": "",
+   "x": -1,
+   "y": -1,
+   "w": 1,
+   "h": 1,
+   "tag": "SPAN"
+  },
+  {
+   "text": "",
+   "aria": "关闭",
+   "title": "",
+   "x": 0,
+   "y": 6,
+   "w": 40,
+   "h": 40,
+   "tag": "BUTTON"
+  },
+  {
+   "text": "3D导演台",
+   "aria": "",
+   "title": "",
+   "x": 40,
+   "y": 15,
+   "w": 200,
+   "h": 22,
+   "tag": "DIV"
+  },
+  {
+   "text": "",
+   "aria": "场景",
+   "title": "",
+   "x": 8,
+   "y": 60,
+   "w": 32,
+   "h": 32,
+   "tag": "BUTTON"
+  },
+  {
+   "text": "场景",
+   "aria": "",
+   "title": "",
+   "x": 60,
+   "y": 66,
+   "w": 208,
+   "h": 20,
+   "tag": "DIV"
+  },
+  {
+   "text": "搜索场景对象",
+   "aria": "",
+   "title": "",
+   "x": 55,
+   "y": 99,
+   "w": 1,
+   "h": 1,
+   "tag": "SPAN"
+  },
+  {
+   "text": "",
+   "aria": "添加角色",
+   "title": "",
+   "x": 8,
+   "y": 116,
+   "w": 32,
+   "h": 32,
+   "tag": "BUTTON"
+  },
+  {
+   "text": "",
+   "aria": "添加机位",
+   "title": "",
+   "x": 8,
+   "y": 156,
+   "w": 32,
+   "h": 32,
+   "tag": "BUTTON"
+  },
+  {
+   "text": "",
+   "aria": "全景图",
+   "title": "",
+   "x": 8,
+   "y": 196,
+   "w": 32,
+   "h": 32,
+   "tag": "BUTTON"
+  },
+  {
+   "text": "",
+   "aria": "选择画幅比例",
+   "title": "",
+   "x": 8,
+   "y": 236,
+   "w": 32,
+   "h": 32,
+   "tag": "BUTTON"
+  },
+  {
+   "text": "",
+   "aria": "AI 识图导入",
+   "title": "",
+   "x": 8,
+   "y": 276,
+   "w": 32,
+   "h": 32,
+   "tag": "BUTTON"
+  },
+  {
+   "text": "图片节点 1",
+   "aria": "",
+   "title": "图片节点 1",
+   "x": 39,
+   "y": 319,
+   "w": 47,
+   "h": 15,
+   "tag": "SPAN"
+  },
+  {
+   "text": "尝试：",
+   "aria": "",
+   "title": "",
+   "x": 35,
+   "y": 404,
+   "w": 218,
+   "h": 8,
+   "tag": "DIV"
+  },
+  {
+   "text": "图生图",
+   "aria": "",
+   "title": "",
+   "x": 48,
+   "y": 418,
+   "w": 16,
+   "h": 8,
+   "tag": "SPAN"
+  },
+  {
+   "text": "图片高清",
+   "aria": "",
+   "title": "",
+   "x": 49,
+   "y": 433,
+   "w": 21,
+   "h": 8,
+   "tag": "SPAN"
+  },
+  {
+   "text": "资产管理",
+   "aria": "资产管理",
+   "title": "",
+   "x": 14,
+   "y": 1034,
+   "w": 94,
+   "h": 28,
+   "tag": "BUTTON"
+  },
+  {
+   "text": "资产管理",
+   "aria": "",
+   "title": "",
+   "x": 44,
+   "y": 1038,
+   "w": 52,
+   "h": 20,
+   "tag": "SPAN"
+  },
+  {
+   "text": "",
+   "aria": "帮助",
+   "title": "",
+   "x": 8,
+   "y": 1040,
+   "w": 32,
+   "h": 32,
+   "tag": "BUTTON"
+  }
+ ],
+ "③右栏文本": [
+  {
+   "text": "3D场景",
+   "x": 1652,
+   "y": 12,
+   "tag": "SPAN",
+   "cls": "text-[15px] font-medium text-neutral-50"
+  },
+  {
+   "text": "20",
+   "x": 1845,
+   "y": 14,
+   "tag": "SPAN",
+   "cls": ""
+  },
+  {
+   "text": "限时 45 折",
+   "x": 1734,
+   "y": 16,
+   "tag": "SPAN",
+   "cls": "bg-nt-brand-surface-l1 text-nt-text-brand inline-flex h-4 shrink-0 ite"
+  },
+  {
+   "text": "场景缩放",
+   "x": 1656,
+   "y": 64,
+   "tag": "DIV",
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-w"
+  },
+  {
+   "text": "重置视角",
+   "x": 1547,
+   "y": 94,
+   "tag": "BUTTON",
+   "cls": "mt-1.5 w-full rounded-md bg-white/10 py-0.5 text-[11px] text-white/60 "
+  },
+  {
+   "text": "场景平移",
+   "x": 1656,
+   "y": 136,
+   "tag": "DIV",
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-w"
+  },
+  {
+   "text": "x",
+   "x": 1656,
+   "y": 168,
+   "tag": "BUTTON",
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "text": "y",
+   "x": 1740,
+   "y": 168,
+   "tag": "BUTTON",
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "text": "z",
+   "x": 1824,
+   "y": 168,
+   "tag": "BUTTON",
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "text": "场景旋转",
+   "x": 1656,
+   "y": 208,
+   "tag": "DIV",
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-w"
+  },
+  {
+   "text": "x",
+   "x": 1656,
+   "y": 240,
+   "tag": "BUTTON",
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "text": "y",
+   "x": 1740,
+   "y": 240,
+   "tag": "BUTTON",
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "text": "z",
+   "x": 1824,
+   "y": 240,
+   "tag": "BUTTON",
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "text": "全景背景",
+   "x": 1656,
+   "y": 301,
+   "tag": "DIV",
+   "cls": "mb-5 text-[15px] font-medium leading-none text-neutral-50"
+  },
+  {
+   "text": "已连接全景图",
+   "x": 1656,
+   "y": 336,
+   "tag": "DIV",
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-w"
+  },
+  {
+   "text": "请将图片节点连接到导演台左侧输入口",
+   "x": 1691,
+   "y": 379,
+   "tag": "SPAN",
+   "cls": "text-[11px] leading-relaxed text-white/40"
+  },
+  {
+   "text": "天空颜色",
+   "x": 1656,
+   "y": 420,
+   "tag": "DIV",
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-w"
+  },
+  {
+   "text": "#",
+   "x": 1700,
+   "y": 457,
+   "tag": "SPAN",
+   "cls": "text-[12px] text-white/45"
+  },
+  {
+   "text": "全景球",
+   "x": 1656,
+   "y": 513,
+   "tag": "DIV",
+   "cls": "mb-5 text-[15px] font-medium leading-none text-neutral-50"
+  },
+  {
+   "text": "水平旋转",
+   "x": 1656,
+   "y": 548,
+   "tag": "DIV",
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-w"
+  },
+  {
+   "text": "球形半径",
+   "x": 1656,
+   "y": 620,
+   "tag": "DIV",
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-w"
+  },
+  {
+   "text": "角色标签",
+   "x": 1656,
+   "y": 718,
+   "tag": "SPAN",
+   "cls": "text-[13px] font-normal leading-none text-white/85"
+  },
+  {
+   "text": "网格吸附",
+   "x": 1656,
+   "y": 774,
+   "tag": "SPAN",
+   "cls": "text-[13px] font-normal leading-none text-white/85"
+  },
+  {
+   "text": "高斯地面吸附",
+   "x": 1656,
+   "y": 830,
+   "tag": "SPAN",
+   "cls": "text-[13px] font-normal leading-none text-white/85"
+  },
+  {
+   "text": "地面",
+   "x": 1660,
+   "y": 885,
+   "tag": "SPAN",
+   "cls": "text-[15px] font-medium leading-none text-neutral-50"
+  },
+  {
+   "text": "透明度",
+   "x": 1660,
+   "y": 920,
+   "tag": "DIV",
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-w"
+  },
+  {
+   "text": "高度",
+   "x": 1660,
+   "y": 992,
+   "tag": "DIV",
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-w"
+  }
+ ],
+ "截图": "/tmp/liblib_source_charname838.png"
+}

@@ -250,7 +250,8 @@ def run_desktop(page: Page):
     assert wave_character["characterRig"]["controls"]["rightElbow.bend"] == 90
     assert len(wave_track["keyframes"]) == 1
     assert wave_track["keyframes"][0]["time"] == 0
-    assert wave_track["label"] == "角色01 · 陈默 · 姿态"
+    # ★★ Batch 838：默认角色名随源站口径改成「角色A」（原「角色01 · 陈默」是自拟名）
+    assert wave_track["label"] == "角色A · 姿态"
     assert wave_state["timeline"]["selectedTrackId"] == wave_track["id"]
     assert page.locator("[data-director-create-motion-path]").is_disabled()
     wave_pixels = webgl.screenshot()

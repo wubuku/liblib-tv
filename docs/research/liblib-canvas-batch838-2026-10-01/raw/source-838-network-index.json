@@ -1,0 +1,651 @@
+{
+ "①全部响应": [
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/1j7l50ukm968e.css",
+   "status": 200,
+   "len": 109578
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/2xzhn53qxy35l.css",
+   "status": 200,
+   "len": 115022
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/129_y89ca9lu0.css",
+   "status": 200,
+   "len": 12945
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/0qtjc61jzzta6.css",
+   "status": 200,
+   "len": 936971
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/188dqch_poxe9.css",
+   "status": 200,
+   "len": 3090
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/3raz5_rgb-fec.css",
+   "status": 200,
+   "len": 100290
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/2xkscrqh09aa5.css",
+   "status": 200,
+   "len": 24313
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/0arvpunlk99j2.css",
+   "status": 200,
+   "len": 13235
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/0kt0w3zjwmawh.css",
+   "status": 200,
+   "len": 19200
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/11nf7rtpjgvs4.css",
+   "status": 200,
+   "len": 19020
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/1hpxzl8pyi77_.css",
+   "status": 200,
+   "len": 4882
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/36ujk1e5gv-xs.css",
+   "status": 200,
+   "len": 1438
+  },
+  {
+   "url": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+   "status": 200,
+   "len": 676817
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/1oj_m3jh2_6gh.css",
+   "status": 200,
+   "len": 48582
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/0fqg4e2y35i8o.css",
+   "status": 200,
+   "len": 35618
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/1rd5zd0s7tnsy.css",
+   "status": 200,
+   "len": 107937
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/1gjquekjk8d9s.css",
+   "status": 200,
+   "len": 5198
+  },
+  {
+   "url": "https://www.liblib.tv/icons/libtv.json?v=115026a1",
+   "status": 200,
+   "len": 503144
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/29t0p_-ma8cx2.css",
+   "status": 200,
+   "len": 45
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/12r9ei9x3r-rq.css",
+   "status": 200,
+   "len": 55028
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/0jfkqv1izl24z.css",
+   "status": 200,
+   "len": 20952
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=217",
+   "status": 200,
+   "len": 311
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=131",
+   "status": 200,
+   "len": 292
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/user/city",
+   "status": 200,
+   "len": 73
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/tv/msg/msgCounter",
+   "status": 200,
+   "len": 165
+  },
+  {
+   "url": "https://api.liblib.tv/api/community/user/verify/pending",
+   "status": 200,
+   "len": 69
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/member/account?isApp=false",
+   "status": 200,
+   "len": 3047
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/project/detail-by-space?spaceId=7709759&projectUuid=a860e1da8e9e4504bececda022386429",
+   "status": 200,
+   "len": 10918
+  },
+  {
+   "url": "https://b.lovart.cloud/api/features/sdk-cYUIHcLsm6eM8L0f",
+   "status": 200,
+   "len": 1937
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/user/remove-watermark/get",
+   "status": 200,
+   "len": 51
+  },
+  {
+   "url": "https://www.libtv.com/cross-storage-hub.html",
+   "status": 200,
+   "len": 2198
+  },
+  {
+   "url": "https://www.liblib.art/cross-storage-hub.html",
+   "status": 200,
+   "len": 3425
+  },
+  {
+   "url": "https://sophon.howxm.com/api/sdk/v2/b4996fbc-1240-4cce-8b0f-15acf7b28a79/se",
+   "status": 200,
+   "len": 1049
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=271",
+   "status": 200,
+   "len": 454
+  },
+  {
+   "url": "https://cloudauth-device.aliyuncs.com/",
+   "status": 200,
+   "len": 440
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/commerce/activity/rateLimitBenefit",
+   "status": 200,
+   "len": 38
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/member/memberPower/list",
+   "status": 200,
+   "len": 38
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/commerce/activity/benefit?productTypes=3",
+   "status": 200,
+   "len": 1134
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/tv/msg/myTypeMsg",
+   "status": 200,
+   "len": 2054
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "status": 200,
+   "len": 33
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "status": 200,
+   "len": 33
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/account/list",
+   "status": 200,
+   "len": 300
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/member/libtvFreePower",
+   "status": 200,
+   "len": 42
+  },
+  {
+   "url": "https://api.liblib.tv/api/task/generation/progress/batch",
+   "status": 200,
+   "len": 73
+  },
+  {
+   "url": "https://api.liblib.tv/api/agreement/check",
+   "status": 200,
+   "len": 73
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/extra-config/get?canvasId=a860e1da8e9e4504bececda022386429",
+   "status": 200,
+   "len": 75
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/activity/config?activityEnum=CHINESE_1111&timestamp=1792616541970",
+   "status": 200,
+   "len": 132
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=243",
+   "status": 200,
+   "len": 4838
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=206",
+   "status": 200,
+   "len": 674
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/commerce/activity/promotion/query",
+   "status": 200,
+   "len": 134
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/teams/invite/myInviteList",
+   "status": 200,
+   "len": 50
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/listByIds?ids=206,240,182,186,188,190,207,262,280,311,318,283,314",
+   "status": 200,
+   "len": 156725
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/account/list",
+   "status": 200,
+   "len": 300
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/member/packages?packageType=TRAIN&sourceFrom=libtv",
+   "status": 200,
+   "len": 64263
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/user-group/bestGroup",
+   "status": 200,
+   "len": 31
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/member/packages?packageType=TEAM&sourceFrom=libtv",
+   "status": 200,
+   "len": 60664
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/commerce/activity/benefit/list?productTypes=3&filterBy=higherLevel",
+   "status": 200,
+   "len": 4284
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/activity/userInfo",
+   "status": 200,
+   "len": 259
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/media-asset/tags/list",
+   "status": 200,
+   "len": 292
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "status": 200,
+   "len": 59
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/teams/invite/myInviteList",
+   "status": 200,
+   "len": 50
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/user-config/get",
+   "status": 200,
+   "len": 136
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/account/list",
+   "status": 200,
+   "len": 300
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/activity/userInfo",
+   "status": 200,
+   "len": 259
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/paywall/popup-info",
+   "status": 200,
+   "len": 117
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=31",
+   "status": 200,
+   "len": 402
+  },
+  {
+   "url": "https://api.liblib.tv/api/task/generation/power/calculator",
+   "status": 200,
+   "len": 68
+  },
+  {
+   "url": "https://qiyukf.com/script/abd432e2a823988b444d48b0f60886d1.js?hidden=1&sdkTemplateId=8146115",
+   "status": 200,
+   "len": 153059
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "status": 200,
+   "len": 33
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/activity/config?activityEnum=CHINESE_1111",
+   "status": 200,
+   "len": 132
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "status": 200,
+   "len": 40
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "status": 200,
+   "len": 2164
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "status": 200,
+   "len": 40
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "status": 200,
+   "len": 800
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "status": 200,
+   "len": 2647
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "status": 200,
+   "len": 1045
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=294",
+   "status": 200,
+   "len": 589
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=157",
+   "status": 200,
+   "len": 539
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=86",
+   "status": 200,
+   "len": 12989
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=215",
+   "status": 200,
+   "len": 460
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/member/memberPower/list",
+   "status": 200,
+   "len": 38
+  },
+  {
+   "url": "https://im.liblib.tv/api/v1/project/session/list?projectId=7709759&type=client",
+   "status": 200,
+   "len": 99
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "status": 200,
+   "len": 173795
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "status": 200,
+   "len": 156787
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/paywall/popup-info",
+   "status": 200,
+   "len": 117
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/activity/config?activityEnum=CHINESE_1111&timestamp=1792616543445",
+   "status": 200,
+   "len": 132
+  },
+  {
+   "url": "https://api.howxm.com/sdk/v2/b4996fbc-1240-4cce-8b0f-15acf7b28a79/check/distribute",
+   "status": 200,
+   "len": 124
+  },
+  {
+   "url": "https://cloudauth-device.aliyuncs.com/",
+   "status": 200,
+   "len": 85
+  },
+  {
+   "url": "https://api.iconify.design/lucide.json?icons=magnet",
+   "status": 200,
+   "len": 467
+  },
+  {
+   "url": "https://qiyukf.com/webapi/sdk/setting/data?appKey=abd432e2a823988b444d48b0f60886d1&hidden=1&sdkTemplateId=8146115",
+   "status": 200,
+   "len": 1304
+  },
+  {
+   "url": "https://qiyukf.com/webapi/sdkres/delegate.html?k=abd432e2a823988b444d48b0f60886d1&1792616544524",
+   "status": 200,
+   "len": 5025
+  },
+  {
+   "url": "https://qiyukf.com/webapi/user/getUnread.action?appKey=abd432e2a823988b444d48b0f60886d1&foreignId=&deviceId=xsan04smwnfukznsxqxn&bid=&ts=1792616544526",
+   "status": 200,
+   "len": 53
+  },
+  {
+   "url": "https://qiyukf.com/webapi/user/remoteStorage.action?appKey=abd432e2a823988b444d48b0f60886d1&timestamp=1792616544727&token=zeg26twit31a0wsmca4e&local=1",
+   "status": 200,
+   "len": 53
+  },
+  {
+   "url": "https://qiyukf.com/webapi/user/remoteStorage.action?appKey=abd432e2a823988b444d48b0f60886d1&timestamp=1792616544864&token=zeg26twit31a0wsmca4e&local=1",
+   "status": 200,
+   "len": 53
+  },
+  {
+   "url": "https://api.simplesvg.com/lucide.json?icons=magnet",
+   "status": 200,
+   "len": 467
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "status": 200,
+   "len": 33
+  },
+  {
+   "url": "https://qiyukf.com/webapi/user/dvcSession.action?appKey=abd432e2a823988b444d48b0f60886d1&d=xsan04smwnfukznsxqxn&f=",
+   "status": 200,
+   "len": 96
+  },
+  {
+   "url": "https://qiyukf.com/webapi/user/getUnread.action?appKey=abd432e2a823988b444d48b0f60886d1&foreignId=0a8471b054964ae9b9079af74a9ed84e&deviceId=0a8471b054964ae9b9079af74a9ed84e&bid=&ts=1792616545565",
+   "status": 200,
+   "len": 126
+  },
+  {
+   "url": "https://qiyukf.com/webapi/user/remoteStorage.action?appKey=abd432e2a823988b444d48b0f60886d1&timestamp=1792616545565&token=zeg26twit31a0wsmca4e&local=0",
+   "status": 200,
+   "len": 53
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/project/draft/update",
+   "status": 200,
+   "len": 59
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "status": 200,
+   "len": 59
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "status": 200,
+   "len": 59
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "status": 200,
+   "len": 33
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "status": 200,
+   "len": 59
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "status": 200,
+   "len": 59
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/nodes/batch",
+   "status": 200,
+   "len": 59
+  }
+ ],
+ "②命中关键词的响应": [
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/0qtjc61jzzta6.css",
+   "status": 200,
+   "len": 936971,
+   "keywords": [
+    "storyboard"
+   ],
+   "saved": "/tmp/liblib_838e_raw/0qtjc61jzzta6.css.txt"
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/3raz5_rgb-fec.css",
+   "status": 200,
+   "len": 100290,
+   "keywords": [
+    "shot"
+   ],
+   "saved": "/tmp/liblib_838e_raw/3raz5_rgb-fec.css.txt"
+  },
+  {
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/chunks/11nf7rtpjgvs4.css",
+   "status": 200,
+   "len": 19020,
+   "keywords": [
+    "storyboard"
+   ],
+   "saved": "/tmp/liblib_838e_raw/11nf7rtpjgvs4.css.txt"
+  },
+  {
+   "url": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+   "status": 200,
+   "len": 676817,
+   "keywords": [
+    "镜头",
+    "shot",
+    "Shot",
+    "storyboard",
+    "分镜"
+   ],
+   "saved": "/tmp/liblib_838e_raw/canvas.txt"
+  },
+  {
+   "url": "https://www.liblib.tv/icons/libtv.json?v=115026a1",
+   "status": 200,
+   "len": 503144,
+   "keywords": [
+    "shot",
+    "storyboard"
+   ],
+   "saved": "/tmp/liblib_838e_raw/libtv.json.txt"
+  },
+  {
+   "url": "https://api.liblib.tv/api/canvas/project/detail-by-space?spaceId=7709759&projectUuid=a860e1da8e9e4504bececda022386429",
+   "status": 200,
+   "len": 10918,
+   "keywords": [
+    "S83",
+    "·镜",
+    "镜2",
+    "shot"
+   ],
+   "saved": "/tmp/liblib_838e_raw/detail-by-space.txt"
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/listByIds?ids=206,240,182,186,188,190,207,262,280,311,318,283,314",
+   "status": 200,
+   "len": 156725,
+   "keywords": [
+    "镜头",
+    "shot",
+    "Shot",
+    "storyboard",
+    "分镜"
+   ],
+   "saved": "/tmp/liblib_838e_raw/listByIds.txt"
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/member/packages?packageType=TRAIN&sourceFrom=libtv",
+   "status": 200,
+   "len": 64263,
+   "keywords": [
+    "shot"
+   ],
+   "saved": "/tmp/liblib_838e_raw/packages.txt"
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/member/packages?packageType=TEAM&sourceFrom=libtv",
+   "status": 200,
+   "len": 60664,
+   "keywords": [
+    "shot"
+   ],
+   "saved": "/tmp/liblib_838e_raw/packages.txt"
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "status": 200,
+   "len": 2164,
+   "keywords": [
+    "shot"
+   ],
+   "saved": "/tmp/liblib_838e_raw/list.txt"
+  },
+  {
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "status": 200,
+   "len": 173795,
+   "keywords": [
+    "镜头",
+    "分镜"
+   ],
+   "saved": "/tmp/liblib_838e_raw/list.txt"
+  }
+ ],
+ "★S83出现在哪些响应": [
+  "https://api.liblib.tv/api/canvas/project/detail-by-space?spaceId=7709759&projectUuid=a860e1da8e9e4504bececda022386429"
+ ]
+}
