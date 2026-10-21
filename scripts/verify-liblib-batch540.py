@@ -1,12 +1,28 @@
 #!/usr/bin/env python3
-"""Verify Batch 540: rail 添加机位 wired to the scene-tree camera action.
+"""Verify Batch 540: rail 添加机位 —— **合同已被 batch 832 更正**。
 
-Contract: source-site sampling 2026-09-27 (rail DOM enumeration, batch 537)
-— the rail's 添加机位 entry is a direct action (clicking opens no panel);
-it shares the camera-creation semantics with the scene tree's 新增机位
-button. In the clone the rail entry now calls the same
-directorStore.addDirectorCamera action: clicking it appends a new 机位N
-entry to the scene tree and does not change the rail's active entry.
+★★★ 更正记录（batch 832，2026-10-21）：
+  本文件原写的合同是：
+    「source-site sampling 2026-09-27 (rail DOM enumeration, batch 537) ——
+     the rail's 添加机位 entry is a **direct action** (clicking opens no panel);
+     it shares the camera-creation semantics with the scene tree's 新增机位 button.」
+  ⟹ ★★ **这条读数是错的**，batch 832 用**活体 DOM 差分**推翻了它：
+     源站点 rail 的「添加机位」会把**左侧资源栏切成一个视图** ——
+     标题条「添加机位」 ＋ 2 列 × 15 枚机位预设（每枚 104×72），
+     **不是**直接加机位。
+     ⟹ 错因：batch 537 当时用的是 **rail DOM 枚举** ⟹ 只看了「有哪些按钮」，
+     **没点**，⟹ 于是把「点开的东西」当成了「没有面板」。
+     ⟹ 详见 `docs/research/liblib-canvas-batch832-2026-10-01/README.md` §2。
+  ⟹ ⇒ 本门禁改为核验**新合同**：
+     ① 点 rail「添加机位」→ **打开机位预设面板**（15 枚）；
+     ② **不**直接新增机位（场景树的机位数不变）；
+     ③ 场景树里的「新增机位」按钮**仍然**直接加机位（那条语义没变）；
+     ④ 点 rail「场景」→ 切回场景树。
+
+Contract (current, batch 832): the rail's 添加机位 entry opens the
+camera-preset panel in the left resource rail (15 presets, 2 columns).
+The scene tree's 新增机位 button still calls
+directorStore.addDirectorCamera directly.
 """
 
 from __future__ import annotations
@@ -75,32 +91,43 @@ def run_desktop(page: Page) -> dict[str, Any]:
     tree_text_before = tree.inner_text()
     rail = page.locator("[data-director-icon-rail]")
 
-    # rail 添加机位：直接动作，场景树新增机位条目
+    # ★★ batch 832 更正后的合同：rail「添加机位」打开**机位预设面板**，
+    #    **不**直接新增机位。
     rail.locator("[data-director-rail-entry='add-camera']").click()
-    page.wait_for_timeout(400)
-    tree_text_after = tree.inner_text()
-    check("camera:tree-gains-entry", len(tree_text_after) >= len(tree_text_before))
+    page.wait_for_timeout(600)
+    panel = page.locator("[data-director-camera-preset-panel]")
+    check("camera:preset-panel-opens", panel.count() == 1)
     check(
-        "camera:count-increments",
-        tree_text_after.count("机位") > tree_text_before.count("机位"),
+        "camera:preset-panel-has-15",
+        panel.locator("[data-director-camera-preset]").count() == 15,
+    )
+    check(
+        "camera:preset-panel-title",
+        (panel.inner_text() or "").strip().startswith("添加机位"),
+    )
+    # 场景树的机位数**不变**（点 rail 不再加机位了）
+    check(
+        "camera:no-entry-added",
+        tree.inner_text().count("机位")
+        == tree_text_before.count("机位"),
     )
 
-    # 无面板打开：不出现任何 flyout/modal
+    # 无 flyout / modal（机位预设面板**不是**浮层 ⟹ 它在左侧资源栏里）
     check("camera:no-flyout", page.locator("[data-director-character-flyout]").count() == 0)
     check("camera:no-modal", page.locator("[data-director-ai-import-modal]").count() == 0)
 
-    # rail 激活态保持 scene（动作项不抢激活）
-    check(
-        "camera:scene-still-active",
-        rail.locator("[data-director-rail-entry='scene']").get_attribute("aria-pressed") == "true",
-    )
+    # ★ 点 rail「场景」→ 切回场景树（否则用户会卡在预设面板里）
+    rail.locator("[data-director-rail-entry='scene']").click()
+    page.wait_for_timeout(600)
+    check("camera:back-to-tree", page.locator("[data-director-tree]").count() >= 1)
+    check("camera:panel-closed", panel.count() == 0)
 
-    # 场景树按钮与 rail 动作同源：再点一次树按钮同样递增
+    # ★ 场景树里的「新增机位」按钮**仍然**直接加机位（那条语义没变）
     tree.locator("[data-director-add-camera]").click()
-    page.wait_for_timeout(400)
+    page.wait_for_timeout(600)
     check(
-        "camera:tree-button-also-increments",
-        tree.inner_text().count("机位") > tree_text_after.count("机位"),
+        "camera:tree-button-still-adds",
+        tree.inner_text().count("机位") > tree_text_before.count("机位"),
     )
 
     check("diagnostics:zero", not errors)
@@ -111,10 +138,16 @@ def run_desktop(page: Page) -> dict[str, Any]:
 def main() -> None:
     audit: dict[str, Any] = {
         "batch": 540,
-        "title": "Rail add-camera wired to scene-tree camera action",
+        "title": "Rail add-camera opens the camera-preset panel "
+                 "(contract corrected by batch 832)",
         "evidence": (
-            "docs/research/liblib-source-exploration-2026-09-25/NOTES.md "
-            "§8 + batch 537 rail DOM enumeration"
+            "★ batch 832 更正：源站的 rail「添加机位」**不是**直接动作，"
+            "而是把左侧资源栏切成一个「机位预设」视图"
+            "（标题条「添加机位」 ＋ 2 列 × 15 枚 104×72 的预设）"
+            "⟹ 证据：docs/research/liblib-canvas-batch832-2026-10-01/"
+            "raw/source-832-camera-presets.json（活体读数）"
+            "⟹ ★ 旧证据（batch 537 的 rail DOM 枚举）只列了按钮、"
+            "**没有点** ⟹ 错在「把点开的东西当成了没有面板」"
         ),
         "results": [],
     }
@@ -132,9 +165,10 @@ def main() -> None:
     print(
         "Batch 540 verification passed: "
         f"{len(checks)} checks, 0 diagnostics. "
-        "rail add-camera appends a camera entry via the shared "
-        "addDirectorCamera action without opening panels or stealing "
-        "active state, recorded in runtime-audit.json."
+        "rail add-camera opens the camera-preset panel (15 presets) "
+        "without adding a camera; the scene tree's 新增机位 button "
+        "still adds one directly. Contract corrected by batch 832, "
+        "recorded in runtime-audit.json."
     )
 
 

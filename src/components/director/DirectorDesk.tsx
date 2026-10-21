@@ -32,6 +32,7 @@ import {
 import { DirectorViewport } from "@/components/director/DirectorViewport";
 import { DirectorScenePromptBar } from "@/components/director/DirectorScenePromptBar";
 import { DirectorIconRail } from "@/components/director/DirectorIconRail";
+import { DirectorCameraPresetPanel } from "@/components/director/DirectorCameraPresetPanel";
 import { DirectorShortcutsDialog } from "@/components/director/DirectorShortcutsDialog";
 import {
   collectDirectorCanvasMediaInputs,
@@ -296,6 +297,14 @@ export default function DirectorDesk({
   // Batch 831：源站 rail「帮助 → 快捷键」打开的 480×314 对话框（源站把它钉在
   // 桌面的绝对偏移 left-[297px] top-[60px] 上 ⟹ 这里也用同样的绝对偏移）。
   const [shortcutsOpen, setShortcutsOpen] = useState(false);
+  // Batch 832（源站 2026-10-21 活体实测）：源站的左侧资源栏是一个**多视图**面板
+  // ——点 rail 的「添加机位」会把它切成「机位预设」视图（标题条「添加机位」
+  // ＋ 2 列 × 15 枚 104×72 的预设），点「场景」切回场景树。
+  // ⟹ clone 此前只有「场景树」一态，且 rail 的「添加机位」是**直接加机位**
+  //    （batch 540 的旧读数，本批被推翻）⟹ 本批补上这个视图切换。
+  const [leftPanelView, setLeftPanelView] = useState<
+    "tree" | "camera-presets"
+  >("tree");
   const [exportDuration, setExportDuration] = useState(timelineDuration);
   const [exportAspectRatio, setExportAspectRatio] =
     useState<DirectorAspectRatio>(aspectRatio);
@@ -1203,12 +1212,19 @@ export default function DirectorDesk({
             : "max-[899px]:-translate-x-full",
         )}
       >
-        <DirectorObjectTree />
+        {leftPanelView === "camera-presets" ? (
+          <DirectorCameraPresetPanel />
+        ) : (
+          <DirectorObjectTree />
+        )}
       </aside>
 
       <DirectorIconRail
         onPanoramaSourceChange={setPanoramaSourceId}
         onOpenShortcuts={() => setShortcutsOpen(true)}
+        onOpenCameraPresets={(open = true) =>
+          setLeftPanelView(open ? "camera-presets" : "tree")
+        }
         onOpenTutorial={() => {
           // Batch 831：源站的「使用教程」打开 5 步引导（源码 cC 组件）；
           // clone 只有第 1 步（batch 552/553）⟹ 这里打开 clone 已有的引导气泡。

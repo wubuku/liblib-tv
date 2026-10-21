@@ -39,7 +39,7 @@ import { readDirectorLocalModelFiles } from "@/components/director/directorLocal
 const railEntries = [
   { id: "scene", label: "场景", icon: Layers, kind: "panel" },
   { id: "add-character", label: "添加角色", icon: UserRoundPlus, kind: "flyout" },
-  { id: "add-camera", label: "添加机位", icon: Clapperboard, kind: "action" },
+  { id: "add-camera", label: "添加机位", icon: Clapperboard, kind: "panel" },
   { id: "panorama", label: "全景图", icon: ImageIcon, kind: "flyout" },
   { id: "aspect-ratio", label: "选择画幅比例", icon: Proportions, kind: "flyout" },
   { id: "ai-import", label: "AI 识图导入", icon: ArrowDownToLine, kind: "modal" },
@@ -156,12 +156,18 @@ export function DirectorIconRail({
   onPanoramaSourceChange,
   onOpenShortcuts,
   onOpenTutorial,
+  onOpenCameraPresets,
 }: {
   onPanoramaSourceChange?: (sourceNodeId: string | null) => void;
   /** Batch 831：打开「快捷键」对话框（源站 rail 的 onOpenShortcuts） */
   onOpenShortcuts?: () => void;
   /** Batch 831：打开使用教程（源站 rail 的 onOpenTutorial） */
   onOpenTutorial?: () => void;
+  /**
+   * Batch 832：切到 / 切回「添加机位」机位预设面板视图。
+   * 传 `false` 表示切回场景树（源站点「场景」条目即切回）。
+   */
+  onOpenCameraPresets?: (open?: boolean) => void;
 } = {}) {
   const [active, setActive] = useState<string>("scene");
   const [openFlyout, setOpenFlyout] = useState<string | null>(null);
@@ -173,9 +179,11 @@ export function DirectorIconRail({
   const [helpMenuOpen, setHelpMenuOpen] = useState(false);
   // Batch 539: AI 识图导入 打开居中模态。
   const [aiImportOpen, setAiImportOpen] = useState(false);
-  // Batch 540: 源站 rail「添加机位」为直接动作（点击无面板）——
-  // 与场景树「新增机位」同源，接通 directorStore.addDirectorCamera。
-  const addDirectorCamera = useDirectorStore((state) => state.addDirectorCamera);
+  // Batch 540 → 832：源站 rail「添加机位」**不是**直接加机位（那是 batch 540
+  // 的旧读数，本批被推翻）⟹ 它把左侧资源栏切成一个**机位预设面板**视图
+  // （标题条「添加机位」＋ 2 列 × 15 枚 104×72 的预设）。
+  // ⟹ 故此处**不再**直接调 addDirectorCamera（那会跳过「选哪一枚」这一步）；
+  //   场景树里的「新增机位」按钮仍走同一条 store 动作（见 DirectorObjectTree）。
   // Batch 541: 添加角色 flyout——群众 (3x3) 接通本地等效 addCrowdArray
   // （与 DirectorViewport 群众面板同默认 3/3/1.2）；预设体型项为本地等效
   // 占位（store 无单角色变体加建），点击仅回显本地提示，不生成 3D 模型。
@@ -359,7 +367,15 @@ export function DirectorIconRail({
       return;
     }
     if (id === "add-camera") {
-      addDirectorCamera();
+      // Batch 832（源站 2026-10-21 活体实测）：源站的「添加机位」**不是**直接
+      // 加一个机位 ⟹ 它把**左侧资源栏切成一个视图**：标题条「添加机位」
+      // ＋ 2 列 × 15 枚机位预设（每枚 104×72）。
+      // ⟹ 实测点「正面中景」**真的新建了一台机位**（机位2 / 位置 (0,1.5,4) /
+      //    旋转 (4.29,180,0) / FOV 50 / 注视 (0,1.2,0)）。
+      // ⟹ 本批把「选哪一枚预设」的**呈现**建出来；预设的**语义**（每枚的
+      //    位置/朝向/FOV）另有一批逐枚实测 ⟹ 在那之前这里只切视图。
+      setOpenFlyout(null);
+      onOpenCameraPresets?.();
       return;
     }
     setOpenFlyout(null);
@@ -368,6 +384,9 @@ export function DirectorIconRail({
     // 顶栏与左侧场景面板。图标栏本身在收起态保留。
     if (id === "scene") {
       setViewportPanelsCollapsed(false);
+      // Batch 832：源站的「场景」是把左侧资源栏**切回场景树**视图 ⟹
+      // 若当前停在「添加机位」预设面板上，切回去。
+      onOpenCameraPresets?.(false);
     }
     if (id === "add-character") {
       // 仅 add-character 自身打开 flyout；由 handleCharacterOption 控制关闭。

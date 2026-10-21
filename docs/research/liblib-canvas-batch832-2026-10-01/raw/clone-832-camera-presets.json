@@ -1,0 +1,917 @@
+{
+ "①开台后": {
+  "found": true,
+  "view": "tree",
+  "panelBox": {
+   "x": 48,
+   "y": 52,
+   "w": 232,
+   "h": 1028
+  },
+  "panelCls": "flex h-full min-h-0 flex-col bg-[#171717]",
+  "panelStyle": {
+   "bg": "rgb(23, 23, 23)",
+   "color": "rgb(237, 237, 237)",
+   "fontSize": "16px",
+   "fontWeight": "400",
+   "borderRadius": "0px",
+   "border": "0px solid rgb(82, 82, 82)",
+   "padding": "0px",
+   "gap": "normal",
+   "width": "232px",
+   "height": "1028px",
+   "display": "flex",
+   "position": "static",
+   "lineHeight": "24px"
+  },
+  "title": {
+   "tag": "DIV",
+   "t": "",
+   "box": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 48
+   },
+   "cls": "flex h-12 shrink-0 items-center gap-1 px-3",
+   "style": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(237, 237, 237)",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "borderRadius": "0px",
+    "border": "0px solid rgb(82, 82, 82)",
+    "padding": "0px 12px",
+    "gap": "4px",
+    "width": "232px",
+    "height": "48px",
+    "display": "flex",
+    "position": "static",
+    "lineHeight": "24px"
+   }
+  },
+  "gridBox": null,
+  "gridCls": null,
+  "gridStyle": null,
+  "gridTemplateColumns": null,
+  "cellCount": 0,
+  "cells": []
+ },
+ "②点添加机位后": {
+  "found": true,
+  "view": "camera-presets",
+  "panelBox": {
+   "x": 48,
+   "y": 52,
+   "w": 232,
+   "h": 1028
+  },
+  "panelCls": "flex h-full min-w-0 flex-col bg-[#171717]",
+  "panelStyle": {
+   "bg": "rgb(23, 23, 23)",
+   "color": "rgb(237, 237, 237)",
+   "fontSize": "16px",
+   "fontWeight": "400",
+   "borderRadius": "0px",
+   "border": "0px solid rgb(82, 82, 82)",
+   "padding": "0px",
+   "gap": "normal",
+   "width": "232px",
+   "height": "1028px",
+   "display": "flex",
+   "position": "static",
+   "lineHeight": "24px"
+  },
+  "title": {
+   "tag": "DIV",
+   "t": "添加机位",
+   "box": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 48
+   },
+   "cls": "flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+   "style": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+    "fontSize": "12px",
+    "fontWeight": "400",
+    "borderRadius": "0px",
+    "border": "0px solid rgb(82, 82, 82)",
+    "padding": "0px 12px",
+    "gap": "normal",
+    "width": "232px",
+    "height": "48px",
+    "display": "flex",
+    "position": "static",
+    "lineHeight": "20px"
+   }
+  },
+  "gridBox": {
+   "x": 48,
+   "y": 100,
+   "w": 232,
+   "h": 980
+  },
+  "gridCls": "grid min-h-0 flex-1 content-start gap-2 overflow-y-auto px-2 pb-3",
+  "gridStyle": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "color": "rgb(237, 237, 237)",
+   "fontSize": "16px",
+   "fontWeight": "400",
+   "borderRadius": "0px",
+   "border": "0px solid rgb(82, 82, 82)",
+   "padding": "0px 8px 12px",
+   "gap": "8px",
+   "width": "232px",
+   "height": "980px",
+   "display": "grid",
+   "position": "static",
+   "lineHeight": "24px"
+  },
+  "gridTemplateColumns": "104px 104px",
+  "cellCount": 15,
+  "cells": [
+   {
+    "idx": 0,
+    "tag": "BUTTON",
+    "t": "当前视角",
+    "box": {
+     "x": 56,
+     "y": 100,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/85",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid rgb(82, 82, 82)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 98,
+     "y": 115,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 80,
+     "y": 139,
+     "w": 56,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "当前视角"
+   },
+   {
+    "idx": 1,
+    "tag": "BUTTON",
+    "t": "正面中景",
+    "box": {
+     "x": 168,
+     "y": 100,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 210,
+     "y": 115,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 192,
+     "y": 139,
+     "w": 56,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "正面中景"
+   },
+   {
+    "idx": 2,
+    "tag": "BUTTON",
+    "t": "正面特写",
+    "box": {
+     "x": 56,
+     "y": 180,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 98,
+     "y": 195,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 80,
+     "y": 219,
+     "w": 56,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "正面特写"
+   },
+   {
+    "idx": 3,
+    "tag": "BUTTON",
+    "t": "正面全景",
+    "box": {
+     "x": 168,
+     "y": 180,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 210,
+     "y": 195,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 192,
+     "y": 219,
+     "w": 56,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "正面全景"
+   },
+   {
+    "idx": 4,
+    "tag": "BUTTON",
+    "t": "侧面跟拍",
+    "box": {
+     "x": 56,
+     "y": 260,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 98,
+     "y": 275,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 80,
+     "y": 299,
+     "w": 56,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "侧面跟拍"
+   },
+   {
+    "idx": 5,
+    "tag": "BUTTON",
+    "t": "侧面近景",
+    "box": {
+     "x": 168,
+     "y": 260,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 210,
+     "y": 275,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 192,
+     "y": 299,
+     "w": 56,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "侧面近景"
+   },
+   {
+    "idx": 6,
+    "tag": "BUTTON",
+    "t": "背面中景",
+    "box": {
+     "x": 56,
+     "y": 340,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 98,
+     "y": 355,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 80,
+     "y": 379,
+     "w": 56,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "背面中景"
+   },
+   {
+    "idx": 7,
+    "tag": "BUTTON",
+    "t": "俯拍全景",
+    "box": {
+     "x": 168,
+     "y": 340,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 210,
+     "y": 355,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 192,
+     "y": 379,
+     "w": 56,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "俯拍全景"
+   },
+   {
+    "idx": 8,
+    "tag": "BUTTON",
+    "t": "45° 俯拍",
+    "box": {
+     "x": 56,
+     "y": 420,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 98,
+     "y": 435,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 80,
+     "y": 459,
+     "w": 56,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "45° 俯拍"
+   },
+   {
+    "idx": 9,
+    "tag": "BUTTON",
+    "t": "低角度仰拍",
+    "box": {
+     "x": 168,
+     "y": 420,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 210,
+     "y": 435,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 186,
+     "y": 459,
+     "w": 68,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "低角度仰拍"
+   },
+   {
+    "idx": 10,
+    "tag": "BUTTON",
+    "t": "低角度广角",
+    "box": {
+     "x": 56,
+     "y": 500,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 98,
+     "y": 515,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 74,
+     "y": 539,
+     "w": 68,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "低角度广角"
+   },
+   {
+    "idx": 11,
+    "tag": "BUTTON",
+    "t": "过肩镜头",
+    "box": {
+     "x": 168,
+     "y": 500,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 210,
+     "y": 515,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 192,
+     "y": 539,
+     "w": 56,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "过肩镜头"
+   },
+   {
+    "idx": 12,
+    "tag": "BUTTON",
+    "t": "过肩镜头（右）",
+    "box": {
+     "x": 56,
+     "y": 580,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 98,
+     "y": 595,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 62,
+     "y": 619,
+     "w": 92,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "过肩镜头（右）"
+   },
+   {
+    "idx": 13,
+    "tag": "BUTTON",
+    "t": "鸟瞰",
+    "box": {
+     "x": 168,
+     "y": 580,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 210,
+     "y": 595,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 204,
+     "y": 619,
+     "w": 32,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "鸟瞰"
+   },
+   {
+    "idx": 14,
+    "tag": "BUTTON",
+    "t": "荷兰角",
+    "box": {
+     "x": 56,
+     "y": 660,
+     "w": 104,
+     "h": 72
+    },
+    "cls": "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-[12px] text-white/90 transition-colors hover:bg-white/8 border-white/10",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "color": "oklab(0.999994 0.0000455678 0.0000200868 / 0.9)",
+     "fontSize": "12px",
+     "fontWeight": "400",
+     "borderRadius": "12px",
+     "border": "1px solid oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+     "padding": "0px",
+     "gap": "4px",
+     "width": "104px",
+     "height": "72px",
+     "display": "flex",
+     "position": "static",
+     "lineHeight": "18px"
+    },
+    "svgBox": {
+     "x": 98,
+     "y": 675,
+     "w": 20,
+     "h": 20
+    },
+    "svgCls": "size-5 shrink-0",
+    "svgViewBox": "0 0 16 16",
+    "svgWidth": "20",
+    "pathD": "M8.52 1.23q.2.02.34.18l1.3 1.56h1.5a1.7 1.7 0 0 1 1.7 1.7v6.41a1.7 1.7 0 0 1-1.7 1.7H2.34a1.7 1.7 0 0 1-1.69-1.7V4.67a1.7 1.7 0 0 1 1.7-1.7h1.5l1.3-1.56.04-.04q.16-.15.36-.15h2.98M4.5 3.82a.5.5 0 0 1-.4.2H2.32a.64.64 0 0 0-.64.64v6.41a.64.64 0 0 0 .64.64h9.34a.64.64 0 0 0 .64-.64v-6.4a.64.64 0 0 0-.64-.64H9.92a.5.5 0 0 1-.4-.2l-1.3-1.55H5.78zM7 5.32a2.28 2.28 0 1 1 0 4.55A2.28 2.28 0 0 1 7 5.3m0 1.05A1.22 1.22 0 1 0 7 8.8a1.22 1.22 0 0 0 0-2.45",
+    "pathStroke": "currentColor",
+    "pathStrokeWidth": "1.2",
+    "pathFill": null,
+    "spanBox": {
+     "x": 86,
+     "y": 699,
+     "w": 44,
+     "h": 18
+    },
+    "spanCls": "max-w-full truncate px-1",
+    "spanText": "荷兰角"
+   }
+  ]
+ },
+ "③点场景后": {
+  "found": true,
+  "view": "tree",
+  "panelBox": {
+   "x": 48,
+   "y": 52,
+   "w": 232,
+   "h": 1028
+  },
+  "panelCls": "flex h-full min-h-0 flex-col bg-[#171717]",
+  "panelStyle": {
+   "bg": "rgb(23, 23, 23)",
+   "color": "rgb(237, 237, 237)",
+   "fontSize": "16px",
+   "fontWeight": "400",
+   "borderRadius": "0px",
+   "border": "0px solid rgb(82, 82, 82)",
+   "padding": "0px",
+   "gap": "normal",
+   "width": "232px",
+   "height": "1028px",
+   "display": "flex",
+   "position": "static",
+   "lineHeight": "24px"
+  },
+  "title": {
+   "tag": "DIV",
+   "t": "",
+   "box": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 48
+   },
+   "cls": "flex h-12 shrink-0 items-center gap-1 px-3",
+   "style": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "color": "rgb(237, 237, 237)",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "borderRadius": "0px",
+    "border": "0px solid rgb(82, 82, 82)",
+    "padding": "0px 12px",
+    "gap": "4px",
+    "width": "232px",
+    "height": "48px",
+    "display": "flex",
+    "position": "static",
+    "lineHeight": "24px"
+   }
+  },
+  "gridBox": null,
+  "gridCls": null,
+  "gridStyle": null,
+  "gridTemplateColumns": null,
+  "cellCount": 0,
+  "cells": []
+ },
+ "③b场景树还在": true
+}

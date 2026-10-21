@@ -1,17 +1,20 @@
 {
   "batch": 540,
-  "title": "Rail add-camera wired to scene-tree camera action",
-  "evidence": "docs/research/liblib-source-exploration-2026-09-25/NOTES.md §8 + batch 537 rail DOM enumeration",
+  "title": "Rail add-camera opens the camera-preset panel (contract corrected by batch 832)",
+  "evidence": "★ batch 832 更正：源站的 rail「添加机位」**不是**直接动作，而是把左侧资源栏切成一个「机位预设」视图（标题条「添加机位」 ＋ 2 列 × 15 枚 104×72 的预设）⟹ 证据：docs/research/liblib-canvas-batch832-2026-10-01/raw/source-832-camera-presets.json（活体读数）⟹ ★ 旧证据（batch 537 的 rail DOM 枚举）只列了按钮、**没有点** ⟹ 错在「把点开的东西当成了没有面板」",
   "results": [
     {
       "viewport": "1440x900",
       "checks": [
-        "camera:tree-gains-entry",
-        "camera:count-increments",
+        "camera:preset-panel-opens",
+        "camera:preset-panel-has-15",
+        "camera:preset-panel-title",
+        "camera:no-entry-added",
         "camera:no-flyout",
         "camera:no-modal",
-        "camera:scene-still-active",
-        "camera:tree-button-also-increments",
+        "camera:back-to-tree",
+        "camera:panel-closed",
+        "camera:tree-button-still-adds",
         "diagnostics:zero"
       ],
       "diagnostics": {
