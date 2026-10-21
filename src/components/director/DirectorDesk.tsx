@@ -1404,6 +1404,11 @@ export default function DirectorDesk({
               <button
                 type="button"
                 data-director-export-trigger
+                // ★★ Batch 834：源站引导第 5 步指向的就是这枚「导出视频到画布」
+                //   （源站 chunk 原文：`data-director-timeline-guide-target=
+                //   "export-to-canvas"`，且它**自带**一枚 1px 的图标锚点
+                //   `data-director-timeline-guide-icon="true"`）⟹ 这里挂上同款标记。
+                data-director-timeline-guide-target="export-to-canvas"
                 aria-expanded={exportPanelOpen}
                 disabled={workspaceBusy}
                 onClick={toggleExportPanel}
@@ -1413,6 +1418,23 @@ export default function DirectorDesk({
                 )}
               >
                 <span>导出视频到画布</span>
+                {/* ★ Batch 834：源站这枚按钮里有一枚 **1px 的图标锚点**
+                    （chunk 原文：`absolute left-8 top-1/2 size-px` ＋
+                    `data-director-timeline-guide-icon="true"`）⟹ 引导的光环
+                    以它为心（不在按钮正中）⟹ 这里照抄。
+                    ★ 定位走 inline style（4317 的 Tailwind 扫描是冻结的）。 */}
+                <span
+                  aria-hidden
+                  data-director-timeline-guide-icon="true"
+                  style={{
+                    position: "absolute",
+                    left: 32,
+                    top: "50%",
+                    width: 1,
+                    height: 1,
+                    pointerEvents: "none",
+                  }}
+                />
               </button>
               <DirectorExportPanel
                 open={exportPanelOpen}

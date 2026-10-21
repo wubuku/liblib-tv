@@ -1,0 +1,342 @@
+{
+ "说明": "clone 侧 5 步引导的活体读数 ＋ 按源站算法的重算位置",
+ "逐步": [
+  {
+   "步序": 0,
+   "读数": {
+    "overlay": true,
+    "bubble": {
+     "text": "请选择一个角色或者摄像机后，可新建轨道",
+     "count": "1/5",
+     "box": {
+      "x": 163,
+      "y": 796,
+      "w": 260,
+      "h": 114
+     },
+     "buttons": [
+      {
+       "t": "跳过",
+       "box": {
+        "x": 289,
+        "y": 865,
+        "w": 50,
+        "h": 28
+       }
+      },
+      {
+       "t": "下一步",
+       "box": {
+        "x": 343,
+        "y": 865,
+        "w": 63,
+        "h": 28
+       }
+      }
+     ],
+     "class": "pointer-events-none fixed overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 font-normal text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]",
+     "styleLeft": "163px",
+     "styleTop": "796px",
+     "styleWidth": "260px"
+    },
+    "ring": {
+     "box": {
+      "x": 213,
+      "y": 887,
+      "w": 60,
+      "h": 60
+     }
+    },
+    "visibleTargets": [
+     "play",
+     "add-track",
+     "export-to-canvas",
+     "draw-trajectory"
+    ]
+   },
+   "重算": {
+    "found": true,
+    "usedTarget": "add-track",
+    "left": 163,
+    "top": 796,
+    "width": 260,
+    "ringLeft": 213,
+    "ringTop": 887,
+    "iconCenterX": 243
+   },
+   "点击": "点了「下一步」"
+  },
+  {
+   "步序": 1,
+   "读数": {
+    "overlay": true,
+    "bubble": {
+     "text": "点击创建路径，弹出选项面板",
+     "count": "2/5",
+     "box": {
+      "x": 205,
+      "y": 925,
+      "w": 300,
+      "h": 114
+     },
+     "buttons": [
+      {
+       "t": "跳过",
+       "box": {
+        "x": 371,
+        "y": 994,
+        "w": 50,
+        "h": 28
+       }
+      },
+      {
+       "t": "下一步",
+       "box": {
+        "x": 425,
+        "y": 994,
+        "w": 63,
+        "h": 28
+       }
+      }
+     ],
+     "class": "pointer-events-none fixed overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 font-normal text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]",
+     "styleLeft": "205px",
+     "styleTop": "925px",
+     "styleWidth": "300px"
+    },
+    "ring": {
+     "box": {
+      "x": 239,
+      "y": 1021,
+      "w": 60,
+      "h": 60
+     }
+    },
+    "visibleTargets": [
+     "play",
+     "add-track",
+     "export-to-canvas",
+     "draw-trajectory"
+    ]
+   },
+   "重算": {
+    "found": true,
+    "usedTarget": "draw-trajectory",
+    "left": 205,
+    "top": 925,
+    "width": 300,
+    "ringLeft": 239,
+    "ringTop": 1021,
+    "iconCenterX": 269
+   },
+   "点击": "点了「下一步」"
+  },
+  {
+   "步序": 2,
+   "读数": {
+    "overlay": true,
+    "bubble": {
+     "text": "点击圆环/直线/矩形创建路径，或用铅笔/钢笔工具绘制想要路径",
+     "count": "3/5",
+     "box": {
+      "x": 221,
+      "y": 901,
+      "w": 360,
+      "h": 114
+     },
+     "buttons": [
+      {
+       "t": "跳过",
+       "box": {
+        "x": 447,
+        "y": 970,
+        "w": 50,
+        "h": 28
+       }
+      },
+      {
+       "t": "下一步",
+       "box": {
+        "x": 501,
+        "y": 970,
+        "w": 63,
+        "h": 28
+       }
+      }
+     ],
+     "class": "pointer-events-none fixed overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 font-normal text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]",
+     "styleLeft": "221px",
+     "styleTop": "901px",
+     "styleWidth": "360px"
+    },
+    "ring": {
+     "box": {
+      "x": 239,
+      "y": 1021,
+      "w": 60,
+      "h": 60
+     }
+    },
+    "visibleTargets": [
+     "play",
+     "add-track",
+     "export-to-canvas",
+     "draw-trajectory"
+    ]
+   },
+   "重算": {
+    "found": true,
+    "usedTarget": "draw-trajectory",
+    "left": 221,
+    "top": 901,
+    "width": 360,
+    "ringLeft": 239,
+    "ringTop": 1021,
+    "iconCenterX": 269
+   },
+   "点击": "点了「下一步」"
+  },
+  {
+   "步序": 3,
+   "读数": {
+    "overlay": true,
+    "bubble": {
+     "text": "路径绘制后点击播放，可预览动画",
+     "count": "4/5",
+     "box": {
+      "x": 33,
+      "y": 791,
+      "w": 300,
+      "h": 114
+     },
+     "buttons": [
+      {
+       "t": "跳过",
+       "box": {
+        "x": 199,
+        "y": 860,
+        "w": 50,
+        "h": 28
+       }
+      },
+      {
+       "t": "下一步",
+       "box": {
+        "x": 253,
+        "y": 860,
+        "w": 63,
+        "h": 28
+       }
+      }
+     ],
+     "class": "pointer-events-none fixed overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 font-normal text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]",
+     "styleLeft": "33px",
+     "styleTop": "790.5px",
+     "styleWidth": "300px"
+    },
+    "ring": {
+     "box": {
+      "x": -9,
+      "y": 887,
+      "w": 60,
+      "h": 60
+     }
+    },
+    "visibleTargets": [
+     "play",
+     "add-track",
+     "export-to-canvas",
+     "draw-trajectory"
+    ]
+   },
+   "重算": {
+    "found": true,
+    "usedTarget": "play",
+    "left": 33,
+    "top": 791,
+    "width": 300,
+    "ringLeft": -9,
+    "ringTop": 887,
+    "iconCenterX": 21
+   },
+   "点击": "点了「下一步」"
+  },
+  {
+   "步序": 4,
+   "读数": {
+    "overlay": true,
+    "bubble": {
+     "text": "预览动画效果已确认，点击“导出视频到画布”，可以在画布内，进行后续编辑",
+     "count": "5/5",
+     "box": {
+      "x": 1548,
+      "y": 789,
+      "w": 360,
+      "h": 114
+     },
+     "buttons": [
+      {
+       "t": "跳过",
+       "box": {
+        "x": 1787,
+        "y": 858,
+        "w": 50,
+        "h": 28
+       }
+      },
+      {
+       "t": "完成",
+       "box": {
+        "x": 1841,
+        "y": 858,
+        "w": 50,
+        "h": 28
+       }
+      }
+     ],
+     "class": "pointer-events-none fixed overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 font-normal text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]",
+     "styleLeft": "1548px",
+     "styleTop": "789px",
+     "styleWidth": "360px"
+    },
+    "ring": {
+     "box": {
+      "x": 1807,
+      "y": 888,
+      "w": 60,
+      "h": 60
+     }
+    },
+    "visibleTargets": [
+     "play",
+     "add-track",
+     "export-to-canvas",
+     "draw-trajectory"
+    ]
+   },
+   "重算": {
+    "found": true,
+    "usedTarget": "export-to-canvas",
+    "left": 1548,
+    "top": 789,
+    "width": 360,
+    "ringLeft": 1807,
+    "ringTop": 888,
+    "iconCenterX": 1837
+   },
+   "点击": "点了「完成」"
+  }
+ ],
+ "走完后": {
+  "overlay": false,
+  "bubble": null,
+  "ring": null,
+  "visibleTargets": [
+   "play",
+   "add-track",
+   "export-to-canvas",
+   "draw-trajectory"
+  ]
+ },
+ "localStorage": "1"
+}

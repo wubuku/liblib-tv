@@ -34,6 +34,11 @@ import {
 } from "@/store/directorStore";
 import type { DirectorTimelineTrack } from "@/store/directorStore";
 import { DirectorCurveEditor } from "@/components/director/DirectorCurveEditor";
+// Batch 834：源站时间轴的**5 步引导**（组件 ＋ 步数据）。
+import {
+  DIRECTOR_TIMELINE_GUIDE_STEPS,
+  DirectorTimelineGuide,
+} from "@/components/director/DirectorTimelineGuide";
 import {
   DIRECTOR_CAMERA_MOTION_PRESETS,
   type DirectorCameraMotionPresetMode,
@@ -310,9 +315,80 @@ export function DirectorTimeline({
   const [collapsedObjects, setCollapsedObjects] = useState<
     Record<string, boolean>
   >({});
+  // Batch 556: 源站截图 48——时间线打开时的 1/5 引导气泡（请选择一个
+  // 角色或者摄像机后，可新建轨道 + 跳过/下一步）。
+  // Batch 572: 源站实测（截图 58，batch 571）——气泡收起状态跨重载持久
+  // （浏览器重启后仍收起）；clone 以 localStorage 对齐该持久化语义。
+  // ★★ Batch 834：源站的引导其实是**完整 5 步**（chunk 原文的组件 `cC`）⟹
+  //   clone 从「只有第 1 步、点下一步直接收起」升级成**逐步推进的 5 步**。
+  const [coachDismissed, setCoachDismissed] = useState(() => {
+    try {
+      return window.localStorage.getItem("director-timeline-coach-dismissed") === "1";
+    } catch {
+      return false;
+    }
+  });
+  // ★ 引导的**步序**（0–4；null ＝ 不显示）。源站用 `useState(null)` 起步。
+  const [guideStep, setGuideStep] = useState<number | null>(null);
+  const dismissCoach = () => {
+    setGuideStep(null);
+    setCoachDismissed(true);
+    try {
+      window.localStorage.setItem("director-timeline-coach-dismissed", "1");
+    } catch {
+      /* storage 不可用时仅会话内收起 */
+    }
+  };
+  // ★ 启动条件（源站 chunk 原文）：
+  //   `null!==eg || "1"===localStorage.getItem(标记) || !eF || 守卫() || ex(0)`
+  //   ⟹ 源站还要求「有目标上下文」。clone 沿用自己既有的语义（没被标记看过就显示）
+  //   ⟹ 因为门禁 36／575 依赖这个气泡在开台后**就在**。
+  useEffect(() => {
+    if (coachDismissed) return;
+    setGuideStep((step) => (step === null ? 0 : step));
+  }, [coachDismissed]);
+  // Batch 831：源站 rail「帮助 → 使用教程」打开的是那套 5 步引导
+  // （源码 cC 组件；clone 原来只有第 1 步，batch 552/553）。
+  // ⟹ 这里让 clone 的引导**重新出现**：batch 572 起它记住了「已跳过」
+  // ⟹ 所以要同时清掉 localStorage 标记，否则点了「使用教程」什么也不会发生
+  //（那又是一枚「点了没反应」的死按钮）。
+  // ★★ Batch 834：还要把**步序归 0**（源站点「使用教程」是从第 1 步重新开始）。
+  useEffect(() => {
+    const onOpenTutorial = () => {
+      setCoachDismissed(false);
+      setGuideStep(0);
+      try {
+        window.localStorage.removeItem("director-timeline-coach-dismissed");
+      } catch {
+        /* storage 不可用时仅会话内生效 */
+      }
+    };
+    window.addEventListener("director:open-tutorial", onOpenTutorial);
+    return () =>
+      window.removeEventListener("director:open-tutorial", onOpenTutorial);
+  }, []);
   const setTimelinePlaying = useDirectorStore(
     (state) => state.setTimelinePlaying,
   );
+  // ★★ Batch 834：引导的「下一步」（源站 chunk 原文的 `onNext`）：
+  //   末步（第 5 步）的那枚按钮是**「完成」** ⟹ 点它＝收起；
+  //   第 4 步（target=play）的「下一步」会**开始播放**（源站 `t.isPlaying||t.play()`）。
+  const guideNext = () => {
+    setGuideStep((step) => {
+      if (step === null) return null;
+      if (step >= DIRECTOR_TIMELINE_GUIDE_STEPS.length - 1) {
+        dismissCoach();
+        return null;
+      }
+      if (step === 3) setTimelinePlaying(true);
+      return step + 1;
+    });
+  };
+  // ★ 源站的自动推进（chunk 原文）：`3===eg && t.isPlaying → ex(4)`
+  //   ⟹ 用户自己点了播放 ⟹ 引导自动跳到第 5 步。
+  useEffect(() => {
+    if (guideStep === 3 && timeline.isPlaying) setGuideStep(4);
+  }, [guideStep, timeline.isPlaying]);
   // Batch 552/553: 源站「+ 新建轨道」（截图 48）——为选中的角色/摄像机
   // 创建变换轨道；无合格选中时禁用（源站 onboarding 提示需先选择）。
   const selectedObjectKind = useDirectorStore((state) =>
@@ -325,44 +401,6 @@ export function DirectorTimeline({
   );
   const trackCreatable =
     selectedObjectKind === "character" || selectedObjectKind === "camera";
-  // Batch 556: 源站截图 48——时间线打开时的 1/5 引导气泡（请选择一个
-  // 角色或者摄像机后，可新建轨道 + 跳过/下一步）；步骤 2-5 未采样，
-  // 跳过/下一步均收起气泡（CLONE_DECISION）。
-  // Batch 572: 源站实测（截图 58，batch 571）——气泡收起状态跨重载持久
-  // （浏览器重启后仍收起）；clone 以 localStorage 对齐该持久化语义。
-  const [coachDismissed, setCoachDismissed] = useState(() => {
-    try {
-      return window.localStorage.getItem("director-timeline-coach-dismissed") === "1";
-    } catch {
-      return false;
-    }
-  });
-  const dismissCoach = () => {
-    setCoachDismissed(true);
-    try {
-      window.localStorage.setItem("director-timeline-coach-dismissed", "1");
-    } catch {
-      /* storage 不可用时仅会话内收起 */
-    }
-  };
-  // Batch 831：源站 rail「帮助 → 使用教程」打开的是那套 5 步引导
-  // （源码 cC 组件；clone 只有第 1 步，batch 552/553）。
-  // ⟹ 这里让 clone 已有的引导气泡**重新出现**：batch 572 起它记住了「已跳过」
-  // ⟹ 所以要同时清掉 localStorage 标记，否则点了「使用教程」什么也不会发生
-  //（那又是一枚「点了没反应」的死按钮）。
-  useEffect(() => {
-    const onOpenTutorial = () => {
-      setCoachDismissed(false);
-      try {
-        window.localStorage.removeItem("director-timeline-coach-dismissed");
-      } catch {
-        /* storage 不可用时仅会话内生效 */
-      }
-    };
-    window.addEventListener("director:open-tutorial", onOpenTutorial);
-    return () =>
-      window.removeEventListener("director:open-tutorial", onOpenTutorial);
-  }, []);
   const advanceTimeline = useDirectorStore((state) => state.advanceTimeline);
   const toggleTimelineLoop = useDirectorStore(
     (state) => state.toggleTimelineLoop,
@@ -900,50 +938,17 @@ export function DirectorTimeline({
           压住一整排控件，文字区吞点击会让工具条在引导期间不可用。外观与
           几何完全按实测。步骤 2-5 仍未采样，跳过/下一步都只收起
           （沿用 batch 556 的 clone 决策）。收起状态跨重载持久沿用 batch 572。 */}
-      {!coachDismissed && typeof document !== "undefined"
-        ? createPortal(
-            <div
-              data-director-timeline-coachmark
-              role="status"
-              className="pointer-events-none fixed left-[163px] z-[1] w-[260px] overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]"
-              // ★ Batch 831：这个气泡改用 **portal 到 document.body**（源站就是
-              //   这么做的：源码 `createPortal(…, document.body)`）。
-              //   原因（实测）：气泡是 `position: fixed`，但它原先渲染在时间轴
-              //   section 里 ⟹ **有个祖先创建了 containing block** ⟹
-              //   `top: calc(100vh - 230px)`（=850px）被当成相对那个祖先算 ⟹
-              //   绝对 y = **1749**（视口只有 1080）⟹ 气泡**掉到视口外、看不见**。
-              //   portal 到 body 后 fixed 相对视口 ⟹ 落在 (163,850) ✔ 与源站同层。
-              //   z 用 1800（源站自己的引导浮层 z-[1800]）⟹ 压在导演台之上。
-              style={{ top: "calc(100vh - 230px)", zIndex: 1800 }}
-            >
-              <div className="h-10 overflow-hidden text-[12px] font-normal leading-[19.2px] text-white/90">
-                请选择一个角色或者摄像机后，可新建轨道
-              </div>
-              <div className="mt-3 flex items-center justify-between gap-1">
-                <span className="min-w-0 flex-1 text-[14px] font-normal leading-3 text-white/55">
-                  1/5
-                </span>
-                <button
-                  type="button"
-                  data-director-coachmark-skip
-                  onClick={dismissCoach}
-                  className="pointer-events-auto h-7 rounded-lg bg-transparent px-3 text-[13px] font-normal leading-none text-white/70 transition-colors hover:bg-white/10 hover:text-white"
-                >
-                  跳过
-                </button>
-                <button
-                  type="button"
-                  data-director-coachmark-next
-                  onClick={dismissCoach}
-                  className="pointer-events-auto h-7 rounded-lg bg-white/10 px-3 text-[13px] font-normal leading-none text-white/85 transition-colors hover:bg-white/15 hover:text-white"
-                >
-                  下一步
-                </button>
-              </div>
-            </div>,
-            document.body,
-          )
-        : null}
+      {/* ★★ Batch 834：源站的引导是**完整 5 步**（chunk 原文的组件 `cC`）⟹
+          这里换成 `DirectorTimelineGuide`（逐字照抄源站的数据 ＋ 定位算法 ＋ 类名）。
+          ★ 旧的气泡（batch 556/572/831）只钉在「第 1 步 ＋ 点下一步就收起」，
+            那份合同由本批按**源站原文**更正（见 docs/research/…batch834…/README.md）。
+          ★ portal 到 document.body（源站同款）——否则祖先的 containing block
+            会把 fixed 的坐标算歪（batch 831 实测：曾落到视口外 y=1749）。*/}
+      <DirectorTimelineGuide
+        step={guideStep}
+        onNext={guideNext}
+        onSkip={dismissCoach}
+      />
       {/* Batch 593（源站 2026-10-01 实测）：工具条是 z-30 覆盖层，高 36px
           （`h-[36px]` + `px-2 py-1`），**没有**任何标题——之前 clone 自造的
           「动画时间轴」h2 已删除。左格 320px 放播放/自动帧/循环/读数/单位/
@@ -981,13 +986,23 @@ export function DirectorTimeline({
           <button
             type="button"
             data-director-playback
+            // ★★ Batch 834：源站引导第 4 步指向的就是这枚播放按钮
+            //   （源站 chunk 原文 `guideTarget:"play"`）⟹ 这里挂上源站同名的标记。
+            data-director-timeline-guide-target="play"
             aria-label={timeline.isPlaying ? "暂停" : "播放"}
             title={timeline.isPlaying ? "暂停" : "播放"}
             aria-pressed={timeline.isPlaying}
             onClick={() => setTimelinePlaying(!timeline.isPlaying)}
             className="flex h-6 w-[26px] shrink-0 items-center justify-center rounded-md text-white/80 transition-colors hover:bg-white/10 hover:text-white"
           >
-            {timeline.isPlaying ? <Pause size={14} /> : <Play size={14} />}
+            {/* ★ 源站把**图标**单独标了 `data-director-timeline-guide-icon="true"`
+                （引导的光环以图标中心为心）⟹ 这里用同款的一层 span 包住图标。 */}
+            <span
+              data-director-timeline-guide-icon="true"
+              className="flex items-center justify-center"
+            >
+              {timeline.isPlaying ? <Pause size={14} /> : <Play size={14} />}
+            </span>
           </button>
           {/* Batch 591（源站 2026-10-01 实测，工具栏自左至右）：播放 /
               自动帧 / 循环播放 / 播放头位置 / 总时长 / 时间单位 / 新建轨道。
@@ -1100,7 +1115,17 @@ export function DirectorTimeline({
                 : "text-[#525252]",
             )}
           >
-            <Plus size={13} />
+            {/* ★★ Batch 834：源站引导第 1 步指向的就是这枚「＋」图标
+                （源站 chunk 原文：图标 span 上同时带
+                `data-director-timeline-guide-target="add-track"` ＋
+                `data-director-timeline-guide-icon="true"`）⟹ 这里挂上同款标记。 */}
+            <span
+              data-director-timeline-guide-target="add-track"
+              data-director-timeline-guide-icon="true"
+              className="flex items-center justify-center"
+            >
+              <Plus size={13} />
+            </span>
             新建轨道
           </button>
           {/* Batch 593：源站工具条只有七项（播放/自动帧/循环播放/播放头位置/
@@ -1600,6 +1625,11 @@ export function DirectorTimeline({
               key={preset}
               type="button"
               data-director-motion-path-preset={preset}
+              // ★★ Batch 834：源站引导第 3 步指向运动路径浮层里的「圆环」那一项
+              //   （源站 chunk 原文：`"ring"===e.value?"motion-preset-ring":void 0`）。
+              data-director-timeline-guide-target={
+                preset === "ring" ? "motion-preset-ring" : undefined
+              }
               disabled={selectedTrackLocked}
               onClick={() => {
                 createMotionPath(preset);
@@ -1705,6 +1735,9 @@ export function DirectorTimeline({
                         <button
                           type="button"
                           data-director-track-draw-trail={cameraTrack.id}
+                          // ★★ Batch 834：源站引导第 2 步指向这枚「绘制轨迹」按钮
+                          //   （源站 chunk 原文：`?"draw-trajectory":void 0`）。
+                          data-director-timeline-guide-target="draw-trajectory"
                           aria-label="绘制轨迹"
                           aria-pressed={Boolean(cameraTrack.motionPathId)}
                           onClick={() => {

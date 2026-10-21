@@ -4,8 +4,23 @@
 Contract: source-site sampling (screenshot 48-director-timeline-open.png)
 — when the timeline panel opens, a coachmark popover appears above the
 新建轨道 button: 「请选择一个角色或者摄像机后，可新建轨道」 with a
-1/5 step counter and 跳过 / 下一步 actions. Steps 2-5 are unsampled, so
-both actions dismiss the coachmark in the clone (CLONE_DECISION).
+1/5 step counter and 跳过 / 下一步 actions.
+
+★ ★ CONTRACT CORRECTED BY BATCH 834 (2026-10-22) — 本文件的**断言未改**，
+  改的是**背景说明**（原文那句「Steps 2-5 are unsampled, so both actions
+  dismiss the coachmark in the clone (CLONE_DECISION)」已过时）：
+  源站的引导其实是**完整 5 步**（chunk 原文的组件 `cC`；5 步的正文／宽度／
+  定位算法见 docs/research/liblib-canvas-batch834-2026-10-01/）⟹
+  batch 834 把 clone 升级成**逐步推进的 5 步** ⟹
+  ★ 「下一步」现在**推进到下一步**（源站同款），**只有「跳过／完成」才收起**；
+  ★ 第 5 步那枚按钮的文案是**「完成」**（源站 chunk 原文
+    `4===e?…GuideComplete:…GuideNext`）。
+  ⟹ 本文件断言的「跳过 → 收起」「重载后仍收起」「第 1 步的文案与 1/5」
+  **全部仍然成立** ⟹ 门禁保持绿灯；旧批次的 README 不重写（改写只写在新批次）。
+
+★ 属性名 `data-director-timeline-coachmark` / `data-director-coachmark-skip`
+  / `data-director-coachmark-next` 由 batch 834 **保留为别名** ⟹ 本文件
+  （与 batch 557）按旧名定位仍然有效。
 """
 
 from __future__ import annotations

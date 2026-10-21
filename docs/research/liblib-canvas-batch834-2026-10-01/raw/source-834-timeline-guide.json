@@ -1,0 +1,255 @@
+{
+ "来源": "源站导演台**时间轴引导气泡**（5 步）的活体读数 ＋ 源站 chunk 原文",
+ "采集方式": "活体：probes/coach834b.py（开时间轴 → 逐点「下一步」直到「完成」）；原文：probes/extract834.py / extract834d.py 从 chunk `0fmehki05gkzw.js.js` 抽出组件 `cC` 与状态机",
+ "★为什么必须开时间轴": "引导气泡**锚在时间轴上** ⟹ 源站时间轴默认**收起** ⟹ 不打开时间轴就**全页找不到**它（第一版探针的失败原因）",
+ "★两路交叉核对": "代码里的 width/count 与活体容器盒宽、步数逐项相等 ⟹ 不一致则本脚本拒绝出 raw",
+ "活体读数文件": "/tmp/liblib_source_coach834b.json",
+ "活体读数_sha256": "0e5fb7d78f3f1acd5984deec23845509a655b074480176d232e119eefbf5408f",
+ "chunk文件": "/tmp/liblib_srcjs2/0fmehki05gkzw.js.js",
+ "chunk_sha256": "0d6999dbc5ca51601a0eec96afa85c59ab2af21821086ae3d825359c9bc1129d",
+ "步数": 5,
+ "代码定义": [
+  {
+   "步序": 0,
+   "target": "add-track",
+   "文案i18n键": "canvas:directorTimelineGuideStep1",
+   "count": "1/5",
+   "width": 260,
+   "bubbleOffsetX": -80,
+   "bubbleHeight": 112
+  },
+  {
+   "步序": 1,
+   "target": "draw-trajectory",
+   "文案i18n键": "canvas:directorTimelineGuideStep2",
+   "count": "2/5",
+   "width": 300,
+   "bubbleOffsetX": -64,
+   "bubbleHeight": 112
+  },
+  {
+   "步序": 2,
+   "target": "motion-preset-ring",
+   "文案i18n键": "canvas:directorTimelineGuideStep3",
+   "count": "3/5",
+   "width": 360,
+   "bubbleOffsetX": -48,
+   "bubbleHeight": 136
+  },
+  {
+   "步序": 3,
+   "target": "play",
+   "文案i18n键": "canvas:directorTimelineGuideStep4",
+   "count": "4/5",
+   "width": 300,
+   "bubbleOffsetX": 12,
+   "bubbleHeight": 112
+  },
+  {
+   "步序": 4,
+   "target": "export-to-canvas",
+   "文案i18n键": "canvas:directorTimelineGuideStep5",
+   "count": "5/5",
+   "width": 360,
+   "bubbleOffsetX": -268,
+   "bubbleHeight": 112
+  }
+ ],
+ "活体读数": [
+  {
+   "count": "1/5",
+   "正文": "请选择一个角色或者摄像机后，可新建轨道",
+   "容器盒": {
+    "x": 163,
+    "y": 850,
+    "w": 260,
+    "h": 114
+   },
+   "按钮": [
+    "跳过",
+    "下一步"
+   ],
+   "按钮盒": [
+    {
+     "x": 289,
+     "y": 919,
+     "w": 50,
+     "h": 28
+    },
+    {
+     "x": 343,
+     "y": 919,
+     "w": 63,
+     "h": 28
+    }
+   ],
+   "class": "pointer-events-auto fixed z-[1] overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 font-['PingFang_SC',sans-serif] font-normal text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]",
+   "position": "fixed",
+   "zIndex": "1",
+   "top": "850px",
+   "left": "163px"
+  },
+  {
+   "count": "2/5",
+   "正文": "点击创建路径，弹出选项面板",
+   "容器盒": {
+    "x": 177,
+    "y": 877,
+    "w": 300,
+    "h": 114
+   },
+   "按钮": [
+    "跳过",
+    "下一步"
+   ],
+   "按钮盒": [
+    {
+     "x": 343,
+     "y": 946,
+     "w": 50,
+     "h": 28
+    },
+    {
+     "x": 397,
+     "y": 946,
+     "w": 63,
+     "h": 28
+    }
+   ],
+   "class": "pointer-events-auto fixed z-[1] overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 font-['PingFang_SC',sans-serif] font-normal text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]",
+   "position": "fixed",
+   "zIndex": "1",
+   "top": "877px",
+   "left": "177px"
+  },
+  {
+   "count": "3/5",
+   "正文": "点击圆环/直线/矩形创建路径，或用铅笔/钢笔工具绘制想要路径",
+   "容器盒": {
+    "x": 159,
+    "y": 700,
+    "w": 360,
+    "h": 114
+   },
+   "按钮": [
+    "跳过",
+    "下一步"
+   ],
+   "按钮盒": [
+    {
+     "x": 385,
+     "y": 769,
+     "w": 50,
+     "h": 28
+    },
+    {
+     "x": 439,
+     "y": 769,
+     "w": 63,
+     "h": 28
+    }
+   ],
+   "class": "pointer-events-auto fixed z-[1] overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 font-['PingFang_SC',sans-serif] font-normal text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]",
+   "position": "fixed",
+   "zIndex": "1",
+   "top": "700px",
+   "left": "159px"
+  },
+  {
+   "count": "4/5",
+   "正文": "路径绘制后点击播放，可预览动画",
+   "容器盒": {
+    "x": 33,
+    "y": 843,
+    "w": 300,
+    "h": 114
+   },
+   "按钮": [
+    "跳过",
+    "下一步"
+   ],
+   "按钮盒": [
+    {
+     "x": 199,
+     "y": 912,
+     "w": 50,
+     "h": 28
+    },
+    {
+     "x": 253,
+     "y": 912,
+     "w": 63,
+     "h": 28
+    }
+   ],
+   "class": "pointer-events-auto fixed z-[1] overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 font-['PingFang_SC',sans-serif] font-normal text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]",
+   "position": "fixed",
+   "zIndex": "1",
+   "top": "843px",
+   "left": "33px"
+  },
+  {
+   "count": "5/5",
+   "正文": "预览动画效果已确认，点击“导出视频到画布”，可以在画布内，进行后续编辑",
+   "容器盒": {
+    "x": 1548,
+    "y": 841,
+    "w": 360,
+    "h": 114
+   },
+   "按钮": [
+    "跳过",
+    "完成"
+   ],
+   "按钮盒": [
+    {
+     "x": 1787,
+     "y": 910,
+     "w": 50,
+     "h": 28
+    },
+    {
+     "x": 1841,
+     "y": 910,
+     "w": 50,
+     "h": 28
+    }
+   ],
+   "class": "pointer-events-auto fixed z-[1] overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 font-['PingFang_SC',sans-serif] font-normal text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]",
+   "position": "fixed",
+   "zIndex": "1",
+   "top": "841px",
+   "left": "1548px"
+  }
+ ],
+ "★定位算法原文锚点": "let a=Math.min(p.width,window.innerWidth-24)",
+ "★状态机锚点": [
+  "l6=\"libtv.director.timeline-guide.dismissed.v1\"",
+  "null!==eg||\"1\"===window.localStorage.getItem(l6)||!eF||(0,nY.C)()||ex(0)",
+  "window.localStorage.setItem(l6,\"1\")",
+  "4===e?l(\"canvas:directorTimelineGuideComplete\"):l(\"canvas:directorTimelineGuideNext\")",
+  "data-director-timeline-guide-overlay\":\"true\"",
+  "data-director-timeline-guide-target\":\"add-track\"",
+  "\"draw-trajectory\":void 0",
+  "\"data-director-timeline-guide-target\":\"export-to-canvas\"",
+  "data-director-timeline-guide-icon\":\"true\"",
+  "director-timeline-guide-ripple 1400ms cubic-bezier(0.22, 0.61, 0.36, 1) infinite"
+ ],
+ "★收起标记": "libtv.director.timeline-guide.dismissed.v1（localStorage，值 \"1\"）",
+ "★启动条件": "step 为 null ＋ localStorage 标记 != \"1\" ＋ 存在目标上下文(eF) ＋ 另一个守卫(nY.C())为假 ⟹ ex(0)",
+ "★onNext 分步动作": {
+  "步0": "关掉运动绑定浮层 → 若有 trackId 则打开该浮层 → 进第 2 步；否则直接收起",
+  "步1": "若已画出轨迹(eH) → 进第 3 步；否则直接收起",
+  "步2": "若浮层已打开 → 套用「圆环」预设 → 关浮层 → 进第 4 步；否则直接收起",
+  "步3": "若未在播放 → 开始播放 → 进第 5 步",
+  "步4": "点「导出视频到画布」按钮 → 收起"
+ },
+ "★自动推进": {
+  "步0→1": "运动绑定浮层打开时（ej）",
+  "步1→2": "浮层打开时（Y）",
+  "步2→3": "浮层关闭时（eO 且 !Y）",
+  "步3→4": "开始播放时（isPlaying）",
+  "步4收尾": "给导出按钮挂 click 监听 → 点了就收起"
+ },
+ "★写标记的时机": "到第 3 步（步序 2）且浮层既没开也没在开 → 120ms 后写 localStorage[\"libtv.director.timeline-guide.dismissed.v1\"]=\"1\" 并收起"
+}
