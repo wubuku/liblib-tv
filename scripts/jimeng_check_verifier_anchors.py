@@ -331,6 +331,15 @@ PROBE_VARS = {
     #   ⇒ 漏登记 ⇒ 它们的锚点被**静默跳过** ⇒ 而门照样报「0 问题」（老坑的第五次）
     "_p1032b2": "scripts/jimeng_probe1032b2_gen_contract.py",
     "_p1032b2r": "scripts/jimeng_probe1032b2_gen_runtime.mjs",
+    # ⭐⭐⭐⭐⭐ 1032-②b-3：「提及主体」@ 面板那道门
+    #   （判据 .py + 真去点一遍的探针 .mjs）**两个都要登记**
+    #   ⇒ 漏登记 ⇒ 它们的锚点被**静默跳过** ⇒ 而门照样报「0 问题」（老坑的第六次）
+    "_p1032b3": "scripts/jimeng_probe1032b3_mention_contract.py",
+    "_p1032b3r": "scripts/jimeng_probe1032b3_mention_runtime.mjs",
+    # ⭐⭐⭐⭐⭐ 1032-②b-3 附带：那条**自检门**（判据 .py + 假崩溃探针 .mjs）
+    #   ⇒ **两个都要登记** ⇒ 漏登记 ⇒ 它们的锚点被**静默跳过**（老坑的第七次）
+    "_p1032b3s": "scripts/jimeng_probe1032b3_crash_selftest.py",
+    "_p1032b3f": "scripts/jimeng_probe1032b3_fake_crash_probe.mjs",
     # ⚠️⚠️⚠️⚠️⚠️⚠️ 这一行曾被**连着写了两遍**（`&&` 链把生成脚本跑了两次的老毛病），
     #   而字典字面量里的重复键 Python 会静默吞掉 ⇒ 官方锚点门**照样全绿**、**不报错**、
     #   也不会让任何一条判据变红 ⇒ 纯无声损坏 ⇒ 与 1031 探针的 `P6` 同一个形状

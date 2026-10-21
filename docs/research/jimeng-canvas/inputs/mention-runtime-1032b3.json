@@ -1,0 +1,91 @@
+{
+ "generated_by": "jimeng_probe1032b3_mention_runtime.mjs",
+ "note": "⭐ 判据是「某个可观察的东西变了」；负控验「不该发生时**不**发生」。面板规格 = SOURCE_FACT 手册批次 33/34/113/114。",
+ "checks": {
+  "image_node_with_resource_inserted": {
+   "ok": true,
+   "input_found": true,
+   "before": 5,
+   "after": 6
+  },
+  "subject_node_inserted": {
+   "ok": true,
+   "before": 6,
+   "after": 7
+  },
+  "entered_repaint_mode": {
+   "ok": true
+  },
+  "mention_panel_opens": {
+   "ok": true,
+   "entered": true,
+   "clicked": true,
+   "panel_count": 1,
+   "panel_visible": true
+  },
+  "mention_panel_is_listbox_may_at_content": {
+   "ok": true,
+   "role": "listbox",
+   "aria": "可能@的内容",
+   "n_options": 4
+  },
+  "mention_panel_has_four_categories": {
+   "ok": true,
+   "labels": [
+    "主体",
+    "图片",
+    "视频",
+    "音频"
+   ],
+   "expected": [
+    "主体",
+    "图片",
+    "视频",
+    "音频"
+   ]
+  },
+  "mention_submenu_opens_with_resource_nodes": {
+   "ok": true,
+   "clicked": true,
+   "submenu_count": 1,
+   "submenu_visible": true,
+   "n_items": 2,
+   "empty_text": ""
+  },
+  "picking_candidate_inserts_chip": {
+   "ok": true,
+   "clicked": true,
+   "chips_before": 0,
+   "chips_after": 1,
+   "panel_closed_after_pick": true
+  },
+  "subject_category_empty_when_no_resource": {
+   "ok": true,
+   "clicked": true,
+   "submenu_count": 1,
+   "empty_text": "暂无相关节点",
+   "n_items": 0
+  },
+  "escape_closes_panel_and_keeps_prompt": {
+   "ok": true,
+   "typed": true,
+   "panel_before": 1,
+   "panel_after": 0,
+   "prompt_value": "保留我这个提示词"
+  },
+  "video_edit_mention_panel_opens": {
+   "ok": true,
+   "entered": true,
+   "clicked": true,
+   "panel_count": 1,
+   "panel_visible": true
+  },
+  "no_page_errors": {
+   "ok": true,
+   "n": 0
+  }
+ },
+ "n_checks": 12,
+ "n_failed": 0,
+ "pageerrors": []
+}

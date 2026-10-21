@@ -2,7 +2,7 @@
  "generated_by": "jimeng_probe1032_build_allowlist.py（entries 为人工标注，honest_disabled 自动同步）",
  "purpose": "⭐⭐ 白名单**同时是修复清单**：每条写明它属于哪类糊弄、为什么。",
  "rule": "⭐ 门 P1：代码里的死按钮必须**恰好**等于 entries —— 多一条（新增糊弄）红、少一条（修好了却没销账）也红。",
- "n": 6,
+ "n": 4,
  "entries": [
   {
    "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0",
@@ -39,24 +39,6 @@
    "label": "\"展开面板\"",
    "kind": "NO_EFFECT",
    "note": "『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4"
-  },
-  {
-   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#\"提及主体\"#0",
-   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 244,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"提及主体\"",
-   "kind": "NO_EFFECT",
-   "note": "『@ 提及主体』无 onClick ⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-3"
-  },
-  {
-   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"提及主体\"#0",
-   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 121,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"提及主体\"",
-   "kind": "NO_EFFECT",
-   "note": "『提及主体』无 onClick（同上）⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-3"
   }
  ],
  "honest_disabled": [

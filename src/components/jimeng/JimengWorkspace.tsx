@@ -310,6 +310,9 @@ function JimengFlow() {
   const refPicking = useJimengStore((s) => s.refPicking);
   const pickRefNode = useJimengStore((s) => s.pickRefNode);
   const cancelRefPicking = useJimengStore((s) => s.cancelRefPicking);
+  // Batch 1032-②b-3: @ 提及面板开着吗？（Esc 分级退出：只关面板、不退编辑态）
+  const mentionPanelOpen = useJimengStore((s) => s.mentionPanelOpen);
+  const setMentionPanelOpen = useJimengStore((s) => s.setMentionPanelOpen);
   // Batch 66: 保存状态门控下载 (导出前请保存画布)
   const saved = useJimengStore((s) => s.project.saved);
 
@@ -497,6 +500,14 @@ function JimengFlow() {
         e.preventDefault();
         selectAll();
       } else if (e.key === "Escape") {
+        // ⭐⭐⭐ Batch 1032-②b-3：@ 提及面板开着时，Esc **只关面板**
+        //   （源站退出路径表：`Esc` → 面板**关**、提示词**保留**）
+        //   ⇒ ⇒ **不退出编辑态**、不清空提示词。
+        //   ⇒ ⇒ 这就是「面板开关为什么必须在 store 里」的原因。
+        if (mentionPanelOpen) {
+          setMentionPanelOpen(false);
+          return;
+        }
         // 批 398 SOURCE_FACT: Agent 面板常驻——Escape 不关闭 (381 实测)
         selectNode(null);
         exitRepaint();
@@ -563,6 +574,8 @@ function JimengFlow() {
     exitFramePicker,
     exitTrim,
     cancelRefPicking,
+    mentionPanelOpen,
+    setMentionPanelOpen,
   ]);
 
   // Batch 799 SOURCE_FACT: 点阵网格是**世界锚定**的 —— 源站实测 100% 缩放下

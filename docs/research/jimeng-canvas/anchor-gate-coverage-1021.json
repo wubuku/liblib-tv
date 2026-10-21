@@ -11,7 +11,7 @@
       "n_ausrc": 3914,
       "n_problems": 0,
       "n_skipped": 141,
-      "n_checks": 963,
+      "n_checks": 964,
       "n_bare_ok": 0,
       "would_fail": 0,
       "missing": 0,
@@ -28,7 +28,7 @@
       "n_ausrc": 3914,
       "n_problems": 0,
       "n_skipped": 141,
-      "n_checks": 963,
+      "n_checks": 964,
       "n_bare_ok": 0,
       "would_fail": 0,
       "missing": 0,
@@ -42,7 +42,7 @@
       "n_ausrc": 3911,
       "n_problems": 0,
       "n_skipped": 141,
-      "n_checks": 962,
+      "n_checks": 963,
       "n_bare_ok": 0,
       "would_fail": 0,
       "missing": 0,
@@ -56,7 +56,7 @@
       "n_ausrc": 3890,
       "n_problems": 0,
       "n_skipped": 141,
-      "n_checks": 955,
+      "n_checks": 956,
       "n_bare_ok": 0,
       "would_fail": 0,
       "missing": 0,
@@ -70,7 +70,7 @@
       "n_ausrc": 3913,
       "n_problems": 0,
       "n_skipped": 141,
-      "n_checks": 963,
+      "n_checks": 964,
       "n_bare_ok": 0,
       "would_fail": 0,
       "missing": 0,
@@ -84,7 +84,7 @@
       "n_ausrc": 3914,
       "n_problems": 0,
       "n_skipped": 141,
-      "n_checks": 963,
+      "n_checks": 964,
       "n_bare_ok": 0,
       "would_fail": 0,
       "missing": 0,
@@ -98,7 +98,7 @@
       "n_ausrc": 3914,
       "n_problems": 1,
       "n_skipped": 141,
-      "n_checks": 964,
+      "n_checks": 965,
       "n_bare_ok": 1,
       "would_fail": 0,
       "missing": 0,
@@ -112,7 +112,7 @@
       "n_ausrc": 3914,
       "n_problems": 1,
       "n_skipped": 141,
-      "n_checks": 963,
+      "n_checks": 964,
       "n_bare_ok": 0,
       "would_fail": 1,
       "missing": 0,
@@ -133,7 +133,7 @@
     {
       "tag": "A_drop_one_criterion_1021",
       "n_anchors": 7344,
-      "n_checks": 962,
+      "n_checks": 963,
       "n_problems": 0,
       "anchors_dropped": 9,
       "checks_dropped": 1
@@ -141,7 +141,7 @@
     {
       "tag": "B_drop_whole_group_1021",
       "n_anchors": 7284,
-      "n_checks": 955,
+      "n_checks": 956,
       "n_problems": 0,
       "anchors_dropped": 69,
       "checks_dropped": 8
@@ -149,7 +149,7 @@
     {
       "tag": "C_drop_one_conjunct_1021",
       "n_anchors": 7352,
-      "n_checks": 963,
+      "n_checks": 964,
       "n_problems": 0,
       "anchors_dropped": 1,
       "checks_dropped": 0
@@ -157,7 +157,7 @@
     {
       "tag": "E_swap_anchor_to_one_that_exists_1021",
       "n_anchors": 7353,
-      "n_checks": 963,
+      "n_checks": 964,
       "n_problems": 0,
       "anchors_dropped": 0,
       "checks_dropped": 0
@@ -165,7 +165,7 @@
     {
       "tag": "F_add_tautology_1021",
       "n_anchors": 7353,
-      "n_checks": 964,
+      "n_checks": 965,
       "n_problems": 1,
       "anchors_dropped": 0,
       "checks_dropped": -1
@@ -173,7 +173,7 @@
     {
       "tag": "G_flip_in_to_not_in_1021",
       "n_anchors": 7353,
-      "n_checks": 963,
+      "n_checks": 964,
       "n_problems": 1,
       "anchors_dropped": 0,
       "checks_dropped": 0

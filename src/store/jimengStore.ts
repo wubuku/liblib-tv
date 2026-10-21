@@ -209,6 +209,21 @@ export interface JimengCanvasState {
   cancelRefPicking: () => void;
   pickRefNode: (id: string) => void;
   clearPickedRefNode: () => void;
+  /** ⭐⭐⭐ Batch 1032-②b-3：@ 提及面板**是否开着**。
+   *
+   *  为什么要放 store（而不是组件本地 state）：
+   *  源站的退出路径是**分级**的（手册 20-reference「退出路径」表）：
+   *    | 操作 | 面板 | 提示词 |
+   *    | `Esc` | **关** | **保留** |
+   *  ⇒ ⇒ Esc 在 @ 面板开着时**只关面板**，**不退出编辑态**、**不清空提示词**。
+   *  ⇒ ⇒ 而「Esc 的总调度」在 workspace（`JimengWorkspace` 的 window keydown）
+   *  ⇒ ⇒ 若面板开关只在组件本地 ⇒ ⇒ workspace **看不见它**
+   *  ⇒ ⇒ Esc 会直接退出整个编辑态 ⇒ ⇒ 与源站不符。
+   *  ⇒ ⇒ 所以这个开关必须是**全局可见**的一等状态。
+   */
+  mentionPanelOpen: boolean;
+  /** 开/关 @ 面板（开=面板当前挂在某处；关=没有） */
+  setMentionPanelOpen: (open: boolean) => void;
   /** 离线编辑冲突对话框 (Batch 82, SOURCE_FACT 81-after-reload-state.png)；
       复刻侧无真实离线态，经 dev window hook 触发 */
   offlineDialogOpen: boolean;
@@ -1215,6 +1230,10 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   cancelRefPicking: () => set({ refPicking: false, pickedRefNodeId: null }),
   pickRefNode: (id) => set({ refPicking: false, pickedRefNodeId: id }),
   clearPickedRefNode: () => set({ pickedRefNodeId: null }),
+
+  // Batch 1032-②b-3: @ 提及面板开关（Esc 分级退出的依据）
+  mentionPanelOpen: false,
+  setMentionPanelOpen: (open) => set({ mentionPanelOpen: open }),
 
   offlineDialogOpen: false,
 

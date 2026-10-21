@@ -1,8 +1,8 @@
 {
  "generated_by": "jimeng_probe1032_interaction_wiring.py",
  "scan_coverage": {
-  "n_files": 53,
-  "n_buttons": 208
+  "n_files": 54,
+  "n_buttons": 212
  },
  "P2_scan_is_not_empty_1032": true,
  "n_unknown_spread": 0,
@@ -35,13 +35,13 @@
  "P5_every_allowlist_entry_still_exists_1032": true,
  "P5_missing": [],
  "button_counts": {
-  "WIRED": 196,
+  "WIRED": 202,
   "DISABLED_NO_HANDLER": 3,
-  "DEAD_NO_HANDLER": 6,
+  "DEAD_NO_HANDLER": 4,
   "FORM_SUBMIT": 3
  },
- "n_dead_buttons": 6,
- "n_allowlist_entries": 6,
+ "n_dead_buttons": 4,
+ "n_allowlist_entries": 4,
  "dead_buttons": [
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
@@ -69,20 +69,6 @@
    "line": 56,
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"展开面板\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 244,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"提及主体\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 121,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"提及主体\"",
    "kind": "NO_EFFECT"
   }
  ],

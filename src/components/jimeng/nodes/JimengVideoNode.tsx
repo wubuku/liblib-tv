@@ -141,6 +141,15 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
       style={{ width: d.width, height: d.height }}
       data-jimeng-node-selected={selected || undefined}
       data-group-id={groupId}
+      /* ⭐⭐⭐ 1032-②b-3：给「这个视频节点**有没有资源**」一个**可观察的锚点**。
+         理由：源站判据是「**有资源的**视频节点才有局部重拍/视频编辑入口」
+         （手册 20-reference §节点类型表；源站那个「视频 1」逐字是
+         `No resources: 0 ready, 0 processing` ⇒ 空节点没有那些入口）。
+         ⇒ ⇒ 复刻侧的门要能**挑出**有资源的那个节点 ⇒ ⇒ 就需要一个 DOM 锚点。
+         ⚠️ 此前复刻的视频节点里**没有 `<video>` 元素**（媒体卡是背景图 + 波形），
+         ⇒ ⇒ 门若按「找 `<video>`」定位 ⇒ ⇒ 永远找不到 ⇒ ⇒ 门恒红。
+         ⇒ ⇒ 这个锚点直接反映 `hasMedia` ⇒ ⇒ 是**真源派生**，不是编的。 */
+      data-jimeng-video-has-media={d.hasMedia ? "" : undefined}
     >
       {/* 选中后弹出的操作工具条 / 编辑态 / 反推面板 / 空节点生成面板 */}
       {d.hasMedia && repaintMode ? (

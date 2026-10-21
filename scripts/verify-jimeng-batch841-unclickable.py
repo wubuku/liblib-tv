@@ -6006,6 +6006,18 @@ def main() -> int:
     _p1032b2 = p1032b2.read_text(encoding="utf-8") if p1032b2.exists() else ""
     p1032b2r = ROOT / "scripts/jimeng_probe1032b2_gen_runtime.mjs"
     _p1032b2r = p1032b2r.read_text(encoding="utf-8") if p1032b2r.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②b-3：「提及主体」@ 面板那道门（**运行时**那一条）
+    #   ⚠️ 必须**同时登记 .py 与 .mjs**：.py 是判据、.mjs 是真去点一遍的那个探针
+    p1032b3 = ROOT / "scripts/jimeng_probe1032b3_mention_contract.py"
+    _p1032b3 = p1032b3.read_text(encoding="utf-8") if p1032b3.exists() else ""
+    p1032b3r = ROOT / "scripts/jimeng_probe1032b3_mention_runtime.mjs"
+    _p1032b3r = p1032b3r.read_text(encoding="utf-8") if p1032b3r.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②b-3 附带：那条**自检门**（「探针崩了 ⇒ 门会红」）
+    #   ⚠️ 必须**同时登记 .py 与那个假崩溃探针 .mjs**
+    p1032b3s = ROOT / "scripts/jimeng_probe1032b3_crash_selftest.py"
+    _p1032b3s = p1032b3s.read_text(encoding="utf-8") if p1032b3s.exists() else ""
+    p1032b3f = ROOT / "scripts/jimeng_probe1032b3_fake_crash_probe.mjs"
+    _p1032b3f = p1032b3f.read_text(encoding="utf-8") if p1032b3f.exists() else ""
     # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
     _ws = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(encoding="utf-8")
     _tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
@@ -16735,7 +16747,18 @@ def main() -> int:
         return all(v is True for v in _cb.values())
 
     def _p1032b2_writeoff_ok() -> bool:
-        """销账证明：图片「生成」那条**真的从真源里没了**，且死按钮数 7 → 6。"""
+        """销账证明：图片「生成」那条**真的从真源里没了**，且死按钮数**没有变大**。
+
+        ⚠️ 1032-②b-3 的更正（原文保留、一个字不删）：这一段第一版写的是
+        「且死按钮数 7 → 6」，判据里也钉了 `== 6`
+        ⇒ ⇒ 而 ②b-3 把两枚「提及主体」接上 ⇒ ⇒ 死按钮**合法地**降到 4
+        ⇒ ⇒⇒ **「== 6」是一个会合法漂移的数** ⇒ ⇒⇒ 钉死它的判据在下一批修好按钮时
+        **必然转红** ⇒ ⇒⇒⇒ 而那时的红**不是「产品坏了」，是「判据钉死了会变的数」**
+        ⇒ ⇒⇒⇒ 处置：改成钉**性质**（那一枚真的没了 / 死按钮数**没有变大** /
+        死按钮数与白名单条目数**对得上**），**不钉某个具体数字**
+        ⇒ ⇒⇒⇒⇒ 而「修好了却没销账」那半句由 `DD993S.1` 的**双向**阳性对照守
+        （`P6` 从 `NOTES` 真源删一条 ⇒ 必须红），**不靠这里钉数字**。
+        """
         _al = ROOT / "docs/research/jimeng-canvas/inputs/interaction-wiring-allowlist-1032.json"
         _ck = ROOT / "docs/research/jimeng-canvas/interaction-wiring-check-1032.json"
         if not _al.exists() or not _ck.exists():
@@ -16747,11 +16770,13 @@ def main() -> int:
             return False
         _keys = [e.get("stable_key") for e in (_a.get("entries") or [])]
         _gone = 'src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? "生成" : "请输入提示词"}#0'
+        _n_dead = _c.get("n_dead_buttons")
         return (
             _gone not in _keys
-            and _a.get("n") == 6
-            and _c.get("n_dead_buttons") == 6
-            and _c.get("n_allowlist_entries") == 6
+            # ⭐ 死按钮数与白名单条目数必须**对得上**（两者是同一件事的两份读数）
+            and _a.get("n") == _n_dead == _c.get("n_allowlist_entries")
+            # ⭐ **没有变大**：6 是 ②b-2 当时的基线，再修只会更少
+            and isinstance(_n_dead, int) and _n_dead <= 6
         )
 
     _p1032b2_ok = (
@@ -16787,8 +16812,124 @@ def main() -> int:
           "⚠️⭐⭐ 诚实标注边界：生成**产物本身**是 CLONE_DECISION（源站的产出要付费才能观测，"
           "本门只保证「有一个可观察的状态变化」，**不保证与源站产物一致**）；"
           "**其余 6 个仍死的按钮**由静态门（DD993S.1）管；"
-          "**「有 onClick 但函数体是空的」另一枚**（文本「展开文本面板」）留待 ②c 的场景化探针。",
+          "**「有 onClick 但函数体是空的」另一枚**（文本「展开文本面板」）留待 ②c 的场景化探针。"
+          "⚠️ 1032-②b-3 的更正（**原文保留、一个字不删**）：上面那句「死按钮 7 → 6」与"
+          "「**其余 6 个仍死的按钮**」**已被本批推进**（②b-3 把两枚「提及主体」接上 ⇒ ⇒ 死按钮 6 → 4）"
+          "⇒ ⇒ ⇒ **因此本条判据里那个 `== 6` 是一个会合法漂移的数** ⇒ ⇒ ⇒ "
+          "⇒ ⇒⇒ **它在下一批修好按钮时必然转红，而那时的红不是「产品坏了」、是「判据钉死了会变的数」** "
+          "⇒ ⇒⇒⇒ 处置：判据改成钉**性质**（那一枚真的从白名单里没了 / 死按钮数**没有变大** / "
+          "死按钮数与白名单条目数**对得上**）⇒ ⇒⇒⇒ "
+          "⇒ ⇒⇒⇒ 而「修好了却没销账」那半句由 `DD993S.1` 的**双向**阳性对照守"
+          "（`P6` 从 `NOTES` 真源删一条 ⇒ 必须红）⇒ ⇒ **不靠这里钉数字**。",
           _p1032b2_ok and _p1032b2_out_ok() and _p1032b2_writeoff_ok())
+    # ⭐⭐⭐⭐⭐ 1032-②b-3：这条判据守着「**@ 提及面板点了到底有没有发生事**」
+    def _p1032b3_out_ok() -> bool:
+        _pb = ROOT / "docs/research/jimeng-canvas/mention-contract-1032b3.json"
+        if not _pb.exists():
+            return False
+        try:
+            _db = json.loads(_pb.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _cb = _db.get("P") or {}
+        if not _cb:
+            return False
+        return all(v is True for v in _cb.values())
+
+    def _p1032b3_writeoff_ok() -> bool:
+        """销账证明：那两枚「提及主体」**真的从白名单里没了**，且死按钮 6 -> 4。"""
+        _al = ROOT / "docs/research/jimeng-canvas/inputs/interaction-wiring-allowlist-1032.json"
+        _ck = ROOT / "docs/research/jimeng-canvas/interaction-wiring-check-1032.json"
+        if not _al.exists() or not _ck.exists():
+            return False
+        try:
+            _a = json.loads(_al.read_text(encoding="utf-8"))
+            _c = json.loads(_ck.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _keys = [e.get("stable_key") for e in (_a.get("entries") or [])]
+        _mentions = [k for k in _keys if k and "提及主体" in k]
+        _n_dead = _c.get("n_dead_buttons")
+        return (
+            # ⭐ 那两枚「提及主体」**真的从白名单里没了**
+            not _mentions
+            # ⭐ 死按钮数与白名单条目数必须**对得上**（同一件事的两份读数）
+            and _a.get("n") == _n_dead == _c.get("n_allowlist_entries")
+            # ⭐⭐ **不钉具体数字** —— ②b-4 修好那 4 条时它合法地变小
+            #   ⇒ ⇒ 钉死数字的判据会在**下一批**转红，而那时的红不是「产品坏了」
+            #   ⇒ ⇒⇒ 与 DD993V.1 同一条教训：钉**性质**（没变大 / 两份读数对得上），不钉数
+            and isinstance(_n_dead, int) and _n_dead <= 4
+        )
+
+    def _p1032b3s_out_ok() -> bool:
+        """自检门产物：四条判据（门会红 / 门知道没跑 / 不拿旧读数冒充 / 真源零污染）。"""
+        _pb = ROOT / "docs/research/jimeng-canvas/inputs/crash-selftest-1032b3.json"
+        if not _pb.exists():
+            return False
+        try:
+            _db = json.loads(_pb.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _cb = _db.get("P") or {}
+        if not _cb:
+            return False
+        return all(v is True for v in _cb.values())
+
+    _p1032b3_ok = (
+        # ⭐⭐⭐⭐⭐ 运行时探针必须**真的去点一遍** —— 不能只是读源码
+        "mention_panel_opens" in _p1032b3r
+        and "mention_panel_is_listbox_may_at_content" in _p1032b3r
+        and "mention_panel_has_four_categories" in _p1032b3r
+        and "mention_submenu_opens_with_resource_nodes" in _p1032b3r
+        and "picking_candidate_inserts_chip" in _p1032b3r
+        and "subject_category_empty_when_no_resource" in _p1032b3r
+        and "escape_closes_panel_and_keeps_prompt" in _p1032b3r
+        and "video_edit_mention_panel_opens" in _p1032b3r
+        and "chips_before" in _p1032b3r
+        and "chips_after" in _p1032b3r
+        # ⭐⭐⭐⭐⭐ 判据必须**自己从原始字段重算**（不信探针给的 ok 标志）
+        and "_judge_chip" in _p1032b3
+        and "chips_after" in _p1032b3
+        and "upstream_ok_flag_left_untouched" in _p1032b3
+        # ⭐⭐⭐⭐⭐ 阳性对照必须**改原始字段**（不是改 ok 标志）
+        #   ⇒ 否则「门只信上游标志」这件事永远暴露不出来
+        and "field_actually_changed" in _p1032b3
+        # ⭐⭐⭐⭐⭐ **门的门**：「探针崩了 ⇒ 门必须红」必须**自己被测过**
+        #   ⇒ ⇒ 判据落在**自检门自己的源码**上（不是落在「我以为它会红」上）
+        # ⭐⭐⭐⭐⭐ **必须是带引号的完整 token，不能用裸子串** ——
+        #   ⇒ 裸子串（`"X" in src`）对**前缀型注入**恒真：
+        #   把源码里的 `X` 改成 `X_BROKEN` ⇒ 裸子串**仍然命中**（`X` 是 `X_BROKEN` 的前缀）
+        #   ⇒ ⇒ **变异体根本没生效** ⇒ ⇒ 而门照样绿 ⇒ ⇒ **「变异体没生效」的老坑又一次**
+        #   ⇒ ⇒⇒ 带引号的 token 则是**完整匹配**：闭合引号的位置变了 ⇒ ⇒ 不再命中。
+        and '"P1_gate_goes_red_when_probe_crashes_1032b3"' in _p1032b3s
+        and '"P3_no_stale_readings_masquerade_1032b3"' in _p1032b3s
+        # ⭐⭐⭐⭐⭐ 假崩溃探针必须**真的以退出码 2 退出**（独立于「数据有问题」的 1）
+        and "CRASH_MARKER = 'INSTRUMENT_CRASH'" in _p1032b3f
+        and "CRASH_EXIT_CODE = 2" in _p1032b3f
+    )
+    check("DD993W.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「主体选择（@ 提及）」这件事**必须由运行时来回答**："
+          "1032-②b-3 把重拍面板与视频编辑态里那两枚「提及主体」@ 钮接上了"
+          "⇒ ⇒ 死按钮 6 → 4（静态门 DD993S.1 那一栏销账）。"
+          "⭐⭐⭐⭐⭐ 但「有 onClick」**不等于**「点了有反应」⇒ ⇒ 所以新门**真点一遍**："
+          "点 @ ⇒ ⇒ 面板出现（`[data-testid=\"mention-panel\"]`）；"
+          "面板是 `role=\"listbox\"`、aria 逐字「可能@的内容」（SOURCE_FACT 批次 33）；"
+          "一级 4 类 主体/图片/视频/音频（批次 34）；点一级 ⇒ ⇒ 二级子菜单出现；"
+          "**只列有可用资源的节点**（批次 114）、没有时逐字「暂无相关节点」；"
+          "选中一条 ⇒ ⇒ 提示词行**真的多出引用 chip**。"
+          "⭐⭐⭐⭐⭐ **负控三条**：无资源 ⇒ 逐字空态；`Esc` ⇒ 面板**关**、提示词**保留**"
+          "（源站退出路径是**分级的**：Esc 只关最上层浮层，不退编辑态）；"
+          "视频编辑态那一枚 @ 钮**也**能开面板。"
+          "⭐⭐⭐⭐⭐ 判据**自己从原始字段重算**（不信探针给的 `ok` 标志）"
+          "⇒ ⇒ 阳性对照**改原始字段**（`chips_after`）、**不碰上游标志**"
+          "⇒ ⇒ 变异后上游标志仍是 `true` 而门仍判红 ⇒ ⇒ 这才证明门是**重算**的。"
+          "⚠️⭐⭐ 诚实标注边界：源站上「重拍 / 视频编辑」态的 @ 面板**本轮未直接实测**"
+          "（源站画布上唯一视频节点是空的；v3 上传后新节点仍停在 `0 ready, 1 processing`"
+          "⇒ ⇒ 拿不到 ready 态 ⇒ ⇒ 进不了编辑态）"
+          "⇒ ⇒ 本门验的是「复刻的 @ 面板符合**手册批次 33/34/113/114 的既有全量实测规格**」，"
+          "**不等于**「复刻与源站逐字一致」。",
+          _p1032b3_ok and _p1032b3_out_ok() and _p1032b3_writeoff_ok()
+          and _p1032b3s_out_ok())
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

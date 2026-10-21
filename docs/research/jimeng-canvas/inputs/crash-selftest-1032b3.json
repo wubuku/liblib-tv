@@ -1,0 +1,29 @@
+{
+ "generated_by": "jimeng_probe1032b3_crash_selftest.py",
+ "measured_at": "2026-10-21",
+ "question": "⭐⭐⭐⭐⭐ 探针崩了的时候，这道门**真的会红**吗？（而不是拿旧读数冒充本轮读数、报一个假绿）",
+ "P": {
+  "P1_gate_goes_red_when_probe_crashes_1032b3": true,
+  "P2_gate_knows_it_did_not_run_1032b3": true,
+  "P3_no_stale_readings_masquerade_1032b3": true,
+  "P4_real_product_untouched_1032b3": true,
+  "P5_quoted_token_survives_prefix_mutation_1032b3": true
+ },
+ "n_checks": 5,
+ "n_failed": 0,
+ "all_ok": true,
+ "detail": {
+  "rc": 1,
+  "P1": false,
+  "probe_run": "rc=2 instrument-crash",
+  "probe_crashed": true,
+  "P1_detail": {
+   "run": "rc=2 instrument-crash",
+   "crashed": true,
+   "n_checks": null,
+   "n_failed": null,
+   "upstream_all_ok": false,
+   "n_raw_checks": 0
+  }
+ }
+}

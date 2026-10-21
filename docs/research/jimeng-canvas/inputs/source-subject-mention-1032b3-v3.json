@@ -1,0 +1,2879 @@
+{
+ "generated_by": "scripts/jimeng_probe1032b3_subject_source3.py",
+ "measured_at": "2026-10-21",
+ "canvas_url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+ "uploaded_media": "/Users/yangjiefeng/Downloads/134_mock-task-1778068676388-15981.mp4",
+ "how": "登录源站 → 等画布就绪 → **上传一个本地小视频**（上传免费、不扣积分）→ 选中新出现的「有资源的视频节点」→ 点工具条「局部重拍」/「视频编辑」（**进入编辑态不扣费，发送才扣费**）→ 枚举面板里的按钮 → 找 @ 那一枚 → 点它 → 读开了什么。⚠️ 绝不点生成/发送/购买/充值。",
+ "v1_v2_finding": "v1/v2 选中的那个视频节点是空的（No resources: 0 ready, 0 processing）⇒ 空节点不提供「局部重拍」/「视频编辑」入口 ⇒ 进不了编辑态 ⇒ 探针不是坏了，是样本不满足前置条件。",
+ "steps": [],
+ "n_nodes_before": 76,
+ "video_nodes_before": [
+  {
+   "tid": "rf__node-node_3bfb9r79qe",
+   "rect": [
+    217,
+    51,
+    108,
+    108
+   ],
+   "text": "双击编辑文本 文本 1",
+   "aria": [
+    "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_cdwf8x6fbj",
+   "rect": [
+    69,
+    95,
+    404,
+    70
+   ],
+   "text": "时间线 1 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual ",
+   "aria": [
+    "导出时间线",
+    "全屏编辑",
+    "静音",
+    "添加素材到时间线"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": true
+  },
+  {
+   "tid": "rf__node-node_aw29cp094x",
+   "rect": [
+    230,
+    64,
+    108,
+    108
+   ],
+   "text": "双击编辑文本 文本 2",
+   "aria": [
+    "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_5gftn3dnt1",
+   "rect": [
+    244,
+    78,
+    108,
+    108
+   ],
+   "text": "测试文字样例 文本 3",
+   "aria": [
+    "测试文字样例. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_ay7f1jn45r",
+   "rect": [
+    256,
+    162,
+    108,
+    108
+   ],
+   "text": "音频 1 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 1: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_w6b1h9fvzw",
+   "rect": [
+    282,
+    175,
+    108,
+    108
+   ],
+   "text": "音频 2 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 2: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_dt0wpmba0d",
+   "rect": [
+    296,
+    202,
+    108,
+    108
+   ],
+   "text": "音频 3 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 3: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_kdgnjkfng2",
+   "rect": [
+    309,
+    169,
+    108,
+    108
+   ],
+   "text": "音频 4 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 4: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_gp499g9p3m",
+   "rect": [
+    323,
+    127,
+    108,
+    108
+   ],
+   "text": "音频 5 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 5: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_9y4j9jf0qv",
+   "rect": [
+    535,
+    189,
+    108,
+    108
+   ],
+   "text": "音频 6 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 6: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_gref4sw056",
+   "rect": [
+    1254,
+    637,
+    191,
+    108
+   ],
+   "text": "b22-upload",
+   "aria": [
+    "1 resource: 1 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "n_video": 0,
+   "n_img": 1,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_20sb5adarj",
+   "rect": [
+    615,
+    405,
+    108,
+    108
+   ],
+   "text": "音频 7 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 7: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_y2n170za3z",
+   "rect": [
+    716,
+    483,
+    108,
+    108
+   ],
+   "text": "音频 8 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 8: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_1c5zafa3zk",
+   "rect": [
+    729,
+    496,
+    108,
+    108
+   ],
+   "text": "音频 9 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 9: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_fg4h8gry6x",
+   "rect": [
+    743,
+    509,
+    108,
+    108
+   ],
+   "text": "音频 10 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 10: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_kx0gzwzf7a",
+   "rect": [
+    756,
+    523,
+    108,
+    108
+   ],
+   "text": "音频 11 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 11: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_97x9w2s8dc",
+   "rect": [
+    769,
+    536,
+    108,
+    108
+   ],
+   "text": "音频 12 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 12: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_gnykygt88s",
+   "rect": [
+    779,
+    549,
+    108,
+    108
+   ],
+   "text": "音频 13 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 13: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_52g5ng3hxa",
+   "rect": [
+    783,
+    563,
+    108,
+    108
+   ],
+   "text": "音频 14 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 14: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_m14qwkmz4p",
+   "rect": [
+    796,
+    577,
+    108,
+    108
+   ],
+   "text": "音频 15 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 15: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_d4tjtpnatq",
+   "rect": [
+    487,
+    306,
+    404,
+    70
+   ],
+   "text": "时间线 2 00:00 / 00:00 全屏编辑 00:00 00:05 00:10 00:15 00:20 00:25 00:30 添加素材到时间线 时间线: 1 visual ",
+   "aria": [
+    "导出时间线",
+    "全屏编辑",
+    "静音",
+    "添加素材到时间线"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": true
+  },
+  {
+   "tid": "rf__node-node_sc4w9xkaxd",
+   "rect": [
+    810,
+    590,
+    108,
+    108
+   ],
+   "text": "音频 16 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 16: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_y261jwxjpn",
+   "rect": [
+    823,
+    604,
+    108,
+    108
+   ],
+   "text": "音频 17 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 17: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_3f44mcptgc",
+   "rect": [
+    837,
+    617,
+    108,
+    108
+   ],
+   "text": "音频 18 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 18: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_e78c3z4gap",
+   "rect": [
+    850,
+    630,
+    108,
+    108
+   ],
+   "text": "音频 19 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 19: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_5h8sbgy7pd",
+   "rect": [
+    864,
+    644,
+    108,
+    108
+   ],
+   "text": "音频 20 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 20: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_zb8pfc1tf6",
+   "rect": [
+    810,
+    473,
+    108,
+    108
+   ],
+   "text": "音频 21 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 21: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_v1wkbg1mbm",
+   "rect": [
+    823,
+    486,
+    108,
+    108
+   ],
+   "text": "音频 22 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 22: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_v5ewe33jbw",
+   "rect": [
+    837,
+    499,
+    108,
+    108
+   ],
+   "text": "音频 23 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 23: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_3rs2xvb3wm",
+   "rect": [
+    850,
+    513,
+    108,
+    108
+   ],
+   "text": "音频 24 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 24: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_e90a7f1gyf",
+   "rect": [
+    864,
+    526,
+    108,
+    108
+   ],
+   "text": "音频 25 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 25: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_5g0yrqgc6c",
+   "rect": [
+    877,
+    540,
+    108,
+    108
+   ],
+   "text": "音频 26 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 26: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_anmp0m801c",
+   "rect": [
+    891,
+    553,
+    108,
+    108
+   ],
+   "text": "音频 27 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 27: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_tqqd4fedbn",
+   "rect": [
+    904,
+    567,
+    108,
+    108
+   ],
+   "text": "音频 28 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 28: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_68van5z657",
+   "rect": [
+    917,
+    580,
+    108,
+    108
+   ],
+   "text": "音频 29 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 29: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_xe755vzsmx",
+   "rect": [
+    931,
+    594,
+    108,
+    108
+   ],
+   "text": "音频 30 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 30: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_3p3sa1sgsv",
+   "rect": [
+    944,
+    607,
+    108,
+    108
+   ],
+   "text": "音频 31 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 31: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_jphxcmk27v",
+   "rect": [
+    958,
+    621,
+    108,
+    108
+   ],
+   "text": "音频 32 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 32: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_9b2ajtyqwj",
+   "rect": [
+    971,
+    634,
+    108,
+    108
+   ],
+   "text": "音频 33 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 33: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_srx8z3gx8g",
+   "rect": [
+    985,
+    647,
+    108,
+    108
+   ],
+   "text": "音频 34 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 34: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_qf32ccpxmm",
+   "rect": [
+    998,
+    663,
+    108,
+    108
+   ],
+   "text": "音频 35 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 35: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_r6dtesbzac",
+   "rect": [
+    877,
+    657,
+    108,
+    108
+   ],
+   "text": "音频 36 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 36: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_20pw32f1y5",
+   "rect": [
+    891,
+    670,
+    108,
+    108
+   ],
+   "text": "音频 37 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 37: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_kgsv6w4ach",
+   "rect": [
+    1012,
+    674,
+    108,
+    108
+   ],
+   "text": "音频 38 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 38: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_80vczsczbr",
+   "rect": [
+    1025,
+    689,
+    108,
+    108
+   ],
+   "text": "音频 39 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 39: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_7w0kc2m903",
+   "rect": [
+    904,
+    684,
+    108,
+    108
+   ],
+   "text": "音频 40 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 40: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_r6qqyk3v98",
+   "rect": [
+    917,
+    697,
+    108,
+    108
+   ],
+   "text": "音频 41 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 41: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_thtydf4663",
+   "rect": [
+    1039,
+    701,
+    108,
+    108
+   ],
+   "text": "音频 42 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 42: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_5na1wezb9q",
+   "rect": [
+    1052,
+    716,
+    108,
+    108
+   ],
+   "text": "音频 43 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 43: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_ky7dvkppj1",
+   "rect": [
+    931,
+    711,
+    108,
+    108
+   ],
+   "text": "音频 44 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 44: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_tnh6v3rm7v",
+   "rect": [
+    944,
+    724,
+    108,
+    108
+   ],
+   "text": "音频 45 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 45: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_mwz4689zqr",
+   "rect": [
+    1065,
+    728,
+    108,
+    108
+   ],
+   "text": "音频 46 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 46: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_7y6fhyn18z",
+   "rect": [
+    1079,
+    743,
+    108,
+    108
+   ],
+   "text": "音频 47 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 47: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_qe1kf9ywek",
+   "rect": [
+    958,
+    737,
+    108,
+    108
+   ],
+   "text": "音频 48 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 48: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_w7s8mxphwh",
+   "rect": [
+    971,
+    751,
+    108,
+    108
+   ],
+   "text": "音频 49 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 49: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_p4xg96c73x",
+   "rect": [
+    1092,
+    755,
+    108,
+    108
+   ],
+   "text": "音频 50 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 50: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_rs637eg7me",
+   "rect": [
+    910,
+    309,
+    108,
+    108
+   ],
+   "text": "音频 51 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 51: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_wdqa2gne4s",
+   "rect": [
+    769,
+    416,
+    108,
+    108
+   ],
+   "text": "音频 52 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 52: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_fd0p2amd3p",
+   "rect": [
+    736,
+    405,
+    108,
+    108
+   ],
+   "text": "音频 53 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 53: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_pz48stvt07",
+   "rect": [
+    615,
+    791,
+    108,
+    108
+   ],
+   "text": "音频 54 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 54: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_2x3hae9jhe",
+   "rect": [
+    1031,
+    448,
+    108,
+    108
+   ],
+   "text": "音频 55 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 55: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_jx5amm7m9j",
+   "rect": [
+    1106,
+    659,
+    108,
+    108
+   ],
+   "text": "音频 56 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 56: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_2vbd2rqk7q",
+   "rect": [
+    1119,
+    685,
+    108,
+    108
+   ],
+   "text": "音频 57 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 57: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_kpfbgmkkr3",
+   "rect": [
+    1133,
+    712,
+    108,
+    108
+   ],
+   "text": "音频 58 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 58: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_1yw4ntm88n",
+   "rect": [
+    1146,
+    739,
+    108,
+    108
+   ],
+   "text": "音频 59 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 59: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_fyy39951ae",
+   "rect": [
+    1160,
+    766,
+    108,
+    108
+   ],
+   "text": "音频 60 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 60: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_jc6t41x8d2",
+   "rect": [
+    548,
+    443,
+    108,
+    108
+   ],
+   "text": "音频 61 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 61: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_kk2xhkrdtn",
+   "rect": [
+    917,
+    429,
+    108,
+    108
+   ],
+   "text": "音频 62 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 62: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_qs4x5t988q",
+   "rect": [
+    910,
+    189,
+    108,
+    108
+   ],
+   "text": "音频 63 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 63: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_9rxgrvfe4y",
+   "rect": [
+    1031,
+    322,
+    108,
+    108
+   ],
+   "text": "音频 64 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 64: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_n0x3zqajjy",
+   "rect": [
+    796,
+    189,
+    108,
+    108
+   ],
+   "text": "音频 65 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 65: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_3cc0k9cfgb",
+   "rect": [
+    1025,
+    189,
+    108,
+    108
+   ],
+   "text": "音频 66 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 66: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_ae08gp8ke3",
+   "rect": [
+    487,
+    405,
+    108,
+    108
+   ],
+   "text": "音频 67 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 67: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_tadm1nyykc",
+   "rect": [
+    656,
+    189,
+    108,
+    108
+   ],
+   "text": "音频 68 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 68: 暂无音频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": false
+  },
+  {
+   "tid": "rf__node-node_pxvkay973v",
+   "rect": [
+    271,
+    119,
+    108,
+    108
+   ],
+   "text": "导演台 在 3D 空间中设计角色、机位与镜头 进入导演台 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+   "aria": [
+    "进入导演台"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": true
+  },
+  {
+   "tid": "rf__node-node_236ctpehgg",
+   "rect": [
+    346,
+    105,
+    108,
+    191
+   ],
+   "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+   "aria": [
+    "暂无视频"
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "has_media": true
+  }
+ ],
+ "file_inputs": [],
+ "n_nodes_after_upload": 77,
+ "uploaded": true,
+ "target_video_node": {
+  "tid": "rf__node-node_182pyvcyj3",
+  "rect": [
+   684,
+   421,
+   143,
+   108
+  ],
+  "text": "134_mock-t...6388-15981 1 resource: 0 ready, 1 processing, 0 failed. Selected.",
+  "aria": [
+   "Rename 134_mock-task-1778068676388-15981",
+   "134_mock-task-1778068676388-15981.mp4: 正在上传视频 0%"
+  ],
+  "n_video": 0,
+  "n_img": 0,
+  "has_media": true
+ },
+ "toolbar_buttons": [
+  {
+   "al": "Canvas title: 测试项目",
+   "txt": "测试项目",
+   "title": "",
+   "testid": "canvas-project-title-trigger",
+   "cls": "inline-flex items-center gap-1 whitespace-nowrap border-soli",
+   "rect": [
+    52,
+    16,
+    68,
+    28
+   ],
+   "svg_paths": 0,
+   "html": "<span class=\"min-w-workspace-title-shrinkable w-full truncate text-left\" data-workspace-project-title-text=\"true\">测试项目</span>"
+  },
+  {
+   "al": "项目",
+   "txt": "",
+   "title": "",
+   "testid": "canvas-project-trigger",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    120,
+    16,
+    20,
+    28
+   ],
+   "svg_paths": 1,
+   "html": "<svg class=\"size-4 transition-transform duration-workspace-project-disclosure ease-dreamina-soft motion-reduce:transition-none [[aria-expand"
+  },
+  {
+   "al": "Canvas node summary: 节点 76",
+   "txt": "节点\n76",
+   "title": "",
+   "testid": "canvas-node-summary-trigger",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    156,
+    16,
+    34,
+    28
+   ],
+   "svg_paths": 0,
+   "html": "<span class=\"inline-flex items-center font-dreamina-cn\" data-testid=\"canvas-node-summary-label\" style=\"gap: 2px;\"><span class=\"font-dreamina"
+  },
+  {
+   "al": "搜索",
+   "txt": "",
+   "title": "",
+   "testid": "canvas-panel-launcher",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    1152,
+    16,
+    28,
+    28
+   ],
+   "svg_paths": 1,
+   "html": "<svg aria-hidden=\"true\" data-icon=\"canvas-search\" fill=\"none\" height=\"20\" viewBox=\"0 0 20 20\" width=\"20\"><path d=\"M9.67285 1.875C13.5847 1.8"
+  },
+  {
+   "al": "生成历史",
+   "txt": "",
+   "title": "",
+   "testid": "canvas-panel-launcher",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    1184,
+    16,
+    28,
+    28
+   ],
+   "svg_paths": 2,
+   "html": "<span class=\"relative flex size-4 items-center justify-center\" data-history-entry-state=\"default\"><span><svg aria-hidden=\"true\" class=\"size-"
+  },
+  {
+   "al": "分享",
+   "txt": "分享",
+   "title": "",
+   "testid": "canvas-share-trigger",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1229,
+    16,
+    62,
+    28
+   ],
+   "svg_paths": 1,
+   "html": "<svg data-icon=\"share-stroke\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"16\" viewBox=\"0 0 16 16\" width=\"1"
+  },
+  {
+   "al": "更多",
+   "txt": "",
+   "title": "",
+   "testid": "",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    1308,
+    16,
+    28,
+    28
+   ],
+   "svg_paths": 1,
+   "html": "<svg data-icon=\"more-horizontal\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"16\" viewBox=\"0 0 16 16\" width"
+  },
+  {
+   "al": "Credits: 80 · 开会员",
+   "txt": "80\n开会员",
+   "title": "",
+   "testid": "canvas-commerce-entry",
+   "cls": "justify-center gap-1 whitespace-nowrap border-solid motion-s",
+   "rect": [
+    1353,
+    16,
+    98,
+    28
+   ],
+   "svg_paths": 1,
+   "html": "<span class=\"flex h-full items-center gap-workspace-chrome-label-gap\" data-testid=\"workspace-account-summary-content\"><span class=\"inline-fl"
+  },
+  {
+   "al": "用户菜单",
+   "txt": "",
+   "title": "",
+   "testid": "canvas-user-menu-trigger",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    1467,
+    16,
+    28,
+    28
+   ],
+   "svg_paths": 0,
+   "html": "<img alt=\"\" class=\"h-workspace-avatar-compact w-workspace-avatar-compact flex-none rounded-workspace-avatar border-workspace-avatar border-d"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    308,
+    32,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    456,
+    74,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "导出时间线",
+   "txt": "",
+   "title": "",
+   "testid": "",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    410,
+    99,
+    14,
+    14
+   ],
+   "svg_paths": 1,
+   "html": "<svg aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.o"
+  },
+  {
+   "al": "全屏编辑",
+   "txt": "全屏编辑",
+   "title": "",
+   "testid": "",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    426,
+    99,
+    42,
+    14
+   ],
+   "svg_paths": 1,
+   "html": "<svg data-icon=\"timeline-fullscreen\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"24\" viewBox=\"0 0 20 20\" w"
+  },
+  {
+   "al": "静音",
+   "txt": "",
+   "title": "",
+   "testid": "timeline-mute-button",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    73,
+    136,
+    14,
+    14
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"pointer-events-none flex shrink-0 items-center justify-center size-canvas-timeline-node-control [&amp;_svg]:"
+  },
+  {
+   "al": "添加素材到时间线",
+   "txt": "添加素材到时间线",
+   "title": "",
+   "testid": "",
+   "cls": "whitespace-nowrap border-solid font-dreamina-cn font-dreamin",
+   "rect": [
+    95,
+    129,
+    373,
+    28
+   ],
+   "svg_paths": 1,
+   "html": "<svg data-icon=\"timeline-add\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"24\" viewBox=\"0 0 16 16\" width=\"2"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    322,
+    45,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    335,
+    59,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    347,
+    140,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    374,
+    154,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    387,
+    181,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    401,
+    147,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    414,
+    105,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    626,
+    167,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1429,
+    615,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    706,
+    384,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    807,
+    461,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    821,
+    474,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    834,
+    488,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    847,
+    501,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    861,
+    515,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    870,
+    527,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    874,
+    542,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    888,
+    555,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    874,
+    285,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "导出时间线",
+   "txt": "",
+   "title": "",
+   "testid": "",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    828,
+    311,
+    14,
+    14
+   ],
+   "svg_paths": 1,
+   "html": "<svg aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"24\" viewBox=\"0 0 24 24\" width=\"24\" xmlns=\"http://www.w3.o"
+  },
+  {
+   "al": "全屏编辑",
+   "txt": "全屏编辑",
+   "title": "",
+   "testid": "",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    844,
+    311,
+    42,
+    14
+   ],
+   "svg_paths": 1,
+   "html": "<svg data-icon=\"timeline-fullscreen\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"24\" viewBox=\"0 0 20 20\" w"
+  },
+  {
+   "al": "静音",
+   "txt": "",
+   "title": "",
+   "testid": "timeline-mute-button",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    491,
+    347,
+    14,
+    14
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"pointer-events-none flex shrink-0 items-center justify-center size-canvas-timeline-node-control [&amp;_svg]:"
+  },
+  {
+   "al": "添加素材到时间线",
+   "txt": "添加素材到时间线",
+   "title": "",
+   "testid": "",
+   "cls": "whitespace-nowrap border-solid font-dreamina-cn font-dreamin",
+   "rect": [
+    513,
+    340,
+    373,
+    28
+   ],
+   "svg_paths": 1,
+   "html": "<svg data-icon=\"timeline-add\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"24\" viewBox=\"0 0 16 16\" width=\"2"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    901,
+    569,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    915,
+    582,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    928,
+    596,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    942,
+    609,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    955,
+    622,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    901,
+    451,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    915,
+    464,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    928,
+    478,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    942,
+    491,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    955,
+    505,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    969,
+    518,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    982,
+    532,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    995,
+    545,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1009,
+    559,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1022,
+    572,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1036,
+    586,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1049,
+    599,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1063,
+    612,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1076,
+    626,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1090,
+    641,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    969,
+    635,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    982,
+    649,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1103,
+    653,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1117,
+    668,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    995,
+    662,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1009,
+    676,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1130,
+    679,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1143,
+    695,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1022,
+    689,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1036,
+    702,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1157,
+    706,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1170,
+    722,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1049,
+    716,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1063,
+    729,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1184,
+    733,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1001,
+    287,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    861,
+    395,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    828,
+    384,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    706,
+    770,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1123,
+    427,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1197,
+    637,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1211,
+    664,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1224,
+    691,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1238,
+    718,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1251,
+    745,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    639,
+    422,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1009,
+    407,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1001,
+    167,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1123,
+    301,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    888,
+    167,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    1117,
+    167,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    578,
+    384,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    747,
+    167,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    362,
+    97,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "Add tags",
+   "txt": "",
+   "title": "",
+   "testid": "flow-node-selected-tag",
+   "cls": "inline-flex items-center justify-center whitespace-nowrap bo",
+   "rect": [
+    438,
+    84,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<span aria-hidden=\"true\" class=\"absolute -inset-1 visible pointer-events-auto\" data-canvas-tag-trigger-hit-area=\"\" data-canvas-node-tag-hit-"
+  },
+  {
+   "al": "文本",
+   "txt": "",
+   "title": "画布编辑尚未准备就绪",
+   "testid": "",
+   "cls": "inline-flex size-9 shrink-0 items-center justify-center bord",
+   "rect": [
+    16,
+    308,
+    40,
+    40
+   ],
+   "svg_paths": 0,
+   "html": "<span aria-hidden=\"true\" class=\"contents\"></span>"
+  },
+  {
+   "al": "图片",
+   "txt": "",
+   "title": "画布编辑尚未准备就绪",
+   "testid": "",
+   "cls": "inline-flex size-9 shrink-0 items-center justify-center bord",
+   "rect": [
+    16,
+    350,
+    40,
+    40
+   ],
+   "svg_paths": 0,
+   "html": "<span aria-hidden=\"true\" class=\"contents\"></span>"
+  },
+  {
+   "al": "视频",
+   "txt": "",
+   "title": "画布编辑尚未准备就绪",
+   "testid": "",
+   "cls": "inline-flex size-9 shrink-0 items-center justify-center bord",
+   "rect": [
+    16,
+    392,
+    40,
+    40
+   ],
+   "svg_paths": 0,
+   "html": "<span aria-hidden=\"true\" class=\"contents\"></span>"
+  },
+  {
+   "al": "音频",
+   "txt": "",
+   "title": "画布编辑尚未准备就绪",
+   "testid": "",
+   "cls": "inline-flex size-9 shrink-0 items-center justify-center bord",
+   "rect": [
+    16,
+    434,
+    40,
+    40
+   ],
+   "svg_paths": 0,
+   "html": "<span aria-hidden=\"true\" class=\"contents\"></span>"
+  },
+  {
+   "al": "时间线",
+   "txt": "",
+   "title": "画布编辑尚未准备就绪",
+   "testid": "",
+   "cls": "inline-flex size-9 shrink-0 items-center justify-center bord",
+   "rect": [
+    16,
+    476,
+    40,
+    40
+   ],
+   "svg_paths": 0,
+   "html": "<span aria-hidden=\"true\" class=\"contents\"></span>"
+  },
+  {
+   "al": "主体",
+   "txt": "",
+   "title": "画布编辑尚未准备就绪",
+   "testid": "",
+   "cls": "inline-flex size-9 shrink-0 items-center justify-center bord",
+   "rect": [
+    16,
+    518,
+    40,
+    40
+   ],
+   "svg_paths": 0,
+   "html": "<span aria-hidden=\"true\" class=\"contents\"></span>"
+  },
+  {
+   "al": "导演台",
+   "txt": "",
+   "title": "画布编辑尚未准备就绪",
+   "testid": "",
+   "cls": "inline-flex size-9 shrink-0 items-center justify-center bord",
+   "rect": [
+    16,
+    560,
+    40,
+    40
+   ],
+   "svg_paths": 0,
+   "html": "<span aria-hidden=\"true\" class=\"contents\"></span>"
+  },
+  {
+   "al": "资产库",
+   "txt": "",
+   "title": "画布编辑尚未准备就绪",
+   "testid": "",
+   "cls": "inline-flex size-9 shrink-0 items-center justify-center bord",
+   "rect": [
+    16,
+    616,
+    40,
+    40
+   ],
+   "svg_paths": 0,
+   "html": "<span aria-hidden=\"true\" class=\"contents\"></span>"
+  },
+  {
+   "al": "上传",
+   "txt": "",
+   "title": "画布编辑尚未准备就绪",
+   "testid": "",
+   "cls": "inline-flex size-9 shrink-0 items-center justify-center bord",
+   "rect": [
+    16,
+    658,
+    40,
+    40
+   ],
+   "svg_paths": 0,
+   "html": "<span aria-hidden=\"true\" class=\"contents\"></span>"
+  },
+  {
+   "al": "选择工具",
+   "txt": "",
+   "title": "",
+   "testid": "canvas-pointer-tool-toggle",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    16,
+    902,
+    28,
+    28
+   ],
+   "svg_paths": 1,
+   "html": "<svg data-icon=\"canvas-dock-pointer\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"12\" viewBox=\"0 0 12 12\" w"
+  },
+  {
+   "al": "小地图",
+   "txt": "",
+   "title": "",
+   "testid": "canvas-display-toggle-minimap",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    48,
+    902,
+    28,
+    28
+   ],
+   "svg_paths": 1,
+   "html": "<svg data-icon=\"canvas-dock-minimap\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"12\" viewBox=\"0 0 12 12\" w"
+  },
+  {
+   "al": "显示连线",
+   "txt": "",
+   "title": "",
+   "testid": "canvas-display-toggle-connections",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    80,
+    902,
+    28,
+    28
+   ],
+   "svg_paths": 1,
+   "html": "<svg data-icon=\"canvas-dock-lines\" aria-hidden=\"true\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"12\" viewBox=\"0 0 12 12\" wid"
+  },
+  {
+   "al": "Zoom options, 34%",
+   "txt": "34%",
+   "title": "",
+   "testid": "canvas-zoom-percent",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    124,
+    903,
+    48,
+    28
+   ],
+   "svg_paths": 0,
+   "html": "34%"
+  },
+  {
+   "al": "与 AI 对话",
+   "txt": "",
+   "title": "",
+   "testid": "canvas-sidecar-launcher",
+   "cls": "inline-flex items-center justify-center gap-1 whitespace-now",
+   "rect": [
+    1381,
+    903,
+    118,
+    34
+   ],
+   "svg_paths": 0,
+   "html": ""
+  },
+  {
+   "al": "关闭通知",
+   "txt": "",
+   "title": "",
+   "testid": "",
+   "cls": "flex shrink-0 items-center justify-center text-dreamina-text",
+   "rect": [
+    814,
+    46,
+    16,
+    16
+   ],
+   "svg_paths": 1,
+   "html": "<svg aria-hidden=\"true\" data-icon=\"close\" color=\"currentColor\" fill=\"none\" focusable=\"false\" height=\"16\" viewBox=\"0 0 20 20\" width=\"16\" xmln"
+  }
+ ],
+ "not_measured": [
+  "有资源的视频节点选中后仍没找到「局部重拍」/「视频编辑」"
+ ]
+}

@@ -1,11 +1,13 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { ArrowUp, AtSign, ChevronDown, Plus } from "lucide-react";
+import { ArrowUp, AtSign, ChevronDown, Plus, X } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 import { useReactFlow } from "@xyflow/react";
 
 import { VipDiamond } from "@/components/jimeng/icons";
+import { useMentionPicker } from "@/components/jimeng/JimengMentionPanel";
+import type { MentionCandidate } from "@/components/jimeng/JimengMentionPanel";
 import { useJimengStore } from "@/store/jimengStore";
 import type { JimengVideoNodeData } from "@/types/jimeng";
 
@@ -47,13 +49,22 @@ export function JimengRepaintPanel({
      · 添加参考图 → 隐藏 file input → `addLocalUpload`（真落节点）
      · 模型钮     → 真的开下拉、真的换模型（候选取源站出现过的两个模型名）
      · 6s         → 真的开时长档位、真的换时长
-     · 提及主体   → 要新增 store 侧的「主体选择」态 ⇒ **留到 ②b-2**，
-                     **不拿一个假的 handler 去骗门**。
      ⚠️ 模型钮与时长钮此前**带 ChevronDown / 像下拉却点不动** ⇒ 「视觉在骗人」。 */
   const [model, setModel] = useState<string>(REPAINT_MODELS[0]);
   const [modelOpen, setModelOpen] = useState(false);
   const [duration, setDuration] = useState<string>(REPAINT_DURATIONS[1]);
   const [durationOpen, setDurationOpen] = useState(false);
+  /* ⭐⭐⭐ Batch 1032-②b-3：「提及主体」此前**整枚没有 onClick**（死按钮）⇒
+     本批接上**真的 @ 提及面板**（SOURCE_FACT 手册批次 33/34/113/114）：
+     两级定步选择器 —— 一级 `可能@的内容`（主体/图片/视频/音频 四类，
+     按宿主类型裁剪）→ 二级列出该类里**有可用资源**的节点，空时逐字
+     「暂无相关节点」；选中 ⇒ 提示词行插入一个**引用 chip**。
+     ⚠️ **绝不用一个空 handler 去骗门** —— 那会让它从死按钮清单里消失，
+     而用户点下去仍然什么都不会发生 ⇒ ⇒ 那比死按钮更坏。 */
+  const [chips, setChips] = useState<MentionCandidate[]>([]);
+  const mention = useMentionPicker("video", (c) =>
+    setChips((prev) => (prev.some((p) => p.id === c.id) ? prev : [...prev, c])),
+  );
   const uploadInputRef = useRef<HTMLInputElement>(null);
   const addLocalUpload = useJimengStore((s) => s.addLocalUpload);
   const { screenToFlowPosition } = useReactFlow();
@@ -137,6 +148,37 @@ export function JimengRepaintPanel({
               </svg>
               00:00–00:04 重拍片段
             </span>
+            {/* ⭐⭐⭐ 1032-②b-3：@ 面板选中的候选 ⇒ 插成**引用 chip**
+                （SOURCE_FACT 手册批次 792：chip = 缩略图 + 名称 + Remove 角标，
+                横向堆叠于素材栏）。chip 与提示词同行。 */}
+            {chips.map((c) => (
+              <span
+                key={c.id}
+                className="inline-flex shrink-0 items-center gap-1 rounded border border-white/10 bg-white/[0.06] px-1.5 py-0.5 text-white/85"
+                data-testid="repaint-mention-chip"
+                aria-label={`引用素材: ${c.name}`}
+              >
+                {c.poster ? (
+                  // eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 缩略图
+                  <img
+                    src={c.poster}
+                    alt=""
+                    className="size-4 shrink-0 rounded object-cover"
+                  />
+                ) : null}
+                <span className="max-w-[120px] truncate">{c.name}</span>
+                <button
+                  type="button"
+                  aria-label={`移除引用: ${c.name}`}
+                  onClick={() =>
+                    setChips((prev) => prev.filter((p) => p.id !== c.id))
+                  }
+                  className="text-white/50 hover:text-white/85"
+                >
+                  <X size={10} />
+                </button>
+              </span>
+            ))}
             <input
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
@@ -236,18 +278,23 @@ export function JimengRepaintPanel({
                   </div>
                 ) : null}
               </div>
-              {/* ⭐⭐⭐ 1032-②b-1：「提及主体」**本批不动** ——
-                  它要新增 store 侧的「主体选择」态（主体节点点选 ⇒ 插 @主体），
-                  留到 ②b-2。
-                  ⚠️ **绝不用一个空 handler 去骗门** —— 那样它从「死按钮清单」里
-                  消失了，用户点它却仍然什么都不会发生 ⇒ ⇒ 那比死按钮更坏。 */}
-              <button
-                type="button"
-                aria-label="提及主体"
-                className="flex size-8 items-center justify-center rounded-lg text-white/80 hover:bg-white/[0.08]"
-              >
-                <AtSign size={15} />
-              </button>
+              {/* ⭐⭐⭐ 1032-②b-3：「提及主体」此前**整枚没有 onClick**
+                  （1032 审计登记的死按钮）⇒ 现在真的开 @ 提及面板。
+                  ⚠️ 面板是**两级定步选择器**（SOURCE_FACT 手册批次 33）：
+                  一级 `可能@的内容`（主体/图片/视频/音频，按宿主类型裁剪）
+                  → 二级列该类**有可用资源**的节点，空时逐字「暂无相关节点」。 */}
+              <div className="relative">
+                <button
+                  type="button"
+                  aria-label="提及主体"
+                  aria-expanded={mention.open}
+                  onClick={mention.toggle}
+                  className="flex size-8 items-center justify-center rounded-lg text-white/80 hover:bg-white/[0.08]"
+                >
+                  <AtSign size={15} />
+                </button>
+                {mention.panel}
+              </div>
             </div>
             <div className="flex items-center gap-2">
               {/* 批 374 SOURCE_FACT: 空态提示行无积分签 (旧 ✦96/208 已不在) */}

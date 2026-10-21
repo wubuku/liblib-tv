@@ -39,7 +39,44 @@ const page = await browser.newPage();
 const pageErrors = [];
 page.on('pageerror', (e) => pageErrors.push(String(e).slice(0, 200)));
 
-await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 60000 });
+// ⭐⭐⭐⭐⭐ **仪器故障与「数据有问题」必须用不同的退出码**（本仓纪律：
+//   「门红了」和「探针崩了」必须有不同的退出码）⇒ ⇒ 这里：**检查失败 = 1，仪器崩了 = 2**。
+// ⭐⭐⭐⭐⭐ 而「仪器崩了」**必须写产物** —— 不写的话，契约门会去读**上一轮留下的旧读数**
+//   ⇒ ⇒ 那就把「本轮没跑」伪装成「本轮跑过了」⇒ ⇒ 门报绿 ⇒ ⇒ **假绿**。
+const _writeCrash = (msg) => {
+  try {
+    writeFileSync(OUT, JSON.stringify({
+      generated_by: 'jimeng_probe1032b2_gen_runtime.mjs',
+      note: '⭐ 本轮**仪器故障**（不是产品坏了）—— 判据没跑成。',
+      crashed: true,
+      error: String(msg).slice(0, 300),
+      checks: {},
+      n_checks: 0,
+      n_failed: 0,
+      pageerrors: [],
+    }, null, 1));
+  } catch (e) { /* 写不出去就算了 */ }
+  console.log('INSTRUMENT_CRASH :: ' + String(msg).slice(0, 200));
+  process.exit(2);
+};
+process.on('uncaughtException', (e) => _writeCrash(e));
+process.on('unhandledRejection', (e) => _writeCrash(e));
+
+// ⭐⭐⭐⭐⭐ goto **要重试**：1015 会串行跑二十多个浏览器探针，dev server 在负载下
+//   首次编译可能超过 60s ⇒ ⇒ 一次超时就抛未捕获 rejection ⇒ ⇒ 栈进 stderr
+//   ⇒ ⇒ 契约门把 `probe_run` 写成 `rc=1 stderr=…` ⇒ ⇒ **产物多出 200 多字节**
+//   ⇒ ⇒ ⇒ **可复现性门立刻报 drift** ⇒ ⇒ 而真相是「仪器抖了一下」，不是「产品变了」。
+let _gotoOk = false;
+for (let _try = 1; _try <= 3 && !_gotoOk; _try++) {
+  try {
+    await page.goto(URL, { waitUntil: 'domcontentloaded', timeout: 120000 });
+    _gotoOk = true;
+  } catch (e) {
+    console.log('goto 第 %d 次失败: ' + String(e).slice(0, 160));
+    await page.waitForTimeout(3000);
+  }
+}
+if (!_gotoOk) _writeCrash('goto 连续 3 次失败');
 await page.waitForTimeout(6000);
 
 const out = {

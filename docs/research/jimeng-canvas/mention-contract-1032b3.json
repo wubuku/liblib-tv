@@ -1,0 +1,114 @@
+{
+ "generated_by": "jimeng_probe1032b3_mention_contract.py",
+ "measured_at": "2026-10-21",
+ "probe": "scripts/jimeng_probe1032b3_mention_runtime.mjs",
+ "probe_run": "rc=0",
+ "probe_crashed": false,
+ "source_fact": "面板规格 = 手册批次 33/34/113/114（@ 面板全量实测）；退出路径 = 手册「退出路径」表。",
+ "P": {
+  "P1_probe_actually_ran_1032b3": true,
+  "P2_mention_panel_opens_1032b3": true,
+  "P3_panel_is_listbox_may_at_content_1032b3": true,
+  "P4_four_categories_1032b3": true,
+  "P5_submenu_lists_resource_nodes_1032b3": true,
+  "P6_pick_inserts_chip_1032b3": true,
+  "P7_negative_controls_1032b3": true,
+  "P8_mutation_makes_judgement_red_1032b3": true,
+  "P9_video_edit_mention_panel_opens_1032b3": true,
+  "P10_no_page_errors_1032b3": true
+ },
+ "P1_detail": {
+  "run": "rc=0",
+  "crashed": false,
+  "n_checks": 12,
+  "n_failed": 0,
+  "upstream_all_ok": true,
+  "n_raw_checks": 12
+ },
+ "P2_detail": {
+  "ok": true,
+  "entered": true,
+  "clicked": true,
+  "panel_count": 1,
+  "panel_visible": true
+ },
+ "P3_detail": {
+  "ok": true,
+  "role": "listbox",
+  "aria": "可能@的内容",
+  "n_options": 4
+ },
+ "P4_detail": {
+  "ok": true,
+  "labels": [
+   "主体",
+   "图片",
+   "视频",
+   "音频"
+  ],
+  "expected": [
+   "主体",
+   "图片",
+   "视频",
+   "音频"
+  ]
+ },
+ "P5_detail": {
+  "ok": true,
+  "clicked": true,
+  "submenu_count": 1,
+  "submenu_visible": true,
+  "n_items": 2,
+  "empty_text": ""
+ },
+ "P6_detail": {
+  "ok": true,
+  "clicked": true,
+  "chips_before": 0,
+  "chips_after": 1,
+  "panel_closed_after_pick": true,
+  "recomputed_from_raw": "chips_before=0 chips_after=1"
+ },
+ "P7_detail": {
+  "empty": {
+   "ok": true,
+   "clicked": true,
+   "submenu_count": 1,
+   "empty_text": "暂无相关节点",
+   "n_items": 0
+  },
+  "escape": {
+   "ok": true,
+   "typed": true,
+   "panel_before": 1,
+   "panel_after": 0,
+   "prompt_value": "保留我这个提示词"
+  },
+  "empty_ok": true,
+  "escape_ok": true
+ },
+ "P8_detail": {
+  "mutation": "把原始字段 chips_after 从 1 改成 0（只改读数副本，不碰真源产物）",
+  "base_judgement_green": true,
+  "base_why": "chips_before=0 chips_after=1",
+  "mutated_judgement_red": true,
+  "mutated_why": "chips_before=0 chips_after=0",
+  "field_actually_changed": true,
+  "upstream_ok_flag_left_untouched": true,
+  "note": "变异后上游 ok 标志仍是 true 而门仍判红 => 门是从原始字段重算的，不信 ok 标志"
+ },
+ "P9_detail": {
+  "ok": true,
+  "entered": true,
+  "clicked": true,
+  "panel_count": 1,
+  "panel_visible": true
+ },
+ "P10_detail": {
+  "ok": true,
+  "n": 0
+ },
+ "n_checks": 10,
+ "n_failed": 0,
+ "all_ok": true
+}

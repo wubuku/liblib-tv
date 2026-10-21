@@ -1,12 +1,12 @@
 {
  "generated_by": "jimeng_probe1032_interaction_wiring.mjs",
  "scan_scope": "src/components/jimeng/**/*.tsx",
- "n_files": 53,
- "n_buttons": 208,
+ "n_files": 54,
+ "n_buttons": 212,
  "counts": {
-  "WIRED": 196,
+  "WIRED": 202,
   "DISABLED_NO_HANDLER": 3,
-  "DEAD_NO_HANDLER": 6,
+  "DEAD_NO_HANDLER": 4,
   "FORM_SUBMIT": 3
  },
  "dead_buttons": [
@@ -57,30 +57,6 @@
    "label": "\"展开面板\"",
    "ordinal": 0,
    "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"展开面板\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 244,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"提及主体\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#\"提及主体\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 121,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"提及主体\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"提及主体\"#0"
   }
  ],
  "unknown_spread": [],
@@ -1445,6 +1421,34 @@
    "stable_key": "src/components/jimeng/JimengMemberModal.tsx#{t}#0"
   },
   {
+   "file": "src/components/jimeng/JimengMentionPanel.tsx",
+   "line": 213,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`可能@的内容: ${cat}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMentionPanel.tsx#{`可能@的内容: ${cat}`}#0"
+  },
+  {
+   "file": "src/components/jimeng/JimengMentionPanel.tsx",
+   "line": 248,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`可能@的内容: ${c.name}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMentionPanel.tsx#{`可能@的内容: ${c.name}`}#0"
+  },
+  {
    "file": "src/components/jimeng/jimengMenuChrome.tsx",
    "line": 86,
    "verdict": "WIRED",
@@ -1824,7 +1828,7 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 114,
+   "line": 125,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1838,7 +1842,21 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 153,
+   "line": 170,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`移除引用: ${c.name}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#{`移除引用: ${c.name}`}#0"
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 195,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1852,7 +1870,7 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 174,
+   "line": 216,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1866,7 +1884,7 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 198,
+   "line": 240,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1880,7 +1898,7 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 217,
+   "line": 259,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1894,9 +1912,11 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 244,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 287,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -1906,7 +1926,7 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 254,
+   "line": 301,
    "verdict": "FORM_SUBMIT",
    "event_attrs": [],
    "delegated_by": "",
@@ -2212,7 +2232,7 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 72,
+   "line": 82,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2226,7 +2246,7 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 99,
+   "line": 109,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2240,7 +2260,21 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 113,
+   "line": 141,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "{`移除引用: ${c.name}`}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#{`移除引用: ${c.name}`}#0"
+  },
+  {
+   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+   "line": 151,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2254,9 +2288,11 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 121,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 162,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -2266,7 +2302,7 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 133,
+   "line": 178,
    "verdict": "FORM_SUBMIT",
    "event_attrs": [],
    "delegated_by": "",
@@ -2320,7 +2356,7 @@
   },
   {
    "file": "src/components/jimeng/JimengWorkspace.tsx",
-   "line": 714,
+   "line": 727,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"

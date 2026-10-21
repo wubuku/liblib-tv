@@ -45,22 +45,37 @@ OUT = GDIR / "gen-contract-1032b2.json"
 # ── 跑探针（读数不存在时现跑；跑不动 ⇒ 降级为 null，不判红）────────────
 _readings = None
 _run_info = "not attempted"
+_crashed = False
 if os.environ.get("JIMENG_B2_SKIP_PROBE") != "1":
     try:
         r = subprocess.run(["node", str(PROBE)], cwd=str(ROOT),
                            capture_output=True, text=True, timeout=900)
         _run_info = "rc=%d" % r.returncode
-        if r.returncode != 0:
+        # ⭐⭐⭐⭐⭐ **「仪器故障」有独立退出码（2）** ⇒ ⇒ 本门据此知道
+        #   「这轮探针没跑成」⇒ ⇒ 而不是把它当成「产品坏了」。
+        if r.returncode == 2 or "INSTRUMENT_CRASH" in (r.stdout or ""):
+            _crashed = True
+            _run_info = "rc=2 instrument-crash"
+        elif r.returncode != 0:
             _run_info += " stderr=%s" % r.stderr.strip()[-200:]
     except Exception as e:                                   # 探针跑不动 = 仪器问题
+        _crashed = True
         _run_info = "probe failed: %s" % str(e)[:200]
 else:
     _run_info = "skipped by env"
+    # ⭐⭐⭐⭐⭐ 跳过 ⇒ **本轮探针没跑** ⇒ ⇒ 同样不许拿旧读数冒充
+    _crashed = True
 
 try:
     if READINGS.exists():
         _readings = json.loads(READINGS.read_text(encoding="utf-8"))
 except Exception:
+    _readings = None
+# ⭐⭐⭐⭐⭐ **探针崩了 ⇒ 不许拿「上一轮留下的旧读数」冒充本轮读数。**
+#   ⇒ ⇒ 否则「本轮没跑」会被伪装成「本轮跑过了」⇒ ⇒ 门报绿 ⇒ ⇒ **假绿**
+#   ⇒ ⇒⇒ 而这正是 1015 抓到的那个漂移的另一半：探针崩 ⇒ 契约产物多出 200 多字节
+#   ⇒ ⇒⇒   ⇒ ⇒ 1014 的指纹跟着变 ⇒ ⇒ 两本 golden 一起漂。
+if _crashed:
     _readings = None
 
 
@@ -141,6 +156,10 @@ def _judge(r):
 
 
 _c = _judge(_readings)
+# ⭐⭐⭐⭐⭐ **P9 = 「本轮探针真的跑成了」** —— 不是「读数文件存在」
+#   ⇒ ⇒ 读数文件**上一轮就留下了** ⇒ ⇒ 只查它存在 ⇒ ⇒ **探针崩了门照样绿**
+#   ⇒ ⇒⇒ 所以必须同时看「这一轮探针的退出码」与「读数是不是本轮的」。
+_c["P9_probe_actually_ran"] = bool(_readings) and (not _crashed)
 
 # ── P8：判据级阳性对照（把读数改坏 ⇒ 同一套判据必须红）────────────────
 _mut = None
@@ -163,6 +182,7 @@ out = {
     "target": "jimeng-canvas-image-audio-generate",
     "question": "⭐⭐⭐⭐⭐ **图片 / 音频的「生成」点了到底有没有发生事？**",
     "probe_run": _run_info,
+    "probe_crashed": bool(_crashed),
     "readings_file": str(READINGS.relative_to(ROOT)) if READINGS.exists() else None,
     "readings_available": bool(_readings),
     "criteria": _c,
@@ -176,7 +196,7 @@ out = {
         "n_pageerrors": len((_readings or {}).get("pageerrors") or []),
     },
     "scope_note": "⭐⭐⭐ 本门只覆盖 1032-②b-2 修的两个「生成」按钮；"
-                  "**其余 6 个仍死的按钮**由静态门 DD993S.1 管；"
+                  "**其余仍死的按钮**（数目由静态门 DD993S.1 那一栏给出）由静态门 DD993S.1 管；"
                   "**「有 onClick 但函数体是空的」那一类**静态门扫不到 ⇒ "
                   "本门抓到的是其中一枚（音频「生成」），另一枚（文本「展开文本面板」）"
                   "留待 ②c 的场景化探针。",
@@ -193,7 +213,7 @@ out["degraded_criteria"] = none_list
 OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
 
 print("probe: %s | readings=%s" % (_run_info, "有" if _readings else "无"))
-print("P1..P8 =", [out["criteria"].get("P%d" % i) for i in range(1, 9)])
+print("criteria =", json.dumps(out["criteria"], ensure_ascii=False))
 print("为假的：", false_list or "无", "| 降级：", none_list or "无")
 print("PROBE_1032B2_GEN_DONE ->", OUT)
 

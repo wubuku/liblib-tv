@@ -3,12 +3,12 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census_inputs_2029": {
-  "n_fingerprinted": 27,
+  "n_fingerprinted": 28,
   "n_unreadable": 0,
-  "n_from_probe_products": 27,
+  "n_from_probe_products": 28,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "1c8555395071",
+    "sha256_12": "da9b579e54b5",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
@@ -52,8 +52,8 @@
     "bytes": 18972
    },
    "gen-contract-1032b2.json": {
-    "sha256_12": "eb9be7c20123",
-    "bytes": 1148
+    "sha256_12": "09127b80c376",
+    "bytes": 1239
    },
    "global-detection-1012.json": {
     "sha256_12": "1fd1895b1887",
@@ -64,20 +64,24 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "9923425cc790",
-    "bytes": 86048
+    "sha256_12": "2f63db3f999d",
+    "bytes": 88285
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
     "bytes": 21313
    },
    "interaction-wiring-check-1032.json": {
-    "sha256_12": "7bb33df9c250",
-    "bytes": 2806
+    "sha256_12": "3ad4fe1443ec",
+    "bytes": 2461
    },
    "live-canvas-check-1031.json": {
     "sha256_12": "e75acd23eeb8",
     "bytes": 1614
+   },
+   "mention-contract-1032b3.json": {
+    "sha256_12": "7c6cda0b55cf",
+    "bytes": 2660
    },
    "occurrence-ledger-1013.json": {
     "sha256_12": "95c9fefab197",
@@ -96,8 +100,8 @@
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "46745cd025b9",
-    "bytes": 32831
+    "sha256_12": "f3da232eaab9",
+    "bytes": 33810
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -119,12 +123,12 @@
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 27,
+  "n_goldens": 28,
   "n_excluded_self": 1,
-  "n_empty_list": 210,
+  "n_empty_list": 209,
   "n_empty_null": 26,
   "n_self_provable": 9,
-  "n_ambiguous": 227
+  "n_ambiguous": 226
  },
  "rows": [
   {
@@ -1683,21 +1687,14 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[3]/drifted",
+   "path": "/books/[10]/keys_added",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/diff_shape/drifted_books",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/diff_shape/paths_touched",
+   "path": "/books/[10]/keys_removed",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -3295,21 +3292,14 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[3]/drifted",
+   "path": "/books/[10]/keys_added",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/diff_shape/drifted_books",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/diff_shape/paths_touched",
+   "path": "/books/[10]/keys_removed",
    "kind": "list",
    "self_provable": false,
    "invariant": null

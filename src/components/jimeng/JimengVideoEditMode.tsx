@@ -14,10 +14,13 @@ import {
   Square,
   Type,
   Undo2,
+  X,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { VipDiamond } from "@/components/jimeng/icons";
+import { useMentionPicker } from "@/components/jimeng/JimengMentionPanel";
+import type { MentionCandidate } from "@/components/jimeng/JimengMentionPanel";
 import { useJimengStore } from "@/store/jimengStore";
 import { useReactFlow } from "@xyflow/react";
 
@@ -55,10 +58,17 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
   const canSend = prompt.trim().length > 0;
   /* ⭐⭐⭐ Batch 1032-②b-1：这三个钮此前**整枚没有 onClick**（死按钮）：
      「上传参考内容」「引用参考」「提及主体」。
-     本批接前两个（第三个「提及主体」要新增 store 侧的「主体选择」态，
-     留到 ②b-2 —— **不拿一个假的 handler 去骗门**）。
      · 上传参考内容 → 隐藏 file input → `addLocalUpload`（真落一个节点到画布）
-     · 引用参考     → `startRefPicking()`（进画布点选模式，点一个媒体节点即引用） */
+     · 引用参考     → `startRefPicking()`（进画布点选模式，点一个媒体节点即引用）
+     ⚠️ 「提及主体」本批（1032-②b-3）接上**真的 @ 提及面板**：
+       SOURCE_FACT 手册批次 33/34/113/114 —— 两级定步选择器，
+       一级 `可能@的内容`（主体/图片/视频/音频）→ 二级列该类**有资源**的节点。 */
+  /* ⭐⭐⭐ 1032-②b-3：@ 面板选中的候选 ⇒ 插成**引用 chip**
+     （SOURCE_FACT 手册批次 792：chip = 缩略图 + 名称 + Remove 角标）。 */
+  const [chips, setChips] = useState<MentionCandidate[]>([]);
+  const mention = useMentionPicker("video", (c) =>
+    setChips((prev) => (prev.some((p) => p.id === c.id) ? prev : [...prev, c])),
+  );
   const uploadInputRef = useRef<HTMLInputElement>(null);
   const addLocalUpload = useJimengStore((s) => s.addLocalUpload);
   const startRefPicking = useJimengStore((s) => s.startRefPicking);
@@ -110,6 +120,34 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
           placeholder="描述你如何调整视频"
           className="min-w-0 flex-1 bg-transparent text-[13px] text-white outline-none placeholder:text-white/35"
         />
+        {/* ⭐⭐⭐ 1032-②b-3：@ 面板选中的候选 ⇒ 插成**引用 chip**
+            （SOURCE_FACT 手册批次 792：缩略图 + 名称 + Remove 角标）。 */}
+        {chips.map((c) => (
+          <span
+            key={c.id}
+            className="inline-flex shrink-0 items-center gap-1 rounded border border-white/10 bg-white/[0.06] px-1.5 py-0.5 text-white/85"
+            data-testid="video-edit-mention-chip"
+            aria-label={`引用素材: ${c.name}`}
+          >
+            {c.poster ? (
+              // eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 缩略图
+              <img
+                src={c.poster}
+                alt=""
+                className="size-4 shrink-0 rounded object-cover"
+              />
+            ) : null}
+            <span className="max-w-[110px] truncate">{c.name}</span>
+            <button
+              type="button"
+              aria-label={`移除引用: ${c.name}`}
+              onClick={() => setChips((prev) => prev.filter((p) => p.id !== c.id))}
+              className="text-white/50 hover:text-white/85"
+            >
+              <X size={10} />
+            </button>
+          </span>
+        ))}
         <button
           type="button"
           aria-label="引用参考"
@@ -118,13 +156,20 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
         >
           <Quote size={14} />
         </button>
-        <button
-          type="button"
-          aria-label="提及主体"
-          className="flex size-8 shrink-0 items-center justify-center rounded-lg text-white/80 hover:bg-white/[0.08]"
-        >
-          <AtSign size={15} />
-        </button>
+        {/* ⭐⭐⭐ 1032-②b-3：「提及主体」此前**整枚没有 onClick**（死按钮）
+            ⇒ 现在真的开 @ 提及面板（SOURCE_FACT 手册批次 33：两级定步选择器）。 */}
+        <div className="relative shrink-0">
+          <button
+            type="button"
+            aria-label="提及主体"
+            aria-expanded={mention.open}
+            onClick={mention.toggle}
+            className="flex size-8 shrink-0 items-center justify-center rounded-lg text-white/80 hover:bg-white/[0.08]"
+          >
+            <AtSign size={15} />
+          </button>
+          {mention.panel}
+        </div>
         <span className="inline-flex shrink-0 items-center gap-1 text-[12px] font-medium text-white/80">
           <VipDiamond size={12} />
           144 <span className="text-white/50">分/次</span>

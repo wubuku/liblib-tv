@@ -1,0 +1,1460 @@
+{
+ "generated_by": "scripts/jimeng_probe1032b3_subject_source2.py",
+ "measured_at": "2026-10-21",
+ "canvas_url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+ "how": "登录源站 → 等画布就绪 → 枚举画布上**所有**节点并按类型分类 → 每类挑一个代表点开 → 读它的选中态按钮（穷举）/ 浮层 / 编辑态标记 → 找 @ 那一枚。⚠️ 只点不消耗积分的控件，绝不点生成/发送/购买/充值。",
+ "v1_finding": "v1 选中唯一的视频节点后只有 11 枚全局钮（项目/节点汇总/AI工具/会员/用户菜单/Rename 视频 1/选择工具/小地图/显示连线/Zoom/与AI对话），面板级编辑入口 0 个；该节点文本为「视频 1 No resources: 0 ready, 0 processing」⇒ 空节点不提供编辑入口。",
+ "n_nodes": 76,
+ "node_types": {
+  "audio": 68,
+  "director": 1,
+  "image": 1,
+  "other": 2,
+  "text": 3,
+  "video": 1
+ },
+ "nodes": [
+  {
+   "tid": "rf__node-node_3bfb9r79qe",
+   "rect": [
+    217,
+    51,
+    108,
+    108
+   ],
+   "text": "双击编辑文本 文本 1",
+   "aria": [
+    "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_cdwf8x6fbj",
+   "rect": [
+    69,
+    95,
+    404,
+    0
+   ],
+   "text": "",
+   "aria": [],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_aw29cp094x",
+   "rect": [
+    230,
+    64,
+    108,
+    108
+   ],
+   "text": "双击编辑文本 文本 2",
+   "aria": [
+    "双击编辑文本. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_5gftn3dnt1",
+   "rect": [
+    244,
+    78,
+    108,
+    108
+   ],
+   "text": "测试文字样例 文本 3",
+   "aria": [
+    "测试文字样例. No resources: 0 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_ay7f1jn45r",
+   "rect": [
+    256,
+    162,
+    108,
+    108
+   ],
+   "text": "音频 1 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 1: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_w6b1h9fvzw",
+   "rect": [
+    282,
+    175,
+    108,
+    108
+   ],
+   "text": "音频 2 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 2: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_dt0wpmba0d",
+   "rect": [
+    296,
+    202,
+    108,
+    108
+   ],
+   "text": "音频 3 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 3: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_kdgnjkfng2",
+   "rect": [
+    309,
+    169,
+    108,
+    108
+   ],
+   "text": "音频 4 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 4: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_gp499g9p3m",
+   "rect": [
+    323,
+    127,
+    108,
+    108
+   ],
+   "text": "音频 5 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 5: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_9y4j9jf0qv",
+   "rect": [
+    535,
+    189,
+    108,
+    108
+   ],
+   "text": "音频 6 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 6: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_gref4sw056",
+   "rect": [
+    1254,
+    637,
+    191,
+    108
+   ],
+   "text": "b22-upload",
+   "aria": [
+    "b22-upload.png. 1 resource: 1 ready, 0 processing, 0 failed. Not selected."
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 1,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_20sb5adarj",
+   "rect": [
+    615,
+    405,
+    108,
+    108
+   ],
+   "text": "音频 7 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 7: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_y2n170za3z",
+   "rect": [
+    716,
+    483,
+    108,
+    108
+   ],
+   "text": "音频 8 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 8: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_1c5zafa3zk",
+   "rect": [
+    729,
+    496,
+    108,
+    108
+   ],
+   "text": "音频 9 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 9: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_fg4h8gry6x",
+   "rect": [
+    743,
+    509,
+    108,
+    108
+   ],
+   "text": "音频 10 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 10: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_kx0gzwzf7a",
+   "rect": [
+    756,
+    523,
+    108,
+    108
+   ],
+   "text": "音频 11 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 11: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_97x9w2s8dc",
+   "rect": [
+    769,
+    536,
+    108,
+    108
+   ],
+   "text": "音频 12 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 12: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_gnykygt88s",
+   "rect": [
+    779,
+    549,
+    108,
+    108
+   ],
+   "text": "音频 13 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 13: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_52g5ng3hxa",
+   "rect": [
+    783,
+    563,
+    108,
+    108
+   ],
+   "text": "音频 14 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 14: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_m14qwkmz4p",
+   "rect": [
+    796,
+    577,
+    108,
+    108
+   ],
+   "text": "音频 15 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 15: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_d4tjtpnatq",
+   "rect": [
+    487,
+    306,
+    404,
+    0
+   ],
+   "text": "",
+   "aria": [],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_sc4w9xkaxd",
+   "rect": [
+    810,
+    590,
+    108,
+    108
+   ],
+   "text": "音频 16 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 16: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_y261jwxjpn",
+   "rect": [
+    823,
+    604,
+    108,
+    108
+   ],
+   "text": "音频 17 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 17: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_3f44mcptgc",
+   "rect": [
+    837,
+    617,
+    108,
+    108
+   ],
+   "text": "音频 18 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 18: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_e78c3z4gap",
+   "rect": [
+    850,
+    630,
+    108,
+    108
+   ],
+   "text": "音频 19 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 19: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_5h8sbgy7pd",
+   "rect": [
+    864,
+    644,
+    108,
+    108
+   ],
+   "text": "音频 20 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 20: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_zb8pfc1tf6",
+   "rect": [
+    810,
+    473,
+    108,
+    108
+   ],
+   "text": "音频 21 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 21: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_v1wkbg1mbm",
+   "rect": [
+    823,
+    486,
+    108,
+    108
+   ],
+   "text": "音频 22 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 22: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_v5ewe33jbw",
+   "rect": [
+    837,
+    499,
+    108,
+    108
+   ],
+   "text": "音频 23 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 23: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_3rs2xvb3wm",
+   "rect": [
+    850,
+    513,
+    108,
+    108
+   ],
+   "text": "音频 24 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 24: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_e90a7f1gyf",
+   "rect": [
+    864,
+    526,
+    108,
+    108
+   ],
+   "text": "音频 25 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 25: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_5g0yrqgc6c",
+   "rect": [
+    877,
+    540,
+    108,
+    108
+   ],
+   "text": "音频 26 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 26: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_anmp0m801c",
+   "rect": [
+    891,
+    553,
+    108,
+    108
+   ],
+   "text": "音频 27 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 27: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_tqqd4fedbn",
+   "rect": [
+    904,
+    567,
+    108,
+    108
+   ],
+   "text": "音频 28 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 28: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_68van5z657",
+   "rect": [
+    917,
+    580,
+    108,
+    108
+   ],
+   "text": "音频 29 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 29: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_xe755vzsmx",
+   "rect": [
+    931,
+    594,
+    108,
+    108
+   ],
+   "text": "音频 30 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 30: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_3p3sa1sgsv",
+   "rect": [
+    944,
+    607,
+    108,
+    108
+   ],
+   "text": "音频 31 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 31: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_jphxcmk27v",
+   "rect": [
+    958,
+    621,
+    108,
+    108
+   ],
+   "text": "音频 32 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 32: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_9b2ajtyqwj",
+   "rect": [
+    971,
+    634,
+    108,
+    108
+   ],
+   "text": "音频 33 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 33: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_srx8z3gx8g",
+   "rect": [
+    985,
+    647,
+    108,
+    108
+   ],
+   "text": "音频 34 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 34: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_qf32ccpxmm",
+   "rect": [
+    998,
+    663,
+    108,
+    108
+   ],
+   "text": "音频 35 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 35: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_r6dtesbzac",
+   "rect": [
+    877,
+    657,
+    108,
+    108
+   ],
+   "text": "音频 36 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 36: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_20pw32f1y5",
+   "rect": [
+    891,
+    670,
+    108,
+    108
+   ],
+   "text": "音频 37 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 37: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_kgsv6w4ach",
+   "rect": [
+    1012,
+    674,
+    108,
+    108
+   ],
+   "text": "音频 38 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 38: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_80vczsczbr",
+   "rect": [
+    1025,
+    689,
+    108,
+    108
+   ],
+   "text": "音频 39 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 39: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_7w0kc2m903",
+   "rect": [
+    904,
+    684,
+    108,
+    108
+   ],
+   "text": "音频 40 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 40: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_r6qqyk3v98",
+   "rect": [
+    917,
+    697,
+    108,
+    108
+   ],
+   "text": "音频 41 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 41: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_thtydf4663",
+   "rect": [
+    1039,
+    701,
+    108,
+    108
+   ],
+   "text": "音频 42 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 42: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_5na1wezb9q",
+   "rect": [
+    1052,
+    716,
+    108,
+    108
+   ],
+   "text": "音频 43 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 43: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_ky7dvkppj1",
+   "rect": [
+    931,
+    711,
+    108,
+    108
+   ],
+   "text": "音频 44 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 44: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_tnh6v3rm7v",
+   "rect": [
+    944,
+    724,
+    108,
+    108
+   ],
+   "text": "音频 45 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 45: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_mwz4689zqr",
+   "rect": [
+    1065,
+    728,
+    108,
+    108
+   ],
+   "text": "音频 46 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 46: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_7y6fhyn18z",
+   "rect": [
+    1079,
+    743,
+    108,
+    108
+   ],
+   "text": "音频 47 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 47: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_qe1kf9ywek",
+   "rect": [
+    958,
+    737,
+    108,
+    108
+   ],
+   "text": "音频 48 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 48: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_w7s8mxphwh",
+   "rect": [
+    971,
+    751,
+    108,
+    108
+   ],
+   "text": "音频 49 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 49: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_p4xg96c73x",
+   "rect": [
+    1092,
+    755,
+    108,
+    108
+   ],
+   "text": "音频 50 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 50: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_rs637eg7me",
+   "rect": [
+    910,
+    309,
+    108,
+    108
+   ],
+   "text": "音频 51 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 51: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_wdqa2gne4s",
+   "rect": [
+    769,
+    416,
+    108,
+    108
+   ],
+   "text": "音频 52 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 52: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_fd0p2amd3p",
+   "rect": [
+    736,
+    405,
+    108,
+    108
+   ],
+   "text": "音频 53 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 53: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_pz48stvt07",
+   "rect": [
+    615,
+    791,
+    108,
+    108
+   ],
+   "text": "音频 54 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 54: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_2x3hae9jhe",
+   "rect": [
+    1031,
+    448,
+    108,
+    108
+   ],
+   "text": "音频 55 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 55: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_jx5amm7m9j",
+   "rect": [
+    1106,
+    659,
+    108,
+    108
+   ],
+   "text": "音频 56 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 56: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_2vbd2rqk7q",
+   "rect": [
+    1119,
+    685,
+    108,
+    108
+   ],
+   "text": "音频 57 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 57: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_kpfbgmkkr3",
+   "rect": [
+    1133,
+    712,
+    108,
+    108
+   ],
+   "text": "音频 58 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 58: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_1yw4ntm88n",
+   "rect": [
+    1146,
+    739,
+    108,
+    108
+   ],
+   "text": "音频 59 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 59: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_fyy39951ae",
+   "rect": [
+    1160,
+    766,
+    108,
+    108
+   ],
+   "text": "音频 60 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 60: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_jc6t41x8d2",
+   "rect": [
+    548,
+    443,
+    108,
+    108
+   ],
+   "text": "音频 61 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 61: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_kk2xhkrdtn",
+   "rect": [
+    917,
+    429,
+    108,
+    108
+   ],
+   "text": "音频 62 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 62: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_qs4x5t988q",
+   "rect": [
+    910,
+    189,
+    108,
+    108
+   ],
+   "text": "音频 63 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 63: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_9rxgrvfe4y",
+   "rect": [
+    1031,
+    322,
+    108,
+    108
+   ],
+   "text": "音频 64 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 64: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_n0x3zqajjy",
+   "rect": [
+    796,
+    189,
+    108,
+    108
+   ],
+   "text": "音频 65 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 65: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_3cc0k9cfgb",
+   "rect": [
+    1025,
+    189,
+    108,
+    108
+   ],
+   "text": "音频 66 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 66: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_ae08gp8ke3",
+   "rect": [
+    487,
+    405,
+    108,
+    108
+   ],
+   "text": "音频 67 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 67: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_tadm1nyykc",
+   "rect": [
+    656,
+    189,
+    108,
+    108
+   ],
+   "text": "音频 68 No resources. Current preview: 暂无音频. Not selected.",
+   "aria": [
+    "音频 68: 暂无音频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_pxvkay973v",
+   "rect": [
+    271,
+    119,
+    108,
+    108
+   ],
+   "text": "导演台 在 3D 空间中设计角色、机位与镜头 即将推出 No resources: 0 ready, 0 processing, 0 fai",
+   "aria": [
+    "即将推出"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  },
+  {
+   "tid": "rf__node-node_236ctpehgg",
+   "rect": [
+    346,
+    105,
+    108,
+    191
+   ],
+   "text": "视频 1 No resources: 0 ready, 0 processing, 0 failed. Not selected.",
+   "aria": [
+    "暂无视频"
+   ],
+   "n_btn": 0,
+   "n_video": 0,
+   "n_img": 0,
+   "n_audio": 0,
+   "n_textarea": 0,
+   "n_ce": 0
+  }
+ ],
+ "probes": [],
+ "at_candidates": []
+}
