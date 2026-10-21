@@ -305,6 +305,12 @@ export default function DirectorDesk({
   const [leftPanelView, setLeftPanelView] = useState<
     "tree" | "camera-presets"
   >("tree");
+  // Batch 833：源站 rail「添加机位」的 15 枚预设，每枚点了都会**真的新建**
+  // 一台机位，且位置/旋转/注视/FOV 是该枚预设的**固定值**
+  // （逐枚实测见 raw/source-833-camera-preset-semantics.json）。
+  const addDirectorCameraWithPreset = useDirectorStore(
+    (state) => state.addDirectorCameraWithPreset,
+  );
   const [exportDuration, setExportDuration] = useState(timelineDuration);
   const [exportAspectRatio, setExportAspectRatio] =
     useState<DirectorAspectRatio>(aspectRatio);
@@ -1213,7 +1219,18 @@ export default function DirectorDesk({
         )}
       >
         {leftPanelView === "camera-presets" ? (
-          <DirectorCameraPresetPanel />
+          <DirectorCameraPresetPanel
+            onPick={(preset) => {
+              // ★ 源站行为：点了预设 → **真的新建**一台机位（新机位被选中），
+              //   且**面板保持打开**（batch 832 活体实测：点「正面中景」面板仍在）。
+              addDirectorCameraWithPreset({
+                position: preset.position,
+                rotation: preset.rotation,
+                target: preset.target,
+                fov: preset.fov,
+              });
+            }}
+          />
         ) : (
           <DirectorObjectTree />
         )}

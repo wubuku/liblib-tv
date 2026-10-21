@@ -48,29 +48,57 @@ const SOURCE_CAMERA_PATH =
  * ★ 标签与顺序**逐字取自源站活体读数**（raw/source-832-camera-presets.json 的
  *   `预设[].label`）⟹ 不手打 ⟹ 门禁按 raw 核验。
  * ★ `current: true` 的是源站第 0 枚「当前视角」⟹ 它的边框更亮（`border-white/85`）。
- * ★ `semantics` 字段留空的地方见文件末尾「★ 不声称」——**还没逐枚实测**的，
- *   本批**不编**。
+ *
+ * ★★ 语义（位置/旋转/注视/FOV）**逐枚实测**（batch 833，
+ *   raw/source-833-camera-preset-semantics.json）⟹
+ * ★ 15 枚的 FOV 从 **35**（正面特写）到 **70**（低角度广角）不等 ⟹
+ *   **不凭一枚推 15 枚**。
+ * ⟹ ★ 旋转单位是**度**（源站右栏的 number 输入 ⟹ 也是 clone 的 rotation 单位）。
  */
-export const DIRECTOR_CAMERA_PRESET_LABELS = [
-  "当前视角",
-  "正面中景",
-  "正面特写",
-  "正面全景",
-  "侧面跟拍",
-  "侧面近景",
-  "背面中景",
-  "俯拍全景",
-  "45° 俯拍",
-  "低角度仰拍",
-  "低角度广角",
-  "过肩镜头",
-  "过肩镜头（右）",
-  "鸟瞰",
-  "荷兰角",
-] as const;
+export type DirectorCameraPreset = {
+  label: string;
+  position: [number, number, number];
+  rotation: [number, number, number];
+  target: [number, number, number];
+  fov: number;
+};
 
-export type DirectorCameraPresetLabel =
-  (typeof DIRECTOR_CAMERA_PRESET_LABELS)[number];
+export const DIRECTOR_CAMERA_PRESETS: ReadonlyArray<DirectorCameraPreset> = [
+  // 序 0 当前视角：位置 (0,2.2,10) 旋转 (5.71,180,0) 注视 (0,1.2,0) FOV 50
+  { label: "当前视角", position: [0, 2.2, 10], rotation: [5.71, 180, 0], target: [0, 1.2, 0], fov: 50 },
+  // 序 1 正面中景：位置 (0,1.5,4) 旋转 (4.29,180,0) 注视 (0,1.2,0) FOV 50
+  { label: "正面中景", position: [0, 1.5, 4], rotation: [4.29, 180, 0], target: [0, 1.2, 0], fov: 50 },
+  // 序 2 正面特写：位置 (0,1.7,2) 旋转 (2.86,180,0) 注视 (0,1.6,0) FOV 35
+  { label: "正面特写", position: [0, 1.7, 2], rotation: [2.86, 180, 0], target: [0, 1.6, 0], fov: 35 },
+  // 序 3 正面全景：位置 (0,2.5,8) 旋转 (10.62,180,0) 注视 (0,1,0) FOV 60
+  { label: "正面全景", position: [0, 2.5, 8], rotation: [10.62, 180, 0], target: [0, 1, 0], fov: 60 },
+  // 序 4 侧面跟拍：位置 (4,1.5,0) 旋转 (4.29,-90,0) 注视 (0,1.2,0) FOV 50
+  { label: "侧面跟拍", position: [4, 1.5, 0], rotation: [4.29, -90, 0], target: [0, 1.2, 0], fov: 50 },
+  // 序 5 侧面近景：位置 (2.5,1.5,0) 旋转 (0,-90,0) 注视 (0,1.5,0) FOV 40
+  { label: "侧面近景", position: [2.5, 1.5, 0], rotation: [0, -90, 0], target: [0, 1.5, 0], fov: 40 },
+  // 序 6 背面中景：位置 (0,1.5,-4) 旋转 (4.29,0,0) 注视 (0,1.2,0) FOV 50
+  { label: "背面中景", position: [0, 1.5, -4], rotation: [4.29, 0, 0], target: [0, 1.2, 0], fov: 50 },
+  // 序 7 俯拍全景：位置 (0,8,3) 旋转 (69.44,180,0) 注视 (0,0,0) FOV 55
+  { label: "俯拍全景", position: [0, 8, 3], rotation: [69.44, 180, 0], target: [0, 0, 0], fov: 55 },
+  // 序 8 45° 俯拍：位置 (0,5,5) 旋转 (38.66,180,0) 注视 (0,1,0) FOV 50
+  { label: "45° 俯拍", position: [0, 5, 5], rotation: [38.66, 180, 0], target: [0, 1, 0], fov: 50 },
+  // 序 9 低角度仰拍：位置 (0,0.3,3) 旋转 (-26.57,180,0) 注视 (0,1.8,0) FOV 45
+  { label: "低角度仰拍", position: [0, 0.3, 3], rotation: [-26.57, 180, 0], target: [0, 1.8, 0], fov: 45 },
+  // 序 10 低角度广角：位置 (0,0.5,5) 旋转 (-5.71,180,0) 注视 (0,1,0) FOV 70
+  { label: "低角度广角", position: [0, 0.5, 5], rotation: [-5.71, 180, 0], target: [0, 1, 0], fov: 70 },
+  // 序 11 过肩镜头：位置 (-0.5,1.7,2.5) 旋转 (2.13,158.2,0) 注视 (0.5,1.6,0) FOV 50
+  { label: "过肩镜头", position: [-0.5, 1.7, 2.5], rotation: [2.13, 158.2, 0], target: [0.5, 1.6, 0], fov: 50 },
+  // 序 12 过肩镜头（右）：位置 (0.5,1.7,2.5) 旋转 (2.13,-158.2,0) 注视 (-0.5,1.6,0) FOV 50
+  { label: "过肩镜头（右）", position: [0.5, 1.7, 2.5], rotation: [2.13, -158.2, 0], target: [-0.5, 1.6, 0], fov: 50 },
+  // 序 13 鸟瞰：位置 (0,12,0.5) 旋转 (87.61,180,0) 注视 (0,0,0) FOV 60
+  { label: "鸟瞰", position: [0, 12, 0.5], rotation: [87.61, 180, 0], target: [0, 0, 0], fov: 60 },
+  // 序 14 荷兰角：位置 (1,1.5,3.5) 旋转 (4.71,-164.05,0) 注视 (0,1.2,0) FOV 50
+  { label: "荷兰角", position: [1, 1.5, 3.5], rotation: [4.71, -164.05, 0], target: [0, 1.2, 0], fov: 50 },
+];
+
+export const DIRECTOR_CAMERA_PRESET_LABELS = DIRECTOR_CAMERA_PRESETS.map(
+  (preset) => preset.label,
+);
 
 function CameraGlyph() {
   return (
@@ -96,12 +124,9 @@ function CameraGlyph() {
 
 export function DirectorCameraPresetPanel({
   onPick,
-  onClose,
 }: {
-  /** 点了某枚预设（传标签） */
-  onPick?: (label: DirectorCameraPresetLabel) => void;
-  /** 源站点完预设后**面板不关**（实测：点「正面中景」面板仍在）⟹ 默认不关 */
-  onClose?: () => void;
+  /** 点了某枚预设（传该枚的完整语义） */
+  onPick?: (preset: DirectorCameraPreset) => void;
 }) {
   const firstRef = useRef<HTMLButtonElement | null>(null);
 
@@ -136,15 +161,15 @@ export function DirectorCameraPresetPanel({
         className="grid min-h-0 flex-1 content-start gap-2 overflow-y-auto px-2 pb-3"
         style={{ gridTemplateColumns: "104px 104px", gridAutoRows: "72px" }}
       >
-        {DIRECTOR_CAMERA_PRESET_LABELS.map((label, index) => (
+        {DIRECTOR_CAMERA_PRESETS.map((preset, index) => (
           <button
-            key={label}
+            key={preset.label}
             ref={index === 0 ? firstRef : undefined}
             type="button"
-            data-director-camera-preset={label}
+            data-director-camera-preset={preset.label}
             onClick={() => {
-              onPick?.(label);
-              onClose?.();
+              // ★ 源站行为：点预设**面板不关**（实测：点「正面中景」面板仍在）
+              onPick?.(preset);
             }}
             // 源站逐字：`hover:bg-white/8 flex h-[72px] flex-col items-center
             // justify-center gap-1 rounded-xl border text-[12px] text-white/90
@@ -157,7 +182,7 @@ export function DirectorCameraPresetPanel({
             }
           >
             <CameraGlyph />
-            <span className="max-w-full truncate px-1">{label}</span>
+            <span className="max-w-full truncate px-1">{preset.label}</span>
           </button>
         ))}
       </div>

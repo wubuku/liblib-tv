@@ -1,0 +1,28 @@
+{
+ "删除日志": [
+  "删 机位2：2 → 1 台 ✔"
+ ],
+ "①点开面板前": {
+  "presetCells": 0,
+  "treeNames": [
+   "机位1"
+  ],
+  "treeInDom": true
+ },
+ "②面板打开后": {
+  "presetCells": 15,
+  "treeNames": [],
+  "treeInDom": false
+ },
+ "③点完第 1 枚后": {
+  "presetCells": 15,
+  "treeNames": [],
+  "treeInDom": false
+ },
+ "③点的那枚": "当前视角",
+ "③新建机位名": "机位2",
+ "④删除是否成功": true,
+ "⑤末次树": [
+  "机位1"
+ ]
+}

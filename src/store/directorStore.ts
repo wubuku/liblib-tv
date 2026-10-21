@@ -596,6 +596,15 @@ interface DirectorState {
     spacing: number;
   }) => string | null;
   addDirectorCamera: () => DirectorCommandResult;
+  // Batch 833：源站 rail「添加机位」的 15 枚机位预设 —— 每一枚点了都会
+  // **真的新建**一台机位，且位置/旋转/注视坐标/FOV 是该枚预设的固定值。
+  // ⟹ 逐枚实测的读数见 raw/source-833-camera-preset-semantics.json。
+  addDirectorCameraWithPreset: (preset: {
+    position: [number, number, number];
+    rotation: [number, number, number];
+    target: [number, number, number];
+    fov: number;
+  }) => DirectorCommandResult;
   selectShot: (shotId: string | null) => void;
   // Batch 553: 源站时间线「+ 新建轨道」（截图 48）——为选中的角色/摄像机
   // 创建变换轨道。
@@ -1186,7 +1195,16 @@ function createDirectorCameraFromSource(
   const cameraColors = ["#a8e8f7", "#f2c58a", "#b9a7f5", "#9fd5b1"];
   return {
     id: cameraId,
-    name: `机位 ${String(cameraIndex).padStart(2, "0")} · 新镜头`,
+    // Batch 833（源站 2026-10-21 实测，16 次：15 枚预设 ＋ 1 枚面板留存探针）：
+    // 源站新建的机位叫 **「机位N」**（N = 现有机位数 + 1，**无空格、无后缀**）⟹
+    // 例如场景里已有「机位1」时，新建的那台叫「机位2」。
+    // ★ 旧名 `机位 02 · 新镜头` 是 batch 89 的**自拟**名（当时没测源站）
+    //   ⟹ 本批按实测改正。
+    // ★ 镜头名沿用源站的命名模式（源站实测「机位01 · 对峙中景 · 镜头」）
+    //   ⟹ clone 的镜头名会随之变成「机位2 · 镜头」。
+    // ★ 未测：删掉一台再新建会不会**重名**（源站用 count+1 还是 max+1）——
+    //   本批只测了「已有 1 台 → 新建的那台叫 机位2」这一种情形。
+    name: `机位${cameraIndex}`,
     kind: "camera",
     primitive: "camera",
     color: cameraColors[(cameraIndex - 1) % cameraColors.length],
@@ -4693,6 +4711,39 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       directorHistorySyncSuspended = false;
     }
     return result;
+  },
+
+  // Batch 833（源站 2026-10-21 逐枚实测，raw/source-833-camera-preset-semantics.json）：
+  // 源站 rail「添加机位」面板的 15 枚预设，每一枚点了都会**真的新建**一台机位，
+  // 且这台机位的位置/旋转/注视坐标/FOV 是**该枚预设的固定值**（不是相对当前机位）。
+  //
+  // 例（源站实测）：
+  //   「正面中景」  位置 (0,1.5,4)  旋转 (4.29,180,0)  注视 (0,1.2,0)  FOV 50
+  //   「正面特写」  位置 (0,1.7,2)  旋转 (2.86,180,0)  注视 (0,1.6,0)  FOV 35
+  //   「低角度广角」位置 (0,0.5,5)  旋转 (-5.71,180,0) 注视 (0,1,0)    FOV 70
+  // ⟹ ★ 15 枚的 FOV 从 35 到 70 不等 ⟹ **不能凭一枚推 15 枚** ⟹ 必须逐枚实测。
+  //
+  // ★ 旋转单位是**度**（与源站右栏的 number 输入一致，也与 clone 的
+  //   `updateObjectTransform` 的 rotation 一致 —— 那边的 step 是 1）。
+  addDirectorCameraWithPreset: (preset: {
+    position: [number, number, number];
+    rotation: [number, number, number];
+    target: [number, number, number];
+    fov: number;
+  }): DirectorCommandResult => {
+    const added = get().addDirectorCamera();
+    if (added.disposition !== "COMMITTED") return added;
+    const cameraId = get().activeCameraId;
+    if (!cameraId) return added;
+    const { updateObjectTransform, updateCamera } = get();
+    for (let axis = 0; axis < 3; axis += 1) {
+      updateObjectTransform(cameraId, "position", axis as 0 | 1 | 2,
+                             preset.position[axis]);
+      updateObjectTransform(cameraId, "rotation", axis as 0 | 1 | 2,
+                             preset.rotation[axis]);
+    }
+    updateCamera(cameraId, { fov: preset.fov, target: preset.target });
+    return get().lastCommandResult ?? added;
   },
 
   // Batch 553: 源站时间线「+ 新建轨道」——为选中的角色/摄像机创建变换
