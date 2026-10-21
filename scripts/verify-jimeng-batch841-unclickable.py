@@ -6030,6 +6030,10 @@ def main() -> int:
     _p1032c = p1032c.read_text(encoding="utf-8") if p1032c.exists() else ""
     p1032cr = ROOT / "scripts/jimeng_probe1032c_noop_census.mjs"
     _p1032cr = p1032cr.read_text(encoding="utf-8") if p1032cr.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②d：「门自己能不能被证伪」—— 变异脚本
+    #   （真的把产品改坏 ⇒ 门必须红 ⇒ 逐字还原 ⇒ 门必须再绿）
+    p1032d = ROOT / "scripts/jimeng_probe1032d_mutation.py"
+    _p1032d = p1032d.read_text(encoding="utf-8") if p1032d.exists() else ""
     # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
     _ws = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(encoding="utf-8")
     _tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
@@ -17067,6 +17071,101 @@ def main() -> int:
             and _d.get("n_toast_only") == 0
         )
 
+    def _p1032d_mutation_judge(_d: dict) -> bool:
+        """纯函数：**只吃原始字段重算**，不吃上游标志。
+
+        ⭐⭐⭐⭐⭐ 「自己重算」**还不够** —— ⇒ 必须同时证明**这个重算能红**
+        ⇒ ⇒ 那由 `_p1032d_mutation_pc()` 用**改原始字段**的阳性对照来做。
+        """
+        # ⭐⭐⭐⭐⭐ **自己重算**「变异态门必须红」：
+        #   运行时判据 P1 变红（= 变异真的生效到了浏览器）+ 静态判据 P6 变红
+        #   + 门退出码非 0 ⇒⇒ 三者齐了才算「门被证伪了」
+        _mut_red = (
+            _d.get("mutated_sha_differs") is True
+            and _d.get("mutated_gate_rc", 0) != 0
+            and _d.get("mutated_P1_runtime_red") is True
+            and _d.get("mutated_P6_static_red") is True
+            and _d.get("mutated_gate_turned_red") is True
+        )
+        # ⭐⭐⭐⭐⭐ **自己重算**「还原态门必须再绿」：
+        #   ⚠️ 这一条不许省 —— ⇒ 「变异把门弄红了」也可能只是
+        #   **「变异把产品弄坏了、门红是应该的」** ⇒ ⇒ 必须证明还原后门又绿了
+        _rest_ok = (
+            _d.get("restored") is True
+            and _d.get("restored_sha_matches_original") is True
+            and _d.get("restored_gate_rc") == 0
+            and _d.get("restored_P1_runtime_green") is True
+        )
+        # ⭐⭐ 上游自己写的 `all_ok` 也得为真 —— 但**它不是**我们判定的依据
+        _attempts = _d.get("attempts")
+        return bool(
+            _mut_red and _rest_ok
+            and _d.get("all_ok") is True
+            and isinstance(_attempts, int) and _attempts >= 1
+        )
+
+    def _p1032d_mutation_doc() -> dict | None:
+        """读产物 + 验明正身（防拿别的批次的产物来交差）。"""
+        _ms = ROOT / "docs/research/jimeng-canvas/inputs/mutation-1032d.json"
+        if not _ms.exists():
+            return None
+        try:
+            _d = json.loads(_ms.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return None
+        if not isinstance(_d, dict):
+            return None
+        # ⭐⭐⭐⭐⭐ 产物必须**自报它是谁产的**（防止拿别的批次的产物来交差）
+        if _d.get("generated_by") != "jimeng_probe1032d_mutation.py":
+            return None
+        if _d.get("target") != "jimeng-canvas-connect-onConnect":
+            return None
+        return _d
+
+    def _p1032d_mutation_ok() -> bool:
+        """变异读数：**自己从原始字段重算**，不信产物里的 `all_ok`。"""
+        _d = _p1032d_mutation_doc()
+        if _d is None:
+            return False
+        return _p1032d_mutation_judge(_d)
+
+    def _p1032d_mutation_pc() -> bool:
+        """⭐⭐⭐⭐⭐ **阳性对照：证明这条判据自己能红。**
+
+        ⚠️ 「自己从原始字段重算」**只证明它不是恒真** ⇒ ⇒ 还要证明
+        **它不是恒假、也不是漏项** ⇒ ⇒⇒⇒ 处置：拿**真产物**做底，
+        **逐个改原始字段**（**不碰 `all_ok`**）⇒ 判决必须翻成 False；
+        再来一例「原始字段坏了、但 `all_ok` 仍然是 true」⇒ 判决**仍**必须翻成 False
+        ⇒ ⇒⇒⇒⇒ 这才证明「重算」是真的在重算，而不是在读上游标志。
+        """
+        _d = _p1032d_mutation_doc()
+        if _d is None:
+            return False
+        # ⚠️ 底稿本身必须先被判成 True —— 否则「全 False」也可能只是
+        # 因为底稿读空了 ⇒ ⇒ ⇒ 那样的阳性对照是**假通过**
+        if not _p1032d_mutation_judge(_d):
+            return False
+        _cases = [
+            {"mutated_gate_rc": 0},                   # 变异态门没红
+            {"mutated_P1_runtime_red": False},       # 运行时判据没红
+            {"mutated_P6_static_red": False},        # 静态判据没红
+            {"restored_gate_rc": 1},                  # 还原后门没绿
+            {"restored_sha_matches_original": False},  # 没逐字还原
+            {"attempts": 0},                          # 一轮都没跑
+        ]
+        for _c in _cases:
+            _t = dict(_d)
+            _t.update(_c)
+            if _p1032d_mutation_judge(_t) is not False:
+                return False
+        # 「原始字段坏了、但上游标志仍然是 true」⇒ 判决仍必须是 False
+        _t = dict(_d)
+        _t["all_ok"] = True
+        _t["restored_gate_rc"] = 1
+        if _p1032d_mutation_judge(_t) is not False:
+            return False
+        return True
+
     _p1032c_ok = (
         # ⭐⭐⭐⭐⭐ 普查探针必须**真的去点一遍** —— 不能只是读源码
         "MutationObserver" in _p1032cr
@@ -17117,6 +17216,38 @@ def main() -> int:
           "**不是**「用户能不能点到它」；场景只覆盖 5 种（**画布上根本没有图片节点** ⇒ 记 not_applicable）；"
           "「生成 / 发送 / 购买 / 充值」一族按纪律**跳过**。",
           _p1032c_ok and _p1032c_out_ok() and _p1032c_census_ok())
+    check("DD993Z.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「门自己能不能被证伪」这件事**必须被证明，而不是被假定**："
+          "1032-②d 写了一道**变异脚本**（`jimeng_probe1032d_mutation.py`）——"
+          "它**真的去把产品改坏**（删掉 `JimengWorkspace.tsx` 里的 "
+          "`onConnect={onConnectHandler}`），然后看**连线契约门会不会红**。"
+          "⭐⭐⭐⭐⭐ 理由：前面所有门都是「产品改了就红」，"
+          "而**「门自己能不能被证伪」从来没人证明过** ⇒ ⇒ 一道永远绿的门，"
+          "和一个「证明自己会被证伪」的门，在外面看起来**一模一样**。"
+          "⭐⭐⭐⭐⭐ 量法（每一条都对应一个踩过的坑）："
+          "① **变异必须自证「我确实改动了东西」** ⇒ sha256 前后不同；"
+          "② **还原必须放在 `finally` 里** ⇒ 中途抛异常也必须还原；"
+          "③ **不许覆盖别人的并发改动** ⇒ 期间文件被动过就只把那一行插回去；"
+          "④ **不许靠「等几秒」猜编译时序** ⇒ 用**运行时判据 P1 变红**当"
+          "「变异已生效到浏览器」的凭据（静态判据 P6 只是「源码被改了」）；"
+          "⑤ **产物里只许有布尔与计数** ⇒ 不许出现时间戳 / pid / 耗时。"
+          "⭐⭐⭐⭐⭐ 读数：变异态 `mutated_gate_rc=1`、P1 运行时红、P6 静态红；"
+          "还原态 `restored_sha_matches_original=true`、`restored_gate_rc=0`、P1 绿。"
+          "⭐⭐⭐⭐⭐ 判据**自己从原始字段重算**（不信产物里的 `all_ok`）"
+          "⇒ ⇒ 并且**还原后门必须再绿**"
+          "（否则「门红」也可能只是「变异把产品弄坏了、门红是应该的」）。",
+          ("finally:" in _p1032d)
+          and ("sha256" in _p1032d)
+          and ("restored_sha_matches_original" in _p1032d)
+          and ("text.count(LINE) == 1" in _p1032d)
+          and ("write(TARGET, mut)" in _p1032d)
+          and ("time.time()" not in _p1032d)
+          and ("os.getpid()" not in _p1032d)
+          # ⭐⭐⭐⭐⭐ **仓里现在必须不是坏状态**（变异已还原）⇒ 这条锚点
+          #   写在 `check()` 里 ⇒ ⇒ 必须把 `_ws` 登记进 PROBE_VARS
+          #   才**真的被查**（不登记 ⇒ 静默跳过 ⇒ 假绿）
+          and ("onConnect={onConnectHandler}" in _ws)
+          and _p1032d_mutation_ok() and _p1032d_mutation_pc())
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

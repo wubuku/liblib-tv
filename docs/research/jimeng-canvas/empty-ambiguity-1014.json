@@ -8,7 +8,7 @@
   "n_from_probe_products": 30,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "fe3b52962b21",
+    "sha256_12": "56855360deb2",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
@@ -56,8 +56,8 @@
     "bytes": 4023
    },
    "gen-contract-1032b2.json": {
-    "sha256_12": "09127b80c376",
-    "bytes": 1239
+    "sha256_12": "81c30537e710",
+    "bytes": 1330
    },
    "global-detection-1012.json": {
     "sha256_12": "1fd1895b1887",
@@ -68,8 +68,8 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "c44ece8a49b7",
-    "bytes": 89458
+    "sha256_12": "f92660ff62d4",
+    "bytes": 87033
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
@@ -108,8 +108,8 @@
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "b19a7d2b60dc",
-    "bytes": 33922
+    "sha256_12": "7c7a972d0e06",
+    "bytes": 34339
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",

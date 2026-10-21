@@ -1,0 +1,34 @@
+{
+ "generated_by": "jimeng_probe1032d_mutation.py",
+ "target": "jimeng-canvas-connect-onConnect",
+ "mutation": "删除 JimengWorkspace.tsx 里的 onConnect={onConnectHandler} 那一行",
+ "self_test_mutation_changed_bytes": true,
+ "attempts": 1,
+ "mutated_sha": "704d5e0ba17e5bc82c057dce35282a9a8d7410f44b671af8800f3695a4832fe8",
+ "mutated_sha_differs": true,
+ "mutated_gate_rc": 1,
+ "mutated_P1_runtime_red": true,
+ "mutated_P6_static_red": true,
+ "mutated_false_criteria": [
+  "P1",
+  "P2",
+  "P6",
+  "P7"
+ ],
+ "mutated_p6_static_detail": {
+  "reactflow_has_on_connect": false,
+  "workspace_calls_on_connect_handler": true,
+  "store_declares_add_edge": true,
+  "store_implements_add_edge": true
+ },
+ "mutated_gate_turned_red": true,
+ "restored_by": "full_restore",
+ "other_edits_during_mutation": false,
+ "restored_sha_matches_original": true,
+ "restored": true,
+ "restored_gate_rc": 0,
+ "restored_P1_runtime_green": true,
+ "restored_P6_static_green": true,
+ "restored_false_criteria": [],
+ "all_ok": true
+}
