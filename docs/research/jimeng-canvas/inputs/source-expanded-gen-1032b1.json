@@ -1,0 +1,46 @@
+{
+ "generated_by": "source-site reading, 1032-②b-1 (scripts/jimeng_headless.py run /tmp/jm_probe_expand4.py)",
+ "measured_at": "2026-10-21",
+ "how": "登录源站 → 打开示例画布 → 选中**空视频节点** → 点面板里的 `展开视频生成器`。**只点展开**，绝不点生成/发送/购买/充值。",
+ "canvas_url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+ "trigger": {
+  "aria_label": "展开视频生成器",
+  "rect": { "w": 40, "h": 40 },
+  "note": "⭐ 它在**面板级**（面板右上角），不是藏在引用菜单里"
+ },
+ "expanded_layer": {
+  "role": "dialog",
+  "aria_label": "已展开的视频生成器",
+  "data_testid": "",
+  "position": "fixed",
+  "rect": { "x": 296, "y": 235, "w": 920, "h": 480 },
+  "border_radius": "20px",
+  "z_index": "50",
+  "note": "⭐ 不是全屏遮罩，是一个**居中的浮动面板**（920×480）"
+ },
+ "visible_text": "已展开的视频生成器 | 全部 | 图片 | 视频 | 音频 | 文本 | 上传参考图、输入文字或 | 主体，描述你想生成的视频 | 即梦 Seedance 2.0 VIP | 9:16 | 720P | 1 | 全能参考 | 4s | Current price 56. | 56 | 生成 | 请输入提示词",
+ "buttons": [
+  { "text": "全部", "w": 42, "h": 36, "aria": "", "role": "plain button（**没有** role=tab）" },
+  { "text": "图片", "w": 42, "h": 36, "aria": "" },
+  { "text": "视频", "w": 42, "h": 36, "aria": "" },
+  { "text": "音频", "w": 42, "h": 36, "aria": "" },
+  { "text": "文本", "w": 42, "h": 36, "aria": "" },
+  { "text": "", "w": 36, "h": 36, "aria": "折叠视频生成器", "note": "⭐ 展开后的右上角是**折叠** —— 与触发它的那枚是**同一个位置的同一个 affordance**" },
+  { "text": "", "w": 48, "h": 48, "aria": "添加参考" },
+  { "text": "", "w": 24, "h": 24, "aria": "引用参考" },
+  { "text": "即梦 Seedance 2.0 VI", "w": 184, "h": 32, "aria": "选择模型: 即梦 Seedance 2.0 VIP, Standard-only model" },
+  { "text": "9:16\n720P\n1", "w": 129, "h": 32, "aria": "视频尺寸选项: 9:16 · 720P · 1, Standard-only model" },
+  { "text": "全能参考", "w": 80, "h": 32, "aria": "生成模式: 全能参考" },
+  { "text": "4s", "w": 46, "h": 32, "aria": "选择视频生成时长: 4s" },
+  { "text": "", "w": 32, "h": 32, "aria": "引用参考" },
+  { "text": "生成", "w": 32, "h": 32, "aria": "生成" }
+ ],
+ "inputs_inside": [],
+ "roles_inside": [],
+ "notes": [
+  "⭐ 浮层内**没有 input/textarea** ⇒ 提示词区是 contenteditable（与折叠态面板同款）。",
+  "⭐ 浮层内**没有 role=tab/option/radio** ⇒ 「全部/图片/视频/音频/文本」是**普通按钮**，不是 ARIA tab。",
+  "⭐ **本条推翻复刻的两处假设**：① 源站面板上**没有** aria-label 叫「展开面板」的按钮 —— 复刻那枚是克隆自造的标签；② 源站真正的入口叫「**展开视频生成器**」且在**面板级**，而复刻把它藏在引用菜单的「视频」子菜单里。",
+  "⚠️ 价格 56 / 「Current price 56.」是源站**当前会话**的读数 ⇒ 不是常量规格（复刻的 56.56 是另一档的取证）。"
+ ]
+}

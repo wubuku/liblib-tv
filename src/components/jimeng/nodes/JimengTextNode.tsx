@@ -364,6 +364,25 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
           <button
             type="button"
             aria-label="下载"
+            onClick={() => {
+              /* ⭐⭐⭐ Batch 1032-②b-1：此前这枚「下载」**整枚没有 onClick**
+                 ⇒ ⇒ 在 DOM 里是个点不动的壳（1032 审计登记为死按钮）。
+                 现在接**真下载**：把节点的富文本 HTML（或纯文本）打成 Blob，
+                 走 `<a download>` 触发浏览器下载。
+                 ⚠️ 下载的是**这个节点自己的内容**，不是任何外部资源。 */
+              const content = d.html ?? (d.text ? `<p>${escapeHtml(d.text)}</p>` : "");
+              const blob = new Blob([content], {
+                type: "text/html;charset=utf-8",
+              });
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement("a");
+              a.href = url;
+              a.download = `${(d.title || "文本").replace(/[\\/:*?"<>|]/g, "_")}.html`;
+              document.body.appendChild(a);
+              a.click();
+              document.body.removeChild(a);
+              URL.revokeObjectURL(url);
+            }}
             className="jimeng-node-toolbar-item flex size-8 items-center justify-center text-white"
           >
             <Download size={15} />

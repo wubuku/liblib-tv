@@ -105,7 +105,13 @@ def main() -> None:
         fresh()
         page.locator('[aria-label="时间线"]').first.click()
         page.wait_for_selector('[data-testid="timeline-add-clip"]', timeout=10000)
-        page.locator('[data-testid="timeline-add-clip"]').click()
+        # ⭐⭐⭐⭐⭐ Batch 1032-②b-1: 这里原本是 `page.locator('[data-testid="timeline-add-clip"]').click()`
+        #   —— 而**上一行刚新建了一个时间线节点** ⇒ ⇒ 画布上现在有**两个**时间线节点
+        #   ⇒ ⇒ 两个节点里都有 `timeline-add-clip` ⇒ ⇒ **strict mode violation**
+        #   ⇒ ⇒ 门**崩**在��里（不是红）⇒ ⇒ 而崩的退出码与红的退出码**一样是 1**
+        #   ⇒ ⇒ ⇒ 这道门已经**跑不完**了，而没人发现（它不在 1027 的新鲜度清单里）。
+        #   ⇒ ⇒⇒ 处置：取**第一个**（`.first`）—— 与它上面那行 `[aria-label="时间线"]` 同一口径。
+        page.locator('[data-testid="timeline-add-clip"]').first.click()
         # toast 是短命的：120ms 级高频采样，等 2.6s 会漏
         seen = ""
         for _ in range(20):

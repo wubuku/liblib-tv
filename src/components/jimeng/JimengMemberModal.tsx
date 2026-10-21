@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChevronRight, X } from "lucide-react";
 
 import { VipDiamond } from "@/components/jimeng/icons";
+import { mockMsg } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 会员 pill → 订阅页全屏浮层 (Batch 13)。
@@ -49,6 +50,17 @@ const PLANS = [
 
 const TABS = ["连续包年 限时5折", "连续包月", "连续包季 7折", "单月购买"] as const;
 
+/** ⭐⭐⭐ Batch 1032-②b-1：横幅折扣行**按计费档位**取值。
+ *  · 档 0 = 源站取证的横幅原文（「会员低至5折 + 积分消耗4.7折」，对应「连续包年 限时5折」）。
+ *  · 档 2 = 「连续包季 7折」—— 7 折来自 tab 自身文案（源站事实），**不外推 4.7 折**。
+ *  · 其余档位源站未取证 ⇒ ⇒ 明说「待源站取证（mock）」，**不编数字**。 */
+const BANNER_DISCOUNT = [
+  "会员低至5折 + 积分消耗4.7折",
+  `会员折扣${mockMsg("待源站取证")}`,
+  "连续包季 7折",
+  `会员折扣${mockMsg("待源站取证")}`,
+] as const;
+
 /** 促销倒计时：源站提取时显示 02天00时27分11秒 (SOURCE_FACT screenshot 34)，
  * 复刻以该剩余量起跳实时递减 (CLONE_DECISION：真实截止时间不可知)。 */
 const PROMO_INITIAL_SECONDS = 2 * 86400 + 0 * 3600 + 27 * 60 + 11;
@@ -76,6 +88,9 @@ function useCountdown() {
 
 export function JimengMemberModal({ onClose }: { onClose: () => void }) {
   const countdown = useCountdown();
+  // ⭐⭐⭐ Batch 1032-②b-1：计费 tab 的当前档位。此前写死 `i === 2` 常亮
+  // ⇒ ⇒ 四个 tab 看着像能切、切不动。默认仍是 2（源站取证的那一档：连续包季）。
+  const [activeTab, setActiveTab] = useState(2);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -132,30 +147,52 @@ export function JimengMemberModal({ onClose }: { onClose: () => void }) {
               </p>
             </div>
           </div>
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              className="h-9 rounded-lg bg-white/[0.08] px-4 text-[13px] text-white hover:bg-white/[0.14]"
-            >
-              购买积分
-            </button>
-            <button
-              type="button"
-              className="h-9 rounded-lg bg-white/[0.08] px-4 text-[13px] text-white hover:bg-white/[0.14]"
-            >
-              订阅管理
-            </button>
+          <div className="flex flex-col items-end gap-1.5">
+            <div className="flex items-center gap-2">
+              {/* ⭐⭐⭐ Batch 1032-②b-1：这两个 CTA **不接线**，而且**必须不接线** ——
+                计费动作绝不能真做 ⇒ 正确的处置是「**明确禁用 + 看得见的说明**」，
+                而不是「能点、点了什么都不会发生」（那是 1032 审计里最坏的一类）。
+                ⚠️ **说明文字放在旁边而不是 `title`** —— disabled 元素不派发鼠标事件，
+                ⇒ ⇒ 原生 tooltip 在它身上常常根本不显示 ⇒ ⇒ 只写 title 等于没说。
+                ⚠️ 按钮文案保持源站原样（`购买积分` / `订阅管理`），不改写源站文案。 */}
+              <button
+                type="button"
+                disabled
+                className="h-9 cursor-not-allowed rounded-lg bg-white/[0.08] px-4 text-[13px] text-white/40"
+              >
+                购买积分
+              </button>
+              <button
+                type="button"
+                disabled
+                className="h-9 cursor-not-allowed rounded-lg bg-white/[0.08] px-4 text-[13px] text-white/40"
+              >
+                订阅管理
+              </button>
+            </div>
+            {/* ⭐ 可见的说明（不是 tooltip）—— 见上：disabled 元素不派发鼠标事件。 */}
+            <p className="text-[11px] text-white/40">
+              计费入口：原型不提供购买与订阅（不做真实交易）
+            </p>
           </div>
         </div>
 
-        {/* 促销横幅 (倒计时卡为 SOURCE_FACT batch 13/26；起跳值 CLONE_DECISION) */}
+        {/* 促销横幅 (倒计时卡为 SOURCE_FACT batch 13/26；起跳值 CLONE_DECISION)
+            ⭐⭐⭐ Batch 1032-②b-1：横幅第二行**跟着计费 tab 走**。
+            源站取证的横幅原文是「会员低至5折 + 积分消耗4.7折」—— 那是**连续包年**
+            那一档的文案（tab 自己写着「限时5折」）。
+            ⇒ ⇒ 切到别的档位时**不沿用 5折**，而是明说「待源站取证」。
+            第三行始终显示当前周期 ⇒ ⇒ 切 tab 一定看得见变化。 */}
         <div className="mt-8 flex items-center justify-between rounded-2xl bg-gradient-to-r from-[#3D7BFF] via-[#69B6FF] to-[#F7B267] px-8 py-7">
           <div>
             <p className="text-[22px] font-semibold text-white">
               Seedance 2.5 720P 低至0.4元/秒
             </p>
             <p className="mt-1 text-[18px] font-semibold text-[#FFF3C2]">
-              会员低至5折 + 积分消耗4.7折
+              {BANNER_DISCOUNT[activeTab]}
+            </p>
+            <p className="mt-1 text-[13px] text-white/70">
+              当前周期：{TABS[activeTab]}
             </p>
           </div>
           <div className="flex items-center gap-2.5">
@@ -177,20 +214,40 @@ export function JimengMemberModal({ onClose }: { onClose: () => void }) {
           订阅即梦，解锁更多Seedance2.5能力
         </p>
 
-        {/* 计费 tabs */}
-        <div className="mx-auto mt-5 flex w-fit items-center gap-1 rounded-full bg-white/[0.06] p-1">
+        {/* 计费 tabs
+            ⭐⭐⭐ Batch 1032-②b-1：此前四个 tab **没有 onClick**，只有 `i === 2` 常亮
+            ⇒ ⇒ **看着像能切、切不动**（1032-① 登记为 BILLING 类糊弄）。
+            现在切 tab **真的改**：选中态移动 + 促销横幅文案随周期变 +
+            下方出现一行「本档金额为 mock」说明。
+            ⚠️ **不编造其它周期的金额**：源站只取证了「连续包季」这一档的价格，
+            ⇒ ⇒ 切到别的档时，价格卡保持源站那份，**并显式声明**金额未取证。 */}
+        <div
+          className="mx-auto mt-5 flex w-fit items-center gap-1 rounded-full bg-white/[0.06] p-1"
+          role="tablist"
+          aria-label="计费周期"
+        >
           {TABS.map((t, i) => (
             <button
               key={t}
               type="button"
+              role="tab"
+              aria-selected={i === activeTab}
+              aria-label={t}
+              onClick={() => setActiveTab(i)}
               className={`h-9 rounded-full px-5 text-[13px] ${
-                i === 2 ? "bg-white/[0.14] text-white" : "text-white/60 hover:text-white/85"
+                i === activeTab ? "bg-white/[0.14] text-white" : "text-white/60 hover:text-white/85"
               }`}
             >
               {t}
             </button>
           ))}
         </div>
+        {activeTab !== 2 ? (
+          <p className="mt-3 text-center text-[12px] text-white/45">
+            当前周期「{TABS[activeTab]}」：下方价格卡仍是源站取证的「连续包季」金额，
+            本档金额{mockMsg("待源站取证")}。
+          </p>
+        ) : null}
 
         {/* 价格卡 */}
         <div className="mt-8 grid grid-cols-4 gap-5">

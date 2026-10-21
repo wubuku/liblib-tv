@@ -2,7 +2,7 @@
  "generated_by": "jimeng_probe1032_interaction_wiring.py",
  "scan_coverage": {
   "n_files": 53,
-  "n_buttons": 204
+  "n_buttons": 208
  },
  "P2_scan_is_not_empty_1032": true,
  "n_unknown_spread": 0,
@@ -16,9 +16,9 @@
  "P4_injected_dead_button_is_caught_1032": true,
  "P6_more_than_source_is_red_1032": true,
  "P6_detail": {
-  "victim": "src/components/jimeng/JimengAssetsModal.tsx#{label}#0",
+  "victim": "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0",
   "new_dead": [
-   "src/components/jimeng/JimengAssetsModal.tsx#{label}#0"
+   "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0"
   ]
  },
  "P7_fewer_than_source_is_red_1032": true,
@@ -35,54 +35,19 @@
  "P5_every_allowlist_entry_still_exists_1032": true,
  "P5_missing": [],
  "button_counts": {
-  "WIRED": 175,
-  "DEAD_NO_HANDLER": 25,
-  "DISABLED_NO_HANDLER": 1,
+  "WIRED": 195,
+  "DISABLED_NO_HANDLER": 3,
+  "DEAD_NO_HANDLER": 7,
   "FORM_SUBMIT": 3
  },
- "n_dead_buttons": 25,
- "n_allowlist_entries": 25,
+ "n_dead_buttons": 7,
+ "n_allowlist_entries": 7,
  "dead_buttons": [
   {
-   "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 132,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "{label}",
-   "kind": "NO_EFFECT"
-  },
-  {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 316,
+   "line": 330,
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"展开面板\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 337,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"添加参考\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 670,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"引用参考\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 1145,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"引用参考\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 1161,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"显示折扣详情\"",
    "kind": "NO_EFFECT"
   },
   {
@@ -94,128 +59,37 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 317,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"上传参考图\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 409,
+   "line": 410,
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"展开视频生成器\"",
    "kind": "NO_EFFECT"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 31,
+   "line": 42,
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"展开面板\"",
    "kind": "NO_EFFECT"
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 47,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"添加参考\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 139,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"引用参考\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 162,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"引用参考\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 169,
+   "line": 183,
    "verdict": "DEAD_NO_HANDLER",
    "label": "{canSend ? \"生成\" : \"请输入提示词\"}",
    "kind": "NO_EFFECT"
   },
   {
-   "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 136,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "",
-   "kind": "BILLING"
-  },
-  {
-   "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 142,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "",
-   "kind": "BILLING"
-  },
-  {
-   "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 182,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "",
-   "kind": "BILLING"
-  },
-  {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 90,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"添加参考图\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 125,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 133,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 139,
+   "line": 244,
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"提及主体\"",
    "kind": "NO_EFFECT"
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 87,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"上传参考内容\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 100,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"引用参考\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 107,
+   "line": 121,
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"提及主体\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 364,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "\"下载\"",
    "kind": "NO_EFFECT"
   }
  ],

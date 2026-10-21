@@ -5977,6 +5977,12 @@ def main() -> int:
     _p1032a = p1032a.read_text(encoding="utf-8") if p1032a.exists() else ""
     p1032ar = ROOT / "scripts/jimeng_probe1032a_connect_runtime.mjs"
     _p1032ar = p1032ar.read_text(encoding="utf-8") if p1032ar.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②b-1：「这批修好的按钮点了有没有发生事」的门（**运行时**那一条）
+    #   ⚠️ 必须**同时登记 .py 与 .mjs**：.py 是判据、.mjs 是真去点一遍的那个探针
+    p1032b1 = ROOT / "scripts/jimeng_probe1032b1_wired_contract.py"
+    _p1032b1 = p1032b1.read_text(encoding="utf-8") if p1032b1.exists() else ""
+    p1032b1r = ROOT / "scripts/jimeng_probe1032b1_wired_runtime.mjs"
+    _p1032b1r = p1032b1r.read_text(encoding="utf-8") if p1032b1r.exists() else ""
     # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
     _ws = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(encoding="utf-8")
     _tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
@@ -16646,6 +16652,45 @@ def main() -> int:
           "`src/app/frameos/canvas/[id]/page.tsx` 那份实现**带** `sourceHandle`/`targetHandle`"
           "⇒ ⇒ 那是**有 id 的 Handle** 的口径 ⇒ ⇒ 照抄 ⇒ 连不上。",
           _p1032a_ok and _p1032a_out_ok())
+    # ⭐⭐⭐⭐⭐ 1032-②b-1：这条判据守着「**这批修好的按钮，点了真的有没有发生事**」
+    def _p1032b1_out_ok() -> bool:
+        _pb = ROOT / "docs/research/jimeng-canvas/wired-contract-1032b1.json"
+        if not _pb.exists():
+            return False
+        try:
+            _db = json.loads(_pb.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _cb = _db.get("criteria") or {}
+        if not _cb:
+            return False
+        return all(v is True for v in _cb.values())
+
+    _p1032b1_ok = (
+        # ⭐⭐⭐⭐⭐ 运行时探针必须**真的去点一遍** —— 不能只是读源码
+        "canvas-pick-banner" in _p1032b1r
+        and "waitForEvent('filechooser'" in _p1032b1r
+        and "waitForEvent('download'" in _p1032b1r
+        and "checks" in _p1032b1r
+        # ⭐⭐⭐⭐⭐ 判据必须**自己从原始字段重算**（不信探针给的 ok 标志）
+        #   ⇒ ⇒ 否则阳性对照改原始字段时门不会红 ⇒ ⇒ 「变异体没生效」
+        and "_ref_pick_ok" in _p1032b1
+        and "_upload_ok" in _p1032b1
+        and "p8_mutation" in _p1032b1
+    )
+    check("DD993U.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「按钮点了到底有没有发生事」这件事**必须由运行时来回答**，而不是由「源码里有 onClick」来回答："
+          "1032-②b-1 真去修了 18 条死按钮（引用类走画布点选模式、上传类真弹文件选择器并真落节点、"
+          "下拉类真开层真换值、文本「下载」真触发一次下载、会员页计费 tab 真能切且计费 CTA **真禁用**、"
+          "资产库「时间」「筛选」真能开菜单并改状态）⇒ ⇒ "
+          "⚠️ 但「有 onClick」**不等于**「点了有反应」—— handler 里什么都不做的话，"
+          "那只是**从死按钮升级成空 handler**，比死按钮更坏 ⇒ ⇒ ⇒ 所以新门**自己跑一个真去点一遍的探针**"
+          "（`jimeng_probe1032b1_wired_runtime.mjs`），判据一律写成「**某个可观察的东西变了**」。"
+          "⭐ 而且判据**自己从原始字段重算**（不信探针给的 `ok` 标志）—— 否则阳性对照改原始字段时门不会红"
+          "⇒ ⇒ 「变异体根本没生效」。"
+          "⚠️⭐⭐ 诚实标注边界：探针只覆盖**这 18 个已修按钮**；**其余 7 个仍死的按钮**由静态门（DD993S.1）管；"
+          "**「有 onClick 但函数体是空的」那一类**静态门扫不到 ⇒ 留待 ②b-2。",
+          _p1032b1_ok and _p1032b1_out_ok())
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

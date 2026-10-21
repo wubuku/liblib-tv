@@ -318,6 +318,7 @@ export function JimengGenPanel({
               <button
                 type="button"
                 aria-label="上传参考图"
+                onClick={() => uploadInputRef.current?.click()}
                 className="flex size-11 items-center justify-center rounded-xl border border-white/10 bg-white/[0.06] text-white/80 hover:bg-white/10"
               >
                 <Plus size={20} />

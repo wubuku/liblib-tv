@@ -1,0 +1,33 @@
+{
+ "generated_by": "jimeng_probe1032b1_wired_contract.py",
+ "target": "jimeng-canvas-wired-buttons",
+ "question": "⭐⭐⭐⭐⭐ **这批「修好的按钮」点了到底有没有发生事？**",
+ "probe_run": "rc=0",
+ "readings_file": "docs/research/jimeng-canvas/inputs/wired-runtime-1032b1.json",
+ "readings_available": true,
+ "criteria": {
+  "P1": true,
+  "P2": true,
+  "P3": true,
+  "P4": true,
+  "P5": true,
+  "P6": true,
+  "P7": true,
+  "P8": true
+ },
+ "p8_mutation": {
+  "p1_before": true,
+  "p1_after": false,
+  "p1_turned_red": true,
+  "note": "⭐ 判据级变异：只改读数、不碰真源 ⇒ 真源产物零污染"
+ },
+ "detail": {
+  "n_checks": 21,
+  "n_failed": 0,
+  "n_pageerrors": 0
+ },
+ "scope_note": "⭐⭐⭐ 本门只覆盖 1032-②b-1 修好的这 18 个按钮；**其余 7 个仍死的按钮**由静态门 DD993S.1 管；**「有 onClick 但函数体是空的」那一类**静态门扫不到 ⇒ 留待 ②b-2。",
+ "n_false": 0,
+ "false_criteria": [],
+ "degraded_criteria": []
+}

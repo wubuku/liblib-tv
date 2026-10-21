@@ -175,10 +175,18 @@ out["P7_detail"] = {"stale_allow": m_add.get("stale_allow", [])[:5]}
 out["P4_detail"] = {"injected_new_dead": _inj_detail["new_dead"]}
 
 # ── P5：白名单里每条都必须仍能在代码里找到对应按钮（防止销账时删掉真问题）──
+# ⚠️⭐⭐⭐⭐⭐ Batch 1032-②b-1: 这里原本写的是 `"%s:%s" % _key(e)` ——
+#   `_key(e)` 是**一个字符串** ⇒ ⇒ `"%s:%s" % "abc"` 抛
+#   `TypeError: not enough arguments for format string`
+#   ⇒ ⇒ 而这个表达式只在**列表推导的 body 里**求值 ⇒ ⇒ body 只在
+#   「有条目对不上」时才跑 ⇒ ⇒ **P5 真正该报红的时候，门是崩的，不是红的**。
+#   ⇒ ⇒ 而崩 ⇒ ⇒ 退出码 1 ⇒ ⇒ 与「P5 为假」在退出码上**完全一样**
+#   ⇒ ⇒ ⇒ 于是一个**本该点名是哪几条对不上**的判据，实际只会说「崩了」。
+#   ⇒ ⇒ ⇒ 修法：别做格式化，直接用键本身。
 _btn_by_key = {}
 for b in buttons:
     _btn_by_key.setdefault(_key(b), b)
-_missing_kind = [("%s:%s" % _key(e)) for e in allow_entries
+_missing_kind = [("%s" % _key(e)) for e in allow_entries
                  if _key(e) not in _btn_by_key]
 out["P5_every_allowlist_entry_still_exists_1032"] = bool(not _missing_kind)
 out["P5_missing"] = _missing_kind

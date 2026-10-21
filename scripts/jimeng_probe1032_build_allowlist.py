@@ -33,32 +33,19 @@ ALLOW = GDIR / "inputs" / "interaction-wiring-allowlist-1032.json"
 # ⭐ 人工标注：file 末段 + 行号 -> (类别, 说明)
 #   类别：NO_EFFECT = 点了什么都不会发生（最坏：用户以为坏了）
 #         BILLING   = 计费类，**绝不能真做**，正确处置是 disabled + 说明
+# ⭐⭐⭐⭐⭐ Batch 1032-②b-1 销账：本批**真的修好了 18 条**，逐条从本表删掉。
+#   修法逐条记在 README「六之二十六」；这里只留**还没修**的 7 条（全是
+#   「展开浮层」「图片生成 action」「主体选择」三类 —— 都要先有 store 侧的新东西）。
+#   ⭐ 删条不是「销账就算完」：**门的 P1 会点名**（`stale_allow`），
+#   删多删少都会红 ⇒ ⇒ 这张表与代码现状**必须逐条对得上**。
 NOTES = {
-    'src/components/jimeng/JimengAssetsModal.tsx#{label}#0': ('NO_EFFECT', '时间/筛选图标钮无 onClick（aria-label={label}）'),
-    'src/components/jimeng/JimengAudioGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick'),
-    'src/components/jimeng/JimengAudioGenPanel.tsx#"引用参考"#0': ('NO_EFFECT', '『引用参考』无 onClick'),
-    'src/components/jimeng/JimengAudioGenPanel.tsx#"引用参考"#1': ('NO_EFFECT', '『引用参考』无 onClick'),
-    'src/components/jimeng/JimengAudioGenPanel.tsx#"显示折扣详情"#0': ('NO_EFFECT', '『显示折扣详情』无 onClick'),
-    'src/components/jimeng/JimengAudioGenPanel.tsx#"添加参考"#0': ('NO_EFFECT', '『添加参考』无 onClick'),
-    'src/components/jimeng/JimengGenPanel.tsx#"上传参考图"#0': ('NO_EFFECT', '『上传参考图』无 onClick —— 而同一面板的 chip 行『＋』是真接了 file input ⇒ **同一个面板里两种行为**'),
-    'src/components/jimeng/JimengGenPanel.tsx#"展开视频生成器"#0': ('NO_EFFECT', '『展开视频生成器』无 onClick'),
-    'src/components/jimeng/JimengGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick（视频生成面板里也有一个）'),
-    'src/components/jimeng/JimengImageGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick'),
-    'src/components/jimeng/JimengImageGenPanel.tsx#"引用参考"#0': ('NO_EFFECT', '『引用参考』无 onClick'),
-    'src/components/jimeng/JimengImageGenPanel.tsx#"引用参考"#1': ('NO_EFFECT', '『引用参考』无 onClick'),
-    'src/components/jimeng/JimengImageGenPanel.tsx#"添加参考"#0': ('NO_EFFECT', '『添加参考』无 onClick ⇒ 参考图这条链整条断'),
-    'src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? "生成" : "请输入提示词"}#0': ('NO_EFFECT', '图片生成『生成』：用户输入提示词按发送**什么都没发生、连提示都没有**（按钮无 onClick）⇒ 本批最高优先级'),
-    'src/components/jimeng/JimengMemberModal.tsx##0': ('BILLING', '『购买积分』CTA 无 onClick —— 计费动作**绝不能真做** ⇒ 正确处置是 disabled + 说明，而不是能点没反应'),
-    'src/components/jimeng/JimengMemberModal.tsx##1': ('BILLING', '『订阅管理』CTA 无 onClick —— 同上'),
-    'src/components/jimeng/JimengMemberModal.tsx##2': ('BILLING', '四个计费 tab 无 onClick，只有 i===2 常亮 ⇒ 看着像能切，切不动'),
-    'src/components/jimeng/JimengRepaintPanel.tsx#"提及主体"#0': ('NO_EFFECT', '『@ 提及主体』无 onClick'),
-    'src/components/jimeng/JimengRepaintPanel.tsx#"添加参考图"#0': ('NO_EFFECT', '『添加参考图』无 onClick'),
-    'src/components/jimeng/JimengRepaintPanel.tsx##0': ('NO_EFFECT', '模型钮『即梦 Seedance 2.5』带 ChevronDown 像下拉，实则无 onClick ⇒ **视觉在骗人**'),
-    'src/components/jimeng/JimengRepaintPanel.tsx##1': ('NO_EFFECT', '『6s』时长钮无 onClick'),
-    'src/components/jimeng/JimengVideoEditMode.tsx#"上传参考内容"#0': ('NO_EFFECT', '『上传参考内容』无 onClick（子代理 B 漏掉、AST 扫出来的）'),
-    'src/components/jimeng/JimengVideoEditMode.tsx#"引用参考"#0': ('NO_EFFECT', '『引用参考』无 onClick（同上）'),
-    'src/components/jimeng/JimengVideoEditMode.tsx#"提及主体"#0': ('NO_EFFECT', '『提及主体』无 onClick（同上）'),
-    'src/components/jimeng/nodes/JimengTextNode.tsx#"下载"#0': ('NO_EFFECT', '文本节点『下载』整枚无 onClick'),
+    'src/components/jimeng/JimengAudioGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-2'),
+    'src/components/jimeng/JimengGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-2'),
+    'src/components/jimeng/JimengGenPanel.tsx#"展开视频生成器"#0': ('NO_EFFECT', '『展开视频生成器』无 onClick —— 源站实测点它开「已展开的视频生成器」浮层（role=dialog / 480 宽 / 内含 全部·图片·视频·音频·文本 参考 tab）⇒ 浮层组件尚未做 ⇒ 留到 ②b-2'),
+    'src/components/jimeng/JimengImageGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-2'),
+    'src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? "生成" : "请输入提示词"}#0': ('NO_EFFECT', '图片生成『生成』：按钮无 onClick ⇒ 需要 store 侧的图片生成 action ⇒ 留到 ②b-2'),
+    'src/components/jimeng/JimengRepaintPanel.tsx#"提及主体"#0': ('NO_EFFECT', '『@ 提及主体』无 onClick ⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-2'),
+    'src/components/jimeng/JimengVideoEditMode.tsx#"提及主体"#0': ('NO_EFFECT', '『提及主体』无 onClick（同上）⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-2'),
 }
 
 

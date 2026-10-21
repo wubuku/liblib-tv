@@ -22,6 +22,20 @@ import { useModalFocusTrap } from "./jimengMenuChrome";
  */
 const FILTERS = ["图片", "视频", "音频", "文档"] as const;
 
+/** ⭐⭐⭐ Batch 1032-②b-1：「时间」「筛选」两枚图标钮此前**没有 onClick**
+ *  ⇒ ⇒ 点不动（1032 审计登记的死按钮之一）。
+ *  两枚都接成**真的状态变更**：
+ *  · 时间 → 时间范围菜单（全部时间 / 最近 7 天 / 最近 30 天）⇒ ⇒ 空态文案跟着变
+ *  · 筛选 → 类型菜单（图片 / 视频 / 音频 / 文档）⇒ ⇒ 筛选行的高亮跟着移动
+ *  ⚠️ 资产库在复刻里本来就是**空态 mock**（源站取证时也是空态）⇒ ⇒
+ *  ⇒ ⇒ 所以这两枚按钮的效果落在**筛选行与空态文案**上，不落在素材列表上；
+ *  ⇒ ⇒ 这一点写在这里，不假装「排序真的作用在素材上」。 */
+const TIME_RANGES = [
+  { id: "all", label: "全部时间", suffix: "" },
+  { id: "7d", label: "最近 7 天", suffix: "最近 7 天的" },
+  { id: "30d", label: "最近 30 天", suffix: "最近 30 天的" },
+] as const;
+
 // Batch 75 (SOURCE_FACT 75-assets-deep.json): 空态文案跟随筛选切换
 // (图片/视频/音频 实证「暂无X素材」；文档 同模式)。
 // Batch 76 (SOURCE_FACT 76-subject-deep.json): 主体 tab 筛选行为单个
@@ -35,7 +49,14 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
   const isSubject = tab === "主体";
   const activeFilter = isSubject ? "全部" : filter;
   const filters: string[] = isSubject ? ["全部"] : [...FILTERS];
-  const emptyText = isSubject ? "没有可用主体" : `暂无${filter}素材`;
+  /* ⭐⭐⭐ 1032-②b-1：时间范围 + 哪个图标菜单开着。 */
+  const [range, setRange] = useState<(typeof TIME_RANGES)[number]["id"]>("all");
+  const [iconMenu, setIconMenu] = useState<"时间" | "筛选" | null>(null);
+  const rangeSuffix =
+    TIME_RANGES.find((r) => r.id === range)?.suffix ?? "";
+  const emptyText = isSubject
+    ? "没有可用主体"
+    : `暂无${rangeSuffix}${filter}素材`;
   const layerRef = useRef<HTMLDivElement>(null);
 
   /* 批 864：开层即接管焦点 + Tab 困在层内。
@@ -133,6 +154,9 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
                 type="button"
                 aria-label={label}
                 title={label}
+                aria-expanded={iconMenu === label}
+                aria-haspopup="menu"
+                onClick={() => setIconMenu((v) => (v === label ? null : label))}
                 className="flex size-9 items-center justify-center rounded-lg text-white/85 hover:bg-white/[0.08]"
               >
                 {label === "时间" ? (
@@ -146,6 +170,53 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
                   </svg>
                 )}
               </button>
+              {iconMenu === label ? (
+                /* ⭐⭐⭐ 1032-②b-1：真的菜单层（不是装饰）。
+                   · 「时间」→ 时间范围（改空态文案）
+                   · 「筛选」→ 素材类型（改筛选行高亮） */
+                <div
+                  className="absolute right-0 top-[calc(100%+6px)] z-[220] w-[168px] rounded-[10px] p-1"
+                  style={{ background: "rgb(38,38,38)" }}
+                  role="menu"
+                  aria-label={label === "时间" ? "时间范围" : "素材类型"}
+                >
+                  {label === "时间"
+                    ? TIME_RANGES.map((r) => (
+                        <button
+                          key={r.id}
+                          type="button"
+                          role="menuitemradio"
+                          aria-checked={r.id === range}
+                          onClick={() => {
+                            setRange(r.id);
+                            setIconMenu(null);
+                          }}
+                          className={`flex h-8 w-full items-center rounded-lg px-2.5 text-[13px] ${
+                            r.id === range ? "bg-white/[0.10] text-white" : "text-white/80 hover:bg-white/[0.08]"
+                          }`}
+                        >
+                          {r.label}
+                        </button>
+                      ))
+                    : FILTERS.map((f) => (
+                        <button
+                          key={f}
+                          type="button"
+                          role="menuitemradio"
+                          aria-checked={f === filter}
+                          onClick={() => {
+                            setFilter(f);
+                            setIconMenu(null);
+                          }}
+                          className={`flex h-8 w-full items-center rounded-lg px-2.5 text-[13px] ${
+                            f === filter ? "bg-white/[0.10] text-white" : "text-white/80 hover:bg-white/[0.08]"
+                          }`}
+                        >
+                          {f}
+                        </button>
+                      ))}
+                </div>
+              ) : null}
               <span
                 data-testid={`assets-tip-${label}`}
                 className="pointer-events-none absolute left-1/2 top-full z-[130] mt-1 flex h-9 w-14 -translate-x-1/2 items-center justify-center rounded-lg text-[13px] text-white opacity-0 transition-opacity duration-100 group-hover/tip:opacity-100"

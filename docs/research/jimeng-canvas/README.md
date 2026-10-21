@@ -28879,50 +28879,26 @@ audit 文案里的历史变量数**必然**无出处 ⇒ **P9 必然红** ⇒ �
 ⇒ ⇒ 按「原文不删改」处置：**保留原句 + 追加更正**（verifier 的 `DD993S.1` 判据文字里也追加了同样的更正）。
 
 
-#### 六、下一批要做的
+#### 六、下一批要做的（1032-②b-1 之后已更新）
 
-- **场景化运行时探针**（先开层、再枚举、再逐个点），抓另外三类糊弄
-- **修那 25 条死按钮**：要么接线，要么**明确 disabled + 说明**（「能点但毫无反应」是最坏的一种 —— 比明确禁用更伤可信度）
-  - ⚠️⚠️⚠️⚠️⭐⭐⭐⭐⭐ **销账流程必须先手工改白名单、再跑生成器 —— 顺序反了会把销账抹掉**
-    `jimeng_probe1032_build_allowlist.py` 是**发现器**（它扫出「当前所有死按钮」），
-    **不是决定器** ⇒ ⇒ ⇒ 若直接拿它的输出当白名单 ⇒ ⇒ ⇒ 白名单永远等于现状
-    ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 「恰好相等」这条判据就退化成「跑两次都一样」⇒ 门没有牙齿了**
-    ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ （牙齿只来自 `P4` 的注入式变异 ⇒ 所以 P4 不能省）
-    ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 正确流程：手工从白名单删掉已修的那条（并写 note 说明怎么修的）→ 再跑生成器只作核对 → 最后跑门**
+**②b-2：把剩下那 7 条死按钮修掉** —— 规格**已经在源站取到了**（`inputs/source-expanded-gen-1032b1.json`）：
 
-  - ⭐⭐⭐⭐⭐ **逐条修法对照表（下一批施工图；action 名都已实测存在于 store）**
-
-| 死按钮（文件:行） | 拟用修法 | store 侧是否已有 |
+| 要修的 | 规格（源站实测） | 复刻侧要做的事 |
 |---|---|---|
-| 「展开面板」`JimengImageGenPanel:31` / `JimengAudioGenPanel:316` / `JimengGenPanel:218` | `openPreview(nodeId)` | ✅ 已有（`previewNodeId` / `openPreview` / `closePreview`） |
-| 「添加参考」`Image:47` / `Audio:337` | `startRefPicking()` | ✅ 已有 |
-| 「引用参考」`Image:139` / `Image:162` / `Audio:670` / `Audio:1145` | `startRefPicking()` / `clearPickedRefNode()` | ✅ 已有（`pickedRefNodeId`） |
-| 「上传参考图」`JimengGenPanel:317` / `JimengRepaintPanel:90` | `<input type=file>` + `addLocalUpload(name, position)` | ✅ 已有 |
-| 「上传参考内容」`JimengVideoEditMode:87` | 同上 | ✅ 已有 |
-| 「展开视频生成器」`JimengGenPanel:409` | 面板本地 state 展开 | 不需要 store |
-| 「显示折扣详情」`JimengAudioGenPanel:1161` | 面板本地 state 展开说明 | 不需要 store |
-| 「生成」`JimengImageGenPanel:169` | **新增** `generateIntoImage(nodeId, prompt)` | ❌ **没有** ⇒ 现有 `generateInto` 只认 `type==="video"` |
-| 音频「发送」 | **新增** `generateIntoAudio(nodeId, prompt)` | ❌ 同上 |
-| 「提及主体」`JimengRepaintPanel:139` / `JimengVideoEditMode:107` | **新增**「选中主体节点」state | ❌ store 里只有 `addNodeAt("subject")`，**没有主体选择器** |
-| 「下载」`JimengTextNode:364` | 真下载（Blob + `a[download]`） | 不需要 store |
-| 计费 3 条 `JimengMemberModal:136/142/182` | **明确 `disabled` + 说明**（计费类不能真点） | 不需要 store |
-| `{label}` 图标钮 `JimengAssetsModal:132` | 接线或 `disabled` + 说明 | 待定 |
+| 三个面板的「展开面板」+ 生成面板「展开视频生成器」 | 触发钮 40×40（`aria-label="展开视频生成器"`，**面板级**）⇒ 点开 **`role="dialog"` / `aria-label="已展开的视频生成器"` / `position: fixed` / 920×480 / radius 20 / z 50** 的**居中浮动面板**；浮层内 5 个普通按钮「全部/图片/视频/音频/文本」（42×36，**没有** `role=tab`）+ 48×48「添加参考」+ 24×24「引用参考」+ 32×32「引用参考」+ 184×32 模型 + 129×32 尺寸 + 80×32 模式 + 46×32 时长 + 32×32「生成」；浮层内**没有 input/textarea**（⇒ 提示词区是 contenteditable）；⭐ 浮层右上角是「**折叠视频生成器**」36×36 ⇒ **与触发它的那枚是同一个 affordance** | 新组件 `JimengExpandedGenOverlay.tsx`；**用 `createPortal(…, document.body)`**（仓里既有写法：`JimengVideoPreview` / 时间线全屏 —— React Flow 的 viewport 有 transform ⇒ 不 portal 出去 `fixed` 会相对变换后的祖先定位） |
+| 图片面板「生成」 | 源站图片生成是真的跑任务（**本批绝不点**） | store 新增 `generateIntoImage(id, prompt)`；`JimengImageNodeData` 加 `generating`；`JimengImageNode` 要**渲染出生成中态**（否则又是 CONST_AS_STATE） |
+| 重拍「提及主体」/ 视频编辑「提及主体」 | 源站是 `@` 主体选择 | store 新增「主体选择」态：`subjectPicking` / `pickedSubjectNodeId` / `startSubjectPicking()` / `pickSubjectNode(id)` / `clearPickedSubjectNode()`；`JimengWorkspace` 的 `onNodeClick` 照 `refPicking` 那份改（**已有同口径实现可照抄**）；面板侧把 `@主体` 插进提示词 |
+| 音频面板「生成」（**不在 25 条里** —— 它**有** onClick 但**函数体是空的** ⇒ NOOP） | 源站真跑任务 | store 新增 `generateIntoAudio(id, prompt)`；`JimengAudioNodeData` 加 `generating` |
 
-  - ⚠️⭐⭐⭐⭐⭐ **三个面板组件的 props 现在只有 `{ visible }`** ⇒ **它们连「自己是哪个节点」都不知道**
-    ⇒ ⇒ ⇒ 所以接线不是「加个 onClick」那么小：**要一路把 `nodeId` 从节点组件传下来**
-    ⇒ ⇒ ⇒ ⇒ （`JimengImageNode.tsx:36` / `JimengAudioNode.tsx:129` 是两个调用点）
-  - ⚠️⭐⭐⭐⭐⭐ **改 store 会牵动很多门**（audit 的锚点、verifier 的判据、若干探针的读数）
-    ⇒ ⇒ ⇒ ⇒ 所以这批要么**小步改、每步跑门**，要么**先把 store 的新 action 单独做成一笔 commit**
-  - ⭐⭐⭐⭐⭐ **接线前必须先量 store 的真实入口**：实测 `jimengStore.generateInto(id, prompt)`
-    （`src/store/jimengStore.ts:495`）**只对 `n.type === "video"` 的节点生效**
-    ⇒ ⇒ ⇒ **图片生成面板与音频生成面板不能硬套它** ⇒ ⇒ ⇒ ⇒ 必须给 store 增新入口
-    ⇒ ⇒ ⇒ ⇒ （否则「接上了」只是把按钮从「没反应」变成「还是没反应」）
-  - ⭐⭐⭐⭐⭐ **照抄已接线的那一份**：`JimengGenPanel.tsx` 有现成写法
-    （`import { useJimengStore } from "@/store/jimengStore"` → `s.generateInto` → `generateInto(nodeId, prompt)`），
-    而 `JimengImageGenPanel.tsx` 的 import 段**只有 react / lucide / @xyflow** ⇒ **一行 store 都没 import**
-- **`<ReactFlow>` 补 `onConnect`**：连线是画布的核心交互，源站有
-- **「视频节点」要么真的放 `<video>`**，要么别让「播放」看起来像在放
-- **时间线片段**：要么实现拖动，要么把 `Drag clips to reorder them.` 这句读屏文案删掉
+⚠️⚠️⚠️ **这三条都是「改 store」** ⇒ ⇒ **牵动很多门**（audit 锚点、verifier 判据、若干探针读数）
+⇒ ⇒ ⇒ **小步改、每步跑门**；建议 **store 的新 action 单独成一笔 commit**。
+
+**②b-1 附带（既有缺陷、非本批引入）**：`jimeng_probe1008_golden_freshness.py` **没有 `sys.exit`** ⇒ 退出码恒 0
+⇒ ⇒ 它红了没人知道；且 audit 的 1008 判据块里有 **4 个手写的数没出处**（19 / 26 / 26 / 26）。
+
+**②b-c**：把「**有 onClick 但函数体是空的**」那一类糊弄**也变成门**（静态门扫不到 —— 它长得像已接线）。
+
+**②d**：探针级变异 —— 把 `onConnect` 从页面源码拿掉 ⇒ 门必须红（改真源 ⇒ 单独一笔 + 保证还原）。
 
 ### 九、⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 通则（本批新增）
 
@@ -29011,3 +28987,27 @@ audit 文案里的历史变量数**必然**无出处 ⇒ **P9 必然红** ⇒ �
 37. ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **判据落在仓外，就等于没有判据** ——
 1012 的 `P1..P9` 红绿只写在 `/tmp` 的 out 里 ⇒ 一条判据从 1015 批起就一直红着，**而没有任何门看见**。
 ⇒⇒⇒ 审计结论必须落进**门能看见的地方**（仓内产物），否则「做没做审计」根本不是问题，**「结论有没有人看得见」才是**。
+
+### 九之二、⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 通则（1032-②b-1 新增）
+
+① ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+**「修好一个死按钮」的验收必须由运行时回答** ——
+把死按钮改成有 `onClick`，而 handler 里什么都不做，那只是把它从**死按钮**升级成**空 handler** ⇒ ⇒
+**那比死按钮更坏**（死按钮一看就知道点不动，空 handler 看起来是好的）⇒ ⇒
+⇒ 静态门能验「有没有接线」，**验不了「点了有没有发生事」** ⇒ ⇒
+⇒ 而验收必须写成「**某个可观察的东西变了**」（横幅出现 / 文件选择器弹出 / 节点多了 / 文案变了 / 下载发生了）。
+
+② ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+**判据必须自己从原始字段重算，不能只信上游给的 `ok` 标志** ——
+本批第一版的门读的是探针写的 `ok`，而阳性对照改的是**原始字段** ⇒ ⇒ **变异根本没生效**
+⇒ ⇒ P8 于是永远是假的 ⇒ ⇒ 「变异体必须自证『我确实改动了东西』」的又一处复发
+⇒ ⇒⇒ 修法：判据自己从原始字段算（`banner_after_click > banner_before`），
+⇒ ⇒⇒ 于是改原始字段就真的能让它转红。
+
+③ ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+**「一条判据该报红的时候，门是崩的」比「门报假绿」更难查** ——
+本批门里有个格式化 bug（`"%s:%s" % <一个字符串>`）⇒ ⇒ 它**只在列表推导的 body 里求值**
+⇒ ⇒ body 只在「有条目对不上」时才跑 ⇒ ⇒ **P5 真正该报红的时候，门崩了**
+⇒ ⇒ 而**崩**的退出码是 1、**红**的退出码也是 1 ⇒ ⇒ 一条**本该点名是哪几条对不上**的判据，
+实际只会说「崩了」⇒ ⇒⇒ ⇒ 推论：**判据的「异常路径」也必须能报出「是哪一条」**，
+不能只靠退出码区分。

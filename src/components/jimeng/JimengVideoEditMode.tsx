@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import {
   ArrowUpRight,
   AtSign,
@@ -18,6 +18,8 @@ import {
 import type { LucideIcon } from "lucide-react";
 
 import { VipDiamond } from "@/components/jimeng/icons";
+import { useJimengStore } from "@/store/jimengStore";
+import { useReactFlow } from "@xyflow/react";
 
 /**
  * 视频编辑（局部编辑）模式 (Batch 6/215；批 373 源站再采样保真修正)。
@@ -51,6 +53,16 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
   // 批 377 SOURCE_FACT: 提示条可输入；发送钮空态白/16、有文案 #fafafa
   const [prompt, setPrompt] = useState("");
   const canSend = prompt.trim().length > 0;
+  /* ⭐⭐⭐ Batch 1032-②b-1：这三个钮此前**整枚没有 onClick**（死按钮）：
+     「上传参考内容」「引用参考」「提及主体」。
+     本批接前两个（第三个「提及主体」要新增 store 侧的「主体选择」态，
+     留到 ②b-2 —— **不拿一个假的 handler 去骗门**）。
+     · 上传参考内容 → 隐藏 file input → `addLocalUpload`（真落一个节点到画布）
+     · 引用参考     → `startRefPicking()`（进画布点选模式，点一个媒体节点即引用） */
+  const uploadInputRef = useRef<HTMLInputElement>(null);
+  const addLocalUpload = useJimengStore((s) => s.addLocalUpload);
+  const startRefPicking = useJimengStore((s) => s.startRefPicking);
+  const { screenToFlowPosition } = useReactFlow();
   return (
     <div className="absolute top-full left-1/2 z-20 mt-3 flex -translate-x-1/2 flex-col items-center gap-3">
       {/* 编辑工具药丸 (批 373: 双分隔线——橡皮擦 后、标记 后) */}
@@ -87,6 +99,7 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
         <button
           type="button"
           aria-label="上传参考内容"
+          onClick={() => uploadInputRef.current?.click()}
           className="flex size-9 shrink-0 items-center justify-center rounded-lg text-white/80 hover:bg-white/[0.08]"
         >
           <Paperclip size={15} />
@@ -100,6 +113,7 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
         <button
           type="button"
           aria-label="引用参考"
+          onClick={() => startRefPicking()}
           className="flex size-8 shrink-0 items-center justify-center rounded-lg text-white/80 hover:bg-white/[0.08]"
         >
           <Quote size={14} />
@@ -127,6 +141,33 @@ export function JimengVideoEditMode({ onSubmit }: { onSubmit: () => void }) {
         >
           <ArrowUpRight size={15} className="-rotate-45" />
         </button>
+        {/* ⭐⭐⭐ Batch 1032-②b-1：「上传参考内容」的隐藏 file 入口
+            （与左栏上传链路、生成面板同一套做法）。
+            选中的文件**真的落成画布节点**（`addLocalUpload`），
+            不是弹一句「上传已开始」就完事。 */}
+        <input
+          ref={uploadInputRef}
+          type="file"
+          multiple
+          accept="video/*,image/*,audio/*"
+          className="hidden"
+          data-testid="video-edit-upload-input"
+          onChange={(e) => {
+            const files = Array.from(e.target.files ?? []);
+            const el = document.querySelector(".jimeng-canvas");
+            const center = screenToFlowPosition({
+              x: el ? el.clientWidth / 2 : window.innerWidth / 2,
+              y: el ? el.clientHeight / 2 : window.innerHeight / 2,
+            });
+            files.forEach((file, i) => {
+              addLocalUpload(file.name, {
+                x: center.x - 284.5 + i * 40,
+                y: center.y - 160 + i * 40,
+              });
+            });
+            e.target.value = "";
+          }}
+        />
       </form>
     </div>
   );

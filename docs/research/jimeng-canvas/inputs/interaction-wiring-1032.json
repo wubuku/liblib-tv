@@ -2,29 +2,17 @@
  "generated_by": "jimeng_probe1032_interaction_wiring.mjs",
  "scan_scope": "src/components/jimeng/**/*.tsx",
  "n_files": 53,
- "n_buttons": 204,
+ "n_buttons": 208,
  "counts": {
-  "WIRED": 175,
-  "DEAD_NO_HANDLER": 25,
-  "DISABLED_NO_HANDLER": 1,
+  "WIRED": 195,
+  "DISABLED_NO_HANDLER": 3,
+  "DEAD_NO_HANDLER": 7,
   "FORM_SUBMIT": 3
  },
  "dead_buttons": [
   {
-   "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 132,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "{label}",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengAssetsModal.tsx#{label}#0"
-  },
-  {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 316,
+   "line": 330,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -33,54 +21,6 @@
    "label": "\"展开面板\"",
    "ordinal": 0,
    "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 337,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"添加参考\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"添加参考\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 670,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"引用参考\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"引用参考\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 1145,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"引用参考\"",
-   "ordinal": 1,
-   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"引用参考\"#1"
-  },
-  {
-   "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 1161,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"显示折扣详情\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"显示折扣详情\"#0"
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
@@ -96,19 +36,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 317,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"上传参考图\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"上传参考图\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 409,
+   "line": 410,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -120,7 +48,7 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 31,
+   "line": 42,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -132,43 +60,7 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 47,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"添加参考\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"添加参考\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 139,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"引用参考\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"引用参考\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 162,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"引用参考\"",
-   "ordinal": 1,
-   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"引用参考\"#1"
-  },
-  {
-   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 169,
+   "line": 183,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -179,80 +71,8 @@
    "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? \"生成\" : \"请输入提示词\"}#0"
   },
   {
-   "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 136,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##0"
-  },
-  {
-   "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 142,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "",
-   "ordinal": 1,
-   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##1"
-  },
-  {
-   "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 182,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "",
-   "ordinal": 2,
-   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##2"
-  },
-  {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 90,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"添加参考图\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#\"添加参考图\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 125,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx##0"
-  },
-  {
-   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 133,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "",
-   "ordinal": 1,
-   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx##1"
-  },
-  {
-   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 139,
+   "line": 244,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -264,31 +84,7 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 87,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"上传参考内容\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"上传参考内容\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 100,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"引用参考\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"引用参考\"#0"
-  },
-  {
-   "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 107,
+   "line": 121,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -297,18 +93,6 @@
    "label": "\"提及主体\"",
    "ordinal": 0,
    "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"提及主体\"#0"
-  },
-  {
-   "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 364,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "\"下载\"",
-   "ordinal": 0,
-   "stable_key": "src/components/jimeng/nodes/JimengTextNode.tsx#\"下载\"#0"
   }
  ],
  "unknown_spread": [],
@@ -595,7 +379,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 68,
+   "line": 89,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -609,7 +393,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 85,
+   "line": 106,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -623,7 +407,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 99,
+   "line": 120,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -637,9 +421,11 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 132,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 153,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -649,7 +435,35 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 185,
+   "line": 184,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengAssetsModal.tsx##0"
+  },
+  {
+   "file": "src/components/jimeng/JimengAssetsModal.tsx",
+   "line": 201,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "",
+   "ordinal": 1,
+   "stable_key": "src/components/jimeng/JimengAssetsModal.tsx##1"
+  },
+  {
+   "file": "src/components/jimeng/JimengAssetsModal.tsx",
+   "line": 256,
    "verdict": "DISABLED_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -661,7 +475,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 316,
+   "line": 330,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -673,9 +487,11 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 337,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 351,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -685,7 +501,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 369,
+   "line": 384,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -699,7 +515,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 387,
+   "line": 402,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -713,7 +529,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 412,
+   "line": 427,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -727,7 +543,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 431,
+   "line": 446,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -741,7 +557,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 450,
+   "line": 465,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -755,7 +571,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 569,
+   "line": 584,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -769,7 +585,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 591,
+   "line": 606,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -783,7 +599,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 617,
+   "line": 632,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -797,7 +613,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 637,
+   "line": 652,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -811,7 +627,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 658,
+   "line": 673,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -825,9 +641,11 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 670,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 685,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -837,7 +655,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 679,
+   "line": 695,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -851,7 +669,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 716,
+   "line": 732,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick",
@@ -866,7 +684,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 856,
+   "line": 872,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick",
@@ -881,7 +699,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 1057,
+   "line": 1073,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -895,7 +713,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 1113,
+   "line": 1129,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -909,9 +727,11 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 1145,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 1161,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -921,9 +741,11 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 1161,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 1184,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -933,7 +755,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 1188,
+   "line": 1226,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1115,8 +937,10 @@
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
    "line": 317,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -1126,7 +950,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 336,
+   "line": 337,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1140,7 +964,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 356,
+   "line": 357,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1154,7 +978,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 382,
+   "line": 383,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1168,7 +992,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 409,
+   "line": 410,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -1180,7 +1004,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 452,
+   "line": 453,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1194,7 +1018,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 488,
+   "line": 489,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1208,7 +1032,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 515,
+   "line": 516,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1222,7 +1046,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 556,
+   "line": 557,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1236,7 +1060,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 586,
+   "line": 587,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1250,7 +1074,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 613,
+   "line": 614,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1264,7 +1088,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 635,
+   "line": 636,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1278,7 +1102,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 663,
+   "line": 664,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1292,7 +1116,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 686,
+   "line": 687,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1306,7 +1130,7 @@
   },
   {
    "file": "src/components/jimeng/JimengGenPanel.tsx",
-   "line": 718,
+   "line": 719,
    "verdict": "FORM_SUBMIT",
    "event_attrs": [],
    "delegated_by": "",
@@ -1346,7 +1170,7 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 31,
+   "line": 42,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -1358,9 +1182,11 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 47,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 58,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -1370,7 +1196,7 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 72,
+   "line": 84,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1384,7 +1210,7 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 92,
+   "line": 104,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1398,7 +1224,7 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 106,
+   "line": 118,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1412,7 +1238,7 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 126,
+   "line": 138,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1426,9 +1252,11 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 139,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 151,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -1438,9 +1266,11 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 162,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 175,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -1450,7 +1280,7 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 169,
+   "line": 183,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -1574,7 +1404,7 @@
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 106,
+   "line": 121,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1588,39 +1418,41 @@
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 136,
-   "verdict": "DEAD_NO_HANDLER",
+   "line": 158,
+   "verdict": "DISABLED_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
    "type": "button",
-   "disabled": false,
+   "disabled": true,
    "label": "",
    "ordinal": 0,
    "stable_key": "src/components/jimeng/JimengMemberModal.tsx##0"
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 142,
-   "verdict": "DEAD_NO_HANDLER",
+   "line": 165,
+   "verdict": "DISABLED_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
    "type": "button",
-   "disabled": false,
+   "disabled": true,
    "label": "",
    "ordinal": 1,
    "stable_key": "src/components/jimeng/JimengMemberModal.tsx##1"
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 182,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 229,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "",
-   "ordinal": 2,
-   "stable_key": "src/components/jimeng/JimengMemberModal.tsx##2"
+   "label": "{t}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengMemberModal.tsx#{t}#0"
   },
   {
    "file": "src/components/jimeng/jimengMenuChrome.tsx",
@@ -2002,9 +1834,11 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 90,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 114,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -2014,9 +1848,11 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 125,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 153,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -2026,9 +1862,11 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 133,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 174,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -2038,7 +1876,35 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 139,
+   "line": 198,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "",
+   "ordinal": 2,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx##2"
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 217,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
+   "delegated_by": "",
+   "type": "button",
+   "disabled": false,
+   "label": "",
+   "ordinal": 3,
+   "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx##3"
+  },
+  {
+   "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+   "line": 244,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -2050,7 +1916,7 @@
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-   "line": 149,
+   "line": 254,
    "verdict": "FORM_SUBMIT",
    "event_attrs": [],
    "delegated_by": "",
@@ -2356,7 +2222,7 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 60,
+   "line": 72,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2370,9 +2236,11 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 87,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 99,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -2382,9 +2250,11 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 100,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "line": 113,
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -2394,7 +2264,7 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 107,
+   "line": 121,
    "verdict": "DEAD_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -2406,7 +2276,7 @@
   },
   {
    "file": "src/components/jimeng/JimengVideoEditMode.tsx",
-   "line": 119,
+   "line": 133,
    "verdict": "FORM_SUBMIT",
    "event_attrs": [],
    "delegated_by": "",
@@ -2616,8 +2486,10 @@
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
    "line": 364,
-   "verdict": "DEAD_NO_HANDLER",
-   "event_attrs": [],
+   "verdict": "WIRED",
+   "event_attrs": [
+    "onClick"
+   ],
    "delegated_by": "",
    "type": "button",
    "disabled": false,
@@ -2627,7 +2499,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 398,
+   "line": 417,
    "verdict": "WIRED",
    "event_attrs": [
     "onMouseDown",
@@ -2642,7 +2514,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 425,
+   "line": 444,
    "verdict": "WIRED",
    "event_attrs": [
     "onMouseDown",
@@ -2657,7 +2529,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 451,
+   "line": 470,
    "verdict": "WIRED",
    "event_attrs": [
     "onMouseDown",
@@ -2672,7 +2544,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 468,
+   "line": 487,
    "verdict": "WIRED",
    "event_attrs": [
     "onMouseDown",
@@ -2687,7 +2559,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 548,
+   "line": 567,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"

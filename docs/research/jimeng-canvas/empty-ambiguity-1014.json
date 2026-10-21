@@ -3,12 +3,12 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census_inputs_2029": {
-  "n_fingerprinted": 25,
+  "n_fingerprinted": 26,
   "n_unreadable": 0,
-  "n_from_probe_products": 25,
+  "n_from_probe_products": 26,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "8ead0228c562",
+    "sha256_12": "77f9849f79b7",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
@@ -60,16 +60,16 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "bea3f7ff5322",
-    "bytes": 80776
+    "sha256_12": "cb3db67ec55b",
+    "bytes": 81281
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
     "bytes": 21313
    },
    "interaction-wiring-check-1032.json": {
-    "sha256_12": "c1c93ecf0191",
-    "bytes": 6006
+    "sha256_12": "a8287d846dcc",
+    "bytes": 3010
    },
    "live-canvas-check-1031.json": {
     "sha256_12": "e75acd23eeb8",
@@ -92,8 +92,8 @@
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "45c9f1d506ad",
-    "bytes": 31315
+    "sha256_12": "6b7e6a736c9a",
+    "bytes": 32352
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -103,6 +103,10 @@
     "sha256_12": "0905c8a667e8",
     "bytes": 9205
    },
+   "wired-contract-1032b1.json": {
+    "sha256_12": "7450f42146a2",
+    "bytes": 1009
+   },
    "zero-coupling-anchors-1005.json": {
     "sha256_12": "75d939966aee",
     "bytes": 127346
@@ -111,12 +115,12 @@
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 25,
+  "n_goldens": 26,
   "n_excluded_self": 1,
-  "n_empty_list": 206,
+  "n_empty_list": 208,
   "n_empty_null": 26,
   "n_self_provable": 9,
-  "n_ambiguous": 223
+  "n_ambiguous": 225
  },
  "rows": [
   {
@@ -1742,6 +1746,20 @@
    "kind": "list",
    "self_provable": false,
    "invariant": null
+  },
+  {
+   "golden": "wired-contract-1032b1.json",
+   "path": "/false_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "wired-contract-1032b1.json",
+   "path": "/degraded_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
   }
  ],
  "ambiguous": [
@@ -3302,6 +3320,20 @@
   {
    "golden": "type-layer-gate-1023.json",
    "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "wired-contract-1032b1.json",
+   "path": "/false_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "wired-contract-1032b1.json",
+   "path": "/degraded_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null

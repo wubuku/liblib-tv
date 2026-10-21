@@ -1,0 +1,148 @@
+{
+ "generated_by": "jimeng_probe1032b1_wired_runtime.mjs",
+ "note": "⭐ 判据一律是「某个可观察的东西变了」，不是「按钮有 onClick」。",
+ "checks": {
+  "image_node_inserted": {
+   "ok": true,
+   "before": 5,
+   "after": 6
+  },
+  "image_panel_opens": {
+   "ok": true,
+   "selected": true,
+   "add_ref_button_visible": true
+  },
+  "image_add_ref_enters_pick_mode": {
+   "ok": true,
+   "clicked": true,
+   "banner_before": 0,
+   "banner_after_click": 1,
+   "banner_after_cancel": 0
+  },
+  "image_quote_ref_0_enters_pick_mode": {
+   "ok": true,
+   "clicked": true,
+   "banner_before": 0,
+   "banner_after_click": 1,
+   "banner_after_cancel": 0
+  },
+  "image_quote_ref_1_enters_pick_mode": {
+   "ok": true,
+   "clicked": true,
+   "banner_before": 0,
+   "banner_after_click": 1,
+   "banner_after_cancel": 0
+  },
+  "gen_panel_upload_adds_node": {
+   "ok": true,
+   "selected": true,
+   "filechooser_fired": true,
+   "nodes_before": 6,
+   "nodes_after": 7
+  },
+  "audio_panel_opens": {
+   "ok": true,
+   "selected": true,
+   "add_ref_button_visible": true
+  },
+  "audio_add_ref_enters_pick_mode": {
+   "ok": true,
+   "clicked": true,
+   "banner_before": 0,
+   "banner_after_click": 1,
+   "banner_after_cancel": 0
+  },
+  "audio_quote_ref_0_enters_pick_mode": {
+   "ok": true,
+   "clicked": true,
+   "banner_before": 0,
+   "banner_after_click": 1,
+   "banner_after_cancel": 0
+  },
+  "audio_quote_ref_1_enters_pick_mode": {
+   "ok": true,
+   "clicked": true,
+   "banner_before": 0,
+   "banner_after_click": 1,
+   "banner_after_cancel": 0
+  },
+  "audio_discount_detail_opens": {
+   "ok": true,
+   "clicked": true,
+   "detail_before": 0,
+   "detail_after": 1
+  },
+  "text_node_download_fires": {
+   "ok": true,
+   "selected": true,
+   "download_fired": true,
+   "filename_is_html": true
+  },
+  "member_tab_switches_state": {
+   "ok": true,
+   "modal_open": true,
+   "tab_clicked": true,
+   "banner_changed": true,
+   "selected_tab": "连续包年 限时5折"
+  },
+  "member_billing_cta_disabled": {
+   "ok": true,
+   "cta": {
+    "n": 2,
+    "all_disabled": true
+   }
+  },
+  "assets_time_filter_changes_state": {
+   "ok": true,
+   "modal_open": true,
+   "menu_opened": true,
+   "empty_before": "暂无图片素材",
+   "empty_after": "暂无最近 7 天的图片素材"
+  },
+  "assets_type_filter_changes_state": {
+   "ok": true,
+   "modal_open": true,
+   "menu_opened": true,
+   "active_filter_row": "视频",
+   "empty_after_type_switch": "暂无最近 7 天的视频素材"
+  },
+  "repaint_model_switches": {
+   "ok": true,
+   "panel_open": true,
+   "n_options": 2,
+   "trigger_text_after": "即梦 Seedance 2.0 VIP",
+   "repaint_clicked": true
+  },
+  "repaint_duration_switches": {
+   "ok": true,
+   "panel_open": true,
+   "n_options": 3,
+   "duration_after": "4s"
+  },
+  "repaint_upload_adds_node": {
+   "ok": true,
+   "filechooser_fired": true,
+   "nodes_before": 7,
+   "nodes_after": 8
+  },
+  "video_edit_upload_adds_node": {
+   "ok": true,
+   "panel_open": true,
+   "panned_into_viewport": true,
+   "edit_clicked": true,
+   "filechooser_fired": true,
+   "nodes_before": 8,
+   "nodes_after": 9
+  },
+  "video_edit_quote_ref_enters_pick_mode": {
+   "ok": true,
+   "clicked": true,
+   "banner_before": 0,
+   "banner_after_click": 1,
+   "banner_after_cancel": 0
+  }
+ },
+ "pageerrors": [],
+ "n_checks": 21,
+ "n_failed": 0
+}

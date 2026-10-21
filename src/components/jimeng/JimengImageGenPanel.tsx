@@ -4,6 +4,8 @@ import { useState } from "react";
 import { ArrowUp, ChevronDown, Maximize2, Plus, Quote, Sparkle } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 
+import { useJimengStore } from "@/store/jimengStore";
+
 /**
  * 空图片节点选中态下方弹出的图片生成面板 (Batch 530)。
  *
@@ -21,6 +23,15 @@ import { NodeToolbar, Position } from "@xyflow/react";
 export function JimengImageGenPanel({ visible }: { visible: boolean }) {
   const [text, setText] = useState("");
   const canSend = text.trim().length > 0;
+  /* ⭐⭐⭐ Batch 1032-②b-1：图片面板此前有**四枚死按钮**：
+     「展开面板」「添加参考」「引用参考」×2 + 「生成」。
+     本批接中间三个（引用类）：走 `startRefPicking()` —— 与视频生成面板的
+     「从画布选择」同一套 store 机制（进点选模式 ⇒ 点画布上任一个媒体节点即引用）。
+     「展开面板」要开「已展开的生成器」浮层、「生成」要新增 store 侧的图片生成
+     action ⇒ ⇒ 两者留到 ②b-2。
+     ⚠️ **不用空 handler 骗门**：那样它们会从「死按钮清单」里消失，
+     而用户点下去仍然什么都不会发生 ⇒ ⇒ 那比死按钮更坏。 */
+  const startRefPicking = useJimengStore((s) => s.startRefPicking);
   /* 批 835 SOURCE_FACT：这两个下拉在源站上**互斥**（开下一个 ⇒ 上一个关闭），
      复刻此前是两个独立 state，能同时开着。收成一个。 */
   const [open, setOpen] = useState<"model" | "size" | null>(null);
@@ -47,6 +58,7 @@ export function JimengImageGenPanel({ visible }: { visible: boolean }) {
           <button
             type="button"
             aria-label="添加参考"
+            onClick={() => startRefPicking()}
             className="mb-2 flex size-12 items-center justify-center rounded-xl bg-white/[0.06] text-white/80 hover:bg-white/10"
           >
             <Plus size={20} />
@@ -139,6 +151,7 @@ export function JimengImageGenPanel({ visible }: { visible: boolean }) {
               <button
                 type="button"
                 aria-label="引用参考"
+                onClick={() => startRefPicking()}
                 className="flex size-6 items-center justify-center text-white/80 hover:bg-white/[0.08]"
               >
                 <Quote size={13} />
@@ -162,6 +175,7 @@ export function JimengImageGenPanel({ visible }: { visible: boolean }) {
               <button
                 type="button"
                 aria-label="引用参考"
+                onClick={() => startRefPicking()}
                 className="flex size-8 shrink-0 items-center justify-center text-white/80 hover:bg-white/[0.08]"
               >
                 <Quote size={15} />

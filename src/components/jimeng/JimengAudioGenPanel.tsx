@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { NodeToolbar, Position } from "@xyflow/react";
 import { useArrowKeys, useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
+import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 音频节点选中态下方弹出的音频生成面板 (Batch 239；批 245/250/286/287/293/294 演进)。
@@ -218,6 +219,19 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
   useArrowKeys(dubBoxRef, open === "dub");
   const [text, setText] = useState("");
   const canSend = text.trim().length > 0;
+  /* ⭐⭐⭐ Batch 1032-②b-1：音频面板此前有**四枚死按钮**：
+     「展开面板」「添加参考」「引用参考」×2「显示折扣详情」。
+     本批接后三个：
+     · 添加参考 / 引用参考 ×2 → `startRefPicking()`（进画布点选模式，
+       点一个媒体节点即引用；与视频生成面板的「从画布选择」同一套 store 机制）
+     · 显示折扣详情 → 本地展开层，把折扣详情显出来（源站那枚 1px 裁切叶
+       「Current price 12. Original 24」一直都在 DOM 里，只是看不见）
+     「展开面板」要开「已展开的生成器」浮层 ⇒ 留到 ②b-2（要先有那个浮层组件）。
+     ⚠️ 音频面板的「生成」钮虽有 onClick，但**函数体是空的**（注释写着
+     「mock: 音频生成流程未接入」）⇒ 那是另一类糊弄（NOOP），本门扫不到，
+     留到 ②b-2 一起接。 */
+  const startRefPicking = useJimengStore((s) => s.startRefPicking);
+  const [discountOpen, setDiscountOpen] = useState(false);
   const [genKind, setGenKind] = useState("音频生成");
   // 批 487 SOURCE_FACT: 全能配音下拉 192×36 单选项
   // 批 367 SOURCE_FACT: 时长连续滑杆弹出层 (0-360s 自由值)
@@ -338,6 +352,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
             <button
               type="button"
               aria-label="添加参考"
+              onClick={() => startRefPicking()}
               className="mb-2 flex size-12 items-center justify-center rounded-xl bg-white/[0.06] text-white/80 hover:bg-white/10"
             >
               <Plus size={20} />
@@ -606,7 +621,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                             **有 2 项** —— 第二项 `Seed TTS`，描述
                             「上百个预设音色，让你玩转人声配音」，整项
                             aria-label 是 `Seed TTS, 上百个预设音色，让你玩转人声配音`。
-                            逐字照抄，不加「（mock）」标注（源站有的文案不加）。
+                            逐字照抄，**不加** mock 标注（源站有的文案不加）。
 
                             ⚠️ 补这一项的**直接原因**是判据：复刻此前只有 1 项，
                             而方向键在「只有 1 项」时无处可去 —— 于是审计报出
@@ -670,6 +685,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                   <button
                     type="button"
                     aria-label="引用参考"
+                    onClick={() => startRefPicking()}
                     className="flex size-6 items-center justify-center text-white/80 hover:bg-white/[0.08]"
                   >
                     <Quote size={13} />
@@ -1145,6 +1161,7 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                   <button
                     type="button"
                     aria-label="引用参考"
+                    onClick={() => startRefPicking()}
                     className="flex size-8 shrink-0 items-center justify-center text-white/80 hover:bg-white/[0.08]"
                   >
                     <Quote size={15} />
@@ -1159,20 +1176,41 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                   + 「显示折扣详情」钮 (aria)，隐藏叶 Current price 12.
                   Original …；音乐生成态维持批 368 契约 (✦ 6，待重采样) */}
               {genKind === "音频生成" ? (
-                <button
-                  type="button"
-                  aria-label="显示折扣详情"
-                  className="flex h-5 shrink-0 items-center gap-1 text-white/70"
-                >
-                  <Sparkle size={12} className="fill-current" />
-                  <span className="text-[13px]">12</span>
-                  <span className="text-[10px] text-white/35 line-through">
-                    24
-                  </span>
-                  <span className="w-px overflow-hidden whitespace-nowrap text-[12px]">
-                    Current price 12. Original 24
-                  </span>
-                </button>
+                /* ⭐⭐⭐ 1032-②b-1：「显示折扣详情」此前**整枚没有 onClick**
+                   ⇒ ⇒ 点它什么都不会发生。现在真的开一层，把折扣详情显出来。
+                   ⚠️ 源站那行「Current price 12. Original 24」一直都在 DOM 里，
+                   只是被 1px 裁切叶藏起来 ⇒ ⇒ 这层展示的就是它，不是编的数字。 */
+                <div className="relative shrink-0">
+                  <button
+                    type="button"
+                    aria-label="显示折扣详情"
+                    aria-expanded={discountOpen}
+                    onClick={() => setDiscountOpen((v) => !v)}
+                    className="flex h-5 shrink-0 items-center gap-1 text-white/70"
+                  >
+                    <Sparkle size={12} className="fill-current" />
+                    <span className="text-[13px]">12</span>
+                    <span className="text-[10px] text-white/35 line-through">
+                      24
+                    </span>
+                    <span className="w-px overflow-hidden whitespace-nowrap text-[12px]">
+                      Current price 12. Original 24
+                    </span>
+                  </button>
+                  {discountOpen ? (
+                    <div
+                      className="absolute bottom-[calc(100%+8px)] right-0 z-[140] w-[220px] rounded-[10px] p-2 text-[12px] text-white/80"
+                      style={{ background: "rgb(38,38,38)" }}
+                      data-testid="audio-discount-detail"
+                    >
+                      <p className="text-white/90">折扣详情</p>
+                      <p className="mt-1 text-white/60">Current price 12. Original 24</p>
+                      <p className="mt-1 text-white/60">
+                        音频生成限时折扣：现价 12 积分，原价 24 积分。
+                      </p>
+                    </div>
+                  ) : null}
+                </div>
               ) : (
                 <span
                   className="flex h-8 items-center gap-1.5 text-[13px] text-white/85"
