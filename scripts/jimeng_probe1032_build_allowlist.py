@@ -39,13 +39,16 @@ ALLOW = GDIR / "inputs" / "interaction-wiring-allowlist-1032.json"
 #   ⭐ 删条不是「销账就算完」：**门的 P1 会点名**（`stale_allow`），
 #   删多删少都会红 ⇒ ⇒ 这张表与代码现状**必须逐条对得上**。
 NOTES = {
-    'src/components/jimeng/JimengAudioGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-2'),
-    'src/components/jimeng/JimengGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-2'),
-    'src/components/jimeng/JimengGenPanel.tsx#"展开视频生成器"#0': ('NO_EFFECT', '『展开视频生成器』无 onClick —— 源站实测点它开「已展开的视频生成器」浮层（role=dialog / 480 宽 / 内含 全部·图片·视频·音频·文本 参考 tab）⇒ 浮层组件尚未做 ⇒ 留到 ②b-2'),
-    'src/components/jimeng/JimengImageGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-2'),
-    'src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? "生成" : "请输入提示词"}#0': ('NO_EFFECT', '图片生成『生成』：按钮无 onClick ⇒ 需要 store 侧的图片生成 action ⇒ 留到 ②b-2'),
-    'src/components/jimeng/JimengRepaintPanel.tsx#"提及主体"#0': ('NO_EFFECT', '『@ 提及主体』无 onClick ⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-2'),
-    'src/components/jimeng/JimengVideoEditMode.tsx#"提及主体"#0': ('NO_EFFECT', '『提及主体』无 onClick（同上）⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-2'),
+    'src/components/jimeng/JimengAudioGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4'),
+    'src/components/jimeng/JimengGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4'),
+    'src/components/jimeng/JimengGenPanel.tsx#"展开视频生成器"#0': ('NO_EFFECT', '『展开视频生成器』无 onClick —— 源站实测点它开「已展开的视频生成器」浮层（role=dialog / 920×480 / 内含 全部·图片·视频·音频·文本 参考 tab）⇒ 浮层组件尚未做 ⇒ 留到 ②b-4'),
+    'src/components/jimeng/JimengImageGenPanel.tsx#"展开面板"#0': ('NO_EFFECT', '『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4'),
+    # ⭐⭐⭐ Batch 1032-②b-2 **销账**：图片生成『生成』这条**已删**（不是被改写，是从真源里移除）
+    #   —— 它此前整枚没有 onClick（1032 审计登记的死按钮），
+    #   现在接 store 的 `generateImageInto`（真 action：节点进入「生成中…」→ 3s 后变成有画面的图片节点）
+    #   ⇒ ⇒ **「现状少了它 + 标注里也没有它」= 修好了且已销账** ⇒ 门 P1 才判绿。
+    'src/components/jimeng/JimengRepaintPanel.tsx#"提及主体"#0': ('NO_EFFECT', '『@ 提及主体』无 onClick ⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-3'),
+    'src/components/jimeng/JimengVideoEditMode.tsx#"提及主体"#0': ('NO_EFFECT', '『提及主体』无 onClick（同上）⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-3'),
 }
 
 

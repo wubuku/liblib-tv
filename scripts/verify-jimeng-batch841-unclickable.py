@@ -1808,6 +1808,13 @@ def main() -> int:
           f"arrow={(_w.get('arrow_down') or {}).get('moved')} "
           f"trapped={(_w.get('escape') or {}).get('trapped')}")
     _agp2 = strip_comments(_agp_raw)
+    # ⭐⭐⭐⭐⭐ 2026-10-21：这两个布尔**先算出来**再插值 ——
+    #   f-string 的表达式部分里带反斜杠在 Python ≤3.11 是**语法错误**
+    #   ⇒ ⇒ ⇒ 那会让**整个 verifier 在 3.11 上无法解析**
+    #   ⇒ ⇒ ⇒ 而 3.11 是本机唯一装了 playwright 的版本（审计子进程要用）
+    #   ⇒ ⇒ ⇒ 两边互斥 ⇒ ⇒ verifier 直接跑不起来 ⇒ 66 条判据读「审计没跑」
+    _agp2_has_arrow = 'e.key === "ArrowDown"' in _agp2
+    _agp2_has_esc = 'e.key === "Escape"' in _agp2
     check("W.5 复刻**真的接了**那三件事（判调用形态，不查裸名字）："
           "四个 `useTakeFocusAtOpen(` + 方向键 handler + Esc 收层并把焦点"
           "还给筛选钮",
@@ -1815,9 +1822,19 @@ def main() -> int:
           and 'e.key === "ArrowDown"' in _agp2
           and 'e.key === "Escape"' in _agp2
           and "chip?.focus()" in _agp2,
+          # ⭐⭐⭐⭐⭐ 2026-10-21 修正（1032-②b-2 撞出来的**既有**缺陷）：
+          #   原来写成 f"方向键={'e.key === \"ArrowDown\"' in _agp2}" ⇒
+          #   **f-string 的表达式部分里不允许反斜杠**（PEP 701 之前是语法错误、
+          #   3.12 之后才允许）⇒ ⇒ **本文件在 Python ≤3.11 上根本无法解析**
+          #   ⇒ ⇒ 而 verifier 里的审计子进程用 `sys.executable` 起
+          #   ⇒ ⇒ 审计要 **playwright** ⇒ ⇒ 本机只有 3.11 的 venv 有 playwright
+          #   ⇒ ⇒ ⇒ **两者互斥 ⇒ ⇒ verifier 在本机压根跑不起来**
+          #   ⇒ ⇒ ⇒ 实测后果：跑 verifier ⇒ 审计子进程 `ModuleNotFoundError: playwright`
+          #   ⇒ ⇒ ⇒ ⇒ 66 条判据全红（读数是「审计没跑」而不是「产品坏了」）
+          #   ⇒ ⇒ ⇒ 修法：**先把布尔算出来**，再插值（f-string 里只放变量）。
           f"hook×{_agp2.count('useTakeFocusAtOpen(filter')} "
-          f"方向键={'e.key === \"ArrowDown\"' in _agp2} "
-          f"Esc={'e.key === \"Escape\"' in _agp2}")
+          f"方向键={_agp2_has_arrow} "
+          f"Esc={_agp2_has_esc}")
     p871 = ROOT / "scripts/jimeng_probe871_voicefilter_kb.py"
     _p871 = p871.read_text(encoding="utf-8") if p871.exists() else ""
     check("W.6 源站键盘探针在库里，且**每项测量各自建立前置态**"
@@ -5983,6 +6000,12 @@ def main() -> int:
     _p1032b1 = p1032b1.read_text(encoding="utf-8") if p1032b1.exists() else ""
     p1032b1r = ROOT / "scripts/jimeng_probe1032b1_wired_runtime.mjs"
     _p1032b1r = p1032b1r.read_text(encoding="utf-8") if p1032b1r.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②b-2：图片 / 音频「生成」那道门（**运行时**那一条）
+    #   ⚠️ 必须**同时登记 .py 与 .mjs**：.py 是判据、.mjs 是真去点一遍的那个探针
+    p1032b2 = ROOT / "scripts/jimeng_probe1032b2_gen_contract.py"
+    _p1032b2 = p1032b2.read_text(encoding="utf-8") if p1032b2.exists() else ""
+    p1032b2r = ROOT / "scripts/jimeng_probe1032b2_gen_runtime.mjs"
+    _p1032b2r = p1032b2r.read_text(encoding="utf-8") if p1032b2r.exists() else ""
     # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
     _ws = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(encoding="utf-8")
     _tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
@@ -16485,6 +16508,12 @@ def main() -> int:
           and '"p21_the_wrong_measuring_instrument_reported_the_product_as_dead_1031_" in _ausrc'
           # ⭐⭐⭐⭐⭐ p22（一次审计不算数 / 自查里的恒真判据 / 测试不许改真源）必须被引用
           and '"p22_an_audit_is_not_a_gate_and_a_self_check_can_be_vacuous_1032_" in _ausrc'
+          # ⭐⭐⭐⭐⭐ 1032-②b-1 / ②b-2 的两条新通则也必须被引用（1025 规则）
+          #   p23：「修好一个死按钮」的验收必须由运行时回答（空 handler 比死按钮更坏）
+          #   p24：「有 onClick 但函数体是空的」静态门看不见；
+          #        且**一道门跑不起来时，它报的「红」不是「产品坏了」而是「仪器没跑」
+          and '"p23_fixing_a_dead_button_is_only_half_the_job_you_must_prove_it_does_something_1032b1_" in _ausrc'
+          and '"p24_a_noop_handler_is_invisible_to_the_static_gate_and_a_gate_that_cannot_parse_is_invisible_to_me_1032b2_" in _ausrc'
 )
     _needa = ['NODE_SCOPED = C.get("node_scoped", {}) or {}' in _p1031d,
               'out["P7_calibers_do_not_overlap_1031d"] = bool(not _overlap_t and not _overlap_a)' in _p1031d,
@@ -16691,6 +16720,75 @@ def main() -> int:
           "⚠️⭐⭐ 诚实标注边界：探针只覆盖**这 18 个已修按钮**；**其余 7 个仍死的按钮**由静态门（DD993S.1）管；"
           "**「有 onClick 但函数体是空的」那一类**静态门扫不到 ⇒ 留待 ②b-2。",
           _p1032b1_ok and _p1032b1_out_ok())
+    # ⭐⭐⭐⭐⭐ 1032-②b-2：这条判据守着「**图片 / 音频的「生成」点了真的有没有发生事**」
+    def _p1032b2_out_ok() -> bool:
+        _pb = ROOT / "docs/research/jimeng-canvas/gen-contract-1032b2.json"
+        if not _pb.exists():
+            return False
+        try:
+            _db = json.loads(_pb.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _cb = _db.get("criteria") or {}
+        if not _cb:
+            return False
+        return all(v is True for v in _cb.values())
+
+    def _p1032b2_writeoff_ok() -> bool:
+        """销账证明：图片「生成」那条**真的从真源里没了**，且死按钮数 7 → 6。"""
+        _al = ROOT / "docs/research/jimeng-canvas/inputs/interaction-wiring-allowlist-1032.json"
+        _ck = ROOT / "docs/research/jimeng-canvas/interaction-wiring-check-1032.json"
+        if not _al.exists() or not _ck.exists():
+            return False
+        try:
+            _a = json.loads(_al.read_text(encoding="utf-8"))
+            _c = json.loads(_ck.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _keys = [e.get("stable_key") for e in (_a.get("entries") or [])]
+        _gone = 'src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? "生成" : "请输入提示词"}#0'
+        return (
+            _gone not in _keys
+            and _a.get("n") == 6
+            and _c.get("n_dead_buttons") == 6
+            and _c.get("n_allowlist_entries") == 6
+        )
+
+    _p1032b2_ok = (
+        # ⭐⭐⭐⭐⭐ 运行时探针必须**真的去点一遍** —— 不能只是读源码
+        "image_gen_enters_generating" in _p1032b2r
+        and "audio_gen_enters_generating" in _p1032b2r
+        and "data-jimeng-image-generating" in _p1032b2r
+        and "data-jimeng-audio-generated-badge" in _p1032b2r
+        # ⭐⭐⭐⭐⭐ **负控也必须在**：空提示词点「生成」⇒ 什么也不该发生
+        #   ⇒ ⇒ 只验「该发生时发生」的话，**一个恒真的按钮也能过**
+        and "image_gen_empty_prompt_does_nothing" in _p1032b2r
+        and "audio_gen_empty_prompt_does_nothing" in _p1032b2r
+        # ⭐⭐⭐⭐⭐ 判据必须**自己从原始字段重算**（不信探针给的 ok 标志）
+        and "_neg_ok" in _p1032b2
+        and "_enters_ok" in _p1032b2
+        and "_poster_ok" in _p1032b2
+        and "_badge_ok" in _p1032b2
+        and "p8_mutation" in _p1032b2
+    )
+    check("DD993V.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「生成」这件事**必须由运行时来回答**，而且**静态门看不见其中一枚**："
+          "1032-②b-2 修了两枚「生成」，而它们的糊弄形态**不一样** ——"
+          "图片生成面板的「生成」此前**整枚没有 onClick**（静态门看得见 ⇒ 死按钮 7 → 6，已销账）；"
+          "⭐ **音频生成面板的「生成」此前是「有 onClick 但函数体是空的」**"
+          "（`if (canSend) { /* mock: 未接入 */ }`）⇒ ⇒ **静态门把它算成 WIRED**"
+          "⇒ ⇒ ⇒ **静态门根本看不见这一类糊弄** ⇒ ⇒ ⇒ 只有运行时门能抓它。"
+          "⭐⭐⭐⭐⭐ **判据一律是「某个可观察的东西变了」**：点「生成」⇒ ⇒ 页面上出现「生成中…」；"
+          "3s 后 ⇒ ⇒ 图片节点里**真的多了一张 `<img>`**、音频节点上**真的出现时长徽标**。"
+          "⭐⭐⭐⭐⭐ **并且带负控**：提示词为空时点「生成」⇒ ⇒ **什么也不该发生**"
+          "⇒ ⇒ 只验「该发生时发生」的话，**一个恒真的按钮也能过** ⇒ ⇒ 所以判据是**双向**的。"
+          "⭐⭐⭐⭐⭐ 判据**自己从原始字段重算**（不信探针给的 `ok` 标志）⇒ ⇒ 阳性对照改原始字段时门会红"
+          "⇒ ⇒ 「变异体必须自证『我确实改动了东西』」。"
+          "⚠️⭐⭐ 诚实标注边界：生成**产物本身**是 CLONE_DECISION（源站的产出要付费才能观测，"
+          "本门只保证「有一个可观察的状态变化」，**不保证与源站产物一致**）；"
+          "**其余 6 个仍死的按钮**由静态门（DD993S.1）管；"
+          "**「有 onClick 但函数体是空的」另一枚**（文本「展开文本面板」）留待 ②c 的场景化探针。",
+          _p1032b2_ok and _p1032b2_out_ok() and _p1032b2_writeoff_ok())
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

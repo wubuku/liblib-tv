@@ -2,16 +2,16 @@
  "generated_by": "jimeng_probe1032_build_allowlist.py（entries 为人工标注，honest_disabled 自动同步）",
  "purpose": "⭐⭐ 白名单**同时是修复清单**：每条写明它属于哪类糊弄、为什么。",
  "rule": "⭐ 门 P1：代码里的死按钮必须**恰好**等于 entries —— 多一条（新增糊弄）红、少一条（修好了却没销账）也红。",
- "n": 7,
+ "n": 6,
  "entries": [
   {
    "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#\"展开面板\"#0",
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 330,
+   "line": 344,
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"展开面板\"",
    "kind": "NO_EFFECT",
-   "note": "『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-2"
+   "note": "『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4"
   },
   {
    "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"展开面板\"#0",
@@ -20,7 +20,7 @@
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"展开面板\"",
    "kind": "NO_EFFECT",
-   "note": "『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-2"
+   "note": "『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4"
   },
   {
    "stable_key": "src/components/jimeng/JimengGenPanel.tsx#\"展开视频生成器\"#0",
@@ -29,25 +29,16 @@
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"展开视频生成器\"",
    "kind": "NO_EFFECT",
-   "note": "『展开视频生成器』无 onClick —— 源站实测点它开「已展开的视频生成器」浮层（role=dialog / 480 宽 / 内含 全部·图片·视频·音频·文本 参考 tab）⇒ 浮层组件尚未做 ⇒ 留到 ②b-2"
+   "note": "『展开视频生成器』无 onClick —— 源站实测点它开「已展开的视频生成器」浮层（role=dialog / 920×480 / 内含 全部·图片·视频·音频·文本 参考 tab）⇒ 浮层组件尚未做 ⇒ 留到 ②b-4"
   },
   {
    "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#\"展开面板\"#0",
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 42,
+   "line": 56,
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"展开面板\"",
    "kind": "NO_EFFECT",
-   "note": "『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-2"
-  },
-  {
-   "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? \"生成\" : \"请输入提示词\"}#0",
-   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 183,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "{canSend ? \"生成\" : \"请输入提示词\"}",
-   "kind": "NO_EFFECT",
-   "note": "图片生成『生成』：按钮无 onClick ⇒ 需要 store 侧的图片生成 action ⇒ 留到 ②b-2"
+   "note": "『展开面板』无 onClick —— 展开浮层组件尚未做 ⇒ 留到 ②b-4"
   },
   {
    "stable_key": "src/components/jimeng/JimengRepaintPanel.tsx#\"提及主体\"#0",
@@ -56,7 +47,7 @@
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"提及主体\"",
    "kind": "NO_EFFECT",
-   "note": "『@ 提及主体』无 onClick ⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-2"
+   "note": "『@ 提及主体』无 onClick ⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-3"
   },
   {
    "stable_key": "src/components/jimeng/JimengVideoEditMode.tsx#\"提及主体\"#0",
@@ -65,7 +56,7 @@
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"提及主体\"",
    "kind": "NO_EFFECT",
-   "note": "『提及主体』无 onClick（同上）⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-2"
+   "note": "『提及主体』无 onClick（同上）⇒ 需要 store 侧的「主体选择」态 ⇒ 留到 ②b-3"
   }
  ],
  "honest_disabled": [
@@ -77,13 +68,13 @@
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 157,
+   "line": 158,
    "label": "",
    "why_not_a_lie": "⭐ 明确 disabled 是**诚实**（用户看得到禁用态）；它与「能点但毫无反应」不是一回事 ⇒ 登记但不判红"
   },
   {
    "file": "src/components/jimeng/JimengMemberModal.tsx",
-   "line": 164,
+   "line": 165,
    "label": "",
    "why_not_a_lie": "⭐ 明确 disabled 是**诚实**（用户看得到禁用态）；它与「能点但毫无反应」不是一回事 ⇒ 登记但不判红"
   }

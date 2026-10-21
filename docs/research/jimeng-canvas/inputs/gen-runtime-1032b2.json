@@ -1,0 +1,57 @@
+{
+ "generated_by": "jimeng_probe1032b2_gen_runtime.mjs",
+ "note": "⭐ 判据是「某个可观察的东西变了」；负控验「不该发生时**不**发生」。",
+ "checks": {
+  "image_node_inserted": {
+   "ok": true,
+   "before": 5,
+   "after": 6
+  },
+  "image_gen_empty_prompt_does_nothing": {
+   "ok": true,
+   "selected": true,
+   "textarea_found": true,
+   "clicked": true,
+   "generating_visible": false
+  },
+  "image_gen_enters_generating": {
+   "ok": true,
+   "selected": true,
+   "textarea_found": true,
+   "clicked": true,
+   "generating_visible": true
+  },
+  "image_gen_produces_poster": {
+   "ok": true,
+   "img_count": 1,
+   "generating_visible": false
+  },
+  "audio_gen_empty_prompt_does_nothing": {
+   "ok": true,
+   "selected": true,
+   "textarea_found": true,
+   "clicked": true,
+   "generating_visible": false
+  },
+  "audio_gen_enters_generating": {
+   "ok": true,
+   "selected": true,
+   "textarea_found": true,
+   "clicked": true,
+   "generating_visible": true
+  },
+  "audio_gen_produces_duration_badge": {
+   "ok": true,
+   "badge_visible": true,
+   "badge_text": "00:12",
+   "generating_visible": false
+  },
+  "no_page_errors": {
+   "ok": true,
+   "n": 0
+  }
+ },
+ "n_checks": 8,
+ "n_failed": 0,
+ "pageerrors": []
+}

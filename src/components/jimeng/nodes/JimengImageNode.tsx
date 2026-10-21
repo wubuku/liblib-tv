@@ -33,7 +33,10 @@ export function JimengImageNode({ id, data, selected }: NodeProps) {
           onAction={(label) => pushToast(mockMsg(`${label}已执行`))}
         />
       ) : (
-        <JimengImageGenPanel visible={selected === true && soloSelected} />
+        <JimengImageGenPanel
+          visible={selected === true && soloSelected}
+          nodeId={id}
+        />
       )}
     <div
       className="group relative"
@@ -79,6 +82,20 @@ export function JimengImageNode({ id, data, selected }: NodeProps) {
             <span className="text-[13px] text-white/90">
               正在上传图片 {d.uploadProgress}%
             </span>
+          </div>
+        ) : null}
+        {/* ⭐⭐⭐ Batch 1032-②b-2：图片「生成中」处理态 (CLONE_DECISION)。
+            与视频侧 `d.generating` 的覆盖层同款 (同文案「生成中…」)，
+            ⇒ ⇒ 判据可以写成「**页面上出现了『生成中…』**」——
+            这是**可观察的**，不是一个假 toast。
+            ⚠️ 源站这个态需要付费才能看到 ⇒ ⇒ CLONE_DECISION。 */}
+        {d.generating ? (
+          <div
+            className="absolute inset-0 z-[3] flex flex-col items-center justify-center gap-2 rounded-lg bg-black/55"
+            data-jimeng-image-generating=""
+          >
+            <span className="size-6 animate-spin rounded-full border-2 border-white/25 border-t-white" />
+            <span className="text-[12px] text-white/85">生成中…</span>
           </div>
         ) : null}
       </div>

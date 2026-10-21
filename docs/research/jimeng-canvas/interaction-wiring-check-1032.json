@@ -35,17 +35,17 @@
  "P5_every_allowlist_entry_still_exists_1032": true,
  "P5_missing": [],
  "button_counts": {
-  "WIRED": 195,
+  "WIRED": 196,
   "DISABLED_NO_HANDLER": 3,
-  "DEAD_NO_HANDLER": 7,
+  "DEAD_NO_HANDLER": 6,
   "FORM_SUBMIT": 3
  },
- "n_dead_buttons": 7,
- "n_allowlist_entries": 7,
+ "n_dead_buttons": 6,
+ "n_allowlist_entries": 6,
  "dead_buttons": [
   {
    "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-   "line": 330,
+   "line": 344,
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"展开面板\"",
    "kind": "NO_EFFECT"
@@ -66,16 +66,9 @@
   },
   {
    "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 42,
+   "line": 56,
    "verdict": "DEAD_NO_HANDLER",
    "label": "\"展开面板\"",
-   "kind": "NO_EFFECT"
-  },
-  {
-   "file": "src/components/jimeng/JimengImageGenPanel.tsx",
-   "line": 183,
-   "verdict": "DEAD_NO_HANDLER",
-   "label": "{canSend ? \"生成\" : \"请输入提示词\"}",
    "kind": "NO_EFFECT"
   },
   {

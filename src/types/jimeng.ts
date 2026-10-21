@@ -65,6 +65,17 @@ export interface JimengImageNodeData extends Record<string, unknown> {
    * 缺省 = 非上传态；100 = 完成（组件按 <100 判定显隐）。
    */
   uploadProgress?: number;
+  /** ⭐ Batch 1032-②b-2：图片生成的处理态 (CLONE_DECISION)。
+   *
+   *  源站点「生成」会**真的提交付费任务** ⇒ ⇒ 复刻侧不观测那个结果，
+   *  ⇒ ⇒ 这里走的是**与视频侧 `generateInto` 同构**的 mock：
+   *  立即进入「生成中」，3s 后变成有画面的图片节点。
+   *
+   *  ⚠️ 这条**不是 SOURCE_FACT** —— 源站的「生成完成后长什么样」需要付费才能看，
+   *  ⇒ ⇒ 因此只保证「**有一个可观察的状态变化**」，不假装复刻了源站的产出。 */
+  generating?: boolean;
+  /** ⭐ Batch 1032-②b-2：生成时的提示词 (mock，与视频侧 `prompt` 同义) */
+  prompt?: string;
 }
 
 /** 文字节点 (Batch 17；尺寸 CLONE_DECISION 320×200) */
@@ -91,6 +102,11 @@ export interface JimengAudioNodeData extends Record<string, unknown> {
   height: number;
   /** 颜色标记 (批 263 SOURCE_FACT: 音频标题行悬停出现 Add tags，同视频) */
   tagColor?: string | null;
+  /** ⭐ Batch 1032-②b-2：音频生成的处理态 (CLONE_DECISION，同图片侧)。
+   *  源站「生成」= 付费任务 ⇒ ⇒ 不观测；复刻走 mock：立即「生成中」，3s 后完成。 */
+  generating?: boolean;
+  /** ⭐ Batch 1032-②b-2：生成时的提示词 (mock) */
+  prompt?: string;
 }
 
 /** 时间线节点 (Batch 805 SOURCE_FACT @1680×826 登录态实测)

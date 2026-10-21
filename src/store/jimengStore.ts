@@ -10,6 +10,7 @@ import type { Edge, EdgeChange, NodeChange } from "@xyflow/react";
 import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 import type {
+  JimengAudioNodeData,
   JimengImageNodeData,
   JimengNode,
   JimengVideoNodeData,
@@ -37,6 +38,24 @@ const MOCK_POSTER =
       `<circle cx="180" cy="210" r="70" fill="#242426"/>` +
       `<circle cx="410" cy="190" r="52" fill="#28282A"/>` +
       `<rect x="0" y="248" width="569" height="72" fill="#161618"/>` +
+      `</svg>`,
+  );
+
+/** ⭐ Batch 1032-②b-2：图片生成产物用的 mock 画面 (data URI)。
+ *
+ *  ⚠️ **不是源站资产** —— 源站的图片生成要付费才能看到产出，
+ *  ⇒ ⇒ 复刻侧用一张合成占位图 (CLONE_DECISION)，与视频侧 `MOCK_POSTER` 同族。 */
+const MOCK_IMAGE =
+  "data:image/svg+xml;utf8," +
+  encodeURIComponent(
+    `<svg xmlns="http://www.w3.org/2000/svg" width="480" height="360">` +
+      `<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">` +
+      `<stop offset="0" stop-color="#34343A"/><stop offset="0.6" stop-color="#232328"/><stop offset="1" stop-color="#17171A"/>` +
+      `</linearGradient></defs>` +
+      `<rect width="480" height="360" fill="url(#g)"/>` +
+      `<circle cx="150" cy="140" r="52" fill="#3A3A42"/>` +
+      `<rect x="250" y="96" width="150" height="150" rx="14" fill="#2C2C33"/>` +
+      `<rect x="0" y="296" width="480" height="64" fill="#141416"/>` +
       `</svg>`,
   );
 
@@ -236,6 +255,31 @@ export interface JimengCanvasState {
   ) => void;
   /** 生成面板发送 (Batch 50)：空节点进入生成中，3s 后完成变为有内容节点 (mock) */
   generateInto: (id: string, prompt: string) => void;
+  /** ⭐⭐⭐ Batch 1032-②b-2：图片生成 (CLONE_DECISION)。
+   *
+   *  **为什么此前没有这个 action**：图片生成面板的「生成」按钮**整枚没有 onClick**
+   *  ⇒ ⇒ 1032 审计把它登记成死按钮（DEAD_NO_HANDLER）。
+   *  ⇒ ⇒ 而**不能**用「加个空 handler」把它从死按钮清单里摘掉 ——
+   *  那样它只是从「点不动」变成「点了什么也不会发生」，**比死按钮更坏**。
+   *
+   *  **它做什么**：与视频侧 `generateInto` **同构** —— 立即进入「生成中」，
+   *  3s 后节点变成**有画面的**图片节点（`poster` 被填上）。
+   *  ⇒ ⇒ 判据可以写成「**某个可观察的东西变了**」（节点里出现了 `<img>`），
+   *  而不是一个假 toast。
+   *
+   *  ⚠️ **CLONE_DECISION，不是 SOURCE_FACT**：源站点「生成」会提交付费任务，
+   *  ⇒ ⇒ 复刻侧不观测那个结果（也不该观测），
+   *  ⇒ ⇒ 因此这里只保证「有一个可观察的状态变化」，**不假装复刻了源站产出**。 */
+  generateImageInto: (id: string, prompt: string) => void;
+  /** ⭐⭐⭐ Batch 1032-②b-2：音频生成 (CLONE_DECISION)，与上面同构。
+   *
+   *  **注意它修的不是死按钮**：音频面板的「生成」**有 onClick**，
+   *  但函数体是空的（`if (canSend) { /* mock: 未接入 *\/ }`）
+   *  ⇒ ⇒ 静态门把它算成 `WIRED` ⇒ ⇒ **静态门看不见这一类糊弄**
+   *  ⇒ ⇒ 这是「有 onClick 但函数体是空的」（NOOP）那一类，只能靠运行时门抓。
+   *
+   *  它做什么：立即「生成中」，3s 后完成 ⇒ ⇒ 节点上出现时长徽标。 */
+  generateAudioInto: (id: string, prompt: string) => void;
   /** 节点数据 patch (Batch 31 颜色标记；Batch 38 泛化为任意节点) */
   updateNodeData: (id: string, patch: Record<string, unknown>) => void;
   /** 节点数据 patch，**且可整体撤销** (Batch 825，时间线剪辑动作)
@@ -559,6 +603,63 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
               currentTime: 0,
               playing: false,
             },
+          };
+        }),
+      }));
+    }, 3000);
+  },
+
+  /* ⭐⭐⭐ Batch 1032-②b-2：图片生成 (CLONE_DECISION，与视频侧 generateInto 同构)。
+     立即「生成中」→ 3s 后变成有画面的图片节点。 */
+  generateImageInto: (id, prompt) => {
+    set((state) => ({
+      ...markDirty(state),
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "image") return n;
+        const d = n.data as JimengImageNodeData;
+        return { ...n, data: { ...d, generating: true, prompt } };
+      }),
+    }));
+    window.setTimeout(() => {
+      set((state) => ({
+        ...markDirty(state),
+        nodes: state.nodes.map((n) => {
+          if (n.id !== id || n.type !== "image") return n;
+          const d = n.data as JimengImageNodeData;
+          return {
+            ...n,
+            data: {
+              ...d,
+              generating: false,
+              poster: MOCK_IMAGE,
+              source: "generated",
+            },
+          };
+        }),
+      }));
+    }, 3000);
+  },
+
+  /* ⭐⭐⭐ Batch 1032-②b-2：音频生成 (CLONE_DECISION)。
+     与上面同构：立即「生成中」→ 3s 后完成 ⇒ 节点上出现时长徽标。 */
+  generateAudioInto: (id, prompt) => {
+    set((state) => ({
+      ...markDirty(state),
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "audio") return n;
+        const d = n.data as JimengAudioNodeData;
+        return { ...n, data: { ...d, generating: true, prompt } };
+      }),
+    }));
+    window.setTimeout(() => {
+      set((state) => ({
+        ...markDirty(state),
+        nodes: state.nodes.map((n) => {
+          if (n.id !== id || n.type !== "audio") return n;
+          const d = n.data as JimengAudioNodeData;
+          return {
+            ...n,
+            data: { ...d, generating: false, duration: 12, source: "generated" },
           };
         }),
       }));

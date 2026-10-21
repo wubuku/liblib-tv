@@ -1,0 +1,22 @@
+{
+ "generated_by": "scripts/jimeng_probe1032b2_expand_source.py",
+ "measured_at": "2026-10-21",
+ "canvas_url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+ "how": "登录源站 → 打开示例画布 → **轮询到画布就绪** → 按 `rf__node-` testid 枚举节点并按内部构成判类型 → 选中目标节点 → 找它面板上的展开钮 → 点它 → 读展开层。",
+ "first_attempt_failure": {
+  "what": "⭐ 第一版探针读到「0 个节点」，**两处都是量法错，不是产品没有**",
+  "err_1": "只等 6s 就读 ⇒ 那一刻源站还在 `workspace-preparing-state`（Loading canvas）⇒ ⇒ **画布要 ~9s 才就绪**",
+  "err_2": "用 `.react-flow__node` 找节点 ⇒ 源站**不用 React Flow 的 class**，它的节点 testid 是 `rf__node-<uuid>` ⇒ ⇒ **选错选择器永远读到 0 个**",
+  "lesson": "⭐⭐ 「读数为 0」先问「我的探针量到的是不是那个东西」——**等够了吗？选对了吗？** ⇒ 两问都过了才轮到「它真的不存在」"
+ },
+ "nodes_total": 76,
+ "kind_counts": {
+  "audio": 68,
+  "image": 1,
+  "text": 3,
+  "unknown": 3,
+  "video": 1
+ },
+ "expanded": [],
+ "not_measured": []
+}

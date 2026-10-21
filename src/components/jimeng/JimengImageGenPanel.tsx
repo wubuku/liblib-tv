@@ -5,6 +5,7 @@ import { ArrowUp, ChevronDown, Maximize2, Plus, Quote, Sparkle } from "lucide-re
 import { NodeToolbar, Position } from "@xyflow/react";
 
 import { useJimengStore } from "@/store/jimengStore";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 空图片节点选中态下方弹出的图片生成面板 (Batch 530)。
@@ -18,20 +19,33 @@ import { useJimengStore } from "@/store/jimengStore";
  *   · 引用参考 24×24 · 引用参考 32×32
  * - 价格: 可见 ✦3 / 张，隐藏叶 Current price 3 / 张. (1px 裁切)
  * - 发送钮 生成 32×32 (空文案灰态)
- * mock: 生成流程未接入 (BLOCKED_BY_FIXTURE)。
+ * ⭐⭐⭐ Batch 1032-②b-2：`mock: 生成流程未接入 (BLOCKED_BY_FIXTURE)` **这句已经过时** ——
+ *   「生成」现在接**真 action** `generateImageInto`（CLONE_DECISION：mock 产出，
+ *   但**有可观察的状态变化**：节点进入「生成中…」→ 3s 后变成有画面的图片节点）。
  */
-export function JimengImageGenPanel({ visible }: { visible: boolean }) {
+export function JimengImageGenPanel({
+  visible,
+  nodeId,
+}: {
+  visible: boolean;
+  /** ⭐⭐⭐ Batch 1032-②b-2：生成要落到**哪个节点**上 ⇒ 必须拿得到 nodeId。 */
+  nodeId: string;
+}) {
   const [text, setText] = useState("");
   const canSend = text.trim().length > 0;
   /* ⭐⭐⭐ Batch 1032-②b-1：图片面板此前有**四枚死按钮**：
      「展开面板」「添加参考」「引用参考」×2 + 「生成」。
      本批接中间三个（引用类）：走 `startRefPicking()` —— 与视频生成面板的
      「从画布选择」同一套 store 机制（进点选模式 ⇒ 点画布上任一个媒体节点即引用）。
-     「展开面板」要开「已展开的生成器」浮层、「生成」要新增 store 侧的图片生成
-     action ⇒ ⇒ 两者留到 ②b-2。
+     「展开面板」要开「已展开的生成器」浮层 ⇒ ⇒ 留到 ②b-4。
      ⚠️ **不用空 handler 骗门**：那样它们会从「死按钮清单」里消失，
      而用户点下去仍然什么都不会发生 ⇒ ⇒ 那比死按钮更坏。 */
   const startRefPicking = useJimengStore((s) => s.startRefPicking);
+  /* ⭐⭐⭐ Batch 1032-②b-2：「生成」接**真 action**（此前整枚没有 onClick）。
+     ⇒ ⇒ 走 store 的 `generateImageInto`：节点进入「生成中」，
+     3s 后变成**有画面的**图片节点（页面上的 `<img>` 真的多出来一张）。 */
+  const generateImageInto = useJimengStore((s) => s.generateImageInto);
+  const pushToast = useJimengStore((s) => s.pushToast);
   /* 批 835 SOURCE_FACT：这两个下拉在源站上**互斥**（开下一个 ⇒ 上一个关闭），
      复刻此前是两个独立 state，能同时开着。收成一个。 */
   const [open, setOpen] = useState<"model" | "size" | null>(null);
@@ -184,6 +198,16 @@ export function JimengImageGenPanel({ visible }: { visible: boolean }) {
                 type="button"
                 aria-label={canSend ? "生成" : "请输入提示词"}
                 title={canSend ? undefined : "请输入提示词"}
+                onClick={() => {
+                  /* ⭐⭐⭐ Batch 1032-②b-2：这枚按钮此前**整枚没有 onClick**
+                     ⇒ ⇒ 1032 审计登记为死按钮。现在接真 action：
+                     ⇒ ⇒ 点下去节点进入「生成中」，3s 后变成有画面的图片节点。
+                     ⚠️ 空提示词时**什么都不做**（与视频侧同一口径：先判 canSend）。 */
+                  if (!canSend) return;
+                  generateImageInto(nodeId, text);
+                  pushToast(FEEDBACK.taskSubmitted("生成"));
+                  setText("");
+                }}
                 className={`flex size-8 items-center justify-center rounded-full ${
                   canSend
                     ? "bg-[#fafafa] text-black hover:bg-white/90"

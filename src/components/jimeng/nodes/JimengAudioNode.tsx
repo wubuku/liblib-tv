@@ -13,6 +13,13 @@ import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
 import { useJimengStore } from "@/store/jimengStore";
 
+/** ⭐⭐⭐ Batch 1032-②b-2：秒 → mm:ss（生成完成后的时长徽标）。 */
+function formatDuration(seconds: number): string {
+  const m = Math.floor(seconds / 60);
+  const s = Math.floor(seconds % 60);
+  return `${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+}
+
 /**
  * 音频节点 (Batch 19；批 236/239 源站采样对齐)。
  *
@@ -124,9 +131,33 @@ export function JimengAudioNode({ id, data, selected }: NodeProps) {
             />
           ))}
         </span>
+        {/* ⭐⭐⭐ Batch 1032-②b-2：音频「生成中」处理态 (CLONE_DECISION)。
+            与视频/图片侧同款覆盖层 ⇒ ⇒ 判据写成「页面上出现『生成中…』」。 */}
+        {d.generating ? (
+          <div
+            className="absolute inset-0 z-[3] flex flex-col items-center justify-center gap-2 rounded-lg bg-black/55"
+            data-jimeng-audio-generating=""
+          >
+            <span className="size-6 animate-spin rounded-full border-2 border-white/25 border-t-white" />
+            <span className="text-[12px] text-white/85">生成中…</span>
+          </div>
+        ) : null}
+        {/* ⭐⭐⭐ Batch 1032-②b-2：生成**完成**后的可见产物（时长徽标）。
+            ⚠️ 只在 `source === "generated"` 时显示 ⇒ ⇒ **初始 mock 音频节点
+            （duration 15、无 source）不受影响** ⇒ ⇒ 初始画布外观不变。
+            ⚠️ 徽标形态是 CLONE_DECISION（源站音频卡片实测无常驻播放控件，
+            批 236；源站生成完成的产物形态需付费才能观测）。 */}
+        {d.source === "generated" ? (
+          <span
+            className="absolute bottom-2 left-2 rounded bg-black/70 px-1 text-[9px] leading-[14px] text-white/90"
+            data-jimeng-audio-generated-badge=""
+          >
+            {formatDuration(d.duration)}
+          </span>
+        ) : null}
       </div>
 
-      <JimengAudioGenPanel visible={selected === true} />
+      <JimengAudioGenPanel visible={selected === true} nodeId={id} />
 
       <JimengConnectHandles
         nodeId={id}

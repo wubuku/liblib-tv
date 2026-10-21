@@ -14,6 +14,7 @@ import {
 import { NodeToolbar, Position } from "@xyflow/react";
 import { useArrowKeys, useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
 import { useJimengStore } from "@/store/jimengStore";
+import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
 
 /**
  * 音频节点选中态下方弹出的音频生成面板 (Batch 239；批 245/250/286/287/293/294 演进)。
@@ -43,7 +44,10 @@ import { useJimengStore } from "@/store/jimengStore";
  *   变动；批 367e: 与时长无关 (53s-341s 恒 6.6)。批 370 SOURCE_FACT:
  *   发送钮空态 bg rgba(255,255,255,0.16) → 非空输入态 rgb(250,250,250)
  *   白色激活，「生成」裁切叶两态均保持折叠。
- * mock: 生成流程未接入 (BLOCKED_BY_FIXTURE)。
+ * ⭐⭐⭐ Batch 1032-②b-2：`mock: 生成流程未接入 (BLOCKED_BY_FIXTURE)` **这句已经过时** ——
+ *   「生成」此前是**空 handler**（有 onClick 但函数体空的 ⇒ 静态门看不见），
+ *   现在接**真 action** `generateAudioInto`（CLONE_DECISION：mock 产出，
+ *   但**有可观察的状态变化**：节点进入「生成中…」→ 3s 后出现时长徽标）。
  */
 
 /** 批 367f SOURCE_FACT: 音乐时长跨节点持久 (模块级，非 per-node 状态) */
@@ -174,7 +178,14 @@ function refocusToNodeFromToolbar(from: HTMLElement | null): void {
   setTimeout(refocus, 120);
 }
 
-export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
+export function JimengAudioGenPanel({
+  visible,
+  nodeId,
+}: {
+  visible: boolean;
+  /** ⭐⭐⭐ Batch 1032-②b-2：生成要落到**哪个节点**上 ⇒ 必须拿得到 nodeId。 */
+  nodeId: string;
+}) {
   /* 批 835 SOURCE_FACT：音频面板里这 6 个下拉在源站上**互斥**（开下一个 ⇒
      上一个自动关闭）。复刻此前是 6 个独立 boolean，于是能同时开着：
      实测「音乐模型」（392 宽）会盖住「生成模式」（192 宽）里的选项，
@@ -231,6 +242,9 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
      「mock: 音频生成流程未接入」）⇒ 那是另一类糊弄（NOOP），本门扫不到，
      留到 ②b-2 一起接。 */
   const startRefPicking = useJimengStore((s) => s.startRefPicking);
+  /* ⭐⭐⭐ Batch 1032-②b-2：音频「生成」接**真 action**（此前是空 handler）。 */
+  const generateAudioInto = useJimengStore((s) => s.generateAudioInto);
+  const pushToast = useJimengStore((s) => s.pushToast);
   const [discountOpen, setDiscountOpen] = useState(false);
   const [genKind, setGenKind] = useState("音频生成");
   // 批 487 SOURCE_FACT: 全能配音下拉 192×36 单选项
@@ -1228,9 +1242,15 @@ export function JimengAudioGenPanel({ visible }: { visible: boolean }) {
                 aria-label={canSend ? "生成" : "请输入提示词"}
                 title={canSend ? undefined : "请输入提示词"}
                 onClick={() => {
-                  if (canSend) {
-                    // mock: 音频生成流程未接入 (BLOCKED_BY_FIXTURE)
-                  }
+                  /* ⭐⭐⭐ Batch 1032-②b-2：这枚按钮此前**有 onClick，但函数体是空的**
+                     （`if (canSend) { /* mock: 未接入 *\/ }`）
+                     ⇒ ⇒ 静态门把它算成 `WIRED` ⇒ ⇒ **静态门看不见这一类糊弄**
+                     ⇒ ⇒ 现在接真 action：节点进入「生成中…」，
+                     3s 后完成（节点上出现时长徽标）⇒ ⇒ **可观察**。 */
+                  if (!canSend) return;
+                  generateAudioInto(nodeId, text);
+                  pushToast(FEEDBACK.taskSubmitted("生成"));
+                  setText("");
                 }}
                 className={`flex size-8 items-center justify-center rounded-full ${
                   canSend
