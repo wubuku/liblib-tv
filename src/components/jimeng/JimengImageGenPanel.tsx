@@ -200,6 +200,12 @@ export function JimengImageGenPanel({
                 type="button"
                 aria-label={canSend ? "生成" : "请输入提示词"}
                 title={canSend ? undefined : "请输入提示词"}
+                /* ⭐⭐⭐ Batch 1032-②b-c：这枚钮此前**看着是禁用的**（`!canSend` 时
+                   底色已经变暗）⇒ ⇒ **却仍然可以点**，点了**什么也不发生**
+                   ⇒ ⇒ 那是「视觉上说不可用、行为上照样能点」—— 比死按钮更坏。
+                   ⇒ ⇒ 处置：**真的 disabled**（与视频侧同一口径）
+                   ⇒ ⇒ 于是「禁用」这件事在**视觉、行为、无障碍**三处一致。 */
+                disabled={!canSend}
                 onClick={() => {
                   /* ⭐⭐⭐ Batch 1032-②b-2：这枚按钮此前**整枚没有 onClick**
                      ⇒ ⇒ 1032 审计登记为死按钮。现在接真 action：

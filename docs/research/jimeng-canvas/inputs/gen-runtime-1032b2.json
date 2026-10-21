@@ -11,7 +11,8 @@
    "ok": true,
    "selected": true,
    "textarea_found": true,
-   "clicked": true,
+   "btn_disabled": true,
+   "clicked": false,
    "generating_visible": false
   },
   "image_gen_enters_generating": {
@@ -30,7 +31,8 @@
    "ok": true,
    "selected": true,
    "textarea_found": true,
-   "clicked": true,
+   "btn_disabled": true,
+   "clicked": false,
    "generating_visible": false
   },
   "audio_gen_enters_generating": {

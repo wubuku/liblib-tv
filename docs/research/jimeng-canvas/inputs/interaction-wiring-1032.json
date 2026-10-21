@@ -678,7 +678,7 @@
    ],
    "delegated_by": "",
    "type": "button",
-   "disabled": false,
+   "disabled": true,
    "label": "{canSend ? \"生成\" : \"请输入提示词\"}",
    "ordinal": 0,
    "stable_key": "src/components/jimeng/JimengAudioGenPanel.tsx#{canSend ? \"生成\" : \"请输入提示词\"}#0"
@@ -1321,7 +1321,7 @@
    ],
    "delegated_by": "",
    "type": "button",
-   "disabled": false,
+   "disabled": true,
    "label": "{canSend ? \"生成\" : \"请输入提示词\"}",
    "ordinal": 0,
    "stable_key": "src/components/jimeng/JimengImageGenPanel.tsx#{canSend ? \"生成\" : \"请输入提示词\"}#0"
@@ -2581,7 +2581,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 364,
+   "line": 374,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2595,7 +2595,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 417,
+   "line": 427,
    "verdict": "WIRED",
    "event_attrs": [
     "onMouseDown",
@@ -2610,7 +2610,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 444,
+   "line": 454,
    "verdict": "WIRED",
    "event_attrs": [
     "onMouseDown",
@@ -2625,7 +2625,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 470,
+   "line": 480,
    "verdict": "WIRED",
    "event_attrs": [
     "onMouseDown",
@@ -2640,7 +2640,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 487,
+   "line": 497,
    "verdict": "WIRED",
    "event_attrs": [
     "onMouseDown",
@@ -2655,7 +2655,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTextNode.tsx",
-   "line": 567,
+   "line": 577,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"

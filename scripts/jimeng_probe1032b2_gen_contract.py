@@ -82,12 +82,25 @@ if _crashed:
 # ⭐⭐⭐⭐⭐ **判据必须自己从「原始字段」重算，不能只信探针给的 `ok` 标志。**
 #   否则阳性对照改原始字段时 `ok` 没变 ⇒ ⇒ 门不会红 ⇒ ⇒ P8 永远是假的。
 def _neg_ok(t):
-    """负控：空提示词点「生成」⇒ ⇒ 什么也不该发生。"""
+    """负控：空提示词 ⇒ ⇒ 不得进入生成态。
+
+    ⭐⭐⭐⭐⭐ Batch 1032-②b-c：1032-②b-c 给「空提示词」态的发送/生成钮加了 **disabled**
+    ⇒ ⇒ 而旧判据额外要求「**点得动**」⇒ ⇒ 在 disabled 实现下 `clicked` 恒为 false
+    ⇒ ⇒⇒ **负控恒红** —— 而那是「判据的前提被产品改动破坏」，不是「产品坏了」
+    ⇒ ⇒⇒ 负控的**语义**是「空提示词 ⇒ 不得进入生成态」；
+    ⇒ ⇒⇒ 而「按钮此刻真的 disabled」（用户按不动）**也是**满足这个语义的合法实现
+    ⇒ ⇒⇒ ⇒ 判据改成「**disabled 或 点得动**」+「**不得进入生成**」
+    ⇒ ⇒⇒ ⚠️ **但不能只放宽**：若 `btn_disabled` 为假、却仍点不动 ⇒ 那是**仪器坏了** ⇒ 必须红
+    ⇒ ⇒⇒ ⇒ 所以判据从**原始字段** `btn_disabled` / `clicked` / `generating_visible` 重算
+    """
     if not t:
         return None
     if "generating_visible" not in t:
         return None
-    return bool(t.get("clicked") is True and t.get("generating_visible") is False)
+    if "btn_disabled" not in t:
+        return None
+    return bool(t.get("generating_visible") is False
+                and (t.get("btn_disabled") is True or t.get("clicked") is True))
 
 
 def _enters_ok(t):
@@ -176,6 +189,27 @@ if _readings:
         "p2_turned_red": (_c["P2"] is True and _mc["P2"] is False),
         "note": "⭐ 判据级变异：只改读数、不碰真源 ⇒ 真源产物零污染",
     }
+    # ⭐⭐⭐⭐⭐ Batch 1032-②b-c：负控 P1 也要有**改原始字段**的阳性对照
+    #   ⇒ ⇒ 否则「负控恒绿」这件事没人能发现
+    #   变异 A：把「不得进入生成」改成「进入了」⇒ ⇒ P1 必须红
+    #     （证明「不得进入生成」这半条**有牙**）
+    #   变异 B：把读数改造成「按钮**没** disabled、却**点不动**」⇒ ⇒ P1 必须红
+    #     （证明「没有 disabled 就必须点得动」这半条**不是恒真** ⇒ 仪器坏了不许蒙混过关）
+    #   ⚠️ 两个变异都**无条件**生效（不依赖运行时按钮当时是不是 disabled）
+    _b1 = json.loads(json.dumps(_readings))
+    _t1 = (_b1.get("checks") or {}).get("image_gen_empty_prompt_does_nothing")
+    if _t1:
+        _t1["generating_visible"] = True
+    _m1 = _judge(_b1)
+    _b2 = json.loads(json.dumps(_readings))
+    _t2 = (_b2.get("checks") or {}).get("image_gen_empty_prompt_does_nothing")
+    if _t2:
+        _t2["btn_disabled"] = False
+        _t2["clicked"] = False
+    _m2 = _judge(_b2)
+    _mut["p1_mut_enters_generating_red"] = (_c["P1"] is True and _m1["P1"] is False)
+    _mut["p1_mut_not_disabled_but_unclickable_red"] = (
+        _c["P1"] is True and _m2["P1"] is False)
 
 out = {
     "generated_by": "jimeng_probe1032b2_gen_contract.py",

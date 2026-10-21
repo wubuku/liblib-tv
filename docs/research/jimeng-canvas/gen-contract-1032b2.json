@@ -21,7 +21,9 @@
   "p2_before": true,
   "p2_after": false,
   "p2_turned_red": true,
-  "note": "⭐ 判据级变异：只改读数、不碰真源 ⇒ 真源产物零污染"
+  "note": "⭐ 判据级变异：只改读数、不碰真源 ⇒ 真源产物零污染",
+  "p1_mut_enters_generating_red": true,
+  "p1_mut_not_disabled_but_unclickable_red": true
  },
  "detail": {
   "n_checks": 8,

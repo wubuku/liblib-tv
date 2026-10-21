@@ -356,7 +356,17 @@ export function JimengTextNode({ id, data, selected }: NodeProps) {
           <button
             type="button"
             aria-label="展开文本面板"
-            onClick={() => setPaletteOpen(false)}
+            onClick={() => {
+              /* ⭐⭐⭐ Batch 1032-②b-c：这枚钮此前是 `onClick={() => setPaletteOpen(false)}`
+                 ⇒ ⇒ 而调色板**本来就是关着的** ⇒ ⇒ **点了什么也不发生**
+                 ⇒ ⇒ 它是 1032-②b-c 那道「场景化逐个真点」的门**当场抓到的 NOOP**
+                 （不是猜的，是点出来的：分类 = NOOP，零变动零差集）。
+                 ⇒ ⇒ 而本组件**本来就有全屏编辑器**（`text-fullscreen` /
+                 `text-fullscreen-editor`）⇒ ⇒ 这枚钮的正确行为就是**打开它**
+                 ⇒ ⇒ 修法：接上 `setFullscreen(true)`（顺带把调色板收起来）。 */
+              setPaletteOpen(false);
+              setFullscreen(true);
+            }}
             className="jimeng-node-toolbar-item flex size-8 items-center justify-center text-white"
           >
             <Maximize2 size={15} />

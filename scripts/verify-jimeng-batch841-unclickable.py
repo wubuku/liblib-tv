@@ -6024,6 +6024,12 @@ def main() -> int:
     _p1032b4 = p1032b4.read_text(encoding="utf-8") if p1032b4.exists() else ""
     p1032b4r = ROOT / "scripts/jimeng_probe1032b4_expanded_runtime.mjs"
     _p1032b4r = p1032b4r.read_text(encoding="utf-8") if p1032b4r.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②b-c：「每一个可点元素点了到底有没有发生事」那道门
+    #   ⚠️ 必须**同时登记 .py 与 .mjs**：.py 是判据、.mjs 是场景化普查探针
+    p1032c = ROOT / "scripts/jimeng_probe1032c_noop_contract.py"
+    _p1032c = p1032c.read_text(encoding="utf-8") if p1032c.exists() else ""
+    p1032cr = ROOT / "scripts/jimeng_probe1032c_noop_census.mjs"
+    _p1032cr = p1032cr.read_text(encoding="utf-8") if p1032cr.exists() else ""
     # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
     _ws = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(encoding="utf-8")
     _tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
@@ -17026,6 +17032,91 @@ def main() -> int:
           "⚠️⭐⭐ 诚实标注边界：源站只实测过**视频**这一种浮层（图片/音频是 CLONE_DECISION）；"
           "5 枚类型按钮的**确切作用未逐项验证**；「Esc 关浮层但提示词不保留」是 CLONE_DECISION。",
           _p1032b4_ok and _p1032b4_out_ok() and _p1032b4_writeoff_ok())
+    # ⭐⭐⭐⭐⭐ 1032-②b-c：这条判据守着「**每一个可点元素点了到底有没有发生事**」
+    def _p1032c_out_ok() -> bool:
+        _pb = ROOT / "docs/research/jimeng-canvas/noop-contract-1032c.json"
+        if not _pb.exists():
+            return False
+        try:
+            _db = json.loads(_pb.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _cb = _db.get("P") or {}
+        if not _cb:
+            return False
+        return all(v is True for v in _cb.values())
+
+    def _p1032c_census_ok() -> bool:
+        """普查读数本身：零点击失败（= 仪器有牙）+ 零 NOOP。"""
+        _cs = ROOT / "docs/research/jimeng-canvas/inputs/noop-census-1032c.json"
+        if not _cs.exists():
+            return False
+        try:
+            _d = json.loads(_cs.read_text(encoding="utf-8"))
+        except Exception:  # noqa: BLE001
+            return False
+        _n_btn = _d.get("n_buttons")
+        return (
+            isinstance(_n_btn, int) and _n_btn > 0
+            # ⭐⭐⭐ **仪器有牙**：一枚都没点失败（第一版 208 枚里 178 枚失败 ⇒
+            #   那个「NOOP 0 个」是**假零** ⇒ ⇒ 所以这一条必须钉住）
+            and _d.get("n_click_failed") == 0
+            # ⭐ 没有任何一枚按钮「点了什么也不发生」
+            and _d.get("n_noop") == 0
+            # ⭐ 也没有任何一枚按钮「只弹了一句 toast」
+            and _d.get("n_toast_only") == 0
+        )
+
+    _p1032c_ok = (
+        # ⭐⭐⭐⭐⭐ 普查探针必须**真的去点一遍** —— 不能只是读源码
+        "MutationObserver" in _p1032cr
+        and "dispatchClick" in _p1032cr
+        and "loadCanvas" in _p1032cr
+        and "TOAST_ONLY" in _p1032cr
+        and "NOOP" in _p1032cr
+        # ⭐⭐⭐⭐⭐ **仪器崩了必须与「产品坏了」分开**（独立退出码 2）
+        and "INSTRUMENT_CRASH" in _p1032cr
+        # ⭐⭐⭐⭐⭐ 「仪器有没有牙」必须**自己被量**（点击失败数是读数）
+        and "n_click_failed" in _p1032cr
+        # ⭐⭐⭐⭐⭐ 判据必须**自己从原始字段重算**（不信探针给的汇总数）
+        and "j_instrument_teeth" in _p1032c
+        and "j_no_noop" in _p1032c
+        and "j_summary_consistent" in _p1032c
+        # ⭐⭐⭐⭐⭐ 阳性对照必须**改原始字段**（不是改汇总数）
+        and "field_actually_changed" in _p1032c
+        # ⭐⭐⭐⭐⭐ **裸子串对前缀型注入恒真** ⇒ 必须用带引号的完整 token
+        and '"P7_mutation_makes_judgement_red_1032c"' in _p1032c
+        # ⭐⭐⭐ **跳过规则不许太粗** ⇒ 参数下拉必须被量
+        #   （第一版 `/(生成|发送|购买|充值)/` 把「生成模式」「选择视频生成时长」
+        #     「创作类型」「音频生成」这些**参数下拉**也跳过了 ⇒ ⇒ 它们没被量
+        #     ⇒ ⇒⇒ **量程不足 ⇒ 假否定**）
+        and "^生成$|^发送$|生成历史" in _p1032cr
+    )
+    check("DD993Y.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「每一个可点元素点了到底有没有发生事」这件事**必须由运行时来回答**："
+          "1032-②b-c 写了一道**场景化**普查探针（`jimeng_probe1032c_noop_census.mjs`）——"
+          "**先开层 / 先选中节点 / 再枚举 / 再逐个真点**"
+          "（第一版只枚举初始页面的 36 个可点元素 ⇒ ⇒ 而糊弄最严重的全在**弹层里**）。"
+          "⭐⭐⭐⭐⭐ 量法：点击前挂 `MutationObserver`、点击前后取**结构指纹**取差集 ⇒ ⇒ 分类"
+          " `NOOP`（零变动零差集）/ `TOAST_ONLY`（只多了一个 toast）/ `REAL`。"
+          "⭐⭐⭐⭐⭐⭐ **本批最重要的一条：门必须知道自己的读数可不可信。**"
+          "第一版普查报「NOOP 0 个」，看着是满分 ⇒ ⇒ **真相是 208 个点击里 178 个超时失败**"
+          "（某个点击打开了遮罩 ⇒ ⇒ 后面的按钮全被盖住 ⇒ ⇒ 可操作性检查一直等不到）"
+          "⇒ ⇒ ⇒ **那个「0 个 NOOP」是假零，比不报更坏**"
+          "⇒ ⇒⇒⇒ 处置三条：① 每个按钮前**重载到干净态**；② **DOM 派发点击**"
+          "（验的是「handler 有没有做事」，不是「用户能不能点到」—— 后者由 ②b-1 的真实鼠标探针管）；"
+          "③ **把「点击失败数」做成读数**，并由 `P2` 断言它为 0 ⇒ ⇒ **门自己知道自己的读数可不可信**。"
+          "⭐⭐⭐⭐⭐ 它当场抓到两枚 NOOP：① 文本节点的「展开文本面板」"
+          "（`onClick={() => setPaletteOpen(false)}` ⇒ 而调色板本来就是关着的 ⇒ ⇒ 点了什么也不发生）"
+          "⇒ ⇒ 已接上本组件**本来就有的**全屏编辑器（`text-fullscreen`）；"
+          "② 音频/图片面板那枚发送钮 —— 它**看着是禁用的**（变暗）却**仍然可以点**，点了什么也不发生"
+          "⇒ ⇒ 已加 `disabled`（与视频侧同一口径）⇒ ⇒ 「禁用」在视觉/行为/无障碍三处一致。"
+          "⭐⭐⭐⭐⭐ 判据**自己从原始字段重算**（不信探针给的汇总数）"
+          "⇒ ⇒ 阳性对照**改原始字段**（把一行的 `cls` 改成 NOOP）、**不碰任何 ok 标志**。"
+          "⚠️⭐⭐ 诚实标注边界：本门用 **DOM 派发点击** ⇒ ⇒ 验的是「handler 有没有做事」，"
+          "**不是**「用户能不能点到它」；场景只覆盖 5 种（**画布上根本没有图片节点** ⇒ 记 not_applicable）；"
+          "「生成 / 发送 / 购买 / 充值」一族按纪律**跳过**。",
+          _p1032c_ok and _p1032c_out_ok() and _p1032c_census_ok())
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

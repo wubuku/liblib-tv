@@ -1,0 +1,1279 @@
+{
+ "generated_by": "jimeng_probe1032c_noop_census.mjs",
+ "note": "⭐ 场景化逐个真点；分类 NOOP / TOAST_ONLY / REAL / NAVIGATED / ERROR；每个按钮前重载到干净态并用 DOM 派发点击。",
+ "scenarios": {
+  "base": {
+   "available": true,
+   "n_buttons": 35,
+   "buttons": [
+    {
+     "name": "Add tags",
+     "where": "node:video",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       41
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "播放",
+     "where": "node:video",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 9,
+     "deltas": {},
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "底部播放",
+     "where": "node:video",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 9,
+     "deltas": {},
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "取消静音",
+     "where": "node:video",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 4,
+     "deltas": {},
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "全屏预览",
+     "where": "node:video",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 16,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       38
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "body_len": [
+       429,
+       441
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "导入",
+     "where": "node:timeline",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 21,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       39
+      ],
+      "toast": [
+       0,
+       1
+      ],
+      "body_len": [
+       429,
+       394
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "删除时间线",
+     "where": "node:timeline",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 5,
+     "deltas": {
+      "nodes": [
+       5,
+       4
+      ],
+      "visible_buttons": [
+       35,
+       29
+      ],
+      "body_len": [
+       429,
+       216
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "导出时间线",
+     "where": "node:timeline",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 11,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       44
+      ],
+      "body_len": [
+       429,
+       542
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "全屏编辑",
+     "where": "node:timeline",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 14,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       58
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "inputs": [
+       1,
+       2
+      ],
+      "body_len": [
+       429,
+       684
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "静音",
+     "where": "node:timeline",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 14,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       38
+      ],
+      "body_len": [
+       429,
+       425
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "添加素材到时间线",
+     "where": "node:timeline",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 21,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       39
+      ],
+      "toast": [
+       0,
+       1
+      ],
+      "body_len": [
+       429,
+       394
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Add tags",
+     "where": "node:audio",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       41
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Canvas title: 测试项目",
+     "where": "top",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 4,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       34
+      ],
+      "inputs": [
+       1,
+       2
+      ],
+      "body_len": [
+       429,
+       424
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "项目",
+     "where": "top",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       38
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "body_len": [
+       429,
+       459
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Canvas node summary: 节点 5",
+     "where": "top",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       41
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "body_len": [
+       429,
+       501
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "搜索",
+     "where": "top",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       52
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "inputs": [
+       1,
+       2
+      ],
+      "body_len": [
+       429,
+       569
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "生成历史",
+     "where": "top",
+     "ordinal": 0,
+     "cls": "SKIPPED_BY_POLICY",
+     "mutations": 0,
+     "deltas": {}
+    },
+    {
+     "name": "分享",
+     "where": "top",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       38
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "body_len": [
+       429,
+       602
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "更多",
+     "where": "top",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 5,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       37
+      ],
+      "body_len": [
+       429,
+       439
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Credits: 745 · 基础会员",
+     "where": "top",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       46
+      ],
+      "body_len": [
+       429,
+       939
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "用户菜单",
+     "where": "top",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 13,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       41
+      ],
+      "body_len": [
+       429,
+       477
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "文本",
+     "where": "rail",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 8,
+     "deltas": {
+      "nodes": [
+       5,
+       6
+      ],
+      "visible_buttons": [
+       35,
+       41
+      ],
+      "body_len": [
+       429,
+       448
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "图片",
+     "where": "rail",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 8,
+     "deltas": {
+      "nodes": [
+       5,
+       6
+      ],
+      "visible_buttons": [
+       35,
+       45
+      ],
+      "inputs": [
+       1,
+       2
+      ],
+      "body_len": [
+       429,
+       517
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "视频",
+     "where": "rail",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 14,
+     "deltas": {
+      "nodes": [
+       5,
+       6
+      ],
+      "visible_buttons": [
+       35,
+       46
+      ],
+      "inputs": [
+       1,
+       3
+      ],
+      "body_len": [
+       429,
+       528
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "音频",
+     "where": "rail",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 8,
+     "deltas": {
+      "nodes": [
+       5,
+       6
+      ],
+      "visible_buttons": [
+       35,
+       49
+      ],
+      "inputs": [
+       1,
+       2
+      ],
+      "body_len": [
+       429,
+       550
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "时间线",
+     "where": "rail",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 6,
+     "deltas": {
+      "nodes": [
+       5,
+       6
+      ],
+      "visible_buttons": [
+       35,
+       44
+      ],
+      "body_len": [
+       429,
+       640
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "主体",
+     "where": "rail",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 10,
+     "deltas": {
+      "nodes": [
+       5,
+       6
+      ],
+      "visible_buttons": [
+       35,
+       43
+      ],
+      "inputs": [
+       1,
+       2
+      ],
+      "body_len": [
+       429,
+       522
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "导演台",
+     "where": "rail",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 6,
+     "deltas": {
+      "nodes": [
+       5,
+       6
+      ],
+      "visible_buttons": [
+       35,
+       39
+      ],
+      "body_len": [
+       429,
+       510
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "资产库",
+     "where": "rail",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       45
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "body_len": [
+       429,
+       476
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "上传",
+     "where": "rail",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 3,
+     "deltas": {},
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "选择工具",
+     "where": "dock",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {},
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "小地图",
+     "where": "dock",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 3,
+     "deltas": {},
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "显示连线",
+     "where": "dock",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {},
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Zoom options, 73%",
+     "where": "dock",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 14,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       42
+      ],
+      "body_len": [
+       429,
+       507
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "与 AI 对话",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 6,
+     "deltas": {
+      "visible_buttons": [
+       35,
+       47
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "inputs": [
+       1,
+       2
+      ],
+      "body_len": [
+       429,
+       500
+      ]
+     },
+     "click_result": "CLICKED"
+    }
+   ]
+  },
+  "video": {
+   "available": true,
+   "n_buttons": 11,
+   "buttons": [
+    {
+     "name": "Rename 视频 1",
+     "where": "node:video",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {
+      "visible_buttons": [
+       46,
+       45
+      ],
+      "inputs": [
+       3,
+       4
+      ],
+      "body_len": [
+       522,
+       517
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Create connected node before 视频 1",
+     "where": "node:video",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       46,
+       53
+      ],
+      "body_len": [
+       522,
+       552
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Create connected node after 视频 1",
+     "where": "node:video",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       46,
+       53
+      ],
+      "body_len": [
+       522,
+       552
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "展开面板",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {
+      "visible_buttons": [
+       46,
+       60
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "inputs": [
+       3,
+       4
+      ],
+      "body_len": [
+       522,
+       631
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "上传参考图",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 3,
+     "deltas": {},
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "选择模型: 即梦 Seedance 2.0 VIP, Standard-only model",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 5,
+     "deltas": {
+      "visible_buttons": [
+       46,
+       55
+      ],
+      "listboxes": [
+       0,
+       1
+      ],
+      "body_len": [
+       522,
+       851
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "视频尺寸选项: 16:9 · 720P · 1, Standard-only model",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 5,
+     "deltas": {
+      "visible_buttons": [
+       46,
+       59
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "body_len": [
+       522,
+       595
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "生成模式: 全能参考",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 5,
+     "deltas": {
+      "visible_buttons": [
+       46,
+       48
+      ],
+      "listboxes": [
+       0,
+       1
+      ],
+      "body_len": [
+       522,
+       531
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "选择视频生成时长: 4s",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 5,
+     "deltas": {
+      "visible_buttons": [
+       46,
+       49
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "body_len": [
+       522,
+       532
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "引用参考",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 11,
+     "deltas": {
+      "visible_buttons": [
+       46,
+       53
+      ],
+      "body_len": [
+       522,
+       578
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "生成",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "DISABLED",
+     "mutations": 0,
+     "deltas": {}
+    }
+   ]
+  },
+  "text": {
+   "available": true,
+   "n_buttons": 6,
+   "buttons": [
+    {
+     "name": "Rename 文本 1",
+     "where": "node:text",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {
+      "visible_buttons": [
+       41,
+       40
+      ],
+      "inputs": [
+       1,
+       2
+      ],
+      "body_len": [
+       433,
+       428
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Create connected node before 文本 1",
+     "where": "node:text",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       41,
+       48
+      ],
+      "body_len": [
+       433,
+       462
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Create connected node after 文本 1",
+     "where": "node:text",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       41,
+       48
+      ],
+      "body_len": [
+       433,
+       462
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "背景色",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       41,
+       47
+      ],
+      "body_len": [
+       433,
+       435
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "展开文本面板",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       41,
+       42
+      ],
+      "dialogs": [
+       0,
+       1
+      ],
+      "inputs": [
+       1,
+       2
+      ],
+      "body_len": [
+       433,
+       438
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "下载",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {},
+     "click_result": "CLICKED"
+    }
+   ]
+  },
+  "audio": {
+   "available": true,
+   "n_buttons": 11,
+   "buttons": [
+    {
+     "name": "Rename 音频 1",
+     "where": "node:audio",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {
+      "visible_buttons": [
+       48,
+       47
+      ],
+      "inputs": [
+       2,
+       3
+      ],
+      "body_len": [
+       544,
+       539
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Create connected node before 音频 1",
+     "where": "node:audio",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       48,
+       55
+      ],
+      "body_len": [
+       544,
+       574
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Create connected node after 音频 1",
+     "where": "node:audio",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       48,
+       55
+      ],
+      "body_len": [
+       544,
+       574
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "添加参考",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {
+      "visible_buttons": [
+       48,
+       49
+      ],
+      "body_len": [
+       544,
+       550
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "创作类型: 音频生成",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       48,
+       50
+      ],
+      "listboxes": [
+       0,
+       1
+      ],
+      "body_len": [
+       544,
+       554
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "选择模型: SeedAudio 1.0, New",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       48,
+       50
+      ],
+      "listboxes": [
+       0,
+       1
+      ],
+      "body_len": [
+       544,
+       609
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "音频生成: 全能配音",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {
+      "visible_buttons": [
+       48,
+       49
+      ],
+      "listboxes": [
+       0,
+       1
+      ],
+      "body_len": [
+       544,
+       549
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "音色: 音色库",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       48,
+       111
+      ],
+      "listboxes": [
+       0,
+       1
+      ],
+      "body_len": [
+       544,
+       873
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "引用参考",
+     "where": "other",
+     "ordinal": 1,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {
+      "visible_buttons": [
+       48,
+       49
+      ],
+      "body_len": [
+       544,
+       550
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "显示折扣详情",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {
+      "body_len": [
+       544,
+       611
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "请输入提示词",
+     "where": "other",
+     "ordinal": 0,
+     "cls": "DISABLED",
+     "mutations": 0,
+     "deltas": {}
+    }
+   ]
+  },
+  "timeline": {
+   "available": true,
+   "n_buttons": 3,
+   "buttons": [
+    {
+     "name": "Rename 时间线 1",
+     "where": "node:timeline",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 2,
+     "deltas": {
+      "visible_buttons": [
+       38,
+       37
+      ],
+      "inputs": [
+       1,
+       2
+      ],
+      "body_len": [
+       425,
+       419
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Create connected node before 时间线 1",
+     "where": "node:timeline",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       38,
+       45
+      ],
+      "body_len": [
+       425,
+       455
+      ]
+     },
+     "click_result": "CLICKED"
+    },
+    {
+     "name": "Create connected node after 时间线 1",
+     "where": "node:timeline",
+     "ordinal": 0,
+     "cls": "REAL",
+     "mutations": 1,
+     "deltas": {
+      "visible_buttons": [
+       38,
+       45
+      ],
+      "body_len": [
+       425,
+       455
+      ]
+     },
+     "click_result": "CLICKED"
+    }
+   ]
+  }
+ },
+ "n_buttons": 66,
+ "n_noop": 0,
+ "n_toast_only": 0,
+ "n_click_failed": 0,
+ "n_by_class": {
+  "REAL": 63,
+  "SKIPPED_BY_POLICY": 1,
+  "DISABLED": 2
+ },
+ "pageerrors": []
+}

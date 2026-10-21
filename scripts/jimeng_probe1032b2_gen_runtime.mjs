@@ -173,13 +173,24 @@ const generatingVisible = async (sel) =>
     await page.waitForTimeout(300);
   }
   const btn = await visibleBtnIn('.react-flow__node-image', '请输入提示词');
-  const clicked = await clickSafe(btn);
+  // ⭐⭐⭐⭐⭐ Batch 1032-②b-c：1032-②b-c 给「空提示词」态的发送/生成钮加了 **disabled**
+  //   ⇒ ⇒ 而 Playwright 的 loc.click() 在 disabled 元素上会一直等 actionability 到超时
+  //   ⇒ ⇒ 旧判据 `clicked` 恒为 false ⇒ ⇒ **负控 check 恒红**（不是产品坏了，是判据的前提变了）
+  //   ⇒ ⇒⇒ 负控的**语义**是「空提示词 ⇒ 不得进入生成态」；
+  //   ⇒ ⇒⇒ 而「按钮此刻真的 disabled」（用户按不动）**也是**满足这个语义的合法实现
+  //   ⇒ ⇒⇒ ⇒ 改法：先读 `btn_disabled`（原始字段）⇒ disabled 就**不点**（省掉 12s 超时）
+  //   ⇒ ⇒⇒   判据变成「**disabled 或 点得动**」+「**不得进入生成**」
+  //   ⇒ ⇒⇒ ⚠️ 但**不能只放宽**：若按钮其实没 disabled、却点不动 ⇒ 那是仪器坏了 ⇒ 必须红
+  //   ⇒ ⇒⇒   （所以 `btn_disabled` 与 `clicked` 两个原始字段都要留下，供门重算与阳性对照改）
+  const btnDisabled = btn ? await btn.isDisabled() : null;
+  const clicked = btnDisabled === true ? false : await clickSafe(btn);
   await page.waitForTimeout(900);
   const gen = await generatingVisible(IMG_GEN_SEL);
   record('image_gen_empty_prompt_does_nothing', {
-    ok: okSel && taOk && clicked && gen === false,
+    ok: okSel && taOk && (btnDisabled === true || clicked === true) && gen === false,
     selected: okSel,
     textarea_found: taOk,
+    btn_disabled: btnDisabled,
     clicked,
     generating_visible: gen,
   });
@@ -231,13 +242,16 @@ const generatingVisible = async (sel) =>
     await page.waitForTimeout(300);
   }
   const btn = await visibleBtnIn('.react-flow__node-audio', '请输入提示词');
-  const clicked = await clickSafe(btn);
+  // ⭐⭐⭐⭐⭐ 同上（image 段）：disabled 是合法的「用户按不动」⇒ 负控语义是「不得进入生成态」
+  const btnDisabled = btn ? await btn.isDisabled() : null;
+  const clicked = btnDisabled === true ? false : await clickSafe(btn);
   await page.waitForTimeout(900);
   const gen = await generatingVisible(AUDIO_GEN_SEL);
   record('audio_gen_empty_prompt_does_nothing', {
-    ok: okSel && taOk && clicked && gen === false,
+    ok: okSel && taOk && (btnDisabled === true || clicked === true) && gen === false,
     selected: okSel,
     textarea_found: taOk,
+    btn_disabled: btnDisabled,
     clicked,
     generating_visible: gen,
   });
