@@ -1,0 +1,96 @@
+{
+ "导演台已打开": true,
+ "①基线_store": {
+  "cams": [
+   {
+    "id": "director-camera-main",
+    "name": "机位1"
+   }
+  ],
+  "shots": [
+   {
+    "id": "director-shot-director-camera-main",
+    "name": "机位1 · 镜头",
+    "cameraId": "director-camera-main"
+   }
+  ],
+  "tracks": [
+   {
+    "id": "director-track-character-lead-transform",
+    "kind": "transform",
+    "label": "角色01 · 陈默 · 变换",
+    "objectId": "director-character-lead"
+   },
+   {
+    "id": "director-track-camera-main",
+    "kind": "camera",
+    "label": "机位1 · 机位",
+    "objectId": "director-camera-main"
+   }
+  ],
+  "activeCameraId": "director-camera-main",
+  "activeShotId": "director-shot-director-camera-main",
+  "cameraCount": 1
+ },
+ "②默认机位": {
+  "id": "director-camera-main",
+  "name": "机位1"
+ },
+ "②默认机位名": "机位1",
+ "②默认机位名是否机位1": true,
+ "②默认机位名是否匹配编号正则": true,
+ "②默认机位名是否仍含对峙中景": false,
+ "③默认机位的镜头": [
+  {
+   "id": "director-shot-director-camera-main",
+   "name": "机位1 · 镜头",
+   "cameraId": "director-camera-main"
+  }
+ ],
+ "③镜头名": [
+  "机位1 · 镜头"
+ ],
+ "③镜头名是否机位1 · 镜头": true,
+ "③默认机位的轨道": [
+  {
+   "id": "director-track-camera-main",
+   "kind": "camera",
+   "label": "机位1 · 机位",
+   "objectId": "director-camera-main"
+  }
+ ],
+ "③轨道label": [
+  "机位1 · 机位"
+ ],
+ "③轨道label是否机位1 · 机位": true,
+ "④新建后机位": [
+  {
+   "id": "director-camera-main",
+   "name": "机位1"
+  },
+  {
+   "id": "director-camera-1792612141124-1",
+   "name": "机位2"
+  }
+ ],
+ "④新建后台数_与名字无关的口径": 2,
+ "④新建后编号": [
+  1,
+  2
+ ],
+ "④新机位名": "机位2",
+ "④新机位名是否机位2": true,
+ "④★编号体系错位是否消失": true,
+ "④★错位判定依据": "默认机位名 '机位1' 匹配 ^机位\\d+$ ⟹ 占编号 1；新建那台叫 '机位2' ⟹ clone 的编号序列与源站（机位1→机位2）**逐字一致** ⟹ batch 836 记的「编号体系错位」**消失**",
+ "⑤DOM_镜头条chip": [
+  "机位1 · 镜头0.0-8.0s",
+  "机位2 · 镜头0.0-8.0s"
+ ],
+ "⑤DOM_含机位的行": [
+  "机位1",
+  "机位",
+  "机位2",
+  "机位"
+ ],
+ "⑤DOM含机位1 · 镜头": true
+}

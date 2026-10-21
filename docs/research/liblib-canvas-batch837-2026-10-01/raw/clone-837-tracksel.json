@@ -1,0 +1,47 @@
+{
+ "导演台已打开": true,
+ "相机轨道行": [
+  {
+   "rowId": "director-track-camera-main",
+   "outerDataKeys": [
+    "directorTrackLabel",
+    "directorTrackRow",
+    "directorTrackRowKind",
+    "directorTrackRowSelected"
+   ],
+   "innerCount": 1,
+   "innerTitle": [
+    "机位"
+   ],
+   "innerTitleAttr": [
+    "机位1 · 机位"
+   ],
+   "innerHasData": [
+    false
+   ]
+  }
+ ],
+ "内壳候选": [
+  {
+   "text": "机位1 · 机位",
+   "rowId": "director-track-camera-main",
+   "titleAttr": "机位1 · 机位",
+   "visibleText": "机位"
+  }
+ ],
+ "innerTitle": "机位1 · 机位",
+ "innerTitle是否机位1 · 机位": true,
+ "★口径说明": "innerTitle 读的是轨道行内壳（role=button，无 data-*）的 **title 属性** （= track.label 的完整串）⟹ 与 750 的 innerTitle 同口径；可见文本是 directorTrackShortName 的短名（不含「· 机位」后缀）",
+ "轨道行外壳": {
+  "rowDataKeys": [
+   "directorTrackLabel",
+   "directorTrackRow",
+   "directorTrackRowKind",
+   "directorTrackRowSelected"
+  ],
+  "rowText": "机位4.8,2.65,6.9",
+  "hasDataMarkerOnInner": [
+   false
+  ]
+ }
+}

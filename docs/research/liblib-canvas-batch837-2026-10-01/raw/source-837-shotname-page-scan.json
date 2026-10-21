@@ -1,0 +1,100 @@
+{
+ "①含「镜头/对峙/中景」的所有可见文本": [
+  {
+   "kw": "镜",
+   "text": "S83·镜2",
+   "x": 127,
+   "y": 104,
+   "w": 37,
+   "h": 15,
+   "cls": "text-[13px] cursor-text pointer-events-auto",
+   "tag": "SPAN"
+  },
+  {
+   "kw": "镜头",
+   "text": "确认镜头",
+   "x": 430,
+   "y": 399,
+   "w": 20,
+   "h": 7,
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white",
+   "tag": "DIV"
+  },
+  {
+   "kw": "镜",
+   "text": "分镜",
+   "x": 121,
+   "y": 675,
+   "w": 10,
+   "h": 8,
+   "cls": "",
+   "tag": "SPAN"
+  }
+ ],
+ "②右下区域所有可见文本": [
+  {
+   "text": "角色标签",
+   "x": 1656,
+   "y": 718,
+   "w": 52,
+   "h": 13,
+   "cls": "text-[13px] font-normal leading-none text-white/85",
+   "tag": "SPAN"
+  },
+  {
+   "text": "网格吸附",
+   "x": 1656,
+   "y": 774,
+   "w": 52,
+   "h": 13,
+   "cls": "text-[13px] font-normal leading-none text-white/85",
+   "tag": "SPAN"
+  },
+  {
+   "text": "高斯地面吸附",
+   "x": 1656,
+   "y": 830,
+   "w": 78,
+   "h": 13,
+   "cls": "text-[13px] font-normal leading-none text-white/85",
+   "tag": "SPAN"
+  },
+  {
+   "text": "地面",
+   "x": 1660,
+   "y": 885,
+   "w": 30,
+   "h": 15,
+   "cls": "text-[15px] font-medium leading-none text-neutral-50",
+   "tag": "SPAN"
+  },
+  {
+   "text": "透明度",
+   "x": 1660,
+   "y": 920,
+   "w": 240,
+   "h": 28,
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-white/45",
+   "tag": "DIV"
+  },
+  {
+   "text": "去体验",
+   "x": 1236,
+   "y": 962,
+   "w": 67,
+   "h": 32,
+   "cls": "bg-(--canvas-primary-btn-bg) hover:bg-(--canvas-primary-btn-bg-hover) text-(--ca",
+   "tag": "BUTTON"
+  },
+  {
+   "text": "高度",
+   "x": 1660,
+   "y": 992,
+   "w": 240,
+   "h": 28,
+   "cls": "mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-white/45",
+   "tag": "DIV"
+  }
+ ],
+ "截图": "/tmp/liblib_source_shotname837b.png"
+}

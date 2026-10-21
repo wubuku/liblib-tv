@@ -204,7 +204,8 @@ def build_checks(st, run):
         "点它才真的换选中轨道（外壳点不动）",
         ts.get("outerClickNoop") is True and ts.get("innerSelectsCamera") is True
         and ts.get("outerHasDataMarker") is False
-        and ts.get("innerTitle") == "机位01 · 对峙中景 · 机位",
+        # ★★ Batch 837：轨道 label 随默认机位名一起改（「机位01 · 对峙中景 · 机位」→「机位1 · 机位」）。
+        and ts.get("innerTitle") == "机位1 · 机位",
         {k: ts.get(k) for k in ["outerClickNoop", "innerSelectsCamera", "outerHasDataMarker",
                                 "innerTitle", "beforeSel", "afterOuter", "afterInner"]})
 

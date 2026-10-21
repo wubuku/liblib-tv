@@ -29,6 +29,13 @@ DirectorDesk.tsx:589-591    const sendCapture = (c) => { if (c.sentNodeId) retur
 「**导演台截图-机位01 · 对峙中景**」、`image` 类型 5→**6**
 （`canvasStore.ts:2818 type: "image"` —— **截图落画布是图片节点，不是视频**）。
 
+> ★★ **Batch 837 标注（不重写上面的历史读数）**：上面两处「机位01 · 对峙中景」
+> 是**当时**的实测读数，留作历史记录；那串名字后来被证明是 clone 的**自拟名**
+> （batch 833 把它倒推成「源站实测」，而该串在源站侧**零出现**）⟹
+> batch 837 把默认机位名改成源站口径「**机位1**」⟹ 现在重跑这两跳会读到
+> 「机位1构图截图」/「导演台截图-机位1」⟹ **下面 `conclusions` 里的文字已按新值更正**。
+> 详见 `docs/research/liblib-canvas-batch837-2026-10-01/README.md`。
+
 发送后 UI 翻转：按钮文案「发送到画布」→「**已发送到画布**」+ `disabled`；
 `capture-status` 文案「1 张构图」→「**已回到画布**」。
 
@@ -482,9 +489,9 @@ def main() -> int:
         "conclusions": [
             "**`createDirectorCapture` 真跑通了，是两跳 + 幂等** —— "
             "第 1 跳快门（`DirectorViewport.tsx:3586`）store **零写入**，但预览出现"
-            "（638×359、`alt`「机位01 · 对峙中景构图截图」）、`capture-status=\"ready\"`、"
+            "（638×359、`alt`「机位1构图截图」）、`capture-status=\"ready\"`、"
             "文案「1 张构图」；第 2 跳 `data-director-send-capture` ⟹ `past` +1、节点 +1、"
-            "边 +1、新文件「**导演台截图-机位01 · 对峙中景**」、`image` 类型 5→6。",
+            "边 +1、新文件「**导演台截图-机位1**」、`image` 类型 5→6。",
             "**截图落画布是 `image` 节点，不是视频** —— `canvasStore.ts:2818 type: \"image\"`、"
             "`:2824 filename: \\`导演台截图-${capture.cameraName}\\``，与 748 的动画导出"
             "（建 `video` 节点）是两种不同的产出。",

@@ -280,7 +280,11 @@ def reopen(page: Page) -> Any:
     return read(page)
 
 
-FIXTURE = ["角色01 · 陈默", "咖啡桌", "冷掉的咖啡", "咖啡馆背景", "机位01 · 对峙中景"]
+# ★★ Batch 837：末项由「机位01 · 对峙中景」改成「机位1」——
+#   源站每个项目的**第一台机位都是纯编号「机位1」**（无语义后缀）；
+#   旧值是 clone 的**自拟名**，batch 833 曾把它倒推成「源站实测」⟹ 那条结论没有源。
+#   详见 docs/research/liblib-canvas-batch837-2026-10-01/README.md。
+FIXTURE = ["角色01 · 陈默", "咖啡桌", "冷掉的咖啡", "咖啡馆背景", "机位1"]
 
 
 def run(browser: Any) -> dict[str, Any]:
