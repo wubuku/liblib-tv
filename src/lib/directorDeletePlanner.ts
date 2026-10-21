@@ -50,6 +50,30 @@ type DirectorDocumentNormalizer = (
   document: DirectorProjectDocumentV1,
 ) => DirectorProjectDocumentV1;
 
+/**
+ * ★★ Batch 836：**主机位（默认机位）的对象 id** —— 它**不能被删除**。
+ *
+ * 依据（源站 2026-10-22 活体实测，四条独立实验，见
+ * `docs/research/liblib-canvas-batch836-2026-10-01/`）：
+ *  - 源站场景初始那台机位叫「机位1」，**在有 3 台时仍删不掉**
+ *    （v3：排除「最后一台」）；
+ *  - 删掉「机位3」之后（剩「机位1」「机位2」）**仍删不掉**
+ *    （v7：排除「编号最小者」）；
+ *  - 把**激活态**挪到「机位3」（右栏读回确认为「机位3」）
+ *    之后**仍删不掉**（v8：排除「当前激活机位」）；
+ *  - 计数口径改用**无正则**读数后台数确实没少（v6：排除「我的口径漏数」）。
+ *  ⟹ ★★ 结论：源站有一条**按身份**的保护规则，**与名字／编号／激活态都无关**。
+ *
+ * ★ 为什么按 **id** 而不是按名字：源站的「机位1」是**它的显示名**，
+ *   而 clone 的默认机位当前显示名是「机位01 · 对峙中景」
+ *   （★ 那串字在源站其实是**镜头名** ⟹ clone 把镜头名当成了机位名 ⟹ 名字本身就对不上），
+ *   ⟹ 用名字判会两处都对不上 ⟹ **id 是唯一稳定的身份标识**。
+ *
+ * ★ 已知边界：导入的第三方项目若**不含**这个 id，就没有这条保护
+ *   ⟹ 本批**不**引入文档级字段（那要动序列化与旧文档兼容）⟹ 边界如实记下。
+ */
+export const DIRECTOR_PRIMARY_CAMERA_ID = "director-camera-main";
+
 interface DirectorDeleteWorkingState {
   document: DirectorProjectDocumentV1;
   deletedObjectIds: Set<string>;
@@ -257,6 +281,15 @@ function applyObjectClosure(
   );
   if (deletedCameraIds.size > 0 && survivingCameras.length === 0) {
     return "DIRECTOR_LAST_CAMERA_REQUIRED";
+  }
+  // ★★ Batch 836：**主机位不能删**（源站实测：按身份，与名字／编号／激活态都无关）。
+  //   放在「最后一台」**之后** ⟹ 只剩一台时理由仍是 `DIRECTOR_LAST_CAMERA_REQUIRED`，
+  //   新增这条**只**在「还有别的机位、但要删的是主机位」时命中。
+  if (
+    deletedCameraIds.has(DIRECTOR_PRIMARY_CAMERA_ID) &&
+    survivingCameras.length > 0
+  ) {
+    return "DIRECTOR_PRIMARY_CAMERA_REQUIRED";
   }
 
   requestedObjectIds.forEach((objectId) =>
