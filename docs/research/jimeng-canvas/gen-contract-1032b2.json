@@ -2,7 +2,7 @@
  "generated_by": "jimeng_probe1032b2_gen_contract.py",
  "target": "jimeng-canvas-image-audio-generate",
  "question": "⭐⭐⭐⭐⭐ **图片 / 音频的「生成」点了到底有没有发生事？**",
- "probe_run": "skipped by env",
+ "probe_run": "rc=0",
  "readings_file": "docs/research/jimeng-canvas/inputs/gen-runtime-1032b2.json",
  "readings_available": true,
  "criteria": {
