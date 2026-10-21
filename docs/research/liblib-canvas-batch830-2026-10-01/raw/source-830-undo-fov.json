@@ -1,0 +1,503 @@
+{
+ "①A_移动前": {
+  "fov": null,
+  "zoom": null,
+  "scene": {
+   "场景平移": [
+    {
+     "v": "",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "300%",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    }
+   ],
+   "场景旋转": [
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    }
+   ],
+   "场景缩放": [
+    {
+     "v": "未命名工作区",
+     "type": "text",
+     "aria": "项目名称",
+     "title": ""
+    },
+    {
+     "v": "",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "300%",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    }
+   ]
+  },
+  "active": {
+   "tag": "DIV",
+   "text": "3D导演台导演视角机位视角3",
+   "type": ""
+  }
+ },
+ "②A_按W三次后": {
+  "fov": null,
+  "zoom": null,
+  "scene": {
+   "场景平移": [
+    {
+     "v": "",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "300%",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    }
+   ],
+   "场景旋转": [
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    }
+   ],
+   "场景缩放": [
+    {
+     "v": "未命名工作区",
+     "type": "text",
+     "aria": "项目名称",
+     "title": ""
+    },
+    {
+     "v": "",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "300%",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    }
+   ]
+  },
+  "active": {
+   "tag": "DIV",
+   "text": "3D导演台导演视角机位视角3",
+   "type": ""
+  }
+ },
+ "③A_按Z后": {
+  "fov": null,
+  "zoom": null,
+  "scene": {
+   "场景平移": [
+    {
+     "v": "",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "300%",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    }
+   ],
+   "场景旋转": [
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "0",
+     "type": "number",
+     "aria": "",
+     "title": ""
+    }
+   ],
+   "场景缩放": [
+    {
+     "v": "未命名工作区",
+     "type": "text",
+     "aria": "项目名称",
+     "title": ""
+    },
+    {
+     "v": "",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "v": "300%",
+     "type": "text",
+     "aria": "",
+     "title": ""
+    }
+   ]
+  },
+  "active": {
+   "tag": "DIV",
+   "text": "3D导演台导演视角机位视角3",
+   "type": ""
+  }
+ },
+ "④B_FOV_改前": {
+  "fov": {
+   "value": "67",
+   "box": {
+    "x": 1656,
+    "y": 847,
+    "w": 170,
+    "h": 20
+   },
+   "visible": false
+  },
+  "zoom": null,
+  "scene": {},
+  "active": {
+   "tag": "DIV",
+   "text": "机位1",
+   "type": ""
+  }
+ },
+ "⑤B_改FOV": {
+  "before": "67",
+  "after": "45",
+  "tries": [
+   {
+    "frac": 0.4,
+    "at": [
+     1724,
+     857
+    ],
+    "value_after": "45"
+   }
+  ]
+ },
+ "⑥B_改后": {
+  "fov": {
+   "value": "45",
+   "box": {
+    "x": 1656,
+    "y": 847,
+    "w": 170,
+    "h": 20
+   },
+   "visible": false
+  },
+  "zoom": null,
+  "scene": {},
+  "active": {
+   "tag": "DIV",
+   "text": "机位1",
+   "type": ""
+  }
+ },
+ "⑦B_按Z前active": {
+  "fov": {
+   "value": "45",
+   "box": {
+    "x": 1656,
+    "y": 847,
+    "w": 170,
+    "h": 20
+   },
+   "visible": false
+  },
+  "zoom": null,
+  "scene": {},
+  "active": {
+   "tag": "DIV",
+   "text": "机位1",
+   "type": ""
+  }
+ },
+ "⑧B_按Z后": {
+  "fov": {
+   "value": "45",
+   "box": {
+    "x": 1656,
+    "y": 847,
+    "w": 170,
+    "h": 20
+   },
+   "visible": false
+  },
+  "zoom": null,
+  "scene": {},
+  "active": {
+   "tag": "DIV",
+   "text": "机位1",
+   "type": ""
+  }
+ },
+ "⑨C_再改FOV": {
+  "before": "45",
+  "after": "50",
+  "tries": [
+   {
+    "frac": 0.4666666666666667,
+    "at": [
+     1735,
+     857
+    ],
+    "value_after": "50"
+   }
+  ]
+ },
+ "⑩C_重开后": {
+  "fov": {
+   "value": "50",
+   "box": {
+    "x": 1656,
+    "y": 847,
+    "w": 170,
+    "h": 20
+   },
+   "visible": false
+  },
+  "zoom": null,
+  "scene": {},
+  "active": {
+   "tag": "DIV",
+   "text": "机位1",
+   "type": ""
+  }
+ },
+ "⑪C_重开后按Z": {
+  "fov": {
+   "value": "50",
+   "box": {
+    "x": 1656,
+    "y": 847,
+    "w": 170,
+    "h": 20
+   },
+   "visible": false
+  },
+  "zoom": null,
+  "scene": {},
+  "active": {
+   "tag": "DIV",
+   "text": "机位1",
+   "type": ""
+  }
+ },
+ "复原动作_FOV": {
+  "before": "50",
+  "after": "67",
+  "tries": [
+   {
+    "frac": 0.6933333333333334,
+    "at": [
+     1773,
+     857
+    ],
+    "value_after": "67"
+   }
+  ]
+ },
+ "复原回读": {
+  "fov": {
+   "value": "67",
+   "box": {
+    "x": 1656,
+    "y": 847,
+    "w": 170,
+    "h": 20
+   },
+   "visible": false
+  },
+  "zoom": null,
+  "scene": {},
+  "active": {
+   "tag": "DIV",
+   "text": "机位1",
+   "type": ""
+  }
+ },
+ "★已复原(同context)": true,
+ "★全新context回读": {
+  "fov": {
+   "value": "67",
+   "box": {
+    "x": 1656,
+    "y": 847,
+    "w": 170,
+    "h": 20
+   },
+   "visible": false
+  },
+  "zoom": null,
+  "scene": {},
+  "active": {
+   "tag": "DIV",
+   "text": "机位1",
+   "type": ""
+  }
+ },
+ "★已复原(新context)": true,
+ "★读数更正": "「⑧B_按Z后 / ⑪C_重开后按Z 读数不变」⟹ **这两格是前提不满足的无效读数**，**不能**支持「源站撤不掉 FOV 改动」。⟹ 源站键盘处理的条件是 `(\"z\"!==n||e.ctrlKey||e.metaKey)` ⟹ **撤销必须带 ⌘/Ctrl，裸 Z 被明确排除** ⟹ 本文件按的是裸 Z。⟹ 用 **⌘Z** 重测的读数见 source-830-undo-cmdz.json：FOV 67→45 后按 ⌘Z **退回 67**，按 ⌘⇧Z **重做回 45** ⟹ 源站撤得掉。",
+ "★更正依据": "source-830-shortcut-code.json 的锚点「撤销键条件」+ source-830-undo-cmdz.json"
+}

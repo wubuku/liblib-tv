@@ -1,0 +1,169 @@
+{
+ "rightInputs": [
+  {
+   "tag": "INPUT",
+   "type": "text",
+   "value": "机位1",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1656,
+    "y": 321,
+    "w": 248,
+    "h": 28
+   }
+  },
+  {
+   "tag": "INPUT",
+   "type": "number",
+   "value": "3.3",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1656,
+    "y": 465,
+    "w": 80,
+    "h": 28
+   }
+  },
+  {
+   "tag": "INPUT",
+   "type": "number",
+   "value": "2.2",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1740,
+    "y": 465,
+    "w": 80,
+    "h": 28
+   }
+  },
+  {
+   "tag": "INPUT",
+   "type": "number",
+   "value": "10",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1824,
+    "y": 465,
+    "w": 80,
+    "h": 28
+   }
+  },
+  {
+   "tag": "INPUT",
+   "type": "number",
+   "value": "5.42",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1656,
+    "y": 610,
+    "w": 80,
+    "h": 28
+   }
+  },
+  {
+   "tag": "INPUT",
+   "type": "number",
+   "value": "-161.74",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1740,
+    "y": 610,
+    "w": 80,
+    "h": 28
+   }
+  },
+  {
+   "tag": "INPUT",
+   "type": "number",
+   "value": "0",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1824,
+    "y": 610,
+    "w": 80,
+    "h": 28
+   }
+  },
+  {
+   "tag": "INPUT",
+   "type": "number",
+   "value": "0",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1656,
+    "y": 754,
+    "w": 80,
+    "h": 28
+   }
+  },
+  {
+   "tag": "INPUT",
+   "type": "number",
+   "value": "1.2",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1740,
+    "y": 754,
+    "w": 80,
+    "h": 28
+   }
+  },
+  {
+   "tag": "INPUT",
+   "type": "number",
+   "value": "0",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1824,
+    "y": 754,
+    "w": 80,
+    "h": 28
+   }
+  },
+  {
+   "tag": "INPUT",
+   "type": "text",
+   "value": "67.0",
+   "ph": "",
+   "aria": "",
+   "title": "",
+   "box": {
+    "x": 1834,
+    "y": 843,
+    "w": 70,
+    "h": 28
+   }
+  }
+ ],
+ "nameRows": [
+  {
+   "box": {
+    "x": 1656,
+    "y": 289,
+    "w": 248,
+    "h": 28
+   },
+   "parentHTML": "<div><div class=\"mb-1 flex h-7 items-center text-[13px] font-normal leading-none text-white/45\">名称</div><input class=\"h-7 w-full rounded-lg border-0 bg-white/10 px-2 text-[12px] text-neutral-50 outline-none placeholder:text-white/30 focus:bg-white/13\" value=\"机位1\"></div>"
+  }
+ ]
+}

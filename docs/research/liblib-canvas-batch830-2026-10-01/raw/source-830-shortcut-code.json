@@ -1,0 +1,129 @@
+{
+ "来源": "源站导演台组件 chunk 0fmehki05gkzw.js.js（2026-10-21 抓取）",
+ "抓取方式": "开台时录下所有 .js 请求 ⟹ 把既有缓存 /tmp/liblib_srcjs/ 里没有的 存到 /tmp/liblib_srcjs2/（159 个）⟹ 导演台组件代码只在新缓存里",
+ "为什么必须读代码": "缓存的 161 个 chunk 里，连「导演视角」按钮的 i18n 键（directorViewModeDirector）都只出现在 i18n 字典 chunk ⟹ 导演台组件代码根本不在旧缓存 ⟹ 盲按快捷键测不出任何东西",
+ "chunk_bytes": 1018019,
+ "锚点": {
+  "面板_撤销行": {
+   "found": true,
+   "offset": 828377,
+   "text": "{label:e(\"canvas:directorShortcutUndo\"),keys:[{id:\"undo-command\",icon:\"command\"},{id:\"undo-key\",label:\"Z\"}]}"
+  },
+  "面板_打组行": {
+   "found": true,
+   "offset": 828116,
+   "text": "{label:e(\"canvas:directorShortcutGroup\"),keys:[{id:\"group-command\",icon:\"command\"},{id:\"group-key\",label:\"G\"}]}"
+  },
+  "面板_解组行": {
+   "found": true,
+   "offset": 828228,
+   "text": "{label:e(\"canvas:directorShortcutUngroup\"),keys:[{id:\"ungroup-command\",icon:\"command\"},{id:\"ungroup-shift\",label:\"⇧\"},{id:\"ungroup-key\",label:\"D\"}]}"
+  },
+  "面板_俯视行": {
+   "found": true,
+   "offset": 827446,
+   "text": "{label:e(\"canvas:directorShortcutTopView\"),keys:[{id:\"top-view\",label:\"T\"}]}"
+  },
+  "面板_重置行": {
+   "found": true,
+   "offset": 827523,
+   "text": "{label:e(\"canvas:directorShortcutResetView\"),keys:[{id:\"reset-view\",label:\"H\"}]}"
+  },
+  "面板_移动当前行": {
+   "found": true,
+   "offset": 827853,
+   "text": "{label:e(\"canvas:directorShortcutMoveCurrentView\"),keys:[{id:\"move-current-view\",label:\"WASDQE\"}]}"
+  },
+  "键盘集合_hY": {
+   "found": true,
+   "offset": 820017,
+   "text": "hY=new Set([\"escape\",\"enter\",\"v\",\"r\",\"f\",\"h\",\"x\",\"t\",\"y\",\"c\",\"d\",\"g\",\"delete\",\"backspace\",\"z\"])"
+  },
+  "键盘集合_hX": {
+   "found": true,
+   "offset": 820113,
+   "text": "hX=new Set([\"w\",\"a\",\"s\",\"d\",\"q\",\"e\"])"
+  },
+  "撤销键条件": {
+   "found": true,
+   "offset": 970046,
+   "text": "(\"z\"!==n||e.ctrlKey||e.metaKey)"
+  },
+  "打组键条件": {
+   "found": true,
+   "offset": 970079,
+   "text": "(\"g\"!==n||e.ctrlKey||e.metaKey)"
+  },
+  "解组键条件": {
+   "found": true,
+   "offset": 970112,
+   "text": "(\"d\"!==n||e.shiftKey&&(e.ctrlKey||e.metaKey))"
+  },
+  "重置键条件": {
+   "found": true,
+   "offset": 970192,
+   "text": "(\"h\"!==n||!e.ctrlKey&&!e.metaKey&&!e.altKey)"
+  },
+  "撤销分支": {
+   "found": true,
+   "offset": 972876,
+   "text": "else if(\"z\"===n)e.shiftKey?nu():nd();"
+  },
+  "可撤销动作集_lX": {
+   "found": true,
+   "offset": 451873,
+   "text": "lX=new Set([\"ADD_CHARACTER\",\"ADD_CHARACTERS\",\"ADD_EMPTY_OBJECT\",\"ADD_CAMERA\",\"ADD_PROP\",\"DUPLICATE_CHARACTER\",\"DUPLICATE_CAMERA\",\"DUPLICATE_PROP\",\"CREATE_CHARACTER_GROUP\",\"UNGROUP_CHARACTER_GROUP\",\"REMOVE\",\"REMOVE_SCENE_MEMBERS\",\"REMOVE_CHARACTERS\",\"UPDATE_CHARACTER\",\"UPDATE_CHARACTERS\",\"UPDATE_CAMERA\",\"UPDATE_EMPTY_OBJECT\",\"UPDATE_PROP\",\"ADD_ANIM_TRACK\",\"REMOVE_ANIM_TRACK\",\"UPDATE_ANIM_TRACK\",\"UPSERT_KEYFRAME\",\"REMOVE_KEYFRAME\",\"UPDATE_TIMELINE\",\"REMOVE_MOTION_PATH\",\"UPDATE_ENV\",\"IMPORT\",\"CLEAR\"])"
+  },
+  "撤销栈_取栈顶": {
+   "found": true,
+   "offset": 452571,
+   "text": "if(\"UNDO\"===t.type){if(0===(e=lZ(e)).past.length)return e;let t=e.past.at(-1);return t?{past:e.past.slice(0,-1),present:t,future:[e.present,...e.future],transientPast:null}:e}"
+  },
+  "撤销栈_容量": {
+   "found": true,
+   "offset": 453141,
+   "text": "past:[...a.past.slice(-49),a.present]"
+  },
+  "瞬时提交": {
+   "found": true,
+   "offset": 452527,
+   "text": "if(\"COMMIT_TRANSIENT\"===t.type)return lZ(e);"
+  },
+  "瞬时记账": {
+   "found": true,
+   "offset": 452939,
+   "text": "n=r&&\"transient\"===(\"history\"in t&&t.history?t.history:\"record\")"
+  },
+  "监听注册_捕获阶段": {
+   "found": true,
+   "offset": 973546,
+   "text": "window.addEventListener(\"keydown\",e,!0)"
+  },
+  "可编辑早退": {
+   "found": true,
+   "offset": 821132,
+   "text": "function h5(e){if(!(e instanceof Element))return!1;let t=e.closest('input, textarea, select, [contenteditable=\"true\"]');"
+  },
+  "range_豁免可编辑": {
+   "found": true,
+   "offset": 821416,
+   "text": "[\"button\",\"checkbox\",\"color\",\"file\",\"hidden\",\"image\",\"radio\",\"range\",\"reset\",\"submit\"]"
+  },
+  "裸键组分支": {
+   "found": true,
+   "offset": 969933,
+   "text": "if(hX.has(r)&&!(e.ctrlKey||e.metaKey)){e.preventDefault(),oo(r,e);return}"
+  },
+  "俯视视角实现": {
+   "found": true,
+   "offset": 972437,
+   "text": "else if(\"t\"===n)n0.setEditorCameraPose(iK(\"top\"));"
+  },
+  "重置视角实现": {
+   "found": true,
+   "offset": 972539,
+   "text": "else if(\"h\"===n)eJ(\"director\"),n0.setEditorCameraPose(iK(\"def"
+  }
+ },
+ "未命中": []
+}

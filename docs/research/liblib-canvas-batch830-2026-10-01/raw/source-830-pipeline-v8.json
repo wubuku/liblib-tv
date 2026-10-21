@@ -1,0 +1,1811 @@
+{
+ "①基线": {
+  "平移": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "旋转": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "缩放": [
+   {
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "水平旋转": [
+   {
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "球形半径": [
+   {
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "fov": null,
+  "zoom": null,
+  "active": {
+   "tag": "DIV",
+   "cls": "fixed flex flex-col inset-0",
+   "aria": "",
+   "type": "",
+   "txt": "3D导演台导演视角机位视角3D导演台"
+  }
+ },
+ "②按T后": {
+  "平移": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "旋转": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "缩放": [
+   {
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "水平旋转": [
+   {
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "球形半径": [
+   {
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "fov": null,
+  "zoom": null,
+  "active": {
+   "tag": "DIV",
+   "cls": "fixed flex flex-col inset-0",
+   "aria": "",
+   "type": "",
+   "txt": "3D导演台导演视角机位视角3D导演台"
+  }
+ },
+ "③按Z后": {
+  "平移": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "旋转": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "缩放": [
+   {
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "水平旋转": [
+   {
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "球形半径": [
+   {
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "fov": null,
+  "zoom": null,
+  "active": {
+   "tag": "DIV",
+   "cls": "fixed flex flex-col inset-0",
+   "aria": "",
+   "type": "",
+   "txt": "3D导演台导演视角机位视角3D导演台"
+  }
+ },
+ "④按H后": {
+  "平移": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "旋转": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "缩放": [
+   {
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "水平旋转": [
+   {
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "球形半径": [
+   {
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "fov": null,
+  "zoom": null,
+  "active": {
+   "tag": "DIV",
+   "cls": "fixed flex flex-col inset-0",
+   "aria": "",
+   "type": "",
+   "txt": "3D导演台导演视角机位视角3D导演台"
+  }
+ },
+ "⑤按W三次后": {
+  "平移": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "旋转": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "缩放": [
+   {
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "水平旋转": [
+   {
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "球形半径": [
+   {
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "fov": null,
+  "zoom": null,
+  "active": {
+   "tag": "DIV",
+   "cls": "fixed flex flex-col inset-0",
+   "aria": "",
+   "type": "",
+   "txt": "3D导演台导演视角机位视角3D导演台"
+  }
+ },
+ "⑥W后按Z": {
+  "平移": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "旋转": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "缩放": [
+   {
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "水平旋转": [
+   {
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "球形半径": [
+   {
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "fov": null,
+  "zoom": null,
+  "active": {
+   "tag": "DIV",
+   "cls": "fixed flex flex-col inset-0",
+   "aria": "",
+   "type": "",
+   "txt": "3D导演台导演视角机位视角3D导演台"
+  }
+ },
+ "⑦再按H": {
+  "平移": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "旋转": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "缩放": [
+   {
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "水平旋转": [
+   {
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "球形半径": [
+   {
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "fov": null,
+  "zoom": null,
+  "active": {
+   "tag": "DIV",
+   "cls": "fixed flex flex-col inset-0",
+   "aria": "",
+   "type": "",
+   "txt": "3D导演台导演视角机位视角3D导演台"
+  }
+ },
+ "⑧同context回读": {
+  "平移": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "旋转": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "缩放": [
+   {
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "水平旋转": [
+   {
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "球形半径": [
+   {
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "fov": null,
+  "zoom": null,
+  "active": {
+   "tag": "DIV",
+   "cls": "fixed flex flex-col inset-0",
+   "aria": "",
+   "type": "",
+   "txt": "3D导演台导演视角机位视角3D导演台"
+  }
+ },
+ "⑨全新context回读": {
+  "平移": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "旋转": [
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   },
+   {
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    }
+   }
+  ],
+  "缩放": [
+   {
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "水平旋转": [
+   {
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "球形半径": [
+   {
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    }
+   },
+   {
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    }
+   }
+  ],
+  "fov": null,
+  "zoom": null,
+  "active": {
+   "tag": "DIV",
+   "cls": "fixed flex flex-col inset-0",
+   "aria": "",
+   "type": "",
+   "txt": "3D导演台导演视角机位视角3D导演台"
+  }
+ }
+}

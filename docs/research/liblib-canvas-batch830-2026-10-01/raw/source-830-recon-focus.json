@@ -1,0 +1,2678 @@
+{
+ "①开台后": {
+  "tabbables": [
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-script-v2 nopan selectable",
+    "box": {
+     "x": 410,
+     "y": 328,
+     "w": 133,
+     "h": 133
+    },
+    "txt": "脚本 V2 11确认镜头2准备资产3"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-shot-breakdown nopan selec",
+    "box": {
+     "x": 99,
+     "y": 563,
+     "w": 122,
+     "h": 148
+    },
+    "txt": "逐帧拉片逐帧拉片SD 2.5视频素材"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-image nopan selectable dra",
+    "box": {
+     "x": 465,
+     "y": 557,
+     "w": 235,
+     "h": 133
+    },
+    "txt": "陈默_01KT17FN1808 × "
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-image nopan selectable dra",
+    "box": {
+     "x": 26,
+     "y": 337,
+     "w": 237,
+     "h": 133
+    },
+    "txt": "图片节点 1尝试：图生图图片高清"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-material-lens nopan select",
+    "box": {
+     "x": 282,
+     "y": 588,
+     "w": 92,
+     "h": 92
+    },
+    "txt": "素材-特效-瞳孔异变"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-director-console-3d nopan ",
+    "box": {
+     "x": 503,
+     "y": 127,
+     "w": 133,
+     "h": 178
+    },
+    "txt": "导演台 2打开导演台"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 386,
+     "y": 274,
+     "w": 1,
+     "h": 1
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "描述想要搭建的场景，支持通过参考图创建",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 386,
+     "y": 274,
+     "w": 366,
+     "h": 48
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-video nopan selectable dra",
+    "box": {
+     "x": 113,
+     "y": 122,
+     "w": 232,
+     "h": 133
+    },
+    "txt": "S83·镜2864 × 496"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "选择文件上传"
+   },
+   {
+    "tag": "SECTION",
+    "ti": "-1",
+    "role": "dialog",
+    "aria": "",
+    "cls": "m_fd1ab0aa m_b8a05bbd mantine-Drawer-content m_1b7284a3 mant",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "新对话\n            .c"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "开始你的创作，或者 @ 引用工作流/节点/资源",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "导演台 2"
+   },
+   {
+    "tag": "DIV",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "fixed flex flex-col inset-0",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    },
+    "txt": "3D导演台导演视角机位视角3D导演台"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "group relative flex h-8 w-full cursor-pointer items-center p",
+    "box": {
+     "x": 56,
+     "y": 144,
+     "w": 216,
+     "h": 32
+    },
+    "txt": "机位1"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "group relative flex h-8 w-full cursor-pointer items-center p",
+    "box": {
+     "x": 56,
+     "y": 176,
+     "w": 216,
+     "h": 32
+    },
+    "txt": "角色A"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 957,
+     "y": 1025,
+     "w": 1,
+     "h": 1
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "描述想搭建的场景",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 957,
+     "y": 1025,
+     "w": 142,
+     "h": 24
+    },
+    "txt": ""
+   }
+  ],
+  "tabbables_total": 18,
+  "canvases": [
+   {
+    "tag": "CANVAS",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 1547,
+     "y": 16,
+     "w": 72,
+     "h": 72
+    },
+    "txt": ""
+   },
+   {
+    "tag": "CANVAS",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    },
+    "txt": ""
+   }
+  ],
+  "rightInputs": [
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-0 h-full w-full cursor-pointer opacity-0",
+    "box": {
+     "x": 1656,
+     "y": 452,
+     "w": 28,
+     "h": 28
+    },
+    "txt": "",
+    "type": "color",
+    "value": "#060608",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 bg-transparent text-[12px] uppercase t",
+    "box": {
+     "x": 1710,
+     "y": 452,
+     "w": 186,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "060608",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1660,
+     "y": 956,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "0.4",
+    "min": "0",
+    "max": "1",
+    "step": "0.05",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1838,
+     "y": 952,
+     "w": 62,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "0.40",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1660,
+     "y": 1028,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "0",
+    "min": "-2",
+    "max": "2",
+    "step": "0.05",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1838,
+     "y": 1024,
+     "w": 62,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "0.0",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   }
+  ],
+  "active": {
+   "tag": "DIV",
+   "type": "",
+   "aria": "",
+   "cls": "fixed flex flex-col inset-0",
+   "txt": "3D导演台导演视角机位视角3D导演台场景"
+  },
+  "bodyActiveChain": [
+   "DIV.fixed flex flex-col inset-0",
+   "BODY.antialiased",
+   "HTML.dark"
+  ]
+ },
+ "②最大canvas": {
+  "tag": "CANVAS",
+  "ti": null,
+  "role": "",
+  "aria": "",
+  "cls": "",
+  "box": {
+   "x": 0,
+   "y": 0,
+   "w": 1920,
+   "h": 1080
+  },
+  "txt": ""
+ },
+ "③点视口后": {
+  "tabbables": [
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-script-v2 nopan selectable",
+    "box": {
+     "x": 410,
+     "y": 328,
+     "w": 133,
+     "h": 133
+    },
+    "txt": "脚本 V2 11确认镜头2准备资产3"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-shot-breakdown nopan selec",
+    "box": {
+     "x": 99,
+     "y": 563,
+     "w": 122,
+     "h": 148
+    },
+    "txt": "逐帧拉片逐帧拉片SD 2.5视频素材"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-image nopan selectable dra",
+    "box": {
+     "x": 465,
+     "y": 557,
+     "w": 235,
+     "h": 133
+    },
+    "txt": "陈默_01KT17FN1808 × "
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-image nopan selectable dra",
+    "box": {
+     "x": 26,
+     "y": 337,
+     "w": 237,
+     "h": 133
+    },
+    "txt": "图片节点 1尝试：图生图图片高清"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-material-lens nopan select",
+    "box": {
+     "x": 282,
+     "y": 588,
+     "w": 92,
+     "h": 92
+    },
+    "txt": "素材-特效-瞳孔异变"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-director-console-3d nopan ",
+    "box": {
+     "x": 503,
+     "y": 127,
+     "w": 133,
+     "h": 178
+    },
+    "txt": "导演台 2打开导演台"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 386,
+     "y": 274,
+     "w": 1,
+     "h": 1
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "描述想要搭建的场景，支持通过参考图创建",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 386,
+     "y": 274,
+     "w": 366,
+     "h": 48
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-video nopan selectable dra",
+    "box": {
+     "x": 113,
+     "y": 122,
+     "w": 232,
+     "h": 133
+    },
+    "txt": "S83·镜2864 × 496"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "选择文件上传"
+   },
+   {
+    "tag": "SECTION",
+    "ti": "-1",
+    "role": "dialog",
+    "aria": "",
+    "cls": "m_fd1ab0aa m_b8a05bbd mantine-Drawer-content m_1b7284a3 mant",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "新对话\n            .c"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "开始你的创作，或者 @ 引用工作流/节点/资源",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "导演台 2"
+   },
+   {
+    "tag": "DIV",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "fixed flex flex-col inset-0",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    },
+    "txt": "3D导演台导演视角机位视角3D导演台"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "group relative flex h-8 w-full cursor-pointer items-center p",
+    "box": {
+     "x": 56,
+     "y": 144,
+     "w": 216,
+     "h": 32
+    },
+    "txt": "机位1"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "group relative flex h-8 w-full cursor-pointer items-center p",
+    "box": {
+     "x": 56,
+     "y": 176,
+     "w": 216,
+     "h": 32
+    },
+    "txt": "角色A"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 957,
+     "y": 1025,
+     "w": 1,
+     "h": 1
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "描述想搭建的场景",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 957,
+     "y": 1025,
+     "w": 142,
+     "h": 24
+    },
+    "txt": ""
+   }
+  ],
+  "tabbables_total": 18,
+  "canvases": [
+   {
+    "tag": "CANVAS",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 1547,
+     "y": 16,
+     "w": 72,
+     "h": 72
+    },
+    "txt": ""
+   },
+   {
+    "tag": "CANVAS",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    },
+    "txt": ""
+   }
+  ],
+  "rightInputs": [
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-7 w-full rounded-lg border-0 bg-white/10 px-2 text-[12px] ",
+    "box": {
+     "x": 1656,
+     "y": 153,
+     "w": 248,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "角色A",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1656,
+     "y": 225,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1740,
+     "y": 225,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1824,
+     "y": 225,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1656,
+     "y": 297,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1740,
+     "y": 297,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1824,
+     "y": 297,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1656,
+     "y": 369,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "1.03",
+    "min": "",
+    "max": "",
+    "step": "0.05",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1740,
+     "y": 369,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "1.03",
+    "min": "",
+    "max": "",
+    "step": "0.05",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1824,
+     "y": 369,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "1.03",
+    "min": "",
+    "max": "",
+    "step": "0.05",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1656,
+     "y": 445,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "1",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.05",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1834,
+     "y": 441,
+     "w": 70,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "1.0",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-0 h-full w-full cursor-pointer opacity-0",
+    "box": {
+     "x": 1656,
+     "y": 513,
+     "w": 28,
+     "h": 28
+    },
+    "txt": "",
+    "type": "color",
+    "value": "#4f8ef7",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 bg-transparent text-[12px] uppercase t",
+    "box": {
+     "x": 1710,
+     "y": 513,
+     "w": 186,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "4F8EF7",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   }
+  ],
+  "active": {
+   "tag": "DIV",
+   "type": "",
+   "aria": "",
+   "cls": "fixed flex flex-col inset-0",
+   "txt": "3D导演台导演视角机位视角3D导演台场景"
+  },
+  "bodyActiveChain": [
+   "DIV.fixed flex flex-col inset-0",
+   "BODY.antialiased",
+   "HTML.dark"
+  ]
+ },
+ "④点空白后": {
+  "tabbables": [
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-script-v2 nopan selectable",
+    "box": {
+     "x": 410,
+     "y": 328,
+     "w": 133,
+     "h": 133
+    },
+    "txt": "脚本 V2 11确认镜头2准备资产3"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-shot-breakdown nopan selec",
+    "box": {
+     "x": 99,
+     "y": 563,
+     "w": 122,
+     "h": 148
+    },
+    "txt": "逐帧拉片逐帧拉片SD 2.5视频素材"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-image nopan selectable dra",
+    "box": {
+     "x": 465,
+     "y": 557,
+     "w": 235,
+     "h": 133
+    },
+    "txt": "陈默_01KT17FN1808 × "
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-image nopan selectable dra",
+    "box": {
+     "x": 26,
+     "y": 337,
+     "w": 237,
+     "h": 133
+    },
+    "txt": "图片节点 1尝试：图生图图片高清"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-material-lens nopan select",
+    "box": {
+     "x": 282,
+     "y": 588,
+     "w": 92,
+     "h": 92
+    },
+    "txt": "素材-特效-瞳孔异变"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-director-console-3d nopan ",
+    "box": {
+     "x": 503,
+     "y": 127,
+     "w": 133,
+     "h": 178
+    },
+    "txt": "导演台 2打开导演台"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 386,
+     "y": 274,
+     "w": 1,
+     "h": 1
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "描述想要搭建的场景，支持通过参考图创建",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 386,
+     "y": 274,
+     "w": 366,
+     "h": 48
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-video nopan selectable dra",
+    "box": {
+     "x": 113,
+     "y": 122,
+     "w": 232,
+     "h": 133
+    },
+    "txt": "S83·镜2864 × 496"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "选择文件上传"
+   },
+   {
+    "tag": "SECTION",
+    "ti": "-1",
+    "role": "dialog",
+    "aria": "",
+    "cls": "m_fd1ab0aa m_b8a05bbd mantine-Drawer-content m_1b7284a3 mant",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "新对话\n            .c"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "开始你的创作，或者 @ 引用工作流/节点/资源",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "导演台 2"
+   },
+   {
+    "tag": "DIV",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "fixed flex flex-col inset-0",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    },
+    "txt": "3D导演台导演视角机位视角3D导演台"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "group relative flex h-8 w-full cursor-pointer items-center p",
+    "box": {
+     "x": 56,
+     "y": 144,
+     "w": 216,
+     "h": 32
+    },
+    "txt": "机位1"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "group relative flex h-8 w-full cursor-pointer items-center p",
+    "box": {
+     "x": 56,
+     "y": 176,
+     "w": 216,
+     "h": 32
+    },
+    "txt": "角色A"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 957,
+     "y": 1025,
+     "w": 1,
+     "h": 1
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "描述想搭建的场景",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 957,
+     "y": 1025,
+     "w": 142,
+     "h": 24
+    },
+    "txt": ""
+   }
+  ],
+  "tabbables_total": 18,
+  "canvases": [
+   {
+    "tag": "CANVAS",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 1547,
+     "y": 16,
+     "w": 72,
+     "h": 72
+    },
+    "txt": ""
+   },
+   {
+    "tag": "CANVAS",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    },
+    "txt": ""
+   }
+  ],
+  "rightInputs": [
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-0 h-full w-full cursor-pointer opacity-0",
+    "box": {
+     "x": 1656,
+     "y": 452,
+     "w": 28,
+     "h": 28
+    },
+    "txt": "",
+    "type": "color",
+    "value": "#060608",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 bg-transparent text-[12px] uppercase t",
+    "box": {
+     "x": 1710,
+     "y": 452,
+     "w": 186,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "060608",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1660,
+     "y": 956,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "0.4",
+    "min": "0",
+    "max": "1",
+    "step": "0.05",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1838,
+     "y": 952,
+     "w": 62,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "0.40",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1660,
+     "y": 1028,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "0",
+    "min": "-2",
+    "max": "2",
+    "step": "0.05",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1838,
+     "y": 1024,
+     "w": 62,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "0.0",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   }
+  ],
+  "active": {
+   "tag": "DIV",
+   "type": "",
+   "aria": "",
+   "cls": "fixed flex flex-col inset-0",
+   "txt": "3D导演台导演视角机位视角3D导演台场景"
+  },
+  "bodyActiveChain": [
+   "DIV.fixed flex flex-col inset-0",
+   "BODY.antialiased",
+   "HTML.dark"
+  ]
+ },
+ "⑤3D场景页签": {
+  "tabbables": [
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-script-v2 nopan selectable",
+    "box": {
+     "x": 410,
+     "y": 328,
+     "w": 133,
+     "h": 133
+    },
+    "txt": "脚本 V2 11确认镜头2准备资产3"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-shot-breakdown nopan selec",
+    "box": {
+     "x": 99,
+     "y": 563,
+     "w": 122,
+     "h": 148
+    },
+    "txt": "逐帧拉片逐帧拉片SD 2.5视频素材"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-image nopan selectable dra",
+    "box": {
+     "x": 465,
+     "y": 557,
+     "w": 235,
+     "h": 133
+    },
+    "txt": "陈默_01KT17FN1808 × "
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-image nopan selectable dra",
+    "box": {
+     "x": 26,
+     "y": 337,
+     "w": 237,
+     "h": 133
+    },
+    "txt": "图片节点 1尝试：图生图图片高清"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-material-lens nopan select",
+    "box": {
+     "x": 282,
+     "y": 588,
+     "w": 92,
+     "h": 92
+    },
+    "txt": "素材-特效-瞳孔异变"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-director-console-3d nopan ",
+    "box": {
+     "x": 503,
+     "y": 127,
+     "w": 133,
+     "h": 178
+    },
+    "txt": "导演台 2打开导演台"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 386,
+     "y": 274,
+     "w": 1,
+     "h": 1
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "描述想要搭建的场景，支持通过参考图创建",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 386,
+     "y": 274,
+     "w": 366,
+     "h": 48
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "group",
+    "aria": "",
+    "cls": "react-flow__node react-flow__node-video nopan selectable dra",
+    "box": {
+     "x": 113,
+     "y": 122,
+     "w": 232,
+     "h": 133
+    },
+    "txt": "S83·镜2864 × 496"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "选择文件上传"
+   },
+   {
+    "tag": "SECTION",
+    "ti": "-1",
+    "role": "dialog",
+    "aria": "",
+    "cls": "m_fd1ab0aa m_b8a05bbd mantine-Drawer-content m_1b7284a3 mant",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "新对话\n            .c"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "开始你的创作，或者 @ 引用工作流/节点/资源",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    },
+    "txt": "导演台 2"
+   },
+   {
+    "tag": "DIV",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "fixed flex flex-col inset-0",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    },
+    "txt": "3D导演台导演视角机位视角3D导演台"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "group relative flex h-8 w-full cursor-pointer items-center p",
+    "box": {
+     "x": 56,
+     "y": 144,
+     "w": 216,
+     "h": 32
+    },
+    "txt": "机位1"
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "button",
+    "aria": "",
+    "cls": "group relative flex h-8 w-full cursor-pointer items-center p",
+    "box": {
+     "x": 56,
+     "y": 176,
+     "w": 216,
+     "h": 32
+    },
+    "txt": "角色A"
+   },
+   {
+    "tag": "INPUT",
+    "ti": "-1",
+    "role": "",
+    "aria": "",
+    "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden ",
+    "box": {
+     "x": 957,
+     "y": 1025,
+     "w": 1,
+     "h": 1
+    },
+    "txt": ""
+   },
+   {
+    "tag": "DIV",
+    "ti": "0",
+    "role": "textbox",
+    "aria": "描述想搭建的场景",
+    "cls": "ChatRichInput-editor max-w-full rounded-lg text-[14px] leadi",
+    "box": {
+     "x": 957,
+     "y": 1025,
+     "w": 142,
+     "h": 24
+    },
+    "txt": ""
+   }
+  ],
+  "tabbables_total": 18,
+  "canvases": [
+   {
+    "tag": "CANVAS",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 1547,
+     "y": 16,
+     "w": 72,
+     "h": 72
+    },
+    "txt": ""
+   },
+   {
+    "tag": "CANVAS",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    },
+    "txt": ""
+   }
+  ],
+  "rightInputs": [
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1656,
+     "y": 100,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "3",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1834,
+     "y": 96,
+     "w": 70,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "300%",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1656,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1740,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1824,
+     "y": 168,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "0.1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1656,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1740,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 border-0 bg-transparent pl-6 pr-2 text",
+    "box": {
+     "x": 1824,
+     "y": 240,
+     "w": 80,
+     "h": 28
+    },
+    "txt": "",
+    "type": "number",
+    "value": "0",
+    "min": "",
+    "max": "",
+    "step": "1",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-0 h-full w-full cursor-pointer opacity-0",
+    "box": {
+     "x": 1656,
+     "y": 452,
+     "w": 28,
+     "h": 28
+    },
+    "txt": "",
+    "type": "color",
+    "value": "#060608",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "h-full min-w-0 flex-1 bg-transparent text-[12px] uppercase t",
+    "box": {
+     "x": 1710,
+     "y": 452,
+     "w": 186,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "060608",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1656,
+     "y": 584,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "0",
+    "min": "0",
+    "max": "360",
+    "step": "1",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1834,
+     "y": 580,
+     "w": 70,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "0°",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1656,
+     "y": 656,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "60",
+    "min": "10",
+    "max": "500",
+    "step": "10",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1834,
+     "y": 652,
+     "w": 70,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "60",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1660,
+     "y": 956,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "0.4",
+    "min": "0",
+    "max": "1",
+    "step": "0.05",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1838,
+     "y": 952,
+     "w": 62,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "0.40",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "absolute inset-x-0 top-1/2 h-5 w-full -translate-y-1/2 curso",
+    "box": {
+     "x": 1660,
+     "y": 1028,
+     "w": 170,
+     "h": 20
+    },
+    "txt": "",
+    "type": "range",
+    "value": "0",
+    "min": "-2",
+    "max": "2",
+    "step": "0.05",
+    "opacity": "0",
+    "pointerEvents": "auto"
+   },
+   {
+    "tag": "INPUT",
+    "ti": null,
+    "role": "",
+    "aria": "",
+    "cls": "focus:bg-white/13 h-7 min-w-px flex-1 rounded-lg border-0 bg",
+    "box": {
+     "x": 1838,
+     "y": 1024,
+     "w": 62,
+     "h": 28
+    },
+    "txt": "",
+    "type": "text",
+    "value": "0.0",
+    "min": "",
+    "max": "",
+    "step": "",
+    "opacity": "1",
+    "pointerEvents": "auto"
+   }
+  ],
+  "active": {
+   "tag": "DIV",
+   "type": "",
+   "aria": "",
+   "cls": "fixed flex flex-col inset-0",
+   "txt": "3D导演台导演视角机位视角3D导演台场景"
+  },
+  "bodyActiveChain": [
+   "DIV.fixed flex flex-col inset-0",
+   "BODY.antialiased",
+   "HTML.dark"
+  ]
+ },
+ "⑥时间轴面板": {
+  "found": true,
+  "outer": "<input min=\"0\" max=\"100\" aria-label=\"时间轴缩放\" title=\"时间轴缩放\" class=\"absolute inset-x-0 top-1/2 m-0 h-6 w-full -translate-y-1/2 cursor-pointer appearance-none bg-transparent opacity-0\" type=\"range\" value=\"43.77510040160642\">",
+  "readOnly": false,
+  "disabled": false,
+  "step": "",
+  "value": "44",
+  "opacity": "0",
+  "parentHTML": "<div class=\"relative h-4 min-w-0 flex-1\"><div class=\"pointer-events-none absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 overflow-hidden rounded-full bg-white/40\"><div class=\"h-full rounded-full bg-[#F7F7F7]\" style=\"width: 43.7751%;\"></div></div><div class=\"pointer-events-none absolute top-1/2 h-3 w-3 rounded-full border border-[#F7F7F7] bg-[#F7F7F7]\" style=\"left: 43.7751%; transform: translate(-43.7751%, -50%);\"></div><input min=\"0\" max=\"100\" aria-label=\"时间轴缩放\" title=\"时间轴缩放\" class=\"absolute inset-x-0 top-1/2 m-0 h-6 w-full -translate-y-1/2 cursor-pointer appearance-none bg-transparent opacity-0\" type=\"range\" value=\"43.77510040160642\"></div>",
+  "sibs": [
+   {
+    "tag": "DIV",
+    "cls": "pointer-events-none absolute inset-x-0 top-1/2 h-1",
+    "txt": "",
+    "html": "<div class=\"pointer-events-none absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 overflow-hidden rounded-full bg-white/40\"><div class=\"h-full rounded-full bg-[#F7F7F7]\" style=\"width: 43.7751%;\"></div></div>"
+   },
+   {
+    "tag": "DIV",
+    "cls": "pointer-events-none absolute top-1/2 h-3 w-3 round",
+    "txt": "",
+    "html": "<div class=\"pointer-events-none absolute top-1/2 h-3 w-3 rounded-full border border-[#F7F7F7] bg-[#F7F7F7]\" style=\"left: 43.7751%; transform: translate(-43.7751%, -50%);\"></div>"
+   },
+   {
+    "tag": "INPUT",
+    "cls": "absolute inset-x-0 top-1/2 m-0 h-6 w-full -transla",
+    "txt": "",
+    "html": "<input min=\"0\" max=\"100\" aria-label=\"时间轴缩放\" title=\"时间轴缩放\" class=\"absolute inset-x-0 top-1/2 m-0 h-6 w-full -translate-y-1/2 cursor-pointer appearance-none bg-transparent opacity-0\" type=\"range\" value=\"43.77510040160642\">"
+   }
+  ]
+ }
+}
