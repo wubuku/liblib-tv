@@ -1,0 +1,343 @@
+{
+ "predictions_709": {
+  "P1": "关台再重开后 history.past 归零，之后 Cmd+Z 记 UNDO/NOOP",
+  "P2": "归零的原因是换了一个 projectId",
+  "P3": "连开关两次会每次都归零",
+  "P4": "开着手势关台，未提交的改动被丢弃",
+  "P5": "已提交的内容在关台重开后保留"
+ },
+ "predictions_828": {
+  "Q1": "★ 前提：页面已 hydration ⟹ 否则读数一律作废（batch 827 的教训）",
+  "Q2": "★ 前提：每一步的 data-director-source-node-id 都是同一个节点",
+  "Q3": "关台时开着方向键手势 ⟹ 手势被**提交**成一条 camera-fov 条目（不是丢弃）",
+  "Q4": "同一个节点关台重开 ⟹ **保留**已提交内容与历史（projectId 一字不变）",
+  "Q5": "第二次关台重开 ⟹ 同样**保留**（709 观测到的那条是对的）",
+  "Q6": "刷新页面再重开 ⟹ **内容留住、历史归零**（709 说「内容也丢」是错的）",
+  "Q7": "从未开过导演台的节点上点真实按钮 ⟹ 导演台能打开"
+ },
+ "correction": "batch 828：709 的判据 1/2/4 测的不是同一个节点 ⟹ 结论作废",
+ "hydration": {
+  "found": true,
+  "keys": [
+   "__reactFiber$b6kj3h26uf",
+   "__reactProps$b6kj3h26uf"
+  ],
+  "hasOnClick": true
+ },
+ "uncommitted_gesture": {
+  "node": "b-bTLLuU4w5q",
+  "s0": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570923848-1",
+   "sourceNode": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "objectsLen": 5
+  },
+  "s1": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570923848-1",
+   "sourceNode": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": "camera-fov",
+   "last": "UPDATE_CAMERA/COMMITTED",
+   "lastReason": null,
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "objectsLen": 5
+  },
+  "s2": {
+   "deskOpen": false,
+   "projectId": null,
+   "sourceNode": null,
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "objectsLen": 5
+  },
+  "s3": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570923848-1",
+   "sourceNode": "b-bTLLuU4w5q",
+   "pastLen": 1,
+   "pastKinds": [
+    "camera-fov"
+   ],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "objectsLen": 5
+  }
+ },
+ "two_cycles": {
+  "node": "b-bTLLuU4w5q",
+  "afterRename1": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570934691-1",
+   "sourceNode": "b-bTLLuU4w5q",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  },
+  "afterCycle1": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570934691-1",
+   "sourceNode": "b-bTLLuU4w5q",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  },
+  "afterRename2": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570934691-1",
+   "sourceNode": "b-bTLLuU4w5q",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": "UPDATE_OBJECT/NOOP",
+   "lastReason": "DIRECTOR_COMMAND_NO_CHANGE",
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  },
+  "afterCycle2": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570934691-1",
+   "sourceNode": "b-bTLLuU4w5q",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  }
+ },
+ "reload": {
+  "node": "b-bTLLuU4w5q",
+  "afterRename": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570949840-1",
+   "sourceNode": "b-bTLLuU4w5q",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "active": null,
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  },
+  "afterReloadReopen": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570949840-1",
+   "sourceNode": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": null,
+   "lastReason": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  },
+  "afterUndo": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570949840-1",
+   "sourceNode": "b-bTLLuU4w5q",
+   "pastLen": 0,
+   "pastKinds": [],
+   "active": null,
+   "last": "UNDO/NOOP",
+   "lastReason": "DIRECTOR_HISTORY_EMPTY",
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "改名试试709"
+   ],
+   "objectsLen": 5
+  }
+ },
+ "open_button": {
+  "attempts": [
+   {
+    "attempt": 1,
+    "node": "b-bTLLuU4w5q",
+    "hasButton": true,
+    "opened": true,
+    "reloadedFirst": false
+   },
+   {
+    "attempt": 2,
+    "node": "b-bTLLuU4w5q",
+    "hasButton": true,
+    "opened": true,
+    "reloadedFirst": true
+   }
+  ]
+ },
+ "summary": {
+  "the-page-is-hydrated-before-any-reading-is-taken": true,
+  "every-step-stays-on-the-same-source-node": true,
+  "closing-the-desk-commits-the-open-gesture-instead-of-discarding-it": true,
+  "closing-and-reopening-the-same-node-keeps-committed-work-and-history": true,
+  "a-second-close-and-reopen-also-keeps-everything": true,
+  "a-page-reload-keeps-committed-content-but-drops-the-history": true,
+  "the-open-button-opens-the-desk-on-a-node-that-never-had-a-director-session": true
+ },
+ "阴性对照": [
+  {
+   "name": "N1 把 hydration 读数改成 not-hydrated ⟹ Q1 翻红",
+   "期望翻红": "the-page-is-hydrated-before-any-reading-is-taken",
+   "实际翻红": [
+    "the-page-is-hydrated-before-any-reading-is-taken"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N2 把某一步的 sourceNode 改成另一个节点 ⟹ Q2 翻红",
+   "期望翻红": "every-step-stays-on-the-same-source-node",
+   "实际翻红": [
+    "every-step-stays-on-the-same-source-node"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N3 把手势臂重开后的 fov 改成基线 43 ⟹ Q3 翻红",
+   "期望翻红": "closing-the-desk-commits-the-open-gesture-instead-of-discarding-it",
+   "实际翻红": [
+    "closing-the-desk-commits-the-open-gesture-instead-of-discarding-it"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N4 把第一次关台重开的 pastLen 改成 0 ⟹ Q4 翻红",
+   "期望翻红": "closing-and-reopening-the-same-node-keeps-committed-work-and-history",
+   "实际翻红": [
+    "closing-and-reopening-the-same-node-keeps-committed-work-and-history"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N5 把第二次关台重开的 pastLen 改成 0 ⟹ Q5 翻红",
+   "期望翻红": "a-second-close-and-reopen-also-keeps-everything",
+   "实际翻红": [
+    "a-second-close-and-reopen-also-keeps-everything"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N6 把刷新臂的名字里去掉那次改名 ⟹ Q6 翻红",
+   "期望翻红": "a-page-reload-keeps-committed-content-but-drops-the-history",
+   "实际翻红": [
+    "a-page-reload-keeps-committed-content-but-drops-the-history"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N7 把按钮臂的 opened 改成 False ⟹ Q7 翻红",
+   "期望翻红": "the-open-button-opens-the-desk-on-a-node-that-never-had-a-director-session",
+   "实际翻红": [
+    "the-open-button-opens-the-desk-on-a-node-that-never-had-a-director-session"
+   ],
+   "ok": true
+  }
+ ],
+ "failures": []
+}

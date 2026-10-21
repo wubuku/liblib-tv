@@ -1,0 +1,628 @@
+{
+  "batch": 828,
+  "totals": {
+    "passed": 11,
+    "total": 11
+  },
+  "阴性对照": {
+    "passed": 12,
+    "total": 12
+  },
+  "checks": [
+    {
+      "id": "S1:★★ **前提**：页面**已 hydration**（DOM 上有 React props）＋ 探针源码**零 store 写调用**",
+      "name": "S1:★★ **前提**：页面**已 hydration**（DOM 上有 React props）＋ 探针源码**零 store 写调用**",
+      "ok": true,
+      "detail": {
+        "hydration": {
+          "found": true,
+          "keys": [
+            "__reactFiber$910hct8t2n",
+            "__reactProps$910hct8t2n"
+          ],
+          "hasOnClick": true
+        },
+        "扫的区间": "探针区（# ── ★ 探针区开始 … # ── ★ 探针区结束）",
+        "探针里的 store 写调用": [],
+        "★为什么": "Next 16 默认拦截来自 127.0.0.1 的 dev 资源 ⟹ 整页不 hydration ⟹ 页面看起来正常但点击全无效 ⟹ 读数会是假的（batch 827 §4）"
+      }
+    },
+    {
+      "id": "S2:★★★ 画布上**种子** script-execution 节点**只有一枚**，它的「打开导演台」按钮在（`.first` 命中它）；后门加一个节点后变成**两枚**⟹ ⟹ 709 用 `.first` 重开 ⟹ 点到的是**另一个**节点",
+      "name": "S2:★★★ 画布上**种子** script-execution 节点**只有一枚**，它的「打开导演台」按钮在（`.first` 命中它）；后门加一个节点后变成**两枚**⟹ ⟹ 709 用 `.first` 重开 ⟹ 点到的是**另一个**节点",
+      "ok": true,
+      "detail": {
+        "种子状态": {
+          "buttons": [
+            {
+              "nodeId": "b-bTLLuU4w5q"
+            }
+          ],
+          "scriptExecutionNodes": [
+            {
+              "id": "b-bTLLuU4w5q",
+              "title": "第一集：咖啡馆对峙"
+            }
+          ]
+        },
+        "后门加节点后": {
+          "buttons": [
+            {
+              "nodeId": "b-bTLLuU4w5q"
+            },
+            {
+              "nodeId": "script-execution-1792571008924-kjgpq8"
+            }
+          ],
+          "scriptExecutionNodes": [
+            {
+              "id": "b-bTLLuU4w5q",
+              "title": "第一集：咖啡馆对峙"
+            },
+            {
+              "id": "script-execution-1792571008924-kjgpq8",
+              "title": "Batch 828"
+            }
+          ]
+        },
+        "★709 踩的坑": "709 的重开用 `[data-open-director]` 的 `.first` ⟹ 而它的第一次开台是后门加的**另一个**节点 ⟹ 两次根本不是同一个节点"
+      }
+    },
+    {
+      "id": "S3:★★★★ **用户路径**（真实按钮 → 真实按钮，**同一个节点**）：关台重开后 **projectId 一字不变** ＋ **已提交的改名还在** ＋ **历史那条也还在**",
+      "name": "S3:★★★★ **用户路径**（真实按钮 → 真实按钮，**同一个节点**）：关台重开后 **projectId 一字不变** ＋ **已提交的改名还在** ＋ **历史那条也还在**",
+      "ok": true,
+      "detail": {
+        "第一次开台": {
+          "deskOpen": true,
+          "projectId": "director-project-1792570998981-1",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "改名后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792570998981-1",
+          "pastLen": 1,
+          "pastKinds": [
+            "UPDATE_OBJECT"
+          ],
+          "last": "UPDATE_OBJECT/COMMITTED",
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "Batch 828 改名"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "重开后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792570998981-1",
+          "pastLen": 1,
+          "pastKinds": [
+            "UPDATE_OBJECT"
+          ],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "Batch 828 改名"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "★更正": "batch 709 断言「第一次关台重开丢掉一切已提交内容（含历史）」⟹ 在**同一个节点**上这是**假的**"
+      }
+    },
+    {
+      "id": "S4:★★★ 用户路径：**关台重开之后撤销仍然可用**（Cmd+Z 记 UNDO/COMMITTED、历史归零、那次改名被撤掉）",
+      "name": "S4:★★★ 用户路径：**关台重开之后撤销仍然可用**（Cmd+Z 记 UNDO/COMMITTED、历史归零、那次改名被撤掉）",
+      "ok": true,
+      "detail": {
+        "重开后撤销": {
+          "deskOpen": true,
+          "projectId": "director-project-1792570998981-1",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": "UNDO/COMMITTED",
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "★更正": "batch 709 断言「关台重开后 history.past 归零、之后按 Cmd+Z 记 UNDO/NOOP」⟹ 在**同一个节点**上 past 仍是 1、Cmd+Z 是真的 UNDO"
+      }
+    },
+    {
+      "id": "S5:★★★ **后门开台** → **同一个节点**的真实按钮重开：结果与用户路径**相同**（projectId 不变、改名还在、历史还在）⟹ ⟹ 决定变量是「同一个节点」，**不是**「哪条开台路径」",
+      "name": "S5:★★★ **后门开台** → **同一个节点**的真实按钮重开：结果与用户路径**相同**（projectId 不变、改名还在、历史还在）⟹ ⟹ 决定变量是「同一个节点」，**不是**「哪条开台路径」",
+      "ok": true,
+      "detail": {
+        "后门臂开台后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571011107-1",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "script-execution-1792571008924-kjgpq8"
+        },
+        "后门臂重开后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571011107-1",
+          "pastLen": 1,
+          "pastKinds": [
+            "UPDATE_OBJECT"
+          ],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "Batch 828 改名"
+          ],
+          "nodeId": "script-execution-1792571008924-kjgpq8"
+        },
+        "节点": {
+          "用户路径臂": "b-bTLLuU4w5q",
+          "后门臂": "script-execution-1792571008924-kjgpq8"
+        },
+        "★两条路径的函数完全相同": "真实按钮 `ScriptExecutionNode.tsx:57` 调的就是 `openDirectorDesk(id, activeCanvasId)`"
+      }
+    },
+    {
+      "id": "S6:★★★★ **709 的条件**（后门开 → **另一个**节点的按钮）：projectId **变了** ＋ 改名**不见了** ＋ 历史**归零** ⟹ ⟹ 709 测到的是「**换了个节点**」，不是「丢了工作」",
+      "name": "S6:★★★★ **709 的条件**（后门开 → **另一个**节点的按钮）：projectId **变了** ＋ 改名**不见了** ＋ 历史**归零** ⟹ ⟹ 709 测到的是「**换了个节点**」，不是「丢了工作」",
+      "ok": true,
+      "detail": {
+        "混搭臂开台后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571055971-1",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "script-execution-1792571053800-esc8vy"
+        },
+        "混搭臂重开后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571060996-3",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "第一次的节点": "script-execution-1792571053800-esc8vy",
+        "重开的节点": "b-bTLLuU4w5q"
+      }
+    },
+    {
+      "id": "S7:★★★ **反混搭**（真实按钮开 → **另一个**节点的后门重开）：**同样** projectId 变 ＋ 改名不见 ⟹ ⟹ 进一步证明决定变量是**节点**，不是路径",
+      "name": "S7:★★★ **反混搭**（真实按钮开 → **另一个**节点的后门重开）：**同样** projectId 变 ＋ 改名不见 ⟹ ⟹ 进一步证明决定变量是**节点**，不是路径",
+      "ok": true,
+      "detail": {
+        "反混搭臂开台后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571066685-1",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "反混搭臂重开后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571071715-3",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "script-execution-1792571064503-u0giy6"
+        },
+        "第一次的节点": "script-execution-1792571064503-u0giy6",
+        "重开的节点": "b-bTLLuU4w5q"
+      }
+    },
+    {
+      "id": "S8:★★★ **刷新页面**后重开（**同一个节点**）：**已提交的改名还在**、projectId 不变 ⟹ ⟹ 工作是**持久化**过的（不是内存态）",
+      "name": "S8:★★★ **刷新页面**后重开（**同一个节点**）：**已提交的改名还在**、projectId 不变 ⟹ ⟹ 工作是**持久化**过的（不是内存态）",
+      "ok": true,
+      "detail": {
+        "刷新前改名后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571041438-1",
+          "pastLen": 1,
+          "pastKinds": [
+            "UPDATE_OBJECT"
+          ],
+          "last": "UPDATE_OBJECT/COMMITTED",
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "Batch 828 改名"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "刷新后": {
+          "deskOpen": false,
+          "projectId": null,
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": null
+        },
+        "刷新后重开": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571041438-1",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "Batch 828 改名"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "★更正": "batch 709 断言「刷新页面后重开也丢」⟹ 在**同一个节点**上这也是**假的**",
+        "★机制": "clone 的导演台工程持久化在 localStorage（src/lib/directorProjectPersistence.ts）"
+      }
+    },
+    {
+      "id": "S9:★★★★ 相机 fov 的方向键手势**不是**「会被丢弃的未提交改动」：① 手势活动期间**值已落盘**（`last` = `UPDATE_CAMERA/COMMITTED`）但**不产生历史条目**（`pastLen` 0）⟹ 「未提交」的真实含义是「**没有可撤销条目**」，不是「值会被丢掉」；② 关台时手势被**提交**成一条 `camera-fov` 的历史条目 ⟹ 同节点重开后 **fov 保留 46**、**pastLen 1**、**pastKinds ['camera-fov']**、**projectId 一字不变** ⟹ ⟹ batch 709 的 P4（「关台丢弃未提交手势，fov 46→43」）**在同一个节点上也是假的**：它读到的 43 是**另一个节点**的新工程基线",
+      "name": "S9:★★★★ 相机 fov 的方向键手势**不是**「会被丢弃的未提交改动」：① 手势活动期间**值已落盘**（`last` = `UPDATE_CAMERA/COMMITTED`）但**不产生历史条目**（`pastLen` 0）⟹ 「未提交」的真实含义是「**没有可撤销条目**」，不是「值会被丢掉」；② 关台时手势被**提交**成一条 `camera-fov` 的历史条目 ⟹ 同节点重开后 **fov 保留 46**、**pastLen 1**、**pastKinds ['camera-fov']**、**projectId 一字不变** ⟹ ⟹ batch 709 的 P4（「关台丢弃未提交手势，fov 46→43」）**在同一个节点上也是假的**：它读到的 43 是**另一个节点**的新工程基线",
+      "ok": true,
+      "detail": {
+        "开台后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571020059-1",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": null,
+          "active": null,
+          "fovStore": 43,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "手势后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571020059-1",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": "UPDATE_CAMERA/COMMITTED",
+          "active": "camera-fov",
+          "fovStore": 46,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "重开后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571020059-1",
+          "pastLen": 1,
+          "pastKinds": [
+            "camera-fov"
+          ],
+          "last": null,
+          "active": null,
+          "fovStore": 46,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "★机制（源码可查）": "commitDirectorMutation 在 `history.activeGesture` 存在时返回 `historyEntries: 0` ⟹ 值实时落到文档上但**不记账**；关台时焦点离开 ⟹ `useDirectorGestureBoundary` 的 `onBlur` ⟹ `commitDirectorGesture()` ⟹ 生成 kind=`camera-fov` 的条目并 `rememberDirectorHistory(projectId, …)`；重开时 `historyForDirectorProject(projectId)` 把它取回来",
+        "★709 判据作废": "709 P4 的读数 43 来自**另一个节点**的工程默认值"
+      }
+    },
+    {
+      "id": "S10:★ 静态锚点：导演台工程的**持久化实现**在（localStorage ＋ schema 版本 ＋ owner ＋ tombstone）",
+      "name": "S10:★ 静态锚点：导演台工程的**持久化实现**在（localStorage ＋ schema 版本 ＋ owner ＋ tombstone）",
+      "ok": true,
+      "detail": {
+        "持久化文件里有 localStorage": true,
+        "有 schema 版本": true,
+        "store 引用了持久化": true
+      }
+    },
+    {
+      "id": "S11:★★★★ 手势的**失焦语义**（事件记录器逐拍实测）：① 手势期间**值已落盘**（`last` = `UPDATE_CAMERA/COMMITTED`）但**不产生历史条目**（`pastLen` 0）；② **点 3D 画布不会让它失焦** ⟹ **不提交**（焦点仍在滑杆上、blur 日志**零条**）；③ **按 Tab 失焦 ⟹ 当场提交**（`last` = `GESTURE_COMMIT/COMMITTED`、`pastLen` 1、条目 kind = `camera-fov`、`active` 转 null），且 blur 事件**发生时**手势还是 active、**之后**已被提交 ⟹ ⟹ ⟹ **关台那一刻手势已经不在 active** ⟹ ⟹ `DirectorDesk.tsx:453` 那个 `cancelDirectorGesture()` 分支**根本没走** ⟹ ⟹ **关台不是「取消手势」，是「把手势带着走」** ⟹ ⟹ batch 709 台账里「关台等于取消当前手势 ⟹ 文档回滚到手势基线」这条**机制解释**也不成立",
+      "name": "S11:★★★★ 手势的**失焦语义**（事件记录器逐拍实测）：① 手势期间**值已落盘**（`last` = `UPDATE_CAMERA/COMMITTED`）但**不产生历史条目**（`pastLen` 0）；② **点 3D 画布不会让它失焦** ⟹ **不提交**（焦点仍在滑杆上、blur 日志**零条**）；③ **按 Tab 失焦 ⟹ 当场提交**（`last` = `GESTURE_COMMIT/COMMITTED`、`pastLen` 1、条目 kind = `camera-fov`、`active` 转 null），且 blur 事件**发生时**手势还是 active、**之后**已被提交 ⟹ ⟹ ⟹ **关台那一刻手势已经不在 active** ⟹ ⟹ `DirectorDesk.tsx:453` 那个 `cancelDirectorGesture()` 分支**根本没走** ⟹ ⟹ **关台不是「取消手势」，是「把手势带着走」** ⟹ ⟹ batch 709 台账里「关台等于取消当前手势 ⟹ 文档回滚到手势基线」这条**机制解释**也不成立",
+      "ok": true,
+      "detail": {
+        "手势后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571029742-1",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": "UPDATE_CAMERA/COMMITTED",
+          "active": "camera-fov",
+          "fovStore": 46,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "点画布后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571029742-1",
+          "pastLen": 0,
+          "pastKinds": [],
+          "last": "UPDATE_CAMERA/COMMITTED",
+          "active": "camera-fov",
+          "fovStore": 46,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "失焦后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571029742-1",
+          "pastLen": 1,
+          "pastKinds": [
+            "camera-fov"
+          ],
+          "last": "GESTURE_COMMIT/COMMITTED",
+          "active": null,
+          "fovStore": 46,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "重开后": {
+          "deskOpen": true,
+          "projectId": "director-project-1792571029742-1",
+          "pastLen": 1,
+          "pastKinds": [
+            "camera-fov"
+          ],
+          "last": null,
+          "active": null,
+          "fovStore": 46,
+          "names": [
+            "角色01 · 陈默",
+            "咖啡桌",
+            "冷掉的咖啡",
+            "咖啡馆背景",
+            "机位01 · 对峙中景"
+          ],
+          "nodeId": "b-bTLLuU4w5q"
+        },
+        "点画布后的blur日志": [],
+        "失焦后的blur日志": [
+          {
+            "target": "camera-fov-range",
+            "before": {
+              "active": "camera-fov",
+              "pastLen": 0,
+              "pastKinds": [],
+              "fov": 46
+            },
+            "after": {
+              "active": null,
+              "pastLen": 1,
+              "pastKinds": [
+                "camera-fov"
+              ],
+              "fov": 46
+            }
+          }
+        ],
+        "★源码对得上": "commitDirectorGesture 成功 ⟹ commandKind='GESTURE_COMMIT'、disposition='COMMITTED'、historyEntries=1、条目 kind = gesture.commandKind（= 'camera-fov'）⟹ 与读数逐字吻合；而 cancelDirectorGesture 会 `restoreDirectorDocumentState(gesture.baseline)` ⟹ fov 必回 43 ⟹ 实测 46 ⟹ cancel 分支未走",
+        "★为什么这条重要": "它把「关台时手势已被提交」从**推断**变成**实测**；否则「关台保留手势」还有另一种解释（关台恰好没走 cancel）",
+        "★顺带一条产品读数": "在滑杆上改完值**不去失焦**、直接点 3D 画布 ⟹ 手势**不会**被提交（画布 pointerdown 阻止了默认行为 ⟹ 焦点不动）⟹ 手势会一直开着，直到你 Tab 走或点「关闭」"
+      }
+    }
+  ],
+  "阴性": [
+    {
+      "name": "N1 把 hydration 读数改成 false ⟹ S1 翻红",
+      "期望翻红": "S1",
+      "实际翻红": [
+        "S1"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N2 在探针源码副本里塞一个 store 写调用 ⟹ S1 翻红",
+      "期望翻红": "S1",
+      "实际翻红": [
+        "S1"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N3 在节点普查里塞一个多出来的节点 ⟹ S2 翻红",
+      "期望翻红": "S2",
+      "实际翻红": [
+        "S2"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N4 把用户路径臂的 projectId 改掉 ⟹ S3 翻红",
+      "期望翻红": "S3",
+      "实际翻红": [
+        "S3"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N5 把重开后的撤销结果改成 UNDO/NOOP ⟹ S4 翻红",
+      "期望翻红": "S4",
+      "实际翻红": [
+        "S4"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N6 把后门臂的 pastLen 改成 0 ⟹ S5 翻红",
+      "期望翻红": "S5",
+      "实际翻红": [
+        "S5"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N7 把混搭臂的 projectId 改成不变 ⟹ S6 翻红",
+      "期望翻红": "S6",
+      "实际翻红": [
+        "S6"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N8 把反混搭臂的 pastLen 改成 1 ⟹ S7 翻红",
+      "期望翻红": "S7",
+      "实际翻红": [
+        "S7"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N9 把手势臂重开后的 fov 改成基线 43（假装被丢弃）⟹ S9 翻红",
+      "期望翻红": "S9",
+      "实际翻红": [
+        "S9"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N10 把刷新臂的名字里去掉那次改名 ⟹ S8 翻红",
+      "期望翻红": "S8",
+      "实际翻红": [
+        "S8"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N11 在持久化源码副本里去掉 TOMBSTONED ⟹ S10 翻红",
+      "期望翻红": "S10",
+      "实际翻红": [
+        "S10"
+      ],
+      "ok": true
+    },
+    {
+      "name": "N12 把失焦臂的结果改成 GESTURE_CANCEL ⟹ S11 翻红",
+      "期望翻红": "S11",
+      "实际翻红": [
+        "S11"
+      ],
+      "ok": true
+    }
+  ]
+}

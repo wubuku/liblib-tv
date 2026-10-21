@@ -1,0 +1,586 @@
+{
+ "viewport": {
+  "width": 1920,
+  "height": 1080
+ },
+ "hydration": {
+  "found": true,
+  "keys": [
+   "__reactFiber$910hct8t2n",
+   "__reactProps$910hct8t2n"
+  ],
+  "hasOnClick": true
+ },
+ "A 用户路径·同节点": {
+  "node": "b-bTLLuU4w5q",
+  "节点普查": {
+   "buttons": [
+    {
+     "nodeId": "b-bTLLuU4w5q"
+    }
+   ],
+   "scriptExecutionNodes": [
+    {
+     "id": "b-bTLLuU4w5q",
+     "title": "第一集：咖啡馆对峙"
+    }
+   ]
+  },
+  "开台后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570998981-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "改名后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570998981-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "Batch 828 改名"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "关台后": {
+   "deskOpen": false,
+   "projectId": null,
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "Batch 828 改名"
+   ],
+   "nodeId": null
+  },
+  "重开后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570998981-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "Batch 828 改名"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "重开后撤销": {
+   "deskOpen": true,
+   "projectId": "director-project-1792570998981-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": "UNDO/COMMITTED",
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  }
+ },
+ "E 后门开·同节点真实按钮重开": {
+  "node": "script-execution-1792571008924-kjgpq8",
+  "节点普查": {
+   "buttons": [
+    {
+     "nodeId": "b-bTLLuU4w5q"
+    },
+    {
+     "nodeId": "script-execution-1792571008924-kjgpq8"
+    }
+   ],
+   "scriptExecutionNodes": [
+    {
+     "id": "b-bTLLuU4w5q",
+     "title": "第一集：咖啡馆对峙"
+    },
+    {
+     "id": "script-execution-1792571008924-kjgpq8",
+     "title": "Batch 828"
+    }
+   ]
+  },
+  "开台后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571011107-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "script-execution-1792571008924-kjgpq8"
+  },
+  "改名后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571011107-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "Batch 828 改名"
+   ],
+   "nodeId": "script-execution-1792571008924-kjgpq8"
+  },
+  "关台后": {
+   "deskOpen": false,
+   "projectId": null,
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "Batch 828 改名"
+   ],
+   "nodeId": null
+  },
+  "重开后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571011107-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "Batch 828 改名"
+   ],
+   "nodeId": "script-execution-1792571008924-kjgpq8"
+  }
+ },
+ "G 手势臂·同节点": {
+  "node": "b-bTLLuU4w5q",
+  "开台后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571020059-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "手势后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571020059-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": "UPDATE_CAMERA/COMMITTED",
+   "active": "camera-fov",
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "关台后": {
+   "deskOpen": false,
+   "projectId": null,
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": null
+  },
+  "重开后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571020059-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "camera-fov"
+   ],
+   "last": null,
+   "active": null,
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  }
+ },
+ "H 失焦提交·同节点": {
+  "node": "b-bTLLuU4w5q",
+  "开台后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571029742-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "手势后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571029742-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": "UPDATE_CAMERA/COMMITTED",
+   "active": "camera-fov",
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "点画布后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571029742-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": "UPDATE_CAMERA/COMMITTED",
+   "active": "camera-fov",
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "点画布后的blur日志": [],
+  "失焦后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571029742-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "camera-fov"
+   ],
+   "last": "GESTURE_COMMIT/COMMITTED",
+   "active": null,
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "失焦后的blur日志": [
+   {
+    "target": "camera-fov-range",
+    "before": {
+     "active": "camera-fov",
+     "pastLen": 0,
+     "pastKinds": [],
+     "fov": 46
+    },
+    "after": {
+     "active": null,
+     "pastLen": 1,
+     "pastKinds": [
+      "camera-fov"
+     ],
+     "fov": 46
+    }
+   }
+  ],
+  "关台后": {
+   "deskOpen": false,
+   "projectId": null,
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": null
+  },
+  "重开后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571029742-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "camera-fov"
+   ],
+   "last": null,
+   "active": null,
+   "fovStore": 46,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  }
+ },
+ "F 刷新·同节点": {
+  "node": "b-bTLLuU4w5q",
+  "改名后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571041438-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "Batch 828 改名"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "刷新后": {
+   "deskOpen": false,
+   "projectId": null,
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": null
+  },
+  "刷新后重开": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571041438-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "Batch 828 改名"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  }
+ },
+ "C 混搭（后门→别的节点）": {
+  "node": "script-execution-1792571053800-esc8vy",
+  "另一个节点": "b-bTLLuU4w5q",
+  "开台后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571055971-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "script-execution-1792571053800-esc8vy"
+  },
+  "改名后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571055971-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "Batch 828 改名"
+   ],
+   "nodeId": "script-execution-1792571053800-esc8vy"
+  },
+  "重开后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571060996-3",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  }
+ },
+ "D 反混搭（真实→别的节点）": {
+  "node": "script-execution-1792571064503-u0giy6",
+  "另一个节点": "b-bTLLuU4w5q",
+  "开台后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571066685-1",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "改名后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571066685-1",
+   "pastLen": 1,
+   "pastKinds": [
+    "UPDATE_OBJECT"
+   ],
+   "last": "UPDATE_OBJECT/COMMITTED",
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "Batch 828 改名"
+   ],
+   "nodeId": "b-bTLLuU4w5q"
+  },
+  "重开后": {
+   "deskOpen": true,
+   "projectId": "director-project-1792571071715-3",
+   "pastLen": 0,
+   "pastKinds": [],
+   "last": null,
+   "active": null,
+   "fovStore": 43,
+   "names": [
+    "角色01 · 陈默",
+    "咖啡桌",
+    "冷掉的咖啡",
+    "咖啡馆背景",
+    "机位01 · 对峙中景"
+   ],
+   "nodeId": "script-execution-1792571064503-u0giy6"
+  }
+ }
+}
