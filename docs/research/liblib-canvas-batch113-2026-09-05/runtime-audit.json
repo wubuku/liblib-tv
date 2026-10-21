@@ -8,6 +8,8 @@
       "checks": [
         "strip:cards-visible",
         "strip:uniform-pitch",
+        "strip:pitch-246",
+        "strip:card-size",
         "diagnostics:zero"
       ],
       "diagnostics": {

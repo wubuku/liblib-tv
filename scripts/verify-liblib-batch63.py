@@ -265,7 +265,12 @@ def run_character(page: Page, asset_open=False):
     assert panel.is_visible()
     if asset_panel:
         assert asset_panel.is_visible()
-    panel.get_by_role("button", name="应用至画布").click()
+    # ★ Batch 827：源站**当前**形态里「添加到画布」只出现在「官方角色库」页签
+    #   （源站 bundle：底部 CTA 有三种形态 ⟹ 未选中角色时是居中单枚「创建新角色」）
+    #   ⟹ 先切页签再点。
+    page.locator('[data-character-studio-tab="official"]').click()
+    page.wait_for_timeout(500)
+    panel.get_by_role("button", name="添加到画布").click()
     page.wait_for_timeout(160)
     assert not panel.is_visible()
     if asset_panel:

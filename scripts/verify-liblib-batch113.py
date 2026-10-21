@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 
-"""Verify Batch 113 uniform character strip spacing against the 2026-09-05 source rhythm."""
+"""Verify Batch 113 uniform character strip spacing against the 2026-09-05 source rhythm.
+
+★ Batch 827 改写：面板按源站**当前**形态重建后，卡片轨道的**具体**间距被钉住了。
+  源站 2026-10-21 活体读数（batch 827 raw，source-827-structure.json）：
+  卡片图 244×434 @y=321，相邻 x 差**恒 246**（源站 raw 里 11 张常规卡片的
+  x 序列是 1330 / 1576 / 1822 / … 的 246 等差）。
+  ⟹ 本门禁从「间距均匀」**加强**为「间距 == 246 且均匀」。
+  ★ 旧门禁只判 `len(set(gaps)) == 1` ⟹ 哪怕整体错位 100px 也照样全绿。
+"""
 
 from __future__ import annotations
 
@@ -21,6 +29,11 @@ AUDIT_PATH = (
     / "liblib-canvas-batch113-2026-09-05"
     / "runtime-audit.json"
 )
+
+# ★ Batch 827：源站实测的卡片轨道间距（详见上面的 docstring）
+SOURCE_STRIP_PITCH = 246
+SOURCE_CARD_SIZE = (244, 434)
+SOURCE_CARD_TOP = 321
 
 
 def attach_errors(page: Page) -> list[str]:
@@ -66,8 +79,30 @@ def run_desktop(page: Page) -> dict[str, Any]:
       for (let i = 1; i < Math.min(xs.length, 6); i++) deltas.push(Math.round(xs[i] - xs[i - 1]));
       return deltas;
     }""")
+    card_boxes = modal.evaluate(
+        """() => Array.from(document.querySelectorAll("[data-character-strip-card]"))
+             .slice(0, 3)
+             .map((el) => { const r = el.getBoundingClientRect();
+               return { w: Math.round(r.width), h: Math.round(r.height),
+                        y: Math.round(r.y) }; });"""
+    )
     check("strip:cards-visible", len(gaps) >= 4)
     check("strip:uniform-pitch", len(set(gaps)) == 1)
+    # ★ Batch 827 加强：间距的具体值 == 源站实测的 246
+    check("strip:pitch-246", gaps and set(gaps) == {SOURCE_STRIP_PITCH})
+    # ★ Batch 827 加强：卡片本身 244×434（源站实测值）
+    #   ★★ 卡片顶边的 y 是**视口相关**的：900 高视口下
+    #   y = (900-760)/2 + 1(border) + 70(header) + 32(toolbar) + 16(mt-4) + 42(viewport) = 231
+    #   （1920×1080 下才是 321）⟹ ★★ 绝对 y 读数不能跨视口复用。
+    expected_card_top = (900 - 760) // 2 + 1 + 70 + 32 + 16 + 42
+    check(
+        "strip:card-size",
+        all(
+            (b["w"], b["h"]) == SOURCE_CARD_SIZE and b["y"] == expected_card_top
+            for b in card_boxes
+        )
+        and bool(card_boxes),
+    )
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

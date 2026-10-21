@@ -1,17 +1,58 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useRef, useState } from "react";
-import { ChevronDown, ChevronLeft, ChevronRight, Plus, X,
-  RefreshCw
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  Check,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  Grid2x2,
+  Image as ImageIcon,
+  List,
+  Plus,
+  Search,
+  SlidersHorizontal,
+  UserPlus,
+  X,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import "./character-studio.css";
 
 interface CharacterLibraryPanelProps {
   onAddNode: (type: string, data?: Record<string, unknown>) => void;
   onClose: () => void;
 }
 
+// ★★ Batch 827（源站 2026-10-21 活体读数 + 源站 bundle 交叉核对）：
+// ★★ 源站**当前**构建里这个面板已经不是「公共角色库」了，而是「**角色造型室**」：
+//   源站 i18n 的新一套是 `characterStudioTitle`=角色造型室、
+//   `characterStudioMyLibrary`=我的角色库、`characterStudioOfficialLibrary`=官方角色库、
+//   `characterStudioAddToCanvas`=添加到画布；
+//   旧一套（`characterLibraryTitle`=角色库、`publicCharacterLibrary`=公共角色库、
+//   `characterApplyToCanvas`=应用至画布、`seedanceComplianceLibrary`=合规素材库）
+//   在**当前**页面上逐字搜索 **0 命中** ⟹ ⟹ 那是 2026-09-07 的旧形态。
+// ⟹ ★★ 本组件按**源站当前形态**重建。
+// ★ 文件名/导出名沿用旧名，是为了不打脸 batch 63/729 的历史文档 ⟹ ★ 这一点
+//   在 batch 827 README 里标注（组件名与内容不符是已知的历史遗留）。
+//
+// ★★ 几何一律走**普通 CSS**（`character-studio.css`）⟹ ★ 因为 4317 的 dev server
+//   的 Tailwind 扫描自 2026-10-07 起冻结 ⟹ 新增的任意值类在 dev 上不生成
+//   ⟹ 判据会在 dev 上量到一个不存在的面板 ⟹ 详见该 CSS 文件头的说明。
+//
+// ★★★ 源站组件本体（bundle 主 chunk `93fb61aec8_…`）给出的结构，逐条照抄：
+//   header  h-[70px] px-6 pr-14 gap-4  ⟹ 页签 18px/600/26px，未选中 `text-fg-muted`（60% 白）
+//   toolbar h-8 px-5  ⟹ 三枚原生 `<details>` 胶囊 + 搜索 + 多选 + 视图切换药丸
+//   内容区  mt-4 flex-1 ⟹ carousel 视口 top-[42px] h-[434px]，track `left-1/2`（整条居中）
+//           名字组 `absolute left-1/2 top-[504px]`，滚动条 `bottom-0 left-5 right-5`
+//   footer  h-[88px] border-t justify-center ⟹ 三种形态（见下）
+//   ★ 视图切换是一个药丸容器：px-[3px] gap-[3px] + 两条 26×26 按钮 + 一条 1px 竖线
+//   ★ 选项行 h-9（36）+ 复选框是 **sr-only**（1×1）+ 选中态是**右侧 18px Checkmark**
+//   ★ 「查看角色资产」在源站是 **opacity-0 + group-hover 才显形**，且居中于卡片
+//   ★ 底部 CTA 有**三种**形态：
+//       ① 多选态：左侧「全选」＋ 居中红色「删除角色」
+//       ② 选中了一个角色：左侧「创建新角色」（ghost）＋ 居中一组
+//          [「添加到画布」(ghost) + 「编辑角色」(白底 primary)]（间隙 8px，整组居中）
+//       ③ 没选中角色：居中单枚白底「创建新角色」（min-w-80，gap 4）
 const characterNames = [
   "甜妹/清新少女",
   "霸总/精英大佬",
@@ -23,8 +64,6 @@ const characterNames = [
   "正派长辈/父",
   "正派长辈/母",
   "反派长辈/势利亲戚",
-  "反派长辈/势利亲戚",
-  "生活方式普通人",
   "生活方式普通人",
   "时尚感亚洲男生",
   "时尚感亚洲女生",
@@ -32,10 +71,6 @@ const characterNames = [
   "时尚感欧美女生",
   "小男孩",
   "小女孩",
-  "时尚感亚洲女生",
-  "时尚感亚洲女生",
-  "时尚感亚洲男生",
-  "时尚感欧美女生",
 ] as const;
 
 const characters = characterNames.map((name, index) => ({
@@ -44,309 +79,624 @@ const characters = characterNames.map((name, index) => ({
   imageUrl: `/images/liblib-panels/character-thumb-${String(index + 1).padStart(2, "0")}.webp`,
 }));
 
-// Batch 112: 2026-09-05 补采样的角色筛选面板分组；文化区域选项被卡片条遮挡（SOURCE_UNKNOWN）。
-const filterGroups = [
-  { key: "性别", options: ["男", "女", "中性"] },
-  { key: "年龄段", options: ["儿童", "少年", "青年", "中年", "老年"] },
-  { key: "种族", options: ["人类", "精灵", "兽人", "机械", "其他"] },
-  { key: "时代", options: ["先秦", "古代", "近代", "现代", "未来"] },
-  // Batch 146: 文化区域选项源站被卡片条遮挡,按中国影视制作常用文化区域分类补全（CLONE_DECISION）。
-  { key: "文化区域", options: ["华语", "日韩", "欧美", "东南亚"] as string[] },
-] as const;
+// ★★ 源站当前形态的**三个**筛选组（选项逐字来自源站实测，batch 827 raw）：
+//   性别：男 / 女 / 中性
+//   年龄段：儿童 / 少年 / 青年 / 中年 / 老年
+//   文化区域：**我的角色库** 是 东亚 / 欧美 / 中东 / 非洲 / 其他；
+//              **官方角色库** 是 东亚 / 欧美 / 中东 / 非洲 / **奇幻**
+// ★★ 为什么两个页签不一样（源站 bundle 实证）：
+//   bundle 里文化区域这组在「我的角色库」页签下走的是**写死的**本地表
+//   （`lq` 映射：east_asia / europe / middle_east / africa / other），
+//   在「官方角色库」页签下走的是**服务端下发的**筛选配置（`eg`），
+//   而那份配置的第 5 项是「奇幻」（服务端数据，i18n 里**没有**这个键）。
+//   ⟹ 官方页签那一组是**会被服务端改的**，这里照抄 2026-10-21 的实测值。
+// ★★ 此前 clone 那一套是「性别／年龄段／种族／时代／文化区域」五组
+//   （且文化区域是 clone 自己编的「华语/日韩/欧美/东南亚」）⟹ 本批按源站改成三组。
+const GENDER_OPTIONS = ["男", "女", "中性"];
+const AGE_OPTIONS = ["儿童", "少年", "青年", "中年", "老年"];
+const CULTURE_OPTIONS_MINE = ["东亚", "欧美", "中东", "非洲", "其他"];
+const CULTURE_OPTIONS_OFFICIAL = ["东亚", "欧美", "中东", "非洲", "奇幻"];
 
-// 芯片到角色标签的别名（clone 标签用 古风，源站时代芯片为 古代）。
-const chipTagAlias: Record<string, string> = { 古代: "古风" };
-
-const detailLabels = ["角色立绘", "脸部近景", "表情参考", "三视图"] as const;
-
-// Batch 111: 2026-09-05 补采样确认的两个角色标签；其余角色为启发式近似（SOURCE_UNKNOWN）。
-const sampledTags: Record<string, string[]> = {
-  "甜妹/清新少女": ["女主", "女", "现代", "青年", "温柔"],
-  "温柔熟男/理想男友": ["男主", "男", "现代", "青年", "温柔"],
+// ★ 角色名 → 筛选标签（本地 mock；★ 非源站采样 ⟹ 只用于让筛选**真的能筛出东西**）
+const tagsFor = (name: string) => {
+  const gender = /女|母|千金|少女/.test(name)
+    ? "女"
+    : /男|父|大佬/.test(name)
+      ? "男"
+      : "中性";
+  const age = /男孩|女孩/.test(name)
+    ? "儿童"
+    : /霸总|精英/.test(name)
+      ? "中年"
+      : /古风|长辈/.test(name)
+        ? "老年"
+        : "青年";
+  const region = /欧美/.test(name)
+    ? "欧美"
+    : /古风/.test(name)
+      ? "奇幻"
+      : /亚洲/.test(name)
+        ? "东亚"
+        : "其他";
+  return [gender, age, region];
 };
 
-// CLONE_DECISION：名字不含性别字的角色按常识补性别，供筛选使用（非源站采样）。
-const inferredGender: Record<string, string> = {
-  "霸总/精英大佬": "男",
-};
-
-function tagsFor(name: string) {
-  if (sampledTags[name]) return sampledTags[name];
-  const lead = name.includes("女主") ? "女主" : name.includes("男主") ? "男主" : "角色";
-  const gender = name.includes("女") || name.includes("母") || name.includes("千金") ? "女" : name.includes("男") || name.includes("父") ? "男" : inferredGender[name] ?? "不限";
-  const era = name.includes("古风") ? "古风" : "现代";
-  return [lead, gender, era, name.includes("男孩") || name.includes("女孩") ? "儿童" : "青年"];
-}
+const CREATE_SLOT = "__create__";
+const CARD_WIDTH = 244;
+const CARD_PITCH = 246;
 
 export function CharacterLibraryPanel({
   onAddNode,
   onClose,
 }: CharacterLibraryPanelProps) {
-    // Batch 169: 源站 2026-09-07 公共角色库模态采样 —— 页签 chrome + 素材库页签承诺书门（本地模拟）。
-  const [tab, setTab] = useState<"public" | "library">("public");
-  const [consentAcknowledged, setConsentAcknowledged] = useState(false);
-  const [consentOpen, setConsentOpen] = useState(false);
-const [selectedIndex, setSelectedIndex] = useState(0);
-  const [recentOnly, setRecentOnly] = useState(false);
-  const [filterOpen, setFilterOpen] = useState(false);
+  // ★★ Batch 827：页签从旧的「公共角色库 / 合规素材库」改成源站当前的
+  //   「**我的角色库**」/「**官方角色库**」。
+  // ★★ 旧的第二页签（Seedance 合规素材库 ＋ 承诺书门）在源站**当前**构建里
+  //   已经没有对应物 ⟹ ⟹ 本批**撤掉**（理由与影响见 batch 827 README）：
+  //   ★ 承诺书门在源站 i18n 里是 `seedancePromise*`（《Seedance模型使用承诺书》）⟹
+  //   ★ 它属于 **Seedance 生成流**，不属于角色库 ⟹ 归属问题单独记，不在面板里发明。
+  const [tab, setTab] = useState<"mine" | "official">("mine");
   const [activeFilters, setActiveFilters] = useState<Record<string, string[]>>({});
-  const carouselRef = useRef<HTMLDivElement>(null);
-  const selected = characters[selectedIndex];
-  const tags = useMemo(() => tagsFor(selected.name), [selected.name]);
+  const [currentId, setCurrentId] = useState<string>(CREATE_SLOT);
+  const [multiSelect, setMultiSelect] = useState(false);
+  const [picked, setPicked] = useState<string[]>([]);
+  const [view, setView] = useState<"carousel" | "grid">("carousel");
+  const [searching, setSearching] = useState(false);
+  const [keyword, setKeyword] = useState("");
 
-  const toggleFilterChip = (group: string, chip: string) => {
+  const viewportRef = useRef<HTMLDivElement | null>(null);
+  // ★ 源站的 track 是 `absolute left-1/2` ⟹ **当前项永远居中**。
+  //   这里用「左右对称 padding + 原生滚动」等价实现：
+  //   padding = (视口宽 − 卡片宽) / 2 ⟹ scrollLeft = index × 246 时当前项正好居中
+  //   （实测：源站官方页签「甜妹/清新少女」当前居中于 x=960，即 838..1082）。
+  const [edgePad, setEdgePad] = useState(0);
+
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    const sync = () => {
+      const pad = Math.max(0, (viewport.clientWidth - CARD_WIDTH) / 2);
+      setEdgePad(pad);
+    };
+    sync();
+    const observer = new ResizeObserver(sync);
+    observer.observe(viewport);
+    return () => observer.disconnect();
+  }, [view]);
+
+  const cultureOptions =
+    tab === "mine" ? CULTURE_OPTIONS_MINE : CULTURE_OPTIONS_OFFICIAL;
+
+  const filterGroups = useMemo(
+    () => [
+      { key: "性别", options: GENDER_OPTIONS },
+      { key: "年龄段", options: AGE_OPTIONS },
+      { key: "文化区域", options: cultureOptions },
+    ],
+    [cultureOptions],
+  );
+
+  const matches = (name: string) => {
+    const tags = tagsFor(name);
+    const byFilter = Object.entries(activeFilters).every(([, list]) =>
+      list.length === 0 ? true : list.some((chip) => tags.includes(chip)),
+    );
+    const byKeyword =
+      keyword.trim() === "" ? true : name.includes(keyword.trim());
+    return byFilter && byKeyword;
+  };
+
+  const visible = characters.filter((character) => matches(character.name));
+
+  // ★ 源站的 carousel 轨道是 `left-1/2` 整体居中，当前项被推到视口正中 ⟹
+  //   这里用原生滚动 + `margin:0 auto` 等价实现：当前项居中、左右箭头翻页、
+  //   底部滚动条驱动同一个 index。
+  const items = useMemo(
+    () => [
+      { id: CREATE_SLOT, name: "创建新角色", imageUrl: null as string | null },
+      ...visible.map((character) => ({
+        id: character.id,
+        name: character.name,
+        imageUrl: character.imageUrl,
+      })),
+    ],
+    [visible],
+  );
+
+  const currentIndex = Math.max(
+    0,
+    items.findIndex((item) => item.id === currentId),
+  );
+  const current = items[currentIndex];
+  const isRealRole = Boolean(current && current.id !== CREATE_SLOT);
+
+  // ★ 当前项改变 ⟹ 把它滚到视口正中（源站是 transform，这里是 scrollLeft）
+  useEffect(() => {
+    const viewport = viewportRef.current;
+    if (!viewport) return;
+    viewport.scrollTo({
+      left: Math.max(0, currentIndex * CARD_PITCH),
+      behavior: "smooth",
+    });
+  }, [currentIndex, view, edgePad]);
+
+  const toggleFilter = (group: string, option: string) => {
     setActiveFilters((current) => {
       const next = { ...current };
       const list = next[group] ?? [];
-      next[group] = list.includes(chip) ? list.filter((item) => item !== chip) : [...list, chip];
+      next[group] = list.includes(option)
+        ? list.filter((item) => item !== option)
+        : [...list, option];
       return next;
     });
   };
 
-  const matchesFilters = (name: string) => {
-    const characterTags = tagsFor(name);
-    return Object.entries(activeFilters).every(([, chips]) => {
-      if (chips.length === 0) return true;
-      return chips.some((chip) => characterTags.includes(chipTagAlias[chip] ?? chip));
-    });
+  const clearFilter = (group: string) => {
+    setActiveFilters((current) => ({ ...current, [group]: [] }));
   };
 
-  const visibleStripIndexes = characterNames
-    .map((_, index) => index)
-    .filter((index) => matchesFilters(characterNames[index]));
-  // 全部被过滤掉时回退为全量（与源站「清空筛选」后的可见性一致）。
-  const stripIndexes = visibleStripIndexes.length > 0 ? visibleStripIndexes : characterNames.map((_, index) => index);
-
-  const scroll = (direction: -1 | 1) => {
-    carouselRef.current?.scrollBy({ left: direction * 357, behavior: "smooth" });
+  const moveBy = (delta: number) => {
+    const next = Math.min(items.length - 1, Math.max(0, currentIndex + delta));
+    setCurrentId(items[next].id);
   };
 
-  const applyCharacter = () => {
+  const switchTab = (next: "mine" | "official") => {
+    setTab(next);
+    setSearching(false);
+    setKeyword("");
+    setMultiSelect(false);
+    setPicked([]);
+    // ★ 源站切页签会把 carousel 移到对应列表的第一项 ⟹
+    //   「我的角色库」落在「创建新角色」占位上、「官方角色库」落在第一个角色上
+    setCurrentId(next === "mine" ? CREATE_SLOT : characters[0].id);
+  };
+
+  const addToCanvas = () => {
+    if (!current || current.id === CREATE_SLOT) return;
+    const character = characters.find((item) => item.id === current.id);
+    if (!character) return;
     onAddNode("image", {
-      filename: selected.name,
+      filename: character.name,
       width: 568,
       height: 761,
-      imageUrl: selected.imageUrl,
+      imageUrl: character.imageUrl,
       watermarkUrl: "/images/watermark.png",
     });
     onClose();
   };
 
+  const togglePicked = (id: string) => {
+    setPicked((current) =>
+      current.includes(id)
+        ? current.filter((item) => item !== id)
+        : [...current, id],
+    );
+  };
+
+  const allPicked =
+    visible.length > 0 && visible.every((character) => picked.includes(character.id));
+
   return (
-    <div className="fixed inset-0 z-[90] flex items-center justify-center bg-black/60 p-3 backdrop-blur-[3px]" onMouseDown={onClose}>
+    <div className="cs-overlay">
       <section
         aria-label="角色造型室"
         data-liblib-overlay="primary:character"
-        // Batch 212: 源站模态三档视口直采恒 1280×720、水平居中、y=90。
-        className="relative flex h-[min(720px,calc(100vh-169px))] max-h-[calc(100vh-24px)] w-[min(1280px,calc(100vw-136px))] flex-col overflow-hidden rounded-2xl border border-white/[0.08] bg-[#222] text-[#ededed] shadow-[0_28px_80px_rgba(0,0,0,0.6)]"
+        data-character-studio
+        className="cs-modal"
         onMouseDown={(event) => event.stopPropagation()}
       >
-        <header className="flex h-12 shrink-0 items-center justify-between border-b border-white/[0.08] px-4">
-          {/* Batch 169: 源站页签 chrome（公共角色库 / Seedance2.0&2.5合规素材库，gap-9 14px）。
-              ★★ Batch 826（源站 2026-10-21 运行时实测 + 源站 i18n 交叉核对）：
-              源站**当前**构建的这两个页签逐字是「**我的角色库**」「**官方角色库**」
-              （i18n：`characterStudioMyLibrary` / `characterStudioOfficialLibrary`），
-              而「公共角色库」(`publicCharacterLibrary`) 与「角色库」
-              (`characterLibraryTitle`) 在**当前**构建里**只存在于 i18n 字典**、
-              活体 UI 上 0 命中（实测全页逐字搜索 0 处）⟹ ⟹ 那是**旧形态的遗留键**。
-              ⟹ ★★ 本批把第一个页签改成源站当前词汇「官方角色库」。
-              ★ ★★ **第二个页签（Seedance2.0&2.5合规素材库 + 承诺书门）本批不动**：
-              源站当前构建里**没有**对应的第二页签 ⟹ 删不删属于**产品/法务决策**
-              （承诺书门是合规确认，clone 单方面删掉不合适）⟹ ★ 只记不改、不发明。 */}
-          <div className="flex items-center gap-9 text-[14px]" data-clib-tabs>
-            <button
-              type="button"
-              data-clib-tab="public"
-              onClick={() => setTab("public")}
-              className={cn(
-                "cursor-pointer border-none bg-transparent p-0 transition-colors",
-                tab === "public" ? "font-medium text-[#ededed]" : "text-[#9a9a9a] hover:text-[#d8d8d8]",
-              )}
-            >
-              官方角色库
-            </button>
-            <button
-              type="button"
-              data-clib-tab="library"
-              onClick={() => (consentAcknowledged ? setTab("library") : setConsentOpen(true))}
-              className={cn(
-                "cursor-pointer border-none bg-transparent p-0 transition-colors",
-                tab === "library" ? "font-medium text-[#ededed]" : "text-[#9a9a9a] hover:text-[#d8d8d8]",
-              )}
-            >
-              Seedance2.0&2.5合规素材库
-            </button>
-          </div>
-          <button type="button" onClick={onClose} aria-label="close" className="flex size-8 items-center justify-center rounded-lg text-[#a4a4a4] hover:bg-white/[0.07] hover:text-white">
-            <X size={20} />
+        {/* ── 头部：两个页签 ＋ 关闭 ──
+            ★ 源站实测：我的角色库 90×26 @385,183（18px/600 白）、
+            官方角色库 90×26 @508,183（18px/600 白 60%）⟹ 未选中是 60% 白。
+            ★ 两个页签之间有一条 1×12 的竖线（源站 `h-3 w-px`）。 */}
+        <header className="cs-head">
+          <button
+            type="button"
+            data-character-studio-tab="mine"
+            onClick={() => switchTab("mine")}
+            className={`cs-tab${tab === "mine" ? " is-active" : ""}`}
+          >
+            我的角色库
+          </button>
+          <span aria-hidden="true" className="cs-divider" />
+          <button
+            type="button"
+            data-character-studio-tab="official"
+            onClick={() => switchTab("official")}
+            className={`cs-tab${tab === "official" ? " is-active" : ""}`}
+          >
+            官方角色库
+          </button>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="关闭角色造型室"
+            className="cs-close"
+          >
+            <X size={16} />
           </button>
         </header>
 
-        {/* Batch 169: 公共角色库页签承载既有筛选/角色内容；素材库页签本地空态。 */}
-        {tab === "library" && (
-          <div data-clib-library-empty className="flex min-h-0 flex-1 flex-col items-center justify-center gap-2 text-center">
-            <p className="text-sm text-[#9a9a9a]">Seedance2.0&2.5 合规素材库</p>
-            <p className="text-xs text-[#777]">本地原型：素材内容未接入</p>
-          </div>
-        )}
-        <div className={cn("min-h-0 flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden", tab !== "public" && "hidden")}>
-          <section className="relative mx-[33px] h-[462px] min-h-[462px] rounded-xl bg-[#2a2a2a]">
-            <div className="absolute left-4 top-[18px] flex items-center gap-2">
-              <h3 className="text-sm font-medium">{selected.name}</h3>
-              <div className="flex items-center rounded-lg bg-white/[0.06] px-2 py-1 text-[11px] text-[#b5b5b5]">
-                {tags.map((tag) => <span key={tag} className="mr-1 last:mr-0">{tag}</span>)}
-              </div>
-            </div>
-
-            <div className="absolute left-4 right-4 top-[57px] grid h-[301px] grid-cols-[repeat(3,minmax(0,1fr))_minmax(0,2.37fr)] gap-2 max-md:grid-cols-2 max-md:overflow-y-auto">
-              {detailLabels.map((label, index) => (
-                <div key={label} className="relative min-w-0 overflow-hidden rounded-lg bg-white">
-                  <Image
-                    src={selectedIndex === 0 ? `/images/liblib-panels/character-detail-${index + 1}.webp` : selected.imageUrl}
-                    alt={label}
-                    fill
-                    sizes={index === 3 ? "310px" : "131px"}
-                    className="object-cover object-top"
-                    unoptimized
-                  />
-                </div>
-              ))}
-            </div>
-
-            <p className="absolute bottom-[19px] left-4 right-[140px] truncate text-xs text-[#858585]">
-              {selected.name}，详见角色全身图、面部特写、表情九宫格与人物呈现板。
-            </p>
-            <button type="button" onClick={applyCharacter} className="absolute bottom-[20px] right-4 flex h-8 w-[109px] items-center justify-center gap-1 rounded-lg bg-white text-sm text-[#242424] hover:bg-[#ededed]">
-              <Plus size={16} />
-              应用至画布
-            </button>
-          </section>
-
-          <section className="relative mt-4 border-t border-white/[0.08] px-4 pt-3">
-            <div className="relative flex h-9 items-center justify-between">
+        {/* ── 工具条 ──
+            ★ 源站实测：性别 66×32 @381,231、年龄段 79×32 @453,231、
+            文化区域 92×32 @538,231（间隙 6px）＋ 搜索按钮 32×32 @636,231；
+            右侧 多选 32×32 @1438,231、列表模式 26×26 @1477,234、宫格模式 26×26 @1510,234。 */}
+        <div className="cs-toolbar">
+          <div className="cs-filters-left">
+            {filterGroups.map((group) => {
+              const pickedOptions = activeFilters[group.key] ?? [];
+              const isActive = pickedOptions.length > 0;
+              const pickedNames = group.options
+                .filter((option) => pickedOptions.includes(option))
+                .join("、");
+              return (
+                <details
+                  key={group.key}
+                  className="cs-pill"
+                  data-character-filter={group.key}
+                >
+                  <summary
+                    data-character-filter-summary={group.key}
+                    className={`cs-summary${isActive ? " is-active" : ""}`}
+                  >
+                    {isActive ? (
+                      <>
+                        <span
+                          role="button"
+                          tabIndex={0}
+                          aria-label="清除筛选"
+                          data-character-filter-clear={group.key}
+                          className="cs-summary-clear"
+                          onClick={(event) => {
+                            event.preventDefault();
+                            event.stopPropagation();
+                            clearFilter(group.key);
+                          }}
+                          onKeyDown={(event) => {
+                            if (event.key === "Enter" || event.key === " ") {
+                              event.preventDefault();
+                              clearFilter(group.key);
+                            }
+                          }}
+                        >
+                          <X size={16} />
+                        </span>
+                        <span>{group.key}</span>
+                        <span className="cs-summary-divider" />
+                        <span>{pickedNames || pickedOptions.length}</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>{group.key}</span>
+                        <ChevronDown size={12} className="cs-chevron" />
+                      </>
+                    )}
+                  </summary>
+                  <div className="cs-panel" data-character-filter-panel={group.key}>
+                    {group.options.map((option) => {
+                      const on = pickedOptions.includes(option);
+                      return (
+                        <label
+                          key={option}
+                          data-character-filter-chip={option}
+                          className="cs-opt"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={on}
+                            onChange={() => toggleFilter(group.key, option)}
+                            className="cs-checkbox"
+                          />
+                          <span>{option}</span>
+                          {on && <Check size={18} className="cs-check" />}
+                        </label>
+                      );
+                    })}
+                  </div>
+                </details>
+              );
+            })}
+            {searching ? (
+              <label className="cs-search-field">
+                <Search size={16} />
+                <input
+                  autoFocus
+                  value={keyword}
+                  onChange={(event) => setKeyword(event.target.value)}
+                  onBlur={() => {
+                    if (keyword === "") setSearching(false);
+                  }}
+                  placeholder="搜索角色名称或描述"
+                  aria-label="搜索角色名称或描述"
+                  className="cs-search-input"
+                />
+              </label>
+            ) : (
               <button
                 type="button"
-                data-character-filter-toggle
-                aria-expanded={filterOpen}
-                onClick={() => setFilterOpen((value) => !value)}
-                className={cn("flex h-7 items-center gap-1 rounded-lg px-2 text-xs hover:bg-white/10", filterOpen ? "bg-white/[0.12] text-white" : "bg-white/[0.06] text-[#d8d8d8]")}
+                aria-label="搜索角色名称或描述"
+                onClick={() => setSearching(true)}
+                className="cs-icon-btn"
               >
-                角色筛选
-                <ChevronDown size={13} />
+                <Search size={16} />
               </button>
-              <label className="flex items-center gap-2 text-xs text-[#c4c4c4]">
-                <input type="checkbox" checked={recentOnly} onChange={(event) => setRecentOnly(event.target.checked)} className="size-4 appearance-none rounded border border-[#555] bg-transparent checked:border-[#09caf5] checked:bg-[#09caf5]" />
-                最近使用
-              </label>
-              {filterOpen && (
-              <div data-character-filter-panel className="absolute bottom-10 left-0 z-30 w-[300px] rounded-xl border border-white/[0.1] bg-[#262626] p-3 shadow-[0_18px_48px_rgba(0,0,0,0.55)]">
-                <div className="flex items-center justify-between pb-2">
-                  <span className="text-xs font-medium text-[#e8e8e8]">角色筛选</span>
+            )}
+          </div>
+          <div className="cs-toolbar-right">
+            <button
+              type="button"
+              aria-label={multiSelect ? "退出多选" : "多选"}
+              aria-pressed={multiSelect}
+              onClick={() => {
+                setMultiSelect((value) => !value);
+                setPicked([]);
+              }}
+              className="cs-icon-btn"
+            >
+              <SlidersHorizontal size={16} />
+            </button>
+            <div className="cs-segment">
+              <button
+                type="button"
+                aria-label="列表模式"
+                aria-pressed={view === "carousel"}
+                onClick={() => setView("carousel")}
+                className={`cs-seg-btn${view === "carousel" ? " is-active" : ""}`}
+              >
+                <List size={16} />
+              </button>
+              <span aria-hidden="true" className="cs-seg-div" />
+              <button
+                type="button"
+                aria-label="宫格模式"
+                aria-pressed={view === "grid"}
+                onClick={() => setView("grid")}
+                className={`cs-seg-btn${view === "grid" ? " is-active" : ""}`}
+              >
+                <Grid2x2 size={16} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* ── 内容区 ──
+            ★ 源站实测：卡片图 244×434 @y=321（轨道 pitch 246）；
+            ★ 选中的角色名**居中**在轨道下方 @y=783（名字 + 一枚 26×26 快捷操作）。 */}
+        <div className="cs-content">
+          {view === "carousel" ? (
+            <>
+              <div className="cs-viewport" ref={viewportRef}>
+                <div
+                  className="cs-track"
+                  data-character-strip
+                  style={{
+                    paddingLeft: edgePad,
+                    paddingRight: edgePad,
+                  }}
+                >
                   <button
                     type="button"
-                    data-character-filter-clear
-                    onClick={() => setActiveFilters({})}
-                    className="flex items-center gap-1 rounded px-1.5 py-0.5 text-[11px] text-[#9a9a9a] hover:bg-white/[0.07] hover:text-white"
+                    data-character-studio-create
+                    onClick={() => setCurrentId(CREATE_SLOT)}
+                    className="cs-create-card"
                   >
-                    <RefreshCw size={11} />
-                    清空筛选
+                    <UserPlus size={42} strokeWidth={1.2} />
+                    <span>创建新角色</span>
                   </button>
+                  {visible.map((character) => {
+                    const on = current.id === character.id;
+                    return (
+                      <button
+                        key={character.id}
+                        type="button"
+                        data-character-strip-card={character.name}
+                        onClick={() => {
+                          if (multiSelect) {
+                            togglePicked(character.id);
+                            return;
+                          }
+                          setCurrentId(character.id);
+                        }}
+                        className="cs-card"
+                      >
+                        <span className="cs-card-img">
+                          <Image
+                            src={character.imageUrl}
+                            alt={character.name}
+                            fill
+                            sizes="244px"
+                            className="cs-img"
+                            unoptimized
+                          />
+                          {multiSelect && (
+                            <span
+                              className={`cs-pick${picked.includes(character.id) ? " is-on" : ""}`}
+                            >
+                              <Check size={14} />
+                            </span>
+                          )}
+                          {on && !multiSelect && (
+                            <span
+                              data-character-studio-view-assets
+                              className="cs-assets"
+                            >
+                              <ImageIcon size={16} />
+                              查看角色资产
+                            </span>
+                          )}
+                        </span>
+                      </button>
+                    );
+                  })}
                 </div>
-                {filterGroups.map((group) => (
-                  <div key={group.key} className="pb-2">
-                    <p className="pb-1 text-[11px] text-[#8c8c8c]">{group.key}</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {group.options.map((option) => {
-                        const active = (activeFilters[group.key] ?? []).includes(option);
-                        return (
-                          <button
-                            key={option}
-                            type="button"
-                            data-character-filter-chip={option}
-                            aria-pressed={active}
-                            onClick={() => toggleFilterChip(group.key, option)}
-                            className={cn(
-                              "rounded-lg px-2.5 py-1 text-xs transition-colors",
-                              active ? "bg-[#09caf5]/20 text-[#09caf5]" : "bg-white/[0.06] text-[#d8d8d8] hover:bg-white/[0.12]",
-                            )}
-                          >
-                            {option}
-                          </button>
-                        );
-                      })}
-                      {group.options.length === 0 && (
-                        <span className="text-[11px] text-[#666]" title="源站选项未采样">—</span>
-                      )}
-                    </div>
-                  </div>
-                ))}
               </div>
-            )}
-            </div>
-
-            <div className="relative mt-0.5 h-[178px]">
-              <button type="button" onClick={() => scroll(-1)} aria-label="上一组" className="absolute left-0 top-[63px] z-10 flex size-7 items-center justify-center rounded-lg border border-white/10 bg-[#262626] text-[#999] hover:text-white">
-                <ChevronLeft size={16} />
-              </button>
-              <div ref={carouselRef} className="mx-[42px] flex h-full gap-[19px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {stripIndexes.map((index) => {
-                  const character = characters[index];
-                  return (
-                  <button key={character.id} type="button" data-character-strip-card={character.name} onClick={() => setSelectedIndex(index)} className="w-[100px] shrink-0 text-left">
-                    <div className={cn("relative h-[134px] w-[100px] overflow-hidden rounded-lg bg-white", selectedIndex === index && "ring-2 ring-[#09caf5]") }>
-                      <Image src={character.imageUrl} alt={character.name} fill sizes="100px" className="object-cover object-top" unoptimized />
-                      {selectedIndex === index && <span className="absolute inset-x-0 bottom-0 bg-black/70 px-1.5 py-1 text-[10px] text-white">{character.name}</span>}
-                    </div>
-                    <span className="mt-1 block truncate text-xs text-[#777]">{character.name}</span>
+              <div className="cs-name-group">
+                <span className="cs-name" data-character-studio-name>
+                  {current?.name ?? ""}
+                </span>
+                {isRealRole && (
+                  <button
+                    type="button"
+                    aria-label="生成其他年龄版本"
+                    data-character-studio-quick
+                    className="cs-quick"
+                  >
+                    <UserPlus size={16} />
                   </button>
-                  );
-                })}
+                )}
               </div>
-              <button type="button" onClick={() => scroll(1)} aria-label="下一组" className="absolute right-0 top-[63px] z-10 flex size-7 items-center justify-center rounded-lg border border-white/10 bg-[#262626] text-[#999] hover:text-white">
-                <ChevronRight size={16} />
-              </button>
-            </div>
-          </section>
-        </div>
-      {/* Batch 169: 源站 Seedance2.0 承诺书门（本地模拟：两个按钮均为本地状态，无账号操作）。 */}
-      {consentOpen && (
-        <div data-clib-consent className="absolute inset-0 z-20 flex items-center justify-center rounded-2xl bg-black/40 px-6">
-          <div className="w-[738px] max-w-full rounded-xl bg-[#242424] p-6 shadow-[0_28px_80px_rgba(0,0,0,0.6)]">
-            <p className="text-[13px] leading-6 text-[#ededed]">
-              为保障您依法合规使用Seedance2.0模型所提供的相关服务，请您在使用前务必仔细阅读、充分理解并做出以下承诺：
-            </p>
-            <ol className="mt-3 space-y-2 text-[13px] leading-6 text-[#bdbdbd]">
-              <li>1. 您对即将上传或使用的素材拥有充分合法权益</li>
-              <li>2. 您将自行对所生成内容及使用后果负责</li>
-              <li>3. 如您存在违规使用行为，平台将有权采取限制措施</li>
-            </ol>
-            <div className="mt-4 flex items-center justify-end gap-2">
               <button
                 type="button"
-                data-clib-consent-decline
-                onClick={() => setConsentOpen(false)}
-                className="flex h-8 items-center rounded-lg border border-white/[0.12] px-3 text-[13px] text-[#d8d8d8] hover:bg-white/[0.06]"
+                aria-label="上一组角色"
+                disabled={currentIndex <= 0}
+                onClick={() => moveBy(-1)}
+                className="cs-arrow cs-arrow-left"
               >
-                不同意
+                <ChevronLeft size={18} />
               </button>
               <button
                 type="button"
-                data-clib-consent-accept
-                onClick={() => {
-                  setConsentAcknowledged(true);
-                  setConsentOpen(false);
-                  setTab("library");
+                aria-label="下一组角色"
+                disabled={currentIndex >= items.length - 1}
+                onClick={() => moveBy(1)}
+                className="cs-arrow cs-arrow-right"
+              >
+                <ChevronRight size={18} />
+              </button>
+              <input
+                type="range"
+                aria-label="角色列表"
+                min={0}
+                max={Math.max(0, items.length - 1)}
+                step={1}
+                value={currentIndex}
+                onChange={(event) => {
+                  const next = Number(event.target.value);
+                  setCurrentId(items[next]?.id ?? CREATE_SLOT);
                 }}
-                className="flex h-8 items-center rounded-lg bg-[#09caf5] px-3 text-[13px] font-medium text-[#04252b] hover:bg-[#3bd6f2]"
-              >
-                同意并使用
-              </button>
+                className="cs-range"
+              />
+            </>
+          ) : (
+            <div className="cs-grid">
+              <section className="cs-grid-section">
+                <h2 className="cs-grid-title">我的角色库</h2>
+                <div className="cs-grid-row">
+                  {visible.map((character) => (
+                    <button
+                      key={character.id}
+                      type="button"
+                      data-character-grid-card={character.name}
+                      onClick={() => {
+                        if (multiSelect) {
+                          togglePicked(character.id);
+                          return;
+                        }
+                        setCurrentId(character.id);
+                      }}
+                      className="cs-grid-card"
+                    >
+                      <span className="cs-card-img">
+                        <Image
+                          src={character.imageUrl}
+                          alt={character.name}
+                          fill
+                          sizes="172px"
+                          className="cs-img"
+                          unoptimized
+                        />
+                      </span>
+                      <span className="cs-card-name">{character.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </section>
             </div>
-          </div>
+          )}
         </div>
-      )}
-      </section>
 
+        {/* ── 底部：三种形态 ──
+            ★ 源站实测（我的角色库页签）：居中单枚白底「创建新角色」116×40 @902,856；
+            ★ 源站实测（官方角色库页签）：左侧「创建新角色」120×40 @385,856（ghost）
+            ★ ＋ 居中一组 [「添加到画布」120×40 @843,856（ghost），
+            ★ 「编辑角色」106×40 @971,856（白底 primary）]，两枚之间间隙 8px。 */}
+        <footer className="cs-footer">
+          {multiSelect ? (
+            <>
+              <button
+                type="button"
+                role="checkbox"
+                aria-checked={allPicked}
+                aria-label="全选"
+                onClick={() =>
+                  setPicked(allPicked ? [] : visible.map((item) => item.id))
+                }
+                className="cs-selectall"
+              >
+                <span className={`cs-selectall-box${allPicked ? " is-on" : ""}`}>
+                  <Check size={14} />
+                </span>
+                {picked.length > 0
+                  ? `已选中 ${picked.length} 位角色`
+                  : `全选共 ${visible.length} 位角色`}
+              </button>
+              <button
+                type="button"
+                disabled={picked.length === 0}
+                onClick={() => {
+                  setPicked([]);
+                  setMultiSelect(false);
+                }}
+                className="cs-cta is-danger"
+              >
+                删除角色
+              </button>
+            </>
+          ) : isRealRole ? (
+            <>
+              <button
+                type="button"
+                data-character-studio-cta="create"
+                onClick={() => setCurrentId(CREATE_SLOT)}
+                className="cs-cta is-ghost cs-cta-left"
+              >
+                <Plus size={18} />
+                创建新角色
+              </button>
+              <div className="cs-cta-group">
+                <button
+                  type="button"
+                  data-character-studio-cta="add-to-canvas"
+                  onClick={addToCanvas}
+                  className="cs-cta is-soft"
+                >
+                  <ImageIcon size={18} />
+                  添加到画布
+                </button>
+                <button
+                  type="button"
+                  data-character-studio-cta="edit"
+                  onClick={() => undefined}
+                  className="cs-cta is-primary"
+                >
+                  <UserPlus size={18} />
+                  编辑角色
+                </button>
+              </div>
+            </>
+          ) : (
+            <button
+              type="button"
+              data-character-studio-cta="create"
+              onClick={() => setCurrentId(CREATE_SLOT)}
+              className="cs-cta is-primary is-solo"
+            >
+              <UserPlus size={18} />
+              创建新角色
+            </button>
+          )}
+        </footer>
+      </section>
     </div>
   );
 }

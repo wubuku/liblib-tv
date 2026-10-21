@@ -1,11 +1,18 @@
 #!/usr/bin/env python3
 
-"""Verify Batch 212: character library modal is 1280x720 at all viewports.
+"""Verify Batch 212: character library modal geometry at all viewports.
 
 Source evidence (source-clib-modal-widths.json): with a video node created
 per viewport and the 角色库 pill clicked, the modal measures 1280x720 at
 1920/1680/1440 — horizontally centered (x=(vw-1280)/2), top y=90. The
 clone's modal geometry was migrated from 1304x731 to 1280x720 accordingly.
+
+★ Batch 827 改写：源站**当前**构建（2026-10-21 实测）里这个面板已经不是
+  1280×720 的模态，而是 **1200×760** 的「角色造型室」⟹ 期望值随之更新。
+  证据：docs/research/liblib-canvas-batch827-2026-10-01/raw/source-827-structure.json
+        （面板根 1198×758 @361,161；祖先链里的 SECTION 1200×760 @360,160）。
+  ★ 第二个页签也不再是「Seedance2.0&2.5合规素材库」⟹ 源站当前形态是
+    「我的角色库 / 官方角色库」⟹ 断言改成钉**新**页签，并把旧页签钉为「不存在」。
 """
 
 from __future__ import annotations
@@ -49,7 +56,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # open the character library via the panel toolbar pill (video panel needs
     # a node; use the preset video node)
     # open via the left sidebar 角色库 tool button
-    page.locator("[data-clib-tabs]").count()  # noop warm
+    page.locator("[data-character-studio-tab]").count()  # noop warm
     # the video panel's 角色库 pill opens the left sidebar's character panel
     page.locator('.react-flow__node[data-id="v-UGQZzZOpbv"]').click(force=True)
     page.wait_for_timeout(300)
@@ -59,15 +66,23 @@ def run_desktop(page: Page) -> dict[str, Any]:
     modal = page.locator("[data-liblib-overlay='primary:character']")
     check("modal:opens", modal.count() == 1)
     mb = modal.bounding_box()
-    check("modal:width-1280", abs(mb["width"] - 1280) <= 8)
-    check("modal:height-720", abs(mb["height"] - 720) <= 8)
+    # ★ Batch 827：源站当前形态是 1200×760（1280×720 是 2026-09-07 的旧形态）
+    check("modal:width-1200", abs(mb["width"] - 1200) <= 8)
+    check("modal:height-760", abs(mb["height"] - 760) <= 8)
 
-    # tabs + public tab content
+    # tabs + 官方角色库页签内容
     # ★★ Batch 826：源站**当前**构建里第一个页签逐字是「官方角色库」
     # （旧的「公共角色库」在当前构建的活体 UI 上 0 命中）⟹ 期望值更新，
     # ★★ 断言强度不变（仍然逐字计数）。
+    # ★★ Batch 827：第二个页签也不再是「Seedance2.0&2.5合规素材库」，
+    #    源站当前形态是「我的角色库 / 官方角色库」⟹ 改钉新页签，
+    #    并把旧页签钉为「不存在」。
     check("tabs:public", page.get_by_text("官方角色库", exact=True).count() >= 1)
-    check("tabs:compliance", page.get_by_text("Seedance2.0&2.5合规素材库", exact=True).count() >= 1)
+    check("tabs:my-library", page.get_by_text("我的角色库", exact=True).count() >= 1)
+    check(
+        "tabs:compliance-removed",
+        page.get_by_text("Seedance2.0&2.5合规素材库", exact=True).count() == 0,
+    )
 
     page.keyboard.press("Escape")
     page.wait_for_timeout(200)

@@ -1,0 +1,772 @@
+{
+ "A 收起态的三个下拉": [
+  {
+   "label": "性别",
+   "open": false,
+   "summary": {
+    "x": 381,
+    "y": 231,
+    "w": 66,
+    "h": 32
+   },
+   "details": {
+    "x": 381,
+    "y": 231,
+    "w": 66,
+    "h": 32
+   },
+   "panel": {
+    "x": 381,
+    "y": 303,
+    "w": 180,
+    "h": 122
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  },
+  {
+   "label": "年龄段",
+   "open": false,
+   "summary": {
+    "x": 453,
+    "y": 231,
+    "w": 79,
+    "h": 32
+   },
+   "details": {
+    "x": 453,
+    "y": 231,
+    "w": 79,
+    "h": 32
+   },
+   "panel": {
+    "x": 453,
+    "y": 303,
+    "w": 180,
+    "h": 194
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  },
+  {
+   "label": "文化区域",
+   "open": false,
+   "summary": {
+    "x": 538,
+    "y": 231,
+    "w": 92,
+    "h": 32
+   },
+   "details": {
+    "x": 538,
+    "y": 231,
+    "w": 92,
+    "h": 32
+   },
+   "panel": {
+    "x": 538,
+    "y": 303,
+    "w": 180,
+    "h": 194
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  }
+ ],
+ "展开 性别": [
+  {
+   "text": "男",
+   "box": {
+    "x": 388,
+    "y": 278,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "女",
+   "box": {
+    "x": 388,
+    "y": 314,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "中性",
+   "box": {
+    "x": 388,
+    "y": 350,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "儿童",
+   "box": {
+    "x": 460,
+    "y": 310,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "少年",
+   "box": {
+    "x": 460,
+    "y": 346,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "青年",
+   "box": {
+    "x": 460,
+    "y": 382,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "中年",
+   "box": {
+    "x": 460,
+    "y": 418,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "老年",
+   "box": {
+    "x": 460,
+    "y": 454,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "东亚",
+   "box": {
+    "x": 545,
+    "y": 310,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "欧美",
+   "box": {
+    "x": 545,
+    "y": 346,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "中东",
+   "box": {
+    "x": 545,
+    "y": 382,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "非洲",
+   "box": {
+    "x": 545,
+    "y": 418,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "其他",
+   "box": {
+    "x": 545,
+    "y": 454,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  }
+ ],
+ "展开 性别 后的 details": [
+  {
+   "label": "性别",
+   "open": true,
+   "summary": {
+    "x": 381,
+    "y": 231,
+    "w": 66,
+    "h": 32
+   },
+   "details": {
+    "x": 381,
+    "y": 231,
+    "w": 66,
+    "h": 32
+   },
+   "panel": {
+    "x": 381,
+    "y": 271,
+    "w": 180,
+    "h": 122
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  },
+  {
+   "label": "年龄段",
+   "open": false,
+   "summary": {
+    "x": 453,
+    "y": 231,
+    "w": 79,
+    "h": 32
+   },
+   "details": {
+    "x": 453,
+    "y": 231,
+    "w": 79,
+    "h": 32
+   },
+   "panel": {
+    "x": 453,
+    "y": 303,
+    "w": 180,
+    "h": 194
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  },
+  {
+   "label": "文化区域",
+   "open": false,
+   "summary": {
+    "x": 538,
+    "y": 231,
+    "w": 92,
+    "h": 32
+   },
+   "details": {
+    "x": 538,
+    "y": 231,
+    "w": 92,
+    "h": 32
+   },
+   "panel": {
+    "x": 538,
+    "y": 303,
+    "w": 180,
+    "h": 194
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  }
+ ],
+ "展开 年龄段": [
+  {
+   "text": "男",
+   "box": {
+    "x": 388,
+    "y": 310,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "女",
+   "box": {
+    "x": 388,
+    "y": 346,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "中性",
+   "box": {
+    "x": 388,
+    "y": 382,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "儿童",
+   "box": {
+    "x": 460,
+    "y": 278,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "少年",
+   "box": {
+    "x": 460,
+    "y": 314,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "青年",
+   "box": {
+    "x": 460,
+    "y": 350,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "中年",
+   "box": {
+    "x": 460,
+    "y": 386,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "老年",
+   "box": {
+    "x": 460,
+    "y": 422,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "东亚",
+   "box": {
+    "x": 545,
+    "y": 310,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "欧美",
+   "box": {
+    "x": 545,
+    "y": 346,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "中东",
+   "box": {
+    "x": 545,
+    "y": 382,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "非洲",
+   "box": {
+    "x": 545,
+    "y": 418,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "其他",
+   "box": {
+    "x": 545,
+    "y": 454,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  }
+ ],
+ "展开 年龄段 后的 details": [
+  {
+   "label": "性别",
+   "open": false,
+   "summary": {
+    "x": 381,
+    "y": 231,
+    "w": 66,
+    "h": 32
+   },
+   "details": {
+    "x": 381,
+    "y": 231,
+    "w": 66,
+    "h": 32
+   },
+   "panel": {
+    "x": 381,
+    "y": 303,
+    "w": 180,
+    "h": 122
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  },
+  {
+   "label": "年龄段",
+   "open": true,
+   "summary": {
+    "x": 453,
+    "y": 231,
+    "w": 79,
+    "h": 32
+   },
+   "details": {
+    "x": 453,
+    "y": 231,
+    "w": 79,
+    "h": 32
+   },
+   "panel": {
+    "x": 453,
+    "y": 271,
+    "w": 180,
+    "h": 194
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  },
+  {
+   "label": "文化区域",
+   "open": false,
+   "summary": {
+    "x": 538,
+    "y": 231,
+    "w": 92,
+    "h": 32
+   },
+   "details": {
+    "x": 538,
+    "y": 231,
+    "w": 92,
+    "h": 32
+   },
+   "panel": {
+    "x": 538,
+    "y": 303,
+    "w": 180,
+    "h": 194
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  }
+ ],
+ "展开 文化区域": [
+  {
+   "text": "男",
+   "box": {
+    "x": 388,
+    "y": 310,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "女",
+   "box": {
+    "x": 388,
+    "y": 346,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "中性",
+   "box": {
+    "x": 388,
+    "y": 382,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "儿童",
+   "box": {
+    "x": 460,
+    "y": 310,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "少年",
+   "box": {
+    "x": 460,
+    "y": 346,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "青年",
+   "box": {
+    "x": 460,
+    "y": 382,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "中年",
+   "box": {
+    "x": 460,
+    "y": 418,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "老年",
+   "box": {
+    "x": 460,
+    "y": 454,
+    "w": 166,
+    "h": 36
+   },
+   "命中": false,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "东亚",
+   "box": {
+    "x": 545,
+    "y": 278,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "欧美",
+   "box": {
+    "x": 545,
+    "y": 314,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "中东",
+   "box": {
+    "x": 545,
+    "y": 350,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "非洲",
+   "box": {
+    "x": 545,
+    "y": 386,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  },
+  {
+   "text": "其他",
+   "box": {
+    "x": 545,
+    "y": 422,
+    "w": 166,
+    "h": 36
+   },
+   "命中": true,
+   "有checkbox": true,
+   "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha"
+  }
+ ],
+ "展开 文化区域 后的 details": [
+  {
+   "label": "性别",
+   "open": false,
+   "summary": {
+    "x": 381,
+    "y": 231,
+    "w": 66,
+    "h": 32
+   },
+   "details": {
+    "x": 381,
+    "y": 231,
+    "w": 66,
+    "h": 32
+   },
+   "panel": {
+    "x": 381,
+    "y": 303,
+    "w": 180,
+    "h": 122
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  },
+  {
+   "label": "年龄段",
+   "open": false,
+   "summary": {
+    "x": 453,
+    "y": 231,
+    "w": 79,
+    "h": 32
+   },
+   "details": {
+    "x": 453,
+    "y": 231,
+    "w": 79,
+    "h": 32
+   },
+   "panel": {
+    "x": 453,
+    "y": 303,
+    "w": 180,
+    "h": 194
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  },
+  {
+   "label": "文化区域",
+   "open": true,
+   "summary": {
+    "x": 538,
+    "y": 231,
+    "w": 92,
+    "h": 32
+   },
+   "details": {
+    "x": 538,
+    "y": 231,
+    "w": 92,
+    "h": 32
+   },
+   "panel": {
+    "x": 538,
+    "y": 271,
+    "w": 180,
+    "h": 194
+   },
+   "summaryCls": "flex h-8 min-w-[60px] cursor-pointer list-none items-center justify-center gap-1 rounded-full text-[13px] leading-5 [&::",
+   "panelCls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2xl border bg-[var(--character-studio-bg-float)] p-1"
+  }
+ ]
+}

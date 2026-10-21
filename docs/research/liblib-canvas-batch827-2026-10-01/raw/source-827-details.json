@@ -1,0 +1,232 @@
+{
+ "A 收起态": {
+  "筛选pill": [],
+  "有「男」这个节点": true,
+  "「男」的祖先链": [
+   {
+    "tag": "LABEL",
+    "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px-2 text-sm hover:bg-[var(--cha",
+    "display": "flex",
+    "visibility": "visible",
+    "opacity": "1",
+    "transform": "none",
+    "overflow": "visible",
+    "overflowY": "visible",
+    "height": "36px",
+    "maxHeight": "none",
+    "clipPath": "none",
+    "contentVisibility": "visible",
+    "contain": "none",
+    "position": "static",
+    "zIndex": "auto",
+    "box": {
+     "x": 388,
+     "y": 310,
+     "w": 166,
+     "h": 36
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "border-canvas-controls-border z-(--z-dropdown) absolute left-0 top-10 w-[180px] rounded-2x",
+    "display": "block",
+    "visibility": "visible",
+    "opacity": "1",
+    "transform": "none",
+    "overflow": "visible",
+    "overflowY": "visible",
+    "height": "122px",
+    "maxHeight": "none",
+    "clipPath": "none",
+    "contentVisibility": "visible",
+    "contain": "none",
+    "position": "absolute",
+    "zIndex": "300",
+    "box": {
+     "x": 381,
+     "y": 303,
+     "w": 180,
+     "h": 122
+    }
+   },
+   {
+    "tag": "DETAILS",
+    "cls": "relative",
+    "display": "block",
+    "visibility": "visible",
+    "opacity": "1",
+    "transform": "none",
+    "overflow": "visible",
+    "overflowY": "visible",
+    "height": "32px",
+    "maxHeight": "none",
+    "clipPath": "none",
+    "contentVisibility": "visible",
+    "contain": "none",
+    "position": "relative",
+    "zIndex": "auto",
+    "box": {
+     "x": 381,
+     "y": 231,
+     "w": 66,
+     "h": 32
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "flex min-w-0 items-center gap-1.5",
+    "display": "flex",
+    "visibility": "visible",
+    "opacity": "1",
+    "transform": "none",
+    "overflow": "visible",
+    "overflowY": "visible",
+    "height": "32px",
+    "maxHeight": "none",
+    "clipPath": "none",
+    "contentVisibility": "visible",
+    "contain": "none",
+    "position": "static",
+    "zIndex": "auto",
+    "box": {
+     "x": 381,
+     "y": 231,
+     "w": 287,
+     "h": 32
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "flex h-8 shrink-0 items-center justify-between px-5 transition-opacity opacity-100",
+    "display": "flex",
+    "visibility": "visible",
+    "opacity": "1",
+    "transform": "none",
+    "overflow": "visible",
+    "overflowY": "visible",
+    "height": "32px",
+    "maxHeight": "none",
+    "clipPath": "none",
+    "contentVisibility": "visible",
+    "contain": "none",
+    "position": "static",
+    "zIndex": "auto",
+    "box": {
+     "x": 361,
+     "y": 231,
+     "w": 1198,
+     "h": 32
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "Ias-7a_screenEnter relative flex min-h-0 flex-1 flex-col",
+    "display": "flex",
+    "visibility": "visible",
+    "opacity": "1",
+    "transform": "none",
+    "overflow": "visible",
+    "overflowY": "visible",
+    "height": "758px",
+    "maxHeight": "none",
+    "clipPath": "none",
+    "contentVisibility": "visible",
+    "contain": "none",
+    "position": "relative",
+    "zIndex": "auto",
+    "box": {
+     "x": 361,
+     "y": 161,
+     "w": 1198,
+     "h": 758
+    }
+   },
+   {
+    "tag": "SECTION",
+    "cls": "Ias-7a_studio Ias-7a_themeAware border-canvas-controls-border text-canvas-controls-text re",
+    "display": "flex",
+    "visibility": "visible",
+    "opacity": "1",
+    "transform": "matrix(1, 0, 0, 1, 0, 0)",
+    "overflow": "hidden",
+    "overflowY": "hidden",
+    "height": "760px",
+    "maxHeight": "none",
+    "clipPath": "none",
+    "contentVisibility": "visible",
+    "contain": "none",
+    "position": "relative",
+    "zIndex": "auto",
+    "box": {
+     "x": 360,
+     "y": 160,
+     "w": 1200,
+     "h": 760
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "z-(--z-modal) fixed inset-0 flex items-center justify-center bg-black/60",
+    "display": "flex",
+    "visibility": "visible",
+    "opacity": "1",
+    "transform": "none",
+    "overflow": "visible",
+    "overflowY": "visible",
+    "height": "1080px",
+    "maxHeight": "none",
+    "clipPath": "none",
+    "contentVisibility": "visible",
+    "contain": "none",
+    "position": "fixed",
+    "zIndex": "500",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   }
+  ],
+  "「男」命中测试": {
+   "hit": false,
+   "命中标签": "DIV",
+   "命中文字": ""
+  },
+  "「男」的兄弟": [
+   {
+    "tag": "LABEL",
+    "txt": "男",
+    "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px",
+    "box": {
+     "x": 388,
+     "y": 310,
+     "w": 166,
+     "h": 36
+    }
+   },
+   {
+    "tag": "LABEL",
+    "txt": "女",
+    "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px",
+    "box": {
+     "x": 388,
+     "y": 346,
+     "w": 166,
+     "h": 36
+    }
+   },
+   {
+    "tag": "LABEL",
+    "txt": "中性",
+    "cls": "flex h-9 cursor-pointer items-center gap-2 rounded-[10px] px",
+    "box": {
+     "x": 388,
+     "y": 382,
+     "w": 166,
+     "h": 36
+    }
+   }
+  ]
+ }
+}

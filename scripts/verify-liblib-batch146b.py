@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 
-"""Verify Batch 146b 文化区域 filter options in the character library."""
+"""Verify Batch 146b 文化区域 filter options in the character library.
+
+★ Batch 827 改写：源站**当前**构建里文化区域是三个 `<details>` 胶囊里的第三枚，
+  选项逐字 = 东亚 / 欧美 / 中东 / 非洲 / 其他（我的角色库）与
+  东亚 / 欧美 / 中东 / 非洲 / **奇幻**（官方角色库，服务端下发的配置）。
+  ★ 旧门禁钉的「华语 / 日韩 / 东南亚」是 clone 自己编的 ⟹ 换成源站实测值，
+    并**新增**断言把旧三项钉住为「不存在」。
+"""
 
 from __future__ import annotations
 
@@ -57,33 +64,60 @@ def run_desktop(page: Page) -> dict[str, Any]:
     modal = page.locator("[data-liblib-overlay='primary:character']")
     check("modal:opens", modal.is_visible())
 
-    filter_toggle = modal.locator("[data-character-filter-toggle]")
-    filter_toggle.click()
+    # ★ Batch 827：文化区域是**三个 `<details>` 胶囊**里的第三枚，
+    #   选项逐字来自源站 2026-10-21 实测（batch 827 raw）：
+    #   「我的角色库」页签 = 东亚 / 欧美 / 中东 / 非洲 / **其他**
+    #   「官方角色库」页签 = 东亚 / 欧美 / 中东 / 非洲 / **奇幻**
+    #   ⟹ 旧门禁里的「华语 / 日韩 / 东南亚」是 clone 自己编的 ⟹ 源站当前构建里 0 命中。
+    culture_summary = modal.locator('[data-character-filter-summary="文化区域"]')
+    check("culture:pill-present", culture_summary.count() == 1)
+    culture_summary.click()
     page.wait_for_timeout(300)
-    filter_panel = modal.locator("[data-character-filter-panel]")
+    filter_panel = modal.locator('[data-character-filter-panel="文化区域"]')
     check("filter:panel-opens", filter_panel.is_visible())
-
-    check("culture:label", filter_panel.get_by_text("文化区域", exact=True).is_visible())
-    for region in ["华语", "日韩", "欧美", "东南亚"]:
+    check("culture:label", culture_summary.inner_text().strip() == "文化区域")
+    for region in ["东亚", "欧美", "中东", "非洲", "其他"]:
         check(
             f"culture:{region}",
             filter_panel.locator(f"[data-character-filter-chip='{region}']").count() == 1,
         )
+    for gone in ["华语", "日韩", "东南亚"]:
+        check(
+            f"culture:legacy-removed:{gone}",
+            filter_panel.locator(f"[data-character-filter-chip='{gone}']").count() == 0,
+        )
 
-    # 点击 华语 芯片 → 筛选生效（有结果）
-    filter_panel.locator("[data-character-filter-chip='华语']").click()
+    # 点击 东亚 芯片 → 筛选生效（有结果）
+    filter_panel.locator("[data-character-filter-chip='东亚']").click()
     page.wait_for_timeout(300)
     cards = page.locator("[data-character-strip-card]")
     check("filter:has-results", cards.count() > 0)
 
-    # 清空筛选
-    filter_panel.locator("[data-character-filter-clear]").click()
+    # 清空筛选（选中后 summary 里那枚 ✕）
+    modal.locator('[data-character-filter-clear="文化区域"]').click()
     page.wait_for_timeout(300)
     check("clear:restores", cards.count() > 0)
 
-    filter_toggle.click()
+    culture_summary.click()
     page.wait_for_timeout(200)
-    check("filter:closes", filter_panel.count() == 0)
+    # ★ 收起态下 panel 元素**仍在 DOM 里**（原生 `<details>`）⟹ 判收起看 `open` 属性
+    check(
+        "filter:closes",
+        modal.locator('details[data-character-filter="文化区域"]').get_attribute("open") is None,
+    )
+
+    # ★ Batch 827：官方角色库页签的文化区域第五项是「奇幻」（源站服务端下发的配置）
+    modal.locator('[data-character-studio-tab="official"]').click()
+    page.wait_for_timeout(700)
+    official_culture = modal.locator('[data-character-filter-panel="文化区域"]')
+    check(
+        "culture:official-has-fantasy",
+        official_culture.locator("[data-character-filter-chip='奇幻']").count() == 1,
+    )
+    check(
+        "culture:official-has-no-other",
+        official_culture.locator("[data-character-filter-chip='其他']").count() == 0,
+    )
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}
@@ -109,8 +143,9 @@ def main() -> None:
     print(
         "Batch 146b verification passed: "
         f"{len(checks)} checks, 0 diagnostics. "
-        "文化区域 filter group with four regional chips, clear/restore, filter "
-        "close recorded in runtime-audit.json."
+        "文化区域 filter group（★ Batch 827 起是源站**当前**形态："
+        "我的角色库 = 东亚/欧美/中东/非洲/其他，官方角色库 = 东亚/欧美/中东/非洲/奇幻）、"
+        "clear/restore, filter close recorded in runtime-audit.json."
     )
 
 

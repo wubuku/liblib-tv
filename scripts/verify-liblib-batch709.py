@@ -1,6 +1,17 @@
 #!/usr/bin/env python3
 """batch 709 验收：导演台的历史与手势活多久 —— 关掉再打开还能不能撤？
 
+★ ★★ Batch 827 更正（2026-10-21）：**本批下面那条「我两次尝试让第一次开台走真实按钮
+  都没成功」是工具链造成的，不是产品行为。**
+  ★ 当时探针用 `http://127.0.0.1:4317` 访问 ⟹ Next 16 默认拦截来自 `127.0.0.1`
+    的 dev 资源 ⟹ **整页不 hydration** ⟹ 按钮点得到、React 的 onClick 没挂上 ⟹
+    导演台自然不开 ⟹ 当时把「用户路径未取证」记在了账上。
+  ★ Batch 827 给 `next.config.ts` 加了 `allowedDevOrigins`（两个 origin 都能 hydration），
+    同一个按钮**确实能开台** ⟹ check_5 已从「钉住『点了没反应』」改成「钉住『点了能开台』」，
+    ★★ 并且本批 README 里「第一次关台丢工作 ⟹ 不写成缺陷」那条结论**被重新打开**，
+    用户路径现在**可取证**了 ⟹ 需要单独一批重新测。
+  ★ 本脚本的 BASE_URL 也从 `127.0.0.1` 改成 `localhost`（与全仓另外 663 个门禁一致）。
+
 ## 起点
 
 706–708 把「一次会话内的撤销」测透了：手势怎么并条目、`Cmd+Z` 哪些格到不了、
@@ -46,7 +57,7 @@
 2. `the-first-close-and-reopen-loses-everything-committed-including-history`
 3. `the-second-close-and-reopen-loses-nothing-not-even-the-history-entry`
 4. `a-page-reload-then-reopen-behaves-like-the-first-close`
-5. `the-open-button-does-nothing-on-a-node-that-never-had-a-director-session`
+5. `the-open-button-opens-the-desk-on-a-node-that-never-had-a-director-session`
 """
 import importlib.util
 import json
@@ -59,7 +70,7 @@ from playwright.sync_api import Page, sync_playwright
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT_DIR = ROOT / "docs/research/liblib-canvas-batch709-2026-10-01"
 W, DESK_H = 1280, 1150
-BASE_URL = "http://127.0.0.1:4317"
+BASE_URL = "http://localhost:4317"
 RENAME_TO = "改名试试709"
 
 spec = importlib.util.spec_from_file_location(
@@ -281,9 +292,22 @@ def check_4(r: dict[str, Any]) -> None:
 
 
 def check_5(a: dict[str, Any]) -> None:
+    """★ Batch 827 更正：真实按钮**能**开台。
+
+    ★★ 本条原来断言 `rec["opened"] is False` ⟹ 也就是把
+    **「按钮点了没反应」当成产品行为**钉住了。
+    ★★ 真相：那是**工具链**问题 —— 当时用 `http://127.0.0.1:4317` 访问，
+    **Next 16 默认拦截来自 127.0.0.1 的 dev 资源** ⟹ 整页**不 hydration**
+    ⟹ 按钮点得到、React 的 onClick 根本没挂上 ⟹ 导演台自然不开。
+    ⟹ ★★ 本批（batch 827）在 `next.config.ts` 加了 `allowedDevOrigins`，
+    两个 origin 都能 hydration ⟹ 同一个按钮**确实能开台**。
+    ⟹ ★ 所以：本条从「钉住『点了没反应』」改成「钉住『点了能开台』」，
+    ★★ 并且 batch 709 README 里那条「用户路径未取证 ⟹ 不把『第一次关台丢工作』
+    写成缺陷」的结论**被重新打开**（见 batch 827 README §4）。
+    """
     for rec in a["attempts"]:
         assert rec["hasButton"] is True, rec
-        assert rec["opened"] is False, rec
+        assert rec["opened"] is True, rec
 
 
 def main() -> int:
@@ -313,7 +337,7 @@ def main() -> int:
          lambda: check_3(got.get("two_cycles", {}))),
         ("a-page-reload-then-reopen-behaves-like-the-first-close",
          lambda: check_4(got.get("reload", {}))),
-        ("the-open-button-does-nothing-on-a-node-that-never-had-a-director-session",
+        ("the-open-button-opens-the-desk-on-a-node-that-never-had-a-director-session",
          lambda: check_5(got.get("open_button", {}))),
     ]
     summary: dict[str, bool] = {}

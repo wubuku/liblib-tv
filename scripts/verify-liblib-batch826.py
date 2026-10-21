@@ -122,7 +122,9 @@ READ_CHARACTER = """()=>{
   const r=p.getBoundingClientRect();
   return {aria:p.getAttribute('aria-label')||'',
           panel:{x:r.x,y:r.y,w:r.width,h:r.height},
-          tabs:[...p.querySelectorAll('[data-clib-tabs] button')]
+          // ★ Batch 827：角色造型室面板按源站当前形态重建后，
+          //   页签的属性从 `[data-clib-tabs] button` 换成了 `[data-character-studio-tab]`
+          tabs:[...p.querySelectorAll('[data-character-studio-tab]')]
                  .map(b=>(b.textContent||'').trim())};}"""
 
 
@@ -293,11 +295,13 @@ def build_checks(clone, src824, src_asset, src_i18n, src_rail, src_texts,
         "点后工具箱开着": clone.get("点后工具箱面板开着")})
 
     # ── S7 角色造型室：面板 aria + 页签逐字
+    # ★★ Batch 827：面板按源站当前形态重建后，页签逐字是
+    #   「**我的角色库**」「**官方角色库**」（不再是「公共角色库 / 合规素材库」）
     ch = clone.get("角色面板") or {}
-    ok("S7:★★ 点「角色造型室」⟹ 面板可及名 == 「角色造型室」、首个页签 == 「官方角色库」",
+    ok("S7:★★ 点「角色造型室」⟹ 面板可及名 == 「角色造型室」、两个页签逐字是"
+       "「我的角色库 / 官方角色库」",
        ch.get("aria") == "角色造型室"
-       and (ch.get("tabs") or [])[:1] == ["官方角色库"]
-       and len(ch.get("tabs") or []) == 2,
+       and (ch.get("tabs") or []) == ["我的角色库", "官方角色库"],
        {"面板aria": ch.get("aria"), "页签": ch.get("tabs"),
         "源站当前页签": ["我的角色库", "官方角色库"],
         "源站i18n": {k: src_i18n["抽出的键"].get(k)

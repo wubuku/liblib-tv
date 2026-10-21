@@ -5,10 +5,11 @@
       "viewport": "1440x900",
       "checks": [
         "modal:opens",
-        "modal:width-1280",
-        "modal:height-720",
+        "modal:width-1200",
+        "modal:height-760",
         "tabs:public",
-        "tabs:compliance",
+        "tabs:my-library",
+        "tabs:compliance-removed",
         "errors:empty"
       ],
       "diagnostics": {

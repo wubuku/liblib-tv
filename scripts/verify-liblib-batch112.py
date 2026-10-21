@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 
-"""Verify Batch 112 character filter panel alignment with the 2026-09-05 sampling."""
+"""Verify Batch 112 character filter alignment.
+
+★ Batch 827 改写：源站**当前**构建里，筛选不再是「一个面板 + 五个分组」，
+  而是**三个原生 `<details>` 胶囊**（性别 / 年龄段 / 文化区域），
+  选项逐字见 docs/research/liblib-canvas-batch827-2026-10-01/raw/source-827-dropdowns.json。
+  ★ 旧门禁里的「种族 / 时代」两组在源站**当前**构建里**不存在** ⟹ 本批删掉，
+    并**新增**一条断言把它们钉住为「不存在」。
+  ★ 旧的「clear」按钮变成了选中后 summary 里的那枚 ✕。
+"""
 
 from __future__ import annotations
 
@@ -25,8 +33,7 @@ AUDIT_PATH = (
 GROUP_CHIPS = {
     "性别": ["男", "女", "中性"],
     "年龄段": ["儿童", "少年", "青年", "中年", "老年"],
-    "种族": ["人类", "精灵", "兽人", "机械", "其他"],
-    "时代": ["先秦", "古代", "近代", "现代", "未来"],
+    "文化区域": ["东亚", "欧美", "中东", "非洲", "其他"],
 }
 
 
@@ -63,22 +70,36 @@ def run_desktop(page: Page) -> dict[str, Any]:
     modal = page.locator('[data-liblib-overlay="primary:character"]')
     assert modal.is_visible()
 
-    modal.locator("[data-character-filter-toggle]").click()
-    panel = modal.locator("[data-character-filter-panel]")
-    check("panel:open", panel.is_visible())
-    check("panel:clear", panel.locator("[data-character-filter-clear]").is_visible())
+    # ★ Batch 827：筛选从「一个面板 + 五个分组」变成**三个原生 `<details>` 胶囊**
+    #   （源站当前形态：性别 / 年龄段 / 文化区域，选项逐字见 source-827-dropdowns.json）。
+    #   ★ 旧门禁的「种族 / 时代」两组在源站**当前**构建里**不存在** ⟹ 删掉。
+    summaries = modal.locator("[data-character-filter-summary]")
+    check("filter:three-pills", summaries.count() == 3)
     for group, chips in GROUP_CHIPS.items():
-        header = panel.get_by_text(group, exact=True)
-        check(f"group:{group}", header.count() == 1)
+        summary = modal.locator(f'[data-character-filter-summary="{group}"]')
+        check(f"group:{group}", summary.count() == 1)
+        check(f"group:{group}:label", summary.inner_text().strip() == group)
         for chip in chips:
             check(
                 f"chip:{group}:{chip}",
-                panel.locator(f"[data-character-filter-chip='{chip}']").count() == 1,
+                modal.locator(f"[data-character-filter-chip='{chip}']").count() == 1,
             )
-    check("group:culture-unknown", panel.get_by_text("文化区域", exact=True).count() == 1)
+    check("group:culture-unknown", modal.get_by_text("文化区域", exact=True).count() == 1)
+    # ★ 源站**当前**形态里没有「种族 / 时代」两组
+    for gone in ("种族", "时代"):
+        check(f"group:legacy-removed:{gone}", modal.get_by_text(gone, exact=True).count() == 0)
+
+    # 点开「性别」⟹ 下拉面板出现（源站：180 宽、top-10、选项行 36 高）
+    gender_summary = modal.locator('[data-character-filter-summary="性别"]')
+    gender_summary.click()
+    page.wait_for_timeout(300)
+    panel = modal.locator('[data-character-filter-panel="性别"]')
+    check("panel:open", panel.is_visible())
+    check("panel:width-180", abs(panel.bounding_box()["width"] - 180) <= 1)
+    check("panel:below-summary", panel.bounding_box()["y"] - gender_summary.bounding_box()["y"] >= 38)
 
     panel.locator("[data-character-filter-chip='男']").click()
-    page.wait_for_timeout(150)
+    page.wait_for_timeout(200)
     check(
         "filter:male-hides-sweet",
         modal.locator("[data-character-strip-card='甜妹/清新少女']").count() == 0,
@@ -87,21 +108,38 @@ def run_desktop(page: Page) -> dict[str, Any]:
         "filter:male-keeps-bazong",
         modal.locator("[data-character-strip-card='霸总/精英大佬']").count() == 1,
     )
-    chip = panel.locator("[data-character-filter-chip='男']")
-    check("filter:chip-pressed", chip.get_attribute("aria-pressed") == "true")
+    # ★ 选中后源站的 summary 变成 [✕][标签][竖线][已选项] 的形状
+    check(
+        "filter:summary-shows-picked",
+        "男" in gender_summary.inner_text(),
+    )
+    check(
+        "filter:clear-present",
+        modal.locator('[data-character-filter-clear="性别"]').count() == 1,
+    )
 
-    panel.locator("[data-character-filter-clear]").click()
-    page.wait_for_timeout(150)
+    modal.locator('[data-character-filter-clear="性别"]').click()
+    page.wait_for_timeout(200)
     check(
         "clear:restores-strip",
         modal.locator("[data-character-strip-card='甜妹/清新少女']").count() == 1,
     )
+    check(
+        "clear:summary-back-to-label",
+        gender_summary.inner_text().strip() == "性别",
+    )
 
-    modal.locator("[data-character-filter-toggle]").click()
-    page.wait_for_timeout(150)
-    check("toggle:closes-panel", modal.locator("[data-character-filter-panel]").count() == 0)
+    gender_summary.click()
+    page.wait_for_timeout(200)
+    # ★ 下拉的 panel 元素在**收起态也留在 DOM 里**（原生 `<details>` 的行为，
+    #   源站同款）⟹ 判「收起」只能看 `<details>` 有没有 `open` 属性，
+    #   **不能**用「panel 元素还在不在」来判（那永远为真）。
+    check(
+        "toggle:closes-panel",
+        modal.locator('details[data-character-filter="性别"]').get_attribute("open") is None,
+    )
 
-    modal.get_by_role("button", name="close", exact=True).click()
+    modal.get_by_role("button", name="关闭角色造型室", exact=True).click()
     page.wait_for_timeout(200)
     check("close:modal", not modal.is_visible())
 
@@ -129,8 +167,9 @@ def main() -> None:
     print(
         "Batch 112 verification passed: "
         f"{len(checks)} checks, 0 diagnostics. "
-        "Filter panel groups/chips, local tag-based filtering with 古代 alias, "
-        "clear-restore and toggle recorded in runtime-audit.json."
+        "★ Batch 827 起本门禁钉的是源站**当前**形态：three <details> filter pills "
+        "(性别/年龄段/文化区域), option text set, local tag-based filtering, "
+        "clear-restore via the summary ✕ and toggle recorded in runtime-audit.json."
     )
 
 

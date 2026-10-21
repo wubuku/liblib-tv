@@ -9,7 +9,7 @@
  "uncommitted_gesture": {
   "s0": {
    "deskOpen": true,
-   "projectId": "director-project-1791021141832-1",
+   "projectId": "director-project-1792566164935-1",
    "pastLen": 0,
    "pastKinds": [],
    "active": null,
@@ -27,7 +27,7 @@
   },
   "s1": {
    "deskOpen": true,
-   "projectId": "director-project-1791021141832-1",
+   "projectId": "director-project-1792566164935-1",
    "pastLen": 0,
    "pastKinds": [],
    "active": "camera-fov",
@@ -45,7 +45,7 @@
   },
   "s2": {
    "deskOpen": true,
-   "projectId": "director-project-1791021147622-3",
+   "projectId": "director-project-1792566170508-3",
    "pastLen": 0,
    "pastKinds": [],
    "active": null,
@@ -65,7 +65,7 @@
  "two_cycles": {
   "afterRename1": {
    "deskOpen": true,
-   "projectId": "director-project-1791021151205-1",
+   "projectId": "director-project-1792566173940-1",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -85,7 +85,7 @@
   },
   "afterCycle1": {
    "deskOpen": true,
-   "projectId": "director-project-1791021155831-3",
+   "projectId": "director-project-1792566178495-3",
    "pastLen": 0,
    "pastKinds": [],
    "active": null,
@@ -103,7 +103,7 @@
   },
   "afterRename2": {
    "deskOpen": true,
-   "projectId": "director-project-1791021155831-3",
+   "projectId": "director-project-1792566178495-3",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -123,7 +123,7 @@
   },
   "afterCycle2": {
    "deskOpen": true,
-   "projectId": "director-project-1791021155831-3",
+   "projectId": "director-project-1792566178495-3",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -145,7 +145,7 @@
  "reload": {
   "afterRename": {
    "deskOpen": true,
-   "projectId": "director-project-1791021165012-1",
+   "projectId": "director-project-1792566187420-1",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -165,7 +165,7 @@
   },
   "afterReloadReopen": {
    "deskOpen": true,
-   "projectId": "director-project-1791021173034-1",
+   "projectId": "director-project-1792566195328-1",
    "pastLen": 0,
    "pastKinds": [],
    "active": null,
@@ -183,7 +183,7 @@
   },
   "afterUndo": {
    "deskOpen": true,
-   "projectId": "director-project-1791021173034-1",
+   "projectId": "director-project-1792566195328-1",
    "pastLen": 0,
    "pastKinds": [],
    "active": null,
@@ -205,13 +205,13 @@
    {
     "attempt": 1,
     "hasButton": true,
-    "opened": false,
+    "opened": true,
     "reloadedFirst": false
    },
    {
     "attempt": 2,
     "hasButton": true,
-    "opened": false,
+    "opened": true,
     "reloadedFirst": true
    }
   ]
@@ -221,7 +221,7 @@
   "the-first-close-and-reopen-loses-everything-committed-including-history": true,
   "the-second-close-and-reopen-loses-nothing-not-even-the-history-entry": true,
   "a-page-reload-then-reopen-behaves-like-the-first-close": true,
-  "the-open-button-does-nothing-on-a-node-that-never-had-a-director-session": true
+  "the-open-button-opens-the-desk-on-a-node-that-never-had-a-director-session": true
  },
  "failures": []
 }

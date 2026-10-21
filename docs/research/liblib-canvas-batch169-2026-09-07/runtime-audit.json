@@ -6,15 +6,13 @@
       "checks": [
         "tabs:count-2",
         "tabs:labels",
-        "tabs:public-active",
+        "tabs:my-library-active",
         "tabs:filters-visible",
-        "consent:gate-open",
-        "consent:clauses",
-        "consent:decline-visible",
-        "consent:decline-closes",
-        "consent:still-public-tab",
-        "consent:accept-switches",
-        "consent:library-tab-active",
+        "consent:gate-removed",
+        "tabs:official-active",
+        "official:add-to-canvas",
+        "official:edit-role",
+        "official:no-consent-gate",
         "errors:empty"
       ],
       "diagnostics": {

@@ -75,7 +75,7 @@ from typing import Any
 from playwright.sync_api import Page, TimeoutError as PlaywrightTimeout, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE_URL = "http://127.0.0.1:4317"
+BASE_URL = "http://localhost:4317"
 V617 = ROOT / "scripts/verify-liblib-batch617.py"
 _s = importlib.util.spec_from_file_location("b617", V617)
 b617 = importlib.util.module_from_spec(_s)

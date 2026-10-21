@@ -21,6 +21,17 @@ briefly unthrottled):
   类名、仍然钉住承诺书门的开合与三个条款）。
   ★ ★★ 第二个页签（Seedance2.0&2.5合规素材库 + 承诺书门）**本批不动**：
   源站当前构建没有对应页签 ⟹ 删不删是产品/法务决策 ⟹ 只记不改。
+
+★★★ Batch 827 更正（2026-10-21，源站**当前**构建实测 + 源站 bundle 核对）：
+  ① 源站**当前**构建的角色造型室面板里，**这两个页签就是**「我的角色库 / 官方角色库」
+     ⟹ 也就是说「公共角色库 / 合规素材库」那一对**整体已经不存在**了。
+  ② 承诺书门在源站 i18n 里是 `seedancePromise*`（＝《Seedance模型使用承诺书》），
+     属于 **Seedance 生成流**，不属于角色库 ⟹ 本批把面板里那道门**撤掉**，
+     并把「**这个位置没有门**」钉成断言 ⟹ ★ 断言强度**提高**（从「门会开」
+     变成「门不存在」＋「第二个页签是官方角色库」）。
+  ③ 旧门禁钉的「公共角色库 modal 1280x703 / 14px 页签 / 承诺书三条款」都是
+     2026-09-07 旧形态 ⟹ 本门禁的期望值换成当前形态（1200×760 / 18px 页签 /
+     三个筛选胶囊），详见 docs/research/liblib-canvas-batch827-2026-10-01/README.md。
 """
 
 from __future__ import annotations
@@ -71,45 +82,48 @@ def run_desktop(page: Page) -> dict[str, Any]:
     page.get_by_role("button", name="角色造型室").first.click()
     page.wait_for_timeout(800)
 
-    tabs = page.locator("[data-clib-tabs] button")
+    # ★★ Batch 827：源站**当前**构建里，这两个页签逐字是「**我的角色库**」
+    #    「**官方角色库**」，而且**第二个页签不再被任何承诺书门挡着**——
+    #    承诺书（`seedancePromise*`＝《Seedance模型使用承诺书》）在源站 i18n 里
+    #    属于 **Seedance 生成流**，不属于角色库 ⟹ 本门禁从「承诺书门开合」
+    #    改成「**承诺书门不存在**」——这是一次**加强**：旧门禁钉的是「门会开」，
+    #    新门禁钉的是「这个位置**没有门**」。
+    tabs = page.locator("[data-character-studio-tab]")
     check("tabs:count-2", tabs.count() == 2)
     check(
         "tabs:labels",
         [tabs.nth(i).inner_text().strip() for i in range(2)]
-        == ["官方角色库", "Seedance2.0&2.5合规素材库"],
+        == ["我的角色库", "官方角色库"],
     )
     check(
-        "tabs:public-active",
-        page.locator("[data-clib-tab='public']").get_attribute("class").find("font-medium") != -1,
+        "tabs:my-library-active",
+        tabs.nth(0).get_attribute("class").find("is-active") != -1,
     )
-    check("tabs:filters-visible", page.locator("[data-character-filter-toggle]").is_visible())
-
-    # 点击素材库页签 → 承诺书门（本地模拟）
-    page.locator("[data-clib-tab='library']").click()
-    page.wait_for_timeout(300)
-    gate = page.locator("[data-clib-consent]")
-    check("consent:gate-open", gate.is_visible())
-    check("consent:clauses", gate.get_by_text("1. 您对即将上传或使用的素材拥有充分合法权益").is_visible())
-    check("consent:decline-visible", gate.locator("[data-clib-consent-decline]").is_visible())
-
-    # 不同意 → 回到公共角色库
-    gate.locator("[data-clib-consent-decline]").click()
-    page.wait_for_timeout(300)
-    check("consent:decline-closes", gate.count() == 0)
+    check("tabs:filters-visible", page.locator("[data-character-filter-summary]").count() == 3)
     check(
-        "consent:still-public-tab",
-        page.locator("[data-clib-tab='public']").get_attribute("class").find("font-medium") != -1,
+        "consent:gate-removed",
+        page.locator("[data-clib-consent]").count() == 0
+        and page.get_by_text("Seedance2.0&2.5合规素材库", exact=True).count() == 0,
     )
 
-    # 再次进入 → 同意并使用 → 素材库空态（本地状态，无账号操作）
-    page.locator("[data-clib-tab='library']").click()
-    page.wait_for_timeout(200)
-    page.locator("[data-clib-consent-accept]").click()
-    page.wait_for_timeout(300)
-    check("consent:accept-switches", page.locator("[data-clib-library-empty]").is_visible())
+    # ★★ Batch 827：切到「官方角色库」⟹ 底部 CTA 变成「添加到画布 ＋ 编辑角色」
+    page.locator('[data-character-studio-tab="official"]').click()
+    page.wait_for_timeout(600)
     check(
-        "consent:library-tab-active",
-        page.locator("[data-clib-tab='library']").get_attribute("class").find("font-medium") != -1,
+        "tabs:official-active",
+        tabs.nth(1).get_attribute("class").find("is-active") != -1,
+    )
+    check(
+        "official:add-to-canvas",
+        page.locator('[data-character-studio-cta="add-to-canvas"]').is_visible(),
+    )
+    check(
+        "official:edit-role",
+        page.locator('[data-character-studio-cta="edit"]').is_visible(),
+    )
+    check(
+        "official:no-consent-gate",
+        page.locator("[data-clib-consent]").count() == 0,
     )
 
     check("errors:empty", not errors)
