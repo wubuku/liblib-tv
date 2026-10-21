@@ -154,12 +154,23 @@ const GEOMETRY_SUBMENU_GAP = 2;
 
 export function DirectorIconRail({
   onPanoramaSourceChange,
+  onOpenShortcuts,
+  onOpenTutorial,
 }: {
   onPanoramaSourceChange?: (sourceNodeId: string | null) => void;
+  /** Batch 831：打开「快捷键」对话框（源站 rail 的 onOpenShortcuts） */
+  onOpenShortcuts?: () => void;
+  /** Batch 831：打开使用教程（源站 rail 的 onOpenTutorial） */
+  onOpenTutorial?: () => void;
 } = {}) {
   const [active, setActive] = useState<string>("scene");
   const [openFlyout, setOpenFlyout] = useState<string | null>(null);
   const [aspectRatio, setAspectRatio] = useState<string>("自适应");
+  // Batch 831：源站的「帮助」是一枚**向上弹的菜单**（不是页签）——
+  //   role=menu、120px 宽、两枚 menuitem（快捷键 / 使用教程）。
+  //   源站实测：菜单 120×78 @(8,954)，帮助按钮 32×32 @(8,1040)
+  //   ⟹ 菜单底边 = 按钮顶边 − 8px（`bottom-full` + `pb-2`）。
+  const [helpMenuOpen, setHelpMenuOpen] = useState(false);
   // Batch 539: AI 识图导入 打开居中模态。
   const [aiImportOpen, setAiImportOpen] = useState(false);
   // Batch 540: 源站 rail「添加机位」为直接动作（点击无面板）——
@@ -643,18 +654,75 @@ export function DirectorIconRail({
           );
         })}
       </div>
-      <button
-        type="button"
-        data-director-rail-entry="help"
-        aria-label="帮助"
-        title="帮助"
-        // 源站的「帮助」与其它 rail 项同款：`rounded-lg`（不是 clone 的
-        // rounded-full）+ `text-white/72 hover:bg-white/8 hover:text-white`，
-        // 图标同为 20px。
-        className="mt-auto flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
-      >
-        <HelpCircle size={20} />
-      </button>
+      {/* Batch 831（源站实测 + 源站代码）：「帮助」点开的是一枚**向上弹的
+          role=menu**（120px、两枚 menuitem：快捷键 / 使用教程），不是页签。
+          源站原文：`absolute bottom-full left-0 z-50 pb-2` 包一层，
+          内层 `flex w-[120px] flex-col gap-1 rounded-xl border border-white/10
+          bg-[rgba(31,31,31,0.94)] p-1 shadow-[0_8px_24px_rgba(0,0,0,0.35)]
+          backdrop-blur-xl`。
+          ★ 4317 的 Tailwind 扫描是冻结的（batch 824）⟹ `w-[120px]` 在 dev CSS
+          里存在（仓库别处用过），但 `bg-[rgba(31,31,31,0.94)]` 与那串 shadow
+          **不存在** ⟹ 颜色/阴影走 inline style（dev 与 prod 一致）。 */}
+      <div className="relative mt-auto">
+        <button
+          type="button"
+          data-director-rail-entry="help"
+          aria-label="帮助"
+          title="帮助"
+          aria-haspopup="menu"
+          aria-expanded={helpMenuOpen}
+          // 源站的「帮助」与其它 rail 项同款：`rounded-lg`（不是 clone 的
+          // rounded-full）+ `text-white/72 hover:bg-white/8 hover:text-white`，
+          // 图标同为 20px。
+          className="flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+          onClick={() => {
+            setHelpMenuOpen((open) => !open);
+            setOpenFlyout(null);
+          }}
+        >
+          <HelpCircle size={20} />
+        </button>
+        {helpMenuOpen ? (
+          <div className="absolute bottom-full left-0 z-50 pb-2">
+            <div
+              role="menu"
+              data-director-help-menu
+              aria-label="帮助菜单"
+              className="flex flex-col gap-1 rounded-xl border border-white/10 p-1 backdrop-blur-xl"
+              style={{
+                width: 120,
+                background: "rgba(31,31,31,0.94)",
+                boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+              }}
+            >
+              <button
+                type="button"
+                role="menuitem"
+                data-director-help-menu-item="shortcuts"
+                className="flex h-8 w-full items-center rounded-lg px-3 text-left text-[13px] leading-none text-white/75 transition-colors hover:bg-white/10 hover:text-white"
+                onClick={() => {
+                  setHelpMenuOpen(false);
+                  onOpenShortcuts?.();
+                }}
+              >
+                快捷键
+              </button>
+              <button
+                type="button"
+                role="menuitem"
+                data-director-help-menu-item="tutorial"
+                className="flex h-8 w-full items-center rounded-lg px-3 text-left text-[13px] leading-none text-white/75 transition-colors hover:bg-white/10 hover:text-white"
+                onClick={() => {
+                  setHelpMenuOpen(false);
+                  onOpenTutorial?.();
+                }}
+              >
+                使用教程
+              </button>
+            </div>
+          </div>
+        ) : null}
+      </div>
       <input
         ref={characterUploadInputRef}
         type="file"

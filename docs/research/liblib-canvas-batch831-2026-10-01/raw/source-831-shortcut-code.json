@@ -1,0 +1,50 @@
+{
+ "来源": "源站导演台组件 chunk（batch 830 开台时录网络请求抓到的那一份）",
+ "chunk_文件": "/tmp/liblib_srcjs2/0fmehki05gkzw.js.js",
+ "chunk_bytes": 1018130,
+ "chunk_sha256": "0d6999dbc5ca51601a0eec96afa85c59ab2af21821086ae3d825359c9bc1129d",
+ "抓取方式": "本脚本 extract831.py **机器提取**（正则抓 d:\"...\"）⟹ ★ 不是手打 ⟹ 抄错一个字符会被门禁当场抓住",
+ "⚠️ 这份 raw 的作用": "它是门禁 S12 的**期望值来源** ⟹ 期望值是「源站原文」而不是「我抄的」",
+ "图标": {
+  "command": {
+   "fn": "mC",
+   "fn_offset": 825406,
+   "path": "M5.25 5.25H10.75V10.75H5.25V5.25ZM5.25 5.25H4.25C3.42157 5.25 2.75 4.57843 2.75 3.75C2.75 2.92157 3.42157 2.25 4.25 2.25C5.07843 2.25 5.75 2.92157 5.75 3.75V4.25M10.75 5.25H11.75C12.5784 5.25 13.25 4.57843 13.25 3.75C13.25 2.92157 12.5784 2.25 11.75 2.25C10.9216 2.25 10.25 2.92157 10.25 3.75V4.25M5.25 10.75H4.25C3.42157 10.75 2.75 11.4216 2.75 12.25C2.75 13.0784 3.42157 13.75 4.25 13.75C5.07843 13.75 5.75 13.0784 5.75 12.25V11.75M10.75 10.75H11.75C12.5784 10.75 13.25 11.4216 13.25 12.25C13.25 13.0784 12.5784 13.75 11.75 13.75C10.9216 13.75 10.25 13.0784 10.25 12.25V11.75",
+   "path_offset": 825545,
+   "path_len": 577,
+   "excerpt": "function mC(){return(0,i.jsx)(\"svg\",{width:\"16\",height:\"16\",viewBox:\"0 0 16 16\",fill:\"none\",\"aria-hidden\":!0,children:(0,i.jsx)(\"path\",{d:\"M5.25 5.25H10.75V10.75H5.25V5.25ZM5.25 5.25H4.25C3.42157 5.25 2.75 4.57843 2.75 3.75C2.75 2.92157 3.42157 2.25 4.25 2.25C5.07843 2.25 5.75 2.92157 5.75 3.75V4.25M10.75 5.25H11.75C12.5784 5.25 13.25 4.57843 13.25 3.75C13.25 2.92157 12.5784 2.25 11.75 2.25C10.9216 2.25 10.25 2.92157 10.25 3.75V4.25M5.25 10.75H4.25C3.42157 10.75 2.75 11.4216 2.75 12.25C2.75 13.0784 3.42157 13.75 4.25 13.75C5.07843 13.75 5.75 13.0784 5.75 12.25V11.75M10.75 10.75H11.75C12.5784 10.75 13.25 11.4216 13.25 12.25C13.25 13.0784 12.5784 13.75 11.75 13.75C10.9216 13.75 10.25 13.0784 10.25 12.25V11.75\",stroke:\"currentColor\",strokeLinecap:\"round\",strokeLinejoin:\"round\",strokeWidth:\"1.15\"}"
+  },
+  "delete": {
+   "fn": "mA",
+   "fn_offset": 826214,
+   "path": "M6 5.75L10 9.75M10 5.75L6 9.75M5.05 12.25H11.75C12.5784 12.25 13.25 11.5784 13.25 10.75V4.75C13.25 3.92157 12.5784 3.25 11.75 3.25H5.05C4.65218 3.25 4.27064 3.40804 3.98934 3.68934L1.75 5.92868C1.16421 6.51447 1.16421 7.46421 1.75 8.05L3.98934 10.2893C4.27064 10.5706 4.65218 10.7287 5.05 10.7287",
+   "path_offset": 826353,
+   "path_len": 296,
+   "excerpt": "function mA(){return(0,i.jsx)(\"svg\",{width:\"16\",height:\"16\",viewBox:\"0 0 16 16\",fill:\"none\",\"aria-hidden\":!0,children:(0,i.jsx)(\"path\",{d:\"M6 5.75L10 9.75M10 5.75L6 9.75M5.05 12.25H11.75C12.5784 12.25 13.25 11.5784 13.25 10.75V4.75C13.25 3.92157 12.5784 3.25 11.75 3.25H5.05C4.65218 3.25 4.27064 3.40804 3.98934 3.68934L1.75 5.92868C1.16421 6.51447 1.16421 7.46421 1.75 8.05L3.98934 10.2893C4.27064 10.5706 4.65218 10.7287 5.05 10.7287\",stroke:\"currentColor\",strokeLinecap:\"round\",strokeLinejoin:\"round\",strokeWidth:\"1.2\"}"
+  }
+ },
+ "类名锚点": {
+  "absolute bottom-full left-0 z-50 pb-2": 146239,
+  "w-[120px]": 146354,
+  "bg-[rgba(31,31,31,0.94)]": 146413,
+  "shadow-[0_8px_24px_rgba(0,0,0,0.35)]": 146442,
+  "absolute left-[297px] top-[60px]": 1009743,
+  "h-[314px]": 828717,
+  "w-[480px]": 828727,
+  "h-[228px]": 829153,
+  "w-[432px]": 829163,
+  "mx-6": 829369,
+  "bg-[#1f1f1f]/95": 110387,
+  "shadow-[0_2px_4px_rgba(0,0,0,0.04),0_4px_10px_rgba(0,0,0,0.10)]": 828808,
+  "backdrop-blur-[32px]": 828872,
+  "flex h-7 min-w-7 shrink-0 items-center justify-center rounded-lg border px-1.5": 826828,
+  "min-w-0 text-sm leading-5 text-white/80": 827323,
+  "flex h-7 items-center justify-between gap-2": 827239
+ },
+ "未命中锚点": [],
+ "代码摘录": {
+  "帮助菜单": "aria-haspopup\":\"menu\",\"aria-expanded\":B,className:(0,g.f)(\"text-white/72 hover:bg-white/8 flex size-8 items-center justify-center rounded-lg transition-colors hover:text-white\",B&&\"bg-white/10 text-white\"),onClick:()=>{N(e=>!e),O(null),e&&t(!1)},children:(0,i.jsx)(u.p.Help,{className:\"size-5\"})})}),B?(0,i.jsx)(\"div\",{className:\"absolute bottom-full left-0 z-50 pb-2\",children:(0,i.jsxs)(\"div\",{role:\"menu\",className:\"nodrag nopan nowheel flex w-[120px] flex-col gap-1 rounded-xl border border-white/10 bg-[rgba(31,31,31,0.94)] p-1 shadow-[0_8px_24px_rgba(0,0,0,0.35)] backdrop-blur-xl\",children:[(0,i.jsx)(\"button\",{type:\"button\",role:\"menuitem\",className:\"flex h-8 w-full items-center rounded-lg px-3 text-left text-[13px] leading-none text-white/75 transition-colors hover:bg-white/10 hover:text-white\",onClick:()=>{N(!1),j()},children:D(\"canvas:directorShortcuts\")}),(0,i.jsx)(\"button\",{type:\"button\",role:\"menuitem\",className:\"flex h-8 w-full items-center rounded-lg px-3 text-left text-[13px] leading-none text-white/75 transition-colors hover:bg-white/10 hover:text-white\",onClick:()=>{N(!1),_()},children:D(\"canvas:directorTutorial\")})]})}):null]})]}),e?null:(0,i.jsxs)(\"div\",{className:\"fle",
+  "快捷键对话框": "absolute left-[297px] top-[60px]\",onMouseDown:e=>e.stopPropagation(),children:(0,i.jsx)(mI,{})})}):null,(0,i.jsx)(dm,{panelWidth:tU,topOffset:16,threeScene:n0,onSelect:oR,onReset:()=>oR(\"default\")}),!tz&&(0,i.jsx)(\"div\",{className:\"absolute right-0 top-0 z-20 flex w-[281px] flex-col overflow-hidden\",style:{bottom:s7},children:(0,i.jsx)(lC,{category:se,character:sx,selectedCharacterCount:\"character",
+  "面板组件": "function mI(){let{t:e}=(0,c.useI18n)(),t=[[{label:e(\"canvas:directorShortcutTopView\"),keys:[{id:\"top-view\",label:\"T\"}]},{label:e(\"canvas:directorShortcutResetView\"),keys:[{id:\"reset-view\",label:\"H\"}]},{label:e(\"canvas:directorTransformMove\"),keys:[{id:\"transform-move\",label:\"V\"}]},{label:e(\"canvas:directorTransformRotate\"),keys:[{id:\"transform-rotate\",label:\"R\"}]},{label:e(\"canvas:directorTransformScale\"),keys:[{id:\"transform-scale\",label:\"F\"}]},{label:e(\"canvas:directorShortcutMoveCurrentView\"),keys:[{id:\"move-current-view\",label:\"WASDQE\"}]}],[{label:e(\"canvas:directorShortcutFrontView\"),keys:[{id:\"front-view\",label:\"Y\"}]},{label:e(\"canvas:directorShortcutSnapToGrid\"),keys:[{id:\"snap-grid\",label:\"X\"}]},{label:e(\"canvas:directorShortcutGroup\"),keys:[{id:\"group-command\",icon:\"command\"},{id:\"group-key\",label:\"G\"}]},{label:e(\"canvas:directorShortcutUngroup\"),keys:[{id:\"ungroup-command\",icon:\"command\"},{id:\"ungroup-shift\",label:\"⇧\"},{id:\"ungroup-key\",label:\"D\"}]},{label:e(\"canvas:directorShortcutUndo\"),keys:[{id:\"undo-command\",icon:\"command\"},{id:\"undo-key\",label:\"Z\"}]},{label:e(\"canvas:directorShortcutDelete\"),keys:[{id:\"delete-key\",icon:\"delete\"}]}]];return(0,i.jsxs)(\"div\",{role:\"dialog\",\"aria-modal\":\"true\",\"aria-label\":e(\"canvas:directorShortcutsTitle\"),className:\"nodrag nopan nowheel relative h-[314px] w-[480px] rounded-2xl border border-white/10 bg-[#1f1f1f]/95 p-6 text-neutral-50 shadow-[0_2px_4px_rgba(0,0,0,0.04),0_4px_10px_rgba(0,0,0,0.10)] backdrop-blur-[32px]\",children:[(0,i.jsx)(\"div\",{className:\"flex h-[22px] items-center justify-between\",children:(0,i.jsx)(\"h2\",{className:\"text-base font-medium leading-[22px] text-neutral-50\",children:e(\"canvas:directorShortcutsTitle\")})}),(0,i.jsxs)(\"div\",{className:\"mt-4 flex h-[228px] w-[432px] items-stretch\",children:[(0,i.jsx)(\"div\",{className:\"flex w-[192px] flex-col justify-between\",children:t[0].map(e=>(0,i.jsx)(mM,{label:e.label,keys:e.keys},e.label))}),(0,i.jsx)(\"div\",{className:\"mx-6 w-px shrink-0 bg-white/10\",\"aria-hidden\":!0}),(0,i.jsx)(\"div\",{className:\"flex w-[192px] flex-col justify-between\",children:t[1]."
+ }
+}

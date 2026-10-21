@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import type { PointerEvent as ReactPointerEvent, ReactNode } from "react";
 import {
   Camera,
@@ -344,6 +345,24 @@ export function DirectorTimeline({
       /* storage 不可用时仅会话内收起 */
     }
   };
+  // Batch 831：源站 rail「帮助 → 使用教程」打开的是那套 5 步引导
+  // （源码 cC 组件；clone 只有第 1 步，batch 552/553）。
+  // ⟹ 这里让 clone 已有的引导气泡**重新出现**：batch 572 起它记住了「已跳过」
+  // ⟹ 所以要同时清掉 localStorage 标记，否则点了「使用教程」什么也不会发生
+  //（那又是一枚「点了没反应」的死按钮）。
+  useEffect(() => {
+    const onOpenTutorial = () => {
+      setCoachDismissed(false);
+      try {
+        window.localStorage.removeItem("director-timeline-coach-dismissed");
+      } catch {
+        /* storage 不可用时仅会话内生效 */
+      }
+    };
+    window.addEventListener("director:open-tutorial", onOpenTutorial);
+    return () =>
+      window.removeEventListener("director:open-tutorial", onOpenTutorial);
+  }, []);
   const advanceTimeline = useDirectorStore((state) => state.advanceTimeline);
   const toggleTimelineLoop = useDirectorStore(
     (state) => state.toggleTimelineLoop,
@@ -881,39 +900,50 @@ export function DirectorTimeline({
           压住一整排控件，文字区吞点击会让工具条在引导期间不可用。外观与
           几何完全按实测。步骤 2-5 仍未采样，跳过/下一步都只收起
           （沿用 batch 556 的 clone 决策）。收起状态跨重载持久沿用 batch 572。 */}
-      {!coachDismissed ? (
-        <div
-          data-director-timeline-coachmark
-          role="status"
-          className="pointer-events-none fixed left-[163px] z-[1] w-[260px] overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]"
-          style={{ top: "calc(100vh - 230px)" }}
-        >
-          <div className="h-10 overflow-hidden text-[12px] font-normal leading-[19.2px] text-white/90">
-            请选择一个角色或者摄像机后，可新建轨道
-          </div>
-          <div className="mt-3 flex items-center justify-between gap-1">
-            <span className="min-w-0 flex-1 text-[14px] font-normal leading-3 text-white/55">
-              1/5
-            </span>
-            <button
-              type="button"
-              data-director-coachmark-skip
-              onClick={dismissCoach}
-              className="pointer-events-auto h-7 rounded-lg bg-transparent px-3 text-[13px] font-normal leading-none text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+      {!coachDismissed && typeof document !== "undefined"
+        ? createPortal(
+            <div
+              data-director-timeline-coachmark
+              role="status"
+              className="pointer-events-none fixed left-[163px] z-[1] w-[260px] overflow-hidden rounded-xl border border-white/[0.08] bg-[#242424] p-4 text-white shadow-[0_4px_16px_rgba(0,0,0,0.18)]"
+              // ★ Batch 831：这个气泡改用 **portal 到 document.body**（源站就是
+              //   这么做的：源码 `createPortal(…, document.body)`）。
+              //   原因（实测）：气泡是 `position: fixed`，但它原先渲染在时间轴
+              //   section 里 ⟹ **有个祖先创建了 containing block** ⟹
+              //   `top: calc(100vh - 230px)`（=850px）被当成相对那个祖先算 ⟹
+              //   绝对 y = **1749**（视口只有 1080）⟹ 气泡**掉到视口外、看不见**。
+              //   portal 到 body 后 fixed 相对视口 ⟹ 落在 (163,850) ✔ 与源站同层。
+              //   z 用 1800（源站自己的引导浮层 z-[1800]）⟹ 压在导演台之上。
+              style={{ top: "calc(100vh - 230px)", zIndex: 1800 }}
             >
-              跳过
-            </button>
-            <button
-              type="button"
-              data-director-coachmark-next
-              onClick={dismissCoach}
-              className="pointer-events-auto h-7 rounded-lg bg-white/10 px-3 text-[13px] font-normal leading-none text-white/85 transition-colors hover:bg-white/15 hover:text-white"
-            >
-              下一步
-            </button>
-          </div>
-        </div>
-      ) : null}
+              <div className="h-10 overflow-hidden text-[12px] font-normal leading-[19.2px] text-white/90">
+                请选择一个角色或者摄像机后，可新建轨道
+              </div>
+              <div className="mt-3 flex items-center justify-between gap-1">
+                <span className="min-w-0 flex-1 text-[14px] font-normal leading-3 text-white/55">
+                  1/5
+                </span>
+                <button
+                  type="button"
+                  data-director-coachmark-skip
+                  onClick={dismissCoach}
+                  className="pointer-events-auto h-7 rounded-lg bg-transparent px-3 text-[13px] font-normal leading-none text-white/70 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  跳过
+                </button>
+                <button
+                  type="button"
+                  data-director-coachmark-next
+                  onClick={dismissCoach}
+                  className="pointer-events-auto h-7 rounded-lg bg-white/10 px-3 text-[13px] font-normal leading-none text-white/85 transition-colors hover:bg-white/15 hover:text-white"
+                >
+                  下一步
+                </button>
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
       {/* Batch 593（源站 2026-10-01 实测）：工具条是 z-30 覆盖层，高 36px
           （`h-[36px]` + `px-2 py-1`），**没有**任何标题——之前 clone 自造的
           「动画时间轴」h2 已删除。左格 320px 放播放/自动帧/循环/读数/单位/

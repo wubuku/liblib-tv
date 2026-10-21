@@ -32,6 +32,7 @@ import {
 import { DirectorViewport } from "@/components/director/DirectorViewport";
 import { DirectorScenePromptBar } from "@/components/director/DirectorScenePromptBar";
 import { DirectorIconRail } from "@/components/director/DirectorIconRail";
+import { DirectorShortcutsDialog } from "@/components/director/DirectorShortcutsDialog";
 import {
   collectDirectorCanvasMediaInputs,
   type DirectorCanvasMediaInputV1,
@@ -292,6 +293,9 @@ export default function DirectorDesk({
     useState<DirectorPanoramaRuntimeState>("empty");
   const [mobilePanel, setMobilePanel] = useState<MobilePanel>(null);
   const [exportPanelOpen, setExportPanelOpen] = useState(false);
+  // Batch 831：源站 rail「帮助 → 快捷键」打开的 480×314 对话框（源站把它钉在
+  // 桌面的绝对偏移 left-[297px] top-[60px] 上 ⟹ 这里也用同样的绝对偏移）。
+  const [shortcutsOpen, setShortcutsOpen] = useState(false);
   const [exportDuration, setExportDuration] = useState(timelineDuration);
   const [exportAspectRatio, setExportAspectRatio] =
     useState<DirectorAspectRatio>(aspectRatio);
@@ -479,6 +483,11 @@ export default function DirectorDesk({
           target.tagName === "TEXTAREA" ||
           target.tagName === "SELECT");
       if (event.isComposing) return;
+      if (event.key === "Escape" && shortcutsOpen) {
+        event.preventDefault();
+        setShortcutsOpen(false);
+        return;
+      }
       if (event.key === "Escape" && activeMobilePanel) {
         event.preventDefault();
         closeMobilePanel();
@@ -1197,7 +1206,31 @@ export default function DirectorDesk({
         <DirectorObjectTree />
       </aside>
 
-      <DirectorIconRail onPanoramaSourceChange={setPanoramaSourceId} />
+      <DirectorIconRail
+        onPanoramaSourceChange={setPanoramaSourceId}
+        onOpenShortcuts={() => setShortcutsOpen(true)}
+        onOpenTutorial={() => {
+          // Batch 831：源站的「使用教程」打开 5 步引导（源码 cC 组件）；
+          // clone 只有第 1 步（batch 552/553）⟹ 这里打开 clone 已有的引导气泡。
+          // ⟹ 引导气泡住在时间轴面板里（面板关闭时组件直接 return null）⟹
+          //   所以要先**打开时间轴**；batch 572 起它记住了「已跳过」
+          //   （localStorage）⟹ 还要先清掉那个标记，否则点了「使用教程」
+          //   什么也不会发生（那又是一枚「点了没反应」的死按钮）。
+          try {
+            window.localStorage.removeItem("director-timeline-coach-dismissed");
+          } catch {
+            /* storage 不可用时仅会话内生效 */
+          }
+          useDirectorStore.getState().setTimelinePanelOpen(true);
+          window.dispatchEvent(new CustomEvent("director:open-tutorial"));
+        }}
+      />
+
+      {/* Batch 831：源站的「快捷键」对话框（480×314，钉在桌面绝对偏移
+          left-[297px] top-[60px] 上，点击外面关闭）。 */}
+      {shortcutsOpen ? (
+        <DirectorShortcutsDialog onClose={() => setShortcutsOpen(false)} />
+      ) : null}
 
       <div className="flex min-h-0 flex-1 flex-col">
         <div className="relative min-h-0 flex-1">

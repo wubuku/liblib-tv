@@ -1,0 +1,83 @@
+{
+ "标题": {
+  "found": true,
+  "dialog": {
+   "box": {
+    "x": 297,
+    "y": 60,
+    "w": 480,
+    "h": 314
+   },
+   "style": {
+    "padding": "24px",
+    "margin": "0px",
+    "lineHeight": "24.8px",
+    "fontSize": "16px",
+    "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+    "display": "block",
+    "alignItems": "normal",
+    "height": "314px",
+    "transform": "none",
+    "position": "relative",
+    "top": "0px"
+   }
+  },
+  "row": {
+   "tag": "DIV",
+   "box": {
+    "x": 322,
+    "y": 85,
+    "w": 430,
+    "h": 22
+   },
+   "style": {
+    "padding": "0px",
+    "margin": "0px",
+    "lineHeight": "24.8px",
+    "fontSize": "16px",
+    "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+    "display": "flex",
+    "alignItems": "center",
+    "height": "22px",
+    "transform": "none",
+    "position": "static",
+    "top": "auto"
+   },
+   "cls": "flex h-[22px] items-center justify-between",
+   "kids": [
+    {
+     "tag": "H2",
+     "t": "快捷键",
+     "box": {
+      "x": 322,
+      "y": 81,
+      "w": 48,
+      "h": 22
+     }
+    }
+   ]
+  },
+  "h2": {
+   "box": {
+    "x": 322,
+    "y": 81,
+    "w": 48,
+    "h": 22
+   },
+   "style": {
+    "padding": "0px",
+    "margin": "0px 0px 8px",
+    "lineHeight": "22px",
+    "fontSize": "16px",
+    "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+    "display": "block",
+    "alignItems": "normal",
+    "height": "22px",
+    "transform": "none",
+    "position": "static",
+    "top": "auto"
+   },
+   "cls": "text-base font-medium leading-[22px] text-neutral-50"
+  }
+ }
+}

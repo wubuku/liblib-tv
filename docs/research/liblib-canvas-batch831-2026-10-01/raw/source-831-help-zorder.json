@@ -1,0 +1,386 @@
+{
+ "①时间轴未开": {
+  "helpBox": {
+   "x": 8,
+   "y": 1040,
+   "w": 32,
+   "h": 32
+  },
+  "point": [
+   24,
+   1056
+  ],
+  "stack": [
+   {
+    "tag": "BUTTON",
+    "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-",
+    "aria": "帮助",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 8,
+     "y": 1040,
+     "w": 32,
+     "h": 32
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "relative mt-auto",
+    "aria": "",
+    "z": "auto",
+    "pos": "relative",
+    "box": {
+     "x": 8,
+     "y": 1040,
+     "w": 32,
+     "h": 32
+    }
+   },
+   {
+    "tag": "NAV",
+    "cls": "border-white/8 flex w-12 shrink-0 flex-col items-center gap-2 bo",
+    "aria": "",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 52,
+     "w": 48,
+     "h": 1028
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "flex h-[calc(100%-52px)]",
+    "aria": "",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 52,
+     "w": 280,
+     "h": 1028
+    }
+   },
+   {
+    "tag": "ASIDE",
+    "cls": "absolute inset-y-0 left-0 z-30 overflow-hidden border-r border-w",
+    "aria": "",
+    "z": "30",
+    "pos": "absolute",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 281,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "CANVAS",
+    "cls": "",
+    "aria": "",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "h-full w-full",
+    "aria": "",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "absolute inset-0",
+    "aria": "",
+    "z": "auto",
+    "pos": "absolute",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   }
+  ],
+  "cover": [
+   {
+    "tag": "DIV",
+    "cls": "h-screen w-screen",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "relative h-screen w-screen",
+    "z": "auto",
+    "pos": "relative",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "relative h-screen w-screen",
+    "z": "auto",
+    "pos": "relative",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow light",
+    "z": "0",
+    "pos": "relative",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow__renderer",
+    "z": "4",
+    "pos": "absolute",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow__pane",
+    "z": "1",
+    "pos": "absolute",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   }
+  ]
+ },
+ "②时间轴已开": {
+  "helpBox": {
+   "x": 8,
+   "y": 1040,
+   "w": 32,
+   "h": 32
+  },
+  "point": [
+   24,
+   1056
+  ],
+  "stack": [
+   {
+    "tag": "DIV",
+    "cls": "z-10 shrink-0 bg-[#1f1f1f]",
+    "aria": "",
+    "z": "10",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 951,
+     "w": 320,
+     "h": 130
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "flex min-h-full min-w-0 gap-[2px]",
+    "aria": "",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 951,
+     "w": 1920,
+     "h": 130
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "tiny-scrollbar h-full min-h-0 overflow-y-auto overflow-x-hidden",
+    "aria": "",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 951,
+     "w": 1920,
+     "h": 129
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "h-full min-h-0 min-w-0 overflow-hidden bg-[#212121]",
+    "aria": "",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 951,
+     "w": 1920,
+     "h": 129
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "min-h-0 flex-1",
+    "aria": "",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 951,
+     "w": 1920,
+     "h": 129
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "pointer-events-auto relative flex w-full min-w-0 flex-col overfl",
+    "aria": "",
+    "z": "auto",
+    "pos": "relative",
+    "box": {
+     "x": 0,
+     "y": 950,
+     "w": 1920,
+     "h": 130
+    }
+   },
+   {
+    "tag": "BUTTON",
+    "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-",
+    "aria": "帮助",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 8,
+     "y": 1040,
+     "w": 32,
+     "h": 32
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "relative mt-auto",
+    "aria": "",
+    "z": "auto",
+    "pos": "relative",
+    "box": {
+     "x": 8,
+     "y": 1040,
+     "w": 32,
+     "h": 32
+    }
+   }
+  ],
+  "cover": [
+   {
+    "tag": "DIV",
+    "cls": "h-screen w-screen",
+    "z": "auto",
+    "pos": "static",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "relative h-screen w-screen",
+    "z": "auto",
+    "pos": "relative",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "relative h-screen w-screen",
+    "z": "auto",
+    "pos": "relative",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow light",
+    "z": "0",
+    "pos": "relative",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow__renderer",
+    "z": "4",
+    "pos": "absolute",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   },
+   {
+    "tag": "DIV",
+    "cls": "react-flow__pane",
+    "z": "1",
+    "pos": "absolute",
+    "box": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   }
+  ]
+ }
+}
