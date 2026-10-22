@@ -136,7 +136,7 @@
  },
  "census": {
   "n_goldens": 30,
-  "n_excluded_self": 1,
+  "n_excluded_self": 2,
   "n_empty_list": 284,
   "n_empty_null": 127,
   "n_self_provable": 10,

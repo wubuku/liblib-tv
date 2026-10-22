@@ -159,13 +159,32 @@ def classify(path, siblings):
 #   将来重命名就漏了），并把「排除得干净」做成断言而不是注释**
 _SELF_MARK = "jimeng_probe1014_empty_ambiguity.py"
 
+# ⭐⭐⭐⭐⭐ 1032-②l：**被排除的不只是「我自己」**
+#   ⇒ ⇒ 还有「读这张指纹表的仪器」的产物 ——
+#   ⇒ ⇒⇒ ⇒ 它的内容**是这张表的函数** ⇒ ⇒⇒ ⇒ 把它吃进普查
+#   ⇒ ⇒⇒ ⇒ ⇒ 普查的数字就会随「那道门跑过几次」而变 ⇒ ⇒⇒ ⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ 那正是本文件开头反对的那件事
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以排除集是**声明式**的（一份字面量）⇒ ⇒⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而门（1032l）从**本文件的源码**里读它 ⇒ ⇒⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 两处不会漂移
+_EXCLUDED_GENERATORS = {
+    "jimeng_probe1014_empty_ambiguity.py",
+    "jimeng_probe1032l_fingerprint_gate.py",
+}
+assert _SELF_MARK in _EXCLUDED_GENERATORS
+
 
 def _is_own(f):
+    """⭐ 1032-②l：判定从「是不是我」放宽成「是不是被排除的生成器」。
+
+    ⇒ 锚点钉的是**这一行调用**（`assert not any(_is_own(f) for f in GOLDENS)`）
+    ⇒ ⇒⇒ ⇒ 所以函数名不许改；改的是它**判什么**。
+    """
     try:
         d = json.loads(f.read_text(encoding="utf-8"))
     except Exception:
         return False
-    return isinstance(d, dict) and d.get("generated_by") == _SELF_MARK
+    return isinstance(d, dict) and d.get("generated_by") in _EXCLUDED_GENERATORS
 
 
 _ALL = sorted(GDIR.glob("*.json"))
