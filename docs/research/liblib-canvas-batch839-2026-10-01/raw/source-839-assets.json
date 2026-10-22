@@ -1,0 +1,1990 @@
+{
+ "★是否找到官方角色库页签": true,
+ "A_点前_leaves": [
+  {
+   "tag": "SPAN",
+   "text": "画布 1",
+   "box": {
+    "x": 173,
+    "y": 14,
+    "w": 36,
+    "h": 20
+   },
+   "cls": "text-canvas-controls-text min-w-0 truncate text-[13px] font-normal max-w-[160px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "20",
+   "box": {
+    "x": 1845,
+    "y": 14,
+    "w": 16,
+    "h": 20
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "限时 45 折",
+   "box": {
+    "x": 1734,
+    "y": 16,
+    "w": 61,
+    "h": 16
+   },
+   "cls": "bg-nt-brand-surface-l1 text-nt-text-brand inline-flex h-4 shrink-0 items-center justify-ce"
+  },
+  {
+   "tag": "SPAN",
+   "text": "S83·镜2",
+   "box": {
+    "x": 127,
+    "y": 104,
+    "w": 37,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "864 × 496",
+   "box": {
+    "x": 304,
+    "y": 105,
+    "w": 42,
+    "h": 13
+   },
+   "cls": "text-fg-muted shrink-0 whitespace-nowrap text-[11px] tabular-nums opacity-80"
+  },
+  {
+   "tag": "SPAN",
+   "text": "导演台 2",
+   "box": {
+    "x": 516,
+    "y": 108,
+    "w": 38,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "我的角色库",
+   "box": {
+    "x": 385,
+    "y": 183,
+    "w": 90,
+    "h": 26
+   },
+   "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:opacity-100 text-fg-"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "官方角色库",
+   "box": {
+    "x": 508,
+    "y": 183,
+    "w": 90,
+    "h": 26
+   },
+   "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:opacity-100 text-can"
+  },
+  {
+   "tag": "SPAN",
+   "text": "脚本 V2 1",
+   "box": {
+    "x": 423,
+    "y": 309,
+    "w": 42,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "男",
+   "box": {
+    "x": 396,
+    "y": 318,
+    "w": 14,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "儿童",
+   "box": {
+    "x": 468,
+    "y": 318,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "东亚",
+   "box": {
+    "x": 553,
+    "y": 318,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图片节点 1",
+   "box": {
+    "x": 39,
+    "y": 319,
+    "w": 47,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "女",
+   "box": {
+    "x": 396,
+    "y": 354,
+    "w": 14,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "少年",
+   "box": {
+    "x": 468,
+    "y": 354,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "欧美",
+   "box": {
+    "x": 553,
+    "y": 354,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "DIV",
+   "text": "1",
+   "box": {
+    "x": 436,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px] font-semi"
+  },
+  {
+   "tag": "DIV",
+   "text": "2",
+   "box": {
+    "x": 472,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px] font-semi"
+  },
+  {
+   "tag": "DIV",
+   "text": "3",
+   "box": {
+    "x": 508,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px] font-semi"
+  },
+  {
+   "tag": "SPAN",
+   "text": "中性",
+   "box": {
+    "x": 396,
+    "y": 390,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "青年",
+   "box": {
+    "x": 468,
+    "y": 390,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "中东",
+   "box": {
+    "x": 553,
+    "y": 390,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "DIV",
+   "text": "确认镜头",
+   "box": {
+    "x": 430,
+    "y": 399,
+    "w": 20,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white"
+  },
+  {
+   "tag": "DIV",
+   "text": "准备资产",
+   "box": {
+    "x": 466,
+    "y": 399,
+    "w": 20,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white/65"
+  },
+  {
+   "tag": "DIV",
+   "text": "合成提示词",
+   "box": {
+    "x": 500,
+    "y": 399,
+    "w": 25,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white/65"
+  },
+  {
+   "tag": "DIV",
+   "text": "尝试：",
+   "box": {
+    "x": 35,
+    "y": 404,
+    "w": 218,
+    "h": 8
+   },
+   "cls": "text-fg-muted mb-2 text-sm"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图生图",
+   "box": {
+    "x": 48,
+    "y": 418,
+    "w": 16,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "中年",
+   "box": {
+    "x": 468,
+    "y": 426,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "非洲",
+   "box": {
+    "x": 553,
+    "y": 426,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图片高清",
+   "box": {
+    "x": 49,
+    "y": 433,
+    "w": 21,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "打开脚本节点 →",
+   "box": {
+    "x": 422,
+    "y": 433,
+    "w": 108,
+    "h": 15
+   },
+   "cls": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm font-semibol"
+  },
+  {
+   "tag": "SPAN",
+   "text": "老年",
+   "box": {
+    "x": 468,
+    "y": 462,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "奇幻",
+   "box": {
+    "x": 553,
+    "y": 462,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "陈默_01KT17FN",
+   "box": {
+    "x": 478,
+    "y": 539,
+    "w": 71,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "1808 × 1024",
+   "box": {
+    "x": 647,
+    "y": 540,
+    "w": 53,
+    "h": 13
+   },
+   "cls": "text-fg-muted shrink-0 whitespace-nowrap text-[11px] tabular-nums opacity-80"
+  },
+  {
+   "tag": "SPAN",
+   "text": "逐帧拉片",
+   "box": {
+    "x": 113,
+    "y": 545,
+    "w": 40,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "逐帧拉片",
+   "box": {
+    "x": 115,
+    "y": 570,
+    "w": 21,
+    "h": 8
+   },
+   "cls": "text-fg-default text-[14px] font-semibold leading-[22px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "素材-特效-瞳孔异变",
+   "box": {
+    "x": 295,
+    "y": 570,
+    "w": 78,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "SD 2.5",
+   "box": {
+    "x": 154,
+    "y": 571,
+    "w": 13,
+    "h": 6
+   },
+   "cls": "text-[11px] leading-4"
+  },
+  {
+   "tag": "SPAN",
+   "text": "视频素材",
+   "box": {
+    "x": 105,
+    "y": 586,
+    "w": 109,
+    "h": 7
+   },
+   "cls": "text-fg-muted flex-1 truncate text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "上传视频后开始",
+   "box": {
+    "x": 144,
+    "y": 630,
+    "w": 32,
+    "h": 7
+   },
+   "cls": "text-fg-muted text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "拆解维度",
+   "box": {
+    "x": 105,
+    "y": 664,
+    "w": 109,
+    "h": 7
+   },
+   "cls": "text-fg-muted flex-1 truncate text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "分镜",
+   "box": {
+    "x": 121,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "动态",
+   "box": {
+    "x": 159,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "音乐",
+   "box": {
+    "x": 197,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "开始拉片",
+   "box": {
+    "x": 104,
+    "y": 693,
+    "w": 112,
+    "h": 14
+   },
+   "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14px] leadin"
+  },
+  {
+   "tag": "SPAN",
+   "text": "甜妹/清新少女",
+   "box": {
+    "x": 901,
+    "y": 783,
+    "w": 88,
+    "h": 22
+   },
+   "cls": "max-w-[246px] truncate "
+  },
+  {
+   "tag": "BUTTON",
+   "text": "38%",
+   "box": {
+    "x": 240,
+    "y": 1034,
+    "w": 36,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 text-[13px"
+  },
+  {
+   "tag": "SPAN",
+   "text": "资产管理",
+   "box": {
+    "x": 44,
+    "y": 1038,
+    "w": 52,
+    "h": 20
+   },
+   "cls": "whitespace-nowrap text-[13px] leading-normal"
+  }
+ ],
+ "A_点前_imgs": [
+  {
+   "alt": "avatar",
+   "box": {
+    "x": 1884,
+    "y": 13,
+    "w": 24,
+    "h": 23
+   },
+   "src": "3-07b2570237f8.jpg?x-oss-process=image/resize,w_100,m_lfit/format,webp",
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "陈默_01KT17FN.png",
+   "box": {
+    "x": 465,
+    "y": 558,
+    "w": 235,
+    "h": 133
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "瞳孔异变",
+   "box": {
+    "x": 282,
+    "y": 588,
+    "w": 92,
+    "h": 92
+   },
+   "src": "https://libtv-res.liblib.art/tool/cinematic/transition_12.webp",
+   "cls": "size-full rounded-xl object-cover"
+  },
+  {
+   "alt": "构图预览",
+   "box": {
+    "x": 503,
+    "y": 127,
+    "w": 133,
+    "h": 133
+   },
+   "src": "054964ae9b9079af74a9ed84e/15e38d0cb6dff3190ea9439a23f88c3d05bc88fc.jpg",
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 114,
+    "y": 122,
+    "w": 232,
+    "h": 133
+   },
+   "src": "851d68.mp4?x-oss-process=video/snapshot,t_0,f_jpg,w_200,m_fast,ar_auto",
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 815,
+    "y": 321,
+    "w": 291,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1084,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1330,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1576,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1822,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2068,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2314,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2560,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2806,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3052,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3298,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3544,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3790,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4036,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4282,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4528,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4774,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5032,
+    "y": 364,
+    "w": 220,
+    "h": 391
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5278,
+    "y": 364,
+    "w": 220,
+    "h": 391
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5512,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5758,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 6004,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 6250,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  }
+ ],
+ "A_★资产元素": [
+  {
+   "tag": "DIV",
+   "cls": "absolute left-0 top-[42px] h-[434px] w-full cursor-grab touch-pan-y select-none overflow-hidden overscroll-contain outline-none data-[dragging=true]:cursor-grab",
+   "x": 361,
+   "y": 321,
+   "w": 1198,
+   "h": 434,
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "display": "block",
+   "visibility": "visible",
+   "父cls": "relative h-full",
+   "祖父cls": "h-full transition-opacity opacity-100"
+  },
+  {
+   "tag": "DIV",
+   "cls": "absolute left-1/2 top-0 flex h-[434px] w-max will-change-transform",
+   "x": 591,
+   "y": 321,
+   "w": 5904,
+   "h": 434,
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "display": "flex",
+   "visibility": "visible",
+   "父cls": "absolute left-0 top-[42px] h-[434px] w-full cursor-grab touch-pan-y select-none overflow-hidden overscroll-contain outline-none data-[dragging=true]:cursor-grab",
+   "祖父cls": "relative h-full"
+  },
+  {
+   "tag": "DIV",
+   "cls": "Ias-7a_carouselCard group relative h-[434px] w-[246px] shrink-0 overflow-hidden rounded-2xl will-change-[opacity,transform]",
+   "x": 837,
+   "y": 321,
+   "w": 246,
+   "h": 434,
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "display": "block",
+   "visibility": "visible",
+   "父cls": "absolute left-1/2 top-0 flex h-[434px] w-max will-change-transform",
+   "祖父cls": "absolute left-0 top-[42px] h-[434px] w-full cursor-grab touch-pan-y select-none overflow-hidden overscroll-contain outline-none data-[dragging=true]:cursor-grab"
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "pointer-events-none absolute left-1/2 top-1/2 isolate z-[3] flex h-8 w-max min-w-0 max-w-[90%] -translate-x-1/2 -translate-y-1/2 items-center justify-center ove",
+   "x": 898,
+   "y": 522,
+   "w": 124,
+   "h": 32,
+   "opacity": "0",
+   "pointerEvents": "none",
+   "display": "flex",
+   "visibility": "visible",
+   "父cls": "Ias-7a_carouselCard group relative h-[434px] w-[246px] shrink-0 overflow-hidden rounded-2xl will-change-[opacity,transform]",
+   "祖父cls": "absolute left-1/2 top-0 flex h-[434px] w-max will-change-transform"
+  },
+  {
+   "tag": "SPAN",
+   "cls": "min-w-0 truncate px-1",
+   "x": 925,
+   "y": 528,
+   "w": 86,
+   "h": 20,
+   "opacity": "1",
+   "pointerEvents": "none",
+   "display": "block",
+   "visibility": "visible",
+   "父cls": "pointer-events-none absolute left-1/2 top-1/2 isolate z-[3] flex h-8 w-max min-w-0 max-w-[90%] -translate-x-1/2 -translate-y-1/2 items-center justify-center ove",
+   "祖父cls": "Ias-7a_carouselCard group relative h-[434px] w-[246px] shrink-0 overflow-hidden rounded-2xl will-change-[opacity,transform]"
+  }
+ ],
+ "★资产元素盒": {
+  "tag": "DIV",
+  "cls": "absolute left-0 top-[42px] h-[434px] w-full cursor-grab touch-pan-y select-none overflow-hidden overscroll-contain outline-none data-[dragging=true]:cursor-grab",
+  "x": 361,
+  "y": 321,
+  "w": 1198,
+  "h": 434,
+  "opacity": "1",
+  "pointerEvents": "auto",
+  "display": "block",
+  "visibility": "visible",
+  "父cls": "relative h-full",
+  "祖父cls": "h-full transition-opacity opacity-100"
+ },
+ "B_★悬停后_资产元素": [
+  {
+   "tag": "DIV",
+   "cls": "absolute left-0 top-[42px] h-[434px] w-full cursor-grab touch-pan-y select-none overflow-hidden overscroll-contain outline-none data-[dragging=true]:cursor-grab",
+   "x": 361,
+   "y": 321,
+   "w": 1198,
+   "h": 434,
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "display": "block",
+   "visibility": "visible",
+   "父cls": "relative h-full",
+   "祖父cls": "h-full transition-opacity opacity-100"
+  },
+  {
+   "tag": "DIV",
+   "cls": "absolute left-1/2 top-0 flex h-[434px] w-max will-change-transform",
+   "x": 591,
+   "y": 321,
+   "w": 5904,
+   "h": 434,
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "display": "flex",
+   "visibility": "visible",
+   "父cls": "absolute left-0 top-[42px] h-[434px] w-full cursor-grab touch-pan-y select-none overflow-hidden overscroll-contain outline-none data-[dragging=true]:cursor-grab",
+   "祖父cls": "relative h-full"
+  },
+  {
+   "tag": "DIV",
+   "cls": "Ias-7a_carouselCard group relative h-[434px] w-[246px] shrink-0 overflow-hidden rounded-2xl will-change-[opacity,transform]",
+   "x": 837,
+   "y": 321,
+   "w": 246,
+   "h": 434,
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "display": "block",
+   "visibility": "visible",
+   "父cls": "absolute left-1/2 top-0 flex h-[434px] w-max will-change-transform",
+   "祖父cls": "absolute left-0 top-[42px] h-[434px] w-full cursor-grab touch-pan-y select-none overflow-hidden overscroll-contain outline-none data-[dragging=true]:cursor-grab"
+  },
+  {
+   "tag": "BUTTON",
+   "cls": "pointer-events-none absolute left-1/2 top-1/2 isolate z-[3] flex h-8 w-max min-w-0 max-w-[90%] -translate-x-1/2 -translate-y-1/2 items-center justify-center ove",
+   "x": 898,
+   "y": 522,
+   "w": 124,
+   "h": 32,
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "display": "flex",
+   "visibility": "visible",
+   "父cls": "Ias-7a_carouselCard group relative h-[434px] w-[246px] shrink-0 overflow-hidden rounded-2xl will-change-[opacity,transform]",
+   "祖父cls": "absolute left-1/2 top-0 flex h-[434px] w-max will-change-transform"
+  },
+  {
+   "tag": "SPAN",
+   "cls": "min-w-0 truncate px-1",
+   "x": 925,
+   "y": 528,
+   "w": 86,
+   "h": 20,
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "display": "block",
+   "visibility": "visible",
+   "父cls": "pointer-events-none absolute left-1/2 top-1/2 isolate z-[3] flex h-8 w-max min-w-0 max-w-[90%] -translate-x-1/2 -translate-y-1/2 items-center justify-center ove",
+   "祖父cls": "Ias-7a_carouselCard group relative h-[434px] w-[246px] shrink-0 overflow-hidden rounded-2xl will-change-[opacity,transform]"
+  }
+ ],
+ "C_点后_leaves": [
+  {
+   "tag": "SPAN",
+   "text": "画布 1",
+   "box": {
+    "x": 173,
+    "y": 14,
+    "w": 36,
+    "h": 20
+   },
+   "cls": "text-canvas-controls-text min-w-0 truncate text-[13px] font-normal max-w-[160px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "20",
+   "box": {
+    "x": 1845,
+    "y": 14,
+    "w": 16,
+    "h": 20
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "限时 45 折",
+   "box": {
+    "x": 1734,
+    "y": 16,
+    "w": 61,
+    "h": 16
+   },
+   "cls": "bg-nt-brand-surface-l1 text-nt-text-brand inline-flex h-4 shrink-0 items-center justify-ce"
+  },
+  {
+   "tag": "SPAN",
+   "text": "S83·镜2",
+   "box": {
+    "x": 127,
+    "y": 104,
+    "w": 37,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "864 × 496",
+   "box": {
+    "x": 304,
+    "y": 105,
+    "w": 42,
+    "h": 13
+   },
+   "cls": "text-fg-muted shrink-0 whitespace-nowrap text-[11px] tabular-nums opacity-80"
+  },
+  {
+   "tag": "SPAN",
+   "text": "导演台 2",
+   "box": {
+    "x": 516,
+    "y": 108,
+    "w": 38,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "我的角色库",
+   "box": {
+    "x": 385,
+    "y": 183,
+    "w": 90,
+    "h": 26
+   },
+   "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:opacity-100 text-fg-"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "官方角色库",
+   "box": {
+    "x": 508,
+    "y": 183,
+    "w": 90,
+    "h": 26
+   },
+   "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:opacity-100 text-can"
+  },
+  {
+   "tag": "SPAN",
+   "text": "脚本 V2 1",
+   "box": {
+    "x": 423,
+    "y": 309,
+    "w": 42,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "男",
+   "box": {
+    "x": 396,
+    "y": 318,
+    "w": 14,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "儿童",
+   "box": {
+    "x": 468,
+    "y": 318,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "东亚",
+   "box": {
+    "x": 553,
+    "y": 318,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图片节点 1",
+   "box": {
+    "x": 39,
+    "y": 319,
+    "w": 47,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "女",
+   "box": {
+    "x": 396,
+    "y": 354,
+    "w": 14,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "少年",
+   "box": {
+    "x": 468,
+    "y": 354,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "欧美",
+   "box": {
+    "x": 553,
+    "y": 354,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "DIV",
+   "text": "1",
+   "box": {
+    "x": 436,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px] font-semi"
+  },
+  {
+   "tag": "DIV",
+   "text": "2",
+   "box": {
+    "x": 472,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px] font-semi"
+  },
+  {
+   "tag": "DIV",
+   "text": "3",
+   "box": {
+    "x": 508,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px] font-semi"
+  },
+  {
+   "tag": "SPAN",
+   "text": "中性",
+   "box": {
+    "x": 396,
+    "y": 390,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "青年",
+   "box": {
+    "x": 468,
+    "y": 390,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "中东",
+   "box": {
+    "x": 553,
+    "y": 390,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "DIV",
+   "text": "确认镜头",
+   "box": {
+    "x": 430,
+    "y": 399,
+    "w": 20,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white"
+  },
+  {
+   "tag": "DIV",
+   "text": "准备资产",
+   "box": {
+    "x": 466,
+    "y": 399,
+    "w": 20,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white/65"
+  },
+  {
+   "tag": "DIV",
+   "text": "合成提示词",
+   "box": {
+    "x": 500,
+    "y": 399,
+    "w": 25,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white/65"
+  },
+  {
+   "tag": "DIV",
+   "text": "尝试：",
+   "box": {
+    "x": 35,
+    "y": 404,
+    "w": 218,
+    "h": 8
+   },
+   "cls": "text-fg-muted mb-2 text-sm"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图生图",
+   "box": {
+    "x": 48,
+    "y": 418,
+    "w": 16,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "中年",
+   "box": {
+    "x": 468,
+    "y": 426,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "非洲",
+   "box": {
+    "x": 553,
+    "y": 426,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图片高清",
+   "box": {
+    "x": 49,
+    "y": 433,
+    "w": 21,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "打开脚本节点 →",
+   "box": {
+    "x": 422,
+    "y": 433,
+    "w": 108,
+    "h": 15
+   },
+   "cls": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm font-semibol"
+  },
+  {
+   "tag": "SPAN",
+   "text": "老年",
+   "box": {
+    "x": 468,
+    "y": 462,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "奇幻",
+   "box": {
+    "x": 553,
+    "y": 462,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "陈默_01KT17FN",
+   "box": {
+    "x": 478,
+    "y": 539,
+    "w": 71,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "1808 × 1024",
+   "box": {
+    "x": 647,
+    "y": 540,
+    "w": 53,
+    "h": 13
+   },
+   "cls": "text-fg-muted shrink-0 whitespace-nowrap text-[11px] tabular-nums opacity-80"
+  },
+  {
+   "tag": "SPAN",
+   "text": "逐帧拉片",
+   "box": {
+    "x": 113,
+    "y": 545,
+    "w": 40,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "逐帧拉片",
+   "box": {
+    "x": 115,
+    "y": 570,
+    "w": 21,
+    "h": 8
+   },
+   "cls": "text-fg-default text-[14px] font-semibold leading-[22px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "素材-特效-瞳孔异变",
+   "box": {
+    "x": 295,
+    "y": 570,
+    "w": 78,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "SD 2.5",
+   "box": {
+    "x": 154,
+    "y": 571,
+    "w": 13,
+    "h": 6
+   },
+   "cls": "text-[11px] leading-4"
+  },
+  {
+   "tag": "SPAN",
+   "text": "视频素材",
+   "box": {
+    "x": 105,
+    "y": 586,
+    "w": 109,
+    "h": 7
+   },
+   "cls": "text-fg-muted flex-1 truncate text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "上传视频后开始",
+   "box": {
+    "x": 144,
+    "y": 630,
+    "w": 32,
+    "h": 7
+   },
+   "cls": "text-fg-muted text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "选择角色音色",
+   "box": {
+    "x": 907,
+    "y": 653,
+    "w": 88,
+    "h": 22
+   },
+   "cls": "pl-1"
+  },
+  {
+   "tag": "SPAN",
+   "text": "拆解维度",
+   "box": {
+    "x": 105,
+    "y": 664,
+    "w": 109,
+    "h": 7
+   },
+   "cls": "text-fg-muted flex-1 truncate text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "分镜",
+   "box": {
+    "x": 121,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "动态",
+   "box": {
+    "x": 159,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "音乐",
+   "box": {
+    "x": 197,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "开始拉片",
+   "box": {
+    "x": 104,
+    "y": 693,
+    "w": 112,
+    "h": 14
+   },
+   "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14px] leadin"
+  },
+  {
+   "tag": "SPAN",
+   "text": "甜妹/清新少女",
+   "box": {
+    "x": 901,
+    "y": 783,
+    "w": 88,
+    "h": 22
+   },
+   "cls": "max-w-[246px] truncate "
+  },
+  {
+   "tag": "SPAN",
+   "text": "甜妹/清新少女",
+   "box": {
+    "x": 916,
+    "y": 783,
+    "w": 88,
+    "h": 22
+   },
+   "cls": "max-w-[246px] truncate"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "38%",
+   "box": {
+    "x": 240,
+    "y": 1034,
+    "w": 36,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 text-[13px"
+  },
+  {
+   "tag": "SPAN",
+   "text": "资产管理",
+   "box": {
+    "x": 44,
+    "y": 1038,
+    "w": 52,
+    "h": 20
+   },
+   "cls": "whitespace-nowrap text-[13px] leading-normal"
+  }
+ ],
+ "C_点后_imgs": [
+  {
+   "alt": "avatar",
+   "box": {
+    "x": 1884,
+    "y": 13,
+    "w": 24,
+    "h": 23
+   },
+   "src": "3-07b2570237f8.jpg?x-oss-process=image/resize,w_100,m_lfit/format,webp",
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "陈默_01KT17FN.png",
+   "box": {
+    "x": 465,
+    "y": 558,
+    "w": 235,
+    "h": 133
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "瞳孔异变",
+   "box": {
+    "x": 282,
+    "y": 588,
+    "w": 92,
+    "h": 92
+   },
+   "src": "https://libtv-res.liblib.art/tool/cinematic/transition_12.webp",
+   "cls": "size-full rounded-xl object-cover"
+  },
+  {
+   "alt": "构图预览",
+   "box": {
+    "x": 503,
+    "y": 127,
+    "w": 133,
+    "h": 133
+   },
+   "src": "054964ae9b9079af74a9ed84e/15e38d0cb6dff3190ea9439a23f88c3d05bc88fc.jpg",
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 114,
+    "y": 122,
+    "w": 232,
+    "h": 133
+   },
+   "src": "851d68.mp4?x-oss-process=video/snapshot,t_0,f_jpg,w_200,m_fast,ar_auto",
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 815,
+    "y": 321,
+    "w": 291,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1084,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1330,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1576,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1822,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2068,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2314,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2560,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2806,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3052,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3298,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3544,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3790,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4036,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4282,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4528,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4774,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5032,
+    "y": 364,
+    "w": 220,
+    "h": 391
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5278,
+    "y": 364,
+    "w": 220,
+    "h": 391
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5512,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5758,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 6004,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 6250,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "src": "png?x-oss-process=image/resize,w_800,m_lfit/format,webp/ignore-error,1",
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 500,
+    "y": 393,
+    "w": 164,
+    "h": 220
+   },
+   "src": "png?x-oss-process=image/resize,h_440,m_lfit/format,webp/ignore-error,1",
+   "cls": "size-full object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 676,
+    "y": 393,
+    "w": 165,
+    "h": 220
+   },
+   "src": "png?x-oss-process=image/resize,h_440,m_lfit/format,webp/ignore-error,1",
+   "cls": "size-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 853,
+    "y": 393,
+    "w": 165,
+    "h": 220
+   },
+   "src": "png?x-oss-process=image/resize,h_440,m_lfit/format,webp/ignore-error,1",
+   "cls": "size-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1030,
+    "y": 393,
+    "w": 391,
+    "h": 220
+   },
+   "src": "png?x-oss-process=image/resize,h_440,m_lfit/format,webp/ignore-error,1",
+   "cls": "size-full object-cover"
+  }
+ ],
+ "C_★URL前": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+ "C_★URL后": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+ "D_★新增的可见文本": [
+  [
+   "甜妹/清新少女",
+   916,
+   783
+  ],
+  [
+   "选择角色音色",
+   907,
+   653
+  ]
+ ],
+ "D_★消失的可见文本": [],
+ "D_★新增的图片": [
+  {
+   "alt": "",
+   "box": {
+    "x": 500,
+    "y": 393,
+    "w": 164,
+    "h": 220
+   },
+   "src": "png?x-oss-process=image/resize,h_440,m_lfit/format,webp/ignore-error,1",
+   "cls": "size-full object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 676,
+    "y": 393,
+    "w": 165,
+    "h": 220
+   },
+   "src": "png?x-oss-process=image/resize,h_440,m_lfit/format,webp/ignore-error,1",
+   "cls": "size-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 853,
+    "y": 393,
+    "w": 165,
+    "h": 220
+   },
+   "src": "png?x-oss-process=image/resize,h_440,m_lfit/format,webp/ignore-error,1",
+   "cls": "size-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1030,
+    "y": 393,
+    "w": 391,
+    "h": 220
+   },
+   "src": "png?x-oss-process=image/resize,h_440,m_lfit/format,webp/ignore-error,1",
+   "cls": "size-full object-cover"
+  }
+ ]
+}

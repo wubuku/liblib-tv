@@ -16,6 +16,7 @@ import {
   UserPlus,
   X,
 } from "lucide-react";
+import { useUIStore } from "@/store/uiStore";
 import "./character-studio.css";
 
 interface CharacterLibraryPanelProps {
@@ -143,6 +144,13 @@ export function CharacterLibraryPanel({
   const [view, setView] = useState<"carousel" | "grid">("carousel");
   const [searching, setSearching] = useState(false);
   const [keyword, setKeyword] = useState("");
+  // ★★ Batch 839：点「查看角色资产」⟹ 打开**角色资产视图**
+  //   （源站实测：4 张图 ＋「选择角色音色」，盖在 carousel 之上）。
+  //   ★★★ 状态**放在 uiStore**，不放在组件本地 ⟹ 因为 Esc 是由宿主页
+  //   `app/page.tsx` 的**全局**捕获阶段监听处理的 ⟹ 那一层**看不见**组件本地状态
+  //   ⟹ ⟹ 必须登记成**前台阻塞面**（`character-assets`），Esc 才会先关资产视图。
+  const assetsId = useUIStore((state) => state.characterAssetsId);
+  const setCharacterAssetsId = useUIStore((state) => state.setCharacterAssetsId);
 
   const viewportRef = useRef<HTMLDivElement | null>(null);
   // ★ 源站的 track 是 `absolute left-1/2` ⟹ **当前项永远居中**。
@@ -209,6 +217,39 @@ export function CharacterLibraryPanel({
   );
   const current = items[currentIndex];
   const isRealRole = Boolean(current && current.id !== CREATE_SLOT);
+
+  // ★★ Batch 839：资产视图的内容
+  //   ★ 源站那 4 张图是**同一个角色**的四种视图（立绘／近景／表情／三视图）⟹
+  //   ★ 仓库里只有 `character-detail-1..4.webp` **一张角色**的 4 张 ⟹
+  //   ⟹ 首个角色用这 4 张，**其余角色复用它自己的缩略图**（与
+  //   `docs/research/components/CharacterLibraryPanel.spec.md` 的既有约定一致）。
+  const [voicePicked, setVoicePicked] = useState(false);
+  const assetsCharacter = useMemo(
+    () => characters.find((item) => item.id === assetsId) ?? null,
+    [assetsId],
+  );
+  const assetImages = useMemo(() => {
+    const character = assetsCharacter;
+    if (!character) return [];
+    if (character.id === characters[0].id) {
+      return [1, 2, 3, 4].map(
+        (n) => `/images/liblib-panels/character-detail-${n}.webp`,
+      );
+    }
+    return [character.imageUrl, character.imageUrl, character.imageUrl, character.imageUrl];
+  }, [assetsCharacter]);
+
+  // ★ 把焦点移进资产视图容器（★ clone 决策）
+  //   ★ 源站的资产视图**没有**单独的返回入口 ⟹ 不发明返回按钮 ⟹
+  //   ⟹ 「Esc 关掉资产视图」这一层是 **clone 决策**（源站这一层未实测）。
+  //   ★★ 而它能成立，靠的是它被登记成**前台阻塞面**（`character-assets`）⟹
+  //   宿主页那个**全局捕获阶段**的 Escape 处理会先关它、而不是关掉整个面板。
+  //   ★ 顺带把焦点收进来 ⟹ 键盘落在资产视图里（而不是画布上）。
+  const assetsRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (!assetsId) return;
+    assetsRef.current?.focus();
+  }, [assetsId]);
 
   // ★ 当前项改变 ⟹ 把它滚到视口正中（源站是 transform，这里是 scrollLeft）
   useEffect(() => {
@@ -465,7 +506,10 @@ export function CharacterLibraryPanel({
         <div className="cs-content">
           {view === "carousel" ? (
             <>
-              <div className="cs-viewport" ref={viewportRef}>
+              <div
+                className={`cs-viewport${assetsId ? " is-dimmed" : ""}`}
+                ref={viewportRef}
+              >
                 <div
                   className="cs-track"
                   data-character-strip
@@ -519,6 +563,28 @@ export function CharacterLibraryPanel({
                             <span
                               data-character-studio-view-assets
                               className="cs-assets"
+                              role="button"
+                              tabIndex={0}
+                              aria-label="查看角色资产"
+                              onClick={(event) => {
+                                // ★★ Batch 839：这枚浮层**以前是死的**（点了只会选中卡片）⟹
+                                //   ★ 源站实测：点它 ⟹ 打开**角色资产视图**。
+                                //   ★ 它在卡片 `<button>` 里面 ⟹ 必须 stopPropagation，
+                                //   否则事件会冒泡到卡片、把「选中」也一起触发。
+                                //   ★★ **不做成 toggle**：资产视图会**盖住**这枚浮层
+                                //   （实测：浮层中心 @960,538 落在资产图条 500..1421×393..613
+                                //   之内 ⟹ 点不到它）⟹ ⟹ 关掉资产视图的入口是 **Esc**。
+                                event.stopPropagation();
+                                setCharacterAssetsId(character.id);
+                                setVoicePicked(false);
+                              }}
+                              onKeyDown={(event) => {
+                                if (event.key !== "Enter" && event.key !== " ") return;
+                                event.preventDefault();
+                                event.stopPropagation();
+                                setCharacterAssetsId(character.id);
+                                setVoicePicked(false);
+                              }}
                             >
                               <ImageIcon size={16} />
                               查看角色资产
@@ -576,6 +642,51 @@ export function CharacterLibraryPanel({
                 }}
                 className="cs-range"
               />
+              {/* ── Batch 839：角色资产视图 ──
+                  ★ 源站实测（1920×1080）：4 张图（立绘 164×220／近景 165×220／
+                  表情 165×220／三视图 391×220，间隙 12）＋「选择角色音色」128×36
+                  ⟹ 几何写在 `character-studio.css` 的 `.cs-asset-*` 里。
+                  ★★ **名字组不动**（源站在资产视图里名字仍在内容区 top 504）。 */}
+              {assetsCharacter && (
+                <div
+                  className="cs-assets-stage"
+                  data-character-studio-asset-view={assetsCharacter.name}
+                  ref={assetsRef}
+                  tabIndex={-1}
+                >
+                  <div className="cs-asset-strip" data-character-studio-asset-strip>
+                    {assetImages.map((src, index) => (
+                      <span
+                        key={`${src}-${index}`}
+                        className={`cs-asset-img${
+                          index === 0 ? " is-full" : index === 3 ? " is-wide" : ""
+                        }`}
+                        data-character-studio-asset-image={index}
+                      >
+                        <Image
+                          src={src}
+                          alt={`${assetsCharacter.name} 资产图 ${index + 1}`}
+                          fill
+                          sizes="391px"
+                          className="cs-img"
+                          unoptimized
+                        />
+                      </span>
+                    ))}
+                  </div>
+                  <div className="cs-voice-row">
+                    <button
+                      type="button"
+                      data-character-studio-voice
+                      className="cs-voice-btn"
+                      onClick={() => setVoicePicked((value) => !value)}
+                    >
+                      {voicePicked ? assetsCharacter.name : "选择角色音色"}
+                      <ChevronRight size={14} />
+                    </button>
+                  </div>
+                </div>
+              )}
             </>
           ) : (
             <div className="cs-grid">

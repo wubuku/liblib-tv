@@ -734,3 +734,93 @@
 .cs-danger:hover {
   background: #d9443a;
 }
+
+/* ── Batch 839：角色资产视图 ───────────────────────────────────────
+   ★ 源站实测（2026-10-22 活体，1920×1080，**官方角色库**页签）：
+     点开「查看角色资产」后 ⟹ 出现**资产视图**，它**盖在 carousel 之上**
+     （背景卡片还在，但被压暗），里面是：
+       图 1   164×220  @500,393   object-contain   ← 角色立绘
+       图 2   165×220  @676,393   object-cover     ← 脸部近景
+       图 3   165×220  @853,393   object-cover     ← 表情参考
+       图 4   391×220  @1030,393  object-cover     ← 三视图
+       ★ 间隙 **12px**；条带整体 500..1421（模态左沿 361 ⟹ 相对 139）
+       「选择角色音色」按钮 **128×36 @896,646**（模态左沿 361 ⟹ 相对 535，
+         内容区上沿 279 ⟹ 相对 367）
+     ★★ **名字组不动** —— 源站在资产视图里名字仍在 783 ＝ 内容区 top 504
+       ⟹ ⟹ 也就是说 `.cs-name-group` 的 top:504 **两种视图共用**。
+   ★ 本节所有坐标都是**相对 `.cs-content`**（它 `position: relative`）。
+   ★ 4317 的 Tailwind 扫描是冻结的 ⟹ 一律走普通 CSS（见本文件头）。 */
+
+.cs-assets-stage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.cs-assets-stage .cs-asset-strip,
+.cs-assets-stage .cs-voice-row {
+  pointer-events: auto;
+}
+
+/* ★ 源站实测：「选择角色音色」那枚药丸**外面**还套着一个整条宽的圆角容器
+   （921×60 @500,632 ⟹ 相对内容区 left 139 / top 355），药丸**居中**在里面。 */
+.cs-voice-row {
+  position: absolute;
+  left: 139px;
+  top: 355px;
+  width: 921px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.cs-asset-strip {
+  position: absolute;
+  left: 139px;
+  top: 114px;
+  display: flex;
+  gap: 12px;
+  height: 220px;
+}
+
+.cs-asset-img {
+  position: relative;
+  flex: none;
+  width: 165px;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.cs-asset-img.is-full { width: 164px; }
+.cs-asset-img.is-wide { width: 391px; }
+
+.cs-voice-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  width: 128px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 14px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+/* ★ carousel 在资产视图打开时**变暗**，但**左右箭头保持亮**（源站实测箭头仍在 @381/@1511） */
+.cs-viewport.is-dimmed .cs-track {
+  opacity: 0.22;
+}

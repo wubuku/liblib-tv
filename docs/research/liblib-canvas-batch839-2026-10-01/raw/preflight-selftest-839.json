@@ -1,0 +1,41 @@
+{
+ "结果": [
+  {
+   "臂": "A 值不同",
+   "注入": "伪造服务端 chunk：.cs-asset-strip 的 left 139px→100px",
+   "报出的差异": {
+    "left": {
+     "disk": "139px",
+     "served": "100px"
+    }
+   },
+   "是否报出left差异": true
+  },
+  {
+   "臂": "B 选择器缺失",
+   "注入": "伪造一份**空**的服务端 chunk",
+   "报出的选择器": [
+    ".cs-asset-img",
+    ".cs-asset-strip",
+    ".cs-voice-btn",
+    ".cs-voice-row"
+   ],
+   "是否四个都报缺失": true
+  },
+  {
+   "臂": "C 真·端到端",
+   "注入": "真的把磁盘 .cs-asset-strip 的 left 改成 137px",
+   "是否抓到差异": true,
+   "抓到的差异": {
+    ".cs-asset-strip": {
+     "left": {
+      "disk": "137px",
+      "served": "139px"
+     }
+    }
+   },
+   "★说明": "watcher 可能在我第一次调用前就追平 ⟹ 那时如实记 False，**不**当成通过；A／B 两条仍然成立"
+  }
+ ],
+ "A／B是否通过": true
+}

@@ -1,0 +1,132 @@
+[
+ {
+  "门禁": "verify-liblib-batch827.py",
+  "退出码": 0,
+  "verdict": "✔ S4:★★★ 筛选胶囊：三枚 66/79/92 宽 @381/453/538,231 ＋ 搜索 32×32 @636,231（== 源站 raw）"
+ },
+ {
+  "门禁": "verify-liblib-batch826.py",
+  "退出码": 0,
+  "verdict": "主检查 12/12 ｜ 阴性对照 12/12"
+ },
+ {
+  "门禁": "verify-liblib-batch838.py",
+  "退出码": 0,
+  "verdict": "7/7 通过"
+ },
+ {
+  "门禁": "verify-liblib-batch839.py",
+  "退出码": 0,
+  "verdict": "7/7 通过"
+ },
+ {
+  "门禁": "verify-liblib-batch782.py",
+  "退出码": 1,
+  "verdict": "★ 阴性对照 7/9 被抓"
+ },
+ {
+  "门禁": "verify-liblib-batch736.py",
+  "退出码": 1,
+  "verdict": "5/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch736-2026-10-01/runtime-audit"
+ },
+ {
+  "门禁": "verify-liblib-batch783.py",
+  "退出码": 0,
+  "verdict": "判据 65/65 ｜阴性对照 9/9 ｜通过"
+ },
+ {
+  "门禁": "verify-liblib-batch62.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch111.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch112.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch113.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch146b.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch169.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch556.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch557.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch536.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch540.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch575.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch46.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch36.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch835.py",
+  "退出码": 0,
+  "verdict": "判据 7/7"
+ },
+ {
+  "门禁": "verify-liblib-batch748.py",
+  "退出码": 1,
+  "verdict": "判据 4/7"
+ },
+ {
+  "门禁": "verify-liblib-batch749.py",
+  "退出码": 1,
+  "verdict": "判据 7/9"
+ },
+ {
+  "门禁": "verify-liblib-batch720.py",
+  "退出码": 0,
+  "verdict": "7/7 通过"
+ },
+ {
+  "门禁": "verify-liblib-batch42.py",
+  "退出码": 0,
+  "verdict": "-"
+ },
+ {
+  "门禁": "verify-liblib-batch43.py",
+  "退出码": 0,
+  "verdict": "-"
+ }
+]

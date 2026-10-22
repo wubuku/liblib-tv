@@ -86,6 +86,14 @@ HOST_BUBBLE_REG = 1401
 GATE_DIRECTOR = "activeDirectorNodeId"
 GATE_SURFACE = "resolveLibTVBlockingForegroundSurface"
 
+# ★★ batch 839：782 的 `runtime-audit.json` 是**历史快照**（batch 782 自己那轮跑出来的）⟹
+#   ⟹ 今天的阻塞面 union **比它多**（batch 839 为「角色资产视图」加了 `character-assets`）⟹
+#   ⟹ ⟹ 判据**不能要求完全相等** ⟹ ⟹ 改成：
+#     ① artifact 里的每个成员**今天都还在**（不许悄悄少一个）；
+#     ② 今天多出来的**只**能是**这里显式登记**的后续批次新增项。
+#   ⟹ 这样判据**仍然有牙**（artifact 里出现已不存在的面 ⟹ 照样红），又不会因后续批次而假红。
+LATER_ADDED_SURFACES = {"character-assets"}  # ★ batch 839 新增（它是 primary-panel 的下一层）
+
 
 # ───────────────── 注释抹白（不删字符，行号不漂移） ─────────────────
 def blank_comments(s):
@@ -717,10 +725,19 @@ def run_checks(a, st, D):
     add("产物：★ audit 记的「宿主页门此刻关着」= True",
         res.get("hostGateClosedNow"), True)
     add("产物：audit 记的零 FAILED", res.get("failedCells"), 0)
-    add("产物：★ audit 的阻塞面枚举 = 静态重算",
-        (own.get("hostGates") or {}).get(
-            "app/page.tsx:%d" % HOST_CAPTURE_REG, {}).get("blockingSurfaceUnion"),
-        st.get("unionMembers"))
+    _artifact_union = (own.get("hostGates") or {}).get(
+        "app/page.tsx:%d" % HOST_CAPTURE_REG, {}).get("blockingSurfaceUnion") or []
+    _today_union = st.get("unionMembers") or []
+    _extra_union = sorted(set(_today_union) - set(_artifact_union))
+    add("产物：★ audit 的阻塞面枚举 = 静态重算"
+        "（★ artifact 是**历史快照** ⟹ 允许后续批次新增的成员：%s；"
+        "artifact %d 个／今天 %d 个／多出来：%s）"
+        % ("、".join(sorted(LATER_ADDED_SURFACES)), len(_artifact_union),
+           len(_today_union), "、".join(_extra_union) or "无"),
+        # ★ `add` 的两参布尔式：`got` 是 bool 且不传 `want` ⟹ 才走 `bool(got)` 分支
+        #   （★ 第一版多传了一个 json 字符串当 `want` ⟹ 比的是 `True == "…"` ⟹ **恒假**）。
+        set(_artifact_union) <= set(_today_union)
+        and set(_extra_union) <= LATER_ADDED_SURFACES)
     add("产物：★ audit 记的 director 面阻塞面命中 = 静态重算",
         own.get("blockingFlagsInDirectorPlane"),
         {k: [] for k in []} or ({} if not st.get("blockingFlagHits")

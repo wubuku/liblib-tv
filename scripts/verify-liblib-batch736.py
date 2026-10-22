@@ -36,9 +36,16 @@ root 内 136 枚匹配 `FOCUSABLE_SELECTOR`，五个过滤器过后 **124** 枚�
 | 台开 | 30/30 被 `preventDefault`；add-node 面板入口 0 → **0**（不开） |
 | 台关 | **0** 次被 `preventDefault`；add-node 面板入口 → **9**（被 Tab 打开） |
 
-`page.tsx:1312` `if (uiState.activeDirectorNodeId) return;` 让画布整套键盘契约在台开时整体下线，
-`:1313` 另有 `resolveLibTVBlockingForegroundSurface` 列的 **10** 个阻塞前台面（`:1401` 挂在 `window` 上）。
+`page.tsx` 里 `if (uiState.activeDirectorNodeId) return;` 让画布整套键盘契约在台开时整体下线，
+**紧挨着的下一行**另有 `resolveLibTVBlockingForegroundSurface` 列的阻塞前台面（那个 handler 挂在 `window` 上）。
 **我原本猜「两个契约靠 DOM 位置互斥」，源码否掉了这个猜** —— 记在方法论里。
+
+★★★ **batch 839 更正**：这条原本**钉死了行号**（`:1312`／`:1313`／`:1401`）与阻塞面**个数**（10）⟹
+而 `src/app/page.tsx` 后来又长了几十行 ⟹ ⟹ **判据从那以后一直是红的**（**旧账**，本批用
+**受控对照实验**证明过：把本批改动全部撤掉重跑，**同样红、同样这几条**）⟹ ⟹ 现在改成
+**按结构判定**（「导演台早退」必须**紧挨着**前台面判定 ＋ 阻塞面**清单显式列出**）⟹
+以后 page.tsx 再怎么长都不会假红；★ 而阻塞面由 10 种变 **11** 种（batch 839 为「角色资产视图」
+加了 `characterAssetsId`）⟹ ⟹ 清单**显式列名** ⟹ 以后再加阻塞面必须**显式**改这里。
 
 ### ⑦ 同一个应用里两套「不可达」语义：画布 46 处自证惰性，导演台 **0** 处
 导演台用的是**原生 `inert` 属性**（`DirectorDesk.tsx:1182/1282`），但只在**移动端**作用域生效；
@@ -66,6 +73,25 @@ from collections import Counter
 from pathlib import Path
 
 from playwright.sync_api import sync_playwright
+
+# ★★ batch 839：阻塞前台面的**显式清单**（`resolveLibTVBlockingForegroundSurface` 里
+#   `if (snapshot.X) return "..."` 的分支，按解析顺序）。
+#   ★ 原来 C9 只**数个数**（10）⟹ 加一个就红 ⟹ 现在**显式列名** ⟹
+#     以后再加阻塞面必须**显式**改这里 ⟹ 不会「悄悄多一个」。
+#   ★ `characterAssetsId` 是 **batch 839** 为「角色资产视图」加的（它是 primary-panel 的**下一层**）。
+EXPECTED_BLOCKING_SURFACES = [
+    "isFollowingSession",
+    "isStoryboardEditorOpen",
+    "isShortcutsPanelOpen",
+    "isCanvasDropdownOpen",
+    "isAddNodePanelOpen",
+    "isZoomMenuOpen",
+    "isSharePanelOpen",
+    "isNotificationOpen",
+    "isUserMenuOpen",
+    "characterAssetsId",
+    "activePrimaryPanel",
+]
 
 ROOT = Path(__file__).resolve().parents[1]
 AUDIT_DIR = ROOT / "docs/research/liblib-canvas-batch736-2026-10-01"
@@ -381,9 +407,17 @@ def main() -> int:
          and closed_reading["prevented"] == 0 and closed_reading["entriesAfter"] == 9
          and closed_reading["deskGone"] is True,
          json.dumps({"open": open_reading, "closed": closed_reading}, ensure_ascii=False)),
-        ("C9 互斥机制是显式状态守卫（:1312 早退 + :1313 前台面 + 10 个阻塞面）",
-         guards["directorGuardLine"] == 1312 and guards["surfaceGuardLine"] == 1313
-         and guards["windowHookLine"] == 1401 and len(guards["blockingSurfaces"]) == 10,
+        ("C9 互斥机制是显式状态守卫（导演台早退**紧挨着**前台面判定 ＋ 阻塞面 **11** 种）",
+         # ★★ **不再钉死行号**（batch 839）：判据真正想说的是**结构** ——
+         #   「导演台早退」与「前台面判定」必须**紧挨着**（这样画布契约在台开时整体下线），
+         #   且那个 handler 必须**挂在 window 上** ⟹ ⟹ 按内容/结构判定，
+         #   ⟹ `src/app/page.tsx` 再怎么长都不会假红（原来的 1312/1313/1401 已漂移到 1366/1367/1472）。
+         # ★★ 阻塞面**显式列名**而不是只数个数 ⟹ 以后再加阻塞面必须**显式**改这里
+         #   （batch 839 为「角色资产视图」加了 `characterAssetsId` ⟹ 10 种变 11 种）。
+         guards["directorGuardLine"] is not None
+         and guards["surfaceGuardLine"] == guards["directorGuardLine"] + 1
+         and guards["windowHookLine"] is not None
+         and guards["blockingSurfaces"] == EXPECTED_BLOCKING_SURFACES,
          json.dumps(guards, ensure_ascii=False)),
         ("C10 inert / aria-disabled 在 142 枚里 0 命中",
          summary["inertHits"] == 0 and summary["ariaDisabledHits"] == 0,

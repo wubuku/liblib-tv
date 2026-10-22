@@ -1,0 +1,110 @@
+[
+ {
+  "id": "N1",
+  "注入": "clone 的资产图条 left 139→100（行数中性）",
+  "★注入是否真打上": true,
+  "预期红": [
+   "S2"
+  ],
+  "实际红": [
+   "S2"
+  ],
+  "是否只红预期那些": true,
+  "verdict": "6/7 通过"
+ },
+ {
+  "id": "N2",
+  "注入": "★源站 raw 的「点前/点后差分」清空 ⟹ S1 应翻红（★ S7 读的是**另一份** raw ⟹ 不该跟着红）",
+  "★注入是否真打上": true,
+  "预期红": [
+   "S1"
+  ],
+  "实际红": [
+   "S1"
+  ],
+  "是否只红预期那些": true,
+  "verdict": "6/7 通过"
+ },
+ {
+  "id": "N3",
+  "注入": "★删掉 `character-assets` 阻塞面分支 ⟹ Esc 会把**整个面板**一起关掉 ⟹ S4／S5 应翻红（★ 这两条**本就耦合**于「Esc 关哪一层」）",
+  "★注入是否真打上": true,
+  "预期红": [
+   "S4",
+   "S5"
+  ],
+  "实际红": [
+   "S4",
+   "S5"
+  ],
+  "是否只红预期那些": true,
+  "verdict": "5/7 通过"
+ },
+ {
+  "id": "N4",
+  "注入": "★详情图文件名改坏（character-detail→detailX）⟹ 资源不存在 ⟹ S3 应翻红",
+  "★注入是否真打上": true,
+  "预期红": [
+   "S3"
+  ],
+  "实际红": [
+   "S3"
+  ],
+  "是否只红预期那些": true,
+  "verdict": "6/7 通过"
+ },
+ {
+  "id": "N5",
+  "注入": "★源站 raw（editor 那份）里第一张详情图的 x 改大 100 ⟹ S2 应翻红（★ 证明期望值确实是从 raw 提取的，不是手打常量）",
+  "★注入是否真打上": true,
+  "预期红": [
+   "S2"
+  ],
+  "实际红": [
+   "S2"
+  ],
+  "是否只红预期那些": true,
+  "verdict": "6/7 通过"
+ },
+ {
+  "id": "N6",
+  "注入": "★把「源站点音色**无**可见变化」改成「有 5 条新文本」⟹ 「clone 的音色按钮是 mock」这条前提被推翻 ⟹ S7 应翻红",
+  "★注入是否真打上": true,
+  "预期红": [
+   "S7"
+  ],
+  "实际红": [
+   "S7"
+  ],
+  "是否只红预期那些": true,
+  "verdict": "6/7 通过"
+ },
+ {
+  "id": "N7",
+  "注入": "★把 README 里**全部** 10 处 mock 标注改掉 ⟹ S7 的「必须如实标注」那条应翻红（★ 第一版只改一处 ⟹ 全文弱存在式判据照样绿 ⟹ 真发现）",
+  "★注入是否真打上": true,
+  "★改掉了几处": 10,
+  "预期红": [
+   "S7"
+  ],
+  "实际红": [
+   "S7"
+  ],
+  "是否只红预期那些": true,
+  "verdict": "6/7 通过"
+ },
+ {
+  "id": "复原",
+  "注入": "★所有被注入文件按字节复原",
+  "逐文件字节一致": {
+   "src/components/character-studio.css": true,
+   "docs/research/liblib-canvas-batch839-2026-10-01/raw/source-839-assets.json": true,
+   "src/lib/libtvSelectionCommandContext.ts": true,
+   "src/components/CharacterLibraryPanel.tsx": true,
+   "docs/research/liblib-canvas-batch839-2026-10-01/raw/source-839-editor.json": true,
+   "docs/research/liblib-canvas-batch839-2026-10-01/raw/source-839-voice-noop.json": true,
+   "docs/research/liblib-canvas-batch839-2026-10-01/README.md": true
+  },
+  "是否全部复原": true
+ }
+]

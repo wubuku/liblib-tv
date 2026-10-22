@@ -74,6 +74,10 @@ interface UIState {
   storyboardSessionNodeId: string | null;
   isZoomMenuOpen: boolean;
   activePrimaryPanel: PrimaryPanel | null;
+  /** ★★ Batch 839：角色造型室里的「角色资产视图」当前打开的角色 id（关掉时 null）。
+   *  ★ 它是 primary-panel 的**下一层** ⟹ 登记成**前台阻塞面**，
+   *    Esc 才只会关掉资产视图、而不是把整个面板关掉。 */
+  characterAssetsId: string | null;
   editorMode: "workbench" | "storyboard";
   canvasTool: "select" | "pan";
   activeDirectorNodeId: string | null;
@@ -108,6 +112,8 @@ interface UIState {
   closeZoomMenu: () => void;
   togglePrimaryPanel: (panel: PrimaryPanel) => void;
   setPrimaryPanel: (panel: PrimaryPanel | null) => void;
+  /** ★★ Batch 839：开/关「角色资产视图」（角色造型室里的下一层）。 */
+  setCharacterAssetsId: (id: string | null) => void;
   openStoryboardEditor: () => void;
   closeStoryboardEditor: () => void;
   setStoryboardSessionNode: (nodeId: string | null) => void;
@@ -151,6 +157,7 @@ type OverlayState = Pick<
   | "isStoryboardEditorOpen"
   | "isZoomMenuOpen"
   | "activePrimaryPanel"
+  | "characterAssetsId"
   | "imagePreview"
   | "imageAnnotate"
   | "imageElementEdit"
@@ -175,6 +182,7 @@ const closedOverlayState: OverlayState = {
   // 会话转换是节点持久形态（batch 534），不随其他面板开关回退。
   isZoomMenuOpen: false,
   activePrimaryPanel: null,
+  characterAssetsId: null,
   imagePreview: null,
   imageAnnotate: null,
   imageElementEdit: null,
@@ -208,6 +216,7 @@ export const useUIStore = create<UIState>((set) => ({
   storyboardSessionNodeId: null,
   isZoomMenuOpen: false,
   activePrimaryPanel: null,
+  characterAssetsId: null,
   editorMode: "workbench",
   canvasTool: "select",
   activeDirectorNodeId: null,
@@ -325,7 +334,13 @@ export const useUIStore = create<UIState>((set) => ({
     set((state) => ({
       ...closeTransientOverlays(state),
       activePrimaryPanel: panel,
+      // ★★ Batch 839：换/关面板 ⟹ 顺手关掉角色资产视图 ⟹
+      //   否则它会**残留**成一个「谁也关不掉、Esc 也只关它」的死状态。
+      characterAssetsId: null,
     })),
+
+  // ★★ Batch 839：开/关角色资产视图（角色造型室里的下一层）。
+  setCharacterAssetsId: (id) => set({ characterAssetsId: id }),
 
   openStoryboardEditor: () =>
     set((state) => ({
@@ -422,6 +437,8 @@ export const useUIStore = create<UIState>((set) => ({
           return { isUserMenuOpen: false };
         case "storyboard-editor":
           return { isStoryboardEditorOpen: false };
+        case "character-assets":
+          return { characterAssetsId: null };
         case "primary-panel":
           return {
             activePrimaryPanel: null,

@@ -1,0 +1,2954 @@
+{
+ "★是否进入资产视图": true,
+ "★浮层读数": {
+  "悬停前": {
+   "x": 898,
+   "y": 522,
+   "w": 124,
+   "h": 32,
+   "opacity": "0",
+   "pointerEvents": "none",
+   "cls": "pointer-events-none absolute left-1/2 top-1/2 isolate z-[3] flex h-8 w-max min-w-0 max-w-[90%] -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-lg border border-[v"
+  },
+  "悬停后": {
+   "x": 898,
+   "y": 522,
+   "w": 124,
+   "h": 32,
+   "opacity": "1",
+   "pointerEvents": "auto",
+   "cls": "pointer-events-none absolute left-1/2 top-1/2 isolate z-[3] flex h-8 w-max min-w-0 max-w-[90%] -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-lg border border-[v"
+  }
+ },
+ "A_资产视图_leaves": [
+  {
+   "tag": "SPAN",
+   "text": "画布 1",
+   "box": {
+    "x": 173,
+    "y": 14,
+    "w": 36,
+    "h": 20
+   },
+   "cls": "text-canvas-controls-text min-w-0 truncate text-[13px] font-normal max-w-[160px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "20",
+   "box": {
+    "x": 1845,
+    "y": 14,
+    "w": 16,
+    "h": 20
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "限时 45 折",
+   "box": {
+    "x": 1734,
+    "y": 16,
+    "w": 61,
+    "h": 16
+   },
+   "cls": "bg-nt-brand-surface-l1 text-nt-text-brand inline-flex h-4 shrink-0 items-center "
+  },
+  {
+   "tag": "SPAN",
+   "text": "S83·镜2",
+   "box": {
+    "x": 127,
+    "y": 104,
+    "w": 37,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "864 × 496",
+   "box": {
+    "x": 304,
+    "y": 105,
+    "w": 42,
+    "h": 13
+   },
+   "cls": "text-fg-muted shrink-0 whitespace-nowrap text-[11px] tabular-nums opacity-80"
+  },
+  {
+   "tag": "SPAN",
+   "text": "导演台 2",
+   "box": {
+    "x": 516,
+    "y": 108,
+    "w": 38,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "我的角色库",
+   "box": {
+    "x": 385,
+    "y": 183,
+    "w": 90,
+    "h": 26
+   },
+   "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:opacity-10"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "官方角色库",
+   "box": {
+    "x": 508,
+    "y": 183,
+    "w": 90,
+    "h": 26
+   },
+   "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:opacity-10"
+  },
+  {
+   "tag": "SPAN",
+   "text": "脚本 V2 1",
+   "box": {
+    "x": 423,
+    "y": 309,
+    "w": 42,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "男",
+   "box": {
+    "x": 396,
+    "y": 318,
+    "w": 14,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "儿童",
+   "box": {
+    "x": 468,
+    "y": 318,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "东亚",
+   "box": {
+    "x": 553,
+    "y": 318,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图片节点 1",
+   "box": {
+    "x": 39,
+    "y": 319,
+    "w": 47,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "女",
+   "box": {
+    "x": 396,
+    "y": 354,
+    "w": 14,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "少年",
+   "box": {
+    "x": 468,
+    "y": 354,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "欧美",
+   "box": {
+    "x": 553,
+    "y": 354,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "DIV",
+   "text": "1",
+   "box": {
+    "x": 436,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px]"
+  },
+  {
+   "tag": "DIV",
+   "text": "2",
+   "box": {
+    "x": 472,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px]"
+  },
+  {
+   "tag": "DIV",
+   "text": "3",
+   "box": {
+    "x": 508,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "中性",
+   "box": {
+    "x": 396,
+    "y": 390,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "青年",
+   "box": {
+    "x": 468,
+    "y": 390,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "中东",
+   "box": {
+    "x": 553,
+    "y": 390,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "DIV",
+   "text": "确认镜头",
+   "box": {
+    "x": 430,
+    "y": 399,
+    "w": 20,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white"
+  },
+  {
+   "tag": "DIV",
+   "text": "准备资产",
+   "box": {
+    "x": 466,
+    "y": 399,
+    "w": 20,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white/65"
+  },
+  {
+   "tag": "DIV",
+   "text": "合成提示词",
+   "box": {
+    "x": 500,
+    "y": 399,
+    "w": 25,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white/65"
+  },
+  {
+   "tag": "DIV",
+   "text": "尝试：",
+   "box": {
+    "x": 35,
+    "y": 404,
+    "w": 218,
+    "h": 8
+   },
+   "cls": "text-fg-muted mb-2 text-sm"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图生图",
+   "box": {
+    "x": 48,
+    "y": 418,
+    "w": 16,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "中年",
+   "box": {
+    "x": 468,
+    "y": 426,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "非洲",
+   "box": {
+    "x": 553,
+    "y": 426,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图片高清",
+   "box": {
+    "x": 49,
+    "y": 433,
+    "w": 21,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "打开脚本节点 →",
+   "box": {
+    "x": 422,
+    "y": 433,
+    "w": 108,
+    "h": 15
+   },
+   "cls": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm fo"
+  },
+  {
+   "tag": "SPAN",
+   "text": "老年",
+   "box": {
+    "x": 468,
+    "y": 462,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "奇幻",
+   "box": {
+    "x": 553,
+    "y": 462,
+    "w": 28,
+    "h": 20
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "陈默_01KT17FN",
+   "box": {
+    "x": 478,
+    "y": 539,
+    "w": 71,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "1808 × 1024",
+   "box": {
+    "x": 647,
+    "y": 540,
+    "w": 53,
+    "h": 13
+   },
+   "cls": "text-fg-muted shrink-0 whitespace-nowrap text-[11px] tabular-nums opacity-80"
+  },
+  {
+   "tag": "SPAN",
+   "text": "逐帧拉片",
+   "box": {
+    "x": 113,
+    "y": 545,
+    "w": 40,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "逐帧拉片",
+   "box": {
+    "x": 115,
+    "y": 570,
+    "w": 21,
+    "h": 8
+   },
+   "cls": "text-fg-default text-[14px] font-semibold leading-[22px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "素材-特效-瞳孔异变",
+   "box": {
+    "x": 295,
+    "y": 570,
+    "w": 78,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "SD 2.5",
+   "box": {
+    "x": 154,
+    "y": 571,
+    "w": 13,
+    "h": 6
+   },
+   "cls": "text-[11px] leading-4"
+  },
+  {
+   "tag": "SPAN",
+   "text": "视频素材",
+   "box": {
+    "x": 105,
+    "y": 586,
+    "w": 109,
+    "h": 7
+   },
+   "cls": "text-fg-muted flex-1 truncate text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "上传视频后开始",
+   "box": {
+    "x": 144,
+    "y": 630,
+    "w": 32,
+    "h": 7
+   },
+   "cls": "text-fg-muted text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "选择角色音色",
+   "box": {
+    "x": 907,
+    "y": 653,
+    "w": 88,
+    "h": 22
+   },
+   "cls": "pl-1"
+  },
+  {
+   "tag": "SPAN",
+   "text": "拆解维度",
+   "box": {
+    "x": 105,
+    "y": 664,
+    "w": 109,
+    "h": 7
+   },
+   "cls": "text-fg-muted flex-1 truncate text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "分镜",
+   "box": {
+    "x": 121,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "动态",
+   "box": {
+    "x": 159,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "音乐",
+   "box": {
+    "x": 197,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "开始拉片",
+   "box": {
+    "x": 104,
+    "y": 693,
+    "w": 112,
+    "h": 14
+   },
+   "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14"
+  },
+  {
+   "tag": "SPAN",
+   "text": "甜妹/清新少女",
+   "box": {
+    "x": 901,
+    "y": 783,
+    "w": 88,
+    "h": 22
+   },
+   "cls": "max-w-[246px] truncate "
+  },
+  {
+   "tag": "SPAN",
+   "text": "甜妹/清新少女",
+   "box": {
+    "x": 916,
+    "y": 783,
+    "w": 88,
+    "h": 22
+   },
+   "cls": "max-w-[246px] truncate"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "38%",
+   "box": {
+    "x": 240,
+    "y": 1034,
+    "w": 36,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 "
+  },
+  {
+   "tag": "SPAN",
+   "text": "资产管理",
+   "box": {
+    "x": 44,
+    "y": 1038,
+    "w": 52,
+    "h": 20
+   },
+   "cls": "whitespace-nowrap text-[13px] leading-normal"
+  }
+ ],
+ "A_资产视图_imgs": [
+  {
+   "alt": "avatar",
+   "box": {
+    "x": 1884,
+    "y": 13,
+    "w": 24,
+    "h": 23
+   },
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "陈默_01KT17FN.png",
+   "box": {
+    "x": 465,
+    "y": 558,
+    "w": 235,
+    "h": 133
+   },
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "瞳孔异变",
+   "box": {
+    "x": 282,
+    "y": 588,
+    "w": 92,
+    "h": 92
+   },
+   "cls": "size-full rounded-xl object-cover"
+  },
+  {
+   "alt": "构图预览",
+   "box": {
+    "x": 503,
+    "y": 127,
+    "w": 133,
+    "h": 133
+   },
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 114,
+    "y": 122,
+    "w": 232,
+    "h": 133
+   },
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 815,
+    "y": 321,
+    "w": 291,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1084,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1330,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1576,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1822,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2068,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2314,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2560,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 2806,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3052,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3298,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3544,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 3790,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4036,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4282,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4528,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 4774,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5032,
+    "y": 364,
+    "w": 220,
+    "h": 391
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5278,
+    "y": 364,
+    "w": 220,
+    "h": 391
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5512,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 5758,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 6004,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 6250,
+    "y": 321,
+    "w": 244,
+    "h": 434
+   },
+   "cls": "h-full w-auto max-w-none object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 500,
+    "y": 393,
+    "w": 164,
+    "h": 220
+   },
+   "cls": "size-full object-contain"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 676,
+    "y": 393,
+    "w": 165,
+    "h": 220
+   },
+   "cls": "size-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 853,
+    "y": 393,
+    "w": 165,
+    "h": 220
+   },
+   "cls": "size-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 1030,
+    "y": 393,
+    "w": 391,
+    "h": 220
+   },
+   "cls": "size-full object-cover"
+  }
+ ],
+ "A_资产视图_btns": [
+  {
+   "text": "画布 1",
+   "aria": "",
+   "box": {
+    "x": 165,
+    "y": 8,
+    "w": 68,
+    "h": 32
+   },
+   "cls": "group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-c"
+  },
+  {
+   "text": "",
+   "aria": "工作流",
+   "box": {
+    "x": 243,
+    "y": 8,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content tra"
+  },
+  {
+   "text": "",
+   "aria": "故事板",
+   "box": {
+    "x": 275,
+    "y": 8,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content p-0"
+  },
+  {
+   "text": "",
+   "aria": "发布与分享",
+   "box": {
+    "x": 1567,
+    "y": 8,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "border-(--topnav-btn-border) relative flex items-center justify-center"
+  },
+  {
+   "text": "",
+   "aria": "积分超市",
+   "box": {
+    "x": 1607,
+    "y": 8,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer "
+  },
+  {
+   "text": "20",
+   "aria": "",
+   "box": {
+    "x": 1814,
+    "y": 8,
+    "w": 58,
+    "h": 32
+   },
+   "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer "
+  },
+  {
+   "text": "",
+   "aria": "关闭角色资产",
+   "box": {
+    "x": 361,
+    "y": 161,
+    "w": 1198,
+    "h": 102
+   },
+   "cls": "absolute inset-x-0 top-0 z-[21] h-[102px] cursor-default"
+  },
+  {
+   "text": "我的角色库",
+   "aria": "",
+   "box": {
+    "x": 385,
+    "y": 183,
+    "w": 90,
+    "h": 26
+   },
+   "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:"
+  },
+  {
+   "text": "官方角色库",
+   "aria": "",
+   "box": {
+    "x": 508,
+    "y": 183,
+    "w": 90,
+    "h": 26
+   },
+   "cls": "text-lg font-semibold leading-[26px] disabled:cursor-default disabled:"
+  },
+  {
+   "text": "",
+   "aria": "关闭",
+   "box": {
+    "x": 1514,
+    "y": 185,
+    "w": 26,
+    "h": 26
+   },
+   "cls": "hover:bg-canvas-controls-hover absolute right-[19px] top-6 flex size-["
+  },
+  {
+   "text": "",
+   "aria": "搜索角色名称或描述",
+   "box": {
+    "x": 636,
+    "y": 231,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "hover:bg-canvas-controls-hover flex size-8 shrink-0 items-center justi"
+  },
+  {
+   "text": "",
+   "aria": "多选",
+   "box": {
+    "x": 1438,
+    "y": 231,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center"
+  },
+  {
+   "text": "",
+   "aria": "列表模式",
+   "box": {
+    "x": 1477,
+    "y": 234,
+    "w": 26,
+    "h": 26
+   },
+   "cls": "hover:bg-canvas-controls-hover flex size-[26px] items-center justify-c"
+  },
+  {
+   "text": "",
+   "aria": "宫格模式",
+   "box": {
+    "x": 1510,
+    "y": 234,
+    "w": 26,
+    "h": 26
+   },
+   "cls": "hover:bg-canvas-controls-hover flex size-[26px] items-center justify-c"
+  },
+  {
+   "text": "",
+   "aria": "关闭",
+   "box": {
+    "x": 361,
+    "y": 279,
+    "w": 1198,
+    "h": 552
+   },
+   "cls": "absolute inset-0 cursor-default"
+  },
+  {
+   "text": "",
+   "aria": "预览",
+   "box": {
+    "x": 500,
+    "y": 393,
+    "w": 164,
+    "h": 220
+   },
+   "cls": "size-full cursor-zoom-in"
+  },
+  {
+   "text": "图生图",
+   "aria": "",
+   "box": {
+    "x": 35,
+    "y": 415,
+    "w": 34,
+    "h": 14
+   },
+   "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit it"
+  },
+  {
+   "text": "图片高清",
+   "aria": "",
+   "box": {
+    "x": 35,
+    "y": 430,
+    "w": 40,
+    "h": 14
+   },
+   "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit it"
+  },
+  {
+   "text": "打开脚本节点 →",
+   "aria": "",
+   "box": {
+    "x": 422,
+    "y": 433,
+    "w": 108,
+    "h": 15
+   },
+   "cls": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg "
+  },
+  {
+   "text": "",
+   "aria": "",
+   "box": {
+    "x": 381,
+    "y": 524,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "Ias-7a_carouselArrow pointer-events-auto flex size-7 items-center just"
+  },
+  {
+   "text": "",
+   "aria": "",
+   "box": {
+    "x": 1511,
+    "y": 524,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "Ias-7a_carouselArrow pointer-events-auto flex size-7 items-center just"
+  },
+  {
+   "text": "上传视频后开始",
+   "aria": "",
+   "box": {
+    "x": 104,
+    "y": 595,
+    "w": 112,
+    "h": 63
+   },
+   "cls": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justif"
+  },
+  {
+   "text": "选择角色音色",
+   "aria": "",
+   "box": {
+    "x": 896,
+    "y": 646,
+    "w": 128,
+    "h": 36
+   },
+   "cls": "hover:bg-canvas-controls-hover flex h-9 min-w-[60px] items-center just"
+  },
+  {
+   "text": "分镜",
+   "aria": "",
+   "box": {
+    "x": 104,
+    "y": 673,
+    "w": 35,
+    "h": 12
+   },
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "text": "动态",
+   "aria": "",
+   "box": {
+    "x": 142,
+    "y": 673,
+    "w": 35,
+    "h": 12
+   },
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "text": "音乐",
+   "aria": "",
+   "box": {
+    "x": 180,
+    "y": 673,
+    "w": 35,
+    "h": 12
+   },
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "text": "开始拉片",
+   "aria": "",
+   "box": {
+    "x": 104,
+    "y": 693,
+    "w": 112,
+    "h": 14
+   },
+   "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px"
+  },
+  {
+   "text": "",
+   "aria": "生成其他年龄版本",
+   "box": {
+    "x": 993,
+    "y": 781,
+    "w": 26,
+    "h": 26
+   },
+   "cls": "flex size-[26px] items-center justify-center rounded-lg hover:bg-[var("
+  },
+  {
+   "text": "创建新角色",
+   "aria": "",
+   "box": {
+    "x": 385,
+    "y": 856,
+    "w": 120,
+    "h": 40
+   },
+   "cls": "hover:bg-canvas-controls-hover disabled:hover:bg-transparent flex h-10"
+  },
+  {
+   "text": "添加到画布",
+   "aria": "",
+   "box": {
+    "x": 843,
+    "y": 856,
+    "w": 120,
+    "h": 40
+   },
+   "cls": "hover:bg-canvas-controls-hover flex h-10 items-center gap-2 rounded-xl"
+  },
+  {
+   "text": "编辑角色",
+   "aria": "",
+   "box": {
+    "x": 971,
+    "y": 856,
+    "w": 106,
+    "h": 40
+   },
+   "cls": "bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover flex h"
+  },
+  {
+   "text": "TV Director",
+   "aria": "TV Director",
+   "box": {
+    "x": 1115,
+    "y": 1019,
+    "w": 48,
+    "h": 48
+   },
+   "cls": "vCoIiq_pill border-hair border-(--topnav-btn-border) flex h-12 min-w-1"
+  },
+  {
+   "text": "",
+   "aria": "添加节点",
+   "box": {
+    "x": 820,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "移动",
+   "box": {
+    "x": 860,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "素材库",
+   "box": {
+    "x": 900,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "角色造型室",
+   "box": {
+    "x": 940,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "生成历史",
+   "box": {
+    "x": 980,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "快捷键",
+   "box": {
+    "x": 1029,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "教程",
+   "box": {
+    "x": 1069,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "资产管理",
+   "aria": "资产管理",
+   "box": {
+    "x": 14,
+    "y": 1034,
+    "w": 94,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg t"
+  },
+  {
+   "text": "",
+   "aria": "整理画布，Option+Shift+F",
+   "box": {
+    "x": 112,
+    "y": 1034,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg"
+  },
+  {
+   "text": "",
+   "aria": "切换小地图",
+   "box": {
+    "x": 144,
+    "y": 1034,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg"
+  },
+  {
+   "text": "",
+   "aria": "隐藏节点连线",
+   "box": {
+    "x": 176,
+    "y": 1034,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  },
+  {
+   "text": "",
+   "aria": "网格吸附",
+   "box": {
+    "x": 208,
+    "y": 1034,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  },
+  {
+   "text": "38%",
+   "aria": "缩放选项",
+   "box": {
+    "x": 240,
+    "y": 1034,
+    "w": 36,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  }
+ ],
+ "A_★资产视图是否含选择角色音色": true,
+ "★是否点到选择角色音色": true,
+ "B_音色_新增文本": [],
+ "B_音色_消失文本": [],
+ "B_音色_新增按钮": [],
+ "B_音色_URL前": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+ "B_音色_URL后": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+ "★Escape没能退回资产视图": true,
+ "★重新进资产视图": true,
+ "★是否点到编辑角色": true,
+ "C_编辑_新增文本": [
+  [
+   "0",
+   1530,
+   294
+  ],
+  [
+   "0",
+   1530,
+   369
+  ],
+  [
+   "0",
+   1530,
+   444
+  ],
+  [
+   "0",
+   1530,
+   518
+  ],
+  [
+   "0",
+   1530,
+   593
+  ],
+  [
+   "0",
+   1530,
+   668
+  ],
+  [
+   "44",
+   547,
+   868
+  ],
+  [
+   "AI 美颜（脸部）",
+   1297,
+   366
+  ],
+  [
+   "i",
+   1359,
+   744
+  ],
+  [
+   "i",
+   1404,
+   370
+  ],
+  [
+   "· 青年 · 东亚 · 现代",
+   405,
+   283
+  ],
+  [
+   "保存",
+   844,
+   858
+  ],
+  [
+   "保存并添加到画布",
+   932,
+   858
+  ],
+  [
+   "保存时生成角色资产",
+   409,
+   868
+  ],
+  [
+   "服装造型",
+   409,
+   496
+  ],
+  [
+   "皮肤",
+   1322,
+   239
+  ],
+  [
+   "皮肤红润",
+   1297,
+   590
+  ],
+  [
+   "皮肤纹理（脸部）",
+   1297,
+   441
+  ],
+  [
+   "皮肤美白",
+   1297,
+   665
+  ],
+  [
+   "皮肤透亮",
+   1297,
+   515
+  ],
+  [
+   "确认生成",
+   1373,
+   791
+  ],
+  [
+   "祛斑祛痘",
+   1297,
+   740
+  ],
+  [
+   "脸部 & 身体特征",
+   409,
+   392
+  ],
+  [
+   "脸部精修",
+   409,
+   340
+  ],
+  [
+   "质感磨皮",
+   1297,
+   291
+  ],
+  [
+   "身材塑形",
+   409,
+   444
+  ],
+  [
+   "限免",
+   471,
+   343
+  ],
+  [
+   "限免",
+   471,
+   447
+  ],
+  [
+   "音色音调",
+   409,
+   548
+  ]
+ ],
+ "C_编辑_消失文本": [
+  [
+   "东亚",
+   553,
+   318
+  ],
+  [
+   "中东",
+   553,
+   390
+  ],
+  [
+   "中年",
+   468,
+   426
+  ],
+  [
+   "中性",
+   396,
+   390
+  ],
+  [
+   "儿童",
+   468,
+   318
+  ],
+  [
+   "奇幻",
+   553,
+   462
+  ],
+  [
+   "女",
+   396,
+   354
+  ],
+  [
+   "官方角色库",
+   508,
+   183
+  ],
+  [
+   "少年",
+   468,
+   354
+  ],
+  [
+   "我的角色库",
+   385,
+   183
+  ],
+  [
+   "欧美",
+   553,
+   354
+  ],
+  [
+   "甜妹/清新少女",
+   901,
+   783
+  ],
+  [
+   "甜妹/清新少女",
+   916,
+   783
+  ],
+  [
+   "男",
+   396,
+   318
+  ],
+  [
+   "老年",
+   468,
+   462
+  ],
+  [
+   "选择角色音色",
+   907,
+   653
+  ],
+  [
+   "青年",
+   468,
+   390
+  ],
+  [
+   "非洲",
+   553,
+   426
+  ]
+ ],
+ "C_编辑_URL前": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+ "C_编辑_URL后": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429",
+ "C_编辑_leaves": [
+  {
+   "tag": "SPAN",
+   "text": "画布 1",
+   "box": {
+    "x": 173,
+    "y": 14,
+    "w": 36,
+    "h": 20
+   },
+   "cls": "text-canvas-controls-text min-w-0 truncate text-[13px] font-normal max-w-[160px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "20",
+   "box": {
+    "x": 1845,
+    "y": 14,
+    "w": 16,
+    "h": 20
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "限时 45 折",
+   "box": {
+    "x": 1734,
+    "y": 16,
+    "w": 61,
+    "h": 16
+   },
+   "cls": "bg-nt-brand-surface-l1 text-nt-text-brand inline-flex h-4 shrink-0 items-center "
+  },
+  {
+   "tag": "SPAN",
+   "text": "S83·镜2",
+   "box": {
+    "x": 127,
+    "y": 104,
+    "w": 37,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "864 × 496",
+   "box": {
+    "x": 304,
+    "y": 105,
+    "w": 42,
+    "h": 13
+   },
+   "cls": "text-fg-muted shrink-0 whitespace-nowrap text-[11px] tabular-nums opacity-80"
+  },
+  {
+   "tag": "SPAN",
+   "text": "导演台 2",
+   "box": {
+    "x": 516,
+    "y": 108,
+    "w": 38,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "皮肤",
+   "box": {
+    "x": 1322,
+    "y": 239,
+    "w": 28,
+    "h": 22
+   },
+   "cls": "overflow-hidden whitespace-nowrap text-sm leading-[22px] transition-opacity dura"
+  },
+  {
+   "tag": "SPAN",
+   "text": "· 青年 · 东亚 · 现代",
+   "box": {
+    "x": 405,
+    "y": 283,
+    "w": 115,
+    "h": 22
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "质感磨皮",
+   "box": {
+    "x": 1297,
+    "y": 291,
+    "w": 56,
+    "h": 22
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "0",
+   "box": {
+    "x": 1530,
+    "y": 294,
+    "w": 7,
+    "h": 16
+   },
+   "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+  },
+  {
+   "tag": "SPAN",
+   "text": "脚本 V2 1",
+   "box": {
+    "x": 423,
+    "y": 309,
+    "w": 42,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图片节点 1",
+   "box": {
+    "x": 39,
+    "y": 319,
+    "w": 47,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "脸部精修",
+   "box": {
+    "x": 409,
+    "y": 340,
+    "w": 56,
+    "h": 22
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "限免",
+   "box": {
+    "x": 471,
+    "y": 343,
+    "w": 30,
+    "h": 16
+   },
+   "cls": "bg-nt-brand-surface-l1 text-nt-text-brand flex h-4 shrink-0 items-center gap-0.5"
+  },
+  {
+   "tag": "SPAN",
+   "text": "AI 美颜（脸部）",
+   "box": {
+    "x": 1297,
+    "y": 366,
+    "w": 101,
+    "h": 22
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "0",
+   "box": {
+    "x": 1530,
+    "y": 369,
+    "w": 7,
+    "h": 16
+   },
+   "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+  },
+  {
+   "tag": "SPAN",
+   "text": "i",
+   "box": {
+    "x": 1404,
+    "y": 370,
+    "w": 14,
+    "h": 14
+   },
+   "cls": "inline-flex size-3.5 shrink-0 cursor-default items-center justify-center rounded"
+  },
+  {
+   "tag": "DIV",
+   "text": "1",
+   "box": {
+    "x": 436,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px]"
+  },
+  {
+   "tag": "DIV",
+   "text": "2",
+   "box": {
+    "x": 472,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px]"
+  },
+  {
+   "tag": "DIV",
+   "text": "3",
+   "box": {
+    "x": 508,
+    "y": 388,
+    "w": 9,
+    "h": 9
+   },
+   "cls": "relative z-[1] flex h-6 w-6 items-center justify-center rounded-full text-[14px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "脸部 & 身体特征",
+   "box": {
+    "x": 409,
+    "y": 392,
+    "w": 101,
+    "h": 22
+   },
+   "cls": ""
+  },
+  {
+   "tag": "DIV",
+   "text": "确认镜头",
+   "box": {
+    "x": 430,
+    "y": 399,
+    "w": 20,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white"
+  },
+  {
+   "tag": "DIV",
+   "text": "准备资产",
+   "box": {
+    "x": 466,
+    "y": 399,
+    "w": 20,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white/65"
+  },
+  {
+   "tag": "DIV",
+   "text": "合成提示词",
+   "box": {
+    "x": 500,
+    "y": 399,
+    "w": 25,
+    "h": 7
+   },
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white/65"
+  },
+  {
+   "tag": "DIV",
+   "text": "尝试：",
+   "box": {
+    "x": 35,
+    "y": 404,
+    "w": 218,
+    "h": 8
+   },
+   "cls": "text-fg-muted mb-2 text-sm"
+  },
+  {
+   "tag": "SPAN",
+   "text": "图生图",
+   "box": {
+    "x": 48,
+    "y": 418,
+    "w": 16,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "图片高清",
+   "box": {
+    "x": 49,
+    "y": 433,
+    "w": 21,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "打开脚本节点 →",
+   "box": {
+    "x": 422,
+    "y": 433,
+    "w": 108,
+    "h": 15
+   },
+   "cls": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm fo"
+  },
+  {
+   "tag": "SPAN",
+   "text": "皮肤纹理（脸部）",
+   "box": {
+    "x": 1297,
+    "y": 441,
+    "w": 112,
+    "h": 22
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "身材塑形",
+   "box": {
+    "x": 409,
+    "y": 444,
+    "w": 56,
+    "h": 22
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "0",
+   "box": {
+    "x": 1530,
+    "y": 444,
+    "w": 7,
+    "h": 16
+   },
+   "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+  },
+  {
+   "tag": "SPAN",
+   "text": "限免",
+   "box": {
+    "x": 471,
+    "y": 447,
+    "w": 30,
+    "h": 16
+   },
+   "cls": "bg-nt-brand-surface-l1 text-nt-text-brand flex h-4 shrink-0 items-center gap-0.5"
+  },
+  {
+   "tag": "SPAN",
+   "text": "服装造型",
+   "box": {
+    "x": 409,
+    "y": 496,
+    "w": 56,
+    "h": 22
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "皮肤透亮",
+   "box": {
+    "x": 1297,
+    "y": 515,
+    "w": 56,
+    "h": 22
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "0",
+   "box": {
+    "x": 1530,
+    "y": 518,
+    "w": 7,
+    "h": 16
+   },
+   "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+  },
+  {
+   "tag": "SPAN",
+   "text": "陈默_01KT17FN",
+   "box": {
+    "x": 478,
+    "y": 539,
+    "w": 71,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "1808 × 1024",
+   "box": {
+    "x": 647,
+    "y": 540,
+    "w": 53,
+    "h": 13
+   },
+   "cls": "text-fg-muted shrink-0 whitespace-nowrap text-[11px] tabular-nums opacity-80"
+  },
+  {
+   "tag": "SPAN",
+   "text": "逐帧拉片",
+   "box": {
+    "x": 113,
+    "y": 545,
+    "w": 40,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "音色音调",
+   "box": {
+    "x": 409,
+    "y": 548,
+    "w": 56,
+    "h": 22
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "逐帧拉片",
+   "box": {
+    "x": 115,
+    "y": 570,
+    "w": 21,
+    "h": 8
+   },
+   "cls": "text-fg-default text-[14px] font-semibold leading-[22px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "素材-特效-瞳孔异变",
+   "box": {
+    "x": 295,
+    "y": 570,
+    "w": 78,
+    "h": 15
+   },
+   "cls": "text-[13px] cursor-text pointer-events-auto"
+  },
+  {
+   "tag": "SPAN",
+   "text": "SD 2.5",
+   "box": {
+    "x": 154,
+    "y": 571,
+    "w": 13,
+    "h": 6
+   },
+   "cls": "text-[11px] leading-4"
+  },
+  {
+   "tag": "SPAN",
+   "text": "视频素材",
+   "box": {
+    "x": 105,
+    "y": 586,
+    "w": 109,
+    "h": 7
+   },
+   "cls": "text-fg-muted flex-1 truncate text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "皮肤红润",
+   "box": {
+    "x": 1297,
+    "y": 590,
+    "w": 56,
+    "h": 22
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "0",
+   "box": {
+    "x": 1530,
+    "y": 593,
+    "w": 7,
+    "h": 16
+   },
+   "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+  },
+  {
+   "tag": "SPAN",
+   "text": "上传视频后开始",
+   "box": {
+    "x": 144,
+    "y": 630,
+    "w": 32,
+    "h": 7
+   },
+   "cls": "text-fg-muted text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "拆解维度",
+   "box": {
+    "x": 105,
+    "y": 664,
+    "w": 109,
+    "h": 7
+   },
+   "cls": "text-fg-muted flex-1 truncate text-[12px] leading-[18px]"
+  },
+  {
+   "tag": "SPAN",
+   "text": "皮肤美白",
+   "box": {
+    "x": 1297,
+    "y": 665,
+    "w": 56,
+    "h": 22
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "0",
+   "box": {
+    "x": 1530,
+    "y": 668,
+    "w": 7,
+    "h": 16
+   },
+   "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+  },
+  {
+   "tag": "SPAN",
+   "text": "分镜",
+   "box": {
+    "x": 121,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "动态",
+   "box": {
+    "x": 159,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "音乐",
+   "box": {
+    "x": 197,
+    "y": 675,
+    "w": 10,
+    "h": 8
+   },
+   "cls": ""
+  },
+  {
+   "tag": "BUTTON",
+   "text": "开始拉片",
+   "box": {
+    "x": 104,
+    "y": 693,
+    "w": 112,
+    "h": 14
+   },
+   "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px] text-[14"
+  },
+  {
+   "tag": "SPAN",
+   "text": "祛斑祛痘",
+   "box": {
+    "x": 1297,
+    "y": 740,
+    "w": 56,
+    "h": 22
+   },
+   "cls": "truncate"
+  },
+  {
+   "tag": "SPAN",
+   "text": "i",
+   "box": {
+    "x": 1359,
+    "y": 744,
+    "w": 14,
+    "h": 14
+   },
+   "cls": "inline-flex size-3.5 shrink-0 cursor-default items-center justify-center rounded"
+  },
+  {
+   "tag": "SPAN",
+   "text": "确认生成",
+   "box": {
+    "x": 1373,
+    "y": 791,
+    "w": 64,
+    "h": 20
+   },
+   "cls": "px-1"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "保存",
+   "box": {
+    "x": 844,
+    "y": 858,
+    "w": 80,
+    "h": 40
+   },
+   "cls": "hover:bg-canvas-controls-hover flex h-10 min-w-20 items-center justify-center ro"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "保存并添加到画布",
+   "box": {
+    "x": 932,
+    "y": 858,
+    "w": 144,
+    "h": 40
+   },
+   "cls": "bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover flex h-10 min-w-"
+  },
+  {
+   "tag": "SPAN",
+   "text": "保存时生成角色资产",
+   "box": {
+    "x": 409,
+    "y": 868,
+    "w": 117,
+    "h": 20
+   },
+   "cls": ""
+  },
+  {
+   "tag": "SPAN",
+   "text": "44",
+   "box": {
+    "x": 547,
+    "y": 868,
+    "w": 17,
+    "h": 20
+   },
+   "cls": "text-center font-normal text-[13px] leading-5"
+  },
+  {
+   "tag": "BUTTON",
+   "text": "38%",
+   "box": {
+    "x": 240,
+    "y": 1034,
+    "w": 36,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounded-lg px-1 "
+  },
+  {
+   "tag": "SPAN",
+   "text": "资产管理",
+   "box": {
+    "x": 44,
+    "y": 1038,
+    "w": 52,
+    "h": 20
+   },
+   "cls": "whitespace-nowrap text-[13px] leading-normal"
+  }
+ ],
+ "C_编辑_btns": [
+  {
+   "text": "画布 1",
+   "aria": "",
+   "box": {
+    "x": 165,
+    "y": 8,
+    "w": 68,
+    "h": 32
+   },
+   "cls": "group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-c"
+  },
+  {
+   "text": "",
+   "aria": "工作流",
+   "box": {
+    "x": 243,
+    "y": 8,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content tra"
+  },
+  {
+   "text": "",
+   "aria": "故事板",
+   "box": {
+    "x": 275,
+    "y": 8,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content p-0"
+  },
+  {
+   "text": "",
+   "aria": "发布与分享",
+   "box": {
+    "x": 1567,
+    "y": 8,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "border-(--topnav-btn-border) relative flex items-center justify-center"
+  },
+  {
+   "text": "",
+   "aria": "积分超市",
+   "box": {
+    "x": 1607,
+    "y": 8,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer "
+  },
+  {
+   "text": "20",
+   "aria": "",
+   "box": {
+    "x": 1814,
+    "y": 8,
+    "w": 58,
+    "h": 32
+   },
+   "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer "
+  },
+  {
+   "text": "",
+   "aria": "返回",
+   "box": {
+    "x": 377,
+    "y": 185,
+    "w": 26,
+    "h": 26
+   },
+   "cls": "hover:bg-canvas-controls-hover flex h-[26px] items-center rounded-lg p"
+  },
+  {
+   "text": "",
+   "aria": "关闭",
+   "box": {
+    "x": 1514,
+    "y": 185,
+    "w": 26,
+    "h": 26
+   },
+   "cls": "hover:bg-canvas-controls-hover absolute right-[19px] top-6 flex size-["
+  },
+  {
+   "text": "皮肤",
+   "aria": "皮肤",
+   "box": {
+    "x": 1297,
+    "y": 231,
+    "w": 56,
+    "h": 39
+   },
+   "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] tra"
+  },
+  {
+   "text": "眉眼",
+   "aria": "眉眼",
+   "box": {
+    "x": 1366,
+    "y": 231,
+    "w": 24,
+    "h": 39
+   },
+   "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] tra"
+  },
+  {
+   "text": "鼻子",
+   "aria": "鼻子",
+   "box": {
+    "x": 1403,
+    "y": 231,
+    "w": 24,
+    "h": 39
+   },
+   "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] tra"
+  },
+  {
+   "text": "嘴唇",
+   "aria": "嘴唇",
+   "box": {
+    "x": 1439,
+    "y": 231,
+    "w": 24,
+    "h": 39
+   },
+   "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] tra"
+  },
+  {
+   "text": "脸部",
+   "aria": "脸部",
+   "box": {
+    "x": 1476,
+    "y": 231,
+    "w": 24,
+    "h": 39
+   },
+   "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] tra"
+  },
+  {
+   "text": "妆造",
+   "aria": "妆造",
+   "box": {
+    "x": 1513,
+    "y": 231,
+    "w": 24,
+    "h": 39
+   },
+   "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] tra"
+  },
+  {
+   "text": "脸部精修限免",
+   "aria": "",
+   "box": {
+    "x": 373,
+    "y": 329,
+    "w": 240,
+    "h": 44
+   },
+   "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full "
+  },
+  {
+   "text": "脸部 & 身体特征",
+   "aria": "",
+   "box": {
+    "x": 373,
+    "y": 381,
+    "w": 240,
+    "h": 44
+   },
+   "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full "
+  },
+  {
+   "text": "图生图",
+   "aria": "",
+   "box": {
+    "x": 35,
+    "y": 415,
+    "w": 34,
+    "h": 14
+   },
+   "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit it"
+  },
+  {
+   "text": "图片高清",
+   "aria": "",
+   "box": {
+    "x": 35,
+    "y": 430,
+    "w": 40,
+    "h": 14
+   },
+   "cls": "group/btn text-fg-default hover:bg-canvas-controls-hover flex w-fit it"
+  },
+  {
+   "text": "身材塑形限免",
+   "aria": "",
+   "box": {
+    "x": 373,
+    "y": 433,
+    "w": 240,
+    "h": 44
+   },
+   "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full "
+  },
+  {
+   "text": "打开脚本节点 →",
+   "aria": "",
+   "box": {
+    "x": 422,
+    "y": 433,
+    "w": 108,
+    "h": 15
+   },
+   "cls": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg "
+  },
+  {
+   "text": "服装造型",
+   "aria": "",
+   "box": {
+    "x": 373,
+    "y": 485,
+    "w": 240,
+    "h": 44
+   },
+   "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full "
+  },
+  {
+   "text": "音色音调",
+   "aria": "",
+   "box": {
+    "x": 373,
+    "y": 537,
+    "w": 240,
+    "h": 44
+   },
+   "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full "
+  },
+  {
+   "text": "上传视频后开始",
+   "aria": "",
+   "box": {
+    "x": 104,
+    "y": 595,
+    "w": 112,
+    "h": 63
+   },
+   "cls": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justif"
+  },
+  {
+   "text": "分镜",
+   "aria": "",
+   "box": {
+    "x": 104,
+    "y": 673,
+    "w": 35,
+    "h": 12
+   },
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "text": "动态",
+   "aria": "",
+   "box": {
+    "x": 142,
+    "y": 673,
+    "w": 35,
+    "h": 12
+   },
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "text": "音乐",
+   "aria": "",
+   "box": {
+    "x": 180,
+    "y": 673,
+    "w": 35,
+    "h": 12
+   },
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "text": "开始拉片",
+   "aria": "",
+   "box": {
+    "x": 104,
+    "y": 693,
+    "w": 112,
+    "h": 14
+   },
+   "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px"
+  },
+  {
+   "text": "确认生成",
+   "aria": "",
+   "box": {
+    "x": 1297,
+    "y": 783,
+    "w": 196,
+    "h": 36
+   },
+   "cls": "min-w-0 flex-1 bg-btn-primary text-btn-primary-text hover:bg-btn-prima"
+  },
+  {
+   "text": "",
+   "aria": "智能调整",
+   "box": {
+    "x": 1501,
+    "y": 783,
+    "w": 36,
+    "h": 36
+   },
+   "cls": "text-fg-muted hover:bg-canvas-controls-hover flex size-9 shrink-0 item"
+  },
+  {
+   "text": "",
+   "aria": "撤销",
+   "box": {
+    "x": 378,
+    "y": 785,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center"
+  },
+  {
+   "text": "",
+   "aria": "恢复",
+   "box": {
+    "x": 410,
+    "y": 785,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center"
+  },
+  {
+   "text": "",
+   "aria": "按住对比",
+   "box": {
+    "x": 451,
+    "y": 785,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center"
+  },
+  {
+   "text": "",
+   "aria": "半身",
+   "box": {
+    "x": 925,
+    "y": 785,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center"
+  },
+  {
+   "text": "",
+   "aria": "全身",
+   "box": {
+    "x": 966,
+    "y": 785,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center"
+  },
+  {
+   "text": "保存",
+   "aria": "",
+   "box": {
+    "x": 844,
+    "y": 858,
+    "w": 80,
+    "h": 40
+   },
+   "cls": "hover:bg-canvas-controls-hover flex h-10 min-w-20 items-center justify"
+  },
+  {
+   "text": "保存并添加到画布",
+   "aria": "",
+   "box": {
+    "x": 932,
+    "y": 858,
+    "w": 144,
+    "h": 40
+   },
+   "cls": "bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover flex h"
+  },
+  {
+   "text": "TV Director",
+   "aria": "TV Director",
+   "box": {
+    "x": 1115,
+    "y": 1019,
+    "w": 48,
+    "h": 48
+   },
+   "cls": "vCoIiq_pill border-hair border-(--topnav-btn-border) flex h-12 min-w-1"
+  },
+  {
+   "text": "",
+   "aria": "添加节点",
+   "box": {
+    "x": 820,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "移动",
+   "box": {
+    "x": 860,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "素材库",
+   "box": {
+    "x": 900,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "角色造型室",
+   "box": {
+    "x": 940,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "生成历史",
+   "box": {
+    "x": 980,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "快捷键",
+   "box": {
+    "x": 1029,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "",
+   "aria": "教程",
+   "box": {
+    "x": 1069,
+    "y": 1027,
+    "w": 32,
+    "h": 32
+   },
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "text": "资产管理",
+   "aria": "资产管理",
+   "box": {
+    "x": 14,
+    "y": 1034,
+    "w": 94,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg t"
+  },
+  {
+   "text": "",
+   "aria": "整理画布，Option+Shift+F",
+   "box": {
+    "x": 112,
+    "y": 1034,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg"
+  },
+  {
+   "text": "",
+   "aria": "切换小地图",
+   "box": {
+    "x": 144,
+    "y": 1034,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg"
+  },
+  {
+   "text": "",
+   "aria": "隐藏节点连线",
+   "box": {
+    "x": 176,
+    "y": 1034,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  },
+  {
+   "text": "",
+   "aria": "网格吸附",
+   "box": {
+    "x": 208,
+    "y": 1034,
+    "w": 28,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  },
+  {
+   "text": "38%",
+   "aria": "缩放选项",
+   "box": {
+    "x": 240,
+    "y": 1034,
+    "w": 36,
+    "h": 28
+   },
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  }
+ ],
+ "C_编辑_imgs": [
+  {
+   "alt": "avatar",
+   "box": {
+    "x": 1884,
+    "y": 13,
+    "w": 24,
+    "h": 23
+   },
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "陈默_01KT17FN.png",
+   "box": {
+    "x": 465,
+    "y": 558,
+    "w": 235,
+    "h": 133
+   },
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "瞳孔异变",
+   "box": {
+    "x": 282,
+    "y": 588,
+    "w": 92,
+    "h": 92
+   },
+   "cls": "size-full rounded-xl object-cover"
+  },
+  {
+   "alt": "构图预览",
+   "box": {
+    "x": 503,
+    "y": 127,
+    "w": 133,
+    "h": 133
+   },
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 114,
+    "y": 122,
+    "w": 232,
+    "h": 133
+   },
+   "cls": "h-full w-full object-cover"
+  },
+  {
+   "alt": "",
+   "box": {
+    "x": 143,
+    "y": 58,
+    "w": 1634,
+    "h": 2084
+   },
+   "cls": "absolute inset-0 size-full max-w-none object-conta"
+  }
+ ]
+}
