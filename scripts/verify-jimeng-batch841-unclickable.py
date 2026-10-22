@@ -17302,7 +17302,7 @@ def main() -> int:
       and 'and other_name in my_exclude)            # 我排了它' in _p1027
       and '"P8_i_exclude_the_other"' in _p1027
       and '"D_bilateral_exclusion_turns_red_on_either_side"' in _p1027
-      and 'P3 = PC_A and PC_B and PC_C and PC_D' in _p1027
+      and 'P3 = PC_A and PC_A_NEG and PC_B and PC_C and PC_D' in _p1027
       # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
       and '"p8_exclusion_must_be_bilateral_2027_"' in _ausrc
       and '"p9_the_bilateral_check_itself_was_vacuously_false_2027_"' in _ausrc)
@@ -18340,6 +18340,25 @@ def main() -> int:
           "⭐⭐⭐⭐⭐ **⇒ 而这一道门带 6 种阳性对照、其中一种专门注入「读不到 ≠ 0」** "
           "⇒ ⇒ ⇒⇒ **⇒ 因为它今天恒为 0 ⇒ ⇒ 不注入的话它就是恒真**",
           _p1032i_five_states_ok() and _p1032i_five_states_pc())
+    check("DD993AF.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**阳性对照不能问「这一批恰好改了什么」—— 而这件事只有等它红过一次才看得见** ⇒ ⇒ "
+          "1027 的阳性对照甲第一版写的是 `any(\"1013\" in n for n in COUPLED_TO_CHANGED)` ⇒ ⇒ "
+          "**⇒ 而它只在「本批恰好改了 1013 读的东西」时才成立** ⇒ ⇒ ⇒⇒ "
+          "**⇒⇒⇒⇒⇒⇒ 「这一批改了什么」被当成了「仪器的眼睛准不准」** ⇒ ⇒ ⇒⇒ ⇒ ⇒ "
+          "**⇒⇒⇒⇒⇒⇒⇒⇒⇒ 而 1032-②i 恰好没有新增探针变量 ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒⇒⇒ ⇒ 它当场转红** ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒⇒ ⇒ "
+          "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 而它测量的那一半（已过期 0 本）是对的** ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒⇒ ⇒ ⇒ "
+          "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ 处置：改成**注入式**（喂一个 1013 真读到的文件）＋ 配一个**反证孪生**"
+          "（喂一个 1013 不读的路径 ⇒ 1013 必须**不再**被列出）** ⇒ ⇒ ⇒⇒ "
+          "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 而反证孪生是必需的：不然「扫描器恒把 1013 列进去」也会让甲为真 ⇒ ⇒ 那就又是一条恒真判据** ⇒ ⇒ ⇒⇒ "
+          "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 而「不注入时 1013 在不在」只能当**读数**、不许当断言**",
+          'PC_A = any("1013" in n for n in _pc_a_touched)' in _p1027
+          and 'PC_A = any("1013" in n for n in COUPLED_TO_CHANGED)' not in _p1027
+          and 'PC_A_NEG = not any("1013" in n for n in _pc_a_neg_touched)' in _p1027
+          and 'P3 = PC_A and PC_A_NEG and PC_B and PC_C and PC_D' in _p1027
+          and '_pc_a_neg_path = "jimeng-pc-a-negative-control-not-a-repo-path.json"' in _p1027
+          and 'PC_A_WITHOUT_INJECTION = any("1013" in n for n in COUPLED_TO_CHANGED)' in _p1027
+          and '"found_without_injection": PC_A_WITHOUT_INJECTION' in _p1027)
+
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
