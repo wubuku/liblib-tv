@@ -729,7 +729,11 @@ def _p1032g_ledger_pc():
     _m("n_books_without_criteria_detail")
     _m("n_criteria_red_named")
     _m("n_books")
-    _m("n_books_with_ledger")
+    def _m_ledger_order(d):
+        # ⭐ 「已发布台账的本数」必须 ≥ 「标注与判据一一对应的本数」
+        #   ⇒ ⇒ 把它改小 ⇒ ⇒ 「一一对应」就比「已发布」还多 ⇒ ⇒ 关系被破坏
+        d["n_books_with_ledger"] = int(d.get("n_books_with_ledger", 1)) - 1
+    _muts.append(("n_books_with_ledger", _m_ledger_order))
 
     def _m_selftest(d):
         d["criteria_detector_selftest_ok"] = False
