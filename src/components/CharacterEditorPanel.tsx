@@ -68,20 +68,19 @@ interface Tab {
   id: string;
   label: string;
   icon: typeof Eye;
-  /** ★ 首枚「皮肤」是「图标 + 文字」，其余五枚**只有图标**（源站实测 56 宽 vs 24 宽） */
-  text: boolean;
 }
 
-// ★ 源站实测：首枚页签的**文字**落在 rel 961（不是 56 宽盒的居中位 950）
-//   ⟹ 盒内是 [18px 图标][gap 4][28px 文字] ⟹ ⟹ 首枚页签**也有前置图标**
-//   ⟹ 图标**字形未采集**（源站是 iconify SVG）⟹ 这里用 lucide 占位。
+// ★ 源站实测：页签行里**当前选中的那枚**才是「图标 + 文字」（56 宽），
+//   其余五枚**只有图标**（24 宽）⟹ ⟹ 「文字页签」会**跟着选中项移动**。
+//   ★ batch 840 之前 clone 把 56 宽的**文字页签固定在首枚** ⟹ 选中别枚时几何就与源站不符 ⟹ 本批改正。
+//   ★ 图标**字形未采集**（源站是 iconify SVG）⟹ 这里用 lucide 占位。
 const TABS: Tab[] = [
-  { id: "skin", label: "皮肤", icon: Sparkles, text: true },
-  { id: "brow-eye", label: "眉眼", icon: Eye, text: false },
-  { id: "nose", label: "鼻子", icon: CircleDot, text: false },
-  { id: "lips", label: "嘴唇", icon: Smile, text: false },
-  { id: "face", label: "脸部", icon: User, text: false },
-  { id: "makeup", label: "妆造", icon: Palette, text: false },
+  { id: "skin", label: "皮肤", icon: Sparkles },
+  { id: "brow-eye", label: "眉眼", icon: Eye },
+  { id: "nose", label: "鼻子", icon: CircleDot },
+  { id: "lips", label: "嘴唇", icon: Smile },
+  { id: "face", label: "脸部", icon: User },
+  { id: "makeup", label: "妆造", icon: Palette },
 ];
 
 interface Slider {
@@ -90,14 +89,67 @@ interface Slider {
   info: boolean;
 }
 
-const SKIN_SLIDERS: Slider[] = [
-  { id: "texture", label: "质感磨皮", info: false },
-  { id: "beauty", label: "AI 美颜（脸部）", info: true },
-  { id: "grain", label: "皮肤纹理（脸部）", info: false },
-  { id: "bright", label: "皮肤透亮", info: false },
-  { id: "ruddy", label: "皮肤红润", info: false },
-  { id: "whiten", label: "皮肤美白", info: false },
-];
+// ★★ Batch 841：各页签的**实测滑杆清单**
+//   （源站 2026-10-22 **只读**探针，raw 入库在
+//    `docs/research/liblib-canvas-batch841-2026-10-01/raw/source-841-tabs.json`）
+//
+// ★★ **几何规律**（源站实测，三枚纯滑杆页签完全一致）：
+//   标签  rel y = 130 + 74.8·i（高 22，左端 rel 936）
+//   轨道  = 标签 +36（240 × 12）
+//   数值  = 标签 +3（7 × 16，右端对齐到 1176）
+//   「i」 = 标签右端 +6、标签顶 +4（14 × 14）
+//   ⟹ ⟹ clone 用同一套 `.ce-slider-*` 规则即可 ⟹ ⟹ **不需要每页单独写坐标**。
+//
+// ★ **哪些页签**已实现：**皮肤**（batch 840）／**鼻子**／**嘴唇**／**脸部**（本批）。
+//   ★ **眉眼／妆造**仍显示空态说明 —— 它们除了滑杆，还含**预设网格**
+//   （76×96 的卡片，带缩略图）⟹ ⟹ 属后续批次 ⟹ ⟹ 本批**不编造**。
+const TAB_SLIDERS: Record<string, Slider[]> = {
+  skin: [
+    { id: "texture", label: "质感磨皮", info: false },
+    { id: "beauty", label: "AI 美颜（脸部）", info: true },
+    { id: "grain", label: "皮肤纹理（脸部）", info: false },
+    { id: "bright", label: "皮肤透亮", info: false },
+    { id: "ruddy", label: "皮肤红润", info: false },
+    { id: "whiten", label: "皮肤美白", info: false },
+  ],
+  nose: [
+    { id: "nose-root", label: "山根", info: false },
+    { id: "nose-bridge", label: "鼻梁", info: false },
+    { id: "nose-tip", label: "鼻尖", info: false },
+    { id: "nose-length", label: "鼻子长短", info: false },
+    { id: "nose-size", label: "鼻子大小", info: false },
+    { id: "nose-wing", label: "鼻翼", info: false },
+  ],
+  lips: [
+    { id: "lips-updown", label: "嘴巴上下", info: false },
+    { id: "lips-lower-full", label: "丰下唇", info: false },
+    { id: "lips-width", label: "嘴巴宽度", info: false },
+    { id: "lips-full", label: "丰唇", info: false },
+    { id: "lips-corner", label: "嘴角调整", info: false },
+    { id: "lips-tilt", label: "嘴巴倾斜", info: false },
+    { id: "lips-size", label: "嘴巴大小", info: false },
+    { id: "lips-upper-full", label: "丰上唇", info: false },
+    { id: "lips-wrinkle", label: "祛唇纹", info: true },
+    { id: "lips-makeup", label: "唇妆增强", info: false },
+  ],
+  face: [
+    { id: "face-forehead", label: "额头", info: false },
+    { id: "face-v", label: "V 脸", info: false },
+    { id: "face-contour", label: "脸部轮廓流畅", info: true },
+    { id: "face-small", label: "小脸", info: false },
+    { id: "face-width", label: "脸部宽度", info: false },
+    { id: "face-chin-height", label: "下巴高度", info: false },
+    { id: "face-jaw-l", label: "下颌（左）", info: false },
+    { id: "face-jaw-r", label: "下颌（右）", info: false },
+    { id: "face-cheekbone-l", label: "颧骨（左）", info: false },
+    { id: "face-cheekbone-r", label: "颧骨（右）", info: false },
+    { id: "face-temple-l", label: "太阳穴（左）", info: false },
+    { id: "face-temple-r", label: "太阳穴（右）", info: false },
+    { id: "face-midface", label: "中庭", info: false },
+    { id: "face-lowerface", label: "下庭", info: false },
+    { id: "face-philtrum", label: "人中", info: false },
+  ],
+};
 
 // ★ 滑杆六行的**纵向偏移**（源站实测的标签盒 top，相对右栏滚动区内容起点）
 const SLIDER_STEP = 74.8;
@@ -128,7 +180,11 @@ export function CharacterEditorPanel({
   const [segment, setSegment] = useState(SEGMENTS[0].id);
   const [tab, setTab] = useState(TABS[0].id);
   const [values, setValues] = useState<Record<string, number>>(
-    Object.fromEntries(SKIN_SLIDERS.map((s) => [s.id, 0])),
+    Object.fromEntries(
+      Object.values(TAB_SLIDERS)
+        .flat()
+        .map((s) => [s.id, 0]),
+    ),
   );
   const [spot, setSpot] = useState(false);
   const [framing, setFraming] = useState<"half" | "full">("half");
@@ -156,6 +212,60 @@ export function CharacterEditorPanel({
 
   // ★ 标签行：源站实测是「♀ · 青年 · 东亚 · 现代」（♀ 是图标，不是文本）
   const tagText = `· ${age} · ${region} · 现代`;
+
+  // ★★ Batch 841：当前页签的**实测滑杆清单**（没有 ⟹ 显示空态说明）
+  const currentSliders = TAB_SLIDERS[tab] ?? null;
+
+  // ★ 一条滑杆行（标签 ＋ 轨道 ＋ 数值）—— 各页签**共用同一套**几何规则：
+  //   标签 top = 20 + i·74.8（相对右栏内容区 ⟹ 绝对 rel 130 + 74.8·i）
+  //   轨道 = 标签 +36（240×12）｜ 数值 = 标签 +3（7×16，右端对齐到 1176）
+  const renderSlider = (item: Slider, index: number) => {
+    const top = 20 + index * SLIDER_STEP;
+    return (
+      <div key={item.id}>
+        <label
+          className="ce-slider-label"
+          style={{ top: `${top}px` }}
+          data-character-editor-slider-label={item.id}
+        >
+          <span className="ce-slider-label-text">{item.label}</span>
+          {item.info ? (
+            <span
+              className="ce-info"
+              role="img"
+              aria-label="该调整不支持预览，需要生成后生效"
+            >
+              i
+            </span>
+          ) : null}
+        </label>
+        <input
+          type="range"
+          className="ce-slider"
+          style={{ top: `${top + 36}px` }}
+          min={0}
+          max={100}
+          step={1}
+          value={values[item.id]}
+          data-character-editor-slider={item.id}
+          aria-label={item.label}
+          onChange={(event) =>
+            setValues((prev) => ({
+              ...prev,
+              [item.id]: Number(event.target.value),
+            }))
+          }
+        />
+        <span
+          className="ce-slider-value"
+          style={{ top: `${top + 3}px` }}
+          data-character-editor-slider-value={item.id}
+        >
+          {values[item.id]}
+        </span>
+      </div>
+    );
+  };
 
   return (
     <div className="ce-overlay" data-character-editor-overlay>
@@ -290,7 +400,7 @@ export function CharacterEditorPanel({
                   role="tab"
                   aria-selected={tab === item.id}
                   aria-label={item.label}
-                  className={`ce-tab ${item.text ? "is-text" : "is-icon"}${
+                  className={`ce-tab ${tab === item.id ? "is-text" : "is-icon"}${
                     tab === item.id ? " is-on" : ""
                   }`}
                   data-character-editor-tab={item.id}
@@ -299,101 +409,56 @@ export function CharacterEditorPanel({
                   <span className="ce-tab-icon" aria-hidden="true">
                     <item.icon size={18} />
                   </span>
-                  {item.text ? (
+                  {tab === item.id ? (
                     <span className="ce-tab-text">{item.label}</span>
                   ) : null}
                 </button>
               ))}
             </div>
 
-            {tab === "skin" ? (
+            {currentSliders ? (
               <div className="ce-panel">
                 <div className="ce-section">
-                  {SKIN_SLIDERS.map((item, index) => {
-                    const top = 20 + index * SLIDER_STEP;
-                    return (
-                      <div key={item.id}>
-                        <label
-                          className="ce-slider-label"
-                          style={{ top: `${top}px` }}
-                          data-character-editor-slider-label={item.id}
-                        >
-                          <span className="ce-slider-label-text">
-                            {item.label}
-                          </span>
-                          {item.info ? (
-                            <span
-                              className="ce-info"
-                              role="img"
-                              aria-label="该调整不支持预览，需要生成后生效"
-                            >
-                              i
-                            </span>
-                          ) : null}
-                        </label>
-                        <input
-                          type="range"
-                          className="ce-slider"
-                          style={{ top: `${top + 36}px` }}
-                          min={0}
-                          max={100}
-                          step={1}
-                          value={values[item.id]}
-                          data-character-editor-slider={item.id}
-                          aria-label={item.label}
-                          onChange={(event) =>
-                            setValues((prev) => ({
-                              ...prev,
-                              [item.id]: Number(event.target.value),
-                            }))
-                          }
-                        />
-                        <span
-                          className="ce-slider-value"
-                          style={{ top: `${top + 3}px` }}
-                          data-character-editor-slider-value={item.id}
-                        >
-                          {values[item.id]}
-                        </span>
-                      </div>
-                    );
-                  })}
+                  {currentSliders.map(renderSlider)}
 
-                  <div
-                    className="ce-switch-row"
-                    style={{ top: 469 }}
-                    data-character-editor-switch-row="spot"
-                  >
-                    <span className="ce-switch-label">
-                      <span className="ce-switch-label-text">祛斑祛痘</span>
-                      <span
-                        className="ce-info"
-                        role="img"
-                        aria-label="该调整不支持预览，需要生成后生效"
-                      >
-                        i
-                      </span>
-                    </span>
-                    <button
-                      type="button"
-                      role="switch"
-                      aria-checked={spot}
-                      aria-label="祛斑祛痘"
-                      className={`ce-switch${spot ? " is-on" : ""}`}
-                      data-character-editor-switch="spot"
-                      onClick={() => setSpot((prev) => !prev)}
+                  {tab === "skin" ? (
+                    <div
+                      className="ce-switch-row"
+                      style={{ top: 469 }}
+                      data-character-editor-switch-row="spot"
                     >
-                      <span className="ce-switch-thumb" />
-                    </button>
-                  </div>
+                      <span className="ce-switch-label">
+                        <span className="ce-switch-label-text">祛斑祛痘</span>
+                        <span
+                          className="ce-info"
+                          role="img"
+                          aria-label="该调整不支持预览，需要生成后生效"
+                        >
+                          i
+                        </span>
+                      </span>
+                      <button
+                        type="button"
+                        role="switch"
+                        aria-checked={spot}
+                        aria-label="祛斑祛痘"
+                        className={`ce-switch${spot ? " is-on" : ""}`}
+                        data-character-editor-switch="spot"
+                        onClick={() => setSpot((prev) => !prev)}
+                      >
+                        <span className="ce-switch-thumb" />
+                      </button>
+                    </div>
+                  ) : null}
                 </div>
               </div>
             ) : (
               <div className="ce-panel">
                 <p className="ce-empty" data-character-editor-empty>
                   「{TABS.find((item) => item.id === tab)?.label}」这一页签的控件
-                  本批未实测（源站 2026-10-22 那趟只采了「皮肤」页签）。
-                  ⟹ 这里不编造控件，只如实说明。
+                  **已实测**（源站 raw 入库在 batch 841），
+                  但它除了滑杆还含**预设网格**（76×96 的卡片，带缩略图）
+                  ⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。
                 </p>
               </div>
             )}
