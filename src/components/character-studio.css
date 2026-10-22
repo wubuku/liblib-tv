@@ -859,6 +859,13 @@
   border-radius: 16px;
   background: #262626;
   color: #ededed;
+  /* ★★ Batch 845：**角色编辑器内**对齐源站的字体栈
+     （源站实测的计算 fontFamily；全局 `--font-sans` 是 Tailwind 默认栈 ⟹ 两者不同）
+     ⟹ ⟹ 两者都以 `-apple-system` 打头 ⟹ ⟹ **解析到的字体相同** ⟹ ⟹ 文本宽度不变
+     ⟹ ⟹ 但**声明的栈**逐字对上 ⟹ ⟹ 外观判据可以连 fontFamily 一起比 */
+  font-family: -apple-system, "system-ui", "PingFang SC", Inter, "Noto Sans SC",
+    "Microsoft YaHei", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
 }
 
 /* ── 头部：返回按钮（源站实测 26×26 @rel(16,24)） ──────────────────── */
@@ -1138,7 +1145,9 @@
   align-items: center;
   gap: 6px;
   height: 22px;
-  color: #ededed;
+  /* ★★ Batch 845：源站实测名字是 **纯白**（`text-sm` 继承正文的 #fff）
+     ⟹ ⟹ 原来写的是 #ededed ⟹ ⟹ 那是**既存偏差** ⟹ ⟹ 本批改正 */
+  color: #fff;
   font-size: 14px;
   line-height: 22px;
 }
@@ -1147,10 +1156,14 @@
   position: absolute;
   /* ★ 右对齐到轨道右端（源站：数值 7×16 @rel 1169 ⟹ 右端 1176 = 轨道右端） */
   right: 24px;
-  display: flex;
-  align-items: center;
+  /* ★★ Batch 845：源站那枚数值是**普通 span**（计算样式 `display: block`、
+     `align-items: normal`）⟹ ⟹ 原来 clone 写的是 flex + align-items:center
+     ⟹ ⟹ 那是**既存偏差** ⟹ ⟹ 本批改成 block（行高 16px ⟹ 视觉上仍然居中） */
+  display: block;
   height: 16px;
-  color: rgba(255, 255, 255, 0.45);
+  /* ★★ Batch 845：源站实测数值是 **rgba(255,255,255,0.6)**
+     ⟹ ⟹ 原来写的是 0.45 ⟹ ⟹ 那是**既存偏差** ⟹ ⟹ 本批改正 */
+  color: rgba(255, 255, 255, 0.6);
   /* ★ 源站实测：数值是 `font-mono text-[11px] tabular-nums` ⟹ 字宽 7px @rel 1169
      （clone 原来 12px ⟹ 字宽 8px ⟹ 起点 1168） */
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
@@ -1169,31 +1182,56 @@
   background: transparent;
   cursor: pointer;
 }
+/* ★★ Batch 845：**像素**实测（`raw/source-845-pixels.json`）的源站滑杆外观：
+ *   轨道 **2px**；已填充段**纯白 #fff**；未填充段 ≈ rgba(255,255,255,.08)
+ *   ⟹ ⟹ 原来 clone 是「4px 轨道 ＋ 单一 rgba(.16) 底 ＋ **没有**填充段」⟹ ⟹ 那是**既存偏差**
+ *   ⟹ ⟹ `--ce-fill` 由 TSX 写入（= 圆钮中心相对轨道左端的偏移）
+ *   ⟹ ⟹ 渐变的分界点与原生 thumb 的位置**一致**（★ 源站的填充段止于圆钮中心） */
 .ce-slider::-webkit-slider-runnable-track {
-  height: 4px;
+  height: 2px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(
+    to right,
+    #fff 0 var(--ce-fill, 0px),
+    rgba(255, 255, 255, 0.08) var(--ce-fill, 0px) 100%
+  );
 }
+/* ★ 圆钮：**14×14 纯白**（源站像素实测）⟹ ⟹ 14px 的 thumb 在 240px 的轨道上
+ *   ⟹ ⟹ 圆钮中心正好走 7..233 ⟹ ⟹ 与源站的行程公式（7 + ratio·226）**逐像素一致** */
 .ce-slider::-webkit-slider-thumb {
   appearance: none;
-  width: 12px;
-  height: 12px;
-  margin-top: -4px;
+  width: 14px;
+  height: 14px;
+  margin-top: -6px;
   border: 0;
   border-radius: 9999px;
-  background: #ededed;
+  background: #fff;
 }
 .ce-slider::-moz-range-track {
-  height: 4px;
+  height: 2px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.16);
+  background: linear-gradient(
+    to right,
+    #fff 0 var(--ce-fill, 0px),
+    rgba(255, 255, 255, 0.08) var(--ce-fill, 0px) 100%
+  );
 }
 .ce-slider::-moz-range-thumb {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border: 0;
   border-radius: 9999px;
-  background: #ededed;
+  background: #fff;
+}
+/* ★★ Batch 845：源站圆钮**正中**那枚 **2×2 的深点**（`studioRangeThumbDot`，
+ *   像素实测灰阶 70 ＝ #464646）⟹ ⟹ clone 用一个 **2×2 的方块**复刻它
+ *   ⟹ ⟹ 位置由 TSX 算好（= 圆钮中心 − 1，top = 标签 +41） */
+.ce-slider-dot {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #464646;
+  pointer-events: none;
 }
 
 /* ★★ Batch 842：源站实测的「i」标记是**描边圆**（1px currentColor 边框、

@@ -256,16 +256,16 @@ def main():
             pg.wait_for_timeout(400)
             out["F_切回皮肤"] = pg.evaluate(READ)
 
-            # ★★ **batch 844 起**：点左列**第三段**（身材塑形）⟹ **页签行应当消失**
-            #   （★ 844 起第二段「脸部 & 身体特征」已实现 ⟹ ⟹ 未实现的又挪了一位）
+            # ★★ **batch 845 起**：点左列**第四段**（服装造型）⟹ **页签行应当消失**
+            #   （★ 845 起第三段「身材塑形」已实现 ⟹ ⟹ 未实现的又挪了一位）
             #   ⟹ ⟹ 那是**当下仍未实现**的那一块（源站实测有内容 ⟹ ⟹ clone 显示空态说明）
             #   ★ ★ 探针必须**真的点一下** ⟹ ⟹ 否则「这个入口没有 X」这类断言根本不成立
             #   ★ ★ 且必须是**从 face 段点过去**的 ⟹ ⟹ 才是**真实的转移**（不是原地 no-op）
             pg.evaluate("""() => {
-              const s=document.querySelector('[data-character-editor-segment="body"]');
+              const s=document.querySelector('[data-character-editor-segment="outfit"]');
               if(s)s.click();}""")
             pg.wait_for_timeout(400)
-            out["F2_第三段"] = pg.evaluate(READ)
+            out["F2_第四段"] = pg.evaluate(READ)
 
             # ★ 切回「脸部精修」段 ⟹ 页签行应当回来
             pg.evaluate("""() => {

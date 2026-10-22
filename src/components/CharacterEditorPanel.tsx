@@ -21,6 +21,7 @@ import {
   Zap,
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import { useUIStore } from "@/store/uiStore";
 import "./character-studio.css";
 
@@ -89,6 +90,13 @@ interface Slider {
   id: string;
   label: string;
   info: boolean;
+  // ★★ Batch 845：源站有 **5 条**滑杆的量程是 **−100..100**（其余 13 条是 0..100）
+  //   ⟹ ⟹ 不写死 0..100 ⟹ ⟹ 滑杆的 min/max 必须**逐条**照抄源站实测值
+  min?: number;
+  max?: number;
+  // ★★ Batch 845：源站每条滑杆的 `step` 都是 **1**（实测）⟹ ⟹ 也进数据表
+  //   ⟹ ⟹ 不在 JSX 里写死 ⟹ ⟹ 判据才能逐条比
+  step?: number;
 }
 
 // ★★ Batch 841：各页签的**实测滑杆清单**
@@ -236,6 +244,49 @@ const MAKEUP_CATEGORIES: { id: string; label: string; cards: string[] }[] = [
   { id: "gaoguang", label: "高光", cards: ["眼下提亮", "丰润", "平整", "盈润", "丰盈", "笔挺", "透亮", "水光", "小灯泡"] },
 ];
 
+// ★★ Batch 845：左列第三段「身材塑形」的 **18 条**滑杆
+//   （源站**只读**实测；raw 入库在
+//    `docs/research/liblib-canvas-batch845-2026-10-01/raw/source-845-body.json`
+//    ＋ 像素证据 `raw/source-845-pixels.json`）
+//
+// ★★ **结构**（源站实测）：
+//   · 右栏**没有标题行** ⟹ ⟹ 右栏**第一层就是滚动区**（`pt-3`）
+//     ⟹ ⟹ 内容起点 ＝ 右栏顶 + 12（与第二段同 ⟹ ⟹ 同样比「脸部精修」段高 48px）
+//   · **18 条**滑杆，每条＝ LABEL(240×55)：
+//     ├ 标签行 240×22（名字 14px／22px／**纯白** ＋ 可选的「i」＋ 右端数值 11px／16px）
+//     └ 轨道 240×12（= 标签 +36）＋ 一枚 **14×14 的白色圆钮** ＋ 圆心 **2×2 深点**
+//   · 标签行 top ＝ 段内 **12 + 74.8·i**（★ 与页签滑杆**同一个步进**）
+//
+// ★★ **量程**（源站实测，逐条）：有 **5 条**是 **−100..100**
+//   （丰胸／瘦身／瘦手臂／美臀／肩膀宽度），其余 **13 条**是 0..100；step 全是 1、初值全 0。
+//
+// ★★ **带「i」标记**的有 **6 条**（驼背／瘦脖子-左／瘦脖子-右／天鹅颈-左／天鹅颈-右／全身美型）。
+//
+// ★★ **外观**（★ 由**像素**实测，不是推理 —— 见 `raw/source-845-pixels.json`）：
+//   轨道 **2px**；已填充段**纯白 #fff**；未填充段 ≈ rgba(255,255,255,.08)（面板底 #242424 上是 53）；
+//   圆钮 **14×14 纯白**、圆心 **2×2 = #464646**；
+//   圆钮中心 ＝ 轨道左端 + **7** + ratio·**226**（★ 由两条滑杆**解**出来的 ⟹ ⟹ 不是手打常数）
+const BODY_SLIDERS: Slider[] = [
+  { id: "body-breast", label: "丰胸", info: false, min: -100, max: 100, step: 1 },
+  { id: "body-height", label: "AI 增高", info: false, step: 1 },
+  { id: "body-hunchback", label: "驼背", info: true, step: 1 },
+  { id: "body-long-leg", label: "长腿", info: false, step: 1 },
+  { id: "body-square-shoulder", label: "直角肩", info: false, step: 1 },
+  { id: "body-small-head", label: "小头", info: false, step: 1 },
+  { id: "body-slim", label: "瘦身", info: false, min: -100, max: 100, step: 1 },
+  { id: "body-slim-belly", label: "瘦肚子", info: false, step: 1 },
+  { id: "body-slim-arms", label: "瘦手臂", info: false, min: -100, max: 100, step: 1 },
+  { id: "body-hip", label: "美臀", info: false, min: -100, max: 100, step: 1 },
+  { id: "body-slim-legs", label: "瘦腿", info: false, step: 1 },
+  { id: "body-slim-neck-l", label: "瘦脖子-左", info: true, step: 1 },
+  { id: "body-slim-neck-r", label: "瘦脖子-右", info: true, step: 1 },
+  { id: "body-waist", label: "美腰", info: false, step: 1 },
+  { id: "body-swan-neck-l", label: "天鹅颈-左", info: true, step: 1 },
+  { id: "body-swan-neck-r", label: "天鹅颈-右", info: true, step: 1 },
+  { id: "body-shoulder-width", label: "肩膀宽度", info: false, min: -100, max: 100, step: 1 },
+  { id: "body-beauty-all", label: "全身美型", info: true, step: 1 },
+];
+
 // ★★ Batch 844：左列第二段「脸部 & 身体特征」的**纹身 & 疤痕**卡
 //   （源站**只读**实测；raw 入库在
 //    `docs/research/liblib-canvas-batch844-2026-10-01/raw/source-844-traits.json`）
@@ -307,12 +358,31 @@ const TAB_BLOCKS: Record<string, PanelBlock[]> = {
 // ★ 滑杆六行的**纵向偏移**（源站实测的标签盒 top，相对右栏滚动区内容起点）
 const SLIDER_STEP = 74.8;
 
-// ★★ 所有滑杆的 id（值表的初值）—— **分页签的** ＋ **分块的**
+// ★★ Batch 845：这一段的**内容起点**（相对段顶）＝ 12（源站 `pt-3` ⟹ ⟹ 与第二段同）
+const BODY_SLIDERS_TOP = 12;
+
+// ★★ Batch 845：**圆钮中心的行程**（★ 由 `raw/source-845-pixels.json` 的两条滑杆**解**出来）
+//   圆钮中心 x ＝ 轨道左端 + 7 + ratio·226
+//   ⟹ ⟹ 14px 的圆钮 ⟹ ⟹ 原生 range 的 thumb 行程**正好**是 7..233 ⟹ ⟹ 与源站一致
+const SLIDER_THUMB_INSET = 7;
+const SLIDER_TRAVEL = 226;
+
+// ★★ Batch 845：这一段的**滚动区高度**（源站实测 scrollHeight ＝ 1418）
+//   ＝ 12(pt-3) + 18×54.8(块高) + 17×20(space-y-5) + 80(pb-20)
+//   ⟹ ⟹ **不是手打常数** ⟹ ⟹ 由上面的块数与步进**算**出来
+const BODY_SCROLL_HEIGHT =
+  BODY_SLIDERS_TOP +
+  BODY_SLIDERS.length * 54.8 +
+  (BODY_SLIDERS.length - 1) * 20 +
+  80;
+
+// ★★ 所有滑杆的 id（值表的初值）—— **分页签的** ＋ **分块的** ＋ **身材塑形的**
 const ALL_SLIDERS: Slider[] = [
   ...Object.values(TAB_SLIDERS).flat(),
   ...Object.values(TAB_BLOCKS).flatMap((blocks) =>
     blocks.flatMap((b) => (b.kind === "sliders" ? b.items : [])),
   ),
+  ...BODY_SLIDERS,
 ];
 
 // ★★ **未实现**页签的空态说明（**逐页**写，别用一句通用文案）
@@ -326,14 +396,12 @@ const EMPTY_NOTE: Record<string, string> = {};
 //   ★ 措辞里的每个数字/条目名都来自 raw ⟹ ⟹ 不手打不存在的结构
 // ★★ Batch 844 起：**「脸部 & 身体特征」段已实现**（纹身 & 疤痕 ＋ 6 张贴纸卡）
 //   ⟹ ⟹ 它**不再**走这条路 ⟹ ⟹ 那条说明（写着「属后续批次」）**已是假陈述** ⟹ ⟹ **删掉**。
+// ★★ Batch 845 起：**「身材塑形」段也已实现**（18 条滑杆）
+//   ⟹ ⟹ 它**不再**走这条路 ⟹ ⟹ 那条说明**也是假陈述** ⟹ ⟹ **删掉**。
+//   ★★ 并且那条说明里写的「17 条滑杆」**本身就是错的**（源站实测是 **18** 条，
+//      且**第一条是「丰胸」**，不是「丰胸数值 ＋ 17 条」）⟹ ⟹ 留着就是一条假陈述。
 // ★ 措辞里的每个数字/条目名都来自 raw ⟹ ⟹ 不手打不存在的结构
 const SEGMENT_NOTE: Record<string, string> = {
-  body:
-    "「身材塑形」这一段的控件 **已实测**（源站 raw 入库在 batch 841）：" +
-    "**「丰胸」数值 ＋ 17 条滑杆**（AI 增高／驼背／长腿／直角肩／小头／瘦身／" +
-    "瘦肚子／瘦手臂／美臀／瘦腿／瘦脖子-左／瘦脖子-右／美腰／天鹅颈-左／" +
-    "天鹅颈-右／肩膀宽度／全身美型）⟹ ⟹ 属后续批次 ⟹ ⟹ " +
-    "这里不编造控件，只如实说明。",
   outfit:
     "「服装造型」这一段的控件 **已实测**（源站 raw 入库在 batch 841）：" +
     "**H3「发型／发色／妆容／口红」四块 ＋ chip 网格**（发型 10 个／" +
@@ -429,8 +497,16 @@ export function CharacterEditorPanel({
   //   标签 top = 20 + i·74.8（相对右栏内容区 ⟹ 绝对 rel 130 + 74.8·i）
   //   轨道 = 标签 +36（240×12）｜ 数值 = 标签 +3（7×16，右端对齐到 1176）
   // ★ `baseTop` 给的是**绝对** top（眉眼页的分段布局：源站逐段实测各不相同）
+  //
+  // ★★ Batch 845：**量程逐条照抄**（源站有 5 条是 −100..100）＋ **填充段** ＋ **圆心点**
   const renderSlider = (item: Slider, index: number, baseTop?: number) => {
     const top = baseTop ?? 20 + index * SLIDER_STEP;
+    const min = item.min ?? 0;
+    const max = item.max ?? 100;
+    const value = values[item.id] ?? 0;
+    // ★ 圆钮中心相对轨道左端的偏移（源站：**7 + ratio·226**，由像素实测解出）
+    const ratio = max === min ? 0 : (value - min) / (max - min);
+    const thumbX = SLIDER_THUMB_INSET + ratio * SLIDER_TRAVEL;
     return (
       <div key={item.id}>
         <label
@@ -452,11 +528,17 @@ export function CharacterEditorPanel({
         <input
           type="range"
           className="ce-slider"
-          style={{ top: `${top + 36}px` }}
-          min={0}
-          max={100}
-          step={1}
-          value={values[item.id]}
+          // ★ `--ce-fill` ＝ 已填充段的终点（= 圆钮中心）⟹ ⟹ 轨道的渐变靠它画
+          style={
+            {
+              top: `${top + 36}px`,
+              "--ce-fill": `${thumbX}px`,
+            } as CSSProperties
+          }
+          min={min}
+          max={max}
+          step={item.step ?? 1}
+          value={value}
           data-character-editor-slider={item.id}
           aria-label={item.label}
           onChange={(event) =>
@@ -466,12 +548,22 @@ export function CharacterEditorPanel({
             }))
           }
         />
+        {/* ★★ Batch 845：源站那枚 **2×2 的深色圆心点**（`studioRangeThumbDot`）
+            ⟹ ⟹ 它在**圆钮正中** ⟹ ⟹ 位置 ＝ 圆钮中心 − 1
+            ⟹ ⟹ 纵向：轨道容器高 **24.8**（源站实测）⟹ ⟹ 2px 的点在 24.8 里居中
+            ⟹ ⟹   ⟹ 点顶 ＝ 标签 + 30 + (24.8 − 2)/2 ＝ **标签 + 41.4**
+            ⟹ ⟹   （★ 用 41 会与源站差 1px ⟹ ⟹ 那 6 条「小数部分进位」的滑杆就红） */}
+        <span
+          className="ce-slider-dot"
+          style={{ left: `${24 + thumbX - 1}px`, top: `${top + 41.4}px` }}
+          data-character-editor-slider-dot={item.id}
+        />
         <span
           className="ce-slider-value"
           style={{ top: `${top + 3}px` }}
           data-character-editor-slider-value={item.id}
         >
-          {values[item.id]}
+          {value}
         </span>
       </div>
     );
@@ -660,6 +752,28 @@ export function CharacterEditorPanel({
             </button>
           );
         })}
+      </div>
+    </div>
+  );
+
+  // ★★ Batch 845：左列第三段「身材塑形」—— **18 条**滑杆
+  //   ⟹ ⟹ 源站实测这一段**也没有标题行** ⟹ ⟹ 右栏**第一层就是滚动区**
+  //   ⟹ ⟹ 内容起点 ＝ 段顶 + 12（与第二段同）
+  //
+  // ★★ **坐标**（相对段顶；源站实测值）：
+  //   标签行 top = 12 + 74.8·i（高 22；名字 14px／22px／纯白）
+  //   轨道 = 标签 +36（240×12）｜ 数值 = 标签 +3（7×16，右端对齐）
+  //   圆心点 = 标签 +41（2×2，左端 = 24 + 7 + ratio·226 − 1）
+  const renderBody = () => (
+    <div className="ce-panel ce-panel--seg">
+      <div
+        className="ce-section"
+        // ★ 源站这一段的滚动区高 1418（★ 由块数与步进**算**出来 ⟹ ⟹ 不是手打常数）
+        style={{ minHeight: `${BODY_SCROLL_HEIGHT}px` }}
+      >
+        {BODY_SLIDERS.map((item, i) =>
+          renderSlider(item, i, BODY_SLIDERS_TOP + i * SLIDER_STEP),
+        )}
       </div>
     </div>
   );
@@ -933,12 +1047,16 @@ export function CharacterEditorPanel({
               //   ⟹ ⟹ 源站实测这一段：H3「纹身 & 疤痕」＋ 6 张 76×54 的贴纸卡
               //   ⟹ ⟹ 且这一段**没有标题行** ⟹ ⟹ 右栏**第一层就是滚动区**
               renderTraits()
+            ) : segment === "body" ? (
+              // ★★ Batch 845：左列第三段「身材塑形」**已实现**
+              //   ⟹ ⟹ 源站实测这一段：**18 条**滑杆（5 条量程 −100..100、6 条带「i」）
+              //   ⟹ ⟹ 且这一段**也没有标题行** ⟹ ⟹ 右栏**第一层就是滚动区**
+              renderBody()
             ) : (
-              // ★★ Batch 843：剩下的三段（身材塑形／服装造型／音色音调）
+              // ★★ Batch 843：剩下的两段（服装造型／音色音调）
               //   ⟹ ⟹ 源站实测**页签行不存在**，右栏是**那一段自己的内容**
-              //   ⟹ ⟹ 这里**不编造**：显示空态说明（★ 那三段**已实测**，raw 已入库）。
+              //   ⟹ ⟹ 这里**不编造**：显示空态说明（★ 那两段**已实测**，raw 已入库）。
               //   ★★ **逐段写**（★ 源站各段的结构**各不相同** ⟹ ⟹ 一句通用文案就是**假陈述**）：
-              //     · 身材塑形 ＝ 「丰胸」数值 ＋ 17 条滑杆（AI 增高／驼背／长腿…）
               //     · 服装造型 ＝ **标题行「造型」** ＋ H3「发型／发色／妆容／口红」＋ chip 网格
               //     · 音色音调 ＝ **标题行「音色库」** ＋ 20 条音色 ＋ 各自的播放按钮
               <div className="ce-panel">

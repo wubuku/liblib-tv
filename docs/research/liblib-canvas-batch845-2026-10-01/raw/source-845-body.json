@@ -1,0 +1,3509 @@
+{
+ "★是否点到编辑角色": true,
+ "★分段_是否点到": true,
+ "★分段_积分是否变化": false,
+ "★读数_第一条滑杆": "丰胸",
+ "★读数_是目标段": true,
+ "★读数": {
+  "右栏盒": {
+   "x": 1273,
+   "y": 231,
+   "w": 288,
+   "h": 602
+  },
+  "右栏第一层": {
+   "tag": "DIV",
+   "cls": "min-h-0 flex-1 overflow-y-auto px-6 pb-20 pt-3",
+   "box": {
+    "x": 1273,
+    "y": 231,
+    "w": 288,
+    "h": 602
+   },
+   "style": {
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "lineHeight": "24.8px",
+    "color": "rgb(255, 255, 255)",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "borderRadius": "0px",
+    "borderTopWidth": "0px",
+    "borderTopColor": "rgb(82, 82, 82)",
+    "paddingLeft": "24px",
+    "paddingTop": "12px",
+    "gap": "normal",
+    "display": "block",
+    "alignItems": "normal",
+    "justifyContent": "normal",
+    "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+    "appearance": "none"
+   },
+   "子节点数": 1,
+   "滚动高": 1418,
+   "客户端高": 602,
+   "内容盒": {
+    "tag": "DIV",
+    "cls": "space-y-5",
+    "box": {
+     "x": 1297,
+     "y": 243,
+     "w": 240,
+     "h": 1326
+    }
+   },
+   "头行": null
+  },
+  "滑杆": [
+   {
+    "aria": "丰胸",
+    "value": "0",
+    "min": "-100",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 243,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 243,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 243,
+     "w": 28,
+     "h": 22
+    },
+    "名字文字": "丰胸",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 246,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 273,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 279,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1416,
+     "y": 284,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "AI 增高",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 318,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 318,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 318,
+     "w": 45,
+     "h": 22
+    },
+    "名字文字": "AI 增高",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 321,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 348,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 354,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 359,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "驼背",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 393,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 393,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 393,
+     "w": 28,
+     "h": 22
+    },
+    "名字文字": "驼背",
+    "有i": true,
+    "i盒": {
+     "x": 1331,
+     "y": 397,
+     "w": 14,
+     "h": 14
+    },
+    "i样式": {
+     "fontSize": "10px",
+     "fontWeight": "500",
+     "lineHeight": "10px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.6)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值盒": {
+     "x": 1530,
+     "y": 396,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 423,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 429,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 434,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "长腿",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 467,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 467,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 467,
+     "w": 28,
+     "h": 22
+    },
+    "名字文字": "长腿",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 470,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 497,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 503,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 509,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "直角肩",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 542,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 542,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 542,
+     "w": 42,
+     "h": 22
+    },
+    "名字文字": "直角肩",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 545,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 572,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 578,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 584,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "小头",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 617,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 617,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 617,
+     "w": 28,
+     "h": 22
+    },
+    "名字文字": "小头",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 620,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 647,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 653,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 658,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "瘦身",
+    "value": "0",
+    "min": "-100",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 692,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 692,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 692,
+     "w": 28,
+     "h": 22
+    },
+    "名字文字": "瘦身",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 695,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 722,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 728,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1416,
+     "y": 733,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "瘦肚子",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 767,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 767,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 767,
+     "w": 42,
+     "h": 22
+    },
+    "名字文字": "瘦肚子",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 770,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 797,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 803,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 808,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "瘦手臂",
+    "value": "0",
+    "min": "-100",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 841,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 841,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 841,
+     "w": 42,
+     "h": 22
+    },
+    "名字文字": "瘦手臂",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 844,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 871,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 877,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1416,
+     "y": 883,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "美臀",
+    "value": "0",
+    "min": "-100",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 916,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 916,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 916,
+     "w": 28,
+     "h": 22
+    },
+    "名字文字": "美臀",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 919,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 946,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 952,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1416,
+     "y": 958,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "瘦腿",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 991,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 991,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 991,
+     "w": 28,
+     "h": 22
+    },
+    "名字文字": "瘦腿",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 994,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 1021,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 1027,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 1032,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "瘦脖子-左",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 1066,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 1066,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 1066,
+     "w": 62,
+     "h": 22
+    },
+    "名字文字": "瘦脖子-左",
+    "有i": true,
+    "i盒": {
+     "x": 1365,
+     "y": 1070,
+     "w": 14,
+     "h": 14
+    },
+    "i样式": {
+     "fontSize": "10px",
+     "fontWeight": "500",
+     "lineHeight": "10px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.6)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值盒": {
+     "x": 1530,
+     "y": 1069,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 1096,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 1102,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 1107,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "瘦脖子-右",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 1141,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 1141,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 1141,
+     "w": 62,
+     "h": 22
+    },
+    "名字文字": "瘦脖子-右",
+    "有i": true,
+    "i盒": {
+     "x": 1365,
+     "y": 1145,
+     "w": 14,
+     "h": 14
+    },
+    "i样式": {
+     "fontSize": "10px",
+     "fontWeight": "500",
+     "lineHeight": "10px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.6)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值盒": {
+     "x": 1530,
+     "y": 1144,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 1171,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 1177,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 1182,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "美腰",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 1215,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 1215,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 1215,
+     "w": 28,
+     "h": 22
+    },
+    "名字文字": "美腰",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 1218,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 1245,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 1251,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 1257,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "天鹅颈-左",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 1290,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 1290,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 1290,
+     "w": 62,
+     "h": 22
+    },
+    "名字文字": "天鹅颈-左",
+    "有i": true,
+    "i盒": {
+     "x": 1365,
+     "y": 1294,
+     "w": 14,
+     "h": 14
+    },
+    "i样式": {
+     "fontSize": "10px",
+     "fontWeight": "500",
+     "lineHeight": "10px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.6)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值盒": {
+     "x": 1530,
+     "y": 1293,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 1320,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 1326,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 1332,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "天鹅颈-右",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 1365,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 1365,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 1365,
+     "w": 62,
+     "h": 22
+    },
+    "名字文字": "天鹅颈-右",
+    "有i": true,
+    "i盒": {
+     "x": 1365,
+     "y": 1369,
+     "w": 14,
+     "h": 14
+    },
+    "i样式": {
+     "fontSize": "10px",
+     "fontWeight": "500",
+     "lineHeight": "10px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.6)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值盒": {
+     "x": 1530,
+     "y": 1368,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 1395,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 1401,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 1406,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "肩膀宽度",
+    "value": "0",
+    "min": "-100",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 1440,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 1440,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 1440,
+     "w": 56,
+     "h": 22
+    },
+    "名字文字": "肩膀宽度",
+    "有i": false,
+    "i盒": null,
+    "i样式": null,
+    "数值盒": {
+     "x": 1530,
+     "y": 1443,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 1470,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 1476,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1416,
+     "y": 1481,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   },
+   {
+    "aria": "全身美型",
+    "value": "0",
+    "min": "0",
+    "max": "100",
+    "step": "1",
+    "标签盒": {
+     "x": 1297,
+     "y": 1515,
+     "w": 240,
+     "h": 55
+    },
+    "标签行盒": {
+     "x": 1297,
+     "y": 1515,
+     "w": 240,
+     "h": 22
+    },
+    "名字盒": {
+     "x": 1297,
+     "y": 1515,
+     "w": 56,
+     "h": 22
+    },
+    "名字文字": "全身美型",
+    "有i": true,
+    "i盒": {
+     "x": 1359,
+     "y": 1519,
+     "w": 14,
+     "h": 14
+    },
+    "i样式": {
+     "fontSize": "10px",
+     "fontWeight": "500",
+     "lineHeight": "10px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.6)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值盒": {
+     "x": 1530,
+     "y": 1518,
+     "w": 7,
+     "h": 16
+    },
+    "数值文字": "0",
+    "轨道盒": {
+     "x": 1297,
+     "y": 1545,
+     "w": 240,
+     "h": 25
+    },
+    "输入盒": {
+     "x": 1297,
+     "y": 1551,
+     "w": 240,
+     "h": 12
+    },
+    "缩略点盒": {
+     "x": 1303,
+     "y": 1556,
+     "w": 2,
+     "h": 2
+    },
+    "名字样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "数值样式": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, \"Liberation Mono\", \"Courier New\", monospace",
+     "appearance": "none"
+    },
+    "输入样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "display": "inline-block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    },
+    "标签行样式": {
+     "fontSize": "14px",
+     "fontWeight": "400",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "12px",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "space-between",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "appearance": "none"
+    }
+   }
+  ],
+  "右栏可见子树": [
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "丰胸0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 243,
+     "w": 240,
+     "h": 55
+    },
+    "cls": "block w-full"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "丰胸0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 243,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "mb-2 flex items-center justify-between gap-3 text-sm leading-[22px]"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "丰胸",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 243,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "flex min-w-0 items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "丰胸",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 243,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "0",
+    "aria": "",
+    "box": {
+     "x": 1530,
+     "y": 246,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 273,
+     "w": 240,
+     "h": 25
+    },
+    "cls": "Ias-7a_studioRangeWrap"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "aria": "丰胸",
+    "box": {
+     "x": 1297,
+     "y": 279,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1416,
+     "y": 284,
+     "w": 2,
+     "h": 2
+    },
+    "cls": "Ias-7a_studioRangeThumbDot"
+   },
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "AI 增高0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 318,
+     "w": 240,
+     "h": 55
+    },
+    "cls": "block w-full"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "AI 增高0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 318,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "mb-2 flex items-center justify-between gap-3 text-sm leading-[22px]"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "AI 增高",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 318,
+     "w": 45,
+     "h": 22
+    },
+    "cls": "flex min-w-0 items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "AI 增高",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 318,
+     "w": 45,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "0",
+    "aria": "",
+    "box": {
+     "x": 1530,
+     "y": 321,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 348,
+     "w": 240,
+     "h": 25
+    },
+    "cls": "Ias-7a_studioRangeWrap"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "aria": "AI 增高",
+    "box": {
+     "x": 1297,
+     "y": 354,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1303,
+     "y": 359,
+     "w": 2,
+     "h": 2
+    },
+    "cls": "Ias-7a_studioRangeThumbDot"
+   },
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "驼背i0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 393,
+     "w": 240,
+     "h": 55
+    },
+    "cls": "block w-full"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "驼背i0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 393,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "mb-2 flex items-center justify-between gap-3 text-sm leading-[22px]"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "驼背i",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 393,
+     "w": 48,
+     "h": 22
+    },
+    "cls": "flex min-w-0 items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "驼背",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 393,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "role": "img",
+    "text": "i",
+    "aria": "该调整不支持预览，需要生成后生效",
+    "box": {
+     "x": 1331,
+     "y": 397,
+     "w": 14,
+     "h": 14
+    },
+    "cls": "inline-flex size-3.5 shrink-0 cursor-default items-center justify-center rounded-full border border-current text-[10px] font-medium leading-none text-"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "0",
+    "aria": "",
+    "box": {
+     "x": 1530,
+     "y": 396,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 423,
+     "w": 240,
+     "h": 25
+    },
+    "cls": "Ias-7a_studioRangeWrap"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "aria": "驼背",
+    "box": {
+     "x": 1297,
+     "y": 429,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1303,
+     "y": 434,
+     "w": 2,
+     "h": 2
+    },
+    "cls": "Ias-7a_studioRangeThumbDot"
+   },
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "长腿0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 467,
+     "w": 240,
+     "h": 55
+    },
+    "cls": "block w-full"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "长腿0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 467,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "mb-2 flex items-center justify-between gap-3 text-sm leading-[22px]"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "长腿",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 467,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "flex min-w-0 items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "长腿",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 467,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "0",
+    "aria": "",
+    "box": {
+     "x": 1530,
+     "y": 470,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 497,
+     "w": 240,
+     "h": 25
+    },
+    "cls": "Ias-7a_studioRangeWrap"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "aria": "长腿",
+    "box": {
+     "x": 1297,
+     "y": 503,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1303,
+     "y": 509,
+     "w": 2,
+     "h": 2
+    },
+    "cls": "Ias-7a_studioRangeThumbDot"
+   },
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "直角肩0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 542,
+     "w": 240,
+     "h": 55
+    },
+    "cls": "block w-full"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "直角肩0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 542,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "mb-2 flex items-center justify-between gap-3 text-sm leading-[22px]"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "直角肩",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 542,
+     "w": 42,
+     "h": 22
+    },
+    "cls": "flex min-w-0 items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "直角肩",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 542,
+     "w": 42,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "0",
+    "aria": "",
+    "box": {
+     "x": 1530,
+     "y": 545,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 572,
+     "w": 240,
+     "h": 25
+    },
+    "cls": "Ias-7a_studioRangeWrap"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "aria": "直角肩",
+    "box": {
+     "x": 1297,
+     "y": 578,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1303,
+     "y": 584,
+     "w": 2,
+     "h": 2
+    },
+    "cls": "Ias-7a_studioRangeThumbDot"
+   },
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "小头0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 617,
+     "w": 240,
+     "h": 55
+    },
+    "cls": "block w-full"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "小头0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 617,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "mb-2 flex items-center justify-between gap-3 text-sm leading-[22px]"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "小头",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 617,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "flex min-w-0 items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "小头",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 617,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "0",
+    "aria": "",
+    "box": {
+     "x": 1530,
+     "y": 620,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 647,
+     "w": 240,
+     "h": 25
+    },
+    "cls": "Ias-7a_studioRangeWrap"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "aria": "小头",
+    "box": {
+     "x": 1297,
+     "y": 653,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1303,
+     "y": 658,
+     "w": 2,
+     "h": 2
+    },
+    "cls": "Ias-7a_studioRangeThumbDot"
+   },
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "瘦身0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 692,
+     "w": 240,
+     "h": 55
+    },
+    "cls": "block w-full"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "瘦身0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 692,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "mb-2 flex items-center justify-between gap-3 text-sm leading-[22px]"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "瘦身",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 692,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "flex min-w-0 items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "瘦身",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 692,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "0",
+    "aria": "",
+    "box": {
+     "x": 1530,
+     "y": 695,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 722,
+     "w": 240,
+     "h": 25
+    },
+    "cls": "Ias-7a_studioRangeWrap"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "aria": "瘦身",
+    "box": {
+     "x": 1297,
+     "y": 728,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1416,
+     "y": 733,
+     "w": 2,
+     "h": 2
+    },
+    "cls": "Ias-7a_studioRangeThumbDot"
+   },
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "瘦肚子0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 767,
+     "w": 240,
+     "h": 55
+    },
+    "cls": "block w-full"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "瘦肚子0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 767,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "mb-2 flex items-center justify-between gap-3 text-sm leading-[22px]"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "瘦肚子",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 767,
+     "w": 42,
+     "h": 22
+    },
+    "cls": "flex min-w-0 items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "瘦肚子",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 767,
+     "w": 42,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "0",
+    "aria": "",
+    "box": {
+     "x": 1530,
+     "y": 770,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 797,
+     "w": 240,
+     "h": 25
+    },
+    "cls": "Ias-7a_studioRangeWrap"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "aria": "瘦肚子",
+    "box": {
+     "x": 1297,
+     "y": 803,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1303,
+     "y": 808,
+     "w": 2,
+     "h": 2
+    },
+    "cls": "Ias-7a_studioRangeThumbDot"
+   },
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "瘦手臂0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 841,
+     "w": 240,
+     "h": 55
+    },
+    "cls": "block w-full"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "瘦手臂0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 841,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "mb-2 flex items-center justify-between gap-3 text-sm leading-[22px]"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "瘦手臂",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 841,
+     "w": 42,
+     "h": 22
+    },
+    "cls": "flex min-w-0 items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "瘦手臂",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 841,
+     "w": 42,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "0",
+    "aria": "",
+    "box": {
+     "x": 1530,
+     "y": 844,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 871,
+     "w": 240,
+     "h": 25
+    },
+    "cls": "Ias-7a_studioRangeWrap"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "aria": "瘦手臂",
+    "box": {
+     "x": 1297,
+     "y": 877,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1416,
+     "y": 883,
+     "w": 2,
+     "h": 2
+    },
+    "cls": "Ias-7a_studioRangeThumbDot"
+   },
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "美臀0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 916,
+     "w": 240,
+     "h": 55
+    },
+    "cls": "block w-full"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "美臀0",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 916,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "mb-2 flex items-center justify-between gap-3 text-sm leading-[22px]"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "美臀",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 916,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "flex min-w-0 items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "美臀",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 916,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "0",
+    "aria": "",
+    "box": {
+     "x": 1530,
+     "y": 919,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 946,
+     "w": 240,
+     "h": 25
+    },
+    "cls": "Ias-7a_studioRangeWrap"
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "aria": "美臀",
+    "box": {
+     "x": 1297,
+     "y": 952,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   }
+  ],
+  "积分": [
+   {
+    "t": "44",
+    "x": 547,
+    "y": 868
+   }
+  ]
+ },
+ "★读完_积分是否变化": false
+}
