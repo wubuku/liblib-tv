@@ -1,0 +1,45 @@
+// ── 标题行页签（源站实测：宽度 70／24／24，间隙 20）──
+// ★「音色库」是**选中态**：白 1px 底边框 ＋ 文字 #fff
+// ★ 另两枚：透明底边框 ＋ 文字白 60%（源站把文字盒裁成 0 宽 ⟹ ⟹ 看不见）
+const VOICE_TABS: { id: string; label: string; w: number; icon: typeof Music }[] = [
+  { id: "library", label: "音色库", w: 70, icon: Music },
+  { id: "mine", label: "我的音色", w: 24, icon: User },
+  { id: "ai", label: "AI 生成", w: 24, icon: Sparkles },
+];
+
+// ── 工具行两枚按钮（源站实测 32×32，间隙 2）──
+// ★「筛选音色」那枚的源站 cls 里带 `relative`（可能挂角标）⟹ ⟹ 未复刻
+//   搜索 32×32，图标 16×16 @(1305,287)
+//   搜索 32×32，图标 16×16 @(1339,287)
+
+// ── 20 条音色（名字 ＋ 副标）──
+// ★ 逐条出自 raw 的「名字」「副标」字段 ⟹ ⟹ 不是手打
+const VOICES: { name: string; sub: string }[] = [
+  { name: "青涩青年音色", sub: "中文(普通话) · 男" },
+  { name: "精英青年音色", sub: "中文(普通话) · 男" },
+  { name: "霸道青年音色", sub: "中文(普通话) · 男" },
+  { name: "青年大学生音色", sub: "中文(普通话) · 男" },
+  { name: "少女音色", sub: "中文(普通话) · 女" },
+  { name: "御姐音色", sub: "中文(普通话) · 女" },
+  { name: "成熟女性音色", sub: "中文(普通话) · 女" },
+  { name: "甜美女性音色", sub: "中文(普通话) · 女" },
+  { name: "青涩青年音色-beta", sub: "中文(普通话) · 男" },
+  { name: "精英青年音色-beta", sub: "中文(普通话) · 男" },
+  { name: "霸道青年音色-beta", sub: "中文(普通话) · 男" },
+  { name: "青年大学生音色-beta", sub: "中文(普通话) · 男" },
+  { name: "少女音色-beta", sub: "中文(普通话) · 女" },
+  { name: "御姐音色-beta", sub: "中文(普通话) · 女" },
+  { name: "成熟女性音色-beta", sub: "中文(普通话) · 女" },
+  { name: "甜美女性音色-beta", sub: "中文(普通话) · 女" },
+  { name: "聪明男童", sub: "中文(普通话) · 男" },
+  { name: "可爱男童", sub: "中文(普通话) · 男" },
+  { name: "萌萌女童", sub: "中文(普通话) · 女" },
+  { name: "卡通猪小琪", sub: "中文(普通话) · Character" },
+];
+
+// ── 由 raw **算**出来的量（★ 不是手打常数）──
+// ★ 音色卡高 48，步进 56 ⟹ ⟹ 间隙 8（space-y-2）
+// ★ 滚动区高 1192 ＝ 20×48 ＋ 19×8 ＋ 80(pb-20) ⟹ ⟹ 与 raw 的 scrollHeight 一致
+const VOICE_CARD_HEIGHT = 48;
+const VOICE_CARD_GAP = 8;
+const VOICE_SCROLL_HEIGHT = 1192;

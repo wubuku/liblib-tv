@@ -155,11 +155,14 @@ def main():
                 pg, '[data-character-editor-makeup-name="琥珀"]')
             out["C_点卡后"] = pg.evaluate(READ)
 
-            # ★ 点左列**第五段**（音色音调）⟹ **页签行应当消失** ＋ 出现空态说明
-            #   （★ 846 起第四段已实现 ⟹ ⟹ 「仍未实现的那一段」又挪了一位）
-            out["★点到_第五段"] = click_box(pg,
-                                           '[data-character-editor-segment="voice"]')
-            out["D_第五段"] = pg.evaluate(READ)
+            # ★★ **batch 847 起**：左列五段**全部实现** ⟹ ⟹ 「仍未实现的那一段」**没有靶子了**
+            #   ⟹ ⟹ 这条断言**换靶**：盯**第四段里那一页内容未测量的子页签**（「AI 生成」）
+            out["★点到_第四段"] = click_box(pg,
+                                           '[data-character-editor-segment="outfit"]')
+            # ★ 再点第四段的「AI 生成」子页签（★ 那一页的控件**源站未实测** ⟹ ⟹ 应显示如实说明）
+            out["★点到_服装AI生成"] = click_box(pg,
+                                             '[data-character-editor-outfit-tab="ai"]')
+            out["D_第四段_AI生成"] = pg.evaluate(READ)
 
             # ★ 点回「脸部精修」⟹ 页签行应当回来
             out["★点到_脸部精修"] = click_box(pg,

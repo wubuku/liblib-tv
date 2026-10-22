@@ -329,7 +329,7 @@ def main() -> int:
     # ★★ **batch 846 起**：左列**第五段**（音色音调）的读数
     #   （★ 845 起第三段「身材塑形」已实现 ⟹ ⟹ 未实现的又挪了一位）
     #   ⟹ ⟹ 当下**仍未实现**的那一块（★ 妆造页在 843 已实现 ⟹ ⟹ 六个页签全部实现了）
-    after_seg5 = rt.get("F2_第五段") or {}
+    after_seg5 = rt.get("F2_第五段_我的音色") or {}
     after_seg_back = rt.get("F3_切回脸部精修") or {}
     after_rename = rt.get("G_改名后") or {}
     after_save = rt.get("G2_点保存后") or {}
@@ -476,7 +476,7 @@ def main() -> int:
     sw_before = (opened.get("开关") or {}).get("checked")
     sw_after = (after_switch.get("开关") or {}).get("checked")
     segs_before = opened.get("五段") or []
-    # ★★ **batch 846 起**：分段选中态转移的「点后」读数取自 **F2_第五段**
+    # ★★ **batch 847 起**：分段选中态转移的「点后」读数取自 **F2_第五段_我的音色**
     #   （★ 那一步是**从 face 段真的点 outfit** ⟹ ⟹ 是**真实的转移**，不是原地 no-op）
     segs_after = (after_seg5.get("五段") or []) or (after_back.get("五段") or [])
     tabs_before = opened.get("页签") or []
@@ -617,6 +617,11 @@ def main() -> int:
     seg5_tabs = len(after_seg5.get("页签") or [])
     seg5_sliders = len(after_seg5.get("滑杆轨道") or [])
     seg_back_tabs = len(after_seg_back.get("页签") or [])
+    # ★★ **batch 847 起换靶**：★ 现在盯的是**页面级**的未实测入口
+    #   ⟹ ⟹ 那一页的内容**根本就没测过** ⟹ ⟹ 说明**必须**写「未实测」
+    # ★★ ★ 提成**局部变量** ⟹ ⟹ 同一个串**只写一遍**（★ 写两遍迟早写歪）
+    s7_says_unmeasured = bool(seg5_empty and "未实测" in seg5_empty)
+    s7_says_measured = bool(seg5_empty and "已实测" in seg5_empty)
     s7 = {
         "★切到妆造后_有滑杆吗": len(after_tab.get("滑杆轨道") or []),
         "★切到妆造后_有开关吗": bool(after_tab.get("开关")),
@@ -624,7 +629,11 @@ def main() -> int:
         "★第五段_页签数": seg5_tabs,
         "★第五段_滑杆数": seg5_sliders,
         "★第五段_空态说明": seg5_empty,
-        "★第五段_空态说明里写了「已实测」": bool(seg5_empty and "已实测" in seg5_empty),
+        # ★★ **batch 847 起换靶**：★ 现在盯的是**页面级**的未实测入口
+        #   ⟹ ⟹ 那一页的内容**根本就没测过** ⟹ ⟹ 说明**必须**写「未实测」
+        #   ⟹ ⟹ （段级那条写「已实测」是因为**整段**测过、只是没实现 ⟹ ⟹ 语义不同）
+        "★第五段_空态说明里写了「未实测」": s7_says_unmeasured,
+        "★第五段_空态说明里写了「已实测」": s7_says_measured,
         "★切回脸部精修_页签数": seg_back_tabs,
         "★切回皮肤后_滑杆数": len(after_back.get("滑杆轨道") or []),
         "★切回皮肤后_空态": skin_back_empty,
@@ -633,9 +642,10 @@ def main() -> int:
             "源站那五页签没有控件" not in readme and "源站这五页签没有控件" not in readme),
     }
     checks.append((
-        "S7 ★★★ **仍未实现的那一块显示空态说明、不编造控件**：★ **batch 846 起盯"
-        "「左列第五段（音色音调）」**（★ 第四段在 846 已实现 ⟹ ⟹ 未实现的只剩一段）"
-        "⟹ 点第五段 ⟹ **页签数 %d**（★ 源站实测：页签行**只在「脸部精修」段存在**）＋ 滑杆 %d 条 "
+        "S7 ★★★ **未实测的那一页显示空态说明、不编造控件**：★ **batch 847 起换靶**——"
+        "左列五段**全部实现** ⟹ ⟹ 「仍未实现的那一段」**没有靶子了** ⟹ ⟹ 改盯"
+        "**第五段里那一页内容未实测的页签**（「我的音色」）"
+        "⟹ 点第五段 ⟹ 再点「我的音色」⟹ **页签数 %d**（★ 源站实测：页签行**只在「脸部精修」段存在**）＋ 滑杆 %d 条 "
         "⟹ 出现空态说明「%s」；切回「脸部精修」⟹ **页签数 %d**（页签行回来了）"
         "⟹ 切回「皮肤」⟹ 滑杆 %d 条 ⟹ 空态消失；"
         "★ 且 README **不**把它写成「源站那五页签没有控件」（★ 那是**未证实的否定性结论**"
@@ -644,7 +654,8 @@ def main() -> int:
            (seg5_empty or "")[:30].replace("\n", " "),
            s7["★切回脸部精修_页签数"], s7["★切回皮肤后_滑杆数"]),
         (s7["★第五段_页签数"] == 0 and s7["★第五段_滑杆数"] == 0
-         and bool(seg5_empty) and s7["★第五段_空态说明里写了「已实测」"]
+         and bool(seg5_empty) and s7_says_unmeasured
+         and not s7["★第五段_空态说明里写了「已实测」"]
          and s7["★切回脸部精修_页签数"] == 6
          and s7["★切回皮肤后_滑杆数"] == 6
          and not skin_back_empty

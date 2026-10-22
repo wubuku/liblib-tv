@@ -3,7 +3,7 @@
  "title": "「眉眼」页的分块布局（H3 ＋ 30 条滑杆 ＋ 眼神光 ＋ 11 张眼型卡）逐像素对齐源站",
  "verdict": "7/7",
  "preflight": {
-  "等了几秒": 0.2,
+  "等了几秒": 0.7,
   "标记": "眼神光"
  },
  "source": {
@@ -2807,6 +2807,62 @@
     "w": 1198,
     "h": 758
    },
+   "页签": [
+    {
+     "id": "skin",
+     "aria": "皮肤",
+     "selected": false,
+     "x": 936,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "brow-eye",
+     "aria": "眉眼",
+     "selected": true,
+     "x": 973,
+     "y": 70,
+     "w": 56,
+     "h": 39
+    },
+    {
+     "id": "nose",
+     "aria": "鼻子",
+     "selected": false,
+     "x": 1042,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "lips",
+     "aria": "嘴唇",
+     "selected": false,
+     "x": 1078,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "face",
+     "aria": "脸部",
+     "selected": false,
+     "x": 1115,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "makeup",
+     "aria": "妆造",
+     "selected": false,
+     "x": 1152,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    }
+   ],
    "标题": [
     {
      "tag": "H3",
@@ -4155,10 +4211,10 @@
      "gap": "normal"
     },
     "卡片媒体区": {
-     "fontSize": "16px",
+     "fontSize": "11px",
      "fontWeight": "400",
-     "lineHeight": "24px",
-     "color": "rgb(237, 237, 237)",
+     "lineHeight": "16px",
+     "color": "rgb(255, 255, 255)",
      "backgroundColor": "rgba(255, 255, 255, 0.06)",
      "borderRadius": "16px",
      "borderTopWidth": "1px",
@@ -4206,6 +4262,62 @@
     "w": 1198,
     "h": 758
    },
+   "页签": [
+    {
+     "id": "skin",
+     "aria": "皮肤",
+     "selected": false,
+     "x": 936,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "brow-eye",
+     "aria": "眉眼",
+     "selected": true,
+     "x": 973,
+     "y": 70,
+     "w": 56,
+     "h": 39
+    },
+    {
+     "id": "nose",
+     "aria": "鼻子",
+     "selected": false,
+     "x": 1042,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "lips",
+     "aria": "嘴唇",
+     "selected": false,
+     "x": 1078,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "face",
+     "aria": "脸部",
+     "selected": false,
+     "x": 1115,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "makeup",
+     "aria": "妆造",
+     "selected": false,
+     "x": 1152,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    }
+   ],
    "标题": [
     {
      "tag": "H3",
@@ -5554,10 +5666,10 @@
      "gap": "normal"
     },
     "卡片媒体区": {
-     "fontSize": "16px",
+     "fontSize": "11px",
      "fontWeight": "400",
-     "lineHeight": "24px",
-     "color": "rgb(237, 237, 237)",
+     "lineHeight": "16px",
+     "color": "rgb(255, 255, 255)",
      "backgroundColor": "rgba(255, 255, 255, 0.06)",
      "borderRadius": "16px",
      "borderTopWidth": "1px",
@@ -5607,6 +5719,62 @@
     "w": 1198,
     "h": 758
    },
+   "页签": [
+    {
+     "id": "skin",
+     "aria": "皮肤",
+     "selected": false,
+     "x": 936,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "brow-eye",
+     "aria": "眉眼",
+     "selected": true,
+     "x": 973,
+     "y": 70,
+     "w": 56,
+     "h": 39
+    },
+    {
+     "id": "nose",
+     "aria": "鼻子",
+     "selected": false,
+     "x": 1042,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "lips",
+     "aria": "嘴唇",
+     "selected": false,
+     "x": 1078,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "face",
+     "aria": "脸部",
+     "selected": false,
+     "x": 1115,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "makeup",
+     "aria": "妆造",
+     "selected": false,
+     "x": 1152,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    }
+   ],
    "标题": [
     {
      "tag": "H3",
@@ -6955,10 +7123,10 @@
      "gap": "normal"
     },
     "卡片媒体区": {
-     "fontSize": "16px",
+     "fontSize": "11px",
      "fontWeight": "400",
-     "lineHeight": "24px",
-     "color": "rgb(237, 237, 237)",
+     "lineHeight": "16px",
+     "color": "rgb(255, 255, 255)",
      "backgroundColor": "rgba(255, 255, 255, 0.06)",
      "borderRadius": "16px",
      "borderTopWidth": "1px",
@@ -7001,18 +7169,152 @@
     "w": 1198,
     "h": 758
    },
-   "标题": [],
+   "页签": [
+    {
+     "id": "skin",
+     "aria": "皮肤",
+     "selected": false,
+     "x": 936,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "brow-eye",
+     "aria": "眉眼",
+     "selected": false,
+     "x": 973,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "nose",
+     "aria": "鼻子",
+     "selected": false,
+     "x": 1010,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "lips",
+     "aria": "嘴唇",
+     "selected": false,
+     "x": 1046,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "face",
+     "aria": "脸部",
+     "selected": false,
+     "x": 1083,
+     "y": 70,
+     "w": 24,
+     "h": 39
+    },
+    {
+     "id": "makeup",
+     "aria": "妆造",
+     "selected": true,
+     "x": 1120,
+     "y": 70,
+     "w": 56,
+     "h": 39
+    }
+   ],
+   "标题": [
+    {
+     "tag": "H4",
+     "text": "妆容素材i",
+     "box": {
+      "x": 936,
+      "y": 28,
+      "w": 240,
+      "h": 22
+     },
+     "i盒": {
+      "x": 998,
+      "y": 32,
+      "w": 14,
+      "h": 14
+     }
+    }
+   ],
    "滑杆": [],
    "卡片": [],
-   "空态": "「妆造」这一页签的控件 **已实测**（源站 raw 入库在 batch 841／842），但它是 **11 个分类 chip ＋ 13 张妆容预设卡**（76×96 的卡片，带缩略图）⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。",
+   "空态": null,
    "样式": {
     "H3": null,
-    "H4": null,
-    "i标记": null,
-    "卡片媒体区": null,
-    "卡片名字": null,
-    "选中卡片名字": null
+    "H4": {
+     "fontSize": "14px",
+     "fontWeight": "500",
+     "lineHeight": "22px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "gap": "6px"
+    },
+    "i标记": {
+     "fontSize": "10px",
+     "fontWeight": "500",
+     "lineHeight": "10px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.6)",
+     "paddingLeft": "0px",
+     "gap": "normal"
+    },
+    "卡片媒体区": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(255, 255, 255, 0.06)",
+     "borderRadius": "16px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgb(255, 255, 255)",
+     "paddingLeft": "0px",
+     "gap": "normal"
+    },
+    "卡片名字": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "gap": "normal"
+    },
+    "选中卡片名字": {
+     "fontSize": "11px",
+     "fontWeight": "400",
+     "lineHeight": "16px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(0, 0, 0, 0)",
+     "borderRadius": "0px",
+     "borderTopWidth": "0px",
+     "borderTopColor": "rgb(82, 82, 82)",
+     "paddingLeft": "0px",
+     "gap": "normal"
+    }
    }
+  },
+  "★点到_第四段": {
+   "x": 373,
+   "y": 485,
+   "w": 240,
+   "h": 44
   }
  },
  "checks": [
@@ -7029,7 +7331,7 @@
   {
    "label": "S3 ★★★ **外观**也对齐：H3（13px/500/20px/白 30%）／H4（14px/500/22px/白）／「i」标记是**描边圆**（1px 边框、**无填充**、10px）／卡片媒体区（radius 16、底色白 6%）／名字（11px/16px）⟹ ★ 期望值取自**本批那趟源站 raw 的计算样式**",
    "pass": true,
-   "detail": "{\"★核了几项\": 16, \"★有几项不一致\": 0, \"★不一致明细\": [], \"★clone样式\": {\"H3\": {\"fontSize\": \"13px\", \"fontWeight\": \"500\", \"lineHeight\": \"20px\", \"color\": \"rgba(255, 255, 255, 0.3)\", \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderRadius\": \"0px\", \"borderTopWidth\": \"0px\", \"borderTopColor\": \"rgb(82, 82, 82)\", \"paddingLeft\": \"0px\", \"gap\": \"normal\"}, \"H4\": {\"fontSize\": \"14px\", \"fontWeight\": \"500\", \"lineHeight\": \"22px\", \"color\": \"rgb(255, 255, 255)\", \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderRadius\": \"0px\", \"borderTopWidth\": \"0px\", \"borderTopColor\": \"rgb(82, 82, 82)\", \"paddingLeft\": \"0px\", \"gap\": \"6px\"}, \"i标记\": {\"fontSize\": \"10px\", \"fontWeight\": \"500\", \"lineHeight\": \"10px\", \"color\": \"rgba(255, 255, 255, 0.6)\", \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderRadius\": \"9999px\", \"borderTopWidth\": \"1px\", \"borderTopColor\": \"rgba(255, 255, 255, 0.6)\", \"paddingLeft\": \"0px\", \"gap\": \"normal\"}, \"卡片媒体区\": {\"fontSize\": \"16px\", \"fontWeight\": \"400\", \"lineHeight\": \"24px\", \"color\": \"rgb(237, 237, 237)\", \"backgroundColor\": \"rgba(255, 255, 255, 0.06)\", \"borderRadius\": \"16px\", \"borderTopWidth\": \"1px\", \"borderTopColor\": \"rgb(255, 255, 255)\", \"paddingLeft\": \"0px\", \"gap\": \"normal\"}, \"卡片名字\": {\"fontSize\": \"11px\", \"fontWeight\": \"400\", \"lineHeight\": \"16px\", \"color\": \"rgb(255, 255, 255)\", \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderRadius\": \"0px\", \"borderTopWidth\": \"0px\", \"borderTopColor\": \"rgb(82, 82, 82)\", \"paddingLeft\": \"0px\", \"gap\": \"normal\"}, \"选中卡片名字\": {\"fontSize\": \"11px\", \"fontWeight\": \"400\", \"lineHeight\": \"16px\", \"color\": \"rgb(255, 255, 255)\", \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderRadius\": \"0px\", \"borderTopWidth\": \"0px\", \"borderTopColor\": \"rgb(82, 82, 82)\", \"paddingLeft\": \"0px\", \"gap\": \"normal\"}}}"
+   "detail": "{\"★核了几项\": 16, \"★有几项不一致\": 0, \"★不一致明细\": [], \"★clone样式\": {\"H3\": {\"fontSize\": \"13px\", \"fontWeight\": \"500\", \"lineHeight\": \"20px\", \"color\": \"rgba(255, 255, 255, 0.3)\", \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderRadius\": \"0px\", \"borderTopWidth\": \"0px\", \"borderTopColor\": \"rgb(82, 82, 82)\", \"paddingLeft\": \"0px\", \"gap\": \"normal\"}, \"H4\": {\"fontSize\": \"14px\", \"fontWeight\": \"500\", \"lineHeight\": \"22px\", \"color\": \"rgb(255, 255, 255)\", \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderRadius\": \"0px\", \"borderTopWidth\": \"0px\", \"borderTopColor\": \"rgb(82, 82, 82)\", \"paddingLeft\": \"0px\", \"gap\": \"6px\"}, \"i标记\": {\"fontSize\": \"10px\", \"fontWeight\": \"500\", \"lineHeight\": \"10px\", \"color\": \"rgba(255, 255, 255, 0.6)\", \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderRadius\": \"9999px\", \"borderTopWidth\": \"1px\", \"borderTopColor\": \"rgba(255, 255, 255, 0.6)\", \"paddingLeft\": \"0px\", \"gap\": \"normal\"}, \"卡片媒体区\": {\"fontSize\": \"11px\", \"fontWeight\": \"400\", \"lineHeight\": \"16px\", \"color\": \"rgb(255, 255, 255)\", \"backgroundColor\": \"rgba(255, 255, 255, 0.06)\", \"borderRadius\": \"16px\", \"borderTopWidth\": \"1px\", \"borderTopColor\": \"rgb(255, 255, 255)\", \"paddingLeft\": \"0px\", \"gap\": \"normal\"}, \"卡片名字\": {\"fontSize\": \"11px\", \"fontWeight\": \"400\", \"lineHeight\": \"16px\", \"color\": \"rgb(255, 255, 255)\", \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderRadius\": \"0px\", \"borderTopWidth\": \"0px\", \"borderTopColor\": \"rgb(82, 82, 82)\", \"paddingLeft\": \"0px\", \"gap\": \"normal\"}, \"选中卡片名字\": {\"fontSize\": \"11px\", \"fontWeight\": \"400\", \"lineHeight\": \"16px\", \"color\": \"rgb(255, 255, 255)\", \"backgroundColor\": \"rgba(0, 0, 0, 0)\", \"borderRadius\": \"0px\", \"borderTopWidth\": \"0px\", \"borderTopColor\": \"rgb(82, 82, 82)\", \"paddingLeft\": \"0px\", \"gap\": \"normal\"}}}"
   },
   {
    "label": "S4 ★★★ **卡片的选中态是真交互**：点前选中「['无']」⟹ 点「清澈」⟹ 变成「['清澈']」；★ ★ **必须先把右栏滚下去再点**（卡片在视口之外 ⟹ ⟹ 否则点的是空气 ⟹ ⟹ 「点了没反应」会被误读成「交互没生效」）",
@@ -7042,9 +7344,9 @@
    "detail": "{\"★滑杆_控件value\": \"61\", \"★滑杆_渲染数字\": \"61\", \"★滑杆_渲染数字等于控件value\": true, \"★滑杆_确实变了\": true, \"★滑杆_总条数\": 30}"
   },
   {
-   "label": "S6 ★★★ **妆造页仍是空态说明**（本批不实现）⟹ 0 滑杆、0 卡片；★ 且文案**不再**说「未实测」—— ★ 那页**已经实测过**了（raw 已入库）⟹ ⟹ 继续写「未实测」就是**假陈述** ⟹ ⟹ 改成「已实测，但属后续批次」",
+   "label": "S6 ★★★ **未实测的那一页仍是空态说明**（★ batch 847 起换靶：左列五段**全部实现**⟹ ⟹ 「仍未实现的那一段」**没有靶子了** ⟹ ⟹ 改盯**第四段里那一页内容未实测的子页签**（「服装」））⟹ **页签数 0**（★ 源站实测：页签行**只在「脸部精修」段存在**）＋ 滑杆 0 条 ＋ 卡片 0 张；★ 且文案**要**写「未实测」—— ★ 那一页的控件**根本就没测过** ⟹ ⟹ 写「已实测」才是**假陈述**",
    "pass": true,
-   "detail": "{\"★妆造页_滑杆数\": 0, \"★妆造页_卡片数\": 0, \"★妆造页_空态说明\": \"「妆造」这一页签的控件 **已实测**（源站 raw 入库在 batch 841／842），但它是 **11 个分类 chip ＋ 13 张妆容预设卡**（76×96 的卡片，带缩略图）⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。\", \"★妆造页_空态说明里还写着「未实测」\": false, \"★妆造页_空态说明里写了「已实测」\": true, \"★源站那趟_积分全程未变\": true}"
+   "detail": "{\"★第五段_页签数\": 0, \"★第五段_滑杆数\": 0, \"★第五段_卡片数\": 0, \"★第五段_空态说明\": \"「服装」这一页的控件 **未实测**（源站那趟只点了分段 ⟹ ⟹ 没点开这两枚子页签）⟹ ⟹ 这里**不编造**控件，只如实说明。\", \"★第五段_空态说明里写了「未实测」\": true, \"★第五段_空态说明里写了「已实测」\": false, \"★源站那趟_积分全程未变\": true}"
   },
   {
    "label": "S7 ★★ **如实标注**：README 必须写明——★ 缩略图**没有**复刻（源站用素材库真实图）⟹ ⟹ clone 用中性占位；★ 眉眼页是 **30 条**滑杆（**更正** batch 841 写的「32 条」）；★ 且「确认生成」等仍是 mock、不消耗 ⚡44",

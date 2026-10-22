@@ -11,9 +11,12 @@ import {
   Package,
   Palette,
   PersonStanding,
+  Play,
   Plus,
   Redo2,
+  Search,
   Shirt,
+  SlidersHorizontal,
   Smile,
   Sparkles,
   Undo2,
@@ -510,19 +513,76 @@ const EMPTY_NOTE: Record<string, string> = {};
 //   ★★ 并且那条说明里写的「17 条滑杆」**本身就是错的**（源站实测是 **18** 条，
 //      且**第一条是「丰胸」**，不是「丰胸数值 ＋ 17 条」）⟹ ⟹ 留着就是一条假陈述。
 // ★ 措辞里的每个数字/条目名都来自 raw ⟹ ⟹ 不手打不存在的结构
-const SEGMENT_NOTE: Record<string, string> = {
-  outfit:
-    "「服装造型」这一段的控件 **已实测**（源站 raw 入库在 batch 841）：" +
-    "**H3「发型／发色／妆容／口红」四块 ＋ chip 网格**（发型 10 个／" +
-    "选发色 10 个 ＋ 自定义颜色／妆容 7 个／选口红颜色 10 个）⟹ ⟹ " +
-    "属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。",
-  voice:
-    "「音色音调」这一段的控件 **已实测**（源站 raw 入库在 batch 841）：" +
-    "**「音色库」＋ 20 条音色 ＋ 各自的播放按钮**（青涩青年音色／精英青年音色／" +
-    "霸道青年音色／青年大学生音色／少女音色／御姐音色／成熟女性音色／" +
-    "甜美女性音色，及各自的 -beta 版、聪明男童／可爱男童／萌萌女童／" +
-    "卡通猪小琪）⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。",
-};
+// ★★ Batch 847：**`SEGMENT_NOTE` 整张表已删除**。
+//   ⟹ ⟹ 原来那两条（outfit／voice）写的都是「属后续批次 ⟹ ⟹ 这里不编造控件」
+//   ⟹ ⟹ 而 846 已实现「服装造型」、**847 已实现「音色音调」**
+//   ⟹ ⟹ 两条**都成了假陈述** ⟹ ⟹ 留着比删掉更坏 ⟹ ⟹ **整张表删掉**。
+//   ★ 「未实测/未实现的控件只显示如实说明」这条**纪律没有变**
+//   ⟹ ⟹ 它现在由**更细的粒度**承载（见右栏 JSX 里各段的分支）：
+//     · 第四段「服装造型」的「服装」「AI 生成」两枚子页签 ⟹ ⟹ 如实说明
+//     · 第五段「音色音调」的「我的音色」「AI 生成」两枚页签 ⟹ ⟹ 如实说明
+//     · 脸部精修段「妆造」页（843 已实现）以外的其余页 ⟹ ⟹ 见 `EMPTY_NOTE`
+// ───────────────────────────────────────────────────────────────────
+
+// ═══════════════════════════════════════════════════════════════════
+// ★★ Batch 847：左列第五段「音色音调」
+// ───────────────────────────────────────────────────────────────────
+// ★★ **这一段的结构与前四段都不一样**（★ 源站实测，batch 847 raw）：
+//   右栏内层 288 宽 @1273 是 `flex min-h-0 flex-1 flex-col px-6` ⟹ ⟹ **三块**
+//     ① 标题行 240×40 @rel(24,0)  ＝ **三枚页签**（音色库／我的音色／AI 生成）
+//     ② 工具行 240×32 @rel(24,48) ＝ 两枚 32×32（搜索／筛选音色），间隙 2
+//     ③ 滚动区 240×514 @rel(24,88) ＝ 20 张音色卡，滚动高 1192
+//   ★★ 而**前四段的内层没有 px-6** ⟹ ⟹ 这一段的子块**整体右移 24px**
+//   ★★ **这一段没有底部生成行**（★ batch 841 raw：右栏底部**无任何按钮**）
+//
+// ★★ 下面的数据块是**机器提取**的（`probes/gen847_data.py` 从入库 raw 里抽的）
+//   ⟹ ⟹ 名字与副标**不是手打** ⟹ ⟹ 门禁会逐条与 raw 比对
+// ───────────────────────────────────────────────────────────────────
+// ── 标题行页签（源站实测：宽度 70／24／24，间隙 20）──
+// ★「音色库」是**选中态**：白 1px 底边框 ＋ 文字 #fff
+// ★ 另两枚：透明底边框 ＋ 文字白 60%（源站把文字盒裁成 0 宽 ⟹ ⟹ 看不见）
+const VOICE_TABS: { id: string; label: string; w: number; icon: typeof Music }[] = [
+  { id: "library", label: "音色库", w: 70, icon: Music },
+  { id: "mine", label: "我的音色", w: 24, icon: User },
+  { id: "ai", label: "AI 生成", w: 24, icon: Sparkles },
+];
+
+// ── 工具行两枚按钮（源站实测 32×32，间隙 2）──
+// ★「筛选音色」那枚的源站 cls 里带 `relative`（可能挂角标）⟹ ⟹ 未复刻
+//   搜索 32×32，图标 16×16 @(1305,287)
+//   搜索 32×32，图标 16×16 @(1339,287)
+
+// ── 20 条音色（名字 ＋ 副标）──
+// ★ 逐条出自 raw 的「名字」「副标」字段 ⟹ ⟹ 不是手打
+const VOICES: { name: string; sub: string }[] = [
+  { name: "青涩青年音色", sub: "中文(普通话) · 男" },
+  { name: "精英青年音色", sub: "中文(普通话) · 男" },
+  { name: "霸道青年音色", sub: "中文(普通话) · 男" },
+  { name: "青年大学生音色", sub: "中文(普通话) · 男" },
+  { name: "少女音色", sub: "中文(普通话) · 女" },
+  { name: "御姐音色", sub: "中文(普通话) · 女" },
+  { name: "成熟女性音色", sub: "中文(普通话) · 女" },
+  { name: "甜美女性音色", sub: "中文(普通话) · 女" },
+  { name: "青涩青年音色-beta", sub: "中文(普通话) · 男" },
+  { name: "精英青年音色-beta", sub: "中文(普通话) · 男" },
+  { name: "霸道青年音色-beta", sub: "中文(普通话) · 男" },
+  { name: "青年大学生音色-beta", sub: "中文(普通话) · 男" },
+  { name: "少女音色-beta", sub: "中文(普通话) · 女" },
+  { name: "御姐音色-beta", sub: "中文(普通话) · 女" },
+  { name: "成熟女性音色-beta", sub: "中文(普通话) · 女" },
+  { name: "甜美女性音色-beta", sub: "中文(普通话) · 女" },
+  { name: "聪明男童", sub: "中文(普通话) · 男" },
+  { name: "可爱男童", sub: "中文(普通话) · 男" },
+  { name: "萌萌女童", sub: "中文(普通话) · 女" },
+  { name: "卡通猪小琪", sub: "中文(普通话) · Character" },
+];
+
+// ── 由 raw **算**出来的量（★ 不是手打常数）──
+// ★ 音色卡高 48，步进 56 ⟹ ⟹ 间隙 8（space-y-2）
+// ★ 滚动区高 1192 ＝ 20×48 ＋ 19×8 ＋ 80(pb-20) ⟹ ⟹ 与 raw 的 scrollHeight 一致
+const VOICE_CARD_HEIGHT = 48;
+const VOICE_CARD_GAP = 8;
+const VOICE_SCROLL_HEIGHT = 1192;
 
 export interface CharacterEditorPanelProps {
   characterId: string;
@@ -604,6 +664,14 @@ export function CharacterEditorPanel({
   const [outfitLipColor, setOutfitLipColor] = useState(1);
   // ★ 卡片选中态**按小节各存一份**（源站实测：初始一个都没选中）
   const [outfitCardSel, setOutfitCardSel] = useState<Record<string, string>>({});
+
+  // ★★ Batch 847：左列第五段「音色音调」的**标题行页签**当前项
+  //   （★ 源站实测：标题行**就是**三枚页签「音色库／我的音色／AI 生成」⟹ ⟹ 初始第一枚）
+  const [voiceTab, setVoiceTab] = useState("library");
+  // ★★ Batch 847：**音色卡的选中态**
+  //   ★ 源站实测的**初始态**：**第一张**「青涩青年音色」是选中态
+  //   （白 1px 边框 ＋ 透明底）⟹ ⟹ 其余 19 张是透明边框 ＋ 白 6% 底
+  const [voiceSel, setVoiceSel] = useState<string | null>(VOICES[0].name);
 
   const tagText = `· ${age} · ${region} · 现代`;
 
@@ -1100,6 +1168,120 @@ const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
     </div>
   );
 
+  // ★★ Batch 847：左列第五段「音色音调」的**标题行页签**
+  //   ★ 源站实测：这一段的**标题行就是页签行**（三枚：音色库／我的音色／AI 生成）
+  //   ⟹ ⟹ 与脸部段的页签行**同一个组件**（`.ce-tabs` ＋ `.ce-tab`）⟹ ⟹ 文字页签跟着选中项移动
+  //   ★ 但**排布不同**：脸部段是 `space-between`（均分）⟹ ⟹ 这边是 `gap-5`（20px）⟹ ⟹ 另开修饰类
+  const renderVoiceTabs = () => (
+    <div className="ce-tabs ce-voice-tabs" role="tablist">
+      {VOICE_TABS.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          role="tab"
+          aria-selected={voiceTab === item.id}
+          aria-label={item.label}
+          className={`ce-tab ${voiceTab === item.id ? "is-text" : "is-icon"}${
+            voiceTab === item.id ? " is-on" : ""
+          }`}
+          style={{ width: `${item.w}px` }}
+          data-character-editor-voice-tab={item.id}
+          onClick={() => setVoiceTab(item.id)}
+        >
+          <span className="ce-tab-icon" aria-hidden="true">
+            <item.icon size={18} />
+          </span>
+          {voiceTab === item.id ? (
+            <span className="ce-tab-text">{item.label}</span>
+          ) : null}
+        </button>
+      ))}
+    </div>
+  );
+
+  // ★★ Batch 847：第五段的**工具行**（★ 源站实测：两枚 32×32，间隙 2px）
+  //   「搜索」＋「筛选音色」⟹ ⟹ 这两个 aria 是**实测**的（batch 841 raw），不是手打
+  //   ★ 图标**字形未采集**（源站是 iconify SVG）⟹ ⟹ 用 lucide 占位
+  //   ★ 源站这两枚的**行为未实测**（那趟只点了分段）⟹ ⟹ 点击是 mock，不假装
+  const renderVoiceTools = () => (
+    <div className="ce-voice-tools">
+      <button
+        type="button"
+        className="ce-voice-tool"
+        aria-label="搜索"
+        data-character-editor-voice-tool="search"
+        onClick={() => flash("clone mock：音色搜索未接真实接口")}
+      >
+        <Search size={16} />
+      </button>
+      <button
+        type="button"
+        className="ce-voice-tool"
+        aria-label="筛选音色"
+        data-character-editor-voice-tool="filter"
+        onClick={() => flash("clone mock：音色筛选未接真实接口")}
+      >
+        <SlidersHorizontal size={16} />
+      </button>
+    </div>
+  );
+
+  // ★★ Batch 847：第五段的**音色卡列表**（★ 源站实测：20 张 240×48，步进 56）
+  //   ★ 卡的结构：主按钮 198×40（图标区 40×40 ＋ 文字区 158×36）＋ 播放按钮 32×32
+  //   ★ 选中态：**第一张**是白 1px 边框 ＋ 透明底；其余是透明边框 ＋ 白 6% 底
+  const renderVoiceList = () => (
+    <div
+      className="ce-voice-list"
+      data-character-editor-voice-list
+      style={
+        {
+          "--voice-card-h": `${VOICE_CARD_HEIGHT}px`,
+          "--voice-card-gap": `${VOICE_CARD_GAP}px`,
+          "--voice-scroll-h": `${VOICE_SCROLL_HEIGHT}px`,
+        } as CSSProperties
+      }
+    >
+      <div className="ce-voice-cards">
+        {VOICES.map((v) => {
+          const on = voiceSel === v.name;
+          return (
+            <div
+              key={v.name}
+              className={`ce-voice-card${on ? " is-on" : ""}`}
+              data-character-editor-voice-card={v.name}
+            >
+              <button
+                type="button"
+                className="ce-voice-main"
+                aria-label={v.name}
+                aria-pressed={on}
+                data-character-editor-voice-main={v.name}
+                onClick={() => setVoiceSel(v.name)}
+              >
+                <span className="ce-voice-icon" aria-hidden="true">
+                  <User size={16} />
+                </span>
+                <span className="ce-voice-text">
+                  <span className="ce-voice-name">{v.name}</span>
+                  <span className="ce-voice-sub">{v.sub}</span>
+                </span>
+              </button>
+              <button
+                type="button"
+                className="ce-voice-play"
+                aria-label="播放"
+                data-character-editor-voice-play={v.name}
+                onClick={() => flash("clone mock：音色试听未接真实音频")}
+              >
+                <Play size={14} />
+              </button>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+
   // ★★ 页签行（★ 源站实测：**只在「脸部精修」段存在** ⟹ ⟹ 别的段**不显示**它）
   //   ★ 抽成函数（★ batch 844）：⟹ ⟹ 阴性臂 N6 可以注入「页签行在不该出现的段也出现」
   //   这条**真实**缺陷 ⟹ ⟹ 而不必塞一个假的标记元素。
@@ -1395,55 +1577,70 @@ const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
                   </div>
                 )}
               </>
-            ) : (
-              // ★★ Batch 843：剩下的两段（服装造型／音色音调）
-              //   ⟹ ⟹ 源站实测**页签行不存在**，右栏是**那一段自己的内容**
-              //   ⟹ ⟹ 这里**不编造**：显示空态说明（★ 那两段**已实测**，raw 已入库）。
-              //   ★★ **逐段写**（★ 源站各段的结构**各不相同** ⟹ ⟹ 一句通用文案就是**假陈述**）：
-              //     · 服装造型 ＝ **标题行「造型」** ＋ H3「发型／发色／妆容／口红」＋ chip 网格
-              //     · 音色音调 ＝ **标题行「音色库」** ＋ 20 条音色 ＋ 各自的播放按钮
-              <div className="ce-panel">
-                <div className="ce-section">
-                  <p className="ce-empty" data-character-editor-empty>
-                    {SEGMENT_NOTE[segment] ??
-                      `「${SEGMENTS.find((s) => s.id === segment)?.label}」这一段的控件 ` +
-                        "**已实测**（源站 raw 入库在 batch 841），但它含**滑杆／"
-                        + "音色列表**之类** ⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。"}
+            ) : segment === "voice" ? (
+              // ★★ Batch 847：左列第五段「音色音调」**已实现**
+              //   ⟹ ⟹ 源站实测这一段**有标题行**（三枚页签）⟹ ⟹ 下面还有一行工具 ＋ 一张滚动区
+              //   ⟹ ⟹ **这一段没有底部生成行**（★ batch 841 raw ⟹ ⟹ 右栏底部无任何按钮）
+              //   ⟹ ⟹ 「我的音色」「AI 生成」两枚页签的**内容未实测** ⟹ ⟹ 显示如实说明
+              <>
+                {renderVoiceTabs()}
+                {voiceTab === "library" ? (
+                  <>
+                    {renderVoiceTools()}
+                    {renderVoiceList()}
+                  </>
+                ) : (
+                  <p className="ce-empty ce-empty--voice" data-character-editor-empty>
+                    {`「${VOICE_TABS.find((t) => t.id === voiceTab)?.label}」这一页的控件 ` +
+                      "**未实测**（源站那趟只点了分段 ⟹ ⟹ 没点开这两枚页签）⟹ ⟹ " +
+                      "这里**不编造**控件，只如实说明。"}
                   </p>
-                </div>
-              </div>
-            )}
+                )}
+              </>
+            ) : null}
 
-            <div className="ce-generate-row">
-              <button
-                type="button"
-                className="ce-generate"
-                data-character-editor-generate
-                onClick={() =>
-                  flash("clone mock：确认生成不消耗积分，也不产出真实资产")
-                }
-              >
-                {/* ★ 源站实测：文案左侧有一枚 16×16 的图标（字形未采集）
-                    ⟹ 按钮内容 = [16px 图标][gap 4][64px 文案] ⟹ 居中后文案落在 rel 1012 */}
-                <Zap size={18} />
-                <span className="ce-generate-text">确认生成</span>
-              </button>
-              {/* ★★ Batch 846：源站「服装造型」段的底部生成遮罩**只有一枚整宽
-                  240×36 的「确认生成」** ⟹ ⟹ **没有**「智能调整」那枚 36×36
-                  ⟹ ⟹ 而「脸部精修」段是 196 ＋ gap 8 ＋ 36 ⟹ ⟹ 两段**结构不同**
-                  ⟹ ⟹ 这里按段切换（★ 「确认生成」那枚 flex:1 ⟹ ⟹ 少一枚就正好 240） */}
-              {segment === "outfit" ? null : (
+            {/* ★★ Batch 847：**源站的底部生成行是按段不同的**，本批把三处偏差一次改正：
+                ⟹ ⟹ ① **「脸部精修」段**：196＋gap 8＋36（「智能调整」那枚在）
+                ⟹ ⟹ ② **「脸部 & 身体特征」「身材塑形」「服装造型」三段**：
+                ⟹ ⟹    **整宽 240×36 的「确认生成」，没有「智能调整」**
+                ⟹ ⟹    （★ batch 841 raw 实测：那三段的底部只有一个 `w-full` 按钮）
+                ⟹ ⟹    ⟹ ⟹ clone 之前**这三段**（traits/body）还在显示 196＋「智能调整」
+                ⟹ ⟹    ⟹ ⟹ 那是**既存偏差**，本批改正（★ 846 只改了 outfit 那一段）
+                ⟹ ⟹ ③ **「音色音调」段**：**整行都不渲染**
+                ⟹ ⟹    （★ batch 841 raw 实测：第五段右栏底部**没有任何按钮**
+                ⟹ ⟹     ⟹ ⟹ 且 batch 847 raw 的 43 个「带文字的叶子」里
+                ⟹ ⟹     ⟹ ⟹ 只有标题行 3 个 ＋ 音色卡 40 个 ⟹ ⟹ 没有「确认生成」
+                ⟹ ⟹     ⟹ ⟹ ⟹ ⟹ 这两条是**互相独立**的证据）
+                ⟹ ⟹ ★ 「确认生成」那枚 flex:1 ⟹ ⟹ 少一枚就正好 240 */}
+            {segment === "voice" ? null : (
+              <div className="ce-generate-row">
                 <button
                   type="button"
-                  className="ce-smart"
-                  aria-label="智能调整"
-                  data-character-editor-smart
-                  onClick={() => flash("clone mock：智能调整未接真实算法")}
+                  className="ce-generate"
+                  data-character-editor-generate
+                  onClick={() =>
+                    flash("clone mock：确认生成不消耗积分，也不产出真实资产")
+                  }
                 >
-                  <Sparkles size={18} />
+                  {/* ★ 源站实测：文案左侧有一枚 16×16 的图标（字形未采集）
+                      ⟹ 按钮内容 = [16px 图标][gap 4][64px 文案] ⟹ 居中后文案落在 rel 1012 */}
+                  <Zap size={18} />
+                  <span className="ce-generate-text">确认生成</span>
                 </button>
-              )}
-            </div>          </aside>
+                {segment === "face" ? (
+                  <button
+                    type="button"
+                    className="ce-smart"
+                    aria-label="智能调整"
+                    data-character-editor-smart
+                    onClick={() => flash("clone mock：智能调整未接真实算法")}
+                  >
+                    <Sparkles size={18} />
+                  </button>
+                ) : null}
+              </div>
+            )}
+          </aside>
         </div>
 
         {/* ── 底栏 ───────────────────────────────────────────────── */}

@@ -1585,6 +1585,172 @@
   font-size: 13px;
   line-height: 20px;
 }
+/* ★★ Batch 847：「音色音调」段的如实说明 ⟹ ⟹ 起点是**工具行**那一格（48），
+   ⟹ ⟹ 因为那两枚工具按钮只属于「音色库」那一页 ⟹ ⟹ 别的页不渲染它们 */
+.ce-empty--voice { top: 48px; }
+
+/* ── Batch 847：左列第五段「音色音调」 ───────────────────────────────────
+   ★★ 源站实测（batch 847 raw）：这一段的内层是
+      `flex min-h-0 flex-1 flex-col px-6`（288 宽 @1273）⟹ ⟹ **三块**：
+        ① 标题行 240×40 @rel(24,0)   ＝ 三枚页签（音色库／我的音色／AI 生成）
+        ② 工具行 240×32 @rel(24,48)  ＝ 两枚 32×32（搜索／筛选音色），间隙 2
+        ③ 滚动区 240×514 @rel(24,88) ＝ 20 张音色卡，滚动高 1192
+   ★★ 而**前四段的内层没有 px-6** ⟹ ⟹ 这一段的子块**整体右移 24px**
+   ★★ 纵向的三个起点是**算**出来的：0（标题行）→ 48（40＋my-2 的 8）
+      → 88（48＋32＋8）⟹ ⟹ 与 raw 的 231／279／319 逐条相符。 */
+
+/* ① 标题行：三枚页签 ⟹ ⟹ 与脸部段**同一个组件**（`.ce-tabs` ＋ `.ce-tab`）
+   ★ 但**排布不同**：脸部段是 `space-between`（均分剩下的 64px）
+   ⟹ ⟹ 这边是 `gap-5`（**20px**）⟹ ⟹ 另开一个修饰类
+   ★ 首枚「音色库」是 **70** 宽（3＋18 图标＋4 间隙＋42 文字＋3）
+   ⟹ ⟹ 而脸部段首枚是 56 ⟹ ⟹ 宽度由**数据块**给出（VOICE_TABS[i].w），此处只兜底。 */
+.ce-voice-tabs {
+  /* ★ 源站实测：标题行是 `flex h-10 shrink-0 items-center gap-5 border-b`
+     ⟹ ⟹ 纵轴是 **center** ⟹ ⟹ 与脸部段那一行（flex-start）**不同** ⟹ ⟹ 这里单开 */
+  align-items: center;
+  justify-content: normal;
+  gap: 20px;
+}
+/* ★ 源站实测：这一段**选中**那枚的白是 **#fff**（★ 与脸部段的 #ededed 不是同一个颜色） */
+.ce-voice-tabs .ce-tab.is-on {
+  border-bottom-color: #fff;
+  color: #fff;
+}
+
+/* ② 工具行：两枚 32×32，间隙 **2px**（源站 `gap-[2px]`） */
+.ce-voice-tools {
+  position: absolute;
+  left: 24px;
+  top: 48px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  width: 240px;
+  height: 32px;
+}
+.ce-voice-tool {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  /* ★ 源站实测：`text-fg-muted` ⟹ ⟹ 白 60% */
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+
+/* ③ 滚动区：240×514，滚动高 1192（★ 由 raw 算：20×48 ＋ 19×8 ＋ 80）
+   ★ `pb-20`（80）就是滚动区底下的那一段留白 ⟹ ⟹ 滚动区**一直到底**。 */
+.ce-voice-list {
+  position: absolute;
+  left: 24px;
+  top: 88px;
+  width: 240px;
+  height: 514px;
+  overflow-y: auto;
+  padding-bottom: 80px;
+}
+.ce-voice-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--voice-card-gap, 8px);
+  /* ★ 滚动高 1192 − 底下的 80(pb-20) ⟹ ⟹ 与 raw 的 scrollHeight 对得上 */
+  min-height: calc(var(--voice-scroll-h, 1192px) - 80px);
+}
+
+/* 音色卡 240×48：白 1px 边框（未选中是透明）＋ 白 6% 底 ＋ 圆角 12 */
+.ce-voice-card {
+  display: flex;
+  align-items: center;
+  flex: none;
+  width: 240px;
+  height: var(--voice-card-h, 48px);
+  padding: 4px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+}
+/* ★ 源站实测：**第一张**是选中态 ⟹ ⟹ 白 1px 边框 ＋ **透明底** */
+.ce-voice-card.is-on {
+  border-color: #fff;
+  background: transparent;
+}
+/* 主按钮 198×40（★ 源站 `flex min-w-0 flex-1 items-center text-left`） */
+.ce-voice-main {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+}
+/* 图标区 40×40：白 6% 底 ＋ 圆角 8（★ 源站 `bg-[var(--character-studio-bg-overlay)]`） */
+.ce-voice-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+}
+/* 文字区 158×36（★ 源站 `min-w-0 flex-1 px-2` ⟹ ⟹ 左右各 8px 内边距） */
+.ce-voice-text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+  height: 36px;
+  padding: 0 8px;
+}
+.ce-voice-name {
+  display: block;
+  flex: none;
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ce-voice-sub {
+  display: block;
+  flex: none;
+  height: 16px;
+  font-size: 10px;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* 播放按钮 32×32：圆角 8（★ 源站 `hover:bg-canvas-controls-hover flex size-8 …`） */
+.ce-voice-play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  /* ★ 源站实测：播放按钮的 color 是**纯白**（不是工具行那两枚的白 60%） */
+  color: #fff;
+  cursor: pointer;
+}
 
 /* ── 底栏 ───────────────────────────────────────────────────────── */
 .ce-footer {

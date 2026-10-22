@@ -256,16 +256,21 @@ def main():
             pg.wait_for_timeout(400)
             out["F_切回皮肤"] = pg.evaluate(READ)
 
-            # ★★ **batch 846 起**：点左列**第五段**（音色音调）⟹ **页签行应当消失**
-            #   （★ 846 起第四段「服装造型」已实现 ⟹ ⟹ 未实现的又挪了一位）
-            #   ⟹ ⟹ 那是**当下仍未实现**的那一块（源站实测有内容 ⟹ ⟹ clone 显示空态说明）
+            # ★★ **batch 847 起**：左列五段**全部实现** ⟹ ⟹ 「仍未实现的那一段」**没有靶子了**
+            #   ⟹ ⟹ 这条断言**换靶**：盯**第五段里那一页内容未实测的页签**（「我的音色」）
+            #   ⟹ ⟹ ★ 「音色库」那一页**已实现**（20 条音色 ⟹ batch 847）⟹ ⟹ 不再是空态
             #   ★ ★ 探针必须**真的点一下** ⟹ ⟹ 否则「这个入口没有 X」这类断言根本不成立
             #   ★ ★ 且必须是**从 face 段点过去**的 ⟹ ⟹ 才是**真实的转移**（不是原地 no-op）
             pg.evaluate("""() => {
               const s=document.querySelector('[data-character-editor-segment="voice"]');
               if(s)s.click();}""")
             pg.wait_for_timeout(400)
-            out["F2_第五段"] = pg.evaluate(READ)
+            # ★ 再点第五段的「我的音色」页签（★ 那一页的控件**源站未实测** ⟹ ⟹ 应显示如实说明）
+            pg.evaluate("""() => {
+              const t=document.querySelector('[data-character-editor-voice-tab="mine"]');
+              if(t)t.click();}""")
+            pg.wait_for_timeout(400)
+            out["F2_第五段_我的音色"] = pg.evaluate(READ)
 
             # ★ 切回「脸部精修」段 ⟹ 页签行应当回来
             pg.evaluate("""() => {
