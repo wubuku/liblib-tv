@@ -36,7 +36,7 @@
     "bytes": 1422
    },
    "criterion-direction-1025.json": {
-    "sha256_12": "502728d02a30",
+    "sha256_12": "5e28d00f27d9",
     "bytes": 322587
    },
    "criterion-effectiveness-1026.json": {
@@ -64,12 +64,12 @@
     "bytes": 4489
    },
    "golden-freshness-1008.json": {
-    "sha256_12": "456c444c5364",
+    "sha256_12": "f95f444fc856",
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "8278ab450661",
-    "bytes": 85374
+    "sha256_12": "919775fb7ec1",
+    "bytes": 85933
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
@@ -124,8 +124,8 @@
     "bytes": 1260
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "03d53cdaeff1",
-    "bytes": 137658
+    "sha256_12": "2367fd3d1e76",
+    "bytes": 139261
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
