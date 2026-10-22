@@ -28,6 +28,7 @@ batch 1027 —— 给「**产物新鲜度**」补一道会红的闸。
 **纯离线：只读仓内文件 + 起仓内已有的探针 + `git`；零安装、零网络、零浏览器。**
 """
 import json
+import os
 import pathlib
 import re
 import subprocess
@@ -44,6 +45,33 @@ SELF = pathlib.Path(__file__).name
 # ⚠️ 1015 自己被排除：它会重跑所有探针并**自己还原**，本批口径外
 EXCLUDE = {"jimeng_probe1015_rerun_reproducibility.py"}
 PER_PROBE_TIMEOUT = 300
+
+# ══ 1032-②k：**第十三条仪器 bug —— 重跑子探针时必须带上「写仓」的 flag** ════════════
+# ⭐⭐⭐⭐⭐ 仓里有两本探针把「把结果写进仓里」的门控在 `if "--write-golden" in sys.argv` 后面：
+#   `jimeng_probe1005_zero_coupling_census.py` / `jimeng_probe1030_anchor_identity.py`
+#   ⇒ ⇒⇒ 而本探针重跑它们时**不带那个 flag** ⇒ ⇒⇒⇒ ⇒ **⇒ 于是它们不会重写产物**
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ ⇒ 「重跑后的产物」＝「重跑前的产物」⇒ ⇒⇒⇒ ⇒
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ ⇒ `stale_vs_committed` 恒得「一致」—— 哪怕产物真的陈旧**
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ ⇒ 而那正是「探针跑成功了」≠「产物被刷新了」那条通则的同型病**
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ ⇒ 处置：凡是「写仓被那个 flag 门控」的探针，重跑时必须带那个 flag**
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ ⇒ 而「哪些探针被门控」由**源码**判定（不靠记忆、也不靠名单）**
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ ⇒ 而「带上了」这件事必须能被别的门看到 ⇒ ⇒⇒⇒ ⇒ ⇒ 记进产物**
+_WRITE_GATED_RE = re.compile(r"""if\s+["']--write-golden["']\s+in\s+sys\.argv""")
+
+
+def _write_gated(probe_name):
+    """⭐ 这本探针的「写仓」是不是被 `--write-golden` 门控住了（由**源码**判定）。"""
+    try:
+        src = (SCRIPTS / probe_name).read_text(encoding="utf-8")
+    except Exception:
+        return False
+    return bool(_WRITE_GATED_RE.search(src))
+
+
+def _argv_for(probe_name):
+    """⭐⭐ 重跑某本探针时用的 argv —— **唯一的口径**（判据与实际调用必须同源）。"""
+    return [PY, str(SCRIPTS / probe_name)] + (
+        ["--write-golden"] if _write_gated(probe_name) else [])
 
 # ── 变更集 ───────────────────────────────────────────────────────────────────
 # ⚠️⚠️⚠️⚠️ **仪器 bug 1（第一版）：默认取 `git diff --name-only HEAD~1`**
@@ -190,15 +218,24 @@ for n in (sorted(COUPLED_TO_CHANGED) if not UNDER_SUITE else []):
                         capture_output=True, timeout=120)
     is_new_probe = _s.returncode != 0
     t0 = time.time()
+    # ⭐⭐⭐⭐⭐ 1032-②k：**带 flag 重跑** —— 而 flag 从哪来由 `_argv_for` 说了算（唯一口径）
+    _argv = _argv_for(n)
+    _flags = _argv[2:]
+    after = worktree
+    rc = "EXC"
     try:
-        r = subprocess.run([PY, str(SCRIPTS / n)], capture_output=True,
-                           timeout=PER_PROBE_TIMEOUT, cwd=str(ROOT))
-        rc, err = r.returncode, ""
-    except subprocess.TimeoutExpired:
-        rc, err = "TIMEOUT>%ds" % PER_PROBE_TIMEOUT, ""
-    after = gpath.read_bytes()
-    # ⭐⭐⭐ 还原（1015 的做法）—— 但**已经把新内容留下来比过了**
-    gpath.write_bytes(worktree)
+        try:
+            r = subprocess.run(_argv, capture_output=True,
+                               timeout=PER_PROBE_TIMEOUT, cwd=str(ROOT))
+            rc, err = r.returncode, ""
+        except subprocess.TimeoutExpired:
+            rc, err = "TIMEOUT>%ds" % PER_PROBE_TIMEOUT, ""
+        after = gpath.read_bytes()
+    finally:
+        # ⭐⭐⭐ 还原（1015 的做法）—— 但**已经把新内容留下来比过了**
+        # ⚠️⚠️⚠️ 1032-②k：**而现在子探针会真的写盘**（带 flag 的那两本）
+        #   ⇒ ⇒⇒⇒ ⇒ **⇒ ⇒ 所以还原从「顺手做一下」升级成「必须做」⇒ ⇒⇒⇒ ⇒ ⇒ 放进 `finally`
+        gpath.write_bytes(worktree)
     _secs = round(time.time() - t0, 1)
     _secs_of[n] = _secs
     RESULTS.append({
@@ -227,7 +264,28 @@ for n in (sorted(COUPLED_TO_CHANGED) if not UNDER_SUITE else []):
         "n_bytes_fresh": len(after),
         "n_bytes_committed": len(committed),
         "touched_by": c["touched_by_this_change"],
+        # ⭐⭐⭐⭐⭐ 1032-②k：**这次重跑带了哪些 flag** —— 空列表折成计数（同 `_argv_flags_block`）
+        #   ⇒ ⇒⇒⇒ ⇒ 而「带了什么」本身要能被别的门看到 ⇒ ⇒⇒⇒ ⇒ ⇒ 非空时留列表本身
+        "n_argv_flags": len(_flags),
+        **({"argv_flags": list(_flags)} if _flags else {}),
     })
+
+# ══ 1032-②k：**第十三条仪器 bug 的自检（P11）** ═════════════════════════════
+#   ⇒ **判据不依赖「这一批恰好重跑了谁」** —— 它对**全部**探针都成立
+#   ⇒ ⇒⇒⇒ ⇒ 而「哪些探针把写仓门控在那个 flag 后面」由**源码**判定（不靠名单、不靠记忆）
+_GATED_ALL = sorted(n for n in COUPLING if _write_gated(n))
+#   ⇒ **反证一**：被门控的探针，规则算出来的 argv 必须带那个 flag
+_NC_GATED_MISSING = [n for n in _GATED_ALL
+                     if "--write-golden" not in _argv_for(n)]
+#   ⇒ **反证二**：没被门控的探针，规则**不许**给它们加那个 flag
+#   ⇒ ⇒⇒⇒ ⇒ （否则就成了「一律带上」—— 那是另一种错：它会改掉那些探针的 argv 语义）
+_NC_NON_GATED_EXTRA = [n for n in COUPLING
+                       if not _write_gated(n) and "--write-golden" in _argv_for(n)]
+#   ⇒ **反证三**：实际重跑用的 argv 必须与规则**同源**（不许有第二份口径）
+_NC_RERUN_MISMATCH = [r["probe"] for r in RESULTS
+                      if r.get("argv_flags", []) != _argv_for(r["probe"])[2:]]
+P11 = bool(not _NC_GATED_MISSING and not _NC_NON_GATED_EXTRA
+           and not _NC_RERUN_MISMATCH)
 
 # ⭐⭐⭐⭐⭐ 登记：本次被重跑的探针里，有多少是「本批新增」的
 #   一旦就是 0，说明本批没有新增探针→ 那时 `P2` 就只能拿「重跑成功 + golden 在 HEAD」当依据
@@ -397,6 +455,10 @@ OUT = {
     "P6_scope_declared_1027": P6,
     "P7_offline_1027": P7,
     "P8_exclusion_is_bilateral_and_1015_declares_it_too_1027": P8,
+    # ⭐⭐⭐⭐⭐ 1032-②k：**第十三条仪器 bug 的回归防护** ——
+    #   ⇒ 「把写仓门控在 `--write-golden` 后面的探针」重跑时必须带那个 flag
+    #   ⇒ ⇒⇒⇒ ⇒ 而它带三条反证 ⇒ ⇒⇒⇒ ⇒ ⇒ 「规则算的」与「实际跑的」必须同源
+    "P11_write_gated_probes_are_re_run_with_the_flag_1027": P11,
 }
 
 # ── 仪器 bug 8 的可校验不变式：产物里不许留下「说不清」的字段 ────────────────
@@ -452,6 +514,62 @@ def _stale_block():
         return {}
     return {"stale": [{"probe": r["probe"], "golden": r["golden"], "rc": r["rc"],
                        "touched_by": r["touched_by"]} for r in STALE]}
+
+
+# ══ 1032-②k：**`--selftest`：证明「带 flag 重跑」现在真能测出陈旧** ═════════════
+#   ⇒ 第十三条仪器 bug 的**存在性**证明：不带 flag 时**永远**测不出陈旧
+#   ⇒ ⇒⇒⇒ ⇒ 而「永远测不出」这件事在正常跑里**长得跟「一切新鲜」一模一样**
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ ⇒ 所以必须有一个能自己证明「它现在能测出来」的装置**
+#   ⇒ 做法（**注入式**，且**不碰仓库**）：
+#   ⇒   ① 把 verifier 复制一份到临时目录、在**副本**上改一处判据标签
+#   ⇒   ② 用 `JIMENG_VERIFIER_SRC` 指向那份副本跑 1030（1030 自己支持这个环境变量）
+#   ⇒   ③ 断言：带 flag 时产物与提交态**不一样**（⇒ 陈旧能被测出来）
+#   ⇒   ④ 断言：不带 flag 时产物**一个字节都不动**（⇒ 盲区的机制就在这里）
+#   ⇒   ⑤ 把仓里 1030 的 golden 原样还原（`finally`）
+def _selftest_write_gated_detection():
+    import shutil
+    import tempfile
+    ver = ROOT / "scripts/verify-jimeng-batch841-unclickable.py"
+    gpath = ROOT / "docs/research/jimeng-canvas/anchor-identity-1030.json"
+    probe = SCRIPTS / "jimeng_probe1030_anchor_identity.py"
+    out = {
+        "what": "⭐⭐⭐⭐⭐ **注入式自检**：在 verifier 的**副本**上改一处判据标签 ⇒ "
+                "**带 flag** 重跑必须产出与提交态不同的产物、**不带 flag** 必须一个字节都不动",
+        "cases": {},
+    }
+    original = gpath.read_bytes()
+    try:
+        committed = subprocess.run(
+            ["git", "-C", str(ROOT), "show",
+             "HEAD:docs/research/jimeng-canvas/anchor-identity-1030.json"],
+            capture_output=True, timeout=120).stdout
+        with tempfile.TemporaryDirectory() as td:
+            cand = pathlib.Path(td) / "verifier-candidate.py"
+            shutil.copyfile(ver, cand)
+            txt = cand.read_text(encoding="utf-8")
+            mut = txt.replace('check("DD993AG.1', 'check("DD993AG.1-MUTATED', 1)
+            cand.write_text(mut, encoding="utf-8")
+            env = dict(os.environ)
+            env["JIMENG_VERIFIER_SRC"] = str(cand)
+            subprocess.run([PY, "-u", str(probe), "--write-golden"],
+                           env=env, cwd=str(ROOT), capture_output=True,
+                           timeout=300)
+            with_flag = gpath.read_bytes()
+            gpath.write_bytes(original)
+            subprocess.run([PY, "-u", str(probe)], env=env, cwd=str(ROOT),
+                           capture_output=True, timeout=300)
+            without_flag = gpath.read_bytes()
+            out["cases"]["mutation_applied"] = bool(mut != txt)
+            out["cases"]["with_flag_reaches_the_artifact"] = bool(with_flag != original)
+            out["cases"]["with_flag_differs_from_committed"] = bool(with_flag != committed)
+            out["cases"]["without_flag_writes_nothing"] = bool(without_flag == original)
+    finally:
+        try:
+            gpath.write_bytes(original)
+        except Exception:
+            pass
+    out["ok"] = bool(out["cases"]) and all(out["cases"].values())
+    return out
 
 
 # ── 写产物 ───────────────────────────────────────────────────────────────────
@@ -511,6 +629,13 @@ _PAYLOAD = {
         "n_stale": N_STALE,
         "n_probes_new_this_change": N_NEW_PROBE,
         "per_probe_timeout": PER_PROBE_TIMEOUT,
+        # ⭐⭐⭐⭐⭐ 1032-②k：**「哪些探针的写仓被门控」必须被记下来** ⇒ ⇒⇒⇒ ⇒
+        #   ⇒⇒⇒⇒ ⇒ 否则「这一批恰好没重跑它们」与「规则已经失效」在读数上长得一样
+        "n_write_gated_probes": len(_GATED_ALL),
+        **({"write_gated_probes": _GATED_ALL} if _GATED_ALL else {}),
+        "write_gate_rule": "⭐⭐⭐⭐⭐ **凡是把「写仓」门控在 `--write-golden` 后面的探针，"
+                           "重跑时必须带那个 flag** ⇒ ⇒ ⇒ 不带 ⇒ 它不写盘 ⇒ ⇒ ⇒ "
+                           "「重跑后的产物」＝「重跑前的产物」⇒ ⇒ ⇒ **永远测不出陈旧**",
         "results": RESULTS,
         # ⚠️⚠️⚠️ 第十一条仪器 bug：**这道门在「一切新鲜」时转红** ⇒ 它惩罚成功
         #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒ `stale` 在「已过期 0 本」时是个**空列表** ⇒ P9 的卫生自查当场变红
@@ -686,6 +811,7 @@ _PAYLOAD["criterion_kinds_1027"] = {
     "P8_exclusion_is_bilateral_and_1015_declares_it_too_1027": "failure",
     "P9_my_own_payload_has_no_null_no_empty_list_no_random_named_key_1027": "failure",
     "P10_writing_the_verdicts_back_did_not_break_my_own_hygiene_1027": "failure",
+    "P11_write_gated_probes_are_re_run_with_the_flag_1027": "failure",
 }
 _PAYLOAD["criterion_kinds_complete_1027"] = (
     set(_PAYLOAD["criterion_kinds_1027"]) == set(OUT))
@@ -723,4 +849,10 @@ print()
 #   ⇒⇒⇒⇒⇒⇒ **⇒ 打印出来的标签和实际条数对不上，而这种错没人会去看第二眼**
 print("P1..P%d = %s" % (len(OUT), [OUT[k] for k in OUT]))
 print("PROBE_1027_DONE ->", GOLDEN)
-sys.exit(0 if all(OUT.values()) else 1)
+_ALL_OK = all(OUT.values())
+if "--selftest" in sys.argv:
+    _ST = _selftest_write_gated_detection()
+    print("SELFTEST %s -> %s" % (json.dumps(_ST["cases"], ensure_ascii=False),
+                                 "OK" if _ST["ok"] else "RED"))
+    _ALL_OK = _ALL_OK and _ST["ok"]
+sys.exit(0 if _ALL_OK else 1)

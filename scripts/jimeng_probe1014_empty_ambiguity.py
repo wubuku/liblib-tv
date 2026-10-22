@@ -39,6 +39,51 @@ AUDIT_TXT = (ROOT / "scripts/jimeng_unclickable_audit.py").read_text(encoding="u
 VERIFIER_TXT = (ROOT / "scripts/verify-jimeng-batch841-unclickable.py").read_text(
     encoding="utf-8")
 
+# ══ 1032-②k：**kind 台账要落进产物，而不只是活在源码里** ═════════════════════
+# ⭐⭐⭐⭐⭐ 口径：kind ∈ {failure, conclusion, precondition}
+#   ⇒ failure      = 这条红了**要修**（它是仪器/数据健康与否的自检）
+#   ⇒ conclusion   = 这条红了**要重读**（它断言的是本批的结论，不是仪器健康）
+#   ⇒ precondition = 这条**依赖前提**；前提不成立 ⇒ 这次测量**不适用**
+#                    （读数是 None，**不许算红**）
+# ⭐⭐⭐⭐⭐ **逐条读原文、由人定性**（不许按关键词机械猜）：
+#   P1  普查自洽（报了几个就是几个 ＋ 两类之和 = 空字段总数）⇒ 普查自相矛盾 ⇒ 要修 ⇒ failure
+#   P2  「算出来的空」与「压根没算」逐字节相同 ⇒ **本批的核心结论** ⇒ 红了要重读 ⇒ conclusion
+#   P3  伴生字段（companion）让两者可区分 ⇒ 结论 ⇒ conclusion
+#   P4  反向分类器不是常量（两类都非空）⇒ 排除性结论 ⇒ conclusion
+#   P5  `null` 被一并数进去了 ＋ 分类器行为可验 ⇒ 结论 ⇒ conclusion
+#   P6  上一批的产物自己也是受害者 ⇒ 结论 ⇒ conclusion
+#   P7  产物确实落到仓里了、且不是空壳 ⇒ 自检 ⇒ failure
+#   P8  手写的数必须有出处 ⇒ 自检 ⇒ failure
+#   P9  注入式变异：普查真的在读那些书 ⇒ 自检 ⇒ failure
+#   P10 第一次写进磁盘的产物逐键等于载荷 ⇒ 自检 ⇒ failure
+KINDS_2014 = {
+    "P1_hold_2014": "failure",
+    "P2_hold_2014": "conclusion",
+    "P3_hold_2014": "conclusion",
+    "P4_hold_2014": "conclusion",
+    "P5_hold_2014": "conclusion",
+    "P6_hold_2014": "conclusion",
+    "P7_hold_2014": "failure",
+    "P8_hold_2014": "failure",
+    "P9_hold_2014": "failure",
+    "P10_hold_2014": "failure",
+}
+
+# ══ 1032-②k：**指纹表要能被「对着提交态核对」** ══════════════════════════════
+# ⭐⭐⭐⭐⭐ 1032-②j 收尾实测到的一件事：**指纹表里混进了一个「每次跑都重写」的输入**
+#   ⇒ `golden-freshness-1027.json` 每次跑 1027 都被整个重写、而按既定纪律**不随批提交**
+#   ⇒ ⇒⇒ 而指纹表记的是「跑的那一瞬间工作区里的字节」
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ 指纹表对这一条永远对不上「提交态」**（实测：记录 85933B vs 提交态 91483B）
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ 而这不是「数据坏了」，是「这张表把两种东西混在一张里」**
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ 处置：volatile 的输入单列一节（照样记它当次的指纹，供复算），
+#   ⇒ ⇒⇒⇒ ⇒      但它不进「可以对着提交态核对的那张表」**
+VOLATILE_INPUTS = {
+    "golden-freshness-1027.json":
+        "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ "
+        "⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ "
+        "⇒ 单列一节（记当次字节供复算），不进可核对的那张表",
+}
+
 # ── P1：普查所有 golden 里的「空集合」，并逐条判它可不可自证 ─────────
 # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「可自证」的判据不是「旁边有说明」——
 #   **⇒ 而是「旁边有一个**可校验的不变式**，用它能把空集合钉死」** ⇒ ⇒
@@ -172,13 +217,25 @@ def _fp_of(raw):
     return {"sha256_12": hashlib.sha256(raw).hexdigest()[:12], "bytes": len(raw)}
 
 
-_FP, _FP_BAD = {}, []
+_FP, _FP_BAD, _FP_VOLATILE = {}, [], {}
 for _f in GOLDENS:
+    # ⭐⭐⭐⭐⭐ 1032-②k：**volatile 的输入不进「可核对的那张表」**
+    #   ⇒ 它照样被普查、也照样记下当次的字节（供复算）⇒ 但它的指纹**不承诺**对得上提交态
+    #   ⇒ ⇒⇒ 而「登记指纹」那一步的写法**一个字都没改** ⇒ ⇒⇒⇒
+    #   **⇒ ⇒⇒⇒⇒ 因为 `DD993M.1` 钉的就是这一行的原文（机制不变 ⇒ 锚点不该变）**
+    if _f.name in VOLATILE_INPUTS:
+        try:
+            _FP_VOLATILE[_f.name] = dict(_fp_of(_f.read_bytes()),
+                                         why=VOLATILE_INPUTS[_f.name])
+        except Exception:
+            _FP_BAD.append(_f.name)
+        continue
     try:
         _FP[_f.name] = _fp_of(_f.read_bytes())
     except Exception:
         _FP_BAD.append(_f.name)
 N_FP = len(_FP)
+N_VOLATILE = len(_FP_VOLATILE)
 _N_FROM_PROBES = sum(1 for _n, _d in _BOOKS
                      if isinstance(_gb_of(_d), str)
                      and _gb_of(_d).startswith("jimeng_probe")
@@ -309,10 +366,22 @@ _ONLY0 = _census([_BOOKS[0]])[0]
 _MAIN_READS_BOOKS = (len(rows) - len(_rest) == len(_ONLY0))      # 拿掉第一本，总数恰好少它那一段
 out["P9_hold_2014"] = bool(_MUT_SEEN and _FP_MOVES and _MAIN_READS_BOOKS
                             and n_empty_null >= 1
-                            and N_FP + len(_FP_BAD) == N_GOLDENS)
+                            # ⚠️⚠️ 1032-②k：**这一项的口径变了**（前向更正，不改历史）
+                            #   ⇒ 原式是 `N_FP + len(_FP_BAD) == N_GOLDENS`
+                            #   ⇒ 而 1032-②j 收尾实测到：**有一类输入每次跑都被重写、且不随批提交**
+                            #   ⇒ ⇒⇒ 它进不了「可核对的那张指纹表」⇒ ⇒⇒ 于是这一项必须把 volatile 单列出来
+                            #   ⇒ ⇒⇒ **⇒ 判据的意思没变**（每一本输入要么被记了指纹、要么读不了、
+                            #   ⇒ ⇒⇒   要么是那类「每次都被重写」的）⇒ ⇒⇒ **⇒ 只是口径变宽了一档**
+                            and N_FP + len(_FP_BAD) + N_VOLATILE == N_GOLDENS)
 
 
-io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
+# ── 1032-②k：**先写基础产物，再写「加了台账段」的最终产物** ─────────────────
+#   ⇒ 为什么写两遍：`P7` 的原话是「产物确实落到仓里了、且不是空壳」
+#   ⇒ ⇒⇒ 而台账段要等到所有 `P*_hold_2014` 都算出来之后才知道
+#   ⇒ ⇒⇒ ⇒ 而 `P7` 又必须量「落盘的那个文件」⇒ ⇒⇒ ⇒ **⇒ 所以：先落盘（量 P7），
+#   ⇒ ⇒⇒ ⇒       再补上台账段重写一次** ⇒ ⇒⇒ ⇒ **⇒ 而第二次写入只许【增加】、
+#   ⇒ ⇒⇒ ⇒       不许扰动普查结果** ⇒ ⇒⇒ ⇒ **⇒ 这一条由 `P10` 当场核账**
+_BASE_PAYLOAD = {
     "generated_by": "jimeng_probe1014_empty_ambiguity.py",
     "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，"
             "在仓里长得一模一样**",
@@ -320,6 +389,8 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
             "散文说明不算（它与「没算过」完全兼容）**",
     "census_inputs_2029": {
         "n_fingerprinted": N_FP, "n_unreadable": len(_FP_BAD),
+        "n_volatile": N_VOLATILE,
+        "volatile_inputs": _FP_VOLATILE,
         "n_from_probe_products": _N_FROM_PROBES,
         "fingerprints": _FP,
         "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」",
@@ -344,9 +415,10 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
     "fix_lands_in": "scripts/jimeng_probe1013_occurrence_ledger.py",
     "fix_lands_in_why": "⭐⭐⭐⭐⭐ 账本每次运行都被探针整个重写 ⇒ ⇒ ⇒⇒ "
                         "改文件会在下一次跑时被抹掉 ⇒ ⇒ ⇒ ⇒ 处置必须落在探针里",
-}, ensure_ascii=False, indent=1))
+}
+io.open(GOLDEN, "w", encoding="utf-8").write(
+    json.dumps(_BASE_PAYLOAD, ensure_ascii=False, indent=1))
 out["P7_hold_2014"] = bool(GOLDEN.exists() and GOLDEN.stat().st_size > 500)
-
 # ── P8：沿用「手写的数必须有出处」 ───────────────────────────────
 _NUMRE = re.compile(r"(?<![A-Za-z_0-9])(\d+(?:\.\d+)?)(?![A-Za-z_0-9])")
 _AUD_BLOCK = "empty_ambiguity_2014"
@@ -432,6 +504,34 @@ out["audit_numbers_vs_computed_2014"] = {
                                "「手写的数必须有出处」不是冲突的，前提是历史记录自己声明了它当时的数**",
 }
 out["P8_hold_2014"] = bool(not _bad and _HIST)
+
+# ── 1032-②k：**台账落进产物**（声明 ≠ 发布）────────────────────────────────
+#   ⇒ 以前 1014 的 9 条判据只打在 stdout（`tail` 里）、产物里没有
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ 而 1015 的台账只读仓内产物 ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 1014 因此一直「有判据、没台账」**
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ 这正是「声明 ≠ 发布」那条规矩要治的病**
+# ⚠️⚠️ 顺序有讲究：`P10` 必须在「判据键集合」算出来**之前**就有
+#   ⇒ ⇒⇒ 否则「`P` 段里有没有 `P10`」会变成循环依赖 ⇒ ⇒⇒ 而循环依赖的判据永远是恒真
+_disk_base = json.loads(GOLDEN.read_text(encoding="utf-8"))
+out["P10_hold_2014"] = bool(_disk_base == _BASE_PAYLOAD)
+_P_KEYS_2014 = sorted(k for k in out if re.match(r"^P\d+_hold_2014$", k))
+_LEDGER_KEYS = ("P", "criterion_kinds_2014",
+                "criterion_kinds_complete_2014", "criteria_n_2014")
+_FINAL_PAYLOAD = dict(_BASE_PAYLOAD)
+_FINAL_PAYLOAD["P"] = {k: bool(out[k]) for k in _P_KEYS_2014}
+_FINAL_PAYLOAD["criterion_kinds_2014"] = KINDS_2014
+_FINAL_PAYLOAD["criterion_kinds_complete_2014"] = bool(
+    set(KINDS_2014) == set(_P_KEYS_2014))
+_FINAL_PAYLOAD["criteria_n_2014"] = len(_P_KEYS_2014)
+io.open(GOLDEN, "w", encoding="utf-8").write(
+    json.dumps(_FINAL_PAYLOAD, ensure_ascii=False, indent=1))
+# ⭐⭐⭐⭐⭐ 写完之后**当场复算一次**：最终产物去掉台账段，必须与第一次落盘的逐键相等
+#   ⇒ ⇒⇒⇒ ⇒ **⇒ 这一条是「第二次写入只增加、不扰动」的落地核账**
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ 而它只能在最终写入**之后**算 ⇒ ⇒⇒⇒ ⇒ ⇒ 所以它进 /tmp 读数，
+#   ⇒ ⇒⇒⇒ ⇒ ⇒   不进产物里的 `P` 段（`P` 段记的是「判据的判决」，不是「写入的自检」）
+_FINAL_ON_DISK = json.loads(GOLDEN.read_text(encoding="utf-8"))
+out["final_write_only_added_ledger_2014"] = bool(
+    _FINAL_ON_DISK == {k: v for k, v in _FINAL_PAYLOAD.items()
+                       if k not in _LEDGER_KEYS})
 
 io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
 print("goldens=%d empty_list=%d null=%d selfprovable=%d ambiguous=%d"

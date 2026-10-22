@@ -772,6 +772,11 @@ _P1032H_BOOKS = [
     ("1011", "2011", "scripts/jimeng_probe1011_change_locality.py", r"^P\d+_hold_"),
     ("1012", "2012", "scripts/jimeng_probe1012_global_detection.py", r"^P\d+_hold_"),
     ("1013", "2013", "scripts/jimeng_probe1013_occurrence_ledger.py", r"^P\d+_hold_"),
+    # ── B 类（1 本，1032-②k 新增）：键形态与 A 类相同，**但它以前只把判据打在 stdout**
+    #    ⇒ ⇒ ⇒⇒ 产物里既没有判据、也没有台账 ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ **⇒ 「有判据、没台账」**
+    #    ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而 ②k 给它发布了 `criterion_kinds_1014` ＋ `P` 段 ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+    #    **⇒ 所以它现在能过「源码那一关」也能过「产物那一关」**
+    ("1014", "2014", "scripts/jimeng_probe1014_empty_ambiguity.py", r"^P\d+_hold_"),
     # ── C 类（8 本，1032-②j 新增）：判据键形态各不相同 ⇒ ⇒ **不许一刀切** ──
     #    ① 1018：带标签的 `P<n>_<描述>_1018`，台账在模块级 `KINDS_1018` 里
     #    ① 1018：带标签的 `P<n>_<描述>_1018` —— ⚠️ **其中三条的后缀是 `_2018`**
@@ -932,6 +937,10 @@ _P1032J_ARTIFACTS = [
     ("1032b3", "1032b3", "docs/research/jimeng-canvas/mention-contract-1032b3.json", "P"),
     ("1032b4", "1032b4", "docs/research/jimeng-canvas/expanded-contract-1032b4.json", "P"),
     ("1032c", "1032c", "docs/research/jimeng-canvas/noop-contract-1032c.json", "P"),
+    # ⭐⭐⭐⭐⭐ 1032-②k：**1014 现在也能过「产物那一关」**
+    #   ⇒ 以前它只把 9 条判据打在 stdout、产物里连判据都没有 ⇒ ⇒ ⇒⇒ 别的门读不到它的判决
+    #   ⇒ ⇒⇒⇒ ⇒ **⇒ ②k 给产物补上了 `P` 段 ＋ `criterion_kinds_1014` ＋ 完成标记**
+    ("1014", "2014", "docs/research/jimeng-canvas/empty-ambiguity-1014.json", "P"),
 ]
 
 

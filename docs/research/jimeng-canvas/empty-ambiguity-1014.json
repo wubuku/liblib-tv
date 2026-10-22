@@ -3,8 +3,16 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "census_inputs_2029": {
-  "n_fingerprinted": 30,
+  "n_fingerprinted": 29,
   "n_unreadable": 0,
+  "n_volatile": 1,
+  "volatile_inputs": {
+   "golden-freshness-1027.json": {
+    "sha256_12": "1551664ef4f7",
+    "bytes": 84536,
+    "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
+   }
+  },
   "n_from_probe_products": 30,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
@@ -12,7 +20,7 @@
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
-    "sha256_12": "c35d61a2253d",
+    "sha256_12": "b35527b8b9b1",
     "bytes": 62827
    },
    "assertion-vs-behavior-1018.json": {
@@ -36,19 +44,19 @@
     "bytes": 1422
    },
    "criterion-direction-1025.json": {
-    "sha256_12": "5e28d00f27d9",
+    "sha256_12": "4bcb94654b5a",
     "bytes": 322587
    },
    "criterion-effectiveness-1026.json": {
-    "sha256_12": "1fbf7325d46e",
-    "bytes": 100637
+    "sha256_12": "1839d56dd8b1",
+    "bytes": 101163
    },
    "edit-visibility-1009.json": {
     "sha256_12": "cbccf1eaa2e9",
     "bytes": 1437
    },
    "exemption-claims-1024.json": {
-    "sha256_12": "4a125431d970",
+    "sha256_12": "c4a03e3d3cd7",
     "bytes": 19737
    },
    "expanded-contract-1032b4.json": {
@@ -66,10 +74,6 @@
    "golden-freshness-1008.json": {
     "sha256_12": "f95f444fc856",
     "bytes": 1215
-   },
-   "golden-freshness-1027.json": {
-    "sha256_12": "e38953a086b8",
-    "bytes": 91483
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
@@ -124,8 +128,8 @@
     "bytes": 1260
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "2367fd3d1e76",
-    "bytes": 139261
+    "sha256_12": "684b98841a72",
+    "bytes": 140439
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
@@ -133,10 +137,10 @@
  "census": {
   "n_goldens": 30,
   "n_excluded_self": 1,
-  "n_empty_list": 283,
+  "n_empty_list": 284,
   "n_empty_null": 131,
   "n_self_provable": 10,
-  "n_ambiguous": 404
+  "n_ambiguous": 405
  },
  "rows": [
   {
@@ -1290,6 +1294,13 @@
   {
    "golden": "criterion-effectiveness-1026.json",
    "path": "/axis_1_shape_mechanical/all/[166]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[167]/label_hint_defect_words",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -4188,6 +4199,13 @@
    "invariant": null
   },
   {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[167]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "gen-contract-1032b2.json",
    "path": "/false_criteria",
    "kind": "list",
@@ -5880,5 +5898,31 @@
   "companion_catches_wrong_count": true
  },
  "fix_lands_in": "scripts/jimeng_probe1013_occurrence_ledger.py",
- "fix_lands_in_why": "⭐⭐⭐⭐⭐ 账本每次运行都被探针整个重写 ⇒ ⇒ ⇒⇒ 改文件会在下一次跑时被抹掉 ⇒ ⇒ ⇒ ⇒ 处置必须落在探针里"
+ "fix_lands_in_why": "⭐⭐⭐⭐⭐ 账本每次运行都被探针整个重写 ⇒ ⇒ ⇒⇒ 改文件会在下一次跑时被抹掉 ⇒ ⇒ ⇒ ⇒ 处置必须落在探针里",
+ "P": {
+  "P10_hold_2014": true,
+  "P1_hold_2014": true,
+  "P2_hold_2014": true,
+  "P3_hold_2014": true,
+  "P4_hold_2014": true,
+  "P5_hold_2014": true,
+  "P6_hold_2014": true,
+  "P7_hold_2014": true,
+  "P8_hold_2014": true,
+  "P9_hold_2014": true
+ },
+ "criterion_kinds_2014": {
+  "P1_hold_2014": "failure",
+  "P2_hold_2014": "conclusion",
+  "P3_hold_2014": "conclusion",
+  "P4_hold_2014": "conclusion",
+  "P5_hold_2014": "conclusion",
+  "P6_hold_2014": "conclusion",
+  "P7_hold_2014": "failure",
+  "P8_hold_2014": "failure",
+  "P9_hold_2014": "failure",
+  "P10_hold_2014": "failure"
+ },
+ "criterion_kinds_complete_2014": true,
+ "criteria_n_2014": 10
 }
