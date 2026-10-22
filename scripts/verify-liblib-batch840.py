@@ -326,6 +326,10 @@ def main() -> int:
     after_generate = rt.get("D2_点确认生成后") or {}
     after_tab = rt.get("E_切页签后") or {}
     after_back = rt.get("F_切回皮肤") or {}
+    # ★★ **batch 843 起**：左列第二段（脸部 & 身体特征）的读数
+    #   ⟹ ⟹ 当下**仍未实现**的那一块（★ 妆造页在 843 已实现 ⟹ ⟹ 六个页签全部实现了）
+    after_seg2 = rt.get("F2_第二段") or {}
+    after_seg_back = rt.get("F3_切回脸部精修") or {}
     after_rename = rt.get("G_改名后") or {}
     after_save = rt.get("G2_点保存后") or {}
     reopened_title = rt.get("G3_重开后标题") or {}
@@ -471,7 +475,9 @@ def main() -> int:
     sw_before = (opened.get("开关") or {}).get("checked")
     sw_after = (after_switch.get("开关") or {}).get("checked")
     segs_before = opened.get("五段") or []
-    segs_after = after_back.get("五段") or []
+    # ★★ **batch 843 起**：分段选中态转移的「点后」读数取自 **F2_第二段**
+    #   （★ 那一步是**从 face 段真的点 traits** ⟹ ⟹ 是**真实的转移**，不是原地 no-op）
+    segs_after = (after_seg2.get("五段") or []) or (after_back.get("五段") or [])
     tabs_before = opened.get("页签") or []
     tabs_after = after_tab.get("页签") or []
     s3 = {
@@ -492,6 +498,8 @@ def main() -> int:
                               and s3["★分段_点后选中"] == ["traits"])
     #   ★★ **batch 842 起**：探针改点「妆造」（眉眼页已实现 ⟹ 「未实现页」变成妆造）
     #   ⟹ ⟹ 这里期望的**选中态转移**也跟着改成 skin → makeup
+    #   ★★ **batch 843 起**：妆造页**也**已实现 ⟹ ⟹ 六个页签全部有内容了
+    #   ⟹ ⟹ 「仍未实现的那一块」变成**左列第二～五段** ⟹ ⟹ 那是 S7 盯的目标
     s3["★页签_选中态转移"] = (s3["★页签_点前选中"] == ["skin"]
                               and s3["★页签_点后选中"] == ["makeup"])
     checks.append((
@@ -593,16 +601,28 @@ def main() -> int:
         json.dumps(s6, ensure_ascii=False),
     ))
 
-    # ── S7 未实测的页签：显示空态说明、不编造控件 ───────────────────────
+    # ── S7 仍未实现的那一块：显示空态说明、不编造控件 ───────────────────
     #   ★★ **batch 842 起改盯「妆造」**：眉眼页在 batch 842 已实现
     #   ⟹ ⟹ 「仍未实现的那一页」变成了妆造 ⟹ ⟹ 这条断言要盯**当下**仍未实现的那一页
     #   ⟹ ⟹ 否则它会因为「旧事实」而红（★ 断言要盯**当前状态**，不是历史批次）
+    #   ★★ **batch 843 起再改盯「左列第二段」**：妆造页在 843 也已实现 ⟹ ⟹
+    #   **六个页签全部有内容了** ⟹ ⟹ 仍未实现的只剩**左列第二～五段** ⟹ ⟹
+    #   ★ 且这四段**已实测**（源站 raw 有内容）⟹ ⟹ clone 显示**如实说明**而不是编造控件
     empty_text = after_tab.get("空态")
     skin_back_empty = after_back.get("空态")
+    seg2_empty = after_seg2.get("空态")
+    seg2_tabs = len(after_seg2.get("页签") or [])
+    seg2_sliders = len(after_seg2.get("滑杆轨道") or [])
+    seg_back_tabs = len(after_seg_back.get("页签") or [])
     s7 = {
         "★切到妆造后_有滑杆吗": len(after_tab.get("滑杆轨道") or []),
         "★切到妆造后_有开关吗": bool(after_tab.get("开关")),
         "★切到妆造后_空态说明": empty_text,
+        "★第二段_页签数": seg2_tabs,
+        "★第二段_滑杆数": seg2_sliders,
+        "★第二段_空态说明": seg2_empty,
+        "★第二段_空态说明里写了「已实测」": bool(seg2_empty and "已实测" in seg2_empty),
+        "★切回脸部精修_页签数": seg_back_tabs,
         "★切回皮肤后_滑杆数": len(after_back.get("滑杆轨道") or []),
         "★切回皮肤后_空态": skin_back_empty,
         "★README写明那五页签未实测": "未实测" in readme,
@@ -610,14 +630,20 @@ def main() -> int:
             "源站那五页签没有控件" not in readme and "源站这五页签没有控件" not in readme),
     }
     checks.append((
-        "S7 ★★★ **未实测的页签显示空态说明、不编造控件**：切到「妆造」⟹ "
-        "滑杆数 %d、开关无 ⟹ 出现空态说明「%s」；切回「皮肤」⟹ 滑杆 %d 条 ⟹ 空态消失；"
+        "S7 ★★★ **仍未实现的那一块显示空态说明、不编造控件**：★ **batch 843 起盯"
+        "「左列第二段（脸部 & 身体特征）」**（★ 妆造页本批已实现 ⟹ ⟹ 六个页签全部有内容了）"
+        "⟹ 点第二段 ⟹ **页签数 %d**（★ 源站实测：页签行**只在「脸部精修」段存在**）＋ 滑杆 %d 条 "
+        "⟹ 出现空态说明「%s」；切回「脸部精修」⟹ **页签数 %d**（页签行回来了）"
+        "⟹ 切回「皮肤」⟹ 滑杆 %d 条 ⟹ 空态消失；"
         "★ 且 README **不**把它写成「源站那五页签没有控件」（★ 那是**未证实的否定性结论**"
         "—— 我们只知道「**没测过**」）"
-        % (s7["★切到妆造后_有滑杆吗"], (empty_text or "")[:34].replace("\n", " "),
-           s7["★切回皮肤后_滑杆数"]),
-        (s7["★切到妆造后_有滑杆吗"] == 0 and not s7["★切到妆造后_有开关吗"]
-         and bool(empty_text) and s7["★切回皮肤后_滑杆数"] == 6
+        % (s7["★第二段_页签数"], s7["★第二段_滑杆数"],
+           (seg2_empty or "")[:30].replace("\n", " "),
+           s7["★切回脸部精修_页签数"], s7["★切回皮肤后_滑杆数"]),
+        (s7["★第二段_页签数"] == 0 and s7["★第二段_滑杆数"] == 0
+         and bool(seg2_empty) and s7["★第二段_空态说明里写了「已实测」"]
+         and s7["★切回脸部精修_页签数"] == 6
+         and s7["★切回皮肤后_滑杆数"] == 6
          and not skin_back_empty
          and s7["★README写明那五页签未实测"]
          and s7["★README没有断言源站那五页签没有控件"]),

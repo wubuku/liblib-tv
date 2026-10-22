@@ -236,8 +236,11 @@ def main():
             pg.wait_for_timeout(2600)
 
             # ★ 点右栏第二个页签（眉眼）⟹ 应显示**空态说明**
+            #   ★★ **batch 843 起改点「妆造」**：眉眼页在 batch 842 已实现
+            #   ⟹ ⟹ 「仍未实现的那一页」变成了妆造 ⟹ ⟹ 探针必须跟着改
+            #   ⟹ ⟹ （★ 门禁改了而探针没改 ⟹ ⟹ 那条断言就会**永远红** ⟹ ⟹ 那是**假绿/假红**）
             tb = pg.evaluate("""() => {
-              const e=document.querySelector('[data-character-editor-tab="brow-eye"]');
+              const e=document.querySelector('[data-character-editor-tab="makeup"]');
               if(!e)return null; const r=e.getBoundingClientRect();
               return {x:Math.round(r.x),y:Math.round(r.y),w:Math.round(r.width),
                       h:Math.round(r.height)};}""")
@@ -246,14 +249,29 @@ def main():
                 pg.wait_for_timeout(400)
             out["E_切页签后"] = pg.evaluate(READ)
 
-            # ★ 切回「皮肤」页签 ＋ 点第二个分段
+            # ★ 切回「皮肤」页签（**留在「脸部精修」段** ⟹ ⟹ 右栏仍是页签行 ＋ 6 条滑杆）
             pg.evaluate("""() => {
               const t=document.querySelector('[data-character-editor-tab="skin"]');
-              if(t)t.click();
+              if(t)t.click();}""")
+            pg.wait_for_timeout(400)
+            out["F_切回皮肤"] = pg.evaluate(READ)
+
+            # ★★ **batch 843 起**：点左列第二段（脸部 & 身体特征）⟹ **页签行应当消失**
+            #   ⟹ ⟹ 那是**当下仍未实现**的那一块（源站实测有内容 ⟹ ⟹ clone 显示空态说明）
+            #   ★ ★ 探针必须**真的点一下** ⟹ ⟹ 否则「这个入口没有 X」这类断言根本不成立
+            #   ★ ★ 且必须是**从 face 段点过去**的 ⟹ ⟹ 才是**真实的转移**（不是原地 no-op）
+            pg.evaluate("""() => {
               const s=document.querySelector('[data-character-editor-segment="traits"]');
               if(s)s.click();}""")
             pg.wait_for_timeout(400)
-            out["F_切回皮肤"] = pg.evaluate(READ)
+            out["F2_第二段"] = pg.evaluate(READ)
+
+            # ★ 切回「脸部精修」段 ⟹ 页签行应当回来
+            pg.evaluate("""() => {
+              const s=document.querySelector('[data-character-editor-segment="face"]');
+              if(s)s.click();}""")
+            pg.wait_for_timeout(400)
+            out["F3_切回脸部精修"] = pg.evaluate(READ)
 
             # ★ 在标题输入框里输入（真实键盘）
             nb = pg.evaluate("""() => {

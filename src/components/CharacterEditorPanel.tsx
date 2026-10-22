@@ -214,12 +214,35 @@ const BROW_EYE_CARD_NAMES = [
   "水光", "聚焦", "透亮", "星光", "通透",
 ];
 
+// ★★ Batch 843：「妆造」页的 **11 个分类** ＋ 每个分类的**卡片清单**
+//   （源站**只读**实测，raw 入库在
+//    `docs/research/liblib-canvas-batch843-2026-10-01/raw/source-843-makeup.json`）
+//
+// ★★ **每个分类的第一张都是「无」**（**没有缩略图** —— 源站是一枚图标）⟹ ⟹ clone 同款。
+// ★ 卡片名**逐条照抄**源站的**可见**文案（源站的 aria 是「分类 ＋ 名字」，可见的是名字）。
+// ★★ 源站的 `眼影` 分类里「自然」**出现两次**（第 2 张与第 6 张）⟹ ⟹ 照抄，不去重。
+const MAKEUP_CATEGORIES: { id: string; label: string; cards: string[] }[] = [
+  { id: "brow", label: "眉毛", cards: ["自然", "直眉", "英气", "弯月", "高挑", "浓密", "小挑眉", "野生", "原生", "古典", "丝雾", "棕雾", "毛绒"] },
+  { id: "contact", label: "美瞳", cards: ["琥珀", "橄榄绿", "混血灰", "灰粉", "烟花紫", "摩卡棕", "亚麻灰", "金星棕", "黑瞳", "黑边", "红宝石", "深棕", "金珀"] },
+  { id: "wochan", label: "卧蚕", cards: ["素颜", "自然", "妈生感", "可爱", "无辜", "月牙", "减龄", "亮片"] },
+  { id: "yanying", label: "眼影", cards: ["裸杏", "自然", "无辜眼", "元气", "泪痣", "自然", "猫眼", "闪片", "派对", "糖果", "大地色", "消肿", "海棠"] },
+  { id: "jielan", label: "睫毛", cards: ["自然", "纯欲", "甜妹", "翘睫", "仙女", "短睫", "鱼尾", "漫画", "下睫", "倒置", "上睫", "浓密", "太阳花", "卷翘"] },
+  { id: "xiurong", label: "修容", cards: ["立体", "自然", "V脸", "气质", "塑造", "欧美", "笔挺", "古铜", "混血", "盒鼻", "短鼻"] },
+  { id: "saihong", label: "腮红", cards: ["元气", "眼下", "法式", "氛围", "高原", "面颊", "微醺", "冻伤", "晒伤", "红润", "桃粉", "减龄"] },
+  { id: "runcai", label: "唇彩", cards: ["珊瑚粉", "裸粉", "蜜桃", "樱桃", "南瓜", "亮橘", "正红", "西柚", "浆果", "豆沙粉", "玫瑰", "火龙果", "果冻", "裸棕", "砖红", "车厘子", "玫红"] },
+  { id: "zhuangshi", label: "妆饰", cards: ["眼下钻石", "雀斑", "度假雀斑", "慵懒雀斑", "野生雀斑", "美式雀斑"] },
+  { id: "yanxian", label: "眼线", cards: ["自然系", "深邃", "甜酷", "韩系", "狗狗眼", "古典", "全包", "开口下至", "淡颜", "上扬", "刀锋"] },
+  { id: "gaoguang", label: "高光", cards: ["眼下提亮", "丰润", "平整", "盈润", "丰盈", "笔挺", "透亮", "水光", "小灯泡"] },
+];
+
 // ★ 一页右栏的**块序列**（绝对定位；top 相对滚动区内容起点）
 type PanelBlock =
   | { kind: "h3"; text: string; top: number }
   | { kind: "h4"; text: string; top: number }
   | { kind: "sliders"; top: number; items: Slider[] }
-  | { kind: "cards"; top: number; names: string[] };
+  | { kind: "cards"; top: number; names: string[] }
+  // ★★ Batch 843：妆造页（**自带状态**：分类 chip ＋ 随分类切换的卡片网格）
+  | { kind: "makeup"; h4Top: number; chipTop: number; cardTop: number };
 
 const TAB_BLOCKS: Record<string, PanelBlock[]> = {
   "brow-eye": [
@@ -229,6 +252,12 @@ const TAB_BLOCKS: Record<string, PanelBlock[]> = {
     { kind: "cards", top: 1511, names: BROW_EYE_CARD_NAMES },
     { kind: "h3", text: "眉毛", top: 1947 },
     { kind: "sliders", top: 1987, items: BROW_EYE_BROW_SLIDERS },
+  ],
+  makeup: [
+    // ★ 源站实测：H4「妆容素材」240×22 @top 20（带一枚「i」）
+    //   分类 chip 50×26：4 列 × 3 行，步进 56／32（top = 50 + 32·row，left = 24 + 56·col）
+    //   卡片 76×96：3 列，步进 82／104（top = 152 + 104·row，left = 24 + 82·col）
+    { kind: "makeup", h4Top: 20, chipTop: 50, cardTop: 152 },
   ],
 };
 
@@ -244,13 +273,37 @@ const ALL_SLIDERS: Slider[] = [
 ];
 
 // ★★ **未实现**页签的空态说明（**逐页**写，别用一句通用文案）
-//   ★ 措辞必须对得上**已实测到的事实** ⟹ ⟹ 妆造页是「11 个分类 chip ＋ 13 张妆容预设卡」
-//   ⟹ ⟹ 再说「除了滑杆还含预设网格」就是**假陈述**。
-const EMPTY_NOTE: Record<string, string> = {
-  makeup:
-    "「妆造」这一页签的控件 **已实测**（源站 raw 入库在 batch 841／842），" +
-    "但它是 **11 个分类 chip ＋ 13 张妆容预设卡**（76×96 的卡片，带缩略图）" +
-    "⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。",
+//   ★★ **batch 843 起**：妆造页**已实现**（11 枚分类 chip ＋ 138 张卡）⟹ ⟹ 它**不再**走这条路
+//   ⟹ ⟹ 原来那条 makeup 的说明里「13 张妆容预设卡」是**错的**（实为 138 张）⟹ ⟹ **删掉**
+//   ⟹ ⟹ （★ 留着就是一条**假陈述**：既说「13 张」又说「属后续批次」⟹ 而它早已实现）
+const EMPTY_NOTE: Record<string, string> = {};
+
+// ★★ Batch 843：左列**其余四段**的空态说明（**逐段**写）
+//   ★ 源站四段的结构**各不相同**（batch 841 raw 机器提取）⟹ ⟹ 一句通用文案就是**假陈述**
+//   ★ 措辞里的每个数字/条目名都来自 raw ⟹ ⟹ 不手打不存在的结构
+const SEGMENT_NOTE: Record<string, string> = {
+  traits:
+    "「脸部 & 身体特征」这一段的控件 **已实测**（源站 raw 入库在 batch 841）：" +
+    "**H3「纹身 & 疤痕」＋ 6 张 76×54 的缩略图卡**（痣／疤痕_深／疤痕_浅／" +
+    "全脸雀斑／脸颊雀斑／自定义，3 列 × 2 行）⟹ ⟹ 属后续批次 ⟹ ⟹ " +
+    "这里不编造控件，只如实说明。",
+  body:
+    "「身材塑形」这一段的控件 **已实测**（源站 raw 入库在 batch 841）：" +
+    "**「丰胸」数值 ＋ 17 条滑杆**（AI 增高／驼背／长腿／直角肩／小头／瘦身／" +
+    "瘦肚子／瘦手臂／美臀／瘦腿／瘦脖子-左／瘦脖子-右／美腰／天鹅颈-左／" +
+    "天鹅颈-右／肩膀宽度／全身美型）⟹ ⟹ 属后续批次 ⟹ ⟹ " +
+    "这里不编造控件，只如实说明。",
+  outfit:
+    "「服装造型」这一段的控件 **已实测**（源站 raw 入库在 batch 841）：" +
+    "**H3「发型／发色／妆容／口红」四块 ＋ chip 网格**（发型 10 个／" +
+    "选发色 10 个 ＋ 自定义颜色／妆容 7 个／选口红颜色 10 个）⟹ ⟹ " +
+    "属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。",
+  voice:
+    "「音色音调」这一段的控件 **已实测**（源站 raw 入库在 batch 841）：" +
+    "**「音色库」＋ 20 条音色 ＋ 各自的播放按钮**（青涩青年音色／精英青年音色／" +
+    "霸道青年音色／青年大学生音色／少女音色／御姐音色／成熟女性音色／" +
+    "甜美女性音色，及各自的 -beta 版、聪明男童／可爱男童／萌萌女童／" +
+    "卡通猪小琪）⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。",
 };
 
 export interface CharacterEditorPanelProps {
@@ -284,6 +337,15 @@ export function CharacterEditorPanel({
   const [spot, setSpot] = useState(false);
   // ★★ Batch 842：眼型预设卡的**选中态**（源站默认选中「无」⟹ aria-pressed=true）
   const [cardSel, setCardSel] = useState("无");
+  // ★★ Batch 843：妆造页的**当前分类**
+  const [makeupCat, setMakeupCat] = useState(MAKEUP_CATEGORIES[0].id);
+  // ★★ Batch 843：**选中态按分类各存一份**（源站实测：★ **每个**分类的第一张「无」
+  //   都是 `aria-pressed=true` ⟹ ⟹ 源站的选中态**不是**一个全局单值，而是**每分类一份**）
+  //   ⟹ ⟹ clone 之前用单一 `makeupCard` ⟹ ⟹ 切到别的分类时那张「无」**不是**选中态
+  //   ⟹ ⟹ 与源站不符 ⟹ ⟹ 本批改正。
+  //   ★ 未实测：点过一张卡之后**切走再切回**是否仍保持选中 ⟹ ⟹ 源站那趟只点了分类 chip
+  //   ⟹ ⟹ 这里按「每分类各存一份」实现 ⟹ ⟹ 但那一条**不声称**与源站一致。
+  const [makeupSel, setMakeupSel] = useState<Record<string, string>>({});
   const [framing, setFraming] = useState<"half" | "full">("half");
   const [name, setName] = useState(characterName);
   const [genAssets, setGenAssets] = useState(true);
@@ -409,9 +471,99 @@ export function CharacterEditorPanel({
     );
   };
 
+  // ★★ Batch 843：**妆造页**（H4「妆容素材」＋ 11 枚分类 chip ＋ 随分类切换的卡片网格）
+  //   ★ 源站实测：chip 是 `role=tab`，选中那枚**白底黑字**；卡片首张恒为「无」
+  const renderMakeup = (block: { h4Top: number; chipTop: number; cardTop: number }) => {
+    const cat = MAKEUP_CATEGORIES.find((c) => c.id === makeupCat) ?? MAKEUP_CATEGORIES[0];
+    // ★ 源站每个分类的**第一张**都是「无」（无缩略图 ⟹ 一枚 18×18 图标）
+    const names = ["无", ...cat.cards];
+    return (
+      <div key="makeup">
+        <h4
+          className="ce-h4"
+          style={{ top: `${block.h4Top}px` }}
+          data-character-editor-h4="妆容素材"
+        >
+          <span>妆容素材</span>
+          <span
+            className="ce-info"
+            role="img"
+            aria-label="该调整不支持预览，需要生成后生效"
+          >
+            i
+          </span>
+        </h4>
+        {MAKEUP_CATEGORIES.map((item, ci) => {
+          const on = item.id === makeupCat;
+          return (
+            <button
+              key={item.id}
+              type="button"
+              role="tab"
+              aria-selected={on}
+              aria-label={item.label}
+              className={`ce-chip${on ? " is-on" : ""}`}
+              style={{
+                top: `${block.chipTop + Math.floor(ci / 4) * 32}px`,
+                left: `${24 + (ci % 4) * 56}px`,
+              }}
+              data-character-editor-chip={item.id}
+              onClick={() => setMakeupCat(item.id)}
+            >
+              {item.label}
+            </button>
+          );
+        })}
+        {names.map((name, i) => {
+          const key = `${cat.id}/${name}`;
+          // ★ 选中态按**分类**取（每分类一份，缺省「无」⟹ 与源站每分类第一张「无」pressed=true 一致）
+          const on = (makeupSel[cat.id] ?? "无") === name;
+          return (
+            <button
+              key={`${cat.id}-${i}`}
+              type="button"
+              aria-label={name === "无" ? "无" : `${cat.label} ${name}`}
+              aria-pressed={on}
+              className={`ce-card${on ? " is-on" : ""}`}
+              style={{
+                top: `${block.cardTop + Math.floor(i / 3) * 104}px`,
+                left: `${24 + (i % 3) * 82}px`,
+              }}
+              // ★ **带序号** ⟹ DOM 里**唯一**（★ 源站「眼影」分类里有两个同名「自然」⟹
+              //   只用「分类/名字」当属性值 ⟹ **两个元素同值** ⟹ 选择器会挑错一张卡）
+              data-character-editor-makeup-card={`${cat.id}/${i}`}
+              data-character-editor-makeup-name={name}
+              onClick={() =>
+                setMakeupSel((prev) => ({ ...prev, [cat.id]: name }))
+              }
+            >
+              <span className="ce-card-media">
+                {name === "无" ? (
+                  <span className="ce-card-none" aria-hidden="true">
+                    <Ban size={18} />
+                  </span>
+                ) : (
+                  <span
+                    className="ce-card-thumb"
+                    data-character-editor-card-thumb={key}
+                  />
+                )}
+              </span>
+              <span
+                className="ce-card-name"
+                data-character-editor-card-name={key}
+              >
+                {name}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    );
+  };
+
   // ★★ 一个**块**（标题／预设卡组／滑杆组）
-  const renderBlock = (block: PanelBlock, index: number) => {
-    if (block.kind === "h3") {
+  const renderBlock = (block: PanelBlock, index: number) => {    if (block.kind === "h3") {
       return (
         <h3
           key={`h3-${index}`}
@@ -450,6 +602,9 @@ export function CharacterEditorPanel({
           )}
         </div>
       );
+    }
+    if (block.kind === "makeup") {
+      return renderMakeup(block);
     }
     return (
       <div key={`cd-${index}`}>
@@ -583,81 +738,107 @@ export function CharacterEditorPanel({
           </main>
 
           <aside className="ce-col ce-col-right">
-            <div className="ce-tabs" role="tablist">
-              {TABS.map((item) => (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="tab"
-                  aria-selected={tab === item.id}
-                  aria-label={item.label}
-                  className={`ce-tab ${tab === item.id ? "is-text" : "is-icon"}${
-                    tab === item.id ? " is-on" : ""
-                  }`}
-                  data-character-editor-tab={item.id}
-                  onClick={() => setTab(item.id)}
-                >
-                  <span className="ce-tab-icon" aria-hidden="true">
-                    <item.icon size={18} />
-                  </span>
-                  {tab === item.id ? (
-                    <span className="ce-tab-text">{item.label}</span>
-                  ) : null}
-                </button>
-              ))}
-            </div>
-
-            {currentBlocks ? (
-              // ★★ Batch 842：**分块**布局（眉眼页：H3 ＋ 滑杆组 ＋ H4 ＋ 卡片组 ＋ H3 ＋ 滑杆组）
-              <div className="ce-panel">
-                <div className="ce-section">
-                  {currentBlocks.map(renderBlock)}
-                </div>
-              </div>
-            ) : currentSliders ? (
-              <div className="ce-panel">
-                <div className="ce-section">
-                  {currentSliders.map((item, index) => renderSlider(item, index))}
-
-                  {tab === "skin" ? (
-                    <div
-                      className="ce-switch-row"
-                      style={{ top: 469 }}
-                      data-character-editor-switch-row="spot"
+            {/* ★★ Batch 843：**页签行只在「脸部精修」段存在**（源站实测，batch 841 raw）
+                ⟹ ⟹ 切到别的段 ⟹ 右栏**不显示页签行**，而是那一段自己的内容
+                ⟹ ⟹ clone 之前**每段都显示页签行** ⟹ ⟹ 那是**结构上的假象** ⟹ ⟹ 本批改正。 */}
+            {segment === "face" ? (
+              <>
+                <div className="ce-tabs" role="tablist">
+                  {TABS.map((item) => (
+                    <button
+                      key={item.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={tab === item.id}
+                      aria-label={item.label}
+                      className={`ce-tab ${tab === item.id ? "is-text" : "is-icon"}${
+                        tab === item.id ? " is-on" : ""
+                      }`}
+                      data-character-editor-tab={item.id}
+                      onClick={() => setTab(item.id)}
                     >
-                      <span className="ce-switch-label">
-                        <span className="ce-switch-label-text">祛斑祛痘</span>
-                        <span
-                          className="ce-info"
-                          role="img"
-                          aria-label="该调整不支持预览，需要生成后生效"
-                        >
-                          i
-                        </span>
+                      <span className="ce-tab-icon" aria-hidden="true">
+                        <item.icon size={18} />
                       </span>
-                      <button
-                        type="button"
-                        role="switch"
-                        aria-checked={spot}
-                        aria-label="祛斑祛痘"
-                        className={`ce-switch${spot ? " is-on" : ""}`}
-                        data-character-editor-switch="spot"
-                        onClick={() => setSpot((prev) => !prev)}
-                      >
-                        <span className="ce-switch-thumb" />
-                      </button>
-                    </div>
-                  ) : null}
+                      {tab === item.id ? (
+                        <span className="ce-tab-text">{item.label}</span>
+                      ) : null}
+                    </button>
+                  ))}
                 </div>
-              </div>
+
+                {currentBlocks ? (
+                  // ★★ Batch 842：**分块**布局（眉眼页：H3 ＋ 滑杆组 ＋ H4 ＋ 卡片组 ＋ H3 ＋ 滑杆组）
+                  <div className="ce-panel">
+                    <div className="ce-section">
+                      {currentBlocks.map(renderBlock)}
+                    </div>
+                  </div>
+                ) : currentSliders ? (
+                  <div className="ce-panel">
+                    <div className="ce-section">
+                      {currentSliders.map((item, index) => renderSlider(item, index))}
+
+                      {tab === "skin" ? (
+                        <div
+                          className="ce-switch-row"
+                          style={{ top: 469 }}
+                          data-character-editor-switch-row="spot"
+                        >
+                          <span className="ce-switch-label">
+                            <span className="ce-switch-label-text">祛斑祛痘</span>
+                            <span
+                              className="ce-info"
+                              role="img"
+                              aria-label="该调整不支持预览，需要生成后生效"
+                            >
+                              i
+                            </span>
+                          </span>
+                          <button
+                            type="button"
+                            role="switch"
+                            aria-checked={spot}
+                            aria-label="祛斑祛痘"
+                            className={`ce-switch${spot ? " is-on" : ""}`}
+                            data-character-editor-switch="spot"
+                            onClick={() => setSpot((prev) => !prev)}
+                          >
+                            <span className="ce-switch-thumb" />
+                          </button>
+                        </div>
+                      ) : null}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="ce-panel">
+                    <p className="ce-empty" data-character-editor-empty>
+                      {EMPTY_NOTE[tab] ??
+                        `「${TABS.find((item) => item.id === tab)?.label}」这一页签的控件 ` +
+                          "**已实测**（源站 raw 入库在 batch 841），但它含**预设网格**" +
+                          "（76×96 的卡片，带缩略图）⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。"}
+                    </p>
+                  </div>
+                )}
+              </>
             ) : (
+              // ★★ Batch 843：别的段（脸部 & 身体特征／身材塑形／服装造型／音色音调）
+              //   ⟹ ⟹ 源站实测**页签行不存在**，右栏是**那一段自己的内容**
+              //   ⟹ ⟹ 本批**不编造**：显示空态说明（★ 那四段**已实测**，raw 已入库）。
+              //   ★★ **逐段写**（★ 源站四段的结构**各不相同** ⟹ ⟹ 一句通用文案就是**假陈述**）：
+              //     · 脸部 & 身体特征 ＝ H3「纹身 & 疤痕」＋ 6 张 76×54 缩略图卡（3 列×2 行）
+              //     · 身材塑形         ＝ 「丰胸」数值 ＋ 17 条滑杆（AI 增高／驼背／长腿…）
+              //     · 服装造型         ＝ H3「发型／发色／妆容／口红」＋ chip 网格
+              //     · 音色音调         ＝ 「音色库」＋ 20 条音色 ＋ 播放按钮
               <div className="ce-panel">
-                <p className="ce-empty" data-character-editor-empty>
-                  {EMPTY_NOTE[tab] ??
-                    `「${TABS.find((item) => item.id === tab)?.label}」这一页签的控件 ` +
-                      "**已实测**（源站 raw 入库在 batch 841），但它含**预设网格**" +
-                      "（76×96 的卡片，带缩略图）⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。"}
-                </p>
+                <div className="ce-section">
+                  <p className="ce-empty" data-character-editor-empty>
+                    {SEGMENT_NOTE[segment] ??
+                      `「${SEGMENTS.find((s) => s.id === segment)?.label}」这一段的控件 ` +
+                        "**已实测**（源站 raw 入库在 batch 841），但它含**缩略图卡片／"
+                        + "滑杆／音色列表**之类** ⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。"}
+                  </p>
+                </div>
               </div>
             )}
 

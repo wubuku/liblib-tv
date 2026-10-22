@@ -41,6 +41,13 @@ READ = """()=>{
     return {x:b.x-rb.x,y:b.y-rb.y,w:b.w,h:b.h};};
   const q=(sel)=>root.querySelector(sel);
 
+  // ★ 页签行（★ **batch 843 起**：源站实测**页签行只在「脸部精修」段存在**
+  //   ⟹ ⟹ 点左列别的段 ⟹ 右栏**不显示页签行** ⟹ ⟹ 这里读它有没有）
+  out['页签']=[...root.querySelectorAll('[data-character-editor-tab]')].map(e=>({
+    id:e.getAttribute('data-character-editor-tab'),
+    aria:e.getAttribute('aria-label'),
+    selected:e.getAttribute('aria-selected')==='true',...rel(e)}));
+
   // ★ 标题（H3 分段 ＋ H4 预设分组）
   out['标题']=[...root.querySelectorAll('.ce-h3,.ce-h4')].map(e=>({
     tag:e.tagName,text:txt(e),box:rel(e),
@@ -186,9 +193,24 @@ def main():
                 pg.wait_for_timeout(400)
             out["C_点卡后"] = pg.evaluate(READ)
 
-            # ★ 「妆造」页仍是**空态说明**（本批不实现）
+            # ★ 「妆造」页（★ **batch 843 起已实现** ⟹ ⟹ 不再是空态说明）
             out["★点到_makeup"] = click_tab(pg, "makeup")
             out["D_妆造"] = pg.evaluate(READ)
+
+            # ★★ **batch 843 起**：点左列第二段（脸部 & 身体特征）⟹
+            #   **页签行应当消失**（源站实测：页签行只在「脸部精修」段存在）⟹ ⟹
+            #   那是**当下仍未实现**的那一块 ⟹ ⟹ 显示**如实说明**而不编造控件
+            #   ★ 探针必须**真的点一下** ⟹ ⟹ 否则「这个入口没有 X」这类断言根本不成立
+            seg2 = pg.evaluate("""()=>{
+              const e=document.querySelector('[data-character-editor-segment="traits"]');
+              if(!e)return null; const r=e.getBoundingClientRect();
+              return {x:Math.round(r.x),y:Math.round(r.y),w:Math.round(r.width),
+                      h:Math.round(r.height)};}""")
+            out["★点到_第二段"] = seg2
+            if seg2:
+                pg.mouse.click(seg2["x"] + seg2["w"] / 2, seg2["y"] + seg2["h"] / 2)
+                pg.wait_for_timeout(450)
+            out["D2_第二段"] = pg.evaluate(READ)
 
             br.close()
     except Exception:
@@ -198,7 +220,7 @@ def main():
         print("已落盘：", OUT)
         if out.get("异常"):
             print("异常：", out["异常"])
-        for stage in ("A_眉眼", "B_拖滑杆后", "C_点卡后", "D_妆造"):
+        for stage in ("A_眉眼", "B_拖滑杆后", "C_点卡后", "D_妆造", "D2_第二段"):
             r = out.get(stage) or {}
             if not r:
                 continue

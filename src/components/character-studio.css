@@ -1272,6 +1272,11 @@
   border-radius: 16px;
   border: 1px solid transparent;
   background: rgba(255, 255, 255, 0.06);
+  /* ★★ Batch 843：源站实测媒体区的**计算样式**是 11px／16px／纯白
+     （★ 它的字体是**继承**自卡片按钮的 text-xs ⟹ 卡片媒体区与眼型卡媒体区同值） */
+  font-size: 11px;
+  line-height: 16px;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1296,6 +1301,31 @@
   text-overflow: ellipsis;
 }
 .ce-card.is-on .ce-card-name { color: #fff; }
+
+/* ── Batch 843：妆造页的**分类 chip** ─────────────────────────────────── */
+/* ★ 源站实测：50×26、radius 9999px、1px 边框、padding 4px 12px、12px/16px
+   选中那枚：**白底黑字** ＋ 白边；其余：透明底 ＋ 白 60% 字 ＋ 白 8% 边 */
+.ce-chip {
+  position: absolute;
+  width: 50px;
+  height: 26px;
+  margin: 0;
+  padding: 4px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 12px;
+  line-height: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  cursor: pointer;
+}
+.ce-chip.is-on {
+  background: #fff;
+  border-color: #fff;
+  color: #000;
+}
 
 .ce-switch-row {
   position: absolute;
