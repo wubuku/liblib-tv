@@ -243,6 +243,29 @@ out["n_failed"] = sum(1 for f in flags if f is not True)
 out["all_ok"] = all(f is True for f in flags)
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
+# ⭐⭐⭐⭐⭐ 1032-②j：**判据台账** —— 「一条判据红了，是缺陷还是结论？」必须能机检
+#   ⇒ ⇒ 口径：kind ∈ {failure, conclusion, precondition}
+#   ⇒ ⇒⇒   failure     = 红了 = **有东西坏了**（被测对象或仪器）⇒ ⇒ 要修
+#   ⇒ ⇒⇒   conclusion  = 红了 = **我写下的那个结论不再成立** ⇒ ⇒ 要重读
+#   ⇒ ⇒⇒   precondition= 红了 = **前提不成立、这次测量不适用** ⇒ ⇒ 不许算成红
+#   ⇒ ⇒⇒⇒ **⇒ 而 kind 不是从文本机械猜的** ⇒ ⇒ ⇒⇒ **⇒ 逐条读原文、由人定性** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而「没标注」=「不可判定」= 合法状态，不许默认成 failure** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 前提不成立是运行时状态 `None`、不是 kind** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒   ⇒ ⇒ 这里的 kind 说的是「**读数是 False 时**该做什么」 ⇒ ⇒ ⇒⇒
+out["criterion_kinds_1032c"] = {
+    "P1_probe_actually_ran_1032c": "precondition",
+    "P2_instrument_had_teeth_1032c": "failure",
+    "P3_every_button_got_a_verdict_1032c": "failure",
+    "P4_no_button_is_a_noop_1032c": "failure",
+    "P5_no_button_only_toasts_1032c": "failure",
+    "P6_summary_matches_rows_1032c": "failure",
+    "P7_mutation_makes_judgement_red_1032c": "failure",
+    "P8_no_page_errors_1032c": "failure",
+}
+out["criterion_kinds_complete_1032c"] = (
+    set(out["criterion_kinds_1032c"]) == set(out["P"]))
+out["criteria_n_1032c"] = len(out["P"])
+
 OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 print("P 判据 =", flags)

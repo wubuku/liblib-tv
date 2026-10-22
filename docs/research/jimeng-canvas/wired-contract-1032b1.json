@@ -29,5 +29,17 @@
  "scope_note": "⭐⭐⭐ 本门只覆盖 1032-②b-1 修好的这 18 个按钮；**其余 7 个仍死的按钮**由静态门 DD993S.1 管；**「有 onClick 但函数体是空的」那一类**静态门扫不到 ⇒ 留待 ②b-2。",
  "n_false": 0,
  "false_criteria": [],
- "degraded_criteria": []
+ "degraded_criteria": [],
+ "criterion_kinds_1032b1": {
+  "P1": "failure",
+  "P2": "failure",
+  "P3": "failure",
+  "P4": "failure",
+  "P5": "failure",
+  "P6": "failure",
+  "P7": "failure",
+  "P8": "failure"
+ },
+ "criterion_kinds_complete_1032b1": true,
+ "criteria_n_1032b1": 8
 }

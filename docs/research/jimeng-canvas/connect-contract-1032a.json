@@ -51,5 +51,16 @@
  },
  "n_false": 0,
  "false_criteria": [],
- "degraded_criteria": []
+ "degraded_criteria": [],
+ "criterion_kinds_1032a": {
+  "P1": "failure",
+  "P2": "failure",
+  "P3": "failure",
+  "P4": "failure",
+  "P5": "failure",
+  "P6": "failure",
+  "P7": "failure"
+ },
+ "criterion_kinds_complete_1032a": true,
+ "criteria_n_1032a": 7
 }

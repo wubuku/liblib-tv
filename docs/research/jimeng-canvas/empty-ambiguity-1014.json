@@ -16,8 +16,8 @@
     "bytes": 62073
    },
    "assertion-vs-behavior-1018.json": {
-    "sha256_12": "12db9c4b45fd",
-    "bytes": 17669
+    "sha256_12": "fabd6bcf500a",
+    "bytes": 18203
    },
    "baseline-host-misuse-1016.json": {
     "sha256_12": "19e308ac0e61",
@@ -32,8 +32,8 @@
     "bytes": 3082
    },
    "connect-contract-1032a.json": {
-    "sha256_12": "1048709c9bc0",
-    "bytes": 1193
+    "sha256_12": "94f6b75889e9",
+    "bytes": 1422
    },
    "criterion-direction-1025.json": {
     "sha256_12": "9374cb4d668e",
@@ -52,12 +52,12 @@
     "bytes": 19737
    },
    "expanded-contract-1032b4.json": {
-    "sha256_12": "3e72f82376f2",
-    "bytes": 4023
+    "sha256_12": "342205171f2f",
+    "bytes": 4918
    },
    "gen-contract-1032b2.json": {
-    "sha256_12": "81c30537e710",
-    "bytes": 1330
+    "sha256_12": "56ba06092495",
+    "bytes": 1629
    },
    "global-detection-1012.json": {
     "sha256_12": "40099465912a",
@@ -68,8 +68,8 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "2f5aab22ea96",
-    "bytes": 81298
+    "sha256_12": "e38953a086b8",
+    "bytes": 91483
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
@@ -84,12 +84,12 @@
     "bytes": 1614
    },
    "mention-contract-1032b3.json": {
-    "sha256_12": "7c6cda0b55cf",
-    "bytes": 2660
+    "sha256_12": "944dcb42599c",
+    "bytes": 3253
    },
    "noop-contract-1032c.json": {
-    "sha256_12": "f30a45e6a5e3",
-    "bytes": 1881
+    "sha256_12": "2bc261e2ac49",
+    "bytes": 2356
    },
    "occurrence-ledger-1013.json": {
     "sha256_12": "cdb8d6ee52ab",
@@ -120,8 +120,8 @@
     "bytes": 9205
    },
    "wired-contract-1032b1.json": {
-    "sha256_12": "7450f42146a2",
-    "bytes": 1009
+    "sha256_12": "5188380cd7db",
+    "bytes": 1260
    },
    "zero-coupling-anchors-1005.json": {
     "sha256_12": "03d53cdaeff1",

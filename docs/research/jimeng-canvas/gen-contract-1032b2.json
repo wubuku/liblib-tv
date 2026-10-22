@@ -33,5 +33,18 @@
  "scope_note": "⭐⭐⭐ 本门只覆盖 1032-②b-2 修的两个「生成」按钮；**其余仍死的按钮**（数目由静态门 DD993S.1 那一栏给出）由静态门 DD993S.1 管；**「有 onClick 但函数体是空的」那一类**静态门扫不到 ⇒ 本门抓到的是其中一枚（音频「生成」），另一枚（文本「展开文本面板」）留待 ②c 的场景化探针。",
  "n_false": 0,
  "false_criteria": [],
- "degraded_criteria": []
+ "degraded_criteria": [],
+ "criterion_kinds_1032b2": {
+  "P1": "failure",
+  "P2": "failure",
+  "P3": "failure",
+  "P4": "failure",
+  "P5": "failure",
+  "P6": "failure",
+  "P7": "precondition",
+  "P8": "failure",
+  "P9_probe_actually_ran": "precondition"
+ },
+ "criterion_kinds_complete_1032b2": true,
+ "criteria_n_1032b2": 9
 }

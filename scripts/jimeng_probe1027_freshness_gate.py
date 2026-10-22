@@ -667,6 +667,30 @@ OUT["P10_writing_the_verdicts_back_did_not_break_my_own_hygiene_1027"] = bool(
 #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 是否干净」都逃不开这一层
 #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 不假装它被覆盖了**
 _PAYLOAD["verdicts_1027"] = dict(OUT)
+# ⭐⭐⭐⭐⭐ 1032-②j：**判据台账** —— 「一条判据红了，是缺陷还是结论？」必须能机检
+#   ⇒ ⇒ 口径：kind ∈ {failure, conclusion, precondition}
+#   ⇒ ⇒⇒   failure     = 红了 = **有东西坏了**（被测对象或仪器）⇒ ⇒ 要修
+#   ⇒ ⇒⇒   conclusion  = 红了 = **我写下的那个结论不再成立** ⇒ ⇒ 要重读
+#   ⇒ ⇒⇒   precondition= 红了 = **前提不成立、这次测量不适用** ⇒ ⇒ 不许算成红
+#   ⇒ ⇒⇒⇒ **⇒ 而 kind 不是从文本机械猜的** ⇒ ⇒ ⇒⇒ **⇒ 逐条读原文、由人定性** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 1027 的十条判据全是**仪器自己的不变量** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒   ⇒ ⇒ 「本门怎么记账」红了 = 门坏了 ⇒ ⇒ 要修门 ⇒ ⇒ **⇒ 而「产品坏了」不在这一档** ⇒ ⇒ ⇒⇒
+_PAYLOAD["criterion_kinds_1027"] = {
+    "P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027": "failure",
+    "P2_every_touched_probe_was_re_run_and_reported_1027": "failure",
+    "P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027": "failure",
+    "P4_touched_list_is_recorded_for_every_golden_owning_probe_1027": "failure",
+    "P5_one_run_per_golden_no_double_counting_1027": "failure",
+    "P6_scope_declared_1027": "failure",
+    "P7_offline_1027": "failure",
+    "P8_exclusion_is_bilateral_and_1015_declares_it_too_1027": "failure",
+    "P9_my_own_payload_has_no_null_no_empty_list_no_random_named_key_1027": "failure",
+    "P10_writing_the_verdicts_back_did_not_break_my_own_hygiene_1027": "failure",
+}
+_PAYLOAD["criterion_kinds_complete_1027"] = (
+    set(_PAYLOAD["criterion_kinds_1027"]) == set(OUT))
+_PAYLOAD["criteria_n_1027"] = len(OUT)
+
 GOLDEN.write_text(json.dumps(_PAYLOAD, ensure_ascii=False, indent=2) + "\n",
                   encoding="utf-8")
 

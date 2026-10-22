@@ -321,6 +321,29 @@ OUT = {"P1_baseline_all_green_1018": P1,
        "P8_hold_1018": P8,
        "P9_two_independent_methods_agree_1018": P9}
 
+# ⭐⭐⭐⭐⭐ 1032-②j：**判据台账** —— 「一条判据红了，是缺陷还是结论？」必须能机检
+#   ⇒ ⇒ 口径：kind ∈ {failure, conclusion, precondition}
+#   ⇒ ⇒⇒   failure     = 红了 = **有东西坏了**（被测对象或仪器）⇒ ⇒ 要修
+#   ⇒ ⇒⇒   conclusion  = 红了 = **我写下的那个结论不再成立** ⇒ ⇒ 要重读
+#   ⇒ ⇒⇒   precondition= 红了 = **前提不成立、这次测量不适用** ⇒ ⇒ 不许算成红
+#   ⇒ ⇒⇒⇒ **⇒ 而 kind 不是从文本机械猜的** ⇒ ⇒ ⇒⇒ **⇒ 逐条读原文、由人定性** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 这本有 4 条 `conclusion`**（P2–P5）⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒   ⇒ ⇒ 它们断言的是**这个审计的发现**（「判据看不见行为」「改名会失效」
+#   ⇒ ⇒⇒   ⇒ ⇒ 「有些判据只读 audit」「有些锚点是散文」）⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒   ⇒ ⇒ ⇒ 红 = **那个发现不再成立** ⇒ ⇒ 要重读结论 ⇒ ⇒ 而不是「产品坏了」 ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒   ⇒ ⇒ **⇒ 而 P8 在源码里没有任何语义（恒为 True 的槽位）⇒ ⇒ 不许推断 ⇒ ⇒ ⇒⇒**
+#   ⇒ ⇒⇒   ⇒ ⇒ ⇒ 按「仪器自身的声明」定性 ⇒ ⇒ ⇒⇒
+KINDS_1018 = {
+    "P1_baseline_all_green_1018": "failure",
+    "P2_behavior_change_is_invisible_1018": "conclusion",
+    "P3_rename_breaks_it_2018": "conclusion",
+    "P4_some_checks_read_the_audit_not_the_prototype_2018": "conclusion",
+    "P5_some_anchors_are_prose_2018": "conclusion",
+    "P6_scope_declared_1018": "failure",
+    "P7_offline_1018": "failure",
+    "P8_hold_1018": "failure",
+    "P9_two_independent_methods_agree_1018": "failure",
+}
 GOLDEN.parent.mkdir(parents=True, exist_ok=True)
 GOLDEN.write_text(json.dumps({
     "generated_by": "jimeng_probe1018_assertion_vs_behavior.py",
@@ -330,6 +353,9 @@ GOLDEN.write_text(json.dumps({
     #   ⇒ ⇒⇒⇒⇒⇒ ⇒ 「读数落在产物里」才谈得上「别的门能复核它」。
     "P": OUT,
     "P_all_true": all(OUT.values()),
+    "criterion_kinds_1018": KINDS_1018,
+    "criterion_kinds_complete_1018": set(KINDS_1018) == set(OUT),
+    "criteria_n_1018": len(OUT),
     "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **那 %d 条「在读原型源码」的判据，验的是「那段字还在」，"
             "不是「这个行为还对」** —— 两个反向用例把它钉死了。"
             "⭐⭐⭐⭐⭐ 1032-②e：**条数不再钉死** —— 「必须等于 24」是绝对快照，"

@@ -327,6 +327,36 @@ out["n_failed"] = sum(1 for f in flags if f is not True)
 out["all_ok"] = all(f is True for f in flags)
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
+# ⭐⭐⭐⭐⭐ 1032-②j：**判据台账** —— 「一条判据红了，是缺陷还是结论？」必须能机检
+#   ⇒ ⇒ 口径：kind ∈ {failure, conclusion, precondition}
+#   ⇒ ⇒⇒   failure     = 红了 = **有东西坏了**（被测对象或仪器）⇒ ⇒ 要修
+#   ⇒ ⇒⇒   conclusion  = 红了 = **我写下的那个结论不再成立** ⇒ ⇒ 要重读
+#   ⇒ ⇒⇒   precondition= 红了 = **前提不成立、这次测量不适用** ⇒ ⇒ 不许算成红
+#   ⇒ ⇒⇒⇒ **⇒ 而 kind 不是从文本机械猜的** ⇒ ⇒ ⇒⇒ **⇒ 逐条读原文、由人定性** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而「没标注」=「不可判定」= 合法状态，不许默认成 failure** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 前提不成立是运行时状态 `None`、不是 kind** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒   ⇒ ⇒ 这里的 kind 说的是「**读数是 False 时**该做什么」 ⇒ ⇒ ⇒⇒
+out["criterion_kinds_1032b4"] = {
+    "P1_probe_actually_ran_1032b4": "precondition",
+    "P2_expand_button_opens_layer_1032b4": "failure",
+    "P3_layer_is_dialog_source_aria_1032b4": "failure",
+    "P4_layer_geometry_matches_source_1032b4": "failure",
+    "P5_no_input_or_textarea_1032b4": "failure",
+    "P6_five_ref_type_buttons_1032b4": "failure",
+    "P7_ref_type_switch_observable_1032b4": "failure",
+    "P8_empty_prompt_generate_does_nothing_1032b4": "failure",
+    "P9_generate_enters_generating_1032b4": "failure",
+    "P10_collapse_closes_layer_1032b4": "failure",
+    "P11_escape_closes_layer_keeps_edit_mode_1032b4": "failure",
+    "P12_backdrop_click_closes_layer_1032b4": "failure",
+    "P13_insert_selects_only_new_node_1032b4": "failure",
+    "P14_no_page_errors_1032b4": "failure",
+    "P15_mutation_makes_judgement_red_1032b4": "failure",
+}
+out["criterion_kinds_complete_1032b4"] = (
+    set(out["criterion_kinds_1032b4"]) == set(out["P"]))
+out["criteria_n_1032b4"] = len(out["P"])
+
 OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
 print("P 判据 =", flags)

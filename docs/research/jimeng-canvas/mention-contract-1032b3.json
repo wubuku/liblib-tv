@@ -110,5 +110,19 @@
  },
  "n_checks": 10,
  "n_failed": 0,
- "all_ok": true
+ "all_ok": true,
+ "criterion_kinds_1032b3": {
+  "P1_probe_actually_ran_1032b3": "precondition",
+  "P2_mention_panel_opens_1032b3": "failure",
+  "P3_panel_is_listbox_may_at_content_1032b3": "failure",
+  "P4_four_categories_1032b3": "failure",
+  "P5_submenu_lists_resource_nodes_1032b3": "failure",
+  "P6_pick_inserts_chip_1032b3": "failure",
+  "P7_negative_controls_1032b3": "failure",
+  "P8_mutation_makes_judgement_red_1032b3": "failure",
+  "P9_video_edit_mention_panel_opens_1032b3": "failure",
+  "P10_no_page_errors_1032b3": "failure"
+ },
+ "criterion_kinds_complete_1032b3": true,
+ "criteria_n_1032b3": 10
 }

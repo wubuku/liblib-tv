@@ -244,6 +244,30 @@ out["n_false"] = len(false_list)
 out["false_criteria"] = false_list
 out["degraded_criteria"] = none_list
 
+# ⭐⭐⭐⭐⭐ 1032-②j：**判据台账** —— 「一条判据红了，是缺陷还是结论？」必须能机检
+#   ⇒ ⇒ 口径：kind ∈ {failure, conclusion, precondition}
+#   ⇒ ⇒⇒   failure     = 红了 = **有东西坏了**（被测对象或仪器）⇒ ⇒ 要修
+#   ⇒ ⇒⇒   conclusion  = 红了 = **我写下的那个结论不再成立** ⇒ ⇒ 要重读
+#   ⇒ ⇒⇒   precondition= 红了 = **前提不成立、这次测量不适用** ⇒ ⇒ 不许算成红
+#   ⇒ ⇒⇒⇒ **⇒ 而 kind 不是从文本机械猜的** ⇒ ⇒ ⇒⇒ **⇒ 逐条读原文、由人定性** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而「没标注」=「不可判定」= 合法状态，不许默认成 failure** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 前提不成立是运行时状态 `None`、不是 kind** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒   ⇒ ⇒ 这里的 kind 说的是「**读数是 False 时**该做什么」 ⇒ ⇒ ⇒⇒
+out["criterion_kinds_1032b2"] = {
+    "P1": "failure",
+    "P2": "failure",
+    "P3": "failure",
+    "P4": "failure",
+    "P5": "failure",
+    "P6": "failure",
+    "P7": "precondition",
+    "P8": "failure",
+    "P9_probe_actually_ran": "precondition",
+}
+out["criterion_kinds_complete_1032b2"] = (
+    set(out["criterion_kinds_1032b2"]) == set(out["criteria"]))
+out["criteria_n_1032b2"] = len(out["criteria"])
+
 OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
 
 print("probe: %s | readings=%s" % (_run_info, "有" if _readings else "无"))

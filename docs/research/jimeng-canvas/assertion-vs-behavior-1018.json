@@ -12,11 +12,24 @@
     "P9_two_independent_methods_agree_1018": true
   },
   "P_all_true": true,
+  "criterion_kinds_1018": {
+    "P1_baseline_all_green_1018": "failure",
+    "P2_behavior_change_is_invisible_1018": "conclusion",
+    "P3_rename_breaks_it_2018": "conclusion",
+    "P4_some_checks_read_the_audit_not_the_prototype_2018": "conclusion",
+    "P5_some_anchors_are_prose_2018": "conclusion",
+    "P6_scope_declared_1018": "failure",
+    "P7_offline_1018": "failure",
+    "P8_hold_1018": "failure",
+    "P9_two_independent_methods_agree_1018": "failure"
+  },
+  "criterion_kinds_complete_1018": true,
+  "criteria_n_1018": 9,
   "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **那 25 条「在读原型源码」的判据，验的是「那段字还在」，不是「这个行为还对」** —— 两个反向用例把它钉死了。⭐⭐⭐⭐⭐ 1032-②e：**条数不再钉死** —— 「必须等于 24」是绝对快照，判据一多就必红、而它红的原因跟被测的东西无关 ⇒ ⇒ 换成关系式（P9）。",
   "question_1018": "审计账里那些判据中，唯一那 25 条在读原型源码的，它们断言的是代码行为，还是源码里的字符串？",
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个 `'<字面量>' in <源码文本>` 形式的判据，它验的是「这段字还在」** ⇒ 改行为而保留字面量 ⇒ 照绿；保留行为而改掉字面量 ⇒ 变红或崩",
   "n_checks": 25,
-  "n_all_checks_in_verifier": 977,
+  "n_all_checks_in_verifier": 978,
   "n_by_ast_name": 25,
   "n_by_source_text": 26,
   "n_disagree_between_the_two_methods": 1,
@@ -27,7 +40,7 @@
   "text_only_disagreement_whitelist": {
     "CC993G.5": "⭐⭐⭐⭐⭐ `_agp_raw` 只出现在**字符串字面量**里（`\"不跑 tsc\" in _agp_raw\" in VER_SRC`）⇒ ⇒ 它断的是「verifier 源码里那段字还在」、**不是**在读原型源码 ⇒ ⇒ 文本法多算 = 良性"
   },
-  "n_not_reading_prototype_text": 952,
+  "n_not_reading_prototype_text": 953,
   "count_is_pinned": false,
   "why_not_pinned": "⭐⭐⭐⭐⭐ 绝对条数是快照（liblib batch 835 对 748 的同一教训）⇒ ⇒ 改成 P9 的两种算法逐条一致（可证伪）",
   "baseline": {

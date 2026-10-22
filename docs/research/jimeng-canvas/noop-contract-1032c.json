@@ -56,5 +56,17 @@
  },
  "n_checks": 8,
  "n_failed": 0,
- "all_ok": true
+ "all_ok": true,
+ "criterion_kinds_1032c": {
+  "P1_probe_actually_ran_1032c": "precondition",
+  "P2_instrument_had_teeth_1032c": "failure",
+  "P3_every_button_got_a_verdict_1032c": "failure",
+  "P4_no_button_is_a_noop_1032c": "failure",
+  "P5_no_button_only_toasts_1032c": "failure",
+  "P6_summary_matches_rows_1032c": "failure",
+  "P7_mutation_makes_judgement_red_1032c": "failure",
+  "P8_no_page_errors_1032c": "failure"
+ },
+ "criterion_kinds_complete_1032c": true,
+ "criteria_n_1032c": 8
 }

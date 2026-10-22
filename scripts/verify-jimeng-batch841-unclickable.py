@@ -763,20 +763,71 @@ def _p1032g_ledger_pc():
 #   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ **⇒ ② 取值不越界** ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒⇒⇒
 #   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒ **⇒ 而不钉绝对条数**（「今天有几本上了台账」是读数、不是断言）
 _P1032H_BOOKS = [
-    ("1005", "1005", "scripts/jimeng_probe1005_zero_coupling_census.py"),
-    ("1007", "1007", "scripts/jimeng_probe1007_disparate_copies.py"),
-    ("1008", "1008", "scripts/jimeng_probe1008_golden_freshness.py"),
-    ("1009", "1009", "scripts/jimeng_probe1009_edit_visibility.py"),
-    ("1010", "1010", "scripts/jimeng_probe1010_real_history_detection.py"),
-    ("1011", "2011", "scripts/jimeng_probe1011_change_locality.py"),
-    ("1012", "2012", "scripts/jimeng_probe1012_global_detection.py"),
-    ("1013", "2013", "scripts/jimeng_probe1013_occurrence_ledger.py"),
+    # ── A 类（8 本）：判据键是 `P<n>_hold_*`，台账在 `out["criterion_kinds_<tag>"]` ──
+    ("1005", "1005", "scripts/jimeng_probe1005_zero_coupling_census.py", r"^P\d+_hold_"),
+    ("1007", "1007", "scripts/jimeng_probe1007_disparate_copies.py", r"^P\d+_hold_"),
+    ("1008", "1008", "scripts/jimeng_probe1008_golden_freshness.py", r"^P\d+_hold_"),
+    ("1009", "1009", "scripts/jimeng_probe1009_edit_visibility.py", r"^P\d+_hold_"),
+    ("1010", "1010", "scripts/jimeng_probe1010_real_history_detection.py", r"^P\d+_hold_"),
+    ("1011", "2011", "scripts/jimeng_probe1011_change_locality.py", r"^P\d+_hold_"),
+    ("1012", "2012", "scripts/jimeng_probe1012_global_detection.py", r"^P\d+_hold_"),
+    ("1013", "2013", "scripts/jimeng_probe1013_occurrence_ledger.py", r"^P\d+_hold_"),
+    # ── C 类（8 本，1032-②j 新增）：判据键形态各不相同 ⇒ ⇒ **不许一刀切** ──
+    #    ① 1018：带标签的 `P<n>_<描述>_1018`，台账在模块级 `KINDS_1018` 里
+    #    ① 1018：带标签的 `P<n>_<描述>_1018` —— ⚠️ **其中三条的后缀是 `_2018`**
+    #       （P3/P4/P5）⇒ ⇒ 而「键的后缀不一致」这件事**只有把正则按书写才看得见**
+    ("1018", "1018", "scripts/jimeng_probe1018_assertion_vs_behavior.py",
+     r"^P\d+_.*_(?:1018|2018)$"),
+    #    ② 1027：带标签的 `P<n>_<描述>_1027`，台账在 `_PAYLOAD` 里
+    ("1027", "1027", "scripts/jimeng_probe1027_freshness_gate.py", r"^P\d+_.*_1027$"),
+    #    ③ 1032a：裸 `P<n>`，台账在 `out` 里
+    ("1032a", "1032a", "scripts/jimeng_probe1032a_connect_contract.py", r"^P\d+$"),
+    #    ④ 1032b1：裸 `P<n>`
+    ("1032b1", "1032b1", "scripts/jimeng_probe1032b1_wired_contract.py", r"^P\d+$"),
+    #    ⑤ 1032b2：`P<n>` 与 `P9_probe_actually_ran` **混着**
+    ("1032b2", "1032b2", "scripts/jimeng_probe1032b2_gen_contract.py", r"^P\d+(?:_.*)?$"),
+    #    ⑥ 1032b3：带标签的 `P<n>_<描述>_1032b3`
+    ("1032b3", "1032b3", "scripts/jimeng_probe1032b3_mention_contract.py", r"^P\d+_.*_1032b3$"),
+    #    ⑦ 1032b4：带标签的 `P<n>_<描述>_1032b4`
+    ("1032b4", "1032b4", "scripts/jimeng_probe1032b4_expanded_contract.py", r"^P\d+_.*_1032b4$"),
+    #    ⑧ 1032c：带标签的 `P<n>_<描述>_1032c`
+    ("1032c", "1032c", "scripts/jimeng_probe1032c_noop_contract.py", r"^P\d+_.*_1032c$"),
 ]
 _P1032H_KINDS = ("failure", "conclusion", "precondition")
 
 
-def _p1032h_book_ledger(path, tag):
-    """⭐ 逐本查：台账发布了没有、键对不对、取值越不越界。"""
+def _p1032j_literal(node, literals):
+    """把 AST 节点解析成字面量：本身是 dict，或指向模块级字面量的名字。"""
+    if isinstance(node, ast.Dict):
+        try:
+            return ast.literal_eval(node)
+        except Exception:  # noqa: BLE001
+            return None
+    if isinstance(node, ast.Name) and node.id in literals:
+        return literals[node.id]
+    return None
+
+
+def _p1032j_subscript_key(node):
+    """取赋值目标里**最外层**的字符串下标键（`out["P"]["P1_x"]` ⇒ `P1_x`）。"""
+    if not isinstance(node, ast.Subscript):
+        return None
+    sl = node.slice
+    if isinstance(sl, ast.Constant) and isinstance(sl.value, str):
+        return sl.value
+    return None
+
+
+def _p1032h_book_ledger(path, tag, key_re):
+    """⭐ 逐本查：台账发布了没有、键对不对、取值越不越界。
+
+    ⭐⭐⭐⭐⭐ 1032-②j：**判据键的来源有三种**，而**每本书用哪几种、各是什么形态，
+    都不一样** ⇒ ⇒ ⇒⇒ 而「哪些键算判据键」由**每本书自己的正则**说了算 ⇒ ⇒
+    ⇒ ⇒⇒ **⇒ 而不许一刀切**（②i 的老教训：「同名的东西在不同书里可以是不同的形状」）
+      ① **下标赋值**：`out["P"]["P1_x"] = …` / `out["P1_hold_x"] = …`
+      ② **字面量 dict 的键**：`OUT = {"P1_x": P1, …}`
+      ③ **模块级名字 → 字面量**：`KINDS_1018 = {…}`
+    """
     _p = ROOT / path
     _r = {"path": path, "tag": tag, "ok": False, "why": []}
     if not _p.exists():
@@ -787,29 +838,10 @@ def _p1032h_book_ledger(path, tag):
     except SyntaxError as _e:  # pragma: no cover
         _r["why"].append("syntax_error:%r" % (_e,))
         return _r
-    _kinds = None
-    _complete = False
-    _hold_keys = set()
-    for _node in ast.walk(_tree):
-        if not isinstance(_node, ast.Assign):
-            continue
-        for _tg in _node.targets:
-            if not (isinstance(_tg, ast.Subscript)
-                    and isinstance(_tg.value, ast.Name)
-                    and _tg.value.id == "out"
-                    and isinstance(_tg.slice, ast.Constant)
-                    and isinstance(_tg.slice.value, str)):
-                continue
-            _key = _tg.slice.value
-            if _key == "criterion_kinds_" + tag:
-                try:
-                    _kinds = ast.literal_eval(_node.value)
-                except Exception:  # noqa: BLE001
-                    _kinds = None
-            elif _key == "criterion_kinds_complete_" + tag:
-                _complete = True
-            elif re.match(_P1032G_HOLD_RE, _key):
-                _hold_keys.add(_key)
+    _sl = _p1032j_source_ledger(_tree, tag, key_re)
+    _kinds = _sl["kinds"]
+    _complete = _sl["complete"]
+    _hold_keys = _sl["crit_keys"]
     if _kinds is None:
         _r["why"].append("no_criterion_kinds")
         return _r
@@ -832,10 +864,193 @@ def _p1032h_book_ledger(path, tag):
     return _r
 
 
+def _p1032j_source_ledger(_tree, tag, key_re):
+    """⭐ 从**源码的 AST** 里读出：台账 dict、完成标记、判据键集合。
+
+    ⭐⭐⭐⭐⭐ 1032-②j：**判据键的来源有三种**，而每本书用哪几种都不一样 ⇒ ⇒
+    ⇒ ⇒⇒ 而「哪些键算判据键」由**每本书自己的正则**说了算 ⇒ ⇒ **不许一刀切**
+      ① **下标赋值**：`out["P"]["P1_x"] = …` / `out["P1_hold_x"] = …`
+      ② **字面量 dict 的键**：`OUT = {"P1_x": P1, …}`
+      ③ **模块级名字 → 字面量**：`KINDS_1018 = {…}`
+    """
+    # ── 模块级字面量名字（`KINDS_1018 = {…}` 之类） ──
+    _literals = {}
+    for _node in _tree.body:
+        if (isinstance(_node, ast.Assign) and len(_node.targets) == 1
+                and isinstance(_node.targets[0], ast.Name)):
+            _v = _p1032j_literal(_node.value, _literals)
+            if _v is not None:
+                _literals[_node.targets[0].id] = _v
+    _kinds = None
+    _complete = False
+    _hold_keys = set()
+    _rx = re.compile(key_re)
+    for _node in ast.walk(_tree):
+        # ① 下标赋值
+        if isinstance(_node, ast.Assign):
+            for _tg in _node.targets:
+                _key = _p1032j_subscript_key(_tg)
+                if _key is None:
+                    continue
+                if _key == "criterion_kinds_" + tag:
+                    _v = _p1032j_literal(_node.value, _literals)
+                    if isinstance(_v, dict):
+                        _kinds = _v
+                elif _key == "criterion_kinds_complete_" + tag:
+                    _complete = True
+                elif _rx.match(_key):
+                    _hold_keys.add(_key)
+        # ②③ 字面量 dict 的键（含「键的值是模块级名字」的情形）
+        if isinstance(_node, ast.Dict):
+            for _kk, _vv in zip(_node.keys, _node.values):
+                if not (isinstance(_kk, ast.Constant)
+                        and isinstance(_kk.value, str)):
+                    continue
+                _key = _kk.value
+                if _key == "criterion_kinds_" + tag:
+                    _v = _p1032j_literal(_vv, _literals)
+                    if isinstance(_v, dict):
+                        _kinds = _v
+                elif _key == "criterion_kinds_complete_" + tag:
+                    _complete = True
+                elif _rx.match(_key):
+                    _hold_keys.add(_key)
+    return {"kinds": _kinds, "complete": _complete, "crit_keys": _hold_keys}
+
+
+# ══ 1032-②j：**台账不能只活在源码里** ═════════════════════════════════════
+# ⭐⭐⭐⭐⭐ **声明 ≠ 发布** ⇒ ⇒ 探针在源码里声明了 `criterion_kinds_<tag>`，
+#   ⇒ ⇒⇒ 而产物里没有 ⇒ ⇒⇒⇒ 别的门（1015 的台账读取）就看不到它
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ 那就是一张没人查的账** ⇒ ⇒⇒⇒ ⇒ ⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而 1027 不在这张表里 —— 它的产物是「全仓扫描」**
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ **⇒ 按既定纪律不提交** ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 所以它只能过「源码那一关」**
+_P1032J_ARTIFACTS = [
+    ("1018", "1018", "docs/research/jimeng-canvas/assertion-vs-behavior-1018.json", "P"),
+    ("1032a", "1032a", "docs/research/jimeng-canvas/connect-contract-1032a.json", "criteria"),
+    ("1032b1", "1032b1", "docs/research/jimeng-canvas/wired-contract-1032b1.json", "criteria"),
+    ("1032b2", "1032b2", "docs/research/jimeng-canvas/gen-contract-1032b2.json", "criteria"),
+    ("1032b3", "1032b3", "docs/research/jimeng-canvas/mention-contract-1032b3.json", "P"),
+    ("1032b4", "1032b4", "docs/research/jimeng-canvas/expanded-contract-1032b4.json", "P"),
+    ("1032c", "1032c", "docs/research/jimeng-canvas/noop-contract-1032c.json", "P"),
+]
+
+
+def _p1032j_artifact_ledger_ok(art, tag, container, src_kinds):
+    """⭐ 纯函数：产物里的台账必须与源码里的一致（可被阳性对照直接调用）。"""
+    _why = []
+    if not isinstance(art, dict):
+        return {"ok": False, "why": ["artifact_not_a_dict"]}
+    _kinds = art.get("criterion_kinds_" + tag)
+    _comp = art.get("criterion_kinds_complete_" + tag)
+    _crit = art.get(container)
+    if not isinstance(_kinds, dict) or not _kinds:
+        _why.append("artifact_no_kinds")
+    if _comp is not True:
+        _why.append("artifact_complete_not_true")
+    if not isinstance(_crit, dict) or not _crit:
+        _why.append("artifact_no_criteria_container")
+    if isinstance(_kinds, dict) and isinstance(_crit, dict):
+        if set(_kinds) != set(_crit):
+            _why.append("artifact_kinds_keys_mismatch:%s"
+                        % (sorted(set(_kinds) ^ set(_crit)),))
+    if isinstance(src_kinds, dict) and isinstance(_kinds, dict):
+        if src_kinds != _kinds:
+            _why.append("artifact_kinds_differ_from_source")
+    _bad = sorted(k for k, v in (art.get("criterion_kinds_" + tag) or {}).items()
+                  if v not in _P1032H_KINDS)
+    if _bad:
+        _why.append("artifact_kind_out_of_range:%s" % (_bad,))
+    return {"ok": not _why, "why": _why}
+
+
+def _p1032j_source_kinds(path, tag, rx):
+    try:
+        _tree = ast.parse((ROOT / path).read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return None
+    return _p1032j_source_ledger(_tree, tag, rx)["kinds"]
+
+
+def _p1032j_artifacts_ok():
+    _books = {}
+    _by_tag = {t: (p, rx) for (_n, t, p, rx) in _P1032H_BOOKS}
+    for _name, _tag, _apath, _container in _P1032J_ARTIFACTS:
+        _why = []
+        _src = None
+        if _tag in _by_tag:
+            _spath, _rx = _by_tag[_tag]
+            _src = _p1032j_source_kinds(_spath, _tag, _rx)
+            if _src is None:
+                _why.append("source_kinds_unreadable")
+        else:
+            _why.append("book_not_in_spec")
+        _p = ROOT / _apath
+        if not _p.exists():
+            _why.append("artifact_missing")
+            _books[_name] = {"ok": False, "why": _why}
+            continue
+        try:
+            _art = json.loads(_p.read_text(encoding="utf-8"))
+        except Exception as _e:  # noqa: BLE001
+            _why.append("artifact_unreadable:%r" % (_e,))
+            _books[_name] = {"ok": False, "why": _why}
+            continue
+        _r = _p1032j_artifact_ledger_ok(_art, _tag, _container, _src)
+        _r["why"] = _why + _r["why"]
+        _r["ok"] = not _r["why"]
+        _books[_name] = _r
+    return {"books": _books, "n_books": len(_books),
+            "n_ok": sum(1 for v in _books.values() if v["ok"]),
+            "problems": {k: v["why"] for k, v in _books.items() if not v["ok"]},
+            "ok": bool(_books) and all(v["ok"] for v in _books.values())}
+
+
+def _p1032j_artifacts_pc():
+    """⭐ 阳性对照：五种破坏都必须让判决翻红（而且必须真的被执行过）。"""
+    _src = {"P1_x": "failure", "P2_y": "failure"}
+    _base = {"P": {"P1_x": True, "P2_y": True},
+             "criterion_kinds_1018": dict(_src),
+             "criterion_kinds_complete_1018": True}
+    _base_ok = _p1032j_artifact_ledger_ok(_base, "1018", "P", _src)["ok"]
+    _cases = []
+    _c = dict(_base); _c["criterion_kinds_1018"] = {"P1_x": "failure"}
+    _cases.append(("drop_one_kind", _c))
+    _c = dict(_base); _c["criterion_kinds_complete_1018"] = False
+    _cases.append(("complete_false", _c))
+    _c = dict(_base)
+    _c["criterion_kinds_1018"] = {"P1_x": "failure", "P2_y": "failure",
+                                  "P3_z": "failure"}
+    _cases.append(("extra_kind", _c))
+    _c = dict(_base); _c["P"] = {"P1_x": True, "P2_y": True, "P3_z": True}
+    _cases.append(("extra_criteria", _c))
+    _c = dict(_base)
+    _c["criterion_kinds_1018"] = {"P1_x": "failure", "P2_y": "precondition"}
+    _cases.append(("differs_from_source", _c))
+    _c = dict(_base); _c["criterion_kinds_1018"] = {"P1_x": "failure", "P2_y": "第4档"}
+    _cases.append(("kind_out_of_range", _c))
+    _res = {}
+    for _nm, _art in _cases:
+        _res[_nm] = not _p1032j_artifact_ledger_ok(_art, "1018", "P", _src)["ok"]
+    return {"base_ok": _base_ok, "cases": _res,
+            "ok": bool(_base_ok) and all(_res.values()) and bool(_res)}
+
+
+def _p1032j_kind_vocab_ok():
+    """⭐ 三档 kind 都必须至少被用到一次 —— 不然那一档是空话。"""
+    _by = {}
+    for _name, _tag, _path, _rx in _P1032H_BOOKS:
+        _k = _p1032j_source_kinds(_path, _tag, _rx)
+        if isinstance(_k, dict):
+            for _v in _k.values():
+                _by[_v] = _by.get(_v, 0) + 1
+    _missing = [k for k in _P1032H_KINDS if not _by.get(k)]
+    return {"by_kind": _by, "missing": _missing, "ok": not _missing}
+
+
 def _p1032h_ledgers_ok():
     _books = {}
-    for _name, _tag, _path in _P1032H_BOOKS:
-        _books[_name] = _p1032h_book_ledger(_path, _tag)
+    for _name, _tag, _path, _rx in _P1032H_BOOKS:
+        _books[_name] = _p1032h_book_ledger(_path, _tag, _rx)
     return {"books": _books,
             "n_books": len(_books),
             "n_books_ok": sum(1 for v in _books.values() if v["ok"]),
@@ -18304,7 +18519,11 @@ def main() -> int:
 
     check("DD993AD.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
           "「**红账要分得出「真红」与「结论」**」这件事**必须由台账自己回答** ⇒ ⇒ "
-          "**⇒ 册内 8 本必须全部发布 `criterion_kinds_<tag>`** ⇒ ⇒ "
+          "**⇒ 册内 16 本（A 类 8 本 + C 类 8 本）必须全部发布 `criterion_kinds_<tag>`** ⇒ ⇒ "
+          "**⇒⇒⇒⇒⇒⇒ 1032-②j：而 C 类 8 本的**判据键形态各不相同** ⇒ ⇒ ⇒⇒ "
+          "**⇒⇒⇒⇒⇒⇒ ⇒ `P<n>_hold_*` / `P<n>_<描述>_<tag>` / 裸 `P<n>` / `P<n>` 与 `P9_…` 混着** ⇒ ⇒ ⇒⇒ "
+          "**⇒⇒⇒⇒⇒⇒ ⇒ ⇒ 而「哪些键算判据键」由**每本书自己的正则**说了算 ⇒ ⇒ ⇒⇒ "
+          "**⇒⇒⇒⇒⇒⇒ ⇒ ⇒ ⇒ 不许一刀切**（②i 的老教训：「同名的东西在不同书里可以是不同的形状」）⇒ ⇒ ⇒⇒ "
           "**⇒ 而「由人定性」不许靠关键词机械猜（「❌」「被否」「否掉」在两种语义位置都出现）"
           "⇒ ⇒ ⇒ 所以逐条读原文、由人定性** ⇒ ⇒ ⇒ "
           "⭐⭐⭐⭐⭐ **而门只验可机检的两件事**："
@@ -18358,6 +18577,35 @@ def main() -> int:
           and '_pc_a_neg_path = "jimeng-pc-a-negative-control-not-a-repo-path.json"' in _p1027
           and 'PC_A_WITHOUT_INJECTION = any("1013" in n for n in COUPLED_TO_CHANGED)' in _p1027
           and '"found_without_injection": PC_A_WITHOUT_INJECTION' in _p1027)
+
+    check("DD993AG.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**台账不能只活在源码里** ⇒ ⇒ 探针在源码里声明了 `criterion_kinds_<tag>`、"
+          "而产物里没有 ⇒ ⇒ ⇒⇒ 别的门（1015 的台账读取）就看不到它 ⇒ ⇒ ⇒⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 那就是一张没人查的账** ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而「声明」与「发布」之间那道缝，只有产物级的门能看** ⇒ ⇒ ⇒⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 这一道门查三件关系式（不钉绝对数）**："
+          "**① 产物里的台账键集合 == 产物里判据容器的键集合** "
+          "**② 产物里的台账 == 源码里声明的台账（逐条相同）** "
+          "**③ `criterion_kinds_complete_<tag>` 必须为真** ⇒ ⇒ ⇒⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 另有一条「三档都必须被用到」** ⇒ ⇒ ⇒⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ `failure` / `conclusion` / `precondition` 各至少一条** "
+          "⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ 而 ②i 说「precondition 在册内 8 本里一条都没有」"
+          "⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 那句话只对那 8 本成立 ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ②j 在 C 类里找出了 5 条** ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而「前提不成立是运行时状态 `None`、不是 kind」"
+          "⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 「这条判据依赖前提」才配叫 `precondition`** ⇒ ⇒ ⇒⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而它带 6 种阳性对照** ⇒ ⇒ ⇒⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 删一条 kind / complete 变假 / 多一条 kind / 多一条判据 / "
+          "与源码不一致 / 取值越界 ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 每一种都必须翻红** ⇒ ⇒ ⇒⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而 1027 不在这张产物表里** ⇒ ⇒ ⇒⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 它的产物是「全仓扫描」、按既定纪律不提交** ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以它只能过「源码那一关」**",
+          '"criterion_kinds_1018": KINDS_1018' in _p1018
+          and 'out["criterion_kinds_1032b2"]' in _p1032b2
+          and 'out["criterion_kinds_complete_1032c"]' in _p1032c
+          and _p1032j_artifacts_ok()["ok"]
+          and _p1032j_artifacts_pc()["ok"]
+          and _p1032j_kind_vocab_ok()["ok"])
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

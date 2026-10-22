@@ -107,5 +107,24 @@
  },
  "n_checks": 15,
  "n_failed": 0,
- "all_ok": true
+ "all_ok": true,
+ "criterion_kinds_1032b4": {
+  "P1_probe_actually_ran_1032b4": "precondition",
+  "P2_expand_button_opens_layer_1032b4": "failure",
+  "P3_layer_is_dialog_source_aria_1032b4": "failure",
+  "P4_layer_geometry_matches_source_1032b4": "failure",
+  "P5_no_input_or_textarea_1032b4": "failure",
+  "P6_five_ref_type_buttons_1032b4": "failure",
+  "P7_ref_type_switch_observable_1032b4": "failure",
+  "P8_empty_prompt_generate_does_nothing_1032b4": "failure",
+  "P9_generate_enters_generating_1032b4": "failure",
+  "P10_collapse_closes_layer_1032b4": "failure",
+  "P11_escape_closes_layer_keeps_edit_mode_1032b4": "failure",
+  "P12_backdrop_click_closes_layer_1032b4": "failure",
+  "P13_insert_selects_only_new_node_1032b4": "failure",
+  "P14_no_page_errors_1032b4": "failure",
+  "P15_mutation_makes_judgement_red_1032b4": "failure"
+ },
+ "criterion_kinds_complete_1032b4": true,
+ "criteria_n_1032b4": 15
 }
