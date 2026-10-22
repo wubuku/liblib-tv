@@ -638,7 +638,20 @@ out["discipline_2008"] = "".join([
 ])
 
 # ── ⑦ 1032-②f：**退出码按判决走** —— 全绿 0 / 判据红 1 / 仪器崩 2 ──────
-_CRITERIA8 = [out["P%d_hold_1008" % i] for i in range(1, 8)]
+# ⭐⭐⭐⭐⭐ 1032-②g：**判据集合从产物自己的键推导、不写死范围** ——
+#   ⇒ ⇒ ②f 接退出码时把范围写成了 `range(1, N+1)`、而这些书各有 P1..P(N+1)
+#   ⇒ ⇒⇒⇒ **⇒ ⇒ 「最后一条判据红了、退出码还是 0」** ⇒ ⇒⇒⇒⇒⇒
+#   ⇒ ⇒ **⇒ 而它没被抓住、只因为所有判据恰好都是 True** ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 「恒真掩盖缺陷」的又一例**（与「绝对条数是快照」同族）⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 处置：判据集合 = 产物里所有 `P<n>_hold_*` 键（按编号排序）**
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒ **⇒ ⇒ 以后加判据不会再漏** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ **⇒ 而且这一条**可证伪**：把某条判据改红 ⇒ ⇒ 退出码必须跟着变**
+_P_KEYS_hold_1008 = sorted((k for k in out if re.match(r"^P\d+_hold_", k)),
+                     key=lambda k: (int(k[1:k.index("_")]), k))
+_CRITERIA8 = [out[k] for k in _P_KEYS_hold_1008]
+out["criteria_keys_hold_1008"] = list(_P_KEYS_hold_1008)
+out["criteria_n_hold_1008"] = len(_P_KEYS_hold_1008)
+
 _EXIT8 = _exit_code8(_CRITERIA8, crashed=False)
 out["exit_code_1008"] = {
     "criteria": _CRITERIA8,
@@ -665,9 +678,10 @@ print("P3b append   : gate problems =", _gp_b["n_problems"],
       "| removed =", gz_b["n_removed"], "| added =", gz_b["n_added"])
 print("P7 numbers =", out["audit_numbers_vs_computed_1008"]["n_numbers_total"],
       "| unjustified =", out["audit_numbers_vs_computed_1008"]["n_keys_with_unjustified_number"])
-print("P1..P7 =", [out["P%d_hold_1008" % i] for i in range(1, 8)])
-print("退出码自检 =", out["exit_code_selftest_ok_1008"],
-      "| 本次退出码 =", _EXIT8)
+print("P1..P%d = %s" % (len(_P_KEYS_hold_1008),
+                         [out[k] for k in _P_KEYS_hold_1008]))
+print("判据逐条 = %s" % " | ".join("%s=%s" % (k, out[k])
+                              for k in _P_KEYS_hold_1008))
 print("PROBE_1008_DONE ->", OUT)
 # ⭐⭐⭐⭐⭐ **最后一行才是退出** —— 而 golden 与产物**已经在上面写完了**
 #   ⇒ ⇒⇒⇒ **⇒「红」必须既留下产物、又留下非零退出码** ⇒ ⇒

@@ -583,7 +583,20 @@ io.open(GOLDEN, "w", encoding="utf-8").write(
     json.dumps(_GOLDEN_OBJ, ensure_ascii=False, indent=1))
 
 # ── 1032-②f：退出码按判决走（**必须在产物写盘之前算出来**）────────
-_CRITERIA = [out["P%d_hold_2012" % i] for i in range(1, 9)]
+# ⭐⭐⭐⭐⭐ 1032-②g：**判据集合从产物自己的键推导、不写死范围** ——
+#   ⇒ ⇒ ②f 接退出码时把范围写成了 `range(1, N+1)`、而这些书各有 P1..P(N+1)
+#   ⇒ ⇒⇒⇒ **⇒ ⇒ 「最后一条判据红了、退出码还是 0」** ⇒ ⇒⇒⇒⇒⇒
+#   ⇒ ⇒ **⇒ 而它没被抓住、只因为所有判据恰好都是 True** ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 「恒真掩盖缺陷」的又一例**（与「绝对条数是快照」同族）⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 处置：判据集合 = 产物里所有 `P<n>_hold_*` 键（按编号排序）**
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒ **⇒ ⇒ 以后加判据不会再漏** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ **⇒ 而且这一条**可证伪**：把某条判据改红 ⇒ ⇒ 退出码必须跟着变**
+_P_KEYS_hold_2012 = sorted((k for k in out if re.match(r"^P\d+_hold_", k)),
+                     key=lambda k: (int(k[1:k.index("_")]), k))
+_CRITERIA = [out[k] for k in _P_KEYS_hold_2012]
+out["criteria_keys_hold_2012"] = list(_P_KEYS_hold_2012)
+out["criteria_n_hold_2012"] = len(_P_KEYS_hold_2012)
+
 _EXIT = _exit_code(_CRITERIA, crashed=False)
 out["exit_code_2012"] = {
     "criteria": _CRITERIA,
@@ -608,7 +621,10 @@ print("ausrc: %d/%d rate=%s | other: %d/%d rate=%s"
 print("vanished:", vanished_all)
 print("P6 static=%s delta=%s base=%d | P7 kill=%s"
       % (_static_miss, _delta_miss, len(_base_set), _kill_delta))
-print("P1..P9 =", [out["P%d_hold_2012" % i] for i in range(1, 10)])
+print("P1..P%d = %s" % (len(_P_KEYS_hold_2012),
+                         [out[k] for k in _P_KEYS_hold_2012]))
+print("判据逐条 = %s" % " | ".join("%s=%s" % (k, out[k])
+                              for k in _P_KEYS_hold_2012))
 print("PROBE_1012_DONE ->", OUT)
 # ⭐⭐⭐⭐⭐ **最后一行才是退出** —— 而产物**已经在上面写完了**
 #   ⇒ ⇒⇒⇒ **⇒「红」必须既留下产物、又留下非零退出码** ⇒ ⇒

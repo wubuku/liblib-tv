@@ -271,6 +271,65 @@ for _txt, _want_n, _want_r in _DETECTOR_CASES:
 DETECTOR_SELFTEST_OK = all(c["ok"] for c in _DETECTOR_SELFTEST)
 DETECTOR_N_CASES = len(_DETECTOR_SELFTEST)
 
+# ══ 1032-②g：**逐条点名** —— 「哪条判据红了」必须能读出来 ══════════════
+#   ⇒ ⇒ 而「书级 rc」只能说「这本书红了」、说不出「红的是哪一条」⇒ ⇒
+#   ⇒ ⇒⇒ **⇒ 而「红」和「结论」混在一起时、连「要不要修」都答不出来**
+_CRITERIA_DETAIL_RE = re.compile(r"^判据逐条 = (.*)$", re.M)
+_OUT_PATH_RE = re.compile(r"PROBE_\d+_DONE\s*->\s*(\S+)")
+
+
+def _criteria_detail(text):
+    """读出「逐条判据明细」⇒ {判据键: 判决字符串}。
+
+    ⭐⭐⭐⭐⭐ **取最后一个匹配** —— 有的书会把别的书当子仪器跑
+    ⇒ ⇒ 它的输出里会出现**别人的**「判据逐条」行 ⇒ ⇒
+    ⇒ ⇒⇒ **而一本书自己的那行永远在最后（它打印在 DONE 之前）** ⇒ ⇒
+    ⇒ ⇒⇒⇒ **「取第一个」会把别人的账记到自己头上** ⇒ ⇒
+    ⭐ 返回 None ⇒ **读不到 ≠ 没有假**（第三档：不可判定）
+    """
+    if not text:
+        return None
+    _ms = _CRITERIA_DETAIL_RE.findall(text)
+    if not _ms:
+        return None
+    _seg = _ms[-1].strip()
+    _out = {}
+    for _part in _seg.split("|"):
+        _part = _part.strip()
+        if not _part or "=" not in _part:
+            continue
+        _k, _v = _part.split("=", 1)
+        _out[_k.strip()] = _v.strip()
+    return _out
+
+
+def _artifact_path(text):
+    """它把自己的产物路径打在哪一行？⇒ 读完那一行才知道去哪儿读它的台账。"""
+    _ms = _OUT_PATH_RE.findall(text or "")
+    return _ms[-1] if _ms else None
+
+
+# ⭐⭐⭐⭐⭐ **阳性对照**：新检测器自己必须**能失败** —— 不然「读到 0 条」是恒真
+_CRITERIA_DETECTOR_CASES = [
+    ("判据逐条 = P1_hold_1005=True | P2_hold_1005=False",
+     {"P1_hold_1005": "True", "P2_hold_1005": "False"}),
+    ("P1..P5 = [True, False]\n判据逐条 = P1_hold_1007=True",
+     {"P1_hold_1007": "True"}),
+    # ⭐ 「取最后一个」这条规则自己的阳性对照：两行明细、答案只能来自最后一行
+    ("判据逐条 = A=True\n判据逐条 = B=False", {"B": "False"}),
+    # ⭐ 没有明细行 ⇒ **读不到**（不是「没有假」）
+    ("P1..P5 = [True, True]", None),
+    ("", None),
+]
+_CRITERIA_DETECTOR_SELFTEST = []
+for _txt, _want in _CRITERIA_DETECTOR_CASES:
+    _got = _criteria_detail(_txt)
+    _CRITERIA_DETECTOR_SELFTEST.append(
+        {"input": _txt[:44], "want": _want, "got": _got,
+         "ok": (_got == _want)})
+CRITERIA_DETECTOR_SELFTEST_OK = all(c["ok"] for c in _CRITERIA_DETECTOR_SELFTEST)
+CRITERIA_DETECTOR_N_CASES = len(_CRITERIA_DETECTOR_SELFTEST)
+
 
 def _run_round():
     """整轮：每本探针跑一次。⭐ 统一带 `--write-golden` ——
@@ -303,6 +362,40 @@ def _run_round():
         row["n_self_reported_false"] = _nf
         row["p_summary_readable"] = _rd
         row["self_report_detail"] = _det
+
+        # ⭐⭐⭐⭐⭐ 1032-②g：把「它自己的产物」也读回来 —— 台账覆盖率普查的输入
+        #   ⇒ ⇒ 「书级 rc」说不出「红的是哪一条」⇒ ⇒ **⇒ 要逐条点名**
+        _cd = _criteria_detail(tail)
+        row["criteria_detail_readable"] = (_cd is not None)
+        row["criteria_detail"] = _cd or {}
+        row["criteria_red"] = sorted(k for k, v in (_cd or {}).items()
+                                     if str(v).strip().lower() == "false")
+        row["n_criteria_red"] = len(row["criteria_red"])
+        _ap = _artifact_path(tail)
+        row["artifact_path_found"] = bool(_ap)
+        _art = None
+        if _ap:
+            try:
+                _art = json.loads(Path(_ap).read_text(encoding="utf-8"))
+            except Exception:
+                _art = None
+        row["artifact_readable"] = isinstance(_art, dict)
+        _kinds, _ckeys, _cn, _complete = {}, [], None, None
+        if isinstance(_art, dict):
+            for _k, _v in _art.items():
+                if _k.startswith("criterion_kinds_") and isinstance(_v, dict):
+                    _kinds = dict(_v)
+                elif _k.startswith("criteria_keys_") and isinstance(_v, list):
+                    _ckeys = list(_v)
+                elif _k.startswith("criteria_n_") and isinstance(_v, int):
+                    _cn = _v
+                elif _k.startswith("criterion_kinds_complete_"):
+                    _complete = _v
+        row["ledger_published"] = bool(_kinds)
+        row["ledger_n_kinds"] = len(_kinds)
+        row["ledger_n_criteria"] = _cn
+        row["ledger_n_criteria_keys"] = len(_ckeys)
+        row["ledger_complete"] = _complete
         rows.append(row)
     return rows
 
@@ -350,6 +443,26 @@ SELF_RED_BOOKS = sorted(r["golden"] for r in BOOKS
                          if (r.get("n_self_reported_false") or 0) > 0)
 N_SELF_RED_BOOKS = len(SELF_RED_BOOKS)
 N_SELF_RED_CRITERIA = sum(r.get("n_self_reported_false") or 0 for r in BOOKS)
+
+# ── 1032-②g：红账的「逐条」与「台账」两栏 ───────────────────────────
+N_WITH_DETAIL = sum(1 for r in BOOKS if r.get("criteria_detail_readable"))
+BOOKS_NO_DETAIL = sorted(r["golden"] for r in BOOKS
+                         if not r.get("criteria_detail_readable"))
+CRITERIA_RED_BY_BOOK = {r["golden"]: list(r.get("criteria_red") or [])
+                        for r in BOOKS if r.get("criteria_red")}
+N_LEDGER_PUBLISHED = sum(1 for r in BOOKS if r.get("ledger_published"))
+N_LEDGER_COMPLETE = sum(1 for r in BOOKS if r.get("ledger_complete") is True)
+N_LEDGER_CRITERIA = sum(r.get("ledger_n_kinds") or 0 for r in BOOKS)
+LEDGER_ROWS = [{"golden": r["golden"],
+                "criteria_detail_readable": r.get("criteria_detail_readable"),
+                "n_criteria_red": r.get("n_criteria_red"),
+                "artifact_readable": r.get("artifact_readable"),
+                "ledger_published": r.get("ledger_published"),
+                "ledger_n_kinds": r.get("ledger_n_kinds"),
+                "ledger_n_criteria": r.get("ledger_n_criteria"),
+                "ledger_complete": r.get("ledger_complete")}
+               for r in BOOKS]
+
 RED_LEDGER = {
     "n_books": len(BOOKS),
     "n_books_with_readable_p_summary": N_READABLE,
@@ -374,6 +487,24 @@ RED_LEDGER = {
                         "**混着「预测被否型」（False 才是结论）** ⇒ ⇒ "
                         "**⇒ 而红/被否型/前提不成立 的分类必须逐条读判据才能下 ⇒ ⇒ "
                         "**⇒ 所以本读数只负责「看见」，定性留给 audit 的账**",
+    "n_books_with_criteria_detail": N_WITH_DETAIL,
+    "n_books_without_criteria_detail": len(BOOKS) - N_WITH_DETAIL,
+    "books_without_criteria_detail": BOOKS_NO_DETAIL,
+    "criteria_red_by_book": CRITERIA_RED_BY_BOOK,
+    "n_criteria_red_named": sum(len(v) for v in CRITERIA_RED_BY_BOOK.values()),
+    "criteria_detector_selftest_ok": CRITERIA_DETECTOR_SELFTEST_OK,
+    "criteria_detector_selftest_n_cases": CRITERIA_DETECTOR_N_CASES,
+    "criteria_detector_selftest": _CRITERIA_DETECTOR_SELFTEST,
+    "n_books_with_ledger": N_LEDGER_PUBLISHED,
+    "n_books_with_ledger_complete": N_LEDGER_COMPLETE,
+    "n_ledger_criteria": N_LEDGER_CRITERIA,
+    "ledger_rows": LEDGER_ROWS,
+    "three_states": ("⭐⭐⭐⭐⭐ **红账现在是三档**："
+                    "**① 红（读到了 False）② 不可判定（这本书没有逐条明细 ⇒ "
+                    "既不许说它绿、也不许说它红）③ 绿（读到了、且没有一条 False）** ⇒ ⇒ "
+                    "**⇒ 而第三档不是「凑数」—— 上一版把「读不到」和「没有假」混成一栏** ⇒ ⇒ "
+                    "**⇒ 而 ② 那一栏今天有 %d 本**"
+                    % (len(BOOKS) - N_WITH_DETAIL,)),
 }
 
 

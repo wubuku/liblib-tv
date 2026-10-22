@@ -490,7 +490,42 @@ out["discipline_1005"] = "".join([
 ])
 
 # ── 1032-②f：退出码按判决走（**必须在产物写盘之前算出来**）────────
-_CRITERIA = [out["P%d_hold_1005" % i] for i in range(1, 5)]
+# ⭐⭐⭐⭐⭐ 1032-②g：**判据集合从产物自己的键推导、不写死范围** ——
+#   ⇒ ⇒ ②f 接退出码时把范围写成了 `range(1, N+1)`、而这些书各有 P1..P(N+1)
+#   ⇒ ⇒⇒⇒ **⇒ ⇒ 「最后一条判据红了、退出码还是 0」** ⇒ ⇒⇒⇒⇒⇒
+#   ⇒ ⇒ **⇒ 而它没被抓住、只因为所有判据恰好都是 True** ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 「恒真掩盖缺陷」的又一例**（与「绝对条数是快照」同族）⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 处置：判据集合 = 产物里所有 `P<n>_hold_*` 键（按编号排序）**
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒ **⇒ ⇒ 以后加判据不会再漏** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ **⇒ 而且这一条**可证伪**：把某条判据改红 ⇒ ⇒ 退出码必须跟着变**
+_P_KEYS_hold_1005 = sorted((k for k in out if re.match(r"^P\d+_hold_", k)),
+                     key=lambda k: (int(k[1:k.index("_")]), k))
+_CRITERIA = [out[k] for k in _P_KEYS_hold_1005]
+out["criteria_keys_hold_1005"] = list(_P_KEYS_hold_1005)
+out["criteria_n_hold_1005"] = len(_P_KEYS_hold_1005)
+# ⭐⭐⭐⭐⭐ 1032-②g：**判据台账** —— 「一条 False 是结论还是失败」必须能机检
+#   ⇒ ⇒ 口径：kind ∈ {failure, conclusion, precondition}
+#   ⇒ ⇒⇒   failure     = 这条判据红 = **被测对象不满足它** ⇒ 要修被测对象（真红）
+#   ⇒ ⇒⇒   conclusion  = 这条判据红 = **我自己写下的那个否证不再成立** ⇒ 要更正结论
+#   ⇒ ⇒⇒   precondition= 这条判据依赖前提；前提不成立时读数是 None ⇒ **None 不是红**
+#   ⇒ ⇒⇒ **而 kind 不是从文本机械猜的**（「❌」「被否」「否掉」在两种语义位置都出现）
+#   ⇒ ⇒⇒⇒ **⇒ 所以逐条读原文、由人定性** ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而「没标注」=「不可判定」= 第三档、不许默认成 failure** ——
+#   ⇒ ⇒⇒⇒⇒ **⇒ 因为「默认成 failure」会把「我还没判定」记成「我判定它坏了」**
+out["criterion_kinds_1005"] = {
+    "P1_hold_1005": "failure",
+    "P2_hold_1005": "conclusion",
+    "P3_hold_1005": "failure",
+    "P4_hold_1005": "failure",
+    "P5_hold_1005": "failure",
+}
+out["criteria_ledger_1005"] = {
+    _k: {"verdict": out[_k], "kind": out["criterion_kinds_1005"].get(_k)}
+    for _k in _P_KEYS_hold_1005
+}
+out["criterion_kinds_complete_1005"] = (
+    set(out["criterion_kinds_1005"]) == set(_P_KEYS_hold_1005))
+
 _EXIT = _exit_code(_CRITERIA, crashed=False)
 out["exit_code_1005"] = {
     "criteria": _CRITERIA,
@@ -522,7 +557,10 @@ print("golden: added=%s removed=%s reproducible=%s"
 print("reverse: delta=%s found=%s"
       % (out["reverse_case_1005"]["delta"],
          out["reverse_case_1005"]["found_the_new_one"]))
-print("P1..P5 =", [out["P%d_hold_1005" % i] for i in range(1, 6)])
+print("P1..P%d = %s" % (len(_P_KEYS_hold_1005),
+                         [out[k] for k in _P_KEYS_hold_1005]))
+print("判据逐条 = %s" % " | ".join("%s=%s" % (k, out[k])
+                              for k in _P_KEYS_hold_1005))
 print("PROBE_1005_DONE ->", OUT)
 # ⭐⭐⭐⭐⭐ **最后一行才是退出** —— 而产物**已经在上面写完了**
 #   ⇒ ⇒⇒⇒ **⇒「红」必须既留下产物、又留下非零退出码** ⇒ ⇒

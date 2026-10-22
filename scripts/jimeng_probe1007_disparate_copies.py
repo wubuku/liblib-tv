@@ -135,6 +135,94 @@ for k, v in g.PROBE_VARS.items():
     SRC[k] = p.read_text(encoding="utf-8") if p.exists() else ""
 WORK.mkdir(parents=True, exist_ok=True)
 
+# ── 1032-②g：出处不能是白名单，出处必须是「带 sha 的历史实测读数」────
+#   ⇒ ⇒ 判据文本里那几个数（81 / 33.8 / 1.9 / 13 / 42 / 63.2）是**写那行文本时**
+#   ⇒ ⇒ **那个宇宙上的实测读数** —— 而宇宙会随仓库长大而移动 ⇒ ⇒
+#   ⇒ ⇒⇒ **⇒ 「它今天复算不出来」不等于「它当初是假的」** ⇒ ⇒
+#   ⇒ ⇒⇒⇒ **⇒ 处置：把当年的树取出来、在那一瞬间重跑当年的探针** ⇒ ⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 读数带 sha ⇒ ⇒ 出处 = 「带 sha 的历史实测读数」、不是白名单**
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ **⇒ 而 sha 也不是手打的** —— 问 git「哪一次提交写下了这段文本」
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒⇒ **⇒ 而「重跑」也不是口头保证**：看不到「写完了」的标记就不算数
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒⇒⇒ **⇒ 而这一层必须在**当前脚本写自己的产物之前**跑完**
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒⇒⇒⇒ **⇒ —— 否则「当年的产物」和「这一轮的产物」会互相顶掉**
+_HIST_MARK_1007 = "stem_attribution_1007"
+_HIST_ROOT_1007 = Path("/tmp/b1007-hist-universe")
+
+
+def _historical_sha_1007():
+    """1007 的判据文本是哪一次提交写下的？⇒ **问 git，不手打**。"""
+    try:
+        r = subprocess.run(
+            ["git", "log", "-S", _HIST_MARK_1007, "--format=%H",
+             "--", "scripts/jimeng_unclickable_audit.py"],
+            cwd=str(ROOT), capture_output=True, text=True, timeout=180)
+    except Exception as e:
+        return None, "git_failed:%r" % (e,)
+    _shas = [l.strip() for l in (r.stdout or "").splitlines() if l.strip()]
+    if not _shas:
+        return None, "no_commit_found"
+    return _shas[-1], ("git log -S '" + _HIST_MARK_1007
+                       + "' -- scripts/jimeng_unclickable_audit.py"
+                       + "（取最早的一次 = 写下这段文本的那一次）")
+
+
+def _historical_readings_1007(sha):
+    """把当年的树取出来、重跑当年的探针 ⇒ **那一刻宇宙上的实测读数**。"""
+    _dest = _HIST_ROOT_1007 / sha[:12]
+    _dest.mkdir(parents=True, exist_ok=True)
+    _arc = subprocess.run(
+        "git archive " + sha + " scripts docs/research/jimeng-canvas"
+        " src/components/jimeng | tar -x -C " + str(_dest),
+        shell=True, cwd=str(ROOT), capture_output=True, text=True, timeout=600)
+    if _arc.returncode != 0:
+        return None, {"archive_rc": _arc.returncode,
+                      "archive_err": (_arc.stderr or "")[-200:]}
+    _probe = _dest / "scripts/jimeng_probe1007_disparate_copies.py"
+    if not _probe.exists():
+        return None, {"probe_missing": True}
+    _run = subprocess.run([sys.executable, str(_probe)], cwd=str(_dest),
+                          capture_output=True, text=True, timeout=900)
+    # ⭐⭐⭐⭐⭐ **必须看到「写完了」的标记才能读那个产物** ——
+    #   ⇒ ⇒ 否则「上一轮留下的旧产物」会被当成本轮的读数
+    if "PROBE_1007_DONE" not in (_run.stdout or ""):
+        return None, {"probe_rc": _run.returncode,
+                      "why": "当年的探针没跑到写产物那一步（没有 DONE 标记）"}
+    _p = Path("/tmp/b1007-stem-attribution.json")
+    if not _p.exists():
+        return None, {"probe_rc": _run.returncode, "why": "产物文件不在"}
+    try:
+        return (json.loads(_p.read_text(encoding="utf-8")),
+                {"probe_rc": _run.returncode})
+    except Exception as e:
+        return None, {"probe_rc": _run.returncode, "parse_failed": repr(e)}
+
+
+def _hist_num_paths(obj, prefix=""):
+    """⇒ {数字字符串 → 它在历史产物里的路径}（**出处要能指到具体字段**）。"""
+    _m = {}
+    if isinstance(obj, dict):
+        for _k, _v in obj.items():
+            _m.update(_hist_num_paths(_v, prefix + "/" + str(_k)))
+    elif isinstance(obj, list):
+        for _i, _v in enumerate(obj):
+            _m.update(_hist_num_paths(_v, prefix + "/" + str(_i)))
+    elif isinstance(obj, bool):
+        pass
+    elif isinstance(obj, (int, float)):
+        for _s in (str(obj), "%.1f" % obj):
+            _m.setdefault(_s, prefix)
+    return _m
+
+
+_HIST_SHA_1007, _HIST_WHY_1007 = _historical_sha_1007()
+_HIST_OUT_1007, _HIST_META_1007 = (None, {})
+if _HIST_SHA_1007:
+    _HIST_OUT_1007, _HIST_META_1007 = _historical_readings_1007(_HIST_SHA_1007)
+_HIST_NUMS_1007 = {}
+if isinstance(_HIST_OUT_1007, dict):
+    _HIST_NUMS_1007 = _hist_num_paths(
+        {k: v for k, v in _HIST_OUT_1007.items() if k != "verdicts_1007"})
+
 out = {
     "target": "offline-stem-attribution",
     "source": "jimeng_probe1006_duplicate_anchors.py 的 `stems()` 那个词表",
@@ -605,6 +693,11 @@ _allowed7 |= set("0123456789") | {
     "1003", "1004", "1005", "1006", "1007",   # 批号（判据文本里引用别的批是常事）
     "100", "260",                              # 口径常数（`±100` / `±260`）
 }
+# ⭐⭐⭐⭐⭐ 1032-②g：**第 4 层出处 = 「带 sha 的历史实测读数」** ⇒ ⇒
+#   ⇒ ⇒ 它不是白名单：**每一个都来自「把当年的树取出来、重跑当年的探针」** ⇒ ⇒
+#   ⇒ ⇒⇒ 而 sha 是问 git 来的（哪一次提交写下了这段文本）⇒ ⇒
+#   ⇒ ⇒⇒⇒ **⇒ 所以「今天复算不出来」和「当初就是假的」被分开了**
+_allowed7 |= set(_HIST_NUMS_1007)
 # ⭐ 冻结宇宙上的那几个比例（41.7% / 0.5% / 33.8%…）都来自实测 dict
 for _k in ("attribution_1007", "dirty_vs_clean_1007", "sweep_1007"):
     _nums7(out.get(_k, {}), _allowed7)
@@ -684,8 +777,17 @@ out["audit_numbers_vs_computed_1007"] = {
     "n_keys_with_unjustified_number": len(_bad7),
     "unjustified": _bad7,
     "contract": "⭐⭐⭐⭐⭐ **沿用 1006 的契约：判据文本里手写的每一个数都必须有出处** ⇒ ⇒ "
-                "**⇒ 出处 = 实测值 ∪ 冻结宇宙读数 ∪ {一位数}+{批号}+{口径常数}** ⇒ ⇒ "
-                "**⇒ 而**不是**「探针源码里出现过的所有数」（那等于没有白名单）**",
+
+                "**⇒ 出处 = 实测值 ∪ 冻结宇宙读数 ∪ {一位数}+{批号}+{口径常数} "
+
+                "∪ {带 sha 的历史实测读数}** ⇒ ⇒ "
+
+                "**⇒ 而**不是**「探针源码里出现过的所有数」（那等于没有白名单）**"
+
+                "**⇒ 而第 4 层也不是白名单：每一个都来自「把当年的树取出来、"
+
+                "重跑当年的探针」**",
+
 }
 out["P7_hold_1007"] = bool(
     not _bad7
@@ -694,7 +796,74 @@ out["P7_hold_1007"] = bool(
         "p7_every_handwritten_number_is_justified_2007_") or ""))
 
 # ── 1032-②f：退出码按判决走（**必须在产物写盘之前算出来**）────────
-_CRITERIA = [out["P%d_hold_1007" % i] for i in range(1, 6)]
+# ⭐⭐⭐⭐⭐ 1032-②g：**判据集合从产物自己的键推导、不写死范围** ——
+#   ⇒ ⇒ ②f 接退出码时把范围写成了 `range(1, N+1)`、而这些书各有 P1..P(N+1)
+#   ⇒ ⇒⇒⇒ **⇒ ⇒ 「最后一条判据红了、退出码还是 0」** ⇒ ⇒⇒⇒⇒⇒
+#   ⇒ ⇒ **⇒ 而它没被抓住、只因为所有判据恰好都是 True** ⇒ ⇒⇒⇒⇒
+# ⭐⭐⭐⭐⭐ 1032-②g：把「出处」本身也落进产物 —— **出处要能被别人查**
+
+out["historical_readings_1007"] = {
+
+    "sha": _HIST_SHA_1007,
+
+    "sha_derivation": _HIST_WHY_1007,
+
+    "how": ("git archive <sha> scripts docs/research/jimeng-canvas"
+
+            " src/components/jimeng → 在那一瞬间重跑"
+
+            " scripts/jimeng_probe1007_disparate_copies.py → 读它的产物"),
+
+    "reproduced": bool(_HIST_NUMS_1007),
+
+    "n_numbers": len(_HIST_NUMS_1007),
+
+    "numbers": dict(sorted(_HIST_NUMS_1007.items())),
+
+    "meta": _HIST_META_1007,
+
+    "rule": "⭐⭐⭐⭐⭐ **出处不是白名单、出处是「带 sha 的历史实测读数」** ⇒ ⇒ "
+
+            "**⇒ 而 sha 是问 git 来的、读数是把当年的树取出来重跑得来的** ⇒ ⇒ "
+
+            "**⇒ 所以「它今天复算不出来」不等于「它当初是假的」**",
+
+}
+
+#   ⇒ ⇒⇒⇒ **⇒ 「恒真掩盖缺陷」的又一例**（与「绝对条数是快照」同族）⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 处置：判据集合 = 产物里所有 `P<n>_hold_*` 键（按编号排序）**
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒ **⇒ ⇒ 以后加判据不会再漏** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ **⇒ 而且这一条**可证伪**：把某条判据改红 ⇒ ⇒ 退出码必须跟着变**
+_P_KEYS_hold_1007 = sorted((k for k in out if re.match(r"^P\d+_hold_", k)),
+                     key=lambda k: (int(k[1:k.index("_")]), k))
+_CRITERIA = [out[k] for k in _P_KEYS_hold_1007]
+out["criteria_keys_hold_1007"] = list(_P_KEYS_hold_1007)
+out["criteria_n_hold_1007"] = len(_P_KEYS_hold_1007)
+# ⭐⭐⭐⭐⭐ 1032-②g：**判据台账** —— 「一条 False 是结论还是失败」必须能机检
+#   ⇒ ⇒ 口径：kind ∈ {failure, conclusion, precondition}
+#   ⇒ ⇒⇒   failure     = 这条判据红 = **被测对象不满足它** ⇒ 要修被测对象（真红）
+#   ⇒ ⇒⇒   conclusion  = 这条判据红 = **我自己写下的那个否证不再成立** ⇒ 要更正结论
+#   ⇒ ⇒⇒   precondition= 这条判据依赖前提；前提不成立时读数是 None ⇒ **None 不是红**
+#   ⇒ ⇒⇒ **而 kind 不是从文本机械猜的**（「❌」「被否」「否掉」在两种语义位置都出现）
+#   ⇒ ⇒⇒⇒ **⇒ 所以逐条读原文、由人定性** ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而「没标注」=「不可判定」= 第三档、不许默认成 failure** ——
+#   ⇒ ⇒⇒⇒⇒ **⇒ 因为「默认成 failure」会把「我还没判定」记成「我判定它坏了」**
+out["criterion_kinds_1007"] = {
+    "P1_hold_1007": "conclusion",
+    "P2_hold_1007": "failure",
+    "P3_hold_1007": "conclusion",
+    "P4_hold_1007": "failure",
+    "P5_hold_1007": "failure",
+    "P6_hold_1007": "failure",
+    "P7_hold_1007": "failure",
+}
+out["criteria_ledger_1007"] = {
+    _k: {"verdict": out[_k], "kind": out["criterion_kinds_1007"].get(_k)}
+    for _k in _P_KEYS_hold_1007
+}
+out["criterion_kinds_complete_1007"] = (
+    set(out["criterion_kinds_1007"]) == set(_P_KEYS_hold_1007))
+
 _EXIT = _exit_code(_CRITERIA, crashed=False)
 out["exit_code_1007"] = {
     "criteria": _CRITERIA,
@@ -730,7 +899,10 @@ print("P5 reverse: gate problems =", r_rev["n_problems"],
       "| inconsistent =", out["reverse_case_1007"]["inconsistent"],
       "| misleading =", out["reverse_case_1007"]["misleading"])
 print("P6 golden rows =", len(rows))
-print("P1..P6 =", [out["P%d_hold_1007" % i] for i in range(1, 7)])
+print("P1..P%d = %s" % (len(_P_KEYS_hold_1007),
+                         [out[k] for k in _P_KEYS_hold_1007]))
+print("判据逐条 = %s" % " | ".join("%s=%s" % (k, out[k])
+                              for k in _P_KEYS_hold_1007))
 print("PROBE_1007_DONE ->", OUT)
 # ⭐⭐⭐⭐⭐ **最后一行才是退出** —— 而产物**已经在上面写完了**
 #   ⇒ ⇒⇒⇒ **⇒「红」必须既留下产物、又留下非零退出码** ⇒ ⇒

@@ -23,6 +23,7 @@ verifier §C 再从**源码**侧钉一遍：采样点、INFO 分档、开发浮�
 链式遮挡穿透、退出码分支，一个都不许被悄悄改没。
 """
 
+import ast
 import json
 import os
 import re
@@ -496,6 +497,256 @@ def _p1015_red_pc():
             and not _p1015_red_judge(_m4).get("ok")
             and not _p1015_red_judge(_m5).get("ok"))
 
+
+
+# ══ 1032-②g：**判据集合必须从产物自己的键推导** ═════════════════════
+#   ⇒ ⇒ ②f 把退出码接上时、把判据集合写成了 `range(1, N+1)` ⇒ ⇒
+#   ⇒ ⇒⇒ 而 8 本里 7 本各有 P1..P(N+1) ⇒ ⇒⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ ⇒ 「最后一条判据红了、退出码还是 0」** ⇒ ⇒⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 而它没被抓住、只因为所有判据恰好都是 True** ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒ **⇒ 「恒真掩盖缺陷」的又一例** ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒ **⇒ 处置：判据集合 = 产物里所有 `P<n>_hold_*` 键**
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒⇒ **⇒ ⇒ 以后加判据不会再漏** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ **⇒ ⇒ 而且这一条**可证伪**：把某条判据改红 ⇒ ⇒ 退出码必须跟着变**
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒⇒⇒ **⇒ ⇒ 而「打印」也必须覆盖全部判据**
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒⇒⇒ **⇒ ⇒⇒ 打印漏一条比退出码漏一条更恶劣：**
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒⇒⇒ **⇒ ⇒⇒ 屏幕显示全绿、而真相是红** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒
+_P1032G_BOOKS = [
+    ("1005", "scripts/jimeng_probe1005_zero_coupling_census.py"),
+    ("1007", "scripts/jimeng_probe1007_disparate_copies.py"),
+    ("1008", "scripts/jimeng_probe1008_golden_freshness.py"),
+    ("1009", "scripts/jimeng_probe1009_edit_visibility.py"),
+    ("1010", "scripts/jimeng_probe1010_real_history_detection.py"),
+    ("1011", "scripts/jimeng_probe1011_change_locality.py"),
+    ("1012", "scripts/jimeng_probe1012_global_detection.py"),
+    ("1013", "scripts/jimeng_probe1013_occurrence_ledger.py"),
+]
+_P1032G_HOLD_RE = r"^P\d+_hold_"
+
+
+def _p1032g_is_derived_hold(value):
+    r"""`sorted((k for k in out if re.match(r"^P\d+_hold_", k)), key=…)`"""
+    if not (isinstance(value, ast.Call) and isinstance(value.func, ast.Name)
+            and value.func.id == "sorted" and value.args):
+        return False
+    gen = value.args[0]
+    if not isinstance(gen, (ast.GeneratorExp, ast.ListComp)):
+        return False
+    it = gen.generators[0]
+    if not (isinstance(it.iter, ast.Name) and it.iter.id == "out"):
+        return False
+    for cond in it.ifs:
+        if (isinstance(cond, ast.Call)
+                and isinstance(cond.func, ast.Attribute)
+                and cond.func.attr == "match"
+                and isinstance(cond.func.value, ast.Name)
+                and cond.func.value.id == "re"
+                and len(cond.args) == 2
+                and isinstance(cond.args[0], ast.Constant)
+                and cond.args[0].value == _P1032G_HOLD_RE):
+            return True
+    return False
+
+
+def _p1032g_is_listcomp_over(value, name):
+    if name is None:
+        return False
+    return (isinstance(value, ast.ListComp)
+            and isinstance(value.generators[0].iter, ast.Name)
+            and value.generators[0].iter.id == name)
+
+
+def _p1032g_is_exit_call(value, crit_var):
+    if crit_var is None:
+        return False
+    if not (isinstance(value, ast.Call) and isinstance(value.func, ast.Name)
+            and value.func.id in ("_exit_code", "_exit_code8") and value.args):
+        return False
+    a = value.args[0]
+    return isinstance(a, ast.Name) and a.id == crit_var
+
+
+def _p1032g_book_static(path):
+    """⭐ 逐本查：判据集合 / 退出码 / 打印 三者是否覆盖**同一个**集合。"""
+    _p = ROOT / path
+    _r = {"path": path, "ok": False, "why": []}
+    if not _p.exists():
+        _r["why"].append("probe_missing")
+        return _r
+    try:
+        _tree = ast.parse(_p.read_text(encoding="utf-8"))
+    except SyntaxError as e:  # pragma: no cover
+        _r["why"].append("syntax_error:%r" % (e,))
+        return _r
+
+    _assigns = {}
+    _out_subs = {}
+    _calls = []
+    for _node in ast.walk(_tree):
+        if isinstance(_node, ast.Assign):
+            for _t in _node.targets:
+                if isinstance(_t, ast.Name):
+                    _assigns.setdefault(_t.id, _node.value)
+                elif (isinstance(_t, ast.Subscript)
+                      and isinstance(_t.value, ast.Name)
+                      and _t.value.id == "out"
+                      and isinstance(_t.slice, ast.Constant)
+                      and isinstance(_t.slice.value, str)):
+                    _out_subs.setdefault(_t.slice.value, _node.value)
+        if isinstance(_node, ast.Call):
+            _calls.append(_node)
+
+    _pk = _crit = _exit = None
+    for _n, _v in _assigns.items():
+        if _n.startswith("_P_KEYS_hold_") and _pk is None:
+            _pk = _n
+        elif _n.startswith("_CRITERIA") and _crit is None:
+            _crit = _n
+        elif _n.startswith("_EXIT") and _exit is None:
+            _exit = _n
+
+    if _pk is None:
+        _r["why"].append("no_P_KEYS_var")
+    elif not _p1032g_is_derived_hold(_assigns[_pk]):
+        _r["why"].append("criteria_not_derived_from_out")
+    if _crit is None:
+        _r["why"].append("no_CRITERIA_var")
+    elif not _p1032g_is_listcomp_over(_assigns[_crit], _pk):
+        _r["why"].append("CRITERIA_not_from_P_KEYS")
+    if _exit is None:
+        _r["why"].append("no_EXIT_var")
+    elif not _p1032g_is_exit_call(_assigns[_exit], _crit):
+        _r["why"].append("EXIT_not_from_CRITERIA")
+    if not any(isinstance(c.func, ast.Attribute) and c.func.attr == "exit"
+               and isinstance(c.func.value, ast.Name) and c.func.value.id == "sys"
+               and c.args and isinstance(c.args[0], ast.Name)
+               and c.args[0].id == _exit for c in _calls):
+        _r["why"].append("no_sys_exit_of_EXIT")
+    _print_ok = False
+    for _c in _calls:
+        if isinstance(_c.func, ast.Name) and _c.func.id == "print":
+            _dump = ast.dump(_c)
+            if "判据逐条" in _dump and _pk is not None and _pk in _dump:
+                _print_ok = True
+    if not _print_ok:
+        _r["why"].append("print_does_not_use_derived_keys")
+
+    _hold_keys = set(k for k in _out_subs if re.match(_P1032G_HOLD_RE, k))
+    _r["n_hold_keys"] = len(_hold_keys)
+    _r["hold_keys"] = sorted(_hold_keys)
+    _kinds = None
+    for _k, _v in _out_subs.items():
+        if (_k.startswith("criterion_kinds_") and not _k.startswith(
+                "criterion_kinds_complete_") and isinstance(_v, ast.Dict)):
+            _kinds = set(kk.value for kk in _v.keys
+                         if isinstance(kk, ast.Constant))
+    _r["n_kinds"] = len(_kinds) if _kinds is not None else 0
+    if _kinds is not None:
+        if _kinds != _hold_keys:
+            _r["why"].append("kinds_do_not_match_criteria:%s"
+                             % sorted(_kinds ^ _hold_keys))
+    _r["ok"] = not _r["why"]
+    return _r
+
+
+def _p1032g_criteria_derivation():
+    _books = {}
+    for _name, _path in _P1032G_BOOKS:
+        _books[_name] = _p1032g_book_static(_path)
+    return {"books": _books,
+            "n_books": len(_books),
+            "n_books_ok": sum(1 for v in _books.values() if v["ok"]),
+            "problems": {k: v["why"] for k, v in _books.items() if not v["ok"]},
+            "ok": all(v["ok"] for v in _books.values()) and bool(_books)}
+
+
+# ══ 1032-②g：**红账三档必须自洽** ═════════════════════════════════════
+def _p1032g_ledger_judge(rl):
+    """⭐ 纯函数：红账三档的关系式判决（**不钉绝对数**）。"""
+    _why = []
+    if not isinstance(rl, dict):
+        return {"ok": False, "why": ["red_ledger_missing"]}
+    _need = ("n_books", "n_books_with_criteria_detail",
+             "n_books_without_criteria_detail", "books_without_criteria_detail",
+             "criteria_red_by_book", "n_criteria_red_named",
+             "criteria_detector_selftest_ok", "n_books_with_ledger",
+             "n_books_with_ledger_complete")
+    for _k in _need:
+        if _k not in rl:
+            _why.append("missing:" + _k)
+    if _why:
+        return {"ok": False, "why": _why}
+    _n = int(rl["n_books"])
+    if int(rl["n_books_with_criteria_detail"]) + int(
+            rl["n_books_without_criteria_detail"]) != _n:
+        _why.append("with+without != n_books")
+    if len(rl["books_without_criteria_detail"]) != int(
+            rl["n_books_without_criteria_detail"]):
+        _why.append("third_state_list_len_mismatch")
+    if int(rl["n_criteria_red_named"]) != sum(
+            len(v) for v in rl["criteria_red_by_book"].values()):
+        _why.append("named_red_count_mismatch")
+    if not rl["criteria_detector_selftest_ok"]:
+        _why.append("criteria_detector_selftest_not_ok")
+    if not (0 <= int(rl["n_books_with_ledger_complete"])
+            <= int(rl["n_books_with_ledger"]) <= _n):
+        _why.append("ledger_counts_not_ordered")
+    return {"ok": not _why, "why": _why}
+
+
+def _p1032g_ledger_ok():
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    _rl = _d.get("red_ledger")
+    if _rl is None:
+        _rl = _d.get("red_ledger_1015")
+    return bool(_p1032g_ledger_judge(_rl).get("ok"))
+
+
+def _p1032g_ledger_pc():
+    """⭐⭐⭐⭐⭐ **阳性对照：证明这道判决能红** ——
+    ⇒ 改五种关系、每一种都必须让判决翻红 ⇒ ⇒
+    ⇒ ⇒ **⇒ 而「本批一条关系都没坏」时，这条判据也不会空跑。**
+    """
+    import copy
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    _rl = _d.get("red_ledger")
+    if _rl is None:
+        _rl = _d.get("red_ledger_1015")
+    if not isinstance(_rl, dict):
+        return False
+    _muts = []
+
+    def _m(name):
+        def _f(d):
+            d[name] = int(d.get(name, 0)) + 1
+        _muts.append((name, _f))
+
+    _m("n_books_with_criteria_detail")
+    _m("n_books_without_criteria_detail")
+    _m("n_criteria_red_named")
+    _m("n_books")
+    _m("n_books_with_ledger")
+
+    def _m_selftest(d):
+        d["criteria_detector_selftest_ok"] = False
+    _muts.append(("criteria_detector_selftest_ok", _m_selftest))
+
+    def _m_list(d):
+        d["books_without_criteria_detail"] = list(
+            d.get("books_without_criteria_detail") or []) + ["x"]
+    _muts.append(("books_without_criteria_detail", _m_list))
+
+    _ok = True
+    for _name, _fn in _muts:
+        _c = copy.deepcopy(_rl)
+        _fn(_c)
+        if _p1032g_ledger_judge(_c).get("ok"):
+            _ok = False
+    return _ok
 
 def main() -> int:
     env = dict(os.environ)
@@ -17569,6 +17820,64 @@ def main() -> int:
           and ("--census-only" in _p1008)
           and ("census_only_1005" in _p1008)
           and ("p3_not_applicable_1005" in _p1008))
+    check("DD993AC.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「**退出码与打印必须覆盖**全部**判据」这件事**必须在源码层钉住** —— "
+          "⇒ ⇒ ②f 接上退出码时把判据集合写成了 `range(1, N+1)` ⇒ ⇒ "
+          "**⇒ 而册内 8 本里 7 本各有 P1..P(N+1) ⇒ ⇒ ⇒⇒ "
+          "**⇒ ⇒ ⇒ 「最后一条判据红了、退出码还是 0」** ⇒ ⇒ ⇒⇒⇒ "
+          "**⇒ ⇒ ⇒⇒ 而它没被抓住、只因所有判据恰好都 True ⇒ ⇒ ⇒⇒⇒ "
+          "**⇒ ⇒ ⇒⇒⇒ 「恒真掩盖缺陷」的又一例** ⇒ ⇒ ⇒⇒⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **这一道门用 AST 查、不认字符串**："
+          "**① 判据集合必须是「从 `out` 里挑出所有 `P<n>_hold_*` 键再排序」** "
+          "**② `_CRITERIA` 必须是 `[out[k] for k in _P_KEYS_hold_*]`** "
+          "**③ `_EXIT` 必须是 `_exit_code(_CRITERIA, crashed=…)`** "
+          "**④ `sys.exit(_EXIT)` 必须在** "
+          "**⑤ 打印「判据逐条」那一条必须也用 `_P_KEYS_hold_*`** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **而 ⑤ 比 ④ 更重要：打印漏一条 ⇒ ⇒ 屏幕显示全绿、而真相是红** "
+          "⇒ ⇒ ⇒⇒ **⇒ 一条都漏判 ⇒ ⇒ ⇒⇒⇒ 而退出码是 0 ⇒ ⇒ ⇒⇒⇒⇒ "
+          "**⇒ ⇒ ⇒⇒⇒⇒ 「没人看见它红」** ⇒ ⇒ ⇒⇒⇒⇒ ⇒ "
+          "**⑥ 若这本书发布了 `criterion_kinds_*` ⇒ ⇒ 它的键必须 == 源码里所有 "
+          "`P<n>_hold_*` 赋值键** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **而这一条是台账能站住的前提：多一条少一条都红**",
+          ("^P\\d+_hold_" in _p1005)
+          and ("^P\\d+_hold_" in _p1007)
+          and ("^P\\d+_hold_" in _p1008)
+          and ("^P\\d+_hold_" in _p1009)
+          and ("^P\\d+_hold_" in _p1010)
+          and ("^P\\d+_hold_" in _p1011)
+          and ("^P\\d+_hold_" in _p1012)
+          and ("^P\\d+_hold_" in _p1013)
+          and ("判据逐条" in _p1005)
+          and ("判据逐条" in _p1007)
+          and ("判据逐条" in _p1008)
+          and ("判据逐条" in _p1009)
+          and ("判据逐条" in _p1010)
+          and ("判据逐条" in _p1011)
+          and ("判据逐条" in _p1012)
+          and ("判据逐条" in _p1013)
+          and _p1032g_criteria_derivation()["ok"])
+    check("DD993AC.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「**红账要分得出「真红」与「结论」**」这件事**必须由账本自己回答** —— "
+          "⇒ ⇒ ②f 的红账只有**书级 rc** ⇒ ⇒ 它能说「这本书红了」、"
+          "**说不出「红的是哪一条」** ⇒ ⇒ ⇒⇒ "
+          "**⇒ ⇒ ⇒⇒ 而「红」与「结论」混在一起时、连「要不要修」都答不出来** ⇒ ⇒ ⇒⇒⇒ "
+          "⭐⭐⭐⭐⭐ **1032-②g 把红账改成三档**："
+          "**① 红（读到了 False）② 不可判定（这本书没有逐条明细 ⇒ "
+          "既不许说它绿、也不许说它红）③ 绿（读到了、且没有一条 False）** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **而第三档不是「凑数」—— 上一版把「读不到」和「没有假」混成一栏** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **判据台账**：每本书发布 `criterion_kinds_<tag>` = {判据键: kind}，"
+          "kind ∈ {failure, conclusion, precondition} ⇒ ⇒ "
+          "**⇒ 而 kind 不是从文本机械猜的（「❌」「被否」「否掉」在两种语义位置都出现）"
+          "⇒ ⇒ ⇒ 所以逐条读原文、由人定性** ⇒ ⇒ ⇒ "
+          "**⇒ 而「没标注」=「不可判定」= 第三档、不许默认成 failure** ⇒ ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **这一道门只验可机检的关系式（不钉绝对数）**："
+          "**① 「有明细」+「无明细」== 本数 ② 无明细那份名单 == 补集 "
+          "③ 点名出来的红条数 == 明细里 False 的条数 ④ 检测器自检必须过 "
+          "⑤ 台账计数必须单调** ⇒ ⇒ ⇒⇒ "
+          "⭐⭐⭐⭐⭐ **而它带阳性对照：改坏任何一条关系 ⇒ ⇒ 判决必须翻红** ⇒ ⇒ "
+          "**⇒ ⇒  ⇒ 「本批一条关系都没坏」时，这条判据也不会空跑**",
+          _p1032g_ledger_ok() and _p1032g_ledger_pc())
+
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
