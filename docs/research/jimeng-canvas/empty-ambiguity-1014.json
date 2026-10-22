@@ -8,7 +8,7 @@
   "n_from_probe_products": 30,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "b7e20dae041f",
+    "sha256_12": "b96d36a46fea",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
@@ -16,7 +16,7 @@
     "bytes": 62073
    },
    "assertion-vs-behavior-1018.json": {
-    "sha256_12": "74f085518ab4",
+    "sha256_12": "12db9c4b45fd",
     "bytes": 17669
    },
    "baseline-host-misuse-1016.json": {
@@ -36,19 +36,19 @@
     "bytes": 1193
    },
    "criterion-direction-1025.json": {
-    "sha256_12": "ba419360fcf8",
-    "bytes": 318779
+    "sha256_12": "9374cb4d668e",
+    "bytes": 322239
    },
    "criterion-effectiveness-1026.json": {
-    "sha256_12": "d791ffdb2439",
-    "bytes": 100623
+    "sha256_12": "1fbf7325d46e",
+    "bytes": 100637
    },
    "edit-visibility-1009.json": {
     "sha256_12": "cbccf1eaa2e9",
     "bytes": 1437
    },
    "exemption-claims-1024.json": {
-    "sha256_12": "6894993cc39c",
+    "sha256_12": "4a125431d970",
     "bytes": 19737
    },
    "expanded-contract-1032b4.json": {
@@ -68,8 +68,8 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "374570e78078",
-    "bytes": 81032
+    "sha256_12": "2f5aab22ea96",
+    "bytes": 81298
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
@@ -116,7 +116,7 @@
     "bytes": 1272
    },
    "type-layer-gate-1023.json": {
-    "sha256_12": "0905c8a667e8",
+    "sha256_12": "2cff76d71be1",
     "bytes": 9205
    },
    "wired-contract-1032b1.json": {
