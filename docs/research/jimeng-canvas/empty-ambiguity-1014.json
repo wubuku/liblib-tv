@@ -2,6 +2,15 @@
  "generated_by": "jimeng_probe1014_empty_ambiguity.py",
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
+ "snapshot_and_who_checks_it": {
+  "what_this_table_is": "⇒ **本表是【快照】**：记的是「上次跑 1014 时」各产物的字节 ⇒ **⇒ 它天生会过期**",
+  "second_order_effect": "⇒ **任何重写自己产物的探针一跑 ⇒ 本表立刻过期**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 处置：重跑 1014**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而这正是全门禁清单把 1014 排在最后的原因**",
+  "who_checks_it": [
+   "fingerprint-gate-1032l.json"
+  ],
+  "how_it_is_checked": "⇒ **那道门用【双基线】（提交态 ＋ 工作区）逐行对 sha256_12／bytes**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 并报出「过期的是哪几本」**",
+  "why_declared_here": "⇒ **「声明」与「发布」之间那道缝**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 声明必须落在产物里、而不只在 README 的散文里**"
+ },
  "census_inputs_2029": {
   "n_fingerprinted": 29,
   "n_unreadable": 0,

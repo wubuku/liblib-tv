@@ -149,79 +149,24 @@ _HIST_MARK_1007 = "stem_attribution_1007"
 _HIST_ROOT_1007 = Path("/tmp/b1007-hist-universe")
 
 
-def _historical_sha_1007():
-    """1007 的判据文本是哪一次提交写下的？⇒ **问 git，不手打**。"""
-    try:
-        r = subprocess.run(
-            ["git", "log", "-S", _HIST_MARK_1007, "--format=%H",
-             "--", "scripts/jimeng_unclickable_audit.py"],
-            cwd=str(ROOT), capture_output=True, text=True, timeout=180)
-    except Exception as e:
-        return None, "git_failed:%r" % (e,)
-    _shas = [l.strip() for l in (r.stdout or "").splitlines() if l.strip()]
-    if not _shas:
-        return None, "no_commit_found"
-    return _shas[-1], ("git log -S '" + _HIST_MARK_1007
-                       + "' -- scripts/jimeng_unclickable_audit.py"
-                       + "（取最早的一次 = 写下这段文本的那一次）")
+# ⇒ ⇒ ⇒ ⇒ **1032-②m：出处层切到共享模块**
+#   ⇒ ⇒ ⇒ ⇒ **（`scripts/jimeng_historical_readings.py`⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ②h 已把它提成共享模块、1013 在用）**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 而 1007 自己那份是【重复实现】⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 「规则」只能有一份实现**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 而这不是纯重构 —— 共享版多两处更强的东西：**
+#     ⇒ ⇒ ⇒ ⇒ **① 产物路径从 DONE 标记解析**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而自实现版写死了 `/tmp/b1007-stem-attribution.json`**
+#       ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 而那个 /tmp 文件**会被顶掉** ⇒ ⇒ ⇒ 「读到的可能是上一轮留下的」**
+#     ⇒ ⇒ ⇒ ⇒ **② 给旧探针设 GIT_DIR / GIT_WORK_TREE**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而自实现版没设 ⇒ 旧探针的 git 读数看到的是今天的仓**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 所以切过去之后数字映射**可能变**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 必须实测、不许假设**
+import jimeng_historical_readings as _HR
 
-
-def _historical_readings_1007(sha):
-    """把当年的树取出来、重跑当年的探针 ⇒ **那一刻宇宙上的实测读数**。"""
-    _dest = _HIST_ROOT_1007 / sha[:12]
-    _dest.mkdir(parents=True, exist_ok=True)
-    _arc = subprocess.run(
-        "git archive " + sha + " scripts docs/research/jimeng-canvas"
-        " src/components/jimeng | tar -x -C " + str(_dest),
-        shell=True, cwd=str(ROOT), capture_output=True, text=True, timeout=600)
-    if _arc.returncode != 0:
-        return None, {"archive_rc": _arc.returncode,
-                      "archive_err": (_arc.stderr or "")[-200:]}
-    _probe = _dest / "scripts/jimeng_probe1007_disparate_copies.py"
-    if not _probe.exists():
-        return None, {"probe_missing": True}
-    _run = subprocess.run([sys.executable, str(_probe)], cwd=str(_dest),
-                          capture_output=True, text=True, timeout=900)
-    # ⭐⭐⭐⭐⭐ **必须看到「写完了」的标记才能读那个产物** ——
-    #   ⇒ ⇒ 否则「上一轮留下的旧产物」会被当成本轮的读数
-    if "PROBE_1007_DONE" not in (_run.stdout or ""):
-        return None, {"probe_rc": _run.returncode,
-                      "why": "当年的探针没跑到写产物那一步（没有 DONE 标记）"}
-    _p = Path("/tmp/b1007-stem-attribution.json")
-    if not _p.exists():
-        return None, {"probe_rc": _run.returncode, "why": "产物文件不在"}
-    try:
-        return (json.loads(_p.read_text(encoding="utf-8")),
-                {"probe_rc": _run.returncode})
-    except Exception as e:
-        return None, {"probe_rc": _run.returncode, "parse_failed": repr(e)}
-
-
-def _hist_num_paths(obj, prefix=""):
-    """⇒ {数字字符串 → 它在历史产物里的路径}（**出处要能指到具体字段**）。"""
-    _m = {}
-    if isinstance(obj, dict):
-        for _k, _v in obj.items():
-            _m.update(_hist_num_paths(_v, prefix + "/" + str(_k)))
-    elif isinstance(obj, list):
-        for _i, _v in enumerate(obj):
-            _m.update(_hist_num_paths(_v, prefix + "/" + str(_i)))
-    elif isinstance(obj, bool):
-        pass
-    elif isinstance(obj, (int, float)):
-        for _s in (str(obj), "%.1f" % obj):
-            _m.setdefault(_s, prefix)
-    return _m
-
-
-_HIST_SHA_1007, _HIST_WHY_1007 = _historical_sha_1007()
-_HIST_OUT_1007, _HIST_META_1007 = (None, {})
-if _HIST_SHA_1007:
-    _HIST_OUT_1007, _HIST_META_1007 = _historical_readings_1007(_HIST_SHA_1007)
-_HIST_NUMS_1007 = {}
-if isinstance(_HIST_OUT_1007, dict):
-    _HIST_NUMS_1007 = _hist_num_paths(
-        {k: v for k, v in _HIST_OUT_1007.items() if k != "verdicts_1007"})
+_HIST_LAYER_1007 = _HR.historical_layer(
+    ROOT, _HIST_MARK_1007,
+    "scripts/jimeng_probe1007_disparate_copies.py",
+    _HIST_ROOT_1007)
+_HIST_SHA_1007 = _HIST_LAYER_1007.get("sha")
+_HIST_WHY_1007 = _HIST_LAYER_1007.get("sha_derivation")
+_HIST_META_1007 = _HIST_LAYER_1007.get("meta")
+_HIST_NUMS_1007 = _HIST_LAYER_1007.get("numbers") or {}
 
 out = {
     "target": "offline-stem-attribution",

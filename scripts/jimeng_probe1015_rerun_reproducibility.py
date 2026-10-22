@@ -1329,6 +1329,25 @@ if _missing:
     print("!! 判据里查不到出处的数：",
           json.dumps(_missing, ensure_ascii=False))
 
+# ⇒ ⇒ ⇒ ⇒ **1032-②m：判据台账落进产物**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而以前它只活在退出码里 ⇒ ⇒ ⇒ 「声明 ≠ 发布」**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 而本批新写的门（1032l）恰恰是靠「声明落在产物里」才闭环的**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 两条纪律互相打脸 ⇒ ⇒ ⇒ ⇒ ⇒ 处置：落进产物**
+out["criteria_1015"] = dict(out)
+# ⇒ ⇒ ⇒ ⇒ **每条判据的 kind**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而「没标注」=「不可判定」= 第三档、不许默认成 failure**
+out["criterion_kinds_1015"] = {
+    "P1_hold_1015": "failure",
+    "P2_hold_1015": "failure",
+    "P3_hold_1015": "failure",
+    "P4_hold_1015": "failure",
+    "P5_hold_1015": "failure",
+    "P6_hold_1015": "failure",
+    "P7_hold_1015": "failure",
+    "P8_hold_1015": "failure",
+    "P9_hold_1015": "failure",
+    "P_stale_vs_committed_is_zero_1015": "failure",
+}
+out["criterion_kinds_complete_1015"] = (
+    set(out["criterion_kinds_1015"]) == set(out["criteria_1015"]))
 out["red_ledger_1015"] = RED_LEDGER
 io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
 io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({

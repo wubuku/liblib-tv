@@ -43,6 +43,8 @@ RELDIR = "docs/research/jimeng-canvas"
 PROBE1014 = ROOT / "scripts/jimeng_probe1014_empty_ambiguity.py"
 TABLE_NAME = "empty-ambiguity-1014.json"
 GOLDEN = GDIR / "fingerprint-gate-1032l.json"
+# ⇒ **本门自己的产物名**（由 GOLDEN 派生 ⇒ 不会与文件名漂移）
+SELF_ARTIFACT_NAME = GOLDEN.name
 
 # ⭐⭐⭐⭐⭐ kind 三档（沿用 ②k 的口径）：本门六条**全是 `failure`** ——
 #   ⇒ 红了的含义都是「仪器/数据自检没过 ⇒ 要修」
@@ -55,6 +57,7 @@ KINDS_1032L = {
     "P4_the_committed_state_is_self_consistent_1032l": "failure",
     "P5_the_working_tree_is_self_consistent_1032l": "failure",
     "P6_this_gate_can_actually_go_red_1032l": "failure",
+    "P7_the_table_declares_the_gate_that_checks_it_1032l": "failure",
 }
 
 
@@ -221,6 +224,17 @@ def _judge(table, volatile, actual, generators, excluded_markers):
     }
 
 
+def _declared_checkers(raw):
+    """⇒ **1014 的产物里，它自己声明「谁在查我」**⇒ ⇒ ⇒ ⇒ **⇒ 读不到就当「没声明」**（不猜）。"""
+    try:
+        doc = json.loads(raw.decode("utf-8"))
+    except Exception:  # noqa: BLE001
+        return []
+    blk = doc.get("snapshot_and_who_checks_it") or {}
+    names = blk.get("who_checks_it") or []
+    return [str(x) for x in names]
+
+
 def _judge_dir(gdir, markers):
     """⭐ 工作区那一侧：读表 → 扫盘 → 判。"""
     reader = _DirReader(gdir)
@@ -235,6 +249,14 @@ def _judge_dir(gdir, markers):
     verdict = _judge(table, volatile, actual, generators, markers["excluded"])
     verdict["declared_volatile"] = sorted(volatile)
     verdict["source_volatile"] = sorted(markers["volatile"])
+    # ⇒ ⇒ ⇒ ⇒ **1032-②m：核「表声明谁在查它」**
+    #   ⇒ ⇒ ⇒ ⇒ **⇒ 而这一步在 `_judge` 之后**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 免得改掉 `_judge` 的签名（verifier 有锚点钉着）**
+    _decl = _declared_checkers(raw)
+    verdict["declared_checkers"] = _decl
+    verdict["declares_me"] = bool(SELF_ARTIFACT_NAME in _decl)
+    if not verdict["declares_me"]:
+        verdict["why"].append("table_does_not_declare_this_gate_as_its_checker")
+        verdict["ok"] = False
     # ⭐⭐⭐⭐⭐ **「产物里声明的 volatile」与「源码里声明的 volatile」是不是同一批**
     #   ⇒ 这一条**不进 `_judge`** ⇒ ⇒⇒ 因为自检造的那个小世界里
     #   ⇒ ⇒⇒⇒ 它的 volatile 是假的（`v.json`）⇒ ⇒⇒⇒ ⇒ 若塞进判决里
@@ -262,6 +284,12 @@ def _judge_head(markers):
     actual, generators = _scan(reader)
     verdict = _judge(table, volatile, actual, generators, markers["excluded"])
     verdict["declared_volatile"] = sorted(volatile)
+    _decl = _declared_checkers(raw)
+    verdict["declared_checkers"] = _decl
+    verdict["declares_me"] = bool(SELF_ARTIFACT_NAME in _decl)
+    if not verdict["declares_me"]:
+        verdict["why"].append("table_does_not_declare_this_gate_as_its_checker")
+        verdict["ok"] = False
     return verdict
 
 
@@ -275,6 +303,7 @@ def _write_table(gdir, table, volatile, self_mark):
             "volatile_inputs": {k: {"sha256_12": "x", "bytes": 0, "why": "selftest"}
                                 for k in sorted(volatile)},
         },
+        "snapshot_and_who_checks_it": {"who_checks_it": [SELF_ARTIFACT_NAME]},
     }
     (gdir / TABLE_NAME).write_text(
         json.dumps(doc, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -349,7 +378,15 @@ def _selftest(markers):
         def _delete_artifact(d):
             (d / "b.json").unlink()
 
+        def _declaration_points_at_someone_else(d):
+            doc = json.loads((d / TABLE_NAME).read_text(encoding="utf-8"))
+            doc["snapshot_and_who_checks_it"]["who_checks_it"] = ["someone_else.py"]
+            (d / TABLE_NAME).write_text(json.dumps(doc, ensure_ascii=False, indent=1),
+                                        encoding="utf-8")
+
         _mutate("mutate_one_artifact_on_disk", _mutate_artifact)
+        _mutate("declaration_points_at_someone_else",
+                _declaration_points_at_someone_else)
         _mutate("mutate_one_row_of_the_table", _mutate_row)
         _mutate("drop_one_row_of_the_table", _drop_row)
         _mutate("add_one_phantom_row", _add_phantom)
@@ -384,6 +421,11 @@ def _criteria(work, head, st, vol_matches_source):
             bool(work["ok"]),
         "P6_this_gate_can_actually_go_red_1032l":
             bool(st["ok"]),
+        # ⇒ ⇒ ⇒ ⇒ **1032-②m：**表必须声明「谁在查它」**
+        #   ⇒ ⇒ ⇒ ⇒ **⇒ 而「声明」若没人核、它就退化成散文**
+        #   ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 而「散文说明」与「没算过」在产物里长得一模一样**
+        "P7_the_table_declares_the_gate_that_checks_it_1032l":
+            bool(work.get("declares_me") and head.get("declares_me")),
     }
 
 
