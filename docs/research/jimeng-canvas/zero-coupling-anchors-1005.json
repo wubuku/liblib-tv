@@ -1,14 +1,14 @@
 {
  "generated_by": "jimeng_probe1005_zero_coupling_census.py",
- "n_zero_coupling": 918,
+ "n_zero_coupling": 926,
  "n_positive_present": 7033,
  "n_distinct_keys": 6863,
  "by_class": {
-  "I-标识符(多处引用)": 492,
+  "I-标识符(多处引用)": 500,
   "P-散文/片段": 426
  },
  "class_x_gap": {
-  "I-标识符(多处引用)|21–200": 183,
+  "I-标识符(多处引用)|21–200": 191,
   "I-标识符(多处引用)|4–20": 104,
   "I-标识符(多处引用)|>200": 99,
   "I-标识符(多处引用)|≤3": 106,
@@ -5995,14 +5995,14 @@
    "var": "_p1014",
    "anchor": "\"P7_hold_2014\"",
    "occurrences": 2,
-   "min_line_gap": 374
+   "min_line_gap": 384
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1014",
    "anchor": "\"P8_hold_2014\"",
    "occurrences": 2,
-   "min_line_gap": 458
+   "min_line_gap": 468
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6010,6 +6010,20 @@
    "anchor": "empty-ambiguity-1014.json",
    "occurrences": 2,
    "min_line_gap": 119
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1015",
+   "anchor": "\"P1_hold_1015\"",
+   "occurrences": 2,
+   "min_line_gap": 53
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1015",
+   "anchor": "\"P2_hold_1015\"",
+   "occurrences": 2,
+   "min_line_gap": 50
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6041,6 +6055,20 @@
   },
   {
    "class": "I-标识符(多处引用)",
+   "var": "_p1015",
+   "anchor": "\"P3_hold_1015\"",
+   "occurrences": 2,
+   "min_line_gap": 43
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1015",
+   "anchor": "\"P4_hold_1015\"",
+   "occurrences": 2,
+   "min_line_gap": 36
+  },
+  {
+   "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "每本账都落后它上游一轮",
    "occurrences": 2,
@@ -6049,9 +6077,30 @@
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1015",
+   "anchor": "\"P5_hold_1015\"",
+   "occurrences": 2,
+   "min_line_gap": 36
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1015",
    "anchor": "\"wrote_golden\"",
    "occurrences": 3,
    "min_line_gap": 107
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1015",
+   "anchor": "\"P7_hold_1015\"",
+   "occurrences": 2,
+   "min_line_gap": 33
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1015",
+   "anchor": "\"P6_hold_1015\"",
+   "occurrences": 2,
+   "min_line_gap": 35
   },
   {
    "class": "P-散文/片段",
@@ -6066,6 +6115,13 @@
    "anchor": "本批纯离线",
    "occurrences": 34,
    "min_line_gap": 14
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1015",
+   "anchor": "\"P8_hold_1015\"",
+   "occurrences": 2,
+   "min_line_gap": 33
   },
   {
    "class": "I-标识符(多处引用)",
