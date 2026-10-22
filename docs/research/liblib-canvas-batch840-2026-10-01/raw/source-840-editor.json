@@ -1,0 +1,704 @@
+{
+ "★是否登录成功_有画布": true,
+ "★是否有官方角色库页签": true,
+ "★找到查看角色资产": true,
+ "★是否点到编辑角色": true,
+ "★子树读数": {
+  "root": {
+   "tag": "DIV",
+   "box": {
+    "x": 361,
+    "y": 231,
+    "w": 1198,
+    "h": 602
+   },
+   "cls": "relative flex h-[602px] shrink-0",
+   "position": "relative",
+   "zIndex": "auto",
+   "bg": "rgba(0, 0, 0, 0)",
+   "radius": "0px",
+   "overflow": "visible"
+  },
+  "leaves": [
+   {
+    "tag": "SPAN",
+    "text": "· 青年 · 东亚 · 现代",
+    "box": {
+     "x": 405,
+     "y": 283,
+     "w": 115,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "text": "脸部精修",
+    "box": {
+     "x": 409,
+     "y": 340,
+     "w": 56,
+     "h": 22
+    },
+    "cls": ""
+   },
+   {
+    "tag": "SPAN",
+    "text": "限免",
+    "box": {
+     "x": 471,
+     "y": 343,
+     "w": 30,
+     "h": 16
+    },
+    "cls": "bg-nt-brand-surface-l1 text-nt-text-brand flex h-4 shrink-0 items-center gap-0.5 rounded px-1 text-[11px] leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "text": "脸部 & 身体特征",
+    "box": {
+     "x": 409,
+     "y": 392,
+     "w": 101,
+     "h": 22
+    },
+    "cls": ""
+   },
+   {
+    "tag": "SPAN",
+    "text": "身材塑形",
+    "box": {
+     "x": 409,
+     "y": 444,
+     "w": 56,
+     "h": 22
+    },
+    "cls": ""
+   },
+   {
+    "tag": "SPAN",
+    "text": "限免",
+    "box": {
+     "x": 471,
+     "y": 447,
+     "w": 30,
+     "h": 16
+    },
+    "cls": "bg-nt-brand-surface-l1 text-nt-text-brand flex h-4 shrink-0 items-center gap-0.5 rounded px-1 text-[11px] leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "text": "服装造型",
+    "box": {
+     "x": 409,
+     "y": 496,
+     "w": 56,
+     "h": 22
+    },
+    "cls": ""
+   },
+   {
+    "tag": "SPAN",
+    "text": "音色音调",
+    "box": {
+     "x": 409,
+     "y": 548,
+     "w": 56,
+     "h": 22
+    },
+    "cls": ""
+   },
+   {
+    "tag": "SPAN",
+    "text": "皮肤",
+    "box": {
+     "x": 1322,
+     "y": 239,
+     "w": 28,
+     "h": 22
+    },
+    "cls": "overflow-hidden whitespace-nowrap text-sm leading-[22px] transition-opacity duration-[250ms] ease-[cubic-bezier(0.36,0.7"
+   },
+   {
+    "tag": "SPAN",
+    "text": "质感磨皮",
+    "box": {
+     "x": 1297,
+     "y": 291,
+     "w": 56,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "text": "0",
+    "box": {
+     "x": 1530,
+     "y": 294,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "text": "AI 美颜（脸部）",
+    "box": {
+     "x": 1297,
+     "y": 366,
+     "w": 101,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "text": "i",
+    "box": {
+     "x": 1404,
+     "y": 370,
+     "w": 14,
+     "h": 14
+    },
+    "cls": "inline-flex size-3.5 shrink-0 cursor-default items-center justify-center rounded-full border border-current text-[10px] "
+   },
+   {
+    "tag": "SPAN",
+    "text": "0",
+    "box": {
+     "x": 1530,
+     "y": 369,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "text": "皮肤纹理（脸部）",
+    "box": {
+     "x": 1297,
+     "y": 441,
+     "w": 112,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "text": "0",
+    "box": {
+     "x": 1530,
+     "y": 444,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "text": "皮肤透亮",
+    "box": {
+     "x": 1297,
+     "y": 515,
+     "w": 56,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "text": "0",
+    "box": {
+     "x": 1530,
+     "y": 518,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "text": "皮肤红润",
+    "box": {
+     "x": 1297,
+     "y": 590,
+     "w": 56,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "text": "0",
+    "box": {
+     "x": 1530,
+     "y": 593,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "text": "皮肤美白",
+    "box": {
+     "x": 1297,
+     "y": 665,
+     "w": 56,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "text": "0",
+    "box": {
+     "x": 1530,
+     "y": 668,
+     "w": 7,
+     "h": 16
+    },
+    "cls": "text-fg-muted font-mono text-[11px] tabular-nums leading-4"
+   },
+   {
+    "tag": "SPAN",
+    "text": "祛斑祛痘",
+    "box": {
+     "x": 1297,
+     "y": 740,
+     "w": 56,
+     "h": 22
+    },
+    "cls": "truncate"
+   },
+   {
+    "tag": "SPAN",
+    "text": "i",
+    "box": {
+     "x": 1359,
+     "y": 744,
+     "w": 14,
+     "h": 14
+    },
+    "cls": "inline-flex size-3.5 shrink-0 cursor-default items-center justify-center rounded-full border border-current text-[10px] "
+   },
+   {
+    "tag": "SPAN",
+    "text": "确认生成",
+    "box": {
+     "x": 1373,
+     "y": 791,
+     "w": 64,
+     "h": 20
+    },
+    "cls": "px-1"
+   }
+  ],
+  "inputs": [
+   {
+    "tag": "INPUT",
+    "type": "",
+    "value": "甜妹/清新少女 - 副本",
+    "placeholder": "",
+    "box": {
+     "x": 385,
+     "y": 241,
+     "w": 216,
+     "h": 32
+    },
+    "cls": "block h-8 w-full bg-transparent text-2xl font-semibold leading-8 outline-none"
+   },
+   {
+    "tag": "INPUT",
+    "type": "range",
+    "value": "0",
+    "placeholder": "",
+    "box": {
+     "x": 1297,
+     "y": 327,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "INPUT",
+    "type": "range",
+    "value": "0",
+    "placeholder": "",
+    "box": {
+     "x": 1297,
+     "y": 402,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "INPUT",
+    "type": "range",
+    "value": "0",
+    "placeholder": "",
+    "box": {
+     "x": 1297,
+     "y": 477,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "INPUT",
+    "type": "range",
+    "value": "0",
+    "placeholder": "",
+    "box": {
+     "x": 1297,
+     "y": 551,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "INPUT",
+    "type": "range",
+    "value": "0",
+    "placeholder": "",
+    "box": {
+     "x": 1297,
+     "y": 626,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "tag": "INPUT",
+    "type": "range",
+    "value": "0",
+    "placeholder": "",
+    "box": {
+     "x": 1297,
+     "y": 701,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   }
+  ],
+  "ctrls": [
+   {
+    "kind": "button",
+    "text": "脸部精修限免",
+    "aria": "",
+    "box": {
+     "x": 373,
+     "y": 329,
+     "w": 240,
+     "h": 44
+    },
+    "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-sm leading-[22px] transition-c"
+   },
+   {
+    "kind": "button",
+    "text": "脸部 & 身体特征",
+    "aria": "",
+    "box": {
+     "x": 373,
+     "y": 381,
+     "w": 240,
+     "h": 44
+    },
+    "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-sm leading-[22px] transition-c"
+   },
+   {
+    "kind": "button",
+    "text": "身材塑形限免",
+    "aria": "",
+    "box": {
+     "x": 373,
+     "y": 433,
+     "w": 240,
+     "h": 44
+    },
+    "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-sm leading-[22px] transition-c"
+   },
+   {
+    "kind": "button",
+    "text": "服装造型",
+    "aria": "",
+    "box": {
+     "x": 373,
+     "y": 485,
+     "w": 240,
+     "h": 44
+    },
+    "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-sm leading-[22px] transition-c"
+   },
+   {
+    "kind": "button",
+    "text": "音色音调",
+    "aria": "",
+    "box": {
+     "x": 373,
+     "y": 537,
+     "w": 240,
+     "h": 44
+    },
+    "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-sm leading-[22px] transition-c"
+   },
+   {
+    "kind": "button",
+    "text": "",
+    "aria": "撤销",
+    "box": {
+     "x": 378,
+     "y": 785,
+     "w": 32,
+     "h": 32
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl disabled:pointer-events-none disabled:"
+   },
+   {
+    "kind": "button",
+    "text": "",
+    "aria": "恢复",
+    "box": {
+     "x": 410,
+     "y": 785,
+     "w": 32,
+     "h": 32
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl disabled:pointer-events-none disabled:"
+   },
+   {
+    "kind": "button",
+    "text": "",
+    "aria": "按住对比",
+    "box": {
+     "x": 451,
+     "y": 785,
+     "w": 32,
+     "h": 32
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl disabled:pointer-events-none disabled:"
+   },
+   {
+    "kind": "button",
+    "text": "",
+    "aria": "半身",
+    "box": {
+     "x": 925,
+     "y": 785,
+     "w": 32,
+     "h": 32
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-default"
+   },
+   {
+    "kind": "button",
+    "text": "",
+    "aria": "全身",
+    "box": {
+     "x": 966,
+     "y": 785,
+     "w": 32,
+     "h": 32
+    },
+    "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-muted"
+   },
+   {
+    "kind": "button",
+    "text": "皮肤",
+    "aria": "皮肤",
+    "box": {
+     "x": 1297,
+     "y": 231,
+     "w": 56,
+     "h": 39
+    },
+    "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors duration-[300ms] ease-[cubic-bezier"
+   },
+   {
+    "kind": "button",
+    "text": "眉眼",
+    "aria": "眉眼",
+    "box": {
+     "x": 1366,
+     "y": 231,
+     "w": 24,
+     "h": 39
+    },
+    "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors duration-[300ms] ease-[cubic-bezier"
+   },
+   {
+    "kind": "button",
+    "text": "鼻子",
+    "aria": "鼻子",
+    "box": {
+     "x": 1403,
+     "y": 231,
+     "w": 24,
+     "h": 39
+    },
+    "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors duration-[300ms] ease-[cubic-bezier"
+   },
+   {
+    "kind": "button",
+    "text": "嘴唇",
+    "aria": "嘴唇",
+    "box": {
+     "x": 1439,
+     "y": 231,
+     "w": 24,
+     "h": 39
+    },
+    "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors duration-[300ms] ease-[cubic-bezier"
+   },
+   {
+    "kind": "button",
+    "text": "脸部",
+    "aria": "脸部",
+    "box": {
+     "x": 1476,
+     "y": 231,
+     "w": 24,
+     "h": 39
+    },
+    "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors duration-[300ms] ease-[cubic-bezier"
+   },
+   {
+    "kind": "button",
+    "text": "妆造",
+    "aria": "妆造",
+    "box": {
+     "x": 1513,
+     "y": 231,
+     "w": 24,
+     "h": 39
+    },
+    "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors duration-[300ms] ease-[cubic-bezier"
+   },
+   {
+    "kind": "slider",
+    "role": "",
+    "ariaNow": null,
+    "ariaMin": null,
+    "ariaMax": null,
+    "value": "0",
+    "box": {
+     "x": 1297,
+     "y": 327,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "kind": "slider",
+    "role": "",
+    "ariaNow": null,
+    "ariaMin": null,
+    "ariaMax": null,
+    "value": "0",
+    "box": {
+     "x": 1297,
+     "y": 402,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "kind": "slider",
+    "role": "",
+    "ariaNow": null,
+    "ariaMin": null,
+    "ariaMax": null,
+    "value": "0",
+    "box": {
+     "x": 1297,
+     "y": 477,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "kind": "slider",
+    "role": "",
+    "ariaNow": null,
+    "ariaMin": null,
+    "ariaMax": null,
+    "value": "0",
+    "box": {
+     "x": 1297,
+     "y": 551,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "kind": "slider",
+    "role": "",
+    "ariaNow": null,
+    "ariaMin": null,
+    "ariaMax": null,
+    "value": "0",
+    "box": {
+     "x": 1297,
+     "y": 626,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "kind": "slider",
+    "role": "",
+    "ariaNow": null,
+    "ariaMin": null,
+    "ariaMax": null,
+    "value": "0",
+    "box": {
+     "x": 1297,
+     "y": 701,
+     "w": 240,
+     "h": 12
+    },
+    "cls": "Ias-7a_studioRange Ias-7a_studioRangeProgress"
+   },
+   {
+    "kind": "button",
+    "text": "确认生成",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 783,
+     "w": 196,
+     "h": 36
+    },
+    "cls": "min-w-0 flex-1 bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover flex h-9 items-center justify-center gap-"
+   },
+   {
+    "kind": "button",
+    "text": "",
+    "aria": "智能调整",
+    "box": {
+     "x": 1501,
+     "y": 783,
+     "w": 36,
+     "h": 36
+    },
+    "cls": "text-fg-muted hover:bg-canvas-controls-hover flex size-9 shrink-0 items-center justify-center rounded-[10px] bg-[var(--c"
+   }
+  ],
+  "icons": [],
+  "svgs": [],
+  "url": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429"
+ }
+}

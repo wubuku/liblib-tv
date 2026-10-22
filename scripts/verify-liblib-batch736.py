@@ -79,6 +79,7 @@ from playwright.sync_api import sync_playwright
 #   ★ 原来 C9 只**数个数**（10）⟹ 加一个就红 ⟹ 现在**显式列名** ⟹
 #     以后再加阻塞面必须**显式**改这里 ⟹ 不会「悄悄多一个」。
 #   ★ `characterAssetsId` 是 **batch 839** 为「角色资产视图」加的（它是 primary-panel 的**下一层**）。
+#   ★ `characterEditorId` 是 **batch 840** 为「角色大编辑器」加的（它比资产视图**还高一层**）。
 EXPECTED_BLOCKING_SURFACES = [
     "isFollowingSession",
     "isStoryboardEditorOpen",
@@ -89,6 +90,7 @@ EXPECTED_BLOCKING_SURFACES = [
     "isSharePanelOpen",
     "isNotificationOpen",
     "isUserMenuOpen",
+    "characterEditorId",
     "characterAssetsId",
     "activePrimaryPanel",
 ]

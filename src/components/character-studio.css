@@ -824,3 +824,598 @@
 .cs-viewport.is-dimmed .cs-track {
   opacity: 0.22;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ★★ Batch 840：**角色大编辑器**（源站「编辑角色」点开的那一层）
+   ───────────────────────────────────────────────────────────────────
+   ★★ 全部几何**逐条照抄**源站活体实测（2026-10-22，1920×1080）：
+      模态          1198×758 @361,161
+      内容行        1198×602 @相对(0,70)   ← 三列：288 / 624 / 288
+      底栏          1198×88  @相对(0,672)
+   ★ 坐标一律写成**相对模态左上角**的偏移（模态居中 ⟹ 绝对位置 = 361 + 偏移）。
+   ★ 为什么走**普通 CSS**：4317 的 Tailwind 扫描是冻结的（见本文件头）。
+   ═══════════════════════════════════════════════════════════════════ */
+.ce-overlay {
+  position: fixed;
+  inset: 0;
+  /* ★ 高于 .cs-overlay（90）⟹ 大编辑器盖住整个「角色造型室」模态（源站同款：同一块屏幕位置） */
+  z-index: 95;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.ce-modal {
+  position: relative;
+  width: 1198px;
+  height: 758px;
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+  overflow: hidden;
+  /* ★ 源站实测：模态 **border-width=0px** ⟹ clone 也不要边框
+     （有边框的话整棵树会**整体推 1px**，几何就与源站差 1）。 */
+  border: 0;
+  border-radius: 16px;
+  background: #262626;
+  color: #ededed;
+}
+
+/* ── 头部：返回按钮（源站实测 26×26 @rel(16,24)） ──────────────────── */
+.ce-back {
+  position: absolute;
+  left: 16px;
+  top: 24px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  padding: 0 5px;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: #ededed;
+  cursor: pointer;
+}
+.ce-back:hover { background: rgba(255, 255, 255, 0.12); }
+
+/* ── 内容行：三列 ────────────────────────────────────────────────── */
+.ce-body {
+  position: absolute;
+  left: 0;
+  top: 70px;
+  width: 1198px;
+  height: 602px;
+  display: flex;
+}
+
+.ce-col {
+  position: relative;
+  height: 602px;
+  flex: none;
+  /* 源站两列的底色都是 rgb(36,36,36)（--character-studio-bg-float） */
+  background: #242424;
+}
+.ce-col-left { width: 288px; }
+.ce-col-right { width: 288px; }
+
+.ce-preview {
+  position: relative;
+  width: 624px;
+  height: 602px;
+  /* ★ `flex: none` ⟹ 不被 flex 压窄（源站：288 + 624 + 288 = 1200 > 模态 1198，
+     ⟹ 右侧那 2px 是**被裁掉**的，不是被挤掉的）。 */
+  flex: none;
+  overflow: hidden;
+}
+
+/* ── 左列：标题 ＋ 标签 ＋ 五段 ＋ 工具 ──────────────────────────── */
+.ce-name-input {
+  position: absolute;
+  left: 24px;
+  top: 10px;
+  width: 216px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #ededed;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  outline: none;
+}
+.ce-name-input:focus {
+  box-shadow: none;
+}
+
+.ce-tags {
+  position: absolute;
+  left: 24px;
+  top: 52px;
+  display: flex;
+  align-items: center;
+  /* ★ 源站实测：性别图标 18×18 @rel(24,124) ＋ gap 2 ⟹ 文案从 rel 44 起 */
+  gap: 2px;
+  width: 240px;
+  height: 22px;
+  color: rgba(255, 255, 255, 0.6);
+  /* ★ 源站实测标签行是 `text-sm` ⟹ 14px（clone 原来写 13px ⟹ 文案宽 107 ≠ 源站 115） */
+  font-size: 14px;
+  line-height: 22px;
+}
+.ce-tag-gender {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  font-size: 13px;
+}
+.ce-tag-text { white-space: nowrap; }
+
+.ce-seg {
+  position: absolute;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 240px;
+  height: 44px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: #ededed;
+  font-size: 14px;
+  line-height: 22px;
+  text-align: left;
+  cursor: pointer;
+}
+/* ★ 选中态：源站实测「脸部精修」bg=rgba(255,255,255,0.1)，其余透明 */
+.ce-seg.is-on { background: rgba(255, 255, 255, 0.1); }
+.ce-seg:hover { background: rgba(255, 255, 255, 0.06); }
+.ce-seg.is-on:hover { background: rgba(255, 255, 255, 0.12); }
+
+/* ★ 源站实测：每一段文案左侧有 18px 的图标 ⟹ px-3(12) + 18 + gap-1.5(6) = 36
+   ⟹ 文案落在按钮内 36px 处 ⟹ 按钮起点 rel 12 ⟹ 文案 rel 48（与源站一致） */
+.ce-seg-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 255, 255, 0.7);
+}
+.ce-seg-text { white-space: nowrap; }
+
+.ce-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 16px;
+  border-radius: 4px;
+  /* 源站实测：bg=rgba(19,213,255,0.12)、color=rgb(93,220,255) */
+  background: rgba(19, 213, 255, 0.12);
+  color: rgb(93, 220, 255);
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.ce-tool {
+  position: absolute;
+  top: 554px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+.ce-tool:hover { background: rgba(255, 255, 255, 0.12); }
+
+/* ── 预览区 ─────────────────────────────────────────────────────── */
+.ce-figure {
+  position: absolute;
+  left: 79px;
+  top: 0;
+  width: 467px;
+  height: 550px;
+  overflow: hidden;
+}
+.ce-figure img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* 源站：底部一层 196px 渐变 ＋ 一层 -top-8 的遮罩（absolute inset-x-0 bottom-0） */
+.ce-preview-fade {
+  position: absolute;
+  left: 0;
+  top: 476px;
+  width: 624px;
+  height: 196px;
+  background: linear-gradient(to bottom, rgba(38, 38, 38, 0), rgba(38, 38, 38, 0.92));
+  pointer-events: none;
+}
+.ce-preview-tools {
+  position: absolute;
+  left: 276px;
+  top: 554px;
+  display: flex;
+  align-items: center;
+  /* ★ 源站实测：两枚按钮的间隙是 **9px**（半身 rel 564 ⟹ 全身 rel 605；
+     ⟹ 容器实宽 73 = 32 + 9 + 32，与源站容器的 73px 一致）
+     ⚠️ 之前误按「紧邻 gap 0」实现 ⟹ 全身落在 rel 596（差 9px）⟹ 本批改正 */
+  gap: 9px;
+  height: 32px;
+  padding: 0;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.72);
+}
+.ce-preview-tools .ce-tool { position: static; background: transparent; }
+.ce-preview-tools .ce-tool.is-on { background: rgba(255, 255, 255, 0.12); }
+
+/* ── 右栏：页签 ＋ 皮肤面板 ─────────────────────────────────────── */
+.ce-tabs {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  /* ★ 源站实测：页签 39 高、页签行 40 高 ⟹ 页签**顶对齐**（居中会差半像素）。 */
+  align-items: flex-start;
+  /* ★ 源站实测：页签行内容区 240 宽（1297..1537），首枚 56 ＋ 余五枚各 24 = 176
+     ⟹ 五个间隙**均分**剩下的 64 ⟹ 每个 **12.8px** ⟹ ⟹ 用 `space-between` 才复现得出来
+     （写死 gap 会在中间那一枚差 1px）。 */
+  justify-content: space-between;
+  width: 288px;
+  height: 40px;
+  padding: 0 24px;
+}
+.ce-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 39px;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 14px;
+  /* ★ 源站页签文案是 `leading-[22px]` ⟹ 文案盒 22 高 ⟹ 落在 rel 78
+     （tab 有 1px 的 border-b ⟹ 内容盒 38 ⟹ (38−22)/2 = 8 ⟹ 70+8 = 78 ✓） */
+  line-height: 22px;
+  cursor: pointer;
+}
+/* ★ 源站：选中的页签 border-bottom-color=rgb(255,255,255)，其余透明 */
+.ce-tab.is-on {
+  border-bottom-color: #ededed;
+  color: #ededed;
+}
+/* ★ 首个页签带文字（56 宽），其余只有图标（24 宽）——源站实测 */
+.ce-tab.is-text { width: 56px; padding: 0 3px; }
+.ce-tab.is-icon { width: 24px; padding: 0 3px; }
+
+/* ★ 源站实测「皮肤」页签：56 宽 = px-[3px] + [18px 图标] + [gap 4] + [28px 文字]
+   ⟹ 文案落在 rel 961（不是居中的 950）⟹ ⟹ 首枚页签**也有前置图标** */
+.ce-tab { gap: 4px; }
+.ce-tab-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+}
+.ce-tab-text { white-space: nowrap; }
+
+.ce-panel {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 288px;
+  height: 562px;
+  overflow-y: auto;
+}
+.ce-section {
+  position: relative;
+  padding: 20px 24px 80px;
+}
+
+.ce-slider-label {
+  position: absolute;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  color: #ededed;
+  font-size: 14px;
+  line-height: 22px;
+}
+.ce-slider-label-text { white-space: nowrap; }
+.ce-slider-value {
+  position: absolute;
+  /* ★ 右对齐到轨道右端（源站：数值 7×16 @rel 1169 ⟹ 右端 1176 = 轨道右端） */
+  right: 24px;
+  display: flex;
+  align-items: center;
+  height: 16px;
+  color: rgba(255, 255, 255, 0.45);
+  /* ★ 源站实测：数值是 `font-mono text-[11px] tabular-nums` ⟹ 字宽 7px @rel 1169
+     （clone 原来 12px ⟹ 字宽 8px ⟹ 起点 1168） */
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  line-height: 16px;
+}
+.ce-slider {
+  position: absolute;
+  left: 24px;
+  width: 240px;
+  height: 12px;
+  margin: 0;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+.ce-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+.ce-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  margin-top: -4px;
+  border: 0;
+  border-radius: 9999px;
+  background: #ededed;
+}
+.ce-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.16);
+}
+.ce-slider::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border: 0;
+  border-radius: 9999px;
+  background: #ededed;
+}
+
+.ce-info {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 10px;
+  font-style: normal;
+  line-height: 14px;
+  cursor: default;
+}
+
+.ce-switch-row {
+  position: absolute;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 240px;
+  height: 22px;
+  font-size: 14px;
+  line-height: 22px;
+}
+.ce-switch-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+/* ★ 源站实测：文案 56 宽 @rel 936，'i' 图标 14×14 @rel 998（= 文案右端 + gap 6） */
+.ce-switch-label-text { white-space: nowrap; }
+/* ★ Mantine Switch：轨道 32×18、圆角 1000px；关闭态轨道 rgba(255,255,255,0.25) */
+.ce-switch {
+  position: relative;
+  flex: none;
+  width: 32px;
+  height: 18px;
+  padding: 0;
+  border: 0;
+  border-radius: 1000px;
+  background: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+}
+.ce-switch-thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 1000px;
+  background: #171717;
+  transition: transform 120ms ease;
+}
+.ce-switch.is-on { background: #ededed; }
+.ce-switch.is-on .ce-switch-thumb { transform: translateX(14px); }
+
+.ce-generate-row {
+  position: absolute;
+  left: 0;
+  top: 538px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 288px;
+  height: 64px;
+  padding: 0 24px;
+  background: #242424;
+}
+.ce-generate {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  /* ★ 源站实测：按钮内容 = [18px 图标][gap 2][64px 文案] = 84 ⟹ 居中后图标 rel 992、
+     文案 rel 1012 ⟹ ⟹ gap 是 **2px**（不是 4px） */
+  gap: 2px;
+  height: 36px;
+  min-width: 0;
+  border: 0;
+  border-radius: 8px;
+  background: #ededed;
+  color: #171717;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.ce-generate:hover { background: #ffffff; }
+/* ★ 源站实测：文案盒 64×20 @rel(1012,630)（`px-1` ⟹ 文字 56 + 左右各 4）
+   ⟹ 按钮内容 = [16px 图标][gap 4][64px 文案] ⟹ 居中后图标 rel 992、文案 rel 1012 */
+.ce-generate-text { padding: 0 4px; white-space: nowrap; }
+.ce-smart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+}
+.ce-smart:hover { background: rgba(255, 255, 255, 0.12); }
+
+/* ── 右栏空态（未实测的页签） ──────────────────────────────────── */
+.ce-empty {
+  position: absolute;
+  left: 24px;
+  top: 40px;
+  width: 240px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 13px;
+  line-height: 20px;
+}
+
+/* ── 底栏 ───────────────────────────────────────────────────────── */
+.ce-footer {
+  position: absolute;
+  left: 0;
+  top: 672px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 1198px;
+  height: 88px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: #242424;
+}
+.ce-gen-assets {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 240px;
+  height: 40px;
+  font-size: 13px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.ce-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: #ededed;
+  color: #171717;
+}
+.ce-checkbox.is-off { background: transparent; border: 1px solid rgba(255, 255, 255, 0.25); }
+.ce-credits {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  padding-left: 2px;
+  color: rgba(255, 255, 255, 0.3);
+}
+/* ★ 源站实测：⚡ 是 12×12 的 **svg** ⟹ clone 用字符 ⟹ 盒子必须**写死 12 宽**，
+   否则后面的「44」会整体右移 3px（源站 186 vs clone 189）。 */
+.ce-credit-bolt {
+  width: 12px;
+  font-size: 12px;
+  line-height: 12px;
+  overflow: hidden;
+}
+.ce-credit-num {
+  min-width: 17px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 20px;
+}
+.ce-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ce-save {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  min-width: 80px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 12px;
+  /* 源站实测：bg=rgba(255,255,255,0.06)、radius 12px */
+  background: rgba(255, 255, 255, 0.06);
+  color: #ededed;
+  font-size: 14px;
+  cursor: pointer;
+}
+.ce-save:hover { background: rgba(255, 255, 255, 0.12); }
+.ce-save.is-primary {
+  /* ★ 源站实测 144×40 ⟹ 写死宽度 ⟹ 按钮组 232 宽 ⟹ 「保存」正好落在 rel 483 */
+  width: 144px;
+  background: #ededed;
+  color: #171717;
+}
+.ce-save.is-primary:hover { background: #ffffff; }
+
+/* ── clone mock 的**如实提示**（不是假装成功） ─────────────────── */
+.ce-notice {
+  position: absolute;
+  left: 50%;
+  bottom: 104px;
+  transform: translateX(-50%);
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(20, 20, 20, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  line-height: 20px;
+  white-space: nowrap;
+}

@@ -1,0 +1,465 @@
+{
+ "★是否点到编辑角色": true,
+ "★视觉读数": {
+  "body": "ref: <Node>",
+  "bodyBox": {
+   "x": 361,
+   "y": 231,
+   "w": 1198,
+   "h": 602
+  },
+  "bodyStyle": {
+   "bg": "rgba(0, 0, 0, 0)",
+   "border": "rgb(82, 82, 82)",
+   "borderW": "0px",
+   "radius": "0px",
+   "color": "rgb(255, 255, 255)"
+  },
+  "asides": [
+   {
+    "box": {
+     "x": 361,
+     "y": 231,
+     "w": 288,
+     "h": 602
+    },
+    "style": {
+     "bg": "rgb(36, 36, 36)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    },
+    "cls": "relative h-[602px] w-[288px] shrink-0 bg-[var(--character-studio-bg-float)] px-3 pt-2.5"
+   },
+   {
+    "box": {
+     "x": 1273,
+     "y": 231,
+     "w": 288,
+     "h": 602
+    },
+    "style": {
+     "bg": "rgb(36, 36, 36)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    },
+    "cls": "relative flex h-[602px] w-[288px] shrink-0 flex-col bg-[var(--character-studio-bg-float)] Ias-7a_editorPanelOverlayScroll"
+   }
+  ],
+  "main": {
+   "box": {
+    "x": 649,
+    "y": 231,
+    "w": 624,
+    "h": 602
+   },
+   "style": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(82, 82, 82)",
+    "borderW": "0px",
+    "radius": "0px",
+    "color": "rgb(255, 255, 255)"
+   },
+   "cls": "relative h-[602px] w-[624px] shrink-0 overflow-hidden"
+  },
+  "modal": {
+   "box": {
+    "x": 361,
+    "y": 161,
+    "w": 1198,
+    "h": 758
+   },
+   "style": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(82, 82, 82)",
+    "borderW": "0px",
+    "radius": "0px",
+    "color": "rgb(255, 255, 255)"
+   },
+   "cls": "Ias-7a_workbenchEntering relative z-[1] flex h-full min-h-0 flex-col"
+  },
+  "footer": [
+   {
+    "tag": "FOOTER",
+    "role": "",
+    "text": "保存时生成角色资产44保存保存并添加到画",
+    "box": {
+     "x": 361,
+     "y": 833,
+     "w": 1198,
+     "h": 88
+    },
+    "cls": "border-canvas-controls-border relative z-30 flex h-[88px] shrink-0 items-center justify-center gap-2 border-t bg-[var(--",
+    "style": {
+     "bg": "rgb(36, 36, 36)",
+     "border": "rgba(255, 255, 255, 0.08)",
+     "borderW": "1px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "LABEL",
+    "role": "",
+    "text": "保存时生成角色资产44",
+    "box": {
+     "x": 385,
+     "y": 858,
+     "w": 240,
+     "h": 40
+    },
+    "cls": "absolute left-6 top-6 flex h-10 cursor-pointer items-center gap-1.5 text-[13px] leading-5 w-[240px]",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "INPUT",
+    "role": "",
+    "text": "",
+    "box": {
+     "x": 384,
+     "y": 878,
+     "w": 1,
+     "h": 1
+    },
+    "cls": "peer sr-only",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(255, 255, 255)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "box": {
+     "x": 385,
+     "y": 869,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "flex size-[18px] shrink-0 items-center justify-center rounded-full peer-focus-visible:outline peer-focus-visible:outline",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "9999px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "svg",
+    "role": "img",
+    "text": "",
+    "box": {
+     "x": 385,
+     "y": 869,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv size-[18px]",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "path",
+    "role": "",
+    "text": "",
+    "box": {
+     "x": 387,
+     "y": 871,
+     "w": 15,
+     "h": 15
+    },
+    "cls": "",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "保存时生成角色资产",
+    "box": {
+     "x": 409,
+     "y": 868,
+     "w": 117,
+     "h": 20
+    },
+    "cls": "",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "44",
+    "box": {
+     "x": 532,
+     "y": 868,
+     "w": 32,
+     "h": 20
+    },
+    "cls": "inline-flex shrink-0",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "44",
+    "box": {
+     "x": 532,
+     "y": 868,
+     "w": 32,
+     "h": 20
+    },
+    "cls": "inline-flex shrink-0 items-center gap-px pl-0.5 text-[var(--character-studio-text-tertiary)]",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgba(255, 255, 255, 0.3)"
+    }
+   },
+   {
+    "tag": "svg",
+    "role": "img",
+    "text": "",
+    "box": {
+     "x": 534,
+     "y": 872,
+     "w": 12,
+     "h": 12
+    },
+    "cls": "iconify iconify--libtv pointer-events-none shrink-0 size-3",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgba(255, 255, 255, 0.3)"
+    }
+   },
+   {
+    "tag": "path",
+    "role": "",
+    "text": "",
+    "box": {
+     "x": 536,
+     "y": 873,
+     "w": 8,
+     "h": 10
+    },
+    "cls": "",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgba(255, 255, 255, 0.3)"
+    }
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "44",
+    "box": {
+     "x": 547,
+     "y": 868,
+     "w": 17,
+     "h": 20
+    },
+    "cls": "text-center font-normal text-[13px] leading-5",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgba(255, 255, 255, 0.3)"
+    }
+   },
+   {
+    "tag": "DIV",
+    "role": "",
+    "text": "保存保存并添加到画布",
+    "box": {
+     "x": 844,
+     "y": 858,
+     "w": 232,
+     "h": 40
+    },
+    "cls": "flex items-center gap-2",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "DIV",
+    "role": "",
+    "text": "保存",
+    "box": {
+     "x": 844,
+     "y": 858,
+     "w": 80,
+     "h": 40
+    },
+    "cls": "relative",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "text": "保存",
+    "box": {
+     "x": 844,
+     "y": 858,
+     "w": 80,
+     "h": 40
+    },
+    "cls": "hover:bg-canvas-controls-hover flex h-10 min-w-20 items-center justify-center rounded-xl bg-[var(--character-studio-bg-o",
+    "style": {
+     "bg": "rgba(255, 255, 255, 0.06)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "12px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "DIV",
+    "role": "",
+    "text": "保存并添加到画布",
+    "box": {
+     "x": 932,
+     "y": 858,
+     "w": 144,
+     "h": 40
+    },
+    "cls": "relative",
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "0px",
+     "color": "rgb(255, 255, 255)"
+    }
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "text": "保存并添加到画布",
+    "box": {
+     "x": 932,
+     "y": 858,
+     "w": 144,
+     "h": 40
+    },
+    "cls": "bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover flex h-10 min-w-20 items-center justify-center rounded-x",
+    "style": {
+     "bg": "rgba(255, 255, 255, 0.898)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "12px",
+     "color": "rgb(0, 0, 0)"
+    }
+   }
+  ],
+  "fortyFour": {
+   "box": {
+    "x": 547,
+    "y": 868,
+    "w": 17,
+    "h": 20
+   },
+   "style": {
+    "bg": "rgba(0, 0, 0, 0)",
+    "border": "rgb(82, 82, 82)",
+    "borderW": "0px",
+    "radius": "0px",
+    "color": "rgba(255, 255, 255, 0.3)"
+   },
+   "prevTag": "svg",
+   "prevBox": {
+    "x": 534,
+    "y": 872,
+    "w": 12,
+    "h": 12
+   },
+   "prevCls": "iconify iconify--libtv pointer-events-none shrink-0 size-3",
+   "prevText": ""
+  },
+  "checkbox": {
+   "input": {
+    "box": {
+     "x": 384,
+     "y": 878,
+     "w": 1,
+     "h": 1
+    },
+    "checked": true
+   },
+   "prev": null,
+   "next": {
+    "tag": "SPAN",
+    "box": {
+     "x": 385,
+     "y": 869,
+     "w": 18,
+     "h": 18
+    },
+    "style": {
+     "bg": "rgba(0, 0, 0, 0)",
+     "border": "rgb(82, 82, 82)",
+     "borderW": "0px",
+     "radius": "9999px",
+     "color": "rgb(255, 255, 255)"
+    },
+    "cls": "flex size-[18px] shrink-0 items-center justify-center rounded-full peer-focus-visible:outline peer-focus-visible:outline-offset-2 peer-disab",
+    "text": ""
+   },
+   "parentCls": "absolute left-6 top-6 flex h-10 cursor-pointer items-center gap-1.5 text-[13px] leading-5 w-[240px]"
+  }
+ }
+}

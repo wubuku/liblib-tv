@@ -1,0 +1,954 @@
+{
+ "★是否点到编辑角色": true,
+ "★读数": {
+  "modal": {
+   "x": 361,
+   "y": 161,
+   "w": 1198,
+   "h": 758
+  },
+  "svgs": [
+   {
+    "box": {
+     "x": 382,
+     "y": 190,
+     "w": 16,
+     "h": 16
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-4",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 377,
+      "y": 185,
+      "w": 26,
+      "h": 26
+     },
+     "cls": "hover:bg-canvas-controls-hover flex h-[26px] items-center rounded-lg px-[5px]",
+     "text": ""
+    }
+   },
+   {
+    "box": {
+     "x": 385,
+     "y": 285,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv size-[18px] shrink-0 text-[#e94486] [&_*]:opacity-100",
+    "role": "img",
+    "parent": {
+     "tag": "DIV",
+     "box": {
+      "x": 385,
+      "y": 283,
+      "w": 240,
+      "h": 22
+     },
+     "cls": "text-fg-muted mt-[7px] flex h-[22px] max-w-full items-center gap-0.5 text-sm leading-[22px",
+     "text": "· 青年 · 东亚 · 现代"
+    }
+   },
+   {
+    "box": {
+     "x": 385,
+     "y": 342,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shrink-0",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 373,
+      "y": 329,
+      "w": 240,
+      "h": 44
+     },
+     "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-",
+     "text": "脸部精修限免"
+    }
+   },
+   {
+    "box": {
+     "x": 385,
+     "y": 394,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shrink-0",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 373,
+      "y": 381,
+      "w": 240,
+      "h": 44
+     },
+     "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-",
+     "text": "脸部 & 身体特征"
+    }
+   },
+   {
+    "box": {
+     "x": 385,
+     "y": 446,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shrink-0",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 373,
+      "y": 433,
+      "w": 240,
+      "h": 44
+     },
+     "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-",
+     "text": "身材塑形限免"
+    }
+   },
+   {
+    "box": {
+     "x": 385,
+     "y": 498,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shrink-0",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 373,
+      "y": 485,
+      "w": 240,
+      "h": 44
+     },
+     "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-",
+     "text": "服装造型"
+    }
+   },
+   {
+    "box": {
+     "x": 385,
+     "y": 550,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shrink-0",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 373,
+      "y": 537,
+      "w": 240,
+      "h": 44
+     },
+     "cls": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-",
+     "text": "音色音调"
+    }
+   },
+   {
+    "box": {
+     "x": 385,
+     "y": 792,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv size-[18px] text-fg-muted",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 378,
+      "y": 785,
+      "w": 32,
+      "h": 32
+     },
+     "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl disabled",
+     "text": ""
+    }
+   },
+   {
+    "box": {
+     "x": 417,
+     "y": 792,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv size-[18px] text-fg-muted",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 410,
+      "y": 785,
+      "w": 32,
+      "h": 32
+     },
+     "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl disabled",
+     "text": ""
+    }
+   },
+   {
+    "box": {
+     "x": 458,
+     "y": 792,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv size-[18px] text-fg-muted",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 451,
+      "y": 785,
+      "w": 32,
+      "h": 32
+     },
+     "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl disabled",
+     "text": ""
+    }
+   },
+   {
+    "box": {
+     "x": 932,
+     "y": 792,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-[18px]",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 925,
+      "y": 785,
+      "w": 32,
+      "h": 32
+     },
+     "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-",
+     "text": ""
+    }
+   },
+   {
+    "box": {
+     "x": 973,
+     "y": 792,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-[18px]",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 966,
+      "y": 785,
+      "w": 32,
+      "h": 32
+     },
+     "cls": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-",
+     "text": ""
+    }
+   },
+   {
+    "box": {
+     "x": 1300,
+     "y": 241,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-[18px]",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 1297,
+      "y": 231,
+      "w": 56,
+      "h": 39
+     },
+     "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors durat",
+     "text": "皮肤"
+    }
+   },
+   {
+    "box": {
+     "x": 1369,
+     "y": 241,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-[18px]",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 1366,
+      "y": 231,
+      "w": 24,
+      "h": 39
+     },
+     "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors durat",
+     "text": "眉眼"
+    }
+   },
+   {
+    "box": {
+     "x": 1406,
+     "y": 241,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-[18px]",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 1403,
+      "y": 231,
+      "w": 24,
+      "h": 39
+     },
+     "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors durat",
+     "text": "鼻子"
+    }
+   },
+   {
+    "box": {
+     "x": 1442,
+     "y": 241,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-[18px]",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 1439,
+      "y": 231,
+      "w": 24,
+      "h": 39
+     },
+     "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors durat",
+     "text": "嘴唇"
+    }
+   },
+   {
+    "box": {
+     "x": 1479,
+     "y": 241,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-[18px]",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 1476,
+      "y": 231,
+      "w": 24,
+      "h": 39
+     },
+     "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors durat",
+     "text": "脸部"
+    }
+   },
+   {
+    "box": {
+     "x": 1516,
+     "y": 241,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-[18px]",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 1513,
+      "y": 231,
+      "w": 24,
+      "h": 39
+     },
+     "cls": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors durat",
+     "text": "妆造"
+    }
+   },
+   {
+    "box": {
+     "x": 1353,
+     "y": 792,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-[18px] shrink-0",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 1297,
+      "y": 783,
+      "w": 196,
+      "h": 36
+     },
+     "cls": "min-w-0 flex-1 bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover flex h-9 it",
+     "text": "确认生成"
+    }
+   },
+   {
+    "box": {
+     "x": 1510,
+     "y": 792,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none text-fg-default size-[18px]",
+    "role": "img",
+    "parent": {
+     "tag": "BUTTON",
+     "box": {
+      "x": 1501,
+      "y": 783,
+      "w": 36,
+      "h": 36
+     },
+     "cls": "text-fg-muted hover:bg-canvas-controls-hover flex size-9 shrink-0 items-center justify-cen",
+     "text": ""
+    }
+   },
+   {
+    "box": {
+     "x": 385,
+     "y": 869,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv size-[18px]",
+    "role": "img",
+    "parent": {
+     "tag": "SPAN",
+     "box": {
+      "x": 385,
+      "y": 869,
+      "w": 18,
+      "h": 18
+     },
+     "cls": "flex size-[18px] shrink-0 items-center justify-center rounded-full peer-focus-visible:outl",
+     "text": ""
+    }
+   },
+   {
+    "box": {
+     "x": 534,
+     "y": 872,
+     "w": 12,
+     "h": 12
+    },
+    "cls": "iconify iconify--libtv pointer-events-none shrink-0 size-3",
+    "role": "img",
+    "parent": {
+     "tag": "SPAN",
+     "box": {
+      "x": 532,
+      "y": 868,
+      "w": 32,
+      "h": 20
+     },
+     "cls": "inline-flex shrink-0 items-center gap-px pl-0.5 text-[var(--character-studio-text-tertiary",
+     "text": "44"
+    }
+   }
+  ],
+  "segBtns": [
+   {
+    "text": "脸部精修限免",
+    "box": {
+     "x": 373,
+     "y": 329,
+     "w": 240,
+     "h": 44
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 385,
+       "y": 342,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shr"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 409,
+       "y": 340,
+       "w": 56,
+       "h": 22
+      },
+      "text": "脸部精修",
+      "cls": ""
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 471,
+       "y": 343,
+       "w": 30,
+       "h": 16
+      },
+      "text": "限免",
+      "cls": "bg-nt-brand-surface-l1 text-nt-text-brand flex h-4 shrink-0 items-center gap-0.5"
+     }
+    ]
+   },
+   {
+    "text": "脸部 & 身体特征",
+    "box": {
+     "x": 373,
+     "y": 381,
+     "w": 240,
+     "h": 44
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 385,
+       "y": 394,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shr"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 409,
+       "y": 392,
+       "w": 101,
+       "h": 22
+      },
+      "text": "脸部 & 身体特征",
+      "cls": ""
+     }
+    ]
+   },
+   {
+    "text": "身材塑形限免",
+    "box": {
+     "x": 373,
+     "y": 433,
+     "w": 240,
+     "h": 44
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 385,
+       "y": 446,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shr"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 409,
+       "y": 444,
+       "w": 56,
+       "h": 22
+      },
+      "text": "身材塑形",
+      "cls": ""
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 471,
+       "y": 447,
+       "w": 30,
+       "h": 16
+      },
+      "text": "限免",
+      "cls": "bg-nt-brand-surface-l1 text-nt-text-brand flex h-4 shrink-0 items-center gap-0.5"
+     }
+    ]
+   },
+   {
+    "text": "服装造型",
+    "box": {
+     "x": 373,
+     "y": 485,
+     "w": 240,
+     "h": 44
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 385,
+       "y": 498,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shr"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 409,
+       "y": 496,
+       "w": 56,
+       "h": 22
+      },
+      "text": "服装造型",
+      "cls": ""
+     }
+    ]
+   },
+   {
+    "text": "音色音调",
+    "box": {
+     "x": 373,
+     "y": 537,
+     "w": 240,
+     "h": 44
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 385,
+       "y": 550,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shr"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 409,
+       "y": 548,
+       "w": 56,
+       "h": 22
+      },
+      "text": "音色音调",
+      "cls": ""
+     }
+    ]
+   }
+  ],
+  "tabBtns": [
+   {
+    "aria": "皮肤",
+    "box": {
+     "x": 1297,
+     "y": 231,
+     "w": 56,
+     "h": 39
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 1300,
+       "y": 241,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none size-[18px]"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 1318,
+       "y": 239,
+       "w": 32,
+       "h": 22
+      },
+      "text": "皮肤",
+      "cls": "grid overflow-hidden transition-[grid-template-columns,padding-left] duration-[3"
+     }
+    ]
+   },
+   {
+    "aria": "眉眼",
+    "box": {
+     "x": 1366,
+     "y": 231,
+     "w": 24,
+     "h": 39
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 1369,
+       "y": 241,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none size-[18px]"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 1387,
+       "y": 239,
+       "w": 0,
+       "h": 22
+      },
+      "text": "眉眼",
+      "cls": "grid overflow-hidden transition-[grid-template-columns,padding-left] duration-[3"
+     }
+    ]
+   },
+   {
+    "aria": "鼻子",
+    "box": {
+     "x": 1403,
+     "y": 231,
+     "w": 24,
+     "h": 39
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 1406,
+       "y": 241,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none size-[18px]"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 1424,
+       "y": 239,
+       "w": 0,
+       "h": 22
+      },
+      "text": "鼻子",
+      "cls": "grid overflow-hidden transition-[grid-template-columns,padding-left] duration-[3"
+     }
+    ]
+   },
+   {
+    "aria": "嘴唇",
+    "box": {
+     "x": 1439,
+     "y": 231,
+     "w": 24,
+     "h": 39
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 1442,
+       "y": 241,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none size-[18px]"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 1460,
+       "y": 239,
+       "w": 0,
+       "h": 22
+      },
+      "text": "嘴唇",
+      "cls": "grid overflow-hidden transition-[grid-template-columns,padding-left] duration-[3"
+     }
+    ]
+   },
+   {
+    "aria": "脸部",
+    "box": {
+     "x": 1476,
+     "y": 231,
+     "w": 24,
+     "h": 39
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 1479,
+       "y": 241,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none size-[18px]"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 1497,
+       "y": 239,
+       "w": 0,
+       "h": 22
+      },
+      "text": "脸部",
+      "cls": "grid overflow-hidden transition-[grid-template-columns,padding-left] duration-[3"
+     }
+    ]
+   },
+   {
+    "aria": "妆造",
+    "box": {
+     "x": 1513,
+     "y": 231,
+     "w": 24,
+     "h": 39
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 1516,
+       "y": 241,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none size-[18px]"
+     },
+     {
+      "tag": "SPAN",
+      "box": {
+       "x": 1534,
+       "y": 239,
+       "w": 0,
+       "h": 22
+      },
+      "text": "妆造",
+      "cls": "grid overflow-hidden transition-[grid-template-columns,padding-left] duration-[3"
+     }
+    ]
+   }
+  ],
+  "genBtn": {
+   "box": {
+    "x": 1297,
+    "y": 783,
+    "w": 196,
+    "h": 36
+   },
+   "kids": [
+    {
+     "tag": "svg",
+     "box": {
+      "x": 1353,
+      "y": 792,
+      "w": 18,
+      "h": 18
+     },
+     "text": "",
+     "cls": "iconify iconify--libtv pointer-events-none size-[18px] shrink-0"
+    },
+    {
+     "tag": "SPAN",
+     "box": {
+      "x": 1373,
+      "y": 791,
+      "w": 64,
+      "h": 20
+     },
+     "text": "确认生成",
+     "cls": "px-1"
+    }
+   ]
+  },
+  "halfBtns": [
+   {
+    "aria": "半身",
+    "box": {
+     "x": 925,
+     "y": 785,
+     "w": 32,
+     "h": 32
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 932,
+       "y": 792,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none size-[18px]"
+     }
+    ]
+   },
+   {
+    "aria": "全身",
+    "box": {
+     "x": 966,
+     "y": 785,
+     "w": 32,
+     "h": 32
+    },
+    "kids": [
+     {
+      "tag": "svg",
+      "box": {
+       "x": 973,
+       "y": 792,
+       "w": 18,
+       "h": 18
+      },
+      "text": "",
+      "cls": "iconify iconify--libtv pointer-events-none size-[18px]"
+     }
+    ]
+   }
+  ],
+  "swRoot": {
+   "box": {
+    "x": 1505,
+    "y": 742,
+    "w": 32,
+    "h": 18
+   },
+   "cls": "m_5f93f3bb mantine-Switch-root m_5f75b09e mantine-Switch-root",
+   "role": "",
+   "ariaChecked": null
+  },
+  "url": "https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429"
+ }
+}

@@ -78,6 +78,10 @@ interface UIState {
    *  ★ 它是 primary-panel 的**下一层** ⟹ 登记成**前台阻塞面**，
    *    Esc 才只会关掉资产视图、而不是把整个面板关掉。 */
   characterAssetsId: string | null;
+  /** ★★ Batch 840：「角色大编辑器」当前打开的角色 id（关掉时 null）。
+   *  ★ 它比**资产视图**还高一层（源站：资产视图底栏的「编辑角色」⟹ 大编辑器盖住整个模态）
+   *  ⟹ ⟹ 登记成**前台阻塞面** `character-editor`，Esc 才先关它、再关资产视图、最后关面板。 */
+  characterEditorId: string | null;
   editorMode: "workbench" | "storyboard";
   canvasTool: "select" | "pan";
   activeDirectorNodeId: string | null;
@@ -114,6 +118,8 @@ interface UIState {
   setPrimaryPanel: (panel: PrimaryPanel | null) => void;
   /** ★★ Batch 839：开/关「角色资产视图」（角色造型室里的下一层）。 */
   setCharacterAssetsId: (id: string | null) => void;
+  /** ★★ Batch 840：开/关**角色大编辑器**（null = 关闭）。 */
+  setCharacterEditorId: (id: string | null) => void;
   openStoryboardEditor: () => void;
   closeStoryboardEditor: () => void;
   setStoryboardSessionNode: (nodeId: string | null) => void;
@@ -158,6 +164,7 @@ type OverlayState = Pick<
   | "isZoomMenuOpen"
   | "activePrimaryPanel"
   | "characterAssetsId"
+  | "characterEditorId"
   | "imagePreview"
   | "imageAnnotate"
   | "imageElementEdit"
@@ -183,6 +190,7 @@ const closedOverlayState: OverlayState = {
   isZoomMenuOpen: false,
   activePrimaryPanel: null,
   characterAssetsId: null,
+  characterEditorId: null,
   imagePreview: null,
   imageAnnotate: null,
   imageElementEdit: null,
@@ -217,6 +225,7 @@ export const useUIStore = create<UIState>((set) => ({
   isZoomMenuOpen: false,
   activePrimaryPanel: null,
   characterAssetsId: null,
+  characterEditorId: null,
   editorMode: "workbench",
   canvasTool: "select",
   activeDirectorNodeId: null,
@@ -337,10 +346,20 @@ export const useUIStore = create<UIState>((set) => ({
       // ★★ Batch 839：换/关面板 ⟹ 顺手关掉角色资产视图 ⟹
       //   否则它会**残留**成一个「谁也关不掉、Esc 也只关它」的死状态。
       characterAssetsId: null,
+      // ★★ Batch 840：大编辑器比资产视图还高一层 ⟹ 换/关面板时也要顺手清掉它。
+      characterEditorId: null,
     })),
 
   // ★★ Batch 839：开/关角色资产视图（角色造型室里的下一层）。
   setCharacterAssetsId: (id) => set({ characterAssetsId: id }),
+
+  // ★★ Batch 840：开/关**角色大编辑器**（源站：资产视图底栏「编辑角色」⟹ 大编辑器）。
+  //   ★ 开编辑器 ⟹ 顺手关掉资产视图 ⟹ 否则它会**残留**成一层看不见、却还在挡 Esc 的状态。
+  setCharacterEditorId: (id: string | null) =>
+    set((state) => ({
+      characterEditorId: id,
+      characterAssetsId: id ? null : state.characterAssetsId,
+    })),
 
   openStoryboardEditor: () =>
     set((state) => ({
@@ -439,6 +458,8 @@ export const useUIStore = create<UIState>((set) => ({
           return { isStoryboardEditorOpen: false };
         case "character-assets":
           return { characterAssetsId: null };
+        case "character-editor":
+          return { characterEditorId: null };
         case "primary-panel":
           return {
             activePrimaryPanel: null,

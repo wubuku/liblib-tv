@@ -17,6 +17,7 @@ import {
   X,
 } from "lucide-react";
 import { useUIStore } from "@/store/uiStore";
+import { CharacterEditorPanel } from "@/components/CharacterEditorPanel";
 import "./character-studio.css";
 
 interface CharacterLibraryPanelProps {
@@ -122,6 +123,18 @@ const tagsFor = (name: string) => {
   return [gender, age, region];
 };
 
+// ★★ Batch 840：**大编辑器**标签行里的「文化区域」。
+//   ★ 源站那趟实测打开的是「甜妹/清新少女」⟹ 它的标签行是「· 青年 · 东亚 · 现代」
+//   ⟹ ⟹ **这个角色照抄源站实测**；★ 而面板那套本地 mock（按名字猜）对这个名字给出的是
+//   「其他」⟹ ⟹ 不能拿 mock 覆盖实测。其余角色仍用本地 mock（★ 非源站采样 ⟹
+//   门禁**不**拿它们当源站口径）。
+const SOURCE_MEASURED_REGION: Record<string, string> = {
+  "甜妹/清新少女": "东亚",
+};
+
+const regionFor = (name: string) =>
+  SOURCE_MEASURED_REGION[name] ?? tagsFor(name)[2];
+
 const CREATE_SLOT = "__create__";
 const CARD_WIDTH = 244;
 const CARD_PITCH = 246;
@@ -151,6 +164,15 @@ export function CharacterLibraryPanel({
   //   ⟹ ⟹ 必须登记成**前台阻塞面**（`character-assets`），Esc 才会先关资产视图。
   const assetsId = useUIStore((state) => state.characterAssetsId);
   const setCharacterAssetsId = useUIStore((state) => state.setCharacterAssetsId);
+  // ★★ Batch 840：「编辑角色」⟹ **角色大编辑器**（源站：点它盖住整个模态）。
+  //   ★ 它比**资产视图**还高一层 ⟹ 登记成**前台阻塞面** `character-editor`，
+  //   ⟹ Esc 才先关大编辑器、再关资产视图、最后才关面板。
+  const editorId = useUIStore((state) => state.characterEditorId);
+  const setCharacterEditorId = useUIStore((state) => state.setCharacterEditorId);
+  // ★★ Batch 840：大编辑器里改的名字**真的**落回角色（本地状态）。
+  //   ★ 源站的「保存」会把改名存进服务端 ⟹ clone 没有服务端 ⟹ 落本地，
+  //   ⟹ 且**不**碰任何积分/生成副作用。
+  const [renames, setRenames] = useState<Record<string, string>>({});
 
   const viewportRef = useRef<HTMLDivElement | null>(null);
   // ★ 源站的 track 是 `absolute left-1/2` ⟹ **当前项永远居中**。
@@ -194,7 +216,13 @@ export function CharacterLibraryPanel({
     return byFilter && byKeyword;
   };
 
-  const visible = characters.filter((character) => matches(character.name));
+  // ★★ Batch 840：显示用的角色表 = 原表 ＋ 大编辑器里改过的名字
+  const roster = useMemo(
+    () => characters.map((c) => ({ ...c, name: renames[c.id] ?? c.name })),
+    [renames],
+  );
+
+  const visible = roster.filter((character) => matches(character.name));
 
   // ★ 源站的 carousel 轨道是 `left-1/2` 整体居中，当前项被推到视口正中 ⟹
   //   这里用原生滚动 + `margin:0 auto` 等价实现：当前项居中、左右箭头翻页、
@@ -225,7 +253,7 @@ export function CharacterLibraryPanel({
   //   `docs/research/components/CharacterLibraryPanel.spec.md` 的既有约定一致）。
   const [voicePicked, setVoicePicked] = useState(false);
   const assetsCharacter = useMemo(
-    () => characters.find((item) => item.id === assetsId) ?? null,
+    () => roster.find((item) => item.id === assetsId) ?? null,
     [assetsId],
   );
   const assetImages = useMemo(() => {
@@ -237,7 +265,7 @@ export function CharacterLibraryPanel({
       );
     }
     return [character.imageUrl, character.imageUrl, character.imageUrl, character.imageUrl];
-  }, [assetsCharacter]);
+  }, [assetsCharacter, roster]);
 
   // ★ 把焦点移进资产视图容器（★ clone 决策）
   //   ★ 源站的资产视图**没有**单独的返回入口 ⟹ 不发明返回按钮 ⟹
@@ -294,7 +322,7 @@ export function CharacterLibraryPanel({
 
   const addToCanvas = () => {
     if (!current || current.id === CREATE_SLOT) return;
-    const character = characters.find((item) => item.id === current.id);
+    const character = roster.find((item) => item.id === current.id);
     if (!character) return;
     onAddNode("image", {
       filename: character.name,
@@ -787,7 +815,9 @@ export function CharacterLibraryPanel({
                 <button
                   type="button"
                   data-character-studio-cta="edit"
-                  onClick={() => undefined}
+                  // ★★ Batch 840：这枚 CTA 以前是**死按钮**（onClick={() => undefined}）
+                  //   ⟹ ⟹ 本批接上**角色大编辑器**（源站：点它盖住整个模态）。
+                  onClick={() => setCharacterEditorId(current.id)}
                   className="cs-cta is-primary"
                 >
                   <UserPlus size={18} />
@@ -808,6 +838,38 @@ export function CharacterLibraryPanel({
           )}
         </footer>
       </section>
+
+      {/* ── ★★ Batch 840：角色大编辑器（源站「编辑角色」点开的那一层）──
+          ★ 它是**独立的 overlay**（z-index 95 > .cs-overlay 的 90）⟹
+            源站里它与「角色造型室」模态**占同一块屏幕位置**（1198×758 @361,161）。
+          ★ 状态在 uiStore（`characterEditorId`）⟹ Esc 走**前台阻塞面**关它。 */}
+      {editorId ? (
+        <CharacterEditorPanel
+          characterId={editorId}
+          characterName={
+            roster.find((item) => item.id === editorId)?.name ?? ""
+          }
+          imageUrl={
+            roster.find((item) => item.id === editorId)?.imageUrl ?? ""
+          }
+          gender={
+            tagsFor(
+              roster.find((item) => item.id === editorId)?.name ?? "",
+            )[0]
+          }
+          age={tagsFor(roster.find((item) => item.id === editorId)?.name ?? "")[1]}
+          region={regionFor(
+            roster.find((item) => item.id === editorId)?.name ?? "",
+          )}
+          onClose={() => setCharacterEditorId(null)}
+          onSave={(name) => {
+            // ★★ Batch 840：保存 = **真的**把名字落回角色（本地）＋ 关闭编辑器。
+            //   ★ 不碰积分、不触发生成（源站的「确认生成」是 ⚡44 真实积分 ⟹ clone 不做）。
+            setRenames((prev) => ({ ...prev, [editorId]: name }));
+            setCharacterEditorId(null);
+          }}
+        />
+      ) : null}
     </div>
   );
 }

@@ -30,6 +30,7 @@ export type LibTVBlockingForegroundSurface =
   | "share"
   | "notification"
   | "user-menu"
+  | "character-editor"
   | "character-assets"
   | "primary-panel"
   | "storyboard-editor";
@@ -49,6 +50,10 @@ export interface LibTVForegroundSurfaceSnapshot {
    *  ★ 它是 **primary-panel 的下一层** ⟹ 必须排在 `activePrimaryPanel` **之前**，
    *    否则 Esc 会把**整个面板**关掉、而不是只关资产视图。 */
   characterAssetsId: string | null;
+  /** ★★ Batch 840：「角色大编辑器」打开时非空。
+   *  ★ 它比**资产视图**还高一层（源站：大编辑器盖住**整个**模态）
+   *  ⟹ ⟹ 必须排在 `characterAssetsId` **之前**，Esc 才会先关大编辑器。 */
+  characterEditorId: string | null;
 }
 
 function uniqueAvailableIds(
@@ -128,6 +133,8 @@ export function resolveLibTVBlockingForegroundSurface(
   if (snapshot.isUserMenuOpen) return "user-menu";
   // ★★ Batch 839：角色资产视图是 **primary-panel 内部**的一层 ⟹
   //   必须排在 `activePrimaryPanel` **之前** ⟹ Esc 先关资产视图、再关面板。
+  // ★★ Batch 840：角色大编辑器是**最上层** ⟹ 必须排在 `characterAssetsId` **之前**。
+  if (snapshot.characterEditorId) return "character-editor";
   if (snapshot.characterAssetsId) return "character-assets";
   if (snapshot.activePrimaryPanel) return "primary-panel";
   return null;

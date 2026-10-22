@@ -92,7 +92,10 @@ GATE_SURFACE = "resolveLibTVBlockingForegroundSurface"
 #     ① artifact 里的每个成员**今天都还在**（不许悄悄少一个）；
 #     ② 今天多出来的**只**能是**这里显式登记**的后续批次新增项。
 #   ⟹ 这样判据**仍然有牙**（artifact 里出现已不存在的面 ⟹ 照样红），又不会因后续批次而假红。
-LATER_ADDED_SURFACES = {"character-assets"}  # ★ batch 839 新增（它是 primary-panel 的下一层）
+LATER_ADDED_SURFACES = {
+    "character-assets",     # ★ batch 839 新增（它是 primary-panel 的下一层）
+    "character-editor",    # ★ batch 840 新增（「角色大编辑器」比资产视图还高一层）
+}
 
 
 # ───────────────── 注释抹白（不删字符，行号不漂移） ─────────────────
