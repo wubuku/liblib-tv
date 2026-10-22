@@ -1196,6 +1196,10 @@
   background: #ededed;
 }
 
+/* ★★ Batch 842：源站实测的「i」标记是**描边圆**（1px currentColor 边框、
+   **没有填充底色**）⟹ ⟹ 之前 clone 写成了**填充底色**的实心圆 ⟹ ⟹ 本批改正。
+   （源站：rounded-full border border-current text-[10px] font-medium leading-none，
+   计算样式：border 1px rgba(255,255,255,0.6)、background 透明、line-height 10px） */
 .ce-info {
   display: inline-flex;
   align-items: center;
@@ -1203,13 +1207,95 @@
   width: 14px;
   height: 14px;
   border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid currentColor;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
   font-size: 10px;
+  font-weight: 500;
   font-style: normal;
-  line-height: 14px;
+  line-height: 10px;
   cursor: default;
+  flex: none;
 }
+
+/* ── Batch 842：眉眼页 —— 分段标题 ＋ 眼型预设卡 ─────────────────────── */
+/* ★ 源站实测：H3「眼睛」/「眉毛」＝ 13px / 500 / line-height 20 / 色 rgba(255,255,255,0.3)
+   H4「眼神光」＝ 14px / 500 / line-height 22 / 色 #fff（**带**一枚「i」） */
+.ce-h3 {
+  position: absolute;
+  left: 24px;
+  width: 240px;
+  height: 20px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  color: rgba(255, 255, 255, 0.3);
+}
+.ce-h4 {
+  position: absolute;
+  left: 24px;
+  width: 240px;
+  height: 22px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 22px;
+  color: #fff;
+}
+
+/* ★ 预设卡：76×96 ＝ 76×76 媒体区（radius 16 ＋ 1px 边框）＋ gap 4 ＋ 名字（16 高）
+   源站实测：媒体区底色 rgba(255,255,255,0.06)；选中那枚是**白边** ＋ 名字纯白，
+   其余透明边 ＋ 名字 rgba(255,255,255,0.6) */
+.ce-card {
+  position: absolute;
+  width: 76px;
+  height: 96px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.ce-card-media {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ce-card.is-on .ce-card-media { border-color: #fff; }
+.ce-card-none { display: inline-flex; color: rgba(255, 255, 255, 0.4); }
+/* ★ 源站这里是素材库里的**真实眼型缩略图**（74×74 object-cover）
+   ⟹ ⟹ 仓库里没有 ⟹ ⟹ **中性占位块**（只对齐盒，不声称复刻缩略图） */
+.ce-card-thumb {
+  display: block;
+  width: 74px;
+  height: 74px;
+  background: rgba(255, 255, 255, 0.06);
+}
+.ce-card-name {
+  font-size: 11px;
+  line-height: 16px;
+  color: rgba(255, 255, 255, 0.6);
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ce-card.is-on .ce-card-name { color: #fff; }
 
 .ce-switch-row {
   position: absolute;
