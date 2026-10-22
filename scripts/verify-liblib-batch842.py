@@ -50,6 +50,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 BATCH = ROOT / "docs/research/liblib-canvas-batch842-2026-10-01"
 RAW841 = ROOT / "docs/research/liblib-canvas-batch841-2026-10-01/raw/source-841-tabs.json"
 RAW842 = BATCH / "raw/source-842-brow.json"
+# ★★ **batch 849 起**：第四段「服装」页的期望值从这份 raw 机器提取
+RAW848_P1 = ROOT / "docs/research/liblib-canvas-batch848-2026-10-01/raw/source-848-p1.json"
 PROBE_CLONE = BATCH / "probes/clone842.py"
 OUT = BATCH / "runtime-audit.json"
 
@@ -211,8 +213,47 @@ def build_expectations() -> dict:
         "H4": h4s,
         "几何项": geo,
         "样式": src_style,
+        # ★★ **batch 849 起**：★ 第四段「服装」页**已实测并实现**
+        #   ⟹ ⟹ S6 的期望翻成「显示的是**实测出来的**内容」
+        #   ⟹ ⟹ 期望值**从入库的源站 raw 机器提取**（★ 不手打）
+        "_服装页期望": clothes_expect(),
         "_源站积分全未变": all(
             v is False for k, v in raw841.items() if "积分是否变化" in k),
+    }
+
+
+def clothes_expect() -> dict:
+    """★ 从**入库的源站 raw**（848 的 p1）机器提取第四段「服装」页的期望。
+
+    ★ ★ 为什么**必须**机器提取：
+    #   「小标题文案」是「服装」、chip 数 ＝ 7、卡数 ＝ 24
+    #   ⟹ ⟹ 手打**可能**对 ⟹ ⟹ 但**改**了源站就会错 ⟹ ⟹ 而门禁要钉的是源站
+    """
+    raw = read_json(RAW848_P1)
+    root = raw["★整棵子树"]
+
+    def walk(n):
+        yield n
+        for k in n.get("c2") or []:
+            yield from walk(k)
+
+    h3 = [n for n in walk(root)
+          if n.get("t") == "H3" and (n.get("b") or [0])[0] >= 1297]
+    if len(h3) != 1:
+        raise SystemExit("✘ P1 的小标题数 %d ≠ 1" % len(h3))
+    chipbox = [n for n in walk(root)
+               if "flex-wrap" in (n.get("c") or "") and "gap-1.5" in (n.get("c") or "")]
+    if len(chipbox) != 1:
+        raise SystemExit("✘ P1 的 chip 容器数 %d ≠ 1" % len(chipbox))
+    chips = [n for n in (chipbox[0].get("c2") or []) if n.get("t") == "BUTTON"]
+    grid = [n for n in walk(root) if "grid-cols-3" in (n.get("c") or "")]
+    if len(grid) != 1:
+        raise SystemExit("✘ P1 的网格数 %d ≠ 1" % len(grid))
+    cards = grid[0].get("c2") or []
+    return {
+        "小标题": h3[0].get("x"),
+        "chip数": len(chips),
+        "卡数": len(cards),
     }
 
 
@@ -429,11 +470,31 @@ def main() -> int:
     #   ★ 且那四段**已实测**（源站 raw 有内容）⟹ ⟹ 文案要写「已实测」而不是「未实测」
     seg5 = rt.get("D2_第四段_服装") or {}
     seg5_empty = seg5.get("空态")
+    # ★★ **batch 849 起**：★ 第四段「服装」页**已实测并实现**
+    #   ⟹ ⟹ 期望**从入库的源站 raw 机器提取**（★ 不手打）
+    seg5_page = seg5.get("服装页") or {}
+    exp_clothes = exp["_服装页期望"]
+    # ★★ **batch 849 起**：★ 第四段「服装」页**已实测并实现**
+    #   ⟹ ⟹ 期望**从入库的源站 raw 机器提取**（★ 不手打）
+    seg5_page = seg5.get("服装页") or {}
+    exp_clothes = exp["_服装页期望"]
     # ★★ **batch 847 起换靶**：★ 现在盯的是**页面级**的未实测入口
     #   ⟹ ⟹ 那一页的内容**根本就没测过** ⟹ ⟹ 说明**必须**写「未实测」
     # ★★ ★ 提成**局部变量** ⟹ ⟹ 同一个串**只写一遍**（★ 写两遍迟早写歪）
     s6_says_unmeasured = bool(seg5_empty and "未实测" in seg5_empty)
     s6_says_measured = bool(seg5_empty and "已实测" in seg5_empty)
+    # ★★ **batch 849 起**：★ 那一页**已经实测并实现**
+    #   ⟹ ⟹ 断言翻成「显示的是**实测出来的**内容 ＋ **没有**「未实测」字样」
+    s6_has_measured_title = (seg5_page.get("小标题文字") == exp_clothes["小标题"])
+    s6_has_measured_chips = (seg5_page.get("分类chip数") == exp_clothes["chip数"])
+    s6_has_measured_cards = (seg5_page.get("服装卡数") == exp_clothes["卡数"])
+    s6_no_unmeasured = not seg5_empty
+    # ★★ **batch 849 起**：★ 那一页**已经实测并实现**
+    #   ⟹ ⟹ 断言翻成「显示的是**实测出来的**内容 ＋ **没有**「未实测」字样」
+    s6_has_measured_title = (seg5_page.get("小标题文字") == exp_clothes["小标题"])
+    s6_has_measured_chips = (seg5_page.get("分类chip数") == exp_clothes["chip数"])
+    s6_has_measured_cards = (seg5_page.get("服装卡数") == exp_clothes["卡数"])
+    s6_no_unmeasured = not seg5_empty
     s6 = {
         "★第五段_页签数": len(seg5.get("页签") or []),
         "★第五段_滑杆数": len(seg5.get("滑杆") or []),
@@ -443,19 +504,35 @@ def main() -> int:
         #   ⟹ ⟹ 那一页的内容**根本就没测过** ⟹ ⟹ 说明**必须**写「未实测」
         "★第五段_空态说明里写了「未实测」": s6_says_unmeasured,
         "★第五段_空态说明里写了「已实测」": s6_says_measured,
+        "★第四段_服装页_小标题": seg5_page.get("小标题文字"),
+        "★期望_服装页_小标题": exp_clothes["小标题"],
+        "★第四段_服装页_分类chip数": seg5_page.get("分类chip数"),
+        "★期望_服装页_分类chip数": exp_clothes["chip数"],
+        "★第四段_服装页_服装卡数": seg5_page.get("服装卡数"),
+        "★期望_服装页_服装卡数": exp_clothes["卡数"],
+        "★第四段_服装页_没有未实测说明": s6_no_unmeasured,
+        "★第四段_服装页_小标题": seg5_page.get("小标题文字"),
+        "★期望_服装页_小标题": exp_clothes["小标题"],
+        "★第四段_服装页_分类chip数": seg5_page.get("分类chip数"),
+        "★期望_服装页_分类chip数": exp_clothes["chip数"],
+        "★第四段_服装页_服装卡数": seg5_page.get("服装卡数"),
+        "★期望_服装页_服装卡数": exp_clothes["卡数"],
+        "★第四段_服装页_没有未实测说明": s6_no_unmeasured,
         "★源站那趟_积分全程未变": exp["_源站积分全未变"],
     }
     checks.append((
-        "S6 ★★★ **未实测的那一页仍是空态说明**（★ batch 847 起换靶：左列五段**全部实现**"
-        "⟹ ⟹ 「仍未实现的那一段」**没有靶子了** ⟹ ⟹ 改盯**第四段里那一页内容未实测的"
-        "子页签**（「服装」））⟹ **页签数 %d**（★ 源站实测：页签行**只在「脸部精修」段存在**）"
-        "＋ 滑杆 %d 条 ＋ 卡片 %d 张；★ 且文案**要**写「未实测」—— ★ 那一页的控件"
-        "**根本就没测过** ⟹ ⟹ 写「已实测」才是**假陈述**"
-        % (s6["★第五段_页签数"], s6["★第五段_滑杆数"], s6["★第五段_卡片数"]),
+        "S6 ★★★ **第四段「服装」页已实测并实现**（★ batch 849 起：★ 那一页**已经实测并实现**"
+        "⟹ ⟹ 断言**翻成**「显示的是**实测出来的**内容 ＋ **没有**「未实测」字样」）"
+        "⟹ **页签数 %d**（★ 源站实测：页签行**只在「脸部精修」段存在**）"
+        "＋ 滑杆 %d 条 ＋ 卡片 %d 张；★ 小标题 ==「%s」＋ **%d 枚**分类 chip ＋ **%d 张**服装卡"
+        "（★ 期望值**从入库的源站 raw 机器提取**）"
+        % (s6["★第五段_页签数"], s6["★第五段_滑杆数"], s6["★第五段_卡片数"],
+            exp_clothes["小标题"], exp_clothes["chip数"], exp_clothes["卡数"]),
         (s6["★第五段_页签数"] == 0 and s6["★第五段_滑杆数"] == 0
-         and s6["★第五段_卡片数"] == 0 and bool(seg5_empty)
-         and s6_says_unmeasured
-         and not s6["★第五段_空态说明里写了「已实测」"]
+         and s6["★第五段_卡片数"] == 0
+         and s6_has_measured_title and s6_has_measured_chips
+         and s6_has_measured_cards and s6_no_unmeasured
+         and not s6_says_unmeasured
          and s6["★源站那趟_积分全程未变"]),
         json.dumps(s6, ensure_ascii=False),
     ))

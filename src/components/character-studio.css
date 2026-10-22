@@ -2003,3 +2003,188 @@
   margin: 1px;
   object-fit: cover;
 }
+
+/* ══ Batch 849：第四段「服装造型」的两枚子页签（服装／AI 生成）══
+   ★★ 源站实测（raw ＝ 848 的 `source-848-p1.json`／`source-848-p2.json`）
+   ⟹ ⟹ 坐标口径：相对**右栏列**（源站 abs 1273,271）⟹ ⟹ 与 846 同一个原点
+
+   ── P1「服装」页 ──
+   ★ 服装卡是 **76×155**（★ 不是「造型」页那种 76×96）：
+     · 媒体区 76×135（`aspect-[9/16]`、圆角 16、白 5% 底、1px 透明边）
+     · 图 74×133（普通流、偏移 +1,+1 ⟹ ⟹ 源站的 media 是 **block**）
+     · 名字 11px／16px（白 60%）
+   ⟹ ⟹ 所以媒体区**不能**复用 `.ce-card--outfit` 的 76×76 ⟹ ⟹ 另开一类 */
+.ce-card--clothes {
+  width: 76px;
+  height: 155px;
+  /* ★ 源站实测：卡片按钮是 `group flex min-w-0 flex-col items-center gap-1
+     text-[11px] leading-4` ⟹ ⟹ **字体 11px／行高 16px／纯白**
+     ⟹ ⟹ 基础 `.ce-card` 没设字体 ⟹ ⟹ 继承到 16px／24px ⟹ ⟹ 那是**既存偏差**
+     ⟹ ⟹ 本批在服装卡这一支上改正 */
+  font-size: 11px;
+  line-height: 16px;
+  color: #fff;
+}
+.ce-card--clothes .ce-card-media {
+  display: block;
+  width: 76px;
+  height: 135px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1px solid transparent;
+  /* ★ 源站媒体盒是 `block` ⟹ ⟹ `align-items`／`justify-content` **不适用**
+     ⟹ ⟹ 显式写成 `normal` ⟹ ⟹ 与源站的计算样式一致（★ 门禁逐键比过） */
+  align-items: normal;
+  justify-content: normal;
+}
+.ce-card--clothes .ce-card-media img {
+  display: block;
+  width: 74px;
+  height: 133px;
+  margin: 1px;
+  object-fit: cover;
+}
+
+/* ★ Batch 849：「服装」页那 7 枚分类 chip 的**专属修饰类**
+   ⟹ ⟹ 基础 `.ce-chip` 是 846/849 **共用**的 ⟹ ⟹ 另开一支
+   ⟹ ⟹ ⟹ 这样阴性对照臂改这一支**不会**污染 846 的发型／妆容 chip */
+.ce-chip--clothes {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* ── P2「AI 生成」页 ──
+   ★ 这一页**没有**底部生成遮罩 ⟹ ⟹「确认生成」在**内容流**里
+   · 卡片 240×168（圆角 16、白 6% 底）
+   · 输入框 240×140（13px／20px、透明底）
+   · 底部行 240×28（`gap-0.5 px-2 pb-2`）
+     ① 圆按钮 28×28（★ 源站是**图标按钮** ⟹ ⟹ 没有文字）
+     ② 胶囊 119×28（★ 文字「人设定制造型」⟹ ⟹ 一个字符串） */
+.ce-section--outfit-ai {
+  padding: 0;
+}
+.ce-outfit-ai-card {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+.ce-outfit-ai-textarea {
+  display: block;
+  margin: 0;
+  /* ★ 源站实测：`px-4 pt-4` ⟹ ⟹ **左 16／右 16／上 16／下 0**（★ 不是四边都 16）*/
+  padding: 16px 16px 0;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 13px;
+  line-height: 20px;
+  resize: none;
+  outline: none;
+  font-family: inherit;
+}
+.ce-outfit-ai-textarea::placeholder {
+  color: var(--character-studio-text-secondary, rgba(255, 255, 255, 0.6));
+}
+.ce-outfit-ai-row {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 28px;
+  padding: 0 8px 8px;
+}
+.ce-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+.ce-outfit-ai-round-wrap {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+}
+.ce-outfit-ai-round {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+}
+.ce-outfit-ai-round:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.ce-outfit-ai-pill-wrap {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  max-width: 100%;
+}
+.ce-outfit-ai-pill {
+  display: flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 0 5px 0 8px;
+  border: 0;
+  border-radius: 9999px;
+  background: transparent;
+  color: #fff;
+  font-size: 12px;
+  line-height: 18px;
+  text-align: left;
+  cursor: pointer;
+}
+.ce-outfit-ai-pill:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+.ce-outfit-ai-pill-inner {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+}
+.ce-outfit-ai-pill-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ce-outfit-ai-generate {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #fff;
+  color: #111;
+  font-size: 14px;
+  line-height: 20px;
+  cursor: pointer;
+}
+.ce-outfit-ai-generate:hover {
+  background: #ededed;
+}
+/* ★ 源站实测：输入框**为空**时，那枚「确认生成」是**禁用态**
+   ⟹ ⟹ 计算样式：文字 `rgba(255,255,255,0.3)`、底 `rgba(255,255,255,0.08)`
+   ⟹ ⟹ clone 照抄（★ 这不是「clone 偷懒」，是源站的真实语义） */
+.ce-outfit-ai-generate:disabled {
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+.ce-outfit-ai-generate:disabled:hover {
+  background: rgba(255, 255, 255, 0.08);
+}

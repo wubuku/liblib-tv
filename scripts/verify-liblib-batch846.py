@@ -78,6 +78,8 @@ RAW846 = BATCH / "raw/source-846-outfit.json"
 TABFONT = BATCH / "raw/source-846-tabfont.json"
 PIXDIFF = BATCH / "raw/pixel-diff-846-tabs.json"
 RAW841 = ROOT / "docs/research/liblib-canvas-batch841-2026-10-01/raw/source-841-tabs.json"
+# ★★ **batch 849 起**：第四段「服装」页的期望值从这份 raw 机器提取
+RAW848_P1 = ROOT / "docs/research/liblib-canvas-batch848-2026-10-01/raw/source-848-p1.json"
 PROBE_CLONE = BATCH / "probes/clone846.py"
 OUT = BATCH / "runtime-audit.json"
 
@@ -119,6 +121,41 @@ def preflight_js() -> tuple:
             pass
         time.sleep(3)
     return False, {"等了几秒": round(time.time() - t0, 1), "标记": marker}
+
+
+def clothes_expect() -> dict:
+    """★ 从**入库的源站 raw**（848 的 p1）机器提取第四段「服装」页的期望。
+
+    ★ ★ 为什么**必须**机器提取：
+    #   「小标题文案」是「服装」、chip 数 ＝ 7、卡数 ＝ 24
+    #   ⟹ ⟹ 手打**可能**对 ⟹ ⟹ 但**改**了源站就会错 ⟹ ⟹ 而门禁要钉的是源站
+    """
+    raw = read_json(RAW848_P1)
+    root = raw["★整棵子树"]
+
+    def walk(n):
+        yield n
+        for k in n.get("c2") or []:
+            yield from walk(k)
+
+    h3 = [n for n in walk(root)
+          if n.get("t") == "H3" and (n.get("b") or [0])[0] >= 1297]
+    if len(h3) != 1:
+        raise SystemExit("✘ P1 的小标题数 %d ≠ 1" % len(h3))
+    chipbox = [n for n in walk(root)
+               if "flex-wrap" in (n.get("c") or "") and "gap-1.5" in (n.get("c") or "")]
+    if len(chipbox) != 1:
+        raise SystemExit("✘ P1 的 chip 容器数 %d ≠ 1" % len(chipbox))
+    chips = [n for n in (chipbox[0].get("c2") or []) if n.get("t") == "BUTTON"]
+    grid = [n for n in walk(root) if "grid-cols-3" in (n.get("c") or "")]
+    if len(grid) != 1:
+        raise SystemExit("✘ P1 的网格数 %d ≠ 1" % len(grid))
+    cards = grid[0].get("c2") or []
+    return {
+        "小标题": h3[0].get("x"),
+        "chip数": len(chips),
+        "卡数": len(cards),
+    }
 
 
 def build_expectations() -> dict:
@@ -216,6 +253,10 @@ def build_expectations() -> dict:
         "★读数是目标段": raw.get("★读数_是目标段") is True,
         "★源站子页签名": raw.get("★读数_子页签"),
         "★像素对照": read_json(PIXDIFF).get("像素对照"),
+        # ★★ **batch 849 起**：★ 第四段「服装」页**已实测并实现**
+        #   ⟹ ⟹ S6 的期望翻成「显示的是**实测出来的**内容」
+        #   ⟹ ⟹ 期望值**从入库的源站 raw 机器提取**（★ 不手打）
+        "_服装页期望": clothes_expect(),
     }
 
 
@@ -542,22 +583,36 @@ def main() -> int:
         "★切到服装_空态说明": (clothes.get("空态") or "")[:80],
         "★切到服装_有控件吗": bool(clothes.get("H3") or clothes.get("chip")
                                    or clothes.get("色块") or clothes.get("卡片")),
+        # ★★ **batch 849 起**：★ 那一页**已经实测并实现**
+        "★切到服装_实测小标题": (clothes.get("服装页") or {}).get("小标题文字"),
+        "★期望_服装页_小标题": exp["_服装页期望"]["小标题"],
+        "★切到服装_实测chip数": (clothes.get("服装页") or {}).get("分类chip数"),
+        "★期望_服装页_chip数": exp["_服装页期望"]["chip数"],
+        "★切到服装_实测卡数": (clothes.get("服装页") or {}).get("服装卡数"),
+        "★期望_服装页_卡数": exp["_服装页期望"]["卡数"],
         "★脸部页签数": seg.get("脸部页签数"),
     }
     checks.append((
         "S6 ★★★ **结构事实**：★ 源站实测**这一段有标题行** ⟹ ⟹ 右栏第一层是**子页签行**"
         "（3 枚：造型／服装／AI 生成）⟹ ⟹ 滚动区在列顶 + 40、内容起点在 + 56；"
         "滚动区高 **%d**；★ 这一段**没有**「智能调整」（★ 脸部段才有）⟹ ⟹ 「智能调整数」归这条；"
-        "★ 点「服装」子页签 ⟹ 显示**如实说明**（★ 那一页的控件**源站未实测** ⟹ ⟹ "
-        "**不编造**控件）⟹ ⟹ 且切过去后**没有**任何控件" % exp["★源站滚动高"],
+        "★ 点「服装」子页签 ⟹ ★ **batch 849 起**：那一页**已实测并实现** ⟹ ⟹ "
+        "显示**实测出来的**小标题「%s」＋ **%d 枚**分类 chip ＋ **%d 张**服装卡，"
+        "且**没有**「未实测」字样（★ 期望值**从入库的源站 raw 机器提取**）"
+        % (exp["★源站滚动高"], exp["_服装页期望"]["小标题"],
+           exp["_服装页期望"]["chip数"], exp["_服装页期望"]["卡数"]),
         (len(sub_tabs) == exp["★子页签数"]
          and [b.get("aria") or b.get("text") for b in sub_tabs] == exp["★源站子页签名"]
          and content_start == exp["★源站内容起点_rel_y"]
          and (panel.get("box") or {}).get("y") == exp["★源站滚动区_rel_y"]
          and panel.get("滚动高") == exp["★源站滚动高"]
          and seg.get("智能调整数") == 0
-         and bool(s6["★切到服装_空态说明"])
-         and not s6["★切到服装_有控件吗"]),
+         # ★★ **batch 849 起**：★ 那一页**已经实测并实现**
+         #   ⟹ ⟹ 断言翻成「显示的是**实测出来的**内容 ＋ **没有**「未实测」字样」
+         and s6["★切到服装_实测小标题"] == s6["★期望_服装页_小标题"]
+         and s6["★切到服装_实测chip数"] == s6["★期望_服装页_chip数"]
+         and s6["★切到服装_实测卡数"] == s6["★期望_服装页_卡数"]
+         and not s6["★切到服装_空态说明"]),
         json.dumps(s6, ensure_ascii=False),
     ))
 

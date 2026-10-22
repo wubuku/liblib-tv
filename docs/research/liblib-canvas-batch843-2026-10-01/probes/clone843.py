@@ -66,6 +66,16 @@ READ = """()=>{
 
   out['空态']=(()=>{const e=q('[data-character-editor-empty]');
     return e?txt(e):null;})();
+  // ★★ **batch 849 起**：★ 第四段「AI 生成」页**已实测并实现**
+  //   ⟹ ⟹ 读它的**实测内容**（输入框 ＋「确认生成」）
+  out['AI页']={
+    有输入框:Boolean(root.querySelector('[data-character-editor-outfit-ai-textarea]')),
+    有确认生成:Boolean(root.querySelector('[data-character-editor-outfit-ai-generate]'))};
+  // ★★ **batch 849 起**：★ 第四段「AI 生成」页**已实测并实现**
+  //   ⟹ ⟹ 读它的**实测内容**（输入框 ＋「确认生成」）
+  out['AI页']={
+    有输入框:Boolean(root.querySelector('[data-character-editor-outfit-ai-textarea]')),
+    有确认生成:Boolean(root.querySelector('[data-character-editor-outfit-ai-generate]'))};
 
   // ★★ **计算样式**（盒对上了 ⟹ 样子也得对上）
   const sty=(e)=>{if(!e)return null;const cs=getComputedStyle(e);

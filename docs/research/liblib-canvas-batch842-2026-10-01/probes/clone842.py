@@ -78,6 +78,20 @@ READ = """()=>{
 
   out['空态']=(()=>{const e=q('[data-character-editor-empty]');
     return e?txt(e):null;})();
+  // ★★ **batch 849 起**：★ 第四段「服装」页**已实测并实现**
+  //   ⟹ ⟹ 读它的**实测内容**（小标题 ＋ 分类 chip ＋ 服装卡）
+  out['服装页']={
+    小标题文字:(()=>{const e=q('[data-character-editor-outfit-clothes-title]');
+      return e?txt(e):null;})(),
+    分类chip数:root.querySelectorAll('[data-character-editor-outfit-clothes-chip]').length,
+    服装卡数:root.querySelectorAll('[data-character-editor-outfit-clothes-card]').length};
+  // ★★ **batch 849 起**：★ 第四段「服装」页**已实测并实现**
+  //   ⟹ ⟹ 读它的**实测内容**（小标题 ＋ 分类 chip ＋ 服装卡）
+  out['服装页']={
+    小标题文字:(()=>{const e=q('[data-character-editor-outfit-clothes-title]');
+      return e?txt(e):null;})(),
+    分类chip数:root.querySelectorAll('[data-character-editor-outfit-clothes-chip]').length,
+    服装卡数:root.querySelectorAll('[data-character-editor-outfit-clothes-card]').length};
 
   // ★★ **计算样式**（盒对上了 ⟹ 样子也得对上：字号／颜色／圆角／描边）
   const sty=(e)=>{if(!e)return null;const cs=getComputedStyle(e);

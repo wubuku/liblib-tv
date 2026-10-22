@@ -1,0 +1,73 @@
+// ── 第四段的子页签（★ 源站实测：**宽度随选中态变** ⟹ ⟹ 两套宽度）──
+//   选中态：28 ＋ 文字宽（3 边距 ＋ 18 图标 ＋ 4 间隙 ＋ 文字 ＋ 3 边距）
+//   未选中：24（★ 源站把文字盒裁成 0 宽 ⟹ ⟹ 只剩图标）
+// ★ 三份 raw 交叉校验（846 造型／848-p1 服装／848-p2 AI 生成）
+const OUTFIT_TABS: { id: string; label: string; wOn: number; wOff: number; icon: typeof Shirt }[] = [
+  { id: "style", label: "造型", wOn: 56, wOff: 24, icon: Shirt },
+  { id: "clothes", label: "服装", wOn: 56, wOff: 24, icon: Package },
+  { id: "ai", label: "AI 生成", wOn: 73, wOff: 24, icon: Sparkles },
+];
+
+// ── P1「服装」页（★ 源站实测）──
+//   小标题「服装」 240×22 @rel(24,16)
+//   ★ 7 枚分类 chip（★ 选中态由 raw 的 class 判：现代）
+const OUTFIT_CLOTHES_CHIPS: { label: string; x: number; y: number; w: number; sel: boolean }[] = [
+  { label: "现代", x: 24, y: 46, w: 50, sel: true },
+  { label: "古风", x: 80, y: 46, w: 50, sel: false },
+  { label: "仙侠", x: 136, y: 46, w: 50, sel: false },
+  { label: "民国", x: 192, y: 46, w: 50, sel: false },
+  { label: "科幻", x: 24, y: 78, w: 50, sel: false },
+  { label: "礼服", x: 80, y: 78, w: 50, sel: false },
+  { label: "民族", x: 136, y: 78, w: 50, sel: false },
+];
+
+//   ★ 24 张服装卡（3 列网格；★ 图是**引用**源站 CDN 的真实图）
+const OUTFIT_CLOTHES_CARDS: { label: string; img: string; x: number; y: number }[] = [
+  { label: "便装", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_bianzhuang_1.jpg", x: 24, y: 116 },
+  { label: "便装", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_bianzhuang_2.jpg", x: 106, y: 116 },
+  { label: "便装", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_bianzhuang_3.jpg", x: 188, y: 116 },
+  { label: "连衣裙", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_lianyiqun_1.jpg", x: 24, y: 279 },
+  { label: "连衣裙", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_lianyiqun_2.jpg", x: 106, y: 279 },
+  { label: "连衣裙", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_lianyiqun_3.jpg", x: 188, y: 279 },
+  { label: "连衣裙", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_lianyiqun_4.jpg", x: 24, y: 442 },
+  { label: "职业西装", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_zhiyexizhuang_1.jpg", x: 106, y: 442 },
+  { label: "职业西装", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_zhiyexizhuang_2.jpg", x: 188, y: 442 },
+  { label: "通勤", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_tongqin.jpg", x: 24, y: 605 },
+  { label: "运动", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_yundong_1.jpg", x: 106, y: 605 },
+  { label: "运动", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_yundong_2.jpg", x: 188, y: 605 },
+  { label: "运动", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_yundong_3.jpg", x: 24, y: 768 },
+  { label: "运动", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_yundong_4.jpg", x: 106, y: 768 },
+  { label: "JK制服", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_JKzhifu_1.jpg", x: 188, y: 768 },
+  { label: "JK制服", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_JKzhifu_2.jpg", x: 24, y: 932 },
+  { label: "校服", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_xiaofu_1.jpg", x: 106, y: 932 },
+  { label: "校服", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_xiaofu_2.jpg", x: 188, y: 932 },
+  { label: "校服", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_xiaofu_3.jpg", x: 24, y: 1095 },
+  { label: "街头", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_jietou_1.jpg", x: 106, y: 1095 },
+  { label: "街头", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_jietou_2.jpg", x: 188, y: 1095 },
+  { label: "家居", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_jiaju_1.jpg", x: 24, y: 1258 },
+  { label: "家居", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_jiaju_2.jpg", x: 106, y: 1258 },
+  { label: "家居", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_jiaju_3.jpg", x: 188, y: 1258 },
+];
+
+//   ★ 这一页**有**底部生成遮罩（「确认生成」240×36 @(1297,783)）
+const OUTFIT_CLOTHES_GENERATE = { w: 240, h: 36 };
+//   ★ 那枚遮罩（`Ias-7a_editorPanelGenerateMask`）288×64 @rel(0,498)
+
+// ── P2「AI 生成」页（★ 源站实测）──
+//   ★ 这一页**没有**底部生成遮罩 ⟹ ⟹ 「确认生成」在**内容流**里
+//   卡片 240×168 @rel(24,8)
+//   输入框 240×140 @rel(24,8)　占位「描述或上传参考图，复刻发型 / 妆造 / 服装」
+const OUTFIT_AI_CARD = { w: 240, h: 168 };
+const OUTFIT_AI_TEXTAREA = { w: 240, h: 140, placeholder: "描述或上传参考图，复刻发型 / 妆造 / 服装" };
+//   ★ 底部行（`flex h-7 ... gap-0.5 px-2 pb-2`）里**两枚**控件：
+//     ① 一枚**圆按钮**（aria「选择参考图」，28×28，**没有文字**）
+//     ② 一枚**胶囊**（aria「造型技能」，119×28，★ 文字**逐字读出**）
+//   ★ ★ 那枚胶囊的文案是**一个字符串**「人设定制造型」
+//   ⟹ ⟹ **不是**两枚胶囊「人设定」＋「造型」⟹ ⟹ 手打必错
+const OUTFIT_AI_ROUND_BTN = { aria: "选择参考图", w: 28, h: 28 };
+const OUTFIT_AI_PILL = { aria: "造型技能", label: "人设定制造型", w: 119, h: 28 };
+//   ★ 那枚隐藏的上传 input（aria「上传造型参考图」）
+const OUTFIT_AI_UPLOAD_ARIA = "上传造型参考图";
+//   「确认生成」240×36 @rel(24,192)
+const OUTFIT_AI_GENERATE = { w: 240, h: 36 };
+

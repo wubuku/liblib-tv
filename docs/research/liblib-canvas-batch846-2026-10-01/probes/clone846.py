@@ -74,6 +74,13 @@ READ = """()=>{
   out['脸部页签数']=root.querySelectorAll('[data-character-editor-tab]').length;
   out['空态']=(()=>{const e=root.querySelector('[data-character-editor-empty]');
     return e?txt(e):null;})();
+  // ★★ **batch 849 起**：★ 第四段「服装」页**已实测并实现**
+  //   ⟹ ⟹ 846 的探针只读 846 自己的选择器 ⟹ ⟹ 这里**另读** 849 的那套
+  out['服装页']={
+    小标题文字:(()=>{const e=root.querySelector('[data-character-editor-outfit-clothes-title]');
+      return e?txt(e):null;})(),
+    分类chip数:root.querySelectorAll('[data-character-editor-outfit-clothes-chip]').length,
+    服装卡数:root.querySelectorAll('[data-character-editor-outfit-clothes-card]').length};
 
   // ★ 四个小节标题
   out['H3']=[...root.querySelectorAll('[data-character-editor-outfit-title]')].map(h=>({

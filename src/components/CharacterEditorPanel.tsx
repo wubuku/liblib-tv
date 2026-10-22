@@ -3,10 +3,12 @@
 import {
   Ban,
   Check,
+  ChevronDown,
   ChevronLeft,
   CircleDot,
   Columns2,
   Eye,
+  ImagePlus,
   Music,
   Package,
   Palette,
@@ -742,6 +744,15 @@ export function CharacterEditorPanel({
   const [outfitLipColor, setOutfitLipColor] = useState(1);
   // ★ 卡片选中态**按小节各存一份**（源站实测：初始一个都没选中）
   const [outfitCardSel, setOutfitCardSel] = useState<Record<string, string>>({});
+  // ★★ Batch 849：P1「服装」页的**分类 chip**当前项（★ 源站实测：初始「现代」选中）
+  const [outfitClothesChip, setOutfitClothesChip] = useState("现代");
+  // ★★ Batch 849：P1「服装」页的**服装卡选中态**（★ 源站实测：初始一个都没选中）
+  const [outfitClothesCardSel, setOutfitClothesCardSel] = useState<Record<string, string>>({});
+  // ★★ Batch 849：P2「AI 生成」页的**输入内容**
+  //   ★ 源站实测：输入框**为空**时，那枚「确认生成」是**禁用态**
+  //     （★ 计算样式：文字 `rgba(255,255,255,0.3)`、底 `rgba(255,255,255,0.08)`）
+  //   ⟹ ⟹ clone 照抄这个语义：★ **空 ⟹ disabled；有内容 ⟹ 可点**
+  const [outfitAiText, setOutfitAiText] = useState("");
 
   // ★★ Batch 847：左列第五段「音色音调」的**标题行页签**当前项
   //   （★ 源站实测：标题行**就是**三枚页签「音色库／我的音色／AI 生成」⟹ ⟹ 初始第一枚）
@@ -1048,11 +1059,93 @@ export function CharacterEditorPanel({
 //   「造型」（56 宽，**带文字** ＋ 前置图标）＋「服装」＋「AI 生成」（各 24 宽，只有图标）
 //   ★ 与「脸部精修」段的六枚页签**同一个组件**（★ 文字页签跟着选中项移动）
 //   ★ 图标**字形未采集**（源站是 iconify SVG）⟹ ⟹ 这里用 lucide 占位。
-const OUTFIT_TABS: { id: string; label: string; icon: typeof Shirt }[] = [
-  { id: "style", label: "造型", icon: Shirt },
-  { id: "clothes", label: "服装", icon: Package },
-  { id: "ai", label: "AI 生成", icon: Sparkles },
+//
+// ★★ Batch 849：**宽度随选中态变**（★ 与第五段「音色音调」**同一个规律**）
+//   源站实测三份 raw 交叉校验（846 造型／848-p1 服装／848-p2 AI 生成）：
+//     选中：造型 **56**／服装 **56**／AI 生成 **73**（28 ＋ 文字宽）
+//     未选中：一律 **24**（★ 源站把文字盒裁成 0 宽 ⟹ ⟹ 只剩图标）
+//   ⟹ ⟹ 下面这段由 `probes/gen849_data.py` **机器提取**（见
+//      `docs/research/liblib-canvas-batch849-2026-10-01/probes/outfit-849-data.ts.txt`）
+const OUTFIT_TABS: { id: string; label: string; wOn: number; wOff: number; icon: typeof Shirt }[] = [
+  { id: "style", label: "造型", wOn: 56, wOff: 24, icon: Shirt },
+  { id: "clothes", label: "服装", wOn: 56, wOff: 24, icon: Package },
+  { id: "ai", label: "AI 生成", wOn: 73, wOff: 24, icon: Sparkles },
 ];
+
+// ★★ Batch 849：P1「服装」页（★ 源站实测；raw ＝ 848 的 `source-848-p1.json`）
+//   · 小标题「服装」240×22 @rel(24,16)
+//   · 7 枚分类 chip（50×26，★ **「现代」初始选中** ⟹ 白底黑字）
+//   · 24 张服装卡（3 列网格，76×155：图 74×133 ＋ 名字 16 高）
+//   · ★ 这一页**有**底部生成遮罩（「确认生成」240×36）
+// ★ 坐标口径：相对**右栏列**（源站 abs 1273,271）⟹ ⟹ 与 846 同一个原点
+const OUTFIT_CLOTHES_CHIPS: { label: string; x: number; y: number; w: number; sel: boolean }[] = [
+  { label: "现代", x: 24, y: 46, w: 50, sel: true },
+  { label: "古风", x: 80, y: 46, w: 50, sel: false },
+  { label: "仙侠", x: 136, y: 46, w: 50, sel: false },
+  { label: "民国", x: 192, y: 46, w: 50, sel: false },
+  { label: "科幻", x: 24, y: 78, w: 50, sel: false },
+  { label: "礼服", x: 80, y: 78, w: 50, sel: false },
+  { label: "民族", x: 136, y: 78, w: 50, sel: false },
+];
+
+// ★ 24 张服装卡（★ 图是**引用**源站 CDN 的真实图 ⟹ ⟹ 那是引用不是复刻）
+const OUTFIT_CLOTHES_CARDS: { label: string; img: string; x: number; y: number }[] = [
+  { label: "便装", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_bianzhuang_1.jpg", x: 24, y: 116 },
+  { label: "便装", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_bianzhuang_2.jpg", x: 106, y: 116 },
+  { label: "便装", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_bianzhuang_3.jpg", x: 188, y: 116 },
+  { label: "连衣裙", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_lianyiqun_1.jpg", x: 24, y: 279 },
+  { label: "连衣裙", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_lianyiqun_2.jpg", x: 106, y: 279 },
+  { label: "连衣裙", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_lianyiqun_3.jpg", x: 188, y: 279 },
+  { label: "连衣裙", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_lianyiqun_4.jpg", x: 24, y: 442 },
+  { label: "职业西装", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_zhiyexizhuang_1.jpg", x: 106, y: 442 },
+  { label: "职业西装", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_zhiyexizhuang_2.jpg", x: 188, y: 442 },
+  { label: "通勤", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_tongqin.jpg", x: 24, y: 605 },
+  { label: "运动", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_yundong_1.jpg", x: 106, y: 605 },
+  { label: "运动", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_yundong_2.jpg", x: 188, y: 605 },
+  { label: "运动", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_yundong_3.jpg", x: 24, y: 768 },
+  { label: "运动", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_yundong_4.jpg", x: 106, y: 768 },
+  { label: "JK制服", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_JKzhifu_1.jpg", x: 188, y: 768 },
+  { label: "JK制服", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_JKzhifu_2.jpg", x: 24, y: 932 },
+  { label: "校服", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_xiaofu_1.jpg", x: 106, y: 932 },
+  { label: "校服", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_xiaofu_2.jpg", x: 188, y: 932 },
+  { label: "校服", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_xiaofu_3.jpg", x: 24, y: 1095 },
+  { label: "街头", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_jietou_1.jpg", x: 106, y: 1095 },
+  { label: "街头", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_jietou_2.jpg", x: 188, y: 1095 },
+  { label: "家居", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_jiaju_1.jpg", x: 24, y: 1258 },
+  { label: "家居", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_jiaju_2.jpg", x: 106, y: 1258 },
+  { label: "家居", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_jiaju_3.jpg", x: 188, y: 1258 },
+];
+
+// ★ 这一页的滚动区高度（★ 由上面的数据**算**出来 ⟹ ⟹ 不是手打常数）
+const OUTFIT_CLOTHES_SCROLL_HEIGHT =
+  Math.max(...OUTFIT_CLOTHES_CARDS.map((c) => c.y + 155)) + 80;
+
+// ★★ Batch 849：P2「AI 生成」页（★ 源站实测；raw ＝ 848 的 `source-848-p2.json`）
+//   ★ ★ 这一页**没有**底部生成遮罩 ⟹ ⟹「确认生成」在**内容流**里（★ 与 P1 **不同**）
+//   · 卡片 240×168 @rel(24,8)（圆角 16、白 6% 底）
+//   · 输入框 240×140 @rel(24,8)（13px／20px）
+//   · 底部行 240×28 @rel(24,148)：① 一枚**圆按钮**（aria「选择参考图」，28×28，**没有文字**）
+//                              ② 一枚**胶囊**（aria「造型技能」，119×28，文字「人设定制造型」）
+//   · 「确认生成」240×36 @rel(24,192)（★ 在内容流里 ⟹ ⟹ 距卡片底 16）
+// ★ ★ 那枚胶囊的文案是**一个字符串**「人设定制造型」
+//   ⟹ ⟹ **不是**两枚胶囊「人设定」＋「造型」⟹ ⟹ 手打必错
+const OUTFIT_AI_CARD = { w: 240, h: 168 };
+const OUTFIT_AI_TEXTAREA = {
+  w: 240,
+  h: 140,
+  placeholder: "描述或上传参考图，复刻发型 / 妆造 / 服装",
+};
+const OUTFIT_AI_ROUND_BTN = { aria: "选择参考图", w: 28, h: 28 };
+const OUTFIT_AI_PILL = {
+  aria: "造型技能",
+  label: "人设定制造型",
+  w: 119,
+  h: 28,
+};
+const OUTFIT_AI_UPLOAD_ARIA = "上传造型参考图";
+const OUTFIT_AI_GENERATE = { w: 240, h: 36 };
+// ★ 这一页的内容底（「确认生成」的底）＝ 8(内容起点) ＋ 168(卡) ＋ 16(间距) ＋ 36(按钮)
+const OUTFIT_AI_CONTENT_BOTTOM = 8 + OUTFIT_AI_CARD.h + 16 + OUTFIT_AI_GENERATE.h;
 
 // ★★ Batch 846：这一段的**滚动区高度**（源站实测 1312）
 //   ＝ 内容底（最后一个色块的底）＋ 80(pb-20) ⟹ ⟹ 由上面的数据**算**出来 ⟹ ⟹ 不是手打常数
@@ -1216,33 +1309,209 @@ const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
     </div>
   );
 
+  // ★★ Batch 849：P1「服装」页（★ 源站实测；raw ＝ 848 的 `source-848-p1.json`）
+  //   · 小标题「服装」240×22 @rel(24,16)
+  //   · 7 枚分类 chip（50×26，★ 初始「现代」选中 ⟹ 白底黑字）
+  //   · 24 张服装卡（76×155：图 74×133 ＋ 名字 16 高）
+  //   · ★ 这一页**有**底部生成遮罩（「确认生成」240×36）⟹ ⟹ 与 P2 **不同**
+  const renderOutfitClothes = () => (
+    <div className="ce-panel ce-panel--outfit">
+      <div
+        className="ce-section"
+        style={{ minHeight: `${OUTFIT_CLOTHES_SCROLL_HEIGHT}px` }}
+      >
+        <h3
+          className="ce-h3 ce-h3--section"
+          style={{ top: "16px" }}
+          data-character-editor-outfit-clothes-title="服装"
+        >
+          服装
+        </h3>
+
+        {/* ★ 7 枚分类 chip（★ 「现代」初始选中 ⟹ 白底黑字） */}
+        {OUTFIT_CLOTHES_CHIPS.map((c) => {
+          const on = outfitClothesChip === c.label;
+          return (
+            <button
+              key={`clothes-chip-${c.label}`}
+              type="button"
+              aria-pressed={on}
+              className={`ce-chip ce-chip--clothes${on ? " is-on" : ""}`}
+              style={{ top: `${c.y}px`, left: `${c.x}px`, width: `${c.w}px` }}
+              data-character-editor-outfit-clothes-chip={c.label}
+              onClick={() => setOutfitClothesChip(c.label)}
+            >
+              {c.label}
+            </button>
+          );
+        })}
+
+        {/* ★ 24 张服装卡（★ 图是**引用**源站 CDN 的真实图） */}
+        {OUTFIT_CLOTHES_CARDS.map((c, i) => {
+          const on = outfitClothesCardSel[c.img] === c.img;
+          return (
+            <button
+              key={`clothes-card-${i}`}
+              type="button"
+              aria-label={c.label}
+              aria-pressed={on}
+              className={`ce-card ce-card--clothes${on ? " is-on" : ""}`}
+              style={{ top: `${c.y}px`, left: `${c.x}px` }}
+              data-character-editor-outfit-clothes-card={c.img}
+              onClick={() =>
+                setOutfitClothesCardSel((prev) => ({
+                  ...prev,
+                  [c.img]: on ? "" : c.img,
+                }))
+              }
+            >
+              <span className="ce-card-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.img} alt="" />
+              </span>
+              <span className="ce-card-name">{c.label}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  // ★★ Batch 849：P2「AI 生成」页（★ 源站实测；raw ＝ 848 的 `source-848-p2.json`）
+  //   ★ ★ 这一页**没有**底部生成遮罩 ⟹ ⟹「确认生成」在**内容流**里（★ 与 P1 **不同**）
+  //   · 卡片 240×168 @rel(24,8)（圆角 16、白 6% 底）
+  //   · 输入框 240×140（13px／20px）
+  //   · 底部行 240×28：① 圆按钮（aria「选择参考图」，28×28）② 胶囊（aria「造型技能」，119×28）
+  //   · 「确认生成」240×36 @rel(24,192)
+  const renderOutfitAi = () => (
+    <div className="ce-panel ce-panel--outfit">
+      <div
+        className="ce-section ce-section--outfit-ai"
+        style={{ minHeight: `${OUTFIT_AI_CONTENT_BOTTOM + 16}px` }}
+      >
+        <div
+          className="ce-outfit-ai-card"
+          style={{
+            top: "8px",
+            left: "24px",
+            width: `${OUTFIT_AI_CARD.w}px`,
+            height: `${OUTFIT_AI_CARD.h}px`,
+          }}
+          data-character-editor-outfit-ai-card="1"
+        >
+          <textarea
+            className="ce-outfit-ai-textarea"
+            aria-label={OUTFIT_AI_TEXTAREA.placeholder}
+            placeholder={OUTFIT_AI_TEXTAREA.placeholder}
+            value={outfitAiText}
+            onChange={(e) => setOutfitAiText(e.target.value)}
+            style={{
+              width: `${OUTFIT_AI_TEXTAREA.w}px`,
+              height: `${OUTFIT_AI_TEXTAREA.h}px`,
+            }}
+            data-character-editor-outfit-ai-textarea="1"
+          />
+          <div className="ce-outfit-ai-row">
+            <span className="ce-outfit-ai-round-wrap">
+              <input
+                type="file"
+                className="ce-sr-only"
+                aria-label={OUTFIT_AI_UPLOAD_ARIA}
+                data-character-editor-outfit-ai-upload="1"
+              />
+              <button
+                type="button"
+                aria-label={OUTFIT_AI_ROUND_BTN.aria}
+                className="ce-outfit-ai-round"
+                style={{
+                  width: `${OUTFIT_AI_ROUND_BTN.w}px`,
+                  height: `${OUTFIT_AI_ROUND_BTN.h}px`,
+                }}
+                data-character-editor-outfit-ai-round="1"
+                onClick={() =>
+                  flash("clone mock：参考图上传未接真实上传")
+                }
+              >
+                <ImagePlus size={16} />
+              </button>
+            </span>
+            <span className="ce-outfit-ai-pill-wrap">
+              <button
+                type="button"
+                aria-label={OUTFIT_AI_PILL.aria}
+                className="ce-outfit-ai-pill"
+                style={{
+                  width: `${OUTFIT_AI_PILL.w}px`,
+                  height: `${OUTFIT_AI_PILL.h}px`,
+                }}
+                data-character-editor-outfit-ai-pill={OUTFIT_AI_PILL.label}
+                onClick={() =>
+                  flash(`clone mock：「${OUTFIT_AI_PILL.label}」未接真实技能`)
+                }
+              >
+                <span className="ce-outfit-ai-pill-inner">
+                  <Shirt size={16} />
+                  <span className="ce-outfit-ai-pill-text">
+                    {OUTFIT_AI_PILL.label}
+                  </span>
+                </span>
+                <ChevronDown size={14} />
+              </button>
+            </span>
+          </div>
+        </div>
+
+        {/* ★ 「确认生成」在**内容流**里（★ 这一页**没有**底部生成遮罩）
+            ★ 源站实测：输入框**为空**时它是**禁用态** ⟹ ⟹ clone 照抄 */}
+        <button
+          type="button"
+          className="ce-outfit-ai-generate"
+          disabled={!outfitAiText.trim()}
+          style={{
+            top: `${OUTFIT_AI_CARD.h + 24}px`,
+            left: "24px",
+            width: `${OUTFIT_AI_GENERATE.w}px`,
+            height: `${OUTFIT_AI_GENERATE.h}px`,
+          }}
+          data-character-editor-outfit-ai-generate="1"
+          onClick={() =>
+            flash("clone mock：确认生成不消耗积分，也不产出真实资产")
+          }
+        >
+          <Sparkles size={18} />
+          <span>确认生成</span>
+        </button>
+      </div>
+    </div>
+  );
+
   // ★★ Batch 846：这一段的**子页签行**（★ 与「脸部精修」段的页签行**同一个组件**）
   //   ★ 「服装」「AI 生成」两枚的**内容未实测** ⟹ ⟹ 显示如实说明，不编造控件
   const renderOutfitTabs = () => (
     // ★★ 「服装造型」段的子页签行**不是**脸部段那一行（★ 源站实测：那边 `justify-between`
     //   ⟹ ⟹ 这边 `gap-3` 靠左）⟹ ⟹ 故另开 `.ce-tabs--sub`
     <div className="ce-tabs ce-tabs--sub" role="tablist">
-      {OUTFIT_TABS.map((item) => (
-        <button
-          key={item.id}
-          type="button"
-          role="tab"
-          aria-selected={outfitTab === item.id}
-          aria-label={item.label}
-          className={`ce-tab ${outfitTab === item.id ? "is-text" : "is-icon"}${
-            outfitTab === item.id ? " is-on" : ""
-          }`}
-          data-character-editor-outfit-tab={item.id}
-          onClick={() => setOutfitTab(item.id)}
-        >
-          <span className="ce-tab-icon" aria-hidden="true">
-            <item.icon size={18} />
-          </span>
-          {outfitTab === item.id ? (
-            <span className="ce-tab-text">{item.label}</span>
-          ) : null}
-        </button>
-      ))}
+      {OUTFIT_TABS.map((item) => {
+        const on = outfitTab === item.id;
+        return (
+          <button
+            key={item.id}
+            type="button"
+            role="tab"
+            aria-selected={on}
+            aria-label={item.label}
+            className={`ce-tab ${on ? "is-text" : "is-icon"}${on ? " is-on" : ""}`}
+            style={{ width: `${on ? item.wOn : item.wOff}px` }}
+            data-character-editor-outfit-tab={item.id}
+            onClick={() => setOutfitTab(item.id)}
+          >
+            <span className="ce-tab-icon" aria-hidden="true">
+              <item.icon size={18} />
+            </span>
+            {on ? <span className="ce-tab-text">{item.label}</span> : null}
+          </button>
+        );
+      })}
     </div>
   );
 
@@ -1783,21 +2052,19 @@ const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
               // ★★ Batch 846：左列第四段「服装造型」**已实现**
               //   ⟹ ⟹ 源站实测这一段**有标题行** ⟹ ⟹ 右栏第一层是**子页签行**
               //   ⟹ ⟹ 「造型」这一页 ＝ 四个小节（发型／发色／妆容／口红）
-              //   ⟹ ⟹ 「服装」「AI 生成」两页的**内容未实测** ⟹ ⟹ 显示如实说明
+              // ★★ Batch 849：三枚子页签**全部实测并实现**
+              //   ① 「造型」：四个小节（batch 846）
+              //   ② 「服装」：小标题 ＋ 7 枚分类 chip ＋ **24 张**服装卡（★ **有**底部生成遮罩）
+              //   ③ 「AI 生成」：一张卡（输入框 ＋ 圆按钮 ＋ 胶囊）＋「确认生成」
+              //      ⟹ ⟹ ★ 这一页**没有**底部生成遮罩 ⟹ ⟹「确认生成」在**内容流**里
               <>
                 {renderOutfitTabs()}
                 {outfitTab === "style" ? (
                   renderOutfit()
+                ) : outfitTab === "clothes" ? (
+                  renderOutfitClothes()
                 ) : (
-                  <div className="ce-panel">
-                    <div className="ce-section">
-                      <p className="ce-empty" data-character-editor-empty>
-                        {`「${OUTFIT_TABS.find((t) => t.id === outfitTab)?.label}」这一页的控件 ` +
-                          "**未实测**（源站那趟只点了分段 ⟹ ⟹ 没点开这两枚子页签）⟹ ⟹ " +
-                          "这里**不编造**控件，只如实说明。"}
-                      </p>
-                    </div>
-                  </div>
+                  renderOutfitAi()
                 )}
               </>
             ) : segment === "voice" ? (
@@ -1836,8 +2103,12 @@ const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
                 ⟹ ⟹     ⟹ ⟹ 且 batch 847 raw 的 43 个「带文字的叶子」里
                 ⟹ ⟹     ⟹ ⟹ 只有标题行 3 个 ＋ 音色卡 40 个 ⟹ ⟹ 没有「确认生成」
                 ⟹ ⟹     ⟹ ⟹ ⟹ ⟹ 这两条是**互相独立**的证据）
-                ⟹ ⟹ ★ 「确认生成」那枚 flex:1 ⟹ ⟹ 少一枚就正好 240 */}
-            {segment === "voice" ? null : (
+                ⟹ ⟹ ★ 「确认生成」那枚 flex:1 ⟹ ⟹ 少一枚就正好 240
+                ★★ Batch 849：**第四段的「AI 生成」子页签**也**不渲染**底部生成行
+                ⟹ ⟹ （★ 源站实测：那一页的「确认生成」在**内容流**里 ⟹ ⟹ 底部**没有**遮罩）
+                ⟹ ⟹ ⟹ ⟹ 而「服装」子页签**有**底部遮罩（★ 与「AI 生成」**不同**）*/}
+            {(segment === "voice" ||
+              (segment === "outfit" && outfitTab === "ai")) ? null : (
               <div className="ce-generate-row">
                 <button
                   type="button"
