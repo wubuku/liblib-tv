@@ -8,15 +8,15 @@
   "n_from_probe_products": 30,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "58d9fe5da7bc",
+    "sha256_12": "3cfbc0a0eb20",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
-    "sha256_12": "f3f82bfcb7a7",
-    "bytes": 61453
+    "sha256_12": "332e7c96449f",
+    "bytes": 62073
    },
    "assertion-vs-behavior-1018.json": {
-    "sha256_12": "4ef9bbe98809",
+    "sha256_12": "b94a97967d02",
     "bytes": 17669
    },
    "baseline-host-misuse-1016.json": {
@@ -28,28 +28,28 @@
     "bytes": 8980
    },
    "change-locality-1011.json": {
-    "sha256_12": "24e23080fb1d",
-    "bytes": 3092
+    "sha256_12": "3552ea7302db",
+    "bytes": 3082
    },
    "connect-contract-1032a.json": {
     "sha256_12": "1048709c9bc0",
     "bytes": 1193
    },
    "criterion-direction-1025.json": {
-    "sha256_12": "4f8a955f0c2f",
-    "bytes": 316099
+    "sha256_12": "ba419360fcf8",
+    "bytes": 318779
    },
    "criterion-effectiveness-1026.json": {
-    "sha256_12": "0af4a7694c1c",
-    "bytes": 100099
+    "sha256_12": "d791ffdb2439",
+    "bytes": 100623
    },
    "edit-visibility-1009.json": {
-    "sha256_12": "c3d6e0ecc399",
+    "sha256_12": "cbccf1eaa2e9",
     "bytes": 1437
    },
    "exemption-claims-1024.json": {
-    "sha256_12": "8a47856f2010",
-    "bytes": 18972
+    "sha256_12": "6894993cc39c",
+    "bytes": 19737
    },
    "expanded-contract-1032b4.json": {
     "sha256_12": "3e72f82376f2",
@@ -60,16 +60,16 @@
     "bytes": 1330
    },
    "global-detection-1012.json": {
-    "sha256_12": "1fd1895b1887",
+    "sha256_12": "40099465912a",
     "bytes": 4489
    },
    "golden-freshness-1008.json": {
-    "sha256_12": "589f53eec93b",
+    "sha256_12": "3b529d98279f",
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "e38953a086b8",
-    "bytes": 91483
+    "sha256_12": "54c06f5ff297",
+    "bytes": 92422
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
@@ -92,7 +92,7 @@
     "bytes": 1881
    },
    "occurrence-ledger-1013.json": {
-    "sha256_12": "95c9fefab197",
+    "sha256_12": "cdb8d6ee52ab",
     "bytes": 20268
    },
    "real-history-detection-1010.json": {
@@ -100,16 +100,16 @@
     "bytes": 3232
    },
    "replica-contract-1031d.json": {
-    "sha256_12": "5e30ada2193f",
-    "bytes": 2116
+    "sha256_12": "a73c5f3c45d4",
+    "bytes": 2109
    },
    "replica-coverage-1017.json": {
-    "sha256_12": "5512e3d3a607",
-    "bytes": 15046
+    "sha256_12": "39350ef31a02",
+    "bytes": 15140
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "6b06be9ea9ee",
-    "bytes": 34442
+    "sha256_12": "0935cd0c19a7",
+    "bytes": 43160
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -124,8 +124,8 @@
     "bytes": 1009
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "a875ae25dc7b",
-    "bytes": 128220
+    "sha256_12": "f5205bdbbcad",
+    "bytes": 129678
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
@@ -133,10 +133,10 @@
  "census": {
   "n_goldens": 30,
   "n_excluded_self": 1,
-  "n_empty_list": 212,
-  "n_empty_null": 26,
-  "n_self_provable": 9,
-  "n_ambiguous": 229
+  "n_empty_list": 216,
+  "n_empty_null": 29,
+  "n_self_provable": 10,
+  "n_ambiguous": 235
  },
  "rows": [
   {
@@ -145,6 +145,13 @@
    "kind": "list",
    "self_provable": false,
    "invariant": null
+  },
+  {
+   "golden": "change-locality-1011.json",
+   "path": "/per_text/[4]/class_1005",
+   "kind": "null",
+   "self_provable": true,
+   "invariant": "class_1005 is None ⟺ in_1005_zero_coupling_golden == False"
   },
   {
    "golden": "connect-contract-1032a.json",
@@ -575,7 +582,7 @@
   },
   {
    "golden": "criterion-effectiveness-1026.json",
-   "path": "/axis_1_shape_mechanical/all/[63]/label_hint_defect_words",
+   "path": "/axis_1_shape_mechanical/all/[62]/label_hint_defect_words",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -708,7 +715,7 @@
   },
   {
    "golden": "criterion-effectiveness-1026.json",
-   "path": "/axis_1_shape_mechanical/all/[84]/label_hint_defect_words",
+   "path": "/axis_1_shape_mechanical/all/[82]/label_hint_defect_words",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -1281,6 +1288,13 @@
    "invariant": null
   },
   {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[166]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "gen-contract-1032b2.json",
    "path": "/false_criteria",
    "kind": "list",
@@ -1702,6 +1716,41 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/books_self_reporting_false",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/detector_selftest/[5]/want_n",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/detector_selftest/[5]/got_n",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/books_rc1_judgement_red",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/books_rc2_instrument_crashed",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/discovery/unlinked",
    "kind": "list",
    "self_provable": false,
@@ -1709,7 +1758,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[3]/drifted",
+   "path": "/rounds/[2]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2243,7 +2292,7 @@
   },
   {
    "golden": "criterion-effectiveness-1026.json",
-   "path": "/axis_1_shape_mechanical/all/[63]/label_hint_defect_words",
+   "path": "/axis_1_shape_mechanical/all/[62]/label_hint_defect_words",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2376,7 +2425,7 @@
   },
   {
    "golden": "criterion-effectiveness-1026.json",
-   "path": "/axis_1_shape_mechanical/all/[84]/label_hint_defect_words",
+   "path": "/axis_1_shape_mechanical/all/[82]/label_hint_defect_words",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2949,6 +2998,13 @@
    "invariant": null
   },
   {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[166]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "gen-contract-1032b2.json",
    "path": "/false_criteria",
    "kind": "list",
@@ -3328,6 +3384,41 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/books_self_reporting_false",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/detector_selftest/[5]/want_n",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/detector_selftest/[5]/got_n",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/books_rc1_judgement_red",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/books_rc2_instrument_crashed",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/discovery/unlinked",
    "kind": "list",
    "self_provable": false,
@@ -3335,7 +3426,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[3]/drifted",
+   "path": "/rounds/[2]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null

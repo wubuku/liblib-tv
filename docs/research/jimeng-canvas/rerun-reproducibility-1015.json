@@ -5,12 +5,282 @@
  "rule2": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **完备性用加法验的时候，两边不许同源 —— 分母的完备性才是命门**",
  "rule3": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「探针跑成功了」不等于「产物被刷新了」—— 只能靠重跑后比对字节、或看 mtime 变没变来判，不许看退出码**",
  "pen_is_the_book": {
-  "n_zero_coupling_head": 829,
-  "n_zero_coupling_now": 835,
-  "n_positive_present_head": 6884,
-  "n_positive_present_now": 6925,
+  "n_zero_coupling_head": 845,
+  "n_zero_coupling_now": 845,
+  "n_positive_present_head": 6991,
+  "n_positive_present_now": 6991,
   "n_audit_2015_lines": 2165,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **被测的账和记账的笔是同一份文件时，往笔上多写一句，被测的那些账就跟着重算** —— 1005 普查的是 `_ausrc`，而本批往 audit 里塞了判据 ⇒ ⇒ ⇒ ⇒ ⇒ 所以它的读数必然跟着变"
+ },
+ "red_ledger": {
+  "n_books": 29,
+  "n_books_with_readable_p_summary": 29,
+  "n_books_without_readable_p_summary": 0,
+  "n_books_rc1_judgement_red": 0,
+  "n_books_rc2_instrument_crashed": 0,
+  "n_books_self_reporting_false": 0,
+  "n_criteria_self_reported_false": 0,
+  "books_self_reporting_false": [],
+  "detector_selftest_ok": true,
+  "detector_selftest_n_cases": 6,
+  "detector_selftest": [
+   {
+    "input": "P1..P3 = [True, False, True]",
+    "want_n": 1,
+    "got_n": 1,
+    "want_readable": true,
+    "got_readable": true,
+    "ok": true
+   },
+   {
+    "input": "P1..P8 = [True, True, True, True, True, ",
+    "want_n": 0,
+    "got_n": 0,
+    "want_readable": true,
+    "got_readable": true,
+    "ok": true
+   },
+   {
+    "input": "P 为假的： 无 | 共 9 条",
+    "want_n": 0,
+    "got_n": 0,
+    "want_readable": true,
+    "got_readable": true,
+    "ok": true
+   },
+   {
+    "input": "P 为假的： P3、P7 | 共 9 条",
+    "want_n": 2,
+    "got_n": 2,
+    "want_readable": true,
+    "got_readable": true,
+    "ok": true
+   },
+   {
+    "input": "为假的： 无 | 降级： 无",
+    "want_n": 0,
+    "got_n": 0,
+    "want_readable": true,
+    "got_readable": true,
+    "ok": true
+   },
+   {
+    "input": "这里什么判据都没有",
+    "want_n": null,
+    "got_n": null,
+    "want_readable": false,
+    "got_readable": false,
+    "ok": true
+   }
+  ],
+  "books_rc1_judgement_red": [],
+  "books_rc2_instrument_crashed": [],
+  "per_book": [
+   {
+    "golden": "anchor-gate-coverage-1021.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "anchor-identity-1030.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "assertion-vs-behavior-1018.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "baseline-host-misuse-1016.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "behavior-harness-1019.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "change-locality-1011.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "connect-contract-1032a.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "criterion-direction-1025.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "criterion-effectiveness-1026.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "edit-visibility-1009.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "empty-ambiguity-1014.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "exemption-claims-1024.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "expanded-contract-1032b4.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "gen-contract-1032b2.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "global-detection-1012.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "golden-freshness-1008.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "harness-fidelity-1020.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "interaction-wiring-check-1032.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "live-canvas-check-1031.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "mention-contract-1032b3.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "noop-contract-1032c.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "occurrence-ledger-1013.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "real-history-detection-1010.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "replica-contract-1031d.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "replica-coverage-1017.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "stem-attribution-1007.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "type-layer-gate-1023.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "wired-contract-1032b1.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "zero-coupling-anchors-1005.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   }
+  ],
+  "what_this_is_not": "⭐⭐⭐⭐⭐ **这不是「红的清单」** —— 「自报 False」里**混着「预测被否型」（False 才是结论）** ⇒ ⇒ **⇒ 而红/被否型/前提不成立 的分类必须逐条读判据才能下 ⇒ ⇒ **⇒ 所以本读数只负责「看见」，定性留给 audit 的账**"
  },
  "discovery": {
   "channel_a_goldens": 31,
@@ -250,43 +520,33 @@
  "rounds": [
   {
    "round": 1,
-   "n_drifted": 7,
+   "n_drifted": 8,
    "drifted": [
+    "anchor-identity-1030.json",
     "baseline-host-misuse-1016.json",
-    "change-locality-1011.json",
-    "edit-visibility-1009.json",
+    "criterion-direction-1025.json",
+    "criterion-effectiveness-1026.json",
     "empty-ambiguity-1014.json",
-    "global-detection-1012.json",
-    "golden-freshness-1008.json",
-    "occurrence-ledger-1013.json"
-   ]
-  },
-  {
-   "round": 2,
-   "n_drifted": 4,
-   "drifted": [
-    "connect-contract-1032a.json",
-    "empty-ambiguity-1014.json",
-    "noop-contract-1032c.json",
+    "exemption-claims-1024.json",
+    "replica-coverage-1017.json",
     "type-layer-gate-1023.json"
    ]
   },
   {
-   "round": 3,
-   "n_drifted": 2,
+   "round": 2,
+   "n_drifted": 1,
    "drifted": [
-    "connect-contract-1032a.json",
     "empty-ambiguity-1014.json"
    ]
   },
   {
-   "round": 4,
+   "round": 3,
    "n_drifted": 0,
    "drifted": []
   }
  ],
  "converged": true,
- "n_rounds": 4,
+ "n_rounds": 3,
  "max_rounds": 6,
  "fixed_point_rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **整轮重跑直到某一轮零漂移为止 —— 因为 1015 在整轮结束后才写自己那本，1014 在整轮里读到的永远是 1015 的上一版 ⇒ 每本账都落后它上游一轮**",
  "books": [
@@ -301,6 +561,11 @@
    "tail": [
     "P1..P7 = [True, True, True, True, True, True, True]",
     "PROBE_1021_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/anchor-gate-coverage-1021.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -308,12 +573,17 @@
    "probe": "scripts/jimeng_probe1030_anchor_identity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 62073,
-   "n_bytes_fresh": 62073,
+   "n_bytes": 62282,
+   "n_bytes_fresh": 62282,
    "state": "reproduced",
    "tail": [
     "P 为假的： 无 | 共 7 条 P 判据",
     "PROBE_1030_DONE -> /tmp/b1030-anchor-identity.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -327,6 +597,11 @@
    "tail": [
     "P1..P8 = [True, True, True, True, True, True, True, True, True]",
     "PROBE_1018_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/assertion-vs-behavior-1018.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -340,6 +615,11 @@
    "tail": [
     "P1..P8 = [True, True, True, True, True, True, True, True]",
     "PROBE_1016_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/baseline-host-misuse-1016.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -353,6 +633,11 @@
    "tail": [
     "P1..P8 = [True, True, True, True, True, True, True, True]",
     "PROBE_1019_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/behavior-harness-1019.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -360,12 +645,17 @@
    "probe": "scripts/jimeng_probe1011_change_locality.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 3092,
-   "n_bytes_fresh": 3092,
+   "n_bytes": 3082,
+   "n_bytes_fresh": 3082,
    "state": "reproduced",
    "tail": [
-    "P1..P9 = [True, True, True, True, True, False, True, True, True]",
+    "P1..P9 = [True, True, True, True, True, True, True, True, True]",
     "PROBE_1011_DONE -> /tmp/b1011-change-locality.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -379,6 +669,11 @@
    "tail": [
     "为假的： 无 | 降级： 无",
     "PROBE_1032A_CONNECT_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/connect-contract-1032a.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -386,12 +681,17 @@
    "probe": "scripts/jimeng_probe1025_criterion_direction.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 318779,
-   "n_bytes_fresh": 318779,
+   "n_bytes": 319901,
+   "n_bytes_fresh": 319901,
    "state": "reproduced",
    "tail": [
     "P1..P7 = [True, True, True, True, True, True, True]",
     "PROBE_1025_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/criterion-direction-1025.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -399,12 +699,17 @@
    "probe": "scripts/jimeng_probe1026_criterion_effectiveness.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 100623,
-   "n_bytes_fresh": 100623,
+   "n_bytes": 100611,
+   "n_bytes_fresh": 100611,
    "state": "reproduced",
    "tail": [
     "PROBE_1026_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
     "<unknown>:75: SyntaxWarning: invalid escape sequence '\\s'"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -418,6 +723,11 @@
    "tail": [
     "P1..P6 = [True, True, True, True, True, True]",
     "PROBE_1009_DONE -> /tmp/b1009-edit-visibility.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -425,12 +735,17 @@
    "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 93689,
-   "n_bytes_fresh": 93689,
+   "n_bytes": 95678,
+   "n_bytes_fresh": 95678,
    "state": "reproduced",
    "tail": [
     "P1..P9 = [True, True, True, True, True, True, True, True, True]",
     "P 为假的： 无 | 共 9 条 P 判据"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -444,6 +759,11 @@
    "tail": [
     "P1..P7 = [True, True, True, True, True, True, True]",
     "PROBE_1024_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/exemption-claims-1024.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -457,6 +777,11 @@
    "tail": [
     "P 为假的： 无 | 共 15 条",
     "PROBE_1032B4_EXPANDED_CONTRACT_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/expanded-contract-1032b4.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "false_list_none"
    ]
   },
   {
@@ -470,6 +795,11 @@
    "tail": [
     "为假的： 无 | 降级： 无",
     "PROBE_1032B2_GEN_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/gen-contract-1032b2.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "false_list_none"
    ]
   },
   {
@@ -483,6 +813,11 @@
    "tail": [
     "P1..P9 = [True, True, True, True, True, True, True, True, True]",
     "PROBE_1012_DONE -> /tmp/b1012-global-detection.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -494,8 +829,13 @@
    "n_bytes_fresh": 1215,
    "state": "reproduced",
    "tail": [
-    "P1..P7 = [False, False, False, True, False, True, False]",
+    "退出码自检 = True | 本次退出码 = 0",
     "PROBE_1008_DONE -> /tmp/b1008-golden-freshness.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -509,6 +849,11 @@
    "tail": [
     "P1..P9 = [True, True, True, True, True, True, True, True, True, True]",
     "PROBE_1020_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/harness-fidelity-1020.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -522,6 +867,11 @@
    "tail": [
     "死按钮 0 条（白名单 0 条）",
     "PROBE_1032_WIRING_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/interaction-wiring-check-1032.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "false_list_none"
    ]
   },
   {
@@ -535,6 +885,11 @@
    "tail": [
     "退出码约定：0=全绿 1=有 P 判据为假 2=探针崩了/契约不是合法 JSON（JIMENG_FORCE_CRASH=1 可现场验证 2 号出口）",
     "PROBE_1031_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/live-canvas-check-1031.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "false_list_none"
    ]
   },
   {
@@ -548,6 +903,11 @@
    "tail": [
     "P 为假的： 无 | 共 10 条",
     "PROBE_1032B3_MENTION_CONTRACT_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/mention-contract-1032b3.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "false_list_none"
    ]
   },
   {
@@ -561,6 +921,11 @@
    "tail": [
     "P 为假的： 无 | 共 8 条",
     "PROBE_1032C_NOOP_CONTRACT_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/noop-contract-1032c.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "false_list_none"
    ]
   },
   {
@@ -574,6 +939,11 @@
    "tail": [
     "P1..P8 = [True, True, True, True, True, True, True, True]",
     "PROBE_1013_DONE -> /tmp/b1013-occurrence-ledger.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -587,6 +957,11 @@
    "tail": [
     "P1..P7 = [True, True, True, True, True, True, True]",
     "PROBE_1010_DONE -> /tmp/b1010-real-history-detection.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -600,6 +975,11 @@
    "tail": [
     "退出码约定：0=全绿 1=有 P 判据为假 2=探针崩了/契约不是合法 JSON",
     "PROBE_1031D_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/replica-contract-1031d.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "false_list_none"
    ]
   },
   {
@@ -613,6 +993,11 @@
    "tail": [
     "P1..P8 = [True, True, True, True, True, True, True, True]",
     "PROBE_1017_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/replica-coverage-1017.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -624,8 +1009,13 @@
    "n_bytes_fresh": 1272,
    "state": "reproduced",
    "tail": [
-    "P1..P6 = [False, True, True, True, True, True]",
+    "P1..P6 = [True, True, True, True, True, True]",
     "PROBE_1007_DONE -> /tmp/b1007-stem-attribution.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -639,6 +1029,11 @@
    "tail": [
     "产物可复现自检：无随机临时目录名残留 ✓",
     "PROBE_1023_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/type-layer-gate-1023.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -652,6 +1047,11 @@
    "tail": [
     "为假的： 无 | 降级： 无",
     "PROBE_1032B1_WIRED_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/wired-contract-1032b1.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   },
   {
@@ -659,12 +1059,17 @@
    "probe": "scripts/jimeng_probe1005_zero_coupling_census.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 128220,
-   "n_bytes_fresh": 128220,
+   "n_bytes": 129678,
+   "n_bytes_fresh": 129678,
    "state": "reproduced",
    "tail": [
-    "P1..P5 = [True, False, True, True, True]",
+    "P1..P5 = [True, True, True, True, True]",
     "PROBE_1005_DONE -> /tmp/b1005-zero-coupling-census.json"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "p_list"
    ]
   }
  ],
@@ -695,12 +1100,13 @@
  "reverse_case": {
   "add_key_state": "drifted",
   "modify_value_state": "drifted",
-  "rc1_state": "crashed",
+  "rc1_state": "self_red",
   "missing_output_state": "vanished",
   "detail": {
    "add_key": "drifted",
    "modify_value": "drifted",
-   "rc1": "crashed",
+   "rc1": "self_red",
+   "rc2": "crashed",
    "missing_output": "vanished",
    "modified_path": "/delivered/countermeasure",
    "path_is_list_free": true,
@@ -734,8 +1140,8 @@
   "chinese_numerals_out_of_scope": "⭐⭐⭐⭐⭐ `_NUMRE` 只认阿拉伯数字 ⇒ 「五条」与「5 条」在检查里长得一样 ⇒ 本批判据里就有一处「三条」是错的而 P6 全程报绿",
   "zero_in_sources": true,
   "one_in_sources": true,
-  "zero_entered_via": "第 4 轮里漂移的本数",
-  "one_entered_via": "第 1 轮的轮号",
+  "zero_entered_via": "第 3 轮里漂移的本数",
+  "one_entered_via": "第 2 轮里漂移的本数",
   "what_is_actually_enforced": "⭐ 判据里的每个数要么等于某个**实测值**、要么不在出处表里",
   "what_is_not_enforced": "⭐⭐⭐⭐⭐ 「0 和 1 也必须有出处」—— 出处表按值索引，而任一实测读数为 0/1 就会把 0/1 登记进去 ⇒ 判据里别处的 0/1 一律通过",
   "same_hole_in_1013": "1013 的 `_allowed |= set(\"0123456789\")` —— 明着开了同一个洞",
@@ -747,10 +1153,15 @@
  },
  "p8_invariants_invisible_to_1014": {
   "census_n_goldens": 30,
-  "census_n_ambiguous": 230,
-  "census_n_self_provable": 9,
-  "self_ambiguous": 6,
+  "census_n_ambiguous": 235,
+  "census_n_self_provable": 10,
+  "self_ambiguous": 11,
   "self_ambiguous_paths": [
+   "/red_ledger/books_self_reporting_false",
+   "/red_ledger/detector_selftest/[5]/want_n",
+   "/red_ledger/detector_selftest/[5]/got_n",
+   "/red_ledger/books_rc1_judgement_red",
+   "/red_ledger/books_rc2_instrument_crashed",
    "/discovery/unlinked",
    "/rounds/[2]/drifted",
    "/diff_shape/drifted_books",
@@ -762,39 +1173,38 @@
   "n_invariables_1014_cannot_see": 1,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **产物里写着不变式 ≠ 普查看得见不变式** —— 1014 的 `INVARIANTS` 是一张硬编码表，它不读产物里的 `empty_list_invariants`",
   "p8_saw_artifact_with_n_rounds": 3,
-  "p8_this_artifact_has_n_rounds": 4,
-  "p8_reading_lag_rounds": 1,
+  "p8_this_artifact_has_n_rounds": 3,
+  "p8_reading_lag_rounds": 0,
   "p8_lag_is_structural": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这不是 bug、是没关严** —— 要把这条读数追平，就得「写完产物再跑一次 1014」，而那会改写 1014 那本账 ⇒ ⇒ ⇒ 又触发新一轮 ⇒ ⇒ ⇒ ⇒ **⇒ 所以只有把它记成一个读数，才不至于让产物自己和自己矛盾**"
  },
  "number_sources": {
   "211": "1015 提交时（sha `2b52f492`）实测的通道 B 探针数 —— 此后新增探针会让它变大，而**出处的含义是「那一刻的实测读数」**，不是白名单",
-  "2": "第 3 轮里漂移的本数",
+  "2": "第 2 轮的轮号",
   "3": "第 3 轮的轮号",
   "690": "1015 提交时（sha `2b52f492`）1005 的 `n_zero_coupling` —— 往 audit 里写判据就会把它顶高",
-  "10": "⚠️⭐⭐⭐⭐⭐⭐ **这一条是 1017 逼出来的第三次**：1015 的 `p2_…` 判据里本来就有一个「10」，而它一直没有单独的出处 —— **它是被「实测值恰好等于 10」顺带放行的**（当时 `n_owned` = 10）⇒ ⇒⇒⇒ 1017 加了第 12 本探针、`n_owned` 变成 11 ⇒⇒⇒⇒ **那一刻它才暴露出来：「碰巧对上了」和「有出处」在检查里长得一样** ⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒ 所以出处的数量比想象中要紧 —— 一个数能活多久，取决于它碰巧撞上了哪个实测值**",
+  "10": "1014 普查口径下「可自证」的总数",
   "5": "⚠️⭐⭐⭐⭐⭐⭐ **第四次、也是最不该发生的一次**：`p8_…` 判据里那个「5」是 `self_ambiguous` 在 1015 提交时（sha `2b52f492`）的读数，1018 跑完已变成 6 ⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒ 同一个病：读数一变、判据里的数就没出处** ⇒⇒⇒⇒⇒⇒ ⇒ 处置与其他几条一致：登记成带 sha 的历史实测读数，**不进白名单**",
+  "9": "⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **1032-②f 撞出来的第五次复发**：`p1_…`/`p2_…`/`p3_…` 三条判据里那个「9」= **1015 提交时（sha `2b52f492`）册内认领到的本数**（`totals.n_books = 9`）⇒ ⇒⇒⇒⇒ **⇒ 而它此前是「碰巧」被放行的** —— 当时 1014 普查口径的「可自证」总数恰好也 = 9 ⇒ ⇒⇒⇒⇒⇒ **⇒ 「碰巧对上了」和「有出处」在检查里长得一样（1017 记的那个病）⇒ ⇒⇒⇒⇒⇒ **⇒ 而 ②f 让 1014 那个读数变成了 10 ⇒ ⇒⇒⇒⇒⇒⇒ **⇒ 它当场失去出处、P6 转红 ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 处置：登记成带 sha 的历史实测读数（不是白名单）**",
   "31": "通道 A：docs/research/jimeng-canvas/*.json 的文件数",
   "241": "通道 B：scripts/jimeng_probe*.py 的文件数",
   "29": "四态之和（分子完备性）",
-  "1": "第 1 轮的轮号",
-  "0": "第 4 轮里漂移的本数",
+  "1": "第 2 轮里漂移的本数",
+  "0": "第 3 轮里漂移的本数",
   "210": "通道 B 有探针而通道 A 无对应 golden 的个数",
-  "4": "第 4 轮的轮号",
-  "6": "1014 那台普查判本探针产物「不可自证」的条数",
+  "6": "轮数上限",
   "0/31": "被拒绝认领的比例（分母 = 通道 A）",
   "29/31": "认领到的比例（分母 = 通道 A）",
-  "8": "第一版探针认领到的本数（仪器故障期，已修）",
-  "230": "1014 普查口径下全部账里「不可自证」的总数",
-  "9": "1014 普查口径下「可自证」的总数",
+  "8": "第 1 轮里漂移的本数",
+  "11": "1014 那台普查判本探针产物「不可自证」的条数",
+  "4": "本探针在产物里登记的不变式条数",
+  "235": "1014 普查口径下全部账里「不可自证」的总数",
   "30": "1014 普查看到的 golden 本数（已排除它自己那本）",
-  "829": "1005 golden 在 git HEAD 上的 `n_zero_coupling`",
-  "835": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
-  "6884": "1005 golden 在 git HEAD 上的 `n_positive_present`",
-  "6925": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
+  "845": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
+  "6991": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
   "4/9": "1015 上一版的不动点漂移比例（已挂【1015 改写横幅】，原文保留）",
   "2/9": "曾观测到的一轮漂移比例（分母 = 认领到的本数）",
   "0/9": "末轮的漂移比例（分母 = 认领到的本数）",
-  "7": "第 1 轮里漂移的本数",
+  "7": "曾观测到的不动点漂移序列 7 → 1 → 2 → 0 里的第一个数（**历史观测**，不是当前读数；当前读数在产物的 `rounds` 块里",
   "201": "1015 上一次提交时实测的「通道 B 有探针而通道 A 无对应 golden 的个数」（1031 新增契约证据后它变成别的数，而 `p2_…` 的原文一字不删 ⇒ **它的出处只能是一条历史观测，不是当前读数**）",
   "998/1004": "引用的批次对：998/1004 那条「否的信息量在规则不对」",
   "1005/1007": "引用的批次对：1005 与 1007 两本 golden",
@@ -828,9 +1238,8 @@
   "1017": "批号",
   "1018": "批号",
   "1019": "批号",
-  "7/29": "第 1 轮的漂移比例（分母 = 认领到的本数）",
-  "4/29": "第 2 轮的漂移比例（分母 = 认领到的本数）",
-  "2/29": "第 3 轮的漂移比例（分母 = 认领到的本数）",
-  "0/29": "第 4 轮的漂移比例（分母 = 认领到的本数）"
+  "8/29": "第 1 轮的漂移比例（分母 = 认领到的本数）",
+  "1/29": "第 2 轮的漂移比例（分母 = 认领到的本数）",
+  "0/29": "第 3 轮的漂移比例（分母 = 认领到的本数）"
  }
 }
