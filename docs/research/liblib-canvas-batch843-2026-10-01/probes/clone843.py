@@ -155,11 +155,11 @@ def main():
                 pg, '[data-character-editor-makeup-name="琥珀"]')
             out["C_点卡后"] = pg.evaluate(READ)
 
-            # ★ 点左列**第四段**（服装造型）⟹ **页签行应当消失** ＋ 出现空态说明
-            #   （★ 845 起第三段已实现 ⟹ ⟹ 「仍未实现的那一段」又挪了一位）
-            out["★点到_第四段"] = click_box(pg,
-                                           '[data-character-editor-segment="outfit"]')
-            out["D_第四段"] = pg.evaluate(READ)
+            # ★ 点左列**第五段**（音色音调）⟹ **页签行应当消失** ＋ 出现空态说明
+            #   （★ 846 起第四段已实现 ⟹ ⟹ 「仍未实现的那一段」又挪了一位）
+            out["★点到_第五段"] = click_box(pg,
+                                           '[data-character-editor-segment="voice"]')
+            out["D_第五段"] = pg.evaluate(READ)
 
             # ★ 点回「脸部精修」⟹ 页签行应当回来
             out["★点到_脸部精修"] = click_box(pg,
@@ -175,7 +175,7 @@ def main():
         if out.get("异常"):
             print("异常：", out["异常"])
         for stage in ("A_妆造_默认分类", "分类_contact", "分类_runcai",
-                      "C_点卡后", "D_第四段", "E_切回脸部精修"):
+                      "C_点卡后", "D_第五段", "E_切回脸部精修"):
             r = out.get(stage) or {}
             if not r:
                 continue

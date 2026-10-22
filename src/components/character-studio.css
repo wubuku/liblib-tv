@@ -1073,9 +1073,19 @@
 .ce-preview-tools .ce-tool.is-on { background: rgba(255, 255, 255, 0.12); }
 
 /* ── 右栏：页签 ＋ 皮肤面板 ─────────────────────────────────────── */
+/* ★★ Batch 846 修正（★ 源站实测，batch 846 raw）：
+     源站的页签行是**两层**：
+       外层 DIV `flex h-10 shrink-0 items-center px-6`（288 宽 @1273）
+         └ 内层 NAV `... items-center ... border-b`（**240** 宽 @1297）
+     ⟹ ⟹ 那条 **240px 宽的底边框线**（白 8%）画在**内层**上
+     ⟹ ⟹ 而 clone 之前把两层**合并**成一个 288 宽的 `.ce-tabs`（padding 24）
+     ⟹ ⟹ ⟹ **那条线整条没画**（★ 像素对照实测：源站 y=270 整行有白 8% 的线，
+     clone 那一行**全是底色**）⟹ ⟹ 那是**既存偏差**，本批改正。
+   ★ 宽度从「288 ＋ padding 24」改成「**240 ＋ left 24**」⟹ ⟹ 内容区不变
+     （1297..1537）⟹ ⟹ 既有几何断言不受影响。 */
 .ce-tabs {
   position: absolute;
-  left: 0;
+  left: 24px;
   top: 0;
   display: flex;
   /* ★ 源站实测：页签 39 高、页签行 40 高 ⟹ 页签**顶对齐**（居中会差半像素）。 */
@@ -1084,9 +1094,10 @@
      ⟹ 五个间隙**均分**剩下的 64 ⟹ 每个 **12.8px** ⟹ ⟹ 用 `space-between` 才复现得出来
      （写死 gap 会在中间那一枚差 1px）。 */
   justify-content: space-between;
-  width: 288px;
+  width: 240px;
   height: 40px;
-  padding: 0 24px;
+  /* ★ 源站 nav 实测：`border-bottom: 1px solid rgba(255,255,255,0.08)` */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .ce-tab {
   display: flex;
@@ -1111,6 +1122,24 @@
 /* ★ 首个页签带文字（56 宽），其余只有图标（24 宽）——源站实测 */
 .ce-tab.is-text { width: 56px; padding: 0 3px; }
 .ce-tab.is-icon { width: 24px; padding: 0 3px; }
+
+/* ★★ Batch 846：「服装造型」段的**子页签行**与「脸部精修」段的**不是同一个组件**
+   （★ 源站实测）：
+     · 脸部精修段：NAV > DIV(`justify-between`) ⟹ ⟹ 六个页签**均分**剩下的 64px
+       （每个 12.8px）⟹ ⟹ 故 clone 用 `space-between`
+     · 服装造型段：NAV **直接**是 `gap-3` ⟹ ⟹ 三个子页签**靠左**排列（gap **12**）
+       ⟹ ⟹ 造型 56 宽 ⟹ ⟹ 服装落在 56+12=68 ⟹ ⟹ AI 生成落在 68+24+12=104
+   ⟹ ⟹ 两者**不能**共用一条规则 ⟹ ⟹ 这里另开一个修饰类 */
+.ce-tabs--sub {
+  justify-content: flex-start;
+  gap: 12px;
+}
+/* ★ 源站实测：这一段**选中**那枚子页签的白是 **#fff**（★ 而脸部段的页签选中态是 #ededed
+   ⟹ ⟹ 两者**不是**一个颜色 ⟹ ⟹ 只在子页签这一行改） */
+.ce-tabs--sub .ce-tab.is-on {
+  border-bottom-color: #fff;
+  color: #fff;
+}
 
 /* ★ 源站实测「皮肤」页签：56 宽 = px-[3px] + [18px 图标] + [gap 4] + [28px 文字]
    ⟹ 文案落在 rel 961（不是居中的 950）⟹ ⟹ 首枚页签**也有前置图标** */
@@ -1358,6 +1387,10 @@
   white-space: nowrap;
   overflow: hidden;
   cursor: pointer;
+  /* ★★ Batch 846：源站那枚 chip 是**flex item** ⟹ ⟹ 它的计算 display 是 **block**
+     （flex 容器会把子元素的 display **块化**）⟹ ⟹ clone 这里也写死 block ⟹ ⟹ 对得上 */
+  display: block;
+  text-align: center;
 }
 .ce-chip.is-on {
   background: #fff;
@@ -1656,4 +1689,67 @@
   font-size: 13px;
   line-height: 20px;
   white-space: nowrap;
+}
+
+/* ── Batch 846：左列第四段「服装造型」 ─────────────────────────────── */
+/* ★★ 源站实测（batch 846 raw）：这一段**有标题行** ⟹ ⟹ 右栏第一层是**子页签行**
+   ⟹ ⟹ 内容起点 ＝ 列顶 + 40 + 16(pt-4) ⟹ ⟹ 比「脸部精修」段**低 40px**
+   ⟹ ⟹ 且这一段的底部生成遮罩**只有一枚整宽 240×36 的「确认生成」**（没有「智能调整」）*/
+
+/* ★ 色块：35×35 的圆（`aspect-square rounded-full border border-transparent`）
+   ★ 选中态是**两圈环**：2px 深色 ＋ 3px 白色（源站实测的 box-shadow）
+   ★★ Batch 846 修正（★ 源站实测）：源站这枚 swatch 的计算 `line-height` 是
+     **24.8px**（从正文继承下来的）⟹ ⟹ clone 之前是 24px ⟹ ⟹ 那是**既存偏差** */
+.ce-swatch {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  background: transparent;
+  color: #fff;
+  display: block;
+  line-height: 24.8px;
+  cursor: pointer;
+}
+.ce-swatch.is-on {
+  box-shadow:
+    rgb(36, 36, 36) 0px 0px 0px 2px,
+    rgb(255, 255, 255) 0px 0px 0px 3px;
+}
+/* ★ 「自定义颜色」那枚：底色透明 ＋ 边框白 12% ＋ 里面一枚 18×18 的图标
+   ★★ 源站实测：这一枚是 **`display:flex`**（居中放图标）⟹ ⟹ 其余那些是 block
+   ⟹ ⟹ 两者**不是同一套** ⟹ ⟹ 这里另开一条 */
+.ce-swatch--custom {
+  border-color: rgba(255, 255, 255, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ce-swatch-icon {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ★ 服装造型段的卡片：媒体区底色是 **白 5%**（★ 眉眼页的预设卡是白 6% ⟹ ⟹ 不是一回事）
+   ⟹ ⟹ 且媒体区里是**真实图**（引用源站 CDN）⟹ ⟹ 74×74 的 object-cover
+   ★★ Batch 846 修正（★ 源站实测）：源站的媒体区计算 `display` 是 **block**
+     （**不是** flex）⟹ ⟹ 图是**普通流**里的一块 ⟹ ⟹ 源站那张图在 76×76 里是
+     **74×74 且偏移 +1,+1**（⟹ ⟹ 等于居中）⟹ ⟹ clone 之前用 flex ＋ 绝对定位
+     ⟹ ⟹ 那是**既存偏差** ⟹ ⟹ 本批改成 block ＋ 普通流 ＋ 居中 */
+.ce-card--outfit .ce-card-media {
+  background: rgba(255, 255, 255, 0.05);
+  display: block;
+}
+.ce-card--outfit .ce-card-media img {
+  display: block;
+  width: 74px;
+  height: 74px;
+  margin: 1px;
+  object-fit: cover;
 }

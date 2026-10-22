@@ -8,6 +8,7 @@ import {
   Columns2,
   Eye,
   Music,
+  Package,
   Palette,
   PersonStanding,
   Plus,
@@ -287,6 +288,114 @@ const BODY_SLIDERS: Slider[] = [
   { id: "body-beauty-all", label: "全身美型", info: true, step: 1 },
 ];
 
+// ★★ Batch 846：左列第四段「服装造型」
+//   （源站**只读**实测；raw 入库在
+//    `docs/research/liblib-canvas-batch846-2026-10-01/raw/source-846-outfit.json`
+//    ⟹ ⟹ 下面的清单由 `probes/gen846_data.py` **机器提取** ⟹ ⟹ 不手抄）
+//
+// ★★ **这一段的结构与前两段不同**（★ 源站实测）：
+//   · 这一段**有标题行** ⟹ ⟹ 右栏第一层是**子页签行**（40 高）：
+//     「造型」（56 宽，**带文字**）＋「服装」＋「AI 生成」（各 24 宽，只有图标）
+//     ⟹ ⟹ 内容起点 ＝ 列顶 + 40 + 16(pt-4) ＝ **rel 56**
+//   · 内容 ＝ 四个小节（各是一个 SECTION）：
+//     「发型」＝ H3 ＋ 7 枚 chip ＋ **12 张** 76×96 的卡
+//     「发色」＝ H3 ＋ **11 枚** 35×35 的色块（10 色 ＋ 1 枚「自定义颜色」）
+//     「妆容」＝ H3 ＋ 7 枚 chip（**宽度随文案变**）＋ **7 张** 76×96 的卡
+//     「口红」＝ H3 ＋ **10 枚** 35×35 的色块
+//   · 滚动区高 **1312**
+//   · ★ 这一段的底部生成遮罩只有**一枚整宽 240×36 的「确认生成」**
+//     ⟹ ⟹ 与「脸部精修」段那枚 196×36 ＋ 36×36「智能调整」**不一样**
+//
+// ★★ **卡片与色块的图**：卡片图是**引用**源站 CDN 的真实图（与 batch 844 的贴纸同一做法）
+//   ⟹ ⟹ 那是**引用**不是复刻 ⟹ ⟹ 不声称这些资产归本仓库所有。
+
+// ★★ Batch 846：左列第四段「服装造型」的四个小节标题（★ 源站实测）
+const OUTFIT_SECTION_TITLES: { title: string; top: number }[] = [
+  { title: "发型", top: 16 },
+  { title: "发色", top: 544 },
+  { title: "妆容", top: 670 },
+  { title: "口红", top: 1126 },
+];
+
+// ★★ 发型的 chip 行（★ 7 枚 50×26；**「现代」初始选中** ⟹ 白底黑字）
+const OUTFIT_HAIR_CHIPS: { label: string; x: number; y: number; w: number; sel: boolean }[] = [
+  { label: "现代", x: 24, y: 46, w: 50, sel: true },
+  { label: "古风", x: 80, y: 46, w: 50, sel: false },
+  { label: "民国", x: 136, y: 46, w: 50, sel: false },
+  { label: "仙侠", x: 192, y: 46, w: 50, sel: false },
+  { label: "科幻", x: 24, y: 78, w: 50, sel: false },
+  { label: "民族", x: 80, y: 78, w: 50, sel: false },
+  { label: "儿童", x: 136, y: 78, w: 50, sel: false },
+];
+
+// ★★ 妆容的 chip 行（★ 7 枚，**宽度随文案变**（「欧美时尚」74 ⟹ 4 个字））
+const OUTFIT_MAKEUP_CHIPS: { label: string; x: number; y: number; w: number; sel: boolean }[] = [
+  { label: "现代", x: 24, y: 700, w: 50, sel: true },
+  { label: "古代", x: 80, y: 700, w: 50, sel: false },
+  { label: "民国", x: 136, y: 700, w: 50, sel: false },
+  { label: "欧美时尚", x: 24, y: 732, w: 74, sel: false },
+  { label: "国潮", x: 104, y: 732, w: 50, sel: false },
+  { label: "特效", x: 160, y: 732, w: 50, sel: false },
+  { label: "儿童", x: 24, y: 764, w: 50, sel: false },
+];
+
+// ★★ 发色的色块（★ 10 枚颜色 ＋ 1 枚「自定义颜色」⟹ 初始选中**第一枚**）
+const OUTFIT_HAIR_COLORS: { color: string; x: number; y: number; sel: boolean; custom: boolean }[] = [
+  { color: "rgb(11, 11, 11)", x: 24, y: 574, sel: true, custom: false },
+  { color: "rgb(35, 23, 11)", x: 65, y: 574, sel: false, custom: false },
+  { color: "rgb(92, 53, 24)", x: 106, y: 574, sel: false, custom: false },
+  { color: "rgb(128, 81, 45)", x: 147, y: 574, sel: false, custom: false },
+  { color: "rgb(172, 118, 80)", x: 188, y: 574, sel: false, custom: false },
+  { color: "rgb(210, 162, 125)", x: 229, y: 574, sel: false, custom: false },
+  { color: "rgb(108, 90, 78)", x: 24, y: 615, sel: false, custom: false },
+  { color: "rgb(129, 129, 129)", x: 65, y: 615, sel: false, custom: false },
+  { color: "rgb(216, 208, 196)", x: 106, y: 615, sel: false, custom: false },
+  { color: "rgb(240, 226, 200)", x: 147, y: 615, sel: false, custom: false },
+  { color: "rgba(0, 0, 0, 0)", x: 188, y: 615, sel: false, custom: true },
+];
+
+// ★★ 口红的色块（★ 10 枚；★ 「口红」那节**没有**「自定义颜色」）
+const OUTFIT_LIP_COLORS: { color: string; x: number; y: number; sel: boolean; custom: boolean }[] = [
+  { color: "rgb(102, 38, 48)", x: 24, y: 1156, sel: false, custom: false },
+  { color: "rgb(143, 51, 65)", x: 65, y: 1156, sel: true, custom: false },
+  { color: "rgb(178, 68, 84)", x: 106, y: 1156, sel: false, custom: false },
+  { color: "rgb(200, 95, 106)", x: 147, y: 1156, sel: false, custom: false },
+  { color: "rgb(142, 59, 82)", x: 188, y: 1156, sel: false, custom: false },
+  { color: "rgb(157, 82, 102)", x: 229, y: 1156, sel: false, custom: false },
+  { color: "rgb(181, 111, 113)", x: 24, y: 1197, sel: false, custom: false },
+  { color: "rgb(210, 139, 138)", x: 65, y: 1197, sel: false, custom: false },
+  { color: "rgb(111, 53, 65)", x: 106, y: 1197, sel: false, custom: false },
+  { color: "rgb(211, 162, 159)", x: 147, y: 1197, sel: false, custom: false },
+];
+
+// ★★ 发型的卡片（★ 12 张 76×96；★ 图是**引用**源站 CDN 的真实图）
+const OUTFIT_HAIR_CARDS: { label: string; img: string; x: number; y: number }[] = [
+  { label: "长直发", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_changzhifa.jpg", x: 24, y: 116 },
+  { label: "大波浪", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_dabolang.jpg", x: 106, y: 116 },
+  { label: "波波头", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_bobotou.jpg", x: 188, y: 116 },
+  { label: "齐肩中短发", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_qijianduanfa.jpg", x: 24, y: 220 },
+  { label: "高马尾", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_gaomawei.jpg", x: 106, y: 220 },
+  { label: "低马尾", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_dimawei.jpg", x: 188, y: 220 },
+  { label: "双马尾", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_shuangmawei.jpg", x: 24, y: 324 },
+  { label: "丸子头", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_wanzitou.jpg", x: 106, y: 324 },
+  { label: "半扎发", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_banzha.jpg", x: 188, y: 324 },
+  { label: "编发", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_bianfa.jpg", x: 24, y: 428 },
+  { label: "空气刘海", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_kongqiliuhai.jpg", x: 106, y: 428 },
+  { label: "齐刘海", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_qiliuhai.jpg", x: 188, y: 428 },
+];
+
+// ★★ 妆容的卡片（★ 7 张 76×96；★ 图是**引用**源站 CDN 的真实图）
+const OUTFIT_MAKEUP_CARDS: { label: string; img: string; x: number; y: number }[] = [
+  { label: "素颜", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_suyan.jpg", x: 24, y: 802 },
+  { label: "裸妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_luozhuang.jpg", x: 106, y: 802 },
+  { label: "桃花氛围妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_taohuafenweizhuang.jpg", x: 188, y: 802 },
+  { label: "日常淡妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_richangdanzhuang.jpg", x: 24, y: 906 },
+  { label: "冷艳妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_lengyanzhuang.jpg", x: 106, y: 906 },
+  { label: "甜美妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_tianmeizhuang.jpg", x: 188, y: 906 },
+  { label: "韩系妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_hanxizhuang.jpg", x: 24, y: 1010 },
+];
+
+
 // ★★ Batch 844：左列第二段「脸部 & 身体特征」的**纹身 & 疤痕**卡
 //   （源站**只读**实测；raw 入库在
 //    `docs/research/liblib-canvas-batch844-2026-10-01/raw/source-844-traits.json`）
@@ -485,6 +594,17 @@ export function CharacterEditorPanel({
   };
 
   // ★ 标签行：源站实测是「♀ · 青年 · 东亚 · 现代」（♀ 是图标，不是文本）
+  // ★★ Batch 846：左列第四段「服装造型」的**各类选中态**
+  //   （★ 源站实测的**初始态**：发型的「现代」chip 选中／妆容的「现代」chip 选中／
+  //     发色的**第一枚**色块选中／口红的**第二枚**色块选中／19 张卡**全部未选中**）
+  const [outfitTab, setOutfitTab] = useState("style");
+  const [outfitHairChip, setOutfitHairChip] = useState("现代");
+  const [outfitMakeupChip, setOutfitMakeupChip] = useState("现代");
+  const [outfitHairColor, setOutfitHairColor] = useState(0);
+  const [outfitLipColor, setOutfitLipColor] = useState(1);
+  // ★ 卡片选中态**按小节各存一份**（源站实测：初始一个都没选中）
+  const [outfitCardSel, setOutfitCardSel] = useState<Record<string, string>>({});
+
   const tagText = `· ${age} · ${region} · 现代`;
 
   // ★★ Batch 841：当前页签的**实测滑杆清单**（没有 ⟹ 显示空态说明）
@@ -778,6 +898,208 @@ export function CharacterEditorPanel({
     </div>
   );
 
+// ★★ Batch 846：这一段的**子页签**（★ 源站实测：右栏第一层就是它 ⟹ ⟹ **有标题行**）
+//   「造型」（56 宽，**带文字** ＋ 前置图标）＋「服装」＋「AI 生成」（各 24 宽，只有图标）
+//   ★ 与「脸部精修」段的六枚页签**同一个组件**（★ 文字页签跟着选中项移动）
+//   ★ 图标**字形未采集**（源站是 iconify SVG）⟹ ⟹ 这里用 lucide 占位。
+const OUTFIT_TABS: { id: string; label: string; icon: typeof Shirt }[] = [
+  { id: "style", label: "造型", icon: Shirt },
+  { id: "clothes", label: "服装", icon: Package },
+  { id: "ai", label: "AI 生成", icon: Sparkles },
+];
+
+// ★★ Batch 846：这一段的**滚动区高度**（源站实测 1312）
+//   ＝ 内容底（最后一个色块的底）＋ 80(pb-20) ⟹ ⟹ 由上面的数据**算**出来 ⟹ ⟹ 不是手打常数
+const OUTFIT_CONTENT_BOTTOM = Math.max(
+  ...OUTFIT_LIP_COLORS.map((c) => c.y + 35),
+  ...OUTFIT_MAKEUP_CARDS.map((c) => c.y + 96),
+);
+const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
+
+// ★★ Batch 846：左列第四段「服装造型」
+//   ⟹ ⟹ 源站实测这一段**有标题行** ⟹ ⟹ 右栏第一层是**子页签行**（40 高）
+//   ⟹ ⟹ 内容起点 ＝ 列顶 + 40 + 16(pt-4) ⟹ ⟹ 比「脸部精修」段**低 40px**
+//   ⟹ ⟹ 「服装」「AI 生成」两枚子页签的**内容未实测** ⟹ ⟹ 点它们显示如实说明
+  const renderOutfit = () => (
+    <div className="ce-panel ce-panel--outfit">
+      <div
+        className="ce-section"
+        style={{ minHeight: `${OUTFIT_SCROLL_HEIGHT}px` }}
+      >
+        {OUTFIT_SECTION_TITLES.map((t) => (
+          <h3
+            key={t.title}
+            className="ce-h3 ce-h3--section"
+            style={{ top: `${t.top}px` }}
+            data-character-editor-outfit-title={t.title}
+          >
+            {t.title}
+          </h3>
+        ))}
+
+        {/* ★ 发型：7 枚 chip（★「现代」初始选中）＋ 12 张卡 */}
+        {OUTFIT_HAIR_CHIPS.map((c) => {
+          const on = outfitHairChip === c.label;
+          return (
+            <button
+              key={`hair-chip-${c.label}`}
+              type="button"
+              aria-pressed={on}
+              className={`ce-chip${on ? " is-on" : ""}`}
+              style={{ top: `${c.y}px`, left: `${c.x}px`, width: `${c.w}px` }}
+              data-character-editor-outfit-chip={`发型-${c.label}`}
+              onClick={() => setOutfitHairChip(c.label)}
+            >
+              {c.label}
+            </button>
+          );
+        })}
+        {OUTFIT_HAIR_CARDS.map((c) => {
+          const key = `发型-${c.label}`;
+          const on = outfitCardSel[key] === c.label;
+          return (
+            <button
+              key={`hair-card-${c.label}`}
+              type="button"
+              aria-label={c.label}
+              aria-pressed={on}
+              className={`ce-card ce-card--outfit${on ? " is-on" : ""}`}
+              style={{ top: `${c.y}px`, left: `${c.x}px` }}
+              data-character-editor-outfit-card={key}
+              onClick={() =>
+                setOutfitCardSel((prev) => ({ ...prev, [key]: on ? "" : c.label }))
+              }
+            >
+              <span className="ce-card-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.img} alt="" />
+              </span>
+              <span className="ce-card-name">{c.label}</span>
+            </button>
+          );
+        })}
+
+        {/* ★ 发色：11 枚色块（10 色 ＋ 1 枚「自定义颜色」；★ 初始选中**第一枚**） */}
+        {OUTFIT_HAIR_COLORS.map((c, i) => {
+          const on = outfitHairColor === i;
+          return (
+            <button
+              key={`hair-color-${i}`}
+              type="button"
+              aria-label={c.custom ? "自定义颜色" : "选择发色"}
+              aria-pressed={on}
+              className={`ce-swatch${on ? " is-on" : ""}${
+                c.custom ? " ce-swatch--custom" : ""
+              }`}
+              style={{ top: `${c.y}px`, left: `${c.x}px`, background: c.color }}
+              data-character-editor-outfit-swatch={`发色-${i}`}
+              onClick={() =>
+                c.custom
+                  ? flash("clone mock：自定义颜色未接取色器")
+                  : setOutfitHairColor(i)
+              }
+            >
+              {c.custom ? (
+                <span className="ce-swatch-icon">
+                  <Plus size={18} />
+                </span>
+              ) : null}
+            </button>
+          );
+        })}
+
+        {/* ★ 妆容：7 枚 chip（★ 宽度随文案变）＋ 7 张卡 */}
+        {OUTFIT_MAKEUP_CHIPS.map((c) => {
+          const on = outfitMakeupChip === c.label;
+          return (
+            <button
+              key={`makeup-chip-${c.label}`}
+              type="button"
+              aria-pressed={on}
+              className={`ce-chip${on ? " is-on" : ""}`}
+              style={{ top: `${c.y}px`, left: `${c.x}px`, width: `${c.w}px` }}
+              data-character-editor-outfit-chip={`妆容-${c.label}`}
+              onClick={() => setOutfitMakeupChip(c.label)}
+            >
+              {c.label}
+            </button>
+          );
+        })}
+        {OUTFIT_MAKEUP_CARDS.map((c) => {
+          const key = `妆容-${c.label}`;
+          const on = outfitCardSel[key] === c.label;
+          return (
+            <button
+              key={`makeup-card-${c.label}`}
+              type="button"
+              aria-label={c.label}
+              aria-pressed={on}
+              className={`ce-card ce-card--outfit${on ? " is-on" : ""}`}
+              style={{ top: `${c.y}px`, left: `${c.x}px` }}
+              data-character-editor-outfit-card={key}
+              onClick={() =>
+                setOutfitCardSel((prev) => ({ ...prev, [key]: on ? "" : c.label }))
+              }
+            >
+              <span className="ce-card-media">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={c.img} alt="" />
+              </span>
+              <span className="ce-card-name">{c.label}</span>
+            </button>
+          );
+        })}
+
+        {/* ★ 口红：10 枚色块（★ 初始选中**第二枚**） */}
+        {OUTFIT_LIP_COLORS.map((c, i) => {
+          const on = outfitLipColor === i;
+          return (
+            <button
+              key={`lip-color-${i}`}
+              type="button"
+              aria-label="选择口红颜色"
+              aria-pressed={on}
+              className={`ce-swatch${on ? " is-on" : ""}`}
+              style={{ top: `${c.y}px`, left: `${c.x}px`, background: c.color }}
+              data-character-editor-outfit-swatch={`口红-${i}`}
+              onClick={() => setOutfitLipColor(i)}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  // ★★ Batch 846：这一段的**子页签行**（★ 与「脸部精修」段的页签行**同一个组件**）
+  //   ★ 「服装」「AI 生成」两枚的**内容未实测** ⟹ ⟹ 显示如实说明，不编造控件
+  const renderOutfitTabs = () => (
+    // ★★ 「服装造型」段的子页签行**不是**脸部段那一行（★ 源站实测：那边 `justify-between`
+    //   ⟹ ⟹ 这边 `gap-3` 靠左）⟹ ⟹ 故另开 `.ce-tabs--sub`
+    <div className="ce-tabs ce-tabs--sub" role="tablist">
+      {OUTFIT_TABS.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          role="tab"
+          aria-selected={outfitTab === item.id}
+          aria-label={item.label}
+          className={`ce-tab ${outfitTab === item.id ? "is-text" : "is-icon"}${
+            outfitTab === item.id ? " is-on" : ""
+          }`}
+          data-character-editor-outfit-tab={item.id}
+          onClick={() => setOutfitTab(item.id)}
+        >
+          <span className="ce-tab-icon" aria-hidden="true">
+            <item.icon size={18} />
+          </span>
+          {outfitTab === item.id ? (
+            <span className="ce-tab-text">{item.label}</span>
+          ) : null}
+        </button>
+      ))}
+    </div>
+  );
+
   // ★★ 页签行（★ 源站实测：**只在「脸部精修」段存在** ⟹ ⟹ 别的段**不显示**它）
   //   ★ 抽成函数（★ batch 844）：⟹ ⟹ 阴性臂 N6 可以注入「页签行在不该出现的段也出现」
   //   这条**真实**缺陷 ⟹ ⟹ 而不必塞一个假的标记元素。
@@ -1052,6 +1374,27 @@ export function CharacterEditorPanel({
               //   ⟹ ⟹ 源站实测这一段：**18 条**滑杆（5 条量程 −100..100、6 条带「i」）
               //   ⟹ ⟹ 且这一段**也没有标题行** ⟹ ⟹ 右栏**第一层就是滚动区**
               renderBody()
+            ) : segment === "outfit" ? (
+              // ★★ Batch 846：左列第四段「服装造型」**已实现**
+              //   ⟹ ⟹ 源站实测这一段**有标题行** ⟹ ⟹ 右栏第一层是**子页签行**
+              //   ⟹ ⟹ 「造型」这一页 ＝ 四个小节（发型／发色／妆容／口红）
+              //   ⟹ ⟹ 「服装」「AI 生成」两页的**内容未实测** ⟹ ⟹ 显示如实说明
+              <>
+                {renderOutfitTabs()}
+                {outfitTab === "style" ? (
+                  renderOutfit()
+                ) : (
+                  <div className="ce-panel">
+                    <div className="ce-section">
+                      <p className="ce-empty" data-character-editor-empty>
+                        {`「${OUTFIT_TABS.find((t) => t.id === outfitTab)?.label}」这一页的控件 ` +
+                          "**未实测**（源站那趟只点了分段 ⟹ ⟹ 没点开这两枚子页签）⟹ ⟹ " +
+                          "这里**不编造**控件，只如实说明。"}
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </>
             ) : (
               // ★★ Batch 843：剩下的两段（服装造型／音色音调）
               //   ⟹ ⟹ 源站实测**页签行不存在**，右栏是**那一段自己的内容**
@@ -1085,17 +1428,22 @@ export function CharacterEditorPanel({
                 <Zap size={18} />
                 <span className="ce-generate-text">确认生成</span>
               </button>
-              <button
-                type="button"
-                className="ce-smart"
-                aria-label="智能调整"
-                data-character-editor-smart
-                onClick={() => flash("clone mock：智能调整未接真实算法")}
-              >
-                <Sparkles size={18} />
-              </button>
-            </div>
-          </aside>
+              {/* ★★ Batch 846：源站「服装造型」段的底部生成遮罩**只有一枚整宽
+                  240×36 的「确认生成」** ⟹ ⟹ **没有**「智能调整」那枚 36×36
+                  ⟹ ⟹ 而「脸部精修」段是 196 ＋ gap 8 ＋ 36 ⟹ ⟹ 两段**结构不同**
+                  ⟹ ⟹ 这里按段切换（★ 「确认生成」那枚 flex:1 ⟹ ⟹ 少一枚就正好 240） */}
+              {segment === "outfit" ? null : (
+                <button
+                  type="button"
+                  className="ce-smart"
+                  aria-label="智能调整"
+                  data-character-editor-smart
+                  onClick={() => flash("clone mock：智能调整未接真实算法")}
+                >
+                  <Sparkles size={18} />
+                </button>
+              )}
+            </div>          </aside>
         </div>
 
         {/* ── 底栏 ───────────────────────────────────────────────── */}

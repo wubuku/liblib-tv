@@ -1,0 +1,86 @@
+// ★★ Batch 846：左列第四段「服装造型」的四个小节标题（★ 源站实测）
+const OUTFIT_SECTION_TITLES: { title: string; top: number }[] = [
+  { title: "发型", top: 16 },
+  { title: "发色", top: 544 },
+  { title: "妆容", top: 670 },
+  { title: "口红", top: 1126 },
+];
+
+// ★★ 发型的 chip 行（★ 7 枚 50×26；**「现代」初始选中** ⟹ 白底黑字）
+const OUTFIT_HAIR_CHIPS: { label: string; x: number; y: number; w: number; sel: boolean }[] = [
+  { label: "现代", x: 24, y: 46, w: 50, sel: true },
+  { label: "古风", x: 80, y: 46, w: 50, sel: false },
+  { label: "民国", x: 136, y: 46, w: 50, sel: false },
+  { label: "仙侠", x: 192, y: 46, w: 50, sel: false },
+  { label: "科幻", x: 24, y: 78, w: 50, sel: false },
+  { label: "民族", x: 80, y: 78, w: 50, sel: false },
+  { label: "儿童", x: 136, y: 78, w: 50, sel: false },
+];
+
+// ★★ 妆容的 chip 行（★ 7 枚，**宽度随文案变**（「欧美时尚」74 ⟹ 4 个字））
+const OUTFIT_MAKEUP_CHIPS: { label: string; x: number; y: number; w: number; sel: boolean }[] = [
+  { label: "现代", x: 24, y: 700, w: 50, sel: true },
+  { label: "古代", x: 80, y: 700, w: 50, sel: false },
+  { label: "民国", x: 136, y: 700, w: 50, sel: false },
+  { label: "欧美时尚", x: 24, y: 732, w: 74, sel: false },
+  { label: "国潮", x: 104, y: 732, w: 50, sel: false },
+  { label: "特效", x: 160, y: 732, w: 50, sel: false },
+  { label: "儿童", x: 24, y: 764, w: 50, sel: false },
+];
+
+// ★★ 发色的色块（★ 10 枚颜色 ＋ 1 枚「自定义颜色」⟹ 初始选中**第一枚**）
+const OUTFIT_HAIR_COLORS: { color: string; x: number; y: number; sel: boolean; custom: boolean }[] = [
+  { color: "rgb(11, 11, 11)", x: 24, y: 574, sel: true, custom: false },
+  { color: "rgb(35, 23, 11)", x: 65, y: 574, sel: false, custom: false },
+  { color: "rgb(92, 53, 24)", x: 106, y: 574, sel: false, custom: false },
+  { color: "rgb(128, 81, 45)", x: 147, y: 574, sel: false, custom: false },
+  { color: "rgb(172, 118, 80)", x: 188, y: 574, sel: false, custom: false },
+  { color: "rgb(210, 162, 125)", x: 229, y: 574, sel: false, custom: false },
+  { color: "rgb(108, 90, 78)", x: 24, y: 615, sel: false, custom: false },
+  { color: "rgb(129, 129, 129)", x: 65, y: 615, sel: false, custom: false },
+  { color: "rgb(216, 208, 196)", x: 106, y: 615, sel: false, custom: false },
+  { color: "rgb(240, 226, 200)", x: 147, y: 615, sel: false, custom: false },
+  { color: "rgba(0, 0, 0, 0)", x: 188, y: 615, sel: false, custom: true },
+];
+
+// ★★ 口红的色块（★ 10 枚；★ 「口红」那节**没有**「自定义颜色」）
+const OUTFIT_LIP_COLORS: { color: string; x: number; y: number; sel: boolean; custom: boolean }[] = [
+  { color: "rgb(102, 38, 48)", x: 24, y: 1156, sel: false, custom: false },
+  { color: "rgb(143, 51, 65)", x: 65, y: 1156, sel: true, custom: false },
+  { color: "rgb(178, 68, 84)", x: 106, y: 1156, sel: false, custom: false },
+  { color: "rgb(200, 95, 106)", x: 147, y: 1156, sel: false, custom: false },
+  { color: "rgb(142, 59, 82)", x: 188, y: 1156, sel: false, custom: false },
+  { color: "rgb(157, 82, 102)", x: 229, y: 1156, sel: false, custom: false },
+  { color: "rgb(181, 111, 113)", x: 24, y: 1197, sel: false, custom: false },
+  { color: "rgb(210, 139, 138)", x: 65, y: 1197, sel: false, custom: false },
+  { color: "rgb(111, 53, 65)", x: 106, y: 1197, sel: false, custom: false },
+  { color: "rgb(211, 162, 159)", x: 147, y: 1197, sel: false, custom: false },
+];
+
+// ★★ 发型的卡片（★ 12 张 76×96；★ 图是**引用**源站 CDN 的真实图）
+const OUTFIT_HAIR_CARDS: { label: string; img: string; x: number; y: number }[] = [
+  { label: "长直发", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_changzhifa.jpg", x: 24, y: 116 },
+  { label: "大波浪", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_dabolang.jpg", x: 106, y: 116 },
+  { label: "波波头", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_bobotou.jpg", x: 188, y: 116 },
+  { label: "齐肩中短发", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_qijianduanfa.jpg", x: 24, y: 220 },
+  { label: "高马尾", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_gaomawei.jpg", x: 106, y: 220 },
+  { label: "低马尾", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_dimawei.jpg", x: 188, y: 220 },
+  { label: "双马尾", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_shuangmawei.jpg", x: 24, y: 324 },
+  { label: "丸子头", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_wanzitou.jpg", x: 106, y: 324 },
+  { label: "半扎发", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_banzha.jpg", x: 188, y: 324 },
+  { label: "编发", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_bianfa.jpg", x: 24, y: 428 },
+  { label: "空气刘海", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_kongqiliuhai.jpg", x: 106, y: 428 },
+  { label: "齐刘海", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_male_qiliuhai.jpg", x: 188, y: 428 },
+];
+
+// ★★ 妆容的卡片（★ 7 张 76×96；★ 图是**引用**源站 CDN 的真实图）
+const OUTFIT_MAKEUP_CARDS: { label: string; img: string; x: number; y: number }[] = [
+  { label: "素颜", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_suyan.jpg", x: 24, y: 802 },
+  { label: "裸妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_luozhuang.jpg", x: 106, y: 802 },
+  { label: "桃花氛围妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_taohuafenweizhuang.jpg", x: 188, y: 802 },
+  { label: "日常淡妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_richangdanzhuang.jpg", x: 24, y: 906 },
+  { label: "冷艳妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_lengyanzhuang.jpg", x: 106, y: 906 },
+  { label: "甜美妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_tianmeizhuang.jpg", x: 188, y: 906 },
+  { label: "韩系妆", img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/styling/catalog/morden_female_hanxizhuang.jpg", x: 24, y: 1010 },
+];
+
