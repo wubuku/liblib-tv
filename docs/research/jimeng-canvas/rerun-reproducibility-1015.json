@@ -5,10 +5,10 @@
  "rule2": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **完备性用加法验的时候，两边不许同源 —— 分母的完备性才是命门**",
  "rule3": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「探针跑成功了」不等于「产物被刷新了」—— 只能靠重跑后比对字节、或看 mtime 变没变来判，不许看退出码**",
  "pen_is_the_book": {
-  "n_zero_coupling_head": 845,
-  "n_zero_coupling_now": 845,
-  "n_positive_present_head": 6991,
-  "n_positive_present_now": 6991,
+  "n_zero_coupling_head": 855,
+  "n_zero_coupling_now": 855,
+  "n_positive_present_head": 7007,
+  "n_positive_present_now": 7007,
   "n_audit_2015_lines": 2165,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **被测的账和记账的笔是同一份文件时，往笔上多写一句，被测的那些账就跟着重算** —— 1005 普查的是 `_ausrc`，而本批往 audit 里塞了判据 ⇒ ⇒ ⇒ ⇒ ⇒ 所以它的读数必然跟着变"
  },
@@ -280,7 +280,378 @@
     "p_summary_readable": true
    }
   ],
-  "what_this_is_not": "⭐⭐⭐⭐⭐ **这不是「红的清单」** —— 「自报 False」里**混着「预测被否型」（False 才是结论）** ⇒ ⇒ **⇒ 而红/被否型/前提不成立 的分类必须逐条读判据才能下 ⇒ ⇒ **⇒ 所以本读数只负责「看见」，定性留给 audit 的账**"
+  "what_this_is_not": "⭐⭐⭐⭐⭐ **这不是「红的清单」** —— 「自报 False」里**混着「预测被否型」（False 才是结论）** ⇒ ⇒ **⇒ 而红/被否型/前提不成立 的分类必须逐条读判据才能下 ⇒ ⇒ **⇒ 所以本读数只负责「看见」，定性留给 audit 的账**",
+  "n_books_with_criteria_detail": 8,
+  "n_books_without_criteria_detail": 21,
+  "books_without_criteria_detail": [
+   "anchor-gate-coverage-1021.json",
+   "anchor-identity-1030.json",
+   "assertion-vs-behavior-1018.json",
+   "baseline-host-misuse-1016.json",
+   "behavior-harness-1019.json",
+   "connect-contract-1032a.json",
+   "criterion-direction-1025.json",
+   "criterion-effectiveness-1026.json",
+   "empty-ambiguity-1014.json",
+   "exemption-claims-1024.json",
+   "expanded-contract-1032b4.json",
+   "gen-contract-1032b2.json",
+   "harness-fidelity-1020.json",
+   "interaction-wiring-check-1032.json",
+   "live-canvas-check-1031.json",
+   "mention-contract-1032b3.json",
+   "noop-contract-1032c.json",
+   "replica-contract-1031d.json",
+   "replica-coverage-1017.json",
+   "type-layer-gate-1023.json",
+   "wired-contract-1032b1.json"
+  ],
+  "criteria_red_by_book": {},
+  "n_criteria_red_named": 0,
+  "criteria_detector_selftest_ok": true,
+  "criteria_detector_selftest_n_cases": 5,
+  "criteria_detector_selftest": [
+   {
+    "input": "判据逐条 = P1_hold_1005=True | P2_hold_1005=Fals",
+    "want": {
+     "P1_hold_1005": "True",
+     "P2_hold_1005": "False"
+    },
+    "got": {
+     "P1_hold_1005": "True",
+     "P2_hold_1005": "False"
+    },
+    "ok": true
+   },
+   {
+    "input": "P1..P5 = [True, False]\n判据逐条 = P1_hold_1007=T",
+    "want": {
+     "P1_hold_1007": "True"
+    },
+    "got": {
+     "P1_hold_1007": "True"
+    },
+    "ok": true
+   },
+   {
+    "input": "判据逐条 = A=True\n判据逐条 = B=False",
+    "want": {
+     "B": "False"
+    },
+    "got": {
+     "B": "False"
+    },
+    "ok": true
+   },
+   {
+    "input": "P1..P5 = [True, True]",
+    "want": null,
+    "got": null,
+    "ok": true
+   },
+   {
+    "input": "",
+    "want": null,
+    "got": null,
+    "ok": true
+   }
+  ],
+  "n_books_with_ledger": 2,
+  "n_books_with_ledger_complete": 2,
+  "n_ledger_criteria": 12,
+  "ledger_rows": [
+   {
+    "golden": "anchor-gate-coverage-1021.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "anchor-identity-1030.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "assertion-vs-behavior-1018.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "baseline-host-misuse-1016.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "behavior-harness-1019.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "change-locality-1011.json",
+    "criteria_detail_readable": true,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": 9,
+    "ledger_complete": null
+   },
+   {
+    "golden": "connect-contract-1032a.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": false,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "criterion-direction-1025.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "criterion-effectiveness-1026.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "edit-visibility-1009.json",
+    "criteria_detail_readable": true,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": 6,
+    "ledger_complete": null
+   },
+   {
+    "golden": "empty-ambiguity-1014.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "exemption-claims-1024.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "expanded-contract-1032b4.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": false,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "gen-contract-1032b2.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": false,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "global-detection-1012.json",
+    "criteria_detail_readable": true,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": 9,
+    "ledger_complete": null
+   },
+   {
+    "golden": "golden-freshness-1008.json",
+    "criteria_detail_readable": true,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": 7,
+    "ledger_complete": null
+   },
+   {
+    "golden": "harness-fidelity-1020.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "interaction-wiring-check-1032.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": false,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "live-canvas-check-1031.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "mention-contract-1032b3.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": false,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "noop-contract-1032c.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": false,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "occurrence-ledger-1013.json",
+    "criteria_detail_readable": true,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": 8,
+    "ledger_complete": null
+   },
+   {
+    "golden": "real-history-detection-1010.json",
+    "criteria_detail_readable": true,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": 7,
+    "ledger_complete": null
+   },
+   {
+    "golden": "replica-contract-1031d.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": false,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "replica-coverage-1017.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "stem-attribution-1007.json",
+    "criteria_detail_readable": true,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": true,
+    "ledger_n_kinds": 7,
+    "ledger_n_criteria": 7,
+    "ledger_complete": true
+   },
+   {
+    "golden": "type-layer-gate-1023.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "wired-contract-1032b1.json",
+    "criteria_detail_readable": false,
+    "n_criteria_red": 0,
+    "artifact_readable": false,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null
+   },
+   {
+    "golden": "zero-coupling-anchors-1005.json",
+    "criteria_detail_readable": true,
+    "n_criteria_red": 0,
+    "artifact_readable": true,
+    "ledger_published": true,
+    "ledger_n_kinds": 5,
+    "ledger_n_criteria": 5,
+    "ledger_complete": true
+   }
+  ],
+  "three_states": "⭐⭐⭐⭐⭐ **红账现在是三档**：**① 红（读到了 False）② 不可判定（这本书没有逐条明细 ⇒ 既不许说它绿、也不许说它红）③ 绿（读到了、且没有一条 False）** ⇒ ⇒ **⇒ 而第三档不是「凑数」—— 上一版把「读不到」和「没有假」混成一栏** ⇒ ⇒ **⇒ 而 ② 那一栏今天有 21 本**"
  },
  "discovery": {
   "channel_a_goldens": 31,
@@ -566,15 +937,26 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "anchor-identity-1030.json",
    "probe": "scripts/jimeng_probe1030_anchor_identity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 62282,
-   "n_bytes_fresh": 62282,
+   "n_bytes": 62452,
+   "n_bytes_fresh": 62452,
    "state": "reproduced",
    "tail": [
     "P 为假的： 无 | 共 7 条 P 判据",
@@ -584,7 +966,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "assertion-vs-behavior-1018.json",
@@ -602,7 +995,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "baseline-host-misuse-1016.json",
@@ -620,7 +1024,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "behavior-harness-1019.json",
@@ -638,7 +1053,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "change-locality-1011.json",
@@ -649,14 +1075,35 @@
    "n_bytes_fresh": 3082,
    "state": "reproduced",
    "tail": [
-    "P1..P9 = [True, True, True, True, True, True, True, True, True]",
+    "判据逐条 = P1_hold_2011=True | P2_hold_2011=True | P3_hold_2011=True | P4_hold_2011=True | P5_hold_2011=True | P6_hold_2011=True | P7_hold_2011=True | P8_hold_2011=True | P9_hold_2011=True",
     "PROBE_1011_DONE -> /tmp/b1011-change-locality.json"
    ],
    "n_self_reported_false": 0,
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": true,
+   "criteria_detail": {
+    "P1_hold_2011": "True",
+    "P2_hold_2011": "True",
+    "P3_hold_2011": "True",
+    "P4_hold_2011": "True",
+    "P5_hold_2011": "True",
+    "P6_hold_2011": "True",
+    "P7_hold_2011": "True",
+    "P8_hold_2011": "True",
+    "P9_hold_2011": "True"
+   },
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": 9,
+   "ledger_n_criteria_keys": 9,
+   "ledger_complete": null
   },
   {
    "golden": "connect-contract-1032a.json",
@@ -674,15 +1121,26 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": false,
+   "artifact_readable": false,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "criterion-direction-1025.json",
    "probe": "scripts/jimeng_probe1025_criterion_direction.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 319901,
-   "n_bytes_fresh": 319901,
+   "n_bytes": 320687,
+   "n_bytes_fresh": 320687,
    "state": "reproduced",
    "tail": [
     "P1..P7 = [True, True, True, True, True, True, True]",
@@ -692,7 +1150,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "criterion-effectiveness-1026.json",
@@ -710,7 +1179,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "edit-visibility-1009.json",
@@ -721,22 +1201,40 @@
    "n_bytes_fresh": 1437,
    "state": "reproduced",
    "tail": [
-    "P1..P6 = [True, True, True, True, True, True]",
+    "判据逐条 = P1_hold_1009=True | P2_hold_1009=True | P3_hold_1009=True | P4_hold_1009=True | P5_hold_1009=True | P6_hold_1009=True",
     "PROBE_1009_DONE -> /tmp/b1009-edit-visibility.json"
    ],
    "n_self_reported_false": 0,
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": true,
+   "criteria_detail": {
+    "P1_hold_1009": "True",
+    "P2_hold_1009": "True",
+    "P3_hold_1009": "True",
+    "P4_hold_1009": "True",
+    "P5_hold_1009": "True",
+    "P6_hold_1009": "True"
+   },
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": 6,
+   "ledger_n_criteria_keys": 6,
+   "ledger_complete": null
   },
   {
    "golden": "empty-ambiguity-1014.json",
    "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 95678,
-   "n_bytes_fresh": 95678,
+   "n_bytes": 140197,
+   "n_bytes_fresh": 140197,
    "state": "reproduced",
    "tail": [
     "P1..P9 = [True, True, True, True, True, True, True, True, True]",
@@ -746,7 +1244,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "exemption-claims-1024.json",
@@ -764,7 +1273,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "expanded-contract-1032b4.json",
@@ -782,7 +1302,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "false_list_none"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": false,
+   "artifact_readable": false,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "gen-contract-1032b2.json",
@@ -800,7 +1331,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "false_list_none"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": false,
+   "artifact_readable": false,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "global-detection-1012.json",
@@ -811,14 +1353,35 @@
    "n_bytes_fresh": 4489,
    "state": "reproduced",
    "tail": [
-    "P1..P9 = [True, True, True, True, True, True, True, True, True]",
+    "判据逐条 = P1_hold_2012=True | P2_hold_2012=True | P3_hold_2012=True | P4_hold_2012=True | P5_hold_2012=True | P6_hold_2012=True | P7_hold_2012=True | P8_hold_2012=True | P9_hold_2012=True",
     "PROBE_1012_DONE -> /tmp/b1012-global-detection.json"
    ],
    "n_self_reported_false": 0,
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": true,
+   "criteria_detail": {
+    "P1_hold_2012": "True",
+    "P2_hold_2012": "True",
+    "P3_hold_2012": "True",
+    "P4_hold_2012": "True",
+    "P5_hold_2012": "True",
+    "P6_hold_2012": "True",
+    "P7_hold_2012": "True",
+    "P8_hold_2012": "True",
+    "P9_hold_2012": "True"
+   },
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": 9,
+   "ledger_n_criteria_keys": 9,
+   "ledger_complete": null
   },
   {
    "golden": "golden-freshness-1008.json",
@@ -829,14 +1392,33 @@
    "n_bytes_fresh": 1215,
    "state": "reproduced",
    "tail": [
-    "退出码自检 = True | 本次退出码 = 0",
+    "判据逐条 = P1_hold_1008=True | P2_hold_1008=True | P3_hold_1008=True | P4_hold_1008=True | P5_hold_1008=True | P6_hold_1008=True | P7_hold_1008=True",
     "PROBE_1008_DONE -> /tmp/b1008-golden-freshness.json"
    ],
    "n_self_reported_false": 0,
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": true,
+   "criteria_detail": {
+    "P1_hold_1008": "True",
+    "P2_hold_1008": "True",
+    "P3_hold_1008": "True",
+    "P4_hold_1008": "True",
+    "P5_hold_1008": "True",
+    "P6_hold_1008": "True",
+    "P7_hold_1008": "True"
+   },
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": 7,
+   "ledger_n_criteria_keys": 7,
+   "ledger_complete": null
   },
   {
    "golden": "harness-fidelity-1020.json",
@@ -854,7 +1436,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "interaction-wiring-check-1032.json",
@@ -872,7 +1465,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "false_list_none"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": false,
+   "artifact_readable": false,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "live-canvas-check-1031.json",
@@ -890,7 +1494,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "false_list_none"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "mention-contract-1032b3.json",
@@ -908,7 +1523,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "false_list_none"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": false,
+   "artifact_readable": false,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "noop-contract-1032c.json",
@@ -926,7 +1552,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "false_list_none"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": false,
+   "artifact_readable": false,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "occurrence-ledger-1013.json",
@@ -937,14 +1574,34 @@
    "n_bytes_fresh": 20268,
    "state": "reproduced",
    "tail": [
-    "P1..P8 = [True, True, True, True, True, True, True, True]",
+    "判据逐条 = P1_hold_2013=True | P2_hold_2013=True | P3_hold_2013=True | P4_hold_2013=True | P5_hold_2013=True | P6_hold_2013=True | P7_hold_2013=True | P8_hold_2013=True",
     "PROBE_1013_DONE -> /tmp/b1013-occurrence-ledger.json"
    ],
    "n_self_reported_false": 0,
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": true,
+   "criteria_detail": {
+    "P1_hold_2013": "True",
+    "P2_hold_2013": "True",
+    "P3_hold_2013": "True",
+    "P4_hold_2013": "True",
+    "P5_hold_2013": "True",
+    "P6_hold_2013": "True",
+    "P7_hold_2013": "True",
+    "P8_hold_2013": "True"
+   },
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": 8,
+   "ledger_n_criteria_keys": 8,
+   "ledger_complete": null
   },
   {
    "golden": "real-history-detection-1010.json",
@@ -955,14 +1612,33 @@
    "n_bytes_fresh": 3232,
    "state": "reproduced",
    "tail": [
-    "P1..P7 = [True, True, True, True, True, True, True]",
+    "判据逐条 = P1_hold_1010=True | P2_hold_1010=True | P3_hold_1010=True | P4_hold_1010=True | P5_hold_1010=True | P6_hold_1010=True | P7_hold_1010=True",
     "PROBE_1010_DONE -> /tmp/b1010-real-history-detection.json"
    ],
    "n_self_reported_false": 0,
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": true,
+   "criteria_detail": {
+    "P1_hold_1010": "True",
+    "P2_hold_1010": "True",
+    "P3_hold_1010": "True",
+    "P4_hold_1010": "True",
+    "P5_hold_1010": "True",
+    "P6_hold_1010": "True",
+    "P7_hold_1010": "True"
+   },
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": 7,
+   "ledger_n_criteria_keys": 7,
+   "ledger_complete": null
   },
   {
    "golden": "replica-contract-1031d.json",
@@ -980,7 +1656,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "false_list_none"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": false,
+   "artifact_readable": false,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "replica-coverage-1017.json",
@@ -998,7 +1685,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "stem-attribution-1007.json",
@@ -1009,14 +1707,33 @@
    "n_bytes_fresh": 1272,
    "state": "reproduced",
    "tail": [
-    "P1..P6 = [True, True, True, True, True, True]",
+    "判据逐条 = P1_hold_1007=True | P2_hold_1007=True | P3_hold_1007=True | P4_hold_1007=True | P5_hold_1007=True | P6_hold_1007=True | P7_hold_1007=True",
     "PROBE_1007_DONE -> /tmp/b1007-stem-attribution.json"
    ],
    "n_self_reported_false": 0,
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": true,
+   "criteria_detail": {
+    "P1_hold_1007": "True",
+    "P2_hold_1007": "True",
+    "P3_hold_1007": "True",
+    "P4_hold_1007": "True",
+    "P5_hold_1007": "True",
+    "P6_hold_1007": "True",
+    "P7_hold_1007": "True"
+   },
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": true,
+   "ledger_n_kinds": 7,
+   "ledger_n_criteria": 7,
+   "ledger_n_criteria_keys": 7,
+   "ledger_complete": true
   },
   {
    "golden": "type-layer-gate-1023.json",
@@ -1034,7 +1751,18 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "wired-contract-1032b1.json",
@@ -1052,25 +1780,53 @@
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": false,
+   "criteria_detail": {},
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": false,
+   "artifact_readable": false,
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null
   },
   {
    "golden": "zero-coupling-anchors-1005.json",
    "probe": "scripts/jimeng_probe1005_zero_coupling_census.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 129678,
-   "n_bytes_fresh": 129678,
+   "n_bytes": 131149,
+   "n_bytes_fresh": 131149,
    "state": "reproduced",
    "tail": [
-    "P1..P5 = [True, True, True, True, True]",
+    "判据逐条 = P1_hold_1005=True | P2_hold_1005=True | P3_hold_1005=True | P4_hold_1005=True | P5_hold_1005=True",
     "PROBE_1005_DONE -> /tmp/b1005-zero-coupling-census.json"
    ],
    "n_self_reported_false": 0,
    "p_summary_readable": true,
    "self_report_detail": [
     "p_list"
-   ]
+   ],
+   "criteria_detail_readable": true,
+   "criteria_detail": {
+    "P1_hold_1005": "True",
+    "P2_hold_1005": "True",
+    "P3_hold_1005": "True",
+    "P4_hold_1005": "True",
+    "P5_hold_1005": "True"
+   },
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "ledger_published": true,
+   "ledger_n_kinds": 5,
+   "ledger_n_criteria": 5,
+   "ledger_n_criteria_keys": 5,
+   "ledger_complete": true
   }
  ],
  "totals": {
@@ -1153,17 +1909,146 @@
  },
  "p8_invariants_invisible_to_1014": {
   "census_n_goldens": 30,
-  "census_n_ambiguous": 235,
+  "census_n_ambiguous": 364,
   "census_n_self_provable": 10,
-  "self_ambiguous": 11,
+  "self_ambiguous": 140,
   "self_ambiguous_paths": [
    "/red_ledger/books_self_reporting_false",
    "/red_ledger/detector_selftest/[5]/want_n",
    "/red_ledger/detector_selftest/[5]/got_n",
    "/red_ledger/books_rc1_judgement_red",
    "/red_ledger/books_rc2_instrument_crashed",
+   "/red_ledger/criteria_detector_selftest/[3]/want",
+   "/red_ledger/criteria_detector_selftest/[3]/got",
+   "/red_ledger/criteria_detector_selftest/[4]/want",
+   "/red_ledger/criteria_detector_selftest/[4]/got",
+   "/red_ledger/ledger_rows/[0]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[0]/ledger_complete",
+   "/red_ledger/ledger_rows/[1]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[1]/ledger_complete",
+   "/red_ledger/ledger_rows/[2]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[2]/ledger_complete",
+   "/red_ledger/ledger_rows/[3]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[3]/ledger_complete",
+   "/red_ledger/ledger_rows/[4]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[4]/ledger_complete",
+   "/red_ledger/ledger_rows/[5]/ledger_complete",
+   "/red_ledger/ledger_rows/[6]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[6]/ledger_complete",
+   "/red_ledger/ledger_rows/[7]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[7]/ledger_complete",
+   "/red_ledger/ledger_rows/[8]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[8]/ledger_complete",
+   "/red_ledger/ledger_rows/[9]/ledger_complete",
+   "/red_ledger/ledger_rows/[10]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[10]/ledger_complete",
+   "/red_ledger/ledger_rows/[11]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[11]/ledger_complete",
+   "/red_ledger/ledger_rows/[12]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[12]/ledger_complete",
+   "/red_ledger/ledger_rows/[13]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[13]/ledger_complete",
+   "/red_ledger/ledger_rows/[14]/ledger_complete",
+   "/red_ledger/ledger_rows/[15]/ledger_complete",
+   "/red_ledger/ledger_rows/[16]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[16]/ledger_complete",
+   "/red_ledger/ledger_rows/[17]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[17]/ledger_complete",
+   "/red_ledger/ledger_rows/[18]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[18]/ledger_complete",
+   "/red_ledger/ledger_rows/[19]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[19]/ledger_complete",
+   "/red_ledger/ledger_rows/[20]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[20]/ledger_complete",
+   "/red_ledger/ledger_rows/[21]/ledger_complete",
+   "/red_ledger/ledger_rows/[22]/ledger_complete",
+   "/red_ledger/ledger_rows/[23]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[23]/ledger_complete",
+   "/red_ledger/ledger_rows/[24]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[24]/ledger_complete",
+   "/red_ledger/ledger_rows/[26]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[26]/ledger_complete",
+   "/red_ledger/ledger_rows/[27]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[27]/ledger_complete",
    "/discovery/unlinked",
    "/rounds/[2]/drifted",
+   "/books/[0]/criteria_red",
+   "/books/[0]/ledger_n_criteria",
+   "/books/[0]/ledger_complete",
+   "/books/[1]/criteria_red",
+   "/books/[1]/ledger_n_criteria",
+   "/books/[1]/ledger_complete",
+   "/books/[2]/criteria_red",
+   "/books/[2]/ledger_n_criteria",
+   "/books/[2]/ledger_complete",
+   "/books/[3]/criteria_red",
+   "/books/[3]/ledger_n_criteria",
+   "/books/[3]/ledger_complete",
+   "/books/[4]/criteria_red",
+   "/books/[4]/ledger_n_criteria",
+   "/books/[4]/ledger_complete",
+   "/books/[5]/criteria_red",
+   "/books/[5]/ledger_complete",
+   "/books/[6]/criteria_red",
+   "/books/[6]/ledger_n_criteria",
+   "/books/[6]/ledger_complete",
+   "/books/[7]/criteria_red",
+   "/books/[7]/ledger_n_criteria",
+   "/books/[7]/ledger_complete",
+   "/books/[8]/criteria_red",
+   "/books/[8]/ledger_n_criteria",
+   "/books/[8]/ledger_complete",
+   "/books/[9]/criteria_red",
+   "/books/[9]/ledger_complete",
+   "/books/[10]/criteria_red",
+   "/books/[10]/ledger_n_criteria",
+   "/books/[10]/ledger_complete",
+   "/books/[11]/criteria_red",
+   "/books/[11]/ledger_n_criteria",
+   "/books/[11]/ledger_complete",
+   "/books/[12]/criteria_red",
+   "/books/[12]/ledger_n_criteria",
+   "/books/[12]/ledger_complete",
+   "/books/[13]/criteria_red",
+   "/books/[13]/ledger_n_criteria",
+   "/books/[13]/ledger_complete",
+   "/books/[14]/criteria_red",
+   "/books/[14]/ledger_complete",
+   "/books/[15]/criteria_red",
+   "/books/[15]/ledger_complete",
+   "/books/[16]/criteria_red",
+   "/books/[16]/ledger_n_criteria",
+   "/books/[16]/ledger_complete",
+   "/books/[17]/criteria_red",
+   "/books/[17]/ledger_n_criteria",
+   "/books/[17]/ledger_complete",
+   "/books/[18]/criteria_red",
+   "/books/[18]/ledger_n_criteria",
+   "/books/[18]/ledger_complete",
+   "/books/[19]/criteria_red",
+   "/books/[19]/ledger_n_criteria",
+   "/books/[19]/ledger_complete",
+   "/books/[20]/criteria_red",
+   "/books/[20]/ledger_n_criteria",
+   "/books/[20]/ledger_complete",
+   "/books/[21]/criteria_red",
+   "/books/[21]/ledger_complete",
+   "/books/[22]/criteria_red",
+   "/books/[22]/ledger_complete",
+   "/books/[23]/criteria_red",
+   "/books/[23]/ledger_n_criteria",
+   "/books/[23]/ledger_complete",
+   "/books/[24]/criteria_red",
+   "/books/[24]/ledger_n_criteria",
+   "/books/[24]/ledger_complete",
+   "/books/[25]/criteria_red",
+   "/books/[26]/criteria_red",
+   "/books/[26]/ledger_n_criteria",
+   "/books/[26]/ledger_complete",
+   "/books/[27]/criteria_red",
+   "/books/[27]/ledger_n_criteria",
+   "/books/[27]/ledger_complete",
+   "/books/[28]/criteria_red",
    "/diff_shape/drifted_books",
    "/diff_shape/paths_touched",
    "/empty_list_invariants/tail_is_empty_iff_probe_printed_nothing",
@@ -1195,12 +2080,12 @@
   "0/31": "被拒绝认领的比例（分母 = 通道 A）",
   "29/31": "认领到的比例（分母 = 通道 A）",
   "8": "第 1 轮里漂移的本数",
-  "11": "1014 那台普查判本探针产物「不可自证」的条数",
+  "140": "1014 那台普查判本探针产物「不可自证」的条数",
   "4": "本探针在产物里登记的不变式条数",
-  "235": "1014 普查口径下全部账里「不可自证」的总数",
+  "364": "1014 普查口径下全部账里「不可自证」的总数",
   "30": "1014 普查看到的 golden 本数（已排除它自己那本）",
-  "845": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
-  "6991": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
+  "855": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
+  "7007": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
   "4/9": "1015 上一版的不动点漂移比例（已挂【1015 改写横幅】，原文保留）",
   "2/9": "曾观测到的一轮漂移比例（分母 = 认领到的本数）",
   "0/9": "末轮的漂移比例（分母 = 认领到的本数）",
