@@ -25,6 +25,39 @@ import json
 import re
 import subprocess
 import sys
+
+
+# ── ⭐⭐⭐⭐⭐ 1032-②f：**退出码必须真的说话** ——
+#   ⇒ ⇒ 本脚本以前是一个平铺脚本、**没有 `sys.exit`** ⇒ ⇒
+#   ⇒ ⇒⇒ **无论 P1..PN 有几条是 False，退出码恒为 0** ⇒ ⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 而 1015 的分类器是「rc≠0 ⇒ crashed」⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒ **⇒ 于是「自报红」被记成了「rc=0 / state=reproduced」** ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒ **⇒ 「退出码恒 0 的门，等于没有门」—— 本批把它变成真话**：
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒   ① 判据红 ⇒ **rc=1**  ② 仪器崩 ⇒ **rc=2**  ③ 全绿 ⇒ **rc=0**
+#   ⚠️⭐⭐⭐⭐⭐ **崩与红必须分开记账** —— 而它们以前**都记成了 0**
+#   ⚠️ 而「红」必须先逐条定性过：**预测被否型**（False 才是结论）不算红
+
+
+def _exit_code(criteria, crashed=False):
+    """退出码的**纯函数**（⇒ 可单测、也可被别的门当契约引用）。"""
+    if crashed:
+        return 2
+    # ⭐⭐⭐⭐⭐ 1032-②f（补）：**「不适用」（`None`）不许算成「红」** —⇒
+    #   ⇒ ⇒ `all([True, None])` 是 `False` ⇒ ⇒⇒ **而 `None` 的意思是「没测到」**
+    #   ⇒ ⇒⇒⇒ **⇒ 把「没测到」算成「测了、没过」⇒ ⇒ 正是本批要治的病**
+    #   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒ **⇒ 处置：只有**明确的 `False`** 才算红** ⇒ ⇒ `None` 不算
+    #   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒ **⇒ 而「恒真」与「不适用」必须分开**（本批 p30 纪律）
+    return 0 if all(c is not False for c in criteria) else 1
+
+
+def _crash_hook(et, ev, tb):
+    """未捕获异常 ⇒ **仪器崩了** ⇒ rc=2（不是 1、也不是 0）。"""
+    sys.stderr.write("⭐⭐⭐⭐⭐ **仪器崩了（不是判据红）⇒ 退出码 2**：%r\n" % (ev,))
+    sys.stderr.flush()
+    sys.exit(2)
+
+
+sys.excepthook = _crash_hook
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -385,6 +418,24 @@ out["audit_numbers_vs_computed_1010"] = {
 }
 out["P7_hold_1010"] = bool(not _bad)
 
+# ── 1032-②f：退出码按判决走（**必须在产物写盘之前算出来**）────────
+_CRITERIA = [out["P%d_hold_1010" % i] for i in range(1, 7)]
+_EXIT = _exit_code(_CRITERIA, crashed=False)
+out["exit_code_1010"] = {
+    "criteria": _CRITERIA,
+    "exit_code_would_be": _EXIT,
+    "all_green": all(_CRITERIA),
+    "rule": "⭐⭐⭐⭐⭐ **判据红 ⇒ rc=1；仪器崩 ⇒ rc=2；全绿 ⇒ rc=0** ⇒ ⇒ "
+            "**⇒ 而以前这里是恒 0 ⇒ ⇒⇒ 「退出码恒 0 的门等于没有门」**",
+    "selftest": {
+        "all_green_gives_0": _exit_code([True, True]) == 0,
+        "one_false_gives_1": _exit_code([True, False]) == 1,
+        "crashed_gives_2": _exit_code([True], crashed=True) == 2,
+        "not_applicable_is_not_red": _exit_code([True, None]) == 0,
+    },
+}
+out["exit_code_selftest_ok_1010"] = all(out["exit_code_1010"]["selftest"].values())
+
 io.open(OUT, "w", encoding="utf-8").write(
     json.dumps(out, ensure_ascii=False, indent=1))
 print("total: touched %d | vanished %d | increased %d | gate reported(_ausrc) %d | rate %s"
@@ -393,3 +444,7 @@ print("P7 numbers =", out["audit_numbers_vs_computed_1010"]["n_numbers_total"],
       "| unjustified =", out["audit_numbers_vs_computed_1010"]["n_keys_with_unjustified_number"])
 print("P1..P7 =", [out["P%d_hold_1010" % i] for i in range(1, 8)])
 print("PROBE_1010_DONE ->", OUT)
+# ⭐⭐⭐⭐⭐ **最后一行才是退出** —— 而产物**已经在上面写完了**
+#   ⇒ ⇒⇒⇒ **⇒「红」必须既留下产物、又留下非零退出码** ⇒ ⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 而以前这里是 rc=0 ⇒ ⇒⇒ 「它红了没人知道」**
+sys.exit(_EXIT)

@@ -347,6 +347,156 @@ def _p1032d_mutation_pc() -> bool:
         return False
     return True
 
+# ⭐⭐⭐⭐⭐ 1032-②f：**红账判决必须在模块级** ——
+#   ②d 的教训：判据里调用的 helper 若留在 `main()` 里 ⇒ ⇒ 1018 那台探针
+#   （它 exec 本文件的**模块顶层**、再把 `main` 里的**单目标赋值语句**逐条执行）
+#   ⇒ ⇒ ⇒ **拿不到 `main` 里的嵌套 def** ⇒ ⇒ ⇒ 判据直接 NameError **崩掉**
+#   ⇒ ⇒ ⇒ 而「崩」在输出上与「红」很像、而它其实是我的**仪器**坏了
+#   ⇒ ⇒ ⇒⇒ **纪律：判据里调用的 helper，要么模块级，要么是 main 里的赋值变量。**
+def _p1015_red_judge(_d):
+    """**从 1015 的原始字段重算**红账判决 —— **不信** `red_ledger` 里的汇总数。
+
+    ⭐⭐⭐⭐⭐ 为什么必须重算：⇒ 1015 自己写的 `n_books_rc1_judgement_red` 与
+    `books_rc1_judgement_red` 都是**它自己数出来的** ⇒ ⇒ 那些数与 `books`
+    里的原始字段**同源** ⇒ ⇒ **若判据只是把那两个数抄一遍，1015 哪天算错了、
+    这道门就跟着一起错** ⇒ ⇒ ⇒ 所以这里**逐条从 `books` 重算**，再看它与
+    自己写的汇总**是否一致**（不一致 ⇒ 门红）。
+    """
+    _books = _d.get("books")
+    if not isinstance(_books, list) or not _books:
+        return {"ok": False, "why": ["no_books"], "n_books": 0,
+                "n_rc1": 0, "n_rc2": 0}
+    _rl = _d.get("red_ledger")
+    if not isinstance(_rl, dict):
+        return {"ok": False, "why": ["no_red_ledger"], "n_books": len(_books),
+                "n_rc1": 0, "n_rc2": 0}
+    _why = []
+    # ── ① **检测器自检**：从每个用例的 `got_*` / `want_*` 重算，**不信 `ok`** ──
+    _st = _rl.get("detector_selftest")
+    if not isinstance(_st, list) or not _st:
+        _why.append("no_detector_selftest")
+    else:
+        for _c in _st:
+            if not isinstance(_c, dict):
+                _why.append("detector_case_not_dict")
+                continue
+            if _c.get("got_n") != _c.get("want_n"):
+                _why.append("detector_case_n_mismatch")
+            if _c.get("got_readable") != _c.get("want_readable"):
+                _why.append("detector_case_readable_mismatch")
+            if _c.get("ok") is not True:
+                _why.append("detector_case_not_ok")
+        if _rl.get("detector_selftest_n_cases") != len(_st):
+            _why.append("detector_case_count_mismatch")
+    # ── ② **读到书**：读数必须与 `books` 的条数自洽 ──
+    if _rl.get("n_books") != len(_books):
+        _why.append("n_books_mismatch")
+    # ── ③ ⭐⭐⭐⭐⭐ **rc=1 ⇒ 必须自报 False**（**旧 bug 的关键方向**）──
+    #   ⇒ 旧实现里所有书都 rc=0 ⇒ ⇒ 「判据红」这件事**在账上根本看不见**
+    _rc1 = [b for b in _books if b.get("rc") == 1]
+    for _b in _rc1:
+        _n = _b.get("n_self_reported_false")
+        if not isinstance(_n, int):
+            _why.append("rc1_book_no_self_report_field")
+        elif _n <= 0:
+            _why.append("rc1_book_without_self_reported_false")
+        if _b.get("state") != "self_red":
+            _why.append("rc1_book_state_not_self_red")
+    # ── ④ ⭐⭐⭐⭐⭐ **分类器把 rc1 / rc2 分到两栏**（**红与崩不许混**）──
+    _rc2 = [b for b in _books if b.get("rc") == 2]
+    _self_red = [b for b in _books if b.get("state") == "self_red"]
+    _crashed = [b for b in _books if b.get("state") == "crashed"]
+    if len(_self_red) != len(_rc1):
+        _why.append("self_red_count_mismatch")
+    if len(_crashed) != len(_rc2):
+        _why.append("crashed_count_mismatch")
+    for _b in _self_red:
+        if _b.get("rc") != 1:
+            _why.append("self_red_book_rc_not_1")
+    for _b in _crashed:
+        if _b.get("rc") != 2:
+            _why.append("crashed_book_rc_not_2")
+    # ── ⑤ 汇总数必须与重算一致（1015 自己写的账不许与自己记的原始字段矛盾）──
+    if _rl.get("n_books_rc1_judgement_red") != len(_rc1):
+        _why.append("ledger_rc1_count_mismatch")
+    if _rl.get("n_books_rc2_instrument_crashed") != len(_rc2):
+        _why.append("ledger_rc2_count_mismatch")
+    _self_rep = sorted(str(b.get("golden")) for b in _books
+                        if (b.get("n_self_reported_false") or 0) > 0)
+    if _rl.get("n_books_self_reporting_false") != len(_self_rep):
+        _why.append("ledger_self_report_count_mismatch")
+    if sorted(_rl.get("books_self_reporting_false") or []) != _self_rep:
+        _why.append("ledger_self_report_list_mismatch")
+    return {"ok": (not _why), "why": _why, "n_books": len(_books),
+            "n_rc1": len(_rc1), "n_rc2": len(_rc2)}
+
+
+def _p1015_red_load():
+    """读 1015 的产物 —— **红账在它自己的产物里**（`red_ledger_1015`）。"""
+    _p = ROOT / "docs/research/jimeng-canvas/rerun-reproducibility-1015.json"
+    if not _p.exists():
+        return None
+    try:
+        return json.loads(_p.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return None
+
+
+def _p1015_red_ok():
+    """这道判决本身：跑一遍 `_p1015_red_judge`。"""
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    return bool(_p1015_red_judge(_d).get("ok"))
+
+
+def _p1015_red_pc():
+    """⭐⭐⭐⭐⭐ **阳性对照：证明这道判决能红** ——
+    ⇒ 「自己重算」**还不够** ⇒ ⇒ 必须证明**改一个原始字段它就翻红**
+    ⇒ ⇒ 而阳性对照**必须改原始字段**（`books` 里的 `rc` / `state` /
+    ⇒ ⇒ `n_self_reported_false`），**不许改上游的 ok 标志**。
+    ⇒ ⇒⇒⇒ **⇒ 而这四条改法都**与真实数据无关** ⇒ ⇒ ⇒
+    **⇒ 即便本批「一本 rc=1 的都没有」⇒ ⇒ ⇒ 这条判据也不会空跑。**
+    """
+    import copy
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    if not _p1015_red_judge(_d).get("ok"):
+        return False
+    if not (_d.get("books") or []):
+        return False
+    # ① 「rc=1、却不报 False」⇒ 判决必须翻红（**旧 bug 的盲区正是在这里**）
+    _m1 = copy.deepcopy(_d)
+    _m1["books"][0]["rc"] = 1
+    _m1["books"][0]["state"] = "self_red"
+    _m1["books"][0]["n_self_reported_false"] = 0
+    # ② 「rc=1、却记成 vanished」⇒ 判决必须翻红（**分类器不许张冠李戴**）
+    _m2 = copy.deepcopy(_d)
+    _m2["books"][0]["rc"] = 1
+    _m2["books"][0]["state"] = "vanished"
+    _m2["books"][0]["n_self_reported_false"] = 3
+    # ③ 「rc=2、却记成 self_red」⇒ 判决必须翻红（**红与崩不许混**）
+    _m3 = copy.deepcopy(_d)
+    _m3["books"][0]["rc"] = 2
+    _m3["books"][0]["state"] = "self_red"
+    _m3["books"][0]["n_self_reported_false"] = 3
+    # ④ 把账上的汇总数改坏 ⇒ 判决必须翻红（**汇总必须与原始字段一致**）
+    _m4 = copy.deepcopy(_d)
+    _m4.setdefault("red_ledger", {})["n_books_rc1_judgement_red"] = 99
+    # ⑤ 把检测器自检里第一条用例的 `got_n` 改坏 ⇒ 判决必须翻红
+    _m5 = copy.deepcopy(_d)
+    _st = ((_m5.get("red_ledger") or {}).get("detector_selftest") or [])
+    if not _st:
+        return False
+    _st[0]["got_n"] = -1
+    return (not _p1015_red_judge(_m1).get("ok")
+            and not _p1015_red_judge(_m2).get("ok")
+            and not _p1015_red_judge(_m3).get("ok")
+            and not _p1015_red_judge(_m4).get("ok")
+            and not _p1015_red_judge(_m5).get("ok"))
+
+
 def main() -> int:
     env = dict(os.environ)
     env["SNAP_OUT"] = str(OUT)
@@ -15346,7 +15496,14 @@ def main() -> int:
           "**⇒ ⇒ ⇒ ⇒ ⇒ 探针崩了不告诉你数据有没有变，并进任何一态都等于把仪器故障"
           "报成数据结论** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 沿用 1006 那条：门报红 ≠ 数据错**",
           '"P1_hold_1015"' in _p1015
-          and 'N_STATES_SUM = N_REPRODUCED + N_DRIFTED + N_CRASHED + N_VANISHED' in _p1015
+          # ⭐⭐⭐⭐⭐ 1032-②f：**这条锚点原来逐字钉住了整行** ⇒ ⇒ 而 ②f 给 1015 的
+          #   分类器**加了两栏**（`self_red` / `crashed_rc_other`）⇒ ⇒ ⇒ 那行源码变了
+          #   ⇒ ⇒ ⇒ 锚点门当场报 MISSING ⇒ ⇒⇒⇒ **⇒ 而这次红是「真的」** ——
+          #   不是锚点过期、是被测物真的改了 ⇒ ⇒⇒⇒⇒⇒
+          #   **⇒ 处置：不是「把新形态从锚点里删掉」，而是「旧的四态仍在 ＋ 新增两态也在」**
+          #   ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 锚点要钉住的是「状态之和覆盖了哪几态」，不是「源码长什么样」。**
+          and 'N_STATES_SUM = (N_REPRODUCED + N_DRIFTED + N_CRASHED + N_VANISHED' in _p1015
+          and '+ N_SELF_RED + N_CRASHED_OTHER)' in _p1015
           and '"sum_states"' in _p1015
           and '"P2_hold_1015"' in _p1015
           and 'if rc != 0:' in _p1015
@@ -17298,6 +17455,120 @@ def main() -> int:
           and "P9_two_independent_methods_agree_1018" in _p1018
           and '"P": OUT' in _p1018
           and _p1018_ok())
+    check("DD993AB.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「**一门不会说红的门等于没有门**」这件事**必须由运行时来回答**："
+          "1032-②e 查完「册内 29 本里有 9 条 False」之后、②f 的第一步是把**退出码**接上 ⇒ ⇒ "
+          "**判据红 ⇒ `rc=1`；仪器崩 ⇒ `rc=2`；全绿 ⇒ `rc=0`** ⇒ ⇒ ⇒ "
+          "**⇒ 而在此之前所有书都 rc=0 ⇒ ⇒ 「红」这件事在账上根本看不见** ⇒ ⇒ ⇒⇒ "
+          "**⇒ 处置两条：① 1015 加「红账」（读数层）② 1015 的分类器把 `rc=1` 记成 "
+          "`self_red`、`rc=2` 记成 `crashed`（**红与崩不许混**）**"
+          "⭐⭐⭐⭐⭐ **判据自己从原始字段重算**（不信 `red_ledger` 里的汇总数）⇒ ⇒ ⇒ "
+          "关键方向是**「rc=1 的书必须自报 False」** —— 那正是旧 bug 的盲区 ⇒ ⇒ ⇒ "
+          "而**阳性对照改原始字段**（把一本书改成 rc=1 却不报 False／改成 rc=1 却记成 "
+          "`vanished`／改成 rc=2 却记成 `self_red`／把账上的汇总数改坏／把检测器自检改坏）"
+          "⇒ ⇒ ⇒ 五种改法都让判决翻红 ⇒ ⇒ ⇒⇒ "
+          "**⇒ 「本批一本 rc=1 都没有」时这条判据会**空跑** ⇒ ⇒ ⇒ "
+          "**⇒ 所以那五条阳性对照是它唯一的牙齿**",
+          ("self_red" in _p1015)
+          and ("crashed" in _p1015)
+          and ("crashed_rc_other" in _p1015)
+          and ("n_self_reported_false" in _p1015)
+          and ("p_summary_readable" in _p1015)
+          and ("books_rc1_judgement_red" in _p1015)
+          and ("books_rc2_instrument_crashed" in _p1015)
+          and ("detector_selftest_ok" in _p1015)
+          and ("red_ledger_1015" in _p1015)
+          and ('REVERSE_C["state"] == "self_red"' in _p1015)
+          and ('REVERSE_X["state"] == "crashed"' in _p1015)
+          and _p1015_red_ok() and _p1015_red_pc())
+    check("DD993AB.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「**退出码恒 0 的门等于没有门**」这件事**必须在源码层钉住**："
+          "⇒ ⇒ 册内 8 本（1005/1007/1008/1009/1010/1011/1012/1013）以前**平铺到底、"
+          "既没有 `sys.exit` 也没有 `raise`** ⇒ ⇒ **无论判据红成什么样、退出码恒 0** "
+          "⇒ ⇒ ⇒⇒ **⇒ 处置：统一接上三态 —— 0 全绿 / 1 判据红 / 2 仪器崩** "
+          "⇒ ⇒ ⇒⇒⇒ **⇒ 而「崩」必须走 `sys.excepthook` ⇒ `sys.exit(2)`** ⇒ ⇒ "
+          "**⇒ 不用 `os._exit`（它会跳过 atexit 清理）** ⇒ ⇒ ⇒ "
+          "**⇒ 而退出码必须是 `_exit_code(...)` 算出来的、不是写死的** ⇒ ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ 每本都带**三例自检**（全绿⇒0 / 一条假⇒1 / 崩⇒2）⇒ ⇒ ⇒ "
+          "**⇒ 而负控是「不许出现 `sys.exit(0)`」** ⇒ ⇒ ⇒ "
+          "**⇒ 「恒 0」这个形状不许再回来**",
+          ("def _exit_code(" in _p1005)
+          and ("def _exit_code(" in _p1007)
+          and ("def _exit_code8(" in _p1008)
+          and ("def _exit_code(" in _p1009)
+          and ("def _exit_code(" in _p1010)
+          and ("def _exit_code(" in _p1011)
+          and ("def _exit_code(" in _p1012)
+          and ("def _exit_code(" in _p1013)
+          and ("sys.exit(_EXIT)" in _p1005)
+          and ("sys.exit(_EXIT)" in _p1007)
+          and ("sys.exit(_EXIT8)" in _p1008)
+          and ("sys.exit(_EXIT)" in _p1009)
+          and ("sys.exit(_EXIT)" in _p1010)
+          and ("sys.exit(_EXIT)" in _p1011)
+          and ("sys.exit(_EXIT)" in _p1012)
+          and ("sys.exit(_EXIT)" in _p1013)
+          and ("sys.excepthook" in _p1005)
+          and ("sys.excepthook" in _p1007)
+          and ("sys.excepthook" in _p1008)
+          and ("sys.excepthook" in _p1009)
+          and ("sys.excepthook" in _p1010)
+          and ("sys.excepthook" in _p1011)
+          and ("sys.excepthook" in _p1012)
+          and ("sys.excepthook" in _p1013)
+          and ("all_green_gives_0" in _p1005)
+          and ("all_green_gives_0" in _p1007)
+          and ("all_green_gives_0" in _p1008)
+          and ("all_green_gives_0" in _p1009)
+          and ("all_green_gives_0" in _p1010)
+          and ("all_green_gives_0" in _p1011)
+          and ("all_green_gives_0" in _p1012)
+          and ("all_green_gives_0" in _p1013)
+          and ("sys.exit(0)" not in _p1005)
+          and ("sys.exit(0)" not in _p1007)
+          and ("sys.exit(0)" not in _p1008)
+          and ("sys.exit(0)" not in _p1009)
+          and ("sys.exit(0)" not in _p1010)
+          and ("sys.exit(0)" not in _p1011)
+          and ("sys.exit(0)" not in _p1012)
+          and ("sys.exit(0)" not in _p1013))
+    check("DD993AB.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「**『不适用』与『红』必须分开**」这件事**必须由源码层钉住** —— 而它是"
+          "**1032-②f 接上退出码之后当场撞出来的** ⇒ ⇒ "
+          "**1008 把 1005 当测量仪用**（它替换 verifier/audit 两份输入、跑历史快照上的普查）"
+          "⇒ ⇒ ⇒ 而 1005 自己的 `P3`（已提交清单 vs 本次普查）**在那个语境里不适用** "
+          "⇒ ⇒⇒⇒ **⇒ 以前 1005 恒 rc=0 ⇒ ⇒ 这个问题从没暴露过；接上退出码之后"
+          "⇒ ⇒⇒⇒⇒ **1005 在快照上 rc=1 ⇒ ⇒ 而 1008 直接崩掉** ⇒ ⇒⇒⇒⇒⇒ "
+          "**⇒ 这正是「退出码接上之后、门开始说真话」的代价：以它为子程序的调用方，"
+          "第一次看见了它内部的判据红。**"
+          "⭐⭐⭐⭐⭐ 处置三条：① 1005 加显式的 `--census-only` **测量模式**"
+          "⇒ ⇒ 该模式下 `P3` 记 **`null`（没测到）** 而不是 `False`（测了、没过）"
+          "⇒ ⇒⇒⇒ **⇒ 而「把『不适用』记成 False」就是「把没测到当测了没过」** "
+          "② 8 本的退出码纯函数改成「**只有明确的 `False` 才算红**」"
+          "⇒ ⇒ **⇒ 而 `all([True, None])` 是 `False` ⇒ ⇒ 不改就会把 `None` 算成红** "
+          "③ 1008 **断言** 1005 确实是在测量模式下跑的 ⇒ ⇒ **出处可查、不许靠「它恰好没红」**",
+          ("not_applicable_is_not_red" in _p1005)
+          and ("not_applicable_is_not_red" in _p1007)
+          and ("not_applicable_is_not_red" in _p1008)
+          and ("not_applicable_is_not_red" in _p1009)
+          and ("not_applicable_is_not_red" in _p1010)
+          and ("not_applicable_is_not_red" in _p1011)
+          and ("not_applicable_is_not_red" in _p1012)
+          and ("not_applicable_is_not_red" in _p1013)
+          and ("c is not False" in _p1005)
+          and ("c is not False" in _p1007)
+          and ("c is not False" in _p1008)
+          and ("c is not False" in _p1009)
+          and ("c is not False" in _p1010)
+          and ("c is not False" in _p1011)
+          and ("c is not False" in _p1012)
+          and ("c is not False" in _p1013)
+          and ("--census-only" in _p1005)
+          and ("census_only_1005" in _p1005)
+          and ("p3_not_applicable_1005" in _p1005)
+          and ("--census-only" in _p1008)
+          and ("census_only_1005" in _p1008)
+          and ("p3_not_applicable_1005" in _p1008))
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

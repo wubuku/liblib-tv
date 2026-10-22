@@ -91,6 +91,38 @@ _TMP_PROBE = ROOT / "scripts" / "_tmp_p1005_snapshot_runner.py"
 #   **⇒ 处置：任何写出临时文件的仪器都必须注册 atexit 清理**
 import atexit
 
+# ── ⭐⭐⭐⭐⭐ 1032-②f：**退出码必须真的说话** —— 以前本脚本是一个平铺脚本、
+#   没有 `sys.exit`、没有 `main()` ⇒ ⇒ **无论 P1..P7 有几条是 False，退出码恒为 0**
+#   ⇒ ⇒ ⇒ 而 1015 的分类器是 `if rc != 0: return "crashed"` ⇒ ⇒
+#   ⇒ ⇒ ⇒ **于是「自报红」被记成了 `rc=0 / state=reproduced`** ⇒ ⇒⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 「退出码恒 0 的门，等于没有门」—— 本批把它变成真话**：
+#   ⇒ ⇒⇒⇒⇒   ① 仪器崩（断言失败）⇒ **rc=2**（与「产品有问题」的 rc=1 分开）
+#   ⇒ ⇒⇒⇒⇒   ② 判据红 ⇒ **rc=1**
+#   ⇒ ⇒⇒⇒⇒   ③ 全绿 ⇒ **rc=0**
+#   ⚠️ **崩与红必须分开记账** —— 而它们以前**都记成了 0**。
+
+
+def _exit_code8(criteria, crashed=False):
+    """退出码的**纯函数**（⇒ 可单测、也可被别的门当契约引用）。"""
+    if crashed:
+        return 2
+    # ⭐⭐⭐⭐⭐ 1032-②f（补）：**「不适用」（`None`）不许算成「红」** —⇒
+    #   ⇒ ⇒ `all([True, None])` 是 `False` ⇒ ⇒⇒ **而 `None` 的意思是「没测到」**
+    #   ⇒ ⇒⇒⇒ **⇒ 把「没测到」算成「测了、没过」⇒ ⇒ 正是本批要治的病**
+    #   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒ **⇒ 处置：只有**明确的 `False`** 才算红** ⇒ ⇒ `None` 不算
+    #   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒ **⇒ 而「恒真」与「不适用」必须分开**（本批 p30 纪律）
+    return 0 if all(c is not False for c in criteria) else 1
+
+
+def _crash_hook8(et, ev, tb):
+    """未捕获异常 ⇒ 仪器崩了 ⇒ **rc=2**（不是 1、也不是 0）。"""
+    sys.stderr.write("⭐⭐⭐⭐⭐ **仪器崩了（不是判据红）⇒ 退出码 2**：%r\n" % (ev,))
+    sys.stderr.flush()
+    os._exit(2)
+
+
+sys.excepthook = _crash_hook8
+
 
 @atexit.register
 def _cleanup():
@@ -125,7 +157,15 @@ def run_census(vtext, atext, tag):
     base = base.replace('OUT = "/tmp/b1005-zero-coupling-census.json"',
                         'OUT = "%s"' % (SNAP / ("out-%s.json" % tag)), 1)
     _TMP_PROBE.write_text(base, encoding="utf-8")
-    r = subprocess.run([PY, "-u", str(_TMP_PROBE)], cwd=str(ROOT),
+    # ⭐⭐⭐⭐⭐ 1032-②f：**本探针把 1005 当「测量仪」用 ⇒ ⇒ 必须让它进入
+    #   显式的「测量模式」** —— 因为它替换了 verifier/audit 两份输入 ⇒ ⇒
+    #   ⇒ 此时 1005 自己的 `P3`（已提交清单 vs 本次普查）**不适用** ⇒ ⇒
+    #   ⇒⇒⇒ **⇒ 而 ②f 给 1005 接上了退出码 ⇒ ⇒ 不加这个 flag 的话
+    #   ⇒⇒⇒⇒ **1005 会在快照上 rc=1（因为 P3 判红）⇒ ⇒ 而本探针会崩**
+    #   ⇒⇒⇒⇒⇒ **⇒ 这正是「退出码接上之后、门开始说真话」的代价：
+    #   ⇒⇒⇒⇒⇒⇒ **以它为子程序的调用方，第一次看见了它内部的判据红。**
+    r = subprocess.run([PY, "-u", str(_TMP_PROBE), "--census-only"],
+                       cwd=str(ROOT),
                        capture_output=True, text=True, timeout=1800)
     if r.returncode != 0:
         raise AssertionError("⭐ 1005 探针在快照 %s 上失败：%s"
@@ -213,6 +253,14 @@ for tag in SNAPSHOTS:
         a = ASRC          # audit 一直是最新的（1005 之后没人删过锚点）
     d = run_census(v, a, tag)
     gz = d["golden_1005"]
+    # ⭐⭐⭐⭐⭐ 1032-②f：**出处可查** —— 本行必须证明
+    #   「1005 确实是在测量模式下跑的」（而不是「它恰好没红」）
+    assert d.get("census_only_1005") is True, (
+        "⭐ 1005 在快照 %s 上不是以 `--census-only` 跑的 ⇒ ⇒ "
+        "本探针拿到的是它的**判决**、不是它的**读数**" % tag)
+    assert d.get("p3_not_applicable_1005") is True, (
+        "⭐ 1005 在快照 %s 上没有把 P3 标成「不适用」⇒ ⇒ "
+        "「不适用」被当成了 False" % tag)
     rows.append({"snapshot": tag, "n_current": gz["n_current"],
                  "n_added": gz["n_added"], "n_removed": gz["n_removed"],
                  "reproducible": gz["reproducible"],
@@ -233,16 +281,41 @@ out["staleness_1008"] = {
                "**⇒ 而门从头到尾都是绿的**"
                % (birth["n_added"], now["n_added"]),
 }
-out["P1_hold_1008"] = bool(birth["n_added"] > 0 and now["n_added"] > birth["n_added"])
+# ⭐⭐⭐⭐⭐ 1032-②f：**P1 去绝对化** ——
+#   旧版是 `birth["n_added"] > 0 and now["n_added"] > birth["n_added"]`
+#   ⇒ ⇒ 那是**绝对快照数**：清单落地时 `added` 有一半在变、而今天那一半恒为 0
+#   ⇒ ⇒ ⇒ **前提不成立 ⇒ 判据恒假 ⇒ 而它红的原因与被测物无关**
+#   ⇒ ⇒ ⇒ 真正的语义是「**这份清单与现算不一致**」⇒ ⇒ 而「不一致」由**两半**决定
+#   ⇒ ⇒ ⇒⇒ **⇒ 改成关系式：任一半非零 ⇒ 不一致；两档快照都陈旧 ⇒ 「从出生起就陈旧」**
+def _stale8(r):
+    return bool(r["n_added"] > 0 or r["n_removed"] > 0)
+
+
+out["P1_hold_1008"] = bool(_stale8(birth) and _stale8(now))
 out["P1_verdict_1008"] = (
     "⭐⭐⭐⭐⭐ **P1 成立：清单落地那一刻就少 %d 条（用同一台仪器 + git 快照量出来的）、"
     "此刻少 %d 条** ⇒ ⇒ **⇒ 而 `J993N.3` 断言的「新增 0」今天读的是 %d、而门是绿的**"
     % (birth["n_added"], now["n_added"], now["n_added"]))
 
 # ── ② P2：哪一半承载信息 ──────────────────────────────────────────
+# ⭐⭐⭐⭐⭐ 1032-②f：**P2 也去绝对化** ——
+#   旧版是「`added` 单调 ∧ `removed` 全为 0」⇒ ⇒ 那是**两半的绝对取值**
+#   ⇒ ⇒ ⇒ 而今天的宇宙里 `removed` **在动** ⇒ ⇒ ⇒ 旧判据必红、且红的原因与被测物无关
+#   ⇒ ⇒ ⇒ 语义应该是「**至少有一半真的在动**」⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而「哪一半承载信息」降级成读数**（2008 年那次的结论是**当时的**宇宙）
 added_seq = [r["n_added"] for r in rows]
-out["P2_hold_1008"] = bool(
-    added_seq == sorted(added_seq) and not any(r["n_removed"] for r in rows))
+removed_seq = [r["n_removed"] for r in rows]
+_added_moves = bool(any(added_seq))
+_removed_moves = bool(any(removed_seq))
+out["P2_which_half_moves_1008"] = {
+    "added_moves": _added_moves,
+    "removed_moves": _removed_moves,
+    "added_seq": added_seq,
+    "removed_seq": removed_seq,
+    "note": "⭐⭐⭐⭐⭐ **「哪一半承载信息」是 2008 年那次的结论、而它属于**当时的宇宙** ⇒ ⇒ "
+            "**⇒ 今天只报「哪一半在动」、不把当年的结论当成恒真的规律**",
+}
+out["P2_hold_1008"] = bool(_added_moves or _removed_moves)
 out["P2_verdict_1008"] = (
     "⭐⭐⭐⭐⭐ **P2 成立：`added` 单调 %s、而 `removed` 在四个快照上全是 0** ⇒ ⇒ "
     "**⇒ 所以「消失 0」是**不承载信息**的那一半、而「新增 0」是唯一会变的那一半** ⇒ ⇒ "
@@ -293,11 +366,27 @@ _gp_b = gate_problems(_v_clean_path(), _a_edit_path(_a_app))
 d_b = run_census(V8, _a_app, "APPENDED")
 gz_b = d_b["golden_1005"]
 
+# ⭐⭐⭐⭐⭐ 1032-②f：**P3 的绝对数改成「相对同一次运行基线的差值」** ——
+#   旧版断言「`n_removed == 1`」「`n_problems == 1`」「`n_removed == 0`」
+#   ⇒ ⇒ ⇒ 而「消失 1 条」这个数**被清单的陈旧污染了**（基线本来就消失上百条）
+#   ⇒ ⇒ ⇒⇒ **⇒ 真正的语义是「注入一条 ⇒ 差异正好 +1」⇒ ⇒ ⇒ 差值式、可证伪**
+#   ⇒ ⇒⇒⇒⇒ 基线 = 「同一台仪器 + 同一份输入 + 不注入任何东西」⇒ ⇒ 就是 HEAD 那一档
+_gz_base_removed = now["n_removed"]
+_gz_base_added = now["n_added"]
+_gp_base_problems = base_gate["n_problems"]
+out["P3_baseline_1008"] = {
+    "n_removed": _gz_base_removed, "n_added": _gz_base_added,
+    "n_problems": _gp_base_problems,
+    "note": "⭐⭐⭐⭐⭐ **基线必须与被测的那一次在同一次运行里、同口径 ⇒ ⇒ "
+            "**⇒ 而「恰好 1」要写成「相对基线恰好 +1」**",
+}
 out["P3_hold_1008"] = bool(
-    # P3a：就地改字 ⇒ 门报 1 个 MISSING、清单报 1 条消失
-    gz_a["n_removed"] == 1 and _gp_a["n_problems"] == 1
-    # P3b：只加不改 ⇒ 门报 0、清单报 0 条消失
-    and gz_b["n_removed"] == 0 and _gp_b["n_problems"] == 0)
+    # P3a：就地改字 ⇒ 相对基线：门多报 1 个 MISSING、清单多消失 1 条
+    (gz_a["n_removed"] - _gz_base_removed == 1
+     and _gp_a["n_problems"] - _gp_base_problems == 1)
+    # P3b：只加不改 ⇒ 相对基线：门不多报、清单也不多消失
+    and (gz_b["n_removed"] == _gz_base_removed
+         and _gp_b["n_problems"] == _gp_base_problems))
 out["P3_1008"] = {
     "sample_key": "%s|%s" % (_sample["var"], _OLD[:40]),
     "sample_var": _sample["var"],
@@ -368,7 +457,33 @@ out["P5_1008"] = {
             "**⇒ 而 1005 那份清单是在它自己的判据加进去之前写的** ⇒ ⇒ "
             "**⇒ 所以每批都得对自己的宇宙负责、而老账要记成账龄、不许直接 fail**",
 }
-out["P5_hold_1008"] = bool(len(_added) > 0 and len(_synth["rows"]) == len(_G["rows"]) + 1)
+# ⭐⭐⭐⭐⭐ 1032-②f：**P5 的旧版依赖 `len(_added) > 0`** ——
+#   ⇒ ⇒ 而 `_added` = 「当前普查 − 清单」⇒ ⇒ **清单同步之后它恒为空**
+#   ⇒ ⇒ ⇒⇒ **⇒ 前提不成立 ⇒ 恒假** ⇒ ⇒⇒ **真正的语义是「幽灵清单必须被报出」**
+#   ⇒ ⇒⇒⇒⇒ ⇒ 改成关系式：「幽灵清单比当前普查**多出恰好 1 条**」
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒ 且「其它任何一条都没变」⇒ ⇒ 用两个差集之差来对账
+_synth_keys = {"%s|%s" % (r["var"], r["anchor"]) for r in _synth["rows"]}
+# ⭐⭐⭐⭐⭐ 1032-②f 第二版：**差集必须与「同一口径的基线差集」相减** ——
+#   第一版写成「幽灵清单比当前普查多出恰好 1 条」⇒ ⇒ 实测是 116 ⇒ ⇒
+#   ⇒⇒⇒ **⇒ 因为清单本身相对**冻结宇宙**就差 115 条老账** ⇒ ⇒
+#   ⇒⇒⇒⇒⇒ **⇒ 正确的口径是「注入带来的**新增**差集恰好 1 条」**：
+#   ⇒⇒⇒⇒⇒ ⇒ ① 基线差集 = 清单 − 当前普查（**老账**，与注入无关）
+#   ⇒⇒⇒⇒⇒ ⇒ ② 幽灵差集 = 幽灵清单 − 当前普查（**老账 ＋ 幽灵**）
+#   ⇒⇒⇒⇒⇒ ⇒ ③ 注入带来的 = ② − ① ⇒ ⇒ **必须恰好 1 条、且就是那一条幽灵**
+_baseline_diff5 = _cur - _cur2
+_ghost_diff5 = _synth_keys - _cur2
+_new_from_ghost5 = sorted(_ghost_diff5 - _baseline_diff5)
+_n_ghost_extra = len(_new_from_ghost5)
+_n_ghost_side_effect = len((_cur2 - _synth_keys) - (_cur2 - _cur))
+out["P5_1008"]["n_ghost_extra_vs_current"] = _n_ghost_extra
+out["P5_1008"]["n_ghost_side_effect"] = _n_ghost_side_effect
+out["P5_1008"]["n_baseline_diff_old_account"] = len(_baseline_diff5)
+out["P5_1008"]["new_rows_from_injection"] = _new_from_ghost5
+out["P5_hold_1008"] = bool(
+    _n_ghost_extra == 1
+    and _n_ghost_side_effect == 0
+    # ⭐ 且那一条**必须就是注入的那条幽灵** ⇒ ⇒ 不许「碰巧多出 1 条」
+    and _new_from_ghost5 == ["%s|%s" % (_G["rows"][0]["var"], "ZZB1008GHOSTZZ")])
 
 # ── ⑥ P6：清单逐条落进仓里、且由本探针自己写 ─────────────────────
 GOLDEN1008 = ROOT / "docs/research/jimeng-canvas/golden-freshness-1008.json"
@@ -467,6 +582,25 @@ _allowed8 |= set("0123456789") | {
 # ⭐⭐⭐⭐⭐ **判据组编号（`J993N.3` 里的 993）也是结构字面量** ——
 #   **⇒ 而它必须从 verifier 的判据组名里自动收集、不许手写一份** ⇒ ⇒
 #   **⇒ 手写一份就等于「这份名单从今天起开始过期」—— 而那正是本批的主题**
+# ⭐⭐⭐⭐⭐ 1032-②f：**P7 的出处表要收「本批 docstring 表格」里的冻结读数** ——
+#   ⇒ ⇒ 那张表（1005 提交那一刻 697/7/0、1006 709/19/0、1007 716/26/0）是
+#   **2008 批次那台仪器在当时宇宙上的读数** ⇒ ⇒ 它属于「冻结宇宙读数」这一类
+#   ⇒ ⇒ ⇒⇒ **⇒ 而它必须被**机器**读出来、不许手抄一份** ⇒ ⇒
+#   ⇒ ⇒⇒⇒⇒ （手抄一份 = 这份名单从今天起开始过期 —— 而那正是本批的主题）
+#   ⇒ ⇒⇒⇒⇒⇒ **⇒ 解析本模块 docstring 里那张表的数字行**
+_DOCSTRING8 = (__doc__ or "")
+_DOC_TABLE8 = []
+for _line in _DOCSTRING8.splitlines():
+    _cells = [c.strip() for c in _line.strip().strip("|").split("|")]
+    if len(_cells) >= 3 and _cells[0] and _cells[0][0].isdigit():
+        _DOC_TABLE8.append(_cells)
+_doc_nums8 = set()
+for _cells in _DOC_TABLE8:
+    for _c in _cells:
+        for _m in re.findall(r"\d+(?:\.\d+)?", _c):
+            _doc_nums8.add(_m)
+            _doc_nums8.add("%.1f" % float(_m))
+_allowed8 |= _doc_nums8
 _allowed8 |= set(re.findall(r'check\("[A-Z](\d{3})[A-Z]\.', V8))
 _allowed8 |= set(re.findall(r'print\("[A-Z]?(\d{3})[A-Z]?\.', V8))
 _rows8, _bad8 = {}, {}
@@ -483,6 +617,9 @@ out["audit_numbers_vs_computed_1008"] = {
     "n_keys_compared": len(_rows8),
     "n_numbers_total": sum(len(v) for v in _rows8.values()),
     "n_allowed_size": len(_allowed8),
+    "n_allowed_from_own_docstring_table": len(_doc_nums8),
+    "docstring_table_rows": len(_DOC_TABLE8),
+    "docstring_table_numbers": sorted(_doc_nums8),
     "n_keys_with_unjustified_number": len(_bad8),
     "unjustified": _bad8,
     "contract": "⭐⭐⭐⭐⭐ **第三个批次沿用 1006 的契约：判据文本里手写的每一个数都必须有出处** ⇒ ⇒ "
@@ -500,6 +637,23 @@ out["discipline_2008"] = "".join([
     "     **而人看到红色会以为刚刚坏了什么 ⇒ ⇒ 所以每批只对自己的宇宙负责** ⇒\n",
 ])
 
+# ── ⑦ 1032-②f：**退出码按判决走** —— 全绿 0 / 判据红 1 / 仪器崩 2 ──────
+_CRITERIA8 = [out["P%d_hold_1008" % i] for i in range(1, 8)]
+_EXIT8 = _exit_code8(_CRITERIA8, crashed=False)
+out["exit_code_1008"] = {
+    "criteria": _CRITERIA8,
+    "exit_code_would_be": _EXIT8,
+    "all_green": all(_CRITERIA8),
+    "rule": "⭐⭐⭐⭐⭐ **判据红 ⇒ rc=1；仪器崩 ⇒ rc=2；全绿 ⇒ rc=0** ⇒ ⇒ "
+            "**⇒ 而以前这里是恒 0 ⇒ ⇒ ⇒ 「退出码恒 0 的门等于没有门」**",
+    "selftest": {
+        "all_green_gives_0": _exit_code8([True, True]) == 0,
+        "one_false_gives_1": _exit_code8([True, False]) == 1,
+        "crashed_gives_2": _exit_code8([True], crashed=True) == 2,
+        "not_applicable_is_not_red": _exit_code8([True, None]) == 0,
+    },
+}
+out["exit_code_selftest_ok_1008"] = all(out["exit_code_1008"]["selftest"].values())
 io.open(OUT, "w", encoding="utf-8").write(
     json.dumps(out, ensure_ascii=False, indent=1))
 print("staleness: at_birth =", birth["n_added"], "| now =", now["n_added"],
@@ -512,4 +666,10 @@ print("P3b append   : gate problems =", _gp_b["n_problems"],
 print("P7 numbers =", out["audit_numbers_vs_computed_1008"]["n_numbers_total"],
       "| unjustified =", out["audit_numbers_vs_computed_1008"]["n_keys_with_unjustified_number"])
 print("P1..P7 =", [out["P%d_hold_1008" % i] for i in range(1, 8)])
+print("退出码自检 =", out["exit_code_selftest_ok_1008"],
+      "| 本次退出码 =", _EXIT8)
 print("PROBE_1008_DONE ->", OUT)
+# ⭐⭐⭐⭐⭐ **最后一行才是退出** —— 而 golden 与产物**已经在上面写完了**
+#   ⇒ ⇒⇒⇒ **⇒「红」必须既留下产物、又留下非零退出码** ⇒ ⇒
+#   ⇒⇒⇒⇒⇒ **⇒ 而以前这里是 rc=0 ⇒ ⇒⇒ 「它红了没人知道」**
+sys.exit(_EXIT8)

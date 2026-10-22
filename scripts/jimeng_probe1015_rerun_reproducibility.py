@@ -110,8 +110,17 @@ def _flatten(obj, prefix=""):
 def _classify(rc, pre, post):
     """四态。⭐⭐⭐⭐⭐ **「跑不起来」必须单列**：探针崩了不告诉你数据有没有变，
     并进任何一态都等于把仪器故障报成数据结论（1006：门报红 ≠ 数据错）。"""
-    if rc != 0:
+    # ⭐⭐⭐⭐⭐ 1032-②f：**rc=1（判据红）与 rc=2（仪器崩）必须分开** ——
+    #   ⇒ ⇒ 以前只有一个「crashed」⇒ ⇒ **rc=1 的书会被报成「仪器崩了」**
+    #   ⇒ ⇒⇒ 而 ②e 查出来的那些书**正是 rc=1**（它们的判据红、而它们没崩）
+    #   ⇒ ⇒⇒⇒⇒ **⇒ 「崩」与「红」在记账上混成一栏 ⇒ ⇒ ⇒ 门看不见真正的失败**
+    #   ⇒ ⇒⇒⇒⇒⇒ ⇒ **⇒ 处置：rc=1 ⇒ `self_red`（判据红）；rc=2 ⇒ `crashed`（仪器崩）**
+    if rc == 1:
+        return {"state": "self_red"}
+    if rc == 2:
         return {"state": "crashed"}
+    if rc != 0:
+        return {"state": "crashed_rc_other"}
     if post is None:
         return {"state": "vanished"}
     if post == pre:
@@ -202,6 +211,67 @@ for _f in _ALL:
 _PROBES_NO_GOLDEN = [p for p in _PROBES if p not in _A_NAMES and p != SELF]
 
 
+# ── ⭐⭐⭐⭐⭐ 1032-②f：「自报 False」必须是一条**读数**，而不是藏在 tail 里 ────
+#   ⇒ ⇒ ②e 已经查出来：册内 4 本书**自报 False**、而 1015 把它们记成
+#   **「rc=0 / state=reproduced」** ⇒ ⇒ ⇒ **「跑完了」被当成了「通过了」**
+#   ⇒ ⇒ 而这里只解决「看不见」，**不解决「看见了算不算红」** ——
+#   ⇒ ⇒ ⇒ **「自报 False」≠「红」**：②e 逐条定性后发现册里有**预测被否型**
+#   ⇒ ⇒ ⇒ ⇒ （文案写着「❌ 被否」⇒ **False 才是结论**）⇒ ⇒ ⇒
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 所以本读数只报「自报假判据的条数与书名」，不下「红」的结论**
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **红/被否型/前提不成立 的分类是逐条读判据才能下的 ⇒ 记在 audit 里**
+_P_LIST_RE = re.compile(r"P\s*1\s*\.\.\s*P?\s*\d+\s*=\s*\[([^\]]*)\]")
+_FALSE_LIST_RE = re.compile(r"为假的[：:]\s*([^\n|]*)")
+
+
+def _self_reported_false(text):
+    """读出「这台探针自己报的假判据」。
+
+    ⭐ 返回 (n_false, readable, detail)：
+      · readable=False ⇒ **输出里没有可读判据** ⇒ ⇒⇒ **「读不到」≠「没有假」**
+      · readable=True  ⇒ n_false 是它自报的假判据条数
+    ⭐⭐⭐⭐⭐ **两种书写风格都要认**（否则「读不到」会被误当成「没有假」）：
+      ① `P1..P8 = [True, False, ...]`  （1015 / 1018 / 1005 / 1007 / 1008 / 1011）
+      ② `P 为假的： P3、P7 | 共 9 条`  （1032 家族 / 1014）
+    """
+    if not text:
+        return None, False, "empty_output"
+    m = _P_LIST_RE.search(text)
+    if m:
+        toks = [t.strip() for t in m.group(1).split(",") if t.strip()]
+        if not toks:
+            return 0, True, ["p_list_empty"]
+        bad = [i for i, t in enumerate(toks, 1) if t.lower().startswith("false")]
+        return len(bad), True, ["p_list"] + [str(i) for i in bad]
+    m2 = _FALSE_LIST_RE.search(text)
+    if m2:
+        seg = m2.group(1).strip()
+        if not seg or seg == "无":
+            return 0, True, ["false_list_none"]
+        parts = [p for p in re.split(r"[、,，\s]+", seg) if p]
+        return len(parts), True, ["false_list"] + parts
+    return None, False, ["no_p_summary"]
+
+
+# ⭐⭐⭐⭐⭐ **阳性对照**：检测器自己必须**能失败** —— 不然「读到 0 条」是恒真
+_DETECTOR_CASES = [
+    ("P1..P3 = [True, False, True]", 1, True),
+    ("P1..P8 = [True, True, True, True, True, True, True, True]", 0, True),
+    ("P 为假的： 无 | 共 9 条", 0, True),
+    ("P 为假的： P3、P7 | 共 9 条", 2, True),
+    ("为假的： 无 | 降级： 无", 0, True),
+    ("这里什么判据都没有", None, False),
+]
+_DETECTOR_SELFTEST = []
+for _txt, _want_n, _want_r in _DETECTOR_CASES:
+    _got_n, _got_r, _det = _self_reported_false(_txt)
+    _DETECTOR_SELFTEST.append({"input": _txt[:40], "want_n": _want_n,
+                               "got_n": _got_n, "want_readable": _want_r,
+                               "got_readable": _got_r,
+                               "ok": (_got_n == _want_n and _got_r == _want_r)})
+DETECTOR_SELFTEST_OK = all(c["ok"] for c in _DETECTOR_SELFTEST)
+DETECTOR_N_CASES = len(_DETECTOR_SELFTEST)
+
+
 def _run_round():
     """整轮：每本探针跑一次。⭐ 统一带 `--write-golden` ——
     1005 把落仓的门控在 `if "--write-golden" in sys.argv` 上 ⇒ ⇒ 不带这个 flag 时
@@ -228,6 +298,11 @@ def _run_round():
                "n_bytes_fresh": len(post) if post is not None else 0}
         row.update(_classify(rc, pre, post))
         row["tail"] = tail.strip().splitlines()[-2:] if tail.strip() else []
+        # ⭐⭐⭐⭐⭐ 1032-②f：把「它自己报的假判据」记成读数（**读不到 ≠ 没有假**）
+        _nf, _rd, _det = _self_reported_false(tail)
+        row["n_self_reported_false"] = _nf
+        row["p_summary_readable"] = _rd
+        row["self_report_detail"] = _det
         rows.append(row)
     return rows
 
@@ -253,7 +328,11 @@ N_REPRODUCED = ST.get("reproduced", 0)
 N_DRIFTED = ST.get("drifted", 0)
 N_CRASHED = ST.get("crashed", 0)
 N_VANISHED = ST.get("vanished", 0)
-N_STATES_SUM = N_REPRODUCED + N_DRIFTED + N_CRASHED + N_VANISHED
+# ⭐⭐⭐⭐⭐ 1032-②f：新加的两栏**必须计入总数** ⇒ ⇒ 否则 P1「四态之和 == 本数」会红
+N_SELF_RED = ST.get("self_red", 0)
+N_CRASHED_OTHER = ST.get("crashed_rc_other", 0)
+N_STATES_SUM = (N_REPRODUCED + N_DRIFTED + N_CRASHED + N_VANISHED
+                + N_SELF_RED + N_CRASHED_OTHER)
 N_NOT_WRITTEN = sum(1 for r in BOOKS if not r["wrote_golden"])
 N_KA = sum(len(r.get("keys_added", [])) for r in BOOKS)
 N_KR = sum(len(r.get("keys_removed", [])) for r in BOOKS)
@@ -262,6 +341,40 @@ DRIFT_PATHS = sorted({c["path"] for r in BOOKS for c in r.get("values_changed", 
                      | {p for r in BOOKS for p in r.get("keys_added", [])}
                      | {p for r in BOOKS for p in r.get("keys_removed", [])})
 DRIFT_BOOKS = [r["golden"] for r in BOOKS if r["state"] == "drifted"]
+
+# ── ⭐⭐⭐⭐⭐ 1032-②f：红账（**先记账、不下结论**）────────────────────
+#   ⇒ ⇒ 「自报 False」是**读数**、不是判决 ⇒ ⇒ 而「读不到」必须与「没有假」分开
+N_READABLE = sum(1 for r in BOOKS if r.get("p_summary_readable"))
+N_UNREADABLE = len(BOOKS) - N_READABLE
+SELF_RED_BOOKS = sorted(r["golden"] for r in BOOKS
+                         if (r.get("n_self_reported_false") or 0) > 0)
+N_SELF_RED_BOOKS = len(SELF_RED_BOOKS)
+N_SELF_RED_CRITERIA = sum(r.get("n_self_reported_false") or 0 for r in BOOKS)
+RED_LEDGER = {
+    "n_books": len(BOOKS),
+    "n_books_with_readable_p_summary": N_READABLE,
+    "n_books_without_readable_p_summary": N_UNREADABLE,
+    "n_books_rc1_judgement_red": N_SELF_RED,
+    "n_books_rc2_instrument_crashed": N_CRASHED,
+    "n_books_self_reporting_false": N_SELF_RED_BOOKS,
+    "n_criteria_self_reported_false": N_SELF_RED_CRITERIA,
+    "books_self_reporting_false": SELF_RED_BOOKS,
+    "detector_selftest_ok": DETECTOR_SELFTEST_OK,
+    "detector_selftest_n_cases": DETECTOR_N_CASES,
+    "detector_selftest": _DETECTOR_SELFTEST,
+    "books_rc1_judgement_red": sorted(r["golden"] for r in BOOKS
+                                      if r["state"] == "self_red"),
+    "books_rc2_instrument_crashed": sorted(r["golden"] for r in BOOKS
+                                          if r["state"] == "crashed"),
+    "per_book": [{"golden": r["golden"], "rc": r["rc"], "state": r["state"],
+                  "n_self_reported_false": r.get("n_self_reported_false"),
+                  "p_summary_readable": r.get("p_summary_readable")}
+                 for r in BOOKS],
+    "what_this_is_not": "⭐⭐⭐⭐⭐ **这不是「红的清单」** —— 「自报 False」里"
+                        "**混着「预测被否型」（False 才是结论）** ⇒ ⇒ "
+                        "**⇒ 而红/被否型/前提不成立 的分类必须逐条读判据才能下 ⇒ ⇒ "
+                        "**⇒ 所以本读数只负责「看见」，定性留给 audit 的账**",
+}
 
 
 # ── 修了什么：before/after 逐条从 git HEAD 取，不靠记忆 ──────────────
@@ -357,8 +470,9 @@ if _new_leaf == _old_leaf:                       # 哨兵值不许和原值撞�
 _cur[_tgt[-1]] = _new_leaf
 REVERSE_ADD = _classify(0, _b, json.dumps(_add, ensure_ascii=False, indent=1).encode("utf-8"))
 REVERSE_MOD = _classify(0, _b, json.dumps(_mod, ensure_ascii=False, indent=1).encode("utf-8"))
-REVERSE_C = _classify(1, _b, None)
-REVERSE_V = _classify(0, _b, None)
+REVERSE_C = _classify(1, _b, None)      # rc=1 ⇒ 判据红
+REVERSE_X = _classify(2, _b, None)      # rc=2 ⇒ 仪器崩
+REVERSE_V = _classify(0, _b, None)      # 产物没了 ⇒ vanished
 P5_OK = bool(
     bool(_live_plain)                           # 必须挑到一条不含 list 下标的路径
     and REVERSE_ADD["state"] == "drifted"
@@ -367,9 +481,13 @@ P5_OK = bool(
     and REVERSE_MOD["state"] == "drifted"
     and not REVERSE_MOD["keys_added"] and not REVERSE_MOD["keys_removed"]
     and [c["path"] for c in REVERSE_MOD["values_changed"]] == [(  _live_plain or _live)[0]]
-    and REVERSE_C["state"] == "crashed" and REVERSE_V["state"] == "vanished")
+    # ⭐⭐⭐⭐⭐ 1032-②f：**rc=1 与 rc=2 必须被分到两栏** —— 这就是分类器自己的阳性对照
+    and REVERSE_C["state"] == "self_red"
+    and REVERSE_X["state"] == "crashed"
+    and REVERSE_V["state"] == "vanished")
 P5_DETAIL = {"add_key": REVERSE_ADD["state"], "modify_value": REVERSE_MOD["state"],
-             "rc1": REVERSE_C["state"], "missing_output": REVERSE_V["state"],
+             "rc1": REVERSE_C["state"], "rc2": REVERSE_X["state"],
+             "missing_output": REVERSE_V["state"],
              "modified_path": (_live_plain or _live)[0] if _live else None,
              "path_is_list_free": bool(_live_plain),
              "n_keys_added": len(REVERSE_MOD["keys_added"]),
@@ -693,7 +811,17 @@ out = {"P1_hold_1015": (N_STATES_SUM == len(BOOKS) and len(BOOKS) > 0
                         and N_AB_EXTRACTED == _N_KEYS_IN_AUDIT
                         and not _missing),
        "P7_hold_1015": GOLDEN.name.endswith("1015.json"),
-       "P8_hold_1015": P8_OK}
+       "P8_hold_1015": P8_OK,
+       # ⭐⭐⭐⭐⭐ 1032-②f：红账读数本身必须可信 ⇒ ⇒ 三件：
+       #   ① 检测器的阳性对照必须全过（**它得能失败**）
+       #   ② 必须真的读到了书（**「读不到」不能是常态**）
+       #   ③ 「自报 False」的条数必须与「读到的书」口径自洽
+       #   ⚠️ **注意它刻意不判「红账必须为空」** —— ②e 已证册里混着
+       #   **预测被否型** ⇒ ⇒ 一旦「有 False 就 fail」，就会把「结论」当「缺陷」去修
+       "P9_hold_1015": (DETECTOR_SELFTEST_OK
+                        and N_READABLE > 0
+                        and N_READABLE + N_UNREADABLE == len(BOOKS)
+                        and N_SELF_RED_CRITERIA >= N_SELF_RED_BOOKS)}
 # ⭐ 不许静默：提取器一条没抓到、或条数对不上，都必须打一行出来
 if N_AB_EXTRACTED != _N_KEYS_IN_AUDIT:
     print("!! 判据条数对不上：提取到 %d 条、audit 里实际 %d 条 ⇒ "
@@ -703,6 +831,7 @@ if _missing:
     print("!! 判据里查不到出处的数：",
           json.dumps(_missing, ensure_ascii=False))
 
+out["red_ledger_1015"] = RED_LEDGER
 io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
 io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
     "generated_by": SELF,
@@ -724,6 +853,7 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
                 "往笔上多写一句，被测的那些账就跟着重算** —— 1005 普查的是 `_ausrc`，"
                 "而本批往 audit 里塞了判据 ⇒ ⇒ ⇒ ⇒ ⇒ 所以它的读数必然跟着变",
     },
+    "red_ledger": RED_LEDGER,
     "discovery": {
         "channel_a_goldens": N_GOLDENS,
         "channel_b_probes": len(_PROBES),
@@ -837,7 +967,12 @@ print("P8: 1014 判本探针的产物 %d 条不可自证，其中 %d 条本探�
 print("  ⚠️ P8 那条读数**落后一代**（结构性的，加轮数关不掉）："
       "1014 看到的是 %s 轮的产物，而本产物有 %s 轮 ⇒ 路径下标对不上属正常"
       % (_P8_SAW_ROUNDS, N_ROUNDS))
-print("P1..P8 =", [out["P%d_hold_1015" % i] for i in range(1, 9)])
+print("红账：读到 %d/%d 本有可读判据；自报 False 的书 %d 本 / 判据 %d 条；"
+      "rc=1（判据红）%d 本；rc=2（仪器崩）%d 本；检测器自检 %s"
+      % (N_READABLE, len(BOOKS), N_SELF_RED_BOOKS, N_SELF_RED_CRITERIA,
+         N_SELF_RED, N_CRASHED,
+         "OK" if DETECTOR_SELFTEST_OK else "FAIL"))
+print("P1..P9 =", [out["P%d_hold_1015" % i] for i in range(1, 10)])
 print("PROBE_1015_DONE ->", GOLDEN)
 # ⭐⭐⭐⭐⭐ **1032-① 修一个「门在说谎」的 bug：1015 探针此前**没有 sys.exit**，
 #   它的退出码**恒为 0** —— 无论 P1..P8 是真是假。

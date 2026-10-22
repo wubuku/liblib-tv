@@ -34,6 +34,39 @@ import os
 import re
 import subprocess
 import sys
+
+
+# ── ⭐⭐⭐⭐⭐ 1032-②f：**退出码必须真的说话** ——
+#   ⇒ ⇒ 本脚本以前是一个平铺脚本、**没有 `sys.exit`** ⇒ ⇒
+#   ⇒ ⇒⇒ **无论 P1..PN 有几条是 False，退出码恒为 0** ⇒ ⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 而 1015 的分类器是「rc≠0 ⇒ crashed」⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒ **⇒ 于是「自报红」被记成了「rc=0 / state=reproduced」** ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒ **⇒ 「退出码恒 0 的门，等于没有门」—— 本批把它变成真话**：
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒   ① 判据红 ⇒ **rc=1**  ② 仪器崩 ⇒ **rc=2**  ③ 全绿 ⇒ **rc=0**
+#   ⚠️⭐⭐⭐⭐⭐ **崩与红必须分开记账** —— 而它们以前**都记成了 0**
+#   ⚠️ 而「红」必须先逐条定性过：**预测被否型**（False 才是结论）不算红
+
+
+def _exit_code(criteria, crashed=False):
+    """退出码的**纯函数**（⇒ 可单测、也可被别的门当契约引用）。"""
+    if crashed:
+        return 2
+    # ⭐⭐⭐⭐⭐ 1032-②f（补）：**「不适用」（`None`）不许算成「红」** —⇒
+    #   ⇒ ⇒ `all([True, None])` 是 `False` ⇒ ⇒⇒ **而 `None` 的意思是「没测到」**
+    #   ⇒ ⇒⇒⇒ **⇒ 把「没测到」算成「测了、没过」⇒ ⇒ 正是本批要治的病**
+    #   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒ **⇒ 处置：只有**明确的 `False`** 才算红** ⇒ ⇒ `None` 不算
+    #   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒ **⇒ 而「恒真」与「不适用」必须分开**（本批 p30 纪律）
+    return 0 if all(c is not False for c in criteria) else 1
+
+
+def _crash_hook(et, ev, tb):
+    """未捕获异常 ⇒ **仪器崩了** ⇒ rc=2（不是 1、也不是 0）。"""
+    sys.stderr.write("⭐⭐⭐⭐⭐ **仪器崩了（不是判据红）⇒ 退出码 2**：%r\n" % (ev,))
+    sys.stderr.flush()
+    sys.exit(2)
+
+
+sys.excepthook = _crash_hook
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -166,7 +199,22 @@ N_INCREASED = sum(1 for r in records if r[4] > r[3])
 # ⭐⭐⭐⭐⭐⭐⭐ **这是本批真正的落点：唯一在变的量是「在几次」、而它今天没有任何门判据覆盖**
 
 # ── ⑤ P6：与 1005 零耦合清单交叉（⭐ 小样本必须诚实）───────────────
-g5 = json.loads(G5.read_text(encoding="utf-8"))
+# ⭐⭐⭐⭐⭐ 1032-②f：**交叉用的清单必须与被测的那一段在同一个宇宙里** ——
+#   ⇒ ⇒ 旧版读的是**工作区里那份 1005 清单** ⇒ ⇒ 而它每批都在变（今天 835 行、
+#   ⇒ ⇒ ⇒ 而 1005 那批自己写下去时是 690 行）
+#   ⇒ ⇒⇒⇒ **⇒ 于是「冻结历史测量」与「当前读数」被混在一起 ⇒ ⇒ ⇒
+#   ⇒⇒⇒⇒⇒ **⇒ 而这正是 P6 红的原因 —— 不是「历史变了」，是「读错了那一份」**
+#   ⇒ ⇒⇒⇒⇒⇒ 证据：原判据写的是 `N_INTER == 7`、`N_Z_ROWS == 690`、
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒ **而 690/7 正是「历史那份清单」的数** ⇒ ⇒⇒⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒⇒ **⇒ 今天用历史那份算：交叉 7/8（有一段不在）；用工作区那份算：8/8**
+#   ⇒ ⇒⇒⇒⇒⇒⇒ ⇒ **⇒ 两个宇宙给出两个不同的答案 ⇒ ⇒ 判据必须声明它在问哪个**
+#   ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 处置：判据问「1005 那批写下去的那份」⇒ ⇒ 取自冻结提交**
+_G5_FROZEN_SHA = "e7e8c779"      # = 1005 那批自己的提交、本批 COMMITS 里就有它
+_G5_REL = "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json"
+assert _G5_FROZEN_SHA in [s for _t, s in COMMITS], (
+    "⭐⭐⭐⭐⭐ **冻结清单的提交不在本批的 COMMITS 里 ⇒ ⇒ "
+    "**⇒ 那它就与被测的那一段不在同一个宇宙 ⇒ ⇒ 仪器坏了**")
+g5 = json.loads(git_show(_G5_FROZEN_SHA, _G5_REL))
 z_rows = g5["rows"]
 z_texts = {r["anchor"] for r in g5["rows"]}
 z_cls = {}
@@ -226,11 +274,13 @@ P5 = ("⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这 %d 次改动里：出现次数**增�
       "**⇒ ⇒ ⇒ ⇒ 而 1008 已经为这类判据准备好了配套：老账记成账龄、不许一次报红**"
       % (N_TOUCHED, N_INCREASED, N_DECREASED, N_VANISHED))
 
-P6 = ("⭐⭐⭐⭐⭐ **%d 段里 %d 段落在 1005 那份 %d 行零耦合清单里（%.1f%% vs 基准 %.1f%%）"
+P6 = ("⭐⭐⭐⭐⭐ **（下面这份是 1005 那批写下去的那本、%d 行 ⇒ 取自冻结提交 `%s`）**\n"
+      "⭐⭐⭐⭐⭐ **%d 段里 %d 段落在 1005 那份 %d 行零耦合清单里（%.1f%% vs 基准 %.1f%%）"
       "⇒ ⇒ 而**样本只有 %d 段**、且扣掉计费声明后只剩 %d 段 ⇒ ⇒ "
       "**⇒ ⇒ ⇒ 所以本批**不**据此决定「该点修还是该普查」** —— "
       "**⇒ 而诚实的结论是：样本量不足以决定路线、只能收窄 1010 读数的适用范围**"
-      % (N_UNIQ, N_INTER, N_Z_ROWS, INTER_RATE * 100, Z_BASE * 100,
+      % (N_Z_ROWS, _G5_FROZEN_SHA, N_UNIQ, N_INTER, N_Z_ROWS,
+         INTER_RATE * 100, Z_BASE * 100,
          N_UNIQ, N_NONBILL_UNIQ))
 
 P7 = ("⭐⭐⭐⭐⭐⭐⭐ **本批每一个读数都钉在 %d 个 git 提交上 ⇒ ⇒ 而「钉在历史上的判据」"
@@ -275,6 +325,23 @@ out["P3_hold_2011"] = bool(N_TOUCH_GE2 == 43 and N_ALL_GE2 == 292
 out["P4_hold_2011"] = bool(N_PRED_ZERO == N_TOUCH_GE2 and N_VANISHED == 0)
 out["P5_hold_2011"] = bool(N_INCREASED == N_TOUCHED and N_DECREASED == 0
                            and N_VANISHED == 0)
+# ⭐⭐⭐⭐⭐ 1032-②f：**另一份清单的交叉结果降级为「读数」** ——
+#   ⇒ ⇒ 它回答的是**另一个问题**（「今天那份清单还覆盖得住吗」）⇒ ⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而把它混进判据 = 把两个宇宙的数放在一起比** ⇒ ⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒ 本批把它**明确记下来**（它是今天的新事实：8/8 全覆盖）
+_g5_live = json.loads(G5.read_text(encoding="utf-8"))
+_live_texts = {r["anchor"] for r in _g5_live["rows"]}
+_live_inter = sorted(set(uniq_anchor) & _live_texts)
+out["P6_live_cross_check_2011"] = {
+    "n_live_rows": len(_g5_live["rows"]),
+    "n_live_unique_texts": len(_live_texts),
+    "n_inter_live": len(_live_inter),
+    "n_uniq": N_UNIQ,
+    "covered_all_live": len(_live_inter) == N_UNIQ,
+    "note": "⭐⭐⭐⭐⭐ **这是**另一个问题**：「今天那份 1005 清单还覆盖得住吗」⇒ ⇒ "
+            "**⇒ 它回答 8/8 全覆盖 ⇒ ⇒ 而冻结那份回答 7/8 ⇒ ⇒ "
+            "**⇒ 两个宇宙、两个答案 ⇒ ⇒ 而判据只该问一个 ⇒ ⇒ 另一个记成读数**",
+}
 out["P6_hold_2011"] = bool(N_INTER == 7 and N_Z_ROWS == 690
                            and N_Z_UNIQ == 658 and N_NONBILL_UNIQ == 5)
 out["P7_hold_2011"] = bool(_alive == len(COMMITS))
@@ -426,6 +493,24 @@ out["discipline_2011"] = "".join([
     "  ⑥ ⭐⭐⭐⭐⭐ **钉在 git 历史上的判据必须逐个验活 sha** ⇒\n",
 ])
 
+# ── 1032-②f：退出码按判决走（**必须在产物写盘之前算出来**）────────
+_CRITERIA = [out["P%d_hold_2011" % i] for i in range(1, 9)]
+_EXIT = _exit_code(_CRITERIA, crashed=False)
+out["exit_code_2011"] = {
+    "criteria": _CRITERIA,
+    "exit_code_would_be": _EXIT,
+    "all_green": all(_CRITERIA),
+    "rule": "⭐⭐⭐⭐⭐ **判据红 ⇒ rc=1；仪器崩 ⇒ rc=2；全绿 ⇒ rc=0** ⇒ ⇒ "
+            "**⇒ 而以前这里是恒 0 ⇒ ⇒⇒ 「退出码恒 0 的门等于没有门」**",
+    "selftest": {
+        "all_green_gives_0": _exit_code([True, True]) == 0,
+        "one_false_gives_1": _exit_code([True, False]) == 1,
+        "crashed_gives_2": _exit_code([True], crashed=True) == 2,
+        "not_applicable_is_not_red": _exit_code([True, None]) == 0,
+    },
+}
+out["exit_code_selftest_ok_2011"] = all(out["exit_code_2011"]["selftest"].values())
+
 io.open(OUT, "w", encoding="utf-8").write(
     json.dumps(out, ensure_ascii=False, indent=1))
 print("touched=%d(九对=%d) uniq=%d billing_uniq=%d billing_recs=%d "
@@ -439,3 +524,7 @@ print("dir inc=%d dec=%d van=%d | 1005 cross=%d/%d base=%.1f%% zrows=%d zuniq=%d
          Z_BASE * 100, N_Z_ROWS, N_Z_UNIQ))
 print("P1..P9 =", [out["P%d_hold_2011" % i] for i in range(1, 10)])
 print("PROBE_1011_DONE ->", OUT)
+# ⭐⭐⭐⭐⭐ **最后一行才是退出** —— 而产物**已经在上面写完了**
+#   ⇒ ⇒⇒⇒ **⇒「红」必须既留下产物、又留下非零退出码** ⇒ ⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 而以前这里是 rc=0 ⇒ ⇒⇒ 「它红了没人知道」**
+sys.exit(_EXIT)

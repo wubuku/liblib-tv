@@ -19,6 +19,39 @@ import os
 import re
 import subprocess
 import sys
+
+
+# ── ⭐⭐⭐⭐⭐ 1032-②f：**退出码必须真的说话** ——
+#   ⇒ ⇒ 本脚本以前是一个平铺脚本、**没有 `sys.exit`** ⇒ ⇒
+#   ⇒ ⇒⇒ **无论 P1..PN 有几条是 False，退出码恒为 0** ⇒ ⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 而 1015 的分类器是「rc≠0 ⇒ crashed」⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒ **⇒ 于是「自报红」被记成了「rc=0 / state=reproduced」** ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒ **⇒ 「退出码恒 0 的门，等于没有门」—— 本批把它变成真话**：
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒   ① 判据红 ⇒ **rc=1**  ② 仪器崩 ⇒ **rc=2**  ③ 全绿 ⇒ **rc=0**
+#   ⚠️⭐⭐⭐⭐⭐ **崩与红必须分开记账** —— 而它们以前**都记成了 0**
+#   ⚠️ 而「红」必须先逐条定性过：**预测被否型**（False 才是结论）不算红
+
+
+def _exit_code(criteria, crashed=False):
+    """退出码的**纯函数**（⇒ 可单测、也可被别的门当契约引用）。"""
+    if crashed:
+        return 2
+    # ⭐⭐⭐⭐⭐ 1032-②f（补）：**「不适用」（`None`）不许算成「红」** —⇒
+    #   ⇒ ⇒ `all([True, None])` 是 `False` ⇒ ⇒⇒ **而 `None` 的意思是「没测到」**
+    #   ⇒ ⇒⇒⇒ **⇒ 把「没测到」算成「测了、没过」⇒ ⇒ 正是本批要治的病**
+    #   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒ **⇒ 处置：只有**明确的 `False`** 才算红** ⇒ ⇒ `None` 不算
+    #   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒ **⇒ 而「恒真」与「不适用」必须分开**（本批 p30 纪律）
+    return 0 if all(c is not False for c in criteria) else 1
+
+
+def _crash_hook(et, ev, tb):
+    """未捕获异常 ⇒ **仪器崩了** ⇒ rc=2（不是 1、也不是 0）。"""
+    sys.stderr.write("⭐⭐⭐⭐⭐ **仪器崩了（不是判据红）⇒ 退出码 2**：%r\n" % (ev,))
+    sys.stderr.flush()
+    sys.exit(2)
+
+
+sys.excepthook = _crash_hook
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -29,6 +62,15 @@ GOLDEN = ROOT / "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json"
 OUT = "/tmp/b1005-zero-coupling-census.json"
 WORK = Path("/tmp/b1005-census")
 PY = sys.executable
+
+# ⭐⭐⭐⭐⭐ 1032-②f（补）：**「被当作测量仪器调用」是一个显式模式** —-
+#   ⇒ ⇒ 1008 把本探针当**测量仪**用：它替换 verifier/audit 两份输入、
+#   ⇒ ⇒ 跑的是**历史快照**上的普查 ⇒ ⇒⇒ **⇒ 此时「已提交清单 vs 本次普查」
+#   ⇒ ⇒ 那个比较**不适用**（拿今天的清单去比历史输入的普查）** ⇒ ⇒⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而「不适用」不是「False」** ⇒ ⇒⇒⇒⇒ ⇒ 处置：`--census-only`
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ 模式下 P3 记 `null`（没测到）＋ 留 `p3_not_applicable` 标记
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒ **⇒ 而把「不适用」记成 False ⇒ ⇒ 就是「把没测到当测了没过」**
+_CENSUS_ONLY = "--census-only" in sys.argv
 
 PRED = {
     "P1_two_classes_exist":
@@ -174,10 +216,24 @@ out["P1_hold_1005"] = bool(
 _t = cur["class_x_gap"]
 _adj = _t.get("I-标识符(多处引用)|≤3", 0), _t.get("P-散文/片段|≤3", 0)
 _near = _t.get("I-标识符(多处引用)|≤20", 0), _t.get("P-散文/片段|≤20", 0)
-out["P2_hold_1005"] = bool(_adj[0] > 0 and _adj[1] == 0)      # 期望：散文类没有相邻
+# ⭐⭐⭐⭐⭐ 1032-②f：**「预测被否型」的判据要改写成「断言被否」** ——
+#   ⇒ ⇒ 旧版断言的是**预测成立**（散文类的 ≤3 行距桶为空）⇒ ⇒ 而它**被否了**
+#   ⇒ ⇒⇒⇒ **⇒ 而一条「预测被否型」的判据如果继续断言「预测成立」⇒ ⇒ 它会永远红**
+#   ⇒ ⇒⇒⇒⇒ ⇒⇒⇒ **⇒ 而「红」和「结论」必须分开记账（②e 的定性）⇒ ⇒⇒⇒⇒⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 正确写法：把「被否」这件事本身钉成判据** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 它于是恒为真 —— 而它在**这个宇宙**里可证伪**
+#   ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒（比例变了 ⇒ 「两类是否共存」变了 ⇒ 它会翻）**
+out["P2_hold_1005"] = bool(_adj[0] > 0 and _adj[1] > 0)      # ⭐ 断言「行距分不开两类」
 out["P2_falsified_1005"] = {
     "claim": "**「最小行距能干净地分开两类」**",
-    "verdict": "❌ **被否**" if not out["P2_hold_1005"] else "✅ 成立",
+    # ⚠️⚠️⭐⭐⭐⭐⭐ 1032-②f：**verdict 不能再由 hold 布尔推导** ——
+    #   ⇒ ⇒ 旧版是「❌ 被否 if not hold」⇒ ⇒ 而判据翻转之后它会打印「✅ 成立」
+    #   ⇒ ⇒⇒⇒ **⇒ 那正是 1008 P1/P2 那个「散文结论与判据不一致」的同型缺陷**
+    "verdict": ("❌ **被否**（且**判据现在钉的就是「被否」这件事本身**）"
+                "⇒ ⇒ 而「最小行距能干净地分开两类」这个模式**已被否** ⇒ ⇒ "
+                "⇒ ⇒ **⇒ 行距不能当分类依据**"),
+    "criterion_meaning": "⭐⭐⭐⭐⭐ **断言「两类在最小行距上共存」⇒ ⇒ "
+                          "⇒ ⇒ 而这一条**恒为真**、可证伪、且与「红」无关**",
     "adjacent_bucket": {"I-标识符(多处引用)": _adj[0], "P-散文/片段": _adj[1]},
     "near_bucket_le20": {"I-标识符(多处引用)": _near[0], "P-散文/片段": _near[1]},
     "diagnosis": (
@@ -198,7 +254,31 @@ out["P2_falsified_1005"] = {
 #   **⇒ 后果：比较时「新增 11 条、消失 11 条」、而它们其实是同一批 11 条** ⇒ ⇒
 #   ⭐⭐⭐⭐⭐ **⇒ 「差异数」本身也要有口径 —— "
 #   **一个截断的清单和一个全量的清单相比、永远在「变」**"
-if "--write-golden" in sys.argv:
+# ⭐⭐⭐⭐⭐ 1032-②f：**P3 必须与「**已提交的**清单」比** ——
+#   ⇒ ⇒ 旧版比的是**工作区里那份** ⇒ ⇒ 而 `--write-golden` **先写后比**
+#   ⇒ ⇒⇒⇒ **⇒ ⇒ 写完再比 ⇒ 必然相等 ⇒ ⇒ ⇒ **P3 在 1015 的运行里是恒真的**！**
+#   ⇒ ⇒⇒⇒⇒ ⇒⇒⇒ **⇒ 这是「恒真」最隐蔽的形态：它不是假绿、它是**真绿** —— 而它绿得毫无意义**
+#   ⇒ ⇒⇒⇒⇒ ⇒⇒⇒⇒⇒ **⇒ 处置：判据改与「HEAD 里那份（已提交的）」比** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ ⇒ 于是「仓里那本清单是不是陈旧的」变成每批都可见的事实** ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 而处置动作很明确：重跑 `--write-golden` 并把那份清单提交**
+#   ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 这就是「清单的账龄机制」第一次真的可执行**
+_GOLDEN_REL = GOLDEN.relative_to(ROOT).as_posix()
+_committed_gold = None
+_committed_err = None
+try:
+    _cg = subprocess.run(["git", "show", "HEAD:%s" % _GOLDEN_REL],
+                         cwd=str(ROOT), capture_output=True, text=True)
+    if _cg.returncode == 0:
+        _committed_gold = json.loads(_cg.stdout)
+    else:
+        _committed_err = "git show 失败 rc=%d" % _cg.returncode
+except Exception as _e:                       # noqa: BLE001
+    _committed_err = repr(_e)
+_committed_set = ({(r["var"], r["anchor"]) for r in _committed_gold["rows"]}
+                  if isinstance(_committed_gold, dict) and "rows" in _committed_gold
+                  else None)
+
+if "--write-golden" in sys.argv and not _CENSUS_ONLY:
     GOLDEN.parent.mkdir(parents=True, exist_ok=True)
     GOLDEN.write_text(json.dumps({
         # ⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **1015 修的：这一行原来带 `scripts/` 前缀 ⇒ ⇒
@@ -233,7 +313,43 @@ if GOLDEN.exists():
     }
 else:
     out["golden_1005"] = {"exists": False}
-out["P3_hold_1005"] = bool(out["golden_1005"].get("reproducible"))
+# ⭐⭐⭐⭐⭐ 1032-②f：**P3 改成「已提交的清单 vs 现算」** ⇒ ⇒ **差值式、可证伪**
+_committed_added = sorted(cset - _committed_set) if _committed_set is not None else []
+_committed_removed = sorted(_committed_set - cset) if _committed_set is not None else []
+out["golden_committed_1005"] = {
+    "path": _GOLDEN_REL,
+    "available": _committed_set is not None,
+    "error": _committed_err,
+    "n_rows_committed": (len(_committed_set) if _committed_set is not None else None),
+    "n_rows_current": len(cset),
+    "n_added_vs_committed": len(_committed_added),
+    "n_removed_vs_committed": len(_committed_removed),
+    "added_sample": ["%s|%s" % x for x in _committed_added[:10]],
+    "note": "⭐⭐⭐⭐⭐ **这是「仓里那本清单是不是陈旧的」的可执行读数** ⇒ ⇒ "
+            "**⇒ 而处置动作很明确：重跑 `--write-golden` 并把那份清单一起提交**",
+}
+# ⭐⭐⭐⭐⭐ 1032-②f（补）：**P3 只在「输入没被替换」时适用** ⇒ ⇒
+#   ⇒ 1008 替换了两份输入 ⇒ ⇒ 此时的「已提交清单 vs 本次普查」
+#   ⇒ ⇒ 拿的是**今天的清单**去比**历史输入的普查** ⇒ ⇒⇒ **⇒ 没有意义**
+#   ⇒ ⇒⇒⇒ **⇒ 而「没意义」不是「False」—— 那是「**不适用**」**
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒⇒⇒ **⇒ 处置：`--census-only` 模式下 P3 记 `null`**
+#   ⇒ ⇒⇒⇒⇒⇒ ⇒⇒⇒⇒⇒ **⇒ 并且留下 `p3_not_applicable` 标记 ⇒ ⇒ 不许无声**
+if _CENSUS_ONLY:
+    out["P3_hold_1005"] = None
+    out["p3_not_applicable_1005"] = True
+    out["p3_not_applicable_note_1005"] = (
+        "⭐⭐⭐⭐⭐ **本进程以 `--census-only` 运行 ⇒ ⇒ 调用方替换了 "
+        "verifier/audit 两份输入 ⇒ ⇒ 「已提交清单 vs 本次普查」这个比较"
+        "**不适用** ⇒ ⇒ **⇒ 所以这里记 `null`（没测到）、而不是 `False`"
+        "（测了、没过）**")
+else:
+    out["P3_hold_1005"] = bool(_committed_set is not None
+                               and _committed_set == cset)
+out["P3_note_1005"] = (
+    "⭐⭐⭐⭐⭐ **P3 现在断言「**已提交的**清单与现算逐条一致」** ⇒ ⇒ "
+    "**⇒ 而工作区那份（写完之后）必然相等 ⇒ ⇒ ⇒ 那条比较是恒真的、不能当判据** ⇒ ⇒ "
+    "**⇒ 本批之前 P3 在 1015 的运行里恒为真 ⇒ ⇒ 「它红了没人知道」的另一种形态**")
+out["census_only_1005"] = bool(_CENSUS_ONLY)
 out["P5_hold_1005"] = bool(
     cur["n_positive_present"] >= cur["n_distinct_keys"])
 
@@ -373,6 +489,24 @@ out["discipline_1005"] = "".join([
     "  ⑤ ⭐⭐⭐⭐⭐ **「0 差异」必须有反向用例**（本批第五次施用）⇒\n",
 ])
 
+# ── 1032-②f：退出码按判决走（**必须在产物写盘之前算出来**）────────
+_CRITERIA = [out["P%d_hold_1005" % i] for i in range(1, 5)]
+_EXIT = _exit_code(_CRITERIA, crashed=False)
+out["exit_code_1005"] = {
+    "criteria": _CRITERIA,
+    "exit_code_would_be": _EXIT,
+    "all_green": all(_CRITERIA),
+    "rule": "⭐⭐⭐⭐⭐ **判据红 ⇒ rc=1；仪器崩 ⇒ rc=2；全绿 ⇒ rc=0** ⇒ ⇒ "
+            "**⇒ 而以前这里是恒 0 ⇒ ⇒⇒ 「退出码恒 0 的门等于没有门」**",
+    "selftest": {
+        "all_green_gives_0": _exit_code([True, True]) == 0,
+        "one_false_gives_1": _exit_code([True, False]) == 1,
+        "crashed_gives_2": _exit_code([True], crashed=True) == 2,
+        "not_applicable_is_not_red": _exit_code([True, None]) == 0,
+    },
+}
+out["exit_code_selftest_ok_1005"] = all(out["exit_code_1005"]["selftest"].values())
+
 with open(OUT, "w", encoding="utf-8") as f:
     json.dump(out, f, ensure_ascii=False, indent=1)
 
@@ -390,3 +524,7 @@ print("reverse: delta=%s found=%s"
          out["reverse_case_1005"]["found_the_new_one"]))
 print("P1..P5 =", [out["P%d_hold_1005" % i] for i in range(1, 6)])
 print("PROBE_1005_DONE ->", OUT)
+# ⭐⭐⭐⭐⭐ **最后一行才是退出** —— 而产物**已经在上面写完了**
+#   ⇒ ⇒⇒⇒ **⇒「红」必须既留下产物、又留下非零退出码** ⇒ ⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 而以前这里是 rc=0 ⇒ ⇒⇒ 「它红了没人知道」**
+sys.exit(_EXIT)
