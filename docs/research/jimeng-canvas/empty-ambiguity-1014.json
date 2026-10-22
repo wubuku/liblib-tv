@@ -112,8 +112,8 @@
     "bytes": 15140
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "19efcd5ba0aa",
-    "bytes": 96604
+    "sha256_12": "d371a24c5313",
+    "bytes": 95493
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -138,9 +138,9 @@
   "n_goldens": 30,
   "n_excluded_self": 1,
   "n_empty_list": 284,
-  "n_empty_null": 131,
+  "n_empty_null": 127,
   "n_self_provable": 10,
-  "n_ambiguous": 405
+  "n_ambiguous": 401
  },
  "rows": [
   {
@@ -2098,20 +2098,6 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[10]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[10]/ledger_complete",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/ledger_rows/[11]/ledger_n_criteria",
    "kind": "null",
    "self_provable": false,
@@ -2541,20 +2527,6 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[10]/criteria_not_applicable",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[10]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[10]/ledger_complete",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -4956,20 +4928,6 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[10]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[10]/ledger_complete",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/ledger_rows/[11]/ledger_n_criteria",
    "kind": "null",
    "self_provable": false,
@@ -5399,20 +5357,6 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[10]/criteria_not_applicable",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[10]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[10]/ledger_complete",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
