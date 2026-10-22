@@ -128,6 +128,9 @@ READ = """()=>{
   out['提示']=notice?txt(notice):null;
   out['空态']=(()=>{const e=q('[data-character-editor-empty]');
     return e?txt(e):null;})();
+  // ★★ **batch 848 起**：★ 「我的音色」页**已实测并实现** ⟹ ⟹ 读它的**实测空态**
+  out['我的音色空态']=(()=>{const e=q("[data-character-editor-voice-empty='mine']");
+    return e?{...rel(e),text:txt(e)}:null;})();
   const ae=document.activeElement;
   out['活动焦点']=ae?{tag:ae.tagName,
     在编辑器内:(root.contains(ae))}:null;

@@ -1752,6 +1752,90 @@
   cursor: pointer;
 }
 
+/* ── Batch 848：第五段另外两页 ─────────────────────────────────────────
+   ★★ P3「我的音色」（★ 源站实测 raw/source-848-p3.json）：
+      ① 标题行 240×40 @rel(24,0)   ＝ 三枚页签（★ **宽度随选中态变**）
+      ② 工具行 240×32 @rel(24,48)  ＝ 两枚 32×32（★ **这一页也有工具行**）
+      ③ 滚动区 240×514 @rel(24,88) ＝ **空态**「暂无音色数据」240×96
+   ★★ P4「AI 生成」（★ 源站实测 raw/source-848-p4.json）：
+      ① 标题行 240×40 @rel(24,0)
+      ② **没有工具行** ⟹ ⟹ 内容区直接从 rel(24,40) 开始：240×562
+         输入框 240×120 → 间隙 19 →「生成音色」240×36 → 间隙 12 →「生成历史」100
+   ★ 两处间隙（19／12）都是**从 raw 的盒算出来的**（⟹ ⟹ 不是手打常数）。 */
+
+/* P3 的空态：240×96，`text-fg-muted flex h-24 items-center justify-center` */
+.ce-voice-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  margin: 0;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* P4 的内容区：`min-h-0 flex-1 space-y-3 overflow-y-auto pb-6 pt-3` */
+.ce-voice-ai {
+  position: absolute;
+  left: 24px;
+  top: 40px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+/* 输入框 240×120：圆角 12 ＋ 1px 白 8% 边 ＋ 白 6% 底 ＋ 内边距 12 */
+.ce-voice-ai-textarea {
+  display: block;
+  box-sizing: border-box;
+  border-style: solid;
+  font-family: inherit;
+  resize: none;
+  outline: none;
+}
+/* 「生成音色」240×36：圆角 10 ＋ 白底黑字 ＋ gap 4（★ 源站 `flex h-9 w-full items-center justify-center gap-1`） */
+.ce-voice-ai-gen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 0;
+  font-family: inherit;
+  font-weight: 400;
+  cursor: pointer;
+}
+/* 角标 36×16：`inline-flex shrink-0 items-center gap-1 ml-1 opacity-40` */
+.ce-voice-ai-badge {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  margin-left: 4px;
+}
+/* 角标里的数字 16×16：`text-center font-normal min-w-4 text-xs leading-4` */
+.ce-voice-ai-badge-num {
+  display: block;
+  flex: none;
+  text-align: center;
+  font-weight: 400;
+}
+/* 「生成历史」小节：`space-y-2 pt-3`（★ 源站 H3 与空态之间有 **8px** 间隙
+   ⟹ ⟹ raw：H3 @482（16 高）⟹ ⟹ 空态 @506 ⟹ ⟹ 差 8 ⟹ ⟹ 不加就会差 8px） */
+.ce-voice-ai-history {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  gap: 8px;
+  padding-top: 12px;
+}
+/* 小标题 240×16：11px/16px ＋ 白 60% ＋ 字重 500 */
+.ce-voice-ai-history-title {
+  margin: 0;
+  font-weight: 500;
+}
+/* 空态 240×64：`text-fg-muted py-6 text-center text-xs` */
+.ce-voice-ai-history-empty {
+  margin: 0;
+  text-align: center;
+}
+
 /* ── 底栏 ───────────────────────────────────────────────────────── */
 .ce-footer {
   position: absolute;

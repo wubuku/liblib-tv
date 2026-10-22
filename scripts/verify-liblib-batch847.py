@@ -65,6 +65,8 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 BATCH = ROOT / "docs/research/liblib-canvas-batch847-2026-10-01"
 RAW847 = BATCH / "raw/source-847-voice.json"
 RAW841 = ROOT / "docs/research/liblib-canvas-batch841-2026-10-01/raw/source-841-tabs.json"
+# ★★ **batch 848 起**：★ 「我的音色」页**已实测并实现** ⟹ ⟹ 期望值从那份 raw 取
+RAW848_P3 = ROOT / "docs/research/liblib-canvas-batch848-2026-10-01/raw/source-848-p3.json"
 PROBE_CLONE = BATCH / "probes/clone847.py"
 OUT = BATCH / "runtime-audit.json"
 
@@ -180,6 +182,22 @@ def build_expectations() -> dict:
         "voice": gen_row("C_分段_音色音调"),
     }
 
+    # ★★ **batch 848 起**：★ 「我的音色」页的**实测空态文案**与**工具数**
+    #   （★ 机器提取自**本批入库的源站 raw** ⟹ ⟹ 不手打 ⟹ ⟹ 也**更正**了
+    #   batch 847 写的「0 枚工具」——★ 源站实测：那一页**也有**两枚工具）
+    def _walk(n):
+        yield n
+        for k in (n.get("c2") or []):
+            yield from _walk(k)
+    _p3 = read_json(RAW848_P3)
+    _mine = [n for n in _walk(_p3["★整棵子树"])
+             if (n.get("x") or "") == "暂无音色数据"
+             and "h-24" in (n.get("c") or "")]
+    if len(_mine) != 1:
+        raise SystemExit("848 raw 里的「暂无音色数据」识别不唯一：%d 个" % len(_mine))
+    _p3_tools = [n for n in _walk(_p3["★整棵子树"])
+                 if n.get("t") == "BUTTON" and n.get("ar") in ("搜索", "筛选音色")]
+
     return {
         "右栏盒": R(src["右栏盒"]),
         "标题行盒": R(src["标题行"]["box"]),
@@ -204,6 +222,8 @@ def build_expectations() -> dict:
         "★期望工具数": len(src["工具行"]["按钮"]),
         "★期望清单": [(c["名字"], c["副标"]) for c in src["音色卡"]],
         "★模态原点": {"x": ox, "y": oy},
+        "★我的音色空态文案": _mine[0]["x"],
+        "★我的音色工具数": len(_p3_tools),
     }
 
 
@@ -519,6 +539,8 @@ def main() -> int:
         "★切到我的音色_空态说明": (mine.get("空态") or "")[:90],
         "★切到我的音色_卡数": len(mine.get("音色卡") or []),
         "★切到我的音色_工具数": len((mine.get("工具行") or {}).get("按钮") or []),
+        # ★★ **batch 848 起**：★ 那一页**已实现** ⟹ ⟹ 读**实测空态**
+        "★切到我的音色_实测空态文案": (mine.get("我的音色空态") or {}).get("text"),
         "★切回音色库_卡数": len(back.get("音色卡") or []),
         "★切回音色库_滚动高": (back.get("滚动区") or {}).get("滚动高"),
     }
@@ -526,15 +548,18 @@ def main() -> int:
         "S7 ★★ **如实标注 ＋ 未实测的入口不编造**：README 必须写明——★ 图标**字形**是 "
         "lucide 占位（源站是 iconify）、★ 「我的音色」「AI 生成」两页**未实测**、"
         "★ 更正了**两处既存偏差**、★ **第五段没有底部生成行**；"
-        "★ 且点「我的音色」⟹ 显示**如实说明** ＋ **0 张卡** ＋ **0 枚工具**"
-        "（★ 那一页的控件**源站未实测** ⟹ ⟹ **不编造**）⟹ ⟹ 切回「音色库」⟹ 20 张卡回来",
+        "★ 且点「我的音色」⟹ 显示的是**实测出来的空态**「暂无音色数据」"
+        "（★ **batch 848 起**：那一页**已实测并实现** ⟹ ⟹ 不再有「未实测」说明）"
+        "＋ **0 张卡** ＋ **2 枚工具**（★ 源站实测：那一页**也有**工具行 ⟹ ⟹ 更正了"
+        "batch 847 写的「0 枚工具」）⟹ ⟹ 切回「音色库」⟹ 20 张卡回来",
         (s7["★README写明图标字形是占位"]
          and s7["★README写明我的音色与AI生成未实测"]
          and s7["★README写明更正了既存偏差"]
          and s7["★README写明第五段没有底部生成行"]
-         and bool(mine.get("空态"))
+         and not mine.get("空态")
+         and (mine.get("我的音色空态") or {}).get("text") == exp["★我的音色空态文案"]
          and len(mine.get("音色卡") or []) == 0
-         and len((mine.get("工具行") or {}).get("按钮") or []) == 0
+         and len((mine.get("工具行") or {}).get("按钮") or []) == exp["★我的音色工具数"]
          and len(back.get("音色卡") or []) == exp["★期望卡数"]
          and (back.get("滚动区") or {}).get("滚动高") == exp["滚动高"]),
         json.dumps(s7, ensure_ascii=False),

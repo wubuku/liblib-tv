@@ -54,6 +54,8 @@ import urllib.request
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 BATCH = ROOT / "docs/research/liblib-canvas-batch841-2026-10-01"
 RAW = BATCH / "raw"
+# ★★ **batch 848 起**：★ 「AI 生成」页**已实测并实现** ⟹ ⟹ 期望值从那份 raw 取
+RAW848_P4 = ROOT / "docs/research/liblib-canvas-batch848-2026-10-01/raw/source-848-p4.json"
 PROBE_CLONE = BATCH / "probes/clone841.py"
 OUT = BATCH / "runtime-audit.json"
 
@@ -240,6 +242,19 @@ def build_expectations() -> dict:
         }
     exp["_源站积分"] = {k: v for k, v in raw.items()
                         if k.startswith("★") and "积分是否变化" in k}
+    # ★★ **batch 848 起**：★ 「AI 生成」页的**实测文案**（★ 机器提取 ⟹ ⟹ 不手打）
+    def _walk(n):
+        yield n
+        for k in (n.get("c2") or []):
+            yield from _walk(k)
+    _p4 = read_json(RAW848_P4)
+    _gen = [n for n in _walk(_p4["★整棵子树"]) if n.get("ar") == "生成音色"]
+    _his = [n for n in _walk(_p4["★整棵子树"]) if n.get("t") == "H3"]
+    if len(_gen) != 1 or len(_his) != 1:
+        raise SystemExit("848 raw 里的「生成音色」/「生成历史」识别不唯一：%d / %d"
+                         % (len(_gen), len(_his)))
+    exp["_AI页_生成按钮文案"] = "生成音色"
+    exp["_AI页_历史标题文案"] = _his[0].get("x")
     exp["_源站积分全未变"] = all(
         v is False for k, v in raw.items() if "积分是否变化" in k)
     return exp
@@ -442,6 +457,12 @@ def main() -> int:
     # ★★ ★ 提成**局部变量** ⟹ ⟹ 同一个串**只写一遍**（★ 写两遍迟早写歪）
     s5_says_unmeasured = bool(seg5_empty and "未实测" in seg5_empty)
     s5_says_measured = bool(seg5_empty and "已实测" in seg5_empty)
+    # ★★★ **batch 848 起再改**：★ 「AI 生成」页**已实测并实现** ⟹ ⟹ 它**不再**是
+    #   「未实测」说明 ⟹ ⟹ 期望**翻成**：显示的是**实测出来的**「生成音色」＋「生成历史」
+    ai_page = seg5.get("AI页") or {}
+    s5_shows_measured_ai = bool(
+        ai_page.get("生成按钮") and exp["_AI页_生成按钮文案"] in ai_page.get("生成按钮")
+        and ai_page.get("历史标题") == exp["_AI页_历史标题文案"])
     s5 = {
         "★第五段_页签数": len(seg5.get("页签") or []),
         "★第五段_滑杆数": len(seg5.get("滑杆") or []),
@@ -450,17 +471,22 @@ def main() -> int:
         #   ⟹ ⟹ 那一页的内容**根本就没测过** ⟹ ⟹ 说明**必须**写「未实测」
         "★第五段_空态说明里写了「未实测」": s5_says_unmeasured,
         "★第五段_空态说明里写了「已实测」": s5_says_measured,
+        # ★★ **batch 848 起**：★ 那一页**已实现** ⟹ ⟹ 读**实测内容**
+        "★AI页_生成按钮文案": ai_page.get("生成按钮"),
+        "★AI页_历史标题文案": ai_page.get("历史标题"),
+        "★AI页_显示的是实测内容": s5_shows_measured_ai,
         "★切回脸部精修_页签数": len(segback.get("页签") or []),
         "★源站那趟_积分全程未变": exp["_源站积分全未变"],
     }
     checks.append((
-        "S5 ★★★ **未实测的那一页仍显示空态说明、0 控件**（★ batch 847 起换靶：左列五段"
-        "**全部实现** ⟹ ⟹ 「仍未实现的那一段」**没有靶子了** ⟹ ⟹ 改盯**第五段里那一页"
-        "内容未实测的页签**（「AI 生成」）；★ 且说明文案**要**写「未实测」—— ★ 那一页"
-        "的控件**根本就没测过** ⟹ ⟹ 写「已实测」才是**假陈述**",
+        "S5 ★★★ **那一页已实测并实现**（★ batch 848 起再改）：「AI 生成」页**已实测并实现**"
+        "（★ batch 848 raw 入库）⟹ ⟹ 期望**翻成**：显示的是**实测出来的**「生成音色」"
+        "＋「生成历史」⟹ ⟹ 且**没有**「未实测」字样（★ 「未实测入口只显示如实说明」"
+        "这条纪律由 **842／843** 承载）",
         (s5["★第五段_页签数"] == 0 and s5["★第五段_滑杆数"] == 0
-         and bool(seg5_empty)
-         and s5_says_unmeasured
+         and not seg5_empty
+         and s5_shows_measured_ai
+         and not s5_says_unmeasured
          and not s5["★第五段_空态说明里写了「已实测」"]
          and s5["★切回脸部精修_页签数"] == 6
          and s5["★源站那趟_积分全程未变"]),

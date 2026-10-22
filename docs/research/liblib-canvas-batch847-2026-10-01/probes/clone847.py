@@ -112,6 +112,9 @@ READ = """()=>{
   // ★ 空态说明（★ 切到「我的音色」/「AI 生成」才该出现）
   out['空态']=(()=>{const e=root.querySelector('[data-character-editor-empty]');
     return e?txt(e):null;})();
+  // ★★ **batch 848 起**：★ 「我的音色」页**已实测并实现** ⟹ ⟹ 读它的**实测空态**
+  out['我的音色空态']=(()=>{const e=root.querySelector("[data-character-editor-voice-empty='mine']");
+    return e?{...rel(e),text:txt(e)}:null;})();
   out['脸部页签数']=root.querySelectorAll('[data-character-editor-tab]').length;
   return out;}"""
 

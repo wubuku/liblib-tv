@@ -1,0 +1,6890 @@
+{
+ "★模态根": {
+  "b": [
+   360,
+   160,
+   1200,
+   760
+  ],
+  "c": "Ias-7a_studio Ias-7a_themeAware border-canvas-controls-border text-canvas-controls-text relative flex h-[760px] w-[1200px] origin-center flex-col overflow-hidde"
+ },
+ "★整棵子树": {
+  "t": "SECTION",
+  "c": "Ias-7a_studio Ias-7a_themeAware border-canvas-controls-border text-canvas-controls-text relative flex h-[760px] w-[1200px] origin-center fle",
+  "b": [
+   360,
+   160,
+   1200,
+   760
+  ],
+  "n": 3,
+  "x": "· 青年 · 东亚 · 现代脸部精修限免脸部 & 身体特征身材塑形限免服装造型音色音调音色库我的音色AI 生成暂无音色数据保存时生成角色资产",
+  "s": {
+   "fs": "16px",
+   "fw": "400",
+   "lh": "24.8px",
+   "col": "rgb(255, 255, 255)",
+   "bg": "rgb(36, 36, 36)",
+   "br": "24px",
+   "bt": "1px",
+   "btc": "rgba(255, 255, 255, 0.08)",
+   "bb": "1px",
+   "bbc": "rgba(255, 255, 255, 0.08)",
+   "bl": "1px",
+   "blr": "rgba(255, 255, 255, 0.08)",
+   "brr": "1px",
+   "brrc": "rgba(255, 255, 255, 0.08)",
+   "pl": "0px",
+   "pt": "0px",
+   "pr": "0px",
+   "pb": "0px",
+   "gap": "normal",
+   "d": "flex",
+   "ai": "normal",
+   "ji": "normal",
+   "gtc": "none",
+   "ov": "hidden",
+   "op": "1",
+   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+   "sh": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0"
+  },
+  "c2": [
+   {
+    "t": "BUTTON",
+    "c": "hover:bg-canvas-controls-hover absolute right-[19px] top-6 flex size-[26px] items-center justify-center rounded-lg z-20",
+    "b": [
+     1514,
+     185,
+     26,
+     26
+    ],
+    "n": 1,
+    "ar": "关闭",
+    "ap": "",
+    "ac": "",
+    "tp": "button",
+    "s": {
+     "fs": "16px",
+     "fw": "400",
+     "lh": "24.8px",
+     "col": "rgb(255, 255, 255)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "br": "8px",
+     "bt": "0px",
+     "btc": "rgb(82, 82, 82)",
+     "bb": "0px",
+     "bbc": "rgb(82, 82, 82)",
+     "bl": "0px",
+     "blr": "rgb(82, 82, 82)",
+     "brr": "0px",
+     "brrc": "rgb(82, 82, 82)",
+     "pl": "0px",
+     "pt": "0px",
+     "pr": "0px",
+     "pb": "0px",
+     "gap": "normal",
+     "d": "flex",
+     "ai": "center",
+     "ji": "center",
+     "gtc": "none",
+     "ov": "visible",
+     "op": "1",
+     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+     "sh": "none"
+    },
+    "c2": [
+     {
+      "t": "svg",
+      "c": "iconify iconify--libtv pointer-events-none size-4",
+      "b": [
+       1519,
+       190,
+       16,
+       16
+      ],
+      "n": 1,
+      "s": {
+       "fs": "16px",
+       "fw": "400",
+       "lh": "24.8px",
+       "col": "rgb(255, 255, 255)",
+       "bg": "rgba(0, 0, 0, 0)",
+       "br": "0px",
+       "bt": "0px",
+       "btc": "rgb(82, 82, 82)",
+       "bb": "0px",
+       "bbc": "rgb(82, 82, 82)",
+       "bl": "0px",
+       "blr": "rgb(82, 82, 82)",
+       "brr": "0px",
+       "brrc": "rgb(82, 82, 82)",
+       "pl": "0px",
+       "pt": "0px",
+       "pr": "0px",
+       "pb": "0px",
+       "gap": "normal",
+       "d": "block",
+       "ai": "normal",
+       "ji": "normal",
+       "gtc": "none",
+       "ov": "hidden",
+       "op": "1",
+       "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+       "sh": "none"
+      },
+      "c2": [
+       {
+        "t": "path",
+        "c": "",
+        "b": [
+         1522,
+         193,
+         10,
+         10
+        ],
+        "n": 0,
+        "s": {
+         "fs": "16px",
+         "fw": "400",
+         "lh": "24.8px",
+         "col": "rgb(255, 255, 255)",
+         "bg": "rgba(0, 0, 0, 0)",
+         "br": "0px",
+         "bt": "0px",
+         "btc": "rgb(82, 82, 82)",
+         "bb": "0px",
+         "bbc": "rgb(82, 82, 82)",
+         "bl": "0px",
+         "blr": "rgb(82, 82, 82)",
+         "brr": "0px",
+         "brrc": "rgb(82, 82, 82)",
+         "pl": "0px",
+         "pt": "0px",
+         "pr": "0px",
+         "pb": "0px",
+         "gap": "normal",
+         "d": "inline",
+         "ai": "normal",
+         "ji": "normal",
+         "gtc": "none",
+         "ov": "visible",
+         "op": "1",
+         "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+         "sh": "none"
+        }
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "t": "DIV",
+    "c": "Ias-7a_workbenchEntering relative z-[1] flex h-full min-h-0 flex-col",
+    "b": [
+     361,
+     161,
+     1198,
+     758
+    ],
+    "n": 3,
+    "x": "· 青年 · 东亚 · 现代脸部精修限免脸部 & 身体特征身材塑形限免服装造型音色音调音色库我的音色AI 生成暂无音色数据保存时生成角色资产",
+    "s": {
+     "fs": "16px",
+     "fw": "400",
+     "lh": "24.8px",
+     "col": "rgb(255, 255, 255)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "br": "0px",
+     "bt": "0px",
+     "btc": "rgb(82, 82, 82)",
+     "bb": "0px",
+     "bbc": "rgb(82, 82, 82)",
+     "bl": "0px",
+     "blr": "rgb(82, 82, 82)",
+     "brr": "0px",
+     "brrc": "rgb(82, 82, 82)",
+     "pl": "0px",
+     "pt": "0px",
+     "pr": "0px",
+     "pb": "0px",
+     "gap": "normal",
+     "d": "flex",
+     "ai": "normal",
+     "ji": "normal",
+     "gtc": "none",
+     "ov": "visible",
+     "op": "1",
+     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+     "sh": "none"
+    },
+    "c2": [
+     {
+      "t": "HEADER",
+      "c": "relative flex h-[70px] shrink-0 items-center pb-5 pl-4 pr-14 pt-6",
+      "b": [
+       361,
+       161,
+       1198,
+       70
+      ],
+      "n": 1,
+      "s": {
+       "fs": "16px",
+       "fw": "400",
+       "lh": "24.8px",
+       "col": "rgb(255, 255, 255)",
+       "bg": "rgba(0, 0, 0, 0)",
+       "br": "0px",
+       "bt": "0px",
+       "btc": "rgb(82, 82, 82)",
+       "bb": "0px",
+       "bbc": "rgb(82, 82, 82)",
+       "bl": "0px",
+       "blr": "rgb(82, 82, 82)",
+       "brr": "0px",
+       "brrc": "rgb(82, 82, 82)",
+       "pl": "16px",
+       "pt": "24px",
+       "pr": "56px",
+       "pb": "20px",
+       "gap": "normal",
+       "d": "flex",
+       "ai": "center",
+       "ji": "normal",
+       "gtc": "none",
+       "ov": "visible",
+       "op": "1",
+       "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+       "sh": "none"
+      },
+      "c2": [
+       {
+        "t": "BUTTON",
+        "c": "hover:bg-canvas-controls-hover flex h-[26px] items-center rounded-lg px-[5px]",
+        "b": [
+         377,
+         185,
+         26,
+         26
+        ],
+        "n": 1,
+        "ar": "返回",
+        "ap": "",
+        "ac": "",
+        "tp": "button",
+        "s": {
+         "fs": "16px",
+         "fw": "400",
+         "lh": "24.8px",
+         "col": "rgb(255, 255, 255)",
+         "bg": "rgba(0, 0, 0, 0)",
+         "br": "8px",
+         "bt": "0px",
+         "btc": "rgb(82, 82, 82)",
+         "bb": "0px",
+         "bbc": "rgb(82, 82, 82)",
+         "bl": "0px",
+         "blr": "rgb(82, 82, 82)",
+         "brr": "0px",
+         "brrc": "rgb(82, 82, 82)",
+         "pl": "5px",
+         "pt": "0px",
+         "pr": "5px",
+         "pb": "0px",
+         "gap": "normal",
+         "d": "flex",
+         "ai": "center",
+         "ji": "normal",
+         "gtc": "none",
+         "ov": "visible",
+         "op": "1",
+         "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+         "sh": "none"
+        },
+        "c2": [
+         {
+          "t": "svg",
+          "c": "iconify iconify--libtv pointer-events-none size-4",
+          "b": [
+           382,
+           190,
+           16,
+           16
+          ],
+          "n": 1,
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "block",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "hidden",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "path",
+            "c": "",
+            "b": [
+             387,
+             192,
+             6,
+             12
+            ],
+            "n": 0,
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "inline",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "DIV",
+      "c": "relative flex h-[602px] shrink-0",
+      "b": [
+       361,
+       231,
+       1198,
+       602
+      ],
+      "n": 3,
+      "x": "· 青年 · 东亚 · 现代脸部精修限免脸部 & 身体特征身材塑形限免服装造型音色音调音色库我的音色AI 生成暂无音色数据",
+      "s": {
+       "fs": "16px",
+       "fw": "400",
+       "lh": "24.8px",
+       "col": "rgb(255, 255, 255)",
+       "bg": "rgba(0, 0, 0, 0)",
+       "br": "0px",
+       "bt": "0px",
+       "btc": "rgb(82, 82, 82)",
+       "bb": "0px",
+       "bbc": "rgb(82, 82, 82)",
+       "bl": "0px",
+       "blr": "rgb(82, 82, 82)",
+       "brr": "0px",
+       "brrc": "rgb(82, 82, 82)",
+       "pl": "0px",
+       "pt": "0px",
+       "pr": "0px",
+       "pb": "0px",
+       "gap": "normal",
+       "d": "flex",
+       "ai": "normal",
+       "ji": "normal",
+       "gtc": "none",
+       "ov": "visible",
+       "op": "1",
+       "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+       "sh": "none"
+      },
+      "c2": [
+       {
+        "t": "ASIDE",
+        "c": "relative h-[602px] w-[288px] shrink-0 bg-[var(--character-studio-bg-float)] px-3 pt-2.5",
+        "b": [
+         361,
+         231,
+         288,
+         602
+        ],
+        "n": 3,
+        "x": "· 青年 · 东亚 · 现代脸部精修限免脸部 & 身体特征身材塑形限免服装造型音色音调",
+        "s": {
+         "fs": "16px",
+         "fw": "400",
+         "lh": "24.8px",
+         "col": "rgb(255, 255, 255)",
+         "bg": "rgb(36, 36, 36)",
+         "br": "0px",
+         "bt": "0px",
+         "btc": "rgb(82, 82, 82)",
+         "bb": "0px",
+         "bbc": "rgb(82, 82, 82)",
+         "bl": "0px",
+         "blr": "rgb(82, 82, 82)",
+         "brr": "0px",
+         "brrc": "rgb(82, 82, 82)",
+         "pl": "12px",
+         "pt": "10px",
+         "pr": "12px",
+         "pb": "0px",
+         "gap": "normal",
+         "d": "block",
+         "ai": "normal",
+         "ji": "normal",
+         "gtc": "none",
+         "ov": "visible",
+         "op": "1",
+         "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+         "sh": "none"
+        },
+        "c2": [
+         {
+          "t": "DIV",
+          "c": "px-3",
+          "b": [
+           373,
+           241,
+           264,
+           64
+          ],
+          "n": 2,
+          "x": "· 青年 · 东亚 · 现代",
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "12px",
+           "pt": "0px",
+           "pr": "12px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "block",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "DIV",
+            "c": "border-b border-dashed pb-0.5 transition-colors border-transparent hover:border-[rgb(var(--character-studio-fg-rgb)/0.45)]",
+            "b": [
+             385,
+             241,
+             216,
+             35
+            ],
+            "n": 1,
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgba(0, 0, 0, 0)",
+             "bb": "1px",
+             "bbc": "rgba(0, 0, 0, 0)",
+             "bl": "0px",
+             "blr": "rgba(0, 0, 0, 0)",
+             "brr": "0px",
+             "brrc": "rgba(0, 0, 0, 0)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "2px",
+             "gap": "normal",
+             "d": "block",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "INPUT",
+              "c": "block h-8 w-full bg-transparent text-2xl font-semibold leading-8 outline-none",
+              "b": [
+               385,
+               241,
+               216,
+               32
+              ],
+              "n": 0,
+              "ph": "",
+              "ty": "",
+              "ar": "角色名称",
+              "ap": "",
+              "ac": "",
+              "tp": "",
+              "s": {
+               "fs": "24px",
+               "fw": "600",
+               "lh": "32px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "block",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "clip",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              }
+             }
+            ]
+           },
+           {
+            "t": "DIV",
+            "c": "text-fg-muted mt-[7px] flex h-[22px] max-w-full items-center gap-0.5 text-sm leading-[22px]",
+            "b": [
+             385,
+             283,
+             240,
+             22
+            ],
+            "n": 2,
+            "x": "· 青年 · 东亚 · 现代",
+            "s": {
+             "fs": "14px",
+             "fw": "400",
+             "lh": "22px",
+             "col": "rgba(255, 255, 255, 0.6)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "2px",
+             "d": "flex",
+             "ai": "center",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "svg",
+              "c": "iconify iconify--libtv size-[18px] shrink-0 text-[#e94486] [&_*]:opacity-100",
+              "b": [
+               385,
+               285,
+               18,
+               18
+              ],
+              "n": 1,
+              "s": {
+               "fs": "14px",
+               "fw": "400",
+               "lh": "22px",
+               "col": "rgb(233, 68, 134)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "block",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "hidden",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "g",
+                "c": "",
+                "b": [
+                 390,
+                 287,
+                 9,
+                 14
+                ],
+                "n": 3,
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(233, 68, 134)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "inline",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "circle",
+                  "c": "",
+                  "b": [
+                   390,
+                   287,
+                   9,
+                   9
+                  ],
+                  "n": 0,
+                  "s": {
+                   "fs": "14px",
+                   "fw": "400",
+                   "lh": "22px",
+                   "col": "rgb(233, 68, 134)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 },
+                 {
+                  "t": "path",
+                  "c": "",
+                  "b": [
+                   394,
+                   296,
+                   0,
+                   5
+                  ],
+                  "n": 0,
+                  "s": {
+                   "fs": "14px",
+                   "fw": "400",
+                   "lh": "22px",
+                   "col": "rgb(233, 68, 134)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 },
+                 {
+                  "t": "path",
+                  "c": "",
+                  "b": [
+                   392,
+                   299,
+                   5,
+                   0
+                  ],
+                  "n": 0,
+                  "s": {
+                   "fs": "14px",
+                   "fw": "400",
+                   "lh": "22px",
+                   "col": "rgb(233, 68, 134)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "t": "SPAN",
+              "c": "truncate",
+              "b": [
+               405,
+               283,
+               115,
+               22
+              ],
+              "n": 0,
+              "x": "· 青年 · 东亚 · 现代",
+              "s": {
+               "fs": "14px",
+               "fw": "400",
+               "lh": "22px",
+               "col": "rgba(255, 255, 255, 0.6)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "block",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "hidden",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "NAV",
+          "c": "mt-6 flex w-[246px] flex-col gap-2",
+          "b": [
+           373,
+           329,
+           246,
+           252
+          ],
+          "n": 3,
+          "x": "脸部精修限免脸部 & 身体特征身材塑形限免服装造型音色音调",
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "8px",
+           "d": "flex",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "DIV",
+            "c": "flex flex-col gap-2",
+            "b": [
+             373,
+             329,
+             246,
+             96
+            ],
+            "n": 2,
+            "x": "脸部精修限免脸部 & 身体特征",
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "8px",
+             "d": "flex",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "BUTTON",
+              "c": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-sm leading-[22px] transition-colors hover:bg-[var(",
+              "b": [
+               373,
+               329,
+               240,
+               44
+              ],
+              "n": 3,
+              "x": "脸部精修限免",
+              "ar": "",
+              "ap": "",
+              "ac": "",
+              "tp": "button",
+              "s": {
+               "fs": "14px",
+               "fw": "400",
+               "lh": "22px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "9999px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "12px",
+               "pt": "0px",
+               "pr": "12px",
+               "pb": "0px",
+               "gap": "6px",
+               "d": "flex",
+               "ai": "center",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "svg",
+                "c": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shrink-0",
+                "b": [
+                 385,
+                 342,
+                 18,
+                 18
+                ],
+                "n": 1,
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "hidden",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "path",
+                  "c": "",
+                  "b": [
+                   387,
+                   344,
+                   14,
+                   14
+                  ],
+                  "n": 0,
+                  "s": {
+                   "fs": "14px",
+                   "fw": "400",
+                   "lh": "22px",
+                   "col": "rgb(255, 255, 255)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 }
+                ]
+               },
+               {
+                "t": "SPAN",
+                "c": "",
+                "b": [
+                 409,
+                 340,
+                 56,
+                 22
+                ],
+                "n": 0,
+                "x": "脸部精修",
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               },
+               {
+                "t": "SPAN",
+                "c": "bg-nt-brand-surface-l1 text-nt-text-brand flex h-4 shrink-0 items-center gap-0.5 rounded px-1 text-[11px] leading-4",
+                "b": [
+                 471,
+                 343,
+                 30,
+                 16
+                ],
+                "n": 0,
+                "x": "限免",
+                "s": {
+                 "fs": "11px",
+                 "fw": "400",
+                 "lh": "16px",
+                 "col": "rgb(4, 202, 246)",
+                 "bg": "rgba(8, 182, 221, 0.12)",
+                 "br": "4px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "4px",
+                 "pt": "0px",
+                 "pr": "4px",
+                 "pb": "0px",
+                 "gap": "2px",
+                 "d": "flex",
+                 "ai": "center",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               }
+              ]
+             },
+             {
+              "t": "BUTTON",
+              "c": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-sm leading-[22px] transition-colors hover:bg-[var(",
+              "b": [
+               373,
+               381,
+               240,
+               44
+              ],
+              "n": 2,
+              "x": "脸部 & 身体特征",
+              "ar": "",
+              "ap": "",
+              "ac": "",
+              "tp": "button",
+              "s": {
+               "fs": "14px",
+               "fw": "400",
+               "lh": "22px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "9999px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "12px",
+               "pt": "0px",
+               "pr": "12px",
+               "pb": "0px",
+               "gap": "6px",
+               "d": "flex",
+               "ai": "center",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "svg",
+                "c": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shrink-0",
+                "b": [
+                 385,
+                 394,
+                 18,
+                 18
+                ],
+                "n": 1,
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "hidden",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "g",
+                  "c": "",
+                  "b": [
+                   387,
+                   397,
+                   15,
+                   12
+                  ],
+                  "n": 3,
+                  "s": {
+                   "fs": "14px",
+                   "fw": "400",
+                   "lh": "22px",
+                   "col": "rgb(255, 255, 255)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  },
+                  "c2": [
+                   {
+                    "t": "path",
+                    "c": "",
+                    "b": [
+                     387,
+                     397,
+                     15,
+                     12
+                    ],
+                    "n": 0,
+                    "s": {
+                     "fs": "14px",
+                     "fw": "400",
+                     "lh": "22px",
+                     "col": "rgb(255, 255, 255)",
+                     "bg": "rgba(0, 0, 0, 0)",
+                     "br": "0px",
+                     "bt": "0px",
+                     "btc": "rgb(82, 82, 82)",
+                     "bb": "0px",
+                     "bbc": "rgb(82, 82, 82)",
+                     "bl": "0px",
+                     "blr": "rgb(82, 82, 82)",
+                     "brr": "0px",
+                     "brrc": "rgb(82, 82, 82)",
+                     "pl": "0px",
+                     "pt": "0px",
+                     "pr": "0px",
+                     "pb": "0px",
+                     "gap": "normal",
+                     "d": "inline",
+                     "ai": "normal",
+                     "ji": "normal",
+                     "gtc": "none",
+                     "ov": "visible",
+                     "op": "1",
+                     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                     "sh": "none"
+                    }
+                   },
+                   {
+                    "t": "path",
+                    "c": "",
+                    "b": [
+                     389,
+                     398,
+                     4,
+                     10
+                    ],
+                    "n": 0,
+                    "s": {
+                     "fs": "14px",
+                     "fw": "400",
+                     "lh": "22px",
+                     "col": "rgb(255, 255, 255)",
+                     "bg": "rgba(0, 0, 0, 0)",
+                     "br": "0px",
+                     "bt": "0px",
+                     "btc": "rgb(82, 82, 82)",
+                     "bb": "0px",
+                     "bbc": "rgb(82, 82, 82)",
+                     "bl": "0px",
+                     "blr": "rgb(82, 82, 82)",
+                     "brr": "0px",
+                     "brrc": "rgb(82, 82, 82)",
+                     "pl": "0px",
+                     "pt": "0px",
+                     "pr": "0px",
+                     "pb": "0px",
+                     "gap": "normal",
+                     "d": "inline",
+                     "ai": "normal",
+                     "ji": "normal",
+                     "gtc": "none",
+                     "ov": "visible",
+                     "op": "1",
+                     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                     "sh": "none"
+                    }
+                   },
+                   {
+                    "t": "path",
+                    "c": "",
+                    "b": [
+                     393,
+                     404,
+                     6,
+                     2
+                    ],
+                    "n": 0,
+                    "s": {
+                     "fs": "14px",
+                     "fw": "400",
+                     "lh": "22px",
+                     "col": "rgb(255, 255, 255)",
+                     "bg": "rgba(0, 0, 0, 0)",
+                     "br": "0px",
+                     "bt": "0px",
+                     "btc": "rgb(82, 82, 82)",
+                     "bb": "0px",
+                     "bbc": "rgb(82, 82, 82)",
+                     "bl": "0px",
+                     "blr": "rgb(82, 82, 82)",
+                     "brr": "0px",
+                     "brrc": "rgb(82, 82, 82)",
+                     "pl": "0px",
+                     "pt": "0px",
+                     "pr": "0px",
+                     "pb": "0px",
+                     "gap": "normal",
+                     "d": "inline",
+                     "ai": "normal",
+                     "ji": "normal",
+                     "gtc": "none",
+                     "ov": "visible",
+                     "op": "1",
+                     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                     "sh": "none"
+                    }
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "t": "SPAN",
+                "c": "",
+                "b": [
+                 409,
+                 392,
+                 101,
+                 22
+                ],
+                "n": 0,
+                "x": "脸部 & 身体特征",
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "DIV",
+            "c": "flex flex-col gap-2",
+            "b": [
+             373,
+             433,
+             246,
+             44
+            ],
+            "n": 1,
+            "x": "身材塑形限免",
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "8px",
+             "d": "flex",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "BUTTON",
+              "c": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-sm leading-[22px] transition-colors hover:bg-[var(",
+              "b": [
+               373,
+               433,
+               240,
+               44
+              ],
+              "n": 3,
+              "x": "身材塑形限免",
+              "ar": "",
+              "ap": "",
+              "ac": "",
+              "tp": "button",
+              "s": {
+               "fs": "14px",
+               "fw": "400",
+               "lh": "22px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "9999px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "12px",
+               "pt": "0px",
+               "pr": "12px",
+               "pb": "0px",
+               "gap": "6px",
+               "d": "flex",
+               "ai": "center",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "svg",
+                "c": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shrink-0",
+                "b": [
+                 385,
+                 446,
+                 18,
+                 18
+                ],
+                "n": 1,
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "hidden",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "path",
+                  "c": "",
+                  "b": [
+                   386,
+                   448,
+                   17,
+                   14
+                  ],
+                  "n": 0,
+                  "s": {
+                   "fs": "14px",
+                   "fw": "400",
+                   "lh": "22px",
+                   "col": "rgb(255, 255, 255)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 }
+                ]
+               },
+               {
+                "t": "SPAN",
+                "c": "",
+                "b": [
+                 409,
+                 444,
+                 56,
+                 22
+                ],
+                "n": 0,
+                "x": "身材塑形",
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               },
+               {
+                "t": "SPAN",
+                "c": "bg-nt-brand-surface-l1 text-nt-text-brand flex h-4 shrink-0 items-center gap-0.5 rounded px-1 text-[11px] leading-4",
+                "b": [
+                 471,
+                 447,
+                 30,
+                 16
+                ],
+                "n": 0,
+                "x": "限免",
+                "s": {
+                 "fs": "11px",
+                 "fw": "400",
+                 "lh": "16px",
+                 "col": "rgb(4, 202, 246)",
+                 "bg": "rgba(8, 182, 221, 0.12)",
+                 "br": "4px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "4px",
+                 "pt": "0px",
+                 "pr": "4px",
+                 "pb": "0px",
+                 "gap": "2px",
+                 "d": "flex",
+                 "ai": "center",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "DIV",
+            "c": "flex flex-col gap-2",
+            "b": [
+             373,
+             485,
+             246,
+             96
+            ],
+            "n": 2,
+            "x": "服装造型音色音调",
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "8px",
+             "d": "flex",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "BUTTON",
+              "c": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-sm leading-[22px] transition-colors hover:bg-[var(",
+              "b": [
+               373,
+               485,
+               240,
+               44
+              ],
+              "n": 2,
+              "x": "服装造型",
+              "ar": "",
+              "ap": "",
+              "ac": "",
+              "tp": "button",
+              "s": {
+               "fs": "14px",
+               "fw": "400",
+               "lh": "22px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "9999px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "12px",
+               "pt": "0px",
+               "pr": "12px",
+               "pb": "0px",
+               "gap": "6px",
+               "d": "flex",
+               "ai": "center",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "svg",
+                "c": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shrink-0",
+                "b": [
+                 385,
+                 498,
+                 18,
+                 18
+                ],
+                "n": 1,
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "hidden",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "path",
+                  "c": "",
+                  "b": [
+                   387,
+                   499,
+                   15,
+                   14
+                  ],
+                  "n": 0,
+                  "s": {
+                   "fs": "14px",
+                   "fw": "400",
+                   "lh": "22px",
+                   "col": "rgb(255, 255, 255)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 }
+                ]
+               },
+               {
+                "t": "SPAN",
+                "c": "",
+                "b": [
+                 409,
+                 496,
+                 56,
+                 22
+                ],
+                "n": 0,
+                "x": "服装造型",
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               }
+              ]
+             },
+             {
+              "t": "BUTTON",
+              "c": "text-fg-default flex h-11 w-[240px] items-center gap-1.5 rounded-full px-3 text-left text-sm leading-[22px] transition-colors bg-[var(--char",
+              "b": [
+               373,
+               537,
+               240,
+               44
+              ],
+              "n": 2,
+              "x": "音色音调",
+              "ar": "",
+              "ap": "",
+              "ac": "",
+              "tp": "button",
+              "s": {
+               "fs": "14px",
+               "fw": "400",
+               "lh": "22px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(255, 255, 255, 0.1)",
+               "br": "9999px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "12px",
+               "pt": "0px",
+               "pr": "12px",
+               "pb": "0px",
+               "gap": "6px",
+               "d": "flex",
+               "ai": "center",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "svg",
+                "c": "iconify iconify--libtv pointer-events-none Ias-7a_sectionTabIcon size-[18px] shrink-0",
+                "b": [
+                 385,
+                 550,
+                 18,
+                 18
+                ],
+                "n": 1,
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "hidden",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "g",
+                  "c": "",
+                  "b": [
+                   386,
+                   551,
+                   15,
+                   15
+                  ],
+                  "n": 1,
+                  "s": {
+                   "fs": "14px",
+                   "fw": "400",
+                   "lh": "22px",
+                   "col": "rgb(255, 255, 255)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  },
+                  "c2": [
+                   {
+                    "t": "path",
+                    "c": "",
+                    "b": [
+                     386,
+                     551,
+                     15,
+                     15
+                    ],
+                    "n": 0,
+                    "s": {
+                     "fs": "14px",
+                     "fw": "400",
+                     "lh": "22px",
+                     "col": "rgb(255, 255, 255)",
+                     "bg": "rgba(0, 0, 0, 0)",
+                     "br": "0px",
+                     "bt": "0px",
+                     "btc": "rgb(82, 82, 82)",
+                     "bb": "0px",
+                     "bbc": "rgb(82, 82, 82)",
+                     "bl": "0px",
+                     "blr": "rgb(82, 82, 82)",
+                     "brr": "0px",
+                     "brrc": "rgb(82, 82, 82)",
+                     "pl": "0px",
+                     "pt": "0px",
+                     "pr": "0px",
+                     "pb": "0px",
+                     "gap": "normal",
+                     "d": "inline",
+                     "ai": "normal",
+                     "ji": "normal",
+                     "gtc": "none",
+                     "ov": "visible",
+                     "op": "1",
+                     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                     "sh": "none"
+                    }
+                   }
+                  ]
+                 }
+                ]
+               },
+               {
+                "t": "SPAN",
+                "c": "",
+                "b": [
+                 409,
+                 548,
+                 56,
+                 22
+                ],
+                "n": 0,
+                "x": "音色音调",
+                "s": {
+                 "fs": "14px",
+                 "fw": "400",
+                 "lh": "22px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "DIV",
+          "c": "absolute bottom-4 left-[17px] z-10 flex h-8 items-center gap-1",
+          "b": [
+           378,
+           785,
+           105,
+           32
+          ],
+          "n": 3,
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "4px",
+           "d": "flex",
+           "ai": "center",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "DIV",
+            "c": "flex items-center",
+            "b": [
+             378,
+             785,
+             64,
+             32
+            ],
+            "n": 2,
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "flex",
+             "ai": "center",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "BUTTON",
+              "c": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl disabled:pointer-events-none disabled:opacity-30",
+              "b": [
+               378,
+               785,
+               32,
+               32
+              ],
+              "n": 1,
+              "ar": "撤销",
+              "ap": "",
+              "ac": "",
+              "tp": "button",
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "12px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "flex",
+               "ai": "center",
+               "ji": "center",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "0.3",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "svg",
+                "c": "iconify iconify--libtv size-[18px] text-fg-muted",
+                "b": [
+                 385,
+                 792,
+                 18,
+                 18
+                ],
+                "n": 1,
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgba(255, 255, 255, 0.6)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "hidden",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "path",
+                  "c": "",
+                  "b": [
+                   387,
+                   794,
+                   13,
+                   13
+                  ],
+                  "n": 0,
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgba(255, 255, 255, 0.6)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "t": "BUTTON",
+              "c": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl disabled:pointer-events-none disabled:opacity-30",
+              "b": [
+               410,
+               785,
+               32,
+               32
+              ],
+              "n": 1,
+              "ar": "恢复",
+              "ap": "",
+              "ac": "",
+              "tp": "button",
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "12px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "flex",
+               "ai": "center",
+               "ji": "center",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "0.3",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "svg",
+                "c": "iconify iconify--libtv size-[18px] text-fg-muted",
+                "b": [
+                 417,
+                 792,
+                 18,
+                 18
+                ],
+                "n": 1,
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgba(255, 255, 255, 0.6)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "hidden",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "path",
+                  "c": "",
+                  "b": [
+                   419,
+                   794,
+                   13,
+                   13
+                  ],
+                  "n": 0,
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgba(255, 255, 255, 0.6)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "SPAN",
+            "c": "bg-canvas-controls-border h-3 w-px",
+            "b": [
+             446,
+             795,
+             1,
+             12
+            ],
+            "n": 0,
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(255, 255, 255, 0.08)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "block",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            }
+           },
+           {
+            "t": "BUTTON",
+            "c": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl disabled:pointer-events-none disabled:opacity-30 ",
+            "b": [
+             451,
+             785,
+             32,
+             32
+            ],
+            "n": 1,
+            "ar": "按住对比",
+            "ap": "false",
+            "ac": "",
+            "tp": "button",
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "12px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "flex",
+             "ai": "center",
+             "ji": "center",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "0.3",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "svg",
+              "c": "iconify iconify--libtv size-[18px] text-fg-muted",
+              "b": [
+               458,
+               792,
+               18,
+               18
+              ],
+              "n": 1,
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgba(255, 255, 255, 0.6)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "block",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "hidden",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "path",
+                "c": "",
+                "b": [
+                 460,
+                 793,
+                 14,
+                 16
+                ],
+                "n": 0,
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgba(255, 255, 255, 0.6)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "inline",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "t": "MAIN",
+        "c": "relative h-[602px] w-[624px] shrink-0 overflow-hidden",
+        "b": [
+         649,
+         231,
+         624,
+         602
+        ],
+        "n": 3,
+        "s": {
+         "fs": "16px",
+         "fw": "400",
+         "lh": "24.8px",
+         "col": "rgb(255, 255, 255)",
+         "bg": "rgba(0, 0, 0, 0)",
+         "br": "0px",
+         "bt": "0px",
+         "btc": "rgb(82, 82, 82)",
+         "bb": "0px",
+         "bbc": "rgb(82, 82, 82)",
+         "bl": "0px",
+         "blr": "rgb(82, 82, 82)",
+         "brr": "0px",
+         "brrc": "rgb(82, 82, 82)",
+         "pl": "0px",
+         "pt": "0px",
+         "pr": "0px",
+         "pb": "0px",
+         "gap": "normal",
+         "d": "block",
+         "ai": "normal",
+         "ji": "normal",
+         "gtc": "none",
+         "ov": "hidden",
+         "op": "1",
+         "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+         "sh": "none"
+        },
+        "c2": [
+         {
+          "t": "DIV",
+          "c": "absolute left-1/2 top-0 isolate h-[550px] w-[467px] -translate-x-1/2 overflow-hidden",
+          "b": [
+           728,
+           231,
+           467,
+           550
+          ],
+          "n": 1,
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "block",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "hidden",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "DIV",
+            "c": "absolute inset-0  ",
+            "b": [
+             728,
+             231,
+             467,
+             550
+            ],
+            "n": 1,
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "block",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "DIV",
+              "c": "absolute inset-0 origin-[50%_8%] transition-transform Ias-7a_previewZoomOut ",
+              "b": [
+               728,
+               231,
+               467,
+               550
+              ],
+              "n": 2,
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "block",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "DIV",
+                "c": "absolute left-1/2 top-0 h-[542px] w-[425px] -translate-x-1/2",
+                "b": [
+                 749,
+                 231,
+                 425,
+                 542
+                ],
+                "n": 1,
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "IMG",
+                  "c": "absolute inset-0 size-full max-w-none object-contain",
+                  "b": [
+                   749,
+                   231,
+                   425,
+                   542
+                  ],
+                  "n": 0,
+                  "src": "https://libtv-res.liblib.art/tool/character/003_full_body_t.png",
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgb(255, 255, 255)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "block",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "clip",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 }
+                ]
+               },
+               {
+                "t": "CANVAS",
+                "c": "pointer-events-none absolute left-1/2 top-0 h-[542px] w-[425px] max-w-none -translate-x-1/2 object-contain invisible",
+                "b": [
+                 749,
+                 231,
+                 425,
+                 542
+                ],
+                "n": 0,
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "clip",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "DIV",
+          "c": "pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[196px] Ias-7a_previewMaskFade Ias-7a_previewMaskFadeOut opacity-0",
+          "b": [
+           649,
+           637,
+           624,
+           196
+          ],
+          "n": 2,
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "block",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "0",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "DIV",
+            "c": "absolute -top-8 bottom-0 left-0 right-0 Ias-7a_previewMaskBlur Ias-7a_previewMaskBlurOut",
+            "b": [
+             649,
+             605,
+             624,
+             228
+            ],
+            "n": 0,
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "block",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            }
+           },
+           {
+            "t": "DIV",
+            "c": "absolute inset-0",
+            "b": [
+             649,
+             637,
+             624,
+             196
+            ],
+            "n": 0,
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "block",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            }
+           }
+          ]
+         },
+         {
+          "t": "DIV",
+          "c": "absolute bottom-4 left-1/2 z-20 flex h-8 -translate-x-1/2 items-center gap-1",
+          "b": [
+           925,
+           785,
+           73,
+           32
+          ],
+          "n": 3,
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "4px",
+           "d": "flex",
+           "ai": "center",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "BUTTON",
+            "c": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-muted",
+            "b": [
+             925,
+             785,
+             32,
+             32
+            ],
+            "n": 1,
+            "ar": "半身",
+            "ap": "false",
+            "ac": "",
+            "tp": "button",
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgba(255, 255, 255, 0.6)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "12px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "flex",
+             "ai": "center",
+             "ji": "center",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "svg",
+              "c": "iconify iconify--libtv pointer-events-none size-[18px]",
+              "b": [
+               932,
+               792,
+               18,
+               18
+              ],
+              "n": 1,
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgba(255, 255, 255, 0.6)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "block",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "hidden",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "path",
+                "c": "",
+                "b": [
+                 934,
+                 794,
+                 14,
+                 14
+                ],
+                "n": 0,
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgba(255, 255, 255, 0.6)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "inline",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "SPAN",
+            "c": "bg-canvas-controls-border h-3 w-px",
+            "b": [
+             961,
+             795,
+             1,
+             12
+            ],
+            "n": 0,
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(255, 255, 255, 0.08)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "block",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            }
+           },
+           {
+            "t": "BUTTON",
+            "c": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-default",
+            "b": [
+             966,
+             785,
+             32,
+             32
+            ],
+            "n": 1,
+            "ar": "全身",
+            "ap": "true",
+            "ac": "",
+            "tp": "button",
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "12px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "flex",
+             "ai": "center",
+             "ji": "center",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "svg",
+              "c": "iconify iconify--libtv pointer-events-none size-[18px]",
+              "b": [
+               973,
+               792,
+               18,
+               18
+              ],
+              "n": 1,
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "block",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "hidden",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "path",
+                "c": "",
+                "b": [
+                 977,
+                 793,
+                 9,
+                 17
+                ],
+                "n": 0,
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "inline",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               }
+              ]
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "t": "ASIDE",
+        "c": "relative flex h-[602px] w-[288px] shrink-0 flex-col bg-[var(--character-studio-bg-float)] Ias-7a_editorPanelOverlayScroll",
+        "b": [
+         1273,
+         231,
+         288,
+         602
+        ],
+        "n": 2,
+        "x": "音色库我的音色AI 生成暂无音色数据",
+        "s": {
+         "fs": "16px",
+         "fw": "400",
+         "lh": "24.8px",
+         "col": "rgb(255, 255, 255)",
+         "bg": "rgb(36, 36, 36)",
+         "br": "0px",
+         "bt": "0px",
+         "btc": "rgb(82, 82, 82)",
+         "bb": "0px",
+         "bbc": "rgb(82, 82, 82)",
+         "bl": "0px",
+         "blr": "rgb(82, 82, 82)",
+         "brr": "0px",
+         "brrc": "rgb(82, 82, 82)",
+         "pl": "0px",
+         "pt": "0px",
+         "pr": "0px",
+         "pb": "0px",
+         "gap": "normal",
+         "d": "flex",
+         "ai": "normal",
+         "ji": "normal",
+         "gtc": "none",
+         "ov": "visible",
+         "op": "1",
+         "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+         "sh": "none"
+        },
+        "c2": [
+         {
+          "t": "DIV",
+          "c": "flex min-h-0 flex-1 flex-col px-6",
+          "b": [
+           1273,
+           231,
+           288,
+           602
+          ],
+          "n": 3,
+          "x": "音色库我的音色AI 生成暂无音色数据",
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "24px",
+           "pt": "0px",
+           "pr": "24px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "flex",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "DIV",
+            "c": "border-b-canvas-controls-border flex h-10 shrink-0 items-center gap-5 border-b",
+            "b": [
+             1297,
+             231,
+             240,
+             40
+            ],
+            "n": 3,
+            "x": "音色库我的音色AI 生成",
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "1px",
+             "bbc": "rgba(255, 255, 255, 0.08)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "20px",
+             "d": "flex",
+             "ai": "center",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "SPAN",
+              "c": "inline-flex h-full",
+              "b": [
+               1297,
+               231,
+               24,
+               39
+              ],
+              "n": 1,
+              "x": "音色库",
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "flex",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "BUTTON",
+                "c": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors duration-[300ms] ease-[cubic-bezier(0.36,0.77,0,1)] tex",
+                "b": [
+                 1297,
+                 231,
+                 24,
+                 39
+                ],
+                "n": 2,
+                "x": "音色库",
+                "ar": "音色库",
+                "ap": "",
+                "ac": "",
+                "tp": "button",
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgba(255, 255, 255, 0.6)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgba(0, 0, 0, 0)",
+                 "bb": "1px",
+                 "bbc": "rgba(0, 0, 0, 0)",
+                 "bl": "0px",
+                 "blr": "rgba(0, 0, 0, 0)",
+                 "brr": "0px",
+                 "brrc": "rgba(0, 0, 0, 0)",
+                 "pl": "3px",
+                 "pt": "0px",
+                 "pr": "3px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "flex",
+                 "ai": "center",
+                 "ji": "center",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "svg",
+                  "c": "iconify iconify--libtv pointer-events-none size-[18px] shrink-0 [&_path]:[fill-opacity:1]",
+                  "b": [
+                   1300,
+                   241,
+                   18,
+                   18
+                  ],
+                  "n": 1,
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgba(255, 255, 255, 0.6)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "block",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "hidden",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  },
+                  "c2": [
+                   {
+                    "t": "path",
+                    "c": "",
+                    "b": [
+                     1302,
+                     243,
+                     14,
+                     14
+                    ],
+                    "n": 0,
+                    "s": {
+                     "fs": "16px",
+                     "fw": "400",
+                     "lh": "24.8px",
+                     "col": "rgba(255, 255, 255, 0.6)",
+                     "bg": "rgba(0, 0, 0, 0)",
+                     "br": "0px",
+                     "bt": "0px",
+                     "btc": "rgb(82, 82, 82)",
+                     "bb": "0px",
+                     "bbc": "rgb(82, 82, 82)",
+                     "bl": "0px",
+                     "blr": "rgb(82, 82, 82)",
+                     "brr": "0px",
+                     "brrc": "rgb(82, 82, 82)",
+                     "pl": "0px",
+                     "pt": "0px",
+                     "pr": "0px",
+                     "pb": "0px",
+                     "gap": "normal",
+                     "d": "inline",
+                     "ai": "normal",
+                     "ji": "normal",
+                     "gtc": "none",
+                     "ov": "visible",
+                     "op": "1",
+                     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                     "sh": "none"
+                    }
+                   }
+                  ]
+                 },
+                 {
+                  "t": "SPAN",
+                  "c": "grid overflow-hidden transition-[grid-template-columns,padding-left] duration-[300ms] ease-[cubic-bezier(0.36,0.77,0,1)] grid-cols-[0fr] pl-",
+                  "b": [
+                   1318,
+                   239,
+                   0,
+                   22
+                  ],
+                  "n": 1,
+                  "x": "音色库",
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgba(255, 255, 255, 0.6)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "grid",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "0px",
+                   "ov": "hidden",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  },
+                  "c2": [
+                   {
+                    "t": "SPAN",
+                    "c": "overflow-hidden whitespace-nowrap text-sm leading-[22px] transition-opacity duration-[250ms] ease-[cubic-bezier(0.36,0.77,0,1)] opacity-0 de",
+                    "b": [
+                     1318,
+                     239,
+                     0,
+                     22
+                    ],
+                    "n": 0,
+                    "x": "音色库",
+                    "s": {
+                     "fs": "14px",
+                     "fw": "400",
+                     "lh": "22px",
+                     "col": "rgba(255, 255, 255, 0.6)",
+                     "bg": "rgba(0, 0, 0, 0)",
+                     "br": "0px",
+                     "bt": "0px",
+                     "btc": "rgb(82, 82, 82)",
+                     "bb": "0px",
+                     "bbc": "rgb(82, 82, 82)",
+                     "bl": "0px",
+                     "blr": "rgb(82, 82, 82)",
+                     "brr": "0px",
+                     "brrc": "rgb(82, 82, 82)",
+                     "pl": "0px",
+                     "pt": "0px",
+                     "pr": "0px",
+                     "pb": "0px",
+                     "gap": "normal",
+                     "d": "block",
+                     "ai": "normal",
+                     "ji": "normal",
+                     "gtc": "none",
+                     "ov": "hidden",
+                     "op": "0",
+                     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                     "sh": "none"
+                    }
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "t": "SPAN",
+              "c": "inline-flex h-full",
+              "b": [
+               1341,
+               231,
+               84,
+               39
+              ],
+              "n": 1,
+              "x": "我的音色",
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "flex",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "BUTTON",
+                "c": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors duration-[300ms] ease-[cubic-bezier(0.36,0.77,0,1)] tex",
+                "b": [
+                 1341,
+                 231,
+                 84,
+                 39
+                ],
+                "n": 2,
+                "x": "我的音色",
+                "ar": "我的音色",
+                "ap": "",
+                "ac": "true",
+                "tp": "button",
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgb(255, 255, 255)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(255, 255, 255)",
+                 "bb": "1px",
+                 "bbc": "rgb(255, 255, 255)",
+                 "bl": "0px",
+                 "blr": "rgb(255, 255, 255)",
+                 "brr": "0px",
+                 "brrc": "rgb(255, 255, 255)",
+                 "pl": "3px",
+                 "pt": "0px",
+                 "pr": "3px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "flex",
+                 "ai": "center",
+                 "ji": "center",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "svg",
+                  "c": "iconify iconify--libtv pointer-events-none size-[18px] shrink-0 [&_path]:[fill-opacity:1]",
+                  "b": [
+                   1344,
+                   241,
+                   18,
+                   18
+                  ],
+                  "n": 1,
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgb(255, 255, 255)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "block",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "hidden",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  },
+                  "c2": [
+                   {
+                    "t": "path",
+                    "c": "",
+                    "b": [
+                     1347,
+                     243,
+                     14,
+                     14
+                    ],
+                    "n": 0,
+                    "s": {
+                     "fs": "16px",
+                     "fw": "400",
+                     "lh": "24.8px",
+                     "col": "rgb(255, 255, 255)",
+                     "bg": "rgba(0, 0, 0, 0)",
+                     "br": "0px",
+                     "bt": "0px",
+                     "btc": "rgb(82, 82, 82)",
+                     "bb": "0px",
+                     "bbc": "rgb(82, 82, 82)",
+                     "bl": "0px",
+                     "blr": "rgb(82, 82, 82)",
+                     "brr": "0px",
+                     "brrc": "rgb(82, 82, 82)",
+                     "pl": "0px",
+                     "pt": "0px",
+                     "pr": "0px",
+                     "pb": "0px",
+                     "gap": "normal",
+                     "d": "inline",
+                     "ai": "normal",
+                     "ji": "normal",
+                     "gtc": "none",
+                     "ov": "visible",
+                     "op": "1",
+                     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                     "sh": "none"
+                    }
+                   }
+                  ]
+                 },
+                 {
+                  "t": "SPAN",
+                  "c": "grid overflow-hidden transition-[grid-template-columns,padding-left] duration-[300ms] ease-[cubic-bezier(0.36,0.77,0,1)] grid-cols-[1fr] pl-",
+                  "b": [
+                   1362,
+                   239,
+                   60,
+                   22
+                  ],
+                  "n": 1,
+                  "x": "我的音色",
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgb(255, 255, 255)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "4px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "grid",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "56px",
+                   "ov": "hidden",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  },
+                  "c2": [
+                   {
+                    "t": "SPAN",
+                    "c": "overflow-hidden whitespace-nowrap text-sm leading-[22px] transition-opacity duration-[250ms] ease-[cubic-bezier(0.36,0.77,0,1)] opacity-100 ",
+                    "b": [
+                     1366,
+                     239,
+                     56,
+                     22
+                    ],
+                    "n": 0,
+                    "x": "我的音色",
+                    "s": {
+                     "fs": "14px",
+                     "fw": "400",
+                     "lh": "22px",
+                     "col": "rgb(255, 255, 255)",
+                     "bg": "rgba(0, 0, 0, 0)",
+                     "br": "0px",
+                     "bt": "0px",
+                     "btc": "rgb(82, 82, 82)",
+                     "bb": "0px",
+                     "bbc": "rgb(82, 82, 82)",
+                     "bl": "0px",
+                     "blr": "rgb(82, 82, 82)",
+                     "brr": "0px",
+                     "brrc": "rgb(82, 82, 82)",
+                     "pl": "0px",
+                     "pt": "0px",
+                     "pr": "0px",
+                     "pb": "0px",
+                     "gap": "normal",
+                     "d": "block",
+                     "ai": "normal",
+                     "ji": "normal",
+                     "gtc": "none",
+                     "ov": "hidden",
+                     "op": "1",
+                     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                     "sh": "none"
+                    }
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "t": "SPAN",
+              "c": "inline-flex h-full",
+              "b": [
+               1445,
+               231,
+               24,
+               39
+              ],
+              "n": 1,
+              "x": "AI 生成",
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "flex",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "BUTTON",
+                "c": "flex h-full shrink-0 items-center justify-center border-b px-[3px] transition-colors duration-[300ms] ease-[cubic-bezier(0.36,0.77,0,1)] tex",
+                "b": [
+                 1445,
+                 231,
+                 24,
+                 39
+                ],
+                "n": 2,
+                "x": "AI 生成",
+                "ar": "AI 生成",
+                "ap": "",
+                "ac": "",
+                "tp": "button",
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgba(255, 255, 255, 0.6)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgba(0, 0, 0, 0)",
+                 "bb": "1px",
+                 "bbc": "rgba(0, 0, 0, 0)",
+                 "bl": "0px",
+                 "blr": "rgba(0, 0, 0, 0)",
+                 "brr": "0px",
+                 "brrc": "rgba(0, 0, 0, 0)",
+                 "pl": "3px",
+                 "pt": "0px",
+                 "pr": "3px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "flex",
+                 "ai": "center",
+                 "ji": "center",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "svg",
+                  "c": "iconify iconify--libtv pointer-events-none size-[18px] shrink-0 [&_path]:[fill-opacity:1]",
+                  "b": [
+                   1448,
+                   241,
+                   18,
+                   18
+                  ],
+                  "n": 1,
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgba(255, 255, 255, 0.6)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "block",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "hidden",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  },
+                  "c2": [
+                   {
+                    "t": "path",
+                    "c": "",
+                    "b": [
+                     1450,
+                     243,
+                     14,
+                     14
+                    ],
+                    "n": 0,
+                    "s": {
+                     "fs": "16px",
+                     "fw": "400",
+                     "lh": "24.8px",
+                     "col": "rgba(255, 255, 255, 0.6)",
+                     "bg": "rgba(0, 0, 0, 0)",
+                     "br": "0px",
+                     "bt": "0px",
+                     "btc": "rgb(82, 82, 82)",
+                     "bb": "0px",
+                     "bbc": "rgb(82, 82, 82)",
+                     "bl": "0px",
+                     "blr": "rgb(82, 82, 82)",
+                     "brr": "0px",
+                     "brrc": "rgb(82, 82, 82)",
+                     "pl": "0px",
+                     "pt": "0px",
+                     "pr": "0px",
+                     "pb": "0px",
+                     "gap": "normal",
+                     "d": "inline",
+                     "ai": "normal",
+                     "ji": "normal",
+                     "gtc": "none",
+                     "ov": "visible",
+                     "op": "1",
+                     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                     "sh": "none"
+                    }
+                   }
+                  ]
+                 },
+                 {
+                  "t": "SPAN",
+                  "c": "grid overflow-hidden transition-[grid-template-columns,padding-left] duration-[300ms] ease-[cubic-bezier(0.36,0.77,0,1)] grid-cols-[0fr] pl-",
+                  "b": [
+                   1466,
+                   239,
+                   0,
+                   22
+                  ],
+                  "n": 1,
+                  "x": "AI 生成",
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgba(255, 255, 255, 0.6)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "grid",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "0px",
+                   "ov": "hidden",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  },
+                  "c2": [
+                   {
+                    "t": "SPAN",
+                    "c": "overflow-hidden whitespace-nowrap text-sm leading-[22px] transition-opacity duration-[250ms] ease-[cubic-bezier(0.36,0.77,0,1)] opacity-0 de",
+                    "b": [
+                     1466,
+                     239,
+                     0,
+                     22
+                    ],
+                    "n": 0,
+                    "x": "AI 生成",
+                    "s": {
+                     "fs": "14px",
+                     "fw": "400",
+                     "lh": "22px",
+                     "col": "rgba(255, 255, 255, 0.6)",
+                     "bg": "rgba(0, 0, 0, 0)",
+                     "br": "0px",
+                     "bt": "0px",
+                     "btc": "rgb(82, 82, 82)",
+                     "bb": "0px",
+                     "bbc": "rgb(82, 82, 82)",
+                     "bl": "0px",
+                     "blr": "rgb(82, 82, 82)",
+                     "brr": "0px",
+                     "brrc": "rgb(82, 82, 82)",
+                     "pl": "0px",
+                     "pt": "0px",
+                     "pr": "0px",
+                     "pb": "0px",
+                     "gap": "normal",
+                     "d": "block",
+                     "ai": "normal",
+                     "ji": "normal",
+                     "gtc": "none",
+                     "ov": "hidden",
+                     "op": "0",
+                     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                     "sh": "none"
+                    }
+                   }
+                  ]
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "DIV",
+            "c": "my-2 flex h-8 w-full shrink-0 items-center gap-[2px]",
+            "b": [
+             1297,
+             279,
+             240,
+             32
+            ],
+            "n": 2,
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "2px",
+             "d": "flex",
+             "ai": "center",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "BUTTON",
+              "c": "text-fg-muted hover:text-nt-icon-default flex size-8 items-center justify-center rounded-lg",
+              "b": [
+               1297,
+               279,
+               32,
+               32
+              ],
+              "n": 1,
+              "ar": "搜索",
+              "ap": "",
+              "ac": "",
+              "tp": "button",
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgba(255, 255, 255, 0.6)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "8px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "flex",
+               "ai": "center",
+               "ji": "center",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "svg",
+                "c": "iconify iconify--libtv pointer-events-none size-4",
+                "b": [
+                 1305,
+                 287,
+                 16,
+                 16
+                ],
+                "n": 1,
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgba(255, 255, 255, 0.6)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "hidden",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "path",
+                  "c": "",
+                  "b": [
+                   1306,
+                   289,
+                   13,
+                   13
+                  ],
+                  "n": 0,
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgba(255, 255, 255, 0.6)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 }
+                ]
+               }
+              ]
+             },
+             {
+              "t": "BUTTON",
+              "c": "text-fg-muted hover:text-nt-icon-default relative flex size-8 items-center justify-center rounded-lg",
+              "b": [
+               1331,
+               279,
+               32,
+               32
+              ],
+              "n": 1,
+              "ar": "筛选音色",
+              "ap": "",
+              "ac": "",
+              "tp": "button",
+              "s": {
+               "fs": "16px",
+               "fw": "400",
+               "lh": "24.8px",
+               "col": "rgba(255, 255, 255, 0.6)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "8px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "flex",
+               "ai": "center",
+               "ji": "center",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "svg",
+                "c": "iconify iconify--libtv pointer-events-none size-4",
+                "b": [
+                 1339,
+                 287,
+                 16,
+                 16
+                ],
+                "n": 1,
+                "s": {
+                 "fs": "16px",
+                 "fw": "400",
+                 "lh": "24.8px",
+                 "col": "rgba(255, 255, 255, 0.6)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "block",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "hidden",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                },
+                "c2": [
+                 {
+                  "t": "path",
+                  "c": "",
+                  "b": [
+                   1340,
+                   290,
+                   13,
+                   11
+                  ],
+                  "n": 0,
+                  "s": {
+                   "fs": "16px",
+                   "fw": "400",
+                   "lh": "24.8px",
+                   "col": "rgba(255, 255, 255, 0.6)",
+                   "bg": "rgba(0, 0, 0, 0)",
+                   "br": "0px",
+                   "bt": "0px",
+                   "btc": "rgb(82, 82, 82)",
+                   "bb": "0px",
+                   "bbc": "rgb(82, 82, 82)",
+                   "bl": "0px",
+                   "blr": "rgb(82, 82, 82)",
+                   "brr": "0px",
+                   "brrc": "rgb(82, 82, 82)",
+                   "pl": "0px",
+                   "pt": "0px",
+                   "pr": "0px",
+                   "pb": "0px",
+                   "gap": "normal",
+                   "d": "inline",
+                   "ai": "normal",
+                   "ji": "normal",
+                   "gtc": "none",
+                   "ov": "visible",
+                   "op": "1",
+                   "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                   "sh": "none"
+                  }
+                 }
+                ]
+               }
+              ]
+             }
+            ]
+           },
+           {
+            "t": "DIV",
+            "c": "min-h-0 flex-1 space-y-2 overflow-y-auto pb-20",
+            "b": [
+             1297,
+             319,
+             240,
+             514
+            ],
+            "n": 1,
+            "x": "暂无音色数据",
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "80px",
+             "gap": "normal",
+             "d": "block",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "auto",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "DIV",
+              "c": "text-fg-muted flex h-24 items-center justify-center text-xs",
+              "b": [
+               1297,
+               319,
+               240,
+               96
+              ],
+              "n": 0,
+              "x": "暂无音色数据",
+              "s": {
+               "fs": "12px",
+               "fw": "400",
+               "lh": "16px",
+               "col": "rgba(255, 255, 255, 0.6)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "flex",
+               "ai": "center",
+               "ji": "center",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "DIV",
+          "c": "Ias-7a_editorPanelScrollThumb  ",
+          "b": [
+           1549,
+           231,
+           12,
+           0
+          ],
+          "n": 0,
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(255, 255, 255)",
+           "bb": "0px",
+           "bbc": "rgb(255, 255, 255)",
+           "bl": "0px",
+           "blr": "rgb(255, 255, 255)",
+           "brr": "0px",
+           "brrc": "rgb(255, 255, 255)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "block",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "0",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          }
+         }
+        ]
+       }
+      ]
+     },
+     {
+      "t": "FOOTER",
+      "c": "border-canvas-controls-border relative z-30 flex h-[88px] shrink-0 items-center justify-center gap-2 border-t bg-[var(--character-studio-bg-",
+      "b": [
+       361,
+       833,
+       1198,
+       88
+      ],
+      "n": 2,
+      "x": "保存时生成角色资产44保存保存并添加到画布",
+      "s": {
+       "fs": "16px",
+       "fw": "400",
+       "lh": "24.8px",
+       "col": "rgb(255, 255, 255)",
+       "bg": "rgb(36, 36, 36)",
+       "br": "0px",
+       "bt": "1px",
+       "btc": "rgba(255, 255, 255, 0.08)",
+       "bb": "0px",
+       "bbc": "rgba(255, 255, 255, 0.08)",
+       "bl": "0px",
+       "blr": "rgba(255, 255, 255, 0.08)",
+       "brr": "0px",
+       "brrc": "rgba(255, 255, 255, 0.08)",
+       "pl": "24px",
+       "pt": "24px",
+       "pr": "24px",
+       "pb": "24px",
+       "gap": "8px",
+       "d": "flex",
+       "ai": "center",
+       "ji": "center",
+       "gtc": "none",
+       "ov": "visible",
+       "op": "1",
+       "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+       "sh": "none"
+      },
+      "c2": [
+       {
+        "t": "LABEL",
+        "c": "absolute left-6 top-6 flex h-10 cursor-pointer items-center gap-1.5 text-[13px] leading-5 w-[240px]",
+        "b": [
+         385,
+         858,
+         240,
+         40
+        ],
+        "n": 4,
+        "x": "保存时生成角色资产44",
+        "ar": "",
+        "ap": "",
+        "ac": "",
+        "tp": "",
+        "s": {
+         "fs": "13px",
+         "fw": "400",
+         "lh": "20px",
+         "col": "rgb(255, 255, 255)",
+         "bg": "rgba(0, 0, 0, 0)",
+         "br": "0px",
+         "bt": "0px",
+         "btc": "rgb(82, 82, 82)",
+         "bb": "0px",
+         "bbc": "rgb(82, 82, 82)",
+         "bl": "0px",
+         "blr": "rgb(82, 82, 82)",
+         "brr": "0px",
+         "brrc": "rgb(82, 82, 82)",
+         "pl": "0px",
+         "pt": "0px",
+         "pr": "0px",
+         "pb": "0px",
+         "gap": "6px",
+         "d": "flex",
+         "ai": "center",
+         "ji": "normal",
+         "gtc": "none",
+         "ov": "visible",
+         "op": "1",
+         "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+         "sh": "none"
+        },
+        "c2": [
+         {
+          "t": "INPUT",
+          "c": "peer sr-only",
+          "b": [
+           384,
+           878,
+           1,
+           1
+          ],
+          "n": 0,
+          "ph": "",
+          "ty": "checkbox",
+          "ar": "",
+          "ap": "",
+          "ac": "",
+          "tp": "checkbox",
+          "s": {
+           "fs": "13px",
+           "fw": "400",
+           "lh": "20px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(255, 255, 255)",
+           "bb": "0px",
+           "bbc": "rgb(255, 255, 255)",
+           "bl": "0px",
+           "blr": "rgb(255, 255, 255)",
+           "brr": "0px",
+           "brrc": "rgb(255, 255, 255)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "block",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "hidden",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          }
+         },
+         {
+          "t": "SPAN",
+          "c": "flex size-[18px] shrink-0 items-center justify-center rounded-full peer-focus-visible:outline peer-focus-visible:outline-offset-2 peer-disab",
+          "b": [
+           385,
+           869,
+           18,
+           18
+          ],
+          "n": 1,
+          "s": {
+           "fs": "13px",
+           "fw": "400",
+           "lh": "20px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "9999px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "flex",
+           "ai": "center",
+           "ji": "center",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "svg",
+            "c": "iconify iconify--libtv size-[18px]",
+            "b": [
+             385,
+             869,
+             18,
+             18
+            ],
+            "n": 1,
+            "s": {
+             "fs": "13px",
+             "fw": "400",
+             "lh": "20px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "block",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "hidden",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "path",
+              "c": "",
+              "b": [
+               387,
+               871,
+               15,
+               15
+              ],
+              "n": 0,
+              "s": {
+               "fs": "13px",
+               "fw": "400",
+               "lh": "20px",
+               "col": "rgb(255, 255, 255)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "inline",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              }
+             }
+            ]
+           }
+          ]
+         },
+         {
+          "t": "SPAN",
+          "c": "",
+          "b": [
+           409,
+           868,
+           117,
+           20
+          ],
+          "n": 0,
+          "x": "保存时生成角色资产",
+          "s": {
+           "fs": "13px",
+           "fw": "400",
+           "lh": "20px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "block",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          }
+         },
+         {
+          "t": "SPAN",
+          "c": "inline-flex shrink-0",
+          "b": [
+           532,
+           868,
+           32,
+           20
+          ],
+          "n": 1,
+          "x": "44",
+          "s": {
+           "fs": "13px",
+           "fw": "400",
+           "lh": "20px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "flex",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "SPAN",
+            "c": "inline-flex shrink-0 items-center gap-px pl-0.5 text-[var(--character-studio-text-tertiary)]",
+            "b": [
+             532,
+             868,
+             32,
+             20
+            ],
+            "n": 2,
+            "x": "44",
+            "s": {
+             "fs": "13px",
+             "fw": "400",
+             "lh": "20px",
+             "col": "rgba(255, 255, 255, 0.3)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "2px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "1px",
+             "d": "flex",
+             "ai": "center",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            },
+            "c2": [
+             {
+              "t": "svg",
+              "c": "iconify iconify--libtv pointer-events-none shrink-0 size-3",
+              "b": [
+               534,
+               872,
+               12,
+               12
+              ],
+              "n": 1,
+              "s": {
+               "fs": "13px",
+               "fw": "400",
+               "lh": "20px",
+               "col": "rgba(255, 255, 255, 0.3)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "block",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "hidden",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              },
+              "c2": [
+               {
+                "t": "path",
+                "c": "",
+                "b": [
+                 536,
+                 873,
+                 8,
+                 10
+                ],
+                "n": 0,
+                "s": {
+                 "fs": "13px",
+                 "fw": "400",
+                 "lh": "20px",
+                 "col": "rgba(255, 255, 255, 0.3)",
+                 "bg": "rgba(0, 0, 0, 0)",
+                 "br": "0px",
+                 "bt": "0px",
+                 "btc": "rgb(82, 82, 82)",
+                 "bb": "0px",
+                 "bbc": "rgb(82, 82, 82)",
+                 "bl": "0px",
+                 "blr": "rgb(82, 82, 82)",
+                 "brr": "0px",
+                 "brrc": "rgb(82, 82, 82)",
+                 "pl": "0px",
+                 "pt": "0px",
+                 "pr": "0px",
+                 "pb": "0px",
+                 "gap": "normal",
+                 "d": "inline",
+                 "ai": "normal",
+                 "ji": "normal",
+                 "gtc": "none",
+                 "ov": "visible",
+                 "op": "1",
+                 "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+                 "sh": "none"
+                }
+               }
+              ]
+             },
+             {
+              "t": "SPAN",
+              "c": "text-center font-normal text-[13px] leading-5",
+              "b": [
+               547,
+               868,
+               17,
+               20
+              ],
+              "n": 0,
+              "x": "44",
+              "s": {
+               "fs": "13px",
+               "fw": "400",
+               "lh": "20px",
+               "col": "rgba(255, 255, 255, 0.3)",
+               "bg": "rgba(0, 0, 0, 0)",
+               "br": "0px",
+               "bt": "0px",
+               "btc": "rgb(82, 82, 82)",
+               "bb": "0px",
+               "bbc": "rgb(82, 82, 82)",
+               "bl": "0px",
+               "blr": "rgb(82, 82, 82)",
+               "brr": "0px",
+               "brrc": "rgb(82, 82, 82)",
+               "pl": "0px",
+               "pt": "0px",
+               "pr": "0px",
+               "pb": "0px",
+               "gap": "normal",
+               "d": "block",
+               "ai": "normal",
+               "ji": "normal",
+               "gtc": "none",
+               "ov": "visible",
+               "op": "1",
+               "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+               "sh": "none"
+              }
+             }
+            ]
+           }
+          ]
+         }
+        ]
+       },
+       {
+        "t": "DIV",
+        "c": "flex items-center gap-2",
+        "b": [
+         844,
+         858,
+         232,
+         40
+        ],
+        "n": 2,
+        "x": "保存保存并添加到画布",
+        "s": {
+         "fs": "16px",
+         "fw": "400",
+         "lh": "24.8px",
+         "col": "rgb(255, 255, 255)",
+         "bg": "rgba(0, 0, 0, 0)",
+         "br": "0px",
+         "bt": "0px",
+         "btc": "rgb(82, 82, 82)",
+         "bb": "0px",
+         "bbc": "rgb(82, 82, 82)",
+         "bl": "0px",
+         "blr": "rgb(82, 82, 82)",
+         "brr": "0px",
+         "brrc": "rgb(82, 82, 82)",
+         "pl": "0px",
+         "pt": "0px",
+         "pr": "0px",
+         "pb": "0px",
+         "gap": "8px",
+         "d": "flex",
+         "ai": "center",
+         "ji": "normal",
+         "gtc": "none",
+         "ov": "visible",
+         "op": "1",
+         "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+         "sh": "none"
+        },
+        "c2": [
+         {
+          "t": "DIV",
+          "c": "relative",
+          "b": [
+           844,
+           858,
+           80,
+           40
+          ],
+          "n": 1,
+          "x": "保存",
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "block",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "BUTTON",
+            "c": "hover:bg-canvas-controls-hover flex h-10 min-w-20 items-center justify-center rounded-xl bg-[var(--character-studio-bg-overlay)] px-4 text-s",
+            "b": [
+             844,
+             858,
+             80,
+             40
+            ],
+            "n": 0,
+            "x": "保存",
+            "ar": "",
+            "ap": "",
+            "ac": "",
+            "tp": "button",
+            "s": {
+             "fs": "14px",
+             "fw": "400",
+             "lh": "22px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(255, 255, 255, 0.06)",
+             "br": "12px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "16px",
+             "pt": "0px",
+             "pr": "16px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "flex",
+             "ai": "center",
+             "ji": "center",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            }
+           }
+          ]
+         },
+         {
+          "t": "DIV",
+          "c": "relative",
+          "b": [
+           932,
+           858,
+           144,
+           40
+          ],
+          "n": 1,
+          "x": "保存并添加到画布",
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "block",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "BUTTON",
+            "c": "bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover flex h-10 min-w-20 items-center justify-center rounded-xl px-4 text-sm leadi",
+            "b": [
+             932,
+             858,
+             144,
+             40
+            ],
+            "n": 0,
+            "x": "保存并添加到画布",
+            "ar": "",
+            "ap": "",
+            "ac": "",
+            "tp": "button",
+            "s": {
+             "fs": "14px",
+             "fw": "400",
+             "lh": "22px",
+             "col": "rgb(0, 0, 0)",
+             "bg": "rgba(255, 255, 255, 0.898)",
+             "br": "12px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "16px",
+             "pt": "0px",
+             "pr": "16px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "flex",
+             "ai": "center",
+             "ji": "center",
+             "gtc": "none",
+             "ov": "visible",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   },
+   {
+    "t": "DIV",
+    "c": "Ias-7a_motionLayer Ias-7a_motionPhaseEdit",
+    "b": [
+     361,
+     161,
+     1198,
+     758
+    ],
+    "n": 2,
+    "s": {
+     "fs": "16px",
+     "fw": "400",
+     "lh": "24.8px",
+     "col": "rgb(255, 255, 255)",
+     "bg": "rgba(0, 0, 0, 0)",
+     "br": "0px",
+     "bt": "0px",
+     "btc": "rgb(82, 82, 82)",
+     "bb": "0px",
+     "bbc": "rgb(82, 82, 82)",
+     "bl": "0px",
+     "blr": "rgb(82, 82, 82)",
+     "brr": "0px",
+     "brrc": "rgb(82, 82, 82)",
+     "pl": "0px",
+     "pt": "0px",
+     "pr": "0px",
+     "pb": "0px",
+     "gap": "normal",
+     "d": "block",
+     "ai": "normal",
+     "ji": "normal",
+     "gtc": "none",
+     "ov": "hidden",
+     "op": "1",
+     "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+     "sh": "none"
+    },
+    "c2": [
+     {
+      "t": "CANVAS",
+      "c": "Ias-7a_motionDotField",
+      "b": [
+       361,
+       231,
+       1200,
+       602
+      ],
+      "n": 0,
+      "s": {
+       "fs": "16px",
+       "fw": "400",
+       "lh": "24.8px",
+       "col": "rgb(255, 255, 255)",
+       "bg": "rgb(36, 36, 36)",
+       "br": "0px",
+       "bt": "0px",
+       "btc": "rgb(82, 82, 82)",
+       "bb": "0px",
+       "bbc": "rgb(82, 82, 82)",
+       "bl": "0px",
+       "blr": "rgb(82, 82, 82)",
+       "brr": "0px",
+       "brrc": "rgb(82, 82, 82)",
+       "pl": "0px",
+       "pt": "0px",
+       "pr": "0px",
+       "pb": "0px",
+       "gap": "normal",
+       "d": "block",
+       "ai": "normal",
+       "ji": "normal",
+       "gtc": "none",
+       "ov": "hidden",
+       "op": "1",
+       "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+       "sh": "none"
+      }
+     },
+     {
+      "t": "DIV",
+      "c": "",
+      "b": [
+       361,
+       161,
+       1198,
+       0
+      ],
+      "n": 2,
+      "s": {
+       "fs": "16px",
+       "fw": "400",
+       "lh": "24.8px",
+       "col": "rgb(255, 255, 255)",
+       "bg": "rgba(0, 0, 0, 0)",
+       "br": "0px",
+       "bt": "0px",
+       "btc": "rgb(82, 82, 82)",
+       "bb": "0px",
+       "bbc": "rgb(82, 82, 82)",
+       "bl": "0px",
+       "blr": "rgb(82, 82, 82)",
+       "brr": "0px",
+       "brrc": "rgb(82, 82, 82)",
+       "pl": "0px",
+       "pt": "0px",
+       "pr": "0px",
+       "pb": "0px",
+       "gap": "normal",
+       "d": "block",
+       "ai": "normal",
+       "ji": "normal",
+       "gtc": "none",
+       "ov": "visible",
+       "op": "1",
+       "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+       "sh": "none"
+      },
+      "c2": [
+       {
+        "t": "DIV",
+        "c": "Ias-7a_motionModelHitbox",
+        "b": [
+         796,
+         235,
+         329,
+         520
+        ],
+        "n": 0,
+        "s": {
+         "fs": "16px",
+         "fw": "400",
+         "lh": "24.8px",
+         "col": "rgb(255, 255, 255)",
+         "bg": "rgba(0, 0, 0, 0)",
+         "br": "0px",
+         "bt": "0px",
+         "btc": "rgb(82, 82, 82)",
+         "bb": "0px",
+         "bbc": "rgb(82, 82, 82)",
+         "bl": "0px",
+         "blr": "rgb(82, 82, 82)",
+         "brr": "0px",
+         "brrc": "rgb(82, 82, 82)",
+         "pl": "0px",
+         "pt": "0px",
+         "pr": "0px",
+         "pb": "0px",
+         "gap": "normal",
+         "d": "block",
+         "ai": "normal",
+         "ji": "normal",
+         "gtc": "none",
+         "ov": "visible",
+         "op": "1",
+         "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+         "sh": "none"
+        }
+       },
+       {
+        "t": "DIV",
+        "c": "Ias-7a_motionModelHost",
+        "b": [
+         0,
+         0,
+         0,
+         0
+        ],
+        "n": 1,
+        "s": {
+         "fs": "16px",
+         "fw": "400",
+         "lh": "24.8px",
+         "col": "rgb(255, 255, 255)",
+         "bg": "rgba(0, 0, 0, 0)",
+         "br": "0px",
+         "bt": "0px",
+         "btc": "rgb(82, 82, 82)",
+         "bb": "0px",
+         "bbc": "rgb(82, 82, 82)",
+         "bl": "0px",
+         "blr": "rgb(82, 82, 82)",
+         "brr": "0px",
+         "brrc": "rgb(82, 82, 82)",
+         "pl": "0px",
+         "pt": "0px",
+         "pr": "0px",
+         "pb": "0px",
+         "gap": "normal",
+         "d": "none",
+         "ai": "normal",
+         "ji": "normal",
+         "gtc": "none",
+         "ov": "visible",
+         "op": "1",
+         "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+         "sh": "none"
+        },
+        "c2": [
+         {
+          "t": "DIV",
+          "c": "Ias-7a_motionModelStage",
+          "b": [
+           0,
+           0,
+           0,
+           0
+          ],
+          "n": 1,
+          "s": {
+           "fs": "16px",
+           "fw": "400",
+           "lh": "24.8px",
+           "col": "rgb(255, 255, 255)",
+           "bg": "rgba(0, 0, 0, 0)",
+           "br": "0px",
+           "bt": "0px",
+           "btc": "rgb(82, 82, 82)",
+           "bb": "0px",
+           "bbc": "rgb(82, 82, 82)",
+           "bl": "0px",
+           "blr": "rgb(82, 82, 82)",
+           "brr": "0px",
+           "brrc": "rgb(82, 82, 82)",
+           "pl": "0px",
+           "pt": "0px",
+           "pr": "0px",
+           "pb": "0px",
+           "gap": "normal",
+           "d": "block",
+           "ai": "normal",
+           "ji": "normal",
+           "gtc": "none",
+           "ov": "visible",
+           "op": "1",
+           "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+           "sh": "none"
+          },
+          "c2": [
+           {
+            "t": "CANVAS",
+            "c": "Ias-7a_motionModelCanvas Ias-7a_motionModelCanvasReady",
+            "b": [
+             0,
+             0,
+             0,
+             0
+            ],
+            "n": 0,
+            "s": {
+             "fs": "16px",
+             "fw": "400",
+             "lh": "24.8px",
+             "col": "rgb(255, 255, 255)",
+             "bg": "rgba(0, 0, 0, 0)",
+             "br": "0px",
+             "bt": "0px",
+             "btc": "rgb(82, 82, 82)",
+             "bb": "0px",
+             "bbc": "rgb(82, 82, 82)",
+             "bl": "0px",
+             "blr": "rgb(82, 82, 82)",
+             "brr": "0px",
+             "brrc": "rgb(82, 82, 82)",
+             "pl": "0px",
+             "pt": "0px",
+             "pr": "0px",
+             "pb": "0px",
+             "gap": "normal",
+             "d": "block",
+             "ai": "normal",
+             "ji": "normal",
+             "gtc": "none",
+             "ov": "clip",
+             "op": "1",
+             "ff": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-",
+             "sh": "none"
+            }
+           }
+          ]
+         }
+        ]
+       }
+      ]
+     }
+    ]
+   }
+  ]
+ },
+ "★浮层": [
+  {
+   "t": "DIV",
+   "c": "react-flow__viewport-portal",
+   "b": [
+    99,
+    31,
+    732,
+    411
+   ],
+   "x": ""
+  },
+  {
+   "t": "SECTION",
+   "c": "Ias-7a_studio Ias-7a_themeAware border-canvas-controls-border text-canvas-controls-text relative flex h-[760px] w-[1200px] origin-center fle",
+   "b": [
+    360,
+    160,
+    1200,
+    760
+   ],
+   "x": "· 青年 · 东亚 · 现代脸部精修限免脸部 & 身体特征身材塑形限免服装造型音色音调音色库我的音色AI 生成暂无音色数据保存时生成角色资产"
+  }
+ ],
+ "★带文字的叶子": [
+  {
+   "t": "STYLE",
+   "x": "a:where(.css-1cj4ms){color:#1677ff;text-decoration:none;background-color:transparent;outli",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ":where(.css-1cj4ms)[class^=\"ant-modal\"],:where(.css-1cj4ms)[class*=\" ant-modal\"]{font-fami",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": "@keyframes css-1cj4ms-antFadeIn{0%{opacity:0;}100%{opacity:1;}}",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": "@keyframes css-1cj4ms-antFadeOut{0%{opacity:1;}100%{opacity:0;}}",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": "@keyframes css-1cj4ms-antZoomIn{0%{transform:scale(0.2);opacity:0;}100%{transform:scale(1)",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": "@keyframes css-1cj4ms-antZoomOut{0%{transform:scale(1);}100%{transform:scale(0.2);opacity:",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ".anticon{display:inline-flex;align-items:center;color:inherit;font-style:normal;line-heigh",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ".agl-hover { outline: 2px solid rgba(244,67,54,0.99) !important; background-color: rgba(24",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "TITLE",
+   "x": "画布 1 - LibTV - 专业视频创作工具",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": "html,body{scrollbar-width:thin} html[data-page-overlay-scrollbar]:has(>body#page-scroll-ro",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "(function(){ try { if (/(^|\\/)canvas(\\/|$)/.test(window.location.pathname)) return; var pl",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "window.__env=\"online\";window.__is_canary=false;",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": "@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "(self.__next_s=self.__next_s||[]).push([0,{\"children\":\"\\n (function() {\\n try {\\n var TAB_",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "(self.__next_s=self.__next_s||[]).push([0,{\"children\":\"\\n (function(w,d,s,l,i){w[l]=w[l]||",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": "html[data-libtv-disable-howxm-overlays] [id^=\"howxmSDK_\"], html[data-libtv-disable-howxm-o",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "(self.__next_s=self.__next_s||[]).push([0,{\"children\":\"\\n !(function(c,b,d,a){c[a]||(c[a]=",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "(function() { try { var TAB_KEY = 'tab-instance-id'; var PURGE_KEYS = [\"canvas-session-id\"",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "!(function(c,b,d,a){c[a]||(c[a]={});c[a]= { endpoint: 'https://proj-xtrace-a6d5b57e5b99e36",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ".asideButton_asideBtn__l1LRP { display: flex; cursor: pointer; position: fixed; z-index: 9",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ".modalWidget_widgetTransition__iHARV { transition: height 0.3s; } .modalWidget_widget__J6Q",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ".publicModalWidget_howxmModalOpen__LJybT { overflow: hidden; } .publicModalWidget_backdrop",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ".index_loading__c3Eal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background:",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ".button_button__LB2x2 { font-family: \"PingFang SC\"; text-align: center; font-size: 14px; p",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ":root { --bannerHeight: 0px; --animationDuration: 0.5s; } @keyframes banner_bannerAnimatio",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ":root { --bannerHeight: 0px; --animationDuration: 0.5s; } @keyframes publishedBanner_slide",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": "[data-longpress-contextmenu]{-webkit-touch-callout:none;-webkit-user-select:none;user-sele",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ".ProseMirror { position: relative; } .ProseMirror { word-wrap: break-word; white-space: pr",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": "#YSF-BTN-HOLDER{position: fixed;max-width:300px;max-height:300px;right: 30px; bottom: 24px",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "NOSCRIPT",
+   "x": "<iframe src=\"https://www.googletagmanager.com/ns.html?id=GTM-WJDS6WDB\" height=\"0\" width=\"0",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ":root, :host{--mantine-breakpoint-b640: 640px;--mantine-breakpoint-b768: 768px;--mantine-b",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": "@media (max-width: 35.99375em) {.mantine-visible-from-xs {display: none !important;}}@medi",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "画布 1",
+   "b": [
+    173,
+    14,
+    36,
+    20
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "开通会员",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "20",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "限时 45 折",
+   "b": [
+    1734,
+    16,
+    61,
+    16
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "20",
+   "b": [
+    1845,
+    14,
+    16,
+    20
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "功能宝箱上线啦！创作所需功能应有尽有～",
+   "b": [
+    872,
+    919,
+    208,
+    40
+   ]
+  },
+  {
+   "t": "BUTTON",
+   "x": "知道了",
+   "b": [
+    1012,
+    971,
+    68,
+    28
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "TV Director",
+   "b": [
+    1173,
+    1033,
+    8,
+    20
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "脚本 V2 1",
+   "b": [
+    423,
+    309,
+    42,
+    15
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "1",
+   "b": [
+    436,
+    388,
+    9,
+    9
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "确认镜头",
+   "b": [
+    430,
+    399,
+    20,
+    7
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "2",
+   "b": [
+    472,
+    388,
+    9,
+    9
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "准备资产",
+   "b": [
+    466,
+    399,
+    20,
+    7
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "3",
+   "b": [
+    508,
+    388,
+    9,
+    9
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "合成提示词",
+   "b": [
+    500,
+    399,
+    25,
+    7
+   ]
+  },
+  {
+   "t": "BUTTON",
+   "x": "打开脚本节点 →",
+   "b": [
+    422,
+    433,
+    108,
+    15
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "逐帧拉片",
+   "b": [
+    113,
+    545,
+    40,
+    15
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "逐帧拉片",
+   "b": [
+    115,
+    570,
+    21,
+    8
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "SD 2.5",
+   "b": [
+    154,
+    571,
+    13,
+    6
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "视频素材",
+   "b": [
+    105,
+    586,
+    109,
+    7
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "上传视频后开始",
+   "b": [
+    144,
+    630,
+    32,
+    7
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "拆解维度",
+   "b": [
+    105,
+    664,
+    109,
+    7
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "分镜",
+   "b": [
+    121,
+    675,
+    10,
+    8
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "动态",
+   "b": [
+    159,
+    675,
+    10,
+    8
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "音乐",
+   "b": [
+    197,
+    675,
+    10,
+    8
+   ]
+  },
+  {
+   "t": "BUTTON",
+   "x": "开始拉片",
+   "b": [
+    104,
+    693,
+    112,
+    14
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "陈默_01KT17FN",
+   "b": [
+    478,
+    539,
+    71,
+    15
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "1808 × 1024",
+   "b": [
+    647,
+    540,
+    53,
+    13
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "图片节点 1",
+   "b": [
+    39,
+    319,
+    47,
+    15
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "尝试：",
+   "b": [
+    35,
+    404,
+    218,
+    8
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "图生图",
+   "b": [
+    48,
+    418,
+    16,
+    8
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "图片高清",
+   "b": [
+    49,
+    433,
+    21,
+    8
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "素材-特效-瞳孔异变",
+   "b": [
+    295,
+    570,
+    78,
+    15
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "导演台 2",
+   "b": [
+    516,
+    108,
+    38,
+    15
+   ]
+  },
+  {
+   "t": "BUTTON",
+   "x": "打开导演台",
+   "b": [
+    552,
+    187,
+    35,
+    12
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "S83·镜2",
+   "b": [
+    127,
+    104,
+    37,
+    15
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "864 × 496",
+   "b": [
+    304,
+    105,
+    42,
+    13
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "资产管理",
+   "b": [
+    44,
+    1038,
+    52,
+    20
+   ]
+  },
+  {
+   "t": "BUTTON",
+   "x": "38%",
+   "b": [
+    240,
+    1034,
+    36,
+    28
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "按 Enter 或空格键选择节点。按 Delete 键删除节点，按 Esc 键取消选择。",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "Press enter or space to select an edge. You can then press delete to remove it or escape t",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "选择文件上传",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "(globalThis[\"TURBOPACK\"] || (globalThis[\"TURBOPACK\"] = [])).push({\"otherChunks\":[\"static/c",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "(self.__next_f=self.__next_f||[]).push([0])",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "self.__next_f.push([1,\"1:\\\"$Sreact.fragment\\\"\\n2:\\\"https://liblibai-web-static.liblib.clou",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "新对话",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "STYLE",
+   "x": ".canvas-agent-drawer-chat { --copilot-kit-background-color: transparent; } .canvas-agent-d",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "P",
+   "x": "让 TV Director 辅助你的无限创意",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "感知画布开始创作",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "从爆款预设开始剧本原创",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "上传故事来改编",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "批量优化提示词",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "开启浏览器通知，及时获取最新消息",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "BUTTON",
+   "x": "开启",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "全能创作",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "· 青年 · 东亚 · 现代",
+   "b": [
+    405,
+    283,
+    115,
+    22
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "脸部精修",
+   "b": [
+    409,
+    340,
+    56,
+    22
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "限免",
+   "b": [
+    471,
+    343,
+    30,
+    16
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "脸部 & 身体特征",
+   "b": [
+    409,
+    392,
+    101,
+    22
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "身材塑形",
+   "b": [
+    409,
+    444,
+    56,
+    22
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "限免",
+   "b": [
+    471,
+    447,
+    30,
+    16
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "服装造型",
+   "b": [
+    409,
+    496,
+    56,
+    22
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "音色音调",
+   "b": [
+    409,
+    548,
+    56,
+    22
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "音色库",
+   "b": [
+    1318,
+    239,
+    0,
+    22
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "我的音色",
+   "b": [
+    1366,
+    239,
+    56,
+    22
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "AI 生成",
+   "b": [
+    1466,
+    239,
+    0,
+    22
+   ]
+  },
+  {
+   "t": "DIV",
+   "x": "暂无音色数据",
+   "b": [
+    1297,
+    319,
+    240,
+    96
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "保存时生成角色资产",
+   "b": [
+    409,
+    868,
+    117,
+    20
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "44",
+   "b": [
+    547,
+    868,
+    17,
+    20
+   ]
+  },
+  {
+   "t": "BUTTON",
+   "x": "保存",
+   "b": [
+    844,
+    858,
+    80,
+    40
+   ]
+  },
+  {
+   "t": "BUTTON",
+   "x": "保存并添加到画布",
+   "b": [
+    932,
+    858,
+    144,
+    40
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "window._agl = window._agl || []; (function () { _agl.push(['production', '_f7L2XwGXjyszb4d",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "function _howxm(){_howxmQueue.push(arguments)} window._howxmQueue=window._howxmQueue||[]; ",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "正在跟随",
+   "b": [
+    902,
+    7,
+    56,
+    20
+   ]
+  },
+  {
+   "t": "BUTTON",
+   "x": "取消ESC",
+   "b": [
+    970,
+    9,
+    64,
+    16
+   ]
+  },
+  {
+   "t": "SPAN",
+   "x": "按 ESC 退出",
+   "b": [
+    961,
+    33,
+    82,
+    24
+   ]
+  },
+  {
+   "t": "SCRIPT",
+   "x": "(function(c,d,f,g,e){c[e]=c[e]||[];var h=function(){var b={ti:\"187118742\"};b.q=c[e];c[e]=n",
+   "b": [
+    0,
+    0,
+    0,
+    0
+   ]
+  }
+ ],
+ "★整页文本": "画布 1\n开通会员\n限时 45 折\n20\n功能宝箱上线啦！创作所需功能应有尽有～\n知道了\nTV Director\n脚本 V2 1\n1\n确认镜头\n2\n准备资产\n3\n合成提示词\n打开脚本节点 →\n逐帧拉片\n逐帧拉片\nSD 2.5\n视频素材\n上传视频后开始\n拆解维度\n分镜\n动态\n音乐\n开始拉片\n陈默_01KT17FN\n1808 × 1024\n图片节点 1\n尝试：\n图生图\n图片高清\n素材-特效-瞳孔异变\n导演台 2\n打开导演台\nS83·镜2\n864 × 496\n资产管理\n38%\n· 青年 · 东亚 · 现代\n脸部精修\n限免\n脸部 & 身体特征\n身材塑形\n限免\n服装造型\n音色音调\n音色库\n我的音色\nAI 生成\n暂无音色数据\n保存时生成角色资产\n44\n保存\n保存并添加到画布\n正在跟随\n取消ESC\n按 ESC 退出"
+}

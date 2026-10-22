@@ -68,6 +68,12 @@ READ = """()=>{
       数值:val?{...rel(val),text:txt(val)}:null};});
   out['空态']=(()=>{const e=q('[data-character-editor-empty]');
     return e?txt(e):null;})();
+  // ★★ **batch 848 起**：★ 「AI 生成」页**已实测并实现** ⟹ ⟹ 读它的**实测内容**
+  out['AI页']=(()=>{const e=q('[data-character-editor-voice-ai]');
+    if(!e)return null;
+    const g=e.querySelector('[data-character-editor-voice-generate]');
+    const t=e.querySelector('[data-character-editor-voice-history] h3');
+    return {...rel(e),生成按钮:g?txt(g):null,历史标题:t?txt(t):null};})();
   out['开关']=(()=>{const e=q('[data-character-editor-switch]');
     return e?{...rel(e),checked:e.getAttribute('aria-checked'),
       label:e.getAttribute('aria-label')}:null;})();

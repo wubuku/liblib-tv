@@ -56,6 +56,8 @@ import urllib.request
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 BATCH = ROOT / "docs/research/liblib-canvas-batch840-2026-10-01"
 RAW = BATCH / "raw"
+# ★★ **batch 848 起**：★ 「我的音色」页**已实测并实现** ⟹ ⟹ 期望值从那份 raw 取
+RAW848_P3 = ROOT / "docs/research/liblib-canvas-batch848-2026-10-01/raw/source-848-p3.json"
 PROBE_CLONE = BATCH / "probes/clone840.py"
 OUT = BATCH / "runtime-audit.json"
 
@@ -195,6 +197,18 @@ def build_expectations() -> dict:
     e["左列"] = R(r4["asides"][0]["box"])
     e["预览"] = R(r4["main"]["box"])
     e["右列"] = R(r4["asides"][1]["box"])
+    # ★★ **batch 848 起**：★ 「我的音色」页的**实测空态文案**（★ 机器提取 ⟹ ⟹ 不手打）
+    def _walk(n):
+        yield n
+        for k in (n.get("c2") or []):
+            yield from _walk(k)
+    _p3 = read_json(RAW848_P3)
+    _mine = [n for n in _walk(_p3["★整棵子树"])
+             if (n.get("x") or "") == "暂无音色数据"
+             and "h-24" in (n.get("c") or "")]
+    if len(_mine) != 1:
+        raise SystemExit("848 raw 里的「暂无音色数据」识别不唯一：%d 个" % len(_mine))
+    e["_我的音色空态文案"] = _mine[0]["x"]
     e["返回按钮"] = R(next(c for c in ctrls if c.get("aria") == "返回")["box"])
     e["标题输入"] = R(next(i for i in inputs if i.get("aria") == "角色名称")["box"])
 
@@ -622,6 +636,13 @@ def main() -> int:
     # ★★ ★ 提成**局部变量** ⟹ ⟹ 同一个串**只写一遍**（★ 写两遍迟早写歪）
     s7_says_unmeasured = bool(seg5_empty and "未实测" in seg5_empty)
     s7_says_measured = bool(seg5_empty and "已实测" in seg5_empty)
+    # ★★★ **batch 848 起再改**：★ 「我的音色」页**已实测并实现** ⟹ ⟹ 它**不再**是
+    #   「未实测」说明 ⟹ ⟹ 期望**翻成**：显示的是**实测出来的空态** ＋ **没有**「未实测」字样
+    #   ⟹ ⟹ ★ 「未实测入口只显示如实说明」这条**纪律**由 **842／843** 继续承载
+    #     （★ 它们盯的是**第四段**那两枚**仍未实现**的子页签）
+    s7_mine_empty = after_seg5.get("我的音色空态") or {}
+    s7_shows_measured_empty = bool(
+        s7_mine_empty.get("text") == exp["_我的音色空态文案"])
     s7 = {
         "★切到妆造后_有滑杆吗": len(after_tab.get("滑杆轨道") or []),
         "★切到妆造后_有开关吗": bool(after_tab.get("开关")),
@@ -634,6 +655,9 @@ def main() -> int:
         #   ⟹ ⟹ （段级那条写「已实测」是因为**整段**测过、只是没实现 ⟹ ⟹ 语义不同）
         "★第五段_空态说明里写了「未实测」": s7_says_unmeasured,
         "★第五段_空态说明里写了「已实测」": s7_says_measured,
+        # ★★ **batch 848 起**：★ 那一页**已实现** ⟹ ⟹ 读**实测空态**
+        "★我的音色_实测空态文案": s7_mine_empty.get("text"),
+        "★我的音色_显示的是实测空态": s7_shows_measured_empty,
         "★切回脸部精修_页签数": seg_back_tabs,
         "★切回皮肤后_滑杆数": len(after_back.get("滑杆轨道") or []),
         "★切回皮肤后_空态": skin_back_empty,
@@ -642,9 +666,10 @@ def main() -> int:
             "源站那五页签没有控件" not in readme and "源站这五页签没有控件" not in readme),
     }
     checks.append((
-        "S7 ★★★ **未实测的那一页显示空态说明、不编造控件**：★ **batch 847 起换靶**——"
-        "左列五段**全部实现** ⟹ ⟹ 「仍未实现的那一段」**没有靶子了** ⟹ ⟹ 改盯"
-        "**第五段里那一页内容未实测的页签**（「我的音色」）"
+        "S7 ★★★ **那一页已实测并实现**：★ **batch 848 起再改**——「我的音色」页"
+        "**已实测并实现**（★ batch 848 raw 入库）⟹ ⟹ 期望**翻成**：显示的是"
+        "**实测出来的空态**「暂无音色数据」⟹ ⟹ 且**没有**「未实测」字样"
+        "（★ 「未实测入口只显示如实说明」这条纪律由 **842／843** 承载）"
         "⟹ 点第五段 ⟹ 再点「我的音色」⟹ **页签数 %d**（★ 源站实测：页签行**只在「脸部精修」段存在**）＋ 滑杆 %d 条 "
         "⟹ 出现空态说明「%s」；切回「脸部精修」⟹ **页签数 %d**（页签行回来了）"
         "⟹ 切回「皮肤」⟹ 滑杆 %d 条 ⟹ 空态消失；"
@@ -654,7 +679,8 @@ def main() -> int:
            (seg5_empty or "")[:30].replace("\n", " "),
            s7["★切回脸部精修_页签数"], s7["★切回皮肤后_滑杆数"]),
         (s7["★第五段_页签数"] == 0 and s7["★第五段_滑杆数"] == 0
-         and bool(seg5_empty) and s7_says_unmeasured
+         and not seg5_empty and s7_shows_measured_empty
+         and not s7_says_unmeasured
          and not s7["★第五段_空态说明里写了「已实测」"]
          and s7["★切回脸部精修_页签数"] == 6
          and s7["★切回皮肤后_滑杆数"] == 6

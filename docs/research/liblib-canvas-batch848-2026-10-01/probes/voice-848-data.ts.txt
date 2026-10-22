@@ -1,0 +1,40 @@
+// ── 标题行页签（★ 源站实测：**宽度随选中态变** ⟹ ⟹ 两套宽度）──
+//   选中态：28 ＋ 文字宽（3 边距 ＋ 18 图标 ＋ 4 间隙 ＋ 文字 ＋ 3 边距）
+//   未选中：24（★ 源站把文字盒裁成 0 宽 ⟹ ⟹ 只剩图标）
+// ★ 三份 raw 交叉校验（847 音色库／848-p3 我的音色／848-p4 AI 生成）
+const VOICE_TABS: { id: string; label: string; wOn: number; wOff: number; icon: typeof Music }[] = [
+  { id: "library", label: "音色库", wOn: 70, wOff: 24, icon: Music },
+  { id: "mine", label: "我的音色", wOn: 84, wOff: 24, icon: User },
+  { id: "ai", label: "AI 生成", wOn: 73, wOff: 24, icon: Sparkles },
+];
+
+// ── P3「我的音色」页（★ 源站实测）──
+// ★ **这一页也有工具行**（搜索／筛选音色）⟹ ⟹ 与「音色库」页同构
+//   工具0 32×32 @(1297,279)
+//   工具1 32×32 @(1331,279)
+// ★ 空态：240×96 @(1297,319)  文案「暂无音色数据」
+const VOICE_MINE_EMPTY = {
+  text: "暂无音色数据",
+  w: 240, h: 96,
+  fontSize: "12px", lineHeight: "16px", color: "rgba(255, 255, 255, 0.6)",
+};
+
+// ── P4「AI 生成」页（★ 源站实测）──
+// ★ **这一页没有工具行**⟹ ⟹ 内容区直接从标题行下方开始
+// ★ 输入框 240×120 @(1297,283)，占位文案「默认基于当前人设生成，可以补充输入音色特征...」
+// ★ 「生成音色」按钮 240×36 @(1297,422)，右侧角标 36×16（图标 ＋ 数字「21」）
+// ★ 「生成历史」小标题 240×16 @(1297,482) ＋ 空态「暂无历史记录」240×64 @(1297,506)
+const VOICE_AI = {
+  content: { w: 240, h: 562, padTop: 12px, padBottom: 24px, gap: normal },
+  textarea: { w: 240, h: 120, radius: 12px, padding: 12px, fontSize: "12px",
+    lineHeight: "20px", color: "rgb(255, 255, 255)", background: "rgba(255, 255, 255, 0.06)",
+    ariaLabel: "AI 音色描述", placeholder: "默认基于当前人设生成，可以补充输入音色特征..." },
+  generate: { w: 240, h: 36, radius: 10px, gap: 4px, fontSize: "14px",
+    lineHeight: "20px", color: "rgb(0, 0, 0)", background: "rgb(255, 255, 255)", label: "生成音色" },
+  badge: { w: 36, h: 16, gap: 4px, number: "21",
+    numberW: 16, numberH: 16, numberFontSize: "12px" },
+  history: { title: "生成历史", titleW: 240, titleH: 16,
+    titleFontSize: "11px", titleLineHeight: "16px", titleColor: "rgba(255, 255, 255, 0.6)",
+    empty: "暂无历史记录", emptyW: 240, emptyH: 64,
+    emptyFontSize: "12px", emptyLineHeight: "16px", emptyColor: "rgba(255, 255, 255, 0.6)" },
+};

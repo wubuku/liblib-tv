@@ -538,14 +538,92 @@ const EMPTY_NOTE: Record<string, string> = {};
 // ★★ 下面的数据块是**机器提取**的（`probes/gen847_data.py` 从入库 raw 里抽的）
 //   ⟹ ⟹ 名字与副标**不是手打** ⟹ ⟹ 门禁会逐条与 raw 比对
 // ───────────────────────────────────────────────────────────────────
-// ── 标题行页签（源站实测：宽度 70／24／24，间隙 20）──
-// ★「音色库」是**选中态**：白 1px 底边框 ＋ 文字 #fff
-// ★ 另两枚：透明底边框 ＋ 文字白 60%（源站把文字盒裁成 0 宽 ⟹ ⟹ 看不见）
-const VOICE_TABS: { id: string; label: string; w: number; icon: typeof Music }[] = [
-  { id: "library", label: "音色库", w: 70, icon: Music },
-  { id: "mine", label: "我的音色", w: 24, icon: User },
-  { id: "ai", label: "AI 生成", w: 24, icon: Sparkles },
+// ── 标题行页签（★ 源站实测：**宽度随选中态变** ⟹ ⟹ 两套宽度）──
+//   选中态：28 ＋ 文字宽（3 边距 ＋ 18 图标 ＋ 4 间隙 ＋ 文字 ＋ 3 边距）
+//   未选中：24（★ 源站把文字盒裁成 0 宽 ⟹ ⟹ 只剩图标）
+// ★ 三份 raw 交叉校验（847 音色库／848-p3 我的音色／848-p4 AI 生成）
+const VOICE_TABS: { id: string; label: string; wOn: number; wOff: number; icon: typeof Music }[] = [
+  { id: "library", label: "音色库", wOn: 70, wOff: 24, icon: Music },
+  { id: "mine", label: "我的音色", wOn: 84, wOff: 24, icon: User },
+  { id: "ai", label: "AI 生成", wOn: 73, wOff: 24, icon: Sparkles },
 ];
+
+// ── P3「我的音色」页（★ 源站实测）──
+// ★ **这一页也有工具行**（搜索／筛选音色）⟹ ⟹ 与「音色库」页同构
+//   工具0 32×32 @(1297,279)
+//   工具1 32×32 @(1331,279)
+// ★ 空态：240×96 @(1297,319)  文案「暂无音色数据」
+const VOICE_MINE_EMPTY = {
+  text: "暂无音色数据",
+  w: 240,
+  h: 96,
+  fontSize: "12px",
+  lineHeight: "16px",
+  color: "rgba(255, 255, 255, 0.6)",
+};
+
+// ── P4「AI 生成」页（★ 源站实测）──
+// ★ **这一页没有工具行**⟹ ⟹ 内容区直接从标题行下方开始
+// ★ 输入框 240×120 @(1297,283)，占位文案「默认基于当前人设生成，可以补充输入音色特征...」
+// ★ 「生成音色」按钮 240×36 @(1297,422)，右侧角标 36×16（图标 ＋ 数字「21」）
+// ★ 「生成历史」小标题 240×16 @(1297,482) ＋ 空态「暂无历史记录」240×64 @(1297,506)
+// ★ **两处间隙也是从 raw 的盒算出来的**（⟹ ⟹ 不是手打）：
+//   输入框底 403 → 按钮顶 422 ⟹ 间隙 **19**（space-y-3 之外还有一段）
+//   按钮底 458 → 历史区顶 470 ⟹ 间隙 **12**（＝ space-y-3）
+const VOICE_AI = {
+  content: { w: 240, h: 562, padTop: 12, padBottom: 24, genGap: 19, historyGap: 12 },
+  textarea: {
+    w: 240,
+    h: 120,
+    radius: 12,
+    padding: 12,
+    borderWidth: 1,
+    borderColor: "rgba(255, 255, 255, 0.08)",
+    fontSize: "12px",
+    lineHeight: "20px",
+    color: "rgb(255, 255, 255)",
+    background: "rgba(255, 255, 255, 0.06)",
+    ariaLabel: "AI 音色描述",
+    placeholder: "默认基于当前人设生成，可以补充输入音色特征...",
+  },
+  generate: {
+    w: 240,
+    h: 36,
+    radius: 10,
+    gap: 4,
+    fontSize: "14px",
+    lineHeight: "20px",
+    color: "rgb(0, 0, 0)",
+    background: "rgb(255, 255, 255)",
+    label: "生成音色",
+  },
+  badge: {
+    w: 36,
+    h: 16,
+    gap: 4,
+    opacity: 0.4,
+    number: "21",
+    numberW: 16,
+    numberH: 16,
+    numberFontSize: "12px",
+  },
+  history: {
+    title: "生成历史",
+    titleW: 240,
+    titleH: 16,
+    titleFontSize: "11px",
+    titleLineHeight: "16px",
+    titleFontWeight: 500,
+    titleColor: "rgba(255, 255, 255, 0.6)",
+    empty: "暂无历史记录",
+    emptyW: 240,
+    emptyH: 64,
+    emptyFontSize: "12px",
+    emptyLineHeight: "16px",
+    emptyColor: "rgba(255, 255, 255, 0.6)",
+    emptyPadY: 24,
+  },
+};
 
 // ── 工具行两枚按钮（源站实测 32×32，间隙 2）──
 // ★「筛选音色」那枚的源站 cls 里带 `relative`（可能挂角标）⟹ ⟹ 未复刻
@@ -1172,30 +1250,32 @@ const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
   //   ★ 源站实测：这一段的**标题行就是页签行**（三枚：音色库／我的音色／AI 生成）
   //   ⟹ ⟹ 与脸部段的页签行**同一个组件**（`.ce-tabs` ＋ `.ce-tab`）⟹ ⟹ 文字页签跟着选中项移动
   //   ★ 但**排布不同**：脸部段是 `space-between`（均分）⟹ ⟹ 这边是 `gap-5`（20px）⟹ ⟹ 另开修饰类
+  // ★★ Batch 848：**宽度随选中态变** —— 源站实测三份 raw 交叉校验：
+  //   选中：音色库 70／我的音色 84／AI 生成 73；未选中：一律 24（文字盒被裁成 0 宽）
+  //   ⟹ ⟹ 宽度由 `VOICE_TABS[i].wOn`（选中）／`.wOff`（未选中）给出 ⟹ ⟹ **不是手打常数**
   const renderVoiceTabs = () => (
     <div className="ce-tabs ce-voice-tabs" role="tablist">
-      {VOICE_TABS.map((item) => (
-        <button
-          key={item.id}
-          type="button"
-          role="tab"
-          aria-selected={voiceTab === item.id}
-          aria-label={item.label}
-          className={`ce-tab ${voiceTab === item.id ? "is-text" : "is-icon"}${
-            voiceTab === item.id ? " is-on" : ""
-          }`}
-          style={{ width: `${item.w}px` }}
-          data-character-editor-voice-tab={item.id}
-          onClick={() => setVoiceTab(item.id)}
-        >
-          <span className="ce-tab-icon" aria-hidden="true">
-            <item.icon size={18} />
-          </span>
-          {voiceTab === item.id ? (
-            <span className="ce-tab-text">{item.label}</span>
-          ) : null}
-        </button>
-      ))}
+      {VOICE_TABS.map((item) => {
+        const on = voiceTab === item.id;
+        return (
+          <button
+            key={item.id}
+            type="button"
+            role="tab"
+            aria-selected={on}
+            aria-label={item.label}
+            className={`ce-tab ${on ? "is-text" : "is-icon"}${on ? " is-on" : ""}`}
+            style={{ width: `${on ? item.wOn : item.wOff}px` }}
+            data-character-editor-voice-tab={item.id}
+            onClick={() => setVoiceTab(item.id)}
+          >
+            <span className="ce-tab-icon" aria-hidden="true">
+              <item.icon size={18} />
+            </span>
+            {on ? <span className="ce-tab-text">{item.label}</span> : null}
+          </button>
+        );
+      })}
     </div>
   );
 
@@ -1279,6 +1359,149 @@ const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
           );
         })}
       </div>
+    </div>
+  );
+
+  // ★★ Batch 848：**P3「我的音色」页**（★ 源站实测，raw/source-848-p3.json）
+  //   ★ 这一页**也有工具行**（搜索／筛选音色）⟹ ⟹ 与「音色库」页同构
+  //     ⟹ ⟹ ★ 这是 clone 的一处**既存偏差**：batch 847 时这一页显示的是「未实测」说明，
+  //     ⟹ ⟹ 说明里还写着「0 枚工具」⟹ ⟹ 而源站**确实有**那两枚 ⟹ ⟹ 本批改正。
+  //   ★ 内容是**空态**：「暂无音色数据」240×96（★ 该账号没有自己的音色）
+  const renderVoiceMine = () => (
+    <>
+      {renderVoiceTools()}
+      <div
+        className="ce-voice-list ce-voice-list--mine"
+        data-character-editor-voice-list="mine"
+      >
+        <p
+          className="ce-voice-empty"
+          data-character-editor-voice-empty="mine"
+          style={{
+            width: `${VOICE_MINE_EMPTY.w}px`,
+            height: `${VOICE_MINE_EMPTY.h}px`,
+            fontSize: VOICE_MINE_EMPTY.fontSize,
+            lineHeight: VOICE_MINE_EMPTY.lineHeight,
+            color: VOICE_MINE_EMPTY.color,
+          }}
+        >
+          {VOICE_MINE_EMPTY.text}
+        </p>
+      </div>
+    </>
+  );
+
+  // ★★ Batch 848：**P4「AI 生成」页**（★ 源站实测，raw/source-848-p4.json）
+  //   ★ 这一页**没有工具行**⟹ ⟹ 内容区直接从标题行下方开始
+  //   ★ 结构：输入框 240×120 ＋「生成音色」按钮 240×36（右侧角标「21」）
+  //          ＋「生成历史」小标题 ＋ 空态「暂无历史记录」240×64
+  //   ★ 「生成音色」点了会真的产出资产 ⟹ ⟹ clone 只弹提示，**不消耗** ⚡44
+  const renderVoiceAi = () => (
+    <div
+      className="ce-voice-ai"
+      data-character-editor-voice-ai
+      style={{
+        width: `${VOICE_AI.content.w}px`,
+        height: `${VOICE_AI.content.h}px`,
+        paddingTop: `${VOICE_AI.content.padTop}px`,
+        paddingBottom: `${VOICE_AI.content.padBottom}px`,
+      }}
+    >
+      <textarea
+        className="ce-voice-ai-textarea"
+        aria-label={VOICE_AI.textarea.ariaLabel}
+        placeholder={VOICE_AI.textarea.placeholder}
+        data-character-editor-voice-textarea
+        style={{
+          width: `${VOICE_AI.textarea.w}px`,
+          height: `${VOICE_AI.textarea.h}px`,
+          borderRadius: `${VOICE_AI.textarea.radius}px`,
+          padding: `${VOICE_AI.textarea.padding}px`,
+          borderWidth: `${VOICE_AI.textarea.borderWidth}px`,
+          borderColor: VOICE_AI.textarea.borderColor,
+          fontSize: VOICE_AI.textarea.fontSize,
+          lineHeight: VOICE_AI.textarea.lineHeight,
+          color: VOICE_AI.textarea.color,
+          background: VOICE_AI.textarea.background,
+        }}
+      />
+      <button
+        type="button"
+        className="ce-voice-ai-gen"
+        aria-label={VOICE_AI.generate.label}
+        data-character-editor-voice-generate
+        onClick={() => flash("clone mock：生成音色未接真实接口（不消耗 ⚡44）")}
+        style={{
+          width: `${VOICE_AI.generate.w}px`,
+          height: `${VOICE_AI.generate.h}px`,
+          borderRadius: `${VOICE_AI.generate.radius}px`,
+          gap: `${VOICE_AI.generate.gap}px`,
+          fontSize: VOICE_AI.generate.fontSize,
+          lineHeight: VOICE_AI.generate.lineHeight,
+          color: VOICE_AI.generate.color,
+          background: VOICE_AI.generate.background,
+          marginTop: `${VOICE_AI.content.genGap}px`,
+        }}
+      >
+        <Sparkles size={18} aria-hidden="true" />
+        {VOICE_AI.generate.label}
+        <span
+          className="ce-voice-ai-badge"
+          data-character-editor-voice-badge
+          style={{
+            width: `${VOICE_AI.badge.w}px`,
+            height: `${VOICE_AI.badge.h}px`,
+            gap: `${VOICE_AI.badge.gap}px`,
+            opacity: VOICE_AI.badge.opacity,
+          }}
+        >
+          <Zap size={16} aria-hidden="true" />
+          <span
+            className="ce-voice-ai-badge-num"
+            style={{
+              width: `${VOICE_AI.badge.numberW}px`,
+              height: `${VOICE_AI.badge.numberH}px`,
+              fontSize: VOICE_AI.badge.numberFontSize,
+            }}
+          >
+            {VOICE_AI.badge.number}
+          </span>
+        </span>
+      </button>
+      <section
+        className="ce-voice-ai-history"
+        data-character-editor-voice-history
+        style={{ marginTop: `${VOICE_AI.content.historyGap}px` }}
+      >
+        <h3
+          className="ce-voice-ai-history-title"
+          style={{
+            width: `${VOICE_AI.history.titleW}px`,
+            height: `${VOICE_AI.history.titleH}px`,
+            fontSize: VOICE_AI.history.titleFontSize,
+            lineHeight: VOICE_AI.history.titleLineHeight,
+            fontWeight: VOICE_AI.history.titleFontWeight,
+            color: VOICE_AI.history.titleColor,
+          }}
+        >
+          {VOICE_AI.history.title}
+        </h3>
+        <p
+          className="ce-voice-ai-history-empty"
+          data-character-editor-voice-history-empty
+          style={{
+            width: `${VOICE_AI.history.emptyW}px`,
+            height: `${VOICE_AI.history.emptyH}px`,
+            fontSize: VOICE_AI.history.emptyFontSize,
+            lineHeight: VOICE_AI.history.emptyLineHeight,
+            color: VOICE_AI.history.emptyColor,
+            paddingTop: `${VOICE_AI.history.emptyPadY}px`,
+            paddingBottom: `${VOICE_AI.history.emptyPadY}px`,
+          }}
+        >
+          {VOICE_AI.history.empty}
+        </p>
+      </section>
     </div>
   );
 
@@ -1581,7 +1804,11 @@ const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
               // ★★ Batch 847：左列第五段「音色音调」**已实现**
               //   ⟹ ⟹ 源站实测这一段**有标题行**（三枚页签）⟹ ⟹ 下面还有一行工具 ＋ 一张滚动区
               //   ⟹ ⟹ **这一段没有底部生成行**（★ batch 841 raw ⟹ ⟹ 右栏底部无任何按钮）
-              //   ⟹ ⟹ 「我的音色」「AI 生成」两枚页签的**内容未实测** ⟹ ⟹ 显示如实说明
+              // ★★ Batch 848：**三页全部实测并实现**
+              //   ① 「音色库」：工具行 ＋ 20 张音色卡（batch 847）
+              //   ② 「我的音色」：**也有工具行** ＋ 空态「暂无音色数据」（★ raw p3）
+              //   ③ 「AI 生成」：**没有工具行** ＋ 输入框 ＋「生成音色」＋「生成历史」（★ raw p4）
+              //   ⟹ ⟹ ★ 「未实测入口只显示如实说明」这条纪律**由第四段的两枚子页签继续承载**
               <>
                 {renderVoiceTabs()}
                 {voiceTab === "library" ? (
@@ -1589,12 +1816,10 @@ const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
                     {renderVoiceTools()}
                     {renderVoiceList()}
                   </>
+                ) : voiceTab === "mine" ? (
+                  renderVoiceMine()
                 ) : (
-                  <p className="ce-empty ce-empty--voice" data-character-editor-empty>
-                    {`「${VOICE_TABS.find((t) => t.id === voiceTab)?.label}」这一页的控件 ` +
-                      "**未实测**（源站那趟只点了分段 ⟹ ⟹ 没点开这两枚页签）⟹ ⟹ " +
-                      "这里**不编造**控件，只如实说明。"}
-                  </p>
+                  renderVoiceAi()
                 )}
               </>
             ) : null}
