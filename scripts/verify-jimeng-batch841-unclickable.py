@@ -978,6 +978,114 @@ def _p1032h_red_pc():
     return _ok
 
 
+
+# ══ 1032-②i：**红账的第四档**（「不适用：普查型仪器」）与它的关系式 ═════
+def _p1032i_four_states_judge(rl):
+    """⭐ 纯函数：四档红账的关系式判决（**不钉绝对数**，只钉关系）。"""
+    _why = []
+    if not isinstance(rl, dict):
+        return {"ok": False, "why": ["red_ledger_missing"]}
+    _need = ("n_books", "n_books_with_criteria_detail",
+             "n_books_without_criteria_detail", "n_books_undetermined",
+             "books_undetermined", "n_books_no_per_criteria_at_all",
+             "books_no_per_criteria_at_all", "n_detail_from_print_line",
+             "n_detail_from_artifact", "artifact_detector_selftest_ok",
+             "detail_source_by_book")
+    for _k in _need:
+        if _k not in rl:
+            _why.append("missing:" + _k)
+    if _why:
+        return {"ok": False, "why": _why}
+    _n = int(rl["n_books"])
+    _nod = int(rl["n_books_without_criteria_detail"])
+    # ① 四档必须构成一个划分
+    if (int(rl["n_books_with_criteria_detail"]) + _nod) != _n:
+        _why.append("with+without != n_books")
+    if int(rl["n_books_undetermined"]) + int(
+            rl["n_books_no_per_criteria_at_all"]) != _nod:
+        _why.append("four_states_not_a_partition")
+    # ② 名单长度必须等于计数
+    if len(rl["books_undetermined"]) != int(rl["n_books_undetermined"]):
+        _why.append("undetermined_list_len_mismatch")
+    if len(rl["books_no_per_criteria_at_all"]) != int(
+            rl["n_books_no_per_criteria_at_all"]):
+        _why.append("no_per_criteria_list_len_mismatch")
+    # ③ ⭐⭐⭐⭐⭐ **「读不到」必须恒为 0** ——
+    #   ⇒ ⇒ 它的含义是「那本书本来有逐条判据、而检测器读不出来」⇒ ⇒
+    #   ⇒ ⇒⇒ **⇒ 而检测器不该有盲区** ⇒ ⇒ ⇒⇒ 不为 0 就要去教它认那个新形状
+    if int(rl["n_books_undetermined"]) != 0:
+        _why.append("undetermined_not_zero:%s" % (rl["books_undetermined"],))
+    # ④ 来源必须构成一个划分（打印行 / 产物）
+    if (int(rl["n_detail_from_print_line"]) + int(rl["n_detail_from_artifact"])
+            ) != int(rl["n_books_with_criteria_detail"]):
+        _why.append("detail_source_not_a_partition")
+    # ⑤ 新来源的检测器自检必须过
+    if not rl["artifact_detector_selftest_ok"]:
+        _why.append("artifact_detector_selftest_not_ok")
+    # ⑥ 逐本的来源必须与「有没有明细」一致
+    _src = rl["detail_source_by_book"] or {}
+    for _g, _s in _src.items():
+        _has = bool(_s)
+        _listed = _g in (rl["books_undetermined"]
+                         or []) or _g in (rl["books_no_per_criteria_at_all"] or [])
+        if _has and _listed:
+            _why.append("source_and_list_disagree:%s" % _g)
+    return {"ok": not _why, "why": _why}
+
+
+def _p1032i_four_states_ok():
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    _rl = _d.get("red_ledger")
+    if _rl is None:
+        _rl = _d.get("red_ledger_1015")
+    return bool(_p1032i_four_states_judge(_rl).get("ok"))
+
+
+def _p1032i_four_states_pc():
+    """⭐⭐⭐⭐⭐ **阳性对照：证明这道判决能红** ——
+    ⇒ ⇒ ① 改每一档的计数（破坏划分）② 把「读不到」从 0 改成 1 ③ 把来源划分改坏
+    ⇒ ⇒ ⇒⇒ **⇒ 而「读不到」这一条今天恒为 0 ⇒ ⇒ 不注入的话它就是恒真** ⇒ ⇒ ⇒⇒
+    **⇒ 所以必须注入** —— 这正是「恒真」的那条纪律的又一次应验
+    """
+    import copy
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    _rl = _d.get("red_ledger")
+    if _rl is None:
+        _rl = _d.get("red_ledger_1015")
+    if not isinstance(_rl, dict):
+        return False
+    if not _p1032i_four_states_judge(_rl).get("ok"):
+        return False
+    _ok = True
+
+    def _m(fn):
+        _c = copy.deepcopy(_rl)
+        fn(_c)
+        if _p1032i_four_states_judge(_c).get("ok"):
+            return False
+        return True
+
+    _ok = _ok and _m(lambda d: d.__setitem__(
+        "n_books_undetermined", int(d.get("n_books_undetermined", 0)) + 1))
+    _ok = _ok and _m(lambda d: d.__setitem__(
+        "books_undetermined", list(d.get("books_undetermined") or []) + ["X"]))
+    _ok = _ok and _m(lambda d: d.__setitem__(
+        "n_books_no_per_criteria_at_all",
+        int(d.get("n_books_no_per_criteria_at_all", 0)) - 1))
+    _ok = _ok and _m(lambda d: d.__setitem__(
+        "n_detail_from_artifact", int(d.get("n_detail_from_artifact", 0)) + 1))
+    _ok = _ok and _m(lambda d: d.__setitem__(
+        "artifact_detector_selftest_ok", False))
+    _ok = _ok and _m(lambda d: d.__setitem__(
+        "detail_source_by_book", dict(d.get("detail_source_by_book") or {},
+                                      {"X": "print_line"})))
+    return _ok
+
+
 def main() -> int:
     env = dict(os.environ)
     env["SNAP_OUT"] = str(OUT)
@@ -18136,6 +18244,16 @@ def main() -> int:
           "⇒ 然后破坏「每条红都带 kind」⇒ 必须翻红**",
           _p1032h_red_ok() and _p1032h_red_pc())
 
+    check("DD993AE.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**红账的「不可判定」必须拆成两档** ⇒ ⇒ "
+          "**① 「读不到」（它本来有逐条判据、而检测器读不出来）② 「本来就没有逐条判据」"
+          "（普查型仪器：账本、普查、对账 ⇒ ⇒ 对它「逐条点名」是**不适用**、不是「缺」）** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而这两件事混在一栏 ⇒ 「读不到」就永远查不出来** ⇒ ⇒ ⇒⇒ "
+          "**⇒ 而「读不到」那一档必须恒为 0** ⇒ ⇒ ⇒⇒ "
+          "**⇒ 不为 0 就要去教检测器认那个新形状 —— 而不许把断言放宽** ⇒ ⇒ ⇒⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而这一道门带 6 种阳性对照、其中一种专门注入「读不到 ≠ 0」** "
+          "⇒ ⇒ ⇒⇒ **⇒ 因为它今天恒为 0 ⇒ ⇒ 不注入的话它就是恒真**",
+          _p1032i_four_states_ok() and _p1032i_four_states_pc())
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))

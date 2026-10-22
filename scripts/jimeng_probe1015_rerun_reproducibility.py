@@ -303,6 +303,60 @@ def _criteria_detail(text):
     return _out
 
 
+# ⭐⭐⭐⭐⭐ 1032-②i：**「判据逐条」那一行不是唯一的来源** ⇒ ⇒
+#   ⇒ ⇒ 册内还有 9 本把逐条判据记在**产物里**（`P<n>_hold_*` 散键 / `criteria` /
+#   ⇒ ⇒ ⇒ `P` / `verdicts_*`）⇒ ⇒ ⇒ 而红账对它们「说不了话」的原因只是
+#   ⇒ ⇒ ⇒⇒ **「1015 只认那一行」** ⇒ ⇒ ⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 处置：先看那一行、没有就退回产物里的那个 dict** ⇒ ⇒
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ **⇒ 而「来源」本身必须记进产物**（出处可查 ⇒ 不许默默换来源）
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒⇒ **⇒ 而「值是布尔」是筛选条件** —— 8 本的 `verdicts_<tag>` 是
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒⇒ **⇒ 判决**文本**、不是布尔 ⇒ ⇒ ⇒⇒ ⇒ **⇒ 不许把它们当判据读**
+_HOLD_KEY_RE = re.compile(r"^P\d+_hold_")
+_ARTIFACT_DICT_KEYS = ("criteria", "P")
+
+
+def _fmt_verdict(v):
+    """⇒ 判决的统一表示法（**与打印行同形**）⇒ ⇒
+    ⇒ ⇒ 而「False」的大小写要是这里不统一、红账就会漏点一条假。"""
+    if v is True:
+        return "True"
+    if v is False:
+        return "False"
+    if v is None:
+        return "None"
+    return str(v)
+
+
+def _criteria_from_artifact(art):
+    """⇒ (逐条判据 dict | None, 来源名 | None)。
+
+    ⭐⭐⭐⭐⭐ **三种形状**：
+    ① 产物顶层散落的 `P<n>_hold_<tag>` 键（8 本的形态、也是 1014 的形态）
+    ② 名为 `criteria` / `P` 的 dict，**值全是布尔**
+    ③ 名为 `verdicts_*` 的 dict，**值全是布尔**（1027 的形态）
+    ⇒ ⇒ ⇒ **⇒ 而「值全是布尔」这条筛选是必需的**：8 本的 `verdicts_<tag>` 是**判决文本**
+    ⇒ ⇒ ⇒⇒ **⇒ 不筛 ⇒ 会把一段中文当成判据读进来**
+    """
+    if not isinstance(art, dict):
+        return None, None
+    _hold = {}
+    for _k, _v in art.items():
+        if isinstance(_k, str) and _HOLD_KEY_RE.match(_k):
+            _hold[_k] = _v
+    if _hold:
+        return ({_k: _fmt_verdict(_v) for _k, _v in _hold.items()},
+                "artifact_hold_keys")
+    for _k, _v in art.items():
+        if not (isinstance(_v, dict) and _v):
+            continue
+        if not all(isinstance(_x, bool) for _x in _v.values()):
+            continue
+        if _k in _ARTIFACT_DICT_KEYS or _k.startswith("verdicts_"):
+            return ({_kk: _fmt_verdict(_vv) for _kk, _vv in _v.items()},
+                    "artifact_dict:%s" % _k)
+    return None, None
+
+
 def _artifact_path(text):
     """它把自己的产物路径打在哪一行？⇒ 读完那一行才知道去哪儿读它的台账。"""
     _ms = _OUT_PATH_RE.findall(text or "")
@@ -321,6 +375,29 @@ _CRITERIA_DETECTOR_CASES = [
     ("P1..P5 = [True, True]", None),
     ("", None),
 ]
+
+# ⭐⭐⭐⭐⭐ 1032-②i：**「产物里的逐条判据」这个来源自己也必须能失败** ⇒ ⇒
+#   ⇒ ⇒ 而它的四条阳性对照各钉一个形状 ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 而「判决文本的 dict 不许被当成判据」这一条也必须有对照** ⇒ ⇒
+_ARTIFACT_DETECTOR_CASES = [
+    # ① 顶层散落的 `P<n>_hold_*` 键
+    ({"P1_hold_2014": True, "P2_hold_2014": False, "note": "x"},
+     {"P1_hold_2014": "True", "P2_hold_2014": "False"}, "artifact_hold_keys"),
+    # ② `criteria` dict（值全是布尔）
+    ({"criteria": {"P1": True, "P2": False}},
+     {"P1": "True", "P2": "False"}, "artifact_dict:criteria"),
+    # ③ `P` dict（值全是布尔）
+    ({"P": {"P1_x": True}}, {"P1_x": "True"}, "artifact_dict:P"),
+    # ④ `verdicts_*` dict（值全是布尔）
+    ({"verdicts_1027": {"P1_x": True}},
+     {"P1_x": "True"}, "artifact_dict:verdicts_1027"),
+    # ⑤ ⭐ **判决文本的 dict 不许被当成判据**（8 本的 `verdicts_<tag>` 就是它）
+    ({"verdicts_1008": {"p1_x": "✅ **P1 成立：…**"}}, None, None),
+    # ⑥ 值不全是布尔 ⇒ 不许读
+    ({"criteria": {"P1": True, "P2": "待补"}}, None, None),
+    # ⑦ 没有逐条判据 ⇒ 读不到（**不是「没有假」**）
+    ({"rows": [1, 2, 3]}, None, None),
+]
 _CRITERIA_DETECTOR_SELFTEST = []
 for _txt, _want in _CRITERIA_DETECTOR_CASES:
     _got = _criteria_detail(_txt)
@@ -329,6 +406,17 @@ for _txt, _want in _CRITERIA_DETECTOR_CASES:
          "ok": (_got == _want)})
 CRITERIA_DETECTOR_SELFTEST_OK = all(c["ok"] for c in _CRITERIA_DETECTOR_SELFTEST)
 CRITERIA_DETECTOR_N_CASES = len(_CRITERIA_DETECTOR_SELFTEST)
+# ⭐⭐⭐⭐⭐ 1032-②i：新来源（产物里的逐条判据）**自己也要有自检** ⇒ ⇒
+#   ⇒ ⇒ 而它的第五条对照就是「判决文本的 dict 不许被当成判据」⇒ ⇒
+_ARTIFACT_DETECTOR_SELFTEST = []
+for _art, _want, _wsrc in _ARTIFACT_DETECTOR_CASES:
+    _got, _gsrc = _criteria_from_artifact(_art)
+    _ARTIFACT_DETECTOR_SELFTEST.append(
+        {"input": sorted(_art.keys())[:4], "want": _want, "got": _got,
+         "want_source": _wsrc, "got_source": _gsrc,
+         "ok": (_got == _want and _gsrc == _wsrc)})
+ARTIFACT_DETECTOR_SELFTEST_OK = all(c["ok"] for c in _ARTIFACT_DETECTOR_SELFTEST)
+ARTIFACT_DETECTOR_N_CASES = len(_ARTIFACT_DETECTOR_SELFTEST)
 
 
 def _run_round():
@@ -366,6 +454,7 @@ def _run_round():
         # ⭐⭐⭐⭐⭐ 1032-②g：把「它自己的产物」也读回来 —— 台账覆盖率普查的输入
         #   ⇒ ⇒ 「书级 rc」说不出「红的是哪一条」⇒ ⇒ **⇒ 要逐条点名**
         _cd = _criteria_detail(tail)
+        row["criteria_detail_source"] = ("print_line" if _cd is not None else None)
         row["criteria_detail_readable"] = (_cd is not None)
         row["criteria_detail"] = _cd or {}
         row["criteria_red"] = sorted(k for k, v in (_cd or {}).items()
@@ -386,6 +475,22 @@ def _run_round():
             except Exception:
                 _art = None
         row["artifact_readable"] = isinstance(_art, dict)
+        # ⭐⭐⭐⭐⭐ 1032-②i：**读不到那一行就退回产物里的逐条判据** ⇒ ⇒
+        #   ⇒ ⇒ 而「来源」要记下来 ⇒ ⇒ ⇒⇒ **⇒ 不许默默换来源**
+        if _cd is None and isinstance(_art, dict):
+            _cd2, _src2 = _criteria_from_artifact(_art)
+            if _cd2:
+                _cd = _cd2
+                row["criteria_detail_source"] = _src2
+                row["criteria_detail_readable"] = True
+                row["criteria_detail"] = _cd2
+        # ⭐⭐⭐⭐⭐ **而「它本来就没有逐条判据」必须与「读不到」分开** ⇒ ⇒
+        #   ⇒ ⇒ 普查型仪器（账本、普查、对账）**本来就没有一条一条的判据** ⇒ ⇒
+        #   ⇒ ⇒⇒⇒ **⇒ 对它们「逐条点名」是**不适用**、不是「缺」** ⇒ ⇒ ⇒⇒
+        #   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ **⇒ 而这两件事混在一栏 ⇒ 「读不到」就永远查不出来**
+        row["has_per_criteria_at_all"] = bool(row.get("criteria_detail"))
+        row["artifact_has_criteria_dict"] = bool(
+            isinstance(_art, dict) and _criteria_from_artifact(_art)[0])
         _kinds, _ckeys, _cn, _complete = {}, [], None, None
         if isinstance(_art, dict):
             for _k, _v in _art.items():
@@ -465,6 +570,31 @@ N_SELF_RED_CRITERIA = sum(r.get("n_self_reported_false") or 0 for r in BOOKS)
 N_WITH_DETAIL = sum(1 for r in BOOKS if r.get("criteria_detail_readable"))
 BOOKS_NO_DETAIL = sorted(r["golden"] for r in BOOKS
                          if not r.get("criteria_detail_readable"))
+# ⭐⭐⭐⭐⭐ 1032-②i：**「不可判定」必须拆成两档** ⇒ ⇒
+#   ⇒ ⇒ ① **读不到**（它本来有逐条判据、而我读不出来）⇒ ⇒ **这一档必须是 0**
+#   ⇒ ⇒ ⇒⇒ **⇒ 而「读不到」恒为 0 才是好消息；不为 0 就要查** ⇒ ⇒
+#   ⇒ ⇒ ② **本来就没有逐条判据**（普查型仪器：账本、普查、对账）⇒ ⇒
+#   ⇒ ⇒ ⇒⇒ **⇒ 对它们「逐条点名」是**不适用**、不是「缺」** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ **⇒ 而这两件事混在一栏 ⇒ 「读不到」就永远查不出来** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒⇒ **⇒ 处置：单列成第四档「不适用（普查型仪器）」**
+BOOKS_UNDETERMINED = sorted(
+    r["golden"] for r in BOOKS
+    if not r.get("criteria_detail_readable")
+    and r.get("artifact_has_criteria_dict"))
+BOOKS_NO_PER_CRITERIA = sorted(
+    r["golden"] for r in BOOKS
+    if not r.get("criteria_detail_readable")
+    and not r.get("artifact_has_criteria_dict"))
+N_UNDETERMINED = len(BOOKS_UNDETERMINED)
+N_NO_PER_CRITERIA = len(BOOKS_NO_PER_CRITERIA)
+# ⭐ 来源分布（出处可查 ⇒ 不许默默换来源）
+DETAIL_SOURCE_BY_BOOK = {r["golden"]: r.get("criteria_detail_source")
+                         for r in BOOKS}
+N_DETAIL_FROM_PRINT = sum(1 for r in BOOKS
+                           if r.get("criteria_detail_source") == "print_line")
+N_DETAIL_FROM_ARTIFACT = sum(1 for r in BOOKS
+                              if r.get("criteria_detail_source")
+                              and r.get("criteria_detail_source") != "print_line")
 CRITERIA_RED_BY_BOOK = {r["golden"]: list(r.get("criteria_red") or [])
                         for r in BOOKS if r.get("criteria_red")}
 N_LEDGER_PUBLISHED = sum(1 for r in BOOKS if r.get("ledger_published"))
@@ -534,6 +664,29 @@ RED_LEDGER = {
     "n_books_with_criteria_detail": N_WITH_DETAIL,
     "n_books_without_criteria_detail": len(BOOKS) - N_WITH_DETAIL,
     "books_without_criteria_detail": BOOKS_NO_DETAIL,
+    # ⭐⭐⭐⭐⭐ 1032-②i：「不可判定」拆成两档 —— 而「读不到」那一档必须恒为 0
+    "n_books_undetermined": N_UNDETERMINED,
+    "books_undetermined": BOOKS_UNDETERMINED,
+    "n_books_no_per_criteria_at_all": N_NO_PER_CRITERIA,
+    "books_no_per_criteria_at_all": BOOKS_NO_PER_CRITERIA,
+    "detail_source_by_book": DETAIL_SOURCE_BY_BOOK,
+    "n_detail_from_print_line": N_DETAIL_FROM_PRINT,
+    "n_detail_from_artifact": N_DETAIL_FROM_ARTIFACT,
+    "artifact_detector_selftest_ok": ARTIFACT_DETECTOR_SELFTEST_OK,
+    "artifact_detector_selftest_n_cases": ARTIFACT_DETECTOR_N_CASES,
+    "artifact_detector_selftest": _ARTIFACT_DETECTOR_SELFTEST,
+    "four_states": (
+        "⭐⭐⭐⭐⭐ **红账现在是四档**："
+        "**① 红（读到了、且有 False）② 不可判定（它本来有逐条判据、而我读不出来 ⇒ "
+        "这一档必须恒为 0）③ 不适用（普查型仪器：它本来就没有一条一条的判据 ⇒ "
+        "对它「逐条点名」是不适用、不是「缺」）④ 绿（读到了、且没有 False）** ⇒ ⇒ "
+        "⭐⭐⭐⭐⭐ **⇒ 而 ② 与 ③ 必须分开 —— 混在一栏 ⇒ 「读不到」就永远查不出来** ⇒ ⇒ "
+        "⭐⭐⭐⭐⭐ **⇒ 而 1032-②i 还多认了一个来源：产物里的逐条判据** ⇒ ⇒ "
+        "**⇒ 「判据逐条」那一行不是唯一的来源 ⇒ ⇒ 而「来源」必须记进产物** ⇒ ⇒ ⇒⇒ "
+        "**⇒ 今天：读得到 %d 本（其中打印行 %d 本 / 产物 %d 本）、"
+        "读不到 %d 本（**必须为 0**）、本来就没有 %d 本**"
+        % (N_WITH_DETAIL, N_DETAIL_FROM_PRINT, N_DETAIL_FROM_ARTIFACT,
+           N_UNDETERMINED, N_NO_PER_CRITERIA)),
     "criteria_red_by_book": CRITERIA_RED_BY_BOOK,
     "n_criteria_red_named": sum(len(v) for v in CRITERIA_RED_BY_BOOK.values()),
     "criteria_detector_selftest_ok": CRITERIA_DETECTOR_SELFTEST_OK,
@@ -568,7 +721,7 @@ RED_LEDGER = {
         "⭐⭐⭐⭐⭐ **「红」这一栏现在回答的是「要不要修」** ⇒ ⇒ "
         "**⇒ 而它回答不了「它为什么红」—— 那要回到 audit 的账** ⇒ ⇒ ⇒⇒ "
         "**⇒ 所以 kind 是「读数」、定性才是「判决」—— 两者不许混在一栏**"),
-    "three_states": ("⭐⭐⭐⭐⭐ **红账现在是三档**："
+    "three_states": ("⭐⭐⭐⭐⭐ **红账原来是三档、②h 之后是四档（见 `four_states`）**："
                     "**① 红（读到了 False）② 不可判定（这本书没有逐条明细 ⇒ "
                     "既不许说它绿、也不许说它红）③ 绿（读到了、且没有一条 False）** ⇒ ⇒ "
                     "**⇒ 而第三档不是「凑数」—— 上一版把「读不到」和「没有假」混成一栏** ⇒ ⇒ "

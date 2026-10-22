@@ -5953,14 +5953,14 @@
    "var": "_p1015",
    "anchor": "\"crashed\"",
    "occurrences": 5,
-   "min_line_gap": 86
+   "min_line_gap": 111
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1015",
    "anchor": "\"vanished\"",
    "occurrences": 4,
-   "min_line_gap": 254
+   "min_line_gap": 302
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5988,7 +5988,7 @@
    "var": "_p1015",
    "anchor": "\"wrote_golden\"",
    "occurrences": 3,
-   "min_line_gap": 90
+   "min_line_gap": 107
   },
   {
    "class": "P-散文/片段",
@@ -6261,7 +6261,7 @@
    "var": "_p1015",
    "anchor": "crashed_rc_other",
    "occurrences": 2,
-   "min_line_gap": 320
+   "min_line_gap": 425
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6275,7 +6275,7 @@
    "var": "_p1015",
    "anchor": "p_summary_readable",
    "occurrences": 4,
-   "min_line_gap": 71
+   "min_line_gap": 96
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6295,8 +6295,8 @@
    "class": "I-标识符(多处引用)",
    "var": "_p1015",
    "anchor": "detector_selftest_ok",
-   "occurrences": 2,
-   "min_line_gap": 20
+   "occurrences": 3,
+   "min_line_gap": 17
   },
   {
    "class": "I-标识符(多处引用)",
