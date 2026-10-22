@@ -8,7 +8,7 @@
   "n_from_probe_products": 30,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "56855360deb2",
+    "sha256_12": "58d9fe5da7bc",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
@@ -16,8 +16,8 @@
     "bytes": 61453
    },
    "assertion-vs-behavior-1018.json": {
-    "sha256_12": "e875252725a4",
-    "bytes": 15775
+    "sha256_12": "4ef9bbe98809",
+    "bytes": 17669
    },
    "baseline-host-misuse-1016.json": {
     "sha256_12": "19e308ac0e61",
@@ -68,8 +68,8 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "f92660ff62d4",
-    "bytes": 87033
+    "sha256_12": "e38953a086b8",
+    "bytes": 91483
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
@@ -108,8 +108,8 @@
     "bytes": 15046
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "7c7a972d0e06",
-    "bytes": 34339
+    "sha256_12": "6b06be9ea9ee",
+    "bytes": 34442
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -124,8 +124,8 @@
     "bytes": 1009
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "75d939966aee",
-    "bytes": 127346
+    "sha256_12": "a875ae25dc7b",
+    "bytes": 128220
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"

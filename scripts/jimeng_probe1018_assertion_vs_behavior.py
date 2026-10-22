@@ -132,6 +132,43 @@ CHECKS = collect_checks()
 N = len(CHECKS)
 
 
+# ── 1032-②e：**第二种独立算法**（与上面的 AST 名字算法互为交叉验证）─────
+#   ⚠️⭐⭐⭐⭐⭐ **为什么不能再钉「N == 24」**：
+#   那是一条**绝对快照** ⇒ ⇒ 判据一多（②d 加了 DD993Z.1）它就必红
+#   ⇒ ⇒⇒⇒⇒ 而它红的原因**跟被测的东西无关**（不是「原型坏了」、是「账上多了一条」）
+#   ⇒ ⇒⇒⇒⇒⇒ 这正是 liblib batch 835 对 748 做过的同一件事
+#   ⇒ ⇒⇒⇒⇒⇒（「不逐批抄新数字，那只是把快照过期推迟到下一批」）
+#   ⇒ ⇒⇒⇒⇒⇒⇒ **⇒ 换成关系式：两种独立算法对「哪些判据在读原型文本」的判定
+#   ⇒ ⇒⇒⇒⇒⇒⇒⇒ 必须逐条一致** —— 这一条**可证伪**，而绝对条数不可证伪。
+def collect_all_checks():
+    """全部 `check()` 调用 —— 两种算法必须用**同一批**调用，否则口径不同源。"""
+    t = ast.parse(VSRC)
+    rows = []
+    for n in ast.walk(t):
+        if isinstance(n, ast.Call) and isinstance(n.func, ast.Name) \
+                and n.func.id == "check" and len(n.args) >= 2:
+            desc = (ast.get_source_segment(VSRC, n.args[0]) or "").strip()
+            cn = {x.id for x in ast.walk(n.args[1]) if isinstance(x, ast.Name)}
+            seg = ast.get_source_segment(VSRC, n.args[1]) or ""
+            rows.append({
+                "name": desc.split(" ")[0][:24],
+                "by_ast_name": bool(cn & TVARS),
+                "by_source_text": any(re.search(r"\b%s\b" % re.escape(v), seg)
+                                      for v in TVARS),
+            })
+    return rows
+
+
+ALL_CHECKS = collect_all_checks()
+N_ALL_CHECKS = len(ALL_CHECKS)
+N_BY_NAME = sum(1 for r in ALL_CHECKS if r["by_ast_name"])
+N_BY_TEXT = sum(1 for r in ALL_CHECKS if r["by_source_text"])
+N_DISAGREE = sum(1 for r in ALL_CHECKS
+                  if r["by_ast_name"] != r["by_source_text"])
+N_OTHERS = N_ALL_CHECKS - N_BY_NAME
+
+
+
 def evaluate(checks, ws_override=None):
     """逐条 eval 判据的**原始条件表达式**。返回三态。"""
     ns = dict(VG)
@@ -227,7 +264,10 @@ N_PROSE = sum(1 for c in CLASS if c["n_prose_literals"] > 0)
 
 
 # ── P 判定（只钉机制） ───────────────────────────────────────────────────────
-P1 = (N == 24 and N_PASS == N)
+# ⭐⭐⭐⭐⭐ 1032-②e：**P1 改成关系式** —— 「基线必须全绿」才是它真正要守的；
+#   而「条数必须等于 24」是绝对快照 ⇒ ⇒ 判据一多就必红 ⇒ ⇒ 而且它红的原因
+#   **跟被测的东西无关** ⇒ ⇒⇒⇒⇒ 换成下面 P9 那条**可证伪的交叉验证**。
+P1 = (N_PASS == N and N >= 1)
 P2 = bool(A_APPLIED) and bool(A_INVISIBLE) and N_A_PASS == N_PASS
 P3 = bool(B_APPLIED) and bool(B_BREAKS)
 P4 = (N_ON_AUDIT > 0 and N_ONLY_AUDIT > 0)
@@ -235,6 +275,41 @@ P5 = bool(N_PROSE)
 P6 = True
 P7 = True
 P8 = True
+# ⭐⭐⭐⭐⭐ 1032-②e 新增 P9：**两种独立算法必须逐条一致** ——
+#   ① AST 名字算法（`cn & TVARS`）② 源码文本正则算法（`\b<var>\b`）
+#   ⇒ ⇒⇒⇒⇒ **它们只要有一处分歧，就说明「这条判据到底算不算读原型源码」
+#   ⇒ ⇒⇒⇒⇒⇒ 两边说法不一致** ⇒ ⇒⇒⇒⇒⇒ 而这正是「收集口径」最容易悄悄漂的地方。
+# ⭐⭐⭐⭐⭐ **分歧不许无声** —— 每处分歧必须在白名单里写明「为什么它不算」。
+#   ⚠️ **第一版这里写的是「两种算法必须逐条一致」⇒ ⇒ 那是一条假红**：
+#   实测唯一那处分歧是 `CC993G.5` —— 它的表达式里 `_agp_raw` **只出现在字符串字面量**
+#   （`'"不跑 tsc" in _agp_raw' in VER_SRC`）⇒ ⇒ 它断的是「verifier 源码里那段字还在」，
+#   **并不真读原型源码** ⇒ ⇒⇒⇒⇒⇒ 所以文本法多算它是**良性**的，不是收集口径有洞。
+#   ⇒ ⇒⇒⇒⇒⇒⇒ **⇒ 处置：良性分歧进白名单（逐条写明为什么），红只留给「真读却漏收」**
+#   ⇒ ⇒⇒⇒⇒⇒⇒⇒ 而白名单不许有陈旧条目（否则它就是一份没人看的清单）⇒ ⇒ **集合必须相等**。
+_TEXT_ONLY_DISAGREEMENTS = {
+    "CC993G.5": "⭐⭐⭐⭐⭐ `_agp_raw` 只出现在**字符串字面量**里"
+                "（`\"不跑 tsc\" in _agp_raw\" in VER_SRC`）⇒ ⇒ 它断的是"
+                "「verifier 源码里那段字还在」、**不是**在读原型源码 ⇒ ⇒ 文本法多算 = 良性",
+}
+# ⚠️ 名字里带**前导引号**（`desc` 是 args[0] 的源码片段 ⇒ `"CC993G.5 …`）
+#   ⇒ ⇒ 白名单的键用**去引号**后的名字 ⇒ ⇒ 否则两边永远对不上（第一版就踩了这个）。
+_DISAGREE_NAMES = {r["name"].strip('"') for r in ALL_CHECKS
+                    if r["by_ast_name"] != r["by_source_text"]}
+# ⭐ 语义口径（第三种）：「真的把原型文本变量当作**比较对象**」⇒ ⇒ 用作读数
+N_BY_COMPARE = 0
+for _n in ast.walk(ast.parse(VSRC)):
+    if isinstance(_n, ast.Call) and isinstance(_n.func, ast.Name) \
+            and _n.func.id == "check" and len(_n.args) >= 2:
+        if any(isinstance(sd, ast.Name) and sd.id in TVARS
+               for cm in ast.walk(_n.args[1]) if isinstance(cm, ast.Compare)
+               for sd in cm.comparators + [cm.left]):
+            N_BY_COMPARE += 1
+P9 = (N_DISAGREE == len(_TEXT_ONLY_DISAGREEMENTS)
+      and _DISAGREE_NAMES == set(_TEXT_ONLY_DISAGREEMENTS)
+      # ⭐ 白名单不许是空的 —— 否则这条判据会退化成恒真（两集合都空 ⇒ 恒等）
+      and len(_TEXT_ONLY_DISAGREEMENTS) > 0
+      and N == N_BY_NAME
+      and N_BY_NAME + N_OTHERS == N_ALL_CHECKS)
 
 OUT = {"P1_baseline_all_green_1018": P1,
        "P2_behavior_change_is_invisible_1018": P2,
@@ -243,18 +318,39 @@ OUT = {"P1_baseline_all_green_1018": P1,
        "P5_some_anchors_are_prose_2018": P5,
        "P6_scope_declared_1018": P6,
        "P7_offline_1018": P7,
-       "P8_hold_1018": P8}
+       "P8_hold_1018": P8,
+       "P9_two_independent_methods_agree_1018": P9}
 
 GOLDEN.parent.mkdir(parents=True, exist_ok=True)
 GOLDEN.write_text(json.dumps({
     "generated_by": "jimeng_probe1018_assertion_vs_behavior.py",
-    "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **那 24 条「在读原型源码」的判据，验的是「那段字还在」，"
-            "不是「这个行为还对」** —— 两个反向用例把它钉死了。",
-    "question_1018": "891 条判据里唯一那 24 条，它们断言的是代码行为，还是源码里的字符串？",
+    # ⭐⭐⭐⭐⭐ 1032-②e：**P 判据本身必须落进产物** ——
+    #   以前 P1..P9 只打在 stdout（`tail` 里），产物里没有 ⇒ ⇒⇒⇒⇒
+    #   **verifier 读不到「这本书的判决」** ⇒ ⇒⇒⇒⇒ 而 1015 也只能看到 rc
+    #   ⇒ ⇒⇒⇒⇒⇒ ⇒ 「读数落在产物里」才谈得上「别的门能复核它」。
+    "P": OUT,
+    "P_all_true": all(OUT.values()),
+    "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **那 %d 条「在读原型源码」的判据，验的是「那段字还在」，"
+            "不是「这个行为还对」** —— 两个反向用例把它钉死了。"
+            "⭐⭐⭐⭐⭐ 1032-②e：**条数不再钉死** —— 「必须等于 24」是绝对快照，"
+            "判据一多就必红、而它红的原因跟被测的东西无关 ⇒ ⇒ 换成关系式（P9）。" % N,
+    "question_1018": "审计账里那些判据中，唯一那 %d 条在读原型源码的，"
+                      "它们断言的是代码行为，还是源码里的字符串？" % N,
     "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个 `'<字面量>' in <源码文本>` 形式的判据，"
             "它验的是「这段字还在」** ⇒ 改行为而保留字面量 ⇒ 照绿；"
             "保留行为而改掉字面量 ⇒ 变红或崩",
     "n_checks": N,
+    "n_all_checks_in_verifier": N_ALL_CHECKS,
+    "n_by_ast_name": N_BY_NAME,
+    "n_by_source_text": N_BY_TEXT,
+    "n_disagree_between_the_two_methods": N_DISAGREE,
+    "n_disagree_names": sorted(_DISAGREE_NAMES),
+    "n_by_semantic_compare": N_BY_COMPARE,
+    "text_only_disagreement_whitelist": _TEXT_ONLY_DISAGREEMENTS,
+    "n_not_reading_prototype_text": N_OTHERS,
+    "count_is_pinned": False,
+    "why_not_pinned": "⭐⭐⭐⭐⭐ 绝对条数是快照（liblib batch 835 对 748 的同一教训）"
+                      "⇒ ⇒ 改成 P9 的两种算法逐条一致（可证伪）",
     "baseline": {"n_pass": N_PASS,
                  "n_fail": sum(1 for r in BASE if r["state"] == "fail"),
                  "n_crash": sum(1 for r in BASE if r["state"] == "crash"),
@@ -266,9 +362,9 @@ GOLDEN.write_text(json.dumps({
         "n_anchors_touched": 0,
         "n_pass_after": N_A_PASS,
         "all_still_green": A_INVISIBLE,
-        "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **改完之后 24 条一条没红** ⇒ "
-                "**⇒⇒⇒⇒⇒ 这 24 条看不见行为变更** ⇒⇒⇒⇒⇒⇒ "
-                "**⇒⇒⇒⇒⇒⇒⇒ 它们不是行为回归测试，是字面量存在性检查**",
+        "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **改完之后 %d 条一条没红** ⇒ "
+                "**⇒⇒⇒⇒⇒ 这 %d 条看不见行为变更** ⇒⇒⇒⇒⇒⇒ "
+                "**⇒⇒⇒⇒⇒⇒⇒ 它们不是行为回归测试，是字面量存在性检查**" % (N, N),
     },
     "reverse_B_rename_only": {
         "mutation": "`%s` → `%s`" % (FUNC, MUT_B),
@@ -299,8 +395,8 @@ GOLDEN.write_text(json.dumps({
                 "与原型无关；② 有 %d 条**根本只断 audit 文本**；"
                 "③ 有 %d 条的锚点**本身是中文散文**（比如原型源码里那句「批 967 改写上面那段…」、"
                 "「别复制第二份」「不跑 tsc」—— **注释被当成了实现**）⇒⇒⇒⇒⇒ "
-                "**⇒⇒⇒⇒⇒⇒⇒ 24 这个数已经是上界，而真·验代码的比它更小**" % (
-                    N_ON_AUDIT, N_ONLY_AUDIT, N_PROSE),
+                "**⇒⇒⇒⇒⇒⇒⇒ %d 这个数已经是上界，而真·验代码的比它更小**" % (
+                    N_ON_AUDIT, N_ONLY_AUDIT, N_PROSE, N),
     },
     "scope": "⚠️⭐⭐⭐⭐⭐ **本探针只做到这一步**：它验证「判据看得见/看不见行为变更」，"
              "**没有**验证「原型实现的行为本身对不对」—— 那需要真跑起来、"

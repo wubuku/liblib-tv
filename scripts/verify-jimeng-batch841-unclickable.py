@@ -92,7 +92,6 @@ EXPECTED_SKIPS = {
 failures: list[str] = []
 checks = 0
 
-
 def check(name: str, ok: bool, detail: str = "") -> None:
     global checks
     checks += 1
@@ -101,7 +100,6 @@ def check(name: str, ok: bool, detail: str = "") -> None:
     else:
         print(f"  FAIL  {name}  {detail}")
         failures.append(name)
-
 
 def strip_comments(src: str) -> str:
     """剥掉 **JS/TS** 注释，供「代码里到底有没有 X」用。
@@ -203,7 +201,6 @@ def strip_comments(src: str) -> str:
         i += 1
     return "".join(out)
 
-
 def strip_py_comments(src: str) -> str:
     """剥掉 **Python** 的注释（`#` 到行尾），字符串字面量里的 `#` 不算。
 
@@ -248,6 +245,107 @@ def strip_py_comments(src: str) -> str:
         return src
     return "".join(lines)
 
+# ⭐⭐⭐⭐⭐ 1032-②e：**这四个 helper 必须在模块级** ——
+#   1018 那道探针（assertion_vs_behavior）会 exec 本文件的**模块顶层**，
+#   再把 `main` 里的**单目标赋值语句**逐条执行 ⇒ ⇒ **嵌套在 main 里的 def
+#   它一个都拿不到** ⇒ ⇒ ⇒ 若把它们留在 main 里，1018 求值 DD993Z.1 时
+#   ⇒ ⇒ ⇒ 会 NameError ⇒ ⇒ ⇒ **那条判据直接崩**（而不是红）——
+#   ⇒ ⇒ ⇒ 而这是 ②d 引入的**真实回归**（1018 由 rc=0 变 rc=1），本批还债。
+#   ⇒ ⇒ ⇒⇒ **纪律：判据里调用的 helper，要么是模块级的，要么是 main 里的赋值变量。**
+def _p1032d_mutation_judge(_d: dict) -> bool:
+    """纯函数：**只吃原始字段重算**，不吃上游标志。
+
+    ⭐⭐⭐⭐⭐ 「自己重算」**还不够** —— ⇒ 必须同时证明**这个重算能红**
+    ⇒ ⇒ 那由 `_p1032d_mutation_pc()` 用**改原始字段**的阳性对照来做。
+    """
+    # ⭐⭐⭐⭐⭐ **自己重算**「变异态门必须红」：
+    #   运行时判据 P1 变红（= 变异真的生效到了浏览器）+ 静态判据 P6 变红
+    #   + 门退出码非 0 ⇒⇒ 三者齐了才算「门被证伪了」
+    _mut_red = (
+        _d.get("mutated_sha_differs") is True
+        and _d.get("mutated_gate_rc", 0) != 0
+        and _d.get("mutated_P1_runtime_red") is True
+        and _d.get("mutated_P6_static_red") is True
+        and _d.get("mutated_gate_turned_red") is True
+    )
+    # ⭐⭐⭐⭐⭐ **自己重算**「还原态门必须再绿」：
+    #   ⚠️ 这一条不许省 —— ⇒ 「变异把门弄红了」也可能只是
+    #   **「变异把产品弄坏了、门红是应该的」** ⇒ ⇒ 必须证明还原后门又绿了
+    _rest_ok = (
+        _d.get("restored") is True
+        and _d.get("restored_sha_matches_original") is True
+        and _d.get("restored_gate_rc") == 0
+        and _d.get("restored_P1_runtime_green") is True
+    )
+    # ⭐⭐ 上游自己写的 `all_ok` 也得为真 —— 但**它不是**我们判定的依据
+    _attempts = _d.get("attempts")
+    return bool(
+        _mut_red and _rest_ok
+        and _d.get("all_ok") is True
+        and isinstance(_attempts, int) and _attempts >= 1
+    )
+
+def _p1032d_mutation_doc() -> dict | None:
+    """读产物 + 验明正身（防拿别的批次的产物来交差）。"""
+    _ms = ROOT / "docs/research/jimeng-canvas/inputs/mutation-1032d.json"
+    if not _ms.exists():
+        return None
+    try:
+        _d = json.loads(_ms.read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return None
+    if not isinstance(_d, dict):
+        return None
+    # ⭐⭐⭐⭐⭐ 产物必须**自报它是谁产的**（防止拿别的批次的产物来交差）
+    if _d.get("generated_by") != "jimeng_probe1032d_mutation.py":
+        return None
+    if _d.get("target") != "jimeng-canvas-connect-onConnect":
+        return None
+    return _d
+
+def _p1032d_mutation_ok() -> bool:
+    """变异读数：**自己从原始字段重算**，不信产物里的 `all_ok`。"""
+    _d = _p1032d_mutation_doc()
+    if _d is None:
+        return False
+    return _p1032d_mutation_judge(_d)
+
+def _p1032d_mutation_pc() -> bool:
+    """⭐⭐⭐⭐⭐ **阳性对照：证明这条判据自己能红。**
+
+    ⚠️ 「自己从原始字段重算」**只证明它不是恒真** ⇒ ⇒ 还要证明
+    **它不是恒假、也不是漏项** ⇒ ⇒⇒⇒ 处置：拿**真产物**做底，
+    **逐个改原始字段**（**不碰 `all_ok`**）⇒ 判决必须翻成 False；
+    再来一例「原始字段坏了、但 `all_ok` 仍然是 true」⇒ 判决**仍**必须翻成 False
+    ⇒ ⇒⇒⇒⇒ 这才证明「重算」是真的在重算，而不是在读上游标志。
+    """
+    _d = _p1032d_mutation_doc()
+    if _d is None:
+        return False
+    # ⚠️ 底稿本身必须先被判成 True —— 否则「全 False」也可能只是
+    # 因为底稿读空了 ⇒ ⇒ ⇒ 那样的阳性对照是**假通过**
+    if not _p1032d_mutation_judge(_d):
+        return False
+    _cases = [
+        {"mutated_gate_rc": 0},                   # 变异态门没红
+        {"mutated_P1_runtime_red": False},       # 运行时判据没红
+        {"mutated_P6_static_red": False},        # 静态判据没红
+        {"restored_gate_rc": 1},                  # 还原后门没绿
+        {"restored_sha_matches_original": False},  # 没逐字还原
+        {"attempts": 0},                          # 一轮都没跑
+    ]
+    for _c in _cases:
+        _t = dict(_d)
+        _t.update(_c)
+        if _p1032d_mutation_judge(_t) is not False:
+            return False
+    # 「原始字段坏了、但上游标志仍然是 true」⇒ 判决仍必须是 False
+    _t = dict(_d)
+    _t["all_ok"] = True
+    _t["restored_gate_rc"] = 1
+    if _p1032d_mutation_judge(_t) is not False:
+        return False
+    return True
 
 def main() -> int:
     env = dict(os.environ)
@@ -6035,6 +6133,8 @@ def main() -> int:
     p1032d = ROOT / "scripts/jimeng_probe1032d_mutation.py"
     _p1032d = p1032d.read_text(encoding="utf-8") if p1032d.exists() else ""
     # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
+    _p1018 = (ROOT / "scripts/jimeng_probe1018_assertion_vs_behavior.py").read_text(
+        encoding="utf-8")
     _ws = (ROOT / "src/components/jimeng/JimengWorkspace.tsx").read_text(encoding="utf-8")
     _tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
     _sl = (ROOT / "src/components/jimeng/JimengStatusLine.tsx").read_text(encoding="utf-8")
@@ -9091,7 +9191,6 @@ def main() -> int:
           and "**「很可能不是同一个机制」这句**说重了**，" in _ausrc
           and "**仍然成立的那半句**" in _ausrc)
 
-
     check("AAAAA.4 ⚠️⚠️ **步长那道门第一版太弱，是干跑当场抓到的**：它只查 "
           "`n_step_gt2 == 0` ⇒ 在「**全部是 `wrap`、`+1` 一次都没有**」的"
           "**退化数据**上**照样绿** ⇒ 按 942 的纪律**改严**（再加「`+1` 真的出现过」"
@@ -9176,7 +9275,6 @@ def main() -> int:
           and "**逐个核身份**（`tag` / `aria` / 最近 `data-testid`）" in _ausrc
           and "host_tid: (a.closest('[data-testid]')" in _p969
           and 'tag: (a.tagName || \'\').toUpperCase(),' in _p969)
-
 
     check("BBBB.1 ✅⭐⭐⭐ **940 把 939 的判决性缺口填上了 —— 机制是「单指针」**："
           "游走后**节点带 tabindex 0/77 → 76/77**、而 `tabindex=\"0\"` **只 +1 不累积** ⇒ "
@@ -9418,8 +9516,6 @@ def main() -> int:
           and "落点第 1/6/8/10/12 圈**分散**" in _ausrc
           # ⚠️ NN.2 那条「不许把未查明伪装成已知」必须仍在基线里
           and "不许**编一个 DOM 层判据去" in _ausrc)
-
-
 
 
 
@@ -14412,7 +14508,6 @@ def main() -> int:
           and '本批把 1006 全部推翻' not in _p1007
           and '本批把 1006 全部推翻' not in _ausrc)
 
-
     # ══ 1008 宇宙冻结点 ══
     # ⚠️ 同 1006/1007 那条：**1008 报的那些数是在它的 `M993Q` 判据加进去之前测的** ⇒ ⇒
     #   **⇒ 冻结点必须落在 1008 自己的判据之前**
@@ -14531,7 +14626,6 @@ def main() -> int:
           and '本批把 1005 全部推翻' not in _p1008
           and '本批把 1005 全部推翻' not in _ausrc)
 
-
     # ══ 1009 宇宙冻结点 ══
     # ⚠️ 同 1006/1007/1008 那条：**1009 报的那些数是在它的 `N993R` 判据加进去之前测的**
     #   ⇒ ⇒ **⇒ 而 1008 忘了执行这条通则、所以这一行是「上一批的教训」的物证**
@@ -14617,7 +14711,6 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **反向门**：**不许把「空字符串」当成「没什么可写」**
           and '读到空字符串说明本来就没什么可写' not in _p1009
           and '读到空字符串说明本来就没什么可写' not in _ausrc)
-
 
     # ══ 1010 宇宙冻结点 ══
     # ⚠️ 同 1006/1007/1008/1009 那条：**1010 报的那些数是在它的 `O993S` 判据加进去之前测的**
@@ -14721,7 +14814,6 @@ def main() -> int:
           # ⭐⭐⭐⭐⭐ **反向门**：**不许把局部的检出力说成全局的**
           and '全局检出力就是 0.0' not in _p1010
           and '全局检出力就是 0.0' not in _ausrc)
-
 
     # ══ 1011 宇宙冻结点 ══
     # ⚠️ 同 1006/1007/1008/1009/1010 那条：**1011 报的那些数是在它的 `P993T` 判据
@@ -14865,7 +14957,6 @@ def main() -> int:
           and '这些读数不是全局的' in _p1011)
 
 
-
     # ══ 1012 宇宙冻结点 ══
     # ⚠️ 同 1006–1011 那条：**1012 报的那些数是在它的 `Q993U` 判据加进去之前、
     #    在 1011 那一版 audit 上测的**
@@ -14998,7 +15089,6 @@ def main() -> int:
           and '所以这已经是全局无死角' not in _ausrc)
 
 
-
     # ══ 1013 宇宙冻结点 ══
     # ⚠️ 同 1006–1012 那条：**1013 报的那些数是在它的 `R993V` 判据加进去之前、
     #    在 1012 那一版 audit 上测的**
@@ -15123,7 +15213,6 @@ def main() -> int:
           #   **⇒ 「反向门」也不许凭印象写 —— 它和正向锚子一样必须先查过**
           and '不许让门看起来比它实际更强' in _ausrc
           and '所以自动生成的清单就不会过期' not in _ausrc)
-
 
     # ══ 1014 宇宙冻结点 ══
     # ⚠️ 同 1006–1013 那条：**1014 报的那些数是在它的 `S993W` 判据加进去之前、
@@ -15635,7 +15724,8 @@ def main() -> int:
           "13 条锚点本身是中文注释；反向用例 Ⓐ 改行为 24 条全绿、Ⓑ 改名 2 条转红")
 
     check("X993B.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立 —— 本批要验的命题："
-          "那 24 条验的是「那段字还在」，不是「这个行为还对」。** 口径 = 逐条 eval 判据的"
+          "那些「在读原型源码」的判据验的是「那段字还在」，不是「这个行为还对」。**"
+          "口径 = 逐条 eval 判据的"
           "**原始条件表达式**（AST 取节点 → `ast.unparse` → 内存里换文本后执行，"
           "**不是转述、不是重写**）",
           '"p1_the_claim_2018_"' in _ausrc
@@ -15643,7 +15733,7 @@ def main() -> int:
           and 'code = compile(ast.Expression(body=c["node"]), "<c1018>", "eval")' in _p1018
           and '"expr": ast.unparse(cond)' in _p1018
           and 'exec(compile(code, "<v1018-read>", "exec"), g)' in _p1018
-          and 'P1 = (N == 24 and N_PASS == N)' in _p1018)
+          and 'P1 = (N_PASS == N and N >= 1)' in _p1018)
 
     check("X993B.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P2 反向用例 Ⓐ —— "
           "只改行为、不动任何锚点（步进 `cur + dir` → `cur + dir * 2`，焦点一次跨两个）"
@@ -15804,8 +15894,6 @@ def main() -> int:
 
 
 
-
-
     # ══ Z993D. 批 1020 把 1019 那个 harness 本身当被测对象：保真度 + 判别力
     print("— Z993D. 批 1020 harness 保真度与判别力：两条 stub 在 86 格枚举里分歧 11 格（全是 depth≥2 的内层控件）；"
           "系统枚举的变异体 8 格杀 23/30；补两格抬到 26/30")
@@ -15912,7 +16000,6 @@ def main() -> int:
           and '"p11_scope_and_offline_2020_"' in _ausrc
           and '"p12_golden_2020_"' in _ausrc)
 
-
     # ══ AA993E. 批 1021 第一次量「门自己」：官方锚点门对「判据变弱」的敏感度
     print("— AA993E. 批 1021 量门自己：6 个变弱形状里 4 个让官方锚点门继续报「问题 0 个」；"
           "删整组 8 条判据 ⇒ 少查 69 条锚点而问题数纹丝不动")
@@ -15982,7 +16069,6 @@ def main() -> int:
           and '"p7_offline_2021_"' in _ausrc
           and '"p8_golden_2021_"' in _ausrc)
 
-
     # ══ BB993F. 批 1022 把 1020 诊断出来的缺口真正补上，并让 1021 通则⑤自己兑现一遍
     print("— BB993F. 批 1022 把 1020 诊断出的两格落进 1019（各对准一个实测存活体）；"
           "并把 Y993C 判据里写死的条数改成机制表述")
@@ -16031,7 +16117,6 @@ def main() -> int:
           and '**⇒⇒⇒⇒⇒⇒ 1020 的全部读数在今天依然成立**' in _ausrc
           and '补的格**在基线上先跑一遍确认全绿' in _ausrc
           and 'atexit.register(shutil.rmtree, str(TMPDIR), ignore_errors=True)' in _p1019)
-
 
     # ══ CC993G. 批 1023 量「类型层」那一道闸：tsc 早就装好了，而一条判据把一句从没成立过的话当成了前提
     print("— CC993G. 批 1023 量类型层：tsc 早就在、整仓零错误；"
@@ -17071,100 +17156,44 @@ def main() -> int:
             and _d.get("n_toast_only") == 0
         )
 
-    def _p1032d_mutation_judge(_d: dict) -> bool:
-        """纯函数：**只吃原始字段重算**，不吃上游标志。
+    def _p1018_ok() -> bool:
+        """1018 这本书的读数：**自己从原始字段重算**，不信它给的 `P_all_true`。
 
-        ⭐⭐⭐⭐⭐ 「自己重算」**还不够** —— ⇒ 必须同时证明**这个重算能红**
-        ⇒ ⇒ 那由 `_p1032d_mutation_pc()` 用**改原始字段**的阳性对照来做。
+        ⭐⭐⭐⭐⭐ **「没崩」是这里的硬要求** —— ②d 把 DD993Z.1 的 helper 留在
+        `main()` 里 ⇒ ⇒ 1018（它 exec verifier 的模块顶层、再逐条 eval 那些
+        「读原型源码」的判据）**拿不到嵌套 def** ⇒ ⇒ ⇒ **DD993Z.1 直接 NameError**
+        ⇒ ⇒ ⇒ 而那**不是「原型坏了」**，是**仪器（我写的判据）坏了** ⇒ ⇒⇒⇒
+        **⇒ 「崩」与「红」必须分开记账** —— 而 1015 当时把它记成 `state=crashed`
+        却**自己的 P1..P8 仍然全绿** ⇒ ⇒⇒⇒⇒ 这就是「门自己的结论与它记下的数据不一致」。
         """
-        # ⭐⭐⭐⭐⭐ **自己重算**「变异态门必须红」：
-        #   运行时判据 P1 变红（= 变异真的生效到了浏览器）+ 静态判据 P6 变红
-        #   + 门退出码非 0 ⇒⇒ 三者齐了才算「门被证伪了」
-        _mut_red = (
-            _d.get("mutated_sha_differs") is True
-            and _d.get("mutated_gate_rc", 0) != 0
-            and _d.get("mutated_P1_runtime_red") is True
-            and _d.get("mutated_P6_static_red") is True
-            and _d.get("mutated_gate_turned_red") is True
-        )
-        # ⭐⭐⭐⭐⭐ **自己重算**「还原态门必须再绿」：
-        #   ⚠️ 这一条不许省 —— ⇒ 「变异把门弄红了」也可能只是
-        #   **「变异把产品弄坏了、门红是应该的」** ⇒ ⇒ 必须证明还原后门又绿了
-        _rest_ok = (
-            _d.get("restored") is True
-            and _d.get("restored_sha_matches_original") is True
-            and _d.get("restored_gate_rc") == 0
-            and _d.get("restored_P1_runtime_green") is True
-        )
-        # ⭐⭐ 上游自己写的 `all_ok` 也得为真 —— 但**它不是**我们判定的依据
-        _attempts = _d.get("attempts")
-        return bool(
-            _mut_red and _rest_ok
-            and _d.get("all_ok") is True
-            and isinstance(_attempts, int) and _attempts >= 1
-        )
-
-    def _p1032d_mutation_doc() -> dict | None:
-        """读产物 + 验明正身（防拿别的批次的产物来交差）。"""
-        _ms = ROOT / "docs/research/jimeng-canvas/inputs/mutation-1032d.json"
-        if not _ms.exists():
-            return None
+        _p18 = ROOT / "docs/research/jimeng-canvas/assertion-vs-behavior-1018.json"
+        if not _p18.exists():
+            return False
         try:
-            _d = json.loads(_ms.read_text(encoding="utf-8"))
+            _d = json.loads(_p18.read_text(encoding="utf-8"))
         except Exception:  # noqa: BLE001
-            return None
-        if not isinstance(_d, dict):
-            return None
-        # ⭐⭐⭐⭐⭐ 产物必须**自报它是谁产的**（防止拿别的批次的产物来交差）
-        if _d.get("generated_by") != "jimeng_probe1032d_mutation.py":
-            return None
-        if _d.get("target") != "jimeng-canvas-connect-onConnect":
-            return None
-        return _d
-
-    def _p1032d_mutation_ok() -> bool:
-        """变异读数：**自己从原始字段重算**，不信产物里的 `all_ok`。"""
-        _d = _p1032d_mutation_doc()
-        if _d is None:
             return False
-        return _p1032d_mutation_judge(_d)
-
-    def _p1032d_mutation_pc() -> bool:
-        """⭐⭐⭐⭐⭐ **阳性对照：证明这条判据自己能红。**
-
-        ⚠️ 「自己从原始字段重算」**只证明它不是恒真** ⇒ ⇒ 还要证明
-        **它不是恒假、也不是漏项** ⇒ ⇒⇒⇒ 处置：拿**真产物**做底，
-        **逐个改原始字段**（**不碰 `all_ok`**）⇒ 判决必须翻成 False；
-        再来一例「原始字段坏了、但 `all_ok` 仍然是 true」⇒ 判决**仍**必须翻成 False
-        ⇒ ⇒⇒⇒⇒ 这才证明「重算」是真的在重算，而不是在读上游标志。
-        """
-        _d = _p1032d_mutation_doc()
-        if _d is None:
+        if _d.get("generated_by") != "jimeng_probe1018_assertion_vs_behavior.py":
             return False
-        # ⚠️ 底稿本身必须先被判成 True —— 否则「全 False」也可能只是
-        # 因为底稿读空了 ⇒ ⇒ ⇒ 那样的阳性对照是**假通过**
-        if not _p1032d_mutation_judge(_d):
-            return False
-        _cases = [
-            {"mutated_gate_rc": 0},                   # 变异态门没红
-            {"mutated_P1_runtime_red": False},       # 运行时判据没红
-            {"mutated_P6_static_red": False},        # 静态判据没红
-            {"restored_gate_rc": 1},                  # 还原后门没绿
-            {"restored_sha_matches_original": False},  # 没逐字还原
-            {"attempts": 0},                          # 一轮都没跑
-        ]
-        for _c in _cases:
-            _t = dict(_d)
-            _t.update(_c)
-            if _p1032d_mutation_judge(_t) is not False:
-                return False
-        # 「原始字段坏了、但上游标志仍然是 true」⇒ 判决仍必须是 False
-        _t = dict(_d)
-        _t["all_ok"] = True
-        _t["restored_gate_rc"] = 1
-        if _p1032d_mutation_judge(_t) is not False:
-            return False
-        return True
+        _base = _d.get("baseline") or {}
+        _P = _d.get("P") or {}
+        _wl = _d.get("text_only_disagreement_whitelist") or {}
+        _n_dis = _d.get("n_disagree_between_the_two_methods")
+        # ⭐⭐⭐⭐⭐ 基线必须**全绿且没崩**：pass == 判据数、fail == 0、crash == 0
+        _no_crash = (_base.get("n_crash") == 0
+                     and _base.get("n_fail") == 0
+                     and _base.get("n_pass") == _d.get("n_checks")
+                     and _d.get("n_checks"))
+        # ⭐⭐⭐⭐⭐ P9（两种独立算法交叉验证）必须为真 —— 而**不信** `P_all_true`
+        _p9 = _P.get("P9_two_independent_methods_agree_1018") is True
+        # ⭐⭐⭐⭐⭐ 白名单：**不许是空的**（否则「两集合相等」恒真）、不许有陈旧条目、
+        #   每条都要有理由（空白理由 = 没解释）
+        _wl_ok = (isinstance(_wl, dict)
+                  and len(_wl) > 0
+                  and isinstance(_n_dis, int)
+                  and _n_dis == len(_wl)
+                  and all(str(v).strip() for v in _wl.values()))
+        return bool(_no_crash and _p9 and _wl_ok)
 
     _p1032c_ok = (
         # ⭐⭐⭐⭐⭐ 普查探针必须**真的去点一遍** —— 不能只是读源码
@@ -17248,13 +17277,34 @@ def main() -> int:
           #   才**真的被查**（不登记 ⇒ 静默跳过 ⇒ 假绿）
           and ("onConnect={onConnectHandler}" in _ws)
           and _p1032d_mutation_ok() and _p1032d_mutation_pc())
+    check("DD993AA.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「一本书自己的判决必须落在它的产物里，而它的读数必须能被别人复核」这件事"
+          "**必须由运行时来回答**：1032-②e 查出一个**真实的回归** ⇒ ⇒ ②d 把 DD993Z.1 的 helper "
+          "留在 `main()` 里 ⇒ ⇒ 1018（它 exec verifier 的模块顶层、再逐条 eval 那些"
+          "「读原型源码」的判据）**拿不到嵌套 def** ⇒ ⇒ ⇒ **DD993Z.1 直接 NameError 崩掉**"
+          "⇒ ⇒ ⇒ 而 1018 自己的 P1 又把「判据条数必须等于 24」**钉死** ⇒ ⇒ ⇒ 两条叠在一起"
+          "⇒ ⇒ ⇒⇒ **⇒ 而它红/崩的原因与被测物无关** —— 不是「原型坏了」，是「账上多了一条判据」"
+          "⇒ ⇒ ⇒⇒⇒ **⇒ 处置两条：① helper 提到模块级（仪器不再崩）"
+          "② P1 去绝对化 ＋ 新增 P9「两种独立算法逐条一致」（可证伪）**"
+          "⇒ ⇒ ⇒⇒⇒⇒ **⇒ 而 P9 的第一版写的是「两种算法必须逐条一致」⇒ ⇒ 那是一条**假红**："
+          "实测唯一那处分歧是 `CC993G.5` —— `_agp_raw` 只出现在**字符串字面量**里 ⇒ ⇒ "
+          "它断的是「verifier 源码里那段字还在」、**并不真读原型源码** ⇒ ⇒⇒⇒⇒ "
+          "**⇒ 「分歧不许无声」：良性分歧进白名单（逐条写明为什么），红只留给「真读却漏收」。**"
+          "⭐⭐⭐⭐⭐ **判据从原始字段重算**（不信探针给的 `P_all_true`）"
+          "⇒ ⇒ ⇒ 读数：`n_crash` 必须为 0（1018 真的跑成了）、`n_fail` 必须为 0、"
+          "`pass` 必须等于判据数、`n_disagree` 必须等于白名单条数、`P9` 必须为真。",
+          "N == 24 and N_PASS" not in _p1018
+          and "_TEXT_ONLY_DISAGREEMENTS" in _p1018
+          and "P9_two_independent_methods_agree_1018" in _p1018
+          and '"P": OUT' in _p1018
+          and _p1018_ok())
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
         print("FAILED: " + ", ".join(failures))
         return 1
     print("batch 841-unclickable OK")
-    return 0
 
+    return 0
 
 if __name__ == "__main__":
     sys.exit(main())

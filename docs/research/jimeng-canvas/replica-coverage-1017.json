@@ -7,12 +7,12 @@
   "denominator_channels_1017": {
     "one_gate_only": {
       "n_scripts": 1,
-      "n_path_refs": 17,
-      "n_files_covered": 22,
+      "n_path_refs": 20,
+      "n_files_covered": 25,
       "n_files_uncovered": 35,
-      "pct_files_covered": 38.6,
-      "uncovered_lines": 5439,
-      "pct_uncovered_lines": 39.7,
+      "pct_files_covered": 41.7,
+      "uncovered_lines": 6152,
+      "pct_uncovered_lines": 40.3,
       "uncovered_files": [
         "src/app/jimeng/canvas/[id]/page.tsx",
         "src/app/jimeng/layout.tsx",
@@ -23,18 +23,18 @@
         "src/components/jimeng/JimengConnectHandles.tsx",
         "src/components/jimeng/JimengContextMenu.tsx",
         "src/components/jimeng/JimengEdge.tsx",
+        "src/components/jimeng/JimengExpandedGenLayer.tsx",
         "src/components/jimeng/JimengFramePicker.tsx",
         "src/components/jimeng/JimengGroupFrames.tsx",
         "src/components/jimeng/JimengHelpMenu.tsx",
-        "src/components/jimeng/JimengImageGenPanel.tsx",
         "src/components/jimeng/JimengImageNodeToolbar.tsx",
         "src/components/jimeng/JimengInferPanel.tsx",
         "src/components/jimeng/JimengInsertMenu.tsx",
         "src/components/jimeng/JimengMemberModal.tsx",
+        "src/components/jimeng/JimengMentionPanel.tsx",
         "src/components/jimeng/JimengMoreMenu.tsx",
         "src/components/jimeng/JimengMultiSelectToolbar.tsx",
         "src/components/jimeng/JimengNodeSummaryPopover.tsx",
-        "src/components/jimeng/JimengNodeToolbar.tsx",
         "src/components/jimeng/JimengOfflineDialog.tsx",
         "src/components/jimeng/JimengPaneContextMenu.tsx",
         "src/components/jimeng/JimengProjectPanel.tsx",
@@ -53,12 +53,12 @@
     },
     "one_gate_plus_audit": {
       "n_scripts": 2,
-      "n_path_refs": 17,
-      "n_files_covered": 22,
+      "n_path_refs": 20,
+      "n_files_covered": 25,
       "n_files_uncovered": 35,
-      "pct_files_covered": 38.6,
-      "uncovered_lines": 5439,
-      "pct_uncovered_lines": 39.7,
+      "pct_files_covered": 41.7,
+      "uncovered_lines": 6152,
+      "pct_uncovered_lines": 40.3,
       "uncovered_files": [
         "src/app/jimeng/canvas/[id]/page.tsx",
         "src/app/jimeng/layout.tsx",
@@ -69,18 +69,18 @@
         "src/components/jimeng/JimengConnectHandles.tsx",
         "src/components/jimeng/JimengContextMenu.tsx",
         "src/components/jimeng/JimengEdge.tsx",
+        "src/components/jimeng/JimengExpandedGenLayer.tsx",
         "src/components/jimeng/JimengFramePicker.tsx",
         "src/components/jimeng/JimengGroupFrames.tsx",
         "src/components/jimeng/JimengHelpMenu.tsx",
-        "src/components/jimeng/JimengImageGenPanel.tsx",
         "src/components/jimeng/JimengImageNodeToolbar.tsx",
         "src/components/jimeng/JimengInferPanel.tsx",
         "src/components/jimeng/JimengInsertMenu.tsx",
         "src/components/jimeng/JimengMemberModal.tsx",
+        "src/components/jimeng/JimengMentionPanel.tsx",
         "src/components/jimeng/JimengMoreMenu.tsx",
         "src/components/jimeng/JimengMultiSelectToolbar.tsx",
         "src/components/jimeng/JimengNodeSummaryPopover.tsx",
-        "src/components/jimeng/JimengNodeToolbar.tsx",
         "src/components/jimeng/JimengOfflineDialog.tsx",
         "src/components/jimeng/JimengPaneContextMenu.tsx",
         "src/components/jimeng/JimengProjectPanel.tsx",
@@ -98,13 +98,13 @@
       ]
     },
     "whole_apparatus": {
-      "n_scripts": 409,
-      "n_path_refs": 30,
-      "n_files_covered": 29,
-      "n_files_uncovered": 28,
-      "pct_files_covered": 50.9,
-      "uncovered_lines": 4125,
-      "pct_uncovered_lines": 30.1,
+      "n_scripts": 427,
+      "n_path_refs": 36,
+      "n_files_covered": 34,
+      "n_files_uncovered": 26,
+      "pct_files_covered": 56.7,
+      "uncovered_lines": 3882,
+      "pct_uncovered_lines": 25.4,
       "uncovered_files": [
         "src/app/jimeng/canvas/[id]/page.tsx",
         "src/app/jimeng/layout.tsx",
@@ -126,20 +126,18 @@
         "src/components/jimeng/JimengNodeSummaryPopover.tsx",
         "src/components/jimeng/JimengOfflineDialog.tsx",
         "src/components/jimeng/JimengProjectPanel.tsx",
-        "src/components/jimeng/JimengRepaintPanel.tsx",
         "src/components/jimeng/JimengSelectionOutline.tsx",
         "src/components/jimeng/JimengSharePanel.tsx",
         "src/components/jimeng/JimengShortcutsPanel.tsx",
         "src/components/jimeng/JimengTaskToast.tsx",
         "src/components/jimeng/JimengTrimPanel.tsx",
-        "src/components/jimeng/JimengVideoEditMode.tsx",
         "src/components/jimeng/icons.tsx"
       ]
     }
   },
-  "denominator_spread_pp": 9.6,
-  "n_prototype_files": 57,
-  "n_prototype_lines": 13692,
+  "denominator_spread_pp": 14.9,
+  "n_prototype_files": 60,
+  "n_prototype_lines": 15284,
   "glob_evidence": [
     {
       "script": "scripts/jimeng-b165i-bands.py",
@@ -222,7 +220,7 @@
       "token": "**"
     }
   ],
-  "n_glob_evidence": 332,
+  "n_glob_evidence": 350,
   "bare_base_refs": {
     "n_found_in_repo": 4,
     "would_deflate_metric": true,
@@ -233,15 +231,15 @@
       "src/components/jimeng/**/*.tsx",
       "src/app/jimeng/**/*.tsx"
     ],
-    "pct_files_covered_before": 38.6,
+    "pct_files_covered_before": 41.7,
     "pct_files_covered_after": 100.0,
-    "jump_pp": 61.4,
+    "jump_pp": 58.3,
     "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **加一条 glob，覆盖率从「不到一半」跳到接近全覆盖** ⇒ **⇒⇒⇒⇒ 这个指标量的是「有没有被点名」，不是「有没有被验过」** ⇒ 把它当成「产品有多少没被验过」是**错的**"
   },
   "criteria_object_of_test": {
-    "n_check_calls": 956,
-    "n_with_prototype_object": 24,
-    "pct_with_prototype_object": 2.5,
+    "n_check_calls": 968,
+    "n_with_prototype_object": 25,
+    "pct_with_prototype_object": 2.6,
     "checks": [
       {
         "name": "\"J.6",
@@ -387,17 +385,26 @@
         "vars": [
           "_agp_raw"
         ]
+      },
+      {
+        "name": "\"DD993Z.1",
+        "vars": [
+          "_ws"
+        ]
       }
     ],
     "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **判据的「被测对象」必须能被机器认出来** —— 本探针的口径是「check() 的条件表达式里出现了持有原型源码文本的变量」，**这是可判的**，而「这条判据在验产品」这种说法不判"
   },
   "text_vars": {
-    "n_path_vars": 10,
-    "n_text_vars": 16,
+    "n_path_vars": 11,
+    "n_text_vars": 19,
     "text_vars": [
       "_agp_raw",
       "_jws_raw",
+      "_sl",
+      "_tb",
       "_tlc",
+      "_ws",
       "_wsrc",
       "a2",
       "amsrc",
@@ -413,6 +420,8 @@
       "vcode"
     ],
     "read_but_never_in_a_criterion": [
+      "_sl",
+      "_tb",
       "hsrc",
       "pisrc"
     ],
@@ -474,6 +483,10 @@
       ],
       [
         "c958",
+        1
+      ],
+      [
+        "_ws",
         1
       ]
     ],

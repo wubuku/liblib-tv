@@ -7,57 +7,84 @@
     "docs/research/VERIFICATION_LEDGER.md",
     "docs/research/jimeng-canvas/README.md",
     "docs/research/jimeng-canvas/anchor-gate-coverage-1021.json",
+    "docs/research/jimeng-canvas/assertion-vs-behavior-1018.json",
     "docs/research/jimeng-canvas/empty-ambiguity-1014.json",
-    "docs/research/jimeng-canvas/gen-contract-1032b2.json",
     "docs/research/jimeng-canvas/golden-freshness-1027.json",
-    "docs/research/jimeng-canvas/inputs/gen-runtime-1032b2.json",
-    "docs/research/jimeng-canvas/inputs/interaction-wiring-1032.json",
-    "docs/research/jimeng-canvas/inputs/noop-census-1032c.json",
-    "docs/research/jimeng-canvas/noop-contract-1032c.json",
+    "docs/research/jimeng-canvas/inputs/mutation-1032d.json",
     "docs/research/jimeng-canvas/rerun-reproducibility-1015.json",
-    "docs/research/liblib-canvas-batch835-2026-10-01/README.md",
-    "docs/research/liblib-canvas-batch835-2026-10-01/probes/inject835.py",
-    "docs/research/liblib-canvas-batch835-2026-10-01/probes/ledger835.py",
-    "docs/research/liblib-canvas-batch835-2026-10-01/probes/neg835.py",
-    "docs/research/liblib-canvas-batch835-2026-10-01/probes/runtime835.py",
-    "docs/research/liblib-canvas-batch835-2026-10-01/probes/static835.py",
-    "docs/research/liblib-canvas-batch835-2026-10-01/verify-report.json",
-    "docs/research/liblib-canvas-batch836-2026-10-01/README.md",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/camnum836.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/camnum836b.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/camnum836c.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/camnum836d.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/camnum836e.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/camnum836f.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/camnum836g.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/camnum836h.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/clone836.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/clone836b.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/clone836c.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/ledger836.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/neg836.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/probes/restore836.py",
-    "docs/research/liblib-canvas-batch836-2026-10-01/raw/source-836-camera-numbering.json",
-    "docs/research/liblib-canvas-batch836-2026-10-01/verify-report.json",
+    "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
+    "docs/research/liblib-canvas-batch837-2026-10-01/README.md",
+    "docs/research/liblib-canvas-batch837-2026-10-01/probes/clone837.py",
+    "docs/research/liblib-canvas-batch837-2026-10-01/probes/ledger837.py",
+    "docs/research/liblib-canvas-batch837-2026-10-01/probes/neg837.py",
+    "docs/research/liblib-canvas-batch837-2026-10-01/probes/shotname837.py",
+    "docs/research/liblib-canvas-batch837-2026-10-01/probes/shotname837b.py",
+    "docs/research/liblib-canvas-batch837-2026-10-01/probes/tracksel837.py",
+    "docs/research/liblib-canvas-batch837-2026-10-01/raw/clone-837-runtime.json",
+    "docs/research/liblib-canvas-batch837-2026-10-01/raw/clone-837-tracksel.json",
+    "docs/research/liblib-canvas-batch837-2026-10-01/raw/negative-837.json",
+    "docs/research/liblib-canvas-batch837-2026-10-01/raw/source-837-shotname-page-scan.json",
+    "docs/research/liblib-canvas-batch837-2026-10-01/raw/source-837-shotname-page.png",
+    "docs/research/liblib-canvas-batch837-2026-10-01/raw/source-837-shotname-scan.json",
+    "docs/research/liblib-canvas-batch837-2026-10-01/runtime-audit.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/README.md",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/charname838.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/charname838b.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/charname838c.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/charname838d.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/charname838e.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/charname838f.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/charname838g.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/charname838h.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/charname838i.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/charname838j.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/cleanup838.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/clone838.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/ledger838.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/neg838.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/restore838.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/restore838b.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/restore838c.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/shotname838.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/shotname838b.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/shotname838c.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/shotname838d.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/shotname838e.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/source_restored838.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/trackname838.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/probes/verify_source_restored.py",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/negative-838.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-charname-baseline.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-charname-closedloop.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-charname-new.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-cleanup.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-detail-by-space.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-fiber-props.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-network-index.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-node-titles.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-restore-network.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-restored-final.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-shotlike-scan.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/raw/source-838-video-node-dom.json",
+    "docs/research/liblib-canvas-batch838-2026-10-01/runtime-audit.json",
     "scripts/jimeng_check_verifier_anchors.py",
-    "scripts/jimeng_probe1032b2_gen_contract.py",
-    "scripts/jimeng_probe1032b2_gen_runtime.mjs",
-    "scripts/jimeng_probe1032c_noop_census.mjs",
-    "scripts/jimeng_probe1032c_noop_contract.py",
+    "scripts/jimeng_probe1018_assertion_vs_behavior.py",
+    "scripts/jimeng_probe1032d_mutation.py",
     "scripts/jimeng_unclickable_audit.py",
     "scripts/verify-jimeng-batch841-unclickable.py",
+    "scripts/verify-liblib-batch42.py",
+    "scripts/verify-liblib-batch43.py",
     "scripts/verify-liblib-batch720.py",
     "scripts/verify-liblib-batch749.py",
     "scripts/verify-liblib-batch750.py",
-    "scripts/verify-liblib-batch835.py",
-    "scripts/verify-liblib-batch836.py",
-    "src/components/jimeng/JimengAudioGenPanel.tsx",
-    "src/components/jimeng/JimengImageGenPanel.tsx",
-    "src/components/jimeng/nodes/JimengTextNode.tsx",
-    "src/lib/directorCommandFeedback.ts",
-    "src/lib/directorCommandKernel.ts",
+    "scripts/verify-liblib-batch837.py",
+    "scripts/verify-liblib-batch838.py",
+    "src/components/CharacterLibraryPanel.tsx",
+    "src/components/character-studio.css",
     "src/lib/directorDeletePlanner.ts",
-    "src/store/directorStore.ts"
+    "src/lib/libtvSelectionCommandContext.ts",
+    "src/store/directorStore.ts",
+    "src/store/uiStore.ts"
   ],
   "changed_set_from_argv": false,
   "n_argv_flags_received": 0,
@@ -125,9 +152,10 @@
         "n_named": 4,
         "n_globs": 0,
         "n_files_it_reads": 5,
-        "n_touched_by_this_change": 3,
+        "n_touched_by_this_change": 4,
         "in_exclude": false,
         "touched_by_this_change": [
+          "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
           "scripts/jimeng_check_verifier_anchors.py",
           "scripts/jimeng_unclickable_audit.py",
           "scripts/verify-jimeng-batch841-unclickable.py"
@@ -193,12 +221,13 @@
         "n_named": 3,
         "n_globs": 1,
         "n_files_it_reads": 4,
-        "n_touched_by_this_change": 1,
+        "n_touched_by_this_change": 2,
         "in_exclude": false,
         "globs": [
           "b1011-*"
         ],
         "touched_by_this_change": [
+          "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
           "scripts/jimeng_check_verifier_anchors.py"
         ]
       },
@@ -240,7 +269,7 @@
         "has_golden": false,
         "n_named": 5,
         "n_globs": 1,
-        "n_files_it_reads": 5125,
+        "n_files_it_reads": 5145,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -252,7 +281,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 3,
-        "n_files_it_reads": 5368,
+        "n_files_it_reads": 5388,
         "n_touched_by_this_change": 0,
         "in_exclude": true,
         "globs": [
@@ -285,8 +314,12 @@
         "n_named": 2,
         "n_globs": 0,
         "n_files_it_reads": 3,
-        "n_touched_by_this_change": 0,
-        "in_exclude": false
+        "n_touched_by_this_change": 2,
+        "in_exclude": false,
+        "touched_by_this_change": [
+          "docs/research/jimeng-canvas/assertion-vs-behavior-1018.json",
+          "scripts/jimeng_probe1018_assertion_vs_behavior.py"
+        ]
       },
       {
         "probe": "scripts/jimeng_probe1019_behavior_harness.py",
@@ -342,7 +375,7 @@
         "n_named": 5,
         "n_globs": 4,
         "n_files_it_reads": 15562,
-        "n_touched_by_this_change": 11,
+        "n_touched_by_this_change": 9,
         "in_exclude": false,
         "globs": [
           "*.ts",
@@ -352,16 +385,14 @@
         ],
         "touched_by_this_change": [
           "scripts/jimeng_check_verifier_anchors.py",
-          "scripts/jimeng_probe1032b2_gen_contract.py",
-          "scripts/jimeng_probe1032c_noop_contract.py",
+          "scripts/jimeng_probe1018_assertion_vs_behavior.py",
+          "scripts/jimeng_probe1032d_mutation.py",
           "scripts/jimeng_unclickable_audit.py",
-          "src/components/jimeng/JimengAudioGenPanel.tsx",
-          "src/components/jimeng/JimengImageGenPanel.tsx",
-          "src/components/jimeng/nodes/JimengTextNode.tsx",
-          "src/lib/directorCommandFeedback.ts",
-          "src/lib/directorCommandKernel.ts",
+          "src/components/CharacterLibraryPanel.tsx",
           "src/lib/directorDeletePlanner.ts",
-          "src/store/directorStore.ts"
+          "src/lib/libtvSelectionCommandContext.ts",
+          "src/store/directorStore.ts",
+          "src/store/uiStore.ts"
         ]
       },
       {
@@ -388,8 +419,8 @@
           "jimeng_probe*.py"
         ],
         "touched_by_this_change": [
-          "scripts/jimeng_probe1032b2_gen_contract.py",
-          "scripts/jimeng_probe1032c_noop_contract.py"
+          "scripts/jimeng_probe1018_assertion_vs_behavior.py",
+          "scripts/jimeng_probe1032d_mutation.py"
         ]
       },
       {
@@ -419,7 +450,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 5122,
+        "n_files_it_reads": 5142,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -2327,10 +2358,10 @@
   },
   "axis_2_the_measured_re_run": {
     "what": "⭐⭐⭐⭐⭐⭐⭐ **实测：对「被本次变更触及的」那些真跑一遍，与仓库里那本逐字节比对 ⇒ 列出现在已经过期的**",
-    "n_touched": 13,
-    "n_re_run": 13,
+    "n_touched": 14,
+    "n_re_run": 14,
     "ran_under_the_suite": false,
-    "n_stale": 6,
+    "n_stale": 10,
     "n_probes_new_this_change": 0,
     "per_probe_timeout": 300,
     "results": [
@@ -2340,11 +2371,12 @@
         "rc": 0,
         "in_git_head": true,
         "is_new_probe": false,
-        "stale_vs_committed": false,
+        "stale_vs_committed": true,
         "stale_vs_worktree": false,
-        "n_bytes_fresh": 127346,
+        "n_bytes_fresh": 128220,
         "n_bytes_committed": 127346,
         "touched_by": [
+          "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
           "scripts/jimeng_check_verifier_anchors.py",
           "scripts/jimeng_unclickable_audit.py",
           "scripts/verify-jimeng-batch841-unclickable.py"
@@ -2387,11 +2419,12 @@
         "rc": 0,
         "in_git_head": true,
         "is_new_probe": false,
-        "stale_vs_committed": false,
-        "stale_vs_worktree": false,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": true,
         "n_bytes_fresh": 3092,
         "n_bytes_committed": 3092,
         "touched_by": [
+          "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
           "scripts/jimeng_check_verifier_anchors.py"
         ]
       },
@@ -2424,6 +2457,21 @@
         ]
       },
       {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "golden": "docs/research/jimeng-canvas/assertion-vs-behavior-1018.json",
+        "rc": 0,
+        "in_git_head": true,
+        "is_new_probe": false,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 17669,
+        "n_bytes_committed": 15775,
+        "touched_by": [
+          "docs/research/jimeng-canvas/assertion-vs-behavior-1018.json",
+          "scripts/jimeng_probe1018_assertion_vs_behavior.py"
+        ]
+      },
+      {
         "probe": "jimeng_probe1019_behavior_harness.py",
         "golden": "docs/research/jimeng-canvas/behavior-harness-1019.json",
         "rc": 0,
@@ -2444,7 +2492,7 @@
         "in_git_head": true,
         "is_new_probe": false,
         "stale_vs_committed": true,
-        "stale_vs_worktree": false,
+        "stale_vs_worktree": true,
         "n_bytes_fresh": 7532,
         "n_bytes_committed": 7532,
         "touched_by": [
@@ -2480,16 +2528,14 @@
         "n_bytes_committed": 18972,
         "touched_by": [
           "scripts/jimeng_check_verifier_anchors.py",
-          "scripts/jimeng_probe1032b2_gen_contract.py",
-          "scripts/jimeng_probe1032c_noop_contract.py",
+          "scripts/jimeng_probe1018_assertion_vs_behavior.py",
+          "scripts/jimeng_probe1032d_mutation.py",
           "scripts/jimeng_unclickable_audit.py",
-          "src/components/jimeng/JimengAudioGenPanel.tsx",
-          "src/components/jimeng/JimengImageGenPanel.tsx",
-          "src/components/jimeng/nodes/JimengTextNode.tsx",
-          "src/lib/directorCommandFeedback.ts",
-          "src/lib/directorCommandKernel.ts",
+          "src/components/CharacterLibraryPanel.tsx",
           "src/lib/directorDeletePlanner.ts",
-          "src/store/directorStore.ts"
+          "src/lib/libtvSelectionCommandContext.ts",
+          "src/store/directorStore.ts",
+          "src/store/uiStore.ts"
         ]
       },
       {
@@ -2500,7 +2546,7 @@
         "is_new_probe": false,
         "stale_vs_committed": true,
         "stale_vs_worktree": true,
-        "n_bytes_fresh": 318367,
+        "n_bytes_fresh": 318779,
         "n_bytes_committed": 316099,
         "touched_by": [
           "scripts/verify-jimeng-batch841-unclickable.py"
@@ -2512,13 +2558,13 @@
         "rc": 0,
         "in_git_head": true,
         "is_new_probe": false,
-        "stale_vs_committed": false,
-        "stale_vs_worktree": false,
-        "n_bytes_fresh": 100099,
+        "stale_vs_committed": true,
+        "stale_vs_worktree": true,
+        "n_bytes_fresh": 100623,
         "n_bytes_committed": 100099,
         "touched_by": [
-          "scripts/jimeng_probe1032b2_gen_contract.py",
-          "scripts/jimeng_probe1032c_noop_contract.py"
+          "scripts/jimeng_probe1018_assertion_vs_behavior.py",
+          "scripts/jimeng_probe1032d_mutation.py"
         ]
       },
       {
@@ -2539,6 +2585,26 @@
     ],
     "stale": [
       {
+        "probe": "jimeng_probe1005_zero_coupling_census.py",
+        "golden": "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
+        "rc": 0,
+        "touched_by": [
+          "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
+          "scripts/jimeng_check_verifier_anchors.py",
+          "scripts/jimeng_unclickable_audit.py",
+          "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1011_change_locality.py",
+        "golden": "docs/research/jimeng-canvas/change-locality-1011.json",
+        "rc": 0,
+        "touched_by": [
+          "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
+          "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
         "probe": "jimeng_probe1012_global_detection.py",
         "golden": "docs/research/jimeng-canvas/global-detection-1012.json",
         "rc": 0,
@@ -2552,6 +2618,15 @@
         "rc": 0,
         "touched_by": [
           "scripts/jimeng_check_verifier_anchors.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1018_assertion_vs_behavior.py",
+        "golden": "docs/research/jimeng-canvas/assertion-vs-behavior-1018.json",
+        "rc": 0,
+        "touched_by": [
+          "docs/research/jimeng-canvas/assertion-vs-behavior-1018.json",
+          "scripts/jimeng_probe1018_assertion_vs_behavior.py"
         ]
       },
       {
@@ -2579,16 +2654,14 @@
         "rc": 0,
         "touched_by": [
           "scripts/jimeng_check_verifier_anchors.py",
-          "scripts/jimeng_probe1032b2_gen_contract.py",
-          "scripts/jimeng_probe1032c_noop_contract.py",
+          "scripts/jimeng_probe1018_assertion_vs_behavior.py",
+          "scripts/jimeng_probe1032d_mutation.py",
           "scripts/jimeng_unclickable_audit.py",
-          "src/components/jimeng/JimengAudioGenPanel.tsx",
-          "src/components/jimeng/JimengImageGenPanel.tsx",
-          "src/components/jimeng/nodes/JimengTextNode.tsx",
-          "src/lib/directorCommandFeedback.ts",
-          "src/lib/directorCommandKernel.ts",
+          "src/components/CharacterLibraryPanel.tsx",
           "src/lib/directorDeletePlanner.ts",
-          "src/store/directorStore.ts"
+          "src/lib/libtvSelectionCommandContext.ts",
+          "src/store/directorStore.ts",
+          "src/store/uiStore.ts"
         ]
       },
       {
@@ -2597,6 +2670,15 @@
         "rc": 0,
         "touched_by": [
           "scripts/verify-jimeng-batch841-unclickable.py"
+        ]
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "golden": "docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
+        "rc": 0,
+        "touched_by": [
+          "scripts/jimeng_probe1018_assertion_vs_behavior.py",
+          "scripts/jimeng_probe1032d_mutation.py"
         ]
       }
     ],
@@ -2623,7 +2705,7 @@
     },
     "B_injected_path_is_selected_by_the_coupling_scan": {
       "injected_path": "scripts/verify-jimeng-batch841-unclickable.py",
-      "n_selected": 13,
+      "n_selected": 14,
       "selected": [
         "jimeng_probe1005_zero_coupling_census.py",
         "jimeng_probe1007_disparate_copies.py",
@@ -2631,6 +2713,7 @@
         "jimeng_probe1011_change_locality.py",
         "jimeng_probe1012_global_detection.py",
         "jimeng_probe1013_occurrence_ledger.py",
+        "jimeng_probe1018_assertion_vs_behavior.py",
         "jimeng_probe1019_behavior_harness.py",
         "jimeng_probe1021_anchor_gate_coverage.py",
         "jimeng_probe1023_type_layer_gate.py",
@@ -2643,7 +2726,7 @@
       "rule": "⭐⭐⭐⭐⭐ **注入式自检**：把 verifier 路径塞进变更集，要求扫描器认出所有与它耦合的探针 ⇒ **⇒ 验的是「取交集这一步本身通不通」，而不依赖「这次提交恰好是谁的」** ⇒ **⇒⇒⇒⇒⇒⇒ 这一条正是对「仪器 bug 1」的回归防护**"
     },
     "C_intersection_is_narrower_than_everything": {
-      "n_touched": 13,
+      "n_touched": 14,
       "n_with_golden": 17,
       "ok": true,
       "rule": "⭐⭐⭐⭐⭐ **取交集必须比「全部」小** —— 否则它退化成一个更贵的全量重跑 ⇒ **这本身是一条判据**"

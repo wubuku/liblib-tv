@@ -5,7 +5,7 @@
   "how": "⭐⭐⭐⭐⭐ **只跑仓里早就装好的 `./node_modules/.bin/eslint` 与读 `package.json`**；**零安装、零网络、零浏览器**；**不替项目改任何注释或指令**",
   "class_A_where_the_rule_is_now_unnecessary": {
     "what": "⭐ **`eslint-disable` 指令本身就是一句「这条规则在这里会触发」的断言**",
-    "n_directives": 9,
+    "n_directives": 12,
     "n_now_unnecessary": 1,
     "unused": [
       {
@@ -19,15 +19,33 @@
     "all_directives": [
       {
         "file": "src/components/jimeng/JimengGenPanel.tsx",
-        "line": 198,
+        "line": 199,
         "rule": "react-hooks/exhaustive-deps",
         "text": "// eslint-disable-next-line react-hooks/exhaustive-deps -- mediaNodes 随渲染重建，仅在 pickedRefNodeId 变化时消费"
       },
       {
+        "file": "src/components/jimeng/JimengMentionPanel.tsx",
+        "line": 259,
+        "rule": "@next/next/no-img-element",
+        "text": "// eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 缩略图"
+      },
+      {
         "file": "src/components/jimeng/JimengRepaintPanel.tsx",
-        "line": 79,
+        "line": 114,
         "rule": "@next/next/no-img-element",
         "text": "// eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 海报"
+      },
+      {
+        "file": "src/components/jimeng/JimengRepaintPanel.tsx",
+        "line": 162,
+        "rule": "@next/next/no-img-element",
+        "text": "// eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 缩略图"
+      },
+      {
+        "file": "src/components/jimeng/JimengVideoEditMode.tsx",
+        "line": 133,
+        "rule": "@next/next/no-img-element",
+        "text": "// eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 缩略图"
       },
       {
         "file": "src/components/jimeng/JimengVideoPreview.tsx",
@@ -49,7 +67,7 @@
       },
       {
         "file": "src/components/jimeng/nodes/JimengImageNode.tsx",
-        "line": 57,
+        "line": 60,
         "rule": "@next/next/no-img-element",
         "text": "// eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 海报"
       },
@@ -96,7 +114,7 @@
       {
         "kind": "not_run",
         "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-        "line": 239,
+        "line": 268,
         "script": "check",
         "tool": "tsc",
         "actual": "npm run lint && npm run typecheck && npm run build\neslint\ntsc --noEmit\nnext build",
@@ -110,7 +128,7 @@
       {
         "kind": "not_run",
         "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-        "line": 998,
+        "line": 1030,
         "script": "check",
         "tool": "tsc",
         "actual": "npm run lint && npm run typecheck && npm run build\neslint\ntsc --noEmit\nnext build",
@@ -126,7 +144,7 @@
       {
         "kind": "npm_run",
         "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-        "line": 238,
+        "line": 267,
         "script": "check",
         "actual": "npm run lint && npm run typecheck && npm run build",
         "verdict": "（普查行：两侧原文并排，判定由人/由规则读）",
@@ -135,7 +153,7 @@
       {
         "kind": "not_run",
         "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-        "line": 239,
+        "line": 268,
         "script": "check",
         "tool": "tsc",
         "actual": "npm run lint && npm run typecheck && npm run build\neslint\ntsc --noEmit\nnext build",
@@ -149,7 +167,7 @@
       {
         "kind": "npm_run",
         "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-        "line": 997,
+        "line": 1029,
         "script": "check",
         "actual": "npm run lint && npm run typecheck && npm run build",
         "verdict": "（普查行：两侧原文并排，判定由人/由规则读）",
@@ -158,7 +176,7 @@
       {
         "kind": "not_run",
         "file": "src/components/jimeng/JimengAudioGenPanel.tsx",
-        "line": 998,
+        "line": 1030,
         "script": "check",
         "tool": "tsc",
         "actual": "npm run lint && npm run typecheck && npm run build\neslint\ntsc --noEmit\nnext build",
@@ -192,7 +210,7 @@
   },
   "class_C_evidence_file_citations": {
     "what": "⭐⭐⭐⭐⭐ **口径比第一版宽**：不只扫「注释里的代码路径」，而是扫 **`src/**` 注释 + `scripts/jimeng_*.py` 全文**里形如 `docs/research/…json` 的**证据文件引用** ⇒ 真正要紧的不是「代码路径在不在」，是**「SOURCE_FACT 指着的那份实测记录」还在不在**",
-    "n_citations": 61,
+    "n_citations": 70,
     "n_missing": 1,
     "missing": [
       {
