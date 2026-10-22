@@ -264,9 +264,45 @@ def _per_probe_row(c):
 
 
 # ── 阳性对照 ─────────────────────────────────────────────────────────────────
-# 甲：分类器要能自己认出「本次变更触及了 1013」
-#     （那一行 diff 就是 `目标变量 200 → 201`，因为本批新增了 `_p1026`）
-PC_A = any("1013" in n for n in COUPLED_TO_CHANGED)
+# 甲：分类器要能自己认出「某个被 1013 读到的文件被改了 ⇒ 1013 被触及」
+# ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ 1032-②i：**这一条原来是「变更集依赖」的** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒ 第一版写的是 `any("1013" in n for n in COUPLED_TO_CHANGED)` ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒ ⇒⇒ **⇒ 而它只在「本批恰好改了 1013 读的东西」时才成立** ⇒ ⇒ ⇒⇒ ⇒ ⇒
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 「这一批恰好改了什么」被当成了「仪器的眼睛准不准」** ⇒ ⇒ ⇒⇒ ⇒ ⇒
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ 而 1032-②i 恰好没有新增探针变量 ⇒ ⇒ 它当场转红** ⇒ ⇒ ⇒⇒ ⇒ ⇒
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 而它测量的那一半（已过期 0 本）是对的** ⇒ ⇒ ⇒⇒ ⇒ ⇒
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 处置：改成**注入式**（与乙同形）＋ 配一个反证孪生**
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 而反证孪生是必需的：**
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 不然「扫描器恒把 1012/1013 列进去」也会让甲为真** ⇒ ⇒ ⇒⇒
+_1013_KEY = "jimeng_probe1013_occurrence_ledger.py"
+_1013_READS = sorted((COUPLING.get(_1013_KEY) or {}).get("reads") or [])
+_pc_a_injected = None
+for _p in _1013_READS:
+    if "*" not in _p and (ROOT / _p).exists():
+        _pc_a_injected = _p
+        break
+
+
+def _coupled_for(paths):
+    _st = set(paths)
+    return sorted(
+        n for n, c in COUPLING.items()
+        if not c["in_exclude"] and c["golden"] and (ROOT / c["golden"]).exists()
+        and (set(c["reads"]) & _st))
+
+
+_pc_a_set = CHANGED_SET | ({_pc_a_injected} if _pc_a_injected else set())
+_pc_a_touched = _coupled_for(_pc_a_set)
+PC_A = any("1013" in n for n in _pc_a_touched)
+# ⇒ ⇒ **反证孪生**：只喂一个 1013 **不读**的路径 ⇒ 1013 必须**不再**被列进去
+# ⇒ ⇒ **而这个路径必须避开 `docs/research/…json` 的形状** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒ 否则 1024（扫「证据文件引用」那本）会把它当成一条「引用了打不开的证据」⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒ **⇒ 而那不是缺陷、是我这个反证自己制造的噪音** ⇒ ⇒ ⇒⇒ ⇒ ⇒
+_pc_a_neg_path = "jimeng-pc-a-negative-control-not-a-repo-path.json"
+_pc_a_neg_touched = _coupled_for({_pc_a_neg_path})
+PC_A_NEG = not any("1013" in n for n in _pc_a_neg_touched)
+# ⇒ ⇒ 而「不注入时 1013 在不在」是一个**读数**（不是断言）⇒ ⇒ 记下来
+PC_A_WITHOUT_INJECTION = any("1013" in n for n in COUPLED_TO_CHANGED)
 # 乙：**注入式自检** —— 把一个「本批确实新增/改动的路径」硬塞进变更集，
 #     要求扫描器**认出与之耦合的那个探针** ⇒ 这验的是「取交集这一步本身通不通」，
 #     而不依赖「这次提交恰好是谁的」
@@ -346,7 +382,7 @@ PC_D = (P8
         and not _excl_is_bilateral(_1015_SRC.replace(SELF, 'jimeng_probe9999_never.py'),
                                     _1015_NAME, EXCLUDE, SELF)
         and not _excl_is_bilateral(_1015_SRC, _1015_NAME, set(), SELF))
-P3 = PC_A and PC_B and PC_C and PC_D
+P3 = PC_A and PC_A_NEG and PC_B and PC_C and PC_D
 P4 = all(("touched_by_this_change" in COUPLING[n]) for n in HAS_GOLDEN)
 P5 = N_STALE >= 0 and len({r["golden"] for r in RESULTS}) == N_CHECKED   # 一本查一次
 P6 = True
@@ -528,15 +564,26 @@ _PAYLOAD = {
     },
     "positive_control": {
         "A_find_the_real_stale_one_without_being_told": {
-            "probe": "jimeng_probe1013_occurrence_ledger.py",
+            "probe": _1013_KEY,
             "found": PC_A,
-            "why_it_must_be_found": "⭐⭐⭐⭐⭐ **那一行的 diff 就是"
-                                     "`目标变量 200 → 201`** —— 因为本批新增了 `_p1026` "
-                                     "⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **每一批新增一个探针变量，"
-                                     "都会让 1013 的产物过期一格** ⇒ "
-                                     "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐⭐⭐ 这条耦合是结构性的、不是偶然的**",
-            "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
-                    "**不告知答案**：耦合扫描必须自己把 1013 列进「被触及」名单",
+            "injected_path": _pc_a_injected,
+            "n_1013_reads": len(_1013_READS),
+            "found_without_injection": PC_A_WITHOUT_INJECTION,
+            "negative_twin_ok": PC_A_NEG,
+            "negative_twin_path": _pc_a_neg_path,
+            "why_it_must_be_found": "⭐⭐⭐⭐⭐ **注入一个 1013 真读到的文件 ⇒ "
+                                     "耦合扫描必须自己把 1013 列进「被触及」名单** ⇒ "
+                                     "⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 而这条对照在 1032-②i 之前是「变更集依赖」的** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒ "
+                                     "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 第一版问的是「本批恰好改了 1013 读的东西吗」** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ "
+                                     "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ 而那测的是「这一批改了什么」、不是「仪器的眼睛准不准」** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ "
+                                     "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ 而 1032-②i 恰好没有新增探针变量 ⇒ ⇒ 它当场转红** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ "
+                                     "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ 而它测量的那一半（已过期 0 本）是对的** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ "
+                                     "**⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ ⇒ 处置：改成**注入式**（与乙同形）＋ 配一个反证孪生**",
+            "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+                    "**注入式**：喂一个 1013 真读到的文件 ⇒ 耦合扫描必须自己把 1013 列进「被触及」名单 ⇒ "
+                    "**⇒ 而「不喂任何东西时 1013 在不在」只是一个读数（`found_without_injection`）、不许当断言** ⇒ "
+                    "**⇒⇒⇒⇒⇒⇒ 而反证孪生（喂一个 1013 不读的路径 ⇒ 1013 必须不再被列出）是必需的** ⇒ "
+                    "**⇒⇒⇒⇒⇒⇒ ⇒ 不然「扫描器恒把 1013 列进去」也会让甲为真 ⇒ ⇒⇒⇒⇒⇒ ⇒ ⇒ 那就又是一条恒真判据**",
         },
         "B_injected_path_is_selected_by_the_coupling_scan": {
             "injected_path": _injected_path,
@@ -641,7 +688,8 @@ for r in RESULTS:
     mark = "⚠️ 已过期" if r["stale_vs_committed"] else "   一致    "
     print("   %s %-50s rc=%s  %5.1fs" % (mark, r["probe"], r["rc"], _secs_of[r["probe"]]))
 print()
-print("阳性对照 甲（自己认出 1013）=", PC_A, " 乙（认出本批新增文件）=", PC_B,
+print("阳性对照 甲（注入一个 1013 真读到的文件 ⇒ 自己认出 1013）=", PC_A,
+      " 反证孪生=", PC_A_NEG, " 不注入时它在不在=", PC_A_WITHOUT_INJECTION, " 乙（认出本批新增文件）=", PC_B,
       " 丙（交集窄于全体）=", PC_C, " 丁（双向排除两侧都活）=", PC_D)
 print("   双向排除：我排它=%s ／ 它排我=%s" % (_1015_NAME in EXCLUDE,
                                             SELF in _REG_RE.search(_1015_SRC).group(1)))
