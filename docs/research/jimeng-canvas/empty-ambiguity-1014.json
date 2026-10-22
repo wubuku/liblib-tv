@@ -8,7 +8,7 @@
   "n_from_probe_products": 30,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "b96d36a46fea",
+    "sha256_12": "d353fa625958",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
@@ -36,8 +36,8 @@
     "bytes": 1422
    },
    "criterion-direction-1025.json": {
-    "sha256_12": "9374cb4d668e",
-    "bytes": 322239
+    "sha256_12": "502728d02a30",
+    "bytes": 322587
    },
    "criterion-effectiveness-1026.json": {
     "sha256_12": "1fbf7325d46e",
@@ -68,8 +68,8 @@
     "bytes": 1215
    },
    "golden-freshness-1027.json": {
-    "sha256_12": "e38953a086b8",
-    "bytes": 91483
+    "sha256_12": "8278ab450661",
+    "bytes": 85374
    },
    "harness-fidelity-1020.json": {
     "sha256_12": "7bd0a0c99ed1",
