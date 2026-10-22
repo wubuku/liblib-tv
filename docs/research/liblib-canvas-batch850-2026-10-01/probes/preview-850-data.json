@@ -1,0 +1,379 @@
+{
+ "★模态原点": {
+  "x": 361,
+  "y": 161
+ },
+ "★原点来源": {
+  "外框": {
+   "x": 360,
+   "y": 160,
+   "w": 1200,
+   "h": 760
+  },
+  "内容框": {
+   "x": 361,
+   "y": 161,
+   "w": 1198,
+   "h": 758
+  },
+  "说明": "★ 从模态根的**直接子元素**里挑出那个「内容框」（1198×758）⟹ ⟹ 它的左上角 ＝ 内容原点（★ 机器提取，不手打）"
+ },
+ "★交叉校验": {
+  "方式": "★ 绝对坐标逐项比对（★ 848 是**另一趟探针**、另一份坐标）",
+  "中列": {
+   "x": 649,
+   "y": 231,
+   "w": 624,
+   "h": 602
+  },
+  "右栏": {
+   "x": 1273,
+   "y": 231,
+   "w": 288,
+   "h": 602
+  },
+  "工具行": {
+   "x": 925,
+   "y": 785,
+   "w": 73,
+   "h": 32
+  },
+  "不变量": [
+   "右栏 rel x == 912",
+   "内容框在 1920×1080 视口里居中"
+  ]
+ },
+ "★default": {
+  "中列": {
+   "x": 288,
+   "y": 70,
+   "w": 624,
+   "h": 602
+  },
+  "图容器": {
+   "x": 367,
+   "y": 70,
+   "w": 467,
+   "h": 550
+  },
+  "变换层": {
+   "x": -299,
+   "y": -103,
+   "w": 1795,
+   "h": 2114
+  },
+  "变换层class": "absolute inset-0 origin-[50%_8%] transition-transform Ias-7a_previewZoomIn ",
+  "变换层矩阵": "matrix(3.84422, 0, 0, 3.84422, -665.652, -173.149)",
+  "变换层原点": "0px 0px",
+  "变换层过渡": "transform 0.5s cubic-bezier(0.33, 0.68, 0, 1), translate 0.5s cubic-bezier(0.33, 0.68, 0, 1), scale 0.5s cubic-bezier(0.33, 0.68, 0, 1), rotate 0.5s cubic-bezier(0.33, 0.68, 0, 1)",
+  "图盒": {
+   "x": -218,
+   "y": -103,
+   "w": 1634,
+   "h": 2084
+  },
+  "图元素": {
+   "x": -218,
+   "y": -103,
+   "w": 1634,
+   "h": 2084
+  },
+  "图源": "https://libtv-res.liblib.art/tool/character/003_full_body_t.png",
+  "canvas叠层": {
+   "x": -218,
+   "y": -103,
+   "w": 1634,
+   "h": 2084
+  },
+  "canvas可见性": "hidden",
+  "遮罩": {
+   "x": 288,
+   "y": 476,
+   "w": 624,
+   "h": 196
+  },
+  "遮罩透明度": "1",
+  "遮罩class": "pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[196px] Ias-7a_previewMaskFade Ias-7a_previewMaskFadeIn opacity-100",
+  "遮罩过渡": "opacity 0.1s cubic-bezier(0.33, 0.68, 0, 1)",
+  "blur层": {
+   "x": 288,
+   "y": 444,
+   "w": 624,
+   "h": 228
+  },
+  "blur值": "blur(16px)",
+  "blur过渡": "-webkit-backdrop-filter 0.1s cubic-bezier(0.33, 0.68, 0, 1), backdrop-filter 0.1s cubic-bezier(0.33, 0.68, 0, 1)",
+  "渐变层": {
+   "x": 288,
+   "y": 476,
+   "w": 624,
+   "h": 196
+  },
+  "渐变": "linear-gradient(rgba(36, 36, 36, 0) 0%, rgba(36, 36, 36, 0.075) 9.904%, rgba(36, 36, 36, 0.153) 17.964%, rgba(36, 36, 36, 0.24) 24.464%, rgba(36, 36, 36, 0.325) 29.686%, rgba(36, 36, 36, 0.416) 33.915%, rgba(36, 36, 36, 0.5) 37.435%, rgba(36, 36, 36, 0.59) 40.529%, rgba(36, 36, 36, 0.67) 43.481%, rgba(36, 36, 36, 0.75) 46.575%, rgba(36, 36, 36, 0.82) 50.095%, rgba(36, 36, 36, 0.88) 54.324%, rgba(36, 36, 36, 0.93) 59.546%, rgba(36, 36, 36, 0.97) 66.046%, rgba(36, 36, 36, 0.992) 74.106%, rgb(36, 36, 36) 84.01%, rgb(36, 36, 36) 100%)",
+  "工具行": {
+   "x": 564,
+   "y": 624,
+   "w": 73,
+   "h": 32
+  },
+  "工具行class": "absolute bottom-4 left-1/2 z-20 flex h-8 -translate-x-1/2 items-center gap-1",
+  "工具行底色": "rgba(0, 0, 0, 0)",
+  "分隔线": {
+   "x": 600,
+   "y": 634,
+   "w": 1,
+   "h": 12
+  },
+  "分隔线底色": "rgba(255, 255, 255, 0.08)",
+  "按钮": [
+   {
+    "aria": "半身",
+    "class": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-default",
+    "盒": {
+     "x": 564,
+     "y": 624,
+     "w": 32,
+     "h": 32
+    },
+    "底色": "rgba(0, 0, 0, 0)",
+    "文字色": "rgb(255, 255, 255)",
+    "圆角": "12px"
+   },
+   {
+    "aria": "全身",
+    "class": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-muted",
+    "盒": {
+     "x": 605,
+     "y": 624,
+     "w": 32,
+     "h": 32
+    },
+    "底色": "rgba(0, 0, 0, 0)",
+    "文字色": "rgba(255, 255, 255, 0.6)",
+    "圆角": "12px"
+   }
+  ]
+ },
+ "★half": {
+  "中列": {
+   "x": 288,
+   "y": 70,
+   "w": 624,
+   "h": 602
+  },
+  "图容器": {
+   "x": 367,
+   "y": 70,
+   "w": 467,
+   "h": 550
+  },
+  "变换层": {
+   "x": -299,
+   "y": -103,
+   "w": 1795,
+   "h": 2114
+  },
+  "变换层class": "absolute inset-0 origin-[50%_8%] transition-transform Ias-7a_previewZoomIn ",
+  "变换层矩阵": "matrix(3.84422, 0, 0, 3.84422, -665.652, -173.149)",
+  "变换层原点": "0px 0px",
+  "变换层过渡": "transform 0.5s cubic-bezier(0.33, 0.68, 0, 1), translate 0.5s cubic-bezier(0.33, 0.68, 0, 1), scale 0.5s cubic-bezier(0.33, 0.68, 0, 1), rotate 0.5s cubic-bezier(0.33, 0.68, 0, 1)",
+  "图盒": {
+   "x": -218,
+   "y": -103,
+   "w": 1634,
+   "h": 2084
+  },
+  "图元素": {
+   "x": -218,
+   "y": -103,
+   "w": 1634,
+   "h": 2084
+  },
+  "图源": "https://libtv-res.liblib.art/tool/character/003_full_body_t.png",
+  "canvas叠层": {
+   "x": -218,
+   "y": -103,
+   "w": 1634,
+   "h": 2084
+  },
+  "canvas可见性": "hidden",
+  "遮罩": {
+   "x": 288,
+   "y": 476,
+   "w": 624,
+   "h": 196
+  },
+  "遮罩透明度": "1",
+  "遮罩class": "pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[196px] Ias-7a_previewMaskFade Ias-7a_previewMaskFadeIn opacity-100",
+  "遮罩过渡": "opacity 0.1s cubic-bezier(0.33, 0.68, 0, 1)",
+  "blur层": {
+   "x": 288,
+   "y": 444,
+   "w": 624,
+   "h": 228
+  },
+  "blur值": "blur(16px)",
+  "blur过渡": "-webkit-backdrop-filter 0.1s cubic-bezier(0.33, 0.68, 0, 1), backdrop-filter 0.1s cubic-bezier(0.33, 0.68, 0, 1)",
+  "渐变层": {
+   "x": 288,
+   "y": 476,
+   "w": 624,
+   "h": 196
+  },
+  "渐变": "linear-gradient(rgba(36, 36, 36, 0) 0%, rgba(36, 36, 36, 0.075) 9.904%, rgba(36, 36, 36, 0.153) 17.964%, rgba(36, 36, 36, 0.24) 24.464%, rgba(36, 36, 36, 0.325) 29.686%, rgba(36, 36, 36, 0.416) 33.915%, rgba(36, 36, 36, 0.5) 37.435%, rgba(36, 36, 36, 0.59) 40.529%, rgba(36, 36, 36, 0.67) 43.481%, rgba(36, 36, 36, 0.75) 46.575%, rgba(36, 36, 36, 0.82) 50.095%, rgba(36, 36, 36, 0.88) 54.324%, rgba(36, 36, 36, 0.93) 59.546%, rgba(36, 36, 36, 0.97) 66.046%, rgba(36, 36, 36, 0.992) 74.106%, rgb(36, 36, 36) 84.01%, rgb(36, 36, 36) 100%)",
+  "工具行": {
+   "x": 564,
+   "y": 624,
+   "w": 73,
+   "h": 32
+  },
+  "工具行class": "absolute bottom-4 left-1/2 z-20 flex h-8 -translate-x-1/2 items-center gap-1",
+  "工具行底色": "rgba(0, 0, 0, 0)",
+  "分隔线": {
+   "x": 600,
+   "y": 634,
+   "w": 1,
+   "h": 12
+  },
+  "分隔线底色": "rgba(255, 255, 255, 0.08)",
+  "按钮": [
+   {
+    "aria": "半身",
+    "class": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-default",
+    "盒": {
+     "x": 564,
+     "y": 624,
+     "w": 32,
+     "h": 32
+    },
+    "底色": "rgba(0, 0, 0, 0)",
+    "文字色": "rgb(255, 255, 255)",
+    "圆角": "12px"
+   },
+   {
+    "aria": "全身",
+    "class": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-muted",
+    "盒": {
+     "x": 605,
+     "y": 624,
+     "w": 32,
+     "h": 32
+    },
+    "底色": "rgba(0, 0, 0, 0)",
+    "文字色": "rgba(255, 255, 255, 0.6)",
+    "圆角": "12px"
+   }
+  ]
+ },
+ "★full": {
+  "中列": {
+   "x": 288,
+   "y": 70,
+   "w": 624,
+   "h": 602
+  },
+  "图容器": {
+   "x": 367,
+   "y": 70,
+   "w": 467,
+   "h": 550
+  },
+  "变换层": {
+   "x": 367,
+   "y": 70,
+   "w": 467,
+   "h": 550
+  },
+  "变换层class": "absolute inset-0 origin-[50%_8%] transition-transform Ias-7a_previewZoomOut ",
+  "变换层矩阵": "matrix(1, 0, 0, 1, 0, 0)",
+  "变换层原点": "0px 0px",
+  "变换层过渡": "transform 0.45s cubic-bezier(0.36, 0.77, 0, 1), translate 0.45s cubic-bezier(0.36, 0.77, 0, 1), scale 0.45s cubic-bezier(0.36, 0.77, 0, 1), rotate 0.45s cubic-bezier(0.36, 0.77, 0, 1)",
+  "图盒": {
+   "x": 388,
+   "y": 70,
+   "w": 425,
+   "h": 542
+  },
+  "图元素": {
+   "x": 388,
+   "y": 70,
+   "w": 425,
+   "h": 542
+  },
+  "图源": "https://libtv-res.liblib.art/tool/character/003_full_body_t.png",
+  "canvas叠层": {
+   "x": 388,
+   "y": 70,
+   "w": 425,
+   "h": 542
+  },
+  "canvas可见性": "hidden",
+  "遮罩": {
+   "x": 288,
+   "y": 476,
+   "w": 624,
+   "h": 196
+  },
+  "遮罩透明度": "0",
+  "遮罩class": "pointer-events-none absolute inset-x-0 bottom-0 z-10 h-[196px] Ias-7a_previewMaskFade Ias-7a_previewMaskFadeOut opacity-0",
+  "遮罩过渡": "opacity 0.1s cubic-bezier(0.36, 0.77, 0, 1) 0.35s",
+  "blur层": {
+   "x": 288,
+   "y": 444,
+   "w": 624,
+   "h": 228
+  },
+  "blur值": "blur(0px)",
+  "blur过渡": "-webkit-backdrop-filter 0.1s cubic-bezier(0.36, 0.77, 0, 1) 0.35s, backdrop-filter 0.1s cubic-bezier(0.36, 0.77, 0, 1) 0.35s",
+  "渐变层": {
+   "x": 288,
+   "y": 476,
+   "w": 624,
+   "h": 196
+  },
+  "渐变": "linear-gradient(rgba(36, 36, 36, 0) 0%, rgba(36, 36, 36, 0.075) 9.904%, rgba(36, 36, 36, 0.153) 17.964%, rgba(36, 36, 36, 0.24) 24.464%, rgba(36, 36, 36, 0.325) 29.686%, rgba(36, 36, 36, 0.416) 33.915%, rgba(36, 36, 36, 0.5) 37.435%, rgba(36, 36, 36, 0.59) 40.529%, rgba(36, 36, 36, 0.67) 43.481%, rgba(36, 36, 36, 0.75) 46.575%, rgba(36, 36, 36, 0.82) 50.095%, rgba(36, 36, 36, 0.88) 54.324%, rgba(36, 36, 36, 0.93) 59.546%, rgba(36, 36, 36, 0.97) 66.046%, rgba(36, 36, 36, 0.992) 74.106%, rgb(36, 36, 36) 84.01%, rgb(36, 36, 36) 100%)",
+  "工具行": {
+   "x": 564,
+   "y": 624,
+   "w": 73,
+   "h": 32
+  },
+  "工具行class": "absolute bottom-4 left-1/2 z-20 flex h-8 -translate-x-1/2 items-center gap-1",
+  "工具行底色": "rgba(0, 0, 0, 0)",
+  "分隔线": {
+   "x": 600,
+   "y": 634,
+   "w": 1,
+   "h": 12
+  },
+  "分隔线底色": "rgba(255, 255, 255, 0.08)",
+  "按钮": [
+   {
+    "aria": "半身",
+    "class": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-muted",
+    "盒": {
+     "x": 564,
+     "y": 624,
+     "w": 32,
+     "h": 32
+    },
+    "底色": "rgba(0, 0, 0, 0)",
+    "文字色": "rgba(255, 255, 255, 0.6)",
+    "圆角": "12px"
+   },
+   {
+    "aria": "全身",
+    "class": "hover:bg-canvas-controls-hover flex size-8 items-center justify-center rounded-xl text-fg-default",
+    "盒": {
+     "x": 605,
+     "y": 624,
+     "w": 32,
+     "h": 32
+    },
+    "底色": "rgba(0, 0, 0, 0)",
+    "文字色": "rgb(255, 255, 255)",
+    "圆角": "12px"
+   }
+  ]
+ }
+}

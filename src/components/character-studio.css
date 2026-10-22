@@ -1014,6 +1014,9 @@
   line-height: 16px;
 }
 
+/* ★★ Batch 850：预览区（中列）**逐项照抄源站实测**
+   ★ raw：`docs/research/liblib-canvas-batch850-2026-10-01/raw/source-850-{default,half,full}.json`
+   ★ 下面每一条数值都来自那份 raw ⟹ ⟹ **不是手打**。 */
 .ce-tool {
   position: absolute;
   top: 554px;
@@ -1030,7 +1033,25 @@
 }
 .ce-tool:hover { background: rgba(255, 255, 255, 0.12); }
 
-/* ── 预览区 ─────────────────────────────────────────────────────── */
+/* ★★ 取景那两枚按钮（★ 源站实测）⟹ ⟹ ★ 与**左下三工具**不是同一套样式
+   ⟹ ⟹ ⟹ 所以覆盖写在**修饰类**里 ⟹ ⟹ **base `.ce-tool` 一行不动**
+   ⟹ ⟹ （★ base 是左下三工具的 ⟹ ⟹ 动它会连带改坏那三枚 ⟹ ⟹ batch 840 已对照过） */
+.ce-preview-tools .ce-tool {
+  position: static;
+  /* ★ 源站是 `rounded-xl` ⟹ ⟹ **12px** */
+  border-radius: 12px;
+  /* ★ 源站这一层**恒透明**（bg rgba(0,0,0,0)）⟹ ⟹ 选中态**也不加底** */
+  background: transparent;
+  /* ★ 源站未选中是 `text-fg-muted` ⟹ ⟹ rgba(255,255,255,0.6) */
+  color: rgba(255, 255, 255, 0.6);
+}
+/* ★ 源站选中态**只换文字色**（`text-fg-default` ⟹ rgb(255,255,255)）⟹ ⟹ **不加底色**
+   ⟹ ⟹ clone 之前的 `.is-on { background: rgba(255,255,255,0.12) }` 是**既存偏差** ⟹ ⟹ 本批删掉 */
+.ce-preview-tools .ce-tool.is-on { color: rgb(255, 255, 255); }
+
+/* ── 预览区：图区（★ 源站是**四层**） ─────────────────────────────── */
+/* ★ 源站外层：`absolute left-1/2 top-0 isolate h-[550px] w-[467px] -translate-x-1/2 overflow-hidden`
+   ⟹ ⟹ left = (624-467)/2 = 78.5 ⟹ ⟹ 实测落在 **79** ⟹ ⟹ clone 用 79 */
 .ce-figure {
   position: absolute;
   left: 79px;
@@ -1039,38 +1060,141 @@
   height: 550px;
   overflow: hidden;
 }
-.ce-figure img {
+/* ★ 源站第二层：`absolute inset-0` */
+.ce-figure-inner { position: absolute; inset: 0; }
+/* ★ 源站第三层（**变换层**）：`absolute inset-0 origin-[50%_8%] transition-transform`
+   ⟹ ⟹ ★★ 但 `origin-[50%_8%]` 在源站**当前构建里没生效**
+   ⟹ ⟹ 计算值是 **`0px 0px`** ⟹ ⟹ clone 照抄**计算值**（不是照抄 class 名） */
+.ce-figure-zoom {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+}
+/* ★ 「半身」态（★ 源站**默认就是半身**）：
+   matrix(3.84422, 0, 0, 3.84422, -665.652, -173.149)
+   ⟹ ⟹ 过渡 0.5s cubic-bezier(0.33, 0.68, 0, 1) */
+.ce-figure-zoom.is-half {
+  transform: matrix(3.84422, 0, 0, 3.84422, -665.652, -173.149);
+  transition: transform 0.5s cubic-bezier(0.33, 0.68, 0, 1),
+    translate 0.5s cubic-bezier(0.33, 0.68, 0, 1),
+    scale 0.5s cubic-bezier(0.33, 0.68, 0, 1),
+    rotate 0.5s cubic-bezier(0.33, 0.68, 0, 1);
+}
+/* ★ 「全身」态：matrix(1, 0, 0, 1, 0, 0)
+   ⟹ ⟹ ★ 过渡时长/缓动与「半身」**不同**（0.45s cubic-bezier(0.36, 0.77, 0, 1)） */
+.ce-figure-zoom.is-full {
+  transform: matrix(1, 0, 0, 1, 0, 0);
+  transition: transform 0.45s cubic-bezier(0.36, 0.77, 0, 1),
+    translate 0.45s cubic-bezier(0.36, 0.77, 0, 1),
+    scale 0.45s cubic-bezier(0.36, 0.77, 0, 1),
+    rotate 0.45s cubic-bezier(0.36, 0.77, 0, 1);
+}
+/* ★ 图盒 425×542（★ 源站的图**不是** 467×550 —— 467×550 只是外层容器） */
+.ce-figure-img {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 425px;
+  height: 542px;
+  transform: translateX(-50%);
+}
+.ce-figure-img img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-/* 源站：底部一层 196px 渐变 ＋ 一层 -top-8 的遮罩（absolute inset-x-0 bottom-0） */
-.ce-preview-fade {
+
+/* ── 预览区：底部遮罩（★ 源站是**三层**） ─────────────────────────── */
+.ce-preview-mask {
   position: absolute;
   left: 0;
-  top: 476px;
-  width: 624px;
+  right: 0;
+  bottom: 0;
   height: 196px;
-  background: linear-gradient(to bottom, rgba(38, 38, 38, 0), rgba(38, 38, 38, 0.92));
+  z-index: 10;
   pointer-events: none;
 }
+/* ★ 半身：遮罩**在**（opacity 1） */
+.ce-preview-mask.is-half {
+  opacity: 1;
+  transition: opacity 0.1s cubic-bezier(0.33, 0.68, 0, 1);
+}
+/* ★ 全身：遮罩**淡出**（opacity 0）⟹ ⟹ 且**延迟 0.35s** */
+.ce-preview-mask.is-full {
+  opacity: 0;
+  transition: opacity 0.1s cubic-bezier(0.36, 0.77, 0, 1) 0.35s;
+}
+/* ★ blur 层：源站 `absolute -top-8 bottom-0 left-0 right-0` ⟹ ⟹ 比外层**高 32px**（228）
+   ⟹ ⟹ ★ 全身态源站是 `blur(0px)`（`previewMaskBlurOut`） */
+.ce-preview-mask-blur {
+  position: absolute;
+  top: -32px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  transition: -webkit-backdrop-filter 0.1s cubic-bezier(0.33, 0.68, 0, 1),
+    backdrop-filter 0.1s cubic-bezier(0.33, 0.68, 0, 1);
+}
+.ce-preview-mask.is-full .ce-preview-mask-blur {
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  transition: -webkit-backdrop-filter 0.1s cubic-bezier(0.36, 0.77, 0, 1) 0.35s,
+    backdrop-filter 0.1s cubic-bezier(0.36, 0.77, 0, 1) 0.35s;
+}
+/* ★ 渐变层：源站是 **17 段** linear-gradient（★ 不是 clone 之前的 2 段、也不是 38,38,38） */
+.ce-preview-mask-fade {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(
+    rgba(36, 36, 36, 0) 0%,
+    rgba(36, 36, 36, 0.075) 9.904%,
+    rgba(36, 36, 36, 0.153) 17.964%,
+    rgba(36, 36, 36, 0.24) 24.464%,
+    rgba(36, 36, 36, 0.325) 29.686%,
+    rgba(36, 36, 36, 0.416) 33.915%,
+    rgba(36, 36, 36, 0.5) 37.435%,
+    rgba(36, 36, 36, 0.59) 40.529%,
+    rgba(36, 36, 36, 0.67) 43.481%,
+    rgba(36, 36, 36, 0.75) 46.575%,
+    rgba(36, 36, 36, 0.82) 50.095%,
+    rgba(36, 36, 36, 0.88) 54.324%,
+    rgba(36, 36, 36, 0.93) 59.546%,
+    rgba(36, 36, 36, 0.97) 66.046%,
+    rgba(36, 36, 36, 0.992) 74.106%,
+    rgb(36, 36, 36) 84.01%,
+    rgb(36, 36, 36) 100%
+  );
+}
+
+/* ── 预览区：取景工具行（★ 源站 73×32 @rel(276,554)） ─────────────── */
 .ce-preview-tools {
   position: absolute;
-  left: 276px;
-  top: 554px;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
   display: flex;
   align-items: center;
-  /* ★ 源站实测：两枚按钮的间隙是 **9px**（半身 rel 564 ⟹ 全身 rel 605；
-     ⟹ 容器实宽 73 = 32 + 9 + 32，与源站容器的 73px 一致）
-     ⚠️ 之前误按「紧邻 gap 0」实现 ⟹ 全身落在 rel 596（差 9px）⟹ 本批改正 */
-  gap: 9px;
+  /* ★ 源站是 `gap-1` ⟹ ⟹ **4px**
+     ⟹ ⟹ ★ clone 之前的 `gap: 9px` 是**「凑出 73 宽」的假 gap**
+     ⟹ ⟹ 源站的 73 = 32 + 4 + **1(分隔线)** + 4 + 32 */
+  gap: 4px;
   height: 32px;
   padding: 0;
-  border-radius: 8px;
-  background: rgba(20, 20, 20, 0.72);
+  z-index: 20;
+  /* ★ 源站这一层**透明**（bg rgba(0,0,0,0)）⟹ ⟹ ★ clone 之前的
+     `background: rgba(20,20,20,0.72)` 是**既存偏差** ⟹ ⟹ 本批删掉 */
 }
-.ce-preview-tools .ce-tool { position: static; background: transparent; }
-.ce-preview-tools .ce-tool.is-on { background: rgba(255, 255, 255, 0.12); }
+/* ★ 源站两枚按钮之间有一枚 **1×12** 的分隔线
+   （`bg-canvas-controls-border h-3 w-px` ⟹ ⟹ 白 8%）⟹ ⟹ ★ clone 之前**完全没有** */
+.ce-preview-sep {
+  width: 1px;
+  height: 12px;
+  background: rgba(255, 255, 255, 0.08);
+}
 
 /* ── 右栏：页签 ＋ 皮肤面板 ─────────────────────────────────────── */
 /* ★★ Batch 846 修正（★ 源站实测，batch 846 raw）：

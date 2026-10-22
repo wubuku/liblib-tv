@@ -1950,25 +1950,62 @@ const OUTFIT_SCROLL_HEIGHT = OUTFIT_CONTENT_BOTTOM + 80;
             </button>
           </aside>
 
-          <main className="ce-preview">
-            <div className="ce-figure">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={imageUrl} alt={name} />
+          <main className="ce-preview" data-character-editor-preview>
+            {/* ★★ Batch 850：预览区（中列）**逐项照抄源站实测**
+                ★ raw：`docs/research/liblib-canvas-batch850-2026-10-01/raw/source-850-*.json`
+                ★ 源站中列是**四层图 ＋ 三层遮罩 ＋ 一行工具**
+                ⟹ ⟹ clone 之前只有「一个 img ＋ 一层 2 段渐变 ＋ 两枚按钮」⟹ ⟹ 本批改正。 */}
+            <div className="ce-figure" data-character-editor-figure>
+              <div className="ce-figure-inner">
+                {/* ★ 变换层：★ 源站**默认就是「半身」**
+                    ⟹ ⟹ 半身 = matrix(3.84422,0,0,3.84422,-665.652,-173.149)，原点 0 0 */}
+                <div
+                  className={`ce-figure-zoom is-${framing}`}
+                  data-character-editor-figure-zoom
+                >
+                  {/* ★ 图盒 425×542（★ 源站的图**不是** 467×550） */}
+                  <div className="ce-figure-img" data-character-editor-figure-img>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={imageUrl} alt={name} />
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="ce-preview-fade" />
-            <div className="ce-preview-tools">
+
+            {/* ★ 底部遮罩：★ 源站是**三层**（外层 196 高 ＋ blur 228 高 ＋ 渐变 196 高）
+                ⟹ ⟹ ★ 全身态整块**淡出**（opacity 0），半身态在（opacity 1） */}
+            <div
+              className={`ce-preview-mask is-${framing}`}
+              data-character-editor-preview-mask
+            >
+              <div
+                className="ce-preview-mask-blur"
+                data-character-editor-preview-mask-blur
+              />
+              <div
+                className="ce-preview-mask-fade"
+                data-character-editor-preview-mask-fade
+              />
+            </div>
+
+            {/* ★ 取景工具行：源站 73×32 @rel(276,554)
+                ⟹ ⟹ ★ 两枚按钮之间有**一枚 1×12 的分隔线** ⟹ ⟹ 容器本身**透明** */}
+            <div className="ce-preview-tools" data-character-editor-preview-tools>
               <button
                 type="button"
                 className={`ce-tool${framing === "half" ? " is-on" : ""}`}
                 aria-label="半身"
+                data-character-editor-framing="half"
                 onClick={() => setFraming("half")}
               >
                 <User size={18} />
               </button>
+              <span className="ce-preview-sep" data-character-editor-preview-sep />
               <button
                 type="button"
                 className={`ce-tool${framing === "full" ? " is-on" : ""}`}
                 aria-label="全身"
+                data-character-editor-framing="full"
                 onClick={() => setFraming("full")}
               >
                 <Sparkles size={18} />

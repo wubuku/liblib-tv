@@ -1,0 +1,55 @@
+{
+ "★阶段": [
+  {
+   "★阶段": "default",
+   "★积分_点前": null,
+   "★积分_点后": null,
+   "★积分是否变化": false,
+   "★截图": "raw/source-850-default.png",
+   "★是否找到中列": true,
+   "★中列盒": [
+    649,
+    231,
+    624,
+    602
+   ],
+   "★中列class": "relative h-[602px] w-[624px] shrink-0 overflow-hidden",
+   "★取景按钮数": 2
+  },
+  {
+   "★阶段": "half",
+   "★点击": "clicked",
+   "★积分_点前": null,
+   "★积分_点后": null,
+   "★积分是否变化": false,
+   "★截图": "raw/source-850-half.png",
+   "★是否找到中列": true,
+   "★中列盒": [
+    649,
+    231,
+    624,
+    602
+   ],
+   "★中列class": "relative h-[602px] w-[624px] shrink-0 overflow-hidden",
+   "★取景按钮数": 2
+  },
+  {
+   "★阶段": "full",
+   "★点击": "clicked",
+   "★积分_点前": null,
+   "★积分_点后": null,
+   "★积分是否变化": false,
+   "★截图": "raw/source-850-full.png",
+   "★是否找到中列": true,
+   "★中列盒": [
+    649,
+    231,
+    624,
+    602
+   ],
+   "★中列class": "relative h-[602px] w-[624px] shrink-0 overflow-hidden",
+   "★取景按钮数": 2
+  }
+ ],
+ "★是否点到编辑角色": true
+}
