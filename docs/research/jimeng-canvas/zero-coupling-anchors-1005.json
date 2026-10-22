@@ -6016,14 +6016,14 @@
    "var": "_p1015",
    "anchor": "\"crashed\"",
    "occurrences": 5,
-   "min_line_gap": 131
+   "min_line_gap": 162
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1015",
    "anchor": "\"vanished\"",
    "occurrences": 4,
-   "min_line_gap": 349
+   "min_line_gap": 390
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6268,7 +6268,7 @@
    "var": "_p1027",
    "anchor": "\"P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027\"",
    "occurrences": 2,
-   "min_line_gap": 354
+   "min_line_gap": 382
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6282,42 +6282,42 @@
    "var": "_p1027",
    "anchor": "\"P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027\"",
    "occurrences": 2,
-   "min_line_gap": 354
+   "min_line_gap": 382
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1027",
    "anchor": "\"P2_every_touched_probe_was_re_run_and_reported_1027\"",
    "occurrences": 2,
-   "min_line_gap": 354
+   "min_line_gap": 382
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1027",
    "anchor": "\"P4_touched_list_is_recorded_for_every_golden_owning_probe_1027\"",
    "occurrences": 2,
-   "min_line_gap": 354
+   "min_line_gap": 382
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1027",
    "anchor": "\"P5_one_run_per_golden_no_double_counting_1027\"",
    "occurrences": 2,
-   "min_line_gap": 354
+   "min_line_gap": 382
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1027",
    "anchor": "\"P6_scope_declared_1027\"",
    "occurrences": 2,
-   "min_line_gap": 354
+   "min_line_gap": 382
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1027",
    "anchor": "\"P7_offline_1027\"",
    "occurrences": 2,
-   "min_line_gap": 354
+   "min_line_gap": 382
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6394,7 +6394,7 @@
    "var": "_p1015",
    "anchor": "p_summary_readable",
    "occurrences": 4,
-   "min_line_gap": 111
+   "min_line_gap": 116
   },
   {
    "class": "I-标识符(多处引用)",

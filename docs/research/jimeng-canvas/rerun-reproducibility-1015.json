@@ -5,9 +5,9 @@
  "rule2": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **完备性用加法验的时候，两边不许同源 —— 分母的完备性才是命门**",
  "rule3": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「探针跑成功了」不等于「产物被刷新了」—— 只能靠重跑后比对字节、或看 mtime 变没变来判，不许看退出码**",
  "pen_is_the_book": {
-  "n_zero_coupling_head": 916,
+  "n_zero_coupling_head": 918,
   "n_zero_coupling_now": 918,
-  "n_positive_present_head": 7016,
+  "n_positive_present_head": 7033,
   "n_positive_present_now": 7033,
   "n_audit_2015_lines": 2165,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **被测的账和记账的笔是同一份文件时，往笔上多写一句，被测的那些账就跟着重算** —— 1005 普查的是 `_ausrc`，而本批往 audit 里塞了判据 ⇒ ⇒ ⇒ ⇒ ⇒ 所以它的读数必然跟着变"
@@ -16,13 +16,11 @@
   "n_books": 30,
   "n_books_with_readable_p_summary": 29,
   "n_books_without_readable_p_summary": 1,
-  "n_books_rc1_judgement_red": 1,
+  "n_books_rc1_judgement_red": 0,
   "n_books_rc2_instrument_crashed": 0,
-  "n_books_self_reporting_false": 1,
-  "n_criteria_self_reported_false": 1,
-  "books_self_reporting_false": [
-   "zero-coupling-anchors-1005.json"
-  ],
+  "n_books_self_reporting_false": 0,
+  "n_criteria_self_reported_false": 0,
+  "books_self_reporting_false": [],
   "detector_selftest_ok": true,
   "detector_selftest_n_cases": 6,
   "detector_selftest": [
@@ -75,9 +73,7 @@
     "ok": true
    }
   ],
-  "books_rc1_judgement_red": [
-   "zero-coupling-anchors-1005.json"
-  ],
+  "books_rc1_judgement_red": [],
   "books_rc2_instrument_crashed": [],
   "per_book": [
    {
@@ -285,9 +281,9 @@
    },
    {
     "golden": "zero-coupling-anchors-1005.json",
-    "rc": 1,
-    "state": "self_red",
-    "n_self_reported_false": 1,
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
     "p_summary_readable": true
    }
   ],
@@ -503,12 +499,17 @@
   ],
   "five_states": "⭐⭐⭐⭐⭐ **红账现在是五档**：**① 红（读到了、且有 False）② 不可判定（产物拿到了、而它里面没有逐条判据 ⇒ 这一档必须恒为 0）③ 不适用（普查型仪器：它本来就没有一条一条的判据）④ 绿（读到了、且没有 False）** —— 而外加一条**门自己的账**：**⑤ 产物压根没被找到（必须恒为 0）⑤b 路径有了而文件读不出来（必须恒为 0）** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ② 与 ③ 必须分开、而 ⑤ 与 ⑤b 又是另一件事** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 「产物没找到」与「产物里没有判据」的区别**：前者是**产物都没拿到**、后者是**产物拿到了、而它里面没有那条判据** ⇒ ⇒ ⇒⇒ **⇒ 而 ⑤ 今天曾经有 8 本 —— 原因不是书没写判据、而是 1015 的产物路径正则太窄** ⇒ ⇒ **⇒ ⇒ 「红」的是门（正则窄）、不是数据（书没写判据）** ⇒ ⇒ ⇒⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ③「本来就没有」的那一档的前提是「产物拿到了」—— ⇒ ⇒ 不许把「产物没拿到」的书混进 ③ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 所以四档 + 两条「门自己的账」构成一个**划分**（不重不漏）** ⇒ ⇒ ⇒⇒ **⇒ 今天：读得到 17 本（打印行 9 / 产物 8）、读不到 0、本来就没有 13、产物没找到 0（**必须为 0**）、读不出来 0（**必须为 0**）**",
   "four_states": "⭐⭐⭐⭐⭐ **红账现在是四档**：**① 红（读到了、且有 False）② 不可判定（它本来有逐条判据、而我读不出来 ⇒ 这一档必须恒为 0）③ 不适用（普查型仪器：它本来就没有一条一条的判据 ⇒ 对它「逐条点名」是不适用、不是「缺」）④ 绿（读到了、且没有 False）** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ② 与 ③ 必须分开 —— 混在一栏 ⇒ 「读不到」就永远查不出来** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 1032-②i 还多认了一个来源：产物里的逐条判据** ⇒ ⇒ **⇒ 「判据逐条」那一行不是唯一的来源 ⇒ ⇒ 而「来源」必须记进产物** ⇒ ⇒ ⇒⇒ **⇒ 今天：读得到 17 本（其中打印行 9 本 / 产物 8 本）、读不到 0 本（**必须为 0**）、本来就没有 13 本**",
-  "criteria_red_by_book": {
-   "zero-coupling-anchors-1005.json": [
-    "P3_hold_1005"
-   ]
+  "stale_vs_committed_1015": {
+   "n_books_compared": 30,
+   "n_books_unknown": 0,
+   "n_books_snapshot_unknown": 0,
+   "n_stale": 0,
+   "stale": [],
+   "what_it_is_not": "⇒ ⇒ **这不是四态里的任何一态**⇒ ⇒ **⇒ 四态答「可复现吗」；这一栏答「还新鲜吗」**⇒ ⇒ **⇒ 而「提交态取不到」单列成一栏**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 「取不到」不许混进「不新鲜」**",
+   "rule": "⇒ ⇒ **这一栏与 1027 报的是同一件事**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 区别是：1027 只跑「被本次变更触及的」那些、而这里是全量**"
   },
-  "n_criteria_red_named": 1,
+  "criteria_red_by_book": {},
+  "n_criteria_red_named": 0,
   "criteria_detector_selftest_ok": true,
   "criteria_detector_selftest_n_cases": 5,
   "criteria_detector_selftest": [
@@ -941,35 +942,25 @@
    {
     "golden": "zero-coupling-anchors-1005.json",
     "criteria_detail_readable": true,
-    "n_criteria_red": 1,
+    "n_criteria_red": 0,
     "n_criteria_not_applicable": 0,
     "artifact_readable": true,
     "ledger_published": true,
     "ledger_n_kinds": 5,
     "ledger_n_criteria": 5,
     "ledger_complete": true,
-    "criteria_red_with_kind": {
-     "P3_hold_1005": "failure"
-    },
+    "criteria_red_with_kind": {},
     "n_criteria_red_kind_unknown": 0
    }
   ],
-  "criteria_red_with_kind": {
-   "zero-coupling-anchors-1005.json": {
-    "P3_hold_1005": "failure"
-   }
-  },
-  "n_criteria_red_failure": 1,
+  "criteria_red_with_kind": {},
+  "n_criteria_red_failure": 0,
   "n_criteria_red_conclusion": 0,
   "n_criteria_red_kind_unknown": 0,
-  "red_needs_fix": [
-   "P3_hold_1005"
-  ],
+  "red_needs_fix": [],
   "red_needs_reread": [],
   "red_kind_unknown": [],
-  "books_with_red_needs_fix": [
-   "zero-coupling-anchors-1005.json"
-  ],
+  "books_with_red_needs_fix": [],
   "books_with_red_needs_reread": [],
   "n_criteria_not_applicable": 0,
   "books_with_not_applicable_criteria": [],
@@ -1217,41 +1208,31 @@
  "rounds": [
   {
    "round": 1,
-   "n_drifted": 8,
+   "n_drifted": 6,
    "drifted": [
-    "assertion-vs-behavior-1018.json",
     "baseline-host-misuse-1016.json",
     "criterion-direction-1025.json",
     "criterion-effectiveness-1026.json",
     "empty-ambiguity-1014.json",
-    "global-detection-1012.json",
-    "occurrence-ledger-1013.json",
-    "replica-coverage-1017.json"
+    "replica-coverage-1017.json",
+    "zero-coupling-anchors-1005.json"
    ]
   },
   {
    "round": 2,
-   "n_drifted": 2,
-   "drifted": [
-    "empty-ambiguity-1014.json",
-    "golden-freshness-1008.json"
-   ]
-  },
-  {
-   "round": 3,
    "n_drifted": 1,
    "drifted": [
     "empty-ambiguity-1014.json"
    ]
   },
   {
-   "round": 4,
+   "round": 3,
    "n_drifted": 0,
    "drifted": []
   }
  ],
  "converged": true,
- "n_rounds": 4,
+ "n_rounds": 3,
  "max_rounds": 6,
  "fixed_point_rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **整轮重跑直到某一轮零漂移为止 —— 因为 1015 在整轮结束后才写自己那本，1014 在整轮里读到的永远是 1015 的上一版 ⇒ 每本账都落后它上游一轮**",
  "books": [
@@ -1665,8 +1646,8 @@
    "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 155082,
-   "n_bytes_fresh": 155082,
+   "n_bytes": 155472,
+   "n_bytes_fresh": 155472,
    "state": "reproduced",
    "tail": [
     "P1..P10 = [True, True, True, True, True, True, True, True, True, True]",
@@ -2482,34 +2463,31 @@
   {
    "golden": "zero-coupling-anchors-1005.json",
    "probe": "scripts/jimeng_probe1005_zero_coupling_census.py",
-   "rc": 1,
+   "rc": 0,
    "wrote_golden": true,
    "n_bytes": 140785,
    "n_bytes_fresh": 140785,
-   "state": "self_red",
+   "state": "reproduced",
    "tail": [
-    "判据逐条 = P1_hold_1005=True | P2_hold_1005=True | P3_hold_1005=False | P4_hold_1005=True | P5_hold_1005=True",
+    "判据逐条 = P1_hold_1005=True | P2_hold_1005=True | P3_hold_1005=True | P4_hold_1005=True | P5_hold_1005=True",
     "PROBE_1005_DONE -> /tmp/b1005-zero-coupling-census.json"
    ],
-   "n_self_reported_false": 1,
+   "n_self_reported_false": 0,
    "p_summary_readable": true,
    "self_report_detail": [
-    "p_list",
-    "3"
+    "p_list"
    ],
    "criteria_detail_source": "print_line",
    "criteria_detail_readable": true,
    "criteria_detail": {
     "P1_hold_1005": "True",
     "P2_hold_1005": "True",
-    "P3_hold_1005": "False",
+    "P3_hold_1005": "True",
     "P4_hold_1005": "True",
     "P5_hold_1005": "True"
    },
-   "criteria_red": [
-    "P3_hold_1005"
-   ],
-   "n_criteria_red": 1,
+   "criteria_red": [],
+   "n_criteria_red": 0,
    "criteria_not_applicable": [],
    "n_criteria_not_applicable": 0,
    "artifact_path_found": true,
@@ -2521,16 +2499,14 @@
    "ledger_n_criteria": 5,
    "ledger_n_criteria_keys": 5,
    "ledger_complete": true,
-   "criteria_red_with_kind": {
-    "P3_hold_1005": "failure"
-   },
-   "n_criteria_red_kind_known": 1,
+   "criteria_red_with_kind": {},
+   "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0
   }
  ],
  "totals": {
   "n_books": 30,
-  "reproduced": 29,
+  "reproduced": 30,
   "drifted": 0,
   "crashed": 0,
   "vanished": 0,
@@ -2595,8 +2571,8 @@
   "chinese_numerals_out_of_scope": "⭐⭐⭐⭐⭐ `_NUMRE` 只认阿拉伯数字 ⇒ 「五条」与「5 条」在检查里长得一样 ⇒ 本批判据里就有一处「三条」是错的而 P6 全程报绿",
   "zero_in_sources": true,
   "one_in_sources": true,
-  "zero_entered_via": "第 4 轮里漂移的本数",
-  "one_entered_via": "第 3 轮里漂移的本数",
+  "zero_entered_via": "第 3 轮里漂移的本数",
+  "one_entered_via": "第 2 轮里漂移的本数",
   "what_is_actually_enforced": "⭐ 判据里的每个数要么等于某个**实测值**、要么不在出处表里",
   "what_is_not_enforced": "⭐⭐⭐⭐⭐ 「0 和 1 也必须有出处」—— 出处表按值索引，而任一实测读数为 0/1 就会把 0/1 登记进去 ⇒ 判据里别处的 0/1 一律通过",
   "same_hole_in_1013": "1013 的 `_allowed |= set(\"0123456789\")` —— 明着开了同一个洞",
@@ -2608,15 +2584,14 @@
  },
  "p8_invariants_invisible_to_1014": {
   "census_n_goldens": 30,
-  "census_n_ambiguous": 401,
+  "census_n_ambiguous": 402,
   "census_n_self_provable": 10,
-  "self_ambiguous": 176,
+  "self_ambiguous": 177,
   "self_ambiguous_paths": [
-   "/red_ledger/books_self_reporting_false",
    "/red_ledger/detector_selftest/[5]/want_n",
    "/red_ledger/detector_selftest/[5]/got_n",
-   "/red_ledger/books_rc1_judgement_red",
    "/red_ledger/books_rc2_instrument_crashed",
+   "/red_ledger/per_book/[13]/n_self_reported_false",
    "/red_ledger/books_undetermined",
    "/red_ledger/books_artifact_not_found",
    "/red_ledger/books_artifact_unreadable",
@@ -2667,26 +2642,25 @@
    "/red_ledger/ledger_rows/[8]/ledger_complete",
    "/red_ledger/ledger_rows/[11]/ledger_n_criteria",
    "/red_ledger/ledger_rows/[11]/ledger_complete",
-   "/red_ledger/ledger_rows/[16]/ledger_n_criteria",
-   "/red_ledger/ledger_rows/[16]/ledger_complete",
+   "/red_ledger/ledger_rows/[13]/ledger_n_criteria",
    "/red_ledger/ledger_rows/[17]/ledger_n_criteria",
    "/red_ledger/ledger_rows/[17]/ledger_complete",
    "/red_ledger/ledger_rows/[18]/ledger_n_criteria",
    "/red_ledger/ledger_rows/[18]/ledger_complete",
-   "/red_ledger/ledger_rows/[23]/ledger_n_criteria",
-   "/red_ledger/ledger_rows/[23]/ledger_complete",
+   "/red_ledger/ledger_rows/[19]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[19]/ledger_complete",
    "/red_ledger/ledger_rows/[24]/ledger_n_criteria",
    "/red_ledger/ledger_rows/[24]/ledger_complete",
-   "/red_ledger/ledger_rows/[26]/ledger_n_criteria",
-   "/red_ledger/ledger_rows/[26]/ledger_complete",
-   "/red_ledger/red_needs_fix",
+   "/red_ledger/ledger_rows/[25]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[25]/ledger_complete",
+   "/red_ledger/ledger_rows/[27]/ledger_n_criteria",
+   "/red_ledger/ledger_rows/[27]/ledger_complete",
    "/red_ledger/red_needs_reread",
    "/red_ledger/red_kind_unknown",
-   "/red_ledger/books_with_red_needs_fix",
    "/red_ledger/books_with_red_needs_reread",
    "/red_ledger/books_with_not_applicable_criteria",
    "/discovery/unlinked",
-   "/rounds/[2]/drifted",
+   "/rounds/[3]/drifted",
    "/books/[0]/criteria_detail_source",
    "/books/[0]/criteria_red",
    "/books/[0]/criteria_not_applicable",
@@ -2734,17 +2708,16 @@
    "/books/[11]/ledger_complete",
    "/books/[12]/criteria_red",
    "/books/[12]/criteria_not_applicable",
+   "/books/[13]/n_self_reported_false",
    "/books/[13]/criteria_red",
    "/books/[13]/criteria_not_applicable",
+   "/books/[13]/ledger_n_criteria",
    "/books/[14]/criteria_red",
    "/books/[14]/criteria_not_applicable",
    "/books/[15]/criteria_red",
    "/books/[15]/criteria_not_applicable",
-   "/books/[16]/criteria_detail_source",
    "/books/[16]/criteria_red",
    "/books/[16]/criteria_not_applicable",
-   "/books/[16]/ledger_n_criteria",
-   "/books/[16]/ledger_complete",
    "/books/[17]/criteria_detail_source",
    "/books/[17]/criteria_red",
    "/books/[17]/criteria_not_applicable",
@@ -2755,35 +2728,39 @@
    "/books/[18]/criteria_not_applicable",
    "/books/[18]/ledger_n_criteria",
    "/books/[18]/ledger_complete",
+   "/books/[19]/criteria_detail_source",
    "/books/[19]/criteria_red",
    "/books/[19]/criteria_not_applicable",
+   "/books/[19]/ledger_n_criteria",
+   "/books/[19]/ledger_complete",
    "/books/[20]/criteria_red",
    "/books/[20]/criteria_not_applicable",
    "/books/[21]/criteria_red",
    "/books/[21]/criteria_not_applicable",
    "/books/[22]/criteria_red",
    "/books/[22]/criteria_not_applicable",
-   "/books/[23]/criteria_detail_source",
    "/books/[23]/criteria_red",
    "/books/[23]/criteria_not_applicable",
-   "/books/[23]/ledger_n_criteria",
-   "/books/[23]/ledger_complete",
    "/books/[24]/criteria_detail_source",
    "/books/[24]/criteria_red",
    "/books/[24]/criteria_not_applicable",
    "/books/[24]/ledger_n_criteria",
    "/books/[24]/ledger_complete",
+   "/books/[25]/criteria_detail_source",
    "/books/[25]/criteria_red",
    "/books/[25]/criteria_not_applicable",
-   "/books/[26]/criteria_detail_source",
+   "/books/[25]/ledger_n_criteria",
+   "/books/[25]/ledger_complete",
    "/books/[26]/criteria_red",
    "/books/[26]/criteria_not_applicable",
-   "/books/[26]/ledger_n_criteria",
-   "/books/[26]/ledger_complete",
+   "/books/[27]/criteria_detail_source",
    "/books/[27]/criteria_red",
    "/books/[27]/criteria_not_applicable",
+   "/books/[27]/ledger_n_criteria",
+   "/books/[27]/ledger_complete",
    "/books/[28]/criteria_red",
    "/books/[28]/criteria_not_applicable",
+   "/books/[29]/criteria_not_applicable",
    "/diff_shape/drifted_books",
    "/diff_shape/paths_touched",
    "/empty_list_invariants/tail_is_empty_iff_probe_printed_nothing",
@@ -2792,14 +2769,14 @@
   "n_invariants_declared_in_artifact": 4,
   "n_invariables_1014_cannot_see": 1,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **产物里写着不变式 ≠ 普查看得见不变式** —— 1014 的 `INVARIANTS` 是一张硬编码表，它不读产物里的 `empty_list_invariants`",
-  "p8_saw_artifact_with_n_rounds": 3,
-  "p8_this_artifact_has_n_rounds": 4,
-  "p8_reading_lag_rounds": 1,
+  "p8_saw_artifact_with_n_rounds": 4,
+  "p8_this_artifact_has_n_rounds": 3,
+  "p8_reading_lag_rounds": -1,
   "p8_lag_is_structural": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这不是 bug、是没关严** —— 要把这条读数追平，就得「写完产物再跑一次 1014」，而那会改写 1014 那本账 ⇒ ⇒ ⇒ 又触发新一轮 ⇒ ⇒ ⇒ ⇒ **⇒ 所以只有把它记成一个读数，才不至于让产物自己和自己矛盾**"
  },
  "number_sources": {
   "211": "1015 提交时（sha `2b52f492`）实测的通道 B 探针数 —— 此后新增探针会让它变大，而**出处的含义是「那一刻的实测读数」**，不是白名单",
-  "2": "第 2 轮里漂移的本数",
+  "2": "第 2 轮的轮号",
   "3": "第 3 轮的轮号",
   "690": "1015 提交时（sha `2b52f492`）1005 的 `n_zero_coupling` —— 往 audit 里写判据就会把它顶高",
   "10": "1014 普查口径下「可自证」的总数",
@@ -2808,20 +2785,17 @@
   "32": "通道 A：docs/research/jimeng-canvas/*.json 的文件数",
   "242": "通道 B：scripts/jimeng_probe*.py 的文件数",
   "30": "1014 普查看到的 golden 本数（已排除它自己那本）",
-  "1": "第 3 轮里漂移的本数",
-  "29": "四态里 state == reproduced 的计数",
-  "0": "第 4 轮里漂移的本数",
+  "1": "第 2 轮里漂移的本数",
+  "0": "第 3 轮里漂移的本数",
   "210": "通道 B 有探针而通道 A 无对应 golden 的个数",
-  "4": "第 4 轮的轮号",
-  "6": "轮数上限",
+  "6": "第 1 轮里漂移的本数",
   "0/32": "被拒绝认领的比例（分母 = 通道 A）",
   "30/32": "认领到的比例（分母 = 通道 A）",
-  "8": "第 1 轮里漂移的本数",
-  "176": "1014 那台普查判本探针产物「不可自证」的条数",
-  "401": "1014 普查口径下全部账里「不可自证」的总数",
-  "916": "1005 golden 在 git HEAD 上的 `n_zero_coupling`",
+  "8": "第一版探针认领到的本数（仪器故障期，已修）",
+  "177": "1014 那台普查判本探针产物「不可自证」的条数",
+  "4": "本探针在产物里登记的不变式条数",
+  "402": "1014 普查口径下全部账里「不可自证」的总数",
   "918": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
-  "7016": "1005 golden 在 git HEAD 上的 `n_positive_present`",
   "7033": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
   "4/9": "1015 上一版的不动点漂移比例（已挂【1015 改写横幅】，原文保留）",
   "2/9": "曾观测到的一轮漂移比例（分母 = 认领到的本数）",
@@ -2860,9 +2834,8 @@
   "1017": "批号",
   "1018": "批号",
   "1019": "批号",
-  "8/30": "第 1 轮的漂移比例（分母 = 认领到的本数）",
-  "2/30": "第 2 轮的漂移比例（分母 = 认领到的本数）",
-  "1/30": "第 3 轮的漂移比例（分母 = 认领到的本数）",
-  "0/30": "第 4 轮的漂移比例（分母 = 认领到的本数）"
+  "6/30": "第 1 轮的漂移比例（分母 = 认领到的本数）",
+  "1/30": "第 2 轮的漂移比例（分母 = 认领到的本数）",
+  "0/30": "第 3 轮的漂移比例（分母 = 认领到的本数）"
  }
 }
