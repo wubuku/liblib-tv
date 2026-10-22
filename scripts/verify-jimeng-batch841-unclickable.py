@@ -943,10 +943,14 @@ def _p1032h_red_pc():
                      lambda d: d.__setitem__(
                          "books_with_not_applicable_criteria",
                          list(d.get("books_with_not_applicable_criteria") or []) + ["X"]))
+    # ⚠️⚠️⚠️⭐⭐⭐⭐⭐ **这一条阳性对照自己踩过一次坑**：塞进去的那一行原先带
+    #   `n_criteria_not_applicable: 0` ⇒ ⇒ **求和不变、名单也不变 ⇒ ⇒ 判决不会翻红**
+    #   ⇒ ⇒ ⇒⇒ **⇒ 而一个「不翻红」的阳性对照 = 它自己坏了 = 门会误报红**
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ 处置：塞进去的那一行必须带 1**（它要真的破坏「求和 == 计数」）
     _ok = _ok and _m("ledger_rows",
                      lambda d: d.__setitem__(
                          "ledger_rows", list(d.get("ledger_rows") or []) + [
-                             {"golden": "X", "n_criteria_not_applicable": 0}]))
+                             {"golden": "X", "n_criteria_not_applicable": 1}]))
     # ── ② 合成样例：证明「每一条红都必须带 kind」这条**不是恒真** ───────
     _syn = {
         "n_books": 1,
