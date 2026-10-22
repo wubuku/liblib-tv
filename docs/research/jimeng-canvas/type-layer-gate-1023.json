@@ -23,8 +23,8 @@
         "rc": 2,
         "n_errors": 2,
         "first": [
-          "MUT/T1_dir_1_to_0.tsx(167,9): error TS2367: This comparison appears to be unintentional because the types '0 | -1' and '1' have no overlap.",
-          "MUT/T1_dir_1_to_0.tsx(232,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '0 | -1'."
+          "MUT/T1_dir_1_to_0.tsx(173,9): error TS2367: This comparison appears to be unintentional because the types '0 | -1' and '1' have no overlap.",
+          "MUT/T1_dir_1_to_0.tsx(238,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '0 | -1'."
         ],
         "name": "T1_dir_1_to_0",
         "before": "dir: 1 | -1",
@@ -34,8 +34,8 @@
         "rc": 2,
         "n_errors": 2,
         "first": [
-          "MUT/T2_dir_1_to_2.tsx(167,9): error TS2367: This comparison appears to be unintentional because the types '2 | -1' and '1' have no overlap.",
-          "MUT/T2_dir_1_to_2.tsx(232,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '2 | -1'."
+          "MUT/T2_dir_1_to_2.tsx(173,9): error TS2367: This comparison appears to be unintentional because the types '2 | -1' and '1' have no overlap.",
+          "MUT/T2_dir_1_to_2.tsx(238,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '2 | -1'."
         ],
         "name": "T2_dir_1_to_2",
         "before": "dir: 1 | -1",
@@ -45,7 +45,7 @@
         "rc": 2,
         "n_errors": 1,
         "first": [
-          "MUT/T3_neg1_to_0.tsx(232,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '0 | 1'."
+          "MUT/T3_neg1_to_0.tsx(238,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '0 | 1'."
         ],
         "name": "T3_neg1_to_0",
         "before": "dir: 1 | -1",
@@ -55,7 +55,7 @@
         "rc": 2,
         "n_errors": 1,
         "first": [
-          "MUT/T4_neg1_to_2.tsx(232,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '1 | -2'."
+          "MUT/T4_neg1_to_2.tsx(238,31): error TS2345: Argument of type '1 | -1' is not assignable to parameter of type '1 | -2'."
         ],
         "name": "T4_neg1_to_2",
         "before": "dir: 1 | -1",
@@ -65,9 +65,9 @@
         "rc": 2,
         "n_errors": 3,
         "first": [
-          "MUT/T5_nodes_to_string.tsx(168,12): error TS2345: Argument of type 'HTMLElement[]' is not assignable to parameter of type 'string[]'.",
-          "MUT/T5_nodes_to_string.tsx(173,10): error TS2345: Argument of type 'HTMLElement[]' is not assignable to parameter of type 'string[]'.",
-          "MUT/T5_nodes_to_string.tsx(179,14): error TS2339: Property 'setAttribute' does not exist on type 'string'."
+          "MUT/T5_nodes_to_string.tsx(174,12): error TS2345: Argument of type 'HTMLElement[]' is not assignable to parameter of type 'string[]'.",
+          "MUT/T5_nodes_to_string.tsx(179,10): error TS2345: Argument of type 'HTMLElement[]' is not assignable to parameter of type 'string[]'.",
+          "MUT/T5_nodes_to_string.tsx(185,14): error TS2339: Property 'setAttribute' does not exist on type 'string'."
         ],
         "name": "T5_nodes_to_string",
         "before": "nodes: HTMLElement[]",
@@ -77,9 +77,9 @@
         "rc": 2,
         "n_errors": 3,
         "first": [
-          "MUT/T6_keep_to_string.tsx(168,19): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
-          "MUT/T6_keep_to_string.tsx(173,17): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
-          "MUT/T6_keep_to_string.tsx(179,39): error TS2367: This comparison appears to be unintentional because the types 'number' and 'string' have no overlap."
+          "MUT/T6_keep_to_string.tsx(174,19): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
+          "MUT/T6_keep_to_string.tsx(179,17): error TS2345: Argument of type 'number' is not assignable to parameter of type 'string'.",
+          "MUT/T6_keep_to_string.tsx(185,39): error TS2367: This comparison appears to be unintentional because the types 'number' and 'string' have no overlap."
         ],
         "name": "T6_keep_to_string",
         "before": "keep: number",
@@ -132,7 +132,7 @@
     "never_true_claim": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **那句「`npm run check` 是 eslint、不跑 tsc」从来就不成立** —— 初始提交 `check` 就是 `npm run lint && npm run typecheck && npm run build`"
   },
   "the_never_true_premise": {
-    "where": "src/components/jimeng/JimengAudioGenPanel.tsx 第 239 行",
+    "where": "src/components/jimeng/JimengAudioGenPanel.tsx 第 268 行",
     "sentence": "`npm run check` 是 eslint、不跑 tsc",
     "sentence_present_in_source": true,
     "which_criterion_leans_on_it": "`CC.9`（判据正文把那句话整段引了过去）",

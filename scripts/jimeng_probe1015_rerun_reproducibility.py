@@ -275,7 +275,14 @@ DETECTOR_N_CASES = len(_DETECTOR_SELFTEST)
 #   ⇒ ⇒ 而「书级 rc」只能说「这本书红了」、说不出「红的是哪一条」⇒ ⇒
 #   ⇒ ⇒⇒ **⇒ 而「红」和「结论」混在一起时、连「要不要修」都答不出来**
 _CRITERIA_DETAIL_RE = re.compile(r"^判据逐条 = (.*)$", re.M)
-_OUT_PATH_RE = re.compile(r"PROBE_\d+_DONE\s*->\s*(\S+)")
+# ⭐⭐⭐⭐⭐ 1032-②i：**这条正则原来太窄、而窄的那部分让 6 本的产物压根没被找到** ⇒ ⇒
+#   ⇒ ⇒ 原来的写法是 `PROBE_\d+_DONE` ⇒ ⇒ 而册内有一半的书用的是
+#   ⇒ ⇒ ⇒⇒ `PROBE_1032A_CONNECT_DONE` / `PROBE_1032B1_WIRED_DONE` / `PROBE_1032C_NOOP_CONTRACT_DONE`
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ 而「产物没找到」的后果比「读不到判据」还严重：**
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ 那 6 本被误记成「本来就没有逐条判据」⇒ ⇒ ⇒⇒ ⇒ ⇒**
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ 而「红」的是门（正则窄）、不是数据（书没写判据）** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ ⇒ ⇒⇒⇒ **⇒ 「门红先判门错还是数据错」的答案又一次是门错**
+_OUT_PATH_RE = re.compile(r"PROBE_[A-Z0-9_]*_DONE\s*->\s*(\S+)")
 
 
 def _criteria_detail(text):
@@ -364,6 +371,27 @@ def _artifact_path(text):
 
 
 # ⭐⭐⭐⭐⭐ **阳性对照**：新检测器自己必须**能失败** —— 不然「读到 0 条」是恒真
+# ⭐⭐⭐⭐⭐ 1032-②i：**产物路径的那条正则**也得有阳性对照 ⇒ ⇒
+#   ⇒ ⇒ 而它的第一版只认 `PROBE_<数字>_DONE` ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而册内一半的书用的是带后缀的标记 ⇒ ⇒ ⇒⇒ ⇒ ⇒**
+_OUT_PATH_CASES = [
+    ("PROBE_1007_DONE -> /tmp/b1007.json", "/tmp/b1007.json"),
+    # ⭐⭐⭐ 册内真实存在的两种「带后缀」的标记（这正是原来漏掉的那两种）
+    ("PROBE_1032A_CONNECT_DONE -> /tmp/a.json", "/tmp/a.json"),
+    ("PROBE_1032C_NOOP_CONTRACT_DONE -> /tmp/c.json", "/tmp/c.json"),
+    ("PROBE_1013_DONE -> /tmp/x.json", "/tmp/x.json"),
+    # 没有标记 ⇒ 读不到
+    ("P1..P5 = [True]", None),
+    ("", None),
+]
+_OUT_PATH_SELFTEST = []
+for _txt, _want in _OUT_PATH_CASES:
+    _got = _artifact_path(_txt)
+    _OUT_PATH_SELFTEST.append({"input": _txt[:44], "want": _want, "got": _got,
+                                "ok": (_got == _want)})
+OUT_PATH_SELFTEST_OK = all(_c["ok"] for _c in _OUT_PATH_SELFTEST)
+OUT_PATH_N_CASES = len(_OUT_PATH_SELFTEST)
+
 _CRITERIA_DETECTOR_CASES = [
     ("判据逐条 = P1_hold_1005=True | P2_hold_1005=False",
      {"P1_hold_1005": "True", "P2_hold_1005": "False"}),
@@ -580,13 +608,33 @@ BOOKS_NO_DETAIL = sorted(r["golden"] for r in BOOKS
 BOOKS_UNDETERMINED = sorted(
     r["golden"] for r in BOOKS
     if not r.get("criteria_detail_readable")
+    and r.get("artifact_readable")
     and r.get("artifact_has_criteria_dict"))
+# ⭐⭐⭐⭐⭐ 1032-②i：**「本来就没有逐条判据」的前提是「产物拿到了、而它里面没有」** ⇒ ⇒
+#   ⇒ ⇒ 而「产物压根没拿到」的书**不许混进这一档** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒ **⇒ 混进这一档 ⇒ 「产物没拿到」就被伪装成「书没写判据」** ⇒ ⇒ ⇒⇒ ⇒ ⇒
 BOOKS_NO_PER_CRITERIA = sorted(
     r["golden"] for r in BOOKS
     if not r.get("criteria_detail_readable")
+    and r.get("artifact_readable")
     and not r.get("artifact_has_criteria_dict"))
 N_UNDETERMINED = len(BOOKS_UNDETERMINED)
 N_NO_PER_CRITERIA = len(BOOKS_NO_PER_CRITERIA)
+# ⭐⭐⭐⭐⭐ 1032-②i：**「产物压根没被找到」是第五档、而它必须恒为 0** ⇒ ⇒
+#   ⇒ ⇒ 它与「读不到判据」的区别：前者是**产物都没拿到**、后者是**产物拿到了、
+#   ⇒ ⇒ ⇒⇒ 而它里面没有那条判据** ⇒ ⇒ ⇒⇒ ⇒ ⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而这一档今天曾经有 6 本 —— 原因不是书没写判据、是正则太窄** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ ⇒ 处置：放宽正则 ＋ 把它单列 ＋ 用门钉住「它必须为 0」**
+BOOKS_ARTIFACT_NOT_FOUND = sorted(
+    r["golden"] for r in BOOKS if not r.get("artifact_path_found"))
+N_ARTIFACT_NOT_FOUND = len(BOOKS_ARTIFACT_NOT_FOUND)
+# ⭐⭐⭐⭐⭐ 1032-②i：**「路径找到了、而那个文件读不出来」是**另一件事** ⇒ ⇒
+#   ⇒ ⇒ 而它是**两种死法**：文件没落盘 / 落了盘而 JSON 不合法 ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒⇒ **⇒ 而这一档也必须恒为 0** ⇒ ⇒ ⇒⇒ ⇒ ⇒
+BOOKS_ARTIFACT_UNREADABLE = sorted(
+    r["golden"] for r in BOOKS
+    if r.get("artifact_path_found") and not r.get("artifact_readable"))
+N_ARTIFACT_UNREADABLE = len(BOOKS_ARTIFACT_UNREADABLE)
 # ⭐ 来源分布（出处可查 ⇒ 不许默默换来源）
 DETAIL_SOURCE_BY_BOOK = {r["golden"]: r.get("criteria_detail_source")
                          for r in BOOKS}
@@ -669,12 +717,39 @@ RED_LEDGER = {
     "books_undetermined": BOOKS_UNDETERMINED,
     "n_books_no_per_criteria_at_all": N_NO_PER_CRITERIA,
     "books_no_per_criteria_at_all": BOOKS_NO_PER_CRITERIA,
+    # ⭐⭐⭐⭐⭐ 1032-②i：第五档「产物没找到」—— **它必须恒为 0**
+    "n_books_artifact_not_found": N_ARTIFACT_NOT_FOUND,
+    "books_artifact_not_found": BOOKS_ARTIFACT_NOT_FOUND,
+    "n_books_artifact_unreadable": N_ARTIFACT_UNREADABLE,
+    "books_artifact_unreadable": BOOKS_ARTIFACT_UNREADABLE,
+    "out_path_detector_selftest_ok": OUT_PATH_SELFTEST_OK,
+    "out_path_detector_selftest_n_cases": OUT_PATH_N_CASES,
+    "out_path_detector_selftest": _OUT_PATH_SELFTEST,
     "detail_source_by_book": DETAIL_SOURCE_BY_BOOK,
     "n_detail_from_print_line": N_DETAIL_FROM_PRINT,
     "n_detail_from_artifact": N_DETAIL_FROM_ARTIFACT,
     "artifact_detector_selftest_ok": ARTIFACT_DETECTOR_SELFTEST_OK,
     "artifact_detector_selftest_n_cases": ARTIFACT_DETECTOR_N_CASES,
     "artifact_detector_selftest": _ARTIFACT_DETECTOR_SELFTEST,
+    "five_states": (
+        "⭐⭐⭐⭐⭐ **红账现在是五档**："
+        "**① 红（读到了、且有 False）② 不可判定（产物拿到了、而它里面没有逐条判据 ⇒ "
+        "这一档必须恒为 0）③ 不适用（普查型仪器：它本来就没有一条一条的判据）"
+        "④ 绿（读到了、且没有 False）** —— 而外加一条**门自己的账**："
+        "**⑤ 产物压根没被找到（必须恒为 0）⑤b 路径有了而文件读不出来（必须恒为 0）** ⇒ ⇒ "
+        "⭐⭐⭐⭐⭐ **⇒ 而 ② 与 ③ 必须分开、而 ⑤ 与 ⑤b 又是另一件事** ⇒ ⇒ "
+        "⭐⭐⭐⭐⭐ **⇒ 「产物没找到」与「产物里没有判据」的区别**：前者是**产物都没拿到**、"
+        "后者是**产物拿到了、而它里面没有那条判据** ⇒ ⇒ ⇒⇒ "
+        "**⇒ 而 ⑤ 今天曾经有 8 本 —— 原因不是书没写判据、而是 1015 的产物路径正则太窄** ⇒ ⇒ "
+        "**⇒ ⇒ 「红」的是门（正则窄）、不是数据（书没写判据）** ⇒ ⇒ ⇒⇒ "
+        "⭐⭐⭐⭐⭐ **⇒ 而 ③「本来就没有」的那一档的前提是「产物拿到了」—— "
+        "⇒ ⇒ 不许把「产物没拿到」的书混进 ③ ⇒ ⇒ ⇒⇒ "
+        "**⇒ ⇒ 所以四档 + 两条「门自己的账」构成一个**划分**（不重不漏）** ⇒ ⇒ ⇒⇒ "
+        "**⇒ 今天：读得到 %d 本（打印行 %d / 产物 %d）、读不到 %d、"
+        "本来就没有 %d、产物没找到 %d（**必须为 0**）、读不出来 %d（**必须为 0**）**"
+        % (N_WITH_DETAIL, N_DETAIL_FROM_PRINT, N_DETAIL_FROM_ARTIFACT,
+           N_UNDETERMINED, N_NO_PER_CRITERIA, N_ARTIFACT_NOT_FOUND,
+           N_ARTIFACT_UNREADABLE)),
     "four_states": (
         "⭐⭐⭐⭐⭐ **红账现在是四档**："
         "**① 红（读到了、且有 False）② 不可判定（它本来有逐条判据、而我读不出来 ⇒ "
