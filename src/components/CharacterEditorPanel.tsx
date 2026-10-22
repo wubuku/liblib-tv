@@ -10,6 +10,7 @@ import {
   Music,
   Palette,
   PersonStanding,
+  Plus,
   Redo2,
   Shirt,
   Smile,
@@ -235,6 +236,48 @@ const MAKEUP_CATEGORIES: { id: string; label: string; cards: string[] }[] = [
   { id: "gaoguang", label: "高光", cards: ["眼下提亮", "丰润", "平整", "盈润", "丰盈", "笔挺", "透亮", "水光", "小灯泡"] },
 ];
 
+// ★★ Batch 844：左列第二段「脸部 & 身体特征」的**纹身 & 疤痕**卡
+//   （源站**只读**实测；raw 入库在
+//    `docs/research/liblib-canvas-batch844-2026-10-01/raw/source-844-traits.json`）
+//
+// ★★ **这一段的结构**（源站实测，**不是**「一列控件」）：
+//   · 右栏**没有标题行** ⟹ ⟹ 右栏**第一层就是滚动区**（`pt-3`）
+//     ⟹ ⟹ 内容起点比「脸部精修」段**高 48px**（★ 由两批 raw 机械算出 ⟹ ⟹ 不是手打常数）
+//   · H3「纹身 & 疤痕」240×22（**14px／400／纯白**）
+//     ⟹ ⟹ 与眉眼页的 H3（13px／500／白 30%）**不是**一个样式 ⟹ ⟹ 单开一个类
+//   · 网格 3 列 × 2 行（列距 6、行距 8）⟹ ⟹ 6 张 **76×54** 的卡
+//     └ 缩略图 **76×32 的圆形**（`rounded-full`，白 5% 底 ＋ 白 8% 边）
+//       ⟹ ⟹ 与妆造页的 76×76 **方形**缩略图**不是**一回事
+//     └ 名字 11px／16px（`px-1` ⟹ 左右各 4px ⟹ 「痣」19px、「全脸雀斑」52px）
+//     └ 第 6 张「自定义」**没有图** ⟹ ⟹ 是一枚 16×16 的图标
+//       ⟹ ⟹ 且它**没有** `aria-pressed`（前 5 张都是 `aria-pressed="false"`）
+//
+// ★ **缩略图用的是源站 CDN 的真实贴纸图**（★ 与 `VideoGenerationPanel` 同一做法）
+//   ⟹ ⟹ 那是**引用**不是复刻 ⟹ ⟹ 不声称这些资产归本仓库所有。
+const TRAIT_CARDS: { name: string; img: string | null }[] = [
+  {
+    name: "痣",
+    img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/features/sticker_mole.png",
+  },
+  {
+    name: "疤痕_深",
+    img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/features/sticker_scar_1.png",
+  },
+  {
+    name: "疤痕_浅",
+    img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/features/sticker_scar_2.png",
+  },
+  {
+    name: "全脸雀斑",
+    img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/features/sticker_facefreckles.png",
+  },
+  {
+    name: "脸颊雀斑",
+    img: "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/features/sticker_cheekfreckles.png",
+  },
+  { name: "自定义", img: null },
+];
+
 // ★ 一页右栏的**块序列**（绝对定位；top 相对滚动区内容起点）
 type PanelBlock =
   | { kind: "h3"; text: string; top: number }
@@ -281,12 +324,10 @@ const EMPTY_NOTE: Record<string, string> = {};
 // ★★ Batch 843：左列**其余四段**的空态说明（**逐段**写）
 //   ★ 源站四段的结构**各不相同**（batch 841 raw 机器提取）⟹ ⟹ 一句通用文案就是**假陈述**
 //   ★ 措辞里的每个数字/条目名都来自 raw ⟹ ⟹ 不手打不存在的结构
+// ★★ Batch 844 起：**「脸部 & 身体特征」段已实现**（纹身 & 疤痕 ＋ 6 张贴纸卡）
+//   ⟹ ⟹ 它**不再**走这条路 ⟹ ⟹ 那条说明（写着「属后续批次」）**已是假陈述** ⟹ ⟹ **删掉**。
+// ★ 措辞里的每个数字/条目名都来自 raw ⟹ ⟹ 不手打不存在的结构
 const SEGMENT_NOTE: Record<string, string> = {
-  traits:
-    "「脸部 & 身体特征」这一段的控件 **已实测**（源站 raw 入库在 batch 841）：" +
-    "**H3「纹身 & 疤痕」＋ 6 张 76×54 的缩略图卡**（痣／疤痕_深／疤痕_浅／" +
-    "全脸雀斑／脸颊雀斑／自定义，3 列 × 2 行）⟹ ⟹ 属后续批次 ⟹ ⟹ " +
-    "这里不编造控件，只如实说明。",
   body:
     "「身材塑形」这一段的控件 **已实测**（源站 raw 入库在 batch 841）：" +
     "**「丰胸」数值 ＋ 17 条滑杆**（AI 增高／驼背／长腿／直角肩／小头／瘦身／" +
@@ -346,6 +387,12 @@ export function CharacterEditorPanel({
   //   ★ 未实测：点过一张卡之后**切走再切回**是否仍保持选中 ⟹ ⟹ 源站那趟只点了分类 chip
   //   ⟹ ⟹ 这里按「每分类各存一份」实现 ⟹ ⟹ 但那一条**不声称**与源站一致。
   const [makeupSel, setMakeupSel] = useState<Record<string, string>>({});
+  // ★★ Batch 844：纹身 & 疤痕卡的**选中态**（源站实测：六张卡的 `aria-pressed`
+  //   **默认都是 false** ⟹ ⟹ 源站确实有选中态，只是**初始一个都没选中**）
+  //   ★ 「自定义」那枚**没有** `aria-pressed` ⟹ ⟹ 它不是「可选中的卡」，是上传入口。
+  //   ★ 未实测：点卡片之后源站会发生什么（会不会改角色）⟹ ⟹
+  //   ⟹ ⟹ clone 只切换**本地选中态**，**不声称**与源站同构。
+  const [traitSel, setTraitSel] = useState<string | null>(null);
   const [framing, setFraming] = useState<"half" | "full">("half");
   const [name, setName] = useState(characterName);
   const [genAssets, setGenAssets] = useState(true);
@@ -562,6 +609,88 @@ export function CharacterEditorPanel({
     );
   };
 
+  // ★★ Batch 844：左列第二段「脸部 & 身体特征」
+  //   ⟹ ⟹ 源站实测这一段**没有标题行** ⟹ ⟹ 右栏**第一层就是滚动区**
+  //   ⟹ ⟹ 故用 `.ce-panel--seg`（top: 0 ＋ 满高）⟹ ⟹ 内容起点比「脸部精修」段**高 28px**
+  //
+  // ★★ **坐标**（相对模态；源站实测值）：
+  //   H3「纹身 & 疤痕」 rel (936, 82) ⟹ 段内 top = 12
+  //   卡片 76×54：rel (936/1018/1100, 112/174) ⟹ 段内 top = 42 + 62·行、left = 24 + 82·列
+  const renderTraits = () => (
+    <div className="ce-panel ce-panel--seg">
+      <div className="ce-section">
+        <h3
+          className="ce-h3 ce-h3--section"
+          style={{ top: 12 }}
+          data-character-editor-h3="纹身 & 疤痕"
+        >
+          纹身 &amp; 疤痕
+        </h3>
+        {TRAIT_CARDS.map((card, i) => {
+          const on = traitSel === card.name;
+          return (
+            <button
+              key={card.name}
+              type="button"
+              // ★ 「自定义」那枚**没有** aria-pressed（源站实测）⟹ ⟹ 不给
+              aria-pressed={card.img ? on : undefined}
+              className={`ce-trait-card${on ? " is-on" : ""}`}
+              style={{
+                top: `${42 + Math.floor(i / 3) * 62}px`,
+                left: `${24 + (i % 3) * 82}px`,
+              }}
+              data-character-editor-trait={card.name}
+              onClick={() =>
+                card.img
+                  ? setTraitSel(card.name)
+                  : flash("clone mock：自定义贴纸未接上传")
+              }
+            >
+              <span
+                className={`ce-trait-thumb${card.img ? "" : " ce-trait-thumb--custom"}`}
+              >
+                {card.img ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={card.img} alt="" />
+                ) : (
+                  <Plus size={16} />
+                )}
+              </span>
+              <span className="ce-trait-name">{card.name}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+
+  // ★★ 页签行（★ 源站实测：**只在「脸部精修」段存在** ⟹ ⟹ 别的段**不显示**它）
+  //   ★ 抽成函数（★ batch 844）：⟹ ⟹ 阴性臂 N6 可以注入「页签行在不该出现的段也出现」
+  //   这条**真实**缺陷 ⟹ ⟹ 而不必塞一个假的标记元素。
+  const renderTabs = () => (
+    <div className="ce-tabs" role="tablist">
+      {TABS.map((item) => (
+        <button
+          key={item.id}
+          type="button"
+          role="tab"
+          aria-selected={tab === item.id}
+          aria-label={item.label}
+          className={`ce-tab ${tab === item.id ? "is-text" : "is-icon"}${
+            tab === item.id ? " is-on" : ""
+          }`}
+          data-character-editor-tab={item.id}
+          onClick={() => setTab(item.id)}
+        >
+          <span className="ce-tab-icon" aria-hidden="true">
+            <item.icon size={18} />
+          </span>
+          {tab === item.id ? <span className="ce-tab-text">{item.label}</span> : null}
+        </button>
+      ))}
+    </div>
+  );
+
   // ★★ 一个**块**（标题／预设卡组／滑杆组）
   const renderBlock = (block: PanelBlock, index: number) => {    if (block.kind === "h3") {
       return (
@@ -741,32 +870,10 @@ export function CharacterEditorPanel({
             {/* ★★ Batch 843：**页签行只在「脸部精修」段存在**（源站实测，batch 841 raw）
                 ⟹ ⟹ 切到别的段 ⟹ 右栏**不显示页签行**，而是那一段自己的内容
                 ⟹ ⟹ clone 之前**每段都显示页签行** ⟹ ⟹ 那是**结构上的假象** ⟹ ⟹ 本批改正。 */}
+            {segment === "face" ? renderTabs() : null}
+
             {segment === "face" ? (
               <>
-                <div className="ce-tabs" role="tablist">
-                  {TABS.map((item) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={tab === item.id}
-                      aria-label={item.label}
-                      className={`ce-tab ${tab === item.id ? "is-text" : "is-icon"}${
-                        tab === item.id ? " is-on" : ""
-                      }`}
-                      data-character-editor-tab={item.id}
-                      onClick={() => setTab(item.id)}
-                    >
-                      <span className="ce-tab-icon" aria-hidden="true">
-                        <item.icon size={18} />
-                      </span>
-                      {tab === item.id ? (
-                        <span className="ce-tab-text">{item.label}</span>
-                      ) : null}
-                    </button>
-                  ))}
-                </div>
-
                 {currentBlocks ? (
                   // ★★ Batch 842：**分块**布局（眉眼页：H3 ＋ 滑杆组 ＋ H4 ＋ 卡片组 ＋ H3 ＋ 滑杆组）
                   <div className="ce-panel">
@@ -821,22 +928,26 @@ export function CharacterEditorPanel({
                   </div>
                 )}
               </>
+            ) : segment === "traits" ? (
+              // ★★ Batch 844：左列第二段「脸部 & 身体特征」**已实现**
+              //   ⟹ ⟹ 源站实测这一段：H3「纹身 & 疤痕」＋ 6 张 76×54 的贴纸卡
+              //   ⟹ ⟹ 且这一段**没有标题行** ⟹ ⟹ 右栏**第一层就是滚动区**
+              renderTraits()
             ) : (
-              // ★★ Batch 843：别的段（脸部 & 身体特征／身材塑形／服装造型／音色音调）
+              // ★★ Batch 843：剩下的三段（身材塑形／服装造型／音色音调）
               //   ⟹ ⟹ 源站实测**页签行不存在**，右栏是**那一段自己的内容**
-              //   ⟹ ⟹ 本批**不编造**：显示空态说明（★ 那四段**已实测**，raw 已入库）。
-              //   ★★ **逐段写**（★ 源站四段的结构**各不相同** ⟹ ⟹ 一句通用文案就是**假陈述**）：
-              //     · 脸部 & 身体特征 ＝ H3「纹身 & 疤痕」＋ 6 张 76×54 缩略图卡（3 列×2 行）
-              //     · 身材塑形         ＝ 「丰胸」数值 ＋ 17 条滑杆（AI 增高／驼背／长腿…）
-              //     · 服装造型         ＝ H3「发型／发色／妆容／口红」＋ chip 网格
-              //     · 音色音调         ＝ 「音色库」＋ 20 条音色 ＋ 播放按钮
+              //   ⟹ ⟹ 这里**不编造**：显示空态说明（★ 那三段**已实测**，raw 已入库）。
+              //   ★★ **逐段写**（★ 源站各段的结构**各不相同** ⟹ ⟹ 一句通用文案就是**假陈述**）：
+              //     · 身材塑形 ＝ 「丰胸」数值 ＋ 17 条滑杆（AI 增高／驼背／长腿…）
+              //     · 服装造型 ＝ **标题行「造型」** ＋ H3「发型／发色／妆容／口红」＋ chip 网格
+              //     · 音色音调 ＝ **标题行「音色库」** ＋ 20 条音色 ＋ 各自的播放按钮
               <div className="ce-panel">
                 <div className="ce-section">
                   <p className="ce-empty" data-character-editor-empty>
                     {SEGMENT_NOTE[segment] ??
                       `「${SEGMENTS.find((s) => s.id === segment)?.label}」这一段的控件 ` +
-                        "**已实测**（源站 raw 入库在 batch 841），但它含**缩略图卡片／"
-                        + "滑杆／音色列表**之类** ⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。"}
+                        "**已实测**（源站 raw 入库在 batch 841），但它含**滑杆／"
+                        + "音色列表**之类** ⟹ ⟹ 属后续批次 ⟹ ⟹ 这里不编造控件，只如实说明。"}
                   </p>
                 </div>
               </div>

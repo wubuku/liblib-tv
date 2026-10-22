@@ -1327,6 +1327,90 @@
   color: #000;
 }
 
+/* ── Batch 844：左列第二段「脸部 & 身体特征」 ─────────────────────────── */
+/* ★★ 源站实测（batch 844 raw）：这一段**没有标题行** ⟹ ⟹ 右栏**第一层就是滚动区**
+   ⟹ ⟹ 内容起点 = 右栏顶 + 12px（`pt-3`）⟹ ⟹ 比「脸部精修」段**高 48px**
+   ⟹ ⟹ （★ 48 是由 batch 841 raw 与 batch 844 raw **机械算出来**的 ⟹ ⟹ 不是手打常数）
+   ⟹ ⟹ 故另起一个 panel 变体（top: 0 ＋ 满高）。 */
+.ce-panel--seg {
+  top: 0;
+  height: 602px;
+}
+/* ★ 这一段的 H3 是 **14px／22px／400／纯白**
+   ⟹ ⟹ 与眉眼页的 H3（13px／20px／500／白 30%）**不是**一个样式 ⟹ ⟹ 单开一个类 */
+.ce-h3--section {
+  height: 22px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #fff;
+}
+/* ★ 贴纸卡 76×54：缩略图 76×32 的**圆形** ＋ gap 6 ＋ 名字 11/16 */
+.ce-trait-card {
+  position: absolute;
+  width: 76px;
+  height: 54px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+.ce-trait-thumb {
+  position: relative;
+  display: block;
+  width: 76px;
+  height: 32px;
+  overflow: hidden;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  /* ★ 源站这一格**继承**正文的字体（16px／24.8px／纯白）⟹ ⟹ 这里**写死**那组值
+     ⟹ ⟹ 否则 clone 的全局行高（24px）与颜色（#ededed）会让这一处**对不上**。 */
+  font-size: 16px;
+  line-height: 24.8px;
+  color: #fff;
+}
+.ce-trait-thumb img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* ★ 「自定义」那枚：源站实测是**居中图标**，底色白 6%、字色白 60% ⟹ ⟹ 没有图 */
+.ce-trait-thumb--custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.6);
+}
+.ce-trait-name {
+  max-width: 100%;
+  padding: 0 4px;
+  font-size: 11px;
+  line-height: 16px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* ★ 选中态：**源站的选中外观未实测**（那趟只点了分段 ⟹ 没点卡片）
+   ⟹ ⟹ 这里用**中性描边**表示选中 ⟹ ⟹ **不声称**与源站一致
+   ⟹ ⟹ 用 inset 阴影 ⟹ ⟹ **不改盒**（几何判据不受影响）
+   ★★★ **只改 `box-shadow`，绝不改 `border-color`** —— ★ 因为 `border-color`
+      是**外观判据**读的字段 ⟹ ⟹ 若选中态改了它 ⟹ ⟹ 「初始选中态」那条缺陷
+      会**顺带**翻掉外观判据 ⟹ ⟹ 阴性臂就**证明不了**哪一条有牙
+      ⟹ ⟹ **每条判据读的字段必须互不重叠**。 */
+.ce-trait-card.is-on .ce-trait-thumb {
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+}
+
 .ce-switch-row {
   position: absolute;
   left: 24px;

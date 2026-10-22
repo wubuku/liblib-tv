@@ -1,0 +1,1184 @@
+{
+ "★是否点到编辑角色": true,
+ "★分段_是否点到": true,
+ "★分段_积分是否变化": false,
+ "★读数": {
+  "右栏盒": {
+   "x": 1273,
+   "y": 231,
+   "w": 288,
+   "h": 602
+  },
+  "右栏第一层": {
+   "tag": "DIV",
+   "cls": "min-h-0 flex-1 overflow-y-auto px-6 pb-24 pt-3",
+   "box": {
+    "x": 1273,
+    "y": 231,
+    "w": 288,
+    "h": 602
+   },
+   "style": {
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "lineHeight": "24.8px",
+    "color": "rgb(255, 255, 255)",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "borderRadius": "0px",
+    "borderTopWidth": "0px",
+    "borderTopColor": "rgb(82, 82, 82)",
+    "paddingLeft": "24px",
+    "paddingTop": "12px",
+    "gap": "normal",
+    "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+    "display": "block",
+    "alignItems": "normal",
+    "justifyContent": "normal",
+    "width": "288px",
+    "height": "602px",
+    "objectFit": "fill",
+    "position": "static"
+   },
+   "子节点数": 2,
+   "头行": null,
+   "内容起点": null
+  },
+  "H3": {
+   "text": "纹身 & 疤痕",
+   "box": {
+    "x": 1297,
+    "y": 243,
+    "w": 240,
+    "h": 22
+   },
+   "style": {
+    "fontSize": "14px",
+    "fontWeight": "400",
+    "lineHeight": "22px",
+    "color": "rgb(255, 255, 255)",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "borderRadius": "0px",
+    "borderTopWidth": "0px",
+    "borderTopColor": "rgb(82, 82, 82)",
+    "paddingLeft": "0px",
+    "paddingTop": "0px",
+    "gap": "normal",
+    "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+    "display": "block",
+    "alignItems": "normal",
+    "justifyContent": "normal",
+    "width": "240px",
+    "height": "22px",
+    "objectFit": "fill",
+    "position": "static"
+   },
+   "cls": "text-sm font-normal leading-[22px]",
+   "html": "<h3 class=\"text-sm font-normal leading-[22px]\">纹身 &amp; 疤痕</h3>"
+  },
+  "网格": {
+   "box": {
+    "x": 1297,
+    "y": 273,
+    "w": 240,
+    "h": 116
+   },
+   "cls": "grid grid-cols-3 gap-x-1.5 gap-y-2",
+   "style": {
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "lineHeight": "24.8px",
+    "color": "rgb(255, 255, 255)",
+    "backgroundColor": "rgba(0, 0, 0, 0)",
+    "borderRadius": "0px",
+    "borderTopWidth": "0px",
+    "borderTopColor": "rgb(82, 82, 82)",
+    "paddingLeft": "0px",
+    "paddingTop": "0px",
+    "gap": "8px 6px",
+    "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+    "display": "grid",
+    "alignItems": "normal",
+    "justifyContent": "normal",
+    "width": "240px",
+    "height": "116px",
+    "objectFit": "fill",
+    "position": "static"
+   },
+   "按钮数": 6
+  },
+  "卡片": [
+   {
+    "aria": "",
+    "pressed": "false",
+    "selected": null,
+    "data": [],
+    "box": {
+     "x": 1297,
+     "y": 273,
+     "w": 76,
+     "h": 54
+    },
+    "缩略盒": {
+     "x": 1297,
+     "y": 273,
+     "w": 76,
+     "h": 32
+    },
+    "缩略样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(255, 255, 255, 0.05)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.08)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "width": "76px",
+     "height": "32px",
+     "objectFit": "fill",
+     "position": "relative"
+    },
+    "缩略cls": "bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-no",
+    "图": {
+     "src": "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/features/sticker_mole.png",
+     "box": {
+      "x": 1298,
+      "y": 274,
+      "w": 74,
+      "h": 30
+     },
+     "natural": [
+      645,
+      644
+     ],
+     "样式": {
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24.8px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "0px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "74px",
+      "height": "30px",
+      "objectFit": "cover",
+      "position": "absolute"
+     }
+    },
+    "媒体里有图": true,
+    "图标盒": null,
+    "名字": {
+     "text": "痣",
+     "box": {
+      "x": 1326,
+      "y": 311,
+      "w": 19,
+      "h": 16
+     },
+     "style": {
+      "fontSize": "11px",
+      "fontWeight": "400",
+      "lineHeight": "16px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "4px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "19px",
+      "height": "16px",
+      "objectFit": "fill",
+      "position": "static"
+     },
+     "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+    },
+    "html": "<button type=\"button\" aria-pressed=\"false\" class=\"group flex min-w-0 flex-col items-center gap-1.5\"><span class=\"bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-none after:absolute after:inset-0 after:bg-[var(--character-studio-bg-overlay-hover)] after:opacity-0 group-hover:after:opacity-100\"><img alt=\"\" class=\"absolut"
+   },
+   {
+    "aria": "",
+    "pressed": "false",
+    "selected": null,
+    "data": [],
+    "box": {
+     "x": 1379,
+     "y": 273,
+     "w": 76,
+     "h": 54
+    },
+    "缩略盒": {
+     "x": 1379,
+     "y": 273,
+     "w": 76,
+     "h": 32
+    },
+    "缩略样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(255, 255, 255, 0.05)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.08)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "width": "76px",
+     "height": "32px",
+     "objectFit": "fill",
+     "position": "relative"
+    },
+    "缩略cls": "bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-no",
+    "图": {
+     "src": "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/features/sticker_scar_1.png",
+     "box": {
+      "x": 1380,
+      "y": 274,
+      "w": 74,
+      "h": 30
+     },
+     "natural": [
+      2016,
+      851
+     ],
+     "样式": {
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24.8px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "0px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "74px",
+      "height": "30px",
+      "objectFit": "cover",
+      "position": "absolute"
+     }
+    },
+    "媒体里有图": true,
+    "图标盒": null,
+    "名字": {
+     "text": "疤痕_深",
+     "box": {
+      "x": 1393,
+      "y": 311,
+      "w": 47,
+      "h": 16
+     },
+     "style": {
+      "fontSize": "11px",
+      "fontWeight": "400",
+      "lineHeight": "16px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "4px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "47.4844px",
+      "height": "16px",
+      "objectFit": "fill",
+      "position": "static"
+     },
+     "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+    },
+    "html": "<button type=\"button\" aria-pressed=\"false\" class=\"group flex min-w-0 flex-col items-center gap-1.5\"><span class=\"bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-none after:absolute after:inset-0 after:bg-[var(--character-studio-bg-overlay-hover)] after:opacity-0 group-hover:after:opacity-100\"><img alt=\"\" class=\"absolut"
+   },
+   {
+    "aria": "",
+    "pressed": "false",
+    "selected": null,
+    "data": [],
+    "box": {
+     "x": 1461,
+     "y": 273,
+     "w": 76,
+     "h": 54
+    },
+    "缩略盒": {
+     "x": 1461,
+     "y": 273,
+     "w": 76,
+     "h": 32
+    },
+    "缩略样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(255, 255, 255, 0.05)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.08)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "width": "76px",
+     "height": "32px",
+     "objectFit": "fill",
+     "position": "relative"
+    },
+    "缩略cls": "bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-no",
+    "图": {
+     "src": "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/features/sticker_scar_2.png",
+     "box": {
+      "x": 1462,
+      "y": 274,
+      "w": 74,
+      "h": 30
+     },
+     "natural": [
+      2016,
+      851
+     ],
+     "样式": {
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24.8px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "0px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "74px",
+      "height": "30px",
+      "objectFit": "cover",
+      "position": "absolute"
+     }
+    },
+    "媒体里有图": true,
+    "图标盒": null,
+    "名字": {
+     "text": "疤痕_浅",
+     "box": {
+      "x": 1475,
+      "y": 311,
+      "w": 47,
+      "h": 16
+     },
+     "style": {
+      "fontSize": "11px",
+      "fontWeight": "400",
+      "lineHeight": "16px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "4px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "47.4844px",
+      "height": "16px",
+      "objectFit": "fill",
+      "position": "static"
+     },
+     "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+    },
+    "html": "<button type=\"button\" aria-pressed=\"false\" class=\"group flex min-w-0 flex-col items-center gap-1.5\"><span class=\"bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-none after:absolute after:inset-0 after:bg-[var(--character-studio-bg-overlay-hover)] after:opacity-0 group-hover:after:opacity-100\"><img alt=\"\" class=\"absolut"
+   },
+   {
+    "aria": "",
+    "pressed": "false",
+    "selected": null,
+    "data": [],
+    "box": {
+     "x": 1297,
+     "y": 335,
+     "w": 76,
+     "h": 54
+    },
+    "缩略盒": {
+     "x": 1297,
+     "y": 335,
+     "w": 76,
+     "h": 32
+    },
+    "缩略样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(255, 255, 255, 0.05)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.08)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "width": "76px",
+     "height": "32px",
+     "objectFit": "fill",
+     "position": "relative"
+    },
+    "缩略cls": "bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-no",
+    "图": {
+     "src": "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/features/sticker_facefreckles.png",
+     "box": {
+      "x": 1298,
+      "y": 336,
+      "w": 74,
+      "h": 30
+     },
+     "natural": [
+      900,
+      937
+     ],
+     "样式": {
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24.8px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "0px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "74px",
+      "height": "30px",
+      "objectFit": "cover",
+      "position": "absolute"
+     }
+    },
+    "媒体里有图": true,
+    "图标盒": null,
+    "名字": {
+     "text": "全脸雀斑",
+     "box": {
+      "x": 1309,
+      "y": 373,
+      "w": 52,
+      "h": 16
+     },
+     "style": {
+      "fontSize": "11px",
+      "fontWeight": "400",
+      "lineHeight": "16px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "4px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "52px",
+      "height": "16px",
+      "objectFit": "fill",
+      "position": "static"
+     },
+     "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+    },
+    "html": "<button type=\"button\" aria-pressed=\"false\" class=\"group flex min-w-0 flex-col items-center gap-1.5\"><span class=\"bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-none after:absolute after:inset-0 after:bg-[var(--character-studio-bg-overlay-hover)] after:opacity-0 group-hover:after:opacity-100\"><img alt=\"\" class=\"absolut"
+   },
+   {
+    "aria": "",
+    "pressed": "false",
+    "selected": null,
+    "data": [],
+    "box": {
+     "x": 1379,
+     "y": 335,
+     "w": 76,
+     "h": 54
+    },
+    "缩略盒": {
+     "x": 1379,
+     "y": 335,
+     "w": 76,
+     "h": 32
+    },
+    "缩略样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgb(255, 255, 255)",
+     "backgroundColor": "rgba(255, 255, 255, 0.05)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.08)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "display": "block",
+     "alignItems": "normal",
+     "justifyContent": "normal",
+     "width": "76px",
+     "height": "32px",
+     "objectFit": "fill",
+     "position": "relative"
+    },
+    "缩略cls": "bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-no",
+    "图": {
+     "src": "https://libtv-res.liblib.art/character-studio/liblibtv-character-studio-cdn-2026-09-21/features/sticker_cheekfreckles.pn",
+     "box": {
+      "x": 1380,
+      "y": 336,
+      "w": 74,
+      "h": 30
+     },
+     "natural": [
+      831,
+      348
+     ],
+     "样式": {
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24.8px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "0px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "74px",
+      "height": "30px",
+      "objectFit": "cover",
+      "position": "absolute"
+     }
+    },
+    "媒体里有图": true,
+    "图标盒": null,
+    "名字": {
+     "text": "脸颊雀斑",
+     "box": {
+      "x": 1391,
+      "y": 373,
+      "w": 52,
+      "h": 16
+     },
+     "style": {
+      "fontSize": "11px",
+      "fontWeight": "400",
+      "lineHeight": "16px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "4px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "52px",
+      "height": "16px",
+      "objectFit": "fill",
+      "position": "static"
+     },
+     "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+    },
+    "html": "<button type=\"button\" aria-pressed=\"false\" class=\"group flex min-w-0 flex-col items-center gap-1.5\"><span class=\"bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-none after:absolute after:inset-0 after:bg-[var(--character-studio-bg-overlay-hover)] after:opacity-0 group-hover:after:opacity-100\"><img alt=\"\" class=\"absolut"
+   },
+   {
+    "aria": "",
+    "pressed": null,
+    "selected": null,
+    "data": [],
+    "box": {
+     "x": 1461,
+     "y": 335,
+     "w": 76,
+     "h": 54
+    },
+    "缩略盒": {
+     "x": 1461,
+     "y": 335,
+     "w": 76,
+     "h": 32
+    },
+    "缩略样式": {
+     "fontSize": "16px",
+     "fontWeight": "400",
+     "lineHeight": "24.8px",
+     "color": "rgba(255, 255, 255, 0.6)",
+     "backgroundColor": "rgba(255, 255, 255, 0.06)",
+     "borderRadius": "9999px",
+     "borderTopWidth": "1px",
+     "borderTopColor": "rgba(255, 255, 255, 0.08)",
+     "paddingLeft": "0px",
+     "paddingTop": "0px",
+     "gap": "normal",
+     "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+     "display": "flex",
+     "alignItems": "center",
+     "justifyContent": "center",
+     "width": "76px",
+     "height": "32px",
+     "objectFit": "fill",
+     "position": "relative"
+    },
+    "缩略cls": "text-fg-muted border-canvas-controls-border relative flex h-8 w-full items-center justify-center overflow-hidden rounded-full border bg-[var(--charact",
+    "图": null,
+    "媒体里有图": false,
+    "图标盒": {
+     "x": 1491,
+     "y": 343,
+     "w": 16,
+     "h": 16
+    },
+    "名字": {
+     "text": "自定义",
+     "box": {
+      "x": 1479,
+      "y": 373,
+      "w": 41,
+      "h": 16
+     },
+     "style": {
+      "fontSize": "11px",
+      "fontWeight": "400",
+      "lineHeight": "16px",
+      "color": "rgb(255, 255, 255)",
+      "backgroundColor": "rgba(0, 0, 0, 0)",
+      "borderRadius": "0px",
+      "borderTopWidth": "0px",
+      "borderTopColor": "rgb(82, 82, 82)",
+      "paddingLeft": "4px",
+      "paddingTop": "0px",
+      "gap": "normal",
+      "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "display": "block",
+      "alignItems": "normal",
+      "justifyContent": "normal",
+      "width": "41px",
+      "height": "16px",
+      "objectFit": "fill",
+      "position": "static"
+     },
+     "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+    },
+    "html": "<button type=\"button\" class=\"group flex min-w-0 flex-col items-center gap-1.5\"><span class=\"text-fg-muted border-canvas-controls-border relative flex h-8 w-full items-center justify-center overflow-hidden rounded-full border bg-[var(--character-studio-bg-overlay)] transition-colors after:pointer-events-none after:absolute after:inset-0 after:bg-[var(--character-studio-bg-overlay-hover)] after:opacity-0 group-hover:af"
+   }
+  ],
+  "右栏可见子树": [
+   {
+    "tag": "DIV",
+    "role": "",
+    "text": "纹身 & 疤痕痣疤痕_深疤痕_浅全脸雀斑脸颊雀斑自定",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 243,
+     "w": 240,
+     "h": 146
+    },
+    "cls": "space-y-5"
+   },
+   {
+    "tag": "SECTION",
+    "role": "",
+    "text": "纹身 & 疤痕痣疤痕_深疤痕_浅全脸雀斑脸颊雀斑自定",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 243,
+     "w": 240,
+     "h": 146
+    },
+    "cls": "space-y-2"
+   },
+   {
+    "tag": "H3",
+    "role": "",
+    "text": "纹身 & 疤痕",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 243,
+     "w": 240,
+     "h": 22
+    },
+    "cls": "text-sm font-normal leading-[22px]"
+   },
+   {
+    "tag": "DIV",
+    "role": "",
+    "text": "痣疤痕_深疤痕_浅全脸雀斑脸颊雀斑自定义",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 273,
+     "w": 240,
+     "h": 116
+    },
+    "cls": "grid grid-cols-3 gap-x-1.5 gap-y-2"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "text": "痣",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 273,
+     "w": 76,
+     "h": 54
+    },
+    "cls": "group flex min-w-0 flex-col items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 273,
+     "w": 76,
+     "h": 32
+    },
+    "cls": "bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-no"
+   },
+   {
+    "tag": "IMG",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1298,
+     "y": 274,
+     "w": 74,
+     "h": 30
+    },
+    "cls": "absolute inset-0 size-full object-cover"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "痣",
+    "aria": "",
+    "box": {
+     "x": 1326,
+     "y": 311,
+     "w": 19,
+     "h": 16
+    },
+    "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "text": "疤痕_深",
+    "aria": "",
+    "box": {
+     "x": 1379,
+     "y": 273,
+     "w": 76,
+     "h": 54
+    },
+    "cls": "group flex min-w-0 flex-col items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1379,
+     "y": 273,
+     "w": 76,
+     "h": 32
+    },
+    "cls": "bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-no"
+   },
+   {
+    "tag": "IMG",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1380,
+     "y": 274,
+     "w": 74,
+     "h": 30
+    },
+    "cls": "absolute inset-0 size-full object-cover"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "疤痕_深",
+    "aria": "",
+    "box": {
+     "x": 1393,
+     "y": 311,
+     "w": 47,
+     "h": 16
+    },
+    "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "text": "疤痕_浅",
+    "aria": "",
+    "box": {
+     "x": 1461,
+     "y": 273,
+     "w": 76,
+     "h": 54
+    },
+    "cls": "group flex min-w-0 flex-col items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1461,
+     "y": 273,
+     "w": 76,
+     "h": 32
+    },
+    "cls": "bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-no"
+   },
+   {
+    "tag": "IMG",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1462,
+     "y": 274,
+     "w": 74,
+     "h": 30
+    },
+    "cls": "absolute inset-0 size-full object-cover"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "疤痕_浅",
+    "aria": "",
+    "box": {
+     "x": 1475,
+     "y": 311,
+     "w": 47,
+     "h": 16
+    },
+    "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "text": "全脸雀斑",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 335,
+     "w": 76,
+     "h": 54
+    },
+    "cls": "group flex min-w-0 flex-col items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 335,
+     "w": 76,
+     "h": 32
+    },
+    "cls": "bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-no"
+   },
+   {
+    "tag": "IMG",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1298,
+     "y": 336,
+     "w": 74,
+     "h": 30
+    },
+    "cls": "absolute inset-0 size-full object-cover"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "全脸雀斑",
+    "aria": "",
+    "box": {
+     "x": 1309,
+     "y": 373,
+     "w": 52,
+     "h": 16
+    },
+    "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "text": "脸颊雀斑",
+    "aria": "",
+    "box": {
+     "x": 1379,
+     "y": 335,
+     "w": 76,
+     "h": 54
+    },
+    "cls": "group flex min-w-0 flex-col items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1379,
+     "y": 335,
+     "w": 76,
+     "h": 32
+    },
+    "cls": "bg-nt-bg-overlay relative block h-8 w-full overflow-hidden rounded-full border transition-colors border-canvas-controls-border after:pointer-events-no"
+   },
+   {
+    "tag": "IMG",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1380,
+     "y": 336,
+     "w": 74,
+     "h": 30
+    },
+    "cls": "absolute inset-0 size-full object-cover"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "脸颊雀斑",
+    "aria": "",
+    "box": {
+     "x": 1391,
+     "y": 373,
+     "w": 52,
+     "h": 16
+    },
+    "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "text": "自定义",
+    "aria": "",
+    "box": {
+     "x": 1461,
+     "y": 335,
+     "w": 76,
+     "h": 54
+    },
+    "cls": "group flex min-w-0 flex-col items-center gap-1.5"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1461,
+     "y": 335,
+     "w": 76,
+     "h": 32
+    },
+    "cls": "text-fg-muted border-canvas-controls-border relative flex h-8 w-full items-center justify-center overflow-hidden rounded-full border bg-[var(--charact"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1491,
+     "y": 343,
+     "w": 16,
+     "h": 16
+    },
+    "cls": "inline-block bg-current size-4"
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "自定义",
+    "aria": "",
+    "box": {
+     "x": 1479,
+     "y": 373,
+     "w": 41,
+     "h": 16
+    },
+    "cls": "max-w-full truncate px-1 text-[11px] leading-4"
+   },
+   {
+    "tag": "DIV",
+    "role": "",
+    "text": "确认生成",
+    "aria": "",
+    "box": {
+     "x": 1273,
+     "y": 769,
+     "w": 288,
+     "h": 64
+    },
+    "cls": "Ias-7a_editorPanelGenerateMask"
+   },
+   {
+    "tag": "DIV",
+    "role": "",
+    "text": "确认生成",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 783,
+     "w": 240,
+     "h": 36
+    },
+    "cls": "pointer-events-auto absolute bottom-[14px] left-6 flex h-9 w-[240px] items-center gap-2"
+   },
+   {
+    "tag": "BUTTON",
+    "role": "",
+    "text": "确认生成",
+    "aria": "",
+    "box": {
+     "x": 1297,
+     "y": 783,
+     "w": 240,
+     "h": 36
+    },
+    "cls": "w-full bg-btn-primary text-btn-primary-text hover:bg-btn-primary-hover flex h-9 items-center justify-center gap-0.5 rounded-[10px] px-3 text-sm transi"
+   },
+   {
+    "tag": "svg",
+    "role": "img",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1375,
+     "y": 792,
+     "w": 18,
+     "h": 18
+    },
+    "cls": "iconify iconify--libtv pointer-events-none size-[18px] shrink-0"
+   },
+   {
+    "tag": "path",
+    "role": "",
+    "text": "",
+    "aria": "",
+    "box": {
+     "x": 1377,
+     "y": 794,
+     "w": 14,
+     "h": 14
+    },
+    "cls": ""
+   },
+   {
+    "tag": "SPAN",
+    "role": "",
+    "text": "确认生成",
+    "aria": "",
+    "box": {
+     "x": 1395,
+     "y": 791,
+     "w": 64,
+     "h": 20
+    },
+    "cls": "px-1"
+   }
+  ],
+  "积分": [
+   {
+    "t": "44",
+    "x": 547,
+    "y": 868
+   }
+  ]
+ },
+ "★读完_积分是否变化": false
+}
