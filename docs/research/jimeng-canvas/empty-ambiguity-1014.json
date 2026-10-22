@@ -8,23 +8,23 @@
   "n_volatile": 1,
   "volatile_inputs": {
    "golden-freshness-1027.json": {
-    "sha256_12": "e38953a086b8",
-    "bytes": 91483,
+    "sha256_12": "aa897f5cf82d",
+    "bytes": 90193,
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
   "n_from_probe_products": 30,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "d353fa625958",
+    "sha256_12": "c7ba4482621d",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
-    "sha256_12": "b35527b8b9b1",
-    "bytes": 62827
+    "sha256_12": "9c508ac96228",
+    "bytes": 63014
    },
    "assertion-vs-behavior-1018.json": {
-    "sha256_12": "fabd6bcf500a",
+    "sha256_12": "8b7942fc6c37",
     "bytes": 18203
    },
    "baseline-host-misuse-1016.json": {
@@ -68,11 +68,11 @@
     "bytes": 1629
    },
    "global-detection-1012.json": {
-    "sha256_12": "40099465912a",
+    "sha256_12": "4c40651e25c9",
     "bytes": 4489
    },
    "golden-freshness-1008.json": {
-    "sha256_12": "9dac2c8ff5da",
+    "sha256_12": "bb01a17d70fd",
     "bytes": 1215
    },
    "harness-fidelity-1020.json": {
@@ -96,7 +96,7 @@
     "bytes": 2356
    },
    "occurrence-ledger-1013.json": {
-    "sha256_12": "cdb8d6ee52ab",
+    "sha256_12": "508f286db271",
     "bytes": 20268
    },
    "real-history-detection-1010.json": {
@@ -112,8 +112,8 @@
     "bytes": 15140
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "d371a24c5313",
-    "bytes": 95493
+    "sha256_12": "2d21a67583ae",
+    "bytes": 98289
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -128,8 +128,8 @@
     "bytes": 1260
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "684b98841a72",
-    "bytes": 140439
+    "sha256_12": "2a0c1cdcae0e",
+    "bytes": 140785
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
@@ -137,10 +137,10 @@
  "census": {
   "n_goldens": 30,
   "n_excluded_self": 2,
-  "n_empty_list": 284,
-  "n_empty_null": 127,
+  "n_empty_list": 281,
+  "n_empty_null": 131,
   "n_self_provable": 10,
-  "n_ambiguous": 401
+  "n_ambiguous": 402
  },
  "rows": [
   {
@@ -1727,13 +1727,6 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/books_self_reporting_false",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/detector_selftest/[5]/want_n",
    "kind": "null",
    "self_provable": false,
@@ -1748,15 +1741,15 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/books_rc1_judgement_red",
+   "path": "/red_ledger/books_rc2_instrument_crashed",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/books_rc2_instrument_crashed",
-   "kind": "list",
+   "path": "/red_ledger/per_book/[13]/n_self_reported_false",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -2112,14 +2105,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[16]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[16]/ledger_complete",
+   "path": "/red_ledger/ledger_rows/[13]/ledger_n_criteria",
    "kind": "null",
    "self_provable": false,
    "invariant": null
@@ -2154,14 +2140,14 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[23]/ledger_n_criteria",
+   "path": "/red_ledger/ledger_rows/[19]/ledger_n_criteria",
    "kind": "null",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[23]/ledger_complete",
+   "path": "/red_ledger/ledger_rows/[19]/ledger_complete",
    "kind": "null",
    "self_provable": false,
    "invariant": null
@@ -2182,22 +2168,29 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[26]/ledger_n_criteria",
+   "path": "/red_ledger/ledger_rows/[25]/ledger_n_criteria",
    "kind": "null",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[26]/ledger_complete",
+   "path": "/red_ledger/ledger_rows/[25]/ledger_complete",
    "kind": "null",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/red_needs_fix",
-   "kind": "list",
+   "path": "/red_ledger/ledger_rows/[27]/ledger_n_criteria",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/ledger_rows/[27]/ledger_complete",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -2211,13 +2204,6 @@
   {
    "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/red_kind_unknown",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/books_with_red_needs_fix",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2245,7 +2231,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[2]/drifted",
+   "path": "/rounds/[3]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2581,6 +2567,13 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[13]/n_self_reported_false",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[13]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -2590,6 +2583,13 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[13]/criteria_not_applicable",
    "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[13]/ledger_n_criteria",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -2623,13 +2623,6 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[16]/criteria_detail_source",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[16]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -2639,20 +2632,6 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[16]/criteria_not_applicable",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[16]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[16]/ledger_complete",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -2728,6 +2707,13 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[19]/criteria_detail_source",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[19]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -2737,6 +2723,20 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[19]/criteria_not_applicable",
    "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[19]/ledger_n_criteria",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[19]/ledger_complete",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -2784,13 +2784,6 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[23]/criteria_detail_source",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[23]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -2800,20 +2793,6 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[23]/criteria_not_applicable",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[23]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[23]/ledger_complete",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -2854,6 +2833,13 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[25]/criteria_detail_source",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[25]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -2868,7 +2854,14 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[26]/criteria_detail_source",
+   "path": "/books/[25]/ledger_n_criteria",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[25]/ledger_complete",
    "kind": "null",
    "self_provable": false,
    "invariant": null
@@ -2889,14 +2882,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[26]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[26]/ledger_complete",
+   "path": "/books/[27]/criteria_detail_source",
    "kind": "null",
    "self_provable": false,
    "invariant": null
@@ -2917,6 +2903,20 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[27]/ledger_n_criteria",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[27]/ledger_complete",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[28]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -2925,6 +2925,13 @@
   {
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[28]/criteria_not_applicable",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[29]/criteria_not_applicable",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -4557,13 +4564,6 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/books_self_reporting_false",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/detector_selftest/[5]/want_n",
    "kind": "null",
    "self_provable": false,
@@ -4578,15 +4578,15 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/books_rc1_judgement_red",
+   "path": "/red_ledger/books_rc2_instrument_crashed",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/books_rc2_instrument_crashed",
-   "kind": "list",
+   "path": "/red_ledger/per_book/[13]/n_self_reported_false",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -4942,14 +4942,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[16]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[16]/ledger_complete",
+   "path": "/red_ledger/ledger_rows/[13]/ledger_n_criteria",
    "kind": "null",
    "self_provable": false,
    "invariant": null
@@ -4984,14 +4977,14 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[23]/ledger_n_criteria",
+   "path": "/red_ledger/ledger_rows/[19]/ledger_n_criteria",
    "kind": "null",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[23]/ledger_complete",
+   "path": "/red_ledger/ledger_rows/[19]/ledger_complete",
    "kind": "null",
    "self_provable": false,
    "invariant": null
@@ -5012,22 +5005,29 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[26]/ledger_n_criteria",
+   "path": "/red_ledger/ledger_rows/[25]/ledger_n_criteria",
    "kind": "null",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/ledger_rows/[26]/ledger_complete",
+   "path": "/red_ledger/ledger_rows/[25]/ledger_complete",
    "kind": "null",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/red_needs_fix",
-   "kind": "list",
+   "path": "/red_ledger/ledger_rows/[27]/ledger_n_criteria",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/ledger_rows/[27]/ledger_complete",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -5041,13 +5041,6 @@
   {
    "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/red_kind_unknown",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/books_with_red_needs_fix",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -5075,7 +5068,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[2]/drifted",
+   "path": "/rounds/[3]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -5411,6 +5404,13 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[13]/n_self_reported_false",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[13]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -5420,6 +5420,13 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[13]/criteria_not_applicable",
    "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[13]/ledger_n_criteria",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -5453,13 +5460,6 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[16]/criteria_detail_source",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[16]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -5469,20 +5469,6 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[16]/criteria_not_applicable",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[16]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[16]/ledger_complete",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -5558,6 +5544,13 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[19]/criteria_detail_source",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[19]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -5567,6 +5560,20 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[19]/criteria_not_applicable",
    "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[19]/ledger_n_criteria",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[19]/ledger_complete",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -5614,13 +5621,6 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[23]/criteria_detail_source",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[23]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -5630,20 +5630,6 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[23]/criteria_not_applicable",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[23]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[23]/ledger_complete",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -5684,6 +5670,13 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[25]/criteria_detail_source",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[25]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -5698,7 +5691,14 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[26]/criteria_detail_source",
+   "path": "/books/[25]/ledger_n_criteria",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[25]/ledger_complete",
    "kind": "null",
    "self_provable": false,
    "invariant": null
@@ -5719,14 +5719,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[26]/ledger_n_criteria",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[26]/ledger_complete",
+   "path": "/books/[27]/criteria_detail_source",
    "kind": "null",
    "self_provable": false,
    "invariant": null
@@ -5747,6 +5740,20 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[27]/ledger_n_criteria",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[27]/ledger_complete",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[28]/criteria_red",
    "kind": "list",
    "self_provable": false,
@@ -5755,6 +5762,13 @@
   {
    "golden": "rerun-reproducibility-1015.json",
    "path": "/books/[28]/criteria_not_applicable",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/books/[29]/criteria_not_applicable",
    "kind": "list",
    "self_provable": false,
    "invariant": null

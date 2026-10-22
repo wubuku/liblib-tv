@@ -1,11 +1,11 @@
 {
  "generated_by": "jimeng_probe1005_zero_coupling_census.py",
- "n_zero_coupling": 916,
- "n_positive_present": 7016,
- "n_distinct_keys": 6846,
+ "n_zero_coupling": 918,
+ "n_positive_present": 7033,
+ "n_distinct_keys": 6863,
  "by_class": {
   "I-标识符(多处引用)": 492,
-  "P-散文/片段": 424
+  "P-散文/片段": 426
  },
  "class_x_gap": {
   "I-标识符(多处引用)|21–200": 183,
@@ -13,7 +13,7 @@
   "I-标识符(多处引用)|>200": 99,
   "I-标识符(多处引用)|≤3": 106,
   "P-散文/片段|21–200": 217,
-  "P-散文/片段|4–20": 62,
+  "P-散文/片段|4–20": 64,
   "P-散文/片段|>200": 127,
   "P-散文/片段|≤3": 18
  },
@@ -1879,7 +1879,7 @@
    "var": "_vsrc",
    "anchor": "\"只有 1 项\" in asrc)",
    "occurrences": 2,
-   "min_line_gap": 6747
+   "min_line_gap": 6758
   },
   {
    "class": "P-散文/片段",
@@ -1914,7 +1914,7 @@
    "var": "_ausrc",
    "anchor": "**「A ≠ B」不等于「A 能把 A 从 C 里挑出来」**",
    "occurrences": 2,
-   "min_line_gap": 6903
+   "min_line_gap": 6926
   },
   {
    "class": "P-散文/片段",
@@ -1928,14 +1928,14 @@
    "var": "_ausrc",
    "anchor": "`el.tabIndex === -1`",
    "occurrences": 2,
-   "min_line_gap": 6882
+   "min_line_gap": 6905
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**应用必须自己调 `focus()`**",
    "occurrences": 2,
-   "min_line_gap": 6882
+   "min_line_gap": 6905
   },
   {
    "class": "P-散文/片段",
@@ -2411,7 +2411,7 @@
    "var": "_ausrc",
    "anchor": "**当场判红**",
    "occurrences": 2,
-   "min_line_gap": 6364
+   "min_line_gap": 6387
   },
   {
    "class": "P-散文/片段",
@@ -5120,7 +5120,7 @@
    "var": "_ausrc",
    "anchor": "stem-attribution-1007.json",
    "occurrences": 2,
-   "min_line_gap": 1417
+   "min_line_gap": 1440
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5232,7 +5232,7 @@
    "var": "_ausrc",
    "anchor": "golden-freshness-1008.json",
    "occurrences": 2,
-   "min_line_gap": 1340
+   "min_line_gap": 1363
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5385,7 +5385,7 @@
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "只活在对话里",
-   "occurrences": 2,
+   "occurrences": 3,
    "min_line_gap": 37
   },
   {
@@ -5848,14 +5848,14 @@
    "var": "_ausrc",
    "anchor": "不许让门看起来比它实际更强",
    "occurrences": 2,
-   "min_line_gap": 2999
+   "min_line_gap": 3022
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1014",
    "anchor": "\"P1_hold_2014\"",
    "occurrences": 2,
-   "min_line_gap": 275
+   "min_line_gap": 294
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5879,11 +5879,18 @@
    "min_line_gap": 74
   },
   {
+   "class": "P-散文/片段",
+   "var": "_p1014",
+   "anchor": "assert not any(_is_own(f) for f in GOLDENS)",
+   "occurrences": 2,
+   "min_line_gap": 13
+  },
+  {
    "class": "I-标识符(多处引用)",
    "var": "_p1014",
    "anchor": "\"P2_hold_2014\"",
    "occurrences": 2,
-   "min_line_gap": 277
+   "min_line_gap": 296
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5918,7 +5925,7 @@
    "var": "_p1014",
    "anchor": "\"P3_hold_2014\"",
    "occurrences": 2,
-   "min_line_gap": 277
+   "min_line_gap": 296
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5932,7 +5939,7 @@
    "var": "_p1014",
    "anchor": "\"P4_hold_2014\"",
    "occurrences": 2,
-   "min_line_gap": 280
+   "min_line_gap": 299
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5960,14 +5967,14 @@
    "var": "_p1014",
    "anchor": "\"P5_hold_2014\"",
    "occurrences": 2,
-   "min_line_gap": 285
+   "min_line_gap": 304
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1014",
    "anchor": "\"P6_hold_2014\"",
    "occurrences": 2,
-   "min_line_gap": 285
+   "min_line_gap": 304
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5988,14 +5995,14 @@
    "var": "_p1014",
    "anchor": "\"P7_hold_2014\"",
    "occurrences": 2,
-   "min_line_gap": 355
+   "min_line_gap": 374
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1014",
    "anchor": "\"P8_hold_2014\"",
    "occurrences": 2,
-   "min_line_gap": 439
+   "min_line_gap": 458
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6051,7 +6058,7 @@
    "var": "_ausrc",
    "anchor": "处置要落在生成器里、不落在产物",
    "occurrences": 2,
-   "min_line_gap": 897
+   "min_line_gap": 920
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6100,21 +6107,21 @@
    "var": "_ausrc",
    "anchor": "意图是保留、机制是同名覆盖",
    "occurrences": 2,
-   "min_line_gap": 8770
+   "min_line_gap": 8793
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "机制静默赢了",
    "occurrences": 2,
-   "min_line_gap": 8772
+   "min_line_gap": 8795
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "source_reverse_lap_cycle_narrowed_by_932",
    "occurrences": 2,
-   "min_line_gap": 8750
+   "min_line_gap": 8773
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6430,6 +6437,13 @@
    "anchor": "out[\"criterion_kinds_1032b2\"]",
    "occurrences": 2,
    "min_line_gap": 12
+  },
+  {
+   "class": "P-散文/片段",
+   "var": "_p1032l",
+   "anchor": "(\"_SELF_MARK\", \"_EXCLUDED_GENERATORS\", \"VOLATILE_INPUTS\")",
+   "occurrences": 2,
+   "min_line_gap": 6
   }
  ]
 }

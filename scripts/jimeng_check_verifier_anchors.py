@@ -340,6 +340,12 @@ PROBE_VARS = {
     #   ⇒ **两个都要登记** ⇒ 漏登记 ⇒ 它们的锚点被**静默跳过**（老坑的第七次）
     "_p1032b3s": "scripts/jimeng_probe1032b3_crash_selftest.py",
     "_p1032b3f": "scripts/jimeng_probe1032b3_fake_crash_probe.mjs",
+    # ⭐⭐⭐⭐⭐ 1032-②l：**指纹表核对门**（判据 .py）＋ **全门禁清单**（.sh）**两个都要登记**
+    #   ⇒ 漏登记 ⇒ 它们的锚点被**静默跳过** ⇒ 而门照样报「0 问题」（老坑的第九次）
+    #   ⚠️ 清单是 **.sh** 而不是 .py —— 但官方锚点门只认「文件路径」，
+    #   ⇒ 不挑扩展名 ⇒ 所以它照样能被当锚点目标查
+    "_p1032l": "scripts/jimeng_probe1032l_fingerprint_gate.py",
+    "_gatelist": "scripts/jimeng_run_all_gates.sh",
     # ⭐⭐⭐⭐⭐ 1032-②b-4：「已展开的生成器」浮层那道门
     #   （判据 .py + 真去点一遍的探针 .mjs）**两个都要登记**
     #   ⇒ 漏登记 ⇒ 它们的锚点被**静默跳过** ⇒ 而门照样报「0 问题」（老坑的第八次）

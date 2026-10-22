@@ -797,6 +797,13 @@ _P1032H_BOOKS = [
     ("1032b4", "1032b4", "scripts/jimeng_probe1032b4_expanded_contract.py", r"^P\d+_.*_1032b4$"),
     #    ⑧ 1032c：带标签的 `P<n>_<描述>_1032c`
     ("1032c", "1032c", "scripts/jimeng_probe1032c_noop_contract.py", r"^P\d+_.*_1032c$"),
+    # ── D 类（1 本，1032-②l 新增）：**指纹表核对门** ──
+    #    ⇒ ⇒⇒⇒ 它的判据键形态是 `P<n>_<描述>_1032l`（带标签）⇒
+    #    ⇒ ⇒⇒ ⇒ 而它与 1032c 的形态**一样** ⇒ ⇒⇒⇒ ⇒
+    #    ⇒ ⇒⇒ ⇒ ⇒ 所以**不能**靠形态区分 ⇒ 必须点名（tag 不同）⇒
+    #    ⇒ ⇒⇒ ⇒ ⇒ ⇒ 而这正是「同名的东西在不同书里可以是不同的形状」的又一次
+    ("1032l", "1032l", "scripts/jimeng_probe1032l_fingerprint_gate.py",
+     r"^P\d+_.*_1032l$"),
 ]
 _P1032H_KINDS = ("failure", "conclusion", "precondition")
 
@@ -941,6 +948,10 @@ _P1032J_ARTIFACTS = [
     #   ⇒ 以前它只把 9 条判据打在 stdout、产物里连判据都没有 ⇒ ⇒ ⇒⇒ 别的门读不到它的判决
     #   ⇒ ⇒⇒⇒ ⇒ **⇒ ②k 给产物补上了 `P` 段 ＋ `criterion_kinds_1014` ＋ 完成标记**
     ("1014", "2014", "docs/research/jimeng-canvas/empty-ambiguity-1014.json", "P"),
+    # ⭐⭐⭐⭐⭐ 1032-②l：**指纹表核对门**也有产物级台账 ⇒ 它也能被红账读到
+    #   ⇒ ⇒⇒ ⇒ 而它的产物里有一节 `worktree` / `head` ⇒ ⇒⇒ ⇒
+    #   ⇒ ⇒⇒ ⇒ ⇒ 「过期 N 本」从此**有一本可查的账**，而不只是一句 stdout
+    ("1032l", "1032l", "docs/research/jimeng-canvas/fingerprint-gate-1032l.json", "P"),
 ]
 
 
@@ -1054,6 +1065,73 @@ def _p1032j_kind_vocab_ok():
                 _by[_v] = _by.get(_v, 0) + 1
     _missing = [k for k in _P1032H_KINDS if not _by.get(k)]
     return {"by_kind": _by, "missing": _missing, "ok": not _missing}
+
+
+# ══ 1032-②l：**指纹表核对门**自己跑一遍（只取判决，不落盘） ═══════════════
+def _p1032l_gate_runtime():
+    """⭐⭐⭐⭐⭐ 在**真树**上跑那道门的判决 —— 这是「门自己证明它修好了」的那一格。
+
+    ⇒ ⇒⇒⇒ **不落盘**：这里只取判决 ⇒ ⇒⇒⇒ ⇒ 产物由那道门自己写
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 而「谁写产物」与「谁读产物」分开 ⇒ ⇒⇒⇒ ⇒ ⇒ 两边不会互相遮掩
+    """
+    try:
+        import importlib.util
+        _spec = importlib.util.spec_from_file_location(
+            "jimeng_probe1032l_fingerprint_gate",
+            ROOT / "scripts/jimeng_probe1032l_fingerprint_gate.py")
+        _g = importlib.util.module_from_spec(_spec)
+        _spec.loader.exec_module(_g)
+    except Exception as exc:  # noqa: BLE001
+        return {"ok": False, "why": ["gate_module_unimportable:%r" % (exc,)],
+                "worktree_ok": False, "head_ok": False, "selftest_ok": False,
+                "n_stale_worktree": -1, "n_stale_head": -1,
+                "stale_worktree": [], "stale_head": [], "n_selftest_cases": 0}
+    try:
+        _m = _g._load_markers(_g.PROBE1014.read_text(encoding="utf-8"))
+        _wt = _g._judge_dir(_g.GDIR, _m)
+        _hd = _g._judge_head(_m)
+        _st = _g._selftest(_m)
+    except Exception as exc:  # noqa: BLE001
+        return {"ok": False, "why": ["gate_raised:%r" % (exc,)],
+                "worktree_ok": False, "head_ok": False, "selftest_ok": False,
+                "n_stale_worktree": -1, "n_stale_head": -1,
+                "stale_worktree": [], "stale_head": [], "n_selftest_cases": 0}
+    _why = list(_wt["why"]) + list(_hd["why"])
+    if not _st["ok"]:
+        _why.append("selftest_has_a_leak")
+    return {"ok": (not _why), "why": _why,
+            "worktree_ok": bool(_wt["ok"]), "head_ok": bool(_hd["ok"]),
+            "selftest_ok": bool(_st["ok"]),
+            "n_stale_worktree": len(_wt["stale_books"]),
+            "n_stale_head": len(_hd["stale_books"]),
+            "stale_worktree": list(_wt["stale_books"]),
+            "stale_head": list(_hd["stale_books"]),
+            "n_selftest_cases": _st["n_cases"]}
+
+
+def _p1032l_gatelist_order_ok():
+    """⭐ 门禁清单里 **1014 必须排在最后**。
+
+    ⇒ ⇒⇒⇒ 因为清单里一半探针会**重写自己的产物**，而 1014 的指纹表
+    ⇒ ⇒⇒⇒ ⇒ 记着**别的产物的字节** ⇒ ⇒⇒⇒ ⇒ ⇒ 若 1014 排在中间
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ 它后面那些探针一跑，那张表就过期了
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 下一轮清单的头一道门就会红
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而那不是「谁弄坏了」，是**顺序错了**
+    """
+    _p = ROOT / "scripts/jimeng_run_all_gates.sh"
+    if not _p.exists():
+        return {"ok": False, "why": ["gate_list_missing"],
+                "n_runs": 0, "last_run": ""}
+    _src = _p.read_text(encoding="utf-8")
+    _runs = [ln for ln in _src.splitlines() if ln.strip().startswith('run "')]
+    if not _runs:
+        return {"ok": False, "why": ["no_run_lines"],
+                "n_runs": 0, "last_run": ""}
+    _last = _runs[-1].strip()
+    _ok = ("1014-empty-ambig" in _last)
+    return {"ok": _ok,
+            "why": [] if _ok else ["1014_is_not_the_last_run:%s" % _last],
+            "n_runs": len(_runs), "last_run": _last}
 
 
 def _p1032h_ledgers_ok():
@@ -7181,6 +7259,17 @@ def main() -> int:
     #   （真的把产品改坏 ⇒ 门必须红 ⇒ 逐字还原 ⇒ 门必须再绿）
     p1032d = ROOT / "scripts/jimeng_probe1032d_mutation.py"
     _p1032d = p1032d.read_text(encoding="utf-8") if p1032d.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②l：**指纹表核对门** —— 1014 那张表必须与盘上的字节逐本对得上
+    #   ⚠️⚠️ **登记 `_p1032l` 与写用它的判据必须是同一步**（961 的教训：
+    #   ⇒ 判据里引了一个**没登记**的变量 ⇒ 锚点**一条都不查**、而且**连提示都没有**
+    #   ⇒ ⇒ ⇒ 「0 问题」是假绿）
+    p1032l = ROOT / "scripts/jimeng_probe1032l_fingerprint_gate.py"
+    _p1032l = p1032l.read_text(encoding="utf-8") if p1032l.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②l：**门禁清单进仓** —— 以前那份清单只活在 `/tmp` 里
+    #   ⚠️ 变量名必须与锚点门 `PROBE_VARS` 里的登记**同名**（`_gatelist`）
+    #   ⇒ 而锚点门要的是**文件文本** ⇒ 所以路径与文本要分成两个变量
+    _gatelist_path = ROOT / "scripts/jimeng_run_all_gates.sh"
+    _gatelist = _gatelist_path.read_text(encoding="utf-8") if _gatelist_path.exists() else ""
     # ⭐⭐⭐⭐⭐ 104b 的三处原型源码：判据要落在**被复刻的那个东西**上
     _p1018 = (ROOT / "scripts/jimeng_probe1018_assertion_vs_behavior.py").read_text(
         encoding="utf-8")
@@ -18615,6 +18704,63 @@ def main() -> int:
           and _p1032j_artifacts_ok()["ok"]
           and _p1032j_artifacts_pc()["ok"]
           and _p1032j_kind_vocab_ok()["ok"])
+
+    # ══ 1032-②l：**指纹表核对门** ══════════════════════════════════════════
+    print("— DD993AH. 批 1032-②l：给「指纹表」配一道可核对的门 —— "
+          "表里每一行都必须与盘上的字节逐本对得上")
+    check("DD993AH.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**1032-②j 收尾时我手工核过一遍「指纹表 30/30 自洽」—— 而那次核验只活在对话里** "
+          "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 没有任何人、没有任何门能复查它** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "②l 把它变成一道门：**表里每一行的 sha256_12 与 bytes 必须等于盘上那一本的字节；"
+          "表必须覆盖盘上的每一本书（不缺、不多）；volatile 必须在盘上、且被挡在表外** "
+          "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而**规则只从 1014 的源码里读** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 不在门里另抄一份 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 两处不会漂移** "
+          "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而 1032l 已经接进**源码那一关**与**产物那一关**两张表",
+          '_EXCLUDED_GENERATORS = {' in _p1014
+          and '("_SELF_MARK", "_EXCLUDED_GENERATORS", "VOLATILE_INPUTS")' in _p1032l
+          and 'def _load_markers(src_text):' in _p1032l
+          and 'ast.literal_eval(node.value)' in _p1032l
+          and 'def _judge(table, volatile, actual, generators, excluded_markers):' in _p1032l
+          and 'def _judge_dir(gdir, markers):' in _p1032l
+          and 'def _judge_head(markers):' in _p1032l
+          and '"criterion_kinds_1032l": KINDS_1032L' in _p1032l
+          and any(n == "1032l" for (n, _t, _p, _rx) in _P1032H_BOOKS)
+          and ("1032l" in (_p1032j_artifacts_ok().get("books") or {}))
+          and _p1032j_artifacts_ok()["ok"]
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+          and '"p3_volatile_inputs_must_stay_out_of_the_checkable_table_1032l_"' in _ausrc
+          and '"p4_two_baselines_commit_and_working_tree_1032l_"' in _ausrc
+          and '"p6_the_rules_are_read_from_the_probes_own_source_1032l_"' in _ausrc)
+    check("DD993AH.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐ 这道门必须在「真树」上跑一遍，而不只是长得像一道门** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 「源码里有 `_judge`」与「它在真树上判绿」是两件事** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而 1032-②d 已经教过：门自己能不能被证伪是另一件事** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以这一格同时要「真树判绿」＋「注入六种破坏都能翻红」** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而它判绿之后，那句「指纹表自洽」才不是一句活在对话里的话**",
+          _p1032l_gate_runtime()["ok"]
+          and _p1032l_gate_runtime()["worktree_ok"]
+          and _p1032l_gate_runtime()["head_ok"]
+          and _p1032l_gate_runtime()["selftest_ok"]
+          and _p1032l_gate_runtime()["n_stale_worktree"] == 0
+          and _p1032l_gate_runtime()["n_stale_head"] == 0
+          and _p1032l_gate_runtime()["n_selftest_cases"] >= 7
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+          and '"p1_the_fingerprint_table_must_match_the_bytes_on_disk_1032l_"' in _ausrc
+          and '"p2_the_table_must_cover_every_book_1032l_"' in _ausrc
+          and '"p5_the_gate_must_be_able_to_go_red_1032l_"' in _ausrc)
+    check("DD993AH.3 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐ 门禁清单以前只活在 `/tmp` 里 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 「28/28 全绿」这句话谁也复现不了** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 清单本身不在仓里 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 那句话就没有底** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 现在它进仓了（`scripts/jimeng_run_all_gates.sh`）⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而 1014 必须排在最后** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 清单里一半探针会重写自己的产物、而 1014 的表记着别的产物的字节** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 若 1014 排在中间 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 它后面那些探针一跑表就过期了** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 下一轮头一道门就会红 —— 而那不是「谁弄坏了」，是顺序错了**",
+          'run "1032l-fingerprint-gate"' in _gatelist
+          and 'run "1014-empty-ambig"' in _gatelist
+          and _p1032l_gatelist_order_ok()["ok"]
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+          and '"p7_the_gate_list_must_live_in_the_repo_1032l_"' in _ausrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
