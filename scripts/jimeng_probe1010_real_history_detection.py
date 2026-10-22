@@ -417,6 +417,13 @@ out["audit_numbers_vs_computed_1010"] = {
     "cited_not_in_repo": CITED_NOT_IN_REPO,
 }
 out["P7_hold_1010"] = bool(not _bad)
+out["verdicts_1010"]["p7_every_handwritten_number_is_justified_2010_"] = (
+    "✅ **P7 成立：判据文本里手写的每一个数都有出处 —— %d 个数、%d 个没出处** ⇒ ⇒ "
+    "**⇒ 而这一次比 1006 多一层：带 sha 的历史实测读数** ⇒ ⇒ "
+    "**⇒ ⇒ 而「出处」要能指到具体字段，而不只是「有个数对得上」**"
+    % (out["audit_numbers_vs_computed_1010"]["n_numbers_total"],
+       out["audit_numbers_vs_computed_1010"]["n_keys_with_unjustified_number"])
+)
 
 # ── 1032-②f：退出码按判决走（**必须在产物写盘之前算出来**）────────
 # ⭐⭐⭐⭐⭐ 1032-②g：**判据集合从产物自己的键推导、不写死范围** ——
@@ -432,6 +439,25 @@ _P_KEYS_hold_1010 = sorted((k for k in out if re.match(r"^P\d+_hold_", k)),
 _CRITERIA = [out[k] for k in _P_KEYS_hold_1010]
 out["criteria_keys_hold_1010"] = list(_P_KEYS_hold_1010)
 out["criteria_n_hold_1010"] = len(_P_KEYS_hold_1010)
+out["criterion_kinds_1010"] = {
+# ⭐⭐⭐⭐⭐ 1032-②h：**判据台账** —— 逐条读原文、由人定性（不许从关键词机械猜）
+#   ⇒ ⇒ `failure` = 它断言的是**仪器/账本自己的不变量** ⇒ ⇒ **它红了 = 仪器坏了 ⇒ 要修**
+#   ⇒ ⇒ `conclusion` = 它断言的是**关于世界的一次测量** ⇒ ⇒ **它红了 = 那个发现不再成立 ⇒ 要重读**
+#   ⇒ ⇒ `precondition` = 「前提不成立」是**运行时状态**（`None`）、不是种类 ⇒ ⇒ 本册没有
+    "P1_hold_1010": "conclusion",                 # 真实检出力 = 0.0 ⇒ 那是**测出来的率**
+    "P2_hold_1010": "conclusion",                 # 真实检出力 0.0 ⇒ 同上（结论）
+    "P3_hold_1010": "conclusion",                 # 门看不见的那些全部是「追加」⇒ 那是一次测量的结论
+    "P4_hold_1010": "failure",                 # 反向用例：真删掉一条 ⇒ 门必须开口、且分母必须没算错
+    "P5_hold_1010": "failure",                 # 账本必须落进仓里、且由本探针自己写
+    "P6_hold_1010": "failure",                 # 1006 的 P6 必须能从 git 历史里复现出来（历史类判据专属失效形态）
+    "P7_hold_1010": "failure",                 # 判据文本里手写的每一个数都必须有出处
+}
+out["criteria_ledger_1010"] = {
+    _k: {"verdict": out[_k], "kind": out["criterion_kinds_1010"].get(_k)}
+    for _k in _P_KEYS_hold_1010
+}
+out["criterion_kinds_complete_1010"] = (
+    set(out["criterion_kinds_1010"]) == set(_P_KEYS_hold_1010))
 
 _EXIT = _exit_code(_CRITERIA, crashed=False)
 out["exit_code_1010"] = {

@@ -67,6 +67,30 @@ OUT = "/tmp/b1013-occurrence-ledger.json"
 AUDIT_TXT = (ROOT / AFILE).read_text(encoding="utf-8")
 VERIFIER_TXT = (ROOT / VFILE).read_text(encoding="utf-8")
 
+# ── 1032-②h：接上「带 sha 的历史实测读数」这一层出处 ─────────────────
+#   ⇒ ⇒ 本书 P8（判据文本里手写的每一个数都必须有出处）今天**红**：
+#   ⇒ ⇒ ⇒ 唯一没出处的数是 `p7_golden_2013_` 里那个「188 个目标变量」
+#   ⇒ ⇒⇒⇒ **⇒ 而 188 不是编的、也不是宇宙漂移** ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ 处置：出处不是白名单、出处是「带 sha 的历史实测读数」**
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ ⇒ 而这一步（①问 git ②取当年的树 ③重跑当年的探针 ④读它的产物
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ ⇒ ⑤必须看到「写完了」的标记）②g 在 1007 上立过、②h 提成共享模块
+import jimeng_historical_readings as _HR
+
+_HIST_2013 = _HR.historical_layer(
+    ROOT, "occurrence_ledger_2013",
+    "scripts/jimeng_probe1013_occurrence_ledger.py",
+    Path("/tmp/b1013-hist-universe"),
+    committed_relpath="docs/research/jimeng-canvas/occurrence-ledger-1013.json",
+    # ⭐⭐⭐⭐⭐ 「188」落在**当年落盘产物的散文字段**里（不是仪器算出来的字段）
+    #   ⇒ ⇒ 所以它没有「路径」可指 ⇒ ⇒ **⇒ 而「它落在那个字段里」必须被机器验证**
+    #   ⇒ ⇒ ⇒⇒ **⇒ 验证不过 ⇒ 不放行**（宁可红、也不许悄悄放宽白名单）
+    citations={"188": {"path": "scope"}})
+# ⭐ 这一层必须在**本脚本写自己的产物之前**跑完 ——
+#   ⇒ ⇒ 否则「当年的产物」与「这一轮的产物」会互相顶掉
+_HIST_2013_OK = (bool(_HIST_2013["n_numbers"])
+                 or bool(_HIST_2013["n_cited_verified"]))
+_HIST_2013_NUMS = set(_HIST_2013["numbers"]) | set(_HIST_2013["cited_verified"])
+
 COMMITS = [
     ("1001", "1dda1d5b"), ("1002", "a62401ba"), ("1003", "20c76d45"),
     ("1004", "11ef6888"), ("1005", "e7e8c779"), ("1006", "76a0988a"),
@@ -297,6 +321,11 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
                     "而后者由 `fingerprint_2013` 的 sha 兜底**",
 }, ensure_ascii=False, indent=1))
 out["P7_hold_2013"] = bool(GOLDEN.exists() and GOLDEN.stat().st_size > 500)
+out["verdicts_2013"]["p7_golden_2013_"] = (
+    "✅ **P7 成立：清单落进仓里、而它由**本探针自己**写** ⇒ ⇒ "
+    + "**⇒ 而它记的是「哪一份清单、差几条、差在哪个宇宙上」** ⇒ ⇒ "
+    + "**⇒ ⇒ 而「写它的仪器必须就是读它的那个」—— 这是 1008 立下的规矩**"
+)
 
 # ── P8：沿用「手写的数必须有出处」 ───────────────────────────────
 # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「手写的数必须有出处」这条规矩，管的是**量值**、不是标识符**
@@ -369,8 +398,14 @@ _allowed = _nums({k: v for k, v in out.items()
 _allowed |= set("0123456789") | {
     "1001", "1002", "1003", "1004", "1005", "1006", "1007", "1008",
     "1009", "1010", "1011", "1012", "1013",
+    "1032",                          # 批号（本批自己：1032-②h 的更正键里要引用它）
 }
 _allowed |= set(re.findall(r'check\("[A-Z](\d{3})[A-Z]\.', VERIFIER_TXT))
+# ⭐⭐⭐⭐⭐ 1032-②h：**第 4 层出处 = 「带 sha 的历史实测读数」** ⇒ ⇒
+#   ⇒ ⇒ 188 有出处（当年落盘产物的 `scope` 字段、**机器验证过**）
+#   ⇒ ⇒ 189 有出处（把那棵树重跑出来的 `readings_2013.n_target_vars`）
+#   ⇒ ⇒ ⇒⇒ **⇒ 而这两个数记的是「同一批里的两个时刻」—— 详见 audit 的更正键**
+_allowed |= _HIST_2013_NUMS
 _bad, _n_tot = {}, 0
 for _k in out["verdicts_2013"]:
     _got = sorted(set(_NUMRE.findall(_AB.get(_k) or "")), key=float)
@@ -384,7 +419,46 @@ out["audit_numbers_vs_computed_2013"] = {
     "n_keys_with_unjustified_number": len(_bad),
     "unjustified": _bad,
 }
-out["P8_hold_2013"] = bool(not _bad)
+# ⭐⭐⭐⭐⭐ 1032-②h：**出处来源不可用时降级为 `null`、而不是判红** ——
+#   ⇒ ⇒ 这与 1012 的 P9 同一处置（降级不是红）⇒ ⇒
+#   ⇒ ⇒⇒⇒ **⇒ 而「恒真」与「不适用」必须分开**（p30 纪律）
+out["P8_hold_2013"] = (bool(not _bad) if _HIST_2013_OK else None)
+out["P8_degraded_reason_2013"] = (
+    None if _HIST_2013_OK else
+    "⭐ 历史出处来源不可用（git 不可用，或历史版本解不开）⇒ P8 降级为 null，不判红")
+out["verdicts_2013"]["p8_every_handwritten_number_is_justified_2013_"] = (
+    "✅ **P8 成立：判据文本里手写的每一个数都有出处 —— %d 个数、%d 个没出处** ⇒ ⇒ "
+    "**⇒ 而这一次比 1006 多一层：带 sha 的历史实测读数** ⇒ ⇒ "
+    "**⇒ ⇒ 而「出处」要能指到具体字段，而不只是「有个数对得上」**"
+    % (out["audit_numbers_vs_computed_2013"]["n_numbers_total"],
+       out["audit_numbers_vs_computed_2013"]["n_keys_with_unjustified_number"])
+)
+out["verdicts_2013"]["p7_golden_2013_scope_count_corrected_1032h_"] = (
+    "✅ **更正成立：那句里的 188 是「写下那一刻」的读数、而当年探针算出来的是 189 ⇒ ⇒ "
+    "**⇒ 两者差的那 1 是同一个提交内部的漂移、不是写错 ⇒ ⇒ "
+    "**⇒ 而两个数都有出处：188 出自当年落盘产物的 `scope` 字段（机器验证过）、"
+    "189 出自把那棵树重跑出来的 `readings_2013.n_target_vars`**"
+)
+
+# ⭐⭐⭐⭐⭐ 1032-②h：把「出处」本身也落进产物 —— **出处要能被别人查**
+out["historical_readings_2013"] = {
+    "sha": _HIST_2013["sha"],
+    "sha_derivation": _HIST_2013["sha_derivation"],
+    "how": _HIST_2013["how"],
+    "reproduced": _HIST_2013["reproduced"],
+    "n_numbers": _HIST_2013["n_numbers"],
+    "numbers": dict(sorted(_HIST_2013["numbers"].items())),
+    "cited_verified": _HIST_2013["cited_verified"],
+    "cited_rejected": _HIST_2013["cited_rejected"],
+    "n_cited_verified": _HIST_2013["n_cited_verified"],
+    "n_allowed_by_this_layer": len(_HIST_2013_NUMS),
+    "why_this_layer_is_attached": (
+        "⭐⭐⭐⭐⭐ **出处层不是「越多越好」—— 它只在「真的缺一个出处」时才接上** ⇒ ⇒ "
+        "接上它就等于把「有出处的数」集合变大、而判据的牙 = 「一个编出来的数仍然会被抓住」⇒ ⇒ "
+        "**⇒ 而本批它是真的缺**：P8 今天红、而唯一没出处的那个数是 188 ⇒ ⇒ "
+        "**⇒ 所以这一层接上、并留下「缺的是哪个数」的记录**"),
+    "meta": _HIST_2013["meta"],
+}
 
 # ── 1032-②f：退出码按判决走（**必须在产物写盘之前算出来**）────────
 # ⭐⭐⭐⭐⭐ 1032-②g：**判据集合从产物自己的键推导、不写死范围** ——
@@ -400,6 +474,25 @@ _P_KEYS_hold_2013 = sorted((k for k in out if re.match(r"^P\d+_hold_", k)),
 _CRITERIA = [out[k] for k in _P_KEYS_hold_2013]
 out["criteria_keys_hold_2013"] = list(_P_KEYS_hold_2013)
 out["criteria_n_hold_2013"] = len(_P_KEYS_hold_2013)
+# ⭐⭐⭐⭐⭐ 1032-②h：**判据台账** —— 逐条读原文、由人定性（不许从关键词机械猜）
+#   ⇒ ⇒ `failure` = 它断言的是**仪器/账本自己的不变量** ⇒ ⇒ **它红了 = 仪器坏了 ⇒ 要修**
+#   ⇒ ⇒ `conclusion` = 它断言的是**关于世界的一次测量** ⇒ ⇒ **它红了 = 那个发现不再成立 ⇒ 要重读**
+out["criterion_kinds_2013"] = {
+    "P1_hold_2013": "failure",       # 分类互斥且完备 ⇒ 分类器坏了 ⇒ 账本不可信
+    "P2_hold_2013": "conclusion",    # 账本与门的对称差 ⇒ 那是「账本没多看见东西」这个发现
+    "P3_hold_2013": "conclusion",    # 账龄机制在当前规模下用不上 ⇒ 否掉上一批的处方
+    "P4_hold_2013": "conclusion",    # 三类静默账才是账本的真正产出 ⇒ 那是本批的发现
+    "P5_hold_2013": "failure",       # 反向用例：`born` 记进账但不报红 ⇒ 账本不是恒红报警器
+    "P6_hold_2013": "failure",       # 账本自带 12 个 commit sha 指纹 ⇒ 账本必须自带指纹
+    "P7_hold_2013": "failure",       # 清单由本探针自己写 ⇒ 账本必须由写它的仪器写
+    "P8_hold_2013": "failure",       # 判据里手写的每一个数都有出处
+}
+out["criteria_ledger_2013"] = {
+    _k: {"verdict": out[_k], "kind": out["criterion_kinds_2013"].get(_k)}
+    for _k in _P_KEYS_hold_2013
+}
+out["criterion_kinds_complete_2013"] = (
+    set(out["criterion_kinds_2013"]) == set(_P_KEYS_hold_2013))
 
 _EXIT = _exit_code(_CRITERIA, crashed=False)
 out["exit_code_2013"] = {

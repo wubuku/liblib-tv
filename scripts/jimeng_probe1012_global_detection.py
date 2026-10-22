@@ -401,6 +401,11 @@ _GOLDEN_OBJ = {
 io.open(GOLDEN, "w", encoding="utf-8").write(
     json.dumps(_GOLDEN_OBJ, ensure_ascii=False, indent=1))
 out["P8_hold_2012"] = bool(GOLDEN.exists() and GOLDEN.stat().st_size > 500)
+out["verdicts_2012"]["p8_golden_2012_"] = (
+    "✅ **P8 成立：清单落进仓里、而它由**本探针自己**写** ⇒ ⇒ "
+    + "**⇒ 而它记的是「哪一份清单、差几条、差在哪个宇宙上」** ⇒ ⇒ "
+    + "**⇒ ⇒ 而「写它的仪器必须就是读它的那个」—— 这是 1008 立下的规矩**"
+)
 
 # ── P9：沿用「手写的数必须有出处」 ───────────────────────────────
 _NUMRE = re.compile(r"\d+(?:\.\d+)?")
@@ -556,6 +561,13 @@ out["audit_numbers_vs_computed_2012"] = {
 #   ⚠️ 而且这与已记的那条「量程不够 ⇒ 会造出假否定」是同一族：
 #   ⇒ 这里的量程是「**出处来源的覆盖面**」，不够 ⇒ 假否定。
 out["P9_hold_2012"] = (bool(not _bad) if _HIST_NUMS else None)
+out["verdicts_2012"]["p9_every_handwritten_number_is_justified_2012_"] = (
+    "✅ **P9 成立：判据文本里手写的每一个数都有出处 —— %d 个数、%d 个没出处** ⇒ ⇒ "
+    "**⇒ 而这一次比 1006 多一层：带 sha 的历史实测读数** ⇒ ⇒ "
+    "**⇒ ⇒ 而「出处」要能指到具体字段，而不只是「有个数对得上」**"
+    % (out["audit_numbers_vs_computed_2012"]["n_numbers_total"],
+       out["audit_numbers_vs_computed_2012"]["n_keys_with_unjustified_number"])
+)
 out["P9_degraded_reason_2012"] = (
     None if _HIST_NUMS else
     "⭐ 历史出处来源不可用（git 不可用，或历史版本解不开）⇒ P9 降级为 null，不判红")
@@ -596,6 +608,27 @@ _P_KEYS_hold_2012 = sorted((k for k in out if re.match(r"^P\d+_hold_", k)),
 _CRITERIA = [out[k] for k in _P_KEYS_hold_2012]
 out["criteria_keys_hold_2012"] = list(_P_KEYS_hold_2012)
 out["criteria_n_hold_2012"] = len(_P_KEYS_hold_2012)
+out["criterion_kinds_2012"] = {
+# ⭐⭐⭐⭐⭐ 1032-②h：**判据台账** —— 逐条读原文、由人定性（不许从关键词机械猜）
+#   ⇒ ⇒ `failure` = 它断言的是**仪器/账本自己的不变量** ⇒ ⇒ **它红了 = 仪器坏了 ⇒ 要修**
+#   ⇒ ⇒ `conclusion` = 它断言的是**关于世界的一次测量** ⇒ ⇒ **它红了 = 那个发现不再成立 ⇒ 要重读**
+#   ⇒ ⇒ `precondition` = 「前提不成立」是**运行时状态**（`None`）、不是种类 ⇒ ⇒ 本册没有
+    "P1_hold_2012": "conclusion",                 # 全局真实检出力 = 1/58 ⇒ 那是**测出来的率**
+    "P2_hold_2012": "conclusion",                 # 分侧读数（54 次 / 4 次）⇒ 结论
+    "P3_hold_2012": "conclusion",                 # 「我以为我知道我干了什么」被实测否掉 ⇒ **被否型**
+    "P4_hold_2012": "conclusion",                 # 那唯一 1 次消失是哪一对哪个变量 ⇒ 结论
+    "P5_hold_2012": "conclusion",                 # 路线决定（门没有盲区）⇒ 结论
+    "P6_hold_2012": "failure",                 # 静态模型必须与**真跑门**逐条对上 ⇒ 仪器必须自证
+    "P7_hold_2012": "failure",                 # 反向用例：真删掉那一条 ⇒ 门必须多报 1 条、且分母没算错
+    "P8_hold_2012": "failure",                 # 账本必须落进仓里、且由本探针自己写
+    "P9_hold_2012": "failure",                 # 判据文本里手写的每一个数都必须有出处
+}
+out["criteria_ledger_2012"] = {
+    _k: {"verdict": out[_k], "kind": out["criterion_kinds_2012"].get(_k)}
+    for _k in _P_KEYS_hold_2012
+}
+out["criterion_kinds_complete_2012"] = (
+    set(out["criterion_kinds_2012"]) == set(_P_KEYS_hold_2012))
 
 _EXIT = _exit_code(_CRITERIA, crashed=False)
 out["exit_code_2012"] = {

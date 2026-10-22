@@ -752,6 +752,228 @@ def _p1032g_ledger_pc():
             _ok = False
     return _ok
 
+
+# ══ 1032-②h：**判据台账必须给册内 8 本全部到位、而且取值不越界** ═════════
+#   ⇒ ⇒ ②g 只给 1005 与 1007 上了台账（2 本 / 12 条）⇒ ⇒ 而 1015 的红账
+#   ⇒ ⇒⇒⇒ **「红的那一条是缺陷还是结论」这个问题、册内 8 本里有 6 本答不出来** ⇒ ⇒
+#   ⇒ ⇒⇒⇒⇒ **⇒ ②h 把剩下 6 本共 46 条逐条读原文、由人定性补齐** ⇒ ⇒
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ **⇒ 而「由人定性」不许靠关键词机械猜**（「❌」「被否」「否掉」
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ **⇒ 在两种语义位置都出现）⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ **⇒ 而门只验可机检的两件事**：① 键集合 == 判据集合
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ **⇒ ② 取值不越界** ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒⇒⇒
+#   ⇒ ⇒⇒⇒⇒ ⇒ ⇒⇒ **⇒ 而不钉绝对条数**（「今天有几本上了台账」是读数、不是断言）
+_P1032H_BOOKS = [
+    ("1005", "1005", "scripts/jimeng_probe1005_zero_coupling_census.py"),
+    ("1007", "1007", "scripts/jimeng_probe1007_disparate_copies.py"),
+    ("1008", "1008", "scripts/jimeng_probe1008_golden_freshness.py"),
+    ("1009", "1009", "scripts/jimeng_probe1009_edit_visibility.py"),
+    ("1010", "1010", "scripts/jimeng_probe1010_real_history_detection.py"),
+    ("1011", "2011", "scripts/jimeng_probe1011_change_locality.py"),
+    ("1012", "2012", "scripts/jimeng_probe1012_global_detection.py"),
+    ("1013", "2013", "scripts/jimeng_probe1013_occurrence_ledger.py"),
+]
+_P1032H_KINDS = ("failure", "conclusion", "precondition")
+
+
+def _p1032h_book_ledger(path, tag):
+    """⭐ 逐本查：台账发布了没有、键对不对、取值越不越界。"""
+    _p = ROOT / path
+    _r = {"path": path, "tag": tag, "ok": False, "why": []}
+    if not _p.exists():
+        _r["why"].append("probe_missing")
+        return _r
+    try:
+        _tree = ast.parse(_p.read_text(encoding="utf-8"))
+    except SyntaxError as _e:  # pragma: no cover
+        _r["why"].append("syntax_error:%r" % (_e,))
+        return _r
+    _kinds = None
+    _complete = False
+    _hold_keys = set()
+    for _node in ast.walk(_tree):
+        if not isinstance(_node, ast.Assign):
+            continue
+        for _tg in _node.targets:
+            if not (isinstance(_tg, ast.Subscript)
+                    and isinstance(_tg.value, ast.Name)
+                    and _tg.value.id == "out"
+                    and isinstance(_tg.slice, ast.Constant)
+                    and isinstance(_tg.slice.value, str)):
+                continue
+            _key = _tg.slice.value
+            if _key == "criterion_kinds_" + tag:
+                try:
+                    _kinds = ast.literal_eval(_node.value)
+                except Exception:  # noqa: BLE001
+                    _kinds = None
+            elif _key == "criterion_kinds_complete_" + tag:
+                _complete = True
+            elif re.match(_P1032G_HOLD_RE, _key):
+                _hold_keys.add(_key)
+    if _kinds is None:
+        _r["why"].append("no_criterion_kinds")
+        return _r
+    if not isinstance(_kinds, dict) or not _kinds:
+        _r["why"].append("kinds_not_a_nonempty_dict")
+        return _r
+    _bad = sorted(k for k, v in _kinds.items() if v not in _P1032H_KINDS)
+    if _bad:
+        _r["why"].append("kind_out_of_range:%s" % (_bad,))
+    if set(_kinds) != _hold_keys:
+        _r["why"].append("kinds_do_not_match_hold_keys:%s"
+                         % (sorted(set(_kinds) ^ _hold_keys),))
+    if not _complete:
+        _r["why"].append("no_criterion_kinds_complete")
+    _r["n_kinds"] = len(_kinds)
+    _r["n_hold_keys"] = len(_hold_keys)
+    _r["by_kind"] = {k: sum(1 for v in _kinds.values() if v == k)
+                     for k in _P1032H_KINDS}
+    _r["ok"] = not _r["why"]
+    return _r
+
+
+def _p1032h_ledgers_ok():
+    _books = {}
+    for _name, _tag, _path in _P1032H_BOOKS:
+        _books[_name] = _p1032h_book_ledger(_path, _tag)
+    return {"books": _books,
+            "n_books": len(_books),
+            "n_books_ok": sum(1 for v in _books.values() if v["ok"]),
+            "problems": {k: v["why"] for k, v in _books.items() if not v["ok"]},
+            "ok": all(v["ok"] for v in _books.values()) and bool(_books)}
+
+
+# ══ 1032-②h：**红账的「红」栏必须带 kind** ══════════════════════════════
+def _p1032h_red_judge(rl):
+    """⭐ 纯函数：红账「红栏带 kind」的关系式判决（**不钉绝对数**）。"""
+    _why = []
+    if not isinstance(rl, dict):
+        return {"ok": False, "why": ["red_ledger_missing"]}
+    _need = ("n_books", "n_criteria_red_named", "criteria_red_by_book",
+             "criteria_red_with_kind", "n_criteria_red_failure",
+             "n_criteria_red_conclusion", "n_criteria_red_kind_unknown",
+             "red_needs_fix", "red_needs_reread", "red_kind_unknown",
+             "n_criteria_not_applicable", "books_with_not_applicable_criteria",
+             "n_books_fully_decidable", "n_books_not_fully_decidable",
+             "ledger_rows")
+    for _k in _need:
+        if _k not in rl:
+            _why.append("missing:" + _k)
+    if _why:
+        return {"ok": False, "why": _why}
+    _named = int(rl["n_criteria_red_named"])
+    if (int(rl["n_criteria_red_failure"]) + int(rl["n_criteria_red_conclusion"])
+            + int(rl["n_criteria_red_kind_unknown"])) != _named:
+        _why.append("kind_partition_mismatch")
+    if len(rl["red_needs_fix"]) != int(rl["n_criteria_red_failure"]):
+        _why.append("needs_fix_len_mismatch")
+    if len(rl["red_needs_reread"]) != int(rl["n_criteria_red_conclusion"]):
+        _why.append("needs_reread_len_mismatch")
+    if len(rl["red_kind_unknown"]) != int(rl["n_criteria_red_kind_unknown"]):
+        _why.append("kind_unknown_len_mismatch")
+    if (int(rl["n_books_fully_decidable"])
+            + int(rl["n_books_not_fully_decidable"])) != int(rl["n_books"]):
+        _why.append("fully_decidable_sum_mismatch")
+    _rows = rl["ledger_rows"]
+    if int(rl["n_criteria_not_applicable"]) != sum(
+            int(r.get("n_criteria_not_applicable") or 0) for r in _rows):
+        _why.append("not_applicable_sum_mismatch")
+    _na_books = sorted(r["golden"] for r in _rows
+                        if int(r.get("n_criteria_not_applicable") or 0) > 0)
+    if list(rl["books_with_not_applicable_criteria"]) != _na_books:
+        _why.append("not_applicable_books_mismatch")
+    for _g, _d in (rl.get("criteria_red_with_kind") or {}).items():
+        if set(_d) != set((rl.get("criteria_red_by_book") or {}).get(_g) or []):
+            _why.append("red_kind_set_mismatch:%s" % _g)
+    return {"ok": not _why, "why": _why}
+
+
+def _p1032h_red_ok():
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    _rl = _d.get("red_ledger")
+    if _rl is None:
+        _rl = _d.get("red_ledger_1015")
+    return bool(_p1032h_red_judge(_rl).get("ok"))
+
+
+def _p1032h_red_pc():
+    """⭐⭐⭐⭐⭐ **阳性对照：证明这道判决能红** ——
+    ⇒ ⇒ 而「今天一条红都没有」⇒ ⇒ 若只做「改计数」的对照、那条关系就是恒真 ⇒ ⇒
+    ⇒ ⇒⇒⇒ **⇒ 所以必须有一个**合成样例**：先造一份「有一条红、且带 kind」的
+    ⇒ ⇒⇒⇒ ⇒ ⇒ **最小红账 ⇒ 它必须先通过 ⇒ ⇒ 然后破坏「每条红都带 kind」⇒ ⇒ 必须翻红** ⇒ ⇒
+    """
+    import copy
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    _rl = _d.get("red_ledger")
+    if _rl is None:
+        _rl = _d.get("red_ledger_1015")
+    if not isinstance(_rl, dict):
+        return False
+    if not _p1032h_red_judge(_rl).get("ok"):
+        return False
+    _ok = True
+    # ── ① 真实数据上的六种改法（每一种都必须让判决翻红）────────────────
+    def _m(name, fn):
+        _c = copy.deepcopy(_rl)
+        fn(_c)
+        if _p1032h_red_judge(_c).get("ok"):
+            return False
+        return True
+
+    _ok = _ok and _m("n_criteria_red_failure",
+                     lambda d: d.__setitem__(
+                         "n_criteria_red_failure",
+                         int(d.get("n_criteria_red_failure", 0)) + 1))
+    _ok = _ok and _m("red_needs_fix",
+                     lambda d: d.__setitem__(
+                         "red_needs_fix", list(d.get("red_needs_fix") or []) + ["X"]))
+    _ok = _ok and _m("n_books_not_fully_decidable",
+                     lambda d: d.__setitem__(
+                         "n_books_not_fully_decidable",
+                         int(d.get("n_books_not_fully_decidable", 0)) + 1))
+    _ok = _ok and _m("n_criteria_not_applicable",
+                     lambda d: d.__setitem__(
+                         "n_criteria_not_applicable",
+                         int(d.get("n_criteria_not_applicable", 0)) + 1))
+    _ok = _ok and _m("books_with_not_applicable_criteria",
+                     lambda d: d.__setitem__(
+                         "books_with_not_applicable_criteria",
+                         list(d.get("books_with_not_applicable_criteria") or []) + ["X"]))
+    _ok = _ok and _m("ledger_rows",
+                     lambda d: d.__setitem__(
+                         "ledger_rows", list(d.get("ledger_rows") or []) + [
+                             {"golden": "X", "n_criteria_not_applicable": 0}]))
+    # ── ② 合成样例：证明「每一条红都必须带 kind」这条**不是恒真** ───────
+    _syn = {
+        "n_books": 1,
+        "n_criteria_red_named": 1,
+        "criteria_red_by_book": {"g": ["P1_hold_x"]},
+        "criteria_red_with_kind": {"g": {"P1_hold_x": "failure"}},
+        "n_criteria_red_failure": 1,
+        "n_criteria_red_conclusion": 0,
+        "n_criteria_red_kind_unknown": 0,
+        "red_needs_fix": ["P1_hold_x"],
+        "red_needs_reread": [],
+        "red_kind_unknown": [],
+        "n_criteria_not_applicable": 0,
+        "books_with_not_applicable_criteria": [],
+        "n_books_fully_decidable": 1,
+        "n_books_not_fully_decidable": 0,
+        "ledger_rows": [{"golden": "g", "n_criteria_not_applicable": 0}],
+    }
+    if not _p1032h_red_judge(_syn).get("ok"):
+        return False
+    _bad = copy.deepcopy(_syn)
+    _bad["criteria_red_with_kind"] = {"g": {}}
+    if _p1032h_red_judge(_bad).get("ok"):
+        return False
+    return _ok
+
+
 def main() -> int:
     env = dict(os.environ)
     env["SNAP_OUT"] = str(OUT)
@@ -17881,6 +18103,34 @@ def main() -> int:
           "⭐⭐⭐⭐⭐ **而它带阳性对照：改坏任何一条关系 ⇒ ⇒ 判决必须翻红** ⇒ ⇒ "
           "**⇒ ⇒  ⇒ 「本批一条关系都没坏」时，这条判据也不会空跑**",
           _p1032g_ledger_ok() and _p1032g_ledger_pc())
+
+    check("DD993AD.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "「**红账要分得出「真红」与「结论」**」这件事**必须由台账自己回答** ⇒ ⇒ "
+          "**⇒ 册内 8 本必须全部发布 `criterion_kinds_<tag>`** ⇒ ⇒ "
+          "**⇒ 而「由人定性」不许靠关键词机械猜（「❌」「被否」「否掉」在两种语义位置都出现）"
+          "⇒ ⇒ ⇒ 所以逐条读原文、由人定性** ⇒ ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **而门只验可机检的两件事**："
+          "**① 标注集合 == 判据集合（多一条少一条都红）② 取值不越界"
+          "（`failure` / `conclusion` / `precondition`）** ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而不钉绝对条数**（「今天有几本上了台账」是读数、不是断言）⇒ ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而这一道门用 AST 查、不认字符串** ⇒ ⇒ ⇒⇒ "
+          "**⇒ 而 `criterion_kinds_complete_<tag>` 也必须在源码里**（完成标记要能被别人查）",
+          _p1032h_ledgers_ok()["ok"])
+    check("DD993AD.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**红账的「红」那一栏必须带 kind** ⇒ ⇒ "
+          "**⇒ 「这本书红了」只说书级、而「红的是哪一条」要逐条点名 ⇒ ⇒ "
+          "**⇒ 而点完名还要问「那条红是缺陷还是结论」⇒ ⇒ ⇒⇒ 缺这一栏 ⇒ ⇒ "
+          "**⇒ 红账就只是一张「坏掉的清单」、而它本该是「**该修的**清单」** ⇒ ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而 kind 的三个取值各回答一个不同的问题**："
+          "`failure` = 「它红了 = 仪器坏了」⇒ 要修；`conclusion` = 「它红了 = 那个发现不再成立」"
+          "⇒ 要重读；`precondition` = 「前提不成立、判据不适用」⇒ 不许算成红 ⇒ ⇒ ⇒⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而「没标注」=「不可判定」= 第三档 —— 不许默认成 `failure`** ⇒ ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而「不适用」（`None`）要单列 —— 「没有 None」与「没有 False」是两件事** ⇒ ⇒ ⇒ "
+          "⭐⭐⭐⭐⭐ **⇒ 而这一道门带阳性对照、还带一个**合成样例** ⇒ ⇒ ⇒⇒ "
+          "**⇒ 因为「今天一条红都没有」⇒ ⇒ 只改计数的对照会让「每条红都带 kind」变成恒真** ⇒ ⇒ ⇒⇒ "
+          "**⇒ 合成样例先造一份「有一条红、且带 kind」的最小红账 ⇒ 它必须先通过 ⇒ "
+          "⇒ 然后破坏「每条红都带 kind」⇒ 必须翻红**",
+          _p1032h_red_ok() and _p1032h_red_pc())
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

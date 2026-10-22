@@ -360,6 +360,24 @@ _P_KEYS_hold_1009 = sorted((k for k in out if re.match(r"^P\d+_hold_", k)),
 _CRITERIA = [out[k] for k in _P_KEYS_hold_1009]
 out["criteria_keys_hold_1009"] = list(_P_KEYS_hold_1009)
 out["criteria_n_hold_1009"] = len(_P_KEYS_hold_1009)
+out["criterion_kinds_1009"] = {
+# ⭐⭐⭐⭐⭐ 1032-②h：**判据台账** —— 逐条读原文、由人定性（不许从关键词机械猜）
+#   ⇒ ⇒ `failure` = 它断言的是**仪器/账本自己的不变量** ⇒ ⇒ **它红了 = 仪器坏了 ⇒ 要修**
+#   ⇒ ⇒ `conclusion` = 它断言的是**关于世界的一次测量** ⇒ ⇒ **它红了 = 那个发现不再成立 ⇒ 要重读**
+#   ⇒ ⇒ `precondition` = 「前提不成立」是**运行时状态**（`None`）、不是种类 ⇒ ⇒ 本册没有
+    "P1_hold_1009": "conclusion",                 # 正向锚点的多处引用 / 反向锚点的 0 次 —— 那是**普查读到的形状**
+    "P2_hold_1009": "conclusion",                 # 「升级成「必须恰好 N 次」补不上这个洞」⇒ **被否型**（结论）
+    "P3_hold_1009": "conclusion",                 # 能穿过门的是四种而不是两种 ⇒ **被否型**（结论）
+    "P4_hold_1009": "conclusion",                 # 「唯一一种门看不见但普查看得见的编辑」⇒ 关于门机制的一次发现
+    "P5_hold_1009": "failure",                 # 交付物是那张表、而它必须非空（8 行全部真跑门跑出来）
+    "P6_hold_1009": "failure",                 # 那张表必须落进仓里、且由本探针自己写
+}
+out["criteria_ledger_1009"] = {
+    _k: {"verdict": out[_k], "kind": out["criterion_kinds_1009"].get(_k)}
+    for _k in _P_KEYS_hold_1009
+}
+out["criterion_kinds_complete_1009"] = (
+    set(out["criterion_kinds_1009"]) == set(_P_KEYS_hold_1009))
 
 _EXIT = _exit_code(_CRITERIA, crashed=False)
 out["exit_code_1009"] = {

@@ -371,6 +371,12 @@ def _run_round():
         row["criteria_red"] = sorted(k for k, v in (_cd or {}).items()
                                      if str(v).strip().lower() == "false")
         row["n_criteria_red"] = len(row["criteria_red"])
+        # ⭐⭐⭐⭐⭐ 1032-②h：**「不适用」（`None`）必须与「红」分开** ⇒ ⇒
+        #   ⇒ ⇒ 判据的判决是 `None`（前提不成立 ⇒ 降级）时、它**既不是红也不是绿** ⇒ ⇒
+        #   ⇒ ⇒⇒⇒ **⇒ 而「没有 None」与「没有 False」是两件事、不许合并** ⇒ ⇒
+        row["criteria_not_applicable"] = sorted(
+            k for k, v in (_cd or {}).items() if str(v).strip().lower() == "none")
+        row["n_criteria_not_applicable"] = len(row["criteria_not_applicable"])
         _ap = _artifact_path(tail)
         row["artifact_path_found"] = bool(_ap)
         _art = None
@@ -396,6 +402,17 @@ def _run_round():
         row["ledger_n_criteria"] = _cn
         row["ledger_n_criteria_keys"] = len(_ckeys)
         row["ledger_complete"] = _complete
+        # ⭐⭐⭐⭐⭐ 1032-②h：**红的那一条要带上它的 kind** ⇒ ⇒
+        #   ⇒ ⇒ 「这本书红了」只说书级；点完名还要问「那条红是缺陷还是结论」⇒ ⇒
+        #   ⇒ ⇒⇒⇒ **⇒ 缺这一栏 ⇒ 红账就只是一张「坏掉的清单」、
+        #   而它本该是「**该修的**清单」** ⇒ ⇒
+        #   ⇒ ⇒⇒⇒⇒ **⇒ 而「没标注」=「不可判定」= 第三档、不许默认成 failure**
+        row["criteria_red_with_kind"] = {
+            _k: _kinds.get(_k) for _k in (row.get("criteria_red") or [])}
+        row["n_criteria_red_kind_known"] = sum(
+            1 for _v in row["criteria_red_with_kind"].values() if _v)
+        row["n_criteria_red_kind_unknown"] = (
+            row["n_criteria_red"] - row["n_criteria_red_kind_known"])
         rows.append(row)
     return rows
 
@@ -456,12 +473,39 @@ N_LEDGER_CRITERIA = sum(r.get("ledger_n_kinds") or 0 for r in BOOKS)
 LEDGER_ROWS = [{"golden": r["golden"],
                 "criteria_detail_readable": r.get("criteria_detail_readable"),
                 "n_criteria_red": r.get("n_criteria_red"),
+                "n_criteria_not_applicable": r.get("n_criteria_not_applicable"),
                 "artifact_readable": r.get("artifact_readable"),
                 "ledger_published": r.get("ledger_published"),
                 "ledger_n_kinds": r.get("ledger_n_kinds"),
                 "ledger_n_criteria": r.get("ledger_n_criteria"),
-                "ledger_complete": r.get("ledger_complete")}
+                "ledger_complete": r.get("ledger_complete"),
+                "criteria_red_with_kind": r.get("criteria_red_with_kind"),
+                "n_criteria_red_kind_unknown": r.get("n_criteria_red_kind_unknown")}
                for r in BOOKS]
+# ⭐⭐⭐⭐⭐ 1032-②h：**「红」这一栏带 kind** ⇒ ⇒ 而它分成「该修」与「该重读」两档
+CRITERIA_RED_WITH_KIND = {r["golden"]: dict(r.get("criteria_red_with_kind") or {})
+                          for r in BOOKS if r.get("criteria_red_with_kind")}
+RED_NEEDS_FIX = sorted(k for _g, _d in CRITERIA_RED_WITH_KIND.items()
+                       for k, v in _d.items() if v == "failure")
+RED_NEEDS_REREAD = sorted(k for _g, _d in CRITERIA_RED_WITH_KIND.items()
+                           for k, v in _d.items() if v == "conclusion")
+RED_KIND_UNKNOWN = sorted(k for _g, _d in CRITERIA_RED_WITH_KIND.items()
+                          for k, v in _d.items() if not v)
+N_RED_FAILURE = len(RED_NEEDS_FIX)
+N_RED_CONCLUSION = len(RED_NEEDS_REREAD)
+N_RED_KIND_UNKNOWN = len(RED_KIND_UNKNOWN)
+RED_BOOKS_NEEDS_FIX = sorted({_g for _g, _d in CRITERIA_RED_WITH_KIND.items()
+                              for k, v in _d.items() if v == "failure"})
+RED_BOOKS_NEEDS_REREAD = sorted({_g for _g, _d in CRITERIA_RED_WITH_KIND.items()
+                                 for k, v in _d.items() if v == "conclusion"})
+# ⭐ **「不适用」要单列** —— 判据的判决是 `None` 时、它既不是红也不是绿
+N_CRITERIA_NA = sum(r.get("n_criteria_not_applicable") or 0 for r in BOOKS)
+BOOKS_WITH_NA = sorted(r["golden"] for r in BOOKS
+                        if (r.get("n_criteria_not_applicable") or 0) > 0)
+N_BOOKS_FULLY_DECIDABLE = sum(
+    1 for r in BOOKS if r.get("criteria_detail_readable")
+    and not (r.get("n_criteria_not_applicable") or 0))
+N_BOOKS_NOT_FULLY_DECIDABLE = len(BOOKS) - N_BOOKS_FULLY_DECIDABLE
 
 RED_LEDGER = {
     "n_books": len(BOOKS),
@@ -499,12 +543,44 @@ RED_LEDGER = {
     "n_books_with_ledger_complete": N_LEDGER_COMPLETE,
     "n_ledger_criteria": N_LEDGER_CRITERIA,
     "ledger_rows": LEDGER_ROWS,
+    # ⭐⭐⭐⭐⭐ 1032-②h：红账的「红」栏带 kind ⇒ ⇒ 而它分成「该修 / 该重读」
+    "criteria_red_with_kind": CRITERIA_RED_WITH_KIND,
+    "n_criteria_red_failure": N_RED_FAILURE,
+    "n_criteria_red_conclusion": N_RED_CONCLUSION,
+    "n_criteria_red_kind_unknown": N_RED_KIND_UNKNOWN,
+    "red_needs_fix": RED_NEEDS_FIX,
+    "red_needs_reread": RED_NEEDS_REREAD,
+    "red_kind_unknown": RED_KIND_UNKNOWN,
+    "books_with_red_needs_fix": RED_BOOKS_NEEDS_FIX,
+    "books_with_red_needs_reread": RED_BOOKS_NEEDS_REREAD,
+    "n_criteria_not_applicable": N_CRITERIA_NA,
+    "books_with_not_applicable_criteria": BOOKS_WITH_NA,
+    "n_books_fully_decidable": N_BOOKS_FULLY_DECIDABLE,
+    "n_books_not_fully_decidable": N_BOOKS_NOT_FULLY_DECIDABLE,
+    "kind_means": (
+        "⭐⭐⭐⭐⭐ **kind 的三个取值各回答一个不同的问题**："
+        "**`failure` = 「它红了 = 仪器坏了」⇒ 要修**；"
+        "**`conclusion` = 「它红了 = 记下来的那个发现不再成立」⇒ 要重读**（宇宙可能动了）；"
+        "**`precondition` = 「前提不成立、判据不适用」⇒ 不许算成红** ⇒ ⇒ "
+        "⭐⭐⭐⭐⭐ **⇒ 而「没标注」=「不可判定」= 第三档 —— 不许默认成 `failure`"
+        "（默认成 failure 就是把「我还没判定」记成「我判定它坏了」）**"),
+    "red_column_now_says": (
+        "⭐⭐⭐⭐⭐ **「红」这一栏现在回答的是「要不要修」** ⇒ ⇒ "
+        "**⇒ 而它回答不了「它为什么红」—— 那要回到 audit 的账** ⇒ ⇒ ⇒⇒ "
+        "**⇒ 所以 kind 是「读数」、定性才是「判决」—— 两者不许混在一栏**"),
     "three_states": ("⭐⭐⭐⭐⭐ **红账现在是三档**："
                     "**① 红（读到了 False）② 不可判定（这本书没有逐条明细 ⇒ "
                     "既不许说它绿、也不许说它红）③ 绿（读到了、且没有一条 False）** ⇒ ⇒ "
                     "**⇒ 而第三档不是「凑数」—— 上一版把「读不到」和「没有假」混成一栏** ⇒ ⇒ "
-                    "**⇒ 而 ② 那一栏今天有 %d 本**"
-                    % (len(BOOKS) - N_WITH_DETAIL,)),
+                    "**⇒ 而 ② 那一栏今天有 %d 本** ⇒ ⇒ "
+                    "⭐⭐⭐⭐⭐ **⇒ 而 1032-②h 又加了一档细分：③ 里面还要分出"
+                    "「有判据是「不适用」（`None`）」的那些本** ⇒ ⇒ "
+                    "**⇒ 它们既不是红、也不是绿（前提不成立 ⇒ 降级）** ⇒ ⇒ "
+                    "**⇒ 今天这样判的判据有 %d 条、涉及 %d 本；"
+                    "而「完全可判定」的书有 %d 本** ⇒ ⇒ "
+                    "**⇒ 而「没有 None」与「没有 False」是两件事、不许合并**"
+                    % (len(BOOKS) - N_WITH_DETAIL, N_CRITERIA_NA,
+                       len(BOOKS_WITH_NA), N_BOOKS_FULLY_DECIDABLE)),
 }
 
 

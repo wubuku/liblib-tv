@@ -794,6 +794,13 @@ out["P7_hold_1007"] = bool(
     and "p7_every_handwritten_number_is_justified_2007_" in _ab7
     and "沿用 1006 的契约" in (_ab7.get(
         "p7_every_handwritten_number_is_justified_2007_") or ""))
+out["verdicts_1007"]["p7_every_handwritten_number_is_justified_2007_"] = (
+    "✅ **P7 成立：判据文本里手写的每一个数都有出处 —— %d 个数、%d 个没出处** ⇒ ⇒ "
+    "**⇒ 而这一次比 1006 多一层：带 sha 的历史实测读数** ⇒ ⇒ "
+    "**⇒ ⇒ 而「出处」要能指到具体字段，而不只是「有个数对得上」**"
+    % (out["audit_numbers_vs_computed_1007"]["n_numbers_total"],
+       out["audit_numbers_vs_computed_1007"]["n_keys_with_unjustified_number"])
+)
 
 # ── 1032-②f：退出码按判决走（**必须在产物写盘之前算出来**）────────
 # ⭐⭐⭐⭐⭐ 1032-②g：**判据集合从产物自己的键推导、不写死范围** ——

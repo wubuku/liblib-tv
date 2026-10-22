@@ -626,6 +626,13 @@ out["audit_numbers_vs_computed_1008"] = {
                 "**⇒ 出处 = 实测值 ∪ 冻结宇宙读数 ∪ {一位数}+{批号}+{口径常数}**",
 }
 out["P7_hold_1008"] = bool(not _bad8)
+out["verdicts_1008"]["p7_every_handwritten_number_is_justified_2008_"] = (
+    "✅ **P7 成立：判据文本里手写的每一个数都有出处 —— %d 个数、%d 个没出处** ⇒ ⇒ "
+    "**⇒ 而这一次比 1006 多一层：带 sha 的历史实测读数** ⇒ ⇒ "
+    "**⇒ ⇒ 而「出处」要能指到具体字段，而不只是「有个数对得上」**"
+    % (out["audit_numbers_vs_computed_1008"]["n_numbers_total"],
+       out["audit_numbers_vs_computed_1008"]["n_keys_with_unjustified_number"])
+)
 
 out["discipline_2008"] = "".join([
     "① ⭐⭐⭐⭐⭐ **「写它的仪器必须就是读它的那个」不充分** —— 还要**同一份输入** ⇒ ⇒\n",
@@ -651,6 +658,25 @@ _P_KEYS_hold_1008 = sorted((k for k in out if re.match(r"^P\d+_hold_", k)),
 _CRITERIA8 = [out[k] for k in _P_KEYS_hold_1008]
 out["criteria_keys_hold_1008"] = list(_P_KEYS_hold_1008)
 out["criteria_n_hold_1008"] = len(_P_KEYS_hold_1008)
+out["criterion_kinds_1008"] = {
+# ⭐⭐⭐⭐⭐ 1032-②h：**判据台账** —— 逐条读原文、由人定性（不许从关键词机械猜）
+#   ⇒ ⇒ `failure` = 它断言的是**仪器/账本自己的不变量** ⇒ ⇒ **它红了 = 仪器坏了 ⇒ 要修**
+#   ⇒ ⇒ `conclusion` = 它断言的是**关于世界的一次测量** ⇒ ⇒ **它红了 = 那个发现不再成立 ⇒ 要重读**
+#   ⇒ ⇒ `precondition` = 「前提不成立」是**运行时状态**（`None`）、不是种类 ⇒ ⇒ 本册没有
+    "P1_hold_1008": "conclusion",                 # 清单有多陈旧 —— 那是**世界的样子**（清单一旦被刷新、这条就翻）
+    "P2_hold_1008": "conclusion",                 # added 单调 / removed 全 0 —— 那是**差分的形状**（结论）
+    "P3_hold_1008": "failure",                 # 反向用例：就地改字 ⇒ 门报 1 MISSING、清单报 1 消失 ⇒ 仪器必须咬得到
+    "P4_hold_1008": "failure",                 # 门必须绿、而那条判据与那条纪律必须在源码里 ⇒ 不变量
+    "P5_hold_1008": "failure",                 # 反向用例：幽灵清单必须被报出来 ⇒ 仪器必须咬得到
+    "P6_hold_1008": "failure",                 # 账龄清单必须落进仓里、且由本探针自己写
+    "P7_hold_1008": "failure",                 # 判据文本里手写的每一个数都必须有出处
+}
+out["criteria_ledger_1008"] = {
+    _k: {"verdict": out[_k], "kind": out["criterion_kinds_1008"].get(_k)}
+    for _k in _P_KEYS_hold_1008
+}
+out["criterion_kinds_complete_1008"] = (
+    set(out["criterion_kinds_1008"]) == set(_P_KEYS_hold_1008))
 
 _EXIT8 = _exit_code8(_CRITERIA8, crashed=False)
 out["exit_code_1008"] = {
