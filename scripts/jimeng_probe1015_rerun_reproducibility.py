@@ -85,6 +85,20 @@ def _restore():
             pass
 
 
+def _committed_bytes(relpath):
+    """⇒ ⇒ **提交态的字节**（`git show HEAD:<rel>`）⇒ ⇒ 取不到就返回 None（不猜）。
+    ⇒ ⇒ 而「盘上 vs 提交态」是**新鲜度**⇒ ⇒ 与上面四态的「可复现性」是**两件事**⇒ ⇒ ⇒ ⇒ **⇒ 两者必须分开记、分开命名**
+    """
+    try:
+        r = subprocess.run(["git", "show", "HEAD:" + relpath],
+                           cwd=str(ROOT), capture_output=True, timeout=120)
+    except Exception:
+        return None
+    if r.returncode != 0:
+        return None
+    return r.stdout
+
+
 def _flatten(obj, prefix=""):
     """JSON → {json_pointer: 叶子}。空 list / 空 dict 各算一个叶子，
     否则「新增一个空集合」会被摊成「什么都没变」—— 1014 刚踩过的那一族。"""
@@ -584,6 +598,37 @@ DRIFT_PATHS = sorted({c["path"] for r in BOOKS for c in r.get("values_changed", 
                      | {p for r in BOOKS for p in r.get("keys_added", [])}
                      | {p for r in BOOKS for p in r.get("keys_removed", [])})
 DRIFT_BOOKS = [r["golden"] for r in BOOKS if r["state"] == "drifted"]
+# ⇒ ⇒ ⇒ ⇒ **1032-②m：「盘上 vs 提交态」⇒ ⇒ **与「跑前 vs 跑后」是两种不同的坏**
+# ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 四态答的是「可复现吗」；这一栏答的是「还新鲜吗」**
+# ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而 1027 早就在报这一栏⇒ ⇒ ⇒ ⇒ ⇒ **但没人查它**
+_STALE_VS_COMMITTED = []
+_N_COMMITTED_KNOWN = 0
+_N_COMMITTED_UNKNOWN = 0
+_N_SNAPSHOT_UNKNOWN = 0
+for _r in BOOKS:
+    _rel = "docs/research/jimeng-canvas/" + _r["golden"]
+    _cb = _committed_bytes(_rel)
+    if _cb is None:
+        _N_COMMITTED_UNKNOWN += 1
+        continue
+    # ⇒ ⇒ ⇒ ⇒ **快照的键是 Path、不是文件名**⇒ ⇒ ⇒ ⇒ **⇒ 用字符串查会拿到 None**
+    #   ⇒ ⇒ ⇒ ⇒ **⇒ 而 `or b""` 会把「取不到」变成「空字节」**
+    #   ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 而那会让每一本书都被算成「提交态不一致」**
+    #   ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 「取不到」必须单列、不许冒充「不一致」**
+    _snap = _SNAPSHOTS.get(GDIR / _r["golden"])
+    if _snap is None:
+        _N_SNAPSHOT_UNKNOWN += 1
+        continue
+    _N_COMMITTED_KNOWN += 1
+    _wb = _snap
+    if _cb != _wb:
+        _STALE_VS_COMMITTED.append({
+            "golden": _r["golden"],
+            "n_bytes_committed": len(_cb),
+            "n_bytes_worktree": len(_wb),
+        })
+N_STALE_VS_COMMITTED = len(_STALE_VS_COMMITTED)
+
 
 # ── ⭐⭐⭐⭐⭐ 1032-②f：红账（**先记账、不下结论**）────────────────────
 #   ⇒ ⇒ 「自报 False」是**读数**、不是判决 ⇒ ⇒ 而「读不到」必须与「没有假」分开
@@ -762,6 +807,16 @@ RED_LEDGER = {
         "读不到 %d 本（**必须为 0**）、本来就没有 %d 本**"
         % (N_WITH_DETAIL, N_DETAIL_FROM_PRINT, N_DETAIL_FROM_ARTIFACT,
            N_UNDETERMINED, N_NO_PER_CRITERIA)),
+    "stale_vs_committed_1015": {
+        "n_books_compared": _N_COMMITTED_KNOWN,
+        "n_books_unknown": _N_COMMITTED_UNKNOWN,
+        "n_books_snapshot_unknown": _N_SNAPSHOT_UNKNOWN,
+        "n_stale": N_STALE_VS_COMMITTED,
+        "stale": _STALE_VS_COMMITTED,
+        "what_it_is_not": "⇒ ⇒ **这不是四态里的任何一态**⇒ ⇒ **⇒ 四态答「可复现吗」；这一栏答「还新鲜吗」**"
+                "⇒ ⇒ **⇒ 而「提交态取不到」单列成一栏**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 「取不到」不许混进「不新鲜」**",
+        "rule": "⇒ ⇒ **这一栏与 1027 报的是同一件事**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 区别是：1027 只跑「被本次变更触及的」那些、而这里是全量**",
+    },
     "criteria_red_by_book": CRITERIA_RED_BY_BOOK,
     "n_criteria_red_named": sum(len(v) for v in CRITERIA_RED_BY_BOOK.values()),
     "criteria_detector_selftest_ok": CRITERIA_DETECTOR_SELFTEST_OK,
@@ -1240,6 +1295,13 @@ out = {"P1_hold_1015": (N_STATES_SUM == len(BOOKS) and len(BOOKS) > 0
        #   ⇒ 处置：钉「真的跑过探针」（`len(BOOKS) > 0`）、不钉轮数；
        #   轮数作为**读数**留在产物里，而收敛判据仍然是「最后一轮读数为 0」。
        "P3_hold_1015": CONVERGED and len(BOOKS) > 0,
+        # ⇒ ⇒ ⇒ ⇒ **1032-②m：⇒ ⇒ 「相对提交态过期」= 0**
+        # ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而「提交态取不到」的单列不许被算成「过期」⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 「恒真」与「不适用」必须分开**",
+        "P_stale_vs_committed_is_zero_1015": (
+            N_STALE_VS_COMMITTED == 0
+            and _N_COMMITTED_UNKNOWN == 0
+            and _N_SNAPSHOT_UNKNOWN == 0),
+
        "P4_hold_1015": N_NOT_WRITTEN == 0,
        "P5_hold_1015": P5_OK,
        # ⭐⭐⭐⭐⭐ P6 现在是三件事的与：提取到判据、条数与 audit 对得上、手写的数都有出处

@@ -191,7 +191,13 @@ _secs_of = {}   # 耗时只进 stdout，不进产物（产物里不许有随机�
 #   `1015` 只验「可复现」，`1027` 只验「新鲜度」⇒ **两者不重叠，才各自有意义**
 #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 如果 1027 在套件里也去重跑，
 #   它验的就是「可复现」——而那是 1015 的活 ⇒ 它在自己的门里变成了另一道门的复制品**
-UNDER_SUITE = "--write-golden" in sys.argv
+_SELFONLY = "--selftest" in sys.argv
+# ⇒ ⇒ ⇒ ⇒ **1032-②m：自检只验机制、不跑整轮普查**
+#   ⇒ ⇒ ⇒ ⇒ 而「自检」原本会重跑所有被触及的探针⇒ ⇒ ⇒ ⇒ **⇒ 它的退出码继承了普查内容的红**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 而自检本该只验机制**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 处置：复用仓里已有的「套件语境」⇒ ⇒ ⇒ ⇒ **⇒ 而「不适用」不许算红**
+UNDER_SUITE = ("--write-golden" in sys.argv) or _SELFONLY
+
 
 RESULTS = []
 for n in (sorted(COUPLED_TO_CHANGED) if not UNDER_SUITE else []):
@@ -291,6 +297,16 @@ P11 = bool(not _NC_GATED_MISSING and not _NC_NON_GATED_EXTRA
 #   一旦就是 0，说明本批没有新增探针→ 那时 `P2` 就只能拿「重跑成功 + golden 在 HEAD」当依据
 STALE = [r for r in RESULTS if r["stale_vs_committed"]]
 N_STALE = len(STALE)
+# ⇒ ⇒ ⇒ ⇒ **1032-②m：「已过期」有两种、处置完全不同**
+#   ⇒ ⇒ ⇒ ⇒ **(甲) `stale_vs_worktree` 为真**⇒ ⇒ ⇒ ⇒ **⇒ 盘上那本本身陈旧**（重跑会改它）⇒ ⇒ ⇒ ⇒ **⇒ 处置：重跑并提交**
+#   ⇒ ⇒ ⇒ ⇒ **(乙) `stale_vs_worktree` 为假、而 `stale_vs_committed` 为真**
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 盘上是新的、只是提交态没更新**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 处置：提交那一笔**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 而两者混在一栏时⇒ ⇒ ⇒ ⇒ **「该重跑」与「该提交」看起来一样**
+STALE_WORKTREE = [r for r in STALE if r["stale_vs_worktree"]]
+STALE_COMMITTED_ONLY = [r for r in STALE if not r["stale_vs_worktree"]]
+N_STALE_WORKTREE = len(STALE_WORKTREE)
+N_STALE_COMMITTED_ONLY = len(STALE_COMMITTED_ONLY)
+
 N_CHECKED = len(RESULTS)
 
 # ⭐⭐⭐⭐⭐ **绝大多数探针在耦合正则下「一个输入都抽不到」** ——
@@ -503,6 +519,28 @@ def _paths_block(_bad, _blank):
     return _b
 
 
+def _stale_split_block():
+    """⇒ **「已过期」的两栏**⇒ **计数无条件保留、列表只在非空时保留**
+    （与 `_stale_block` 同一个形态 ⇒ P9 的卫生自查不会在「一切新鲜」时转红）。
+    """
+    _b = {"n_stale_split": {
+        "n_stale": N_STALE,
+        "n_stale_worktree_itself": N_STALE_WORKTREE,
+        "n_stale_committed_only": N_STALE_COMMITTED_ONLY,
+        "what_is_which": "⇒ ⇒ **(甲) 盘上那本本身陈旧**⇒ ⇒ ⇒ ⇒ **⇒ 处置：重跑并提交**"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ (乙) 盘上是新的、只是提交态没更新**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 处置：提交那一笔**",
+    }}
+    if STALE_WORKTREE:
+        _b["n_stale_split"]["stale_worktree_itself"] = [
+            {"probe": r["probe"], "golden": r["golden"], "rc": r["rc"]}
+            for r in STALE_WORKTREE]
+    if STALE_COMMITTED_ONLY:
+        _b["n_stale_split"]["stale_committed_only"] = [
+            {"probe": r["probe"], "golden": r["golden"], "rc": r["rc"]}
+            for r in STALE_COMMITTED_ONLY]
+    return _b
+
+
 def _stale_block():
     """⭐ 第十一条仪器 bug 的处置：计数无条件保留、列表只在非空时保留。
 
@@ -636,7 +674,12 @@ _PAYLOAD = {
         "write_gate_rule": "⭐⭐⭐⭐⭐ **凡是把「写仓」门控在 `--write-golden` 后面的探针，"
                            "重跑时必须带那个 flag** ⇒ ⇒ ⇒ 不带 ⇒ 它不写盘 ⇒ ⇒ ⇒ "
                            "「重跑后的产物」＝「重跑前的产物」⇒ ⇒ ⇒ **永远测不出陈旧**",
-        "results": RESULTS,
+        # ⇒ ⇒ ⇒ ⇒ **1032-②m：这次没普查时**⇒ ⇒ ⇒ ⇒ **不许留下空 `results` 列表**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 而 P9/P10 的卫生自查会把「空列表」判成病**⇒ ⇒ ⇒ ⇒ **⇒⇒⇒ 而那是【前提不成立】、不是「产物坏了」**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 处置：键整个删掉**⇒ ⇒ ⇒ ⇒ **⇒ 让「没有这个量」由「键不存在」自证**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 而「为什么没有」要写清楚 ⇒ 不许无声**
+        **({"results": RESULTS} if RESULTS else {
+            "results_omitted_because": "⇒ ⇒ **这次没普查**⇒ ⇒ ⇒ ⇒ **⇒ 「没测到」不许长得像「测到 0 条」**"}),
         # ⚠️⚠️⚠️ 第十一条仪器 bug：**这道门在「一切新鲜」时转红** ⇒ 它惩罚成功
         #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒ `stale` 在「已过期 0 本」时是个**空列表** ⇒ P9 的卫生自查当场变红
         #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 而 `n_stale` 就在它正上方，值是 0**
@@ -655,6 +698,7 @@ _PAYLOAD = {
         #   计数无条件保留、列表只在非空时保留 ⇒ 「没有过期」由 `n_stale == 0` 自证，
         #   不由「有一个空的 stale 列表」自证**
         **_stale_block(),
+        **_stale_split_block(),
         "stale_vs_worktree_note": "⭐⭐⭐⭐⭐ **同时记下「与工作区那本比」的读数** —— "
                                   "第一版就是拿工作区那本作基准 ⇒ **假阴性**："
                                   "HEAD 记 200 个目标变量、事实已是 201，"
@@ -834,8 +878,11 @@ print()
 print("真跑并比对：%d 本 ⇒ **已过期 %d 本**%s"
       % (N_CHECKED, N_STALE,
          "（套件语境：只普查、不重跑 —— 见仪器 bug 6）" if UNDER_SUITE else ""))
+print("   已过期拆分：盘上本身陈旧 %d 本 ／ 只是没提交 %d 本"
+      % (N_STALE_WORKTREE, N_STALE_COMMITTED_ONLY))
 for r in RESULTS:
-    mark = "⚠️ 已过期" if r["stale_vs_committed"] else "   一致    "
+    mark = ("⚠️ 盘上陈旧" if r["stale_vs_worktree"]
+            else ("⚠️ 只是没提交" if r["stale_vs_committed"] else "   一致    "))
     print("   %s %-50s rc=%s  %5.1fs" % (mark, r["probe"], r["rc"], _secs_of[r["probe"]]))
 print()
 print("阳性对照 甲（注入一个 1013 真读到的文件 ⇒ 自己认出 1013）=", PC_A,
@@ -849,7 +896,11 @@ print()
 #   ⇒⇒⇒⇒⇒⇒ **⇒ 打印出来的标签和实际条数对不上，而这种错没人会去看第二眼**
 print("P1..P%d = %s" % (len(OUT), [OUT[k] for k in OUT]))
 print("PROBE_1027_DONE ->", GOLDEN)
-_ALL_OK = all(OUT.values())
+# ⇒ ⇒ ⇒ ⇒ **1032-②m：`None` 是「这次测量不适用」**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 而 `all()` 会把 None 当成假⇒ ⇒ ⇒ ⇒ **⇒ 「不适用」被算成「红」**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 处置：判据红 = 「是 False」⇒ ⇒ ⇒ ⇒ **（与 1008 的 `_exit_code8` 同一口径）**
+_ALL_OK = all(v is not False for v in OUT.values())
+
 if "--selftest" in sys.argv:
     _ST = _selftest_write_gated_detection()
     print("SELFTEST %s -> %s" % (json.dumps(_ST["cases"], ensure_ascii=False),
