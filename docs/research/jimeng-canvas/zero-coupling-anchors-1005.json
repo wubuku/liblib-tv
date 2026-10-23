@@ -1,8 +1,8 @@
 {
  "generated_by": "jimeng_probe1005_zero_coupling_census.py",
  "n_zero_coupling": 935,
- "n_positive_present": 7063,
- "n_distinct_keys": 6893,
+ "n_positive_present": 7062,
+ "n_distinct_keys": 6892,
  "by_class": {
   "I-标识符(多处引用)": 506,
   "P-散文/片段": 429
@@ -6086,7 +6086,7 @@
    "var": "_p1015",
    "anchor": "\"wrote_golden\"",
    "occurrences": 3,
-   "min_line_gap": 159
+   "min_line_gap": 183
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6128,7 +6128,7 @@
    "var": "_p1015",
    "anchor": "empty-ambiguity-1014.json",
    "occurrences": 2,
-   "min_line_gap": 25
+   "min_line_gap": 88
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6436,7 +6436,7 @@
    "var": "_p1015",
    "anchor": "crashed_rc_other",
    "occurrences": 2,
-   "min_line_gap": 820
+   "min_line_gap": 844
   },
   {
    "class": "I-标识符(多处引用)",
