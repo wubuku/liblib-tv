@@ -7,7 +7,7 @@
  "honest_disabled": [
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 256,
+   "line": 336,
    "label": "\"assets-confirm\"",
    "why_not_a_lie": "⭐ 明确 disabled 是**诚实**（用户看得到禁用态）；它与「能点但毫无反应」不是一回事 ⇒ 登记但不判红"
   },

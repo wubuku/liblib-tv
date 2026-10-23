@@ -2,9 +2,9 @@
  "generated_by": "jimeng_probe1032_interaction_wiring.mjs",
  "scan_scope": "src/components/jimeng/**/*.tsx",
  "n_files": 55,
- "n_buttons": 220,
+ "n_buttons": 219,
  "counts": {
-  "WIRED": 214,
+  "WIRED": 213,
   "DISABLED_NO_HANDLER": 3,
   "FORM_SUBMIT": 3
  },
@@ -13,7 +13,7 @@
  "buttons": [
   {
    "file": "src/components/jimeng/JimengAccountPanels.tsx",
-   "line": 52,
+   "line": 53,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -27,7 +27,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAccountPanels.tsx",
-   "line": 105,
+   "line": 118,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -41,7 +41,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAccountPanels.tsx",
-   "line": 121,
+   "line": 134,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -55,7 +55,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAccountPanels.tsx",
-   "line": 147,
+   "line": 164,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -293,7 +293,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 89,
+   "line": 135,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -307,7 +307,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 106,
+   "line": 152,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -321,7 +321,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 120,
+   "line": 166,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -335,7 +335,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 153,
+   "line": 212,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -349,7 +349,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 184,
+   "line": 243,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -363,7 +363,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 201,
+   "line": 260,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -377,7 +377,7 @@
   },
   {
    "file": "src/components/jimeng/JimengAssetsModal.tsx",
-   "line": 256,
+   "line": 336,
    "verdict": "DISABLED_NO_HANDLER",
    "event_attrs": [],
    "delegated_by": "",
@@ -1188,7 +1188,7 @@
   },
   {
    "file": "src/components/jimeng/JimengHistoryMenu.tsx",
-   "line": 70,
+   "line": 79,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1328,35 +1328,35 @@
   },
   {
    "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
-   "line": 104,
+   "line": 143,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
    ],
    "delegated_by": "",
    "type": "button",
-   "disabled": false,
-   "label": "",
+   "disabled": true,
+   "label": "{reason}",
    "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengImageNodeToolbar.tsx##0"
+   "stable_key": "src/components/jimeng/JimengImageNodeToolbar.tsx#{reason}#0"
   },
   {
    "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
-   "line": 139,
+   "line": 183,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
    ],
    "delegated_by": "",
    "type": "button",
-   "disabled": false,
-   "label": "",
-   "ordinal": 1,
-   "stable_key": "src/components/jimeng/JimengImageNodeToolbar.tsx##1"
+   "disabled": true,
+   "label": "{itReason}",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengImageNodeToolbar.tsx#{itReason}#0"
   },
   {
    "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
-   "line": 165,
+   "line": 215,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1370,7 +1370,7 @@
   },
   {
    "file": "src/components/jimeng/JimengImageNodeToolbar.tsx",
-   "line": 173,
+   "line": 223,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1786,7 +1786,7 @@
   },
   {
    "file": "src/components/jimeng/JimengOfflineDialog.tsx",
-   "line": 47,
+   "line": 73,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1800,7 +1800,7 @@
   },
   {
    "file": "src/components/jimeng/JimengOfflineDialog.tsx",
-   "line": 55,
+   "line": 81,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1856,7 +1856,7 @@
   },
   {
    "file": "src/components/jimeng/JimengProjectPanel.tsx",
-   "line": 56,
+   "line": 76,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1864,13 +1864,13 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "",
+   "label": "{`topbar-project-item-${p.id}`}",
    "ordinal": 0,
-   "stable_key": "src/components/jimeng/JimengProjectPanel.tsx##0"
+   "stable_key": "src/components/jimeng/JimengProjectPanel.tsx#{`topbar-project-item-${p.id}`}#0"
   },
   {
    "file": "src/components/jimeng/JimengProjectPanel.tsx",
-   "line": 63,
+   "line": 99,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -1878,23 +1878,9 @@
    "delegated_by": "",
    "type": "button",
    "disabled": false,
-   "label": "",
-   "ordinal": 1,
-   "stable_key": "src/components/jimeng/JimengProjectPanel.tsx##1"
-  },
-  {
-   "file": "src/components/jimeng/JimengProjectPanel.tsx",
-   "line": 72,
-   "verdict": "WIRED",
-   "event_attrs": [
-    "onClick"
-   ],
-   "delegated_by": "",
-   "type": "button",
-   "disabled": false,
-   "label": "",
-   "ordinal": 2,
-   "stable_key": "src/components/jimeng/JimengProjectPanel.tsx##2"
+   "label": "\"topbar-project-create\"",
+   "ordinal": 0,
+   "stable_key": "src/components/jimeng/JimengProjectPanel.tsx#\"topbar-project-create\"#0"
   },
   {
    "file": "src/components/jimeng/JimengRepaintPanel.tsx",
@@ -2162,7 +2148,7 @@
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
-   "line": 197,
+   "line": 201,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2176,7 +2162,7 @@
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
-   "line": 209,
+   "line": 213,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2190,7 +2176,7 @@
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
-   "line": 246,
+   "line": 260,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2204,7 +2190,7 @@
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
-   "line": 307,
+   "line": 321,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2218,7 +2204,7 @@
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
-   "line": 353,
+   "line": 367,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2232,7 +2218,7 @@
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
-   "line": 383,
+   "line": 397,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2246,7 +2232,7 @@
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
-   "line": 421,
+   "line": 435,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2260,7 +2246,7 @@
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
-   "line": 446,
+   "line": 460,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2274,7 +2260,7 @@
   },
   {
    "file": "src/components/jimeng/JimengTopBar.tsx",
-   "line": 465,
+   "line": 479,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2426,7 +2412,7 @@
   },
   {
    "file": "src/components/jimeng/JimengWorkspace.tsx",
-   "line": 745,
+   "line": 783,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2669,7 +2655,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 528,
+   "line": 582,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2683,7 +2669,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 536,
+   "line": 590,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2697,7 +2683,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 563,
+   "line": 617,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2711,7 +2697,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 580,
+   "line": 634,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2725,7 +2711,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 599,
+   "line": 653,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2739,7 +2725,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 612,
+   "line": 666,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2753,7 +2739,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 628,
+   "line": 682,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2767,7 +2753,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 690,
+   "line": 744,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2781,7 +2767,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 835,
+   "line": 940,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2795,7 +2781,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 845,
+   "line": 953,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2809,7 +2795,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 860,
+   "line": 968,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2823,7 +2809,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 900,
+   "line": 1008,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2837,7 +2823,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 921,
+   "line": 1029,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2851,7 +2837,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 944,
+   "line": 1052,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2865,7 +2851,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 959,
+   "line": 1067,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2879,7 +2865,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 1014,
+   "line": 1122,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2893,7 +2879,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 1042,
+   "line": 1150,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2907,7 +2893,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 1155,
+   "line": 1263,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2921,7 +2907,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 1178,
+   "line": 1286,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2935,7 +2921,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 1189,
+   "line": 1297,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2949,7 +2935,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 1204,
+   "line": 1312,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2963,7 +2949,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 1260,
+   "line": 1368,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2977,7 +2963,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-   "line": 1309,
+   "line": 1417,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -2991,7 +2977,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
-   "line": 70,
+   "line": 141,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -3005,7 +2991,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
-   "line": 94,
+   "line": 165,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -3019,7 +3005,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
-   "line": 115,
+   "line": 186,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -3033,7 +3019,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
-   "line": 127,
+   "line": 198,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
@@ -3047,7 +3033,7 @@
   },
   {
    "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
-   "line": 211,
+   "line": 282,
    "verdict": "WIRED",
    "event_attrs": [
     "onClick"
