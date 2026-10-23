@@ -267,6 +267,62 @@ def _self_reported_false(text):
 
 
 # ⭐⭐⭐⭐⭐ **阳性对照**：检测器自己必须**能失败** —— 不然「读到 0 条」是恒真
+# ══ 1032-②m：把「红的是哪几条」「不适用的是哪几条」「自报了几条」收成唯一实现 ══
+def _red_keys(detail):
+    """⇒ **「红的是哪几条」只有这一份实现** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ 而「摘要行读法」与「逐条读法」读的是同一个量 ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 两处各算各的 ⇒ ⇒ 有一处算错时没人知道** ⇒ ⇒ ⇒ ⇒⇒
+    ⇒ ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ ⇒ 处置：抽成一个函数、两处共用**"""
+    return sorted(k for k, v in (detail or {}).items()
+                  if str(v).strip().lower() == "false")
+
+
+def _na_keys(detail):
+    """⇒ **「不适用的是哪几条」也只有这一份实现** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ 而「不适用」、「红」、「绿」三者必须分开数 ⇒ ⇒ ⇒ ⇒⇒
+    ⇒ ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ ⇒ 而「合并数」会把「前提不成立」算成「测了为否」**"""
+    return sorted(k for k, v in (detail or {}).items()
+                  if str(v).strip().lower() == "none")
+
+
+def _self_report(summary_n, summary_readable, detail_red):
+    """⇒ **「这本书自报了几条假判据」—— 只有这一份实现** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒ 读法一：摘要行（`P1..P8 = [...]` / `P 为假的： …`）⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒ 读法二：逐条明细（`判据逐条 = K=V | …` / 产物里的判据 dict）⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 两条路读的是同一个量 ⇒ ⇒ 优先摘要、读不到就回落明细** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ 而「走的是哪条路」必须记下来 ⇒ ⇒ 不许默默换来源** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 返回 (条数 | None, 来源)**"""
+    if summary_readable and isinstance(summary_n, int):
+        return summary_n, "summary"
+    if isinstance(detail_red, int):
+        return detail_red, "detail_fallback"
+    return summary_n, "none"
+
+
+def _styles_in(text):
+    """⇒ **这本输出里实际出现了哪几种书写风格** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ 而「风格」是**实测**的、不是猜的 ⇒ ⇒ ⇒ ⇒⇒
+    ⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 三种：① `P1..P8 = [...]` ② `P 为假的： …` ③ `判据逐条 = K=V | …`**"""
+    out = []
+    if text and _P_LIST_RE.search(text):
+        out.append("p_list")
+    if text and _FALSE_LIST_RE.search(text):
+        out.append("false_list")
+    if text and _CRITERIA_DETAIL_RE.search(text):
+        out.append("criteria_line")
+    return sorted(out)
+
+
+# ⇒ ⇒ ⇒ ⇒ **风格 → 读法**的映射 ⇒ ⇒ 而它必须**穷尽** `_styles_in` 能产出的全部风格名
+#   ⇒ ⇒ ⇒⇒ **⇒ ⇒ 少一种 ⇒ 那一种风格的书就会悄悄读不出自报数** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 而「悄悄读不出」就是本批修的那个 bug 的原样** ⇒ ⇒ ⇒⇒
+_STYLE_READERS_1015 = {"p_list": "summary", "false_list": "summary",
+                       "criteria_line": "detail"}
+_STYLE_VOCAB_EXPECTED = ["criteria_line", "false_list", "p_list"]
+STYLE_VOCAB_OK = sorted(_STYLE_READERS_1015) == _STYLE_VOCAB_EXPECTED
+
+
+
 _DETECTOR_CASES = [
     ("P1..P3 = [True, False, True]", 1, True),
     ("P1..P8 = [True, True, True, True, True, True, True, True]", 0, True),
@@ -344,60 +400,6 @@ def _criteria_detail(text):
         _k, _v = _part.split("=", 1)
         _out[_k.strip()] = _v.strip()
     return _out
-
-# ══ 1032-②m：把「红的是哪几条」「不适用的是哪几条」「自报了几条」收成唯一实现 ══
-def _red_keys(detail):
-    """⇒ **「红的是哪几条」只有这一份实现** ⇒ ⇒ ⇒
-    ⇒ ⇒ ⇒ 而「摘要行读法」与「逐条读法」读的是同一个量 ⇒ ⇒ ⇒
-    ⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 两处各算各的 ⇒ ⇒ 有一处算错时没人知道** ⇒ ⇒ ⇒ ⇒⇒
-    ⇒ ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ ⇒ 处置：抽成一个函数、两处共用**"""
-    return sorted(k for k, v in (detail or {}).items()
-                  if str(v).strip().lower() == "false")
-
-
-def _na_keys(detail):
-    """⇒ **「不适用的是哪几条」也只有这一份实现** ⇒ ⇒ ⇒
-    ⇒ ⇒ ⇒ 而「不适用」、「红」、「绿」三者必须分开数 ⇒ ⇒ ⇒ ⇒⇒
-    ⇒ ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ ⇒ 而「合并数」会把「前提不成立」算成「测了为否」**"""
-    return sorted(k for k, v in (detail or {}).items()
-                  if str(v).strip().lower() == "none")
-
-
-def _self_report(summary_n, summary_readable, detail_red):
-    """⇒ **「这本书自报了几条假判据」—— 只有这一份实现** ⇒ ⇒ ⇒
-    ⇒ ⇒ ⇒ ⇒ 读法一：摘要行（`P1..P8 = [...]` / `P 为假的： …`）⇒ ⇒ ⇒
-    ⇒ ⇒ ⇒ ⇒ 读法二：逐条明细（`判据逐条 = K=V | …` / 产物里的判据 dict）⇒ ⇒ ⇒
-    ⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 两条路读的是同一个量 ⇒ ⇒ 优先摘要、读不到就回落明细** ⇒ ⇒ ⇒
-    ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ 而「走的是哪条路」必须记下来 ⇒ ⇒ 不许默默换来源** ⇒ ⇒ ⇒
-    ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 返回 (条数 | None, 来源)**"""
-    if summary_readable and isinstance(summary_n, int):
-        return summary_n, "summary"
-    if isinstance(detail_red, int):
-        return detail_red, "detail_fallback"
-    return summary_n, "none"
-
-
-def _styles_in(text):
-    """⇒ **这本输出里实际出现了哪几种书写风格** ⇒ ⇒ ⇒
-    ⇒ ⇒ ⇒ 而「风格」是**实测**的、不是猜的 ⇒ ⇒ ⇒ ⇒⇒
-    ⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 三种：① `P1..P8 = [...]` ② `P 为假的： …` ③ `判据逐条 = K=V | …`**"""
-    out = []
-    if text and _P_LIST_RE.search(text):
-        out.append("p_list")
-    if text and _FALSE_LIST_RE.search(text):
-        out.append("false_list")
-    if text and _CRITERIA_DETAIL_RE.search(text):
-        out.append("criteria_line")
-    return sorted(out)
-
-
-# ⇒ ⇒ ⇒ ⇒ **风格 → 读法**的映射 ⇒ ⇒ 而它必须**穷尽** `_styles_in` 能产出的全部风格名
-#   ⇒ ⇒ ⇒⇒ **⇒ ⇒ 少一种 ⇒ 那一种风格的书就会悄悄读不出自报数** ⇒ ⇒ ⇒⇒
-#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 而「悄悄读不出」就是本批修的那个 bug 的原样** ⇒ ⇒ ⇒⇒
-_STYLE_READERS_1015 = {"p_list": "summary", "false_list": "summary",
-                       "criteria_line": "detail"}
-_STYLE_VOCAB_EXPECTED = ["criteria_line", "false_list", "p_list"]
-STYLE_VOCAB_OK = sorted(_STYLE_READERS_1015) == _STYLE_VOCAB_EXPECTED
 
 
 # ⭐⭐⭐⭐⭐ 1032-②i：**「判据逐条」那一行不是唯一的来源** ⇒ ⇒
