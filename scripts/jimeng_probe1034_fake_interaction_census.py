@@ -142,12 +142,15 @@ def _break(pred, ctx):
                                  "message": "已执行", "claim": True})
     elif t == "toast_only_count":
         c["toast_only"] = [h for h in c["toast_only"] if h.get("file") != rel]
+        # ⭐⭐⭐⭐⭐ 打断要**真的打断**：`>=` ⇒ 清到 0；`==` ⇒ 补到 n+1
+        #   ⇒ ⇒ （旧写法 `>=` 也补 1 ⇒ n==1 时「打断」后仍成立 ⇒ 谓词没牙）
+        n = int(pred.get("n", 1))
         if pred.get("op", ">=") == ">=":
-            c["toast_only"].append({"file": rel, "line": 0, "prop": "onClick",
-                                     "message": "已执行", "claim": True})
+            pass
         else:
-            c["toast_only"].append({"file": rel, "line": 0, "prop": "onClick",
-                                     "message": "x", "claim": False})
+            for _i in range(n + 1):
+                c["toast_only"].append({"file": rel, "line": 0, "prop": "onClick",
+                                         "message": "x", "claim": False})
     elif t == "key_present":
         c["keys"] = set(k for k in c["keys"] if k != pred["key"])
     elif t == "key_absent":
@@ -249,8 +252,14 @@ def _criteria(ctx, reg):
         n_files > 0 and n_buttons > 0 and ctx["facts"])
 
     # P2 / P3：现状集合 vs 登记册（**双向**精确）
+    # ⭐⭐⭐⭐⭐ Batch 1032-④-B：**只有 `open` 的条目参与 key 对账**。
+    #   `fulfilled`（已整改）的条目，它的 key **理应**不在现状集合里 ——
+    #   ⇒ ⇒ 若把它算进「登记册有、现状没有」⇒ ⇒ **每一条已整改的都会报 stale**
+    #   ⇒ ⇒ ⇒ 而那不是「登记册腐烂」，那是「整改成功了」⇒ ⇒ ⇒ 所以要按 state 分派。
     live = _live_keys(ctx)
-    reg_keys = set(e.get("key") or "" for e in reg if e.get("kind") in ("DEAD", "TOAST"))
+    reg_keys = set(e.get("key") or "" for e in reg
+                   if e.get("kind") in ("DEAD", "TOAST")
+                   and e.get("state", "open") == "open")
     new = sorted(live - reg_keys)
     stale = sorted(reg_keys - live)
     crit["P2_no_new_fake_interaction_1034"] = bool(not new)
@@ -260,24 +269,46 @@ def _criteria(ctx, reg):
                         "n_registered": len(reg_keys)}
 
     # P4 / P5：登记制（枚举不到的那几类，逐条钉）
+    # ⭐⭐⭐⭐⭐ Batch 1032-④-B：**按 `state` 分派**（见登记册文件头）。
+    #   open       ⇒ current 成立 ∧ target 不成立（还没整改）
+    #   fulfilled  ⇒ current 不成立 ∧ target 成立（整改了，且不许回退）
     rows = []
     for e in reg:
+        st = e.get("state", "open")
         rows.append({
-            "id": e.get("id"), "kind": e.get("kind"), "file": e.get("file"),
+            "id": e.get("id"), "state": st, "kind": e.get("kind"),
+            "file": e.get("file"),
             "promise": e.get("promise"),
-            # ⭐ `current` = 「它现在还是那个糊弄形态」⇒ 必须**成立**
-            # ⭐ `target`  = 「整改成什么样才算兑现」⇒ 今天必须**不成立**
+            # ⭐ `current` = 「它现在还是那个糊弄形态」
             "current_holds": bool(_all_hold(e.get("current") or [], ctx)),
+            # ⭐ `target`  = 「整改成什么样才算兑现」
             "target_holds": bool(_all_hold(e.get("target") or [], ctx)),
         })
     det["promise_rows"] = rows
     det["n_promise_entries"] = len(rows)
-    crit["P4_every_registered_fake_still_holds_1034"] = bool(
-        all(r["current_holds"] for r in rows))
-    det["P4_detail"] = [r["id"] for r in rows if not r["current_holds"]]
-    crit["P5_no_registered_promise_is_already_fulfilled_1034"] = bool(
-        all(not r["target_holds"] for r in rows))
-    det["P5_detail"] = [r["id"] for r in rows if r["target_holds"]]
+    # P4：**状态自洽** —— open 的 current 必须成立；fulfilled 的 current 必须不成立。
+    p4_bad = []
+    for r in rows:
+        if r["state"] == "fulfilled":
+            if r["current_holds"]:
+                p4_bad.append(r["id"])
+        elif not r["current_holds"]:
+            p4_bad.append(r["id"])
+    crit["P4_every_registered_fake_still_holds_1034"] = bool(not p4_bad)
+    det["P4_detail"] = p4_bad
+    # P5：**状态自洽** —— open 的 target 必须不成立；fulfilled 的 target 必须成立。
+    #   ⇒ ⇒⇒ 「改了却不销账」红（open 却 target 成立）
+    #   ⇒ ⇒⇒ 「销了账却没真改」红（fulfilled 却 target 不成立）
+    #   ⇒ ⇒⇒ 「整改完又改回去」红（fulfilled 却 current 又成立 ⇒ P4）
+    p5_bad = []
+    for r in rows:
+        if r["state"] == "fulfilled":
+            if not r["target_holds"]:
+                p5_bad.append(r["id"])
+        elif r["target_holds"]:
+            p5_bad.append(r["id"])
+    crit["P5_no_registered_promise_is_already_fulfilled_1034"] = bool(not p5_bad)
+    det["P5_detail"] = p5_bad
 
     # P6：注入式反证（这一门必须能红）
     inj = copy.deepcopy(ctx)
@@ -332,7 +363,12 @@ def _criteria(ctx, reg):
 
 
 def _force_hold(pred, ctx):
-    """造一份事实的副本，让该谓词**成立** ⇒ ⇒ 用于「已兑现却没销账」那条反证。"""
+    """造一份事实的副本，让该谓词**成立** ⇒ ⇒ 用于「已兑现却没销账」那条反证。
+
+    ⭐⭐⭐⭐⭐ **覆盖面必须与 `_hold` / `_break` 对齐** ——
+      只支持一部分谓词类型 ⇒ ⇒ 自检挑到那种条目时就会 `ValueError` 崩掉
+      ⇒ ⇒ 而「崩掉」与「没测到」长得一模一样 ⇒ ⇒ 所以这里补齐**全部**类型。
+    """
     c = copy.deepcopy(ctx)
     rel = pred.get("file")
     t = pred.get("type")
@@ -348,6 +384,26 @@ def _force_hold(pred, ctx):
         f["tags"][pred["tag"]] = int(pred.get("n", 1))
     elif t == "call_arg_text_contains":
         f["calls"][pred["callee"]] = [pred["value"]]
+    elif t == "call_arg_text_absent":
+        f["calls"][pred["callee"]] = [""]
+    elif t == "jsx_text":
+        f["jsx_texts"] = sorted(set(f.get("jsx_texts", [])) | {pred["value"]})
+    elif t == "string_literal":
+        f["string_literals"] = sorted(set(f.get("string_literals", []))
+                                      | {pred["value"]})
+    elif t == "string_literal_absent":
+        f["string_literals"] = [x for x in f.get("string_literals", [])
+                                if x != pred["value"]]
+    elif t == "attr_text_contains":
+        f["attrs"][pred["attr"]] = [pred["value"]]
+    elif t == "no_toast_only":
+        c["toast_only"] = [h for h in c["toast_only"] if h.get("file") != rel]
+    elif t == "toast_only_count":
+        n = int(pred.get("n", 1))
+        c["toast_only"] = [h for h in c["toast_only"] if h.get("file") != rel]
+        for _i in range(max(n, 1)):
+            c["toast_only"].append({"file": rel, "line": 0, "prop": "onClick",
+                                     "message": "x", "claim": False})
     elif t == "key_present":
         c["keys"] = set(c["keys"]) | {pred["key"]}
     elif t == "key_absent":
@@ -391,10 +447,12 @@ def _judge(ctx=None):
 def _selftest(ctx):
     """⭐⭐⭐⭐⭐ **注入式反证**：改事实 ⇒ 判据必须翻红。
 
-    ⇒ ⇒⇒⇒ 四族：① 现状里注入一条糊弄 ⇒ P2 翻红
+    ⇒ ⇒⇒⇒ 五族：① 现状里注入一条糊弄 ⇒ P2 翻红
     ⇒ ⇒⇒⇒ ② 登记册里塞一条不存在的 ⇒ P3 翻红
     ⇒ ⇒⇒⇒ ③ 把某条的「现状谓词」改坏 ⇒ P4 翻红
     ⇒ ⇒⇒⇒ ④ 让某条的「目标形态」提前成立 ⇒ P5 翻红（**已兑现却没销账**）
+    ⇒ ⇒⇒⇒ ⑤ 让某条**已销账**的条目「目标形态」不成立 ⇒ P5 翻红
+                （**销了账却没真改** —— 这一族是 ④-B 引入 `state` 之后才有的）
     """
     cases = []
     base, _d = _criteria(ctx, _REG)
@@ -436,47 +494,124 @@ def _selftest(ctx):
           c2["P3_registry_is_not_rotten_1034"])
 
     # ③ 把某条的「现状谓词」改坏 ⇒ P4 必须翻红
+    #    ⚠️⭐⭐ 1032-④-B：**优先挑一条 `fulfilled` 的** ——
+    #    因为对 `fulfilled` 条目，P4 要求的是「current **不**成立」
+    #    ⇒ ⇒ 把它**弄成立**（= 把糊弄形态放回去）⇒ ⇒ P4 必须红
+    #    ⇒ ⇒⇒ 这一族现在验的是「**整改完又改回去**」会被抓住。
     _c3 = None
     for _e in reg:
+        if _e.get("state", "open") != "fulfilled":
+            continue
         _ps = _e.get("current") or []
         if isinstance(_ps, dict):
             _ps = [_ps]
         if _ps:
-            _c3 = _break(_ps[0], ctx)
+            # 对 fulfilled 条目：要让 current **成立**，用 `_force_hold`。
+            _c3 = ctx
+            for _pr in _ps:
+                _c3 = _force_hold(_pr, _c3)
             break
     if _c3 is None:
         cases.append({"case": "break_current_predicate_makes_P4_red",
                       "ok": True, "applicable": False,
-                      "note": "⭐ 登记册为空 ⇒ 这一族**不适用**（不是通过）"})
+                      "note": "⭐ 登记册里没有 `fulfilled` 条目 ⇒ 这一族**不适用**（不是通过）"})
     else:
         c3, _ = _criteria(_c3, reg)
         _case("break_current_predicate_makes_P4_red",
               base["P4_every_registered_fake_still_holds_1034"],
               c3["P4_every_registered_fake_still_holds_1034"])
 
-    # ④ 让某条的「目标形态」提前成立 ⇒ P5 必须翻红
-    # ⚠️⭐⭐⭐⭐⭐ **目标是【合取】** ⇒ ⇒ 只让其中一个成立 ⇒ 合取仍不成立
-    #   ⇒ ⇒ 判据不会翻红 ⇒ ⇒ 而那看起来像「这条反证没生效」
-    #   ⇒ ⇒⇒⇒⇒ **⇒ 必须让该条的全部目标谓词都成立** ⇒ ⇒⇒⇒⇒ ⇒ 那才是「已兑现」
-    _c4 = None
+    # ④ 让某条**未销账**（open）的「目标形态」提前成立 ⇒ P5 必须翻红
+    #    （已兑现却没销账）
+    #    ⚠️⭐⭐⭐⭐⭐ **基准态必须自洽** —— 否则这一族是「不适用」，而门就少一颗牙。
+    #   ⭐⭐⭐⭐⭐ **这里踩过一个很隐蔽的坑**：
+    #     旧写法把临时 open 条目的 `current` 设成 **`target` 的同一组谓词** ⇒ ⇒
+    #     `_force_hold(current)` 顺手把 `target` 也弄成立 ⇒ ⇒
+    #     基准态 P5 直接红 ⇒ ⇒ `_case()` 判「基准已红 ⇒ 不适用」⇒ ⇒
+    #     这一族**永远不适用、永远不报错** ⇒ ⇒ 看起来「自检绿」，其实少了一颗牙。
+    #   ⇒ ⇒ **修正**：一条 `fulfilled` 条目的 `current` 与 `target` 本来就是
+    #     **同一根轴的两端**（current = 糊弄形态在，target = 兑现形态在）⇒ ⇒
+    #     把它的 `target` **打断**（`_break`）之后：
+    #         · `target` 不成立（还没兑现）
+    #         · `current` **自动成立**（糊弄形态还在）—— 同轴 ⇒ 自动翻转
+    #     ⇒ ⇒ 于是**同一份事实**就是「未整改」态 ⇒ ⇒
+    #     ⇒ 把它在**合成登记册**里改成 `state="open"`（真源不动）⇒ ⇒
+    #     ⇒ 基准态自洽 ⇒ ⇒ 反证可验。
+    #   ⭐ 合成登记册里那条要**顶替**原条目（原条目仍是 fulfilled ⇒ 会自己报红）。
+    _pick = None
+    _pick_note = ""
     for _e in reg:
+        if _e.get("state", "open") != "fulfilled":
+            continue
+        _ps = _e.get("target") or []
+        if isinstance(_ps, dict):
+            _ps = [_ps]
+        _cur = _e.get("current") or []
+        if isinstance(_cur, dict):
+            _cur = [_cur]
+        if not _ps or not _cur:
+            continue
+        # 打断 target ⇒ 看 current 是否自动成立（同轴才会）
+        _try = ctx
+        for _pr in _ps:
+            _try = _break(_pr, _try)
+        if not _all_hold(_cur, _try):
+            _pick_note = "candidate_%s_not_same_axis" % _e.get("id")
+            continue
+        if _all_hold(_ps, _try):
+            _pick_note = "candidate_%s_target_still_holds" % _e.get("id")
+            continue
+        _pick = (_e, _ps, _cur, _try)
+        break
+    if _pick is None:
+        cases.append({"case": "fulfilled_target_makes_P5_red",
+                      "ok": True, "applicable": False,
+                      "note": "⭐ 找不到「current 与 target 同轴」的 fulfilled 条目 ⇒ "
+                              "这一族**不适用**（不是通过）"
+                              + ("" if not _pick_note else "（%s）" % _pick_note)})
+    else:
+        _e, _ps, _cur, _base_ctx = _pick
+        # 合成登记册：把这条换成 open 形态（**真源一个字都不动**）
+        _e_open = dict(_e)
+        _e_open["state"] = "open"
+        reg_open = [x for x in reg if x.get("id") != _e.get("id")] + [_e_open]
+        base_open, _ = _criteria(_base_ctx, reg_open)
+        # 反证态：在**基准态**上让 target 也成立 ⇒ ⇒ 「已兑现却没销账」
+        _c4 = _base_ctx
+        for _pr in _ps:
+            _c4 = _force_hold(_pr, _c4)
+        c4, _ = _criteria(_c4, reg_open)
+        _case("fulfilled_target_makes_P5_red",
+              base_open["P5_no_registered_promise_is_already_fulfilled_1034"],
+              c4["P5_no_registered_promise_is_already_fulfilled_1034"])
+        # ⭐ 附记：基准态的 P4 也必须是绿的（否则基准本身不自洽 ⇒ 反证无意义）
+        cases[-1]["base_p4_green"] = bool(
+            base_open["P4_every_registered_fake_still_holds_1034"])
+        cases[-1]["probe_entry"] = _e.get("id")
+
+    # ⑤ 让某条**已销账**的条目「目标形态」不成立 ⇒ P5 必须翻红
+    #    （**销了账却没真改** —— 这一族是 ④-B 引入 `state` 之后才有的）
+    _c5 = None
+    for _e in reg:
+        if _e.get("state", "open") != "fulfilled":
+            continue
         _ps = _e.get("target") or []
         if isinstance(_ps, dict):
             _ps = [_ps]
         if _ps:
-            _c4 = ctx
+            _c5 = ctx
             for _pr in _ps:
-                _c4 = _force_hold(_pr, _c4)
+                _c5 = _break(_pr, _c5)
             break
-    if _c4 is None:
-        cases.append({"case": "fulfilled_target_makes_P5_red",
+    if _c5 is None:
+        cases.append({"case": "broken_fulfilled_target_makes_P5_red",
                       "ok": True, "applicable": False,
-                      "note": "⭐ 登记册为空 ⇒ 这一族**不适用**（不是通过）"})
+                      "note": "⭐ 登记册里没有 `fulfilled` 条目 ⇒ 这一族**不适用**（不是通过）"})
     else:
-        c4, _ = _criteria(_c4, reg)
-        _case("fulfilled_target_makes_P5_red",
+        c5, _ = _criteria(_c5, reg)
+        _case("broken_fulfilled_target_makes_P5_red",
               base["P5_no_registered_promise_is_already_fulfilled_1034"],
-              c4["P5_no_registered_promise_is_already_fulfilled_1034"])
+              c5["P5_no_registered_promise_is_already_fulfilled_1034"])
 
     _applicable = [c for c in cases if c.get("applicable")]
     return {"ok": all(c["ok"] for c in cases), "n_cases": len(cases),
@@ -506,6 +641,7 @@ def main():
     out["details"] = det
     out["registry"] = [
         {"id": e.get("id"), "kind": e.get("kind"), "key": e.get("key"),
+         "state": e.get("state", "open"),
          "file": e.get("file"), "promise": e.get("promise"), "why": e.get("why")}
         for e in _REG
     ]

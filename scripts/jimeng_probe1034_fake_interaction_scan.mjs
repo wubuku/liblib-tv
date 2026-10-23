@@ -17,6 +17,24 @@ import path from 'path';
 
 const ROOT = '/Users/yangjiefeng/Documents/wubuku/liblib-tv';
 const SRC = path.join(ROOT, 'src/components/jimeng');
+/**
+ * ⭐⭐⭐⭐⭐ Batch 1032-④-B：**事实范围补齐** —— store 也要被扫。
+ *
+ * 此前 `facts` 只覆盖 `src/components/jimeng` 下的 tsx 文件 ⇒ ⇒ 而登记册里
+ * C02 的「目标形态」谓词指向 **`src/store/jimengStore.ts`**（新建项目要
+ * 有真的 `createProject` 动作）⇒ ⇒ 那个文件**根本没有 facts**
+ * ⇒ ⇒ 谓词恒为「不成立」⇒ ⇒ **门读不出「这一条已经兑现了」**
+ * ⇒ ⇒ 而「读不出」与「没测到」长得一模一样 —— 这是最贵的一种失败。
+ *
+ * ⚠️ store **只进 facts**（供谓词查询），**不进 R1/R2 判定**：
+ *   · R1（死按钮）判的是 JSX 可点元素 ⇒ store 里没有 JSX；
+ *   · R2（只弹一句）扫的是 JSX 属性上的 handler ⇒ 同理。
+ * ⇒ ⇒ 所以「现状集合」（死按钮 + toast-only）**不受影响** ⇒
+ *   P2/P3 的口径不变（登记册与现状仍然逐条对账）。
+ */
+const EXTRA_FACT_FILES = [
+  path.join(ROOT, 'src/store/jimengStore.ts'),
+];
 const OUT = process.env.JIMENG_1034_SCAN_OUT
   || path.join(ROOT, 'docs/research/jimeng-canvas/inputs/fake-interaction-scan-1034.json');
 
@@ -293,6 +311,44 @@ for (const file of files) {
   for (const t of scanToastOnly(file)) toastOnly.push(t);
 }
 
+/**
+ * ⭐⭐⭐⭐⭐ Batch 1032-④-B：**补充事实文件**（store）。
+ *
+ * ⚠️ 这里**只**采 facts（标识符 / 字符串字面量 / 标签 / 调用），
+ *   **不**跑 R1（死按钮）与 R2（只弹一句）⇒ ⇒ 「现状集合」的口径不变。
+ * ⚠️ `.ts` 文件按 `ts.ScriptKind.TS` 解析（不是 TSX）⇒ 否则 store 里的
+ *   JSX 无关内容会被误解析。
+ */
+for (const file of EXTRA_FACT_FILES) {
+  if (!fs.existsSync(file)) continue;
+  const rel = path.relative(ROOT, file);
+  const text = fs.readFileSync(file, 'utf8');
+  const sf = ts.createSourceFile(file, text, ts.ScriptTarget.Latest, true, ts.ScriptKind.TS);
+  const f = { tags: {}, identifiers: [], jsx_texts: [], string_literals: [], attrs: {}, calls: {} };
+  const idents = new Set();
+  const visit = (node) => {
+    if (ts.isIdentifier(node)) idents.add(node.text);
+    if (ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) {
+      if (node.text) f.string_literals.push(node.text);
+    } else if (ts.isTemplateExpression(node)) {
+      let s = node.head.text;
+      for (const sp of node.templateSpans) s += sp.literal.text;
+      if (s.trim()) f.string_literals.push(s);
+    }
+    if (ts.isCallExpression(node)) {
+      const callee = node.expression.getText();
+      const args = node.arguments.map((a) => a.getText().slice(0, 160)).join(', ');
+      if (!f.calls[callee]) f.calls[callee] = [];
+      f.calls[callee].push(args);
+    }
+    ts.forEachChild(node, visit);
+  };
+  visit(sf);
+  f.identifiers = Array.from(idents).sort();
+  f.string_literals = Array.from(new Set(f.string_literals)).sort();
+  facts[rel] = f;
+}
+
 let nButtons = 0;
 for (const rel of Object.keys(facts)) {
   nButtons += (facts[rel].tags.button || 0) + (facts[rel].tags.a || 0);
@@ -300,8 +356,10 @@ for (const rel of Object.keys(facts)) {
 
 const out = {
   generated_by: 'jimeng_probe1034_fake_interaction_scan.mjs',
-  scan_scope: 'src/components/jimeng/**/*.tsx',
+  scan_scope: 'src/components/jimeng/**/*.tsx（R1/R2 判定）'
+    + ' + src/store/jimengStore.ts（仅 facts）',
   n_files: files.length,
+  n_fact_files: Object.keys(facts).length,
   n_buttons: nButtons,
   n_dead_buttons: deadButtons.length,
   n_toast_only: toastOnly.length,

@@ -31468,3 +31468,102 @@ C 类 8 本共 **76** 条：
 ⑧ **下一批（1032-④-B）**：逐条兑现登记册里的 11 条
   ⇒ 每兑现一条 ⇒ 现状集合少一条 ⇒ **登记册必须同步销账** ⇒ ⇒⇒⇒ ⇒ ⇒ 而门会自己先红给你看
   ⇒ ⇒⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+### 六之四十四、1032-④-B：**11 条登记项逐条兑现** —— 而「销账」不是删除，是**改状态**
+
+① **这一批在做什么**
+  ⇒ ④-A 把「糊弄」变成了门；这一批把那 11 条**逐条兑现**
+  ⇒ 兑现的**下限**是「按钮不再弹那句 toast」；**上限**是「它承诺给用户的那件事真的发生了」
+  ⇒ 而「做完了」不能靠嘴说 ⇒ ⇒ 世界必须真的变一点（多一个项目、多一条历史、多一格素材…）
+
+② **销账的设计：登记项不删，只改 `state`**
+  ⇒ 为什么不能删：删了就没人记得「这里曾经糊弄过」⇒ ⇒ 下一次改回去也没人拦
+  ⇒ `state = "open"`（还没整改）：`current` 必须成立 ∧ `target` 必须不成立
+  ⇒ `state = "fulfilled"`（已整改）：`current` 必须不成立 ∧ `target` 必须成立
+  ⇒ 于是有**三种红**，而它们都只有「留着册子」才可能存在：
+  ⇒ ① **改了却不销账**（`open` 却 `target` 成立）⇒ P5 红
+  ⇒ ② **销了账却没真改**（`fulfilled` 却 `target` 不成立）⇒ P5 红
+  ⇒ ③ **整改完又改回去**（`fulfilled` 却 `current` 又成立）⇒ P4 红
+  ⇒ 判据**条数保持 11** ⇒ ⇒ verifier 的 `n_criteria == 11` 不用改
+
+③ **11 条逐条整改清单**（文件 → 做法）
+  ⇒ **C01** 图片节点工具条：`JimengImageNodeToolbar.tsx` + `nodes/JimengImageNode.tsx`
+    ⇒ 18 项里 4 项接真动作（智能超清→`startTask`、全屏预览→`openPreview`、下载→真 Blob + `<a download>`、提示词反推→`enterInfer` + `openAiDrawer`）
+    ⇒ 剩下 13 项做不了的 ⇒ ⇒ 渲染成**真 `disabled` + `title` 写清「这项为什么做不了」** ⇒ ⇒ 不许用「（mock）」当理由
+  ⇒ **C02** 新建画布项目：`jimengStore.ts` + `JimengProjectPanel.tsx` + `JimengTopBar.tsx`
+    ⇒ store 加 `projects` / `createProject` / `switchProject`；面板改成**渲染真实列表**（`data-testid="topbar-project-item-${p.id}"`）
+  ⇒ **C03** 资产库搜索：`JimengAssetsModal.tsx`
+    ⇒ `<span>搜索</span>` ⇒ ⇒ 真 `<input role="textbox" aria-label="搜索素材">`；素材来源改 store 的 `nodes`；空态文案随 query 变
+  ⇒ **C04** 时间线排序：`nodes/JimengTimelineNode.tsx`
+    ⇒ 片段加 `tabIndex` / `role="button"` / 指针拖动改 `start`；`Shift` + 方向键移动片段（双路：组件内 + 全局 handler）
+  ⇒ **C05** 水印设置：`jimengStore.ts` + `JimengAccountPanels.tsx`
+    ⇒ store 加 `watermark` / `setWatermark` + 一对 localStorage 读写函数（判空 + try/catch + 确定性初值）
+  ⇒ **C06** 帧时间码：`nodes/JimengVideoNode.tsx`
+    ⇒ `captureFrame(sourceId, frame, atTime?)` 收下时间码 ⇒ ⇒ 写进产出节点的 `frameTime`，**且源节点播放头真的移到那一帧**
+  ⇒ **C07** 缩放至选中项：`JimengZoomMenu.tsx`
+    ⇒ `fitView({duration:300, maxZoom:1, nodes: selectedNodeId ? [{id:selectedNodeId}] : undefined})`
+  ⇒ **C08** 右键菜单五项：`JimengPaneContextMenu.tsx` + `JimengWorkspace.tsx`
+    ⇒ `INSERT_ITEMS` 五项加 `kind`（timeline / subject / director）+ `special`（assets / upload）⇒ ⇒ 消费者各接各的动作
+  ⇒ **C09** 生成历史：`jimengStore.ts` + `JimengHistoryMenu.tsx`
+    ⇒ store 加 `generationHistory` / `pushGeneration`；三个 `generate*Into` 各记一条；面板读 store 并按 tab 真过滤
+  ⇒ **C10** 离线修改：`jimengStore.ts` + `JimengOfflineDialog.tsx`
+    ⇒ store 加 `offlineMode` / `offlineEdits` / `syncOfflineEdits` / `discardOfflineEdits`；两个按钮分别调真同步 / 真丢弃
+  ⇒ **C11** 视频节点真放视频：`nodes/JimengVideoMediaCard.tsx` + `public/videos/jimeng-demo.mp4`
+    ⇒ ffmpeg 生成真 mp4（6s / 640×360 / h264）⇒ ⇒ 媒体卡渲染真 `<video data-testid="jimeng-video-element">`
+    ⇒ store 的 `playing/currentTime/muted` ⇒ ⇒ effect 同步到元素；元素真实进度 ⇒ ⇒ `onTimeUpdate` 写回 store ⇒ ⇒ 进度条与画面永不错位
+
+④ **三处「口径」修正**（判据与实现必须同口径 ⇒ ⇒ 改的是**事实范围/谓词类型**，不是放宽判据）
+  ⇒ **C02**：登记项的 `target` 谓词指向 store ⇒ ⇒ 而扫描器的 facts 只覆盖 tsx ⇒ ⇒ 谓词恒不成立 ⇒ ⇒ 门读不出「已兑现」
+    ⇒ ⇒ ⇒ 处置：**补事实范围**（`src/store/jimengStore.ts` 进 facts，但**不进** R1/R2 判定范围）
+  ⇒ **C08**：`director` 在实现里是**字符串字面量**（`kind` 的取值），不是标识符 ⇒ ⇒ `identifier director` 整改前后都成立 ⇒ ⇒ 改谓词类型为 `string_literal` / `string_literal_absent`
+  ⇒ **C04**：那段 sr-only 文案是**承诺**不是糊弄形态 ⇒ ⇒ 整改后它应该留着（现在它是真话）⇒ ⇒ `current` 改成 `identifier_absent shiftKey`（与 `target` 同轴、方向相反）
+
+⑤ **门禁口径的一处真回归**（`scripts/verify-jimeng-batch812.py`）
+  ⇒ 原判据断言「新建画布项目」的文案 **== `"新建画布项目（mock）"`** ⇒ ⇒ 恰恰断言了**零信息量**的文案
+  ⇒ ⇒ ⇒ 处置：**改判据要更强，不是放宽** ⇒ ⇒ 现在要求两条同时成立：
+    ⇒ ① 文案是**有信息量的完成态**（含「已新建」且**不等于**旧文案）
+    ⇒ ② **世界真的变了**（项目面板里 `topbar-project-item-*` 条数 > 0）
+
+⑥ **1034 门的自检第 ④ 族曾经「永远不适用」**（本批最隐蔽的一处）
+  ⇒ 那族的构造是：临时造一条 `open` 条目，**把 `current` 设成 `target` 的同一组谓词** ⇒ ⇒ `_force_hold(current)` 顺手把 `target` 也弄成立
+  ⇒ ⇒ ⇒ 基准态 P5 直接红 ⇒ ⇒ `_case()` 判「基准已红 ⇒ 不适用」⇒ ⇒ **这一族永远不报错、永远不生效**
+  ⇒ ⇒ ⇒ 而「不适用」在账上长得像「通过」⇒ ⇒ ⇒ 处置：利用「`current` 与 `target` 是同一根轴的两端」这一事实
+    ⇒ ⇒ ⇒ 把某条 `fulfilled` 条目的 `target` **打断**（`_break`）⇒ ⇒ `current` 自动成立、`target` 自动不成立 ⇒ ⇒ 基准自洽 ⇒ ⇒ 反证可验
+  ⇒ ⇒ ⇒ 判据条数不变（还是 11 条）⇒ ⇒ 只是自检从 4 族可用变成 **5 族全部可用**
+
+⑦ **本批的实测读数**（全部在真树上跑过）
+  ⇒ `npx tsc --noEmit`（过滤并行会话的 `src/components/director/`）⇒ ⇒ **0 错**
+  ⇒ `node scripts/jimeng_probe1034_fake_interaction_scan.mjs` ⇒ ⇒ `files=55 buttons=225 dead=0 toast_only=0`（`toast_only` 由 2 → 0）
+  ⇒ `python scripts/jimeng_probe1034_fake_interaction_census.py` ⇒ ⇒ **11 条 P 判据全 True**
+  ⇒ 自检 ⇒ ⇒ `ok=True cases=5 applicable=5`（修复前是 `applicable=4`）
+  ⇒ **反向自检**（证明第 ④ 族真的有牙）：把 P5 的「open 条目 target 成立 ⇒ 报红」分支短路掉
+    ⇒ ⇒ ⇒ 结果：只有第 ④ 族变红，其余 4 族仍绿 ⇒ ⇒ ⇒ 即「这族以前抓不到、现在抓得到」
+
+⑧ **本门绿 ≠ 克隆版没有糊弄**（边界同 ④-A，不许省略）
+  ⇒ 覆盖：① 可枚举的两类（死按钮 / 只弹一句）② 登记册里逐条钉住的那 11 类
+  ⇒ 不覆盖：枚举不到的一切形态 / 跨组件的「假持久化」/ 运行时才暴露的问题
+  ⇒ 而 11 条销账 ⇒ ⇒ **回退防护**已经生效 ⇒ ⇒ 谁把任何一条改回去，这道门当场红
+
+### 九之十九、通则（1032-④-B 新增）
+
+**通则一：⭐⭐⭐⭐⭐ 销账不是删除，是改状态。**
+  ⇒ 删掉登记项 ⇒ ⇒ 就没人记得「这里曾经糊弄过」⇒ ⇒ 下一次改回去也没人拦
+  ⇒ ⇒ ⇒ 而「改了却不销账」「销了账却没真改」「整改完又改回去」这三种红 ⇒ ⇒ **全都只有留着册子才可能存在**
+  ⇒ ⇒ ⇒ 用法：登记项永远留在册子里 ⇒ ⇒ 只允许改 `state`（`open` / `fulfilled`）⇒ ⇒ 不许删
+
+**通则二：⭐⭐⭐⭐⭐ 判据与实现必须同口径。**
+  ⇒ 事实范围没覆盖到 ⇒ ⇒ 谓词恒不成立 ⇒ ⇒ 门读不出「已兑现」⇒ ⇒ 而**读不出**与**没测到**长得一模一样
+  ⇒ ⇒ ⇒ 谓词类型写错（把字面量当标识符）⇒ ⇒ 整改前后都成立 ⇒ ⇒ 同样是「读不出」
+  ⇒ ⇒ ⇒ 用法：**先问「这个量我这条谓词真的量得到吗」** ⇒ ⇒ 再问「我用的是不是同一个口径」
+  ⇒ ⇒ ⇒ 处置顺序：先补**事实范围**／修**谓词类型** ⇒ ⇒ **不许靠放宽判据把红变绿**
+
+**通则三：⭐⭐⭐⭐⭐ 「改判据要更强，不是放宽」。**
+  ⇒ 812 原来断言的文案 == 零信息量文案 ⇒ ⇒ 那条判据「绿着」其实是在**保护一件没用的东西**
+  ⇒ ⇒ ⇒ 处置：换成「文案有信息量」＋「**世界真的变了**（第二条不是第一条的重复，是独立的一格）
+  ⇒ ⇒ ⇒ 用法：发现判据在保护一个坏东西时 ⇒ ⇒ **把它改成更强的那个**，而不是把它删掉
+
+**通则四：⭐⭐⭐⭐⭐ 反证族「不适用」必须当「没测到」处理。**
+  ⇒ `applicable=False` 在账上长得像「通过」⇒ ⇒ 而它其实在说「这一族**从来没生效过**」
+  ⇒ ⇒ ⇒ 而本批就踩到了：那一族的基准态被自己构造成恒红 ⇒ ⇒ 于是它永远不适用、永远不报错
+  ⇒ ⇒ ⇒ 用法：**看到 `applicable=False` 要当红旗** ⇒ ⇒ 去问「基准为什么是红的」⇒ ⇒ 多数时候是「构造错了」
+  ⇒ ⇒ ⇒ 配套：给这一族配**反向自检**（把被测分支短路掉 ⇒ ⇒ 这一族必须红）⇒ ⇒ 那才叫「有牙」
+  ⇒ ⇒ ⇒ 而「构造基准」的手法（打断同一根轴的另一端 ⇒ ⇒ 让另一端自动成立）是一般性的

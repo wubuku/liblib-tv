@@ -42,7 +42,11 @@ export const FEEDBACK = {
   downloadVideo: () => mockMsg("视频下载已开始"),
   saveToSubjectLibrary: () => mockMsg("已保存到主体库"),
   switchProject: (name: string) => mockMsg(`已切换到「${name}」`),
-  createCanvasProject: () => mockMsg("新建画布项目"),
+  /* ⭐⭐⭐ Batch 1032-④-B（C02）：新建项目**真的建出来了**（store 的项目列表多一条），
+   * ⇒ ⇒ 反馈必须说清「建了什么」，而不是把按钮名复述一遍
+   * ⇒ ⇒ 复述按钮名＝零信息量（本模块文件头自己就写着这条）。 */
+  createCanvasProject: (name?: string) =>
+    name ? mockMsg(`已新建画布项目「${name}」`) : mockMsg("已新建画布项目"),
 
   // ── 新增节点（batch 807/810）──
   addTimelineClip: (name: string) => mockMsg(`已添加「${name}」到时间线`),

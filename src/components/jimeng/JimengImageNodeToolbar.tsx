@@ -47,6 +47,21 @@ import { useJimengStore } from "@/store/jimengStore";
 
 type ToolbarItem = { label: string; icon: typeof Expand; vip?: boolean; chevron?: boolean };
 
+/**
+ * ⭐⭐⭐⭐⭐ Batch 1032-④-B（C01）：**每一项都必须诚实**。
+ *
+ * 此前这 18 项（6 主项 + 10 工具菜单项 + 全屏预览 + 下载）**全部**走同一条
+ * `onAction(label) => pushToast(mockMsg(`${label}已执行`))` ⇒ ⇒ 画面零变化，
+ * 而文案恰恰在说「已经做完了」。
+ *
+ * 处置分两类，**不许有第三类**：
+ *  · **能做** ⇒ 接**真动作**（store 的真实状态变更）；
+ *  · **做不了** ⇒ **真禁用态 + 可见理由**（`disabled` + `title` + 面板里
+ *    逐字写明为什么），而不是「亮着但点了什么也不会发生」。
+ *
+ * ⚠️ 「不可用理由」必须**是这句能力本身的原因**，不是「（mock）」这种标注 ——
+ *   标注只说明「这是原型」，不告诉用户**为什么这个按钮不能按**。
+ */
 const ITEMS: ToolbarItem[] = [
   { label: "智能改图", icon: WandSparkles, vip: true },
   { label: "扩图", icon: Expand },
@@ -55,6 +70,23 @@ const ITEMS: ToolbarItem[] = [
   { label: "多角度", icon: Rotate3d },
   { label: "工具", icon: Wrench, chevron: true },
 ];
+
+/** 本原型**做不了**的那些项 —— 键是项的文案，值是**用户看得见的理由**。 */
+const UNAVAILABLE_REASON: Record<string, string> = {
+  智能改图: "智能改图需要后端图像编辑服务，本原型只提供画布交互，未接入该能力",
+  扩图: "扩图需要后端生成服务，本原型只提供画布交互，未接入该能力",
+  抠图: "抠图需要后端图像编辑服务，本原型只提供画布交互，未接入该能力",
+  多角度: "多角度需要后端生成服务，本原型只提供画布交互，未接入该能力",
+  消除笔: "消除笔需要后端图像编辑服务，本原型只提供画布交互，未接入该能力",
+  构图: "构图需要后端图像编辑服务，本原型只提供画布交互，未接入该能力",
+  宫格切分: "宫格切分需要后端生成服务，本原型只提供画布交互，未接入该能力",
+  场景俯视图: "预设生成需要后端生成服务，本原型只提供画布交互，未接入该能力",
+  连续分镜图: "预设生成需要后端生成服务，本原型只提供画布交互，未接入该能力",
+  多机位九宫格: "预设生成需要后端生成服务，本原型只提供画布交互，未接入该能力",
+  人物三视图: "预设生成需要后端生成服务，本原型只提供画布交互，未接入该能力",
+  面部三视图: "预设生成需要后端生成服务，本原型只提供画布交互，未接入该能力",
+  产品三视图: "预设生成需要后端生成服务，本原型只提供画布交互，未接入该能力",
+};
 
 const TOOL_MENU_GROUPS: { group: string; items: { label: string; icon: typeof Expand; sub?: boolean }[] }[] = [
   {
@@ -99,14 +131,23 @@ export function JimengImageNodeToolbar({
         {ITEMS.map((item) => {
           const Icon = item.icon;
           const isTools = item.label === "工具";
+          /* ⭐⭐⭐ Batch 1032-④-B（C01）：本原型做不了的项 ⇒ **真禁用态**。
+             ⚠️ 「禁用」用 `disabled` 属性（而不是 `aria-disabled` + 仍可点）
+             ⇒ ⇒ 浏览器与辅助技术都会把它当成不可用；
+             ⚠️ 理由用 `title` ⇒ **鼠标悬停可见**（不是隐藏的 aria-describedby），
+             因为「用户看得见为什么不能按」是这条整改的验收点。 */
+          const reason = UNAVAILABLE_REASON[item.label];
+          const unavailable = reason !== undefined && !isTools;
           return (
             <div key={item.label} className="relative">
               <button
                 type="button"
+                disabled={unavailable}
+                title={reason}
                 onClick={() => (isTools ? setToolsOpen((v) => !v) : run(item.label))}
                 className={`jimeng-node-toolbar-item flex h-8 items-center gap-1 whitespace-nowrap px-2 text-[13px] leading-none text-white ${
-                  isTools && toolsOpen ? "bg-white/10" : ""
-                }`}
+                  unavailable ? "cursor-not-allowed text-white/35" : ""
+                } ${isTools && toolsOpen ? "bg-white/10" : ""}`}
               >
                 <Icon size={16} className="shrink-0" />
                 {item.label}
@@ -136,13 +177,22 @@ export function JimengImageNodeToolbar({
                       <p className="px-2.5 pb-0.5 pt-1 text-[12px] text-white/40">{g.group}</p>
                       {g.items.map((it) => {
                         const ItIcon = it.icon;
+                        /* ⭐⭐⭐ 同上：工具菜单里的项也逐条判可用性。 */
+                        const itReason = UNAVAILABLE_REASON[it.label];
+                        const itUnavailable = itReason !== undefined;
                         return (
                           <button
                             key={it.label}
                             type="button"
                             role="menuitem"
+                            disabled={itUnavailable}
+                            title={itReason}
                             onClick={() => run(`${it.label}`)}
-                            className="flex h-[38px] w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10"
+                            className={`flex h-[38px] w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-2.5 text-[13px] ${
+                              itUnavailable
+                                ? "cursor-not-allowed text-white/35"
+                                : "text-white hover:bg-white/10"
+                            }`}
                           >
                             <ItIcon size={16} className="shrink-0 text-white/85" />
                             {it.label}

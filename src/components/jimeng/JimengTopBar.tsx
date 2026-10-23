@@ -84,6 +84,10 @@ export function JimengTopBar() {
   // 复测源站展开态：积分入口右缘 1208、用户菜单右缘 1252、面板左缘 1268。
   const aiDrawerOpen = useJimengStore((s) => s.aiDrawerOpen);
   const renameProject = useJimengStore((s) => s.renameProject);
+  /* ⭐⭐⭐ Batch 1032-④-B（C02）：真实项目列表 + 真建 / 真切。 */
+  const projects = useJimengStore((s) => s.projects);
+  const createProject = useJimengStore((s) => s.createProject);
+  const switchProject = useJimengStore((s) => s.switchProject);
   const [helpOpen, setHelpOpen] = useState(false);
   /* 批 938：这三个瞬时浮层改读 store 的**互斥槽位** —— 源站实测开一个会关掉另一个
      （探针 937，24/24 有向配对无例外）。此前是三个各自独立的本地 useState，
@@ -222,12 +226,22 @@ export function JimengTopBar() {
           {projectOpen ? (
             <JimengProjectPanel
               projectName={project.name}
+              projects={projects}
               onClose={() => setProjectOpen(false)}
               onOpenProject={(name) => {
                 renameProject(name);
                 pushToast(FEEDBACK.switchProject(name));
               }}
-              onCreate={() => pushToast(FEEDBACK.createCanvasProject())}
+              onSwitchProject={(id) => switchProject(id)}
+              onCreate={() => {
+                /* ⭐⭐⭐ Batch 1032-④-B（C02）：真建一个项目。
+                 * 此前这里只弹一句复述按钮名的话（`新建画布项目（mock）`），
+                 * 而「建出项目」这件事**没有任何状态承载** ⇒ 点了等于没点。
+                 * ⇒ 现在 `createProject` 往 store 的项目列表里加一条，
+                 *   顶栏项目名切过去、项目面板里能看到并切回去。 */
+                createProject();
+                pushToast(FEEDBACK.createCanvasProject());
+              }}
             />
           ) : null}
         </div>

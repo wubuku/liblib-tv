@@ -29,6 +29,16 @@ export interface JimengVideoNodeData extends Record<string, unknown> {
   hasMedia: boolean;
   /** mock 海报 (合成占位图 data URI，非源站资产) */
   poster?: string;
+  /** ⭐⭐⭐ Batch 1032-④-B（C11）：**真的视频源**（`<video src>`）。
+   *
+   *  此前视频节点**只有海报 + 模拟进度条** ⇒ 用户手册里写的「视频节点能播放」
+   *  那句话当时是**假的**：播放时只有时间码在走，**没有任何视频**。
+   *  ⇒ ⇒ 现在它指向 `public/videos/` 下**真的 mp4** ⇒ `<video>` 能真的解码、
+   *  真的出声、真的能被 seek。
+   *
+   *  ⚠️ **相对路径**（`/videos/xxx.mp4`）⇒ 走 Next 的 `public/` 静态托管。
+   */
+  src?: string;
   /** 视频时长 (秒)，mock 数据 */
   duration?: number;
   /** 当前播放进度 (秒)，mock 数据 */

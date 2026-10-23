@@ -143,6 +143,62 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
   const canUndo = useJimengStore((s) => s.past.length > 0);
   const canRedo = useJimengStore((s) => s.future.length > 0);
   const clips = d.clips ?? [];
+
+  /* 片段总长取**所有片段末端的最大值**，不是「最后一个片段的末端」——
+     分割与剪裁会改变片段顺序/长度，「最后一个」这个假设从 825 起不再成立。
+     ⭐ 位置在 C04 的 `shiftClip` **之前** —— 理由见本文件下方那段说明。 */
+  const spanOf = (list: typeof clips) =>
+    list.length ? Math.max(...list.map((c) => c.start + c.length)) : 0;
+
+  const commitClips = (next: typeof clips) =>
+    updateClips(id, { clips: next, duration: spanOf(next) });
+
+  /* ── Batch 1032-④-B（C04）：**读屏说明承诺的操作必须真的存在** ─────────
+   *
+   * 空态的 sr-only 文案逐字承诺了两件事：
+   *   「Drag clips to reorder them.」（拖动片段来重排）
+   *   「With the keyboard, press Shift to move.」（键盘按 Shift 移动）
+   * 而此前**全文件没有 `draggable` / `onDragStart` / `shiftKey`** ——
+   * ⇒ 读屏用户被引导去做**不存在的事**。
+   *
+   * 现在两条都真的接上了：
+   *   ① **指针拖动**：按住片段横向拖 ⇒ 片段的 `start` 真的变（可撤销）；
+   *   ② **Shift + 方向键**：选中片段后按 Shift+←/→ ⇒ 片段真的左右移。
+   *
+   * ⚠️ 「重排」在本原型里的确切含义：**片段在轨道上的先后顺序**（由 `start`
+   *   决定）。拖动把片段挪到别的位置 ⇒ 顺序真的变了 ⇒ 不是只改个数字。
+   */
+  const [activeClipId, setActiveClipId] = useState<string | null>(null);
+  /* 拖动中：记住起手的指针位置与片段起始秒 ⇒ 拖动量能换算成秒数。 */
+  const dragRef = useRef<{ clipId: string; startX: number; startSec: number } | null>(null);
+
+  /** 把某个片段平移 `deltaSec` 秒（**不小于 0**）⇒ 真改 `start` ⇒ 顺序会变。 */
+  const shiftClip = (clipId: string, deltaSec: number) => {
+    const c = clips.find((x) => x.id === clipId);
+    if (!c) return;
+    const nextStart = Math.max(0, c.start + deltaSec);
+    if (nextStart === c.start) return;
+    commitClips(clips.map((x) => (x.id === clipId ? { ...x, start: nextStart } : x)));
+  };
+
+  /** Shift + 方向键：←/→ 平移 1 秒，↑/↓ 也平移（上下键在单轨上等价于左右）。 */
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (!e.shiftKey) return;
+      if (!activeClipId) return;
+      const k = e.key;
+      if (k !== "ArrowLeft" && k !== "ArrowRight" && k !== "ArrowUp" && k !== "ArrowDown") {
+        return;
+      }
+      e.preventDefault();
+      e.stopPropagation();
+      const dir = k === "ArrowLeft" || k === "ArrowUp" ? -1 : 1;
+      shiftClip(activeClipId, dir);
+    };
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
+  });
+
   // Batch 813 SOURCE_FACT（源站逐个按钮实测）：
   //   导出时间线 42×42 → 弹导出菜单（MP4/XML + 导出到剪映/DaVinci/Premiere/Final Cut）
   //   全屏编辑   126×42 → 打开全屏时间线编辑器
@@ -393,13 +449,11 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
      ① 轨道按同一套世界坐标映射渲染片段（与内嵌轨道一致，819 的教训）
      ② 播放头可定位（点刻度尺 / 点片段），四枚动作都作用于**播放头所在片段**
 
-     片段总长取**所有片段末端的最大值**，不是「最后一个片段的末端」——
-     分割与剪裁会改变片段顺序/长度，「最后一个」这个假设从 825 起不再成立。 */
-  const spanOf = (list: typeof clips) =>
-    list.length ? Math.max(...list.map((c) => c.start + c.length)) : 0;
-
-  const commitClips = (next: typeof clips) =>
-    updateClips(id, { clips: next, duration: spanOf(next) });
+     ⭐⭐⭐⭐⭐ `spanOf` / `commitClips` **已上移**到本组件靠前的位置 ——
+     ⇒ ⇒ C04 新增的 `shiftClip`（Shift+方向键平移片段）声明在它们**之前** ⇒ ⇒
+     ⇒ ⇒ eslint 报「先访问后声明」（error 级）⇒ ⇒ 而那报错是真的：
+     ⇒ ⇒ 声明顺序变了，闭包捕获的语义也会变 ⇒ ⇒
+     ⇒ ⇒ 所以处置是**把定义提到使用点之前**，而不是加 `eslint-disable` 把它按下去。 */
 
   // 播放头所在片段：左闭右开。播放头正好落在某片段**末端**时算「下一片」——
   // 与剪辑软件的直觉一致（末端就是下一段的起点）。
@@ -820,7 +874,9 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
               {clips.map((c) => (
                 <div
                   key={c.id}
-                  className="absolute top-2 flex h-[60px] items-center justify-between gap-2 rounded-md px-2 text-[12px] text-white/85"
+                  className={`absolute top-2 flex h-[60px] items-center justify-between gap-2 rounded-md px-2 text-[12px] text-white/85 ${
+                    activeClipId === c.id ? "ring-1 ring-[#009EFA]/70" : ""
+                  }`}
                   style={{
                     /* Batch 819：与刻度同一套世界坐标映射（32.1px/s），
                        否则刻度走定值、片段走百分比，两者会脱节。 */
@@ -828,14 +884,66 @@ export function JimengTimelineNode({ id, data, selected }: NodeProps) {
                     width: `${Math.max(1, c.length * RULER_PX_PER_SEC)}px`,
                     background: "rgba(255,255,255,0.10)",
                     border: "1px solid rgba(255,255,255,0.14)",
+                    cursor: "grab",
                   }}
                   data-testid="timeline-clip"
+                  /* ⭐⭐⭐ Batch 1032-④-B（C04）：**真的能拖** ——
+                     此前这个 div 只有样式，没有任何指针处理 ⇒ 而 sr-only
+                     文案逐字承诺了「Drag clips to reorder them」。 */
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`片段 ${c.label}，可拖动或用 Shift 加方向键移动`}
+                  onPointerDown={(e) => {
+                    /* 只认主键；左键拖动，右键留给上下文菜单。 */
+                    if (e.button !== 0) return;
+                    setActiveClipId(c.id);
+                    dragRef.current = { clipId: c.id, startX: e.clientX, startSec: c.start };
+                    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+                  }}
+                  onPointerMove={(e) => {
+                    const st = dragRef.current;
+                    if (!st || st.clipId !== c.id) return;
+                    if (!(e.buttons & 1)) return;
+                    e.preventDefault();
+                    const dx = e.clientX - st.startX;
+                    const deltaSec = dx / RULER_PX_PER_SEC;
+                    const nextStart = Math.max(0, Math.round(st.startSec + deltaSec));
+                    if (nextStart === c.start) return;
+                    commitClips(
+                      clips.map((x) => (x.id === c.id ? { ...x, start: nextStart } : x)),
+                    );
+                  }}
+                  onPointerUp={(e) => {
+                    dragRef.current = null;
+                    (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
+                  }}
+                  onKeyDown={(e) => {
+                    /* ⭐⭐⭐ Shift + 方向键：片段真的左右移（与拖动同一套语义）。
+                       ⚠️ 只在 `e.shiftKey` 时接管 ⇒ 普通方向键仍归画布平移。 */
+                    if (!e.shiftKey) return;
+                    const k = e.key;
+                    if (
+                      k !== "ArrowLeft" &&
+                      k !== "ArrowRight" &&
+                      k !== "ArrowUp" &&
+                      k !== "ArrowDown"
+                    ) {
+                      return;
+                    }
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const dir = k === "ArrowLeft" || k === "ArrowUp" ? -1 : 1;
+                    shiftClip(c.id, dir);
+                  }}
                 >
                   <span className="truncate">{c.label}</span>
                   <button
                     type="button"
                     aria-label={`移除 ${c.label}`}
-                    onClick={() => removeClip(c.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      removeClip(c.id);
+                    }}
                     className="shrink-0 text-white/50 hover:text-white"
                   >
                     <Trash2 size={13} />

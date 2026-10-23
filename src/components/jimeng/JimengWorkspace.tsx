@@ -386,11 +386,49 @@ function JimengFlow() {
   }, []);
 
   const onPaneInsert = useCallback(
-    (kind: "video" | "image" | "text" | "audio") => {
+    (
+      kind:
+        | "video"
+        | "image"
+        | "text"
+        | "audio"
+        | "timeline"
+        | "subject"
+        | "director",
+    ) => {
       if (!paneMenu) return;
+      /* ⭐⭐⭐ Batch 1032-④-B（C08）：时间线 / 主体 / 导演台这三项现在
+       * **真的插入对应节点** —— 走的是 store 的 `addNodeAt`，而它本来就支持
+       * 这三种 kind（左栏那三个按钮走的就是同一条路径 ⇒ **同源**）。 */
       addNodeAt(kind, { x: paneMenu.flowX, y: paneMenu.flowY });
     },
     [paneMenu, addNodeAt],
+  );
+
+  /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C08）：「从资产库添加」与「本地上传」的真实动作。
+   *
+   * · 从资产库添加 ⇒ 打开**真的资产库模态**（同一个 `assetsOpen` 槽位，
+   *   与左栏「资产库」按钮走同一条路径）。
+   * · 本地上传 ⇒ 打开**真的文件选择器**（隐藏的 `<input type=file>`），
+   *   选中的文件**真的落成画布节点**（走 store 的 `addLocalUpload`）。
+   *   ⚠️ 此前这两项在右键菜单里**点了什么也不会发生**。
+   */
+  const localFileInputRef = useRef<HTMLInputElement>(null);
+  const addLocalUpload = useJimengStore((s) => s.addLocalUpload);
+  const onOpenAssets = useCallback(() => {
+    setAssetsOpen(true);
+  }, [setAssetsOpen]);
+  const onPickLocalFile = useCallback(() => {
+    localFileInputRef.current?.click();
+  }, []);
+  const onLocalFileChosen = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const f = e.target.files?.[0];
+      if (!f || !paneMenu) return;
+      addLocalUpload(f.name, { x: paneMenu.flowX, y: paneMenu.flowY });
+      e.target.value = "";
+    },
+    [paneMenu, addLocalUpload],
   );
 
   const onContextMenuAction = useCallback(
@@ -772,6 +810,17 @@ function JimengFlow() {
       <JimengSelectionOutline />
       <JimengMultiSelectToolbar />
       {assetsOpen ? <JimengAssetsModal onClose={() => setAssetsOpen(false)} /> : null}
+      {/* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C08）：**真的文件选择器** ——
+          右键菜单「本地上传」点下去真的弹系统文件框，选中的文件真的落成节点。
+          ⚠️ 它是**隐藏**的（`hidden` + `sr-only` 风格的 input）⇒ 视觉上不打扰，
+             但**可被自动化点到**（有 testid）⇒ 门禁能验证这条路真的通。 */}
+      <input
+        ref={localFileInputRef}
+        type="file"
+        hidden
+        data-testid="pane-local-file-input"
+        onChange={onLocalFileChosen}
+      />
       {offlineDialogOpen ? (
         <JimengOfflineDialog onClose={() => setOfflineDialog(false)} />
       ) : null}
@@ -791,6 +840,9 @@ function JimengFlow() {
           )}
           onClose={() => setPaneMenu(null)}
           onInsert={onPaneInsert}
+          /* ⭐⭐⭐ Batch 1032-④-B（C08）：这两项现在各自有真实动作。 */
+          onOpenAssets={onOpenAssets}
+          onPickLocalFile={onPickLocalFile}
           onCopy={() => {
             const ids = nodes.filter((n) => n.selected).map((n) => n.id);
             if (ids.length > 0) copyNodes(ids);

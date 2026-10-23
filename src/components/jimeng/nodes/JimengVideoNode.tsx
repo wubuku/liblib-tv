@@ -165,10 +165,15 @@ export function JimengVideoNode({ id, data, selected }: NodeProps) {
           visible
           data={d}
           mode={framePickerMode}
-          onConfirm={() => {
+          /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C06）：**接住那一帧的时间码**。
+           * 此前这里是 `onConfirm={() => { … }}` —— 把帧选择器算好的
+           * `frameTime` **直接丢掉** ⇒ 用户选的帧**不是**他要的那一帧。
+           * ⇒ ⇒ 现在时间码一路传到 store：写进产出节点的 `frameTime`，
+           *   且源节点的播放头真的移到那一帧。 */
+          onConfirm={(frameTime) => {
             // 批 203 SOURCE_FACT: 源站「确认」= 选择器关闭 + 直出该帧的
             // 图片节点 (非写回 currentTime——batch 34 旧语义已修正)
-            captureFrame(id, "custom");
+            captureFrame(id, "custom", frameTime);
             exitFramePicker();
           }}
         />

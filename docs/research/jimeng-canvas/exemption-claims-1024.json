@@ -67,7 +67,7 @@
       },
       {
         "file": "src/components/jimeng/nodes/JimengImageNode.tsx",
-        "line": 60,
+        "line": 125,
         "rule": "@next/next/no-img-element",
         "text": "// eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 海报"
       },
@@ -231,11 +231,11 @@
     "lint 带 --max-warnings 吗": false,
     "裸跑 exit": 0,
     "加 --max-warnings 0 exit": 1,
-    "裸跑的 warning 数": 15,
+    "裸跑的 warning 数": 14,
     "裸跑的 error 数": 0,
     "reading": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **裸跑 exit=0、`--max-warnings 0` exit≠0** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 「门看见了，但它被配置成不报错」** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⭐⭐⭐ 这是同一种病的第三种形态：不是「没看见」（1018）、不是「看不见」（1023），是「看见了、并且被配成不算数」",
     "third_shape": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **三种形态要分清**：**① 没看见**（1018：改行为全绿、只改名转红）；**② 看不见**（1023：`npm run check` 那条从来没成立过）；**③ 看见了、被配成不算数**（本批：`lint` 是裸 `eslint`，`--max-warnings` 没配 ⇒ **当前每一条 warning 都不影响 exit code**）⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **只报「①看不见」会漏掉「③」这一类，而它恰恰是最容易修的**",
-    "countermeasure_measured": "⭐ 加上 `--max-warnings 0` ⇒ exit 从 0 变 1 ⇒ **代价是已量出来的**（15 条 warning），**⇒⇒⇒⇒ 「要不要收紧」是项目决定，不是本批能替它做的**"
+    "countermeasure_measured": "⭐ 加上 `--max-warnings 0` ⇒ exit 从 0 变 1 ⇒ **代价是已量出来的**（14 条 warning），**⇒⇒⇒⇒ 「要不要收紧」是项目决定，不是本批能替它做的**"
   },
   "positive_control": {
     "known_false_signature": "不跑 tsc",

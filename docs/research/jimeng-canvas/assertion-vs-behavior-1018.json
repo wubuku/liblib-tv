@@ -29,7 +29,7 @@
   "question_1018": "审计账里那些判据中，唯一那 25 条在读原型源码的，它们断言的是代码行为，还是源码里的字符串？",
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个 `'<字面量>' in <源码文本>` 形式的判据，它验的是「这段字还在」** ⇒ 改行为而保留字面量 ⇒ 照绿；保留行为而改掉字面量 ⇒ 变红或崩",
   "n_checks": 25,
-  "n_all_checks_in_verifier": 987,
+  "n_all_checks_in_verifier": 988,
   "n_by_ast_name": 25,
   "n_by_source_text": 26,
   "n_disagree_between_the_two_methods": 1,
@@ -40,7 +40,7 @@
   "text_only_disagreement_whitelist": {
     "CC993G.5": "⭐⭐⭐⭐⭐ `_agp_raw` 只出现在**字符串字面量**里（`\"不跑 tsc\" in _agp_raw\" in VER_SRC`）⇒ ⇒ 它断的是「verifier 源码里那段字还在」、**不是**在读原型源码 ⇒ ⇒ 文本法多算 = 良性"
   },
-  "n_not_reading_prototype_text": 962,
+  "n_not_reading_prototype_text": 963,
   "count_is_pinned": false,
   "why_not_pinned": "⭐⭐⭐⭐⭐ 绝对条数是快照（liblib batch 835 对 748 的同一教训）⇒ ⇒ 改成 P9 的两种算法逐条一致（可证伪）",
   "baseline": {

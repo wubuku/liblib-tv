@@ -1,32 +1,14 @@
 {
  "generated_by": "jimeng_probe1034_fake_interaction_scan.mjs",
- "scan_scope": "src/components/jimeng/**/*.tsx",
+ "scan_scope": "src/components/jimeng/**/*.tsx（R1/R2 判定） + src/store/jimengStore.ts（仅 facts）",
  "n_files": 55,
- "n_buttons": 226,
+ "n_fact_files": 56,
+ "n_buttons": 225,
  "n_dead_buttons": 0,
- "n_toast_only": 2,
- "n_feedback_words": 26,
+ "n_toast_only": 0,
+ "n_feedback_words": 25,
  "dead_buttons": [],
- "toast_only_handlers": [
-  {
-   "file": "src/components/jimeng/JimengTopBar.tsx",
-   "line": 230,
-   "prop": "onCreate",
-   "key": "src/components/jimeng/JimengTopBar.tsx#onCreate#0",
-   "message": "新建画布项目",
-   "claim": false,
-   "callee": "pushToast"
-  },
-  {
-   "file": "src/components/jimeng/nodes/JimengImageNode.tsx",
-   "line": 33,
-   "prop": "onAction",
-   "key": "src/components/jimeng/nodes/JimengImageNode.tsx#onAction#0",
-   "message": "已执行",
-   "claim": true,
-   "callee": "pushToast"
-  }
- ],
+ "toast_only_handlers": [],
  "facts": {
   "src/components/jimeng/JimengAccountPanels.tsx": {
    "tags": {
@@ -66,17 +48,19 @@
     "p",
     "removeEventListener",
     "role",
+    "s",
     "saved",
-    "setNoWatermark",
     "setSaved",
+    "setWatermark",
     "size",
     "span",
     "style",
     "target",
     "type",
     "useEffect",
+    "useJimengStore",
     "useState",
-    "v",
+    "watermark",
     "window"
    ],
    "jsx_texts": [
@@ -89,6 +73,7 @@
    ],
    "string_literals": [
     "@/components/jimeng/jimengFeedback",
+    "@/store/jimengStore",
     "AI生成水印设置",
     "Close watermark settings",
     "Escape",
@@ -181,7 +166,7 @@
      "min-h-0 flex-1 overflow-y-auto px-5",
      "text-[13px] leading-[22px] text-white/80",
      "mt-3 text-[13px] leading-[22px] text-white/80",
-     "`mt-4 flex size-6 items-center justify-center rounded-md border ${\n              noWatermark\n                ? \"border-[#0A5CD6] bg-[#0A5CD6]\"\n                : \"border-white/30 bg-transparent\"\n      ",
+     "`mt-4 flex size-6 items-center justify-center rounded-md border ${\n              watermark.noWatermark\n                ? \"border-[#0A5CD6] bg-[#0A5CD6]\"\n                : \"border-white/30 bg-transpare",
      "text-[11px] leading-none text-white",
      "mt-4 text-[12px] leading-[20px] text-white/55",
      "mt-2 text-[12px] leading-[20px] text-white/55",
@@ -203,8 +188,8 @@
      "onClose",
      "onClose",
      "onClose",
-     "() => {\n              setNoWatermark((v) => !v);\n              setSaved(false);\n            }",
-     "() => setSaved(true)"
+     "() => {\n              /* ⭐⭐⭐ 真动作：直接落到 store（并持久化）——\n                 此前只改组件本地 state ⇒ 关窗即丢。 */\n              setWatermark(!watermark.noWatermark);\n              setSaved(false);\n            }",
+     "() => {\n              /* ⭐⭐⭐ 「保存设置」现在**真的保存**：\n                 设置已经在开关那一步落进 store 并持久化了，\n                 这里做的是**把当前值显式写一次**（并给出确认），\n                 而不是翻一个一次性的本地标记。 */\n              setWatermark(wat"
     ],
     "size": [
      "14",
@@ -214,7 +199,7 @@
      "true"
     ],
     "aria-checked": [
-     "noWatermark"
+     "watermark.noWatermark"
     ]
    },
    "calls": {
@@ -237,12 +222,16 @@
      "\"mousedown\", onDown, true",
      "\"keydown\", onKey, true"
     ],
+    "useJimengStore": [
+     "(s) => s.watermark",
+     "(s) => s.setWatermark"
+    ],
     "useState": [
-     "false",
      "false"
     ],
-    "setNoWatermark": [
-     "(v) => !v"
+    "setWatermark": [
+     "!watermark.noWatermark",
+     "watermark.noWatermark"
     ],
     "setSaved": [
      "false",
@@ -1107,29 +1096,34 @@
   },
   "src/components/jimeng/JimengAssetsModal.tsx": {
    "tags": {
-    "div": 15,
+    "div": 17,
     "button": 7,
     "span": 8,
     "X": 1,
     "svg": 3,
     "circle": 1,
     "path": 3,
+    "input": 1,
     "rect": 1
    },
    "identifiers": [
     "Array",
+    "Boolean",
     "FILTERS",
     "HTMLDivElement",
     "JimengAssetsModal",
+    "String",
     "TIME_RANGES",
     "X",
     "_",
+    "a",
     "activeFilter",
     "aria-checked",
     "aria-expanded",
     "aria-haspopup",
     "aria-hidden",
     "aria-label",
+    "assets",
     "background",
     "button",
     "circle",
@@ -1138,29 +1132,43 @@
     "cx",
     "cy",
     "d",
+    "data",
     "data-testid",
     "disabled",
     "div",
+    "e",
     "emptyText",
     "f",
     "fill",
     "filter",
+    "filtered",
     "filters",
     "find",
     "from",
+    "hasMedia",
     "height",
     "i",
     "iconMenu",
     "id",
+    "includes",
+    "input",
     "isSubject",
     "key",
+    "kind",
     "label",
     "layerRef",
     "length",
     "map",
+    "n",
+    "nodes",
+    "onChange",
     "onClick",
     "onClose",
     "path",
+    "placeholder",
+    "poster",
+    "q",
+    "query",
     "r",
     "range",
     "rangeSuffix",
@@ -1168,8 +1176,10 @@
     "ref",
     "role",
     "rx",
+    "s",
     "setFilter",
     "setIconMenu",
+    "setQuery",
     "setRange",
     "setTab",
     "size",
@@ -1182,19 +1192,24 @@
     "svg",
     "t",
     "tab",
+    "target",
     "title",
+    "toLowerCase",
+    "trim",
     "type",
+    "useJimengStore",
+    "useMemo",
     "useModalFocusTrap",
     "useRef",
     "useState",
     "v",
+    "value",
     "viewBox",
     "width",
     "x",
     "y"
    ],
    "jsx_texts": [
-    "搜索",
     "已选择 0 个素材",
     "确认"
    ],
@@ -1213,6 +1228,7 @@
     "4.4",
     "6",
     "7d",
+    "@/store/jimengStore",
     "M2 6.5h12M5.5 2v2M10.5 2v2",
     "M2.5 4h11M4.5 8h7M6.5 12h3",
     "absolute inset-0 bg-black/55",
@@ -1225,16 +1241,21 @@
     "assets-confirm",
     "assets-empty",
     "assets-filter-",
+    "assets-item",
     "assets-search",
+    "assets-search-input",
     "assets-selected",
     "assets-tab-",
     "assets-tip-",
+    "audio",
     "bg-white/[0.08] text-white",
     "bg-white/[0.10] text-white",
+    "break-all",
     "button",
     "currentColor",
     "dialog",
     "fixed inset-0 z-[210] flex items-center justify-center",
+    "flex aspect-square items-center justify-center overflow-hidden rounded-[2px] bg-white/[0.04] p-1 text-center text-[11px] leading-tight text-white/60",
     "flex h-8 w-full items-center rounded-lg px-2.5 text-[13px] ",
     "flex h-9 items-center rounded-lg px-3.5 text-[13px] font-medium ",
     "flex h-9 w-20 cursor-not-allowed items-center justify-center rounded-lg bg-white/[0.16] text-[13px] font-medium text-white/20",
@@ -1244,8 +1265,10 @@
     "flex size-8 items-center justify-center rounded-lg text-white/70 hover:bg-white/[0.08] hover:text-white",
     "flex size-9 items-center justify-center rounded-lg text-white/85 hover:bg-white/[0.08]",
     "flex-1",
+    "grid h-full grid-cols-5 gap-[2px] overflow-y-auto",
     "group/tip relative ",
     "id",
+    "image",
     "jimeng-assets-modal",
     "lucide-react",
     "m9.4 9.4 2.8 2.8",
@@ -1264,19 +1287,24 @@
     "rgb(26,26,26)",
     "rgb(38,38,38)",
     "round",
-    "text-[13px] text-white/40",
+    "text",
     "text-[13px] text-white/60",
     "text-[14px] text-white/35",
     "text-white",
     "text-white/40",
     "text-white/70 hover:text-white",
     "text-white/80 hover:bg-white/[0.08]",
+    "textbox",
     "use client",
+    "video",
+    "w-full bg-transparent text-[13px] text-white outline-none placeholder:text-white/40",
     "主体",
     "全部",
     "全部时间",
     "关闭",
     "图片",
+    "搜索",
+    "搜索素材",
     "文档",
     "时间",
     "时间范围",
@@ -1285,6 +1313,7 @@
     "最近 30 天的",
     "最近 7 天",
     "最近 7 天的",
+    "没有匹配「」的素材",
     "没有可用主体",
     "筛选",
     "素材类型",
@@ -1311,7 +1340,7 @@
      "flex h-9 w-[200px] items-center gap-2 rounded-lg bg-white/[0.06] px-3",
      "text-white/40",
      "text-white/40",
-     "text-[13px] text-white/40",
+     "w-full bg-transparent text-[13px] text-white outline-none placeholder:text-white/40",
      "`group/tip relative ${i === 0 ? \"ml-2\" : \"ml-1\"}`",
      "flex size-9 items-center justify-center rounded-lg text-white/85 hover:bg-white/[0.08]",
      "absolute right-0 top-[calc(100%+6px)] z-[220] w-[168px] rounded-[10px] p-1",
@@ -1319,6 +1348,9 @@
      "`flex h-8 w-full items-center rounded-lg px-2.5 text-[13px] ${\n                            f === filter ? \"bg-white/[0.10] text-white\" : \"text-white/80 hover:bg-white/[0.08]\"\n                         ",
      "pointer-events-none absolute left-1/2 top-full z-[130] mt-1 flex h-9 w-14 -translate-x-1/2 items-center justify-center rounded-lg text-[13px] text-white opacity-0 transition-opacity duration-100 group-hover/tip:opacity-100",
      "relative mt-3 flex-1 overflow-hidden rounded-xl",
+     "grid h-full grid-cols-5 gap-[2px] overflow-y-auto",
+     "flex aspect-square items-center justify-center overflow-hidden rounded-[2px] bg-white/[0.04] p-1 text-center text-[11px] leading-tight text-white/60",
+     "break-all",
      "ml-auto grid h-full w-[630px] grid-cols-5 gap-[2px] overflow-hidden",
      "aspect-square rounded-[2px] bg-white/[0.04]",
      "absolute inset-0 flex items-center justify-center",
@@ -1348,6 +1380,7 @@
     ],
     "role": [
      "dialog",
+     "textbox",
      "menu",
      "menuitemradio",
      "menuitemradio"
@@ -1355,6 +1388,7 @@
     "aria-label": [
      "资产库",
      "关闭",
+     "搜索素材",
      "label",
      "label === \"时间\" ? \"时间范围\" : \"素材类型\""
     ],
@@ -1364,7 +1398,9 @@
      "assets-close",
      "`assets-filter-${f}`",
      "assets-search",
+     "assets-search-input",
      "`assets-tip-${label}`",
+     "assets-item",
      "assets-empty",
      "assets-selected",
      "assets-confirm"
@@ -1380,12 +1416,14 @@
      "label",
      "r.id",
      "f",
+     "a.id",
      "i"
     ],
     "type": [
      "button",
      "button",
      "button",
+     "text",
      "button",
      "button",
      "button",
@@ -1444,8 +1482,18 @@
      "M2 6.5h12M5.5 2v2M10.5 2v2",
      "M2.5 4h11M4.5 8h7M6.5 12h3"
     ],
+    "placeholder": [
+     "搜索"
+    ],
+    "value": [
+     "query"
+    ],
+    "onChange": [
+     "(e) => setQuery(e.target.value)"
+    ],
     "title": [
-     "label"
+     "label",
+     "a.title"
     ],
     "aria-expanded": [
      "iconMenu === label"
@@ -1478,7 +1526,45 @@
      "\"资产\"",
      "\"图片\"",
      "\"all\"",
-     "null"
+     "null",
+     "\"\""
+    ],
+    "useJimengStore": [
+     "(s) => s.nodes"
+    ],
+    "useMemo": [
+     "() =>\n      nodes\n        .filter((n) => {\n          const t = n.type;\n          if (t === \"image\") return Boolean((n.data as { poster?: string }).poster);\n    , [nodes]",
+     "() => {\n    const q = query.trim().toLowerCase();\n    return assets.filter((a) => {\n      if (isSubject) return false;\n      if (activeFilter !== \"全部\" && a.kind, [assets, query, activeFilter, isSubject]"
+    ],
+    "nodes\n        .filter((n) => {\n          const t = n.type;\n          if (t === \"image\") return Boolean((n.data as { poster?: string }).poster);\n          if (t === \"video\") return Boolean((n.data as { hasMedia?: boolean }).hasMedia);\n          if (t === \"audio\") return true;\n          if (t === \"text\") return true;\n          return false;\n        })\n        .map": [
+     "(n) => ({\n          id: n.id,\n          kind: n.type === \"image\" ? \"图片\" : n.type === \"video\" ? \"视频\" : n.type === \"audio\" ? \"音频\" : \"文档\",\n          title: String("
+    ],
+    "nodes\n        .filter": [
+     "(n) => {\n          const t = n.type;\n          if (t === \"image\") return Boolean((n.data as { poster?: string }).poster);\n          if (t === \"video\") return Bo"
+    ],
+    "Boolean": [
+     "(n.data as { poster?: string }).poster",
+     "(n.data as { hasMedia?: boolean }).hasMedia"
+    ],
+    "String": [
+     "(n.data as { title?: string }).title ?? n.id"
+    ],
+    "query.trim().toLowerCase": [
+     ""
+    ],
+    "query.trim": [
+     "",
+     "",
+     ""
+    ],
+    "assets.filter": [
+     "(a) => {\n      if (isSubject) return false;\n      if (activeFilter !== \"全部\" && a.kind !== activeFilter) return false;\n      if (q && !a.title.toLowerCase().incl"
+    ],
+    "a.title.toLowerCase().includes": [
+     "q"
+    ],
+    "a.title.toLowerCase": [
+     ""
     ],
     "TIME_RANGES.find": [
      "(r) => r.id === range"
@@ -1502,6 +1588,9 @@
      "f as (typeof FILTERS)[number]",
      "f"
     ],
+    "setQuery": [
+     "e.target.value"
+    ],
     "([\"时间\", \"筛选\"] as const).map": [
      "(label, i) => (\n            <div key={label} className={`group/tip relative ${i === 0 ? \"ml-2\" : \"ml-1\"}`}>\n              <button\n                type=\"button\"\n"
     ],
@@ -1519,8 +1608,11 @@
     "FILTERS.map": [
      "(f) => (\n                        <button\n                          key={f}\n                          type=\"button\"\n                          role=\"menuitemradio"
     ],
+    "filtered.map": [
+     "(a) => (\n                <div\n                  key={a.id}\n                  data-testid=\"assets-item\"\n                  title={a.title}\n                  class"
+    ],
     "Array.from({ length: 20 }).map": [
-     "(_, i) => (\n              <div\n                key={i}\n                className=\"aspect-square rounded-[2px] bg-white/[0.04]\"\n              />\n            )"
+     "(_, i) => (\n                <div\n                  key={i}\n                  className=\"aspect-square rounded-[2px] bg-white/[0.04]\"\n                />\n        "
     ],
     "Array.from": [
      "{ length: 20 }"
@@ -5284,7 +5376,9 @@
     "div": 2,
     "p": 2,
     "button": 1,
-    "span": 1
+    "span": 5,
+    "ul": 1,
+    "li": 1
    },
    "identifiers": [
     "HTMLDivElement",
@@ -5304,24 +5398,37 @@
     "data-testid",
     "div",
     "e",
+    "filter",
+    "generationHistory",
+    "history",
+    "id",
     "key",
+    "kind",
+    "length",
+    "li",
     "map",
     "onClick",
     "onClose",
     "onDown",
     "onKey",
     "p",
+    "prompt",
+    "r",
     "ref",
     "removeEventListener",
     "role",
+    "s",
     "setTab",
     "span",
     "style",
     "t",
     "tab",
     "target",
+    "title",
     "type",
+    "ul",
     "useEffect",
+    "useJimengStore",
     "useRef",
     "useState",
     "useTakeFocusAtOpen",
@@ -5333,18 +5440,28 @@
    ],
    "string_literals": [
     "@/components/jimeng/jimengMenuChrome",
+    "@/store/jimengStore",
     "Escape",
     "absolute inset-x-1 -bottom-[9px] h-[2px] rounded bg-white",
     "absolute right-0 top-[calc(100%+8px)] w-[380px] rounded-xl p-4",
+    "block truncate text-[12px] text-white/45",
+    "block truncate text-[13px] text-white/90",
     "button",
     "dialog",
+    "flex items-start gap-2 rounded-lg px-2 py-2 hover:bg-white/[0.06]",
+    "history-empty",
+    "history-item",
+    "history-list",
     "keydown",
+    "max-h-[220px] overflow-y-auto py-1",
+    "min-w-0 flex-1",
     "mousedown",
     "mt-3 flex items-center gap-4 border-b border-white/[0.06] pb-2",
     "py-10 text-center text-[13px] text-white/35",
     "react",
     "relative pb-1.5 text-[13px] ",
     "rgb(38,38,38)",
+    "shrink-0 rounded bg-white/[0.08] px-1.5 py-0.5 text-[11px] text-white/70",
     "text-[14px] text-white/90",
     "text-white",
     "text-white/50 hover:text-white/80",
@@ -5366,7 +5483,13 @@
      "mt-3 flex items-center gap-4 border-b border-white/[0.06] pb-2",
      "`relative pb-1.5 text-[13px] ${\n              tab === t ? \"text-white\" : \"text-white/50 hover:text-white/80\"\n            }`",
      "absolute inset-x-1 -bottom-[9px] h-[2px] rounded bg-white",
-     "py-10 text-center text-[13px] text-white/35"
+     "py-10 text-center text-[13px] text-white/35",
+     "max-h-[220px] overflow-y-auto py-1",
+     "flex items-start gap-2 rounded-lg px-2 py-2 hover:bg-white/[0.06]",
+     "shrink-0 rounded bg-white/[0.08] px-1.5 py-0.5 text-[11px] text-white/70",
+     "min-w-0 flex-1",
+     "block truncate text-[13px] text-white/90",
+     "block truncate text-[12px] text-white/45"
     ],
     "style": [
      "{ background: \"rgb(38,38,38)\" }"
@@ -5378,10 +5501,14 @@
      "生成历史"
     ],
     "data-testid": [
-     "topbar-history-menu"
+     "topbar-history-menu",
+     "history-empty",
+     "history-list",
+     "history-item"
     ],
     "key": [
-     "t"
+     "t",
+     "r.id"
     ],
     "type": [
      "button"
@@ -5396,6 +5523,9 @@
     ],
     "useState": [
      "\"全部\""
+    ],
+    "useJimengStore": [
+     "(s) => s.generationHistory"
     ],
     "useTakeFocusAtOpen": [
      "ref, true"
@@ -5423,6 +5553,12 @@
     ],
     "setTab": [
      "t"
+    ],
+    "history\n            .filter((r) => tab === \"全部\" || r.kind === tab)\n            .map": [
+     "(r) => (\n              <li\n                key={r.id}\n                data-testid=\"history-item\"\n                className=\"flex items-start gap-2 rounded-lg px"
+    ],
+    "history\n            .filter": [
+     "(r) => tab === \"全部\" || r.kind === tab"
     ]
    }
   },
@@ -5767,6 +5903,7 @@
     "Maximize2",
     "NodeToolbar",
     "Position",
+    "Record",
     "Rotate3d",
     "Scan",
     "Smile",
@@ -5774,6 +5911,7 @@
     "TOOL_MENU_GROUPS",
     "ToolbarItem",
     "Top",
+    "UNAVAILABLE_REASON",
     "User",
     "VipDiamond",
     "WandSparkles",
@@ -5794,6 +5932,8 @@
     "isTools",
     "isVisible",
     "it",
+    "itReason",
+    "itUnavailable",
     "item",
     "items",
     "key",
@@ -5805,6 +5945,7 @@
     "p",
     "position",
     "project",
+    "reason",
     "role",
     "run",
     "s",
@@ -5817,12 +5958,26 @@
     "title",
     "toolsOpen",
     "type",
+    "unavailable",
     "undefined",
     "useJimengStore",
     "useState",
     "v",
     "vip",
-    "visible"
+    "visible",
+    "产品三视图",
+    "人物三视图",
+    "场景俯视图",
+    "多机位九宫格",
+    "多角度",
+    "宫格切分",
+    "扩图",
+    "抠图",
+    "智能改图",
+    "构图",
+    "消除笔",
+    "连续分镜图",
+    "面部三视图"
    ],
    "jsx_texts": [],
    "string_literals": [
@@ -5833,11 +5988,12 @@
     "bg-white/10",
     "button",
     "cursor-not-allowed text-white/20",
-    "flex h-[38px] w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10",
+    "cursor-not-allowed text-white/35",
+    "flex h-[38px] w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-2.5 text-[13px] ",
     "image-tools-menu",
     "jimeng-node-toolbar flex h-10 select-none items-center gap-0.5 px-1.5",
     "jimeng-node-toolbar-divider mx-0.5",
-    "jimeng-node-toolbar-item flex h-8 items-center gap-1 whitespace-nowrap px-2 text-[13px] leading-none text-white ",
+    "jimeng-node-toolbar-item flex h-8 items-center gap-1 whitespace-nowrap px-2 text-[13px] leading-none text-white  ",
     "jimeng-node-toolbar-item flex size-8 items-center justify-center ",
     "jimeng-node-toolbar-item flex size-8 items-center justify-center text-white",
     "lucide-react",
@@ -5854,6 +6010,7 @@
     "shrink-0",
     "shrink-0 text-white/85",
     "text-white",
+    "text-white hover:bg-white/10",
     "use client",
     "下载",
     "产品三视图",
@@ -5862,21 +6019,29 @@
     "场景俯视图",
     "多机位九宫格",
     "多角度",
+    "多角度需要后端生成服务，本原型只提供画布交互，未接入该能力",
     "宫格切分",
+    "宫格切分需要后端生成服务，本原型只提供画布交互，未接入该能力",
     "导出前请保存画布",
     "工具",
     "工具菜单",
     "扩图",
+    "扩图需要后端生成服务，本原型只提供画布交互，未接入该能力",
     "抠图",
+    "抠图需要后端图像编辑服务，本原型只提供画布交互，未接入该能力",
     "提示词反推",
     "智能改图",
+    "智能改图需要后端图像编辑服务，本原型只提供画布交互，未接入该能力",
     "智能超清",
     "构图",
+    "构图需要后端图像编辑服务，本原型只提供画布交互，未接入该能力",
     "消除笔",
+    "消除笔需要后端图像编辑服务，本原型只提供画布交互，未接入该能力",
     "编辑",
     "连续分镜图",
     "面部三视图",
-    "预设"
+    "预设",
+    "预设生成需要后端生成服务，本原型只提供画布交互，未接入该能力"
    ],
    "attrs": {
     "isVisible": [
@@ -5891,13 +6056,13 @@
     "className": [
      "jimeng-node-toolbar flex h-10 select-none items-center gap-0.5 px-1.5",
      "relative",
-     "`jimeng-node-toolbar-item flex h-8 items-center gap-1 whitespace-nowrap px-2 text-[13px] leading-none text-white ${\n                  isTools && toolsOpen ? \"bg-white/10\" : \"\"\n                }`",
+     "`jimeng-node-toolbar-item flex h-8 items-center gap-1 whitespace-nowrap px-2 text-[13px] leading-none text-white ${\n                  unavailable ? \"cursor-not-allowed text-white/35\" : \"\"\n            ",
      "shrink-0",
      "`ml-0.5 shrink-0 text-white/70 transition-transform ${\n                      isTools && toolsOpen ? \"rotate-180\" : \"\"\n                    }`",
      "absolute right-0 top-full z-[130] mt-2 w-[232px] rounded-xl p-1.5",
      "mx-1 my-1 h-px bg-white/10",
      "px-2.5 pb-0.5 pt-1 text-[12px] text-white/40",
-     "flex h-[38px] w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-2.5 text-[13px] text-white hover:bg-white/10",
+     "`flex h-[38px] w-full items-center gap-2.5 whitespace-nowrap rounded-lg px-2.5 text-[13px] ${\n                              itUnavailable\n                                ? \"cursor-not-allowed text-whi",
      "shrink-0 text-white/85",
      "ml-auto shrink-0 text-white/50",
      "jimeng-node-toolbar-divider mx-0.5",
@@ -5914,6 +6079,16 @@
      "button",
      "button",
      "button"
+    ],
+    "disabled": [
+     "unavailable",
+     "itUnavailable",
+     "!saved"
+    ],
+    "title": [
+     "reason",
+     "itReason",
+     "saved ? undefined : \"导出前请保存画布\""
     ],
     "onClick": [
      "() => (isTools ? setToolsOpen((v) => !v) : run(item.label))",
@@ -5948,12 +6123,6 @@
     "aria-hidden": [
      "",
      ""
-    ],
-    "title": [
-     "saved ? undefined : \"导出前请保存画布\""
-    ],
-    "disabled": [
-     "!saved"
     ]
    },
    "calls": {
@@ -5971,7 +6140,7 @@
      "label"
     ],
     "ITEMS.map": [
-     "(item) => {\n          const Icon = item.icon;\n          const isTools = item.label === \"工具\";\n          return (\n            <div key={item.label} className=\"rel"
+     "(item) => {\n          const Icon = item.icon;\n          const isTools = item.label === \"工具\";\n          /* ⭐⭐⭐ Batch 1032-④-B（C01）：本原型做不了的项 ⇒ **真禁用态**。\n         "
     ],
     "run": [
      "item.label",
@@ -5983,7 +6152,7 @@
      "(g, gi) => (\n                    <div key={g.group}>\n                      {gi > 0 ? <div className=\"mx-1 my-1 h-px bg-white/10\" aria-hidden /> : null}\n        "
     ],
     "g.items.map": [
-     "(it) => {\n                        const ItIcon = it.icon;\n                        return (\n                          <button\n                            key={it"
+     "(it) => {\n                        const ItIcon = it.icon;\n                        /* ⭐⭐⭐ 同上：工具菜单里的项也逐条判可用性。 */\n                        const itReason = UNAVAILA"
     ]
    }
   },
@@ -7968,7 +8137,7 @@
    "tags": {
     "div": 4,
     "h3": 1,
-    "p": 1,
+    "p": 2,
     "button": 2
    },
    "identifiers": [
@@ -7982,9 +8151,12 @@
     "className",
     "data-testid",
     "discard",
+    "discardOfflineEdits",
     "div",
     "h3",
+    "length",
     "offlineDiscarded",
+    "offlineEdits",
     "offlineSynced",
     "onClick",
     "onClose",
@@ -7993,6 +8165,7 @@
     "role",
     "s",
     "style",
+    "syncOfflineEdits",
     "type",
     "useJimengStore"
    ],
@@ -8012,15 +8185,19 @@
     "flex h-9 items-center rounded-lg bg-white px-4 text-[13px] font-medium text-[#151515] hover:bg-white/90",
     "flex h-9 items-center rounded-lg bg-white/[0.1] px-4 text-[13px] font-medium text-white/85 hover:bg-white/[0.16]",
     "jimeng-offline-dialog",
+    "mt-1 text-[13px] leading-6 text-white/40",
     "mt-3 text-[14px] leading-6 text-white/55",
     "mt-5 flex items-center justify-end gap-3",
     "offline-discard",
+    "offline-edit-count",
     "offline-keep",
     "relative w-[545px] rounded-2xl p-6",
     "rgb(25,25,25)",
     "text-[16px] font-medium leading-6 text-white",
     "use client",
-    "发现离线编辑"
+    "发现离线编辑",
+    "当前没有待同步的离线修改",
+    "待同步的离线修改： 处"
    ],
    "attrs": {
     "className": [
@@ -8029,6 +8206,7 @@
      "relative w-[545px] rounded-2xl p-6",
      "text-[16px] font-medium leading-6 text-white",
      "mt-3 text-[14px] leading-6 text-white/55",
+     "mt-1 text-[13px] leading-6 text-white/40",
      "mt-5 flex items-center justify-end gap-3",
      "flex h-9 items-center rounded-lg bg-white/[0.1] px-4 text-[13px] font-medium text-white/85 hover:bg-white/[0.16]",
      "flex h-9 items-center rounded-lg bg-white px-4 text-[13px] font-medium text-[#151515] hover:bg-white/90"
@@ -8049,6 +8227,7 @@
     ],
     "data-testid": [
      "jimeng-offline-dialog",
+     "offline-edit-count",
      "offline-discard",
      "offline-keep"
     ],
@@ -8062,12 +8241,22 @@
    },
    "calls": {
     "useJimengStore": [
-     "(s) => s.pushToast"
+     "(s) => s.pushToast",
+     "(s) => s.syncOfflineEdits",
+     "(s) => s.discardOfflineEdits",
+     "(s) => s.offlineEdits"
+    ],
+    "discardOfflineEdits": [
+     ""
     ],
     "pushToast": [
-     "discard ? FEEDBACK.offlineDiscarded() : FEEDBACK.offlineSynced()"
+     "FEEDBACK.offlineDiscarded()",
+     "FEEDBACK.offlineSynced()"
     ],
     "FEEDBACK.offlineDiscarded": [
+     ""
+    ],
+    "syncOfflineEdits": [
      ""
     ],
     "FEEDBACK.offlineSynced": [
@@ -8173,7 +8362,9 @@
     "onKey",
     "onMouseEnter",
     "onMouseLeave",
+    "onOpenAssets",
     "onPaste",
+    "onPickLocalFile",
     "onRedo",
     "onSelect",
     "onUndo",
@@ -8192,6 +8383,7 @@
     "setSubmenuOpen",
     "shortcut",
     "size",
+    "special",
     "state",
     "step",
     "stopPropagation",
@@ -8224,9 +8416,11 @@
     "[data-testid=canvas-insert-submenu]",
     "[role=menuitem]",
     "absolute left-full top-0 ml-1 flex w-[200px] flex-col gap-1 rounded-xl p-1",
+    "assets",
     "audio",
     "canvas-context-menu",
     "canvas-insert-submenu",
+    "director",
     "fixed z-[200] ",
     "flex h-8 shrink-0 items-center px-3 text-[13px] text-white/35",
     "image",
@@ -8239,8 +8433,11 @@
     "react",
     "relative",
     "shrink-0 text-white/70",
+    "subject",
     "text",
     "text-white/45",
+    "timeline",
+    "upload",
     "use client",
     "video",
     "⌘ C",
@@ -8316,11 +8513,11 @@
     ],
     "testId": [
      "pane-menu-insert",
-     "kind ? `pane-menu-insert-${kind}` : undefined"
+     "kind ? `pane-menu-insert-${kind}` : special ? `pane-menu-insert-${special}` : undefined"
     ],
     "onSelect": [
      "() => setSubmenuOpen(true)",
-     "() => {\n                  if (kind) onInsert(kind);\n                  onClose();\n                }",
+     "() => {\n                  /* ⭐⭐⭐ Batch 1032-④-B（C08）：**每一项都有它自己的动作**。\n                   * 此前这五项没有 kind ⇒ 消费者什么都不认 ⇒ 点完只关菜单。 */\n                  if (kind) {\n                    onInsert(kind);\n      ",
      "run(onCopy)",
      "run(onDuplicate)",
      "run(onPaste)",
@@ -8467,10 +8664,16 @@
      "7"
     ],
     "INSERT_ITEMS.map": [
-     "({ icon: Icon, label, kind }) => (\n              <MenuItem\n                key={label}\n                label={label}\n                testId={kind ? `pane-menu-i"
+     "({ icon: Icon, label, kind, special }) => (\n              <MenuItem\n                key={label}\n                label={label}\n                testId={kind ? `pa"
     ],
     "onInsert": [
      "kind"
+    ],
+    "onOpenAssets": [
+     ""
+    ],
+    "onPickLocalFile": [
+     ""
     ],
     "run": [
      "onCopy",
@@ -8729,9 +8932,10 @@
   },
   "src/components/jimeng/JimengProjectPanel.tsx": {
    "tags": {
-    "div": 2,
+    "div": 3,
     "p": 2,
-    "button": 3
+    "button": 2,
+    "span": 2
    },
    "identifiers": [
     "HTMLDivElement",
@@ -8749,7 +8953,11 @@
     "data-testid",
     "div",
     "e",
+    "id",
     "key",
+    "length",
+    "list",
+    "map",
     "name",
     "onClick",
     "onClose",
@@ -8757,11 +8965,14 @@
     "onDown",
     "onKey",
     "onOpenProject",
+    "onSwitchProject",
     "p",
     "projectName",
+    "projects",
     "ref",
     "removeEventListener",
     "role",
+    "span",
     "style",
     "target",
     "type",
@@ -8771,27 +8982,36 @@
    ],
    "jsx_texts": [
     "项目",
-    "未命名项目",
+    "当前",
     "视频创作",
     "新建画布项目"
    ],
    "string_literals": [
     "Escape",
     "absolute left-0 top-[42px] z-[120] flex h-[200px] w-[240px] max-h-[200px] shrink-0 flex-col overflow-hidden rounded-xl p-2",
+    "bg-white/[0.08] text-white",
     "button",
     "dialog",
-    "flex h-9 items-center rounded-md px-2 text-left text-[13px] text-white/70 hover:bg-white/10",
     "flex h-9 items-center rounded-md px-2 text-left text-[13px] text-white/90 hover:bg-white/10",
+    "flex h-9 w-full items-center justify-between rounded-md px-2 text-left text-[13px] ",
     "keydown",
+    "min-h-0 flex-1 overflow-y-auto",
     "mousedown",
     "my-1 h-px bg-white/[0.06]",
+    "p1",
+    "p2",
     "px-2 py-1 text-[12px] text-white/40",
     "px-2 py-1.5 text-[13px] text-white/45",
     "react",
     "rgb(38,38,38)",
+    "text-[11px] text-white/40",
+    "text-white/70 hover:bg-white/10",
+    "topbar-project-create",
+    "topbar-project-item-",
     "topbar-project-panel",
     "use client",
     "未命名项目",
+    "测试项目",
     "项目"
    ],
    "attrs": {
@@ -8805,13 +9025,16 @@
      "项目"
     ],
     "data-testid": [
-     "topbar-project-panel"
+     "topbar-project-panel",
+     "`topbar-project-item-${p.id}`",
+     "topbar-project-create"
     ],
     "className": [
      "absolute left-0 top-[42px] z-[120] flex h-[200px] w-[240px] max-h-[200px] shrink-0 flex-col overflow-hidden rounded-xl p-2",
      "px-2 py-1.5 text-[13px] text-white/45",
-     "flex h-9 items-center rounded-md px-2 text-left text-[13px] text-white/90 hover:bg-white/10",
-     "flex h-9 items-center rounded-md px-2 text-left text-[13px] text-white/70 hover:bg-white/10",
+     "min-h-0 flex-1 overflow-y-auto",
+     "`flex h-9 w-full items-center justify-between rounded-md px-2 text-left text-[13px] ${\n              p.name === projectName ? \"bg-white/[0.08] text-white\" : \"text-white/70 hover:bg-white/10\"\n         ",
+     "text-[11px] text-white/40",
      "my-1 h-px bg-white/[0.06]",
      "px-2 py-1 text-[12px] text-white/40",
      "flex h-9 items-center rounded-md px-2 text-left text-[13px] text-white/90 hover:bg-white/10"
@@ -8819,14 +9042,15 @@
     "style": [
      "{ background: \"rgb(38,38,38)\" }"
     ],
+    "key": [
+     "p.id"
+    ],
     "type": [
-     "button",
      "button",
      "button"
     ],
     "onClick": [
-     "() => onOpenProject?.(projectName)",
-     "() => onOpenProject?.(\"未命名项目\")",
+     "() => {\n              /* ⭐⭐⭐ 真的切回去：切的是 store 里的项目，不是改个显示名。 */\n              onSwitchProject?.(p.id);\n              onOpenProject?.(p.name);\n            }",
      "onCreate"
     ]
    },
@@ -8852,9 +9076,14 @@
      "\"keydown\", onKey, true",
      "\"mousedown\", onDown, true"
     ],
+    "list.map": [
+     "(p) => (\n          <button\n            key={p.id}\n            type=\"button\"\n            data-testid={`topbar-project-item-${p.id}`}\n            onClick={() => {"
+    ],
+    "onSwitchProject": [
+     "p.id"
+    ],
     "onOpenProject": [
-     "projectName",
-     "\"未命名项目\""
+     "p.name"
     ]
    }
   },
@@ -11099,6 +11328,7 @@
     "closeTransientLayer",
     "copyProject",
     "createCanvasProject",
+    "createProject",
     "current",
     "data",
     "data-testid",
@@ -11147,12 +11377,14 @@
     "onOpenShortcuts",
     "onOpenWatermark",
     "onSelectNode",
+    "onSwitchProject",
     "onViewCredits",
     "openTransientLayer",
     "project",
     "projectInfoOpen",
     "projectName",
     "projectOpen",
+    "projects",
     "pushToast",
     "reason",
     "ref",
@@ -11411,6 +11643,9 @@
     "projectName": [
      "project.name"
     ],
+    "projects": [
+     "projects"
+    ],
     "onClose": [
      "() => setProjectOpen(false)",
      "() => setNodeSummaryOpen(false)",
@@ -11428,8 +11663,11 @@
     "onOpenProject": [
      "(name) => {\n                renameProject(name);\n                pushToast(FEEDBACK.switchProject(name));\n              }"
     ],
+    "onSwitchProject": [
+     "(id) => switchProject(id)"
+    ],
     "onCreate": [
-     "() => pushToast(FEEDBACK.createCanvasProject())"
+     "() => {\n                /* ⭐⭐⭐ Batch 1032-④-B（C02）：真建一个项目。\n                 * 此前这里只弹一句复述按钮名的话（`新建画布项目（mock）`），\n                 * 而「建出项目」这件事**没有任何状态承载** ⇒ 点了等于没点。\n                 * ⇒ 现在 `createProjec"
     ],
     "nodeLabels": [
      "nodeLabels"
@@ -11482,6 +11720,9 @@
      "(s) => s.nodes",
      "(s) => s.aiDrawerOpen",
      "(s) => s.renameProject",
+     "(s) => s.projects",
+     "(s) => s.createProject",
+     "(s) => s.switchProject",
      "(s) => s.transientLayer",
      "(s) => s.openTransientLayer",
      "(s) => s.closeTransientLayer",
@@ -11576,6 +11817,12 @@
     ],
     "FEEDBACK.switchProject": [
      "name"
+    ],
+    "switchProject": [
+     "id"
+    ],
+    "createProject": [
+     ""
     ],
     "FEEDBACK.createCanvasProject": [
      ""
@@ -12546,6 +12793,7 @@
     "JimengSelectionOutline": 1,
     "JimengMultiSelectToolbar": 1,
     "JimengAssetsModal": 1,
+    "input": 1,
     "JimengOfflineDialog": 1,
     "JimengPaneContextMenu": 1,
     "JimengTaskToast": 1,
@@ -12562,12 +12810,14 @@
    "identifiers": [
     "Array",
     "CSSProperties",
+    "ChangeEvent",
     "DEFAULT_VIEWPORT",
     "FEEDBACK",
     "Free",
     "GRID_WORLD_PX",
     "HTMLDivElement",
     "HTMLElement",
+    "HTMLInputElement",
     "JimengAiButton",
     "JimengAiDrawer",
     "JimengAssetsModal",
@@ -12616,6 +12866,7 @@
     "activeElement",
     "addEdge",
     "addEventListener",
+    "addLocalUpload",
     "addNodeAt",
     "aiDrawerOpen",
     "aiDrawerPrefill",
@@ -12635,6 +12886,7 @@
     "canvasBoxRef",
     "catch",
     "className",
+    "click",
     "clientHeight",
     "clientWidth",
     "clientX",
@@ -12678,6 +12930,8 @@
     "exitRepaint",
     "exitTrim",
     "expandedGenLayer",
+    "f",
+    "files",
     "filter",
     "find",
     "findIndex",
@@ -12704,12 +12958,14 @@
     "hasReadyResource",
     "hasSelection",
     "height",
+    "hidden",
     "hideAttribution",
     "i",
     "id",
     "ids",
     "image",
     "inField",
+    "input",
     "isContentEditable",
     "isValid",
     "jimeng",
@@ -12717,6 +12973,7 @@
     "key",
     "kind",
     "length",
+    "localFileInputRef",
     "map",
     "margin",
     "maskColor",
@@ -12729,6 +12986,7 @@
     "multi",
     "multiSelectionKeyCode",
     "n",
+    "name",
     "next",
     "node",
     "nodeColor",
@@ -12739,6 +12997,7 @@
     "nodesFocusable",
     "offlineDialogOpen",
     "onAction",
+    "onChange",
     "onClick",
     "onClose",
     "onConnect",
@@ -12752,14 +13011,17 @@
     "onEdgesChange",
     "onInsert",
     "onKeyDown",
+    "onLocalFileChosen",
     "onMove",
     "onNodeClick",
     "onNodeContextMenu",
     "onNodesChange",
+    "onOpenAssets",
     "onPaneClick",
     "onPaneContextMenu",
     "onPaneInsert",
     "onPaste",
+    "onPickLocalFile",
     "onRedo",
     "onUndo",
     "padding",
@@ -12836,6 +13098,7 @@
     "useReactFlow",
     "useRef",
     "useState",
+    "value",
     "video",
     "viewport",
     "vp",
@@ -12924,11 +13187,13 @@
     "copy",
     "d",
     "delete",
+    "director",
     "download",
     "drawer",
     "duplicate",
     "e--",
     "f",
+    "file",
     "g",
     "group",
     "image",
@@ -12938,6 +13203,7 @@
     "keydown",
     "lucide-react",
     "ml-1 flex size-5 items-center justify-center rounded-full hover:bg-white/20",
+    "pane-local-file-input",
     "paste",
     "px",
     "react",
@@ -12951,8 +13217,10 @@
     "role",
     "save-to-library",
     "static",
+    "subject",
     "tabindex",
     "text",
+    "timeline",
     "transparent",
     "undo",
     "ungroup",
@@ -12965,12 +13233,14 @@
    ],
    "attrs": {
     "ref": [
-     "canvasBoxRef"
+     "canvasBoxRef",
+     "localFileInputRef"
     ],
     "data-testid": [
      "canvas-main-region",
      "jimeng-minimap-panel",
-     "canvas-pick-banner"
+     "canvas-pick-banner",
+     "pane-local-file-input"
     ],
     "className": [
      "`jimeng-canvas relative h-full w-full ${\n        refPicking ? \"ring-2 ring-inset ring-[#0A5CD6]\" : \"\"\n      }`",
@@ -13095,7 +13365,8 @@
      "14"
     ],
     "type": [
-     "button"
+     "button",
+     "file"
     ],
     "aria-label": [
      "取消从画布选择",
@@ -13135,6 +13406,12 @@
     "onAction": [
      "onContextMenuAction"
     ],
+    "hidden": [
+     ""
+    ],
+    "onChange": [
+     "onLocalFileChosen"
+    ],
     "clipboard": [
      "clipboard !== null"
     ],
@@ -13146,6 +13423,12 @@
     ],
     "onInsert": [
      "onPaneInsert"
+    ],
+    "onOpenAssets": [
+     "onOpenAssets"
+    ],
+    "onPickLocalFile": [
+     "onPickLocalFile"
     ],
     "onCopy": [
      "() => {\n            const ids = nodes.filter((n) => n.selected).map((n) => n.id);\n            if (ids.length > 0) copyNodes(ids);\n          }"
@@ -13190,6 +13473,7 @@
      "\"tabindex\", i === keep ? \"0\" : \"-1\""
     ],
     "useRef": [
+     "null",
      "null"
     ],
     "useEffect": [
@@ -13272,6 +13556,7 @@
      "(s) => s.closeExpandedGenLayer",
      "(s) => s.project.saved",
      "(s) => s.addEdge",
+     "(s) => s.addLocalUpload",
      "(s) => s.aiDrawerOpen",
      "(s) => s.setAiDrawerOpen",
      "(s) => s.aiDrawerPrefill"
@@ -13300,7 +13585,10 @@
      "(params) => {\n      addEdge({\n        id: `e-${params.source}-${params.target}`,\n        source: params.source,\n        target: params.target,\n        sourceHan, [addEdge]",
      "(_event, state) => {\n    if (state.isValid === false) {\n      useJimengStore.getState().pushToast(\"无法连接这些节点\");\n    }\n  }, []",
      "(event, node) => {\n    const e = event as unknown as MouseEvent;\n    e.preventDefault();\n    setContextMenu({ x: e.clientX, y: e.clientY, nodeId: node.id });\n  , []",
-     "(kind: \"video\" | \"image\" | \"text\" | \"audio\") => {\n      if (!paneMenu) return;\n      addNodeAt(kind, { x: paneMenu.flowX, y: paneMenu.flowY });\n    }, [paneMenu, addNodeAt]",
+     "(\n      kind:\n        | \"video\"\n        | \"image\"\n        | \"text\"\n        | \"audio\"\n        | \"timeline\"\n        | \"subject\"\n        | \"director\",\n    ) => {\n , [paneMenu, addNodeAt]",
+     "() => {\n    setAssetsOpen(true);\n  }, [setAssetsOpen]",
+     "() => {\n    localFileInputRef.current?.click();\n  }, []",
+     "(e: React.ChangeEvent<HTMLInputElement>) => {\n      const f = e.target.files?.[0];\n      if (!f || !paneMenu) return;\n      addLocalUpload(f.name, { x: paneMenu, [paneMenu, addLocalUpload]",
      "(action: string) => {\n      if (!contextMenu) return;\n      // 多选判定 (Batch 64): 右键时选中数 >1 即多选菜单语义\n      const selIds = nodes.filter((n) => n.selected).map((n) =, [contextMenu, copyNode, copyNodes, duplicateNode, pasteNodes, removeNode, removeNodes, undo, redo, groupSelected, ungroupSelected, nodes, pushToast]",
      "(zoom: number, x: number, y: number) => {\n    const el = document.querySelector<HTMLElement>(\".jimeng-canvas\");\n    if (!el) return;\n    const tile = GRID_WORLD, []",
      "(_event, viewport) => {\n      setZoomPercent(viewport.zoom * 100);\n      applyGridVars(viewport.zoom, viewport.x, viewport.y);\n    }, [setZoomPercent, applyGridVars]",
@@ -13397,6 +13685,17 @@
     ],
     "addNodeAt": [
      "kind, { x: paneMenu.flowX, y: paneMenu.flowY }"
+    ],
+    "setAssetsOpen": [
+     "true",
+     "false",
+     "false"
+    ],
+    "localFileInputRef.current?.click": [
+     ""
+    ],
+    "addLocalUpload": [
+     "f.name, { x: paneMenu.flowX, y: paneMenu.flowY }"
     ],
     "nodes.filter((n) => n.selected).map": [
      "(n) => n.id",
@@ -13516,10 +13815,6 @@
     "closePreview": [
      ""
     ],
-    "setAssetsOpen": [
-     "false",
-     "false"
-    ],
     "setOfflineDialog": [
      "false",
      "false"
@@ -13604,10 +13899,12 @@
     "h",
     "has",
     "i",
+    "id",
     "key",
     "label",
     "map",
     "maxZoom",
+    "nodes",
     "onClose",
     "onDown",
     "onSelect",
@@ -13753,7 +14050,7 @@
     ],
     "fitView": [
      "{ duration: 300 }",
-     "{ duration: 300, maxZoom: 1 }"
+     "{\n          duration: 300,\n          maxZoom: 1,\n          nodes: selectedNodeId ? [{ id: selectedNodeId }] : undefined,\n        }"
     ],
     "setZoom": [
      "0.5",
@@ -14720,6 +15017,7 @@
     "JimengConnectHandles": 1
    },
    "identifiers": [
+    "Blob",
     "FileBadgeIcon",
     "JimengConnectHandles",
     "JimengImageGenPanel",
@@ -14728,12 +15026,24 @@
     "JimengImageNodeToolbar",
     "JimengNodeTitle",
     "NodeProps",
+    "URL",
+    "Uint8Array",
+    "a",
     "alt",
+    "appendChild",
     "aria-hidden",
+    "atob",
     "background",
+    "bin",
+    "body",
     "boxShadow",
+    "bytes",
+    "charCodeAt",
     "circle",
     "className",
+    "click",
+    "createElement",
+    "createObjectURL",
     "cx",
     "cy",
     "d",
@@ -14742,10 +15052,15 @@
     "data-jimeng-image-uploading",
     "data-jimeng-node-selected",
     "div",
+    "document",
+    "download",
+    "enterInfer",
     "fill",
     "filter",
     "generating",
     "height",
+    "href",
+    "i",
     "id",
     "img",
     "label",
@@ -14756,25 +15071,37 @@
     "nodeRingShadow",
     "nodes",
     "onAction",
+    "onToolbarAction",
+    "openAiDrawer",
+    "openPreview",
     "path",
     "poster",
     "pushToast",
     "r",
     "rect",
+    "remove",
+    "replace",
+    "revokeObjectURL",
     "rx",
     "s",
     "selected",
+    "setTimeout",
     "size",
     "soloSelected",
     "span",
+    "split",
     "src",
+    "startTask",
+    "startsWith",
     "stroke",
     "strokeWidth",
     "style",
     "svg",
     "title",
+    "type",
     "undefined",
     "uploadProgress",
+    "url",
     "useJimengStore",
     "viewBox",
     "visible",
@@ -14788,6 +15115,8 @@
     "生成中…"
    ],
    "string_literals": [
+    ",",
+    ".png",
     "0 0 20 20",
     "1.3",
     "1.6",
@@ -14807,13 +15136,17 @@
     "@/store/jimengStore",
     "@/types/jimeng",
     "@xyflow/react",
+    "_",
+    "a",
     "absolute inset-0 flex items-center justify-center bg-black/45",
     "absolute inset-0 h-full w-full object-cover",
     "absolute inset-0 z-[3] flex flex-col items-center justify-center gap-2 rounded-lg bg-black/55",
     "absolute inset-x-0 top-[-31px] z-10 flex h-8 items-start text-left",
     "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white/40",
     "currentColor",
+    "data:",
     "group relative",
+    "image/png",
     "linear-gradient(to right bottom, rgb(34,34,34), rgb(20,20,20))",
     "m4 15 4.5-5 3 3.4L14 10.5l2.5 3",
     "mt-1 shrink-0",
@@ -14823,8 +15156,15 @@
     "size-6 animate-spin rounded-full border-2 border-white/25 border-t-white",
     "text-[12px] text-white/85",
     "text-[13px] text-white/90",
+    "upscale",
     "use client",
-    "已执行"
+    "下载",
+    "全屏预览",
+    "图片",
+    "已下载「」",
+    "提示词反推",
+    "智能超清",
+    "用 图片反解 反推出  的提示词，并创建文本节点，方便我拉片复刻"
    ],
    "attrs": {
     "visible": [
@@ -14832,7 +15172,7 @@
      "selected === true && soloSelected"
     ],
     "onAction": [
-     "(label) => pushToast(mockMsg(`${label}已执行`))"
+     "onToolbarAction"
     ],
     "nodeId": [
      "id",
@@ -14936,16 +15276,72 @@
    "calls": {
     "useJimengStore": [
      "(s) => s.pushToast",
+     "(s) => s.startTask",
+     "(s) => s.openPreview",
+     "(s) => s.enterInfer",
+     "(s) => s.openAiDrawer",
      "(s) => s.nodes.filter((n) => n.selected).length"
     ],
     "s.nodes.filter": [
      "(n) => n.selected"
     ],
+    "startTask": [
+     "id, \"upscale\""
+    ],
+    "openPreview": [
+     "id"
+    ],
+    "document.createElement": [
+     "\"a\""
+    ],
+    "href.startsWith": [
+     "\"data:\""
+    ],
+    "atob": [
+     "href.split(\",\")[1] ?? \"\""
+    ],
+    "href.split": [
+     "\",\""
+    ],
+    "bin.charCodeAt": [
+     "i"
+    ],
+    "URL.createObjectURL": [
+     "new Blob([bytes], { type: \"image/png\" })"
+    ],
+    "(d.title || \"图片\").replace": [
+     "/[\\\\/:*?\"<>|]/g, \"_\"",
+     "/[\\\\/:*?\"<>|]/g, \"_\""
+    ],
+    "document.body.appendChild": [
+     "a",
+     "a"
+    ],
+    "a.click": [
+     "",
+     ""
+    ],
+    "a.remove": [
+     "",
+     ""
+    ],
+    "setTimeout": [
+     "() => URL.revokeObjectURL(url), 0"
+    ],
+    "URL.revokeObjectURL": [
+     "url"
+    ],
     "pushToast": [
-     "mockMsg(`${label}已执行`)"
+     "mockMsg(`已下载「${d.title}」`)"
     ],
     "mockMsg": [
-     "`${label}已执行`"
+     "`已下载「${d.title}」`"
+    ],
+    "enterInfer": [
+     "id"
+    ],
+    "openAiDrawer": [
+     "`用 图片反解 反推出 ${d.title} 的提示词，并创建文本节点，方便我拉片复刻`, d.poster ? { poster: d.poster, label: d.title } : undefined"
     ],
     "nodeRingShadow": [
      "selected === true"
@@ -16292,6 +16688,7 @@
     "File",
     "FileReader",
     "HTMLDivElement",
+    "HTMLElement",
     "HTMLInputElement",
     "JSON",
     "JimengConnectHandles",
@@ -16326,6 +16723,7 @@
     "a",
     "accept",
     "accepted",
+    "activeClipId",
     "addClip",
     "addEventListener",
     "addLocalImage",
@@ -16344,6 +16742,7 @@
     "border",
     "boxShadow",
     "button",
+    "buttons",
     "c",
     "canRedo",
     "canUndo",
@@ -16362,17 +16761,23 @@
     "createObjectURL",
     "createPortal",
     "current",
+    "currentTarget",
+    "cursor",
     "d",
     "data",
     "data-jimeng-node-selected",
     "data-testid",
     "dataTransfer",
+    "deltaSec",
+    "dir",
     "disabled",
     "div",
     "document",
     "download",
+    "dragRef",
     "dropEffect",
     "duration",
+    "dx",
     "e",
     "el",
     "ends",
@@ -16435,6 +16840,7 @@
     "needClipAtPlayhead",
     "next",
     "nextClipId",
+    "nextStart",
     "nodeId",
     "nodeRingShadow",
     "nodes",
@@ -16445,12 +16851,17 @@
     "onDragOver",
     "onDrop",
     "onKey",
+    "onKeyDown",
+    "onPointerDown",
+    "onPointerMove",
+    "onPointerUp",
     "onTimeline",
     "onload",
     "p",
     "padStart",
     "past",
     "payload",
+    "pointerId",
     "pos",
     "position",
     "prefix",
@@ -16463,6 +16874,7 @@
     "redo",
     "reduce",
     "ref",
+    "releasePointerCapture",
     "remove",
     "removeClip",
     "removeEventListener",
@@ -16481,6 +16893,7 @@
     "section",
     "seekFromClientX",
     "selected",
+    "setActiveClipId",
     "setExportOpen",
     "setFsDragOver",
     "setFsKind",
@@ -16490,20 +16903,27 @@
     "setFsZoom",
     "setFullscreen",
     "setMuted",
+    "setPointerCapture",
     "setTimeout",
+    "shiftClip",
+    "shiftKey",
     "size",
     "sname",
     "sort",
     "span",
     "spanOf",
     "splitTimelineClip",
+    "st",
     "stamp",
     "start",
+    "startSec",
+    "startX",
     "startsWith",
     "stopPropagation",
     "stringify",
     "style",
     "t",
+    "tabIndex",
     "tail",
     "target",
     "title",
@@ -16575,6 +16995,10 @@
     "@/store/jimengStore",
     "@/types/jimeng",
     "@xyflow/react",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowUp",
     "Close timeline editor",
     "DaVinci Resolve",
     "Edit the main visual track and multiple audio tracks",
@@ -16600,7 +17024,7 @@
     "absolute top-0 flex flex-col items-start",
     "absolute top-0 flex h-full -translate-x-px flex-col items-start",
     "absolute top-2 flex h-10 items-center overflow-hidden rounded-md px-2 text-[12px] text-white/85",
-    "absolute top-2 flex h-[60px] items-center justify-between gap-2 rounded-md px-2 text-[12px] text-white/85",
+    "absolute top-2 flex h-[60px] items-center justify-between gap-2 rounded-md px-2 text-[12px] text-white/85 ",
     "absolute top-[22px] flex size-14 items-center justify-center rounded-md bg-white/[0.04] text-white/35 hover:bg-white/[0.07]",
     "application/json",
     "audio",
@@ -16639,6 +17063,7 @@
     "flex w-full flex-col items-start rounded-md px-2 py-1.5 text-left hover:bg-white/10",
     "flex-1",
     "flex-1 p-4 text-[13px] text-white/40",
+    "grab",
     "group",
     "group relative",
     "h-1.5 w-px bg-white/20",
@@ -16680,6 +17105,7 @@
     "rgb(32,32,32)",
     "rgb(38,38,38)",
     "rgba(255,255,255,0.10)",
+    "ring-1 ring-[#009EFA]/70",
     "rounded-md transition-colors ",
     "shrink-0 text-[11px] text-white/35",
     "shrink-0 text-white/50 hover:text-white",
@@ -16785,6 +17211,7 @@
     "未命名",
     "添加素材到时间线",
     "片段 ",
+    "片段 ，可拖动或用 Shift 加方向键移动",
     "画布资产",
     "移除 ",
     "缩小视图",
@@ -16826,7 +17253,7 @@
      "h-2 w-px bg-white/20",
      "text-[13.5px] leading-3 text-white/40 tabular-nums",
      "relative h-[84px] w-full",
-     "absolute top-2 flex h-[60px] items-center justify-between gap-2 rounded-md px-2 text-[12px] text-white/85",
+     "`absolute top-2 flex h-[60px] items-center justify-between gap-2 rounded-md px-2 text-[12px] text-white/85 ${\n                    activeClipId === c.id ? \"ring-1 ring-[#009EFA]/70\" : \"\"\n              ",
      "truncate",
      "shrink-0 text-white/50 hover:text-white",
      "flex h-[84px] w-full items-center justify-center gap-2 rounded-md bg-white/[0.04] text-[19.5px] leading-none text-white/35 transition-colors hover:bg-white/[0.07]",
@@ -16989,6 +17416,7 @@
      "全屏编辑",
      "muted ? \"取消静音\" : \"静音\"",
      "时间线刻度",
+     "`片段 ${c.label}，可拖动或用 Shift 加方向键移动`",
      "`移除 ${c.label}`",
      "添加素材到时间线",
      "时间线",
@@ -17017,7 +17445,7 @@
      "() => {\n                    setExportOpen(false);\n                    pushToast(mockMsg(t.label));\n                  }",
      "() => setFullscreen(true)",
      "() => setMuted((v) => !v)",
-     "() => removeClip(c.id)",
+     "(e) => {\n                      e.stopPropagation();\n                      removeClip(c.id);\n                    }",
      "() => addClip()",
      "() => addClip()",
      "exportTimelineJson",
@@ -17059,6 +17487,7 @@
      "menuitem",
      "menuitem",
      "menuitem",
+     "button",
      "dialog",
      "group",
      "group",
@@ -17079,6 +17508,21 @@
      "muted",
      "!fsSnap",
      "muted"
+    ],
+    "tabIndex": [
+     "0"
+    ],
+    "onPointerDown": [
+     "(e) => {\n                    /* 只认主键；左键拖动，右键留给上下文菜单。 */\n                    if (e.button !== 0) return;\n                    setActiveClipId(c.id);\n                    dragRef.current = { clipId: c.id,"
+    ],
+    "onPointerMove": [
+     "(e) => {\n                    const st = dragRef.current;\n                    if (!st || st.clipId !== c.id) return;\n                    if (!(e.buttons & 1)) return;\n                    e.preventDefau"
+    ],
+    "onPointerUp": [
+     "(e) => {\n                    dragRef.current = null;\n                    (e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);\n                  }"
+    ],
+    "onKeyDown": [
+     "(e) => {\n                    /* ⭐⭐⭐ Shift + 方向键：片段真的左右移（与拖动同一套语义）。\n                       ⚠️ 只在 `e.shiftKey` 时接管 ⇒ 普通方向键仍归画布平移。 */\n                    if (!e.shiftKey) return;\n                    cons"
     ],
     "ref": [
      "fsLayerRef",
@@ -17116,12 +17560,14 @@
    "calls": {
     "Math.max": [
      "0, Math.floor(sec)",
+     "...list.map((c) => c.start + c.length)",
+     "0, c.start + deltaSec",
      "d.duration ?? 0, ...ends",
      "m, n.position.x",
      "0, Math.min(span, (clientX - rect.left - 52) / px)",
-     "...list.map((c) => c.start + c.length)",
      "0, Math.floor(t)",
      "1, c.length * RULER_PX_PER_SEC",
+     "0, Math.round(st.startSec + deltaSec)",
      "0.5, +(z - 0.1).toFixed(2)",
      "18, c.length * FS_RULER_PX_PER_SEC * fsZoom"
     ],
@@ -17155,7 +17601,20 @@
      "(s) => s.past.length > 0",
      "(s) => s.future.length > 0"
     ],
+    "list.map": [
+     "(c) => c.start + c.length"
+    ],
+    "updateClips": [
+     "id, { clips: next, duration: spanOf(next) }",
+     "id, { clips: [...clips, clip], duration: clip.start + clip.length }",
+     "id, {\n      clips: rest,\n      duration: rest.length ? rest[rest.length - 1].start + rest[rest.length - 1].length : 0,\n    }"
+    ],
+    "spanOf": [
+     "next",
+     "clips"
+    ],
     "useState": [
+     "null",
      "false",
      "false",
      "false",
@@ -17169,33 +17628,69 @@
     "useRef": [
      "null",
      "null",
+     "null",
      "null"
     ],
-    "useTakeFocusAtOpen": [
-     "fsLayerRef, fullscreen"
+    "clips.find": [
+     "(x) => x.id === clipId",
+     "(c) => fsTime >= c.start && fsTime < c.start + c.length"
     ],
-    "useEffect": [
-     "() => {\n    if (!fullscreen) return;\n    const onKey = (e: KeyboardEvent) => {\n      if (e.key === \"Escape\") setFullscreen(false);\n    };\n    window.addEventLis, [fullscreen]"
-    ],
-    "setFullscreen": [
-     "false",
-     "true",
-     "false"
-    ],
-    "window.addEventListener": [
-     "\"keydown\", onKey, true"
-    ],
-    "window.removeEventListener": [
-     "\"keydown\", onKey, true"
+    "commitClips": [
+     "clips.map((x) => (x.id === clipId ? { ...x, start: nextStart } : x))",
+     "[...clips.filter((x) => x.id !== c.id), head, tail].sort((a, b) => a.start - b.start)",
+     "clips.map((x) => (x.id === c.id ? { ...x, start: fsTime } : x))",
+     "clips.map((x) => (x.id === c.id ? { ...x, length: fsTime - x.start } : x))",
+     "clips.filter((x) => x.id !== c.id)",
+     "clips.map((x) => (x.id === c.id ? { ...x, start: nextStart } : x))"
     ],
     "clips.map": [
+     "(x) => (x.id === clipId ? { ...x, start: nextStart } : x)",
      "(c) => c.start + c.length",
      "(c) => ({ 名称: c.label, 起点秒: c.start, 时长秒: c.length })",
      "(c) => c.label",
      "(x) => (x.id === c.id ? { ...x, start: fsTime } : x)",
      "(x) => (x.id === c.id ? { ...x, length: fsTime - x.start } : x)",
-     "(c) => (\n                <div\n                  key={c.id}\n                  className=\"absolute top-2 flex h-[60px] items-center justify-between gap-2 rounded-",
+     "(c) => (\n                <div\n                  key={c.id}\n                  className={`absolute top-2 flex h-[60px] items-center justify-between gap-2 rounded",
+     "(x) => (x.id === c.id ? { ...x, start: nextStart } : x)",
      "(c) => (\n                    <div\n                      key={c.id}\n                      className=\"absolute top-2 flex h-10 items-center overflow-hidden rounde"
+    ],
+    "useEffect": [
+     "() => {\n    const onKey = (e: KeyboardEvent) => {\n      if (!e.shiftKey) return;\n      if (!activeClipId) return;\n      const k = e.key;\n      if (k !== \"ArrowL",
+     "() => {\n    if (!fullscreen) return;\n    const onKey = (e: KeyboardEvent) => {\n      if (e.key === \"Escape\") setFullscreen(false);\n    };\n    window.addEventLis, [fullscreen]"
+    ],
+    "e.preventDefault": [
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "e.stopPropagation": [
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "shiftClip": [
+     "activeClipId, dir",
+     "c.id, dir"
+    ],
+    "window.addEventListener": [
+     "\"keydown\", onKey, true",
+     "\"keydown\", onKey, true"
+    ],
+    "window.removeEventListener": [
+     "\"keydown\", onKey, true",
+     "\"keydown\", onKey, true"
+    ],
+    "useTakeFocusAtOpen": [
+     "fsLayerRef, fullscreen"
+    ],
+    "setFullscreen": [
+     "false",
+     "true",
+     "false"
     ],
     "nextClipId": [
      "\"clip\"",
@@ -17206,11 +17701,6 @@
      "...mediaNodes.map((n) => n.position.y)",
      "span, (clientX - rect.left - 52) / px",
      "2, +(z + 0.1).toFixed(2)"
-    ],
-    "updateClips": [
-     "id, { clips: [...clips, clip], duration: clip.start + clip.length }",
-     "id, {\n      clips: rest,\n      duration: rest.length ? rest[rest.length - 1].start + rest[rest.length - 1].length : 0,\n    }",
-     "id, { clips: next, duration: spanOf(next) }"
     ],
     "pushToast": [
      "FEEDBACK.addTimelineClip(clip.label)",
@@ -17340,16 +17830,6 @@
      "(x) => x.id !== c.id",
      "(x) => x.id !== c.id"
     ],
-    "list.map": [
-     "(c) => c.start + c.length"
-    ],
-    "spanOf": [
-     "next",
-     "clips"
-    ],
-    "clips.find": [
-     "(c) => fsTime >= c.start && fsTime < c.start + c.length"
-    ],
     "String(Math.max(0, Math.floor(t))).padStart": [
      "2, \"0\""
     ],
@@ -17358,12 +17838,6 @@
      "\"向左剪裁\"",
      "\"向右剪裁\"",
      "\"删除\""
-    ],
-    "commitClips": [
-     "[...clips.filter((x) => x.id !== c.id), head, tail].sort((a, b) => a.start - b.start)",
-     "clips.map((x) => (x.id === c.id ? { ...x, start: fsTime } : x))",
-     "clips.map((x) => (x.id === c.id ? { ...x, length: fsTime - x.start } : x))",
-     "clips.filter((x) => x.id !== c.id)"
     ],
     "[...clips.filter((x) => x.id !== c.id), head, tail].sort": [
      "(a, b) => a.start - b.start"
@@ -17432,6 +17906,19 @@
      "e.target.files ?? []",
      "{ length: FS_RULER_SECONDS / FS_TICK_STEP + 1 }, (_, i) => i * FS_TICK_STEP"
     ],
+    "setActiveClipId": [
+     "c.id"
+    ],
+    "(e.currentTarget as HTMLElement).setPointerCapture": [
+     "e.pointerId"
+    ],
+    "Math.round": [
+     "st.startSec + deltaSec",
+     "fsZoom * 100"
+    ],
+    "(e.currentTarget as HTMLElement).releasePointerCapture": [
+     "e.pointerId"
+    ],
     "removeClip": [
      "c.id"
     ],
@@ -17449,10 +17936,6 @@
     ],
     "setFsKind": [
      "k"
-    ],
-    "e.preventDefault": [
-     "",
-     ""
     ],
     "setFsDragOver": [
      "true",
@@ -17488,9 +17971,6 @@
     "(z - 0.1).toFixed": [
      "2"
     ],
-    "Math.round": [
-     "fsZoom * 100"
-    ],
     "(z + 0.1).toFixed": [
      "2"
     ],
@@ -17499,17 +17979,13 @@
     ],
     "Array.from({ length: FS_RULER_SECONDS / FS_TICK_STEP + 1 },\n                    (_, i) => i * FS_TICK_STEP).map": [
      "(t) => (\n                      <span\n                        key={t}\n                        className=\"absolute top-0 flex flex-col items-start\"\n              "
-    ],
-    "e.stopPropagation": [
-     "",
-     ""
     ]
    }
   },
   "src/components/jimeng/nodes/JimengVideoMediaCard.tsx": {
    "tags": {
     "div": 8,
-    "img": 1,
+    "video": 1,
     "button": 5,
     "Pause": 2,
     "Play": 2,
@@ -17522,6 +17998,7 @@
    },
    "identifiers": [
     "HTMLElement",
+    "HTMLVideoElement",
     "JimengTask",
     "JimengVideoMediaCard",
     "JimengVideoNodeData",
@@ -17532,15 +18009,17 @@
     "String",
     "Volume2",
     "VolumeX",
-    "alt",
+    "abs",
     "aria-hidden",
     "aria-label",
     "background",
     "boxShadow",
     "button",
     "buttons",
+    "catch",
     "className",
     "clientX",
+    "current",
     "currentTarget",
     "currentTime",
     "d",
@@ -17556,7 +18035,6 @@
     "hasMedia",
     "height",
     "id",
-    "img",
     "kind",
     "left",
     "m",
@@ -17567,15 +18045,22 @@
     "nodeRingShadow",
     "onClick",
     "onDoubleClick",
+    "onError",
     "onPointerDown",
     "onPointerMove",
+    "onTimeUpdate",
     "openPreview",
     "padStart",
+    "pause",
+    "play",
     "playing",
+    "playsInline",
     "pointerId",
     "poster",
+    "preload",
     "r",
     "rect",
+    "ref",
     "restartPlay",
     "rx",
     "s",
@@ -17592,13 +18077,20 @@
     "strokeWidth",
     "style",
     "svg",
+    "t",
+    "target",
     "task",
     "title",
     "toggleMute",
     "togglePlay",
     "type",
     "updateNodeData",
+    "useEffect",
     "useJimengStore",
+    "useRef",
+    "v",
+    "video",
+    "videoRef",
     "viewBox",
     "width",
     "x",
@@ -17640,15 +18132,18 @@
     "flex-1",
     "group relative h-full w-full overflow-hidden rounded-lg",
     "h-full rounded-[25px] bg-white/[0.96]",
+    "jimeng-video-element",
     "linear-gradient(to right bottom, rgb(34,34,34), rgb(20,20,20))",
     "lucide-react",
     "media-error-retry",
     "media-error-text",
+    "metadata",
     "nodrag absolute inset-x-0 bottom-0 z-[2] h-[8px] cursor-pointer bg-transparent",
     "nodrag rounded-lg bg-white px-3 py-1.5 text-[12px] font-medium text-[#151515] hover:bg-white/90",
     "none",
     "opacity-0 group-hover:opacity-100",
     "opacity-100",
+    "react",
     "size-6 animate-spin rounded-full border-2 border-white/25 border-t-white",
     "text-[11px] leading-none tabular-nums",
     "text-[12px] text-white/85",
@@ -17698,11 +18193,35 @@
     "onDoubleClick": [
      "() => {\n        if (d.hasMedia) restartPlay(id);\n      }"
     ],
+    "ref": [
+     "videoRef"
+    ],
     "src": [
+     "d.src"
+    ],
+    "poster": [
      "d.poster"
     ],
-    "alt": [
-     "d.title"
+    "preload": [
+     "metadata"
+    ],
+    "playsInline": [
+     ""
+    ],
+    "muted": [
+     "d.muted ?? false"
+    ],
+    "data-testid": [
+     "jimeng-video-element",
+     "video-progress",
+     "media-error-text",
+     "media-error-retry"
+    ],
+    "onTimeUpdate": [
+     "(e) => {\n              /* ⭐⭐⭐ 元素的真实进度**写回 store** ⇒ 进度条与画面永远一致。 */\n              const t = e.currentTarget.currentTime;\n              updateNodeData(id, { currentTime: t });\n            }"
+    ],
+    "onError": [
+     "() => {\n              /* 真解码失败 ⇒ 走既有的「视频播放失败 + 重试」态。 */\n              setMediaError(id, true);\n            }"
     ],
     "type": [
      "button",
@@ -17744,11 +18263,6 @@
     "title": [
      "d.muted ? \"取消静音\" : \"静音\"",
      "全屏"
-    ],
-    "data-testid": [
-     "video-progress",
-     "media-error-text",
-     "media-error-retry"
     ],
     "onPointerDown": [
      "(e) => {\n              e.stopPropagation();\n              (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);\n              const r = e.currentTarget.getBoundingClientRect();\n            "
@@ -17811,12 +18325,39 @@
      "(s) => s.seek",
      "(s) => s.openPreview"
     ],
+    "useRef": [
+     "null"
+    ],
+    "useEffect": [
+     "() => {\n    const v = videoRef.current;\n    if (!v) return;\n    if (playing) {\n      void v.play().catch(() => {\n        /* 自动播放被浏览器拦下（有声/无用户手势）⇒ 忽略，\n          , [playing, d.src]",
+     "() => {\n    const v = videoRef.current;\n    if (!v || !d.src) return;\n    const target = d.currentTime ?? 0;\n    /* 只在**偏差明显**时才写回去 ⇒ 否则与 `onTimeUpdate` 互相追尾。 *, [d.currentTime, d.src]",
+     "() => {\n    const v = videoRef.current;\n    if (!v) return;\n    v.muted = d.muted ?? false;\n  }, [d.muted]"
+    ],
+    "v.play().catch": [
+     "() => {\n        /* 自动播放被浏览器拦下（有声/无用户手势）⇒ 忽略，\n           用户点一下播放钮就会再试一次。 */\n      }"
+    ],
+    "v.play": [
+     ""
+    ],
+    "v.pause": [
+     ""
+    ],
+    "Math.abs": [
+     "v.currentTime - target"
+    ],
     "nodeRingShadow": [
      "selected === true"
     ],
     "restartPlay": [
      "id",
      "id"
+    ],
+    "updateNodeData": [
+     "id, { currentTime: t }"
+    ],
+    "setMediaError": [
+     "id, true",
+     "id, false"
     ],
     "e.stopPropagation": [
      "",
@@ -17854,9 +18395,6 @@
     ],
     "Math.min": [
      "100, ((d.currentTime ?? 0) / (d.duration || 1)) * 100"
-    ],
-    "setMediaError": [
-     "id, false"
     ]
    }
   },
@@ -17930,6 +18468,7 @@
     "find",
     "framePickerMode",
     "framePickerNodeId",
+    "frameTime",
     "generating",
     "getBoundingClientRect",
     "getNodes",
@@ -18114,7 +18653,7 @@
      "framePickerMode"
     ],
     "onConfirm": [
-     "() => {\n            // 批 203 SOURCE_FACT: 源站「确认」= 选择器关闭 + 直出该帧的\n            // 图片节点 (非写回 currentTime——batch 34 旧语义已修正)\n            captureFrame(id, \"custom\");\n            exitFramePicker();\n          ",
+     "(frameTime) => {\n            // 批 203 SOURCE_FACT: 源站「确认」= 选择器关闭 + 直出该帧的\n            // 图片节点 (非写回 currentTime——batch 34 旧语义已修正)\n            captureFrame(id, \"custom\", frameTime);\n            exitFrame",
      "(trimmedDuration, startOffset) => {\n            applyTrim(id, trimmedDuration, startOffset);\n            exitTrim();\n          }"
     ],
     "onAction": [
@@ -18281,7 +18820,7 @@
      ""
     ],
     "captureFrame": [
-     "id, \"custom\"",
+     "id, \"custom\", frameTime",
      "id, \"first\"",
      "id, \"last\""
     ],
@@ -18509,6 +19048,877 @@
     ],
     "TAG_COLORS.map": [
      "(color) => (\n                <button\n                  key={color}\n                  type=\"button\"\n                  aria-label={`颜色标记 ${color}`}\n              "
+    ]
+   }
+  },
+  "src/store/jimengStore.ts": {
+   "tags": {},
+   "identifiers": [
+    "AiSession",
+    "DEMO_VIDEO_SRC",
+    "Date",
+    "Edge",
+    "EdgeChange",
+    "Extract",
+    "FEEDBACK",
+    "JimengAudioNodeData",
+    "JimengCanvasState",
+    "JimengGenerationRecord",
+    "JimengImageNodeData",
+    "JimengNode",
+    "JimengTask",
+    "JimengTransientLayer",
+    "JimengVideoNodeData",
+    "MOCK_IMAGE",
+    "MOCK_POSTER",
+    "Map",
+    "Math",
+    "NODE_ENV",
+    "NodeChange",
+    "Number",
+    "Object",
+    "Omit",
+    "Record",
+    "Set",
+    "WATERMARK_KEY",
+    "__jimengStore",
+    "a",
+    "addEdge",
+    "addEdgeRf",
+    "addLocalImage",
+    "addLocalUpload",
+    "addNodeAt",
+    "addVideoNodeAfter",
+    "advance",
+    "aiActiveSessionId",
+    "aiDrawerDraft",
+    "aiDrawerOpen",
+    "aiDrawerPrefill",
+    "aiDrawerRefChip",
+    "aiSessionSeq",
+    "aiSessions",
+    "appendAiMessage",
+    "applyEdgeChanges",
+    "applyNodeChanges",
+    "applyTrim",
+    "arrangeSelected",
+    "arrangeSelectedGrid",
+    "assetsOpen",
+    "atEnd",
+    "atTime",
+    "b",
+    "base",
+    "blocker",
+    "byId",
+    "c",
+    "cancelRefPicking",
+    "captureFrame",
+    "ceil",
+    "changes",
+    "clearPickedRefNode",
+    "clearTimeout",
+    "clearToast",
+    "clip",
+    "clipboard",
+    "clips",
+    "closeExpandedGenLayer",
+    "closePreview",
+    "closeTransientLayer",
+    "col",
+    "color",
+    "cols",
+    "const",
+    "contentChanged",
+    "copy",
+    "copyNode",
+    "copyNodes",
+    "create",
+    "createProject",
+    "cur",
+    "currentTime",
+    "cursor",
+    "customIndex",
+    "d",
+    "data",
+    "dataUrl",
+    "delta",
+    "description",
+    "discardOfflineEdits",
+    "draft",
+    "dragging",
+    "duplicateNode",
+    "dur",
+    "duration",
+    "dx",
+    "dy",
+    "e",
+    "edge",
+    "edges",
+    "edgesVisible",
+    "editNodeId",
+    "encodeURIComponent",
+    "enterEdit",
+    "enterFramePicker",
+    "enterInfer",
+    "enterRepaint",
+    "enterTrim",
+    "entered",
+    "env",
+    "error",
+    "exitEdit",
+    "exitFramePicker",
+    "exitInfer",
+    "exitRepaint",
+    "exitTrim",
+    "expanded",
+    "expandedGenLayer",
+    "filter",
+    "find",
+    "findIndex",
+    "floor",
+    "focusNodeRequest",
+    "forEach",
+    "fraction",
+    "frame",
+    "framePickerMode",
+    "framePickerNodeId",
+    "frameTime",
+    "future",
+    "genModel",
+    "generateAudioInto",
+    "generateImageInto",
+    "generateInto",
+    "generating",
+    "generationHistory",
+    "get",
+    "getItem",
+    "getState",
+    "gid",
+    "groupColors",
+    "groupId",
+    "groupNames",
+    "groupSelected",
+    "guard",
+    "h",
+    "has",
+    "hasMedia",
+    "height",
+    "i",
+    "id",
+    "idMap",
+    "idSet",
+    "ids",
+    "idx",
+    "imported",
+    "includes",
+    "inferNodeId",
+    "initialNodes",
+    "isFinite",
+    "keys",
+    "kind",
+    "label",
+    "lastSelect",
+    "length",
+    "localStorage",
+    "map",
+    "markDirty",
+    "max",
+    "mediaError",
+    "mentionPanelOpen",
+    "messages",
+    "min",
+    "minX",
+    "minY",
+    "minimapOpen",
+    "mode",
+    "model",
+    "muted",
+    "n",
+    "name",
+    "newAiSession",
+    "newEdges",
+    "newNodes",
+    "next",
+    "nextAiSessionSeq",
+    "noWatermark",
+    "node",
+    "nodeId",
+    "nodes",
+    "nonce",
+    "now",
+    "offlineDialogOpen",
+    "offlineEditSeq",
+    "offlineEdits",
+    "offlineMode",
+    "offsetX",
+    "offsetY",
+    "on",
+    "onEdgesChange",
+    "onNodesChange",
+    "open",
+    "openAiDrawer",
+    "openExpandedGenLayer",
+    "openPreview",
+    "openTransientLayer",
+    "ordered",
+    "other",
+    "p",
+    "past",
+    "pasteNodes",
+    "patch",
+    "pickRefNode",
+    "pickedRefNodeId",
+    "playing",
+    "position",
+    "positions",
+    "poster",
+    "prefill",
+    "prev",
+    "previewNodeId",
+    "process",
+    "progress",
+    "project",
+    "projects",
+    "prompt",
+    "push",
+    "pushGeneration",
+    "pushToast",
+    "random",
+    "readStoredWatermark",
+    "rec",
+    "redo",
+    "refChip",
+    "refPicking",
+    "removeNode",
+    "removeNodes",
+    "renameNode",
+    "renameProject",
+    "repaintNodeId",
+    "requestFocusNode",
+    "resolvedTime",
+    "restartPlay",
+    "reverse",
+    "role",
+    "round",
+    "row",
+    "rowOverlap",
+    "s",
+    "saveTimer",
+    "saved",
+    "seek",
+    "sel",
+    "selectAiSession",
+    "selectAll",
+    "selectNode",
+    "selected",
+    "selectedNodeId",
+    "seq",
+    "serverSnapshot",
+    "sessions",
+    "set",
+    "setAiDrawerDraft",
+    "setAiDrawerOpen",
+    "setAssetsOpen",
+    "setEdgesVisible",
+    "setGenModel",
+    "setGroupColor",
+    "setItem",
+    "setMediaError",
+    "setMentionPanelOpen",
+    "setMinimapOpen",
+    "setOfflineDialog",
+    "setOfflineMode",
+    "setState",
+    "setTimeout",
+    "setToolActive",
+    "setWatermark",
+    "setZoomPercent",
+    "slice",
+    "some",
+    "sort",
+    "source",
+    "sourceHandle",
+    "sourceId",
+    "sqrt",
+    "src",
+    "srcNode",
+    "startOffset",
+    "startRefPicking",
+    "startTask",
+    "startsWith",
+    "state",
+    "switchProject",
+    "syncOfflineEdits",
+    "t",
+    "target",
+    "targetHandle",
+    "taskSubmitted",
+    "tasks",
+    "text",
+    "tickPlay",
+    "title",
+    "toString",
+    "toast",
+    "toggleMute",
+    "togglePlay",
+    "toggleToolActive",
+    "tool",
+    "toolActive",
+    "transientLayer",
+    "trimNodeId",
+    "trimmedDuration",
+    "type",
+    "undefined",
+    "undo",
+    "ungroupSelected",
+    "updateNodeData",
+    "updateNodeDataUndoable",
+    "updated",
+    "uploadProgress",
+    "useJimengStore",
+    "v",
+    "vd",
+    "visible",
+    "w",
+    "watermark",
+    "width",
+    "window",
+    "withCopyTitle",
+    "writeStoredWatermark",
+    "x",
+    "y",
+    "z",
+    "zoomPercent"
+   ],
+   "jsx_texts": [],
+   "string_literals": [
+    " (2)",
+    "-",
+    "--",
+    "/videos/jimeng-demo.mp4",
+    "0",
+    "1",
+    "</linearGradient></defs>",
+    "</svg>",
+    "<circle cx=\"150\" cy=\"140\" r=\"52\" fill=\"#3A3A42\"/>",
+    "<circle cx=\"180\" cy=\"210\" r=\"70\" fill=\"#242426\"/>",
+    "<circle cx=\"410\" cy=\"190\" r=\"52\" fill=\"#28282A\"/>",
+    "<defs><linearGradient id=\"g\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">",
+    "<rect width=\"480\" height=\"360\" fill=\"url(#g)\"/>",
+    "<rect width=\"569\" height=\"320\" fill=\"url(#g)\"/>",
+    "<rect x=\"0\" y=\"248\" width=\"569\" height=\"72\" fill=\"#161618\"/>",
+    "<rect x=\"0\" y=\"296\" width=\"480\" height=\"64\" fill=\"#141416\"/>",
+    "<rect x=\"250\" y=\"96\" width=\"150\" height=\"150\" rx=\"14\" fill=\"#2C2C33\"/>",
+    "<stop offset=\"0\" stop-color=\"#2E2E30\"/><stop offset=\"0.55\" stop-color=\"#1B1B1D\"/><stop offset=\"1\" stop-color=\"#121214\"/>",
+    "<stop offset=\"0\" stop-color=\"#34343A\"/><stop offset=\"0.6\" stop-color=\"#232328\"/><stop offset=\"1\" stop-color=\"#17171A\"/>",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"480\" height=\"360\">",
+    "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"569\" height=\"320\">",
+    "@/components/jimeng/jimengFeedback",
+    "@/types/jimeng",
+    "@xyflow/react",
+    "_",
+    "_截帧_",
+    "add",
+    "agent",
+    "ai-session-",
+    "audio",
+    "audio-1",
+    "custom",
+    "data:image/svg+xml;utf8,",
+    "director",
+    "e--",
+    "empty",
+    "first",
+    "gen-",
+    "generated",
+    "group-",
+    "history",
+    "id",
+    "image",
+    "image-",
+    "image-local--",
+    "interpolate",
+    "jimeng-clone-watermark",
+    "kind",
+    "last",
+    "local-upload",
+    "messages",
+    "more",
+    "motion-capture",
+    "move",
+    "number",
+    "offline-edit-",
+    "p",
+    "p1",
+    "p2",
+    "position",
+    "production",
+    "project",
+    "remove",
+    "sb_518102884867410fb...20260622155459-tf5q2",
+    "search",
+    "select",
+    "seq",
+    "string",
+    "subject",
+    "task-",
+    "text",
+    "text-1",
+    "timeline",
+    "timeline-1",
+    "undefined",
+    "upscale",
+    "use client",
+    "user",
+    "video",
+    "video-",
+    "video-empty-1",
+    "video-local-1",
+    "zoom",
+    "zustand",
+    "主体 ",
+    "任务",
+    "即梦 Seedance 2.0 VIP",
+    "图片",
+    "图片 ",
+    "图片生成",
+    "导演台 ",
+    "尾帧",
+    "截帧_",
+    "文本 ",
+    "文本 1",
+    "新会话",
+    "时间线 ",
+    "时间线 1",
+    "智能超清",
+    "未命名项目",
+    "测试项目",
+    "深度动作捕捉",
+    "画布修改",
+    "画布项目 ",
+    "编组 ",
+    "补帧",
+    "视频",
+    "视频 ",
+    "视频 1",
+    "视频生成",
+    "音频",
+    "音频 ",
+    "音频 1",
+    "音频生成",
+    "首帧"
+   ],
+   "attrs": {},
+   "calls": {
+    "encodeURIComponent": [
+     "`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"569\" height=\"320\">` +\n      `<defs><linearGradient id=\"g\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">` +\n      `<stop offset=\"0",
+     "`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"480\" height=\"360\">` +\n      `<defs><linearGradient id=\"g\" x1=\"0\" y1=\"0\" x2=\"1\" y2=\"1\">` +\n      `<stop offset=\"0"
+    ],
+    "useJimengStore.setState": [
+     "(state) => {\n    const seq = state.generationHistory.length + 1;\n    return {\n      generationHistory: [\n        ...state.generationHistory,\n        { id: `gen-",
+     "(s) =>\n      s.project.saved ? s : { project: { ...s.project, saved: true } }",
+     "(cur) => ({\n          nodes: cur.nodes.map((n) =>\n            n.id === id\n              ? {\n                  ...n,\n                  data: { ...(n.data as Jime",
+     "{\n      clipboard: { nodes: [src], edges: [] },\n    }",
+     "{ clipboard: { nodes, edges } }",
+     "{\n      ...markDirty(state),\n      past: [...state.past, { nodes: state.nodes, edges: state.edges }],\n      future: [],\n      nodes: [...state.nodes, ...newNode",
+     "(state) => ({\n        tasks: state.tasks.filter((t) => t.id !== id),\n      })"
+    ],
+    "window.localStorage.getItem": [
+     "WATERMARK_KEY"
+    ],
+    "window.localStorage.setItem": [
+     "WATERMARK_KEY, noWatermark ? \"1\" : \"0\""
+    ],
+    "window.clearTimeout": [
+     "saveTimer"
+    ],
+    "window.setTimeout": [
+     "() => {\n    saveTimer = null;\n    useJimengStore.setState((s) =>\n      s.project.saved ? s : { project: { ...s.project, saved: true } },\n    );\n  }, 2000",
+     "() => {\n      set((state) => ({\n        ...markDirty(state),\n        nodes: state.nodes.map((n) => {\n          if (n.id !== id || n.type !== \"video\") return n;\n, 3000",
+     "() => {\n      set((state) => ({\n        ...markDirty(state),\n        nodes: state.nodes.map((n) => {\n          if (n.id !== id || n.type !== \"image\") return n;\n, 3000",
+     "() => {\n      set((state) => ({\n        ...markDirty(state),\n        nodes: state.nodes.map((n) => {\n          if (n.id !== id || n.type !== \"audio\") return n;\n, 3000",
+     "() => advance(46), 500",
+     "() => advance(100), 1000",
+     "() => {\n      useJimengStore.setState((state) => ({\n        tasks: state.tasks.filter((t) => t.id !== id),\n      }));\n    }, 4000"
+    ],
+    "create": [
+     "(set) => ({\n  // ⚠️⭐⭐⭐⭐⭐ **这里原来有 `nodeCount: 2`，1031-④c 删掉了。**\n  //   全仓无人读它 —— 顶栏用的是 `s.nodes.length + groups.size` 现算。\n  //   而它硬编码成 `2`：**节点数一变它就是谎话**，谁哪天图省事"
+    ],
+    "set": [
+     "(state) => {\n      // Batch 56 重构: selected 标志完全交由 xyflow 内部管理 (marquee/\n      // shift+click 天然支持多选)，store 仅镜像 selectedNodeId 供消费方。\n      // 编组联动 (Batch 39): 拖",
+     "(state) => ({ edges: applyEdgeChanges(changes, state.edges) })",
+     "(state) => {\n      // ⭐ 用 **React Flow 官方的 `addEdge`** 判重，不自己写一套\n      //   ⇒ 官方遇到重复会**原样返回旧数组**（同一引用）⇒ 指针没变\n      //   ⇒ ⇒ 重复边**不进历史栈**（否则「撤销」会撤掉一个不存在的动作）\n    ",
+     "(state) => ({\n      focusNodeRequest: { id, nonce: (state.focusNodeRequest?.nonce ?? 0) + 1 },\n    })",
+     "(state) => ({\n      selectedNodeId: id,\n      nodes: state.nodes.map((n) => ({ ...n, selected: n.id === id })),\n    })",
+     "{ zoomPercent: Math.round(z) }",
+     "{ toast: text }",
+     "{ toast: null }",
+     "{ genModel: model }",
+     "(state) => ({\n      ...markDirty(state),\n      nodes: state.nodes.map((n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.dat",
+     "(state) => ({\n        ...markDirty(state),\n        nodes: state.nodes.map((n) => {\n          if (n.id !== id || n.type !== \"video\") return n;\n          const vd",
+     "(state) => ({\n      ...markDirty(state),\n      nodes: state.nodes.map((n) => {\n        if (n.id !== id || n.type !== \"image\") return n;\n        const d = n.data",
+     "(state) => ({\n        ...markDirty(state),\n        nodes: state.nodes.map((n) => {\n          if (n.id !== id || n.type !== \"image\") return n;\n          const d ",
+     "(state) => ({\n      ...markDirty(state),\n      nodes: state.nodes.map((n) => {\n        if (n.id !== id || n.type !== \"audio\") return n;\n        const d = n.data",
+     "(state) => ({\n        ...markDirty(state),\n        nodes: state.nodes.map((n) => {\n          if (n.id !== id || n.type !== \"audio\") return n;\n          const d ",
+     "(state) => {\n      const src = state.nodes.find((n) => n.id === sourceId);\n      if (!src) return state;\n      const id = `video-${Date.now()}`;\n      const nod",
+     "(state) => ({\n      ...markDirty(state),\n      past: [...state.past, { nodes: state.nodes, edges: state.edges }],\n      future: [],\n      nodes: state.nodes.fil",
+     "(state) => {\n      const src = state.nodes.find((n) => n.id === sourceId);\n      if (!src || src.type !== \"video\") return state;\n      const v = src.data as Jim",
+     "(state) => {\n      const id = `video-${Date.now()}`;\n      const node: JimengNode = {\n        id,\n        type: \"video\",\n        position,\n        data: {\n     ",
+     "(state) => {\n      const seq = state.nodes.filter((n) => n.type === \"image\").length + 1;\n      const id = `image-local-${seq}-${state.nodes.length}`;\n      cons",
+     "(state) => {\n      const sel = state.nodes.filter((n) => n.selected);\n      if (sel.length < 2) return state;\n      const minY = Math.min(...sel.map((n) => n.po",
+     "(state) => {\n      const sel = state.nodes.filter((n) => n.selected);\n      if (sel.length < 2) return state;\n      const minX = Math.min(...sel.map((n) => n.po",
+     "(state) => {\n      if (!ids.length) return state;\n      return {\n        ...markDirty(state),\n        past: [...state.past, { nodes: state.nodes, edges: state.e",
+     "(state) => {\n      const src = state.nodes.find((n) => n.id === id);\n      if (!src) return state;\n      const copy: JimengNode = {\n        ...src,\n        id: ",
+     "(state) => {\n      const prev = state.past[state.past.length - 1];\n      if (!prev) return state;\n      return {\n        past: state.past.slice(0, -1),\n        ",
+     "(state) => {\n      const next = state.future[0];\n      if (!next) return state;\n      return {\n        past: [\n          ...state.past,\n          { nodes: state",
+     "{ repaintNodeId: id }",
+     "{ repaintNodeId: null }",
+     "{ editNodeId: id }",
+     "{ editNodeId: null }",
+     "{ inferNodeId: id }",
+     "{ inferNodeId: null }",
+     "{ framePickerNodeId: id, framePickerMode: mode }",
+     "{ framePickerNodeId: null }",
+     "{ trimNodeId: id }",
+     "{ trimNodeId: null }",
+     "(state) => ({\n      tasks: [\n        ...state.tasks,\n        { id, nodeId, kind },\n      ],\n      // mock 任务提交同步 toast 反馈 (Batch 11/40)\n      toast: FEEDBACK.ta",
+     "(state) => ({\n      aiDrawerOpen: open,\n      aiDrawerPrefill: open ? state.aiDrawerPrefill : null,\n      aiDrawerRefChip: open ? state.aiDrawerRefChip : null,\n",
+     "{\n      aiDrawerOpen: true,\n      aiDrawerPrefill: prefill ?? null,\n      aiDrawerRefChip: refChip ?? null,\n      transientLayer: null,\n    }",
+     "{ aiDrawerDraft: draft }",
+     "(state) => ({\n      // ⭐ **同 id 再开 = 关**（源站的 toggle 语义）：先比再赋值，\n      //    顺序反了就会变成「点了永远关不掉」。\n      transientLayer: state.transientLayer === id ? null : id,\n   ",
+     "(state) => (id && state.transientLayer !== id\n      ? state                                     // 不是它就**别动**别人的\n      : { transientLayer: null })",
+     "(state) => {\n      const id = state.aiActiveSessionId ?? `ai-session-${nextAiSessionSeq()}`;\n      const idx = state.aiSessions.findIndex((s) => s.id === id);\n ",
+     "(state) => {\n      const id = `ai-session-${nextAiSessionSeq()}`;\n      // ⚠️ 追加而不是替换：源站的「新建会话」是开一条新的，旧的仍在列表里。\n      // 此前复刻写的是 `setMessages([])` —— 那是**销毁**，不是",
+     "(state) =>\n      state.aiSessions.some((s) => s.id === id) ? { aiActiveSessionId: id } : {}",
+     "{ assetsOpen: open }",
+     "{ refPicking: true, pickedRefNodeId: null }",
+     "{ refPicking: false, pickedRefNodeId: null }",
+     "{ refPicking: false, pickedRefNodeId: id }",
+     "{ pickedRefNodeId: null }",
+     "{ mentionPanelOpen: open }",
+     "{ expandedGenLayer: { kind, nodeId } }",
+     "{ expandedGenLayer: null }",
+     "{ offlineDialogOpen: open }",
+     "{ offlineMode: on }",
+     "(state) => {\n      /* 真的把当前画布**存成新的服务器快照** ⇒ 「同步了」有状态变化。 */\n      serverSnapshot = { nodes: state.nodes, edges: state.edges };\n      return { offlineEdits: [], ",
+     "() => ({\n      /* 真的把画布**退回服务器快照** ⇒ 「丢弃了」看得到画布变了。\n       * ⚠️ 快照可能还是 `null`（一次都没同步过）⇒ ⇒ 退回**画布初态**。 */\n      nodes: serverSnapshot ? serverSnapshot.nodes : ini",
+     "{ minimapOpen: open }",
+     "{ edgesVisible: visible }",
+     "(state) => ({\n      ...markDirty(state),\n      project: { ...state.project, name },\n    })",
+     "(state) => {\n      const id = `p${state.projects.length + 1}`;\n      const label = name ?? `画布项目 ${state.projects.length + 1}`;\n      return {\n        ...markDi",
+     "(state) => {\n      const target = state.projects.find((p) => p.id === id);\n      if (!target) return state;\n      return {\n        ...markDirty(state),\n        ",
+     "{ watermark: { noWatermark } }",
+     "{ toolActive: tool }",
+     "(state) => ({ toolActive: state.toolActive === \"select\" ? \"move\" : \"select\" })",
+     "(state) => ({\n      nodes: state.nodes.map((n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n ",
+     "(state) => ({\n      nodes: state.nodes.map((n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n ",
+     "(state) => ({\n      nodes: state.nodes.map((n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n ",
+     "(state) => ({\n      nodes: state.nodes.map((n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n ",
+     "(state) => {\n      const ids = state.nodes.filter((n) => n.selected).map((n) => n.id);\n      if (ids.length < 2) return state;\n      const gid = `group-${Date.n",
+     "(state) => ({\n      ...markDirty(state),\n      nodes: state.nodes.map((n) =>\n        n.groupId ? { ...n, groupId: undefined } : n,\n      ),\n    })",
+     "(state) => {\n      const next = { ...state.groupColors };\n      if (color === null) delete next[groupId];\n      else next[groupId] = color;\n      return { ...ma",
+     "(state) => ({\n      nodes: state.nodes.map((n) => ({ ...n, selected: true })),\n      selectedNodeId: null,\n    })",
+     "{ previewNodeId: id }",
+     "{ previewNodeId: null }",
+     "(state) => ({\n      nodes: state.nodes.map((n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n ",
+     "(state) => ({\n      ...markDirty(state),\n      past: [...state.past, { nodes: state.nodes, edges: state.edges }],\n      future: [],\n      nodes: state.nodes.map",
+     "(state) => ({\n      ...markDirty(state),\n      nodes: state.nodes.map((n) => {\n        if (n.id !== id) return n;\n        return { ...n, data: { ...n.data, ...p",
+     "(state) => ({\n      ...markDirty(state),\n      past: [...state.past, { nodes: state.nodes, edges: state.edges }],\n      future: [],\n      nodes: state.nodes.map",
+     "(state) => ({\n      ...markDirty(state),\n      past: [...state.past, { nodes: state.nodes, edges: state.edges }],\n      future: [],\n      nodes: state.nodes.map",
+     "(state) => ({\n      nodes: state.nodes.map((n) => {\n        const vd = n.data as JimengVideoNodeData;\n        if (n.id !== id || !(vd.playing ?? false)) return ",
+     "(state) => {\n      const id = `${kind}-${Date.now()}`;\n      const seq = state.nodes.filter((n) => n.type === kind).length + 1;\n      // 批 236 SOURCE_FACT: 源站插入"
+    ],
+    "state.nodes.map": [
+     "(n) => [n.id, n]",
+     "(n) => ({ ...n, selected: n.id === id })",
+     "(n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n        return {\n          ...n,\n          d",
+     "(n) => {\n          if (n.id !== id || n.type !== \"video\") return n;\n          const vd = n.data as JimengVideoNodeData;\n          return {\n            ...n,\n   ",
+     "(n) => {\n        if (n.id !== id || n.type !== \"image\") return n;\n        const d = n.data as JimengImageNodeData;\n        return { ...n, data: { ...d, generati",
+     "(n) => {\n          if (n.id !== id || n.type !== \"image\") return n;\n          const d = n.data as JimengImageNodeData;\n          return {\n            ...n,\n    ",
+     "(n) => {\n        if (n.id !== id || n.type !== \"audio\") return n;\n        const d = n.data as JimengAudioNodeData;\n        return { ...n, data: { ...d, generati",
+     "(n) => {\n          if (n.id !== id || n.type !== \"audio\") return n;\n          const d = n.data as JimengAudioNodeData;\n          return {\n            ...n,\n    ",
+     "(n) =>\n            n.id === sourceId\n              ? {\n                  ...n,\n                  data: {\n                    ...(n.data as JimengVideoNodeData),",
+     "(n) => ({\n          ...n,\n          position: positions.get(n.id) ?? n.position,\n        })",
+     "(n) => ({\n          ...n,\n          position: positions.get(n.id) ?? n.position,\n        })",
+     "(n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n        // 播放到结尾后再点播放 = 从头重播 (控件语义完善, Batch ",
+     "(n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n        if (!vd.hasMedia) return n;\n        ",
+     "(n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n        return { ...n, data: { ...vd, muted:",
+     "(n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n        return { ...n, data: { ...vd, mediaE",
+     "(n) =>\n          ids.includes(n.id) ? { ...n, groupId: gid } : n",
+     "(n) =>\n        n.groupId ? { ...n, groupId: undefined } : n",
+     "(n) => ({ ...n, selected: true })",
+     "(n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n        return {\n          ...n,\n          d",
+     "(n) => {\n        if (n.id !== id || n.type !== \"video\") return n;\n        const vd = n.data as JimengVideoNodeData;\n        return {\n          ...n,\n          d",
+     "(n) => {\n        if (n.id !== id) return n;\n        return { ...n, data: { ...n.data, ...patch } };\n      }",
+     "(n) => {\n        if (n.id !== id) return n;\n        return { ...n, data: { ...n.data, ...patch } };\n      }",
+     "(n) => {\n        if (n.id !== id) return n;\n        return { ...n, data: { ...n.data, title } };\n      }",
+     "(n) => {\n        const vd = n.data as JimengVideoNodeData;\n        if (n.id !== id || !(vd.playing ?? false)) return n;\n        const dur = vd.duration ?? 0;\n  ",
+     "(n) => (n.selected ? { ...n, selected: false } : n)",
+     "(n) => (n.selected ? { ...n, selected: false } : n)",
+     "(n) => (n.selected ? { ...n, selected: false } : n)",
+     "(n) => (n.selected ? { ...n, selected: false } : n)",
+     "(n) => (n.selected ? { ...n, selected: false } : n)",
+     "(n) => (n.selected ? { ...n, selected: false } : n)",
+     "(n) => (n.selected ? { ...n, selected: false } : n)"
+    ],
+    "byId.get": [
+     "c.id"
+    ],
+    "expanded.some": [
+     "(e) => e.type === \"position\" && e.id === other.id"
+    ],
+    "expanded.push": [
+     "{\n            id: other.id,\n            type: \"position\",\n            position: {\n              x: other.position.x + dx,\n              y: other.position.y + dy"
+    ],
+    "applyNodeChanges": [
+     "expanded, state.nodes"
+    ],
+    "[...changes]\n        .reverse()\n        .find": [
+     "(c): c is Extract<NodeChange<JimengNode>, { type: \"select\" }> =>\n            c.type === \"select\""
+    ],
+    "[...changes]\n        .reverse": [
+     ""
+    ],
+    "changes.some": [
+     "(c) => c.type === \"position\" || c.type === \"remove\" || c.type === \"add\""
+    ],
+    "markDirty": [
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state",
+     "state"
+    ],
+    "applyEdgeChanges": [
+     "changes, state.edges"
+    ],
+    "addEdgeRf": [
+     "edge, state.edges"
+    ],
+    "Math.round": [
+     "z"
+    ],
+    "pushGeneration": [
+     "{ kind: \"视频\", title: \"视频生成\", prompt }",
+     "{ kind: \"图片\", title: \"图片生成\", prompt }",
+     "{ kind: \"音频\", title: \"音频生成\", prompt }",
+     "rec"
+    ],
+    "state.nodes.find": [
+     "(n) => n.id === sourceId",
+     "(n) => n.id === sourceId",
+     "(n) => rowOverlap(n, x)",
+     "(n) => n.id === id"
+    ],
+    "Date.now": [
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     "",
+     ""
+    ],
+    "state.nodes.filter": [
+     "(n) => n.type === \"video\"",
+     "(n) => n.id !== id",
+     "(n) =>\n                n.type === \"image\" &&\n                ((n.data as JimengImageNodeData).title ?? \"\").startsWith(\n                  `${v.title}_截帧_`,\n     ",
+     "(n) => n.type === \"image\"",
+     "(n) => n.selected",
+     "(n) => n.selected",
+     "(n) => !ids.includes(n.id)",
+     "(n) => ids.includes(n.id)",
+     "(n) => n.selected",
+     "(n) => n.type === kind"
+    ],
+    "state.edges.filter": [
+     "(e) => e.source !== id && e.target !== id",
+     "(e) => !ids.includes(e.source) && !ids.includes(e.target)",
+     "(e) => idSet.has(e.source) && idSet.has(e.target)"
+    ],
+    "rowOverlap": [
+     "n, x"
+    ],
+    "((n.data as JimengImageNodeData).title ?? \"\").startsWith": [
+     "`${v.title}_截帧_`"
+    ],
+    "Number.isFinite": [
+     "atTime"
+    ],
+    "Math.max": [
+     "0, atTime",
+     "0, fraction",
+     "0.1, trimmedDuration"
+    ],
+    "cur.nodes.map": [
+     "(n) =>\n            n.id === id\n              ? {\n                  ...n,\n                  data: { ...(n.data as JimengImageNodeData), uploadProgress: progress "
+    ],
+    "advance": [
+     "46",
+     "100"
+    ],
+    "Math.min": [
+     "...sel.map((n) => n.position.y)",
+     "...ordered.map((n) => n.position.x)",
+     "...sel.map((n) => n.position.x)",
+     "...sel.map((n) => n.position.y)",
+     "1, Math.max(0, fraction)"
+    ],
+    "sel.map": [
+     "(n) => n.position.y",
+     "(n) => n.position.x",
+     "(n) => n.position.y"
+    ],
+    "[...sel].sort": [
+     "(a, b) => a.position.x - b.position.x",
+     "(a, b) => a.position.x - b.position.x"
+    ],
+    "ordered.map": [
+     "(n) => n.position.x"
+    ],
+    "positions.set": [
+     "n.id, { x: cursor, y: minY }",
+     "n.id, {\n          x: minX + col * ((n.data.width ?? 569) + 80),\n          y: minY + row * ((n.data.height ?? 320) + 80),\n        }"
+    ],
+    "positions.get": [
+     "n.id",
+     "n.id"
+    ],
+    "Math.ceil": [
+     "Math.sqrt(ordered.length)"
+    ],
+    "Math.sqrt": [
+     "ordered.length"
+    ],
+    "ordered.forEach": [
+     "(n, i) => {\n        const col = i % cols;\n        const row = Math.floor(i / cols);\n        positions.set(n.id, {\n          x: minX + col * ((n.data.width ?? 56"
+    ],
+    "Math.floor": [
+     "i / cols"
+    ],
+    "ids.includes": [
+     "n.id",
+     "e.source",
+     "e.target",
+     "n.id",
+     "n.id"
+    ],
+    "withCopyTitle": [
+     "src.data",
+     "n.data"
+    ],
+    "useJimengStore.getState().nodes.find": [
+     "(n) => n.id === id"
+    ],
+    "useJimengStore.getState": [
+     "",
+     "",
+     "",
+     ""
+    ],
+    "nodes.map": [
+     "(n) => n.id"
+    ],
+    "idSet.has": [
+     "e.source",
+     "e.target"
+    ],
+    "clip.nodes.map": [
+     "(n) => [n.id, `${n.type}-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`]",
+     "(n) => ({\n      ...n,\n      id: idMap.get(n.id)!,\n      selected: false,\n      position: { x: n.position.x + offsetX, y: n.position.y + offsetY },\n      data: w"
+    ],
+    "Math.random().toString(36).slice": [
+     "2, 6"
+    ],
+    "Math.random().toString": [
+     "36"
+    ],
+    "Math.random": [
+     ""
+    ],
+    "idMap.get": [
+     "n.id",
+     "e.source",
+     "e.target",
+     "e.source",
+     "e.target"
+    ],
+    "clip.edges.map": [
+     "(e) => ({\n      ...e,\n      id: `e-${idMap.get(e.source)}-${idMap.get(e.target)}`,\n      source: idMap.get(e.source)!,\n      target: idMap.get(e.target)!,\n    }"
+    ],
+    "state.past.slice": [
+     "0, -1"
+    ],
+    "state.future.slice": [
+     "1"
+    ],
+    "FEEDBACK.taskSubmitted": [
+     "kind === \"upscale\" ? \"智能超清\" : kind === \"motion-capture\" ? \"深度动作捕捉\" : \"补帧\""
+    ],
+    "state.tasks.filter": [
+     "(t) => t.id !== id"
+    ],
+    "nextAiSessionSeq": [
+     "",
+     ""
+    ],
+    "state.aiSessions.findIndex": [
+     "(s) => s.id === id"
+    ],
+    "text.slice": [
+     "0, 24"
+    ],
+    "state.aiSessions.map": [
+     "(s) => (s.id === id ? updated : s)"
+    ],
+    "state.aiSessions.some": [
+     "(s) => s.id === id"
+    ],
+    "state.projects.find": [
+     "(p) => p.id === id"
+    ],
+    "readStoredWatermark": [
+     ""
+    ],
+    "writeStoredWatermark": [
+     "noWatermark"
+    ],
+    "state.nodes.filter((n) => n.selected).map": [
+     "(n) => n.id"
+    ],
+    "Object.keys": [
+     "state.groupNames"
     ]
    }
   }

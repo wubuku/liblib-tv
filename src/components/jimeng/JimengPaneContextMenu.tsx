@@ -65,21 +65,35 @@ import {
  * 「下载」的禁用条件取自源站原因文案**「没有可用的就绪资源」**的字面意思：
  * 画布上没有任何带媒体的节点时禁用。
  */
+/**
+ * ⭐⭐⭐⭐⭐ Batch 1032-④-B（C08）：**这五项各自都要有自己的动作**。
+ *
+ * 此前这五项（时间线 / 主体 / 导演台 / 从资产库添加 / 本地上传）**没有 kind**
+ * ⇒ ⇒ 消费者只认四类（文本/图片/视频/音频）⇒ ⇒ 点完只关菜单，**什么也没发生**。
+ *
+ * 现在：
+ *  · 时间线 / 主体 / 导演台 ⇒ 真的插入对应**节点**（store 的 `addNodeAt`
+ *    本来就支持这三种 kind —— 左栏那三个按钮走的就是它 ⇒ **同一条路径**）；
+ *  · 从资产库添加 ⇒ 真的**打开资产库模态**（同一个 `assetsOpen` 槽位）；
+ *  · 本地上传 ⇒ 真的**打开文件选择器**（真 `<input type=file>`）。
+ */
 const INSERT_ITEMS: {
   icon: LucideIcon;
   label: string;
-  kind?: "video" | "image" | "text" | "audio";
+  kind?: "video" | "image" | "text" | "audio" | "timeline" | "subject" | "director";
+  /** 非「插入节点」型的动作（开资产库 / 选文件） */
+  special?: "assets" | "upload";
 }[] = [
   { icon: Type, label: "文本", kind: "text" },
   { icon: Image, label: "图片", kind: "image" },
   { icon: SquarePlay, label: "视频", kind: "video" },
   { icon: AudioLines, label: "音频", kind: "audio" },
-  // 批 221 SOURCE_FACT: 子菜单共 10 项；以下为仅展示 mock
-  { icon: LayoutTemplate, label: "时间线" },
-  { icon: User, label: "主体" },
-  { icon: Bot, label: "导演台" },
-  { icon: Folder, label: "从资产库添加" },
-  { icon: Upload, label: "本地上传" },
+  // 批 221 SOURCE_FACT: 子菜单共 10 项；以下五项此前**只是展示**
+  { icon: LayoutTemplate, label: "时间线", kind: "timeline" },
+  { icon: User, label: "主体", kind: "subject" },
+  { icon: Bot, label: "导演台", kind: "director" },
+  { icon: Folder, label: "从资产库添加", special: "assets" },
+  { icon: Upload, label: "本地上传", special: "upload" },
 ];
 
 export interface JimengPaneMenuState {
@@ -96,6 +110,8 @@ export function JimengPaneContextMenu({
   hasReadyResource,
   onClose,
   onInsert,
+  onOpenAssets,
+  onPickLocalFile,
   onCopy,
   onDuplicate,
   onDelete,
@@ -110,7 +126,13 @@ export function JimengPaneContextMenu({
   hasSelection: boolean;
   hasReadyResource: boolean;
   onClose: () => void;
-  onInsert: (kind: "video" | "image" | "text" | "audio") => void;
+  onInsert: (
+    kind: "video" | "image" | "text" | "audio" | "timeline" | "subject" | "director",
+  ) => void;
+  /** ⭐⭐⭐ 打开资产库模态（「从资产库添加」的真实动作） */
+  onOpenAssets?: () => void;
+  /** ⭐⭐⭐ 打开真文件选择器（「本地上传」的真实动作） */
+  onPickLocalFile?: () => void;
   onCopy: () => void;
   onDuplicate: () => void;
   onDelete: () => void;
@@ -320,14 +342,22 @@ export function JimengPaneContextMenu({
             <p className="flex h-8 shrink-0 items-center px-3 text-[13px] text-white/35">
               添加节点
             </p>
-            {INSERT_ITEMS.map(({ icon: Icon, label, kind }) => (
+            {INSERT_ITEMS.map(({ icon: Icon, label, kind, special }) => (
               <MenuItem
                 key={label}
                 label={label}
-                testId={kind ? `pane-menu-insert-${kind}` : undefined}
+                testId={kind ? `pane-menu-insert-${kind}` : special ? `pane-menu-insert-${special}` : undefined}
                 icon={<Icon size={16} className="shrink-0 text-white/70" />}
                 onSelect={() => {
-                  if (kind) onInsert(kind);
+                  /* ⭐⭐⭐ Batch 1032-④-B（C08）：**每一项都有它自己的动作**。
+                   * 此前这五项没有 kind ⇒ 消费者什么都不认 ⇒ 点完只关菜单。 */
+                  if (kind) {
+                    onInsert(kind);
+                  } else if (special === "assets") {
+                    onOpenAssets?.();
+                  } else if (special === "upload") {
+                    onPickLocalFile?.();
+                  }
                   onClose();
                 }}
               />

@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { Maximize2, Pause, Play, Volume2, VolumeX } from "lucide-react";
 
 import { nodeRingShadow } from "@/components/jimeng/nodeChrome";
@@ -46,6 +47,56 @@ export function JimengVideoMediaCard({
   const seek = useJimengStore((s) => s.seek);
   const openPreview = useJimengStore((s) => s.openPreview);
 
+  /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C11）：**真的 <video>**。
+   *
+   * 此前这张「媒体卡」是「背景图 + 模拟进度条」⇒ **播放时只有时间码在走**，
+   * 屏幕上**没有任何视频**⇒ ⇒ 用户手册里写的「视频节点能播放」那句话当时是**假的**。
+   *
+   * 现在：真的有 `<video src>` 指向 `public/videos/` 下的 mp4 ⇒
+   *  · 真的有画面（真的解码出来）；
+   *  · 真的能播 / 停（`play()` / `pause()`）；
+   *  · 真的能拖进度（`currentTime`）；
+   *  · 真的有音量 / 静音（`muted`）。
+   *
+   * ⚠️ **store 仍是单一真源**：`playing` / `currentTime` 都在 store 里，
+   *   而 `<video>` 元素**反过来听 store 的**（effect 里同步），
+   *   而元素的真实进度**写回 store**（`onTimeUpdate`）——
+   *   ⇒ ⇒ 两边不会各说各话（否则进度条会跟画面错位）。
+   */
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  /* store 的播放态 ⇒ 真的 play()/pause() */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (playing) {
+      void v.play().catch(() => {
+        /* 自动播放被浏览器拦下（有声/无用户手势）⇒ 忽略，
+           用户点一下播放钮就会再试一次。 */
+      });
+    } else {
+      v.pause();
+    }
+  }, [playing, d.src]);
+
+  /* store 的当前时间 ⇒ 真的 seek（用户拖进度条时） */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !d.src) return;
+    const target = d.currentTime ?? 0;
+    /* 只在**偏差明显**时才写回去 ⇒ 否则与 `onTimeUpdate` 互相追尾。 */
+    if (Math.abs(v.currentTime - target) > 0.3) {
+      v.currentTime = target;
+    }
+  }, [d.currentTime, d.src]);
+
+  /* 静音态 ⇒ 真的 muted */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = d.muted ?? false;
+  }, [d.muted]);
+
   return (
     <div
       className="group relative h-full w-full overflow-hidden rounded-lg"
@@ -60,11 +111,31 @@ export function JimengVideoMediaCard({
     >
       {d.hasMedia && d.poster ? (
         <>
-          {/* eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 海报 */}
-          <img
-            src={d.poster}
-            alt={d.title}
+          {/* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C11）：**真的 <video>** ——
+              此前这里是一张 `<img>`（海报）⇒ 屏幕上的画面**永远是静止的**，
+              而进度条与时间码在动 ⇒ 用户看到的是「假播放」。
+              ⇒ ⇒ 现在渲染真的 `<video>`：海报仍作 `poster`（未播时的第一帧），
+                  播起来是**真的画面**。
+              ⚠️ `muted` 由 store 的 `d.muted` 控制（effect 里同步），
+                  这里先给初值避免首帧有声。 */}
+          <video
+            ref={videoRef}
+            src={d.src}
+            poster={d.poster}
+            preload="metadata"
+            playsInline
+            muted={d.muted ?? false}
+            data-testid="jimeng-video-element"
             className="absolute inset-0 h-full w-full object-cover"
+            onTimeUpdate={(e) => {
+              /* ⭐⭐⭐ 元素的真实进度**写回 store** ⇒ 进度条与画面永远一致。 */
+              const t = e.currentTarget.currentTime;
+              updateNodeData(id, { currentTime: t });
+            }}
+            onError={() => {
+              /* 真解码失败 ⇒ 走既有的「视频播放失败 + 重试」态。 */
+              setMediaError(id, true);
+            }}
           />
           {/* 中央播放/暂停圆钮 32px rgba(0,0,0,0.6) SOURCE_FACT；点击切换播放 */}
           <button

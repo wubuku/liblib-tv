@@ -3,13 +3,13 @@
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **指纹表核对门**：1014 那张表必须与盘上的字节逐本对得上",
  "rule": "⭐⭐⭐⭐⭐ **表里每一行的 sha256_12 与 bytes 必须等于盘上那一本的实际字节；表必须覆盖盘上的每一本书（不缺、不多）；volatile 必须在盘上、且被挡在表外**",
  "table_artifact": "docs/research/jimeng-canvas/empty-ambiguity-1014.json",
- "n_table_rows": 29,
- "n_files_on_disk": 34,
+ "n_table_rows": 30,
+ "n_files_on_disk": 35,
  "n_excluded_from_the_table": 4,
  "n_volatile": 1,
  "worktree": {
   "ok": true,
-  "n_matched": 29,
+  "n_matched": 30,
   "n_stale": 0,
   "stale_books": [],
   "missing_books": [],
@@ -17,13 +17,17 @@
   "why": []
  },
  "head": {
-  "ok": true,
+  "ok": false,
   "n_matched": 29,
   "n_stale": 0,
   "stale_books": [],
-  "missing_books": [],
+  "missing_books": [
+   "fake-interaction-census-1034.json"
+  ],
   "phantom_books": [],
-  "why": []
+  "why": [
+   "missing_from_the_table:fake-interaction-census-1034.json"
+  ]
  },
  "selftest": {
   "ok": true,
@@ -73,9 +77,9 @@
  },
  "P": {
   "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": true,
-  "P2_the_table_covers_every_book_on_disk_1032l": true,
+  "P2_the_table_covers_every_book_on_disk_1032l": false,
   "P3_volatile_is_declared_and_kept_out_of_the_table_1032l": true,
-  "P4_the_committed_state_is_self_consistent_1032l": true,
+  "P4_the_committed_state_is_self_consistent_1032l": false,
   "P5_the_working_tree_is_self_consistent_1032l": true,
   "P6_this_gate_can_actually_go_red_1032l": true,
   "P7_the_table_declares_the_gate_that_checks_it_1032l": true

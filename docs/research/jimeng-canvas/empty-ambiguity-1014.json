@@ -12,28 +12,28 @@
   "why_declared_here": "⇒ **「声明」与「发布」之间那道缝**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 声明必须落在产物里、而不只在 README 的散文里**"
  },
  "census_inputs_2029": {
-  "n_fingerprinted": 29,
+  "n_fingerprinted": 30,
   "n_unreadable": 0,
   "n_volatile": 1,
   "volatile_inputs": {
    "golden-freshness-1027.json": {
-    "sha256_12": "2bf6ca488824",
-    "bytes": 83470,
+    "sha256_12": "d48d09c445d7",
+    "bytes": 93033,
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
-  "n_from_probe_products": 30,
+  "n_from_probe_products": 31,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "c1a444ed5dc8",
+    "sha256_12": "92e91802dbd4",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
-    "sha256_12": "d41697b6fc55",
-    "bytes": 63395
+    "sha256_12": "af2766ff5011",
+    "bytes": 63459
    },
    "assertion-vs-behavior-1018.json": {
-    "sha256_12": "a2e12b0274f9",
+    "sha256_12": "51a288b54d87",
     "bytes": 18203
    },
    "baseline-host-misuse-1016.json": {
@@ -57,8 +57,8 @@
     "bytes": 1422
    },
    "criterion-direction-1025.json": {
-    "sha256_12": "dca442df8b8e",
-    "bytes": 327885
+    "sha256_12": "e2a56b02ef35",
+    "bytes": 328910
    },
    "criterion-effectiveness-1026.json": {
     "sha256_12": "5194050ea133",
@@ -69,19 +69,23 @@
     "bytes": 1437
    },
    "exemption-claims-1024.json": {
-    "sha256_12": "167d178ddb30",
-    "bytes": 19737
+    "sha256_12": "0dabc595ff10",
+    "bytes": 19738
    },
    "expanded-contract-1032b4.json": {
     "sha256_12": "342205171f2f",
     "bytes": 4918
+   },
+   "fake-interaction-census-1034.json": {
+    "sha256_12": "fff360e357fc",
+    "bytes": 11558
    },
    "gen-contract-1032b2.json": {
     "sha256_12": "56ba06092495",
     "bytes": 1629
    },
    "global-detection-1012.json": {
-    "sha256_12": "923b0c098579",
+    "sha256_12": "b0a4b41fb417",
     "bytes": 4489
    },
    "golden-freshness-1008.json": {
@@ -109,7 +113,7 @@
     "bytes": 2356
    },
    "occurrence-ledger-1013.json": {
-    "sha256_12": "674ad86446d4",
+    "sha256_12": "585d9250b194",
     "bytes": 20268
    },
    "real-history-detection-1010.json": {
@@ -121,8 +125,8 @@
     "bytes": 2109
    },
    "replica-coverage-1017.json": {
-    "sha256_12": "552f0b134df7",
-    "bytes": 15105
+    "sha256_12": "5e5f06ccde68",
+    "bytes": 15016
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -133,23 +137,23 @@
     "bytes": 9205
    },
    "wired-contract-1032b1.json": {
-    "sha256_12": "5188380cd7db",
-    "bytes": 1260
+    "sha256_12": "26bcccddc6c0",
+    "bytes": 1270
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "8e78ca671dc2",
+    "sha256_12": "47d9c20034ee",
     "bytes": 143650
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 30,
+  "n_goldens": 31,
   "n_excluded_self": 4,
-  "n_empty_list": 216,
-  "n_empty_null": 26,
+  "n_empty_list": 224,
+  "n_empty_null": 35,
   "n_self_provable": 10,
-  "n_ambiguous": 232
+  "n_ambiguous": 249
  },
  "rows": [
   {
@@ -1364,6 +1368,132 @@
    "invariant": null
   },
   {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P2_detail/new",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P3_detail/stale",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P4_detail",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P5_detail",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P7_detail/mine",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P7_detail/theirs",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P9_detail",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[2]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[3]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[4]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[5]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[6]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[7]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[8]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[9]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[10]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/failed_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/why",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "gen-contract-1032b2.json",
    "path": "/false_criteria",
    "kind": "list",
@@ -1828,13 +1958,6 @@
   {
    "golden": "type-layer-gate-1023.json",
    "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "wired-contract-1032b1.json",
-   "path": "/false_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -3053,6 +3176,132 @@
    "invariant": null
   },
   {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P2_detail/new",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P3_detail/stale",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P4_detail",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P5_detail",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P7_detail/mine",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P7_detail/theirs",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/details/P9_detail",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[2]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[3]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[4]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[5]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[6]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[7]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[8]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[9]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/registry/[10]/key",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/failed_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "fake-interaction-census-1034.json",
+   "path": "/why",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "gen-contract-1032b2.json",
    "path": "/false_criteria",
    "kind": "list",
@@ -3454,13 +3703,6 @@
   {
    "golden": "type-layer-gate-1023.json",
    "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "wired-contract-1032b1.json",
-   "path": "/false_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null

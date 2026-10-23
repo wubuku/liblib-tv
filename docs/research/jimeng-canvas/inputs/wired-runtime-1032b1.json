@@ -104,7 +104,7 @@
    "modal_open": true,
    "menu_opened": true,
    "active_filter_row": "视频",
-   "empty_after_type_switch": "暂无最近 7 天的视频素材"
+   "empty_after_type_switch": null
   },
   "repaint_model_switches": {
    "ok": true,

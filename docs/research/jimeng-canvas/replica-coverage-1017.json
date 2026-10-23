@@ -11,8 +11,8 @@
       "n_files_covered": 25,
       "n_files_uncovered": 35,
       "pct_files_covered": 41.7,
-      "uncovered_lines": 6152,
-      "pct_uncovered_lines": 40.3,
+      "uncovered_lines": 6330,
+      "pct_uncovered_lines": 39.8,
       "uncovered_files": [
         "src/app/jimeng/canvas/[id]/page.tsx",
         "src/app/jimeng/layout.tsx",
@@ -57,8 +57,8 @@
       "n_files_covered": 25,
       "n_files_uncovered": 35,
       "pct_files_covered": 41.7,
-      "uncovered_lines": 6152,
-      "pct_uncovered_lines": 40.3,
+      "uncovered_lines": 6330,
+      "pct_uncovered_lines": 39.8,
       "uncovered_files": [
         "src/app/jimeng/canvas/[id]/page.tsx",
         "src/app/jimeng/layout.tsx",
@@ -98,17 +98,16 @@
       ]
     },
     "whole_apparatus": {
-      "n_scripts": 431,
-      "n_path_refs": 37,
-      "n_files_covered": 35,
-      "n_files_uncovered": 25,
-      "pct_files_covered": 58.3,
-      "uncovered_lines": 3876,
-      "pct_uncovered_lines": 25.4,
+      "n_scripts": 433,
+      "n_path_refs": 41,
+      "n_files_covered": 37,
+      "n_files_uncovered": 23,
+      "pct_files_covered": 61.7,
+      "uncovered_lines": 3727,
+      "pct_uncovered_lines": 23.4,
       "uncovered_files": [
         "src/app/jimeng/canvas/[id]/page.tsx",
         "src/app/jimeng/layout.tsx",
-        "src/components/jimeng/JimengAccountPanels.tsx",
         "src/components/jimeng/JimengAiButton.tsx",
         "src/components/jimeng/JimengAiDrawer.tsx",
         "src/components/jimeng/JimengConnectHandles.tsx",
@@ -123,7 +122,6 @@
         "src/components/jimeng/JimengMoreMenu.tsx",
         "src/components/jimeng/JimengMultiSelectToolbar.tsx",
         "src/components/jimeng/JimengNodeSummaryPopover.tsx",
-        "src/components/jimeng/JimengOfflineDialog.tsx",
         "src/components/jimeng/JimengProjectPanel.tsx",
         "src/components/jimeng/JimengSelectionOutline.tsx",
         "src/components/jimeng/JimengSharePanel.tsx",
@@ -134,9 +132,9 @@
       ]
     }
   },
-  "denominator_spread_pp": 14.9,
+  "denominator_spread_pp": 16.4,
   "n_prototype_files": 60,
-  "n_prototype_lines": 15284,
+  "n_prototype_lines": 15895,
   "glob_evidence": [
     {
       "script": "scripts/jimeng-b165i-bands.py",
@@ -207,19 +205,19 @@
       "token": "**"
     },
     {
+      "script": "scripts/jimeng_fake_interaction_registry_1034.py",
+      "token": "**"
+    },
+    {
       "script": "scripts/jimeng_floating_layer_audit.py",
       "token": "**"
     },
     {
       "script": "scripts/jimeng_frame_probe.py",
       "token": "**"
-    },
-    {
-      "script": "scripts/jimeng_gates.py",
-      "token": "**"
     }
   ],
-  "n_glob_evidence": 354,
+  "n_glob_evidence": 356,
   "bare_base_refs": {
     "n_found_in_repo": 4,
     "would_deflate_metric": true,
@@ -236,7 +234,7 @@
     "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **加一条 glob，覆盖率从「不到一半」跳到接近全覆盖** ⇒ **⇒⇒⇒⇒ 这个指标量的是「有没有被点名」，不是「有没有被验过」** ⇒ 把它当成「产品有多少没被验过」是**错的**"
   },
   "criteria_object_of_test": {
-    "n_check_calls": 987,
+    "n_check_calls": 988,
     "n_with_prototype_object": 25,
     "pct_with_prototype_object": 2.5,
     "checks": [

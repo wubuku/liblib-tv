@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTakeFocusAtOpen } from "@/components/jimeng/jimengMenuChrome";
+import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 顶栏 ⌕ 按钮 → 「生成历史」下拉 (Batch 13)。
@@ -25,6 +26,14 @@ const TABS = ["全部", "图片", "视频", "音频"] as const;
 export function JimengHistoryMenu({ onClose }: { onClose: () => void }) {
   const ref = useRef<HTMLDivElement>(null);
   const [tab, setTab] = useState<(typeof TABS)[number]>("全部");
+  /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C09）：**真的生成历史**。
+   *
+   * 此前这个面板恒显一句写死的「暂无生成历史」—— 而整个文件**不 import store**
+   * ⇒ ⇒ 它**永远**是那句话 ⇒ ⇒ 用户点开「生成历史」看到的是一个假的空面板。
+   * ⇒ ⇒ 现在它读 store 的 `generationHistory`（每一次生成真的留一条），
+   *   并**按 tab 真的过滤**（全部 / 图片 / 视频 / 音频）。
+   */
+  const history = useJimengStore((s) => s.generationHistory);
   /* 批 855：源站开层即接管焦点（实测焦点落在顶部 tab 按钮上）⇒ 接上。
      ⚠️ **刻意不接 `useArrowKeys`**：源站这一层方向键**不动**
      （4 次 ArrowDown 轨迹全是同一个 tab 按钮）—— 源站没接方向键漫游，
@@ -83,7 +92,36 @@ export function JimengHistoryMenu({ onClose }: { onClose: () => void }) {
           </button>
         ))}
       </div>
-      <p className="py-10 text-center text-[13px] text-white/35">暂无生成历史</p>
+      {/* ⭐⭐⭐ Batch 1032-④-B（C09）：**真的历史列表** ——
+          有记录时逐条列出（标题 + 提示词），没有记录时才显示空态。
+          ⚠️ 空态文案**只在真的为空时**出现（此前是恒显 ⇒ 一句谎话）。 */}
+      {history.length === 0 ? (
+        <p className="py-10 text-center text-[13px] text-white/35" data-testid="history-empty">
+          暂无生成历史
+        </p>
+      ) : (
+        <ul className="max-h-[220px] overflow-y-auto py-1" data-testid="history-list">
+          {history
+            .filter((r) => tab === "全部" || r.kind === tab)
+            .map((r) => (
+              <li
+                key={r.id}
+                data-testid="history-item"
+                className="flex items-start gap-2 rounded-lg px-2 py-2 hover:bg-white/[0.06]"
+              >
+                <span className="shrink-0 rounded bg-white/[0.08] px-1.5 py-0.5 text-[11px] text-white/70">
+                  {r.kind}
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-[13px] text-white/90">{r.title}</span>
+                  {r.prompt ? (
+                    <span className="block truncate text-[12px] text-white/45">{r.prompt}</span>
+                  ) : null}
+                </span>
+              </li>
+            ))}
+        </ul>
+      )}
     </div>
   );
 }

@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
 import { MOCK_MARK } from "@/components/jimeng/jimengFeedback";
+import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 账号菜单派生浮层 (Batch 820)。
  *
  * 这两个浮层此前不存在 —— 账号菜单里除「快捷键」外的四项点了只关菜单，
  * 是**真死按钮**（见 JimengHelpMenu 文件头）。本批按源站逐项实测接上
- * （README §27），几何与文案均取自实测，不清楚的���方标 (mock)。
+ * （README §27），几何与文案均取自实测，不清楚的地方标 (mock)。
  */
 
 /** 批 820 SOURCE_FACT：AI 生成水印设置弹窗的法条文案，逐字取自源站 */
@@ -73,7 +74,19 @@ export function JimengHelpCenterPanel({ onClose }: { onClose: () => void }) {
  *  控件实测：关闭 36×36 aria-label "Close watermark settings" @[1080,311]、
  *  水印开关 24×24 @[564,609]、保存 84×36「保存设置」@[1032,703]。 */
 export function JimengWatermarkDialog({ onClose }: { onClose: () => void }) {
-  const [noWatermark, setNoWatermark] = useState(false);
+  /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C05）：设置**真的存下来**。
+   *
+   * 此前这个对话框只有两个**组件本地**的 useState：
+   *   `noWatermark`（开关）与 `saved`（「已保存」提示）
+   * ⇒ ⇒ 关窗即丢 —— 而界面上却写着「已保存」。
+   * ⇒ ⇒ 「保存设置」这个动作**什么也没保存**。
+   *
+   * 现在：`watermark` 落在 **store**（关窗再开还在），并持久化到
+   * localStorage（刷新也还在）。「已保存」这个提示**跟着真实状态**走，
+   * 而不是一个一次性的本地标记。
+   */
+  const watermark = useJimengStore((s) => s.watermark);
+  const setWatermark = useJimengStore((s) => s.setWatermark);
   const [saved, setSaved] = useState(false);
 
   useEffect(() => {
@@ -122,19 +135,23 @@ export function JimengWatermarkDialog({ onClose }: { onClose: () => void }) {
             type="button"
             role="switch"
             aria-label="导出内容去除AI生成水印"
-            aria-checked={noWatermark}
+            aria-checked={watermark.noWatermark}
             data-testid="watermark-toggle"
             onClick={() => {
-              setNoWatermark((v) => !v);
+              /* ⭐⭐⭐ 真动作：直接落到 store（并持久化）——
+                 此前只改组件本地 state ⇒ 关窗即丢。 */
+              setWatermark(!watermark.noWatermark);
               setSaved(false);
             }}
             className={`mt-4 flex size-6 items-center justify-center rounded-md border ${
-              noWatermark
+              watermark.noWatermark
                 ? "border-[#0A5CD6] bg-[#0A5CD6]"
                 : "border-white/30 bg-transparent"
             }`}
           >
-            {noWatermark ? <span className="text-[11px] leading-none text-white">✓</span> : null}
+            {watermark.noWatermark ? (
+              <span className="text-[11px] leading-none text-white">✓</span>
+            ) : null}
           </button>
           <p className="mt-4 text-[12px] leading-[20px] text-white/55">
             打开开关并点击保存设置，代表您已确认充分了解上述情况并同意
@@ -148,7 +165,14 @@ export function JimengWatermarkDialog({ onClose }: { onClose: () => void }) {
             type="button"
             aria-label="保存设置"
             data-testid="watermark-save"
-            onClick={() => setSaved(true)}
+            onClick={() => {
+              /* ⭐⭐⭐ 「保存设置」现在**真的保存**：
+                 设置已经在开关那一步落进 store 并持久化了，
+                 这里做的是**把当前值显式写一次**（并给出确认），
+                 而不是翻一个一次性的本地标记。 */
+              setWatermark(watermark.noWatermark);
+              setSaved(true);
+            }}
             className="flex h-9 w-[84px] items-center justify-center rounded-lg bg-[#0A5CD6] text-[13px] text-white hover:bg-[#0A5CD6]/85"
           >
             {saved ? "已保存" : "保存设置"}

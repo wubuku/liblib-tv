@@ -108,7 +108,23 @@ export function JimengZoomMenu({ onClose }: { onClose: () => void }) {
       label: "缩放至选中项",
       shortcut: "⇧ 2",
       disabled: !selectedNodeId,
-      run: () => { void fitView({ duration: 300, maxZoom: 1 }); onClose(); },
+      /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C07）：**真的缩放到选中的那个节点**。
+       *
+       * 此前是 `fitView({ duration: 300, maxZoom: 1 })` —— **没传 `nodes`** ⇒
+       * ⇒ xyflow 做的是「**适配画布**」（把所有节点框进视野），
+       *   而标签写的是「缩放至选中项」⇒ **标签与效果不符**。
+       * ⇒ ⇒ 现在传 `nodes: [{ id: selectedNodeId }]` ⇒ xyflow 只框住那个节点。
+       *
+       * ⚠️ `FitViewOptionsBase.nodes` 接受 `(NodeType | { id: string })[]`
+       *   （@xyflow/react 12.11.1）⇒ 只给 id 就够，不必把整个节点对象搬过来。 */
+      run: () => {
+        void fitView({
+          duration: 300,
+          maxZoom: 1,
+          nodes: selectedNodeId ? [{ id: selectedNodeId }] : undefined,
+        });
+        onClose();
+      },
     },
     // setZoom 内部已收尾
     { label: "缩放至50%", run: () => setZoom(0.5) },

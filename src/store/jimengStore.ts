@@ -27,6 +27,12 @@ import type {
  * 坐标/尺寸为 SOURCE_FACT (见 docs/research/jimeng-canvas/README.md)。
  */
 
+/* ⭐⭐⭐ Batch 1032-④-B（C11）：**真的视频文件**（ffmpeg 生成的 mp4，
+ * 落在 `public/videos/` 下 ⇒ 走 Next 的静态托管）。
+ * ⚠️ 路径是**相对站点根**的 ⇒ 同一份资源在 `/jimeng/canvas/demo` 这类
+ *   子路径页面上也能取到（用 `/videos/...` 而不是相对的 `videos/...`）。 */
+const DEMO_VIDEO_SRC = "/videos/jimeng-demo.mp4";
+
 const MOCK_POSTER =
   "data:image/svg+xml;utf8," +
   encodeURIComponent(
@@ -152,6 +158,19 @@ export interface JimengCanvasState {
   /** 智能超清/补帧 mock 任务 (Batch 11, CLONE_DECISION — 源站会真实提交付费任务) */
   tasks: JimengTask[];
   startTask: (nodeId: string, kind: JimengTask["kind"]) => void;
+  /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C09）：**生成历史** —— 真的生成任务列表。
+   *
+   * 此前顶栏「生成历史」面板恒显一句写死的「暂无生成历史」——
+   * 而整个文件**不 import store** ⇒ ⇒ 它**永远**是那句话。
+   * ⇒ ⇒ 现在它读 store 里的 `generationHistory`：每一次生成（视频/图片/音频）
+   *   真的留下一条记录，面板把它**逐条列出来**。
+   *
+   * ⚠️ 为什么不用现成的 `tasks` 字段：那个是**瞬态**的（4s 后自动清除），
+   *   它是「处理中」的指示，不是「历史」⇒ ⇒ 两者必须分开。
+   */
+  generationHistory: JimengGenerationRecord[];
+  /** 往生成历史里记一条（由各生成动作自动调用） */
+  pushGeneration: (rec: Omit<JimengGenerationRecord, "id" | "seq">) => void;
   /** 「与 AI 对话」右侧抽屉 (Batch 12) */
   aiDrawerOpen: boolean;
   setAiDrawerOpen: (open: boolean) => void;
@@ -243,6 +262,27 @@ export interface JimengCanvasState {
       复刻侧无真实离线态，经 dev window hook 触发 */
   offlineDialogOpen: boolean;
   setOfflineDialog: (open: boolean) => void;
+  /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C10）：**离线同步 / 丢弃**要有真的动作。
+   *
+   * 此前对话框那两枚按钮只弹一句「离线修改已同步 / 已丢弃离线修改」⇒
+   * ⇒ **一个字都没同步、也没丢弃**。
+   *
+   * 现在：
+   *  · `offlineEdits` 是**真的待同步列表**（离线期间的每次改动都记一条）；
+   *  · `syncOfflineEdits()` 把当前画布**存成新的服务器快照**并清空待同步列表
+   *    ⇒ 「同步了」这件事**有状态变化**可核对；
+   *  · `discardOfflineEdits()` 把画布**真的退回服务器快照**
+   *    ⇒ 「丢弃了」这件事**看得到画布变了**。
+   *
+   * ⚠️ `offlineMode` 是**离线态开关**（默认关）。它开着时，画布的任何改动
+   *   都会被记进 `offlineEdits` ⇒ ⇒ 对话框才有东西可同步 / 可丢弃。
+   *   （此前这个对话框**没有任何东西可丢** —— 「丢弃」是空的。）
+   */
+  offlineMode: boolean;
+  offlineEdits: { id: string; label: string }[];
+  setOfflineMode: (on: boolean) => void;
+  syncOfflineEdits: () => void;
+  discardOfflineEdits: () => void;
   /** 小地图开关 (Batch 91, SOURCE_FACT 底部 dock 小地图按钮) */
   minimapOpen: boolean;
   setMinimapOpen: (open: boolean) => void;
@@ -251,6 +291,31 @@ export interface JimengCanvasState {
   setEdgesVisible: (visible: boolean) => void;
   /** 顶部项目名行内重命名 (Batch 29, SOURCE_FACT) */
   renameProject: (name: string) => void;
+  /** ⭐⭐⭐ Batch 1032-④-B（C02）：**项目列表** —— 「新建画布项目」要真建出项目来。
+   *
+   *  此前「新建画布项目」只弹一句复述按钮名的话（`新建画布项目（mock）`），
+   *  而 `jimengFeedback.ts` 的注释自己就写着：**复述按钮名＝零信息量**。
+   *  ⇒ ⇒ 「建出项目来」这件事**没有任何状态承载** ⇒ ⇒ 点了等于没点。
+   *
+   *  现在它是真的：`projects` 是一条**真的列表**，`createProject` 往里加一条，
+   *  顶栏项目名切到新项目，项目面板把列表**逐条列出来**（可切回去）。
+   *
+   *  ⚠️ 列表项的 `id` 是**计数器**而不是 `Date.now()` —— 产物/门禁里不许出随机量，
+   *   而这个列表会被 1033/1034 的门读。
+   */
+  projects: { id: string; name: string }[];
+  createProject: (name?: string) => void;
+  /** 切换到列表里的某个项目（顶栏项目名跟着变） */
+  switchProject: (id: string) => void;
+  /* ⭐⭐⭐ Batch 1032-④-B（C05）：**AI 生成水印设置**要真的存下来。
+   *
+   * 此前「保存设置」只 `setSaved(true)` —— 改的是**组件自己的 useState**，
+   * 关窗即丢；而界面上却写着「已保存」。
+   * ⇒ ⇒ 现在设置落在 **store**（跨关窗/重开都还在）**并持久化到
+   *   localStorage**（连刷新也还在）。
+   */
+  watermark: { noWatermark: boolean };
+  setWatermark: (noWatermark: boolean) => void;
   /** 底部 dock 工具态 (Batch 20): V 切换移动工具 */
   toolActive: "select" | "move";
   setToolActive: (tool: "select" | "move") => void;
@@ -348,8 +413,17 @@ export interface JimengCanvasState {
       真的那张图。一次 `set` 完成 ⇒ 只产生**一条**撤销记录。 */
   addLocalImage: (name: string, dataUrl: string, position: { x: number; y: number }) => void;
   /** 截取帧 首帧/尾帧 (Batch 62, SOURCE_FACT): 直接产出图片节点到源节点
-      右侧 (自动右移避让同行节点)，带 poster 与 lineage 连线，不打开帧选择器 */
-  captureFrame: (sourceId: string, frame: "first" | "last" | "custom") => void;
+      右侧 (自动右移避让同行节点)，带 poster 与 lineage 连线，不打开帧选择器。
+      ⭐⭐⭐ Batch 1032-④-B（C06）：`atTime` 是**选中的那一帧的时间码** ——
+      此前帧选择器把时间传出来了（`onConfirm(frameTime)`），
+      而调用点 `onConfirm={() => …}` 把它**丢掉** ⇒ 用户选的帧不是他要的那一帧。
+      ⇒ ⇒ 现在时间码**真的被用起来**：写进产出节点的 `frameTime`，
+      且**源节点的播放头真的移到那一帧**（`currentTime`）。 */
+  captureFrame: (
+    sourceId: string,
+    frame: "first" | "last" | "custom",
+    atTime?: number,
+  ) => void;
   /** 布局-智能布局 (Batch 63, SOURCE_FACT 菜单项/CLONE_DECISION 语义):
       选中节点按 x 排成一行 (y 对齐选区最小值)，单条历史 */
   arrangeSelected: () => void;
@@ -383,11 +457,97 @@ export interface JimengTask {
   kind: "upscale" | "interpolate" | "motion-capture";
 }
 
+/** ⭐⭐⭐ Batch 1032-④-B（C09）：一条生成历史。
+ *
+ * ⚠️ `id` 用**序号**而不是时间戳 ⇒ 确定、可被门禁逐条核对
+ * （且 `at` 也用**序号**而非墙上时钟 ⇒ 产物里不许出现随机量/时间戳）。
+ */
+export interface JimengGenerationRecord {
+  id: string;
+  seq: number;
+  /** 生成类型：图片 / 视频 / 音频 / 任务 */
+  kind: "图片" | "视频" | "音频" | "任务";
+  /** 这次生成的标题（节点标题或提示词摘要） */
+  title: string;
+  /** 提示词（用户当时输入的那句） */
+  prompt: string;
+}
+
 // Batch 66 (SOURCE_FACT): 顶栏 保存中…/已保存 + 下载按钮 导出前请保存画布
 // 门控 — 任何内容变更为未保存态，mock 自动保存 2s 后恢复已保存。
 let saveTimer: number | null = null;
+
+/* ── Batch 1032-④-B（C10）：**服务器快照** ────────────────────────────────
+ *
+ * 它表示「**服务器上的那份画布**」—— 是「保留并同步」与「丢弃修改」两枚按钮的
+ * **共同基准**：
+ *  · 「保留并同步」⇒ 把当前画布**存成**新快照（此后它就是服务器那份）；
+ *  · 「丢弃修改」  ⇒ 把画布**退回**快照（离线期间的改动真的没了）。
+ *
+ * ⚠️ 为什么放**模块级**而不是 state：它不是 UI 状态，是「外部世界的那一份」。
+ *   放 state 会被 `past` / `future` 的历史栈一起快照/回滚 ⇒ 语义会漂。
+ */
+let serverSnapshot: { nodes: JimengNode[]; edges: Edge[] } | null = null;
+
+/* 离线期间的改动序号（不用时间戳 ⇒ 产物与门禁里不许出随机量）。 */
+let offlineEditSeq = 0;
+
+/* ── Batch 1032-④-B（C09）：**往生成历史里记一条** ───────────────────────
+ *
+ * ⚠️ 为什么是**模块级函数**而不是 store 里的一个 action：
+ *   生成动作（`generateInto` 等）就在 store 的**对象字面量**里，
+ *   而对象字面量内部**不能引用同级属性**（TS 会报 `Cannot find name`）。
+ *   ⇒ ⇒ 所以把「怎么记」抽成模块级函数，由 action 转调。
+ */
+function pushGeneration(rec: Omit<JimengGenerationRecord, "id" | "seq">): void {
+  useJimengStore.setState((state) => {
+    const seq = state.generationHistory.length + 1;
+    return {
+      generationHistory: [
+        ...state.generationHistory,
+        { id: `gen-${seq}`, seq, ...rec },
+      ],
+    };
+  });
+}
+
+/* ── Batch 1032-④-B（C05）：水印设置的**持久化** ─────────────────────────
+ *
+ * ⚠️ 为什么不用 zustand 的 `persist` 中间件：那是**整个 store** 的初始化路径，
+ *   而本仓的 store 有一大堆**内存态**（任务、浮层槽位、播放态）——
+ *   把它们一起持久化会把「这一轮对话的临时状态」写进磁盘 ⇒ 副作用远超本条整改。
+ *   ⇒ ⇒ 所以只给**这一个**字段配一对读写函数。
+ *
+ * ⚠️ 三条硬要求（缺一条就会在别的环境下崩）：
+ *   ① `typeof window` 判空 —— SSR / 静态导出时**没有 window**，
+ *      而这段代码在**模块求值期**就会跑 ⇒ 不判空则 import 即崩；
+ *   ② try/catch —— 隐私模式 / 配额满时 localStorage 会抛；
+ *   ③ 初值**确定** —— 读不到就是 `false`，不许造出随机/时间相关的值
+ *      （产物与门禁里不许出现随机量）。
+ */
+const WATERMARK_KEY = "jimeng-clone-watermark";
+
+function readStoredWatermark(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.localStorage.getItem(WATERMARK_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function writeStoredWatermark(noWatermark: boolean): void {
+  if (typeof window === "undefined") return;
+  try {
+    window.localStorage.setItem(WATERMARK_KEY, noWatermark ? "1" : "0");
+  } catch {
+    /* 存不了就算了 —— 不能让「保存设置」这个动作把整个 store 弄崩。 */
+  }
+}
+
 function markDirty(state: JimengCanvasState): {
   project: JimengCanvasState["project"];
+  offlineEdits?: { id: string; label: string }[];
 } {
   if (saveTimer !== null) window.clearTimeout(saveTimer);
   saveTimer = window.setTimeout(() => {
@@ -396,6 +556,19 @@ function markDirty(state: JimengCanvasState): {
       s.project.saved ? s : { project: { ...s.project, saved: true } },
     );
   }, 2000);
+  /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C10）：**离线期间的改动要被记下来** ——
+   * 否则「保留并同步」与「丢弃修改」两枚按钮**没有任何东西可同步 / 可丢弃**
+   * （此前它们只弹一句 toast，什么也没做）。 */
+  if (state.offlineMode) {
+    offlineEditSeq += 1;
+    return {
+      project: { ...state.project, saved: false },
+      offlineEdits: [
+        ...state.offlineEdits,
+        { id: `offline-edit-${offlineEditSeq}`, label: "画布修改" },
+      ],
+    };
+  }
   return { project: { ...state.project, saved: false } };
 }
 
@@ -413,6 +586,9 @@ const initialNodes: JimengNode[] = [
       source: "local-upload",
       hasMedia: true,
       poster: MOCK_POSTER,
+      /* ⭐⭐⭐ Batch 1032-④-B（C11）：**真的视频源** ——
+         此前视频节点只有海报 + 模拟进度条 ⇒「视频节点能播放」那句是假的。 */
+      src: DEMO_VIDEO_SRC,
       duration: 6,
       currentTime: 2,
       muted: true,
@@ -615,6 +791,9 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         };
       }),
     }));
+    /* ⭐⭐⭐ Batch 1032-④-B（C09）：**真的记一条生成历史** ——
+     * 否则顶栏「生成历史」永远是那句写死的「暂无生成历史」。 */
+    pushGeneration({ kind: "视频", title: "视频生成", prompt });
     window.setTimeout(() => {
       set((state) => ({
         ...markDirty(state),
@@ -629,6 +808,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
               hasMedia: true,
               source: "generated",
               poster: MOCK_POSTER,
+              /* ⭐⭐⭐ Batch 1032-④-B（C11）：生成出来的视频也有真源。 */
+              src: DEMO_VIDEO_SRC,
               duration: 6,
               currentTime: 0,
               playing: false,
@@ -650,6 +831,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         return { ...n, data: { ...d, generating: true, prompt } };
       }),
     }));
+    /* ⭐⭐⭐ Batch 1032-④-B（C09）：记一条历史（同上）。 */
+    pushGeneration({ kind: "图片", title: "图片生成", prompt });
     window.setTimeout(() => {
       set((state) => ({
         ...markDirty(state),
@@ -681,6 +864,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         return { ...n, data: { ...d, generating: true, prompt } };
       }),
     }));
+    /* ⭐⭐⭐ Batch 1032-④-B（C09）：记一条历史（同上）。 */
+    pushGeneration({ kind: "音频", title: "音频生成", prompt });
     window.setTimeout(() => {
       set((state) => ({
         ...markDirty(state),
@@ -757,7 +942,7 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
   // image 节点 (62-first-frame-result / 62-multiselect 截图证据)，不打开
   // 帧选择器 (选择器仅 自定义 使用)。落点为源节点右侧 80 间距，与现有
   // 节点重叠时继续右移避让 (源站实测落点即避让后的空位)。
-  captureFrame: (sourceId, frame) =>
+  captureFrame: (sourceId, frame, atTime) =>
     set((state) => {
       const src = state.nodes.find((n) => n.id === sourceId);
       if (!src || src.type !== "video") return state;
@@ -796,6 +981,19 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
             ? "尾帧"
             : `截帧_${customIndex}`;
       const id = `image-${Date.now()}`;
+      /* ⭐⭐⭐ Batch 1032-④-B（C06）：**选中的那一帧的时间码**。
+       * `atTime` 是用户真的选中的位置 ⇒ ⇒ 它必须被**用起来**，而不是丢掉：
+       *  ① 写进产出节点的 `frameTime`（可被读回核对）；
+       *  ② 源节点的播放头**真的移到那一帧**（`currentTime`）。
+       * 首帧/尾帧没传时间码 ⇒ 按语义补上（0 / duration）。 */
+      const resolvedTime =
+        typeof atTime === "number" && Number.isFinite(atTime)
+          ? Math.max(0, atTime)
+          : frame === "first"
+            ? 0
+            : frame === "last"
+              ? (v.duration ?? 0)
+              : (v.currentTime ?? 0);
       const node: JimengNode = {
         id,
         type: "image",
@@ -807,6 +1005,8 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
           poster: v.poster,
           width: w,
           height: h,
+          // ⭐⭐⭐ 那一帧的时间码（C06）
+          frameTime: resolvedTime,
           // 批 197 SOURCE_FACT: 产出瞬间为「正在上传图片 0%」瞬态
           uploadProgress: 0,
         },
@@ -837,7 +1037,22 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         ...markDirty(state),
         past: [...state.past, { nodes: state.nodes, edges: state.edges }],
         future: [],
-        nodes: [...state.nodes, node],
+        /* ⭐⭐⭐ Batch 1032-④-B（C06）：**源节点的播放头真的移到那一帧** ——
+         * 否则「选中的那一帧」在源视频上**看不出来**（用户无从确认自己选了哪帧）。 */
+        nodes: [
+          ...state.nodes.map((n) =>
+            n.id === sourceId
+              ? {
+                  ...n,
+                  data: {
+                    ...(n.data as JimengVideoNodeData),
+                    currentTime: resolvedTime,
+                  },
+                }
+              : n,
+          ),
+          node,
+        ],
         edges: [
           ...state.edges,
           { id: `e-${sourceId}-${id}`, source: sourceId, target: id },
@@ -1112,6 +1327,11 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   tasks: [],
 
+  /* ⭐⭐⭐ Batch 1032-④-B（C09）：生成历史（真的任务列表）。 */
+  generationHistory: [],
+
+  pushGeneration: (rec) => pushGeneration(rec),
+
   startTask: (nodeId, kind) => {
     const id = `task-${Date.now()}`;
     set((state) => ({
@@ -1259,6 +1479,35 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
 
   setOfflineDialog: (open) => set({ offlineDialogOpen: open }),
 
+  /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C10）：离线态与两枚**真动作**。
+   *
+   * ⚠️ 「服务器快照」用**模块级**变量存（不是 state）⇒ 因为它要表达
+   *   「**服务器上的那份**」—— 它是同步动作的**基准**，不是 UI 状态。
+   *   初值 = 画布的初态 ⇒ 「丢弃」会退回到「还没改过」的样子。
+   */
+  offlineMode: false,
+
+  offlineEdits: [],
+
+  setOfflineMode: (on) => set({ offlineMode: on }),
+
+  syncOfflineEdits: () =>
+    set((state) => {
+      /* 真的把当前画布**存成新的服务器快照** ⇒ 「同步了」有状态变化。 */
+      serverSnapshot = { nodes: state.nodes, edges: state.edges };
+      return { offlineEdits: [], offlineDialogOpen: false };
+    }),
+
+  discardOfflineEdits: () =>
+    set(() => ({
+      /* 真的把画布**退回服务器快照** ⇒ 「丢弃了」看得到画布变了。
+       * ⚠️ 快照可能还是 `null`（一次都没同步过）⇒ ⇒ 退回**画布初态**。 */
+      nodes: serverSnapshot ? serverSnapshot.nodes : initialNodes,
+      edges: serverSnapshot ? serverSnapshot.edges : [],
+      offlineEdits: [],
+      offlineDialogOpen: false,
+    })),
+
   minimapOpen: false,
 
   setMinimapOpen: (open) => set({ minimapOpen: open }),
@@ -1272,6 +1521,47 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
       ...markDirty(state),
       project: { ...state.project, name },
     })),
+
+  /* ⭐⭐⭐ Batch 1032-④-B（C02）：真建项目。
+   * ⚠️ `id` 用**计数器**（`p2`、`p3`…）而不是 `Date.now()` ⇒ 列表是确定的、
+   *   可被门禁逐条核对（且 `project.name` 不会被写成随机串）。 */
+  projects: [
+    { id: "p1", name: "测试项目" },
+    { id: "p2", name: "未命名项目" },
+  ],
+
+  createProject: (name) =>
+    set((state) => {
+      const id = `p${state.projects.length + 1}`;
+      const label = name ?? `画布项目 ${state.projects.length + 1}`;
+      return {
+        ...markDirty(state),
+        projects: [...state.projects, { id, name: label }],
+        project: { ...state.project, name: label },
+      };
+    }),
+
+  switchProject: (id) =>
+    set((state) => {
+      const target = state.projects.find((p) => p.id === id);
+      if (!target) return state;
+      return {
+        ...markDirty(state),
+        project: { ...state.project, name: target.name },
+      };
+    }),
+
+  /* ⭐⭐⭐ Batch 1032-④-B（C05）：水印设置**真的存下来**。
+   * ⚠️ 持久化走 localStorage，但**必须**：
+   *   ① 判 `typeof window`（SSR 下没有 window ⇒ 崩在 import 阶段）；
+   *   ② try/catch（隐私模式 / 配额满会抛 ⇒ 不能让整个 store 初始化失败）；
+   *   ③ **初值是确定性的**（读不到就是 `false`）⇒ 产物/门禁里不许出随机量。 */
+  watermark: { noWatermark: readStoredWatermark() },
+
+  setWatermark: (noWatermark) => {
+    writeStoredWatermark(noWatermark);
+    set({ watermark: { noWatermark } });
+  },
 
   toolActive: "select",
 

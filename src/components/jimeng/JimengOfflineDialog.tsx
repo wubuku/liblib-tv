@@ -17,9 +17,29 @@ import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
  */
 export function JimengOfflineDialog({ onClose }: { onClose: () => void }) {
   const pushToast = useJimengStore((s) => s.pushToast);
+  /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C10）：**两枚按钮各有真动作**。
+   *
+   * 此前它们只弹一句「离线修改已同步 / 已丢弃离线修改」⇒ ⇒ **一个字都没同步、
+   * 也没丢弃** ⇒ ⇒ 那两句话是**谎话**。
+   *
+   * 现在：
+   *  · 「保留并同步」⇒ `syncOfflineEdits()`：把当前画布**存成新的服务器快照**
+   *    并清空待同步列表 ⇒ **有状态变化**；
+   *  · 「丢弃修改」  ⇒ `discardOfflineEdits()`：把画布**真的退回服务器快照**
+   *    ⇒ **看得到画布变了**。
+   */
+  const syncOfflineEdits = useJimengStore((s) => s.syncOfflineEdits);
+  const discardOfflineEdits = useJimengStore((s) => s.discardOfflineEdits);
+  const offlineEdits = useJimengStore((s) => s.offlineEdits);
 
   const act = (discard: boolean) => {
-    pushToast(discard ? FEEDBACK.offlineDiscarded() : FEEDBACK.offlineSynced());
+    if (discard) {
+      discardOfflineEdits();
+      pushToast(FEEDBACK.offlineDiscarded());
+    } else {
+      syncOfflineEdits();
+      pushToast(FEEDBACK.offlineSynced());
+    }
     onClose();
   };
 
@@ -42,6 +62,12 @@ export function JimengOfflineDialog({ onClose }: { onClose: () => void }) {
         </h3>
         <p className="mt-3 text-[14px] leading-6 text-white/55">
           你在离线状态下对当前画布做了修改，这些修改尚未同步到服务器。
+        </p>
+        {/* ⭐⭐⭐ 真的**有几处待同步**（此前这句话下面什么都没有）。 */}
+        <p className="mt-1 text-[13px] leading-6 text-white/40" data-testid="offline-edit-count">
+          {offlineEdits.length > 0
+            ? `待同步的离线修改：${offlineEdits.length} 处`
+            : "当前没有待同步的离线修改"}
         </p>
         <div className="mt-5 flex items-center justify-end gap-3">
           <button

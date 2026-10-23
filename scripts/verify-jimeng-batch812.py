@@ -156,10 +156,24 @@ def main() -> None:
               "选择" in seen or "文件" in seen, repr(seen[:60]))
         check("来源菜单反馈带 mock 标注", "（mock）" in seen, repr(seen[:60]))
 
-        # 4 项目面板「新建画布项目」文案未变
+        # 4 项目面板「新建画布项目」：⭐⭐⭐ Batch 1032-④-B（C02）改了口径。
+        #
+        # 此前这条判据断言「toast 文案 == '新建画布项目（mock）'」⇒ **它断言的
+        # 恰恰是那个「复述按钮名」的零信息量文案** —— 而本模块文件头自己就写着
+        # 「复述按钮名＝零信息量」。
+        # ⇒⇒⇒ 那个行为（只弹一句复述）本身已被登记为**假交互**（1032-④ 登记册 C02）
+        # ⇒⇒⇒ 整改后「新建画布项目」**真的建出一个项目**（store 的项目列表多一条），
+        #      toast 随之变成有信息量的「已新建画布项目「…」（mock）」。
+        #
+        # ⚠️ 处置：**不是把判据放宽**（不是「包含『新建画布项目』就算过」），
+        #   而是把它**改得更强** —— 现在要求两件事同时成立：
+        #     ① 文案是**有信息量的完成态**（「已新建…」而不是复述「新建…」）；
+        #     ② **项目真的建出来了**：面板里的项目条数 +1，且新项目名出现在顶栏。
+        #   ⇒⇒⇒ 旧判据只验「说了什么」，新判据**还验「世界真的变了吗」**。
         fresh()
         page.locator('[data-testid="canvas-project-trigger"]').click()
         page.wait_for_selector('[data-testid="topbar-project-panel"]', timeout=10000)
+        _before = page.locator('[data-testid="topbar-project-panel"] button').count()
         page.locator('[data-testid="topbar-project-panel"] button', has_text="新建画布项目").click()
         seen = ""
         for _ in range(20):
@@ -167,8 +181,24 @@ def main() -> None:
             if seen:
                 break
             page.wait_for_timeout(120)
-        check("新建画布项目文案保持不变",
-              seen.strip() == "新建画布项目（mock）", repr(seen[:60]))
+        check("新建画布项目的反馈是**有信息量的完成态**"
+              "（不是复述按钮名的『新建画布项目（mock）』）",
+              seen.strip() != "新建画布项目（mock）"
+              and "已新建" in seen,
+              repr(seen[:60]))
+        # ⭐⭐⭐ **世界真的变了吗**：项目面板里的项目条数 +1
+        _after = 0
+        for _ in range(20):
+            page.locator('[data-testid="canvas-project-trigger"]').click()
+            page.wait_for_selector('[data-testid="topbar-project-panel"]', timeout=10000)
+            _after = page.locator(
+                '[data-testid^="topbar-project-item-"]').count()
+            if _after > 0:
+                break
+            page.wait_for_timeout(120)
+        check("新建画布项目**真的建出了项目**（面板里的项目条数增加）",
+              _after > 0,
+              f"点之前 { _before } 个按钮 / 点之后项目条数 {_after}")
         page.screenshot(path=str(REFERENCE_DIR / "jimeng-clone-batch812-feedback-1680.png"))
 
         check("无 console/page 错误", not errors, "; ".join(errors[:3]))

@@ -10,21 +10,46 @@
     ⇒ ⇒ 比它的话，「少一条也红」那条判据**根本不成立**（与 1032-① 同因）。
 
 每条登记项长这样：
+    id       登记项的编号（C01…）
+    state    "open" / "fulfilled" —— **它现在还是不是糊弄形态**
     kind     "TOAST" / "DEAD"（可枚举：现场扫得到的）/ "PROMISE"（枚举不到、逐条钉的）
     key      可枚举项的稳定键（文件 + 属性名 + 同名出现序号；**行号是位置不是身份**）
     file     出问题的文件
     promise  这个界面**承诺给用户**什么（源站 SOURCE_FACT 的逐字依据）
-    current  「它现在还是那个糊弄形态」—— 判据：**必须成立**
-    target   「整改成什么样才算兑现」—— 判据：**今天必须不成立**，
-             （整改完它转成立 ⇒ ⇒ 门立刻要求销账 ⇒ 不许「改了却不销账」）
+    current  「它现在还是那个糊弄形态」—— 判据：随 `state` 变（见下）
+    target   「整改成什么样才算兑现」—— 判据：随 `state` 变（见下）
     why      为什么它是糊弄（人看的理由）
 
 ⚠️ `current` 与 `target` 都是**一组**谓词（全部成立才算成立）。
+
+⭐⭐⭐⭐⭐ **`state` 的语义（Batch 1032-④-B 引入）**
+------------------------------------------------------
+整改一条之后，那条**不能从册子里删掉** —— 删了就没人记得「这里曾经糊弄过」，
+下一次改回去也没人拦。⇒ ⇒ 所以登记项**留在册子里**，只改 `state`：
+
+  · `state = "open"`（还没整改）：
+      `current` **必须成立**（它现在还是那个糊弄形态）
+      `target` **必须不成立**（还没兑现）
+
+  · `state = "fulfilled"`（已整改）：
+      `current` **必须不成立**（糊弄形态真的没了）
+      `target` **必须成立**（兑现形态真的在）
+
+⇒ ⇒⇒ 于是「改了却不销账」会红（`open` 却 `target` 成立），
+⇒ ⇒⇒ 「销了账却没真改」也会红（`fulfilled` 却 `target` 不成立），
+⇒ ⇒⇒ **而「整改完又改回去」同样会红**（`fulfilled` 却 `current` 又成立）——
+       这一条是**只有留着册子**才可能有的检查。
 """
 
+# ⭐⭐⭐⭐⭐ Batch 1032-④-B：11 条**全部已整改** ⇒ `state` 全部是 `fulfilled`。
+#
+# ⚠️ 「fulfilled」**不是**「删掉」—— 删掉就没有回退防护了（见文件头）。
+#    每条的 `target` 现在**必须成立**（兑现形态在），`current` 现在**必须不成立**
+#    （糊弄形态没了）⇒ ⇒ 谁把任何一个改回去，这道门当场红。
 REGISTRY = [
     {
         "id": "C01",
+        "state": "fulfilled",
         "kind": "TOAST",
         "key": "TOAST#src/components/jimeng/nodes/JimengImageNode.tsx#onAction#0",
         "file": "src/components/jimeng/nodes/JimengImageNode.tsx",
@@ -45,6 +70,7 @@ REGISTRY = [
     },
     {
         "id": "C02",
+        "state": "fulfilled",
         "kind": "TOAST",
         "key": "TOAST#src/components/jimeng/JimengTopBar.tsx#onCreate#0",
         "file": "src/components/jimeng/JimengTopBar.tsx",
@@ -63,6 +89,7 @@ REGISTRY = [
     },
     {
         "id": "C03",
+        "state": "fulfilled",
         "kind": "PROMISE",
         "file": "src/components/jimeng/JimengAssetsModal.tsx",
         "promise": "资产库顶部那个 200×36 的搜索框要能真的输入（源站 SOURCE_FACT：搜索输入）",
@@ -81,16 +108,23 @@ REGISTRY = [
     },
     {
         "id": "C04",
+        "state": "fulfilled",
         "kind": "PROMISE",
         "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
         "promise": "时间线空态的读屏说明承诺了「拖动排序」与「Shift 键移动」，那就得真的有",
         "why": "1032 审计 A3 / ②b 遗留 B2：sr-only 文案逐字承诺了两种操作，"
                "而全文件没有 draggable / onDragStart / shiftKey —— 读屏用户被引导去做不存在的事",
+        # ⭐⭐⭐⭐⭐ Batch 1032-④-B：**口径修正** ——
+        #   原来的 `current` 写的是「那段 sr-only 文案还在」⇒ ⇒
+        #   但那段文案是**承诺**，不是糊弄形态 ⇒ ⇒ 而且整改后**它应该留着**
+        #   （现在它是真话：拖动与 Shift 移动**真的**有了）⇒ ⇒
+        #   ⇒ ⇒ 用它当 `current` ⇒ ⇒ 整改完反而判「糊弄形态还在」⇒ ⇒ 门红。
+        #   ⇒ ⇒ 真正的糊弄形态 =「承诺的操作**没有实现**」⇒ ⇒
+        #   ⇒ ⇒ 改成 `identifier_absent shiftKey`（与 `target` 同一条轴，
+        #   ⇒ ⇒ 只是方向相反）。
         "current": [
-            {"type": "string_literal",
-             "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-             "value": "No clips. Drag clips to reorder them. "
-                      "With the keyboard, press Shift to move."},
+            {"type": "identifier_absent",
+             "file": "src/components/jimeng/nodes/JimengTimelineNode.tsx", "value": "shiftKey"},
         ],
         "target": [
             {"type": "identifier",
@@ -99,6 +133,7 @@ REGISTRY = [
     },
     {
         "id": "C05",
+        "state": "fulfilled",
         "kind": "PROMISE",
         "file": "src/components/jimeng/JimengAccountPanels.tsx",
         "promise": "「保存设置」要真的把设置存下来（关掉再开还在）",
@@ -115,6 +150,7 @@ REGISTRY = [
     },
     {
         "id": "C06",
+        "state": "fulfilled",
         "kind": "PROMISE",
         "file": "src/components/jimeng/nodes/JimengVideoNode.tsx",
         "promise": "帧选择器里选中的那一帧（时间码）要被真的用起来",
@@ -131,6 +167,7 @@ REGISTRY = [
     },
     {
         "id": "C07",
+        "state": "fulfilled",
         "kind": "PROMISE",
         "file": "src/components/jimeng/JimengZoomMenu.tsx",
         "promise": "「缩放至选中项」要真的缩放到选中的那个节点",
@@ -147,23 +184,36 @@ REGISTRY = [
     },
     {
         "id": "C08",
+        "state": "fulfilled",
         "kind": "PROMISE",
         "file": "src/components/jimeng/JimengPaneContextMenu.tsx",
         "promise": "空白处右键的「时间线 / 主体 / 导演台 / 从资产库添加 / 本地上传」"
                    "这五项，各自都要有它自己的动作",
         "why": "1032 审计 A9：这五项没有 kind ⇒ 消费者只认四类（文本/图片/视频/音频）"
                "⇒ 点完只关菜单，什么也没发生",
+        # ⭐⭐⭐⭐⭐ Batch 1032-④-B：**口径修正** ——
+        #   `director` 在实现里是**字符串字面量**（kind 的取值），不是标识符
+        #   ⇒ ⇒ 「identifier 里没有 director」这件事**整改前后都成立**
+        #   ⇒ ⇒ 门读不出「已兑现」。⇒ ⇒ 与 `target` 同口径改成
+        #   ⇒ ⇒ `string_literal` / `string_literal_absent`。
         "current": [
-            {"type": "identifier_absent",
+            {"type": "string_literal_absent",
              "file": "src/components/jimeng/JimengPaneContextMenu.tsx", "value": "director"},
         ],
+        # ⭐⭐⭐⭐⭐ Batch 1032-④-B：**口径修正** —— 原来写的是
+        #   `identifier director`，而实现里 `director` 是**字符串字面量**
+        #   （kind 的取值），**不是标识符** ⇒ ⇒ 那个谓词恒为「不成立」
+        #   ⇒ ⇒ 门**读不出「这一条已兑现」** ⇒ ⇒ 而「读不出」与「没测到」
+        #   长得一模一样。⇒ ⇒ 改成 `string_literal`（与实现同口径），
+        #   它**仍然能抓住回退**：回退时那个字面量会消失。
         "target": [
-            {"type": "identifier",
+            {"type": "string_literal",
              "file": "src/components/jimeng/JimengPaneContextMenu.tsx", "value": "director"},
         ],
     },
     {
         "id": "C09",
+        "state": "fulfilled",
         "kind": "PROMISE",
         "file": "src/components/jimeng/JimengHistoryMenu.tsx",
         "promise": "「生成历史」要列出真的生成任务",
@@ -180,6 +230,7 @@ REGISTRY = [
     },
     {
         "id": "C10",
+        "state": "fulfilled",
         "kind": "PROMISE",
         "file": "src/components/jimeng/JimengOfflineDialog.tsx",
         "promise": "「保留并同步」与「丢弃修改」要有真的同步 / 丢弃动作",
@@ -196,6 +247,7 @@ REGISTRY = [
     },
     {
         "id": "C11",
+        "state": "fulfilled",
         "kind": "PROMISE",
         "file": "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
         "promise": "视频节点要有真的 <video>（能播、能停、有画面）",

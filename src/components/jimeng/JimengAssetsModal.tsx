@@ -1,9 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { X } from "lucide-react";
 
 import { useModalFocusTrap } from "./jimengMenuChrome";
+import { useJimengStore } from "@/store/jimengStore";
 
 /**
  * 资产库模态框 (Batch 72)。
@@ -52,11 +53,56 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
   /* ⭐⭐⭐ 1032-②b-1：时间范围 + 哪个图标菜单开着。 */
   const [range, setRange] = useState<(typeof TIME_RANGES)[number]["id"]>("all");
   const [iconMenu, setIconMenu] = useState<"时间" | "筛选" | null>(null);
+  /* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C03）：**真的能输入的搜索框**。
+   *
+   * 此前那一格是 `<span>搜索</span>` —— **画成了输入框的样子却不是控件**：
+   * 不可聚焦、不可输入、也没有 `role=textbox`。
+   * 而整个模态**不 import store** ⇒ ⇒ 永远空态 ⇒ ⇒ 「搜索」永远搜不到东西。
+   *
+   * 现在：① 它是一个真 `<input>`；② 素材**真的来自 store 的画布节点**；
+   *      ③ 搜索词**真的过滤**素材；④ 空态文案随搜索词变化。
+   */
+  const [query, setQuery] = useState("");
+  const nodes = useJimengStore((s) => s.nodes);
+
+  /** 素材 = 画布上**真的有内容**的节点（图片/视频/音频/文本）。 */
+  const assets = useMemo(
+    () =>
+      nodes
+        .filter((n) => {
+          const t = n.type;
+          if (t === "image") return Boolean((n.data as { poster?: string }).poster);
+          if (t === "video") return Boolean((n.data as { hasMedia?: boolean }).hasMedia);
+          if (t === "audio") return true;
+          if (t === "text") return true;
+          return false;
+        })
+        .map((n) => ({
+          id: n.id,
+          kind: n.type === "image" ? "图片" : n.type === "video" ? "视频" : n.type === "audio" ? "音频" : "文档",
+          title: String((n.data as { title?: string }).title ?? n.id),
+        })),
+    [nodes],
+  );
+
+  /** 真过滤：搜索词命中标题（大小写不敏感）⇒ 结果会真的变少。 */
+  const filtered = useMemo(() => {
+    const q = query.trim().toLowerCase();
+    return assets.filter((a) => {
+      if (isSubject) return false;
+      if (activeFilter !== "全部" && a.kind !== activeFilter) return false;
+      if (q && !a.title.toLowerCase().includes(q)) return false;
+      return true;
+    });
+  }, [assets, query, activeFilter, isSubject]);
+
   const rangeSuffix =
     TIME_RANGES.find((r) => r.id === range)?.suffix ?? "";
   const emptyText = isSubject
     ? "没有可用主体"
-    : `暂无${rangeSuffix}${filter}素材`;
+    : query.trim()
+      ? `没有匹配「${query.trim()}」的${filter}素材`
+      : `暂无${rangeSuffix}${filter}素材`;
   const layerRef = useRef<HTMLDivElement>(null);
 
   /* 批 864：开层即接管焦点 + Tab 困在层内。
@@ -137,6 +183,10 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
             ))}
           </div>
           <span className="flex-1" />
+          {/* ⭐⭐⭐⭐⭐ Batch 1032-④-B（C03）：这里此前是 `<span>搜索</span>` ——
+              **画成了输入框的样子却不是控件**。现在是真的 `<input>`：
+              可聚焦、可输入、有 `role=textbox` 与 `aria-label`，
+              且搜索词**真的过滤**下面的素材列表。 */}
           <div
             className="flex h-9 w-[200px] items-center gap-2 rounded-lg bg-white/[0.06] px-3"
             data-testid="assets-search"
@@ -145,7 +195,16 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
               <circle cx="6" cy="6" r="4.4" stroke="currentColor" strokeWidth="1.2" className="text-white/40" />
               <path d="m9.4 9.4 2.8 2.8" stroke="currentColor" strokeWidth="1.2" className="text-white/40" />
             </svg>
-            <span className="text-[13px] text-white/40">搜索</span>
+            <input
+              type="text"
+              role="textbox"
+              aria-label="搜索素材"
+              placeholder="搜索"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              data-testid="assets-search-input"
+              className="w-full bg-transparent text-[13px] text-white outline-none placeholder:text-white/40"
+            />
           </div>
           {/* Batch 78 (SOURCE_FACT): hover 显示 radix 式 tooltip 药丸 (按钮下方) */}
           {(["时间", "筛选"] as const).map((label, i) => (
@@ -231,20 +290,41 @@ export function JimengAssetsModal({ onClose }: { onClose: () => void }) {
         {/* 素材网格骨架 + 空态 */}
         <div className="relative mt-3 flex-1 overflow-hidden rounded-xl">
           {/* Batch 78 (SOURCE_FACT): 骨架格 124×124、5 列、间距 2px、
-              bg white/4%、r2 */}
-          <div className="ml-auto grid h-full w-[630px] grid-cols-5 gap-[2px] overflow-hidden">
-            {Array.from({ length: 20 }).map((_, i) => (
-              <div
-                key={i}
-                className="aspect-square rounded-[2px] bg-white/[0.04]"
-              />
-            ))}
-          </div>
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-[14px] text-white/35" data-testid="assets-empty">
-              {emptyText}
-            </span>
-          </div>
+              bg white/4%、r2。
+              ⭐⭐⭐ Batch 1032-④-B（C03）：**素材列表不再是永远的空态** ——
+              它现在列出 store 里**真的有内容**的画布节点，并且**随搜索词变化**。 */}
+          {filtered.length > 0 ? (
+            <div className="grid h-full grid-cols-5 gap-[2px] overflow-y-auto">
+              {filtered.map((a) => (
+                <div
+                  key={a.id}
+                  data-testid="assets-item"
+                  title={a.title}
+                  className="flex aspect-square items-center justify-center overflow-hidden rounded-[2px] bg-white/[0.04] p-1 text-center text-[11px] leading-tight text-white/60"
+                >
+                  <span className="break-all">{a.title}</span>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="ml-auto grid h-full w-[630px] grid-cols-5 gap-[2px] overflow-hidden">
+              {Array.from({ length: 20 }).map((_, i) => (
+                <div
+                  key={i}
+                  className="aspect-square rounded-[2px] bg-white/[0.04]"
+                />
+              ))}
+            </div>
+          )}
+          {/* ⭐⭐⭐ 空态**只在真的没有结果时**盖住列表 ——
+              否则它会把刚列出来的素材整片遮住（列表就白列了）。 */}
+          {filtered.length === 0 ? (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-[14px] text-white/35" data-testid="assets-empty">
+                {emptyText}
+              </span>
+            </div>
+          ) : null}
         </div>
 
         {/* 底栏 */}

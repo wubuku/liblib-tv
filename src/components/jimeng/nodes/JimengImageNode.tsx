@@ -11,7 +11,6 @@ import { JimengNodeTitle } from "@/components/jimeng/nodes/JimengNodeTitle";
 import { JimengConnectHandles } from "@/components/jimeng/JimengConnectHandles";
 import { useJimengStore } from "@/store/jimengStore";
 import { mockMsg } from "@/components/jimeng/jimengFeedback";
-
 /**
  * 图片节点 (Batch 17)。结构与视频节点同族 (SOURCE_FACT §5 的视频节点骨架)；
  * 批 195 补源站图片节点提取: 569×320 同视频卡、选中工具条见
@@ -20,8 +19,74 @@ import { mockMsg } from "@/components/jimeng/jimengFeedback";
 export function JimengImageNode({ id, data, selected }: NodeProps) {
   const d = data as JimengImageNodeData;
   const pushToast = useJimengStore((s) => s.pushToast);
+  const startTask = useJimengStore((s) => s.startTask);
+  const openPreview = useJimengStore((s) => s.openPreview);
+  const enterInfer = useJimengStore((s) => s.enterInfer);
+  const openAiDrawer = useJimengStore((s) => s.openAiDrawer);
   const soloSelected =
     useJimengStore((s) => s.nodes.filter((n) => n.selected).length) === 1;
+
+  /**
+   * ⭐⭐⭐⭐⭐ Batch 1032-④-B（C01）：工具条的动作**逐条接真动作**。
+   *
+   * 此前这里是 `onAction={(label) => pushToast(mockMsg(`${label}已执行`))}` ——
+   * 18 项全部只弹一句「X已执行」，画面零变化，而文案恰恰在说「已经做完了」。
+   *
+   * 处置：**能做的接真动作；做不了的由工具条渲染成真禁用态 + 可见理由**
+   * （见 `JimengImageNodeToolbar` 的 `UNAVAILABLE_REASON`）。
+   * ⇒ ⇒ 这里**只列真动作**；做不了的项**根本不会走到这里**（按钮是 disabled）。
+   *
+   * 逐条对应（与视频侧 `JimengVideoNode` 的 onAction 同型）：
+   *  · 智能超清 ⇒ `startTask(upscale)` ⇒ 节点上出现「智能超清处理中…」遮罩
+   *  · 全屏预览 ⇒ `openPreview(id)` ⇒ 真的开预览层
+   *  · 下载     ⇒ 真的把**这张图**打成 Blob 下下来（不是「已下载」四个字）
+   *  · 提示词反推 ⇒ `enterInfer` + `openAiDrawer` ⇒ 打开 AI 抽屉并预填提示词
+   */
+  const onToolbarAction = (label: string) => {
+    if (label === "智能超清") {
+      startTask(id, "upscale");
+      return;
+    }
+    if (label === "全屏预览") {
+      openPreview(id);
+      return;
+    }
+    if (label === "下载") {
+      /* 真下载：把节点自己的 poster（data URI）转成 Blob 走 `<a download>`。
+       * ⚠️ 与 `JimengTextNode` 的下载同款手法（Blob + `<a download>`），
+       *   而不是 data URI 直链 —— data URI 交给浏览器做下载名不稳。 */
+      const href = d.poster ?? "";
+      const a = document.createElement("a");
+      if (href.startsWith("data:")) {
+        const bin = atob(href.split(",")[1] ?? "");
+        const bytes = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; i += 1) bytes[i] = bin.charCodeAt(i);
+        const url = URL.createObjectURL(new Blob([bytes], { type: "image/png" }));
+        a.href = url;
+        a.download = `${(d.title || "图片").replace(/[\\/:*?"<>|]/g, "_")}.png`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 0);
+      } else {
+        a.href = href;
+        a.download = `${(d.title || "图片").replace(/[\\/:*?"<>|]/g, "_")}.png`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+      pushToast(mockMsg(`已下载「${d.title}」`));
+      return;
+    }
+    if (label === "提示词反推") {
+      /* 与视频侧同型：节点进入放大暂停态 + 打开 AI 抽屉并预填提示词。 */
+      enterInfer(id);
+      openAiDrawer(
+        `用 图片反解 反推出 ${d.title} 的提示词，并创建文本节点，方便我拉片复刻`,
+        d.poster ? { poster: d.poster, label: d.title } : undefined,
+      );
+    }
+  };
 
   return (
     <>
@@ -30,7 +95,7 @@ export function JimengImageNode({ id, data, selected }: NodeProps) {
       {d.poster ? (
         <JimengImageNodeToolbar
           visible={selected === true && soloSelected}
-          onAction={(label) => pushToast(mockMsg(`${label}已执行`))}
+          onAction={onToolbarAction}
         />
       ) : (
         <JimengImageGenPanel
