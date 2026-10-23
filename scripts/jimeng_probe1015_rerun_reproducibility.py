@@ -819,6 +819,30 @@ def _run_round():
                "wrote_golden": wrote, "n_bytes": len(pre),
                "n_bytes_fresh": len(post) if post is not None else 0}
         row.update(_classify(rc, pre, post))
+        # ⭐⭐⭐⭐⭐ 1032-②n 续：**把不变式所依赖的字段【发布】出来**
+        #   ⇒ ⇒⇒⇒ ⇒ ⇒ 而产物里登记的不变式写着「len(books[i].n_keys_added) == 0」，
+        #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 而 `keys_added` **从来没有被发布过**（只有 drifted 那支才有）
+        #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 登记的不变式是空的、验不了**
+        #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 处置：**恒真地**算差集（不看 rc、不看 state）⇒ 不变式才验得了
+        if pre is not None and post is not None:
+            row["n_bytes_equal"] = bool(pre == post)
+            if row["n_bytes_equal"]:
+                row["n_keys_added"] = 0
+                row["n_values_changed"] = 0
+                row["n_keys_removed"] = 0
+            else:
+                _fa = _flatten(json.loads(pre.decode("utf-8")))
+                _fb = _flatten(json.loads(post.decode("utf-8")))
+                row["n_keys_added"] = len(set(_fb) - set(_fa))
+                row["n_values_changed"] = sum(
+                    1 for k in set(_fa) & set(_fb) if _fa[k] != _fb[k])
+                row["n_keys_removed"] = len(set(_fa) - set(_fb))
+        else:
+            # ⭐ 「读不出」必须与「读出 0」分开：产物没了 ⇒ 这三个量**未测**，不是 0
+            row["n_bytes_equal"] = None
+            row["n_keys_added"] = None
+            row["n_values_changed"] = None
+            row["n_keys_removed"] = None
         # ⭐⭐⭐⭐⭐ 1032-②n 的**事实层** ⇒ ⇒ 「跑出来的」「盘上的」「提交态的」
         #   ⇒ ⇒ 是**三个不同的量** ⇒ ⇒ ⇒⇒ **⇒ 三者必须各记各的、各有各的名字** ⇒ ⇒ ⇒⇒
         #   ⇒ ⇒ 而「提交的那本 == 探针现在会写的那本」这句话要的正是这三个量 ⇒ ⇒ ⇒⇒
@@ -1456,14 +1480,77 @@ N_SELF_AMB = len(_SELF_AMB)
 _INV_BLOCK = {"keys_added_is_empty_iff_byte_identical",
               "values_changed_is_empty_iff_byte_identical",
               "keys_removed_is_empty_iff_no_key_vanished",
-              "tail_is_empty_iff_probe_printed_nothing"}
+              "bytes_equal_iff_reproduced_when_rc0"}
 _N_INV_BLOCK = len(_INV_BLOCK)
 # ⭐ 差集 = 「产物里登记了不变式、而普查仍然判成不可自证」的条数
 N_INV_INVISIBLE = sum(1 for r in _SELF_AMB
                       if r.get("path") and r.get("path").split("/")[-1] in _INV_BLOCK)
 N_SELF_PROVABLE_1014 = int(_CEN_1014.get("n_self_provable", 0) or 0)
 N_AMBIGUOUS_1014 = int(_CEN_1014.get("n_ambiguous", 0) or 0)
-P8_OK = bool(_AMB_1014) and N_SELF_AMB > 0 and N_INV_INVISIBLE > 0
+# ⭐⭐⭐⭐⭐ 1032-②n 续：**产物里登记的不变式（唯一真源）**
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ 而它原来只是 GOLDEN 字面量里的一段散文 ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ **⇒ 判据与产物各写一份**
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 而「同一个量只能有一份实现」⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 收成一份**
+_DECLARED_INVARIANTS_1015 = {
+    "keys_added_is_empty_iff_byte_identical":
+        "len(books[i].n_keys_added) == 0 ⟺ books[i].n_bytes_equal",
+    "values_changed_is_empty_iff_byte_identical":
+        "len(books[i].n_values_changed) == 0 ⟺ books[i].n_bytes_equal",
+    "keys_removed_is_empty_iff_no_key_vanished":
+        "len(books[i].n_keys_removed) == 0 ⟺ books[i].n_bytes_equal",
+    "bytes_equal_iff_reproduced_when_rc0":
+        "books[i].n_bytes_equal ⟺ state == reproduced（仅当 rc == 0）",
+    "why": "⭐⭐⭐⭐⭐ 1014 的普查把 1015 的 `/books/[2]/keys_added` "
+           "判成不可自证 —— 而它之所以是空的、正因为那本逐字节没变 "
+           "⇒ ⇒ ⇒ ⇒ **「没有漂移」在账本上长得和「没算过」一模一样** ⇒ ⇒ ⇒ ⇒ ⇒ "
+           "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 1014 刚写完的病，1015 自己中了一次 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+           "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而这四条不变式所依赖的字段，本批起【逐本发布】** "
+           "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 否则「登记的不变式」是空的、谁也验不了**",
+}
+
+
+def _p8_declared_invariants(rows, declared):
+    """⭐⭐⭐⭐⭐ **产物里登记的每条不变式，必须能被【书里自己的数据】验一遍**。
+
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 而老 P8 量的是「1014 的普查判本探针的产物几条不可自证」
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 而 ②n 为了剪断「事实层造环」让 1014 排除 1015 ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒
+    **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 1014 的普查再也看不到这本书**
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而 P8 的前提被【自己】剪断了 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒**
+    **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 「它还绿着」只是因为那本书恰好还没被提交 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒**
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 处置：P8 改成自己验自己登记的那几条不变式**
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而「1014 看不看得到这本书」降级成一条【读数】**
+    """
+    bad = []
+    for _name, _formula in (declared or {}).items():
+        if _name == "why":
+            continue
+        if not isinstance(_formula, str) or not _formula.strip():
+            bad.append({"invariant": _name, "why": "declared_without_formula"})
+    for _r in rows:
+        _st = _r.get("state")
+        _na = _r.get("n_keys_added")
+        _nv = _r.get("n_values_changed")
+        _nr = _r.get("n_keys_removed")
+        _be = _r.get("n_bytes_equal")
+        if _na is None or _nv is None or _nr is None or _be is None:
+            bad.append({"golden": _r.get("golden"), "why": "counts_unknown",
+                        "state": _st, "rc": _r.get("rc")})
+            continue
+        _zero = (_na == 0 and _nv == 0 and _nr == 0)
+        if _zero != bool(_be):
+            bad.append({"golden": _r.get("golden"), "why": "counts_vs_bytes_mismatch",
+                        "state": _st, "n_bytes_equal": _be,
+                        "n_keys_added": _na, "n_values_changed": _nv,
+                        "n_keys_removed": _nr})
+        if _r.get("rc") == 0 and _zero != (_st == "reproduced"):
+            bad.append({"golden": _r.get("golden"), "why": "counts_vs_state_mismatch",
+                        "state": _st, "n_bytes_equal": _be,
+                        "n_keys_added": _na, "n_values_changed": _nv,
+                        "n_keys_removed": _nr})
+    return {"ok": not bad, "n_rows": len(rows), "n_bad": len(bad), "bad": bad}
+
+
+_P8_CHECK = _p8_declared_invariants(BOOKS, _DECLARED_INVARIANTS_1015)
+P8_OK = bool(_P8_CHECK["ok"])
 # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这条读数天生落后一代，而且加轮数关不掉**
 #   `_rows_of_1014()` 读的是**最后一轮跑出来的 `empty-ambiguity-1014.json`**，
 #   而那份账是在**本探针写自己那本之前**算的 ⇒ ⇒ ⇒ ⇒ 它描述的是**上一次执行**留下的产物
@@ -1827,6 +1914,17 @@ out["red_ledger_1015"] = RED_LEDGER
 io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
 io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
     "generated_by": SELF,
+    # ⭐⭐⭐⭐⭐ 1032-②n 续：**书级事实必须落在【书顶层】、而不只是 red_ledger 里**
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ 而 ①号补丁把它写进了 `RED_LEDGER`（那是「红账」的子字典）
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 而 1032n 的 P2 读的是**书顶层** ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ **⇒ 落点错了一层**
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而「写在代码里」＋「落在别处」＝「没发布」**
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 而这一层错位、只有门亲自读顶层才抓得到**
+    "generator_sha12_1015": _file_sha12(Path(__file__)),
+    "fresh_sha_history_1015": ROUND_SHA,
+    "n_rounds_sha_history_1015": len(ROUND_SHA),
+    "n_stable_across_rounds_1015": N_STABLE_ACROSS_ROUNDS,
+    "n_unstable_across_rounds_1015": N_UNSTABLE_ACROSS_ROUNDS,
+    "n_round_sha_unknown_1015": N_ROUND_SHA_UNKNOWN,
     "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **把 1014 的 P6 落成代码 —— 然后立刻被 1014 "
             "那台普查反过来咬了一口：1015 自己长出了一个不可自证的空集合**",
     "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「跑不起来」必须单列 —— 探针崩了不告诉你数据有没有变，"
@@ -1900,19 +1998,16 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
                    "n_books_never_wrote_golden": N_NOT_WRITTEN,
                    "drifted_books": DRIFT_BOOKS,
                    "paths_touched": DRIFT_PATHS},
-    "empty_list_invariants": {
-        "keys_added_is_empty_iff_byte_identical":
-            "len(books[i].keys_added) == 0 ⟺ state == reproduced",
-        "values_changed_is_empty_iff_byte_identical":
-            "len(books[i].values_changed) == 0 ⟺ 两本 JSON 的叶子集合相同",
-        "keys_removed_is_empty_iff_no_key_vanished":
-            "len(books[i].keys_removed) == 0 ⟺ 旧 JSON 的每个叶子在新 JSON 里都还在",
-        "tail_is_empty_iff_probe_printed_nothing": None,
-        "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐ 1014 的普查把 1015 的 `/books/[2]/keys_added` "
-               "判成不可自证 —— 而它之所以是空的、正因为那本逐字节没变 "
-               "⇒ ⇒ ⇒ ⇒ **「没有漂移」在账本上长得和「没算过」一模一样** "
-               "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 1014 刚写完的病，1015 自己中了一次",
-    },
+    "empty_list_invariants": _DECLARED_INVARIANTS_1015,
+    # ⭐⭐⭐⭐⭐ 1032-②n 续：**P8 现在验的是「书里自己的数据」**
+    #   ⇒ ⇒ ⇒⇒ ⇒ ⇒ 而「1014 的普查看不看得到这本书」降级成读数（②n 剪环的代价、必须被公布）
+    "p8_check_1032n": {"ok": _P8_CHECK["ok"], "n_rows": _P8_CHECK["n_rows"],
+                       "n_bad": _P8_CHECK["n_bad"],
+                       "n_declared": len(_DECLARED_INVARIANTS_1015) - 1,
+                       "census_1014_covers_this_book": bool(N_SELF_AMB),
+                       "census_1014_n_ambiguous": N_AMBIGUOUS_1014,
+                       "census_1014_n_self_ambiguous": N_SELF_AMB,
+                       "census_1014_n_invariant_invisible": N_INV_INVISIBLE},
     "repaired_generated_by": REPAIRED,
     "reverse_case": {"add_key_state": REVERSE_ADD["state"],
                      "modify_value_state": REVERSE_MOD["state"],
