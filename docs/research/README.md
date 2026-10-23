@@ -14,6 +14,7 @@
 
 ### LibTV
 
+- [`LIBTV_CLONE_REACHABILITY.md`](LIBTV_CLONE_REACHABILITY.md)：★ **复刻版页面的「用户可达」与「怎么交互测试」总入口** —— 每个已完成的复刻页面**从根目录 `http://localhost:4317/` 怎么点进去**、进去之后**怎么自己验它**（附三条主干路径的实测读数与截图）。
 - [`liblib-live-2026-08-25/`](liblib-live-2026-08-25/README.md)：登录态原站总体审计、节点/边/面板 JSON 和差距排序。
 - [`liblib-live-2026-09-05/`](liblib-live-2026-09-05/README.md)：登录态空画布项目 shell 审计：跟随状态条、添加资源分区、脚本 NEW/旧版双入口、Agent 选择模型/生成模式、生成历史模态、资产双 tab、工具箱预设与快捷键全量。
 - [`liblib-canvas-batch97-2026-09-05/`](liblib-canvas-batch97-2026-09-05/README.md)：Agent 抽屉对齐 2026-09-05 源站的头部动作集合、源站 Skill 卡、composer 控件、选择模型目录菜单与生成模式菜单。
@@ -515,6 +516,14 @@ Each batch directory normally contains `README.md`, `PLAN.md` and `IMPLEMENTATIO
 | 522 | GRAPH-DELETE shot 聚合场景聚焦验收 | [`liblib-canvas-batch522-2026-09-14/`](liblib-canvas-batch522-2026-09-14/) |
 | 527 | GRAPH-DELETE canvas 场景聚焦验收 | [`liblib-canvas-batch527-2026-09-14/`](liblib-canvas-batch527-2026-09-14/) |
 | 501 | VR-018 Slice B 收口：Share + Agent 状态 disposition 化 | [`liblib-canvas-batch501-2026-09-14/`](liblib-canvas-batch501-2026-09-14/) |
+| `847` | 角色大编辑器左列第五段第一页「音色库」 | [`liblib-canvas-batch847-2026-10-01/`](liblib-canvas-batch847-2026-10-01/) |
+| `848` | 角色大编辑器左列第五段另外两页（我的音色／音色库页签） | [`liblib-canvas-batch848-2026-10-01/`](liblib-canvas-batch848-2026-10-01/) |
+| `849` | 角色大编辑器左列第四段另外两页（服装／AI 生成） | [`liblib-canvas-batch849-2026-10-01/`](liblib-canvas-batch849-2026-10-01/) |
+| `850` | 角色大编辑器预览区（中列） | [`liblib-canvas-batch850-2026-10-01/`](liblib-canvas-batch850-2026-10-01/) |
+| `851` | 导演台视图类快捷键（T／Y／H／裸 WASDQE） | [`liblib-canvas-batch851-2026-10-01/`](liblib-canvas-batch851-2026-10-01/) |
+| `852` | 导演台变换类快捷键（V／R／F）＋网格吸附 X | [`liblib-canvas-batch852-2026-10-01/`](liblib-canvas-batch852-2026-10-01/) |
+| `853` | 导演台打组／解组快捷键（⌘G／⌘⇧G／⌘⇧D） | [`liblib-canvas-batch853-2026-10-01/`](liblib-canvas-batch853-2026-10-01/) |
+| `854` | 导演台**组模型的成员语义**（组含任意成员／默认展开／树多选 ⌘·Ctrl） | [`liblib-canvas-batch854-2026-10-01/`](liblib-canvas-batch854-2026-10-01/) |
 
 ## Planned Work
 

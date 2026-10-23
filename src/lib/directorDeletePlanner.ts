@@ -1,7 +1,12 @@
-import type {
-  DirectorProjectDocumentV1,
-  DirectorTimelineTrackDocumentV1,
-} from "@/lib/directorProjectDocument";
+import {
+  resolveDirectorGroupMembers,
+  type DirectorProjectDocumentV1,
+  type DirectorTimelineTrackDocumentV1,
+  // ★★ Batch 854：组的**权威成员列表**解析器（源站逐字 `O(e)`）⟹ ⟹ 删除规划器
+  // ★   必须按它算「这个组有哪些成员」⟹ ⟹ 否则非角色成员（机位／道具）会漏删。
+  // ★ ★ 这里必须用**相对路径**：`.mjs` 门禁用 node 直跑这个模块 ⟹ ⟹
+  // ★   `@/lib/...` 别名在 node 下解析不了（只有 `import type` 才被擦除）。
+} from "./directorProjectDocument.ts";
 import type { DirectorCommandReason } from "@/lib/directorCommandKernel";
 
 export type DirectorGroupDeletePolicy = "UNGROUP" | "CASCADE";
@@ -305,16 +310,33 @@ function applyObjectClosure(
   });
 
   const groups = working.document.groups.flatMap((group) => {
-    const characterIds = group.characterIds.filter(
-      (characterId) => !requestedObjectIds.has(characterId),
+    // ★★ Batch 854：组的**权威成员列表** ＝ `members`（源站逐字 `O(e)`），
+    // ★   `characterIds` 只是**派生量**（源站逐字 `U(e)`）。
+    // ★   ⟹ ⟹ 删成员时必须**按权威列表**过滤，并且**两个字段一起写回**
+    // ★   ⟹ ⟹ 否则文档里 `members` 与 `characterIds` 会打架
+    // ★   ⟹ ⟹ `validateReferences` 的一致性断言会把它判成非法文档。
+    const authoritative = resolveDirectorGroupMembers(group);
+    const kept = authoritative.filter(
+      (member) => !requestedObjectIds.has(member.id),
     );
-    if (characterIds.length === 0) {
+    if (kept.length === 0) {
       working.deletedGroupIds.add(group.id);
       return [];
     }
-    return characterIds.length === group.characterIds.length
-      ? [group]
-      : [{ ...group, characterIds }];
+    if (kept.length === authoritative.length) {
+      return [group];
+    }
+    const characterIds = kept
+      .filter((member) => member.kind === "character")
+      .map((member) => member.id);
+    return [{
+      ...group,
+      characterIds,
+      // ★ 老组（`members` ＝ null）继续留 null ⟹ ⟹ 读回时按 `characterIds` 兜底
+      members: group.members
+        ? kept.map((member) => ({ kind: member.kind, id: member.id }))
+        : null,
+    }];
   });
   working.document = {
     ...working.document,
@@ -390,7 +412,11 @@ function applyGroupClosure(
   );
   if (!group) return "DIRECTOR_TARGET_MISSING";
   if (memberPolicy === "CASCADE") {
-    return applyObjectClosure(working, new Set(group.characterIds));
+    return applyObjectClosure(
+      working,
+      // ★★ Batch 854：级联删的是**全部成员**（任意类别）⟹ ⟹ 源站逐字 `O(e)`
+      new Set(resolveDirectorGroupMembers(group).map((member) => member.id)),
+    );
   }
 
   working.deletedGroupIds.add(group.id);

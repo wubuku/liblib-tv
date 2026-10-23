@@ -243,6 +243,18 @@ export function restoreDirectorProjectRuntimeSnapshotV1(
       id: group.id,
       label: group.label,
       characterIds: [...group.characterIds],
+      // ★★ Batch 854：把**权威成员列表**带回运行时 ⟹ ⟹ 否则组里的
+      // ★ 机位／道具在**刷新／导入导出**之后就掉了（只剩 `characterIds`）。
+      // ★ 老文档（`members` ＝ null）⟹ ⟹ 不写这个键 ⟹ ⟹ 读时按
+      // ★ `characterIds` 兜底（源站逐字 `O(e)`）。
+      ...(group.members
+        ? {
+            members: group.members.map((member) => ({
+              kind: member.kind,
+              id: member.id,
+            })),
+          }
+        : {}),
       ...(group.crowd
         ? {
             crowd: {

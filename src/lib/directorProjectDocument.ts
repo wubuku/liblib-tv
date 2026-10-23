@@ -93,10 +93,35 @@ export interface DirectorObjectDocumentV1 {
   camera: DirectorCameraDocumentV1 | null;
 }
 
+/**
+ * ★★ Batch 854：组成员引用。
+ *
+ * ★ 源站逐字（chunk `0fmehki05gkzw.js.js`，机器提取见
+ *   `docs/research/liblib-canvas-batch854-2026-10-01/raw/source-854-contract.json`）：
+ *   `function N(e){return`${e.kind}:${e.id}`}` —— 成员的键是 **`kind:id`**；
+ *   `function O(e){…(e.members??[]).forEach(n),(e.characterIds??[]).forEach(e=>n({kind:"character",id:e})),t}`
+ *   —— **`members` 是权威列表，`characterIds` 是兜底**；
+ *   `function sg(e){return"character"===e||"prop"===e||"emptyObject"===e||"camera"===e}`
+ *   —— **机位也能进组**。
+ */
+export interface DirectorGroupMemberDocumentV1 {
+  kind: DirectorGroupMemberKindV1;
+  id: string;
+}
+
+/** ★ 可进组的类别（源站 `sg(e)`）——★ clone 目前只有 character／prop／camera 三种对象。 */
+export type DirectorGroupMemberKindV1 = "character" | "prop" | "camera";
+
 export interface DirectorGroupDocumentV1 {
   id: string;
   label: string;
   characterIds: string[];
+  /**
+   * ★★ Batch 854：**权威成员列表**（`{kind, id}`）。
+   * ★ `null` ＝ 旧文档（只有 `characterIds`）⟹ ⟹ 读回时按
+   *   源站 `O(e)` 的兜底规则**从 `characterIds` 派生**。
+   */
+  members: DirectorGroupMemberDocumentV1[] | null;
   crowd: {
     rows: number;
     columns: number;
@@ -1081,7 +1106,14 @@ function expectGroup(
   path: string,
 ): DirectorGroupDocumentV1 {
   const record = expectRecord(value, path);
-  expectExactKeys(record, ["id", "label", "characterIds", "crowd"], path);
+  // ★★ Batch 854：`members` 是**可选键**（旧文档没有它）⟹ ⟹ 用
+  //   `expectExactKeysWithOptional` ⟹ ⟹ 老工程照旧能读。
+  expectExactKeysWithOptional(
+    record,
+    ["id", "label", "characterIds", "crowd"],
+    ["members"],
+    path,
+  );
   const crowd = record.crowd === null
     ? null
     : expectCrowd(record.crowd, `${path}.crowd`);
@@ -1089,8 +1121,49 @@ function expectGroup(
     id: expectString(record.id, `${path}.id`),
     label: expectString(record.label, `${path}.label`),
     characterIds: expectIdArray(record.characterIds, `${path}.characterIds`),
+    members: record.members === undefined || record.members === null
+      ? null
+      : expectGroupMembers(record.members, `${path}.members`),
     crowd,
   };
+}
+
+/** ★★ Batch 854：组成员数组的解析（`{kind, id}`，kind 必须是可分组的类别）。 */
+function expectGroupMembers(
+  value: unknown,
+  path: string,
+): DirectorGroupMemberDocumentV1[] {
+  const members = expectArray(value, path).map((item, index) => {
+    const memberPath = `${path}[${index}]`;
+    const record = expectRecord(item, memberPath);
+    expectExactKeys(record, ["kind", "id"], memberPath);
+    const kind = expectString(record.kind, `${memberPath}.kind`);
+    if (kind !== "character" && kind !== "prop" && kind !== "camera") {
+      fail(
+        "INVALID_FIELD",
+        `${memberPath}.kind`,
+        `unsupported group member kind "${kind}"`,
+      );
+    }
+    return {
+      kind: kind as DirectorGroupMemberKindV1,
+      id: expectString(record.id, `${memberPath}.id`),
+    };
+  });
+  const seen = new Set<string>();
+  members.forEach((member, index) => {
+    // ★ 源站逐字：`function N(e){return`${e.kind}:${e.id}`}` ⟹ ⟹ 去重键是 `kind:id`
+    const key = `${member.kind}:${member.id}`;
+    if (seen.has(key)) {
+      fail(
+        "DUPLICATE_ID",
+        `${path}[${index}]`,
+        `duplicate group member "${key}"`,
+      );
+    }
+    seen.add(key);
+  });
+  return members;
 }
 
 function expectCrowd(
@@ -1573,11 +1646,9 @@ function requireReference(
 function validateReferences(document: DirectorProjectDocumentV1): void {
   const objectById = new Map(document.objects.map((object) => [object.id, object]));
   const objectIds = new Set(objectById.keys());
-  const characterIds = new Set(
-    document.objects
-      .filter((object) => object.kind === "character")
-      .map((object) => object.id),
-  );
+  // ★★ Batch 854：原来这里还有一个 `characterIds` 集合，**只**用于组的成员校验；
+  //   成员校验改成按**权威成员列表**（`members` 优先）之后它就没有用处了 ⟹ ⟹ 删掉
+  //   （留着会被 eslint 判成未使用）。
   const cameraIds = new Set(
     document.objects
       .filter((object) => object.kind === "camera")
@@ -1601,28 +1672,49 @@ function validateReferences(document: DirectorProjectDocumentV1): void {
 
   const membersAcrossGroups = new Set<string>();
   document.groups.forEach((group, groupIndex) => {
-    group.characterIds.forEach((characterId, memberIndex) => {
-      if (!characterIds.has(characterId)) {
+    // ★★ Batch 854：按**权威成员列表**校验（源站逐字 `O(e)`：`members` 优先、
+    //   `characterIds` 兜底）⟹ ⟹ 老组（只有 `characterIds`）照样能过。
+    const members = resolveDirectorGroupMembers(group);
+    members.forEach((member, memberIndex) => {
+      const object = objectById.get(member.id);
+      if (!object || object.kind !== member.kind) {
         fail(
           "DANGLING_REFERENCE",
-          `$.groups[${groupIndex}].characterIds[${memberIndex}]`,
-          `character reference "${characterId}" does not exist`,
+          `$.groups[${groupIndex}].members[${memberIndex}]`,
+          `${member.kind} reference "${member.id}" does not exist`,
         );
       }
-      if (membersAcrossGroups.has(characterId)) {
+      // ★ 去重键用源站的 `N(e)`＝`kind:id`（源站逐字）⟹ ⟹ 同一个角色不能在两个组里
+      const key = `${member.kind}:${member.id}`;
+      if (membersAcrossGroups.has(key)) {
         fail(
           "INVALID_FIELD",
-          `$.groups[${groupIndex}].characterIds[${memberIndex}]`,
-          `character "${characterId}" cannot belong to multiple groups`,
+          `$.groups[${groupIndex}].members[${memberIndex}]`,
+          `"${key}" cannot belong to multiple groups`,
         );
       }
-      membersAcrossGroups.add(characterId);
+      membersAcrossGroups.add(key);
     });
-    if (group.characterIds.length === 0) {
+    if (members.length === 0) {
+      fail(
+        "INVALID_FIELD",
+        `$.groups[${groupIndex}].members`,
+        "groups need at least one member",
+      );
+    }
+    // ★ `characterIds` 是**派生量**（源站逐字 `U(e)`：`O(e).filter(角色).map(id)`）
+    // ⟹ ⟹ 必须与成员里的角色成员一致 ⟹ ⟹ 否则文档自己跟自己打架。
+    const derivedCharacterIds = members
+      .filter((member) => member.kind === "character")
+      .map((member) => member.id);
+    if (
+      derivedCharacterIds.length !== group.characterIds.length ||
+      derivedCharacterIds.some((id, index) => id !== group.characterIds[index])
+    ) {
       fail(
         "INVALID_FIELD",
         `$.groups[${groupIndex}].characterIds`,
-        "groups need at least one character",
+        "characterIds must match the character members",
       );
     }
   });
@@ -1789,6 +1881,9 @@ function validateReferences(document: DirectorProjectDocumentV1): void {
           `group "${track.groupId}" does not exist`,
         );
       }
+      // ★★ Batch 854：⚠️ 这里**仍然只按角色成员**算 —— clone 的组轨道（groupTracks）
+      //   目前只为**角色成员**建偏移（D5／组轨道是下一批的事）⟹ ⟹ 改成「全部成员」
+      //   会让已有的组轨道立刻校验失败。⟹ ⟹ 保持原样并登记为遗留。
       const memberIds = new Set(group.characterIds);
       Object.keys(track.memberOffsets).forEach((memberId) => {
         if (!memberIds.has(memberId)) {
@@ -1970,6 +2065,12 @@ function mapGroup(group: DirectorCharacterGroup): DirectorGroupDocumentV1 {
     id: group.id,
     label: group.label,
     characterIds: [...group.characterIds],
+    // ★★ Batch 854：把**权威成员列表**写进文档 ⟹ ⟹ 非角色成员（机位／道具）
+    //   才能在刷新／导入导出后活下来。
+    members: resolveDirectorGroupMembers(group).map((member) => ({
+      kind: member.kind,
+      id: member.id,
+    })),
     crowd: group.crowd
       ? {
           rows: group.crowd.rows,
@@ -1978,6 +2079,31 @@ function mapGroup(group: DirectorCharacterGroup): DirectorGroupDocumentV1 {
         }
       : null,
   };
+}
+
+/**
+ * ★★ Batch 854：解析一个组的**权威成员列表**。
+ *
+ * ★ 逐字对齐源站 `function O(e){…(e.members??[]).forEach(n),(e.characterIds??[]).forEach(e=>n({kind:"character",id:e})),t}`：
+ * ★ **`members` 优先；`characterIds` 兜底**（老组／群众组只有 `characterIds`）。
+ * ★ 并按源站的 `N(e)`＝`kind:id` 去重。
+ */
+export function resolveDirectorGroupMembers(group: {
+  characterIds: string[];
+  members?: { kind: DirectorGroupMemberKindV1; id: string }[] | null;
+}): DirectorGroupMemberDocumentV1[] {
+  const out: DirectorGroupMemberDocumentV1[] = [];
+  const seen = new Set<string>();
+  const push = (kind: DirectorGroupMemberKindV1, id: string) => {
+    if (!id) return;
+    const key = `${kind}:${id}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push({ kind, id });
+  };
+  (group.members ?? []).forEach((member) => push(member.kind, member.id));
+  group.characterIds.forEach((id) => push("character", id));
+  return out;
 }
 
 function mapKeyframe(

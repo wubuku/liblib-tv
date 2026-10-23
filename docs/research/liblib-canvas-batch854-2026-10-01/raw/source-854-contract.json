@@ -1,0 +1,114 @@
+{
+ "来源": {
+  "chunk": "/tmp/liblib_srcjs2/0fmehki05gkzw.js.js",
+  "字节数": 1018130
+ },
+ "片段": {
+  "成员引用的键 N(e)": {
+   "锚点": "function N(e){return`${e.kind}:${e.id}`}",
+   "命中数": 1,
+   "偏移": 3143,
+   "原文": "function N(e){return`${e.kind}:${e.id}`}"
+  },
+  "组的成员列表 O(e)（members 优先 ＋ characterIds 兜底 ＋ 去重）": {
+   "锚点": "function O(e){let t=[],r=new Set,n=e=>{if(!e.id)return;let n=N(e);r.has(n)||(r.add(n),t.push(e))};return(e.members??[]).forEach(n),(e.characterIds??[]).forEach(e=>n({kind:\"character\",id:e})),t}",
+   "命中数": 1,
+   "偏移": 3456,
+   "原文": "function O(e){let t=[],r=new Set,n=e=>{if(!e.id)return;let n=N(e);r.has(n)||(r.add(n),t.push(e))};return(e.members??[]).forEach(n),(e.characterIds??[]).forEach(e=>n({kind:\"character\",id:e})),t}"
+  },
+  "characterIds 由 members 派生 U(e)": {
+   "锚点": "function U(e){return O(e).filter(e=>\"character\"===e.kind).map(e=>e.id)}",
+   "命中数": 1,
+   "偏移": 3649,
+   "原文": "function U(e){return O(e).filter(e=>\"character\"===e.kind).map(e=>e.id)}"
+  },
+  "成员解析 lB（按场景集合过滤 ＋ 去重）": {
+   "锚点": "function lB(e,t,r,n,a){let i=new Set(t.map(e=>e.id)),o=new Set(r.map(e=>e.id)),s=new Set(n.map(e=>e.id)),l=new Set(a.map(e=>e.id)),c=new Set;return e.filter(e=>{if(!(\"character\"===e.kind&&i.has(e.id)||\"prop\"===e.kind&&o.has(e.id)||\"emptyObject\"===e.kind&&s.has(e.id)||\"camera\"===e.kind&&l.has(e.id)))return!1;let t=N(e);return!c.has(t)&&(c.add(t),!0)})}",
+   "命中数": 1,
+   "偏移": 432686,
+   "原文": "function lB(e,t,r,n,a){let i=new Set(t.map(e=>e.id)),o=new Set(r.map(e=>e.id)),s=new Set(n.map(e=>e.id)),l=new Set(a.map(e=>e.id)),c=new Set;return e.filter(e=>{if(!(\"character\"===e.kind&&i.has(e.id)||\"prop\"===e.kind&&o.has(e.id)||\"emptyObject\"===e.kind&&s.has(e.id)||\"camera\"===e.kind&&l.has(e.id)))return!1;let t=N(e);return!c.has(t)&&(c.add(t),!0)})}"
+  },
+  "选择态 lQ（selectedSceneMembers ＋ selectedCharacterIds）": {
+   "锚点": "function lQ(e,t){let r=t&&e.some(e=>lK(e,t))?t:e.at(-1);return{selectedId:r?.id??null,selectedCategory:r?.kind??null,selectedSceneMembers:e,selectedCharacterIds:e.flatMap(e=>\"character\"===e.kind?[e.id]:[])}}",
+   "命中数": 1,
+   "偏移": 435355,
+   "原文": "function lQ(e,t){let r=t&&e.some(e=>lK(e,t))?t:e.at(-1);return{selectedId:r?.id??null,selectedCategory:r?.kind??null,selectedSceneMembers:e,selectedCharacterIds:e.flatMap(e=>\"character\"===e.kind?[e.id]:[])}}"
+  },
+  "可分组类别 sg(e)": {
+   "锚点": "function sg(e){return\"character\"===e||\"prop\"===e||\"emptyObject\"===e||\"camera\"===e}",
+   "命中数": 1,
+   "偏移": 315105,
+   "原文": "function sg(e){return\"character\"===e||\"prop\"===e||\"emptyObject\"===e||\"camera\"===e}"
+  },
+  "reducer case：CREATE_CHARACTER_GROUP": {
+   "锚点": "case\"CREATE_CHARACTER_GROUP\":",
+   "命中数": 1,
+   "偏移": 440303,
+   "原文": "case\"CREATE_CHARACTER_GROUP\":{let r=lB(t.members&&t.members.length>0?t.members:lB(e.selectedSceneMembers,e.characters,e.props,e.emptyObjects,e.cameras),e.characters,e.props,e.emptyObjects,e.cameras);if(r.length<2)return e;let n=U({characterIds:[],members:r}),a={id:lM(),label:lT(e.characterGroups),characterIds:n,members:r};return{...e,characterGroups:[...e.characterGroups,a],...lQ(r),selectedGroupId:a.id}}case\"SELECT_CHARACTER_GROUP\":{let r=e.characterGroups.find(e=>e.id===t.id);if(!r)return e;let n=lB(O(r),e.characters,e.props,e.emptyObjects,e"
+  },
+  "reducer case：UNGROUP_CHARACTER_GROUP": {
+   "锚点": "case\"UNGROUP_CHARACTER_GROUP\":",
+   "命中数": 1,
+   "偏移": 440930,
+   "原文": "case\"UNGROUP_CHARACTER_GROUP\":{let r=e.characterGroups.find(e=>e.id===t.id);if(!r)return e;let n=lB(O(r),e.characters,e.props,e.emptyObjects,e.cameras);return{...e,characterGroups:e.characterGroups.filter(e=>e.id!==t.id),cameras:e.cameras.map(r=>lV(r,e,new Set([t.id]))),animation:{...e.animation,groupTracks:e.animation.groupTracks.filter(e=>e.targetId!==t.id)},...lQ(n),selectedGroupId:null}}case\"UPDATE_CHARACTER\":return{...e,characters:e.characters.map(e=>e.id===t.id?{...e,...t.patch}:e)};case\"UPDATE_CHARACTERS\":{let r=new Map(t.updates.map(e=>[e.id,e.patch]));return{...e,characters:"
+  },
+  "右键菜单的 canGroup 判定式": {
+   "锚点": "X(e,s,!l&&s.length>1&&s.every(e=>sg(e.category)),l?.id)",
+   "命中数": 1,
+   "偏移": 333246,
+   "原文": "X(e,s,!l&&s.length>1&&s.every(e=>sg(e.category)),l?.id)"
+  },
+  "树行的 onClick：⇧／⌘／Ctrl ＝ additive（且仅对 sg 类别）": {
+   "锚点": "onClick:t=>{if(\"motionPath\"===e.category)return void s?.(e.id);let r=t.shiftKey||t.metaKey||t.ctrlKey;a(e.id,e.category,sg(e.category)?{additive:r,individual:!0}:void 0)}",
+   "命中数": 1,
+   "偏移": 326414,
+   "原文": "onClick:t=>{if(\"motionPath\"===e.category)return void s?.(e.id);let r=t.shiftKey||t.metaKey||t.ctrlKey;a(e.id,e.category,sg(e.category)?{additive:r,individual:!0}:void 0)}"
+  },
+  "树里当前选中的场景成员集合（selectedSceneMembers → N 键集合）": {
+   "锚点": "K=new Set(u.map(N)),",
+   "命中数": 1,
+   "偏移": 332180,
+   "原文": "K=new Set(u.map(N)),Q=e=>\"motionPath\"===e.category?h===e.id:sg(e.category)?K.has(N({kind:e.category,id:e.id})):l===e.id&&d===e.category,q=(e"
+  },
+  "树里已选的可分组成员过滤": {
+   "锚点": "W=[...U,...H,...G,...V].filter(e=>!!sg(e.category)&&K.has(N({kind:e.category,id:e.id})))",
+   "命中数": 1,
+   "偏移": 332462,
+   "原文": "W=[...U,...H,...G,...V].filter(e=>!!sg(e.category)&&K.has(N({kind:e.category,id:e.id})))"
+  },
+  "组的展开态：默认展开（!!F 是搜索词，j 是被折叠的组集合）": {
+   "锚点": "expanded:!!F||!j.has(e.id)",
+   "命中数": 1,
+   "偏移": 335962,
+   "原文": "expanded:!!F||!j.has(e.id)"
+  },
+  "组成员作为缩进子行渲染（indent:!0）": {
+   "锚点": "(F||!j.has(e.id))&&r.map((e,t)=>(0,i.jsx)(sM,{row:e,indent:!0,",
+   "命中数": 1,
+   "偏移": 336348,
+   "原文": "(F||!j.has(e.id))&&r.map((e,t)=>(0,i.jsx)(sM,{row:e,indent:!0,selected:Q(e),selectedBlockPosition:q(r,t),onSelect:m,onSelectMotionPath:f,onToggleVisible:v,onToggleLocked:b,onToggleMo"
+  },
+  "组的可见／锁定按全部成员算": {
+   "锚点": "visible:0===t.length||t.every(e=>e.visible),locked:t.length>0&&t.every(e=>e.locked)",
+   "命中数": 1,
+   "偏移": 335989,
+   "原文": "visible:0===t.length||t.every(e=>e.visible),locked:t.length>0&&t.every(e=>e.locked)"
+  },
+  "组名 lT(e)＝ i18n(canvas:nodeTypeGroup) ＋ N": {
+   "正则": "function lT\\(e\\)\\{return`\\$\\{\\(0,tS\\.V\\)\\(\"canvas:nodeTypeGroup\"\\)\\}\\$\\{e\\.length\\+1\\}`\\}",
+   "命中数": 1,
+   "偏移": 431837,
+   "原文": "function lT(e){return`${(0,tS.V)(\"canvas:nodeTypeGroup\")}${e.length+1}`}"
+  },
+  "组树条目：带 Group 图标的那一支（树，非右键菜单）": {
+   "正则": "title:h\\(r\\?\"canvas:directorCollapseGroup\":\"canvas:directorExpandGroup\"\\).{0,520}?\\(0,i\\.jsx\\)\\(u\\.p\\.Group[^)]*\\)",
+   "命中数": 1,
+   "偏移": 329696,
+   "原文": "title:h(r?\"canvas:directorCollapseGroup\":\"canvas:directorExpandGroup\"),className:\"hover:bg-white/8 z-10 flex h-6 w-4 shrink-0 items-center justify-center rounded text-white/45 transition-colors hover:text-neutral-50\",onClick:t=>{t.stopPropagation(),s(e.id)},children:(0,i.jsx)(sC,{expanded:r})}),(0,i.jsx)(\"span\",{className:\"z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg\",children:(0,i.jsx)(u.p.Group,{width:14,height:14})"
+  }
+ },
+ "★任意值类名自检": {
+  "疑似截断": [],
+  "通过": true
+ }
+}

@@ -217,12 +217,66 @@ export interface DirectorObject {
 export interface DirectorCharacterGroup {
   id: string;
   label: string;
+  /**
+   * ★★ Batch 854：**权威成员列表**（`{kind, id}`）。
+   *
+   * ★ 逐字依据（源站 chunk，机器提取见
+   *   `docs/research/liblib-canvas-batch854-2026-10-01/raw/source-854-contract.json`）：
+   *   `function O(e){…(e.members??[]).forEach(n),(e.characterIds??[]).forEach(e=>n({kind:"character",id:e})),t}`
+   *   ⟹ ⟹ **`members` 优先、`characterIds` 兜底**；`characterIds` 是**派生量**
+   *   （源站逐字 `function U(e){return O(e).filter(角色).map(id)}`）。
+   * ★ 老组／群众组**没有**这个字段 ⟹ ⟹ 读的时候按上面那条兜底规则派生。
+   */
+  members?: DirectorSceneMemberRef[];
   characterIds: string[];
   crowd?: {
     rows: number;
     columns: number;
     spacing: number;
   };
+}
+
+/**
+ * ★★ Batch 854：组成员引用。
+ *
+ * ★ 源站逐字：`function N(e){return`${e.kind}:${e.id}`}` ⟹ ⟹ 成员的键是 **`kind:id`**。
+ * ★ 可分组的类别 ＝ 源站逐字 `function sg(e){return"character"===e||"prop"===e||"emptyObject"===e||"camera"===e}`
+ * ⟹ ⟹ **机位也能进组**（clone 的对象种类只有 character／prop／camera ⟹ 空对象暂无对应物）。
+ */
+export interface DirectorSceneMemberRef {
+  kind: DirectorObjectKind;
+  id: string;
+}
+
+/** ★★ Batch 854：可进组的类别（源站 `sg(e)` 在 clone 上的落点）。 */
+export const DIRECTOR_GROUPABLE_KINDS: readonly DirectorObjectKind[] = [
+  "character",
+  "prop",
+  "camera",
+];
+
+/**
+ * ★★ Batch 854：取一个组的**权威成员列表**（模块级纯函数）。
+ *
+ * ★ 逐字对齐源站 `function O(e){…(e.members??[]).forEach(n),(e.characterIds??[]).forEach(e=>n({kind:"character",id:e})),t}`：
+ * ★ **`members` 优先、`characterIds` 兜底**（老组／群众组只有 `characterIds`），
+ * ★ 并按源站的 `N(e)`＝`kind:id` 去重。
+ */
+export function resolveGroupMemberRefs(
+  group: DirectorCharacterGroup,
+): DirectorSceneMemberRef[] {
+  const out: DirectorSceneMemberRef[] = [];
+  const seen = new Set<string>();
+  const push = (kind: DirectorObjectKind, id: string) => {
+    if (!id) return;
+    const key = `${kind}:${id}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    out.push({ kind, id });
+  };
+  (group.members ?? []).forEach((member) => push(member.kind, member.id));
+  group.characterIds.forEach((id) => push("character", id));
+  return out;
 }
 
 export interface DirectorScene {
@@ -589,6 +643,13 @@ interface DirectorState {
   toggleObjectLocked: (objectId: string) => DirectorCommandResult;
   selectGroup: (groupId: string | null) => void;
   groupSelectedCharacters: () => string | null;
+  /**
+   * ★★ Batch 854：取一个组的**权威成员列表**（`members` 优先、`characterIds` 兜底）。
+   * ★ 逐字对齐源站 `function O(e){…}`。
+   */
+  resolveDirectorGroupMembers: (
+    group: DirectorCharacterGroup,
+  ) => DirectorSceneMemberRef[];
   ungroupSelectedCharacters: () => void;
   addCrowdArray: (input: {
     rows: number;
@@ -4285,8 +4346,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
 
   toggleObjectSelection: (objectId) =>
     set((state) => {
+      // ★★ Batch 854：**任意可分组成员**都能加选（源站逐字 `sg(e)` 含 prop／camera）
+      // ⟹ ⟹ 之前这里写死 `kind === "character"` ⟹ ⟹ 机位／道具进不了选择集。
       const object = state.objects.find(
-        (item) => item.id === objectId && item.kind === "character",
+        (item) => item.id === objectId &&
+          DIRECTOR_GROUPABLE_KINDS.includes(item.kind),
       );
       if (!object) return state;
       const currentIds = state.selectedGroupId
@@ -4375,17 +4439,26 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
 
   groupSelectedCharacters: () => {
     const state = get();
+    // ★★ Batch 854：已入组的成员（**任意类别**）都不能再进别的组。
+    // ★ 源站逐字：`function O(e)` 的成员列表是权威的 ⟹ ⟹ 判定要看**全部成员**，
+    // ★ 不是只看角色（老组没有 `members` ⟹ ⟹ 退回 `characterIds`）。
     const assignedIds = new Set(
-      state.groups.flatMap((group) => group.characterIds),
+      state.groups.flatMap((group) =>
+        resolveGroupMemberRefs(group).map((member) => member.id),
+      ),
     );
-    const characterIds = state.selectedObjectIds.filter(
-      (id) =>
-        !assignedIds.has(id) &&
-        state.authoredObjects.some(
-          (object) => object.id === id && object.kind === "character",
-        ),
-    );
-    if (characterIds.length < 2) {
+    // ★★ Batch 854：可进组的成员 ＝ **任意可分组成员**（源站逐字 `sg(e)` 含 camera）
+    // ⟹ ⟹ 之前这里只收 `kind === "character"` ⟹ ⟹ 机位进不了组（D1）。
+    const members = state.selectedObjectIds
+      .map((id) => state.authoredObjects.find((object) => object.id === id))
+      .filter((object): object is DirectorObject =>
+        object !== undefined &&
+        !assignedIds.has(object.id) &&
+        DIRECTOR_GROUPABLE_KINDS.includes(object.kind),
+      )
+      .map((object) => ({ kind: object.kind, id: object.id }));
+    // ★ 源站逐字：`if(r.length<2)return e` ⟹ ⟹ **成员不足两个就什么都不做**
+    if (members.length < 2) {
       const result = makeDirectorCommandResult(state, {
         commandKind: "GROUP_CHARACTERS",
         disposition: "NOOP",
@@ -4426,10 +4499,19 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     const groupIndex = state.groups.length + 1;
     const group: DirectorCharacterGroup = {
       id: `director-character-group-${Date.now()}-${groupIndex}`,
-      label: `角色组${groupIndex}`,
-      characterIds,
+      // ★★ Batch 854：组名按源站口径 —— 源站逐字
+      //   `function lT(e){return`${i18n("canvas:nodeTypeGroup")}${e.length+1}`}`
+      //   ⟹ ⟹ 源站实测（853 的源站探针）读到的组行标签是 **`分组1`**。
+      //   ★ 注意：源站 i18n 里另有 `角色组{index}`（`directorCharacterGroupAutoLabel`），
+      //   ★ 那是**另一条**路径的模板，不是导演台建组这条。
+      label: `分组${groupIndex}`,
+      // ★ `characterIds` 是**派生量**（源站逐字 `U(e)`＝从 members 里滤出角色）
+      characterIds: members
+        .filter((member) => member.kind === "character")
+        .map((member) => member.id),
+      members,
     };
-    const selectedObjectId = characterIds[characterIds.length - 1] ?? null;
+    const selectedObjectId = members[members.length - 1]?.id ?? null;
     const timeline = normalizeDirectorTimelineSelection(
       {
         ...state.timeline,
@@ -4441,7 +4523,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       },
       {
         selectedObjectId,
-        selectedObjectIds: characterIds,
+        // ★★ Batch 854：选中的是**全部成员**（不只角色）⟹ ⟹ 与源站
+        //   `lQ(r)` 的 `selectedSceneMembers` 一致。
+        selectedObjectIds: members.map((member) => member.id),
         selectedGroupId: group.id,
       },
     );
@@ -4460,7 +4544,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     });
     const selectionResult = {
       selectedObjectId,
-      selectedObjectIds: characterIds,
+      selectedObjectIds: members.map((member) => member.id),
       selectedGroupId: group.id,
     };
     const commit = commitDirectorMutation(state, {
@@ -4480,7 +4564,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       set({
         groups,
         selectedObjectId,
-        selectedObjectIds: characterIds,
+        selectedObjectIds: members.map((member) => member.id),
         selectedGroupId: group.id,
         timeline,
         history: commit.history,
@@ -4491,6 +4575,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     }
     return group.id;
   },
+
+  // ★★ Batch 854：取一个组的**权威成员列表**（源站逐字 `O(e)` 的落点）
+  resolveDirectorGroupMembers: (group) => resolveGroupMemberRefs(group),
 
   ungroupSelectedCharacters: () => {
     const groupId = get().selectedGroupId;

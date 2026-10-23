@@ -1,0 +1,309 @@
+{
+ "①根地址": "http://localhost:4317/",
+ "①根页URL": "http://localhost:4317/",
+ "①根页标题": "LibTV - 专业视频创作工具",
+ "①根页节点数": 10,
+ "①根页入口": [
+  {
+   "text": "取消 ESC",
+   "dataOpenDirector": null,
+   "x": 965,
+   "y": 9,
+   "w": 55,
+   "h": 16
+  },
+  {
+   "text": "画布 2",
+   "dataOpenDirector": null,
+   "x": 188,
+   "y": 16,
+   "w": 76,
+   "h": 32
+  },
+  {
+   "text": "开通会员限时 45 折",
+   "dataOpenDirector": null,
+   "x": 1577,
+   "y": 16,
+   "w": 157,
+   "h": 32
+  },
+  {
+   "text": "100",
+   "dataOpenDirector": null,
+   "x": 1741,
+   "y": 16,
+   "w": 67,
+   "h": 32
+  },
+  {
+   "text": "Agent",
+   "dataOpenDirector": null,
+   "x": 1816,
+   "y": 16,
+   "w": 88,
+   "h": 32
+  },
+  {
+   "text": "打开导演台 →",
+   "dataOpenDirector": "true",
+   "x": -13,
+   "y": 319,
+   "w": 166,
+   "h": 19
+  },
+  {
+   "text": "TV Director",
+   "dataOpenDirector": null,
+   "x": 1115,
+   "y": 1020,
+   "w": 48,
+   "h": 48
+  },
+  {
+   "text": "资产管理",
+   "dataOpenDirector": null,
+   "x": 14,
+   "y": 1034,
+   "w": 94,
+   "h": 28
+  },
+  {
+   "text": "53%",
+   "dataOpenDirector": null,
+   "x": 240,
+   "y": 1034,
+   "w": 36,
+   "h": 28
+  }
+ ],
+ "②有脚本执行节点": true,
+ "②hover后入口": [
+  {
+   "text": "取消 ESC",
+   "dataOpenDirector": null,
+   "x": 965,
+   "y": 9,
+   "w": 55,
+   "h": 16
+  },
+  {
+   "text": "画布 2",
+   "dataOpenDirector": null,
+   "x": 188,
+   "y": 16,
+   "w": 76,
+   "h": 32
+  },
+  {
+   "text": "开通会员限时 45 折",
+   "dataOpenDirector": null,
+   "x": 1577,
+   "y": 16,
+   "w": 157,
+   "h": 32
+  },
+  {
+   "text": "100",
+   "dataOpenDirector": null,
+   "x": 1741,
+   "y": 16,
+   "w": 67,
+   "h": 32
+  },
+  {
+   "text": "Agent",
+   "dataOpenDirector": null,
+   "x": 1816,
+   "y": 16,
+   "w": 88,
+   "h": 32
+  },
+  {
+   "text": "打开导演台 →",
+   "dataOpenDirector": "true",
+   "x": -13,
+   "y": 319,
+   "w": 166,
+   "h": 19
+  },
+  {
+   "text": "TV Director",
+   "dataOpenDirector": null,
+   "x": 1115,
+   "y": 1020,
+   "w": 48,
+   "h": 48
+  },
+  {
+   "text": "资产管理",
+   "dataOpenDirector": null,
+   "x": 14,
+   "y": 1034,
+   "w": 94,
+   "h": 28
+  },
+  {
+   "text": "53%",
+   "dataOpenDirector": null,
+   "x": 240,
+   "y": 1034,
+   "w": 36,
+   "h": 28
+  }
+ ],
+ "②有打开导演台按钮": true,
+ "③导演台URL": "http://localhost:4317/",
+ "③导演台有树": true,
+ "③导演台有对象树行": 5,
+ "③导演台有rail": 7,
+ "③导演台可交互元素": [
+  {
+   "sel": "[data-open-director]",
+   "text": "打开导演台 →",
+   "aria": "",
+   "x": -13,
+   "y": 319
+  },
+  {
+   "sel": "[data-director-tree]",
+   "text": "打组 解组1 个对象已选角色1角色A场景物体3咖啡桌冷掉的咖啡咖",
+   "aria": "",
+   "x": 48,
+   "y": 52
+  },
+  {
+   "sel": "[data-director-object-id]",
+   "text": "角色A",
+   "aria": "",
+   "x": 56,
+   "y": 200
+  },
+  {
+   "sel": "[data-director-object-id]",
+   "text": "咖啡桌",
+   "aria": "",
+   "x": 56,
+   "y": 272
+  },
+  {
+   "sel": "[data-director-object-id]",
+   "text": "冷掉的咖啡",
+   "aria": "",
+   "x": 56,
+   "y": 304
+  },
+  {
+   "sel": "[data-director-object-id]",
+   "text": "咖啡馆背景",
+   "aria": "",
+   "x": 56,
+   "y": 336
+  },
+  {
+   "sel": "[data-director-object-id]",
+   "text": "机位1",
+   "aria": "",
+   "x": 56,
+   "y": 408
+  },
+  {
+   "sel": "[data-director-group-action]",
+   "text": "打组",
+   "aria": "",
+   "x": 56,
+   "y": 104
+  },
+  {
+   "sel": "[data-director-group-action]",
+   "text": "解组",
+   "aria": "",
+   "x": 166,
+   "y": 104
+  },
+  {
+   "sel": "[data-director-rail-entry]",
+   "text": "",
+   "aria": "场景",
+   "x": 8,
+   "y": 60
+  },
+  {
+   "sel": "[data-director-rail-entry]",
+   "text": "",
+   "aria": "添加角色",
+   "x": 8,
+   "y": 116
+  },
+  {
+   "sel": "[data-director-rail-entry]",
+   "text": "",
+   "aria": "添加机位",
+   "x": 8,
+   "y": 156
+  },
+  {
+   "sel": "[data-director-rail-entry]",
+   "text": "",
+   "aria": "全景图",
+   "x": 8,
+   "y": 196
+  },
+  {
+   "sel": "[data-director-rail-entry]",
+   "text": "",
+   "aria": "选择画幅比例",
+   "x": 8,
+   "y": 236
+  },
+  {
+   "sel": "[data-director-rail-entry]",
+   "text": "",
+   "aria": "AI 识图导入",
+   "x": 8,
+   "y": 276
+  },
+  {
+   "sel": "[data-director-rail-entry]",
+   "text": "",
+   "aria": "帮助",
+   "x": 8,
+   "y": 1040
+  },
+  {
+   "sel": "[data-director-transform-mode]",
+   "text": "",
+   "aria": "移动",
+   "x": 603,
+   "y": 858
+  },
+  {
+   "sel": "[data-director-transform-mode]",
+   "text": "",
+   "aria": "旋转",
+   "x": 643,
+   "y": 858
+  },
+  {
+   "sel": "[data-director-transform-mode]",
+   "text": "",
+   "aria": "缩放",
+   "x": 683,
+   "y": 858
+  },
+  {
+   "sel": "[data-director-selection-count]",
+   "text": "1 个对象已选",
+   "aria": "",
+   "x": 56,
+   "y": 146
+  },
+  {
+   "sel": "[data-director-inspector-kind]",
+   "text": "角色属性姿势名称可见未锁定位置xyz旋转xyz缩放xyz统一缩放",
+   "aria": "",
+   "x": 1639,
+   "y": 52
+  }
+ ]
+}

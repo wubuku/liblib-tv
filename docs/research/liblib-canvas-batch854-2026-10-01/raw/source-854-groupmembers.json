@@ -1,0 +1,150 @@
+{
+ "①基线行": [
+  {
+   "label": "机位1",
+   "x": 96,
+   "y": 154,
+   "w": 168,
+   "h": 12,
+   "rowX": 56,
+   "rowW": 216,
+   "firstW": 16,
+   "icon": "<rect x=\"1.75\" y=\"4\" width=\"7.5\" height=\"6\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></rect>",
+   "rowCls": "group relative flex h-8 w-full cursor-pointer items-center py-1 pr-2 text-[12px] leading-none outline-none transition-colors after:pointer-events-none after:absolute after:left-0 after:right-0 after:z"
+  },
+  {
+   "label": "机位2",
+   "x": 96,
+   "y": 186,
+   "w": 168,
+   "h": 12,
+   "rowX": 56,
+   "rowW": 216,
+   "firstW": 16,
+   "icon": "<rect x=\"1.75\" y=\"4\" width=\"7.5\" height=\"6\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></rect>",
+   "rowCls": "group relative flex h-8 w-full cursor-pointer items-center py-1 pr-2 text-[12px] leading-none outline-none transition-colors after:pointer-events-none after:absolute after:left-0 after:right-0 after:z"
+  },
+  {
+   "label": "角色A",
+   "x": 96,
+   "y": 218,
+   "w": 168,
+   "h": 12,
+   "rowX": 56,
+   "rowW": 216,
+   "firstW": 16,
+   "icon": "<path d=\"M8.3125 4.66732C9.52062 4.66732 10.5 5.6467 10.5 6.85482V8.89649C10.5 9.46028 10.043 9.91732 9.47917 9.91732H9.33333V12.9798C9.33333 13.2214 9.13746 13",
+   "rowCls": "group relative flex h-8 w-full cursor-pointer items-center py-1 pr-2 text-[12px] leading-none outline-none transition-colors after:pointer-events-none after:absolute after:left-0 after:right-0 after:z"
+  }
+ ],
+ "①基线标签": [
+  "机位1",
+  "机位2",
+  "角色A"
+ ],
+ "①基线类别": [
+  "camera",
+  "camera",
+  "character"
+ ],
+ "①基线x": [
+  96,
+  96,
+  96
+ ],
+ "①基线节标题": [],
+ "②挑中的机位行标签": "机位1",
+ "②挑中的角色行标签": "角色A",
+ "③点机位后标签": [
+  "机位1",
+  "机位2",
+  "角色A"
+ ],
+ "④⌘加选角色后标签": [
+  "机位1",
+  "机位2",
+  "角色A"
+ ],
+ "⑤⌘G后行": [
+  {
+   "label": "分组1",
+   "x": 96,
+   "y": 154,
+   "w": 168,
+   "h": 12,
+   "rowX": 56,
+   "rowW": 216,
+   "firstW": 16,
+   "icon": "<path d=\"M1.5 19a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3m19 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3M6 21H4v-1h2zm4 0H8v-1h2zm4 0h-2v-1h2zm4 0h-2v-1h2zM2 18H1v-2h1zm19",
+   "rowCls": "group relative flex h-8 w-full cursor-pointer items-center py-1 pr-2 text-[12px] leading-none outline-none transition-colors after:pointer-events-none after:absolute after:left-0 after:right-0 after:t"
+  },
+  {
+   "label": "机位1",
+   "x": 112,
+   "y": 186,
+   "w": 152,
+   "h": 12,
+   "rowX": 56,
+   "rowW": 216,
+   "firstW": 32,
+   "icon": "<rect x=\"1.75\" y=\"4\" width=\"7.5\" height=\"6\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></rect>",
+   "rowCls": "group relative flex h-8 w-full cursor-pointer items-center py-1 pr-2 text-[12px] leading-none outline-none transition-colors after:pointer-events-none after:absolute after:left-0 after:right-0 after:z"
+  },
+  {
+   "label": "角色A",
+   "x": 112,
+   "y": 218,
+   "w": 152,
+   "h": 12,
+   "rowX": 56,
+   "rowW": 216,
+   "firstW": 32,
+   "icon": "<path d=\"M8.3125 4.66732C9.52062 4.66732 10.5 5.6467 10.5 6.85482V8.89649C10.5 9.46028 10.043 9.91732 9.47917 9.91732H9.33333V12.9798C9.33333 13.2214 9.13746 13",
+   "rowCls": "group relative flex h-8 w-full cursor-pointer items-center py-1 pr-2 text-[12px] leading-none outline-none transition-colors after:pointer-events-none after:absolute after:left-0 after:right-0 after:z"
+  },
+  {
+   "label": "机位2",
+   "x": 96,
+   "y": 250,
+   "w": 168,
+   "h": 12,
+   "rowX": 56,
+   "rowW": 216,
+   "firstW": 16,
+   "icon": "<rect x=\"1.75\" y=\"4\" width=\"7.5\" height=\"6\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></rect>",
+   "rowCls": "group relative flex h-8 w-full cursor-pointer items-center py-1 pr-2 text-[12px] leading-none outline-none transition-colors after:pointer-events-none after:absolute after:left-0 after:right-0 after:z"
+  }
+ ],
+ "⑤⌘G后标签": [
+  "分组1",
+  "机位1",
+  "角色A",
+  "机位2"
+ ],
+ "⑤⌘G后类别": [
+  "other",
+  "camera",
+  "character",
+  "camera"
+ ],
+ "⑤⌘G后x": [
+  96,
+  112,
+  112,
+  96
+ ],
+ "⑤行数变化": 1,
+ "⑥⌘⇧D后标签": [
+  "机位1",
+  "机位2",
+  "角色A"
+ ],
+ "⑥行数变化": 0,
+ "⑥回到基线": true,
+ "⑦结束时标签": [
+  "机位1",
+  "机位2",
+  "角色A"
+ ],
+ "⑦无需兜底": true
+}

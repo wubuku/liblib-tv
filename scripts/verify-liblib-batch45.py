@@ -200,12 +200,24 @@ def run_crowd_group_loop(page: Page):
     assert director_state(page)["selectedGroupId"] == group["id"]
 
     page.screenshot(path=str(CROWD_GROUP_SCREENSHOT))
-    group_row.locator("[data-director-group-action='toggle']").click()
-    assert page.locator("[data-director-group-expanded='true']").count() == 1
-    assert (
-        page.locator("[data-director-group-member-id]").count()
-        == len(group["characterIds"])
+    # ★★ Batch 854：组是**默认展开**的 —— 源站逐字 `expanded:!!F||!j.has(e.id)`
+    # （`j` 是**被折叠**的组集合 ⟹ ⟹ 默认就在展开态），且 batch 854 的源站实测
+    # 证实：新组建完，**成员立即可见**（源站探针 `raw/source-854-groupmembers.json`
+    # 的 `⑤⌘G后x` 里组员就在缩进位上）。
+    # ⟹ ⟹ 本断言从「先折叠、再点开」改成「**默认就展开**、点一下才收起」，
+    #     并且**限定在这个组里**（不按全局计数）⟹ ⟹ 别的组的状态不会干扰。
+    group_expanded = page.locator(
+        f"[data-director-group-id='{group['id']}'] "
+        "[data-director-group-expanded='true']"
     )
+    group_members = page.locator(
+        f"[data-director-group-id='{group['id']}'] [data-director-group-member-id]"
+    )
+    assert group_expanded.count() == 1
+    assert group_members.count() == len(group["characterIds"])
+    group_row.locator("[data-director-group-action='toggle']").click()
+    assert group_expanded.count() == 0
+    assert group_members.count() == 0
 
     # Batch 593: 建轨有两个入口——工具条「+ 新建轨道」(data-director-add-track)
     # 与「+ 轨道」(data-director-add-track-manual)。本断言要建的是**分组**

@@ -13,6 +13,9 @@ import {
   type DirectorTimelineTrackDocumentV1,
   type DirectorTransformDocumentV1,
   type DirectorTransformKeyframeDocumentV1,
+  // ★★ Batch 854：组的**权威成员列表**解析器（源站逐字 `O(e)`）⟹ ⟹ 剪贴板
+  // ★   在选组／贴组时必须按它算成员 ⟹ ⟹ 否则非角色成员（机位／道具）会被漏掉。
+  resolveDirectorGroupMembers,
 } from "./directorProjectDocument.ts";
 
 export const DIRECTOR_CLIPBOARD_SCHEMA_VERSION = 1 as const;
@@ -361,7 +364,11 @@ export function validateDirectorClipboardPacket(
       decoded.document.groups.length !== 1 ||
       decoded.document.groups[0].id !== selectedGroupId ||
       !hasSameStringSet(
-        decoded.document.groups[0].characterIds,
+        // ★★ Batch 854：比的是**权威成员列表**（任意类别）⟹ ⟹ 之前只比
+        // ★ `characterIds` ⟹ ⟹ 组里的机位／道具会让这一段误判成「选择不合法」。
+        resolveDirectorGroupMembers(decoded.document.groups[0]).map(
+          (member) => member.id,
+        ),
         selectedObjectIds,
       )
     ) {
@@ -426,7 +433,9 @@ export function buildDirectorClipboardPacket(input: {
     return { ok: false, reason: "INVALID_SELECTION" };
   }
   const requestedObjectIds = selectedGroup
-    ? selectedGroup.characterIds
+    // ★★ Batch 854：选组时取的是**权威成员列表**（任意类别）⟹ ⟹ 之前只取
+    // ★ `characterIds` ⟹ ⟹ 组里的机位／道具进不了剪贴板。
+    ? resolveDirectorGroupMembers(selectedGroup).map((member) => member.id)
     : input.selection.selectedObjectIds;
   const selectedObjectIds = [
     ...new Set(
@@ -908,6 +917,15 @@ export function planDirectorClipboardPaste(input: {
       characterIds: group.characterIds.map((objectId) =>
         requireMappedId(objectIds, objectId),
       ),
+      // ★★ Batch 854：**成员列表也要重映射** ⟹ ⟹ 之前只重映射了
+      // ★ `characterIds` ⟹ ⟹ 贴出来的组里 `members` 还指着**旧 id**
+      // ★ ⟹ ⟹ 文档里两个字段打架 ⟹ ⟹ 粘贴被判成非法。
+      members: group.members
+        ? group.members.map((member) => ({
+            kind: member.kind,
+            id: requireMappedId(objectIds, member.id),
+          }))
+        : null,
       crowd: group.crowd ? { ...group.crowd } : null,
     }));
     const pastedTracks = packet.timeline.tracks.map((track) =>

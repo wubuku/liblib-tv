@@ -4,6 +4,7 @@ import {
   normalizeDirectorProjectDocument,
   type DirectorCaptureDescriptorV1,
   type DirectorGroupDocumentV1,
+  type DirectorGroupMemberKindV1,
   type DirectorMotionPathAnchorDocumentV1,
   type DirectorMotionPathDocumentV1,
   type DirectorObjectDocumentV1,
@@ -340,6 +341,16 @@ function mapGroup(
     ...group,
     id,
     characterIds: characterIds as string[],
+    // ★★ Batch 854：**成员列表也要重映射** ⟹ ⟹ 之前只重映射了 `characterIds`
+    // ⟹ ⟹ 复制出来的组里 `members` 还指着**旧 id** ⟹ ⟹ 文档里两个字段打架
+    // ⟹ ⟹ 整工程复制被判成非法。
+    members: group.members
+      ? group.members.map((member) => {
+          const mapped = mapRequired(maps.objectMap, member.id);
+          return mapped ? { kind: member.kind, id: mapped } : null;
+        }).filter((member): member is { kind: DirectorGroupMemberKindV1; id: string } =>
+          member !== null)
+      : null,
     crowd: group.crowd ? { ...group.crowd } : null,
   };
 }

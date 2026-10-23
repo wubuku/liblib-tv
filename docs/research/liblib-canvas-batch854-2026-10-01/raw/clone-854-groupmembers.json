@@ -1,0 +1,828 @@
+{
+ "★期望来源": {
+  "源文件": "docs/research/liblib-canvas-batch854-2026-10-01/raw/source-854-groupmembers.json",
+  "期望组标签": "分组1",
+  "期望成员类别集合": [
+   "camera",
+   "character"
+  ],
+  "期望文本缩进px": 16,
+  "期望未入组行仍平铺": [
+   "camera",
+   "other"
+  ],
+  "期望行元素缩进px": [
+   0
+  ],
+  "源站组行首子宽": 16,
+  "源站成员行首子宽": [
+   32,
+   32
+  ]
+ },
+ "①基线": {
+  "DOM组数": 0,
+  "DOM组": [],
+  "DOM组员数": 0,
+  "DOM组员": [],
+  "DOM对象行数": 5,
+  "DOM对象行": [
+   {
+    "label": "角色A",
+    "x": 56,
+    "y": 200,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-character-lead",
+    "kind": "character",
+    "selected": "true"
+   },
+   {
+    "label": "咖啡桌",
+    "x": 56,
+    "y": 272,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-table",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "冷掉的咖啡",
+    "x": 56,
+    "y": 304,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡馆背景",
+    "x": 56,
+    "y": 336,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "机位1",
+    "x": 56,
+    "y": 408,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-camera-main",
+    "kind": "camera",
+    "selected": "false"
+   }
+  ],
+  "展开容器数": 0,
+  "打组按钮禁用": true,
+  "解组按钮禁用": true,
+  "选择工具栏在": true,
+  "选择类别": "objects",
+  "选中文本": "1 个对象已选",
+  "store组数": 0,
+  "store选中组": null,
+  "store选中对象": [
+   "director-character-lead"
+  ],
+  "store组员": null,
+  "store组角色id": null
+ },
+ "②点机位后": {
+  "DOM组数": 0,
+  "DOM组": [],
+  "DOM组员数": 0,
+  "DOM组员": [],
+  "DOM对象行数": 5,
+  "DOM对象行": [
+   {
+    "label": "角色A",
+    "x": 56,
+    "y": 200,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-character-lead",
+    "kind": "character",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡桌",
+    "x": 56,
+    "y": 272,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-table",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "冷掉的咖啡",
+    "x": 56,
+    "y": 304,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡馆背景",
+    "x": 56,
+    "y": 336,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "机位1",
+    "x": 56,
+    "y": 408,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-camera-main",
+    "kind": "camera",
+    "selected": "true"
+   }
+  ],
+  "展开容器数": 0,
+  "打组按钮禁用": true,
+  "解组按钮禁用": true,
+  "选择工具栏在": true,
+  "选择类别": "objects",
+  "选中文本": "1 个对象已选",
+  "store组数": 0,
+  "store选中组": null,
+  "store选中对象": [
+   "director-camera-main"
+  ],
+  "store组员": null,
+  "store组角色id": null
+ },
+ "③cmd加选角色后": {
+  "DOM组数": 0,
+  "DOM组": [],
+  "DOM组员数": 0,
+  "DOM组员": [],
+  "DOM对象行数": 5,
+  "DOM对象行": [
+   {
+    "label": "角色A",
+    "x": 56,
+    "y": 200,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-character-lead",
+    "kind": "character",
+    "selected": "true"
+   },
+   {
+    "label": "咖啡桌",
+    "x": 56,
+    "y": 272,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-table",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "冷掉的咖啡",
+    "x": 56,
+    "y": 304,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡馆背景",
+    "x": 56,
+    "y": 336,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "机位1",
+    "x": 56,
+    "y": 408,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-camera-main",
+    "kind": "camera",
+    "selected": "true"
+   }
+  ],
+  "展开容器数": 0,
+  "打组按钮禁用": false,
+  "解组按钮禁用": true,
+  "选择工具栏在": true,
+  "选择类别": "objects",
+  "选中文本": "2 个对象已选",
+  "store组数": 0,
+  "store选中组": null,
+  "store选中对象": [
+   "director-camera-main",
+   "director-character-lead"
+  ],
+  "store组员": null,
+  "store组角色id": null
+ },
+ "④打组后": {
+  "DOM组数": 1,
+  "DOM组": [
+   {
+    "label": "分组1",
+    "x": 56,
+    "y": 200,
+    "w": 216,
+    "h": 32,
+    "文本x": 120,
+    "id": "director-character-group-1792740835766-1",
+    "selected": "true"
+   }
+  ],
+  "DOM组员数": 2,
+  "DOM组员": [
+   {
+    "label": "机位1",
+    "x": 56,
+    "y": 232,
+    "w": 216,
+    "h": 28,
+    "文本x": 136,
+    "id": "director-camera-main",
+    "kind": "camera"
+   },
+   {
+    "label": "角色A",
+    "x": 56,
+    "y": 260,
+    "w": 216,
+    "h": 28,
+    "文本x": 136,
+    "id": "director-character-lead",
+    "kind": "character"
+   }
+  ],
+  "DOM对象行数": 3,
+  "DOM对象行": [
+   {
+    "label": "咖啡桌",
+    "x": 56,
+    "y": 328,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-table",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "冷掉的咖啡",
+    "x": 56,
+    "y": 360,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡馆背景",
+    "x": 56,
+    "y": 392,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "selected": "false"
+   }
+  ],
+  "展开容器数": 1,
+  "打组按钮禁用": true,
+  "解组按钮禁用": false,
+  "选择工具栏在": true,
+  "选择类别": "group",
+  "选中文本": "分组 · 2 个成员",
+  "store组数": 1,
+  "store选中组": "director-character-group-1792740835766-1",
+  "store选中对象": [
+   "director-camera-main",
+   "director-character-lead"
+  ],
+  "store组员": [
+   {
+    "kind": "camera",
+    "id": "director-camera-main"
+   },
+   {
+    "kind": "character",
+    "id": "director-character-lead"
+   }
+  ],
+  "store组角色id": [
+   "director-character-lead"
+  ]
+ },
+ "④判定": {
+  "组数": 1,
+  "组标签": "分组1",
+  "期望组标签": "分组1",
+  "组标签一致": true,
+  "成员类别集合": [
+   "camera",
+   "character"
+  ],
+  "期望成员类别集合": [
+   "camera",
+   "character"
+  ],
+  "成员类别一致": true,
+  "★文本层缩进px": [
+   16,
+   16
+  ],
+  "★期望文本层缩进px": 16,
+  "★行元素层缩进px": [
+   0,
+   0
+  ],
+  "★期望行元素层缩进px": [
+   0
+  ],
+  "成员默认展开": true,
+  "入组后剩余类别分区": [
+   "prop"
+  ],
+  "入组后剩余对象行": 3,
+  "store组员": [
+   {
+    "kind": "camera",
+    "id": "director-camera-main"
+   },
+   {
+    "kind": "character",
+    "id": "director-character-lead"
+   }
+  ],
+  "store组角色id": [
+   "director-character-lead"
+  ]
+ },
+ "⑤解组后": {
+  "DOM组数": 0,
+  "DOM组": [],
+  "DOM组员数": 0,
+  "DOM组员": [],
+  "DOM对象行数": 5,
+  "DOM对象行": [
+   {
+    "label": "角色A",
+    "x": 56,
+    "y": 200,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-character-lead",
+    "kind": "character",
+    "selected": "true"
+   },
+   {
+    "label": "咖啡桌",
+    "x": 56,
+    "y": 272,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-table",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "冷掉的咖啡",
+    "x": 56,
+    "y": 304,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡馆背景",
+    "x": 56,
+    "y": 336,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "机位1",
+    "x": 56,
+    "y": 408,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-camera-main",
+    "kind": "camera",
+    "selected": "true"
+   }
+  ],
+  "展开容器数": 0,
+  "打组按钮禁用": false,
+  "解组按钮禁用": true,
+  "选择工具栏在": true,
+  "选择类别": "objects",
+  "选中文本": "2 个对象已选",
+  "store组数": 0,
+  "store选中组": null,
+  "store选中对象": [
+   "director-camera-main",
+   "director-character-lead"
+  ],
+  "store组员": null,
+  "store组角色id": null
+ },
+ "⑤判定": {
+  "组数": 0,
+  "对象行数": 5,
+  "基线对象行数": 5,
+  "回到基线": true
+ },
+ "⑥a点道具后": {
+  "DOM组数": 0,
+  "DOM组": [],
+  "DOM组员数": 0,
+  "DOM组员": [],
+  "DOM对象行数": 5,
+  "DOM对象行": [
+   {
+    "label": "角色A",
+    "x": 56,
+    "y": 200,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-character-lead",
+    "kind": "character",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡桌",
+    "x": 56,
+    "y": 272,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-table",
+    "kind": "prop",
+    "selected": "true"
+   },
+   {
+    "label": "冷掉的咖啡",
+    "x": 56,
+    "y": 304,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡馆背景",
+    "x": 56,
+    "y": 336,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "机位1",
+    "x": 56,
+    "y": 408,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-camera-main",
+    "kind": "camera",
+    "selected": "false"
+   }
+  ],
+  "展开容器数": 0,
+  "打组按钮禁用": true,
+  "解组按钮禁用": true,
+  "选择工具栏在": true,
+  "选择类别": "objects",
+  "选中文本": "1 个对象已选",
+  "store组数": 0,
+  "store选中组": null,
+  "store选中对象": [
+   "director-prop-table"
+  ],
+  "store组员": null,
+  "store组角色id": null
+ },
+ "⑥shift加选道具后": {
+  "DOM组数": 0,
+  "DOM组": [],
+  "DOM组员数": 0,
+  "DOM组员": [],
+  "DOM对象行数": 5,
+  "DOM对象行": [
+   {
+    "label": "角色A",
+    "x": 56,
+    "y": 200,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-character-lead",
+    "kind": "character",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡桌",
+    "x": 56,
+    "y": 272,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-table",
+    "kind": "prop",
+    "selected": "true"
+   },
+   {
+    "label": "冷掉的咖啡",
+    "x": 56,
+    "y": 304,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "selected": "true"
+   },
+   {
+    "label": "咖啡馆背景",
+    "x": 56,
+    "y": 336,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "机位1",
+    "x": 56,
+    "y": 408,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-camera-main",
+    "kind": "camera",
+    "selected": "false"
+   }
+  ],
+  "展开容器数": 0,
+  "打组按钮禁用": false,
+  "解组按钮禁用": true,
+  "选择工具栏在": true,
+  "选择类别": "objects",
+  "选中文本": "2 个对象已选",
+  "store组数": 0,
+  "store选中组": null,
+  "store选中对象": [
+   "director-prop-table",
+   "director-prop-mug"
+  ],
+  "store组员": null,
+  "store组角色id": null
+ },
+ "⑥判定": {
+  "选中对象数": 2,
+  "期望选中对象数": 2,
+  "选中类别": [
+   "prop"
+  ]
+ },
+ "⑦道具组后": {
+  "DOM组数": 1,
+  "DOM组": [
+   {
+    "label": "分组1",
+    "x": 56,
+    "y": 200,
+    "w": 216,
+    "h": 32,
+    "文本x": 120,
+    "id": "director-character-group-1792740840583-1",
+    "selected": "true"
+   }
+  ],
+  "DOM组员数": 2,
+  "DOM组员": [
+   {
+    "label": "咖啡桌",
+    "x": 56,
+    "y": 232,
+    "w": 216,
+    "h": 28,
+    "文本x": 136,
+    "id": "director-prop-table",
+    "kind": "prop"
+   },
+   {
+    "label": "冷掉的咖啡",
+    "x": 56,
+    "y": 260,
+    "w": 216,
+    "h": 28,
+    "文本x": 136,
+    "id": "director-prop-mug",
+    "kind": "prop"
+   }
+  ],
+  "DOM对象行数": 3,
+  "DOM对象行": [
+   {
+    "label": "角色A",
+    "x": 56,
+    "y": 328,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-character-lead",
+    "kind": "character",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡馆背景",
+    "x": 56,
+    "y": 400,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "机位1",
+    "x": 56,
+    "y": 472,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-camera-main",
+    "kind": "camera",
+    "selected": "false"
+   }
+  ],
+  "展开容器数": 1,
+  "打组按钮禁用": true,
+  "解组按钮禁用": false,
+  "选择工具栏在": true,
+  "选择类别": "group",
+  "选中文本": "分组 · 2 个成员",
+  "store组数": 1,
+  "store选中组": "director-character-group-1792740840583-1",
+  "store选中对象": [
+   "director-prop-table",
+   "director-prop-mug"
+  ],
+  "store组员": [
+   {
+    "kind": "prop",
+    "id": "director-prop-table"
+   },
+   {
+    "kind": "prop",
+    "id": "director-prop-mug"
+   }
+  ],
+  "store组角色id": []
+ },
+ "⑦判定": {
+  "组数": 1,
+  "成员类别集合": [
+   "prop"
+  ],
+  "成员数": 2,
+  "成员默认展开": true
+ },
+ "⑧结束": {
+  "DOM组数": 0,
+  "DOM组": [],
+  "DOM组员数": 0,
+  "DOM组员": [],
+  "DOM对象行数": 5,
+  "DOM对象行": [
+   {
+    "label": "角色A",
+    "x": 56,
+    "y": 200,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-character-lead",
+    "kind": "character",
+    "selected": "false"
+   },
+   {
+    "label": "咖啡桌",
+    "x": 56,
+    "y": 272,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-table",
+    "kind": "prop",
+    "selected": "true"
+   },
+   {
+    "label": "冷掉的咖啡",
+    "x": 56,
+    "y": 304,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "selected": "true"
+   },
+   {
+    "label": "咖啡馆背景",
+    "x": 56,
+    "y": 336,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "selected": "false"
+   },
+   {
+    "label": "机位1",
+    "x": 56,
+    "y": 408,
+    "w": 216,
+    "h": 32,
+    "文本x": 88,
+    "id": "director-camera-main",
+    "kind": "camera",
+    "selected": "false"
+   }
+  ],
+  "展开容器数": 0,
+  "打组按钮禁用": false,
+  "解组按钮禁用": true,
+  "选择工具栏在": true,
+  "选择类别": "objects",
+  "选中文本": "2 个对象已选",
+  "store组数": 0,
+  "store选中组": null,
+  "store选中对象": [
+   "director-prop-table",
+   "director-prop-mug"
+  ],
+  "store组员": null,
+  "store组角色id": null
+ }
+}

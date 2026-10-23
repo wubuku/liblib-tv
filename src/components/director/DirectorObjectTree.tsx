@@ -19,6 +19,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
+  DIRECTOR_GROUPABLE_KINDS,
+  resolveGroupMemberRefs,
   useDirectorStore,
   type DirectorCharacterGroup,
   type DirectorObject,
@@ -58,10 +60,15 @@ function GroupRow({
   const deleteDirectorEntity = useDirectorStore(
     (state) => state.deleteDirectorEntity,
   );
-  const [expanded, setExpanded] = useState(false);
+  // ★★ Batch 854：**默认展开**。
+  // ★ 源站逐字：`expanded:!!F||!j.has(e.id)` —— `j` 是**被折叠**的组集合 ⟹ ⟹
+  // ★ 默认（`j` 里没有）就是**展开**。★ 之前 clone 写的是 `useState(false)`
+  // ⟹ ⟹ 默认折叠 ⟹ ⟹ 组一建出来，成员就从树上消失了（D4）。
+  const [expanded, setExpanded] = useState(true);
   const normalized = query.trim().toLocaleLowerCase("zh-CN");
-  const members = group.characterIds
-    .map((id) => objects.find((object) => object.id === id))
+  // ★★ Batch 854：成员来自**权威成员列表**（任意类别）⟹ ⟹ 不再只认角色。
+  const members = resolveGroupMemberRefs(group)
+    .map((member) => objects.find((object) => object.id === member.id))
     .filter((object): object is DirectorObject => Boolean(object));
   const matchingMembers = normalized
     ? members.filter((member) =>
@@ -130,7 +137,10 @@ function GroupRow({
       {expanded ? (
         <div
           data-director-group-expanded="true"
-          className="border-l border-white/[0.06] pl-4"
+          // ★★ Batch 854：**去掉容器级的缩进**（原来 `border-l` ＋ `pl-4`）
+          // ★ ⟹ ⟹ 源站的缩进是**做在行内**的（源站实测：组行与成员行的**行元素 x 相同**，
+          // ★   都是 56；差别只在前导元素宽度 16 → 32）。
+          // ★ 源站那一组行下面也**没有竖线** ⟹ ⟹ 容器不该画线、也不该有内边距。
           role="group"
           aria-label={`${group.label}成员`}
         >
@@ -139,15 +149,29 @@ function GroupRow({
               key={member.id}
               type="button"
               data-director-group-member-id={member.id}
+              // ★★ Batch 854：**成员的类别**也要能从 DOM 读到 ⟹ ⟹ 探针可以
+              // ★ 直接验「这个组同时含 camera 与 character」，而不必去翻 store。
+              data-director-group-member-kind={member.kind}
               onClick={() => selectGroup(group.id)}
               className={cn(
-                "flex h-7 w-full items-center gap-2 px-2 text-left text-[11px]",
+                // ★★ Batch 854：**成员行与组行同构的前导** ——
+                // ★   `border-l-2 border-transparent` ＝ 与组行同一条左边框盒（透明，不画）
+                // ★   `w-6` ＝ 对齐组行那个 24px 的折叠按钮位
+                // ★   `w-4` ＝ **16px 的缩进量**（源站实测：组行标签 x=96、成员标签 x=112）
+                // ★   加上两处 `gap-2` ⟹ ⟹ 成员文本正好落在「组文本 + 16px」。
+                // ★ ★ 之前这里用容器的 `pl-4` 做缩进 ⟹ ⟹ 成员文本反而比组文本**左 17px**
+                // ★   （组行有 24px 折叠按钮、成员行没有）⟹ ⟹ 视觉上「成员没缩进」。
+                "flex h-7 w-full items-center gap-2 border-l-2 border-transparent pr-2 text-left text-[11px]",
                 selected
                   ? "text-[#d9f8ff]"
                   : "text-[#777] hover:bg-white/[0.04] hover:text-white",
               )}
             >
-              <span className="text-[#626262]"><User size={12} /></span>
+              <span className="w-6 shrink-0" aria-hidden="true" />
+              <span className="w-4 shrink-0" aria-hidden="true" />
+              <span className="text-[#626262]">
+                <ObjectIcon object={member} />
+              </span>
               <span className="min-w-0 flex-1 truncate">{member.name}</span>
             </button>
           ))}
@@ -221,8 +245,17 @@ export function DirectorObjectTree() {
     ? objects.find((object) => object.id === contextMenu.objectId)
     : null;
 
-  const groupedCharacterIds = useMemo(
-    () => new Set(groups.flatMap((group) => group.characterIds)),
+  // ★★ Batch 854：已入组的成员（**任意类别**）都不再出现在自己的类别分区里。
+  // ★ 源站是**平铺列表**（组行 ＋ 其成员子行，然后未分组的散件）⟹ ⟹ 入组成员
+  // ★ 只在自己的组下面出现一次。★ 之前这里只算 `characterIds` ⟹ ⟹ 机位入组后
+  // ★ 仍会平铺在「摄像机」分区里（D4 的一半）。
+  const groupedMemberIds = useMemo(
+    () =>
+      new Set(
+        groups.flatMap((group) =>
+          resolveGroupMemberRefs(group).map((member) => member.id),
+        ),
+      ),
     [groups],
   );
   const visibleGroups = useMemo(
@@ -232,9 +265,11 @@ export function DirectorObjectTree() {
         return (
           !normalized ||
           group.label.toLocaleLowerCase("zh-CN").includes(normalized) ||
-          group.characterIds.some((id) =>
+          // ★★ Batch 854：搜索要覆盖**全部成员**（任意类别）⟹ ⟹ 之前只看
+          // ★ `characterIds` ⟹ ⟹ 机位入组后按机位名搜不到这个组。
+          resolveGroupMemberRefs(group).some((member) =>
             objects
-              .find((object) => object.id === id)
+              .find((object) => object.id === member.id)
               ?.name.toLocaleLowerCase("zh-CN")
               .includes(normalized),
           )
@@ -251,24 +286,27 @@ export function DirectorObjectTree() {
           objects: objects.filter(
             (object) =>
               object.kind === group.kind &&
-              (group.kind !== "character" || !groupedCharacterIds.has(object.id)) &&
+              !groupedMemberIds.has(object.id) &&
               (!normalized ||
                 object.name.toLocaleLowerCase("zh-CN").includes(normalized)),
           ),
         }))
         .filter((group) => group.objects.length > 0),
-    [groupedCharacterIds, normalized, objects],
+    [groupedMemberIds, normalized, objects],
   );
-  const selectedCharacters = selectedObjectIds.filter((id) =>
-    objects.some((object) => object.id === id && object.kind === "character"),
+  // ★★ Batch 854：可进组的成员（**任意类别**，源站逐字 `sg(e)`）
+  const selectedGroupableMembers = selectedObjectIds.filter((id) =>
+    objects.some(
+      (object) => object.id === id && DIRECTOR_GROUPABLE_KINDS.includes(object.kind),
+    ),
   );
-  const canGroup = selectedCharacters.length >= 2 && selectedGroupId === null;
+  const canGroup = selectedGroupableMembers.length >= 2 && selectedGroupId === null;
   const hasSelection =
     selectedGroupId !== null ||
     selectedObjectIds.length > 0 ||
     selectedObjectId !== null;
   const selectionCount = selectedGroupId
-    ? selectedCharacters.length
+    ? selectedGroupableMembers.length
     : selectedObjectIds.length > 0
       ? selectedObjectIds.length
       : selectedObjectId
@@ -463,9 +501,15 @@ export function DirectorObjectTree() {
                       data-director-object-selected={selected}
                       data-director-object-visible={object.visible}
                       onClick={(event) => {
+                        // ★★ Batch 854：加选修饰键 ＝ **⇧／⌘／Ctrl**
+                        //   （源站逐字 `let r=t.shiftKey||t.metaKey||t.ctrlKey;`）
+                        //   ＋ 参与者 ＝ **任意可分组成员**
+                        //   （源站逐字 `sg(e.category)?{additive:r,individual:!0}:void 0`）。
+                        // ★ 之前这里是 `event.shiftKey && object.kind === "character"`
+                        // ⟹ ⟹ 裸 ⇧ 之外的修饰键失效、机位／道具进不了选择集（D3）。
                         if (
-                          event.shiftKey &&
-                          object.kind === "character"
+                          (event.shiftKey || event.metaKey || event.ctrlKey) &&
+                          DIRECTOR_GROUPABLE_KINDS.includes(object.kind)
                         ) {
                           toggleObjectSelection(object.id);
                         } else {
