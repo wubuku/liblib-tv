@@ -887,8 +887,17 @@ _PAYLOAD["verdicts_1027"] = _publish_verdicts()
 #   ⇒ ⇒⇒   ⇒ ⇒ 「本门怎么记账」红了 = 门坏了 ⇒ ⇒ 要修门 ⇒ ⇒ **⇒ 而「产品坏了」不在这一档** ⇒ ⇒ ⇒⇒
 _PAYLOAD["criterion_kinds_1027"] = {
     "P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027": "failure",
-    "P2_every_touched_probe_was_re_run_and_reported_1027":
-        ("precondition" if _SELFONLY else "failure"),
+    # ⭐⭐⭐⭐⭐ 1032-②m·其七：**kind 必须是字面量** ⇒ ⇒ 第一版这里写的是
+    #   `("precondition" if _SELFONLY else "failure")` ⇒ ⇒ ⇒ 而**后果是整本台账读不出来**：
+    #   门用 AST 读台账、只认字面量（`ast.literal_eval`）⇒ ⇒ 遇三元表达式 ⇒ 整本判「没有台账」
+    #   ⇒ ⇒ ⇒ ⇒ DD993AD.1（册内 18 本必须全部发布台账）因此翻红 ⇒ ⇒ ⇒ ⇒
+    #   ⇒ ⇒ ⇒ ⇒ **⇒ 而「这次不适用」不是 kind 的事** ⇒ ⇒ 它由 `_NOT_APPLICABLE_1027`
+    #   ⇒ ⇒ ⇒ ⇒ ⇒ + `criteria_applicability_1027` 承担（P12 核它）⇒ ⇒ ⇒ ⇒
+    #   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 两个量塞进一个字段 ＝ 同一个量有两份实现 ⇒ ⇒ 本批要消灭的病**
+    #   ⇒ ⇒ ⇒⇒ ⇒ **⇒ 而静态 kind 必须是 "failure"**：自检语境下 P2 压根没被评估（值为 None、
+    #   ⇒ ⇒ ⇒⇒ ⇒ 产物里没有这个键）⇒ ⇒ 而普查语境下 P2 红 = 「有探针没被重跑上报」= 仪器坏了
+    #   ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ 若写成 "precondition" ⇒ 普查语境下那一条真失败会被算成「不适用」⇒ 而真缺陷被藏起来**
+    "P2_every_touched_probe_was_re_run_and_reported_1027": "failure",
     "P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027": "failure",
     "P4_touched_list_is_recorded_for_every_golden_owning_probe_1027": "failure",
     "P5_one_run_per_golden_no_double_counting_1027": "failure",

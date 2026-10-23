@@ -6338,7 +6338,7 @@
    "var": "_p1027",
    "anchor": "\"P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027\"",
    "occurrences": 2,
-   "min_line_gap": 418
+   "min_line_gap": 427
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6352,28 +6352,28 @@
    "var": "_p1027",
    "anchor": "\"P4_touched_list_is_recorded_for_every_golden_owning_probe_1027\"",
    "occurrences": 2,
-   "min_line_gap": 418
+   "min_line_gap": 427
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1027",
    "anchor": "\"P5_one_run_per_golden_no_double_counting_1027\"",
    "occurrences": 2,
-   "min_line_gap": 418
+   "min_line_gap": 427
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1027",
    "anchor": "\"P6_scope_declared_1027\"",
    "occurrences": 2,
-   "min_line_gap": 418
+   "min_line_gap": 427
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1027",
    "anchor": "\"P7_offline_1027\"",
    "occurrences": 2,
-   "min_line_gap": 418
+   "min_line_gap": 427
   },
   {
    "class": "I-标识符(多处引用)",
