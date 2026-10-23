@@ -17,17 +17,13 @@
   "why": []
  },
  "head": {
-  "ok": false,
-  "n_matched": 29,
-  "n_stale": 1,
-  "stale_books": [
-   "wired-contract-1032b1.json"
-  ],
+  "ok": true,
+  "n_matched": 30,
+  "n_stale": 0,
+  "stale_books": [],
   "missing_books": [],
   "phantom_books": [],
-  "why": [
-   "row_mismatch:wired-contract-1032b1.json"
-  ]
+  "why": []
  },
  "selftest": {
   "ok": true,
@@ -76,10 +72,10 @@
   ]
  },
  "P": {
-  "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": false,
+  "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": true,
   "P2_the_table_covers_every_book_on_disk_1032l": true,
   "P3_volatile_is_declared_and_kept_out_of_the_table_1032l": true,
-  "P4_the_committed_state_is_self_consistent_1032l": false,
+  "P4_the_committed_state_is_self_consistent_1032l": true,
   "P5_the_working_tree_is_self_consistent_1032l": true,
   "P6_this_gate_can_actually_go_red_1032l": true,
   "P7_the_table_declares_the_gate_that_checks_it_1032l": true
