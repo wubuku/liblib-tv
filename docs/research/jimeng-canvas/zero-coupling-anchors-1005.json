@@ -1,15 +1,15 @@
 {
  "generated_by": "jimeng_probe1005_zero_coupling_census.py",
- "n_zero_coupling": 932,
- "n_positive_present": 7039,
- "n_distinct_keys": 6869,
+ "n_zero_coupling": 933,
+ "n_positive_present": 7040,
+ "n_distinct_keys": 6870,
  "by_class": {
-  "I-标识符(多处引用)": 503,
+  "I-标识符(多处引用)": 504,
   "P-散文/片段": 429
  },
  "class_x_gap": {
   "I-标识符(多处引用)|21–200": 193,
-  "I-标识符(多处引用)|4–20": 104,
+  "I-标识符(多处引用)|4–20": 105,
   "I-标识符(多处引用)|>200": 98,
   "I-标识符(多处引用)|≤3": 108,
   "P-散文/片段|21–200": 220,
@@ -6436,7 +6436,7 @@
    "var": "_p1015",
    "anchor": "crashed_rc_other",
    "occurrences": 2,
-   "min_line_gap": 552
+   "min_line_gap": 554
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6506,7 +6506,7 @@
    "var": "_p1015",
    "anchor": "_self_report(",
    "occurrences": 3,
-   "min_line_gap": 73
+   "min_line_gap": 61
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6542,6 +6542,13 @@
    "anchor": "_STYLE_READERS_1015",
    "occurrences": 3,
    "min_line_gap": 3
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1015",
+   "anchor": "criteria_1015",
+   "occurrences": 4,
+   "min_line_gap": 18
   }
  ]
 }

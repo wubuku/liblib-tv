@@ -1538,6 +1538,18 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
                 "而本批往 audit 里塞了判据 ⇒ ⇒ ⇒ ⇒ ⇒ 所以它的读数必然跟着变",
     },
     "red_ledger": RED_LEDGER,
+    # ⇒ ⇒ ⇒ ⇒ 1032-②m 笔4·四：**台账必须落进【仓里那本】** ⇒ ⇒ ⇒⇒⇒
+    #   ⇒ ⇒⇒⇒ 而 `out` 落的是 /tmp ⇒ ⇒⇒⇒ ⇒ **⇒ ⇒ 仓里那本里没有台账 ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 而 verifier 读的是仓里那本 ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ 那道「台账」从来没被任何门读到过** ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 「声明 ≠ 发布」的第四次复发、复发在上一批自己身上** ⇒ ⇒⇒⇒
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ 而 1014 早就写着「1014 因此一直『有判据、没台账』」**
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 落进仓里 ⇒ 1014 才第一次能核它**
+    "criteria_1015": out["criteria_1015"],
+    "criterion_kinds_1015": out["criterion_kinds_1015"],
+    "criterion_kinds_complete_1015": out["criterion_kinds_complete_1015"],
+    "styles_in_use_1015": out["styles_in_use_1015"],
+    "styles_supported_1015": out["styles_supported_1015"],
     "discovery": {
         "channel_a_goldens": N_GOLDENS,
         "channel_b_probes": len(_PROBES),

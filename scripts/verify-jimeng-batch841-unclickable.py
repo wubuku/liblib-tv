@@ -588,6 +588,60 @@ def _p1015_styles_pc():
             and not _p1015_styles_judge(_m2).get("ok"))
 
 
+def _p1015_book_publishes_criteria(_d=None):
+    """⭐⭐⭐⭐⭐ **「台账必须落进【仓里那本】」—— 而不是落进 /tmp** ⇒ ⇒⇒⇒
+    ⇒ ⇒⇒⇒ 因为 verifier 读的是仓里那本 ⇒ ⇒⇒⇒ 而 /tmp 那份**谁也复现不了** ⇒ ⇒⇒⇒
+    ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ 真相：②m 笔2 以为「台账落进产物了」、而它落进的是 /tmp** ⇒ ⇒⇒⇒
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 那是「声明 ≠ 发布」的第四次复发、且复发在上一批自己身上** ⇒ ⇒⇒⇒
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 而 1014 早就写着「1014 因此一直『有判据、没台账』」**
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以这道判决是「门亲自核落点在不在仓里」**
+
+    ⭐⭐⭐⭐⭐ **实现只有这一份**（`_d` 可注入）⇒ ⇒ 否则「阳性对照」就得另抄一遍
+    ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ 而另抄一遍正是本批要消灭的那个病** ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+    """
+    if _d is None:
+        _d = _p1015_red_load()
+    if _d is None:
+        return False
+    _c = _d.get("criteria_1015")
+    if not isinstance(_c, dict):
+        return False
+    for _k in ("P_every_book_has_readable_self_report_1015",
+               "P_self_report_agrees_with_detail_1015",
+               "P_styles_all_supported_1015"):
+        if _c.get(_k) is not True:
+            return False
+    return (_d.get("criterion_kinds_complete_1015") is True
+            and isinstance(_d.get("styles_in_use_1015"), list)
+            and isinstance(_d.get("styles_supported_1015"), list))
+
+
+def _p1015_book_publishes_pc():
+    """⭐⭐⭐⭐⭐ **阳性对照：证明「台账落在仓里」这道判决能红** ——
+    ⇒ ⇒ ① 删掉 `criteria_1015` ⇒ 必须翻红
+    ⇒ ⇒ ⇒ ② 把三条新判据里的一条改成 False ⇒ 必须翻红
+    ⇒ ⇒ ⇒ ③ 删掉 `styles_in_use_1015` ⇒ 必须翻红
+    ⇒ ⇒ ⇒⇒ **⇒ 而这三条改法都与真实数据无关 ⇒ ⇒ 即便书里没台账、它也不会空跑**
+    ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ 而正控用的是【同一个实现】⇒ ⇒ 不许另抄一遍** ⇒ ⇒ ⇒⇒
+    """
+    import copy
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    if not _p1015_book_publishes_criteria(_d):
+        return False
+    _m1 = copy.deepcopy(_d)
+    _m1.pop("criteria_1015", None)
+    _m2 = copy.deepcopy(_d)
+    _m2["criteria_1015"]["P_styles_all_supported_1015"] = False
+    _m3 = copy.deepcopy(_d)
+    _m3.pop("styles_in_use_1015", None)
+    return (not _p1015_book_publishes_criteria(_m1)
+            and not _p1015_book_publishes_criteria(_m2)
+            and not _p1015_book_publishes_criteria(_m3))
+
+
 def _p1015_red_ok():
     """这道判决本身：跑一遍 `_p1015_red_judge`。"""
     _d = _p1015_red_load()
@@ -18934,7 +18988,11 @@ def main() -> int:
           and ("_na_keys(" in _p1015)
           and ("_STYLE_READERS_1015" in _p1015)
           and _p1015_selfreport_ok() and _p1015_selfreport_pc()
-          and _p1015_styles_ok() and _p1015_styles_pc())
+          and _p1015_styles_ok() and _p1015_styles_pc()
+          # ⭐⭐⭐⭐⭐ **台账必须落在【仓里那本】** —— 而 /tmp 那份谁也复现不了
+          and ("criteria_1015" in _p1015)
+          and _p1015_book_publishes_criteria()
+          and _p1015_book_publishes_pc())
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
