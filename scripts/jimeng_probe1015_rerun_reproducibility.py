@@ -275,6 +275,28 @@ _DETECTOR_CASES = [
     ("为假的： 无 | 降级： 无", 0, True),
     ("这里什么判据都没有", None, False),
 ]
+
+# ⇒ ⇒ ⇒ ⇒ 1032-②m：**回落的阳性对照** ⇒ ⇒
+#   ⇒ ⇒ 「回落」这条路径**必须能失败** ⇒ ⇒ 否则「读不出」与「读出 0」分不开 ⇒ ⇒
+#   ⇒ ⇒ ⇒⇒ **⇒ ⇒ 而这条路径在真实数据里只有 1032l 走到过 ⇒ ⇒
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 一旦那本书转绿、这条路径就成了没人走过的代码** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 所以它必须有自己的一组用例** ⇒ ⇒ ⇒⇒
+_FALLBACK_CASES = [
+    # (摘要数, 摘要可读, 明细红条数, 期望 (数, 来源))
+    (0, True, 2, (0, "summary")),
+    (2, True, 2, (2, "summary")),
+    (None, False, 2, (2, "detail_fallback")),
+    (None, False, None, (None, "none")),
+]
+_FALLBACK_SELFTEST = []
+for _sn, _sr, _dr, _want in _FALLBACK_CASES:
+    _got_n, _got_src = _self_report(_sn, _sr, _dr)
+    _FALLBACK_SELFTEST.append({"summary_n": _sn, "summary_readable": _sr,
+                               "detail_red": _dr, "want": list(_want),
+                               "got": [_got_n, _got_src],
+                               "ok": (_got_n, _got_src) == _want})
+FALLBACK_SELFTEST_OK = all(c["ok"] for c in _FALLBACK_SELFTEST)
+FALLBACK_N_CASES = len(_FALLBACK_SELFTEST)
 _DETECTOR_SELFTEST = []
 for _txt, _want_n, _want_r in _DETECTOR_CASES:
     _got_n, _got_r, _det = _self_reported_false(_txt)
@@ -322,6 +344,60 @@ def _criteria_detail(text):
         _k, _v = _part.split("=", 1)
         _out[_k.strip()] = _v.strip()
     return _out
+
+# ══ 1032-②m：把「红的是哪几条」「不适用的是哪几条」「自报了几条」收成唯一实现 ══
+def _red_keys(detail):
+    """⇒ **「红的是哪几条」只有这一份实现** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ 而「摘要行读法」与「逐条读法」读的是同一个量 ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 两处各算各的 ⇒ ⇒ 有一处算错时没人知道** ⇒ ⇒ ⇒ ⇒⇒
+    ⇒ ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ ⇒ 处置：抽成一个函数、两处共用**"""
+    return sorted(k for k, v in (detail or {}).items()
+                  if str(v).strip().lower() == "false")
+
+
+def _na_keys(detail):
+    """⇒ **「不适用的是哪几条」也只有这一份实现** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ 而「不适用」、「红」、「绿」三者必须分开数 ⇒ ⇒ ⇒ ⇒⇒
+    ⇒ ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ ⇒ 而「合并数」会把「前提不成立」算成「测了为否」**"""
+    return sorted(k for k, v in (detail or {}).items()
+                  if str(v).strip().lower() == "none")
+
+
+def _self_report(summary_n, summary_readable, detail_red):
+    """⇒ **「这本书自报了几条假判据」—— 只有这一份实现** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒ 读法一：摘要行（`P1..P8 = [...]` / `P 为假的： …`）⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒ 读法二：逐条明细（`判据逐条 = K=V | …` / 产物里的判据 dict）⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 两条路读的是同一个量 ⇒ ⇒ 优先摘要、读不到就回落明细** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ 而「走的是哪条路」必须记下来 ⇒ ⇒ 不许默默换来源** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 返回 (条数 | None, 来源)**"""
+    if summary_readable and isinstance(summary_n, int):
+        return summary_n, "summary"
+    if isinstance(detail_red, int):
+        return detail_red, "detail_fallback"
+    return summary_n, "none"
+
+
+def _styles_in(text):
+    """⇒ **这本输出里实际出现了哪几种书写风格** ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒ 而「风格」是**实测**的、不是猜的 ⇒ ⇒ ⇒ ⇒⇒
+    ⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 三种：① `P1..P8 = [...]` ② `P 为假的： …` ③ `判据逐条 = K=V | …`**"""
+    out = []
+    if text and _P_LIST_RE.search(text):
+        out.append("p_list")
+    if text and _FALSE_LIST_RE.search(text):
+        out.append("false_list")
+    if text and _CRITERIA_DETAIL_RE.search(text):
+        out.append("criteria_line")
+    return sorted(out)
+
+
+# ⇒ ⇒ ⇒ ⇒ **风格 → 读法**的映射 ⇒ ⇒ 而它必须**穷尽** `_styles_in` 能产出的全部风格名
+#   ⇒ ⇒ ⇒⇒ **⇒ ⇒ 少一种 ⇒ 那一种风格的书就会悄悄读不出自报数** ⇒ ⇒ ⇒⇒
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 而「悄悄读不出」就是本批修的那个 bug 的原样** ⇒ ⇒ ⇒⇒
+_STYLE_READERS_1015 = {"p_list": "summary", "false_list": "summary",
+                       "criteria_line": "detail"}
+_STYLE_VOCAB_EXPECTED = ["criteria_line", "false_list", "p_list"]
+STYLE_VOCAB_OK = sorted(_STYLE_READERS_1015) == _STYLE_VOCAB_EXPECTED
 
 
 # ⭐⭐⭐⭐⭐ 1032-②i：**「判据逐条」那一行不是唯一的来源** ⇒ ⇒
@@ -499,14 +575,12 @@ def _run_round():
         row["criteria_detail_source"] = ("print_line" if _cd is not None else None)
         row["criteria_detail_readable"] = (_cd is not None)
         row["criteria_detail"] = _cd or {}
-        row["criteria_red"] = sorted(k for k, v in (_cd or {}).items()
-                                     if str(v).strip().lower() == "false")
+        row["criteria_red"] = _red_keys(_cd)
         row["n_criteria_red"] = len(row["criteria_red"])
         # ⭐⭐⭐⭐⭐ 1032-②h：**「不适用」（`None`）必须与「红」分开** ⇒ ⇒
         #   ⇒ ⇒ 判据的判决是 `None`（前提不成立 ⇒ 降级）时、它**既不是红也不是绿** ⇒ ⇒
         #   ⇒ ⇒⇒⇒ **⇒ 而「没有 None」与「没有 False」是两件事、不许合并** ⇒ ⇒
-        row["criteria_not_applicable"] = sorted(
-            k for k, v in (_cd or {}).items() if str(v).strip().lower() == "none")
+        row["criteria_not_applicable"] = _na_keys(_cd)
         row["n_criteria_not_applicable"] = len(row["criteria_not_applicable"])
         _ap = _artifact_path(tail)
         row["artifact_path_found"] = bool(_ap)
@@ -533,6 +607,31 @@ def _run_round():
         row["has_per_criteria_at_all"] = bool(row.get("criteria_detail"))
         row["artifact_has_criteria_dict"] = bool(
             isinstance(_art, dict) and _criteria_from_artifact(_art)[0])
+
+        # ⇒ ⇒ ⇒ ⇒ 1032-②m：**回落之后必须重算** ⇒ ⇒
+        #   ⇒ ⇒ 上面那两行是用**打印行**算的 ⇒ ⇒ 而明细有可能是**从产物里回落**的 ⇒ ⇒
+        #   ⇒ ⇒ ⇒⇒ **⇒ ⇒ 那一档的 `n_criteria_red` 永远是 0 ⇒ ⇒ 静默的恒零** ⇒ ⇒ ⇒⇒
+        #   ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ 而「恒零」与「真的没有红」在账上长得一模一样** ⇒ ⇒ ⇒⇒
+        #   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 处置：回落之后用同一份实现重算一遍**
+        row["criteria_red"] = _red_keys(row.get("criteria_detail"))
+        row["n_criteria_red"] = len(row["criteria_red"])
+        row["criteria_not_applicable"] = _na_keys(row.get("criteria_detail"))
+        row["n_criteria_not_applicable"] = len(row["criteria_not_applicable"])
+        # ⇒ ⇒ ⇒ ⇒ 1032-②m：**「自报假判据」这个量只能有一份实现** ⇒ ⇒
+        #   ⇒ ⇒ 摘要读法与明细读法**读的是同一个量**、而以前**各算各的** ⇒ ⇒ ⇒⇒
+        #   ⇒ ⇒ ⇒ 1032l 只打印「判据逐条」⇒ ⇒ 摘要读法读不到 ⇒ ⇒ ⇒⇒
+        #   ⇒ ⇒ ⇒ ⇒ `n_self_reported_false` 成了 None ⇒ ⇒ **红账丢了「红了几条」** ⇒ ⇒ ⇒⇒
+        #   ⇒ ⇒ ⇒ ⇒ ⇒ 而 verifier 的「rc=1 的书必须自报 False」判据因此翻红 ⇒ ⇒ ⇒⇒
+        #   ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 处置：读不到摘要 ⇒ 回落明细 ⇒ 并记下走的是哪条路**
+        row["summary_n_false_1015"] = row.get("n_self_reported_false")
+        row["detail_n_red_1015"] = row.get("n_criteria_red")
+        _sr_n, _sr_src = _self_report(row.get("n_self_reported_false"),
+                                      bool(row.get("p_summary_readable")),
+                                      row.get("n_criteria_red"))
+        row["n_self_reported_false"] = _sr_n
+        row["self_report_source_1015"] = _sr_src
+        # ⇒ ⇒ ⇒ ⇒ **风格是实测的** ⇒ ⇒ 而「实测」才能回答「仓里到底在用哪几种写法」
+        row["styles_in_output_1015"] = _styles_in(tail)
         _kinds, _ckeys, _cn, _complete = {}, [], None, None
         if isinstance(_art, dict):
             for _k, _v in _art.items():
@@ -688,6 +787,36 @@ N_DETAIL_FROM_PRINT = sum(1 for r in BOOKS
 N_DETAIL_FROM_ARTIFACT = sum(1 for r in BOOKS
                               if r.get("criteria_detail_source")
                               and r.get("criteria_detail_source") != "print_line")
+
+# ⇒ ⇒ ⇒ ⇒ 1032-②m：**「自报数」的来源分布** ⇒ ⇒ 而「来源」必须可查 ⇒ ⇒
+N_BOOKS_SELF_REPORT_SUMMARY = sum(
+    1 for r in BOOKS if r.get("self_report_source_1015") == "summary")
+N_BOOKS_SELF_REPORT_FALLBACK = sum(
+    1 for r in BOOKS if r.get("self_report_source_1015") == "detail_fallback")
+N_BOOKS_SELF_REPORT_NONE = sum(
+    1 for r in BOOKS if r.get("self_report_source_1015") == "none")
+# ⇒ ⇒ ⇒ ⇒ **「读不出」必须与「读出 0」分开** ⇒ ⇒ 而它靠**类型**分、不是靠值分
+N_BOOKS_NO_SELF_REPORT = sum(
+    1 for r in BOOKS if not isinstance(r.get("n_self_reported_false"), int))
+# ⇒ ⇒ ⇒ ⇒ **两种读法都可用时必须相等** ⇒ ⇒ 而它们读的是同一个量 ⇒ ⇒
+_BOOKS_SUMMARY_DETAIL_COMPARABLE = [
+    r for r in BOOKS
+    if isinstance(r.get("summary_n_false_1015"), int)
+    and isinstance(r.get("detail_n_red_1015"), int)]
+N_BOOKS_SUMMARY_DETAIL_COMPARABLE = len(_BOOKS_SUMMARY_DETAIL_COMPARABLE)
+BOOKS_SUMMARY_DETAIL_CONFLICT = sorted(
+    r["golden"] for r in _BOOKS_SUMMARY_DETAIL_COMPARABLE
+    if r["summary_n_false_1015"] != r["detail_n_red_1015"])
+N_BOOKS_SUMMARY_DETAIL_CONFLICT = len(BOOKS_SUMMARY_DETAIL_CONFLICT)
+# ⇒ ⇒ ⇒ ⇒ **风格覆盖要枚举** ⇒ ⇒ 而「枚举」比「重跑」便宜、也比「重跑」全面 ⇒ ⇒
+#   ⇒ ⇒ ⇒⇒ **⇒ ⇒ 而「实测的风格」是从每本书的输出里读出来的、不是从源码猜的** ⇒ ⇒ ⇒⇒
+STYLES_IN_USE_1015 = sorted({s for r in BOOKS
+                              for s in (r.get("styles_in_output_1015") or [])})
+STYLES_SUPPORTED_1015 = sorted(_STYLE_READERS_1015)
+STYLES_UNSUPPORTED_1015 = sorted(set(STYLES_IN_USE_1015)
+                                  - set(STYLES_SUPPORTED_1015))
+N_STYLES_IN_USE = len(STYLES_IN_USE_1015)
+N_STYLES_UNSUPPORTED = len(STYLES_UNSUPPORTED_1015)
 CRITERIA_RED_BY_BOOK = {r["golden"]: list(r.get("criteria_red") or [])
                         for r in BOOKS if r.get("criteria_red")}
 N_LEDGER_PUBLISHED = sum(1 for r in BOOKS if r.get("ledger_published"))
@@ -771,6 +900,22 @@ RED_LEDGER = {
     "out_path_detector_selftest_n_cases": OUT_PATH_N_CASES,
     "out_path_detector_selftest": _OUT_PATH_SELFTEST,
     "detail_source_by_book": DETAIL_SOURCE_BY_BOOK,
+    # ⇒ 1032-②m：自报数的来源分布 —— 而「来源」必须可查
+    "n_books_self_report_via_summary": N_BOOKS_SELF_REPORT_SUMMARY,
+    "n_books_self_report_via_detail_fallback": N_BOOKS_SELF_REPORT_FALLBACK,
+    "n_books_self_report_none": N_BOOKS_SELF_REPORT_NONE,
+    "n_books_without_int_self_report": N_BOOKS_NO_SELF_REPORT,
+    "n_books_summary_detail_comparable": N_BOOKS_SUMMARY_DETAIL_COMPARABLE,
+    "books_summary_detail_conflict": BOOKS_SUMMARY_DETAIL_CONFLICT,
+    "n_books_summary_detail_conflict": N_BOOKS_SUMMARY_DETAIL_CONFLICT,
+    "styles_in_use_1015": STYLES_IN_USE_1015,
+    "styles_supported_1015": STYLES_SUPPORTED_1015,
+    "styles_unsupported_1015": STYLES_UNSUPPORTED_1015,
+    "n_styles_in_use_1015": N_STYLES_IN_USE,
+    "n_styles_unsupported_1015": N_STYLES_UNSUPPORTED,
+    "fallback_selftest_ok": FALLBACK_SELFTEST_OK,
+    "fallback_selftest_n_cases": FALLBACK_N_CASES,
+    "fallback_selftest": _FALLBACK_SELFTEST,
     "n_detail_from_print_line": N_DETAIL_FROM_PRINT,
     "n_detail_from_artifact": N_DETAIL_FROM_ARTIFACT,
     "artifact_detector_selftest_ok": ARTIFACT_DETECTOR_SELFTEST_OK,
@@ -1319,7 +1464,22 @@ out = {"P1_hold_1015": (N_STATES_SUM == len(BOOKS) and len(BOOKS) > 0
        "P9_hold_1015": (DETECTOR_SELFTEST_OK
                         and N_READABLE > 0
                         and N_READABLE + N_UNREADABLE == len(BOOKS)
-                        and N_SELF_RED_CRITERIA >= N_SELF_RED_BOOKS)}
+                        and N_SELF_RED_CRITERIA >= N_SELF_RED_BOOKS),
+       # ⇒ ⇒ ⇒ ⇒ 1032-②m：**「自报数」必须每本都读得出** ⇒ ⇒
+       #   ⇒ ⇒ 而 1032l 曾经读不出（None）⇒ ⇒ 红账因此丢了一条 ⇒ ⇒ ⇒⇒
+       #   ⇒ ⇒ ⇒⇒ **⇒ ⇒ 而「读不出」与「读出 0」在账上分不开** ⇒ ⇒ ⇒⇒
+       #   ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ 而回落这条路径必须有自己的一组用例** ⇒ ⇒ ⇒⇒
+       "P_every_book_has_readable_self_report_1015": (
+           N_BOOKS_NO_SELF_REPORT == 0 and FALLBACK_SELFTEST_OK),
+       # ⇒ ⇒ ⇒ ⇒ **两种读法读的是同一个量 ⇒ ⇒ 都可用时必须相等** ⇒ ⇒
+       #   ⇒ ⇒ ⇒⇒ **⇒ ⇒ 而它们以前**从不互相核对** ⇒ ⇒ 有一处算错没人知道** ⇒ ⇒ ⇒⇒
+       "P_self_report_agrees_with_detail_1015": (
+           N_BOOKS_SUMMARY_DETAIL_CONFLICT == 0),
+       # ⇒ ⇒ ⇒ ⇒ **风格覆盖要枚举** ⇒ ⇒ 而每一种在用的风格都得有读法 ⇒ ⇒
+       #   ⇒ ⇒ ⇒⇒ **⇒ ⇒ 而「风格词表」本身必须与 `_styles_in` 产出的完全一致** ⇒ ⇒ ⇒⇒
+       #   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 少登记一种 ⇒ 那一种风格的书就会悄悄读不出** ⇒ ⇒ ⇒⇒
+       "P_styles_all_supported_1015": (
+           N_STYLES_UNSUPPORTED == 0 and N_STYLES_IN_USE > 0 and STYLE_VOCAB_OK)}
 # ⭐ 不许静默：提取器一条没抓到、或条数对不上，都必须打一行出来
 if N_AB_EXTRACTED != _N_KEYS_IN_AUDIT:
     print("!! 判据条数对不上：提取到 %d 条、audit 里实际 %d 条 ⇒ "
@@ -1345,9 +1505,14 @@ out["criterion_kinds_1015"] = {
     "P8_hold_1015": "failure",
     "P9_hold_1015": "failure",
     "P_stale_vs_committed_is_zero_1015": "failure",
+    "P_every_book_has_readable_self_report_1015": "failure",
+    "P_self_report_agrees_with_detail_1015": "failure",
+    "P_styles_all_supported_1015": "failure",
 }
 out["criterion_kinds_complete_1015"] = (
     set(out["criterion_kinds_1015"]) == set(out["criteria_1015"]))
+out["styles_in_use_1015"] = STYLES_IN_USE_1015
+out["styles_supported_1015"] = STYLES_SUPPORTED_1015
 out["red_ledger_1015"] = RED_LEDGER
 io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
 io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({

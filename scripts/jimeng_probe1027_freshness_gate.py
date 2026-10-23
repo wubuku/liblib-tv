@@ -413,6 +413,12 @@ P2 = ((N_CHECKED > 0
        and all("stale_vs_committed" in r and r["rc"] == 0 for r in RESULTS)
        and all(r["in_git_head"] or r["is_new_probe"] for r in RESULTS))
       if not UNDER_SUITE else (N_CHECKED == 0 and N_TOUCHED >= 0))
+# ⇒ ⇒ ⇒ ⇒ **1032-②m：自检模式下 P2 【不适用】**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ `--selftest` 压根没普查**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 「每个被触及的探针都被重跑并上报」的前提不成立**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ 而**套件语境**（`--write-golden`）下 P2 仍是 True**
+#   ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 「确实没重跑」**就是它该做的**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒⇒ 两个语境必须分开**
+if _SELFONLY:
+    P2 = None
 # ⭐⭐⭐⭐⭐⭐ **P8：双向排除必须是「两边都排」，而且要能证明对方也排了**
 #   本批第一版只有单向（1027 排 1015）⇒ 那是**我的一厢情愿**：1015 照收不误，
 #   于是套件 6 轮每轮都报本探针漂移、`P3` 转红 —— 而单跑 rc=0、两次跑逐字节相同
@@ -476,6 +482,29 @@ OUT = {
     #   ⇒ ⇒⇒⇒ ⇒ 而它带三条反证 ⇒ ⇒⇒⇒ ⇒ ⇒ 「规则算的」与「实际跑的」必须同源
     "P11_write_gated_probes_are_re_run_with_the_flag_1027": P11,
 }
+
+# ⇒ ⇒ ⇒ ⇒ **1032-②m：「不适用」的机制**
+#   ⇒ ⇒ ⇒ ⇒ **① 判据的值为 None ＝ 前提不成立、这次测量不适用** ⇒ **不许算红**
+#   ⇒ ⇒ ⇒ ⇒ **② 而产物里不许有 null**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 键整个删掉** ⇒ 「没有这个量」由「键不存在」自证**
+#   ⇒ ⇒ ⇒ ⇒ **③ 而「为什么删」必须写下来**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 「不适用」不许无声**
+_NOT_APPLICABLE_1027 = {}
+if _SELFONLY:
+    _NOT_APPLICABLE_1027 = {
+        "P2_every_touched_probe_was_re_run_and_reported_1027": (
+            "⇒ ⇒ **这次没普查**（`--selftest` 只验机制）"
+            "⇒ ⇒ ⇒ ⇒ **⇒ 「每个被触及的探针都被重跑并上报」的前提不成立**"
+            "⇒ ⇒ ⇒ ⇒ **⇒ 「没测到」不许长得像「测到了而且通过」**"),
+    }
+
+
+def _publish_verdicts():
+    """⇒ **判据为 None ⇒ 键整个删掉**（产物里不许有 null）。"""
+    return {k: v for k, v in OUT.items() if v is not None}
+
+
+_APPLICABILITY_1027 = {
+    k: {"kind": "precondition", "why": why}
+    for k, why in sorted(_NOT_APPLICABLE_1027.items())}
 
 # ── 仪器 bug 8 的可校验不变式：产物里不许留下「说不清」的字段 ────────────────
 def _argv_flags_block():
@@ -809,7 +838,8 @@ _PAYLOAD = {
 #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ 一份残缺的产物也能拿到「自查通过」
 #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 自查的范围比自查声称的范围小**
 #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 处置：结论先进产物，再扫**
-_PAYLOAD["verdicts_1027"] = dict(OUT)
+_PAYLOAD["criteria_applicability_1027"] = _APPLICABILITY_1027
+_PAYLOAD["verdicts_1027"] = _publish_verdicts()
 _BAD, _BLANK = _scan_payload(_PAYLOAD)
 _PAYLOAD["payload_hygiene_scan"] = {
     "what": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
@@ -826,7 +856,7 @@ _PAYLOAD["payload_hygiene_scan"] = {
 _BAD2, _BLANK2 = _scan_payload(_PAYLOAD)
 OUT["P9_my_own_payload_has_no_null_no_empty_list_no_random_named_key_1027"] = bool(
     not _BAD2 and not _BLANK2)
-_PAYLOAD["verdicts_1027"] = dict(OUT)
+_PAYLOAD["verdicts_1027"] = _publish_verdicts()
 _BAD3, _BLANK3 = _scan_payload(_PAYLOAD)
 OUT["P10_writing_the_verdicts_back_did_not_break_my_own_hygiene_1027"] = bool(
     not _BAD3 and not _BLANK3)
@@ -835,7 +865,18 @@ OUT["P10_writing_the_verdicts_back_did_not_break_my_own_hygiene_1027"] = bool(
 #   算出来的 ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 任何「我自己的产物
 #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 是否干净」都逃不开这一层
 #   ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 不假装它被覆盖了**
-_PAYLOAD["verdicts_1027"] = dict(OUT)
+# ⇒ ⇒ ⇒ ⇒ **1032-②m：P12 —— 机制自己必须能核**
+_PUBLISHED_1027 = set(_publish_verdicts())
+_NONE_KEYS_1027 = {k for k, v in OUT.items() if v is None}
+P12 = bool(
+    _NONE_KEYS_1027 == set(_NOT_APPLICABLE_1027)
+    and all(str(_NOT_APPLICABLE_1027.get(k, "")).strip()
+            for k in _NOT_APPLICABLE_1027)
+    and all(k not in _PUBLISHED_1027 for k in _NONE_KEYS_1027)
+    and all(v is not None for k, v in OUT.items()
+            if k not in _NOT_APPLICABLE_1027))
+OUT["P12_not_applicable_criteria_are_declared_and_omitted_1027"] = P12
+_PAYLOAD["verdicts_1027"] = _publish_verdicts()
 # ⭐⭐⭐⭐⭐ 1032-②j：**判据台账** —— 「一条判据红了，是缺陷还是结论？」必须能机检
 #   ⇒ ⇒ 口径：kind ∈ {failure, conclusion, precondition}
 #   ⇒ ⇒⇒   failure     = 红了 = **有东西坏了**（被测对象或仪器）⇒ ⇒ 要修
@@ -846,7 +887,8 @@ _PAYLOAD["verdicts_1027"] = dict(OUT)
 #   ⇒ ⇒⇒   ⇒ ⇒ 「本门怎么记账」红了 = 门坏了 ⇒ ⇒ 要修门 ⇒ ⇒ **⇒ 而「产品坏了」不在这一档** ⇒ ⇒ ⇒⇒
 _PAYLOAD["criterion_kinds_1027"] = {
     "P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027": "failure",
-    "P2_every_touched_probe_was_re_run_and_reported_1027": "failure",
+    "P2_every_touched_probe_was_re_run_and_reported_1027":
+        ("precondition" if _SELFONLY else "failure"),
     "P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027": "failure",
     "P4_touched_list_is_recorded_for_every_golden_owning_probe_1027": "failure",
     "P5_one_run_per_golden_no_double_counting_1027": "failure",
@@ -856,6 +898,7 @@ _PAYLOAD["criterion_kinds_1027"] = {
     "P9_my_own_payload_has_no_null_no_empty_list_no_random_named_key_1027": "failure",
     "P10_writing_the_verdicts_back_did_not_break_my_own_hygiene_1027": "failure",
     "P11_write_gated_probes_are_re_run_with_the_flag_1027": "failure",
+    "P12_not_applicable_criteria_are_declared_and_omitted_1027": "failure",
 }
 _PAYLOAD["criterion_kinds_complete_1027"] = (
     set(_PAYLOAD["criterion_kinds_1027"]) == set(OUT))

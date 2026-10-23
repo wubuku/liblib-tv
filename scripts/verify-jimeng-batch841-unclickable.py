@@ -443,6 +443,151 @@ def _p1015_red_load():
         return None
 
 
+def _p1015_selfreport_judge(_d):
+    """⭐⭐⭐⭐⭐ **「每本书都读得出自报数、且两种读法互相核对」—— 从原始字段重算**。
+
+    ⭐⭐⭐⭐⭐ 为什么必须重算：⇒ 1015 自己写的汇总数与 `books` 里的原始字段**同源**
+    ⇒ ⇒ ⇒ 若判据只是把那几个数抄一遍、1015 哪天算错了这道门就跟着一起错
+    ⇒ ⇒ ⇒⇒ 而 ②m 笔3 的真实故障**恰恰就是**这一层出了错
+    ⇒ ⇒ ⇒⇒⇒ **⇒ ⇒ 处置三条：① 每本必须有整数型的自报数（不许 None）
+    ⇒ ⇒ ⇒⇒⇒ ⇒ ⇒ ② 来源必须在三种里（不许凭空）③ 两种读法都可用时两条数必须相等**
+    """
+    _books = _d.get("books")
+    if not isinstance(_books, list) or not _books:
+        return {"ok": False, "why": ["no_books"], "n_books": 0, "n_comparable": 0}
+    _why = []
+    _n_cmp = 0
+    for _b in _books:
+        _g = _b.get("golden")
+        _n = _b.get("n_self_reported_false")
+        if not isinstance(_n, int):
+            _why.append("book_without_int_self_report:%s" % _g)
+        _src = _b.get("self_report_source_1015")
+        if _src not in ("summary", "detail_fallback", "none"):
+            _why.append("book_without_source:%s" % _g)
+        _s = _b.get("summary_n_false_1015")
+        _d2 = _b.get("detail_n_red_1015")
+        if isinstance(_s, int) and isinstance(_d2, int):
+            _n_cmp += 1
+            if _s != _d2:
+                _why.append("summary_detail_conflict:%s" % _g)
+    return {"ok": (not _why), "why": _why, "n_books": len(_books),
+            "n_comparable": _n_cmp}
+
+
+def _p1015_styles_judge(_d):
+    """⭐⭐⭐⭐⭐ **「实际在用的书写风格必须都有读法」—— 从逐本实测值重算**。
+
+    ⭐⭐⭐⭐⭐ **风格是实测的**：每本书的 `styles_in_output_1015` 是从**它自己的输出**
+    ⇒ ⇒ ⇒ 读出来的（`P1..P8 = [...]` / `P 为假的： …` / `判据逐条 = K=V | …`）
+    ⇒ ⇒ ⇒⇒ **⇒ ⇒ 而不是从源码抄的 ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒
+    ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 所以「源码改了而没重跑」这类漂移会被当场抓住**
+    ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 而「声明的受支持集合」必须与实测集合对得上**
+    """
+    _books = _d.get("books")
+    if not isinstance(_books, list) or not _books:
+        return {"ok": False, "why": ["no_books"], "styles_in_use": []}
+    _why = []
+    _used = set()
+    for _b in _books:
+        _g = _b.get("golden")
+        _st = _b.get("styles_in_output_1015")
+        if not isinstance(_st, list):
+            _why.append("book_without_styles:%s" % _g)
+            continue
+        for _s in _st:
+            if not isinstance(_s, str):
+                _why.append("style_not_str:%s" % _g)
+            else:
+                _used.add(_s)
+    _sup = _d.get("styles_supported_1015")
+    if not isinstance(_sup, list):
+        _why.append("no_styles_supported")
+        _sup = []
+    _unsup = sorted(_used - set(_sup))
+    if _unsup:
+        _why.append("unsupported_styles:%s" % ",".join(_unsup))
+    _declared = _d.get("styles_in_use_1015")
+    if not isinstance(_declared, list):
+        _why.append("no_styles_in_use")
+    elif sorted(_declared) != sorted(_used):
+        _why.append("styles_in_use_mismatch")
+    if not _used:
+        _why.append("no_styles_in_use")
+    return {"ok": (not _why), "why": _why, "styles_in_use": sorted(_used)}
+
+
+def _p1015_selfreport_ok():
+    """这道判决本身：跑一遍 `_p1015_selfreport_judge`。"""
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    return bool(_p1015_selfreport_judge(_d).get("ok"))
+
+
+def _p1015_selfreport_pc():
+    """⭐⭐⭐⭐⭐ **阳性对照：证明「每本都读得出」这道判决能红** ——
+    ⇒ ⇒ ① 把一本书的自报数改成 None ⇒ 必须翻红（「读不出」必须被抓到）
+    ⇒ ⇒ ⇒ ② 把一本书的来源改成不存在的 ⇒ 必须翻红
+    ⇒ ⇒ ⇒ ③ 让摘要数与明细数不相等 ⇒ 必须翻红
+    ⇒ ⇒ ⇒⇒⇒ **⇒ 而第三条正是「两种读法从不互相核对」那个盲区本身**
+    ⇒ ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ 而这三条改法都与真实数据无关 ⇒ ⇒
+    ⇒ ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ ⇒ 即便本批没有一本书走回落、它也不会空跑**
+    """
+    import copy
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    if not _p1015_selfreport_judge(_d).get("ok"):
+        return False
+    _books = _d.get("books") or []
+    if not _books:
+        return False
+    _m1 = copy.deepcopy(_d)
+    _m1["books"][0]["n_self_reported_false"] = None
+    _m1["books"][0]["self_report_source_1015"] = "none"
+    _m2 = copy.deepcopy(_d)
+    _m2["books"][0]["self_report_source_1015"] = "from_nowhere"
+    _m3 = copy.deepcopy(_d)
+    _m3["books"][0]["summary_n_false_1015"] = 99
+    _m3["books"][0]["detail_n_red_1015"] = 98
+    return (not _p1015_selfreport_judge(_m1).get("ok")
+            and not _p1015_selfreport_judge(_m2).get("ok")
+            and not _p1015_selfreport_judge(_m3).get("ok"))
+
+
+def _p1015_styles_ok():
+    """这道判决本身：跑一遍 `_p1015_styles_judge`。"""
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    return bool(_p1015_styles_judge(_d).get("ok"))
+
+
+def _p1015_styles_pc():
+    """⭐⭐⭐⭐⭐ **阳性对照：证明「风格覆盖」这道判决能红** ——
+    ⇒ ⇒ ① 给一本书加一种**没有读法**的风格 ⇒ 必须翻红
+    ⇒ ⇒ ⇒ ② 改掉产物里声明的「在用风格集合」⇒ 必须翻红（声明与实测不符）
+    ⇒ ⇒ ⇒⇒⇒ **⇒ 而第二条守的是「声明 ≠ 发布」那条老纪律**
+    """
+    import copy
+    _d = _p1015_red_load()
+    if _d is None:
+        return False
+    if not _p1015_styles_judge(_d).get("ok"):
+        return False
+    _books = _d.get("books") or []
+    if not _books:
+        return False
+    _m1 = copy.deepcopy(_d)
+    _m1["books"][0]["styles_in_output_1015"] = list(
+        _m1["books"][0].get("styles_in_output_1015") or []) + ["style_from_nowhere"]
+    _m2 = copy.deepcopy(_d)
+    _m2["styles_in_use_1015"] = ["p_list"]
+    return (not _p1015_styles_judge(_m1).get("ok")
+            and not _p1015_styles_judge(_m2).get("ok"))
+
+
 def _p1015_red_ok():
     """这道判决本身：跑一遍 `_p1015_red_judge`。"""
     _d = _p1015_red_load()
@@ -18761,6 +18906,35 @@ def main() -> int:
           and _p1032l_gatelist_order_ok()["ok"]
           # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
           and '"p7_the_gate_list_must_live_in_the_repo_1032l_"' in _ausrc)
+
+    check("DD993AI.1 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ 「同一个量只能有一份实现」这件事**必须由运行时来回答**："
+          "1032-②m 笔3 刷完 1015 的产物之后、verifier 从 979/979 掉到 **978/979** ⇒ ⇒ ⇒ "
+          "**DD993AB.1（「rc=1 的书必须自报 False」）翻红** ⇒ ⇒ ⇒ ⇒ 而它翻红的形态**极像真缺陷** ⇒ ⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 追下去才发现：不是「书没自报」、是「读法不认那种写法」** ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ 1015 有两套读法读同一个量（摘要行 / 逐条明细）、而它们从不互相核对** ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ 1032l 只打印「判据逐条」⇒ ⇒ ⇒ 摘要读法读不到 ⇒ ⇒ ⇒ "
+          "`n_self_reported_false` 成了 None** ⇒ ⇒ ⇒ ⇒⇒ "
+          "⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 而「读不出」与「读出 0」在账上长得一模一样** ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 处置三条：① 收成唯一实现 ② 读不到摘要就回落明细（并记来源）"
+          "③ 两种读法都可用时必须相等** ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ 而「回落」这条路径在真实数据里只有 1032l 走到过 ⇒ ⇒ ⇒ 一旦那本书转绿、"
+          "它就成了没人走过的代码** ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 所以它必须带自己的一组阳性对照用例** ⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒ ⇒ **判据自己从原始字段重算**（不信产物里的汇总数）⇒ ⇒ ⇒ "
+          "读数：每本书的 `n_self_reported_false` 必须是整数（不许 None）、"
+          "`self_report_source_1015` 必须在三种来源里、"
+          "摘要与明细都可用时两条数必须相等、"
+          "**实测在用的每一种书写风格都必须有读法**（风格集合由逐本的 "
+          "`styles_in_output_1015` 重算、且与产物里声明的 `styles_supported_1015` 对账）。",
+          ("_self_report(" in _p1015)
+          and ("self_report_source_1015" in _p1015)
+          and ("styles_in_output_1015" in _p1015)
+          and ("_red_keys(" in _p1015)
+          and ("_na_keys(" in _p1015)
+          and ("_STYLE_READERS_1015" in _p1015)
+          and _p1015_selfreport_ok() and _p1015_selfreport_pc()
+          and _p1015_styles_ok() and _p1015_styles_pc())
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:
