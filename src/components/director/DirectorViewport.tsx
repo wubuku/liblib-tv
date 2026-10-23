@@ -1,6 +1,6 @@
 "use client";
 
-import type { ReactNode } from "react";
+import type { ElementRef, ReactNode } from "react";
 
 import {
   createContext,
@@ -96,9 +96,13 @@ import {
   buildDirectorMotionPathWorldAnchors,
 } from "@/components/director/directorMotionMath";
 import {
+  DIRECTOR_VIEW_PAN_KEYS,
+  computeDirectorViewPanDelta,
   getDirectorFrameRect,
   getDirectorViewportAxis,
   getDirectorViewportAxisSnapshot,
+  getDirectorViewPresetPose,
+  type DirectorViewPreset,
   type DirectorViewportAxisId,
   type DirectorFrameRect,
   type DirectorViewportSnapshot,
@@ -138,7 +142,7 @@ import type {
 } from "@/lib/directorCanvasMediaIngress";
 
 /* eslint-disable react-hooks/immutability -- Three.js cameras are mutable runtime objects managed by R3F. */
-const DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT: DirectorViewportSnapshot = {
+export const DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT: DirectorViewportSnapshot = {
   fov: 45,
   position: [6.2, 4.25, 7.4],
   target: [0, 1, 0],
@@ -192,10 +196,241 @@ function applyDirectorViewportSnapshot(
   perspective.updateMatrixWorld();
 }
 
+/**
+ * Batch 851：导演台的**视图类快捷键**。
+ *
+ * ★ 键位与语义**逐字取自源站 chunk**（`0fmehki05gkzw.js.js`），不是照抄快捷键面板：
+ *
+ * ```js
+ * else if("t"===n)n0.setEditorCameraPose(iK("top"));
+ * else if("y"===n)n0.setEditorCameraPose(iK("front"));
+ * else if("h"===n)eJ("director"),n0.setEditorCameraPose(iK("default"));
+ * ```
+ *
+ * ★ WASDQE 是**按住连续平移**，不是「按一下走一步」：
+ * keydown 只把键**登记进一个 Set**，真正的位移在 `requestAnimationFrame` 回调里
+ * 按「Set 里仍然存在的键」算；**keyup 会把键删掉** ⟹ ⟹ 单击（按下即松开）不会有任何位移。
+ * ★ 步长 `1.2 × max(|camera.position − controls.target|, 0.5) × (Shift ? 3 : 1)`，
+ * 方向按**相机朝向**（forward / forward×up / up），**同时**平移相机与 orbit 中心。
+ */
+/**
+ * ★ 用 **ref 直取实例**，不走 R3F 的 `state.controls` ⟹ ⟹
+ * 1) 免掉「订阅拿到 null」的风险；
+ * 2) rAF 回调里读 `ref.current` 永远是最新实例 ⟹ ⟹ 不会因为 re-render 而失效。
+ *
+ * ★ 实例类型用 `ElementRef<typeof OrbitControls>` 从 drei 取 ⟹ ⟹
+ * 不需要直接 import `three-stdlib`（★ 它不是本仓库声明的依赖）。
+ */
+type DirectorOrbitControlsRef = React.MutableRefObject<
+  ElementRef<typeof OrbitControls> | null
+>;
+
+const DIRECTOR_VIEW_PAN_KEY_SET: ReadonlySet<string> = new Set(
+  DIRECTOR_VIEW_PAN_KEYS,
+);
+
+function DirectorViewShortcutController({
+  onOrbitTargetChange,
+  controlsRef,
+}: {
+  onOrbitTargetChange: (target: DirectorTuple3) => void;
+  controlsRef: DirectorOrbitControlsRef;
+}) {
+  const camera = useThree((state) => state.camera);
+  const invalidate = useThree((state) => state.invalidate);
+  const setViewMode = useDirectorStore((state) => state.setViewMode);
+  /** 当前**仍按住**的平移键（源站的 `nK.current`） */
+  const pressedKeys = useRef(new Set<string>());
+  /** Shift 是否按住（源站的 `nW.current`，按住时步长 ×3） */
+  const shiftPressed = useRef(false);
+  const frameHandle = useRef<number | null>(null);
+  const lastFrameTime = useRef(0);
+
+  /** 当前相机位姿（源站 `iK` 里的 `getEditorCameraPose()`） */
+  const readSnapshot = useCallback((): DirectorViewportSnapshot => {
+    const perspective = camera as PerspectiveCamera;
+    const controls = controlsRef.current;
+    const target = controls ? controls.target : new Vector3(0, 1, 0);
+    return {
+      fov: perspective.fov,
+      position: [
+        perspective.position.x,
+        perspective.position.y,
+        perspective.position.z,
+      ],
+      target: [target.x, target.y, target.z],
+    };
+  }, [camera, controlsRef]);
+
+  /** 把位姿写回相机**并**同步 orbit 中心（源站的 `setEditorCameraPose`） */
+  const applySnapshot = useCallback(
+    (snapshot: DirectorViewportSnapshot) => {
+      const perspective = camera as PerspectiveCamera;
+      perspective.position.set(...snapshot.position);
+      perspective.fov = snapshot.fov;
+      perspective.lookAt(...snapshot.target);
+      perspective.updateProjectionMatrix();
+      perspective.updateMatrixWorld();
+      const controls = controlsRef.current;
+      if (controls) {
+        controls.target.set(...snapshot.target);
+        controls.update();
+        onOrbitTargetChange([
+          controls.target.x,
+          controls.target.y,
+          controls.target.z,
+        ]);
+      }
+      invalidate();
+    },
+    [camera, controlsRef, invalidate, onOrbitTargetChange],
+  );
+
+  /** 源站 `iK(preset)`：**只改方向、不改视距** */
+  const applyPreset = useCallback(
+    (preset: DirectorViewPreset) => {
+      applySnapshot(getDirectorViewPresetPose(preset, readSnapshot()));
+    },
+    [applySnapshot, readSnapshot],
+  );
+
+  /** 源站 `eJ("director")` ＋ `iK("default")` */
+  const resetView = useCallback(() => {
+    setViewMode("director");
+    applySnapshot(DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT);
+  }, [applySnapshot, setViewMode]);
+
+  const stopPanLoop = useCallback(() => {
+    if (frameHandle.current !== null) {
+      cancelAnimationFrame(frameHandle.current);
+      frameHandle.current = null;
+    }
+    lastFrameTime.current = 0;
+  }, []);
+
+  /** 源站 `oi`：一帧的平移 */
+  const stepPan = useCallback(() => {
+    frameHandle.current = null;
+    if (pressedKeys.current.size === 0) {
+      lastFrameTime.current = 0;
+      return;
+    }
+    const now = performance.now();
+    const deltaSeconds = lastFrameTime.current
+      ? (now - lastFrameTime.current) / 1000
+      : 0;
+    lastFrameTime.current = now;
+    const perspective = camera as PerspectiveCamera;
+    const forward = new Vector3();
+    perspective.getWorldDirection(forward);
+    const controls = controlsRef.current;
+    const orbitTarget = controls ? controls.target : new Vector3(0, 1, 0);
+    const delta = computeDirectorViewPanDelta({
+      keys: pressedKeys.current,
+      forward: [forward.x, forward.y, forward.z],
+      up: [0, 1, 0],
+      distance: perspective.position.distanceTo(orbitTarget),
+      shift: shiftPressed.current,
+      deltaSeconds,
+    });
+    if (delta[0] !== 0 || delta[1] !== 0 || delta[2] !== 0) {
+      const step = new Vector3(delta[0], delta[1], delta[2]);
+      perspective.position.add(step);
+      // ★ 源站：`r.position.add(d); n.target.add(d); n.update();`
+      //   ⟹ ⟹ **相机与 orbit 中心同步平移** ⟹ ⟹ 视距不变 ⟹ ⟹ 只是平移不旋转。
+      if (controls) {
+        controls.target.add(step);
+        controls.update();
+      }
+      invalidate();
+    }
+    frameHandle.current = requestAnimationFrame(stepPan);
+  }, [camera, controlsRef, invalidate]);
+
+  useEffect(() => {
+    /** 源站 `h5`：可编辑元素里**所有**快捷键都不生效 */
+    const isEditableTarget = (target: EventTarget | null) => {
+      if (!(target instanceof Element)) return false;
+      return Boolean(
+        target.closest('input, textarea, select, [contenteditable="true"]'),
+      );
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.isComposing) return;
+      if (isEditableTarget(event.target)) return;
+      const key = event.key.toLowerCase();
+      if (key === "t" || key === "y" || key === "h") {
+        // 源站：`("h"!==n||!e.ctrlKey&&!e.metaKey&&!e.altKey)`
+        if (event.ctrlKey || event.metaKey || event.altKey) return;
+        event.preventDefault();
+        if (key === "t") applyPreset("top");
+        else if (key === "y") applyPreset("front");
+        else resetView();
+        return;
+      }
+      if (!DIRECTOR_VIEW_PAN_KEY_SET.has(key)) return;
+      // 源站的裸键组条件：`hX.has(r)&&!(e.ctrlKey||e.metaKey)`
+      if (event.ctrlKey || event.metaKey) return;
+      event.preventDefault();
+      pressedKeys.current.add(key);
+      shiftPressed.current = event.shiftKey;
+      if (frameHandle.current === null) {
+        lastFrameTime.current = 0;
+        frameHandle.current = requestAnimationFrame(stepPan);
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      const key = event.key.toLowerCase();
+      if (!DIRECTOR_VIEW_PAN_KEY_SET.has(key)) return;
+      pressedKeys.current.delete(key);
+      shiftPressed.current = event.shiftKey;
+      if (pressedKeys.current.size === 0) {
+        stopPanLoop();
+        // ★ 平移期间 orbit 中心只在内存里动 ⟹ ⟹ 收手时同步一次 state，
+        //   否则下一次 re-render 会用旧引用把它打回默认。
+        const controls = controlsRef.current;
+        if (controls) {
+          onOrbitTargetChange([
+            controls.target.x,
+            controls.target.y,
+            controls.target.z,
+          ]);
+        }
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown, true);
+    window.addEventListener("keyup", handleKeyUp, true);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown, true);
+      window.removeEventListener("keyup", handleKeyUp, true);
+      stopPanLoop();
+    };
+  }, [
+    applyPreset,
+    controlsRef,
+    onOrbitTargetChange,
+    resetView,
+    stepPan,
+    stopPanLoop,
+  ]);
+
+  return null;
+}
+
 function CameraController({
   directorCameraCommand,
+  directorOrbitTarget,
+  onOrbitTargetChange,
+  controlsRef,
 }: {
   directorCameraCommand: DirectorViewportSnapshot | null;
+  /** ★ Batch 851：orbit 中心的**引用稳定**值 ⟹ ⟹ 否则 drei 会每次 re-render 都把它打回默认 */
+  directorOrbitTarget: DirectorTuple3;
+  onOrbitTargetChange: (target: DirectorTuple3) => void;
+  controlsRef: DirectorOrbitControlsRef;
 }) {
   const viewMode = useDirectorStore((state) => state.viewMode);
   const activeCameraId = useDirectorStore((state) => state.activeCameraId);
@@ -211,6 +446,18 @@ function CameraController({
   const previousMode = useRef(viewMode);
   const lastAppliedDirectorCommand = useRef<DirectorViewportSnapshot | null>(
     null,
+  );
+
+  /** ★ 同步 orbit 中心 ⟹ ⟹ 相机看向哪，orbit 中心就在哪（两者必须一致） */
+  const syncOrbitTarget = useCallback(
+    (target: DirectorTuple3) => {
+      const controls = controlsRef.current;
+      if (!controls) return;
+      controls.target.set(...target);
+      controls.update();
+      onOrbitTargetChange([target[0], target[1], target[2]]);
+    },
+    [controlsRef, onOrbitTargetChange],
   );
 
   useEffect(() => {
@@ -242,22 +489,35 @@ function CameraController({
       if (hasNewDirectorCommand && directorCameraCommand) {
         applyDirectorViewportSnapshot(perspective, directorCameraCommand);
         lastAppliedDirectorCommand.current = directorCameraCommand;
+        syncOrbitTarget(directorCameraCommand.target);
         invalidate();
       } else if (previousMode.current === "camera") {
         applyDirectorViewportSnapshot(
           perspective,
           DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT,
         );
+        // ★ Batch 851：切回导演视角时 orbit 中心必须跟着复位 ⟹ ⟹
+        //   否则「相机看向 [0,1,0]」而「orbit 中心停在别处」，两者会打架。
+        syncOrbitTarget(DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT.target);
         invalidate();
       }
     }
     previousMode.current = viewMode;
-  }, [activeCamera, camera, directorCameraCommand, invalidate, viewMode]);
+  }, [
+    activeCamera,
+    camera,
+    directorCameraCommand,
+    invalidate,
+    onOrbitTargetChange,
+    syncOrbitTarget,
+    viewMode,
+  ]);
 
   if (viewMode !== "director") return null;
 
   return (
     <OrbitControls
+      ref={controlsRef}
       key={
         directorCameraCommand
           ? directorCameraCommand.position.join(":")
@@ -270,7 +530,7 @@ function CameraController({
       minDistance={2.5}
       maxDistance={20}
       maxPolarAngle={Math.PI}
-      target={[0, 1, 0]}
+      target={directorOrbitTarget}
     />
   );
 }
@@ -280,10 +540,12 @@ function DirectorCameraSnapshotBridge({
   cameraTarget,
   onSnapshot,
   viewMode,
+  controlsRef,
 }: {
   cameraTarget: DirectorViewportSnapshot["target"];
   onSnapshot: (snapshot: DirectorViewportSnapshot) => void;
   viewMode: "director" | "camera";
+  controlsRef: DirectorOrbitControlsRef;
 }) {
   const camera = useThree((state) => state.camera);
   const elapsed = useRef(0);
@@ -297,8 +559,17 @@ function DirectorCameraSnapshotBridge({
     const perspective = camera as PerspectiveCamera;
     if (!perspective.isPerspectiveCamera) return;
 
+    // ★ Batch 851：导演视角下要回读**真实的 orbit 中心** ⟹ ⟹
+    //   之前这里硬编码 [0,1,0] ⟹ ⟹ 而 WASDQE 会把 orbit 中心一起平移
+    //   ⟹ ⟹ 硬编码会让回读出的位姿与真实相机脱节（gizmo 的轴向移动会算错）。
+    //   ★ 默认态下 orbit 中心就是 [0,1,0] ⟹ ⟹ 对既有行为**零影响**。
+    const controls = controlsRef.current;
     const target: DirectorViewportSnapshot["target"] =
-      viewMode === "director" ? [0, 1, 0] : [...cameraTarget];
+      viewMode === "director"
+        ? controls
+          ? [controls.target.x, controls.target.y, controls.target.z]
+          : [0, 1, 0]
+        : [...cameraTarget];
     const snapshot: DirectorViewportSnapshot = {
       fov: perspective.fov,
       position: [
@@ -2533,6 +2804,15 @@ export function DirectorViewport({
   const viewportSnapshotRef = useRef(viewportSnapshot);
   const [directorCameraCommand, setDirectorCameraCommand] =
     useState<DirectorViewportSnapshot | null>(null);
+  // ★ Batch 851：orbit 中心必须是**引用稳定**的 state ⟹ ⟹ 之前是字面量 [0,1,0]，
+  //   drei 把它透传给 <primitive object={controls}> ⟹ ⟹ R3F 每次 re-render 都会 apply
+  //   ⟹ ⟹ WASDQE 平移出来的 orbit 中心会被下一次 re-render 打回默认。
+  const [directorOrbitTarget, setDirectorOrbitTarget] =
+    useState<DirectorTuple3>([0, 1, 0]);
+  // ★ Batch 851：OrbitControls 实例的 ref ⟹ ⟹ 快捷键直接改它（与源站同一条路径）
+  const directorOrbitControlsRef = useRef<ElementRef<typeof OrbitControls> | null>(
+    null,
+  );
   // Batch 543: 源站截图 18——重置视角恢复导演台默认机位（新对象触发
   // CameraController 重新应用快照）。
   const handleResetDirectorView = () => {
@@ -2893,6 +3173,11 @@ export function DirectorViewport({
       data-director-viewport
       data-director-view={viewMode}
       data-director-panels-collapsed={viewportPanelsCollapsed}
+      // ★ Batch 851：把**当前相机位姿**暴露成 DOM 属性 ⟹ ⟹ 门禁才能断言
+      //   「按 T 之后相机到底变成了哪个坐标」，而不只是「画面变了」。
+      data-director-view-position={viewportSnapshot.position.join(",")}
+      data-director-view-target={viewportSnapshot.target.join(",")}
+      data-director-view-fov={viewportSnapshot.fov}
       className="relative h-full min-h-0 min-w-0 overflow-hidden bg-[#20252b]"
       aria-label="3D导演视口"
     >
@@ -2923,11 +3208,19 @@ export function DirectorViewport({
         >
           <CameraController
             directorCameraCommand={directorCameraCommand}
+            directorOrbitTarget={directorOrbitTarget}
+            onOrbitTargetChange={setDirectorOrbitTarget}
+            controlsRef={directorOrbitControlsRef}
+          />
+          <DirectorViewShortcutController
+            onOrbitTargetChange={setDirectorOrbitTarget}
+            controlsRef={directorOrbitControlsRef}
           />
           <DirectorCameraSnapshotBridge
             cameraTarget={activeCamera?.camera?.target ?? [0, 1, 0]}
             onSnapshot={handleViewportSnapshot}
             viewMode={viewMode}
+            controlsRef={directorOrbitControlsRef}
           />
           <DirectorScene
             panoramaInput={panoramaInput}
