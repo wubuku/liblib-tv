@@ -97,14 +97,19 @@
    "modal_open": true,
    "menu_opened": true,
    "empty_before": "暂无图片素材",
-   "empty_after": "暂无最近 7 天的图片素材"
+   "empty_after": "暂无最近 7 天的图片素材",
+   "n_items_before": 0,
+   "n_items_after": 0
   },
   "assets_type_filter_changes_state": {
    "ok": true,
    "modal_open": true,
    "menu_opened": true,
    "active_filter_row": "视频",
-   "empty_after_type_switch": null
+   "empty_before": "暂无最近 7 天的图片素材",
+   "empty_after_type_switch": null,
+   "n_items_before": 0,
+   "n_items_after": 2
   },
   "repaint_model_switches": {
    "ok": true,

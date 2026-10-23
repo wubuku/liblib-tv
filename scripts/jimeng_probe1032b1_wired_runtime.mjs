@@ -340,10 +340,19 @@ const checkRefPick = async (name, aria, idx) => {
       const e = document.querySelector('[data-testid="assets-empty"]');
       return e ? (e.textContent || '').trim() : null;
     });
+  // ⭐⭐⭐⭐⭐ Batch 1032-④-B 续（判据修复）：**「呈现」有两个面** —— 空态文案
+  //   **或** 素材条数 ⇒ ⇒ 只量其中一个 ⇒ ⇒ 在另一种状态下就「读不到」
+  //   ⇒ ⇒ 而 `null !== "…"` 恰好为真 ⇒ ⇒ **「读失败」被当成了「有变化」**
+  //   ⇒ ⇒ ⇒ 而 ④-B 之后画布**真的有素材** ⇒ ⇒ 切到「视频」后列表非空、
+  //   空态元素**根本不存在** ⇒ ⇒ 旧判据「空态文案变了」从此读不到。
+  const readCount = () =>
+    page.evaluate(() => document.querySelectorAll('[data-testid="assets-item"]').length);
   const e0 = await readEmpty();
+  const n0 = await readCount();
   // 时间 → 菜单 → 最近 7 天
   let timeMenu = false;
   let e1 = e0;
+  let n1 = n0;
   const timeBtn = btn('时间');
   if (await timeBtn.count()) {
     await timeBtn.first().click();
@@ -354,14 +363,17 @@ const checkRefPick = async (name, aria, idx) => {
       await items.nth(1).click(); // 最近 7 天
       await page.waitForTimeout(500);
       e1 = await readEmpty();
+      n1 = await readCount();
     }
   }
   record('assets_time_filter_changes_state', {
-    ok: modalUp > 0 && timeMenu && e0 !== e1,
+    ok: modalUp > 0 && timeMenu && (e0 !== e1 || n0 !== n1),
     modal_open: modalUp > 0,
     menu_opened: timeMenu,
     empty_before: e0,
     empty_after: e1,
+    n_items_before: n0,
+    n_items_after: n1,
   });
 
   // 筛选 → 菜单 → 视频（筛选行高亮移动）
@@ -369,6 +381,12 @@ const checkRefPick = async (name, aria, idx) => {
   let filtMenu = false;
   let activeFilter = null;
   let emptyAfterType = null;
+  let nAfterType = null;
+  // ⭐⭐⭐⭐⭐ before 必须在**同一个 check 内**自采 ⇒ ⇒ 否则判据只能去比
+  //   **另一个 check** 的字段 ⇒ ⇒ 而那个字段未必存在 ⇒ ⇒ `None != None`
+  //   ⇒ ⇒ ⇒ 恒假 ⇒ ⇒ ⇒ 那不是「产品坏了」，是**判据在比一个不存在的东西**。
+  const emptyBeforeType = await readEmpty();
+  const nBeforeType = await readCount();
   if (await filtBtn.count()) {
     await filtBtn.first().click();
     await page.waitForTimeout(400);
@@ -389,14 +407,19 @@ const checkRefPick = async (name, aria, idx) => {
         return active ? (active.textContent || '').trim() : null;
       });
       emptyAfterType = await readEmpty();
+      nAfterType = await readCount();
     }
   }
   record('assets_type_filter_changes_state', {
-    ok: modalUp > 0 && filtMenu && activeFilter === '视频' && emptyAfterType !== e1,
+    ok: modalUp > 0 && filtMenu && activeFilter === '视频'
+        && (emptyAfterType !== emptyBeforeType || nAfterType !== nBeforeType),
     modal_open: modalUp > 0,
     menu_opened: filtMenu,
     active_filter_row: activeFilter,
+    empty_before: emptyBeforeType,
     empty_after_type_switch: emptyAfterType,
+    n_items_before: nBeforeType,
+    n_items_after: nAfterType,
   });
   await page.keyboard.press('Escape');
   await page.waitForTimeout(500);

@@ -24,7 +24,8 @@
   · 会员页计费 CTA ⇒ ⇒ **必须真的是 disabled**（计费不能真做 ⇒ 明确禁用 + 说明，
     而不是「能点没反应」）
   · 资产库「时间」「筛选」⇒ ⇒ 点它 ⇒ ⇒ **真的开出一层菜单** ⇒ ⇒ 点一项 ⇒ ⇒
-    **空态文案 / 筛选行高亮真的变了**
+    **呈现真的变了**（空态文案 **或** 素材条数 —— ④-B 之后画布真的有素材，
+    切到「视频」后列表**非空** ⇒ ⇒ 空态元素**根本不存在** ⇒ ⇒ 只量空态就「读不到」）
 
 ⭐⭐⭐⭐⭐ **P8 是判据级阳性对照**：把某条读数改坏 ⇒ 同一套判据**必须红**
   ⇒ ⇒ 证明「全绿」不是恒真。
@@ -148,13 +149,35 @@ def _member_cta_ok(t):
     return bool(cta.get("all_disabled") is True)
 
 
+def _presentation(t, before_keys, after_keys):
+    """⭐⭐⭐⭐⭐ **「呈现变了」有两个面**：空态文案 **或** 素材条数。
+
+    ⇒ ⇒⇒⇒ 而只量其中一个 ⇒⇒⇒⇒ 在另一种状态下就「读不到」
+    ⇒ ⇒⇒⇒ ⇒ 而 `null !== "…"` 恰好为真 ⇒⇒⇒⇒ ⇒ **「读失败」被当成了「有变化」**
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ④-B 之后画布**真的有素材** ⇒⇒⇒⇒ ⇒ 切到「视频」后列表非空、
+    ⇒ ⇒⇒⇒ ⇒ 空态元素**根本不存在** ⇒⇒⇒⇒ ⇒ 旧判据从此读不到。
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 而 before 必须取**同一个 check 内**自采的那份
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 去比另一个 check 的字段 ⇒⇒⇒⇒ ⇒ 那个字段未必存在
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ `None != None` ⇒⇒⇒⇒ ⇒ ⇒ 恒假 ⇒⇒⇒⇒ ⇒ ⇒ ⇒
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ **判据在比一个不存在的东西**（旧版 P6 就是这么红的）。
+    """
+    b = tuple(t.get(k) for k in before_keys)
+    a = tuple(t.get(k) for k in after_keys)
+    if all(v is None for v in b) and all(v is None for v in a):
+        return None  # 什么都没读到 ⇒ **未测**，不是「没变」
+    return b != a
+
+
 def _assets_time_ok(t):
     if not t:
         return None
     if "empty_before" not in t:
         return None
-    return bool(t.get("menu_opened") is True
-                and t.get("empty_before") != t.get("empty_after"))
+    _ch = _presentation(t, ("empty_before", "n_items_before"),
+                        ("empty_after", "n_items_after"))
+    if _ch is None:
+        return None
+    return bool(t.get("menu_opened") is True and _ch)
 
 
 def _assets_type_ok(t):
@@ -162,9 +185,13 @@ def _assets_type_ok(t):
         return None
     if "active_filter_row" not in t:
         return None
+    _ch = _presentation(t, ("empty_before", "n_items_before"),
+                        ("empty_after_type_switch", "n_items_after"))
+    if _ch is None:
+        return None
     return bool(t.get("menu_opened") is True
                 and t.get("active_filter_row") == "视频"
-                and t.get("empty_after_type_switch") != t.get("empty_before"))
+                and _ch)
 
 
 def _judge(r):
