@@ -1,0 +1,1193 @@
+{
+ "①基线行": [
+  {
+   "label": "机位1",
+   "x": 96,
+   "y": 154,
+   "w": 168,
+   "h": 12,
+   "icon": "<rect x=\"1.75\" y=\"4\" width=\"7.5\" height=\"6\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></rect>"
+  },
+  {
+   "label": "机位2",
+   "x": 96,
+   "y": 186,
+   "w": 168,
+   "h": 12,
+   "icon": "<rect x=\"1.75\" y=\"4\" width=\"7.5\" height=\"6\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></rect>"
+  },
+  {
+   "label": "角色A",
+   "x": 96,
+   "y": 218,
+   "w": 168,
+   "h": 12,
+   "icon": "<path d=\"M8.3125 4.66732C9.52062 4.66732 10.5 5.6467 10.5 6.85482V8.89649C10.5 9.46028 10.043 9.91732 9.47917 9.91732H9.33333V12.9798C9.33333 13.2214 9.13746 13"
+  }
+ ],
+ "①基线类别": [
+  "camera",
+  "camera",
+  "character"
+ ],
+ "②基线面板文本": [
+  {
+   "text": "3D场景",
+   "x": 1640,
+   "y": 0,
+   "tag": "DIV",
+   "cls": "flex shrink-0 items-center justify-between h-12 px-3"
+  },
+  {
+   "text": "开通会员20开通会员限时 45 折20",
+   "x": 1567,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "pointer-events-auto flex shrink-0 items-center gap-2"
+  },
+  {
+   "text": "开通会员20开通会员限时 45 折20",
+   "x": 1607,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "relative"
+  },
+  {
+   "text": "开通会员20开通会员限时 45 折20",
+   "x": 1607,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "b640:gap-2 gap-2 text-[12px] m_4081bf90 mantine-Group-root"
+  },
+  {
+   "text": "开通会员限时 45 折20",
+   "x": 1647,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "flex items-center gap-2 mantine-visible-from-md"
+  },
+  {
+   "text": "取消ESC按 ESC 退出",
+   "x": 970,
+   "y": 9,
+   "tag": "SPAN",
+   "cls": "relative ml-1 inline-flex"
+  },
+  {
+   "text": "重置视角",
+   "x": 1547,
+   "y": 16,
+   "tag": "DIV",
+   "cls": "absolute z-20"
+  },
+  {
+   "text": "场景缩放场景平移xyz场景旋转xyz",
+   "x": 1656,
+   "y": 64,
+   "tag": "DIV",
+   "cls": "space-y-3"
+  },
+  {
+   "text": "场景缩放",
+   "x": 1656,
+   "y": 64,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "场景平移xyz",
+   "x": 1656,
+   "y": 136,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "xyz",
+   "x": 1656,
+   "y": 168,
+   "tag": "DIV",
+   "cls": "grid grid-cols-3 gap-1"
+  },
+  {
+   "text": "x",
+   "x": 1656,
+   "y": 168,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "y",
+   "x": 1740,
+   "y": 168,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "z",
+   "x": 1824,
+   "y": 168,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "场景旋转xyz",
+   "x": 1656,
+   "y": 208,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "xyz",
+   "x": 1656,
+   "y": 240,
+   "tag": "DIV",
+   "cls": "grid grid-cols-3 gap-1"
+  },
+  {
+   "text": "x",
+   "x": 1656,
+   "y": 240,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "y",
+   "x": 1740,
+   "y": 240,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "z",
+   "x": 1824,
+   "y": 240,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "已连接全景图请将图片节点连接到导演台左侧输入口天空颜色#",
+   "x": 1656,
+   "y": 336,
+   "tag": "DIV",
+   "cls": "space-y-3"
+  },
+  {
+   "text": "已连接全景图请将图片节点连接到导演台左侧输入口",
+   "x": 1656,
+   "y": 336,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "请将图片节点连接到导演台左侧输入口",
+   "x": 1656,
+   "y": 368,
+   "tag": "DIV",
+   "cls": "flex items-start gap-2 rounded-[10px] px-3 py-2.5"
+  },
+  {
+   "text": "天空颜色#",
+   "x": 1656,
+   "y": 420,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "#",
+   "x": 1656,
+   "y": 452,
+   "tag": "DIV",
+   "cls": "flex items-start gap-2"
+  },
+  {
+   "text": "#",
+   "x": 1692,
+   "y": 452,
+   "tag": "DIV",
+   "cls": "flex h-7 min-w-px flex-1 items-center gap-0.5 rounded-lg bg-white/10 px-2"
+  },
+  {
+   "text": "水平旋转",
+   "x": 1656,
+   "y": 548,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "球形半径",
+   "x": 1656,
+   "y": 620,
+   "tag": "DIV",
+   "cls": "mt-3"
+  },
+  {
+   "text": "透明度高度",
+   "x": 1660,
+   "y": 920,
+   "tag": "DIV",
+   "cls": "space-y-3"
+  },
+  {
+   "text": "透明度",
+   "x": 1660,
+   "y": 920,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "知道了",
+   "x": 1012,
+   "y": 971,
+   "tag": "DIV",
+   "cls": "relative flex items-center gap-4"
+  },
+  {
+   "text": "高度",
+   "x": 1660,
+   "y": 992,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "TV Director",
+   "x": 1135,
+   "y": 1019,
+   "tag": "DIV",
+   "cls": "absolute left-full top-1/2 ml-1.5 -translate-y-1/2 empty:hidden"
+  },
+  {
+   "text": "TV Director",
+   "x": 1135,
+   "y": 1019,
+   "tag": "DIV",
+   "cls": "relative"
+  },
+  {
+   "text": "功能宝箱上线啦！创作所需功能应有尽有～知道了",
+   "x": 960,
+   "y": 1027,
+   "tag": "DIV",
+   "cls": "relative"
+  }
+ ],
+ "②基线面板字段": [
+  {
+   "type": "text",
+   "x": 1834,
+   "y": 96,
+   "w": 70,
+   "h": 28,
+   "value": "300%",
+   "aria": "",
+   "placeholder": "",
+   "label": "场景缩放",
+   "min": null,
+   "max": null,
+   "step": null
+  },
+  {
+   "type": "range",
+   "x": 1656,
+   "y": 100,
+   "w": 170,
+   "h": 20,
+   "value": "3",
+   "aria": "",
+   "placeholder": "",
+   "label": "场景缩放",
+   "min": "0.1",
+   "max": "10",
+   "step": "0.1"
+  },
+  {
+   "type": "number",
+   "x": 1656,
+   "y": 168,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "场景平移",
+   "min": null,
+   "max": null,
+   "step": "0.1"
+  },
+  {
+   "type": "number",
+   "x": 1740,
+   "y": 168,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "场景平移",
+   "min": null,
+   "max": null,
+   "step": "0.1"
+  },
+  {
+   "type": "number",
+   "x": 1824,
+   "y": 168,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "场景平移",
+   "min": null,
+   "max": null,
+   "step": "0.1"
+  },
+  {
+   "type": "number",
+   "x": 1656,
+   "y": 240,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "场景旋转",
+   "min": null,
+   "max": null,
+   "step": "1"
+  },
+  {
+   "type": "number",
+   "x": 1740,
+   "y": 240,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "场景旋转",
+   "min": null,
+   "max": null,
+   "step": "1"
+  },
+  {
+   "type": "number",
+   "x": 1824,
+   "y": 240,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "场景旋转",
+   "min": null,
+   "max": null,
+   "step": "1"
+  },
+  {
+   "type": "text",
+   "x": 1710,
+   "y": 452,
+   "w": 186,
+   "h": 28,
+   "value": "060608",
+   "aria": "",
+   "placeholder": "",
+   "label": "#",
+   "min": null,
+   "max": null,
+   "step": null
+  },
+  {
+   "type": "text",
+   "x": 1834,
+   "y": 580,
+   "w": 70,
+   "h": 28,
+   "value": "0°",
+   "aria": "",
+   "placeholder": "",
+   "label": "水平旋转",
+   "min": null,
+   "max": null,
+   "step": null
+  },
+  {
+   "type": "range",
+   "x": 1656,
+   "y": 584,
+   "w": 170,
+   "h": 20,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "水平旋转",
+   "min": "0",
+   "max": "360",
+   "step": "1"
+  },
+  {
+   "type": "text",
+   "x": 1834,
+   "y": 652,
+   "w": 70,
+   "h": 28,
+   "value": "60",
+   "aria": "",
+   "placeholder": "",
+   "label": "球形半径",
+   "min": null,
+   "max": null,
+   "step": null
+  },
+  {
+   "type": "range",
+   "x": 1656,
+   "y": 656,
+   "w": 170,
+   "h": 20,
+   "value": "60",
+   "aria": "",
+   "placeholder": "",
+   "label": "球形半径",
+   "min": "10",
+   "max": "500",
+   "step": "10"
+  },
+  {
+   "type": "text",
+   "x": 1838,
+   "y": 952,
+   "w": 62,
+   "h": 28,
+   "value": "0.40",
+   "aria": "",
+   "placeholder": "",
+   "label": "透明度",
+   "min": null,
+   "max": null,
+   "step": null
+  },
+  {
+   "type": "range",
+   "x": 1660,
+   "y": 956,
+   "w": 170,
+   "h": 20,
+   "value": "0.4",
+   "aria": "",
+   "placeholder": "",
+   "label": "透明度",
+   "min": "0",
+   "max": "1",
+   "step": "0.05"
+  },
+  {
+   "type": "text",
+   "x": 1838,
+   "y": 1024,
+   "w": 62,
+   "h": 28,
+   "value": "0.0",
+   "aria": "",
+   "placeholder": "",
+   "label": "高度",
+   "min": null,
+   "max": null,
+   "step": null
+  },
+  {
+   "type": "range",
+   "x": 1660,
+   "y": 1028,
+   "w": 170,
+   "h": 20,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "高度",
+   "min": "-2",
+   "max": "2",
+   "step": "0.05"
+  }
+ ],
+ "③选中角色后面板文本": [
+  {
+   "text": "角色属性姿势名称位置xyz旋转xyz缩放xyz统一缩放颜色#",
+   "x": 1639,
+   "y": 0,
+   "tag": "DIV",
+   "cls": "absolute right-0 top-0 z-20 flex w-[281px] flex-col overflow-hidden"
+  },
+  {
+   "text": "角色属性姿势名称位置xyz旋转xyz缩放xyz统一缩放颜色#",
+   "x": 1639,
+   "y": 0,
+   "tag": "DIV",
+   "cls": "flex min-h-0 flex-1 flex-col overflow-hidden border w-[281px] border-y-0 border-"
+  },
+  {
+   "text": "角色",
+   "x": 1640,
+   "y": 0,
+   "tag": "DIV",
+   "cls": "flex shrink-0 items-center justify-between h-12 px-3"
+  },
+  {
+   "text": "开通会员20开通会员限时 45 折20",
+   "x": 1567,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "pointer-events-auto flex shrink-0 items-center gap-2"
+  },
+  {
+   "text": "开通会员20开通会员限时 45 折20",
+   "x": 1607,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "relative"
+  },
+  {
+   "text": "开通会员20开通会员限时 45 折20",
+   "x": 1607,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "b640:gap-2 gap-2 text-[12px] m_4081bf90 mantine-Group-root"
+  },
+  {
+   "text": "开通会员限时 45 折20",
+   "x": 1647,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "flex items-center gap-2 mantine-visible-from-md"
+  },
+  {
+   "text": "取消ESC按 ESC 退出",
+   "x": 970,
+   "y": 9,
+   "tag": "SPAN",
+   "cls": "relative ml-1 inline-flex"
+  },
+  {
+   "text": "重置视角",
+   "x": 1547,
+   "y": 16,
+   "tag": "DIV",
+   "cls": "absolute z-20"
+  },
+  {
+   "text": "属性姿势名称位置xyz旋转xyz缩放xyz统一缩放颜色#",
+   "x": 1640,
+   "y": 48,
+   "tag": "DIV",
+   "cls": "min-h-0 flex-1 overflow-y-auto [scrollbar-color:rgba(255,255,255,0.36)_transpare"
+  },
+  {
+   "text": "属性姿势名称位置xyz旋转xyz缩放xyz统一缩放颜色#",
+   "x": 1640,
+   "y": 48,
+   "tag": "DIV",
+   "cls": "flex flex-col gap-0"
+  },
+  {
+   "text": "属性姿势",
+   "x": 1640,
+   "y": 48,
+   "tag": "DIV",
+   "cls": "border-white/8 border-b px-4 pb-3 pt-4"
+  },
+  {
+   "text": "属性姿势",
+   "x": 1656,
+   "y": 64,
+   "tag": "DIV",
+   "cls": "flex gap-2"
+  },
+  {
+   "text": "名称位置xyz旋转xyz缩放xyz统一缩放颜色#",
+   "x": 1640,
+   "y": 105,
+   "tag": "DIV",
+   "cls": "flex flex-col"
+  },
+  {
+   "text": "名称位置xyz旋转xyz缩放xyz统一缩放颜色#",
+   "x": 1656,
+   "y": 121,
+   "tag": "DIV",
+   "cls": "space-y-3"
+  },
+  {
+   "text": "名称",
+   "x": 1656,
+   "y": 121,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "位置xyz",
+   "x": 1656,
+   "y": 193,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "xyz",
+   "x": 1656,
+   "y": 225,
+   "tag": "DIV",
+   "cls": "grid grid-cols-3 gap-1"
+  },
+  {
+   "text": "x",
+   "x": 1656,
+   "y": 225,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "y",
+   "x": 1740,
+   "y": 225,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "z",
+   "x": 1824,
+   "y": 225,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "旋转xyz",
+   "x": 1656,
+   "y": 265,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "xyz",
+   "x": 1656,
+   "y": 297,
+   "tag": "DIV",
+   "cls": "grid grid-cols-3 gap-1"
+  },
+  {
+   "text": "x",
+   "x": 1656,
+   "y": 297,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "y",
+   "x": 1740,
+   "y": 297,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "z",
+   "x": 1824,
+   "y": 297,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "缩放xyz",
+   "x": 1656,
+   "y": 337,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "xyz",
+   "x": 1656,
+   "y": 369,
+   "tag": "DIV",
+   "cls": "grid grid-cols-3 gap-1"
+  },
+  {
+   "text": "x",
+   "x": 1656,
+   "y": 369,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "y",
+   "x": 1740,
+   "y": 369,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "z",
+   "x": 1824,
+   "y": 369,
+   "tag": "DIV",
+   "cls": "focus-within:bg-white/13 relative flex h-7 min-w-0 overflow-hidden rounded-lg bg"
+  },
+  {
+   "text": "统一缩放",
+   "x": 1656,
+   "y": 409,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "颜色#",
+   "x": 1656,
+   "y": 481,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "#",
+   "x": 1656,
+   "y": 513,
+   "tag": "DIV",
+   "cls": "flex items-start gap-2"
+  },
+  {
+   "text": "#",
+   "x": 1692,
+   "y": 513,
+   "tag": "DIV",
+   "cls": "flex h-7 min-w-px flex-1 items-center gap-0.5 rounded-lg bg-white/10 px-2"
+  },
+  {
+   "text": "知道了",
+   "x": 1012,
+   "y": 971,
+   "tag": "DIV",
+   "cls": "relative flex items-center gap-4"
+  },
+  {
+   "text": "TV Director",
+   "x": 1135,
+   "y": 1019,
+   "tag": "DIV",
+   "cls": "absolute left-full top-1/2 ml-1.5 -translate-y-1/2 empty:hidden"
+  },
+  {
+   "text": "TV Director",
+   "x": 1135,
+   "y": 1019,
+   "tag": "DIV",
+   "cls": "relative"
+  },
+  {
+   "text": "功能宝箱上线啦！创作所需功能应有尽有～知道了",
+   "x": 960,
+   "y": 1027,
+   "tag": "DIV",
+   "cls": "relative"
+  }
+ ],
+ "③选中角色后面板字段": [
+  {
+   "type": "text",
+   "x": 1656,
+   "y": 153,
+   "w": 248,
+   "h": 28,
+   "value": "角色A",
+   "aria": "",
+   "placeholder": "",
+   "label": "名称",
+   "min": null,
+   "max": null,
+   "step": null
+  },
+  {
+   "type": "number",
+   "x": 1656,
+   "y": 225,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "位置",
+   "min": null,
+   "max": null,
+   "step": "0.1"
+  },
+  {
+   "type": "number",
+   "x": 1740,
+   "y": 225,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "位置",
+   "min": null,
+   "max": null,
+   "step": "0.1"
+  },
+  {
+   "type": "number",
+   "x": 1824,
+   "y": 225,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "位置",
+   "min": null,
+   "max": null,
+   "step": "0.1"
+  },
+  {
+   "type": "number",
+   "x": 1656,
+   "y": 297,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "旋转",
+   "min": null,
+   "max": null,
+   "step": "1"
+  },
+  {
+   "type": "number",
+   "x": 1740,
+   "y": 297,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "旋转",
+   "min": null,
+   "max": null,
+   "step": "1"
+  },
+  {
+   "type": "number",
+   "x": 1824,
+   "y": 297,
+   "w": 80,
+   "h": 28,
+   "value": "0",
+   "aria": "",
+   "placeholder": "",
+   "label": "旋转",
+   "min": null,
+   "max": null,
+   "step": "1"
+  },
+  {
+   "type": "number",
+   "x": 1656,
+   "y": 369,
+   "w": 80,
+   "h": 28,
+   "value": "1.03",
+   "aria": "",
+   "placeholder": "",
+   "label": "缩放",
+   "min": null,
+   "max": null,
+   "step": "0.05"
+  },
+  {
+   "type": "number",
+   "x": 1740,
+   "y": 369,
+   "w": 80,
+   "h": 28,
+   "value": "1.03",
+   "aria": "",
+   "placeholder": "",
+   "label": "缩放",
+   "min": null,
+   "max": null,
+   "step": "0.05"
+  },
+  {
+   "type": "number",
+   "x": 1824,
+   "y": 369,
+   "w": 80,
+   "h": 28,
+   "value": "1.03",
+   "aria": "",
+   "placeholder": "",
+   "label": "缩放",
+   "min": null,
+   "max": null,
+   "step": "0.05"
+  },
+  {
+   "type": "text",
+   "x": 1834,
+   "y": 441,
+   "w": 70,
+   "h": 28,
+   "value": "1.0",
+   "aria": "",
+   "placeholder": "",
+   "label": "统一缩放",
+   "min": null,
+   "max": null,
+   "step": null
+  },
+  {
+   "type": "range",
+   "x": 1656,
+   "y": 445,
+   "w": 170,
+   "h": 20,
+   "value": "1",
+   "aria": "",
+   "placeholder": "",
+   "label": "统一缩放",
+   "min": "0.1",
+   "max": "10",
+   "step": "0.05"
+  },
+  {
+   "type": "text",
+   "x": 1710,
+   "y": 513,
+   "w": 186,
+   "h": 28,
+   "value": "4F8EF7",
+   "aria": "",
+   "placeholder": "",
+   "label": "#",
+   "min": null,
+   "max": null,
+   "step": null
+  }
+ ],
+ "④⌘G后行": [
+  {
+   "label": "分组1",
+   "x": 96,
+   "y": 154,
+   "w": 168,
+   "h": 12,
+   "icon": "<path d=\"M1.5 19a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3m19 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3M6 21H4v-1h2zm4 0H8v-1h2zm4 0h-2v-1h2zm4 0h-2v-1h2zM2 18H1v-2h1zm19"
+  },
+  {
+   "label": "机位1",
+   "x": 112,
+   "y": 186,
+   "w": 152,
+   "h": 12,
+   "icon": "<rect x=\"1.75\" y=\"4\" width=\"7.5\" height=\"6\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></rect>"
+  },
+  {
+   "label": "角色A",
+   "x": 112,
+   "y": 218,
+   "w": 152,
+   "h": 12,
+   "icon": "<path d=\"M8.3125 4.66732C9.52062 4.66732 10.5 5.6467 10.5 6.85482V8.89649C10.5 9.46028 10.043 9.91732 9.47917 9.91732H9.33333V12.9798C9.33333 13.2214 9.13746 13"
+  },
+  {
+   "label": "机位2",
+   "x": 96,
+   "y": 250,
+   "w": 168,
+   "h": 12,
+   "icon": "<rect x=\"1.75\" y=\"4\" width=\"7.5\" height=\"6\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></rect>"
+  }
+ ],
+ "④⌘G后类别": [
+  "other",
+  "camera",
+  "character",
+  "camera"
+ ],
+ "⑤组检查器面板文本": [
+  {
+   "text": "分组名称",
+   "x": 1639,
+   "y": 0,
+   "tag": "DIV",
+   "cls": "absolute right-0 top-0 z-20 flex w-[281px] flex-col overflow-hidden"
+  },
+  {
+   "text": "分组名称",
+   "x": 1639,
+   "y": 0,
+   "tag": "DIV",
+   "cls": "flex min-h-0 flex-1 flex-col overflow-hidden border w-[281px] border-y-0 border-"
+  },
+  {
+   "text": "分组",
+   "x": 1640,
+   "y": 0,
+   "tag": "DIV",
+   "cls": "flex shrink-0 items-center justify-between h-12 px-3"
+  },
+  {
+   "text": "开通会员20开通会员限时 45 折20",
+   "x": 1567,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "pointer-events-auto flex shrink-0 items-center gap-2"
+  },
+  {
+   "text": "开通会员20开通会员限时 45 折20",
+   "x": 1607,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "relative"
+  },
+  {
+   "text": "开通会员20开通会员限时 45 折20",
+   "x": 1607,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "b640:gap-2 gap-2 text-[12px] m_4081bf90 mantine-Group-root"
+  },
+  {
+   "text": "开通会员限时 45 折20",
+   "x": 1647,
+   "y": 8,
+   "tag": "DIV",
+   "cls": "flex items-center gap-2 mantine-visible-from-md"
+  },
+  {
+   "text": "取消ESC按 ESC 退出",
+   "x": 970,
+   "y": 9,
+   "tag": "SPAN",
+   "cls": "relative ml-1 inline-flex"
+  },
+  {
+   "text": "重置视角",
+   "x": 1547,
+   "y": 16,
+   "tag": "DIV",
+   "cls": "absolute z-20"
+  },
+  {
+   "text": "名称",
+   "x": 1640,
+   "y": 48,
+   "tag": "DIV",
+   "cls": "min-h-0 flex-1 overflow-y-auto [scrollbar-color:rgba(255,255,255,0.36)_transpare"
+  },
+  {
+   "text": "名称",
+   "x": 1640,
+   "y": 48,
+   "tag": "DIV",
+   "cls": "flex flex-col"
+  },
+  {
+   "text": "名称",
+   "x": 1656,
+   "y": 64,
+   "tag": "DIV",
+   "cls": "space-y-3"
+  },
+  {
+   "text": "名称",
+   "x": 1656,
+   "y": 64,
+   "tag": "DIV",
+   "cls": ""
+  },
+  {
+   "text": "知道了",
+   "x": 1012,
+   "y": 971,
+   "tag": "DIV",
+   "cls": "relative flex items-center gap-4"
+  },
+  {
+   "text": "TV Director",
+   "x": 1135,
+   "y": 1019,
+   "tag": "DIV",
+   "cls": "absolute left-full top-1/2 ml-1.5 -translate-y-1/2 empty:hidden"
+  },
+  {
+   "text": "TV Director",
+   "x": 1135,
+   "y": 1019,
+   "tag": "DIV",
+   "cls": "relative"
+  },
+  {
+   "text": "功能宝箱上线啦！创作所需功能应有尽有～知道了",
+   "x": 960,
+   "y": 1027,
+   "tag": "DIV",
+   "cls": "relative"
+  }
+ ],
+ "⑤组检查器面板字段": [
+  {
+   "type": "text",
+   "x": 1656,
+   "y": 96,
+   "w": 248,
+   "h": 28,
+   "value": "分组1",
+   "aria": "",
+   "placeholder": "",
+   "label": "名称",
+   "min": null,
+   "max": null,
+   "step": null
+  }
+ ],
+ "⑤组检查器面板字段数": 1,
+ "⑥组检查器字段摘要": [
+  {
+   "label": "名称",
+   "aria": "",
+   "placeholder": "",
+   "type": "text",
+   "value": "分组1",
+   "x": 1656,
+   "y": 96
+  }
+ ],
+ "⑦复原后行": [
+  {
+   "label": "机位1",
+   "x": 96,
+   "y": 154,
+   "w": 168,
+   "h": 12,
+   "icon": "<rect x=\"1.75\" y=\"4\" width=\"7.5\" height=\"6\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></rect>"
+  },
+  {
+   "label": "机位2",
+   "x": 96,
+   "y": 186,
+   "w": 168,
+   "h": 12,
+   "icon": "<rect x=\"1.75\" y=\"4\" width=\"7.5\" height=\"6\" rx=\"1.2\" fill=\"none\" stroke=\"currentColor\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-width=\"1.5\"></rect>"
+  },
+  {
+   "label": "角色A",
+   "x": 96,
+   "y": 218,
+   "w": 168,
+   "h": 12,
+   "icon": "<path d=\"M8.3125 4.66732C9.52062 4.66732 10.5 5.6467 10.5 6.85482V8.89649C10.5 9.46028 10.043 9.91732 9.47917 9.91732H9.33333V12.9798C9.33333 13.2214 9.13746 13"
+  }
+ ],
+ "⑦复原后类别": [
+  "camera",
+  "camera",
+  "character"
+ ],
+ "⑦是否回到基线": true
+}

@@ -59,13 +59,10 @@ import type {
   DirectorPanoramaRuntimeState,
 } from "@/lib/directorCanvasMediaIngress";
 
-function cloneDirectorTransform(transform: DirectorTransform): DirectorTransform {
-  return {
-    position: [...transform.position],
-    rotation: [...transform.rotation],
-    scale: [...transform.scale],
-  };
-}
+// ★★ Batch 856：这里原本有一份 `cloneDirectorTransform`（给组检查器的
+//   「位置／旋转／缩放」三个字段用）⟹ ⟹ 那三个字段已按源站逐字删除
+//   ⟹ ⟹ 这份 helper 也随之成为死代码 ⟹ ⟹ **删掉**（不留死代码）。
+//   （`directorTimelineMath.ts` 里另有一份**独立**的，那份还在用。）
 
 const axisLabels = ["X", "Y", "Z"] as const;
 
@@ -692,17 +689,7 @@ function DirectorCaptureGallery({
 function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
   const objects = useDirectorStore((state) => state.objects);
   const updateGroup = useDirectorStore((state) => state.updateGroup);
-  const updateGroupTransform = useDirectorStore(
-    (state) => state.updateGroupTransform,
-  );
-  const recordGroupKeyframe = useDirectorStore(
-    (state) => state.recordGroupKeyframe,
-  );
   const anchor = getDirectorGroupAnchorTransform(objects, group);
-  // ★★ Batch 855：锁定守卫按**全部成员**（源站 `O(e)`）。
-  const hasLockedMember = resolveGroupMemberRefs(group).some((member) =>
-    objects.some((object) => object.id === member.id && object.locked),
-  );
   const groupNameInputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     const input = groupNameInputRef.current;
@@ -710,31 +697,25 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
   }, [group.label]);
   if (!anchor) return null;
 
-  const updateField = (
-    field: keyof DirectorTransform,
-    axis: 0 | 1 | 2,
-    value: number,
-  ) => {
-    const next = cloneDirectorTransform(anchor);
-    next[field][axis] = value;
-    updateGroupTransform(group.id, next);
-    recordGroupKeyframe(group.id);
-  };
+  // ★★★ Batch 856：**没有** `updateField` ⟹ ⟹ 组检查器**不提供**变换输入。
+  //   （源站实测：选中组 ⟹ 检查器只有「名称」一个字段；画布上也没有组 gizmo。
+  //   ⟹ ⟹ 组只能通过「组轨道」移动。）
 
   return (
     <div
       data-director-group-inspector
       className="space-y-4 px-4 py-3"
     >
-      {hasLockedMember ? (
-        <p
-          data-director-locked-hint
-          className="flex items-center gap-1.5 rounded border border-[#f0c776]/20 bg-[#7b5521]/10 px-2 py-1.5 text-[10px] leading-4 text-[#d5b879]"
-        >
-          <Lock size={12} aria-hidden="true" />
-          分组包含已锁定成员，分组变换已停用
-        </p>
-      ) : null}
+      {/* ★★★ Batch 856：这里原本有一段「分组包含已锁定成员，分组变换已停用」
+        *   的锁定提示 ⟹ ⟹ ★ **本批删掉**它，理由有两条：
+        *   ① ★★ **文案已经与事实矛盾**：本批按源站逐字删掉了组的
+        *      「位置／旋转／缩放」三个字段 ⟹ ⟹ 组**根本没有「变换」可停用**；
+        *   ② ★★ **源站没有这个提示**：源站实测（`raw/source-856-groupinspector.json`）
+        *      里选中组 ⟹ 检查器**只有「名称」一个字段** ⟹ ⟹ 没有任何提示块。
+        *   ⟹ ⟹ 所以 `hasLockedMember` 这个局部变量也一并移除。
+        *   ★ 组的**锁定守卫**本身仍在（`directorGroupHasLockedMember`），
+        *     它守的是**组轨道关键帧**那条路径（时间轴／曲线编辑器）。
+        */}
       <label className="block">
         <span className="mb-1.5 block text-[11px] text-[#777]">名称</span>
         <input
@@ -766,27 +747,24 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
           <span>间距 {group.crowd.spacing}</span>
         </div>
       ) : null}
-      <div className="space-y-3 border-t border-white/[0.07] pt-4">
-        {(
-          [
-            ["position", "位置"],
-            ["rotation", "旋转"],
-            ["scale", "缩放"],
-          ] as const
-        ).map(([field, label]) => (
-          <div key={field} data-director-group-transform-field={field}>
-            <AxisFields
-              label={label}
-              field={field}
-              values={anchor[field]}
-              disabled={hasLockedMember}
-              gestureTargetId={group.id}
-              gestureCommandKind="group-transform"
-              onChange={(axis, value) => updateField(field, axis, value)}
-            />
-          </div>
-        ))}
-      </div>
+      {/* ★★★ Batch 856：组**没有变换字段**。
+        *
+        * ★ 源站逐字（机器提取见 `raw/source-856-contract.json`）：
+        *   建组：`a={id:lM(),label:lT(e.characterGroups),characterIds:n,members:r}`
+        *   ⟹ ⟹ 组的对象**只有 4 个字段**，**没有 transform**。
+        * ★ 源站实测（`raw/source-856-groupinspector.json`）：
+        *   选中**角色** ⟹ 检查器 **13 个字段**（名称／位置xyz／旋转xyz／缩放xyz／
+        *   统一缩放／颜色）；选中**组** ⟹ 检查器 **1 个字段**（**只有「名称」**），
+        *   下面**整片空白**。
+        * ★ 源站实测（`raw/source-856-groupgizmo.json`）：
+        *   选中组后**画布上没有任何 gizmo**（像素差只落在左侧树面板；
+        *   阳性对照＝选中角色时画布右下角出现红色箭头）。
+        * ⟹ ⟹ 所以**组只能通过「组轨道」（时间轴）移动**，
+        *   源站的组检查器**不提供**位置／旋转／缩放。
+        * ⟹ ⟹ 本批**删掉**这三个字段（之前它们走
+        *   `applyDirectorGroupTransform` 的「旋转增量 ＋ 缩放比」语义，
+        *   而那个语义在源站**根本不存在**）。
+        */}
     </div>
   );
 }

@@ -27,7 +27,13 @@ assert.match(inspectorSource, /对象已锁定，属性与变换编辑已停用/
 assert.match(inspectorSource, /disabled=\{selected\.locked\}/);
 assert.match(inspectorSource, /data-director-motion-path-locked/);
 assert.match(viewportSource, /object\.locked/);
-assert.match(viewportSource, /hasLockedMember/);
+// ★★ Batch 856 判据迁移：组 gizmo 已按源站逐字删除 ⟹ ⟹ 视口层不再有
+//   「组里有锁定成员 ⟹ 隐藏组 gizmo」这道守卫 ⟹ ⟹ 旧断言的前提过期。
+// ★★ 正向改成「组锁定守卫在 store 里（定义 ＋ 有调用点）」，
+//   另加**负向断言**保证旧的视口层写法清零（否则「新旧都写」就能蒙混过关）。
+assert.match(storeSource, /function directorGroupHasLockedMember\(/);
+assert.match(storeSource, /directorGroupHasLockedMember\(state, group\)/);
+assert.doesNotMatch(viewportSource, /const hasLockedMember\s*=/);
 assert.match(storeSource, /DIRECTOR_TARGET_LOCKED/);
 assert.match(storeSource, /toggleObjectLocked:/);
 assert.match(storeSource, /function directorPathTargetIsLocked/);

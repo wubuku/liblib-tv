@@ -1,0 +1,50 @@
+{
+ "来源": {
+  "chunk": "/tmp/liblib_srcjs2/0fmehki05gkzw.js.js",
+  "字节数": 1018019,
+  "提取方式": "机器提取（唯一定位 ＋ 逐字摘录）"
+ },
+ "片段": {
+  "组对象字面量（无 transform 字段）": {
+   "锚点": "a={id:lM(),label:lT(e.characterGroups),characterIds:n,members:r}",
+   "原文": "a={id:lM(),label:lT(e.characterGroups),characterIds:n,members:r}",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "权威成员列表 O(e)（members 优先＋characterIds 兜底＋去重）": {
+   "锚点": "function O(e){let t=[],r=new Set",
+   "原文": "function O(e){let t=[],r=new Set,n=e=>{if(!e.id)return;let n=N(e);r.has(n)||(r.add(n),t.push(e))};return(e.members??[]).forEach(n),(e.characterIds??[]).forEach(e=>n({kind:\"character\",id:e})),t}",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "reducer SELECT_CHARACTER_GROUP（选中组 ⟹ lQ(n) ＋ selectedGroupId）": {
+   "锚点": "case\"SELECT_CHARACTER_GROUP\":{let r=e.characterGroups.find(e=>e.id===t.id)",
+   "原文": "case\"SELECT_CHARACTER_GROUP\":{let r=e.characterGroups.find(e=>e.id===t.id);if(!r)return e;let n=lB(O(r),e.characters,e.props,e.emptyObjects,e.cameras);if(0===n.length)return e;return{...e,...lQ(n),selectedGroupId:r.id}}",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "组的锚点 H(e,t)（全部成员位置均值 ⟹ 组位置永远是派生的）": {
+   "锚点": "function H(e,t){var r=O(e).map(t).filter(e=>!!e)",
+   "原文": "function H(e,t){var r=O(e).map(t).filter(e=>!!e);if(0===r.length)return null;let n=r.reduce((e,t)=>({x:e.x+t.x,y:e.y+t.y,z:e.z+t.z}),{x:0,y:0,z:0});return{x:n.x/r.length,y:n.y/r.length,z:n.z/r.length}}",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "组轨道创建（keyframes 只有一个 position）": {
+   "锚点": "keyframes:[{time:0,position:n}],interpolation:\"linear\",memberOffsets:V(i,n,",
+   "原文": "keyframes:[{time:0,position:n}],interpolation:\"linear\",memberOffsets:V(i,n,t=>L(e,t))}",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "组轨道编辑属性（只有 position 一个）": {
+   "锚点": "if(\"group\"===e.kind){let t=A.groupTracks.find(t=>t.id===e.trackId);if(!t)return!1;let n=b.characterGroups.find(e=>e.id===t.targetId),a=n?H(n,e=>L(b,e)):null,i=g(t.keyframes,a?.y??0);return na(e.trackId,{...y,...v,keyframes:i,speedCurveSegments:hi(t.speedCurveSegments,[\"position\"])},r),!0}",
+   "原文": "if(\"group\"===e.kind){let t=A.groupTracks.find(t=>t.id===e.trackId);if(!t)return!1;let n=b.characterGroups.find(e=>e.id===t.targetId),a=n?H(n,e=>L(b,e)):null,i=g(t.keyframes,a?.y??0);return na(e.trackId,{...y,...v,keyframes:i,speedCurveSegments:hi(t.speedCurveSegments,[\"position\"])},r),!0}",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  }
+ },
+ "★任意值类名自检": {
+  "通过": true,
+  "疑似编造的标识符": [],
+  "说明": "正文里每个 `x.y` 的 x 必须真实出现在 chunk 的标识符集合里"
+ }
+}

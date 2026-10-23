@@ -256,10 +256,23 @@ def run_crowd_group_loop(page: Page):
     page.evaluate(
         "() => window.__director_store.getState().setTimelineTime(4)"
     )
-    page.locator(
-        '[data-director-group-transform-field="position"] '
-        '[data-director-transform-axis="x"]'
-    ).fill(str(before_anchor[0] + 1.2))
+    # ★★ Batch 856：**判据迁移**（本批按源站逐字删掉了组检查器的
+    #   「位置／旋转／缩放」三个字段 ⟹ ⟹ 这个**输入框**在源站**不存在**，
+    #   在 clone 里也被删掉了 ⟹ ⟹ 原来那条「填输入框」的路径**测不了了**）。
+    # ★ ★ 换一条**语义等价**的路径：直接调 store 的 `updateGroupTransform`
+    #   （源站对应的是「在时间轴上拖组轨道关键帧」）⟹ ⟹
+    #   **被测的东西没变**（组变换 ⟹ 写轨道关键帧 ⟹ 锚点右移），
+    #   只是**操作入口**从「源站没有的 UI」换成「store action」
+    #   （★ 91.py 测同一条链时用的也是这个手法）。
+    page.evaluate(
+        """([groupId, nextX]) =>
+          window.__director_store.getState().updateGroupTransform(groupId, {
+            position: [nextX, 0, 0],
+            rotation: [0, 0, 0],
+            scale: [1, 1, 1],
+          })""",
+        [group["id"], before_anchor[0] + 1.2],
+    )
     page.wait_for_timeout(160)
     state = director_state(page)
     group_track = find_group_track(state, group["id"])

@@ -1,0 +1,403 @@
+{
+ "①基线DOM": {
+  "对象行": [
+   {
+    "id": "director-character-lead",
+    "kind": "character",
+    "label": "角色A"
+   },
+   {
+    "id": "director-prop-table",
+    "kind": "prop",
+    "label": "咖啡桌"
+   },
+   {
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "label": "冷掉的咖啡"
+   },
+   {
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "label": "咖啡馆背景"
+   },
+   {
+    "id": "director-camera-main",
+    "kind": "camera",
+    "label": "机位1"
+   }
+  ],
+  "组": [],
+  "成员行": []
+ },
+ "①基线状态": {
+  "groups": [],
+  "tracks": [],
+  "objects": [
+   {
+    "id": "director-character-lead",
+    "kind": "character",
+    "label": null,
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ]
+   },
+   {
+    "id": "director-prop-table",
+    "kind": "prop",
+    "label": null,
+    "position": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "label": null,
+    "position": [
+     0.25,
+     1.08,
+     0.05
+    ]
+   },
+   {
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "label": null,
+    "position": [
+     0,
+     1.5,
+     -2.6
+    ]
+   },
+   {
+    "id": "director-camera-main",
+    "kind": "camera",
+    "label": null,
+    "position": [
+     4.8,
+     2.65,
+     6.9
+    ]
+   }
+  ],
+  "selectedGroupId": null,
+  "selectedObjectIds": [
+   "director-character-lead"
+  ],
+  "currentTime": 0
+ },
+ "②角色行": {
+  "id": "director-character-lead",
+  "kind": "character",
+  "label": "角色A"
+ },
+ "②机位行": {
+  "id": "director-camera-main",
+  "kind": "camera",
+  "label": "机位1"
+ },
+ "④打组后DOM": {
+  "对象行": [
+   {
+    "id": "director-prop-table",
+    "kind": "prop",
+    "label": "咖啡桌"
+   },
+   {
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "label": "冷掉的咖啡"
+   },
+   {
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "label": "咖啡馆背景"
+   }
+  ],
+  "组": [
+   {
+    "id": "director-character-group-1792756361621-1",
+    "label": "分组12角色A机位1"
+   }
+  ],
+  "成员行": [
+   {
+    "id": "director-character-lead",
+    "kind": "character"
+   },
+   {
+    "id": "director-camera-main",
+    "kind": "camera"
+   }
+  ]
+ },
+ "④组数": 1,
+ "⑤组id": "director-character-group-1792756361621-1",
+ "⑤组检查器": {
+  "变换字段": [],
+  "变换字段数": 0,
+  "输入框": [
+   {
+    "type": "text",
+    "value": "分组1",
+    "name": "group-name",
+    "x": 1656,
+    "y": 135,
+    "w": 248,
+    "h": 32
+   }
+  ],
+  "输入框数": 1,
+  "文本": [
+   "名称",
+   "角色组2 个成员"
+  ],
+  "面板文本": [
+   "名称",
+   "名称",
+   "角色组2 个成员",
+   "角色组",
+   "2 个成员"
+  ]
+ },
+ "⑤组检查器变换字段数": 0,
+ "⑤组检查器输入框数": 1,
+ "⑥画布组gizmo挂点数": 0,
+ "⑥建轨道前状态": {
+  "groups": [
+   {
+    "id": "director-character-group-1792756361621-1",
+    "label": "分组1",
+    "characterIds": [
+     "director-character-lead"
+    ],
+    "members": [
+     {
+      "kind": "character",
+      "id": "director-character-lead"
+     },
+     {
+      "kind": "camera",
+      "id": "director-camera-main"
+     }
+    ]
+   }
+  ],
+  "tracks": [],
+  "objects": [
+   {
+    "id": "director-character-lead",
+    "kind": "character",
+    "label": null,
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ]
+   },
+   {
+    "id": "director-prop-table",
+    "kind": "prop",
+    "label": null,
+    "position": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "label": null,
+    "position": [
+     0.25,
+     1.08,
+     0.05
+    ]
+   },
+   {
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "label": null,
+    "position": [
+     0,
+     1.5,
+     -2.6
+    ]
+   },
+   {
+    "id": "director-camera-main",
+    "kind": "camera",
+    "label": null,
+    "position": [
+     4.8,
+     2.65,
+     6.9
+    ]
+   }
+  ],
+  "selectedGroupId": "director-character-group-1792756361621-1",
+  "selectedObjectIds": [
+   "director-character-lead",
+   "director-camera-main"
+  ],
+  "currentTime": 0
+ },
+ "⑦建轨道后状态": {
+  "groups": [
+   {
+    "id": "director-character-group-1792756361621-1",
+    "label": "分组1",
+    "characterIds": [
+     "director-character-lead"
+    ],
+    "members": [
+     {
+      "kind": "character",
+      "id": "director-character-lead"
+     },
+     {
+      "kind": "camera",
+      "id": "director-camera-main"
+     }
+    ]
+   }
+  ],
+  "tracks": [
+   {
+    "id": "director-track-director-character-group-1792756361621-1",
+    "groupId": "director-character-group-1792756361621-1",
+    "memberOffsetIds": [
+     "director-character-lead",
+     "director-camera-main"
+    ],
+    "keyframes": [
+     {
+      "time": 0,
+      "value": {
+       "position": [
+        1.775,
+        1.325,
+        3.55
+       ],
+       "rotation": [
+        0,
+        18,
+        0
+       ],
+       "scale": [
+        1,
+        1,
+        1
+       ]
+      },
+      "position": [
+       1.775,
+       1.325,
+       3.55
+      ]
+     }
+    ]
+   }
+  ],
+  "objects": [
+   {
+    "id": "director-character-lead",
+    "kind": "character",
+    "label": null,
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ]
+   },
+   {
+    "id": "director-prop-table",
+    "kind": "prop",
+    "label": null,
+    "position": [
+     0,
+     0,
+     0
+    ]
+   },
+   {
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "label": null,
+    "position": [
+     0.25,
+     1.08,
+     0.05
+    ]
+   },
+   {
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "label": null,
+    "position": [
+     0,
+     1.5,
+     -2.6
+    ]
+   },
+   {
+    "id": "director-camera-main",
+    "kind": "camera",
+    "label": null,
+    "position": [
+     4.8,
+     2.65,
+     6.9
+    ]
+   }
+  ],
+  "selectedGroupId": "director-character-group-1792756361621-1",
+  "selectedObjectIds": [
+   "director-character-lead",
+   "director-camera-main"
+  ],
+  "currentTime": 0
+ },
+ "⑦组轨道数": 1,
+ "⑦轨道关键帧数": [
+  1
+ ],
+ "⑧复原后DOM": {
+  "对象行": [
+   {
+    "id": "director-character-lead",
+    "kind": "character",
+    "label": "角色A"
+   },
+   {
+    "id": "director-prop-table",
+    "kind": "prop",
+    "label": "咖啡桌"
+   },
+   {
+    "id": "director-prop-mug",
+    "kind": "prop",
+    "label": "冷掉的咖啡"
+   },
+   {
+    "id": "director-prop-wall",
+    "kind": "prop",
+    "label": "咖啡馆背景"
+   },
+   {
+    "id": "director-camera-main",
+    "kind": "camera",
+    "label": "机位1"
+   }
+  ],
+  "组": [],
+  "成员行": []
+ },
+ "⑧复原后组数": 0
+}

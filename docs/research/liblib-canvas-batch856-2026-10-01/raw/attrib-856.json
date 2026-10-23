@@ -1,0 +1,56 @@
+{
+ "批次": 856,
+ "总数": 32,
+ "一致数": 29,
+ "不一致": [
+  {
+   "batch": "856.py",
+   "HEAD": "rc=1 | PASS  S12 老门禁 852.py：判据已迁移（写死三处 ⟹ 每处 gizmo 都用吸附步长） ｜ 活代码里结构性断言 True ｜ 计数前剥注释 True ｜ 旧的写死三处已清零 True ／ 10/12 条通过",
+   "工作副本": "rc=0 | PASS  S12 老门禁 852.py：判据已迁移（写死三处 ⟹ 每处 gizmo 都用吸附步长） ｜ 活代码里结构性断言 True ｜ 计数前剥注释 True ｜ 旧的写死三处已清零 True ／ 12/12 条通过"
+  },
+  {
+   "batch": "84.mjs",
+   "HEAD": "rc=1 | } ／ Node.js v24.6.0",
+   "工作副本": "rc=0 | {\"batch\":84,\"status\":\"PASS\",\"cases\":{\"treeLockControl\":true,\"inspectorLockControl\":true,\"lockedViewportNoTransformControls\":true,\"lockedObjectGuard\":true,\"lockedPathGuard\":true,\"lockedGroupGuard\":true,\"stableReason\":true}}"
+  },
+  {
+   "batch": "86.mjs",
+   "HEAD": "rc=1 | } ／ Node.js v24.6.0",
+   "工作副本": "rc=0 | {\"batch\":86,\"status\":\"PASS\",\"cases\":{\"transformContextSelectors\":true,\"objectAndGroupPointerCancel\":true,\"objectAndGroupLostPointerCapture\":true,\"authoredRuntimeAuthorityPresent\":true,\"lockedReasonBoundaryPresent\":true,\"sourceBoundaryRecorded\":true}}"
+  }
+ ],
+ "HEAD读数": {
+  "736.py": "rc=1 | [PASS] C10 inert / aria-disabled 在 142 枚里 0 命中  ⟵ inert=0 aria-disabled=0 原生 disabled=7 ／ 6/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch736-2026-10-01/runtime-audit.json",
+  "748.py": "rc=1 | 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch748-2026-10-01/runtime-audit.json ／ 判据 4/7",
+  "749.py": "rc=1 | 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch749-2026-10-01/runtime-audit.json ／ 判据 7/9",
+  "782.py": "rc=1 | ✗ 对照未抓：删掉 `page.tsx:1312` 的 `activeDirectorNodeId` 早退（kw=显式以导演台，命中 0） ／ ✗ 对照未抓：给宿主页的 capture handler 加上 `Meta+c` 认领（kw=真的唯一，命中 0）",
+  "831.py": "rc=1 | ✘ N16 把 raw 里的 ⌘ path 从它的源站 excerpt 里摘掉 ⟹ S16 翻红 → 实际翻红 S14,S16 ／ ✘ N17 把像素比对的差异改成「path 抄错那版」的实测值 ⟹ S17 翻红 → 实际翻红 S14,S17",
+  "741.py": "rc=1 | 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch741-2026-10-01/runtime-audit.json ／ 判据 11/13",
+  "87.mjs": "rc=0 | {\"batch\":87,\"status\":\"PASS\",\"cases\":{\"explicitRestorePolicy\":true,\"objectSelectionRepair\":true,\"groupSelectionRepair\":true,\"timelineSelectionRepair\":true,\"portableDocumentBoundary\":true,\"sourceBoundaryRecorded\":true}}",
+  "91.mjs": "rc=0 | Batch 91 pure/source verification passed (10 assertions).",
+  "854.py": "rc=0 | PASS  S11 可达性：**从根地址无参**进入 ⟹ 打开导演台 ⟹ 树／对象行／rail／可交互元素都在 ｜ 根地址=http://localhost:4317/ 有入口=True 树=True 对象行=5 rail=7 可交互=21 ／ == batch 854 门禁：11/11 通过 ==",
+  "856.py": "rc=1 | PASS  S12 老门禁 852.py：判据已迁移（写死三处 ⟹ 每处 gizmo 都用吸附步长） ｜ 活代码里结构性断言 True ｜ 计数前剥注释 True ｜ 旧的写死三处已清零 True ／ 10/12 条通过",
+  "91.py": "rc=1 | assert result[\"diagnostics\"][\"consoleErrors\"] == 0, result[\"diagnostics\"] ／ AssertionError: {'consoleErrors': 2, 'pageErrors': 0, 'requestFailures': 0, 'details': ['group-command:console:error:TransformControls: The attached 3D object must be a part of the scene graph.', 'group-command:console:error:TransformControls: The attached 3D object must be a part of the scene graph.']}",
+  "853.py": "rc=0 | PASS  S11 面板：打组 ⌘G ／ 解组 ⌘⇧D 两行与源站逐字一致 ｜ 打组字母(从分支体推)=G 源站=[('group-command', 'command'), ('group-key', 'G'), ('ungroup-command', 'command'), ('ungroup-shift', '⇧'), ('ungroup-key', 'D')] clone=[('group-command', 'command'), ('group-key', 'G'), ('ungroup-command', 'command'), ('ungroup-shift', '⇧'), ('ungroup-key', 'D')] ／ == batch 853 门禁：11/11 通过 ==",
+  "852.py": "rc=0 | PASS  S10 源站实测：R/F/V 三步成链 ＋ Shift+V ＋ X 翻转 ＋ 吞按键 ｜ 不符=[]（共 6 项） ／ == batch 852 门禁：10/10 通过 ==",
+  "45.py": "rc=0 | Batch 45 director group/crowd verification passed.",
+  "792.py": "rc=0 | ★ 正向 11/11   阴性 5/5 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch792-2026-10-01/verify-report.json",
+  "96.py": "rc=0 | {\"batch\":96,\"date\":\"2026-08-29\",\"status\":\"SCRIPT_RECORDED_PASS\",\"baseUrl\":\"http://localhost:4317\",\"sourceExact\":false,\"contract\":{\"scope\":\"clone-owned Director multi-camera and Shot workflow\",\"screenshotsWritten\":false,\"screenshotRecognition\":false,\"remoteUpload\":false,\"captureBytesDurable\":false},\"staticContract\":{\"portableShotDocument\":true,\"legacyCompatibility\":true,\"clipboardShotRemap\":true,\"duplicateShotRemap\":true,\"deleteShotRepair\":true,\"storeCommands\":true,\"shotBarSelectors\":true,\"shotInspectorSelectors\":true,\"shotGallerySelectors\":true},\"desktop\":{\"viewport\":{\"width\":1440,\"height\":900},\"owner\":{\"canvasId\":\"canvas-2\",\"sourceNodeId\":\"b-bTLLuU4w5q\"},\"legacyDecode\":true,\"normalizedExport\":true,\"createSwitchUpdate\":true,\"historyUndoRedo\":true,\"captureProvenanceGallery\":true,\"clipboardReferenceSafety\":true,\"cameraDeleteRepair\":true,\"lastCameraBlock\":true,\"wholeProjectDuplicate\":true,\"reloadRestore\":true,\"noHorizontalOverflow\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[]}},\"mobile\":{\"viewport\":{\"width\":390,\"height\":844},\"shotBar\":true,\"inspectorDrawer\":true,\"noHorizontalOverflow\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[\"mobile-bootstrap:console:error:TransformControls: The attached 3D object must be a part of the scene graph.\"]}}}",
+  "67.mjs": "rc=0 | To eliminate this warning, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)",
+  "68.mjs": "rc=0 | To eliminate this warning, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)",
+  "74.mjs": "rc=0 | To eliminate this warning, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)",
+  "79.mjs": "rc=0 | To eliminate this warning, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)",
+  "80.mjs": "rc=0 | To eliminate this warning, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)",
+  "81.mjs": "rc=0 | To eliminate this warning, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)",
+  "69.mjs": "rc=0 | {\"status\":\"PASS\",\"batch\":69,\"staticAssertions\":[\"authored state is part of DirectorState\",\"authored state is initialized\",\"snapshot uses authored state\",\"restore creates authored state\",\"runtime projection helper exists\",\"timeline projection never samples runtime objects\",\"path projection never samples runtime objects\",\"phone preview remains runtime-only\"],\"forbiddenRuntimeProjectionCalls\":0,\"authoredRuntimeState\":\"discoverable\"}",
+  "70.mjs": "rc=0 | {\"status\":\"PASS\",\"batch\":70,\"staticAssertions\":[\"typed history state exists\",\"typed command result exists\",\"history uses before and after documents\",\"bounded history exists\",\"store exposes history\",\"store exposes undo and redo\",\"store observes document mutations\",\"transform command exposes no-op reason\",\"transform command exposes invalid-value reason\",\"transform command exposes missing-target reason\",\"gesture begin is explicit\",\"gesture commit is explicit\",\"gesture cancel is explicit\",\"workspace routes undo\",\"object transform starts a gesture\",\"curve editing starts a gesture\",\"graph history is not called\"],\"historyBoundary\":\"discoverable\",\"gestureBoundary\":\"discoverable\"}",
+  "71.mjs": "rc=0 | {\"status\":\"PASS\",\"batch\":71,\"staticAssertions\":[\"gesture helper is typed\",\"gesture helper begins from focus/pointer\",\"gesture helper commits on blur\",\"number inputs stay active through pointerup\",\"range keyboard interaction begins a gesture\",\"gesture helper handles pointercancel\",\"external gesture cancellation clears local ref\",\"Inspector uses the gesture helper\",\"pose control has a gesture scope\",\"camera FOV has a gesture scope\",\"path fields have gesture scopes\",\"path transform has a gesture scope\",\"path drawing begins a gesture\",\"path drawing commits from the pen completion UI\",\"path drawing cancel clears both draft and gesture\",\"path anchor handle transform commits history\",\"path controls have a window cancel fallback\",\"drawing surface has a window cancel fallback\",\"store has path drawing lifecycle\"],\"gestureBoundary\":\"focus-pointer-update-commit-cancel\",\"coveredInputs\":[\"number\",\"range\",\"path-anchor\",\"path-transform\",\"path-draw\"]}",
+  "72.mjs": "rc=0 | To eliminate this warning, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)",
+  "75.mjs": "rc=0 | To eliminate this warning, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)",
+  "84.mjs": "rc=1 | } ／ Node.js v24.6.0",
+  "85.mjs": "rc=0 | {\"batch\":85,\"status\":\"PASS\",\"cases\":{\"selectionToolbar\":true,\"selectionCount\":true,\"copyAction\":true,\"deleteAction\":true,\"clearAction\":true,\"groupContext\":true,\"sourceBoundaryRecorded\":true}}",
+  "86.mjs": "rc=1 | } ／ Node.js v24.6.0",
+  "89.mjs": "rc=0 | Batch 89 pure/source verification passed (12 assertions).",
+  "90.mjs": "rc=0 | Batch 90 pure/source verification passed (12 assertions)."
+ }
+}

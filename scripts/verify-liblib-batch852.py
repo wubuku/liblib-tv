@@ -285,18 +285,32 @@ def main() -> int:
     )
 
     # ══ S9 吸附步长（源站 p7 逐字 = 1）
+    # ★ ★ ★ Batch 856 **判据迁移**：原来写死「**三处** TransformControls 都用它」
+    #   ⟹ ⟹ 那个「三」的前提是「视口里有 3 个 gizmo（对象／组／路径控制点）」
+    #   ⟹ ⟹ ★ 本批按源站逐字**删掉了组 gizmo**（源站没有组 gizmo）
+    #   ⟹ ⟹ 只剩 2 处 ⟹ ⟹ 旧断言的前提**过期** ⟹ ⟹ 旧断言红。
+    # ★ ★ 改成**结构性**断言：「**每处** gizmo 都用 `DIRECTOR_GRID_SNAP_STEP`」
+    #   ⟹ ⟹ 不再写死个数 ⟹ ⟹ 以后再加／减 gizmo 都不用改这条。
+    # ★ ★ 计数**必须先剥注释** ⟹ ⟹ 否则注释里那句
+    #   「`<TransformControls mode={transformMode}>`」会被算成一处挂点 ⟹ ⟹ 假红。
+    live_viewport = re.sub(r"/\*[\s\S]*?\*/", "", viewport)
+    live_viewport = re.sub(r"(^|[^:])//.*$", r"\1", live_viewport, flags=re.M)
+    gizmo_count = live_viewport.count("<TransformControls")
+    snap_count = live_viewport.count(
+        "translationSnap={snapToGrid ? DIRECTOR_GRID_SNAP_STEP : null}")
     step_ok = (
         "DIRECTOR_GRID_SNAP_STEP = 1" in math
-        and viewport.count("translationSnap={snapToGrid ? DIRECTOR_GRID_SNAP_STEP : null}") == 3
-        and "snapToGrid ? 0.5" not in viewport
+        and gizmo_count >= 1
+        and snap_count == gizmo_count
+        and "snapToGrid ? 0.5" not in live_viewport
     )
     record(
-        "S9 吸附步长 = 1（源站 p7 逐字），clone 三处 TransformControls 都用它",
+        "S9 吸附步长 = 1（源站 p7 逐字），clone 每处 TransformControls 都用它",
         step_ok,
-        "math里=%s viewport里命中=%d 处 残留0.5=%s"
+        "math里=%s viewport里 gizmo 挂点=%d 处 用步长的=%d 处 相等=%s 残留0.5=%s"
         % ("DIRECTOR_GRID_SNAP_STEP = 1" in math,
-           viewport.count("translationSnap={snapToGrid ? DIRECTOR_GRID_SNAP_STEP : null}"),
-           "snapToGrid ? 0.5" in viewport),
+           gizmo_count, snap_count, snap_count == gizmo_count,
+           "snapToGrid ? 0.5" in live_viewport),
     )
 
     # ══ S10 源站侧证据

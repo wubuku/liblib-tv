@@ -1502,166 +1502,39 @@ function SceneObject({ object }: { object: DirectorObject }) {
   );
 }
 
+/**
+ * ★★★ Batch 856：组的**画布锚点**（**没有 gizmo**）。
+ *
+ * ★ 源站逐字：建组 `a={id:lM(),label:lT(e.characterGroups),characterIds:n,members:r}`
+ *   ⟹ ⟹ 组**没有 transform 字段**（机器提取见
+ *   `docs/research/liblib-canvas-batch856-2026-10-01/raw/source-856-contract.json`）。
+ * ★ 源站实测（`raw/source-856-groupinspector.json`）：
+ *   选中**角色** ⟹ 检查器 **13 个字段**；选中**组** ⟹ **1 个字段**（只有「名称」）。
+ * ★ 源站实测（`raw/source-856-groupgizmo.json`）：
+ *   选中组后**画布上没有任何 gizmo** ⟹ ⟹ 像素差只落在左侧树面板；
+ *   阳性对照＝选中角色时画布右下角出现**红色箭头**（包围盒一直延伸到 x=896），
+ *   而选中组时包围盒**只到 x=271**（＝树面板右缘）。
+ * ★ 源站里 gizmo 只注册**具体对象**（character／prop／camera／emptyObject），
+ *   **没有「组」这一类** ⟹ ⟹ 组**不能**在画布上被拖动。
+ * ⟹ ⟹ **组只能通过「组轨道」（时间轴）移动**。
+ *
+ * ★ 所以本组件现在**只保留一个空的锚点 group**（保留
+ *   `data-director-group-rig` 这个语义锚点 ＋ 给将来「组空间」留位置），
+ *   **TransformControls（gizmo）已移除** ⟹ ⟹ 之前那条
+ *   `updateGroupTransform` 的「旋转增量 ＋ 缩放比」交互路径
+ *   在源站**根本不存在**。
+ */
 function DirectorGroupTransformRig({
   group,
 }: {
   group: DirectorCharacterGroup;
 }) {
-  const snapToGrid = useDirectorStore(
-    (state) => state.scene.snapToGrid ?? false,
-  );
-  const selectedGroupId = useDirectorStore((state) => state.selectedGroupId);
   const objects = useDirectorStore((state) => state.objects);
-  const transformMode = useDirectorStore((state) => state.transformMode);
-  const isCapturing = useDirectorStore((state) => state.isCapturing);
-  const motionPathDraft = useDirectorStore(
-    (state) => state.timeline.motionPathDraft,
-  );
-  const selectedMotionPathAnchorId = useDirectorStore(
-    (state) => state.timeline.selectedMotionPathAnchorId,
-  );
-  const updateGroupTransform = useDirectorStore(
-    (state) => state.updateGroupTransform,
-  );
-  const recordGroupKeyframe = useDirectorStore(
-    (state) => state.recordGroupKeyframe,
-  );
-  const beginDirectorGesture = useDirectorStore(
-    (state) => state.beginDirectorGesture,
-  );
-  const commitDirectorGesture = useDirectorStore(
-    (state) => state.commitDirectorGesture,
-  );
-  const cancelDirectorGesture = useDirectorStore(
-    (state) => state.cancelDirectorGesture,
-  );
-  const groupRef = useRef<Group>(null);
-  const [transformTarget, setTransformTarget] = useState<Group | null>(null);
-  const transformEngagedRef = useRef(false);
-  const transformActiveRef = useRef(false);
   const anchor = getDirectorGroupAnchorTransform(objects, group);
-  // ★★ Batch 855：锁定守卫按**全部成员**（源站 `O(e)`）。
-  const hasLockedMember = resolveGroupMemberRefs(group).some((member) =>
-    objects.some((object) => object.id === member.id && object.locked),
-  );
-  const assignGroupRef = useCallback((nextGroup: Group | null) => {
-    groupRef.current = nextGroup;
-    setTransformTarget(nextGroup);
-  }, []);
-
-  const restoreTransform = useCallback(() => {
-    const current = groupRef.current;
-    if (!current || !anchor) return;
-    current.position.set(...anchor.position);
-    current.rotation.set(
-      ...anchor.rotation.map((value) => MathUtils.degToRad(value)) as [
-        number,
-        number,
-        number,
-      ],
-    );
-    current.scale.set(...anchor.scale);
-    current.updateMatrixWorld();
-  }, [anchor]);
-
-  const commitTransform = useCallback(() => {
-    if (!transformEngagedRef.current) return;
-    transformEngagedRef.current = false;
-    if (!transformActiveRef.current) {
-      restoreTransform();
-      return;
-    }
-    transformActiveRef.current = false;
-    const current = groupRef.current;
-    if (!current || !anchor) {
-      cancelDirectorGesture();
-      return;
-    }
-    const nextTransform: DirectorTransform = {
-      position: [
-        current.position.x,
-        current.position.y,
-        current.position.z,
-      ] as DirectorTuple3,
-      rotation: [
-        MathUtils.radToDeg(current.rotation.x),
-        MathUtils.radToDeg(current.rotation.y),
-        MathUtils.radToDeg(current.rotation.z),
-      ] as DirectorTuple3,
-      scale: [current.scale.x, current.scale.y, current.scale.z] as DirectorTuple3,
-    };
-    if (!hasDirectorTransformChanged(anchor, nextTransform)) {
-      restoreTransform();
-      commitDirectorGesture();
-      return;
-    }
-    updateGroupTransform(group.id, nextTransform);
-    recordGroupKeyframe(group.id);
-    commitDirectorGesture();
-  }, [
-    cancelDirectorGesture,
-    commitDirectorGesture,
-    group.id,
-    anchor,
-    recordGroupKeyframe,
-    restoreTransform,
-    updateGroupTransform,
-  ]);
-
-  const cancelTransform = useCallback(() => {
-    if (!transformEngagedRef.current) return;
-    transformEngagedRef.current = false;
-    const wasActive = transformActiveRef.current;
-    transformActiveRef.current = false;
-    restoreTransform();
-    if (wasActive) cancelDirectorGesture();
-  }, [cancelDirectorGesture, restoreTransform]);
-
-  useEffect(() => {
-    const handlePointerUp = () => commitTransform();
-    window.addEventListener("pointerup", handlePointerUp);
-    window.addEventListener("pointercancel", cancelTransform);
-    return () => {
-      window.removeEventListener("pointerup", handlePointerUp);
-      window.removeEventListener("pointercancel", cancelTransform);
-    };
-  }, [cancelTransform, commitTransform]);
-
-  if (
-    !anchor ||
-    hasLockedMember ||
-    selectedGroupId !== group.id ||
-    isCapturing ||
-    motionPathDraft !== null ||
-    selectedMotionPathAnchorId !== null
-  ) {
-    return null;
-  }
-
+  if (!anchor) return null;
   return (
     <group data-director-group-rig={group.id}>
-      {transformTarget ? (
-        <TransformControls
-          object={transformTarget}
-          mode={transformMode}
-          translationSnap={snapToGrid ? DIRECTOR_GRID_SNAP_STEP : null}
-          size={0.82}
-          onMouseDown={() => {
-            transformEngagedRef.current = true;
-            const result = beginDirectorGesture({
-              commandKind: "group-transform",
-              targetId: group.id,
-              fieldScope: transformMode,
-            });
-            transformActiveRef.current = result.disposition === "COMMITTED";
-          }}
-          onMouseUp={commitTransform}
-          onPointerCancel={cancelTransform}
-          onLostPointerCapture={cancelTransform}
-        />
-      ) : null}
       <group
-        ref={assignGroupRef}
         position={anchor.position}
         rotation={anchor.rotation.map((value) =>
           MathUtils.degToRad(value),
