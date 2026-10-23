@@ -4,6 +4,7 @@
   "question_1027": "哪些 golden 天然容易过期？现在有几本已经过期了？怎么让这道闸足够便宜？",
   "how": "⭐⭐⭐⭐⭐ **增量式**：变更集 = `git diff --name-only HEAD~1`；对每个有 golden 的探针算出它**读到的文件集合**，**只跑被本次变更触及的那些**；比对完**原样还原**（还原之前先把新内容留下）",
   "the_changed_set": [
+    "AGENTS.md",
     "docs/design-references/liblib-clone-batch36-director-keyframe-1440-2026-08-26.png",
     "docs/design-references/liblib-clone-batch36-director-playback-1440-2026-08-26.png",
     "docs/design-references/liblib-clone-batch36-director-timeline-1440-2026-08-26.png",
@@ -57,13 +58,19 @@
     "docs/design-references/liblib-clone-batch50-director-workspace-mobile-tree-390-2026-08-26.png",
     "docs/design-references/liblib-left-column-613-1920.png",
     "docs/research/LIBTV_CLONE_REACHABILITY.md",
-    "docs/research/VERIFICATION_LEDGER.md",
+    "docs/research/jimeng-canvas/README.md",
     "docs/research/jimeng-canvas/committed-freshness-1032n.json",
     "docs/research/jimeng-canvas/empty-ambiguity-1014.json",
+    "docs/research/jimeng-canvas/fingerprint-gate-1032l.json",
     "docs/research/jimeng-canvas/golden-freshness-1027.json",
-    "docs/research/jimeng-canvas/rerun-reproducibility-1015.json",
+    "docs/research/jimeng-canvas/inputs/interaction-wiring-1032.json",
+    "docs/research/jimeng-canvas/inputs/interaction-wiring-allowlist-1032.json",
+    "docs/research/jimeng-canvas/inputs/wired-runtime-1032b1.json",
+    "docs/research/jimeng-canvas/interaction-wiring-check-1032.json",
+    "docs/research/jimeng-canvas/wired-contract-1032b1.json",
     "docs/research/liblib-canvas-batch536-2026-09-27/runtime-audit.json",
     "docs/research/liblib-canvas-batch541-2026-09-27/runtime-audit.json",
+    "docs/research/liblib-canvas-batch589-2026-10-01/runtime-audit.json",
     "docs/research/liblib-canvas-batch590-2026-10-01/runtime-audit.json",
     "docs/research/liblib-canvas-batch613-2026-10-01/runtime-audit.json",
     "docs/research/liblib-canvas-batch617-2026-10-01/runtime-audit.json",
@@ -93,29 +100,21 @@
     "docs/research/liblib-canvas-batch843-2026-10-01/runtime-audit.json",
     "docs/research/liblib-canvas-batch844-2026-10-01/runtime-audit.json",
     "docs/research/liblib-canvas-batch852-2026-10-01/runtime-audit.json",
-    "scripts/verify-liblib-batch45.py",
-    "scripts/verify-liblib-batch536.py",
-    "scripts/verify-liblib-batch540.py",
-    "scripts/verify-liblib-batch541.py",
-    "scripts/verify-liblib-batch542.py",
+    "scripts/jimeng_probe1032b1_wired_contract.py",
+    "scripts/jimeng_probe1032b1_wired_runtime.mjs",
+    "scripts/verify-liblib-batch538.py",
     "scripts/verify-liblib-batch589.py",
-    "scripts/verify-liblib-batch590.py",
     "scripts/verify-liblib-batch613.py",
     "scripts/verify-liblib-batch617.py",
     "scripts/verify-liblib-batch619.py",
     "scripts/verify-liblib-batch624.py",
     "scripts/verify-liblib-batch625.py",
-    "scripts/verify-liblib-batch626.py",
-    "scripts/verify-liblib-batch648.py",
-    "scripts/verify-liblib-batch738.py",
-    "scripts/verify-liblib-batch857.py",
-    "src/components/director/DirectorDesk.tsx",
-    "src/components/director/DirectorIconRail.tsx"
+    "scripts/verify-liblib-batch626.py"
   ],
   "changed_set_from_argv": false,
   "n_argv_flags_received": 1,
   "argv_flags_received": [
-    "--selftest"
+    "--write-golden"
   ],
   "ran_under_the_suite": true,
   "changed_set_note": "⭐⭐⭐⭐⭐ **变更集以 `argv` 为准**；没给 argv 时兜底取 `git diff HEAD~3` ⇒ **共享仓里那会被别人的提交改掉** ⇒ **⇒ 可复现性在这里的准确口径是「同一份 argv 下两次跑逐字节相同」**",
@@ -273,7 +272,7 @@
         "has_golden": false,
         "n_named": 5,
         "n_globs": 1,
-        "n_files_it_reads": 5287,
+        "n_files_it_reads": 5291,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -285,7 +284,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 3,
-        "n_files_it_reads": 5534,
+        "n_files_it_reads": 5538,
         "n_touched_by_this_change": 0,
         "in_exclude": true,
         "globs": [
@@ -363,7 +362,7 @@
         "n_named": 5,
         "n_globs": 4,
         "n_files_it_reads": 15574,
-        "n_touched_by_this_change": 2,
+        "n_touched_by_this_change": 1,
         "in_exclude": false,
         "globs": [
           "*.ts",
@@ -372,8 +371,7 @@
           "scripts/jimeng_*.py"
         ],
         "touched_by_this_change": [
-          "src/components/director/DirectorDesk.tsx",
-          "src/components/director/DirectorIconRail.tsx"
+          "scripts/jimeng_probe1032b1_wired_contract.py"
         ]
       },
       {
@@ -391,10 +389,13 @@
         "n_named": 2,
         "n_globs": 1,
         "n_files_it_reads": 253,
-        "n_touched_by_this_change": 0,
+        "n_touched_by_this_change": 1,
         "in_exclude": false,
         "globs": [
           "jimeng_probe*.py"
+        ],
+        "touched_by_this_change": [
+          "scripts/jimeng_probe1032b1_wired_contract.py"
         ]
       },
       {
@@ -420,7 +421,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 5284,
+        "n_files_it_reads": 5288,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -567,7 +568,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 5284,
+        "n_files_it_reads": 5288,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -2370,7 +2371,7 @@
   },
   "axis_2_the_measured_re_run": {
     "what": "⭐⭐⭐⭐⭐⭐⭐ **实测：对「被本次变更触及的」那些真跑一遍，与仓库里那本逐字节比对 ⇒ 列出现在已经过期的**",
-    "n_touched": 1,
+    "n_touched": 2,
     "n_re_run": 0,
     "ran_under_the_suite": true,
     "n_stale": 0,
@@ -2418,7 +2419,7 @@
     },
     "B_injected_path_is_selected_by_the_coupling_scan": {
       "injected_path": "scripts/verify-jimeng-batch841-unclickable.py",
-      "n_selected": 7,
+      "n_selected": 8,
       "selected": [
         "jimeng_probe1005_zero_coupling_census.py",
         "jimeng_probe1007_disparate_copies.py",
@@ -2426,13 +2427,14 @@
         "jimeng_probe1023_type_layer_gate.py",
         "jimeng_probe1024_exemption_claims.py",
         "jimeng_probe1025_criterion_direction.py",
+        "jimeng_probe1026_criterion_effectiveness.py",
         "jimeng_probe1030_anchor_identity.py"
       ],
       "ok": true,
       "rule": "⭐⭐⭐⭐⭐ **注入式自检**：把 verifier 路径塞进变更集，要求扫描器认出所有与它耦合的探针 ⇒ **⇒ 验的是「取交集这一步本身通不通」，而不依赖「这次提交恰好是谁的」** ⇒ **⇒⇒⇒⇒⇒⇒ 这一条正是对「仪器 bug 1」的回归防护**"
     },
     "C_intersection_is_narrower_than_everything": {
-      "n_touched": 1,
+      "n_touched": 2,
       "n_with_golden": 17,
       "ok": true,
       "rule": "⭐⭐⭐⭐⭐ **取交集必须比「全部」小** —— 否则它退化成一个更贵的全量重跑 ⇒ **这本身是一条判据**"
@@ -2450,14 +2452,10 @@
   },
   "scope_declared": "⚠️⭐⭐⭐⭐⭐ 量的是**有 golden 且不在排除名单里的探针**；**1015 自己被排除**（它会重跑全部并自己还原）；**耦合按源码里出现的路径与 glob 判定**，不追执行 ⇒ **报的是下限**；**只抓「因源码变化而过期」，不抓「因环境变化而过期」**；**本批不替项目改任何文件**（每个 golden 跑完原样还原）",
   "offline": "**只读仓内文件 + 起仓内已有的探针 + `git`（本地）**；零安装、零网络、零浏览器；**产物里不写临时目录名、时间戳、pid**",
-  "criteria_applicability_1027": {
-    "P2_every_touched_probe_was_re_run_and_reported_1027": {
-      "kind": "precondition",
-      "why": "⇒ ⇒ **这次没普查**（`--selftest` 只验机制）⇒ ⇒ ⇒ ⇒ **⇒ 「每个被触及的探针都被重跑并上报」的前提不成立**⇒ ⇒ ⇒ ⇒ **⇒ 「没测到」不许长得像「测到了而且通过」**"
-    }
-  },
+  "criteria_applicability_1027": {},
   "verdicts_1027": {
     "P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027": true,
+    "P2_every_touched_probe_was_re_run_and_reported_1027": true,
     "P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027": true,
     "P4_touched_list_is_recorded_for_every_golden_owning_probe_1027": true,
     "P5_one_run_per_golden_no_double_counting_1027": true,

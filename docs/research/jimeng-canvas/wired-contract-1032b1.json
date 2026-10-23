@@ -2,7 +2,7 @@
  "generated_by": "jimeng_probe1032b1_wired_contract.py",
  "target": "jimeng-canvas-wired-buttons",
  "question": "⭐⭐⭐⭐⭐ **这批「修好的按钮」点了到底有没有发生事？**",
- "probe_run": "skipped by env",
+ "probe_run": "rc=0",
  "readings_file": "docs/research/jimeng-canvas/inputs/wired-runtime-1032b1.json",
  "readings_available": true,
  "criteria": {

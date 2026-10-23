@@ -17,8 +17,8 @@
   "n_volatile": 1,
   "volatile_inputs": {
    "golden-freshness-1027.json": {
-    "sha256_12": "e4d6067bad1f",
-    "bytes": 85170,
+    "sha256_12": "9d9647699220",
+    "bytes": 85113,
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
@@ -97,7 +97,7 @@
     "bytes": 21313
    },
    "interaction-wiring-check-1032.json": {
-    "sha256_12": "2a5f9a072fcf",
+    "sha256_12": "d13d5109bdb1",
     "bytes": 1843
    },
    "live-canvas-check-1031.json": {
@@ -137,8 +137,8 @@
     "bytes": 9205
    },
    "wired-contract-1032b1.json": {
-    "sha256_12": "26bcccddc6c0",
-    "bytes": 1270
+    "sha256_12": "5188380cd7db",
+    "bytes": 1260
    },
    "zero-coupling-anchors-1005.json": {
     "sha256_12": "47d9c20034ee",
@@ -150,10 +150,10 @@
  "census": {
   "n_goldens": 31,
   "n_excluded_self": 4,
-  "n_empty_list": 224,
+  "n_empty_list": 225,
   "n_empty_null": 35,
   "n_self_provable": 10,
-  "n_ambiguous": 249
+  "n_ambiguous": 250
  },
  "rows": [
   {
@@ -1964,6 +1964,13 @@
   },
   {
    "golden": "wired-contract-1032b1.json",
+   "path": "/false_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "wired-contract-1032b1.json",
    "path": "/degraded_criteria",
    "kind": "list",
    "self_provable": false,
@@ -3703,6 +3710,13 @@
   {
    "golden": "type-layer-gate-1023.json",
    "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "wired-contract-1032b1.json",
+   "path": "/false_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null
