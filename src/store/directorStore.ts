@@ -4636,18 +4636,17 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   addCrowdArray: ({ rows, columns, spacing }) => {
     let createdGroupId: string | null = null;
     set((state) => {
-      const safeRows = Math.min(Math.max(Math.round(rows), 1), 6);
-      const requestedColumns = Math.min(
-        Math.max(Math.round(columns), 1),
-        8,
-      );
-      const safeColumns = Math.max(
-        1,
-        Math.min(requestedColumns, Math.floor(24 / safeRows)),
-      );
-      const safeSpacing = Number(
-        Math.min(Math.max(spacing, 0.6), 3).toFixed(2),
-      );
+      // ★★★ Batch 857（源站逐字）：**add 回调不夹取** ——
+      //   源站 `let{count:t,crowdRows:r,crowdCols:n,crowdSpacing:a,...i}=e,
+      //   o=t??1,s=r??1,l=n??o,c=a??1.6`
+      //   ⟹ ⟹ 源站的量程**只在对话框的输入上**（行/列 1–10、间距 0.1–10），
+      //   ⟹ ⟹ 落到 add 回调时**原样透传**。
+      // ★ ★ clone 之前在这里**又夹了一层**（行≤6／列≤8／列再夹 `floor(24/行)`／
+      //   间距夹 [0.6,3]）⟹ ⟹ 那是 clone **自己发明的**限制，源站**没有** ⟹ ⟹ 本批删掉。
+      //   ★ 兜底语义照抄源站：行/列缺省 1、间距缺省 1.6。
+      const safeRows = Math.max(1, Math.round(rows || 1));
+      const safeColumns = Math.max(1, Math.round(columns || 1));
+      const safeSpacing = spacing ?? 1.6;
       const characterObjects = state.objects.filter(
         (object) => object.kind === "character",
       );

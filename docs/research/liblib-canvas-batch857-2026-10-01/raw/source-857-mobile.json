@@ -1,0 +1,367 @@
+{
+  "批次": "batch 857",
+  "探针": "source857_mobile",
+  "视口": {
+    "width": 390,
+    "height": 844
+  },
+  "问题": "源站在移动端还有没有可达的 crowd 入口",
+  "①导演台开着了": false,
+  "②aside": [],
+  "③可见button数": 26,
+  "③可见button（前30）": [
+    {
+      "vis": true,
+      "x": 70,
+      "y": 8,
+      "w": 68,
+      "h": 32,
+      "aria": "",
+      "haspopup": "dialog",
+      "text": "画布 1"
+    },
+    {
+      "vis": true,
+      "x": 35,
+      "y": 751,
+      "w": 32,
+      "h": 32,
+      "aria": "添加节点",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 75,
+      "y": 751,
+      "w": 32,
+      "h": 32,
+      "aria": "移动",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 115,
+      "y": 751,
+      "w": 32,
+      "h": 32,
+      "aria": "素材库",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 155,
+      "y": 751,
+      "w": 32,
+      "h": 32,
+      "aria": "角色造型室",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 195,
+      "y": 751,
+      "w": 32,
+      "h": 32,
+      "aria": "全部功能",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 247,
+      "y": 695,
+      "w": 68,
+      "h": 28,
+      "aria": "",
+      "haspopup": "",
+      "text": "知道了"
+    },
+    {
+      "vis": true,
+      "x": 235,
+      "y": 751,
+      "w": 32,
+      "h": 32,
+      "aria": "生成历史",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 284,
+      "y": 751,
+      "w": 32,
+      "h": 32,
+      "aria": "快捷键",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 324,
+      "y": 751,
+      "w": 32,
+      "h": 32,
+      "aria": "教程",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 370,
+      "y": 743,
+      "w": 132,
+      "h": 48,
+      "aria": "TV Director",
+      "haspopup": "",
+      "text": "TV Director"
+    },
+    {
+      "vis": true,
+      "x": 407,
+      "y": 686,
+      "w": 80,
+      "h": 32,
+      "aria": "",
+      "haspopup": "",
+      "text": "下次再说"
+    },
+    {
+      "vis": true,
+      "x": 491,
+      "y": 686,
+      "w": 67,
+      "h": 32,
+      "aria": "",
+      "haspopup": "",
+      "text": "去体验"
+    },
+    {
+      "vis": true,
+      "x": 104,
+      "y": 595,
+      "w": 112,
+      "h": 63,
+      "aria": "",
+      "haspopup": "",
+      "text": "上传视频后开始"
+    },
+    {
+      "vis": true,
+      "x": 104,
+      "y": 673,
+      "w": 35,
+      "h": 12,
+      "aria": "",
+      "haspopup": "",
+      "text": "分镜"
+    },
+    {
+      "vis": true,
+      "x": 142,
+      "y": 673,
+      "w": 35,
+      "h": 12,
+      "aria": "",
+      "haspopup": "",
+      "text": "动态"
+    },
+    {
+      "vis": true,
+      "x": 180,
+      "y": 673,
+      "w": 35,
+      "h": 12,
+      "aria": "",
+      "haspopup": "",
+      "text": "音乐"
+    },
+    {
+      "vis": true,
+      "x": 104,
+      "y": 693,
+      "w": 112,
+      "h": 14,
+      "aria": "",
+      "haspopup": "",
+      "text": "开始拉片"
+    },
+    {
+      "vis": true,
+      "x": 362,
+      "y": 591,
+      "w": 9,
+      "h": 9,
+      "aria": "更换特效",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 14,
+      "y": 798,
+      "w": 94,
+      "h": 28,
+      "aria": "资产管理",
+      "haspopup": "",
+      "text": "资产管理"
+    },
+    {
+      "vis": true,
+      "x": 112,
+      "y": 798,
+      "w": 28,
+      "h": 28,
+      "aria": "整理画布，Option+Shift+F",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 144,
+      "y": 798,
+      "w": 28,
+      "h": 28,
+      "aria": "切换小地图",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 176,
+      "y": 798,
+      "w": 28,
+      "h": 28,
+      "aria": "隐藏节点连线",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 208,
+      "y": 798,
+      "w": 28,
+      "h": 28,
+      "aria": "网格吸附",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 240,
+      "y": 798,
+      "w": 36,
+      "h": 28,
+      "aria": "缩放选项",
+      "haspopup": "",
+      "text": "38%"
+    },
+    {
+      "vis": true,
+      "x": 205,
+      "y": 9,
+      "w": 64,
+      "h": 16,
+      "aria": "退出跟随",
+      "haspopup": "",
+      "text": "取消ESC"
+    }
+  ],
+  "③aria-haspopup=dialog的button": [
+    {
+      "vis": true,
+      "x": 70,
+      "y": 8,
+      "w": 68,
+      "h": 32,
+      "aria": "",
+      "haspopup": "dialog",
+      "text": "画布 1"
+    },
+    {
+      "vis": false,
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "aria": "新对话无法分享",
+      "haspopup": "dialog",
+      "text": ""
+    },
+    {
+      "vis": false,
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "aria": "选择创作模式",
+      "haspopup": "dialog",
+      "text": "全能创作"
+    }
+  ],
+  "③左侧窄栏里的button（x<70）": [
+    {
+      "vis": true,
+      "x": 35,
+      "y": 751,
+      "w": 32,
+      "h": 32,
+      "aria": "添加节点",
+      "haspopup": "",
+      "text": ""
+    },
+    {
+      "vis": true,
+      "x": 14,
+      "y": 798,
+      "w": 94,
+      "h": 28,
+      "aria": "资产管理",
+      "haspopup": "",
+      "text": "资产管理"
+    }
+  ],
+  "④准备点的入口": {
+    "vis": true,
+    "x": 70,
+    "y": 8,
+    "w": 68,
+    "h": 32,
+    "aria": "",
+    "haspopup": "dialog",
+    "text": "画布 1"
+  },
+  "⑤点后dialogs": [
+    {
+      "aria": "Agent 已升级为 TV Director",
+      "vis": true,
+      "x": 295,
+      "y": 424,
+      "w": 280,
+      "h": 311,
+      "n": 0
+    },
+    {
+      "aria": "",
+      "vis": false,
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "n": 0
+    },
+    {
+      "aria": "",
+      "vis": true,
+      "x": 70,
+      "y": 46,
+      "w": 214,
+      "h": 163,
+      "n": 0
+    }
+  ]
+}

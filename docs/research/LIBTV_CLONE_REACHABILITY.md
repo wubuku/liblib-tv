@@ -72,8 +72,21 @@ npm run dev          # ⟹ 监听 4317
 | 变换类快捷键 | `V` / `R` / `F` / `X` | 移动／旋转／缩放模式、网格吸附开关 |
 | 打组／解组 | `⌘G` / `⌘⇧D` | 树上多出一个组行，成员缩进在组标题**右侧 16px** |
 | 组的成员语义 | 点「机位1」⟹ **⌘+点**「角色A」⟹ 「打组」 | 组里**同时有**机位和角色；成员**默认展开** |
+| ★ 组的**唯一移动路径** | 选中组 ⟹ 时间轴上建**组轨道** ⟹ 加关键帧 ⟹ 拖时间 | 成员**随轨道一起走**（★ 源站**没有**组 gizmo ⟹ ⟹ 轨道是组唯一的移动路径） |
+| ★ 组的**检查器** | 选中组 ⟹ 看右侧检查器 | ★ **只有「名称」一个字段**（源站逐字：组对象**没有** transform） |
+| ★ **群众阵列**（crowd） | 左侧 rail「**添加角色**」⟹ 「**群众 (3x3)**」 | 弹出「添加群众阵列」对话框（**220 宽**，落在按钮**右侧**：按钮 right+8）；行/列 **1–10**、间距 **0.1–10**、初值 3／3／**1.2**；★ 间距填 `1.55` 会读回 **`1.6`** |
+| ★ crowd 对话框的**两个源站行为** | 再点一次「群众 (3x3)」／点对话框**外面** | 对话框**关闭**（源站逐字：`if("crowd"===L)O(null)` ＋ 外部 mousedown 关闭） |
 | 多选 | **⇧／⌘／Ctrl** + 点击 | 选中多个对象（任意类别） |
 | 快捷键面板 | 左下角「快捷键」 | 12 条快捷键清单 |
+
+★ **移动端（390×844）**：rail 是 `hidden` ⟹ ⟹ 「添加角色」这条路**走不通** ⟹ ⟹
+crowd 入口改在**视口底部工具条**的「**添加群众阵列**」按钮
+（`[data-director-crowd-mobile-trigger]`）⟹ ⟹ 它开的是**同一个**对话框
+（量程／默认值／落点规则与桌面**完全同源**）⟹ ⟹ 桌面端**这枚按钮不出现**
+⟹ ⟹ 所以**每个断点上可见的 crowd 入口都只有 1 枚**。
+★ 为什么这么分：★ **源站没有移动端布局**（实测 390px 下源站渲染的仍是桌面画布、
+导演台根本没开，见 `raw/source-857-mobile.json`）⟹ ⟹ 移动端这枚是 **clone 自己的扩展**，
+如实登记，不冒充源站行为。
 
 ★ 导演台打开后（**URL 不变**，是盖在画布上的一层），实测有 **7 个 rail 项**、
 **5 个对象树行**、**28 个可交互元素**
@@ -194,6 +207,13 @@ with sync_playwright() as pw:
 | `docs/research/liblib-canvas-batch854-2026-10-01/raw/clone-854-reachability.json` | 根地址无参可达 ＋ 导演台 21 个可交互元素清单 |
 | `docs/research/liblib-canvas-batch854-2026-10-01/images/854reach_*.png` | 根页／导演台／角色大编辑器／资产管理 的截图 |
 | `docs/research/liblib-canvas-batch854-2026-10-01/README.md` | 本批（组模型成员语义）的完整取证与验收 |
+| `docs/research/liblib-canvas-batch856-2026-10-01/README.md` | batch 856（组的检查器与画布 gizmo）的完整取证与验收（★ 它的「用户可达」在 857 里**补上**，见 857 README §8.4） |
+| `docs/research/liblib-canvas-batch857-2026-10-01/raw/source-857-contract.json` | 源站 crowd **17 条逐字**片段 ＋ 两项自检（任意值类名／跨片段防呆） |
+| `docs/research/liblib-canvas-batch857-2026-10-01/raw/source-857-crowd.json` | 源站实测：对话框 **220×204 @(280,388)**、量程、间距 1.55→**1.6**、★ **唯一入口**的自指判据 |
+| `docs/research/liblib-canvas-batch857-2026-10-01/raw/source-857-mobile.json` | ★ 源站在 **390×844** 下的实测 ⟹ ⟹ **源站没有移动端布局** |
+| `docs/research/liblib-canvas-batch857-2026-10-01/raw/clone-857-crowd.json` | clone 实测：落点（按钮 right+8／top）、两个源站行为、**两个断点**的可见入口数 |
+| `docs/research/liblib-canvas-batch857-2026-10-01/raw/clone-857-geometry.json` | ★ clone 的「添加角色」浮层与场景树**完全重叠** ＋ 命中测试（树里那枚按钮被浮层截走） |
+| `docs/research/liblib-canvas-batch857-2026-10-01/README.md` | 本批（群众阵列）的完整取证、整改、**用户可达**与验收 |
 | `docs/research/VERIFICATION_LEDGER.md` | 历批验收台账 |
 
 ★ ★ **每批 README 的 §「复现步骤」都写了这条链**：契约提取 → 源站实测 →

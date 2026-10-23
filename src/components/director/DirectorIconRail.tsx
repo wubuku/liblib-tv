@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useEffect, useLayoutEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react";
+import { Fragment, useCallback, useEffect, useLayoutEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import {
   ArrowDownToLine,
@@ -115,6 +115,16 @@ const CROWD_LIMITS = {
   columns: { min: 1, max: 10 },
   spacing: { min: 0.1, max: 10 },
 } as const;
+
+// ★★★ Batch 857（源站逐字）：源站的群众对话框锚在**按钮自己**的矩形上：
+//   `t = e.currentTarget.getBoundingClientRect()` ⟹ ⟹ 于是「锚点」只需要
+//   这四个边（源站只用了 `t.right` 与 `t.top`）。
+type CrowdAnchorRect = {
+  left: number;
+  top: number;
+  right: number;
+  bottom: number;
+};
 
 // Batch 589（源站 2026-10-01 实测）：三个 flyout 面板实测宽度**一致为
 // 232px**（@(48,100)），且每个面板顶部都有一行 12px `truncate` 的标题
@@ -256,10 +266,9 @@ export function DirectorIconRail({
   const panoramaPos = useFlyoutAnchor(panoramaAnchor, openFlyout === "panorama");
   const aspectPos = useFlyoutAnchor(aspectAnchor, openFlyout === "aspect-ratio");
   const characterPos = useFlyoutAnchor(characterAnchor, openFlyout === "add-character");
-  const crowdPos = useFlyoutAnchor(railRef, crowdDialogOpen, (r) => ({
-    left: r.left + 294,
-    top: r.top,
-  }));
+  // ★ Batch 857：群众对话框的落点**不再**用「rail + 294」那个写死偏移，
+  //   改由 `crowdAnchor`（锚点矩形）按**源站公式**算（见下面的
+  //   `placeCrowdDialog`）。`railRef` 仍被 `useFlyoutAnchor` 的其它三处用着。
 
   // Batch 626：几何模型子菜单也要纵向钳制。
   //
@@ -278,6 +287,22 @@ export function DirectorIconRail({
   // （≥800 视口的读数与 590 之前的几何完全一致）。
   const characterFlyoutRef = useRef<HTMLDivElement | null>(null);
   const geometrySubmenuRef = useRef<HTMLDivElement | null>(null);
+  // ★★★ Batch 857（源站逐字）：源站的「点外面关闭」判据是
+  //   「点在**群众按钮**或**对话框**之外」⟹ ⟹ 这两个元素都得能拿到 ref。
+  const crowdButtonRef = useRef<HTMLButtonElement | null>(null);
+  const crowdDialogRef = useRef<HTMLDivElement | null>(null);
+
+  // ★★★ Batch 857（源站逐字）：源站的群众对话框**锚在「群众按钮」自己身上**：
+  //   `W({left:Math.max(8,Math.min(t.right+8,window.innerWidth-r-8)),
+  //      top:Math.max(8,Math.min(t.top,window.innerHeight-n-8))})`
+  //   其中 t ＝ 按钮矩形、r/n ＝ 对话框自己的宽高（量不到时兜底 220）。
+  //   ⟹ ⟹ clone 此前写死「rail 左边 + 294」⟹ ⟹ 那**不是**源站的规则
+  //   （源站的对话框是**贴着按钮**的：按钮 right+8、按钮 top）。
+  //   ⟹ ⟹ 改成按锚点算 ⟹ 顺带让「移动端那枚入口」也能把对话框放在自己旁边。
+  const [crowdAnchor, setCrowdAnchor] = useState<CrowdAnchorRect | null>(null);
+  const [crowdPos, setCrowdPos] = useState<{ left: number; top: number } | null>(
+    null,
+  );
   useLayoutEffect(() => {
     const submenu = geometrySubmenuRef.current;
     if (!geometrySubmenuOpen || !characterPos || !submenu) return;
@@ -307,6 +332,110 @@ export function DirectorIconRail({
     window.addEventListener("resize", clamp);
     return () => window.removeEventListener("resize", clamp);
   }, [geometrySubmenuOpen, characterPos]);
+
+  // ★★★ Batch 857（源站逐字）：源站在「群众对话框开着」时监听 **document mousedown**，
+  //   点在**群众按钮**或**对话框**之外 ⟹ ⟹ **关掉对话框**。
+  //   源站逐字：
+  //     `if("crowd"!==L)return; let e=e=>{let t=e.target;
+  //        en.current?.contains(t)||ea.current?.contains(t)||O(null)};`
+  //   ⟹ ⟹ 这是**行为**、不是观感 ⟹ ⟹ clone 必须有（此前只能按「取消」关）。
+  //   ⟹ ⟹ 连带的第二个好处：**浮层被关掉后，对话框不会变成孤儿浮在画面上**。
+  useEffect(() => {
+    if (!crowdDialogOpen) return;
+    const onMouseDown = (event: MouseEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (!target) return;
+      // ★ 点在「群众入口」**自己身上** ⟹ ⟹ **不算**「点外面」——
+      //   桌面是 rail 的「群众 (3x3)」，移动端是视口工具条那枚 ⟹ ⟹ 两个都算。
+      //   ★ ★ 不这么判的话，移动端那枚会被**两次事件**打中：
+      //   mousedown 先「点外面」把对话框关了、click 又把它打开 ⟹ ⟹
+      //   净效果是「一直开着」⟹ ⟹ **不是开关** ⟹ ⟹ 与源站语义不一致。
+      if (target.closest?.(
+        "[data-director-character-option='crowd-3x3'], "
+          + "[data-director-crowd-mobile-trigger]",
+      )) {
+        return;
+      }
+      if (crowdDialogRef.current?.contains(target)) return;
+      setCrowdDialogOpen(false);
+    };
+    document.addEventListener("mousedown", onMouseDown);
+    return () => document.removeEventListener("mousedown", onMouseDown);
+  }, [crowdDialogOpen]);
+
+  // ★★★ Batch 857（源站逐字）：**按锚点算**对话框的落点。
+  //   源站：`W({left:Math.max(8,Math.min(t.right+8,window.innerWidth-r-8)),
+  //              top:Math.max(8,Math.min(t.top,window.innerHeight-n-8))})`
+  //   ⟹ ⟹ r/n ＝ 对话框**自己**的宽高，量不到时兜底 **220**（源站同）。
+  //   ⟹ ⟹ 两边各有 8px 的视口安全边（源站同）。
+  const placeCrowdDialog = useCallback((anchor: CrowdAnchorRect) => {
+    const box = crowdDialogRef.current?.getBoundingClientRect();
+    const width = box?.width || 220;
+    const height = box?.height || 220;
+    setCrowdPos({
+      left: Math.max(
+        8,
+        Math.min(anchor.right + 8, window.innerWidth - width - 8),
+      ),
+      top: Math.max(8, Math.min(anchor.top, window.innerHeight - height - 8)),
+    });
+  }, []);
+
+  const openCrowdDialog = useCallback(
+    (anchor: CrowdAnchorRect) => {
+      setCrowdAnchor(anchor);
+      // 首帧还没挂上对话框 ⟹ 用源站同款兜底（220×220）算一次，
+      // 挂上之后下面的 layout effect 会用**实测**尺寸再算一遍。
+      setCrowdPos({
+        left: Math.max(
+          8,
+          Math.min(anchor.right + 8, window.innerWidth - 220 - 8),
+        ),
+        top: Math.max(8, Math.min(anchor.top, window.innerHeight - 220 - 8)),
+      });
+      setCrowdDialogOpen(true);
+    },
+    [],
+  );
+
+  // 对话框挂上之后，用**实测**宽高再算一次落点（源站用 `offsetWidth/offsetHeight`）。
+  useLayoutEffect(() => {
+    if (!crowdDialogOpen || !crowdAnchor) return;
+    placeCrowdDialog(crowdAnchor);
+  }, [crowdDialogOpen, crowdAnchor, placeCrowdDialog]);
+
+  // 视口变了要重算（源站监听 resize ＋ 捕获阶段的 scroll）。
+  useEffect(() => {
+    if (!crowdDialogOpen || !crowdAnchor) return;
+    const onViewportChange = () => placeCrowdDialog(crowdAnchor);
+    window.addEventListener("resize", onViewportChange);
+    document.addEventListener("scroll", onViewportChange, true);
+    return () => {
+      window.removeEventListener("resize", onViewportChange);
+      document.removeEventListener("scroll", onViewportChange, true);
+    };
+  }, [crowdDialogOpen, crowdAnchor, placeCrowdDialog]);
+
+  // ★★★ Batch 857：**移动端那枚入口**用事件把「自己的矩形」递进来
+  //   ⟹ ⟹ 对话框于是贴在**那枚按钮**旁边（源站同一条规则）。
+  //   ⟹ ⟹ 桌面端不用它：桌面的入口是 rail 的「群众 (3x3)」（源站唯一入口）。
+  useEffect(() => {
+    const onOpenCrowd = (event: Event) => {
+      const detail = (event as CustomEvent<{ rect?: CrowdAnchorRect }>).detail;
+      if (!detail?.rect) return;
+      setOpenFlyout(null);
+      // ★ 源站的「群众 (3x3)」是**开关** ⟹ ⟹ 移动端这枚（clone 自己的扩展）
+      //   也照同样的语义做 ⟹ ⟹ 已经开着时**再点一次就是关掉它**。
+      if (crowdDialogOpen) {
+        setCrowdDialogOpen(false);
+        return;
+      }
+      openCrowdDialog(detail.rect);
+    };
+    window.addEventListener("director:open-crowd-dialog", onOpenCrowd);
+    return () =>
+      window.removeEventListener("director:open-crowd-dialog", onOpenCrowd);
+  });
 
   // Mount a flyout at body level with the viewport coordinates measured from its
   // anchor, so the z in RAIL_FLYOUT_CLASS competes against the timeline instead
@@ -407,8 +536,29 @@ export function DirectorIconRail({
     if (itemId === "crowd-3x3") {
       // 源站的弹窗是**并排**出现在 flyout 右侧（@(280,388)，flyout 占
       // 48..280），flyout 保持打开；clone 此前是直接关掉 flyout。
+      //
+      // ★★★ Batch 857（源站逐字）：源站这一枚是**开关**——
+      //   `onClick:e=>{if("crowd"===L)return void O(null);
+      //     let t=e.currentTarget.getBoundingClientRect();
+      //     W({left:t.right+8,top:t.top}),O("crowd")}`
+      //   ⟹ ⟹ **对话框已经开着时，再点一次就是关掉它**（而不是「无脑重开」）。
+      //   ⟹ ⟹ 顺带把 `aria-expanded` 的语义也补上（源站就是
+      //   `"aria-expanded":"crowd"===L`）。
+      //   ⟹ ⟹ 落点按**按钮自己的矩形**算（源站逐字 `t.right+8` / `t.top`）。
       setOpenFlyout("add-character");
-      setCrowdDialogOpen(true);
+      if (crowdDialogOpen) {
+        setCrowdDialogOpen(false);
+        return;
+      }
+      const rect = crowdButtonRef.current?.getBoundingClientRect();
+      if (rect) {
+        openCrowdDialog({
+          left: rect.left,
+          top: rect.top,
+          right: rect.right,
+          bottom: rect.bottom,
+        });
+      }
       return;
     }
     if (itemId === "local-upload") {
@@ -525,8 +675,22 @@ export function DirectorIconRail({
                     <button
                       key={item.id}
                       type="button"
+                      ref={item.id === "crowd-3x3" ? crowdButtonRef : undefined}
                       data-director-character-option={item.id}
+                      // ★★★ Batch 857（源站逐字）：源站这枚按钮带
+                      //   `"aria-expanded":"crowd"===L` ⟹ ⟹ 对话框开着时为 true。
+                      aria-expanded={
+                        item.id === "crowd-3x3" ? crowdDialogOpen : undefined
+                      }
                       onClick={() => handleCharacterOption(item.id, item.label)}
+                      // ★ 源站逐字：对话框开着时这一枚是 `bg-white/8`
+                      //   ⟹ ⟹ 4317 的 Tailwind 扫描是冻结的（batch 824）
+                      //   ⟹ ⟹ 这个类名不一定在 dev CSS 里 ⟹ ⟹ 走 inline style。
+                      style={
+                        item.id === "crowd-3x3" && crowdDialogOpen
+                          ? { backgroundColor: "rgba(255,255,255,0.08)" }
+                          : undefined
+                      }
                       className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs text-[#d8d8d8] hover:bg-white/[0.07]"
                     >
                       <span className="min-w-0 flex-1 truncate">{item.label}</span>
@@ -773,6 +937,7 @@ export function DirectorIconRail({
           打开。clone 此前是点一下直接按 3×3/1.2 出结果。 */}
       {crowdDialogOpen && crowdPos && portalFlyout(crowdPos, (
         <div
+          ref={crowdDialogRef}
           data-director-crowd-dialog
           role="dialog"
           aria-label="添加群众阵列"
@@ -828,15 +993,27 @@ export function DirectorIconRail({
               max={CROWD_LIMITS.spacing.max}
               step={0.1}
               value={crowdDraft.spacing}
-              onChange={(event) =>
+              onChange={(event) => {
+                // ★★★ Batch 857（源站逐字）：间距**保留 1 位小数**
+                //   `Math.min(10,Math.max(.1,Math.round(10*t)/10))`
+                //   ⟹ ⟹ 源站**实测**（raw/source-857-crowd.json 的「⑥间距填1.55后」）：
+                //   把间距填成 **1.55** ⟹ ⟹ 源站读回 **1.6** ⟹ ⟹ 行为证据，
+                //   不是「我读了代码所以这么说」。
+                //   ⟹ ⟹ 源站在非数字时兜底成 **0.1**（＝量程下限），照抄。
+                const next = event.currentTarget.valueAsNumber;
                 setCrowdDraft((draft) => ({
                   ...draft,
-                  spacing: Math.min(
-                    CROWD_LIMITS.spacing.max,
-                    Math.max(CROWD_LIMITS.spacing.min, Number(event.target.value)),
-                  ),
-                }))
-              }
+                  spacing: Number.isFinite(next)
+                    ? Math.min(
+                        CROWD_LIMITS.spacing.max,
+                        Math.max(
+                          CROWD_LIMITS.spacing.min,
+                          Math.round(next * 10) / 10,
+                        ),
+                      )
+                    : CROWD_LIMITS.spacing.min,
+                }));
+              }}
               className="h-7 w-full rounded-lg border border-white/10 bg-[#1e1e1e] px-2 text-xs text-[#d8d8d8] outline-none focus:border-white/30"
             />
           </label>

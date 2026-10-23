@@ -1,0 +1,37 @@
+{
+ "批次": 857,
+ "总数": 13,
+ "一致数": 10,
+ "不一致": [
+  {
+   "batch": "857.py",
+   "HEAD": "rc=1 | PASS  S12 老门禁迁移：45.py（crowd 段迁到 rail）＋ 625.py（落点改推导） ｜ 45: 迁到 rail True ｜ 45: 关浮层 True ｜ 45: 负向断言 True ｜ 625: 落点改推导 True ／ 11/12 条通过",
+   "工作副本": "rc=0 | PASS  S12 老门禁迁移：45.py（crowd 段迁到 rail）＋ 625.py（落点改推导） ｜ 45: 迁到 rail True ｜ 45: 关浮层 True ｜ 45: 负向断言 True ｜ 625: 落点改推导 True ／ 12/12 条通过"
+  },
+  {
+   "batch": "45.py",
+   "HEAD": "rc=1 | assert legacy not in viewport_source, ( ／ AssertionError: 视口里还有 legacy 群众阵列选择器：data-director-crowd-trigger",
+   "工作副本": "rc=0 | Batch 45 director group/crowd verification passed."
+  },
+  {
+   "batch": "625.py",
+   "HEAD": "rc=1 | 5/6 passed ／ FAILED: the-portal-moved-nothing",
+   "工作副本": "rc=0 | PASS crowd-dialog-width-is-220  [(1920, 1150, 220), (1440, 900, 220), (1280, 720, 220), (1920, 844, 220), (1100, 700, 220)] ／ 6/6 passed"
+  }
+ ],
+ "HEAD读数": {
+  "541.py": "rc=1 | assert ok, f\"batch541 check failed: {name}\" ／ AssertionError: batch541 check failed: crowd:objects-increase",
+  "546.py": "rc=1 | raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.Error: FileChooser.set_files: ENOENT: no such file or directory, access '/private/tmp/batch542-fixture/hero-character.fbx'",
+  "542.py": "rc=1 | raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.Error: FileChooser.set_files: ENOENT: no such file or directory, access '/private/tmp/batch542-fixture/hero-character.fbx'",
+  "738.py": "rc=1 | [PASS] C9 11 枚连线删除手柄 8×8 且 pe=none，中心命中自己 0/11  ⟵ 11 枚 8x8=True peNone=True selfHit=0 ／ 8/9 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch738-2026-10-01/runtime-audit.json",
+  "656.py": "rc=1 | 7 checks, 1 failures ／ FAILED: the-scene-prediction-was-wrong-and-scene-is-a-dom-level-no-op",
+  "857.py": "rc=1 | PASS  S12 老门禁迁移：45.py（crowd 段迁到 rail）＋ 625.py（落点改推导） ｜ 45: 迁到 rail True ｜ 45: 关浮层 True ｜ 45: 负向断言 True ｜ 625: 落点改推导 True ／ 11/12 条通过",
+  "45.py": "rc=1 | assert legacy not in viewport_source, ( ／ AssertionError: 视口里还有 legacy 群众阵列选择器：data-director-crowd-trigger",
+  "590.py": "rc=0 | Batch 590 verification passed: 85 checks, 0 diagnostics. Ratio cards match the measured 104x72 / radius 12 / per-ratio glyph boxes, 几何模型 opens its eight-option submenu, and 群众 (3x3) opens the real dialog and commits. See runtime-audit.json.",
+  "626.py": "rc=0 | PASS clamp-is-a-no-op/1440x900/geometry-submenu  got [52, 508, 204, 270] want [52, 508, 204, 270] ／ 113 checks, 0 failures",
+  "613.py": "rc=0 | PASS diagnostics:no-console-errors ／ 55/55 passed",
+  "625.py": "rc=1 | 5/6 passed ／ FAILED: the-portal-moved-nothing",
+  "84.mjs": "rc=0 | {\"batch\":84,\"status\":\"PASS\",\"cases\":{\"treeLockControl\":true,\"inspectorLockControl\":true,\"lockedViewportNoTransformControls\":true,\"lockedObjectGuard\":true,\"lockedPathGuard\":true,\"lockedGroupGuard\":true,\"stableReason\":true}}",
+  "86.mjs": "rc=0 | {\"batch\":86,\"status\":\"PASS\",\"cases\":{\"transformContextSelectors\":true,\"objectAndGroupPointerCancel\":true,\"objectAndGroupLostPointerCapture\":true,\"authoredRuntimeAuthorityPresent\":true,\"lockedReasonBoundaryPresent\":true,\"sourceBoundaryRecorded\":true}}"
+ }
+}

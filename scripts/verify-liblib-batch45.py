@@ -156,27 +156,51 @@ def run_crowd_group_loop(page: Page):
     initial_object_count = len(initial_state["objects"])
     initial_group_count = len(initial_state["groups"])
 
-    page.locator("[data-director-crowd-trigger]").click()
-    panel = page.locator("[data-director-crowd-panel]")
-    panel.wait_for(state="visible")
-    page.locator("[data-director-crowd-rows]").fill("2")
-    page.locator("[data-director-crowd-columns]").fill("3")
-    page.locator("[data-director-crowd-spacing]").fill("1.1")
-    assert panel.locator("[data-director-crowd-count='6']").count() == 1
-    panel_box = box(panel)
-    viewport_box = box(page.locator("[data-director-viewport]"))
-    assert viewport_box["x"] <= panel_box["x"]
-    assert panel_box["x"] + panel_box["width"] <= (
-        viewport_box["x"] + viewport_box["width"]
-    )
-    assert panel_box["y"] >= viewport_box["y"]
-    assert panel_box["y"] + panel_box["height"] <= (
-        viewport_box["y"] + viewport_box["height"]
-    )
+    # ★★★ Batch 857 **判据迁移**：群众阵列的入口**只有 rail 一个**。
+    # ★ ★ 原来这条走的是「视口工具栏里那枚「添加群众阵列」按钮 ＋ 一套 legacy 面板」
+    #   （`[data-director-crowd-trigger]`／`[data-director-crowd-panel]`／
+    #   `[data-director-crowd-rows]`…）。
+    # ★ ★ 那个入口**源站没有** —— 源站实测（自指判据，见
+    #   docs/research/liblib-canvas-batch857-2026-10-01/raw/source-857-crowd.json
+    #   的「⑤同aria元素」）：全页「aria-label 等于对话框那个」的元素**只有 1 个**
+    #   ⟹ ⟹ 源站**只有 rail 的「添加角色 → 群众 (3x3)」一个入口**
+    #   ⟹ ⟹ clone 那枚按钮是**多出来的** ⟹ ⟹ 本批删掉它 ＋ 那套 legacy 面板
+    #   ⟹ ⟹ 于是本条判据**迁到 rail 的对话框**（**被测行为一字未改**：
+    #   仍然是「填 2×3／间距 1.1 ⟹ 加出 6 个成员 ＋ 一个组 ＋ 组选中」）。
+    page.locator("[data-director-rail-entry='add-character']").click()
+    page.wait_for_timeout(300)
+    page.locator("[data-director-character-option='crowd-3x3']").click()
+    page.wait_for_timeout(300)
+    dialog = page.locator("[data-director-crowd-dialog]")
+    dialog.wait_for(state="visible")
+    page.locator("[data-director-crowd-input='rows']").fill("2")
+    page.locator("[data-director-crowd-input='columns']").fill("3")
+    page.locator("[data-director-crowd-input='spacing']").fill("1.1")
+    assert page.locator("[data-director-crowd-count]").inner_text().strip() == "共6人"
+    # ★ 几何断言也跟着换：源站逐字 `W({left:t.right+8,top:t.top})`
+    #   ⟹ ⟹ 对话框在**浮层的右侧**，且宽度是 **220px**
+    #   （源站实测：220×204 @(280,388) ⟹ 见 raw/source-857-crowd.json 的「④对话框」）。
+    dialog_box = box(dialog)
+    flyout_box = box(page.locator("[data-director-character-flyout]"))
+    assert flyout_box["x"] + flyout_box["width"] <= dialog_box["x"]
+    assert dialog_box["width"] == 220
     page.screenshot(path=str(CROWD_PANEL_SCREENSHOT))
 
-    page.locator("[data-director-crowd-action='add']").click()
-    page.locator("[data-director-crowd-panel]").wait_for(state="hidden")
+    page.locator("[data-director-crowd-confirm]").click()
+    page.locator("[data-director-crowd-dialog]").wait_for(state="hidden")
+    # ★★★ Batch 857：**关掉 rail 的「添加角色」浮层**。
+    #   ⟹ ⟹ 源站的「添加角色」是**左侧面板模式切换**（`z` 只能是 "scene" 或
+    #   "character"、两者互斥）⟹ ⟹ 源站加完群众之后**场景树是不在的**。
+    #   ⟹ ⟹ clone 把「添加角色」做成了**浮层**（盖在场景树上）⟹ ⟹ 场景树
+    #   **还在下面、但被浮层挡住** ⟹ ⟹ 浮层里的
+    #   `[data-director-character-option]` 会**截走**落在它矩形上的点击
+    #   ⟹ ⟹ 后面要点组行的 toggle 时就点不到（本批迁移后暴露的）。
+    #   ⟹ ⟹ 用户视角对应的动作是点 rail 的**「场景」**：源站点它 ⟹ 左侧
+    #   面板切回场景树；clone 点它 ⟹ 浮层关闭、左侧仍是场景树。
+    #   ⟹ ⟹ 所以这里点「场景」，**两边的语义一致**。
+    page.locator("[data-director-rail-entry='scene']").click()
+    page.wait_for_timeout(300)
+    assert page.locator("[data-director-character-flyout]").count() == 0
     state = director_state(page)
     assert len(state["objects"]) == initial_object_count + 6
     assert len(state["groups"]) == initial_group_count + 1
@@ -438,20 +462,24 @@ def run_multi_select_group_loop(page: Page):
 def run_mobile(page: Page):
     errors = attach_errors(page)
     open_director(page, force_dom_click=True)
-    trigger = page.locator("[data-director-crowd-trigger]")
-    trigger.click()
-    panel = page.locator("[data-director-crowd-panel]")
-    panel.wait_for(state="visible")
-    panel_box = box(panel)
-    viewport_box = box(page.locator("[data-director-viewport]"))
-    assert panel_box["x"] >= viewport_box["x"]
-    assert panel_box["x"] + panel_box["width"] <= (
-        viewport_box["x"] + viewport_box["width"]
-    )
-    assert panel_box["y"] >= viewport_box["y"]
-    assert panel_box["y"] + panel_box["height"] <= (
-        viewport_box["y"] + viewport_box["height"]
-    )
+    # ★★★ Batch 857 **判据迁移**：legacy 的视口群众面板**已删**（源站没有那个入口）
+    #   ⟹ ⟹ 移动端这条改走**移动端那枚 crowd 入口**。
+    #   ★ ★ 为什么**不是** rail 的「添加角色」：
+    #   clone 的 rail 在 **<899px 是 `hidden`** ⟹ ⟹ 移动端点 rail 入口会
+    #   **超时**（元素不可见）⟹ ⟹ 移动端的入口是视口底部工具条那枚
+    #   （`[data-director-crowd-mobile-trigger]`，桌面端隐藏）⟹ ⟹ 它开的是
+    #   **同一个**对话框（量程／默认值／落点规则与桌面完全同源）。
+    #   ★ 源站**没有移动端布局**（实测 390×844 下源站渲染的仍是桌面画布），
+    #   ⟹ ⟹ 移动端这枚是 clone 自己的扩展 ⟹ ⟹ 如实登记，不冒充源站行为。
+    page.locator("[data-director-crowd-mobile-trigger]").click()
+    page.wait_for_timeout(400)
+    dialog = page.locator("[data-director-crowd-dialog]")
+    dialog.wait_for(state="visible")
+    dialog_box = box(dialog)
+    # ★ 源站逐字：对话框宽 **220px**（源站实测 220×204）
+    assert dialog_box["width"] == 220
+    # ★ ★ 移动端**可见**的 crowd 入口**只有这一枚**（与桌面同口径）
+    assert page.locator("[data-director-character-option='crowd-3x3']").count() == 0
     assert_no_overflow(page)
     page.screenshot(path=str(MOBILE_SCREENSHOT))
     assert_nonblank_locator(
@@ -516,6 +544,10 @@ def verify_static_contract():
     viewport_source = (
         ROOT / "src/components/director/DirectorViewport.tsx"
     ).read_text()
+    # ★★★ Batch 857：群众阵列的对话框在 **rail** 里 ⟹ ⟹ 静态契约也跟着搬。
+    rail_source = (
+        ROOT / "src/components/director/DirectorIconRail.tsx"
+    ).read_text()
     timeline_source = (
         ROOT / "src/components/director/DirectorTimeline.tsx"
     ).read_text()
@@ -540,12 +572,17 @@ def verify_static_contract():
             ],
         ),
         (
+            rail_source,
+            [
+                "data-director-crowd-dialog",
+                "data-director-crowd-input",
+                "data-director-crowd-confirm",
+                "addCrowdArray",
+            ],
+        ),
+        (
             viewport_source,
             [
-                "data-director-crowd-panel",
-                "data-director-crowd-rows",
-                "data-director-crowd-columns",
-                "addCrowdArray",
                 "data-director-group-rig",
             ],
         ),
@@ -570,6 +607,20 @@ def verify_static_contract():
     ]:
         for label in labels:
             assert label in source, label
+
+    # ★★★ Batch 857 **负向断言**：视口里那套 legacy 群众阵列面板**必须已清零**。
+    #   ⟹ ⟹ 只写正向断言的话，「旧写法还在」也能过 ⟹ ⟹ 所以必须**显式**盯住清零。
+    for legacy in [
+        "data-director-crowd-trigger",
+        "data-director-crowd-panel",
+        "data-director-crowd-rows",
+        "data-director-crowd-columns",
+        "data-director-crowd-spacing",
+        "data-director-crowd-action",
+    ]:
+        assert legacy not in viewport_source, (
+            "视口里还有 legacy 群众阵列选择器：%s" % legacy
+        )
 
 
 if __name__ == "__main__":

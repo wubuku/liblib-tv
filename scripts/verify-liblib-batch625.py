@@ -135,6 +135,17 @@ MEASURE_JS = r"""(sel) => {
 }"""
 
 
+# ★ Batch 857：量「群众 (3x3)」按钮自己的矩形 —— 源站的对话框就是锚在它身上。
+ANCHOR_JS = r"""()=>{
+  const b=document.querySelector("[data-director-character-option='crowd-3x3']");
+  if(!b) return null;
+  const r=b.getBoundingClientRect();
+  return {x:Math.round(r.x), y:Math.round(r.y), top:Math.round(r.top),
+          right:Math.round(r.right), bottom:Math.round(r.bottom),
+          w:Math.round(r.width), h:Math.round(r.height)};
+}"""
+
+
 def open_flyout(page: Any, trig: str, option: str | None, overlay: str) -> None:
     page.locator(trig).first.click(timeout=10_000)
     if option:
@@ -212,6 +223,11 @@ def main() -> None:
                     page.mouse.move(5, 5)
                     page.wait_for_timeout(150)
                     row.update(page.evaluate(MEASURE_JS, overlay))
+                    if label == "crowd-dialog":
+                        # ★ Batch 857 迁移：源站逐字 —— 对话框锚在**按钮自己**身上
+                        #   （`t = e.currentTarget.getBoundingClientRect()`），
+                        #   ⟹ ⟹ 落点要**跟着按钮**走 ⟹ ⟹ 必须量出按钮的矩形。
+                        row["anchor"] = page.evaluate(ANCHOR_JS)
                     row["pageErrors"] = [e for e in errors
                                          if not any(k in e for k in IGNORE_PAGE_ERROR)]
                 except Exception as exc:  # noqa: BLE001
@@ -277,24 +293,56 @@ def main() -> None:
         "panorama-flyout": [48, 196, 232, 134],
         "aspect-flyout": [48, 236, 232, 350],
         "add-character-flyout": [48, 116, 232, 390],
-        "crowd-dialog": [294, 52, 220, 208],
+        # ★ Batch 857 **迁移掉**「crowd-dialog: [294, 52, 220, 208]」。
+        #   旧值是 clone 写死「rail 左边 + 294」算出来的 —— **源站没有这条规则**。
+        #   源站逐字：
+        #     `W({left:Math.max(8,Math.min(t.right+8,window.innerWidth-r-8)),
+        #        top:Math.max(8,Math.min(t.top,window.innerHeight-n-8))})`
+        #     （t ＝ 「群众 (3x3)」按钮的矩形，r/n ＝ 对话框自己的宽高）
+        #   ⟹ ⟹ 对话框的落点**跟着按钮走** ⟹ ⟹ 不能写死坐标，
+        #   ⟹ ⟹ 改成「按源站公式 + 实测锚点」推导（见 expected_box）。
     }
 
-    def expected_box(flyout: str, vh: int) -> list[int]:
+    def expected_box(flyout: str, vh: int, vw: int,
+                     row: dict[str, Any]) -> list[int]:
+        if flyout == "crowd-dialog":
+            anchor = row.get("anchor") or {}
+            if not anchor:
+                return [-1, -1, -1, -1]
+            # ★ 对话框**自己**的宽高：宽 220 是源站逐字；高用**实测**值，
+            #   因为源站钳制时用的就是它自己的 `offsetHeight`。
+            w = row["box"][2]
+            h = row["box"][3]
+            left = max(8, min(anchor["right"] + 8, vw - w - 8))
+            top = max(8, min(anchor["top"], vh - h - 8))
+            return [left, top, w, h]
         if flyout != "geometry-submenu":
             return BEFORE[flyout]
         # 786 = 508 (unclamped top) + 270 (height) + 8 (safe margin)
         return [52, 508 if vh >= 786 else vh - 8 - 270, 204, 270]
 
     moved = [(r["flyout"], r["vw"], r["vh"], r["box"],
-              expected_box(r["flyout"], r["vh"]))
+              expected_box(r["flyout"], r["vh"], r["vw"], r))
              for r in live
-             if r["box"] != expected_box(r["flyout"], r["vh"])]
+             if r["box"] != expected_box(r["flyout"], r["vh"], r["vw"], r)]
     v.result["geometryBefore"] = BEFORE
     v.result["geometrySubmenuPerHeight"] = {
         f"{r['vw']}x{r['vh']}": r["box"] for r in live
         if r["flyout"] == "geometry-submenu"}
+    v.result["crowdDialogPerViewport"] = {
+        f"{r['vw']}x{r['vh']}": {"box": r["box"], "anchor": r.get("anchor"),
+                                 "expected": expected_box(r["flyout"], r["vh"],
+                                                          r["vw"], r)}
+        for r in live if r["flyout"] == "crowd-dialog"}
     v.check("the-portal-moved-nothing", not moved, detail=moved[:5])
+
+    # ★ Batch 857：对话框**宽度 220** 是源站逐字（源站实测 220×204）
+    #   ⟹ ⟹ 单独钉住 ⟹ ⟹ 免得「位置对了、宽度错了」被上面的位置比对放过去。
+    crowd_widths = [(r["vw"], r["vh"], r["box"][2]) for r in live
+                     if r["flyout"] == "crowd-dialog"]
+    v.check("crowd-dialog-width-is-220",
+            bool(crowd_widths) and all(w == 220 for _, _, w in crowd_widths),
+            detail=crowd_widths)
 
     audit["checks"] = v.result
     audit["result"] = f"{v.count - len(v.failures)}/{v.count} passed"

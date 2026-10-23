@@ -1,0 +1,122 @@
+{
+ "来源": {
+  "chunk": "/tmp/liblib_srcjs2/0fmehki05gkzw.js.js",
+  "字节数": 1018019,
+  "提取方式": "机器提取（唯一定位 ＋ 逐字摘录）"
+ },
+ "片段": {
+  "对话框 state 初值（行3／列3／间距1.2 ＝ 真正生效的默认值）": {
+   "锚点": "[U,H]=(0,o.useState)(3),[V,G]=(0,o.useState)(3),[K,Q]=(0,o.useState)(1.2)",
+   "原文": "[U,H]=(0,o.useState)(3),[V,G]=(0,o.useState)(3),[K,Q]=(0,o.useState)(1.2)",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "行输入（min1 max10 step1 ＋ aria directorRows）": {
+   "锚点": "type:\"number\",min:1,max:10,step:1,\"aria-label\":D(\"canvas:directorRows\"),value:U",
+   "原文": "type:\"number\",min:1,max:10,step:1,\"aria-label\":D(\"canvas:directorRows\"),value:U",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "列输入（min1 max10 step1 ＋ aria directorCols）": {
+   "锚点": "type:\"number\",min:1,max:10,step:1,\"aria-label\":D(\"canvas:directorCols\"),value:V",
+   "原文": "type:\"number\",min:1,max:10,step:1,\"aria-label\":D(\"canvas:directorCols\"),value:V",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "间距输入（min.1 max10 step.1 ＋ aria directorSpacing）": {
+   "锚点": "type:\"number\",min:.1,max:10,step:.1,\"aria-label\":D(\"canvas:directorSpacing\"),value:K",
+   "原文": "type:\"number\",min:.1,max:10,step:.1,\"aria-label\":D(\"canvas:directorSpacing\"),value:K",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "间距 onChange（夹 [0.1,10] ＋ 保留 1 位小数）": {
+   "锚点": "Math.min(10,Math.max(.1,Math.round(10*t)/10))",
+   "原文": "Math.min(10,Math.max(.1,Math.round(10*t)/10))",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "「添加」按钮的载荷（count ＝ 行×列）": {
+   "锚点": "h({count:U*V,crowdRows:U,crowdCols:V,crowdSpacing:K}),O(null)",
+   "原文": "h({count:U*V,crowdRows:U,crowdCols:V,crowdSpacing:K}),O(null)",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "add 回调的兜底（不夹取；1.6 只是兜底、不是默认值）": {
+   "锚点": "let{count:t,crowdRows:r,crowdCols:n,crowdSpacing:a,...i}=e,o=t??1,s=r??1,l=n??o,c=a??1.6",
+   "原文": "let{count:t,crowdRows:r,crowdCols:n,crowdSpacing:a,...i}=e,o=t??1,s=r??1,l=n??o,c=a??1.6",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "创建 N 个成员（length ＝ count）": {
+   "锚点": "u=Array.from({length:o},()=>hZ())",
+   "原文": "u=Array.from({length:o},()=>hZ())",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "成员类型（count>1 ⟹ crowd ⟹ 加的是**角色**）": {
+   "锚点": "asset_type:o>1?\"crowd\"",
+   "原文": "asset_type:o>1?\"crowd\"",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "rail 入口的结构特征（aria-haspopup=dialog ＋ crowd 状态）": {
+   "锚点": "\"aria-haspopup\":\"dialog\",\"aria-expanded\":\"crowd\"===L",
+   "原文": "\"aria-haspopup\":\"dialog\",\"aria-expanded\":\"crowd\"===L",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "rail 入口的文案键（群众 3x3）": {
+   "锚点": "D(\"canvas:directorCrowd3x3\")",
+   "原文": "D(\"canvas:directorCrowd3x3\")",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "对话框右上角的总数文案（n ＝ 行×列）": {
+   "锚点": "D(\"canvas:directorCrowdTotalN\",{n:U*V})",
+   "原文": "D(\"canvas:directorCrowdTotalN\",{n:U*V})",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "对话框的 role 与 aria（可被结构定位）": {
+   "锚点": "role:\"dialog\",\"aria-label\":D(\"canvas:directorAddCrowdArray\")",
+   "原文": "role:\"dialog\",\"aria-label\":D(\"canvas:directorAddCrowdArray\")",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "★开关：再点一次「群众 (3x3)」＝ 关闭对话框": {
+   "锚点": "if(\"crowd\"===L)return void O(null)",
+   "原文": "if(\"crowd\"===L)return void O(null)",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "★点外面关闭：点在按钮/对话框之外 ⟹ 关闭": {
+   "锚点": "en.current?.contains(t)||ea.current?.contains(t)||O(null)",
+   "原文": "en.current?.contains(t)||ea.current?.contains(t)||O(null)",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "★落点公式：锚在按钮自己身上（right+8 / top）＋ 8px 视口安全边": {
+   "锚点": "W({left:Math.max(8,Math.min(t.right+8,window.innerWidth-r-8)),top:Math.max(8,Math.min(t.top,window.innerHeight-n-8))})",
+   "原文": "W({left:Math.max(8,Math.min(t.right+8,window.innerWidth-r-8)),top:Math.max(8,Math.min(t.top,window.innerHeight-n-8))})",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  },
+  "★落点用的尺寸：对话框自己的宽高（量不到时兜底 220）": {
+   "锚点": "r=ea.current?.offsetWidth??220,n=ea.current?.offsetHeight??220",
+   "原文": "r=ea.current?.offsetWidth??220,n=ea.current?.offsetHeight??220",
+   "锚点命中数": 1,
+   "正文命中数": 1
+  }
+ },
+ "★任意值类名自检": {
+  "通过": true,
+  "疑似编造的标识符": [],
+  "说明": "正文里每个 `x.y` 的 x 必须真实出现在 chunk 的标识符集合里"
+ },
+ "★跨片段防呆自检（初值 ≠ 兜底）": {
+  "通过": true,
+  "对话框初值（间距）": "1.2",
+  "add 回调兜底（间距）": "1.6",
+  "说明": "初值 1.2 才是真正生效的默认值；1.6 只是 `crowdSpacing` 为 undefined 时的兜底（对话框永远传 K）⟹ ⟹ 把 1.6 当默认值是错的"
+ }
+}

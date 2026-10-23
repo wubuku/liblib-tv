@@ -2730,7 +2730,6 @@ export function DirectorViewport({
   const setViewMode = useDirectorStore((state) => state.setViewMode);
   const setCapturing = useDirectorStore((state) => state.setCapturing);
   const addCapture = useDirectorStore((state) => state.addCapture);
-  const addCrowdArray = useDirectorStore((state) => state.addCrowdArray);
   const addModelLibraryObject = useDirectorStore(
     (state) => state.addModelLibraryObject,
   );
@@ -2797,10 +2796,12 @@ export function DirectorViewport({
     useState<DirectorAsyncOperationDescriptorV1 | null>(null);
   const captureRequestSequence = useRef(0);
   const [phoneVcamOpen, setPhoneVcamOpen] = useState(false);
-  const [crowdPanelOpen, setCrowdPanelOpen] = useState(false);
-  const [crowdRows, setCrowdRows] = useState("3");
-  const [crowdColumns, setCrowdColumns] = useState("3");
-  const [crowdSpacing, setCrowdSpacing] = useState("1.2");
+  // ★★★ Batch 857：**删掉**视口里的 legacy 群众阵列面板（`crowdPanelOpen` 等）。
+  //   ★ 理由：源站**只有一个**「添加群众阵列」入口（rail 的「添加角色 → 群众 (3x3)」）
+  //   ⟹ ⟹ 源站实测（自指判据）：全页「aria-label 等于对话框那个」的元素**只有 1 个**
+  //   ⟹ ⟹ 视口工具栏这枚按钮是**clone 多出来的入口**。
+  //   ⟹ ⟹ 而且它那套面板的量程也是 clone 自己发明的（行≤6／列≤8／间距 0.6–3），
+  //   ⟹ ⟹ 源站是 1–10／1–10／0.1–10 ⟹ ⟹ 两处都对不上。
   const [modelLibraryOpen, setModelLibraryOpen] = useState(false);
   const [activeModelLibraryCategoryId, setActiveModelLibraryCategoryId] =
     useState<DirectorModelLibraryCategoryId>("convenience");
@@ -3065,23 +3066,8 @@ export function DirectorViewport({
     setCaptureRequest(descriptor);
   };
 
-  const crowdTotal = Math.min(
-    Math.max(Number(crowdRows) || 1, 1),
-    6,
-  ) * Math.min(Math.max(Number(crowdColumns) || 1, 1), 8);
-
-  const addCrowd = () => {
-    addCrowdArray({
-      rows: Number(crowdRows),
-      columns: Number(crowdColumns),
-      spacing: Number(crowdSpacing),
-    });
-    setCrowdPanelOpen(false);
-  };
-
   const toggleModelLibrary = () => {
     setPhoneVcamOpen(false);
-    setCrowdPanelOpen(false);
     setModelLibraryOpen((value) => !value);
   };
 
@@ -3351,82 +3337,8 @@ export function DirectorViewport({
         onClose={() => setPhoneVcamOpen(false)}
       />
 
-      {crowdPanelOpen ? (
-        <div
-          data-director-crowd-panel
-          role="dialog"
-          aria-label="添加群众阵列"
-          className="absolute bottom-[72px] left-1/2 z-20 w-[272px] -translate-x-1/2 rounded border border-white/10 bg-[#242424]/[.98] p-3 shadow-[0_12px_28px_rgba(0,0,0,0.38)]"
-        >
-          <div className="mb-3 flex items-center justify-between">
-            <h2 className="text-xs text-[#dedede]">添加群众阵列</h2>
-            <span
-              data-director-crowd-count={crowdTotal}
-              className="text-[10px] tabular-nums text-[#777]"
-            >
-              共{crowdTotal}人
-            </span>
-          </div>
-          <div className="grid grid-cols-[1fr_auto_1fr] gap-2">
-            <label className="block">
-              <span className="mb-1 block text-[10px] text-[#777]">行数</span>
-              <input
-                data-director-crowd-rows
-                type="number"
-                min="1"
-                max="6"
-                value={crowdRows}
-                onChange={(event) => setCrowdRows(event.target.value)}
-                className="h-8 w-full rounded border border-white/[0.08] bg-[#1b1b1b] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
-              />
-            </label>
-            <span className="self-end pb-2 text-xs text-[#666]">×</span>
-            <label className="block">
-              <span className="mb-1 block text-[10px] text-[#777]">列数</span>
-              <input
-                data-director-crowd-columns
-                type="number"
-                min="1"
-                max="8"
-                value={crowdColumns}
-                onChange={(event) => setCrowdColumns(event.target.value)}
-                className="h-8 w-full rounded border border-white/[0.08] bg-[#1b1b1b] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
-              />
-            </label>
-          </div>
-          <label className="mt-2 block">
-            <span className="mb-1 block text-[10px] text-[#777]">间距</span>
-            <input
-              data-director-crowd-spacing
-              type="number"
-              min="0.6"
-              max="3"
-              step="0.1"
-              value={crowdSpacing}
-              onChange={(event) => setCrowdSpacing(event.target.value)}
-              className="h-8 w-full rounded border border-white/[0.08] bg-[#1b1b1b] px-2 text-xs text-[#dedede] outline-none focus:border-[#09caf5]/60"
-            />
-          </label>
-          <div className="mt-3 flex justify-end gap-1.5">
-            <button
-              type="button"
-              data-director-crowd-action="cancel"
-              onClick={() => setCrowdPanelOpen(false)}
-              className="h-8 rounded px-3 text-[11px] text-[#888] hover:bg-white/[0.06] hover:text-white"
-            >
-              取消
-            </button>
-            <button
-              type="button"
-              data-director-crowd-action="add"
-              onClick={addCrowd}
-              className="h-8 rounded bg-[#e7e7e7] px-3 text-[11px] text-[#202020] hover:bg-white"
-            >
-              添加
-            </button>
-          </div>
-        </div>
-      ) : null}
+      {/* ★★★ Batch 857：视口里的 legacy 群众阵列面板**已删**（源站没有这个入口）。
+          唯一的「添加群众阵列」入口在 **rail 的「添加角色 → 群众 (3x3)」**。 */}
 
       {modelLibraryOpen ? (
         <div
@@ -3806,7 +3718,6 @@ export function DirectorViewport({
           onClick={() => {
             if (phoneVcamRecording) return;
             setModelLibraryOpen(false);
-            setCrowdPanelOpen(false);
             setPhoneVcamOpen((value) => !value);
           }}
           className={cn(
@@ -3817,24 +3728,50 @@ export function DirectorViewport({
         >
           <Smartphone size={20} aria-hidden="true" />
         </button>
+        {/* ★★★ Batch 857：**移动端**唯一的一枚「添加群众阵列」入口。
+            ★ 源站**没有移动端布局**：实测 390×844 下源站渲染的仍是桌面
+              画布（页面宽于视口、导演台根本没开，见
+              docs/research/liblib-canvas-batch857-2026-10-01/raw/source-857-mobile.json）
+              ⟹ ⟹ 「源站的移动端入口」**不存在**，也就无从对齐。
+            ★ 但 clone **有自己的**移动端适配 ⟹ ⟹ 不能因为对齐桌面就把
+              **移动端的能力**删掉（那不是对齐，是制造缺口）。
+            ★ 所以：**桌面隐藏、只有移动端出现** ⟹ ⟹ 桌面端可见的 crowd
+              入口仍然**只有 rail 那一枚**（与源站一致），移动端也**只有
+              这一枚**（clone 自己的扩展，已如实登记）。
+            ★ 它开的是**同一个**对话框（源站逐字那套量程／默认值／落点规则）。 */}
         <button
           type="button"
-          data-director-crowd-trigger
+          data-director-crowd-mobile-trigger
           aria-label="添加群众阵列"
           title="添加群众阵列"
-          aria-expanded={crowdPanelOpen}
-          onClick={() => {
+          className={cn(
+            "group relative hidden size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
+            "max-[899px]:flex",
+          )}
+          onClick={(event) => {
             setModelLibraryOpen(false);
             setPhoneVcamOpen(false);
-            setCrowdPanelOpen((value) => !value);
+            const rect = event.currentTarget.getBoundingClientRect();
+            window.dispatchEvent(
+              new CustomEvent("director:open-crowd-dialog", {
+                detail: {
+                  rect: {
+                    left: rect.left,
+                    top: rect.top,
+                    right: rect.right,
+                    bottom: rect.bottom,
+                  },
+                },
+              }),
+            );
           }}
-          className={cn(
-            "group relative flex size-8 shrink-0 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/8",
-            crowdPanelOpen && "bg-white/8",
-          )}
         >
           <Users size={20} aria-hidden="true" />
         </button>
+        {/* ★★★ Batch 857：桌面的「添加群众阵列」入口**只有 rail 那一枚**
+            （源站逐字：`"aria-haspopup":"dialog","aria-expanded":"crowd"===L`
+            ⟹ ⟹ 全页同 aria-label 的元素只有 1 个，见
+            raw/source-857-crowd.json 的「⑤同aria元素」）。 */}
         <button
           ref={modelLibraryTriggerRef}
           type="button"
