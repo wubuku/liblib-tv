@@ -2,8 +2,8 @@
  "generated_by": "jimeng_probe1030_anchor_identity.py",
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **官方锚点门验的是「锚点在不在」，不是「锚点是不是原来那个」** ⇒ 本探针补后半句：**锚点计数不变而集合摘要变了 ⇒ 转红**",
  "how": "⭐⭐⭐⭐⭐ 摘要 = sha256(排序后的「变量\\x01锚点」序列)[:12]；⭐⭐ 抽锚点**复用官方门的同一套过滤与符号表**（`PROBE_VARS` / `resolve_alias` / `_const_str`），不另写一套 ⇒ ⭐⭐⭐⭐⭐ **同一个东西要比同一个口径**；⭐⭐ 两者是否一致由 P4 当场核账；⭐⭐⭐⭐⭐⭐⭐ **身份 = (锚点数, 摘要) 这一对，不是行号、也不是标签**",
- "n_checks": 986,
- "n_anchors": 7512,
+ "n_checks": 987,
+ "n_anchors": 7529,
  "checks": {
   "DD.1": {
    "n": 4,
@@ -1494,226 +1494,230 @@
    "digest": "724a85a68dbe"
   },
   "check@L16994": {
-   "n": 16,
-   "digest": "14fa95119d56"
+   "n": 24,
+   "digest": "451f56684182"
   },
-  "check@L17027": {
+  "check@L17030": {
+   "n": 9,
+   "digest": "8d901d7744dd"
+  },
+  "check@L17050": {
    "n": 5,
    "digest": "227e5aabcfad"
   },
-  "check@L17036": {
+  "check@L17059": {
    "n": 6,
    "digest": "163c9dcf00a9"
   },
-  "check@L17047": {
+  "check@L17070": {
    "n": 10,
    "digest": "8700ed9bb84e"
   },
-  "check@L17063": {
+  "check@L17086": {
    "n": 5,
    "digest": "0998618d5422"
   },
-  "check@L17073": {
+  "check@L17096": {
    "n": 4,
    "digest": "1417454e6f37"
   },
-  "check@L17081": {
+  "check@L17104": {
    "n": 5,
    "digest": "603a50e24323"
   },
-  "check@L17091": {
+  "check@L17114": {
    "n": 5,
    "digest": "1e7eb94339dd"
   },
-  "check@L17101": {
+  "check@L17124": {
    "n": 6,
    "digest": "db84d0f6afc6"
   },
-  "check@L17116": {
+  "check@L17139": {
    "n": 7,
    "digest": "46fc705b30bd"
   },
-  "check@L17127": {
+  "check@L17150": {
    "n": 7,
    "digest": "cf020bae3605"
   },
-  "check@L17139": {
+  "check@L17162": {
    "n": 7,
    "digest": "03b390ec0991"
   },
-  "check@L17151": {
+  "check@L17174": {
    "n": 5,
    "digest": "9cce96769965"
   },
-  "check@L17161": {
+  "check@L17184": {
    "n": 4,
    "digest": "551d20339d56"
   },
-  "check@L17168": {
+  "check@L17191": {
    "n": 5,
    "digest": "0539c56763cd"
   },
-  "check@L17178": {
+  "check@L17201": {
    "n": 6,
    "digest": "cdb637d9bc04"
   },
-  "check@L17188": {
+  "check@L17211": {
    "n": 6,
    "digest": "4918de4dba1d"
   },
-  "check@L17197": {
+  "check@L17220": {
    "n": 9,
    "digest": "af6c821c92e4"
   },
-  "check@L17218": {
+  "check@L17241": {
    "n": 6,
    "digest": "d92f42a66448"
   },
-  "check@L17230": {
+  "check@L17253": {
    "n": 6,
    "digest": "a3c89d60179e"
   },
-  "check@L17240": {
+  "check@L17263": {
    "n": 5,
    "digest": "a111b5974a84"
   },
-  "check@L17248": {
+  "check@L17271": {
    "n": 4,
    "digest": "dd586469d452"
   },
-  "check@L17256": {
+  "check@L17279": {
    "n": 5,
    "digest": "e8caadaf85a2"
   },
-  "check@L17265": {
+  "check@L17288": {
    "n": 6,
    "digest": "45c5745e79e9"
   },
-  "check@L17276": {
+  "check@L17299": {
    "n": 4,
    "digest": "45ffbd3b906f"
   },
-  "check@L17284": {
+  "check@L17307": {
    "n": 5,
    "digest": "66e6fa48517e"
   },
-  "check@L17298": {
+  "check@L17321": {
    "n": 7,
    "digest": "c3667cf78272"
   },
-  "check@L17310": {
+  "check@L17333": {
    "n": 9,
    "digest": "ace2fa380510"
   },
-  "check@L17324": {
+  "check@L17347": {
    "n": 6,
    "digest": "d0e329d744a5"
   },
-  "check@L17334": {
+  "check@L17357": {
    "n": 6,
    "digest": "e27f96fd89e8"
   },
-  "check@L17346": {
+  "check@L17369": {
    "n": 5,
    "digest": "9e343635916b"
   },
-  "check@L17356": {
+  "check@L17379": {
    "n": 4,
    "digest": "8cfffb91edb1"
   },
-  "check@L17366": {
+  "check@L17389": {
    "n": 5,
    "digest": "4bfa76d18eef"
   },
-  "check@L17377": {
+  "check@L17400": {
    "n": 6,
    "digest": "e95cc49a001d"
   },
-  "check@L17392": {
+  "check@L17415": {
    "n": 10,
    "digest": "b3de72d8fdc0"
   },
-  "check@L17407": {
+  "check@L17430": {
    "n": 6,
    "digest": "0d3240fe5d8f"
   },
-  "check@L17417": {
+  "check@L17440": {
    "n": 12,
    "digest": "fa515f47307f"
   },
-  "check@L17433": {
+  "check@L17456": {
    "n": 6,
    "digest": "fbe2b73f7f42"
   },
-  "check@L17442": {
+  "check@L17465": {
    "n": 6,
    "digest": "32a64d848449"
   },
-  "check@L17453": {
+  "check@L17476": {
    "n": 8,
    "digest": "85904842b6a1"
   },
-  "check@L17465": {
+  "check@L17488": {
    "n": 9,
    "digest": "daf783224d9f"
   },
-  "check@L17478": {
+  "check@L17501": {
    "n": 12,
    "digest": "376fdf41fdeb"
   },
-  "check@L17498": {
+  "check@L17521": {
    "n": 8,
    "digest": "6766a017922a"
   },
-  "check@L17510": {
+  "check@L17533": {
    "n": 7,
    "digest": "69b7777d75cf"
   },
-  "check@L17522": {
+  "check@L17545": {
    "n": 7,
    "digest": "9fcaa14f20f6"
   },
-  "check@L17533": {
+  "check@L17556": {
    "n": 8,
    "digest": "962cb89900fb"
   },
-  "check@L17546": {
+  "check@L17569": {
    "n": 12,
    "digest": "d8f23c9b2dc5"
   },
-  "check@L17567": {
+  "check@L17590": {
    "n": 8,
    "digest": "7e7373bd19ba"
   },
-  "check@L17580": {
+  "check@L17603": {
    "n": 6,
    "digest": "eb75329c9000"
   },
-  "check@L17592": {
+  "check@L17615": {
    "n": 6,
    "digest": "fcf616f26228"
   },
-  "check@L17603": {
+  "check@L17626": {
    "n": 4,
    "digest": "795e1f4ed17f"
   },
-  "check@L17616": {
+  "check@L17639": {
    "n": 8,
    "digest": "59b74d82b4aa"
   },
-  "check@L17629": {
+  "check@L17652": {
    "n": 7,
    "digest": "07aeef6da716"
   },
-  "check@L17640": {
+  "check@L17663": {
    "n": 10,
    "digest": "cf4c5cf7eeb5"
   },
-  "check@L17654": {
+  "check@L17677": {
    "n": 7,
    "digest": "7af441baa814"
   },
-  "check@L17666": {
+  "check@L17689": {
    "n": 13,
    "digest": "d5f504dbf27f"
   },

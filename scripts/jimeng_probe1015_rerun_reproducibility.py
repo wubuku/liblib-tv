@@ -1551,6 +1551,40 @@ def _p8_declared_invariants(rows, declared):
 
 _P8_CHECK = _p8_declared_invariants(BOOKS, _DECLARED_INVARIANTS_1015)
 P8_OK = bool(_P8_CHECK["ok"])
+
+# ⭐⭐⭐⭐⭐ 1032-②n 续：**新 P8 必须有牙** —— 落仓 4 组坏样本，逐组点名判红
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ 而老 P8 的牙是「差集非零」⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 新 P8 若无反证
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 「P8 现在验自己」就只是一句新的漂亮话 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+_P8_SELFTEST = []
+
+
+def _p8_row(na=0, nv=0, nr=0, be=True, rc=0, state="reproduced"):
+    return {"golden": "selftest.json", "n_keys_added": na,
+            "n_values_changed": nv, "n_keys_removed": nr,
+            "n_bytes_equal": be, "rc": rc, "state": state}
+
+
+def _p8_case(name, rows, declared, want_ok, want_why=None):
+    """跑一遍新 P8 的判决，断言它【在该红的时候红、且给出具名理由】。"""
+    r = _p8_declared_invariants(rows, declared)
+    got = bool(r["ok"])
+    whys = sorted({str(b.get("why")) for b in (r.get("bad") or [])})
+    hit = (want_why is None) or (want_why in whys)
+    _P8_SELFTEST.append({"case": name, "want_ok": bool(want_ok),
+                         "got_ok": got, "why_seen": whys,
+                         "ok": bool(got == bool(want_ok) and hit)})
+
+
+_P8_DECL = dict(_DECLARED_INVARIANTS_1015)
+_p8_case("good", [_p8_row()], _P8_DECL, True)
+_p8_case("bad_counts", [_p8_row(na=1)], _P8_DECL, False,
+         "counts_vs_bytes_mismatch")
+_p8_case("unknown_counts", [_p8_row(na=None, be=None)], _P8_DECL, False,
+         "counts_unknown")
+_p8_case("no_formula", [_p8_row()], {"x": "  "}, False,
+         "declared_without_formula")
+_P8_SELFTEST_OK = all(c["ok"] for c in _P8_SELFTEST)
+_P8_SELFTEST_N = len(_P8_SELFTEST)
 # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这条读数天生落后一代，而且加轮数关不掉**
 #   `_rows_of_1014()` 读的是**最后一轮跑出来的 `empty-ambiguity-1014.json`**，
 #   而那份账是在**本探针写自己那本之前**算的 ⇒ ⇒ ⇒ ⇒ 它描述的是**上一次执行**留下的产物
@@ -1839,7 +1873,7 @@ out = {"P1_hold_1015": (N_STATES_SUM == len(BOOKS) and len(BOOKS) > 0
                         and N_AB_EXTRACTED == _N_KEYS_IN_AUDIT
                         and not _missing),
        "P7_hold_1015": GOLDEN.name.endswith("1015.json"),
-       "P8_hold_1015": P8_OK,
+       "P8_hold_1015": P8_OK and _P8_SELFTEST_OK,
        # ⭐⭐⭐⭐⭐ 1032-②f：红账读数本身必须可信 ⇒ ⇒ 三件：
        #   ① 检测器的阳性对照必须全过（**它得能失败**）
        #   ② 必须真的读到了书（**「读不到」不能是常态**）
@@ -2008,6 +2042,9 @@ io.open(GOLDEN, "w", encoding="utf-8").write(json.dumps({
                        "census_1014_n_ambiguous": N_AMBIGUOUS_1014,
                        "census_1014_n_self_ambiguous": N_SELF_AMB,
                        "census_1014_n_invariant_invisible": N_INV_INVISIBLE},
+    # ⭐ 1032-②n 续：新 P8 的「能红」证明随书发布
+    "p8_selftest": {"ok": _P8_SELFTEST_OK, "n_cases": _P8_SELFTEST_N,
+                    "cases": _P8_SELFTEST},
     "repaired_generated_by": REPAIRED,
     "reverse_case": {"add_key_state": REVERSE_ADD["state"],
                      "modify_value_state": REVERSE_MOD["state"],

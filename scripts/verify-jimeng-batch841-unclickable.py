@@ -17013,11 +17013,34 @@ def main() -> int:
           and '自证不变式必须登记在' in _ausrc
           and '否则它对普查而言不存在' in _ausrc
           # ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
-          #   **反向门**：**P8 必须真的量到「差集非零」** —— 只登记一个不变式块就报绿，
+          #   **反向门**：**P8 必须真的量到东西** —— 1032-2n 把它改成自验之后，
           #   等于把「我写了处置」当成「处置生效了」，而 1008/1013 各栽过一次
-          and 'P8_OK = bool(_AMB_1014) and N_SELF_AMB > 0 and N_INV_INVISIBLE > 0' in _p1015
+          and 'P8_OK = bool(_P8_CHECK["ok"])' in _p1015
+          and 'def _p8_declared_invariants(rows, declared):' in _p1015
+          and '_P8_SELFTEST_OK = all(c["ok"] for c in _P8_SELFTEST)' in _p1015
+          and '"P8_hold_1015": P8_OK and _P8_SELFTEST_OK' in _p1015
+          and '"declared_without_formula"' in _p1015
+          and '"counts_vs_bytes_mismatch"' in _p1015
+          and '"counts_unknown"' in _p1015
+          and '"p8_selftest"' in _p1015
+          and '"P8_hold_1015": P8_OK,' not in _p1015
           and '所以在产物里写不变式就够了' not in _p1015
           and '所以在产物里写不变式就够了' not in _ausrc)
+
+    check("U993Y.9 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**P8 的新形态必须写进台账、而它的反证必须落仓**："
+          "剪环之后 1014 的普查看不到这本书 => P8 改成自己验自己登记的那几条不变式 "
+          "=> **=> 而新判据必须有「等价于老判据的牙」：落仓 4 组坏样本、逐组点名判红**",
+          '"p8_self_verified_with_banked_negative_cases_1032n"' in _ausrc
+          and 'p8_now_self_verifies_the_invariants_it_declares_1032n_' in _ausrc
+          and 'the_new_p8_must_have_teeth_1032n_' in _ausrc
+          and '"p8_selftest"' in _p1015
+          and '_P8_SELFTEST_OK = all(c["ok"] for c in _P8_SELFTEST)' in _p1015
+          and '"declared_without_formula"' in _p1015
+          and '"counts_vs_bytes_mismatch"' in _p1015
+          and '"counts_unknown"' in _p1015
+          # ⭐⭐⭐⭐⭐ 反向门：不许退化成「P8 绿就算绿」
+          and '"P8_hold_1015": P8_OK and _P8_SELFTEST_OK' in _p1015)
 
     # ══ V993Z. 批 1016 `SOURCE_BASELINE` 被当成通用抽屉：一个键名被写了两遍，
     #    后一条把 931 的正文整个吃掉 —— 而没有任何一行代码会告诉你

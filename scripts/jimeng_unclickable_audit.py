@@ -12395,6 +12395,20 @@ def main() -> int:
                 ),
             },
             },
+            "p8_self_verified_with_banked_negative_cases_1032n": {
+                "p8_now_self_verifies_the_invariants_it_declares_1032n_": (
+                    "**P8 改了形态**：它不再量「1014 的普查判本探针几条不可自证」"
+                    "=> 那台普查已被 1032n 剪环排除、看不到这本书了"
+                    "=> 现在的 P8 是「自己验自己登记的那几条不变式」"
+                    "=> 而「1014 看不看得到这本书」降级成一条读数"
+                ),
+                "the_new_p8_must_have_teeth_1032n_": (
+                    "**新 P8 必须有牙**：落仓 4 组坏样本"
+                    "（good / bad_counts / unknown_counts / no_formula）"
+                    "=> 每组都必须翻红、且给出具名理由"
+                    "=> 没有反证的「P8 现在验自己」只是一句新的漂亮话"
+                ),
+            },
             "clone_reachability_gate_1033": {
                 "p1_the_route_universe_is_measured_from_the_filesystem_1033_": (
                     "**P1：路由宇宙必须从文件系统实测**"
