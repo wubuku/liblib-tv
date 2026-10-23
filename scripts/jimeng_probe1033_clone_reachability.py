@@ -780,6 +780,12 @@ def main(argv=None):
                       encoding="utf-8")
     bad = [k for k, v in crit.items() if v is False]
     print("   判据逐条 = %s" % " | ".join("%s=%s" % (k, crit[k]) for k in sorted(crit)))
+    # ⭐⭐⭐⭐⭐ **产物路径必须自己报出来** —— 1015 的红账靠这一行去读回它的产物
+    #   ⇒ ⇒ 而 1015 的第五档（「产物压根没找到」）**必须恒为 0** ⇒ ⇒
+    #   ⇒ ⇒⇒ 本探针此前**没打印这一行** ⇒ ⇒⇒ 于是它被记成「产物没找到」⇒ ⇒⇒
+    #   ⇒ ⇒⇒ ⇒ 而真相是「**门没问出路径**」，不是「书没写判据」⇒ ⇒⇒
+    #   ⇒ ⇒⇒ ⇒ 处置：补这一行（**不放宽判据**）⇒ ⇒⇒
+    print("PROBE_1033_CLONE_REACHABILITY_DONE -> %s" % GOLDEN)
     if bad:
         print("   P 为假的：%s" % ", ".join(sorted(bad)))
         return 1

@@ -76,6 +76,7 @@
     "docs/research/jimeng-canvas/inputs/wired-runtime-1032b1.json",
     "docs/research/jimeng-canvas/occurrence-ledger-1013.json",
     "docs/research/jimeng-canvas/replica-coverage-1017.json",
+    "docs/research/jimeng-canvas/rerun-reproducibility-1015.json",
     "docs/research/jimeng-canvas/wired-contract-1032b1.json",
     "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
     "docs/research/liblib-canvas-batch536-2026-09-27/runtime-audit.json",
@@ -134,8 +135,10 @@
     "docs/research/liblib-canvas-batch857-2026-10-01/raw/source-857-crowd.json",
     "docs/research/liblib-canvas-batch857-2026-10-01/raw/source-857-mobile.json",
     "docs/research/liblib-canvas-batch857-2026-10-01/runtime-audit.json",
+    "public/videos/jimeng-demo.mp4",
     "scripts/jimeng_check_verifier_anchors.py",
     "scripts/jimeng_fake_interaction_registry_1034.py",
+    "scripts/jimeng_probe1033_clone_reachability.py",
     "scripts/jimeng_probe1034_fake_interaction_census.py",
     "scripts/jimeng_probe1034_fake_interaction_scan.mjs",
     "scripts/jimeng_run_all_gates.sh",
@@ -364,7 +367,7 @@
         "has_golden": false,
         "n_named": 5,
         "n_globs": 1,
-        "n_files_it_reads": 5284,
+        "n_files_it_reads": 5285,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -376,7 +379,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 3,
-        "n_files_it_reads": 5531,
+        "n_files_it_reads": 5532,
         "n_touched_by_this_change": 0,
         "in_exclude": true,
         "globs": [
@@ -469,7 +472,7 @@
         "n_named": 5,
         "n_globs": 4,
         "n_files_it_reads": 15574,
-        "n_touched_by_this_change": 25,
+        "n_touched_by_this_change": 26,
         "in_exclude": false,
         "globs": [
           "*.ts",
@@ -481,6 +484,7 @@
           "docs/research/jimeng-canvas/exemption-claims-1024.json",
           "scripts/jimeng_check_verifier_anchors.py",
           "scripts/jimeng_fake_interaction_registry_1034.py",
+          "scripts/jimeng_probe1033_clone_reachability.py",
           "scripts/jimeng_probe1034_fake_interaction_census.py",
           "src/components/director/DirectorDesk.tsx",
           "src/components/director/DirectorIconRail.tsx",
@@ -524,12 +528,13 @@
         "n_named": 2,
         "n_globs": 1,
         "n_files_it_reads": 253,
-        "n_touched_by_this_change": 1,
+        "n_touched_by_this_change": 2,
         "in_exclude": false,
         "globs": [
           "jimeng_probe*.py"
         ],
         "touched_by_this_change": [
+          "scripts/jimeng_probe1033_clone_reachability.py",
           "scripts/jimeng_probe1034_fake_interaction_census.py"
         ]
       },
@@ -561,7 +566,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 5281,
+        "n_files_it_reads": 5282,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -708,7 +713,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 5281,
+        "n_files_it_reads": 5282,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
