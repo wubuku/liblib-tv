@@ -14,7 +14,7 @@
    "criterion-direction-1025.json": "e2a56b02ef35",
    "criterion-effectiveness-1026.json": "5194050ea133",
    "edit-visibility-1009.json": "cbccf1eaa2e9",
-   "empty-ambiguity-1014.json": "edd94e3d8a1d",
+   "empty-ambiguity-1014.json": "5ccee41350f1",
    "exemption-claims-1024.json": "0dabc595ff10",
    "expanded-contract-1032b4.json": "342205171f2f",
    "fake-interaction-census-1034.json": "fff360e357fc",
@@ -23,7 +23,7 @@
    "global-detection-1012.json": "b0a4b41fb417",
    "golden-freshness-1008.json": "38a1bfcbd0fb",
    "harness-fidelity-1020.json": "7bd0a0c99ed1",
-   "interaction-wiring-check-1032.json": "2a5f9a072fcf",
+   "interaction-wiring-check-1032.json": "d13d5109bdb1",
    "live-canvas-check-1031.json": "e75acd23eeb8",
    "mention-contract-1032b3.json": "944dcb42599c",
    "noop-contract-1032c.json": "2bc261e2ac49",
@@ -33,7 +33,7 @@
    "replica-coverage-1017.json": "5e5f06ccde68",
    "stem-attribution-1007.json": "b037c7f4525f",
    "type-layer-gate-1023.json": "2cff76d71be1",
-   "wired-contract-1032b1.json": "26bcccddc6c0",
+   "wired-contract-1032b1.json": "5188380cd7db",
    "zero-coupling-anchors-1005.json": "47d9c20034ee"
   }
  ],
@@ -57,13 +57,11 @@
   "n_books": 32,
   "n_books_with_readable_p_summary": 31,
   "n_books_without_readable_p_summary": 1,
-  "n_books_rc1_judgement_red": 1,
+  "n_books_rc1_judgement_red": 0,
   "n_books_rc2_instrument_crashed": 0,
-  "n_books_self_reporting_false": 1,
-  "n_criteria_self_reported_false": 1,
-  "books_self_reporting_false": [
-   "wired-contract-1032b1.json"
-  ],
+  "n_books_self_reporting_false": 0,
+  "n_criteria_self_reported_false": 0,
+  "books_self_reporting_false": [],
   "detector_selftest_ok": true,
   "detector_selftest_n_cases": 6,
   "detector_selftest": [
@@ -116,9 +114,7 @@
     "ok": true
    }
   ],
-  "books_rc1_judgement_red": [
-   "wired-contract-1032b1.json"
-  ],
+  "books_rc1_judgement_red": [],
   "books_rc2_instrument_crashed": [],
   "per_book": [
    {
@@ -333,9 +329,9 @@
    },
    {
     "golden": "wired-contract-1032b1.json",
-    "rc": 1,
-    "state": "self_red",
-    "n_self_reported_false": 1,
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
     "p_summary_readable": true
    },
    {
@@ -493,7 +489,7 @@
     "criterion-direction-1025.json": "e2a56b02ef35",
     "criterion-effectiveness-1026.json": "5194050ea133",
     "edit-visibility-1009.json": "cbccf1eaa2e9",
-    "empty-ambiguity-1014.json": "edd94e3d8a1d",
+    "empty-ambiguity-1014.json": "5ccee41350f1",
     "exemption-claims-1024.json": "0dabc595ff10",
     "expanded-contract-1032b4.json": "342205171f2f",
     "fake-interaction-census-1034.json": "fff360e357fc",
@@ -502,7 +498,7 @@
     "global-detection-1012.json": "b0a4b41fb417",
     "golden-freshness-1008.json": "38a1bfcbd0fb",
     "harness-fidelity-1020.json": "7bd0a0c99ed1",
-    "interaction-wiring-check-1032.json": "2a5f9a072fcf",
+    "interaction-wiring-check-1032.json": "d13d5109bdb1",
     "live-canvas-check-1031.json": "e75acd23eeb8",
     "mention-contract-1032b3.json": "944dcb42599c",
     "noop-contract-1032c.json": "2bc261e2ac49",
@@ -512,7 +508,7 @@
     "replica-coverage-1017.json": "5e5f06ccde68",
     "stem-attribution-1007.json": "b037c7f4525f",
     "type-layer-gate-1023.json": "2cff76d71be1",
-    "wired-contract-1032b1.json": "26bcccddc6c0",
+    "wired-contract-1032b1.json": "5188380cd7db",
     "zero-coupling-anchors-1005.json": "47d9c20034ee"
    }
   ],
@@ -692,12 +688,8 @@
    "what_it_is_not": "⇒ ⇒ **这不是四态里的任何一态**⇒ ⇒ **⇒ 四态答「可复现吗」；这一栏答「还新鲜吗」**⇒ ⇒ **⇒ 而「提交态取不到」单列成一栏**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 「取不到」不许混进「不新鲜」**",
    "rule": "⇒ ⇒ **这一栏与 1027 报的是同一件事**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 区别是：1027 只跑「被本次变更触及的」那些、而这里是全量**"
   },
-  "criteria_red_by_book": {
-   "wired-contract-1032b1.json": [
-    "P6"
-   ]
-  },
-  "n_criteria_red_named": 1,
+  "criteria_red_by_book": {},
+  "n_criteria_red_named": 0,
   "criteria_detector_selftest_ok": true,
   "criteria_detector_selftest_n_cases": 5,
   "criteria_detector_selftest": [
@@ -1143,16 +1135,14 @@
    {
     "golden": "wired-contract-1032b1.json",
     "criteria_detail_readable": true,
-    "n_criteria_red": 1,
+    "n_criteria_red": 0,
     "n_criteria_not_applicable": 0,
     "artifact_readable": true,
     "ledger_published": true,
     "ledger_n_kinds": 8,
     "ledger_n_criteria": 8,
     "ledger_complete": true,
-    "criteria_red_with_kind": {
-     "P6": "failure"
-    },
+    "criteria_red_with_kind": {},
     "n_criteria_red_kind_unknown": 0
    },
    {
@@ -1169,22 +1159,14 @@
     "n_criteria_red_kind_unknown": 0
    }
   ],
-  "criteria_red_with_kind": {
-   "wired-contract-1032b1.json": {
-    "P6": "failure"
-   }
-  },
-  "n_criteria_red_failure": 1,
+  "criteria_red_with_kind": {},
+  "n_criteria_red_failure": 0,
   "n_criteria_red_conclusion": 0,
   "n_criteria_red_kind_unknown": 0,
-  "red_needs_fix": [
-   "P6"
-  ],
+  "red_needs_fix": [],
   "red_needs_reread": [],
   "red_kind_unknown": [],
-  "books_with_red_needs_fix": [
-   "wired-contract-1032b1.json"
-  ],
+  "books_with_red_needs_fix": [],
   "books_with_red_needs_reread": [],
   "n_criteria_not_applicable": 0,
   "books_with_not_applicable_criteria": [],
@@ -2114,16 +2096,16 @@
    "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 102002,
-   "n_bytes_fresh": 102002,
+   "n_bytes": 102300,
+   "n_bytes_fresh": 102300,
    "state": "reproduced",
    "n_bytes_equal": true,
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "edd94e3d8a1d",
+   "fresh_sha12": "5ccee41350f1",
    "generator_sha12": "98b678037931",
-   "committed_sha12": "edd94e3d8a1d",
+   "committed_sha12": "5ccee41350f1",
    "tail": [
     "P1..P10 = [True, True, True, True, True, True, True, True, True, True]",
     "P 为假的： 无 | 共 10 条 P 判据"
@@ -2677,9 +2659,9 @@
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "2a5f9a072fcf",
+   "fresh_sha12": "d13d5109bdb1",
    "generator_sha12": "83c9277225fb",
-   "committed_sha12": "2a5f9a072fcf",
+   "committed_sha12": "d13d5109bdb1",
    "tail": [
     "死按钮 0 条（白名单 0 条）",
     "PROBE_1032_WIRING_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/interaction-wiring-check-1032.json"
@@ -3246,27 +3228,26 @@
   {
    "golden": "wired-contract-1032b1.json",
    "probe": "scripts/jimeng_probe1032b1_wired_contract.py",
-   "rc": 1,
+   "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 1270,
-   "n_bytes_fresh": 1270,
-   "state": "self_red",
+   "n_bytes": 1260,
+   "n_bytes_fresh": 1260,
+   "state": "reproduced",
    "n_bytes_equal": true,
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "26bcccddc6c0",
-   "generator_sha12": "4f2220eefbdf",
-   "committed_sha12": "26bcccddc6c0",
+   "fresh_sha12": "5188380cd7db",
+   "generator_sha12": "35d8c1931c8d",
+   "committed_sha12": "5188380cd7db",
    "tail": [
-    "为假的： ['P6'] | 降级： 无",
+    "为假的： 无 | 降级： 无",
     "PROBE_1032B1_WIRED_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/wired-contract-1032b1.json"
    ],
-   "n_self_reported_false": 1,
+   "n_self_reported_false": 0,
    "p_summary_readable": true,
    "self_report_detail": [
-    "p_list",
-    "6"
+    "p_list"
    ],
    "criteria_detail_source": "artifact_dict:criteria",
    "criteria_detail_readable": true,
@@ -3276,22 +3257,20 @@
     "P3": "True",
     "P4": "True",
     "P5": "True",
-    "P6": "False",
+    "P6": "True",
     "P7": "True",
     "P8": "True"
    },
-   "criteria_red": [
-    "P6"
-   ],
-   "n_criteria_red": 1,
+   "criteria_red": [],
+   "n_criteria_red": 0,
    "criteria_not_applicable": [],
    "n_criteria_not_applicable": 0,
    "artifact_path_found": true,
    "artifact_readable": true,
    "has_per_criteria_at_all": true,
    "artifact_has_criteria_dict": true,
-   "summary_n_false_1015": 1,
-   "detail_n_red_1015": 1,
+   "summary_n_false_1015": 0,
+   "detail_n_red_1015": 0,
    "self_report_source_1015": "summary",
    "styles_in_output_1015": [
     "false_list",
@@ -3302,10 +3281,8 @@
    "ledger_n_criteria": 8,
    "ledger_n_criteria_keys": 0,
    "ledger_complete": true,
-   "criteria_red_with_kind": {
-    "P6": "failure"
-   },
-   "n_criteria_red_kind_known": 1,
+   "criteria_red_with_kind": {},
+   "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
    "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
@@ -3374,7 +3351,7 @@
  ],
  "totals": {
   "n_books": 32,
-  "reproduced": 31,
+  "reproduced": 32,
   "drifted": 0,
   "crashed": 0,
   "vanished": 0,
@@ -3401,7 +3378,7 @@
   "n_bad": 0,
   "n_declared": 4,
   "census_1014_covers_this_book": false,
-  "census_1014_n_ambiguous": 249,
+  "census_1014_n_ambiguous": 250,
   "census_1014_n_self_ambiguous": 0,
   "census_1014_n_invariant_invisible": 0
  },
@@ -3503,7 +3480,7 @@
  },
  "p8_invariants_invisible_to_1014": {
   "census_n_goldens": 31,
-  "census_n_ambiguous": 249,
+  "census_n_ambiguous": 250,
   "census_n_self_provable": 10,
   "self_ambiguous": 0,
   "self_ambiguous_paths": [],
@@ -3527,7 +3504,6 @@
   "245": "通道 B：scripts/jimeng_probe*.py 的文件数",
   "32": "四态之和（分子完备性）",
   "1": "第 1 轮的轮号",
-  "31": "1014 普查看到的 golden 本数（已排除它自己那本）",
   "0": "第 1 轮里漂移的本数",
   "210": "通道 B 有探针而通道 A 无对应 golden 的个数",
   "6": "轮数上限",
@@ -3535,7 +3511,8 @@
   "32/35": "认领到的比例（分母 = 通道 A）",
   "8": "第一版探针认领到的本数（仪器故障期，已修）",
   "4": "本探针在产物里登记的不变式条数",
-  "249": "1014 普查口径下全部账里「不可自证」的总数",
+  "250": "1014 普查口径下全部账里「不可自证」的总数",
+  "31": "1014 普查看到的 golden 本数（已排除它自己那本）",
   "937": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
   "7080": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
   "4/9": "1015 上一版的不动点漂移比例（已挂【1015 改写横幅】，原文保留）",
