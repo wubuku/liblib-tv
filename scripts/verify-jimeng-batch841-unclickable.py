@@ -1009,6 +1009,12 @@ _P1032H_BOOKS = [
     #    ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ 所以每本仍然各按各的正则点名，不许一刀切**
     ("1032n", "1032n", "scripts/jimeng_probe1032n_committed_freshness_gate.py",
      r"^P\d+_.*_1032n$"),
+    # ── F 类（1 本，1032-③ 新增）：**克隆页可达性门** ──
+    #    ⇒ ⇒⇒⇒ 它的判据键形态是 `P<n>_<描述>_1033`（带标签）⇒ ⇒⇒⇒ ⇒
+    #    ⇒ ⇒⇒⇒ ⇒ 而它与 1032n 的形态**一样** ⇒ ⇒⇒⇒ ⇒ ⇒
+    #    ⇒ ⇒⇒⇒ ⇒ ⇒ 所以**不能**靠形态区分 ⇒ 必须点名（tag 不同）⇒
+    ("1033", "1033", "scripts/jimeng_probe1033_clone_reachability.py",
+     r"^P\d+_.*_1033$"),
 ]
 _P1032H_KINDS = ("failure", "conclusion", "precondition")
 
@@ -1162,6 +1168,11 @@ _P1032J_ARTIFACTS = [
     #   ⇒ ⇒⇒⇒ ⇒ ⇒ 「提交的那本是不是【现在】的产物」从此**有一本可查的账**
     ("1032n", "1032n", "docs/research/jimeng-canvas/committed-freshness-1032n.json",
      "criteria_1032n"),
+    # ⭐⭐⭐⭐⭐ 1032-③：**克隆页可达性门**的产物也进「产物那一关」
+    #   ⇒ ⇒⇒⇒ ⇒ 而它的产物里有一节 `measurements`（真实路由／登记／导航链接）
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 所以「哪个页面走不到」从此**有一本可查的账**
+    ("1033", "1033", "docs/research/jimeng-canvas/clone-reachability-1033.json",
+     "criteria_1033"),
 ]
 
 
@@ -1382,6 +1393,58 @@ def _p1032n_gate_runtime():
            "n_disagree": _p1032n_num(_wk, "n_disagree"),
            "n_selftest_cases": _p1032n_num(_st, "n_cases")}
     _P1032N_RT = _rt
+    return _rt
+
+
+# ══ 1032-③：**克隆页可达性门**（1033）自己跑一遍（只取判决，不落盘） ═══════
+_P1033_RT = None
+
+
+def _p1033_gate_runtime():
+    """⭐⭐⭐⭐⭐ 在**真树**上跑那道门的判决 —— 「每个做完了的页面都走得到」。
+
+    ⇒ ⇒⇒⇒ **不落盘**：这里只取判决 ⇒ ⇒⇒⇒ ⇒ 产物由那道门自己写
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 而「谁写产物」与「谁读产物」分开 ⇒ ⇒⇒⇒ ⇒ ⇒ 两边不会互相遮掩
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 且**结果缓存**：判据里会引用它十几次 ⇒ ⇒⇒⇒ ⇒ ⇒
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 而每次都重跑 ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 「判决」自己会漂
+    """
+    global _P1033_RT
+    if _P1033_RT is not None:
+        return _P1033_RT
+    _rt = {"ok": False, "why": ["not_run"], "selftest_ok": False,
+           "n_criteria": -1, "n_criteria_true": -1, "n_selftest_cases": -1,
+           "n_routes": -1, "n_reachable": -1, "criteria": {}}
+    try:
+        import importlib.util
+        _spec = importlib.util.spec_from_file_location(
+            "jimeng_probe1033_clone_reachability",
+            ROOT / "scripts/jimeng_probe1033_clone_reachability.py")
+        _g = importlib.util.module_from_spec(_spec)
+        _spec.loader.exec_module(_g)
+    except Exception as exc:  # noqa: BLE001
+        _rt["why"] = ["gate_module_unimportable:%r" % (exc,)]
+        _P1033_RT = _rt
+        return _rt
+    try:
+        _v = _g._judge()
+        _st = _g._selftest(_v)
+        _crit = _g._criteria(_v, _st)
+    except Exception as exc:  # noqa: BLE001
+        _rt["why"] = ["gate_raised:%r" % (exc,)]
+        _P1033_RT = _rt
+        return _rt
+    _why = list(_v.get("why") or [])
+    if not _st.get("ok"):
+        _why.append("selftest_has_a_leak")
+    _rt = {"ok": (not _why), "why": _why,
+           "selftest_ok": bool(_st.get("ok")),
+           "n_criteria": len(_crit),
+           "n_criteria_true": sum(1 for x in _crit.values() if x),
+           "n_selftest_cases": int(_st.get("n_cases") or 0),
+           "n_routes": int(_v.get("n_routes") or 0),
+           "n_reachable": int(_v.get("n_reachable") or 0),
+           "criteria": dict(_crit)}
+    _P1033_RT = _rt
     return _rt
 
 
@@ -7545,6 +7608,10 @@ def main() -> int:
     #   ⚠️⚠️ **登记 `_p1032n` 与写用它的判据必须是同一步**（961 的教训）
     p1032n = ROOT / "scripts/jimeng_probe1032n_committed_freshness_gate.py"
     _p1032n = p1032n.read_text(encoding="utf-8") if p1032n.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-③：**克隆页可达性门** —— 「做完了」必须「走得到」
+    #   ⚠️⚠️ **登记 `_p1033` 与写用它的判据必须是同一步**（961 的教训）
+    p1033 = ROOT / "scripts/jimeng_probe1033_clone_reachability.py"
+    _p1033 = p1033.read_text(encoding="utf-8") if p1033.exists() else ""
     # ⭐⭐⭐⭐⭐ 1032-②l：**门禁清单进仓** —— 以前那份清单只活在 `/tmp` 里
     #   ⚠️ 变量名必须与锚点门 `PROBE_VARS` 里的登记**同名**（`_gatelist`）
     #   ⇒ 而锚点门要的是**文件文本** ⇒ 所以路径与文本要分成两个变量
@@ -19121,6 +19188,57 @@ def main() -> int:
           and '"p4_every_excluded_book_must_publish_a_reason_1032n_"' in _ausrc
           and '"p5_this_gate_can_actually_go_red_1032n_"' in _ausrc
           and '"p6_two_implementations_of_the_committed_bytes_must_agree_1032n_"' in _ausrc)
+
+    # ══ 1032-③：**克隆页可达性门**（1033）══════════════════════════════════
+    print("— DD993AK. 批 1032-③：给「每个做完了的页面都必须走得到」配一道门")
+    _p1033_rt = _p1033_gate_runtime()
+    check("DD993AK.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**「做完了」不等于「走得到」⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而「源码可达」是**过近似**、不能单独当判据** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以这一格必须同时要「真树判绿」＋「注入反证能翻红」＋「过近似的那条另配精确断言」** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而判据必须**逐条**全 True —— 少一条都不算绿** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒",
+          _p1033_rt["ok"]
+          and _p1033_rt["selftest_ok"]
+          and _p1033_rt["n_criteria"] == 7
+          and _p1033_rt["n_criteria_true"] == 7
+          and _p1033_rt["n_selftest_cases"] >= 5
+          and _p1033_rt["n_routes"] > 0
+          and _p1033_rt["n_reachable"] > 0
+          # ⭐⭐⭐⭐⭐ **全门禁清单必须进仓**（1032l 立的规矩）⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ 而**新门必须自己进清单** ⇒ ⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ 否则「全绿」里根本没有它 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而且它必须排在 verifier **之前** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 因为 verifier 的 DD993AK.1 要在真树上跑它
+          and 'run "1033-clone-reachability"' in _gatelist
+          and (_gatelist.index('run "1033-clone-reachability"')
+               < _gatelist.index('run "verifier-841"')))
+    check("DD993AK.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐ 「声明 ≠ 发布」⇒ ⇒ ⇒ ⇒ 声明必须落进【仓里那本】产物、而且门要亲自核落点** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 1033 因此必须同时过「源码那一关」与「产物那一关」** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而「可达」这件事必须**三个量各记各的**（真实路由／源码可达／真源登记）** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 三者对不上时，哪一个错了要能一眼看出来** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒",
+          any(n == "1033" for (n, _t, _p, _rx) in _P1032H_BOOKS)
+          and ("1033" in (_p1032j_artifacts_ok().get("books") or {}))
+          and _p1032j_artifacts_ok()["ok"]
+          # ⭐⭐⭐⭐⭐ **台账的书写形状每本各不同** ⇒ ⇒⇒⇒ ⇒ 这里必须按 1033 的**实际形状**钉
+          #   ⇒⇒⇒ ⇒ ⇒ 而**不许**照抄 1032n 的下标赋值写法（`out["…"] = …`）
+          #   ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 否则锚点会指向一个**不存在的字面量** ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+          #   ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而锚点门会当场报 MISSING（这是它第三次替我抓错）
+          and ('"criterion_kinds_1033": CRITERION_KINDS' in _p1033)
+          and ('"criterion_kinds_complete_1033"' in _p1033)
+          and ('"P2_every_finished_clone_page_is_reachable_from_the_site_root_1033"' in _p1033)
+          # ⭐⭐⭐⭐⭐ **判据只有一份实现** ⇒ 主函数与 verifier 必须调同一个
+          and ("def _criteria(" in _p1033)
+          and ("crit = _criteria(verdict, st)" in _p1033)
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+          and '"p1_the_route_universe_is_measured_from_the_filesystem_1033_"' in _ausrc
+          and '"p2_every_finished_clone_page_is_reachable_from_the_site_root_1033_"' in _ausrc
+          and '"p3_every_alias_route_resolves_to_a_reachable_page_1033_"' in _ausrc
+          and '"p4_the_registry_lists_every_real_page_and_nothing_else_1033_"' in _ausrc
+          and '"p5_the_site_nav_links_to_every_clone_page_by_a_literal_href_1033_"' in _ausrc
+          and '"p6_the_docs_say_how_to_reach_and_how_to_interact_test_each_page_1033_"' in _ausrc
+          and '"p7_this_gate_can_actually_go_red_1033_"' in _ausrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

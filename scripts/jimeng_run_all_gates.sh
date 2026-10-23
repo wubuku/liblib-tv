@@ -57,6 +57,14 @@ run "1032l-fingerprint-selftest" $PY scripts/jimeng_probe1032l_fingerprint_gate.
 #   ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 它自带五发注入式反证 ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 不用另开一道门
 run "1032n-committed-fresh" $PY scripts/jimeng_probe1032n_committed_freshness_gate.py
 
+# ── 第 0 位之三：**克隆页可达性门** ───────────────────────────────────────
+#   ⇒ 它答的是「**每一个做完了的页面，都从站点根目录 `/` 走得到**」
+#   ⇒ ⇒⇒ ⇒ ⇒ 而「做完了」不等于「走得到」⇒ ⇒⇒ ⇒ ⇒ ⇒ **两个口径不许合并** ⇒ ⇒⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ 而且它必须排在 **verifier 之前** ⇒ ⇒⇒ ⇒ ⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **因为 verifier 的 DD993AK.1 要在真树上跑它一遍** ⇒ ⇒⇒ ⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 它自带七发注入式反证 ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 不用另开一道门
+run "1033-clone-reachability" $PY scripts/jimeng_probe1033_clone_reachability.py
+
 run "verifier-841"          $PY scripts/verify-jimeng-batch841-unclickable.py
 run "anchor-gate"           $PY scripts/jimeng_check_verifier_anchors.py
 run "1018-assertion"        $PY scripts/jimeng_probe1018_assertion_vs_behavior.py

@@ -12,7 +12,7 @@
   "why_declared_here": "⇒ **「声明」与「发布」之间那道缝**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 声明必须落在产物里、而不只在 README 的散文里**"
  },
  "census_inputs_2029": {
-  "n_fingerprinted": 28,
+  "n_fingerprinted": 29,
   "n_unreadable": 0,
   "n_volatile": 1,
   "volatile_inputs": {
@@ -22,7 +22,7 @@
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
-  "n_from_probe_products": 29,
+  "n_from_probe_products": 30,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
     "sha256_12": "0fcda2eac844",
@@ -47,6 +47,10 @@
    "change-locality-1011.json": {
     "sha256_12": "3552ea7302db",
     "bytes": 3082
+   },
+   "clone-reachability-1033.json": {
+    "sha256_12": "b577e4a33dcd",
+    "bytes": 28140
    },
    "connect-contract-1032a.json": {
     "sha256_12": "94f6b75889e9",
@@ -140,12 +144,12 @@
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 29,
+  "n_goldens": 30,
   "n_excluded_self": 4,
-  "n_empty_list": 210,
+  "n_empty_list": 216,
   "n_empty_null": 26,
   "n_self_provable": 10,
-  "n_ambiguous": 226
+  "n_ambiguous": 232
  },
  "rows": [
   {
@@ -161,6 +165,48 @@
    "kind": "null",
    "self_provable": true,
    "invariant": "class_1005 is None ⟺ in_1005_zero_coupling_golden == False"
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/unreachable_pages",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/bad_aliases",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/missing_in_registry",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/phantom_in_registry",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/missing_in_nav",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/docs_missing_sections",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
   },
   {
    "golden": "connect-contract-1032a.json",
@@ -1805,6 +1851,48 @@
   {
    "golden": "baseline-host-misuse-1016.json",
    "path": "/duplicate_now",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/unreachable_pages",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/bad_aliases",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/missing_in_registry",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/phantom_in_registry",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/missing_in_nav",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "clone-reachability-1033.json",
+   "path": "/measurements/docs_missing_sections",
    "kind": "list",
    "self_provable": false,
    "invariant": null

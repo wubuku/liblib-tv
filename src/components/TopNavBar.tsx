@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronRight, Globe2, Link2 } from "lucide-react";
 import { AgentFaceGlyph, BoltGlyph, MemberShopGlyph, ShareNodesGlyph } from "@/components/ChromeIcons";
 import { ChevronDownGlyph } from "@/components/ChromeIcons";
 import { LayoutPanelGlyph, WorkflowGlyph } from "@/components/ChromeIcons";
 import { CanvasTabDropdown } from "./CanvasTabDropdown";
+import { CloneSiteNav } from "./CloneSiteNav";
 import { useUIStore } from "@/store/uiStore";
 import { useCanvasStore } from "@/store/canvasStore";
 import {
@@ -15,14 +15,6 @@ import {
   projectLibTVCommandFeedback,
 } from "@/lib/libtvCommandFeedback";
 import { cn } from "@/lib/utils";
-
-function LibTvMark() {
-  return (
-    <svg width="25" height="18" viewBox="0 0 25 18" fill="none" aria-hidden="true">
-      <path d="M2.4 2h20.2L18 16H1L5.4 4.6h10.7l-1.3 3.2H7.7l-1.9 5h9.9l3-7.7H1.5L2.4 2Z" fill="currentColor" />
-    </svg>
-  );
-}
 
 function SharePanel() {
   // Batch 501 (VR-018 Slice B): share commands are prototype-unavailable —
@@ -114,13 +106,11 @@ export function TopNavBar() {
   return (
     <nav className={cn("pointer-events-none fixed left-4 right-4 top-4 z-[70] flex h-8 items-center justify-between text-[#f7f7f7]", isAgentOpen && "sm:right-[356px]")}>
       <div className="pointer-events-auto flex h-8 items-center gap-1">
-        <Link
-          href="/frameos/canvas/demo"
-          className="flex h-8 w-10 items-center justify-center rounded-lg bg-[#262626] text-white shadow-[0_4px_16px_rgba(0,0,0,0.25)] hover:bg-[#303030]"
-          title="进入 FrameOS 画布"
-        >
-          <LibTvMark />
-        </Link>
+        {/* 1032-③：站点级导航（LibTV 芯片 ＋ 全部项目／即梦画布／克隆总览）。
+            ★ 它是**站点 chrome**、不是源站顶栏的一部分 ⇒ 所以单独成组、用竖线隔开。
+            ★ 用 `<a>`（Link）而不是 `<button>`：站内跳转就该是链接。
+            ★ 详见 src/components/CloneSiteNav.tsx 的注释。 */}
+        <CloneSiteNav />
         <ProjectMenu />
         <input
           data-workspace-name
@@ -185,7 +175,7 @@ export function TopNavBar() {
           aria-label="开通会员 限时 45 折"
           // Batch 358: 此前是**启用、无 handler、带 `hover:bg-[#333]`** 的按钮 ——
           // 一个会员付费入口的样子, 点下去什么都不发生。**付费动作按纪律绝不接线**,
-          // 所以这里不加 onClick, 改��去掉悬停反馈 + cursor 默认 + title 说明。
+          // 所以这里不加 onClick, 改成去掉悬停反馈 + cursor 默认 + title 说明。
           // 源站 2026-09-11 直证该入口存在且在「积分余额」之前（见上方注释）,
           // 那个已采样的形态与顺序不动。
           title="开通会员为付费操作，克隆侧不提供"

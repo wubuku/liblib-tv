@@ -12395,6 +12395,49 @@ def main() -> int:
                 ),
             },
             },
+            "clone_reachability_gate_1033": {
+                "p1_the_route_universe_is_measured_from_the_filesystem_1033_": (
+                    "**P1：路由宇宙必须从文件系统实测**"
+                    "⇒ 而不许手写一张路由清单 ⇒ 手写的清单会漏、会过期、"
+                    "而漏掉的那一条正是「做完了却走不到」的那条"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ 所以路由是从 `src/app/**/page.tsx` 扫出来的"
+                ),
+                "p2_every_finished_clone_page_is_reachable_from_the_site_root_1033_": (
+                    "**P2：每一个已完成的克隆成果页，都必须从站点根目录 `/` 走得到**"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ 「做完了」不等于「走得到」⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+                    "⇒ ⇒ ⇒ ⇒ ⇒ 这两件事必须分成两条判据"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而可达性用**源码可达**（从 `/` 做 import 闭包 BFS）测"
+                ),
+                "p3_every_alias_route_resolves_to_a_reachable_page_1033_": (
+                    "**P3：别名路由必须解析到一个可达页**"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ 别名（`/frameos`、`/jimeng`）不是独立页面、只是重定向"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以它必须解析到目标页、再按目标页判可达"
+                ),
+                "p4_the_registry_lists_every_real_page_and_nothing_else_1033_": (
+                    "**P4：真源登记必须与真实页双向对得上**"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ 真实页（实测）／登记（`src/lib/clonePages.ts`）两个量"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 缺一条是「忘了登记」、多一条是「登记了不存在的页」"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而这两种病必须都红"
+                ),
+                "p5_the_site_nav_links_to_every_clone_page_by_a_literal_href_1033_": (
+                    "**P5：站点导航必须以**字面量 href** 指向每一个克隆成果页**"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ 而「源码可达」是过近似、不能单独当判据"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以另配这一条**不过近似**的精确断言"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而它要求链接集中在导航组件里"
+                ),
+                "p6_the_docs_say_how_to_reach_and_how_to_interact_test_each_page_1033_": (
+                    "**P6：文档必须对每个登记条目写明「怎么到达」＋「怎么交互测试」**"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ 「可达」和「可测」是两件事 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+                    "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而只写「可达」不写「怎么测」的文档没法交差"
+                ),
+                "p7_this_gate_can_actually_go_red_1033_": (
+                    "**P7：这道门必须能红** ⇒ ⇒ ⇒ 而反证必须**改原始输入**"
+                    "（导航里的 href / 真源里的登记 / 文档里的小节）"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ 而不许改上游的 ok 标志 ⇒ ⇒ ⇒ ⇒ ⇒ "
+                    "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 否则那道判决会变成恒真"
+                    "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒"
+                ),
+            },
             "rerun_reproducibility_2015": {
                 "p1_states_are_four_and_exhaustive_2015_": (
                     "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **P1 成立：四态 —— reproduced / drifted / "

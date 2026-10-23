@@ -2,6 +2,22 @@
 
 本目录只覆盖 `frameos.cn` 的画布编辑功能，不覆盖账户、计费、发布或生成费用。
 
+## 想自己动手试试？打开本站的复刻原型
+
+> 本手册描述的是**真实产品 FrameOS**；本站另有一个**交互原型**（本地 mock 数据），
+> 让你不用真账号也能把上面的操作练一遍。
+
+- **怎么打开**：仓库根目录执行 `npm install && npm run dev`（固定端口 `4317`），
+  然后打开 <http://localhost:4317/>（站点根目录），
+  再点顶栏最左侧的 **LibTV 芯片** ⇒ 进 `/frameos/canvas/demo`。
+- **怎么交互测试**：Prompt 编辑器里输入文字 ⇒ 点生成 ⇒ 看 mock 结果进画布；
+  画布空白处**右键** ⇒ 上下文菜单；点节点 ⇒ 浮动工具条 ＋ 右侧编辑面板；
+  `⌘Z` / `⌘⇧Z` 试撤销与重做；框选多节点后试成组。
+- **哪些是 mock**：生成永远返回**本地 mock 结果**，不调用任何模型、账号或计费接口；
+  FrameOS 用独立 store，不与 LibTV/即梦共享状态。
+
+⇒ 完整清单（所有克隆页）见 [`docs/CLONE_PAGES_INDEX.md`](../../CLONE_PAGES_INDEX.md)。
+
 ## 当前状态
 
 - 目标源站：`https://www.frameos.cn/#/canvas/01M34E48BEEVEQXR93Y8N70Y5N/01M34E4AKBTXT72KFD3MCYZ6NV`

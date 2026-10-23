@@ -9,9 +9,25 @@
 
 | Route | Product | Purpose |
 |---|---|---|
-| `/` | LibTV clone | 视频故事板画布、图片/视频生成面板、素材与画布工具 |
+| `/` | LibTV clone | 视频故事板画布、图片/视频生成面板、素材与画布工具（**站点根目录**） |
+| `/project` | LibTV clone | 全部项目列表、新建/删除/回收站 |
+| `/clones` | 站点索引 | 克隆总览：所有已完成克隆页 ＋ 怎么到达 ＋ 怎么交互测试 |
 | `/frameos` | FrameOS entry | 重定向到 `/frameos/canvas/demo` |
 | `/frameos/canvas/[id]` | FrameOS clone | Prompt + 节点画布、素材库、历史、快捷键与生成 mock |
+| `/jimeng` | 即梦 entry | 重定向到 `/jimeng/canvas/demo` |
+| `/jimeng/canvas/[id]` | 即梦 clone | 即梦 AI 画布：节点、浮层、AI 对话抽屉与生成 mock |
+
+## 怎么到达、怎么交互测试
+
+**每一个已完成的克隆成果页，都必须从站点根目录 `/` 走得到** ——
+顶栏左侧那组**站点导航**（LibTV 芯片 ＋ 全部项目 ＋ 即梦画布 ＋ 克隆总览）就是入口，
+`/clones` 索引页列全了每一页的「怎么到达」与「怎么交互测试」。
+
+⇒ 完整说明见 [`docs/CLONE_PAGES_INDEX.md`](docs/CLONE_PAGES_INDEX.md)；
+⇒ 这条要求由 `scripts/jimeng_probe1033_clone_reachability.py` 这道门守着
+（它核「真实路由 ↔ 真源登记 ↔ 文档」三者逐条对得上，并核「从 `/` 走得到每一页」）。
+⇒ 页面清单的**唯一真源**是 [`src/lib/clonePages.ts`](src/lib/clonePages.ts)，
+应用里的 `/clones` 页与那份文档都由它派生。
 
 ## Features
 
@@ -70,6 +86,7 @@ python3 scripts/verify-docs.py
 | Current detailed system picture | [`docs/BIG_PICTURE.md`](docs/BIG_PICTURE.md) |
 | Agent task reading paths and decisions | [`docs/AGENT_TASK_MAP.md`](docs/AGENT_TASK_MAP.md) / [`docs/DECISION_REGISTER.md`](docs/DECISION_REGISTER.md) |
 | clone-website project adaptation | [`docs/CLONE_WEBSITE_ADAPTATION.md`](docs/CLONE_WEBSITE_ADAPTATION.md) |
+| **所有克隆页：怎么到达 ＋ 怎么交互测试** | [`docs/CLONE_PAGES_INDEX.md`](docs/CLONE_PAGES_INDEX.md) |
 | Contribution and documentation rules | [`CONTRIBUTING.md`](CONTRIBUTING.md) |
 
 ## Prototype Boundaries
