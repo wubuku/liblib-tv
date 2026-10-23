@@ -17,23 +17,23 @@
   "n_volatile": 1,
   "volatile_inputs": {
    "golden-freshness-1027.json": {
-    "sha256_12": "ed8192d4d1e0",
-    "bytes": 90334,
+    "sha256_12": "f9369c674baf",
+    "bytes": 80781,
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
   "n_from_probe_products": 30,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
-    "sha256_12": "c7ba4482621d",
+    "sha256_12": "ba8135eb3a1c",
     "bytes": 7532
    },
    "anchor-identity-1030.json": {
-    "sha256_12": "9c508ac96228",
-    "bytes": 63014
+    "sha256_12": "c04bd4ec51af",
+    "bytes": 63080
    },
    "assertion-vs-behavior-1018.json": {
-    "sha256_12": "8b7942fc6c37",
+    "sha256_12": "0295925ad2dd",
     "bytes": 18203
    },
    "baseline-host-misuse-1016.json": {
@@ -53,12 +53,12 @@
     "bytes": 1422
    },
    "criterion-direction-1025.json": {
-    "sha256_12": "a3c6a3d12266",
-    "bytes": 324390
+    "sha256_12": "c64f60b2c20b",
+    "bytes": 324715
    },
    "criterion-effectiveness-1026.json": {
-    "sha256_12": "e0c6a9e88807",
-    "bytes": 101163
+    "sha256_12": "bd78f8cd3725",
+    "bytes": 101680
    },
    "edit-visibility-1009.json": {
     "sha256_12": "cbccf1eaa2e9",
@@ -81,7 +81,7 @@
     "bytes": 4489
    },
    "golden-freshness-1008.json": {
-    "sha256_12": "bb01a17d70fd",
+    "sha256_12": "137239e59916",
     "bytes": 1215
    },
    "harness-fidelity-1020.json": {
@@ -117,12 +117,12 @@
     "bytes": 2109
    },
    "replica-coverage-1017.json": {
-    "sha256_12": "8c83c4a07267",
+    "sha256_12": "bff7cdcf768f",
     "bytes": 15140
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "e3f4bdd69929",
-    "bytes": 99115
+    "sha256_12": "ab21b6530bfb",
+    "bytes": 106933
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -137,8 +137,8 @@
     "bytes": 1260
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "51573d1cec03",
-    "bytes": 141953
+    "sha256_12": "27b799cce7da",
+    "bytes": 142940
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
@@ -146,10 +146,10 @@
  "census": {
   "n_goldens": 30,
   "n_excluded_self": 2,
-  "n_empty_list": 282,
-  "n_empty_null": 131,
+  "n_empty_list": 284,
+  "n_empty_null": 135,
   "n_self_provable": 10,
-  "n_ambiguous": 403
+  "n_ambiguous": 409
  },
  "rows": [
   {
@@ -1315,6 +1315,13 @@
    "invariant": null
   },
   {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[168]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "gen-contract-1032b2.json",
    "path": "/false_criteria",
    "kind": "list",
@@ -1736,13 +1743,6 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/books_self_reporting_false",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/detector_selftest/[5]/want_n",
    "kind": "null",
    "self_provable": false,
@@ -1759,13 +1759,6 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/books_rc2_instrument_crashed",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/per_book/[13]/n_self_reported_false",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -1905,6 +1898,55 @@
   {
    "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/detail_source_by_book/type-layer-gate-1023.json",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/books_summary_detail_conflict",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/styles_unsupported_1015",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/fallback_selftest/[2]/summary_n",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/fallback_selftest/[3]/summary_n",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/fallback_selftest/[3]/detail_red",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/fallback_selftest/[3]/want/[0]",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/fallback_selftest/[3]/got/[0]",
    "kind": "null",
    "self_provable": false,
    "invariant": null
@@ -2583,15 +2625,15 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[13]/n_self_reported_false",
-   "kind": "null",
+   "path": "/books/[13]/criteria_not_applicable",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[13]/criteria_not_applicable",
-   "kind": "list",
+   "path": "/books/[13]/summary_n_false_1015",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -4201,6 +4243,13 @@
    "invariant": null
   },
   {
+   "golden": "criterion-effectiveness-1026.json",
+   "path": "/axis_1_shape_mechanical/all/[168]/label_hint_defect_words",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "gen-contract-1032b2.json",
    "path": "/false_criteria",
    "kind": "list",
@@ -4580,13 +4629,6 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/books_self_reporting_false",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/detector_selftest/[5]/want_n",
    "kind": "null",
    "self_provable": false,
@@ -4603,13 +4645,6 @@
    "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/books_rc2_instrument_crashed",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "rerun-reproducibility-1015.json",
-   "path": "/red_ledger/per_book/[13]/n_self_reported_false",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -4749,6 +4784,55 @@
   {
    "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/detail_source_by_book/type-layer-gate-1023.json",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/books_summary_detail_conflict",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/styles_unsupported_1015",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/fallback_selftest/[2]/summary_n",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/fallback_selftest/[3]/summary_n",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/fallback_selftest/[3]/detail_red",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/fallback_selftest/[3]/want/[0]",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/fallback_selftest/[3]/got/[0]",
    "kind": "null",
    "self_provable": false,
    "invariant": null
@@ -5427,15 +5511,15 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[13]/n_self_reported_false",
-   "kind": "null",
+   "path": "/books/[13]/criteria_not_applicable",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/books/[13]/criteria_not_applicable",
-   "kind": "list",
+   "path": "/books/[13]/summary_n_false_1015",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },

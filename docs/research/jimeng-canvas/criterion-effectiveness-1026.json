@@ -6,13 +6,13 @@
   "scope_declared": "⚠️⭐⭐⭐⭐⭐ 量的是**用 `P1..Pn` + `OUT` 这套写法的探针**（仓里 220 个探针中的一部分）；**旧探针用的 `ASSERTIONS` / `EXPECTED_STATES` 等别的写法不在本批口径内** ⇒ **⇒ 报的是这一层的下限，不是全部**（承 1025 的口径纪律）",
   "axis_1_shape_mechanical": {
     "what": "⭐⭐⭐⭐⭐ **形状轴（机械）** —— 把每条 P 的右值按 AST 分类",
-    "n_P_criteria": 168,
+    "n_P_criteria": 169,
     "counts_by_kind": {
       "other": 101,
       "pin_eq": 2,
       "zero": 8,
       "nonempty+pin_eq": 3,
-      "mechanism": 6,
+      "mechanism": 7,
       "decorative": 20,
       "nonempty": 21,
       "nonempty+mechanism": 3,
@@ -21,11 +21,11 @@
       "nonempty+zero+mechanism": 1
     },
     "naming_split": {
-      "indexed": 113,
+      "indexed": 114,
       "batch_tagged": 55
     },
-    "n_without_label": 55,
-    "label_note": "⭐⭐⭐ **有 55 条没有 `OUT` 标签** —— 查清了：那批探针用 `P943` 这种**批次号**命名、且不建 `OUT` 字典 ⇒ **⇒ 标签覆盖率是「量出来的读数」，不是「必须满足的条件」** ⇒ **⇒⇒⇒⇒⇒ 第一版的 P2 就是反例：它断言了我没验证过的事，而它变红的原因与判据本意毫无关系**",
+    "n_without_label": 56,
+    "label_note": "⭐⭐⭐ **有 56 条没有 `OUT` 标签** —— 查清了：那批探针用 `P943` 这种**批次号**命名、且不建 `OUT` 字典 ⇒ **⇒ 标签覆盖率是「量出来的读数」，不是「必须满足的条件」** ⇒ **⇒⇒⇒⇒⇒ 第一版的 P2 就是反例：它断言了我没验证过的事，而它变红的原因与判据本意毫无关系**",
     "kind_glossary": {
       "decorative": "⭐⭐⭐⭐⭐ **右值是字面量 `True`** ⇒ 不看任何读数 ⇒ 恒绿",
       "nonempty": "`X > 0` / `X >= 1` ⇒ 断言某个东西**非空**",
@@ -1469,7 +1469,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P8",
         "naming": "indexed",
-        "lineno": 450,
+        "lineno": 456,
         "label": "P8_exclusion_is_bilateral_and_1015_declares_it_too_1027",
         "kind": "other",
         "evidence": [
@@ -1482,7 +1482,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P3",
         "naming": "indexed",
-        "lineno": 459,
+        "lineno": 465,
         "label": "P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027",
         "kind": "other",
         "evidence": [
@@ -1495,7 +1495,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P4",
         "naming": "indexed",
-        "lineno": 460,
+        "lineno": 466,
         "label": "P4_touched_list_is_recorded_for_every_golden_owning_probe_1027",
         "kind": "mechanism",
         "evidence": [
@@ -1508,7 +1508,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P5",
         "naming": "indexed",
-        "lineno": 461,
+        "lineno": 467,
         "label": "P5_one_run_per_golden_no_double_counting_1027",
         "kind": "nonempty",
         "evidence": [
@@ -1521,7 +1521,7 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P6",
         "naming": "indexed",
-        "lineno": 462,
+        "lineno": 468,
         "label": "P6_scope_declared_1027",
         "kind": "decorative",
         "evidence": [
@@ -1534,13 +1534,27 @@
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P7",
         "naming": "indexed",
-        "lineno": 463,
+        "lineno": 469,
         "label": "P7_offline_1027",
         "kind": "decorative",
         "evidence": [
           "右值是字面量 True"
         ],
         "rhs": "True",
+        "label_hint_defect_words": []
+      },
+      {
+        "probe": "jimeng_probe1027_freshness_gate.py",
+        "var": "P12",
+        "naming": "indexed",
+        "lineno": 871,
+        "label": "",
+        "kind": "mechanism",
+        "evidence": [
+          "k not in _PUBLISHED_1027",
+          "k not in _NOT_APPLICABLE_1027"
+        ],
+        "rhs": "bool(_NONE_KEYS_1027 == set(_NOT_APPLICABLE_1027) and all((str(_NOT_APPLICABLE_1027.get(k, '')).strip() for k in _NOT_APPLICABLE_1027)) and all((k not",
         "label_hint_defect_words": []
       },
       {
@@ -2346,7 +2360,7 @@
   },
   "axis_3_effective_weight": {
     "what": "⭐⭐⭐⭐⭐ **含金量轴** —— 有效判据数 = P 总数 − 恒真条数",
-    "n_P_criteria": 168,
+    "n_P_criteria": 169,
     "n_decorative": 20,
     "n_decorative_that_self_declare_it": 20,
     "n_decorative_that_do_not": 0,
@@ -2462,19 +2476,19 @@
       {
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P6",
-        "lineno": 462,
+        "lineno": 468,
         "label": "P6_scope_declared_1027"
       },
       {
         "probe": "jimeng_probe1027_freshness_gate.py",
         "var": "P7",
-        "lineno": 463,
+        "lineno": 469,
         "label": "P7_offline_1027"
       }
     ],
     "self_declared_reading": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 那 20 条装饰的标签自己就写着 `scope_declared` / `offline` / `hold`** ⇒⇒⇒⇒⇒⇒ **⇒ 一个诚实的命名，配上不诚实的汇总** ⇒ **错的是汇总那一层，不是这几条本身** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒ 处置不是删掉它们（它们确实在声明 scope 与 offline），是让汇总里把「装饰」单独数出来**",
-    "n_effective": 148,
-    "ratio_decorative": "20/168",
+    "n_effective": 149,
+    "ratio_decorative": "20/169",
     "reading": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **⇒ 每次报「P1–P8 全 True」时，应当同时报「其中 20 条是写死的 True」** ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒ 不报这个数，那句「全 True」就比它听起来更漂亮**",
     "per_probe": [
       {
@@ -2549,9 +2563,9 @@
       },
       {
         "probe": "jimeng_probe1027_freshness_gate.py",
-        "n_P": 9,
+        "n_P": 10,
         "n_decorative": 2,
-        "effective": 7,
+        "effective": 8,
         "note": "⭐ 「P 全 True」这句话里，有 2 条是写死的 True"
       }
     ]

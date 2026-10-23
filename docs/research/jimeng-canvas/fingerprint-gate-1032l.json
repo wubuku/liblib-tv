@@ -21,12 +21,12 @@
   "n_matched": 28,
   "n_stale": 1,
   "stale_books": [
-   "rerun-reproducibility-1015.json"
+   "zero-coupling-anchors-1005.json"
   ],
   "missing_books": [],
   "phantom_books": [],
   "why": [
-   "row_mismatch:rerun-reproducibility-1015.json"
+   "row_mismatch:zero-coupling-anchors-1005.json"
   ]
  },
  "selftest": {
