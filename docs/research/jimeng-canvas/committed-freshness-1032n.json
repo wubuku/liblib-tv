@@ -1,0 +1,82 @@
+{
+  "generated_by": "jimeng_probe1032n_committed_freshness_gate.py",
+  "what_this_gate_asks": "**提交的那本 == 探针现在会写的那本**",
+  "what_it_is_not": "⇒ ⇒ **这不是「可复现性」** ⇒ ⇒ 1015 的四态答的是「跑两遍会不会变」⇒ ⇒ ⇒ ⇒ 而本门答的是「提交的那本是不是【现在】的产物」⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 两个口径不许合并**",
+  "head": {
+    "ok": true,
+    "n_rows": 31,
+    "n_mismatch": 0,
+    "n_unreadable": 0,
+    "n_no_fact": 0,
+    "script_sha12_now": "1e8e51f82adb",
+    "script_sha12_in_book": "1e8e51f82adb",
+    "script_unchanged": true,
+    "n_inputs_changed": 0,
+    "n_unstable": 0,
+    "n_undeclared": 0,
+    "n_excluded": 3,
+    "n_bad_exclusion": 0,
+    "n_disagree": 0
+  },
+  "worktree": {
+    "ok": true,
+    "n_rows": 31,
+    "n_mismatch": 0,
+    "n_unreadable": 0,
+    "n_no_fact": 0,
+    "script_sha12_now": "1e8e51f82adb",
+    "script_sha12_in_book": "1e8e51f82adb",
+    "script_unchanged": true,
+    "n_inputs_changed": 0,
+    "n_unstable": 0,
+    "n_undeclared": 0,
+    "n_excluded": 3,
+    "n_bad_exclusion": 0,
+    "n_disagree": 0
+  },
+  "selftest": {
+    "n_cases": 5,
+    "cases": [
+      {
+        "name": "改掉一行的 fresh_sha12",
+        "went_red": true
+      },
+      {
+        "name": "改掉书级 generator_sha12_1015",
+        "went_red": true
+      },
+      {
+        "name": "清空排除项的理由",
+        "went_red": true
+      },
+      {
+        "name": "把一行改成跨轮不稳定且没声明",
+        "went_red": true
+      },
+      {
+        "name": "改掉一行的 committed_sha12",
+        "went_red": true
+      }
+    ],
+    "ok": true
+  },
+  "criteria_1032n": {
+    "P1_committed_bytes_equal_the_bytes_the_probe_wrote_1032n": true,
+    "P2_this_book_itself_is_what_the_current_script_would_write_1032n": true,
+    "P3_books_that_change_every_round_must_declare_themselves_1032n": true,
+    "P4_every_excluded_book_must_publish_a_reason_1032n": true,
+    "P6_two_implementations_of_the_committed_bytes_must_agree_1032n": true,
+    "P5_this_gate_can_actually_go_red_1032n": true
+  },
+  "criterion_kinds_1032n": {
+    "P1_committed_bytes_equal_the_bytes_the_probe_wrote_1032n": "failure",
+    "P2_this_book_itself_is_what_the_current_script_would_write_1032n": "failure",
+    "P3_books_that_change_every_round_must_declare_themselves_1032n": "failure",
+    "P4_every_excluded_book_must_publish_a_reason_1032n": "failure",
+    "P5_this_gate_can_actually_go_red_1032n": "failure",
+    "P6_two_implementations_of_the_committed_bytes_must_agree_1032n": "failure"
+  },
+  "criterion_kinds_complete_1032n": true,
+  "n_criteria_1032n": 6,
+  "rule": "⇒ ⇒ **三个量各记各的**：提交态的字节／盘上的字节／这一轮跑出来的字节⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ 「提交态 == 现在跑出来的那本」＝ 前两者与第三者相等**"
+}
