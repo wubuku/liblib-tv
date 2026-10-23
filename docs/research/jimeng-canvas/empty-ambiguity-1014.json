@@ -121,8 +121,8 @@
     "bytes": 15140
    },
    "rerun-reproducibility-1015.json": {
-    "sha256_12": "ab21b6530bfb",
-    "bytes": 106933
+    "sha256_12": "71003b82e098",
+    "bytes": 106380
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -146,10 +146,10 @@
  "census": {
   "n_goldens": 30,
   "n_excluded_self": 2,
-  "n_empty_list": 284,
+  "n_empty_list": 285,
   "n_empty_null": 135,
   "n_self_provable": 10,
-  "n_ambiguous": 409
+  "n_ambiguous": 410
  },
  "rows": [
   {
@@ -2037,6 +2037,13 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/stale_vs_committed_1015/stale",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/criteria_detector_selftest/[3]/want",
    "kind": "null",
    "self_provable": false,
@@ -2289,7 +2296,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[2]/drifted",
+   "path": "/rounds/[0]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -4923,6 +4930,13 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
+   "path": "/red_ledger/stale_vs_committed_1015/stale",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "rerun-reproducibility-1015.json",
    "path": "/red_ledger/criteria_detector_selftest/[3]/want",
    "kind": "null",
    "self_provable": false,
@@ -5175,7 +5189,7 @@
   },
   {
    "golden": "rerun-reproducibility-1015.json",
-   "path": "/rounds/[2]/drifted",
+   "path": "/rounds/[0]/drifted",
    "kind": "list",
    "self_provable": false,
    "invariant": null
