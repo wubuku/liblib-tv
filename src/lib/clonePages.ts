@@ -96,7 +96,7 @@ export const CLONE_PAGES: ClonePageEntry[] = [
     route: "/frameos/canvas/demo",
     product: "frameos.cn 的 AI 画布",
     summary:
-      "复刻 FrameOS：Prompt 编辑器 + 节点画布、素材库、历史、右键菜单、生成流程（mock）。",
+      "复刻 FrameOS：Prompt 编辑器 + 节点画布、素材库、历史、右键菜单、生成流程（原型演示）。",
     reachableVia: [
       "在站点根目录点顶栏左上角的 **FrameOS 入口**（logo 芯片）",
       "也可以直接打开 `/frameos`（它会重定向到 demo 画布）",
