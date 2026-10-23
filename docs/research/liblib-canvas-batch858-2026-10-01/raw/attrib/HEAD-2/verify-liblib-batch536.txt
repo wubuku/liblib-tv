@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch536.py", line 187, in <module>
+    main()
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch536.py", line 171, in main
+    audit["results"].append(run_desktop(desktop))
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch536.py", line 101, in run_desktop
+    check("panel:opens", panel.is_visible())
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch536.py", line 56, in check
+    assert ok, f"batch536 check failed: {name}"
+AssertionError: batch536 check failed: panel:opens

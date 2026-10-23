@@ -1,0 +1,61 @@
+  [PASS] source:panel-is-232-wide-with-source-title-class  ⟵ 面板容器类名
+  [PASS] source:title-bar-is-the-source-aO-class
+  [PASS] source:row-class-is-the-source-eu-class
+  [PASS] source:geometry-expands-in-place
+  [PASS] source:dialog-uses-the-source-z-1800
+  [FAIL] source:rail-no-longer-owns-a-character-flyout
+  [FAIL] source:desk-switches-left-panel-by-mode
+  [PASS] new-tailwind-classes-exist-in-the-built-css  ⟵ all present
+  [FAIL] initial:left-panel-is-scene-and-tree-is-there  ⟵ mode=None tree=True
+  [PASS] initial:scene-rail-entry-is-pressed
+  [FAIL] panel:opens
+  [FAIL] panel:width-232-at-x-48
+  [FAIL] panel:title-bar-h-48-12px-and-text  ⟵ None font=None text=None
+  [FAIL] panel:scene-tree-is-gone-mutually-exclusive  ⟵ tree=True buttons=21
+  [FAIL] panel:rail-add-character-is-pressed
+  [PASS] panel:eleven-rows-in-source-order  ⟵ ['本地上传', '标准男性', '标准女性', '健硕', '纤细', '少年', '儿童', '宽厚', '二头身', '群众 (3x3)', '几何模型']
+  [FAIL] panel:row-geometry-32px-13px-at-x-56-w-216  ⟵ [('本地上传', 55, 147, 218, 32, '12px'), ('标准男性', 55, 179, 218, 32, '12px'), ('标准女性', 55, 211, 218, 32, '12px')]
+  [FAIL] panel:row-ys-match-the-source-measurement  ⟵ [147, 179, 211, 243, 275, 307, 339, 371, 403, 435, 467]
+  [FAIL] panel:crowd-row-has-aria-haspopup-dialog
+  [PASS] panel:submenu-rows-have-chevrons  ⟵ [('本地上传', False), ('标准男性', False), ('标准女性', False), ('健硕', False), ('纤细', False), ('少年', False), ('儿童', False), ('宽厚', False), ('二头身', False), ('群众 (3x3)', True), ('几何模型', True)]
+  [FAIL] crowd:button-is-at-the-source-measured-rect  ⟵ {'x': 55, 'y': 435, 'w': 218, 'h': 32, 'right': 273, 'bottom': 467}
+  [FAIL] geometry:expands-in-place-at-the-source-measured-rect  ⟵ {'x': 52, 'y': 508, 'w': 204, 'h': 270, 'right': 256, 'bottom': 778}
+  [FAIL] geometry:is-inside-the-panel-not-a-portal
+  [FAIL] geometry:eight-items-199x32  ⟵ [('geometry-upload', 190, 32), ('cube', 190, 32), ('sphere', 190, 32), ('cylinder', 190, 32), ('torus', 190, 32), ('cone', 190, 32), ('pyramid', 190, 32), ('empty-object', 190, 32)]
+  [FAIL] crowd:dialog-is-at-the-source-measured-rect  ⟵ {'x': 281, 'y': 435, 'w': 220, 'h': 208, 'right': 501, 'bottom': 643}
+  [FAIL] crowd:dialog-z-1800-and-bg-source  ⟵ z=160 bg=rgb(36, 36, 36)
+  [FAIL] crowd:dialog-internal-segments-match-the-source  ⟵ [[448, 17], [477, 49], [537, 49], [602, 28]]
+  [FAIL] crowd:dialog-label-line-height-matches-the-source  ⟵ [{'lineHeight': '16.5px', 'inputH': '28px'}, {'lineHeight': '16.5px', 'inputH': '28px'}, {'lineHeight': '16.5px', 'inputH': '28px'}]
+  [FAIL] crowd:geometry-closed-because-source-shares-one-state
+  [PASS] crowd:count-reads-9-by-default  ⟵ 共9人
+  [PASS] crowd:input-ranges-match-the-source  ⟵ [{'value': '3', 'min': '1', 'max': '10', 'step': '1', 'aria': '行数'}, {'value': '3', 'min': '1', 'max': '10', 'step': '1', 'aria': '列数'}, {'value': '1.2', 'min': '0.1', 'max': '10', 'step': '0.1', 'aria': '间距'}]
+  [PASS] crowd:spacing-keeps-one-decimal-1.55-becomes-1.6  ⟵ {'value': '1.6', 'min': '0.1', 'max': '10', 'step': '0.1', 'aria': '间距'}
+  [PASS] crowd:clicking-the-row-again-closes-the-dialog
+  [PASS] crowd:clicking-outside-closes-the-dialog
+  [FAIL] scene:panel-closes-and-the-tree-comes-back  ⟵ panel=False tree=True
+  [PASS] scene:rail-scene-entry-is-pressed-again
+  [PASS] rail:another-entry-makes-the-character-panel-yield  ⟵ panel=False pano={'pressed': 'true'}
+  [PASS] mobile:the-mobile-entry-still-opens-the-dialog  ⟵ {'x': 162, 'y': 628, 'w': 220, 'h': 208, 'right': 382, 'bottom': 836}
+
+38 判据，21 失败
+  FAILED: source:rail-no-longer-owns-a-character-flyout
+  FAILED: source:desk-switches-left-panel-by-mode
+  FAILED: initial:left-panel-is-scene-and-tree-is-there
+  FAILED: panel:opens
+  FAILED: panel:width-232-at-x-48
+  FAILED: panel:title-bar-h-48-12px-and-text
+  FAILED: panel:scene-tree-is-gone-mutually-exclusive
+  FAILED: panel:rail-add-character-is-pressed
+  FAILED: panel:row-geometry-32px-13px-at-x-56-w-216
+  FAILED: panel:row-ys-match-the-source-measurement
+  FAILED: panel:crowd-row-has-aria-haspopup-dialog
+  FAILED: crowd:button-is-at-the-source-measured-rect
+  FAILED: geometry:expands-in-place-at-the-source-measured-rect
+  FAILED: geometry:is-inside-the-panel-not-a-portal
+  FAILED: geometry:eight-items-199x32
+  FAILED: crowd:dialog-is-at-the-source-measured-rect
+  FAILED: crowd:dialog-z-1800-and-bg-source
+  FAILED: crowd:dialog-internal-segments-match-the-source
+  FAILED: crowd:dialog-label-line-height-matches-the-source
+  FAILED: crowd:geometry-closed-because-source-shares-one-state
+  FAILED: scene:panel-closes-and-the-tree-comes-back

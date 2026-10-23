@@ -42,6 +42,28 @@
 | S11 | clone 源码：legacy 面板/选择器**清零** ＋ 1 位小数 ＋ store 不夹取 | N11／N12 |
 | S12 | 老门禁迁移：`45.py`（crowd 段迁到 rail）＋ `625.py`（落点改推导） | N13／N14 |
 
+## ★ ★★ **本门禁是「归档型」⟹ ⟹ 它没有运行时牙**（batch 858 受控对照实测）
+
+★ S2–S10 读的**全是 batch 857 当时录下的 JSON 产物**
+（`raw/source-857-contract.json`／`raw/source-857-crowd.json`／
+`raw/source-857-mobile.json`／`raw/clone-857-crowd.json`）
+⟹ ⟹ **不是实时 DOM** ⟹ ⟹ 把源码换回去它**照样绿**。
+
+★ batch 858 的**受控对照**（`docs/research/liblib-canvas-batch858-2026-10-01/`
+的 `probes/attrib858_mix.py`）实测：
+- **MIX 半回退态**（只把 `DirectorIconRail.tsx` ＋ `DirectorDesk.tsx` 换回 HEAD）
+  ⟹ ⟹ 本门禁 **12/12 全绿**；
+- 而同态下 `verify-liblib-batch858.py` **红 21 条**、`45`／`536`／`589`／
+  `613`／`625`／`738` **全红**。
+⟹ ⟹ **结论：这是「职责边界」、不是漏洞** —— 本门禁守的是 **crowd 对话框契约**
+（量程／落点／开关行为），**不守「面板 vs 浮层」这个结构**；
+后者由 **live DOM 门禁**（858 等）守。
+
+★ ★ 顺带一条方法学：**「红了」≠「判据红了」**。
+本门禁在 **HEAD 全回退态**下是红的，但那红来自
+`FileNotFoundError: DirectorCharacterPanel.tsx`（读不到文件）⟹ ⟹ **假牙**；
+只有 MIX 半回退态里「**具名判据**翻红」才叫真牙。
+
 ## ★ ★★ **S3/S7 是「源站 ↔ clone」的行为交叉**
 
 ★ 只断言 clone 是 1.6 ⟹ ⟹ 那可能只是「探针瞎了」⟹ ⟹ 所以必须**同时**
@@ -58,6 +80,10 @@ BATCH = ROOT / "docs/research/liblib-canvas-batch857-2026-10-01"
 RAW = BATCH / "raw"
 
 SRC_RAIL = ROOT / "src/components/director/DirectorIconRail.tsx"
+# ★ Batch 858：「添加角色」改成**左侧面板模式**（源站逐字）⟹ ⟹ 间距的
+#   1 位小数舍入代码从 rail 搬到了 DirectorCharacterPanel.tsx ⟹ ⟹
+#   静态契约要跟着搬（**判据内容一字未改**）。
+SRC_CHAR_PANEL = ROOT / "src/components/director/DirectorCharacterPanel.tsx"
 SRC_VIEWPORT = ROOT / "src/components/director/DirectorViewport.tsx"
 SRC_STORE = ROOT / "src/store/directorStore.ts"
 
@@ -83,6 +109,7 @@ def main() -> int:
     src_m = json.loads((RAW / "source-857-mobile.json").read_text(encoding="utf-8"))
     clone = json.loads((RAW / "clone-857-crowd.json").read_text(encoding="utf-8"))
     rail_src = SRC_RAIL.read_text(encoding="utf-8")
+    char_panel_src = SRC_CHAR_PANEL.read_text(encoding="utf-8")
     view_src = SRC_VIEWPORT.read_text(encoding="utf-8")
     store_src = SRC_STORE.read_text(encoding="utf-8")
 
@@ -254,7 +281,7 @@ def main() -> int:
               "data-director-crowd-spacing", "data-director-crowd-action"]
     legacy_left = [s for s in legacy if s in view_src]
     s11_legacy_ok = not legacy_left
-    s11_round_ok = "Math.round(next * 10) / 10" in rail_src
+    s11_round_ok = "Math.round(next * 10) / 10" in char_panel_src
     # ★ store 的判据要**限定在 addCrowdArray 那段函数体里** ——
     #   否则整份 store 里的 `Math.min(` 会被误算成「还在夹取」。
     m = re.search(r"addCrowdArray:\s*\(\{[^)]*\)\s*=>\s*\{", store_src)
@@ -305,7 +332,7 @@ def main() -> int:
                   and not legacy_in_locator)
         # 45：必须有「关掉浮层」这一步（否则点组行 toggle 会被浮层截走）
         s12_45b = ("[data-director-rail-entry='scene']" in t45
-                   and "data-director-character-flyout" in t45)
+                   and "data-director-character-panel" in t45)
         # 45：必须对 legacy 选择器有**负向断言**（只写正向的话旧写法还在也能过）
         s12_45c = all(s in t45 for s in legacy)
         # 625：crowd-dialog 的期望必须**按源站公式推导**，旧的写死坐标要清零

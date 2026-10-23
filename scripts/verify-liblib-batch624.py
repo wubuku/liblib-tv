@@ -67,7 +67,7 @@ def states_for(w: int) -> list[tuple[str, str, str | None]]:
             ("rail-aspect", "[data-director-rail-entry='aspect-ratio']",
              "[data-director-aspect-flyout]"),
             ("rail-add-character", "[data-director-rail-entry='add-character']",
-             "[data-director-character-flyout]"),
+             "[data-director-character-panel]"),
             ("rail-ai-import", "[data-director-rail-entry='ai-import']",
              "[data-director-ai-import-modal]"),
             ("tree-context-menu", "@tree-rctx@",

@@ -60,20 +60,39 @@ IGNORE_PAGE_ERROR = ("TransformControls",)
 # parent opened first.  The first pass of the probe got this wrong twice —
 # once by treating them as rail entries (timeouts) and once by passing a
 # "@geometry@" sentinel straight to locator() (unsupported token).
+#
+# ★★★ Batch 858 **迁移掉两条**：源站逐字 —— 「添加角色」是**左侧面板模式**
+#   （`"scene"===z?n:null,"character"===z?(…)`）、「几何模型」是**就地展开**
+#   在那个面板里 ⟹ ⟹ 两者**都不再是 portal 浮层** ⟹ ⟹ 625 这把尺子
+#   （portal 浮层的 z 有没有被困住 / 有没有盖住时间线带）**不适用**于它们。
+#   留着它们只会让 `ownZ` 变成 "auto"（侧栏没有 z）⟹ ⟹ `int("auto")` 直接崩。
+#   ⟹ ⟹ 它们的「不再被 z 困住」由**结构性断言**保证（见 INLINE_CHECK）：
+#   两者都必须**留在 aside / 面板里面**、不得被 portal 到 body。
 FLOUTS: list[tuple[str, str, str | None, str]] = [
     ("panorama-flyout", "[data-director-rail-entry='panorama']", None,
      "[data-director-panorama-flyout]"),
     ("aspect-flyout", "[data-director-rail-entry='aspect-ratio']", None,
      "[data-director-aspect-flyout]"),
-    ("add-character-flyout", "[data-director-rail-entry='add-character']", None,
-     "[data-director-character-flyout]"),
-    ("geometry-submenu", "[data-director-rail-entry='add-character']",
-     "[data-director-character-option='geometry']",
-     "[data-director-geometry-submenu]"),
     ("crowd-dialog", "[data-director-rail-entry='add-character']",
      "[data-director-character-option='crowd-3x3']",
      "[data-director-crowd-dialog]"),
 ]
+
+# ★★ Batch 858：这两个表面**不是** portal 浮层 ⟹ ⟹ 断言它们**留在原地**。
+#   （这是「不再被 z 困住」的**结构性**保证，比逐视口量坐标更强。）
+INLINE_CHECK_JS = r"""()=>{
+  const panel=document.querySelector('[data-director-character-panel]');
+  if(!panel) return {panel:false};
+  const geo=document.querySelector('[data-director-geometry-submenu]');
+  return {
+    panel: true,
+    panelInsideAside: panel.closest('aside')!==null,
+    panelParentIsBody: panel.parentElement===document.body,
+    geo: geo!==null,
+    geoInsidePanel: geo ? geo.closest('[data-director-character-panel]')!==null : null,
+    geoParentIsBody: geo ? geo.parentElement===document.body : null,
+  };
+}"""
 
 # Deliberately includes short viewports: the timeline is a fixed 182px tall at
 # the bottom, so the shorter the window the larger its share of the height and
@@ -239,6 +258,37 @@ def main() -> None:
 
     live = [r for r in rows if "error" not in r]
     audit["measurements"] = rows
+
+    # ★★ Batch 858：那两个表面**不是** portal 浮层 ⟹ ⟹ 结构性断言它们留在原地。
+    #   「不再被 z 困住 / 不再盖住时间线带」对它们不再是**逐视口**的问题，
+    #   而是**结构**问题：只要它们还在 aside / 面板里面，就永远不会被
+    #   portal 的 z 语境困住。断言这一点比逐视口量坐标更强，也更贴近源站。
+    with sync_playwright() as p2:
+        browser2 = p2.chromium.launch()
+        page2 = browser2.new_page(viewport={"width": 1440, "height": 900},
+                                  device_scale_factor=1)
+        try:
+            b619.open_desk(page2)
+            page2.locator("[data-director-rail-entry='add-character']").first.click(
+                timeout=15_000)
+            page2.wait_for_timeout(500)
+            page2.locator("[data-director-character-option='geometry']").first.click(
+                timeout=15_000)
+            page2.wait_for_timeout(500)
+            inline = page2.evaluate(INLINE_CHECK_JS)
+        except Exception as exc:  # noqa: BLE001
+            inline = {"error": f"{type(exc).__name__}: {str(exc)[:120]}"}
+        finally:
+            page2.close()
+            browser2.close()
+    v.result["inlineSurfaces"] = inline
+    v.check("add-character-is-a-side-panel-not-a-portal-flyout",
+            bool(inline.get("panel")) and bool(inline.get("panelInsideAside"))
+            and not inline.get("panelParentIsBody"), detail=inline)
+    v.check("geometry-submenu-expands-in-place-not-in-a-portal",
+            bool(inline.get("geo")) and bool(inline.get("geoInsidePanel"))
+            and not inline.get("geoParentIsBody"), detail=inline)
+
     v.check("every-flyout-opens-at-every-viewport", len(live) == len(rows),
             detail={"live": len(live), "total": len(rows),
                     "errors": [(r["flyout"], r.get("error")) for r in rows
@@ -292,7 +342,6 @@ def main() -> None:
     BEFORE = {
         "panorama-flyout": [48, 196, 232, 134],
         "aspect-flyout": [48, 236, 232, 350],
-        "add-character-flyout": [48, 116, 232, 390],
         # ★ Batch 857 **迁移掉**「crowd-dialog: [294, 52, 220, 208]」。
         #   旧值是 clone 写死「rail 左边 + 294」算出来的 —— **源站没有这条规则**。
         #   源站逐字：
@@ -301,6 +350,9 @@ def main() -> None:
         #     （t ＝ 「群众 (3x3)」按钮的矩形，r/n ＝ 对话框自己的宽高）
         #   ⟹ ⟹ 对话框的落点**跟着按钮走** ⟹ ⟹ 不能写死坐标，
         #   ⟹ ⟹ 改成「按源站公式 + 实测锚点」推导（见 expected_box）。
+        # ★ Batch 858 **迁移掉**「add-character-flyout: [48, 116, 232, 390]」——
+        #   它已不是浮层（是左侧面板），坐标由 858 的新门禁按**源站实测**
+        #   逐字钉住：(48,52) 232 宽、crowd 按钮 (56,388) 216×32。
     }
 
     def expected_box(flyout: str, vh: int, vw: int,
@@ -316,10 +368,7 @@ def main() -> None:
             left = max(8, min(anchor["right"] + 8, vw - w - 8))
             top = max(8, min(anchor["top"], vh - h - 8))
             return [left, top, w, h]
-        if flyout != "geometry-submenu":
-            return BEFORE[flyout]
-        # 786 = 508 (unclamped top) + 270 (height) + 8 (safe margin)
-        return [52, 508 if vh >= 786 else vh - 8 - 270, 204, 270]
+        return BEFORE[flyout]
 
     moved = [(r["flyout"], r["vw"], r["vh"], r["box"],
               expected_box(r["flyout"], r["vh"], r["vw"], r))

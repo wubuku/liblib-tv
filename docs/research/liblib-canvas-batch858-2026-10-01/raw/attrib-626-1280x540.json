@@ -1,0 +1,1056 @@
+{
+ "批次": 858,
+ "探针": "attrib626",
+ "说明": "626 的 side-panel-unhittable-row-is-the-timeline/1280x540/add-character-panel 这条红的定点归因",
+ "视口 1440x900": {
+  "viewport": "1440x900",
+  "①打开面板后": {
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "panel": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 848,
+    "right": 280,
+    "bottom": 900
+   },
+   "list": {
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 800,
+     "right": 280,
+     "bottom": 900
+    },
+    "scrollTop": 0,
+    "scrollHeight": 800,
+    "clientHeight": 800,
+    "overflowY": "auto"
+   },
+   "geometryRow": {
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "right": 272,
+    "bottom": 452
+   },
+   "timeline": {
+    "rect": {
+     "x": 0,
+     "y": 718,
+     "w": 1440,
+     "h": 182,
+     "right": 1440,
+     "bottom": 900
+    },
+    "z": "40"
+   },
+   "coveredByTimeline": false,
+   "timelineTop": 718,
+   "elementAtGeometryCenter": {
+    "cx": 164,
+    "cy": 436,
+    "tag": "SPAN",
+    "cls": "min-w-0 flex-1 truncate",
+    "dataAttrs": "",
+    "isRowOrChild": true,
+    "inViewport": true
+   },
+   "rows": [
+    {
+     "id": "local-upload",
+     "y": 100,
+     "bottom": 132
+    },
+    {
+     "id": "standard-male",
+     "y": 132,
+     "bottom": 164
+    },
+    {
+     "id": "standard-female",
+     "y": 164,
+     "bottom": 196
+    },
+    {
+     "id": "muscular",
+     "y": 196,
+     "bottom": 228
+    },
+    {
+     "id": "slim",
+     "y": 228,
+     "bottom": 260
+    },
+    {
+     "id": "teen",
+     "y": 260,
+     "bottom": 292
+    },
+    {
+     "id": "child",
+     "y": 292,
+     "bottom": 324
+    },
+    {
+     "id": "broad",
+     "y": 324,
+     "bottom": 356
+    },
+    {
+     "id": "chibi",
+     "y": 356,
+     "bottom": 388
+    },
+    {
+     "id": "crowd-3x3",
+     "y": 388,
+     "bottom": 420
+    },
+    {
+     "id": "geometry",
+     "y": 420,
+     "bottom": 452
+    }
+   ]
+  },
+  "②滚动成功": true,
+  "③滚动后": {
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "panel": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 848,
+    "right": 280,
+    "bottom": 900
+   },
+   "list": {
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 800,
+     "right": 280,
+     "bottom": 900
+    },
+    "scrollTop": 0,
+    "scrollHeight": 800,
+    "clientHeight": 800,
+    "overflowY": "auto"
+   },
+   "geometryRow": {
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "right": 272,
+    "bottom": 452
+   },
+   "timeline": {
+    "rect": {
+     "x": 0,
+     "y": 718,
+     "w": 1440,
+     "h": 182,
+     "right": 1440,
+     "bottom": 900
+    },
+    "z": "40"
+   },
+   "coveredByTimeline": false,
+   "timelineTop": 718,
+   "elementAtGeometryCenter": {
+    "cx": 164,
+    "cy": 436,
+    "tag": "SPAN",
+    "cls": "min-w-0 flex-1 truncate",
+    "dataAttrs": "",
+    "isRowOrChild": true,
+    "inViewport": true
+   },
+   "rows": [
+    {
+     "id": "local-upload",
+     "y": 100,
+     "bottom": 132
+    },
+    {
+     "id": "standard-male",
+     "y": 132,
+     "bottom": 164
+    },
+    {
+     "id": "standard-female",
+     "y": 164,
+     "bottom": 196
+    },
+    {
+     "id": "muscular",
+     "y": 196,
+     "bottom": 228
+    },
+    {
+     "id": "slim",
+     "y": 228,
+     "bottom": 260
+    },
+    {
+     "id": "teen",
+     "y": 260,
+     "bottom": 292
+    },
+    {
+     "id": "child",
+     "y": 292,
+     "bottom": 324
+    },
+    {
+     "id": "broad",
+     "y": 324,
+     "bottom": 356
+    },
+    {
+     "id": "chibi",
+     "y": 356,
+     "bottom": 388
+    },
+    {
+     "id": "crowd-3x3",
+     "y": 388,
+     "bottom": 420
+    },
+    {
+     "id": "geometry",
+     "y": 420,
+     "bottom": 452
+    }
+   ]
+  },
+  "④点击": "成功",
+  "⑤点击后": {
+   "viewport": {
+    "w": 1440,
+    "h": 900
+   },
+   "panel": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 848,
+    "right": 280,
+    "bottom": 900
+   },
+   "list": {
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 800,
+     "right": 280,
+     "bottom": 900
+    },
+    "scrollTop": 0,
+    "scrollHeight": 800,
+    "clientHeight": 800,
+    "overflowY": "auto"
+   },
+   "geometryRow": {
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "right": 272,
+    "bottom": 452
+   },
+   "timeline": {
+    "rect": {
+     "x": 0,
+     "y": 718,
+     "w": 1440,
+     "h": 182,
+     "right": 1440,
+     "bottom": 900
+    },
+    "z": "40"
+   },
+   "coveredByTimeline": false,
+   "timelineTop": 718,
+   "elementAtGeometryCenter": {
+    "cx": 164,
+    "cy": 436,
+    "tag": "SPAN",
+    "cls": "min-w-0 flex-1 truncate",
+    "dataAttrs": "",
+    "isRowOrChild": true,
+    "inViewport": true
+   },
+   "rows": [
+    {
+     "id": "local-upload",
+     "y": 100,
+     "bottom": 132
+    },
+    {
+     "id": "standard-male",
+     "y": 132,
+     "bottom": 164
+    },
+    {
+     "id": "standard-female",
+     "y": 164,
+     "bottom": 196
+    },
+    {
+     "id": "muscular",
+     "y": 196,
+     "bottom": 228
+    },
+    {
+     "id": "slim",
+     "y": 228,
+     "bottom": 260
+    },
+    {
+     "id": "teen",
+     "y": 260,
+     "bottom": 292
+    },
+    {
+     "id": "child",
+     "y": 292,
+     "bottom": 324
+    },
+    {
+     "id": "broad",
+     "y": 324,
+     "bottom": 356
+    },
+    {
+     "id": "chibi",
+     "y": 356,
+     "bottom": 388
+    },
+    {
+     "id": "crowd-3x3",
+     "y": 388,
+     "bottom": 420
+    },
+    {
+     "id": "geometry",
+     "y": 420,
+     "bottom": 452
+    }
+   ]
+  }
+ },
+ "视口 1280x720": {
+  "viewport": "1280x720",
+  "①打开面板后": {
+   "viewport": {
+    "w": 1280,
+    "h": 720
+   },
+   "panel": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 668,
+    "right": 280,
+    "bottom": 720
+   },
+   "list": {
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 620,
+     "right": 280,
+     "bottom": 720
+    },
+    "scrollTop": 0,
+    "scrollHeight": 620,
+    "clientHeight": 620,
+    "overflowY": "auto"
+   },
+   "geometryRow": {
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "right": 272,
+    "bottom": 452
+   },
+   "timeline": {
+    "rect": {
+     "x": 0,
+     "y": 538,
+     "w": 1280,
+     "h": 182,
+     "right": 1280,
+     "bottom": 720
+    },
+    "z": "40"
+   },
+   "coveredByTimeline": false,
+   "timelineTop": 538,
+   "elementAtGeometryCenter": {
+    "cx": 164,
+    "cy": 436,
+    "tag": "SPAN",
+    "cls": "min-w-0 flex-1 truncate",
+    "dataAttrs": "",
+    "isRowOrChild": true,
+    "inViewport": true
+   },
+   "rows": [
+    {
+     "id": "local-upload",
+     "y": 100,
+     "bottom": 132
+    },
+    {
+     "id": "standard-male",
+     "y": 132,
+     "bottom": 164
+    },
+    {
+     "id": "standard-female",
+     "y": 164,
+     "bottom": 196
+    },
+    {
+     "id": "muscular",
+     "y": 196,
+     "bottom": 228
+    },
+    {
+     "id": "slim",
+     "y": 228,
+     "bottom": 260
+    },
+    {
+     "id": "teen",
+     "y": 260,
+     "bottom": 292
+    },
+    {
+     "id": "child",
+     "y": 292,
+     "bottom": 324
+    },
+    {
+     "id": "broad",
+     "y": 324,
+     "bottom": 356
+    },
+    {
+     "id": "chibi",
+     "y": 356,
+     "bottom": 388
+    },
+    {
+     "id": "crowd-3x3",
+     "y": 388,
+     "bottom": 420
+    },
+    {
+     "id": "geometry",
+     "y": 420,
+     "bottom": 452
+    }
+   ]
+  },
+  "②滚动成功": true,
+  "③滚动后": {
+   "viewport": {
+    "w": 1280,
+    "h": 720
+   },
+   "panel": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 668,
+    "right": 280,
+    "bottom": 720
+   },
+   "list": {
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 620,
+     "right": 280,
+     "bottom": 720
+    },
+    "scrollTop": 0,
+    "scrollHeight": 620,
+    "clientHeight": 620,
+    "overflowY": "auto"
+   },
+   "geometryRow": {
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "right": 272,
+    "bottom": 452
+   },
+   "timeline": {
+    "rect": {
+     "x": 0,
+     "y": 538,
+     "w": 1280,
+     "h": 182,
+     "right": 1280,
+     "bottom": 720
+    },
+    "z": "40"
+   },
+   "coveredByTimeline": false,
+   "timelineTop": 538,
+   "elementAtGeometryCenter": {
+    "cx": 164,
+    "cy": 436,
+    "tag": "SPAN",
+    "cls": "min-w-0 flex-1 truncate",
+    "dataAttrs": "",
+    "isRowOrChild": true,
+    "inViewport": true
+   },
+   "rows": [
+    {
+     "id": "local-upload",
+     "y": 100,
+     "bottom": 132
+    },
+    {
+     "id": "standard-male",
+     "y": 132,
+     "bottom": 164
+    },
+    {
+     "id": "standard-female",
+     "y": 164,
+     "bottom": 196
+    },
+    {
+     "id": "muscular",
+     "y": 196,
+     "bottom": 228
+    },
+    {
+     "id": "slim",
+     "y": 228,
+     "bottom": 260
+    },
+    {
+     "id": "teen",
+     "y": 260,
+     "bottom": 292
+    },
+    {
+     "id": "child",
+     "y": 292,
+     "bottom": 324
+    },
+    {
+     "id": "broad",
+     "y": 324,
+     "bottom": 356
+    },
+    {
+     "id": "chibi",
+     "y": 356,
+     "bottom": 388
+    },
+    {
+     "id": "crowd-3x3",
+     "y": 388,
+     "bottom": 420
+    },
+    {
+     "id": "geometry",
+     "y": 420,
+     "bottom": 452
+    }
+   ]
+  },
+  "④点击": "成功",
+  "⑤点击后": {
+   "viewport": {
+    "w": 1280,
+    "h": 720
+   },
+   "panel": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 668,
+    "right": 280,
+    "bottom": 720
+   },
+   "list": {
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 620,
+     "right": 280,
+     "bottom": 720
+    },
+    "scrollTop": 0,
+    "scrollHeight": 620,
+    "clientHeight": 620,
+    "overflowY": "auto"
+   },
+   "geometryRow": {
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "right": 272,
+    "bottom": 452
+   },
+   "timeline": {
+    "rect": {
+     "x": 0,
+     "y": 538,
+     "w": 1280,
+     "h": 182,
+     "right": 1280,
+     "bottom": 720
+    },
+    "z": "40"
+   },
+   "coveredByTimeline": false,
+   "timelineTop": 538,
+   "elementAtGeometryCenter": {
+    "cx": 164,
+    "cy": 436,
+    "tag": "SPAN",
+    "cls": "min-w-0 flex-1 truncate",
+    "dataAttrs": "",
+    "isRowOrChild": true,
+    "inViewport": true
+   },
+   "rows": [
+    {
+     "id": "local-upload",
+     "y": 100,
+     "bottom": 132
+    },
+    {
+     "id": "standard-male",
+     "y": 132,
+     "bottom": 164
+    },
+    {
+     "id": "standard-female",
+     "y": 164,
+     "bottom": 196
+    },
+    {
+     "id": "muscular",
+     "y": 196,
+     "bottom": 228
+    },
+    {
+     "id": "slim",
+     "y": 228,
+     "bottom": 260
+    },
+    {
+     "id": "teen",
+     "y": 260,
+     "bottom": 292
+    },
+    {
+     "id": "child",
+     "y": 292,
+     "bottom": 324
+    },
+    {
+     "id": "broad",
+     "y": 324,
+     "bottom": 356
+    },
+    {
+     "id": "chibi",
+     "y": 356,
+     "bottom": 388
+    },
+    {
+     "id": "crowd-3x3",
+     "y": 388,
+     "bottom": 420
+    },
+    {
+     "id": "geometry",
+     "y": 420,
+     "bottom": 452
+    }
+   ]
+  }
+ },
+ "视口 1280x540": {
+  "viewport": "1280x540",
+  "①打开面板后": {
+   "viewport": {
+    "w": 1280,
+    "h": 540
+   },
+   "panel": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 488,
+    "right": 280,
+    "bottom": 540
+   },
+   "list": {
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 440,
+     "right": 280,
+     "bottom": 540
+    },
+    "scrollTop": 0,
+    "scrollHeight": 440,
+    "clientHeight": 440,
+    "overflowY": "auto"
+   },
+   "geometryRow": {
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "right": 272,
+    "bottom": 452
+   },
+   "timeline": {
+    "rect": {
+     "x": 0,
+     "y": 358,
+     "w": 1280,
+     "h": 182,
+     "right": 1280,
+     "bottom": 540
+    },
+    "z": "40"
+   },
+   "coveredByTimeline": true,
+   "timelineTop": 358,
+   "elementAtGeometryCenter": {
+    "cx": 164,
+    "cy": 436,
+    "tag": "DIV",
+    "cls": "group relative grid h-8 items-center gap-1 px-2 text-[12px] text-[#F7F7F7] transition-colors",
+    "dataAttrs": "data-director-timeline-object-row=director-character-lead data-director-timeline-object-selected=true",
+    "isRowOrChild": false,
+    "inViewport": true
+   },
+   "rows": [
+    {
+     "id": "local-upload",
+     "y": 100,
+     "bottom": 132
+    },
+    {
+     "id": "standard-male",
+     "y": 132,
+     "bottom": 164
+    },
+    {
+     "id": "standard-female",
+     "y": 164,
+     "bottom": 196
+    },
+    {
+     "id": "muscular",
+     "y": 196,
+     "bottom": 228
+    },
+    {
+     "id": "slim",
+     "y": 228,
+     "bottom": 260
+    },
+    {
+     "id": "teen",
+     "y": 260,
+     "bottom": 292
+    },
+    {
+     "id": "child",
+     "y": 292,
+     "bottom": 324
+    },
+    {
+     "id": "broad",
+     "y": 324,
+     "bottom": 356
+    },
+    {
+     "id": "chibi",
+     "y": 356,
+     "bottom": 388
+    },
+    {
+     "id": "crowd-3x3",
+     "y": 388,
+     "bottom": 420
+    },
+    {
+     "id": "geometry",
+     "y": 420,
+     "bottom": 452
+    }
+   ]
+  },
+  "②滚动成功": true,
+  "③滚动后": {
+   "viewport": {
+    "w": 1280,
+    "h": 540
+   },
+   "panel": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 488,
+    "right": 280,
+    "bottom": 540
+   },
+   "list": {
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 440,
+     "right": 280,
+     "bottom": 540
+    },
+    "scrollTop": 0,
+    "scrollHeight": 440,
+    "clientHeight": 440,
+    "overflowY": "auto"
+   },
+   "geometryRow": {
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "right": 272,
+    "bottom": 452
+   },
+   "timeline": {
+    "rect": {
+     "x": 0,
+     "y": 358,
+     "w": 1280,
+     "h": 182,
+     "right": 1280,
+     "bottom": 540
+    },
+    "z": "40"
+   },
+   "coveredByTimeline": true,
+   "timelineTop": 358,
+   "elementAtGeometryCenter": {
+    "cx": 164,
+    "cy": 436,
+    "tag": "DIV",
+    "cls": "group relative grid h-8 items-center gap-1 px-2 text-[12px] text-[#F7F7F7] transition-colors",
+    "dataAttrs": "data-director-timeline-object-row=director-character-lead data-director-timeline-object-selected=true",
+    "isRowOrChild": false,
+    "inViewport": true
+   },
+   "rows": [
+    {
+     "id": "local-upload",
+     "y": 100,
+     "bottom": 132
+    },
+    {
+     "id": "standard-male",
+     "y": 132,
+     "bottom": 164
+    },
+    {
+     "id": "standard-female",
+     "y": 164,
+     "bottom": 196
+    },
+    {
+     "id": "muscular",
+     "y": 196,
+     "bottom": 228
+    },
+    {
+     "id": "slim",
+     "y": 228,
+     "bottom": 260
+    },
+    {
+     "id": "teen",
+     "y": 260,
+     "bottom": 292
+    },
+    {
+     "id": "child",
+     "y": 292,
+     "bottom": 324
+    },
+    {
+     "id": "broad",
+     "y": 324,
+     "bottom": 356
+    },
+    {
+     "id": "chibi",
+     "y": 356,
+     "bottom": 388
+    },
+    {
+     "id": "crowd-3x3",
+     "y": 388,
+     "bottom": 420
+    },
+    {
+     "id": "geometry",
+     "y": 420,
+     "bottom": 452
+    }
+   ]
+  },
+  "④点击": "失败",
+  "④点击异常": "TimeoutError: Locator.click: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(\"[data-director-character-option='geometry']\").first\n  -     - locator resolved to <button type=\"button\" data-director-character-option=\"geometry\" class=\"flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:op",
+  "⑤点击后": {
+   "viewport": {
+    "w": 1280,
+    "h": 540
+   },
+   "panel": {
+    "x": 48,
+    "y": 52,
+    "w": 232,
+    "h": 488,
+    "right": 280,
+    "bottom": 540
+   },
+   "list": {
+    "rect": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 440,
+     "right": 280,
+     "bottom": 540
+    },
+    "scrollTop": 0,
+    "scrollHeight": 440,
+    "clientHeight": 440,
+    "overflowY": "auto"
+   },
+   "geometryRow": {
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "right": 272,
+    "bottom": 452
+   },
+   "timeline": {
+    "rect": {
+     "x": 0,
+     "y": 358,
+     "w": 1280,
+     "h": 182,
+     "right": 1280,
+     "bottom": 540
+    },
+    "z": "40"
+   },
+   "coveredByTimeline": true,
+   "timelineTop": 358,
+   "elementAtGeometryCenter": {
+    "cx": 164,
+    "cy": 436,
+    "tag": "DIV",
+    "cls": "group relative grid h-8 items-center gap-1 px-2 text-[12px] text-[#F7F7F7] transition-colors",
+    "dataAttrs": "data-director-timeline-object-row=director-character-lead data-director-timeline-object-selected=true",
+    "isRowOrChild": false,
+    "inViewport": true
+   },
+   "rows": [
+    {
+     "id": "local-upload",
+     "y": 100,
+     "bottom": 132
+    },
+    {
+     "id": "standard-male",
+     "y": 132,
+     "bottom": 164
+    },
+    {
+     "id": "standard-female",
+     "y": 164,
+     "bottom": 196
+    },
+    {
+     "id": "muscular",
+     "y": 196,
+     "bottom": 228
+    },
+    {
+     "id": "slim",
+     "y": 228,
+     "bottom": 260
+    },
+    {
+     "id": "teen",
+     "y": 260,
+     "bottom": 292
+    },
+    {
+     "id": "child",
+     "y": 292,
+     "bottom": 324
+    },
+    {
+     "id": "broad",
+     "y": 324,
+     "bottom": 356
+    },
+    {
+     "id": "chibi",
+     "y": 356,
+     "bottom": 388
+    },
+    {
+     "id": "crowd-3x3",
+     "y": 388,
+     "bottom": 420
+    },
+    {
+     "id": "geometry",
+     "y": 420,
+     "bottom": 452
+    }
+   ]
+  }
+ }
+}

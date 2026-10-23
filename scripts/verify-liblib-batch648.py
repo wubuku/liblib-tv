@@ -79,8 +79,11 @@ VIEWPORTS = [(1920, 1150), (1440, 900), (1280, 720)]
 # `kind` is read off the source, not guessed.
 MARKERS: list[dict[str, str]] = [
     # --- the 9 director-desk markers 626 named -------------------------
+    # ★ Batch 858：626 点名的是 legacy 的「视口群众面板」
+    #   `[data-director-crowd-panel]` ⟹ ⟹ 它已在 batch 857 被删（源站没那个
+    #   入口）⟹ ⟹ 现在的对应物是**群众对话框** `[data-director-crowd-dialog]`。
     {"batch": "626", "name": "crowd-panel",
-     "selector": "[data-director-crowd-panel]"},
+     "selector": "[data-director-crowd-dialog]"},
     {"batch": "626", "name": "model-library-panel",
      "selector": "[data-director-model-library-panel]"},
     {"batch": "626", "name": "model-library-preview-panel",
@@ -130,7 +133,13 @@ KIND = {
 # defined against the desk's own PANELS, so these are the ones it can measure
 # honestly.
 DESK_CASES = [
-    ("crowd-panel", "[data-director-crowd-trigger]", "[data-director-crowd-panel]"),
+    # ★★★ Batch 858 **迁移**：batch 857 删掉了 clone 的 **legacy 视口群众面板**
+    #   （`[data-director-crowd-trigger]` / `[data-director-crowd-panel]`）——
+    #   源站**没有**那个入口（源站实测：全页同 aria-label 的入口只有 1 个，
+    #   见 batch 857 的 raw/source-857-crowd.json）⟹ ⟹ 这条用例的**打开路径**
+    #   已经不存在了 ⟹ ⟹ 改成**现在**的群众对话框路径：
+    #   rail →「群众 (3x3)」→ 对话框（两步 ⟹ ⟹ 借 626 的 open_overlay）。
+    ("crowd-dialog", "@crowd@", "[data-director-crowd-dialog]"),
     ("phone-vcam-panel", "[data-director-phone-vcam-trigger]",
      "[data-director-phone-vcam-panel]"),
     ("model-library-panel", "[data-director-model-library-trigger]",
@@ -279,7 +288,12 @@ def main() -> int:
                                    device_scale_factor=1)
                 b626.open_desk_with_retry(page)
                 page.wait_for_timeout(300)
-                page.locator(trig).first.click(timeout=15_000)
+                if trig.startswith("@"):
+                    # ★ Batch 858：两步打开路径（626 的 open_overlay 认识
+                    #   "@crowd@" 这类哨兵）⟹ ⟹ 别自己拼 locator。
+                    b626.open_overlay(page, trig)
+                else:
+                    page.locator(trig).first.click(timeout=15_000)
                 page.wait_for_timeout(600)
                 row = b626.measure(page, sel)
                 row["present"] = not (row.get("missing") or "error" in row)
@@ -384,6 +398,14 @@ def main() -> int:
     src_inspector = source_text("src/components/director/DirectorInspector.tsx")
     src_desk = source_text("src/components/director/DirectorDesk.tsx")
     src_rail = source_text("src/components/director/DirectorIconRail.tsx")
+    # ★ Batch 858：「添加角色」已从 rail 的浮层改成**左侧面板模式**
+    #   （源站逐字）⟹ ⟹ 它的标题标记从 `data-director-flyout-title`
+    #   搬到了 `data-director-panel-title`、文件也从 rail 搬到了
+    #   DirectorCharacterPanel.tsx ⟹ ⟹ 「≥3 个标题标记」这条断言要**跨两个
+    #   文件**数（断言的**意图**是「每个面板/浮层都有标题标记」，不是
+    #   「它们都在 rail 里」）。
+    src_char_panel = source_text(
+        "src/components/director/DirectorCharacterPanel.tsx")
     src_phone = source_text("src/components/director/DirectorPhoneVcamPanel.tsx")
     src_uistore = source_text("src/store/uiStore.ts")
     v.check("each-classification-is-pinned-to-the-source-line-that-made-it",
@@ -398,8 +420,11 @@ def main() -> int:
                 re.search(r'data-director-mobile-panel-state=\{activeMobilePanel '
                           r'=== "tree" \? "open"\s*:\s*"closed"\}', src_desk)
                 is not None,
-                # flyout-title appears per instance, on >= 3 rail entries
-                src_rail.count("data-director-flyout-title") >= 3,
+                # ★ Batch 858：标题标记**每实例一个**；「添加角色」已从 rail
+                #   的浮层搬成左侧面板（源站逐字）⟹ ⟹ 跨 rail + 面板两处数。
+                #   （Batch 858 之前这里是 `src_rail.count(...) >= 3`。）
+                (src_rail.count("data-director-flyout-title")
+                 + src_char_panel.count("data-director-panel-title")) >= 3,
                 # phone-vcam is a real overlay: absolute + z-index, gated on open
                 re.search(r"data-director-phone-vcam-panel[\s\S]{0,200}?"
                           r"className=\"absolute bottom-\[72px\] right-3 z-30",
@@ -438,7 +463,7 @@ def main() -> int:
             not absent,
             detail={"cells": len(matrix),
                     "absent": absent,
-                    "paths": {"crowd-panel": "[data-director-crowd-trigger]",
+                    "paths": {"crowd-panel": "@crowd@ (rail → 群众 (3x3) → 对话框)",
                               "phone-vcam-panel":
                                   "[data-director-phone-vcam-trigger]",
                               "model-library-panel":

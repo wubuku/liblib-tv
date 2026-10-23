@@ -82,19 +82,35 @@ def run_desktop(page: Page) -> dict[str, Any]:
     rail = page.locator("[data-director-icon-rail]")
     rail.locator("[data-director-rail-entry='add-character']").click()
     page.wait_for_timeout(200)
-    flyout = page.locator("[data-director-character-flyout]")
+    flyout = page.locator("[data-director-character-panel]")
     check("flyout:opens", flyout.is_visible())
 
     # 群众 (3x3) → 本地等效 addCrowdArray：对象数增加 + ack 回显
+    # ★★★ Batch 858 **判据迁移**：batch 541 的旧前提是「点「群众 (3x3)」**直接**
+    #   加出 3×3 人」（那是 clone 自己的行为）⟹ ⟹ 源站逐字是**开对话框**
+    #   （`aria-haspopup="dialog"` ＋ 三个输入 ＋ 「添加」按钮）⟹ ⟹
+    #   batch 857 把那个对话框接上、batch 858 又把「添加角色」面板化
+    #   ⟹ ⟹ 这里按**源站流程**走：点「群众 (3x3)」⟹ ⟹ 对话框开 ⟹ ⟹ 点「添加」。
+    # ★ 被测行为一字未改：仍然是「加出一组群众 ＋ ack 回显 ＋ 对象数增加」。
     flyout.locator("[data-director-character-option='crowd-3x3']").click()
-    page.wait_for_timeout(300)
+    page.wait_for_timeout(400)
+    dialog = page.locator("[data-director-crowd-dialog]")
+    check("crowd:dialog-opens", dialog.count() == 1)
+    check(
+        "crowd:dialog-defaults-3x3",
+        page.locator("[data-director-crowd-input='rows']").input_value() == "3"
+        and page.locator("[data-director-crowd-input='columns']").input_value() == "3",
+    )
+    page.locator("[data-director-crowd-confirm]").click()
+    page.wait_for_timeout(400)
     objects_after = page.evaluate(
         "window.__director_store.getState().objects.length"
     )
     check("crowd:objects-increase", objects_after > objects_before)
     ack = page.locator("[data-director-character-ack]")
-    check("crowd:ack", "已加入群众 (3x3)" in ack.inner_text())
-    check("crowd:flyout-closes", flyout.count() == 0)
+    check("crowd:ack", "已加入群众 3×3" in ack.inner_text())
+    # 源站逐字：加完之后**面板还在**（对话框是 portal，关的是对话框、不是面板）
+    check("crowd:panel-stays-open", flyout.count() == 1)
 
     # 预设体型 → 本地等效占位回显（无 3D 生成，对象数不变）
     rail.locator("[data-director-rail-entry='add-character']").click()
@@ -109,7 +125,8 @@ def run_desktop(page: Page) -> dict[str, Any]:
         "preset:no-3d-spawn",
         page.evaluate("window.__director_store.getState().objects.length") == before_preset,
     )
-    check("preset:flyout-closes", flyout.count() == 0)
+    # ★ Batch 858：源站逐字 —— 点预设**不关**面板（`z` 仍是 "character"）
+    check("preset:panel-stays-open", flyout.count() == 1)
 
     # ack 自动淡出
     page.wait_for_timeout(2200)

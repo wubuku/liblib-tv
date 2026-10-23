@@ -34,6 +34,9 @@ import { DirectorScenePromptBar } from "@/components/director/DirectorScenePromp
 import { resolveDirectorGroupShortcutAction } from "@/components/director/directorShortcutRules";
 import { DirectorIconRail } from "@/components/director/DirectorIconRail";
 import { DirectorCameraPresetPanel } from "@/components/director/DirectorCameraPresetPanel";
+// ★ Batch 858：源站逐字 —— 左侧资源栏是**模式互斥**的多视图容器，
+//   「添加角色」是其中一个视图（不再是浮层）。
+import { DirectorCharacterPanel } from "@/components/director/DirectorCharacterPanel";
 import { DirectorShortcutsDialog } from "@/components/director/DirectorShortcutsDialog";
 import {
   collectDirectorCanvasMediaInputs,
@@ -310,9 +313,16 @@ export default function DirectorDesk({
   // ＋ 2 列 × 15 枚 104×72 的预设），点「场景」切回场景树。
   // ⟹ clone 此前只有「场景树」一态，且 rail 的「添加机位」是**直接加机位**
   //    （batch 540 的旧读数，本批被推翻）⟹ 本批补上这个视图切换。
+  //
+  // ★ Batch 858（源站逐字）：源站的左侧面板是**模式互斥**的单一容器 ——
+  //   `e?null:(0,i.jsxs)("div",{className:"flex w-[232px] min-w-0 flex-col
+  //      bg-[#171717]",children:["scene"===z?n:null,"character"===z?(…),
+  //      "camera"===z?(…),"panorama"===z?(…),"aspect"===z?(…)]})`
+  //   ⟹ ⟹ `z`（源站）＝ 这里的 `leftPanelView`，取值与源站一一对应。
+  //   ⟹ ⟹ ★ 场景树与「添加角色」**互斥**：切到 character 时场景树**不渲染**。
   const [leftPanelView, setLeftPanelView] = useState<
-    "tree" | "camera-presets"
-  >("tree");
+    "scene" | "character" | "camera" | "panorama" | "aspect"
+  >("scene");
   // Batch 833：源站 rail「添加机位」的 15 枚预设，每枚点了都会**真的新建**
   // 一台机位，且位置/旋转/注视/FOV 是该枚预设的**固定值**
   // （逐枚实测见 raw/source-833-camera-preset-semantics.json）。
@@ -1230,7 +1240,11 @@ export default function DirectorDesk({
           是 `left-0` 抽屉，故这两处覆写留在 min-[899px] 断点里。 */}
       <aside
         ref={treePanelRef}
-        aria-label="场景对象"
+        // ★ Batch 858：左侧面板现在是**多视图**容器 ⟹ ⟹ aria-label 跟着
+        //   当前模式走（场景树时仍是「场景对象」，老门禁 35/36/50/536 照旧）。
+        aria-label={leftPanelView === "character" ? "添加角色" : "场景对象"}
+        // ★ 稳定选择器：模式感知（老门禁用的 aria-label 会随模式变）。
+        data-director-left-panel-view={leftPanelView}
         aria-hidden={
           viewportPanelsCollapsed || treeMobileInactive ? "true" : undefined
         }
@@ -1249,7 +1263,7 @@ export default function DirectorDesk({
             : "max-[899px]:-translate-x-full",
         )}
       >
-        {leftPanelView === "camera-presets" ? (
+        {leftPanelView === "camera" ? (
           <DirectorCameraPresetPanel
             onPick={(preset) => {
               // ★ 源站行为：点了预设 → **真的新建**一台机位（新机位被选中），
@@ -1262,17 +1276,39 @@ export default function DirectorDesk({
               });
             }}
           />
-        ) : (
-          <DirectorObjectTree />
-        )}
+        ) : null}
+        {leftPanelView === "scene" ? <DirectorObjectTree /> : null}
+        {/* ★ Batch 858：源站逐字 —— 左侧面板是**模式互斥**的（`"scene"===z?n:null,
+            "character"===z?(…)`）⟹ ⟹ 切到「添加角色」时**场景树不渲染**。
+            ⟹ ⟹ 场景树与本面板互斥、永远不同时出现 ⟹ ⟹ batch 857 登记的
+            D1（「浮层盖住场景树、场景树看着能点其实点不动」）由此根治。
+            ★ ★ 本组件**必须常驻挂载**（哪怕 active=false）：移动端视口工具条
+            那枚「群众」入口靠 `director:open-crowd-dialog` 事件把按钮矩形
+            递进来 ⟹ ⟹ 监听器在本组件里 ⟹ ⟹ 若本组件被卸载、移动端那枚
+            就成了「点了没反应」的死按钮。
+            ★ `key={leftPanelView}` ⟹ 切模式时**重挂载** ⟹ ⟹ 面板内部的
+            子菜单状态（crowd / geometry）随之清零 ⟹ ⟹ 与源站逐字一致：
+            源站切 `z` 时会 `O(null)` 把子菜单关掉。 */}
+        <DirectorCharacterPanel
+          key={leftPanelView}
+          active={leftPanelView === "character"}
+        />
       </aside>
 
       <DirectorIconRail
         onPanoramaSourceChange={setPanoramaSourceId}
         onOpenShortcuts={() => setShortcutsOpen(true)}
         onOpenCameraPresets={(open = true) =>
-          setLeftPanelView(open ? "camera-presets" : "tree")
+          setLeftPanelView(open ? "camera" : "scene")
         }
+        // ★ Batch 858：源站逐字 —— 「添加角色」把左侧资源栏切成一个**面板
+        //   视图**（与「添加机位」同一机制），与场景树**互斥**。
+        onOpenCharacterPanel={(open = true) =>
+          setLeftPanelView(open ? "character" : "scene")
+        }
+        // ★ Batch 858：源站 rail 按钮 `aria-pressed={z===r.id}` ⟹ ⟹ 选中态
+        //   由左侧面板模式派生 ⟹ ⟹ 这里把模式传下去，rail 不再自带第二份真相。
+        panelView={leftPanelView}
         onOpenTutorial={() => {
           // Batch 831：源站的「使用教程」打开 5 步引导（源码 cC 组件）；
           // clone 只有第 1 步（batch 552/553）⟹ 这里打开 clone 已有的引导气泡。

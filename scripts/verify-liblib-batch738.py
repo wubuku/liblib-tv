@@ -78,16 +78,24 @@ ASPECT_LABELS = ["自适应", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]
 
 def static_menu():
     src = (ROOT / "src/components/director/DirectorIconRail.tsx").read_text(encoding="utf-8")
+    # ★ Batch 858：「添加角色」改成**左侧面板模式**（源站逐字）⟹ ⟹ 几何项
+    #   表与 crowd 输入框都搬到了 DirectorCharacterPanel.tsx ⟹ ⟹ 静态读数
+    #   要**两个文件一起**读。
+    panel_src = (ROOT / "src/components/director/DirectorCharacterPanel.tsx").read_text(
+        encoding="utf-8")
     lines = src.split("\n")
-    geo_ids = re.findall(r'\{ id: "([a-z0-9-]+)", label: "[^"]+", icon: \w+ \}', src)
-    crowd_keys = re.findall(r'data-director-crowd-input=\{(\w+)\}', src)
+    geo_ids = re.findall(r'\{ id: "([a-z0-9-]+)", label: "[^"]+", icon: \w+ \}',
+                         panel_src)
+    crowd_keys = re.findall(r'data-director-crowd-input="([a-z]+)"', panel_src)
     z_line = None
     for n, line in enumerate(lines, start=1):
         if "RAIL_FLYOUT_Z = " in line and z_line is None:
             z_line = n
     return {"geometryOptionIds": [g for g in geo_ids if g in GEOMETRY_IDS],
             "crowdInputKeys": crowd_keys, "railFlyoutZLine": z_line,
-            "geometrySubmenuZClass": "z-50" if 'z-50 w-[204px]' in src else None}
+            # ★ Batch 858：几何子菜单**就地展开** ⟹ ⟹ 它不再有 z 类名
+            #   （也不再是 absolute 浮层）⟹ ⟹ 这里改成断言「**没有** z 类」。
+            "geometrySubmenuZClass": "z-50" if 'z-50 w-[204px]' in panel_src else None}
 
 
 def menu_state(page):
@@ -286,9 +294,11 @@ def main() -> int:
         print(f"  {k}: {v}")
 
     checks = [
-        ("C1 群众弹窗 portal + z-160，1 写点 → 5 枚（3 number + 2 button）",
+        # ★ Batch 858 迁移：源站逐字 `fixed z-[1800]` ⟹ ⟹ clone 此前写死的
+        #   z-160 是 clone 自己定的 ⟹ ⟹ 改成源站的 1800（源站实测 z=1800）。
+        ("C1 群众弹窗 portal + z-1800，1 写点 → 5 枚（3 number + 2 button）",
          summary["crowdInputs"] == 3 and summary["crowdButtons"] == 2
-         and summary["crowdTotal"] == 5 and summary["crowdZIndex"] == "160"
+         and summary["crowdTotal"] == 5 and summary["crowdZIndex"] == "1800"
          and summary["crowdPosition"] == "fixed" and summary["crowdInRoot"] is False,
          f"inputs={summary['crowdInputs']} buttons={summary['crowdButtons']} "
          f"z={summary['crowdZIndex']} pos={summary['crowdPosition']} inRoot={summary['crowdInRoot']}"),
@@ -302,21 +312,35 @@ def main() -> int:
         ("C4 1100×700：8/8 同上（625「埋掉 6 枚」不复现）",
          summary["geometryAllVisibleSmall"] is True and summary["geometryCountSmall"] == 8,
          f"small {summary['geometryCountSmall']} 枚 allVisible={summary['geometryAllVisibleSmall']}"),
-        ("C5 子菜单 computed z-index=50 / absolute，父容器是 fixed portal",
-         summary["submenuZIndex"] == "50" and summary["submenuPosition"] == "absolute"
-         and summary["submenuParentFixedPortal"] is True and summary["submenuInRoot"] is False,
+        # ★ Batch 858 迁移：源站逐字 —— 几何模型是**就地展开**在面板里
+        #   （`"geometry"===L?(… "border-white/8 ml-3 border-l pl-1" …)`）
+        #   ⟹ ⟹ 它**不是** absolute 浮层、**不**在 fixed portal 里、
+        #   ⟹ ⟹ 它**在** desk 根内 ⟹ ⟹ z-index 是 auto。
+        ("C5 几何子菜单**就地展开**（源站逐字）：z auto / static / 非 fixed portal / 在根内",
+         summary["submenuZIndex"] == "auto" and summary["submenuPosition"] == "static"
+         and summary["submenuParentFixedPortal"] is False and summary["submenuInRoot"] is True,
          f"z={summary['submenuZIndex']} pos={summary['submenuPosition']} "
          f"parentFixed={summary['submenuParentFixedPortal']} inRoot={summary['submenuInRoot']}"),
         ("C6 画幅比例 7 枚（含 9:16）在 1100×700 全在视口内",
          summary["aspectCount"] == 7 and summary["aspectAllInViewport"] is True,
          f"{summary['aspectCount']} 枚 allIn={summary['aspectAllInViewport']}："
          f"{[a['label'] for a in aspect['aspectOptions']]}"),
-        ("C7 根外 button 轨迹 47 → 52 → 55",
-         (summary["outRootFlyout"], summary["outRootCrowd"], summary["outRootGeometry"])
-         == (47, 52, 55),
+        # ★ Batch 858 迁移：旧值 (47, 52, 55) 是**写死的个数**，而它编码的是
+        #   「浮层在根外 + 群众对话框在根外 + 几何子菜单在根外」这个**旧前提**。
+        #   ⟹ ⟹ 改成**结构性**断言：
+        #     · 几何就地展开 ⟹ ⟹ 它**不增加**任何根外控件（+0）
+        #     · 群众对话框是 portal ⟹ ⟹ 它**增加** 5 枚（3 number + 2 button）
+        #   ⟹ ⟹ 断言的是「谁在根外」，而不是「根外恰好几枚」。
+        #   ⚠ 读数口径：`outRootGeometry` 是在**关掉群众对话框之后**量的
+        #   ⟹ ⟹ 它与基线 `outRootFlyout` 相比 ⟹ ⟹ 「几何就地展开 +0 枚根外控件」。
+        ("C7 根外 button：几何就地展开 **+0**、群众对话框 **+5**（portal）",
+         summary["outRootGeometry"] == summary["outRootFlyout"]
+         and summary["outRootCrowd"] - summary["outRootFlyout"] == 5,
          f"{summary['outRootFlyout']} → {summary['outRootCrowd']} → {summary['outRootGeometry']}"),
-        ("C8 两个子菜单的控件都不在 workspace 根内",
-         summary["crowdInRoot"] is False and summary["submenuInRoot"] is False,
+        # ★ Batch 858 迁移：源站逐字 —— 群众对话框**是** portal（在根外），
+        #   几何子菜单**就地展开**（在根内）。
+        ("C8 群众对话框在 workspace 根**外**、几何子菜单在根**内**（就地展开）",
+         summary["crowdInRoot"] is False and summary["submenuInRoot"] is True,
          f"crowd inRoot={summary['crowdInRoot']} / geometry inRoot={summary['submenuInRoot']}"),
         ("C9 11 枚连线删除手柄 8×8 且 pe=none，中心命中自己 0/11",
          summary["handles"] == 11 and summary["handlesAllPeNone"] is True

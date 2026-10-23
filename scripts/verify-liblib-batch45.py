@@ -181,7 +181,7 @@ def run_crowd_group_loop(page: Page):
     #   ⟹ ⟹ 对话框在**浮层的右侧**，且宽度是 **220px**
     #   （源站实测：220×204 @(280,388) ⟹ 见 raw/source-857-crowd.json 的「④对话框」）。
     dialog_box = box(dialog)
-    flyout_box = box(page.locator("[data-director-character-flyout]"))
+    flyout_box = box(page.locator("[data-director-character-panel]"))
     assert flyout_box["x"] + flyout_box["width"] <= dialog_box["x"]
     assert dialog_box["width"] == 220
     page.screenshot(path=str(CROWD_PANEL_SCREENSHOT))
@@ -200,7 +200,7 @@ def run_crowd_group_loop(page: Page):
     #   ⟹ ⟹ 所以这里点「场景」，**两边的语义一致**。
     page.locator("[data-director-rail-entry='scene']").click()
     page.wait_for_timeout(300)
-    assert page.locator("[data-director-character-flyout]").count() == 0
+    assert page.locator("[data-director-character-panel]").count() == 0
     state = director_state(page)
     assert len(state["objects"]) == initial_object_count + 6
     assert len(state["groups"]) == initial_group_count + 1
@@ -545,8 +545,14 @@ def verify_static_contract():
         ROOT / "src/components/director/DirectorViewport.tsx"
     ).read_text()
     # ★★★ Batch 857：群众阵列的对话框在 **rail** 里 ⟹ ⟹ 静态契约也跟着搬。
+    # ★★★ Batch 858：「添加角色」改成**左侧面板模式**（源站逐字）⟹ ⟹ 群众
+    #   对话框连同它一起搬到了 DirectorCharacterPanel.tsx ⟹ ⟹ 静态契约要跟着
+    #   搬（**断言的内容一字未改**：还是那四个标记 ＋ addCrowdArray）。
     rail_source = (
         ROOT / "src/components/director/DirectorIconRail.tsx"
+    ).read_text()
+    character_panel_source = (
+        ROOT / "src/components/director/DirectorCharacterPanel.tsx"
     ).read_text()
     timeline_source = (
         ROOT / "src/components/director/DirectorTimeline.tsx"
@@ -572,7 +578,7 @@ def verify_static_contract():
             ],
         ),
         (
-            rail_source,
+            character_panel_source,
             [
                 "data-director-crowd-dialog",
                 "data-director-crowd-input",

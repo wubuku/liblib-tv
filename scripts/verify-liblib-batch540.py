@@ -113,7 +113,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
 
     # 无 flyout / modal（机位预设面板**不是**浮层 ⟹ 它在左侧资源栏里）
-    check("camera:no-flyout", page.locator("[data-director-character-flyout]").count() == 0)
+    check("camera:no-flyout", page.locator("[data-director-character-panel]").count() == 0)
     check("camera:no-modal", page.locator("[data-director-ai-import-modal]").count() == 0)
 
     # ★ 点 rail「场景」→ 切回场景树（否则用户会卡在预设面板里）

@@ -244,7 +244,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # the source keeps the flyout open behind the dialog
     check(
         "crowd:flyout-stays-open",
-        page.locator("[data-director-character-flyout]").is_visible(),
+        page.locator("[data-director-character-panel]").is_visible(),
     )
     check(
         "crowd:title",
@@ -345,7 +345,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
         detail=geo_options,
     )
     # the submenu hangs BELOW the flyout row, not to its right
-    flyout_box = page.locator("[data-director-character-flyout]").bounding_box()
+    flyout_box = page.locator("[data-director-character-panel]").bounding_box()
     check(
         "geometry:below-flyout",
         sub_box is not None

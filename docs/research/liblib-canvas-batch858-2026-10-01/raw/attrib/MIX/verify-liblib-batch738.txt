@@ -1,0 +1,85 @@
+?? src/components/director/DirectorCharacterPanel.tsx
+=== 静态 ===
+  源码几何项 8 个: ['geometry-upload', 'cube', 'sphere', 'cylinder', 'torus', 'cone', 'pyramid', 'empty-object']
+  群众输入键: ['rows', 'columns', 'spacing']；RAIL_FLYOUT_Z 在 :153；子菜单 z 类: None
+
+=== 1440×1000 ===
+  flyout 开着：根外 button 49 枚；几何子菜单在不在=False；群众对话框在不在=False
+
+--- 群众 (3x3)（clicked）---
+  对话框: {"zIndex": "160", "position": "fixed", "inRoot": false, "inFixedPortal": true, "inputs": [{"key": "rows", "type": "number", "w": 93, "h": 28, "x": 294, "y": 497}, {"key": "columns", "type": "number", "w": 93, "h": 28, "x": 395, "y": 497}, {"key": "spacing", "type": "number", "w": 194, "h": 28, "x": 294, "y": 558}], "buttons": [{"label": "取消", "w": 48, "h": 28, "x": 384, "y": 602}, {"label": "添加", "w": 48, "h": 28, "x": 440, "y": 602}]}
+  根外 button: 49 → 54
+
+--- 几何模型子菜单（clicked）---
+  盒子: {"w": 204, "h": 270, "x": 52, "y": 508, "zIndex": "50", "position": "absolute", "parentIsFixedPortal": true, "inRoot": false}
+    geometry-upload 190x32 在视口内=True opacity=1 pe=auto focus()=True
+    cube           190x32 在视口内=True opacity=1 pe=auto focus()=True
+    sphere         190x32 在视口内=True opacity=1 pe=auto focus()=True
+    cylinder       190x32 在视口内=True opacity=1 pe=auto focus()=True
+    torus          190x32 在视口内=True opacity=1 pe=auto focus()=True
+    cone           190x32 在视口内=True opacity=1 pe=auto focus()=True
+    pyramid        190x32 在视口内=True opacity=1 pe=auto focus()=True
+    empty-object   190x32 在视口内=True opacity=1 pe=auto focus()=True
+  根外 button: 54 → 57
+
+  连线删除手柄 11 枚：pe 全为 none = True；中心命中自己 = 0/11
+
+=== 1100×700 ===
+  盒子: {"w": 204, "h": 270, "x": 52, "y": 422, "zIndex": "50", "position": "absolute", "parentIsFixedPortal": true, "inRoot": false}
+    geometry-upload 190x32 在视口内=True focus()=True
+    cube           190x32 在视口内=True focus()=True
+    sphere         190x32 在视口内=True focus()=True
+    cylinder       190x32 在视口内=True focus()=True
+    torus          190x32 在视口内=True focus()=True
+    cone           190x32 在视口内=True focus()=True
+    pyramid        190x32 在视口内=True focus()=True
+    empty-object   190x32 在视口内=True focus()=True
+
+  画幅比例 7 枚：
+    '自适应'    103x72 @(57,261) 在视口内=True
+    '21:9'   103x72 @(168,261) 在视口内=True
+    '16:9'   103x72 @(57,341) 在视口内=True
+    '4:3'    103x72 @(168,341) 在视口内=True
+    '1:1'    103x72 @(57,421) 在视口内=True
+    '3:4'    103x72 @(168,421) 在视口内=True
+    '9:16'   103x72 @(57,501) 在视口内=True
+
+=== 汇总 ===
+  staticGeometryItems: 8
+  crowdInputKeys: 3
+  crowdInputs: 3
+  crowdButtons: 2
+  crowdTotal: 5
+  crowdZIndex: 160
+  crowdPosition: fixed
+  crowdInRoot: False
+  geometryCountLarge: 8
+  geometryCountSmall: 8
+  geometryAllVisibleLarge: True
+  geometryAllVisibleSmall: True
+  submenuZIndex: 50
+  submenuPosition: absolute
+  submenuParentFixedPortal: True
+  submenuInRoot: False
+  outRootFlyout: 49
+  outRootCrowd: 54
+  outRootGeometry: 57
+  aspectCount: 7
+  aspectAllInViewport: True
+  handles: 11
+  handlesAllPeNone: True
+  handlesAllTiny: True
+  handlesSelfHit: 0
+
+=== 判据 ===
+  [FAIL] C1 群众弹窗 portal + z-1800，1 写点 → 5 枚（3 number + 2 button）  ⟵ inputs=3 buttons=2 z=160 pos=fixed inRoot=False
+  [PASS] C2 几何子菜单 8 枚，源码 8 项且 pyramid/empty-object 在其中  ⟵ 静态 8 项 / 运行时 8 枚：['geometry-upload', 'cube', 'sphere', 'cylinder', 'torus', 'cone', 'pyramid', 'empty-object']
+  [PASS] C3 1440×1000：8/8 在视口内 + opacity 1 + pe auto + focus() 成功  ⟵ True
+  [PASS] C4 1100×700：8/8 同上（625「埋掉 6 枚」不复现）  ⟵ small 8 枚 allVisible=True
+  [FAIL] C5 几何子菜单**就地展开**（源站逐字）：z auto / static / 非 fixed portal / 在根内  ⟵ z=50 pos=absolute parentFixed=True inRoot=False
+  [PASS] C6 画幅比例 7 枚（含 9:16）在 1100×700 全在视口内  ⟵ 7 枚 allIn=True：['自适应', '21:9', '16:9', '4:3', '1:1', '3:4', '9:16']
+  [FAIL] C7 根外 button：几何就地展开 **+0**、群众对话框 **+5**（portal）  ⟵ 49 → 54 → 57
+  [FAIL] C8 群众对话框在 workspace 根**外**、几何子菜单在根**内**（就地展开）  ⟵ crowd inRoot=False / geometry inRoot=False
+  [PASS] C9 11 枚连线删除手柄 8×8 且 pe=none，中心命中自己 0/11  ⟵ 11 枚 8x8=True peNone=True selfHit=0
+
+5/9 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch738-2026-10-01/runtime-audit.json

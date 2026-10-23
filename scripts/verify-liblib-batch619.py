@@ -87,8 +87,12 @@ STATES: list[tuple[str, str, str | None, str | None, bool]] = [
      "[data-director-panorama-flyout]", True),
     ("1920 rail aspect flyout", "wide", "[data-director-rail-entry='aspect-ratio']",
      "[data-director-aspect-flyout]", True),
-    ("1920 rail add-character flyout", "wide", "[data-director-rail-entry='add-character']",
-     "[data-director-character-flyout]", True),
+    # ★ Batch 858：「添加角色」不再是**浮层**，而是源站式**左侧面板模式**
+    #   （源站逐字 `"scene"===z?n:null,"character"===z?(…)`）⟹ ⟹ 它**不遮住**
+    #   任何控件 ⟹ ⟹ 场景树是**被替换**、不是**被盖住** ⟹ ⟹ 这条状态从
+    #   「浮层必须遮住 ≥1 枚控件」改成「面板不遮任何控件」。
+    ("1920 rail add-character panel", "wide", "[data-director-rail-entry='add-character']",
+     "[data-director-character-panel]", False),
     ("1920 ai-import modal", "wide", "[data-director-rail-entry='ai-import']",
      "[data-director-ai-import-modal]", True),
     ("1920 track row context menu", "wide", "@track-rctx@", None, False),

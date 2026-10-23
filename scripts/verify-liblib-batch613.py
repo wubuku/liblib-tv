@@ -416,9 +416,9 @@ def run(page: Page) -> dict[str, Any]:
     char_entry = r["entries"]["添加角色"]
     page.locator('[data-director-icon-rail] [aria-label="添加角色"]').click()
     page.wait_for_timeout(500)
-    v.check("flyout:opens", page.locator("[data-director-character-flyout]").count() == 1)
-    if page.locator("[data-director-character-flyout]").count() == 1:
-        fb = page.locator("[data-director-character-flyout]").bounding_box()
+    v.check("flyout:opens", page.locator("[data-director-character-panel]").count() == 1)
+    if page.locator("[data-director-character-panel]").count() == 1:
+        fb = page.locator("[data-director-character-panel]").bounding_box()
         # `absolute left-[calc(100%+8px)]` off the entry wrapper
         want_x = char_entry[0] + char_entry[2] + 8
         v.check("flyout:8px-right-of-its-entry",
@@ -429,7 +429,7 @@ def run(page: Page) -> dict[str, Any]:
     v.check("flyout:panorama-opens",
             page.locator("[data-director-panorama-flyout]").count() == 1)
     v.check("flyout:switching-closes-the-previous-one",
-            page.locator("[data-director-character-flyout]").count() == 0)
+            page.locator("[data-director-character-panel]").count() == 0)
     pan = r["entries"]["全景图"]
     if page.locator("[data-director-panorama-flyout]").count() == 1:
         pb = page.locator("[data-director-panorama-flyout]").bounding_box()

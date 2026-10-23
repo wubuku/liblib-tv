@@ -82,7 +82,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     rail = page.locator("[data-director-icon-rail]")
     rail.locator("[data-director-rail-entry='add-character']").click()
     page.wait_for_timeout(200)
-    flyout = page.locator("[data-director-character-flyout]")
+    flyout = page.locator("[data-director-character-panel]")
     check("flyout:opens", flyout.is_visible())
 
     # 本地上传 → 文件选择（隐藏 input 复用本地模型库导入管线）

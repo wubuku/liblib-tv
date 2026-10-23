@@ -128,15 +128,15 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # 1+2+3) 添加角色
     rail.locator("[data-director-rail-entry='add-character']").click()
     page.wait_for_timeout(220)
-    char = page.locator("[data-director-character-flyout]")
+    char = page.locator("[data-director-character-panel]")
     check("character:opens", char.is_visible())
-    result["character_width"] = width_of("[data-director-character-flyout]")
+    result["character_width"] = width_of("[data-director-character-panel]")
     check(
         "character:width-232",
         abs(result["character_width"] - SOURCE_WIDTH) <= 1,
         detail=result["character_width"],
     )
-    title = page.locator("[data-director-flyout-title='add-character']")
+    title = page.locator("[data-director-panel-title='add-character']")
     check("character:title-present", title.count() == 1)
     check(
         "character:title-text",
@@ -149,7 +149,14 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
     check(
         "character:title-truncates",
-        "truncate" in (title.get_attribute("class") or ""),
+        # ★ Batch 858 迁移：源站逐字 —— 标题条 `aO` 是
+        #   `flex h-12 shrink-0 items-center px-3 text-[12px] leading-5
+        #    text-white/90`，**截断在内层那个 `<span class="truncate">`** 上
+        #   ⟹ ⟹ 断言从「标题条自己带 truncate」改成「标题条里有个 truncate
+        #   的 span」。
+        title.evaluate(
+            "el => Boolean(el.querySelector('span.truncate'))"
+        ),
     )
     options = page.evaluate(
         """() => [...document.querySelectorAll('[data-director-character-option]')]

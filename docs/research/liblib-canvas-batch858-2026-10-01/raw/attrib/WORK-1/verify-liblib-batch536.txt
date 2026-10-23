@@ -1,0 +1,1 @@
+Batch 536 verification passed: 32 checks, 0 diagnostics. six-entry icon rail (图层/人物/机位/帧/文件夹/导入) with active-state switching and non-navigating unsampled entries recorded in runtime-audit.json.

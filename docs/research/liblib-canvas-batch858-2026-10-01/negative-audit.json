@@ -1,0 +1,158 @@
+{
+ "batch": 858,
+ "title": "阴性对照：改坏源码 ⟹ 新门禁必须对应翻红",
+ "mutations": [
+  {
+   "name": "N1-面板与场景树不再互斥",
+   "file": "DirectorDesk.tsx",
+   "bytesBefore": 73411,
+   "bytesAfter": 73444,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:scene-tree-is-gone-mutually-exclusive",
+    "panel:row-ys-match-the-source-measurement",
+    "crowd:button-is-at-the-source-measured-rect",
+    "geometry:expands-in-place-at-the-source-measured-rect",
+    "crowd:dialog-is-at-the-source-measured-rect",
+    "crowd:dialog-internal-segments-match-the-source"
+   ],
+   "expectedToFail": [
+    "panel:scene-tree-is-gone-mutually-exclusive"
+   ],
+   "hit": [
+    "panel:scene-tree-is-gone-mutually-exclusive"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N2-行高被改（h-8→h-10）",
+   "file": "DirectorCharacterPanel.tsx",
+   "bytesBefore": 23374,
+   "bytesAfter": 23375,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:row-class-is-the-source-eu-class",
+    "panel:row-geometry-32px-13px-at-x-56-w-216",
+    "panel:row-ys-match-the-source-measurement",
+    "crowd:button-is-at-the-source-measured-rect",
+    "geometry:expands-in-place-at-the-source-measured-rect",
+    "geometry:eight-items-199x32",
+    "crowd:dialog-is-at-the-source-measured-rect",
+    "crowd:dialog-internal-segments-match-the-source"
+   ],
+   "expectedToFail": [
+    "panel:row-geometry-32px-13px-at-x-56-w-216",
+    "panel:row-ys-match-the-source-measurement",
+    "crowd:button-is-at-the-source-measured-rect"
+   ],
+   "hit": [
+    "panel:row-geometry-32px-13px-at-x-56-w-216",
+    "panel:row-ys-match-the-source-measurement",
+    "crowd:button-is-at-the-source-measured-rect"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N3-去掉行高补偿（对话框矮 1px）",
+   "file": "DirectorCharacterPanel.tsx",
+   "bytesBefore": 23374,
+   "bytesAfter": 23329,
+   "gateExit": 1,
+   "failedChecks": [
+    "crowd:dialog-is-at-the-source-measured-rect",
+    "crowd:dialog-internal-segments-match-the-source",
+    "crowd:dialog-label-line-height-matches-the-source"
+   ],
+   "expectedToFail": [
+    "crowd:dialog-is-at-the-source-measured-rect",
+    "crowd:dialog-internal-segments-match-the-source"
+   ],
+   "hit": [
+    "crowd:dialog-is-at-the-source-measured-rect",
+    "crowd:dialog-internal-segments-match-the-source"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N4-crowd 行去掉 aria-haspopup",
+   "file": "DirectorCharacterPanel.tsx",
+   "bytesBefore": 23374,
+   "bytesAfter": 23337,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:crowd-row-has-aria-haspopup-dialog"
+   ],
+   "expectedToFail": [
+    "panel:crowd-row-has-aria-haspopup-dialog"
+   ],
+   "hit": [
+    "panel:crowd-row-has-aria-haspopup-dialog"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N5-几何改成绝对定位浮层",
+   "file": "DirectorCharacterPanel.tsx",
+   "bytesBefore": 23374,
+   "bytesAfter": 23387,
+   "gateExit": 1,
+   "failedChecks": [
+    "geometry:expands-in-place-at-the-source-measured-rect",
+    "geometry:eight-items-199x32"
+   ],
+   "expectedToFail": [
+    "geometry:expands-in-place-at-the-source-measured-rect",
+    "geometry:is-inside-the-panel-not-a-portal"
+   ],
+   "hit": [
+    "geometry:expands-in-place-at-the-source-measured-rect"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N6-rail 选中态与面板模式脱钩",
+   "file": "DirectorIconRail.tsx",
+   "bytesBefore": 29715,
+   "bytesAfter": 29695,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:rail-add-character-is-pressed"
+   ],
+   "expectedToFail": [
+    "panel:rail-add-character-is-pressed"
+   ],
+   "hit": [
+    "panel:rail-add-character-is-pressed"
+   ],
+   "ok": true
+  },
+  {
+   "name": "N7-几何与 crowd 不再互斥",
+   "file": "DirectorCharacterPanel.tsx",
+   "bytesBefore": 23374,
+   "bytesAfter": 23371,
+   "gateExit": 1,
+   "failedChecks": [
+    "geometry:expands-in-place-at-the-source-measured-rect",
+    "geometry:is-inside-the-panel-not-a-portal",
+    "geometry:eight-items-199x32",
+    "crowd:dialog-is-at-the-source-measured-rect",
+    "crowd:dialog-z-1800-and-bg-source",
+    "crowd:dialog-internal-segments-match-the-source",
+    "crowd:count-reads-9-by-default",
+    "crowd:input-ranges-match-the-source",
+    "probe:no-exception"
+   ],
+   "expectedToFail": [
+    "geometry:expands-in-place-at-the-source-measured-rect",
+    "geometry:eight-items-199x32"
+   ],
+   "hit": [
+    "geometry:expands-in-place-at-the-source-measured-rect",
+    "geometry:eight-items-199x32"
+   ],
+   "ok": true
+  }
+ ],
+ "restored": true
+}

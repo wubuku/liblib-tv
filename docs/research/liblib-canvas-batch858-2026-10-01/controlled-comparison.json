@@ -1,0 +1,589 @@
+{
+ "batch": 858,
+ "title": "受控对照：源码换回 HEAD ⟹ 新门禁必须翻红（证明有牙）",
+ "gates": [
+  "scripts/verify-liblib-batch858.py",
+  "scripts/verify-liblib-batch536.py",
+  "scripts/verify-liblib-batch589.py",
+  "scripts/verify-liblib-batch613.py",
+  "scripts/verify-liblib-batch625.py",
+  "scripts/verify-liblib-batch45.py",
+  "scripts/verify-liblib-batch857.py",
+  "scripts/verify-liblib-batch738.py"
+ ],
+ "states": [
+  "HEAD-1",
+  "HEAD-2",
+  "WORK-1",
+  "WORK-2",
+  "MIX"
+ ],
+ "restored": true,
+ "sha": {
+  "base": {
+   "src/components/director/DirectorCharacterPanel.tsx": "eb0dfbb3e953ed2b8ec8d06dd8a47290a07e74862426ba3a972e04a676146de0",
+   "src/components/director/DirectorIconRail.tsx": "9ac8240a6ac1471dd74b5dabe97df91b7ebec01d5594f88f52071077d5bf905c",
+   "src/components/director/DirectorDesk.tsx": "fbbf0abfa876dbfce1f268a1fa5090a4879ed66f4555437df1259b8ab8739c33"
+  },
+  "after": {
+   "src/components/director/DirectorCharacterPanel.tsx": "eb0dfbb3e953ed2b8ec8d06dd8a47290a07e74862426ba3a972e04a676146de0",
+   "src/components/director/DirectorIconRail.tsx": "9ac8240a6ac1471dd74b5dabe97df91b7ebec01d5594f88f52071077d5bf905c",
+   "src/components/director/DirectorDesk.tsx": "fbbf0abfa876dbfce1f268a1fa5090a4879ed66f4555437df1259b8ab8739c33"
+  }
+ },
+ "work": {
+  "once": {
+   "scripts/verify-liblib-batch858.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 33.6,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch858.txt"
+   },
+   "scripts/verify-liblib-batch536.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 3.9,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch536.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 3.6,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch589.txt"
+   },
+   "scripts/verify-liblib-batch613.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 9.0,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch613.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 76.7,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch45.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 15.1,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch45.txt"
+   },
+   "scripts/verify-liblib-batch857.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 0.1,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch857.txt"
+   },
+   "scripts/verify-liblib-batch738.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.9,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch738.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 31.3,
+   "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-1-858-2nd/verify-liblib-batch858.txt"
+  }
+ },
+ "work2": {
+  "once": {
+   "scripts/verify-liblib-batch858.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 31.2,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch858.txt"
+   },
+   "scripts/verify-liblib-batch536.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 3.9,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch536.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 4.1,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch589.txt"
+   },
+   "scripts/verify-liblib-batch613.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 9.7,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch613.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 78.1,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch45.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 14.6,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch45.txt"
+   },
+   "scripts/verify-liblib-batch857.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 0.1,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch857.txt"
+   },
+   "scripts/verify-liblib-batch738.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.2,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch738.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 31.2,
+   "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/WORK-2-858-2nd/verify-liblib-batch858.txt"
+  }
+ },
+ "head": {
+  "once": {
+   "scripts/verify-liblib-batch858.py": {
+    "rc": 1,
+    "failed": [],
+    "seconds": 0.2,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch858.txt"
+   },
+   "scripts/verify-liblib-batch536.py": {
+    "rc": 1,
+    "failed": [
+     "panel:opens"
+    ],
+    "seconds": 6.9,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch536.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 1,
+    "failed": [
+     "character:opens"
+    ],
+    "seconds": 3.3,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch589.txt"
+   },
+   "scripts/verify-liblib-batch613.py": {
+    "rc": 1,
+    "failed": [
+     "flyout:opens"
+    ],
+    "seconds": 8.9,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch613.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 1,
+    "failed": [
+     "add-character-is-a-side-panel-not-a-portal-flyout",
+     "geometry-submenu-expands-in-place-not-in-a-portal"
+    ],
+    "seconds": 75.4,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch45.py": {
+    "rc": 1,
+    "failed": [],
+    "seconds": 0.2,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch45.txt"
+   },
+   "scripts/verify-liblib-batch857.py": {
+    "rc": 1,
+    "failed": [],
+    "seconds": 0.0,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch857.txt"
+   },
+   "scripts/verify-liblib-batch738.py": {
+    "rc": 1,
+    "failed": [],
+    "seconds": 0.1,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch738.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [],
+   "seconds": 0.1,
+   "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-1-858-2nd/verify-liblib-batch858.txt"
+  }
+ },
+ "head2": {
+  "once": {
+   "scripts/verify-liblib-batch858.py": {
+    "rc": 1,
+    "failed": [],
+    "seconds": 0.1,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch858.txt"
+   },
+   "scripts/verify-liblib-batch536.py": {
+    "rc": 1,
+    "failed": [
+     "panel:opens"
+    ],
+    "seconds": 2.8,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch536.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 1,
+    "failed": [
+     "character:opens"
+    ],
+    "seconds": 3.2,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch589.txt"
+   },
+   "scripts/verify-liblib-batch613.py": {
+    "rc": 1,
+    "failed": [
+     "flyout:opens"
+    ],
+    "seconds": 8.9,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch613.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 1,
+    "failed": [
+     "add-character-is-a-side-panel-not-a-portal-flyout",
+     "geometry-submenu-expands-in-place-not-in-a-portal"
+    ],
+    "seconds": 73.5,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch45.py": {
+    "rc": 1,
+    "failed": [],
+    "seconds": 0.2,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch45.txt"
+   },
+   "scripts/verify-liblib-batch857.py": {
+    "rc": 1,
+    "failed": [],
+    "seconds": 0.0,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch857.txt"
+   },
+   "scripts/verify-liblib-batch738.py": {
+    "rc": 1,
+    "failed": [],
+    "seconds": 0.1,
+    "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch738.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [],
+   "seconds": 0.1,
+   "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/HEAD-2-858-2nd/verify-liblib-batch858.txt"
+  }
+ },
+ "stableAcrossTwoRuns": true,
+ "stabilityNote": "只有新门禁 858 跑了两遍（决定性测量）；其余门禁读的是失败集合的差异",
+ "newGateHasTeeth": true,
+ "newGateFailedOnHEAD": [],
+ "newGateFailedOnWORK": [],
+ "migratedGates": {
+  "scripts/verify-liblib-batch536.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [
+    "panel:opens"
+   ],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch589.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [
+    "character:opens"
+   ],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch613.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [
+    "flyout:opens"
+   ],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch625.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [
+    "add-character-is-a-side-panel-not-a-portal-flyout",
+    "geometry-submenu-expands-in-place-not-in-a-portal"
+   ],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch45.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch857.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch738.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [],
+   "workFailed": []
+  }
+ },
+ "diffs": {
+  "scripts/verify-liblib-batch536.py": {
+   "onlyOnHEAD": [
+    "panel:opens"
+   ],
+   "onlyOnWORK": []
+  },
+  "scripts/verify-liblib-batch589.py": {
+   "onlyOnHEAD": [
+    "character:opens"
+   ],
+   "onlyOnWORK": []
+  },
+  "scripts/verify-liblib-batch613.py": {
+   "onlyOnHEAD": [
+    "flyout:opens"
+   ],
+   "onlyOnWORK": []
+  },
+  "scripts/verify-liblib-batch625.py": {
+   "onlyOnHEAD": [
+    "add-character-is-a-side-panel-not-a-portal-flyout",
+    "geometry-submenu-expands-in-place-not-in-a-portal"
+   ],
+   "onlyOnWORK": []
+  }
+ },
+ "diffsNote": "HEAD 独有的红条 = 「本批整改掉的旧行为」；WORK 独有的红条 = 「本批引入的新问题」（必须为空）",
+ "mixNote": "MIX 半回退态：只把 DirectorIconRail.tsx ＋ DirectorDesk.tsx 换回 HEAD，保留本批新建的 DirectorCharacterPanel.tsx ⟹ ⟹ 门禁能读到源文件 ⟹ ⟹ 翻红必须发生在**判据**上，而不是「文件不存在」这种假牙",
+ "mix": {
+  "rc": {
+   "scripts/verify-liblib-batch858.py": 1,
+   "scripts/verify-liblib-batch536.py": 1,
+   "scripts/verify-liblib-batch589.py": 1,
+   "scripts/verify-liblib-batch613.py": 1,
+   "scripts/verify-liblib-batch625.py": 1,
+   "scripts/verify-liblib-batch45.py": 1,
+   "scripts/verify-liblib-batch857.py": 0,
+   "scripts/verify-liblib-batch738.py": 1
+  },
+  "failed": {
+   "scripts/verify-liblib-batch858.py": [
+    "source:rail-no-longer-owns-a-character-flyout",
+    "source:desk-switches-left-panel-by-mode",
+    "initial:left-panel-is-scene-and-tree-is-there",
+    "panel:opens",
+    "panel:width-232-at-x-48",
+    "panel:title-bar-h-48-12px-and-text",
+    "panel:scene-tree-is-gone-mutually-exclusive",
+    "panel:rail-add-character-is-pressed",
+    "panel:row-geometry-32px-13px-at-x-56-w-216",
+    "panel:row-ys-match-the-source-measurement",
+    "panel:crowd-row-has-aria-haspopup-dialog",
+    "crowd:button-is-at-the-source-measured-rect",
+    "geometry:expands-in-place-at-the-source-measured-rect",
+    "geometry:is-inside-the-panel-not-a-portal",
+    "geometry:eight-items-199x32",
+    "crowd:dialog-is-at-the-source-measured-rect",
+    "crowd:dialog-z-1800-and-bg-source",
+    "crowd:dialog-internal-segments-match-the-source",
+    "crowd:dialog-label-line-height-matches-the-source",
+    "crowd:geometry-closed-because-source-shares-one-state",
+    "scene:panel-closes-and-the-tree-comes-back"
+   ],
+   "scripts/verify-liblib-batch536.py": [
+    "panel:opens"
+   ],
+   "scripts/verify-liblib-batch589.py": [
+    "character:opens"
+   ],
+   "scripts/verify-liblib-batch613.py": [
+    "flyout:opens"
+   ],
+   "scripts/verify-liblib-batch625.py": [
+    "add-character-is-a-side-panel-not-a-portal-flyout",
+    "geometry-submenu-expands-in-place-not-in-a-portal"
+   ],
+   "scripts/verify-liblib-batch45.py": [
+    "CRASH: playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded."
+   ],
+   "scripts/verify-liblib-batch857.py": [],
+   "scripts/verify-liblib-batch738.py": [
+    "C1 群众弹窗 portal + z-1800，1 写点 → 5 枚（3 number + 2 button）",
+    "C5 几何子菜单**就地展开**（源站逐字）：z auto / static / 非 fixed portal / 在根内",
+    "C7 根外 button：几何就地展开 **+0**、群众对话框 **+5**（portal）",
+    "C8 群众对话框在 workspace 根**外**、几何子菜单在根**内**（就地展开）"
+   ]
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:rail-no-longer-owns-a-character-flyout",
+    "source:desk-switches-left-panel-by-mode",
+    "initial:left-panel-is-scene-and-tree-is-there",
+    "panel:opens",
+    "panel:width-232-at-x-48",
+    "panel:title-bar-h-48-12px-and-text",
+    "panel:scene-tree-is-gone-mutually-exclusive",
+    "panel:rail-add-character-is-pressed",
+    "panel:row-geometry-32px-13px-at-x-56-w-216",
+    "panel:row-ys-match-the-source-measurement",
+    "panel:crowd-row-has-aria-haspopup-dialog",
+    "crowd:button-is-at-the-source-measured-rect",
+    "geometry:expands-in-place-at-the-source-measured-rect",
+    "geometry:is-inside-the-panel-not-a-portal",
+    "geometry:eight-items-199x32",
+    "crowd:dialog-is-at-the-source-measured-rect",
+    "crowd:dialog-z-1800-and-bg-source",
+    "crowd:dialog-internal-segments-match-the-source",
+    "crowd:dialog-label-line-height-matches-the-source",
+    "crowd:geometry-closed-because-source-shares-one-state",
+    "scene:panel-closes-and-the-tree-comes-back"
+   ],
+   "seconds": 31.3,
+   "log": "docs/research/liblib-canvas-batch858-2026-10-01/raw/attrib/MIX-858-2nd/verify-liblib-batch858.txt"
+  },
+  "stable": true
+ },
+ "mixAllRed": false,
+ "mixCrashOnly": [
+  "scripts/verify-liblib-batch45.py"
+ ],
+ "mixNote2": "mixAllRed：MIX 态 8 条门禁全红 ⟹ ⟹ 迁移后的判据确实有牙；mixCrashOnly 里的门禁仍只崩在读文件上 ⟹ ⟹ 它的判据层还没被压到（需另行说明）",
+ "failureSets": {
+  "HEAD-1": {
+   "scripts/verify-liblib-batch858.py": [
+    "CRASH: FileNotFoundError: [Errno 2] No such file or directory: '/Users/yangjiefeng/Documents/wubuku/liblib-tv/src/components/director/DirectorChar"
+   ],
+   "scripts/verify-liblib-batch536.py": [
+    "panel:opens"
+   ],
+   "scripts/verify-liblib-batch589.py": [
+    "character:opens"
+   ],
+   "scripts/verify-liblib-batch613.py": [
+    "flyout:opens"
+   ],
+   "scripts/verify-liblib-batch625.py": [
+    "add-character-is-a-side-panel-not-a-portal-flyout",
+    "geometry-submenu-expands-in-place-not-in-a-portal"
+   ],
+   "scripts/verify-liblib-batch45.py": [
+    "CRASH: FileNotFoundError: [Errno 2] No such file or directory: '/Users/yangjiefeng/Documents/wubuku/liblib-tv/src/components/director/DirectorChar"
+   ],
+   "scripts/verify-liblib-batch857.py": [
+    "CRASH: FileNotFoundError: [Errno 2] No such file or directory: '/Users/yangjiefeng/Documents/wubuku/liblib-tv/src/components/director/DirectorChar"
+   ],
+   "scripts/verify-liblib-batch738.py": [
+    "CRASH: FileNotFoundError: [Errno 2] No such file or directory: '/Users/yangjiefeng/Documents/wubuku/liblib-tv/src/components/director/DirectorChar"
+   ]
+  },
+  "HEAD-2": {
+   "scripts/verify-liblib-batch858.py": [
+    "CRASH: FileNotFoundError: [Errno 2] No such file or directory: '/Users/yangjiefeng/Documents/wubuku/liblib-tv/src/components/director/DirectorChar"
+   ],
+   "scripts/verify-liblib-batch536.py": [
+    "panel:opens"
+   ],
+   "scripts/verify-liblib-batch589.py": [
+    "character:opens"
+   ],
+   "scripts/verify-liblib-batch613.py": [
+    "flyout:opens"
+   ],
+   "scripts/verify-liblib-batch625.py": [
+    "add-character-is-a-side-panel-not-a-portal-flyout",
+    "geometry-submenu-expands-in-place-not-in-a-portal"
+   ],
+   "scripts/verify-liblib-batch45.py": [
+    "CRASH: FileNotFoundError: [Errno 2] No such file or directory: '/Users/yangjiefeng/Documents/wubuku/liblib-tv/src/components/director/DirectorChar"
+   ],
+   "scripts/verify-liblib-batch857.py": [
+    "CRASH: FileNotFoundError: [Errno 2] No such file or directory: '/Users/yangjiefeng/Documents/wubuku/liblib-tv/src/components/director/DirectorChar"
+   ],
+   "scripts/verify-liblib-batch738.py": [
+    "CRASH: FileNotFoundError: [Errno 2] No such file or directory: '/Users/yangjiefeng/Documents/wubuku/liblib-tv/src/components/director/DirectorChar"
+   ]
+  },
+  "WORK-1": {
+   "scripts/verify-liblib-batch858.py": [],
+   "scripts/verify-liblib-batch536.py": [],
+   "scripts/verify-liblib-batch589.py": [],
+   "scripts/verify-liblib-batch613.py": [],
+   "scripts/verify-liblib-batch625.py": [],
+   "scripts/verify-liblib-batch45.py": [],
+   "scripts/verify-liblib-batch857.py": [],
+   "scripts/verify-liblib-batch738.py": []
+  },
+  "WORK-2": {
+   "scripts/verify-liblib-batch858.py": [],
+   "scripts/verify-liblib-batch536.py": [],
+   "scripts/verify-liblib-batch589.py": [],
+   "scripts/verify-liblib-batch613.py": [],
+   "scripts/verify-liblib-batch625.py": [],
+   "scripts/verify-liblib-batch45.py": [],
+   "scripts/verify-liblib-batch857.py": [],
+   "scripts/verify-liblib-batch738.py": []
+  },
+  "MIX": {
+   "scripts/verify-liblib-batch858.py": [
+    "source:rail-no-longer-owns-a-character-flyout",
+    "source:desk-switches-left-panel-by-mode",
+    "initial:left-panel-is-scene-and-tree-is-there",
+    "panel:opens",
+    "panel:width-232-at-x-48",
+    "panel:title-bar-h-48-12px-and-text",
+    "panel:scene-tree-is-gone-mutually-exclusive",
+    "panel:rail-add-character-is-pressed",
+    "panel:row-geometry-32px-13px-at-x-56-w-216",
+    "panel:row-ys-match-the-source-measurement",
+    "panel:crowd-row-has-aria-haspopup-dialog",
+    "crowd:button-is-at-the-source-measured-rect",
+    "geometry:expands-in-place-at-the-source-measured-rect",
+    "geometry:is-inside-the-panel-not-a-portal",
+    "geometry:eight-items-199x32",
+    "crowd:dialog-is-at-the-source-measured-rect",
+    "crowd:dialog-z-1800-and-bg-source",
+    "crowd:dialog-internal-segments-match-the-source",
+    "crowd:dialog-label-line-height-matches-the-source",
+    "crowd:geometry-closed-because-source-shares-one-state",
+    "scene:panel-closes-and-the-tree-comes-back"
+   ],
+   "scripts/verify-liblib-batch536.py": [
+    "panel:opens"
+   ],
+   "scripts/verify-liblib-batch589.py": [
+    "character:opens"
+   ],
+   "scripts/verify-liblib-batch613.py": [
+    "flyout:opens"
+   ],
+   "scripts/verify-liblib-batch625.py": [
+    "add-character-is-a-side-panel-not-a-portal-flyout",
+    "geometry-submenu-expands-in-place-not-in-a-portal"
+   ],
+   "scripts/verify-liblib-batch45.py": [
+    "CRASH: playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded."
+   ],
+   "scripts/verify-liblib-batch857.py": [],
+   "scripts/verify-liblib-batch738.py": [
+    "C1 群众弹窗 portal + z-1800，1 写点 → 5 枚（3 number + 2 button）",
+    "C5 几何子菜单**就地展开**（源站逐字）：z auto / static / 非 fixed portal / 在根内",
+    "C7 根外 button：几何就地展开 **+0**、群众对话框 **+5**（portal）",
+    "C8 群众对话框在 workspace 根**外**、几何子菜单在根**内**（就地展开）"
+   ]
+  }
+ }
+}

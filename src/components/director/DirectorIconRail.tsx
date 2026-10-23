@@ -1,20 +1,15 @@
 "use client";
 
-import { Fragment, useCallback, useEffect, useLayoutEffect, useRef, useState, type ChangeEvent, type ReactNode } from "react";
+import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import {
   ArrowDownToLine,
-  Boxes,
-  Circle,
   Clapperboard,
-  Cylinder,
   HelpCircle,
   History,
   Image as ImageIcon,
-  Plus,
   Sparkles,
   Proportions,
-  Triangle,
   Upload,
   UserRoundPlus,
   Layers,
@@ -22,7 +17,6 @@ import {
 import { cn } from "@/lib/utils";
 import { useDirectorStore } from "@/store/directorStore";
 import { DirectorAiImportModal } from "@/components/director/DirectorAiImportModal";
-import { readDirectorLocalModelFiles } from "@/components/director/directorLocalModelImport";
 
 // Batch 536: 2026-09-27 源站采样（liblib-source-exploration-2026-09-25
 // NOTES §8 + 截图 18）——3D 导演台最左窄图标栏（约 46px）。
@@ -38,27 +32,13 @@ import { readDirectorLocalModelFiles } from "@/components/director/directorLocal
 // AI生成/AI 识图为付费 AI 动作，clone 仅可视不触发。
 const railEntries = [
   { id: "scene", label: "场景", icon: Layers, kind: "panel" },
-  { id: "add-character", label: "添加角色", icon: UserRoundPlus, kind: "flyout" },
+  { id: "add-character", label: "添加角色", icon: UserRoundPlus, kind: "panel" },
   { id: "add-camera", label: "添加机位", icon: Clapperboard, kind: "panel" },
   { id: "panorama", label: "全景图", icon: ImageIcon, kind: "flyout" },
   { id: "aspect-ratio", label: "选择画幅比例", icon: Proportions, kind: "flyout" },
   { id: "ai-import", label: "AI 识图导入", icon: ArrowDownToLine, kind: "modal" },
 ] as const;
 
-// 添加角色 flyout 菜单（截图 44-director-rail-23 DOM/视觉转录）。
-const characterFlyout = [
-  { id: "local-upload", label: "本地上传", kind: "upload" as const },
-  { id: "standard-male", label: "标准男性", kind: "preset" as const },
-  { id: "standard-female", label: "标准女性", kind: "preset" as const },
-  { id: "muscular", label: "健硕", kind: "preset" as const },
-  { id: "slim", label: "纤细", kind: "preset" as const },
-  { id: "teen", label: "少年", kind: "preset" as const },
-  { id: "child", label: "儿童", kind: "preset" as const },
-  { id: "broad", label: "宽厚", kind: "preset" as const },
-  { id: "chibi", label: "二头身", kind: "preset" as const },
-  { id: "crowd-3x3", label: "群众 (3x3)", kind: "submenu" as const },
-  { id: "geometry", label: "几何模型", kind: "submenu" as const },
-];
 
 // 全景图 flyout（源站 2026-10-01 DOM 复核：232×96 @(48,100)，三项行距
 // 32px）。Batch 589 修正文案：逐字是「AI生成」——**无空格**，batch 538
@@ -93,38 +73,8 @@ const ASPECT_GLYPH: Record<(typeof aspectRatios)[number], string> = {
   "9:16": "h-4 w-2",
 };
 
-// Batch 590（源站 2026-10-01 实测）：`几何模型` 子菜单在**父项下方**展开
-// （204×256，八项各 199×32、行距 32px），不在右侧。
-const geometrySubmenu = [
-  { id: "geometry-upload", label: "上传文件", icon: Upload },
-  { id: "cube", label: "立方体", icon: Boxes },
-  { id: "sphere", label: "球体", icon: Circle },
-  { id: "cylinder", label: "圆柱体", icon: Cylinder },
-  { id: "torus", label: "环状体", icon: Circle },
-  { id: "cone", label: "圆锥", icon: Triangle },
-  { id: "pyramid", label: "棱锥", icon: Triangle },
-  { id: "empty-object", label: "添加空对象", icon: Plus },
-] as const;
 
-// Batch 590（源站 2026-10-01 实测）：`群众 (3x3)` 打开的是弹窗而非直接
-// 出结果——220×204 @(280,388)，标题 `添加群众阵列`、右上角 `共N人` 计数、
-// 三个数字输入 行数/列数/间距（量程见 CROWD_LIMITS），页脚 取消 / 添加
-// （`添加` 为白底主按钮）。
-const CROWD_LIMITS = {
-  rows: { min: 1, max: 10 },
-  columns: { min: 1, max: 10 },
-  spacing: { min: 0.1, max: 10 },
-} as const;
 
-// ★★★ Batch 857（源站逐字）：源站的群众对话框锚在**按钮自己**的矩形上：
-//   `t = e.currentTarget.getBoundingClientRect()` ⟹ ⟹ 于是「锚点」只需要
-//   这四个边（源站只用了 `t.right` 与 `t.top`）。
-type CrowdAnchorRect = {
-  left: number;
-  top: number;
-  right: number;
-  bottom: number;
-};
 
 // Batch 589（源站 2026-10-01 实测）：三个 flyout 面板实测宽度**一致为
 // 232px**（@(48,100)），且每个面板顶部都有一行 12px `truncate` 的标题
@@ -159,14 +109,13 @@ const FLYOUT_CARD_CLASS =
 // 故外层定位容器同时承载标题与卡片。
 const FLYOUT_TITLE_CLASS = "block truncate px-3 pb-2 text-xs text-[#8a8a8a]";
 
-// Batch 626：几何模型子菜单与 flyout 卡片底边之间的间隙，即原 `+2px`。
-const GEOMETRY_SUBMENU_GAP = 2;
-
 export function DirectorIconRail({
   onPanoramaSourceChange,
   onOpenShortcuts,
   onOpenTutorial,
   onOpenCameraPresets,
+  onOpenCharacterPanel,
+  panelView = "scene",
 }: {
   onPanoramaSourceChange?: (sourceNodeId: string | null) => void;
   /** Batch 831：打开「快捷键」对话框（源站 rail 的 onOpenShortcuts） */
@@ -178,6 +127,25 @@ export function DirectorIconRail({
    * 传 `false` 表示切回场景树（源站点「场景」条目即切回）。
    */
   onOpenCameraPresets?: (open?: boolean) => void;
+  /**
+   * Batch 858：切到 / 切回「添加角色」面板视图（源站逐字：左侧资源栏是
+   * 一个**多视图**面板，`z` 在 scene / character / camera / panorama /
+   * aspect 之间**互斥**切换）。传 `false` 表示切回场景树。
+   */
+  onOpenCharacterPanel?: (open?: boolean) => void;
+  /**
+   * Batch 858：左侧资源栏当前是**哪个面板模式**（源站逐字：`z`）。
+   *
+   * ★ 源站的 rail 按钮是 `aria-pressed={z===r.id}` ⟹ ⟹ **选中态完全由
+   *   左侧面板模式派生**。clone 此前用自己的本地 `active` 状态 ⟹ ⟹
+   *   两处真相：点「添加角色」把面板切走了、按钮却**不会亮**。
+   *   现在统一由这个 prop 派生 ⟹ ⟹ 少一份状态、少一处漂移。
+   *
+   * 源站逐字（`ep=[scene,character,camera,panorama,aspect]`）⟹ ⟹ 五个模式
+   * 一一对应 rail 的五枚条目。clone 目前只把 scene / character / camera
+   * 做成左侧面板；panorama / aspect 仍是浮层（batch 859 整改）。
+   */
+  panelView?: "scene" | "character" | "camera" | "panorama" | "aspect";
 } = {}) {
   const [active, setActive] = useState<string>("scene");
   const [openFlyout, setOpenFlyout] = useState<string | null>(null);
@@ -194,26 +162,11 @@ export function DirectorIconRail({
   // （标题条「添加机位」＋ 2 列 × 15 枚 104×72 的预设）。
   // ⟹ 故此处**不再**直接调 addDirectorCamera（那会跳过「选哪一枚」这一步）；
   //   场景树里的「新增机位」按钮仍走同一条 store 动作（见 DirectorObjectTree）。
-  // Batch 541: 添加角色 flyout——群众 (3x3) 接通本地等效 addCrowdArray
-  // （与 DirectorViewport 群众面板同默认 3/3/1.2）；预设体型项为本地等效
-  // 占位（store 无单角色变体加建），点击仅回显本地提示，不生成 3D 模型。
-  const addCrowdArray = useDirectorStore((state) => state.addCrowdArray);
-  // Batch 542: 本地上传 复用导演台本地模型库导入管线（batch 537 采样菜单项；
-  // 与 DirectorViewport 模型库导入同 readDirectorLocalModelFiles 管线）。
-  const addLocalModelLibraryItem = useDirectorStore(
-    (state) => state.addLocalModelLibraryItem,
-  );
   // Batch 587: rail「场景」兼作收起态的恢复入口（源站收起后浮层内唯一
   // 能把顶栏 + 左侧场景面板叫回来的控件）。
   const setViewportPanelsCollapsed = useDirectorStore(
     (state) => state.setViewportPanelsCollapsed,
   );
-  const characterUploadInputRef = useRef<HTMLInputElement | null>(null);
-  const [characterAck, setCharacterAck] = useState<string | null>(null);
-  // Batch 590: 群众弹窗 + 几何模型子菜单（源站实测）
-  const [crowdDialogOpen, setCrowdDialogOpen] = useState(false);
-  const [crowdDraft, setCrowdDraft] = useState({ rows: 3, columns: 3, spacing: 1.2 });
-  const [geometrySubmenuOpen, setGeometrySubmenuOpen] = useState(false);
 
   // Batch 625: portal 之后定位不能再靠 CSS 的
   // `absolute left-[calc(100%+8px)] top-0`（那个包含块是 rail 里的
@@ -261,14 +214,11 @@ export function DirectorIconRail({
 
   const panoramaAnchor = useRef<HTMLDivElement | null>(null);
   const aspectAnchor = useRef<HTMLDivElement | null>(null);
-  const characterAnchor = useRef<HTMLDivElement | null>(null);
   const railRef = useRef<HTMLDivElement | null>(null);
   const panoramaPos = useFlyoutAnchor(panoramaAnchor, openFlyout === "panorama");
   const aspectPos = useFlyoutAnchor(aspectAnchor, openFlyout === "aspect-ratio");
-  const characterPos = useFlyoutAnchor(characterAnchor, openFlyout === "add-character");
-  // ★ Batch 857：群众对话框的落点**不再**用「rail + 294」那个写死偏移，
-  //   改由 `crowdAnchor`（锚点矩形）按**源站公式**算（见下面的
-  //   `placeCrowdDialog`）。`railRef` 仍被 `useFlyoutAnchor` 的其它三处用着。
+  // ★ Batch 858：「添加角色」已改成**左侧面板模式**（源站逐字）⟹ ⟹ rail
+  //   这里只留「全景图」「画幅比例」两个浮层 ⟹ ⟹ `useFlyoutAnchor` 只剩两处。
 
   // Batch 626：几何模型子菜单也要纵向钳制。
   //
@@ -285,12 +235,6 @@ export function DirectorIconRail({
   //
   // 口径与时间轴那个下拉一致：8px 安全边，越界多少上移多少，不越界一个像素不动
   // （≥800 视口的读数与 590 之前的几何完全一致）。
-  const characterFlyoutRef = useRef<HTMLDivElement | null>(null);
-  const geometrySubmenuRef = useRef<HTMLDivElement | null>(null);
-  // ★★★ Batch 857（源站逐字）：源站的「点外面关闭」判据是
-  //   「点在**群众按钮**或**对话框**之外」⟹ ⟹ 这两个元素都得能拿到 ref。
-  const crowdButtonRef = useRef<HTMLButtonElement | null>(null);
-  const crowdDialogRef = useRef<HTMLDivElement | null>(null);
 
   // ★★★ Batch 857（源站逐字）：源站的群众对话框**锚在「群众按钮」自己身上**：
   //   `W({left:Math.max(8,Math.min(t.right+8,window.innerWidth-r-8)),
@@ -299,145 +243,7 @@ export function DirectorIconRail({
   //   ⟹ ⟹ clone 此前写死「rail 左边 + 294」⟹ ⟹ 那**不是**源站的规则
   //   （源站的对话框是**贴着按钮**的：按钮 right+8、按钮 top）。
   //   ⟹ ⟹ 改成按锚点算 ⟹ 顺带让「移动端那枚入口」也能把对话框放在自己旁边。
-  const [crowdAnchor, setCrowdAnchor] = useState<CrowdAnchorRect | null>(null);
-  const [crowdPos, setCrowdPos] = useState<{ left: number; top: number } | null>(
-    null,
-  );
-  useLayoutEffect(() => {
-    const submenu = geometrySubmenuRef.current;
-    if (!geometrySubmenuOpen || !characterPos || !submenu) return;
-    const clamp = () => {
-      const flyout = characterFlyoutRef.current;
-      if (!flyout) return;
-      // 与时间轴那个下拉同一口径：用 rect 而不是 offsetHeight，否则取整差
-      // 会让底边差一个亚像素够不到 8px 安全边。
-      const subH = submenu.getBoundingClientRect().height;
-      // 不越界就撤掉 inline style，位置继续由 className 的
-      // `top-[calc(100%+2px)]` 负责（默认位置只有一个来源）。
-      //
-      // 这里要连**子菜单自己的高度**一起算。第一版只测了
-      // `flyout.bottom + 2 <= 视口高 − 8`，等于假设子菜单高 0，于是
-      // 1440×640 / 1280×540 两格判成「放得下」而放弃钳制，子菜单照旧挂到
-      // 屏幕外、丢掉 4 枚与 7 枚活控件 —— 被本批自己的验收抓住。
-      const defaultBottom =
-        flyout.getBoundingClientRect().bottom + GEOMETRY_SUBMENU_GAP + subH;
-      submenu.style.top =
-        defaultBottom <= window.innerHeight - 8
-          ? ""
-          : `${window.innerHeight - 8 - subH - characterPos.top}px`;
-    };
-    clamp();
-    // rail 锚点会随视口缩放重算（useFlyoutAnchor 已订阅 resize），这里跟着重算
-    // 纵向落点，否则窗口一缩，子菜单的钳制量就停在旧视口的读数上。
-    window.addEventListener("resize", clamp);
-    return () => window.removeEventListener("resize", clamp);
-  }, [geometrySubmenuOpen, characterPos]);
 
-  // ★★★ Batch 857（源站逐字）：源站在「群众对话框开着」时监听 **document mousedown**，
-  //   点在**群众按钮**或**对话框**之外 ⟹ ⟹ **关掉对话框**。
-  //   源站逐字：
-  //     `if("crowd"!==L)return; let e=e=>{let t=e.target;
-  //        en.current?.contains(t)||ea.current?.contains(t)||O(null)};`
-  //   ⟹ ⟹ 这是**行为**、不是观感 ⟹ ⟹ clone 必须有（此前只能按「取消」关）。
-  //   ⟹ ⟹ 连带的第二个好处：**浮层被关掉后，对话框不会变成孤儿浮在画面上**。
-  useEffect(() => {
-    if (!crowdDialogOpen) return;
-    const onMouseDown = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null;
-      if (!target) return;
-      // ★ 点在「群众入口」**自己身上** ⟹ ⟹ **不算**「点外面」——
-      //   桌面是 rail 的「群众 (3x3)」，移动端是视口工具条那枚 ⟹ ⟹ 两个都算。
-      //   ★ ★ 不这么判的话，移动端那枚会被**两次事件**打中：
-      //   mousedown 先「点外面」把对话框关了、click 又把它打开 ⟹ ⟹
-      //   净效果是「一直开着」⟹ ⟹ **不是开关** ⟹ ⟹ 与源站语义不一致。
-      if (target.closest?.(
-        "[data-director-character-option='crowd-3x3'], "
-          + "[data-director-crowd-mobile-trigger]",
-      )) {
-        return;
-      }
-      if (crowdDialogRef.current?.contains(target)) return;
-      setCrowdDialogOpen(false);
-    };
-    document.addEventListener("mousedown", onMouseDown);
-    return () => document.removeEventListener("mousedown", onMouseDown);
-  }, [crowdDialogOpen]);
-
-  // ★★★ Batch 857（源站逐字）：**按锚点算**对话框的落点。
-  //   源站：`W({left:Math.max(8,Math.min(t.right+8,window.innerWidth-r-8)),
-  //              top:Math.max(8,Math.min(t.top,window.innerHeight-n-8))})`
-  //   ⟹ ⟹ r/n ＝ 对话框**自己**的宽高，量不到时兜底 **220**（源站同）。
-  //   ⟹ ⟹ 两边各有 8px 的视口安全边（源站同）。
-  const placeCrowdDialog = useCallback((anchor: CrowdAnchorRect) => {
-    const box = crowdDialogRef.current?.getBoundingClientRect();
-    const width = box?.width || 220;
-    const height = box?.height || 220;
-    setCrowdPos({
-      left: Math.max(
-        8,
-        Math.min(anchor.right + 8, window.innerWidth - width - 8),
-      ),
-      top: Math.max(8, Math.min(anchor.top, window.innerHeight - height - 8)),
-    });
-  }, []);
-
-  const openCrowdDialog = useCallback(
-    (anchor: CrowdAnchorRect) => {
-      setCrowdAnchor(anchor);
-      // 首帧还没挂上对话框 ⟹ 用源站同款兜底（220×220）算一次，
-      // 挂上之后下面的 layout effect 会用**实测**尺寸再算一遍。
-      setCrowdPos({
-        left: Math.max(
-          8,
-          Math.min(anchor.right + 8, window.innerWidth - 220 - 8),
-        ),
-        top: Math.max(8, Math.min(anchor.top, window.innerHeight - 220 - 8)),
-      });
-      setCrowdDialogOpen(true);
-    },
-    [],
-  );
-
-  // 对话框挂上之后，用**实测**宽高再算一次落点（源站用 `offsetWidth/offsetHeight`）。
-  useLayoutEffect(() => {
-    if (!crowdDialogOpen || !crowdAnchor) return;
-    placeCrowdDialog(crowdAnchor);
-  }, [crowdDialogOpen, crowdAnchor, placeCrowdDialog]);
-
-  // 视口变了要重算（源站监听 resize ＋ 捕获阶段的 scroll）。
-  useEffect(() => {
-    if (!crowdDialogOpen || !crowdAnchor) return;
-    const onViewportChange = () => placeCrowdDialog(crowdAnchor);
-    window.addEventListener("resize", onViewportChange);
-    document.addEventListener("scroll", onViewportChange, true);
-    return () => {
-      window.removeEventListener("resize", onViewportChange);
-      document.removeEventListener("scroll", onViewportChange, true);
-    };
-  }, [crowdDialogOpen, crowdAnchor, placeCrowdDialog]);
-
-  // ★★★ Batch 857：**移动端那枚入口**用事件把「自己的矩形」递进来
-  //   ⟹ ⟹ 对话框于是贴在**那枚按钮**旁边（源站同一条规则）。
-  //   ⟹ ⟹ 桌面端不用它：桌面的入口是 rail 的「群众 (3x3)」（源站唯一入口）。
-  useEffect(() => {
-    const onOpenCrowd = (event: Event) => {
-      const detail = (event as CustomEvent<{ rect?: CrowdAnchorRect }>).detail;
-      if (!detail?.rect) return;
-      setOpenFlyout(null);
-      // ★ 源站的「群众 (3x3)」是**开关** ⟹ ⟹ 移动端这枚（clone 自己的扩展）
-      //   也照同样的语义做 ⟹ ⟹ 已经开着时**再点一次就是关掉它**。
-      if (crowdDialogOpen) {
-        setCrowdDialogOpen(false);
-        return;
-      }
-      openCrowdDialog(detail.rect);
-    };
-    window.addEventListener("director:open-crowd-dialog", onOpenCrowd);
-    return () =>
-      window.removeEventListener("director:open-crowd-dialog", onOpenCrowd);
-  });
-
-  // Mount a flyout at body level with the viewport coordinates measured from its
   // anchor, so the z in RAIL_FLYOUT_CLASS competes against the timeline instead
   // of being sealed inside the rail's z-30 context.
   //
@@ -468,31 +274,24 @@ export function DirectorIconRail({
     );
   };
 
-  const flashCharacterAck = (message: string) => {
-    setCharacterAck(message);
-    window.setTimeout(() => setCharacterAck(null), 2000);
-  };
-
-  const handleCharacterUploadChange = async (
-    event: ChangeEvent<HTMLInputElement>,
-  ) => {
-    const input = event.currentTarget;
-    try {
-      const items = await readDirectorLocalModelFiles(input.files ?? []);
-      if (items.length === 0) {
-        flashCharacterAck("未选择可用模型文件");
-        return;
-      }
-      items.forEach(addLocalModelLibraryItem);
-      flashCharacterAck(`已导入 ${items.length} 个本地模型至模型库`);
-    } finally {
-      input.value = "";
-    }
+  // ★ Batch 858（源站逐字）：源站的 rail 按钮 `aria-pressed={z===r.id}`
+  //   ⟹ ⟹ 选中态**完全**由左侧面板模式派生 ⟹ ⟹ 不再有第二份真相。
+  const isEntryPressed = (id: string) => {
+    if (id === "scene") return panelView === "scene";
+    if (id === "add-character") return panelView === "character";
+    if (id === "add-camera") return panelView === "camera";
+    // 全景图 / 画幅比例 目前仍是浮层（batch 859 面板化）⟹ ⟹ 选中态看浮层。
+    if (id === "panorama") return openFlyout === "panorama";
+    if (id === "aspect-ratio") return openFlyout === "aspect-ratio";
+    // 「AI 识图导入」是 clone 自己的扩展（源站的 `ep` 里没有它）⟹ ⟹ 选中态
+    // 只能由本地状态给。
+    return active === id;
   };
 
   const select = (id: string) => {
     if (id === "ai-import") {
       setAiImportOpen(true);
+      setActive(id);
       return;
     }
     if (id === "add-camera") {
@@ -513,85 +312,35 @@ export function DirectorIconRail({
     // 顶栏与左侧场景面板。图标栏本身在收起态保留。
     if (id === "scene") {
       setViewportPanelsCollapsed(false);
+      // ★ Batch 858：切回场景树 ⟹ ⟹ 「添加角色」面板随之关闭（源站逐字：
+      //   左侧面板是**模式互斥**的，`"scene"===z?n:null,"character"===z?(…)`）。
+      onOpenCharacterPanel?.(false);
       // Batch 832：源站的「场景」是把左侧资源栏**切回场景树**视图 ⟹
       // 若当前停在「添加机位」预设面板上，切回去。
       onOpenCameraPresets?.(false);
+      return;
     }
     if (id === "add-character") {
-      // 仅 add-character 自身打开 flyout；由 handleCharacterOption 控制关闭。
-      setOpenFlyout("add-character");
+      // ★ Batch 858：源站的「添加角色」**不是浮层** ⟹ ⟹ 它把左侧资源栏
+      //   切成一个**面板视图**（与「添加机位」同一机制）⟹ ⟹ 场景树随之
+      //   消失（源站逐字 `"scene"===z?n:null,"character"===z?(…)`）。
+      setOpenFlyout(null);
+      onOpenCharacterPanel?.();
+      return;
+    }
+    if (id === "panorama" || id === "aspect-ratio") {
+      // ★ Batch 858：源站逐字 —— rail 的每一枚条目都**改写左侧面板模式**
+      //   （`onClick: () => { F(r.id), N(!1), O(null), … }`）⟹ ⟹ 点「全景图」
+      //   时 `z` 变成 "panorama" ⟹ ⟹ 「添加角色」「添加机位」两个面板模式
+      //   **必须让位** ⟹ ⟹ 否则两个面板会**同时**留在左侧。
+      //   ⚠ 「全景图 / 画幅比例」目前仍是**浮层**（源站逐字它们也是面板模式，
+      //   ⟹ ⟹ batch 859 整改）⟹ ⟹ 这里先让左侧面板**回到场景树**。
+      onOpenCharacterPanel?.(false);
+      onOpenCameraPresets?.(false);
+      setOpenFlyout(id);
       return;
     }
     setActive(id);
-    if (id === "panorama" || id === "aspect-ratio") {
-      setOpenFlyout(id);
-    }
-  };
-
-  const handleCharacterOption = (itemId: string, label: string) => {
-    // Batch 590（源站 2026-10-01 实测）：源站的两个子菜单项各自带面板，
-    // 不是点一下就出结果——
-    //   群众 (3x3) -> 弹窗「添加群众阵列」(220×204) 含 行数/列数/间距
-    //   几何模型   -> 展开 8 项子菜单（上传文件 + 6 种几何体 + 添加空对象）
-    if (itemId === "crowd-3x3") {
-      // 源站的弹窗是**并排**出现在 flyout 右侧（@(280,388)，flyout 占
-      // 48..280），flyout 保持打开；clone 此前是直接关掉 flyout。
-      //
-      // ★★★ Batch 857（源站逐字）：源站这一枚是**开关**——
-      //   `onClick:e=>{if("crowd"===L)return void O(null);
-      //     let t=e.currentTarget.getBoundingClientRect();
-      //     W({left:t.right+8,top:t.top}),O("crowd")}`
-      //   ⟹ ⟹ **对话框已经开着时，再点一次就是关掉它**（而不是「无脑重开」）。
-      //   ⟹ ⟹ 顺带把 `aria-expanded` 的语义也补上（源站就是
-      //   `"aria-expanded":"crowd"===L`）。
-      //   ⟹ ⟹ 落点按**按钮自己的矩形**算（源站逐字 `t.right+8` / `t.top`）。
-      setOpenFlyout("add-character");
-      if (crowdDialogOpen) {
-        setCrowdDialogOpen(false);
-        return;
-      }
-      const rect = crowdButtonRef.current?.getBoundingClientRect();
-      if (rect) {
-        openCrowdDialog({
-          left: rect.left,
-          top: rect.top,
-          right: rect.right,
-          bottom: rect.bottom,
-        });
-      }
-      return;
-    }
-    if (itemId === "local-upload") {
-      setOpenFlyout(null);
-      characterUploadInputRef.current?.click();
-      return;
-    }
-    if (itemId === "geometry") {
-      setGeometrySubmenuOpen((open) => !open);
-      return;
-    }
-    setCharacterAck(`预设角色「${label}」为本地等效占位`);
-    setOpenFlyout(null);
-    window.setTimeout(() => setCharacterAck(null), 2000);
-  };
-
-  const handleGeometryOption = (optionId: string, label: string) => {
-    setGeometrySubmenuOpen(false);
-    if (optionId === "geometry-upload") {
-      characterUploadInputRef.current?.click();
-      return;
-    }
-    setCharacterAck(`几何体「${label}」为本地等效占位`);
-    window.setTimeout(() => setCharacterAck(null), 2000);
-  };
-
-  const confirmCrowdArray = () => {
-    addCrowdArray(crowdDraft);
-    setCrowdDialogOpen(false);
-    setCharacterAck(
-      `已加入群众 ${crowdDraft.rows}×${crowdDraft.columns}（间距 ${crowdDraft.spacing}）`,
-    );
-    window.setTimeout(() => setCharacterAck(null), 2000);
   };
 
   return (
@@ -624,14 +373,13 @@ export function DirectorIconRail({
       <div className="flex flex-col items-center gap-2">
         {railEntries.map((entry, index) => {
           const Icon = entry.icon;
-          const isActive = active === entry.id;
+          const isActive = isEntryPressed(entry.id);
           return (
             <Fragment key={entry.id}>
             <div
               className="relative"
               ref={entry.id === "panorama" ? panoramaAnchor
                    : entry.id === "aspect-ratio" ? aspectAnchor
-                   : entry.id === "add-character" ? characterAnchor
                    : undefined}
             >
               <button
@@ -652,85 +400,6 @@ export function DirectorIconRail({
               >
                 <Icon size={20} />
               </button>
-              {entry.id === "add-character" && openFlyout === "add-character"
-                && characterPos && portalFlyout(characterPos, (
-                <div
-                  ref={characterFlyoutRef}
-                  data-director-character-flyout
-                  aria-label="添加角色"
-                  className={cn(
-                    "fixed",
-                    RAIL_FLYOUT_CLASS,
-                    FLYOUT_WIDTH,
-                  )}
-                >
-                  <span
-                    data-director-flyout-title="add-character"
-                    className={FLYOUT_TITLE_CLASS}
-                  >
-                    添加角色
-                  </span>
-                  <div className={cn(FLYOUT_CARD_CLASS, "p-1.5")}>
-                  {characterFlyout.map((item) => (
-                    <button
-                      key={item.id}
-                      type="button"
-                      ref={item.id === "crowd-3x3" ? crowdButtonRef : undefined}
-                      data-director-character-option={item.id}
-                      // ★★★ Batch 857（源站逐字）：源站这枚按钮带
-                      //   `"aria-expanded":"crowd"===L` ⟹ ⟹ 对话框开着时为 true。
-                      aria-expanded={
-                        item.id === "crowd-3x3" ? crowdDialogOpen : undefined
-                      }
-                      onClick={() => handleCharacterOption(item.id, item.label)}
-                      // ★ 源站逐字：对话框开着时这一枚是 `bg-white/8`
-                      //   ⟹ ⟹ 4317 的 Tailwind 扫描是冻结的（batch 824）
-                      //   ⟹ ⟹ 这个类名不一定在 dev CSS 里 ⟹ ⟹ 走 inline style。
-                      style={
-                        item.id === "crowd-3x3" && crowdDialogOpen
-                          ? { backgroundColor: "rgba(255,255,255,0.08)" }
-                          : undefined
-                      }
-                      className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs text-[#d8d8d8] hover:bg-white/[0.07]"
-                    >
-                      <span className="min-w-0 flex-1 truncate">{item.label}</span>
-                      {item.kind === "submenu" && (
-                        <span aria-hidden="true" className="text-[10px] text-[#777]">›</span>
-                      )}
-                    </button>
-                  ))}
-                  {/* Batch 590（源站实测）：`几何模型` 子菜单在父项下方展开
-                      （204×256），八项各 199×32、行距 32px。 */}
-                  {geometrySubmenuOpen && (
-                    <div
-                      ref={geometrySubmenuRef}
-                      data-director-geometry-submenu
-                      aria-label="几何模型"
-                      className={cn(
-                        FLYOUT_CARD_CLASS,
-                        "absolute left-1 top-[calc(100%+2px)] z-50 w-[204px] p-1.5",
-                      )}
-                    >
-                      {geometrySubmenu.map((option) => {
-                        const OptionIcon = option.icon;
-                        return (
-                          <button
-                            key={option.id}
-                            type="button"
-                            data-director-geometry-option={option.id}
-                            onClick={() => handleGeometryOption(option.id, option.label)}
-                            className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs text-[#d8d8d8] hover:bg-white/[0.07]"
-                          >
-                            <OptionIcon size={13} className="shrink-0 text-[#9a9a9a]" />
-                            <span className="truncate">{option.label}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  )}
-                  </div>
-                </div>
-              ) )}
               {entry.id === "panorama" && openFlyout === "panorama"
                 && panoramaPos && portalFlyout(panoramaPos, (
                 <div
@@ -906,24 +575,6 @@ export function DirectorIconRail({
           </div>
         ) : null}
       </div>
-      <input
-        ref={characterUploadInputRef}
-        type="file"
-        accept=".glb,.gltf,.fbx,.obj"
-        multiple
-        aria-label="导入本地角色模型"
-        className="hidden"
-        onChange={handleCharacterUploadChange}
-      />
-      {characterAck && (
-        <span
-          data-director-character-ack
-          aria-live="polite"
-          className="absolute bottom-14 left-[calc(100%+8px)] whitespace-nowrap rounded-full bg-black/70 px-2.5 py-1 text-[11px] text-[#9ddbb9]"
-        >
-          {characterAck}
-        </span>
-      )}
       {aiImportOpen && (
         <DirectorAiImportModal
           onClose={() => setAiImportOpen(false)}
@@ -935,108 +586,6 @@ export function DirectorIconRail({
           行数/列数/间距，页脚 取消 / 添加（添加为白底主按钮）。弹窗并排
           出现在 flyout 右侧（源站 x=280，flyout 占 48..280），flyout 保持
           打开。clone 此前是点一下直接按 3×3/1.2 出结果。 */}
-      {crowdDialogOpen && crowdPos && portalFlyout(crowdPos, (
-        <div
-          ref={crowdDialogRef}
-          data-director-crowd-dialog
-          role="dialog"
-          aria-label="添加群众阵列"
-          className={cn("fixed", RAIL_FLYOUT_CLASS, "w-[220px] rounded-xl border border-white/10 bg-[#242424] p-3 shadow-[0_16px_40px_rgba(0,0,0,0.5)]")}
-        >
-          <div className="flex items-center justify-between">
-            <span className="text-xs text-[#d8d8d8]">添加群众阵列</span>
-            <span
-              data-director-crowd-count
-              className="text-[11px] text-[#8a8a8a]"
-            >
-              共{crowdDraft.rows * crowdDraft.columns}人
-            </span>
-          </div>
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            {(
-              [
-                ["rows", "行数"],
-                ["columns", "列数"],
-              ] as const
-            ).map(([key, label]) => (
-              <label key={key} className="flex flex-col gap-1 text-[11px] text-[#8a8a8a]">
-                <span>{label}</span>
-                <input
-                  type="number"
-                  data-director-crowd-input={key}
-                  aria-label={label}
-                  min={CROWD_LIMITS[key].min}
-                  max={CROWD_LIMITS[key].max}
-                  step={1}
-                  value={crowdDraft[key]}
-                  onChange={(event) =>
-                    setCrowdDraft((draft) => ({
-                      ...draft,
-                      [key]: Math.min(
-                        CROWD_LIMITS[key].max,
-                        Math.max(CROWD_LIMITS[key].min, Number(event.target.value)),
-                      ),
-                    }))
-                  }
-                  className="h-7 w-full rounded-lg border border-white/10 bg-[#1e1e1e] px-2 text-xs text-[#d8d8d8] outline-none focus:border-white/30"
-                />
-              </label>
-            ))}
-          </div>
-          <label className="mt-3 flex flex-col gap-1 text-[11px] text-[#8a8a8a]">
-            <span>间距</span>
-            <input
-              type="number"
-              data-director-crowd-input="spacing"
-              aria-label="间距"
-              min={CROWD_LIMITS.spacing.min}
-              max={CROWD_LIMITS.spacing.max}
-              step={0.1}
-              value={crowdDraft.spacing}
-              onChange={(event) => {
-                // ★★★ Batch 857（源站逐字）：间距**保留 1 位小数**
-                //   `Math.min(10,Math.max(.1,Math.round(10*t)/10))`
-                //   ⟹ ⟹ 源站**实测**（raw/source-857-crowd.json 的「⑥间距填1.55后」）：
-                //   把间距填成 **1.55** ⟹ ⟹ 源站读回 **1.6** ⟹ ⟹ 行为证据，
-                //   不是「我读了代码所以这么说」。
-                //   ⟹ ⟹ 源站在非数字时兜底成 **0.1**（＝量程下限），照抄。
-                const next = event.currentTarget.valueAsNumber;
-                setCrowdDraft((draft) => ({
-                  ...draft,
-                  spacing: Number.isFinite(next)
-                    ? Math.min(
-                        CROWD_LIMITS.spacing.max,
-                        Math.max(
-                          CROWD_LIMITS.spacing.min,
-                          Math.round(next * 10) / 10,
-                        ),
-                      )
-                    : CROWD_LIMITS.spacing.min,
-                }));
-              }}
-              className="h-7 w-full rounded-lg border border-white/10 bg-[#1e1e1e] px-2 text-xs text-[#d8d8d8] outline-none focus:border-white/30"
-            />
-          </label>
-          <div className="mt-4 flex justify-end gap-2">
-            <button
-              type="button"
-              data-director-crowd-cancel
-              onClick={() => setCrowdDialogOpen(false)}
-              className="h-7 w-12 rounded-lg border border-white/10 text-xs text-[#b5b5b5] hover:bg-white/[0.06]"
-            >
-              取消
-            </button>
-            <button
-              type="button"
-              data-director-crowd-confirm
-              onClick={confirmCrowdArray}
-              className="h-7 w-12 rounded-lg bg-white text-xs text-[#1a1a1a] hover:bg-white/90"
-            >
-              添加
-            </button>
-          </div>
-        </div>
-      ) )}
     </div>
   );
 }

@@ -94,28 +94,59 @@ def run_desktop(page: Page) -> dict[str, Any]:
         rail.locator("[data-director-rail-entry='scene']").get_attribute("aria-label") == "场景",
     )
 
-    # 添加角色 flyout（batch 537 采样菜单）
+    # 添加角色（★ Batch 858：源站式**左侧面板模式**，不再是浮层）
     rail.locator("[data-director-rail-entry='add-character']").click()
     page.wait_for_timeout(200)
-    flyout = page.locator("[data-director-character-flyout]")
-    check("flyout:opens", flyout.is_visible())
-    flyout_text = flyout.inner_text()
+    panel = page.locator("[data-director-character-panel]")
+    check("panel:opens", panel.is_visible())
+    panel_text = panel.inner_text()
     for token in ["本地上传", "标准男性", "标准女性", "健硕", "纤细", "少年", "儿童", "宽厚", "二头身", "群众 (3x3)", "几何模型"]:
-        check(f"flyout:item:{token}", token in flyout_text)
+        check(f"panel:item:{token}", token in panel_text)
+    # ★★ Batch 858：源站逐字 —— 左侧面板**模式互斥** ⟹ ⟹ 切到「添加角色」
+    #   时**场景树不在**（batch 857 登记的 D1：浮层盖住树、树看着能点其实点不动）。
+    check(
+        "panel:scene-tree-replaced",
+        page.locator("[data-director-tree]").count() == 0,
+    )
+    check(
+        "panel:rail-add-character-active",
+        rail.locator("[data-director-rail-entry='add-character']").get_attribute("aria-pressed") == "true",
+    )
     rail.locator("[data-director-rail-entry='scene']").click()
     page.wait_for_timeout(150)
-    check("flyout:closes", page.locator("[data-director-character-flyout]").count() == 0)
+    check("panel:closes", page.locator("[data-director-character-panel]").count() == 0)
+    check(
+        "panel:scene-tree-comes-back",
+        page.locator("[data-director-tree]").count() == 1,
+    )
 
-    # Batch 540 migration: 添加机位 is a direct action sharing
-    # addDirectorCamera with the scene tree — it must NOT steal the rail's
-    # active state (scene stays active) and opens no panels.
+    # ★★★ Batch 858 **判据迁移**：batch 540 的旧读数是「添加机位 = 直接加机位
+    #   的动作、不开面板」⟹ ⟹ 那条读数在 **batch 832** 就被推翻了（源站的
+    #   「添加机位」是**把左侧资源栏切成一个视图**）⟹ ⟹ 本批再进一步：
+    #   **源站的 rail 选中态是 `aria-pressed={z===r.id}`**（源站 chunk 逐字）
+    #   ⟹ ⟹ 选中态由**左侧面板模式**派生 ⟹ ⟹ 点「添加机位」之后亮的是
+    #   **添加机位**、不是「场景」。
+    # ★ ★ 并且：源站逐字 —— 左侧面板是**模式互斥**的
+    #   （`"scene"===z?n:null,"camera"===z?(…)`）⟹ ⟹ 切到 camera 时
+    #   **场景树不在**（是**被替换**、不是被盖住）。
     rail.locator("[data-director-rail-entry='add-camera']").click()
     page.wait_for_timeout(200)
     check(
-        "rail:scene-stays-active",
-        rail.locator("[data-director-rail-entry='scene']").get_attribute("aria-pressed") == "true",
+        "rail:camera-becomes-active",
+        rail.locator("[data-director-rail-entry='add-camera']").get_attribute("aria-pressed") == "true",
     )
-    check("rail:tree-still-present", page.locator("[aria-label='场景对象']").first.is_visible())
+    check(
+        "rail:scene-not-active",
+        rail.locator("[data-director-rail-entry='scene']").get_attribute("aria-pressed") == "false",
+    )
+    check(
+        "rail:tree-replaced-by-camera-panel",
+        page.locator("[data-director-tree]").count() == 0,
+    )
+    check(
+        "rail:camera-panel-present",
+        page.locator("[data-director-camera-preset-panel]").count() == 1,
+    )
 
     check("diagnostics:zero", not errors)
     result["diagnostics"] = {"console": len(errors), "errors": errors[:5]}

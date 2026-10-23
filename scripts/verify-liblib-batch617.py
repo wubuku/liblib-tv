@@ -120,7 +120,7 @@ TRANSIENT_OVERLAYS = (
     # drawer, shortcuts dialog, share sheet, material/character libraries.
     # Preferring it keeps this list from growing one entry per surface.
     "[data-liblib-overlay]",
-    "[data-director-character-flyout]",
+    "[data-director-character-panel]",
     "[data-director-panorama-flyout]",
     "[data-director-aspect-flyout]",
     "[data-director-geometry-submenu]",

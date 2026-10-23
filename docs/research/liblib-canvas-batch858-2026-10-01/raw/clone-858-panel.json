@@ -1,0 +1,840 @@
+{
+  "批次": "batch 858",
+  "探针": "clone858_panel",
+  "源站期望": {
+    "panel_width": 232,
+    "title_height": 48,
+    "title_font_px": 12,
+    "row_height": 32,
+    "row_font_px": 13,
+    "crowd_btn": {
+      "x": 56,
+      "y": 388,
+      "w": 216,
+      "h": 32
+    },
+    "crowd_dialog": {
+      "x": 280,
+      "y": 388,
+      "w": 220,
+      "h": 204
+    },
+    "geometry_box": {
+      "x": 68,
+      "y": 452,
+      "w": 204,
+      "h": 256
+    },
+    "geometry_item_w": 199,
+    "dialog_z": 1800
+  },
+  "①打开导演台": "OK",
+  "②初始态": {
+    "面板": null,
+    "面板可见": false,
+    "面板标签": null,
+    "标题条": null,
+    "标题字号": null,
+    "标题文本": null,
+    "左侧面板模式": "scene",
+    "场景树存在": true,
+    "场景树按钮数": 21,
+    "选项行": [],
+    "几何展开": null,
+    "几何项": [],
+    "crowd按钮": null,
+    "crowd按钮背景": null,
+    "对话框": null,
+    "对话框可见": false,
+    "对话框z": null,
+    "对话框背景": null,
+    "对话框阴影": null,
+    "对话框标题字号": null,
+    "计数文案": "",
+    "行数": null,
+    "列数": null,
+    "间距": null,
+    "rail场景": {
+      "pressed": "true",
+      "cls": "flex size-8 items-center justify-center rounded-lg transition-colors hover:bg-white/8 hover:text-white bg-white/10 text-white"
+    },
+    "rail添加角色": {
+      "pressed": "false",
+      "cls": "flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+    },
+    "rail添加机位": {
+      "pressed": "false",
+      "cls": "flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+    },
+    "移动端入口": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "right": 0,
+      "bottom": 0
+    }
+  },
+  "③切到添加角色面板": {
+    "面板": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 848,
+      "right": 280,
+      "bottom": 900
+    },
+    "面板可见": true,
+    "面板标签": "添加角色",
+    "标题条": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 48,
+      "right": 280,
+      "bottom": 100
+    },
+    "标题字号": "12px",
+    "标题文本": "添加角色",
+    "左侧面板模式": "character",
+    "场景树存在": false,
+    "场景树按钮数": 0,
+    "选项行": [
+      {
+        "id": "local-upload",
+        "label": "本地上传",
+        "y": 100,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "standard-male",
+        "label": "标准男性",
+        "y": 132,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "standard-female",
+        "label": "标准女性",
+        "y": 164,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "muscular",
+        "label": "健硕",
+        "y": 196,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "slim",
+        "label": "纤细",
+        "y": 228,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "teen",
+        "label": "少年",
+        "y": 260,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "child",
+        "label": "儿童",
+        "y": 292,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "broad",
+        "label": "宽厚",
+        "y": 324,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "chibi",
+        "label": "二头身",
+        "y": 356,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "crowd-3x3",
+        "label": "群众 (3x3)",
+        "y": 388,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": "false",
+        "ariaHasPopup": "dialog",
+        "chevron": true
+      },
+      {
+        "id": "geometry",
+        "label": "几何模型",
+        "y": 420,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": true
+      }
+    ],
+    "几何展开": null,
+    "几何项": [],
+    "crowd按钮": {
+      "x": 56,
+      "y": 388,
+      "w": 216,
+      "h": 32,
+      "right": 272,
+      "bottom": 420
+    },
+    "crowd按钮背景": "rgba(0, 0, 0, 0)",
+    "对话框": null,
+    "对话框可见": false,
+    "对话框z": null,
+    "对话框背景": null,
+    "对话框阴影": null,
+    "对话框标题字号": null,
+    "计数文案": "",
+    "行数": null,
+    "列数": null,
+    "间距": null,
+    "rail场景": {
+      "pressed": "false",
+      "cls": "flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+    },
+    "rail添加角色": {
+      "pressed": "true",
+      "cls": "flex size-8 items-center justify-center rounded-lg transition-colors hover:bg-white/8 hover:text-white bg-white/10 text-white"
+    },
+    "rail添加机位": {
+      "pressed": "false",
+      "cls": "flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+    },
+    "移动端入口": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "right": 0,
+      "bottom": 0
+    }
+  },
+  "③crowd按钮是否命中源站": {
+    "期望": {
+      "x": 56,
+      "y": 388,
+      "w": 216,
+      "h": 32
+    },
+    "实测": {
+      "x": 56,
+      "y": 388,
+      "w": 216,
+      "h": 32,
+      "right": 272,
+      "bottom": 420
+    },
+    "命中": true
+  },
+  "④几何就地展开": {
+    "面板": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 848,
+      "right": 280,
+      "bottom": 900
+    },
+    "面板可见": true,
+    "面板标签": "添加角色",
+    "标题条": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 48,
+      "right": 280,
+      "bottom": 100
+    },
+    "标题字号": "12px",
+    "标题文本": "添加角色",
+    "左侧面板模式": "character",
+    "场景树存在": false,
+    "场景树按钮数": 0,
+    "选项行": [
+      {
+        "id": "local-upload",
+        "label": "本地上传",
+        "y": 100,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "standard-male",
+        "label": "标准男性",
+        "y": 132,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "standard-female",
+        "label": "标准女性",
+        "y": 164,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "muscular",
+        "label": "健硕",
+        "y": 196,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "slim",
+        "label": "纤细",
+        "y": 228,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "teen",
+        "label": "少年",
+        "y": 260,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "child",
+        "label": "儿童",
+        "y": 292,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "broad",
+        "label": "宽厚",
+        "y": 324,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "chibi",
+        "label": "二头身",
+        "y": 356,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": false
+      },
+      {
+        "id": "crowd-3x3",
+        "label": "群众 (3x3)",
+        "y": 388,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": "false",
+        "ariaHasPopup": "dialog",
+        "chevron": true
+      },
+      {
+        "id": "geometry",
+        "label": "几何模型",
+        "y": 420,
+        "w": 216,
+        "h": 32,
+        "font": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null,
+        "chevron": true
+      }
+    ],
+    "几何展开": {
+      "x": 68,
+      "y": 452,
+      "w": 204,
+      "h": 256,
+      "right": 272,
+      "bottom": 708
+    },
+    "几何项": [
+      {
+        "id": "geometry-upload",
+        "x": 73,
+        "y": 452,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "id": "cube",
+        "x": 73,
+        "y": 484,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "id": "sphere",
+        "x": 73,
+        "y": 516,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "id": "cylinder",
+        "x": 73,
+        "y": 548,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "id": "torus",
+        "x": 73,
+        "y": 580,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "id": "cone",
+        "x": 73,
+        "y": 612,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "id": "pyramid",
+        "x": 73,
+        "y": 644,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "id": "empty-object",
+        "x": 73,
+        "y": 676,
+        "w": 199,
+        "h": 32
+      }
+    ],
+    "crowd按钮": {
+      "x": 56,
+      "y": 388,
+      "w": 216,
+      "h": 32,
+      "right": 272,
+      "bottom": 420
+    },
+    "crowd按钮背景": "rgba(0, 0, 0, 0)",
+    "对话框": null,
+    "对话框可见": false,
+    "对话框z": null,
+    "对话框背景": null,
+    "对话框阴影": null,
+    "对话框标题字号": null,
+    "计数文案": "",
+    "行数": null,
+    "列数": null,
+    "间距": null,
+    "rail场景": {
+      "pressed": "false",
+      "cls": "flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+    },
+    "rail添加角色": {
+      "pressed": "true",
+      "cls": "flex size-8 items-center justify-center rounded-lg transition-colors hover:bg-white/8 hover:text-white bg-white/10 text-white"
+    },
+    "rail添加机位": {
+      "pressed": "false",
+      "cls": "flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+    },
+    "移动端入口": {
+      "x": 0,
+      "y": 0,
+      "w": 0,
+      "h": 0,
+      "right": 0,
+      "bottom": 0
+    }
+  },
+  "④几何展开是否命中源站": {
+    "期望": {
+      "x": 68,
+      "y": 452,
+      "w": 204,
+      "h": 256
+    },
+    "实测": {
+      "x": 68,
+      "y": 452,
+      "w": 204,
+      "h": 256,
+      "right": 272,
+      "bottom": 708
+    },
+    "命中": true,
+    "首项": {
+      "id": "geometry-upload",
+      "x": 73,
+      "y": 452,
+      "w": 199,
+      "h": 32
+    }
+  },
+  "⑤开crowd后几何是否关闭": {
+    "几何展开存在": false,
+    "对话框存在": true
+  },
+  "⑤clone对话框逐段": [
+    {
+      "aria": "添加群众阵列",
+      "n": 3,
+      "visible": true,
+      "box": {
+        "x": 280,
+        "y": 388,
+        "w": 220,
+        "h": 204
+      },
+      "z": "1800",
+      "bg": "rgba(31, 31, 31, 0.98)",
+      "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.35) 0px 8px 24px 0px",
+      "padding": "12px",
+      "fontFamily": "-apple-system, \"system-ui\", \"Segoe UI\", \"Helvetica Neue\", Helvetica, Arial, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+      "fontSize": "16px",
+      "lineHeight": "24px",
+      "kids": [
+        {
+          "i": 0,
+          "tag": "DIV",
+          "cls": "mb-3 flex items-center justify-between gap-2",
+          "box": {
+            "x": 293,
+            "y": 401,
+            "w": 194,
+            "h": 20
+          },
+          "marginTop": "0px",
+          "marginBottom": "12px",
+          "display": "flex",
+          "gridTemplateColumns": "none",
+          "rowGap": "8px",
+          "columnGap": "8px"
+        },
+        {
+          "i": 1,
+          "tag": "DIV",
+          "cls": "grid grid-cols-2 gap-2",
+          "box": {
+            "x": 293,
+            "y": 433,
+            "w": 194,
+            "h": 106
+          },
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "display": "grid",
+          "gridTemplateColumns": "93px 93px",
+          "rowGap": "8px",
+          "columnGap": "8px"
+        },
+        {
+          "i": 2,
+          "tag": "DIV",
+          "cls": "mt-3 flex justify-end gap-2",
+          "box": {
+            "x": 293,
+            "y": 551,
+            "w": 194,
+            "h": 28
+          },
+          "marginTop": "12px",
+          "marginBottom": "0px",
+          "display": "flex",
+          "gridTemplateColumns": "none",
+          "rowGap": "8px",
+          "columnGap": "8px"
+        }
+      ],
+      "labels": [
+        {
+          "cls": "flex min-w-0 flex-col gap-1 text-[11px] leading-[1.55] text-white/55",
+          "labelBox": {
+            "x": 293,
+            "y": 433,
+            "w": 93,
+            "h": 49
+          },
+          "spanBox": {
+            "x": 293,
+            "y": 433,
+            "w": 93,
+            "h": 17
+          },
+          "spanFont": "11px",
+          "spanLineHeight": "17.05px",
+          "spanFontFamily": "-apple-system, \"system-ui\", \"Segoe UI\", \"Helvetica Neue\", Helvetica, Arial, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+          "inputBox": {
+            "x": 293,
+            "y": 454,
+            "w": 93,
+            "h": 28
+          },
+          "inputFont": "12px",
+          "inputHeight": "28px",
+          "aria": "行数",
+          "min": "1",
+          "max": "10",
+          "step": "1",
+          "v": "3"
+        },
+        {
+          "cls": "flex min-w-0 flex-col gap-1 text-[11px] leading-[1.55] text-white/55",
+          "labelBox": {
+            "x": 394,
+            "y": 433,
+            "w": 93,
+            "h": 49
+          },
+          "spanBox": {
+            "x": 394,
+            "y": 433,
+            "w": 93,
+            "h": 17
+          },
+          "spanFont": "11px",
+          "spanLineHeight": "17.05px",
+          "spanFontFamily": "-apple-system, \"system-ui\", \"Segoe UI\", \"Helvetica Neue\", Helvetica, Arial, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+          "inputBox": {
+            "x": 394,
+            "y": 454,
+            "w": 93,
+            "h": 28
+          },
+          "inputFont": "12px",
+          "inputHeight": "28px",
+          "aria": "列数",
+          "min": "1",
+          "max": "10",
+          "step": "1",
+          "v": "3"
+        },
+        {
+          "cls": "col-span-2 flex min-w-0 flex-col gap-1 text-[11px] leading-[1.55] text-white/55",
+          "labelBox": {
+            "x": 293,
+            "y": 490,
+            "w": 194,
+            "h": 49
+          },
+          "spanBox": {
+            "x": 293,
+            "y": 490,
+            "w": 194,
+            "h": 17
+          },
+          "spanFont": "11px",
+          "spanLineHeight": "17.05px",
+          "spanFontFamily": "-apple-system, \"system-ui\", \"Segoe UI\", \"Helvetica Neue\", Helvetica, Arial, \"PingFang SC\", \"Hiragino Sans GB\", \"Microsoft YaHei\", \"Noto Sans CJK SC\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+          "inputBox": {
+            "x": 293,
+            "y": 511,
+            "w": 194,
+            "h": 28
+          },
+          "inputFont": "12px",
+          "inputHeight": "28px",
+          "aria": "间距",
+          "min": "0.1",
+          "max": "10",
+          "step": "0.1",
+          "v": "1.2"
+        }
+      ],
+      "btns": [
+        {
+          "text": "取消",
+          "cls": "flex h-7 items-center justify-center rounded-lg px-3 text-[12px] text-white/60 transition-colors hover:bg-white/10 hover:text-white",
+          "box": {
+            "x": 383,
+            "y": 551,
+            "w": 48,
+            "h": 28
+          },
+          "height": "28px",
+          "fontSize": "12px"
+        },
+        {
+          "text": "添加",
+          "cls": "flex h-7 items-center justify-center rounded-lg bg-white px-3 text-[12px] text-[#171717] transition-colors hover:bg-white/90",
+          "box": {
+            "x": 439,
+            "y": 551,
+            "w": 48,
+            "h": 28
+          },
+          "height": "28px",
+          "fontSize": "12px"
+        }
+      ],
+      "text": "添加群众阵列共9人行数列数间距取消添加"
+    }
+  ],
+  "⑤对话框是否命中源站": {
+    "期望": {
+      "x": 280,
+      "y": 388,
+      "w": 220,
+      "h": 204
+    },
+    "实测": {
+      "x": 280,
+      "y": 388,
+      "w": 220,
+      "h": 204,
+      "right": 500,
+      "bottom": 592
+    },
+    "命中": true,
+    "z": "1800",
+    "z期望": 1800,
+    "背景": "rgba(31, 31, 31, 0.98)",
+    "阴影": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.35) 0px 8px 24px 0px",
+    "标题字号": "13px"
+  },
+  "⑥间距填1.55后": {
+    "value": "1.6",
+    "min": "0.1",
+    "max": "10",
+    "step": "0.1",
+    "aria": "间距",
+    "cls": "h-7 min-w-0 rounded-lg border border-white/10 bg-white/[0.06] px-2 text-[12px] text-white outline-none transition-colors focus:border-white/30"
+  },
+  "⑦再点一次": null,
+  "⑧点外面之后": null,
+  "⑨切回场景": {
+    "面板可见": false,
+    "场景树存在": true,
+    "模式": "scene",
+    "rail场景": {
+      "pressed": "true",
+      "cls": "flex size-8 items-center justify-center rounded-lg transition-colors hover:bg-white/8 hover:text-white bg-white/10 text-white"
+    },
+    "rail添加角色": {
+      "pressed": "false",
+      "cls": "flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+    }
+  },
+  "⑩再切到添加角色": {
+    "场景树存在": false,
+    "场景树按钮数": 0,
+    "面板可见": true,
+    "模式": "character",
+    "rail添加角色": {
+      "pressed": "true",
+      "cls": "flex size-8 items-center justify-center rounded-lg transition-colors hover:bg-white/8 hover:text-white bg-white/10 text-white"
+    },
+    "rail场景": {
+      "pressed": "false",
+      "cls": "flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
+    }
+  },
+  "⑪移动端导演台": "OK",
+  "⑫移动端点开对话框": {
+    "对话框": {
+      "x": 162,
+      "y": 628,
+      "w": 220,
+      "h": 204,
+      "right": 382,
+      "bottom": 832
+    },
+    "对话框可见": true,
+    "移动端入口": {
+      "x": 219,
+      "y": 628,
+      "w": 32,
+      "h": 32,
+      "right": 251,
+      "bottom": 660
+    },
+    "面板可见": false
+  }
+}

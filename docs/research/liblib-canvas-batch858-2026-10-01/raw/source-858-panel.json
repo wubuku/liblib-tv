@@ -1,0 +1,481 @@
+{
+  "①导演台已打开": true,
+  "②有练习浮层": true,
+  "③点开的rail按钮": {
+    "x": 8,
+    "y": 116,
+    "w": 32,
+    "h": 32,
+    "aria": "添加角色"
+  },
+  "③新出现的入口": [
+    {
+      "x": 56,
+      "y": 388,
+      "w": 216,
+      "h": 32,
+      "aria": "",
+      "text": "群众 (3x3)"
+    }
+  ],
+  "④添加角色面板": {
+    "panel": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 1028,
+      "right": 280,
+      "bottom": 1080
+    },
+    "panelCls": "flex w-[232px] min-w-0 flex-col bg-[#171717]",
+    "title": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 48,
+      "right": 280,
+      "bottom": 100
+    },
+    "titleCls": "flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+    "titleFont": "12px",
+    "titleText": "添加角色",
+    "rows": [
+      {
+        "text": "本地上传",
+        "x": 56,
+        "y": 100,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null
+      },
+      {
+        "text": "标准男性",
+        "x": 56,
+        "y": 132,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null
+      },
+      {
+        "text": "标准女性",
+        "x": 56,
+        "y": 164,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null
+      },
+      {
+        "text": "健硕",
+        "x": 56,
+        "y": 196,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null
+      },
+      {
+        "text": "纤细",
+        "x": 56,
+        "y": 228,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null
+      },
+      {
+        "text": "少年",
+        "x": 56,
+        "y": 260,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null
+      },
+      {
+        "text": "儿童",
+        "x": 56,
+        "y": 292,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null
+      },
+      {
+        "text": "宽厚",
+        "x": 56,
+        "y": 324,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null
+      },
+      {
+        "text": "二头身",
+        "x": 56,
+        "y": 356,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null
+      },
+      {
+        "text": "群众 (3x3)",
+        "x": 56,
+        "y": 388,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": "false",
+        "ariaHasPopup": "dialog"
+      },
+      {
+        "text": "几何模型",
+        "x": 56,
+        "y": 420,
+        "w": 216,
+        "h": 32,
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "spanFont": "13px",
+        "ariaExpanded": null,
+        "ariaHasPopup": null
+      }
+    ],
+    "geometry": null,
+    "geometryCls": null,
+    "sceneTreePresent": false
+  },
+  "⑤全部dialog摘要": [
+    {
+      "aria": "",
+      "n": 0,
+      "visible": false,
+      "box": {
+        "x": 0,
+        "y": 0,
+        "w": 0,
+        "h": 0
+      },
+      "text": "新对话 .canvas-agent-drawer-chat { --copilot-kit-background-color: transparent; } .canvas-agent-drawer-resize-handle { widt"
+    },
+    {
+      "aria": "添加群众阵列",
+      "n": 3,
+      "visible": true,
+      "box": {
+        "x": 280,
+        "y": 388,
+        "w": 220,
+        "h": 204
+      },
+      "text": "添加群众阵列共9人行数列数间距取消添加"
+    }
+  ],
+  "⑤群众对话框": {
+    "aria": "添加群众阵列",
+    "n": 3,
+    "visible": true,
+    "box": {
+      "x": 280,
+      "y": 388,
+      "w": 220,
+      "h": 204
+    },
+    "z": "1800",
+    "bg": "rgba(31, 31, 31, 0.98)",
+    "shadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.35) 0px 8px 24px 0px",
+    "padding": "12px",
+    "fontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+    "fontSize": "16px",
+    "lineHeight": "24.8px",
+    "kids": [
+      {
+        "i": 0,
+        "tag": "DIV",
+        "cls": "mb-3 flex items-center justify-between gap-2",
+        "box": {
+          "x": 293,
+          "y": 401,
+          "w": 194,
+          "h": 20
+        },
+        "marginTop": "0px",
+        "marginBottom": "12px",
+        "display": "flex",
+        "gridTemplateColumns": "none",
+        "rowGap": "8px",
+        "columnGap": "8px"
+      },
+      {
+        "i": 1,
+        "tag": "DIV",
+        "cls": "grid grid-cols-2 gap-2",
+        "box": {
+          "x": 293,
+          "y": 433,
+          "w": 194,
+          "h": 106
+        },
+        "marginTop": "0px",
+        "marginBottom": "0px",
+        "display": "grid",
+        "gridTemplateColumns": "93px 93px",
+        "rowGap": "8px",
+        "columnGap": "8px"
+      },
+      {
+        "i": 2,
+        "tag": "DIV",
+        "cls": "mt-3 flex justify-end gap-2",
+        "box": {
+          "x": 293,
+          "y": 551,
+          "w": 194,
+          "h": 28
+        },
+        "marginTop": "12px",
+        "marginBottom": "0px",
+        "display": "flex",
+        "gridTemplateColumns": "none",
+        "rowGap": "8px",
+        "columnGap": "8px"
+      }
+    ],
+    "labels": [
+      {
+        "cls": "flex min-w-0 flex-col gap-1 text-[11px] text-white/55",
+        "labelBox": {
+          "x": 293,
+          "y": 433,
+          "w": 93,
+          "h": 49
+        },
+        "spanBox": {
+          "x": 293,
+          "y": 433,
+          "w": 93,
+          "h": 17
+        },
+        "spanFont": "11px",
+        "spanLineHeight": "17.05px",
+        "spanFontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "inputBox": {
+          "x": 293,
+          "y": 454,
+          "w": 93,
+          "h": 28
+        },
+        "inputFont": "12px",
+        "inputHeight": "28px",
+        "aria": "行数",
+        "min": "1",
+        "max": "10",
+        "step": "1",
+        "v": "3"
+      },
+      {
+        "cls": "flex min-w-0 flex-col gap-1 text-[11px] text-white/55",
+        "labelBox": {
+          "x": 394,
+          "y": 433,
+          "w": 93,
+          "h": 49
+        },
+        "spanBox": {
+          "x": 394,
+          "y": 433,
+          "w": 93,
+          "h": 17
+        },
+        "spanFont": "11px",
+        "spanLineHeight": "17.05px",
+        "spanFontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "inputBox": {
+          "x": 394,
+          "y": 454,
+          "w": 93,
+          "h": 28
+        },
+        "inputFont": "12px",
+        "inputHeight": "28px",
+        "aria": "列数",
+        "min": "1",
+        "max": "10",
+        "step": "1",
+        "v": "3"
+      },
+      {
+        "cls": "col-span-2 flex min-w-0 flex-col gap-1 text-[11px] text-white/55",
+        "labelBox": {
+          "x": 293,
+          "y": 490,
+          "w": 194,
+          "h": 49
+        },
+        "spanBox": {
+          "x": 293,
+          "y": 490,
+          "w": 194,
+          "h": 17
+        },
+        "spanFont": "11px",
+        "spanLineHeight": "17.05px",
+        "spanFontFamily": "-apple-system, \"system-ui\", \"PingFang SC\", Inter, \"Noto Sans SC\", \"Microsoft YaHei\", sans-serif, \"Apple Color Emoji\", \"Segoe UI Emoji\", \"Segoe UI Symbol\"",
+        "inputBox": {
+          "x": 293,
+          "y": 511,
+          "w": 194,
+          "h": 28
+        },
+        "inputFont": "12px",
+        "inputHeight": "28px",
+        "aria": "间距",
+        "min": "0.1",
+        "max": "10",
+        "step": "0.1",
+        "v": "1.2"
+      }
+    ],
+    "btns": [
+      {
+        "text": "取消",
+        "cls": "flex h-7 items-center justify-center rounded-lg px-3 text-[12px] text-white/60 transition-colors hover:bg-white/10 hover:text-white",
+        "box": {
+          "x": 383,
+          "y": 551,
+          "w": 48,
+          "h": 28
+        },
+        "height": "28px",
+        "fontSize": "12px"
+      },
+      {
+        "text": "添加",
+        "cls": "flex h-7 items-center justify-center rounded-lg bg-white px-3 text-[12px] text-[#171717] transition-colors hover:bg-white/90",
+        "box": {
+          "x": 439,
+          "y": 551,
+          "w": 48,
+          "h": 28
+        },
+        "height": "28px",
+        "fontSize": "12px"
+      }
+    ],
+    "text": "添加群众阵列共9人行数列数间距取消添加"
+  },
+  "⑤页面上全部dialog数": 2,
+  "⑥开crowd时几何展开": null,
+  "⑦开几何后": {
+    "几何展开": {
+      "x": 68,
+      "y": 452,
+      "w": 204,
+      "h": 256,
+      "right": 272,
+      "bottom": 708
+    },
+    "几何项": [
+      {
+        "text": "上传文件",
+        "x": 73,
+        "y": 452,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "text": "立方体",
+        "x": 73,
+        "y": 484,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "text": "球体",
+        "x": 73,
+        "y": 516,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "text": "圆柱体",
+        "x": 73,
+        "y": 548,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "text": "环状体",
+        "x": 73,
+        "y": 580,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "text": "圆锥",
+        "x": 73,
+        "y": 612,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "text": "棱锥",
+        "x": 73,
+        "y": 644,
+        "w": 199,
+        "h": 32
+      },
+      {
+        "text": "添加空对象",
+        "x": 73,
+        "y": 676,
+        "w": 199,
+        "h": 32
+      }
+    ],
+    "对话框还在吗": false
+  }
+}

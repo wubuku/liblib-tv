@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch589.py", line 339, in <module>
+    main()
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch589.py", line 323, in main
+    audit["results"].append(run_desktop(desktop))
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch589.py", line 132, in run_desktop
+    check("character:opens", char.is_visible())
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch589.py", line 103, in check
+    assert ok, f"batch589 check failed: {name} :: {detail}"
+AssertionError: batch589 check failed: character:opens :: None

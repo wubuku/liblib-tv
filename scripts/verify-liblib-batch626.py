@@ -90,11 +90,16 @@ OVERLAYS: list[tuple[str, str, str]] = [
      "[data-director-panorama-flyout]"),
     ("aspect-flyout", "[data-director-rail-entry='aspect-ratio']",
      "[data-director-aspect-flyout]"),
-    ("add-character-flyout", "[data-director-rail-entry='add-character']",
-     "[data-director-character-flyout]"),
     ("ai-import-modal", "[data-director-rail-entry='ai-import']",
      "[data-director-ai-import-modal]"),
-    ("geometry-submenu", "@geometry@", "[data-director-geometry-submenu]"),
+    # ★ Batch 858 **迁移掉两条**（源站逐字）：
+    #   · `add-character-flyout` ⟹ ⟹ 「添加角色」已不是浮层，而是**左侧面板**
+    #     （`"scene"===z?n:null,"character"===z?(…)`）⟹ ⟹ 它不是 overlay ⟹ ⟹
+    #     改由 run_side_panel() 按**面板**的结构判据检查（见那里的注释）。
+    #   · `geometry-submenu` ⟹ ⟹ 几何模型在源站是**就地展开**在那个面板里
+    #     （`ml-3 border-l pl-1`）⟹ ⟹ 它不是绝对定位的浮层 ⟹ ⟹ 626 那把
+    #     「浮层必须整体装进视口」的尺子**不适用**于它 ⟹ ⟹ 它现在在**可滚动
+    #     列表**里 ⟹ ⟹ 短视口下的可达性由 run_side_panel() 断言。
     ("crowd-dialog", "@crowd@", "[data-director-crowd-dialog]"),
     ("camera-fov-help-tooltip", "@fov-hover@",
      "[data-director-camera-fov-help-tooltip]"),
@@ -120,8 +125,9 @@ VIEWPORTS = [(1920, 1150), (1440, 900), (1280, 720)]
 HEIGHT_SWEEP = [
     ("motion-path-menu", "@path-menu@", "[data-director-motion-path-menu]",
      [(1920, 900), (1920, 540), (1280, 640)]),
-    ("geometry-submenu", "@geometry@", "[data-director-geometry-submenu]",
-     [(1440, 800), (1440, 640), (1280, 540)]),
+    # ★ Batch 858：几何子菜单从 HEIGHT_SWEEP **移除** —— 它已就地展开在
+    #   一个**可滚动列表**里（源站逐字）⟹ ⟹ 「浮层整体装进视口」这条尺子
+    #   不适用 ⟹ ⟹ 短视口下的可达性由 run_side_panel() 断言。
 ]
 
 LIVE = ("button, input, select, textarea, a[href], [role='button'], "
@@ -135,12 +141,9 @@ SAFE_MARGIN = 8
 # viewport tall enough to hold it — it hangs below the whole flyout card, so
 # it needs 786px of height and above that the CSS default is correct.  If this
 # box ever moves, the clamp is touching geometry it has no business touching.
-NO_OP_CASES = [
-    ("geometry-submenu", "@geometry@", "[data-director-geometry-submenu]",
-     (1440, 800), [52, 508, 204, 270]),
-    ("geometry-submenu", "@geometry@", "[data-director-geometry-submenu]",
-     (1440, 900), [52, 508, 204, 270]),
-]
+# ★ Batch 858：NO_OP_CASES 的两条几何子菜单**移除** —— 它现在就地展开，
+#   坐标由源站实测钉死 (68,452) 204×256（batch 858 的新门禁负责）。
+NO_OP_CASES: list[tuple[str, str, str, tuple[int, int], list[int]]] = []
 
 CENSUS_JS = r"""
 ({sel, panels, live, margin}) => {
@@ -418,6 +421,199 @@ def run_no_op_cases(page: Page, v: Verifier) -> dict[str, Any]:
     return {"noOpCases": rows}
 
 
+# ★★★ Batch 858：「添加角色」**不是浮层** ⟹ ⟹ 626 那把「浮层必须整体装进
+#   视口、且浮层里的活控件都必须点得到」的尺子对它**不适用**。
+#   ⟹ ⟹ 源站逐字的结构是：**左侧面板 ＋ 一个可滚动列表**
+#   （`min-h-0 flex-1 overflow-y-auto px-2 pb-3`）⟹ ⟹ 短视口下「几何模型
+#   就地展开」虽然超出视口，但**可以滚到** ⟹ ⟹ 按 623/625 的既定口径
+#   （「被自己的滚动容器裁掉不算缺陷、但要记录」），这里断言的是
+#   **可滚动到达**，不是「整体装得下」。
+SIDE_PANEL_JS = r"""()=>{
+  const panel=document.querySelector('[data-director-character-panel]');
+  if(!panel) return {missing:true};
+  const pr=panel.getBoundingClientRect();
+  // ★ 列表 = 面板里那个可滚动的容器（源站逐字 overflow-y-auto）
+  const list=[...panel.querySelectorAll('div')].find(d=>{
+    const cs=getComputedStyle(d);
+    return (cs.overflowY==='auto'||cs.overflowY==='scroll') &&
+           d.contains(panel.querySelector("[data-director-character-option='geometry']"));
+  });
+  if(!list) return {missing:true, noList:true};
+  const before=list.scrollTop;
+  list.scrollTop=list.scrollHeight;
+  const last=[...document.querySelectorAll('[data-director-geometry-option]')].pop();
+  let lastVisible=false;
+  if(last){
+    const lr=last.getBoundingClientRect();
+    const listRect=list.getBoundingClientRect();
+    lastVisible = lr.top>=listRect.top-1 && lr.bottom<=listRect.bottom+1
+                  && lr.height>0;
+  }
+  const hit=last?document.elementFromPoint(
+      last.getBoundingClientRect().x+last.getBoundingClientRect().width/2,
+      last.getBoundingClientRect().y+last.getBoundingClientRect().height/2):null;
+  // ★ 短视口下**时间线**（z-40）会盖住左侧面板（z-30）的底部 ——
+  //   这是**源站逐字**的层序（源站的 aside 是 z-30、时间线是 z-40，
+  //   源站的「帮助」同样被时间线左簇盖住，见 batch 613 的实测）⟹ ⟹
+  //   面板底部的项**被时间线盖住**不是本面板的缺陷 ⟹ ⟹ 要区分
+  //   「被时间线盖住」与「被别的浮层盖住」。
+  const tl=document.querySelector('[data-director-timeline]');
+  const tlRect=tl?tl.getBoundingClientRect():null;
+  const lr=last?last.getBoundingClientRect():null;
+  const coveredByTimeline = !!(tlRect && lr && lr.bottom > tlRect.top
+                              && lr.top < tlRect.bottom);
+  list.scrollTop=before;
+  return {
+    missing:false,
+    panel:[Math.round(pr.x),Math.round(pr.y),Math.round(pr.width),Math.round(pr.height)],
+    panelInViewport: pr.x>=0 && pr.y>=0 && pr.right<=innerWidth && pr.bottom<=innerHeight,
+    listOverflowY: getComputedStyle(list).overflowY,
+    listScrollable: list.scrollHeight > list.clientHeight,
+    lastItemVisibleAfterScroll: lastVisible,
+    lastItemHittable: hit===last || (last && last.contains(hit)),
+    coveredByTimeline: coveredByTimeline,
+    timelineTop: tlRect?Math.round(tlRect.top):null,
+    scrollHeight: list.scrollHeight, clientHeight: list.clientHeight,
+  };
+}"""
+
+
+SIDE_PANEL_SHELL_JS = r"""()=>{
+  const panel=document.querySelector('[data-director-character-panel]');
+  if(!panel) return {missing:true};
+  const pr=panel.getBoundingClientRect();
+  const list=[...panel.querySelectorAll('div')].find(d=>{
+    const cs=getComputedStyle(d);
+    return (cs.overflowY==='auto'||cs.overflowY==='scroll') &&
+           d.contains(panel.querySelector("[data-director-character-option='geometry']"));
+  });
+  if(!list) return {missing:true, noList:true};
+  const tl=document.querySelector('[data-director-timeline]');
+  const tlRect=tl?tl.getBoundingClientRect():null;
+  const row=panel.querySelector("[data-director-character-option='geometry']");
+  const rr=row?row.getBoundingClientRect():null;
+  return {
+    missing:false,
+    panel:[Math.round(pr.x),Math.round(pr.y),Math.round(pr.width),Math.round(pr.height)],
+    panelInViewport: pr.x>=0 && pr.y>=0 && pr.right<=innerWidth && pr.bottom<=innerHeight,
+    listOverflowY: getComputedStyle(list).overflowY,
+    listScrollable: list.scrollHeight > list.clientHeight,
+    listScrollTop: Math.round(list.scrollTop),
+    listScrollHeight: list.scrollHeight,
+    listClientHeight: list.clientHeight,
+    // ★ 那一行**在哪**（归因必需：光看 coveredByTimeline 看不出「是被盖住
+    //   还是根本不在那儿」）
+    rowRect: rr?[Math.round(rr.x),Math.round(rr.y),Math.round(rr.width),Math.round(rr.height)]:null,
+    rowFound: !!row,
+    timelineRect: tlRect?[Math.round(tlRect.x),Math.round(tlRect.y),Math.round(tlRect.width),Math.round(tlRect.height)]:null,
+    coveredByTimeline: !!(tlRect && rr && rr.bottom > tlRect.top && rr.top < tlRect.bottom),
+    timelineTop: tlRect?Math.round(tlRect.top):null,
+    scrollHeight: list.scrollHeight, clientHeight: list.clientHeight,
+  };
+}"""
+
+
+def run_side_panel(page: Page, v: Verifier) -> dict[str, Any]:
+    """★ Batch 858：左侧「添加角色」面板的结构性判据（见 SIDE_PANEL_JS 注释）。"""
+    br = page.context.browser
+    rows: list[dict[str, Any]] = []
+    for vw, vh in [(1920, 1150), (1440, 900), (1280, 720), (1280, 540)]:
+        p = br.new_page(viewport={"width": vw, "height": vh}, device_scale_factor=1)
+        row: dict[str, Any] = {"vw": vw, "vh": vh}
+        try:
+            open_desk_with_retry(p)
+            p.locator("[data-director-rail-entry='add-character']").first.click(timeout=10_000)
+            p.wait_for_timeout(500)
+            geo_row = p.locator("[data-director-character-option='geometry']").first
+            # ★ ★ 等那一行**真的挂上 DOM**（★ batch 858 实测到的时序坑）：
+            #   面板刚打开时这一行可能**还没渲染** ⟹ ⟹ 于是「点不到」有两种
+            #   完全不同的原因 ——「**被时间线盖住**」（层序事实，源站同款）
+            #   与「**还没挂上**」（时序抖动）⟹ ⟹ 混在一起判就会把
+            #   **抖动**报成「没被盖住」的红条。
+            # ⟹ ⟹ 先等 attached，再滚，再点。
+            try:
+                geo_row.wait_for(state="attached", timeout=8000)
+            except Exception:  # noqa: BLE001
+                pass
+            # ★ 短视口下这一行可能在**可滚动列表**的折叠处 ⟹ ⟹ 先滚进视野
+            #   再点（Playwright 不会自动滚自定义滚动容器里的元素）。
+            try:
+                geo_row.scroll_into_view_if_needed(timeout=8000)
+            except Exception:  # noqa: BLE001
+                pass
+            try:
+                geo_row.click(timeout=10_000)
+                p.wait_for_timeout(600)
+                row.update(p.evaluate(SIDE_PANEL_JS))
+            except Exception as exc:  # noqa: BLE001
+                # ★ 极短视口下这一行被**时间线**盖住（源站逐字的层序：
+                #   aside z-30 < timeline z-40）⟹ ⟹ 点不到是**源站同款**，
+                #   不是本面板的缺陷 ⟹ ⟹ 记下来、并且**只断言**「面板在」
+                #   与「列表可滚」这两条结构事实。
+                # ★ 刻意**不**写 row["error"] ⟹ ⟹ 否则「面板在不在」那条
+                #   会被判成失败 ⟹ ⟹ 而这里的事实是「面板**在**、只是那一行
+                #   被时间线盖住」⟹ ⟹ 两件事要分开判。
+                row["rowUnhittable"] = True
+                row["rowUnhittableWhy"] = f"{type(exc).__name__}: {str(exc)[:120]}"
+                # ★ 读几何之前**再等一次那一行挂上**（★ 它可能是在点击
+                #   超时的这 10 秒里才渲染出来的 ⟹ ⟹ 不等就会读到
+                #   `rowRect=null` ⟹ ⟹ `coveredByTimeline` 恒 False ⟹ ⟹
+                #   把**时序抖动**报成「没被盖住」的红条）。
+                try:
+                    geo_row.wait_for(state="attached", timeout=5000)
+                except Exception:  # noqa: BLE001
+                    pass
+                p.wait_for_timeout(300)
+                row.update(p.evaluate(SIDE_PANEL_SHELL_JS))
+        except Exception as exc:  # noqa: BLE001
+            row["error"] = f"{type(exc).__name__}: {str(exc)[:140]}"
+        finally:
+            p.close()
+        rows.append(row)
+        tag = f"{vw}x{vh}/add-character-panel"
+        v.check(f"side-panel-present/{tag}",
+                "error" not in row and not row.get("missing"),
+                row.get("error") or row.get("rowUnhittableWhy") or "panel missing")
+        if "error" in row or row.get("missing"):
+            continue
+        v.check(f"side-panel-fits-viewport/{tag}", bool(row["panelInViewport"]),
+                f"panel={row['panel']}")
+        v.check(f"side-panel-list-is-scrollable/{tag}",
+                row["listOverflowY"] in ("auto", "scroll"),
+                f"overflowY={row['listOverflowY']}")
+        if row.get("rowUnhittable"):
+            # ★ 该视口下「几何模型」那一行被**时间线**盖住 ⟹ ⟹ 源站逐字同款
+            #   （源站的 aside 也是 z-30、时间线也是 z-40）⟹ ⟹ 记一条、
+            #   不判失败（判失败就是在要求源站也没有的行为）。
+            # ★ 细节要**自足**：光给 timelineTop 看不出「是被盖住还是压根不在那儿」
+            #   ⟹ ⟹ 把那一行的矩形、列表滚动状态、时间线矩形一起打出来
+            #   （★ batch 858 归因时就是因为缺这几项、只能靠另写探针反推）。
+            v.check(f"side-panel-unhittable-row-is-the-timeline/{tag}",
+                    bool(row.get("coveredByTimeline")),
+                    f"timelineTop={row.get('timelineTop')} "
+                    f"rowRect={row.get('rowRect')} "
+                    f"rowFound={row.get('rowFound')} "
+                    f"coveredByTimeline={row.get('coveredByTimeline')} "
+                    f"timelineRect={row.get('timelineRect')} "
+                    f"listScrollTop={row.get('listScrollTop')} "
+                    f"listScrollHeight={row.get('listScrollHeight')} "
+                    f"listClientHeight={row.get('listClientHeight')}")
+            continue
+        # ★ 「可达」的判据：**能点到**、**或者**它被**时间线**盖住
+        #   （源站逐字的层序 aside z-30 < timeline z-40 ⟹ ⟹ 面板底部被盖住
+        #   是**源站同款**，不是本面板的缺陷）⟹ ⟹ 但**必须**同时满足
+        #   「它在一个可滚动列表里」⟹ ⟹ 视口一变高就能露出来。
+        v.check(f"side-panel-geometry-reachable-by-scrolling/{tag}",
+                bool(row["lastItemVisibleAfterScroll"])
+                and (bool(row["lastItemHittable"]) or bool(row["coveredByTimeline"])),
+                f"visible={row['lastItemVisibleAfterScroll']} "
+                f"hittable={row['lastItemHittable']} "
+                f"coveredByTimeline={row['coveredByTimeline']} "
+                f"timelineTop={row['timelineTop']} "
+                f"scrollH={row['scrollHeight']} clientH={row['clientHeight']}")
+    return {"sidePanel": rows}
+
+
 def main() -> int:
     v = Verifier()
     with sync_playwright() as p:
@@ -428,6 +624,7 @@ def main() -> int:
         out.update(run_matrix(keeper, v))
         out.update(run_height_sweep(keeper, v))
         out.update(run_no_op_cases(keeper, v))
+        out.update(run_side_panel(keeper, v))
         out["ok"] = not v.failures
         out["checks"] = v.count
         out["failures"] = v.failures
