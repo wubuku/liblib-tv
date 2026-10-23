@@ -17,17 +17,21 @@
   "why": []
  },
  "head": {
-  "ok": true,
-  "n_matched": 29,
-  "n_stale": 0,
-  "stale_books": [],
+  "ok": false,
+  "n_matched": 28,
+  "n_stale": 1,
+  "stale_books": [
+   "rerun-reproducibility-1015.json"
+  ],
   "missing_books": [],
   "phantom_books": [],
-  "why": []
+  "why": [
+   "row_mismatch:rerun-reproducibility-1015.json"
+  ]
  },
  "selftest": {
   "ok": true,
-  "n_cases": 7,
+  "n_cases": 8,
   "cases": [
    {
     "case": "positive_control_unbroken_world",
@@ -36,6 +40,11 @@
    },
    {
     "case": "mutate_one_artifact_on_disk",
+    "want": "red",
+    "ok": true
+   },
+   {
+    "case": "declaration_points_at_someone_else",
     "want": "red",
     "ok": true
    },
@@ -67,12 +76,13 @@
   ]
  },
  "P": {
-  "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": true,
+  "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": false,
   "P2_the_table_covers_every_book_on_disk_1032l": true,
   "P3_volatile_is_declared_and_kept_out_of_the_table_1032l": true,
-  "P4_the_committed_state_is_self_consistent_1032l": true,
+  "P4_the_committed_state_is_self_consistent_1032l": false,
   "P5_the_working_tree_is_self_consistent_1032l": true,
-  "P6_this_gate_can_actually_go_red_1032l": true
+  "P6_this_gate_can_actually_go_red_1032l": true,
+  "P7_the_table_declares_the_gate_that_checks_it_1032l": true
  },
  "criterion_kinds_1032l": {
   "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": "failure",
@@ -80,7 +90,8 @@
   "P3_volatile_is_declared_and_kept_out_of_the_table_1032l": "failure",
   "P4_the_committed_state_is_self_consistent_1032l": "failure",
   "P5_the_working_tree_is_self_consistent_1032l": "failure",
-  "P6_this_gate_can_actually_go_red_1032l": "failure"
+  "P6_this_gate_can_actually_go_red_1032l": "failure",
+  "P7_the_table_declares_the_gate_that_checks_it_1032l": "failure"
  },
  "criterion_kinds_complete_1032l": true
 }

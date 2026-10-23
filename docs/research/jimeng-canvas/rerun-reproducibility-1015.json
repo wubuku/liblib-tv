@@ -5,8 +5,8 @@
  "rule2": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **完备性用加法验的时候，两边不许同源 —— 分母的完备性才是命门**",
  "rule3": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「探针跑成功了」不等于「产物被刷新了」—— 只能靠重跑后比对字节、或看 mtime 变没变来判，不许看退出码**",
  "pen_is_the_book": {
-  "n_zero_coupling_head": 918,
-  "n_zero_coupling_now": 918,
+  "n_zero_coupling_head": 926,
+  "n_zero_coupling_now": 926,
   "n_positive_present_head": 7033,
   "n_positive_present_now": 7033,
   "n_audit_2015_lines": 2165,
@@ -16,7 +16,7 @@
   "n_books": 30,
   "n_books_with_readable_p_summary": 29,
   "n_books_without_readable_p_summary": 1,
-  "n_books_rc1_judgement_red": 0,
+  "n_books_rc1_judgement_red": 1,
   "n_books_rc2_instrument_crashed": 0,
   "n_books_self_reporting_false": 0,
   "n_criteria_self_reported_false": 0,
@@ -73,7 +73,9 @@
     "ok": true
    }
   ],
-  "books_rc1_judgement_red": [],
+  "books_rc1_judgement_red": [
+   "fingerprint-gate-1032l.json"
+  ],
   "books_rc2_instrument_crashed": [],
   "per_book": [
    {
@@ -169,8 +171,8 @@
    },
    {
     "golden": "fingerprint-gate-1032l.json",
-    "rc": 0,
-    "state": "reproduced",
+    "rc": 1,
+    "state": "self_red",
     "n_self_reported_false": null,
     "p_summary_readable": false
    },
@@ -503,13 +505,24 @@
    "n_books_compared": 30,
    "n_books_unknown": 0,
    "n_books_snapshot_unknown": 0,
-   "n_stale": 0,
-   "stale": [],
+   "n_stale": 1,
+   "stale": [
+    {
+     "golden": "fingerprint-gate-1032l.json",
+     "n_bytes_committed": 2393,
+     "n_bytes_worktree": 2619
+    }
+   ],
    "what_it_is_not": "⇒ ⇒ **这不是四态里的任何一态**⇒ ⇒ **⇒ 四态答「可复现吗」；这一栏答「还新鲜吗」**⇒ ⇒ **⇒ 而「提交态取不到」单列成一栏**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 「取不到」不许混进「不新鲜」**",
    "rule": "⇒ ⇒ **这一栏与 1027 报的是同一件事**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 区别是：1027 只跑「被本次变更触及的」那些、而这里是全量**"
   },
-  "criteria_red_by_book": {},
-  "n_criteria_red_named": 0,
+  "criteria_red_by_book": {
+   "fingerprint-gate-1032l.json": [
+    "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l",
+    "P4_the_committed_state_is_self_consistent_1032l"
+   ]
+  },
+  "n_criteria_red_named": 2,
   "criteria_detector_selftest_ok": true,
   "criteria_detector_selftest_n_cases": 5,
   "criteria_detector_selftest": [
@@ -560,7 +573,7 @@
   ],
   "n_books_with_ledger": 17,
   "n_books_with_ledger_complete": 17,
-  "n_ledger_criteria": 140,
+  "n_ledger_criteria": 141,
   "ledger_rows": [
    {
     "golden": "anchor-gate-coverage-1021.json",
@@ -734,14 +747,17 @@
    {
     "golden": "fingerprint-gate-1032l.json",
     "criteria_detail_readable": true,
-    "n_criteria_red": 0,
+    "n_criteria_red": 2,
     "n_criteria_not_applicable": 0,
     "artifact_readable": true,
     "ledger_published": true,
-    "ledger_n_kinds": 6,
+    "ledger_n_kinds": 7,
     "ledger_n_criteria": null,
     "ledger_complete": true,
-    "criteria_red_with_kind": {},
+    "criteria_red_with_kind": {
+     "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": "failure",
+     "P4_the_committed_state_is_self_consistent_1032l": "failure"
+    },
     "n_criteria_red_kind_unknown": 0
    },
    {
@@ -953,14 +969,24 @@
     "n_criteria_red_kind_unknown": 0
    }
   ],
-  "criteria_red_with_kind": {},
-  "n_criteria_red_failure": 0,
+  "criteria_red_with_kind": {
+   "fingerprint-gate-1032l.json": {
+    "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": "failure",
+    "P4_the_committed_state_is_self_consistent_1032l": "failure"
+   }
+  },
+  "n_criteria_red_failure": 2,
   "n_criteria_red_conclusion": 0,
   "n_criteria_red_kind_unknown": 0,
-  "red_needs_fix": [],
+  "red_needs_fix": [
+   "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l",
+   "P4_the_committed_state_is_self_consistent_1032l"
+  ],
   "red_needs_reread": [],
   "red_kind_unknown": [],
-  "books_with_red_needs_fix": [],
+  "books_with_red_needs_fix": [
+   "fingerprint-gate-1032l.json"
+  ],
   "books_with_red_needs_reread": [],
   "n_criteria_not_applicable": 0,
   "books_with_not_applicable_criteria": [],
@@ -1208,14 +1234,9 @@
  "rounds": [
   {
    "round": 1,
-   "n_drifted": 6,
+   "n_drifted": 1,
    "drifted": [
-    "baseline-host-misuse-1016.json",
-    "criterion-direction-1025.json",
-    "criterion-effectiveness-1026.json",
-    "empty-ambiguity-1014.json",
-    "replica-coverage-1017.json",
-    "zero-coupling-anchors-1005.json"
+    "golden-freshness-1008.json"
    ]
   },
   {
@@ -1646,8 +1667,8 @@
    "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 155472,
-   "n_bytes_fresh": 155472,
+   "n_bytes": 156298,
+   "n_bytes_fresh": 156298,
    "state": "reproduced",
    "tail": [
     "P1..P10 = [True, True, True, True, True, True, True, True, True, True]",
@@ -1782,14 +1803,14 @@
   {
    "golden": "fingerprint-gate-1032l.json",
    "probe": "scripts/jimeng_probe1032l_fingerprint_gate.py",
-   "rc": 0,
+   "rc": 1,
    "wrote_golden": true,
-   "n_bytes": 2393,
-   "n_bytes_fresh": 2393,
-   "state": "reproduced",
+   "n_bytes": 2715,
+   "n_bytes_fresh": 2715,
+   "state": "self_red",
    "tail": [
     "PROBE_1032L_FINGERPRINT_GATE_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/fingerprint-gate-1032l.json",
-    "PROBE_1032L_FINGERPRINT_GATE_OK"
+    "PROBE_1032L_FINGERPRINT_GATE_RED"
    ],
    "n_self_reported_false": null,
    "p_summary_readable": false,
@@ -1799,15 +1820,19 @@
    "criteria_detail_source": "print_line",
    "criteria_detail_readable": true,
    "criteria_detail": {
-    "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": "True",
+    "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": "False",
     "P2_the_table_covers_every_book_on_disk_1032l": "True",
     "P3_volatile_is_declared_and_kept_out_of_the_table_1032l": "True",
-    "P4_the_committed_state_is_self_consistent_1032l": "True",
+    "P4_the_committed_state_is_self_consistent_1032l": "False",
     "P5_the_working_tree_is_self_consistent_1032l": "True",
-    "P6_this_gate_can_actually_go_red_1032l": "True"
+    "P6_this_gate_can_actually_go_red_1032l": "True",
+    "P7_the_table_declares_the_gate_that_checks_it_1032l": "True"
    },
-   "criteria_red": [],
-   "n_criteria_red": 0,
+   "criteria_red": [
+    "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l",
+    "P4_the_committed_state_is_self_consistent_1032l"
+   ],
+   "n_criteria_red": 2,
    "criteria_not_applicable": [],
    "n_criteria_not_applicable": 0,
    "artifact_path_found": true,
@@ -1815,12 +1840,15 @@
    "has_per_criteria_at_all": true,
    "artifact_has_criteria_dict": true,
    "ledger_published": true,
-   "ledger_n_kinds": 6,
+   "ledger_n_kinds": 7,
    "ledger_n_criteria": null,
    "ledger_n_criteria_keys": 0,
    "ledger_complete": true,
-   "criteria_red_with_kind": {},
-   "n_criteria_red_kind_known": 0,
+   "criteria_red_with_kind": {
+    "P1_every_row_of_the_table_matches_the_bytes_on_disk_1032l": "failure",
+    "P4_the_committed_state_is_self_consistent_1032l": "failure"
+   },
+   "n_criteria_red_kind_known": 2,
    "n_criteria_red_kind_unknown": 0
   },
   {
@@ -2465,8 +2493,8 @@
    "probe": "scripts/jimeng_probe1005_zero_coupling_census.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 140785,
-   "n_bytes_fresh": 140785,
+   "n_bytes": 141953,
+   "n_bytes_fresh": 141953,
    "state": "reproduced",
    "tail": [
     "判据逐条 = P1_hold_1005=True | P2_hold_1005=True | P3_hold_1005=True | P4_hold_1005=True | P5_hold_1005=True",
@@ -2506,7 +2534,7 @@
  ],
  "totals": {
   "n_books": 30,
-  "reproduced": 30,
+  "reproduced": 29,
   "drifted": 0,
   "crashed": 0,
   "vanished": 0,
@@ -2660,7 +2688,7 @@
    "/red_ledger/books_with_red_needs_reread",
    "/red_ledger/books_with_not_applicable_criteria",
    "/discovery/unlinked",
-   "/rounds/[3]/drifted",
+   "/rounds/[0]/drifted",
    "/books/[0]/criteria_detail_source",
    "/books/[0]/criteria_red",
    "/books/[0]/criteria_not_applicable",
@@ -2769,9 +2797,9 @@
   "n_invariants_declared_in_artifact": 4,
   "n_invariables_1014_cannot_see": 1,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **产物里写着不变式 ≠ 普查看得见不变式** —— 1014 的 `INVARIANTS` 是一张硬编码表，它不读产物里的 `empty_list_invariants`",
-  "p8_saw_artifact_with_n_rounds": 4,
+  "p8_saw_artifact_with_n_rounds": 1,
   "p8_this_artifact_has_n_rounds": 3,
-  "p8_reading_lag_rounds": -1,
+  "p8_reading_lag_rounds": 2,
   "p8_lag_is_structural": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这不是 bug、是没关严** —— 要把这条读数追平，就得「写完产物再跑一次 1014」，而那会改写 1014 那本账 ⇒ ⇒ ⇒ 又触发新一轮 ⇒ ⇒ ⇒ ⇒ **⇒ 所以只有把它记成一个读数，才不至于让产物自己和自己矛盾**"
  },
  "number_sources": {
@@ -2786,16 +2814,17 @@
   "242": "通道 B：scripts/jimeng_probe*.py 的文件数",
   "30": "1014 普查看到的 golden 本数（已排除它自己那本）",
   "1": "第 2 轮里漂移的本数",
+  "29": "四态里 state == reproduced 的计数",
   "0": "第 3 轮里漂移的本数",
   "210": "通道 B 有探针而通道 A 无对应 golden 的个数",
-  "6": "第 1 轮里漂移的本数",
+  "6": "轮数上限",
   "0/32": "被拒绝认领的比例（分母 = 通道 A）",
   "30/32": "认领到的比例（分母 = 通道 A）",
   "8": "第一版探针认领到的本数（仪器故障期，已修）",
   "177": "1014 那台普查判本探针产物「不可自证」的条数",
   "4": "本探针在产物里登记的不变式条数",
   "402": "1014 普查口径下全部账里「不可自证」的总数",
-  "918": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
+  "926": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
   "7033": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
   "4/9": "1015 上一版的不动点漂移比例（已挂【1015 改写横幅】，原文保留）",
   "2/9": "曾观测到的一轮漂移比例（分母 = 认领到的本数）",
@@ -2834,7 +2863,6 @@
   "1017": "批号",
   "1018": "批号",
   "1019": "批号",
-  "6/30": "第 1 轮的漂移比例（分母 = 认领到的本数）",
   "1/30": "第 2 轮的漂移比例（分母 = 认领到的本数）",
   "0/30": "第 3 轮的漂移比例（分母 = 认领到的本数）"
  }
