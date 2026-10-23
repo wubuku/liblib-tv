@@ -3,41 +3,42 @@
  "generator_sha12_1015": "1e8e51f82adb",
  "fresh_sha_history_1015": [
   {
-   "anchor-gate-coverage-1021.json": "c1a444ed5dc8",
-   "anchor-identity-1030.json": "d41697b6fc55",
-   "assertion-vs-behavior-1018.json": "a2e12b0274f9",
+   "anchor-gate-coverage-1021.json": "92e91802dbd4",
+   "anchor-identity-1030.json": "af2766ff5011",
+   "assertion-vs-behavior-1018.json": "51a288b54d87",
    "baseline-host-misuse-1016.json": "35d1048f0289",
    "behavior-harness-1019.json": "89c2b9e3176c",
    "change-locality-1011.json": "3552ea7302db",
    "clone-reachability-1033.json": "b577e4a33dcd",
    "connect-contract-1032a.json": "94f6b75889e9",
-   "criterion-direction-1025.json": "dca442df8b8e",
+   "criterion-direction-1025.json": "e2a56b02ef35",
    "criterion-effectiveness-1026.json": "5194050ea133",
    "edit-visibility-1009.json": "cbccf1eaa2e9",
-   "empty-ambiguity-1014.json": "6f5b5b7a183e",
-   "exemption-claims-1024.json": "167d178ddb30",
+   "empty-ambiguity-1014.json": "edd94e3d8a1d",
+   "exemption-claims-1024.json": "0dabc595ff10",
    "expanded-contract-1032b4.json": "342205171f2f",
-   "fingerprint-gate-1032l.json": "a77e98769004",
+   "fake-interaction-census-1034.json": "fff360e357fc",
+   "fingerprint-gate-1032l.json": "ee3a887b8c08",
    "gen-contract-1032b2.json": "56ba06092495",
-   "global-detection-1012.json": "923b0c098579",
+   "global-detection-1012.json": "b0a4b41fb417",
    "golden-freshness-1008.json": "38a1bfcbd0fb",
    "harness-fidelity-1020.json": "7bd0a0c99ed1",
    "interaction-wiring-check-1032.json": "2a5f9a072fcf",
    "live-canvas-check-1031.json": "e75acd23eeb8",
    "mention-contract-1032b3.json": "944dcb42599c",
    "noop-contract-1032c.json": "2bc261e2ac49",
-   "occurrence-ledger-1013.json": "674ad86446d4",
+   "occurrence-ledger-1013.json": "585d9250b194",
    "real-history-detection-1010.json": "74ac31678fd4",
    "replica-contract-1031d.json": "a73c5f3c45d4",
-   "replica-coverage-1017.json": "552f0b134df7",
+   "replica-coverage-1017.json": "5e5f06ccde68",
    "stem-attribution-1007.json": "b037c7f4525f",
    "type-layer-gate-1023.json": "2cff76d71be1",
-   "wired-contract-1032b1.json": "5188380cd7db",
-   "zero-coupling-anchors-1005.json": "8e78ca671dc2"
+   "wired-contract-1032b1.json": "26bcccddc6c0",
+   "zero-coupling-anchors-1005.json": "47d9c20034ee"
   }
  ],
  "n_rounds_sha_history_1015": 1,
- "n_stable_across_rounds_1015": 31,
+ "n_stable_across_rounds_1015": 32,
  "n_unstable_across_rounds_1015": 0,
  "n_round_sha_unknown_1015": 0,
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **把 1014 的 P6 落成代码 —— 然后立刻被 1014 那台普查反过来咬了一口：1015 自己长出了一个不可自证的空集合**",
@@ -47,20 +48,22 @@
  "pen_is_the_book": {
   "n_zero_coupling_head": 937,
   "n_zero_coupling_now": 937,
-  "n_positive_present_head": 7079,
-  "n_positive_present_now": 7079,
+  "n_positive_present_head": 7080,
+  "n_positive_present_now": 7080,
   "n_audit_2015_lines": 2165,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **被测的账和记账的笔是同一份文件时，往笔上多写一句，被测的那些账就跟着重算** —— 1005 普查的是 `_ausrc`，而本批往 audit 里塞了判据 ⇒ ⇒ ⇒ ⇒ ⇒ 所以它的读数必然跟着变"
  },
  "red_ledger": {
-  "n_books": 31,
-  "n_books_with_readable_p_summary": 30,
+  "n_books": 32,
+  "n_books_with_readable_p_summary": 31,
   "n_books_without_readable_p_summary": 1,
-  "n_books_rc1_judgement_red": 0,
+  "n_books_rc1_judgement_red": 1,
   "n_books_rc2_instrument_crashed": 0,
-  "n_books_self_reporting_false": 0,
-  "n_criteria_self_reported_false": 0,
-  "books_self_reporting_false": [],
+  "n_books_self_reporting_false": 1,
+  "n_criteria_self_reported_false": 1,
+  "books_self_reporting_false": [
+   "wired-contract-1032b1.json"
+  ],
   "detector_selftest_ok": true,
   "detector_selftest_n_cases": 6,
   "detector_selftest": [
@@ -113,7 +116,9 @@
     "ok": true
    }
   ],
-  "books_rc1_judgement_red": [],
+  "books_rc1_judgement_red": [
+   "wired-contract-1032b1.json"
+  ],
   "books_rc2_instrument_crashed": [],
   "per_book": [
    {
@@ -209,6 +214,13 @@
    },
    {
     "golden": "expanded-contract-1032b4.json",
+    "rc": 0,
+    "state": "reproduced",
+    "n_self_reported_false": 0,
+    "p_summary_readable": true
+   },
+   {
+    "golden": "fake-interaction-census-1034.json",
     "rc": 0,
     "state": "reproduced",
     "n_self_reported_false": 0,
@@ -321,9 +333,9 @@
    },
    {
     "golden": "wired-contract-1032b1.json",
-    "rc": 0,
-    "state": "reproduced",
-    "n_self_reported_false": 0,
+    "rc": 1,
+    "state": "self_red",
+    "n_self_reported_false": 1,
     "p_summary_readable": true
    },
    {
@@ -335,7 +347,7 @@
    }
   ],
   "what_this_is_not": "⭐⭐⭐⭐⭐ **这不是「红的清单」** —— 「自报 False」里**混着「预测被否型」（False 才是结论）** ⇒ ⇒ **⇒ 而红/被否型/前提不成立 的分类必须逐条读判据才能下 ⇒ ⇒ **⇒ 所以本读数只负责「看见」，定性留给 audit 的账**",
-  "n_books_with_criteria_detail": 17,
+  "n_books_with_criteria_detail": 18,
   "n_books_without_criteria_detail": 14,
   "books_without_criteria_detail": [
    "anchor-gate-coverage-1021.json",
@@ -355,12 +367,13 @@
   ],
   "n_books_undetermined": 0,
   "books_undetermined": [],
-  "n_books_no_per_criteria_at_all": 13,
+  "n_books_no_per_criteria_at_all": 14,
   "books_no_per_criteria_at_all": [
    "anchor-gate-coverage-1021.json",
    "anchor-identity-1030.json",
    "baseline-host-misuse-1016.json",
    "behavior-harness-1019.json",
+   "clone-reachability-1033.json",
    "criterion-direction-1025.json",
    "criterion-effectiveness-1026.json",
    "exemption-claims-1024.json",
@@ -371,10 +384,8 @@
    "replica-coverage-1017.json",
    "type-layer-gate-1023.json"
   ],
-  "n_books_artifact_not_found": 1,
-  "books_artifact_not_found": [
-   "clone-reachability-1033.json"
-  ],
+  "n_books_artifact_not_found": 0,
+  "books_artifact_not_found": [],
   "n_books_artifact_unreadable": 0,
   "books_artifact_unreadable": [],
   "out_path_detector_selftest_ok": true,
@@ -432,6 +443,7 @@
    "empty-ambiguity-1014.json": "artifact_dict:P",
    "exemption-claims-1024.json": null,
    "expanded-contract-1032b4.json": "artifact_dict:P",
+   "fake-interaction-census-1034.json": "print_line",
    "fingerprint-gate-1032l.json": "print_line",
    "gen-contract-1032b2.json": "artifact_dict:criteria",
    "global-detection-1012.json": "print_line",
@@ -450,11 +462,11 @@
    "wired-contract-1032b1.json": "artifact_dict:criteria",
    "zero-coupling-anchors-1005.json": "print_line"
   },
-  "n_books_self_report_via_summary": 30,
+  "n_books_self_report_via_summary": 31,
   "n_books_self_report_via_detail_fallback": 1,
   "n_books_self_report_none": 0,
   "n_books_without_int_self_report": 0,
-  "n_books_summary_detail_comparable": 30,
+  "n_books_summary_detail_comparable": 31,
   "books_summary_detail_conflict": [],
   "n_books_summary_detail_conflict": 0,
   "styles_in_use_1015": [
@@ -470,41 +482,42 @@
   "generator_sha12_1015": "1e8e51f82adb",
   "fresh_sha_history_1015": [
    {
-    "anchor-gate-coverage-1021.json": "c1a444ed5dc8",
-    "anchor-identity-1030.json": "d41697b6fc55",
-    "assertion-vs-behavior-1018.json": "a2e12b0274f9",
+    "anchor-gate-coverage-1021.json": "92e91802dbd4",
+    "anchor-identity-1030.json": "af2766ff5011",
+    "assertion-vs-behavior-1018.json": "51a288b54d87",
     "baseline-host-misuse-1016.json": "35d1048f0289",
     "behavior-harness-1019.json": "89c2b9e3176c",
     "change-locality-1011.json": "3552ea7302db",
     "clone-reachability-1033.json": "b577e4a33dcd",
     "connect-contract-1032a.json": "94f6b75889e9",
-    "criterion-direction-1025.json": "dca442df8b8e",
+    "criterion-direction-1025.json": "e2a56b02ef35",
     "criterion-effectiveness-1026.json": "5194050ea133",
     "edit-visibility-1009.json": "cbccf1eaa2e9",
-    "empty-ambiguity-1014.json": "6f5b5b7a183e",
-    "exemption-claims-1024.json": "167d178ddb30",
+    "empty-ambiguity-1014.json": "edd94e3d8a1d",
+    "exemption-claims-1024.json": "0dabc595ff10",
     "expanded-contract-1032b4.json": "342205171f2f",
-    "fingerprint-gate-1032l.json": "a77e98769004",
+    "fake-interaction-census-1034.json": "fff360e357fc",
+    "fingerprint-gate-1032l.json": "ee3a887b8c08",
     "gen-contract-1032b2.json": "56ba06092495",
-    "global-detection-1012.json": "923b0c098579",
+    "global-detection-1012.json": "b0a4b41fb417",
     "golden-freshness-1008.json": "38a1bfcbd0fb",
     "harness-fidelity-1020.json": "7bd0a0c99ed1",
     "interaction-wiring-check-1032.json": "2a5f9a072fcf",
     "live-canvas-check-1031.json": "e75acd23eeb8",
     "mention-contract-1032b3.json": "944dcb42599c",
     "noop-contract-1032c.json": "2bc261e2ac49",
-    "occurrence-ledger-1013.json": "674ad86446d4",
+    "occurrence-ledger-1013.json": "585d9250b194",
     "real-history-detection-1010.json": "74ac31678fd4",
     "replica-contract-1031d.json": "a73c5f3c45d4",
-    "replica-coverage-1017.json": "552f0b134df7",
+    "replica-coverage-1017.json": "5e5f06ccde68",
     "stem-attribution-1007.json": "b037c7f4525f",
     "type-layer-gate-1023.json": "2cff76d71be1",
-    "wired-contract-1032b1.json": "5188380cd7db",
-    "zero-coupling-anchors-1005.json": "8e78ca671dc2"
+    "wired-contract-1032b1.json": "26bcccddc6c0",
+    "zero-coupling-anchors-1005.json": "47d9c20034ee"
    }
   ],
   "n_rounds_sha_history_1015": 1,
-  "n_stable_across_rounds_1015": 31,
+  "n_stable_across_rounds_1015": 32,
   "n_unstable_across_rounds_1015": 0,
   "n_round_sha_unknown_1015": 0,
   "styles_unsupported_1015": [],
@@ -570,7 +583,7 @@
     "ok": true
    }
   ],
-  "n_detail_from_print_line": 9,
+  "n_detail_from_print_line": 10,
   "n_detail_from_artifact": 8,
   "artifact_detector_selftest_ok": true,
   "artifact_detector_selftest_n_cases": 7,
@@ -668,10 +681,10 @@
     "ok": true
    }
   ],
-  "five_states": "⭐⭐⭐⭐⭐ **红账现在是五档**：**① 红（读到了、且有 False）② 不可判定（产物拿到了、而它里面没有逐条判据 ⇒ 这一档必须恒为 0）③ 不适用（普查型仪器：它本来就没有一条一条的判据）④ 绿（读到了、且没有 False）** —— 而外加一条**门自己的账**：**⑤ 产物压根没被找到（必须恒为 0）⑤b 路径有了而文件读不出来（必须恒为 0）** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ② 与 ③ 必须分开、而 ⑤ 与 ⑤b 又是另一件事** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 「产物没找到」与「产物里没有判据」的区别**：前者是**产物都没拿到**、后者是**产物拿到了、而它里面没有那条判据** ⇒ ⇒ ⇒⇒ **⇒ 而 ⑤ 今天曾经有 8 本 —— 原因不是书没写判据、而是 1015 的产物路径正则太窄** ⇒ ⇒ **⇒ ⇒ 「红」的是门（正则窄）、不是数据（书没写判据）** ⇒ ⇒ ⇒⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ③「本来就没有」的那一档的前提是「产物拿到了」—— ⇒ ⇒ 不许把「产物没拿到」的书混进 ③ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 所以四档 + 两条「门自己的账」构成一个**划分**（不重不漏）** ⇒ ⇒ ⇒⇒ **⇒ 今天：读得到 17 本（打印行 9 / 产物 8）、读不到 0、本来就没有 13、产物没找到 1（**必须为 0**）、读不出来 0（**必须为 0**）**",
-  "four_states": "⭐⭐⭐⭐⭐ **红账现在是四档**：**① 红（读到了、且有 False）② 不可判定（它本来有逐条判据、而我读不出来 ⇒ 这一档必须恒为 0）③ 不适用（普查型仪器：它本来就没有一条一条的判据 ⇒ 对它「逐条点名」是不适用、不是「缺」）④ 绿（读到了、且没有 False）** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ② 与 ③ 必须分开 —— 混在一栏 ⇒ 「读不到」就永远查不出来** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 1032-②i 还多认了一个来源：产物里的逐条判据** ⇒ ⇒ **⇒ 「判据逐条」那一行不是唯一的来源 ⇒ ⇒ 而「来源」必须记进产物** ⇒ ⇒ ⇒⇒ **⇒ 今天：读得到 17 本（其中打印行 9 本 / 产物 8 本）、读不到 0 本（**必须为 0**）、本来就没有 13 本**",
+  "five_states": "⭐⭐⭐⭐⭐ **红账现在是五档**：**① 红（读到了、且有 False）② 不可判定（产物拿到了、而它里面没有逐条判据 ⇒ 这一档必须恒为 0）③ 不适用（普查型仪器：它本来就没有一条一条的判据）④ 绿（读到了、且没有 False）** —— 而外加一条**门自己的账**：**⑤ 产物压根没被找到（必须恒为 0）⑤b 路径有了而文件读不出来（必须恒为 0）** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ② 与 ③ 必须分开、而 ⑤ 与 ⑤b 又是另一件事** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 「产物没找到」与「产物里没有判据」的区别**：前者是**产物都没拿到**、后者是**产物拿到了、而它里面没有那条判据** ⇒ ⇒ ⇒⇒ **⇒ 而 ⑤ 今天曾经有 8 本 —— 原因不是书没写判据、而是 1015 的产物路径正则太窄** ⇒ ⇒ **⇒ ⇒ 「红」的是门（正则窄）、不是数据（书没写判据）** ⇒ ⇒ ⇒⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ③「本来就没有」的那一档的前提是「产物拿到了」—— ⇒ ⇒ 不许把「产物没拿到」的书混进 ③ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 所以四档 + 两条「门自己的账」构成一个**划分**（不重不漏）** ⇒ ⇒ ⇒⇒ **⇒ 今天：读得到 18 本（打印行 10 / 产物 8）、读不到 0、本来就没有 14、产物没找到 0（**必须为 0**）、读不出来 0（**必须为 0**）**",
+  "four_states": "⭐⭐⭐⭐⭐ **红账现在是四档**：**① 红（读到了、且有 False）② 不可判定（它本来有逐条判据、而我读不出来 ⇒ 这一档必须恒为 0）③ 不适用（普查型仪器：它本来就没有一条一条的判据 ⇒ 对它「逐条点名」是不适用、不是「缺」）④ 绿（读到了、且没有 False）** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ② 与 ③ 必须分开 —— 混在一栏 ⇒ 「读不到」就永远查不出来** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 1032-②i 还多认了一个来源：产物里的逐条判据** ⇒ ⇒ **⇒ 「判据逐条」那一行不是唯一的来源 ⇒ ⇒ 而「来源」必须记进产物** ⇒ ⇒ ⇒⇒ **⇒ 今天：读得到 18 本（其中打印行 10 本 / 产物 8 本）、读不到 0 本（**必须为 0**）、本来就没有 14 本**",
   "stale_vs_committed_1015": {
-   "n_books_compared": 31,
+   "n_books_compared": 32,
    "n_books_unknown": 0,
    "n_books_snapshot_unknown": 0,
    "n_stale": 0,
@@ -679,8 +692,12 @@
    "what_it_is_not": "⇒ ⇒ **这不是四态里的任何一态**⇒ ⇒ **⇒ 四态答「可复现吗」；这一栏答「还新鲜吗」**⇒ ⇒ **⇒ 而「提交态取不到」单列成一栏**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 「取不到」不许混进「不新鲜」**",
    "rule": "⇒ ⇒ **这一栏与 1027 报的是同一件事**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 区别是：1027 只跑「被本次变更触及的」那些、而这里是全量**"
   },
-  "criteria_red_by_book": {},
-  "n_criteria_red_named": 0,
+  "criteria_red_by_book": {
+   "wired-contract-1032b1.json": [
+    "P6"
+   ]
+  },
+  "n_criteria_red_named": 1,
   "criteria_detector_selftest_ok": true,
   "criteria_detector_selftest_n_cases": 5,
   "criteria_detector_selftest": [
@@ -729,9 +746,9 @@
     "ok": true
    }
   ],
-  "n_books_with_ledger": 17,
-  "n_books_with_ledger_complete": 17,
-  "n_ledger_criteria": 141,
+  "n_books_with_ledger": 18,
+  "n_books_with_ledger_complete": 18,
+  "n_ledger_criteria": 148,
   "ledger_rows": [
    {
     "golden": "anchor-gate-coverage-1021.json",
@@ -816,11 +833,11 @@
     "criteria_detail_readable": false,
     "n_criteria_red": 0,
     "n_criteria_not_applicable": 0,
-    "artifact_readable": false,
-    "ledger_published": false,
-    "ledger_n_kinds": 0,
+    "artifact_readable": true,
+    "ledger_published": true,
+    "ledger_n_kinds": 7,
     "ledger_n_criteria": null,
-    "ledger_complete": null,
+    "ledger_complete": true,
     "criteria_red_with_kind": {},
     "n_criteria_red_kind_unknown": 0
    },
@@ -912,6 +929,19 @@
     "ledger_n_kinds": 15,
     "ledger_n_criteria": 15,
     "ledger_complete": true,
+    "criteria_red_with_kind": {},
+    "n_criteria_red_kind_unknown": 0
+   },
+   {
+    "golden": "fake-interaction-census-1034.json",
+    "criteria_detail_readable": true,
+    "n_criteria_red": 0,
+    "n_criteria_not_applicable": 0,
+    "artifact_readable": true,
+    "ledger_published": false,
+    "ledger_n_kinds": 0,
+    "ledger_n_criteria": null,
+    "ledger_complete": null,
     "criteria_red_with_kind": {},
     "n_criteria_red_kind_unknown": 0
    },
@@ -1113,14 +1143,16 @@
    {
     "golden": "wired-contract-1032b1.json",
     "criteria_detail_readable": true,
-    "n_criteria_red": 0,
+    "n_criteria_red": 1,
     "n_criteria_not_applicable": 0,
     "artifact_readable": true,
     "ledger_published": true,
     "ledger_n_kinds": 8,
     "ledger_n_criteria": 8,
     "ledger_complete": true,
-    "criteria_red_with_kind": {},
+    "criteria_red_with_kind": {
+     "P6": "failure"
+    },
     "n_criteria_red_kind_unknown": 0
    },
    {
@@ -1137,22 +1169,30 @@
     "n_criteria_red_kind_unknown": 0
    }
   ],
-  "criteria_red_with_kind": {},
-  "n_criteria_red_failure": 0,
+  "criteria_red_with_kind": {
+   "wired-contract-1032b1.json": {
+    "P6": "failure"
+   }
+  },
+  "n_criteria_red_failure": 1,
   "n_criteria_red_conclusion": 0,
   "n_criteria_red_kind_unknown": 0,
-  "red_needs_fix": [],
+  "red_needs_fix": [
+   "P6"
+  ],
   "red_needs_reread": [],
   "red_kind_unknown": [],
-  "books_with_red_needs_fix": [],
+  "books_with_red_needs_fix": [
+   "wired-contract-1032b1.json"
+  ],
   "books_with_red_needs_reread": [],
   "n_criteria_not_applicable": 0,
   "books_with_not_applicable_criteria": [],
-  "n_books_fully_decidable": 17,
+  "n_books_fully_decidable": 18,
   "n_books_not_fully_decidable": 14,
   "kind_means": "⭐⭐⭐⭐⭐ **kind 的三个取值各回答一个不同的问题**：**`failure` = 「它红了 = 仪器坏了」⇒ 要修**；**`conclusion` = 「它红了 = 记下来的那个发现不再成立」⇒ 要重读**（宇宙可能动了）；**`precondition` = 「前提不成立、判据不适用」⇒ 不许算成红** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而「没标注」=「不可判定」= 第三档 —— 不许默认成 `failure`（默认成 failure 就是把「我还没判定」记成「我判定它坏了」）**",
   "red_column_now_says": "⭐⭐⭐⭐⭐ **「红」这一栏现在回答的是「要不要修」** ⇒ ⇒ **⇒ 而它回答不了「它为什么红」—— 那要回到 audit 的账** ⇒ ⇒ ⇒⇒ **⇒ 所以 kind 是「读数」、定性才是「判决」—— 两者不许混在一栏**",
-  "three_states": "⭐⭐⭐⭐⭐ **红账原来是三档、②h 之后是四档（见 `four_states`）**：**① 红（读到了 False）② 不可判定（这本书没有逐条明细 ⇒ 既不许说它绿、也不许说它红）③ 绿（读到了、且没有一条 False）** ⇒ ⇒ **⇒ 而第三档不是「凑数」—— 上一版把「读不到」和「没有假」混成一栏** ⇒ ⇒ **⇒ 而 ② 那一栏今天有 14 本** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 1032-②h 又加了一档细分：③ 里面还要分出「有判据是「不适用」（`None`）」的那些本** ⇒ ⇒ **⇒ 它们既不是红、也不是绿（前提不成立 ⇒ 降级）** ⇒ ⇒ **⇒ 今天这样判的判据有 0 条、涉及 0 本；而「完全可判定」的书有 17 本** ⇒ ⇒ **⇒ 而「没有 None」与「没有 False」是两件事、不许合并**"
+  "three_states": "⭐⭐⭐⭐⭐ **红账原来是三档、②h 之后是四档（见 `four_states`）**：**① 红（读到了 False）② 不可判定（这本书没有逐条明细 ⇒ 既不许说它绿、也不许说它红）③ 绿（读到了、且没有一条 False）** ⇒ ⇒ **⇒ 而第三档不是「凑数」—— 上一版把「读不到」和「没有假」混成一栏** ⇒ ⇒ **⇒ 而 ② 那一栏今天有 14 本** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 1032-②h 又加了一档细分：③ 里面还要分出「有判据是「不适用」（`None`）」的那些本** ⇒ ⇒ **⇒ 它们既不是红、也不是绿（前提不成立 ⇒ 降级）** ⇒ ⇒ **⇒ 今天这样判的判据有 0 条、涉及 0 本；而「完全可判定」的书有 18 本** ⇒ ⇒ **⇒ 而「没有 None」与「没有 False」是两件事、不许合并**"
  },
  "criteria_1015": {
   "P1_hold_1015": true,
@@ -1196,9 +1236,9 @@
   "p_list"
  ],
  "discovery": {
-  "channel_a_goldens": 34,
-  "channel_b_probes": 244,
-  "n_owned": 31,
+  "channel_a_goldens": 35,
+  "channel_b_probes": 245,
+  "n_owned": 32,
   "n_excluded_self": 1,
   "n_excluded_input_conflict": 2,
   "excluded": [
@@ -1459,9 +1499,9 @@
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "c1a444ed5dc8",
+   "fresh_sha12": "92e91802dbd4",
    "generator_sha12": "0139a6725ea9",
-   "committed_sha12": "c1a444ed5dc8",
+   "committed_sha12": "92e91802dbd4",
    "tail": [
     "P1..P7 = [True, True, True, True, True, True, True]",
     "PROBE_1021_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/anchor-gate-coverage-1021.json"
@@ -1505,16 +1545,16 @@
    "probe": "scripts/jimeng_probe1030_anchor_identity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 63395,
-   "n_bytes_fresh": 63395,
+   "n_bytes": 63459,
+   "n_bytes_fresh": 63459,
    "state": "reproduced",
    "n_bytes_equal": true,
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "d41697b6fc55",
+   "fresh_sha12": "af2766ff5011",
    "generator_sha12": "bcb4334de9b6",
-   "committed_sha12": "d41697b6fc55",
+   "committed_sha12": "af2766ff5011",
    "tail": [
     "P 为假的： 无 | 共 7 条 P 判据",
     "PROBE_1030_DONE -> /tmp/b1030-anchor-identity.json"
@@ -1566,9 +1606,9 @@
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "a2e12b0274f9",
+   "fresh_sha12": "51a288b54d87",
    "generator_sha12": "cc05a71ecbc0",
-   "committed_sha12": "a2e12b0274f9",
+   "committed_sha12": "51a288b54d87",
    "tail": [
     "P1..P8 = [True, True, True, True, True, True, True, True, True]",
     "PROBE_1018_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/assertion-vs-behavior-1018.json"
@@ -1800,10 +1840,10 @@
    "n_values_changed": 0,
    "n_keys_removed": 0,
    "fresh_sha12": "b577e4a33dcd",
-   "generator_sha12": "1d39b3461a33",
+   "generator_sha12": "4928310054f9",
    "committed_sha12": "b577e4a33dcd",
    "tail": [
-    "   判据逐条 = P1_the_route_universe_is_measured_from_the_filesystem_1033=True | P2_every_finished_clone_page_is_reachable_from_the_site_root_1033=True | P3_every_alias_route_resolves_to_a_reachable_page_1033=True | P4_the_registry_lists_every_real_page_and_nothing_else_1033=True | P5_the_site_nav_links_to_every_clone_page_by_a_literal_href_1033=True | P6_the_docs_say_how_to_reach_and_how_to_interact_test_each_page_1033=True | P7_this_gate_can_actually_go_red_1033=True",
+    "PROBE_1033_CLONE_REACHABILITY_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/clone-reachability-1033.json",
     "   P 为假的： 无 | 共 7 条 P 判据"
    ],
    "n_self_reported_false": 0,
@@ -1818,8 +1858,8 @@
    "n_criteria_red": 0,
    "criteria_not_applicable": [],
    "n_criteria_not_applicable": 0,
-   "artifact_path_found": false,
-   "artifact_readable": false,
+   "artifact_path_found": true,
+   "artifact_readable": true,
    "has_per_criteria_at_all": false,
    "artifact_has_criteria_dict": false,
    "summary_n_false_1015": 0,
@@ -1828,11 +1868,11 @@
    "styles_in_output_1015": [
     "false_list"
    ],
-   "ledger_published": false,
-   "ledger_n_kinds": 0,
+   "ledger_published": true,
+   "ledger_n_kinds": 7,
    "ledger_n_criteria": null,
    "ledger_n_criteria_keys": 0,
-   "ledger_complete": null,
+   "ledger_complete": true,
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
@@ -1907,16 +1947,16 @@
    "probe": "scripts/jimeng_probe1025_criterion_direction.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 327885,
-   "n_bytes_fresh": 327885,
+   "n_bytes": 328910,
+   "n_bytes_fresh": 328910,
    "state": "reproduced",
    "n_bytes_equal": true,
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "dca442df8b8e",
+   "fresh_sha12": "e2a56b02ef35",
    "generator_sha12": "5d8c17358c40",
-   "committed_sha12": "dca442df8b8e",
+   "committed_sha12": "e2a56b02ef35",
    "tail": [
     "P1..P7 = [True, True, True, True, True, True, True]",
     "PROBE_1025_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/criterion-direction-1025.json"
@@ -2074,16 +2114,16 @@
    "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 96480,
-   "n_bytes_fresh": 96480,
+   "n_bytes": 102002,
+   "n_bytes_fresh": 102002,
    "state": "reproduced",
    "n_bytes_equal": true,
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "6f5b5b7a183e",
+   "fresh_sha12": "edd94e3d8a1d",
    "generator_sha12": "98b678037931",
-   "committed_sha12": "6f5b5b7a183e",
+   "committed_sha12": "edd94e3d8a1d",
    "tail": [
     "P1..P10 = [True, True, True, True, True, True, True, True, True, True]",
     "P 为假的： 无 | 共 10 条 P 判据"
@@ -2139,16 +2179,16 @@
    "probe": "scripts/jimeng_probe1024_exemption_claims.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 19737,
-   "n_bytes_fresh": 19737,
+   "n_bytes": 19738,
+   "n_bytes_fresh": 19738,
    "state": "reproduced",
    "n_bytes_equal": true,
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "167d178ddb30",
+   "fresh_sha12": "0dabc595ff10",
    "generator_sha12": "7bd49a025bbc",
-   "committed_sha12": "167d178ddb30",
+   "committed_sha12": "0dabc595ff10",
    "tail": [
     "P1..P7 = [True, True, True, True, True, True, True]",
     "PROBE_1024_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/exemption-claims-1024.json"
@@ -2257,6 +2297,72 @@
    "stable_across_rounds": true
   },
   {
+   "golden": "fake-interaction-census-1034.json",
+   "probe": "scripts/jimeng_probe1034_fake_interaction_census.py",
+   "rc": 0,
+   "wrote_golden": true,
+   "n_bytes": 11558,
+   "n_bytes_fresh": 11558,
+   "state": "reproduced",
+   "n_bytes_equal": true,
+   "n_keys_added": 0,
+   "n_values_changed": 0,
+   "n_keys_removed": 0,
+   "fresh_sha12": "fff360e357fc",
+   "generator_sha12": "2d1a76422727",
+   "committed_sha12": "fff360e357fc",
+   "tail": [
+    "PROBE_1034_FAKE_INTERACTION_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/fake-interaction-census-1034.json",
+    "P 为假的： 无 | 共 11 条 P 判据"
+   ],
+   "n_self_reported_false": 0,
+   "p_summary_readable": true,
+   "self_report_detail": [
+    "false_list_none"
+   ],
+   "criteria_detail_source": "print_line",
+   "criteria_detail_readable": true,
+   "criteria_detail": {
+    "P10_selftest_must_be_green_1034": "True",
+    "P1_scan_is_not_empty_1034": "True",
+    "P2_no_new_fake_interaction_1034": "True",
+    "P3_registry_is_not_rotten_1034": "True",
+    "P4_every_registered_fake_still_holds_1034": "True",
+    "P5_no_registered_promise_is_already_fulfilled_1034": "True",
+    "P6_injected_new_fake_is_caught_1034": "True",
+    "P6b_a_registry_entry_that_does_not_exist_is_caught_1034": "True",
+    "P7_two_scanners_agree_on_dead_buttons_1034": "True",
+    "P8_coverage_boundary_is_declared_1034": "True",
+    "P9_every_predicate_has_teeth_1034": "True"
+   },
+   "criteria_red": [],
+   "n_criteria_red": 0,
+   "criteria_not_applicable": [],
+   "n_criteria_not_applicable": 0,
+   "artifact_path_found": true,
+   "artifact_readable": true,
+   "has_per_criteria_at_all": true,
+   "artifact_has_criteria_dict": true,
+   "summary_n_false_1015": 0,
+   "detail_n_red_1015": 0,
+   "self_report_source_1015": "summary",
+   "styles_in_output_1015": [
+    "criteria_line",
+    "false_list"
+   ],
+   "ledger_published": false,
+   "ledger_n_kinds": 0,
+   "ledger_n_criteria": null,
+   "ledger_n_criteria_keys": 0,
+   "ledger_complete": null,
+   "criteria_red_with_kind": {},
+   "n_criteria_red_kind_known": 0,
+   "n_criteria_red_kind_unknown": 0,
+   "n_rounds_seen": 1,
+   "n_distinct_sha_across_rounds": 1,
+   "stable_across_rounds": true
+  },
+  {
    "golden": "fingerprint-gate-1032l.json",
    "probe": "scripts/jimeng_probe1032l_fingerprint_gate.py",
    "rc": 0,
@@ -2268,9 +2374,9 @@
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "a77e98769004",
+   "fresh_sha12": "ee3a887b8c08",
    "generator_sha12": "3e53251d7bf5",
-   "committed_sha12": "a77e98769004",
+   "committed_sha12": "ee3a887b8c08",
    "tail": [
     "PROBE_1032L_FINGERPRINT_GATE_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/fingerprint-gate-1032l.json",
     "PROBE_1032L_FINGERPRINT_GATE_OK"
@@ -2392,9 +2498,9 @@
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "923b0c098579",
+   "fresh_sha12": "b0a4b41fb417",
    "generator_sha12": "adf2ecaca637",
-   "committed_sha12": "923b0c098579",
+   "committed_sha12": "b0a4b41fb417",
    "tail": [
     "判据逐条 = P1_hold_2012=True | P2_hold_2012=True | P3_hold_2012=True | P4_hold_2012=True | P5_hold_2012=True | P6_hold_2012=True | P7_hold_2012=True | P8_hold_2012=True | P9_hold_2012=True",
     "PROBE_1012_DONE -> /tmp/b1012-global-detection.json"
@@ -2803,9 +2909,9 @@
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "674ad86446d4",
+   "fresh_sha12": "585d9250b194",
    "generator_sha12": "f0aeb80564ae",
-   "committed_sha12": "674ad86446d4",
+   "committed_sha12": "585d9250b194",
    "tail": [
     "判据逐条 = P1_hold_2013=True | P2_hold_2013=True | P3_hold_2013=True | P4_hold_2013=True | P5_hold_2013=True | P6_hold_2013=True | P7_hold_2013=True | P8_hold_2013=True",
     "PROBE_1013_DONE -> /tmp/b1013-occurrence-ledger.json"
@@ -2974,16 +3080,16 @@
    "probe": "scripts/jimeng_probe1017_replica_coverage.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 15105,
-   "n_bytes_fresh": 15105,
+   "n_bytes": 15016,
+   "n_bytes_fresh": 15016,
    "state": "reproduced",
    "n_bytes_equal": true,
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "552f0b134df7",
+   "fresh_sha12": "5e5f06ccde68",
    "generator_sha12": "6a1edd4a950b",
-   "committed_sha12": "552f0b134df7",
+   "committed_sha12": "5e5f06ccde68",
    "tail": [
     "P1..P8 = [True, True, True, True, True, True, True, True]",
     "PROBE_1017_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/replica-coverage-1017.json"
@@ -3140,26 +3246,27 @@
   {
    "golden": "wired-contract-1032b1.json",
    "probe": "scripts/jimeng_probe1032b1_wired_contract.py",
-   "rc": 0,
+   "rc": 1,
    "wrote_golden": true,
-   "n_bytes": 1260,
-   "n_bytes_fresh": 1260,
-   "state": "reproduced",
+   "n_bytes": 1270,
+   "n_bytes_fresh": 1270,
+   "state": "self_red",
    "n_bytes_equal": true,
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "5188380cd7db",
+   "fresh_sha12": "26bcccddc6c0",
    "generator_sha12": "4f2220eefbdf",
-   "committed_sha12": "5188380cd7db",
+   "committed_sha12": "26bcccddc6c0",
    "tail": [
-    "为假的： 无 | 降级： 无",
+    "为假的： ['P6'] | 降级： 无",
     "PROBE_1032B1_WIRED_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/wired-contract-1032b1.json"
    ],
-   "n_self_reported_false": 0,
+   "n_self_reported_false": 1,
    "p_summary_readable": true,
    "self_report_detail": [
-    "p_list"
+    "p_list",
+    "6"
    ],
    "criteria_detail_source": "artifact_dict:criteria",
    "criteria_detail_readable": true,
@@ -3169,20 +3276,22 @@
     "P3": "True",
     "P4": "True",
     "P5": "True",
-    "P6": "True",
+    "P6": "False",
     "P7": "True",
     "P8": "True"
    },
-   "criteria_red": [],
-   "n_criteria_red": 0,
+   "criteria_red": [
+    "P6"
+   ],
+   "n_criteria_red": 1,
    "criteria_not_applicable": [],
    "n_criteria_not_applicable": 0,
    "artifact_path_found": true,
    "artifact_readable": true,
    "has_per_criteria_at_all": true,
    "artifact_has_criteria_dict": true,
-   "summary_n_false_1015": 0,
-   "detail_n_red_1015": 0,
+   "summary_n_false_1015": 1,
+   "detail_n_red_1015": 1,
    "self_report_source_1015": "summary",
    "styles_in_output_1015": [
     "false_list",
@@ -3193,8 +3302,10 @@
    "ledger_n_criteria": 8,
    "ledger_n_criteria_keys": 0,
    "ledger_complete": true,
-   "criteria_red_with_kind": {},
-   "n_criteria_red_kind_known": 0,
+   "criteria_red_with_kind": {
+    "P6": "failure"
+   },
+   "n_criteria_red_kind_known": 1,
    "n_criteria_red_kind_unknown": 0,
    "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
@@ -3212,9 +3323,9 @@
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "8e78ca671dc2",
+   "fresh_sha12": "47d9c20034ee",
    "generator_sha12": "64eade14c34f",
-   "committed_sha12": "8e78ca671dc2",
+   "committed_sha12": "47d9c20034ee",
    "tail": [
     "判据逐条 = P1_hold_1005=True | P2_hold_1005=True | P3_hold_1005=True | P4_hold_1005=True | P5_hold_1005=True",
     "PROBE_1005_DONE -> /tmp/b1005-zero-coupling-census.json"
@@ -3262,12 +3373,12 @@
   }
  ],
  "totals": {
-  "n_books": 31,
+  "n_books": 32,
   "reproduced": 31,
   "drifted": 0,
   "crashed": 0,
   "vanished": 0,
-  "sum_states": 31
+  "sum_states": 32
  },
  "diff_shape": {
   "n_keys_added": 0,
@@ -3286,11 +3397,11 @@
  },
  "p8_check_1032n": {
   "ok": true,
-  "n_rows": 31,
+  "n_rows": 32,
   "n_bad": 0,
   "n_declared": 4,
   "census_1014_covers_this_book": false,
-  "census_1014_n_ambiguous": 232,
+  "census_1014_n_ambiguous": 249,
   "census_1014_n_self_ambiguous": 0,
   "census_1014_n_invariant_invisible": 0
  },
@@ -3391,8 +3502,8 @@
   "second_copy_rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐ **同一条判据在 audit 与 verifier 里各有一份文本，而口径默认只覆盖前者** ⇒ ⇒ ⇒ 「改写横幅只挂在 audit 那一份」⇒ ⇒ ⇒ ⇒ verifier 那一份会静静地继续显示旧读数、且门不会报红（断言体只钉机制、不钉读数）⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 本批自己撞上了：U993Y.3 摘要里的 `1 → 2` / `实测 3 轮` / `/books/[2]/keys_added` 全是收敛前的旧读数**"
  },
  "p8_invariants_invisible_to_1014": {
-  "census_n_goldens": 30,
-  "census_n_ambiguous": 232,
+  "census_n_goldens": 31,
+  "census_n_ambiguous": 249,
   "census_n_self_provable": 10,
   "self_ambiguous": 0,
   "self_ambiguous_paths": [],
@@ -3412,21 +3523,21 @@
   "10": "1014 普查口径下「可自证」的总数",
   "5": "⚠️⭐⭐⭐⭐⭐⭐ **第四次、也是最不该发生的一次**：`p8_…` 判据里那个「5」是 `self_ambiguous` 在 1015 提交时（sha `2b52f492`）的读数，1018 跑完已变成 6 ⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒ 同一个病：读数一变、判据里的数就没出处** ⇒⇒⇒⇒⇒⇒ ⇒ 处置与其他几条一致：登记成带 sha 的历史实测读数，**不进白名单**",
   "9": "⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **1032-②f 撞出来的第五次复发**：`p1_…`/`p2_…`/`p3_…` 三条判据里那个「9」= **1015 提交时（sha `2b52f492`）册内认领到的本数**（`totals.n_books = 9`）⇒ ⇒⇒⇒⇒ **⇒ 而它此前是「碰巧」被放行的** —— 当时 1014 普查口径的「可自证」总数恰好也 = 9 ⇒ ⇒⇒⇒⇒⇒ **⇒ 「碰巧对上了」和「有出处」在检查里长得一样（1017 记的那个病）⇒ ⇒⇒⇒⇒⇒ **⇒ 而 ②f 让 1014 那个读数变成了 10 ⇒ ⇒⇒⇒⇒⇒⇒ **⇒ 它当场失去出处、P6 转红 ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 处置：登记成带 sha 的历史实测读数（不是白名单）**",
-  "34": "通道 A：docs/research/jimeng-canvas/*.json 的文件数",
-  "244": "通道 B：scripts/jimeng_probe*.py 的文件数",
-  "31": "四态之和（分子完备性）",
+  "35": "通道 A：docs/research/jimeng-canvas/*.json 的文件数",
+  "245": "通道 B：scripts/jimeng_probe*.py 的文件数",
+  "32": "四态之和（分子完备性）",
   "1": "第 1 轮的轮号",
+  "31": "1014 普查看到的 golden 本数（已排除它自己那本）",
   "0": "第 1 轮里漂移的本数",
   "210": "通道 B 有探针而通道 A 无对应 golden 的个数",
   "6": "轮数上限",
-  "0/34": "被拒绝认领的比例（分母 = 通道 A）",
-  "31/34": "认领到的比例（分母 = 通道 A）",
+  "0/35": "被拒绝认领的比例（分母 = 通道 A）",
+  "32/35": "认领到的比例（分母 = 通道 A）",
   "8": "第一版探针认领到的本数（仪器故障期，已修）",
   "4": "本探针在产物里登记的不变式条数",
-  "232": "1014 普查口径下全部账里「不可自证」的总数",
-  "30": "1014 普查看到的 golden 本数（已排除它自己那本）",
+  "249": "1014 普查口径下全部账里「不可自证」的总数",
   "937": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
-  "7079": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
+  "7080": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
   "4/9": "1015 上一版的不动点漂移比例（已挂【1015 改写横幅】，原文保留）",
   "2/9": "曾观测到的一轮漂移比例（分母 = 认领到的本数）",
   "0/9": "末轮的漂移比例（分母 = 认领到的本数）",
@@ -3464,6 +3575,6 @@
   "1017": "批号",
   "1018": "批号",
   "1019": "批号",
-  "0/31": "第 1 轮的漂移比例（分母 = 认领到的本数）"
+  "0/32": "第 1 轮的漂移比例（分母 = 认领到的本数）"
  }
 }
