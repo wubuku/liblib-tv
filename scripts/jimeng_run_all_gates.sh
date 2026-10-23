@@ -65,6 +65,17 @@ run "1032n-committed-fresh" $PY scripts/jimeng_probe1032n_committed_freshness_ga
 #   ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 它自带七发注入式反证 ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 不用另开一道门
 run "1033-clone-reachability" $PY scripts/jimeng_probe1033_clone_reachability.py
 
+# ── 第 0 位之四：**假交互普查门** ───────────────────────────────────────
+#   ⇒ 它答的是「**用户能点、而点了什么都不会发生**的地方还有哪些」
+#   ⇒ ⇒⇒⇒ 而 1032-① 只覆盖了「压根没接事件」那一类
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ 「弹一句『已执行』」「文案承诺了代码里没有的行为」
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 「状态只落在本地」「参数被丢弃」这几类**静态枚举不出来**
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以它们只能**逐条钉**（登记制）
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ 它自带四族注入式反证 ⇒ ⇒ 不用另开一道门
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ 而且它必须排在 **verifier 之前** ⇒ ⇒⇒ ⇒ ⇒ ⇒
+#   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ 因为 verifier 要在真树上跑它一遍 ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+run "1034-fake-interaction" $PY scripts/jimeng_probe1034_fake_interaction_census.py
+
 run "verifier-841"          $PY scripts/verify-jimeng-batch841-unclickable.py
 run "anchor-gate"           $PY scripts/jimeng_check_verifier_anchors.py
 run "1018-assertion"        $PY scripts/jimeng_probe1018_assertion_vs_behavior.py

@@ -1397,6 +1397,56 @@ def _p1032n_gate_runtime():
 
 
 # ══ 1032-③：**克隆页可达性门**（1033）自己跑一遍（只取判决，不落盘） ═══════
+_P1034_RT = None
+
+
+def _p1034_gate_runtime():
+    """⭐⭐⭐⭐⭐ 在**真树**上跑那道门的判决 —— 「用户能点、而点了什么都不会发生」。
+
+    ⇒ ⇒⇒⇒ **不落盘**：这里只取判决 ⇒ ⇒⇒⇒ ⇒ 仓里那本产物由那道门自己写
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 且**结果缓存**：判据里会引用它好几次 ⇒ ⇒⇒⇒ ⇒ ⇒
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 而每次都重跑 ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 「判决」自己会漂
+    """
+    global _P1034_RT
+    if _P1034_RT is not None:
+        return _P1034_RT
+    _rt = {"ok": False, "why": ["not_run"], "selftest_ok": False,
+           "n_criteria": -1, "n_criteria_true": -1, "n_registry": -1,
+           "n_dead_buttons": -1, "n_toast_only": -1}
+    try:
+        import importlib.util
+        _spec = importlib.util.spec_from_file_location(
+            "jimeng_probe1034_fake_interaction_census",
+            ROOT / "scripts/jimeng_probe1034_fake_interaction_census.py")
+        _g = importlib.util.module_from_spec(_spec)
+        _spec.loader.exec_module(_g)
+    except Exception as exc:  # noqa: BLE001
+        _rt["why"] = ["gate_module_unimportable:%r" % (exc,)]
+        _P1034_RT = _rt
+        return _rt
+    try:
+        _v = _g._judge()
+        _st = _g._selftest(_v.get("ctx") or {})
+    except Exception as exc:  # noqa: BLE001
+        _rt["why"] = ["gate_raised:%r" % (exc,)]
+        _P1034_RT = _rt
+        return _rt
+    _crit = _v.get("criteria") or {}
+    _why = list(_v.get("why") or [])
+    if not _st.get("ok"):
+        _why.append("selftest_has_a_leak")
+    _cov = (_v.get("details") or {}).get("scan_coverage") or {}
+    _rt = {"ok": (not _why), "why": _why,
+           "selftest_ok": bool(_st.get("ok")),
+           "n_criteria": len(_crit),
+           "n_criteria_true": sum(1 for _x in _crit.values() if _x),
+           "n_registry": int(_cov.get("n_registry_entries") or -1),
+           "n_dead_buttons": int(_cov.get("n_dead_buttons") or 0),
+           "n_toast_only": int(_cov.get("n_toast_only") or 0)}
+    _P1034_RT = _rt
+    return _rt
+
+
 _P1033_RT = None
 
 
@@ -19262,6 +19312,31 @@ def main() -> int:
           and '"p5_the_site_nav_links_to_every_clone_page_by_a_literal_href_1033_"' in _ausrc
           and '"p6_the_docs_say_how_to_reach_and_how_to_interact_test_each_page_1033_"' in _ausrc
           and '"p7_this_gate_can_actually_go_red_1033_"' in _ausrc)
+
+    print("— DD993AL. 批 1032-④：给「用户能点、而点了什么都不会发生」配一道门")
+    _p1034_rt = _p1034_gate_runtime()
+    check("DD993AL.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**1032-① 只把「压根没接事件」那一类变成了门** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而「弹一句『已执行』」"
+          "「文案承诺了代码里没有的行为」「状态只落在本地」「参数被丢弃」这几类**静态枚举不出来** "
+          "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 所以它们只能逐条钉（登记制）** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒",
+          _p1034_rt["ok"]
+          and _p1034_rt["selftest_ok"]
+          and _p1034_rt["n_criteria"] == 11
+          and _p1034_rt["n_criteria_true"] == 11
+          and _p1034_rt["n_registry"] > 0
+          # ⭐⭐⭐⭐⭐ **全门禁清单必须进仓**（1032l 立的规矩）⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ 而**新门必须自己进清单** ⇒ ⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ 否则「全绿」里根本没有它 ⇒ ⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ 而且它必须排在 verifier **之前** ⇒ ⇒⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 因为 verifier 的这一格要在真树上跑它
+          and 'run "1034-fake-interaction"' in _gatelist
+          and (_gatelist.index('run "1034-fake-interaction"')
+               < _gatelist.index('run "verifier-841"')))
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

@@ -349,6 +349,7 @@ PROBE_VARS = {
     "_p1032n": "scripts/jimeng_probe1032n_committed_freshness_gate.py",
     # ⚠️ 1032-③：**登记 `_p1033` 与写用它的判据必须是同一步**（961 的教训）
     "_p1033": "scripts/jimeng_probe1033_clone_reachability.py",
+    "_p1034": "scripts/jimeng_probe1034_fake_interaction_census.py",
     "_gatelist": "scripts/jimeng_run_all_gates.sh",
     # ⭐⭐⭐⭐⭐ 1032-②b-4：「已展开的生成器」浮层那道门
     #   （判据 .py + 真去点一遍的探针 .mjs）**两个都要登记**
