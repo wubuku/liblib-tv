@@ -80,6 +80,7 @@ import {
 import type { DirectorLocalResourceStatus } from "@/lib/directorLocalResourceLifecycle";
 import {
   getDirectorProjectRegistrySnapshot,
+  resolveGroupMemberRefs,
   useDirectorStore,
   type DirectorCapture,
   type DirectorCharacterGroup,
@@ -1539,8 +1540,9 @@ function DirectorGroupTransformRig({
   const transformEngagedRef = useRef(false);
   const transformActiveRef = useRef(false);
   const anchor = getDirectorGroupAnchorTransform(objects, group);
-  const hasLockedMember = group.characterIds.some((objectId) =>
-    objects.some((object) => object.id === objectId && object.locked),
+  // ★★ Batch 855：锁定守卫按**全部成员**（源站 `O(e)`）。
+  const hasLockedMember = resolveGroupMemberRefs(group).some((member) =>
+    objects.some((object) => object.id === member.id && object.locked),
   );
   const assignGroupRef = useCallback((nextGroup: Group | null) => {
     groupRef.current = nextGroup;
@@ -2990,9 +2992,11 @@ export function DirectorViewport({
 
     if (selectedGroupId) {
       const selectedGroup = groups.find((group) => group.id === selectedGroupId);
+      // ★★ Batch 855：锁定守卫按**全部成员**（源站 `O(e)`）。
       const locked = Boolean(
-        selectedGroup?.characterIds.some((objectId) =>
-          objects.some((object) => object.id === objectId && object.locked),
+        selectedGroup &&
+        resolveGroupMemberRefs(selectedGroup).some((member) =>
+          objects.some((object) => object.id === member.id && object.locked),
         ),
       );
       return {

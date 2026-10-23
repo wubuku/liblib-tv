@@ -30,6 +30,7 @@ import {
 import { cn } from "@/lib/utils";
 import {
   DIRECTOR_TIMELINE_DEFAULT_HEIGHT,
+  resolveGroupMemberRefs,
   useDirectorStore,
 } from "@/store/directorStore";
 import type { DirectorTimelineTrack } from "@/store/directorStore";
@@ -511,13 +512,20 @@ export function DirectorTimeline({
     selectedTrack?.kind === "group"
       ? undefined
       : objects.find((object) => object.id === selectedTrack?.objectId);
+  // ★★ Batch 855：组轨道的锁定守卫按**全部成员**（源站 `O(e)`）⟹ ⟹
+  //   854 之前只查 `characterIds` ⟹ ⟹ 混合组里「机位被锁」看不出来。
+  const selectedTrackGroup =
+    selectedTrack?.kind === "group"
+      ? groups.find((group) => group.id === selectedTrack.groupId) ?? null
+      : null;
   const selectedTrackLocked =
     selectedTrack?.kind === "group"
       ? Boolean(
-          groups
-            .find((group) => group.id === selectedTrack.groupId)
-            ?.characterIds.some((objectId) =>
-              objects.some((object) => object.id === objectId && object.locked),
+          selectedTrackGroup &&
+            resolveGroupMemberRefs(selectedTrackGroup).some((member) =>
+              objects.some(
+                (object) => object.id === member.id && object.locked,
+              ),
             ),
         )
       : Boolean(selectedTrackObject?.locked);

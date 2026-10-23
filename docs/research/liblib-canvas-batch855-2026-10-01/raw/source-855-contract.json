@@ -1,0 +1,60 @@
+{
+ "来源": {
+  "chunk": "/tmp/liblib_srcjs2/0fmehki05gkzw.js.js",
+  "字节数": 1018130
+ },
+ "片段": {
+  "组的锚点 H(e,t)（全部成员位置的平均值）": {
+   "锚点": "function H(e,t){var r=O(e).map(t).filter(e=>!!e);if(0===r.length)return null;let n=r.reduce((e,t)=>({x:e.x+t.x,y:e.y+t.y,z:e.z+t.z}),{x:0,y:0,z:0});return{x:n.x/r.length,y:n.y/r.length,z:n.z/r.length}}",
+   "命中数": 1,
+   "偏移": 3720,
+   "原文": "function H(e,t){var r=O(e).map(t).filter(e=>!!e);if(0===r.length)return null;let n=r.reduce((e,t)=>({x:e.x+t.x,y:e.y+t.y,z:e.z+t.z}),{x:0,y:0,z:0});return{x:n.x/r.length,y:n.y/r.length,z:n.z/r.length}}"
+  },
+  "成员偏移 V(e,t,r)（键 ＝ N(n) ＝ kind:id）": {
+   "锚点": "function V(e,t,r){return O(e).reduce((e,n)=>{let a=r(n);return a&&(e[N(n)]={x:a.x-t.x,y:a.y-t.y,z:a.z-t.z}),e},{})}",
+   "命中数": 1,
+   "偏移": 3921,
+   "原文": "function V(e,t,r){return O(e).reduce((e,n)=>{let a=r(n);return a&&(e[N(n)]={x:a.x-t.x,y:a.y-t.y,z:a.z-t.z}),e},{})}"
+  },
+  "组轨道 rig（memberOffsets 缺失时现算 ＋ 遍历全部成员 O(r)）": {
+   "锚点": "let i=t.memberOffsets??V(r,a,f);O(r).forEach(t=>{let r=i[N(t)];",
+   "命中数": 1,
+   "偏移": 26977,
+   "原文": "let i=t.memberOffsets??V(r,a,f);O(r).forEach(t=>{let r=i[N(t)];r&&A.set(N(t),{position:{x:e.position.x+r.x,y:e.position.y+r.y,z:e.position.z+r.z},yaw:n?.orientToPath?e.rotation.y:void 0,moving:v.has(e.id)})})});let k=new Map(u.map(e=>[e.id,e])),S=new Map(p.map(e=>[e.id,e])),M=new Map;A.forEach((e,t)=>{"
+  },
+  "reducer case：UNGROUP_CHARACTER_GROUP（复原成员／相机重算／过滤轨道／选择态）": {
+   "锚点": "case\"UNGROUP_CHARACTER_GROUP\":{let r=e.characterGroups.find(e=>e.id===t.id);if(!r)return e;let n=lB(O(r),e.characters,e.props,e.emptyObjects,e.cameras);return{...e,characterGroups:e.characterGroups.filter(e=>e.id!==t.id),cameras:e.cameras.map(r=>lV(r,e,new Set([t.id]))),animation:{...e.animation,groupTracks:e.animation.groupTracks.filter(e=>e.targetId!==t.id)},...lQ(n),selectedGroupId:null}}",
+   "命中数": 1,
+   "偏移": 440930,
+   "原文": "case\"UNGROUP_CHARACTER_GROUP\":{let r=e.characterGroups.find(e=>e.id===t.id);if(!r)return e;let n=lB(O(r),e.characters,e.props,e.emptyObjects,e.cameras);return{...e,characterGroups:e.characterGroups.filter(e=>e.id!==t.id),cameras:e.cameras.map(r=>lV(r,e,new Set([t.id]))),animation:{...e.animation,groupTracks:e.animation.groupTracks.filter(e=>e.targetId!==t.id)},...lQ(n),selectedGroupId:null}}"
+  },
+  "相机绑定重算 lV（按各组锚点 H 重算）": {
+   "锚点": "function lV(e,t,r){let n=new Map;t.characterGroups.forEach(e=>{let r=H(e,e=>L(t,e));r&&n.set(e.id,r)});",
+   "命中数": 1,
+   "偏移": 434797,
+   "原文": "function lV(e,t,r){let n=new Map;t.characterGroups.forEach(e=>{let r=H(e,e=>L(t,e));r&&n.set(e.id,r)});"
+  },
+  "组的可见／锁定按全部成员算": {
+   "锚点": "visible:0===t.length||t.every(e=>e.visible),locked:t.length>0&&t.every(e=>e.locked)",
+   "命中数": 1,
+   "偏移": 335989,
+   "原文": "visible:0===t.length||t.every(e=>e.visible),locked:t.length>0&&t.every(e=>e.locked)"
+  },
+  "权威成员列表 O(e)（members 优先 ＋ characterIds 兜底 ＋ 去重）": {
+   "锚点": "function O(e){let t=[],r=new Set,n=e=>{if(!e.id)return;let n=N(e);r.has(n)||(r.add(n),t.push(e))};return(e.members??[]).forEach(n),(e.characterIds??[]).forEach(e=>n({kind:\"character\",id:e})),t}",
+   "命中数": 1,
+   "偏移": 3456,
+   "原文": "function O(e){let t=[],r=new Set,n=e=>{if(!e.id)return;let n=N(e);r.has(n)||(r.add(n),t.push(e))};return(e.members??[]).forEach(n),(e.characterIds??[]).forEach(e=>n({kind:\"character\",id:e})),t}"
+  },
+  "成员的键 N(e)＝kind:id": {
+   "锚点": "function N(e){return`${e.kind}:${e.id}`}",
+   "命中数": 1,
+   "偏移": 3143,
+   "原文": "function N(e){return`${e.kind}:${e.id}`}"
+  }
+ },
+ "★任意值类名自检": {
+  "疑似截断": [],
+  "通过": true
+ }
+}

@@ -201,7 +201,11 @@ function applyTrackAndPathClosure(
       );
       if (!group) return track;
       const memberOffsets = Object.fromEntries(
-        group.characterIds
+        // ★★ Batch 855：按**权威成员列表**（任意类别）过滤 ⟹ ⟹
+        //   854 之前是 `group.characterIds`（只认角色）⟹ ⟹ 混合组里
+        //   「机位成员」的偏移会被**误删**（源站逐字 `V` 是给全部成员算的）。
+        resolveDirectorGroupMembers(group)
+          .map((member) => member.id)
           .filter((memberId) => track.memberOffsets[memberId])
           .map((memberId) => [
             memberId,

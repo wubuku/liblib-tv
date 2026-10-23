@@ -27,6 +27,7 @@ import { DirectorCameraMotionTab } from "@/components/director/DirectorCameraMot
 import {
   DIRECTOR_CAMERA_FOV_MAX,
   DIRECTOR_CAMERA_FOV_MIN,
+  resolveGroupMemberRefs,
   useDirectorStore,
   type DirectorCameraLookAtMode,
   type DirectorCapture,
@@ -698,8 +699,9 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
     (state) => state.recordGroupKeyframe,
   );
   const anchor = getDirectorGroupAnchorTransform(objects, group);
-  const hasLockedMember = group.characterIds.some((objectId) =>
-    objects.some((object) => object.id === objectId && object.locked),
+  // ★★ Batch 855：锁定守卫按**全部成员**（源站 `O(e)`）。
+  const hasLockedMember = resolveGroupMemberRefs(group).some((member) =>
+    objects.some((object) => object.id === member.id && object.locked),
   );
   const groupNameInputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
@@ -752,7 +754,9 @@ function GroupInspector({ group }: { group: DirectorCharacterGroup }) {
         <Users size={13} className="text-[#5ddcff]" />
         <span>{group.crowd ? "群众阵列" : "角色组"}</span>
         <span className="ml-auto tabular-nums text-[#777]">
-          {group.characterIds.length} 个成员
+          {/* ★★ Batch 855：成员数按**全部成员**（标签写的是「个成员」，
+              854 之前只数 `characterIds` ⟹ ⟹ 混合组会少报）。 */}
+          {resolveGroupMemberRefs(group).length} 个成员
         </span>
       </div>
       {group.crowd ? (

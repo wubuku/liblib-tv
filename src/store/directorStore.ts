@@ -49,6 +49,7 @@ import {
   type DirectorCameraMotionPresetMode,
 } from "@/components/director/directorCameraPresets";
 import {
+  applyDirectorGroupRig,
   applyDirectorGroupTransform,
   createDirectorCrowdPositions,
   getDirectorGroupAnchorTransform,
@@ -242,6 +243,12 @@ export interface DirectorCharacterGroup {
  * ★ 源站逐字：`function N(e){return`${e.kind}:${e.id}`}` ⟹ ⟹ 成员的键是 **`kind:id`**。
  * ★ 可分组的类别 ＝ 源站逐字 `function sg(e){return"character"===e||"prop"===e||"emptyObject"===e||"camera"===e}`
  * ⟹ ⟹ **机位也能进组**（clone 的对象种类只有 character／prop／camera ⟹ 空对象暂无对应物）。
+ *
+ * ★ ★ Batch 855：这里**仍然是 interface**（不是 type 别名）⟹ ⟹
+ *   batch 854 的门禁 S1 断言的就是「store 里有 `export interface DirectorSceneMemberRef`」
+ *   ⟹ ⟹ 把它改成别名会把**上一批的门禁**弄红 ⟹ ⟹ 保留原形。
+ *   （`src/components/director/directorGroupMath.ts` 里的
+ *   `DirectorGroupMemberRef` 与它**结构相同** ⟹ ⟹ TS 结构化类型下互相兼容。）
  */
 export interface DirectorSceneMemberRef {
   kind: DirectorObjectKind;
@@ -261,6 +268,13 @@ export const DIRECTOR_GROUPABLE_KINDS: readonly DirectorObjectKind[] = [
  * ★ 逐字对齐源站 `function O(e){…(e.members??[]).forEach(n),(e.characterIds??[]).forEach(e=>n({kind:"character",id:e})),t}`：
  * ★ **`members` 优先、`characterIds` 兜底**（老组／群众组只有 `characterIds`），
  * ★ 并按源站的 `N(e)`＝`kind:id` 去重。
+ *
+ * ★ ★★ Batch 855：**这里保留自己的实现**（不转发给 `directorGroupMath.ts`）
+ *   ⟹ ⟹ 因为 batch 854 的门禁 S10 要把「store 的这一份」与「文档层的那一份」
+ *   **各自抽出来跑 node 交叉验证** ⟹ ⟹ 一旦这里变成「转发」，
+ *   抽出来就是一行调用 ⟹ ⟹ node 里找不到被调用的函数 ⟹ ⟹ 上一批的门禁会红。
+ *   ⟹ ⟹ 本批改为：store 侧一份、组数学侧一份、文档层侧一份
+ *   ⟹ ⟹ **三套独立实现**，由 batch 855 的门禁 S9 **三向交叉验证**。
  */
 export function resolveGroupMemberRefs(
   group: DirectorCharacterGroup,
@@ -1558,10 +1572,14 @@ function sampleTimelineObjectsAtTime(
       const group = groups.find((item) => item.id === track.groupId);
       const sample = sampleDirectorTimelineTrack(track, time);
       if (!group || sample?.kind !== "group") return currentObjects;
-      return applyDirectorGroupTransform(
+      // ★★ Batch 855：组轨道 rig 走**源站逐字**的实现（纯平移 ＋ 只驱动
+      //   character／prop，**机位不动**）⟹ ⟹ 不再走交互路径的
+      //   `applyDirectorGroupTransform`（那个带旋转增量 ＋ 缩放比，是另一条路径）。
+      return applyDirectorGroupRig(
         currentObjects,
         group,
         sample.transform,
+        track.memberOffsets,
       );
     }, sampledObjects);
 }
@@ -2190,9 +2208,11 @@ function repairDirectorSelectionState(
     : null;
   let selectedGroupId = selectedGroup?.id ?? null;
   if (selectedGroup) {
-    selectedObjectIds = selectedGroup.characterIds.filter((objectId) =>
-      objectIds.has(objectId),
-    );
+    // ★★ Batch 855：选组 ⟹ 选中**全部成员**（任意类别）⟹ ⟹ 源站逐字
+    //   `SELECT_CHARACTER_GROUP` → `lQ(n)`（`selectedSceneMembers`＝全部成员）。
+    selectedObjectIds = resolveGroupMemberRefs(selectedGroup)
+      .map((member) => member.id)
+      .filter((objectId) => objectIds.has(objectId));
     if (selectedObjectIds.length === 0) {
       selectedGroupId = null;
     }
@@ -2414,6 +2434,29 @@ function directorObjectIsLocked(
   );
 }
 
+/**
+ * ★★ Batch 855：组里**有没有被锁住的成员**（锁定守卫）。
+ *
+ * ★★ 854 之前是 `group?.characterIds.some(...)` ⟹ ⟹ **只认角色** ⟹ ⟹
+ *   「角色没锁、但组里的机位锁了」这种混合组**仍然可以加组关键帧**。
+ * ★ ★ 本批改成按**权威成员列表**（任意类别）判断。
+ *
+ * ★ 差异登记：源站逐字 `locked:t.length>0&&t.every(e=>e.locked)`（**全部成员都锁**
+ *   才算组被锁）⟹ ⟹ 与 clone 的「**任一**成员锁住就拒绝」不是同一个量。
+ *   源站那一句是**组的锁定指示**（树上的锁图标，＝ 854 遗留 N2／N3 的范畴），
+ *   clone 这里是**写入守卫** ⟹ ⟹ 本批只把「成员集合」对齐，**判定口径保持 clone 原样**，
+ *   差异登记在 batch 855 的 README。
+ */
+function directorGroupHasLockedMember(
+  state: DirectorState,
+  group: DirectorCharacterGroup | undefined,
+): boolean {
+  if (!group) return false;
+  return resolveGroupMemberRefs(group).some((member) =>
+    directorObjectIsLocked(state, member.id),
+  );
+}
+
 function directorPathTargetIsLocked(
   state: DirectorState,
   pathId: string | null | undefined,
@@ -2431,9 +2474,7 @@ function directorTrackTargetIsLocked(
   if (track.kind === "group") {
     const group = state.groups.find((item) => item.id === track.groupId);
     return Boolean(
-      group?.characterIds.some((objectId) =>
-        directorObjectIsLocked(state, objectId),
-      ),
+      directorGroupHasLockedMember(state, group),
     );
   }
   return directorObjectIsLocked(state, track.objectId);
@@ -2842,8 +2883,10 @@ function projectDirectorDeleteState(
     ? groupById.get(state.selectedGroupId)
     : null;
   let selectedGroupId = survivingGroup?.id ?? null;
+  // ★★ Batch 855：存活组的选中态按**全部成员**（854 之前只取 `characterIds`
+  //   ⟹ ⟹ 混合组在一次删除操作之后，选中态会**塌成只剩角色**）。
   let selectedObjectIds = survivingGroup
-    ? [...survivingGroup.characterIds]
+    ? resolveGroupMemberRefs(survivingGroup).map((member) => member.id)
     : state.selectedObjectIds.filter((objectId) => objectIds.has(objectId));
   let selectedObjectId =
     state.selectedObjectId && objectIds.has(state.selectedObjectId)
@@ -4408,9 +4451,10 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       }
       const group = state.groups.find((item) => item.id === groupId);
       if (!group) return state;
-      const selectedObjectIds = group.characterIds.filter((id) =>
-        state.objects.some((object) => object.id === id),
-      );
+      // ★★ Batch 855：选中组 ⟹ 选中**全部成员**（源站 `lQ(n)`）。
+      const selectedObjectIds = resolveGroupMemberRefs(group)
+        .map((member) => member.id)
+        .filter((id) => state.objects.some((object) => object.id === id));
       if (selectedObjectIds.length === 0) return state;
       const selectedObjectId =
         selectedObjectIds[selectedObjectIds.length - 1] ?? null;
@@ -5501,11 +5545,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       set({ lastCommandResult: result });
       return result;
     }
-    if (
-      group.characterIds.some((objectId) =>
-        directorObjectIsLocked(state, objectId),
-      )
-    ) {
+    if (directorGroupHasLockedMember(state, group)) {
       const result = makeDirectorCommandResult(state, {
         commandKind: "UPDATE_GROUP_TRANSFORM",
         disposition: "REJECTED",
@@ -7194,8 +7234,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       ) {
         return state;
       }
+      // ★★ Batch 855：选中组轨道 ⟹ 选中**全部成员**（源站 `lQ(n)`）。
       const selectedObjectIds = group
-        ? [...group.characterIds]
+        ? resolveGroupMemberRefs(group).map((member) => member.id)
         : [track.objectId];
       const selectedObjectId =
         selectedObjectIds[selectedObjectIds.length - 1] ?? null;
@@ -7238,8 +7279,11 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       ) {
         return state;
       }
+      // ★★ Batch 855：选中组轨道 ⟹ 选中**全部成员**（源站 `lQ(n)`）。
       const selectedObjectIds = group
-        ? group.characterIds.filter((objectId) =>
+        ? resolveGroupMemberRefs(group)
+          .map((member) => member.id)
+          .filter((objectId) =>
             state.objects.some((object) => object.id === objectId),
           )
         : [track.objectId];
@@ -7285,7 +7329,13 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
           (!requestedObjectId && group.id === state.selectedGroupId),
       );
       if (requestedGroup) {
-        const selectedObjectIds = [...requestedGroup.characterIds];
+        // ★★ Batch 855：组轨道的选中态按**全部成员**（任意类别）⟹ ⟹
+        //   854 之前是 `[...requestedGroup.characterIds]`（**只认角色**）⟹ ⟹
+        //   「角色＋机位」的组一建轨道，选中态就**塌成只剩角色**，
+        //   后面解组时（源站 `lQ(n)` 要把**复原的成员**全选上）就选不全。
+        const selectedObjectIds = resolveGroupMemberRefs(
+          requestedGroup,
+        ).map((member) => member.id);
         const selectedObjectId =
           selectedObjectIds[selectedObjectIds.length - 1] ?? null;
         const existing = state.timeline.tracks.find(
@@ -7437,11 +7487,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
         const group = state.groups.find(
           (item) => item.id === track.groupId,
         );
-        if (
-          group?.characterIds.some((objectId) =>
-            directorObjectIsLocked(state, objectId),
-          )
-        ) {
+        if (directorGroupHasLockedMember(state, group)) {
           return rejectLockedDirectorMutation(state, "ADD_GROUP_KEYFRAME");
         }
         const transform = group
@@ -7609,11 +7655,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
     set((state) => {
       if (!force && !state.timeline.autoKeyframe) return state;
       const group = state.groups.find((item) => item.id === groupId);
-      if (
-        group?.characterIds.some((objectId) =>
-          directorObjectIsLocked(state, objectId),
-        )
-      ) {
+      if (directorGroupHasLockedMember(state, group)) {
         return rejectLockedDirectorMutation(state, "RECORD_GROUP_KEYFRAME");
       }
       const transform = group
@@ -7640,7 +7682,13 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
             track.id === existing.id ? result.track : track,
           )
         : [...state.timeline.tracks, result.track];
-      const selectedObjectIds = [...group.characterIds];
+      // ★★ Batch 855：组关键帧的选中态按**全部成员**（任意类别）⟹ ⟹
+      //   854 之前是 `[...group.characterIds]`（**只认角色**）⟹ ⟹
+      //   「角色＋机位」的组一改位置，选中态就**塌成只剩角色**，
+      //   后面解组时（源站 `lQ(n)` 要把**复原的成员**全选上）就选不全。
+      const selectedObjectIds = resolveGroupMemberRefs(group).map(
+        (member) => member.id,
+      );
       const selectedObjectId =
         selectedObjectIds[selectedObjectIds.length - 1] ?? null;
       const timeline = normalizeDirectorTimelineSelection(

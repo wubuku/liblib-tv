@@ -1881,10 +1881,21 @@ function validateReferences(document: DirectorProjectDocumentV1): void {
           `group "${track.groupId}" does not exist`,
         );
       }
-      // ★★ Batch 854：⚠️ 这里**仍然只按角色成员**算 —— clone 的组轨道（groupTracks）
-      //   目前只为**角色成员**建偏移（D5／组轨道是下一批的事）⟹ ⟹ 改成「全部成员」
-      //   会让已有的组轨道立刻校验失败。⟹ ⟹ 保持原样并登记为遗留。
-      const memberIds = new Set(group.characterIds);
+      // ★★ Batch 855：组轨道的 `memberOffsets` 键集按**权威成员列表**（任意类别）校验。
+      // ★ 854 之前这里只按 `group.characterIds`（**只认角色**）⟹ ⟹
+      //   「混合组（角色＋机位）」的轨道**建不出来**（机位的偏移键会被判成悬挂引用），
+      //   854 的 README 把它登记成了遗留（D5）⟹ ⟹ 本批整改。
+      // ★ 源站逐字：`function V(e,t,r){return O(e).reduce(…)}` ⟹ ⟹ 偏移是给
+      //   **全部成员**（`O(e)`，任意类别）算的 ⟹ ⟹ 键集必须覆盖全部成员。
+      // ★★ Batch 855：组轨道的 `memberOffsets` 键集按**权威成员列表**（任意类别）校验。
+      // ★ 854 之前这里只按 `group.characterIds`（**只认角色**）⟹ ⟹
+      //   「混合组（角色＋机位）」的轨道**建不出来**（机位的偏移键会被判成悬挂引用），
+      //   854 的 README 把它登记成了遗留（D5）⟹ ⟹ 本批整改。
+      // ★ 源站逐字：`function V(e,t,r){return O(e).reduce(…)}` ⟹ ⟹ 偏移是给
+      //   **全部成员**（`O(e)`，任意类别）算的 ⟹ ⟹ 键集必须覆盖全部成员。
+      const memberIds = new Set(
+        resolveDirectorGroupMembers(group).map((member) => member.id),
+      );
       Object.keys(track.memberOffsets).forEach((memberId) => {
         if (!memberIds.has(memberId)) {
           fail(

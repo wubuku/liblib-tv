@@ -5,6 +5,7 @@ import type { PointerEvent as ReactPointerEvent } from "react";
 import { ArrowLeft } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
+  resolveGroupMemberRefs,
   useDirectorStore,
   type DirectorSpeedCurvePreset,
 } from "@/store/directorStore";
@@ -65,13 +66,19 @@ export function DirectorCurveEditor() {
   const selectedTrack =
     timeline.tracks.find((track) => track.id === timeline.selectedTrackId) ??
     null;
+  // ★★ Batch 855：组轨道的锁定守卫按**全部成员**（源站 `O(e)`）。
+  const selectedTrackGroup =
+    selectedTrack?.kind === "group"
+      ? groups.find((group) => group.id === selectedTrack.groupId) ?? null
+      : null;
   const selectedTrackLocked = selectedTrack
     ? selectedTrack.kind === "group"
       ? Boolean(
-          groups
-            .find((group) => group.id === selectedTrack.groupId)
-            ?.characterIds.some((objectId) =>
-              objects.some((object) => object.id === objectId && object.locked),
+          selectedTrackGroup &&
+            resolveGroupMemberRefs(selectedTrackGroup).some((member) =>
+              objects.some(
+                (object) => object.id === member.id && object.locked,
+              ),
             ),
         )
       : Boolean(

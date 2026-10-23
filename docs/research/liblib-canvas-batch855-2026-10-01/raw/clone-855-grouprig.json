@@ -1,0 +1,2353 @@
+{
+ "①基线": {
+  "state": {
+   "groups": [],
+   "tracks": [],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-character-lead"
+   ],
+   "selectedGroupId": null,
+   "currentTime": 0,
+   "autoKeyframe": true
+  },
+  "dom": {
+   "对象行": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": "角色A"
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": "咖啡桌"
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": "冷掉的咖啡"
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": "咖啡馆背景"
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": "机位1"
+    }
+   ],
+   "组": [],
+   "成员行": [],
+   "对象行数": 5,
+   "组数": 0,
+   "成员行数": 0
+  }
+ },
+ "②选机位": {
+  "state": {
+   "groups": [],
+   "tracks": [],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-camera-main",
+   "selectedObjectIds": [
+    "director-camera-main"
+   ],
+   "selectedGroupId": null,
+   "currentTime": 0,
+   "autoKeyframe": true
+  }
+ },
+ "③cmd加选角色": {
+  "state": {
+   "groups": [],
+   "tracks": [],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-camera-main",
+    "director-character-lead"
+   ],
+   "selectedGroupId": null,
+   "currentTime": 0,
+   "autoKeyframe": true
+  }
+ },
+ "④打组后": {
+  "state": {
+   "groups": [
+    {
+     "id": "director-character-group-1792748523944-1",
+     "label": "分组1",
+     "characterIds": [
+      "director-character-lead"
+     ],
+     "members": [
+      {
+       "kind": "camera",
+       "id": "director-camera-main"
+      },
+      {
+       "kind": "character",
+       "id": "director-character-lead"
+      }
+     ]
+    }
+   ],
+   "tracks": [],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-camera-main",
+    "director-character-lead"
+   ],
+   "selectedGroupId": "director-character-group-1792748523944-1",
+   "currentTime": 0,
+   "autoKeyframe": true
+  },
+  "dom": {
+   "对象行": [
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": "咖啡桌"
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": "冷掉的咖啡"
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": "咖啡馆背景"
+    }
+   ],
+   "组": [
+    {
+     "id": "director-character-group-1792748523944-1",
+     "label": "分组12机位1角色A"
+    }
+   ],
+   "成员行": [
+    {
+     "id": "director-camera-main",
+     "kind": "camera"
+    },
+    {
+     "id": "director-character-lead",
+     "kind": "character"
+    }
+   ],
+   "对象行数": 3,
+   "组数": 1,
+   "成员行数": 2
+  }
+ },
+ "④判定": {
+  "组成员": [
+   {
+    "kind": "camera",
+    "id": "director-camera-main"
+   },
+   {
+    "kind": "character",
+    "id": "director-character-lead"
+   }
+  ],
+  "组characterIds": [
+   "director-character-lead"
+  ],
+  "★组成员含机位": true,
+  "★characterIds只是派生量": true
+ },
+ "⑤建组轨道后": {
+  "state": {
+   "groups": [
+    {
+     "id": "director-character-group-1792748523944-1",
+     "label": "分组1",
+     "characterIds": [
+      "director-character-lead"
+     ],
+     "members": [
+      {
+       "kind": "camera",
+       "id": "director-camera-main"
+      },
+      {
+       "kind": "character",
+       "id": "director-character-lead"
+      }
+     ]
+    }
+   ],
+   "tracks": [
+    {
+     "id": "director-track-director-character-group-1792748523944-1",
+     "groupId": "director-character-group-1792748523944-1",
+     "memberOffsetIds": [
+      "director-camera-main",
+      "director-character-lead"
+     ],
+     "memberOffsets": {
+      "director-camera-main": [
+       3.025,
+       1.325,
+       3.35
+      ],
+      "director-character-lead": [
+       -3.025,
+       -1.325,
+       -3.35
+      ]
+     },
+     "keyframes": [
+      {
+       "time": 0,
+       "value": {
+        "position": [
+         1.775,
+         1.325,
+         3.55
+        ],
+        "rotation": [
+         0,
+         0,
+         0
+        ],
+        "scale": [
+         1,
+         1,
+         1
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-camera-main",
+    "director-character-lead"
+   ],
+   "selectedGroupId": "director-character-group-1792748523944-1",
+   "currentTime": 0,
+   "autoKeyframe": true
+  }
+ },
+ "⑤判定": {
+  "组轨道memberOffsets键": [
+   "director-camera-main",
+   "director-character-lead"
+  ],
+  "★期望键集＝全部成员": true,
+  "★键集含机位": true,
+  "关键帧数": 1
+ },
+ "⑥改位置前": {
+  "state": {
+   "groups": [
+    {
+     "id": "director-character-group-1792748523944-1",
+     "label": "分组1",
+     "characterIds": [
+      "director-character-lead"
+     ],
+     "members": [
+      {
+       "kind": "camera",
+       "id": "director-camera-main"
+      },
+      {
+       "kind": "character",
+       "id": "director-character-lead"
+      }
+     ]
+    }
+   ],
+   "tracks": [
+    {
+     "id": "director-track-director-character-group-1792748523944-1",
+     "groupId": "director-character-group-1792748523944-1",
+     "memberOffsetIds": [
+      "director-camera-main",
+      "director-character-lead"
+     ],
+     "memberOffsets": {
+      "director-camera-main": [
+       3.025,
+       1.325,
+       3.35
+      ],
+      "director-character-lead": [
+       -3.025,
+       -1.325,
+       -3.35
+      ]
+     },
+     "keyframes": [
+      {
+       "time": 0,
+       "value": {
+        "position": [
+         1.775,
+         1.325,
+         3.55
+        ],
+        "rotation": [
+         0,
+         0,
+         0
+        ],
+        "scale": [
+         1,
+         1,
+         1
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-camera-main",
+    "director-character-lead"
+   ],
+   "selectedGroupId": "director-character-group-1792748523944-1",
+   "currentTime": 0,
+   "autoKeyframe": true
+  },
+  "锚点": [
+   1.775,
+   1.325,
+   3.55
+  ],
+  "成员位置": {
+   "director-camera-main": [
+    4.8,
+    2.65,
+    6.9
+   ],
+   "director-character-lead": [
+    -1.25,
+    0,
+    0.2
+   ]
+  }
+ },
+ "⑥改位置后": {
+  "state": {
+   "groups": [
+    {
+     "id": "director-character-group-1792748523944-1",
+     "label": "分组1",
+     "characterIds": [
+      "director-character-lead"
+     ],
+     "members": [
+      {
+       "kind": "camera",
+       "id": "director-camera-main"
+      },
+      {
+       "kind": "character",
+       "id": "director-character-lead"
+      }
+     ]
+    }
+   ],
+   "tracks": [
+    {
+     "id": "director-track-director-character-group-1792748523944-1",
+     "groupId": "director-character-group-1792748523944-1",
+     "memberOffsetIds": [
+      "director-camera-main",
+      "director-character-lead"
+     ],
+     "memberOffsets": {
+      "director-camera-main": [
+       3.025,
+       1.325,
+       3.35
+      ],
+      "director-character-lead": [
+       -3.025,
+       -1.325,
+       -3.35
+      ]
+     },
+     "keyframes": [
+      {
+       "time": 0,
+       "value": {
+        "position": [
+         2.375,
+         1.325,
+         3.55
+        ],
+        "rotation": [
+         0,
+         0,
+         0
+        ],
+        "scale": [
+         1,
+         1,
+         1
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -0.05,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-camera-main",
+    "director-character-lead"
+   ],
+   "selectedGroupId": "director-character-group-1792748523944-1",
+   "currentTime": 0,
+   "autoKeyframe": true
+  },
+  "锚点": [
+   2.375,
+   1.325,
+   3.55
+  ],
+  "成员位置": {
+   "director-camera-main": [
+    4.8,
+    2.65,
+    6.9
+   ],
+   "director-character-lead": [
+    -0.05,
+    0,
+    0.2
+   ]
+  },
+  "当前时间": 0,
+  "autoKeyframe": true
+ },
+ "⑦t0": {
+  "state": {
+   "groups": [
+    {
+     "id": "director-character-group-1792748523944-1",
+     "label": "分组1",
+     "characterIds": [
+      "director-character-lead"
+     ],
+     "members": [
+      {
+       "kind": "camera",
+       "id": "director-camera-main"
+      },
+      {
+       "kind": "character",
+       "id": "director-character-lead"
+      }
+     ]
+    }
+   ],
+   "tracks": [
+    {
+     "id": "director-track-director-character-group-1792748523944-1",
+     "groupId": "director-character-group-1792748523944-1",
+     "memberOffsetIds": [
+      "director-camera-main",
+      "director-character-lead"
+     ],
+     "memberOffsets": {
+      "director-camera-main": [
+       3.025,
+       1.325,
+       3.35
+      ],
+      "director-character-lead": [
+       -3.025,
+       -1.325,
+       -3.35
+      ]
+     },
+     "keyframes": [
+      {
+       "time": 0,
+       "value": {
+        "position": [
+         2.375,
+         1.325,
+         3.55
+        ],
+        "rotation": [
+         0,
+         0,
+         0
+        ],
+        "scale": [
+         1,
+         1,
+         1
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -0.65,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-camera-main",
+    "director-character-lead"
+   ],
+   "selectedGroupId": "director-character-group-1792748523944-1",
+   "currentTime": 0,
+   "autoKeyframe": true
+  },
+  "成员位置": {
+   "director-camera-main": [
+    4.8,
+    2.65,
+    6.9
+   ],
+   "director-character-lead": [
+    -0.65,
+    0,
+    0.2
+   ]
+  },
+  "锚点": [
+   2.075,
+   1.325,
+   3.55
+  ]
+ },
+ "⑧t4": {
+  "state": {
+   "groups": [
+    {
+     "id": "director-character-group-1792748523944-1",
+     "label": "分组1",
+     "characterIds": [
+      "director-character-lead"
+     ],
+     "members": [
+      {
+       "kind": "camera",
+       "id": "director-camera-main"
+      },
+      {
+       "kind": "character",
+       "id": "director-character-lead"
+      }
+     ]
+    }
+   ],
+   "tracks": [
+    {
+     "id": "director-track-director-character-group-1792748523944-1",
+     "groupId": "director-character-group-1792748523944-1",
+     "memberOffsetIds": [
+      "director-camera-main",
+      "director-character-lead"
+     ],
+     "memberOffsets": {
+      "director-camera-main": [
+       3.025,
+       1.325,
+       3.35
+      ],
+      "director-character-lead": [
+       -3.025,
+       -1.325,
+       -3.35
+      ]
+     },
+     "keyframes": [
+      {
+       "time": 0,
+       "value": {
+        "position": [
+         2.375,
+         1.325,
+         3.55
+        ],
+        "rotation": [
+         0,
+         0,
+         0
+        ],
+        "scale": [
+         1,
+         1,
+         1
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -0.65,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      -12,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.1,
+      2.3,
+      5.4
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-camera-main",
+    "director-character-lead"
+   ],
+   "selectedGroupId": "director-character-group-1792748523944-1",
+   "currentTime": 4,
+   "autoKeyframe": true
+  },
+  "成员位置": {
+   "director-camera-main": [
+    4.1,
+    2.3,
+    5.4
+   ],
+   "director-character-lead": [
+    -0.65,
+    0,
+    0.2
+   ]
+  },
+  "锚点": [
+   1.725,
+   1.15,
+   2.8
+  ]
+ },
+ "★数据级受控检查：rig 纯平移": {
+  "说明": "★ **不是 UI 证据** ⟹ 显式标注的数据级受控检查：在**同一个时间点**（t=0）上，把组轨道关键帧改成「位置＋2、旋转 90 度」，再读成员绝对坐标 ⟹ 判据是源站逐字公式（位置 ＝ 关键帧位置 ＋ 成员偏移；rotation／scale 不变；机位不动）。",
+  "时间点": 0,
+  "改写前关键帧": [
+   {
+    "time": 0,
+    "value": {
+     "position": [
+      2.375,
+      1.325,
+      3.55
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   }
+  ],
+  "改写后关键帧": [
+   {
+    "time": 0,
+    "value": {
+     "position": [
+      2.375,
+      1.325,
+      3.55
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   }
+  ],
+  "成员": [
+   {
+    "id": "director-camera-main",
+    "kind": "camera",
+    "偏移": [
+     3.025,
+     1.325,
+     3.35
+    ],
+    "前位置": [
+     4.8,
+     2.65,
+     6.9
+    ],
+    "后位置": [
+     4.8,
+     2.65,
+     6.9
+    ],
+    "★纯平移期望位置": [
+     6.8,
+     2.65,
+     6.9
+    ],
+    "前rotation": [
+     0,
+     0,
+     0
+    ],
+    "后rotation": [
+     0,
+     0,
+     0
+    ],
+    "前scale": [
+     1,
+     1,
+     1
+    ],
+    "后scale": [
+     1,
+     1,
+     1
+    ],
+    "★rig驱动类别": false
+   },
+   {
+    "id": "director-character-lead",
+    "kind": "character",
+    "偏移": [
+     -3.025,
+     -1.325,
+     -3.35
+    ],
+    "前位置": [
+     -0.65,
+     0,
+     0.2
+    ],
+    "后位置": [
+     1.35,
+     0,
+     0.2
+    ],
+    "★纯平移期望位置": [
+     1.35,
+     0,
+     0.2
+    ],
+    "前rotation": [
+     0,
+     18,
+     0
+    ],
+    "后rotation": [
+     0,
+     18,
+     0
+    ],
+    "前scale": [
+     1,
+     1,
+     1
+    ],
+    "后scale": [
+     1,
+     1,
+     1
+    ],
+    "★rig驱动类别": true
+   }
+  ]
+ },
+ "⑨解组后": {
+  "state": {
+   "groups": [],
+   "tracks": [],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-camera-main",
+    "director-character-lead"
+   ],
+   "selectedGroupId": null,
+   "currentTime": 0,
+   "autoKeyframe": true
+  },
+  "dom": {
+   "对象行": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": "角色A"
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": "咖啡桌"
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": "冷掉的咖啡"
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": "咖啡馆背景"
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": "机位1"
+    }
+   ],
+   "组": [],
+   "成员行": [],
+   "对象行数": 5,
+   "组数": 0,
+   "成员行数": 0
+  }
+ },
+ "⑨判定": {
+  "组数": 0,
+  "组轨道数": 0,
+  "对象行数": 5,
+  "基线对象行数": 5,
+  "★成员都还在": true,
+  "★选中态＝全部成员": true,
+  "★selectedGroupId为空": true
+ },
+ "⑩道具组后": {
+  "state": {
+   "groups": [
+    {
+     "id": "director-character-group-1792748535812-1",
+     "label": "分组1",
+     "characterIds": [
+      "director-character-lead"
+     ],
+     "members": [
+      {
+       "kind": "prop",
+       "id": "director-prop-table"
+      },
+      {
+       "kind": "character",
+       "id": "director-character-lead"
+      }
+     ]
+    }
+   ],
+   "tracks": [],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-prop-table",
+    "director-character-lead"
+   ],
+   "selectedGroupId": "director-character-group-1792748535812-1",
+   "currentTime": 0,
+   "autoKeyframe": true
+  },
+  "道具位置": {
+   "director-prop-table": [
+    0,
+    0,
+    0
+   ],
+   "director-prop-mug": [
+    0.25,
+    1.08,
+    0.05
+   ],
+   "director-prop-wall": [
+    0,
+    1.5,
+    -2.6
+   ]
+  }
+ },
+ "⑩建轨后": {
+  "state": {
+   "groups": [
+    {
+     "id": "director-character-group-1792748535812-1",
+     "label": "分组1",
+     "characterIds": [
+      "director-character-lead"
+     ],
+     "members": [
+      {
+       "kind": "prop",
+       "id": "director-prop-table"
+      },
+      {
+       "kind": "character",
+       "id": "director-character-lead"
+      }
+     ]
+    }
+   ],
+   "tracks": [
+    {
+     "id": "director-track-director-character-group-1792748535812-1",
+     "groupId": "director-character-group-1792748535812-1",
+     "memberOffsetIds": [
+      "director-prop-table",
+      "director-character-lead"
+     ],
+     "memberOffsets": {
+      "director-prop-table": [
+       0.625,
+       0,
+       -0.1
+      ],
+      "director-character-lead": [
+       -0.625,
+       0,
+       0.1
+      ]
+     },
+     "keyframes": [
+      {
+       "time": 0,
+       "value": {
+        "position": [
+         -0.625,
+         0,
+         0.1
+        ],
+        "rotation": [
+         0,
+         0,
+         0
+        ],
+        "scale": [
+         1,
+         1,
+         1
+        ]
+       }
+      }
+     ]
+    }
+   ],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.8,
+      2.65,
+      6.9
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-prop-table",
+    "director-character-lead"
+   ],
+   "selectedGroupId": "director-character-group-1792748535812-1",
+   "currentTime": 0,
+   "autoKeyframe": true
+  }
+ },
+ "⑩判定": {
+  "组成员": [
+   {
+    "kind": "prop",
+    "id": "director-prop-table"
+   },
+   {
+    "kind": "character",
+    "id": "director-character-lead"
+   }
+  ],
+  "★含道具": true,
+  "锚点": [
+   0.575,
+   0.0,
+   0.1
+  ],
+  "★改前成员位置": {
+   "director-prop-table": [
+    0,
+    0,
+    0
+   ],
+   "director-character-lead": [
+    -1.25,
+    0,
+    0.2
+   ]
+  },
+  "★改后t0成员位置": {
+   "director-prop-table": [
+    1.2,
+    0,
+    0
+   ],
+   "director-character-lead": [
+    -0.05,
+    0,
+    0.2
+   ]
+  },
+  "t4成员位置": {
+   "director-prop-table": [
+    1.2,
+    0,
+    0
+   ],
+   "director-character-lead": [
+    -0.05,
+    0,
+    0.2
+   ]
+  },
+  "★成员x位移": {
+   "director-prop-table": {
+    "改前x": 0,
+    "改后x": 1.2,
+    "位移x": 1.2,
+    "类别": "prop"
+   },
+   "director-character-lead": {
+    "改前x": -1.25,
+    "改后x": -0.05,
+    "位移x": 1.2,
+    "类别": "character"
+   }
+  },
+  "★道具x": {
+   "director-prop-table": 1.2
+  },
+  "★角色x": {
+   "director-character-lead": -0.05
+  },
+  "★锚点x": 0.575
+ },
+ "⑪结束": {
+  "state": {
+   "groups": [],
+   "tracks": [],
+   "objects": [
+    {
+     "id": "director-character-lead",
+     "kind": "character",
+     "label": null,
+     "position": [
+      0.6499999999999999,
+      0,
+      0.35
+     ],
+     "rotation": [
+      0,
+      -12,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-table",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.6,
+      0,
+      0
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-mug",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0.25,
+      1.08,
+      0.05
+     ],
+     "rotation": [
+      0,
+      -18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-prop-wall",
+     "kind": "prop",
+     "label": null,
+     "position": [
+      0,
+      1.5,
+      -2.6
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "id": "director-camera-main",
+     "kind": "camera",
+     "label": null,
+     "position": [
+      4.1,
+      2.3,
+      5.4
+     ],
+     "rotation": [
+      0,
+      0,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "selectedObjectId": "director-character-lead",
+   "selectedObjectIds": [
+    "director-prop-table",
+    "director-character-lead"
+   ],
+   "selectedGroupId": null,
+   "currentTime": 4,
+   "autoKeyframe": true
+  }
+ }
+}
