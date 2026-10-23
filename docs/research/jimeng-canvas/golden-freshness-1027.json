@@ -4,7 +4,6 @@
   "question_1027": "哪些 golden 天然容易过期？现在有几本已经过期了？怎么让这道闸足够便宜？",
   "how": "⭐⭐⭐⭐⭐ **增量式**：变更集 = `git diff --name-only HEAD~1`；对每个有 golden 的探针算出它**读到的文件集合**，**只跑被本次变更触及的那些**；比对完**原样还原**（还原之前先把新内容留下）",
   "the_changed_set": [
-    "docs/design-references/jimeng/jimeng-clone-batch812-feedback-1680.png",
     "docs/design-references/liblib-clone-batch36-director-keyframe-1440-2026-08-26.png",
     "docs/design-references/liblib-clone-batch36-director-playback-1440-2026-08-26.png",
     "docs/design-references/liblib-clone-batch36-director-timeline-1440-2026-08-26.png",
@@ -58,27 +57,12 @@
     "docs/design-references/liblib-clone-batch50-director-workspace-mobile-tree-390-2026-08-26.png",
     "docs/design-references/liblib-left-column-613-1920.png",
     "docs/research/LIBTV_CLONE_REACHABILITY.md",
-    "docs/research/VERIFICATION_LEDGER.md",
     "docs/research/jimeng-canvas/README.md",
-    "docs/research/jimeng-canvas/anchor-gate-coverage-1021.json",
-    "docs/research/jimeng-canvas/anchor-identity-1030.json",
-    "docs/research/jimeng-canvas/assertion-vs-behavior-1018.json",
     "docs/research/jimeng-canvas/committed-freshness-1032n.json",
-    "docs/research/jimeng-canvas/criterion-direction-1025.json",
     "docs/research/jimeng-canvas/empty-ambiguity-1014.json",
-    "docs/research/jimeng-canvas/exemption-claims-1024.json",
-    "docs/research/jimeng-canvas/fake-interaction-census-1034.json",
     "docs/research/jimeng-canvas/fingerprint-gate-1032l.json",
-    "docs/research/jimeng-canvas/global-detection-1012.json",
     "docs/research/jimeng-canvas/golden-freshness-1027.json",
-    "docs/research/jimeng-canvas/inputs/fake-interaction-scan-1034.json",
-    "docs/research/jimeng-canvas/inputs/noop-census-1032c.json",
-    "docs/research/jimeng-canvas/inputs/wired-runtime-1032b1.json",
-    "docs/research/jimeng-canvas/occurrence-ledger-1013.json",
-    "docs/research/jimeng-canvas/replica-coverage-1017.json",
     "docs/research/jimeng-canvas/rerun-reproducibility-1015.json",
-    "docs/research/jimeng-canvas/wired-contract-1032b1.json",
-    "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
     "docs/research/liblib-canvas-batch536-2026-09-27/runtime-audit.json",
     "docs/research/liblib-canvas-batch541-2026-09-27/runtime-audit.json",
     "docs/research/liblib-canvas-batch590-2026-10-01/runtime-audit.json",
@@ -110,40 +94,8 @@
     "docs/research/liblib-canvas-batch843-2026-10-01/runtime-audit.json",
     "docs/research/liblib-canvas-batch844-2026-10-01/runtime-audit.json",
     "docs/research/liblib-canvas-batch852-2026-10-01/runtime-audit.json",
-    "docs/research/liblib-canvas-batch857-2026-10-01/README.md",
-    "docs/research/liblib-canvas-batch857-2026-10-01/images/857clone_crowd-dialog.png",
-    "docs/research/liblib-canvas-batch857-2026-10-01/images/857clone_crowd-mobile.png",
-    "docs/research/liblib-canvas-batch857-2026-10-01/images/857clone_flyout-overlap.png",
-    "docs/research/liblib-canvas-batch857-2026-10-01/images/857src_after-add.png",
-    "docs/research/liblib-canvas-batch857-2026-10-01/images/857src_crowd-dialog.png",
-    "docs/research/liblib-canvas-batch857-2026-10-01/images/857src_mobile-after-click.png",
-    "docs/research/liblib-canvas-batch857-2026-10-01/images/857src_mobile-director.png",
-    "docs/research/liblib-canvas-batch857-2026-10-01/images/857src_restored.png",
-    "docs/research/liblib-canvas-batch857-2026-10-01/negative-audit.json",
-    "docs/research/liblib-canvas-batch857-2026-10-01/probes/attrib857.py",
-    "docs/research/liblib-canvas-batch857-2026-10-01/probes/clone857_crowd.py",
-    "docs/research/liblib-canvas-batch857-2026-10-01/probes/clone857_geometry.py",
-    "docs/research/liblib-canvas-batch857-2026-10-01/probes/extract857_contract.py",
-    "docs/research/liblib-canvas-batch857-2026-10-01/probes/neg857.py",
-    "docs/research/liblib-canvas-batch857-2026-10-01/probes/regress857.py",
-    "docs/research/liblib-canvas-batch857-2026-10-01/probes/source857_crowd.py",
-    "docs/research/liblib-canvas-batch857-2026-10-01/probes/source857_mobile.py",
-    "docs/research/liblib-canvas-batch857-2026-10-01/raw/attrib-857.json",
-    "docs/research/liblib-canvas-batch857-2026-10-01/raw/clone-857-crowd.json",
-    "docs/research/liblib-canvas-batch857-2026-10-01/raw/clone-857-geometry.json",
-    "docs/research/liblib-canvas-batch857-2026-10-01/raw/source-857-contract.json",
-    "docs/research/liblib-canvas-batch857-2026-10-01/raw/source-857-crowd.json",
-    "docs/research/liblib-canvas-batch857-2026-10-01/raw/source-857-mobile.json",
-    "docs/research/liblib-canvas-batch857-2026-10-01/runtime-audit.json",
-    "public/videos/jimeng-demo.mp4",
-    "scripts/jimeng_check_verifier_anchors.py",
-    "scripts/jimeng_fake_interaction_registry_1034.py",
     "scripts/jimeng_probe1033_clone_reachability.py",
     "scripts/jimeng_probe1034_fake_interaction_census.py",
-    "scripts/jimeng_probe1034_fake_interaction_scan.mjs",
-    "scripts/jimeng_run_all_gates.sh",
-    "scripts/verify-jimeng-batch812.py",
-    "scripts/verify-jimeng-batch841-unclickable.py",
     "scripts/verify-liblib-batch45.py",
     "scripts/verify-liblib-batch536.py",
     "scripts/verify-liblib-batch540.py",
@@ -161,33 +113,11 @@
     "scripts/verify-liblib-batch738.py",
     "scripts/verify-liblib-batch857.py",
     "src/components/director/DirectorDesk.tsx",
-    "src/components/director/DirectorIconRail.tsx",
-    "src/components/director/DirectorViewport.tsx",
-    "src/components/jimeng/JimengAccountPanels.tsx",
-    "src/components/jimeng/JimengAssetsModal.tsx",
-    "src/components/jimeng/JimengHistoryMenu.tsx",
-    "src/components/jimeng/JimengImageNodeToolbar.tsx",
-    "src/components/jimeng/JimengOfflineDialog.tsx",
-    "src/components/jimeng/JimengPaneContextMenu.tsx",
-    "src/components/jimeng/JimengProjectPanel.tsx",
-    "src/components/jimeng/JimengTopBar.tsx",
-    "src/components/jimeng/JimengWorkspace.tsx",
-    "src/components/jimeng/JimengZoomMenu.tsx",
-    "src/components/jimeng/jimengFeedback.ts",
-    "src/components/jimeng/nodes/JimengImageNode.tsx",
-    "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-    "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
-    "src/components/jimeng/nodes/JimengVideoNode.tsx",
-    "src/store/directorStore.ts",
-    "src/store/jimengStore.ts",
-    "src/types/jimeng.ts"
+    "src/components/director/DirectorIconRail.tsx"
   ],
   "changed_set_from_argv": false,
-  "n_argv_flags_received": 1,
-  "argv_flags_received": [
-    "--write-golden"
-  ],
-  "ran_under_the_suite": true,
+  "n_argv_flags_received": 0,
+  "ran_under_the_suite": false,
   "changed_set_note": "⭐⭐⭐⭐⭐ **变更集以 `argv` 为准**；没给 argv 时兜底取 `git diff HEAD~3` ⇒ **共享仓里那会被别人的提交改掉** ⇒ **⇒ 可复现性在这里的准确口径是「同一份 argv 下两次跑逐字节相同」**",
   "axis_1_coupling_census": {
     "what": "⭐⭐⭐⭐⭐ **耦合普查** —— 一个探针读到的仓内文件越多，越容易被「别人的改动」带偏 ⇒ **这是「容易过期」的结构性原因**",
@@ -251,13 +181,8 @@
         "n_named": 4,
         "n_globs": 0,
         "n_files_it_reads": 5,
-        "n_touched_by_this_change": 3,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
-          "scripts/jimeng_check_verifier_anchors.py",
-          "scripts/verify-jimeng-batch841-unclickable.py"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1006_duplicate_anchors.py",
@@ -274,12 +199,8 @@
         "n_named": 4,
         "n_globs": 0,
         "n_files_it_reads": 5,
-        "n_touched_by_this_change": 2,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "scripts/jimeng_check_verifier_anchors.py",
-          "scripts/verify-jimeng-batch841-unclickable.py"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1008_golden_freshness.py",
@@ -305,11 +226,8 @@
         "n_named": 3,
         "n_globs": 0,
         "n_files_it_reads": 4,
-        "n_touched_by_this_change": 1,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "scripts/jimeng_check_verifier_anchors.py"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1011_change_locality.py",
@@ -317,14 +235,10 @@
         "n_named": 3,
         "n_globs": 1,
         "n_files_it_reads": 4,
-        "n_touched_by_this_change": 2,
+        "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
           "b1011-*"
-        ],
-        "touched_by_this_change": [
-          "docs/research/jimeng-canvas/zero-coupling-anchors-1005.json",
-          "scripts/jimeng_check_verifier_anchors.py"
         ]
       },
       {
@@ -333,12 +247,8 @@
         "n_named": 3,
         "n_globs": 0,
         "n_files_it_reads": 4,
-        "n_touched_by_this_change": 2,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "docs/research/jimeng-canvas/global-detection-1012.json",
-          "scripts/jimeng_check_verifier_anchors.py"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1012_mutation_selfcheck.py",
@@ -355,19 +265,15 @@
         "n_named": 2,
         "n_globs": 0,
         "n_files_it_reads": 3,
-        "n_touched_by_this_change": 2,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "docs/research/jimeng-canvas/occurrence-ledger-1013.json",
-          "scripts/jimeng_check_verifier_anchors.py"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
         "has_golden": false,
         "n_named": 5,
         "n_globs": 1,
-        "n_files_it_reads": 5285,
+        "n_files_it_reads": 5286,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -379,7 +285,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 3,
-        "n_files_it_reads": 5532,
+        "n_files_it_reads": 5533,
         "n_touched_by_this_change": 0,
         "in_exclude": true,
         "globs": [
@@ -403,11 +309,8 @@
         "n_named": 2,
         "n_globs": 0,
         "n_files_it_reads": 3,
-        "n_touched_by_this_change": 1,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "docs/research/jimeng-canvas/replica-coverage-1017.json"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1018_assertion_vs_behavior.py",
@@ -415,12 +318,8 @@
         "n_named": 2,
         "n_globs": 0,
         "n_files_it_reads": 3,
-        "n_touched_by_this_change": 2,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "docs/research/jimeng-canvas/assertion-vs-behavior-1018.json",
-          "src/components/jimeng/JimengWorkspace.tsx"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1019_behavior_harness.py",
@@ -446,13 +345,8 @@
         "n_named": 4,
         "n_globs": 0,
         "n_files_it_reads": 5,
-        "n_touched_by_this_change": 3,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "docs/research/jimeng-canvas/anchor-gate-coverage-1021.json",
-          "scripts/jimeng_check_verifier_anchors.py",
-          "scripts/verify-jimeng-batch841-unclickable.py"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1023_type_layer_gate.py",
@@ -460,11 +354,8 @@
         "n_named": 7,
         "n_globs": 0,
         "n_files_it_reads": 8,
-        "n_touched_by_this_change": 1,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "scripts/verify-jimeng-batch841-unclickable.py"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1024_exemption_claims.py",
@@ -472,7 +363,7 @@
         "n_named": 5,
         "n_globs": 4,
         "n_files_it_reads": 15574,
-        "n_touched_by_this_change": 26,
+        "n_touched_by_this_change": 4,
         "in_exclude": false,
         "globs": [
           "*.ts",
@@ -481,32 +372,10 @@
           "scripts/jimeng_*.py"
         ],
         "touched_by_this_change": [
-          "docs/research/jimeng-canvas/exemption-claims-1024.json",
-          "scripts/jimeng_check_verifier_anchors.py",
-          "scripts/jimeng_fake_interaction_registry_1034.py",
           "scripts/jimeng_probe1033_clone_reachability.py",
           "scripts/jimeng_probe1034_fake_interaction_census.py",
           "src/components/director/DirectorDesk.tsx",
-          "src/components/director/DirectorIconRail.tsx",
-          "src/components/director/DirectorViewport.tsx",
-          "src/components/jimeng/JimengAccountPanels.tsx",
-          "src/components/jimeng/JimengAssetsModal.tsx",
-          "src/components/jimeng/JimengHistoryMenu.tsx",
-          "src/components/jimeng/JimengImageNodeToolbar.tsx",
-          "src/components/jimeng/JimengOfflineDialog.tsx",
-          "src/components/jimeng/JimengPaneContextMenu.tsx",
-          "src/components/jimeng/JimengProjectPanel.tsx",
-          "src/components/jimeng/JimengTopBar.tsx",
-          "src/components/jimeng/JimengWorkspace.tsx",
-          "src/components/jimeng/JimengZoomMenu.tsx",
-          "src/components/jimeng/jimengFeedback.ts",
-          "src/components/jimeng/nodes/JimengImageNode.tsx",
-          "src/components/jimeng/nodes/JimengTimelineNode.tsx",
-          "src/components/jimeng/nodes/JimengVideoMediaCard.tsx",
-          "src/components/jimeng/nodes/JimengVideoNode.tsx",
-          "src/store/directorStore.ts",
-          "src/store/jimengStore.ts",
-          "src/types/jimeng.ts"
+          "src/components/director/DirectorIconRail.tsx"
         ]
       },
       {
@@ -515,12 +384,8 @@
         "n_named": 2,
         "n_globs": 0,
         "n_files_it_reads": 3,
-        "n_touched_by_this_change": 2,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "docs/research/jimeng-canvas/criterion-direction-1025.json",
-          "scripts/verify-jimeng-batch841-unclickable.py"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1026_criterion_effectiveness.py",
@@ -544,13 +409,8 @@
         "n_named": 3,
         "n_globs": 0,
         "n_files_it_reads": 4,
-        "n_touched_by_this_change": 3,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "docs/research/jimeng-canvas/anchor-identity-1030.json",
-          "scripts/jimeng_check_verifier_anchors.py",
-          "scripts/verify-jimeng-batch841-unclickable.py"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1031_live_canvas_contract.py",
@@ -566,7 +426,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 5282,
+        "n_files_it_reads": 5283,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -713,7 +573,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 5282,
+        "n_files_it_reads": 5283,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -2516,9 +2376,9 @@
   },
   "axis_2_the_measured_re_run": {
     "what": "⭐⭐⭐⭐⭐⭐⭐ **实测：对「被本次变更触及的」那些真跑一遍，与仓库里那本逐字节比对 ⇒ 列出现在已经过期的**",
-    "n_touched": 14,
-    "n_re_run": 0,
-    "ran_under_the_suite": true,
+    "n_touched": 2,
+    "n_re_run": 2,
+    "ran_under_the_suite": false,
     "n_stale": 0,
     "n_probes_new_this_change": 0,
     "per_probe_timeout": 300,
@@ -2529,7 +2389,42 @@
       "jimeng_probe1030_anchor_identity.py"
     ],
     "write_gate_rule": "⭐⭐⭐⭐⭐ **凡是把「写仓」门控在 `--write-golden` 后面的探针，重跑时必须带那个 flag** ⇒ ⇒ ⇒ 不带 ⇒ 它不写盘 ⇒ ⇒ ⇒ 「重跑后的产物」＝「重跑前的产物」⇒ ⇒ ⇒ **永远测不出陈旧**",
-    "results_omitted_because": "⇒ ⇒ **这次没普查**⇒ ⇒ ⇒ ⇒ **⇒ 「没测到」不许长得像「测到 0 条」**",
+    "results": [
+      {
+        "probe": "jimeng_probe1024_exemption_claims.py",
+        "golden": "docs/research/jimeng-canvas/exemption-claims-1024.json",
+        "rc": 0,
+        "in_git_head": true,
+        "is_new_probe": false,
+        "stale_vs_committed": false,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 19738,
+        "n_bytes_committed": 19738,
+        "touched_by": [
+          "scripts/jimeng_probe1033_clone_reachability.py",
+          "scripts/jimeng_probe1034_fake_interaction_census.py",
+          "src/components/director/DirectorDesk.tsx",
+          "src/components/director/DirectorIconRail.tsx"
+        ],
+        "n_argv_flags": 0
+      },
+      {
+        "probe": "jimeng_probe1026_criterion_effectiveness.py",
+        "golden": "docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
+        "rc": 0,
+        "in_git_head": true,
+        "is_new_probe": false,
+        "stale_vs_committed": false,
+        "stale_vs_worktree": false,
+        "n_bytes_fresh": 101680,
+        "n_bytes_committed": 101680,
+        "touched_by": [
+          "scripts/jimeng_probe1033_clone_reachability.py",
+          "scripts/jimeng_probe1034_fake_interaction_census.py"
+        ],
+        "n_argv_flags": 0
+      }
+    ],
     "n_stale_split": {
       "n_stale": 0,
       "n_stale_worktree_itself": 0,
@@ -2556,7 +2451,7 @@
       "found": true,
       "injected_path": "docs/research/jimeng-canvas/occurrence-ledger-1013.json",
       "n_1013_reads": 3,
-      "found_without_injection": true,
+      "found_without_injection": false,
       "negative_twin_ok": true,
       "negative_twin_path": "jimeng-pc-a-negative-control-not-a-repo-path.json",
       "why_it_must_be_found": "⭐⭐⭐⭐⭐ **注入一个 1013 真读到的文件 ⇒ 耦合扫描必须自己把 1013 列进「被触及」名单** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒ 而这条对照在 1032-②i 之前是「变更集依赖」的** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ 第一版问的是「本批恰好改了 1013 读的东西吗」** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ 而那测的是「这一批改了什么」、不是「仪器的眼睛准不准」** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ 而 1032-②i 恰好没有新增探针变量 ⇒ ⇒ 它当场转红** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ 而它测量的那一半（已过期 0 本）是对的** ⇒ ⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ **⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒⇒ ⇒ ⇒ 处置：改成**注入式**（与乙同形）＋ 配一个反证孪生**",
@@ -2564,16 +2459,10 @@
     },
     "B_injected_path_is_selected_by_the_coupling_scan": {
       "injected_path": "scripts/verify-jimeng-batch841-unclickable.py",
-      "n_selected": 14,
+      "n_selected": 8,
       "selected": [
         "jimeng_probe1005_zero_coupling_census.py",
         "jimeng_probe1007_disparate_copies.py",
-        "jimeng_probe1010_real_history_detection.py",
-        "jimeng_probe1011_change_locality.py",
-        "jimeng_probe1012_global_detection.py",
-        "jimeng_probe1013_occurrence_ledger.py",
-        "jimeng_probe1017_replica_coverage.py",
-        "jimeng_probe1018_assertion_vs_behavior.py",
         "jimeng_probe1021_anchor_gate_coverage.py",
         "jimeng_probe1023_type_layer_gate.py",
         "jimeng_probe1024_exemption_claims.py",
@@ -2585,7 +2474,7 @@
       "rule": "⭐⭐⭐⭐⭐ **注入式自检**：把 verifier 路径塞进变更集，要求扫描器认出所有与它耦合的探针 ⇒ **⇒ 验的是「取交集这一步本身通不通」，而不依赖「这次提交恰好是谁的」** ⇒ **⇒⇒⇒⇒⇒⇒ 这一条正是对「仪器 bug 1」的回归防护**"
     },
     "C_intersection_is_narrower_than_everything": {
-      "n_touched": 14,
+      "n_touched": 2,
       "n_with_golden": 17,
       "ok": true,
       "rule": "⭐⭐⭐⭐⭐ **取交集必须比「全部」小** —— 否则它退化成一个更贵的全量重跑 ⇒ **这本身是一条判据**"
