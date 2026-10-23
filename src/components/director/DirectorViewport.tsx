@@ -96,12 +96,17 @@ import {
   buildDirectorMotionPathWorldAnchors,
 } from "@/components/director/directorMotionMath";
 import {
+  DIRECTOR_GRID_SNAP_STEP,
+  DIRECTOR_TRANSFORM_SHORTCUT_MODES,
   DIRECTOR_VIEW_PAN_KEYS,
   computeDirectorViewPanDelta,
   getDirectorFrameRect,
   getDirectorViewportAxis,
   getDirectorViewportAxisSnapshot,
   getDirectorViewPresetPose,
+  resolveDirectorTransformShortcutMode,
+  type DirectorTransformShortcutCategory,
+  type DirectorTransformShortcutKey,
   type DirectorViewPreset,
   type DirectorViewportAxisId,
   type DirectorFrameRect,
@@ -239,6 +244,32 @@ function DirectorViewShortcutController({
   const camera = useThree((state) => state.camera);
   const invalidate = useThree((state) => state.invalidate);
   const setViewMode = useDirectorStore((state) => state.setViewMode);
+  /* ★ Batch 852：变换类快捷键（V／R／F）与网格吸附（X） */
+  const setTransformMode = useDirectorStore((state) => state.setTransformMode);
+  const updateScene = useDirectorStore((state) => state.updateScene);
+  const snapToGrid = useDirectorStore((state) => state.scene.snapToGrid ?? false);
+  const motionPathDraft = useDirectorStore(
+    (state) => state.timeline.motionPathDraft,
+  );
+  const finishMotionPathDrawing = useDirectorStore(
+    (state) => state.finishMotionPathDrawing,
+  );
+  /**
+   * ★ 源站 `nf.current.selectedCategory` 的 clone 对应物。
+   *
+   * ★ clone 的对象种类只有 `character`／`prop`／`camera`（`DirectorObjectKind`），
+   * **没有** `emptyObject` ⟹ 源站那条「空对象不许旋转／缩放」的守卫在 clone 里
+   * 永远不降级；★ 但规则照样实现（见 `resolveDirectorTransformShortcutMode`），
+   * 等 clone 长出空对象时直接生效。
+   */
+  const selectedTransformCategory = useDirectorStore(
+    (state): DirectorTransformShortcutCategory => {
+      const id = state.selectedObjectId;
+      if (!id) return null;
+      const object = state.objects.find((item) => item.id === id);
+      return (object?.kind as DirectorTransformShortcutCategory) ?? null;
+    },
+  );
   /** 当前**仍按住**的平移键（源站的 `nK.current`） */
   const pressedKeys = useRef(new Set<string>());
   /** Shift 是否按住（源站的 `nW.current`，按住时步长 ×3） */
@@ -300,6 +331,39 @@ function DirectorViewShortcutController({
     applySnapshot(DEFAULT_DIRECTOR_VIEWPORT_SNAPSHOT);
   }, [applySnapshot, setViewMode]);
 
+  /**
+   * ★ Batch 852：源站 `iW(mode)` —— **切变换模式**。
+   *
+   * ```js
+   * let iW=(0,o.useCallback)(e=>{
+   *   if(t4&&im(),
+   *      "emptyObject"===nf.current.selectedCategory&&"translate"!==e){
+   *     tl("translate"),af.setMode("translate");return}
+   *   tl(e),af.setMode(e)},[im,t4,af]);
+   * ```
+   *
+   * ★ 两段语义都照抄：
+   * ① `t4&&im()` ⟹ **正在编辑运动路径时，先把路径提交掉**再切模式；
+   * ② `emptyObject` 守卫 ⟹ 选中空对象时，旋转／缩放降级成移动。
+   *
+   * ★ clone 的 `tl`/`af` 是**同一个 state**（`transformMode` ＋ drei 的
+   * `<TransformControls mode={transformMode}>`）⟹ 一次 `setTransformMode` 即两处生效。
+   */
+  const applyTransformShortcut = useCallback(
+    (requested: DirectorTransformMode) => {
+      if (motionPathDraft) finishMotionPathDrawing();
+      setTransformMode(
+        resolveDirectorTransformShortcutMode(requested, selectedTransformCategory),
+      );
+    },
+    [
+      finishMotionPathDrawing,
+      motionPathDraft,
+      selectedTransformCategory,
+      setTransformMode,
+    ],
+  );
+
   const stopPanLoop = useCallback(() => {
     if (frameHandle.current !== null) {
       cancelAnimationFrame(frameHandle.current);
@@ -360,6 +424,39 @@ function DirectorViewShortcutController({
       if (event.isComposing) return;
       if (isEditableTarget(event.target)) return;
       const key = event.key.toLowerCase();
+      /* ★ Batch 852：变换类快捷键。源站 chunk 的四条分支（机器提取见
+       *   raw/source-852-contract.json）：
+       *   else if("v"===n)iW("translate");
+       *   else if("r"===n)iW("rotate");
+       *   else if("f"===n)iW("scale");
+       *   else if("x"===n)eT(e=>!e);
+       *
+       * ★ 修饰键条件照抄源站 `hY` 块的 `&&` 链：
+       *   `z`/`g`/`c` 要 ⌘、`d` 要 ⌘⇧、`h` 要**无** ⌘⌥；
+       *   ★ **`v`/`r`/`f`/`x` 没有任何修饰键限制** ⟹ Shift+V 照样生效。
+       *   ★ 唯一例外是 `v`：源站里 ⌘V 走的是**粘贴**分支
+       *   （`if("v"===n&&(e.ctrlKey||e.metaKey)){…paste…;return}`）⟹
+       *   ⌘V 永远到不了 iW ⟹ clone 同样让开（粘贴归 DirectorDesk 的 ⌘V）。
+       */
+      if (
+        key === "v" ||
+        key === "r" ||
+        key === "f" ||
+        key === "x"
+      ) {
+        if (key === "v" && (event.ctrlKey || event.metaKey)) return;
+        event.preventDefault();
+        if (key === "x") {
+          // 源站 `eT(e=>!e)` ⟹ **翻转**网格吸附（不是置位）
+          updateScene({ snapToGrid: !snapToGrid });
+          return;
+        }
+        const requested = DIRECTOR_TRANSFORM_SHORTCUT_MODES[
+          key as DirectorTransformShortcutKey
+        ];
+        applyTransformShortcut(requested);
+        return;
+      }
       if (key === "t" || key === "y" || key === "h") {
         // 源站：`("h"!==n||!e.ctrlKey&&!e.metaKey&&!e.altKey)`
         if (event.ctrlKey || event.metaKey || event.altKey) return;
@@ -410,11 +507,14 @@ function DirectorViewShortcutController({
     };
   }, [
     applyPreset,
+    applyTransformShortcut,
     controlsRef,
     onOrbitTargetChange,
     resetView,
+    snapToGrid,
     stepPan,
     stopPanLoop,
+    updateScene,
   ]);
 
   return null;
@@ -1380,7 +1480,7 @@ function SceneObject({ object }: { object: DirectorObject }) {
         <TransformControls
           object={transformTarget}
           mode={transformMode}
-          translationSnap={snapToGrid ? 0.5 : null}
+          translationSnap={snapToGrid ? DIRECTOR_GRID_SNAP_STEP : null}
           size={0.72}
           onMouseDown={() => {
             transformEngagedRef.current = true;
@@ -1542,7 +1642,7 @@ function DirectorGroupTransformRig({
         <TransformControls
           object={transformTarget}
           mode={transformMode}
-          translationSnap={snapToGrid ? 0.5 : null}
+          translationSnap={snapToGrid ? DIRECTOR_GRID_SNAP_STEP : null}
           size={0.82}
           onMouseDown={() => {
             transformEngagedRef.current = true;
@@ -1751,7 +1851,7 @@ function PathControlPoint({
         <TransformControls
           object={transformTarget}
           mode="translate"
-          translationSnap={snapToGrid ? 0.5 : null}
+          translationSnap={snapToGrid ? DIRECTOR_GRID_SNAP_STEP : null}
           size={0.62}
           onMouseDown={() => {
             transformEngagedRef.current = true;

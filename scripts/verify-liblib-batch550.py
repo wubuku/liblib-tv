@@ -4,8 +4,15 @@
 Contract: source-site sampling (screenshot 45, 3D 场景 panel) — 网格吸附
 toggle (default off). In the clone the toggle drives the translation snap
 of all three TransformControls rigs (object / group rig / path anchor):
-enabled = 0.5-unit translationSnap, disabled = null (free movement).
+enabled = 1-unit translationSnap, disabled = null (free movement).
 Toggle state persists through directorStore.scene.snapToGrid.
+
+Batch 852 correction: the step was 0.5 here; the source chunk's literal is
+`function p7(e,t){e.translationSnap=t?1:null}` — i.e. **1** world unit
+(machine-extracted into
+docs/research/liblib-canvas-batch852-2026-10-01/raw/source-852-contract.json).
+The clone now uses DIRECTOR_GRID_SNAP_STEP = 1. This docstring used to say
+0.5; the assertions below never checked the step, only the toggle state.
 """
 
 from __future__ import annotations

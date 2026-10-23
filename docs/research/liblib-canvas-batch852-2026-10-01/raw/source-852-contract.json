@@ -1,0 +1,114 @@
+{
+ "来源": {
+  "chunk": "/tmp/liblib_srcjs2/0fmehki05gkzw.js.js",
+  "字节数": 1018130
+ },
+ "片段": {
+  "keydown 里 hY 块的修饰键条件": {
+   "锚点": "if(hY.has(n)&&(\"z\"!==n||e.ctrlKey||e.metaKey)",
+   "命中数": 1,
+   "偏移": 970032,
+   "原文": "if(hY.has(n)&&(\"z\"!==n||e.ctrlKey||e.metaKey)&&(\"g\"!==n||e.ctrlKey||e.metaKey)&&(\"d\"!==n||e.shiftKey&&(e.ctrlKey||e.metaKey))&&(\"c\"!==n||e.ctrlKey||e.metaKey)&&(\"h\"!==n||!e.ctrlKey&&!e.metaKey&&!e.altKey)){if(\"c\"===n&&(e.ctrlKey||e.metaKey)){if(function(e){if(!e)return!1;let t=e.owner"
+  },
+  "keydown 里的分支链（v/r/f/x）": {
+   "锚点": "else if(\"v\"===n)iW(\"translate\");",
+   "命中数": 1,
+   "偏移": 972322,
+   "原文": "else if(\"v\"===n)iW(\"translate\");else if(\"r\"===n)iW(\"rotate\");else if(\"f\"===n)iW(\"scale\");else if(\"x\"===n)eT(e=>!e);else if(\"t\"===n)n0.setEditorCameraPose(iK(\"top\"));else if(\"y\"===n)n0.setEditorCameraPose(iK(\"front\"));else if(\"h\"===n"
+  },
+  "iW：变换模式切换（含 emptyObject 守卫）": {
+   "锚点": "let iW=(0,o.useCallback)(e=>{if(t4&&im(),",
+   "命中数": 1,
+   "偏移": 958383,
+   "原文": "let iW=(0,o.useCallback)(e=>{if(t4&&im(),\"emptyObject\"===nf.current.selectedCategory&&\"translate\"!==e){tl(\"translate\"),af.setMode(\"translate\");return}tl(e),af.setMode(e)},[im,t4,af]);(0,o.useEffect)(()=>{if(!t||r)return;let e=document.body.s"
+  },
+  "变换模式 state：[ts,tl]=useState(\"translate\")": {
+   "锚点": "[ts,tl]=(0,o.useState)(\"translate\")",
+   "命中数": 1,
+   "偏移": 833943,
+   "原文": "[ts,tl]=(0,o.useState)(\"translate\")"
+  },
+  "吸附 state：[eI,eT]=useState(false)": {
+   "锚点": "[eI,eT]=(0,o.useState)(!1)",
+   "命中数": 1,
+   "偏移": 833465,
+   "原文": "[eI,eT]=(0,o.useState)(!1)"
+  },
+  "吸附 state 接到 3D 场景：snapEnabled:eI": {
+   "锚点": "{snapEnabled:eI,gaussianGroundSnapEnabled:",
+   "命中数": 1,
+   "偏移": 896421,
+   "原文": "{snapEnabled:eI,gaussianGroundSnapEnabled:"
+  },
+  "p7：把吸附写进 gizmo（translationSnap）": {
+   "锚点": "function p7(e,t){e.translationSnap=t?1:null}",
+   "命中数": 1,
+   "偏移": 793945,
+   "原文": "function p7(e,t){e.translationSnap=t?1:null}"
+  },
+  "ha：gizmo setMode + scale 时隐藏 Y 轴": {
+   "锚点": "function ha(e,t,r){e.setMode(t),e.showY=!(r&&\"scale\"===t)}",
+   "命中数": 1,
+   "偏移": 795870,
+   "原文": "function ha(e,t,r){e.setMode(t),e.showY=!(r&&\"scale\"===t)}"
+  },
+  "gizmo 管理器 setMode：eh": {
+   "锚点": "eh=(0,o.useCallback)(e=>{m.current=e,",
+   "命中数": 1,
+   "偏移": 886977,
+   "原文": "eh=(0,o.useCallback)(e=>{m.current=e,i.current&&ha(i.current,e,!!k.current)},[]),em=(0,o.useCallback)(e=>{let t=i.current;if(t){if(t.enabled=e,!e){t.detach()"
+  },
+  "底部工具栏的变换模式表 R": {
+   "锚点": "R=[{mode:\"translate\",label:k(\"canvas:directorTransformMove\"),shortcut:\"V\"},",
+   "命中数": 1,
+   "偏移": 158988,
+   "原文": "R=[{mode:\"translate\",label:k(\"canvas:directorTransformMove\"),shortcut:\"V\"},{mode:\"rotate\",label:k(\"canvas:directorTransformRotate\"),shortcut:\"R\"},{mode:\"scale\",label:k(\"canvas:directorTransformScale\"),shortcut:\"F\"}];return(0,i.jsxs)(\"div\",{ref:P,className:\"nodrag nopan nowheel relative flex ite"
+  },
+  "工具栏下拉的 active 判定（class）": {
+   "锚点": "e===n.mode&&\"bg-white/8 text-white\"",
+   "命中数": 1,
+   "偏移": 160439,
+   "原文": "e===n.mode&&\"bg-white/8 text-white\""
+  },
+  "工具栏折叠按钮：aria-haspopup=menu": {
+   "锚点": "\"aria-haspopup\":\"menu\",\"aria-expanded\":S",
+   "命中数": 1,
+   "偏移": 160847,
+   "原文": "\"aria-haspopup\":\"menu\",\"aria-expanded\":S"
+  },
+  "环境面板开关 lb：role=switch + aria-checked": {
+   "锚点": "function lb({label:e,checked:t,onToggle:r,compact:n=!1}){return(0,i.jsxs)(\"button\",{type:\"button\",role:\"switch\",\"aria-checked\":t",
+   "命中数": 1,
+   "偏移": 417569,
+   "原文": "function lb({label:e,checked:t,onToggle:r,compact:n=!1}){return(0,i.jsxs)(\"button\",{type:\"button\",role:\"switch\",\"aria-checked\":t"
+  },
+  "t4：正在编辑的运动路径状态": {
+   "锚点": "[t4,t8]=(0,o.useState)(null)",
+   "命中数": 1,
+   "偏移": 834579,
+   "原文": "[t4,t8]=(0,o.useState)(null)"
+  },
+  "im：提交正在编辑的运动路径": {
+   "锚点": "im=(0,o.useCallback)(()=>{t8(e=>{if(!e)return null;",
+   "命中数": 1,
+   "偏移": 938907,
+   "原文": "im=(0,o.useCallback)(()=>{t8(e=>{if(!e)return null;if(e.points.length>=2){let t,r,n=nf.current.animation.duration,a=\"pen\"===e.mode?(r=en((t=function(e,t={}){let r=Math.max"
+  },
+  "键集合 hY（字母快捷键白名单）": {
+   "正则": "hY=new Set\\(\\[[^\\]]*\\]\\)",
+   "命中数": 1,
+   "偏移": 820017,
+   "原文": "hY=new Set([\"escape\",\"enter\",\"v\",\"r\",\"f\",\"h\",\"x\",\"t\",\"y\",\"c\",\"d\",\"g\",\"delete\",\"backspace\",\"z\"])"
+  },
+  "键集合 hX（视口平移键）": {
+   "正则": "hX=new Set\\(\\[[^\\]]*\\]\\)",
+   "命中数": 1,
+   "偏移": 820113,
+   "原文": "hX=new Set([\"w\",\"a\",\"s\",\"d\",\"q\",\"e\"])"
+  }
+ },
+ "★任意值类名自检": {
+  "疑似截断": [],
+  "通过": true
+ }
+}

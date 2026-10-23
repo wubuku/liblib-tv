@@ -1,0 +1,324 @@
+{
+ "★键位表（源站原文解析）": {
+  "v": "translate",
+  "r": "rotate",
+  "f": "scale"
+ },
+ "①初始读数": {
+  "DOM": {
+   "按钮数": 3,
+   "按钮": [
+    {
+     "mode": "translate",
+     "pressed": "true"
+    },
+    {
+     "mode": "rotate",
+     "pressed": "false"
+    },
+    {
+     "mode": "scale",
+     "pressed": "false"
+    }
+   ],
+   "选中数": 1,
+   "模式": "translate",
+   "吸附元素存在": false,
+   "吸附": null,
+   "面板类别": "character"
+  },
+  "store": {
+   "transformMode": "translate",
+   "snapToGrid": false,
+   "draft": false
+  }
+ },
+ "②按R": {
+  "按前": {
+   "DOM": {
+    "按钮数": 3,
+    "按钮": [
+     {
+      "mode": "translate",
+      "pressed": "true"
+     },
+     {
+      "mode": "rotate",
+      "pressed": "false"
+     },
+     {
+      "mode": "scale",
+      "pressed": "false"
+     }
+    ],
+    "选中数": 1,
+    "模式": "translate",
+    "吸附元素存在": false,
+    "吸附": null,
+    "面板类别": "character"
+   },
+   "store": {
+    "transformMode": "translate",
+    "snapToGrid": false,
+    "draft": false
+   }
+  },
+  "按后": {
+   "DOM": {
+    "按钮数": 3,
+    "按钮": [
+     {
+      "mode": "translate",
+      "pressed": "false"
+     },
+     {
+      "mode": "rotate",
+      "pressed": "true"
+     },
+     {
+      "mode": "scale",
+      "pressed": "false"
+     }
+    ],
+    "选中数": 1,
+    "模式": "rotate",
+    "吸附元素存在": false,
+    "吸附": null,
+    "面板类别": "character"
+   },
+   "store": {
+    "transformMode": "rotate",
+    "snapToGrid": false,
+    "draft": false
+   }
+  },
+  "期望模式": "rotate",
+  "DOM模式对": true,
+  "store模式对": true,
+  "两条一致": true,
+  "★吸附不该被改": true
+ },
+ "②按F": {
+  "按前": {
+   "DOM": {
+    "按钮数": 3,
+    "按钮": [
+     {
+      "mode": "translate",
+      "pressed": "false"
+     },
+     {
+      "mode": "rotate",
+      "pressed": "true"
+     },
+     {
+      "mode": "scale",
+      "pressed": "false"
+     }
+    ],
+    "选中数": 1,
+    "模式": "rotate",
+    "吸附元素存在": false,
+    "吸附": null,
+    "面板类别": "character"
+   },
+   "store": {
+    "transformMode": "rotate",
+    "snapToGrid": false,
+    "draft": false
+   }
+  },
+  "按后": {
+   "DOM": {
+    "按钮数": 3,
+    "按钮": [
+     {
+      "mode": "translate",
+      "pressed": "false"
+     },
+     {
+      "mode": "rotate",
+      "pressed": "false"
+     },
+     {
+      "mode": "scale",
+      "pressed": "true"
+     }
+    ],
+    "选中数": 1,
+    "模式": "scale",
+    "吸附元素存在": false,
+    "吸附": null,
+    "面板类别": "character"
+   },
+   "store": {
+    "transformMode": "scale",
+    "snapToGrid": false,
+    "draft": false
+   }
+  },
+  "期望模式": "scale",
+  "DOM模式对": true,
+  "store模式对": true,
+  "两条一致": true,
+  "★吸附不该被改": true
+ },
+ "②按V": {
+  "按前": {
+   "DOM": {
+    "按钮数": 3,
+    "按钮": [
+     {
+      "mode": "translate",
+      "pressed": "false"
+     },
+     {
+      "mode": "rotate",
+      "pressed": "false"
+     },
+     {
+      "mode": "scale",
+      "pressed": "true"
+     }
+    ],
+    "选中数": 1,
+    "模式": "scale",
+    "吸附元素存在": false,
+    "吸附": null,
+    "面板类别": "character"
+   },
+   "store": {
+    "transformMode": "scale",
+    "snapToGrid": false,
+    "draft": false
+   }
+  },
+  "按后": {
+   "DOM": {
+    "按钮数": 3,
+    "按钮": [
+     {
+      "mode": "translate",
+      "pressed": "true"
+     },
+     {
+      "mode": "rotate",
+      "pressed": "false"
+     },
+     {
+      "mode": "scale",
+      "pressed": "false"
+     }
+    ],
+    "选中数": 1,
+    "模式": "translate",
+    "吸附元素存在": false,
+    "吸附": null,
+    "面板类别": "character"
+   },
+   "store": {
+    "transformMode": "translate",
+    "snapToGrid": false,
+    "draft": false
+   }
+  },
+  "期望模式": "translate",
+  "DOM模式对": true,
+  "store模式对": true,
+  "两条一致": true,
+  "★吸附不该被改": true
+ },
+ "③Shift+V": {
+  "按前": {
+   "DOM": {
+    "按钮数": 3,
+    "按钮": [
+     {
+      "mode": "translate",
+      "pressed": "false"
+     },
+     {
+      "mode": "rotate",
+      "pressed": "true"
+     },
+     {
+      "mode": "scale",
+      "pressed": "false"
+     }
+    ],
+    "选中数": 1,
+    "模式": "rotate",
+    "吸附元素存在": false,
+    "吸附": null,
+    "面板类别": "character"
+   },
+   "store": {
+    "transformMode": "rotate",
+    "snapToGrid": false,
+    "draft": false
+   }
+  },
+  "按后": {
+   "DOM": {
+    "按钮数": 3,
+    "按钮": [
+     {
+      "mode": "translate",
+      "pressed": "true"
+     },
+     {
+      "mode": "rotate",
+      "pressed": "false"
+     },
+     {
+      "mode": "scale",
+      "pressed": "false"
+     }
+    ],
+    "选中数": 1,
+    "模式": "translate",
+    "吸附元素存在": false,
+    "吸附": null,
+    "面板类别": "character"
+   },
+   "store": {
+    "transformMode": "translate",
+    "snapToGrid": false,
+    "draft": false
+   }
+  },
+  "期望模式": "translate",
+  "DOM模式对": true,
+  "★说明": "按前先按过 R ⟹ 模式是 rotate ⟹ Shift+V 若有效应变成 translate"
+ },
+ "④取消选择": {
+  "已点空白": true
+ },
+ "⑤按X": {
+  "按前": {
+   "值": "false",
+   "来源": "DOM开关",
+   "DOM开关": "false",
+   "DOM面板类别": "scene",
+   "store": false
+  },
+  "按后一次": {
+   "值": "true",
+   "来源": "DOM开关",
+   "DOM开关": "true",
+   "DOM面板类别": "scene",
+   "store": true
+  },
+  "按后两次": {
+   "值": "false",
+   "来源": "DOM开关",
+   "DOM开关": "false",
+   "DOM面板类别": "scene",
+   "store": false
+  },
+  "★首次翻转": true,
+  "★再按翻回": true,
+  "★往返一致": true,
+  "★两条通路一致": true
+ }
+}

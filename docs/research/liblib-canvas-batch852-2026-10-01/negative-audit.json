@@ -1,0 +1,107 @@
+{
+ "批次": 852,
+ "阴性总数": 11,
+ "通过数": 11,
+ "复原字节级一致": true,
+ "结果": [
+  {
+   "阴性": "N1",
+   "目标判据": "S3 纯函数：emptyObject 守卫的 6 条用例（node 实跑）",
+   "实际翻红": [
+    "S3 纯函数：emptyObject 守卫的 6 条用例（node 实跑）"
+   ],
+   "恰好一条": true,
+   "通过": true
+  },
+  {
+   "阴性": "N2",
+   "目标判据": "S9 吸附步长 = 1（源站 p7 逐字），clone 三处 TransformControls 都用它",
+   "实际翻红": [
+    "S9 吸附步长 = 1（源站 p7 逐字），clone 三处 TransformControls 都用它"
+   ],
+   "恰好一条": true,
+   "通过": true
+  },
+  {
+   "阴性": "N3",
+   "目标判据": "S9 吸附步长 = 1（源站 p7 逐字），clone 三处 TransformControls 都用它",
+   "实际翻红": [
+    "S9 吸附步长 = 1（源站 p7 逐字），clone 三处 TransformControls 都用它"
+   ],
+   "恰好一条": true,
+   "通过": true
+  },
+  {
+   "阴性": "N4",
+   "目标判据": "S4 clone 按 R ⟹ 变换模式**等于** rotate",
+   "实际翻红": [
+    "S4 clone 按 R ⟹ 变换模式**等于** rotate"
+   ],
+   "恰好一条": true,
+   "通过": true
+  },
+  {
+   "阴性": "N5",
+   "目标判据": "S5 clone 按 F ⟹ 变换模式**等于** scale",
+   "实际翻红": [
+    "S5 clone 按 F ⟹ 变换模式**等于** scale"
+   ],
+   "恰好一条": true,
+   "通过": true
+  },
+  {
+   "阴性": "N6",
+   "目标判据": "S6 clone 按 V ⟹ 变换模式**等于** translate",
+   "实际翻红": [
+    "S6 clone 按 V ⟹ 变换模式**等于** translate"
+   ],
+   "恰好一条": true,
+   "通过": true
+  },
+  {
+   "阴性": "N7",
+   "目标判据": "S7 clone Shift+V ⟹ 从 rotate 切到 translate（★ 源站对 v 无修饰键限制）",
+   "实际翻红": [
+    "S7 clone Shift+V ⟹ 从 rotate 切到 translate（★ 源站对 v 无修饰键限制）"
+   ],
+   "恰好一条": true,
+   "通过": true
+  },
+  {
+   "阴性": "N8",
+   "目标判据": "S8 clone 按 X ⟹ 网格吸附 false→true→false（DOM 开关 ＋ store 两条路）",
+   "实际翻红": [
+    "S8 clone 按 X ⟹ 网格吸附 false→true→false（DOM 开关 ＋ store 两条路）"
+   ],
+   "恰好一条": true,
+   "通过": true
+  },
+  {
+   "阴性": "N9",
+   "目标判据": "S8 clone 按 X ⟹ 网格吸附 false→true→false（DOM 开关 ＋ store 两条路）",
+   "实际翻红": [
+    "S8 clone 按 X ⟹ 网格吸附 false→true→false（DOM 开关 ＋ store 两条路）"
+   ],
+   "恰好一条": true,
+   "通过": true
+  },
+  {
+   "阴性": "N10",
+   "目标判据": "S10 源站实测：R/F/V 三步成链 ＋ Shift+V ＋ X 翻转 ＋ 吞按键",
+   "实际翻红": [
+    "S10 源站实测：R/F/V 三步成链 ＋ Shift+V ＋ X 翻转 ＋ 吞按键"
+   ],
+   "恰好一条": true,
+   "通过": true
+  },
+  {
+   "阴性": "N11",
+   "目标判据": "S2 契约：源站原文里 V/R/F/X 的实现逐字对得上",
+   "实际翻红": [
+    "S2 契约：源站原文里 V/R/F/X 的实现逐字对得上"
+   ],
+   "恰好一条": true,
+   "通过": true
+  }
+ ]
+}

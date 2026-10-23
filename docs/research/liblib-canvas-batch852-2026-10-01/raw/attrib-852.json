@@ -1,0 +1,29 @@
+{
+ "批次": 852,
+ "总数": 15,
+ "一致数": 14,
+ "不一致": [
+  {
+   "batch": "852",
+   "HEAD": "rc=1 | == batch 852 门禁：7/10 通过 == ／ ★ 有判据未通过",
+   "工作副本": "rc=0 | PASS  S10 源站实测：R/F/V 三步成链 ＋ Shift+V ＋ X 翻转 ＋ 吞按键 ｜ 不符=[]（共 6 项） ／ == batch 852 门禁：10/10 通过 =="
+  }
+ ],
+ "HEAD读数": {
+  "736": "rc=1 | [PASS] C10 inert / aria-disabled 在 142 枚里 0 命中  ⟵ inert=0 aria-disabled=0 原生 disabled=7 ／ 6/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch736-2026-10-01/runtime-audit.json",
+  "748": "rc=1 | 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch748-2026-10-01/runtime-audit.json ／ 判据 4/7",
+  "749": "rc=1 | 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch749-2026-10-01/runtime-audit.json ／ 判据 7/9",
+  "782": "rc=1 | ✗ 对照未抓：删掉 `page.tsx:1312` 的 `activeDirectorNodeId` 早退（kw=显式以导演台，命中 0） ／ ✗ 对照未抓：给宿主页的 capture handler 加上 `Meta+c` 认领（kw=真的唯一，命中 0）",
+  "831": "rc=1 | ✘ N16 把 raw 里的 ⌘ path 从它的源站 excerpt 里摘掉 ⟹ S16 翻红 → 实际翻红 S14,S16 ／ ✘ N17 把像素比对的差异改成「path 抄错那版」的实测值 ⟹ S17 翻红 → 实际翻红 S14,S17",
+  "741": "rc=1 | 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch741-2026-10-01/runtime-audit.json ／ 判据 11/13",
+  "852": "rc=1 | == batch 852 门禁：7/10 通过 == ／ ★ 有判据未通过",
+  "851": "rc=0 | PASS  S9 源站证据：按住六键都生效、单击全为 0、T 在 5 种条件下都生效 ｜ 按住=[('W', 110593), ('A', 42655), ('S', 97496), ('D', 41525), ('Q', 870382), ('E', 285359)] ｜ T各条件=[1277190, 1219999, 1219999, 1219895, 1219999] ｜ 单击零差异条数=65 ／ 批次 851 门禁：9/9 通过",
+  "550": "rc=0 | Batch 550 verification passed: 5 checks, 0 diagnostics. snap-to-grid toggle persistence and TransformControls snap wiring recorded in runtime-audit.json.",
+  "588": "rc=0 | Batch 588 verification passed: 52 checks, 0 diagnostics. Scene readouts are editable text inputs in the source formats, the three switches are self-drawn 24x14 track + 10x10 knob rows, and the search placeholder matches. See runtime-audit.json.",
+  "830": "rc=0 | ✔ N14 把 i18n 的 directorShortcutUndo 改掉 ⟹ S14 翻红 → 实际翻红 S14 ／ ✔ N15 把「已复原(新context)」改成 False ⟹ S15 翻红 → 实际翻红 S15",
+  "543": "rc=0 | Batch 543 verification passed: 7 checks, 0 diagnostics. reset-view pill below the pose gizmo issuing the default director-view snapshot command recorded in runtime-audit.json.",
+  "840": "rc=0 | 7/7 通过 ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch840-2026-10-01/runtime-audit.json",
+  "850": "rc=0 | 7/7 条通过 ⟹ ⟹ PASS ／ 产物： /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch850-2026-10-01/runtime-audit.json",
+  "835": "rc=0 | 判据 7/7 ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch835-2026-10-01/verify-report.json"
+ }
+}

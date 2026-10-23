@@ -1,0 +1,57 @@
+{
+ "批次": 852,
+ "通过数": 10,
+ "判据总数": 10,
+ "判据": [
+  {
+   "判据": "S1 结构：变换快捷键 ＋ 吸附步长 ＋ 纯函数都在 clone 源码里",
+   "通过": true,
+   "详情": "viewport缺=[] math缺=[]"
+  },
+  {
+   "判据": "S2 契约：源站原文里 V/R/F/X 的实现逐字对得上",
+   "通过": true,
+   "详情": "不符=[]（共 13 项）"
+  },
+  {
+   "判据": "S3 纯函数：emptyObject 守卫的 6 条用例（node 实跑）",
+   "通过": true,
+   "详情": "共 6 条，不符=[]"
+  },
+  {
+   "判据": "S4 clone 按 R ⟹ 变换模式**等于** rotate",
+   "通过": true,
+   "详情": "DOM=rotate store=rotate 期望=rotate 两条一致=True"
+  },
+  {
+   "判据": "S5 clone 按 F ⟹ 变换模式**等于** scale",
+   "通过": true,
+   "详情": "DOM=scale store=scale 期望=scale 两条一致=True"
+  },
+  {
+   "判据": "S6 clone 按 V ⟹ 变换模式**等于** translate",
+   "通过": true,
+   "详情": "DOM=translate store=translate 期望=translate 两条一致=True"
+  },
+  {
+   "判据": "S7 clone Shift+V ⟹ 从 rotate 切到 translate（★ 源站对 v 无修饰键限制）",
+   "通过": true,
+   "详情": "按前=rotate 按后=translate DOM模式对=True"
+  },
+  {
+   "判据": "S8 clone 按 X ⟹ 网格吸附 false→true→false（DOM 开关 ＋ store 两条路）",
+   "通过": true,
+   "详情": "值=false→true→false 来源=DOM开关 两条路一致=True"
+  },
+  {
+   "判据": "S9 吸附步长 = 1（源站 p7 逐字），clone 三处 TransformControls 都用它",
+   "通过": true,
+   "详情": "math里=True viewport里命中=3 处 残留0.5=False"
+  },
+  {
+   "判据": "S10 源站实测：R/F/V 三步成链 ＋ Shift+V ＋ X 翻转 ＋ 吞按键",
+   "通过": true,
+   "详情": "不符=[]（共 6 项）"
+  }
+ ]
+}

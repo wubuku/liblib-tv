@@ -1,5 +1,6 @@
 import type {
   DirectorAspectRatio,
+  DirectorTransformMode,
   DirectorTuple3,
 } from "@/store/directorStore";
 
@@ -267,4 +268,76 @@ export function getDirectorFrameRect(
     width,
     height,
   };
+}
+
+/**
+ * ★ Batch 852：导演台的**变换类快捷键**（V／R／F）与**网格吸附**（X）。
+ *
+ * ★ 逐字依据（源站 chunk `0fmehki05gkzw.js.js`，机器提取见
+ *   `docs/research/liblib-canvas-batch852-2026-10-01/raw/source-852-contract.json`）：
+ *
+ * ```js
+ * else if("v"===n)iW("translate");
+ * else if("r"===n)iW("rotate");
+ * else if("f"===n)iW("scale");
+ * else if("x"===n)eT(e=>!e);
+ *
+ * let iW=(0,o.useCallback)(e=>{
+ *   if(t4&&im(),
+ *      "emptyObject"===nf.current.selectedCategory&&"translate"!==e){
+ *     tl("translate"),af.setMode("translate");return}
+ *   tl(e),af.setMode(e)},[im,t4,af]);
+ *
+ * function p7(e,t){e.translationSnap=t?1:null}
+ * ```
+ */
+
+/**
+ * 源站的「当前选中类别」。★ clone 现有对象种类只有 `character`／`prop`／`camera`
+ * （`DirectorObjectKind`），**没有** `emptyObject` ⟹ 下面那条守卫在 clone 里
+ * 永远走不到「降级」分支；★ 但**规则本身照样实现**，等 clone 将来长出空对象时
+ * 直接生效，不需要再改逻辑。
+ */
+export type DirectorTransformShortcutCategory =
+  | "character"
+  | "prop"
+  | "emptyObject"
+  | "group"
+  | "camera"
+  | null;
+
+/** 源站的键位表：`v`→移动、`r`→旋转、`f`→缩放（chunk 里的 `iW("…")` 三条） */
+export const DIRECTOR_TRANSFORM_SHORTCUT_MODES = {
+  v: "translate",
+  r: "rotate",
+  f: "scale",
+} as const;
+
+export type DirectorTransformShortcutKey =
+  keyof typeof DIRECTOR_TRANSFORM_SHORTCUT_MODES;
+
+/**
+ * ★ 源站 `p7(e,t){e.translationSnap=t?1:null}` ⟹ **吸附步长是 1（世界单位）**。
+ *
+ * ★ clone 此前写的是 `0.5`（batch 550 定的），与源站不符 ⟹ 本批按源站改成 1。
+ */
+export const DIRECTOR_GRID_SNAP_STEP = 1;
+
+/**
+ * 源站 `iW(mode)` 的**守卫**：选中的是「空对象」时，旋转／缩放会被降级成移动。
+ *
+ * ```js
+ * "emptyObject"===nf.current.selectedCategory&&"translate"!==e
+ *   ? (tl("translate"),af.setMode("translate"),void 0)
+ *   : (tl(e),af.setMode(e))
+ * ```
+ */
+export function resolveDirectorTransformShortcutMode(
+  requested: DirectorTransformMode,
+  selectedCategory: DirectorTransformShortcutCategory,
+): DirectorTransformMode {
+  if (selectedCategory === "emptyObject" && requested !== "translate") {
+    return "translate";
+  }
+  return requested;
 }
