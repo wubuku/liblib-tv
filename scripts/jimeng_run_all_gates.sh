@@ -48,6 +48,15 @@ echo "=== jimeng 全门禁 $(date '+%F %T') ===" | tee -a "$LOG"
 run "1032l-fingerprint-gate"    $PY scripts/jimeng_probe1032l_fingerprint_gate.py
 run "1032l-fingerprint-selftest" $PY scripts/jimeng_probe1032l_fingerprint_gate.py --selftest
 
+# ── 第 0 位之二：**提交态新鲜度门** ─────────────────────────────────────
+#   ⇒ 它答的是「**提交的那本 == 探针现在会写的那本**」⇒ ⇒⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ 而 1015 答的是「跑两遍会不会变」⇒ ⇒⇒ ⇒ ⇒ **两个口径不许合并** ⇒ ⇒⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ 而它必须排在 **verifier 之前** ⇒ ⇒⇒ ⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ **因为 verifier 的 DD993AJ.1 要在真树上跑它一遍** ⇒ ⇒⇒ ⇒ ⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而「门自己能不能被证伪」是另一件事 ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 它自带五发注入式反证 ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 不用另开一道门
+run "1032n-committed-fresh" $PY scripts/jimeng_probe1032n_committed_freshness_gate.py
+
 run "verifier-841"          $PY scripts/verify-jimeng-batch841-unclickable.py
 run "anchor-gate"           $PY scripts/jimeng_check_verifier_anchors.py
 run "1018-assertion"        $PY scripts/jimeng_probe1018_assertion_vs_behavior.py

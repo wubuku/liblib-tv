@@ -1003,6 +1003,12 @@ _P1032H_BOOKS = [
     #    ⇒ ⇒⇒ ⇒ ⇒ ⇒ 而这正是「同名的东西在不同书里可以是不同的形状」的又一次
     ("1032l", "1032l", "scripts/jimeng_probe1032l_fingerprint_gate.py",
      r"^P\d+_.*_1032l$"),
+    # ── E 类（1 本，1032-②n 新增）：**提交态新鲜度门** ──
+    #    ⇒ ⇒⇒⇒ 它的判据键形态是 `P<n>_<描述>_1032n`（带标签）⇒ ⇒⇒⇒ ⇒
+    #    ⇒ ⇒⇒⇒ ⇒ 而「键形态一样」**不是**「口径一样」⇒ ⇒⇒⇒ ⇒ ⇒
+    #    ⇒ ⇒⇒⇒ ⇒ ⇒ **⇒ 所以每本仍然各按各的正则点名，不许一刀切**
+    ("1032n", "1032n", "scripts/jimeng_probe1032n_committed_freshness_gate.py",
+     r"^P\d+_.*_1032n$"),
 ]
 _P1032H_KINDS = ("failure", "conclusion", "precondition")
 
@@ -1151,6 +1157,11 @@ _P1032J_ARTIFACTS = [
     #   ⇒ ⇒⇒ ⇒ 而它的产物里有一节 `worktree` / `head` ⇒ ⇒⇒ ⇒
     #   ⇒ ⇒⇒ ⇒ ⇒ 「过期 N 本」从此**有一本可查的账**，而不只是一句 stdout
     ("1032l", "1032l", "docs/research/jimeng-canvas/fingerprint-gate-1032l.json", "P"),
+    # ⭐⭐⭐⭐⭐ 1032-②n：**提交态新鲜度门**的产物也进「产物那一关」
+    #   ⇒ ⇒⇒⇒ ⇒ 而它的产物里有一节 `head` / `worktree` / `selftest` ⇒ ⇒⇒⇒ ⇒
+    #   ⇒ ⇒⇒⇒ ⇒ ⇒ 「提交的那本是不是【现在】的产物」从此**有一本可查的账**
+    ("1032n", "1032n", "docs/research/jimeng-canvas/committed-freshness-1032n.json",
+     "criteria_1032n"),
 ]
 
 
@@ -1306,6 +1317,72 @@ def _p1032l_gate_runtime():
             "stale_worktree": list(_wt["stale_books"]),
             "stale_head": list(_hd["stale_books"]),
             "n_selftest_cases": _st["n_cases"]}
+
+
+# ══ 1032-②n：**提交态新鲜度门**自己跑一遍（只取判决，不落盘） ═══════════════
+_P1032N_RT = None
+
+
+def _p1032n_num(d, k):
+    """⭐ 「读不出来」与「读出 0」必须分开 ⇒ 缺键一律记 **-1**（未测），不记 0。"""
+    v = (d or {}).get(k)
+    return -1 if v is None else int(v)
+
+
+def _p1032n_gate_runtime():
+    """⭐⭐⭐⭐⭐ 在**真树**上跑那道门的判决 —— 「提交的那本 == 探针现在会写的那本」。
+
+    ⇒ ⇒⇒⇒ **不落盘**：这里只取判决 ⇒ ⇒⇒⇒ ⇒ 产物由那道门自己写
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 而「谁写产物」与「谁读产物」分开 ⇒ ⇒⇒⇒ ⇒ ⇒ 两边不会互相遮掩
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 且**结果缓存**：判据里会引用它十几次 ⇒ ⇒⇒⇒ ⇒ ⇒
+    ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 而每次都重跑 ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 「判决」自己会漂
+    """
+    global _P1032N_RT
+    if _P1032N_RT is not None:
+        return _P1032N_RT
+    _rt = {"ok": False, "why": ["not_run"], "head_ok": False,
+           "worktree_ok": False, "selftest_ok": False, "n_rows": -1,
+           "n_unreadable": -1, "n_undeclared": -1, "n_bad_exclusion": -1,
+           "n_disagree": -1, "n_selftest_cases": 0}
+    try:
+        import importlib.util
+        _spec = importlib.util.spec_from_file_location(
+            "jimeng_probe1032n_committed_freshness_gate",
+            ROOT / "scripts/jimeng_probe1032n_committed_freshness_gate.py")
+        _g = importlib.util.module_from_spec(_spec)
+        _spec.loader.exec_module(_g)
+    except Exception as exc:  # noqa: BLE001
+        _rt["why"] = ["gate_module_unimportable:%r" % (exc,)]
+        _P1032N_RT = _rt
+        return _rt
+    try:
+        _bh = _g._load_book(_g._read_head)
+        _bw = _g._load_book(_g._read_worktree)
+        if _bh is None or _bw is None:
+            _rt["why"] = ["the_book_could_not_be_read"]
+            _P1032N_RT = _rt
+            return _rt
+        _hd = _g._judge(_bh, _g._read_head)
+        _wk = _g._judge(_bw, _g._read_worktree)
+        _st = _g._selftest(_bw)
+    except Exception as exc:  # noqa: BLE001
+        _rt["why"] = ["gate_raised:%r" % (exc,)]
+        _P1032N_RT = _rt
+        return _rt
+    _why = list(_hd.get("why") or []) + list(_wk.get("why") or [])
+    if not _st.get("ok"):
+        _why.append("selftest_has_a_leak")
+    _rt = {"ok": (not _why), "why": _why,
+           "head_ok": bool(_hd.get("ok")), "worktree_ok": bool(_wk.get("ok")),
+           "selftest_ok": bool(_st.get("ok")),
+           "n_rows": _p1032n_num(_wk, "n_rows"),
+           "n_unreadable": _p1032n_num(_wk, "n_unreadable"),
+           "n_undeclared": _p1032n_num(_wk, "n_undeclared"),
+           "n_bad_exclusion": _p1032n_num(_wk, "n_bad_exclusion"),
+           "n_disagree": _p1032n_num(_wk, "n_disagree"),
+           "n_selftest_cases": _p1032n_num(_st, "n_cases")}
+    _P1032N_RT = _rt
+    return _rt
 
 
 def _p1032l_gatelist_order_ok():
@@ -7464,6 +7541,10 @@ def main() -> int:
     #   ⇒ ⇒ ⇒ 「0 问题」是假绿）
     p1032l = ROOT / "scripts/jimeng_probe1032l_fingerprint_gate.py"
     _p1032l = p1032l.read_text(encoding="utf-8") if p1032l.exists() else ""
+    # ⭐⭐⭐⭐⭐ 1032-②n：**提交态新鲜度门** —— 提交的那本 == 探针现在会写的那本
+    #   ⚠️⚠️ **登记 `_p1032n` 与写用它的判据必须是同一步**（961 的教训）
+    p1032n = ROOT / "scripts/jimeng_probe1032n_committed_freshness_gate.py"
+    _p1032n = p1032n.read_text(encoding="utf-8") if p1032n.exists() else ""
     # ⭐⭐⭐⭐⭐ 1032-②l：**门禁清单进仓** —— 以前那份清单只活在 `/tmp` 里
     #   ⚠️ 变量名必须与锚点门 `PROBE_VARS` 里的登记**同名**（`_gatelist`）
     #   ⇒ 而锚点门要的是**文件文本** ⇒ 所以路径与文本要分成两个变量
@@ -18993,6 +19074,53 @@ def main() -> int:
           and ("criteria_1015" in _p1015)
           and _p1015_book_publishes_criteria()
           and _p1015_book_publishes_pc())
+
+    # ══ 1032-②n：**提交态新鲜度门**（1032n）══════════════════════════════════
+    print("— DD993AJ. 批 1032-②n：给「提交的那本 == 探针现在会写的那本」配一道门")
+    _p1032n_rt = _p1032n_gate_runtime()
+    check("DD993AJ.1 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**1015 答的是「跑两遍会不会变」；「我提交的那本是不是【现在】的产物」是另一个口径** "
+          "⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 两本门答的不是同一件事 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **不许合并成一个「新鲜度」** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而这一格必须同时要「真树判绿」＋「注入五发反证都能翻红」** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而两个基线（HEAD／工作区）都必须判绿 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 「提交态是红的」与「工作区是红的」是两个不同的病**",
+          _p1032n_rt["ok"]
+          and _p1032n_rt["head_ok"]
+          and _p1032n_rt["worktree_ok"]
+          and _p1032n_rt["selftest_ok"]
+          and _p1032n_rt["n_rows"] > 0
+          and _p1032n_rt["n_unreadable"] == 0
+          and _p1032n_rt["n_undeclared"] == 0
+          and _p1032n_rt["n_bad_exclusion"] == 0
+          and _p1032n_rt["n_disagree"] == 0
+          and _p1032n_rt["n_selftest_cases"] >= 5
+          # ⭐⭐⭐⭐⭐ **全门禁清单必须进仓**（1032l 立的规矩）⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ 而**新门必须自己进清单** ⇒ ⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 否则「全绿」里根本没有它 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而且它必须排在 verifier **之前** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+          #   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 因为 verifier 的 DD993AJ.1 要在真树上跑它
+          and 'run "1032n-committed-fresh"' in _gatelist
+          and (_gatelist.index('run "1032n-committed-fresh"')
+               < _gatelist.index('run "verifier-841"')))
+    check("DD993AJ.2 ⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ "
+          "**⭐⭐⭐⭐⭐ 「声明 ≠ 发布」⇒ ⇒ ⇒ ⇒ 声明必须落进【仓里那本】产物、而且门要亲自核落点** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 1032n 因此必须同时过「源码那一关」与「产物那一关」** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而它的台账必须用模块级字面量发布（`dict(...)` 调用 AST 读不出来）** ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 「读不出来」与「没发布」在账上长得一模一样 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ "
+          "**⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以判据要分别钉住：源码有、产物有、键集相等**",
+          any(n == "1032n" for (n, _t, _p, _rx) in _P1032H_BOOKS)
+          and ("1032n" in (_p1032j_artifacts_ok().get("books") or {}))
+          and _p1032j_artifacts_ok()["ok"]
+          and ('"criterion_kinds_1032n"] = CRITERION_KINDS' in _p1032n)
+          and ('"criterion_kinds_complete_1032n"' in _p1032n)
+          and ('"P1_committed_bytes_equal_the_bytes_the_probe_wrote_1032n"' in _p1032n)
+          # ⭐⭐⭐⭐⭐ **每个 audit 键都必须被至少一条判据引用**（1025 的教训）
+          and '"p1_committed_bytes_equal_the_bytes_the_probe_wrote_1032n_"' in _ausrc
+          and '"p2_this_book_itself_is_what_the_current_script_would_write_1032n_"' in _ausrc
+          and '"p3_books_that_change_every_round_must_declare_themselves_1032n_"' in _ausrc
+          and '"p4_every_excluded_book_must_publish_a_reason_1032n_"' in _ausrc
+          and '"p5_this_gate_can_actually_go_red_1032n_"' in _ausrc
+          and '"p6_two_implementations_of_the_committed_bytes_must_agree_1032n_"' in _ausrc)
 
     print(f"\n{checks - len(failures)}/{checks}")
     if failures:

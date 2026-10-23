@@ -345,6 +345,8 @@ PROBE_VARS = {
     #   ⚠️ 清单是 **.sh** 而不是 .py —— 但官方锚点门只认「文件路径」，
     #   ⇒ 不挑扩展名 ⇒ 所以它照样能被当锚点目标查
     "_p1032l": "scripts/jimeng_probe1032l_fingerprint_gate.py",
+    # ⚠️ 1032-②n：**登记 `_p1032n` 与写用它的判据必须是同一步**（961 的教训）
+    "_p1032n": "scripts/jimeng_probe1032n_committed_freshness_gate.py",
     "_gatelist": "scripts/jimeng_run_all_gates.sh",
     # ⭐⭐⭐⭐⭐ 1032-②b-4：「已展开的生成器」浮层那道门
     #   （判据 .py + 真去点一遍的探针 .mjs）**两个都要登记**
