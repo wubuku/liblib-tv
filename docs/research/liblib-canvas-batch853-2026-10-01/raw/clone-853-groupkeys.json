@@ -1,0 +1,507 @@
+{
+ "★期望矩阵来源": {
+  "文件": "docs/research/liblib-canvas-batch853-2026-10-01/raw/source-853-contract.json",
+  "修饰键条件原文": "&&(\"g\"!==n||e.ctrlKey||e.metaKey)&&(\"d\"!==n||e.shiftKey&&(e.ctrlKey||e.metaKey))",
+  "分支体原文": "else if(\"g\"===n||\"d\"===n)if(e.shiftKey){let e=nf.current.selectedGroupId;e&&rY(e)}else\"g\"===n&&rW()}},n=e=>{if(h5(e.target))return;if(h4(e),h8(e))return void e.preventDefault();(\"Shift\"===e"
+ },
+ "①基线": {
+  "DOM组数": 0,
+  "DOM组标签": [],
+  "DOM角色行数": 1,
+  "角色行id": [
+   "director-character-lead"
+  ],
+  "选中文本": "1 个对象已选",
+  "选择类别": "objects",
+  "打组按钮禁用": true,
+  "解组按钮禁用": true,
+  "store组数": 0,
+  "store选中组": null,
+  "store选中数": 1,
+  "store选中对象": [
+   "director-character-lead"
+  ],
+  "store角色数": 1,
+  "最后命令": null
+ },
+ "②加群众1x2后": {
+  "DOM组数": 1,
+  "DOM组标签": [
+   "群众 (1x2)2"
+  ],
+  "DOM角色行数": 1,
+  "角色行id": [
+   "director-character-lead"
+  ],
+  "选中文本": "分组 · 2 个成员",
+  "选择类别": "group",
+  "打组按钮禁用": true,
+  "解组按钮禁用": false,
+  "store组数": 1,
+  "store选中组": "director-crowd-group-1792721488646-1",
+  "store选中数": 2,
+  "store选中对象": [
+   "director-crowd-1792721488646-1",
+   "director-crowd-1792721488646-2"
+  ],
+  "store角色数": 3,
+  "最后命令": {
+   "kind": "PROJECT_MUTATION",
+   "disposition": "COMMITTED",
+   "reason": null,
+   "changed": true
+  }
+ },
+ "②加群众后flyout状态": {
+  "flyout仍开着": false
+ },
+ "③⌘D 不做": {
+  "按前": {
+   "DOM组数": 1,
+   "DOM组标签": [
+    "群众 (1x2)2"
+   ],
+   "DOM角色行数": 1,
+   "角色行id": [
+    "director-character-lead"
+   ],
+   "选中文本": "分组 · 2 个成员",
+   "选择类别": "group",
+   "打组按钮禁用": true,
+   "解组按钮禁用": false,
+   "store组数": 1,
+   "store选中组": "director-crowd-group-1792721488646-1",
+   "store选中数": 2,
+   "store选中对象": [
+    "director-crowd-1792721488646-1",
+    "director-crowd-1792721488646-2"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "PROJECT_MUTATION",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "按后": {
+   "DOM组数": 1,
+   "DOM组标签": [
+    "群众 (1x2)2"
+   ],
+   "DOM角色行数": 1,
+   "角色行id": [
+    "director-character-lead"
+   ],
+   "选中文本": "分组 · 2 个成员",
+   "选择类别": "group",
+   "打组按钮禁用": true,
+   "解组按钮禁用": false,
+   "store组数": 1,
+   "store选中组": "director-crowd-group-1792721488646-1",
+   "store选中数": 2,
+   "store选中对象": [
+    "director-crowd-1792721488646-1",
+    "director-crowd-1792721488646-2"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "PROJECT_MUTATION",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "期望动作": null,
+  "实测动作": null,
+  "一致": true
+ },
+ "④⌘⇧D 解组": {
+  "按前": {
+   "DOM组数": 1,
+   "DOM组标签": [
+    "群众 (1x2)2"
+   ],
+   "DOM角色行数": 1,
+   "角色行id": [
+    "director-character-lead"
+   ],
+   "选中文本": "分组 · 2 个成员",
+   "选择类别": "group",
+   "打组按钮禁用": true,
+   "解组按钮禁用": false,
+   "store组数": 1,
+   "store选中组": "director-crowd-group-1792721488646-1",
+   "store选中数": 2,
+   "store选中对象": [
+    "director-crowd-1792721488646-1",
+    "director-crowd-1792721488646-2"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "PROJECT_MUTATION",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "按后": {
+   "DOM组数": 0,
+   "DOM组标签": [],
+   "DOM角色行数": 3,
+   "角色行id": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1",
+    "director-crowd-1792721488646-2"
+   ],
+   "选中文本": "2 个对象已选",
+   "选择类别": "objects",
+   "打组按钮禁用": false,
+   "解组按钮禁用": true,
+   "store组数": 0,
+   "store选中组": null,
+   "store选中数": 2,
+   "store选中对象": [
+    "director-crowd-1792721488646-1",
+    "director-crowd-1792721488646-2"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "DELETE_GROUP",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "期望动作": "ungroup",
+  "实测动作": "ungroup",
+  "一致": true
+ },
+ "⑤选第一个后": {
+  "DOM组数": 0,
+  "DOM组标签": [],
+  "DOM角色行数": 3,
+  "角色行id": [
+   "director-character-lead",
+   "director-crowd-1792721488646-1",
+   "director-crowd-1792721488646-2"
+  ],
+  "选中文本": "1 个对象已选",
+  "选择类别": "objects",
+  "打组按钮禁用": true,
+  "解组按钮禁用": true,
+  "store组数": 0,
+  "store选中组": null,
+  "store选中数": 1,
+  "store选中对象": [
+   "director-character-lead"
+  ],
+  "store角色数": 3,
+  "最后命令": {
+   "kind": "DELETE_GROUP",
+   "disposition": "COMMITTED",
+   "reason": null,
+   "changed": true
+  }
+ },
+ "⑥加选第二个后": {
+  "DOM组数": 0,
+  "DOM组标签": [],
+  "DOM角色行数": 3,
+  "角色行id": [
+   "director-character-lead",
+   "director-crowd-1792721488646-1",
+   "director-crowd-1792721488646-2"
+  ],
+  "选中文本": "2 个对象已选",
+  "选择类别": "objects",
+  "打组按钮禁用": false,
+  "解组按钮禁用": true,
+  "store组数": 0,
+  "store选中组": null,
+  "store选中数": 2,
+  "store选中对象": [
+   "director-character-lead",
+   "director-crowd-1792721488646-1"
+  ],
+  "store角色数": 3,
+  "最后命令": {
+   "kind": "DELETE_GROUP",
+   "disposition": "COMMITTED",
+   "reason": null,
+   "changed": true
+  }
+ },
+ "⑦⌘G 打组": {
+  "按前": {
+   "DOM组数": 0,
+   "DOM组标签": [],
+   "DOM角色行数": 3,
+   "角色行id": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1",
+    "director-crowd-1792721488646-2"
+   ],
+   "选中文本": "2 个对象已选",
+   "选择类别": "objects",
+   "打组按钮禁用": false,
+   "解组按钮禁用": true,
+   "store组数": 0,
+   "store选中组": null,
+   "store选中数": 2,
+   "store选中对象": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "DELETE_GROUP",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "按后": {
+   "DOM组数": 1,
+   "DOM组标签": [
+    "角色组12"
+   ],
+   "DOM角色行数": 1,
+   "角色行id": [
+    "director-crowd-1792721488646-2"
+   ],
+   "选中文本": "分组 · 2 个成员",
+   "选择类别": "group",
+   "打组按钮禁用": true,
+   "解组按钮禁用": false,
+   "store组数": 1,
+   "store选中组": "director-character-group-1792721495057-1",
+   "store选中数": 2,
+   "store选中对象": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "GROUP_CHARACTERS",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "期望动作": "group",
+  "实测动作": "group",
+  "一致": true
+ },
+ "⑧裸G 不做": {
+  "按前": {
+   "DOM组数": 1,
+   "DOM组标签": [
+    "角色组12"
+   ],
+   "DOM角色行数": 1,
+   "角色行id": [
+    "director-crowd-1792721488646-2"
+   ],
+   "选中文本": "分组 · 2 个成员",
+   "选择类别": "group",
+   "打组按钮禁用": true,
+   "解组按钮禁用": false,
+   "store组数": 1,
+   "store选中组": "director-character-group-1792721495057-1",
+   "store选中数": 2,
+   "store选中对象": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "GROUP_CHARACTERS",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "按后": {
+   "DOM组数": 1,
+   "DOM组标签": [
+    "角色组12"
+   ],
+   "DOM角色行数": 1,
+   "角色行id": [
+    "director-crowd-1792721488646-2"
+   ],
+   "选中文本": "分组 · 2 个成员",
+   "选择类别": "group",
+   "打组按钮禁用": true,
+   "解组按钮禁用": false,
+   "store组数": 1,
+   "store选中组": "director-character-group-1792721495057-1",
+   "store选中数": 2,
+   "store选中对象": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "GROUP_CHARACTERS",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "期望动作": null,
+  "实测动作": null,
+  "一致": true
+ },
+ "⑨裸D 不做": {
+  "按前": {
+   "DOM组数": 1,
+   "DOM组标签": [
+    "角色组12"
+   ],
+   "DOM角色行数": 1,
+   "角色行id": [
+    "director-crowd-1792721488646-2"
+   ],
+   "选中文本": "分组 · 2 个成员",
+   "选择类别": "group",
+   "打组按钮禁用": true,
+   "解组按钮禁用": false,
+   "store组数": 1,
+   "store选中组": "director-character-group-1792721495057-1",
+   "store选中数": 2,
+   "store选中对象": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "GROUP_CHARACTERS",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "按后": {
+   "DOM组数": 1,
+   "DOM组标签": [
+    "角色组12"
+   ],
+   "DOM角色行数": 1,
+   "角色行id": [
+    "director-crowd-1792721488646-2"
+   ],
+   "选中文本": "分组 · 2 个成员",
+   "选择类别": "group",
+   "打组按钮禁用": true,
+   "解组按钮禁用": false,
+   "store组数": 1,
+   "store选中组": "director-character-group-1792721495057-1",
+   "store选中数": 2,
+   "store选中对象": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "GROUP_CHARACTERS",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "期望动作": null,
+  "实测动作": null,
+  "一致": true
+ },
+ "⑩⌘⇧G 解组": {
+  "按前": {
+   "DOM组数": 1,
+   "DOM组标签": [
+    "角色组12"
+   ],
+   "DOM角色行数": 1,
+   "角色行id": [
+    "director-crowd-1792721488646-2"
+   ],
+   "选中文本": "分组 · 2 个成员",
+   "选择类别": "group",
+   "打组按钮禁用": true,
+   "解组按钮禁用": false,
+   "store组数": 1,
+   "store选中组": "director-character-group-1792721495057-1",
+   "store选中数": 2,
+   "store选中对象": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "GROUP_CHARACTERS",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "按后": {
+   "DOM组数": 0,
+   "DOM组标签": [],
+   "DOM角色行数": 3,
+   "角色行id": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1",
+    "director-crowd-1792721488646-2"
+   ],
+   "选中文本": "2 个对象已选",
+   "选择类别": "objects",
+   "打组按钮禁用": false,
+   "解组按钮禁用": true,
+   "store组数": 0,
+   "store选中组": null,
+   "store选中数": 2,
+   "store选中对象": [
+    "director-character-lead",
+    "director-crowd-1792721488646-1"
+   ],
+   "store角色数": 3,
+   "最后命令": {
+    "kind": "DELETE_GROUP",
+    "disposition": "COMMITTED",
+    "reason": null,
+    "changed": true
+   }
+  },
+  "期望动作": "ungroup",
+  "实测动作": "ungroup",
+  "一致": true
+ },
+ "⑪结束": {
+  "DOM组数": 0,
+  "DOM组标签": [],
+  "DOM角色行数": 3,
+  "角色行id": [
+   "director-character-lead",
+   "director-crowd-1792721488646-1",
+   "director-crowd-1792721488646-2"
+  ],
+  "选中文本": "2 个对象已选",
+  "选择类别": "objects",
+  "打组按钮禁用": false,
+  "解组按钮禁用": true,
+  "store组数": 0,
+  "store选中组": null,
+  "store选中数": 2,
+  "store选中对象": [
+   "director-character-lead",
+   "director-crowd-1792721488646-1"
+  ],
+  "store角色数": 3,
+  "最后命令": {
+   "kind": "DELETE_GROUP",
+   "disposition": "COMMITTED",
+   "reason": null,
+   "changed": true
+  }
+ }
+}

@@ -1,0 +1,243 @@
+{
+ "来源": {
+  "chunk": "/tmp/liblib_srcjs2/0fmehki05gkzw.js.js",
+  "字节数": 1018130
+ },
+ "片段": {
+  "hook 返回值里的绑定：createCharacterGroup→rW / ungroupCharacterGroup→rY": {
+   "锚点": "createCharacterGroup:rW,selectCharacterGroup:r$,ungroupCharacterGroup:rY",
+   "命中数": 1,
+   "偏移": 835844,
+   "原文": "createCharacterGroup:rW,selectCharacterGroup:r$,ungroupCharacterGroup:rY"
+  },
+  "reducer 回调 u：CREATE_CHARACTER_GROUP": {
+   "锚点": "u=(0,o.useCallback)(e=>r({type:\"CREATE_CHARACTER_GROUP\",members:e}),[])",
+   "命中数": 1,
+   "偏移": 837129,
+   "原文": "u=(0,o.useCallback)(e=>r({type:\"CREATE_CHARACTER_GROUP\",members:e}),[])"
+  },
+  "reducer 回调 h：UNGROUP_CHARACTER_GROUP": {
+   "锚点": "h=(0,o.useCallback)(e=>r({type:\"UNGROUP_CHARACTER_GROUP\",id:e}),[])",
+   "命中数": 1,
+   "偏移": 837268,
+   "原文": "h=(0,o.useCallback)(e=>r({type:\"UNGROUP_CHARACTER_GROUP\",id:e}),[])"
+  },
+  "reducer case：CREATE_CHARACTER_GROUP": {
+   "锚点": "case\"CREATE_CHARACTER_GROUP\":",
+   "命中数": 1,
+   "偏移": 440303,
+   "原文": "case\"CREATE_CHARACTER_GROUP\":{let r=lB(t.members&&t.members.length>0?t.members:lB(e.selectedSceneMembers,e.characters,e.props,e.emptyObjects,e.cameras),e.characters,e.props,e.emptyObjects,e.cameras);if(r.length<2)return e;let n=U({characterIds:[],members:r}),a={id:lM(),label:lT(e.characterGroups),characterIds:n,members:r};return{...e,characterGroups:[...e.characterGroups,a],...lQ(r),selectedGroupId:a.id}}case\"SELECT_CHARACTER_GROUP\":{let r=e.characterGroups.find(e=>e.id===t.id);if(!r)return e;let n=lB(O(r),e.characters,e.props,e.emptyObjects,e"
+  },
+  "reducer case：UNGROUP_CHARACTER_GROUP": {
+   "锚点": "case\"UNGROUP_CHARACTER_GROUP\":",
+   "命中数": 1,
+   "偏移": 440930,
+   "原文": "case\"UNGROUP_CHARACTER_GROUP\":{let r=e.characterGroups.find(e=>e.id===t.id);if(!r)return e;let n=lB(O(r),e.characters,e.props,e.emptyObjects,e.cameras);return{...e,characterGroups:e.characterGroups.filter(e=>e.id!==t.id),cameras:e.cameras.map(r=>lV(r,e,new Set([t.id]))),animation:{...e.animation,groupTracks:e.animation.groupTracks.filter(e=>e.targetId!==t.id)},...lQ(n),selectedGroupId:null}}case\"UPDATE_CHARACTER\":return{...e,characters:e.characters.map(e=>e.id===t.id?{...e,...t.patch}:e)};case\"UPDATE_CHARACTERS\":{let r=new Map(t.updates.map(e=>[e.id,e.patch]));return{...e,characters:"
+  },
+  "keydown 里的 g/d 分支": {
+   "锚点": "else if(\"g\"===n||\"d\"===n)if(e.shiftKey)",
+   "命中数": 1,
+   "偏移": 972913,
+   "原文": "else if(\"g\"===n||\"d\"===n)if(e.shiftKey){let e=nf.current.selectedGroupId;e&&rY(e)}else\"g\"===n&&rW()}},n=e=>{if(h5(e.target))return;if(h4(e),h8(e))return void e.preventDefault();(\"Shift\"===e"
+  },
+  "keydown 里 hY 块的修饰键条件（g / d 两段）": {
+   "锚点": "&&(\"g\"!==n||e.ctrlKey||e.metaKey)&&(\"d\"!==n||e.shiftKey&&(e.ctrlKey||e.metaKey))",
+   "命中数": 1,
+   "偏移": 970077,
+   "原文": "&&(\"g\"!==n||e.ctrlKey||e.metaKey)&&(\"d\"!==n||e.shiftKey&&(e.ctrlKey||e.metaKey))"
+  },
+  "keydown 里 z 的条件（撤销／重做同族）": {
+   "锚点": "else if(\"z\"===n)e.shiftKey?nu():nd();",
+   "命中数": 1,
+   "偏移": 972876,
+   "原文": "else if(\"z\"===n)e.shiftKey?nu():nd();"
+  },
+  "可分组类别 sg(e)（character/prop/emptyObject/camera）": {
+   "锚点": "function sg(e){return\"character\"===e||\"prop\"===e||\"emptyObject\"===e||\"camera\"===e}",
+   "命中数": 1,
+   "偏移": 315105,
+   "原文": "function sg(e){return\"character\"===e||\"prop\"===e||\"emptyObject\"===e||\"camera\"===e}"
+  },
+  "组名 lT(e)＝ i18n(canvas:nodeTypeGroup) ＋ N": {
+   "锚点": "function lT(e){return`${(0,tS.V)(\"canvas:nodeTypeGroup\")}${e.length+1}`}",
+   "命中数": 1,
+   "偏移": 431837,
+   "原文": "function lT(e){return`${(0,tS.V)(\"canvas:nodeTypeGroup\")}${e.length+1}`}"
+  },
+  "右键菜单的 canGroup 判定式": {
+   "锚点": "X(e,s,!l&&s.length>1&&s.every(e=>sg(e.category)),l?.id)",
+   "命中数": 1,
+   "偏移": 333246,
+   "原文": "X(e,s,!l&&s.length>1&&s.every(e=>sg(e.category)),l?.id)"
+  },
+  "右键菜单「打组」项（disabled:!e.canGroup）": {
+   "锚点": "disabled:!e.canGroup,className:v,onClick:()=>{r(),t()},children:[(0,i.jsx)(\"span\",{className:b,children:(0,i.jsx)(u.p.Group,{width:14,height:14})}),p(\"canvas:directorContextMenuGroup\")]",
+   "命中数": 1,
+   "偏移": 321931,
+   "原文": "disabled:!e.canGroup,className:v,onClick:()=>{r(),t()},children:[(0,i.jsx)(\"span\",{className:b,children:(0,i.jsx)(u.p.Group,{width:14,height:14})}),p(\"canvas:directorContextMenuGroup\")]"
+  },
+  "树行的 onClick：⇧／⌘／Ctrl ＝ additive（且仅对 sg 类别）": {
+   "锚点": "onClick:t=>{if(\"motionPath\"===e.category)return void s?.(e.id);let r=t.shiftKey||t.metaKey||t.ctrlKey;a(e.id,e.category,sg(e.category)?{additive:r,individual:!0}:void 0)}",
+   "命中数": 1,
+   "偏移": 326414,
+   "原文": "onClick:t=>{if(\"motionPath\"===e.category)return void s?.(e.id);let r=t.shiftKey||t.metaKey||t.ctrlKey;a(e.id,e.category,sg(e.category)?{additive:r,individual:!0}:void 0)}"
+  },
+  "快捷键面板：打组 ⌘G ＋ 解组 ⌘⇧D 两行": {
+   "锚点": "{label:e(\"canvas:directorShortcutGroup\"),keys:[{id:\"group-command\",icon:\"command\"},{id:\"group-key\",label:\"G\"}]},{label:e(\"canvas:directorShortcutUngroup\"),keys:[{id:\"ungroup-command\",icon:\"command\"},{id:\"ungroup-shift\",label:\"⇧\"},{id:\"ungroup-key\",label:\"D\"}]}",
+   "命中数": 1,
+   "偏移": 828116,
+   "原文": "{label:e(\"canvas:directorShortcutGroup\"),keys:[{id:\"group-command\",icon:\"command\"},{id:\"group-key\",label:\"G\"}]},{label:e(\"canvas:directorShortcutUngroup\"),keys:[{id:\"ungroup-command\",icon:\"command\"},{id:\"ungroup-shift\",label:\"⇧\"},{id:\"ungroup-key\",label:\"D\"}]}"
+  },
+  "键集合 hY（字母快捷键白名单）": {
+   "正则": "hY=new Set\\(\\[[^\\]]*\\]\\)",
+   "命中数": 1,
+   "偏移": 820017,
+   "原文": "hY=new Set([\"escape\",\"enter\",\"v\",\"r\",\"f\",\"h\",\"x\",\"t\",\"y\",\"c\",\"d\",\"g\",\"delete\",\"backspace\",\"z\"])"
+  },
+  "组树条目：带 Group 图标的那一支（树，非右键菜单）": {
+   "正则": "title:h\\(r\\?\"canvas:directorCollapseGroup\":\"canvas:directorExpandGroup\"\\).{0,520}?\\(0,i\\.jsx\\)\\(u\\.p\\.Group[^)]*\\)",
+   "命中数": 1,
+   "偏移": 329696,
+   "原文": "title:h(r?\"canvas:directorCollapseGroup\":\"canvas:directorExpandGroup\"),className:\"hover:bg-white/8 z-10 flex h-6 w-4 shrink-0 items-center justify-center rounded text-white/45 transition-colors hover:text-neutral-50\",onClick:t=>{t.stopPropagation(),s(e.id)},children:(0,i.jsx)(sC,{expanded:r})}),(0,i.jsx)(\"span\",{className:\"z-10 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg\",children:(0,i.jsx)(u.p.Group,{width:14,height:14})"
+  }
+ },
+ "★任意值类名自检": {
+  "疑似截断": [],
+  "通过": true
+ },
+ "★行为矩阵（由提取串推导）": {
+  "说明": "输入＝上面两段**提取出来的**字符串；输出＝12 种组合的动作",
+  "修饰键条件原文": "&&(\"g\"!==n||e.ctrlKey||e.metaKey)&&(\"d\"!==n||e.shiftKey&&(e.ctrlKey||e.metaKey))",
+  "分支体原文": "else if(\"g\"===n||\"d\"===n)if(e.shiftKey){let e=nf.current.selectedGroupId;e&&rY(e)}else\"g\"===n&&rW()}},n=e=>{if(h5(e.target))return;if(h4(e),h8(e))return void e.preventDefault();(\"Shift\"===e",
+  "组合": [
+   {
+    "按键": "g",
+    "Ctrl": false,
+    "Cmd": false,
+    "Shift": false,
+    "显示": "G",
+    "动作": null
+   },
+   {
+    "按键": "g",
+    "Ctrl": false,
+    "Cmd": false,
+    "Shift": true,
+    "显示": "⇧G",
+    "动作": null
+   },
+   {
+    "按键": "g",
+    "Ctrl": false,
+    "Cmd": true,
+    "Shift": false,
+    "显示": "CmdG",
+    "动作": "group"
+   },
+   {
+    "按键": "g",
+    "Ctrl": false,
+    "Cmd": true,
+    "Shift": true,
+    "显示": "Cmd+⇧G",
+    "动作": "ungroup"
+   },
+   {
+    "按键": "g",
+    "Ctrl": true,
+    "Cmd": false,
+    "Shift": false,
+    "显示": "CtrlG",
+    "动作": "group"
+   },
+   {
+    "按键": "g",
+    "Ctrl": true,
+    "Cmd": false,
+    "Shift": true,
+    "显示": "Ctrl+⇧G",
+    "动作": "ungroup"
+   },
+   {
+    "按键": "g",
+    "Ctrl": true,
+    "Cmd": true,
+    "Shift": false,
+    "显示": "Cmd+CtrlG",
+    "动作": "group"
+   },
+   {
+    "按键": "g",
+    "Ctrl": true,
+    "Cmd": true,
+    "Shift": true,
+    "显示": "Cmd+Ctrl+⇧G",
+    "动作": "ungroup"
+   },
+   {
+    "按键": "d",
+    "Ctrl": false,
+    "Cmd": false,
+    "Shift": false,
+    "显示": "D",
+    "动作": null
+   },
+   {
+    "按键": "d",
+    "Ctrl": false,
+    "Cmd": false,
+    "Shift": true,
+    "显示": "⇧D",
+    "动作": null
+   },
+   {
+    "按键": "d",
+    "Ctrl": false,
+    "Cmd": true,
+    "Shift": false,
+    "显示": "CmdD",
+    "动作": null
+   },
+   {
+    "按键": "d",
+    "Ctrl": false,
+    "Cmd": true,
+    "Shift": true,
+    "显示": "Cmd+⇧D",
+    "动作": "ungroup"
+   },
+   {
+    "按键": "d",
+    "Ctrl": true,
+    "Cmd": false,
+    "Shift": false,
+    "显示": "CtrlD",
+    "动作": null
+   },
+   {
+    "按键": "d",
+    "Ctrl": true,
+    "Cmd": false,
+    "Shift": true,
+    "显示": "Ctrl+⇧D",
+    "动作": "ungroup"
+   },
+   {
+    "按键": "d",
+    "Ctrl": true,
+    "Cmd": true,
+    "Shift": false,
+    "显示": "Cmd+CtrlD",
+    "动作": null
+   },
+   {
+    "按键": "d",
+    "Ctrl": true,
+    "Cmd": true,
+    "Shift": true,
+    "显示": "Cmd+Ctrl+⇧D",
+    "动作": "ungroup"
+   }
+  ]
+ }
+}

@@ -31,6 +31,7 @@ import {
 } from "@/components/director/useDirectorFocusContainment";
 import { DirectorViewport } from "@/components/director/DirectorViewport";
 import { DirectorScenePromptBar } from "@/components/director/DirectorScenePromptBar";
+import { resolveDirectorGroupShortcutAction } from "@/components/director/directorShortcutRules";
 import { DirectorIconRail } from "@/components/director/DirectorIconRail";
 import { DirectorCameraPresetPanel } from "@/components/director/DirectorCameraPresetPanel";
 import { DirectorShortcutsDialog } from "@/components/director/DirectorShortcutsDialog";
@@ -232,6 +233,13 @@ export default function DirectorDesk({
   );
   const undoDirector = useDirectorStore((state) => state.undoDirector);
   const redoDirector = useDirectorStore((state) => state.redoDirector);
+  /* ★ Batch 853：打组／解组快捷键（⌘G／⌘⇧G／⌘⇧D）用的两个 action */
+  const groupSelectedCharacters = useDirectorStore(
+    (state) => state.groupSelectedCharacters,
+  );
+  const ungroupSelectedCharacters = useDirectorStore(
+    (state) => state.ungroupSelectedCharacters,
+  );
   const copyDirectorSelection = useDirectorStore(
     (state) => state.copyDirectorSelection,
   );
@@ -538,6 +546,25 @@ export default function DirectorDesk({
         redoDirector();
         return;
       }
+      /* ★ Batch 853：打组／解组。
+       * ★ 源站 chunk 逐字（机器提取见 raw/source-853-contract.json）：
+       *   &&("g"!==n||e.ctrlKey||e.metaKey)&&("d"!==n||e.shiftKey&&(e.ctrlKey||e.metaKey))
+       *   else if("g"===n||"d"===n)if(e.shiftKey){
+       *     let e=nf.current.selectedGroupId;e&&rY(e)}else"g"===n&&rW();
+       * ★ ⇒ ⌘G 打组／⌘⇧G 与 ⌘⇧D 解组／**⌘D 不做**／裸键不做。
+       * ★ 判定抽成纯函数（directorShortcutRules.ts）⟹ ⟹ 门禁能**实跑**那张动作表。
+       */
+      const groupShortcut = resolveDirectorGroupShortcutAction({
+        key: event.key.toLowerCase(),
+        modifier,
+        shift: event.shiftKey,
+      });
+      if (groupShortcut) {
+        event.preventDefault();
+        if (groupShortcut === "group") groupSelectedCharacters();
+        else ungroupSelectedCharacters();
+        return;
+      }
       if (event.key === "Delete" || event.key === "Backspace") {
         if (
           workspaceBusy ||
@@ -600,6 +627,10 @@ export default function DirectorDesk({
     closeMobilePanel,
     closeWorkspace,
     copyDirectorSelection,
+    // ★ Batch 853：新加的打组／解组两个 action（顺带补上此前就缺的 shortcutsOpen）
+    groupSelectedCharacters,
+    shortcutsOpen,
+    ungroupSelectedCharacters,
     deleteDirectorEntity,
     exportPanelOpen,
     followTargetId,

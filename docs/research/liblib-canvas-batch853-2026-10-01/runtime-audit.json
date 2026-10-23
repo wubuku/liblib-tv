@@ -1,0 +1,62 @@
+{
+ "批次": 853,
+ "通过数": 11,
+ "判据总数": 11,
+ "判据": [
+  {
+   "判据": "S1 结构：打组/解组纯函数 ＋ DirectorDesk 接线 ＋ 依赖数组都在",
+   "通过": true,
+   "详情": "rules缺=[] desk缺=[]"
+  },
+  {
+   "判据": "S2 契约：16 个片段唯一命中 ＋ 源站原文逐字对得上",
+   "通过": true,
+   "详情": "不符=[]（共 24 项）"
+  },
+  {
+   "判据": "S3 矩阵：提取器与门禁两套独立实现给出同一张表",
+   "通过": true,
+   "详情": "格数=16/16 两实现不一致=[] 关键格不符=[]"
+  },
+  {
+   "判据": "S4 纯函数：16 格动作表（node 实跑，期望值取自契约矩阵）",
+   "通过": true,
+   "详情": "共 16 条，不符=[]"
+  },
+  {
+   "判据": "S5 clone 按 ⌘D ⟹ **什么都不做**（逐字段比对按前/按后）",
+   "通过": true,
+   "详情": "前后相同=True 实测动作=None 期望=None"
+  },
+  {
+   "判据": "S6 clone 按 ⌘⇧D ⟹ 解组（DOM 组数 1→0 ＋ store 选中组清空 ＋ DELETE_GROUP）",
+   "通过": true,
+   "详情": "DOM组数=1→0 store选中组=director-crowd-group-1792721488646-1→None 最后命令=DELETE_GROUP"
+  },
+  {
+   "判据": "S7 clone 按 ⌘G ⟹ 打组（DOM 组数 0→1 ＋ 选中组指向新组 ＋ GROUP_CHARACTERS）",
+   "通过": true,
+   "详情": "DOM组数=0→1 store选中组=None→director-character-group-1792721495057-1 选中数=2 最后命令=GROUP_CHARACTERS/COMMITTED"
+  },
+  {
+   "判据": "S8 clone 裸 G ／ 裸 D ⟹ **什么都不做**（两组各逐字段比对）",
+   "通过": true,
+   "详情": "裸G前后相同=True(None) 裸D前后相同=True(None)"
+  },
+  {
+   "判据": "S9 clone 按 ⌘⇧G ⟹ 解组（★ 源站面板没列这个别名，但逐字行为成立）",
+   "通过": true,
+   "详情": "DOM组数=1→0 store选中组=director-character-group-1792721495057-1→None 最后命令=DELETE_GROUP"
+  },
+  {
+   "判据": "S10 源站实测：⌘G 建组（只有成员被缩进）＋ ⌘D 无 ＋ ⌘⇧D 解组回到基线",
+   "通过": true,
+   "详情": "单选⌘GΔ=0 双选⌘GΔ=1 新行=['分组1'] 成员缩进=[16, 16] 非成员缩进=[0] ⌘D有变化=False 解组Δ=0 回基线=True"
+  },
+  {
+   "判据": "S11 面板：打组 ⌘G ／ 解组 ⌘⇧D 两行与源站逐字一致",
+   "通过": true,
+   "详情": "打组字母(从分支体推)=G 源站=[('group-command', 'command'), ('group-key', 'G'), ('ungroup-command', 'command'), ('ungroup-shift', '⇧'), ('ungroup-key', 'D')] clone=[('group-command', 'command'), ('group-key', 'G'), ('ungroup-command', 'command'), ('ungroup-shift', '⇧'), ('ungroup-key', 'D')]"
+  }
+ ]
+}
