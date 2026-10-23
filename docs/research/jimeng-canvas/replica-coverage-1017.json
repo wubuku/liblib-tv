@@ -98,17 +98,16 @@
       ]
     },
     "whole_apparatus": {
-      "n_scripts": 430,
-      "n_path_refs": 36,
-      "n_files_covered": 34,
-      "n_files_uncovered": 26,
-      "pct_files_covered": 56.7,
-      "uncovered_lines": 3882,
+      "n_scripts": 431,
+      "n_path_refs": 37,
+      "n_files_covered": 35,
+      "n_files_uncovered": 25,
+      "pct_files_covered": 58.3,
+      "uncovered_lines": 3876,
       "pct_uncovered_lines": 25.4,
       "uncovered_files": [
         "src/app/jimeng/canvas/[id]/page.tsx",
         "src/app/jimeng/layout.tsx",
-        "src/app/jimeng/page.tsx",
         "src/components/jimeng/JimengAccountPanels.tsx",
         "src/components/jimeng/JimengAiButton.tsx",
         "src/components/jimeng/JimengAiDrawer.tsx",
@@ -220,7 +219,7 @@
       "token": "**"
     }
   ],
-  "n_glob_evidence": 353,
+  "n_glob_evidence": 354,
   "bare_base_refs": {
     "n_found_in_repo": 4,
     "would_deflate_metric": true,
@@ -237,7 +236,7 @@
     "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **加一条 glob，覆盖率从「不到一半」跳到接近全覆盖** ⇒ **⇒⇒⇒⇒ 这个指标量的是「有没有被点名」，不是「有没有被验过」** ⇒ 把它当成「产品有多少没被验过」是**错的**"
   },
   "criteria_object_of_test": {
-    "n_check_calls": 984,
+    "n_check_calls": 986,
     "n_with_prototype_object": 25,
     "pct_with_prototype_object": 2.5,
     "checks": [

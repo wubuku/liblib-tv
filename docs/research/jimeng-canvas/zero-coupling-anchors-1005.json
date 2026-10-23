@@ -1,16 +1,16 @@
 {
  "generated_by": "jimeng_probe1005_zero_coupling_census.py",
- "n_zero_coupling": 934,
- "n_positive_present": 7050,
- "n_distinct_keys": 6880,
+ "n_zero_coupling": 935,
+ "n_positive_present": 7063,
+ "n_distinct_keys": 6893,
  "by_class": {
-  "I-标识符(多处引用)": 505,
+  "I-标识符(多处引用)": 506,
   "P-散文/片段": 429
  },
  "class_x_gap": {
   "I-标识符(多处引用)|21–200": 193,
   "I-标识符(多处引用)|4–20": 106,
-  "I-标识符(多处引用)|>200": 98,
+  "I-标识符(多处引用)|>200": 99,
   "I-标识符(多处引用)|≤3": 108,
   "P-散文/片段|21–200": 220,
   "P-散文/片段|4–20": 64,
@@ -1879,7 +1879,7 @@
    "var": "_vsrc",
    "anchor": "\"只有 1 项\" in asrc)",
    "occurrences": 2,
-   "min_line_gap": 6762
+   "min_line_gap": 6766
   },
   {
    "class": "P-散文/片段",
@@ -1914,7 +1914,7 @@
    "var": "_ausrc",
    "anchor": "**「A ≠ B」不等于「A 能把 A 从 C 里挑出来」**",
    "occurrences": 2,
-   "min_line_gap": 6974
+   "min_line_gap": 7017
   },
   {
    "class": "P-散文/片段",
@@ -1928,14 +1928,14 @@
    "var": "_ausrc",
    "anchor": "`el.tabIndex === -1`",
    "occurrences": 2,
-   "min_line_gap": 6953
+   "min_line_gap": 6996
   },
   {
    "class": "P-散文/片段",
    "var": "_ausrc",
    "anchor": "**应用必须自己调 `focus()`**",
    "occurrences": 2,
-   "min_line_gap": 6953
+   "min_line_gap": 6996
   },
   {
    "class": "P-散文/片段",
@@ -2411,7 +2411,7 @@
    "var": "_ausrc",
    "anchor": "**当场判红**",
    "occurrences": 2,
-   "min_line_gap": 6435
+   "min_line_gap": 6478
   },
   {
    "class": "P-散文/片段",
@@ -5120,7 +5120,7 @@
    "var": "_ausrc",
    "anchor": "stem-attribution-1007.json",
    "occurrences": 2,
-   "min_line_gap": 1488
+   "min_line_gap": 1531
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5232,7 +5232,7 @@
    "var": "_ausrc",
    "anchor": "golden-freshness-1008.json",
    "occurrences": 2,
-   "min_line_gap": 1411
+   "min_line_gap": 1454
   },
   {
    "class": "I-标识符(多处引用)",
@@ -5848,7 +5848,7 @@
    "var": "_ausrc",
    "anchor": "不许让门看起来比它实际更强",
    "occurrences": 2,
-   "min_line_gap": 3070
+   "min_line_gap": 3113
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6107,7 +6107,7 @@
    "var": "_ausrc",
    "anchor": "处置要落在生成器里、不落在产物",
    "occurrences": 2,
-   "min_line_gap": 968
+   "min_line_gap": 1011
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6163,21 +6163,21 @@
    "var": "_ausrc",
    "anchor": "意图是保留、机制是同名覆盖",
    "occurrences": 2,
-   "min_line_gap": 8841
+   "min_line_gap": 8884
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "机制静默赢了",
    "occurrences": 2,
-   "min_line_gap": 8843
+   "min_line_gap": 8886
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_ausrc",
    "anchor": "source_reverse_lap_cycle_narrowed_by_932",
    "occurrences": 2,
-   "min_line_gap": 8821
+   "min_line_gap": 8864
   },
   {
    "class": "I-标识符(多处引用)",
@@ -6556,6 +6556,13 @@
    "anchor": "\"P1_committed_bytes_equal_the_bytes_the_probe_wrote_1032n\"",
    "occurrences": 3,
    "min_line_gap": 9
+  },
+  {
+   "class": "I-标识符(多处引用)",
+   "var": "_p1033",
+   "anchor": "\"P2_every_finished_clone_page_is_reachable_from_the_site_root_1033\"",
+   "occurrences": 2,
+   "min_line_gap": 398
   }
  ]
 }
