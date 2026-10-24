@@ -1,0 +1,920 @@
+{
+  "①导演台已打开": true,
+  "②有练习浮层": true,
+  "③rail按钮": [
+    {
+      "x": 8,
+      "y": 60,
+      "w": 32,
+      "h": 32,
+      "aria": "场景",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 116,
+      "w": 32,
+      "h": 32,
+      "aria": "添加角色",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 156,
+      "w": 32,
+      "h": 32,
+      "aria": "添加机位",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 196,
+      "w": 32,
+      "h": 32,
+      "aria": "全景图",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 236,
+      "w": 32,
+      "h": 32,
+      "aria": "选择画幅比例",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 276,
+      "w": 32,
+      "h": 32,
+      "aria": "AI 识图导入",
+      "title": "",
+      "text": ""
+    }
+  ],
+  "③画幅比例按钮": {
+    "x": 8,
+    "y": 236,
+    "w": 32,
+    "h": 32,
+    "aria": "选择画幅比例",
+    "title": "",
+    "text": ""
+  },
+  "④点21比9之前": {
+    "视口": {
+      "视口": null,
+      "视口类名": null,
+      "canvas": null,
+      "canvas类名": null,
+      "机位相关": [
+        {
+          "tag": "DIV",
+          "cls": "flex min-w-0 items-center gap-2 transition-opacity duration-200",
+          "text": "画布 1"
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "text": ""
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "text": ""
+        },
+        {
+          "tag": "SPAN",
+          "cls": "bg-canvas-primary-btn hover:bg-canvas-primary-btn-hover flex h-8 w-8 cursor-pointer items-center jus",
+          "text": ""
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "text": ""
+        },
+        {
+          "tag": "DIV",
+          "cls": "node-floating-ui transition-opacity duration-150 ease-out motion-reduce:transition-none absolute lef",
+          "text": "预设 - 图片高清"
+        },
+        {
+          "tag": "DIV",
+          "cls": "node-floating-ui transition-opacity duration-150 ease-out motion-reduce:transition-none absolute lef",
+          "text": "脚本 V2 1"
+        },
+        {
+          "tag": "DIV",
+          "cls": "node-floating-ui transition-opacity duration-150 ease-out motion-reduce:transition-none absolute lef",
+          "text": "逐帧拉片"
+        }
+      ]
+    },
+    "面板": {
+      "cells": [
+        {
+          "text": "自适应",
+          "rect": {
+            "x": 56,
+            "y": 100,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.85)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 100,
+            "y": 117,
+            "w": 16,
+            "h": 11
+          }
+        },
+        {
+          "text": "21:9",
+          "rect": {
+            "x": 168,
+            "y": 100,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 212,
+            "y": 119,
+            "w": 16,
+            "h": 7
+          }
+        },
+        {
+          "text": "16:9",
+          "rect": {
+            "x": 56,
+            "y": 180,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 100,
+            "y": 198,
+            "w": 16,
+            "h": 9
+          }
+        },
+        {
+          "text": "4:3",
+          "rect": {
+            "x": 168,
+            "y": 180,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 212,
+            "y": 197,
+            "w": 16,
+            "h": 12
+          }
+        },
+        {
+          "text": "1:1",
+          "rect": {
+            "x": 56,
+            "y": 260,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 101,
+            "y": 276,
+            "w": 14,
+            "h": 14
+          }
+        },
+        {
+          "text": "3:4",
+          "rect": {
+            "x": 168,
+            "y": 260,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 216,
+            "y": 275,
+            "w": 8,
+            "h": 16
+          }
+        },
+        {
+          "text": "9:16",
+          "rect": {
+            "x": 56,
+            "y": 340,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 104,
+            "y": 355,
+            "w": 8,
+            "h": 16
+          }
+        }
+      ],
+      "rows": [],
+      "fileInputs": [
+        {
+          "cls": "hidden",
+          "accept": "",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": "image/*",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": "video/*",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden border-0 p-0 opacity",
+          "accept": "image/*",
+          "w": 1,
+          "h": 1,
+          "x": 386,
+          "y": 274,
+          "visible": true
+        },
+        {
+          "cls": "",
+          "accept": "image/*,video/*,audio/*,.doc,.docx,.txt,.md,.markdown,.rtf,.pdf,text/plain,text/markdown,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,text/rtf",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden border-0 p-0 opacity",
+          "accept": "image/*,video/*,audio/*,.pdf,.txt,.md,.markdown,.doc,.docx,application/pdf,text/plain,text/markdown,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.rtf,application/rtf,text/rtf",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": ".glb,.gltf,.obj,.fbx,.stl,.dae,model/gltf-binary,model/gltf+json",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": ".glb,.gltf,.obj,.fbx,.stl,.dae,model/gltf-binary,model/gltf+json,.ply,.splat,.spz,.ksplat,application/octet-stream",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": "image/*",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden border-0 p-0 opacity",
+          "accept": "image/*",
+          "w": 1,
+          "h": 1,
+          "x": 957,
+          "y": 1025,
+          "visible": true
+        }
+      ],
+      "fileInputCount": 10
+    }
+  },
+  "⑤点21比9之后": {
+    "视口": {
+      "视口": {
+        "x": 329,
+        "y": 270,
+        "w": 1262,
+        "h": 541,
+        "right": 1591,
+        "bottom": 810,
+        "ratio": 2.3334
+      },
+      "视口类名": "outline-white/18 absolute rounded-xl outline -outline-offset-1",
+      "canvas": null,
+      "canvas类名": null,
+      "机位相关": [
+        {
+          "tag": "DIV",
+          "cls": "flex min-w-0 items-center gap-2 transition-opacity duration-200",
+          "text": "画布 1"
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "text": ""
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "text": ""
+        },
+        {
+          "tag": "SPAN",
+          "cls": "bg-canvas-primary-btn hover:bg-canvas-primary-btn-hover flex h-8 w-8 cursor-pointer items-center jus",
+          "text": ""
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "text": ""
+        },
+        {
+          "tag": "DIV",
+          "cls": "node-floating-ui transition-opacity duration-150 ease-out motion-reduce:transition-none absolute lef",
+          "text": "预设 - 图片高清"
+        },
+        {
+          "tag": "DIV",
+          "cls": "node-floating-ui transition-opacity duration-150 ease-out motion-reduce:transition-none absolute lef",
+          "text": "脚本 V2 1"
+        },
+        {
+          "tag": "DIV",
+          "cls": "node-floating-ui transition-opacity duration-150 ease-out motion-reduce:transition-none absolute lef",
+          "text": "逐帧拉片"
+        }
+      ]
+    },
+    "面板": {
+      "cells": [
+        {
+          "text": "自适应",
+          "rect": {
+            "x": 56,
+            "y": 100,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 100,
+            "y": 117,
+            "w": 16,
+            "h": 11
+          }
+        },
+        {
+          "text": "21:9",
+          "rect": {
+            "x": 168,
+            "y": 100,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.85)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 212,
+            "y": 119,
+            "w": 16,
+            "h": 7
+          }
+        },
+        {
+          "text": "16:9",
+          "rect": {
+            "x": 56,
+            "y": 180,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 100,
+            "y": 198,
+            "w": 16,
+            "h": 9
+          }
+        },
+        {
+          "text": "4:3",
+          "rect": {
+            "x": 168,
+            "y": 180,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 212,
+            "y": 197,
+            "w": 16,
+            "h": 12
+          }
+        },
+        {
+          "text": "1:1",
+          "rect": {
+            "x": 56,
+            "y": 260,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 101,
+            "y": 276,
+            "w": 14,
+            "h": 14
+          }
+        },
+        {
+          "text": "3:4",
+          "rect": {
+            "x": 168,
+            "y": 260,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 216,
+            "y": 275,
+            "w": 8,
+            "h": 16
+          }
+        },
+        {
+          "text": "9:16",
+          "rect": {
+            "x": 56,
+            "y": 340,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 104,
+            "y": 355,
+            "w": 8,
+            "h": 16
+          }
+        }
+      ],
+      "rows": [],
+      "fileInputs": [
+        {
+          "cls": "hidden",
+          "accept": "",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": "image/*",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": "video/*",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden border-0 p-0 opacity",
+          "accept": "image/*",
+          "w": 1,
+          "h": 1,
+          "x": 386,
+          "y": 274,
+          "visible": true
+        },
+        {
+          "cls": "",
+          "accept": "image/*,video/*,audio/*,.doc,.docx,.txt,.md,.markdown,.rtf,.pdf,text/plain,text/markdown,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,text/rtf",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden border-0 p-0 opacity",
+          "accept": "image/*,video/*,audio/*,.pdf,.txt,.md,.markdown,.doc,.docx,application/pdf,text/plain,text/markdown,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.rtf,application/rtf,text/rtf",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": ".glb,.gltf,.obj,.fbx,.stl,.dae,model/gltf-binary,model/gltf+json",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": ".glb,.gltf,.obj,.fbx,.stl,.dae,model/gltf-binary,model/gltf+json,.ply,.splat,.spz,.ksplat,application/octet-stream",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": "image/*",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden border-0 p-0 opacity",
+          "accept": "image/*",
+          "w": 1,
+          "h": 1,
+          "x": 957,
+          "y": 1025,
+          "visible": true
+        }
+      ],
+      "fileInputCount": 10
+    }
+  },
+  "⑥复原后": {
+    "视口": {
+      "视口": null,
+      "视口类名": null,
+      "canvas": null,
+      "canvas类名": null,
+      "机位相关": [
+        {
+          "tag": "DIV",
+          "cls": "flex min-w-0 items-center gap-2 transition-opacity duration-200",
+          "text": "画布 1"
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "text": ""
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "text": ""
+        },
+        {
+          "tag": "SPAN",
+          "cls": "bg-canvas-primary-btn hover:bg-canvas-primary-btn-hover flex h-8 w-8 cursor-pointer items-center jus",
+          "text": ""
+        },
+        {
+          "tag": "svg",
+          "cls": "[object SVGAnimatedString]",
+          "text": ""
+        },
+        {
+          "tag": "DIV",
+          "cls": "node-floating-ui transition-opacity duration-150 ease-out motion-reduce:transition-none absolute lef",
+          "text": "预设 - 图片高清"
+        },
+        {
+          "tag": "DIV",
+          "cls": "node-floating-ui transition-opacity duration-150 ease-out motion-reduce:transition-none absolute lef",
+          "text": "脚本 V2 1"
+        },
+        {
+          "tag": "DIV",
+          "cls": "node-floating-ui transition-opacity duration-150 ease-out motion-reduce:transition-none absolute lef",
+          "text": "逐帧拉片"
+        }
+      ]
+    },
+    "面板": {
+      "cells": [
+        {
+          "text": "自适应",
+          "rect": {
+            "x": 56,
+            "y": 100,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.85)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 100,
+            "y": 117,
+            "w": 16,
+            "h": 11
+          }
+        },
+        {
+          "text": "21:9",
+          "rect": {
+            "x": 168,
+            "y": 100,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 212,
+            "y": 119,
+            "w": 16,
+            "h": 7
+          }
+        },
+        {
+          "text": "16:9",
+          "rect": {
+            "x": 56,
+            "y": 180,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 100,
+            "y": 198,
+            "w": 16,
+            "h": 9
+          }
+        },
+        {
+          "text": "4:3",
+          "rect": {
+            "x": 168,
+            "y": 180,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 212,
+            "y": 197,
+            "w": 16,
+            "h": 12
+          }
+        },
+        {
+          "text": "1:1",
+          "rect": {
+            "x": 56,
+            "y": 260,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 101,
+            "y": 276,
+            "w": 14,
+            "h": 14
+          }
+        },
+        {
+          "text": "3:4",
+          "rect": {
+            "x": 168,
+            "y": 260,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 216,
+            "y": 275,
+            "w": 8,
+            "h": 16
+          }
+        },
+        {
+          "text": "9:16",
+          "rect": {
+            "x": 56,
+            "y": 340,
+            "w": 104,
+            "h": 72
+          },
+          "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+          "borderWidth": "1px",
+          "disabled": false,
+          "ariaPressed": null,
+          "glyph": {
+            "x": 104,
+            "y": 355,
+            "w": 8,
+            "h": 16
+          }
+        }
+      ],
+      "rows": [],
+      "fileInputs": [
+        {
+          "cls": "hidden",
+          "accept": "",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": "image/*",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": "video/*",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden border-0 p-0 opacity",
+          "accept": "image/*",
+          "w": 1,
+          "h": 1,
+          "x": 386,
+          "y": 274,
+          "visible": true
+        },
+        {
+          "cls": "",
+          "accept": "image/*,video/*,audio/*,.doc,.docx,.txt,.md,.markdown,.rtf,.pdf,text/plain,text/markdown,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,text/rtf",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden border-0 p-0 opacity",
+          "accept": "image/*,video/*,audio/*,.pdf,.txt,.md,.markdown,.doc,.docx,application/pdf,text/plain,text/markdown,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.rtf,application/rtf,text/rtf",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": ".glb,.gltf,.obj,.fbx,.stl,.dae,model/gltf-binary,model/gltf+json",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": ".glb,.gltf,.obj,.fbx,.stl,.dae,model/gltf-binary,model/gltf+json,.ply,.splat,.spz,.ksplat,application/octet-stream",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "hidden",
+          "accept": "image/*",
+          "w": 0,
+          "h": 0,
+          "x": 0,
+          "y": 0,
+          "visible": false
+        },
+        {
+          "cls": "absolute left-0 top-0 m-0 h-px w-px min-w-0 overflow-hidden border-0 p-0 opacity",
+          "accept": "image/*",
+          "w": 1,
+          "h": 1,
+          "x": 957,
+          "y": 1025,
+          "visible": true
+        }
+      ],
+      "fileInputCount": 10
+    }
+  }
+}

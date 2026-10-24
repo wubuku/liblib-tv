@@ -1,0 +1,15 @@
+
+40 判据，13 失败
+  FAILED: source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）
+  FAILED: panel:frame-exists-for-21:9  ⟵ None
+  FAILED: panel:frame-marks-21:9  ⟵ None
+  FAILED: panel:frame-exists-for-16:9  ⟵ None
+  FAILED: panel:frame-marks-16:9  ⟵ None
+  FAILED: panel:frame-exists-for-4:3  ⟵ None
+  FAILED: panel:frame-marks-4:3  ⟵ None
+  FAILED: panel:frame-exists-for-1:1  ⟵ None
+  FAILED: panel:frame-marks-1:1  ⟵ None
+  FAILED: panel:frame-exists-for-3:4  ⟵ None
+  FAILED: panel:frame-marks-3:4  ⟵ None
+  FAILED: panel:frame-exists-for-9:16  ⟵ None
+  FAILED: panel:frame-marks-9:16  ⟵ None

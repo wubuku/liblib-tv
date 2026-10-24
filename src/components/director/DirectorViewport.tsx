@@ -82,6 +82,7 @@ import {
   getDirectorProjectRegistrySnapshot,
   resolveGroupMemberRefs,
   useDirectorStore,
+  DIRECTOR_FRAME_ASPECT_VALUES,
   type DirectorCapture,
   type DirectorCharacterGroup,
   type DirectorMotionPath,
@@ -2449,16 +2450,19 @@ function VideoExportController({
 }
 
 function AspectFrame({ frameRect }: { frameRect: DirectorFrameRect | null }) {
-  const aspectRatio = useDirectorStore((state) => state.aspectRatio);
+  // ★ Batch 860：取景框读的是**取景比例**（七档 ＋ 自适应），
+  //   不是导出用的 `aspectRatio`（三值）⟹ ⟹ 两者语义不同（见 store 的注释）。
+  const frameAspectRatio = useDirectorStore((state) => state.frameAspectRatio);
   const showThirds = useDirectorStore((state) => state.showThirds);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
 
+  // ★ 「自适应」⟹ ⟹ `frameRect` 已经是 `null` ⟹ ⟹ 框**不在场**（源站实测）。
   if (!frameRect || isCapturing) return null;
 
   return (
     <div
       data-director-aspect-frame
-      data-director-aspect-ratio={aspectRatio}
+      data-director-aspect-ratio={frameAspectRatio ?? "auto"}
       className="pointer-events-none absolute border border-white/75 shadow-[0_0_0_9999px_rgba(0,0,0,0.24)]"
       style={{
         left: frameRect.left,
@@ -2703,7 +2707,12 @@ export function DirectorViewport({
   const toggleTimelinePanel = useDirectorStore((state) => state.toggleTimelinePanel);
   const viewMode = useDirectorStore((state) => state.viewMode);
   const transformMode = useDirectorStore((state) => state.transformMode);
-  const aspectRatio = useDirectorStore((state) => state.aspectRatio);
+  // ★ Batch 860：取景比例（七档 ＋ 自适应）⟹ ⟹ 驱动机位取景框；
+  //   导出比例 `aspectRatio`（三值）仍另有一路（截图/导出），两者分开。
+  const frameAspectRatio = useDirectorStore((state) => state.frameAspectRatio);
+  const setFrameAspectRatio = useDirectorStore((state) => state.setFrameAspectRatio);
+  // ★ 导出/截图用的比例（三值）⟹ ⟹ 与上面的**取景比例**是两件事。
+  const captureAspectRatio = useDirectorStore((state) => state.aspectRatio);
   const showThirds = useDirectorStore((state) => state.showThirds);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
   const selectedObjectId = useDirectorStore((state) => state.selectedObjectId);
@@ -2722,7 +2731,6 @@ export function DirectorViewport({
   );
   const timeline = useDirectorStore((state) => state.timeline);
   const setTransformMode = useDirectorStore((state) => state.setTransformMode);
-  const setAspectRatio = useDirectorStore((state) => state.setAspectRatio);
   const toggleThirds = useDirectorStore((state) => state.toggleThirds);
   const viewportPanelsCollapsed = useDirectorStore(
     (state) => state.viewportPanelsCollapsed,
@@ -3010,14 +3018,20 @@ export function DirectorViewport({
     };
   }, [modelLibraryOpen]);
 
+  // ★ Batch 860：取景框按**取景比例**算 ⟹ ⟹ 七档数值比例（源站实测六档全对），
+  //   「自适应」＝ `null` ⟹ ⟹ `getDirectorFrameRect` 直接返回 `null` ⟹ ⟹ 框不在场。
+  const frameRatio = useDirectorStore((state) => state.frameAspectRatio);
+  const frameAspectValue =
+    frameRatio === null ? null : DIRECTOR_FRAME_ASPECT_VALUES[frameRatio];
+
   const frameRect = useMemo(
     () =>
       getDirectorFrameRect(
         viewportSize.width,
         viewportSize.height,
-        aspectRatio,
+        frameAspectValue,
       ),
-    [aspectRatio, viewportSize.height, viewportSize.width],
+    [frameAspectValue, viewportSize.height, viewportSize.width],
   );
 
   const requestCapture = () => {
@@ -3051,7 +3065,7 @@ export function DirectorViewport({
       attemptId: createDirectorAsyncIdentity("director-capture-attempt"),
       sourceFingerprint: directorDocumentFingerprint(record.document),
       requestFingerprint: JSON.stringify({
-        aspectRatio,
+        aspectRatio: captureAspectRatio,
         frameRect,
         activeCameraId: currentState.activeCameraId,
         sequence: captureRequestSequence.current,
@@ -3683,11 +3697,15 @@ export function DirectorViewport({
               key={ratio}
               type="button"
               data-director-aspect={ratio}
-              aria-pressed={aspectRatio === ratio}
-              onClick={() => setAspectRatio(ratio)}
+              // ★ Batch 860：这两组是 **clone 自己的扩展**（源站实测：底部
+              //   27 枚控件里**没有**比例按钮，源站的画幅比例只在左侧面板七格）。
+              //   ⟹ ⟹ 保留它们（不擅自删用户可见功能），但让它们与左侧面板
+              //   **共享同一个取景比例状态** ⟹ ⟹ 两处不会打架。
+              aria-pressed={frameAspectRatio === ratio}
+              onClick={() => setFrameAspectRatio(ratio)}
               className={cn(
                 "flex h-8 min-w-10 shrink-0 items-center justify-center rounded-lg text-[10px] tabular-nums text-white transition-colors hover:bg-white/8",
-                aspectRatio === ratio && "bg-white/8",
+                frameAspectRatio === ratio && "bg-white/8",
               )}
             >
               {ratio}

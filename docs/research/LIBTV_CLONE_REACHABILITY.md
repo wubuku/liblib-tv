@@ -227,6 +227,10 @@ with sync_playwright() as pw:
 | `docs/research/liblib-canvas-batch859-2026-10-01/README.md` | 本批（「全景图」「选择画幅比例」面板化 ＝ **D8 结案**）的完整取证、整改、**用户可达**与验收；★ 顺带登记 **D11**：clone 的画幅比例**不改画布宽高比**（源站 `aj` 的 value 是数值比例并写进画布状态） |
 | `docs/research/liblib-canvas-batch859-2026-10-01/negative-audit.json` | ★ **阴性对照** 9/9（每条行数中性变异先断言 SHA-256 变了 ⟹ ⟹ 跑完整门禁 ⟹ ⟹ 字节级复原） |
 | `docs/research/liblib-canvas-batch859-2026-10-01/controlled-comparison.json` | ★ **受控对照**四态 ＋ **MIX 半回退态**读数 ＋ 复原自检 |
+| `docs/research/liblib-canvas-batch860-2026-10-01/raw/source-860-frame.json` | ★ **源站实测**：「选择画幅比例」**七档逐档**的机位取景框（自适应**不在场**／21:9 1262×541／16:9 1262×710／4:3 1141×856／1:1 856×856／3:4 642×856／9:16 482×856）＋ ★ **画布三态恒为 1920×1080**（⟹ ⟹ **源站选比例不改画布**）＋ 框在机位视角下同样在场 |
+| `docs/research/liblib-canvas-batch860-2026-10-01/raw/source-860-viewport.json` | ★ 画布容器**逐条**枚举（1920×1080 恒定 ＋ `react-flow__viewport` 732×411 恒定）⟹ ⟹ 推翻「改画布宽高比」那个说法 |
+| `docs/research/liblib-canvas-batch860-2026-10-01/raw/source-860-bottombar.json` | ★ 源站视口底部 **27 枚**控件清单 ⟹ ⟹ **没有**任何比例按钮 ⟹ ⟹ clone 底部那三枚是**自己的扩展** |
+| `docs/research/liblib-canvas-batch860-2026-10-01/README.md` | 本批（画幅比例**真的驱动机位取景框**）的完整取证、整改、**用户可达**与验收；★ 顺带**改写 D11**（原说法被实测推翻） |
 | `docs/research/VERIFICATION_LEDGER.md` | 历批验收台账 |
 
 ★ ★ **每批 README 的 §「复现步骤」都写了这条链**：契约提取 → 源站实测 →

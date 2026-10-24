@@ -1,0 +1,399 @@
+{
+ "batch": 860,
+ "title": "受控对照：源码换回 HEAD ⟹ 新门禁必须翻红（证明有牙）",
+ "gates": [
+  "scripts/verify-liblib-batch860.py",
+  "scripts/verify-liblib-batch859.py",
+  "scripts/verify-liblib-batch626.py",
+  "scripts/verify-liblib-batch625.py",
+  "scripts/verify-liblib-batch590.py",
+  "scripts/verify-liblib-batch589.py"
+ ],
+ "states": [
+  "HEAD-1",
+  "HEAD-2",
+  "WORK-1",
+  "WORK-2"
+ ],
+ "src": [
+  "src/store/directorStore.ts",
+  "src/components/director/directorViewportMath.ts",
+  "src/components/director/DirectorAspectPanel.tsx",
+  "src/components/director/DirectorViewport.tsx"
+ ],
+ "restored": true,
+ "sha": {
+  "base": {
+   "src/store/directorStore.ts": "996787ec8689400c3f6461dc9b5ef5ce855a354e25a41567cfe8f0669d15024d",
+   "src/components/director/directorViewportMath.ts": "dd9d778cba63ffac5622050e2040bad4ea40e03c32d84be6592c5c2899477e8d",
+   "src/components/director/DirectorAspectPanel.tsx": "db461a00923cf0b514e0498b4fa551968c4b475ab258e06e87b258acc54f21f9",
+   "src/components/director/DirectorViewport.tsx": "b383bb38e1019884da137b96a3423bbb1bfde5f65fa8840fd39da0955841ff16"
+  },
+  "after": {
+   "src/store/directorStore.ts": "996787ec8689400c3f6461dc9b5ef5ce855a354e25a41567cfe8f0669d15024d",
+   "src/components/director/directorViewportMath.ts": "dd9d778cba63ffac5622050e2040bad4ea40e03c32d84be6592c5c2899477e8d",
+   "src/components/director/DirectorAspectPanel.tsx": "db461a00923cf0b514e0498b4fa551968c4b475ab258e06e87b258acc54f21f9",
+   "src/components/director/DirectorViewport.tsx": "b383bb38e1019884da137b96a3423bbb1bfde5f65fa8840fd39da0955841ff16"
+  }
+ },
+ "work": {
+  "once": {
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 19.3,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.5,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog"
+    ],
+    "seconds": 180.5,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 31.9,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch590.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 5.8,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch590.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 3.5,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch589.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 19.0,
+   "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1-860-2nd/verify-liblib-batch860.txt"
+  }
+ },
+ "work2": {
+  "once": {
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 19.0,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.3,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog"
+    ],
+    "seconds": 182.2,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 33.4,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch590.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 6.0,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch590.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 4.1,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch589.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 19.1,
+   "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2-860-2nd/verify-liblib-batch860.txt"
+  }
+ },
+ "head": {
+  "once": {
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 1,
+    "failed": [
+     "source:store-has-a-separate-frame-aspect-state  ⟵ store 里要有 frameAspectRatio ＋ setFrameAspectRatio",
+     "source:frame-aspect-initial-state-is-auto  ⟵ {'initial': None, 'why': '★ 初始必须是 null（＝自适应）⟹ ⟹ 与源站一致（刚打开导演台时取景框不在场）'}",
+     "source:frame-aspect-covers-the-six-source-ratios  ⟵ {'union': ''}",
+     "source:frame-aspect-values-are-numeric  ⟵ {'values': ''}",
+     "source:frame-rect-accepts-a-null-ratio  ⟵ getDirectorFrameRect 要把 null（＝自适应）当成「不画框」",
+     "source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）",
+     "source:viewport-reads-the-frame-aspect  ⟵ 视口要读 frameAspectRatio 并换算成数值比例",
+     "panel:auto-has-no-framing-box  ⟵ {'x': 347, 'y': 120, 'w': 1227, 'h': 690, 'ratio': 1.7778}",
+     "panel:auto-has-no-frame-mark  ⟵ 16:9",
+     "panel:frame-ratio-for-21:9  ⟵ {'got': 1.7778, 'want': 2.3333333333333335, 'sourceRatio': 2.3334}",
+     "panel:frame-marks-21:9  ⟵ 16:9",
+     "panel:frame-ratio-for-4:3  ⟵ {'got': 1.7778, 'want': 1.3333333333333333, 'sourceRatio': 1.3333}",
+     "panel:frame-marks-4:3  ⟵ 16:9",
+     "panel:frame-ratio-for-1:1  ⟵ {'got': 1.7778, 'want': 1.0, 'sourceRatio': 1.0}",
+     "panel:frame-marks-1:1  ⟵ 16:9",
+     "panel:frame-ratio-for-3:4  ⟵ {'got': 1.7778, 'want': 0.75, 'sourceRatio': 0.75}",
+     "panel:frame-marks-3:4  ⟵ 16:9",
+     "panel:frame-ratio-for-9:16  ⟵ {'got': 1.7778, 'want': 0.5625, 'sourceRatio': 0.5625}",
+     "panel:frame-marks-9:16  ⟵ 16:9"
+    ],
+    "seconds": 20.0,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.5,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog"
+    ],
+    "seconds": 182.3,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 32.8,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch590.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 5.9,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch590.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 4.1,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch589.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:store-has-a-separate-frame-aspect-state  ⟵ store 里要有 frameAspectRatio ＋ setFrameAspectRatio",
+    "source:frame-aspect-initial-state-is-auto  ⟵ {'initial': None, 'why': '★ 初始必须是 null（＝自适应）⟹ ⟹ 与源站一致（刚打开导演台时取景框不在场）'}",
+    "source:frame-aspect-covers-the-six-source-ratios  ⟵ {'union': ''}",
+    "source:frame-aspect-values-are-numeric  ⟵ {'values': ''}",
+    "source:frame-rect-accepts-a-null-ratio  ⟵ getDirectorFrameRect 要把 null（＝自适应）当成「不画框」",
+    "source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）",
+    "source:viewport-reads-the-frame-aspect  ⟵ 视口要读 frameAspectRatio 并换算成数值比例",
+    "panel:auto-has-no-framing-box  ⟵ {'x': 347, 'y': 120, 'w': 1227, 'h': 690, 'ratio': 1.7778}",
+    "panel:auto-has-no-frame-mark  ⟵ 16:9",
+    "panel:frame-ratio-for-21:9  ⟵ {'got': 1.7778, 'want': 2.3333333333333335, 'sourceRatio': 2.3334}",
+    "panel:frame-marks-21:9  ⟵ 16:9",
+    "panel:frame-ratio-for-4:3  ⟵ {'got': 1.7778, 'want': 1.3333333333333333, 'sourceRatio': 1.3333}",
+    "panel:frame-marks-4:3  ⟵ 16:9",
+    "panel:frame-ratio-for-1:1  ⟵ {'got': 1.7778, 'want': 1.0, 'sourceRatio': 1.0}",
+    "panel:frame-marks-1:1  ⟵ 16:9",
+    "panel:frame-ratio-for-3:4  ⟵ {'got': 1.7778, 'want': 0.75, 'sourceRatio': 0.75}",
+    "panel:frame-marks-3:4  ⟵ 16:9",
+    "panel:frame-ratio-for-9:16  ⟵ {'got': 1.7778, 'want': 0.5625, 'sourceRatio': 0.5625}",
+    "panel:frame-marks-9:16  ⟵ 16:9"
+   ],
+   "seconds": 18.9,
+   "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1-860-2nd/verify-liblib-batch860.txt"
+  }
+ },
+ "head2": {
+  "once": {
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 1,
+    "failed": [
+     "source:store-has-a-separate-frame-aspect-state  ⟵ store 里要有 frameAspectRatio ＋ setFrameAspectRatio",
+     "source:frame-aspect-initial-state-is-auto  ⟵ {'initial': None, 'why': '★ 初始必须是 null（＝自适应）⟹ ⟹ 与源站一致（刚打开导演台时取景框不在场）'}",
+     "source:frame-aspect-covers-the-six-source-ratios  ⟵ {'union': ''}",
+     "source:frame-aspect-values-are-numeric  ⟵ {'values': ''}",
+     "source:frame-rect-accepts-a-null-ratio  ⟵ getDirectorFrameRect 要把 null（＝自适应）当成「不画框」",
+     "source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）",
+     "source:viewport-reads-the-frame-aspect  ⟵ 视口要读 frameAspectRatio 并换算成数值比例",
+     "panel:auto-has-no-framing-box  ⟵ {'x': 347, 'y': 120, 'w': 1227, 'h': 690, 'ratio': 1.7778}",
+     "panel:auto-has-no-frame-mark  ⟵ 16:9",
+     "panel:frame-ratio-for-21:9  ⟵ {'got': 1.7778, 'want': 2.3333333333333335, 'sourceRatio': 2.3334}",
+     "panel:frame-marks-21:9  ⟵ 16:9",
+     "panel:frame-ratio-for-4:3  ⟵ {'got': 1.7778, 'want': 1.3333333333333333, 'sourceRatio': 1.3333}",
+     "panel:frame-marks-4:3  ⟵ 16:9",
+     "panel:frame-ratio-for-1:1  ⟵ {'got': 1.7778, 'want': 1.0, 'sourceRatio': 1.0}",
+     "panel:frame-marks-1:1  ⟵ 16:9",
+     "panel:frame-ratio-for-3:4  ⟵ {'got': 1.7778, 'want': 0.75, 'sourceRatio': 0.75}",
+     "panel:frame-marks-3:4  ⟵ 16:9",
+     "panel:frame-ratio-for-9:16  ⟵ {'got': 1.7778, 'want': 0.5625, 'sourceRatio': 0.5625}",
+     "panel:frame-marks-9:16  ⟵ 16:9"
+    ],
+    "seconds": 18.9,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.4,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog"
+    ],
+    "seconds": 184.0,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 33.6,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch590.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 5.5,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch590.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 4.2,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch589.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:store-has-a-separate-frame-aspect-state  ⟵ store 里要有 frameAspectRatio ＋ setFrameAspectRatio",
+    "source:frame-aspect-initial-state-is-auto  ⟵ {'initial': None, 'why': '★ 初始必须是 null（＝自适应）⟹ ⟹ 与源站一致（刚打开导演台时取景框不在场）'}",
+    "source:frame-aspect-covers-the-six-source-ratios  ⟵ {'union': ''}",
+    "source:frame-aspect-values-are-numeric  ⟵ {'values': ''}",
+    "source:frame-rect-accepts-a-null-ratio  ⟵ getDirectorFrameRect 要把 null（＝自适应）当成「不画框」",
+    "source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）",
+    "source:viewport-reads-the-frame-aspect  ⟵ 视口要读 frameAspectRatio 并换算成数值比例",
+    "panel:auto-has-no-framing-box  ⟵ {'x': 347, 'y': 120, 'w': 1227, 'h': 690, 'ratio': 1.7778}",
+    "panel:auto-has-no-frame-mark  ⟵ 16:9",
+    "panel:frame-ratio-for-21:9  ⟵ {'got': 1.7778, 'want': 2.3333333333333335, 'sourceRatio': 2.3334}",
+    "panel:frame-marks-21:9  ⟵ 16:9",
+    "panel:frame-ratio-for-4:3  ⟵ {'got': 1.7778, 'want': 1.3333333333333333, 'sourceRatio': 1.3333}",
+    "panel:frame-marks-4:3  ⟵ 16:9",
+    "panel:frame-ratio-for-1:1  ⟵ {'got': 1.7778, 'want': 1.0, 'sourceRatio': 1.0}",
+    "panel:frame-marks-1:1  ⟵ 16:9",
+    "panel:frame-ratio-for-3:4  ⟵ {'got': 1.7778, 'want': 0.75, 'sourceRatio': 0.75}",
+    "panel:frame-marks-3:4  ⟵ 16:9",
+    "panel:frame-ratio-for-9:16  ⟵ {'got': 1.7778, 'want': 0.5625, 'sourceRatio': 0.5625}",
+    "panel:frame-marks-9:16  ⟵ 16:9"
+   ],
+   "seconds": 19.0,
+   "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2-860-2nd/verify-liblib-batch860.txt"
+  }
+ },
+ "stableAcrossTwoRuns": true,
+ "stabilityNote": "只有新门禁 860 跑了两遍（决定性测量）；其余门禁读的是失败集合的差异",
+ "newGateHasTeeth": true,
+ "newGateFailedOnHEAD": [
+  "source:store-has-a-separate-frame-aspect-state  ⟵ store 里要有 frameAspectRatio ＋ setFrameAspectRatio",
+  "source:frame-aspect-initial-state-is-auto  ⟵ {'initial': None, 'why': '★ 初始必须是 null（＝自适应）⟹ ⟹ 与源站一致（刚打开导演台时取景框不在场）'}",
+  "source:frame-aspect-covers-the-six-source-ratios  ⟵ {'union': ''}",
+  "source:frame-aspect-values-are-numeric  ⟵ {'values': ''}",
+  "source:frame-rect-accepts-a-null-ratio  ⟵ getDirectorFrameRect 要把 null（＝自适应）当成「不画框」",
+  "source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）",
+  "source:viewport-reads-the-frame-aspect  ⟵ 视口要读 frameAspectRatio 并换算成数值比例",
+  "panel:auto-has-no-framing-box  ⟵ {'x': 347, 'y': 120, 'w': 1227, 'h': 690, 'ratio': 1.7778}",
+  "panel:auto-has-no-frame-mark  ⟵ 16:9",
+  "panel:frame-ratio-for-21:9  ⟵ {'got': 1.7778, 'want': 2.3333333333333335, 'sourceRatio': 2.3334}",
+  "panel:frame-marks-21:9  ⟵ 16:9",
+  "panel:frame-ratio-for-4:3  ⟵ {'got': 1.7778, 'want': 1.3333333333333333, 'sourceRatio': 1.3333}",
+  "panel:frame-marks-4:3  ⟵ 16:9",
+  "panel:frame-ratio-for-1:1  ⟵ {'got': 1.7778, 'want': 1.0, 'sourceRatio': 1.0}",
+  "panel:frame-marks-1:1  ⟵ 16:9",
+  "panel:frame-ratio-for-3:4  ⟵ {'got': 1.7778, 'want': 0.75, 'sourceRatio': 0.75}",
+  "panel:frame-marks-3:4  ⟵ 16:9",
+  "panel:frame-ratio-for-9:16  ⟵ {'got': 1.7778, 'want': 0.5625, 'sourceRatio': 0.5625}",
+  "panel:frame-marks-9:16  ⟵ 16:9"
+ ],
+ "newGateFailedOnWORK": [],
+ "newGateCrashOnHEAD": [],
+ "diffs": {},
+ "diffsNote": "HEAD 独有的红条 = 「本批整改掉的旧行为」；WORK 独有的红条 = 「本批引入的新问题」（必须为空）",
+ "mixNote": "MIX 半回退态：只把 DirectorAspectPanel.tsx 换回 HEAD（组件内 useState 的老写法）、**保留** store 与 math 的新代码 ⟹ ⟹ 正好隔离出「面板没接 store」这一条：store 那几条静态判据**不该红**、运行时判据**必须红**",
+ "mix": {
+  "once": {
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 1,
+    "failed": [
+     "source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）",
+     "panel:frame-exists-for-21:9  ⟵ None",
+     "panel:frame-marks-21:9  ⟵ None",
+     "panel:frame-exists-for-16:9  ⟵ None",
+     "panel:frame-marks-16:9  ⟵ None",
+     "panel:frame-exists-for-4:3  ⟵ None",
+     "panel:frame-marks-4:3  ⟵ None",
+     "panel:frame-exists-for-1:1  ⟵ None",
+     "panel:frame-marks-1:1  ⟵ None",
+     "panel:frame-exists-for-3:4  ⟵ None",
+     "panel:frame-marks-3:4  ⟵ None",
+     "panel:frame-exists-for-9:16  ⟵ None",
+     "panel:frame-marks-9:16  ⟵ None"
+    ],
+    "seconds": 19.5,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/MIX/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.4,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/MIX/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch590.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 5.9,
+    "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/MIX/verify-liblib-batch590.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）",
+    "panel:frame-exists-for-21:9  ⟵ None",
+    "panel:frame-marks-21:9  ⟵ None",
+    "panel:frame-exists-for-16:9  ⟵ None",
+    "panel:frame-marks-16:9  ⟵ None",
+    "panel:frame-exists-for-4:3  ⟵ None",
+    "panel:frame-marks-4:3  ⟵ None",
+    "panel:frame-exists-for-1:1  ⟵ None",
+    "panel:frame-marks-1:1  ⟵ None",
+    "panel:frame-exists-for-3:4  ⟵ None",
+    "panel:frame-marks-3:4  ⟵ None",
+    "panel:frame-exists-for-9:16  ⟵ None",
+    "panel:frame-marks-9:16  ⟵ None"
+   ],
+   "seconds": 19.0,
+   "log": "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/MIX-860-2nd/verify-liblib-batch860.txt"
+  }
+ },
+ "mixStable": true,
+ "mixRestored": true,
+ "mixCrash": []
+}

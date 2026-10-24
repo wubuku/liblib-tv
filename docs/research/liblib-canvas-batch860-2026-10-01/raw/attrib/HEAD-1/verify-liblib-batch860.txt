@@ -1,0 +1,21 @@
+
+59 判据，19 失败
+  FAILED: source:store-has-a-separate-frame-aspect-state  ⟵ store 里要有 frameAspectRatio ＋ setFrameAspectRatio
+  FAILED: source:frame-aspect-initial-state-is-auto  ⟵ {'initial': None, 'why': '★ 初始必须是 null（＝自适应）⟹ ⟹ 与源站一致（刚打开导演台时取景框不在场）'}
+  FAILED: source:frame-aspect-covers-the-six-source-ratios  ⟵ {'union': ''}
+  FAILED: source:frame-aspect-values-are-numeric  ⟵ {'values': ''}
+  FAILED: source:frame-rect-accepts-a-null-ratio  ⟵ getDirectorFrameRect 要把 null（＝自适应）当成「不画框」
+  FAILED: source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）
+  FAILED: source:viewport-reads-the-frame-aspect  ⟵ 视口要读 frameAspectRatio 并换算成数值比例
+  FAILED: panel:auto-has-no-framing-box  ⟵ {'x': 347, 'y': 120, 'w': 1227, 'h': 690, 'ratio': 1.7778}
+  FAILED: panel:auto-has-no-frame-mark  ⟵ 16:9
+  FAILED: panel:frame-ratio-for-21:9  ⟵ {'got': 1.7778, 'want': 2.3333333333333335, 'sourceRatio': 2.3334}
+  FAILED: panel:frame-marks-21:9  ⟵ 16:9
+  FAILED: panel:frame-ratio-for-4:3  ⟵ {'got': 1.7778, 'want': 1.3333333333333333, 'sourceRatio': 1.3333}
+  FAILED: panel:frame-marks-4:3  ⟵ 16:9
+  FAILED: panel:frame-ratio-for-1:1  ⟵ {'got': 1.7778, 'want': 1.0, 'sourceRatio': 1.0}
+  FAILED: panel:frame-marks-1:1  ⟵ 16:9
+  FAILED: panel:frame-ratio-for-3:4  ⟵ {'got': 1.7778, 'want': 0.75, 'sourceRatio': 0.75}
+  FAILED: panel:frame-marks-3:4  ⟵ 16:9
+  FAILED: panel:frame-ratio-for-9:16  ⟵ {'got': 1.7778, 'want': 0.5625, 'sourceRatio': 0.5625}
+  FAILED: panel:frame-marks-9:16  ⟵ 16:9

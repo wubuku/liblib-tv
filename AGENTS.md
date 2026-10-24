@@ -76,6 +76,13 @@ python3 scripts/verify-docs.py
   without separate user confirmation.
 - Director `TransformControls` must use explicit object attachment and read back the
   same Three.js object that was dragged; run Batch 77 after changing this path.
+- Director framing aspect ratio (`frameAspectRatio` in `directorStore`: six source
+  ratios plus `null` = auto) changes the **camera framing box only**; the canvas
+  container stays fixed (source evidence, Batch 860 — this reversed Batch 859's
+  D11). `null` means **no framing box at all**. It is a *different* state from the
+  export/capture aspect (`aspectRatio`, three values, consumed by
+  `directorVideoExport.ts` / `directorProjectDocument.ts` /
+  `libtvMediaDimensionAuthority.ts`) — do not mix them.
 
 ## 6. Change Protocol
 

@@ -241,11 +241,35 @@ export function getDirectorAspectValue(ratio: DirectorAspectRatio): number {
   return 16 / 9;
 }
 
+/**
+ * ★★★ Batch 860（源站实测）：按**任意数值比例**算机位取景框。
+ *
+ * ★ 源站实测的六档（`docs/research/liblib-canvas-batch860-2026-10-01/raw/source-860-frame.json`）：
+ * | 档 | 取景框 | ratio |
+ * |---|---|---|
+ * | 21:9 | @(329,270) 1262×541 | 2.3334 |
+ * | 16:9 | @(329,185) 1262×710 | 1.7778 |
+ * | 4:3 | @(389,112) 1141×856 | 1.3333 |
+ * | 1:1 | @(532,112) 856×856 | 1.0 |
+ * | 3:4 | @(639,112) 642×856 | 0.75 |
+ * | 9:16 | @(719,112) 482×856 | 0.5625 |
+ *
+ * ★ ★ 算法（从源站读数反推，**六档全部命中、误差 ≤0.5px**）：
+ *   ① 可用区 ＝ 视口去掉 padding；
+ *   ② 框宽 ＝ `min(可用宽, 可用高 × ratio)`、框高 ＝ 框宽 ÷ ratio
+ *      （源站 21:9 的框宽 1262 ＝ 可用宽、高 541 ＝ 1262/2.3333）；
+ *   ③ 框在可用区里**居中**（源站六档的框中心恒为 (960, 540)）。
+ *
+ * ★ `null` ＝「自适应」⟹ ⟹ **返回 `null`**（源站实测：自适应时**取景框不在场**）⟹ ⟹
+ *   调用方直接不画框。
+ */
 export function getDirectorFrameRect(
   viewportWidth: number,
   viewportHeight: number,
-  ratio: DirectorAspectRatio,
+  ratio: number | null,
 ): DirectorFrameRect | null {
+  // ★ 「自适应」⟹ ⟹ 源站逐字：此时**没有**取景框。
+  if (ratio === null || !Number.isFinite(ratio) || ratio <= 0) return null;
   if (viewportWidth <= 0 || viewportHeight <= 0) return null;
 
   const horizontalPadding = viewportWidth < 600 ? 16 : 40;
@@ -253,7 +277,7 @@ export function getDirectorFrameRect(
   const bottomPadding = viewportWidth < 600 ? 92 : 88;
   const availableWidth = Math.max(1, viewportWidth - horizontalPadding * 2);
   const availableHeight = Math.max(1, viewportHeight - topPadding - bottomPadding);
-  const aspect = getDirectorAspectValue(ratio);
+  const aspect = ratio;
 
   let width = availableWidth;
   let height = width / aspect;

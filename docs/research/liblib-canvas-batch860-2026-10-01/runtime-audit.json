@@ -1,0 +1,481 @@
+{
+ "判据数": 59,
+ "失败": [],
+ "audit": {
+  "batch": 860,
+  "title": "画幅比例真的驱动机位取景框（七档 ＋ 自适应＝无框）",
+  "逐档": {
+   "自适应": {
+    "取景框": null,
+    "取景框比例标记": null,
+    "取景框定位容器": null,
+    "画布容器": null,
+    "reactflow视口": {
+     "x": -584,
+     "y": 261,
+     "w": 1010,
+     "h": 568,
+     "ratio": 1.7778
+    },
+    "底部比例按钮": [
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     }
+    ],
+    "画幅格": [
+     {
+      "text": "自适应",
+      "pressed": "true"
+     },
+     {
+      "text": "21:9",
+      "pressed": "false"
+     },
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "4:3",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     },
+     {
+      "text": "3:4",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     }
+    ]
+   },
+   "21:9": {
+    "取景框": {
+     "x": 321,
+     "y": 191,
+     "w": 1278,
+     "h": 548,
+     "ratio": 2.3334
+    },
+    "取景框比例标记": "21:9",
+    "取景框定位容器": {
+     "x": 281,
+     "y": 88,
+     "w": 1358,
+     "h": 810,
+     "ratio": 1.6765
+    },
+    "画布容器": null,
+    "reactflow视口": {
+     "x": -584,
+     "y": 261,
+     "w": 1010,
+     "h": 568,
+     "ratio": 1.7778
+    },
+    "底部比例按钮": [
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     }
+    ],
+    "画幅格": [
+     {
+      "text": "自适应",
+      "pressed": "false"
+     },
+     {
+      "text": "21:9",
+      "pressed": "true"
+     },
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "4:3",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     },
+     {
+      "text": "3:4",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     }
+    ]
+   },
+   "16:9": {
+    "取景框": {
+     "x": 347,
+     "y": 120,
+     "w": 1227,
+     "h": 690,
+     "ratio": 1.7778
+    },
+    "取景框比例标记": "16:9",
+    "取景框定位容器": {
+     "x": 281,
+     "y": 88,
+     "w": 1358,
+     "h": 810,
+     "ratio": 1.6765
+    },
+    "画布容器": null,
+    "reactflow视口": {
+     "x": -584,
+     "y": 261,
+     "w": 1010,
+     "h": 568,
+     "ratio": 1.7778
+    },
+    "底部比例按钮": [
+     {
+      "text": "16:9",
+      "pressed": "true"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     }
+    ],
+    "画幅格": [
+     {
+      "text": "自适应",
+      "pressed": "false"
+     },
+     {
+      "text": "21:9",
+      "pressed": "false"
+     },
+     {
+      "text": "16:9",
+      "pressed": "true"
+     },
+     {
+      "text": "4:3",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     },
+     {
+      "text": "3:4",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     }
+    ]
+   },
+   "4:3": {
+    "取景框": {
+     "x": 500,
+     "y": 120,
+     "w": 920,
+     "h": 690,
+     "ratio": 1.3333
+    },
+    "取景框比例标记": "4:3",
+    "取景框定位容器": {
+     "x": 281,
+     "y": 88,
+     "w": 1358,
+     "h": 810,
+     "ratio": 1.6765
+    },
+    "画布容器": null,
+    "reactflow视口": {
+     "x": -584,
+     "y": 261,
+     "w": 1010,
+     "h": 568,
+     "ratio": 1.7778
+    },
+    "底部比例按钮": [
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     }
+    ],
+    "画幅格": [
+     {
+      "text": "自适应",
+      "pressed": "false"
+     },
+     {
+      "text": "21:9",
+      "pressed": "false"
+     },
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "4:3",
+      "pressed": "true"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     },
+     {
+      "text": "3:4",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     }
+    ]
+   },
+   "1:1": {
+    "取景框": {
+     "x": 615,
+     "y": 120,
+     "w": 690,
+     "h": 690,
+     "ratio": 1
+    },
+    "取景框比例标记": "1:1",
+    "取景框定位容器": {
+     "x": 281,
+     "y": 88,
+     "w": 1358,
+     "h": 810,
+     "ratio": 1.6765
+    },
+    "画布容器": null,
+    "reactflow视口": {
+     "x": -584,
+     "y": 261,
+     "w": 1010,
+     "h": 568,
+     "ratio": 1.7778
+    },
+    "底部比例按钮": [
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "true"
+     }
+    ],
+    "画幅格": [
+     {
+      "text": "自适应",
+      "pressed": "false"
+     },
+     {
+      "text": "21:9",
+      "pressed": "false"
+     },
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "4:3",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "true"
+     },
+     {
+      "text": "3:4",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     }
+    ]
+   },
+   "3:4": {
+    "取景框": {
+     "x": 701,
+     "y": 120,
+     "w": 518,
+     "h": 690,
+     "ratio": 0.75
+    },
+    "取景框比例标记": "3:4",
+    "取景框定位容器": {
+     "x": 281,
+     "y": 88,
+     "w": 1358,
+     "h": 810,
+     "ratio": 1.6765
+    },
+    "画布容器": null,
+    "reactflow视口": {
+     "x": -584,
+     "y": 261,
+     "w": 1010,
+     "h": 568,
+     "ratio": 1.7778
+    },
+    "底部比例按钮": [
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     }
+    ],
+    "画幅格": [
+     {
+      "text": "自适应",
+      "pressed": "false"
+     },
+     {
+      "text": "21:9",
+      "pressed": "false"
+     },
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "4:3",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     },
+     {
+      "text": "3:4",
+      "pressed": "true"
+     },
+     {
+      "text": "9:16",
+      "pressed": "false"
+     }
+    ]
+   },
+   "9:16": {
+    "取景框": {
+     "x": 766,
+     "y": 120,
+     "w": 388,
+     "h": 690,
+     "ratio": 0.5625
+    },
+    "取景框比例标记": "9:16",
+    "取景框定位容器": {
+     "x": 281,
+     "y": 88,
+     "w": 1358,
+     "h": 810,
+     "ratio": 1.6765
+    },
+    "画布容器": null,
+    "reactflow视口": {
+     "x": -584,
+     "y": 261,
+     "w": 1010,
+     "h": 568,
+     "ratio": 1.7778
+    },
+    "底部比例按钮": [
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "true"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     }
+    ],
+    "画幅格": [
+     {
+      "text": "自适应",
+      "pressed": "false"
+     },
+     {
+      "text": "21:9",
+      "pressed": "false"
+     },
+     {
+      "text": "16:9",
+      "pressed": "false"
+     },
+     {
+      "text": "4:3",
+      "pressed": "false"
+     },
+     {
+      "text": "1:1",
+      "pressed": "false"
+     },
+     {
+      "text": "3:4",
+      "pressed": "false"
+     },
+     {
+      "text": "9:16",
+      "pressed": "true"
+     }
+    ]
+   }
+  }
+ }
+}

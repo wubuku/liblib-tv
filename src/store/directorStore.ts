@@ -169,6 +169,73 @@ export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
 export type DirectorTransformMode = "translate" | "rotate" | "scale";
 export type DirectorAspectRatio = "16:9" | "9:16" | "1:1";
+
+/**
+ * ★★★ Batch 860（源站实测）：**取景比例**（机位取景框的比例）。
+ *
+ * ★ ★★ 为什么它是**另一个字段**、而不是复用 `DirectorAspectRatio`：
+ *
+ *   源站逐字（chunk `/tmp/liblib_srcjs2/0fmehki05gkzw.js.js`）：
+ *   ```js
+ *   o$ = useCallback(e => {
+ *     tn(e);                                                // 写本地 ref
+ *     let t = e1 || rL.cameras[0]?.id;                      // 当前机位
+ *     t && n4(t, "aspect_ratio", (0,nZ.R)(e), "right_panel");  // ★ 发事件给机位
+ *   }, [e1, rL.cameras, n4])
+ *   ```
+ *   ⟹ ⟹ 源站把「**机位取景比例**」发给**机位**，与「输出/截图比例」是**两件事**。
+ *
+ *   ★ 源站实测（`docs/research/liblib-canvas-batch860-2026-10-01/raw/source-860-frame.json`）：
+ *   选比例**【不改画布】**（画布容器三态恒为 1920×1080）
+ *   ⟹ ⟹ 改的是**机位取景框**，七档逐档实测：
+ *   | 档 | 取景框 | ratio |
+ *   |---|---|---|
+ *   | 自适应 | **不在场** | — |
+ *   | 21:9 | @(329,270) 1262×541 | 2.3334 |
+ *   | 16:9 | @(329,185) 1262×710 | 1.7778 |
+ *   | 4:3 | @(389,112) 1141×856 | 1.3333 |
+ *   | 1:1 | @(532,112) 856×856 | 1.0 |
+ *   | 3:4 | @(639,112) 642×856 | 0.75 |
+ *   | 9:16 | @(719,112) 482×856 | 0.5625 |
+ *
+ * ★ 而 clone 原来的 `aspectRatio`（`"16:9"|"9:16"|"1:1"`）是**截图/导出**用的
+ *   （`directorVideoExport.ts` 的 `outputDimensions[request.aspectRatio]`、
+ *   `directorProjectDocument.ts` 的 `outputPreferences.aspectRatio`）
+ *   ⟹ ⟹ **两者语义不同、档位也不同**（源站七档 vs clone 三档）
+ *   ⟹ ⟹ **不能**复用同一个字段（会把导出格式改坏）。
+ */
+export type DirectorFrameAspectRatio =
+  | "21:9"
+  | "16:9"
+  | "4:3"
+  | "1:1"
+  | "3:4"
+  | "9:16";
+
+/** ★ 取景比例的**数值表**（源站逐字 `aj`：value 是数值比例）。`null` ＝「自适应」。 */
+export const DIRECTOR_FRAME_ASPECT_VALUES: Record<
+  DirectorFrameAspectRatio,
+  number
+> = {
+  "21:9": 21 / 9,
+  "16:9": 16 / 9,
+  "4:3": 4 / 3,
+  "1:1": 1,
+  "3:4": 3 / 4,
+  "9:16": 9 / 16,
+};
+
+/** ★ 源站逐字的七档顺序（`aj` 的数组顺序；第一项 `value:null` ＝「自适应」）。 */
+export const DIRECTOR_FRAME_ASPECT_ORDER = [
+  null,
+  "21:9",
+  "16:9",
+  "4:3",
+  "1:1",
+  "3:4",
+  "9:16",
+] as const;
+
 export type DirectorObjectKind = "character" | "prop" | "camera";
 export type DirectorPrimitive =
   | "character"
@@ -604,6 +671,11 @@ interface DirectorState {
   viewMode: DirectorViewMode;
   transformMode: DirectorTransformMode;
   aspectRatio: DirectorAspectRatio;
+  // ★★★ Batch 860：**取景比例**（机位取景框）⟹ ⟹ 与上面的 `aspectRatio`
+  //   （截图/导出用）是**两件事**（源站逐字：`aspect_ratio` 事件发给**机位**）。
+  //   ★ `null` ＝「自适应」⟹ ⟹ 源站实测：**自适应时取景框不在场**。
+  //   ★ 刻意**不进持久化 schema**（与 `timelinePanelOpen` 同款：视图态）。
+  frameAspectRatio: DirectorFrameAspectRatio | null;
   showThirds: boolean;
   viewportPanelsCollapsed: boolean;
   // Batch 608（视图态，刻意不进持久化 schema —— 与 `viewportPanelsCollapsed`
@@ -727,6 +799,8 @@ interface DirectorState {
   setViewMode: (mode: DirectorViewMode) => void;
   setTransformMode: (mode: DirectorTransformMode) => void;
   setAspectRatio: (ratio: DirectorAspectRatio) => void;
+  /** ★ Batch 860：设**取景比例**（`null` ＝ 自适应 ⟹ ⟹ 取景框不在场）。 */
+  setFrameAspectRatio: (ratio: DirectorFrameAspectRatio | null) => void;
   toggleThirds: () => void;
   toggleViewportPanelsCollapsed: () => void;
   setViewportPanelsCollapsed: (collapsed: boolean) => void;
@@ -3110,6 +3184,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   viewMode: "director",
   transformMode: "translate",
   aspectRatio: "16:9",
+  // ★ Batch 860：初始取景比例 ＝ 「自适应」⟹ ⟹ 与源站一致（源站实测：
+  //   刚打开导演台时**取景框不在场**）。
+  frameAspectRatio: null,
   showThirds: false,
   viewportPanelsCollapsed: false,
   timelinePanelOpen: true,
@@ -5699,6 +5776,9 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   setTransformMode: (mode) => set({ transformMode: mode }),
 
   setAspectRatio: (ratio) => set({ aspectRatio: ratio }),
+
+  // ★ Batch 860：取景比例 ⟹ ⟹ 只驱动**机位取景框**，不碰导出链。
+  setFrameAspectRatio: (ratio) => set({ frameAspectRatio: ratio }),
 
   toggleThirds: () => set((state) => ({ showThirds: !state.showThirds })),
 

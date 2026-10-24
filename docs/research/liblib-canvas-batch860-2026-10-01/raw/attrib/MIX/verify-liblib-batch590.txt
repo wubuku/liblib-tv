@@ -1,0 +1,1 @@
+Batch 590 verification passed: 85 checks, 0 diagnostics. Ratio cards match the measured 104x72 / radius 12 / per-ratio glyph boxes, 几何模型 opens its eight-option submenu, and 群众 (3x3) opens the real dialog and commits. See runtime-audit.json.

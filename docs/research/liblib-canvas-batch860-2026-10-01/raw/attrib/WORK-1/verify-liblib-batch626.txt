@@ -1,0 +1,122 @@
+  PASS overlay-present/1920x1150/export-panel  box[1626, 702, 286, 267]
+  PASS no-panel-paints-above/1920x1150/export-panel
+  PASS live-controls-reachable/1920x1150/export-panel  5 live
+  PASS overlay-present/1920x1150/tree-context-menu  box[164, 216, 128, 170]
+  PASS no-panel-paints-above/1920x1150/tree-context-menu
+  PASS live-controls-reachable/1920x1150/tree-context-menu  5 live
+  PASS overlay-present/1920x1150/ai-import-modal  box[680, 306, 560, 539]
+  PASS no-panel-paints-above/1920x1150/ai-import-modal
+  PASS live-controls-reachable/1920x1150/ai-import-modal  6 live
+  PASS overlay-present/1920x1150/crowd-dialog  box[280, 388, 220, 204]
+  PASS no-panel-paints-above/1920x1150/crowd-dialog
+  PASS live-controls-reachable/1920x1150/crowd-dialog  5 live
+  PASS overlay-present/1920x1150/camera-fov-help-tooltip  box[1656, 668, 208, 68]
+  PASS no-panel-paints-above/1920x1150/camera-fov-help-tooltip
+  PASS live-controls-reachable/1920x1150/camera-fov-help-tooltip  0 live
+  PASS overlay-present/1920x1150/camera-preset-panel  box[312, 677, 304, 292]
+  PASS no-panel-paints-above/1920x1150/camera-preset-panel
+  PASS live-controls-reachable/1920x1150/camera-preset-panel  10 live
+  PASS overlay-present/1920x1150/motion-path-menu  box[389, 938, 176, 204]
+  PASS no-panel-paints-above/1920x1150/motion-path-menu
+  PASS live-controls-reachable/1920x1150/motion-path-menu  5 live
+  PASS overlay-present/1440x900/export-panel  box[1146, 452, 286, 267]
+  PASS no-panel-paints-above/1440x900/export-panel
+  PASS live-controls-reachable/1440x900/export-panel  5 live
+  PASS overlay-present/1440x900/tree-context-menu  box[164, 216, 128, 170]
+  PASS no-panel-paints-above/1440x900/tree-context-menu
+  PASS live-controls-reachable/1440x900/tree-context-menu  5 live
+  PASS overlay-present/1440x900/ai-import-modal  box[440, 181, 560, 539]
+  PASS no-panel-paints-above/1440x900/ai-import-modal
+  PASS live-controls-reachable/1440x900/ai-import-modal  6 live
+  PASS overlay-present/1440x900/crowd-dialog  box[280, 388, 220, 204]
+  PASS no-panel-paints-above/1440x900/crowd-dialog
+  PASS live-controls-reachable/1440x900/crowd-dialog  5 live
+  PASS overlay-present/1440x900/camera-fov-help-tooltip  box[1176, 418, 208, 68]
+  PASS no-panel-paints-above/1440x900/camera-fov-help-tooltip
+  PASS live-controls-reachable/1440x900/camera-fov-help-tooltip  0 live
+  PASS overlay-present/1440x900/camera-preset-panel  box[312, 427, 304, 292]
+  PASS no-panel-paints-above/1440x900/camera-preset-panel
+  PASS live-controls-reachable/1440x900/camera-preset-panel  10 live
+  PASS overlay-present/1440x900/motion-path-menu  box[389, 688, 176, 204]
+  PASS no-panel-paints-above/1440x900/motion-path-menu
+  PASS live-controls-reachable/1440x900/motion-path-menu  5 live
+  PASS overlay-present/1280x720/export-panel  box[986, 272, 286, 267]
+  PASS no-panel-paints-above/1280x720/export-panel
+  PASS live-controls-reachable/1280x720/export-panel  5 live
+  PASS overlay-present/1280x720/tree-context-menu  box[164, 216, 128, 170]
+  PASS no-panel-paints-above/1280x720/tree-context-menu
+  PASS live-controls-reachable/1280x720/tree-context-menu  5 live
+  PASS overlay-present/1280x720/ai-import-modal  box[360, 91, 560, 539]
+  PASS no-panel-paints-above/1280x720/ai-import-modal
+  PASS live-controls-reachable/1280x720/ai-import-modal  6 live
+  PASS overlay-present/1280x720/crowd-dialog  box[280, 388, 220, 204]
+  PASS no-panel-paints-above/1280x720/crowd-dialog
+  FAIL live-controls-reachable/1280x720/crowd-dialog  [{'label': '间距', 'why': 'occluded', 'by': 'button.pointer-events-auto'}]
+  PASS overlay-present/1280x720/camera-fov-help-tooltip  box[1016, 263, 208, 68]
+  PASS no-panel-paints-above/1280x720/camera-fov-help-tooltip
+  PASS live-controls-reachable/1280x720/camera-fov-help-tooltip  0 live
+  PASS overlay-present/1280x720/camera-preset-panel  box[312, 247, 304, 292]
+  PASS no-panel-paints-above/1280x720/camera-preset-panel
+  PASS live-controls-reachable/1280x720/camera-preset-panel  10 live
+  PASS overlay-present/1280x720/motion-path-menu  box[389, 508, 176, 204]
+  PASS no-panel-paints-above/1280x720/motion-path-menu
+  PASS live-controls-reachable/1280x720/motion-path-menu  5 live
+  PASS fit-in-viewport/1920x900/motion-path-menu  overflow b0 r-1347 box[389, 688, 176, 204]
+  PASS live-controls-reachable/1920x900/motion-path-menu  5 live
+  PASS fit-in-viewport/1920x540/motion-path-menu  overflow b0 r-1347 box[389, 328, 176, 204]
+  PASS live-controls-reachable/1920x540/motion-path-menu  5 live
+  PASS fit-in-viewport/1280x640/motion-path-menu  overflow b0 r-707 box[389, 428, 176, 204]
+  PASS live-controls-reachable/1280x640/motion-path-menu  5 live
+  PASS side-panel-present/1920x1150/add-character-panel  panel missing
+  PASS side-panel-fits-viewport/1920x1150/add-character-panel  panel=[48, 52, 232, 1098]
+  PASS side-panel-list-is-scrollable/1920x1150/add-character-panel  overflowY=auto
+  PASS side-panel-geometry-reachable-by-scrolling/1920x1150/add-character-panel  visible=True hittable=True coveredByTimeline=False timelineTop=968 scrollH=1050 clientH=1050
+  PASS side-panel-present/1440x900/add-character-panel  panel missing
+  PASS side-panel-fits-viewport/1440x900/add-character-panel  panel=[48, 52, 232, 848]
+  PASS side-panel-list-is-scrollable/1440x900/add-character-panel  overflowY=auto
+  PASS side-panel-geometry-reachable-by-scrolling/1440x900/add-character-panel  visible=True hittable=True coveredByTimeline=False timelineTop=718 scrollH=800 clientH=800
+  PASS side-panel-present/1280x720/add-character-panel  panel missing
+  PASS side-panel-fits-viewport/1280x720/add-character-panel  panel=[48, 52, 232, 668]
+  PASS side-panel-list-is-scrollable/1280x720/add-character-panel  overflowY=auto
+  PASS side-panel-geometry-reachable-by-scrolling/1280x720/add-character-panel  visible=True hittable=False coveredByTimeline=True timelineTop=538 scrollH=620 clientH=620
+  PASS side-panel-present/1280x540/add-character-panel  TimeoutError: Locator.click: Timeout 10000ms exceeded.
+Call log:
+  - waiting for locator("[data-director-character-option='geometry']"
+  PASS side-panel-fits-viewport/1280x540/add-character-panel  panel=[48, 52, 232, 488]
+  PASS side-panel-list-is-scrollable/1280x540/add-character-panel  overflowY=auto
+  PASS side-panel-unhittable-row-is-the-timeline/1280x540/add-character-panel  timelineTop=358 rowRect=[56, 420, 216, 32] rowFound=True coveredByTimeline=True timelineRect=[0, 358, 1280, 182] listScrollTop=0 listScrollHeight=440 listClientHeight=440
+  PASS mode-panel-present/1920x1150/panorama-panel  panel missing
+  PASS mode-panel-is-in-the-column/1920x1150/panorama-panel  {'insideAside': True, 'parentIsBody': False}
+  PASS mode-panel-column-geometry/1920x1150/panorama-panel  {'panel': {'x': 48, 'y': 52, 'w': 232, 'h': 1098, 'right': 280, 'bottom': 1150}, 'title': {'x': 48, 'y': 52, 'w': 232, 'h': 48, 'right': 280, 'bottom': 100}, 'font': '12px'}
+  PASS mode-panel-items-are-laid-out/1920x1150/panorama-panel  {'items': 3, 'last': {'x': 56, 'y': 164, 'w': 216, 'h': 32}}
+  PASS mode-panel-present/1440x900/panorama-panel  panel missing
+  PASS mode-panel-is-in-the-column/1440x900/panorama-panel  {'insideAside': True, 'parentIsBody': False}
+  PASS mode-panel-column-geometry/1440x900/panorama-panel  {'panel': {'x': 48, 'y': 52, 'w': 232, 'h': 848, 'right': 280, 'bottom': 900}, 'title': {'x': 48, 'y': 52, 'w': 232, 'h': 48, 'right': 280, 'bottom': 100}, 'font': '12px'}
+  PASS mode-panel-items-are-laid-out/1440x900/panorama-panel  {'items': 3, 'last': {'x': 56, 'y': 164, 'w': 216, 'h': 32}}
+  PASS mode-panel-present/1280x720/panorama-panel  panel missing
+  PASS mode-panel-is-in-the-column/1280x720/panorama-panel  {'insideAside': True, 'parentIsBody': False}
+  PASS mode-panel-column-geometry/1280x720/panorama-panel  {'panel': {'x': 48, 'y': 52, 'w': 232, 'h': 668, 'right': 280, 'bottom': 720}, 'title': {'x': 48, 'y': 52, 'w': 232, 'h': 48, 'right': 280, 'bottom': 100}, 'font': '12px'}
+  PASS mode-panel-items-are-laid-out/1280x720/panorama-panel  {'items': 3, 'last': {'x': 56, 'y': 164, 'w': 216, 'h': 32}}
+  PASS mode-panel-present/1280x540/panorama-panel  panel missing
+  PASS mode-panel-is-in-the-column/1280x540/panorama-panel  {'insideAside': True, 'parentIsBody': False}
+  PASS mode-panel-column-geometry/1280x540/panorama-panel  {'panel': {'x': 48, 'y': 52, 'w': 232, 'h': 488, 'right': 280, 'bottom': 540}, 'title': {'x': 48, 'y': 52, 'w': 232, 'h': 48, 'right': 280, 'bottom': 100}, 'font': '12px'}
+  PASS mode-panel-items-are-laid-out/1280x540/panorama-panel  {'items': 3, 'last': {'x': 56, 'y': 164, 'w': 216, 'h': 32}}
+  PASS mode-panel-present/1920x1150/aspect-panel  panel missing
+  PASS mode-panel-is-in-the-column/1920x1150/aspect-panel  {'insideAside': True, 'parentIsBody': False}
+  PASS mode-panel-column-geometry/1920x1150/aspect-panel  {'panel': {'x': 48, 'y': 52, 'w': 232, 'h': 1098, 'right': 280, 'bottom': 1150}, 'title': {'x': 48, 'y': 52, 'w': 232, 'h': 48, 'right': 280, 'bottom': 100}, 'font': '12px'}
+  PASS mode-panel-items-are-laid-out/1920x1150/aspect-panel  {'items': 7, 'last': {'x': 56, 'y': 340, 'w': 104, 'h': 72}}
+  PASS mode-panel-present/1440x900/aspect-panel  panel missing
+  PASS mode-panel-is-in-the-column/1440x900/aspect-panel  {'insideAside': True, 'parentIsBody': False}
+  PASS mode-panel-column-geometry/1440x900/aspect-panel  {'panel': {'x': 48, 'y': 52, 'w': 232, 'h': 848, 'right': 280, 'bottom': 900}, 'title': {'x': 48, 'y': 52, 'w': 232, 'h': 48, 'right': 280, 'bottom': 100}, 'font': '12px'}
+  PASS mode-panel-items-are-laid-out/1440x900/aspect-panel  {'items': 7, 'last': {'x': 56, 'y': 340, 'w': 104, 'h': 72}}
+  PASS mode-panel-present/1280x720/aspect-panel  panel missing
+  PASS mode-panel-is-in-the-column/1280x720/aspect-panel  {'insideAside': True, 'parentIsBody': False}
+  PASS mode-panel-column-geometry/1280x720/aspect-panel  {'panel': {'x': 48, 'y': 52, 'w': 232, 'h': 668, 'right': 280, 'bottom': 720}, 'title': {'x': 48, 'y': 52, 'w': 232, 'h': 48, 'right': 280, 'bottom': 100}, 'font': '12px'}
+  PASS mode-panel-items-are-laid-out/1280x720/aspect-panel  {'items': 7, 'last': {'x': 56, 'y': 340, 'w': 104, 'h': 72}}
+  PASS mode-panel-present/1280x540/aspect-panel  panel missing
+  PASS mode-panel-is-in-the-column/1280x540/aspect-panel  {'insideAside': True, 'parentIsBody': False}
+  PASS mode-panel-column-geometry/1280x540/aspect-panel  {'panel': {'x': 48, 'y': 52, 'w': 232, 'h': 488, 'right': 280, 'bottom': 540}, 'title': {'x': 48, 'y': 52, 'w': 232, 'h': 48, 'right': 280, 'bottom': 100}, 'font': '12px'}
+  PASS mode-panel-items-are-laid-out/1280x540/aspect-panel  {'items': 7, 'last': {'x': 56, 'y': 340, 'w': 104, 'h': 72}}
+
+117 checks, 1 failures
+  FAILED: live-controls-reachable/1280x720/crowd-dialog

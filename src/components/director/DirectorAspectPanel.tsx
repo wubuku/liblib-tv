@@ -39,7 +39,7 @@
 //   clone 的 store 里那个 `aspectRatio` 是**截图/导出**用的三值
 //   （`"16:9"|"9:16"|"1:1"`），**与画布宽高比不是一回事** ⟹ ⟹
 //   本组件的选择**只改面板里的高亮**，**不改画布** ⟹ ⟹ 登记为 **D11**。
-import { useState } from "react";
+import { useDirectorStore } from "@/store/directorStore";
 import { cn } from "@/lib/utils";
 
 // ★ 源站逐字（`aO`）：标题条。
@@ -54,6 +54,7 @@ const CELL_CLASS =
   "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35";
 
 // ★ 源站的七个选项（逐字顺序 ＋ 逐字文本；第一项文本来自 i18n 兜底）
+//   ★ `null` 那一项＝源站 `aj` 的 `{label:null,value:null}` ⟹ ⟹ 「自适应」。
 const aspectRatios = [
   "自适应",
   "21:9",
@@ -78,15 +79,19 @@ const ASPECT_GLYPH: Record<(typeof aspectRatios)[number], string> = {
 };
 
 export function DirectorAspectPanel({ active }: { active: boolean }) {
-  // ★ 选择状态留在本组件里（组件**常驻挂载** ⟹ 切到别的模式再切回来，
-  //   选中项还在）⟹ ⟹ 与源站「切 `z` 会重置子菜单、但比例是画布状态」的
-  //   区别见 D11。
-  const [aspectRatio, setAspectRatio] = useState<string>("自适应");
+  // ★★★ Batch 860：**接到 store**（此前是组件内 `useState` ⟹ ⟹ 点哪档都不生效）。
+  //   ★ 源站逐字：点比例 ⟹ ⟹ `d(e.value)` ⟹ ⟹ 写进**机位**（`aspect_ratio` 事件）
+  //   ⟹ ⟹ clone 侧对应的是**取景比例** `frameAspectRatio`（不是导出比例）。
+  //   ★ 源站实测：「自适应」时**取景框不在场** ⟹ ⟹ 这里用 `null` 表示。
+  const frameAspectRatio = useDirectorStore((state) => state.frameAspectRatio);
+  const setFrameAspectRatio = useDirectorStore((state) => state.setFrameAspectRatio);
   // ★ 源站逐字：`"aspect"===z?(…):null` ⟹ ⟹ **条件渲染**（不是 `hidden`）
   //   ⟹ ⟹ 与 batch 858 的「添加角色」面板同一写法。
   // ★ ★ 组件**本身**常驻（`useState` 的选中项因此跨模式保留），
   //   只有 DOM 子树按模式在/不在 ⟹ ⟹ 两者不冲突。
   if (!active) return null;
+  const selected =
+    frameAspectRatio === null ? "自适应" : frameAspectRatio;
   return (
     <div
       data-director-aspect-panel
@@ -105,11 +110,13 @@ export function DirectorAspectPanel({ active }: { active: boolean }) {
             // ★ 源站按钮**没有** `aria-pressed` ⟹ ⟹ clone 保留作 a11y 超集
             //   （batch 590 已登记：源站选中/未选两态**文字色相同**，
             //   唯一差别是按钮描边 0.85 / 0.1、背景两态皆透明）。
-            aria-pressed={aspectRatio === ratio}
-            onClick={() => setAspectRatio(ratio)}
+            aria-pressed={selected === ratio}
+            onClick={() =>
+              setFrameAspectRatio(ratio === "自适应" ? null : ratio)
+            }
             className={cn(
               CELL_CLASS,
-              aspectRatio === ratio ? "border-white/85" : "border-white/10",
+              selected === ratio ? "border-white/85" : "border-white/10",
             )}
           >
             <span

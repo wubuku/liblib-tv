@@ -1,0 +1,398 @@
+{
+  "①自适应": {
+    "取景框": [],
+    "视图模式按钮": [
+      {
+        "label": "导演视角",
+        "pressed": null,
+        "x": 878,
+        "y": 10
+      },
+      {
+        "label": "机位视角",
+        "pressed": null,
+        "x": 961,
+        "y": 10
+      }
+    ],
+    "画布容器": {
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "ratio": 1.7778,
+      "border": "rgb(82, 82, 82)",
+      "outline": "rgb(247, 247, 247)",
+      "outlineWidth": "0px"
+    }
+  },
+  "②21:9": {
+    "取景框": [
+      {
+        "rect": {
+          "x": 329,
+          "y": 270,
+          "w": 1262,
+          "h": 541,
+          "ratio": 2.3334,
+          "border": "rgb(82, 82, 82)",
+          "outline": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+          "outlineWidth": "1px"
+        },
+        "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1"
+      }
+    ],
+    "视图模式按钮": [
+      {
+        "label": "导演视角",
+        "pressed": null,
+        "x": 878,
+        "y": 10
+      },
+      {
+        "label": "机位视角",
+        "pressed": null,
+        "x": 961,
+        "y": 10
+      }
+    ],
+    "画布容器": {
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "ratio": 1.7778,
+      "border": "rgb(82, 82, 82)",
+      "outline": "rgb(247, 247, 247)",
+      "outlineWidth": "0px"
+    }
+  },
+  "②16:9": {
+    "取景框": [
+      {
+        "rect": {
+          "x": 329,
+          "y": 185,
+          "w": 1262,
+          "h": 710,
+          "ratio": 1.7778,
+          "border": "rgb(82, 82, 82)",
+          "outline": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+          "outlineWidth": "1px"
+        },
+        "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1"
+      }
+    ],
+    "视图模式按钮": [
+      {
+        "label": "导演视角",
+        "pressed": null,
+        "x": 878,
+        "y": 10
+      },
+      {
+        "label": "机位视角",
+        "pressed": null,
+        "x": 961,
+        "y": 10
+      }
+    ],
+    "画布容器": {
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "ratio": 1.7778,
+      "border": "rgb(82, 82, 82)",
+      "outline": "rgb(247, 247, 247)",
+      "outlineWidth": "0px"
+    }
+  },
+  "②4:3": {
+    "取景框": [
+      {
+        "rect": {
+          "x": 389,
+          "y": 112,
+          "w": 1141,
+          "h": 856,
+          "ratio": 1.3333,
+          "border": "rgb(82, 82, 82)",
+          "outline": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+          "outlineWidth": "1px"
+        },
+        "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1"
+      }
+    ],
+    "视图模式按钮": [
+      {
+        "label": "导演视角",
+        "pressed": null,
+        "x": 878,
+        "y": 10
+      },
+      {
+        "label": "机位视角",
+        "pressed": null,
+        "x": 961,
+        "y": 10
+      }
+    ],
+    "画布容器": {
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "ratio": 1.7778,
+      "border": "rgb(82, 82, 82)",
+      "outline": "rgb(247, 247, 247)",
+      "outlineWidth": "0px"
+    }
+  },
+  "②1:1": {
+    "取景框": [
+      {
+        "rect": {
+          "x": 532,
+          "y": 112,
+          "w": 856,
+          "h": 856,
+          "ratio": 1,
+          "border": "rgb(82, 82, 82)",
+          "outline": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+          "outlineWidth": "1px"
+        },
+        "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1"
+      }
+    ],
+    "视图模式按钮": [
+      {
+        "label": "导演视角",
+        "pressed": null,
+        "x": 878,
+        "y": 10
+      },
+      {
+        "label": "机位视角",
+        "pressed": null,
+        "x": 961,
+        "y": 10
+      }
+    ],
+    "画布容器": {
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "ratio": 1.7778,
+      "border": "rgb(82, 82, 82)",
+      "outline": "rgb(247, 247, 247)",
+      "outlineWidth": "0px"
+    }
+  },
+  "②3:4": {
+    "取景框": [
+      {
+        "rect": {
+          "x": 639,
+          "y": 112,
+          "w": 642,
+          "h": 856,
+          "ratio": 0.75,
+          "border": "rgb(82, 82, 82)",
+          "outline": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+          "outlineWidth": "1px"
+        },
+        "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1"
+      }
+    ],
+    "视图模式按钮": [
+      {
+        "label": "导演视角",
+        "pressed": null,
+        "x": 878,
+        "y": 10
+      },
+      {
+        "label": "机位视角",
+        "pressed": null,
+        "x": 961,
+        "y": 10
+      }
+    ],
+    "画布容器": {
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "ratio": 1.7778,
+      "border": "rgb(82, 82, 82)",
+      "outline": "rgb(247, 247, 247)",
+      "outlineWidth": "0px"
+    }
+  },
+  "②9:16": {
+    "取景框": [
+      {
+        "rect": {
+          "x": 719,
+          "y": 112,
+          "w": 482,
+          "h": 856,
+          "ratio": 0.5625,
+          "border": "rgb(82, 82, 82)",
+          "outline": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+          "outlineWidth": "1px"
+        },
+        "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1"
+      }
+    ],
+    "视图模式按钮": [
+      {
+        "label": "导演视角",
+        "pressed": null,
+        "x": 878,
+        "y": 10
+      },
+      {
+        "label": "机位视角",
+        "pressed": null,
+        "x": 961,
+        "y": 10
+      }
+    ],
+    "画布容器": {
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "ratio": 1.7778,
+      "border": "rgb(82, 82, 82)",
+      "outline": "rgb(247, 247, 247)",
+      "outlineWidth": "0px"
+    }
+  },
+  "③视图模式按钮": [
+    {
+      "label": "导演视角",
+      "pressed": null,
+      "x": 878,
+      "y": 10
+    },
+    {
+      "label": "机位视角",
+      "pressed": null,
+      "x": 961,
+      "y": 10
+    }
+  ],
+  "④机位视角下": {
+    "取景框": [
+      {
+        "rect": {
+          "x": 719,
+          "y": 112,
+          "w": 482,
+          "h": 856,
+          "ratio": 0.5625,
+          "border": "rgb(82, 82, 82)",
+          "outline": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+          "outlineWidth": "1px"
+        },
+        "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1"
+      }
+    ],
+    "视图模式按钮": [
+      {
+        "label": "导演视角",
+        "pressed": null,
+        "x": 878,
+        "y": 10
+      },
+      {
+        "label": "机位视角",
+        "pressed": null,
+        "x": 961,
+        "y": 10
+      }
+    ],
+    "画布容器": {
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "ratio": 1.7778,
+      "border": "rgb(82, 82, 82)",
+      "outline": "rgb(247, 247, 247)",
+      "outlineWidth": "0px"
+    }
+  },
+  "⑤机位视角+21比9": {
+    "取景框": [
+      {
+        "rect": {
+          "x": 329,
+          "y": 270,
+          "w": 1262,
+          "h": 541,
+          "ratio": 2.3334,
+          "border": "rgb(82, 82, 82)",
+          "outline": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+          "outlineWidth": "1px"
+        },
+        "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1"
+      }
+    ],
+    "视图模式按钮": [
+      {
+        "label": "导演视角",
+        "pressed": null,
+        "x": 878,
+        "y": 10
+      },
+      {
+        "label": "机位视角",
+        "pressed": null,
+        "x": 961,
+        "y": 10
+      }
+    ],
+    "画布容器": {
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "ratio": 1.7778,
+      "border": "rgb(82, 82, 82)",
+      "outline": "rgb(247, 247, 247)",
+      "outlineWidth": "0px"
+    }
+  },
+  "⑥复原后": {
+    "取景框": [],
+    "视图模式按钮": [
+      {
+        "label": "导演视角",
+        "pressed": null,
+        "x": 878,
+        "y": 10
+      },
+      {
+        "label": "机位视角",
+        "pressed": null,
+        "x": 961,
+        "y": 10
+      }
+    ],
+    "画布容器": {
+      "x": 0,
+      "y": 0,
+      "w": 1920,
+      "h": 1080,
+      "ratio": 1.7778,
+      "border": "rgb(82, 82, 82)",
+      "outline": "rgb(247, 247, 247)",
+      "outlineWidth": "0px"
+    }
+  }
+}

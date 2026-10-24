@@ -1,0 +1,259 @@
+{
+ "batch": 860,
+ "title": "阴性对照：改坏源码 ⟹ 新门禁必须对应翻红",
+ "mutations": [
+  {
+   "name": "N1-面板不接 store（读不到也写不进）",
+   "file": "DirectorAspectPanel.tsx",
+   "bytesBefore": 6682,
+   "bytesAfter": 6684,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）",
+    "panel:selection-is-on-自适应  ⟵ []",
+    "panel:frame-exists-for-21:9  ⟵ None",
+    "panel:frame-marks-21:9  ⟵ None",
+    "panel:selection-is-on-21:9  ⟵ []",
+    "panel:frame-exists-for-16:9  ⟵ None",
+    "panel:frame-marks-16:9  ⟵ None",
+    "panel:selection-is-on-16:9  ⟵ []",
+    "panel:frame-exists-for-4:3  ⟵ None",
+    "panel:frame-marks-4:3  ⟵ None",
+    "panel:selection-is-on-4:3  ⟵ []",
+    "panel:frame-exists-for-1:1  ⟵ None",
+    "panel:frame-marks-1:1  ⟵ None",
+    "panel:selection-is-on-1:1  ⟵ []",
+    "panel:frame-exists-for-3:4  ⟵ None",
+    "panel:frame-marks-3:4  ⟵ None",
+    "panel:selection-is-on-3:4  ⟵ []",
+    "panel:frame-exists-for-9:16  ⟵ None",
+    "panel:frame-marks-9:16  ⟵ None",
+    "panel:selection-is-on-9:16  ⟵ []",
+    "diagnostics:no-page-errors  ⟵ ['setFrameAspectRatio is not a function', 'setFrameAspectRatio is not a function', 'setFrameAspectRatio is not a function', 'setFrameAspectRatio is not a function', 'setFrameAspectRatio is not a function']"
+   ],
+   "expectedToFail": [
+    "source:panel-writes-to-the-store",
+    "panel:frame-ratio-for-21:9",
+    "panel:selection-is-on-21:9"
+   ],
+   "hit": [
+    "source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）",
+    "panel:selection-is-on-21:9  ⟵ []"
+   ],
+   "ok": true,
+   "firstRed": "source:panel-writes-to-the-store  ⟵ ★ 面板必须**从 store 读** frameAspectRatio 并**写** setFrameAspectRatio（组件内 useState 正是「点哪档都不动」的根因）"
+  },
+  {
+   "name": "N2-自适应也画框（忽略 null）",
+   "file": "directorViewportMath.ts",
+   "bytesBefore": 12970,
+   "bytesAfter": 12974,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:frame-rect-accepts-a-null-ratio  ⟵ getDirectorFrameRect 要把 null（＝自适应）当成「不画框」"
+   ],
+   "expectedToFail": [
+    "source:frame-rect-accepts-a-null-ratio",
+    "panel:auto-has-no-framing-box"
+   ],
+   "hit": [
+    "source:frame-rect-accepts-a-null-ratio  ⟵ getDirectorFrameRect 要把 null（＝自适应）当成「不画框」"
+   ],
+   "ok": true,
+   "firstRed": "source:frame-rect-accepts-a-null-ratio  ⟵ getDirectorFrameRect 要把 null（＝自适应）当成「不画框」"
+  },
+  {
+   "name": "N3-21:9 的比例值算错",
+   "file": "directorStore.ts",
+   "bytesBefore": 284466,
+   "bytesAfter": 284466,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:frame-aspect-values-are-numeric  ⟵ {'values': '\"21:9\": 16 / 9,\\n  \"16:9\": 16 / 9,\\n  \"4:3\": 4 / 3,\\n  \"1:1\": 1,\\n  \"3:4\": 3 / 4,\\n  \"9:16\": 9 / 16,'}",
+    "panel:frame-ratio-for-21:9  ⟵ {'got': 1.7778, 'want': 2.3333333333333335, 'sourceRatio': 2.3334}"
+   ],
+   "expectedToFail": [
+    "source:frame-aspect-values-are-numeric",
+    "panel:frame-ratio-for-21:9"
+   ],
+   "hit": [
+    "source:frame-aspect-values-are-numeric  ⟵ {'values': '\"21:9\": 16 / 9,\\n  \"16:9\": 16 / 9,\\n  \"4:3\": 4 / 3,\\n  \"1:1\": 1,\\n  \"3:4\": 3 / 4,\\n  \"9:16\": 9 / 16,'}",
+    "panel:frame-ratio-for-21:9  ⟵ {'got': 1.7778, 'want': 2.3333333333333335, 'sourceRatio': 2.3334}"
+   ],
+   "ok": true,
+   "firstRed": "source:frame-aspect-values-are-numeric  ⟵ {'values': '\"21:9\": 16 / 9,\\n  \"16:9\": 16 / 9,\\n  \"4:3\": 4 / 3,\\n  \"1:1\": 1,\\n  \"3:4\": 3 / 4,\\n  \"9:16\": 9 / 16,'}"
+  },
+  {
+   "name": "N4-类型里少了 21:9 这一档",
+   "file": "directorStore.ts",
+   "bytesBefore": 284466,
+   "bytesAfter": 284466,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:frame-aspect-covers-the-six-source-ratios  ⟵ {'union': '| \"20:9\"\\n  | \"16:9\"\\n  | \"4:3\"\\n  | \"1:1\"\\n  | \"3:4\"\\n  | \"9:16\"'}"
+   ],
+   "expectedToFail": [
+    "source:frame-aspect-covers-the-six-source-ratios"
+   ],
+   "hit": [
+    "source:frame-aspect-covers-the-six-source-ratios  ⟵ {'union': '| \"20:9\"\\n  | \"16:9\"\\n  | \"4:3\"\\n  | \"1:1\"\\n  | \"3:4\"\\n  | \"9:16\"'}"
+   ],
+   "ok": true,
+   "firstRed": "source:frame-aspect-covers-the-six-source-ratios  ⟵ {'union': '| \"20:9\"\\n  | \"16:9\"\\n  | \"4:3\"\\n  | \"1:1\"\\n  | \"3:4\"\\n  | \"9:16\"'}"
+  },
+  {
+   "name": "N5-框不居中（left 写死 0）",
+   "file": "directorViewportMath.ts",
+   "bytesBefore": 12970,
+   "bytesAfter": 12944,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:frame-is-horizontally-centred-for-21:9  ⟵ {'frame': {'x': 281, 'y': 191, 'w': 1278, 'h': 548, 'ratio': 2.3334}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -40.0}",
+    "panel:frame-insets-the-available-area-for-21:9  ⟵ {'left': 0, 'right': 80, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-is-horizontally-centred-for-16:9  ⟵ {'frame': {'x': 281, 'y': 120, 'w': 1227, 'h': 690, 'ratio': 1.7778}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -65.5}",
+    "panel:frame-insets-the-available-area-for-16:9  ⟵ {'left': 0, 'right': 131, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-is-horizontally-centred-for-4:3  ⟵ {'frame': {'x': 281, 'y': 120, 'w': 920, 'h': 690, 'ratio': 1.3333}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -219.0}",
+    "panel:frame-insets-the-available-area-for-4:3  ⟵ {'left': 0, 'right': 438, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-is-horizontally-centred-for-1:1  ⟵ {'frame': {'x': 281, 'y': 120, 'w': 690, 'h': 690, 'ratio': 1}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -334.0}",
+    "panel:frame-insets-the-available-area-for-1:1  ⟵ {'left': 0, 'right': 668, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-is-horizontally-centred-for-3:4  ⟵ {'frame': {'x': 281, 'y': 120, 'w': 518, 'h': 690, 'ratio': 0.75}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -420.0}",
+    "panel:frame-insets-the-available-area-for-3:4  ⟵ {'left': 0, 'right': 840, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-is-horizontally-centred-for-9:16  ⟵ {'frame': {'x': 281, 'y': 120, 'w': 388, 'h': 690, 'ratio': 0.5625}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -485.0}",
+    "panel:frame-insets-the-available-area-for-9:16  ⟵ {'left': 0, 'right': 970, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:all-frames-share-one-centre  ⟵ {'xs': [920.0, 894.5, 741.0, 626.0, 540.0, 475.0], 'ys': [465.0, 465.0, 465.0, 465.0, 465.0, 465.0], 'why': '所有档的框中心必须一致（居中于同一可用区）'}"
+   ],
+   "expectedToFail": [
+    "panel:frame-is-horizontally-centred-for-",
+    "panel:all-frames-share-one-centre"
+   ],
+   "hit": [
+    "panel:frame-is-horizontally-centred-for-21:9  ⟵ {'frame': {'x': 281, 'y': 191, 'w': 1278, 'h': 548, 'ratio': 2.3334}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -40.0}",
+    "panel:frame-is-horizontally-centred-for-16:9  ⟵ {'frame': {'x': 281, 'y': 120, 'w': 1227, 'h': 690, 'ratio': 1.7778}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -65.5}",
+    "panel:frame-is-horizontally-centred-for-4:3  ⟵ {'frame': {'x': 281, 'y': 120, 'w': 920, 'h': 690, 'ratio': 1.3333}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -219.0}",
+    "panel:frame-is-horizontally-centred-for-1:1  ⟵ {'frame': {'x': 281, 'y': 120, 'w': 690, 'h': 690, 'ratio': 1}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -334.0}",
+    "panel:frame-is-horizontally-centred-for-3:4  ⟵ {'frame': {'x': 281, 'y': 120, 'w': 518, 'h': 690, 'ratio': 0.75}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -420.0}",
+    "panel:frame-is-horizontally-centred-for-9:16  ⟵ {'frame': {'x': 281, 'y': 120, 'w': 388, 'h': 690, 'ratio': 0.5625}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -485.0}",
+    "panel:all-frames-share-one-centre  ⟵ {'xs': [920.0, 894.5, 741.0, 626.0, 540.0, 475.0], 'ys': [465.0, 465.0, 465.0, 465.0, 465.0, 465.0], 'why': '所有档的框中心必须一致（居中于同一可用区）'}"
+   ],
+   "ok": true,
+   "firstRed": "panel:frame-is-horizontally-centred-for-21:9  ⟵ {'frame': {'x': 281, 'y': 191, 'w': 1278, 'h': 548, 'ratio': 2.3334}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': -40.0}"
+  },
+  {
+   "name": "N6-框不内切（左右边距不等）",
+   "file": "directorViewportMath.ts",
+   "bytesBefore": 12970,
+   "bytesAfter": 12974,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:frame-is-horizontally-centred-for-21:9  ⟵ {'frame': {'x': 328, 'y': 191, 'w': 1278, 'h': 548, 'ratio': 2.3334}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': 7.0}",
+    "panel:frame-insets-the-available-area-for-21:9  ⟵ {'left': 47, 'right': 33, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-is-horizontally-centred-for-16:9  ⟵ {'frame': {'x': 354, 'y': 120, 'w': 1227, 'h': 690, 'ratio': 1.7778}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': 7.5}",
+    "panel:frame-insets-the-available-area-for-16:9  ⟵ {'left': 73, 'right': 58, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-is-horizontally-centred-for-4:3  ⟵ {'frame': {'x': 507, 'y': 120, 'w': 920, 'h': 690, 'ratio': 1.3333}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': 7.0}",
+    "panel:frame-insets-the-available-area-for-4:3  ⟵ {'left': 226, 'right': 212, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-is-horizontally-centred-for-1:1  ⟵ {'frame': {'x': 622, 'y': 120, 'w': 690, 'h': 690, 'ratio': 1}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': 7.0}",
+    "panel:frame-insets-the-available-area-for-1:1  ⟵ {'left': 341, 'right': 327, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-is-horizontally-centred-for-3:4  ⟵ {'frame': {'x': 708, 'y': 120, 'w': 518, 'h': 690, 'ratio': 0.75}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': 7.0}",
+    "panel:frame-insets-the-available-area-for-3:4  ⟵ {'left': 427, 'right': 413, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-is-horizontally-centred-for-9:16  ⟵ {'frame': {'x': 773, 'y': 120, 'w': 388, 'h': 690, 'ratio': 0.5625}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': 7.0}",
+    "panel:frame-insets-the-available-area-for-9:16  ⟵ {'left': 492, 'right': 478, 'why': '左右边距相等（宽撑满/内切）'}"
+   ],
+   "expectedToFail": [
+    "panel:frame-insets-the-available-area-for-",
+    "panel:all-frames-share-one-centre"
+   ],
+   "hit": [
+    "panel:frame-insets-the-available-area-for-21:9  ⟵ {'left': 47, 'right': 33, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-insets-the-available-area-for-16:9  ⟵ {'left': 73, 'right': 58, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-insets-the-available-area-for-4:3  ⟵ {'left': 226, 'right': 212, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-insets-the-available-area-for-1:1  ⟵ {'left': 341, 'right': 327, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-insets-the-available-area-for-3:4  ⟵ {'left': 427, 'right': 413, 'why': '左右边距相等（宽撑满/内切）'}",
+    "panel:frame-insets-the-available-area-for-9:16  ⟵ {'left': 492, 'right': 478, 'why': '左右边距相等（宽撑满/内切）'}"
+   ],
+   "ok": true,
+   "firstRed": "panel:frame-is-horizontally-centred-for-21:9  ⟵ {'frame': {'x': 328, 'y': 191, 'w': 1278, 'h': 548, 'ratio': 2.3334}, 'host': {'x': 281, 'y': 88, 'w': 1358, 'h': 810, 'ratio': 1.6765}, 'centerDeltaX': 7.0}"
+  },
+  {
+   "name": "N7-面板选中态标记反了",
+   "file": "DirectorAspectPanel.tsx",
+   "bytesBefore": 6682,
+   "bytesAfter": 6682,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:selection-is-on-自适应  ⟵ ['21:9', '16:9', '4:3', '1:1', '3:4', '9:16']",
+    "panel:selection-is-on-21:9  ⟵ ['自适应', '16:9', '4:3', '1:1', '3:4', '9:16']",
+    "panel:selection-is-on-16:9  ⟵ ['自适应', '21:9', '4:3', '1:1', '3:4', '9:16']",
+    "panel:selection-is-on-4:3  ⟵ ['自适应', '21:9', '16:9', '1:1', '3:4', '9:16']",
+    "panel:selection-is-on-1:1  ⟵ ['自适应', '21:9', '16:9', '4:3', '3:4', '9:16']",
+    "panel:selection-is-on-3:4  ⟵ ['自适应', '21:9', '16:9', '4:3', '1:1', '9:16']",
+    "panel:selection-is-on-9:16  ⟵ ['自适应', '21:9', '16:9', '4:3', '1:1', '3:4']"
+   ],
+   "expectedToFail": [
+    "panel:selection-is-on-"
+   ],
+   "hit": [
+    "panel:selection-is-on-自适应  ⟵ ['21:9', '16:9', '4:3', '1:1', '3:4', '9:16']",
+    "panel:selection-is-on-21:9  ⟵ ['自适应', '16:9', '4:3', '1:1', '3:4', '9:16']",
+    "panel:selection-is-on-16:9  ⟵ ['自适应', '21:9', '4:3', '1:1', '3:4', '9:16']",
+    "panel:selection-is-on-4:3  ⟵ ['自适应', '21:9', '16:9', '1:1', '3:4', '9:16']",
+    "panel:selection-is-on-1:1  ⟵ ['自适应', '21:9', '16:9', '4:3', '3:4', '9:16']",
+    "panel:selection-is-on-3:4  ⟵ ['自适应', '21:9', '16:9', '4:3', '1:1', '9:16']",
+    "panel:selection-is-on-9:16  ⟵ ['自适应', '21:9', '16:9', '4:3', '1:1', '3:4']"
+   ],
+   "ok": true,
+   "firstRed": "panel:selection-is-on-自适应  ⟵ ['21:9', '16:9', '4:3', '1:1', '3:4', '9:16']"
+  },
+  {
+   "name": "N8-取景框的比例标记写错",
+   "file": "DirectorViewport.tsx",
+   "bytesBefore": 136091,
+   "bytesAfter": 136099,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:frame-marks-21:9  ⟵ 21:9x",
+    "panel:frame-marks-16:9  ⟵ 16:9x",
+    "panel:frame-marks-4:3  ⟵ 4:3x",
+    "panel:frame-marks-1:1  ⟵ 1:1x",
+    "panel:frame-marks-3:4  ⟵ 3:4x",
+    "panel:frame-marks-9:16  ⟵ 9:16x"
+   ],
+   "expectedToFail": [
+    "panel:frame-marks-"
+   ],
+   "hit": [
+    "panel:frame-marks-21:9  ⟵ 21:9x",
+    "panel:frame-marks-16:9  ⟵ 16:9x",
+    "panel:frame-marks-4:3  ⟵ 4:3x",
+    "panel:frame-marks-1:1  ⟵ 1:1x",
+    "panel:frame-marks-3:4  ⟵ 3:4x",
+    "panel:frame-marks-9:16  ⟵ 9:16x"
+   ],
+   "ok": true,
+   "firstRed": "panel:frame-marks-21:9  ⟵ 21:9x"
+  },
+  {
+   "name": "N9-store 的取景比例初始值不是自适应",
+   "file": "directorStore.ts",
+   "bytesBefore": 284466,
+   "bytesAfter": 284468,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:frame-aspect-initial-state-is-auto  ⟵ {'initial': '\"16:9\"', 'why': '★ 初始必须是 null（＝自适应）⟹ ⟹ 与源站一致（刚打开导演台时取景框不在场）'}"
+   ],
+   "expectedToFail": [
+    "source:frame-aspect-initial-state-is-auto",
+    "panel:auto-has-no-framing-box"
+   ],
+   "hit": [
+    "source:frame-aspect-initial-state-is-auto  ⟵ {'initial': '\"16:9\"', 'why': '★ 初始必须是 null（＝自适应）⟹ ⟹ 与源站一致（刚打开导演台时取景框不在场）'}"
+   ],
+   "ok": true,
+   "firstRed": "source:frame-aspect-initial-state-is-auto  ⟵ {'initial': '\"16:9\"', 'why': '★ 初始必须是 null（＝自适应）⟹ ⟹ 与源站一致（刚打开导演台时取景框不在场）'}"
+  }
+ ],
+ "baseline": {
+  "exit": 0,
+  "failed": []
+ },
+ "restored": true
+}
