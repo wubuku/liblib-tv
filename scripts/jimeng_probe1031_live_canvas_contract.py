@@ -13,6 +13,17 @@
    契约文件本身被谁改了，交给 verifier 的摘要判据去抓；
 - ③ 读数可以指向一份**副本**（`JIMENG_FORENSICS_JSON`）⇒ 注入式变异能问「它会拿它当红」；
 - ④ 无浏览器时降级为「只跑离线自洽三条」，并**明说降级了**，不许假装跑过。
+
+⭐⭐⭐⭐⭐ **订正（1032-⑨ 当场实测）**：上面「直接验**被复刻的那个东西**」这半句**与实现不符**
+—— 本门默认跑的是**原站**（`JIMENG_CANVAS_URL` 的默认值就是原站示例画布，
+   而仓里没有任何地方设过这个变量）⇒ 实测读到的 `url` 是 `jimeng.jianying.com/...`、
+   `title` 是 `测试项目 - 即梦AI` ⇒ **它验的是活站点**。
+⇒⇒⇒ 门名「活站点契约」是对的，docstring 那半句是错的 ⇒ 这里**更正**而不重写。
+⇒⇒⇒ 连带的结构后果：**它的输入是外部在线站点** ⇒ 字节天然可能随原站变
+⇒⇒⇒ ⇒ 所以「等到了没有」必须单独记成一条判据（P10），
+⇒⇒⇒   否则「原站慢」与「原站改了」会被读成同一件事。
+⭐⭐⭐⭐⭐ **另一条订正（1032-⑨）**：取证脚本**崩了**原来会被读成「没测到」⇒ 而降级的
+退出码是 0 ⇒ **崩溃被伪装成「没测到、而且还没红」** ⇒ 现在崩溃走 rc=2 那条出口。
 """
 import ast
 import collections
@@ -48,23 +59,43 @@ GENERATION_WORDS = ("生成", "发送", "购买", "充值", "立即创作", "开
 
 
 def harvest():
-    """拿一份实测结构：优先用环境变量指向的副本，否则现跑一次无头取证。"""
+    """拿一份实测结构：优先用环境变量指向的副本，否则现跑一次无头取证。
+
+    ⭐⭐⭐⭐⭐ **「仪器崩了」与「没有浏览器」必须分开**（1032-⑨ 实测出来的）
+      · spawn 失败（连 node 都没有）⇒ **降级**：没浏览器就是没浏览器
+      · node 跑了但 returncode≠0、或它没写盘 ⇒ **仪器崩了**
+      ⇒⇒⇒ 而「降级」的 rc 是 0 ⇒⇒⇒ **崩溃会被伪装成「没测到、而且还没红」**
+      ⇒⇒⇒ 那是这套门最贵的那种绿 ⇒⇒⇒ 必须走 rc=2 那条出口
+      ⇒⇒⇒ 且**崩溃细节不许进产物**（stderr 每次都不同 ⇒ 会把产物变成随机量）
+    """
     src = os.environ.get("JIMENG_FORENSICS_JSON")
     if src:
         p = Path(src)
         return (json.loads(p.read_text(encoding="utf-8")) if p.exists() else None), "copy"
-    r = subprocess.run(["node", str(FORENSICS)], capture_output=True,
-                       text=True, timeout=300,
-                       env=dict(os.environ, JIMENG_FORENSICS_OUT=FRESH_DEFAULT))
+    try:
+        r = subprocess.run(["node", str(FORENSICS)], capture_output=True,
+                           text=True, timeout=300,
+                           env=dict(os.environ, JIMENG_FORENSICS_OUT=FRESH_DEFAULT))
+    except (OSError, subprocess.SubprocessError) as _e:
+        return None, "no_browser"
     p = Path(FRESH_DEFAULT)
     if r.returncode != 0 or not p.exists():
-        return None, "unavailable"
+        sys.stderr.write("FORENSICS_CRASHED_1031 rc=%s :: %s\n"
+                         % (r.returncode, (r.stderr or "")[-800:]))
+        return None, "crashed"
     return json.loads(p.read_text(encoding="utf-8")), "live"
 
 
 def testids_of(doc):
     out = set()
     for c in doc.get("clickables", []):
+        # ⭐⭐⭐⭐⭐ **单列字段优先、`sel` 正则回落** —— 两边必须读**同一个来源**
+        #   ⇒ 条件等待（node 侧读 `testid`）与最终判定（这里）若各读各的
+        #   ⇒ ⇒ 一边永远说「缺」、另一边永远说「齐」⇒ 门既等不到、也判不出真缺
+        t = c.get("testid")
+        if t:
+            out.add(t)
+            continue
         m = re.search(r'data-testid="([^"]+)"', c.get("sel", ""))
         if m:
             out.add(m.group(1))
@@ -75,8 +106,22 @@ def aria_of(doc):
     return {c["aria"] for c in doc.get("clickables", []) if c.get("aria")}
 
 
+def _body_text(doc):
+    """⭐⭐⭐⭐⭐ **全文优先、截断回落** —— 而且**必须把用了哪一口径记下来**
+    ⇒⇒⇒ 节点类型与状态行不在前 3000 字符里时，用截断文本去判 ⇒ 「永远缺」
+    ⇒⇒⇒ 而「永远缺」会被读成「产品缺」⇒ **那是口径缺陷冒充产品缺陷**
+    ⇒⇒⇒ 口径缺陷与产品缺陷必须能被分开 ⇒ 所以口径本身要进产物
+    """
+    full = doc.get("body_full")
+    if isinstance(full, str) and full:
+        return full, "body_full"
+    head = doc.get("body_head", "")
+    return (head if isinstance(head, str) else ""), "body_head"
+
+
 def status_lines(doc):
-    return [l.strip() for l in doc.get("body_head", "").split("\n")
+    body, _cal = _body_text(doc)
+    return [l.strip() for l in body.split("\n")
             if re.match(r"^\d+ nodes, \d+ edges, \d+ selected\.", l.strip())]
 
 
@@ -216,12 +261,13 @@ out["p3_offending_items"] = _BAD_ITEMS
 
 # ── 实跑对账 ───────────────────────────────────────────────────────────
 live, how = harvest()
-out["live_source"] = how
+# ⭐ 只留**分类**、不留细节（stderr 每次都不同 ⇒ 进产物就把产物变成随机量）
+out["live_source"] = how.split(":", 1)[0]
 out["live_available"] = live is not None
 
 if live is not None:
     got_t, got_a = testids_of(live), aria_of(live)
-    body = live.get("body_head", "")
+    body, _body_caliber = _body_text(live)
     missing_t = [t for t in REQ_T if t not in got_t]
     missing_a = [a for a in REQ_A if a not in got_a]
     # 形状口径用 `re.match` 而不是 `in` —— 读数是多少都算命中，形状不对才算缺
@@ -248,14 +294,28 @@ if live is not None:
         # ⭐ 引擎名是**class 名**，不在 innerText 里 ⇒ 第一版拿文本去找它，永远找不到
         "engine_found": bool(live.get("has_engine")),
         "status_line_shape_matched": bool(status_lines(live)),
+        # ⭐⭐⭐⭐⭐ **判「节点类型 / 状态行」用的是全文还是截断文本** ⇒ 必须进产物
+        #   ⇒ 否则「因为口径而永远缺」与「产品真的缺」在账上长得一模一样
+        "body_caliber_used": _body_caliber,
+        # ⭐⭐⭐⭐⭐ **「等到了没有」** —— 只有布尔进产物
+        #   ⇒ 耗时与轮数每次都变 ⇒ 写进产物就等于把读数变成随机量
+        #   ⇒ None 表示「这一轮没有这个读数」（例如指向副本的注入式通路）
+        "wait_satisfied": live.get("wait_satisfied"),
     }
     out["P4_live_matches_contract_1031"] = bool(
         not missing_t and not missing_a and not missing_s and not missing_k
         and out["live_1031"]["engine_found"])
     out["P5_live_status_line_shape_1031"] = bool(status_lines(live))
+    # ⭐⭐⭐⭐⭐ **「等到了没有」必须是一条独立的判据**
+    #   ⇒⇒⇒ 「等不到」是**样本不成立**（不是「产品缺」）⇒ 它必须自己红
+    #   ⇒⇒⇒ 含糊地只体现在 missing 列表里 ⇒ 读数少与读数全没法一眼分开
+    #   ⇒⇒⇒ 注入式通路（指向副本）没有这个读数 ⇒ 那条通路不判它、也不假装它成立
+    out["P10_waited_until_the_contract_was_satisfied_1031"] = (
+        True if how == "copy" else (live.get("wait_satisfied") is True))
 else:
     out["P4_live_matches_contract_1031"] = None
     out["P5_live_status_line_shape_1031"] = None
+    out["P10_waited_until_the_contract_was_satisfied_1031"] = None
     # ⭐⭐⭐⭐⭐ 一个很讱人觉得罕式的门：**同一个字典块里不许有重复键**
 #   原因：本批因为一次 `&&` 链在前一步失败后仍继续跑，生成脚本被执行了两次
 #   ⇒ 同一段散文被插了**两遍**，而其中一轮还把「两份」写坏成了「4e24份」⇒
@@ -263,9 +323,13 @@ else:
 out["duplicate_keys_in_audit_block"] = _DUP_KEYS
 out["P6_no_duplicate_keys_in_contract_block_1031"] = bool(not _DUP_KEYS)
 
-out["downgraded"] = ("⚠️⭐⭐⭐⭐⭐ **本轮没有浏览器通路，P4/P5 记 `null` 而不是 `False`**"
-                         " —— 记成 `False` 就是「没跑过」与「跑过没过」混成同一件事，"
-                         "而这正是这套门最贵的那种失败")
+out["downgraded"] = (
+    ("⚠️⭐⭐⭐⭐⭐ **取证脚本崩了（不是「没测到」）** —— 这时 P4/P5/P10 记 `null`，"
+     "而**退出码是 2**（仪器崩）⇒ 崩溃不会被降级伪装成「没测到、还没红」")
+    if how == "crashed" else
+    ("⚠️⭐⭐⭐⭐⭐ **本轮没有浏览器通路，P4/P5 记 `null` 而不是 `False`**"
+     " —— 记成 `False` 就是「没跑过」与「跑过没过」混成同一件事，"
+     "而这正是这套门最贵的那种失败"))
 
 io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
 if live is not None:
@@ -289,4 +353,5 @@ assert len(_P) >= 9, "P 判据条数掉到 9 以下了：%d" % len(_P)
 print("退出码约定：0=全绿 1=有 P 判据为假 2=探针崩了/契约不是合法 JSON"
       "（JIMENG_FORCE_CRASH=1 可现场验证 2 号出口）")
 print("PROBE_1031_DONE ->", OUT)
-sys.exit(1 if _bad else 0)
+# ⭐⭐⭐⭐⭐ **取证脚本崩了 ⇒ 走 2 号出口** ⇒ 降级（0）会把崩溃伪装成「没测到、还没红」
+sys.exit(2 if how == "crashed" else (1 if _bad else 0))
