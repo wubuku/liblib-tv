@@ -18,7 +18,7 @@
  },
  "head": {
   "ok": true,
-  "n_matched": 30,
+  "n_matched": 31,
   "n_stale": 0,
   "stale_books": [],
   "missing_books": [],
