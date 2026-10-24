@@ -1,0 +1,193 @@
+{
+  "generated_by": "jimeng_probe1036_manual_source_claim_census.py",
+  "what_this_gate_asks": "手册正文里每一处「读者会照着做、而在复刻上不成立」的源站事实，是否都贴着标明了主体并给出复刻侧可执行的动作。",
+  "what_this_is_not": "这不是「复刻该不该持久化」的判决；也不是「手册有没有提过源站」的判决 —— 它只钉「该标的地方标没标」。",
+  "difference_faces_1036": [
+    "刷新",
+    "复位",
+    "已保存",
+    "持久",
+    "服务端",
+    "跨刷新"
+  ],
+  "difference_faces_source": "从手册自己的「复刻差异」标注块里提取，不是手打清单 ⇒ 手册改了这个面，普查口径自动跟着变。",
+  "scan_scope_1036": {
+    "reader_pages": [
+      "00-quickstart.md",
+      "20-reference.md",
+      "30-concepts.md",
+      "90-troubleshooting.md",
+      "10-tasks/ai-agent-drawer.md",
+      "10-tasks/assets-and-upload.md",
+      "10-tasks/audio-node-voice.md",
+      "10-tasks/canvas-context.md",
+      "10-tasks/connect-nodes.md",
+      "10-tasks/create-first-node.md",
+      "10-tasks/director-node.md",
+      "10-tasks/duplicate-delete-history.md",
+      "10-tasks/edit-text-node.md",
+      "10-tasks/help-and-shortcuts.md",
+      "10-tasks/media-playback.md",
+      "10-tasks/navigate-canvas.md",
+      "10-tasks/organize-group-layout.md",
+      "10-tasks/prepare-generation.md",
+      "10-tasks/subject-node.md",
+      "10-tasks/timeline-node.md",
+      "10-tasks/use-node-toolbar.md"
+    ],
+    "excluded": [
+      "AUDIT.md / PROGRESS.md / SOURCE_OBSERVATIONS.md（取证台账，不是读者会照着做的步骤）",
+      "标注块自身（以 > 开头的引用行）",
+      "台账语境句（批次 N 实测 / 积分 / profile / 无头 / 臂 N）"
+    ]
+  },
+  "limits_1036": [
+    "只覆盖「差异面词 ∩ 源站口吻 ∩ 可操作判据」三类信号的交集",
+    "读不出来源站口吻的句子（例如只写「刷新后仍是这样」而不写实测）不在覆盖内",
+    "不判定产品行为本身对不对，只判定文档有没有标明主体"
+  ],
+  "criteria_1036": {
+    "P1_difference_faces_are_derived_not_handwritten_1036": true,
+    "P2_enumeration_found_candidates_1036": true,
+    "P3_every_candidate_is_marked_in_place_1036": true,
+    "P4_every_occurrence_not_just_the_first_1036": true,
+    "P5_negative_control_turns_the_claim_red_1036": true,
+    "P6_every_marker_gives_an_actionable_alternative_1036": true,
+    "P7_scope_and_limits_published_1036": true,
+    "P8_every_exemption_carries_measured_evidence_1036": true,
+    "P9_no_zombie_exemptions_1036": true
+  },
+  "criterion_kinds_1036": {
+    "P1_difference_faces_are_derived_not_handwritten_1036": "failure",
+    "P2_enumeration_found_candidates_1036": "failure",
+    "P3_every_candidate_is_marked_in_place_1036": "failure",
+    "P4_every_occurrence_not_just_the_first_1036": "failure",
+    "P5_negative_control_turns_the_claim_red_1036": "failure",
+    "P6_every_marker_gives_an_actionable_alternative_1036": "failure",
+    "P7_scope_and_limits_published_1036": "failure",
+    "P8_every_exemption_carries_measured_evidence_1036": "failure",
+    "P9_no_zombie_exemptions_1036": "failure"
+  },
+  "criterion_kinds_complete_1036": true,
+  "n_criteria_1036": 9,
+  "n_candidates_1036": 6,
+  "n_marked_1036": 6,
+  "n_unmarked_1036": 0,
+  "candidates_1036": [
+    {
+      "file": "90-troubleshooting.md",
+      "line": 669,
+      "text": "顶栏常驻「已保存」状态。刷新页面核对——内容跨刷新持久（实测）。",
+      "section": "### 怀疑改动未保存",
+      "exempt": false,
+      "exemption_reason": "",
+      "exemption_evidence": "",
+      "marked": true,
+      "marker_line": 670
+    },
+    {
+      "file": "10-tasks/canvas-context.md",
+      "line": 628,
+      "text": "- **内容跨刷新持久**（实测）：刷新页面后节点与连线完好。",
+      "section": "### 确认保存状态",
+      "exempt": false,
+      "exemption_reason": "",
+      "exemption_evidence": "",
+      "marked": true,
+      "marker_line": 629
+    },
+    {
+      "file": "10-tasks/canvas-context.md",
+      "line": 737,
+      "text": "生成历史与搜索浮层逐字、保存状态、内容跨刷新持久为 2026-09-23 实测。",
+      "section": "## 已验证说明",
+      "exempt": false,
+      "exemption_reason": "",
+      "exemption_evidence": "",
+      "marked": true,
+      "marker_line": 744
+    },
+    {
+      "file": "10-tasks/duplicate-delete-history.md",
+      "line": 305,
+      "text": "4. **撤销历史不跨会话**：刷新页面后 ⌘Z 不再回退任何内容（2026-09-23 实测；",
+      "section": "### 撤销 / 重做（实测 ⌘Z）",
+      "exempt": true,
+      "exemption_reason": "复刻实测：删除一个节点后节点数 5→4，刷新后回到 5，刷新后按 ⌘Z 仍是 5 ⇒ 「刷新后 ⌘Z 不再回退任何内容」在复刻上**同样成立**（内容本来就回到初始态了）⇒ 不需要标注。",
+      "exemption_evidence": "measured",
+      "marked": true,
+      "marker_line": null,
+      "why": "exempted"
+    },
+    {
+      "file": "10-tasks/duplicate-delete-history.md",
+      "line": 419,
+      "text": "重做禁用态、撤销历史不跨刷新均为 2026-09-23 实测。**2026-10-01 补测**：⌘Z 对删除",
+      "section": "## 已验证说明",
+      "exempt": true,
+      "exemption_reason": "同上：这一句是上一句的「已验证说明」里的同义表述，实测依据相同 ⇒ 不需要标注。",
+      "exemption_evidence": "measured",
+      "marked": true,
+      "marker_line": null,
+      "why": "exempted"
+    },
+    {
+      "file": "10-tasks/subject-node.md",
+      "line": 418,
+      "text": "- ~~「保存到主体库」的**实际保存结果** —— 阻塞原因**不是扣费**，而是它会**往主体库里写入持久数据**。本画布的主体库当前是空态（逐字「没有可用主体」），写进去之后**没法干净地撤回**，在没有单独授权前不执行。**菜单项本身的存在与位置早已实测**（有资源的图片节点 200×372 九项含该项）。~~",
+      "section": "#### ✅ 但 keyGuard 守卫**没有因此失效**（理由是假的，结论仍然对）",
+      "exempt": true,
+      "exemption_reason": "这句讲的是**源站账号级主体库的写入副作用**，与画布刷新是否复位无关；复刻里 store 无任何主体库键（实测 store 键扫描 0 命中）⇒ 不属「画布持久化」差异面。",
+      "exemption_evidence": "measured",
+      "marked": true,
+      "marker_line": null,
+      "why": "exempted"
+    }
+  ],
+  "unmarked_1036": [],
+  "exemptions_1036": {
+    "registry": [
+      {
+        "file": "10-tasks/duplicate-delete-history.md",
+        "anchor": "撤销历史不跨会话",
+        "reason": "复刻实测：删除一个节点后节点数 5→4，刷新后回到 5，刷新后按 ⌘Z 仍是 5 ⇒ 「刷新后 ⌘Z 不再回退任何内容」在复刻上**同样成立**（内容本来就回到初始态了）⇒ 不需要标注。",
+        "evidence": "measured"
+      },
+      {
+        "file": "10-tasks/duplicate-delete-history.md",
+        "anchor": "撤销历史不跨刷新",
+        "reason": "同上：这一句是上一句的「已验证说明」里的同义表述，实测依据相同 ⇒ 不需要标注。",
+        "evidence": "measured"
+      },
+      {
+        "file": "10-tasks/subject-node.md",
+        "anchor": "写入持久数据",
+        "reason": "这句讲的是**源站账号级主体库的写入副作用**，与画布刷新是否复位无关；复刻里 store 无任何主体库键（实测 store 键扫描 0 命中）⇒ 不属「画布持久化」差异面。",
+        "evidence": "measured"
+      }
+    ],
+    "n_registered": 3,
+    "n_applied": 3,
+    "zombie_1036": [],
+    "note": "豁免 = 「这条在复刻上同样成立，标不标都对」⇒ 必须带实测依据（P8）且不能是僵尸条目（P9）"
+  },
+  "repeated_claims_1036": {},
+  "negative_control_1036": [
+    {
+      "file": "90-troubleshooting.md",
+      "line": 669,
+      "went_red": true
+    },
+    {
+      "file": "10-tasks/canvas-context.md",
+      "line": 628,
+      "went_red": true
+    },
+    {
+      "file": "10-tasks/canvas-context.md",
+      "line": 737,
+      "went_red": true
+    }
+  ],
+  "rule": "⭐⭐⭐⭐⭐ 同一句事实的**每一处**出现都要标 ⇒ ⇒⇒ 1035 只查首次命中 ⇒ ⇒⇒ ⇒ 第二次出现完全不受管 ⇒ ⇒⇒ ⇒ 所以本门按「枚举 + 逐处」判，不按「手打清单 + 首次命中」判。"
+}

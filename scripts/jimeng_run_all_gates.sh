@@ -87,6 +87,14 @@ run "1034-fake-interaction" $PY scripts/jimeng_probe1034_fake_interaction_census
 run "1035-persistence-runtime" node scripts/jimeng_probe1035_clone_persistence_runtime.mjs
 run "1035-manual-clone-parity" $PY scripts/jimeng_probe1035_manual_clone_parity_gate.py
 
+# ── 第 0 位之六：**源站事实主体标注的枚举普查门** ────────────────────────
+#   ⇒ ⇒⇒ ⇒ 1035 的判据是**手打清单 + 只查首次命中** ⇒ ⇒⇒ ⇒ 同一句事实第二次出现时不受管
+#   ⇒ ⇒⇒ ⇒ ⇒⇒ ⇒ ⇒ 实测盲区：canvas-context.md「内容跨刷新持久」出现 3 次，1035 只查第 1 次
+#   ⇒ ⇒⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ 而第 3 次那句在复刻上同样不成立
+#   ⇒ ⇒⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 所以 1036 改成「枚举 + 逐处都判」
+#   ⇒ ⇒⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 差异面词表**从手册自身推导**（不是手打清单）
+run "1036-source-claim-census" $PY scripts/jimeng_probe1036_manual_source_claim_census.py
+
 run "verifier-841"          $PY scripts/verify-jimeng-batch841-unclickable.py
 run "anchor-gate"           $PY scripts/jimeng_check_verifier_anchors.py
 run "1018-assertion"        $PY scripts/jimeng_probe1018_assertion_vs_behavior.py

@@ -12,17 +12,17 @@
   "why_declared_here": "⇒ **「声明」与「发布」之间那道缝**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 声明必须落在产物里、而不只在 README 的散文里**"
  },
  "census_inputs_2029": {
-  "n_fingerprinted": 31,
+  "n_fingerprinted": 32,
   "n_unreadable": 0,
   "n_volatile": 1,
   "volatile_inputs": {
    "golden-freshness-1027.json": {
-    "sha256_12": "18c0bcb6d3ef",
-    "bytes": 92877,
+    "sha256_12": "824d1b1f8ea9",
+    "bytes": 90846,
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
-  "n_from_probe_products": 32,
+  "n_from_probe_products": 33,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
     "sha256_12": "92e91802dbd4",
@@ -105,7 +105,7 @@
     "bytes": 1614
    },
    "manual-clone-parity-1035.json": {
-    "sha256_12": "53da07fc4f55",
+    "sha256_12": "5589a0a0b396",
     "bytes": 4994
    },
    "mention-contract-1032b3.json": {
@@ -129,8 +129,12 @@
     "bytes": 2109
    },
    "replica-coverage-1017.json": {
-    "sha256_12": "39098d61dc7f",
+    "sha256_12": "b156bad4a905",
     "bytes": 15016
+   },
+   "source-claim-census-1036.json": {
+    "sha256_12": "c54e6177f53b",
+    "bytes": 8635
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -152,12 +156,12 @@
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 32,
+  "n_goldens": 33,
   "n_excluded_self": 4,
-  "n_empty_list": 228,
-  "n_empty_null": 35,
+  "n_empty_list": 230,
+  "n_empty_null": 38,
   "n_self_provable": 10,
-  "n_ambiguous": 253
+  "n_ambiguous": 258
  },
  "rows": [
   {
@@ -1934,6 +1938,41 @@
   {
    "golden": "replica-contract-1031d.json",
    "path": "/unknown_status_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/candidates_1036/[3]/marker_line",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/candidates_1036/[4]/marker_line",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/candidates_1036/[5]/marker_line",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/unmarked_1036",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/exemptions_1036/zombie_1036",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -3728,6 +3767,41 @@
   {
    "golden": "replica-contract-1031d.json",
    "path": "/unknown_status_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/candidates_1036/[3]/marker_line",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/candidates_1036/[4]/marker_line",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/candidates_1036/[5]/marker_line",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/unmarked_1036",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/exemptions_1036/zombie_1036",
    "kind": "list",
    "self_provable": false,
    "invariant": null

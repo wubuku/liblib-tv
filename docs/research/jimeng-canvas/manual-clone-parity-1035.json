@@ -69,14 +69,14 @@
   "negative_control_1035": [
     {
       "id": "R1_canvas_context_rename_success_criterion",
-      "n_markers_removed": 2,
+      "n_markers_removed": 3,
       "still_ok_after_removal": false,
       "why_after_removal": "no_marker_near_anchor",
       "went_red": true
     },
     {
       "id": "R2_canvas_context_persist_claim",
-      "n_markers_removed": 2,
+      "n_markers_removed": 3,
       "still_ok_after_removal": false,
       "why_after_removal": "no_marker_near_anchor",
       "went_red": true
