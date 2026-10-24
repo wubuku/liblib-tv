@@ -47,16 +47,42 @@ READER_PAGES = [
     "90-troubleshooting.md",
 ] + ["10-tasks/" + n for n in sorted(os.listdir(MANUAL / "10-tasks")) if n.endswith(".md")]
 
-# 「源站实测」口吻的信号
+# 「源站实测」口吻的信号（第一层：显式口吻）
 SOURCE_TONE = re.compile(r"(实测|源站)")
+# ⭐⭐⭐⭐⭐ **第二层口吻：取证批次口吻** —— 句里带「批次 N」/日期/立规号
+#   ⇒ 这一层能抓到「批次 158 已经证明**上传是持久的**」这种**没写「实测/源站」**的句子
+#   ⇒ 而这类句子在 1036 第一版里**完全漏掉**（实测漏 27 条，见 README 六之五十一）
+FORENSIC_TONE = re.compile(r"(批次\s*\d+|20\d\d-\d\d-\d\d|立规\s*\d+)")
 # 「读者会照着做」的动作信号（成功判据 / 预期结果）
 ACTIONABLE = re.compile(
-    r"(刷新后|跨刷新|持久|自动保存|已保存|保存后|重新打开|再次进入|关掉再开|刷新页面|刷新即)"
+    r"(刷新后|跨刷新|持久|自动保存|已保存|保存后|重新打开|再次进入|关掉再开|刷新页面|刷新即|重载)"
+)
+# ⭐⭐⭐⭐⭐ **第二层口吻必须配「读者会照着做」二次过滤** ——
+#   ⇒ 否则 36 条新增候选里绝大多数是**截图说明 / 取证标题 / 内部立规**（不是给读者的操作步骤）
+#   ⇒ 二次过滤用「可执行判据」信号：句里有读者能照着做的动作或预期
+READER_ACTION = re.compile(
+    r"(判据|做法|办法|请|可以|应当|照着|重载|刷新后|重新打开|确认|看到|仍然|依然|不会|会丢|保留|证明)"
 )
 # 排除台账语境：这些句说的是**源站自己的**批量测试/积分/自动化，不是用户操作步骤
 LEDGER_CONTEXT = re.compile(
     r"(批次\s*\d+\s*实测|积分|profile|headless|无头|Cookies|臂\s*\d|Cookies|已保存状态\s*$)"
 )
+# ⭐⭐⭐⭐⭐ **排除「截图说明 / 取证标题 / 内部立规」** ——
+#   ⇒ 它们带取证口吻，但**不是读者会照着做的操作步骤**
+#   ⇒ 判据：整行是图片说明（以 `![` 开头）、是标题（以 # 开头）、或引用「立规 / 批次 N」编号表
+NON_READER_SHAPE = re.compile(
+    r"(^!\s*\[|^#{1,6}\s|立规\s*\d+\s*[:：]|^\|\s*\d+\s*（批次)"
+)
+# ⭐⭐⭐⭐⭐ **排除「实验方法论」** ——
+#   ⇒ 手册里有一部分段落是**写手册的人给自己的规矩**（怎么测、怎么记、怎么判）
+#   ⇒ 例如「只要实验里出现『开新页 / 重载 / 跨会话』，就必须**逐臂**记录被改量的实测值」
+#   ⇒ 那句里的「重载 / 跨会话」是**测试手段**，不是**产品行为** ⇒ 标不标主体都没意义
+#   ⇒ 判据：句在说「怎么测」（逐臂 / 判据三问 / 通用形态 / 立规 / 通用规律）
+METHODOLOGY = re.compile(
+    r"(逐臂|判据三问|通用形态|通用规律|通用判据|怎么自己造出|必须记录|记录被改量|写成结论|读数发生在)"
+)
+
+
 
 # ⭐⭐⭐⭐⭐ **豁免登记**：枚举到的候选里，有些**在复刻上同样成立**，
 #   标不标都是对的 ⇒ 把它们显式登记，并写明**实测理由**。
@@ -150,7 +176,14 @@ def exempt_for(rel, line_text):
 
 
 def enumerate_candidates(faces):
-    """枚举所有「差异面 + 源站口吻 + 读者会照着做」的句子。"""
+    """枚举所有「差异面 + 源站/取证口吻 + 读者会照着做」的句子。
+
+    ⇒ 两层口吻：
+      第一层 `SOURCE_TONE`（显式写「实测/源站」）—— 直接进候选
+      第二层 `FORENSIC_TONE`（带批次号/日期，但没写「实测」）—— **要过「读者会照着做」二次过滤**
+    ⇒ 二次过滤的必要性（实测）：第二层单独会带出 36 条，其中绝大多数是
+      **截图说明 / 取证标题 / 内部立规** ⇒ 不是给读者的操作步骤。
+    """
     rows = []
     face_re = re.compile("(" + "|".join(re.escape(f) for f in faces) + ")")
     for rel in READER_PAGES:
@@ -162,18 +195,28 @@ def enumerate_candidates(faces):
             s = line.strip()
             if not s or s.startswith(">"):
                 continue  # 标注块本身不算候选
-            if not SOURCE_TONE.search(s) or not ACTIONABLE.search(s):
+            if not SOURCE_TONE.search(s) and not FORENSIC_TONE.search(s):
+                continue
+            if not ACTIONABLE.search(s):
                 continue
             if not face_re.search(s):
                 continue
             if LEDGER_CONTEXT.search(s):
                 continue
+            if NON_READER_SHAPE.search(s):
+                continue
+            if METHODOLOGY.search(s):
+                continue
+            second_layer = not SOURCE_TONE.search(s)
+            if second_layer and not READER_ACTION.search(s):
+                continue  # 第二层口吻必须过「读者会照着做」二次过滤
             ex = exempt_for(rel, s)
             rows.append(
                 {
                     "file": rel,
                     "line": i + 1,
                     "text": s[:220],
+                    "tone_layer": 2 if second_layer else 1,
                     "section": next(
                         (ls[j][:70] for j in range(i, -1, -1) if re.match(r"^#{2,6}\s", ls[j])),
                         "",
@@ -341,9 +384,13 @@ def main():
             ],
         },
         "limits_1036": [
-            "只覆盖「差异面词 ∩ 源站口吻 ∩ 可操作判据」三类信号的交集",
+            "只覆盖「差异面词 ∩ 源站/取证口吻 ∩ 可操作判据」三类信号的交集",
             "读不出来源站口吻的句子（例如只写「刷新后仍是这样」而不写实测）不在覆盖内",
             "不判定产品行为本身对不对，只判定文档有没有标明主体",
+            "⭐⭐ 批 1032-⑦ 起口吻分两层：① 显式口吻（实测|源站）② 取证口吻（批次 N / YYYY-MM-DD / 立规 N）",
+            "⭐⭐ 第二层口吻**必须过二次过滤**（读者会照着做）⇒ 否则会带出 30+ 条误报",
+            "⭐⭐ 三类排除是**关键词启发式**（截图说明 / 取证标题编号表 / 实验方法论）"
+            "⇒ 换一种措辞写方法论就可能漏进来 ⇒ 这是本门已声明的盲区",
         ],
         "criteria_1036": crit,
         "criterion_kinds_1036": kinds,
