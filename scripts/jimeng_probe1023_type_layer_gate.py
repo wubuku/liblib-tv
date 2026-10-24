@@ -34,6 +34,7 @@
 """
 import atexit
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -90,13 +91,67 @@ def whole_repo_tsc():
 
 
 # ── ① 基线两格（自检：装置本身必须先干净，否则后面全部作废） ────────────────────
-REPO_TSC = whole_repo_tsc()
-(TMPDIR / "basecopy.tsx").write_text(WS_SRC, encoding="utf-8")
-COPY_TSC = run_tsc("basecopy.tsx", "base")
+# ⭐⭐⭐⭐⭐ **早退分支必须能被真的执行一次** —— 它是**新增的代码路径**
+#   ⇒ ⇒ 一条从没跑过的路径 = 不知道它写出的产物对不对
+#   ⇒ ⇒ 与 1031 的 `JIMENG_FORCE_CRASH=1` 同一条纪律：**「能失败」要能自证**
+#   ⇒ ⇒ 开关放在 tsc **之前** ⇒ 强制走早退时不必等整仓编译
+if os.environ.get("JIMENG_FORCE_SELFCHECK_FAIL") == "1":
+    REPO_TSC = {"rc": 2, "n_errors": 1,
+                "first": ["FORCED: src/forced.ts(1,1): error TS9999: 自检失败开关打开"]}
+    COPY_TSC = {"rc": 0, "n_errors": 0, "first": []}
+else:
+    REPO_TSC = whole_repo_tsc()
+    (TMPDIR / "basecopy.tsx").write_text(WS_SRC, encoding="utf-8")
+    COPY_TSC = run_tsc("basecopy.tsx", "base")
 SELFCHECK = (REPO_TSC["rc"] == 0 and COPY_TSC["rc"] == 0)
 if not SELFCHECK:
-    raise SystemExit("自检失败：仓当前就有类型错误、或副本装置不干净，先停。%r / %r"
-                     % (REPO_TSC, COPY_TSC))
+    # ⭐⭐⭐⭐⭐ **不许沉默地退出** —— 沉默会让下游**读不到任何判据**
+    #   ⇒ 而「读不到」与「读到 0」在账上长得一模一样 ⇒ ⇒ 那是这套门最贵的一种失败
+    #   ⇒ ⇒ 与 1031 的「仪器崩了 vs 没测到」同构 ⇒ ⇒ 这里必须**自报红**
+    #   ⇒ ⇒ P1 的语义正是「仓当前类型干净」⇒ 仓有类型错误 ⇒ **P1 真的为假** ⇒ ⇒ 记 False
+    #   ⇒ ⇒ 而 P2..P7 **未测** ⇒ ⇒ 记 None（不许记 False —— 那是「没跑过」冒充「跑过没过」）
+    #   ⇒ ⇒ 诊断细节（错误原文）**只打 stderr、不进产物** ⇒ 产物才逐字节可复现
+    def _codes(rows):
+        out = []
+        for _l in rows:
+            _m = re.search(r"error (TS\d+)", _l)
+            if _m and _m.group(1) not in out:
+                out.append(_m.group(1))
+        return out
+
+    sys.stderr.write("TYPE_LAYER_SELFCHECK_FAILED repo=%r copy=%r\n" % (REPO_TSC, COPY_TSC))
+    _EARLY = {
+        "generated_by": "jimeng_probe1023_type_layer_gate.py",
+        "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **本轮早退：仓当前就有类型错误** ⇒ "
+                "**后面的类型层实验整体作废**（副本装置的基线不干净）⇒ "
+                "但**不许沉默退出** —— 那样下游会读不到任何判据 ⇒ "
+                "**「读不到」与「读到 0」在账上长得一模一样**",
+        "early_exit": {
+            "why": "self_check_failed",
+            "rule": "两格基线（整仓 tsc / 未变异副本 tsc）都必须先干净 ⇒ "
+                    "否则「tsc 抓到了」可能只是因为副本装置本身坏了 ⇒ 后面全部作废",
+            "whole_repo_tsc": {"rc": REPO_TSC["rc"], "n_errors": REPO_TSC["n_errors"],
+                               "error_codes_seen": _codes(REPO_TSC["first"])},
+            "unmutated_copy_tsc": {"rc": COPY_TSC["rc"], "n_errors": COPY_TSC["n_errors"],
+                                   "error_codes_seen": _codes(COPY_TSC["first"])},
+            "n_measured": "⭐⭐⭐ 只记**条数**与**错误码**，不记原文 ⇒ "
+                          "原文含临时目录名与绝对路径 ⇒ 进产物就破坏逐字节可复现",
+        },
+        "P1_typescript_installed_and_repo_is_type_clean_1023": False,
+        "P2_check_has_chained_typecheck_1023": None,
+        "P3_type_layer_catches_some_and_misses_some_1023": None,
+        "P4_local_commit_gate_never_calls_tsc_but_ci_does_1023": None,
+        "P5_a_never_true_premise_is_what_a_criterion_leans_on_1023": None,
+        "P6_scope_declared_1023": None,
+        "P7_offline_1023": None,
+    }
+    GOLDEN.parent.mkdir(parents=True, exist_ok=True)
+    GOLDEN.write_text(json.dumps(_EARLY, ensure_ascii=False, indent=1))
+    # ⭐ 与正常路径**同一种书写** ⇒ 下游的摘要读法与明细读法都能认
+    print("P1..P7 =", [_EARLY[k] for k in _EARLY if k.startswith("P")])
+    print("P 为假的： P1 | 共 7 条")
+    print("PROBE_1023_DONE ->", GOLDEN)
+    sys.exit(1)
 
 
 # ── ② 那些「运行期不可区分」的变异体，喂给类型层 ────────────────────────────────
