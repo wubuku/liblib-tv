@@ -42,6 +42,8 @@ import { DirectorAspectPanel } from "@/components/director/DirectorAspectPanel";
 import { DirectorShortcutsDialog } from "@/components/director/DirectorShortcutsDialog";
 import {
   collectDirectorCanvasMediaInputs,
+  directorLocalPanoramaSourceNodeId,
+  mergeDirectorLocalPanoramaInput,
   type DirectorCanvasMediaInputV1,
   type DirectorPanoramaRuntimeState,
 } from "@/lib/directorCanvasMediaIngress";
@@ -203,6 +205,13 @@ export default function DirectorDesk({
   onClose: () => void;
 }) {
   const scene = useDirectorStore((state) => state.scene);
+  // ★ Batch 861：「本地上传」的全景图资产（**会话级 blob URL，不上传**）
+  const localPanoramaAsset = useDirectorStore(
+    (state) => state.localPanoramaAsset,
+  );
+  const setLocalPanoramaAsset = useDirectorStore(
+    (state) => state.setLocalPanoramaAsset,
+  );
   const viewMode = useDirectorStore((state) => state.viewMode);
   const captures = useDirectorStore((state) => state.captures);
   const activeCaptureId = useDirectorStore((state) => state.activeCaptureId);
@@ -297,8 +306,14 @@ export default function DirectorDesk({
     [canvasId, canvases],
   );
   const canvasMediaInputs = useMemo(
-    () => collectDirectorCanvasMediaInputs(activeCanvas, sourceNodeId),
-    [activeCanvas, sourceNodeId],
+    () =>
+      // ★ Batch 861：「本地上传」的那张本地图片也并进来（**同构的虚拟输入**）
+      //   ⟹ ⟹ 3D 层、检查器、选择器一条通路照常工作。
+      mergeDirectorLocalPanoramaInput(
+        collectDirectorCanvasMediaInputs(activeCanvas, sourceNodeId),
+        localPanoramaAsset,
+      ),
+    [activeCanvas, sourceNodeId, localPanoramaAsset],
   );
   const [panoramaSourceId, setPanoramaSourceId] = useState<
     string | null | undefined
@@ -1299,7 +1314,18 @@ export default function DirectorDesk({
               ② 源站逐字：切 `z` 时 `O(null)` 清掉的是**子菜单**（crowd /
                  geometry），**画幅比例的选中项是画布级状态、不会清**
                  ⟹ ⟹ 不重挂载反而更贴源站。 */}
-        <DirectorPanoramaPanel active={leftPanelView === "panorama"} />
+        <DirectorPanoramaPanel
+          active={leftPanelView === "panorama"}
+          panoramaInputs={canvasMediaInputs}
+          currentPanoramaSourceId={resolvedPanoramaSourceId}
+          onSelectPanorama={(sourceNodeId) => setPanoramaSourceId(sourceNodeId)}
+          onLocalAsset={(asset) => {
+            // ★ Batch 861：登记本地资产 ⟹ ⟹ 并成虚拟输入 ⟹ ⟹ 立刻选它当全景图
+            const id = `local-${Date.now()}`;
+            setLocalPanoramaAsset({ id, ...asset });
+            setPanoramaSourceId(directorLocalPanoramaSourceNodeId(id));
+          }}
+        />
         <DirectorAspectPanel active={leftPanelView === "aspect"} />
         {/* ★ Batch 858：源站逐字 —— 左侧面板是**模式互斥**的（`"scene"===z?n:null,
             "character"===z?(…)`）⟹ ⟹ 切到「添加角色」时**场景树不渲染**。

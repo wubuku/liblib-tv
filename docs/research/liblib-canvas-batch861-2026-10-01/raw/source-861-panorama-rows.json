@@ -1,0 +1,124 @@
+{
+ "batch": 861,
+ "probe": "source861_panorama_rows",
+ "三行_前": [
+  {
+   "text": "本地上传",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "pointer",
+   "hasIcon": true
+  },
+  {
+   "text": "历史记录",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "pointer",
+   "hasIcon": true
+  },
+  {
+   "text": "AI生成",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "pointer",
+   "hasIcon": true
+  }
+ ],
+ "本地上传_弹了文件选择器": true,
+ "本地上传_浮层": [
+  {
+   "z": 1000,
+   "cls": "react-flow__node react-flow__node-director-console-3d nopan selected selectable draggable",
+   "rect": {
+    "x": 503,
+    "y": 127,
+    "w": 133,
+    "h": 178
+   },
+   "text": "导演台 2打开导演台"
+  },
+  {
+   "z": 30,
+   "cls": "absolute inset-y-0 left-0 z-30 overflow-hidden border-r border-white/10 bg-[#171717] text-",
+   "rect": {
+    "x": 0,
+    "y": 0,
+    "w": 281,
+    "h": 1080
+   },
+   "text": "3D导演台全景图本地上传历史记录AI生成"
+  }
+ ],
+ "历史记录_浮层": [
+  {
+   "z": 1000,
+   "cls": "react-flow__node react-flow__node-director-console-3d nopan selected selectable draggable",
+   "rect": {
+    "x": 503,
+    "y": 127,
+    "w": 133,
+    "h": 178
+   },
+   "text": "导演台 2打开导演台"
+  },
+  {
+   "z": 30,
+   "cls": "absolute inset-y-0 left-0 z-30 overflow-hidden border-r border-white/10 bg-[#171717] text-",
+   "rect": {
+    "x": 0,
+    "y": 0,
+    "w": 281,
+    "h": 1080
+   },
+   "text": "3D导演台全景图本地上传历史记录AI生成"
+  }
+ ],
+ "AI生成_浮层": [
+  {
+   "z": 1000,
+   "cls": "react-flow__node react-flow__node-director-console-3d nopan selected selectable draggable",
+   "rect": {
+    "x": 503,
+    "y": 127,
+    "w": 133,
+    "h": 178
+   },
+   "text": "导演台 2打开导演台"
+  },
+  {
+   "z": 30,
+   "cls": "absolute inset-y-0 left-0 z-30 overflow-hidden border-r border-white/10 bg-[#171717] text-",
+   "rect": {
+    "x": 0,
+    "y": 0,
+    "w": 281,
+    "h": 1080
+   },
+   "text": "3D导演台全景图本地上传历史记录AI生成"
+  }
+ ],
+ "三行_后": [
+  {
+   "text": "本地上传",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "pointer",
+   "hasIcon": true
+  },
+  {
+   "text": "历史记录",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "pointer",
+   "hasIcon": true
+  },
+  {
+   "text": "AI生成",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "pointer",
+   "hasIcon": true
+  }
+ ],
+ "页面按钮总数": 98
+}

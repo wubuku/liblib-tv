@@ -1,0 +1,107 @@
+{
+ "batch": 861,
+ "probe": "source861_aspect_disabled",
+ "导演台已开": true,
+ "场景树行": [],
+ "删除类按钮": [],
+ "有机位_七格": [
+  {
+   "text": "自适应",
+   "disabled": false,
+   "ariaDisabled": null,
+   "opacity": "1",
+   "cursor": "pointer",
+   "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.85)",
+   "rect": {
+    "x": 56,
+    "y": 100,
+    "w": 104,
+    "h": 72
+   }
+  },
+  {
+   "text": "21:9",
+   "disabled": false,
+   "ariaDisabled": null,
+   "opacity": "1",
+   "cursor": "pointer",
+   "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+   "rect": {
+    "x": 168,
+    "y": 100,
+    "w": 104,
+    "h": 72
+   }
+  },
+  {
+   "text": "16:9",
+   "disabled": false,
+   "ariaDisabled": null,
+   "opacity": "1",
+   "cursor": "pointer",
+   "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+   "rect": {
+    "x": 56,
+    "y": 180,
+    "w": 104,
+    "h": 72
+   }
+  },
+  {
+   "text": "4:3",
+   "disabled": false,
+   "ariaDisabled": null,
+   "opacity": "1",
+   "cursor": "pointer",
+   "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+   "rect": {
+    "x": 168,
+    "y": 180,
+    "w": 104,
+    "h": 72
+   }
+  },
+  {
+   "text": "1:1",
+   "disabled": false,
+   "ariaDisabled": null,
+   "opacity": "1",
+   "cursor": "pointer",
+   "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+   "rect": {
+    "x": 56,
+    "y": 260,
+    "w": 104,
+    "h": 72
+   }
+  },
+  {
+   "text": "3:4",
+   "disabled": false,
+   "ariaDisabled": null,
+   "opacity": "1",
+   "cursor": "pointer",
+   "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+   "rect": {
+    "x": 168,
+    "y": 260,
+    "w": 104,
+    "h": 72
+   }
+  },
+  {
+   "text": "9:16",
+   "disabled": false,
+   "ariaDisabled": null,
+   "opacity": "1",
+   "cursor": "pointer",
+   "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+   "rect": {
+    "x": 56,
+    "y": 340,
+    "w": 104,
+    "h": 72
+   }
+  }
+ ]
+}

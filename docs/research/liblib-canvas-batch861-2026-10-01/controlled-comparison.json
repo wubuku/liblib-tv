@@ -1,0 +1,431 @@
+{
+ "batch": 861,
+ "title": "受控对照：源码换回 HEAD ⟹ 新门禁必须翻红（证明有牙）",
+ "gates": [
+  "scripts/verify-liblib-batch861.py",
+  "scripts/verify-liblib-batch860.py",
+  "scripts/verify-liblib-batch859.py",
+  "scripts/verify-liblib-batch626.py",
+  "scripts/verify-liblib-batch625.py",
+  "scripts/verify-liblib-batch590.py",
+  "scripts/verify-liblib-batch589.py"
+ ],
+ "states": [
+  "HEAD-1",
+  "HEAD-2",
+  "WORK-1",
+  "WORK-2"
+ ],
+ "src": [
+  "src/store/directorStore.ts",
+  "src/lib/directorCanvasMediaIngress.ts",
+  "src/components/director/DirectorPanoramaPanel.tsx",
+  "src/components/director/DirectorPanoramaPicker.tsx",
+  "src/components/director/DirectorDesk.tsx"
+ ],
+ "restored": true,
+ "sha": {
+  "base": {
+   "src/store/directorStore.ts": "ba4065de59c59c15d6841990bfab05ffb10f26a4363b3e4916c0bd7827138ef6",
+   "src/lib/directorCanvasMediaIngress.ts": "6e03c5291084fd38eff1675b91353eaed5a5104bdad085047f5a9fa18f688181",
+   "src/components/director/DirectorPanoramaPanel.tsx": "9e2871c19ed2eea567249f7552c94fc906a3176cdd906597ca51bdb3ac816428",
+   "src/components/director/DirectorPanoramaPicker.tsx": "ab4b13143bc3ef0ed3dd8be13ee9631a82e42ae451ff07f9c1d757b71fcb682f",
+   "src/components/director/DirectorDesk.tsx": "f2c268a165f568e54947af2776baa49634c46c52581fc09e10bbb1e7b354da61"
+  },
+  "after": {
+   "src/store/directorStore.ts": "ba4065de59c59c15d6841990bfab05ffb10f26a4363b3e4916c0bd7827138ef6",
+   "src/lib/directorCanvasMediaIngress.ts": "6e03c5291084fd38eff1675b91353eaed5a5104bdad085047f5a9fa18f688181",
+   "src/components/director/DirectorPanoramaPanel.tsx": "9e2871c19ed2eea567249f7552c94fc906a3176cdd906597ca51bdb3ac816428",
+   "src/components/director/DirectorPanoramaPicker.tsx": "ab4b13143bc3ef0ed3dd8be13ee9631a82e42ae451ff07f9c1d757b71fcb682f",
+   "src/components/director/DirectorDesk.tsx": "f2c268a165f568e54947af2776baa49634c46c52581fc09e10bbb1e7b354da61"
+  }
+ },
+ "work": {
+  "once": {
+   "scripts/verify-liblib-batch861.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 25.1,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch861.txt"
+   },
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 19.2,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.5,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog"
+    ],
+    "seconds": 194.1,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 41.0,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch590.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 8.8,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch590.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 4.8,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch589.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 22.3,
+   "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-1-860-2nd/verify-liblib-batch861.txt"
+  }
+ },
+ "work2": {
+  "once": {
+   "scripts/verify-liblib-batch861.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 22.3,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch861.txt"
+   },
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 19.4,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.8,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog"
+    ],
+    "seconds": 197.6,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 35.4,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch590.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 6.2,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch590.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 4.3,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch589.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 22.2,
+   "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/WORK-2-860-2nd/verify-liblib-batch861.txt"
+  }
+ },
+ "head": {
+  "once": {
+   "scripts/verify-liblib-batch861.py": {
+    "rc": 1,
+    "failed": [
+     "source:every-row-has-an-onclick  ⟵ {'onClick': False, '分派段缺失': ['local-upload', 'history', 'ai-generate']}",
+     "source:panel-has-a-hidden-file-input  ⟵ {'type=file': False, 'accept=image/*': False}",
+     "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()",
+     "source:store-has-the-local-panorama-asset  ⟵ {'state 声明': False, 'action 声明': False}",
+     "source:ingress-merges-the-local-input  ⟵ {'merge': False, '前缀': False}",
+     "source:desk-wires-the-local-asset  ⟵ {'merge': False, 'asset': False}",
+     "source:the-picker-has-the-source-actions  ⟵ {'缺失': ['data-director-panorama-generate', 'data-director-panorama-picker-upload', 'data-director-panorama-picker-cancel', 'data-director-panorama-picker-confirm']}",
+     "clone:there-is-a-hidden-image-file-input  ⟵ None",
+     "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+     "clone:history-opens-the-picker  ⟵ None",
+     "clone:the-history-picker-has-cancel-and-confirm  ⟵ None",
+     "clone:the-history-picker-has-no-generate-button  ⟵ None",
+     "clone:ai-generate-opens-the-picker  ⟵ None",
+     "clone:the-ai-picker-adds-generate-and-upload  ⟵ None",
+     "clone:the-local-file-becomes-a-local-asset  ⟵ CRASH: TimeoutError: 面板没有那个 file input",
+     "clone:the-local-file-becomes-a-local-asset  ⟵ None",
+     "clone:the-current-panorama-becomes-the-local-one  ⟵ None",
+     "clone:the-current-panorama-shows-the-filename  ⟵ None",
+     "clone:the-picker-lists-the-local-asset  ⟵ []"
+    ],
+    "seconds": 88.2,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch861.txt"
+   },
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 19.4,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.9,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog"
+    ],
+    "seconds": 201.6,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 34.9,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch590.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 6.2,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch590.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 4.3,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch589.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:every-row-has-an-onclick  ⟵ {'onClick': False, '分派段缺失': ['local-upload', 'history', 'ai-generate']}",
+    "source:panel-has-a-hidden-file-input  ⟵ {'type=file': False, 'accept=image/*': False}",
+    "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()",
+    "source:store-has-the-local-panorama-asset  ⟵ {'state 声明': False, 'action 声明': False}",
+    "source:ingress-merges-the-local-input  ⟵ {'merge': False, '前缀': False}",
+    "source:desk-wires-the-local-asset  ⟵ {'merge': False, 'asset': False}",
+    "source:the-picker-has-the-source-actions  ⟵ {'缺失': ['data-director-panorama-generate', 'data-director-panorama-picker-upload', 'data-director-panorama-picker-cancel', 'data-director-panorama-picker-confirm']}",
+    "clone:there-is-a-hidden-image-file-input  ⟵ None",
+    "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+    "clone:history-opens-the-picker  ⟵ None",
+    "clone:the-history-picker-has-cancel-and-confirm  ⟵ None",
+    "clone:the-history-picker-has-no-generate-button  ⟵ None",
+    "clone:ai-generate-opens-the-picker  ⟵ None",
+    "clone:the-ai-picker-adds-generate-and-upload  ⟵ None",
+    "clone:the-local-file-becomes-a-local-asset  ⟵ CRASH: TimeoutError: 面板没有那个 file input",
+    "clone:the-local-file-becomes-a-local-asset  ⟵ None",
+    "clone:the-current-panorama-becomes-the-local-one  ⟵ None",
+    "clone:the-current-panorama-shows-the-filename  ⟵ None",
+    "clone:the-picker-lists-the-local-asset  ⟵ []"
+   ],
+   "seconds": 80.3,
+   "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-1-860-2nd/verify-liblib-batch861.txt"
+  }
+ },
+ "head2": {
+  "once": {
+   "scripts/verify-liblib-batch861.py": {
+    "rc": 1,
+    "failed": [
+     "source:every-row-has-an-onclick  ⟵ {'onClick': False, '分派段缺失': ['local-upload', 'history', 'ai-generate']}",
+     "source:panel-has-a-hidden-file-input  ⟵ {'type=file': False, 'accept=image/*': False}",
+     "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()",
+     "source:store-has-the-local-panorama-asset  ⟵ {'state 声明': False, 'action 声明': False}",
+     "source:ingress-merges-the-local-input  ⟵ {'merge': False, '前缀': False}",
+     "source:desk-wires-the-local-asset  ⟵ {'merge': False, 'asset': False}",
+     "source:the-picker-has-the-source-actions  ⟵ {'缺失': ['data-director-panorama-generate', 'data-director-panorama-picker-upload', 'data-director-panorama-picker-cancel', 'data-director-panorama-picker-confirm']}",
+     "clone:there-is-a-hidden-image-file-input  ⟵ None",
+     "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+     "clone:history-opens-the-picker  ⟵ None",
+     "clone:the-history-picker-has-cancel-and-confirm  ⟵ None",
+     "clone:the-history-picker-has-no-generate-button  ⟵ None",
+     "clone:ai-generate-opens-the-picker  ⟵ None",
+     "clone:the-ai-picker-adds-generate-and-upload  ⟵ None",
+     "clone:the-local-file-becomes-a-local-asset  ⟵ CRASH: TimeoutError: 面板没有那个 file input",
+     "clone:the-local-file-becomes-a-local-asset  ⟵ None",
+     "clone:the-current-panorama-becomes-the-local-one  ⟵ None",
+     "clone:the-current-panorama-shows-the-filename  ⟵ None",
+     "clone:the-picker-lists-the-local-asset  ⟵ []"
+    ],
+    "seconds": 80.3,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch861.txt"
+   },
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 19.4,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.6,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog"
+    ],
+    "seconds": 197.8,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 35.1,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch590.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 6.1,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch590.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 4.3,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch589.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:every-row-has-an-onclick  ⟵ {'onClick': False, '分派段缺失': ['local-upload', 'history', 'ai-generate']}",
+    "source:panel-has-a-hidden-file-input  ⟵ {'type=file': False, 'accept=image/*': False}",
+    "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()",
+    "source:store-has-the-local-panorama-asset  ⟵ {'state 声明': False, 'action 声明': False}",
+    "source:ingress-merges-the-local-input  ⟵ {'merge': False, '前缀': False}",
+    "source:desk-wires-the-local-asset  ⟵ {'merge': False, 'asset': False}",
+    "source:the-picker-has-the-source-actions  ⟵ {'缺失': ['data-director-panorama-generate', 'data-director-panorama-picker-upload', 'data-director-panorama-picker-cancel', 'data-director-panorama-picker-confirm']}",
+    "clone:there-is-a-hidden-image-file-input  ⟵ None",
+    "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+    "clone:history-opens-the-picker  ⟵ None",
+    "clone:the-history-picker-has-cancel-and-confirm  ⟵ None",
+    "clone:the-history-picker-has-no-generate-button  ⟵ None",
+    "clone:ai-generate-opens-the-picker  ⟵ None",
+    "clone:the-ai-picker-adds-generate-and-upload  ⟵ None",
+    "clone:the-local-file-becomes-a-local-asset  ⟵ CRASH: TimeoutError: 面板没有那个 file input",
+    "clone:the-local-file-becomes-a-local-asset  ⟵ None",
+    "clone:the-current-panorama-becomes-the-local-one  ⟵ None",
+    "clone:the-current-panorama-shows-the-filename  ⟵ None",
+    "clone:the-picker-lists-the-local-asset  ⟵ []"
+   ],
+   "seconds": 80.3,
+   "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/HEAD-2-860-2nd/verify-liblib-batch861.txt"
+  }
+ },
+ "stableAcrossTwoRuns": true,
+ "stabilityNote": "只有新门禁 861 跑了两遍（决定性测量）；其余门禁读的是失败集合的差异",
+ "newGateHasTeeth": true,
+ "newGateFailedOnHEAD": [
+  "source:every-row-has-an-onclick  ⟵ {'onClick': False, '分派段缺失': ['local-upload', 'history', 'ai-generate']}",
+  "source:panel-has-a-hidden-file-input  ⟵ {'type=file': False, 'accept=image/*': False}",
+  "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()",
+  "source:store-has-the-local-panorama-asset  ⟵ {'state 声明': False, 'action 声明': False}",
+  "source:ingress-merges-the-local-input  ⟵ {'merge': False, '前缀': False}",
+  "source:desk-wires-the-local-asset  ⟵ {'merge': False, 'asset': False}",
+  "source:the-picker-has-the-source-actions  ⟵ {'缺失': ['data-director-panorama-generate', 'data-director-panorama-picker-upload', 'data-director-panorama-picker-cancel', 'data-director-panorama-picker-confirm']}",
+  "clone:there-is-a-hidden-image-file-input  ⟵ None",
+  "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+  "clone:history-opens-the-picker  ⟵ None",
+  "clone:the-history-picker-has-cancel-and-confirm  ⟵ None",
+  "clone:the-history-picker-has-no-generate-button  ⟵ None",
+  "clone:ai-generate-opens-the-picker  ⟵ None",
+  "clone:the-ai-picker-adds-generate-and-upload  ⟵ None",
+  "clone:the-local-file-becomes-a-local-asset  ⟵ CRASH: TimeoutError: 面板没有那个 file input",
+  "clone:the-local-file-becomes-a-local-asset  ⟵ None",
+  "clone:the-current-panorama-becomes-the-local-one  ⟵ None",
+  "clone:the-current-panorama-shows-the-filename  ⟵ None",
+  "clone:the-picker-lists-the-local-asset  ⟵ []"
+ ],
+ "newGateFailedOnWORK": [],
+ "newGateCrashOnHEAD": [],
+ "diffs": {},
+ "diffsNote": "HEAD 独有的红条 = 「本批整改掉的旧行为」；WORK 独有的红条 = 「本批引入的新问题」（必须为空）",
+ "mixNote": "MIX 半回退态：只把 DirectorPanoramaPanel.tsx 换回 HEAD（组件内 useState 的老写法）、**保留** store 与 math 的新代码 ⟹ ⟹ 正好隔离出「面板没接 store」这一条：store 那几条静态判据**不该红**、运行时判据**必须红**",
+ "mix": {
+  "once": {
+   "scripts/verify-liblib-batch861.py": {
+    "rc": 1,
+    "failed": [
+     "source:every-row-has-an-onclick  ⟵ {'onClick': False, '分派段缺失': ['local-upload', 'history', 'ai-generate']}",
+     "source:panel-has-a-hidden-file-input  ⟵ {'type=file': False, 'accept=image/*': False}",
+     "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()",
+     "clone:there-is-a-hidden-image-file-input  ⟵ None",
+     "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+     "clone:history-opens-the-picker  ⟵ None",
+     "clone:the-history-picker-has-cancel-and-confirm  ⟵ None",
+     "clone:the-history-picker-has-no-generate-button  ⟵ None",
+     "clone:ai-generate-opens-the-picker  ⟵ None",
+     "clone:the-ai-picker-adds-generate-and-upload  ⟵ None",
+     "clone:the-local-file-becomes-a-local-asset  ⟵ CRASH: TimeoutError: 面板没有那个 file input",
+     "clone:the-local-file-becomes-a-local-asset  ⟵ None",
+     "clone:the-current-panorama-becomes-the-local-one  ⟵ None",
+     "clone:the-current-panorama-shows-the-filename  ⟵ None",
+     "clone:the-picker-lists-the-local-asset  ⟵ []"
+    ],
+    "seconds": 83.8,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/MIX/verify-liblib-batch861.txt"
+   },
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 20.0,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/MIX/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch590.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 6.5,
+    "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/MIX/verify-liblib-batch590.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:every-row-has-an-onclick  ⟵ {'onClick': False, '分派段缺失': ['local-upload', 'history', 'ai-generate']}",
+    "source:panel-has-a-hidden-file-input  ⟵ {'type=file': False, 'accept=image/*': False}",
+    "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()",
+    "clone:there-is-a-hidden-image-file-input  ⟵ None",
+    "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+    "clone:history-opens-the-picker  ⟵ None",
+    "clone:the-history-picker-has-cancel-and-confirm  ⟵ None",
+    "clone:the-history-picker-has-no-generate-button  ⟵ None",
+    "clone:ai-generate-opens-the-picker  ⟵ None",
+    "clone:the-ai-picker-adds-generate-and-upload  ⟵ None",
+    "clone:the-local-file-becomes-a-local-asset  ⟵ CRASH: TimeoutError: 面板没有那个 file input",
+    "clone:the-local-file-becomes-a-local-asset  ⟵ None",
+    "clone:the-current-panorama-becomes-the-local-one  ⟵ None",
+    "clone:the-current-panorama-shows-the-filename  ⟵ None",
+    "clone:the-picker-lists-the-local-asset  ⟵ []"
+   ],
+   "seconds": 80.7,
+   "log": "docs/research/liblib-canvas-batch861-2026-10-01/raw/attrib/MIX-860-2nd/verify-liblib-batch861.txt"
+  }
+ },
+ "mixStable": true,
+ "mixRestored": true,
+ "mixCrash": []
+}

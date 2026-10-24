@@ -83,6 +83,13 @@ python3 scripts/verify-docs.py
   export/capture aspect (`aspectRatio`, three values, consumed by
   `directorVideoExport.ts` / `directorProjectDocument.ts` /
   `libtvMediaDimensionAuthority.ts`) — do not mix them.
+- Director「全景图」panel rows (Batch 861): the source site opens a **hidden file
+  input** for「本地上传」(verbatim `et.current?.click()`), and both「历史记录」and
+  「AI生成」open the **same** picker (the AI row adds「生成」「上传图片」).
+  The clone's local panorama uses a **session-scoped blob URL** — it uploads
+  nothing — and the「生成」entry **must never** call a real generation API
+  (real image generation costs money); `verify-liblib-batch861.py` fails the
+  build if a network call appears in the picker source.
 
 ## 6. Change Protocol
 

@@ -164,6 +164,7 @@ import {
   type DirectorLocalResourceLeaseOwnerV1,
   type DirectorLocalResourceMap,
 } from "@/lib/directorLocalResourceLifecycle";
+import type { DirectorLocalPanoramaAsset } from "@/lib/directorCanvasMediaIngress";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
@@ -690,6 +691,17 @@ interface DirectorState {
   activeCaptureId: string | null;
   localModelLibrary: DirectorLocalModelLibraryItem[];
   localModelResources: DirectorLocalResourceMap;
+  /**
+   * ★ Batch 861（源站实测）：导演台左侧「全景图 → 本地上传」在源站会
+   *   **触发一个隐藏的 file input**（逐字 `et.current?.click()`），
+   *   选中后源站把图片上传成 `panoramaUrl`。
+   *   ★ clone 的全景图来源是**画布图片节点** ⟹ ⟹ 本地文件没有节点 id
+   *   ⟹ ⟹ 这里存一份「本地全景图资产」，由
+   *   `mergeDirectorLocalPanoramaInput` 包成**同构的虚拟输入**。
+   *   ★ `imageUrl` 是 `URL.createObjectURL` 的 blob URL（**会话级**、
+   *   **不上传**任何东西）⟹ ⟹ 换资产时必须 revoke 旧的。
+   */
+  localPanoramaAsset: DirectorLocalPanoramaAsset | null;
   timeline: DirectorTimelineState;
   phoneVcam: DirectorPhoneVcamState;
   history: DirectorHistoryState;
@@ -788,6 +800,13 @@ interface DirectorState {
     policy?: DirectorResourceDeletePolicy,
   ) => DirectorCommandResult;
   addModelLibraryObject: (item: DirectorModelLibraryCardItem) => string;
+  /**
+   * ★ Batch 861：登记／清除「本地上传」的全景图资产。
+   *   ★ 换资产时**先 revoke 旧的 blob URL**（否则 blob 一直占着内存）。
+   */
+  setLocalPanoramaAsset: (
+    asset: DirectorLocalPanoramaAsset | null,
+  ) => void;
   updateGroup: (
     groupId: string,
     patch: Partial<Pick<DirectorCharacterGroup, "label">>,
@@ -2841,6 +2860,7 @@ function createInvalidatedDirectorSessionState(): Partial<DirectorState> {
     activeCaptureId: null,
     localModelLibrary: [],
     localModelResources: {},
+    localPanoramaAsset: null,
     timeline: createDefaultTimeline(),
     phoneVcam: createDefaultPhoneVcamState(),
     history: createDirectorHistoryState(),
@@ -3196,6 +3216,7 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   activeCaptureId: null,
   localModelLibrary: [],
   localModelResources: {},
+  localPanoramaAsset: null,
   timeline: createDefaultTimeline(),
   phoneVcam: createDefaultPhoneVcamState(),
   history: createDirectorHistoryState(),
@@ -5439,6 +5460,24 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
       resourceId: assetId,
       instancePolicy: policy,
     }),
+
+  // ★ Batch 861（源站实测）：「全景图 → 本地上传」在源站是
+  //   `onClick:()=>{I?.(), et.current?.click()}`（逐字）⟹ ⟹ 打开隐藏的 file input；
+  //   选中后源站把图片**上传**成 `panoramaUrl`。
+  //   ★ clone 不做任何上传（**会话级 blob URL**）⟹ ⟹ 只登记资产，
+  //   由 `mergeDirectorLocalPanoramaInput` 包成同构的虚拟输入。
+  setLocalPanoramaAsset: (asset) => {
+    const previous = get().localPanoramaAsset;
+    // ★ 换资产时回收旧的 blob URL（**同一个 URL 不回收**）
+    if (previous && previous.imageUrl !== asset?.imageUrl) {
+      try {
+        URL.revokeObjectURL(previous.imageUrl);
+      } catch {
+        /* 环境不支持 revoke 时忽略 */
+      }
+    }
+    set({ localPanoramaAsset: asset });
+  },
 
   addModelLibraryObject: (item) => {
     let createdObjectId = "";

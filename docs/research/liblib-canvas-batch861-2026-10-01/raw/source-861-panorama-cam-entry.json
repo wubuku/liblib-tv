@@ -1,0 +1,1757 @@
+{
+ "batch": 861,
+ "probe": "source861_cam_entry",
+ "左栏_default": {
+  "rect": {
+   "x": 0,
+   "y": 0,
+   "w": 281,
+   "h": 1080
+  },
+  "text": "3D导演台场景搜索场景对象机位1机位2角色A",
+  "buttons": [
+   {
+    "label": "关闭 | |",
+    "disabled": false,
+    "x": 0,
+    "y": 6,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "label": "收起 | |",
+    "disabled": false,
+    "x": 240,
+    "y": 6,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "label": "场景 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 60,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "添加角色 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 116,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "添加机位 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 156,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "全景图 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 196,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "选择画幅比例 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 236,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "AI 识图导入 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 276,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "帮助 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 1040,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "| 隐藏 |",
+    "disabled": false,
+    "x": 226,
+    "y": 150,
+    "w": 20,
+    "h": 20
+   },
+   {
+    "label": "| 锁定 |",
+    "disabled": false,
+    "x": 248,
+    "y": 150,
+    "w": 20,
+    "h": 20
+   },
+   {
+    "label": "| 隐藏 |",
+    "disabled": false,
+    "x": 226,
+    "y": 182,
+    "w": 20,
+    "h": 20
+   },
+   {
+    "label": "| 锁定 |",
+    "disabled": false,
+    "x": 248,
+    "y": 182,
+    "w": 20,
+    "h": 20
+   },
+   {
+    "label": "| 隐藏 |",
+    "disabled": false,
+    "x": 226,
+    "y": 214,
+    "w": 20,
+    "h": 20
+   },
+   {
+    "label": "| 锁定 |",
+    "disabled": false,
+    "x": 248,
+    "y": 214,
+    "w": 20,
+    "h": 20
+   }
+  ]
+ },
+ "按钮_default": [
+  {
+   "label": "| | 画布 1",
+   "disabled": false,
+   "x": 165,
+   "y": 8,
+   "w": 68,
+   "h": 32,
+   "cls": "group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-c"
+  },
+  {
+   "label": "工作流 | |",
+   "disabled": false,
+   "x": 243,
+   "y": 8,
+   "w": 32,
+   "h": 32,
+   "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content tra"
+  },
+  {
+   "label": "故事板 | |",
+   "disabled": false,
+   "x": 275,
+   "y": 8,
+   "w": 32,
+   "h": 32,
+   "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content p-0"
+  },
+  {
+   "label": "发布与分享 | |",
+   "disabled": false,
+   "x": 1567,
+   "y": 8,
+   "w": 32,
+   "h": 32,
+   "cls": "border-(--topnav-btn-border) relative flex items-center justify-center"
+  },
+  {
+   "label": "积分超市 | |",
+   "disabled": false,
+   "x": 1607,
+   "y": 8,
+   "w": 32,
+   "h": 32,
+   "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer "
+  },
+  {
+   "label": "| | 20",
+   "disabled": false,
+   "x": 1814,
+   "y": 8,
+   "w": 58,
+   "h": 32,
+   "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer "
+  },
+  {
+   "label": "添加节点 | |",
+   "disabled": false,
+   "x": 800,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "移动 | |",
+   "disabled": false,
+   "x": 840,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "素材库 | |",
+   "disabled": false,
+   "x": 880,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "角色造型室 | |",
+   "disabled": false,
+   "x": 920,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "全部功能 | |",
+   "disabled": false,
+   "x": 960,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "| | 知道了",
+   "disabled": false,
+   "x": 1012,
+   "y": 971,
+   "w": 68,
+   "h": 28,
+   "cls": "h-7 rounded-full px-4 text-xs font-medium shadow-[0_1px_2px_rgba(13,13"
+  },
+  {
+   "label": "生成历史 | |",
+   "disabled": false,
+   "x": 1000,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "快捷键 | |",
+   "disabled": false,
+   "x": 1049,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "教程 | |",
+   "disabled": false,
+   "x": 1089,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "TV Director | | TV Director",
+   "disabled": false,
+   "x": 1135,
+   "y": 1019,
+   "w": 132,
+   "h": 48,
+   "cls": "vCoIiq_pill border-hair border-(--topnav-btn-border) flex h-12 min-w-1"
+  },
+  {
+   "label": "| | 下次再说",
+   "disabled": false,
+   "x": 1172,
+   "y": 962,
+   "w": 80,
+   "h": 32,
+   "cls": "bg-(--canvas-controls-hover) hover:bg-(--canvas-controls-active) flex "
+  },
+  {
+   "label": "| | 去体验",
+   "disabled": false,
+   "x": 1256,
+   "y": 962,
+   "w": 67,
+   "h": 32,
+   "cls": "bg-(--canvas-primary-btn-bg) hover:bg-(--canvas-primary-btn-bg-hover) "
+  },
+  {
+   "label": "| | 打开脚本节点 →",
+   "disabled": false,
+   "x": 422,
+   "y": 433,
+   "w": 108,
+   "h": 15,
+   "cls": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg "
+  },
+  {
+   "label": "| | 上传视频后开始",
+   "disabled": false,
+   "x": 104,
+   "y": 595,
+   "w": 112,
+   "h": 63,
+   "cls": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justif"
+  },
+  {
+   "label": "| | 分镜",
+   "disabled": false,
+   "x": 104,
+   "y": 673,
+   "w": 35,
+   "h": 12,
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "label": "| | 动态",
+   "disabled": false,
+   "x": 142,
+   "y": 673,
+   "w": 35,
+   "h": 12,
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "label": "| | 音乐",
+   "disabled": false,
+   "x": 180,
+   "y": 673,
+   "w": 35,
+   "h": 12,
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "label": "| | 开始拉片",
+   "disabled": true,
+   "x": 104,
+   "y": 693,
+   "w": 112,
+   "h": 14,
+   "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px"
+  },
+  {
+   "label": "更换特效 | 更换特效 |",
+   "disabled": false,
+   "x": 362,
+   "y": 591,
+   "w": 9,
+   "h": 9,
+   "cls": "absolute right-2 top-2 flex size-6 items-center justify-center rounded"
+  },
+  {
+   "label": "| | 打开导演台",
+   "disabled": false,
+   "x": 552,
+   "y": 187,
+   "w": 35,
+   "h": 12,
+   "cls": "nodrag flex h-8 min-w-12 items-center justify-center rounded-lg border"
+  },
+  {
+   "label": "上传图片 | 上传图片 |",
+   "disabled": false,
+   "x": 386,
+   "y": 328,
+   "w": 32,
+   "h": 32,
+   "cls": "flex size-8 items-center justify-center rounded-lg transition-colors d"
+  },
+  {
+   "label": "发送 | 发送 |",
+   "disabled": true,
+   "x": 720,
+   "y": 328,
+   "w": 32,
+   "h": 32,
+   "cls": "flex size-8 items-center justify-center rounded-xl transition-opacity "
+  },
+  {
+   "label": "资产管理 | | 资产管理",
+   "disabled": false,
+   "x": 14,
+   "y": 1034,
+   "w": 94,
+   "h": 28,
+   "cls": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg t"
+  },
+  {
+   "label": "整理画布，Option+Shift+F | |",
+   "disabled": false,
+   "x": 112,
+   "y": 1034,
+   "w": 28,
+   "h": 28,
+   "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg"
+  },
+  {
+   "label": "切换小地图 | |",
+   "disabled": false,
+   "x": 144,
+   "y": 1034,
+   "w": 28,
+   "h": 28,
+   "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg"
+  },
+  {
+   "label": "隐藏节点连线 | |",
+   "disabled": false,
+   "x": 176,
+   "y": 1034,
+   "w": 28,
+   "h": 28,
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  },
+  {
+   "label": "网格吸附 | |",
+   "disabled": false,
+   "x": 208,
+   "y": 1034,
+   "w": 28,
+   "h": 28,
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  },
+  {
+   "label": "缩放选项 | | 38%",
+   "disabled": false,
+   "x": 240,
+   "y": 1034,
+   "w": 36,
+   "h": 28,
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  },
+  {
+   "label": "退出跟随 | | 取消ESC",
+   "disabled": false,
+   "x": 970,
+   "y": 9,
+   "w": 64,
+   "h": 16,
+   "cls": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-non"
+  },
+  {
+   "label": "| | 导演视角",
+   "disabled": false,
+   "x": 878,
+   "y": 10,
+   "w": 81,
+   "h": 32,
+   "cls": "h-8 rounded-[10px] text-[13px] leading-5 transition-colors disabled:cu"
+  },
+  {
+   "label": "| | 机位视角",
+   "disabled": false,
+   "x": 961,
+   "y": 10,
+   "w": 81,
+   "h": 32,
+   "cls": "h-8 rounded-[10px] text-[13px] leading-5 transition-colors disabled:cu"
+  },
+  {
+   "label": "关闭 | |",
+   "disabled": false,
+   "x": 0,
+   "y": 6,
+   "w": 40,
+   "h": 40,
+   "cls": "text-white/72 flex size-10 shrink-0 items-center justify-center hover:"
+  },
+  {
+   "label": "收起 | |",
+   "disabled": false,
+   "x": 240,
+   "y": 6,
+   "w": 40,
+   "h": 40,
+   "cls": "text-white/72 flex size-10 shrink-0 items-center justify-center hover:"
+  },
+  {
+   "label": "场景 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 60,
+   "w": 32,
+   "h": 32,
+   "cls": "hover:bg-white/8 flex size-8 items-center justify-center rounded-lg tr"
+  },
+  {
+   "label": "添加角色 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 116,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "添加机位 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 156,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "全景图 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 196,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "选择画幅比例 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 236,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "AI 识图导入 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 276,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "帮助 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 1040,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "| 隐藏 |",
+   "disabled": false,
+   "x": 226,
+   "y": 150,
+   "w": 20,
+   "h": 20,
+   "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/3"
+  },
+  {
+   "label": "| 锁定 |",
+   "disabled": false,
+   "x": 248,
+   "y": 150,
+   "w": 20,
+   "h": 20,
+   "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/3"
+  },
+  {
+   "label": "| 隐藏 |",
+   "disabled": false,
+   "x": 226,
+   "y": 182,
+   "w": 20,
+   "h": 20,
+   "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/3"
+  },
+  {
+   "label": "| 锁定 |",
+   "disabled": false,
+   "x": 248,
+   "y": 182,
+   "w": 20,
+   "h": 20,
+   "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/3"
+  },
+  {
+   "label": "| 隐藏 |",
+   "disabled": false,
+   "x": 226,
+   "y": 214,
+   "w": 20,
+   "h": 20,
+   "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/3"
+  },
+  {
+   "label": "| 锁定 |",
+   "disabled": false,
+   "x": 248,
+   "y": 214,
+   "w": 20,
+   "h": 20,
+   "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/3"
+  },
+  {
+   "label": "| | 重置视角",
+   "disabled": false,
+   "x": 1547,
+   "y": 94,
+   "w": 72,
+   "h": 21,
+   "cls": "mt-1.5 w-full rounded-md bg-white/10 py-0.5 text-[11px] text-white/60 "
+  },
+  {
+   "label": "左右拖动调整 X 轴 | 左右拖动调整 X 轴 | x",
+   "disabled": false,
+   "x": 1656,
+   "y": 168,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "左右拖动调整 Y 轴 | 左右拖动调整 Y 轴 | y",
+   "disabled": false,
+   "x": 1740,
+   "y": 168,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "左右拖动调整 Z 轴 | 左右拖动调整 Z 轴 | z",
+   "disabled": false,
+   "x": 1824,
+   "y": 168,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "左右拖动调整 X 轴 | 左右拖动调整 X 轴 | x",
+   "disabled": false,
+   "x": 1656,
+   "y": 240,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "左右拖动调整 Y 轴 | 左右拖动调整 Y 轴 | y",
+   "disabled": false,
+   "x": 1740,
+   "y": 240,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "左右拖动调整 Z 轴 | 左右拖动调整 Z 轴 | z",
+   "disabled": false,
+   "x": 1824,
+   "y": 240,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "| | 角色标签",
+   "disabled": false,
+   "x": 1640,
+   "y": 697,
+   "w": 280,
+   "h": 56,
+   "cls": "border-white/8 hover:bg-white/4 flex h-14 w-full items-center justify-"
+  },
+  {
+   "label": "| | 网格吸附",
+   "disabled": false,
+   "x": 1640,
+   "y": 753,
+   "w": 280,
+   "h": 56,
+   "cls": "border-white/8 hover:bg-white/4 flex h-14 w-full items-center justify-"
+  },
+  {
+   "label": "| | 高斯地面吸附",
+   "disabled": false,
+   "x": 1640,
+   "y": 809,
+   "w": 280,
+   "h": 56,
+   "cls": "border-white/8 hover:bg-white/4 flex h-14 w-full items-center justify-"
+  },
+  {
+   "label": "| | 地面",
+   "disabled": false,
+   "x": 1660,
+   "y": 885,
+   "w": 240,
+   "h": 15,
+   "cls": "mb-5 flex w-full items-center justify-between text-left"
+  },
+  {
+   "label": "移动 | |",
+   "disabled": false,
+   "x": 789,
+   "y": 1020,
+   "w": 32,
+   "h": 32,
+   "cls": "group relative flex size-8 shrink-0 items-center justify-center rounde"
+  },
+  {
+   "label": "截图 | |",
+   "disabled": false,
+   "x": 829,
+   "y": 1020,
+   "w": 32,
+   "h": 32,
+   "cls": "group relative flex size-8 shrink-0 items-center justify-center rounde"
+  },
+  {
+   "label": "动画时间轴 | |",
+   "disabled": false,
+   "x": 869,
+   "y": 1020,
+   "w": 32,
+   "h": 32,
+   "cls": "group relative flex size-8 shrink-0 items-center justify-center rounde"
+  },
+  {
+   "label": "上传图片 | 上传图片 |",
+   "disabled": false,
+   "x": 925,
+   "y": 1021,
+   "w": 32,
+   "h": 32,
+   "cls": "hover:bg-white/8 flex size-8 shrink-0 items-center justify-center roun"
+  },
+  {
+   "label": "发送 | 发送 |",
+   "disabled": true,
+   "x": 1103,
+   "y": 1021,
+   "w": 32,
+   "h": 32,
+   "cls": "flex size-8 shrink-0 items-center justify-center rounded-full transiti"
+  }
+ ],
+ "机位字样_default": [
+  {
+   "text": "脚本 V2 11确认镜头2准备资产3合成提示词打开脚本节点 →",
+   "tag": "DIV",
+   "x": 410,
+   "y": 328,
+   "w": 133,
+   "h": 133,
+   "cls": "node-shell relative"
+  },
+  {
+   "text": "1确认镜头2准备资产3合成提示词打开脚本节点 →",
+   "tag": "DIV",
+   "x": 410,
+   "y": 328,
+   "w": 133,
+   "h": 133,
+   "cls": "flex h-full flex-col items-center justify-between px-8 pb-8 pt-[68px] "
+  },
+  {
+   "text": "1确认镜头2准备资产3合成提示词",
+   "tag": "DIV",
+   "x": 422,
+   "y": 385,
+   "w": 108,
+   "h": 24,
+   "cls": "grid h-full grid-cols-3"
+  },
+  {
+   "text": "1确认镜头",
+   "tag": "DIV",
+   "x": 430,
+   "y": 385,
+   "w": 20,
+   "h": 21,
+   "cls": "flex min-w-0 flex-col items-center pt-2"
+  },
+  {
+   "text": "确认镜头",
+   "tag": "DIV",
+   "x": 430,
+   "y": 399,
+   "w": 20,
+   "h": 7,
+   "cls": "mt-1 text-center text-[13px] font-normal leading-[18px] text-white"
+  },
+  {
+   "text": "3D导演台导演视角机位视角",
+   "tag": "DIV",
+   "x": 0,
+   "y": 0,
+   "w": 1920,
+   "h": 52,
+   "cls": "pointer-events-none absolute inset-x-0 top-0 z-30 h-[52px]"
+  },
+  {
+   "text": "导演视角机位视角",
+   "tag": "DIV",
+   "x": 875,
+   "y": 8,
+   "w": 170,
+   "h": 36,
+   "cls": "border-white/8 flex h-9 items-center justify-center gap-0.5 overflow-h"
+  },
+  {
+   "text": "机位视角",
+   "tag": "BUTTON",
+   "x": 961,
+   "y": 10,
+   "w": 81,
+   "h": 32,
+   "cls": "h-8 rounded-[10px] text-[13px] leading-5 transition-colors disabled:cu"
+  },
+  {
+   "text": "场景搜索场景对象机位1机位2角色A",
+   "tag": "DIV",
+   "x": 48,
+   "y": 52,
+   "w": 232,
+   "h": 1028,
+   "cls": "flex min-h-0 flex-1 flex-col px-2 pb-3"
+  },
+  {
+   "text": "机位1机位2角色A",
+   "tag": "DIV",
+   "x": 56,
+   "y": 144,
+   "w": 216,
+   "h": 96,
+   "cls": "flex w-full flex-col"
+  },
+  {
+   "text": "机位1",
+   "tag": "SPAN",
+   "x": 96,
+   "y": 154,
+   "w": 168,
+   "h": 12,
+   "cls": "z-10 min-w-0 flex-1 truncate pl-1"
+  },
+  {
+   "text": "机位2",
+   "tag": "SPAN",
+   "x": 96,
+   "y": 186,
+   "w": 168,
+   "h": 12,
+   "cls": "z-10 min-w-0 flex-1 truncate pl-1"
+  }
+ ],
+ "左栏_camera": {
+  "rect": {
+   "x": 0,
+   "y": 0,
+   "w": 281,
+   "h": 1080
+  },
+  "text": "3D导演台添加机位当前视角正面中景正面特写正面全景侧面跟拍侧面近景背面中景俯拍全景45° 俯拍低角度仰拍低角度广角过肩镜头过肩镜头（右）鸟瞰荷兰角",
+  "buttons": [
+   {
+    "label": "关闭 | |",
+    "disabled": false,
+    "x": 0,
+    "y": 6,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "label": "收起 | |",
+    "disabled": false,
+    "x": 240,
+    "y": 6,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "label": "场景 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 60,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "添加角色 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 116,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "添加机位 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 156,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "全景图 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 196,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "选择画幅比例 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 236,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "AI 识图导入 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 276,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "帮助 | |",
+    "disabled": false,
+    "x": 8,
+    "y": 1040,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "| | 当前视角",
+    "disabled": false,
+    "x": 56,
+    "y": 100,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 正面中景",
+    "disabled": false,
+    "x": 168,
+    "y": 100,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 正面特写",
+    "disabled": false,
+    "x": 56,
+    "y": 180,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 正面全景",
+    "disabled": false,
+    "x": 168,
+    "y": 180,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 侧面跟拍",
+    "disabled": false,
+    "x": 56,
+    "y": 260,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 侧面近景",
+    "disabled": false,
+    "x": 168,
+    "y": 260,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 背面中景",
+    "disabled": false,
+    "x": 56,
+    "y": 340,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 俯拍全景",
+    "disabled": false,
+    "x": 168,
+    "y": 340,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 45° 俯拍",
+    "disabled": false,
+    "x": 56,
+    "y": 420,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 低角度仰拍",
+    "disabled": false,
+    "x": 168,
+    "y": 420,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 低角度广角",
+    "disabled": false,
+    "x": 56,
+    "y": 500,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 过肩镜头",
+    "disabled": false,
+    "x": 168,
+    "y": 500,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 过肩镜头（右）",
+    "disabled": false,
+    "x": 56,
+    "y": 580,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 鸟瞰",
+    "disabled": false,
+    "x": 168,
+    "y": 580,
+    "w": 104,
+    "h": 72
+   },
+   {
+    "label": "| | 荷兰角",
+    "disabled": false,
+    "x": 56,
+    "y": 660,
+    "w": 104,
+    "h": 72
+   }
+  ]
+ },
+ "按钮_camera": [
+  {
+   "label": "| | 画布 1",
+   "disabled": false,
+   "x": 165,
+   "y": 8,
+   "w": 68,
+   "h": 32,
+   "cls": "group/canvas-chip hover:bg-canvas-controls-hover data-open:bg-canvas-c"
+  },
+  {
+   "label": "工作流 | |",
+   "disabled": false,
+   "x": 243,
+   "y": 8,
+   "w": 32,
+   "h": 32,
+   "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content tra"
+  },
+  {
+   "label": "故事板 | |",
+   "disabled": false,
+   "x": 275,
+   "y": 8,
+   "w": 32,
+   "h": 32,
+   "cls": "flex size-8 items-center justify-center rounded-lg bg-clip-content p-0"
+  },
+  {
+   "label": "发布与分享 | |",
+   "disabled": false,
+   "x": 1567,
+   "y": 8,
+   "w": 32,
+   "h": 32,
+   "cls": "border-(--topnav-btn-border) relative flex items-center justify-center"
+  },
+  {
+   "label": "积分超市 | |",
+   "disabled": false,
+   "x": 1607,
+   "y": 8,
+   "w": 32,
+   "h": 32,
+   "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer "
+  },
+  {
+   "label": "| | 20",
+   "disabled": false,
+   "x": 1814,
+   "y": 8,
+   "w": 58,
+   "h": 32,
+   "cls": "border-border-neutral-l1 text-nt-text-default flex h-8 cursor-pointer "
+  },
+  {
+   "label": "添加节点 | |",
+   "disabled": false,
+   "x": 800,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "移动 | |",
+   "disabled": false,
+   "x": 840,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "素材库 | |",
+   "disabled": false,
+   "x": 880,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "角色造型室 | |",
+   "disabled": false,
+   "x": 920,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "全部功能 | |",
+   "disabled": false,
+   "x": 960,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "| | 知道了",
+   "disabled": false,
+   "x": 1012,
+   "y": 971,
+   "w": 68,
+   "h": 28,
+   "cls": "h-7 rounded-full px-4 text-xs font-medium shadow-[0_1px_2px_rgba(13,13"
+  },
+  {
+   "label": "生成历史 | |",
+   "disabled": false,
+   "x": 1000,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "快捷键 | |",
+   "disabled": false,
+   "x": 1049,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "教程 | |",
+   "disabled": false,
+   "x": 1089,
+   "y": 1027,
+   "w": 32,
+   "h": 32,
+   "cls": "relative flex items-center justify-center rounded-lg transition-colors"
+  },
+  {
+   "label": "TV Director | | TV Director",
+   "disabled": false,
+   "x": 1135,
+   "y": 1019,
+   "w": 132,
+   "h": 48,
+   "cls": "vCoIiq_pill border-hair border-(--topnav-btn-border) flex h-12 min-w-1"
+  },
+  {
+   "label": "| | 下次再说",
+   "disabled": false,
+   "x": 1172,
+   "y": 962,
+   "w": 80,
+   "h": 32,
+   "cls": "bg-(--canvas-controls-hover) hover:bg-(--canvas-controls-active) flex "
+  },
+  {
+   "label": "| | 去体验",
+   "disabled": false,
+   "x": 1256,
+   "y": 962,
+   "w": 67,
+   "h": 32,
+   "cls": "bg-(--canvas-primary-btn-bg) hover:bg-(--canvas-primary-btn-bg-hover) "
+  },
+  {
+   "label": "| | 打开脚本节点 →",
+   "disabled": false,
+   "x": 422,
+   "y": 433,
+   "w": 108,
+   "h": 15,
+   "cls": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg "
+  },
+  {
+   "label": "| | 上传视频后开始",
+   "disabled": false,
+   "x": 104,
+   "y": 595,
+   "w": 112,
+   "h": 63,
+   "cls": "nodrag nopan flex aspect-[294/165] w-full flex-col items-center justif"
+  },
+  {
+   "label": "| | 分镜",
+   "disabled": false,
+   "x": 104,
+   "y": 673,
+   "w": 35,
+   "h": 12,
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "label": "| | 动态",
+   "disabled": false,
+   "x": 142,
+   "y": 673,
+   "w": 35,
+   "h": 12,
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "label": "| | 音乐",
+   "disabled": false,
+   "x": 180,
+   "y": 673,
+   "w": 35,
+   "h": 12,
+   "cls": "nodrag nopan flex h-8 min-w-[60px] flex-1 items-center justify-center "
+  },
+  {
+   "label": "| | 开始拉片",
+   "disabled": true,
+   "x": 104,
+   "y": 693,
+   "w": 112,
+   "h": 14,
+   "cls": "nodrag nopan flex h-9 w-full items-center justify-center rounded-[10px"
+  },
+  {
+   "label": "更换特效 | 更换特效 |",
+   "disabled": false,
+   "x": 362,
+   "y": 591,
+   "w": 9,
+   "h": 9,
+   "cls": "absolute right-2 top-2 flex size-6 items-center justify-center rounded"
+  },
+  {
+   "label": "| | 打开导演台",
+   "disabled": false,
+   "x": 552,
+   "y": 187,
+   "w": 35,
+   "h": 12,
+   "cls": "nodrag flex h-8 min-w-12 items-center justify-center rounded-lg border"
+  },
+  {
+   "label": "上传图片 | 上传图片 |",
+   "disabled": false,
+   "x": 386,
+   "y": 328,
+   "w": 32,
+   "h": 32,
+   "cls": "flex size-8 items-center justify-center rounded-lg transition-colors d"
+  },
+  {
+   "label": "发送 | 发送 |",
+   "disabled": true,
+   "x": 720,
+   "y": 328,
+   "w": 32,
+   "h": 32,
+   "cls": "flex size-8 items-center justify-center rounded-xl transition-opacity "
+  },
+  {
+   "label": "资产管理 | | 资产管理",
+   "disabled": false,
+   "x": 14,
+   "y": 1034,
+   "w": 94,
+   "h": 28,
+   "cls": "hover:bg-canvas-controls-hover relative flex items-center rounded-lg t"
+  },
+  {
+   "label": "整理画布，Option+Shift+F | |",
+   "disabled": false,
+   "x": 112,
+   "y": 1034,
+   "w": 28,
+   "h": 28,
+   "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg"
+  },
+  {
+   "label": "切换小地图 | |",
+   "disabled": false,
+   "x": 144,
+   "y": 1034,
+   "w": 28,
+   "h": 28,
+   "cls": "flex items-center justify-center rounded-lg transition-colors hover:bg"
+  },
+  {
+   "label": "隐藏节点连线 | |",
+   "disabled": false,
+   "x": 176,
+   "y": 1034,
+   "w": 28,
+   "h": 28,
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  },
+  {
+   "label": "网格吸附 | |",
+   "disabled": false,
+   "x": 208,
+   "y": 1034,
+   "w": 28,
+   "h": 28,
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  },
+  {
+   "label": "缩放选项 | | 38%",
+   "disabled": false,
+   "x": 240,
+   "y": 1034,
+   "w": 36,
+   "h": 28,
+   "cls": "hover:bg-canvas-controls-hover flex items-center justify-center rounde"
+  },
+  {
+   "label": "退出跟随 | | 取消ESC",
+   "disabled": false,
+   "x": 970,
+   "y": 9,
+   "w": 64,
+   "h": 16,
+   "cls": "peer rounded-full bg-white px-2 py-0.5 text-xs font-medium leading-non"
+  },
+  {
+   "label": "| | 导演视角",
+   "disabled": false,
+   "x": 878,
+   "y": 10,
+   "w": 81,
+   "h": 32,
+   "cls": "h-8 rounded-[10px] text-[13px] leading-5 transition-colors disabled:cu"
+  },
+  {
+   "label": "| | 机位视角",
+   "disabled": false,
+   "x": 961,
+   "y": 10,
+   "w": 81,
+   "h": 32,
+   "cls": "h-8 rounded-[10px] text-[13px] leading-5 transition-colors disabled:cu"
+  },
+  {
+   "label": "关闭 | |",
+   "disabled": false,
+   "x": 0,
+   "y": 6,
+   "w": 40,
+   "h": 40,
+   "cls": "text-white/72 flex size-10 shrink-0 items-center justify-center hover:"
+  },
+  {
+   "label": "收起 | |",
+   "disabled": false,
+   "x": 240,
+   "y": 6,
+   "w": 40,
+   "h": 40,
+   "cls": "text-white/72 flex size-10 shrink-0 items-center justify-center hover:"
+  },
+  {
+   "label": "场景 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 60,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "添加角色 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 116,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "添加机位 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 156,
+   "w": 32,
+   "h": 32,
+   "cls": "hover:bg-white/8 flex size-8 items-center justify-center rounded-lg tr"
+  },
+  {
+   "label": "全景图 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 196,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "选择画幅比例 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 236,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "AI 识图导入 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 276,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "帮助 | |",
+   "disabled": false,
+   "x": 8,
+   "y": 1040,
+   "w": 32,
+   "h": 32,
+   "cls": "text-white/72 hover:bg-white/8 flex size-8 items-center justify-center"
+  },
+  {
+   "label": "| | 当前视角",
+   "disabled": false,
+   "x": 56,
+   "y": 100,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 正面中景",
+   "disabled": false,
+   "x": 168,
+   "y": 100,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 正面特写",
+   "disabled": false,
+   "x": 56,
+   "y": 180,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 正面全景",
+   "disabled": false,
+   "x": 168,
+   "y": 180,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 侧面跟拍",
+   "disabled": false,
+   "x": 56,
+   "y": 260,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 侧面近景",
+   "disabled": false,
+   "x": 168,
+   "y": 260,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 背面中景",
+   "disabled": false,
+   "x": 56,
+   "y": 340,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 俯拍全景",
+   "disabled": false,
+   "x": 168,
+   "y": 340,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 45° 俯拍",
+   "disabled": false,
+   "x": 56,
+   "y": 420,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 低角度仰拍",
+   "disabled": false,
+   "x": 168,
+   "y": 420,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 低角度广角",
+   "disabled": false,
+   "x": 56,
+   "y": 500,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 过肩镜头",
+   "disabled": false,
+   "x": 168,
+   "y": 500,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 过肩镜头（右）",
+   "disabled": false,
+   "x": 56,
+   "y": 580,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 鸟瞰",
+   "disabled": false,
+   "x": 168,
+   "y": 580,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 荷兰角",
+   "disabled": false,
+   "x": 56,
+   "y": 660,
+   "w": 104,
+   "h": 72,
+   "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center ga"
+  },
+  {
+   "label": "| | 重置视角",
+   "disabled": false,
+   "x": 1547,
+   "y": 94,
+   "w": 72,
+   "h": 21,
+   "cls": "mt-1.5 w-full rounded-md bg-white/10 py-0.5 text-[11px] text-white/60 "
+  },
+  {
+   "label": "左右拖动调整 X 轴 | 左右拖动调整 X 轴 | x",
+   "disabled": false,
+   "x": 1656,
+   "y": 168,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "左右拖动调整 Y 轴 | 左右拖动调整 Y 轴 | y",
+   "disabled": false,
+   "x": 1740,
+   "y": 168,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "左右拖动调整 Z 轴 | 左右拖动调整 Z 轴 | z",
+   "disabled": false,
+   "x": 1824,
+   "y": 168,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "左右拖动调整 X 轴 | 左右拖动调整 X 轴 | x",
+   "disabled": false,
+   "x": 1656,
+   "y": 240,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "左右拖动调整 Y 轴 | 左右拖动调整 Y 轴 | y",
+   "disabled": false,
+   "x": 1740,
+   "y": 240,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "左右拖动调整 Z 轴 | 左右拖动调整 Z 轴 | z",
+   "disabled": false,
+   "x": 1824,
+   "y": 240,
+   "w": 20,
+   "h": 28,
+   "cls": "hover:bg-white/8 absolute left-0 top-0 z-10 flex h-7 w-5 touch-none se"
+  },
+  {
+   "label": "| | 角色标签",
+   "disabled": false,
+   "x": 1640,
+   "y": 697,
+   "w": 280,
+   "h": 56,
+   "cls": "border-white/8 hover:bg-white/4 flex h-14 w-full items-center justify-"
+  },
+  {
+   "label": "| | 网格吸附",
+   "disabled": false,
+   "x": 1640,
+   "y": 753,
+   "w": 280,
+   "h": 56,
+   "cls": "border-white/8 hover:bg-white/4 flex h-14 w-full items-center justify-"
+  },
+  {
+   "label": "| | 高斯地面吸附",
+   "disabled": false,
+   "x": 1640,
+   "y": 809,
+   "w": 280,
+   "h": 56,
+   "cls": "border-white/8 hover:bg-white/4 flex h-14 w-full items-center justify-"
+  },
+  {
+   "label": "| | 地面",
+   "disabled": false,
+   "x": 1660,
+   "y": 885,
+   "w": 240,
+   "h": 15,
+   "cls": "mb-5 flex w-full items-center justify-between text-left"
+  },
+  {
+   "label": "移动 | |",
+   "disabled": false,
+   "x": 789,
+   "y": 1020,
+   "w": 32,
+   "h": 32,
+   "cls": "group relative flex size-8 shrink-0 items-center justify-center rounde"
+  },
+  {
+   "label": "截图 | |",
+   "disabled": false,
+   "x": 829,
+   "y": 1020,
+   "w": 32,
+   "h": 32,
+   "cls": "group relative flex size-8 shrink-0 items-center justify-center rounde"
+  },
+  {
+   "label": "动画时间轴 | |",
+   "disabled": false,
+   "x": 869,
+   "y": 1020,
+   "w": 32,
+   "h": 32,
+   "cls": "group relative flex size-8 shrink-0 items-center justify-center rounde"
+  },
+  {
+   "label": "上传图片 | 上传图片 |",
+   "disabled": false,
+   "x": 925,
+   "y": 1021,
+   "w": 32,
+   "h": 32,
+   "cls": "hover:bg-white/8 flex size-8 shrink-0 items-center justify-center roun"
+  },
+  {
+   "label": "发送 | 发送 |",
+   "disabled": true,
+   "x": 1103,
+   "y": 1021,
+   "w": 32,
+   "h": 32,
+   "cls": "flex size-8 shrink-0 items-center justify-center rounded-full transiti"
+  }
+ ]
+}

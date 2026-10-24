@@ -1,0 +1,182 @@
+{
+ "判据数": 29,
+ "失败": [],
+ "audit": {
+  "batch": 861,
+  "title": "全景图面板三行不再是死按钮",
+  "打开面板后": {
+   "三行": [
+    {
+     "id": "local-upload",
+     "text": "本地上传"
+    },
+    {
+     "id": "history",
+     "text": "历史记录"
+    },
+    {
+     "id": "ai-generate",
+     "text": "AI生成"
+    }
+   ],
+   "隐藏文件输入": {
+    "accept": "image/*",
+    "type": "file"
+   },
+   "选择器": null,
+   "本地资产": null,
+   "当前全景图元素在场": true,
+   "当前全景图来源": "i-1FQ9tErTcC",
+   "当前全景图文本": "当前全景图：image_2026-06-15T11-22-00"
+  },
+  "历史记录_后": {
+   "三行": [
+    {
+     "id": "local-upload",
+     "text": "本地上传"
+    },
+    {
+     "id": "history",
+     "text": "历史记录"
+    },
+    {
+     "id": "ai-generate",
+     "text": "AI生成"
+    }
+   ],
+   "隐藏文件输入": {
+    "accept": "image/*",
+    "type": "file"
+   },
+   "选择器": {
+    "mode": "history",
+    "有生成按钮": false,
+    "有上传图片按钮": false,
+    "有取消按钮": true,
+    "有确认按钮": true,
+    "选项": [
+     "i-1FQ9tErTcC",
+     "i-dnwoZQ7jsG",
+     "i-vxeeCnxySa",
+     "i-lBzmo67AHv"
+    ]
+   },
+   "本地资产": null,
+   "当前全景图元素在场": true,
+   "当前全景图来源": "i-1FQ9tErTcC",
+   "当前全景图文本": "当前全景图：image_2026-06-15T11-22-00"
+  },
+  "AI生成_后": {
+   "三行": [
+    {
+     "id": "local-upload",
+     "text": "本地上传"
+    },
+    {
+     "id": "history",
+     "text": "历史记录"
+    },
+    {
+     "id": "ai-generate",
+     "text": "AI生成"
+    }
+   ],
+   "隐藏文件输入": {
+    "accept": "image/*",
+    "type": "file"
+   },
+   "选择器": {
+    "mode": "ai",
+    "有生成按钮": true,
+    "有上传图片按钮": true,
+    "有取消按钮": true,
+    "有确认按钮": true,
+    "选项": [
+     "i-1FQ9tErTcC",
+     "i-dnwoZQ7jsG",
+     "i-vxeeCnxySa",
+     "i-lBzmo67AHv"
+    ]
+   },
+   "本地资产": null,
+   "当前全景图元素在场": true,
+   "当前全景图来源": "i-1FQ9tErTcC",
+   "当前全景图文本": "当前全景图：image_2026-06-15T11-22-00"
+  },
+  "选完文件后": {
+   "三行": [
+    {
+     "id": "local-upload",
+     "text": "本地上传"
+    },
+    {
+     "id": "history",
+     "text": "历史记录"
+    },
+    {
+     "id": "ai-generate",
+     "text": "AI生成"
+    }
+   ],
+   "隐藏文件输入": {
+    "accept": "image/*",
+    "type": "file"
+   },
+   "选择器": null,
+   "本地资产": {
+    "id": "local-1792815219716",
+    "filename": "b861-gate-panorama.png",
+    "imageUrl前缀": "blob:http://",
+    "w": 4,
+    "h": 4
+   },
+   "当前全景图元素在场": true,
+   "当前全景图来源": "local-panorama:local-1792815219716",
+   "当前全景图文本": "当前全景图：b861-gate-panorama.png"
+  },
+  "含本地的选择器": {
+   "三行": [
+    {
+     "id": "local-upload",
+     "text": "本地上传"
+    },
+    {
+     "id": "history",
+     "text": "历史记录"
+    },
+    {
+     "id": "ai-generate",
+     "text": "AI生成"
+    }
+   ],
+   "隐藏文件输入": {
+    "accept": "image/*",
+    "type": "file"
+   },
+   "选择器": {
+    "mode": "history",
+    "有生成按钮": false,
+    "有上传图片按钮": false,
+    "有取消按钮": true,
+    "有确认按钮": true,
+    "选项": [
+     "i-1FQ9tErTcC",
+     "i-dnwoZQ7jsG",
+     "i-vxeeCnxySa",
+     "i-lBzmo67AHv",
+     "local-panorama:local-1792815219716"
+    ]
+   },
+   "本地资产": {
+    "id": "local-1792815219716",
+    "filename": "b861-gate-panorama.png",
+    "imageUrl前缀": "blob:http://",
+    "w": 4,
+    "h": 4
+   },
+   "当前全景图元素在场": true,
+   "当前全景图来源": "local-panorama:local-1792815219716",
+   "当前全景图文本": "当前全景图：b861-gate-panorama.png"
+  }
+ }
+}

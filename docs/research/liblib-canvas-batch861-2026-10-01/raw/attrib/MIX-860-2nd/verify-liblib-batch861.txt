@@ -1,0 +1,47 @@
+  ok: source:panel-has-three-rows
+  FAILED: source:every-row-has-an-onclick  ⟵ {'onClick': False, '分派段缺失': ['local-upload', 'history', 'ai-generate']}
+  FAILED: source:panel-has-a-hidden-file-input  ⟵ {'type=file': False, 'accept=image/*': False}
+  FAILED: source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()
+  ok: source:store-has-the-local-panorama-asset
+  ok: source:ingress-merges-the-local-input
+  ok: source:desk-wires-the-local-asset
+  ok: source:the-picker-has-the-source-actions
+  ok: source:the-generate-button-makes-no-network-call
+  ok: source:the-source-measurements-exist
+  ok: source:history-opens-the-asset-picker
+  ok: source:ai-generate-adds-generate-and-upload
+  ok: source:the-ai-row-has-one-more-button-than-history
+  ok: source:the-three-rows-are-not-disabled
+  ok: source:local-upload-opens-a-file-chooser
+  ok: clone:the-three-rows-are-present
+  FAILED: clone:there-is-a-hidden-image-file-input  ⟵ None
+  FAILED: clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}
+  FAILED: clone:history-opens-the-picker  ⟵ None
+  FAILED: clone:the-history-picker-has-cancel-and-confirm  ⟵ None
+  FAILED: clone:the-history-picker-has-no-generate-button  ⟵ None
+  ok: clone:cancel-closes-the-picker
+  FAILED: clone:ai-generate-opens-the-picker  ⟵ None
+  FAILED: clone:the-ai-picker-adds-generate-and-upload  ⟵ None
+  FAILED: clone:the-local-file-becomes-a-local-asset  ⟵ CRASH: TimeoutError: 面板没有那个 file input
+  FAILED: clone:the-local-file-becomes-a-local-asset  ⟵ None
+  FAILED: clone:the-current-panorama-becomes-the-local-one  ⟵ None
+  FAILED: clone:the-current-panorama-shows-the-filename  ⟵ None
+  FAILED: clone:the-picker-lists-the-local-asset  ⟵ []
+  ok: clone:no-page-errors
+
+== batch 861 门禁：30 判据，15 失败 ==
+  FAILED: source:every-row-has-an-onclick  ⟵ {'onClick': False, '分派段缺失': ['local-upload', 'history', 'ai-generate']}
+  FAILED: source:panel-has-a-hidden-file-input  ⟵ {'type=file': False, 'accept=image/*': False}
+  FAILED: source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()
+  FAILED: clone:there-is-a-hidden-image-file-input  ⟵ None
+  FAILED: clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}
+  FAILED: clone:history-opens-the-picker  ⟵ None
+  FAILED: clone:the-history-picker-has-cancel-and-confirm  ⟵ None
+  FAILED: clone:the-history-picker-has-no-generate-button  ⟵ None
+  FAILED: clone:ai-generate-opens-the-picker  ⟵ None
+  FAILED: clone:the-ai-picker-adds-generate-and-upload  ⟵ None
+  FAILED: clone:the-local-file-becomes-a-local-asset  ⟵ CRASH: TimeoutError: 面板没有那个 file input
+  FAILED: clone:the-local-file-becomes-a-local-asset  ⟵ None
+  FAILED: clone:the-current-panorama-becomes-the-local-one  ⟵ None
+  FAILED: clone:the-current-panorama-shows-the-filename  ⟵ None
+  FAILED: clone:the-picker-lists-the-local-asset  ⟵ []

@@ -1,0 +1,215 @@
+{
+ "batch": 861,
+ "probe": "source861_panorama_diff",
+ "基线": {
+  "按钮数": 86,
+  "dialogs": [
+   {
+    "text": "Agent 已升级为 TV Director全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。下次再说去体验",
+    "rect": {
+     "x": 1060,
+     "y": 700,
+     "w": 280,
+     "h": 311
+    }
+   },
+   {
+    "text": "新对话 .canvas-agent-drawer-chat { --copilot-kit-background-color: transparent; } .canvas-agent-drawer-resize-handle { width: 12px; z-index: 100; background: transparent; } @keyframes chatViewFadeIn { fr",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    }
+   }
+  ],
+  "textLen": 505,
+  "inputs": [
+   {
+    "type": "text",
+    "accept": ""
+   },
+   {
+    "type": "file",
+    "accept": ""
+   },
+   {
+    "type": "file",
+    "accept": "image/*"
+   },
+   {
+    "type": "file",
+    "accept": "video/*"
+   },
+   {
+    "type": "file",
+    "accept": "image/*"
+   },
+   {
+    "type": "file",
+    "accept": "image/*,video/*,audio/*,.doc,.docx,.txt,.md,.markdown,.rtf,.pdf,text/plain,text/markdown,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,text/rtf"
+   },
+   {
+    "type": "file",
+    "accept": "image/*,video/*,audio/*,.pdf,.txt,.md,.markdown,.doc,.docx,application/pdf,text/plain,text/markdown,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.rtf,application/rtf,text/rtf"
+   },
+   {
+    "type": "file",
+    "accept": ".glb,.gltf,.obj,.fbx,.stl,.dae,model/gltf-binary,model/gltf+json"
+   },
+   {
+    "type": "file",
+    "accept": ".glb,.gltf,.obj,.fbx,.stl,.dae,model/gltf-binary,model/gltf+json,.ply,.splat,.spz,.ksplat,application/octet-stream"
+   },
+   {
+    "type": "file",
+    "accept": "image/*"
+   }
+  ]
+ },
+ "历史记录": {
+  "新增按钮": [
+   "||全部项目",
+   "||取消",
+   "||图片0",
+   "||我上传的",
+   "||我保存的",
+   "||本项目",
+   "||生成历史",
+   "||确认选择",
+   "视图管理||"
+  ],
+  "消失按钮": [
+   "||知道了"
+  ],
+  "按钮数前": 86,
+  "按钮数后": 95,
+  "dialogs": [
+   {
+    "text": "Agent 已升级为 TV Director全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。下次再说去体验",
+    "rect": {
+     "x": 1060,
+     "y": 700,
+     "w": 280,
+     "h": 311
+    }
+   },
+   {
+    "text": "新对话 .canvas-agent-drawer-chat { --copilot-kit-background-color: transparent; } .canvas-agent-drawer-resize-handle { width: 12px; z-index: 100; background: transparent; } @keyframes chatViewFadeIn { fr",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    }
+   },
+   {
+    "text": "资产库生成历史我保存的我上传的本项目全部项目图片0暂无历史记录取消确认选择",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   }
+  ],
+  "textLen前": 505,
+  "textLen后": 525,
+  "textTail": " 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 陈默_01KT17FN 1808 × 1024 素材-特效-瞳孔异变 导演台 2 打开导演台 S83·镜2 864 × 496 高清 配置参数生成高清图像 图片节点 1 资产管理 38% 资产库 生成历史 我保存的 我上传的 本项目 全部项目 图片 0 暂无历史记录 取消 确认选择 正在跟随 取消ESC 按 ESC 退出 3D导演台 导演视角 机位视角 3D导演台 全景图 本地上传 历史记录 AI生成 重置视角 3D场景 场景缩放 场景平移 X Y Z 场景旋转 X Y Z 全景背景 已连接全景图 请将图片节点连接到导演台左侧输入口 天空颜色 # 全景球 水平旋转 球形半径 角色标签 网格吸附 高斯地面吸附 地面 透明度 高度"
+ },
+ "AI生成": {
+  "新增按钮": [
+   "||上传图片",
+   "||全部项目",
+   "||取消",
+   "||图片0",
+   "||我上传的",
+   "||我保存的",
+   "||本项目",
+   "||生成历史",
+   "||确认选择",
+   "|关闭|",
+   "|生成|",
+   "视图管理||"
+  ],
+  "消失按钮": [
+   "||知道了"
+  ],
+  "按钮数前": 86,
+  "按钮数后": 98,
+  "dialogs": [
+   {
+    "text": "Agent 已升级为 TV Director全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。下次再说去体验",
+    "rect": {
+     "x": 1060,
+     "y": 700,
+     "w": 280,
+     "h": 311
+    }
+   },
+   {
+    "text": "新对话 .canvas-agent-drawer-chat { --copilot-kit-background-color: transparent; } .canvas-agent-drawer-resize-handle { width: 12px; z-index: 100; background: transparent; } @keyframes chatViewFadeIn { fr",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    }
+   },
+   {
+    "text": "资产库生成历史我保存的我上传的本项目全部项目图片0暂无历史记录取消确认选择",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 1920,
+     "h": 1080
+    }
+   }
+  ],
+  "textLen前": 505,
+  "textLen后": 558,
+  "textTail": " 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 陈默_01KT17FN 1808 × 1024 素材-特效-瞳孔异变 导演台 2 打开导演台 S83·镜2 864 × 496 高清 配置参数生成高清图像 图片节点 1 资产管理 38% 资产库 生成历史 我保存的 我上传的 本项目 全部项目 图片 0 暂无历史记录 取消 确认选择 正在跟随 取消ESC 按 ESC 退出 3D导演台 导演视角 机位视角 3D导演台 全景图 本地上传 历史记录 AI生成 重置视角 3D场景 场景缩放 场景平移 X Y Z 场景旋转 X Y Z 全景背景 已连接全景图 请将图片节点连接到导演台左侧输入口 天空颜色 # 全景球 水平旋转 球形半径 角色标签 网格吸附 高斯地面吸附 地面 透明度 高度 AI生成 上传图片 退出不会中断生成，可在历史记录中查看结果 0",
+  "inputs": [
+   {
+    "type": "text",
+    "accept": ""
+   },
+   {
+    "type": "file",
+    "accept": ""
+   },
+   {
+    "type": "file",
+    "accept": "image/*"
+   },
+   {
+    "type": "file",
+    "accept": "video/*"
+   },
+   {
+    "type": "file",
+    "accept": "image/*"
+   },
+   {
+    "type": "file",
+    "accept": "image/*,video/*,audio/*,.doc,.docx,.txt,.md,.markdown,.rtf,.pdf,text/plain,text/markdown,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/rtf,text/rtf"
+   },
+   {
+    "type": "file",
+    "accept": "image/*,video/*,audio/*,.pdf,.txt,.md,.markdown,.doc,.docx,application/pdf,text/plain,text/markdown,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.rtf,application/rtf,text/rtf"
+   },
+   {
+    "type": "file",
+    "accept": ""
+   },
+   {
+    "type": "file",
+    "accept": ".glb,.gltf,.obj,.fbx,.stl,.dae,model/gltf-binary,model/gltf+json"
+   },
+   {
+    "type": "file",
+    "accept": ".glb,.gltf,.obj,.fbx,.stl,.dae,model/gltf-binary,model/gltf+json,.ply,.splat,.spz,.ksplat,application/octet-stream"
+   }
+  ]
+ }
+}

@@ -1,0 +1,187 @@
+{
+ "batch": 861,
+ "title": "阴性对照：改坏源码 ⟹ 新门禁必须对应翻红",
+ "mutations": [
+  {
+   "name": "N1-三行的 onClick 分派失效（点了没反应）",
+   "file": "DirectorPanoramaPanel.tsx",
+   "bytesBefore": 8223,
+   "bytesAfter": 8225,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:every-row-has-an-onclick  ⟵ {'onClick': True, '分派段缺失': ['local-upload']}",
+    "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+    "source:every-row-has-an-onclick  ⟵ {'onClick': True, '分派段缺失': ['local-upload']}",
+    "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}"
+   ],
+   "expectedToFail": [
+    "source:every-row-has-an-onclick",
+    "clone:local-upload-opens-a-file-chooser",
+    "clone:history-opens-the-picker",
+    "clone:ai-generate-opens-the-picker"
+   ],
+   "hit": [
+    "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+    "source:every-row-has-an-onclick  ⟵ {'onClick': True, '分派段缺失': ['local-upload']}"
+   ],
+   "ok": true,
+   "firstRed": "source:every-row-has-an-onclick  ⟵ {'onClick': True, '分派段缺失': ['local-upload']}"
+  },
+  {
+   "name": "N2-不触发隐藏的 file input",
+   "file": "DirectorPanoramaPanel.tsx",
+   "bytesBefore": 8223,
+   "bytesAfter": 8211,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()",
+    "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+    "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()",
+    "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}"
+   ],
+   "expectedToFail": [
+    "source:panel-clicks-the-file-input",
+    "clone:local-upload-opens-a-file-chooser"
+   ],
+   "hit": [
+    "clone:local-upload-opens-a-file-chooser  ⟵ {'filechooser 次数': 0}",
+    "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()"
+   ],
+   "ok": true,
+   "firstRed": "source:panel-clicks-the-file-input  ⟵ 源站逐字：et.current?.click()"
+  },
+  {
+   "name": "N3-file input 的 accept 改成 video/*",
+   "file": "DirectorPanoramaPanel.tsx",
+   "bytesBefore": 8223,
+   "bytesAfter": 8223,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:panel-has-a-hidden-file-input  ⟵ {'type=file': True, 'accept=image/*': False}",
+    "clone:there-is-a-hidden-image-file-input  ⟵ {'accept': 'video/*', 'type': 'file'}",
+    "source:panel-has-a-hidden-file-input  ⟵ {'type=file': True, 'accept=image/*': False}",
+    "clone:there-is-a-hidden-image-file-input  ⟵ {'accept': 'video/*', 'type': 'file'}"
+   ],
+   "expectedToFail": [
+    "source:panel-has-a-hidden-file-input",
+    "clone:there-is-a-hidden-image-file-input"
+   ],
+   "hit": [
+    "clone:there-is-a-hidden-image-file-input  ⟵ {'accept': 'video/*', 'type': 'file'}",
+    "source:panel-has-a-hidden-file-input  ⟵ {'type=file': True, 'accept=image/*': False}"
+   ],
+   "ok": true,
+   "firstRed": "source:panel-has-a-hidden-file-input  ⟵ {'type=file': True, 'accept=image/*': False}"
+  },
+  {
+   "name": "N4-选择器里没有「生成」入口",
+   "file": "DirectorPanoramaPicker.tsx",
+   "bytesBefore": 8784,
+   "bytesAfter": 8785,
+   "gateExit": 1,
+   "failedChecks": [
+    "clone:the-ai-picker-adds-generate-and-upload  ⟵ {'mode': 'ai', '有生成按钮': False, '有上传图片按钮': True, '有取消按钮': True, '有确认按钮': True, '选项': ['i-1FQ9tErTcC', 'i-dnwoZQ7jsG', 'i-vxeeCnxySa', 'i-lBzmo67AHv']}",
+    "clone:no-page-errors  ⟵ ['React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. data-director-panorama-generateX data-director-panorama-generatex']",
+    "clone:the-ai-picker-adds-generate-and-upload  ⟵ {'mode': 'ai', '有生成按钮': False, '有上传图片按钮': True, '有取消按钮': True, '有确认按钮': True, '选项': ['i-1FQ9tErTcC', 'i-dnwoZQ7jsG', 'i-vxeeCnxySa', 'i-lBzmo67AHv']}",
+    "clone:no-page-errors  ⟵ ['React does not recognize the `%s` prop on a DOM element. If you intentionally want it to appear in the DOM as a custom attribute, spell it as lowercase `%s` instead. If you accidentally passed it from a parent component, remove it from the DOM element. data-director-panorama-generateX data-director-panorama-generatex']"
+   ],
+   "expectedToFail": [
+    "source:the-picker-has-the-source-actions",
+    "clone:the-ai-picker-adds-generate-and-upload"
+   ],
+   "hit": [
+    "clone:the-ai-picker-adds-generate-and-upload  ⟵ {'mode': 'ai', '有生成按钮': False, '有上传图片按钮': True, '有取消按钮': True, '有确认按钮': True, '选项': ['i-1FQ9tErTcC', 'i-dnwoZQ7jsG', 'i-vxeeCnxySa', 'i-lBzmo67AHv']}"
+   ],
+   "ok": true,
+   "firstRed": "clone:the-ai-picker-adds-generate-and-upload  ⟵ {'mode': 'ai', '有生成按钮': False, '有上传图片按钮': True, '有取消按钮': True, '有确认按钮': True, '选项': ['i-1FQ9tErTcC', 'i-dnwoZQ7jsG', 'i-vxeeCnxySa', 'i-lBzmo67AHv']}"
+  },
+  {
+   "name": "N5-★ 选择器里偷偷加一个 fetch（真实生成）",
+   "file": "DirectorPanoramaPicker.tsx",
+   "bytesBefore": 8784,
+   "bytesAfter": 8822,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:the-generate-button-makes-no-network-call  ⟵ clone 不接真实全景图生成 ⟹ ⟹ 选择器里不许出现网络调用",
+    "clone:no-page-errors  ⟵ ['Failed to load resource: the server responded with a status of 404 (Not Found)', 'Failed to load resource: the server responded with a status of 404 (Not Found)', 'Failed to load resource: the server responded with a status of 404 (Not Found)', 'Failed to load resource: the server responded with a status of 404 (Not Found)', 'Failed to load resource: the server responded with a status of 404 (Not Found)']",
+    "source:the-generate-button-makes-no-network-call  ⟵ clone 不接真实全景图生成 ⟹ ⟹ 选择器里不许出现网络调用",
+    "clone:no-page-errors  ⟵ ['Failed to load resource: the server responded with a status of 404 (Not Found)', 'Failed to load resource: the server responded with a status of 404 (Not Found)', 'Failed to load resource: the server responded with a status of 404 (Not Found)', 'Failed to load resource: the server responded with a status of 404 (Not Found)', 'Failed to load resource: the server responded with a status of 404 (Not Found)']"
+   ],
+   "expectedToFail": [
+    "source:the-generate-button-makes-no-network-call"
+   ],
+   "hit": [
+    "source:the-generate-button-makes-no-network-call  ⟵ clone 不接真实全景图生成 ⟹ ⟹ 选择器里不许出现网络调用"
+   ],
+   "ok": true,
+   "firstRed": "source:the-generate-button-makes-no-network-call  ⟵ clone 不接真实全景图生成 ⟹ ⟹ 选择器里不许出现网络调用"
+  },
+  {
+   "name": "N6-store 里没有 localPanoramaAsset",
+   "file": "directorStore.ts",
+   "bytesBefore": 286396,
+   "bytesAfter": 286397,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:store-has-the-local-panorama-asset  ⟵ {'state 声明': False, 'action 声明': True}",
+    "source:store-has-the-local-panorama-asset  ⟵ {'state 声明': False, 'action 声明': True}"
+   ],
+   "expectedToFail": [
+    "source:store-has-the-local-panorama-asset"
+   ],
+   "hit": [
+    "source:store-has-the-local-panorama-asset  ⟵ {'state 声明': False, 'action 声明': True}"
+   ],
+   "ok": true,
+   "firstRed": "source:store-has-the-local-panorama-asset  ⟵ {'state 声明': False, 'action 声明': True}"
+  },
+  {
+   "name": "N7-虚拟输入的前缀写错",
+   "file": "directorCanvasMediaIngress.ts",
+   "bytesBefore": 4469,
+   "bytesAfter": 4466,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:ingress-merges-the-local-input  ⟵ {'merge': True, '前缀': False}",
+    "clone:the-current-panorama-becomes-the-local-one  ⟵ local-pano2:local-1792811257683",
+    "clone:the-picker-lists-the-local-asset  ⟵ ['i-1FQ9tErTcC', 'i-dnwoZQ7jsG', 'i-vxeeCnxySa', 'i-lBzmo67AHv', 'local-pano2:local-1792811257683']",
+    "source:ingress-merges-the-local-input  ⟵ {'merge': True, '前缀': False}",
+    "clone:the-current-panorama-becomes-the-local-one  ⟵ local-pano2:local-1792811257683",
+    "clone:the-picker-lists-the-local-asset  ⟵ ['i-1FQ9tErTcC', 'i-dnwoZQ7jsG', 'i-vxeeCnxySa', 'i-lBzmo67AHv', 'local-pano2:local-1792811257683']"
+   ],
+   "expectedToFail": [
+    "source:ingress-merges-the-local-input"
+   ],
+   "hit": [
+    "source:ingress-merges-the-local-input  ⟵ {'merge': True, '前缀': False}"
+   ],
+   "ok": true,
+   "firstRed": "source:ingress-merges-the-local-input  ⟵ {'merge': True, '前缀': False}"
+  },
+  {
+   "name": "N8-「当前全景图」不写来源",
+   "file": "DirectorPanoramaPanel.tsx",
+   "bytesBefore": 8223,
+   "bytesAfter": 8194,
+   "gateExit": 1,
+   "failedChecks": [
+    "clone:the-current-panorama-becomes-the-local-one  ⟵",
+    "clone:the-current-panorama-becomes-the-local-one  ⟵"
+   ],
+   "expectedToFail": [
+    "clone:the-current-panorama-becomes-the-local-one"
+   ],
+   "hit": [
+    "clone:the-current-panorama-becomes-the-local-one  ⟵"
+   ],
+   "ok": true,
+   "firstRed": "clone:the-current-panorama-becomes-the-local-one  ⟵"
+  }
+ ],
+ "baseline": {
+  "exit": 0,
+  "failed": []
+ },
+ "restored": true,
+ "ok": true
+}
