@@ -81,6 +81,112 @@ NON_READER_SHAPE = re.compile(
 METHODOLOGY = re.compile(
     r"(逐臂|判据三问|通用形态|通用规律|通用判据|怎么自己造出|必须记录|记录被改量|写成结论|读数发生在)"
 )
+# ⭐⭐⭐⭐⭐ **小节级的方法论判定**（批 1032-⑧ 续）—— 与上面的**关键词**判定**并存**
+#   ⇒ 实测：两者**互补，不是替代**
+#   ⇒⇒ 关键词判定能排除「句里写着『逐臂记录』」的句子，但**换种措辞就漏**
+#   ⇒⇒ 小节判定能按**结构**排除（整节都是方法论），但**会漏**同节里夹的产品句
+#   ⇒ ⇒ 所以两条规则都留着 ⇒ 任何一条命中就排除
+METHODOLOGY_SECTION = re.compile(
+    r"(立规\s*\d+|方法论|判据三问|通用形态|通用规律|怎么自己造出|怎么测|通用判据|取证方法|实验方法)"
+)
+
+
+# ⭐⭐⭐⭐⭐ **实测事实（1032-⑧ 量出来的）**：复刻上「刷新后还在」有两件**不同**的事
+#   ⇒ ① **mock 初始态自带的媒体**（demo 画布里那个 `hasMedia: true` 的视频节点）
+#   ⇒    刷新后**仍在**（`<video src="/videos/jimeng-demo.mp4">`、readyState=4）—— 因为它本来就在 mock 数据里
+#   ⇒ ② **用户自己上传的件**（`addLocalUpload`）⇒ 刷新后**不在了**（节点 5→6，刷新回 5，localStorage 0 键）
+#   ⇒ ⇒ 而手册那句「**上传是持久的**」说的是 ② ⇒ 在复刻上不成立
+#   ⇒ ⇒ ⇒ **所以「刷新后还在」这句话必须问「谁的东西还在」** —— 不问就会把 ① 当成 ②
+#   ⇒ 这条进产物（而不是当判据）⇒ 因为它是**读数**，判据只钉「文档有没有标明主体」
+CLONE_PERSISTENCE_FACTS = {
+    "mock_media_survives_reload": {
+        "measured": True,
+        "sample_guard": {
+            "assertion": "存在带媒体的 <video>（n_video >= 1）",
+            "value": True,
+            "note": "⭐⭐⭐⭐⭐ **量到 0 之前先断言「该有的东西在」** ⇒ "
+            "第一版探针搜的是 <audio> ⇒ 0 个 ⇒ 差点写成「复刻没有媒体元素」⇒ 而那是**样本不成立**",
+        },
+        "readings": {
+            "n_video_initial": 1,
+            "video_src": "/videos/jimeng-demo.mp4",
+            "ready_state": 4,
+            "n_video_after_reload": 1,
+        },
+        "note": "demo 画布里那个 `hasMedia: true` 的视频节点，刷新后 `<video>` 仍在且 readyState=4 ⇒ "
+        "因为它本来就在 mock 初始数据里",
+    },
+    "user_upload_does_not_survive_reload": {
+        "measured": True,
+        "sample_guard": {
+            "assertion": "addLocalUpload 之后节点数确实 +1（证明上传动作生效了）",
+            "value": True,
+        },
+        "readings": {
+            "n_nodes_before": 5,
+            "n_nodes_after_addLocalUpload": 6,
+            "n_nodes_after_reload": 5,
+            "localstorage_keys": 0,
+        },
+        "note": "用户上传的件刷新后不在画布上 ⇒ 手册「上传是持久的（重载页面后自建节点仍在画布上）」"
+        "是**源站**事实，在复刻上不成立 ⇒ 已补「复刻差异」标注",
+    },
+    "the_distinction": "「刷新后还在」要问**谁的东西还在**：mock 初始态的媒体会回来，用户新增的上传件不会。",
+}
+
+# ⭐⭐⭐⭐⭐ **实测事实（1032-⑧ ②）**：复刻上**有**源站那套「媒体失效」态，且**重试路径是对的**
+#   ⇒ 这条是「查了但**没发现缺口**」的记录 ⇒ 同样要落盘 ⇒ 否则下一个人会重新查一遍
+CLONE_MEDIA_ERROR_FACTS = {
+    "clone_has_media_error_state": {
+        "measured": True,
+        "sample_guard": {
+            "assertion": "存在带媒体的 <video>，且正常态 ready_state=4（证明素材真的能解码）",
+            "value": True,
+        },
+        "readings": {
+            "normal": {"media_error_flag": None, "retry_btn_in_dom": False, "ready_state": 4},
+            "broken_src": {"media_error_flag": True, "retry_btn_in_dom": True, "error_code": 4},
+            "after_click_retry": {
+                "media_error_flag": False,
+                "retry_btn_in_dom": False,
+                "note": "点「重试播放视频」⇒ mediaError 清 false ⇒ 错误态解除 ⇒ **路径正确**",
+            },
+        },
+        "conclusion": "复刻上有「视频播放失败 ＋ 重试播放视频」这一档（源站对应物在 media-playback.md 的「媒体异常」节）"
+        "⇒ 手册那节在复刻上**有对应物**，不需要标主体",
+    },
+    "the_trap": "第一版探针注入坏 src 后又改回好 src ⇒ 「按钮还在」⇒ 差点记成缺陷；"
+    "⇒ 但那条**不是用户路径**（用户不会换 src）⇒ 真正的用户路径是「点重试」⇒ 实测**正确**"
+    "⇒ ⇒ 结论：**注入路径 ≠ 用户路径**，判定前先问「这是用户会走的路吗」",
+}
+
+# ⭐⭐⭐⭐⭐ **既存问题（不是本批引入，但本批撞上了）**：1031 的产物**不可复现**
+#   ⇒ 实测：连跑 3 次 ⇒ sha 三个都不同（28eb632e8064 / d2e1c8d85a87 / 3de2128cd9d9）
+#   ⇒ 逐键对比：变的只有 `live_1031` 与 `P5_live_status_line_shape_1031`
+#   ⇒   `all_aria_shapes_found` / `all_node_kinds_found` / `status_line_shape_matched`
+#   ⇒   在 True/False 之间**摇摆** ⇒ **页面元素还没渲染完就被读了**（时序竞态）
+#   ⇒ 而 1015 的两轮里它是稳定的（`state=reproduced`、`n_values_changed=0`）
+#   ⇒   ⇒ 推测：1015 两轮**复用同一浏览器会话**，而固定点循环**每轮新起浏览器** ⇒ 才触发竞态
+#   ⇒ ⇒ **间歇性**，不是必然 ⇒ 所以本批**不动它**（不在本批范围，且改它要重做 1031 的时序）
+#   ⇒ ⇒ 但**必须记下来**：否则固定点循环永远追不上，而追不上的原因会被误报成「本批改了东西」
+KNOWN_UNREPRODUCIBLE = {
+    "live-canvas-check-1031.json": {
+        "status": "pre_existing",
+        "introduced_by": "not_this_batch",
+        "measured": True,
+        "sha12_three_runs": ["28eb632e8064", "d2e1c8d85a87", "3de2128cd9d9"],
+        "varying_keys": [
+            "live_1031",
+            "P5_live_status_line_shape_1031",
+        ],
+        "root_cause_hypothesis": "运行时读数在页面元素渲染完成前被读 ⇒ 时序竞态（间歇性）",
+        "why_not_fixed_here": "修它要重做 1031 的等待策略 ⇒ 超出本批范围 ⇒ 且 1015 的两轮里它是稳定的"
+        "⇒ 贸然改可能把一个偶发问题变成固定行为",
+        "consequence": "固定点循环**追不上它** ⇒ 判定不动点时必须**显式排除**并说明 ⇒ 不许默默放过",
+    },
+}
+
+
 
 
 
@@ -165,6 +271,11 @@ def has_marker_in_section(ls, a):
     return None, None
 
 
+def face_re_of(faces):
+    """差异面词表的正则（抽成函数，好让 P10 的排除计数复用同一份口径）。"""
+    return re.compile("(" + "|".join(re.escape(f) for f in faces) + ")")
+
+
 def exempt_for(rel, line_text):
     """这条候选是否命中豁免登记？命中就返回那条登记。"""
     for ex in EXEMPTIONS:
@@ -185,7 +296,7 @@ def enumerate_candidates(faces):
       **截图说明 / 取证标题 / 内部立规** ⇒ 不是给读者的操作步骤。
     """
     rows = []
-    face_re = re.compile("(" + "|".join(re.escape(f) for f in faces) + ")")
+    face_re = face_re_of(faces)
     for rel in READER_PAGES:
         text = _read(MANUAL / rel)
         if text is None:
@@ -207,6 +318,12 @@ def enumerate_candidates(faces):
                 continue
             if METHODOLOGY.search(s):
                 continue
+            # ⭐⭐⭐⭐⭐ **小节级方法论判定**（批 1032-⑧ 续）：整节都是方法论 ⇒ 全部排除
+            #   ⇒ 与上面的关键词判定**并存**（实测两者互补，不是替代）
+            sec_start, _sec_end = section_bounds(ls, i)
+            sec_title = ls[sec_start] if sec_start < len(ls) else ""
+            if METHODOLOGY_SECTION.search(sec_title):
+                continue
             second_layer = not SOURCE_TONE.search(s)
             if second_layer and not READER_ACTION.search(s):
                 continue  # 第二层口吻必须过「读者会照着做」二次过滤
@@ -217,16 +334,14 @@ def enumerate_candidates(faces):
                     "line": i + 1,
                     "text": s[:220],
                     "tone_layer": 2 if second_layer else 1,
-                    "section": next(
-                        (ls[j][:70] for j in range(i, -1, -1) if re.match(r"^#{2,6}\s", ls[j])),
-                        "",
-                    ),
+                    "section": sec_title[:70],
                     "exempt": bool(ex),
                     "exemption_reason": (ex or {}).get("reason", ""),
                     "exemption_evidence": (ex or {}).get("evidence", ""),
                 }
             )
     return rows
+
 
 
 
@@ -367,6 +482,65 @@ def main():
     crit["P9_no_zombie_exemptions_1036"] = len(zombie) == 0
     kinds["P9_no_zombie_exemptions_1036"] = "failure"
 
+    # P10 ⭐⭐⭐⭐⭐ 排除规则**必须真的排除过东西** —— 否则它就是一段死代码
+    #   ⇒ 关键词级与小节级两条排除规则，各自都要有**实际命中记录**
+    #   ⇒ 「加了规则但一条都没排除」看起来无害，其实说明规则写错了（或者口径本来就没问题）
+    excl_hits = {"keyword": 0, "section": 0}
+    for rel in READER_PAGES:
+        text = _read(MANUAL / rel)
+        if text is None:
+            continue
+        ls = text.split("\n")
+        for i, line in enumerate(ls):
+            s = line.strip()
+            if not s or s.startswith(">") or s.startswith("!["):
+                continue
+            if not SOURCE_TONE.search(s) and not FORENSIC_TONE.search(s):
+                continue
+            if not ACTIONABLE.search(s):
+                continue
+            if not face_re_of(faces).search(s):
+                continue
+            if METHODOLOGY.search(s):
+                excl_hits["keyword"] += 1
+            st, _ = section_bounds(ls, i)
+            if st < len(ls) and METHODOLOGY_SECTION.search(ls[st]):
+                excl_hits["section"] += 1
+    crit["P10_exclusion_rules_actually_exclude_something_1036"] = (
+        excl_hits["keyword"] > 0 and excl_hits["section"] > 0
+    )
+    kinds["P10_exclusion_rules_actually_exclude_something_1036"] = "failure"
+
+    # P11 ⭐⭐⭐⭐⭐ **每条实测读数必须带「样本守卫」** ——
+    #   ⇒ 量到 0 的时候，先问「**该有的东西真的在吗**」
+    #   ⇒ 0 可能是「没有」，也可能是「我没找对」⇒ 后者会产出**干净、好看、但是错的**结论
+    #   ⇒ 本批真踩了：搜 <audio> 得 0 ⇒ 差点写「复刻没有媒体元素」⇒ 而复刻用的是 <video>
+    #   ⇒ 所以守卫不是「可选的严谨」⇒ 它是**读数能不能被信**的前置条件
+    guard_ok = True
+    guard_rows = []
+    for block_name, block in (
+        ("clone_persistence_facts_1036", CLONE_PERSISTENCE_FACTS),
+        ("clone_media_error_facts_1036", CLONE_MEDIA_ERROR_FACTS),
+    ):
+        for key, val in block.items():
+            if not isinstance(val, dict) or not val.get("measured"):
+                continue
+            guard = val.get("sample_guard")
+            row = {
+                "block": block_name,
+                "key": key,
+                "has_guard": bool(guard),
+                "guard_value": (guard or {}).get("value"),
+            }
+            guard_rows.append(row)
+            if not guard or guard.get("value") is not True:
+                guard_ok = False
+    crit["P11_every_measured_reading_carries_a_sample_guard_1036"] = (
+        guard_ok and len(guard_rows) > 0
+    )
+    kinds["P11_every_measured_reading_carries_a_sample_guard_1036"] = "failure"
+
+
 
     red = [k for k, v in crit.items() if v is not True]
     out = {
@@ -401,6 +575,10 @@ def main():
         "n_unmarked_1036": len(unmarked),
         "candidates_1036": checked,
         "unmarked_1036": unmarked,
+        "clone_persistence_facts_1036": CLONE_PERSISTENCE_FACTS,
+        "clone_media_error_facts_1036": CLONE_MEDIA_ERROR_FACTS,
+        "sample_guards_1036": guard_rows,
+        "known_unreproducible_1036": KNOWN_UNREPRODUCIBLE,
         "exemptions_1036": {
             "registry": EXEMPTIONS,
             "n_registered": len(EXEMPTIONS),

@@ -17,8 +17,8 @@
   "n_volatile": 1,
   "volatile_inputs": {
    "golden-freshness-1027.json": {
-    "sha256_12": "042211a2500a",
-    "bytes": 91641,
+    "sha256_12": "d05627384e76",
+    "bytes": 92867,
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
@@ -101,8 +101,8 @@
     "bytes": 1843
    },
    "live-canvas-check-1031.json": {
-    "sha256_12": "e75acd23eeb8",
-    "bytes": 1614
+    "sha256_12": "9fa6f62c7b87",
+    "bytes": 1821
    },
    "manual-clone-parity-1035.json": {
     "sha256_12": "5589a0a0b396",
@@ -133,8 +133,8 @@
     "bytes": 15016
    },
    "source-claim-census-1036.json": {
-    "sha256_12": "30cef4bff1e5",
-    "bytes": 9729
+    "sha256_12": "eabdcb721646",
+    "bytes": 14225
    },
    "stem-attribution-1007.json": {
     "sha256_12": "b037c7f4525f",
@@ -158,10 +158,10 @@
  "census": {
   "n_goldens": 33,
   "n_excluded_self": 4,
-  "n_empty_list": 230,
-  "n_empty_null": 38,
+  "n_empty_list": 227,
+  "n_empty_null": 39,
   "n_self_provable": 10,
-  "n_ambiguous": 258
+  "n_ambiguous": 256
  },
  "rows": [
   {
@@ -1776,28 +1776,7 @@
   },
   {
    "golden": "live-canvas-check-1031.json",
-   "path": "/live_1031/missing_testids",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "live-canvas-check-1031.json",
-   "path": "/live_1031/missing_aria",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "live-canvas-check-1031.json",
    "path": "/live_1031/missing_aria_shapes",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "live-canvas-check-1031.json",
-   "path": "/live_1031/missing_node_kinds",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -1967,6 +1946,13 @@
    "golden": "source-claim-census-1036.json",
    "path": "/unmarked_1036",
    "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/clone_media_error_facts_1036/clone_has_media_error_state/readings/normal/media_error_flag",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -3640,28 +3626,7 @@
   },
   {
    "golden": "live-canvas-check-1031.json",
-   "path": "/live_1031/missing_testids",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "live-canvas-check-1031.json",
-   "path": "/live_1031/missing_aria",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "live-canvas-check-1031.json",
    "path": "/live_1031/missing_aria_shapes",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "live-canvas-check-1031.json",
-   "path": "/live_1031/missing_node_kinds",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -3796,6 +3761,13 @@
    "golden": "source-claim-census-1036.json",
    "path": "/unmarked_1036",
    "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "source-claim-census-1036.json",
+   "path": "/clone_media_error_facts_1036/clone_has_media_error_state/readings/normal/media_error_flag",
+   "kind": "null",
    "self_provable": false,
    "invariant": null
   },

@@ -26,19 +26,35 @@
    "aria_shapes": 3,
    "node_kinds": 3
   },
-  "missing_testids": [],
-  "missing_aria": [],
+  "missing_testids": [
+   "canvas-share-trigger"
+  ],
+  "missing_aria": [
+   "上传",
+   "主体",
+   "分享",
+   "图片",
+   "导演台",
+   "文本",
+   "时间线",
+   "更多",
+   "视频",
+   "资产库",
+   "音频"
+  ],
   "missing_aria_shapes": [],
   "all_aria_shapes_found": true,
-  "missing_node_kinds": [],
-  "all_testids_found": true,
-  "all_aria_found": true,
-  "all_node_kinds_found": true,
+  "missing_node_kinds": [
+   "时间线"
+  ],
+  "all_testids_found": false,
+  "all_aria_found": false,
+  "all_node_kinds_found": false,
   "engine_found": true,
-  "status_line_shape_matched": true
+  "status_line_shape_matched": false
  },
- "P4_live_matches_contract_1031": true,
- "P5_live_status_line_shape_1031": true,
+ "P4_live_matches_contract_1031": false,
+ "P5_live_status_line_shape_1031": false,
  "duplicate_keys_in_audit_block": [],
  "P6_no_duplicate_keys_in_contract_block_1031": true,
  "downgraded": "⚠️⭐⭐⭐⭐⭐ **本轮没有浏览器通路，P4/P5 记 `null` 而不是 `False`** —— 记成 `False` 就是「没跑过」与「跑过没过」混成同一件事，而这正是这套门最贵的那种失败"

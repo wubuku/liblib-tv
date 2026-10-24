@@ -59,7 +59,9 @@
     "P6_every_marker_gives_an_actionable_alternative_1036": true,
     "P7_scope_and_limits_published_1036": true,
     "P8_every_exemption_carries_measured_evidence_1036": true,
-    "P9_no_zombie_exemptions_1036": true
+    "P9_no_zombie_exemptions_1036": true,
+    "P10_exclusion_rules_actually_exclude_something_1036": true,
+    "P11_every_measured_reading_carries_a_sample_guard_1036": true
   },
   "criterion_kinds_1036": {
     "P1_difference_faces_are_derived_not_handwritten_1036": "failure",
@@ -70,10 +72,12 @@
     "P6_every_marker_gives_an_actionable_alternative_1036": "failure",
     "P7_scope_and_limits_published_1036": "failure",
     "P8_every_exemption_carries_measured_evidence_1036": "failure",
-    "P9_no_zombie_exemptions_1036": "failure"
+    "P9_no_zombie_exemptions_1036": "failure",
+    "P10_exclusion_rules_actually_exclude_something_1036": "failure",
+    "P11_every_measured_reading_carries_a_sample_guard_1036": "failure"
   },
   "criterion_kinds_complete_1036": true,
-  "n_criteria_1036": 9,
+  "n_criteria_1036": 11,
   "n_candidates_1036": 7,
   "n_marked_1036": 7,
   "n_unmarked_1036": 0,
@@ -167,6 +171,105 @@
     }
   ],
   "unmarked_1036": [],
+  "clone_persistence_facts_1036": {
+    "mock_media_survives_reload": {
+      "measured": true,
+      "sample_guard": {
+        "assertion": "存在带媒体的 <video>（n_video >= 1）",
+        "value": true,
+        "note": "⭐⭐⭐⭐⭐ **量到 0 之前先断言「该有的东西在」** ⇒ 第一版探针搜的是 <audio> ⇒ 0 个 ⇒ 差点写成「复刻没有媒体元素」⇒ 而那是**样本不成立**"
+      },
+      "readings": {
+        "n_video_initial": 1,
+        "video_src": "/videos/jimeng-demo.mp4",
+        "ready_state": 4,
+        "n_video_after_reload": 1
+      },
+      "note": "demo 画布里那个 `hasMedia: true` 的视频节点，刷新后 `<video>` 仍在且 readyState=4 ⇒ 因为它本来就在 mock 初始数据里"
+    },
+    "user_upload_does_not_survive_reload": {
+      "measured": true,
+      "sample_guard": {
+        "assertion": "addLocalUpload 之后节点数确实 +1（证明上传动作生效了）",
+        "value": true
+      },
+      "readings": {
+        "n_nodes_before": 5,
+        "n_nodes_after_addLocalUpload": 6,
+        "n_nodes_after_reload": 5,
+        "localstorage_keys": 0
+      },
+      "note": "用户上传的件刷新后不在画布上 ⇒ 手册「上传是持久的（重载页面后自建节点仍在画布上）」是**源站**事实，在复刻上不成立 ⇒ 已补「复刻差异」标注"
+    },
+    "the_distinction": "「刷新后还在」要问**谁的东西还在**：mock 初始态的媒体会回来，用户新增的上传件不会。"
+  },
+  "clone_media_error_facts_1036": {
+    "clone_has_media_error_state": {
+      "measured": true,
+      "sample_guard": {
+        "assertion": "存在带媒体的 <video>，且正常态 ready_state=4（证明素材真的能解码）",
+        "value": true
+      },
+      "readings": {
+        "normal": {
+          "media_error_flag": null,
+          "retry_btn_in_dom": false,
+          "ready_state": 4
+        },
+        "broken_src": {
+          "media_error_flag": true,
+          "retry_btn_in_dom": true,
+          "error_code": 4
+        },
+        "after_click_retry": {
+          "media_error_flag": false,
+          "retry_btn_in_dom": false,
+          "note": "点「重试播放视频」⇒ mediaError 清 false ⇒ 错误态解除 ⇒ **路径正确**"
+        }
+      },
+      "conclusion": "复刻上有「视频播放失败 ＋ 重试播放视频」这一档（源站对应物在 media-playback.md 的「媒体异常」节）⇒ 手册那节在复刻上**有对应物**，不需要标主体"
+    },
+    "the_trap": "第一版探针注入坏 src 后又改回好 src ⇒ 「按钮还在」⇒ 差点记成缺陷；⇒ 但那条**不是用户路径**（用户不会换 src）⇒ 真正的用户路径是「点重试」⇒ 实测**正确**⇒ ⇒ 结论：**注入路径 ≠ 用户路径**，判定前先问「这是用户会走的路吗」"
+  },
+  "sample_guards_1036": [
+    {
+      "block": "clone_persistence_facts_1036",
+      "key": "mock_media_survives_reload",
+      "has_guard": true,
+      "guard_value": true
+    },
+    {
+      "block": "clone_persistence_facts_1036",
+      "key": "user_upload_does_not_survive_reload",
+      "has_guard": true,
+      "guard_value": true
+    },
+    {
+      "block": "clone_media_error_facts_1036",
+      "key": "clone_has_media_error_state",
+      "has_guard": true,
+      "guard_value": true
+    }
+  ],
+  "known_unreproducible_1036": {
+    "live-canvas-check-1031.json": {
+      "status": "pre_existing",
+      "introduced_by": "not_this_batch",
+      "measured": true,
+      "sha12_three_runs": [
+        "28eb632e8064",
+        "d2e1c8d85a87",
+        "3de2128cd9d9"
+      ],
+      "varying_keys": [
+        "live_1031",
+        "P5_live_status_line_shape_1031"
+      ],
+      "root_cause_hypothesis": "运行时读数在页面元素渲染完成前被读 ⇒ 时序竞态（间歇性）",
+      "why_not_fixed_here": "修它要重做 1031 的等待策略 ⇒ 超出本批范围 ⇒ 且 1015 的两轮里它是稳定的⇒ 贸然改可能把一个偶发问题变成固定行为",
+      "consequence": "固定点循环**追不上它** ⇒ 判定不动点时必须**显式排除**并说明 ⇒ 不许默默放过"
+    }
+  },
   "exemptions_1036": {
     "registry": [
       {
