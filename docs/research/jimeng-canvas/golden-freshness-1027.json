@@ -61,11 +61,9 @@
     "docs/research/VERIFICATION_LEDGER.md",
     "docs/research/jimeng-canvas/README.md",
     "docs/research/jimeng-canvas/committed-freshness-1032n.json",
-    "docs/research/jimeng-canvas/empty-ambiguity-1014.json",
     "docs/research/jimeng-canvas/fingerprint-gate-1032l.json",
     "docs/research/jimeng-canvas/golden-freshness-1027.json",
-    "docs/research/jimeng-canvas/manual-clone-parity-1035.json",
-    "docs/research/jimeng-canvas/replica-coverage-1017.json",
+    "docs/research/jimeng-canvas/rerun-reproducibility-1015.json",
     "docs/research/liblib-canvas-batch536-2026-09-27/runtime-audit.json",
     "docs/research/liblib-canvas-batch541-2026-09-27/runtime-audit.json",
     "docs/research/liblib-canvas-batch589-2026-10-01/runtime-audit.json",
@@ -98,76 +96,15 @@
     "docs/research/liblib-canvas-batch843-2026-10-01/runtime-audit.json",
     "docs/research/liblib-canvas-batch844-2026-10-01/runtime-audit.json",
     "docs/research/liblib-canvas-batch852-2026-10-01/runtime-audit.json",
-    "docs/research/liblib-canvas-batch860-2026-10-01/README.md",
-    "docs/research/liblib-canvas-batch860-2026-10-01/controlled-comparison.json",
-    "docs/research/liblib-canvas-batch860-2026-10-01/images/860src_aspect_after.png",
-    "docs/research/liblib-canvas-batch860-2026-10-01/images/860src_aspect_before.png",
-    "docs/research/liblib-canvas-batch860-2026-10-01/images/860src_bottombar.png",
-    "docs/research/liblib-canvas-batch860-2026-10-01/images/860src_vp_21x9.png",
-    "docs/research/liblib-canvas-batch860-2026-10-01/images/860src_vp_auto.png",
-    "docs/research/liblib-canvas-batch860-2026-10-01/negative-audit.json",
-    "docs/research/liblib-canvas-batch860-2026-10-01/probes/attrib860.py",
-    "docs/research/liblib-canvas-batch860-2026-10-01/probes/attrib860_mix.py",
-    "docs/research/liblib-canvas-batch860-2026-10-01/probes/clone860_aspect.py",
-    "docs/research/liblib-canvas-batch860-2026-10-01/probes/commit860.sh",
-    "docs/research/liblib-canvas-batch860-2026-10-01/probes/neg860.py",
-    "docs/research/liblib-canvas-batch860-2026-10-01/probes/regress860.py",
-    "docs/research/liblib-canvas-batch860-2026-10-01/probes/source860_aspect.py",
-    "docs/research/liblib-canvas-batch860-2026-10-01/probes/source860_bottombar.py",
-    "docs/research/liblib-canvas-batch860-2026-10-01/probes/source860_frame.py",
-    "docs/research/liblib-canvas-batch860-2026-10-01/probes/source860_viewport.py",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1-860-2nd/verify-liblib-batch860.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch589.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch590.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch625.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch626.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch859.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch860.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2-860-2nd/verify-liblib-batch860.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch589.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch590.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch625.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch626.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch859.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch860.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/MIX-860-2nd/verify-liblib-batch860.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/MIX/verify-liblib-batch590.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/MIX/verify-liblib-batch859.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/MIX/verify-liblib-batch860.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1-860-2nd/verify-liblib-batch860.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch589.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch590.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch625.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch626.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch859.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch860.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2-860-2nd/verify-liblib-batch860.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch589.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch590.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch625.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch626.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch859.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch860.txt",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/clone-860-aspect.json",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/regression.json",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/source-860-aspect.json",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/source-860-bottombar.json",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/source-860-frame.json",
-    "docs/research/liblib-canvas-batch860-2026-10-01/raw/source-860-viewport.json",
-    "docs/research/liblib-canvas-batch860-2026-10-01/runtime-audit.json",
-    "docs/user-manual/jimeng-canvas/10-tasks/canvas-context.md",
-    "scripts/jimeng_run_all_gates.sh",
-    "scripts/verify-liblib-batch860.py",
-    "src/components/director/DirectorAspectPanel.tsx",
-    "src/components/director/DirectorViewport.tsx",
-    "src/components/director/directorViewportMath.ts",
+    "src/components/director/DirectorDesk.tsx",
+    "src/components/director/DirectorPanoramaPanel.tsx",
     "src/lib/directorCanvasMediaIngress.ts",
     "src/store/directorStore.ts"
   ],
   "changed_set_from_argv": false,
   "n_argv_flags_received": 1,
   "argv_flags_received": [
-    "--write-golden"
+    "--selftest"
   ],
   "ran_under_the_suite": true,
   "changed_set_note": "⭐⭐⭐⭐⭐ **变更集以 `argv` 为准**；没给 argv 时兜底取 `git diff HEAD~3` ⇒ **共享仓里那会被别人的提交改掉** ⇒ **⇒ 可复现性在这里的准确口径是「同一份 argv 下两次跑逐字节相同」**",
@@ -325,7 +262,7 @@
         "has_golden": false,
         "n_named": 5,
         "n_globs": 1,
-        "n_files_it_reads": 5309,
+        "n_files_it_reads": 5312,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -337,7 +274,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 3,
-        "n_files_it_reads": 5558,
+        "n_files_it_reads": 5561,
         "n_touched_by_this_change": 0,
         "in_exclude": true,
         "globs": [
@@ -361,11 +298,8 @@
         "n_named": 2,
         "n_globs": 0,
         "n_files_it_reads": 3,
-        "n_touched_by_this_change": 1,
-        "in_exclude": false,
-        "touched_by_this_change": [
-          "docs/research/jimeng-canvas/replica-coverage-1017.json"
-        ]
+        "n_touched_by_this_change": 0,
+        "in_exclude": false
       },
       {
         "probe": "scripts/jimeng_probe1018_assertion_vs_behavior.py",
@@ -417,8 +351,8 @@
         "has_golden": true,
         "n_named": 5,
         "n_globs": 4,
-        "n_files_it_reads": 15578,
-        "n_touched_by_this_change": 5,
+        "n_files_it_reads": 15579,
+        "n_touched_by_this_change": 4,
         "in_exclude": false,
         "globs": [
           "*.ts",
@@ -427,9 +361,8 @@
           "scripts/jimeng_*.py"
         ],
         "touched_by_this_change": [
-          "src/components/director/DirectorAspectPanel.tsx",
-          "src/components/director/DirectorViewport.tsx",
-          "src/components/director/directorViewportMath.ts",
+          "src/components/director/DirectorDesk.tsx",
+          "src/components/director/DirectorPanoramaPanel.tsx",
           "src/lib/directorCanvasMediaIngress.ts",
           "src/store/directorStore.ts"
         ]
@@ -478,7 +411,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 5306,
+        "n_files_it_reads": 5309,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -625,7 +558,7 @@
         "has_golden": false,
         "n_named": 2,
         "n_globs": 1,
-        "n_files_it_reads": 5306,
+        "n_files_it_reads": 5309,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -1090,7 +1023,7 @@
         "has_golden": false,
         "n_named": 0,
         "n_globs": 1,
-        "n_files_it_reads": 179,
+        "n_files_it_reads": 180,
         "n_touched_by_this_change": 0,
         "in_exclude": false,
         "globs": [
@@ -2446,7 +2379,7 @@
   },
   "axis_2_the_measured_re_run": {
     "what": "⭐⭐⭐⭐⭐⭐⭐ **实测：对「被本次变更触及的」那些真跑一遍，与仓库里那本逐字节比对 ⇒ 列出现在已经过期的**",
-    "n_touched": 2,
+    "n_touched": 1,
     "n_re_run": 0,
     "ran_under_the_suite": true,
     "n_stale": 0,
@@ -2494,11 +2427,10 @@
     },
     "B_injected_path_is_selected_by_the_coupling_scan": {
       "injected_path": "scripts/verify-jimeng-batch841-unclickable.py",
-      "n_selected": 8,
+      "n_selected": 7,
       "selected": [
         "jimeng_probe1005_zero_coupling_census.py",
         "jimeng_probe1007_disparate_copies.py",
-        "jimeng_probe1017_replica_coverage.py",
         "jimeng_probe1021_anchor_gate_coverage.py",
         "jimeng_probe1023_type_layer_gate.py",
         "jimeng_probe1024_exemption_claims.py",
@@ -2509,7 +2441,7 @@
       "rule": "⭐⭐⭐⭐⭐ **注入式自检**：把 verifier 路径塞进变更集，要求扫描器认出所有与它耦合的探针 ⇒ **⇒ 验的是「取交集这一步本身通不通」，而不依赖「这次提交恰好是谁的」** ⇒ **⇒⇒⇒⇒⇒⇒ 这一条正是对「仪器 bug 1」的回归防护**"
     },
     "C_intersection_is_narrower_than_everything": {
-      "n_touched": 2,
+      "n_touched": 1,
       "n_with_golden": 17,
       "ok": true,
       "rule": "⭐⭐⭐⭐⭐ **取交集必须比「全部」小** —— 否则它退化成一个更贵的全量重跑 ⇒ **这本身是一条判据**"
@@ -2527,10 +2459,14 @@
   },
   "scope_declared": "⚠️⭐⭐⭐⭐⭐ 量的是**有 golden 且不在排除名单里的探针**；**1015 自己被排除**（它会重跑全部并自己还原）；**耦合按源码里出现的路径与 glob 判定**，不追执行 ⇒ **报的是下限**；**只抓「因源码变化而过期」，不抓「因环境变化而过期」**；**本批不替项目改任何文件**（每个 golden 跑完原样还原）",
   "offline": "**只读仓内文件 + 起仓内已有的探针 + `git`（本地）**；零安装、零网络、零浏览器；**产物里不写临时目录名、时间戳、pid**",
-  "criteria_applicability_1027": {},
+  "criteria_applicability_1027": {
+    "P2_every_touched_probe_was_re_run_and_reported_1027": {
+      "kind": "precondition",
+      "why": "⇒ ⇒ **这次没普查**（`--selftest` 只验机制）⇒ ⇒ ⇒ ⇒ **⇒ 「每个被触及的探针都被重跑并上报」的前提不成立**⇒ ⇒ ⇒ ⇒ **⇒ 「没测到」不许长得像「测到了而且通过」**"
+    }
+  },
   "verdicts_1027": {
     "P1_changed_set_is_nonempty_and_every_probe_has_a_census_entry_1027": true,
-    "P2_every_touched_probe_was_re_run_and_reported_1027": true,
     "P3_positive_control_the_coupling_scan_finds_the_real_stale_one_1027": true,
     "P4_touched_list_is_recorded_for_every_golden_owning_probe_1027": true,
     "P5_one_run_per_golden_no_double_counting_1027": true,
