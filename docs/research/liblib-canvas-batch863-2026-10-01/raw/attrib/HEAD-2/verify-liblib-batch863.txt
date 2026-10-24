@@ -1,0 +1,89 @@
+
+110 判据，87 失败
+  FAILED: source:the-mask-container-class-is-verbatim  ⟵ pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10
+  FAILED: source:the-mask-layer-class-is-verbatim  ⟵ absolute inset-0 bg-black/20 backdrop-blur-md
+  FAILED: source:the-mask-image-is-verbatim  ⟵ linear-gradient(#000 0 0), linear-gradient(#000 0 0)
+  FAILED: source:the-mask-position-shape-matches-the-source  ⟵ {'源站': '0 0, ${u.left}px ${u.top}px', '期望结构': '0 0, Xpx Xpx'}
+  FAILED: source:the-mask-size-shape-matches-the-source  ⟵ {'源站': '100% 100%, ${u.width}px ${u.height}px', '期望结构': '100% 100%, Xpx Xpx'}
+  FAILED: source:the-mask-repeat-is-verbatim  ⟵ no-repeat, no-repeat
+  FAILED: source:the-mask-composite-is-verbatim  ⟵ {'WebkitMaskComposite': 'xor', 'maskComposite': 'exclude'}
+  FAILED: source:the-frame-no-longer-carries-a-9999px-box-shadow  ⟵ ★ 源站的框**没有** box-shadow ⟹ ⟹ 遮罩由独立层承担
+  FAILED: clone:the-mask-container-is-mounted-for-21:9  ⟵ {'容器': False, '遮罩层': False, '框': True}
+  FAILED: clone:the-mask-container-class-is-verbatim-for-21:9  ⟵ {'实际': None, '期望': 'pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10'}
+  FAILED: clone:the-mask-layer-class-is-verbatim-for-21:9  ⟵ {'实际': None, '期望': 'absolute inset-0 bg-black/20 backdrop-blur-md'}
+  FAILED: clone:the-container-pierces-no-pointer-for-21:9  ⟵ {'pointerEvents': None, 'zIndex': None}
+  FAILED: clone:the-container-holds-both-mask-and-frame-for-21:9  ⟵ {'含框': None, '首子元素是遮罩层': None}
+  FAILED: clone:the-mask-is-black-at-20-percent-for-21:9  ⟵ {'实际': None, '期望alpha': 51}
+  FAILED: clone:the-mask-blurs-the-backdrop-for-21:9  ⟵ 
+  FAILED: clone:the-mask-image-is-two-linear-gradients-for-21:9  ⟵ 
+  FAILED: clone:the-mask-composite-is-exclude-for-21:9  ⟵ 
+  FAILED: clone:the-mask-repeat-is-no-repeat-for-21:9  ⟵ None
+  FAILED: clone:the-mask-hole-matches-the-frame-position-for-21:9  ⟵ {'maskPosition': None, '框相对容器': {}}
+  FAILED: clone:the-mask-hole-matches-the-frame-size-for-21:9  ⟵ {'maskSize': None, '框': {'x': 321, 'y': 191, 'w': 1278, 'h': 548}}
+  FAILED: clone:the-frame-has-no-box-shadow-for-21:9  ⟵ rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.24) 0px 0px 0px 9999px
+  FAILED: clone:the-mask-container-is-mounted-for-16:9  ⟵ {'容器': False, '遮罩层': False, '框': True}
+  FAILED: clone:the-mask-container-class-is-verbatim-for-16:9  ⟵ {'实际': None, '期望': 'pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10'}
+  FAILED: clone:the-mask-layer-class-is-verbatim-for-16:9  ⟵ {'实际': None, '期望': 'absolute inset-0 bg-black/20 backdrop-blur-md'}
+  FAILED: clone:the-container-pierces-no-pointer-for-16:9  ⟵ {'pointerEvents': None, 'zIndex': None}
+  FAILED: clone:the-container-holds-both-mask-and-frame-for-16:9  ⟵ {'含框': None, '首子元素是遮罩层': None}
+  FAILED: clone:the-mask-is-black-at-20-percent-for-16:9  ⟵ {'实际': None, '期望alpha': 51}
+  FAILED: clone:the-mask-blurs-the-backdrop-for-16:9  ⟵ 
+  FAILED: clone:the-mask-image-is-two-linear-gradients-for-16:9  ⟵ 
+  FAILED: clone:the-mask-composite-is-exclude-for-16:9  ⟵ 
+  FAILED: clone:the-mask-repeat-is-no-repeat-for-16:9  ⟵ None
+  FAILED: clone:the-mask-hole-matches-the-frame-position-for-16:9  ⟵ {'maskPosition': None, '框相对容器': {}}
+  FAILED: clone:the-mask-hole-matches-the-frame-size-for-16:9  ⟵ {'maskSize': None, '框': {'x': 347, 'y': 120, 'w': 1227, 'h': 690}}
+  FAILED: clone:the-frame-has-no-box-shadow-for-16:9  ⟵ rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.24) 0px 0px 0px 9999px
+  FAILED: clone:the-red-probe-proves-the-mask-hollows-the-frame  ⟵ {'遮罩层在场': False, 'why': '★ 遮罩层不在场 ⟹ ⟹ 探针无从进行'}
+  FAILED: clone:the-mask-container-is-mounted-for-4:3  ⟵ {'容器': False, '遮罩层': False, '框': True}
+  FAILED: clone:the-mask-container-class-is-verbatim-for-4:3  ⟵ {'实际': None, '期望': 'pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10'}
+  FAILED: clone:the-mask-layer-class-is-verbatim-for-4:3  ⟵ {'实际': None, '期望': 'absolute inset-0 bg-black/20 backdrop-blur-md'}
+  FAILED: clone:the-container-pierces-no-pointer-for-4:3  ⟵ {'pointerEvents': None, 'zIndex': None}
+  FAILED: clone:the-container-holds-both-mask-and-frame-for-4:3  ⟵ {'含框': None, '首子元素是遮罩层': None}
+  FAILED: clone:the-mask-is-black-at-20-percent-for-4:3  ⟵ {'实际': None, '期望alpha': 51}
+  FAILED: clone:the-mask-blurs-the-backdrop-for-4:3  ⟵ 
+  FAILED: clone:the-mask-image-is-two-linear-gradients-for-4:3  ⟵ 
+  FAILED: clone:the-mask-composite-is-exclude-for-4:3  ⟵ 
+  FAILED: clone:the-mask-repeat-is-no-repeat-for-4:3  ⟵ None
+  FAILED: clone:the-mask-hole-matches-the-frame-position-for-4:3  ⟵ {'maskPosition': None, '框相对容器': {}}
+  FAILED: clone:the-mask-hole-matches-the-frame-size-for-4:3  ⟵ {'maskSize': None, '框': {'x': 500, 'y': 120, 'w': 920, 'h': 690}}
+  FAILED: clone:the-frame-has-no-box-shadow-for-4:3  ⟵ rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.24) 0px 0px 0px 9999px
+  FAILED: clone:the-mask-container-is-mounted-for-1:1  ⟵ {'容器': False, '遮罩层': False, '框': True}
+  FAILED: clone:the-mask-container-class-is-verbatim-for-1:1  ⟵ {'实际': None, '期望': 'pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10'}
+  FAILED: clone:the-mask-layer-class-is-verbatim-for-1:1  ⟵ {'实际': None, '期望': 'absolute inset-0 bg-black/20 backdrop-blur-md'}
+  FAILED: clone:the-container-pierces-no-pointer-for-1:1  ⟵ {'pointerEvents': None, 'zIndex': None}
+  FAILED: clone:the-container-holds-both-mask-and-frame-for-1:1  ⟵ {'含框': None, '首子元素是遮罩层': None}
+  FAILED: clone:the-mask-is-black-at-20-percent-for-1:1  ⟵ {'实际': None, '期望alpha': 51}
+  FAILED: clone:the-mask-blurs-the-backdrop-for-1:1  ⟵ 
+  FAILED: clone:the-mask-image-is-two-linear-gradients-for-1:1  ⟵ 
+  FAILED: clone:the-mask-composite-is-exclude-for-1:1  ⟵ 
+  FAILED: clone:the-mask-repeat-is-no-repeat-for-1:1  ⟵ None
+  FAILED: clone:the-mask-hole-matches-the-frame-position-for-1:1  ⟵ {'maskPosition': None, '框相对容器': {}}
+  FAILED: clone:the-mask-hole-matches-the-frame-size-for-1:1  ⟵ {'maskSize': None, '框': {'x': 615, 'y': 120, 'w': 690, 'h': 690}}
+  FAILED: clone:the-frame-has-no-box-shadow-for-1:1  ⟵ rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.24) 0px 0px 0px 9999px
+  FAILED: clone:the-mask-container-is-mounted-for-3:4  ⟵ {'容器': False, '遮罩层': False, '框': True}
+  FAILED: clone:the-mask-container-class-is-verbatim-for-3:4  ⟵ {'实际': None, '期望': 'pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10'}
+  FAILED: clone:the-mask-layer-class-is-verbatim-for-3:4  ⟵ {'实际': None, '期望': 'absolute inset-0 bg-black/20 backdrop-blur-md'}
+  FAILED: clone:the-container-pierces-no-pointer-for-3:4  ⟵ {'pointerEvents': None, 'zIndex': None}
+  FAILED: clone:the-container-holds-both-mask-and-frame-for-3:4  ⟵ {'含框': None, '首子元素是遮罩层': None}
+  FAILED: clone:the-mask-is-black-at-20-percent-for-3:4  ⟵ {'实际': None, '期望alpha': 51}
+  FAILED: clone:the-mask-blurs-the-backdrop-for-3:4  ⟵ 
+  FAILED: clone:the-mask-image-is-two-linear-gradients-for-3:4  ⟵ 
+  FAILED: clone:the-mask-composite-is-exclude-for-3:4  ⟵ 
+  FAILED: clone:the-mask-repeat-is-no-repeat-for-3:4  ⟵ None
+  FAILED: clone:the-mask-hole-matches-the-frame-position-for-3:4  ⟵ {'maskPosition': None, '框相对容器': {}}
+  FAILED: clone:the-mask-hole-matches-the-frame-size-for-3:4  ⟵ {'maskSize': None, '框': {'x': 701, 'y': 120, 'w': 518, 'h': 690}}
+  FAILED: clone:the-frame-has-no-box-shadow-for-3:4  ⟵ rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.24) 0px 0px 0px 9999px
+  FAILED: clone:the-mask-container-is-mounted-for-9:16  ⟵ {'容器': False, '遮罩层': False, '框': True}
+  FAILED: clone:the-mask-container-class-is-verbatim-for-9:16  ⟵ {'实际': None, '期望': 'pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10'}
+  FAILED: clone:the-mask-layer-class-is-verbatim-for-9:16  ⟵ {'实际': None, '期望': 'absolute inset-0 bg-black/20 backdrop-blur-md'}
+  FAILED: clone:the-container-pierces-no-pointer-for-9:16  ⟵ {'pointerEvents': None, 'zIndex': None}
+  FAILED: clone:the-container-holds-both-mask-and-frame-for-9:16  ⟵ {'含框': None, '首子元素是遮罩层': None}
+  FAILED: clone:the-mask-is-black-at-20-percent-for-9:16  ⟵ {'实际': None, '期望alpha': 51}
+  FAILED: clone:the-mask-blurs-the-backdrop-for-9:16  ⟵ 
+  FAILED: clone:the-mask-image-is-two-linear-gradients-for-9:16  ⟵ 
+  FAILED: clone:the-mask-composite-is-exclude-for-9:16  ⟵ 
+  FAILED: clone:the-mask-repeat-is-no-repeat-for-9:16  ⟵ None
+  FAILED: clone:the-mask-hole-matches-the-frame-position-for-9:16  ⟵ {'maskPosition': None, '框相对容器': {}}
+  FAILED: clone:the-mask-hole-matches-the-frame-size-for-9:16  ⟵ {'maskSize': None, '框': {'x': 766, 'y': 120, 'w': 388, 'h': 690}}
+  FAILED: clone:the-frame-has-no-box-shadow-for-9:16  ⟵ rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.24) 0px 0px 0px 9999px

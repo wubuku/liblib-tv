@@ -1,0 +1,581 @@
+{
+ "判据数": 110,
+ "失败": [],
+ "audit": {
+  "batch": 863,
+  "title": "取景框外的遮罩（源站逐字 ＋ 运行时读数 ＋ 红色探针）",
+  "源站运行时复核": "★ 待补（源站项目页本批取证时不可用）",
+  "源站逐字": {
+   "容器类": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+   "遮罩类": "absolute inset-0 bg-black/20 backdrop-blur-md",
+   "maskImage": "linear-gradient(#000 0 0), linear-gradient(#000 0 0)",
+   "maskPosition": "0 0, ${u.left}px ${u.top}px",
+   "maskRepeat": "no-repeat, no-repeat",
+   "maskSize": "100% 100%, ${u.width}px ${u.height}px",
+   "WebkitMaskComposite": "xor",
+   "maskComposite": "exclude",
+   "框类": "outline-white/18 absolute rounded-xl outline -outline-offset-1",
+   "框描边百分比": 18,
+   "遮罩黑度百分比": 20
+  },
+  "live": {
+   "自适应": {
+    "容器在场": false,
+    "遮罩层在场": false,
+    "框在场": false,
+    "开关在场": false,
+    "分线条数": 0
+   },
+   "21:9": {
+    "容器在场": true,
+    "遮罩层在场": true,
+    "框在场": true,
+    "开关在场": true,
+    "容器": {
+     "cls": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "pointerEvents": "none",
+     "zIndex": "10",
+     "position": "absolute"
+    },
+    "容器首子元素是遮罩层": true,
+    "容器含框": true,
+    "遮罩层": {
+     "cls": "absolute inset-0 bg-black/20 backdrop-blur-md",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "背景": {
+      "raw": "oklab(0 0 0 / 0.2)",
+      "rgba": [
+       0,
+       0,
+       0,
+       51
+      ]
+     },
+     "背景原文": "oklab(0 0 0 / 0.2)",
+     "backdropFilter": "blur(12px)",
+     "maskImage": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px)",
+     "maskComposite": "exclude, exclude",
+     "maskPosition": "0px 0px, 40px 103.143px",
+     "maskSize": "100% 100%, 1278px 547.714px",
+     "maskRepeat": "no-repeat, no-repeat",
+     "pointerEvents": "none"
+    },
+    "框": {
+     "x": 321,
+     "y": 191,
+     "w": 1278,
+     "h": 548
+    },
+    "框样式": {
+     "boxShadow": "none",
+     "borderWidth": "0px",
+     "outlineWidth": "1px",
+     "outlineOffset": "-1px",
+     "outlineColor": {
+      "raw": "rgba(255, 255, 255, 0.18)",
+      "rgba": [
+       255,
+       255,
+       255,
+       46
+      ]
+     },
+     "radius": "12px"
+    },
+    "框相对容器": {
+     "left": 40,
+     "top": 103.14
+    },
+    "分线条数": 0
+   },
+   "16:9": {
+    "容器在场": true,
+    "遮罩层在场": true,
+    "框在场": true,
+    "开关在场": true,
+    "容器": {
+     "cls": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "pointerEvents": "none",
+     "zIndex": "10",
+     "position": "absolute"
+    },
+    "容器首子元素是遮罩层": true,
+    "容器含框": true,
+    "遮罩层": {
+     "cls": "absolute inset-0 bg-black/20 backdrop-blur-md",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "背景": {
+      "raw": "oklab(0 0 0 / 0.2)",
+      "rgba": [
+       0,
+       0,
+       0,
+       51
+      ]
+     },
+     "背景原文": "oklab(0 0 0 / 0.2)",
+     "backdropFilter": "blur(12px)",
+     "maskImage": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px)",
+     "maskComposite": "exclude, exclude",
+     "maskPosition": "0px 0px, 65.6667px 32px",
+     "maskSize": "100% 100%, 1226.67px 690px",
+     "maskRepeat": "no-repeat, no-repeat",
+     "pointerEvents": "none"
+    },
+    "框": {
+     "x": 347,
+     "y": 120,
+     "w": 1227,
+     "h": 690
+    },
+    "框样式": {
+     "boxShadow": "none",
+     "borderWidth": "0px",
+     "outlineWidth": "1px",
+     "outlineOffset": "-1px",
+     "outlineColor": {
+      "raw": "rgba(255, 255, 255, 0.18)",
+      "rgba": [
+       255,
+       255,
+       255,
+       46
+      ]
+     },
+     "radius": "12px"
+    },
+    "框相对容器": {
+     "left": 65.66,
+     "top": 32
+    },
+    "分线条数": 0
+   },
+   "红色探针": {
+    "可用": true,
+    "框内R": 32.0,
+    "框外R": 222.0,
+    "框内红味": -5.0,
+    "框外红味": 216.0,
+    "框内": {
+     "R": 32.0,
+     "G": 37.0,
+     "B": 43.0,
+     "红味": -5.0,
+     "样本数": 576
+    },
+    "框外": {
+     "R": 222.0,
+     "G": 6.0,
+     "B": 6.0,
+     "红味": 216.0,
+     "样本数": 576
+    },
+    "差值": 190.0,
+    "取样点": {
+     "框内": {
+      "x": 497,
+      "y": 180
+     },
+     "框外": {
+      "x": 497,
+      "y": 92
+     }
+    }
+   },
+   "4:3": {
+    "容器在场": true,
+    "遮罩层在场": true,
+    "框在场": true,
+    "开关在场": true,
+    "容器": {
+     "cls": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "pointerEvents": "none",
+     "zIndex": "10",
+     "position": "absolute"
+    },
+    "容器首子元素是遮罩层": true,
+    "容器含框": true,
+    "遮罩层": {
+     "cls": "absolute inset-0 bg-black/20 backdrop-blur-md",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "背景": {
+      "raw": "oklab(0 0 0 / 0.2)",
+      "rgba": [
+       0,
+       0,
+       0,
+       51
+      ]
+     },
+     "背景原文": "oklab(0 0 0 / 0.2)",
+     "backdropFilter": "blur(12px)",
+     "maskImage": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px)",
+     "maskComposite": "exclude, exclude",
+     "maskPosition": "0px 0px, 219px 32px",
+     "maskSize": "100% 100%, 920px 690px",
+     "maskRepeat": "no-repeat, no-repeat",
+     "pointerEvents": "none"
+    },
+    "框": {
+     "x": 500,
+     "y": 120,
+     "w": 920,
+     "h": 690
+    },
+    "框样式": {
+     "boxShadow": "none",
+     "borderWidth": "0px",
+     "outlineWidth": "1px",
+     "outlineOffset": "-1px",
+     "outlineColor": {
+      "raw": "rgba(255, 255, 255, 0.18)",
+      "rgba": [
+       255,
+       255,
+       255,
+       46
+      ]
+     },
+     "radius": "12px"
+    },
+    "框相对容器": {
+     "left": 219,
+     "top": 32
+    },
+    "分线条数": 0
+   },
+   "1:1": {
+    "容器在场": true,
+    "遮罩层在场": true,
+    "框在场": true,
+    "开关在场": true,
+    "容器": {
+     "cls": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "pointerEvents": "none",
+     "zIndex": "10",
+     "position": "absolute"
+    },
+    "容器首子元素是遮罩层": true,
+    "容器含框": true,
+    "遮罩层": {
+     "cls": "absolute inset-0 bg-black/20 backdrop-blur-md",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "背景": {
+      "raw": "oklab(0 0 0 / 0.2)",
+      "rgba": [
+       0,
+       0,
+       0,
+       51
+      ]
+     },
+     "背景原文": "oklab(0 0 0 / 0.2)",
+     "backdropFilter": "blur(12px)",
+     "maskImage": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px)",
+     "maskComposite": "exclude, exclude",
+     "maskPosition": "0px 0px, 334px 32px",
+     "maskSize": "100% 100%, 690px 690px",
+     "maskRepeat": "no-repeat, no-repeat",
+     "pointerEvents": "none"
+    },
+    "框": {
+     "x": 615,
+     "y": 120,
+     "w": 690,
+     "h": 690
+    },
+    "框样式": {
+     "boxShadow": "none",
+     "borderWidth": "0px",
+     "outlineWidth": "1px",
+     "outlineOffset": "-1px",
+     "outlineColor": {
+      "raw": "rgba(255, 255, 255, 0.18)",
+      "rgba": [
+       255,
+       255,
+       255,
+       46
+      ]
+     },
+     "radius": "12px"
+    },
+    "框相对容器": {
+     "left": 334,
+     "top": 32
+    },
+    "分线条数": 0
+   },
+   "3:4": {
+    "容器在场": true,
+    "遮罩层在场": true,
+    "框在场": true,
+    "开关在场": true,
+    "容器": {
+     "cls": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "pointerEvents": "none",
+     "zIndex": "10",
+     "position": "absolute"
+    },
+    "容器首子元素是遮罩层": true,
+    "容器含框": true,
+    "遮罩层": {
+     "cls": "absolute inset-0 bg-black/20 backdrop-blur-md",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "背景": {
+      "raw": "oklab(0 0 0 / 0.2)",
+      "rgba": [
+       0,
+       0,
+       0,
+       51
+      ]
+     },
+     "背景原文": "oklab(0 0 0 / 0.2)",
+     "backdropFilter": "blur(12px)",
+     "maskImage": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px)",
+     "maskComposite": "exclude, exclude",
+     "maskPosition": "0px 0px, 420.25px 32px",
+     "maskSize": "100% 100%, 517.5px 690px",
+     "maskRepeat": "no-repeat, no-repeat",
+     "pointerEvents": "none"
+    },
+    "框": {
+     "x": 701,
+     "y": 120,
+     "w": 518,
+     "h": 690
+    },
+    "框样式": {
+     "boxShadow": "none",
+     "borderWidth": "0px",
+     "outlineWidth": "1px",
+     "outlineOffset": "-1px",
+     "outlineColor": {
+      "raw": "rgba(255, 255, 255, 0.18)",
+      "rgba": [
+       255,
+       255,
+       255,
+       46
+      ]
+     },
+     "radius": "12px"
+    },
+    "框相对容器": {
+     "left": 420.25,
+     "top": 32
+    },
+    "分线条数": 0
+   },
+   "9:16": {
+    "容器在场": true,
+    "遮罩层在场": true,
+    "框在场": true,
+    "开关在场": true,
+    "容器": {
+     "cls": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "pointerEvents": "none",
+     "zIndex": "10",
+     "position": "absolute"
+    },
+    "容器首子元素是遮罩层": true,
+    "容器含框": true,
+    "遮罩层": {
+     "cls": "absolute inset-0 bg-black/20 backdrop-blur-md",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "背景": {
+      "raw": "oklab(0 0 0 / 0.2)",
+      "rgba": [
+       0,
+       0,
+       0,
+       51
+      ]
+     },
+     "背景原文": "oklab(0 0 0 / 0.2)",
+     "backdropFilter": "blur(12px)",
+     "maskImage": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px)",
+     "maskComposite": "exclude, exclude",
+     "maskPosition": "0px 0px, 484.938px 32px",
+     "maskSize": "100% 100%, 388.125px 690px",
+     "maskRepeat": "no-repeat, no-repeat",
+     "pointerEvents": "none"
+    },
+    "框": {
+     "x": 766,
+     "y": 120,
+     "w": 388,
+     "h": 690
+    },
+    "框样式": {
+     "boxShadow": "none",
+     "borderWidth": "0px",
+     "outlineWidth": "1px",
+     "outlineOffset": "-1px",
+     "outlineColor": {
+      "raw": "rgba(255, 255, 255, 0.18)",
+      "rgba": [
+       255,
+       255,
+       255,
+       46
+      ]
+     },
+     "radius": "12px"
+    },
+    "框相对容器": {
+     "left": 484.94,
+     "top": 32
+    },
+    "分线条数": 0
+   },
+   "点开关后": {
+    "容器在场": true,
+    "遮罩层在场": true,
+    "框在场": true,
+    "开关在场": true,
+    "容器": {
+     "cls": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "pointerEvents": "none",
+     "zIndex": "10",
+     "position": "absolute"
+    },
+    "容器首子元素是遮罩层": true,
+    "容器含框": true,
+    "遮罩层": {
+     "cls": "absolute inset-0 bg-black/20 backdrop-blur-md",
+     "rect": {
+      "x": 281,
+      "y": 88,
+      "w": 1358,
+      "h": 810
+     },
+     "背景": {
+      "raw": "oklab(0 0 0 / 0.2)",
+      "rgba": [
+       0,
+       0,
+       0,
+       51
+      ]
+     },
+     "背景原文": "oklab(0 0 0 / 0.2)",
+     "backdropFilter": "blur(12px)",
+     "maskImage": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px)",
+     "maskComposite": "exclude, exclude",
+     "maskPosition": "0px 0px, 484.938px 32px",
+     "maskSize": "100% 100%, 388.125px 690px",
+     "maskRepeat": "no-repeat, no-repeat",
+     "pointerEvents": "none"
+    },
+    "框": {
+     "x": 766,
+     "y": 120,
+     "w": 388,
+     "h": 690
+    },
+    "框样式": {
+     "boxShadow": "none",
+     "borderWidth": "0px",
+     "outlineWidth": "1px",
+     "outlineOffset": "-1px",
+     "outlineColor": {
+      "raw": "rgba(255, 255, 255, 0.18)",
+      "rgba": [
+       255,
+       255,
+       255,
+       46
+      ]
+     },
+     "radius": "12px"
+    },
+    "框相对容器": {
+     "left": 484.94,
+     "top": 32
+    },
+    "分线条数": 4
+   },
+   "回自适应": {
+    "容器在场": false,
+    "遮罩层在场": false,
+    "框在场": false,
+    "开关在场": false,
+    "分线条数": 0
+   }
+  }
+ }
+}

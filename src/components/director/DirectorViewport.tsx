@@ -2543,56 +2543,99 @@ function AspectFrame({ frameRect }: { frameRect: DirectorFrameRect | null }) {
   if (!frameRect || isCapturing) return null;
 
   return (
+    // ★★★ Batch 863（源站逐字）：**框外遮罩**改成源站那套。
+    //
+    // ★ 源站逐字（chunk 的 `mP` 组件）：外层容器
+    //   `pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10`，
+    //   里面**第一个**子元素就是**铺满的遮罩层**：
+    //   ```js
+    //   (0,i.jsx)("div",{className:"absolute inset-0 bg-black/20 backdrop-blur-md",
+    //     style:{WebkitMaskImage:"linear-gradient(#000 0 0), linear-gradient(#000 0 0)",
+    //            WebkitMaskPosition:`0 0, ${u.left}px ${u.top}px`,
+    //            WebkitMaskRepeat:"no-repeat, no-repeat",
+    //            WebkitMaskSize:`100% 100%, ${u.width}px ${u.height}px`,
+    //            WebkitMaskComposite:"xor", maskComposite:"exclude"}})
+    //   ```
+    //   ⟹ ⟹ **框外**＝ 黑 20% ＋ **背景模糊**；**框内**被 mask **挖空**
+    //   （`mask-composite: exclude`）⟹ ⟹ 不压暗、不模糊。
+    //
+    // ★ ★ clone 在本批之前**没有遮罩层** ⟹ ⟹ 框外是框自己的
+    //   `shadow-[0_0_0_9999px_rgba(0,0,0,0.24)]`（**黑 24%、没有模糊**）⟹ ⟹ D20。
+    // ★ 本批把那层 box-shadow **删掉**，改由遮罩层承担（与源站同构）。
     <div
-      data-director-aspect-frame
-      data-director-aspect-ratio={frameAspectRatio ?? "auto"}
-      // ★ Batch 862（源站逐字）：框的描边是 **outline**（不是 border）＋ 圆角 12px。
-      //   源站：`outline-white/18 absolute rounded-xl outline -outline-offset-1`
-      //   ⟹ ⟹ `outline-white/18` 是**任意值类** ⟹ ⟹ 4317 的 Tailwind 扫描是冻结的
-      //   （新增类不生成）⟹ ⟹ 这里用 inline style 给等效实测值。
-      className="pointer-events-none absolute shadow-[0_0_0_9999px_rgba(0,0,0,0.24)]"
-      style={{
-        left: frameRect.left,
-        top: frameRect.top,
-        width: frameRect.width,
-        height: frameRect.height,
-        // ★ 源站实测（`raw/source-862-frame-thirds.json`）：
-        //   outline 1px / offset −1px / 白 18% / radius 12px
-        borderRadius: "12px",
-        outline: "1px solid rgba(255,255,255,0.18)",
-        outlineOffset: "-1px",
-      }}
+      data-director-aspect-mask-container
+      className="pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10"
     >
-      {showThirds ? (
-        <div data-director-thirds className="absolute inset-0">
-          {/* ★ 源站逐字：`bg-(--color-white-alpha-50)`（＝ 白 50%）
-              ⟹ ⟹ 任意值类未生成 ⟹ ⟹ inline style 给实测等效值。 */}
-          <span
-            className="absolute bottom-0 left-1/3 top-0 w-px"
-            style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
-          />
-          <span
-            className="absolute bottom-0 left-2/3 top-0 w-px"
-            style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
-          />
-          <span
-            className="absolute left-0 right-0 top-1/3 h-px"
-            style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
-          />
-          <span
-            className="absolute left-0 right-0 top-2/3 h-px"
-            style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
-          />
-        </div>
-      ) : null}
-      {/* ★★ Batch 862：源站的构图参考线开关**长在取景框右上角**
-          （源站逐字：`onToggleCompositionGrid:null!==tr?…:void 0`
-          ⟹ ⟹ 「自适应」时连按钮一起不在场）。 */}
-      <DirectorFrameThirdsToggle
-        frameWidth={frameRect.width}
-        showThirds={showThirds}
-        onToggle={toggleThirds}
+      {/* ★ 源站逐字：`absolute inset-0 bg-black/20 backdrop-blur-md` ＋ CSS mask 挖空
+          （★ `bg-black/20` 与 `backdrop-blur-md` 这两个类 clone **已在别处使用**
+          ⟹ ⟹ Tailwind 扫描已覆盖 ⟹ ⟹ 可以直接照抄类名）。 */}
+      <div
+        data-director-aspect-mask
+        className="absolute inset-0 bg-black/20 backdrop-blur-md"
+        style={{
+          // ★ 源站逐字（`u` ＝ 框在同一个坐标系里的位置与尺寸）
+          WebkitMaskImage:
+            "linear-gradient(#000 0 0), linear-gradient(#000 0 0)",
+          WebkitMaskPosition: `0 0, ${frameRect.left}px ${frameRect.top}px`,
+          WebkitMaskRepeat: "no-repeat, no-repeat",
+          WebkitMaskSize: `100% 100%, ${frameRect.width}px ${frameRect.height}px`,
+          WebkitMaskComposite: "xor",
+          maskComposite: "exclude",
+        }}
       />
+      <div
+        data-director-aspect-frame
+        data-director-aspect-ratio={frameAspectRatio ?? "auto"}
+        // ★ Batch 862（源站逐字）：框的描边是 **outline**（不是 border）＋ 圆角 12px。
+        //   源站：`outline-white/18 absolute rounded-xl outline -outline-offset-1`
+        //   ⟹ ⟹ `outline-white/18` 是**任意值类** ⟹ ⟹ 4317 的 Tailwind 扫描是冻结的
+        //   （新增类不生成）⟹ ⟹ 这里用 inline style 给等效实测值。
+        //   ★ ★ Batch 863：**删掉**原先那层 `shadow-[0_0_0_9999px_…]`（框外遮罩
+        //   改由上面的遮罩层承担 ⟹ ⟹ 源站那个框上**没有** box-shadow）。
+        className="pointer-events-none absolute"
+        style={{
+          left: frameRect.left,
+          top: frameRect.top,
+          width: frameRect.width,
+          height: frameRect.height,
+          // ★ 源站实测（`raw/source-862-frame-thirds.json`）：
+          //   outline 1px / offset −1px / 白 18% / radius 12px
+          borderRadius: "12px",
+          outline: "1px solid rgba(255,255,255,0.18)",
+          outlineOffset: "-1px",
+        }}
+      >
+        {showThirds ? (
+          <div data-director-thirds className="absolute inset-0">
+            {/* ★ 源站逐字：`bg-(--color-white-alpha-50)`（＝ 白 50%）
+              ⟹ ⟹ 任意值类未生成 ⟹ ⟹ inline style 给实测等效值。 */}
+            <span
+              className="absolute bottom-0 left-1/3 top-0 w-px"
+              style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+            />
+            <span
+              className="absolute bottom-0 left-2/3 top-0 w-px"
+              style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+            />
+            <span
+              className="absolute left-0 right-0 top-1/3 h-px"
+              style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+            />
+            <span
+              className="absolute left-0 right-0 top-2/3 h-px"
+              style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+            />
+          </div>
+        ) : null}
+        {/* ★★ Batch 862：源站的构图参考线开关**长在取景框右上角**
+            （源站逐字：`onToggleCompositionGrid:null!==tr?…:void 0`
+            ⟹ ⟹ 「自适应」时连按钮一起不在场）。 */}
+        <DirectorFrameThirdsToggle
+          frameWidth={frameRect.width}
+          showThirds={showThirds}
+          onToggle={toggleThirds}
+        />
+      </div>
     </div>
   );
 }

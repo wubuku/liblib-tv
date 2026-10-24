@@ -1,0 +1,86 @@
+[
+ {
+  "id": "N1",
+  "desc": "mask 合成改成 add（不再挖空）",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 8,
+  "首条红灯": "FAILED: source:the-mask-composite-is-verbatim  ⟵ {'WebkitMaskComposite': 'xor', 'maskComposite': 'exclude'}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N2",
+  "desc": "遮罩黑度 20% 改 40%",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 13,
+  "首条红灯": "FAILED: source:the-mask-layer-class-is-verbatim  ⟵ absolute inset-0 bg-black/20 backdrop-blur-md",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N3",
+  "desc": "背景模糊 md 改 sm",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 13,
+  "首条红灯": "FAILED: source:the-mask-layer-class-is-verbatim  ⟵ absolute inset-0 bg-black/20 backdrop-blur-md",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N4",
+  "desc": "mask 挖空的高度 −10px",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 6,
+  "首条红灯": "FAILED: clone:the-mask-hole-matches-the-frame-size-for-21:9  ⟵ {'maskSize': '100% 100%, 1278px 537.714px', '框': {'x': 321, 'y': 191, 'w': 1278, 'h': 548}}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N5",
+  "desc": "mask 挖空的位置 +10px",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 6,
+  "首条红灯": "FAILED: clone:the-mask-hole-matches-the-frame-position-for-21:9  ⟵ {'maskPosition': '0px 0px, 40px 113.143px', '框相对容器': {'left': 40, 'top': 103.14}}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N6",
+  "desc": "把框的 9999px box-shadow 加回来",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 7,
+  "首条红灯": "FAILED: source:the-frame-no-longer-carries-a-9999px-box-shadow  ⟵ ★ 源站的框**没有** box-shadow ⟹ ⟹ 遮罩由独立层承担",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N7",
+  "desc": "容器类去掉 z-10",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 13,
+  "首条红灯": "FAILED: source:the-mask-container-class-is-verbatim  ⟵ pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ }
+]

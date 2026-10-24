@@ -83,6 +83,7 @@ npm run dev          # ⟹ 监听 4317
 | 快捷键面板 | 左下角「快捷键」 | 12 条快捷键清单 |
 | ★ **画幅比例 → 机位取景框** | 左侧 rail「**选择画幅比例**」（第 6 枚）⟹ 点「**16:9**」 | 视口里出现**机位取景框**（★ 源站逐字：选比例改的是**取景框**，**不改画布**）⟹ ⟹ 取景框读数 `[data-director-aspect-frame]`（带 `data-director-aspect-ratio="16:9"` 标记）；★ 点「**自适应**」⟹ ⟹ **取景框不在场** |
 | ★ **构图参考线（三分线）** | 点**取景框右上角**那枚 32×32 的按钮（`[data-director-frame-thirds-toggle]`，`title="构图参考线"`） | 框内出现**4 条**分线（白 **50%**，`[data-director-thirds]`）⟹ ⟹ 再点消失；★ 按钮关闭态是半透明白、**开启时变青**（源站逐字 `text-btn-primary`）⟹ ⟹ ★ 该按钮**只在取景框在场时存在**（源站逐字 `null!==tr` 才给回调） |
+| ★ **取景框外的遮罩** | 点 rail「**选择画幅比例**」⟹ 「**16:9**」（框出现后**自动生效**） | 框外**压暗 20% ＋ 背景被化开**（`blur(12px)`，源站逐字 `bg-black/20 backdrop-blur-md`），**框内那一块保持清晰**（被 CSS mask **挖空**，`mask-composite: exclude`）⟹ ⟹ 遮罩层读数 `[data-director-aspect-mask]`、容器 `[data-director-aspect-mask-container]`；★ **自己验「框内被挖空」**：DevTools 里把遮罩层的 `background-color` 改成 `rgba(255,0,0,0.85)` ⟹ ⟹ **框外变红、框内不变**；★ 点「**自适应**」⟹ ⟹ 框与遮罩**一起消失** |
 
 ★ **移动端（390×844）**：rail 是 `hidden` ⟹ ⟹ 「添加角色」这条路**走不通** ⟹ ⟹
 crowd 入口改在**视口底部工具条**的「**添加群众阵列**」按钮
@@ -247,6 +248,15 @@ with sync_playwright() as pw:
 | `docs/research/liblib-canvas-batch862-2026-10-01/negative-audit.json` | ★ **阴性对照** 7/7（★ 含一条**自曝**：第一版 N7 因为**注释里抄了同一个字面量** ⟹ ⟹ 负控改到注释 ⟹ ⟹ 打空 ⟹ ⟹ 已改成「锚点定位代码行」＋ 立了注释纪律） |
 | `docs/research/liblib-canvas-batch862-2026-10-01/controlled-comparison.json` | ★ **受控对照**四态 ＋ **MIX 半回退态**（只回退 viewport）读数 ＋ 复原自检 |
 | `scripts/verify-liblib-batch862.py` | 本批门禁（**57 判据**；★ 源站期望值**只从入库的源站 raw 读**） |
+| `docs/research/liblib-canvas-batch863-2026-10-01/raw/source-863-mask-literal.txt` | ★ **源站逐字入库证据**（chunk `0fmehki05gkzw.js.js` 的「外层容器 → 遮罩层 → 取景框」三段连续 JSX；文件头记 chunk 路径／字符偏移／chunk 与摘录的**两个 sha256**）⟹ ⟹ 门禁的期望值**只从它解析**（含「黑 20%」「描边 18%」两个百分比） |
+| `docs/research/liblib-canvas-batch863-2026-10-01/raw/source-863-frame-mask.json` | ★ **源站运行时实测＝失败**（源站项目页本批不可用：画布节点 0、正文停在「项目加载中...」、**不发任何 XHR/fetch**；首页正常 ⟹ ⟹ 判定为源站侧故障）⟹ ⟹ 异常原文入库；★ 源站恢复后须补跑 `probes/source863_frame_mask.py` |
+| `docs/research/liblib-canvas-batch863-2026-10-01/raw/clone-863-frame-mask.json` | clone 实测：遮罩层 `absolute inset-0 bg-black/20 backdrop-blur-md`、背景 `oklab(0 0 0 / 0.2)`、`backdropFilter: blur(12px)`、mask 两次 `linear-gradient`、`maskComposite: exclude, exclude`、`maskPosition: 0px 0px, 65.6667px 32px`、`maskSize: 100% 100%, 1226.67px 690px`、遮罩铺满 1358×810 @(281,88)、框 @(347,120) 1227×690 且 **boxShadow=none**／outline 1px 白 18% 内缩 1px／圆角 12px |
+| `docs/research/liblib-canvas-batch863-2026-10-01/raw/clone-863-redprobe-{inside,outside}.png` | ★ **红色探针**两张取样截图（把遮罩层临时染成 `rgba(255,0,0,0.85)`）⟹ ⟹ 框外 R=**151.58**（红）、框内 R=**32.0**（没被染红）⟹ ⟹ 差 **119.58** ⟹ ⟹ **mask 真的把框那块挖空了**（★ 这是**确定性**证明；亮度比会漂移，只能作参考） |
+| `docs/research/liblib-canvas-batch863-2026-10-01/raw/clone-863-{inside,outside}.png` | ★ 同一支探针的「**亮度参考**」取样（48×48）⟹ ⟹ 框内平均亮度 36.37／框外 32.85（比值 0.9033）⟹ ⟹ ★ **只作参考**：3D 场景一直在动 ⟹ ⟹ 数值会漂移（实测 0.87↔0.90）⟹ ⟹ 判据用的是**红色探针** |
+| `docs/research/liblib-canvas-batch863-2026-10-01/README.md` | 本批（**取景框外的遮罩** ＝ 源站逐字补齐，**D20 结案**）的完整取证、整改、**用户可达**与验收；★ 含「源站运行时**待补**」的诚实标注 ＋ 四条方法学（变异没落地／取样点取错档／先计数再决定要不要测／像素比不可当判据） |
+| `docs/research/liblib-canvas-batch863-2026-10-01/negative-audit.json` | ★ **阴性对照** 7/7（★ 含一条**自曝**：第一版 `apply_mutation` 算出变异却**没写回文件** ⟹ ⟹ 7 条变异一条都没落地 ⟹ ⟹ 负控 **0/7** 打空 ⟹ ⟹ 已改成「返回变异后的源码」＋「变异已落地」自检） |
+| `docs/research/liblib-canvas-batch863-2026-10-01/controlled-comparison.json` | ★ **受控对照**五态：`HEAD-1`／`HEAD-2`／**`MIX`（只把 `maskComposite` 改成 `"add"`）**／`WORK-1`／`WORK-2` ＋ 改前／改后**同口径**探针读数 ＋ 复原自检 |
+| `scripts/verify-liblib-batch863.py` | 本批门禁（**110 判据**；★ 源站期望值**只从入库的逐字证据解析**；★ 缺证据文件 ⟹ ⟹ **直接判失败**） |
 
 ★ ★ **每批 README 的 §「复现步骤」都写了这条链**：契约提取 → 源站实测 →
 clone 实测 → 门禁 → 阴性 → 回归 → 受控对照。**先看那一条**，

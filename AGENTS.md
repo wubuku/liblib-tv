@@ -114,6 +114,41 @@ python3 scripts/verify-docs.py
   comment copy first, changes nothing in the code, and the gate stays green —
   a false green that leaves the negative control empty. Anchor such
   mutations at the indented code line instead.
+- The framing box's **outside mask** is a **separate layer**, not a box-shadow
+  (Batch 863, source verbatim `mP`): a `pointer-events-none … z-10` container
+  holds `absolute inset-0 bg-black/20 backdrop-blur-md` plus a CSS mask that
+  **hollows the box area** (`mask-composite: exclude`, two `linear-gradient`s,
+  second position/size = the box's offset and size). The box itself carries
+  **no** `box-shadow`. `bg-black/20` / `backdrop-blur-md` are usable as class
+  names only because the clone already uses them elsewhere (4317's Tailwind
+  scan is frozen); arbitrary-value classes still need inline styles.
+- Negative controls: **"rc=0 with zero red lines" means the mutation never
+  landed** (Batch 863 — `apply_mutation` computed the mutated text but wrote
+  the original back; 7/7 mutations were no-ops and every gate stayed green).
+  Make `apply_mutation` **return the mutated source**, and assert per mutation
+  that the new value is actually present in the file on disk.
+- Probe discipline: **count first, then measure** (Batch 863). If the element
+  under test does not exist (e.g. the HEAD state of a controlled comparison),
+  the criterion must fail **by name** — never fall back to default geometry and
+  sample two unrelated points, whose difference can pass by luck.
+- Pixel differences are **not** criteria when the 3D scene animates
+  (Batch 863: the in-box/out-of-box brightness ratio drifted 0.87 ↔ 0.90).
+  Use a **deterministic probe**: tint the mask red and require the area outside
+  the box to be red while the area inside stays untinted.
+- Verifier expectations must be **parsed from committed source evidence**, never
+  typed from memory (Batch 863): the gate reads the verbatim source excerpt
+  (chunk path + offsets + sha256) and derives even the percentages
+  (`bg-black/20`, `outline-white/18`) from it; a missing evidence file fails
+  the gate outright.
+- Read a failing criterion's **detail against its own thresholds** before
+  blaming the code under test (Batch 863): a red line whose detail satisfied
+  every threshold was a **gate bug** (the probe's success payload was missing a
+  key, so the predicate was always false). Compare detail ↔ thresholds first;
+  if they agree, the implementation of the criterion is wrong.
+- A colour probe that **paints** a target colour must assert the **hue**, not a
+  single channel (Batch 863): an R-only check cannot tell "painted red" from
+  "the background was already bright" (the out-of-box sample reached R=222 on
+  a bright backdrop). Assert `R − G` (paint ⇒ large; already-white ⇒ ≈ 0).
 
 ## 6. Change Protocol
 

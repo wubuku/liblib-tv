@@ -1,0 +1,76 @@
+{
+ "batch": 863,
+ "probe": "clone863_frame_mask",
+ "读数": {
+  "框在场": true,
+  "开关在场": true,
+  "遮罩层": [],
+  "框": {
+   "x": 347,
+   "y": 120,
+   "w": 1227,
+   "h": 690
+  },
+  "框样式": {
+   "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.24) 0px 0px 0px 9999px",
+   "border": "0px",
+   "outline": "1px rgba(255, 255, 255, 0.18) -1px",
+   "radius": "12px",
+   "pointerEvents": "none"
+  },
+  "分线条数": 0,
+  "命中测试": {
+   "框角": {
+    "tag": "DIV",
+    "cls": "absolute inset-0",
+    "isFrame": false,
+    "isMask": false,
+    "isCanvas": false
+   },
+   "框内": {
+    "tag": "DIV",
+    "cls": "absolute inset-0",
+    "isFrame": false,
+    "isMask": false,
+    "isCanvas": false
+   },
+   "框外上": {
+    "tag": "DIV",
+    "cls": "absolute inset-0",
+    "isFrame": false,
+    "isMask": false,
+    "isCanvas": false
+   }
+  }
+ },
+ "红色探针": {
+  "框内": {
+   "R": 32.0,
+   "G": 37.0,
+   "B": 43.0,
+   "样本数": 2304
+  },
+  "框外": {
+   "R": 27.83,
+   "G": 32.19,
+   "B": 37.54,
+   "样本数": 2304
+  },
+  "说明": "★ 框外 R 明显高（被染红）⟹ ⟹ 框内 R 低 ⟹ ⟹ mask 挖空生效"
+ },
+ "像素对照": {
+  "inside": {
+   "x": 497,
+   "y": 190
+  },
+  "outside": {
+   "x": 497,
+   "y": 90
+  },
+  "框内平均亮度": 36.37,
+  "框外平均亮度": 31.65,
+  "比值_框外除以框内": 0.8702,
+  "★说明": "★ 只作参考（3D 场景在动 ⟹ ⟹ 数值会漂移）"
+ },
+ "错误": []
+}

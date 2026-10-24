@@ -1,0 +1,13 @@
+# ★ batch 863 源站逐字证据（**入库**，供门禁派生期望值）
+#
+# 来源 chunk：/tmp/liblib_srcjs2/0fmehki05gkzw.js.js
+# 字符偏移：830585..831413（共 828 字符）
+# chunk sha256：0d6999dbc5ca51601a0eec96afa85c59ab2af21821086ae3d825359c9bc1129d
+# 摘录 sha256：1d597697edaaf158f5870aa351c039bbd58f82af1b346d6c2cff5affb9786805
+#
+# ★ 取的段是「外层容器 → 遮罩层 → 取景框」这三层连续 JSX（源站 `mP` 组件）。
+# ★ 本文件是**只读证据**：门禁的期望值必须从这里派生，不得凭记忆手打。
+# ★ ★ 源站**运行时**复核当前不可用（源站项目页不发任何 XHR、画布节点为 0），
+#    详见 raw/source-863-frame-mask.json 的异常记录 ⟹ ⟹ 本文件是**当前唯一**源站证据形态。
+# --------------------------------------------------------------------
+className:"pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",children:u&&(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)("div",{className:"absolute inset-0 bg-black/20 backdrop-blur-md",style:{WebkitMaskImage:"linear-gradient(#000 0 0), linear-gradient(#000 0 0)",WebkitMaskPosition:`0 0, ${u.left}px ${u.top}px`,WebkitMaskRepeat:"no-repeat, no-repeat",WebkitMaskSize:`100% 100%, ${u.width}px ${u.height}px`,WebkitMaskComposite:"xor",maskComposite:"exclude"}}),(0,i.jsx)("div",{className:"outline-white/18 absolute rounded-xl outline -outline-offset-1",style:{left:u.left,top:u.top,width:u.width,height:u.height}}),n?(0,i.jsxs)("div",{className:"pointer-events-none absolute overflow-hidden rounded-xl",style:{left:u.left,top:u.top,width:u.width,height:u.height},"aria-hidden":!0,children:[(0,i.jsx)("div",{className:"

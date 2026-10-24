@@ -1,0 +1,10 @@
+
+110 判据，8 失败
+  FAILED: source:the-mask-composite-is-verbatim  ⟵ {'WebkitMaskComposite': 'xor', 'maskComposite': 'exclude'}
+  FAILED: clone:the-mask-composite-is-exclude-for-21:9  ⟵ add, add
+  FAILED: clone:the-mask-composite-is-exclude-for-16:9  ⟵ add, add
+  FAILED: clone:the-red-probe-proves-the-mask-hollows-the-frame  ⟵ {'可用': True, '框内R': 222.0, '框外R': 222.0, '框内红味': 216.0, '框外红味': 216.0, '框内': {'R': 222.0, 'G': 6.0, 'B': 6.0, '红味': 216.0, '样本数': 576}, '框外': {'R': 222.0, 'G': 6.0, 'B': 6.0, '红味': 216.0, '样本数': 576}, '差值': 0.0, '取样点': {'框内': {'x': 497, 'y': 180}, '框外': {'x': 497, 'y': 92}}}
+  FAILED: clone:the-mask-composite-is-exclude-for-4:3  ⟵ add, add
+  FAILED: clone:the-mask-composite-is-exclude-for-1:1  ⟵ add, add
+  FAILED: clone:the-mask-composite-is-exclude-for-3:4  ⟵ add, add
+  FAILED: clone:the-mask-composite-is-exclude-for-9:16  ⟵ add, add
