@@ -427,12 +427,16 @@ def run(page: Page) -> dict[str, Any]:
     page.locator('[data-director-icon-rail] button[aria-label="全景图"]').click()
     page.wait_for_timeout(500)
     v.check("flyout:panorama-opens",
-            page.locator("[data-director-panorama-flyout]").count() == 1)
+            page.locator("[data-director-panorama-panel]").count() == 1)
     v.check("flyout:switching-closes-the-previous-one",
             page.locator("[data-director-character-panel]").count() == 0)
     pan = r["entries"]["全景图"]
-    if page.locator("[data-director-panorama-flyout]").count() == 1:
-        pb = page.locator("[data-director-panorama-flyout]").bounding_box()
+    if page.locator("[data-director-panorama-panel]").count() == 1:
+        # ★ Batch 859（源站逐字）：「全景图」不再是浮层 ⟹ ⟹ 是**左侧面板的
+        #   一个分支** ⟹ ⟹ 前提从「浮层在 rail 右侧 8px」改成「面板列在 x=48」
+        #   ⟹ ⟹ ★ 而源站那 232 宽的一列**本来就在 x=48**（rail 8+32+8）
+        #   ⟹ ⟹ 所以「8px right of its entry」这条**几何判据继续成立**。
+        pb = page.locator("[data-director-panorama-panel]").bounding_box()
         want_x = pan[0] + pan[2] + 8
         v.check("flyout:panorama-8px-right-of-its-entry",
                 pb is not None and abs(pb["x"] - want_x) <= 0.6,
@@ -445,7 +449,7 @@ def run(page: Page) -> dict[str, Any]:
     page.locator('[data-director-icon-rail] button[aria-label="场景"]').click()
     page.wait_for_timeout(400)
     v.check("flyout:another-entry-dismisses-it",
-            page.locator("[data-director-panorama-flyout]").count() == 0)
+            page.locator("[data-director-panorama-panel]").count() == 0)
 
     noise = [c for c in console if any(k in c for k in IGNORE_CONSOLE)]
     real_console = [c for c in console if not any(k in c for k in IGNORE_CONSOLE)]

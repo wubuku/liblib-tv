@@ -1,16 +1,12 @@
 "use client";
 
-import { Fragment, useEffect, useRef, useState, type ReactNode } from "react";
-import { createPortal } from "react-dom";
+import { Fragment, useState } from "react";
 import {
   ArrowDownToLine,
   Clapperboard,
   HelpCircle,
-  History,
   Image as ImageIcon,
-  Sparkles,
   Proportions,
-  Upload,
   UserRoundPlus,
   Layers,
 } from "lucide-react";
@@ -34,87 +30,49 @@ const railEntries = [
   { id: "scene", label: "场景", icon: Layers, kind: "panel" },
   { id: "add-character", label: "添加角色", icon: UserRoundPlus, kind: "panel" },
   { id: "add-camera", label: "添加机位", icon: Clapperboard, kind: "panel" },
-  { id: "panorama", label: "全景图", icon: ImageIcon, kind: "flyout" },
-  { id: "aspect-ratio", label: "选择画幅比例", icon: Proportions, kind: "flyout" },
+  // ★ Batch 859（源站逐字）：源站左侧那个 232px 面板是**五模式互斥容器**
+  //   （`"scene"===z?n:null,"character"===z?(…),"camera"===z?(…),
+  //   "panorama"===z?(…),"aspect"===z?(…)`）⟹ ⟹ **全景图与画幅比例也是
+  //   面板模式** ⟹ ⟹ 这两枚从「浮层」改成「面板」。
+  { id: "panorama", label: "全景图", icon: ImageIcon, kind: "panel" },
+  { id: "aspect-ratio", label: "选择画幅比例", icon: Proportions, kind: "panel" },
   { id: "ai-import", label: "AI 识图导入", icon: ArrowDownToLine, kind: "modal" },
 ] as const;
 
 
-// 全景图 flyout（源站 2026-10-01 DOM 复核：232×96 @(48,100)，三项行距
-// 32px）。Batch 589 修正文案：逐字是「AI生成」——**无空格**，batch 538
-// 从截图转录时记成了「AI 生成」。
-const panoramaFlyout = [
-  { id: "local-upload", label: "本地上传", icon: Upload },
-  { id: "history", label: "历史记录", icon: History },
-  { id: "ai-generate", label: "AI生成", icon: Sparkles },
-] as const;
-
-// 选择画幅比例（截图 44-director-rail-26 转录）：七卡单选，自适应默认。
-const aspectRatios = [
-  "自适应",
-  "21:9",
-  "16:9",
-  "4:3",
-  "1:1",
-  "3:4",
-  "9:16",
-] as const;
-
-// Batch 590（源站 2026-10-01 实测）：七张卡的示意框尺寸逐项对齐。
-// 注意源站 `3:4` 与 `9:16` 实测**同为 8×16**（看起来是源站自身的取整
-// 结果），clone 按实测照抄，不按比例自行「修正」。
-const ASPECT_GLYPH: Record<(typeof aspectRatios)[number], string> = {
-  自适应: "h-[11px] w-4",
-  "21:9": "h-[7px] w-4",
-  "16:9": "h-[9px] w-4",
-  "4:3": "h-3 w-4",
-  "1:1": "h-[14px] w-[14px]",
-  "3:4": "h-4 w-2",
-  "9:16": "h-4 w-2",
-};
+// ★ Batch 859：全景图的三行与画幅比例的七卡**都搬走了** ⟹ ⟹ 它们现在是
+//   **左侧面板模式**（源站逐字：`"panorama"===z?(…)` / `"aspect"===z?(…)`
+//   是同一个 232px 面板里的两个分支）⟹ ⟹ 数据与样式随之搬到：
+//   · `DirectorPanoramaPanel.tsx`（标题条 ＋ `px-2` ＋ 三枚行类 `eu`）
+//   · `DirectorAspectPanel.tsx`（标题条 ＋ `grid grid-cols-2 gap-2 px-2 pb-3`
+//     ＋ 七枚 104×72 的卡片 ＋ 比例字形表）
+//   ★ 逐字文本（源站实测）：「本地上传」「历史记录」「AI生成」（**无空格**，
+//     batch 538 从截图转录时记成「AI 生成」，batch 589 已改对）。
 
 
 
 
-// Batch 589（源站 2026-10-01 实测）：三个 flyout 面板实测宽度**一致为
-// 232px**（@(48,100)），且每个面板顶部都有一行 12px `truncate` 的标题
-// （`添加角色` @(60,66) 48×20）。另注：rail 按钮 hover 会弹一个 Mantine
-// `Tooltip-tooltip`（@(45,118) 64×28），与面板标题是两件事。
-const FLYOUT_WIDTH = "w-[232px]";
-
-// Batch 625: rail 里的五个浮层（全景图 / 画幅比例 / 添加角色 / 几何模型子菜单 /
-// 群众弹窗）改为 portal 到 document.body。原本它们都是资源栏的后代，而资源栏
-// 是 `absolute ... z-30` 且**创建层叠上下文** —— 于是这些元素写在类名里的
-// z-40 / z-50 从未生效，它们在工作区那一层的**有效 z 是 30**，低于时间线的 40。
+// ★ Batch 859：rail 上**最后一个浮层**也走了 ⟹ ⟹ 下面这一整套 portal 机制
+//   （`FLYOUT_WIDTH`／`FLYOUT_CARD_CLASS`／`FLYOUT_TITLE_CLASS`／
+//   `RAIL_FLYOUT_Z`／`useFlyoutAnchor`／`portalFlyout`）随之**全部删除**。
 //
-// 实测后果（verify-liblib-batch625.py，五个视口）：几何模型子菜单在 1280×720
-// 埋掉 5 枚控件、1100×700 埋掉 6 枚（立方体/球体/圆柱体/环状体/圆锥/上传文件），
-// 画幅比例 flyout 在 1100×700 埋掉 1 枚（9:16）。几何模型尤其惨：它的 z-50 还
-// 被**再关一层** —— 它嵌套在添加角色 flyout（z-40）里，于是有效 z 是 30 而非 50。
-//
-// 为什么抬 rail 的 z 不行（试算后否掉）：rail 是 48px 宽通栏贴左，抬到 45 之后
-// 它会反过来盖住时间线左侧的播放控件（总时长、时间单位那几枚），拿三个浮层换
-// 一排活控件，不做。为什么把 rail 改成 z-auto 也不行：那样 rail 与时间线的
-// 胜负就交给 DOM 顺序，比一个显式的 z 更脆弱。
-//
-// 所以照 batch 624 对 AI 导入模态的同一手法 portal 出去，z 取 **160**：高于
-// 工作区的 z-100（时间线就在它里面）与场景树右键菜单的 z-120，低于视口底部条
-// z-200 与 AI 导入模态 z-290。
-const RAIL_FLYOUT_Z = 160;
-const RAIL_FLYOUT_CLASS = `z-[${RAIL_FLYOUT_Z}]`;
-
-const FLYOUT_CARD_CLASS =
-  "rounded-xl border border-white/10 bg-[#242424] shadow-[0_16px_40px_rgba(0,0,0,0.5)]";
-// 标题行在卡片**之外**（源站 `添加角色` 标题 @(60,66)，卡片从 y=100 起），
-// 故外层定位容器同时承载标题与卡片。
-const FLYOUT_TITLE_CLASS = "block truncate px-3 pb-2 text-xs text-[#8a8a8a]";
+// ★ ★ **留在这里的知识（别再踩）**：
+//   ① rail 是 `absolute ... z-30` 且**创建层叠上下文** ⟹ ⟹ 它的后代里
+//      写的 z-40／z-50 **从未生效**，有效 z 是 30 ⟹ ⟹ 低于时间线的 40
+//      ⟹ ⟹ 当年几何子菜单与画幅比例浮层就是这样把控件埋掉的（batch 625）。
+//   ② `position: fixed` **也会创建层叠上下文** ⟹ ⟹ 包裹层不带 z-index 时
+//      会把里面的 z-160 封成 z-auto ⟹ ⟹ 浮层反而掉到工作区 z-100 之下
+//      ⟹ ⟹ Playwright 会报「元素被覆盖」（这是同一个陷阱的第 4 次出现）。
+//   ③ 现在 rail 里**不再有任何 portal 浮层** ⟹ ⟹ 这两条约束只在
+//      「往 rail 里加浮层」时才需要重新想起。
+//   ④ 源站逐字：crowd 对话框**是** portal（`createPortal` ＋ `z-[1800]`），
+//      那是 `DirectorCharacterPanel` 里的事，不在本文件。
 
 export function DirectorIconRail({
   onPanoramaSourceChange,
   onOpenShortcuts,
   onOpenTutorial,
-  onOpenCameraPresets,
-  onOpenCharacterPanel,
+  onSelectLeftPanelView,
   panelView = "scene",
 }: {
   onPanoramaSourceChange?: (sourceNodeId: string | null) => void;
@@ -123,16 +81,17 @@ export function DirectorIconRail({
   /** Batch 831：打开使用教程（源站 rail 的 onOpenTutorial） */
   onOpenTutorial?: () => void;
   /**
-   * Batch 832：切到 / 切回「添加机位」机位预设面板视图。
-   * 传 `false` 表示切回场景树（源站点「场景」条目即切回）。
+   * Batch 832/858/859：**切左侧资源栏的模式**。
+   * 源站逐字：rail 的每一枚条目 onClick 都是 `F(r.id)` ⟹ ⟹ **一个**动作
+   * 把左侧面板切成那个模式（**互斥**：切走别的面板自然关闭）。
+   *
+   * ★ clone 此前用两个「开/关」回调（`onOpenCameraPresets(open?)` ＋
+   *   `onOpenCharacterPanel(open?)`）⟹ ⟹ 每次切模式要「先关别人、再开自己」
+   *   ⟹ ⟹ **顺序一错就会两个面板同时在** ⟹ ⟹ 现在合并成**一个**语义。
    */
-  onOpenCameraPresets?: (open?: boolean) => void;
-  /**
-   * Batch 858：切到 / 切回「添加角色」面板视图（源站逐字：左侧资源栏是
-   * 一个**多视图**面板，`z` 在 scene / character / camera / panorama /
-   * aspect 之间**互斥**切换）。传 `false` 表示切回场景树。
-   */
-  onOpenCharacterPanel?: (open?: boolean) => void;
+  onSelectLeftPanelView?: (
+    view: "scene" | "character" | "camera" | "panorama" | "aspect",
+  ) => void;
   /**
    * Batch 858：左侧资源栏当前是**哪个面板模式**（源站逐字：`z`）。
    *
@@ -142,14 +101,13 @@ export function DirectorIconRail({
    *   现在统一由这个 prop 派生 ⟹ ⟹ 少一份状态、少一处漂移。
    *
    * 源站逐字（`ep=[scene,character,camera,panorama,aspect]`）⟹ ⟹ 五个模式
-   * 一一对应 rail 的五枚条目。clone 目前只把 scene / character / camera
-   * 做成左侧面板；panorama / aspect 仍是浮层（batch 859 整改）。
+   * 一一对应 rail 的五枚条目。★ Batch 859：五枚**全部**是左侧面板模式
+   * （panorama / aspect 从浮层搬过来了）⟹ ⟹ 选中态对五枚**全部**由
+   * 这个 prop 派生。
    */
   panelView?: "scene" | "character" | "camera" | "panorama" | "aspect";
 } = {}) {
   const [active, setActive] = useState<string>("scene");
-  const [openFlyout, setOpenFlyout] = useState<string | null>(null);
-  const [aspectRatio, setAspectRatio] = useState<string>("自适应");
   // Batch 831：源站的「帮助」是一枚**向上弹的菜单**（不是页签）——
   //   role=menu、120px 宽、两枚 menuitem（快捷键 / 使用教程）。
   //   源站实测：菜单 120×78 @(8,954)，帮助按钮 32×32 @(8,1040)
@@ -168,111 +126,6 @@ export function DirectorIconRail({
     (state) => state.setViewportPanelsCollapsed,
   );
 
-  // Batch 625: portal 之后定位不能再靠 CSS 的
-  // `absolute left-[calc(100%+8px)] top-0`（那个包含块是 rail 里的
-  // `div.relative`），必须自己量 anchor 的视口坐标注入。
-  //
-  // 为什么要重算而不是量一次就存着：原实现是 CSS 锚定，窗口一变就跟着重排；
-  // 换成 JS 坐标后若只量一次，resize 就会让浮层停在旧位置。所以订阅 resize
-  // 在同一个 effect 里重算。
-  //
-  // 坐标口径：三个 flyout 原本是 `left = anchor.left + anchor.width + 8`
-  // （`left-[calc(100%+8px)]` 相对那个 32px 宽的 `div.relative`）、
-  // `top = anchor.top`（`top-0`）。实测 x=48 与之吻合：rail 48 宽居中 32px
-  // 按钮 → anchor 在 x=8，8+32+8=48。群众弹窗 anchor 的是**资源栏本身**
-  // （`absolute left-[294px] top-0`，即 railRect + (294, 0)）。
-  const useFlyoutAnchor = (
-    anchorRef: { current: HTMLElement | null },
-    active: boolean,
-    offset: (r: DOMRect) => { left: number; top: number } = (r) => ({
-      left: r.left + r.width + 8,
-      top: r.top,
-    }),
-  ): { left: number; top: number } | null => {
-    const [pos, setPos] = useState<{ left: number; top: number } | null>(null);
-    useEffect(() => {
-      if (!active) {
-        setPos(null);
-        return;
-      }
-      const measure = () => {
-        const el = anchorRef.current;
-        if (!el) return;
-        setPos(offset(el.getBoundingClientRect()));
-      };
-      measure();
-      window.addEventListener("resize", measure);
-      return () => window.removeEventListener("resize", measure);
-      // `offset` is an inline arrow at each call site, so it changes identity
-      // every render; including it would tear the listener down and re-measure
-      // on every parent render.  The rect it derives from is re-read inside
-      // `measure` anyway, so the value stays correct across renders.
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [anchorRef, active]);
-    return pos;
-  };
-
-  const panoramaAnchor = useRef<HTMLDivElement | null>(null);
-  const aspectAnchor = useRef<HTMLDivElement | null>(null);
-  const railRef = useRef<HTMLDivElement | null>(null);
-  const panoramaPos = useFlyoutAnchor(panoramaAnchor, openFlyout === "panorama");
-  const aspectPos = useFlyoutAnchor(aspectAnchor, openFlyout === "aspect-ratio");
-  // ★ Batch 858：「添加角色」已改成**左侧面板模式**（源站逐字）⟹ ⟹ rail
-  //   这里只留「全景图」「画幅比例」两个浮层 ⟹ ⟹ `useFlyoutAnchor` 只剩两处。
-
-  // Batch 626：几何模型子菜单也要纵向钳制。
-  //
-  // 事实（探针 C，1440 宽 × 900…540 八档）：子菜单盒恒为 @(52,508) 204×270，
-  // 底边恒 778 —— 因为它用 `top-[calc(100%+2px)]` 挂在**整张** flyout 卡片
-  // 之下，而卡片顶由 rail 锚点决定、与视口高无关。于是 `视口高 < 778` 时末尾
-  // 控件直接落到屏幕外：720 丢 2/8（棱锥、添加空对象），640 丢 4/8，540 丢 7/8。
-  //
-  // 否掉的替代方案记在这里，免得以后重犯：
-  // - 「翻到卡片上方」不行 —— 卡片顶在 y=116，子菜单要 270，翻上去顶边是 -154，
-  //   改从屏幕顶部出界，更糟；
-  // - 「改成可滚动列表」被否 —— 623/625 的判据是「被自己的滚动容器裁掉不算缺陷、
-  //   但要记录」；这里 8 项全可达是更好的结果，滚动等于把缺陷降级成妥协。
-  //
-  // 口径与时间轴那个下拉一致：8px 安全边，越界多少上移多少，不越界一个像素不动
-  // （≥800 视口的读数与 590 之前的几何完全一致）。
-
-  // ★★★ Batch 857（源站逐字）：源站的群众对话框**锚在「群众按钮」自己身上**：
-  //   `W({left:Math.max(8,Math.min(t.right+8,window.innerWidth-r-8)),
-  //      top:Math.max(8,Math.min(t.top,window.innerHeight-n-8))})`
-  //   其中 t ＝ 按钮矩形、r/n ＝ 对话框自己的宽高（量不到时兜底 220）。
-  //   ⟹ ⟹ clone 此前写死「rail 左边 + 294」⟹ ⟹ 那**不是**源站的规则
-  //   （源站的对话框是**贴着按钮**的：按钮 right+8、按钮 top）。
-  //   ⟹ ⟹ 改成按锚点算 ⟹ 顺带让「移动端那枚入口」也能把对话框放在自己旁边。
-
-  // anchor, so the z in RAIL_FLYOUT_CLASS competes against the timeline instead
-  // of being sealed inside the rail's z-30 context.
-  //
-  // **The wrapper carries the z-index too, and that is not redundant.** A first
-  // version wrapped the flyout in `<div style={{position:"fixed", left, top}}>`
-  // with no z-index — and `position: fixed` **creates a stacking context** (it is
-  // not only positioned-with-z elements that do). The wrapper therefore sealed
-  // the flyout's z-[160] at an effective z-auto, which sits *below* the
-  // workspace's z-[100]: the flyout ended up under the scene tree at every
-  // viewport, and Playwright refused to click 几何模型 / 群众 (3x3) because the
-  // element was covered. Fixing "a child's z sealed inside its parent's context"
-  // had created the same bug one level up — the fourth occurrence of this trap,
-  // and the first one self-inflicted.
-  const portalFlyout = (pos: { left: number; top: number }, node: ReactNode) => {
-    if (typeof document === "undefined") return null;
-    return createPortal(
-      <div
-        style={{
-          position: "fixed",
-          left: pos.left,
-          top: pos.top,
-          zIndex: RAIL_FLYOUT_Z,
-        }}
-      >
-        {node}
-      </div>,
-      document.body,
-    );
-  };
 
   // ★ Batch 858（源站逐字）：源站的 rail 按钮 `aria-pressed={z===r.id}`
   //   ⟹ ⟹ 选中态**完全**由左侧面板模式派生 ⟹ ⟹ 不再有第二份真相。
@@ -280,9 +133,10 @@ export function DirectorIconRail({
     if (id === "scene") return panelView === "scene";
     if (id === "add-character") return panelView === "character";
     if (id === "add-camera") return panelView === "camera";
-    // 全景图 / 画幅比例 目前仍是浮层（batch 859 面板化）⟹ ⟹ 选中态看浮层。
-    if (id === "panorama") return openFlyout === "panorama";
-    if (id === "aspect-ratio") return openFlyout === "aspect-ratio";
+    // ★ Batch 859（源站逐字）：全景图 / 画幅比例**也是**左侧面板模式
+    //   ⟹ ⟹ 选中态同样由 `panelView` 派生 ⟹ ⟹ 五枚**全部**只有一份真相。
+    if (id === "panorama") return panelView === "panorama";
+    if (id === "aspect-ratio") return panelView === "aspect";
     // 「AI 识图导入」是 clone 自己的扩展（源站的 `ep` 里没有它）⟹ ⟹ 选中态
     // 只能由本地状态给。
     return active === id;
@@ -294,6 +148,27 @@ export function DirectorIconRail({
       setActive(id);
       return;
     }
+    // ★ ★★ Batch 859（源站逐字）：源站 rail 的每一枚条目 onClick 都是
+    //   `F(r.id)` ⟹ ⟹ **一个**动作把左侧面板切成那个模式 ⟹ ⟹ 互斥。
+    //   clone 此前是「先关掉别的面板、再打开自己」两段式 ⟹ ⟹ 顺序一错
+    //   就会两个面板同时在 ⟹ ⟹ 现在是**一次调用**、没有中间态。
+    //
+    //   源站逐字（`aU` 的 nav onClick）：`onClick: () => { F(r.id), N(!1),
+    //   O(null), … }` ⟹ ⟹ 顺带把子菜单（`O(null)`）与别的状态清掉。
+    if (id === "scene") {
+      // Batch 587（源站 2026-10-01 实测）：收起之后顶栏与「收起」按钮一并
+      // 消失，浮层内没有第二个恢复按钮——点图标栏的「场景」条目即恢复
+      // 顶栏与左侧场景面板。图标栏本身在收起态保留。
+      setViewportPanelsCollapsed(false);
+      onSelectLeftPanelView?.("scene");
+      return;
+    }
+    if (id === "add-character") {
+      // Batch 858（源站逐字）：「添加角色」把左侧资源栏切成一个**面板视图**
+      // ⟹ ⟹ 场景树随之消失（源站逐字 `"scene"===z?n:null,"character"===z?(…)`）。
+      onSelectLeftPanelView?.("character");
+      return;
+    }
     if (id === "add-camera") {
       // Batch 832（源站 2026-10-21 活体实测）：源站的「添加机位」**不是**直接
       // 加一个机位 ⟹ 它把**左侧资源栏切成一个视图**：标题条「添加机位」
@@ -302,42 +177,18 @@ export function DirectorIconRail({
       //    旋转 (4.29,180,0) / FOV 50 / 注视 (0,1.2,0)）。
       // ⟹ 本批把「选哪一枚预设」的**呈现**建出来；预设的**语义**（每枚的
       //    位置/朝向/FOV）另有一批逐枚实测 ⟹ 在那之前这里只切视图。
-      setOpenFlyout(null);
-      onOpenCameraPresets?.();
+      onSelectLeftPanelView?.("camera");
       return;
     }
-    setOpenFlyout(null);
-    // Batch 587（源站 2026-10-01 实测）：收起之后顶栏与「收起」按钮一并
-    // 消失，浮层内没有第二个恢复按钮——点图标栏的「场景」条目即恢复
-    // 顶栏与左侧场景面板。图标栏本身在收起态保留。
-    if (id === "scene") {
-      setViewportPanelsCollapsed(false);
-      // ★ Batch 858：切回场景树 ⟹ ⟹ 「添加角色」面板随之关闭（源站逐字：
-      //   左侧面板是**模式互斥**的，`"scene"===z?n:null,"character"===z?(…)`）。
-      onOpenCharacterPanel?.(false);
-      // Batch 832：源站的「场景」是把左侧资源栏**切回场景树**视图 ⟹
-      // 若当前停在「添加机位」预设面板上，切回去。
-      onOpenCameraPresets?.(false);
+    if (id === "panorama") {
+      // ★ Batch 859（源站逐字）：`"panorama"===z` 是**左侧面板的一个分支**
+      //   ⟹ ⟹ 不是浮层 ⟹ ⟹ 切过去时场景树让位。
+      onSelectLeftPanelView?.("panorama");
       return;
     }
-    if (id === "add-character") {
-      // ★ Batch 858：源站的「添加角色」**不是浮层** ⟹ ⟹ 它把左侧资源栏
-      //   切成一个**面板视图**（与「添加机位」同一机制）⟹ ⟹ 场景树随之
-      //   消失（源站逐字 `"scene"===z?n:null,"character"===z?(…)`）。
-      setOpenFlyout(null);
-      onOpenCharacterPanel?.();
-      return;
-    }
-    if (id === "panorama" || id === "aspect-ratio") {
-      // ★ Batch 858：源站逐字 —— rail 的每一枚条目都**改写左侧面板模式**
-      //   （`onClick: () => { F(r.id), N(!1), O(null), … }`）⟹ ⟹ 点「全景图」
-      //   时 `z` 变成 "panorama" ⟹ ⟹ 「添加角色」「添加机位」两个面板模式
-      //   **必须让位** ⟹ ⟹ 否则两个面板会**同时**留在左侧。
-      //   ⚠ 「全景图 / 画幅比例」目前仍是**浮层**（源站逐字它们也是面板模式，
-      //   ⟹ ⟹ batch 859 整改）⟹ ⟹ 这里先让左侧面板**回到场景树**。
-      onOpenCharacterPanel?.(false);
-      onOpenCameraPresets?.(false);
-      setOpenFlyout(id);
+    if (id === "aspect-ratio") {
+      // ★ Batch 859（源站逐字）：`"aspect"===z` 同上。
+      onSelectLeftPanelView?.("aspect");
       return;
     }
     setActive(id);
@@ -345,7 +196,6 @@ export function DirectorIconRail({
 
   return (
     <div
-      ref={railRef}
       data-director-icon-rail
       aria-label="导演台资源栏"
       // Batch 613（源站实测 nav `[0,52,48,1098]`）：源站资源栏在 `aside` 里
@@ -378,9 +228,6 @@ export function DirectorIconRail({
             <Fragment key={entry.id}>
             <div
               className="relative"
-              ref={entry.id === "panorama" ? panoramaAnchor
-                   : entry.id === "aspect-ratio" ? aspectAnchor
-                   : undefined}
             >
               <button
                 type="button"
@@ -400,97 +247,6 @@ export function DirectorIconRail({
               >
                 <Icon size={20} />
               </button>
-              {entry.id === "panorama" && openFlyout === "panorama"
-                && panoramaPos && portalFlyout(panoramaPos, (
-                <div
-                  data-director-panorama-flyout
-                  aria-label="全景图"
-                  className={cn(
-                    "fixed",
-                    RAIL_FLYOUT_CLASS,
-                    FLYOUT_WIDTH,
-                  )}
-                >
-                  <span
-                    data-director-flyout-title="panorama"
-                    className={FLYOUT_TITLE_CLASS}
-                  >
-                    全景图
-                  </span>
-                  <div className={cn(FLYOUT_CARD_CLASS, "p-1.5")}>
-                  {panoramaFlyout.map((item) => {
-                    const ItemIcon = item.icon;
-                    return (
-                      <button
-                        key={item.id}
-                        type="button"
-                        data-director-panorama-option={item.id}
-                        className="flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-xs text-[#d8d8d8] hover:bg-white/[0.07]"
-                      >
-                        <ItemIcon size={13} className="shrink-0 text-[#9a9a9a]" />
-                        <span className="truncate">{item.label}</span>
-                      </button>
-                    );
-                  })}
-                  </div>
-                </div>
-              ) )}
-              {entry.id === "aspect-ratio" && openFlyout === "aspect-ratio"
-                && aspectPos && portalFlyout(aspectPos, (
-                <div
-                  data-director-aspect-flyout
-                  aria-label="选择画幅比例"
-                  className={cn(
-                    "fixed",
-                    RAIL_FLYOUT_CLASS,
-                    FLYOUT_WIDTH,
-                  )}
-                >
-                  <span
-                    data-director-flyout-title="aspect-ratio"
-                    className={FLYOUT_TITLE_CLASS}
-                  >
-                    选择画幅比例
-                  </span>
-                  <div
-                    data-director-aspect-grid
-                    className={cn(
-                      FLYOUT_CARD_CLASS,
-                      // Batch 590（源站实测）：gap 8px、padding 0 8 12 →
-                      // 4×72 + 3×8 + 12 = 324，与源站卡片高逐像素一致。
-                      "grid grid-cols-2 gap-2 px-2 pb-3 pt-0",
-                    )}
-                  >
-                  {aspectRatios.map((ratio) => (
-                    <button
-                      key={ratio}
-                      type="button"
-                      data-director-aspect-option={ratio}
-                      aria-pressed={aspectRatio === ratio}
-                      onClick={() => setAspectRatio(ratio)}
-                      // Batch 590（源站实测 104×72 / radius 12px）：
-                      // 选中态与未选中态的**文字色相同**（都是
-                      // rgba(255,255,255,0.9)），唯一差别是按钮描边——
-                      // 选中 0.85、未选中 0.1，背景两态皆透明。源站按钮
-                      // 无 aria-pressed，clone 保留作 a11y 超集。
-                      className={cn(
-                        "flex h-[72px] flex-col items-center justify-center gap-1 rounded-xl border text-xs",
-                        aspectRatio === ratio
-                          ? "border-white/[0.85] text-white/90"
-                          : "border-white/10 text-white/90 hover:border-white/25",
-                      )}
-                    >
-                      <span
-                        aria-hidden="true"
-                        data-director-aspect-glyph
-                        className={cn("block rounded-sm border border-white/90", ASPECT_GLYPH[ratio])}
-                      />
-                      {ratio}
-                    </button>
-                  ))}
-                  </div>
-                </div>
-              ) )}
             </div>
             {/* 源站在 `场景` 与 `添加角色` 之间有一条
                 `<div class="border-white/8 h-2 w-8 border-b">`（32×8 @(8,100)）。
@@ -529,7 +285,6 @@ export function DirectorIconRail({
           className="flex size-8 items-center justify-center rounded-lg text-white/72 transition-colors hover:bg-white/8 hover:text-white"
           onClick={() => {
             setHelpMenuOpen((open) => !open);
-            setOpenFlyout(null);
           }}
         >
           <HelpCircle size={20} />

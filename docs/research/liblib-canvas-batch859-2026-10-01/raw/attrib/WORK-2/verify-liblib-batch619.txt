@@ -1,0 +1,139 @@
+  PASS 1920-plain:audited-a-real-number-of-controls  127
+  PASS 1920-plain:no-control-is-covered
+  PASS 1920-plain:every-timeline-overlay-exemption-has-both-halves  [('帮助', True, True)]
+  PASS 1920-plain:no-control-is-off-viewport-and-unreachable
+  PASS 1920-plain:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-plain:the-only-possible-block-is-帮助
+  PASS 1920-plain:帮助-is-still-explained-by-a-known-reason  [('帮助', False, True, False)]
+  PASS 1920-plain:no-page-errors
+  PASS 1920-plain:no-console-errors
+  PASS 1920-export-panel:audited-a-real-number-of-controls  132
+  PASS 1920-export-panel:no-control-is-covered
+  PASS 1920-export-panel:every-timeline-overlay-exemption-has-both-halves  [('帮助', True, True)]
+  PASS 1920-export-panel:no-control-is-off-viewport-and-unreachable
+  PASS 1920-export-panel:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-export-panel:the-only-possible-block-is-帮助
+  PASS 1920-export-panel:帮助-is-still-explained-by-a-known-reason  [('帮助', False, True, False)]
+  PASS 1920-export-panel:the-overlay-was-found-open  ['section|data-director-export-panel=true data-director-export-status=idle class']
+  PASS 1920-export-panel:the-open-overlay-covers-no-control
+  PASS 1920-export-panel:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 1, 'covered': 0, 'attributed': 0, 'timelineOverlay': 1, 'viewportSqueeze': 0}
+  PASS 1920-export-panel:no-page-errors
+  PASS 1920-export-panel:no-console-errors
+  PASS 1920-tree-context-menu:audited-a-real-number-of-controls  132
+  PASS 1920-tree-context-menu:no-control-is-covered
+  PASS 1920-tree-context-menu:every-timeline-overlay-exemption-has-both-halves  [('帮助', True, True)]
+  PASS 1920-tree-context-menu:no-control-is-off-viewport-and-unreachable
+  PASS 1920-tree-context-menu:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-tree-context-menu:the-only-possible-block-is-帮助
+  PASS 1920-tree-context-menu:帮助-is-still-explained-by-a-known-reason  [('帮助', False, True, False)]
+  PASS 1920-tree-context-menu:the-overlay-was-found-open  ['div|data-director-tree-context-menu=true class=fixed z-[120] w-[128px] rou']
+  PASS 1920-tree-context-menu:the-overlay-attributed-at-least-one-control  [('隐藏角色A', 'div|data-director-tree-context-menu=true'), ('锁定角色A', 'div|data-director-tree-context-menu=true'), ('删除角色A', 'div|data-director-tree-context-menu=true'), ('隐藏咖啡桌', 'div|data-director-tree-context-menu=true')]
+  PASS 1920-tree-context-menu:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 13, 'covered': 0, 'attributed': 12, 'timelineOverlay': 1, 'viewportSqueeze': 0}
+  PASS 1920-tree-context-menu:no-page-errors
+  PASS 1920-tree-context-menu:no-console-errors
+  PASS 1920-rail-panorama-panel:audited-a-real-number-of-controls  108
+  PASS 1920-rail-panorama-panel:no-control-is-covered
+  PASS 1920-rail-panorama-panel:every-timeline-overlay-exemption-has-both-halves  [('帮助', True, True)]
+  PASS 1920-rail-panorama-panel:no-control-is-off-viewport-and-unreachable
+  PASS 1920-rail-panorama-panel:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-rail-panorama-panel:the-only-possible-block-is-帮助
+  PASS 1920-rail-panorama-panel:帮助-is-still-explained-by-a-known-reason  [('帮助', False, True, False)]
+  PASS 1920-rail-panorama-panel:the-overlay-was-found-open  ['div|data-director-panorama-panel=true aria-label=全景图 class=flex h-full min']
+  PASS 1920-rail-panorama-panel:the-open-overlay-covers-no-control
+  PASS 1920-rail-panorama-panel:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 1, 'covered': 0, 'attributed': 0, 'timelineOverlay': 1, 'viewportSqueeze': 0}
+  PASS 1920-rail-panorama-panel:no-page-errors
+  PASS 1920-rail-panorama-panel:no-console-errors
+  PASS 1920-rail-aspect-panel:audited-a-real-number-of-controls  112
+  PASS 1920-rail-aspect-panel:no-control-is-covered
+  PASS 1920-rail-aspect-panel:every-timeline-overlay-exemption-has-both-halves  [('帮助', True, True)]
+  PASS 1920-rail-aspect-panel:no-control-is-off-viewport-and-unreachable
+  PASS 1920-rail-aspect-panel:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-rail-aspect-panel:the-only-possible-block-is-帮助
+  PASS 1920-rail-aspect-panel:帮助-is-still-explained-by-a-known-reason  [('帮助', False, True, False)]
+  PASS 1920-rail-aspect-panel:the-overlay-was-found-open  ['div|data-director-aspect-panel=true aria-label=选择画幅比例 class=flex h-full mi']
+  PASS 1920-rail-aspect-panel:the-open-overlay-covers-no-control
+  PASS 1920-rail-aspect-panel:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 1, 'covered': 0, 'attributed': 0, 'timelineOverlay': 1, 'viewportSqueeze': 0}
+  PASS 1920-rail-aspect-panel:no-page-errors
+  PASS 1920-rail-aspect-panel:no-console-errors
+  PASS 1920-rail-add-character-panel:audited-a-real-number-of-controls  116
+  PASS 1920-rail-add-character-panel:no-control-is-covered
+  PASS 1920-rail-add-character-panel:every-timeline-overlay-exemption-has-both-halves  [('帮助', True, True)]
+  PASS 1920-rail-add-character-panel:no-control-is-off-viewport-and-unreachable
+  PASS 1920-rail-add-character-panel:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-rail-add-character-panel:the-only-possible-block-is-帮助
+  PASS 1920-rail-add-character-panel:帮助-is-still-explained-by-a-known-reason  [('帮助', False, True, False)]
+  PASS 1920-rail-add-character-panel:the-overlay-was-found-open  ['div|data-director-character-panel=true aria-label=添加角色 class=flex h-full m']
+  PASS 1920-rail-add-character-panel:the-open-overlay-covers-no-control
+  PASS 1920-rail-add-character-panel:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 1, 'covered': 0, 'attributed': 0, 'timelineOverlay': 1, 'viewportSqueeze': 0}
+  PASS 1920-rail-add-character-panel:no-page-errors
+  PASS 1920-rail-add-character-panel:no-console-errors
+  PASS 1920-ai-import-modal:audited-a-real-number-of-controls  127
+  PASS 1920-ai-import-modal:no-control-is-covered
+  PASS 1920-ai-import-modal:every-timeline-overlay-exemption-has-both-halves
+  PASS 1920-ai-import-modal:no-control-is-off-viewport-and-unreachable
+  PASS 1920-ai-import-modal:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-ai-import-modal:the-only-possible-block-is-帮助
+  PASS 1920-ai-import-modal:帮助-is-still-explained-by-a-known-reason  [('帮助', True, False, False)]
+  PASS 1920-ai-import-modal:the-overlay-was-found-open  ['div|data-director-ai-import-backdrop=true class=fixed inset-0 z-[290] flex', 'div|data-director-ai-import-modal=true aria-label=AI 识图导入 class=w-[560px] ']
+  PASS 1920-ai-import-modal:the-overlay-attributed-at-least-one-control  [('关闭', 'div|data-director-ai-import-backdrop=tru'), ('收起', 'div|data-director-ai-import-backdrop=tru'), ('导演视角', 'div|data-director-ai-import-backdrop=tru'), ('机位视角', 'div|data-director-ai-import-backdrop=tru')]
+  PASS 1920-ai-import-modal:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 119, 'covered': 0, 'attributed': 119, 'timelineOverlay': 0, 'viewportSqueeze': 0}
+  PASS 1920-ai-import-modal:no-page-errors
+  PASS 1920-ai-import-modal:no-console-errors
+  PASS 1920-track-row-context-menu:audited-a-real-number-of-controls  127
+  PASS 1920-track-row-context-menu:no-control-is-covered
+  PASS 1920-track-row-context-menu:every-timeline-overlay-exemption-has-both-halves  [('帮助', True, True)]
+  PASS 1920-track-row-context-menu:no-control-is-off-viewport-and-unreachable
+  PASS 1920-track-row-context-menu:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-track-row-context-menu:the-only-possible-block-is-帮助
+  PASS 1920-track-row-context-menu:帮助-is-still-explained-by-a-known-reason  [('帮助', False, True, False)]
+  PASS 1920-track-row-context-menu:no-page-errors
+  PASS 1920-track-row-context-menu:no-console-errors
+  PASS 390-plain:audited-a-real-number-of-controls  121
+  PASS 390-plain:no-control-is-covered
+  PASS 390-plain:every-timeline-overlay-exemption-has-both-halves
+  PASS 390-plain:no-control-is-off-viewport-and-unreachable
+  PASS 390-plain:the-off-viewport-branch-actually-ran  82 off-viewport, 82 scrollable
+  PASS 390-plain:the-only-possible-block-is-帮助
+  PASS 390-plain:帮助-is-still-explained-by-a-known-reason
+  PASS 390-plain:no-page-errors
+  PASS 390-plain:no-console-errors
+  PASS 390-export-panel:audited-a-real-number-of-controls  126
+  PASS 390-export-panel:no-control-is-covered
+  PASS 390-export-panel:every-timeline-overlay-exemption-has-both-halves
+  PASS 390-export-panel:no-control-is-off-viewport-and-unreachable
+  PASS 390-export-panel:the-off-viewport-branch-actually-ran  82 off-viewport, 82 scrollable
+  PASS 390-export-panel:the-only-possible-block-is-帮助
+  PASS 390-export-panel:帮助-is-still-explained-by-a-known-reason
+  PASS 390-export-panel:the-overlay-was-found-open  ['section|data-director-export-panel=true data-director-export-status=idle class']
+  PASS 390-export-panel:the-overlay-attributed-at-least-one-control  [('移动', 'section|data-director-export-panel=true '), ('旋转', 'section|data-director-export-panel=true '), ('缩放', 'section|data-director-export-panel=true '), ('9:16', 'section|data-director-export-panel=true ')]
+  PASS 390-export-panel:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 11, 'covered': 0, 'attributed': 9, 'timelineOverlay': 0, 'viewportSqueeze': 2}
+  PASS 390-export-panel:no-page-errors
+  PASS 390-export-panel:no-console-errors
+  PASS 390-inspector-drawer:audited-a-real-number-of-controls  121
+  PASS 390-inspector-drawer:no-control-is-covered
+  PASS 390-inspector-drawer:every-timeline-overlay-exemption-has-both-halves
+  PASS 390-inspector-drawer:no-control-is-off-viewport-and-unreachable
+  PASS 390-inspector-drawer:the-off-viewport-branch-actually-ran  47 off-viewport, 47 scrollable
+  PASS 390-inspector-drawer:the-only-possible-block-is-帮助
+  PASS 390-inspector-drawer:帮助-is-still-explained-by-a-known-reason
+  PASS 390-inspector-drawer:the-overlay-was-found-open  ['aside|aria-label=属性 data-director-mobile-panel-state=open class=absolute -to']
+  PASS 390-inspector-drawer:the-overlay-attributed-at-least-one-control  [('重置视角', 'aside|aria-label=属性 data-director-mobile'), ('X 正向', 'aside|aria-label=属性 data-director-mobile'), ('X 反向', 'aside|aria-label=属性 data-director-mobile'), ('Y 正向', 'aside|aria-label=属性 data-director-mobile')]
+  PASS 390-inspector-drawer:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 12, 'covered': 0, 'attributed': 10, 'timelineOverlay': 0, 'viewportSqueeze': 2}
+  PASS 390-inspector-drawer:the-dismiss-catcher-was-not-audited-as-a-control  [{'label': '关闭移动端面板', 'box': [0, 88, 390, 580]}]
+  PASS 390-inspector-drawer:no-page-errors
+  PASS 390-inspector-drawer:no-console-errors
+  PASS 390-tree-drawer:audited-a-real-number-of-controls  121
+  PASS 390-tree-drawer:no-control-is-covered
+  PASS 390-tree-drawer:every-timeline-overlay-exemption-has-both-halves
+  PASS 390-tree-drawer:no-control-is-off-viewport-and-unreachable
+  PASS 390-tree-drawer:the-off-viewport-branch-actually-ran  60 off-viewport, 60 scrollable
+  PASS 390-tree-drawer:the-only-possible-block-is-帮助
+  PASS 390-tree-drawer:帮助-is-still-explained-by-a-known-reason
+  PASS 390-tree-drawer:the-overlay-was-found-open  ['aside|aria-label=场景对象 data-director-left-panel-view=scene data-director-mobi']
+  PASS 390-tree-drawer:the-overlay-attributed-at-least-one-control  [('打开场景对象', 'aside|aria-label=场景对象 data-director-left'), ('打开属性面板', 'aside|aria-label=场景对象 data-director-left'), ('上传图片', 'button|type=button aria-label=关闭移动端面板 cl')]
+  PASS 390-tree-drawer:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 5, 'covered': 0, 'attributed': 3, 'timelineOverlay': 0, 'viewportSqueeze': 2}
+  PASS 390-tree-drawer:the-dismiss-catcher-was-not-audited-as-a-control  [{'label': '关闭移动端面板', 'box': [0, 88, 390, 580]}]
+  PASS 390-tree-drawer:no-page-errors
+  PASS 390-tree-drawer:no-console-errors
+
+137/137 passed

@@ -1,0 +1,13 @@
+  PASS 900x900:the-ai-import-modal-is-not-inside-the-rail  {'modalInRail': False, 'backdropInRail': False, 'backdropZ': '290'}
+  PASS 900x900:the-buried-generate-button-takes-its-own-hit  True
+  PASS 1920x900:the-ai-import-modal-is-not-inside-the-rail  {'modalInRail': False, 'backdropInRail': False, 'backdropZ': '290'}
+  PASS 1920x900:the-buried-generate-button-takes-its-own-hit  True
+  PASS 1920x1150:the-ai-import-modal-is-not-inside-the-rail  {'modalInRail': False, 'backdropInRail': False, 'backdropZ': '290'}
+  PASS 1920x1150:the-buried-generate-button-takes-its-own-hit  True
+  PASS the-matrix-ran-every-applicable-cell  {'got': 45, 'expected': 45, 'widths': 10}
+  FAIL every-cell-actually-ran  {'live': 35, 'skipped': 10}
+  PASS no-cell-has-an-unexpected-covered-control
+  PASS every-panel-state-was-seen-open
+
+9/10 passed
+FAILED: every-cell-actually-ran

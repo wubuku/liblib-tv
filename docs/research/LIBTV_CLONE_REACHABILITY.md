@@ -222,6 +222,11 @@ with sync_playwright() as pw:
 | `docs/research/liblib-canvas-batch858-2026-10-01/README.md` | 本批（「添加角色」面板化 ＝ D1 结案）的完整取证、整改、**用户可达**与验收；★ 顺带登记 **D8**：源站的「全景图」「选择画幅比例」**也是左侧面板模式**（batch 859 靶子） |
 | `docs/research/liblib-canvas-batch858-2026-10-01/controlled-comparison.json` | ★ **受控对照**三态读数（HEAD 全回退／WORK／**MIX 半回退**）＋ 复原自检；★ 顺带登记 **D10**：`857.py` 是**归档型门禁**（读录下的 JSON 产物）⟹ ⟹ 结构上没有运行时牙 |
 | `scripts/check-tailwind-classes-in-css.py` | ★ 类名**是否真的在构建产物 CSS 里**的检查器（4317 的 Tailwind 扫描是冻结的 ⟹ ⟹ 新类名可能**静默无样式**；★ 注意 CSS 里类名是**转义**的，朴素子串搜索会误报 MISS） |
+| `docs/research/liblib-canvas-batch859-2026-10-01/raw/source-859-panels.json` | ★ **源站实测**：「全景图」面板 **(48,52) 232×1028**、标题条 232×48/12px、容器 `px-2`、三行 **216×32** @(56,100/132/164) 逐字「本地上传」「历史记录」「**AI生成**」；「选择画幅比例」面板同上、网格 232×324、列 `104px 104px`、gap 8px、**七格各 104×72**、描边选中 0.85／未选 0.1 ＋ ★ **场景树不在场**（模式互斥） |
+| `docs/research/liblib-canvas-batch859-2026-10-01/raw/clone-859-panels.json` | clone 实测：与源站**同口径**的逐段读数 ⟹ ⟹ **逐字命中**（含旧浮层选择器 **count=0**） |
+| `docs/research/liblib-canvas-batch859-2026-10-01/README.md` | 本批（「全景图」「选择画幅比例」面板化 ＝ **D8 结案**）的完整取证、整改、**用户可达**与验收；★ 顺带登记 **D11**：clone 的画幅比例**不改画布宽高比**（源站 `aj` 的 value 是数值比例并写进画布状态） |
+| `docs/research/liblib-canvas-batch859-2026-10-01/negative-audit.json` | ★ **阴性对照** 9/9（每条行数中性变异先断言 SHA-256 变了 ⟹ ⟹ 跑完整门禁 ⟹ ⟹ 字节级复原） |
+| `docs/research/liblib-canvas-batch859-2026-10-01/controlled-comparison.json` | ★ **受控对照**四态 ＋ **MIX 半回退态**读数 ＋ 复原自检 |
 | `docs/research/VERIFICATION_LEDGER.md` | 历批验收台账 |
 
 ★ ★ **每批 README 的 §「复现步骤」都写了这条链**：契约提取 → 源站实测 →

@@ -1,0 +1,877 @@
+{
+ "batch": 859,
+ "title": "受控对照：源码换回 HEAD ⟹ 新门禁必须翻红（证明有牙）",
+ "gates": [
+  "scripts/verify-liblib-batch859.py",
+  "scripts/verify-liblib-batch538.py",
+  "scripts/verify-liblib-batch589.py",
+  "scripts/verify-liblib-batch613.py",
+  "scripts/verify-liblib-batch617.py",
+  "scripts/verify-liblib-batch619.py",
+  "scripts/verify-liblib-batch624.py",
+  "scripts/verify-liblib-batch625.py",
+  "scripts/verify-liblib-batch626.py",
+  "scripts/verify-liblib-batch857.py"
+ ],
+ "states": [
+  "HEAD-1",
+  "HEAD-2",
+  "WORK-1",
+  "WORK-2"
+ ],
+ "src": [
+  "src/components/director/DirectorPanoramaPanel.tsx",
+  "src/components/director/DirectorAspectPanel.tsx",
+  "src/components/director/DirectorIconRail.tsx",
+  "src/components/director/DirectorDesk.tsx"
+ ],
+ "mixRevert": [
+  "src/components/director/DirectorIconRail.tsx",
+  "src/components/director/DirectorDesk.tsx"
+ ],
+ "restored": true,
+ "sha": {
+  "base": {
+   "src/components/director/DirectorPanoramaPanel.tsx": "2d2d77188179c161ef63f2030bc01e30e5386a7f09b646dee4e0ee7617f5f555",
+   "src/components/director/DirectorAspectPanel.tsx": "b1df880f88180490bb7da6ac5f21ddad10bc2cb9c289bdddf7f8ea62f5c559a9",
+   "src/components/director/DirectorIconRail.tsx": "aaf42f77758a0dd2b474e347ca9fa51455f890e4a3a81ed006a33625778eef47",
+   "src/components/director/DirectorDesk.tsx": "54c1a92ff587528e823c1baee514246deb743556890a156d7cb07884db10450f"
+  },
+  "after": {
+   "src/components/director/DirectorPanoramaPanel.tsx": "2d2d77188179c161ef63f2030bc01e30e5386a7f09b646dee4e0ee7617f5f555",
+   "src/components/director/DirectorAspectPanel.tsx": "b1df880f88180490bb7da6ac5f21ddad10bc2cb9c289bdddf7f8ea62f5c559a9",
+   "src/components/director/DirectorIconRail.tsx": "aaf42f77758a0dd2b474e347ca9fa51455f890e4a3a81ed006a33625778eef47",
+   "src/components/director/DirectorDesk.tsx": "54c1a92ff587528e823c1baee514246deb743556890a156d7cb07884db10450f"
+  }
+ },
+ "work": {
+  "once": {
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 17.9,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch538.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 3.5,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch538.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 3.5,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch589.txt"
+   },
+   "scripts/verify-liblib-batch613.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 9.0,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch613.txt"
+   },
+   "scripts/verify-liblib-batch617.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 13.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch617.txt"
+   },
+   "scripts/verify-liblib-batch619.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 59.0,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch619.txt"
+   },
+   "scripts/verify-liblib-batch624.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 225.0,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch624.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 33.4,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog"
+    ],
+    "seconds": 187.3,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch857.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 0.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch857.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 16.4,
+   "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-1-859-2nd/verify-liblib-batch859.txt"
+  }
+ },
+ "work2": {
+  "once": {
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.4,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch538.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 4.2,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch538.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 4.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch589.txt"
+   },
+   "scripts/verify-liblib-batch613.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 9.6,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch613.txt"
+   },
+   "scripts/verify-liblib-batch617.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 13.7,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch617.txt"
+   },
+   "scripts/verify-liblib-batch619.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 62.7,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch619.txt"
+   },
+   "scripts/verify-liblib-batch624.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 236.7,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch624.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 32.9,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog"
+    ],
+    "seconds": 184.5,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch857.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 0.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch857.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 16.4,
+   "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/WORK-2-859-2nd/verify-liblib-batch859.txt"
+  }
+ },
+ "head": {
+  "once": {
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 1,
+    "failed": [
+     "source:both-panel-files-exist  ⟵ {'panorama': False, 'aspect': False}",
+     "source:panorama-title-class-is-the-source-aO  ⟵ flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+     "source:panorama-row-class-is-the-source-eu  ⟵ flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45",
+     "source:panorama-container-is-px-2  ⟵",
+     "source:aspect-grid-class-is-the-source-grid  ⟵ grid grid-cols-2 gap-2 px-2 pb-3",
+     "source:aspect-cell-class-is-the-source-cell  ⟵ hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35",
+     "source:aspect-glyph-table-moved-to-the-panel  ⟵",
+     "source:rail-has-no-portal-flyout-left  ⟵",
+     "source:rail-selects-the-panel-mode-by-one-call  ⟵",
+     "source:desk-renders-both-mode-panels  ⟵",
+     "panel:mode-is-panorama  ⟵ scene",
+     "panel:scene-tree-is-gone  ⟵ True",
+     "panel:old-flyouts-are-gone  ⟵ [1, 0]",
+     "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+     "panel:panorama-rect  ⟵ None",
+     "panel:panorama-is-inside-the-column  ⟵ None",
+     "panel:panorama-title  ⟵ {'box': None, 'text': None, 'font': None}",
+     "panel:panorama-container  ⟵ {'box': None, 'pad': None}",
+     "panel:panorama-three-rows  ⟵ 0",
+     "panel:panorama-row-本地上传  ⟵ {}",
+     "panel:panorama-row-历史记录  ⟵ {}",
+     "panel:panorama-row-AI生成  ⟵ {}",
+     "panel:mode-is-aspect  ⟵ scene",
+     "panel:scene-tree-is-gone-2  ⟵ True",
+     "panel:only-one-mode-in-dom-2  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+     "panel:aspect-rect  ⟵ None",
+     "panel:aspect-is-inside-the-column  ⟵ None",
+     "panel:aspect-title  ⟵ {'box': None, 'text': None, 'font': None}",
+     "panel:aspect-grid  ⟵ {'box': None, 'cols': None, 'gap': None, 'pad': None}",
+     "panel:aspect-seven-cells  ⟵ 0",
+     "panel:aspect-cell-自适应  ⟵ {}",
+     "panel:aspect-cell-21:9  ⟵ {}",
+     "panel:aspect-cell-16:9  ⟵ {}",
+     "panel:aspect-cell-4:3  ⟵ {}",
+     "panel:aspect-cell-1:1  ⟵ {}",
+     "panel:aspect-cell-3:4  ⟵ {}",
+     "panel:aspect-cell-9:16  ⟵ {}",
+     "panel:the-selection-survives-a-mode-switch  ⟵ []"
+    ],
+    "seconds": 19.8,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch538.py": {
+    "rc": 1,
+    "failed": [
+     "panorama:opens"
+    ],
+    "seconds": 3.5,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch538.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 1,
+    "failed": [
+     "panorama:opens"
+    ],
+    "seconds": 3.3,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch589.txt"
+   },
+   "scripts/verify-liblib-batch613.py": {
+    "rc": 1,
+    "failed": [
+     "flyout:panorama-opens"
+    ],
+    "seconds": 9.6,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch613.txt"
+   },
+   "scripts/verify-liblib-batch617.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 13.9,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch617.txt"
+   },
+   "scripts/verify-liblib-batch619.py": {
+    "rc": 1,
+    "failed": [
+     "CRASH: playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 15000ms exceeded."
+    ],
+    "seconds": 35.0,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch619.txt"
+   },
+   "scripts/verify-liblib-batch624.py": {
+    "rc": 1,
+    "failed": [
+     "every-cell-actually-ran"
+    ],
+    "seconds": 302.6,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch624.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 1,
+    "failed": [
+     "panorama-is-a-side-panel-not-a-portal-flyout",
+     "aspect-is-a-side-panel-not-a-portal-flyout"
+    ],
+    "seconds": 33.8,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog",
+     "mode-panel-present/1920x1150/panorama-panel",
+     "mode-panel-present/1440x900/panorama-panel",
+     "mode-panel-present/1280x720/panorama-panel",
+     "mode-panel-present/1280x540/panorama-panel",
+     "mode-panel-present/1920x1150/aspect-panel",
+     "mode-panel-present/1440x900/aspect-panel",
+     "mode-panel-present/1280x720/aspect-panel",
+     "mode-panel-present/1280x540/aspect-panel"
+    ],
+    "seconds": 181.5,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch857.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 0.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch857.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:both-panel-files-exist  ⟵ {'panorama': False, 'aspect': False}",
+    "source:panorama-title-class-is-the-source-aO  ⟵ flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+    "source:panorama-row-class-is-the-source-eu  ⟵ flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45",
+    "source:panorama-container-is-px-2  ⟵",
+    "source:aspect-grid-class-is-the-source-grid  ⟵ grid grid-cols-2 gap-2 px-2 pb-3",
+    "source:aspect-cell-class-is-the-source-cell  ⟵ hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35",
+    "source:aspect-glyph-table-moved-to-the-panel  ⟵",
+    "source:rail-has-no-portal-flyout-left  ⟵",
+    "source:rail-selects-the-panel-mode-by-one-call  ⟵",
+    "source:desk-renders-both-mode-panels  ⟵",
+    "panel:mode-is-panorama  ⟵ scene",
+    "panel:scene-tree-is-gone  ⟵ True",
+    "panel:old-flyouts-are-gone  ⟵ [1, 0]",
+    "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+    "panel:panorama-rect  ⟵ None",
+    "panel:panorama-is-inside-the-column  ⟵ None",
+    "panel:panorama-title  ⟵ {'box': None, 'text': None, 'font': None}",
+    "panel:panorama-container  ⟵ {'box': None, 'pad': None}",
+    "panel:panorama-three-rows  ⟵ 0",
+    "panel:panorama-row-本地上传  ⟵ {}",
+    "panel:panorama-row-历史记录  ⟵ {}",
+    "panel:panorama-row-AI生成  ⟵ {}",
+    "panel:mode-is-aspect  ⟵ scene",
+    "panel:scene-tree-is-gone-2  ⟵ True",
+    "panel:only-one-mode-in-dom-2  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+    "panel:aspect-rect  ⟵ None",
+    "panel:aspect-is-inside-the-column  ⟵ None",
+    "panel:aspect-title  ⟵ {'box': None, 'text': None, 'font': None}",
+    "panel:aspect-grid  ⟵ {'box': None, 'cols': None, 'gap': None, 'pad': None}",
+    "panel:aspect-seven-cells  ⟵ 0",
+    "panel:aspect-cell-自适应  ⟵ {}",
+    "panel:aspect-cell-21:9  ⟵ {}",
+    "panel:aspect-cell-16:9  ⟵ {}",
+    "panel:aspect-cell-4:3  ⟵ {}",
+    "panel:aspect-cell-1:1  ⟵ {}",
+    "panel:aspect-cell-3:4  ⟵ {}",
+    "panel:aspect-cell-9:16  ⟵ {}",
+    "panel:the-selection-survives-a-mode-switch  ⟵ []"
+   ],
+   "seconds": 16.3,
+   "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-1-859-2nd/verify-liblib-batch859.txt"
+  }
+ },
+ "head2": {
+  "once": {
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 1,
+    "failed": [
+     "source:both-panel-files-exist  ⟵ {'panorama': False, 'aspect': False}",
+     "source:panorama-title-class-is-the-source-aO  ⟵ flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+     "source:panorama-row-class-is-the-source-eu  ⟵ flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45",
+     "source:panorama-container-is-px-2  ⟵",
+     "source:aspect-grid-class-is-the-source-grid  ⟵ grid grid-cols-2 gap-2 px-2 pb-3",
+     "source:aspect-cell-class-is-the-source-cell  ⟵ hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35",
+     "source:aspect-glyph-table-moved-to-the-panel  ⟵",
+     "source:rail-has-no-portal-flyout-left  ⟵",
+     "source:rail-selects-the-panel-mode-by-one-call  ⟵",
+     "source:desk-renders-both-mode-panels  ⟵",
+     "panel:mode-is-panorama  ⟵ scene",
+     "panel:scene-tree-is-gone  ⟵ True",
+     "panel:old-flyouts-are-gone  ⟵ [1, 0]",
+     "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+     "panel:panorama-rect  ⟵ None",
+     "panel:panorama-is-inside-the-column  ⟵ None",
+     "panel:panorama-title  ⟵ {'box': None, 'text': None, 'font': None}",
+     "panel:panorama-container  ⟵ {'box': None, 'pad': None}",
+     "panel:panorama-three-rows  ⟵ 0",
+     "panel:panorama-row-本地上传  ⟵ {}",
+     "panel:panorama-row-历史记录  ⟵ {}",
+     "panel:panorama-row-AI生成  ⟵ {}",
+     "panel:mode-is-aspect  ⟵ scene",
+     "panel:scene-tree-is-gone-2  ⟵ True",
+     "panel:only-one-mode-in-dom-2  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+     "panel:aspect-rect  ⟵ None",
+     "panel:aspect-is-inside-the-column  ⟵ None",
+     "panel:aspect-title  ⟵ {'box': None, 'text': None, 'font': None}",
+     "panel:aspect-grid  ⟵ {'box': None, 'cols': None, 'gap': None, 'pad': None}",
+     "panel:aspect-seven-cells  ⟵ 0",
+     "panel:aspect-cell-自适应  ⟵ {}",
+     "panel:aspect-cell-21:9  ⟵ {}",
+     "panel:aspect-cell-16:9  ⟵ {}",
+     "panel:aspect-cell-4:3  ⟵ {}",
+     "panel:aspect-cell-1:1  ⟵ {}",
+     "panel:aspect-cell-3:4  ⟵ {}",
+     "panel:aspect-cell-9:16  ⟵ {}",
+     "panel:the-selection-survives-a-mode-switch  ⟵ []"
+    ],
+    "seconds": 16.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch538.py": {
+    "rc": 1,
+    "failed": [
+     "panorama:opens"
+    ],
+    "seconds": 3.2,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch538.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 1,
+    "failed": [
+     "panorama:opens"
+    ],
+    "seconds": 3.3,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch589.txt"
+   },
+   "scripts/verify-liblib-batch613.py": {
+    "rc": 1,
+    "failed": [
+     "flyout:panorama-opens"
+    ],
+    "seconds": 9.5,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch613.txt"
+   },
+   "scripts/verify-liblib-batch617.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 13.7,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch617.txt"
+   },
+   "scripts/verify-liblib-batch619.py": {
+    "rc": 1,
+    "failed": [
+     "CRASH: playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 15000ms exceeded."
+    ],
+    "seconds": 34.9,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch619.txt"
+   },
+   "scripts/verify-liblib-batch624.py": {
+    "rc": 1,
+    "failed": [
+     "every-cell-actually-ran"
+    ],
+    "seconds": 297.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch624.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 1,
+    "failed": [
+     "panorama-is-a-side-panel-not-a-portal-flyout",
+     "aspect-is-a-side-panel-not-a-portal-flyout"
+    ],
+    "seconds": 32.3,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog",
+     "mode-panel-present/1920x1150/panorama-panel",
+     "mode-panel-present/1440x900/panorama-panel",
+     "mode-panel-present/1280x720/panorama-panel",
+     "mode-panel-present/1280x540/panorama-panel",
+     "mode-panel-present/1920x1150/aspect-panel",
+     "mode-panel-present/1440x900/aspect-panel",
+     "mode-panel-present/1280x720/aspect-panel",
+     "mode-panel-present/1280x540/aspect-panel"
+    ],
+    "seconds": 183.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch857.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 0.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch857.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:both-panel-files-exist  ⟵ {'panorama': False, 'aspect': False}",
+    "source:panorama-title-class-is-the-source-aO  ⟵ flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+    "source:panorama-row-class-is-the-source-eu  ⟵ flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45",
+    "source:panorama-container-is-px-2  ⟵",
+    "source:aspect-grid-class-is-the-source-grid  ⟵ grid grid-cols-2 gap-2 px-2 pb-3",
+    "source:aspect-cell-class-is-the-source-cell  ⟵ hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35",
+    "source:aspect-glyph-table-moved-to-the-panel  ⟵",
+    "source:rail-has-no-portal-flyout-left  ⟵",
+    "source:rail-selects-the-panel-mode-by-one-call  ⟵",
+    "source:desk-renders-both-mode-panels  ⟵",
+    "panel:mode-is-panorama  ⟵ scene",
+    "panel:scene-tree-is-gone  ⟵ True",
+    "panel:old-flyouts-are-gone  ⟵ [1, 0]",
+    "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+    "panel:panorama-rect  ⟵ None",
+    "panel:panorama-is-inside-the-column  ⟵ None",
+    "panel:panorama-title  ⟵ {'box': None, 'text': None, 'font': None}",
+    "panel:panorama-container  ⟵ {'box': None, 'pad': None}",
+    "panel:panorama-three-rows  ⟵ 0",
+    "panel:panorama-row-本地上传  ⟵ {}",
+    "panel:panorama-row-历史记录  ⟵ {}",
+    "panel:panorama-row-AI生成  ⟵ {}",
+    "panel:mode-is-aspect  ⟵ scene",
+    "panel:scene-tree-is-gone-2  ⟵ True",
+    "panel:only-one-mode-in-dom-2  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+    "panel:aspect-rect  ⟵ None",
+    "panel:aspect-is-inside-the-column  ⟵ None",
+    "panel:aspect-title  ⟵ {'box': None, 'text': None, 'font': None}",
+    "panel:aspect-grid  ⟵ {'box': None, 'cols': None, 'gap': None, 'pad': None}",
+    "panel:aspect-seven-cells  ⟵ 0",
+    "panel:aspect-cell-自适应  ⟵ {}",
+    "panel:aspect-cell-21:9  ⟵ {}",
+    "panel:aspect-cell-16:9  ⟵ {}",
+    "panel:aspect-cell-4:3  ⟵ {}",
+    "panel:aspect-cell-1:1  ⟵ {}",
+    "panel:aspect-cell-3:4  ⟵ {}",
+    "panel:aspect-cell-9:16  ⟵ {}",
+    "panel:the-selection-survives-a-mode-switch  ⟵ []"
+   ],
+   "seconds": 16.2,
+   "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/HEAD-2-859-2nd/verify-liblib-batch859.txt"
+  }
+ },
+ "stableAcrossTwoRuns": true,
+ "stabilityNote": "只有新门禁 859 跑了两遍（决定性测量）；其余门禁读的是失败集合的差异",
+ "newGateHasTeeth": true,
+ "newGateFailedOnHEAD": [
+  "source:both-panel-files-exist  ⟵ {'panorama': False, 'aspect': False}",
+  "source:panorama-title-class-is-the-source-aO  ⟵ flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+  "source:panorama-row-class-is-the-source-eu  ⟵ flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45",
+  "source:panorama-container-is-px-2  ⟵",
+  "source:aspect-grid-class-is-the-source-grid  ⟵ grid grid-cols-2 gap-2 px-2 pb-3",
+  "source:aspect-cell-class-is-the-source-cell  ⟵ hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35",
+  "source:aspect-glyph-table-moved-to-the-panel  ⟵",
+  "source:rail-has-no-portal-flyout-left  ⟵",
+  "source:rail-selects-the-panel-mode-by-one-call  ⟵",
+  "source:desk-renders-both-mode-panels  ⟵",
+  "panel:mode-is-panorama  ⟵ scene",
+  "panel:scene-tree-is-gone  ⟵ True",
+  "panel:old-flyouts-are-gone  ⟵ [1, 0]",
+  "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+  "panel:panorama-rect  ⟵ None",
+  "panel:panorama-is-inside-the-column  ⟵ None",
+  "panel:panorama-title  ⟵ {'box': None, 'text': None, 'font': None}",
+  "panel:panorama-container  ⟵ {'box': None, 'pad': None}",
+  "panel:panorama-three-rows  ⟵ 0",
+  "panel:panorama-row-本地上传  ⟵ {}",
+  "panel:panorama-row-历史记录  ⟵ {}",
+  "panel:panorama-row-AI生成  ⟵ {}",
+  "panel:mode-is-aspect  ⟵ scene",
+  "panel:scene-tree-is-gone-2  ⟵ True",
+  "panel:only-one-mode-in-dom-2  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+  "panel:aspect-rect  ⟵ None",
+  "panel:aspect-is-inside-the-column  ⟵ None",
+  "panel:aspect-title  ⟵ {'box': None, 'text': None, 'font': None}",
+  "panel:aspect-grid  ⟵ {'box': None, 'cols': None, 'gap': None, 'pad': None}",
+  "panel:aspect-seven-cells  ⟵ 0",
+  "panel:aspect-cell-自适应  ⟵ {}",
+  "panel:aspect-cell-21:9  ⟵ {}",
+  "panel:aspect-cell-16:9  ⟵ {}",
+  "panel:aspect-cell-4:3  ⟵ {}",
+  "panel:aspect-cell-1:1  ⟵ {}",
+  "panel:aspect-cell-3:4  ⟵ {}",
+  "panel:aspect-cell-9:16  ⟵ {}",
+  "panel:the-selection-survives-a-mode-switch  ⟵ []"
+ ],
+ "newGateFailedOnWORK": [],
+ "newGateCrashOnHEAD": [],
+ "migratedGates": {
+  "scripts/verify-liblib-batch538.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [
+    "panorama:opens"
+   ],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch589.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [
+    "panorama:opens"
+   ],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch613.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [
+    "flyout:panorama-opens"
+   ],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch617.py": {
+   "head": false,
+   "work": true,
+   "headFailed": [],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch619.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [
+    "CRASH: playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 15000ms exceeded."
+   ],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch624.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [
+    "every-cell-actually-ran"
+   ],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch625.py": {
+   "head": true,
+   "work": true,
+   "headFailed": [
+    "panorama-is-a-side-panel-not-a-portal-flyout",
+    "aspect-is-a-side-panel-not-a-portal-flyout"
+   ],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch626.py": {
+   "head": true,
+   "work": false,
+   "headFailed": [
+    "live-controls-reachable/1280x720/crowd-dialog",
+    "mode-panel-present/1920x1150/panorama-panel",
+    "mode-panel-present/1440x900/panorama-panel",
+    "mode-panel-present/1280x720/panorama-panel",
+    "mode-panel-present/1280x540/panorama-panel",
+    "mode-panel-present/1920x1150/aspect-panel",
+    "mode-panel-present/1440x900/aspect-panel",
+    "mode-panel-present/1280x720/aspect-panel",
+    "mode-panel-present/1280x540/aspect-panel"
+   ],
+   "workFailed": [
+    "live-controls-reachable/1280x720/crowd-dialog"
+   ]
+  },
+  "scripts/verify-liblib-batch857.py": {
+   "head": false,
+   "work": true,
+   "headFailed": [],
+   "workFailed": []
+  }
+ },
+ "diffs": {
+  "scripts/verify-liblib-batch538.py": {
+   "onlyOnHEAD": [
+    "panorama:opens"
+   ],
+   "onlyOnWORK": []
+  },
+  "scripts/verify-liblib-batch589.py": {
+   "onlyOnHEAD": [
+    "panorama:opens"
+   ],
+   "onlyOnWORK": []
+  },
+  "scripts/verify-liblib-batch613.py": {
+   "onlyOnHEAD": [
+    "flyout:panorama-opens"
+   ],
+   "onlyOnWORK": []
+  },
+  "scripts/verify-liblib-batch619.py": {
+   "onlyOnHEAD": [
+    "CRASH: playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 15000ms exceeded."
+   ],
+   "onlyOnWORK": []
+  },
+  "scripts/verify-liblib-batch624.py": {
+   "onlyOnHEAD": [
+    "every-cell-actually-ran"
+   ],
+   "onlyOnWORK": []
+  },
+  "scripts/verify-liblib-batch625.py": {
+   "onlyOnHEAD": [
+    "aspect-is-a-side-panel-not-a-portal-flyout",
+    "panorama-is-a-side-panel-not-a-portal-flyout"
+   ],
+   "onlyOnWORK": []
+  },
+  "scripts/verify-liblib-batch626.py": {
+   "onlyOnHEAD": [
+    "mode-panel-present/1280x540/aspect-panel",
+    "mode-panel-present/1280x540/panorama-panel",
+    "mode-panel-present/1280x720/aspect-panel",
+    "mode-panel-present/1280x720/panorama-panel",
+    "mode-panel-present/1440x900/aspect-panel",
+    "mode-panel-present/1440x900/panorama-panel",
+    "mode-panel-present/1920x1150/aspect-panel",
+    "mode-panel-present/1920x1150/panorama-panel"
+   ],
+   "onlyOnWORK": []
+  }
+ },
+ "diffsNote": "HEAD 独有的红条 = 「本批整改掉的旧行为」；WORK 独有的红条 = 「本批引入的新问题」（必须为空）",
+ "mixNote": "MIX 半回退态：只把 DirectorIconRail.tsx ＋ DirectorDesk.tsx 换回 HEAD（浮层模型）、**保留**本批新建的两个面板文件 ⟹ ⟹ 新门禁 859 必须**红**（rail/desk 不认识那两个面板）⟹ ⟹ 这才逼出**判据层**的牙（全回退态只证明「门禁依赖新源码」）",
+ "mix": {
+  "once": {
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 1,
+    "failed": [
+     "source:aspect-glyph-table-moved-to-the-panel  ⟵",
+     "source:rail-has-no-portal-flyout-left  ⟵",
+     "source:rail-selects-the-panel-mode-by-one-call  ⟵",
+     "source:desk-renders-both-mode-panels  ⟵",
+     "panel:mode-is-panorama  ⟵ scene",
+     "panel:scene-tree-is-gone  ⟵ True",
+     "panel:old-flyouts-are-gone  ⟵ [1, 0]",
+     "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+     "panel:panorama-rect  ⟵ None",
+     "panel:panorama-is-inside-the-column  ⟵ None",
+     "panel:panorama-title  ⟵ {'box': None, 'text': None, 'font': None}",
+     "panel:panorama-container  ⟵ {'box': None, 'pad': None}",
+     "panel:panorama-three-rows  ⟵ 0",
+     "panel:panorama-row-本地上传  ⟵ {}",
+     "panel:panorama-row-历史记录  ⟵ {}",
+     "panel:panorama-row-AI生成  ⟵ {}",
+     "panel:mode-is-aspect  ⟵ scene",
+     "panel:scene-tree-is-gone-2  ⟵ True",
+     "panel:only-one-mode-in-dom-2  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+     "panel:aspect-rect  ⟵ None",
+     "panel:aspect-is-inside-the-column  ⟵ None",
+     "panel:aspect-title  ⟵ {'box': None, 'text': None, 'font': None}",
+     "panel:aspect-grid  ⟵ {'box': None, 'cols': None, 'gap': None, 'pad': None}",
+     "panel:aspect-seven-cells  ⟵ 0",
+     "panel:aspect-cell-自适应  ⟵ {}",
+     "panel:aspect-cell-21:9  ⟵ {}",
+     "panel:aspect-cell-16:9  ⟵ {}",
+     "panel:aspect-cell-4:3  ⟵ {}",
+     "panel:aspect-cell-1:1  ⟵ {}",
+     "panel:aspect-cell-3:4  ⟵ {}",
+     "panel:aspect-cell-9:16  ⟵ {}",
+     "panel:the-selection-survives-a-mode-switch  ⟵ []"
+    ],
+    "seconds": 18.9,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX/verify-liblib-batch859.txt"
+   },
+   "scripts/verify-liblib-batch538.py": {
+    "rc": 1,
+    "failed": [
+     "panorama:opens"
+    ],
+    "seconds": 2.7,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX/verify-liblib-batch538.txt"
+   },
+   "scripts/verify-liblib-batch589.py": {
+    "rc": 1,
+    "failed": [
+     "panorama:opens"
+    ],
+    "seconds": 3.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX/verify-liblib-batch589.txt"
+   },
+   "scripts/verify-liblib-batch613.py": {
+    "rc": 1,
+    "failed": [
+     "flyout:panorama-opens"
+    ],
+    "seconds": 9.0,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX/verify-liblib-batch613.txt"
+   },
+   "scripts/verify-liblib-batch617.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 13.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX/verify-liblib-batch617.txt"
+   },
+   "scripts/verify-liblib-batch619.py": {
+    "rc": 1,
+    "failed": [
+     "CRASH: playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 15000ms exceeded."
+    ],
+    "seconds": 33.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX/verify-liblib-batch619.txt"
+   },
+   "scripts/verify-liblib-batch624.py": {
+    "rc": 1,
+    "failed": [
+     "every-cell-actually-ran"
+    ],
+    "seconds": 288.9,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX/verify-liblib-batch624.txt"
+   },
+   "scripts/verify-liblib-batch625.py": {
+    "rc": 1,
+    "failed": [
+     "panorama-is-a-side-panel-not-a-portal-flyout",
+     "aspect-is-a-side-panel-not-a-portal-flyout"
+    ],
+    "seconds": 31.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX/verify-liblib-batch625.txt"
+   },
+   "scripts/verify-liblib-batch626.py": {
+    "rc": 1,
+    "failed": [
+     "live-controls-reachable/1280x720/crowd-dialog",
+     "mode-panel-present/1920x1150/panorama-panel",
+     "mode-panel-present/1440x900/panorama-panel",
+     "mode-panel-present/1280x720/panorama-panel",
+     "mode-panel-present/1280x540/panorama-panel",
+     "mode-panel-present/1920x1150/aspect-panel",
+     "mode-panel-present/1440x900/aspect-panel",
+     "mode-panel-present/1280x720/aspect-panel",
+     "mode-panel-present/1280x540/aspect-panel"
+    ],
+    "seconds": 170.0,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX/verify-liblib-batch626.txt"
+   },
+   "scripts/verify-liblib-batch857.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 0.1,
+    "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX/verify-liblib-batch857.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:aspect-glyph-table-moved-to-the-panel  ⟵",
+    "source:rail-has-no-portal-flyout-left  ⟵",
+    "source:rail-selects-the-panel-mode-by-one-call  ⟵",
+    "source:desk-renders-both-mode-panels  ⟵",
+    "panel:mode-is-panorama  ⟵ scene",
+    "panel:scene-tree-is-gone  ⟵ True",
+    "panel:old-flyouts-are-gone  ⟵ [1, 0]",
+    "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+    "panel:panorama-rect  ⟵ None",
+    "panel:panorama-is-inside-the-column  ⟵ None",
+    "panel:panorama-title  ⟵ {'box': None, 'text': None, 'font': None}",
+    "panel:panorama-container  ⟵ {'box': None, 'pad': None}",
+    "panel:panorama-three-rows  ⟵ 0",
+    "panel:panorama-row-本地上传  ⟵ {}",
+    "panel:panorama-row-历史记录  ⟵ {}",
+    "panel:panorama-row-AI生成  ⟵ {}",
+    "panel:mode-is-aspect  ⟵ scene",
+    "panel:scene-tree-is-gone-2  ⟵ True",
+    "panel:only-one-mode-in-dom-2  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+    "panel:aspect-rect  ⟵ None",
+    "panel:aspect-is-inside-the-column  ⟵ None",
+    "panel:aspect-title  ⟵ {'box': None, 'text': None, 'font': None}",
+    "panel:aspect-grid  ⟵ {'box': None, 'cols': None, 'gap': None, 'pad': None}",
+    "panel:aspect-seven-cells  ⟵ 0",
+    "panel:aspect-cell-自适应  ⟵ {}",
+    "panel:aspect-cell-21:9  ⟵ {}",
+    "panel:aspect-cell-16:9  ⟵ {}",
+    "panel:aspect-cell-4:3  ⟵ {}",
+    "panel:aspect-cell-1:1  ⟵ {}",
+    "panel:aspect-cell-3:4  ⟵ {}",
+    "panel:aspect-cell-9:16  ⟵ {}",
+    "panel:the-selection-survives-a-mode-switch  ⟵ []"
+   ],
+   "seconds": 16.1,
+   "log": "docs/research/liblib-canvas-batch859-2026-10-01/raw/attrib/MIX-859-2nd/verify-liblib-batch859.txt"
+  }
+ },
+ "mixStable": true,
+ "mixRestored": true,
+ "mixCrash": [
+  "CRASH: playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 15000ms exceeded."
+ ]
+}

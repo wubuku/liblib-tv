@@ -191,16 +191,19 @@ def run_desktop(page: Page) -> dict[str, Any]:
     # 4) 全景图 — the AI生成 correction
     rail.locator("[data-director-rail-entry='panorama']").click()
     page.wait_for_timeout(220)
+    # ★ Batch 859（源站逐字）：全景图 / 画幅比例**也是左侧面板模式**
+    #   （`"panorama"===z?(…):null`）⟹ ⟹ 与「添加角色」面板同一写法：
+    #   DOM 子树按模式在/不在 ⟹ ⟹ `count()==0` 这条判据**继续成立**。
     check("panorama:character-closes", char.count() == 0)
-    pano = page.locator("[data-director-panorama-flyout]")
+    pano = page.locator("[data-director-panorama-panel]")
     check("panorama:opens", pano.is_visible())
-    result["panorama_width"] = width_of("[data-director-panorama-flyout]")
+    result["panorama_width"] = width_of("[data-director-panorama-panel]")
     check(
         "panorama:width-232",
         abs(result["panorama_width"] - SOURCE_WIDTH) <= 1,
         detail=result["panorama_width"],
     )
-    pano_title = page.locator("[data-director-flyout-title='panorama']")
+    pano_title = page.locator("[data-director-panel-title='panorama']")
     check(
         "panorama:title",
         pano_title.count() == 1 and pano_title.inner_text().strip() == "全景图",
@@ -220,9 +223,9 @@ def run_desktop(page: Page) -> dict[str, Any]:
     rail.locator("[data-director-rail-entry='aspect-ratio']").click()
     page.wait_for_timeout(220)
     check("panorama:closes-on-switch", pano.count() == 0)
-    aspect = page.locator("[data-director-aspect-flyout]")
+    aspect = page.locator("[data-director-aspect-panel]")
     check("aspect:opens", aspect.is_visible())
-    result["aspect_width"] = width_of("[data-director-aspect-flyout]")
+    result["aspect_width"] = width_of("[data-director-aspect-panel]")
     check(
         "aspect:width-232",
         abs(result["aspect_width"] - SOURCE_WIDTH) <= 1,
@@ -230,7 +233,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
     )
     check(
         "aspect:title",
-        page.locator("[data-director-flyout-title='aspect-ratio']").inner_text().strip()
+        page.locator("[data-director-panel-title='aspect']").inner_text().strip()
         == "选择画幅比例",
     )
     for ratio in ASPECT_RATIOS:
@@ -278,7 +281,7 @@ def run_desktop(page: Page) -> dict[str, Any]:
         detail=grid_box,
     )
     # the source title sits ABOVE the card (title y=66, card starts y=100)
-    title_box = page.locator("[data-director-flyout-title='aspect-ratio']").bounding_box()
+    title_box = page.locator("[data-director-panel-title='aspect']").bounding_box()
     result["aspect_title_box"] = title_box
     check(
         "aspect:title-above-card",
@@ -288,8 +291,21 @@ def run_desktop(page: Page) -> dict[str, Any]:
         detail=(title_box, grid_box),
     )
 
-    # 6) only one flyout at a time
-    check("aspect:single-open", page.locator("[data-director-flyout-title]").count() == 1)
+    # 6) ★ ★★ 同一时刻**只有一个面板模式**在场（源站逐字：`z` 是单值 ⟹ ⟹
+    #   五个分支互斥）⟹ ⟹ 旧判据是「只有一个 flyout 标题」（浮层时代）⟹ ⟹
+    #   现在改成「**左侧面板的五个分支里只有一处在 DOM 里**」。
+    #   ★ 注意：这正是源站 `"scene"===z?n:null` 这套写法的直接后果
+    #   ⟹ ⟹ 判据用「在 DOM 里」而不是「可见」⟹ ⟹ 因为源站是**条件渲染**。
+    panel_modes = [
+        "[data-director-character-panel]",
+        "[data-director-camera-preset-panel]",
+        "[data-director-panorama-panel]",
+        "[data-director-aspect-panel]",
+    ]
+    in_dom = [sel for sel in panel_modes
+              if page.locator(sel).count() > 0]
+    check("aspect:single-open", len(in_dom) == 1,
+          detail=in_dom)
 
     unexpected = [error for error in errors if "TransformControls" not in error]
     result["diagnostics"] = {

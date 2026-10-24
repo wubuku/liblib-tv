@@ -76,48 +76,57 @@ def run_desktop(page: Page) -> dict[str, Any]:
     rail = page.locator("[data-director-icon-rail]")
     check("rail:visible", rail.is_visible())
 
-    # —— 全景图 flyout ——
+    # ★ ★★ Batch 859（源站逐字）：「全景图」「选择画幅比例」**不再是浮层** ——
+    #   源站逐字：左侧那个 232px 面板是**五模式互斥容器**
+    #   （`"scene"===z?n:null,"character"===z?(…),"camera"===z?(…),
+    #     "panorama"===z?(…),"aspect"===z?(…)`）⟹ ⟹ 这两枚是**面板模式**。
+    # ⟹ ⟹ 「另一个面板关掉了」这条判据的**旧前提**是「浮层被卸载」
+    #   （`count() == 0`）⟹ ⟹ 现在面板**常驻挂载**、靠 `hidden` 隐藏
+    #   ⟹ ⟹ 判据改成「**不可见**」（`is_visible()` 为假）⟹ ⟹
+    #   ★ 这才是同一件事（「这个面板不在场」）的正确读法。
+    pano_panel = page.locator("[data-director-panorama-panel]")
+    aspect_panel = page.locator("[data-director-aspect-panel]")
+
+    # —— 全景图面板 ——
     rail.locator("[data-director-rail-entry='panorama']").click()
     page.wait_for_timeout(200)
-    pano = page.locator("[data-director-panorama-flyout]")
-    check("panorama:opens", pano.is_visible())
-    pano_text = pano.inner_text()
+    check("panorama:opens", pano_panel.is_visible())
+    pano_text = pano_panel.inner_text()
     # Batch 589: 逐字为「AI生成」（无空格），源站 DOM 实测 232×96 @(48,100)。
     for token in ["本地上传", "历史记录", "AI生成"]:
         check(f"panorama:item:{token}", token in pano_text)
 
-    # —— 选择画幅比例 flyout ——
+    # —— 选择画幅比例面板 ——
     rail.locator("[data-director-rail-entry='aspect-ratio']").click()
     page.wait_for_timeout(200)
-    check("panorama:closes", page.locator("[data-director-panorama-flyout]").count() == 0)
-    aspect = page.locator("[data-director-aspect-flyout]")
-    check("aspect:opens", aspect.is_visible())
+    check("panorama:closes", not pano_panel.is_visible())
+    check("aspect:opens", aspect_panel.is_visible())
     for ratio in ["自适应", "21:9", "16:9", "4:3", "1:1", "3:4", "9:16"]:
         check(
             f"aspect:option:{ratio}",
-            aspect.locator(f"[data-director-aspect-option='{ratio}']").is_visible(),
+            aspect_panel.locator(f"[data-director-aspect-option='{ratio}']").is_visible(),
         )
     check(
         "aspect:default-fit",
-        aspect.locator("[data-director-aspect-option='自适应']").get_attribute("aria-pressed") == "true",
+        aspect_panel.locator("[data-director-aspect-option='自适应']").get_attribute("aria-pressed") == "true",
     )
 
     # 单选切换
-    aspect.locator("[data-director-aspect-option='16:9']").click()
+    aspect_panel.locator("[data-director-aspect-option='16:9']").click()
     page.wait_for_timeout(150)
     check(
         "aspect:switch-16-9",
-        aspect.locator("[data-director-aspect-option='16:9']").get_attribute("aria-pressed") == "true",
+        aspect_panel.locator("[data-director-aspect-option='16:9']").get_attribute("aria-pressed") == "true",
     )
     check(
         "aspect:fit-inactive",
-        aspect.locator("[data-director-aspect-option='自适应']").get_attribute("aria-pressed") == "false",
+        aspect_panel.locator("[data-director-aspect-option='自适应']").get_attribute("aria-pressed") == "false",
     )
 
-    # 切回场景条目：flyout 收起，场景树仍在
+    # 切回场景条目：面板收起，场景树仍在
     rail.locator("[data-director-rail-entry='scene']").click()
     page.wait_for_timeout(150)
-    check("scene:flyout-closes", page.locator("[data-director-aspect-flyout]").count() == 0)
+    check("scene:flyout-closes", not aspect_panel.is_visible())
     check("scene:tree-present", page.locator("[aria-label='场景对象']").first.is_visible())
 
     check("diagnostics:zero", not errors)

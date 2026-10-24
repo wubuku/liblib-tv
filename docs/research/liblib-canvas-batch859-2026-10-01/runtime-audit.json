@@ -1,0 +1,461 @@
+{
+ "判据数": 48,
+ "失败": [],
+ "audit": {
+  "batch": 859,
+  "title": "「全景图」「选择画幅比例」左侧面板模式",
+  "全景图": {
+   "模式": "panorama",
+   "场景树在场": false,
+   "旧浮层_全景图": 0,
+   "旧浮层_画幅比例": 0,
+   "五模式在DOM": {
+    "character": 0,
+    "camera": 0,
+    "panorama": 1,
+    "aspect": 0
+   },
+   "rail": {
+    "scene": {
+     "pressed": "false"
+    },
+    "addCharacter": {
+     "pressed": "false"
+    },
+    "addCamera": {
+     "pressed": "false"
+    },
+    "panorama": {
+     "pressed": "true"
+    },
+    "aspectRatio": {
+     "pressed": "false"
+    }
+   },
+   "全景图": {
+    "面板": {
+     "x": 48,
+     "y": 52,
+     "w": 232,
+     "h": 1028,
+     "right": 280,
+     "bottom": 1080
+    },
+    "在aside里": true,
+    "标题条": {
+     "x": 48,
+     "y": 52,
+     "w": 232,
+     "h": 48,
+     "right": 280,
+     "bottom": 100
+    },
+    "标题文本": "全景图",
+    "标题字号": "12px",
+    "容器": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 96,
+     "right": 280,
+     "bottom": 196
+    },
+    "容器内边距": "0px 8px",
+    "行": [
+     {
+      "text": "本地上传",
+      "x": 56,
+      "y": 100,
+      "w": 216,
+      "h": 32,
+      "fontSize": "13px",
+      "lineHeight": "20px",
+      "icon": {
+       "w": 14,
+       "h": 14
+      }
+     },
+     {
+      "text": "历史记录",
+      "x": 56,
+      "y": 132,
+      "w": 216,
+      "h": 32,
+      "fontSize": "13px",
+      "lineHeight": "20px",
+      "icon": {
+       "w": 14,
+       "h": 14
+      }
+     },
+     {
+      "text": "AI生成",
+      "x": 56,
+      "y": 164,
+      "w": 216,
+      "h": 32,
+      "fontSize": "13px",
+      "lineHeight": "20px",
+      "icon": {
+       "w": 14,
+       "h": 14
+      }
+     }
+    ]
+   },
+   "画幅比例": null
+  },
+  "画幅比例": {
+   "模式": "aspect",
+   "场景树在场": false,
+   "旧浮层_全景图": 0,
+   "旧浮层_画幅比例": 0,
+   "五模式在DOM": {
+    "character": 0,
+    "camera": 0,
+    "panorama": 0,
+    "aspect": 1
+   },
+   "rail": {
+    "scene": {
+     "pressed": "false"
+    },
+    "addCharacter": {
+     "pressed": "false"
+    },
+    "addCamera": {
+     "pressed": "false"
+    },
+    "panorama": {
+     "pressed": "false"
+    },
+    "aspectRatio": {
+     "pressed": "true"
+    }
+   },
+   "全景图": null,
+   "画幅比例": {
+    "面板": {
+     "x": 48,
+     "y": 52,
+     "w": 232,
+     "h": 1028,
+     "right": 280,
+     "bottom": 1080
+    },
+    "在aside里": true,
+    "标题条": {
+     "x": 48,
+     "y": 52,
+     "w": 232,
+     "h": 48,
+     "right": 280,
+     "bottom": 100
+    },
+    "标题文本": "选择画幅比例",
+    "标题字号": "12px",
+    "网格": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 324,
+     "right": 280,
+     "bottom": 424
+    },
+    "网格列": "104px 104px",
+    "网格列间距": "8px",
+    "网格内边距": "0px 8px 12px",
+    "格": [
+     {
+      "text": "自适应",
+      "x": 56,
+      "y": 100,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+      "pressed": "true",
+      "glyph": {
+       "w": 16,
+       "h": 11
+      }
+     },
+     {
+      "text": "21:9",
+      "x": 168,
+      "y": 100,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 16,
+       "h": 7
+      }
+     },
+     {
+      "text": "16:9",
+      "x": 56,
+      "y": 180,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 16,
+       "h": 9
+      }
+     },
+     {
+      "text": "4:3",
+      "x": 168,
+      "y": 180,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 16,
+       "h": 12
+      }
+     },
+     {
+      "text": "1:1",
+      "x": 56,
+      "y": 260,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 14,
+       "h": 14
+      }
+     },
+     {
+      "text": "3:4",
+      "x": 168,
+      "y": 260,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 8,
+       "h": 16
+      }
+     },
+     {
+      "text": "9:16",
+      "x": 56,
+      "y": 340,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 8,
+       "h": 16
+      }
+     }
+    ]
+   }
+  },
+  "切走再切回": {
+   "模式": "aspect",
+   "场景树在场": false,
+   "旧浮层_全景图": 0,
+   "旧浮层_画幅比例": 0,
+   "五模式在DOM": {
+    "character": 0,
+    "camera": 0,
+    "panorama": 0,
+    "aspect": 1
+   },
+   "rail": {
+    "scene": {
+     "pressed": "false"
+    },
+    "addCharacter": {
+     "pressed": "false"
+    },
+    "addCamera": {
+     "pressed": "false"
+    },
+    "panorama": {
+     "pressed": "false"
+    },
+    "aspectRatio": {
+     "pressed": "true"
+    }
+   },
+   "全景图": null,
+   "画幅比例": {
+    "面板": {
+     "x": 48,
+     "y": 52,
+     "w": 232,
+     "h": 1028,
+     "right": 280,
+     "bottom": 1080
+    },
+    "在aside里": true,
+    "标题条": {
+     "x": 48,
+     "y": 52,
+     "w": 232,
+     "h": 48,
+     "right": 280,
+     "bottom": 100
+    },
+    "标题文本": "选择画幅比例",
+    "标题字号": "12px",
+    "网格": {
+     "x": 48,
+     "y": 100,
+     "w": 232,
+     "h": 324,
+     "right": 280,
+     "bottom": 424
+    },
+    "网格列": "104px 104px",
+    "网格列间距": "8px",
+    "网格内边距": "0px 8px 12px",
+    "格": [
+     {
+      "text": "自适应",
+      "x": 56,
+      "y": 100,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 16,
+       "h": 11
+      }
+     },
+     {
+      "text": "21:9",
+      "x": 168,
+      "y": 100,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 16,
+       "h": 7
+      }
+     },
+     {
+      "text": "16:9",
+      "x": 56,
+      "y": 180,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.85)",
+      "pressed": "true",
+      "glyph": {
+       "w": 16,
+       "h": 9
+      }
+     },
+     {
+      "text": "4:3",
+      "x": 168,
+      "y": 180,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 16,
+       "h": 12
+      }
+     },
+     {
+      "text": "1:1",
+      "x": 56,
+      "y": 260,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 14,
+       "h": 14
+      }
+     },
+     {
+      "text": "3:4",
+      "x": 168,
+      "y": 260,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 8,
+       "h": 16
+      }
+     },
+     {
+      "text": "9:16",
+      "x": 56,
+      "y": 340,
+      "w": 104,
+      "h": 72,
+      "fontSize": "12px",
+      "borderRadius": "12px",
+      "borderWidth": "1px",
+      "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.1)",
+      "pressed": "false",
+      "glyph": {
+       "w": 8,
+       "h": 16
+      }
+     }
+    ]
+   }
+  }
+ }
+}

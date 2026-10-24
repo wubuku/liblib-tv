@@ -121,8 +121,8 @@ TRANSIENT_OVERLAYS = (
     # Preferring it keeps this list from growing one entry per surface.
     "[data-liblib-overlay]",
     "[data-director-character-panel]",
-    "[data-director-panorama-flyout]",
-    "[data-director-aspect-flyout]",
+    "[data-director-panorama-panel]",
+    "[data-director-aspect-panel]",
     "[data-director-geometry-submenu]",
     "[data-director-tree-context-menu]",
     "[data-director-motion-path-menu]",

@@ -68,15 +68,35 @@ IGNORE_PAGE_ERROR = ("TransformControls",)
 #   留着它们只会让 `ownZ` 变成 "auto"（侧栏没有 z）⟹ ⟹ `int("auto")` 直接崩。
 #   ⟹ ⟹ 它们的「不再被 z 困住」由**结构性断言**保证（见 INLINE_CHECK）：
 #   两者都必须**留在 aside / 面板里面**、不得被 portal 到 body。
+# ★★★ Batch 859 **再迁移掉两条**：源站逐字 —— 「全景图」「选择画幅比例」
+#   也**不是** portal 浮层 ⟹ ⟹ 它们是**左侧面板的一个分支**
+#   （`"panorama"===z?(…):null,"aspect"===z?(…):null`）⟹ ⟹ 625 这把尺子
+#   （portal 浮层的 z 有没有被困住 / 有没有盖住时间线带）**不适用**于它们。
+#   ⟹ ⟹ 改成**结构性**断言：它们必须**留在 aside 里面**、不得被 portal
+#   到 body（见 PANEL_CHECK）。
 FLOUTS: list[tuple[str, str, str | None, str]] = [
-    ("panorama-flyout", "[data-director-rail-entry='panorama']", None,
-     "[data-director-panorama-flyout]"),
-    ("aspect-flyout", "[data-director-rail-entry='aspect-ratio']", None,
-     "[data-director-aspect-flyout]"),
     ("crowd-dialog", "[data-director-rail-entry='add-character']",
      "[data-director-character-option='crowd-3x3']",
      "[data-director-crowd-dialog]"),
 ]
+
+# ★★ Batch 859：两个**面板**分支的结构性检查（不是浮层 ⟹ ⟹ 没有 z 可困）。
+PANEL_CHECK_JS = r"""()=>{
+  const pick=(sel)=>{
+    const el=document.querySelector(sel);
+    if(!el) return {present:false};
+    return {present:true,
+            insideAside: el.closest('aside')!==null,
+            parentIsBody: el.parentElement===document.body,
+            position: getComputedStyle(el).position,
+            rect: (()=>{const r=el.getBoundingClientRect();
+              return [Math.round(r.x),Math.round(r.y),Math.round(r.width),Math.round(r.height)];})()};
+  };
+  return {panorama: pick('[data-director-panorama-panel]'),
+          aspect: pick('[data-director-aspect-panel]'),
+          oldFlyouts: document.querySelectorAll('[data-director-panorama-flyout],'
+            + '[data-director-aspect-flyout]').length};
+}"""
 
 # ★★ Batch 858：这两个表面**不是** portal 浮层 ⟹ ⟹ 断言它们**留在原地**。
 #   （这是「不再被 z 困住」的**结构性**保证，比逐视口量坐标更强。）
@@ -267,6 +287,7 @@ def main() -> None:
         browser2 = p2.chromium.launch()
         page2 = browser2.new_page(viewport={"width": 1440, "height": 900},
                                   device_scale_factor=1)
+        panels: dict[str, Any] = {}
         try:
             b619.open_desk(page2)
             page2.locator("[data-director-rail-entry='add-character']").first.click(
@@ -276,6 +297,16 @@ def main() -> None:
                 timeout=15_000)
             page2.wait_for_timeout(500)
             inline = page2.evaluate(INLINE_CHECK_JS)
+            # ★★ Batch 859：全景图 / 画幅比例**也是面板分支** ⟹ ⟹ 同样断言
+            #   「留在 aside 里、没有被 portal 到 body、旧浮层选择器清零」。
+            page2.locator("[data-director-rail-entry='panorama']").first.click(
+                timeout=15_000)
+            page2.wait_for_timeout(400)
+            panels["panorama"] = page2.evaluate(PANEL_CHECK_JS)
+            page2.locator("[data-director-rail-entry='aspect-ratio']").first.click(
+                timeout=15_000)
+            page2.wait_for_timeout(400)
+            panels["aspect"] = page2.evaluate(PANEL_CHECK_JS)
         except Exception as exc:  # noqa: BLE001
             inline = {"error": f"{type(exc).__name__}: {str(exc)[:120]}"}
         finally:
@@ -288,6 +319,17 @@ def main() -> None:
     v.check("geometry-submenu-expands-in-place-not-in-a-portal",
             bool(inline.get("geo")) and bool(inline.get("geoInsidePanel"))
             and not inline.get("geoParentIsBody"), detail=inline)
+
+    # ★★ Batch 859：全景图 / 画幅比例的**结构性**断言（源站逐字：它们是
+    #   左侧面板的一个分支 ⟹ ⟹ 不是 portal 浮层 ⟹ ⟹ 没有 z 可困）。
+    v.result["panelSurfaces"] = panels
+    for mode in ("panorama", "aspect"):
+        surf = (panels.get(mode) or {}).get(mode) or {}
+        v.check(f"{mode}-is-a-side-panel-not-a-portal-flyout",
+                bool(surf.get("present")) and bool(surf.get("insideAside"))
+                and not surf.get("parentIsBody")
+                and (panels.get(mode) or {}).get("oldFlyouts") == 0,
+                detail=panels.get(mode))
 
     v.check("every-flyout-opens-at-every-viewport", len(live) == len(rows),
             detail={"live": len(live), "total": len(rows),
@@ -340,8 +382,12 @@ def main() -> None:
     #    strict "identical at every width and height" rule, and the submenu
     #    keeps the strict "identical at every width" rule for x/width.
     BEFORE = {
-        "panorama-flyout": [48, 196, 232, 134],
-        "aspect-flyout": [48, 236, 232, 350],
+        # ★ Batch 859 **迁移掉**「panorama-flyout: [48,196,232,134]」与
+        #   「aspect-flyout: [48,236,232,350]」—— 源站逐字：它们**不是浮层**，
+        #   而是左侧面板的一个分支 ⟹ ⟹ 面板在 (48,52) 232 宽、**占满整列高**，
+        #   而且面板高度**随模式内容变**（源站实测：全景图 1028／画幅 1028，
+        #   内容容器 96／324）⟹ ⟹ 写死坐标既不对、也不该写死。
+        #   ⟹ ⟹ 改成结构性断言（PANEL_CHECK）。
         # ★ Batch 857 **迁移掉**「crowd-dialog: [294, 52, 220, 208]」。
         #   旧值是 clone 写死「rail 左边 + 294」算出来的 —— **源站没有这条规则**。
         #   源站逐字：

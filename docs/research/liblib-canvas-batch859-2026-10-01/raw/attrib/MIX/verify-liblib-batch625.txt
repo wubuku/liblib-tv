@@ -1,0 +1,13 @@
+  PASS add-character-is-a-side-panel-not-a-portal-flyout  {'panel': True, 'panelInsideAside': True, 'panelParentIsBody': False, 'geo': True, 'geoInsidePanel': True, 'geoParentIsBody': False}
+  PASS geometry-submenu-expands-in-place-not-in-a-portal  {'panel': True, 'panelInsideAside': True, 'panelParentIsBody': False, 'geo': True, 'geoInsidePanel': True, 'geoParentIsBody': False}
+  FAIL panorama-is-a-side-panel-not-a-portal-flyout  {'panorama': {'present': False}, 'aspect': {'present': False}, 'oldFlyouts': 1}
+  FAIL aspect-is-a-side-panel-not-a-portal-flyout  {'panorama': {'present': False}, 'aspect': {'present': False}, 'oldFlyouts': 1}
+  PASS every-flyout-opens-at-every-viewport  {'live': 5, 'total': 5, 'errors': []}
+  PASS no-flyout-has-a-z-trapped-below-its-own-number
+  PASS no-control-inside-the-timeline-band-is-covered
+  PASS the-flyouts-really-carry-controls  [('crowd-dialog', 5)]
+  PASS the-portal-moved-nothing
+  PASS crowd-dialog-width-is-220  [(1920, 1150, 220), (1440, 900, 220), (1280, 720, 220), (1920, 844, 220), (1100, 700, 220)]
+
+8/10 passed
+FAILED: panorama-is-a-side-panel-not-a-portal-flyout, aspect-is-a-side-panel-not-a-portal-flyout

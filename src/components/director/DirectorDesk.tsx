@@ -37,6 +37,8 @@ import { DirectorCameraPresetPanel } from "@/components/director/DirectorCameraP
 // ★ Batch 858：源站逐字 —— 左侧资源栏是**模式互斥**的多视图容器，
 //   「添加角色」是其中一个视图（不再是浮层）。
 import { DirectorCharacterPanel } from "@/components/director/DirectorCharacterPanel";
+import { DirectorPanoramaPanel } from "@/components/director/DirectorPanoramaPanel";
+import { DirectorAspectPanel } from "@/components/director/DirectorAspectPanel";
 import { DirectorShortcutsDialog } from "@/components/director/DirectorShortcutsDialog";
 import {
   collectDirectorCanvasMediaInputs,
@@ -1242,7 +1244,15 @@ export default function DirectorDesk({
         ref={treePanelRef}
         // ★ Batch 858：左侧面板现在是**多视图**容器 ⟹ ⟹ aria-label 跟着
         //   当前模式走（场景树时仍是「场景对象」，老门禁 35/36/50/536 照旧）。
-        aria-label={leftPanelView === "character" ? "添加角色" : "场景对象"}
+        aria-label={
+          leftPanelView === "character"
+            ? "添加角色"
+            : leftPanelView === "panorama"
+              ? "全景图"
+              : leftPanelView === "aspect"
+                ? "选择画幅比例"
+                : "场景对象"
+        }
         // ★ 稳定选择器：模式感知（老门禁用的 aria-label 会随模式变）。
         data-director-left-panel-view={leftPanelView}
         aria-hidden={
@@ -1278,6 +1288,19 @@ export default function DirectorDesk({
           />
         ) : null}
         {leftPanelView === "scene" ? <DirectorObjectTree /> : null}
+        {/* ★ Batch 859（源站逐字）：源站左侧那个 232px 面板是**五模式互斥
+            容器** ⟹ ⟹ `"panorama"===z?(…)` 与 `"aspect"===z?(…)` 也是
+            **面板模式**、不是 rail 浮层 ⟹ ⟹ 这两枚从浮层搬到这里。
+            ★ ★ 这两个面板**故意不加 `key`** ⟹ ⟹ 理由两条：
+              ① 兄弟节点的 key 必须**唯一** ⟹ ⟹ 若也写 `key={leftPanelView}`，
+                 三个面板就是**同一个 key** ⟹ ⟹ React 会告警
+                 「Encountered two children with the same key」并错配元素
+                 （★ 本批实测：.aspect 那格点不动、面板不可见）；
+              ② 源站逐字：切 `z` 时 `O(null)` 清掉的是**子菜单**（crowd /
+                 geometry），**画幅比例的选中项是画布级状态、不会清**
+                 ⟹ ⟹ 不重挂载反而更贴源站。 */}
+        <DirectorPanoramaPanel active={leftPanelView === "panorama"} />
+        <DirectorAspectPanel active={leftPanelView === "aspect"} />
         {/* ★ Batch 858：源站逐字 —— 左侧面板是**模式互斥**的（`"scene"===z?n:null,
             "character"===z?(…)`）⟹ ⟹ 切到「添加角色」时**场景树不渲染**。
             ⟹ ⟹ 场景树与本面板互斥、永远不同时出现 ⟹ ⟹ batch 857 登记的
@@ -1298,14 +1321,11 @@ export default function DirectorDesk({
       <DirectorIconRail
         onPanoramaSourceChange={setPanoramaSourceId}
         onOpenShortcuts={() => setShortcutsOpen(true)}
-        onOpenCameraPresets={(open = true) =>
-          setLeftPanelView(open ? "camera" : "scene")
-        }
-        // ★ Batch 858：源站逐字 —— 「添加角色」把左侧资源栏切成一个**面板
-        //   视图**（与「添加机位」同一机制），与场景树**互斥**。
-        onOpenCharacterPanel={(open = true) =>
-          setLeftPanelView(open ? "character" : "scene")
-        }
+        // ★ ★★ Batch 859（源站逐字）：源站 rail 的每一枚条目 onClick 都是
+        //   `F(r.id)` ⟹ ⟹ **一个**动作把左侧面板切成那个模式（互斥）。
+        //   clone 此前是「先关别人、再开自己」两段式（两个 open? 回调）⟹ ⟹
+        //   顺序一错就会两个面板同时在 ⟹ ⟹ 现在合并成**一次**切换。
+        onSelectLeftPanelView={(view) => setLeftPanelView(view)}
         // ★ Batch 858：源站 rail 按钮 `aria-pressed={z===r.id}` ⟹ ⟹ 选中态
         //   由左侧面板模式派生 ⟹ ⟹ 这里把模式传下去，rail 不再自带第二份真相。
         panelView={leftPanelView}

@@ -1,0 +1,14 @@
+  PASS  S1 契约：17 个片段唯一命中 ＋ 5 条关键逐字 ＋ 两项自检 ｜ 唯一命中 17/17 ｜ 关键逐字 True ｜ 任意值自检 True ｜ 跨片段防呆 True
+  PASS  S2 源站实测：对话框 220×204 @(280,388) ＋ 量程/初值 ｜ 盒 220x204 @(280,388) ｜ 间距 {'aria': '间距', 'min': '0.1', 'max': '10', 'step': '0.1', 'v': '1.2'} ｜ 行 {'aria': '行数', 'min': '1', 'max': '10', 'step': '1', 'v': '3'} ｜ 列 {'aria': '列数', 'min': '1', 'max': '10', 'step': '1', 'v': '3'}
+  PASS  S3 源站行为：间距填 1.55 ⟹ 读回 1.6（保留 1 位小数） ｜ 源站读回 '1.6'
+  PASS  S4 源站唯一入口：全页同 aria-label 的元素只有 1 个 ｜ aria '添加群众阵列' ｜ count 1 ｜ 命中 ['DIV']
+  PASS  S5 源站逐字：开关 ＋ 点外面关闭 ＋ aria-expanded ｜ 三条逐字均已机器提取入库 True
+  PASS  S6 clone 实测：对话框落点 ＝ 按钮 right+8 / 按钮 top ｜ left 期望 281 实测 281（相等 True）｜ top 期望 435 实测 435（相等 True）
+  PASS  S7 clone 行为：间距填 1.55 ⟹ 读回 1.6（与源站同口径） ｜ clone 读回 '1.6'
+  PASS  S8 clone 实测：再点一次关 ＋ 点外面关（源站两条行为） ｜ 再点一次后 对话框可见 False / aria-expanded 'false' ｜ 点外面后 对话框可见 False
+  PASS  S9 clone 实测：桌面可见的 crowd 入口 == 1 ｜ 桌面可见入口数 1
+  PASS  S10 clone 实测：移动端可见入口 == 1 ＋ 开的是同一个对话框 ＋ 那枚也是开关 ｜ 移动端可见入口数 1 ｜ 移动端入口可见 True ｜ rail 入口可见 False ｜ 对话框宽 220 ｜ 间距初值 '1.2' ｜ 再点一次后对话框可见 False ｜ 源站无移动端布局 True
+  PASS  S11 clone 源码：legacy 选择器清零 ＋ 间距保留 1 位小数 ＋ store 不夹取 ｜ legacy 残留 [] ｜ 1 位小数 True ｜ store 不夹取 True（函数体 3210 字，含 Math.min False、含 1.6 兜底 True）
+  PASS  S12 老门禁迁移：45.py（crowd 段迁到 rail）＋ 625.py（落点改推导） ｜ 45: 迁到 rail True ｜ 45: 关浮层 True ｜ 45: 负向断言 True ｜ 625: 落点改推导 True
+
+12/12 条通过

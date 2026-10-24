@@ -1,0 +1,56 @@
+  PASS 1920-plain:audited-a-real-number-of-controls  127
+  PASS 1920-plain:no-control-is-covered
+  PASS 1920-plain:every-timeline-overlay-exemption-has-both-halves  [('帮助', True, True)]
+  PASS 1920-plain:no-control-is-off-viewport-and-unreachable
+  PASS 1920-plain:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-plain:the-only-possible-block-is-帮助
+  PASS 1920-plain:帮助-is-still-explained-by-a-known-reason  [('帮助', False, True, False)]
+  PASS 1920-plain:no-page-errors
+  PASS 1920-plain:no-console-errors
+  PASS 1920-export-panel:audited-a-real-number-of-controls  132
+  PASS 1920-export-panel:no-control-is-covered
+  PASS 1920-export-panel:every-timeline-overlay-exemption-has-both-halves  [('帮助', True, True)]
+  PASS 1920-export-panel:no-control-is-off-viewport-and-unreachable
+  PASS 1920-export-panel:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-export-panel:the-only-possible-block-is-帮助
+  PASS 1920-export-panel:帮助-is-still-explained-by-a-known-reason  [('帮助', False, True, False)]
+  PASS 1920-export-panel:the-overlay-was-found-open  ['section|data-director-export-panel=true data-director-export-status=idle class']
+  PASS 1920-export-panel:the-open-overlay-covers-no-control
+  PASS 1920-export-panel:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 1, 'covered': 0, 'attributed': 0, 'timelineOverlay': 1, 'viewportSqueeze': 0}
+  PASS 1920-export-panel:no-page-errors
+  PASS 1920-export-panel:no-console-errors
+  PASS 1920-tree-context-menu:audited-a-real-number-of-controls  132
+  PASS 1920-tree-context-menu:no-control-is-covered
+  PASS 1920-tree-context-menu:every-timeline-overlay-exemption-has-both-halves  [('帮助', True, True)]
+  PASS 1920-tree-context-menu:no-control-is-off-viewport-and-unreachable
+  PASS 1920-tree-context-menu:the-off-viewport-branch-actually-ran  8 off-viewport, 8 scrollable
+  PASS 1920-tree-context-menu:the-only-possible-block-is-帮助
+  PASS 1920-tree-context-menu:帮助-is-still-explained-by-a-known-reason  [('帮助', False, True, False)]
+  PASS 1920-tree-context-menu:the-overlay-was-found-open  ['div|data-director-tree-context-menu=true class=fixed z-[120] w-[128px] rou']
+  PASS 1920-tree-context-menu:the-overlay-attributed-at-least-one-control  [('隐藏角色A', 'div|data-director-tree-context-menu=true'), ('锁定角色A', 'div|data-director-tree-context-menu=true'), ('删除角色A', 'div|data-director-tree-context-menu=true'), ('隐藏咖啡桌', 'div|data-director-tree-context-menu=true')]
+  PASS 1920-tree-context-menu:every-failure-is-either-a-defect-or-attributed  {'nonClipped': 13, 'covered': 0, 'attributed': 12, 'timelineOverlay': 1, 'viewportSqueeze': 0}
+  PASS 1920-tree-context-menu:no-page-errors
+  PASS 1920-tree-context-menu:no-console-errors
+Traceback (most recent call last):
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch619.py", line 334, in <module>
+    main()
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch619.py", line 318, in main
+    run_state(browser, v, label, which, setup, overlay, covers)
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch619.py", line 168, in run_state
+    page.locator(overlay).first.wait_for(state="visible", timeout=15_000)
+  File "/Users/yangjiefeng/.pyenv/versions/3.10.6/lib/python3.10/site-packages/playwright/sync_api/_generated.py", line 17907, in wait_for
+    self._sync(self._impl_obj.wait_for(timeout=timeout, state=state))
+  File "/Users/yangjiefeng/.pyenv/versions/3.10.6/lib/python3.10/site-packages/playwright/_impl/_sync_base.py", line 115, in _sync
+    return task.result()
+  File "/Users/yangjiefeng/.pyenv/versions/3.10.6/lib/python3.10/site-packages/playwright/_impl/_locator.py", line 685, in wait_for
+    await self._frame.wait_for_selector(
+  File "/Users/yangjiefeng/.pyenv/versions/3.10.6/lib/python3.10/site-packages/playwright/_impl/_frame.py", line 323, in wait_for_selector
+    await self._channel.send("waitForSelector", locals_to_params(locals()))
+  File "/Users/yangjiefeng/.pyenv/versions/3.10.6/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 61, in send
+    return await self._connection.wrap_api_call(
+  File "/Users/yangjiefeng/.pyenv/versions/3.10.6/lib/python3.10/site-packages/playwright/_impl/_connection.py", line 528, in wrap_api_call
+    raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 15000ms exceeded.
+Call log:
+  - waiting for locator("[data-director-panorama-panel]").first to be visible
+

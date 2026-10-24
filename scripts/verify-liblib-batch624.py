@@ -63,9 +63,9 @@ def states_for(w: int) -> list[tuple[str, str, str | None]]:
     if desk:
         out += [
             ("rail-panorama", "[data-director-rail-entry='panorama']",
-             "[data-director-panorama-flyout]"),
+             "[data-director-panorama-panel]"),
             ("rail-aspect", "[data-director-rail-entry='aspect-ratio']",
-             "[data-director-aspect-flyout]"),
+             "[data-director-aspect-panel]"),
             ("rail-add-character", "[data-director-rail-entry='add-character']",
              "[data-director-character-panel]"),
             ("rail-ai-import", "[data-director-rail-entry='ai-import']",

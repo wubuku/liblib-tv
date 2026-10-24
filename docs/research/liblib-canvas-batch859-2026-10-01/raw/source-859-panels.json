@@ -1,0 +1,896 @@
+{
+  "①导演台已打开": true,
+  "②有练习浮层": true,
+  "③rail按钮": [
+    {
+      "x": 8,
+      "y": 60,
+      "w": 32,
+      "h": 32,
+      "aria": "场景",
+      "pressed": "true",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 116,
+      "w": 32,
+      "h": 32,
+      "aria": "添加角色",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 156,
+      "w": 32,
+      "h": 32,
+      "aria": "添加机位",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 196,
+      "w": 32,
+      "h": 32,
+      "aria": "全景图",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 236,
+      "w": 32,
+      "h": 32,
+      "aria": "选择画幅比例",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 276,
+      "w": 32,
+      "h": 32,
+      "aria": "AI 识图导入",
+      "pressed": null,
+      "title": "",
+      "text": ""
+    }
+  ],
+  "③全景图按钮": {
+    "x": 8,
+    "y": 196,
+    "w": 32,
+    "h": 32,
+    "aria": "全景图",
+    "pressed": "false",
+    "title": "",
+    "text": ""
+  },
+  "③画幅比例按钮": {
+    "x": 8,
+    "y": 236,
+    "w": 32,
+    "h": 32,
+    "aria": "选择画幅比例",
+    "pressed": "false",
+    "title": "",
+    "text": ""
+  },
+  "④全景图面板": {
+    "panel": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 1028,
+      "right": 280,
+      "bottom": 1080
+    },
+    "panelCls": "flex w-[232px] min-w-0 flex-col bg-[#171717]",
+    "panelCount": 1,
+    "title": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 48,
+      "right": 280,
+      "bottom": 100
+    },
+    "titleCls": "flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+    "titleFont": "12px",
+    "titleText": "全景图",
+    "buttons": [
+      {
+        "text": "本地上传",
+        "x": 56,
+        "y": 100,
+        "w": 216,
+        "h": 32,
+        "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45",
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "spanFont": "13px",
+        "spanLineHeight": "20px",
+        "spanText": "本地上传",
+        "borderColor": "rgb(82, 82, 82)",
+        "borderWidth": "0px",
+        "borderRadius": "8px",
+        "disabled": false,
+        "svgBox": {
+          "x": 64,
+          "y": 109,
+          "w": 14,
+          "h": 14
+        }
+      },
+      {
+        "text": "历史记录",
+        "x": 56,
+        "y": 132,
+        "w": 216,
+        "h": 32,
+        "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45",
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "spanFont": "13px",
+        "spanLineHeight": "20px",
+        "spanText": "历史记录",
+        "borderColor": "rgb(82, 82, 82)",
+        "borderWidth": "0px",
+        "borderRadius": "8px",
+        "disabled": false,
+        "svgBox": {
+          "x": 64,
+          "y": 141,
+          "w": 14,
+          "h": 14
+        }
+      },
+      {
+        "text": "AI生成",
+        "x": 56,
+        "y": 164,
+        "w": 216,
+        "h": 32,
+        "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45",
+        "fontSize": "13px",
+        "lineHeight": "20px",
+        "spanFont": "13px",
+        "spanLineHeight": "20px",
+        "spanText": "AI生成",
+        "borderColor": "rgb(82, 82, 82)",
+        "borderWidth": "0px",
+        "borderRadius": "8px",
+        "disabled": false,
+        "svgBox": {
+          "x": 64,
+          "y": 173,
+          "w": 14,
+          "h": 14
+        }
+      }
+    ],
+    "grids": [],
+    "asideText": "3D导演台全景图本地上传历史记录AI生成",
+    "sceneTreePresent": false,
+    "children": [
+      {
+        "tag": "DIV",
+        "cls": "flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+        "box": {
+          "x": 48,
+          "y": 52,
+          "w": 232,
+          "h": 48,
+          "right": 280,
+          "bottom": 100
+        },
+        "padding": "0px 12px",
+        "display": "flex"
+      },
+      {
+        "tag": "DIV",
+        "cls": "px-2",
+        "box": {
+          "x": 48,
+          "y": 100,
+          "w": 232,
+          "h": 96,
+          "right": 280,
+          "bottom": 196
+        },
+        "padding": "0px 8px",
+        "display": "block"
+      }
+    ],
+    "fixedPortals": [
+      {
+        "tag": "DIV",
+        "cls": "fixed bottom-3 z-10 flex items-end gap-2",
+        "x": 8,
+        "y": 1028,
+        "w": 274,
+        "h": 40,
+        "z": "10",
+        "text": "资产管理38%"
+      },
+      {
+        "tag": "DIV",
+        "cls": "pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:duration-200",
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080,
+        "z": "180",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "cls": "fixed flex flex-col inset-0",
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080,
+        "z": "600",
+        "text": "3D导演台导演视角机位视角3D导演台全景图本地上传历史记录AI生成重置视角3D场"
+      }
+    ]
+  },
+  "④全景图时rail": [
+    {
+      "x": 8,
+      "y": 60,
+      "w": 32,
+      "h": 32,
+      "aria": "场景",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 56,
+      "y": 100,
+      "w": 216,
+      "h": 32,
+      "aria": "",
+      "pressed": null,
+      "title": "",
+      "text": "本地上传"
+    },
+    {
+      "x": 8,
+      "y": 116,
+      "w": 32,
+      "h": 32,
+      "aria": "添加角色",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 56,
+      "y": 132,
+      "w": 216,
+      "h": 32,
+      "aria": "",
+      "pressed": null,
+      "title": "",
+      "text": "历史记录"
+    },
+    {
+      "x": 8,
+      "y": 156,
+      "w": 32,
+      "h": 32,
+      "aria": "添加机位",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 56,
+      "y": 164,
+      "w": 216,
+      "h": 32,
+      "aria": "",
+      "pressed": null,
+      "title": "",
+      "text": "AI生成"
+    },
+    {
+      "x": 8,
+      "y": 196,
+      "w": 32,
+      "h": 32,
+      "aria": "全景图",
+      "pressed": "true",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 236,
+      "w": 32,
+      "h": 32,
+      "aria": "选择画幅比例",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 276,
+      "w": 32,
+      "h": 32,
+      "aria": "AI 识图导入",
+      "pressed": null,
+      "title": "",
+      "text": ""
+    }
+  ],
+  "⑤画幅比例面板": {
+    "panel": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 1028,
+      "right": 280,
+      "bottom": 1080
+    },
+    "panelCls": "flex w-[232px] min-w-0 flex-col bg-[#171717]",
+    "panelCount": 1,
+    "title": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 48,
+      "right": 280,
+      "bottom": 100
+    },
+    "titleCls": "flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+    "titleFont": "12px",
+    "titleText": "选择画幅比例",
+    "buttons": [
+      {
+        "text": "自适应",
+        "x": 56,
+        "y": 100,
+        "w": 104,
+        "h": 72,
+        "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35 border",
+        "fontSize": "12px",
+        "lineHeight": "18.6px",
+        "spanFont": "12px",
+        "spanLineHeight": "18.6px",
+        "spanText": "",
+        "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.85)",
+        "borderWidth": "1px",
+        "borderRadius": "12px",
+        "disabled": false,
+        "svgBox": null
+      },
+      {
+        "text": "21:9",
+        "x": 168,
+        "y": 100,
+        "w": 104,
+        "h": 72,
+        "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35 border",
+        "fontSize": "12px",
+        "lineHeight": "18.6px",
+        "spanFont": "12px",
+        "spanLineHeight": "18.6px",
+        "spanText": "",
+        "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+        "borderWidth": "1px",
+        "borderRadius": "12px",
+        "disabled": false,
+        "svgBox": null
+      },
+      {
+        "text": "16:9",
+        "x": 56,
+        "y": 180,
+        "w": 104,
+        "h": 72,
+        "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35 border",
+        "fontSize": "12px",
+        "lineHeight": "18.6px",
+        "spanFont": "12px",
+        "spanLineHeight": "18.6px",
+        "spanText": "",
+        "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+        "borderWidth": "1px",
+        "borderRadius": "12px",
+        "disabled": false,
+        "svgBox": null
+      },
+      {
+        "text": "4:3",
+        "x": 168,
+        "y": 180,
+        "w": 104,
+        "h": 72,
+        "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35 border",
+        "fontSize": "12px",
+        "lineHeight": "18.6px",
+        "spanFont": "12px",
+        "spanLineHeight": "18.6px",
+        "spanText": "",
+        "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+        "borderWidth": "1px",
+        "borderRadius": "12px",
+        "disabled": false,
+        "svgBox": null
+      },
+      {
+        "text": "1:1",
+        "x": 56,
+        "y": 260,
+        "w": 104,
+        "h": 72,
+        "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35 border",
+        "fontSize": "12px",
+        "lineHeight": "18.6px",
+        "spanFont": "12px",
+        "spanLineHeight": "18.6px",
+        "spanText": "",
+        "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+        "borderWidth": "1px",
+        "borderRadius": "12px",
+        "disabled": false,
+        "svgBox": null
+      },
+      {
+        "text": "3:4",
+        "x": 168,
+        "y": 260,
+        "w": 104,
+        "h": 72,
+        "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35 border",
+        "fontSize": "12px",
+        "lineHeight": "18.6px",
+        "spanFont": "12px",
+        "spanLineHeight": "18.6px",
+        "spanText": "",
+        "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+        "borderWidth": "1px",
+        "borderRadius": "12px",
+        "disabled": false,
+        "svgBox": null
+      },
+      {
+        "text": "9:16",
+        "x": 56,
+        "y": 340,
+        "w": 104,
+        "h": 72,
+        "cls": "hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35 border",
+        "fontSize": "12px",
+        "lineHeight": "18.6px",
+        "spanFont": "12px",
+        "spanLineHeight": "18.6px",
+        "spanText": "",
+        "borderColor": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+        "borderWidth": "1px",
+        "borderRadius": "12px",
+        "disabled": false,
+        "svgBox": null
+      }
+    ],
+    "grids": [
+      {
+        "cls": "grid grid-cols-2 gap-2 px-2 pb-3",
+        "box": {
+          "x": 48,
+          "y": 100,
+          "w": 232,
+          "h": 324,
+          "right": 280,
+          "bottom": 424
+        },
+        "gridTemplateColumns": "104px 104px",
+        "columnGap": "8px",
+        "rowGap": "8px",
+        "padding": "0px 8px 12px",
+        "display": "grid"
+      }
+    ],
+    "asideText": "3D导演台选择画幅比例自适应21:916:94:31:13:49:16",
+    "sceneTreePresent": false,
+    "children": [
+      {
+        "tag": "DIV",
+        "cls": "flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+        "box": {
+          "x": 48,
+          "y": 52,
+          "w": 232,
+          "h": 48,
+          "right": 280,
+          "bottom": 100
+        },
+        "padding": "0px 12px",
+        "display": "flex"
+      },
+      {
+        "tag": "DIV",
+        "cls": "grid grid-cols-2 gap-2 px-2 pb-3",
+        "box": {
+          "x": 48,
+          "y": 100,
+          "w": 232,
+          "h": 324,
+          "right": 280,
+          "bottom": 424
+        },
+        "padding": "0px 8px 12px",
+        "display": "grid"
+      }
+    ],
+    "fixedPortals": [
+      {
+        "tag": "DIV",
+        "cls": "fixed bottom-3 z-10 flex items-end gap-2",
+        "x": 8,
+        "y": 1028,
+        "w": 274,
+        "h": 40,
+        "z": "10",
+        "text": "资产管理38%"
+      },
+      {
+        "tag": "DIV",
+        "cls": "pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:duration-200",
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080,
+        "z": "180",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "cls": "fixed flex flex-col inset-0",
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080,
+        "z": "600",
+        "text": "3D导演台导演视角机位视角3D导演台选择画幅比例自适应21:916:94:31:"
+      }
+    ]
+  },
+  "⑤画幅比例时rail": [
+    {
+      "x": 8,
+      "y": 60,
+      "w": 32,
+      "h": 32,
+      "aria": "场景",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 56,
+      "y": 100,
+      "w": 104,
+      "h": 72,
+      "aria": "",
+      "pressed": null,
+      "title": "",
+      "text": "自适应"
+    },
+    {
+      "x": 8,
+      "y": 116,
+      "w": 32,
+      "h": 32,
+      "aria": "添加角色",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 156,
+      "w": 32,
+      "h": 32,
+      "aria": "添加机位",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 56,
+      "y": 180,
+      "w": 104,
+      "h": 72,
+      "aria": "",
+      "pressed": null,
+      "title": "",
+      "text": "16:9"
+    },
+    {
+      "x": 8,
+      "y": 196,
+      "w": 32,
+      "h": 32,
+      "aria": "全景图",
+      "pressed": "false",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 8,
+      "y": 236,
+      "w": 32,
+      "h": 32,
+      "aria": "选择画幅比例",
+      "pressed": "true",
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 56,
+      "y": 260,
+      "w": 104,
+      "h": 72,
+      "aria": "",
+      "pressed": null,
+      "title": "",
+      "text": "1:1"
+    },
+    {
+      "x": 8,
+      "y": 276,
+      "w": 32,
+      "h": 32,
+      "aria": "AI 识图导入",
+      "pressed": null,
+      "title": "",
+      "text": ""
+    },
+    {
+      "x": 56,
+      "y": 340,
+      "w": 104,
+      "h": 72,
+      "aria": "",
+      "pressed": null,
+      "title": "",
+      "text": "9:16"
+    }
+  ],
+  "⑥场景按钮": {
+    "x": 8,
+    "y": 60,
+    "w": 32,
+    "h": 32,
+    "aria": "场景",
+    "pressed": "true",
+    "title": "",
+    "text": ""
+  },
+  "⑥切回场景后": {
+    "panel": {
+      "x": 48,
+      "y": 52,
+      "w": 232,
+      "h": 1028,
+      "right": 280,
+      "bottom": 1080
+    },
+    "panelCls": "flex w-[232px] min-w-0 flex-col bg-[#171717]",
+    "panelCount": 1,
+    "title": {
+      "x": 56,
+      "y": 52,
+      "w": 216,
+      "h": 48,
+      "right": 272,
+      "bottom": 100
+    },
+    "titleCls": "flex items-center h-12 shrink-0 px-1",
+    "titleFont": "16px",
+    "titleText": "场景",
+    "buttons": [
+      {
+        "text": "",
+        "x": 226,
+        "y": 150,
+        "w": 20,
+        "h": 20,
+        "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/35 transition-colors hover:bg-white/10 hover:text-white/75",
+        "fontSize": "12px",
+        "lineHeight": "12px",
+        "spanFont": null,
+        "spanLineHeight": null,
+        "spanText": null,
+        "borderColor": "rgb(82, 82, 82)",
+        "borderWidth": "0px",
+        "borderRadius": "4px",
+        "disabled": false,
+        "svgBox": {
+          "x": 230,
+          "y": 154,
+          "w": 12,
+          "h": 12
+        }
+      },
+      {
+        "text": "",
+        "x": 248,
+        "y": 150,
+        "w": 20,
+        "h": 20,
+        "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/35 transition-colors hover:bg-white/10 hover:text-white/75 ",
+        "fontSize": "12px",
+        "lineHeight": "12px",
+        "spanFont": null,
+        "spanLineHeight": null,
+        "spanText": null,
+        "borderColor": "rgb(82, 82, 82)",
+        "borderWidth": "0px",
+        "borderRadius": "4px",
+        "disabled": false,
+        "svgBox": {
+          "x": 252,
+          "y": 154,
+          "w": 12,
+          "h": 12
+        }
+      },
+      {
+        "text": "",
+        "x": 226,
+        "y": 182,
+        "w": 20,
+        "h": 20,
+        "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/35 transition-colors hover:bg-white/10 hover:text-white/75",
+        "fontSize": "12px",
+        "lineHeight": "12px",
+        "spanFont": null,
+        "spanLineHeight": null,
+        "spanText": null,
+        "borderColor": "rgb(82, 82, 82)",
+        "borderWidth": "0px",
+        "borderRadius": "4px",
+        "disabled": false,
+        "svgBox": {
+          "x": 230,
+          "y": 186,
+          "w": 12,
+          "h": 12
+        }
+      },
+      {
+        "text": "",
+        "x": 248,
+        "y": 182,
+        "w": 20,
+        "h": 20,
+        "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/35 transition-colors hover:bg-white/10 hover:text-white/75 ",
+        "fontSize": "12px",
+        "lineHeight": "12px",
+        "spanFont": null,
+        "spanLineHeight": null,
+        "spanText": null,
+        "borderColor": "rgb(82, 82, 82)",
+        "borderWidth": "0px",
+        "borderRadius": "4px",
+        "disabled": false,
+        "svgBox": {
+          "x": 252,
+          "y": 186,
+          "w": 12,
+          "h": 12
+        }
+      },
+      {
+        "text": "",
+        "x": 226,
+        "y": 214,
+        "w": 20,
+        "h": 20,
+        "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/35 transition-colors hover:bg-white/10 hover:text-white/75",
+        "fontSize": "12px",
+        "lineHeight": "12px",
+        "spanFont": null,
+        "spanLineHeight": null,
+        "spanText": null,
+        "borderColor": "rgb(82, 82, 82)",
+        "borderWidth": "0px",
+        "borderRadius": "4px",
+        "disabled": false,
+        "svgBox": {
+          "x": 230,
+          "y": 218,
+          "w": 12,
+          "h": 12
+        }
+      },
+      {
+        "text": "",
+        "x": 248,
+        "y": 214,
+        "w": 20,
+        "h": 20,
+        "cls": "flex h-5 w-5 shrink-0 items-center justify-center rounded text-white/35 transition-colors hover:bg-white/10 hover:text-white/75 ",
+        "fontSize": "12px",
+        "lineHeight": "12px",
+        "spanFont": null,
+        "spanLineHeight": null,
+        "spanText": null,
+        "borderColor": "rgb(82, 82, 82)",
+        "borderWidth": "0px",
+        "borderRadius": "4px",
+        "disabled": false,
+        "svgBox": {
+          "x": 252,
+          "y": 218,
+          "w": 12,
+          "h": 12
+        }
+      }
+    ],
+    "grids": [],
+    "asideText": "3D导演台场景搜索场景对象机位1机位2角色A",
+    "sceneTreePresent": true,
+    "children": [
+      {
+        "tag": "DIV",
+        "cls": "flex h-full w-full flex-col text-neutral-50 bg-[#171717]",
+        "box": {
+          "x": 48,
+          "y": 52,
+          "w": 232,
+          "h": 1028,
+          "right": 280,
+          "bottom": 1080
+        },
+        "padding": "0px",
+        "display": "flex"
+      }
+    ],
+    "fixedPortals": [
+      {
+        "tag": "DIV",
+        "cls": "fixed bottom-3 z-10 flex items-end gap-2",
+        "x": 8,
+        "y": 1028,
+        "w": 274,
+        "h": 40,
+        "z": "10",
+        "text": "资产管理38%"
+      },
+      {
+        "tag": "DIV",
+        "cls": "pointer-events-none fixed inset-0 z-[180] motion-safe:transition-opacity motion-safe:duration-200",
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080,
+        "z": "180",
+        "text": ""
+      },
+      {
+        "tag": "DIV",
+        "cls": "fixed flex flex-col inset-0",
+        "x": 0,
+        "y": 0,
+        "w": 1920,
+        "h": 1080,
+        "z": "600",
+        "text": "3D导演台导演视角机位视角3D导演台场景搜索场景对象机位1机位2角色A重置视角3"
+      }
+    ]
+  }
+}

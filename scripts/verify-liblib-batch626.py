@@ -86,10 +86,10 @@ _s.loader.exec_module(b617)
 OVERLAYS: list[tuple[str, str, str]] = [
     ("export-panel", "[data-director-export-trigger]", "[data-director-export-panel]"),
     ("tree-context-menu", "@tree-rctx@", "[data-director-tree-context-menu]"),
-    ("panorama-flyout", "[data-director-rail-entry='panorama']",
-     "[data-director-panorama-flyout]"),
-    ("aspect-flyout", "[data-director-rail-entry='aspect-ratio']",
-     "[data-director-aspect-flyout]"),
+    # ★ Batch 859 **迁移掉这两条**（源站逐字）：「全景图」「选择画幅比例」
+    #   **不是**浮层 ⟹ ⟹ 是**左侧面板的一个分支**
+    #   （`"panorama"===z?(…):null,"aspect"===z?(…):null`）⟹ ⟹ 它们不是
+    #   overlay ⟹ ⟹ 改由 run_mode_panels() 按**面板**的结构判据检查。
     ("ai-import-modal", "[data-director-rail-entry='ai-import']",
      "[data-director-ai-import-modal]"),
     # ★ Batch 858 **迁移掉两条**（源站逐字）：
@@ -614,6 +614,88 @@ def run_side_panel(page: Page, v: Verifier) -> dict[str, Any]:
     return {"sidePanel": rows}
 
 
+# ★★ Batch 859：全景图 / 画幅比例**面板**的结构性判据。
+#
+# ★ 源站逐字：这两个不是浮层 ⟹ ⟹ 它们在左侧那一列里（x=48、232 宽、
+#   标题条 h-12/12px）⟹ ⟹ 626 那把「浮层必须装进视口」的尺子不适用 ⟹ ⟹
+#   改成「面板在视口内 ＋ 内容没被时间线盖住（被盖住是**源站同款**：
+#   aside z-30 < timeline z-40）」。
+MODE_PANEL_JS = r"""(mode)=>{
+  const q=(s)=>document.querySelector(s);
+  const rect=(e)=>{ if(!e) return null; const r=e.getBoundingClientRect();
+    return {x:Math.round(r.x), y:Math.round(r.y), w:Math.round(r.width),
+            h:Math.round(r.height), right:Math.round(r.right),
+            bottom:Math.round(r.bottom)}; };
+  const sel = mode==='panorama'
+    ? '[data-director-panorama-panel]' : '[data-director-aspect-panel]';
+  const panel=q(sel);
+  if(!panel) return {missing:true};
+  const title=panel.querySelector('[data-director-panel-title]');
+  const tl=q('[data-director-timeline]');
+  const tlRect=tl?tl.getBoundingClientRect():null;
+  const items=[...panel.querySelectorAll('[data-director-panorama-option],'
+    +'[data-director-aspect-option]')];
+  const last=items.length?items[items.length-1]:null;
+  const lr=last?last.getBoundingClientRect():null;
+  return {
+    missing:false,
+    panel:rect(panel),
+    insideAside: panel.closest('aside')!==null,
+    parentIsBody: panel.parentElement===document.body,
+    title:rect(title),
+    titleFont: title?getComputedStyle(title).fontSize:null,
+    titleText: title?(title.innerText||'').trim():null,
+    itemCount: items.length,
+    lastItem: lr?{x:Math.round(lr.x),y:Math.round(lr.y),
+                  w:Math.round(lr.width),h:Math.round(lr.height)}:null,
+    timelineTop: tlRect?Math.round(tlRect.top):null,
+    lastItemCoveredByTimeline: !!(tlRect && lr && lr.bottom>tlRect.top
+                                  && lr.top<tlRect.bottom),
+  };
+}"""
+
+
+def run_mode_panels(page: Page, v: Verifier) -> dict[str, Any]:
+    """★ Batch 859：全景图 / 画幅比例两个**面板模式**的结构性判据。"""
+    br = page.context.browser
+    out: dict[str, Any] = {"modePanels": []}
+    for mode, rail_id in (("panorama", "panorama"), ("aspect", "aspect-ratio")):
+        for vw, vh in [(1920, 1150), (1440, 900), (1280, 720), (1280, 540)]:
+            p = br.new_page(viewport={"width": vw, "height": vh}, device_scale_factor=1)
+            row: dict[str, Any] = {"mode": mode, "vw": vw, "vh": vh}
+            try:
+                open_desk_with_retry(p)
+                p.locator(f"[data-director-rail-entry='{rail_id}']").first.click(
+                    timeout=10_000)
+                p.wait_for_timeout(600)
+                row.update(p.evaluate(MODE_PANEL_JS, mode))
+            except Exception as exc:  # noqa: BLE001
+                row["error"] = f"{type(exc).__name__}: {str(exc)[:140]}"
+            finally:
+                p.close()
+            tag = f"{vw}x{vh}/{mode}-panel"
+            v.check(f"mode-panel-present/{tag}",
+                    "error" not in row and not row.get("missing"),
+                    row.get("error") or "panel missing")
+            if "error" in row or row.get("missing"):
+                continue
+            v.check(f"mode-panel-is-in-the-column/{tag}",
+                    bool(row.get("insideAside")) and not row.get("parentIsBody"),
+                    detail={"insideAside": row.get("insideAside"),
+                            "parentIsBody": row.get("parentIsBody")})
+            v.check(f"mode-panel-column-geometry/{tag}",
+                    row["panel"]["x"] == 48 and row["panel"]["w"] == 232
+                    and row["title"]["h"] == 48 and row["titleFont"] == "12px",
+                    detail={"panel": row["panel"], "title": row["title"],
+                            "font": row["titleFont"]})
+            v.check(f"mode-panel-items-are-laid-out/{tag}",
+                    row["itemCount"] > 0 and row["lastItem"] is not None,
+                    detail={"items": row["itemCount"],
+                            "last": row.get("lastItem")})
+            out["modePanels"].append(row)
+    return out
+
+
 def main() -> int:
     v = Verifier()
     with sync_playwright() as p:
@@ -625,6 +707,7 @@ def main() -> int:
         out.update(run_height_sweep(keeper, v))
         out.update(run_no_op_cases(keeper, v))
         out.update(run_side_panel(keeper, v))
+        out.update(run_mode_panels(keeper, v))
         out["ok"] = not v.failures
         out["checks"] = v.count
         out["failures"] = v.failures

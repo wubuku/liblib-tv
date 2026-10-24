@@ -1,0 +1,40 @@
+
+48 判据，38 失败
+  FAILED: source:both-panel-files-exist  ⟵ {'panorama': False, 'aspect': False}
+  FAILED: source:panorama-title-class-is-the-source-aO  ⟵ flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90
+  FAILED: source:panorama-row-class-is-the-source-eu  ⟵ flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45
+  FAILED: source:panorama-container-is-px-2  ⟵ 
+  FAILED: source:aspect-grid-class-is-the-source-grid  ⟵ grid grid-cols-2 gap-2 px-2 pb-3
+  FAILED: source:aspect-cell-class-is-the-source-cell  ⟵ hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35
+  FAILED: source:aspect-glyph-table-moved-to-the-panel  ⟵ 
+  FAILED: source:rail-has-no-portal-flyout-left  ⟵ 
+  FAILED: source:rail-selects-the-panel-mode-by-one-call  ⟵ 
+  FAILED: source:desk-renders-both-mode-panels  ⟵ 
+  FAILED: panel:mode-is-panorama  ⟵ scene
+  FAILED: panel:scene-tree-is-gone  ⟵ True
+  FAILED: panel:old-flyouts-are-gone  ⟵ [1, 0]
+  FAILED: panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}
+  FAILED: panel:panorama-rect  ⟵ None
+  FAILED: panel:panorama-is-inside-the-column  ⟵ None
+  FAILED: panel:panorama-title  ⟵ {'box': None, 'text': None, 'font': None}
+  FAILED: panel:panorama-container  ⟵ {'box': None, 'pad': None}
+  FAILED: panel:panorama-three-rows  ⟵ 0
+  FAILED: panel:panorama-row-本地上传  ⟵ {}
+  FAILED: panel:panorama-row-历史记录  ⟵ {}
+  FAILED: panel:panorama-row-AI生成  ⟵ {}
+  FAILED: panel:mode-is-aspect  ⟵ scene
+  FAILED: panel:scene-tree-is-gone-2  ⟵ True
+  FAILED: panel:only-one-mode-in-dom-2  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}
+  FAILED: panel:aspect-rect  ⟵ None
+  FAILED: panel:aspect-is-inside-the-column  ⟵ None
+  FAILED: panel:aspect-title  ⟵ {'box': None, 'text': None, 'font': None}
+  FAILED: panel:aspect-grid  ⟵ {'box': None, 'cols': None, 'gap': None, 'pad': None}
+  FAILED: panel:aspect-seven-cells  ⟵ 0
+  FAILED: panel:aspect-cell-自适应  ⟵ {}
+  FAILED: panel:aspect-cell-21:9  ⟵ {}
+  FAILED: panel:aspect-cell-16:9  ⟵ {}
+  FAILED: panel:aspect-cell-4:3  ⟵ {}
+  FAILED: panel:aspect-cell-1:1  ⟵ {}
+  FAILED: panel:aspect-cell-3:4  ⟵ {}
+  FAILED: panel:aspect-cell-9:16  ⟵ {}
+  FAILED: panel:the-selection-survives-a-mode-switch  ⟵ []

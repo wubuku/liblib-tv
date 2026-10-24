@@ -1,0 +1,57 @@
+  PASS rail:container-[0,52,48,1098]  [0, 52, 48, 1098]
+  PASS rail:pad-8-gap-8-bg-171717  8px/8px/rgb(23, 23, 23)
+  PASS rail:border-r-1px-white-8  1px/oklab(0.999994 0.0000455678 0.0000200868 / 0.08)
+  PASS rail:z-30  30
+  PASS entry:场景:present
+  PASS entry:场景:box  [7.5, 60, 32, 32] vs [7.5, 60, 32, 32]
+  PASS entry:添加角色:present
+  PASS entry:添加角色:box  [7.5, 116, 32, 32] vs [7.5, 116, 32, 32]
+  PASS entry:添加机位:present
+  PASS entry:添加机位:box  [7.5, 156, 32, 32] vs [7.5, 156, 32, 32]
+  PASS entry:全景图:present
+  PASS entry:全景图:box  [7.5, 196, 32, 32] vs [7.5, 196, 32, 32]
+  PASS entry:选择画幅比例:present
+  PASS entry:选择画幅比例:box  [7.5, 236, 32, 32] vs [7.5, 236, 32, 32]
+  PASS entry:AI 识图导入:present
+  PASS entry:AI 识图导入:box  [7.5, 276, 32, 32] vs [7.5, 276, 32, 32]
+  PASS entry:帮助:present
+  PASS entry:帮助:box  [7.5, 1110, 32, 32] vs [7.5, 1110, 32, 32]
+  PASS entry:count-7  ['AI 识图导入', '全景图', '场景', '帮助', '添加机位', '添加角色', '选择画幅比例']
+  PASS divider:present
+  PASS divider:box-[7.5,100,32,8]  [7.5, 100, 32, 8]
+  PASS divider:border-b-1px-white-8  1px/oklab(0.999994 0.0000455678 0.0000200868 / 0.08)
+  PASS divider:straddles-the-24px-step  56
+  PASS tree:[48,52,232,1098]  [48, 52, 232, 1098]
+  PASS tree:bg-171717  rgb(23, 23, 23)
+  PASS tree:aside-233-with-1px-right-border  {'box': [48, 52, 233, 1098], 'z': '30', 'borderRightWidth': '1px', 'borderRightColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)'}
+  PASS tree:z-30  30
+  PASS shotbar:present
+  PASS shotbar:starts-right-of-the-rail  [293, 62, 21.6, 15]
+  PASS shotbar:label-visible  镜头
+  PASS shotbar:label-receives-its-own-click  [293, 62, 21.6, 15]
+  PASS shotbar:first-shot-chip-receives-its-own-click  [322.609375, 55.5, 121.734375, 28]
+  PASS timeline:present
+  PASS timeline:z-40-above-rail  40
+  PASS timeline:full-width  [0, 968, 1920, 182]
+  PASS help:under-the-timeline-while-it-is-open  {'box': [7.5, 1110, 32, 32], 'coveredByTimeline': True}
+  PASS playback:still-reachable  {'box': [8, 974.5, 26, 24], 'reachable': True}
+  PASS timeline:unmounts-when-minimised
+  PASS help:still-pinned-at-1110  [7.5, 1110, 32, 32]
+  PASS help:hit-testable-when-the-timeline-is-minimised
+  PASS help:click-does-not-throw
+  PASS collapse:rail-survives  ['AI 识图导入', '全景图', '场景', '帮助', '添加机位', '添加角色', '选择画幅比例']
+  PASS collapse:tree-is-hidden
+  PASS collapse:rail-did-not-move  [7.5, 60, 32, 32]
+  PASS restore:tree-comes-back
+  PASS restore:tree-back-to-[48,52,232,1098]  [48, 52, 232, 1098]
+  PASS restore:rail-unchanged  [0, 52, 48, 1098]
+  PASS flyout:opens
+  PASS flyout:8px-right-of-its-entry  {'x': 48, 'y': 52, 'width': 232, 'height': 1098} vs x=47.5
+  FAIL flyout:panorama-opens
+  PASS flyout:switching-closes-the-previous-one
+  PASS flyout:another-entry-dismisses-it
+  PASS diagnostics:no-page-errors
+  PASS diagnostics:no-console-errors
+
+53/54 passed
+FAILED: flyout:panorama-opens

@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch538.py", line 168, in <module>
+    main()
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch538.py", line 152, in main
+    audit["results"].append(run_desktop(desktop))
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch538.py", line 93, in run_desktop
+    check("panorama:opens", pano_panel.is_visible())
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch538.py", line 56, in check
+    assert ok, f"batch538 check failed: {name}"
+AssertionError: batch538 check failed: panorama:opens

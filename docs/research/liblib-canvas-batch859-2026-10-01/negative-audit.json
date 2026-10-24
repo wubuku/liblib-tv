@@ -1,0 +1,213 @@
+{
+ "batch": 859,
+ "title": "阴性对照：改坏源码 ⟹ 新门禁必须对应翻红",
+ "mutations": [
+  {
+   "name": "M1-全景图面板不撑满（去掉 h-full）",
+   "file": "DirectorPanoramaPanel.tsx",
+   "bytesBefore": 4293,
+   "bytesAfter": 4286,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:panorama-rect  ⟵ {'x': 48, 'y': 52, 'w': 232, 'h': 144, 'right': 280, 'bottom': 196}"
+   ],
+   "expectedToFail": [
+    "panel:panorama-rect"
+   ],
+   "hit": [
+    "panel:panorama-rect  ⟵ {'x': 48, 'y': 52, 'w': 232, 'h': 144, 'right': 280, 'bottom': 196}"
+   ],
+   "ok": true,
+   "firstRed": "panel:panorama-rect  ⟵ {'x': 48, 'y': 52, 'w': 232, 'h': 144, 'right': 280, 'bottom': 196}"
+  },
+  {
+   "name": "M2-全景图行字号 13px 改 12px",
+   "file": "DirectorPanoramaPanel.tsx",
+   "bytesBefore": 4293,
+   "bytesAfter": 4293,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:panorama-row-class-is-the-source-eu  ⟵ flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45",
+    "panel:panorama-row-本地上传  ⟵ {'text': '本地上传', 'x': 56, 'y': 100, 'w': 216, 'h': 32, 'fontSize': '12px', 'lineHeight': '20px', 'icon': {'w': 14, 'h': 14}}",
+    "panel:panorama-row-历史记录  ⟵ {'text': '历史记录', 'x': 56, 'y': 132, 'w': 216, 'h': 32, 'fontSize': '12px', 'lineHeight': '20px', 'icon': {'w': 14, 'h': 14}}",
+    "panel:panorama-row-AI生成  ⟵ {'text': 'AI生成', 'x': 56, 'y': 164, 'w': 216, 'h': 32, 'fontSize': '12px', 'lineHeight': '20px', 'icon': {'w': 14, 'h': 14}}"
+   ],
+   "expectedToFail": [
+    "source:panorama-row-class-is-the-source-eu",
+    "panel:panorama-row-本地上传",
+    "panel:panorama-row-历史记录",
+    "panel:panorama-row-AI生成"
+   ],
+   "hit": [
+    "source:panorama-row-class-is-the-source-eu  ⟵ flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45",
+    "panel:panorama-row-本地上传  ⟵ {'text': '本地上传', 'x': 56, 'y': 100, 'w': 216, 'h': 32, 'fontSize': '12px', 'lineHeight': '20px', 'icon': {'w': 14, 'h': 14}}",
+    "panel:panorama-row-历史记录  ⟵ {'text': '历史记录', 'x': 56, 'y': 132, 'w': 216, 'h': 32, 'fontSize': '12px', 'lineHeight': '20px', 'icon': {'w': 14, 'h': 14}}",
+    "panel:panorama-row-AI生成  ⟵ {'text': 'AI生成', 'x': 56, 'y': 164, 'w': 216, 'h': 32, 'fontSize': '12px', 'lineHeight': '20px', 'icon': {'w': 14, 'h': 14}}"
+   ],
+   "ok": true,
+   "firstRed": "source:panorama-row-class-is-the-source-eu  ⟵ flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover:bg-white/8 disabled:cursor-not-allowed disabled:opacity-45"
+  },
+  {
+   "name": "M3-「AI生成」改成「AI 生成」（多一个空格）",
+   "file": "DirectorPanoramaPanel.tsx",
+   "bytesBefore": 4293,
+   "bytesAfter": 4294,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:panorama-row-AI生成  ⟵ {'text': 'AI 生成', 'x': 56, 'y': 164, 'w': 216, 'h': 32, 'fontSize': '13px', 'lineHeight': '20px', 'icon': {'w': 14, 'h': 14}}"
+   ],
+   "expectedToFail": [
+    "panel:panorama-row-AI生成"
+   ],
+   "hit": [
+    "panel:panorama-row-AI生成  ⟵ {'text': 'AI 生成', 'x': 56, 'y': 164, 'w': 216, 'h': 32, 'fontSize': '13px', 'lineHeight': '20px', 'icon': {'w': 14, 'h': 14}}"
+   ],
+   "ok": true,
+   "firstRed": "panel:panorama-row-AI生成  ⟵ {'text': 'AI 生成', 'x': 56, 'y': 164, 'w': 216, 'h': 32, 'fontSize': '13px', 'lineHeight': '20px', 'icon': {'w': 14, 'h': 14}}"
+  },
+  {
+   "name": "M4-画幅网格列间距 8px 改 0",
+   "file": "DirectorAspectPanel.tsx",
+   "bytesBefore": 6136,
+   "bytesAfter": 6136,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:aspect-grid-class-is-the-source-grid  ⟵ grid grid-cols-2 gap-2 px-2 pb-3",
+    "panel:aspect-grid  ⟵ {'box': {'x': 48, 'y': 100, 'w': 232, 'h': 300, 'right': 280, 'bottom': 400}, 'cols': '108px 108px', 'gap': '0px', 'pad': '0px 8px 12px'}",
+    "panel:aspect-cell-自适应  ⟵ {'text': '自适应', 'x': 56, 'y': 100, 'w': 108, 'h': 72, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.85)', 'pressed': 'true', 'glyph': {'w': 16, 'h': 11}}",
+    "panel:aspect-cell-21:9  ⟵ {'text': '21:9', 'x': 164, 'y': 100, 'w': 108, 'h': 72, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 16, 'h': 7}}",
+    "panel:aspect-cell-16:9  ⟵ {'text': '16:9', 'x': 56, 'y': 172, 'w': 108, 'h': 72, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 16, 'h': 9}}",
+    "panel:aspect-cell-4:3  ⟵ {'text': '4:3', 'x': 164, 'y': 172, 'w': 108, 'h': 72, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 16, 'h': 12}}",
+    "panel:aspect-cell-1:1  ⟵ {'text': '1:1', 'x': 56, 'y': 244, 'w': 108, 'h': 72, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 14, 'h': 14}}",
+    "panel:aspect-cell-3:4  ⟵ {'text': '3:4', 'x': 164, 'y': 244, 'w': 108, 'h': 72, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 8, 'h': 16}}",
+    "panel:aspect-cell-9:16  ⟵ {'text': '9:16', 'x': 56, 'y': 316, 'w': 108, 'h': 72, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 8, 'h': 16}}"
+   ],
+   "expectedToFail": [
+    "source:aspect-grid-class-is-the-source-grid",
+    "panel:aspect-grid"
+   ],
+   "hit": [
+    "source:aspect-grid-class-is-the-source-grid  ⟵ grid grid-cols-2 gap-2 px-2 pb-3",
+    "panel:aspect-grid  ⟵ {'box': {'x': 48, 'y': 100, 'w': 232, 'h': 300, 'right': 280, 'bottom': 400}, 'cols': '108px 108px', 'gap': '0px', 'pad': '0px 8px 12px'}"
+   ],
+   "ok": true,
+   "firstRed": "source:aspect-grid-class-is-the-source-grid  ⟵ grid grid-cols-2 gap-2 px-2 pb-3"
+  },
+  {
+   "name": "M5-画幅格子高 72px 改 64px",
+   "file": "DirectorAspectPanel.tsx",
+   "bytesBefore": 6136,
+   "bytesAfter": 6136,
+   "gateExit": 1,
+   "failedChecks": [
+    "source:aspect-cell-class-is-the-source-cell  ⟵ hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35",
+    "panel:aspect-grid  ⟵ {'box': {'x': 48, 'y': 100, 'w': 232, 'h': 292, 'right': 280, 'bottom': 392}, 'cols': '104px 104px', 'gap': '8px', 'pad': '0px 8px 12px'}",
+    "panel:aspect-cell-自适应  ⟵ {'text': '自适应', 'x': 56, 'y': 100, 'w': 104, 'h': 64, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.85)', 'pressed': 'true', 'glyph': {'w': 16, 'h': 11}}",
+    "panel:aspect-cell-21:9  ⟵ {'text': '21:9', 'x': 168, 'y': 100, 'w': 104, 'h': 64, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 16, 'h': 7}}",
+    "panel:aspect-cell-16:9  ⟵ {'text': '16:9', 'x': 56, 'y': 172, 'w': 104, 'h': 64, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 16, 'h': 9}}",
+    "panel:aspect-cell-4:3  ⟵ {'text': '4:3', 'x': 168, 'y': 172, 'w': 104, 'h': 64, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 16, 'h': 12}}",
+    "panel:aspect-cell-1:1  ⟵ {'text': '1:1', 'x': 56, 'y': 244, 'w': 104, 'h': 64, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 14, 'h': 14}}",
+    "panel:aspect-cell-3:4  ⟵ {'text': '3:4', 'x': 168, 'y': 244, 'w': 104, 'h': 64, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 8, 'h': 16}}",
+    "panel:aspect-cell-9:16  ⟵ {'text': '9:16', 'x': 56, 'y': 316, 'w': 104, 'h': 64, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 8, 'h': 16}}"
+   ],
+   "expectedToFail": [
+    "source:aspect-cell-class-is-the-source-cell",
+    "panel:aspect-cell-自适应",
+    "panel:aspect-cell-21:9"
+   ],
+   "hit": [
+    "source:aspect-cell-class-is-the-source-cell  ⟵ hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35",
+    "panel:aspect-cell-自适应  ⟵ {'text': '自适应', 'x': 56, 'y': 100, 'w': 104, 'h': 64, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.85)', 'pressed': 'true', 'glyph': {'w': 16, 'h': 11}}",
+    "panel:aspect-cell-21:9  ⟵ {'text': '21:9', 'x': 168, 'y': 100, 'w': 104, 'h': 64, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'false', 'glyph': {'w': 16, 'h': 7}}"
+   ],
+   "ok": true,
+   "firstRed": "source:aspect-cell-class-is-the-source-cell  ⟵ hover:bg-white/8 flex h-[72px] flex-col items-center justify-center gap-2 rounded-xl border text-[12px] text-white/90 transition-colors disabled:cursor-not-allowed disabled:opacity-35"
+  },
+  {
+   "name": "M6-画幅选中态描边 0.85 改 0.1",
+   "file": "DirectorAspectPanel.tsx",
+   "bytesBefore": 6136,
+   "bytesAfter": 6136,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:aspect-cell-自适应  ⟵ {'text': '自适应', 'x': 56, 'y': 100, 'w': 104, 'h': 72, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'true', 'glyph': {'w': 16, 'h': 11}}"
+   ],
+   "expectedToFail": [
+    "panel:aspect-cell-自适应"
+   ],
+   "hit": [
+    "panel:aspect-cell-自适应  ⟵ {'text': '自适应', 'x': 56, 'y': 100, 'w': 104, 'h': 72, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'true', 'glyph': {'w': 16, 'h': 11}}"
+   ],
+   "ok": true,
+   "firstRed": "panel:aspect-cell-自适应  ⟵ {'text': '自适应', 'x': 56, 'y': 100, 'w': 104, 'h': 72, 'fontSize': '12px', 'borderRadius': '12px', 'borderWidth': '1px', 'borderColor': 'oklab(0.999994 0.0000455678 0.0000200868 / 0.1)', 'pressed': 'true', 'glyph': {'w': 16, 'h': 11}}"
+  },
+  {
+   "name": "M7-rail 选中态与面板模式脱钩",
+   "file": "DirectorIconRail.tsx",
+   "bytesBefore": 18327,
+   "bytesAfter": 18308,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:rail-entry-is-pressed  ⟵ {'pressed': 'false'}"
+   ],
+   "expectedToFail": [
+    "panel:rail-entry-is-pressed"
+   ],
+   "hit": [
+    "panel:rail-entry-is-pressed  ⟵ {'pressed': 'false'}"
+   ],
+   "ok": true,
+   "firstRed": "panel:rail-entry-is-pressed  ⟵ {'pressed': 'false'}"
+  },
+  {
+   "name": "M8-画幅面板常驻（两个模式面板同时在 DOM）",
+   "file": "DirectorDesk.tsx",
+   "bytesBefore": 74902,
+   "bytesAfter": 74873,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 1, 'aspect': 1}"
+   ],
+   "expectedToFail": [
+    "panel:only-one-mode-in-dom"
+   ],
+   "hit": [
+    "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 1, 'aspect': 1}"
+   ],
+   "ok": true,
+   "firstRed": "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 1, 'aspect': 1}"
+  },
+  {
+   "name": "M9-旧浮层属性复活（面板改回 flyout 属性名）",
+   "file": "DirectorPanoramaPanel.tsx",
+   "bytesBefore": 4293,
+   "bytesAfter": 4294,
+   "gateExit": 1,
+   "failedChecks": [
+    "panel:old-flyouts-are-gone  ⟵ [1, 0]",
+    "panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}",
+    "panel:panorama-rect  ⟵ None",
+    "panel:panorama-is-inside-the-column  ⟵ None",
+    "panel:panorama-title  ⟵ {'box': None, 'text': None, 'font': None}",
+    "panel:panorama-container  ⟵ {'box': None, 'pad': None}",
+    "panel:panorama-three-rows  ⟵ 0",
+    "panel:panorama-row-本地上传  ⟵ {}",
+    "panel:panorama-row-历史记录  ⟵ {}",
+    "panel:panorama-row-AI生成  ⟵ {}"
+   ],
+   "expectedToFail": [
+    "panel:old-flyouts-are-gone"
+   ],
+   "hit": [
+    "panel:old-flyouts-are-gone  ⟵ [1, 0]"
+   ],
+   "ok": true,
+   "firstRed": "panel:old-flyouts-are-gone  ⟵ [1, 0]"
+  }
+ ],
+ "baseline": {
+  "exit": 0,
+  "failed": []
+ },
+ "restored": true
+}

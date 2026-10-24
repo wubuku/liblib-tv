@@ -1,0 +1,32 @@
+  PASS wide:audited-a-real-number-of-controls  127
+  PASS wide:no-unexpected-control-is-blocked
+  PASS wide:the-only-covered-control-is-帮助
+  PASS wide:clipped-count-is-explained  8
+  PASS wide:shotbar-present
+  PASS wide:shotbar-starts-right-of-the-whole-left-column  bar x=281 tree right=280
+  PASS wide:shotbar-label-right-of-the-tree  [293, 62, 21.6, 15]
+  PASS wide:shotbar-has-chips  ['机位1 · 镜头0.0-8.0s']
+  PASS wide:shotbar-chips-right-of-the-tree  [[322.6, 55.5, 121.7, 28]]
+  PASS wide:shot-chip-click-lands  director-shot-director-camera-main -> director-shot-director-camera-main
+  PASS wide:still-no-blocked-control-after-the-click
+  PASS wide:no-page-errors
+  PASS wide:no-console-errors
+  PASS narrow:audited-a-real-number-of-controls  127
+  PASS narrow:no-unexpected-control-is-blocked
+  PASS narrow:the-only-covered-control-is-帮助
+  PASS narrow:clipped-count-is-explained  16
+  PASS narrow:shotbar-present
+  PASS narrow:shotbar-starts-right-of-the-whole-left-column  bar x=281 tree right=280
+  PASS narrow:shotbar-label-right-of-the-tree  [293, 62, 21.6, 15]
+  PASS narrow:shotbar-has-chips  ['机位1 · 镜头0.0-8.0s']
+  PASS narrow:shotbar-chips-right-of-the-tree  [[322.6, 55.5, 121.7, 28]]
+  PASS narrow:shot-chip-click-lands  director-shot-director-camera-main -> director-shot-director-camera-main
+  PASS narrow:still-no-blocked-control-after-the-click
+  PASS narrow:no-page-errors
+  PASS narrow:no-console-errors
+  PASS canvas:audited-controls  27
+  PASS canvas:no-blocked-control
+  PASS canvas:no-page-errors
+  PASS canvas:no-console-errors
+
+30/30 passed

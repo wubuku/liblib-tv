@@ -1,0 +1,34 @@
+
+48 判据，32 失败
+  FAILED: source:aspect-glyph-table-moved-to-the-panel  ⟵ 
+  FAILED: source:rail-has-no-portal-flyout-left  ⟵ 
+  FAILED: source:rail-selects-the-panel-mode-by-one-call  ⟵ 
+  FAILED: source:desk-renders-both-mode-panels  ⟵ 
+  FAILED: panel:mode-is-panorama  ⟵ scene
+  FAILED: panel:scene-tree-is-gone  ⟵ True
+  FAILED: panel:old-flyouts-are-gone  ⟵ [1, 0]
+  FAILED: panel:only-one-mode-in-dom  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}
+  FAILED: panel:panorama-rect  ⟵ None
+  FAILED: panel:panorama-is-inside-the-column  ⟵ None
+  FAILED: panel:panorama-title  ⟵ {'box': None, 'text': None, 'font': None}
+  FAILED: panel:panorama-container  ⟵ {'box': None, 'pad': None}
+  FAILED: panel:panorama-three-rows  ⟵ 0
+  FAILED: panel:panorama-row-本地上传  ⟵ {}
+  FAILED: panel:panorama-row-历史记录  ⟵ {}
+  FAILED: panel:panorama-row-AI生成  ⟵ {}
+  FAILED: panel:mode-is-aspect  ⟵ scene
+  FAILED: panel:scene-tree-is-gone-2  ⟵ True
+  FAILED: panel:only-one-mode-in-dom-2  ⟵ {'character': 0, 'camera': 0, 'panorama': 0, 'aspect': 0}
+  FAILED: panel:aspect-rect  ⟵ None
+  FAILED: panel:aspect-is-inside-the-column  ⟵ None
+  FAILED: panel:aspect-title  ⟵ {'box': None, 'text': None, 'font': None}
+  FAILED: panel:aspect-grid  ⟵ {'box': None, 'cols': None, 'gap': None, 'pad': None}
+  FAILED: panel:aspect-seven-cells  ⟵ 0
+  FAILED: panel:aspect-cell-自适应  ⟵ {}
+  FAILED: panel:aspect-cell-21:9  ⟵ {}
+  FAILED: panel:aspect-cell-16:9  ⟵ {}
+  FAILED: panel:aspect-cell-4:3  ⟵ {}
+  FAILED: panel:aspect-cell-1:1  ⟵ {}
+  FAILED: panel:aspect-cell-3:4  ⟵ {}
+  FAILED: panel:aspect-cell-9:16  ⟵ {}
+  FAILED: panel:the-selection-survives-a-mode-switch  ⟵ []

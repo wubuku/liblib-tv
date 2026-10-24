@@ -1,0 +1,1 @@
+Batch 589 verification passed: 36 checks, 0 diagnostics. All three rail flyouts are 232px with a 12px title line, the eleven 添加角色 options match the source order, and 全景图 reads 「AI生成」 verbatim. See runtime-audit.json.

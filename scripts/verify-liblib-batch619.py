@@ -83,10 +83,14 @@ STATES: list[tuple[str, str, str | None, str | None, bool]] = [
      "[data-director-export-panel]", False),
     ("1920 tree context menu", "wide", "@tree-rctx@",
      "[data-director-tree-context-menu]", True),
-    ("1920 rail panorama flyout", "wide", "[data-director-rail-entry='panorama']",
-     "[data-director-panorama-flyout]", True),
-    ("1920 rail aspect flyout", "wide", "[data-director-rail-entry='aspect-ratio']",
-     "[data-director-aspect-flyout]", True),
+    # ★ Batch 859（源站逐字）：「全景图」「选择画幅比例」不再是**浮层** ⟹ ⟹
+    #   是左侧面板的一个分支（`"panorama"===z?(…)`／`"aspect"===z?(…)`）
+    #   ⟹ ⟹ 与上面「添加角色」面板**同一前提**：它**不遮住**任何控件
+    #   （场景树是被**替换**、不是被盖住）⟹ ⟹ `covers` 改成 False。
+    ("1920 rail panorama panel", "wide", "[data-director-rail-entry='panorama']",
+     "[data-director-panorama-panel]", False),
+    ("1920 rail aspect panel", "wide", "[data-director-rail-entry='aspect-ratio']",
+     "[data-director-aspect-panel]", False),
     # ★ Batch 858：「添加角色」不再是**浮层**，而是源站式**左侧面板模式**
     #   （源站逐字 `"scene"===z?n:null,"character"===z?(…)`）⟹ ⟹ 它**不遮住**
     #   任何控件 ⟹ ⟹ 场景树是**被替换**、不是**被盖住** ⟹ ⟹ 这条状态从
@@ -160,8 +164,28 @@ def run_state(browser: Any, v: Verifier, label: str, which: str,
     try:
         open_desk(page)
         open_state(page, setup)
+        # ★ ★★ **等不到 overlay 时要报【具名红条】，不许崩**。
+        #   ★ 为什么：受控对照的 MIX 半回退态下，rail 是 HEAD 版（浮层模型）
+        #     ⟹ ⟹ 点「全景图」**不会**打开左侧面板 ⟹ ⟹ 迁移后的选择器
+        #     `[data-director-panorama-panel]` 永远等不到 ⟹ ⟹ 若直接
+        #     `wait_for` ⟹ ⟹ **抛 TimeoutError 崩掉** ⟹ ⟹ 那条「红」是
+        #     **崩出来的**、不是判据判出来的 ⟹ ⟹ 属于**假牙**
+        #     （★ batch 858 的教训：崩在读文件/等元素上的红是假牙）。
+        #   ⇒ 改成：等不到 ⟹ ⟹ 记一条具名红条（`...:the-overlay-was-found-open`）
+        #     并**跳过**后面的 census ⟹ ⟹ 读数仍然是「具名判据红了」。
+        overlay_missing = False
         if overlay:
-            page.locator(overlay).first.wait_for(state="visible", timeout=15_000)
+            try:
+                page.locator(overlay).first.wait_for(state="visible",
+                                                    timeout=15_000)
+            except Exception:  # noqa: BLE001
+                overlay_missing = True
+                v.check(f"{tag}:the-overlay-was-found-open", False,
+                        detail={"missing": overlay,
+                                "why": "等不到 overlay（受控对照的 MIX 态下"
+                                       "rail/desk 是 HEAD 版 ⟹ 面板不会打开）"})
+        if overlay_missing:
+            return
         # past the 200ms slide of the drawers and flyouts
         page.wait_for_timeout(900)
         r = census(page)

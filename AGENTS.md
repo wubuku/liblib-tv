@@ -118,6 +118,15 @@ Recovery, if you already committed someone else's work and have **not** pushed:
 stage only your own hunks, then plain `git commit`. If you have already pushed,
 do not rewrite shared history — leave it and tell them.
 
+**The local `pre-commit` hook treats any added table row whose first cell is a
+bare number as a *beeftv-manual* batch row.** Its regex is `^\+\|\s*(\d+)[a-z]?\s*\|`
+over `git diff --cached`, so a row like `| 45 | \`AssertionError\` |` in **any**
+file — a probe's docstring table, a research README — is read as "a new Batch 45
+was registered", and the commit is rejected with *"the last green build only
+reached Batch 341"*. That numbering space is shared with the LibTV batches, so
+it is a false positive. Do not `--no-verify` around it; write the first cell as
+`门禁 45` / `Batch 45` instead so the row stops matching.
+
 **The index is shared too, so the check above is a TOCTOU race.** Batch 295
 (2026-10-07) used exactly the correct sequence above and still swept in 8 files
 from a parallel agent: `git diff --cached --name-only` listed only its own 4
