@@ -1,0 +1,368 @@
+{
+ "判据数": 38,
+ "失败": [],
+ "audit": {
+  "batch": 864,
+  "title": "D17 推翻 ＋ 本地埋点等价实现（源站逐字 ＋ 运行时对照）",
+  "源站取证": {
+   "关掉的弹窗": null,
+   "工程状态写入请求": []
+  },
+  "live": {
+   "初始": {
+    "store在场": true,
+    "activeCameraId": "director-camera-main",
+    "frameAspectRatio": null,
+    "showThirds": false,
+    "机位": [
+     {
+      "id": "director-camera-main",
+      "name": "机位1"
+     }
+    ],
+    "telemetryLog": []
+   },
+   "选16比9后": {
+    "store在场": true,
+    "activeCameraId": "director-camera-main",
+    "frameAspectRatio": "16:9",
+    "showThirds": false,
+    "机位": [
+     {
+      "id": "director-camera-main",
+      "name": "机位1"
+     }
+    ],
+    "telemetryLog": [
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": "16:9",
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     }
+    ]
+   },
+   "选自适走后": {
+    "store在场": true,
+    "activeCameraId": "director-camera-main",
+    "frameAspectRatio": null,
+    "showThirds": false,
+    "机位": [
+     {
+      "id": "director-camera-main",
+      "name": "机位1"
+     }
+    ],
+    "telemetryLog": [
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": "16:9",
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": null,
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     }
+    ]
+   },
+   "命中测试": {
+    "按钮在场": true,
+    "按钮rect": {
+     "x": 1533,
+     "y": 128,
+     "w": 32,
+     "h": 32
+    },
+    "命中点": {
+     "x": 1549,
+     "y": 144
+    },
+    "isToggle": true,
+    "命中标签": "path",
+    "命中类": ""
+   },
+   "切参考线后": {
+    "store在场": true,
+    "activeCameraId": "director-camera-main",
+    "frameAspectRatio": "16:9",
+    "showThirds": true,
+    "机位": [
+     {
+      "id": "director-camera-main",
+      "name": "机位1"
+     }
+    ],
+    "telemetryLog": [
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": "16:9",
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": null,
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": "16:9",
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "reference_line",
+       "setting_value": 1,
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     }
+    ]
+   },
+   "再切参考线后": {
+    "store在场": true,
+    "activeCameraId": "director-camera-main",
+    "frameAspectRatio": "16:9",
+    "showThirds": false,
+    "机位": [
+     {
+      "id": "director-camera-main",
+      "name": "机位1"
+     }
+    ],
+    "telemetryLog": [
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": "16:9",
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": null,
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": "16:9",
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "reference_line",
+       "setting_value": 1,
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "reference_line",
+       "setting_value": 0,
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     }
+    ]
+   },
+   "点底部扩展按钮后": {
+    "store在场": true,
+    "activeCameraId": "director-camera-main",
+    "frameAspectRatio": "16:9",
+    "showThirds": true,
+    "机位": [
+     {
+      "id": "director-camera-main",
+      "name": "机位1"
+     }
+    ],
+    "telemetryLog": [
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": "16:9",
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": null,
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "aspect_ratio",
+       "setting_value": "16:9",
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "reference_line",
+       "setting_value": 1,
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     },
+     {
+      "e": "libtv.canvas.director.camera.update",
+      "var": {
+       "camera_uuid": "director-camera-main",
+       "setting_name": "reference_line",
+       "setting_value": 0,
+       "operation_source": "right_panel"
+      },
+      "键集": [
+       "camera_uuid",
+       "setting_name",
+       "setting_value",
+       "operation_source"
+      ]
+     }
+    ]
+   }
+  }
+ }
+}

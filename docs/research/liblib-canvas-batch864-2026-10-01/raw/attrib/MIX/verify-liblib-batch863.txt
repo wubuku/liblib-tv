@@ -1,0 +1,6 @@
+
+113 判据，4 失败
+  FAILED: clone:the-viewport-gizmo-does-not-outrank-the-mask-container  ⟵ {'gizmoZ': '20', 'containerZ': '10', 'gizmoCls': 'absolute right-5 top-5 z-20 h-20 w-20', 'containerCls': 'pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10'}
+  FAILED: clone:the-862-toggle-is-the-topmost-element-at-its-center  ⟵ {'按钮在场': True, '按钮rect': {'x': 1533, 'y': 128, 'w': 32, 'h': 32}, '命中点': {'x': 1549, 'y': 144}, 'isToggle': False, '命中标签': 'X 反向', '命中类': 'absolute h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-0 bg-tran'}
+  FAILED: clone:clicking-the-862-toggle-still-shows-four-thirds  ⟵ {'why': '★ 开关在最上层命中测试里**不是**最顶层⟹ ⟹ 判定为「点不到」⟹ ⟹ 跳过点击', '命中': {'按钮在场': True, '按钮rect': {'x': 1533, 'y': 128, 'w': 32, 'h': 32}, '命中点': {'x': 1549, 'y': 144}, 'isToggle': False, '命中标签': 'X 反向', '命中类': 'absolute h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-0 bg-tran'}}
+  FAILED: clone:clicking-it-again-still-hides-the-thirds  ⟵ {'why': '★ 同上（没点成 ⟹ ⟹ 没法测「再点一次」）', '命中': {'按钮在场': True, '按钮rect': {'x': 1533, 'y': 128, 'w': 32, 'h': 32}, '命中点': {'x': 1549, 'y': 144}, 'isToggle': False, '命中标签': 'X 反向', '命中类': 'absolute h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-0 bg-tran'}}

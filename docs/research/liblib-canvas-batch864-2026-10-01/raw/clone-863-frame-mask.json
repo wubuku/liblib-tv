@@ -1,0 +1,98 @@
+{
+ "batch": 863,
+ "probe": "clone863_frame_mask",
+ "读数": {
+  "框在场": true,
+  "开关在场": true,
+  "遮罩层": [
+   {
+    "cls": "absolute inset-0 bg-black/20 backdrop-blur-md",
+    "rect": {
+     "x": 281,
+     "y": 88,
+     "w": 1358,
+     "h": 810
+    },
+    "backgroundColor": "oklab(0 0 0 / 0.2)",
+    "backdropFilter": "blur(12px)",
+    "webkitBackdropFilter": null,
+    "maskImage": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px)",
+    "webkitMaskImage": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px)",
+    "maskComposite": "exclude, exclude",
+    "webkitMaskComposite": "exclude, exclude",
+    "maskPosition": "0px 0px, 65.6667px 32px",
+    "maskSize": "100% 100%, 1226.67px 690px",
+    "maskRepeat": "no-repeat, no-repeat",
+    "pointerEvents": "none",
+    "zIndex": "auto"
+   }
+  ],
+  "框": {
+   "x": 347,
+   "y": 120,
+   "w": 1227,
+   "h": 690
+  },
+  "框样式": {
+   "boxShadow": "none",
+   "border": "0px",
+   "outline": "1px rgba(255, 255, 255, 0.18) -1px",
+   "radius": "12px",
+   "pointerEvents": "none"
+  },
+  "分线条数": 0,
+  "命中测试": {
+   "框角": {
+    "tag": "DIV",
+    "cls": "absolute inset-0",
+    "isFrame": false,
+    "isMask": false,
+    "isCanvas": false
+   },
+   "框内": {
+    "tag": "DIV",
+    "cls": "absolute inset-0",
+    "isFrame": false,
+    "isMask": false,
+    "isCanvas": false
+   },
+   "框外上": {
+    "tag": "DIV",
+    "cls": "absolute inset-0",
+    "isFrame": false,
+    "isMask": false,
+    "isCanvas": false
+   }
+  }
+ },
+ "红色探针": {
+  "框内": {
+   "R": 32.0,
+   "G": 37.0,
+   "B": 43.0,
+   "样本数": 2304
+  },
+  "框外": {
+   "R": 151.58,
+   "G": 18.44,
+   "B": 20.67,
+   "样本数": 2304
+  },
+  "说明": "★ 框外 R 明显高（被染红）⟹ ⟹ 框内 R 低 ⟹ ⟹ mask 挖空生效"
+ },
+ "像素对照": {
+  "inside": {
+   "x": 497,
+   "y": 190
+  },
+  "outside": {
+   "x": 497,
+   "y": 90
+  },
+  "框内平均亮度": 36.37,
+  "框外平均亮度": 32.85,
+  "比值_框外除以框内": 0.9033,
+  "★说明": "★ 只作参考（3D 场景在动 ⟹ ⟹ 数值会漂移）"
+ },
+ "错误": []
+}

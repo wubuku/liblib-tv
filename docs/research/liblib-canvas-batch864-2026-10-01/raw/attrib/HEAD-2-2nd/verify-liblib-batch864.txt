@@ -1,0 +1,25 @@
+
+37 判据，23 失败
+  FAILED: source:the-file-directorTelemetry.ts-exists  ⟵ {'缺': '/Users/yangjiefeng/Documents/wubuku/liblib-tv/src/lib/directorTelemetry.ts', 'why': '★ 缺文件 ⟹ ⟹ 具名判红（不是崩溃）'}
+  FAILED: source:the-event-name-is-verbatim  ⟵ libtv.canvas.director.camera.update
+  FAILED: source:the-var-key-camera_uuid-is-verbatim  ⟵ {'期望': 'camera_uuid: 出现在**类型声明**与**构造器**里', '类型声明里有': False, '构造器里有': False}
+  FAILED: source:the-var-key-setting_name-is-verbatim  ⟵ {'期望': 'setting_name: 出现在**类型声明**与**构造器**里', '类型声明里有': False, '构造器里有': False}
+  FAILED: source:the-var-key-setting_value-is-verbatim  ⟵ {'期望': 'setting_value: 出现在**类型声明**与**构造器**里', '类型声明里有': False, '构造器里有': False}
+  FAILED: source:the-var-key-operation_source-is-verbatim  ⟵ {'期望': 'operation_source: 出现在**类型声明**与**构造器**里', '类型声明里有': False, '构造器里有': False}
+  FAILED: source:the-operation-source-is-verbatim  ⟵ right_panel
+  FAILED: source:the-store-keeps-a-local-telemetry-log  ⟵ ★ store 要有 `telemetryLog` 字段 ＋ `recordTelemetry` 动作
+  FAILED: source:the-panel-reports-the-aspect-ratio  ⟵ ★ 源站逐字：右侧面板选比例 ⟹ ⟹ 记 `aspect_ratio`
+  FAILED: source:the-frame-toggle-reports-the-reference-line  ⟵ ★ 源站逐字：框上那枚开关 ⟹ ⟹ 记 `reference_line`
+  FAILED: clone:picking-a-ratio-records-one-event  ⟵ {'条数': 0, 'log': []}
+  FAILED: clone:the-recorded-event-name-is-verbatim  ⟵ None
+  FAILED: clone:the-recorded-var-has-exactly-the-four-keys  ⟵ {'实际': [], '期望': ['camera_uuid', 'setting_name', 'setting_value', 'operation_source']}
+  FAILED: clone:the-recorded-setting-name-and-value-are-verbatim  ⟵ {}
+  FAILED: clone:the-recorded-operation-source-is-verbatim  ⟵ None
+  FAILED: clone:the-recorded-camera-is-the-selected-one  ⟵ {'camera_uuid': None, 'activeCameraId': 'director-camera-main', '机位': [{'id': 'director-camera-main', 'name': '机位1'}]}
+  FAILED: clone:picking-auto-records-a-null-value  ⟵ {'条数': 0, '末条': None}
+  FAILED: clone:the-frame-toggle-is-the-topmost-element-at-its-center  ⟵ {'按钮在场': True, '按钮rect': {'x': 1533, 'y': 128, 'w': 32, 'h': 32}, '命中点': {'x': 1549, 'y': 144}, 'isToggle': False, '命中标签': 'X 反向', '命中类': 'absolute h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-0 bg-tran'}
+  FAILED: clone:the-frame-toggle-can-be-clicked-at-16x9  ⟵ {'why': '★ 开关被盖住 ⟹ ⟹ 点不到 ⟹ ⟹ 具名判红（不是崩溃）', '命中': {'按钮在场': True, '按钮rect': {'x': 1533, 'y': 128, 'w': 32, 'h': 32}, '命中点': {'x': 1549, 'y': 144}, 'isToggle': False, '命中标签': 'X 反向', '命中类': 'absolute h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-0 bg-tran'}}
+  FAILED: clone:toggling-the-reference-line-records-a-numeric-value  ⟵ {'条数': 0, '末条': None}
+  FAILED: clone:the-frame-toggle-can-be-clicked-a-second-time  ⟵ {'why': '★ 同上（没点成 ⟹ ⟹ 没法测「再点一次」）', '命中': {'按钮在场': True, '按钮rect': {'x': 1533, 'y': 128, 'w': 32, 'h': 32}, '命中点': {'x': 1549, 'y': 144}, 'isToggle': False, '命中标签': 'X 反向', '命中类': 'absolute h-[15px] w-[15px] -translate-x-1/2 -translate-y-1/2 rounded-full border-0 bg-tran'}}
+  FAILED: clone:toggling-it-again-records-zero  ⟵ {'条数': 0, '末条': None}
+  FAILED: compare:the-var-keys-are-identical-across-sides  ⟵ {'源站事件': 2, 'clone事件': 0}

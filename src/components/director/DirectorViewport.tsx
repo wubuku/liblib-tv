@@ -64,6 +64,10 @@ import {
 } from "three";
 import { cn } from "@/lib/utils";
 import {
+  buildDirectorCameraUpdateEvent,
+  resolveDirectorTelemetryCameraId,
+} from "@/lib/directorTelemetry";
+import {
   createDirectorAsyncIdentity,
   directorAsyncAuthority,
   type DirectorAsyncIngressContextV1,
@@ -758,7 +762,21 @@ function DirectorViewportGizmo({
       aria-label="3D视口原生坐标控件"
       data-director-viewport-gizmo-position={snapshot.position.join(",")}
       data-director-viewport-gizmo-target={snapshot.target.join(",")}
-      className="absolute right-5 top-5 z-20 h-20 w-20"
+      // ★★★ Batch 864（★ 修 batch 863 带出来的一个**真缺陷**）：
+      //   这枚坐标控件原先是 `z-20` ⟹ ⟹ 它**盖住**了取景框右上角那枚
+      //   「构图参考线」开关 ⟹ ⟹ **开关点不到**。
+      //   ★ 根因：batch 863 给取景框加了**遮罩容器**（源站逐字 `z-10`）
+      //   ⟹ ⟹ 那个容器**创建了层叠上下文** ⟹ ⟹ 容器里那枚开关的 `z-20`
+      //   被**困在 z-10 里** ⟹ ⟹ 与同为 `z-20` 的这枚控件**平级打架** ⟹ ⟹ 输了。
+      //   ★ ★ 修法（**不动源站逐字结构**）：把**这枚 clone 自有控件**降到 `z-10`
+      //   ⟹ ⟹ 遮罩容器（DOM 上**更靠后**）盖过它 ⟹ ⟹ 开关恢复可点；
+      //   ⟹ ⟹ 而且这枚控件会**跟着视口里除取景框外的一切一起被压暗**，
+      //   ⟹ ⟹ 与源站「取景框外整片都压暗＋模糊」的模型**一致**。
+      //   ★ 为什么源站没这个问题：源站的取景框是**全屏**容器里算的
+      //   （框右边缘 ≤1591），而这枚控件在**视口右上角** ⟹ ⟹ 两者不重叠；
+      //   ⟹ ⟹ clone 的视口**更窄**（1358 vs 1920）⟹ ⟹ 才会撞上
+      //   ⟹ ⟹ 根因仍是 **D18（布局级）**，本条只是把交互修回来。
+      className="absolute right-5 top-5 z-10 h-20 w-20"
     >
       {/* Batch 543: 源站截图 18——gizmo 正下方「重置视角」按钮，恢复导演台默认机位。 */}
       <button
@@ -2538,6 +2556,27 @@ function AspectFrame({ frameRect }: { frameRect: DirectorFrameRect | null }) {
   const isCapturing = useDirectorStore((state) => state.isCapturing);
   // ★ Batch 862：框上那枚「构图参考线」开关（源站逐字）。
   const toggleThirds = useDirectorStore((state) => state.toggleThirds);
+  // ★ Batch 864：源站逐字 `n4(t, "reference_line", (0,nZ.p)(e), "right_panel")`
+  //   ⟹ ⟹ 切参考线时记一条**本地**的同构事件（★ **不触网**）。
+  //   ★ 机位 ＝ **选中机位**，否则**第一个机位**（源站逐字 `e1 || rL.cameras[0]?.id`）。
+  const objects = useDirectorStore((state) => state.objects);
+  const activeCameraId = useDirectorStore((state) => state.activeCameraId);
+  const recordTelemetry = useDirectorStore((state) => state.recordTelemetry);
+  const handleToggleThirds = () => {
+    const cameras = objects.filter((object) => object.kind === "camera");
+    const cameraId = resolveDirectorTelemetryCameraId(cameras, activeCameraId);
+    if (cameraId) {
+      recordTelemetry(
+        buildDirectorCameraUpdateEvent({
+          cameraId,
+          settingName: "reference_line",
+          // ★ 源站逐字：`(0,nZ.p)(e)` ⟹ 布尔被转成 **数字**（实测 `setting_value: 1`）。
+          settingValue: showThirds ? 0 : 1,
+        }),
+      );
+    }
+    toggleThirds();
+  };
 
   // ★ 「自适应」⟹ ⟹ `frameRect` 已经是 `null` ⟹ ⟹ 框**不在场**（源站实测）。
   if (!frameRect || isCapturing) return null;
@@ -2633,7 +2672,7 @@ function AspectFrame({ frameRect }: { frameRect: DirectorFrameRect | null }) {
         <DirectorFrameThirdsToggle
           frameWidth={frameRect.width}
           showThirds={showThirds}
-          onToggle={toggleThirds}
+          onToggle={handleToggleThirds}
         />
       </div>
     </div>

@@ -99,11 +99,24 @@ python3 scripts/verify-docs.py
   offset, radius 12px) — not `border` — and the thirds are white **50%**.
   The bottom-toolbar entry (`aria-label="开启九宫格辅助线"`) is a **clone
   extension** (D19); keep both pointing at the same `showThirds` state.
-- The source writes the framing ratio and the reference-line flag **onto the
+- ~~The source writes the framing ratio and the reference-line flag **onto the
   camera object** (`aspect_ratio` / `reference_line`, selected camera first,
   otherwise the first camera). The clone does **not** do that yet (D17) — the
   global `frameAspectRatio` is a single scene-wide value (that part matches the
-  source: its framing box reads one component-level state).
+  source: its framing box reads one component-level state).~~
+  **CORRECTED by Batch 864 — D17 was WRONG.** The source does **not** store those
+  values on the camera object at all: its `n4(cameraId, key, value, "right_panel")`
+  is an **analytics beacon** (`nZ.S("libtv.canvas.director.camera.update", …)`),
+  proven by source runtime capture (the request goes to the log endpoint
+  `api2.liblib.art/api/www/log/acceptor/f` and **no** project-state write
+  happens) and by the fact that `reference_line` occurs **exactly once** in the
+  whole source chunk. The source model is **two component-level single values**
+  (`tr` framing ratio, `ti` reference line) — so the clone's global
+  `frameAspectRatio` + `showThirds` **already match the source** and there is
+  **no gap**. The only real difference is that the source reports the change to
+  a backend while the clone keeps a **local** record
+  (`directorStore.telemetryLog`, verbatim event name and the four setting keys,
+  **never touching the network**).
 - The「选择画幅比例」seven cells keep the source's "no camera ⇒ all disabled"
   binding (Batch 862), but that branch is **unreachable on both sides** (the
   clone's delete planner enforces `DIRECTOR_LAST_CAMERA_REQUIRED`, so at least
@@ -149,6 +162,65 @@ python3 scripts/verify-docs.py
   single channel (Batch 863): an R-only check cannot tell "painted red" from
   "the background was already bright" (the out-of-box sample reached R=222 on
   a bright backdrop). Assert `R − G` (paint ⇒ large; already-white ⇒ ≈ 0).
+- The clone **never touches the network** (Batch 864). The source site's
+  `libtv.canvas.director.camera.update` beacon is reproduced **locally**:
+  `directorStore.telemetryLog`, verbatim event name plus exactly the four
+  source keys `camera_uuid` / `setting_name` / `setting_value` /
+  `operation_source`. Keep `var` to those four keys — clone-specific context
+  belongs in the store entry, never inside `var` — and never add a
+  `fetch`/`axios` call to a director path.
+- Adding a `z-index` to a container **creates a stacking context** and traps
+  the children's `z-index` (Batch 864: the framing box's source-verbatim mask
+  container `z-10` trapped the composition-toggle's `z-20`, so the toggle was
+  unclickable — `elementFromPoint` hit the viewport gizmo's "flip X" button
+  instead). After adding any positioned + `z-index` container, **re-test every
+  clickable inside it**; fix by moving the **clone's own** widget, not by
+  editing the source-verbatim structure.
+- "Can I click it?" must be answered by a **hit test** (`elementFromPoint` at
+  the target's center ⇒ the topmost element **is** the target), not by "the
+  click worked this time" (Batch 864: a criterion that sometimes passed and
+  sometimes failed was measuring luck, not the UI).
+  **CORRECTED by Batch 864** — the hit test is not enough on its own: it must
+  run **in a state where the defect actually reproduces**, and that state's
+  premise must itself be a criterion. The first version of the Batch 864
+  hit-test criterion ran after the aspect-ratio loop, which ends on `9:16`
+  (the narrowest ratio) — the framing box is then far from the viewport's
+  top-right gizmo, so the two **never overlap** and the criterion stayed
+  green in the HEAD and MIX states (the defect was real: the gizmo's
+  "flip X" button was the topmost hit). Fix: switch the ratio to `16:9` via
+  the store first, and assert the ratio as its own criterion
+  (`clone:the-hit-test-runs-at-the-ratio-where-they-overlap`), plus a
+  mechanism criterion that reads both computed `z-index` values
+  (`clone:the-viewport-gizmo-does-not-outrank-the-mask-container`).
+- A gate that **crashes** must never count as "having teeth" (Batch 864). The
+  controlled-comparison script checked only "HEAD rc ≠ 0", so a
+  `FileNotFoundError` (the module the batch adds does not exist at HEAD)
+  satisfied it — the most dangerous kind of false green: a gate that crashes
+  hard enough looks like a gate that proves something. Criteria must require
+  **named red lines + zero crashes**, never an exit code alone.
+- A criterion's **premise** (ratio, breakpoint, mode, scroll position) must be
+  part of the criterion (Batch 864). A hit test taken in a state where the
+  defect cannot occur measures nothing — assert the premise, then the effect.
+- A regression's "must stay green" watch-list must contain **only gates that
+  were green in the baseline** (Batch 864). The first version put 10
+  already-red legacy gates into the watch-list, so the script reported "10 red
+  watch gates" and exited 1 — i.e. it charged legacy debt to this batch and
+  drowned the real signal. Keep legacy debt in a separate `KNOWN_RED` set and
+  make the criterion "**new** red (red − legacy) == 0".
+- Source-site probe discipline (Batch 864): the source intermittently shows an
+  "Agent upgraded to TV Director" modal, and **not finding it is the normal
+  state** — never use a button that exists only in one state (e.g. the
+  composition-toggle) as the criterion for "the director console opened".
+  Locate the "open director console" trigger by whole-page text match, and
+  close the modal by exact leaf text + DOM `.click()` with retries.
+- The director framing box's **pixel size** is **layout-level, not a gap**
+  (Batch 864, D18): the source computes `width = min(availW − 96, availH × ratio)`
+  inside a **1920×1080** canvas while the clone's viewport box is **810px** tall
+  ⟹ ⟹ absolute pixels are **not comparable** and must not be "fixed".
+- The **screenshot/export ratio panel** (three values) is a **clone extension**
+  (Batch 864, D23): the source's「截图」button has **no** ratio panel — it
+  captures with the current framing ratio. Keep the clone's three ratios and
+  label them as an extension instead of aligning them against the source.
 
 ## 6. Change Protocol
 

@@ -1,0 +1,939 @@
+{
+ "batch": 864,
+ "probe": "source864_camera_write",
+ "全局": {
+  "双下划线全局": [
+   "__playwright__binding__",
+   "__env",
+   "__is_canary",
+   "__next_s",
+   "__next_f",
+   "__webpack_hash__",
+   "__rum"
+  ],
+  "store在场": false
+ },
+ "选比例后的请求": [
+  {
+   "method": "GET",
+   "url": "https://liblibai-online.liblib.cloud/web/ea95cb51f3d94addbb92dc003cd33b49/5d40e509-6182-4d5d-b202-8e130b44a66c.png?x-oss-process=image/resize,w_200,m_lfit/format,webp/ignore-error,1",
+   "postData": "",
+   "resourceType": "image",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/account/list",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/teams/invite/myInviteList",
+   "postData": "{}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/member/packages?packageType=TRAIN&sourceFrom=libtv",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/user-group/bestGroup",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/member/packages?packageType=TEAM&sourceFrom=libtv",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/commerce/activity/benefit/list?productTypes=3&filterBy=higherLevel",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=86",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=157",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=215",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=294",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"8\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"5\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"6\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"7\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"15\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://sophon.howxm.com/api/sdk/v2/b4996fbc-1240-4cce-8b0f-15acf7b28a79/se",
+   "postData": "{\"appId\":\"b4996fbc-1240-4cce-8b0f-15acf7b28a79\",\"uid\":null,\"url\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"clientId\":\"519e49fa-b842-4fde-8626-96887d250b49\",\"preUrl\":null,\"cua\":null}",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":2}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":4}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=31",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://proj-xtrace-a6d5b57e5b99e36cd9499d77c8b168-cn-hangzhou.cn-hangzhou.log.aliyuncs.com/rum/web/v2?workspace=default-cms-1652080443454191-cn-hangzhou&service_id=g9m3a0kv73@4beb0f9ec0291ac973109",
+   "postData": "{\"app\":{\"env\":\"online\",\"version\":\"699-a1b1f0d1\",\"type\":\"browser\"},\"user\":{\"id\":\"uid_iab84kgbww8ycyl2\"},\"session\":{\"id\":\"82f2e910d7184621b3586e03f7f1bec5\"},\"net\":{\"model\":\"4g\"},\"view\":{\"id\":\"a6b5b83a8e9947618729e6178bd89186\",\"loading_type\":\"initial_load\",\"name\":\"/canvas\"},\"events\":[{\"timestamp\":1792838598122,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-7f6abaf5ee9bfd87\",\"event_type\":\"resource\",\"url\":\"https://api2.liblib.art/api/www/member/memberPower/list\",\"name\":\"/api/www/member/memberPower/list\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"GET\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api2.liblib.art/api/www/member/memberPower/list\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":40885.5,\\\"duration\\\":1582.4000000953674,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlockingStatus\\\":\\\"non-blocking\\\",\\\"workerStart\\\":40885.60000014305,\\\"redirectStart\\\":0,\\\"redirectEnd\\\":0,\\\"fetchStart\\\":40885.700000047684,\\\"domainLookupStart\\\":0,\\\"domainLookupEnd\\\":0,\\\"connectStart\\\":0,\\\"secureConnectionStart\\\":0,\\\"connectEnd\\\":0,\\\"requestStart\\\":0,\\\"responseStart\\\":0,\\\"firstInterimResponseStart\\\":0,\\\"finalResponseHeadersStart\\\":0,\\\"responseEnd\\\":42467.90000009537,\\\"transferSize\\\":0,\\\"encodedBodySize\\\":0,\\\"decodedBodySize\\\":0,\\\"responseStatus\\\":200,\\\"serverTiming\\\":[]}\",\"duration\":1582.4000000953674},{\"timestamp\":1792838594667,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-f27bf982ac893891\",\"event_type\":\"resource\",\"url\":\"https://fclog.baidu.com/log/ocpcagl?type=behavior&emd=euc\",\"name\":\"/log/ocpcagl\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"POST\",\"status_code\":200,\"message\":\"OK\",\"timing_data\":\"{\\\"name\\\":\\\"https://fclog.baidu.com/log/ocpcagl?type=behavior&emd=euc\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":37432.10000014305,\\\"duration\\\":5077,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlockingStatus\\\":\\\"non-blocking\\\",\\\"workerStart\\\":37432.1000001",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://cloudauth-device.aliyuncs.com/",
+   "postData": "AaduaneId=DuaneAprqkYsF3nt1yjK29Bf&Version=2020-10-15&SignatureMethod=HMAC-SHA1&SignatureVersion=1.0&Format=JSON&Action=Log1&Data=STMWiQ8yoU4U82oczATYRkH93VxwrcaFXA6stZL5ZgO3dmHy%2BI55V4g8%2BRZ3m0kGxVXtigoGzqUrd0KbrVDhCIL3RDvhD78qd62BQmStWCF64ILHumNzo67BfroCw9b4NO3lDZ78VHhSpE0C3JnfIg%3D%3D&SignatureNonce=75c65cab-8178-45aa-8684-b031faaf5f3c&Signature=utnfjKYUq%2BzdjCHAQWAuvF2tQG0%3D",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":9}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.howxm.com/sdk/v2/b4996fbc-1240-4cce-8b0f-15acf7b28a79/check/distribute",
+   "postData": "{\"clientId\":\"519e49fa-b842-4fde-8626-96887d250b49\",\"customerUid\":null,\"campaignId\":\"77c3c043c250c480837a0c8e3f26f539\",\"extraAttrs\":{}}",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://g.alicdn.com/captcha-frontend/FeiLin/1.5.2/feilin057.ab370d95a722163cbe1c2ada24203181d4874b9a207e63968217b0542334b923.js?v=1",
+   "postData": "",
+   "resourceType": "script",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://qiyukf.com/script/abd432e2a823988b444d48b0f60886d1.js?hidden=1&sdkTemplateId=8146115",
+   "postData": "",
+   "resourceType": "script",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://ysf.qiyukf.net/141d0a1e2cfbc6f64401afd132094978.gif?t=1792838608435&k=abd432e2a823988b444d48b0f60886d1",
+   "postData": "",
+   "resourceType": "image",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://liblibai-online.liblib.cloud/web/ea95cb51f3d94addbb92dc003cd33b49/5d40e509-6182-4d5d-b202-8e130b44a66c.png?x-oss-process=image/resize,w_200,m_lfit/format,webp/ignore-error,1",
+   "postData": "",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://liblibai-online.liblib.cloud/web/ea95cb51f3d94addbb92dc003cd33b49/5d40e509-6182-4d5d-b202-8e130b44a66c.png?x-oss-process=image/resize,w_400,m_lfit/format,webp/ignore-error,1",
+   "postData": "",
+   "resourceType": "image",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://bat.bing.com/p/conversions/c/e",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://liblibai-web-static.liblib.cloud/liblibtv_online/static/_next/static/media/tv-director-upgrade.3xxo0wrj_z2co.mp4",
+   "postData": "",
+   "resourceType": "media",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://libtv-res.liblib.art/upload-images/0a8471b054964ae9b9079af74a9ed84e/ee677b5998d05633d14b0aafe879148d2683be66.png?x-oss-process=image/resize,w_200,m_lfit/format,webp/ignore-error,1",
+   "postData": "",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://qiyukf.com/webapi/sdk/setting/data?appKey=abd432e2a823988b444d48b0f60886d1&hidden=1&sdkTemplateId=8146115",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://ysf.nosdn.127.net/webapi/38a7410cdf36ef88290e0136e0f86998",
+   "postData": "",
+   "resourceType": "media",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://cloudauth-device.aliyuncs.com/",
+   "postData": "AaduaneId=DuaneAprqkYsF3nt1yjK29Bf&Version=2020-10-15&SignatureMethod=HMAC-SHA1&SignatureVersion=1.0&Format=JSON&Action=Log2&Data=i%2FTSPtim%2BTKqFhsqdP8NOBF1AHQlxra%2F22%2B9GRN8nLYq%2F%2BG8bvn%2FbH7mZcla4vd%2BW4MfvaJ3X98hPPWhWLkvnGAT60eNSGYkLpuoEmTTBczWJiZpQAsKBJIJAj2DqPLdh9rdGvHptToP8i%2BDXDy5IZ00DCpStMXZsp7AIohgde6SSmulG8qzdyRIL0l9eiW2rxIUYT7yGQY8Zmg6sWNHO90oaltE8V1Eto4B3uC3qneALYZi5zrsy6fZYGbblZYPoyMrbBeTyIztAi0oMEIAIGz%2F5OePZt8C5lIUciOJvgR%2FmCsmbxohopvrt%2B5DOR88V5zhDHDKz%2FBf00obt1WlKYlIkFRZefwfbmMMn4obFJV2RKYXKSyGh%2Fl7m18FlyQql3DVQhhHfqead15RxfJnL1KBrblNb6kmmTifY5q8Q4JVCbLnkiwNfrk8ygBRetBw0gHBjYjKtGKTNsLwOr5KEupVheHQcllCJ0fMm9yDL5Yejbh81W%2FpwCoWSHUcADpfYE1afbv6FCxQk8PV3J3PjQj1d%2FJkEDu84ROc99gdft8Szk8b8xlBqO4Hd0N9WIBQ5cZNPh2CRQVVqiNvwQPIjA07Mdlj8A62ASjRc7f0Wj4CoraUAuG9p7KQNcj3rWNBvf5dTo0HLLEd2AVM5CZXKimWyglhWoxlacywpSCSg4W6TyVdgGMBLHQvWKcl0bnVM2gLUFKKYNas3BLVAYhAHV%2B3Fr5DPD772QlTnZtyjKFJ1nWg1%2BcdSP66Lk4cg6q0c7KP3y8X52uf4RnTn93yzmopXwxgIF4QziKtDRcd0OPlr%2BcvqGsZFENN22eKblyZrCcLFARkV8EVj58AEx6QhN5nkQRcdGxJiM9xQSUwpYB1aeizMC05E1lSIJMsGJQZhBUQqUpF5zPA39n69FXPoigcr5Vj%2BCh%2BBaOjDwrpH87m8WUj1jyWfstmF3MBoBAREMl0Qny6sIhu31CHPImCyr%2FKowXiuIabZP38UiJdD5wUVNKNjtWc5yAdQwJkIRCjDSe712YxfDx62%2B7vy%2BWJmPLLlKiB6dA4pyyxSJfPNaQkVRBdQ1aUI6rdt1GJhX0q3agHxn7OBHOIr6S7fSsLnuvBIt%2BZ26HZ1FpLwYmfPOT%2F3k1QF9eKinkOE5K16gMnP5Y5q%2FvCy%2BwzHqtxdgUHyUVn8SWgm0IgxvrpX5JM2niZ8Q46iLL5SnqxiccStj3aN7NzngIVzVVpG6xUrM6La4yd4iKUhvmi3gG3s3P4Whm0KzQSdicJUOxN%2BnCpxH%2B0UQNwk0Djqn2jgv%2BIZnYZdQA9SBzbfHsB9pfCUHcU53OWldPT4JjNXDqg9mtsVFgT2FgD%2FkX6sltfkYRyPL5VsE3VoqRhRajxoI4WsB1nrZ3AFycWHfH8B3m7BoZd4c1kAWngz7xewpmS4%2BN091SpHhgZtOx9E719loFpqJAZADNv5gcklHfMktKGSp2ORlFgQC%2FVhvSsrSBcOIM6XJxzwc5tD9y3yFO2iKUDtqZDG1Y2OzmcoE4qI%2BcTSoJagP9Tq99Zy2bUBap6PnjPEq8hL%2B%2FiQZrdJQ7GOjq9ND7M5nMvEmWEoiNtw81A77GRdicwHvs%2FWlhEuelw3AgEQuiLAw%2BwoaUPS0aL413aUMpNvHTl2ClyJSFs9R6hHpWfmdsmkxMi2gnDrvmZqPn%2BjdnIxNY%2BxpVxqiDmHgQxpK5spk7asgC%2BARgxpMFrrg2PlCgawrYC8pG6rNzxZDZbOcbw4WBh0Unafo9fohNJh9tUxcJxSJVXFfqnQPacN9",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://www.liblib.tv/assets/3d-characters/1-%E7%94%B7%E6%80%A7-%E4%BD%8E%E6%A8%A1.glb",
+   "postData": "",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838613278,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"libtv.canvas.director.open\",\"var\":{\"canvas_uuid\":\"a860e1da8e9e4504bececda022386429\",\"director_node_uuid\":\"n-gYB1c2Peq9\",\"director_session_id\":\"a20ad9aa-959a-4bc5-aa3f-e2a10ac6e503\",\"entry\":\"node_button\",\"is_first_open\":1,\"has_panorama\":0,\"panorama_source\":\"none\",\"duration_ms\":18752,\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"lang\":\"zh\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://qiyukf.com/webapi/sdkres/delegate.html?k=abd432e2a823988b444d48b0f60886d1&1792838613818",
+   "postData": "",
+   "resourceType": "document",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://qiyukf.com/webapi/user/getUnread.action?appKey=abd432e2a823988b444d48b0f60886d1&foreignId=&deviceId=ir3ggaiqpdpoa57qkjzb&bid=&ts=1792838613820",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838613878,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"qoe.page.load\",\"var\":{\"qoe_metrics_version\":\"v1\",\"metrics\":[],\"counters\":[],\"route_path\":\"/canvas\",\"lang\":\"zh\",\"env\":\"online\",\"started_at\":1792838586934,\"duration_qoe\":56540,\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://qiyukf.com/webapi/user/remoteStorage.action?appKey=abd432e2a823988b444d48b0f60886d1&timestamp=1792838614021&token=txlzrmxaurhgkt4smub1&local=1",
+   "postData": "[{\"key\":\"userInfo\",\"value\":\"{\\\"title\\\":\\\"\\\",\\\"referrer\\\":\\\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\\\",\\\"landPage\\\":\\\"\\\",\\\"landPageTitle\\\":\\\"\\\",\\\"landPageReferrer\\\":\\\"\\\",\\\"sessionInfo\\\":\\\"\\\",\\\"deviceId\\\":\\\"ir3ggaiqpdpoa57qkjzb\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"secureInfo\",\"value\":\"{\\\"uid\\\":\\\"\\\",\\\"foreignId\\\":\\\"\\\",\\\"deviceId\\\":\\\"ir3ggaiqpdpoa57qkjzb\\\",\\\"uuid\\\":\\\"txlzrmxaurhgkt4smub1\\\",\\\"authToken\\\":\\\"\\\",\\\"name\\\":\\\"\\\",\\\"email\\\":\\\"\\\",\\\"mobile\\\":\\\"\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"alipayImagePermissionText\",\"value\":\"\"}]",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "blob:https://www.liblib.tv/e731d1cf-1e17-4a51-8f10-d0a2b72a0460",
+   "postData": "",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://bat.bing.com/p/conversions/c/e",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://qiyukf.com/webapi/user/remoteStorage.action?appKey=abd432e2a823988b444d48b0f60886d1&timestamp=1792838614655&token=txlzrmxaurhgkt4smub1&local=1",
+   "postData": "[{\"key\":\"userInfo\",\"value\":\"{\\\"title\\\":\\\"\\\",\\\"referrer\\\":\\\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\\\",\\\"landPage\\\":\\\"https%3A%2F%2Fwww.liblib.tv%2Fcanvas%3FspaceId%3D7709759%26projectId%3Da860e1da8e9e4504bececda022386429\\\",\\\"landPageTitle\\\":\\\"画布 1 - LibTV - 专业视频创作工具\\\",\\\"landPageReferrer\\\":\\\"\\\",\\\"sessionInfo\\\":\\\"\\\",\\\"deviceId\\\":\\\"ir3ggaiqpdpoa57qkjzb\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"secureInfo\",\"value\":\"{\\\"uid\\\":\\\"\\\",\\\"foreignId\\\":\\\"\\\",\\\"deviceId\\\":\\\"ir3ggaiqpdpoa57qkjzb\\\",\\\"uuid\\\":\\\"txlzrmxaurhgkt4smub1\\\",\\\"authToken\\\":\\\"\\\",\\\"name\\\":\\\"\\\",\\\"email\\\":\\\"\\\",\\\"mobile\\\":\\\"\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"alipayImagePermissionText\",\"value\":\"\"}]",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://qiyukf.com/webapi/user/dvcSession.action?appKey=abd432e2a823988b444d48b0f60886d1&d=ir3ggaiqpdpoa57qkjzb&f=",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://proj-xtrace-a6d5b57e5b99e36cd9499d77c8b168-cn-hangzhou.cn-hangzhou.log.aliyuncs.com/rum/web/v2?workspace=default-cms-1652080443454191-cn-hangzhou&service_id=g9m3a0kv73@4beb0f9ec0291ac973109",
+   "postData": "{\"app\":{\"env\":\"online\",\"version\":\"699-a1b1f0d1\",\"type\":\"browser\"},\"user\":{\"id\":\"uid_iab84kgbww8ycyl2\"},\"session\":{\"id\":\"82f2e910d7184621b3586e03f7f1bec5\"},\"net\":{\"model\":\"4g\"},\"view\":{\"id\":\"a6b5b83a8e9947618729e6178bd89186\",\"loading_type\":\"initial_load\",\"name\":\"/canvas\"},\"events\":[{\"timestamp\":1792838603117,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-c3fd04dc1ac4e6c6\",\"event_type\":\"resource\",\"url\":\"https://api2.liblib.art/api/www/member/packages?packageType=TRAIN&sourceFrom=libtv\",\"name\":\"/api/www/member/packages\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"GET\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api2.liblib.art/api/www/member/packages?packageType=TRAIN&sourceFrom=libtv\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":45881,\\\"duration\\\":1128.5,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlockingStatus\\\":\\\"non-blocking\\\",\\\"workerStart\\\":45881.10000014305,\\\"redirectStart\\\":0,\\\"redirectEnd\\\":0,\\\"fetchStart\\\":45881.10000014305,\\\"domainLookupStart\\\":0,\\\"domainLookupEnd\\\":0,\\\"connectStart\\\":0,\\\"secureConnectionStart\\\":0,\\\"connectEnd\\\":0,\\\"requestStart\\\":0,\\\"responseStart\\\":0,\\\"firstInterimResponseStart\\\":0,\\\"finalResponseHeadersStart\\\":0,\\\"responseEnd\\\":47009.5,\\\"transferSize\\\":0,\\\"encodedBodySize\\\":0,\\\"decodedBodySize\\\":0,\\\"responseStatus\\\":200,\\\"serverTiming\\\":[]}\",\"duration\":1128.5},{\"timestamp\":1792838604248,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-280015cb877e0dbd\",\"event_type\":\"resource\",\"url\":\"https://api2.liblib.art/api/www/landing-activities/getById?id=31\",\"name\":\"/api/www/landing-activities/getById\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"GET\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api2.liblib.art/api/www/landing-activities/getById?id=31\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":47011.799999952316,\\\"duration\\\":2201.600000143051,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlocki",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://fclog.baidu.com/log/ocpcagl?type=behavior&emd=euc",
+   "postData": "N4IgLgziBcCMDsBOATADgMyoGywCyJwBpwAvGVYgGwHsBzASwBMYQBTAYwIEMAjAViwBaXKy5DcABizpBPRH1yCuqVrDGseWeOlwhiABwBO1RgFd2YetQB2LAPoAzeABlkADQDuAcTcArAJ4QJDy4jLCsyNQAHgAK-jy0ACJ6IOyshmAsKRCsEBBW1kwsyPAlqOzagsiwEoqhyOyyrIiMwhwSfMhS-GgppkXQqVgOEqxYoYISXMh8wgiNPFzw8JOMjFoODrioo6gp1PqWzIMphqwO6WeGWVTU7FyWNjCgRtRgd9SULAAWYGD6EEGxG+1AgYGsXAAtqwWB44QA6Sj0HhInjwsAANxS+moGRuIH0D2+EOhLAA9PdrBiuFBiDkuIZ2N8WAB+CCEtIASUYAF5lhJEPA+IgAGSvXwcMDcnnKLCjWCMZTNVi4Pi1HgcDiKiTIZCYcbIRApb405knAC+xDA-n0MMG7CR7AA1ikuDAANqgOxgLi0Fg8Ez+FIDAm+1iCCDsYyUSiCYxvFIOmlQQZcayWLhImmsZjEOz0GCwPP5GASS1en1+waMehY4hJvIsBz0KI5gAEDkorCiHa7UUE7E+bfo1hyYEmKXzMGqxYL0Cw5ZA3t9LBrddSlGTLDOm8sGNYbchI8E30mve7glgk7nElnpcXy6rIBpTBh9c3jdTPAgn1MYAPI5joI-hnl2DjjhIbYkII6CQQGhiMOkcZtvBiGGIIHjfPQ-5kjUKG0II7oAMQIKR8AALptv+UTjph2EHmAhhpvkjzWIRHhMGA3yUWYTGsVUEgSNehZ3tAZaEBWK7VrWiYfimICdt2banu69yUOwAAUNQSAApIInT6FEACU5HCdAuCieJklPmuslboMik9h4hF6sghmUUebHOZBjkDkOCSESR8BkaZeZzkWS4lmJD6VquMnvvZIC0IYTBtslTB+ZQEBVGlXD6DlhkFTwMFmRFdhRbAMVSSAPB-u8tgJZ+Cl9sphGlO5579oOlDDv+kLZWk6bpG2vimGC9AOCBg3-oYuX5cgbbGKY1iIa0UQ9ahw3UeO7qwG5USUdtGFYThiCQYxzHYQUmW4hAKG4mhx30bhQlhdOonIFaNp2jVdVPFVT7smmpWiWV20sLAWDQEaebfPJwqKloyxYFgipdBwPDoOwsFIKwqCwOwfBqHwuZLv08mwHY7B2Fg3rdmAOnoAAQsgdjWHYlNMdYtCsIzTPoFTdi4HTNF88L7OU9YpiQhqhh83wbMc2z0uy3ztMS8rMvpHz8CK5LKva8zqB65rqvM4gJtS1rcvMzUgu691uJ87Aks0yLDO26zGtczzzsC9TrPbc74t2KzPu87bCvs4H9PO+rdgC+Hzu6+zwtB7bxve2mvu2xb7MC+D5rkQYoJXU80CgFEhYSBQIBBtA1QLsQ9PPEuWKDMg8ISPC6DXhADgwA4mY5MQUQAILc6wWbOHQIYzIguCQ6gi8dNoCjoAvWApDwDohtvjD94yGJ78WTb3LQXzmuaQA",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838614966,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"libtv.canvas.director.camera.update\",\"var\":{\"director_session_id\":\"a20ad9aa-959a-4bc5-aa3f-e2a10ac6e503\",\"camera_uuid\":\"director-main-camera\",\"setting_name\":\"aspect_ratio\",\"setting_value\":\"16:9\",\"operation_source\":\"right_panel\",\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"lang\":\"zh\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://libtvgw.qiyukf.net/030a2dfc3e9f30c56d93b47b12ea2293.png?imageView&thumbnail=300x300",
+   "postData": "",
+   "resourceType": "image",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://qiyukf.com/webapi/user/remoteStorage.action?appKey=abd432e2a823988b444d48b0f60886d1&timestamp=1792838615435&token=txlzrmxaurhgkt4smub1&local=0",
+   "postData": "[{\"key\":\"userInfo\",\"value\":\"{\\\"title\\\":\\\"画布 1 - LibTV - 专业视频创作工具\\\",\\\"uid\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"reallyUid\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"name\\\":\\\"微信用户1e324a\\\",\\\"profile\\\":\\\"[{\\\\\\\"type\\\\\\\":\\\\\\\"crm_param\\\\\\\",\\\\\\\"key\\\\\\\":\\\\\\\"uuid\\\\\\\",\\\\\\\"value\\\\\\\":\\\\\\\"0a8471b054964ae9b9079af74a9ed84e\\\\\\\"}]\\\",\\\"referrer\\\":\\\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\\\",\\\"landPage\\\":\\\"https%3A%2F%2Fwww.liblib.tv%2Fcanvas%3FspaceId%3D7709759%26projectId%3Da860e1da8e9e4504bececda022386429\\\",\\\"landPageTitle\\\":\\\"画布 1 - LibTV - 专业视频创作工具\\\",\\\"landPageReferrer\\\":\\\"\\\",\\\"sessionInfo\\\":\\\"\\\",\\\"deviceId\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"secureInfo\",\"value\":\"{\\\"uid\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"foreignId\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"deviceId\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"uuid\\\":\\\"txlzrmxaurhgkt4smub1\\\",\\\"authToken\\\":\\\"\\\",\\\"name\\\":\\\"微信用户1e324a\\\",\\\"email\\\":\\\"\\\",\\\"mobile\\\":\\\"\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"alipayImagePermissionText\",\"value\":\"\"}]",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://qiyukf.com/webapi/user/getUnread.action?appKey=abd432e2a823988b444d48b0f60886d1&foreignId=0a8471b054964ae9b9079af74a9ed84e&deviceId=0a8471b054964ae9b9079af74a9ed84e&bid=&ts=1792838615435",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://bat.bing.com/p/conversions/c/e",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  }
+ ],
+ "选比例后的全局": {
+  "双下划线全局": [
+   "__playwright__binding__",
+   "__env",
+   "__is_canary",
+   "__next_s",
+   "__next_f",
+   "__webpack_hash__",
+   "__rum",
+   "__RUM_MEMORY_STORAGE",
+   "__fetch__",
+   "__canvasChatQoePageExitInstalled",
+   "__zod_globalRegistry",
+   "__blenderImportStorageMirrorInstalled",
+   "__BLENDER_IMPORT_TRACE__",
+   "__dumpBlenderImportTrace",
+   "__clearBlenderImportTrace",
+   "__ALIYUN_CRYPT",
+   "__AYF",
+   "__YSFSDKADR__",
+   "__YSFDAROOT__",
+   "__YSF_EMOJI__",
+   "__YSFAPPPATH__",
+   "__THREE__",
+   "__sceneComposerAiImportBridge",
+   "__openSceneAiImport",
+   "__YSFWINTYPE__",
+   "__YSFMODILEWINTYPE__",
+   "__YSFTHEMELAYEROUT__",
+   "__YSFBGCOLOR__",
+   "__YSFBGTONE__",
+   "__YSFBGIMG__",
+   "__YSFENABLENEWCLIENT__",
+   "__YSFDASWITCH__",
+   "__YSFISGA__",
+   "__YSFVISITORRECORD__",
+   "__YSFISUPINFOTOSERVER__"
+  ],
+  "store在场": false
+ },
+ "开关": {
+  "按钮在场": true,
+  "title": "构图参考线",
+  "aria": null,
+  "rect": {
+   "x": 1551,
+   "y": 193,
+   "w": 32,
+   "h": 32
+  },
+  "pressed": null
+ },
+ "切参考线后的请求": [
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838618011,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"libtv.canvas.director.camera.update\",\"var\":{\"director_session_id\":\"a20ad9aa-959a-4bc5-aa3f-e2a10ac6e503\",\"camera_uuid\":\"director-main-camera\",\"setting_name\":\"reference_line\",\"setting_value\":1,\"operation_source\":\"right_panel\",\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"lang\":\"zh\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "GET",
+   "url": "https://api2.liblib.art/api/www/landing-activities/getById?id=217",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://bat.bing.com/p/conversions/c/e",
+   "postData": "",
+   "resourceType": "xhr",
+   "时间": -1
+  }
+ ],
+ "切参考线后的全局": {
+  "双下划线全局": [
+   "__playwright__binding__",
+   "__env",
+   "__is_canary",
+   "__next_s",
+   "__next_f",
+   "__webpack_hash__",
+   "__rum",
+   "__RUM_MEMORY_STORAGE",
+   "__fetch__",
+   "__canvasChatQoePageExitInstalled",
+   "__zod_globalRegistry",
+   "__blenderImportStorageMirrorInstalled",
+   "__BLENDER_IMPORT_TRACE__",
+   "__dumpBlenderImportTrace",
+   "__clearBlenderImportTrace",
+   "__ALIYUN_CRYPT",
+   "__AYF",
+   "__YSFSDKADR__",
+   "__YSFDAROOT__",
+   "__YSF_EMOJI__",
+   "__YSFAPPPATH__",
+   "__THREE__",
+   "__sceneComposerAiImportBridge",
+   "__openSceneAiImport",
+   "__YSFWINTYPE__",
+   "__YSFMODILEWINTYPE__",
+   "__YSFTHEMELAYEROUT__",
+   "__YSFBGCOLOR__",
+   "__YSFBGTONE__",
+   "__YSFBGIMG__",
+   "__YSFENABLENEWCLIENT__",
+   "__YSFDASWITCH__",
+   "__YSFISGA__",
+   "__YSFVISITORRECORD__",
+   "__YSFISUPINFOTOSERVER__"
+  ],
+  "store在场": false
+ },
+ "切参考线后开关": {
+  "按钮在场": true,
+  "title": "构图参考线",
+  "aria": null,
+  "rect": {
+   "x": 1551,
+   "y": 193,
+   "w": 32,
+   "h": 32
+  },
+  "pressed": null
+ },
+ "全程请求数": 348,
+ "带body的请求": [
+  {
+   "method": "POST",
+   "url": "https://proj-xtrace-a6d5b57e5b99e36cd9499d77c8b168-cn-hangzhou.cn-hangzhou.log.aliyuncs.com/rum/web/v2?workspace=default-cms-1652080443454191-cn-hangzhou&service_id=g9m3a0kv73@4beb0f9ec0291ac973109",
+   "postData": "{\"app\":{\"env\":\"online\",\"version\":\"699-a1b1f0d1\",\"type\":\"browser\"},\"user\":{\"id\":\"uid_iab84kgbww8ycyl2\"},\"session\":{\"id\":\"82f2e910d7184621b3586e03f7f1bec5\"},\"net\":{\"model\":\"4g\"},\"view\":{\"id\":\"a6b5b83a8e9947618729e6178bd89186\",\"loading_type\":\"initial_load\",\"name\":\"/canvas\"},\"events\":[{\"timestamp\":1792838581285,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-297e8112fd7e85ca\",\"times\":1,\"event_type\":\"view\",\"type\":\"pv\",\"name\":\"/canvas\",\"url\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"referrer\":\"\",\"loading_type\":\"initial_load\"},{\"timestamp\":1792838581490,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-6678aceaf0157526\",\"times\":1,\"event_type\":\"view\",\"type\":\"webvitals\",\"referrer\":\"\",\"cumulative_layout_shift\":0,\"largest_contentful_paint\":5384,\"url\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\"}],\"workspace\":\"default-cms-1652080443454191-cn-hangzhou\",\"service_id\":\"g9m3a0kv73@4beb0f9ec0291ac973109\",\"_retry\":0,\"_v\":\"cdn-0.1.15\"}",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/tv/msg/msgCounter",
+   "postData": "{}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://proj-xtrace-a6d5b57e5b99e36cd9499d77c8b168-cn-hangzhou.cn-hangzhou.log.aliyuncs.com/rum/web/v2?workspace=default-cms-1652080443454191-cn-hangzhou&service_id=g9m3a0kv73@4beb0f9ec0291ac973109",
+   "postData": "{\"app\":{\"env\":\"online\",\"version\":\"699-a1b1f0d1\",\"type\":\"browser\"},\"user\":{\"id\":\"uid_iab84kgbww8ycyl2\"},\"session\":{\"id\":\"82f2e910d7184621b3586e03f7f1bec5\"},\"net\":{\"model\":\"4g\"},\"view\":{\"id\":\"a6b5b83a8e9947618729e6178bd89186\",\"loading_type\":\"initial_load\",\"name\":\"/canvas\"},\"events\":[{\"timestamp\":1792838587166,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-f3cd41e7eea35ef0\",\"times\":1,\"event_type\":\"view\",\"type\":\"webvitals\",\"referrer\":\"\",\"cumulative_layout_shift\":0,\"url\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\"}],\"workspace\":\"default-cms-1652080443454191-cn-hangzhou\",\"service_id\":\"g9m3a0kv73@4beb0f9ec0291ac973109\",\"_retry\":0,\"_v\":\"cdn-0.1.15\"}",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/agreement/check",
+   "postData": "{\"agreementType\":\"star-video\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838590758,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"libtv.page.show\",\"var\":{\"login_status\":1,\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"lang\":\"zh\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838590758,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"libtv.canvas.show\",\"var\":{\"project_uuid\":\"a860e1da8e9e4504bececda022386429\",\"canvas_uuid\":\"a860e1da8e9e4504bececda022386429\",\"referer\":\"\",\"entry_source\":\"other\",\"is_new_project\":0,\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"lang\":\"zh\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/commerce/activity/promotion/query",
+   "postData": "{\"libId\":0,\"readOnly\":true}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/tv/msg/myTypeMsg",
+   "postData": "{\"page\":1,\"pageSize\":10,\"firstType\":1,\"secondType\":-1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/member/libtvFreePower",
+   "postData": "{}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/teams/invite/myInviteList",
+   "postData": "{}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/activity/userInfo",
+   "postData": "{}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/media-asset/tags/list",
+   "postData": "{}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/user-config/get",
+   "postData": "{}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/task/generation/power/calculator",
+   "postData": "{\"params\":{\"prompt\":\"\",\"model\":\"aurora-3-prime\",\"count\":1,\"scene\":\"script-recompute-prompts-v2\",\"scenePayload\":{\"shots\":[{\"shot_id\":\"UuyPhbBu\",\"shot_number\":1,\"duration_seconds\":5,\"plot_description\":\"\",\"shot_size\":\"\"}]},\"textList\":[],\"imageList\":[],\"imageLabelList\":[],\"videoList\":[],\"audioList\":[]},\"metadata\":{\"node_id\":\"power-estimate-1792838593368-0\",\"project_id\":\"a860e1da8e9e4504bececda022386429\"},\"provider\":\"aurora\",\"model\":\"aurora-3-prime\",\"taskType\":\"text\",\"requestId\":\"qK2UZTiRqL6Qmzoj\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838593420,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"qoe.canvas.ready\",\"var\":{\"qoe_metrics_version\":\"v1\",\"metrics\":[],\"counters\":[],\"route_path\":\"/canvas\",\"lang\":\"zh\",\"env\":\"online\",\"started_at\":1792838586934,\"duration_qoe\":6485,\"create_project\":0,\"create_workspace\":0,\"node_count_qoe\":9,\"aggregate_duration\":3793,\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"8\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"5\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"6\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"7\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"15\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://proj-xtrace-a6d5b57e5b99e36cd9499d77c8b168-cn-hangzhou.cn-hangzhou.log.aliyuncs.com/rum/web/v2?workspace=default-cms-1652080443454191-cn-hangzhou&service_id=g9m3a0kv73@4beb0f9ec0291ac973109",
+   "postData": "{\"app\":{\"env\":\"online\",\"version\":\"699-a1b1f0d1\",\"type\":\"browser\"},\"user\":{\"id\":\"uid_iab84kgbww8ycyl2\"},\"session\":{\"id\":\"82f2e910d7184621b3586e03f7f1bec5\"},\"net\":{\"model\":\"4g\"},\"view\":{\"id\":\"a6b5b83a8e9947618729e6178bd89186\",\"loading_type\":\"initial_load\",\"name\":\"/canvas\"},\"events\":[{\"timestamp\":1792838586958,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-0114084a57b40132\",\"event_type\":\"resource\",\"url\":\"https://api.liblib.tv/api/community/user/verify/pending\",\"name\":\"/api/community/user/verify/pending\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"POST\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api.liblib.tv/api/community/user/verify/pending\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":29721.5,\\\"duration\\\":3609.100000143051,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlockingStatus\\\":\\\"non-blocking\\\",\\\"workerStart\\\":0,\\\"redirectStart\\\":0,\\\"redirectEnd\\\":0,\\\"fetchStart\\\":29721.5,\\\"domainLookupStart\\\":0,\\\"domainLookupEnd\\\":0,\\\"connectStart\\\":0,\\\"secureConnectionStart\\\":0,\\\"connectEnd\\\":0,\\\"requestStart\\\":0,\\\"responseStart\\\":0,\\\"firstInterimResponseStart\\\":0,\\\"finalResponseHeadersStart\\\":0,\\\"responseEnd\\\":33330.60000014305,\\\"transferSize\\\":0,\\\"encodedBodySize\\\":0,\\\"decodedBodySize\\\":0,\\\"responseStatus\\\":200,\\\"serverTiming\\\":[]}\",\"duration\":3609.100000143051},{\"timestamp\":1792838586958,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-ea8f9d19c1b5b5d4\",\"event_type\":\"resource\",\"url\":\"https://api.liblib.tv/api/canvas/project/detail-by-space?spaceId=7709759&projectUuid=a860e1da8e9e4504bececda022386429\",\"name\":\"/api/canvas/project/detail-by-space\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"GET\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api.liblib.tv/api/canvas/project/detail-by-space?spaceId=7709759&projectUuid=a860e1da8e9e4504bececda022386429\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":29721.299999952316,\\\"duration\\\":3769.7000000476837,\\\"initiatorType\\\":\\\"xmlhtt",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/activity/userInfo",
+   "postData": "{}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://fclog.baidu.com/log/ocpcagl?type=behavior&emd=euc",
+   "postData": "N4IgLgziBcCMDsBOATADgMyoKyICwDZCAacALxlRIBsB7AcwEsATGEAU1VSe2QDMBaWAGNeAI365UvdP1EAGZDKYjUfdLHSI8IEgAcATjSYBXIWAY0AdqwD6veABlkADQDuAcWcArAJ4RSorhMsGzINAAeAAo+onQAIjogQmz6YKyJEGwQEBaWzKzI8IWoQvAyyLByuBJMyEKybIhMEmxCcljIcviiHaiJxvnQSfi8cmz4QfxyAIbIWBII9aLT8PBTTEz48Ly8kmN9JDS65ixDifpsvCkX+unUNELT5lYwoAY0YA80VKwAFmBgXQQIYkX40CBgSzTAC2bFYrgRADoqAxRCjRIiwAA3RK6GipO4gXRPX5Q2GsAD0j0sWOmUBImWm+iEv1YAH4IMTkgBJJgAXlWckQ8BwADJ3l5WmBeXzpqh8GNYEw5Y02LgsFVRK1WsqFIp5bhkIhEr86ayzgBfEhgHy6OFDWjTFgkaYwADaoBsYGmdHhDEsTBorhAFoAunpwQxntZoKBwjA5CQfAmrexwmlYyAbDihshEXJEehEjYGBBeDBeNMqJkSOEAIKWOhsFHTBz0QYgOZ4WD4VC4SpYMpYXCaAiJURCFGnEDjphl5lYjvFqBDXiPOg-C0WoA",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/nodes/batch",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"nodes\":{\"update\":[{\"nodeKey\":\"g-wZXWTwAyNT\",\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"type\":5,\"name\":\"预设 - 图片高清\",\"position\":{\"positionX\":\"-212\",\"positionY\":\"748\"},\"measured\":{\"width\":\"1112\",\"height\":\"1378\"},\"parentKey\":\"\",\"data\":\"{\\\"type\\\":\\\"group\\\",\\\"name\\\":\\\"预设 - 图片高清\\\",\\\"childNodeIds\\\":[\\\"i-wkVAUQMDMw\\\",\\\"i-aI1MLSIY4K\\\"],\\\"_updatedAtMs\\\":1792837916000,\\\"_lastAppliedFullyAtMs\\\":1792837916000}\"}]},\"connections\":{},\"version\":0,\"requestId\":\"aMl3o56M915v0MxA\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://proj-xtrace-a6d5b57e5b99e36cd9499d77c8b168-cn-hangzhou.cn-hangzhou.log.aliyuncs.com/rum/web/v2?workspace=default-cms-1652080443454191-cn-hangzhou&service_id=g9m3a0kv73@4beb0f9ec0291ac973109",
+   "postData": "{\"app\":{\"env\":\"online\",\"version\":\"699-a1b1f0d1\",\"type\":\"browser\"},\"user\":{\"id\":\"uid_iab84kgbww8ycyl2\"},\"session\":{\"id\":\"82f2e910d7184621b3586e03f7f1bec5\"},\"net\":{\"model\":\"4g\"},\"view\":{\"id\":\"a6b5b83a8e9947618729e6178bd89186\",\"loading_type\":\"initial_load\",\"name\":\"/canvas\"},\"events\":[{\"timestamp\":1792838593739,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-f18a20237e24299f\",\"times\":1,\"event_type\":\"view\",\"type\":\"webvitals\",\"referrer\":\"\",\"cumulative_layout_shift\":0,\"largest_contentful_paint\":36252,\"url\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\"},{\"timestamp\":1792838592404,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-062b8ff003b0087c\",\"event_type\":\"resource\",\"url\":\"https://api2.liblib.art/api/www/landing-activities/listByIds?ids=206,240,271,182,186,188,190,207,262,280,311,318,283,314\",\"name\":\"/api/www/landing-activities/listByIds\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"GET\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api2.liblib.art/api/www/landing-activities/listByIds?ids=206,240,271,182,186,188,190,207,262,280,311,318,283,314\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":35167.60000014305,\\\"duration\\\":1777.5,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlockingStatus\\\":\\\"non-blocking\\\",\\\"workerStart\\\":35167.799999952316,\\\"redirectStart\\\":0,\\\"redirectEnd\\\":0,\\\"fetchStart\\\":35167.799999952316,\\\"domainLookupStart\\\":0,\\\"domainLookupEnd\\\":0,\\\"connectStart\\\":0,\\\"secureConnectionStart\\\":0,\\\"connectEnd\\\":0,\\\"requestStart\\\":0,\\\"responseStart\\\":0,\\\"firstInterimResponseStart\\\":0,\\\"finalResponseHeadersStart\\\":0,\\\"responseEnd\\\":36945.10000014305,\\\"transferSize\\\":0,\\\"encodedBodySize\\\":0,\\\"decodedBodySize\\\":0,\\\"responseStatus\\\":200,\\\"serverTiming\\\":[]}\",\"duration\":1777.5},{\"timestamp\":1792838591894,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-57d3af0c6147fd8d\",\"event_type\":\"resource\",\"url\":\"https://api2.liblib.art/api/www/account/list\",\"name\":\"/api/",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":2}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":4}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/draft/update",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"viewportX\":\"98.80541072609569\",\"viewportY\":\"30.593223866552876\",\"viewportZoom\":\"0.3810031773136406\",\"draftJson\":\"{}\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://proj-xtrace-a6d5b57e5b99e36cd9499d77c8b168-cn-hangzhou.cn-hangzhou.log.aliyuncs.com/rum/web/v2?workspace=default-cms-1652080443454191-cn-hangzhou&service_id=g9m3a0kv73@4beb0f9ec0291ac973109",
+   "postData": "{\"app\":{\"env\":\"online\",\"version\":\"699-a1b1f0d1\",\"type\":\"browser\"},\"user\":{\"id\":\"uid_iab84kgbww8ycyl2\"},\"session\":{\"id\":\"82f2e910d7184621b3586e03f7f1bec5\"},\"net\":{\"model\":\"4g\"},\"view\":{\"id\":\"a6b5b83a8e9947618729e6178bd89186\",\"loading_type\":\"initial_load\",\"name\":\"/canvas\"},\"events\":[{\"timestamp\":1792838593333,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-29d4f5c93d2e7bbd\",\"event_type\":\"resource\",\"url\":\"https://api.liblib.tv/api/canvas/project/heartbeat\",\"name\":\"/api/canvas/project/heartbeat\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"POST\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api.liblib.tv/api/canvas/project/heartbeat\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":36096.90000009537,\\\"duration\\\":1829,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlockingStatus\\\":\\\"non-blocking\\\",\\\"workerStart\\\":36097.10000014305,\\\"redirectStart\\\":0,\\\"redirectEnd\\\":0,\\\"fetchStart\\\":36097.200000047684,\\\"domainLookupStart\\\":0,\\\"domainLookupEnd\\\":0,\\\"connectStart\\\":0,\\\"secureConnectionStart\\\":0,\\\"connectEnd\\\":0,\\\"requestStart\\\":0,\\\"responseStart\\\":0,\\\"firstInterimResponseStart\\\":0,\\\"finalResponseHeadersStart\\\":0,\\\"responseEnd\\\":37925.90000009537,\\\"transferSize\\\":0,\\\"encodedBodySize\\\":0,\\\"decodedBodySize\\\":0,\\\"responseStatus\\\":200,\\\"serverTiming\\\":[]}\",\"duration\":1829},{\"timestamp\":1792838593332,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-ea631e5dfb55af43\",\"event_type\":\"resource\",\"url\":\"https://api.liblib.tv/api/canvas/user-config/get\",\"name\":\"/api/canvas/user-config/get\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"POST\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api.liblib.tv/api/canvas/user-config/get\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":36095.700000047684,\\\"duration\\\":1830.5,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlockingStatus\\\":\\\"non-blocking\\\",\\\"workerStart\\\":36095.90000009537,\\\"redirectStart\\\":0,\\\"redir",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/teams/invite/myInviteList",
+   "postData": "{}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"8\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"5\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"6\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"7\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":\"15\"}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://sophon.howxm.com/api/sdk/v2/b4996fbc-1240-4cce-8b0f-15acf7b28a79/se",
+   "postData": "{\"appId\":\"b4996fbc-1240-4cce-8b0f-15acf7b28a79\",\"uid\":null,\"url\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"clientId\":\"519e49fa-b842-4fde-8626-96887d250b49\",\"preUrl\":null,\"cua\":null}",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":2}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":4}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://proj-xtrace-a6d5b57e5b99e36cd9499d77c8b168-cn-hangzhou.cn-hangzhou.log.aliyuncs.com/rum/web/v2?workspace=default-cms-1652080443454191-cn-hangzhou&service_id=g9m3a0kv73@4beb0f9ec0291ac973109",
+   "postData": "{\"app\":{\"env\":\"online\",\"version\":\"699-a1b1f0d1\",\"type\":\"browser\"},\"user\":{\"id\":\"uid_iab84kgbww8ycyl2\"},\"session\":{\"id\":\"82f2e910d7184621b3586e03f7f1bec5\"},\"net\":{\"model\":\"4g\"},\"view\":{\"id\":\"a6b5b83a8e9947618729e6178bd89186\",\"loading_type\":\"initial_load\",\"name\":\"/canvas\"},\"events\":[{\"timestamp\":1792838598122,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-7f6abaf5ee9bfd87\",\"event_type\":\"resource\",\"url\":\"https://api2.liblib.art/api/www/member/memberPower/list\",\"name\":\"/api/www/member/memberPower/list\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"GET\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api2.liblib.art/api/www/member/memberPower/list\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":40885.5,\\\"duration\\\":1582.4000000953674,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlockingStatus\\\":\\\"non-blocking\\\",\\\"workerStart\\\":40885.60000014305,\\\"redirectStart\\\":0,\\\"redirectEnd\\\":0,\\\"fetchStart\\\":40885.700000047684,\\\"domainLookupStart\\\":0,\\\"domainLookupEnd\\\":0,\\\"connectStart\\\":0,\\\"secureConnectionStart\\\":0,\\\"connectEnd\\\":0,\\\"requestStart\\\":0,\\\"responseStart\\\":0,\\\"firstInterimResponseStart\\\":0,\\\"finalResponseHeadersStart\\\":0,\\\"responseEnd\\\":42467.90000009537,\\\"transferSize\\\":0,\\\"encodedBodySize\\\":0,\\\"decodedBodySize\\\":0,\\\"responseStatus\\\":200,\\\"serverTiming\\\":[]}\",\"duration\":1582.4000000953674},{\"timestamp\":1792838594667,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-f27bf982ac893891\",\"event_type\":\"resource\",\"url\":\"https://fclog.baidu.com/log/ocpcagl?type=behavior&emd=euc\",\"name\":\"/log/ocpcagl\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"POST\",\"status_code\":200,\"message\":\"OK\",\"timing_data\":\"{\\\"name\\\":\\\"https://fclog.baidu.com/log/ocpcagl?type=behavior&emd=euc\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":37432.10000014305,\\\"duration\\\":5077,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlockingStatus\\\":\\\"non-blocking\\\",\\\"workerStart\\\":37432.1000001",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://cloudauth-device.aliyuncs.com/",
+   "postData": "AaduaneId=DuaneAprqkYsF3nt1yjK29Bf&Version=2020-10-15&SignatureMethod=HMAC-SHA1&SignatureVersion=1.0&Format=JSON&Action=Log1&Data=STMWiQ8yoU4U82oczATYRkH93VxwrcaFXA6stZL5ZgO3dmHy%2BI55V4g8%2BRZ3m0kGxVXtigoGzqUrd0KbrVDhCIL3RDvhD78qd62BQmStWCF64ILHumNzo67BfroCw9b4NO3lDZ78VHhSpE0C3JnfIg%3D%3D&SignatureNonce=75c65cab-8178-45aa-8684-b031faaf5f3c&Signature=utnfjKYUq%2BzdjCHAQWAuvF2tQG0%3D",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/landing-activities/list",
+   "postData": "{\"type\":9}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.howxm.com/sdk/v2/b4996fbc-1240-4cce-8b0f-15acf7b28a79/check/distribute",
+   "postData": "{\"clientId\":\"519e49fa-b842-4fde-8626-96887d250b49\",\"customerUid\":null,\"campaignId\":\"77c3c043c250c480837a0c8e3f26f539\",\"extraAttrs\":{}}",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://cloudauth-device.aliyuncs.com/",
+   "postData": "AaduaneId=DuaneAprqkYsF3nt1yjK29Bf&Version=2020-10-15&SignatureMethod=HMAC-SHA1&SignatureVersion=1.0&Format=JSON&Action=Log2&Data=i%2FTSPtim%2BTKqFhsqdP8NOBF1AHQlxra%2F22%2B9GRN8nLYq%2F%2BG8bvn%2FbH7mZcla4vd%2BW4MfvaJ3X98hPPWhWLkvnGAT60eNSGYkLpuoEmTTBczWJiZpQAsKBJIJAj2DqPLdh9rdGvHptToP8i%2BDXDy5IZ00DCpStMXZsp7AIohgde6SSmulG8qzdyRIL0l9eiW2rxIUYT7yGQY8Zmg6sWNHO90oaltE8V1Eto4B3uC3qneALYZi5zrsy6fZYGbblZYPoyMrbBeTyIztAi0oMEIAIGz%2F5OePZt8C5lIUciOJvgR%2FmCsmbxohopvrt%2B5DOR88V5zhDHDKz%2FBf00obt1WlKYlIkFRZefwfbmMMn4obFJV2RKYXKSyGh%2Fl7m18FlyQql3DVQhhHfqead15RxfJnL1KBrblNb6kmmTifY5q8Q4JVCbLnkiwNfrk8ygBRetBw0gHBjYjKtGKTNsLwOr5KEupVheHQcllCJ0fMm9yDL5Yejbh81W%2FpwCoWSHUcADpfYE1afbv6FCxQk8PV3J3PjQj1d%2FJkEDu84ROc99gdft8Szk8b8xlBqO4Hd0N9WIBQ5cZNPh2CRQVVqiNvwQPIjA07Mdlj8A62ASjRc7f0Wj4CoraUAuG9p7KQNcj3rWNBvf5dTo0HLLEd2AVM5CZXKimWyglhWoxlacywpSCSg4W6TyVdgGMBLHQvWKcl0bnVM2gLUFKKYNas3BLVAYhAHV%2B3Fr5DPD772QlTnZtyjKFJ1nWg1%2BcdSP66Lk4cg6q0c7KP3y8X52uf4RnTn93yzmopXwxgIF4QziKtDRcd0OPlr%2BcvqGsZFENN22eKblyZrCcLFARkV8EVj58AEx6QhN5nkQRcdGxJiM9xQSUwpYB1aeizMC05E1lSIJMsGJQZhBUQqUpF5zPA39n69FXPoigcr5Vj%2BCh%2BBaOjDwrpH87m8WUj1jyWfstmF3MBoBAREMl0Qny6sIhu31CHPImCyr%2FKowXiuIabZP38UiJdD5wUVNKNjtWc5yAdQwJkIRCjDSe712YxfDx62%2B7vy%2BWJmPLLlKiB6dA4pyyxSJfPNaQkVRBdQ1aUI6rdt1GJhX0q3agHxn7OBHOIr6S7fSsLnuvBIt%2BZ26HZ1FpLwYmfPOT%2F3k1QF9eKinkOE5K16gMnP5Y5q%2FvCy%2BwzHqtxdgUHyUVn8SWgm0IgxvrpX5JM2niZ8Q46iLL5SnqxiccStj3aN7NzngIVzVVpG6xUrM6La4yd4iKUhvmi3gG3s3P4Whm0KzQSdicJUOxN%2BnCpxH%2B0UQNwk0Djqn2jgv%2BIZnYZdQA9SBzbfHsB9pfCUHcU53OWldPT4JjNXDqg9mtsVFgT2FgD%2FkX6sltfkYRyPL5VsE3VoqRhRajxoI4WsB1nrZ3AFycWHfH8B3m7BoZd4c1kAWngz7xewpmS4%2BN091SpHhgZtOx9E719loFpqJAZADNv5gcklHfMktKGSp2ORlFgQC%2FVhvSsrSBcOIM6XJxzwc5tD9y3yFO2iKUDtqZDG1Y2OzmcoE4qI%2BcTSoJagP9Tq99Zy2bUBap6PnjPEq8hL%2B%2FiQZrdJQ7GOjq9ND7M5nMvEmWEoiNtw81A77GRdicwHvs%2FWlhEuelw3AgEQuiLAw%2BwoaUPS0aL413aUMpNvHTl2ClyJSFs9R6hHpWfmdsmkxMi2gnDrvmZqPn%2BjdnIxNY%2BxpVxqiDmHgQxpK5spk7asgC%2BARgxpMFrrg2PlCgawrYC8pG6rNzxZDZbOcbw4WBh0Unafo9fohNJh9tUxcJxSJVXFfqnQPacN9",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838613278,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"libtv.canvas.director.open\",\"var\":{\"canvas_uuid\":\"a860e1da8e9e4504bececda022386429\",\"director_node_uuid\":\"n-gYB1c2Peq9\",\"director_session_id\":\"a20ad9aa-959a-4bc5-aa3f-e2a10ac6e503\",\"entry\":\"node_button\",\"is_first_open\":1,\"has_panorama\":0,\"panorama_source\":\"none\",\"duration_ms\":18752,\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"lang\":\"zh\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838613878,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"qoe.page.load\",\"var\":{\"qoe_metrics_version\":\"v1\",\"metrics\":[],\"counters\":[],\"route_path\":\"/canvas\",\"lang\":\"zh\",\"env\":\"online\",\"started_at\":1792838586934,\"duration_qoe\":56540,\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://qiyukf.com/webapi/user/remoteStorage.action?appKey=abd432e2a823988b444d48b0f60886d1&timestamp=1792838614021&token=txlzrmxaurhgkt4smub1&local=1",
+   "postData": "[{\"key\":\"userInfo\",\"value\":\"{\\\"title\\\":\\\"\\\",\\\"referrer\\\":\\\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\\\",\\\"landPage\\\":\\\"\\\",\\\"landPageTitle\\\":\\\"\\\",\\\"landPageReferrer\\\":\\\"\\\",\\\"sessionInfo\\\":\\\"\\\",\\\"deviceId\\\":\\\"ir3ggaiqpdpoa57qkjzb\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"secureInfo\",\"value\":\"{\\\"uid\\\":\\\"\\\",\\\"foreignId\\\":\\\"\\\",\\\"deviceId\\\":\\\"ir3ggaiqpdpoa57qkjzb\\\",\\\"uuid\\\":\\\"txlzrmxaurhgkt4smub1\\\",\\\"authToken\\\":\\\"\\\",\\\"name\\\":\\\"\\\",\\\"email\\\":\\\"\\\",\\\"mobile\\\":\\\"\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"alipayImagePermissionText\",\"value\":\"\"}]",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://qiyukf.com/webapi/user/remoteStorage.action?appKey=abd432e2a823988b444d48b0f60886d1&timestamp=1792838614655&token=txlzrmxaurhgkt4smub1&local=1",
+   "postData": "[{\"key\":\"userInfo\",\"value\":\"{\\\"title\\\":\\\"\\\",\\\"referrer\\\":\\\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\\\",\\\"landPage\\\":\\\"https%3A%2F%2Fwww.liblib.tv%2Fcanvas%3FspaceId%3D7709759%26projectId%3Da860e1da8e9e4504bececda022386429\\\",\\\"landPageTitle\\\":\\\"画布 1 - LibTV - 专业视频创作工具\\\",\\\"landPageReferrer\\\":\\\"\\\",\\\"sessionInfo\\\":\\\"\\\",\\\"deviceId\\\":\\\"ir3ggaiqpdpoa57qkjzb\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"secureInfo\",\"value\":\"{\\\"uid\\\":\\\"\\\",\\\"foreignId\\\":\\\"\\\",\\\"deviceId\\\":\\\"ir3ggaiqpdpoa57qkjzb\\\",\\\"uuid\\\":\\\"txlzrmxaurhgkt4smub1\\\",\\\"authToken\\\":\\\"\\\",\\\"name\\\":\\\"\\\",\\\"email\\\":\\\"\\\",\\\"mobile\\\":\\\"\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"alipayImagePermissionText\",\"value\":\"\"}]",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://proj-xtrace-a6d5b57e5b99e36cd9499d77c8b168-cn-hangzhou.cn-hangzhou.log.aliyuncs.com/rum/web/v2?workspace=default-cms-1652080443454191-cn-hangzhou&service_id=g9m3a0kv73@4beb0f9ec0291ac973109",
+   "postData": "{\"app\":{\"env\":\"online\",\"version\":\"699-a1b1f0d1\",\"type\":\"browser\"},\"user\":{\"id\":\"uid_iab84kgbww8ycyl2\"},\"session\":{\"id\":\"82f2e910d7184621b3586e03f7f1bec5\"},\"net\":{\"model\":\"4g\"},\"view\":{\"id\":\"a6b5b83a8e9947618729e6178bd89186\",\"loading_type\":\"initial_load\",\"name\":\"/canvas\"},\"events\":[{\"timestamp\":1792838603117,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-c3fd04dc1ac4e6c6\",\"event_type\":\"resource\",\"url\":\"https://api2.liblib.art/api/www/member/packages?packageType=TRAIN&sourceFrom=libtv\",\"name\":\"/api/www/member/packages\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"GET\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api2.liblib.art/api/www/member/packages?packageType=TRAIN&sourceFrom=libtv\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":45881,\\\"duration\\\":1128.5,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlockingStatus\\\":\\\"non-blocking\\\",\\\"workerStart\\\":45881.10000014305,\\\"redirectStart\\\":0,\\\"redirectEnd\\\":0,\\\"fetchStart\\\":45881.10000014305,\\\"domainLookupStart\\\":0,\\\"domainLookupEnd\\\":0,\\\"connectStart\\\":0,\\\"secureConnectionStart\\\":0,\\\"connectEnd\\\":0,\\\"requestStart\\\":0,\\\"responseStart\\\":0,\\\"firstInterimResponseStart\\\":0,\\\"finalResponseHeadersStart\\\":0,\\\"responseEnd\\\":47009.5,\\\"transferSize\\\":0,\\\"encodedBodySize\\\":0,\\\"decodedBodySize\\\":0,\\\"responseStatus\\\":200,\\\"serverTiming\\\":[]}\",\"duration\":1128.5},{\"timestamp\":1792838604248,\"event_id\":\"00-82f2e910d7184621b3586e03f7f1bec5-280015cb877e0dbd\",\"event_type\":\"resource\",\"url\":\"https://api2.liblib.art/api/www/landing-activities/getById?id=31\",\"name\":\"/api/www/landing-activities/getById\",\"type\":\"xmlhttprequest\",\"success\":1,\"times\":1,\"method\":\"GET\",\"status_code\":200,\"message\":\"\",\"timing_data\":\"{\\\"name\\\":\\\"https://api2.liblib.art/api/www/landing-activities/getById?id=31\\\",\\\"entryType\\\":\\\"resource\\\",\\\"startTime\\\":47011.799999952316,\\\"duration\\\":2201.600000143051,\\\"initiatorType\\\":\\\"xmlhttprequest\\\",\\\"deliveryType\\\":\\\"\\\",\\\"nextHopProtocol\\\":\\\"\\\",\\\"renderBlocki",
+   "resourceType": "fetch",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://fclog.baidu.com/log/ocpcagl?type=behavior&emd=euc",
+   "postData": "N4IgLgziBcCMDsBOATADgMyoGywCyJwBpwAvGVYgGwHsBzASwBMYQBTAYwIEMAjAViwBaXKy5DcABizpBPRH1yCuqVrDGseWeOlwhiABwBO1RgFd2YetQB2LAPoAzeABlkADQDuAcTcArAJ4QJDy4jLCsyNQAHgAK-jy0ACJ6IOyshmAsKRCsEBBW1kwsyPAlqOzagsiwEoqhyOyyrIiMwhwSfMhS-GgppkXQqVgOEqxYoYISXMh8wgiNPFzw8JOMjFoODrioo6gp1PqWzIMphqwO6WeGWVTU7FyWNjCgRtRgd9SULAAWYGD6EEGxG+1AgYGsXAAtqwWB44QA6Sj0HhInjwsAANxS+moGRuIH0D2+EOhLAA9PdrBiuFBiDkuIZ2N8WAB+CCEtIASUYAF5lhJEPA+IgAGSvXwcMDcnnKLCjWCMZTNVi4Pi1HgcDiKiTIZCYcbIRApb405knAC+xDA-n0MMG7CR7AA1ikuDAANqgOxgLi0Fg8Ez+FIDAm+1iCCDsYyUSiCYxvFIOmlQQZcayWLhImmsZjEOz0GCwPP5GASS1en1+waMehY4hJvIsBz0KI5gAEDkorCiHa7UUE7E+bfo1hyYEmKXzMGqxYL0Cw5ZA3t9LBrddSlGTLDOm8sGNYbchI8E30mve7glgk7nElnpcXy6rIBpTBh9c3jdTPAgn1MYAPI5joI-hnl2DjjhIbYkII6CQQGhiMOkcZtvBiGGIIHjfPQ-5kjUKG0II7oAMQIKR8AALptv+UTjph2EHmAhhpvkjzWIRHhMGA3yUWYTGsVUEgSNehZ3tAZaEBWK7VrWiYfimICdt2banu69yUOwAAUNQSAApIInT6FEACU5HCdAuCieJklPmuslboMik9h4hF6sghmUUebHOZBjkDkOCSESR8BkaZeZzkWS4lmJD6VquMnvvZIC0IYTBtslTB+ZQEBVGlXD6DlhkFTwMFmRFdhRbAMVSSAPB-u8tgJZ+Cl9sphGlO5579oOlDDv+kLZWk6bpG2vimGC9AOCBg3-oYuX5cgbbGKY1iIa0UQ9ahw3UeO7qwG5USUdtGFYThiCQYxzHYQUmW4hAKG4mhx30bhQlhdOonIFaNp2jVdVPFVT7smmpWiWV20sLAWDQEaebfPJwqKloyxYFgipdBwPDoOwsFIKwqCwOwfBqHwuZLv08mwHY7B2Fg3rdmAOnoAAQsgdjWHYlNMdYtCsIzTPoFTdi4HTNF88L7OU9YpiQhqhh83wbMc2z0uy3ztMS8rMvpHz8CK5LKva8zqB65rqvM4gJtS1rcvMzUgu691uJ87Aks0yLDO26zGtczzzsC9TrPbc74t2KzPu87bCvs4H9PO+rdgC+Hzu6+zwtB7bxve2mvu2xb7MC+D5rkQYoJXU80CgFEhYSBQIBBtA1QLsQ9PPEuWKDMg8ISPC6DXhADgwA4mY5MQUQAILc6wWbOHQIYzIguCQ6gi8dNoCjoAvWApDwDohtvjD94yGJ78WTb3LQXzmuaQA",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838614966,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"libtv.canvas.director.camera.update\",\"var\":{\"director_session_id\":\"a20ad9aa-959a-4bc5-aa3f-e2a10ac6e503\",\"camera_uuid\":\"director-main-camera\",\"setting_name\":\"aspect_ratio\",\"setting_value\":\"16:9\",\"operation_source\":\"right_panel\",\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"lang\":\"zh\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://qiyukf.com/webapi/user/remoteStorage.action?appKey=abd432e2a823988b444d48b0f60886d1&timestamp=1792838615435&token=txlzrmxaurhgkt4smub1&local=0",
+   "postData": "[{\"key\":\"userInfo\",\"value\":\"{\\\"title\\\":\\\"画布 1 - LibTV - 专业视频创作工具\\\",\\\"uid\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"reallyUid\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"name\\\":\\\"微信用户1e324a\\\",\\\"profile\\\":\\\"[{\\\\\\\"type\\\\\\\":\\\\\\\"crm_param\\\\\\\",\\\\\\\"key\\\\\\\":\\\\\\\"uuid\\\\\\\",\\\\\\\"value\\\\\\\":\\\\\\\"0a8471b054964ae9b9079af74a9ed84e\\\\\\\"}]\\\",\\\"referrer\\\":\\\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\\\",\\\"landPage\\\":\\\"https%3A%2F%2Fwww.liblib.tv%2Fcanvas%3FspaceId%3D7709759%26projectId%3Da860e1da8e9e4504bececda022386429\\\",\\\"landPageTitle\\\":\\\"画布 1 - LibTV - 专业视频创作工具\\\",\\\"landPageReferrer\\\":\\\"\\\",\\\"sessionInfo\\\":\\\"\\\",\\\"deviceId\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"secureInfo\",\"value\":\"{\\\"uid\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"foreignId\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"deviceId\\\":\\\"0a8471b054964ae9b9079af74a9ed84e\\\",\\\"uuid\\\":\\\"txlzrmxaurhgkt4smub1\\\",\\\"authToken\\\":\\\"\\\",\\\"name\\\":\\\"微信用户1e324a\\\",\\\"email\\\":\\\"\\\",\\\"mobile\\\":\\\"\\\",\\\"channelExtendInfo\\\":\\\"\\\"}\"},{\"key\":\"alipayImagePermissionText\",\"value\":\"\"}]",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api2.liblib.art/api/www/log/acceptor/f",
+   "postData": "{\"tz\":\"Asia/Shanghai\",\"langs\":[\"en-US\"],\"lang\":\"zh\",\"uuid\":\"0a8471b054964ae9b9079af74a9ed84e\",\"abtest\":[{\"name\":\"xingliu_index_exp\",\"group\":\"test_group\"}],\"cid\":\"1792517942333tyowukae\",\"ct\":1792838618011,\"region\":\"cn\",\"pageUrl\":\"https://www.liblib.tv/canvas?spaceId=7709759&projectId=a860e1da8e9e4504bececda022386429\",\"ua\":\"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/134.0.6998.35 Safari/537.36\",\"referer\":\"\",\"e\":\"libtv.canvas.director.camera.update\",\"var\":{\"director_session_id\":\"a20ad9aa-959a-4bc5-aa3f-e2a10ac6e503\",\"camera_uuid\":\"director-main-camera\",\"setting_name\":\"reference_line\",\"setting_value\":1,\"operation_source\":\"right_panel\",\"dpr\":1,\"sw\":1920,\"sh\":1080,\"region\":\"cn\",\"lang\":\"zh\",\"window_session_id\":\"6Pm6a3Ek37p36805Kwt5\",\"hardware_info_version\":\"v1\",\"gpu_vendor_bucket\":\"apple\",\"gpu_renderer_bucket\":\"apple-gpu\",\"gpu_acceleration_state\":\"available\",\"gpu_api\":\"webgl2\",\"cpu_architecture\":\"arm\",\"cpu_bitness\":\"64\",\"logical_processor_count_bucket\":\"9-16\",\"device_memory_gb_bucket\":\"8\",\"hardware_info_quality\":\"coarse\"},\"env\":\"online\",\"sw\":1920,\"sh\":1080,\"dpr\":1}",
+   "resourceType": "xhr",
+   "时间": -1
+  },
+  {
+   "method": "POST",
+   "url": "https://api.liblib.tv/api/canvas/project/heartbeat",
+   "postData": "{\"projectUuid\":\"a860e1da8e9e4504bececda022386429\",\"sessionId\":\"w1esr8QgsvwcJKLmZDHn\",\"timestamp\":1792838592394}",
+   "resourceType": "xhr",
+   "时间": -1
+  }
+ ]
+}

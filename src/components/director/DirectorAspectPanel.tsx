@@ -74,6 +74,10 @@
 //   **不写**完整字面量。
 import { useDirectorStore } from "@/store/directorStore";
 import { cn } from "@/lib/utils";
+import {
+  buildDirectorCameraUpdateEvent,
+  resolveDirectorTelemetryCameraId,
+} from "@/lib/directorTelemetry";
 
 // ★ 源站逐字（`aO`）：标题条。
 const TITLE_CLASS =
@@ -122,6 +126,26 @@ export function DirectorAspectPanel({ active }: { active: boolean }) {
   //   **没有机位 ⟹ 七档比例全部禁用**。
   const objects = useDirectorStore((state) => state.objects);
   const hasCameras = objects.some((object) => object.kind === "camera");
+  // ★ Batch 864：源站逐字 `let t = e1 || rL.cameras[0]?.id`
+  //   ⟹ ⟹ 埋点里的机位 ＝ **选中机位**，否则**第一个机位**。
+  const activeCameraId = useDirectorStore((state) => state.activeCameraId);
+  const recordTelemetry = useDirectorStore((state) => state.recordTelemetry);
+  // ★ 源站逐字：点比例 ⟹ ⟹ `n4(t, "aspect_ratio", (0,nZ.R)(e), "right_panel")`
+  //   ⟹ ⟹ clone 记一条**本地**的同构事件（★ **不触网**，见
+  //   `src/lib/directorTelemetry.ts` 的说明）。
+  const reportAspectRatio = (ratio: (typeof aspectRatios)[number]) => {
+    const cameras = objects.filter((object) => object.kind === "camera");
+    const cameraId = resolveDirectorTelemetryCameraId(cameras, activeCameraId);
+    if (!cameraId) return;
+    recordTelemetry(
+      buildDirectorCameraUpdateEvent({
+        cameraId,
+        settingName: "aspect_ratio",
+        // ★ 源站逐字：比例是**字符串**（"16:9"）；「自适应」是 `null`。
+        settingValue: ratio === "自适应" ? null : ratio,
+      }),
+    );
+  };
   // ★ 源站逐字：`"aspect"===z?(…):null` ⟹ ⟹ **条件渲染**（不是 `hidden`）
   //   ⟹ ⟹ 与 batch 858 的「添加角色」面板同一写法。
   // ★ ★ 组件**本身**常驻（`useState` 的选中项因此跨模式保留），
@@ -150,9 +174,10 @@ export function DirectorAspectPanel({ active }: { active: boolean }) {
             aria-pressed={selected === ratio}
             // ★ Batch 862（源站逐字 `disabled:!a`）：没有机位 ⟹ 全部禁用。
             disabled={!hasCameras}
-            onClick={() =>
-              setFrameAspectRatio(ratio === "自适应" ? null : ratio)
-            }
+            onClick={() => {
+              setFrameAspectRatio(ratio === "自适应" ? null : ratio);
+              reportAspectRatio(ratio);
+            }}
             className={cn(
               CELL_CLASS,
               selected === ratio ? "border-white/85" : "border-white/10",

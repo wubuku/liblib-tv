@@ -1,0 +1,86 @@
+[
+ {
+  "id": "N1",
+  "desc": "事件名改一个字符",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 2,
+  "首条红灯": "FAILED: source:the-event-name-is-verbatim  ⟵ libtv.canvas.director.camera.update",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N2",
+  "desc": "operation_source 改成别的",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 3,
+  "首条红灯": "FAILED: source:the-operation-source-is-verbatim  ⟵ right_panel",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N3",
+  "desc": "埋点实现里塞一个网络调用（底线门禁）",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 1,
+  "首条红灯": "FAILED: source:the-local-telemetry-never-touches-the-network  ⟵ {'命中': [{'文件': 'directorTelemetry.ts', '模式': '\\\\bfetch\\\\s*\\\\('}], 'why': '★ 源站那条是**埋点上报** ⟹ ⟹ clone 只做**本地记录** ⟹ ⟹ 绝不触网'}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N4",
+  "desc": "参考线取值反转",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 2,
+  "首条红灯": "FAILED: clone:toggling-the-reference-line-records-a-numeric-value  ⟵ {'条数': 4, '末条': {'e': 'libtv.canvas.director.camera.update', 'var': {'camera_uuid': 'director-camera-main', 'setting_name': 'reference_line', 'setting_value': 0, 'operation_source': 'right_panel'}, '键集': ['camera_uuid', 'setting_name', 'setting_value', 'operation_source']}}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N5",
+  "desc": "「自适应」不再记 null",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 1,
+  "首条红灯": "FAILED: clone:picking-auto-records-a-null-value  ⟵ {'条数': 2, '末条': {'e': 'libtv.canvas.director.camera.update', 'var': {'camera_uuid': 'director-camera-main', 'setting_name': 'aspect_ratio', 'setting_value': '自适应', 'operation_source': 'right_panel'}, '键集': ['camera_uuid', 'setting_name', 'setting_value', 'operation_source']}}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N6",
+  "desc": "在机位对象上造出 D17 那个假字段",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 1,
+  "首条红灯": "FAILED: source:the-aspect-ratio-is-not-written-onto-a-camera-object  ⟵ ★ ★ D17 被推翻：源站**没有**把这两个字段写进机位对象 ⟹ ⟹ clone 也不许造出这个假字段",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N7",
+  "desc": "camera_uuid 写死成常量",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 1,
+  "首条红灯": "FAILED: clone:the-recorded-camera-is-the-selected-one  ⟵ {'camera_uuid': 'director-camera-X', 'activeCameraId': 'director-camera-main', '机位': [{'id': 'director-camera-main', 'name': '机位1'}]}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ }
+]

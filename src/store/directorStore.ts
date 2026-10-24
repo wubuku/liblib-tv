@@ -165,6 +165,10 @@ import {
   type DirectorLocalResourceMap,
 } from "@/lib/directorLocalResourceLifecycle";
 import type { DirectorLocalPanoramaAsset } from "@/lib/directorCanvasMediaIngress";
+import {
+  DIRECTOR_TELEMETRY_LOG_LIMIT,
+  type DirectorTelemetryCameraUpdateEvent,
+} from "@/lib/directorTelemetry";
 
 export type DirectorTuple3 = [number, number, number];
 export type DirectorViewMode = "director" | "camera";
@@ -678,6 +682,15 @@ interface DirectorState {
   //   ★ 刻意**不进持久化 schema**（与 `timelinePanelOpen` 同款：视图态）。
   frameAspectRatio: DirectorFrameAspectRatio | null;
   showThirds: boolean;
+  // ★★★ Batch 864：**源站那条「机位设置变更」埋点**的**本地等价记录**。
+  //   ★ 源站逐字：`n4` 只发 `libtv.canvas.director.camera.update`
+  //   ⟹ ⟹ 落点是**埋点端点**（`/api/www/log/acceptor/f`）⟹ ⟹ **不改任何状态**
+  //   ⟹ ⟹ **D17「源站把比例/reference_line 写进机位对象」被推翻**（见
+  //   `src/lib/directorTelemetry.ts` 的注释）。
+  //   ★ clone **不触网**（原型不碰真实接口）⟹ ⟹ 只落在内存里，
+  //   ⟹ ⟹ 供自动化读 `window.__director_store.getState().telemetryLog`。
+  //   ★ 刻意**不进持久化 schema**（与 `frameAspectRatio`／`showThirds` 同款：视图态）。
+  telemetryLog: DirectorTelemetryCameraUpdateEvent[];
   viewportPanelsCollapsed: boolean;
   // Batch 608（视图态，刻意不进持久化 schema —— 与 `viewportPanelsCollapsed`
   // 同款，也与 batch 599 的 `timeline.zoom` 同款：文档 schema 只描述工程内容，
@@ -821,6 +834,12 @@ interface DirectorState {
   /** ★ Batch 860：设**取景比例**（`null` ＝ 自适应 ⟹ ⟹ 取景框不在场）。 */
   setFrameAspectRatio: (ratio: DirectorFrameAspectRatio | null) => void;
   toggleThirds: () => void;
+  /**
+   * ★ Batch 864：记一条**本地**的「机位设置变更」事件
+   *   （事件名与属性**逐字同构**于源站那条埋点 ⟹ ⟹ 但**不触网**）。
+   *   ★ 事件形状见 `src/lib/directorTelemetry.ts`。
+   */
+  recordTelemetry: (event: DirectorTelemetryCameraUpdateEvent) => void;
   toggleViewportPanelsCollapsed: () => void;
   setViewportPanelsCollapsed: (collapsed: boolean) => void;
   setTimelinePanelOpen: (open: boolean) => void;
@@ -3208,6 +3227,8 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   //   刚打开导演台时**取景框不在场**）。
   frameAspectRatio: null,
   showThirds: false,
+  // ★ Batch 864：本地事件日志（★ 初始为空 ⟹ ⟹ 打开导演台时**没有**历史事件）。
+  telemetryLog: [],
   viewportPanelsCollapsed: false,
   timelinePanelOpen: true,
   timelineHeight: DIRECTOR_TIMELINE_DEFAULT_HEIGHT,
@@ -5820,6 +5841,16 @@ export const useDirectorStore = create<DirectorState>((set, get) => ({
   setFrameAspectRatio: (ratio) => set({ frameAspectRatio: ratio }),
 
   toggleThirds: () => set((state) => ({ showThirds: !state.showThirds })),
+
+  // ★ Batch 864：本地事件日志（★ **不触网**：原型不碰真实接口）。
+  //   ★ 源站逐字的事件名是 `libtv.canvas.director.camera.update`，
+  //   ★ 属性是 `{camera_uuid, setting_name, setting_value, operation_source}`。
+  recordTelemetry: (event) =>
+    set((state) => ({
+      telemetryLog: [...state.telemetryLog, event].slice(
+        -DIRECTOR_TELEMETRY_LOG_LIMIT,
+      ),
+    })),
 
   toggleViewportPanelsCollapsed: () =>
     set((state) => ({

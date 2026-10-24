@@ -142,6 +142,37 @@ READ = r"""()=>{
 }"""
 
 
+# ★ ★★ **命中测试**：★ 目标按钮所在点上，**最顶层**的元素是谁？
+#   ⟹ ⟹ 「按钮在 DOM 里」**不等于**「点得到」⟹ ⟹ 被别的东西盖住时，
+#   ⟹ ⟹ 点击会被拦 ⟹ ⟹ 判据必须先看清「谁在最上层」。
+HIT_TEST = r"""()=>{
+  const btn=document.querySelector('[data-director-frame-thirds-toggle]');
+  if(!btn) return {按钮在场:false};
+  const r=btn.getBoundingClientRect();
+  const cx=Math.round(r.x+r.width/2), cy=Math.round(r.y+r.height/2);
+  const top=document.elementFromPoint(cx,cy);
+  return {按钮在场:true,
+          按钮rect:{x:Math.round(r.x),y:Math.round(r.y),
+                    w:Math.round(r.width),h:Math.round(r.height)},
+          命中点:{x:cx,y:cy},
+          isToggle:!!(top&&top.closest('[data-director-frame-thirds-toggle]')),
+          命中标签:top&&(top.getAttribute('aria-label')||top.getAttribute('title')||top.tagName),
+          命中类:top&&(top.getAttribute('class')||'').slice(0,90)};
+}"""
+
+# ★ ★★ Batch 864 新增：**层叠机制**的读数
+#   ⟹ ⟹ 坐标控件（clone 自有，`z-20`）一旦**高过**遮罩容器（源站逐字 `z-10`）
+#   ⟹ ⟹ 容器里的开关（`z-20`）就被**困在容器的层叠上下文里** ⟹ ⟹ 点不到。
+ZINFO = r"""()=>{
+  const g=document.querySelector('[data-director-viewport-gizmo]');
+  const c=document.querySelector('[data-director-aspect-mask-container]');
+  const z=e=>e?getComputedStyle(e).zIndex:null;
+  return {gizmoZ:z(g), containerZ:z(c),
+          gizmoCls:g?(g.getAttribute('class')||'').slice(0,140):null,
+          containerCls:c?(c.getAttribute('class')||'').slice(0,140):null};
+}"""
+
+
 class Verifier:
     def __init__(self) -> None:
         self.count = 0
@@ -541,7 +572,51 @@ def main() -> int:
             toggle_count = page.locator("[data-director-frame-thirds-toggle]").count()
             v.check("clone:the-862-toggle-is-still-mounted",
                     toggle_count == 1, detail={"count": toggle_count})
-            if toggle_count == 1:
+            # ★ ★★ Batch 864 补的**命中测试**：★ 「按钮在 DOM 里」**不等于**「点得到」
+            #   ⟹ ⟹ batch 863 给遮罩容器加了 `z-10` ⟹ ⟹ 它创建了层叠上下文
+            #   ⟹ ⟹ 把开关的 `z-20` 困在里面 ⟹ ⟹ 而坐标控件是 `z-20`
+            #   ⟹ ⟹ 在某些宽高比下**坐标控件正好盖住那枚开关** ⟹ ⟹ 点击会被拦
+            #   ⟹ ⟹ （受控对照的 HEAD 态就是这个状态 ⟹ ⟹ 若不先判命中，
+            #   ⟹ ⟹ 那一版会**超时崩溃**，而不是**具名红条**）
+            #   ⟹ ⟹ 修法：**先判命中测试、再决定要不要点**。
+            # ★ ★★★ Batch 864 **第二次修订**这条判据（★ 第一版**没有牙**）：
+            #   ★ 第一版只判「点得到」⟹ ⟹ 但它跑在**比例循环结束的那一档**
+            #     （`RATIOS` 的末位是 `9:16` ⟹ ⟹ 框**很窄** ⟹ ⟹ 开关离视口右上角
+            #     的坐标控件**很远** ⟹ ⟹ 两者**永不重叠**）
+            #   ⟹ ⟹ 于是在 HEAD 态（坐标控件 `z-20`）它也判**绿**
+            #   ⟹ ⟹ 受控对照实测：HEAD 态与 MIX 态**都判绿** ⟹ ⟹ 这条判据没有牙。
+            #   ★ ⇒ 修法：先把比例切到**开关真会被盖住的那一档**（最宽的 `16:9`）
+            #     ⟹ ⟹ 再判命中测试。
+            #   ★ 用 **store** 切比例（不是点选项）⟹ ⟹ 避开「点选项会被 gizmo 挡住」
+            #     那个坑（上面那段注释记着它）。
+            #   ★ 并且**把当前比例钉成一条判据** ⟹ ⟹ 免得以后又悄悄跑到不重叠的那档。
+            page.evaluate(
+                "() => { const s = window.__director_store.getState();"
+                " s.setFrameAspectRatio('16:9'); }")
+            page.wait_for_timeout(700)
+            ratio_now = page.evaluate(
+                "() => { const f = document.querySelector"
+                "('[data-director-aspect-frame]');"
+                " return f ? f.getAttribute('data-director-aspect-ratio') : null; }")
+            v.check("clone:the-hit-test-runs-at-the-ratio-where-they-overlap",
+                    ratio_now == "16:9",
+                    detail={"当前比例": ratio_now,
+                            "why": "★ `9:16` 那一档框很窄 ⟹ ⟹ 开关不会与坐标控件重叠"
+                                   " ⟹ ⟹ 在那一档上判「点得到」**测不出**遮挡缺陷"})
+            # ★ ★★ 机制侧也钉一条：坐标控件**不许**高过遮罩容器
+            zinfo = page.evaluate(ZINFO)
+            live["z序"] = zinfo
+            v.check("clone:the-viewport-gizmo-does-not-outrank-the-mask-container",
+                    zinfo.get("gizmoZ") is not None
+                    and zinfo.get("containerZ") is not None
+                    and int(zinfo["gizmoZ"]) <= int(zinfo["containerZ"]),
+                    detail=zinfo)
+            hit = page.evaluate(HIT_TEST)
+            live["命中测试"] = hit
+            v.check("clone:the-862-toggle-is-the-topmost-element-at-its-center",
+                    bool(hit.get("isToggle")),
+                    detail=hit)
+            if toggle_count == 1 and hit.get("isToggle"):
                 page.locator("[data-director-frame-thirds-toggle]").first.click(
                     timeout=8000)
                 page.wait_for_timeout(800)
@@ -557,6 +632,17 @@ def main() -> int:
                 v.check("clone:clicking-it-again-still-hides-the-thirds",
                         again.get("分线条数") == 0,
                         detail=again.get("分线条数"))
+            else:
+                # ★ 被盖住 ⟹ ⟹ 「点一下出 4 条线」这条**具名**判红（不是崩溃）
+                v.check("clone:clicking-the-862-toggle-still-shows-four-thirds",
+                        False,
+                        detail={"why": "★ 开关在最上层命中测试里**不是**最顶层"
+                                       "⟹ ⟹ 判定为「点不到」⟹ ⟹ 跳过点击",
+                                "命中": hit})
+                v.check("clone:clicking-it-again-still-hides-the-thirds",
+                        False,
+                        detail={"why": "★ 同上（没点成 ⟹ ⟹ 没法测「再点一次」）",
+                                "命中": hit})
 
             page.locator("[data-director-aspect-option='自适应']").first.click(
                 timeout=8000)

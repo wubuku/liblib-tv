@@ -1,0 +1,385 @@
+{
+ "batch": 864,
+ "probe": "source864_capture_ratios",
+ "尝试": [
+  {
+   "第几次": 1,
+   "导演台": "未打开"
+  },
+  {
+   "第几次": 2,
+   "关掉的弹窗": [
+    "下次再说"
+   ],
+   "导演台": "已打开",
+   "可交互元素数": 68,
+   "截图入口候选": [
+    {
+     "text": "",
+     "aria": "截图",
+     "title": "",
+     "x": 829,
+     "y": 1020,
+     "w": 32,
+     "h": 32
+    }
+   ],
+   "全部按钮": [
+    {
+     "text": "画布 1",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "工作流",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "故事板",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "发布与分享",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "积分超市",
+     "title": ""
+    },
+    {
+     "text": "20",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "添加节点",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "移动",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "素材库",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "角色造型室",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "全部功能",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "生成历史",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "快捷键",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "教程",
+     "title": ""
+    },
+    {
+     "text": "TV Director",
+     "aria": "TV Director",
+     "title": ""
+    },
+    {
+     "text": "打开脚本节点 →",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "上传视频后开始",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "分镜",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "动态",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "音乐",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "开始拉片",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "更换特效",
+     "title": "更换特效"
+    },
+    {
+     "text": "打开导演台",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "上传图片",
+     "title": "上传图片"
+    },
+    {
+     "text": "",
+     "aria": "发送",
+     "title": "发送"
+    },
+    {
+     "text": "资产管理",
+     "aria": "资产管理",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "整理画布，Option+Shift+F",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "切换小地图",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "隐藏节点连线",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "网格吸附",
+     "title": ""
+    },
+    {
+     "text": "38%",
+     "aria": "缩放选项",
+     "title": ""
+    },
+    {
+     "text": "取消ESC",
+     "aria": "退出跟随",
+     "title": ""
+    },
+    {
+     "text": "导演视角",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "机位视角",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "关闭",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "收起",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "场景",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "添加角色",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "添加机位",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "全景图",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "选择画幅比例",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "AI 识图导入",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "帮助",
+     "title": ""
+    },
+    {
+     "text": "机位1",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "",
+     "title": "隐藏"
+    },
+    {
+     "text": "",
+     "aria": "",
+     "title": "锁定"
+    },
+    {
+     "text": "机位2",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "",
+     "title": "隐藏"
+    },
+    {
+     "text": "",
+     "aria": "",
+     "title": "锁定"
+    },
+    {
+     "text": "角色A",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "",
+     "title": "隐藏"
+    },
+    {
+     "text": "",
+     "aria": "",
+     "title": "锁定"
+    },
+    {
+     "text": "重置视角",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "x",
+     "aria": "左右拖动调整 X 轴",
+     "title": "左右拖动调整 X 轴"
+    },
+    {
+     "text": "y",
+     "aria": "左右拖动调整 Y 轴",
+     "title": "左右拖动调整 Y 轴"
+    },
+    {
+     "text": "z",
+     "aria": "左右拖动调整 Z 轴",
+     "title": "左右拖动调整 Z 轴"
+    },
+    {
+     "text": "x",
+     "aria": "左右拖动调整 X 轴",
+     "title": "左右拖动调整 X 轴"
+    },
+    {
+     "text": "y",
+     "aria": "左右拖动调整 Y 轴",
+     "title": "左右拖动调整 Y 轴"
+    },
+    {
+     "text": "z",
+     "aria": "左右拖动调整 Z 轴",
+     "title": "左右拖动调整 Z 轴"
+    },
+    {
+     "text": "角色标签",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "网格吸附",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "高斯地面吸附",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "地面",
+     "aria": "",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "移动",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "截图",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "动画时间轴",
+     "title": ""
+    },
+    {
+     "text": "",
+     "aria": "上传图片",
+     "title": "上传图片"
+    },
+    {
+     "text": "",
+     "aria": "发送",
+     "title": "发送"
+    }
+   ],
+   "打开截图面板前的比例": {
+    "比例候选": [],
+    "数量": 0
+   },
+   "打开截图面板前的浮层": [],
+   "点截图后的比例": {
+    "比例候选": [],
+    "数量": 0
+   },
+   "点截图后的浮层": []
+  }
+ ],
+ "打开失败": [
+  "Locator.click: Timeout 15000ms exceeded.\nCall log:\n  - waiting for locator(\"button:has-text('打开导演台')\").first\n  -     - locator resolved to <button type=\"button\" data-practice-anchor=\"director.open\" cl"
+ ],
+ "成功轮次": 2
+}
