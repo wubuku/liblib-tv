@@ -1,0 +1,163 @@
+{
+ "batch": 862,
+ "gates": [
+  "scripts/verify-liblib-batch35.py",
+  "scripts/verify-liblib-batch645.py",
+  "scripts/verify-liblib-batch722.py",
+  "scripts/verify-liblib-batch629.py"
+ ],
+ "src": [
+  "src/components/director/DirectorViewport.tsx",
+  "src/components/director/DirectorAspectPanel.tsx"
+ ],
+ "restored": {
+  "src/components/director/DirectorViewport.tsx": true,
+  "src/components/director/DirectorAspectPanel.tsx": true
+ },
+ "head": {
+  "scripts/verify-liblib-batch35.py": {
+   "rc": 1,
+   "failed": [
+    "playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded."
+   ],
+   "tail": [
+    "playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded.",
+    "Call log:",
+    "- waiting for locator(\"[data-director-aspect-frame]\")"
+   ]
+  },
+  "scripts/verify-liblib-batch645.py": {
+   "rc": 1,
+   "failed": [
+    "the-four-constants-hold-at-every-width",
+    "each-controls-margin-equals-the-closed-form"
+   ],
+   "tail": [
+    "11 checks, 2 failures",
+    "FAILED: the-four-constants-hold-at-every-width",
+    "FAILED: each-controls-margin-equals-the-closed-form"
+   ]
+  },
+  "scripts/verify-liblib-batch722.py": {
+   "rc": 1,
+   "failed": [],
+   "tail": [
+    "-> keeping-the-container-needs-at-least-250-cut-achieved-by-four-controls: (32, 32, 0, 32)",
+    "-> the-narrow-side-is-already-window-level-so-option-a-does-not-cover-it: {'vw': 900, 'barW': 338, 'barX': 281, 'padTotal': 24, 'clientWidth': 314, 'scrollWidth': 904, 'contentW': 904, 'windowLevelW': 876, 'fitsNow': False, 'fitsIfWindowLevel': False, 'slackIfWindowLevel': -28}",
+    "0/7 通过"
+   ]
+  },
+  "scripts/verify-liblib-batch629.py": {
+   "rc": 1,
+   "failed": [
+    "every-squeeze-coverer-is-in-the-viewports-bottom-band",
+    "the-raw-viewport-bound-is-reconciled-by-the-timeline-height"
+   ],
+   "tail": [
+    "14 checks, 2 failures",
+    "FAILED: every-squeeze-coverer-is-in-the-viewports-bottom-band",
+    "FAILED: the-raw-viewport-bound-is-reconciled-by-the-timeline-height"
+   ]
+  }
+ },
+ "work": {
+  "scripts/verify-liblib-batch35.py": {
+   "rc": 1,
+   "failed": [
+    "playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded."
+   ],
+   "tail": [
+    "playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded.",
+    "Call log:",
+    "- waiting for locator(\"[data-director-aspect-frame]\")"
+   ]
+  },
+  "scripts/verify-liblib-batch645.py": {
+   "rc": 1,
+   "failed": [
+    "the-four-constants-hold-at-every-width",
+    "each-controls-margin-equals-the-closed-form"
+   ],
+   "tail": [
+    "11 checks, 2 failures",
+    "FAILED: the-four-constants-hold-at-every-width",
+    "FAILED: each-controls-margin-equals-the-closed-form"
+   ]
+  },
+  "scripts/verify-liblib-batch722.py": {
+   "rc": 1,
+   "failed": [],
+   "tail": [
+    "-> keeping-the-container-needs-at-least-250-cut-achieved-by-four-controls: (32, 32, 0, 32)",
+    "-> the-narrow-side-is-already-window-level-so-option-a-does-not-cover-it: {'vw': 900, 'barW': 338, 'barX': 281, 'padTotal': 24, 'clientWidth': 314, 'scrollWidth': 904, 'contentW': 904, 'windowLevelW': 876, 'fitsNow': False, 'fitsIfWindowLevel': False, 'slackIfWindowLevel': -28}",
+    "0/7 通过"
+   ]
+  },
+  "scripts/verify-liblib-batch629.py": {
+   "rc": 1,
+   "failed": [
+    "every-squeeze-coverer-is-in-the-viewports-bottom-band",
+    "the-raw-viewport-bound-is-reconciled-by-the-timeline-height"
+   ],
+   "tail": [
+    "14 checks, 2 failures",
+    "FAILED: every-squeeze-coverer-is-in-the-viewports-bottom-band",
+    "FAILED: the-raw-viewport-bound-is-reconciled-by-the-timeline-height"
+   ]
+  }
+ },
+ "attribution": {
+  "scripts/verify-liblib-batch35.py": {
+   "verdict": "旧账（HEAD 与 WORK 都红，且红条相同）",
+   "onlyOnWORK": [],
+   "onlyOnHEAD": [],
+   "headRc": 1,
+   "workRc": 1,
+   "headFailed": [
+    "playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded."
+   ],
+   "workFailed": [
+    "playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded."
+   ]
+  },
+  "scripts/verify-liblib-batch645.py": {
+   "verdict": "旧账（HEAD 与 WORK 都红，且红条相同）",
+   "onlyOnWORK": [],
+   "onlyOnHEAD": [],
+   "headRc": 1,
+   "workRc": 1,
+   "headFailed": [
+    "the-four-constants-hold-at-every-width",
+    "each-controls-margin-equals-the-closed-form"
+   ],
+   "workFailed": [
+    "the-four-constants-hold-at-every-width",
+    "each-controls-margin-equals-the-closed-form"
+   ]
+  },
+  "scripts/verify-liblib-batch722.py": {
+   "verdict": "旧账（HEAD 与 WORK 都红，且红条相同）",
+   "onlyOnWORK": [],
+   "onlyOnHEAD": [],
+   "headRc": 1,
+   "workRc": 1,
+   "headFailed": [],
+   "workFailed": []
+  },
+  "scripts/verify-liblib-batch629.py": {
+   "verdict": "旧账（HEAD 与 WORK 都红，且红条相同）",
+   "onlyOnWORK": [],
+   "onlyOnHEAD": [],
+   "headRc": 1,
+   "workRc": 1,
+   "headFailed": [
+    "every-squeeze-coverer-is-in-the-viewports-bottom-band",
+    "the-raw-viewport-bound-is-reconciled-by-the-timeline-height"
+   ],
+   "workFailed": [
+    "every-squeeze-coverer-is-in-the-viewports-bottom-band",
+    "the-raw-viewport-bound-is-reconciled-by-the-timeline-height"
+   ]
+  }
+ }
+}

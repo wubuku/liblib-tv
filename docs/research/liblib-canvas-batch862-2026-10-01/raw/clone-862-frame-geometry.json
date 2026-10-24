@@ -1,0 +1,185 @@
+{
+ "batch": 862,
+ "probe": "clone862_frame_geometry",
+ "布局": {
+  "视口候选": [
+   {
+    "cls": "relative h-full w-full overflow-hidden rounded-[3px]",
+    "x": -514,
+    "y": 405,
+    "w": 324,
+    "h": 183
+   },
+   {
+    "cls": "relative h-full w-full overflow-hidden rounded-[3px]",
+    "x": -368,
+    "y": 752,
+    "w": 324,
+    "h": 183
+   },
+   {
+    "cls": "relative h-full w-full overflow-hidden rounded-[3px]",
+    "x": -368,
+    "y": 962,
+    "w": 367,
+    "h": 183
+   },
+   {
+    "cls": "relative h-full w-full overflow-hidden rounded-[3px]",
+    "x": -368,
+    "y": 1172,
+    "w": 367,
+    "h": 183
+   },
+   {
+    "cls": "relative h-full w-full overflow-hidden rounded-[3px]",
+    "x": 248,
+    "y": 104,
+    "w": 326,
+    "h": 183
+   },
+   {
+    "cls": "relative flex min-h-0 flex-1 items-center justify-center overflow-hidd",
+    "x": 698,
+    "y": 288,
+    "w": 326,
+    "h": 183
+   },
+   {
+    "cls": "relative min-h-0 flex-1",
+    "x": 0,
+    "y": 88,
+    "w": 1920,
+    "h": 810
+   },
+   {
+    "cls": "relative h-4 min-w-0 flex-1",
+    "x": 1685,
+    "y": 909,
+    "w": 71,
+    "h": 16
+   },
+   {
+    "cls": "relative min-w-0 flex-1 bg-[#1f1f1f]",
+    "x": 322,
+    "y": 935,
+    "w": 1598,
+    "h": 145
+   },
+   {
+    "cls": "relative min-w-full shrink-0 overflow-hidden rounded-r-md",
+    "x": 322,
+    "y": 935,
+    "w": 1779,
+    "h": 164
+   }
+  ],
+  "窗口": {
+   "w": 1920,
+   "h": 1080
+  }
+ },
+ "几何_21:9": {
+  "rect": {
+   "x": 321,
+   "y": 191,
+   "w": 1278,
+   "h": 548
+  },
+  "border": "1px",
+  "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)",
+  "outline": "0px",
+  "outlineColor": "oklch(0.776826 0.141148 220.655 / 0.5)",
+  "outlineOffset": "0px",
+  "radius": "0px",
+  "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+  "thirds": [],
+  "框上32按钮": []
+ },
+ "几何_16:9": {
+  "rect": {
+   "x": 347,
+   "y": 120,
+   "w": 1227,
+   "h": 690
+  },
+  "border": "1px",
+  "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)",
+  "outline": "0px",
+  "outlineColor": "oklch(0.776826 0.141148 220.655 / 0.5)",
+  "outlineOffset": "0px",
+  "radius": "0px",
+  "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+  "thirds": [],
+  "框上32按钮": []
+ },
+ "几何_4:3": {
+  "rect": {
+   "x": 500,
+   "y": 120,
+   "w": 920,
+   "h": 690
+  },
+  "border": "1px",
+  "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)",
+  "outline": "0px",
+  "outlineColor": "oklch(0.776826 0.141148 220.655 / 0.5)",
+  "outlineOffset": "0px",
+  "radius": "0px",
+  "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+  "thirds": [],
+  "框上32按钮": []
+ },
+ "几何_1:1": {
+  "rect": {
+   "x": 615,
+   "y": 120,
+   "w": 690,
+   "h": 690
+  },
+  "border": "1px",
+  "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)",
+  "outline": "0px",
+  "outlineColor": "oklch(0.776826 0.141148 220.655 / 0.5)",
+  "outlineOffset": "0px",
+  "radius": "0px",
+  "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+  "thirds": [],
+  "框上32按钮": []
+ },
+ "几何_3:4": {
+  "rect": {
+   "x": 701,
+   "y": 120,
+   "w": 518,
+   "h": 690
+  },
+  "border": "1px",
+  "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)",
+  "outline": "0px",
+  "outlineColor": "oklch(0.776826 0.141148 220.655 / 0.5)",
+  "outlineOffset": "0px",
+  "radius": "0px",
+  "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+  "thirds": [],
+  "框上32按钮": []
+ },
+ "几何_9:16": {
+  "rect": {
+   "x": 766,
+   "y": 120,
+   "w": 388,
+   "h": 690
+  },
+  "border": "1px",
+  "borderColor": "oklab(0.999994 0.0000455678 0.0000200868 / 0.75)",
+  "outline": "0px",
+  "outlineColor": "oklch(0.776826 0.141148 220.655 / 0.5)",
+  "outlineOffset": "0px",
+  "radius": "0px",
+  "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0",
+  "thirds": [],
+  "框上32按钮": []
+ },
+ "错误": []
+}

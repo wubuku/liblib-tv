@@ -1,0 +1,39 @@
+{
+ "报告": [
+  {
+   "id": "M1",
+   "desc": "还原旧前提（去掉「先选比例」，直接读框）",
+   "行数中性": true,
+   "rc": 1,
+   "红": true,
+   "命中期望签名": true,
+   "尾部": [
+    "return await self._connection.wrap_api_call(",
+    "File \"/Users/yangjiefeng/.pyenv/versions/3.10.6/lib/python3.10/site-packages/playwright/_impl/_connection.py\", line 528, in wrap_api_call",
+    "raise rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None",
+    "playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded.",
+    "Call log:",
+    "- waiting for locator(\"[data-director-aspect-frame]\")"
+   ],
+   "结果": "PASS"
+  },
+  {
+   "id": "M2",
+   "desc": "比例断言的期望值改错（16/9 → 4/3）",
+   "行数中性": true,
+   "rc": 1,
+   "红": true,
+   "命中期望签名": true,
+   "尾部": [
+    "Traceback (most recent call last):",
+    "File \"/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch35.py\", line 389, in <module>",
+    "run_desktop(desktop)",
+    "File \"/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch35.py\", line 195, in run_desktop",
+    "assert abs(frame_16_9[\"width\"] / frame_16_9[\"height\"] - 4 / 3) < 0.02",
+    "AssertionError"
+   ],
+   "结果": "PASS"
+  }
+ ],
+ "字节级还原": true
+}

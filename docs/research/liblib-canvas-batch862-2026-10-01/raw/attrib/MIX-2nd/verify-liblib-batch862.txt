@@ -1,0 +1,35 @@
+
+57 判据，33 失败
+  FAILED: source:frame-has-a-thirds-toggle  ⟵ 取景框上要有那枚开关的挂载点
+  FAILED: source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」
+  FAILED: source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)
+  FAILED: source:toggle-off-class-is-verbatim  ⟵ 源站逐字的关闭态类名
+  FAILED: source:toggle-on-colors-use-the-measured-values  ⟵ ★ 源站实测：开启态 bg ＝ rgba(255,255,255,0.1)、前景 ＝ rgb(9,202,245)
+  FAILED: source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`
+  FAILED: source:thirds-use-the-source-colour  ⟵ {'出现次数': 0, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}
+  FAILED: source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}
+  FAILED: clone:toggle-is-32x32-for-21:9  ⟵ {'w': None, 'h': None}
+  FAILED: clone:toggle-title-for-21:9  ⟵ {'title': None, 'aria': None}
+  FAILED: clone:frame-outline-for-21:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}
+  FAILED: clone:toggle-is-32x32-for-16:9  ⟵ {'w': None, 'h': None}
+  FAILED: clone:toggle-title-for-16:9  ⟵ {'title': None, 'aria': None}
+  FAILED: clone:frame-outline-for-16:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}
+  FAILED: clone:toggle-is-32x32-for-4:3  ⟵ {'w': None, 'h': None}
+  FAILED: clone:toggle-title-for-4:3  ⟵ {'title': None, 'aria': None}
+  FAILED: clone:frame-outline-for-4:3  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}
+  FAILED: clone:toggle-is-32x32-for-1:1  ⟵ {'w': None, 'h': None}
+  FAILED: clone:toggle-title-for-1:1  ⟵ {'title': None, 'aria': None}
+  FAILED: clone:frame-outline-for-1:1  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}
+  FAILED: clone:toggle-is-32x32-for-3:4  ⟵ {'w': None, 'h': None}
+  FAILED: clone:toggle-title-for-3:4  ⟵ {'title': None, 'aria': None}
+  FAILED: clone:frame-outline-for-3:4  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}
+  FAILED: clone:toggle-is-32x32-for-9:16  ⟵ {'w': None, 'h': None}
+  FAILED: clone:toggle-title-for-9:16  ⟵ {'title': None, 'aria': None}
+  FAILED: clone:frame-outline-for-9:16  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}
+  FAILED: clone:the-toggle-is-mounted-before-it-is-clicked  ⟵ {'count': 0}
+  FAILED: clone:clicking-the-toggle-shows-four-thirds  ⟵ 0
+  FAILED: clone:thirds-are-white-at-50-percent  ⟵ [None, None, None, None]
+  FAILED: clone:toggle-on-colours-match-the-source  ⟵ {'clone': [None, None], 'source': [[9, 202, 245, 255], [255, 255, 255, 26]]}
+  FAILED: clone:toggle-on-sets-aria-pressed  ⟵ None
+  FAILED: compare:thirds-colour-is-identical-across-sides  ⟵ {'clone': [None, None, None, None], 'source': [[255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128]]}
+  FAILED: compare:toggle-size-is-identical-across-sides  ⟵ 源站 32×32

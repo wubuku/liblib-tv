@@ -90,6 +90,30 @@ python3 scripts/verify-docs.py
   nothing — and the「生成」entry **must never** call a real generation API
   (real image generation costs money); `verify-liblib-batch861.py` fails the
   build if a network call appears in the picker source.
+- The camera framing box's **composition-reference toggle** lives **on the box's
+  top-right corner**, not in the viewport bottom toolbar (Batch 862, source
+  verbatim `mP`: `style:{left:u.left+u.width-40, top:u.top+8}`, `title`＝
+  「构图参考线」, 32×32). It exists **only while the box exists** (source:
+  `onToggleCompositionGrid:null!==tr?…:void 0`), so "auto" (`null`) shows
+  neither box nor toggle. Frame outline is `outline` (white 18%, 1px, −1px
+  offset, radius 12px) — not `border` — and the thirds are white **50%**.
+  The bottom-toolbar entry (`aria-label="开启九宫格辅助线"`) is a **clone
+  extension** (D19); keep both pointing at the same `showThirds` state.
+- The source writes the framing ratio and the reference-line flag **onto the
+  camera object** (`aspect_ratio` / `reference_line`, selected camera first,
+  otherwise the first camera). The clone does **not** do that yet (D17) — the
+  global `frameAspectRatio` is a single scene-wide value (that part matches the
+  source: its framing box reads one component-level state).
+- The「选择画幅比例」seven cells keep the source's "no camera ⇒ all disabled"
+  binding (Batch 862), but that branch is **unreachable on both sides** (the
+  clone's delete planner enforces `DIRECTOR_LAST_CAMERA_REQUIRED`, so at least
+  one camera always survives). It may therefore only be judged from source
+  code — do not claim a runtime reading for it (D16).
+- Research-doc comment discipline (Batch 862): **never copy the clone's own JSX
+  literals into comments**. A negative control that replaces by literal hits the
+  comment copy first, changes nothing in the code, and the gate stays green —
+  a false green that leaves the negative control empty. Anchor such
+  mutations at the indented code line instead.
 
 ## 6. Change Protocol
 

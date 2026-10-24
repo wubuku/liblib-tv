@@ -2449,12 +2449,95 @@ function VideoExportController({
   return null;
 }
 
+/**
+ * ★★★ Batch 862（源站逐字）：取景框上的**构图参考线**开关。
+ *
+ * ★ 源站逐字（chunk 的 `mP` 组件）：
+ * ```js
+ * a?(0,i.jsx)("button",{
+ *   type:"button",
+ *   title:s("canvas:directorAspectFrameOverlay"),
+ *   className:`nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8
+ *     items-center justify-center rounded-lg transition-colors
+ *     ${n?"bg-(--btn-secondary-bg) text-btn-primary"
+ *        :"text-white/50 hover:bg-white/10 hover:text-white/80"}`,
+ *   style:{left:u.left+u.width-40, top:u.top+8},
+ *   onClick:a,
+ *   children:(0,i.jsx)(d.f,{className:"h-4 w-4 shrink-0","aria-hidden":!0})
+ * }):null
+ * ```
+ * ★ 调用点（逐字）：`onToggleCompositionGrid:null!==tr?()=>{…}:void 0`
+ *   ⟹ ⟹ **这枚按钮只在「选了具体比例」时存在**（`tr===null` 时 `a` 是 `undefined`）
+ *   ⟹ ⟹ 与「取景框不在场」是**同一个条件** ⟹ ⟹ clone 让它跟框同生共死。
+ * ★ 位置公式（逐字）：`left = 框左 + 框宽 − 40`、`top = 框上 + 8`
+ *   ⟹ ⟹ 相对框就是「右边内缩 8px」（按钮宽 32）、上边内缩 8px。
+ * ★ 源站运行时实测（`raw/source-862-frame-thirds.json`）：
+ *   框 @(329,185) 1262×710 ⟹ 按钮 @(1551,193) 32×32
+ *   （329 + 1262 − 40 = 1551 ✔、185 + 8 = 193 ✔）⟹ ⟹ 公式实测命中。
+ * ★ 开启态的类名 `bg-(--btn-secondary-bg) text-btn-primary` 在 clone 里**没有**
+ *   对应变量（`--btn-secondary-bg`／`btn-primary` 全仓 0 命中）⟹ ⟹ 这里用
+ *   **inline style** 给等效实测值（源站实测：bg `rgba(255,255,255,0.1)`、
+ *   前景 `rgb(9,202,245)`），关闭态的类名逐字照抄（那几个类 clone 已在用）。
+ */
+function DirectorFrameThirdsToggle({
+  frameWidth,
+  showThirds,
+  onToggle,
+}: {
+  frameWidth: number;
+  showThirds: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      data-director-frame-thirds-toggle
+      aria-label="构图参考线"
+      title="构图参考线"
+      aria-pressed={showThirds}
+      onClick={onToggle}
+      // ★ 源站逐字（关闭态）：`nodrag nopan nowheel pointer-events-auto absolute
+      //   z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors
+      //   text-white/50 hover:bg-white/10 hover:text-white/80`
+      className="nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors text-white/50 hover:bg-white/10 hover:text-white/80"
+      style={{
+        // ★ 源站逐字：`left: u.left + u.width - 40`、`top: u.top + 8`
+        //   （按钮是遮罩容器的绝对定位子节点 ⟹ ⟹ 换算成「相对框」＝ 右边内缩 8px）
+        left: frameWidth - 40,
+        top: 8,
+        // ★ 源站开启态的类名 `bg-(--btn-secondary-bg) text-btn-primary`
+        //   ⟹ ⟹ clone 无这两个变量 ⟹ ⟹ 用源站实测值兜底。
+        ...(showThirds
+          ? { backgroundColor: "rgba(255,255,255,0.1)", color: "rgb(9,202,245)" }
+          : null),
+      }}
+    >
+      {/* ★ 源站逐字（`d.f` 图标的 svg，16×16，单 path，fill=currentColor） */}
+      <svg
+        width={16}
+        height={16}
+        fill="none"
+        viewBox="0 0 16 16"
+        className="h-4 w-4 shrink-0"
+        aria-hidden="true"
+      >
+        <path
+          fill="currentColor"
+          d="M12.266 1.4a.6.6 0 0 1 .6.6v1.134h1.133a.6.6 0 1 1 0 1.199h-1.134v3.066H14a.601.601 0 0 1 0 1.202h-1.134v3.066H14a.6.6 0 1 1 0 1.2h-1.134V14a.6.6 0 1 1-1.199 0v-1.134H8.6V14a.601.601 0 0 1-1.202 0v-1.134H4.332V14a.6.6 0 1 1-1.2 0v-1.134H2a.6.6 0 1 1 0-1.199h1.134V8.601H1.999a.601.601 0 0 1 0-1.202h1.134V4.333H1.999a.6.6 0 1 1 0-1.2h1.134V2a.6.6 0 1 1 1.199 0v1.134h3.066V2A.601.601 0 0 1 8.6 2v1.134h3.066V2a.6.6 0 0 1 .6-.6M4.332 11.666h3.066V8.601H4.332zm4.268 0h3.066V8.601H8.6zM4.332 7.399h3.066V4.333H4.332zm4.268 0h3.066V4.333H8.6z"
+        />
+      </svg>
+    </button>
+  );
+}
+
 function AspectFrame({ frameRect }: { frameRect: DirectorFrameRect | null }) {
   // ★ Batch 860：取景框读的是**取景比例**（七档 ＋ 自适应），
   //   不是导出用的 `aspectRatio`（三值）⟹ ⟹ 两者语义不同（见 store 的注释）。
   const frameAspectRatio = useDirectorStore((state) => state.frameAspectRatio);
   const showThirds = useDirectorStore((state) => state.showThirds);
   const isCapturing = useDirectorStore((state) => state.isCapturing);
+  // ★ Batch 862：框上那枚「构图参考线」开关（源站逐字）。
+  const toggleThirds = useDirectorStore((state) => state.toggleThirds);
 
   // ★ 「自适应」⟹ ⟹ `frameRect` 已经是 `null` ⟹ ⟹ 框**不在场**（源站实测）。
   if (!frameRect || isCapturing) return null;
@@ -2463,22 +2546,53 @@ function AspectFrame({ frameRect }: { frameRect: DirectorFrameRect | null }) {
     <div
       data-director-aspect-frame
       data-director-aspect-ratio={frameAspectRatio ?? "auto"}
-      className="pointer-events-none absolute border border-white/75 shadow-[0_0_0_9999px_rgba(0,0,0,0.24)]"
+      // ★ Batch 862（源站逐字）：框的描边是 **outline**（不是 border）＋ 圆角 12px。
+      //   源站：`outline-white/18 absolute rounded-xl outline -outline-offset-1`
+      //   ⟹ ⟹ `outline-white/18` 是**任意值类** ⟹ ⟹ 4317 的 Tailwind 扫描是冻结的
+      //   （新增类不生成）⟹ ⟹ 这里用 inline style 给等效实测值。
+      className="pointer-events-none absolute shadow-[0_0_0_9999px_rgba(0,0,0,0.24)]"
       style={{
         left: frameRect.left,
         top: frameRect.top,
         width: frameRect.width,
         height: frameRect.height,
+        // ★ 源站实测（`raw/source-862-frame-thirds.json`）：
+        //   outline 1px / offset −1px / 白 18% / radius 12px
+        borderRadius: "12px",
+        outline: "1px solid rgba(255,255,255,0.18)",
+        outlineOffset: "-1px",
       }}
     >
       {showThirds ? (
         <div data-director-thirds className="absolute inset-0">
-          <span className="absolute bottom-0 left-1/3 top-0 w-px bg-white/35" />
-          <span className="absolute bottom-0 left-2/3 top-0 w-px bg-white/35" />
-          <span className="absolute left-0 right-0 top-1/3 h-px bg-white/35" />
-          <span className="absolute left-0 right-0 top-2/3 h-px bg-white/35" />
+          {/* ★ 源站逐字：`bg-(--color-white-alpha-50)`（＝ 白 50%）
+              ⟹ ⟹ 任意值类未生成 ⟹ ⟹ inline style 给实测等效值。 */}
+          <span
+            className="absolute bottom-0 left-1/3 top-0 w-px"
+            style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+          />
+          <span
+            className="absolute bottom-0 left-2/3 top-0 w-px"
+            style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+          />
+          <span
+            className="absolute left-0 right-0 top-1/3 h-px"
+            style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+          />
+          <span
+            className="absolute left-0 right-0 top-2/3 h-px"
+            style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
+          />
         </div>
       ) : null}
+      {/* ★★ Batch 862：源站的构图参考线开关**长在取景框右上角**
+          （源站逐字：`onToggleCompositionGrid:null!==tr?…:void 0`
+          ⟹ ⟹ 「自适应」时连按钮一起不在场）。 */}
+      <DirectorFrameThirdsToggle
+        frameWidth={frameRect.width}
+        showThirds={showThirds}
+        onToggle={toggleThirds}
+      />
     </div>
   );
 }

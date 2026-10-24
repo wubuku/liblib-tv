@@ -81,6 +81,8 @@ npm run dev          # ⟹ 监听 4317
 | ★ crowd 对话框的**两个源站行为** | 再点一次「群众 (3x3)」／点对话框**外面** | 对话框**关闭**（源站逐字：`if("crowd"===L)O(null)` ＋ 外部 mousedown 关闭） |
 | 多选 | **⇧／⌘／Ctrl** + 点击 | 选中多个对象（任意类别） |
 | 快捷键面板 | 左下角「快捷键」 | 12 条快捷键清单 |
+| ★ **画幅比例 → 机位取景框** | 左侧 rail「**选择画幅比例**」（第 6 枚）⟹ 点「**16:9**」 | 视口里出现**机位取景框**（★ 源站逐字：选比例改的是**取景框**，**不改画布**）⟹ ⟹ 取景框读数 `[data-director-aspect-frame]`（带 `data-director-aspect-ratio="16:9"` 标记）；★ 点「**自适应**」⟹ ⟹ **取景框不在场** |
+| ★ **构图参考线（三分线）** | 点**取景框右上角**那枚 32×32 的按钮（`[data-director-frame-thirds-toggle]`，`title="构图参考线"`） | 框内出现**4 条**分线（白 **50%**，`[data-director-thirds]`）⟹ ⟹ 再点消失；★ 按钮关闭态是半透明白、**开启时变青**（源站逐字 `text-btn-primary`）⟹ ⟹ ★ 该按钮**只在取景框在场时存在**（源站逐字 `null!==tr` 才给回调） |
 
 ★ **移动端（390×844）**：rail 是 `hidden` ⟹ ⟹ 「添加角色」这条路**走不通** ⟹ ⟹
 crowd 入口改在**视口底部工具条**的「**添加群众阵列**」按钮
@@ -237,6 +239,14 @@ with sync_playwright() as pw:
 | `docs/research/liblib-canvas-batch860-2026-10-01/raw/source-860-bottombar.json` | ★ 源站视口底部 **27 枚**控件清单 ⟹ ⟹ **没有**任何比例按钮 ⟹ ⟹ clone 底部那三枚是**自己的扩展** |
 | `docs/research/liblib-canvas-batch860-2026-10-01/README.md` | 本批（画幅比例**真的驱动机位取景框**）的完整取证、整改、**用户可达**与验收；★ 顺带**改写 D11**（原说法被实测推翻） |
 | `docs/research/VERIFICATION_LEDGER.md` | 历批验收台账 |
+| `docs/research/liblib-canvas-batch862-2026-10-01/raw/source-862-frame-thirds.json` | ★ **源站实测**：取景框 @(329,185) **1262×710** ＋ 框上开关 @(1551,193) **32×32**（`title="构图参考线"`）＋ ★ **位置公式实测命中**（329＋1262−40 ＝ 1551／185＋8 ＝ 193）＋ 「自适应」时**框与开关都不在场** ＋ 点开关后出现 **4 条**分线 |
+| `docs/research/liblib-canvas-batch862-2026-10-01/raw/source-862-frame-thirds-style.json` | ★ 源站计算样式（★ 颜色经 **canvas 归一化**，才能与 clone **同口径**比）：框描边 1px／白 **18%**／内缩 1px／圆角 **12px**、分线白 **50%**、开关开启态前景 `rgb(9,202,245)` ＋ 背景 `rgba(255,255,255,0.1)` |
+| `docs/research/liblib-canvas-batch862-2026-10-01/raw/source-862-frame-thirds-icon.json` | ★ 源站框上开关的 **svg 逐字**（16×16、**单 path**、`fill=currentColor`）⟹ ⟹ clone 的图标必须是**同一份 path**（不许拿近似图形） |
+| `docs/research/liblib-canvas-batch862-2026-10-01/raw/clone-862-frame-thirds.json` | clone 实测：六档的开关**相对框**的偏移恒为 (框宽−40, 8) ＋ 描边／圆角／分线颜色 ＋ 点击 **0 → 4 → 0** ＋ 「自适应」时框与开关一起消失 |
+| `docs/research/liblib-canvas-batch862-2026-10-01/README.md` | 本批（**取景框上的「构图参考线」开关** ＝ 源站逐字补齐）的完整取证、整改、**用户可达**与验收；★ 登记 **D17**（机位级 `aspect_ratio`／`reference_line` 写入未做）／**D18**（框像素几何差异）／**D19**（底部那枚是 clone 扩展）／**D20**（框外遮罩无模糊）＋ **D16 的诚实收窄**（两侧皆不可达） |
+| `docs/research/liblib-canvas-batch862-2026-10-01/negative-audit.json` | ★ **阴性对照** 7/7（★ 含一条**自曝**：第一版 N7 因为**注释里抄了同一个字面量** ⟹ ⟹ 负控改到注释 ⟹ ⟹ 打空 ⟹ ⟹ 已改成「锚点定位代码行」＋ 立了注释纪律） |
+| `docs/research/liblib-canvas-batch862-2026-10-01/controlled-comparison.json` | ★ **受控对照**四态 ＋ **MIX 半回退态**（只回退 viewport）读数 ＋ 复原自检 |
+| `scripts/verify-liblib-batch862.py` | 本批门禁（**57 判据**；★ 源站期望值**只从入库的源站 raw 读**） |
 
 ★ ★ **每批 README 的 §「复现步骤」都写了这条链**：契约提取 → 源站实测 →
 clone 实测 → 门禁 → 阴性 → 回归 → 受控对照。**先看那一条**，

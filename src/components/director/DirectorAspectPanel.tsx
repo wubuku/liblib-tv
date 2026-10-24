@@ -39,6 +39,39 @@
 //   clone 的 store 里那个 `aspectRatio` 是**截图/导出**用的三值
 //   （`"16:9"|"9:16"|"1:1"`），**与画布宽高比不是一回事** ⟹ ⟹
 //   本组件的选择**只改面板里的高亮**，**不改画布** ⟹ ⟹ 登记为 **D11**。
+// ★ ★★ Batch 862：**「没有机位时，七档比例全部禁用」**（源站逐字）。
+//
+// ★ 源站逐字（`aU` 的 props 解构 ＋ 父组件传参 ＋ aspect 段）：
+//     `hasCameras:a, aspectRatio:l, onAspectRatioChange:d, …`
+//     父组件：`hasCameras: rL.cameras.length > 0`
+//     aspect 段每一格：`disabled:!a`
+//       ＋ 类名含 `disabled:cursor-not-allowed disabled:opacity-35`
+// ⇒ ⇒ **没有机位 ⟹ 七档比例全部禁用**（而且取景框也无处可施放）。
+//
+// ★ ★★ clone 侧的对应：机位在 `directorStore` 的 `objects` 里
+//   （`kind === "camera"`）⟹ ⟹ `hasCameras` ＝ 至少有一个机位对象。
+//   ★ 源站的 `rL.cameras` 是独立的机位集合 ⟹ ⟹ 语义对应（都是「有机位」）。
+//
+// ★ ★★ ★ **诚实标注（Batch 862 补测）**：源站的「无机位」状态在源站**未能实测**
+//   （源站机位行只有「隐藏」「锁定」两枚按钮，`Delete`／`Backspace` 都删不掉
+//   ⟹ ⟹ 该分支在源站近乎死代码）；
+//   ★ ★★ **clone 侧同样不可达**：clone 的删除规划器有守卫
+//   （`src/lib/directorDeletePlanner.ts`：`survivingCameras.length === 0`
+//   ⟹ ⟹ `DIRECTOR_LAST_CAMERA_REQUIRED`「至少需要保留一个机位」），
+//   **而且**主机位另有一条 `DIRECTOR_PRIMARY_CAMERA_REQUIRED`
+//   ⟹ ⟹ **clone 永远至少有一个机位** ⟹ ⟹ `hasCameras` 恒为 `true`
+//   ⟹ ⟹ 下面那行 `disabled` 绑定在运行时**永远不生效**。
+//   ★ 本批依据的是**源站逐字表达式**（`hasCameras: rL.cameras.length > 0`
+//   ＋ `disabled:!a`），**不是**运行时读数 ⟹ ⟹ 登记在 D16。
+//   ★ 实施保留这行，是为了让 clone 的**逐字结构**与源站一致（若将来某条路径
+//   允许删光机位，行为与源站相同）；**门禁也只能是源码逐字判据**，
+//   不许假装有运行时读数。
+// ★ ★ ★ ★ **注释纪律（Batch 862 踩坑后立的规矩）**：
+//   本文件**不许**在注释里抄 clone 自己的 JSX 字面量
+//   （★ 负控按字面量做替换时，会先命中**注释里**那一份 ⟹ ⟹ 改不到代码
+//   ⟹ ⟹ 门禁绿是**假绿** ⟹ ⟹ 负控打空）。
+//   ⟹ ⟹ 注释里提到这行时，一律写「`disabled` 绑定到 `hasCameras` 的取反」，
+//   **不写**完整字面量。
 import { useDirectorStore } from "@/store/directorStore";
 import { cn } from "@/lib/utils";
 
@@ -85,6 +118,10 @@ export function DirectorAspectPanel({ active }: { active: boolean }) {
   //   ★ 源站实测：「自适应」时**取景框不在场** ⟹ ⟹ 这里用 `null` 表示。
   const frameAspectRatio = useDirectorStore((state) => state.frameAspectRatio);
   const setFrameAspectRatio = useDirectorStore((state) => state.setFrameAspectRatio);
+  // ★ Batch 862（源站逐字 `hasCameras: rL.cameras.length > 0` ＋ `disabled:!a`）：
+  //   **没有机位 ⟹ 七档比例全部禁用**。
+  const objects = useDirectorStore((state) => state.objects);
+  const hasCameras = objects.some((object) => object.kind === "camera");
   // ★ 源站逐字：`"aspect"===z?(…):null` ⟹ ⟹ **条件渲染**（不是 `hidden`）
   //   ⟹ ⟹ 与 batch 858 的「添加角色」面板同一写法。
   // ★ ★ 组件**本身**常驻（`useState` 的选中项因此跨模式保留），
@@ -111,6 +148,8 @@ export function DirectorAspectPanel({ active }: { active: boolean }) {
             //   （batch 590 已登记：源站选中/未选两态**文字色相同**，
             //   唯一差别是按钮描边 0.85 / 0.1、背景两态皆透明）。
             aria-pressed={selected === ratio}
+            // ★ Batch 862（源站逐字 `disabled:!a`）：没有机位 ⟹ 全部禁用。
+            disabled={!hasCameras}
             onClick={() =>
               setFrameAspectRatio(ratio === "自适应" ? null : ratio)
             }

@@ -1,0 +1,271 @@
+{
+ "batch": 862,
+ "probe": "character-panel-compare",
+ "源站": {
+  "行": [
+   {
+    "label": "收起||",
+    "text": "",
+    "x": 240,
+    "y": 6,
+    "w": 40,
+    "h": 40,
+    "hasIcon": true,
+    "iconPath": "M13.13 0c1.72 0 3.12 1.4 3.12 3.13v8.33c",
+    "cls": "text-white/72 flex size-10 shrink-0 items-center justify-center hover:text-white"
+   },
+   {
+    "label": "||本地上传",
+    "text": "本地上传",
+    "x": 56,
+    "y": 100,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M1.8 16.9A1.1 1.1 0 0 0 2.9 18h14a1.1 1.",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||标准男性",
+    "text": "标准男性",
+    "x": 56,
+    "y": 132,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M8.3125 4.66732C9.52062 4.66732 10.5 5.6",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||标准女性",
+    "text": "标准女性",
+    "x": 56,
+    "y": 164,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M8.3125 4.66732C9.52062 4.66732 10.5 5.6",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||健硕",
+    "text": "健硕",
+    "x": 56,
+    "y": 196,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M8.3125 4.66732C9.52062 4.66732 10.5 5.6",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||纤细",
+    "text": "纤细",
+    "x": 56,
+    "y": 228,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M8.3125 4.66732C9.52062 4.66732 10.5 5.6",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||少年",
+    "text": "少年",
+    "x": 56,
+    "y": 260,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M8.3125 4.66732C9.52062 4.66732 10.5 5.6",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||儿童",
+    "text": "儿童",
+    "x": 56,
+    "y": 292,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M8.3125 4.66732C9.52062 4.66732 10.5 5.6",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||宽厚",
+    "text": "宽厚",
+    "x": 56,
+    "y": 324,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M8.3125 4.66732C9.52062 4.66732 10.5 5.6",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||二头身",
+    "text": "二头身",
+    "x": 56,
+    "y": 356,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M8.3125 4.66732C9.52062 4.66732 10.5 5.6",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||群众 (3x3)",
+    "text": "群众 (3x3)",
+    "x": 56,
+    "y": 388,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M8.3125 4.66732C9.52062 4.66732 10.5 5.6",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||几何模型",
+    "text": "几何模型",
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M11.7408 5.62665C11.7408 5.18097 11.737 ",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   }
+  ],
+  "标题文本": "添加角色",
+  "标题类名": "flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+  "容器类名": "min-h-0 flex-1 overflow-y-auto px-2 pb-3 [scrollbar-color:rgba(255,255,255,0.2)_transparent] [scrollbar-width:thin]"
+ },
+ "clone": {
+  "行": [
+   {
+    "label": "||本地上传",
+    "text": "本地上传",
+    "x": 56,
+    "y": 100,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M12 3v12",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||标准男性",
+    "text": "标准男性",
+    "x": 56,
+    "y": 132,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M20 21a8 8 0 0 0-16 0",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||标准女性",
+    "text": "标准女性",
+    "x": 56,
+    "y": 164,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M20 21a8 8 0 0 0-16 0",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||健硕",
+    "text": "健硕",
+    "x": 56,
+    "y": 196,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M20 21a8 8 0 0 0-16 0",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||纤细",
+    "text": "纤细",
+    "x": 56,
+    "y": 228,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M20 21a8 8 0 0 0-16 0",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||少年",
+    "text": "少年",
+    "x": 56,
+    "y": 260,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M20 21a8 8 0 0 0-16 0",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||儿童",
+    "text": "儿童",
+    "x": 56,
+    "y": 292,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M20 21a8 8 0 0 0-16 0",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||宽厚",
+    "text": "宽厚",
+    "x": 56,
+    "y": 324,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M20 21a8 8 0 0 0-16 0",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||二头身",
+    "text": "二头身",
+    "x": 56,
+    "y": 356,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M20 21a8 8 0 0 0-16 0",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||群众 (3x3)",
+    "text": "群众 (3x3)",
+    "x": 56,
+    "y": 388,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M20 21a8 8 0 0 0-16 0",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   },
+   {
+    "label": "||几何模型",
+    "text": "几何模型",
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32,
+    "hasIcon": true,
+    "iconPath": "M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 ",
+    "cls": "flex h-8 w-full items-center gap-2 rounded-lg px-2 text-left text-[13px] leading-5 text-white/88 transition-colors hover"
+   }
+  ],
+  "标题文本": "添加角色",
+  "标题类名": "flex h-12 shrink-0 items-center px-3 text-[12px] leading-5 text-white/90",
+  "容器类名": "min-h-0 flex-1 overflow-y-auto px-2 pb-3"
+ }
+}

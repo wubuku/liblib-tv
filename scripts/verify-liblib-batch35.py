@@ -180,7 +180,17 @@ def run_desktop(page: Page):
     )
     assert_nonblank_locator(canvas, "camera-view WebGL canvas")
 
+    # ★★★ Batch 862：**判据迁移**（老门禁的「旧前提」整改）
+    # ★ 这条门禁原本**直接读**取景框，隐含前提是「框默认在场且是 16:9」。
+    # ★ ★ 该前提在 **batch 860** 之后就不成立了：860 按源站实测把**初始取景比例**
+    #   改成「自适应」⟹ ⟹ 源站逐字 `if(!e) return void p(null)` ⟹ ⟹
+    #   **刚打开导演台时取景框不在场** ⟹ ⟹ 直接读框必然超时
+    #   （实测：TimeoutError 等 `[data-director-aspect-frame]` 30s）。
+    # ★ ⇒ 改成**结构性**判据：**先选比例，再读框**⟹ ⟹ 测的仍是
+    #   「框的比例随选择而变」，但不再依赖「框默认在场」这个已过期的前提。
+    page.locator('[data-director-aspect="16:9"]').click()
     frame = page.locator("[data-director-aspect-frame]")
+    frame.wait_for(state="visible", timeout=15_000)
     frame_16_9 = box(frame)
     assert abs(frame_16_9["width"] / frame_16_9["height"] - 16 / 9) < 0.02
     page.locator('[data-director-aspect="9:16"]').click()

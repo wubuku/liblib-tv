@@ -1,0 +1,79 @@
+[
+ {
+  "id": "N1",
+  "desc": "位置公式 −40 改 −30",
+  "行数中性": true,
+  "门禁rc": 1,
+  "红条数": 7,
+  "首条红灯": "FAILED: source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N2",
+  "desc": "开关 title 改字",
+  "行数中性": true,
+  "门禁rc": 1,
+  "红条数": 7,
+  "首条红灯": "FAILED: source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N3",
+  "desc": "三分线颜色 0.5 改 0.4",
+  "行数中性": true,
+  "门禁rc": 1,
+  "红条数": 3,
+  "首条红灯": "FAILED: source:thirds-use-the-source-colour  ⟵ {'出现次数': 3, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N4",
+  "desc": "框描边 0.18 改 0.28",
+  "行数中性": true,
+  "门禁rc": 1,
+  "红条数": 1,
+  "首条红灯": "FAILED: source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N5",
+  "desc": "框上开关的 svg path 改一个字符",
+  "行数中性": true,
+  "门禁rc": 1,
+  "红条数": 1,
+  "首条红灯": "FAILED: source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N6",
+  "desc": "三分线恒显示（绕过 showThirds）",
+  "行数中性": true,
+  "门禁rc": 1,
+  "红条数": 2,
+  "首条红灯": "FAILED: clone:thirds-are-off-before-the-click  ⟵ {'条数': 4, '线': [{'bg': {'raw': 'rgba(255, 255, 255, 0.5)', 'rgba': [255, 255, 255, 128]}, 'w': 1, 'h': 690}, {'bg': {'raw': 'rgba(255, 255, 255, 0.5)', 'rgba': [255, 255, 255, 128]}, 'w': 1, 'h': 690}, {'bg': {'raw': 'rgba(255, 255, 255, 0.5)', 'rgba': [255, 255, 255, 128]}, 'w': 1227, 'h': 1}, {'bg': {'raw': 'rgba(255, 255, 255, 0.5)', 'rgba': [255, 255, 255, 128]}, 'w': 1227, 'h': 1}]}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N7",
+  "desc": "面板 disabled 契约去掉",
+  "行数中性": true,
+  "门禁rc": 1,
+  "红条数": 1,
+  "首条红灯": "FAILED: source:aspect-panel-keeps-the-source-disabled-contract  ⟵ ★ 源站逐字：`hasCameras: rL.cameras.length > 0` ＋ `disabled:!a`",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ }
+]

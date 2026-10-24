@@ -1,0 +1,53 @@
+{
+ "batch": 862,
+ "probe": "group-disabled-compare",
+ "源站": {
+  "端": "源站",
+  "无选中_按钮": [],
+  "对象行": [],
+  "有选中_按钮": "（没找到对象行）"
+ },
+ "clone": {
+  "端": "clone",
+  "无选中_按钮": [
+   {
+    "label": "|| 打组",
+    "disabled": true,
+    "ariaDisabled": null,
+    "opacity": "1",
+    "cursor": "default",
+    "pointerEvents": "auto",
+    "x": 56,
+    "y": 104,
+    "w": 106,
+    "h": 28
+   },
+   {
+    "label": "|| 解组",
+    "disabled": true,
+    "ariaDisabled": null,
+    "opacity": "1",
+    "cursor": "default",
+    "pointerEvents": "auto",
+    "x": 166,
+    "y": 104,
+    "w": 106,
+    "h": 28
+   },
+   {
+    "label": "复制当前选择|复制当前选择|",
+    "disabled": false,
+    "ariaDisabled": null,
+    "opacity": "1",
+    "cursor": "default",
+    "pointerEvents": "auto",
+    "x": 180,
+    "y": 140,
+    "w": 28,
+    "h": 28
+   }
+  ],
+  "对象行": [],
+  "有选中_按钮": "（没找到对象行）"
+ }
+}

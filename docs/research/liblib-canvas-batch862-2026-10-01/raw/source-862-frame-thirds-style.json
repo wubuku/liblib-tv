@@ -1,0 +1,150 @@
+{
+ "batch": 862,
+ "probe": "source862_frame_thirds_style",
+ "框样式": {
+  "框在场": true,
+  "rect": {
+   "x": 329,
+   "y": 185,
+   "w": 1262,
+   "h": 710
+  },
+  "outlineWidth": "1px",
+  "outlineStyle": "solid",
+  "outlineOffset": "-1px",
+  "outlineColor": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+  "borderWidth": "0px",
+  "borderColor": "rgb(82, 82, 82)",
+  "borderRadius": "12px",
+  "遮罩兄弟": [
+   {
+    "cls": "absolute inset-0 bg-black/20 backdrop-blur-md"
+   },
+   {
+    "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1"
+   },
+   {
+    "cls": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-c"
+   }
+  ]
+ },
+ "按钮关态": {
+  "按钮在场": true,
+  "rect": {
+   "x": 1551,
+   "y": 193,
+   "w": 32,
+   "h": 32
+  },
+  "color": "lab(100 -0.0000298023 0.0000119209 / 0.5)",
+  "backgroundColor": "rgba(0, 0, 0, 0)",
+  "position": "absolute",
+  "pointerEvents": "auto",
+  "zIndex": "20",
+  "borderRadius": "8px"
+ },
+ "按钮开态": {
+  "按钮在场": true,
+  "rect": {
+   "x": 1551,
+   "y": 193,
+   "w": 32,
+   "h": 32
+  },
+  "color": "rgb(9, 202, 245)",
+  "backgroundColor": "rgba(255, 255, 255, 0.1)",
+  "position": "absolute",
+  "pointerEvents": "auto",
+  "zIndex": "20",
+  "borderRadius": "8px"
+ },
+ "三分线": {
+  "条数": 4,
+  "背景色": [
+   "rgba(255, 255, 255, 0.5)",
+   "rgba(255, 255, 255, 0.5)",
+   "rgba(255, 255, 255, 0.5)",
+   "rgba(255, 255, 255, 0.5)"
+  ],
+  "类名": [
+   "bg-(--color-white-alpha-50) absolute left-[33.333%] top-0 h-full w-px",
+   "bg-(--color-white-alpha-50) absolute left-[66.667%] top-0 h-full w-px",
+   "bg-(--color-white-alpha-50) absolute left-0 top-[33.333%] h-px w-full",
+   "bg-(--color-white-alpha-50) absolute left-0 top-[66.667%] h-px w-full"
+  ]
+ },
+ "归一化颜色": {
+  "框描边": {
+   "raw": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+   "rgba": [
+    255,
+    255,
+    255,
+    46
+   ]
+  },
+  "按钮前景_开态": {
+   "raw": "rgb(9, 202, 245)",
+   "rgba": [
+    9,
+    202,
+    245,
+    255
+   ]
+  },
+  "按钮背景_开态": {
+   "raw": "rgba(255, 255, 255, 0.1)",
+   "rgba": [
+    255,
+    255,
+    255,
+    26
+   ]
+  },
+  "按钮前景_关态": {
+   "raw": "lab(100 -0.0000298023 0.0000119209 / 0.5)",
+   "rgba": [
+    253,
+    255,
+    255,
+    128
+   ]
+  },
+  "三分线_0": {
+   "raw": "rgba(255, 255, 255, 0.5)",
+   "rgba": [
+    255,
+    255,
+    255,
+    128
+   ]
+  },
+  "三分线_1": {
+   "raw": "rgba(255, 255, 255, 0.5)",
+   "rgba": [
+    255,
+    255,
+    255,
+    128
+   ]
+  },
+  "三分线_2": {
+   "raw": "rgba(255, 255, 255, 0.5)",
+   "rgba": [
+    255,
+    255,
+    255,
+    128
+   ]
+  },
+  "三分线_3": {
+   "raw": "rgba(255, 255, 255, 0.5)",
+   "rgba": [
+    255,
+    255,
+    255,
+    128
+   ]
+  }
+ }
+}

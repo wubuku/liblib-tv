@@ -1,0 +1,148 @@
+{
+ "batch": 862,
+ "probe": "clone862_aspect_disabled",
+ "有机位_七格": [
+  {
+   "text": "自适应",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "21:9",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "16:9",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "4:3",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "1:1",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "3:4",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "9:16",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  }
+ ],
+ "有机位_机位数": 1,
+ "删除过程": [
+  {
+   "机位数": 1,
+   "删除按钮数": 5
+  },
+  {
+   "机位数": 1,
+   "删除按钮数": 5
+  },
+  {
+   "机位数": 1,
+   "删除按钮数": 5
+  },
+  {
+   "机位数": 1,
+   "删除按钮数": 5
+  },
+  {
+   "机位数": 1,
+   "删除按钮数": 5
+  },
+  {
+   "机位数": 1,
+   "删除按钮数": 5
+  },
+  {
+   "机位数": 1,
+   "删除按钮数": 5
+  },
+  {
+   "机位数": 1,
+   "删除按钮数": 5
+  }
+ ],
+ "删掉的机位": [
+  "director-camera-main",
+  "director-camera-main",
+  "director-camera-main",
+  "director-camera-main",
+  "director-camera-main",
+  "director-camera-main",
+  "director-camera-main",
+  "director-camera-main"
+ ],
+ "删完后_机位数": 1,
+ "无机位_七格": [
+  {
+   "text": "自适应",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "21:9",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "16:9",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "4:3",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "1:1",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "3:4",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  },
+  {
+   "text": "9:16",
+   "disabled": false,
+   "opacity": "1",
+   "cursor": "default"
+  }
+ ],
+ "点16比9_前": {
+  "取景比例": null,
+  "取景框": false
+ },
+ "点16比9_后": {
+  "取景比例": "16:9",
+  "取景框": true
+ },
+ "点16比9_比例未变": false,
+ "错误": []
+}

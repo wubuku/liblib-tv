@@ -1,0 +1,18 @@
+  PASS the-grid-covers-11w-x-8h-x-2state  176
+  PASS no-cell-has-an-off-viewport-unreachable-control
+  PASS every-cell-actually-exercised-the-off-viewport-branch
+  PASS no-cell-has-an-unexplained-covered-control
+  PASS every-viewport-exemption-is-inside-the-viewport
+  PASS the-viewport-squeeze-is-actually-exercised  {'cells': ['expanded@360x360', 'expanded@360x400', 'expanded@360x480', 'expanded@360x560', 'expanded@360x640', 'expanded@360x720', 'expanded@360x800', 'expanded@360x900', 'expanded@390x360', 'expanded@390x400'], 'count': 162}
+  PASS every-squeeze-row-satisfies-the-closed-form
+  FAIL every-squeeze-coverer-is-in-the-viewports-bottom-band  [('X 正向', '下一步', False), ('Y 反向', '下一步', False), ('Z 正向', '下一步', False), ('缩放', '跳过', False), ('动画时间轴', '跳过', False), ('重置视角', '下一步', False)]
+  PASS the-squeeze-set-is-exactly-what-the-geometry-predicts
+  PASS the-observed-bound-equals-the-predicted-bound-per-family  {'perCellFamily': {'collapsed/desktop': {'timelineHeight': 88, 'predictedBound': None, 'observedBound': None, 'cells': 8}, 'collapsed/narrow': {'timelineHeight': 124, 'predictedBound': 688, 'observedBound': 688, 'cells': 80}, 'expanded/desktop': {'timelineHeight': 182, 'predictedBound': 130, 'observedBound': 130, 'cells': 8}, 'expanded/narrow': {'timelineHeight': 176, 'predictedBound': 636, 'observedBound': 636, 'cells': 80}}, 'mismatches': {}}
+  FAIL the-raw-viewport-bound-is-reconciled-by-the-timeline-height  {'expanded': {'bounds': {898: 636, 899: 130}, 'boundGap': 506, 'timelineGap': 6, 'explained': False}}
+  PASS the-raw-bound-really-did-differ-across-families  {'collapsed/desktop': None, 'collapsed/narrow': 688, 'expanded/desktop': 130, 'expanded/narrow': 636}
+  PASS the-6-fresh-loads-agree-with-the-resized-page
+  PASS the-closed-form-also-holds-on-every-fresh-load
+
+14 checks, 2 failures
+  FAILED: every-squeeze-coverer-is-in-the-viewports-bottom-band
+  FAILED: the-raw-viewport-bound-is-reconciled-by-the-timeline-height

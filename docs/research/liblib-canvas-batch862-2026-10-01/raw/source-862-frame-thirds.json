@@ -1,0 +1,300 @@
+{
+ "batch": 862,
+ "probe": "source862_frame_thirds",
+ "导演台已开": true,
+ "自适应_框": [],
+ "自适应_框上按钮": {
+  "在场": false,
+  "按钮": []
+ },
+ "自适应_三分线": {
+  "条数": 0,
+  "线": []
+ },
+ "选16比9_框": [
+  {
+   "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1",
+   "rect": {
+    "x": 329,
+    "y": 185,
+    "w": 1262,
+    "h": 710
+   },
+   "outlineWidth": "1px",
+   "outlineColor": "lab(100 -0.0000298023 0.0000119209 / 0.18)",
+   "outlineOffset": "-1px",
+   "borderRadius": "12px",
+   "lines": 0,
+   "inner": []
+  }
+ ],
+ "选16比9_框上按钮": {
+  "在场": true,
+  "框": {
+   "x": 329,
+   "y": 185,
+   "w": 1262,
+   "h": 710
+  },
+  "按钮": [
+   {
+    "title": "",
+    "ariaLabel": "",
+    "cls": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm font-semibold transition-colors bg-white/10 text-white hover:bg-white/15",
+    "pos": "static",
+    "pe": "all",
+    "z": "auto",
+    "color": "rgb(255, 255, 255)",
+    "bg": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+    "x": 422,
+    "y": 433,
+    "w": 108,
+    "h": 15,
+    "svg": 0,
+    "svgCls": ""
+   },
+   {
+    "title": "更换特效",
+    "ariaLabel": "更换特效",
+    "cls": "absolute right-2 top-2 flex size-6 items-center justify-center rounded-lg bg-black/65 text-white opacity-0 transition-opacity hover:bg-black/80 group-hover:opacity-100",
+    "pos": "absolute",
+    "pe": "all",
+    "z": "auto",
+    "color": "rgb(255, 255, 255)",
+    "bg": "lab(0 0 0 / 0.65)",
+    "x": 362,
+    "y": 591,
+    "w": 9,
+    "h": 9,
+    "svg": 1,
+    "svgCls": "iconify iconify--libtv pointer-events-none size-3.5"
+   },
+   {
+    "title": "",
+    "ariaLabel": "",
+    "cls": "nodrag flex h-8 min-w-12 items-center justify-center rounded-lg border px-3 py-1 text-[13px] font-normal leading-[18px] transition-[background,opacity,transform] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40 pointer-events-none opacity-0 focus-visible:pointer-events-auto focus-visible:opacity-100 group-hover:pointer-events-auto group-hover:opacity-100 border-white/8 bg-nt-bg-float-glass-l2 hover:bg-nt-bg-float-glass-l1 text-white/85 backdrop-blur-[40px]",
+    "pos": "static",
+    "pe": "none",
+    "z": "auto",
+    "color": "lab(100 -0.0000298023 0.0000119209 / 0.85)",
+    "bg": "rgba(31, 31, 31, 0.75)",
+    "x": 552,
+    "y": 187,
+    "w": 35,
+    "h": 12,
+    "svg": 0,
+    "svgCls": ""
+   },
+   {
+    "title": "上传图片",
+    "ariaLabel": "上传图片",
+    "cls": "flex size-8 items-center justify-center rounded-lg transition-colors disabled:cursor-not-allowed disabled:opacity-35 hover:bg-white/8 text-white/70 hover:text-white",
+    "pos": "static",
+    "pe": "all",
+    "z": "auto",
+    "color": "lab(100 -0.0000298023 0.0000119209 / 0.7)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "x": 386,
+    "y": 328,
+    "w": 32,
+    "h": 32,
+    "svg": 1,
+    "svgCls": "iconify iconify--libtv pointer-events-none size-5"
+   },
+   {
+    "title": "发送",
+    "ariaLabel": "发送",
+    "cls": "flex size-8 items-center justify-center rounded-xl transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 bg-white text-[#171717]",
+    "pos": "static",
+    "pe": "all",
+    "z": "auto",
+    "color": "rgb(23, 23, 23)",
+    "bg": "rgb(255, 255, 255)",
+    "x": 720,
+    "y": 328,
+    "w": 32,
+    "h": 32,
+    "svg": 1,
+    "svgCls": "size-4"
+   },
+   {
+    "title": "构图参考线",
+    "ariaLabel": "",
+    "cls": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors text-white/50 hover:bg-white/10 hover:text-white/80",
+    "pos": "absolute",
+    "pe": "auto",
+    "z": "20",
+    "color": "lab(100 -0.0000298023 0.0000119209 / 0.5)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "x": 1551,
+    "y": 193,
+    "w": 32,
+    "h": 32,
+    "svg": 1,
+    "svgCls": "h-4 w-4 shrink-0"
+   }
+  ],
+  "全部按钮数": 91
+ },
+ "选16比9_三分线": {
+  "条数": 0,
+  "线": []
+ },
+ "选中按钮": {
+  "title": "构图参考线",
+  "ariaLabel": "",
+  "cls": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors text-white/50 hover:bg-white/10 hover:text-white/80",
+  "pos": "absolute",
+  "pe": "auto",
+  "z": "20",
+  "color": "lab(100 -0.0000298023 0.0000119209 / 0.5)",
+  "bg": "rgba(0, 0, 0, 0)",
+  "x": 1551,
+  "y": 193,
+  "w": 32,
+  "h": 32,
+  "svg": 1,
+  "svgCls": "h-4 w-4 shrink-0"
+ },
+ "点开关后_三分线": {
+  "条数": 4,
+  "线": [
+   {
+    "cls": "bg-(--color-white-alpha-50) absolute left-[33.333%] top-0 h-full w-px",
+    "x": 750,
+    "y": 185,
+    "w": 1,
+    "h": 710
+   },
+   {
+    "cls": "bg-(--color-white-alpha-50) absolute left-[66.667%] top-0 h-full w-px",
+    "x": 1170,
+    "y": 185,
+    "w": 1,
+    "h": 710
+   },
+   {
+    "cls": "bg-(--color-white-alpha-50) absolute left-0 top-[33.333%] h-px w-full",
+    "x": 329,
+    "y": 422,
+    "w": 1262,
+    "h": 1
+   },
+   {
+    "cls": "bg-(--color-white-alpha-50) absolute left-0 top-[66.667%] h-px w-full",
+    "x": 329,
+    "y": 658,
+    "w": 1262,
+    "h": 1
+   }
+  ]
+ },
+ "点开关后_框上按钮": {
+  "在场": true,
+  "框": {
+   "x": 329,
+   "y": 185,
+   "w": 1262,
+   "h": 710
+  },
+  "按钮": [
+   {
+    "title": "",
+    "ariaLabel": "",
+    "cls": "flex h-10 w-full max-w-[286px] items-center justify-center rounded-lg text-sm font-semibold transition-colors bg-white/10 text-white hover:bg-white/15",
+    "pos": "static",
+    "pe": "all",
+    "z": "auto",
+    "color": "rgb(255, 255, 255)",
+    "bg": "lab(100 -0.0000298023 0.0000119209 / 0.1)",
+    "x": 422,
+    "y": 433,
+    "w": 108,
+    "h": 15,
+    "svg": 0,
+    "svgCls": ""
+   },
+   {
+    "title": "更换特效",
+    "ariaLabel": "更换特效",
+    "cls": "absolute right-2 top-2 flex size-6 items-center justify-center rounded-lg bg-black/65 text-white opacity-0 transition-opacity hover:bg-black/80 group-hover:opacity-100",
+    "pos": "absolute",
+    "pe": "all",
+    "z": "auto",
+    "color": "rgb(255, 255, 255)",
+    "bg": "lab(0 0 0 / 0.65)",
+    "x": 362,
+    "y": 591,
+    "w": 9,
+    "h": 9,
+    "svg": 1,
+    "svgCls": "iconify iconify--libtv pointer-events-none size-3.5"
+   },
+   {
+    "title": "",
+    "ariaLabel": "",
+    "cls": "nodrag flex h-8 min-w-12 items-center justify-center rounded-lg border px-3 py-1 text-[13px] font-normal leading-[18px] transition-[background,opacity,transform] active:scale-[0.98] disabled:pointer-events-none disabled:opacity-40 pointer-events-none opacity-0 focus-visible:pointer-events-auto focus-visible:opacity-100 group-hover:pointer-events-auto group-hover:opacity-100 border-white/8 bg-nt-bg-float-glass-l2 hover:bg-nt-bg-float-glass-l1 text-white/85 backdrop-blur-[40px]",
+    "pos": "static",
+    "pe": "none",
+    "z": "auto",
+    "color": "lab(100 -0.0000298023 0.0000119209 / 0.85)",
+    "bg": "rgba(31, 31, 31, 0.75)",
+    "x": 552,
+    "y": 187,
+    "w": 35,
+    "h": 12,
+    "svg": 0,
+    "svgCls": ""
+   },
+   {
+    "title": "上传图片",
+    "ariaLabel": "上传图片",
+    "cls": "flex size-8 items-center justify-center rounded-lg transition-colors disabled:cursor-not-allowed disabled:opacity-35 hover:bg-white/8 text-white/70 hover:text-white",
+    "pos": "static",
+    "pe": "all",
+    "z": "auto",
+    "color": "lab(100 -0.0000298023 0.0000119209 / 0.7)",
+    "bg": "rgba(0, 0, 0, 0)",
+    "x": 386,
+    "y": 328,
+    "w": 32,
+    "h": 32,
+    "svg": 1,
+    "svgCls": "iconify iconify--libtv pointer-events-none size-5"
+   },
+   {
+    "title": "发送",
+    "ariaLabel": "发送",
+    "cls": "flex size-8 items-center justify-center rounded-xl transition-opacity hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40 bg-white text-[#171717]",
+    "pos": "static",
+    "pe": "all",
+    "z": "auto",
+    "color": "rgb(23, 23, 23)",
+    "bg": "rgb(255, 255, 255)",
+    "x": 720,
+    "y": 328,
+    "w": 32,
+    "h": 32,
+    "svg": 1,
+    "svgCls": "size-4"
+   },
+   {
+    "title": "构图参考线",
+    "ariaLabel": "",
+    "cls": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors bg-(--btn-secondary-bg) text-btn-primary",
+    "pos": "absolute",
+    "pe": "auto",
+    "z": "20",
+    "color": "rgb(9, 202, 245)",
+    "bg": "rgba(255, 255, 255, 0.1)",
+    "x": 1551,
+    "y": 193,
+    "w": 32,
+    "h": 32,
+    "svg": 1,
+    "svgCls": "h-4 w-4 shrink-0"
+   }
+  ],
+  "全部按钮数": 91
+ }
+}

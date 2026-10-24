@@ -1,0 +1,15 @@
+  PASS the-grid-runs-19-widths-both-families  {'widths': [339, 480, 495, 620, 767, 768, 780, 898, 899, 1152, 1280, 1330, 1331, 1440, 1500, 1509, 1510, 1600, 1920]}
+  FAIL the-four-constants-hold-at-every-width  {'contradictions': [{'width': '899', 'constant': 'toolbarWidth', 'measured': 671, 'predicted': 711.0}, {'width': '1152', 'constant': 'toolbarWidth', 'measured': 671, 'predicted': 711.0}, {'width': '12
+  PASS the-toolbar-and-the-prompt-bar-are-siblings-in-one-shared-row  {'contradictions': [], 'theFormula': 'sharedRowWidth = toolbarWidth + 8 + 225', 'whyItMatters': "this is why batch 643 saw a toolbar item 'covered by the prompt bar': the two pills share one row and t
+  FAIL each-controls-margin-equals-the-closed-form  {'contradictions': [{'width': '899', 'control': '上传图片', 'cx': 997, 'rowRight': 606, 'margin': 391, 'predictedMargin': 431.0}, {'width': '899', 'control': '发送', 'cx': 1176, 'rowRight': 606, 'margin': 5
+  PASS while-the-toolbar-still-grows-the-pills-margin-is-constant  {'margins': {'339': 9, '480': 9, '495': 9, '620': 9}, 'toolbarSaturatedAt': {'339': False, '480': False, '495': False, '620': False, '767': True, '768': True, '780': True, '898': True}, 'theReason': "
+  PASS the-899-breakpoint-jumps-the-margin-by-hundreds-of-pixels  {'perControl': [{'control': '上传图片', 'marginAt898': -130, 'marginAt899': 391, 'rowBoxWidthAt898': 874, 'rowBoxWidthAt899': 313}, {'control': '发送', 'marginAt898': 49, 'marginAt899': 570, 'rowBoxWidthAt8
+  PASS the-joint-set-is-not-monotonic-in-width  {'perWidth': {'339': 2, '480': 2, '495': 1, '620': 1, '767': 1, '768': 1, '780': 0, '898': 0, '899': 7, '1152': 3, '1280': 3, '1330': 2, '1331': 2, '1440': 1, '1500': 0, '1509': 0, '1510': 0, '1600': 
+  PASS the-898-boundary-and-899-first-desktop-cell-are-both-in-the-grid  {'grid': [339, 480, 495, 620, 767, 768, 780, 898, 899, 1152, 1280, 1330, 1331, 1440, 1500, 1509, 1510, 1600, 1920]}
+  PASS no-cell-has-an-off-viewport-unreachable-control  {'339': 0, '480': 0, '495': 0, '620': 0, '767': 0, '768': 0, '780': 0, '898': 0, '899': 0, '1152': 0, '1280': 0, '1330': 0, '1331': 0, '1440': 0, '1500': 0, '1509': 0, '1510': 0, '1600': 0, '1920': 0}
+  PASS 642s-eight-round-controls-are-still-eight  {'339': 8, '480': 8, '495': 8, '620': 8, '767': 8, '768': 8, '780': 8, '898': 8, '899': 8, '1152': 8, '1280': 8, '1330': 8, '1331': 8, '1440': 8, '1500': 8, '1509': 8, '1510': 8, '1600': 8, '1920': 8}
+  PASS the-only-covered-control-is-still-632s-defect  {'covered': [{'width': '339', 'label': '收起'}]}
+
+11 checks, 2 failures
+  FAILED: the-four-constants-hold-at-every-width
+  FAILED: each-controls-margin-equals-the-closed-form

@@ -1,0 +1,498 @@
+{
+ "batch": 862,
+ "title": "受控对照：源码换回 HEAD ⟹ 新门禁必须翻红（证明有牙）",
+ "gates": [
+  "scripts/verify-liblib-batch862.py",
+  "scripts/verify-liblib-batch860.py",
+  "scripts/verify-liblib-batch859.py"
+ ],
+ "states": [
+  "HEAD-1",
+  "HEAD-2",
+  "MIX",
+  "WORK-1",
+  "WORK-2"
+ ],
+ "src": [
+  "src/components/director/DirectorViewport.tsx",
+  "src/components/director/DirectorAspectPanel.tsx"
+ ],
+ "mixRevert": [
+  "src/components/director/DirectorViewport.tsx"
+ ],
+ "restored": true,
+ "sha": {
+  "base": {
+   "src/components/director/DirectorViewport.tsx": "492776d0724c03ec3a6126cd6514b655fb99b3038f9dbeb823b6cb43cc45562d",
+   "src/components/director/DirectorAspectPanel.tsx": "f4dd68d044d2cc64c5275943cd7be46a8595d0c5f9a16dabdc66e5e67bc24fa6"
+  },
+  "after": {
+   "src/components/director/DirectorViewport.tsx": "492776d0724c03ec3a6126cd6514b655fb99b3038f9dbeb823b6cb43cc45562d",
+   "src/components/director/DirectorAspectPanel.tsx": "f4dd68d044d2cc64c5275943cd7be46a8595d0c5f9a16dabdc66e5e67bc24fa6"
+  }
+ },
+ "work": {
+  "once": {
+   "scripts/verify-liblib-batch862.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 21.6,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch862.txt"
+   },
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 20.5,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 18.7,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch859.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 21.3,
+   "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/WORK-1-2nd/verify-liblib-batch862.txt"
+  }
+ },
+ "work2": {
+  "once": {
+   "scripts/verify-liblib-batch862.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 22.2,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch862.txt"
+   },
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 19.3,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.5,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch859.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 21.2,
+   "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/WORK-2-2nd/verify-liblib-batch862.txt"
+  }
+ },
+ "head": {
+  "once": {
+   "scripts/verify-liblib-batch862.py": {
+    "rc": 1,
+    "failed": [
+     "source:frame-has-a-thirds-toggle  ⟵ 取景框上要有那枚开关的挂载点",
+     "source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」",
+     "source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)",
+     "source:toggle-off-class-is-verbatim  ⟵ 源站逐字的关闭态类名",
+     "source:toggle-on-colors-use-the-measured-values  ⟵ ★ 源站实测：开启态 bg ＝ rgba(255,255,255,0.1)、前景 ＝ rgb(9,202,245)",
+     "source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`",
+     "source:thirds-use-the-source-colour  ⟵ {'出现次数': 0, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}",
+     "source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}",
+     "source:aspect-panel-keeps-the-source-disabled-contract  ⟵ ★ 源站逐字：`hasCameras: rL.cameras.length > 0` ＋ `disabled:!a`",
+     "clone:toggle-is-32x32-for-21:9  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-21:9  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-21:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-16:9  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-16:9  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-16:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-4:3  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-4:3  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-4:3  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-1:1  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-1:1  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-1:1  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-3:4  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-3:4  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-3:4  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-9:16  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-9:16  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-9:16  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:the-toggle-is-mounted-before-it-is-clicked  ⟵ {'count': 0}",
+     "clone:clicking-the-toggle-shows-four-thirds  ⟵ 0",
+     "clone:thirds-are-white-at-50-percent  ⟵ [None, None, None, None]",
+     "clone:toggle-on-colours-match-the-source  ⟵ {'clone': [None, None], 'source': [[9, 202, 245, 255], [255, 255, 255, 26]]}",
+     "clone:toggle-on-sets-aria-pressed  ⟵ None",
+     "compare:thirds-colour-is-identical-across-sides  ⟵ {'clone': [None, None, None, None], 'source': [[255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128]]}",
+     "compare:toggle-size-is-identical-across-sides  ⟵ 源站 32×32"
+    ],
+    "seconds": 21.7,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch862.txt"
+   },
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 20.3,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.7,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch859.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:frame-has-a-thirds-toggle  ⟵ 取景框上要有那枚开关的挂载点",
+    "source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」",
+    "source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)",
+    "source:toggle-off-class-is-verbatim  ⟵ 源站逐字的关闭态类名",
+    "source:toggle-on-colors-use-the-measured-values  ⟵ ★ 源站实测：开启态 bg ＝ rgba(255,255,255,0.1)、前景 ＝ rgb(9,202,245)",
+    "source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`",
+    "source:thirds-use-the-source-colour  ⟵ {'出现次数': 0, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}",
+    "source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}",
+    "source:aspect-panel-keeps-the-source-disabled-contract  ⟵ ★ 源站逐字：`hasCameras: rL.cameras.length > 0` ＋ `disabled:!a`",
+    "clone:toggle-is-32x32-for-21:9  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-21:9  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-21:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-16:9  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-16:9  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-16:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-4:3  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-4:3  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-4:3  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-1:1  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-1:1  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-1:1  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-3:4  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-3:4  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-3:4  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-9:16  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-9:16  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-9:16  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:the-toggle-is-mounted-before-it-is-clicked  ⟵ {'count': 0}",
+    "clone:clicking-the-toggle-shows-four-thirds  ⟵ 0",
+    "clone:thirds-are-white-at-50-percent  ⟵ [None, None, None, None]",
+    "clone:toggle-on-colours-match-the-source  ⟵ {'clone': [None, None], 'source': [[9, 202, 245, 255], [255, 255, 255, 26]]}",
+    "clone:toggle-on-sets-aria-pressed  ⟵ None",
+    "compare:thirds-colour-is-identical-across-sides  ⟵ {'clone': [None, None, None, None], 'source': [[255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128]]}",
+    "compare:toggle-size-is-identical-across-sides  ⟵ 源站 32×32"
+   ],
+   "seconds": 19.5,
+   "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/HEAD-1-2nd/verify-liblib-batch862.txt"
+  }
+ },
+ "head2": {
+  "once": {
+   "scripts/verify-liblib-batch862.py": {
+    "rc": 1,
+    "failed": [
+     "source:frame-has-a-thirds-toggle  ⟵ 取景框上要有那枚开关的挂载点",
+     "source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」",
+     "source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)",
+     "source:toggle-off-class-is-verbatim  ⟵ 源站逐字的关闭态类名",
+     "source:toggle-on-colors-use-the-measured-values  ⟵ ★ 源站实测：开启态 bg ＝ rgba(255,255,255,0.1)、前景 ＝ rgb(9,202,245)",
+     "source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`",
+     "source:thirds-use-the-source-colour  ⟵ {'出现次数': 0, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}",
+     "source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}",
+     "source:aspect-panel-keeps-the-source-disabled-contract  ⟵ ★ 源站逐字：`hasCameras: rL.cameras.length > 0` ＋ `disabled:!a`",
+     "clone:toggle-is-32x32-for-21:9  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-21:9  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-21:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-16:9  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-16:9  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-16:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-4:3  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-4:3  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-4:3  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-1:1  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-1:1  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-1:1  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-3:4  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-3:4  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-3:4  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-9:16  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-9:16  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-9:16  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:the-toggle-is-mounted-before-it-is-clicked  ⟵ {'count': 0}",
+     "clone:clicking-the-toggle-shows-four-thirds  ⟵ 0",
+     "clone:thirds-are-white-at-50-percent  ⟵ [None, None, None, None]",
+     "clone:toggle-on-colours-match-the-source  ⟵ {'clone': [None, None], 'source': [[9, 202, 245, 255], [255, 255, 255, 26]]}",
+     "clone:toggle-on-sets-aria-pressed  ⟵ None",
+     "compare:thirds-colour-is-identical-across-sides  ⟵ {'clone': [None, None, None, None], 'source': [[255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128]]}",
+     "compare:toggle-size-is-identical-across-sides  ⟵ 源站 32×32"
+    ],
+    "seconds": 19.5,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch862.txt"
+   },
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 19.6,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 17.4,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch859.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:frame-has-a-thirds-toggle  ⟵ 取景框上要有那枚开关的挂载点",
+    "source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」",
+    "source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)",
+    "source:toggle-off-class-is-verbatim  ⟵ 源站逐字的关闭态类名",
+    "source:toggle-on-colors-use-the-measured-values  ⟵ ★ 源站实测：开启态 bg ＝ rgba(255,255,255,0.1)、前景 ＝ rgb(9,202,245)",
+    "source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`",
+    "source:thirds-use-the-source-colour  ⟵ {'出现次数': 0, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}",
+    "source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}",
+    "source:aspect-panel-keeps-the-source-disabled-contract  ⟵ ★ 源站逐字：`hasCameras: rL.cameras.length > 0` ＋ `disabled:!a`",
+    "clone:toggle-is-32x32-for-21:9  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-21:9  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-21:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-16:9  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-16:9  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-16:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-4:3  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-4:3  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-4:3  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-1:1  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-1:1  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-1:1  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-3:4  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-3:4  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-3:4  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-9:16  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-9:16  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-9:16  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:the-toggle-is-mounted-before-it-is-clicked  ⟵ {'count': 0}",
+    "clone:clicking-the-toggle-shows-four-thirds  ⟵ 0",
+    "clone:thirds-are-white-at-50-percent  ⟵ [None, None, None, None]",
+    "clone:toggle-on-colours-match-the-source  ⟵ {'clone': [None, None], 'source': [[9, 202, 245, 255], [255, 255, 255, 26]]}",
+    "clone:toggle-on-sets-aria-pressed  ⟵ None",
+    "compare:thirds-colour-is-identical-across-sides  ⟵ {'clone': [None, None, None, None], 'source': [[255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128]]}",
+    "compare:toggle-size-is-identical-across-sides  ⟵ 源站 32×32"
+   ],
+   "seconds": 19.5,
+   "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/HEAD-2-2nd/verify-liblib-batch862.txt"
+  }
+ },
+ "mix": {
+  "once": {
+   "scripts/verify-liblib-batch862.py": {
+    "rc": 1,
+    "failed": [
+     "source:frame-has-a-thirds-toggle  ⟵ 取景框上要有那枚开关的挂载点",
+     "source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」",
+     "source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)",
+     "source:toggle-off-class-is-verbatim  ⟵ 源站逐字的关闭态类名",
+     "source:toggle-on-colors-use-the-measured-values  ⟵ ★ 源站实测：开启态 bg ＝ rgba(255,255,255,0.1)、前景 ＝ rgb(9,202,245)",
+     "source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`",
+     "source:thirds-use-the-source-colour  ⟵ {'出现次数': 0, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}",
+     "source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}",
+     "clone:toggle-is-32x32-for-21:9  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-21:9  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-21:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-16:9  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-16:9  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-16:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-4:3  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-4:3  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-4:3  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-1:1  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-1:1  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-1:1  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-3:4  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-3:4  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-3:4  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:toggle-is-32x32-for-9:16  ⟵ {'w': None, 'h': None}",
+     "clone:toggle-title-for-9:16  ⟵ {'title': None, 'aria': None}",
+     "clone:frame-outline-for-9:16  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+     "clone:the-toggle-is-mounted-before-it-is-clicked  ⟵ {'count': 0}",
+     "clone:clicking-the-toggle-shows-four-thirds  ⟵ 0",
+     "clone:thirds-are-white-at-50-percent  ⟵ [None, None, None, None]",
+     "clone:toggle-on-colours-match-the-source  ⟵ {'clone': [None, None], 'source': [[9, 202, 245, 255], [255, 255, 255, 26]]}",
+     "clone:toggle-on-sets-aria-pressed  ⟵ None",
+     "compare:thirds-colour-is-identical-across-sides  ⟵ {'clone': [None, None, None, None], 'source': [[255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128]]}",
+     "compare:toggle-size-is-identical-across-sides  ⟵ 源站 32×32"
+    ],
+    "seconds": 19.4,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/MIX/verify-liblib-batch862.txt"
+   },
+   "scripts/verify-liblib-batch860.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 19.3,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/MIX/verify-liblib-batch860.txt"
+   },
+   "scripts/verify-liblib-batch859.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 16.6,
+    "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/MIX/verify-liblib-batch859.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:frame-has-a-thirds-toggle  ⟵ 取景框上要有那枚开关的挂载点",
+    "source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」",
+    "source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)",
+    "source:toggle-off-class-is-verbatim  ⟵ 源站逐字的关闭态类名",
+    "source:toggle-on-colors-use-the-measured-values  ⟵ ★ 源站实测：开启态 bg ＝ rgba(255,255,255,0.1)、前景 ＝ rgb(9,202,245)",
+    "source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`",
+    "source:thirds-use-the-source-colour  ⟵ {'出现次数': 0, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}",
+    "source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}",
+    "clone:toggle-is-32x32-for-21:9  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-21:9  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-21:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-16:9  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-16:9  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-16:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-4:3  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-4:3  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-4:3  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-1:1  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-1:1  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-1:1  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-3:4  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-3:4  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-3:4  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:toggle-is-32x32-for-9:16  ⟵ {'w': None, 'h': None}",
+    "clone:toggle-title-for-9:16  ⟵ {'title': None, 'aria': None}",
+    "clone:frame-outline-for-9:16  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+    "clone:the-toggle-is-mounted-before-it-is-clicked  ⟵ {'count': 0}",
+    "clone:clicking-the-toggle-shows-four-thirds  ⟵ 0",
+    "clone:thirds-are-white-at-50-percent  ⟵ [None, None, None, None]",
+    "clone:toggle-on-colours-match-the-source  ⟵ {'clone': [None, None], 'source': [[9, 202, 245, 255], [255, 255, 255, 26]]}",
+    "clone:toggle-on-sets-aria-pressed  ⟵ None",
+    "compare:thirds-colour-is-identical-across-sides  ⟵ {'clone': [None, None, None, None], 'source': [[255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128]]}",
+    "compare:toggle-size-is-identical-across-sides  ⟵ 源站 32×32"
+   ],
+   "seconds": 19.9,
+   "log": "docs/research/liblib-canvas-batch862-2026-10-01/raw/attrib/MIX-2nd/verify-liblib-batch862.txt"
+  }
+ },
+ "stableAcrossTwoRuns": true,
+ "stabilityNote": "只有新门禁 862 跑了两遍（决定性测量）；其余门禁读的是失败集合的差异",
+ "newGateHasTeeth": true,
+ "newGateFailedOnHEAD": [
+  "source:frame-has-a-thirds-toggle  ⟵ 取景框上要有那枚开关的挂载点",
+  "source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」",
+  "source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)",
+  "source:toggle-off-class-is-verbatim  ⟵ 源站逐字的关闭态类名",
+  "source:toggle-on-colors-use-the-measured-values  ⟵ ★ 源站实测：开启态 bg ＝ rgba(255,255,255,0.1)、前景 ＝ rgb(9,202,245)",
+  "source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`",
+  "source:thirds-use-the-source-colour  ⟵ {'出现次数': 0, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}",
+  "source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}",
+  "source:aspect-panel-keeps-the-source-disabled-contract  ⟵ ★ 源站逐字：`hasCameras: rL.cameras.length > 0` ＋ `disabled:!a`",
+  "clone:toggle-is-32x32-for-21:9  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-21:9  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-21:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:toggle-is-32x32-for-16:9  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-16:9  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-16:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:toggle-is-32x32-for-4:3  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-4:3  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-4:3  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:toggle-is-32x32-for-1:1  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-1:1  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-1:1  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:toggle-is-32x32-for-3:4  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-3:4  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-3:4  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:toggle-is-32x32-for-9:16  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-9:16  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-9:16  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:the-toggle-is-mounted-before-it-is-clicked  ⟵ {'count': 0}",
+  "clone:clicking-the-toggle-shows-four-thirds  ⟵ 0",
+  "clone:thirds-are-white-at-50-percent  ⟵ [None, None, None, None]",
+  "clone:toggle-on-colours-match-the-source  ⟵ {'clone': [None, None], 'source': [[9, 202, 245, 255], [255, 255, 255, 26]]}",
+  "clone:toggle-on-sets-aria-pressed  ⟵ None",
+  "compare:thirds-colour-is-identical-across-sides  ⟵ {'clone': [None, None, None, None], 'source': [[255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128]]}",
+  "compare:toggle-size-is-identical-across-sides  ⟵ 源站 32×32"
+ ],
+ "newGateFailedOnWORK": [],
+ "newGateCrashOnHEAD": [],
+ "mixFailed": [
+  "source:frame-has-a-thirds-toggle  ⟵ 取景框上要有那枚开关的挂载点",
+  "source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」",
+  "source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)",
+  "source:toggle-off-class-is-verbatim  ⟵ 源站逐字的关闭态类名",
+  "source:toggle-on-colors-use-the-measured-values  ⟵ ★ 源站实测：开启态 bg ＝ rgba(255,255,255,0.1)、前景 ＝ rgb(9,202,245)",
+  "source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`",
+  "source:thirds-use-the-source-colour  ⟵ {'出现次数': 0, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}",
+  "source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}",
+  "clone:toggle-is-32x32-for-21:9  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-21:9  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-21:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:toggle-is-32x32-for-16:9  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-16:9  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-16:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:toggle-is-32x32-for-4:3  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-4:3  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-4:3  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:toggle-is-32x32-for-1:1  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-1:1  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-1:1  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:toggle-is-32x32-for-3:4  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-3:4  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-3:4  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:toggle-is-32x32-for-9:16  ⟵ {'w': None, 'h': None}",
+  "clone:toggle-title-for-9:16  ⟵ {'title': None, 'aria': None}",
+  "clone:frame-outline-for-9:16  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+  "clone:the-toggle-is-mounted-before-it-is-clicked  ⟵ {'count': 0}",
+  "clone:clicking-the-toggle-shows-four-thirds  ⟵ 0",
+  "clone:thirds-are-white-at-50-percent  ⟵ [None, None, None, None]",
+  "clone:toggle-on-colours-match-the-source  ⟵ {'clone': [None, None], 'source': [[9, 202, 245, 255], [255, 255, 255, 26]]}",
+  "clone:toggle-on-sets-aria-pressed  ⟵ None",
+  "compare:thirds-colour-is-identical-across-sides  ⟵ {'clone': [None, None, None, None], 'source': [[255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128], [255, 255, 255, 128]]}",
+  "compare:toggle-size-is-identical-across-sides  ⟵ 源站 32×32"
+ ],
+ "mixIsolated": {
+  "runtime红": [
+   "clone:toggle-is-32x32-for-21:9  ⟵ {'w': None, 'h': None}",
+   "clone:toggle-title-for-21:9  ⟵ {'title': None, 'aria': None}",
+   "clone:frame-outline-for-21:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+   "clone:toggle-is-32x32-for-16:9  ⟵ {'w': None, 'h': None}",
+   "clone:toggle-title-for-16:9  ⟵ {'title': None, 'aria': None}",
+   "clone:frame-outline-for-16:9  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+   "clone:toggle-is-32x32-for-4:3  ⟵ {'w': None, 'h': None}",
+   "clone:toggle-title-for-4:3  ⟵ {'title': None, 'aria': None}",
+   "clone:frame-outline-for-4:3  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+   "clone:toggle-is-32x32-for-1:1  ⟵ {'w': None, 'h': None}",
+   "clone:toggle-title-for-1:1  ⟵ {'title': None, 'aria': None}",
+   "clone:frame-outline-for-1:1  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+   "clone:toggle-is-32x32-for-3:4  ⟵ {'w': None, 'h': None}",
+   "clone:toggle-title-for-3:4  ⟵ {'title': None, 'aria': None}",
+   "clone:frame-outline-for-3:4  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+   "clone:toggle-is-32x32-for-9:16  ⟵ {'w': None, 'h': None}",
+   "clone:toggle-title-for-9:16  ⟵ {'title': None, 'aria': None}",
+   "clone:frame-outline-for-9:16  ⟵ {'描边': {'width': '0px', 'color': {'raw': 'oklch(0.776826 0.141148 220.655 / 0.5)', 'rgba': [10, 201, 243, 128]}, 'offset': '0px', 'style': 'none'}, '圆角': '0px', 'border': '1px'}",
+   "clone:the-toggle-is-mounted-before-it-is-clicked  ⟵ {'count': 0}",
+   "clone:clicking-the-toggle-shows-four-thirds  ⟵ 0",
+   "clone:thirds-are-white-at-50-percent  ⟵ [None, None, None, None]",
+   "clone:toggle-on-colours-match-the-source  ⟵ {'clone': [None, None], 'source': [[9, 202, 245, 255], [255, 255, 255, 26]]}",
+   "clone:toggle-on-sets-aria-pressed  ⟵ None"
+  ],
+  "static红": [
+   "source:frame-has-a-thirds-toggle  ⟵ 取景框上要有那枚开关的挂载点",
+   "source:toggle-is-titled-composition-guides  ⟵ ★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay` ⟹ ⟹ 源站实测文本 ＝「构图参考线」",
+   "source:toggle-uses-the-source-position-formula  ⟵ ★ 相对框的偏移 ＝ (框宽 − 40, 8)",
+   "source:toggle-off-class-is-verbatim  ⟵ 源站逐字的关闭态类名",
+   "source:toggle-on-colors-use-the-measured-values  ⟵ ★ 源站实测：开启态 bg ＝ rgba(255,255,255,0.1)、前景 ＝ rgb(9,202,245)",
+   "source:frame-uses-outline-not-border  ⟵ ★ 源站逐字：`outline-white/18 … outline -outline-offset-1 rounded-xl`",
+   "source:thirds-use-the-source-colour  ⟵ {'出现次数': 0, 'why': '★ 源站逐字是 4 条线（2 竖 2 横）'}",
+   "source:toggle-icon-path-matches-the-source-verbatim  ⟵ {'源站path长度': 539, 'why': '★ 图标必须逐字取源站的 path，不能拿近似图形'}"
+  ],
+  "why": "★ 只回退 viewport ⟹ ⟹ 运行时判据（框上开关／描边／三分线）必须红，而 panel 的静态判据（disabled 契约）必须**绿** ⟹ ⟹ 隔离干净"
+ },
+ "diffs": {},
+ "diffsNote": "HEAD 独有的红条 = 「本批整改掉的旧行为」；WORK 独有的红条 = 「本批引入的新问题」（必须为空）"
+}

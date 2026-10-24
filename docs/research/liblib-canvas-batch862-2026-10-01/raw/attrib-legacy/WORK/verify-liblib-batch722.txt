@@ -1,0 +1,16 @@
+FAIL content-944-splits-into-toolbar-711-plus-prompt-225-over-a-694-box
+FAIL only-the-tool-capsule-differs-from-source-351-wider-while-prompt-matches
+FAIL the-tool-capsule-twelve-children-reconcile-to-its-own-width
+FAIL clone-only-controls-account-for-558-of-711
+FAIL lifting-the-container-to-window-level-fits-at-every-vw-from-968-up
+FAIL keeping-the-container-needs-at-least-250-cut-achieved-by-four-controls
+FAIL the-narrow-side-is-already-window-level-so-option-a-does-not-cover-it
+  -> content-944-splits-into-toolbar-711-plus-prompt-225-over-a-694-box: {'w': 671, 'h': 48}
+  -> only-the-tool-capsule-differs-from-source-351-wider-while-prompt-matches: {'toolbar': {'w': 671, 'h': 48}, 'prompt': {'w': 225, 'h': 48}, 'gap': 8, 'padL': 8, 'padR': 8, 'border': 2, 'kids': [{'i': 0, 'ariaLabel': '角色A，可拖动三轴控件', 'data': {'transform-context': 'true', 'transform-context-kind': 'object', 'transform-context-state': 'editable', 'transform-context-target': '角色A'}, 'w': 98, 'ml': 0, 'mr'
+  -> the-tool-capsule-twelve-children-reconcile-to-its-own-width: {'n': 12, 'sumKids': 561, 'gaps': 88, 'padL': 8, 'padR': 8, 'border': 2, 'margins': 12, 'accounted': 679, 'toolbarW': 671, 'residual': -8}
+  -> clone-only-controls-account-for-558-of-711: 526
+  -> lifting-the-container-to-window-level-fits-at-every-vw-from-968-up: {'vw': 1280, 'barW': 718, 'barX': 281, 'padTotal': 24, 'clientWidth': 694, 'scrollWidth': 904, 'contentW': 904, 'windowLevelW': 1256, 'fitsNow': False, 'fitsIfWindowLevel': True, 'slackIfWindowLevel': 352}
+  -> keeping-the-container-needs-at-least-250-cut-achieved-by-four-controls: (32, 32, 0, 32)
+  -> the-narrow-side-is-already-window-level-so-option-a-does-not-cover-it: {'vw': 900, 'barW': 338, 'barX': 281, 'padTotal': 24, 'clientWidth': 314, 'scrollWidth': 904, 'contentW': 904, 'windowLevelW': 876, 'fitsNow': False, 'fitsIfWindowLevel': False, 'slackIfWindowLevel': -28}
+
+0/7 通过

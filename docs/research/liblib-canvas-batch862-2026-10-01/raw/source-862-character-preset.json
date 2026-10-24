@@ -1,0 +1,216 @@
+{
+ "batch": 862,
+ "probe": "source862_character_preset",
+ "添加角色_左栏": {
+  "text": "3D导演台添加角色本地上传标准男性标准女性健硕纤细少年儿童宽厚二头身群众 (3x3)几何模型",
+  "buttons": [
+   {
+    "label": "关闭||",
+    "disabled": false,
+    "x": 0,
+    "y": 6,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "label": "收起||",
+    "disabled": false,
+    "x": 240,
+    "y": 6,
+    "w": 40,
+    "h": 40
+   },
+   {
+    "label": "场景||",
+    "disabled": false,
+    "x": 8,
+    "y": 60,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "添加角色||",
+    "disabled": false,
+    "x": 8,
+    "y": 116,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "添加机位||",
+    "disabled": false,
+    "x": 8,
+    "y": 156,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "全景图||",
+    "disabled": false,
+    "x": 8,
+    "y": 196,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "选择画幅比例||",
+    "disabled": false,
+    "x": 8,
+    "y": 236,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "AI 识图导入||",
+    "disabled": false,
+    "x": 8,
+    "y": 276,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "帮助||",
+    "disabled": false,
+    "x": 8,
+    "y": 1040,
+    "w": 32,
+    "h": 32
+   },
+   {
+    "label": "||本地上传",
+    "disabled": false,
+    "x": 56,
+    "y": 100,
+    "w": 216,
+    "h": 32
+   },
+   {
+    "label": "||标准男性",
+    "disabled": false,
+    "x": 56,
+    "y": 132,
+    "w": 216,
+    "h": 32
+   },
+   {
+    "label": "||标准女性",
+    "disabled": false,
+    "x": 56,
+    "y": 164,
+    "w": 216,
+    "h": 32
+   },
+   {
+    "label": "||健硕",
+    "disabled": false,
+    "x": 56,
+    "y": 196,
+    "w": 216,
+    "h": 32
+   },
+   {
+    "label": "||纤细",
+    "disabled": false,
+    "x": 56,
+    "y": 228,
+    "w": 216,
+    "h": 32
+   },
+   {
+    "label": "||少年",
+    "disabled": false,
+    "x": 56,
+    "y": 260,
+    "w": 216,
+    "h": 32
+   },
+   {
+    "label": "||儿童",
+    "disabled": false,
+    "x": 56,
+    "y": 292,
+    "w": 216,
+    "h": 32
+   },
+   {
+    "label": "||宽厚",
+    "disabled": false,
+    "x": 56,
+    "y": 324,
+    "w": 216,
+    "h": 32
+   },
+   {
+    "label": "||二头身",
+    "disabled": false,
+    "x": 56,
+    "y": 356,
+    "w": 216,
+    "h": 32
+   },
+   {
+    "label": "||群众 (3x3)",
+    "disabled": false,
+    "x": 56,
+    "y": 388,
+    "w": 216,
+    "h": 32
+   },
+   {
+    "label": "||几何模型",
+    "disabled": false,
+    "x": 56,
+    "y": 420,
+    "w": 216,
+    "h": 32
+   }
+  ]
+ },
+ "基线": {
+  "按钮数": 94,
+  "textLen": 540
+ },
+ "选中的预设": {
+  "label": "||标准男性",
+  "disabled": false,
+  "x": 56,
+  "y": 132,
+  "w": 216,
+  "h": 32
+ },
+ "点预设后": {
+  "新增按钮": [
+   "||姿势",
+   "||属性"
+  ],
+  "消失按钮": [
+   "||地面",
+   "||网格吸附",
+   "||角色标签",
+   "||高斯地面吸附"
+  ],
+  "textLen前": 540,
+  "textLen后": 474,
+  "dialogs": [
+   {
+    "text": "Agent 已升级为 TV Director全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。下次再说去体验",
+    "rect": {
+     "x": 1060,
+     "y": 700,
+     "w": 280,
+     "h": 311
+    }
+   },
+   {
+    "text": "新对话 .canvas-agent-drawer-chat { --copilot-kit-background-color: transparent; } .canvas-agent-drawer-resize-handle { width: 12px; z-index: 100; background: transparent; } @keyframes chatViewFadeIn { from { opacity: 0; } to { opacity: 1; } } .canvas-agent-drawer",
+    "rect": {
+     "x": 0,
+     "y": 0,
+     "w": 0,
+     "h": 0
+    }
+   }
+  ],
+  "textTail": "画布 1 开通会员 限时 45 折 20 功能宝箱上线啦！创作所需功能应有尽有～ 知道了 TV Director Agent 已升级为 TV Director 全流程成片规划、批量执行、创意脑暴、剧本创编…… 现在统统交给 TV Director。 下次再说 去体验 预设 - 图片高清 脚本 V2 1 1 确认镜头 2 准备资产 3 合成提示词 打开脚本节点 → 逐帧拉片 逐帧拉片 SD 2.5 视频素材 上传视频后开始 拆解维度 分镜 动态 音乐 开始拉片 陈默_01KT17FN 1808 × 1024 素材-特效-瞳孔异变 导演台 2 打开导演台 S83·镜2 864 × 496 高清 配置参数生成高清图像 图片节点 1 资产管理 38% 正在跟随 取消ESC 按 ESC 退出 3D导演台 导演视角 机位视角 3D导演台 添加角色 本地上传 标准男性 标准女性 健硕 纤细 少年 儿童 宽厚 二头身 群众 (3x3) 几何模型 重置视角 角色 属性 姿势 名称 位置 X Y Z 旋转 X Y Z 缩放 X Y Z 统一缩放 颜色 #"
+ }
+}
