@@ -1,0 +1,10 @@
+
+22 判据，8 失败
+  FAILED: source:the-thirds-layer-carries-the-source-clipping-classes  ⟵ ★ 源站逐字：`pointer-events-none absolute overflow-hidden rounded-xl` ＋ `"aria-hidden":!0`｜★ 判据只读**三分线层自己的开始标签**（不是全文 contains）｜实测 `aria-hidden="true"` 全文 11 处 ⟹ 全文型判据会假绿
+  FAILED: source:the-clone-line-percentages-match-the-source-verbatim  ⟵ {'源站竖线': ['33.333', '66.667'], '源站横线': ['33.333', '66.667']}
+  FAILED: source:the-toggle-uses-the-source-container-coordinates  ⟵ ★ 源站逐字：`left: u.left + u.width - 40` / `top: u.top + 8`
+  FAILED: clone:the-frame-is-empty-like-the-source  ⟵ {'框孩子数': 1}
+  FAILED: clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层', '空框'], '期望': ['遮罩层', '空框', '三分线层', '开关']}
+  FAILED: clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框', '开关的父': '框'}
+  FAILED: clone:the-thirds-layer-has-the-source-clipping-and-aria  ⟵ {'overflow': 'visible', 'radius': '0px', 'ariaHidden': None, 'pointerEvents': 'none', 'x': 347, 'y': 120, 'w': 1227, 'h': 690}
+  FAILED: clone:every-gizmo-button-is-hittable-while-the-frame-exists  ⟵ {'总按钮数': 6, '点不到的': [{'名字': 'X 反向', '命中点': {'x': 1557, 'y': 142}, '在框内': True, '命中是这枚按钮': False, '命中是框': True}, {'名字': 'Z 正向', '命中点': {'x': 1560, 'y': 155}, '在框内': True, '命中是这枚按钮': False, '命中是框': True}], '框的pointerEvents': 'none', 'why': '★ 源站逐字的那枚开关必须**永远可点** ⟹ ⟹ clone 自有的坐标控件必须让开（batch 865 把它挪到视口左侧）'}

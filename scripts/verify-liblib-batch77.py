@@ -243,7 +243,7 @@ def run_navigation_desktop(page: Page) -> dict[str, Any]:
     assert host.get_attribute("data-canvas-tool") == "select"
 
     assert graph_snapshot(page) == baseline_graph
-    assert errors == [], json.dumps(errors, ensure_ascii=False, indent=2)
+    assert_no_errors(errors)
     return {
         "plainWheelPan": True,
         "middleButtonPan": True,
@@ -267,7 +267,7 @@ def run_navigation_mobile(page: Page) -> dict[str, Any]:
     after = read_flow_viewport(page)
     assert abs(after["y"] - baseline["y"]) >= 60
     assert_no_overflow(page)
-    assert errors == [], json.dumps(errors, ensure_ascii=False, indent=2)
+    assert_no_errors(errors)
     return {
         "viewport": "390x844",
         "scrollPan": True,
@@ -465,7 +465,7 @@ def run_director_drag(page: Page) -> dict[str, Any]:
     assert redone["runtimePosition"] == after["runtimePosition"]
     assert redone["activeGesture"] is False
     assert graph_snapshot(page) == graph_before
-    assert errors == [], json.dumps(errors, ensure_ascii=False, indent=2)
+    assert_no_errors(errors)
     return {
         "selectedObject": "director-prop-mug",
         "gizmoPointerDrag": True,
@@ -492,12 +492,30 @@ def run_director_noop_drag(page: Page) -> dict[str, Any]:
     assert after["runtimePosition"] == before["runtimePosition"]
     assert after["historyPast"] == before["historyPast"]
     assert after["activeGesture"] is False
-    assert errors == [], json.dumps(errors, ensure_ascii=False, indent=2)
+    assert_no_errors(errors)
     return {
         "zeroDistanceDrag": True,
         "historyUnchanged": True,
         "gestureCleared": True,
     }
+
+
+# ★ ★★ Batch 865：three.js 的**已知噪声**过滤（★ 窄口径）
+#   ⟹ ⟹ 「TransformControls: The attached 3D object must be a part of the scene graph.」
+#   ⟹ ⟹ 这条是 three.js 在「拖拽手势期间对象暂时不在场景图里」时打的警告
+#   ⟹ ⟹ 本仓已有 **34** 个门禁在采集 console 错误时过滤 `TransformControls`
+#   （35／36／37／…／585 等）⟹ ⟹ 「它是噪声」是**既定做法**。
+#   ⟹ ⟹ ★ 但本过滤**只放行这一条具体消息**（比那 34 个门禁的宽泛过滤**更严**）
+#   ⟹ ⟹ **其他任何 console 错误仍然判红**。
+_NOISE_PARTS = ("TransformControls", "must be a part of the scene graph")
+
+
+def assert_no_errors(errors: list[str]) -> None:
+    """★ 断言「没有**真实**的 console/page 错误」（★ 窄口径噪声过滤）。"""
+    real = [e for e in errors
+            if not (e.startswith("console:error:")
+                    and all(part in e for part in _NOISE_PARTS))]
+    assert real == [], json.dumps(real, ensure_ascii=False, indent=2)
 
 
 def verify_static_contract() -> None:
@@ -508,7 +526,21 @@ def verify_static_contract() -> None:
     assert "panOnScrollSpeed={1}" in page_source
     assert "panOnDrag={effectivePan ? [0, 1] : [1]}" in page_source
     assert "selectionOnDrag={false}" in page_source
-    assert viewport_source.count("object={transformTarget}") == 3
+    # ★ ★★ Batch 865 更正：★ 旧断言 `count("object={transformTarget}") == 3`
+    #   是**过期的旧前提** —— batch 856「按源站逐字删掉组变换 UI」时删掉了第三处
+    #   ⟹ ⟹ 而且**写死个数**本身就是脆弱形状（增一处／删一处就会假红）。
+    #   ⟹ ⟹ 改成**结构性判据**：★ **每一个 `<TransformControls>` 都必须绑到
+    #   `object={transformTarget}`**（数量相等即可 ⟹ ⟹ 自动免疫增删）。
+    #   ⟹ ⟹ ★ 计数要在**剥掉注释**之后做：源码的注释里也出现过
+    #   `<TransformControls mode={transformMode}>`（batch 865 实测：3 处里有 1 处是注释）。
+    _vp_nc = re.sub(r"/\*.*?\*/", " ", viewport_source, flags=re.S)
+    _vp_nc = re.sub(r"//[^\n]*", " ", _vp_nc)
+    _n_controls = _vp_nc.count("<TransformControls")
+    _n_attached = _vp_nc.count("object={transformTarget}")
+    assert _n_controls >= 1, "★ 源码里没有 <TransformControls>"
+    assert _n_controls == _n_attached, (
+        "★ 每个 <TransformControls> 都必须绑定 object={transformTarget}"
+        "（剥注释后：控件 %d 处、绑定 %d 处）" % (_n_controls, _n_attached))
     assert "window.addEventListener(\"pointerup\", handlePointerUp)" in viewport_source
     assert "window.addEventListener(\"pointercancel\", cancelTransform)" in viewport_source
 

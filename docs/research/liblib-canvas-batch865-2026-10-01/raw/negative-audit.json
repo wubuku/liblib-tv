@@ -1,0 +1,86 @@
+[
+ {
+  "id": "N1",
+  "desc": "三分线层去掉 overflow-hidden（源站的圆角裁剪）",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 2,
+  "首条红灯": "FAILED: source:the-thirds-layer-carries-the-source-clipping-classes  ⟵ ★ 源站逐字：`pointer-events-none absolute overflow-hidden rounded-xl` ＋ `\"aria-hidden\":!0`｜★ 判据只读**三分线层自己的开始标签**（不是全文 contains）｜实测 `aria-hidden=\"true\"` 全文 11 处 ⟹ 全文型判据会假绿",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N2",
+  "desc": "三分线层的 aria-hidden 改成 false",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 2,
+  "首条红灯": "FAILED: source:the-thirds-layer-carries-the-source-clipping-classes  ⟵ ★ 源站逐字：`pointer-events-none absolute overflow-hidden rounded-xl` ＋ `\"aria-hidden\":!0`｜★ 判据只读**三分线层自己的开始标签**（不是全文 contains）｜实测 `aria-hidden=\"true\"` 全文 11 处 ⟹ 全文型判据会假绿",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N3",
+  "desc": "竖线百分比 33.333% → 50%",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 2,
+  "首条红灯": "FAILED: source:the-clone-line-percentages-match-the-source-verbatim  ⟵ {'源站竖线': ['33.333', '66.667'], '源站横线': ['33.333', '66.667']}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N4",
+  "desc": "开关的 left 改回「相对框」写法（旧结构）",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 2,
+  "首条红灯": "FAILED: source:the-toggle-uses-the-source-container-coordinates  ⟵ ★ 源站逐字：`left: u.left + u.width - 40` / `top: u.top + 8`",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N5",
+  "desc": "开关的 top 改回「相对框」写法（旧结构）",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 2,
+  "首条红灯": "FAILED: source:the-toggle-uses-the-source-container-coordinates  ⟵ ★ 源站逐字：`left: u.left + u.width - 40` / `top: u.top + 8`",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N6",
+  "desc": "往「空框」里塞一个子元素（破坏空框）",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 1,
+  "首条红灯": "FAILED: clone:the-frame-is-empty-like-the-source  ⟵ {'框孩子数': 1}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ },
+ {
+  "id": "N7",
+  "desc": "★ 把坐标控件挪回视口右上角（重现 864 的后遗症）",
+  "行数中性": true,
+  "变异已落地": true,
+  "门禁rc": 1,
+  "红条数": 1,
+  "首条红灯": "FAILED: clone:every-gizmo-button-is-hittable-while-the-frame-exists  ⟵ {'总按钮数': 6, '点不到的': [{'名字': 'X 反向', '命中点': {'x': 1557, 'y': 142}, '在框内': True, '命中是这枚按钮': False, '命中是框': False}, {'名字': 'Z 正向', '命中点': {'x': 1560, 'y': 155}, '在框内': True, '命中是这枚按钮': False, '命中是框': False}], '框的pointerEvents': 'none', 'why': '★ 源站逐字的那枚开关必须**永远可点** ⟹ ⟹ clone 自有的坐标控件必须让开（batch 865 把它挪到视口左侧）'}",
+  "命中预期判据": true,
+  "字节级还原": true,
+  "结果": "PASS"
+ }
+]

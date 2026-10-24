@@ -221,6 +221,48 @@ python3 scripts/verify-docs.py
   (Batch 864, D23): the source's「截图」button has **no** ratio panel — it
   captures with the current framing ratio. Keep the clone's three ratios and
   label them as an extension instead of aligning them against the source.
+- A static criterion must be **anchored to the element it asserts about**, not
+  a whole-file `contains` (Batch 865). The negative control that flipped the
+  thirds layer's `aria-hidden` to `false` came back **green** (rc=0, zero
+  reds) for two stacked reasons: `aria-hidden="true"` occurs **11 times** in
+  `DirectorViewport.tsx`, so the mutation's `replace(…, 1)` hit a **different**
+  occurrence and the thirds layer was never touched — **and** the static
+  criterion `'aria-hidden="true"' in view_code` stayed true because the other
+  ten were still there. **Fix both sides**: give the mutation a **unique**
+  anchor, and make the criterion read **that element's own opening tag**; add
+  an explicit **anchor-uniqueness** criterion so a duplicated marker fails
+  loudly instead of silently anchoring to the wrong element.
+- A negative-control run **pollutes the gate's artifact** (Batch 865). After
+  the last mutation the source was restored but `runtime-audit.json` still held
+  the **mutated** readings ("all buttons hit = False"), so the committed
+  artifact was red while the gate itself was green. **Re-run the gate after
+  restoring** so the artifact matches the source again.
+- A regression list is itself a **stale-premise audit** (Batch 865). Gates
+  `77` and `788` were missing from the batch-864 list, so their red had never
+  been seen by anyone. When a list is widened, **attribute every newly
+  appearing red point-by-point** — these were already red before the
+  widening — and fix the stale premise (a hard-coded count → a structural
+  criterion; a hard-coded line number → an anchor-based one).
+- A controlled-comparison mutation must be **line-count neutral** and its
+  anchor **unique** (Batch 865). `        </div>\n      ) : null}` occurs
+  **3 times** in `DirectorViewport.tsx` ⟹ ⟹ widen the anchor to surrounding
+  context before mutating.
+- The framing box's four layers are **four siblings** in the source (Batch
+  865, D25): mask layer / empty frame / thirds layer / toggle are all **direct
+  children** of the mask container, and the frame has **zero** children. The
+  clone now matches, and a **pixel comparison** (846,630 pixels, **0**
+  differences) proves it is a **pure structural alignment with no visual
+  change**.
+- `pointer-events` is **inherited** (Batch 865, D26): the source's frame never
+  declares it and inherits `none` from the container (its runtime reading is
+  `"none"`), so the clone declaring it explicitly is **exactly equivalent** —
+  not a deviation to register.
+- The clone's six-axis gizmo has **no source counterpart** (Batch 865): all
+  15 "Gizmo" occurrences in the source chunk are three.js `TransformControls`
+  ⟹ ⟹ the source's 3D viewport has no such widget ⟹ ⟹ its position carries
+  **no source constraint** ⟹ ⟹ it may be moved (it was moved to the
+  viewport's **left** side, because the frame's toggle sat on top of it at the
+  top-right).
 
 ## 6. Change Protocol
 

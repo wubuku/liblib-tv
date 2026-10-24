@@ -193,10 +193,18 @@ def mut_lines(*specs):
     rels = sorted({x[0] for x in specs})
     orig = {rel: (ROOT / rel).read_text(encoding="utf-8") for rel in rels}
     evidence = []
-    for rel, line, old, new in specs:
+    for rel, old, new in specs:
         p = ROOT / rel
         before = p.read_text(encoding="utf-8").split("\n")
-        assert old in before[line - 1], "★ needle 不在 %s:%d" % (rel, line)
+        # ★ ★★ Batch 865 更正：★ 旧写法**写死了行号** ⟹ ⟹ 源码一挪行就崩
+        #   （★ 实测：batch 865 改了取景框的 JSX ⟹ ⟹ 2560／3589 全偏了
+        #   ⟹ ⟹ 门禁报「needle 不在 …:2560」⟹ ⟹ **阴性对照根本没跑起来**）。
+        #   ⟹ ⟹ 改成**锚点式**：按**内容**找那一行 ⟹ ⟹ 并要求**唯一命中**
+        #   ⟹ ⟹ 「唯一」是关键 ⟹ ⟹ 不唯一就中止（否则改错地方）。
+        hits = [i for i, ln in enumerate(before, 1) if old in ln]
+        assert len(hits) == 1, (
+            "★ needle 在 %s 里命中 %d 处（要恰好 1 处）：%r" % (rel, len(hits), old))
+        line = hits[0]
         lines = list(before)
         lines[line - 1] = lines[line - 1].replace(old, new)
         assert len(lines) == len(before), "★ 变异不是行数中性"
@@ -214,8 +222,9 @@ def mut_lines(*specs):
     return restore, evidence
 
 
-def mut_line(rel, line, old, new):
-    return mut_lines((rel, line, old, new))
+def mut_line(rel, old, new):
+    """★ Batch 865：★ 行号去掉 ⟹ ⟹ 只按**内容**锚定（唯一命中）。"""
+    return mut_lines((rel, old, new))
 
 
 def main():
@@ -289,12 +298,17 @@ def main():
                     "★ 第一版只断 `:2560`，而 `:3589` 有一处**跨行**写法 "
                     "（grep 单行搜不到、正则 `\\s*` 搜得到）⟹ S1 一声不吭",
                     lambda: mut_lines(
-                        (DV, 2560,
+                        # ★ ★ Batch 865：★ 去掉写死的行号（2560／3589）
+                        #   ⟹ ⟹ 改按**内容**锚定；★ 第二处**加长锚点**
+                        #   （带 12 个空格的缩进）⟹ ⟹ 命中唯一
+                        #   ⟹ ⟹ （"timeline.motionPathDraft !== null ||" 光凭内容
+                        #   ⟹ ⟹  在这个文件里**命中 2 处** ⟹ ⟹ 必须加长）
+                        (DV,
                          "timeline.motionPathDraft !== null || phoneVcamRecording;",
                          "timeline.motionPathDraft !== null || false;"),
-                        (DV, 3589,
-                         "timeline.motionPathDraft !== null ||",
-                         "timeline.motionPathDraft === null ||")),
+                        (DV,
+                         "            timeline.motionPathDraft !== null ||",
+                         "            timeline.motionPathDraft === null ||")),
                     "S1:读数链四段都在（正则找，不靠行号）"))
 
     # ── 复原核对（源码 + raw）──

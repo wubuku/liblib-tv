@@ -1,0 +1,139 @@
+{
+ "batch": 865,
+ "probe": "source865_frame_structure",
+ "16比9": {
+  "遮罩层在场": true,
+  "容器类": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+  "容器pointerEvents": "none",
+  "容器子元素数": 3,
+  "容器子元素": [
+   {
+    "tag": "DIV",
+    "cls": "absolute inset-0 bg-black/20 backdrop-blur-md",
+    "是不是遮罩层": true,
+    "pointerEvents": "none",
+    "zIndex": "auto"
+   },
+   {
+    "tag": "DIV",
+    "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1",
+    "是不是遮罩层": false,
+    "pointerEvents": "none",
+    "zIndex": "auto"
+   },
+   {
+    "tag": "BUTTON",
+    "cls": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors text-white/50 hover:bg-white/10 hover:text-white/80",
+    "是不是遮罩层": false,
+    "pointerEvents": "auto",
+    "zIndex": "20"
+   }
+  ],
+  "框": {
+   "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1",
+   "子元素数": 0,
+   "父是不是容器": true,
+   "pointerEvents": "none",
+   "zIndex": "auto",
+   "rect": {
+    "x": 329,
+    "y": 185,
+    "w": 1262,
+    "h": 710
+   }
+  },
+  "三分线层": {
+   "cls": null,
+   "在场": false,
+   "pointerEvents": null,
+   "ariaHidden": null,
+   "父是不是容器": null
+  },
+  "开关": {
+   "cls": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors text-white/50 hover:bg-white/10 hover:text-white/80",
+   "在场": true,
+   "pointerEvents": "auto",
+   "zIndex": "20",
+   "父是不是容器": true,
+   "title": "构图参考线",
+   "rect": {
+    "x": 1551,
+    "y": 193,
+    "w": 32,
+    "h": 32
+   }
+  },
+  "四者都直属容器": false
+ },
+ "开参考线后": {
+  "遮罩层在场": true,
+  "容器类": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+  "容器pointerEvents": "none",
+  "容器子元素数": 4,
+  "容器子元素": [
+   {
+    "tag": "DIV",
+    "cls": "absolute inset-0 bg-black/20 backdrop-blur-md",
+    "是不是遮罩层": true,
+    "pointerEvents": "none",
+    "zIndex": "auto"
+   },
+   {
+    "tag": "DIV",
+    "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1",
+    "是不是遮罩层": false,
+    "pointerEvents": "none",
+    "zIndex": "auto"
+   },
+   {
+    "tag": "DIV",
+    "cls": "pointer-events-none absolute overflow-hidden rounded-xl",
+    "是不是遮罩层": false,
+    "pointerEvents": "none",
+    "zIndex": "auto"
+   },
+   {
+    "tag": "BUTTON",
+    "cls": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors bg-(--btn-secondary-bg) text-btn-primary",
+    "是不是遮罩层": false,
+    "pointerEvents": "auto",
+    "zIndex": "20"
+   }
+  ],
+  "框": {
+   "cls": "outline-white/18 absolute rounded-xl outline -outline-offset-1",
+   "子元素数": 0,
+   "父是不是容器": true,
+   "pointerEvents": "none",
+   "zIndex": "auto",
+   "rect": {
+    "x": 329,
+    "y": 185,
+    "w": 1262,
+    "h": 710
+   }
+  },
+  "三分线层": {
+   "cls": "pointer-events-none absolute overflow-hidden rounded-xl",
+   "在场": true,
+   "pointerEvents": "none",
+   "ariaHidden": "true",
+   "父是不是容器": true
+  },
+  "开关": {
+   "cls": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors bg-(--btn-secondary-bg) text-btn-primary",
+   "在场": true,
+   "pointerEvents": "auto",
+   "zIndex": "20",
+   "父是不是容器": true,
+   "title": "构图参考线",
+   "rect": {
+    "x": 1551,
+    "y": 193,
+    "w": 32,
+    "h": 32
+   }
+  },
+  "四者都直属容器": true
+ }
+}

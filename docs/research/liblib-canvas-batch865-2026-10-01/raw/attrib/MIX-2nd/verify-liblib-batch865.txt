@@ -1,0 +1,4 @@
+
+22 判据，2 失败
+  FAILED: clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层', '空框', '开关'], '期望': ['遮罩层', '空框', '三分线层', '开关']}
+  FAILED: clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框', '开关的父': '容器'}

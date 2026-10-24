@@ -1,0 +1,244 @@
+{
+ "判据数": 22,
+ "失败": [],
+ "audit": {
+  "batch": 865,
+  "title": "取景框结构改成源站同构（D25 结案）＋ D26 偏差取证",
+  "源站逐字": {
+   "容器类": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",
+   "遮罩层类": "absolute inset-0 bg-black/20 backdrop-blur-md",
+   "框类": "outline-white/18 absolute rounded-xl outline -outline-offset-1",
+   "三分线层类": "pointer-events-none absolute overflow-hidden rounded-xl",
+   "线1": "33.333",
+   "线2": "33.333",
+   "竖线百分比": [
+    "33.333",
+    "66.667"
+   ],
+   "横线百分比": [
+    "33.333",
+    "66.667"
+   ],
+   "开关位置": "style:{left:u.left+u.width-40,top:u.top+8}",
+   "开关类前缀": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8",
+   "有ariaHidden": true,
+   "框无children": false
+  },
+  "live": {
+   "16比9": {
+    "容器在场": true,
+    "容器子元素": [
+     {
+      "标记": "遮罩层",
+      "cls": "absolute inset-0 bg-black/20 backdrop-blur-md"
+     },
+     {
+      "标记": "空框",
+      "cls": "pointer-events-none absolute"
+     },
+     {
+      "标记": "开关",
+      "cls": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors text-white/50 hover:bg-white/10 hover:text-white/80"
+     }
+    ],
+    "框孩子数": 0,
+    "三分线层的父": "不在场",
+    "开关的父": "容器",
+    "遮罩层的父": "容器",
+    "框的父": "容器",
+    "框": {
+     "x": 347,
+     "y": 120,
+     "w": 1227,
+     "h": 690
+    },
+    "框的pointerEvents": "none",
+    "开关": {
+     "x": 1533,
+     "y": 128,
+     "w": 32,
+     "h": 32,
+     "left": "1252.33px",
+     "top": "40px",
+     "zIndex": "20",
+     "pointerEvents": "auto",
+     "position": "absolute"
+    }
+   },
+   "开参考线后": {
+    "容器在场": true,
+    "容器子元素": [
+     {
+      "标记": "遮罩层",
+      "cls": "absolute inset-0 bg-black/20 backdrop-blur-md"
+     },
+     {
+      "标记": "空框",
+      "cls": "pointer-events-none absolute"
+     },
+     {
+      "标记": "三分线层",
+      "cls": "pointer-events-none absolute overflow-hidden rounded-xl"
+     },
+     {
+      "标记": "开关",
+      "cls": "nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors text-white/50 hover:bg-white/10 hover:text-white/80"
+     }
+    ],
+    "框孩子数": 0,
+    "三分线层的父": "容器",
+    "开关的父": "容器",
+    "遮罩层的父": "容器",
+    "框的父": "容器",
+    "框": {
+     "x": 347,
+     "y": 120,
+     "w": 1227,
+     "h": 690
+    },
+    "框的pointerEvents": "none",
+    "三分线层": {
+     "overflow": "hidden",
+     "radius": "12px",
+     "ariaHidden": "true",
+     "pointerEvents": "none",
+     "x": 347,
+     "y": 120,
+     "w": 1227,
+     "h": 690
+    },
+    "线": [
+     {
+      "left": "408.875px",
+      "top": "0px",
+      "w": 1,
+      "h": 690,
+      "bg": "rgba(255, 255, 255, 0.5)"
+     },
+     {
+      "left": "817.766px",
+      "top": "0px",
+      "w": 1,
+      "h": 690,
+      "bg": "rgba(255, 255, 255, 0.5)"
+     },
+     {
+      "left": "0px",
+      "top": "229.984px",
+      "w": 1227,
+      "h": 1,
+      "bg": "rgba(255, 255, 255, 0.5)"
+     },
+     {
+      "left": "0px",
+      "top": "460px",
+      "w": 1227,
+      "h": 1,
+      "bg": "rgba(255, 255, 255, 0.5)"
+     }
+    ],
+    "线的相对位置": [
+     {
+      "左百分比": 33.3,
+      "上百分比": 0
+     },
+     {
+      "左百分比": 66.7,
+      "上百分比": 0
+     },
+     {
+      "左百分比": 0,
+      "上百分比": 33.3
+     },
+     {
+      "左百分比": 0,
+      "上百分比": 66.7
+     }
+    ],
+    "开关": {
+     "x": 1533,
+     "y": 128,
+     "w": 32,
+     "h": 32,
+     "left": "1252.33px",
+     "top": "40px",
+     "zIndex": "20",
+     "pointerEvents": "auto",
+     "position": "absolute"
+    }
+   },
+   "坐标控件命中": {
+    "按钮数": 6,
+    "框的pointerEvents": "none",
+    "框的rect": {
+     "x": 347,
+     "y": 120,
+     "w": 1227,
+     "h": 690
+    },
+    "按钮": [
+     {
+      "名字": "X 正向",
+      "命中点": {
+       "x": 355,
+       "y": 190
+      },
+      "在框内": true,
+      "命中是这枚按钮": true,
+      "命中是框": false
+     },
+     {
+      "名字": "X 反向",
+      "命中点": {
+       "x": 311,
+       "y": 178
+      },
+      "在框内": false,
+      "命中是这枚按钮": true,
+      "命中是框": false
+     },
+     {
+      "名字": "Y 正向",
+      "命中点": {
+       "x": 333,
+       "y": 157
+      },
+      "在框内": false,
+      "命中是这枚按钮": true,
+      "命中是框": false
+     },
+     {
+      "名字": "Y 反向",
+      "命中点": {
+       "x": 333,
+       "y": 211
+      },
+      "在框内": false,
+      "命中是这枚按钮": true,
+      "命中是框": false
+     },
+     {
+      "名字": "Z 正向",
+      "命中点": {
+       "x": 314,
+       "y": 191
+      },
+      "在框内": false,
+      "命中是这枚按钮": true,
+      "命中是框": false
+     },
+     {
+      "名字": "Z 反向",
+      "命中点": {
+       "x": 352,
+       "y": 177
+      },
+      "在框内": true,
+      "命中是这枚按钮": true,
+      "命中是框": false
+     }
+    ]
+   }
+  }
+ }
+}

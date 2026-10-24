@@ -216,9 +216,32 @@ def main() -> int:
             detail="★ 源站的 title 是 i18n `canvas:directorAspectFrameOverlay`"
                    " ⟹ ⟹ 源站实测文本 ＝「构图参考线」")
     # ★ 位置公式（源站逐字 `left: u.left + u.width - 40` / `top: u.top + 8`）
+    #   ★ ★ Batch 865：源站那枚开关是**遮罩容器的直接子元素**（与框**平级**）
+    #   ⟹ ⟹ 这两个值是**容器坐标** ⟹ ⟹ clone 之前把开关塞在**框里**、
+    #   ⟹ ⟹ 用的是「相对框」的换算值 `frameWidth - 40` ／ `top: 8`
+    #   ⟹ ⟹ 本批改成**源站逐字**的容器坐标。
     v.check("source:toggle-uses-the-source-position-formula",
-            "left: frameWidth - 40" in view_code and "top: 8" in view_code,
-            detail="★ 相对框的偏移 ＝ (框宽 − 40, 8)")
+            "left: frameLeft + frameWidth - 40" in view_code
+            and "top: frameTop + 8" in view_code,
+            detail="★ 源站逐字：容器坐标 (u.left + u.width − 40, u.top + 8)")
+    # ★ ★ Batch 865：结构同构 —— 开关**不在框里**（它是框的**兄弟**）
+    #   ★ ★ 注意：**只能在 `AspectFrame` 这个函数的块内比顺序** ——
+    #   开关组件 `DirectorFrameThirdsToggle` 的**定义**在 `AspectFrame` **之前**
+    #   ⟹ ⟹ 直接在全文件里比 `index()` 会拿定义处的位置去比 ⟹ ⟹ 判据会假红
+    #   （★ 这就是「判据要比同一个量」的另一个形状）。
+    _af = view_code[view_code.index("function AspectFrame("):]
+    _af = _af[:_af.index("const transformTools")] if "const transformTools" in _af else _af
+    _order = ["data-director-aspect-mask", "data-director-aspect-frame",
+              "data-director-thirds", "DirectorFrameThirdsToggle"]
+    _pos = {}
+    for _k in _order:
+        _pos[_k] = _af.find(_k)
+    v.check("source:the-toggle-is-a-sibling-of-the-frame-not-a-child",
+            all(p >= 0 for p in _pos.values())
+            and _pos["data-director-aspect-mask"] < _pos["data-director-aspect-frame"]
+            < _pos["data-director-thirds"] < _pos["DirectorFrameThirdsToggle"],
+            detail={"AspectFrame 块内各标记的位置": _pos,
+                    "期望顺序": "遮罩层 → 空框 → 三分线层 → 开关（源站 `mP` 逐字）"})
     # ★ 关闭态类名逐字（那几个类 clone 已在用 ⟹ 4317 上真的生成）
     v.check("source:toggle-off-class-is-verbatim",
             ("nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 "

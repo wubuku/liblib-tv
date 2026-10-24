@@ -1,0 +1,516 @@
+{
+ "batch": 865,
+ "title": "受控对照：源码换回 HEAD ⟹ 新门禁必须具名翻红（证明有牙）",
+ "gates": [
+  "scripts/verify-liblib-batch865.py",
+  "scripts/verify-liblib-batch862.py",
+  "scripts/verify-liblib-batch863.py"
+ ],
+ "states": [
+  "HEAD-1",
+  "HEAD-2",
+  "MIX",
+  "WORK-1",
+  "WORK-2"
+ ],
+ "src": [
+  "src/components/director/DirectorViewport.tsx"
+ ],
+ "MIX行数中性": true,
+ "MIX旧锚点": "          outlineOffset: \"-1px\",\n        }}\n      />\n",
+ "MIX新锚点": "          outlineOffset: \"-1px\",\n        }}\n      >\n",
+ "restored": true,
+ "sha": {
+  "base": {
+   "src/components/director/DirectorViewport.tsx": "50acf0e387e958b19cb04f7d893a8362bf97252bb5cdeedcfe4d82e05a8e10fd"
+  },
+  "after": {
+   "src/components/director/DirectorViewport.tsx": "50acf0e387e958b19cb04f7d893a8362bf97252bb5cdeedcfe4d82e05a8e10fd"
+  }
+ },
+ "work": {
+  "once": {
+   "scripts/verify-liblib-batch865.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 15.9,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch865.txt"
+   },
+   "scripts/verify-liblib-batch862.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 21.2,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch862.txt"
+   },
+   "scripts/verify-liblib-batch863.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 23.2,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/WORK-1/verify-liblib-batch863.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 15.4,
+   "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/WORK-1-2nd/verify-liblib-batch865.txt"
+  }
+ },
+ "work2": {
+  "once": {
+   "scripts/verify-liblib-batch865.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 15.4,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch865.txt"
+   },
+   "scripts/verify-liblib-batch862.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 21.5,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch862.txt"
+   },
+   "scripts/verify-liblib-batch863.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 22.9,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/WORK-2/verify-liblib-batch863.txt"
+   }
+  },
+  "twice": {
+   "rc": 0,
+   "failed": [],
+   "seconds": 15.3,
+   "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/WORK-2-2nd/verify-liblib-batch865.txt"
+  }
+ },
+ "head": {
+  "once": {
+   "scripts/verify-liblib-batch865.py": {
+    "rc": 1,
+    "failed": [
+     "source:the-thirds-layer-carries-the-source-clipping-classes  ⟵ ★ 源站逐字：`pointer-events-none absolute overflow-hidden rounded-xl` ＋ `\"aria-hidden\":!0`｜★ 判据只读**三分线层自己的开始标签**（不是全文 contains）｜实测 `aria-hidden=\"true\"` 全文 11 处 ⟹ 全文型判据会假绿",
+     "source:the-clone-line-percentages-match-the-source-verbatim  ⟵ {'源站竖线': ['33.333'",
+     "'66.667']",
+     "'源站横线': ['33.333'",
+     "'66.667']}",
+     "source:the-toggle-uses-the-source-container-coordinates  ⟵ ★ 源站逐字：`left: u.left + u.width - 40` / `top: u.top + 8`",
+     "clone:the-frame-is-empty-like-the-source  ⟵ {'框孩子数': 1}",
+     "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+     "'空框']",
+     "'期望': ['遮罩层'",
+     "'空框'",
+     "'三分线层'",
+     "'开关']}",
+     "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+     "'开关的父': '框'}",
+     "clone:the-thirds-layer-has-the-source-clipping-and-aria  ⟵ {'overflow': 'visible'",
+     "'radius': '0px'",
+     "'ariaHidden': None",
+     "'pointerEvents': 'none'",
+     "'x': 347",
+     "'y': 120",
+     "'w': 1227",
+     "'h': 690}",
+     "clone:every-gizmo-button-is-hittable-while-the-frame-exists  ⟵ {'总按钮数': 6",
+     "'点不到的': [{'名字': 'X 反向'",
+     "'命中点': {'x': 1557",
+     "'y': 142}",
+     "'在框内': True",
+     "'命中是这枚按钮': False",
+     "'命中是框': True}",
+     "{'名字': 'Z 正向'",
+     "'命中点': {'x': 1560",
+     "'y': 155}",
+     "'命中是框': True}]",
+     "'框的pointerEvents': 'none'",
+     "'why': '★ 源站逐字的那枚开关必须**永远可点** ⟹ ⟹ clone 自有的坐标控件必须让开（batch 865 把它挪到视口左侧）'}"
+    ],
+    "seconds": 15.9,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch865.txt"
+   },
+   "scripts/verify-liblib-batch862.py": {
+    "rc": 1,
+    "failed": [
+     "source:toggle-uses-the-source-position-formula  ⟵ ★ 源站逐字：容器坐标 (u.left + u.width − 40",
+     "u.top + 8)"
+    ],
+    "seconds": 21.2,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch862.txt"
+   },
+   "scripts/verify-liblib-batch863.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 23.4,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/HEAD-1/verify-liblib-batch863.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:the-thirds-layer-carries-the-source-clipping-classes  ⟵ ★ 源站逐字：`pointer-events-none absolute overflow-hidden rounded-xl` ＋ `\"aria-hidden\":!0`｜★ 判据只读**三分线层自己的开始标签**（不是全文 contains）｜实测 `aria-hidden=\"true\"` 全文 11 处 ⟹ 全文型判据会假绿",
+    "source:the-clone-line-percentages-match-the-source-verbatim  ⟵ {'源站竖线': ['33.333'",
+    "'66.667']",
+    "'源站横线': ['33.333'",
+    "'66.667']}",
+    "source:the-toggle-uses-the-source-container-coordinates  ⟵ ★ 源站逐字：`left: u.left + u.width - 40` / `top: u.top + 8`",
+    "clone:the-frame-is-empty-like-the-source  ⟵ {'框孩子数': 1}",
+    "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+    "'空框']",
+    "'期望': ['遮罩层'",
+    "'空框'",
+    "'三分线层'",
+    "'开关']}",
+    "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+    "'开关的父': '框'}",
+    "clone:the-thirds-layer-has-the-source-clipping-and-aria  ⟵ {'overflow': 'visible'",
+    "'radius': '0px'",
+    "'ariaHidden': None",
+    "'pointerEvents': 'none'",
+    "'x': 347",
+    "'y': 120",
+    "'w': 1227",
+    "'h': 690}",
+    "clone:every-gizmo-button-is-hittable-while-the-frame-exists  ⟵ {'总按钮数': 6",
+    "'点不到的': [{'名字': 'X 反向'",
+    "'命中点': {'x': 1557",
+    "'y': 142}",
+    "'在框内': True",
+    "'命中是这枚按钮': False",
+    "'命中是框': True}",
+    "{'名字': 'Z 正向'",
+    "'命中点': {'x': 1560",
+    "'y': 155}",
+    "'命中是框': True}]",
+    "'框的pointerEvents': 'none'",
+    "'why': '★ 源站逐字的那枚开关必须**永远可点** ⟹ ⟹ clone 自有的坐标控件必须让开（batch 865 把它挪到视口左侧）'}"
+   ],
+   "seconds": 15.4,
+   "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/HEAD-1-2nd/verify-liblib-batch865.txt"
+  }
+ },
+ "head2": {
+  "once": {
+   "scripts/verify-liblib-batch865.py": {
+    "rc": 1,
+    "failed": [
+     "source:the-thirds-layer-carries-the-source-clipping-classes  ⟵ ★ 源站逐字：`pointer-events-none absolute overflow-hidden rounded-xl` ＋ `\"aria-hidden\":!0`｜★ 判据只读**三分线层自己的开始标签**（不是全文 contains）｜实测 `aria-hidden=\"true\"` 全文 11 处 ⟹ 全文型判据会假绿",
+     "source:the-clone-line-percentages-match-the-source-verbatim  ⟵ {'源站竖线': ['33.333'",
+     "'66.667']",
+     "'源站横线': ['33.333'",
+     "'66.667']}",
+     "source:the-toggle-uses-the-source-container-coordinates  ⟵ ★ 源站逐字：`left: u.left + u.width - 40` / `top: u.top + 8`",
+     "clone:the-frame-is-empty-like-the-source  ⟵ {'框孩子数': 1}",
+     "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+     "'空框']",
+     "'期望': ['遮罩层'",
+     "'空框'",
+     "'三分线层'",
+     "'开关']}",
+     "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+     "'开关的父': '框'}",
+     "clone:the-thirds-layer-has-the-source-clipping-and-aria  ⟵ {'overflow': 'visible'",
+     "'radius': '0px'",
+     "'ariaHidden': None",
+     "'pointerEvents': 'none'",
+     "'x': 347",
+     "'y': 120",
+     "'w': 1227",
+     "'h': 690}",
+     "clone:every-gizmo-button-is-hittable-while-the-frame-exists  ⟵ {'总按钮数': 6",
+     "'点不到的': [{'名字': 'X 反向'",
+     "'命中点': {'x': 1557",
+     "'y': 142}",
+     "'在框内': True",
+     "'命中是这枚按钮': False",
+     "'命中是框': True}",
+     "{'名字': 'Z 正向'",
+     "'命中点': {'x': 1560",
+     "'y': 155}",
+     "'命中是框': True}]",
+     "'框的pointerEvents': 'none'",
+     "'why': '★ 源站逐字的那枚开关必须**永远可点** ⟹ ⟹ clone 自有的坐标控件必须让开（batch 865 把它挪到视口左侧）'}"
+    ],
+    "seconds": 15.3,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch865.txt"
+   },
+   "scripts/verify-liblib-batch862.py": {
+    "rc": 1,
+    "failed": [
+     "source:toggle-uses-the-source-position-formula  ⟵ ★ 源站逐字：容器坐标 (u.left + u.width − 40",
+     "u.top + 8)"
+    ],
+    "seconds": 21.2,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch862.txt"
+   },
+   "scripts/verify-liblib-batch863.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 22.9,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/HEAD-2/verify-liblib-batch863.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "source:the-thirds-layer-carries-the-source-clipping-classes  ⟵ ★ 源站逐字：`pointer-events-none absolute overflow-hidden rounded-xl` ＋ `\"aria-hidden\":!0`｜★ 判据只读**三分线层自己的开始标签**（不是全文 contains）｜实测 `aria-hidden=\"true\"` 全文 11 处 ⟹ 全文型判据会假绿",
+    "source:the-clone-line-percentages-match-the-source-verbatim  ⟵ {'源站竖线': ['33.333'",
+    "'66.667']",
+    "'源站横线': ['33.333'",
+    "'66.667']}",
+    "source:the-toggle-uses-the-source-container-coordinates  ⟵ ★ 源站逐字：`left: u.left + u.width - 40` / `top: u.top + 8`",
+    "clone:the-frame-is-empty-like-the-source  ⟵ {'框孩子数': 1}",
+    "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+    "'空框']",
+    "'期望': ['遮罩层'",
+    "'空框'",
+    "'三分线层'",
+    "'开关']}",
+    "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+    "'开关的父': '框'}",
+    "clone:the-thirds-layer-has-the-source-clipping-and-aria  ⟵ {'overflow': 'visible'",
+    "'radius': '0px'",
+    "'ariaHidden': None",
+    "'pointerEvents': 'none'",
+    "'x': 347",
+    "'y': 120",
+    "'w': 1227",
+    "'h': 690}",
+    "clone:every-gizmo-button-is-hittable-while-the-frame-exists  ⟵ {'总按钮数': 6",
+    "'点不到的': [{'名字': 'X 反向'",
+    "'命中点': {'x': 1557",
+    "'y': 142}",
+    "'在框内': True",
+    "'命中是这枚按钮': False",
+    "'命中是框': True}",
+    "{'名字': 'Z 正向'",
+    "'命中点': {'x': 1560",
+    "'y': 155}",
+    "'命中是框': True}]",
+    "'框的pointerEvents': 'none'",
+    "'why': '★ 源站逐字的那枚开关必须**永远可点** ⟹ ⟹ clone 自有的坐标控件必须让开（batch 865 把它挪到视口左侧）'}"
+   ],
+   "seconds": 15.3,
+   "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/HEAD-2-2nd/verify-liblib-batch865.txt"
+  }
+ },
+ "mix": {
+  "once": {
+   "scripts/verify-liblib-batch865.py": {
+    "rc": 1,
+    "failed": [
+     "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+     "'空框'",
+     "'开关']",
+     "'期望': ['遮罩层'",
+     "'三分线层'",
+     "'开关']}",
+     "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+     "'开关的父': '容器'}"
+    ],
+    "seconds": 15.5,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/MIX/verify-liblib-batch865.txt"
+   },
+   "scripts/verify-liblib-batch862.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 21.1,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/MIX/verify-liblib-batch862.txt"
+   },
+   "scripts/verify-liblib-batch863.py": {
+    "rc": 0,
+    "failed": [],
+    "seconds": 23.0,
+    "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/MIX/verify-liblib-batch863.txt"
+   }
+  },
+  "twice": {
+   "rc": 1,
+   "failed": [
+    "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+    "'空框'",
+    "'开关']",
+    "'期望': ['遮罩层'",
+    "'三分线层'",
+    "'开关']}",
+    "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+    "'开关的父': '容器'}"
+   ],
+   "seconds": 15.6,
+   "log": "docs/research/liblib-canvas-batch865-2026-10-01/raw/attrib/MIX-2nd/verify-liblib-batch865.txt"
+  }
+ },
+ "stableAcrossTwoRuns": true,
+ "newGateHasTeeth": true,
+ "newGateFailedOnHEAD": [
+  "source:the-thirds-layer-carries-the-source-clipping-classes  ⟵ ★ 源站逐字：`pointer-events-none absolute overflow-hidden rounded-xl` ＋ `\"aria-hidden\":!0`｜★ 判据只读**三分线层自己的开始标签**（不是全文 contains）｜实测 `aria-hidden=\"true\"` 全文 11 处 ⟹ 全文型判据会假绿",
+  "source:the-clone-line-percentages-match-the-source-verbatim  ⟵ {'源站竖线': ['33.333'",
+  "'66.667']",
+  "'源站横线': ['33.333'",
+  "'66.667']}",
+  "source:the-toggle-uses-the-source-container-coordinates  ⟵ ★ 源站逐字：`left: u.left + u.width - 40` / `top: u.top + 8`",
+  "clone:the-frame-is-empty-like-the-source  ⟵ {'框孩子数': 1}",
+  "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+  "'空框']",
+  "'期望': ['遮罩层'",
+  "'空框'",
+  "'三分线层'",
+  "'开关']}",
+  "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+  "'开关的父': '框'}",
+  "clone:the-thirds-layer-has-the-source-clipping-and-aria  ⟵ {'overflow': 'visible'",
+  "'radius': '0px'",
+  "'ariaHidden': None",
+  "'pointerEvents': 'none'",
+  "'x': 347",
+  "'y': 120",
+  "'w': 1227",
+  "'h': 690}",
+  "clone:every-gizmo-button-is-hittable-while-the-frame-exists  ⟵ {'总按钮数': 6",
+  "'点不到的': [{'名字': 'X 反向'",
+  "'命中点': {'x': 1557",
+  "'y': 142}",
+  "'在框内': True",
+  "'命中是这枚按钮': False",
+  "'命中是框': True}",
+  "{'名字': 'Z 正向'",
+  "'命中点': {'x': 1560",
+  "'y': 155}",
+  "'命中是框': True}]",
+  "'框的pointerEvents': 'none'",
+  "'why': '★ 源站逐字的那枚开关必须**永远可点** ⟹ ⟹ clone 自有的坐标控件必须让开（batch 865 把它挪到视口左侧）'}"
+ ],
+ "newGateFailedOnWORK": [],
+ "newGateCrashOnHEAD": [],
+ "newGateCrashOnMIX": [],
+ "headStateReproducesD25": {
+  "具名红条": [
+   "source:the-thirds-layer-carries-the-source-clipping-classes  ⟵ ★ 源站逐字：`pointer-events-none absolute overflow-hidden rounded-xl` ＋ `\"aria-hidden\":!0`｜★ 判据只读**三分线层自己的开始标签**（不是全文 contains）｜实测 `aria-hidden=\"true\"` 全文 11 处 ⟹ 全文型判据会假绿",
+   "source:the-clone-line-percentages-match-the-source-verbatim  ⟵ {'源站竖线': ['33.333'",
+   "'66.667']",
+   "'源站横线': ['33.333'",
+   "'66.667']}",
+   "source:the-toggle-uses-the-source-container-coordinates  ⟵ ★ 源站逐字：`left: u.left + u.width - 40` / `top: u.top + 8`",
+   "clone:the-frame-is-empty-like-the-source  ⟵ {'框孩子数': 1}",
+   "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+   "'空框']",
+   "'期望': ['遮罩层'",
+   "'空框'",
+   "'三分线层'",
+   "'开关']}",
+   "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+   "'开关的父': '框'}",
+   "clone:the-thirds-layer-has-the-source-clipping-and-aria  ⟵ {'overflow': 'visible'",
+   "'radius': '0px'",
+   "'ariaHidden': None",
+   "'pointerEvents': 'none'",
+   "'x': 347",
+   "'y': 120",
+   "'w': 1227",
+   "'h': 690}",
+   "clone:every-gizmo-button-is-hittable-while-the-frame-exists  ⟵ {'总按钮数': 6",
+   "'点不到的': [{'名字': 'X 反向'",
+   "'命中点': {'x': 1557",
+   "'y': 142}",
+   "'在框内': True",
+   "'命中是这枚按钮': False",
+   "'命中是框': True}",
+   "{'名字': 'Z 正向'",
+   "'命中点': {'x': 1560",
+   "'y': 155}",
+   "'命中是框': True}]",
+   "'框的pointerEvents': 'none'",
+   "'why': '★ 源站逐字的那枚开关必须**永远可点** ⟹ ⟹ clone 自有的坐标控件必须让开（batch 865 把它挪到视口左侧）'}"
+  ],
+  "零崩溃": true
+ },
+ "mixFailed865": [
+  "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+  "'空框'",
+  "'开关']",
+  "'期望': ['遮罩层'",
+  "'三分线层'",
+  "'开关']}",
+  "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+  "'开关的父': '容器'}"
+ ],
+ "mixNamedReds865": [
+  "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+  "'空框'",
+  "'开关']",
+  "'期望': ['遮罩层'",
+  "'三分线层'",
+  "'开关']}",
+  "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+  "'开关的父': '容器'}"
+ ],
+ "mixOtherGates": {
+  "scripts/verify-liblib-batch862.py": [],
+  "scripts/verify-liblib-batch863.py": []
+ },
+ "mixIsolated": {
+  "865的红": [
+   "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+   "'空框'",
+   "'开关']",
+   "'期望': ['遮罩层'",
+   "'三分线层'",
+   "'开关']}",
+   "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+   "'开关的父': '容器'}"
+  ],
+  "862的红": [],
+  "863的红": [],
+  "why": "★ 只把三分线层搬进框里 ⟹ ⟹ 865 的「四者平级」与「空框」必须红 ⟹ ⟹ 862／863 必须**保持绿** ⟹ ⟹ 证明改的就是它，且隔离干净"
+ },
+ "diffs": {
+  "scripts/verify-liblib-batch865.py": {
+   "onlyOnHEAD": [
+    "'66.667']",
+    "'66.667']}",
+    "'ariaHidden': None",
+    "'h': 690}",
+    "'pointerEvents': 'none'",
+    "'radius': '0px'",
+    "'w': 1227",
+    "'why': '★ 源站逐字的那枚开关必须**永远可点** ⟹ ⟹ clone 自有的坐标控件必须让开（batch 865 把它挪到视口左侧）'}",
+    "'x': 347",
+    "'y': 120",
+    "'y': 142}",
+    "'y': 155}",
+    "'三分线层'",
+    "'命中是框': True}",
+    "'命中是框': True}]",
+    "'命中是这枚按钮': False",
+    "'命中点': {'x': 1557",
+    "'命中点': {'x': 1560",
+    "'在框内': True",
+    "'开关']}",
+    "'开关的父': '框'}",
+    "'期望': ['遮罩层'",
+    "'框的pointerEvents': 'none'",
+    "'源站横线': ['33.333'",
+    "'点不到的': [{'名字': 'X 反向'",
+    "'空框'",
+    "'空框']",
+    "clone:every-gizmo-button-is-hittable-while-the-frame-exists  ⟵ {'总按钮数': 6",
+    "clone:the-container-holds-all-four-in-source-order  ⟵ {'容器子元素': ['遮罩层'",
+    "clone:the-frame-is-empty-like-the-source  ⟵ {'框孩子数': 1}",
+    "clone:the-thirds-layer-has-the-source-clipping-and-aria  ⟵ {'overflow': 'visible'",
+    "clone:the-thirds-layer-is-a-sibling-of-the-frame  ⟵ {'三分线层的父': '框'",
+    "source:the-clone-line-percentages-match-the-source-verbatim  ⟵ {'源站竖线': ['33.333'",
+    "source:the-thirds-layer-carries-the-source-clipping-classes  ⟵ ★ 源站逐字：`pointer-events-none absolute overflow-hidden rounded-xl` ＋ `\"aria-hidden\":!0`｜★ 判据只读**三分线层自己的开始标签**（不是全文 contains）｜实测 `aria-hidden=\"true\"` 全文 11 处 ⟹ 全文型判据会假绿",
+    "source:the-toggle-uses-the-source-container-coordinates  ⟵ ★ 源站逐字：`left: u.left + u.width - 40` / `top: u.top + 8`",
+    "{'名字': 'Z 正向'"
+   ],
+   "onlyOnWORK": []
+  },
+  "scripts/verify-liblib-batch862.py": {
+   "onlyOnHEAD": [
+    "source:toggle-uses-the-source-position-formula  ⟵ ★ 源站逐字：容器坐标 (u.left + u.width − 40",
+    "u.top + 8)"
+   ],
+   "onlyOnWORK": []
+  }
+ }
+}

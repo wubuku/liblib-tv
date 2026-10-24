@@ -776,7 +776,30 @@ function DirectorViewportGizmo({
       //   （框右边缘 ≤1591），而这枚控件在**视口右上角** ⟹ ⟹ 两者不重叠；
       //   ⟹ ⟹ clone 的视口**更窄**（1358 vs 1920）⟹ ⟹ 才会撞上
       //   ⟹ ⟹ 根因仍是 **D18（布局级）**，本条只是把交互修回来。
-      className="absolute right-5 top-5 z-10 h-20 w-20"
+      //
+      // ★ ★★★ Batch 865（★ 修 batch 864 的**后遗症**）：
+      //   ★ 864 把这枚控件降到 `z-10` 之后 ⟹ ⟹ 取景框上那枚**开关**
+      //   （`z-20`、在容器里）就**反过来盖住了**这枚控件的两枚按钮
+      //   （实测「X 反向」@(1557,142) 与「Z 正向」@(1560,155)
+      //   ⟹ ⟹ 两者的中心都落在开关的 32×32 矩形里）
+      //   ⟹ ⟹ 开关能点了 ⟹ ⟹ 但**这两枚按钮点不到了** ⟹ ⟹ 864 的门禁
+      //   只测了「开关能不能点」⟹ ⟹ 没测「它挡了谁」⟹ ⟹ 漏掉了。
+      //   ★ ★★ 修法：**把这枚 clone 自有控件挪到视口左侧**（水平分离）。
+      //   ⟹ ⟹ 为什么可以挪：★ 源站 chunk 里 15 处「Gizmo」**全是 three.js
+      //   TransformControls**（姿态／编辑器／路径）⟹ ⟹ **源站的 3D 视口里
+      //   根本没有这枚六轴坐标控件** ⟹ ⟹ 它是 **clone 自有扩展**（batch 49）
+      //   ⟹ ⟹ 它的位置**没有源站约束** ⟹ ⟹ 挪它**不损保真度**。
+      //   ⟹ ⟹ 而**源站逐字**的那枚取景框开关必须**永远可点** ⟹ ⟹
+      //   ⟹ ⟹ 该让开的是这枚 clone 自有控件 ⟹ ⟹ 不是它。
+      //   ★ ★ 为什么**只能水平挪**：★ 开关在框的**右缘**
+      //   （`left = u.left + u.width − 40`）⟹ ⟹ 它的 x **固定**
+      //   ⟹ ⟹ 而它的 y 随比例上下动 ⟹ ⟹ 竖直方向**任何固定位置**都会
+      //   在某些比例上再撞 ⟹ ⟹ 只有**水平分离**才稳。
+      //   ★ `left-3`（12px）在 4317 的 Tailwind 扫描里（移动端那行就在用）；
+      //   ★ `top` 用 **inline**（56px）⟹ ⟹ 避开移动端 `left-3 top-3` 那一行
+      //   ⟹ ⟹ 且不依赖 4317 冻结的 Tailwind 扫描。
+      className="absolute left-3 z-10 h-20 w-20"
+      style={{ top: 56 }}
     >
       {/* Batch 543: 源站截图 18——gizmo 正下方「重置视角」按钮，恢复导演台默认机位。 */}
       <button
@@ -2498,10 +2521,14 @@ function VideoExportController({
  *   前景 `rgb(9,202,245)`），关闭态的类名逐字照抄（那几个类 clone 已在用）。
  */
 function DirectorFrameThirdsToggle({
+  frameLeft,
+  frameTop,
   frameWidth,
   showThirds,
   onToggle,
 }: {
+  frameLeft: number;
+  frameTop: number;
   frameWidth: number;
   showThirds: boolean;
   onToggle: () => void;
@@ -2520,9 +2547,12 @@ function DirectorFrameThirdsToggle({
       className="nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors text-white/50 hover:bg-white/10 hover:text-white/80"
       style={{
         // ★ 源站逐字：`left: u.left + u.width - 40`、`top: u.top + 8`
-        //   （按钮是遮罩容器的绝对定位子节点 ⟹ ⟹ 换算成「相对框」＝ 右边内缩 8px）
-        left: frameWidth - 40,
-        top: 8,
+        //   ⟹ ⟹ ★ **Batch 865**：按钮是**遮罩容器**的绝对定位子节点（与框**平级**）
+        //   ⟹ ⟹ 所以这两个值是**容器坐标**（`u` ＝ 框在容器里的位置与尺寸）
+        //   ⟹ ⟹ 之前按钮在**框里** ⟹ ⟹ 用的是「相对框」的换算值
+        //   ⟹ ⟹ 现在改成**源站逐字**的容器坐标。
+        left: frameLeft + frameWidth - 40,
+        top: frameTop + 8,
         // ★ 源站开启态的类名 `bg-(--btn-secondary-bg) text-btn-primary`
         //   ⟹ ⟹ clone 无这两个变量 ⟹ ⟹ 用源站实测值兜底。
         ...(showThirds
@@ -2622,6 +2652,13 @@ function AspectFrame({ frameRect }: { frameRect: DirectorFrameRect | null }) {
           maskComposite: "exclude",
         }}
       />
+      {/* ★ ★★ Batch 865（源站逐字）：源站的取景框组件 `mP` 里，
+          **遮罩层／空框／三分线层／开关**是**四者平级**
+          （都是遮罩容器的**直接子元素**）
+          ⟹ ⟹ clone 之前把**三分线层与开关塞进了框里**
+          ⟹ ⟹ **结构与源站不同**（batch 864 登记的 D25）。
+          ★ 逐字入库：`docs/research/liblib-canvas-batch865-2026-10-01/raw/source-865-mp-verbatim.txt`。 */}
+      {/* ② 空框（★ 源站的框里**没有任何 children**） */}
       <div
         data-director-aspect-frame
         data-director-aspect-ratio={frameAspectRatio ?? "auto"}
@@ -2631,6 +2668,14 @@ function AspectFrame({ frameRect }: { frameRect: DirectorFrameRect | null }) {
         //   （新增类不生成）⟹ ⟹ 这里用 inline style 给等效实测值。
         //   ★ ★ Batch 863：**删掉**原先那层 `shadow-[0_0_0_9999px_…]`（框外遮罩
         //   改由上面的遮罩层承担 ⟹ ⟹ 源站那个框上**没有** box-shadow）。
+        //   ★ ★★ Batch 865：源站的框**没有** `pointer-events-none`
+        //     （⟹ ⟹ 源站里框**会挡住**它下面的 3D 场景）
+        //     ⟹ ⟹ ★ 但 **clone 保留**这一条 ⟹ ⟹ **如实登记为 D26**：
+        //     clone 的视口只有 **1358** 宽（源站 **1920**）⟹ ⟹ 取景框与视口
+        //     右上角的**坐标控件**（clone 自有）**重叠 35px**
+        //     （框右沿 1574 vs 控件 1539–1619）
+        //     ⟹ ⟹ 若照抄源站的 `pointer-events:auto` ⟹ ⟹ **坐标控件会被框吞掉**
+        //     ⟹ ⟹ 那是**用源站的写法换来一个 clone 独有的功能损坏** ⟹ ⟹ 保留。
         className="pointer-events-none absolute"
         style={{
           left: frameRect.left,
@@ -2643,38 +2688,58 @@ function AspectFrame({ frameRect }: { frameRect: DirectorFrameRect | null }) {
           outline: "1px solid rgba(255,255,255,0.18)",
           outlineOffset: "-1px",
         }}
-      >
-        {showThirds ? (
-          <div data-director-thirds className="absolute inset-0">
-            {/* ★ 源站逐字：`bg-(--color-white-alpha-50)`（＝ 白 50%）
-              ⟹ ⟹ 任意值类未生成 ⟹ ⟹ inline style 给实测等效值。 */}
-            <span
-              className="absolute bottom-0 left-1/3 top-0 w-px"
-              style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
-            />
-            <span
-              className="absolute bottom-0 left-2/3 top-0 w-px"
-              style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
-            />
-            <span
-              className="absolute left-0 right-0 top-1/3 h-px"
-              style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
-            />
-            <span
-              className="absolute left-0 right-0 top-2/3 h-px"
-              style={{ backgroundColor: "rgba(255,255,255,0.5)" }}
-            />
-          </div>
-        ) : null}
-        {/* ★★ Batch 862：源站的构图参考线开关**长在取景框右上角**
-            （源站逐字：`onToggleCompositionGrid:null!==tr?…:void 0`
-            ⟹ ⟹ 「自适应」时连按钮一起不在场）。 */}
-        <DirectorFrameThirdsToggle
-          frameWidth={frameRect.width}
-          showThirds={showThirds}
-          onToggle={handleToggleThirds}
-        />
-      </div>
+      />
+      {/* ③ 三分线层（★ 源站逐字：与框**平级**；
+          ★★ 且带 `overflow-hidden rounded-xl`
+          ⟹ ⟹ **诚实标注**：这一层按源站逐字加了圆角裁剪，
+          ⟹ ⟹ 但那四条线在 `33.333%`／`66.667%` 处 ⟹ ⟹ **永远碰不到四角**
+          ⟹ ⟹ ⟹ **裁剪对线没有可见影响**（本批有**像素对照**为证）
+          ⟹ ⟹ ⟹ 所以 D25 是**纯结构对齐**，**不是视觉改进**） */}
+      {showThirds ? (
+        <div
+          data-director-thirds
+          className="pointer-events-none absolute overflow-hidden rounded-xl"
+          style={{
+            left: frameRect.left,
+            top: frameRect.top,
+            width: frameRect.width,
+            height: frameRect.height,
+          }}
+          // ★ 源站逐字：`"aria-hidden":!0` ⟹ ⟹ 这层对辅助技术**不可见**
+          aria-hidden="true"
+        >
+          {/* ★ 源站逐字：`bg-(--color-white-alpha-50)`（＝ 白 50%）
+            ⟹ ⟹ 任意值类未生成 ⟹ ⟹ inline style 给实测等效值。
+            ★ 位置逐字：`left-[33.333%]` / `left-[66.667%]`（**三等分**）
+            ⟹ ⟹ 同样是任意值类 ⟹ ⟹ 用 inline 的百分比。 */}
+          <span
+            className="absolute top-0 h-full w-px"
+            style={{ left: "33.333%", backgroundColor: "rgba(255,255,255,0.5)" }}
+          />
+          <span
+            className="absolute top-0 h-full w-px"
+            style={{ left: "66.667%", backgroundColor: "rgba(255,255,255,0.5)" }}
+          />
+          <span
+            className="absolute left-0 w-full h-px"
+            style={{ top: "33.333%", backgroundColor: "rgba(255,255,255,0.5)" }}
+          />
+          <span
+            className="absolute left-0 w-full h-px"
+            style={{ top: "66.667%", backgroundColor: "rgba(255,255,255,0.5)" }}
+          />
+        </div>
+      ) : null}
+      {/* ④ 构图参考线开关（★ 源站逐字：与框**平级**，
+          容器坐标 `left: u.left + u.width - 40` / `top: u.top + 8`
+          ⟹ ⟹ 「自适应」时连按钮一起不在场（源站 `onToggleCompositionGrid:null!==tr?…:void 0`）） */}
+      <DirectorFrameThirdsToggle
+        frameLeft={frameRect.left}
+        frameTop={frameRect.top}
+        frameWidth={frameRect.width}
+        showThirds={showThirds}
+        onToggle={handleToggleThirds}
+      />
     </div>
   );
 }

@@ -1,0 +1,15 @@
+★ batch 865：源站取景框组件 `mP` 的**逐字入库证据**
+（★ 本批的期望值**只从本文件解析** ⟹ ⟹ 不凭记忆手打）
+
+chunk 路径：/tmp/liblib_srcjs2/0fmehki05gkzw.js.js
+chunk 长度：1018019 字符
+摘录起点（字符偏移）：829996
+摘录长度：2258 字符
+chunk 的 sha256：0d6999dbc5ca51601a0eec96afa85c59ab2af21821086ae3d825359c9bc1129d
+摘录的 sha256：6966a11dea904a52ba5eada1dc7ccef8be8c120ab1e32e6df8935d837c554a63
+（★ 取摘录用 `s.index('function mP({aspectRatio:e,leftPanelWidth:t=281')` 起，
+  到 `s.index('e.s(["SceneComposerDialog"', start)` 止）
+
+────────── 以下为逐字内容 ──────────
+
+function mP({aspectRatio:e,leftPanelWidth:t=281,rightPanelWidth:r=281,showCompositionGrid:n=!1,onToggleCompositionGrid:a}){let{t:s}=(0,c.useI18n)(),l=(0,o.useRef)(null),[u,p]=(0,o.useState)(null);return(0,o.useEffect)(()=>{let n=l.current;if(!n)return;if(!e)return void p(null);let a=()=>{let a=n.clientWidth,i=n.clientHeight;if(a<=0||i<=0)return;let o=a-t-r,s=Math.max(1,i-224),l=Math.min(Math.max(1,o-96),s*e),c=l/e;c>s&&(l=(c=s)*e),p({left:t+(o-l)/2,top:(i-c)/2,width:l,height:c})};a();let i=new ResizeObserver(a);return i.observe(n),()=>i.disconnect()},[e,t,r]),(0,i.jsx)("div",{ref:l,className:"pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10",children:u&&(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)("div",{className:"absolute inset-0 bg-black/20 backdrop-blur-md",style:{WebkitMaskImage:"linear-gradient(#000 0 0), linear-gradient(#000 0 0)",WebkitMaskPosition:`0 0, ${u.left}px ${u.top}px`,WebkitMaskRepeat:"no-repeat, no-repeat",WebkitMaskSize:`100% 100%, ${u.width}px ${u.height}px`,WebkitMaskComposite:"xor",maskComposite:"exclude"}}),(0,i.jsx)("div",{className:"outline-white/18 absolute rounded-xl outline -outline-offset-1",style:{left:u.left,top:u.top,width:u.width,height:u.height}}),n?(0,i.jsxs)("div",{className:"pointer-events-none absolute overflow-hidden rounded-xl",style:{left:u.left,top:u.top,width:u.width,height:u.height},"aria-hidden":!0,children:[(0,i.jsx)("div",{className:"bg-(--color-white-alpha-50) absolute left-[33.333%] top-0 h-full w-px"}),(0,i.jsx)("div",{className:"bg-(--color-white-alpha-50) absolute left-[66.667%] top-0 h-full w-px"}),(0,i.jsx)("div",{className:"bg-(--color-white-alpha-50) absolute left-0 top-[33.333%] h-px w-full"}),(0,i.jsx)("div",{className:"bg-(--color-white-alpha-50) absolute left-0 top-[66.667%] h-px w-full"})]}):null,a?(0,i.jsx)("button",{type:"button",title:s("canvas:directorAspectFrameOverlay"),className:`nodrag nopan nowheel pointer-events-auto absolute z-20 flex h-8 w-8 items-center justify-center rounded-lg transition-colors ${n?"bg-(--btn-secondary-bg) text-btn-primary":"text-white/50 hover:bg-white/10 hover:text-white/80"}`,style:{left:u.left+u.width-40,top:u.top+8},onClick:a,children:(0,i.jsx)(d.f,{className:"h-4 w-4 shrink-0","aria-hidden":!0})}):null]})})}
