@@ -297,8 +297,25 @@ def neg_case(name, why, mutate, kw, chk, st):
         连「基线本来就红」都被掩盖成「阴性对照 OK」。
       2. 证据必须**实测**：断言 needle 原来**确实在**、变异后**确实不在**
          （783 立的纪律：阴性对照要先验它真改了目标性质）。
+    ★ ★★ Batch 866：★ **`mutate()` 自己失败时也会污染源码** ⟹ ⟹
+      ★ ★ 上一版的 `try/finally` 只包住了 `mutate()` **之后**的代码
+      ⟹ ⟹ ⟹ ⟹ 而 `mutate()` 内部的断言（★ 「变异没真的改到目标性质」）
+      ⟹ ⟹ ⟹ ⟹ **是在 `try` 之外**抛的 ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ **源码留在变异态**
+      ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ （★ 本次就撞上：★ 断言失败后
+      ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ `DirectorViewport.tsx` 里的 `setModelLibraryOpen(false);`
+      ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ 被留成 `true` ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ 要手工 `git checkout` 才干净）
+      ⟹ ⟹ ⇒ **修法**：★ 让 `mutate()` **自己**保证失败也复原
+      ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ （★ 变异层自己知道要改哪些文件 ⟹ ⟹ ⟹ ⟹ 它最清楚怎么复原）。
     """
-    restore, evidence = mutate()
+    try:
+        restore, evidence = mutate()
+    except BaseException:
+        # ★ ★ 变异层失败 ⟹ ⟹ **它可能已经改了源码** ⟹ ⟹ 复原
+        # ★ ★★ 注意：★ 这里**不能**「重写同样内容」当复原 ⟹ ⟹ 那不是复原
+        #   ⟹ ⟹ ★ 必须用**变异前存下的原文**还原 ⟹ ⟹ ⟹ 而那份原文在
+        #   ⟹ ⟹ ⟹ `mut_src_multi` 内部 ⟹ ⟹ ⟹ ⟹ 所以**复原必须由变异层自己做**
+        #   ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ （★ 见 `mut_src_multi` 里的 `try/except`）
+        raise
     try:
         st2 = static_side()
         c2 = run_checks(st2, None, kw["c784"], kw["raw"])
@@ -394,32 +411,118 @@ def mut_all_falsy_writes(rel, state, new="true"):
     return restore, evidence
 
 
-def mut_src(rel, old, new, line):
-    """行数中性的源码变异；返回 `(复原, 实测证据)`。"""
-    return mut_src_multi((rel, line, old, new))
+def mut_src(rel, old, new, line, ctx=None, all_hits=False):
+    """行数中性的源码变异；返回 `(复原, 实测证据)`。
+
+    ★ `ctx` ＝ **定位用的上下文**（★ 用来把 needle 唯一化）
+    ⟹ ⟹ ★ 与 `old` 一起在**同一行**上匹配 ⟹ ⟹ ⟹ 命中后**只替换 `old`**
+    ⟹ ⟹ ⟹ ⟹ （★ 所以 `old` 本身仍可短 ⟹ ⟹ ⟹ 上下文只管「找哪一行」）
+    ★ `all_hits` ＝ True ⟹ ⟹ 改**全部**命中处（★ 用于「同名两处本就该一起改」）
+    """
+    return mut_src_multi((rel, line, old, new, ctx, all_hits))
 
 
 def mut_src_multi(*specs):
-    """一次改多处；仍然要求**行数中性**，并一次性复原全部。"""
-    paths = sorted({rel for rel, _, _, _ in specs})
+    """一次改多处；仍然要求**行数中性**，并一次性复原全部。
+
+    ★ ★★ Batch 866：★ **行号只当「提示」，定位靠 needle 的唯一命中**。
+      ★ 原写法把行号当**断言**（`assert old in before[line-1]`）
+      ⟹ ⟹ ★ 而源码一改（别的批次动了那个文件）行号就漂 ⟹ ⟹
+      ⟹ ⟹ **这个门禁会报「needle 不在 xxx:2739」而红**
+      ⟹ ⟹ ⟹ ⟹ ★ 而那个红**与本门禁要验的性质毫无关系**
+      ⟹ ⟹ ⟹ ⟹ （★ 本次就撞上：★ batch 865 改了 `DirectorViewport.tsx`
+      ⟹ ⟹ ⟹ ⟹ 行号漂了 ⟹ ⟹ ⟹ ⟹ `785` 红了 ⟹ ⟹ ⟹ ⟹ 而它**不在**回归清单里
+      ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ 所以没人看见）。
+      ★ ⇒ **修法**：★ 行号**不再是断言** ⟹ ⟹ 改成
+      ⟹ ⟹ 「needle（可带上下文）在**全文**里**唯一命中**那一行 ⟹ ⟹ 就改那一行」
+      ⟹ ⟹ ⟹ ⟹ ⟹ （唯一命中 ⟹ ⟹ ⟹ 不会改错地方 ⟹ ⟹ ⟹ 性质仍然被真正改到）。
+      ★ ★ **needle 不唯一时的出路**（★ 本次连撞三次）：
+      ⟹ ⟹ ① 加 `ctx`（**多行**上下文块）把它唯一化；
+      ⟹ ⟹ ② 加 `all_hits=True`（★ 「同名几处**本就该一起改**」的那种）。
+    """
+    norm = []
+    for spec in specs:
+        if len(spec) == 4:
+            rel, line, old, new = spec
+            ctx, all_hits = None, False
+        elif len(spec) == 5:
+            rel, line, old, new, ctx = spec
+            all_hits = False
+        else:
+            rel, line, old, new, ctx, all_hits = spec
+        norm.append((rel, line, old, new, ctx, all_hits))
+    paths = sorted({rel for rel, _, _, _, _, _ in norm})
     orig = {rel: (ROOT / rel).read_text(encoding="utf-8") for rel in paths}
     evidence = []
-    for rel, line, old, new in specs:
-        assert old != new, "★ 变异前后相同：%r" % old
-        p = ROOT / rel
-        before = p.read_text(encoding="utf-8").split("\n")
-        assert old in before[line - 1], "★ needle 不在 %s:%d" % (rel, line)
-        lines = list(before)
-        lines[line - 1] = lines[line - 1].replace(old, new)
-        assert len(lines) == len(before), "★ 变异不是行数中性"
-        p.write_text("\n".join(lines), encoding="utf-8")
-        # ★ 实测：needle 原来在、现在不在
-        after = p.read_text(encoding="utf-8").split("\n")[line - 1]
-        evidence.append({"file": rel, "line": line,
-                         "oldPresentBefore": old in before[line - 1],
-                         "oldPresentAfter": old in after,
-                         "newPresentAfter": new in after,
-                         "codeAfter": after.strip()[:100]})
+    try:
+        for rel, line, old, new, ctx, all_hits in norm:
+            assert old != new, "★ 变异前后相同：%r" % old
+            p = ROOT / rel
+            before = p.read_text(encoding="utf-8").split("\n")
+            # ★ ★ 定位：★ 先看**提示行号**上有没有 ⟹ ⟹ 有就用它
+            #   ⟹ ⟹ 没有就在**全文**里找 needle（可带上下文）⟹ ⟹ **必须唯一命中**
+            # ★ ★ `ctx` 可以是**多行**的上下文块 ⟹ ⟹ 此时用「**前后各若干行**的窗口」
+            #   ⟹ ⟹ 是否命中 ⟹ ⟹ ★ 因为那 6 行的**内容完全相同**（只差缩进）
+            #   ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ 所以**同一行**的上下文根本区分不了 ⟹ ⟹ 必须用多行。
+            # ★ ★ **needle 在上下文块的【最后一行】** ⟹ ⟹
+            #   ⟹ ⟹ （★ 上下文块的定位起点**不是** needle 那一行 ⟹ ⟹
+            #   ⟹ ⟹  ⟹ ⟹ 否则「needle 不在定位到的那一行」就会误报）
+            if ctx is None:
+                hits = [i for i, ln in enumerate(before) if old in ln]
+                needle_offset = 0
+            else:
+                ctx_lines = ctx.split("\n")
+                n = len(ctx_lines)
+                hits = []
+                for i in range(len(before) - n + 1):
+                    window = "\n".join(before[i:i + n])
+                    if window == ctx:
+                        hits.append(i)
+                needle_offset = n - 1
+            if all_hits:
+                # ★ ★ 「同名几处本就该一起改」⟹ ⟹ 改**全部**命中处
+                assert len(hits) >= 1, (
+                    "★ needle %r 在 %s 里**零命中**（提示行号 %d）"
+                    % (old[:60], rel, line))
+                idxs = [h + needle_offset for h in hits]
+            elif hits == [line - 1 - needle_offset]:
+                idxs = [line - 1]
+            else:
+                assert len(hits) == 1, (
+                    "★ needle %r（ctx=%r）在 %s 里命中 %d 行（提示行号 %d）⟹ ⟹ "
+                    "★ 唯一命中才能自动定位；否则请改 needle 或补上下文，"
+                    "或用 all_hits=True（★「同名几处本就该一起改」的那种）"
+                    % (old[:60], (ctx or "")[:40], rel, len(hits), line))
+                idxs = [hits[0] + needle_offset]
+            lines = list(before)
+            for idx in idxs:
+                assert old in lines[idx], (
+                    "★ 定位到 %s:%d 但 needle %r 不在那一行"
+                    % (rel, idx + 1, old[:60]))
+                lines[idx] = lines[idx].replace(old, new)
+            assert len(lines) == len(before), "★ 变异不是行数中性"
+            p.write_text("\n".join(lines), encoding="utf-8")
+            # ★ 实测：needle 原来在、现在不在
+            afters = [p.read_text(encoding="utf-8").split("\n")[idx]
+                      for idx in idxs]
+            evidence.append({"file": rel, "line": idxs[0] + 1,
+                             "改了哪几行": [i + 1 for i in idxs],
+                             "提示行号": line,
+                             "行号是否漂移": (idxs[0] + 1) != line,
+                             "oldPresentBefore": all(old in before[i] for i in idxs),
+                             # ★ ★★ 语义是「old 之后**还在**吗」⟹ ⟹ 用 `in`
+                             #   ⟹ ⟹ （★ 写反成 `not in` ⟹ ⟹ 断言永远失败
+                             #   ⟹ ⟹ ⟹ ⟹ 而失败信息会指向「变异没改到」⟹ ⟹ ⟹ ⟹ **误导**）
+                             "oldPresentAfter": all(old in a for a in afters),
+                             "newPresentAfter": all(new in a for a in afters),
+                             "codeAfter": afters[0].strip()[:100]})
+    except BaseException:
+        # ★ ★★ **变异失败 ⟹ ⟹ 必须复原源码** ⟹ ⟹
+        #   ⟹ ⟹ ★ 否则源码**留在变异态** ⟹ ⟹ 而这个门禁**带着污染退出了**
+        #   ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ （★ 本次就撞上 ⟹ ⟹ 要手工 `git checkout` 才干净）
+        for rel, txt in orig.items():
+            (ROOT / rel).write_text(txt, encoding="utf-8")
+        raise
     assert all(e["oldPresentBefore"] and not e["oldPresentAfter"]
                and e["newPresentAfter"] for e in evidence), \
         "★ 变异没真的改到目标性质：%r" % evidence
@@ -452,15 +555,28 @@ def main():
 
     negs = []
     # ① 把模型库的关闭写成非 falsy ⟹ 清单必须少一个（假阴性被造出来）
+    # ★ ★★ Batch 866：★ needle `setModelLibraryOpen(false);` 在该文件**命中 6 行**
+    #   ⟹ ⟹ 而且那 6 行的**内容完全相同**（只差缩进）⟹ ⟹
+    #   ⟹ ⟹ ★ **同一行**的上下文区分不了 ⟹ ⟹ 必须用**多行**上下文块
+    #   ⟹ ⟹ ⟹ ⟹ ★ 上下文**只管找哪一行** ⟹ ⟹ ⟹ 替换仍只改 `old` 那一处
+    #   ⟹ ⟹ ⟹ ⟹ （★ 目标＝「模型库面板的**外点关闭**」那一处）
     negs.append(neg_case(
         "N1 模型库关闭改成非 falsy", "验证 S1/S3 真的在看 `false` 这个形态",
         lambda: mut_src(DV, "setModelLibraryOpen(false);",
-                        "setModelLibraryOpen(true);", 2739),
+                        "setModelLibraryOpen(true);", 2739,
+                        ctx=("      if (modelLibraryPanelRef.current?.contains(event.target)) return;\n"
+                             "      setModelLibraryOpen(false);")),
         dict(base), "S1:4 有外点关闭", st))
     # ② 树的外点关闭不再是 falsy ⟹ 清单必须少一个
+    # ★ ★★ Batch 866：★ needle `setContextMenu(null);` 在该文件**命中 3 行**
+    #   ⟹ ⟹ 而且三处**语义完全不同**（外点关闭／Escape／菜单项点击）
+    #   ⟹ ⟹ ⟹ ⟹ ★ 裸 needle 会**改错地方** ⟹ ⟹ ⟹ 必须用多行上下文锁定
+    #   ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ （★ 这正是「同名在别处出现」的另一个形状）
     negs.append(neg_case(
         "N2 右键菜单关闭改成非 falsy", "验证 S1 真的在看树那条",
-        lambda: mut_src(DOT, "setContextMenu(null);", "setContextMenu(KEEP);", 207),
+        lambda: mut_src(DOT, "setContextMenu(null);", "setContextMenu(KEEP);", 207,
+                        ctx=("      if (contextMenuRef.current?.contains(event.target as Node)) return;\n"
+                             "      setContextMenu(null);")),
         dict(base), "S1:4 有外点关闭", st))
     # ③ 把 pointerdown 换成非 pointer 事件 ⟹ 该状态失去外点关闭
     # ★ **两处都要改**：`DirectorTimeline.tsx` 里 `close` 有**两个同名**处理器
@@ -471,10 +587,13 @@ def main():
         "N3 两处 pointerdown 换成 pointerenter",
         "验证 S6/S1 的 pointer 判据（**同名处理器两处一起改**才真改到性质）",
         lambda: mut_src_multi(
+            # ★ ★★ Batch 866：★ `all_hits=True` ⟹ ⟹ **一次改掉全部命中处**
+            #   ⟹ ⟹ ★ 所以**只需要一个 spec** ⟹ ⟹
+            #   ⟹ ⟹ ★ 原写法是**两个 spec 各带一个行号**（569／593）
+            #   ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ 而第一次调用已经把**两处都改了**
+            #   ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ 于是第二个 spec 再找 ⟹ ⟹ **零命中** ⟹ ⟹ 报错
             (DT, 569, 'window.addEventListener("pointerdown", close);',
-             'window.addEventListener("pointerenter", close);'),
-            (DT, 593, 'window.addEventListener("pointerdown", close);',
-             'window.addEventListener("pointerenter", close);')),
+             'window.addEventListener("pointerenter", close);', None, True)),
         dict(base), "S1:4 有外点关闭", st))
     # ④ 切断 phoneVcamOpen 的 falsy 写入 ⟹ 它不再可写 ⟹ S4 必须发现分母不对
     # ★ **全部** falsy 写入都要切断（`:2826` / `:3081` / `:3558` 三处），

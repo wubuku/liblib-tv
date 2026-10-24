@@ -270,6 +270,13 @@ with sync_playwright() as pw:
 | `docs/research/liblib-canvas-batch864-2026-10-01/runtime-audit.json` | 本批门禁（`scripts/verify-liblib-batch864.py`）的产物：★ 含**不触网底线判据**（改了比例／切了参考线**不得**发出任何请求）＋「**不许造出 D17 假字段**」判据 ＋ 源站运行时取证段 ＋ 同口径对照段 |
 | `docs/research/liblib-canvas-batch864-2026-10-01/README.md` | 本批（**D17 复核与推翻** ＋ 整改「构图参考线开关点不到」 ＋ **本地埋点等价实现**）的完整取证、整改、**用户可达**与验收；★ 含 **D18 结案**／**D21–D23、D25 登记** ＋ 六条方法学 |
 | `scripts/verify-liblib-batch864.py` | 本批门禁（**37 判据**；★ 期望值**只从入库的源站 raw 解析**） |
+| `docs/research/liblib-canvas-batch866-2026-10-01/raw/baseline-46.json` | ★ **普查基线**：★ 仓库 **563** 个 liblib `.py` 门禁里 ⟹ ⟹ **碰被跟踪源文件**的 **80** 个 ⟹ ⟹ **46 个不在回归清单** ⟹ ⟹ 逐条读数（★ **21 红 25 绿**）⟹ ⟹ 那些红**从来没人看见** |
+| `docs/research/liblib-canvas-batch866-2026-10-01/raw/head464-comparison.json` | ★ **HEAD 受控对照**：★ 把被跟踪源码换回 **batch 864 提交**（`ed167382`）⟹ ⟹ 门禁脚本不动 ⟹ ⟹ 跑那 21 条 ⟹ ⟹ 再复原到工作副本跑同样 21 条 ⟹ ⟹ 判据「**红绿必须完全相同**」⟹ ⟹ 结果 **相同 21 条、不同 0 条** ⟹ ⟹ **本批引入的红 0 条** |
+| `docs/research/liblib-canvas-batch866-2026-10-01/runtime-audit.json` | 本批门禁（`scripts/verify-liblib-batch866.py`，★ **18 判据 0 失败**）的产物：★ 含「**碰被跟踪源文件的门禁全部在清单里**」这条**核心保证**（★ 普查**同时扫 `.py` 与 `.mjs`**、★ 比较**按 (批次, 扩展名)**）＋「清单里每条都存在」＋「去重按 (批次, 扩展名)」＋「基线红的**每一条**都必须在 `KNOWN_RED` 里」＋「`785` 的行号断言已不在」＋「`785` 变异失败必须复原源码」＋ ★★「**缺口判定有牙**」（★ 临时删一条 ⟹ ⟹ 缺口必须恰好是那一条）＋ ★★「**独立实现复算一致**」（★ 另一条实现路径 ⟹ ⟹ 普查结论必须相同）＋ ★★「**`.mjs` 族在视野里**」 |
+| `docs/research/liblib-canvas-batch866-2026-10-01/README.md` | 本批（**回归清单的覆盖面** ＋ **整改 `785` 的行号依赖与失败不复原** ＋ **修门禁自身的两个假绿**）的完整普查、归因、整改与验收；★ 含**五条方法学**（清单即旧前提普查表／「旧账」必须有对照证据／断言失败先问判据是否写反／**门禁自己也要经得起同样的检查**／**负控没打红先查变异落点**） |
+| `docs/research/liblib-canvas-batch866-2026-10-01/probes/regress866.py` | ★ 回归脚本（清单 **177** 条 ⟹ ⟹ 111 → 177）⟹ ⟹ ★ 含 **19** 个 `.mjs` 静态断言门禁 ⟹ ⟹ ★ **`.py` 与 `.mjs` 是两份不同门禁** ⟹ ⟹ 旧账/WATCH 匹配**必须按 (批次, 扩展名)** ⟹ ⟹ 否则 `68.mjs` 的绿会替 `68.py` 的红背书 ⟹ ⟹ **掩盖新红** |
+| `scripts/verify-liblib-batch866.py` | 本批门禁 |
+| `scripts/verify-liblib-batch785.py` | ★ **整改后**的 785：★ **行号只当提示**、定位靠 needle **唯一命中** ＋ 多行上下文 ＋ `all_hits` ⟹ ⟹ ★ **变异失败必复原源码** ⟹ ⟹ 结果**正向 14/14、阴性 7/7** |
 | `docs/research/liblib-canvas-batch865-2026-10-01/raw/source-865-mp-verbatim.txt` | ★ **源站逐字**（chunk `0fmehki05gkzw.js.js` 的 `mP` 组件；文件头记 chunk 路径／字符偏移／chunk 与摘录的**两个 sha256**）⟹ ⟹ 取景框那四层是「**遮罩层／空框／三分线层／开关**」**四者平级**，框里**零 children** |
 | `docs/research/liblib-canvas-batch865-2026-10-01/raw/source-865-frame-structure.json` | ★ **源站运行时**取证：遮罩容器**直接子元素数 = 4**、**四者都直属容器 = True**、那个**框的子元素数 = 0**、**框的 `pointerEvents` = `"none"`** ⟹ ⟹ 逐字 ＋ 运行时**双重证实** D25 |
 | `docs/research/liblib-canvas-batch865-2026-10-01/raw/clone-865-pixels.json` ＋ `raw/clone-865-pixels-{old,new}.png` | ★ **像素对照**（隐藏 3D canvas ＋ 纯色底 ⟹ ⟹ DOM 手术还原旧结构 ⟹ ⟹ 两次截图确定性可比）：**846,630** 像素逐个比对 ⟹ ⟹ **不同像素 0 个**、**最大通道差 0** ⟹ ⟹ ★ **D25 是纯结构对齐，视觉无差别** |

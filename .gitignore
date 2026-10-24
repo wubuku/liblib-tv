@@ -64,3 +64,8 @@ camera-button-test.png
 __pycache__/
 scripts/_tmp-*
 scripts/_tmp_*
+
+# ★ ★ 回归/门禁的**逐条日志**是**入库证据**（Batch 866 起）
+#   ⟹ ⟹ 全局 gitignore 排除 `*.log` ⟹ ⟹ 证据会**提交不上去**
+#   ⟹ ⟹ 所以这里显式放行「批次证据目录下的回归日志」
+!docs/research/*/raw/*.log

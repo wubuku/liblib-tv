@@ -1,0 +1,221 @@
+{
+ "batch": 866,
+ "baseCommit": "ed167382",
+ "src": [
+  "src/components/director/DirectorViewport.tsx",
+  "src/components/director/DirectorAspectPanel.tsx",
+  "src/store/directorStore.ts",
+  "src/lib/directorTelemetry.ts"
+ ],
+ "HEAD864": {
+  "40": {
+   "rc": 1,
+   "verdict": "rc=1 playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-aspect-frame]\")"
+  },
+  "630": {
+   "rc": 1,
+   "verdict": "rc=1 16 checks, 2 failures ／ FAILED: no-cell-has-an-unexplained-covered-control ／ FAILED: every-squeeze-coverer-is-the-band-or-a-zero-height-replacement"
+  },
+  "685": {
+   "rc": 1,
+   "verdict": "rc=1 ILED: rounding-manufactures-plateaus-out-of-real-ramps ／ FAILED: the-second-breakpoint-is-a-discontinuity-at-620-not-a-band ／ FAILED: two-nominally-identical-icon-buttons-behave-completely-differently"
+  },
+  "686": {
+   "rc": 1,
+   "verdict": "rc=1 axis-ramp-is-twelve-integer-pixels-not-a-subpixel-ramp ／ FAILED: the-top-edge-is-pinned-at-264-then-switches-to-bottom-anchored-crossing-at-356 ／ FAILED: 683s-only-one-key-holds-in-unrounded-units-too"
+  },
+  "690": {
+   "rc": 1,
+   "verdict": "rc=1 ading': 2472.82, 'ratioMeasured': 1.25, 'ratioPredict  [an unverified inference with a closed-form price tag] ／ 6/7 checks passed ／ FAILED: census-one-leaf-path-in-74-is-integer-valued-by-construction"
+  },
+  "750": {
+   "rc": 1,
+   "verdict": "rc=1 两轮跑探针…… ／ /Users/yangjiefeng/.pyenv/versions/3.10.6/bin/python3: can't open file '/tmp/dbg750e.py': [Errno 2] No such file or directory ／ 探针失败 exit=2"
+  },
+  "751": {
+   "rc": 1,
+   "verdict": "rc=1 两轮跑探针…… ／ /Users/yangjiefeng/.pyenv/versions/3.10.6/bin/python3: can't open file '/tmp/dbg751e.py': [Errno 2] No such file or directory ／ 探针失败 exit=2"
+  },
+  "752": {
+   "rc": 1,
+   "verdict": "rc=1 页每轴是三件套：`左右拖动调整 X 轴` 拖动钮 + number 输入 + `当前帧有关键帧`/`当前帧无关键帧` 开关；**clone 三样都已经有** ⟹ 不是缺口；源站 FOV ra ／ ✅ C10 时间线缩放滑杆**已经对平**：源站 `aria-label='时间轴缩放'` min=0 max=100 value=44，clone `data-director-timeline-zoo"
+  },
+  "76": {
+   "rc": 1,
+   "verdict": "rc=1 AssertionError: [ ／ \"delete-active-owner-a:console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
+  },
+  "763": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "764": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "767": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "768": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "769": {
+   "rc": 1,
+   "verdict": "rc=1 \"/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch769.py\", line 93, in static_side ／ cseg = vp[vp.index(\"data-director-crowd-panel\"):vp.index( ／ ValueError: substring not found"
+  },
+  "770": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "774": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "781": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "785": {
+   "rc": 0,
+   "verdict": "rc=0  3 个                flipped=['S12:三方对账（汇编器 / 普查器 / 验收器）'] ／ ★ 正向 14/14   阴性 7/7 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch785-2026-10-01/verify-report.json"
+  },
+  "786": {
+   "rc": 1,
+   "verdict": "rc=1 lib-tv/scripts/verify-liblib-batch786.py\", line 516, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 3 项红（['S3:三向互斥的三组都在', 'S5:vcam 打开者带门', 'S6:三方对账（汇编器 / 普查器 / 验收器）']）⟹ 阴性对照会在污染过的前提上跑"
+  },
+  "787": {
+   "rc": 1,
+   "verdict": "rc=1 ib-batch787.py\", line 342, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 4 项红（['S2:四组新增都在', 'S3:★ 重头戏：模型库加条目会杀掉运镜绘制', 'S4:action 侧行锚定', 'S5:四方一致（普查 / 验收器 计数+清单，汇编器 那 4 组）']）⟹ 阴性对照没意义"
+  },
+  "789": {
+   "rc": 1,
+   "verdict": "rc=1 File \"/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch789.py\", line 356, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 1 项红（['S10:桌的锚点唯一']）⟹ 阴性对照没意义"
+  }
+ },
+ "WORK": {
+  "40": {
+   "rc": 1,
+   "verdict": "rc=1 playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-aspect-frame]\")"
+  },
+  "630": {
+   "rc": 1,
+   "verdict": "rc=1 16 checks, 2 failures ／ FAILED: no-cell-has-an-unexplained-covered-control ／ FAILED: every-squeeze-coverer-is-the-band-or-a-zero-height-replacement"
+  },
+  "685": {
+   "rc": 1,
+   "verdict": "rc=1 ILED: rounding-manufactures-plateaus-out-of-real-ramps ／ FAILED: the-second-breakpoint-is-a-discontinuity-at-620-not-a-band ／ FAILED: two-nominally-identical-icon-buttons-behave-completely-differently"
+  },
+  "686": {
+   "rc": 1,
+   "verdict": "rc=1 axis-ramp-is-twelve-integer-pixels-not-a-subpixel-ramp ／ FAILED: the-top-edge-is-pinned-at-264-then-switches-to-bottom-anchored-crossing-at-356 ／ FAILED: 683s-only-one-key-holds-in-unrounded-units-too"
+  },
+  "690": {
+   "rc": 1,
+   "verdict": "rc=1 ading': 2472.82, 'ratioMeasured': 1.25, 'ratioPredict  [an unverified inference with a closed-form price tag] ／ 6/7 checks passed ／ FAILED: census-one-leaf-path-in-74-is-integer-valued-by-construction"
+  },
+  "750": {
+   "rc": 1,
+   "verdict": "rc=1 两轮跑探针…… ／ /Users/yangjiefeng/.pyenv/versions/3.10.6/bin/python3: can't open file '/tmp/dbg750e.py': [Errno 2] No such file or directory ／ 探针失败 exit=2"
+  },
+  "751": {
+   "rc": 1,
+   "verdict": "rc=1 两轮跑探针…… ／ /Users/yangjiefeng/.pyenv/versions/3.10.6/bin/python3: can't open file '/tmp/dbg751e.py': [Errno 2] No such file or directory ／ 探针失败 exit=2"
+  },
+  "752": {
+   "rc": 1,
+   "verdict": "rc=1 页每轴是三件套：`左右拖动调整 X 轴` 拖动钮 + number 输入 + `当前帧有关键帧`/`当前帧无关键帧` 开关；**clone 三样都已经有** ⟹ 不是缺口；源站 FOV ra ／ ✅ C10 时间线缩放滑杆**已经对平**：源站 `aria-label='时间轴缩放'` min=0 max=100 value=44，clone `data-director-timeline-zoo"
+  },
+  "76": {
+   "rc": 1,
+   "verdict": "rc=1 AssertionError: [ ／ \"delete-active-owner-a:console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
+  },
+  "763": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "764": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "767": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "768": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "769": {
+   "rc": 1,
+   "verdict": "rc=1 \"/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch769.py\", line 93, in static_side ／ cseg = vp[vp.index(\"data-director-crowd-panel\"):vp.index( ／ ValueError: substring not found"
+  },
+  "770": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "774": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "781": {
+   "rc": 1,
+   "verdict": "通过"
+  },
+  "785": {
+   "rc": 0,
+   "verdict": "rc=0  3 个                flipped=['S12:三方对账（汇编器 / 普查器 / 验收器）'] ／ ★ 正向 14/14   阴性 7/7 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch785-2026-10-01/verify-report.json"
+  },
+  "786": {
+   "rc": 1,
+   "verdict": "rc=1 lib-tv/scripts/verify-liblib-batch786.py\", line 516, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 3 项红（['S3:三向互斥的三组都在', 'S5:vcam 打开者带门', 'S6:三方对账（汇编器 / 普查器 / 验收器）']）⟹ 阴性对照会在污染过的前提上跑"
+  },
+  "787": {
+   "rc": 1,
+   "verdict": "rc=1 ib-batch787.py\", line 342, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 4 项红（['S2:四组新增都在', 'S3:★ 重头戏：模型库加条目会杀掉运镜绘制', 'S4:action 侧行锚定', 'S5:四方一致（普查 / 验收器 计数+清单，汇编器 那 4 组）']）⟹ 阴性对照没意义"
+  },
+  "789": {
+   "rc": 1,
+   "verdict": "rc=1 File \"/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch789.py\", line 356, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 1 项红（['S10:桌的锚点唯一']）⟹ 阴性对照没意义"
+  }
+ },
+ "restored": true,
+ "sha": {
+  "base": {
+   "src/components/director/DirectorViewport.tsx": "50acf0e387e958b19cb04f7d893a8362bf97252bb5cdeedcfe4d82e05a8e10fd",
+   "src/components/director/DirectorAspectPanel.tsx": "30fd475996a63673cc7e7a045835c23f6fc5e8278019e479f5e3fe9a419f5787",
+   "src/store/directorStore.ts": "92c1c525ac1226e0cbf5b34bf20e114a94730b4b7a534a7635a4cc6946ff3d81",
+   "src/lib/directorTelemetry.ts": "ece86d0c4182894c9ac49d8ba88f8ff470cc64827a001f1d38b472dfa013ccdc"
+  },
+  "after": {
+   "src/components/director/DirectorViewport.tsx": "50acf0e387e958b19cb04f7d893a8362bf97252bb5cdeedcfe4d82e05a8e10fd",
+   "src/components/director/DirectorAspectPanel.tsx": "30fd475996a63673cc7e7a045835c23f6fc5e8278019e479f5e3fe9a419f5787",
+   "src/store/directorStore.ts": "92c1c525ac1226e0cbf5b34bf20e114a94730b4b7a534a7635a4cc6946ff3d81",
+   "src/lib/directorTelemetry.ts": "ece86d0c4182894c9ac49d8ba88f8ff470cc64827a001f1d38b472dfa013ccdc"
+  }
+ },
+ "红绿相同": [
+  "40",
+  "630",
+  "685",
+  "686",
+  "690",
+  "750",
+  "751",
+  "752",
+  "76",
+  "763",
+  "764",
+  "767",
+  "768",
+  "769",
+  "770",
+  "774",
+  "781",
+  "785",
+  "786",
+  "787",
+  "789"
+ ],
+ "红绿不同": []
+}

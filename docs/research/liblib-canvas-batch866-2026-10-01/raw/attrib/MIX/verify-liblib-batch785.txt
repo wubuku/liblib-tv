@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch785.py", line 699, in <module>
+    main()
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch785.py", line 563, in main
+    negs.append(neg_case(
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch785.py", line 311, in neg_case
+    restore, evidence = mutate()
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch785.py", line 565, in <lambda>
+    lambda: mut_src(DV, "setModelLibraryOpen(false);",
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch785.py", line 422, in mut_src
+    return mut_src_multi((rel, line, old, new, ctx, all_hits))
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch785.py", line 491, in mut_src_multi
+    assert old in before[line - 1], (
+AssertionError: ★ needle 不在 src/components/director/DirectorViewport.tsx:2739

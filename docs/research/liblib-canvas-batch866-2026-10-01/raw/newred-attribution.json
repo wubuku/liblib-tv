@@ -1,0 +1,46 @@
+{
+ "batch": 866,
+ "baseCommit": "ed167382",
+ "targets": [
+  "843",
+  "68",
+  "71",
+  "87"
+ ],
+ "HEAD864": {
+  "843": {
+   "rc": 0,
+   "tail": "7/7 通过 ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch843-2026-10-01/runtime-audit.json"
+  },
+  "68": {
+   "rc": 1,
+   "tail": "\"console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
+  },
+  "71": {
+   "rc": 1,
+   "tail": "\"console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
+  },
+  "87": {
+   "rc": 1,
+   "tail": "missing-selection-repair:console:error:TransformControls: The attached 3D object must be a part of the scene graph. ／ missing-selection-repair:console:error:TransformControls: The attached 3D object must be a part of the"
+  }
+ },
+ "WORK": {
+  "843": {
+   "rc": 0,
+   "tail": "7/7 通过 ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch843-2026-10-01/runtime-audit.json"
+  },
+  "68": {
+   "rc": 1,
+   "tail": "\"console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
+  },
+  "71": {
+   "rc": 1,
+   "tail": "\"console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
+  },
+  "87": {
+   "rc": 1,
+   "tail": "missing-selection-repair:console:error:TransformControls: The attached 3D object must be a part of the scene graph. ／ missing-selection-repair:console:error:TransformControls: The attached 3D object must be a part of the"
+  }
+ }
+}

@@ -1,0 +1,70 @@
+{
+ "batch": 866,
+ "title": "受控对照：证明 785 的整改有牙，且那个红真的只是行号漂移",
+ "gate": "scripts/verify-liblib-batch785.py",
+ "baseCommit": "ed167382",
+ "src": [
+  "src/components/director/DirectorViewport.tsx",
+  "src/components/director/DirectorObjectTree.tsx",
+  "src/components/director/DirectorTimeline.tsx"
+ ],
+ "states": [
+  "HEAD864",
+  "MIX",
+  "WORK-1",
+  "WORK-2"
+ ],
+ "MIX行数中性": true,
+ "restored": true,
+ "sha": {
+  "base": {
+   "src/components/director/DirectorViewport.tsx": "50acf0e387e958b19cb04f7d893a8362bf97252bb5cdeedcfe4d82e05a8e10fd",
+   "src/components/director/DirectorObjectTree.tsx": "5024c48953f714e64e6f7262a8fc37d451097d141b4b6dbe3694bb8d3ee7c385",
+   "src/components/director/DirectorTimeline.tsx": "c5b2725183d99bb2a3323a02de501cd5d4c7f09ac40e80035a8eca336e9de751",
+   "scripts/verify-liblib-batch785.py": "5cb5983a488d46695bcee27eed6a2f1e00f3b5e7120122b1d423a3a40f9a234a"
+  },
+  "after": {
+   "src/components/director/DirectorViewport.tsx": "50acf0e387e958b19cb04f7d893a8362bf97252bb5cdeedcfe4d82e05a8e10fd",
+   "src/components/director/DirectorObjectTree.tsx": "5024c48953f714e64e6f7262a8fc37d451097d141b4b6dbe3694bb8d3ee7c385",
+   "src/components/director/DirectorTimeline.tsx": "c5b2725183d99bb2a3323a02de501cd5d4c7f09ac40e80035a8eca336e9de751",
+   "scripts/verify-liblib-batch785.py": "5cb5983a488d46695bcee27eed6a2f1e00f3b5e7120122b1d423a3a40f9a234a"
+  }
+ },
+ "HEAD864": {
+  "rc": 1,
+  "failed": [
+   "AssertionError: ★ needle 不在 src/components/director/DirectorViewport.tsx:2739"
+  ],
+  "seconds": 0.6
+ },
+ "MIX": {
+  "rc": 1,
+  "failed": [
+   "AssertionError: ★ needle 不在 src/components/director/DirectorViewport.tsx:2739"
+  ],
+  "seconds": 0.6
+ },
+ "WORK-1": {
+  "rc": 0,
+  "failed": [],
+  "seconds": 4.5
+ },
+ "WORK-2": {
+  "rc": 0,
+  "failed": [],
+  "seconds": 4.3
+ },
+ "stableAcrossTwoRuns": true,
+ "newGateHasTeeth": true,
+ "mixFailed": [
+  "AssertionError: ★ needle 不在 src/components/director/DirectorViewport.tsx:2739"
+ ],
+ "mixNamedReds": [
+  "AssertionError: ★ needle 不在 src/components/director/DirectorViewport.tsx:2739"
+ ],
+ "mixCrash": [],
+ "headFailed": [
+  "AssertionError: ★ needle 不在 src/components/director/DirectorViewport.tsx:2739"
+ ],
+ "workFailed": []
+}

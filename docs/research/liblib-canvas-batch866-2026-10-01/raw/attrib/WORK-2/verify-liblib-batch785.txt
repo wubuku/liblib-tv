@@ -1,0 +1,25 @@
+=== batch 785 验收 ===
+  OK   S1:4 有外点关闭                   重算清单必须正好是 contextMenu / modelLibraryOpen / pathMenuLeft / pr
+  OK   S2:6 无外点关闭                   重算清单必须正好是另外 6 个（**含 phoneVcamOpen**）
+  OK   S3:modelLibraryOpen 计入       ★ `setModelLibraryOpen(false)` 是「关掉」⟹ 模型库**有**外点关闭（784 的假阴性）
+  OK   S4:phoneVcamOpen 留在分母        ★ `open` 要**改名**成 `phoneVcamOpen` 而不是丢掉 ⟹ 它必须在「无外点关闭」里，**而且必
+  OK   S5:`open` 不是可写状态             ★ `setOpen(` 在面板文件里 0 次 ⟹ 784 那个 key 是 prop
+  OK   S6:事件全是 pointer 类            ★ 4 个外点关闭的事件必须全在 mousedown/pointerdown/click/touchstart 里 ⟹ 
+  OK   S7:784 基线是 3/7               784 的 raw 必须真的说 3 有 / 7 没有（否则更正无从谈起）
+  OK   S8:784 把 `open` 记成「没有」       ★ 归属更正：784 raw 里 `open` 在 without 里 ⟹ **没发生撞名**，错在**整个漏掉一个门状
+  OK   S9:更正后 4/6                   更正必须是从 3/7 变成 **4/6**（不是 4/5 ⟹ 那会把 vcam 面板藏掉）
+  OK   S10:纯鼠标 D1i 第 1 次            ★ 从 782 raw **重算**：第 1 次 Escape `cap=0`（阶梯跑不到）、模型库已关、**导出面板仍
+  OK   S11:纯鼠标 D1i 第 2 次            第 2 次 Escape 才把导出面板关掉
+  OK   S12:三方对账（汇编器 / 普查器 / 验收器）    ★ 三个**独立**实现必须给出同一份清单：汇编器（源码行锚定）、普查器（正则扫描）、本验收器（状态优先重算）
+  OK   S13:汇编器零失败                   汇编器自己的断言必须全绿
+  OK   S14:阴性对照已复原源码                ★ 阴性对照改过的源码必须字节级还原，否则后续结论都跑在污染源上
+--- 阴性对照 ---
+  OK   N1 模型库关闭改成非 falsy                  flipped=['S1:4 有外点关闭', 'S2:6 无外点关闭', 'S3:modelLibraryOpen 计入', 'S9:更正后 4/6']
+  OK   N2 右键菜单关闭改成非 falsy                 flipped=['S1:4 有外点关闭', 'S2:6 无外点关闭', 'S9:更正后 4/6']
+  OK   N3 两处 pointerdown 换成 pointerenter  flipped=['S1:4 有外点关闭', 'S2:6 无外点关闭', 'S9:更正后 4/6']
+  OK   N4 phoneVcamOpen 全部 falsy 写入被切断    flipped=['S4:phoneVcamOpen 留在分母']
+  OK   N5 raw：导出面板「仍在」翻成 False            flipped=['S10:纯鼠标 D1i 第 1 次']
+  OK   N6 raw：cap=0 翻成 cap=1              flipped=['S10:纯鼠标 D1i 第 1 次']
+  OK   N7 普查清单退回 784 的 3 个                flipped=['S12:三方对账（汇编器 / 普查器 / 验收器）']
+★ 正向 14/14   阴性 7/7
+wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch785-2026-10-01/verify-report.json

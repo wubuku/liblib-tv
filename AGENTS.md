@@ -263,6 +263,64 @@ python3 scripts/verify-docs.py
   **no source constraint** ⟹ ⟹ it may be moved (it was moved to the
   viewport's **left** side, because the frame's toggle sat on top of it at the
   top-right).
+- A **regression list is itself a stale-premise audit** (Batch 866): the repo
+  holds **563** `verify-liblib-batch*.py` gates; the list covered **92**, and
+  of the **80** gates that reference the tracked source files, **46** were not
+  in the list ⟹ ⟹ **their failures had never been seen by anyone**. Widening
+  the list surfaced two real defects in gate `785`. **Rule**: every time the
+  list is widened, run the gates that touch the current batch's files but are
+  **not** in the list, and attribute each red **point by point**.
+- "This failure is legacy debt" **requires a controlled comparison** (Batch
+  866). Swapping the tracked source back to the previous commit and
+  re-running the same gates must produce the **same red/green** result;
+  21 red gates were proven this way (identical 21, different 0). ★ The
+  comparison's **restore self-check must pass** ⟹ ⟹ if it fails, suspect
+  **concurrent edits to the same files** first (a concurrent batch-866 edit
+  to `785` invalidated the first round).
+- A gate must not treat a **line number as an assertion** (Batch 866). Gate
+  `785` used `assert old in before[line-1]` ⟹ ⟹ when batch 865 edited that
+  file the line shifted ⟹ ⟹ the gate went red for a reason **unrelated** to
+  the property it verifies ⟹ ⟹ and because it was not in the regression list,
+  **nobody saw it**. **Fix**: treat the line number as a **hint** and locate
+  by the needle's **unique hit**.
+- When a needle is **not unique**, first ask whether the hits are the **same
+  property** (change all of them — `all_hits=True`) or **different
+  properties** (disambiguate with a **multi-line context block**; the needle
+  sits on the context block's **last line**).
+- A mutation layer must **restore the source when it fails** (Batch 866).
+  Gate `785`'s `try/finally` covered only the code *after* `mutate()`, while
+  the assertion inside `mutate()` raised **outside** the `try` ⟹ ⟹ the source
+  stayed mutated and the gate **exited with the workspace polluted**
+  (it had to be cleaned with `git checkout`). The mutation layer owns the
+  restore, because it is the only place that knows the pre-mutation text.
+- When a criterion fails, first ask whether **the criterion itself is
+  inverted** (Batch 866). A field named `oldPresentAfter` was written as
+  `all(old not in a ...)` ⟹ ⟹ the assertion could never pass ⟹ ⟹ and its
+  message pointed at "the mutation did not change the property" ⟹ ⟹
+  **misleading**; the real cause was in the criterion.
+- A **gate must pass the same coverage audit it enforces on others** (Batch 866).
+  Batch 866's target was "the coverage of the regression list", so the batch
+  gate's own census was re-checked and had **two false greens**:
+  ① the census globbed **only `verify-liblib-batch*.py`** ⟹ ⟹ the repo's
+  **24** `verify-liblib-batch*.mjs` gates were **entirely out of view**, and
+  **10** of them do reference the tracked sources ⟹ ⟹ **that half's failures
+  had never been seen**; ② the gap check compared **batch numbers only**
+  (`gap = touching - set(listed)`) ⟹ ⟹ batches with both `.py` and `.mjs` gates
+  (91/67/68/71/87) ⟹ ⟹ removing `('91','py')` while keeping `('91','mjs')`
+  still yielded an **empty** gap ⟹ ⟹ **false green**. **Fix**: do the census
+  **and** the comparison on the **(batch, extension)** pair.
+- A **coverage criterion needs a negative control and an independent
+  recomputation** (Batch 866). "The gap is empty" must either turn red under a
+  real removal, or it verifies nothing. Two criteria were added: removing one
+  listed gate must make the gap **exactly** that one, and a **second
+  implementation path** (word-splitting instead of substring matching) must
+  reach the **same** census. Both were proven by negative controls.
+- When a **negative control does not go red**, first check whether the mutation
+  landed on the quantity the assertion reads (Batch 866). The first control
+  removed `('91','py')` ⟹ ⟹ nothing turned red ⟹ ⟹ not because the criterion
+  was toothless, but because `91.py` **never touched** the tracked sources ⟹ ⟹
+  removing it legitimately produces no gap. Misreading that as "the criterion
+  is vacuous" would have been wrong.
 
 ## 6. Change Protocol
 

@@ -1,0 +1,232 @@
+[
+ {
+  "batch": "37",
+  "rc": 0,
+  "verdict": "rc=0 Batch 37 director motion path verification passed (filtered 5 transient TransformControls console error(s))."
+ },
+ {
+  "batch": "38",
+  "rc": 0,
+  "verdict": "rc=0 Batch 38 director path authoring verification passed."
+ },
+ {
+  "batch": "39",
+  "rc": 0,
+  "verdict": "rc=0 Batch 39 director path transform verification passed."
+ },
+ {
+  "batch": "40",
+  "rc": 1,
+  "verdict": "rc=1 playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-aspect-frame]\")"
+ },
+ {
+  "batch": "41",
+  "rc": 0,
+  "verdict": "rc=0 pose\": {\"yaw\": -33.91337789547671, \"pitch\": 12.574996948242188, \"roll\": -9.04356743879379}, \"trackKeyframes\": null, \"lastKeyframeT\": null} ／ Batch 41 director phone virtual-camera verification passed."
+ },
+ {
+  "batch": "44",
+  "rc": 0,
+  "verdict": "rc=0 Batch 44 director preset camera motion verification passed."
+ },
+ {
+  "batch": "599",
+  "rc": 0,
+  "verdict": "rc=0 Batch 599 verification: 10/10 checks passed ／ wrote docs/research/liblib-canvas-batch599-2026-10-01/runtime-audit.json"
+ },
+ {
+  "batch": "630",
+  "rc": 1,
+  "verdict": "rc=1 16 checks, 2 failures ／ FAILED: no-cell-has-an-unexplained-covered-control ／ FAILED: every-squeeze-coverer-is-the-band-or-a-zero-height-replacement"
+ },
+ {
+  "batch": "641",
+  "rc": 0,
+  "verdict": "rc=0 sDefect': True}], 'status': 'clone-only, unfixed, awaiting a source reading; this is the ONLY genuine cover the 14-width sweep found, once the round corners are accounted for'} ／ 13 checks, 0 failures"
+ },
+ {
+  "batch": "662",
+  "rc": 0,
+  "verdict": "rc=0 orHeights': [88, 120, 150, 182, 240, 300, 360, 420], 'priorInstrument': \"633's own census, `buriedColumns`\", 'comparison': {  [two instruments, two batches, one page, same members] ／ 8/8 checks passed"
+ },
+ {
+  "batch": "685",
+  "rc": 1,
+  "verdict": "rc=1 ILED: rounding-manufactures-plateaus-out-of-real-ramps ／ FAILED: the-second-breakpoint-is-a-discontinuity-at-620-not-a-band ／ FAILED: two-nominally-identical-icon-buttons-behave-completely-differently"
+ },
+ {
+  "batch": "686",
+  "rc": 1,
+  "verdict": "rc=1 axis-ramp-is-twelve-integer-pixels-not-a-subpixel-ramp ／ FAILED: the-top-edge-is-pinned-at-264-then-switches-to-bottom-anchored-crossing-at-356 ／ FAILED: 683s-only-one-key-holds-in-unrounded-units-too"
+ },
+ {
+  "batch": "687",
+  "rc": 0,
+  "verdict": "rc=0 oMin200': 182, 'engageHitsMin150': 182}, 'dragStartsFrom': {'engageNoMin200': 112, 'engageHitsMin150': 88  [a value that cannot survive a resize is not a preference, it is a cache] ／ 7/7 checks passed"
+ },
+ {
+  "batch": "688",
+  "rc": 0,
+  "verdict": "rc=0 0': [{'step': 'fresh', 'tlAttr': 182, 'collapsed': 'false'}, {'step': 'dragUpFar', 'tlAttr': 420, 'collapsed': 'false'}, {'s  [being a dependency is not the same as being a writer] ／ 5/5 checks passed"
+ },
+ {
+  "batch": "689",
+  "rc": 0,
+  "verdict": "rc=0 eight': 8, 'grabs': [{'offset': 0.0, 'pressedAtY': 539, 'dragDistance': 139, 'heightAtRelease': 321}, {'  [an interaction whose result needs two inputs is not predictable from one] ／ 4/4 checks passed"
+ },
+ {
+  "batch": "690",
+  "rc": 1,
+  "verdict": "rc=1 ading': 2472.82, 'ratioMeasured': 1.25, 'ratioPredict  [an unverified inference with a closed-form price tag] ／ 6/7 checks passed ／ FAILED: census-one-leaf-path-in-74-is-integer-valued-by-construction"
+ },
+ {
+  "batch": "700",
+  "rc": 0,
+  "verdict": "rc=0 , 6], 'lastBefore': None, 'lastAfter': None, 'anyFeedback': False}  [the playhead opens at 0, a position that already carries a keyframe, so the very first click a user makes does] ／ 4/4 checks passed"
+ },
+ {
+  "batch": "701",
+  "rc": 0,
+  "verdict": "rc=0  1}, 'dispositionTotal': 109, 're  [a big ledger is impressive and tells you nothing about its coverage; coverage can only be measured by finding ] ／ 4/4 checks passed ／ 注意：判据 1 预期为假 —— 预测被推翻才是本批的交付物。"
+ },
+ {
+  "batch": "721",
+  "rc": 0,
+  "verdict": "通过"
+ },
+ {
+  "batch": "750",
+  "rc": 1,
+  "verdict": "rc=1 两轮跑探针…… ／ /Users/yangjiefeng/.pyenv/versions/3.10.6/bin/python3: can't open file '/tmp/dbg750e.py': [Errno 2] No such file or directory ／ 探针失败 exit=2"
+ },
+ {
+  "batch": "751",
+  "rc": 1,
+  "verdict": "rc=1 两轮跑探针…… ／ /Users/yangjiefeng/.pyenv/versions/3.10.6/bin/python3: can't open file '/tmp/dbg751e.py': [Errno 2] No such file or directory ／ 探针失败 exit=2"
+ },
+ {
+  "batch": "752",
+  "rc": 1,
+  "verdict": "rc=1 页每轴是三件套：`左右拖动调整 X 轴` 拖动钮 + number 输入 + `当前帧有关键帧`/`当前帧无关键帧` 开关；**clone 三样都已经有** ⟹ 不是缺口；源站 FOV ra ／ ✅ C10 时间线缩放滑杆**已经对平**：源站 `aria-label='时间轴缩放'` min=0 max=100 value=44，clone `data-director-timeline-zoo"
+ },
+ {
+  "batch": "76",
+  "rc": 1,
+  "verdict": "rc=1 AssertionError: [ ／ \"delete-active-owner-a:console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
+ },
+ {
+  "batch": "763",
+  "rc": 1,
+  "verdict": "通过"
+ },
+ {
+  "batch": "764",
+  "rc": 1,
+  "verdict": "通过"
+ },
+ {
+  "batch": "767",
+  "rc": 1,
+  "verdict": "通过"
+ },
+ {
+  "batch": "768",
+  "rc": 1,
+  "verdict": "通过"
+ },
+ {
+  "batch": "769",
+  "rc": 1,
+  "verdict": "rc=1 \"/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch769.py\", line 93, in static_side ／ cseg = vp[vp.index(\"data-director-crowd-panel\"):vp.index( ／ ValueError: substring not found"
+ },
+ {
+  "batch": "770",
+  "rc": 1,
+  "verdict": "通过"
+ },
+ {
+  "batch": "774",
+  "rc": 1,
+  "verdict": "通过"
+ },
+ {
+  "batch": "776",
+  "rc": 0,
+  "verdict": "通过"
+ },
+ {
+  "batch": "781",
+  "rc": 1,
+  "verdict": "通过"
+ },
+ {
+  "batch": "784",
+  "rc": 0,
+  "verdict": "｜通过"
+ },
+ {
+  "batch": "785",
+  "rc": 1,
+  "verdict": "rc=1 rify-liblib-batch785.py\", line 411, in mut_src_multi ／ assert old in before[line - 1], \"★ needle 不在 %s:%d\" % (rel, line) ／ AssertionError: ★ needle 不在 src/components/director/DirectorViewport.tsx:2739"
+ },
+ {
+  "batch": "786",
+  "rc": 1,
+  "verdict": "rc=1 lib-tv/scripts/verify-liblib-batch786.py\", line 516, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 3 项红（['S3:三向互斥的三组都在', 'S5:vcam 打开者带门', 'S6:三方对账（汇编器 / 普查器 / 验收器）']）⟹ 阴性对照会在污染过的前提上跑"
+ },
+ {
+  "batch": "787",
+  "rc": 1,
+  "verdict": "rc=1 ib-batch787.py\", line 342, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 4 项红（['S2:四组新增都在', 'S3:★ 重头戏：模型库加条目会杀掉运镜绘制', 'S4:action 侧行锚定', 'S5:四方一致（普查 / 验收器 计数+清单，汇编器 那 4 组）']）⟹ 阴性对照没意义"
+ },
+ {
+  "batch": "789",
+  "rc": 1,
+  "verdict": "rc=1 File \"/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch789.py\", line 356, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 1 项红（['S10:桌的锚点唯一']）⟹ 阴性对照没意义"
+ },
+ {
+  "batch": "821",
+  "rc": 0,
+  "verdict": "rc=0 PASS N11 ｜ 翻红：['S1:★', 'S4:★', 'S7:★'] ／ PASS N12 ｜ 翻红：[] ／ ★ 阴性对照 12/12"
+ },
+ {
+  "batch": "822",
+  "rc": 0,
+  "verdict": "rc=0 ✔ N10 容差 0.001→0.0001 ⟹ 「+1ms 仍被拒」翻红（**S3**） → 实际翻红 S3 ／ ✔ N11 抹掉臂5 的面板外提示 ⟹ S5 翻红 → 实际翻红 S5 ／ ✔ N12 把失焦前显示改成真实值 ⟹ S10 翻红 → 实际翻红 S10"
+ },
+ {
+  "batch": "823",
+  "rc": 0,
+  "verdict": "rc=0 ✔ N9 把 B10「面板被真实点击关掉了」改成 False ⟹ S7 翻红 → 实际翻红 S7 ／ ✔ N10 把 B5 的默认选中轨道改成相机 ⟹ S5 翻红 → 实际翻红 S5 ／ ✔ N11 把 B3 的跟随目标抹成 null ⟹ S6 翻红 → 实际翻红 S6"
+ },
+ {
+  "batch": "828",
+  "rc": 0,
+  "verdict": "rc=0 ✔ N10 把刷新臂的名字里去掉那次改名 ⟹ S8 翻红 → 实际翻红 S8 ／ ✔ N11 在持久化源码副本里去掉 TOMBSTONED ⟹ S10 翻红 → 实际翻红 S10 ／ ✔ N12 把失焦臂的结果改成 GESTURE_CANCEL ⟹ S11 翻红 → 实际翻红 S11"
+ },
+ {
+  "batch": "833",
+  "rc": 0,
+  "verdict": "rc=0 ✔ N14 把 store 的 updateCamera 写空 ⟹ S14 翻红 → 实际翻红 S14 ／ ✔ N15 把 desk 里的 fov 写死 ⟹ S15 翻红 → 实际翻红 S15 ／ ✔ N16 把源站点完后的格数改成 14 ⟹ S16 翻红 → 实际翻红 S16"
+ },
+ {
+  "batch": "837",
+  "rc": 0,
+  "verdict": "通过"
+ },
+ {
+  "batch": "855",
+  "rc": 0,
+  "verdict": "条通过"
+ },
+ {
+  "batch": "93",
+  "rc": 0,
+  "verdict": "rc=0 webglNonblank\":true,\"mobileTreeDrawer\":true,\"mobileInspectorDrawer\":true,\"timeline\":true,\"noHorizontalOverflow\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[]}}}"
+ },
+ {
+  "batch": "95",
+  "rc": 0,
+  "verdict": "rc=0 k\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[],\"consoleErrorsExpected\":false,\"consoleErrorReason\":\"malformed base64 data URL rejected before TextureLoader\"}}}"
+ }
+]
