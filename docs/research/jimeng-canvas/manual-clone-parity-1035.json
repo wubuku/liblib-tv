@@ -1,0 +1,130 @@
+{
+  "generated_by": "jimeng_probe1035_manual_clone_parity_gate.py",
+  "what_this_gate_asks": "手册正文里那些读者会照着做的句子，在复刻上是否还成立；不成立的地方必须贴着标明主体并给出复刻侧可执行的动作。",
+  "what_this_is_not": "这不是「复刻刷新即复位」的判决 —— 那是本原型的取舍；这道门钉的是「文档有没有标明主体」。",
+  "criteria_1035": {
+    "P1_probe_can_read_a_change_1035": true,
+    "P2_refresh_resets_the_clone_1035": true,
+    "P3_offline_dialog_unreachable_from_ui_1035": true,
+    "P4_offline_dialog_reachable_via_devhook_1035": true,
+    "P5_every_requirement_is_marked_in_place_1035": true,
+    "P6_negative_control_turns_the_claim_red_1035": true,
+    "P7_every_marker_gives_an_actionable_alternative_1035": true,
+    "P8_scope_and_limits_published_1035": true
+  },
+  "criterion_kinds_1035": {
+    "P1_probe_can_read_a_change_1035": "failure",
+    "P2_refresh_resets_the_clone_1035": "failure",
+    "P3_offline_dialog_unreachable_from_ui_1035": "failure",
+    "P4_offline_dialog_reachable_via_devhook_1035": "failure",
+    "P5_every_requirement_is_marked_in_place_1035": "failure",
+    "P6_negative_control_turns_the_claim_red_1035": "failure",
+    "P7_every_marker_gives_an_actionable_alternative_1035": "failure",
+    "P8_scope_and_limits_published_1035": "failure"
+  },
+  "criterion_kinds_complete_1035": true,
+  "n_criteria_1035": 8,
+  "requirements_1035": [
+    {
+      "id": "R1_canvas_context_rename_success_criterion",
+      "file": "10-tasks/canvas-context.md",
+      "anchor": "刷新后仍是新名",
+      "ok": true,
+      "why": "ok@line195",
+      "why_this_matters": "重命名的「成功判据」是复刻用户会照着做的动作，而它写的是源站的判据"
+    },
+    {
+      "id": "R2_canvas_context_persist_claim",
+      "file": "10-tasks/canvas-context.md",
+      "anchor": "内容跨刷新持久",
+      "ok": true,
+      "why": "ok@line629",
+      "why_this_matters": "「内容跨刷新持久（实测）」是源站实测，复刻刷新即复位"
+    },
+    {
+      "id": "R3_troubleshooting_saved_doubt",
+      "file": "90-troubleshooting.md",
+      "anchor": "怀疑改动未保存",
+      "ok": true,
+      "why": "ok@line670",
+      "why_this_matters": "排障页教用户「刷新页面核对」，而复刻刷新一定复位"
+    },
+    {
+      "id": "R4_troubleshooting_offline_dialog",
+      "file": "90-troubleshooting.md",
+      "anchor": "发现离线编辑",
+      "ok": true,
+      "why": "ok@line661",
+      "why_this_matters": "复刻里这个弹窗界面上不可达，必须给出 dev hook 这条可执行的测试路径"
+    },
+    {
+      "id": "R5_reference_persistence_layers",
+      "file": "20-reference.md",
+      "anchor": "持久化：三层各存在哪",
+      "ok": true,
+      "why": "ok@line1516",
+      "why_this_matters": "「三层各存在哪」整节都是源站取证，复刻的持久化面与之不同"
+    }
+  ],
+  "negative_control_1035": [
+    {
+      "id": "R1_canvas_context_rename_success_criterion",
+      "n_markers_removed": 2,
+      "still_ok_after_removal": false,
+      "why_after_removal": "no_marker_near_anchor",
+      "went_red": true
+    },
+    {
+      "id": "R2_canvas_context_persist_claim",
+      "n_markers_removed": 2,
+      "still_ok_after_removal": false,
+      "why_after_removal": "no_marker_near_anchor",
+      "went_red": true
+    },
+    {
+      "id": "R3_troubleshooting_saved_doubt",
+      "n_markers_removed": 2,
+      "still_ok_after_removal": false,
+      "why_after_removal": "no_marker_near_anchor",
+      "went_red": true
+    },
+    {
+      "id": "R4_troubleshooting_offline_dialog",
+      "n_markers_removed": 2,
+      "still_ok_after_removal": false,
+      "why_after_removal": "no_marker_near_anchor",
+      "went_red": true
+    },
+    {
+      "id": "R5_reference_persistence_layers",
+      "n_markers_removed": 1,
+      "still_ok_after_removal": false,
+      "why_after_removal": "no_marker_near_anchor",
+      "went_red": true
+    }
+  ],
+  "runtime_product": "docs/research/jimeng-canvas/inputs/clone-persistence-1035.json",
+  "runtime_readings_1035": {
+    "probe_can_read_change": {
+      "name_changed": true,
+      "n_nodes_changed": true,
+      "ls_keys_after_mutation": []
+    },
+    "refresh_resets": {
+      "name_reset_to_initial": true,
+      "n_nodes_reset_to_initial": true,
+      "ls_keys_after_reload": []
+    },
+    "offline_dialog_ui": {
+      "in_dom_at_start": false,
+      "n_trigger_candidates": 0,
+      "candidates": []
+    },
+    "offline_dialog_devhook": {
+      "hook_present": true,
+      "dialog_opened": true,
+      "dialog_in_dom_after_hook": true
+    }
+  },
+  "rule": "⭐⭐⭐⭐⭐ **「源站事实」写成通用说法，等于给复刻用户一条必然失败的操作步骤** ⇒ ⇒⇒ 而失败长得像「复刻坏了」 ⇒ ⇒⇒ ⇒ 所以本门只钉「有没有标明主体」，不钉「复刻该不该持久化」。"
+}

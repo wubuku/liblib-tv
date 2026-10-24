@@ -1,0 +1,28 @@
+{
+  "generated_by": "jimeng_probe1035_clone_persistence_runtime.mjs",
+  "what_this_probe_measures": "复刻在「刷新」与「离线弹窗」这两件事上的实测行为。只报事实、不定性；定性在 1035 的判决器里。",
+  "scan_scope": "只量复刻自己（本地 mock 运行时，Playwright 无头）。不是源站。",
+  "readings": {
+    "probe_can_read_change": {
+      "name_changed": true,
+      "n_nodes_changed": true,
+      "ls_keys_after_mutation": []
+    },
+    "refresh_resets": {
+      "name_reset_to_initial": true,
+      "n_nodes_reset_to_initial": true,
+      "ls_keys_after_reload": []
+    },
+    "offline_dialog_ui": {
+      "in_dom_at_start": false,
+      "n_trigger_candidates": 0,
+      "candidates": []
+    },
+    "offline_dialog_devhook": {
+      "hook_present": true,
+      "dialog_opened": true,
+      "dialog_in_dom_after_hook": true
+    }
+  },
+  "what_this_is_not": "这不是「复刻有没有 bug」的判决。复刻刷新即复位是本原型的设计取舍（mock 数据）；缺陷在手册正文没有标明哪些是源站行为、哪些在复刻上不同。"
+}

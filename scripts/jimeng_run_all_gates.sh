@@ -76,6 +76,17 @@ run "1033-clone-reachability" $PY scripts/jimeng_probe1033_clone_reachability.py
 #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ ⇒ 因为 verifier 要在真树上跑它一遍 ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒
 run "1034-fake-interaction" $PY scripts/jimeng_probe1034_fake_interaction_census.py
 
+# ── 第 0 位之五：**手册说的 ⟷ 复刻做的** ────────────────────────────────
+#   ⇒ ⇒⇒ ⇒ 它答的是「手册正文里那些读者会照着做的句子，在复刻上是否还成立」
+#   ⇒ ⇒⇒ ⇒ 而 1035 的运行时实测量到三条事实（复刻刷新即复位 / 离线弹窗界面不可达 /
+#   ⇒ ⇒⇒ ⇒ 离线弹窗经 dev hook 可达）⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ 「源站事实」写成通用说法 ⇒ ⇒⇒ ⇒ 等于给复刻用户一条必然失败的操作步骤
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ 所以它自带一组**注入式反证**（把标注抠掉 ⇒ 必须翻红）⇒ ⇒⇒ 不用另开门
+#   ⇒ ⇒⇒ ⇒ ⇒ ⇒ 运行时探针必须**排在它前面**（判决器读的就是那份产物）
+run "1035-persistence-runtime" node scripts/jimeng_probe1035_clone_persistence_runtime.mjs
+run "1035-manual-clone-parity" $PY scripts/jimeng_probe1035_manual_clone_parity_gate.py
+
 run "verifier-841"          $PY scripts/verify-jimeng-batch841-unclickable.py
 run "anchor-gate"           $PY scripts/jimeng_check_verifier_anchors.py
 run "1018-assertion"        $PY scripts/jimeng_probe1018_assertion_vs_behavior.py

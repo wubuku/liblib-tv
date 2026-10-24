@@ -12,17 +12,17 @@
   "why_declared_here": "⇒ **「声明」与「发布」之间那道缝**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 声明必须落在产物里、而不只在 README 的散文里**"
  },
  "census_inputs_2029": {
-  "n_fingerprinted": 30,
+  "n_fingerprinted": 31,
   "n_unreadable": 0,
   "n_volatile": 1,
   "volatile_inputs": {
    "golden-freshness-1027.json": {
-    "sha256_12": "9d9647699220",
-    "bytes": 85113,
+    "sha256_12": "18c0bcb6d3ef",
+    "bytes": 92877,
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
-  "n_from_probe_products": 31,
+  "n_from_probe_products": 32,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
     "sha256_12": "92e91802dbd4",
@@ -104,6 +104,10 @@
     "sha256_12": "e75acd23eeb8",
     "bytes": 1614
    },
+   "manual-clone-parity-1035.json": {
+    "sha256_12": "53da07fc4f55",
+    "bytes": 4994
+   },
    "mention-contract-1032b3.json": {
     "sha256_12": "944dcb42599c",
     "bytes": 3253
@@ -125,7 +129,7 @@
     "bytes": 2109
    },
    "replica-coverage-1017.json": {
-    "sha256_12": "5e5f06ccde68",
+    "sha256_12": "39098d61dc7f",
     "bytes": 15016
    },
    "stem-attribution-1007.json": {
@@ -148,12 +152,12 @@
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 31,
+  "n_goldens": 32,
   "n_excluded_self": 4,
-  "n_empty_list": 225,
+  "n_empty_list": 228,
   "n_empty_null": 35,
   "n_self_provable": 10,
-  "n_ambiguous": 250
+  "n_ambiguous": 253
  },
  "rows": [
   {
@@ -1797,6 +1801,27 @@
   {
    "golden": "live-canvas-check-1031.json",
    "path": "/duplicate_keys_in_audit_block",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "manual-clone-parity-1035.json",
+   "path": "/runtime_readings_1035/probe_can_read_change/ls_keys_after_mutation",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "manual-clone-parity-1035.json",
+   "path": "/runtime_readings_1035/refresh_resets/ls_keys_after_reload",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "manual-clone-parity-1035.json",
+   "path": "/runtime_readings_1035/offline_dialog_ui/candidates",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -3605,6 +3630,27 @@
   {
    "golden": "live-canvas-check-1031.json",
    "path": "/duplicate_keys_in_audit_block",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "manual-clone-parity-1035.json",
+   "path": "/runtime_readings_1035/probe_can_read_change/ls_keys_after_mutation",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "manual-clone-parity-1035.json",
+   "path": "/runtime_readings_1035/refresh_resets/ls_keys_after_reload",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "manual-clone-parity-1035.json",
+   "path": "/runtime_readings_1035/offline_dialog_ui/candidates",
    "kind": "list",
    "self_provable": false,
    "invariant": null
