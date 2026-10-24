@@ -2,38 +2,42 @@
  "generated_by": "jimeng_probe1032b2_gen_contract.py",
  "target": "jimeng-canvas-image-audio-generate",
  "question": "⭐⭐⭐⭐⭐ **图片 / 音频的「生成」点了到底有没有发生事？**",
- "probe_run": "rc=0",
- "probe_crashed": false,
+ "probe_run": "probe failed: [Errno 2] No such file or directory: 'node'",
+ "probe_crashed": true,
  "readings_file": "docs/research/jimeng-canvas/inputs/gen-runtime-1032b2.json",
- "readings_available": true,
+ "readings_available": false,
  "criteria": {
-  "P1": true,
-  "P2": true,
-  "P3": true,
-  "P4": true,
-  "P5": true,
-  "P6": true,
-  "P7": true,
-  "P9_probe_actually_ran": true,
-  "P8": true
+  "P1": null,
+  "P2": null,
+  "P3": null,
+  "P4": null,
+  "P5": null,
+  "P6": null,
+  "P7": null,
+  "P9_probe_actually_ran": false,
+  "P8": null
  },
- "p8_mutation": {
-  "p2_before": true,
-  "p2_after": false,
-  "p2_turned_red": true,
-  "note": "⭐ 判据级变异：只改读数、不碰真源 ⇒ 真源产物零污染",
-  "p1_mut_enters_generating_red": true,
-  "p1_mut_not_disabled_but_unclickable_red": true
- },
+ "p8_mutation": null,
  "detail": {
-  "n_checks": 8,
-  "n_failed": 0,
+  "n_checks": null,
+  "n_failed": null,
   "n_pageerrors": 0
  },
  "scope_note": "⭐⭐⭐ 本门只覆盖 1032-②b-2 修的两个「生成」按钮；**其余仍死的按钮**（数目由静态门 DD993S.1 那一栏给出）由静态门 DD993S.1 管；**「有 onClick 但函数体是空的」那一类**静态门扫不到 ⇒ 本门抓到的是其中一枚（音频「生成」），另一枚（文本「展开文本面板」）留待 ②c 的场景化探针。",
- "n_false": 0,
- "false_criteria": [],
- "degraded_criteria": [],
+ "n_false": 1,
+ "false_criteria": [
+  "P9_probe_actually_ran"
+ ],
+ "degraded_criteria": [
+  "P1",
+  "P2",
+  "P3",
+  "P4",
+  "P5",
+  "P6",
+  "P7",
+  "P8"
+ ],
  "criterion_kinds_1032b2": {
   "P1": "failure",
   "P2": "failure",

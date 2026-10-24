@@ -2,36 +2,32 @@
  "generated_by": "jimeng_probe1032c_noop_contract.py",
  "measured_at": "2026-10-21",
  "probe": "scripts/jimeng_probe1032c_noop_census.mjs",
- "probe_run": "rc=0",
- "probe_crashed": false,
+ "probe_run": "probe failed: [Errno 2] No such file or directory: 'node'",
+ "probe_crashed": true,
  "source_fact": "「点了有没有发生事」= 运行时量；源站**不参与**（本门只验复刻侧自洽）。",
  "P": {
-  "P1_probe_actually_ran_1032c": true,
+  "P1_probe_actually_ran_1032c": false,
   "P2_instrument_had_teeth_1032c": true,
   "P3_every_button_got_a_verdict_1032c": true,
   "P4_no_button_is_a_noop_1032c": true,
   "P5_no_button_only_toasts_1032c": true,
-  "P6_summary_matches_rows_1032c": true,
-  "P7_mutation_makes_judgement_red_1032c": true,
+  "P6_summary_matches_rows_1032c": false,
+  "P7_mutation_makes_judgement_red_1032c": false,
   "P8_no_page_errors_1032c": true
  },
  "P1_detail": {
-  "run": "rc=0",
-  "crashed": false,
-  "n_buttons": 66,
-  "n_rows": 66,
-  "n_scenarios": 5
+  "run": "probe failed: [Errno 2] No such file or directory: 'node'",
+  "crashed": true,
+  "n_buttons": null,
+  "n_rows": 0,
+  "n_scenarios": 0
  },
  "P2_detail": {
   "recomputed_from_raw": "不可信 0 条：[]"
  },
  "P3_detail": {
   "recomputed_from_raw": "无判决/未知判决 0 条：[]",
-  "class_counts": {
-   "REAL": 63,
-   "DISABLED": 2,
-   "SKIPPED_BY_POLICY": 1
-  }
+  "class_counts": {}
  },
  "P4_detail": {
   "recomputed_from_raw": "NOOP 0 条：[]"
@@ -40,23 +36,19 @@
   "recomputed_from_raw": "TOAST_ONLY 0 条：[]"
  },
  "P6_detail": {
-  "recomputed_from_raw": "自报={'n_noop': 0, 'n_toast_only': 0, 'n_click_failed': 0, 'n_buttons': 66} 重算={'n_noop': 0, 'n_toast_only': 0, 'n_click_failed': 0, 'n_buttons': 66}"
+  "recomputed_from_raw": "无读数"
  },
  "P7_detail": {
-  "mutation": "把一行的原始字段 cls 从 'REAL' 改成 'NOOP'（只改读数副本，不碰真源产物）",
-  "base_judgement_green": true,
-  "base_why": "NOOP 0 条：[]",
-  "mutated_judgement_red": true,
-  "mutated_why": "NOOP 1 条：[{'scenario': 'audio', 'name': 'Rename 音频 1', 'where': 'node:audio'}]",
-  "field_actually_changed": true,
-  "note": "变异后门仍判红 => 门是从原始字段重算的，不信上游汇总数"
+  "mutation": "无读数 => 阳性对照没跑成",
+  "mutated_ok": null,
+  "judgement_is_red": null
  },
  "P8_detail": {
   "n": 0
  },
  "n_checks": 8,
- "n_failed": 0,
- "all_ok": true,
+ "n_failed": 3,
+ "all_ok": false,
  "criterion_kinds_1032c": {
   "P1_probe_actually_ran_1032c": "precondition",
   "P2_instrument_had_teeth_1032c": "failure",

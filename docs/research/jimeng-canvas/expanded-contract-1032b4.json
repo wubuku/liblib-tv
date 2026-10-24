@@ -2,112 +2,107 @@
  "generated_by": "jimeng_probe1032b4_expanded_contract.py",
  "measured_at": "2026-10-21",
  "probe": "scripts/jimeng_probe1032b4_expanded_runtime.mjs",
- "probe_run": "rc=0",
- "probe_crashed": false,
+ "probe_run": "probe failed: [Errno 2] No such file or directory: 'node'",
+ "probe_crashed": true,
  "source_fact": "浮层规格 = 批次 1032-②b-1 实测（**只覆盖视频这一种**）；图片 / 音频两种是 CLONE_DECISION。",
  "P": {
-  "P1_probe_actually_ran_1032b4": true,
-  "P2_expand_button_opens_layer_1032b4": true,
-  "P3_layer_is_dialog_source_aria_1032b4": true,
-  "P4_layer_geometry_matches_source_1032b4": true,
-  "P5_no_input_or_textarea_1032b4": true,
-  "P6_five_ref_type_buttons_1032b4": true,
-  "P7_ref_type_switch_observable_1032b4": true,
-  "P8_empty_prompt_generate_does_nothing_1032b4": true,
-  "P9_generate_enters_generating_1032b4": true,
-  "P10_collapse_closes_layer_1032b4": true,
-  "P11_escape_closes_layer_keeps_edit_mode_1032b4": true,
-  "P12_backdrop_click_closes_layer_1032b4": true,
-  "P13_insert_selects_only_new_node_1032b4": true,
-  "P14_no_page_errors_1032b4": true,
-  "P15_mutation_makes_judgement_red_1032b4": true
+  "P1_probe_actually_ran_1032b4": false,
+  "P2_expand_button_opens_layer_1032b4": false,
+  "P3_layer_is_dialog_source_aria_1032b4": false,
+  "P4_layer_geometry_matches_source_1032b4": false,
+  "P5_no_input_or_textarea_1032b4": false,
+  "P6_five_ref_type_buttons_1032b4": false,
+  "P7_ref_type_switch_observable_1032b4": false,
+  "P8_empty_prompt_generate_does_nothing_1032b4": false,
+  "P9_generate_enters_generating_1032b4": false,
+  "P10_collapse_closes_layer_1032b4": false,
+  "P11_escape_closes_layer_keeps_edit_mode_1032b4": false,
+  "P12_backdrop_click_closes_layer_1032b4": false,
+  "P13_insert_selects_only_new_node_1032b4": false,
+  "P14_no_page_errors_1032b4": false,
+  "P15_mutation_makes_judgement_red_1032b4": false
  },
  "P1_detail": {
-  "run": "rc=0",
-  "crashed": false,
-  "n_checks": 16,
-  "n_failed": 0,
-  "upstream_all_ok": true,
-  "n_raw_checks": 16
+  "run": "probe failed: [Errno 2] No such file or directory: 'node'",
+  "crashed": true,
+  "n_checks": null,
+  "n_failed": null,
+  "upstream_all_ok": false,
+  "n_raw_checks": 0
  },
  "P2_detail": {
-  "recomputed_from_raw": "clicked=True layer_count=1 layer_visible=True",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "expand_button_opens_layer",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P3_detail": {
-  "recomputed_from_raw": "role='dialog' aria='已展开的视频生成器'",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "layer_is_dialog_with_source_aria",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P4_detail": {
-  "recomputed_from_raw": "w=920 h=480 pos='fixed' radius='20px' z='50' dx=0 dy=0",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "layer_geometry_matches_source",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P5_detail": {
-  "recomputed_from_raw": "n_input=0 n_textarea=0 n_contenteditable=1",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "layer_has_no_input_or_textarea",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P6_detail": {
-  "recomputed_from_raw": "n=5 n_tab=0 bad=[] sizes=[('全部', 42, 36), ('图片', 42, 36), ('视频', 42, 36), ('音频', 42, 36), ('文本', 42, 36)]",
+  "recomputed_from_raw": "found 不是数组",
   "upstream_check": "layer_has_five_ref_type_buttons",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P7_detail": {
-  "recomputed_from_raw": "clicked=True before='引用参考' after='引用参考: 视频'",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "ref_type_switch_is_observable",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P8_detail": {
-  "recomputed_from_raw": "clicked=True generating_visible=False",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "empty_prompt_generate_does_nothing",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P9_detail": {
-  "recomputed_from_raw": "typed=True clicked=True generating_visible=True",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "generate_enters_generating",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P10_detail": {
-  "recomputed_from_raw": "has=True clicked=True layer_count=0",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "collapse_button_closes_layer",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P11_detail": {
-  "recomputed_from_raw": "clicked=True before=1 after=0 still_selected=True",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "escape_closes_layer_but_keeps_edit_mode",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P12_detail": {
-  "recomputed_from_raw": "clicked=True backdrop=True before=1 after=0",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "backdrop_click_closes_layer",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P13_detail": {
-  "recomputed_from_raw": "n_selected=1 new_is_selected=True",
+  "recomputed_from_raw": "读数缺失",
   "upstream_check": "insert_selects_only_the_new_node",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P14_detail": {
-  "recomputed_from_raw": "n=0",
+  "recomputed_from_raw": "n=None",
   "upstream_check": "no_page_errors",
-  "upstream_ok": true
+  "upstream_ok": null
  },
  "P15_detail": {
-  "mutation": "把原始字段 w 从 920 改成 919（只改读数副本，不碰真源产物）",
-  "base_judgement_green": true,
-  "base_why": "w=920 h=480 pos='fixed' radius='20px' z='50' dx=0 dy=0",
-  "mutated_judgement_red": true,
-  "mutated_why": "w=919 h=480 pos='fixed' radius='20px' z='50' dx=0 dy=0",
-  "field_actually_changed": true,
-  "upstream_ok_flag_left_untouched": true,
-  "note": "变异后上游 ok 标志仍是 true 而门仍判红 => 门是从原始字段重算的，不信 ok 标志"
+  "mutation": "无读数 => 阳性对照没跑成",
+  "mutated_ok": null,
+  "judgement_is_red": null
  },
  "n_checks": 15,
- "n_failed": 0,
- "all_ok": true,
+ "n_failed": 15,
+ "all_ok": false,
  "criterion_kinds_1032b4": {
   "P1_probe_actually_ran_1032b4": "precondition",
   "P2_expand_button_opens_layer_1032b4": "failure",
