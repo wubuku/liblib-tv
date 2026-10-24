@@ -4,7 +4,7 @@
   "what_it_is_not": "⇒ ⇒ **这不是「可复现性」** ⇒ ⇒ 1015 的四态答的是「跑两遍会不会变」⇒ ⇒ ⇒ ⇒ 而本门答的是「提交的那本是不是【现在】的产物」⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 两个口径不许合并**",
   "head": {
     "ok": true,
-    "n_rows": 32,
+    "n_rows": 33,
     "n_mismatch": 0,
     "n_unreadable": 0,
     "n_no_fact": 0,
@@ -19,39 +19,20 @@
     "n_disagree": 0
   },
   "worktree": {
-    "ok": false,
-    "why": [
-      "committed_bytes_differ_from_the_bytes_the_probe_wrote:1",
-      "inputs_changed_since_the_run:1",
-      "the_two_implementations_of_committed_bytes_disagree:1"
-    ],
-    "n_rows": 32,
-    "n_mismatch": 1,
-    "mismatch": [
-      {
-        "golden": "fingerprint-gate-1032l.json",
-        "state": "reproduced",
-        "sha12_read": "8bd3b335f34e",
-        "fresh_sha12_in_book": "ee3a887b8c08"
-      }
-    ],
+    "ok": true,
+    "n_rows": 33,
+    "n_mismatch": 0,
     "n_unreadable": 0,
     "n_no_fact": 0,
     "script_sha12_now": "1e8e51f82adb",
     "script_sha12_in_book": "1e8e51f82adb",
     "script_unchanged": true,
-    "n_inputs_changed": 1,
-    "inputs_changed": [
-      "fingerprint-gate-1032l.json"
-    ],
+    "n_inputs_changed": 0,
     "n_unstable": 0,
     "n_undeclared": 0,
     "n_excluded": 3,
     "n_bad_exclusion": 0,
-    "n_disagree": 1,
-    "disagree": [
-      "fingerprint-gate-1032l.json"
-    ]
+    "n_disagree": 0
   },
   "selftest": {
     "n_cases": 5,
@@ -80,11 +61,11 @@
     "ok": true
   },
   "criteria_1032n": {
-    "P1_committed_bytes_equal_the_bytes_the_probe_wrote_1032n": false,
-    "P2_this_book_itself_is_what_the_current_script_would_write_1032n": false,
+    "P1_committed_bytes_equal_the_bytes_the_probe_wrote_1032n": true,
+    "P2_this_book_itself_is_what_the_current_script_would_write_1032n": true,
     "P3_books_that_change_every_round_must_declare_themselves_1032n": true,
     "P4_every_excluded_book_must_publish_a_reason_1032n": true,
-    "P6_two_implementations_of_the_committed_bytes_must_agree_1032n": false,
+    "P6_two_implementations_of_the_committed_bytes_must_agree_1032n": true,
     "P5_this_gate_can_actually_go_red_1032n": true
   },
   "criterion_kinds_1032n": {
