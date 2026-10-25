@@ -48,7 +48,13 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "docs/research/liblib-canvas-batch868-2026-10-01"
 RAW = OUT_DIR / "raw"
 
-REGRESS = (OUT_DIR / "probes/regress868.py")
+# ★ ★★ Batch 869 修正：★ 「在用的回归清单」**不能写死文件名**。
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 写死的后果（本批实测）：★ 本批新增了 `verify-liblib-batch869.py`
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 而它**碰被跟踪源文件** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 于是本门禁报「缺口＝869.py」
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 而那个红与本门禁要验的性质（覆盖面）**毫无关系**。
+#   ⟹ ⇒ **修法**：★ 在用清单＝`docs/research/liblib-canvas-batch*/probes/
+#   ⟹ ⇒   regress*.py` 里**批次号最大**的那一份 ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 不用写死。
+HISTORIC_REGRESS = (OUT_DIR / "probes/regress868.py")
 RUNTIME = RAW / "runtime-868.json"
 STATIC = RAW / "static-scan-868.json"
 NEWGATES = RAW / "new-gates-868.json"
@@ -188,6 +194,29 @@ def parse_gates(text: str) -> list[tuple[str, str]]:
     return re.findall(r'\("([^"]+)",\s*"([^"]+)"\)', m.group(1))
 
 
+def resolve_live_regress() -> tuple[Path | None, list[tuple[str, str]], Path | None]:
+    """★ 找出**在用**的回归清单 ⟹ ⟹ ⟹ ⇒ ★ 返回 (路径, 条目, 上一份路径)。
+
+    ★ ★ 判据是「**批次号最大**」⟹ ⟹ ⟹ ⇒ ★ ⟹ 而不是「文件名写死的那个」
+    ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 这样每加一批门禁 ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 本门禁**自动**跟着走
+    ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ 而不是每次都要有人记得回来改这里。
+    """
+    cands: list[tuple[int, Path]] = []
+    for path in sorted((ROOT / "docs/research").glob(
+            "liblib-canvas-batch*/probes/regress*.py")):
+        m = re.search(r"liblib-canvas-batch(\d+)", path.parent.parent.name)
+        if m:
+            cands.append((int(m.group(1)), path))
+    if not cands:
+        return None, [], None
+    cands.sort(key=lambda item: item[0])
+    _live_batch, live_path = cands[-1]
+    prev_path = cands[-2][1] if len(cands) >= 2 else None
+    return (live_path,
+            parse_gates(live_path.read_text(encoding="utf-8")),
+            prev_path)
+
+
 def gates_touching_widened() -> set[tuple[str, str]]:
     """★ ★★ 放宽后的「碰被跟踪源文件」口径。
 
@@ -302,18 +331,52 @@ def main() -> int:
                     "范围": "src/components/director/**（★ 367 因 CROSS_LINE 跳过了这整片）"})
 
     # ── S4 ★★ 清单不许再有洞（★ 放宽口径）────────────────────────
-    reg_text = REGRESS.read_text(encoding="utf-8") if REGRESS.exists() else ""
-    listed = set(parse_gates(reg_text))
+    live_regress, gates, prev_regress = resolve_live_regress()
+    listed = set(gates)
     touching = gates_touching_widened()
     gap = sorted(touching - listed)
     audit["放宽口径命中"] = len(touching)
     audit["回归清单条数"] = len(listed)
+    audit["在用回归清单"] = str(live_regress) if live_regress else None
+    audit["历史快照（本门禁当初那份）"] = str(HISTORIC_REGRESS)
     audit["覆盖缺口"] = ["%s.%s" % g for g in gap]
     v.check("source:every-gate-touching-the-tracked-sources-is-listed",
             not gap,
             detail={"缺口": ["%s.%s" % g for g in gap],
                     "口径": "★ 文件名 ∪ 目录名 ∪ src 上的 glob/rglob",
                     "说明": "★ 这些门禁**碰**导演台源文件 ⟹ ⟹ 它们的红**不能藏**"})
+
+    # ★ ★★ Batch 869：★ 「在用清单」**必须**是批次号最大的那一份 ⟹ ⟹ ⟹ ⇒ ★
+    #   ⟹ 否则「写死文件名」的老毛病会从别的入口长回来。
+    v.check("source:the-live-regression-list-is-the-newest-one",
+            live_regress is not None
+            and (prev_regress is None
+                 or live_regress.parent.parent.name
+                 > prev_regress.parent.parent.name)
+            # ★ ★★ 第三条（★ 本批负控逼出来的）：★ 光比「上一份」**不够** ——
+            # ★   一旦有人把清单**写死回本门禁当初那份快照** ⟹ ⟹ ⟹ ⟹ ⇒ ★
+            # ★   `prev_regress` 就变成 **None** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 前两条仍然成立
+            # ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 判据**照样绿** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 于是它**没有牙**。
+            # ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 修法＝**同时**要求「在用清单比本门禁的**历史快照**
+            # ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 更**新**」⟹ ⟹ ⟹ ⟹ ⇒ ★ 写死回去就必然红。
+            and live_regress.parent.parent.name
+            > HISTORIC_REGRESS.parent.parent.name,
+            detail={"在用": str(live_regress), "上一份": str(prev_regress),
+                    "本门禁的历史快照": str(HISTORIC_REGRESS),
+                    "★ 说明": "★ 判据是「批次号最大」⟹ ⟹ 且必须**新于**本门禁"
+                              "的历史快照 ⟹ ⟹ 写死回去就红"})
+
+    # ★ ★★ Batch 869：★ 清单**只能增长** ⟹ ⟹ ⟹ ⇒ ★ ⟹ 缩水了就必须报出来
+    #   ⟹ ⟹ ⟹ ⇒ ★ ⟹ （★ 否则某批「重写清单」时手抖删掉几十条 ⟹ ⟹ ⟹ ⇒ ★ ⟹
+    #   ⟹ ⟹ ⟹ ⇒ ★ ⟹ 那些门禁的红**又没人看了** ⟹ ⟹ ⟹ ⇒ ★ ⟹ 且没有任何痕迹）
+    if live_regress is not None and prev_regress is not None:
+        prev_gates = parse_gates(prev_regress.read_text(encoding="utf-8"))
+        shrunk = sorted(set(prev_gates) - set(gates))
+        v.check("source:the-regression-list-never-shrinks",
+                not shrunk,
+                detail={"上一份条数": len(prev_gates), "在用条数": len(gates),
+                        "被删掉的条目": ["%s.%s" % g for g in shrunk],
+                        "★ 说明": "★ 清单只增不减 ⟹ ⟹ 缩水必须报出来"})
 
     # ── S5 ★ 静态普查在库 ⟹ ⟹ 且候选全在已登记白名单 ─────────────
     v.check("source:the-static-scan-evidence-is-in-the-repo", STATIC.exists(),

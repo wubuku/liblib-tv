@@ -517,6 +517,34 @@ python3 scripts/verify-docs.py
   was hitting, but I was actually upserting". **Rule**: give each tolerance its
   own named constant, write its source next to it, and add a criterion that the
   two are **not** the same number.
+- **"Production is broken too" does not mean "the code is broken"** (Batch 869).
+  A full regression reported 46 new reds. The symptom was `R3F: Hooks can only
+  be used within the Canvas component!` and a page with **two** buttons ⟹ ⟹ ⟹ ⟹
+  ⇒ every browser gate timed out. Two facts settled it: the **isolated
+  production build** showed the *same* failure, and the **previous commit**
+  (batch 868) built in an isolated directory failed *identically* ⟹ ⟹ ⟹ ⟹ ⇒
+  nothing in this batch could be the cause. The real cause was a stray
+  `node_modules/node_modules/` — a **full duplicate** of the dependency tree,
+  created by an `npm install` run with the wrong cwd ⟹ ⟹ ⟹ ⟹ ⇒ Node's resolution
+  chain reaches `<project>/node_modules/node_modules` **before**
+  `<project>/node_modules` ⟹ ⟹ ⟹ ⟹ ⇒ every package resolved a **second copy of
+  `three`** ⟹ ⟹ ⟹ ⟹ ⇒ R3F's Canvas lost its context ⟹ ⟹ ⟹ ⟹ ⇒ the director
+  rendered nothing. **Rule**: when many gates fail with the *same* shape, build
+  the **previous commit** in an isolated directory (`git archive <sha> | tar -x
+  -C <dir>`; ★ never `git stash`, never a worktree in this shared tree) and
+  compare ⟹ ⟹ ⟹ ⟹ ⇒ if the baseline fails the same way, the **environment** is
+  at fault ⟹ ⟹ ⟹ ⟹ ⇒ and `node_modules/node_modules/` is a first-class suspect
+  (★ check `find node_modules -maxdepth 2 -name node_modules`).
+- **A gate that hardcodes "the regression list" reddens itself every time a
+  batch lands** (Batch 869). Batch 866 hardcoded `probes/regress866.py` and
+  batch 868 hardcoded `probes/regress868.py` ⟹ ⟹ ⟹ ⟹ ⇒ each new gate that
+  touches a tracked source appeared as a **gap** ⟹ ⟹ ⟹ ⟹ ⇒ and the red had
+  nothing to do with the property the gate verifies. **Rule**: resolve the live
+  list by **highest batch number** under
+  `docs/research/liblib-canvas-batch*/probes/regress*.py`, and add two
+  structural criteria ⟹ ⟹ ⟹ ⟹ ⇒ "the live list is the newest one" and "the
+  list never shrinks" ⟹ ⟹ ⟹ ⟹ ⇒ so the fix cannot rot back into a hardcoded
+  path from another entry point.
 
 ## 6. Change Protocol
 

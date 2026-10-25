@@ -1,7 +1,8 @@
 {
- "判据数": 11,
+ "判据数": 13,
  "失败": [
-  "source:every-gate-touching-the-tracked-sources-is-listed  ⟵ {'缺口': ['869.py'], '口径': '★ 文件名 ∪ 目录名 ∪ src 上的 glob/rglob', '说明': '★ 这些门禁**碰**导演台源文件 ⟹ ⟹ 它们的红**不能藏**'}"
+  "source:every-gate-touching-the-tracked-sources-is-listed  ⟵ {'缺口': ['865.py'], '口径': '★ 文件名 ∪ 目录名 ∪ src 上的 glob/rglob', '说明': '★ 这些门禁**碰**导演台源文件 ⟹ ⟹ 它们的红**不能藏**'}",
+  "source:the-regression-list-never-shrinks  ⟵ {'上一份条数': 283, '在用条数': 283, '被删掉的条目': ['865.py'], '★ 说明': '★ 清单只增不减 ⟹ ⟹ 缩水必须报出来'}"
  ],
  "audit": {
   "batch": 868,
@@ -37,8 +38,10 @@
   "导演台死控件候选": [],
   "放宽口径命中": 224,
   "回归清单条数": 283,
+  "在用回归清单": "/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch869-2026-10-01/probes/regress869.py",
+  "历史快照（本门禁当初那份）": "/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch868-2026-10-01/probes/regress868.py",
   "覆盖缺口": [
-   "869.py"
+   "865.py"
   ],
   "静态普查候选": [
    "src/components/CameraConfigDialog.tsx:102",

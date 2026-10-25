@@ -22,60 +22,220 @@
   },
   "checks": {
     "desk": {
-      "tree": null,
-      "header": null,
-      "list": null,
-      "children": [],
-      "search": null,
-      "itemCount": 0
+      "tree": {
+        "box": [
+          48,
+          52,
+          232,
+          1098
+        ],
+        "bg": "rgb(23, 23, 23)"
+      },
+      "header": {
+        "box": [
+          48,
+          52,
+          232,
+          48
+        ],
+        "edges": [
+          "0px",
+          "0px",
+          "0px",
+          "0px"
+        ],
+        "padX": 12,
+        "padY": 0
+      },
+      "list": {
+        "box": [
+          48,
+          172,
+          232,
+          978
+        ],
+        "padX": 8,
+        "padBottom": 12,
+        "padTop": 0,
+        "overflowY": "auto",
+        "scrollbarColor": "rgba(255, 255, 255, 0.2) rgba(0, 0, 0, 0)",
+        "scrollbarWidth": "thin",
+        "clientH": 978,
+        "scrollH": 978
+      },
+      "children": [
+        {
+          "box": [
+            48,
+            52,
+            232,
+            48
+          ],
+          "cls": "flex h-12 shrink-0 items-center gap-1 px-3",
+          "text": ""
+        },
+        {
+          "box": [
+            48,
+            100,
+            232,
+            36
+          ],
+          "cls": "flex h-9 shrink-0 items-center gap-1 border-b border-white/[0.06] px-2",
+          "text": "打组 解组"
+        },
+        {
+          "box": [
+            48,
+            136,
+            232,
+            36
+          ],
+          "cls": "flex h-9 shrink-0 items-center gap-1 border-b border-white/[0.06] px-2",
+          "text": "1 个对象已选"
+        },
+        {
+          "box": [
+            48,
+            172,
+            232,
+            978
+          ],
+          "cls": "min-h-0 flex-1 overflow-y-auto px-2 pb-3 [scrollbar-color:rgba(255,255,255,0.2)_transparen",
+          "text": "角色1角色A场景物体3咖啡桌冷掉的咖啡咖"
+        }
+      ],
+      "search": {
+        "box": [
+          91,
+          68,
+          132,
+          16
+        ],
+        "visible": true
+      },
+      "itemCount": 5
     },
     "tree:box-48-52-232-1098": {
-      "ok": false,
-      "detail": null
+      "ok": true,
+      "detail": [
+        48,
+        52,
+        232,
+        1098
+      ]
     },
     "tree:bg-171717": {
-      "ok": false,
-      "detail": null
+      "ok": true,
+      "detail": "rgb(23, 23, 23)"
     },
     "header:box-48-52-232-48": {
-      "ok": false,
-      "detail": null
+      "ok": true,
+      "detail": [
+        48,
+        52,
+        232,
+        48
+      ]
     },
     "header:no-border-on-any-edge": {
-      "ok": false,
-      "detail": null
+      "ok": true,
+      "detail": [
+        "0px",
+        "0px",
+        "0px",
+        "0px"
+      ]
     },
     "header:px-3": {
-      "ok": false,
-      "detail": null
+      "ok": true,
+      "detail": 12
     },
     "header:no-vertical-padding-of-its-own": {
-      "ok": false,
-      "detail": null
+      "ok": true,
+      "detail": 0
     },
     "list:present": {
-      "ok": false,
+      "ok": true,
       "detail": ""
     },
+    "list:px-2": {
+      "ok": true,
+      "detail": 8
+    },
+    "list:pb-3": {
+      "ok": true,
+      "detail": 12
+    },
+    "list:scrolls": {
+      "ok": true,
+      "detail": "auto"
+    },
+    "list:thin-scrollbar": {
+      "ok": true,
+      "detail": "thin / rgba(255, 255, 255, 0.2) rgba(0, 0, 0, 0)"
+    },
+    "list:starts-below-header-and-toolbars": {
+      "ok": true,
+      "detail": [
+        48,
+        172,
+        232,
+        978
+      ]
+    },
     "tree:four-children-2-clone-only-toolbars": {
-      "ok": false,
-      "detail": []
+      "ok": true,
+      "detail": [
+        "flex h-12 shrink-0 items-center gap-1 px",
+        "flex h-9 shrink-0 items-center gap-1 bor",
+        "flex h-9 shrink-0 items-center gap-1 bor",
+        "min-h-0 flex-1 overflow-y-auto px-2 pb-3"
+      ]
     },
     "tree:the-two-extra-children-are-36px-toolbars": {
-      "ok": false,
-      "detail": []
+      "ok": true,
+      "detail": [
+        [
+          48,
+          100,
+          232,
+          36
+        ],
+        [
+          48,
+          136,
+          232,
+          36
+        ]
+      ]
     },
     "search:present-and-visible": {
-      "ok": false,
-      "detail": null
+      "ok": true,
+      "detail": {
+        "box": [
+          91,
+          68,
+          132,
+          16
+        ],
+        "visible": true
+      }
+    },
+    "search:filters-the-tree": {
+      "ok": true,
+      "detail": {
+        "before": 5,
+        "after": 1
+      }
+    },
+    "search:clearing-restores": {
+      "ok": true,
+      "detail": 5
     },
     "diagnostics:no-page-errors": {
-      "ok": false,
-      "detail": [
-        "R3F: Hooks can only be used within the Canvas component!",
-        "R3F: Hooks can only be used within the Canvas component!",
-        "R3F: Hooks can only be used within the Canvas component!"
-      ]
+      "ok": true,
+      "detail": []
     },
     "diagnostics:no-console-errors": {
       "ok": true,
@@ -84,24 +244,12 @@
     "diagnostics": {
       "consoleErrors": 0,
       "filtered": 0,
-      "pageErrors": 3
+      "pageErrors": 0
     },
     "_summary": {
-      "checks": 12,
-      "failures": [
-        "tree:box-48-52-232-1098",
-        "tree:bg-171717",
-        "header:box-48-52-232-48",
-        "header:no-border-on-any-edge",
-        "header:px-3",
-        "header:no-vertical-padding-of-its-own",
-        "list:present",
-        "tree:four-children-2-clone-only-toolbars",
-        "tree:the-two-extra-children-are-36px-toolbars",
-        "search:present-and-visible",
-        "diagnostics:no-page-errors"
-      ]
+      "checks": 19,
+      "failures": []
     }
   },
-  "result": "1/12 passed"
+  "result": "19/19 passed"
 }

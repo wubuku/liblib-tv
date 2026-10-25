@@ -52,7 +52,7 @@
      "where": "node:video",
      "ordinal": 0,
      "cls": "REAL",
-     "mutations": 44,
+     "mutations": 42,
      "deltas": {
       "visible_buttons": [
        35,

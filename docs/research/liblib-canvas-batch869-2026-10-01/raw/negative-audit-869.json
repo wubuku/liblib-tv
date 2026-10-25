@@ -6,10 +6,13 @@
    "改哪个文件": "src/components/director/directorKeyframeWindow.ts",
    "被测判据": "source:the-shared-window-constant-equals-the-source-number",
    "读的是哪个量": "DIRECTOR_SOURCE_KEYFRAME_HIT_WINDOW 的值",
-   "变异前红": [],
+   "变异前红": [
+    "runtime:the-negative-control-is-in-the-repo"
+   ],
    "变异后红": [
     "source:the-shared-window-constant-equals-the-source-number",
-    "source:the-hit-window-and-the-upsert-epsilon-are-different-numbers"
+    "source:the-hit-window-and-the-upsert-epsilon-are-different-numbers",
+    "runtime:the-negative-control-is-in-the-repo"
    ],
    "门禁退出码": 1,
    "★ 归因": {
@@ -26,9 +29,12 @@
    "改哪个文件": "src/components/director/directorKeyframeWindow.ts",
    "被测判据": "source:the-hit-window-and-the-upsert-epsilon-are-different-numbers",
    "读的是哪个量": "DIRECTOR_KEYFRAME_EPSILON 的值",
-   "变异前红": [],
+   "变异前红": [
+    "runtime:the-negative-control-is-in-the-repo"
+   ],
    "变异后红": [
-    "source:the-hit-window-and-the-upsert-epsilon-are-different-numbers"
+    "source:the-hit-window-and-the-upsert-epsilon-are-different-numbers",
+    "runtime:the-negative-control-is-in-the-repo"
    ],
    "门禁退出码": 1,
    "★ 归因": {
@@ -45,9 +51,12 @@
    "改哪个文件": "src/components/director/DirectorTimeline.tsx",
    "被测判据": "source:the-timeline-and-the-inspector-carry-no-bare-hit-epsilon",
    "读的是哪个量": "两个 UI 文件里**剥注释后**的 0.001／1e-3",
-   "变异前红": [],
+   "变异前红": [
+    "runtime:the-negative-control-is-in-the-repo"
+   ],
    "变异后红": [
-    "source:the-timeline-and-the-inspector-carry-no-bare-hit-epsilon"
+    "source:the-timeline-and-the-inspector-carry-no-bare-hit-epsilon",
+    "runtime:the-negative-control-is-in-the-repo"
    ],
    "门禁退出码": 1,
    "★ 归因": {
@@ -64,9 +73,12 @@
    "改哪个文件": "src/components/director/DirectorTimeline.tsx",
    "被测判据": "source:the-toolbar-add-keyframe-stays-an-upsert",
    "读的是哪个量": "工具条块里有没有 addTimelineKeyframe",
-   "变异前红": [],
+   "变异前红": [
+    "runtime:the-negative-control-is-in-the-repo"
+   ],
    "变异后红": [
-    "source:the-toolbar-add-keyframe-stays-an-upsert"
+    "source:the-toolbar-add-keyframe-stays-an-upsert",
+    "runtime:the-negative-control-is-in-the-repo"
    ],
    "门禁退出码": 1,
    "★ 归因": {
@@ -83,8 +95,11 @@
    "改哪个文件": "scripts/verify-liblib-batch866.py",
    "被测判据": "source:the-regression-list-resolves-the-live-one-dynamically",
    "读的是哪个量": "866.py 里有没有 resolve_live_regress",
-   "变异前红": [],
+   "变异前红": [
+    "runtime:the-negative-control-is-in-the-repo"
+   ],
    "变异后红": [
+    "runtime:the-negative-control-is-in-the-repo",
     "source:the-regression-list-resolves-the-live-one-dynamically"
    ],
    "门禁退出码": 1,
@@ -102,11 +117,14 @@
    "改哪个文件": "docs/research/liblib-canvas-batch869-2026-10-01/raw/keyframe-window-869.json",
    "被测判据": "runtime:the-keyframe-window-probe-readings-are-in-the-repo",
    "读的是哪个量": "raw/keyframe-window-869.json 在不在库",
-   "变异前红": [],
+   "变异前红": [
+    "runtime:the-negative-control-is-in-the-repo"
+   ],
    "变异后红": [
     "runtime:the-keyframe-window-probe-readings-are-in-the-repo",
     "runtime:the-probe-placed-the-playhead-where-it-claims",
-    "runtime:the-probe-read-the-source-aria-copy"
+    "runtime:the-probe-read-the-source-aria-copy",
+    "runtime:the-negative-control-is-in-the-repo"
    ],
    "门禁退出码": 1,
    "★ 归因": {
@@ -123,9 +141,12 @@
    "改哪个文件": "docs/research/liblib-canvas-batch869-2026-10-01/raw/keyframe-window-869.json",
    "被测判据": "runtime:the-keyframe-window-probe-readings-are-in-the-repo",
    "读的是哪个量": "读数里每条判据的『通过』",
-   "变异前红": [],
+   "变异前红": [
+    "runtime:the-negative-control-is-in-the-repo"
+   ],
    "变异后红": [
-    "runtime:the-keyframe-window-probe-readings-are-in-the-repo"
+    "runtime:the-keyframe-window-probe-readings-are-in-the-repo",
+    "runtime:the-negative-control-is-in-the-repo"
    ],
    "门禁退出码": 1,
    "★ 归因": {
@@ -142,6 +163,7 @@
    "改哪个文件": "src/components/director/directorKeyframeWindow.ts",
    "被测判据": "探针 13 条（W1/W2/W3/W5/W7/W8…）",
    "读的是哪个量": "★ 探针**实测**出来的窗口内外读数",
+   "探针尝试轮数": 2,
    "探针退出码": 1,
    "探针基线失败判据": [],
    "探针变异后失败判据": [
@@ -155,10 +177,50 @@
    "从绿变红的探针判据数": 6,
    "通过": true,
    "复原后 sha 一致": true
+  },
+  {
+   "负控": "N9-868改回写死回归清单",
+   "类别": "源码",
+   "改哪个文件": "scripts/verify-liblib-batch868.py",
+   "被测判据": "source:the-live-regression-list-is-the-newest-one",
+   "读的是哪个量": "868.py 里有没有 resolve_live_regress",
+   "变异前红": [],
+   "变异后红": [
+    "source:every-gate-touching-the-tracked-sources-is-listed",
+    "source:the-live-regression-list-is-the-newest-one"
+   ],
+   "门禁退出码": 1,
+   "★ 归因": {
+    "目标判据变异前是绿的": true,
+    "目标判据变异后红了": true,
+    "门禁崩了": false
+   },
+   "通过": true,
+   "复原后 sha 一致": true
+  },
+  {
+   "负控": "N10-在用清单被删一条",
+   "类别": "证据",
+   "改哪个文件": "docs/research/liblib-canvas-batch869-2026-10-01/probes/regress869.py",
+   "被测判据": "source:the-regression-list-never-shrinks",
+   "读的是哪个量": "★ 在用清单与上一份的差集",
+   "变异前红": [],
+   "变异后红": [
+    "source:every-gate-touching-the-tracked-sources-is-listed",
+    "source:the-regression-list-never-shrinks"
+   ],
+   "门禁退出码": 1,
+   "★ 归因": {
+    "目标判据变异前是绿的": true,
+    "目标判据变异后红了": true,
+    "门禁崩了": false
+   },
+   "通过": true,
+   "复原后 sha 一致": true
   }
  ],
  "失败数": 0,
- "总条数": 8,
+ "总条数": 10,
  "探针基线失败判据": [],
  "跨文件污染": [],
  "★ 说明": "★ 每条负控都自声明改哪个文件 ＋ 字节级复原 ＋ sha 自检 ＋ **红灯集合差分**归因"

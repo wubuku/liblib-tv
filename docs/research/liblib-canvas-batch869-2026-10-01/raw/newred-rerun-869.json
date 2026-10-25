@@ -1,0 +1,331 @@
+{
+ "说明": "★ 同 46 条、同方法，只把环境改回（删误装副本 ＋ 重启 dev server）",
+ "逐条读数": [
+  {
+   "batch": "41",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 h\": 12.574996948242188, \"roll\": -9.04356743879379}, \"trackKeyframes\": null, \"lastKeyframeT\": null} ／ Batch 41 director phone virtual-camera verification passed."
+  },
+  {
+   "batch": "44",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 44 director preset camera motion verification passed."
+  },
+  {
+   "batch": "599",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 599 verification: 10/10 checks passed ／ wrote docs/research/liblib-canvas-batch599-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "641",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  unfixed, awaiting a source reading; this is the ONLY genuine cover the 14-width sweep found, once the round corners are accounted for'} ／ 13 checks, 0 failures"
+  },
+  {
+   "batch": "662",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 , 360, 420], 'priorInstrument': \"633's own census, `buriedColumns`\", 'comparison': {  [two instruments, two batches, one page, same members] ／ 8/8 checks passed"
+  },
+  {
+   "batch": "687",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  'dragStartsFrom': {'engageNoMin200': 112, 'engageHitsMin150': 88  [a value that cannot survive a resize is not a preference, it is a cache] ／ 7/7 checks passed"
+  },
+  {
+   "batch": "688",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ollapsed': 'false'}, {'step': 'dragUpFar', 'tlAttr': 420, 'collapsed': 'false'}, {'s  [being a dependency is not the same as being a writer] ／ 5/5 checks passed"
+  },
+  {
+   "batch": "689",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 essedAtY': 539, 'dragDistance': 139, 'heightAtRelease': 321}, {'  [an interaction whose result needs two inputs is not predictable from one] ／ 4/4 checks passed"
+  },
+  {
+   "batch": "700",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 one, 'anyFeedback': False}  [the playhead opens at 0, a position that already carries a keyframe, so the very first click a user makes does] ／ 4/4 checks passed"
+  },
+  {
+   "batch": "701",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 g ledger is impressive and tells you nothing about its coverage; coverage can only be measured by finding ] ／ 4/4 checks passed ／ 注意：判据 1 预期为假 —— 预测被推翻才是本批的交付物。"
+  },
+  {
+   "batch": "721",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "828",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✔ N10 把刷新臂的名字里去掉那次改名 ⟹ S8 翻红 → 实际翻红 S8 ／ ✔ N11 在持久化源码副本里去掉 TOMBSTONED ⟹ S10 翻红 → 实际翻红 S10 ／ ✔ N12 把失焦臂的结果改成 GESTURE_CANCEL ⟹ S11 翻红 → 实际翻红 S11"
+  },
+  {
+   "batch": "837",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "93",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 rue,\"mobileInspectorDrawer\":true,\"timeline\":true,\"noHorizontalOverflow\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[]}}}"
+  },
+  {
+   "batch": "95",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ,\"pageErrors\":0,\"requestFailures\":0,\"details\":[],\"consoleErrorsExpected\":false,\"consoleErrorReason\":\"malformed base64 data URL rejected before TextureLoader\"}}}"
+  },
+  {
+   "batch": "565",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 rification passed: 6 checks, 0 diagnostics. upstream image node auto-selected as panorama source, runtime ready and 已连接全景图 label recorded in runtime-audit.json."
+  },
+  {
+   "batch": "360",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 eview overlay, the annotate canvas and its colour menu. No input silently discards what the user types and no enabled control is left click-dead in any of them."
+  },
+  {
+   "batch": "364",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 364: 11/11 checks passed ／ Video node's cover play button is now declared inert with a title, and the picture-edit panel is reachable and clean."
+  },
+  {
+   "batch": "367",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 + title + cursor:default, no hover), geometry and copy unchanged; the working 'view frame-erase help' hover target was left alone and still reveals its tooltip."
+  },
+  {
+   "batch": "368",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  and copy unchanged; working controls in the same panels were left alone; the three judgment blind spots are closed and each is self-checked in both directions."
+  },
+  {
+   "batch": "437",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 nvas without touching active canvas or selection, unknown source returns stable null, pending task interrupted by switch is canceled, browser diagnostics clean."
+  },
+  {
+   "batch": "441",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 e scan read-only with expected conflict kinds, smart-matting derived node flagged for the generic 512x288 frame against a 1:1 source, browser diagnostics clean."
+  },
+  {
+   "batch": "442",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 288), landscape sources keep the generic 512x288, extreme ratios fall back and are flagged, video display-string intrinsics drive the policy, diagnostics clean."
+  },
+  {
+   "batch": "443",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 n + contain fit), the fit transform matches §7 formulas, a red marker drawn at the mapped intrinsic point reads back exactly and round-trips, diagnostics clean."
+  },
+  {
+   "batch": "445",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 t checks, session state machine transitions and stable rejections, semantic normalization no-op, local-history budget and gesture coalescing, diagnostics clean."
+  },
+  {
+   "batch": "447",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 title-erase and picture-edit resubmits are no-ops returning the existing target (one node/edge/history each), a different mode still creates, diagnostics clean."
+  },
+  {
+   "batch": "449",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 tion acceptor (node/edge/history land once on the owner canvas) and a submit interrupted by a canvas switch is cancelled with no late commit, diagnostics clean."
+  },
+  {
+   "batch": "467",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 back catalog covers every expected surface, outcome->disposition projection exact (accepted success, no-op inert, rejections error/announce), diagnostics clean."
+  },
+  {
+   "batch": "470",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 port duplicate suppression returns the existing node for the same exportId (no duplicate node/edge/history), missing source is a stable null, diagnostics clean."
+  },
+  {
+   "batch": "513",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 s 10/10 green (round-trip, order/ID retention, runtime stripping, stable rejection reasons, media diagnostics, injected limits); recorded in runtime-audit.json."
+  },
+  {
+   "batch": "611",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 49/49 passed"
+  },
+  {
+   "batch": "612",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 118/118 passed"
+  },
+  {
+   "batch": "614",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS mobile:drawer-above-the-scrim ／ PASS mobile:no-page-errors ／ 48/48 passed"
+  },
+  {
+   "batch": "615",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop:场景-restores-it ／ PASS desktop:geometry-restored  [240, 5.5, 40, 40] ／ 22/22 passed"
+  },
+  {
+   "batch": "616",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 19/19 passed"
+  },
+  {
+   "batch": "618",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop:no-page-errors ／ PASS desktop:no-console-errors ／ 42/42 passed"
+  },
+  {
+   "batch": "621",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop-1920:no-page-errors ／ PASS desktop-1920:no-console-errors ／ 40/40 passed"
+  },
+  {
+   "batch": "622",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 scrolling  {'controls': 14, 'blocked': [], 'neverInWindow': []} ／ PASS vw1280:the-hidden-part-is-clipped-not-buried  {'hidden': 0, 'covered': []} ／ 47/47 passed"
+  },
+  {
+   "batch": "623",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS vw900:no-page-errors ／ PASS vw900:no-console-errors  {'errs': [], 'filtered': 0} ／ 24/24 passed"
+  },
+  {
+   "batch": "678",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 搭建的场景'], '1280x1150': ['上传图片', '帮助', '描述想搭建的场景'], '1366x1150': ['帮助', '描述想搭建的场景'], '1440x  [three probe rules, three populations, one order] ／ 6/6 checks passed"
+  },
+  {
+   "batch": "694",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 chable': 20, 'pxPerValue': 9.444444444444445}, {'key': 'uniform-scale', 't  [a measured invariant, with its cause explicitly left unclaimed] ／ 5/5 checks passed"
+  },
+  {
+   "batch": "695",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 a-radius', 'scene-ground-opacity', 'scene-ground-height'], 'howTheyWereReac  [some controls have an entry only in the state you fall out of] ／ 6/6 checks passed"
+  },
+  {
+   "batch": "699",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ected': 'director-camera-m  [the same attribute, the same page, two verdicts — which is also why a census must state its starting state, an] ／ 5/5 checks passed"
+  },
+  {
+   "batch": "78",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  \"timelineStaleMoveStopped\": true, \"timelinePointerReuse\": true, \"timelineVisibilityCleanup\": true, \"historyUntouched\": true}}, \"screenshots\": [], \"errors\": []}"
+  },
+  {
+   "batch": "868",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 13 判据，0 失败"
+  },
+  {
+   "batch": "94",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 eMethod\":\"escape\"},\"collapsedRailsAreInert\":true,\"noHorizontalOverflow\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[]}}}"
+  }
+ ],
+ "转绿（判为环境型假红）": [
+  "41.py",
+  "44.py",
+  "599.py",
+  "641.py",
+  "662.py",
+  "687.py",
+  "688.py",
+  "689.py",
+  "700.py",
+  "701.py",
+  "721.py",
+  "828.py",
+  "837.py",
+  "93.py",
+  "95.py",
+  "565.py",
+  "360.py",
+  "364.py",
+  "367.py",
+  "368.py",
+  "437.py",
+  "441.py",
+  "442.py",
+  "443.py",
+  "445.py",
+  "447.py",
+  "449.py",
+  "467.py",
+  "470.py",
+  "513.py",
+  "611.py",
+  "612.py",
+  "614.py",
+  "615.py",
+  "616.py",
+  "618.py",
+  "621.py",
+  "622.py",
+  "623.py",
+  "678.py",
+  "694.py",
+  "695.py",
+  "699.py",
+  "78.py",
+  "868.py",
+  "94.py"
+ ],
+ "仍红（真问题）": [],
+ "总数": 46
+}

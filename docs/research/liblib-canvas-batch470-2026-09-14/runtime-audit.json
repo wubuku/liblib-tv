@@ -3,8 +3,8 @@
   "status": "SCRIPT_RECORDED_PASS",
   "slice": "VR-018 Slice D — duplicate export suppression (stale/duplicate completion announcement suppressed)",
   "scenes": {
-    "first": "director-animation-export-1792935245416-2ms1tr",
-    "duplicate": "director-animation-export-1792935245416-2ms1tr",
+    "first": "director-animation-export-1792952870916-899f98",
+    "duplicate": "director-animation-export-1792952870916-899f98",
     "missing": null,
     "nodeCount": 2,
     "edgeCount": 1,

@@ -37,6 +37,8 @@
 | N6 | 证据 | 把运行时读数文件挪走 | S10 | `raw/keyframe-window-869.json` 在不在库 |
 | N7 | 证据 | 把读数里 W1 的 `通过` 改成 `false` | S10 | 读数里每条判据的 `通过` |
 | N8 | ★运行时 | 把命中窗口改回 `0.001` ⟹ ⟹ ⟹ ⟹ ⇒ ★ **跑探针** | 探针 13 条 | ★ 探针**实测**出来的窗口内外读数 |
+| N9 | 源码 | `868.py` 的动态解析改回写死清单 | `868` 的 `the-live-regression-list-is-the-newest-one` | `868.py` 里有没有 `resolve_live_regress` |
+| N10 | 证据 | 从在用清单里删掉一条 | `868` 的 `the-regression-list-never-shrinks` | ★ 在用清单与上一份的差集 |
 
 ★ ★★ **N8 是本批最重要的一条**：★ 它证明的不只是「门禁能红」⟹ ⟹ ⟹ ⟹ ⇒ ★
 ★ 而是「**那 13 条运行时判据真的在测那个窗口**」⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ 如果
@@ -58,6 +60,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 ROOT = pathlib.Path("/Users/yangjiefeng/Documents/wubuku/liblib-tv")
 BATCH = ROOT / "docs/research/liblib-canvas-batch869-2026-10-01"
@@ -70,10 +73,16 @@ MUTATED_FILES = [
     "src/components/director/directorKeyframeWindow.ts",
     "src/components/director/DirectorTimeline.tsx",
     "scripts/verify-liblib-batch866.py",
+    "scripts/verify-liblib-batch868.py",
+    "docs/research/liblib-canvas-batch869-2026-10-01/probes/regress869.py",
     "docs/research/liblib-canvas-batch869-2026-10-01/raw/keyframe-window-869.json",
 ]
 
+# ★ ★★ 两种红行格式都要认：
+#   ① `FAIL <名>`（★ 门禁 869 的格式）
+#   ② `FAILED: <名>  ⟵ {…}`（★ 门禁 868 的格式 ⟹ 名字后面跟着详情）
 RE_NAME = re.compile(r"^\s*FAIL\s+(\S+)\s*$")
+RE_NAME2 = re.compile(r"^\s*FAILED:\s+(\S+)")
 RE_CRASH = re.compile(r"Traceback \(most recent call last\)|"
                       r"^\s*\w*Error:", re.M)
 
@@ -82,8 +91,8 @@ def sha(path: pathlib.Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def run_gate() -> tuple[int, str]:
-    r = subprocess.run([sys.executable, str(GATE)], capture_output=True,
+def run_gate(gate: pathlib.Path | None = None) -> tuple[int, str]:
+    r = subprocess.run([sys.executable, str(gate or GATE)], capture_output=True,
                        text=True, timeout=900, cwd=str(ROOT))
     return r.returncode, (r.stdout or "") + (r.stderr or "")
 
@@ -103,6 +112,10 @@ def red_names(output: str) -> list[str]:
         m = RE_NAME.match(ln)
         if m:
             names.append(m.group(1))
+            continue
+        m2 = RE_NAME2.match(ln)
+        if m2:
+            names.append(m2.group(1))
     return names
 
 
@@ -135,7 +148,8 @@ def main() -> int:
         print(poutput[-2000:])
 
     def case(name: str, kind: str, target: str, criterion: str,
-             quantity: str, mutate, expect_runtime: bool = False) -> None:
+             quantity: str, mutate, expect_runtime: bool = False,
+             gate: pathlib.Path | None = None) -> None:
         rel = target
         path = ROOT / rel
         before = path.read_bytes() if path.exists() else None
@@ -147,12 +161,29 @@ def main() -> int:
                 #   ⟹ ⟹ ⟹ ⟹ 未变异的代码 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 必然「全绿」⟹ ⟹ ⟹ ⟹ ⇒ ★
                 #   ⟹ ⟹ ⟹ ⟹ 而且**表面上完全看不出异常**（★ 退出码 0、★ 输出干净）
                 mutate(path)
+                # ★ ★★ **必须等 dev server 真的把新代码端出去** ⟹ ⟹ ⟹ ⇒ ★
+                #   ★ 本批实测：★ 改完源码**立刻**跑探针 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 页面
+                #   ★ 还是**旧 bundle** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 探针照样全绿 ⟹ ⟹ ⟹ ⟹ ⇒ ★
+                #   ★ ⟹ ⟹ ⟹ ⟹ **看起来像「判据没牙」** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 而真因是
+                #   ★ ⟹ ⟹ ⟹ ⟹ **读数早于事件**（★ 编译还没完）。
+                #   ★ ⇒ **修法**：★ 重试几轮 ⟹ ⟹ ⟹ ⇒ ★ **直到页面真的表现出变异**
+                #   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 再断言「整条探针变红」⟹ ⟹ ⟹ ⟹ ⇒ ★
+                #   ★ ⟹ ⟹ ⟹ ⟹ ⚠ 重试只是等**时序** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 断言本身不变
+                #   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 若几轮后**仍**不红 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 负控**失败**
+                #   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ （★ 那才是真·判据没牙）。
                 outp = tmpdir / ("probe-%s.json" % re.sub(r"\W+", "_", name))
-                code, output = run_probe(outp)
-                data = (json.loads(outp.read_text(encoding="utf-8"))
-                        if outp.exists() else {})
-                after_fail = [c["判据"] for c in (data.get("判据") or [])
-                              if not c.get("通过")]
+                attempts = 0
+                code, output, data = 0, "", {}
+                for attempts in range(1, 5):
+                    code, output = run_probe(outp)
+                    data = (json.loads(outp.read_text(encoding="utf-8"))
+                            if outp.exists() else {})
+                    after_fail = [c["判据"] for c in (data.get("判据") or [])
+                                  if not c.get("通过")]
+                    if after_fail:
+                        break
+                    time.sleep(8)
+                row["探针尝试轮数"] = attempts
                 row["探针退出码"] = code
                 row["探针基线失败判据"] = pbase_fail
                 row["探针变异后失败判据"] = after_fail
@@ -161,10 +192,10 @@ def main() -> int:
                 row["通过"] = bool(code != 0 and after_fail
                                    and row["从绿变红的探针判据数"] > 0)
             else:
-                _bcode, bout = run_gate()
+                _bcode, bout = run_gate(gate)
                 base_red = red_names(bout)
                 mutate(path)
-                code, output = run_gate()
+                code, output = run_gate(gate)
                 after_red = red_names(output)
                 row["变异前红"] = base_red
                 row["变异后红"] = after_red
@@ -306,6 +337,35 @@ def main() -> int:
          "src/components/director/directorKeyframeWindow.ts",
          "探针 13 条（W1/W2/W3/W5/W7/W8…）",
          "★ 探针**实测**出来的窗口内外读数", m8, expect_runtime=True)
+
+    # ── N9：★ `868.py` 的动态解析改回写死（★ 本批顺手修的同类缺陷）────
+    def m9(path: pathlib.Path) -> None:
+        t = path.read_text(encoding="utf-8")
+        t = sub_once(t, "def resolve_live_regress()", "def _disabled_resolver()")
+        t = sub_once(
+            t,
+            "live_regress, gates, prev_regress = resolve_live_regress()",
+            'live_regress, gates, prev_regress = HISTORIC_REGRESS, '
+            'parse_gates(HISTORIC_REGRESS.read_text(encoding="utf-8")), None')
+        path.write_text(t, encoding="utf-8")
+
+    case("N9-868改回写死回归清单", "源码",
+         "scripts/verify-liblib-batch868.py",
+         "source:the-live-regression-list-is-the-newest-one",
+         "868.py 里有没有 resolve_live_regress", m9,
+         gate=ROOT / "scripts/verify-liblib-batch868.py")
+
+    # ── N10：★ 从在用清单里删掉一条 ⟹ ⟹ ⟹ ⇒ ★ 「清单只增不减」必须翻红 ──
+    def m10(path: pathlib.Path) -> None:
+        t = path.read_text(encoding="utf-8")
+        t = sub_once(t, '    ("865", "py"),\n', "")
+        path.write_text(t, encoding="utf-8")
+
+    case("N10-在用清单被删一条", "证据",
+         "docs/research/liblib-canvas-batch869-2026-10-01/probes/regress869.py",
+         "source:the-regression-list-never-shrinks",
+         "★ 在用清单与上一份的差集", m10,
+         gate=ROOT / "scripts/verify-liblib-batch868.py")
 
     # ── 跨文件污染守卫 ───────────────────────────────────────────────
     after = {rel: sha(ROOT / rel) for rel in MUTATED_FILES if (ROOT / rel).exists()}
