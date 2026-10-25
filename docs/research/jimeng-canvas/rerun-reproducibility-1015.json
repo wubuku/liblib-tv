@@ -39,47 +39,9 @@
    "type-layer-gate-1023.json": "2cff76d71be1",
    "wired-contract-1032b1.json": "dd84c19ff7c7",
    "zero-coupling-anchors-1005.json": "cab9079bea1e"
-  },
-  {
-   "anchor-gate-coverage-1021.json": "92e91802dbd4",
-   "anchor-identity-1030.json": "af2766ff5011",
-   "assertion-vs-behavior-1018.json": "51a288b54d87",
-   "baseline-host-misuse-1016.json": "35d1048f0289",
-   "behavior-harness-1019.json": "018bd2c28059",
-   "change-locality-1011.json": "3552ea7302db",
-   "clone-reachability-1033.json": "b577e4a33dcd",
-   "connect-contract-1032a.json": "40cbe8e48113",
-   "criterion-direction-1025.json": "e2a56b02ef35",
-   "criterion-effectiveness-1026.json": "423ce905202d",
-   "edit-visibility-1009.json": "cbccf1eaa2e9",
-   "empty-ambiguity-1014.json": "17972f63780f",
-   "exemption-claims-1024.json": "080e3616f5e9",
-   "expanded-contract-1032b4.json": "8d1a63147bf6",
-   "fake-interaction-census-1034.json": "fff360e357fc",
-   "fingerprint-gate-1032l.json": "e339b38c001d",
-   "gen-contract-1032b2.json": "1d9f4ab02cc2",
-   "global-detection-1012.json": "b0a4b41fb417",
-   "golden-freshness-1008.json": "38a1bfcbd0fb",
-   "harness-fidelity-1020.json": "794495f883ee",
-   "instrument-fake-green-census-1037.json": "a046f7cf5961",
-   "interaction-wiring-check-1032.json": "d13d5109bdb1",
-   "live-canvas-check-1031.json": "1cfb05985002",
-   "manual-clone-parity-1035.json": "5589a0a0b396",
-   "mention-contract-1032b3.json": "0c0b4e8f8cff",
-   "noop-contract-1032c.json": "da0ffb8e7460",
-   "occurrence-ledger-1013.json": "585d9250b194",
-   "real-history-detection-1010.json": "74ac31678fd4",
-   "replica-contract-1031d.json": "a73c5f3c45d4",
-   "replica-coverage-1017.json": "7693477d040d",
-   "silent-exit-census-1038.json": "cb5835986820",
-   "source-claim-census-1036.json": "da0e6bc8dd21",
-   "stem-attribution-1007.json": "b037c7f4525f",
-   "type-layer-gate-1023.json": "2cff76d71be1",
-   "wired-contract-1032b1.json": "dd84c19ff7c7",
-   "zero-coupling-anchors-1005.json": "cab9079bea1e"
   }
  ],
- "n_rounds_sha_history_1015": 2,
+ "n_rounds_sha_history_1015": 1,
  "n_stable_across_rounds_1015": 36,
  "n_unstable_across_rounds_1015": 0,
  "n_round_sha_unknown_1015": 0,
@@ -588,47 +550,9 @@
     "type-layer-gate-1023.json": "2cff76d71be1",
     "wired-contract-1032b1.json": "dd84c19ff7c7",
     "zero-coupling-anchors-1005.json": "cab9079bea1e"
-   },
-   {
-    "anchor-gate-coverage-1021.json": "92e91802dbd4",
-    "anchor-identity-1030.json": "af2766ff5011",
-    "assertion-vs-behavior-1018.json": "51a288b54d87",
-    "baseline-host-misuse-1016.json": "35d1048f0289",
-    "behavior-harness-1019.json": "018bd2c28059",
-    "change-locality-1011.json": "3552ea7302db",
-    "clone-reachability-1033.json": "b577e4a33dcd",
-    "connect-contract-1032a.json": "40cbe8e48113",
-    "criterion-direction-1025.json": "e2a56b02ef35",
-    "criterion-effectiveness-1026.json": "423ce905202d",
-    "edit-visibility-1009.json": "cbccf1eaa2e9",
-    "empty-ambiguity-1014.json": "17972f63780f",
-    "exemption-claims-1024.json": "080e3616f5e9",
-    "expanded-contract-1032b4.json": "8d1a63147bf6",
-    "fake-interaction-census-1034.json": "fff360e357fc",
-    "fingerprint-gate-1032l.json": "e339b38c001d",
-    "gen-contract-1032b2.json": "1d9f4ab02cc2",
-    "global-detection-1012.json": "b0a4b41fb417",
-    "golden-freshness-1008.json": "38a1bfcbd0fb",
-    "harness-fidelity-1020.json": "794495f883ee",
-    "instrument-fake-green-census-1037.json": "a046f7cf5961",
-    "interaction-wiring-check-1032.json": "d13d5109bdb1",
-    "live-canvas-check-1031.json": "1cfb05985002",
-    "manual-clone-parity-1035.json": "5589a0a0b396",
-    "mention-contract-1032b3.json": "0c0b4e8f8cff",
-    "noop-contract-1032c.json": "da0ffb8e7460",
-    "occurrence-ledger-1013.json": "585d9250b194",
-    "real-history-detection-1010.json": "74ac31678fd4",
-    "replica-contract-1031d.json": "a73c5f3c45d4",
-    "replica-coverage-1017.json": "7693477d040d",
-    "silent-exit-census-1038.json": "cb5835986820",
-    "source-claim-census-1036.json": "da0e6bc8dd21",
-    "stem-attribution-1007.json": "b037c7f4525f",
-    "type-layer-gate-1023.json": "2cff76d71be1",
-    "wired-contract-1032b1.json": "dd84c19ff7c7",
-    "zero-coupling-anchors-1005.json": "cab9079bea1e"
    }
   ],
-  "n_rounds_sha_history_1015": 2,
+  "n_rounds_sha_history_1015": 1,
   "n_stable_across_rounds_1015": 36,
   "n_unstable_across_rounds_1015": 0,
   "n_round_sha_unknown_1015": 0,
@@ -1632,19 +1556,12 @@
  "rounds": [
   {
    "round": 1,
-   "n_drifted": 1,
-   "drifted": [
-    "fingerprint-gate-1032l.json"
-   ]
-  },
-  {
-   "round": 2,
    "n_drifted": 0,
    "drifted": []
   }
  ],
  "converged": true,
- "n_rounds": 2,
+ "n_rounds": 1,
  "max_rounds": 6,
  "fixed_point_rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **整轮重跑直到某一轮零漂移为止 —— 因为 1015 在整轮结束后才写自己那本，1014 在整轮里读到的永远是 1015 的上一版 ⇒ 每本账都落后它上游一轮**",
  "books": [
@@ -1698,7 +1615,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -1753,7 +1670,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -1817,7 +1734,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -1871,7 +1788,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -1925,7 +1842,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -1990,7 +1907,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2044,7 +1961,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2107,7 +2024,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2161,7 +2078,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2215,7 +2132,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2277,7 +2194,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2343,7 +2260,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2397,7 +2314,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2467,7 +2384,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2534,7 +2451,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2553,7 +2470,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "e339b38c001d",
    "generator_sha12": "a94b635d1d7c",
-   "committed_sha12": "e895d639a3ef",
+   "committed_sha12": "e339b38c001d",
    "tail": [
     "PROBE_1032L_FINGERPRINT_GATE_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/fingerprint-gate-1032l.json",
     "PROBE_1032L_FINGERPRINT_GATE_OK"
@@ -2596,7 +2513,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2660,7 +2577,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2725,7 +2642,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2788,7 +2705,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2842,7 +2759,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2906,7 +2823,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -2960,7 +2877,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3014,7 +2931,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3078,7 +2995,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3143,7 +3060,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3206,7 +3123,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3270,7 +3187,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3333,7 +3250,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3387,7 +3304,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3441,7 +3358,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3505,7 +3422,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3572,7 +3489,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3635,7 +3552,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3689,7 +3606,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3753,7 +3670,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   },
@@ -3814,7 +3731,7 @@
    "criteria_red_with_kind": {},
    "n_criteria_red_kind_known": 0,
    "n_criteria_red_kind_unknown": 0,
-   "n_rounds_seen": 2,
+   "n_rounds_seen": 1,
    "n_distinct_sha_across_rounds": 1,
    "stable_across_rounds": true
   }
@@ -3937,8 +3854,8 @@
   "chinese_numerals_out_of_scope": "⭐⭐⭐⭐⭐ `_NUMRE` 只认阿拉伯数字 ⇒ 「五条」与「5 条」在检查里长得一样 ⇒ 本批判据里就有一处「三条」是错的而 P6 全程报绿",
   "zero_in_sources": true,
   "one_in_sources": true,
-  "zero_entered_via": "第 2 轮里漂移的本数",
-  "one_entered_via": "第 1 轮里漂移的本数",
+  "zero_entered_via": "第 1 轮里漂移的本数",
+  "one_entered_via": "第 1 轮的轮号",
   "what_is_actually_enforced": "⭐ 判据里的每个数要么等于某个**实测值**、要么不在出处表里",
   "what_is_not_enforced": "⭐⭐⭐⭐⭐ 「0 和 1 也必须有出处」—— 出处表按值索引，而任一实测读数为 0/1 就会把 0/1 登记进去 ⇒ 判据里别处的 0/1 一律通过",
   "same_hole_in_1013": "1013 的 `_allowed |= set(\"0123456789\")` —— 明着开了同一个洞",
@@ -3958,13 +3875,13 @@
   "n_invariables_1014_cannot_see": 0,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **产物里写着不变式 ≠ 普查看得见不变式** —— 1014 的 `INVARIANTS` 是一张硬编码表，它不读产物里的 `empty_list_invariants`",
   "p8_saw_artifact_with_n_rounds": null,
-  "p8_this_artifact_has_n_rounds": 2,
+  "p8_this_artifact_has_n_rounds": 1,
   "p8_reading_lag_rounds": null,
   "p8_lag_is_structural": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **这不是 bug、是没关严** —— 要把这条读数追平，就得「写完产物再跑一次 1014」，而那会改写 1014 那本账 ⇒ ⇒ ⇒ 又触发新一轮 ⇒ ⇒ ⇒ ⇒ **⇒ 所以只有把它记成一个读数，才不至于让产物自己和自己矛盾**"
  },
  "number_sources": {
   "211": "1015 提交时（sha `2b52f492`）实测的通道 B 探针数 —— 此后新增探针会让它变大，而**出处的含义是「那一刻的实测读数」**，不是白名单",
-  "2": "第 2 轮的轮号",
+  "2": "因**输入集合冲突**被排除的本数（登记见 `excluded`）",
   "3": "1015 那次修好的 `generated_by` 条数 —— 修完就是 0，**这不是矛盾，是「修完了」**",
   "690": "1015 提交时（sha `2b52f492`）1005 的 `n_zero_coupling` —— 往 audit 里写判据就会把它顶高",
   "10": "1014 普查口径下「可自证」的总数",
@@ -3973,8 +3890,8 @@
   "39": "通道 A：docs/research/jimeng-canvas/*.json 的文件数",
   "249": "通道 B：scripts/jimeng_probe*.py 的文件数",
   "36": "四态之和（分子完备性）",
-  "1": "第 1 轮里漂移的本数",
-  "0": "第 2 轮里漂移的本数",
+  "1": "第 1 轮的轮号",
+  "0": "第 1 轮里漂移的本数",
   "210": "通道 B 有探针而通道 A 无对应 golden 的个数",
   "6": "轮数上限",
   "0/39": "被拒绝认领的比例（分母 = 通道 A）",
@@ -4022,7 +3939,6 @@
   "1017": "批号",
   "1018": "批号",
   "1019": "批号",
-  "1/36": "第 1 轮的漂移比例（分母 = 认领到的本数）",
-  "0/36": "第 2 轮的漂移比例（分母 = 认领到的本数）"
+  "0/36": "第 1 轮的漂移比例（分母 = 认领到的本数）"
  }
 }
