@@ -1,0 +1,608 @@
+{
+ "batch": 868,
+ "title": "受控对照：★ 证明那 28 条红**不是本批引入**",
+ "换回HEAD的源文件": [
+  "src/components/CharacterLibraryPanel.tsx",
+  "src/components/director/DirectorCameraMotionTab.tsx",
+  "scripts/verify-liblib-batch698.py"
+ ],
+ "门禁": [
+  "657.py",
+  "664.py",
+  "674.py",
+  "681.py",
+  "691.py",
+  "692.py",
+  "718.py",
+  "729.py",
+  "730.py",
+  "735.py",
+  "737.py",
+  "740.py",
+  "742.py",
+  "743.py",
+  "746.py",
+  "747.py",
+  "762.py",
+  "765.py",
+  "766.py",
+  "771.py",
+  "772.py",
+  "773.py",
+  "775.py",
+  "777.py",
+  "778.py",
+  "779.py",
+  "780.py",
+  "801.py"
+ ],
+ "restored": true,
+ "sha": {
+  "base": {
+   "src/components/CharacterLibraryPanel.tsx": "e348bd0da6e3927f4d99dab3f3927dbdd04327871f57afd9b02a97e45c29d590",
+   "src/components/director/DirectorCameraMotionTab.tsx": "2d039e3fb9566ce15ab82c93edad8cb976a60dce40208386b0184d78de6c3d42",
+   "scripts/verify-liblib-batch698.py": "b23f3ce3c2da00a6b2db469791a2eb6ebdcca24097eb37e7e9e920e0c3e1d900"
+  },
+  "after": {
+   "src/components/CharacterLibraryPanel.tsx": "e348bd0da6e3927f4d99dab3f3927dbdd04327871f57afd9b02a97e45c29d590",
+   "src/components/director/DirectorCameraMotionTab.tsx": "2d039e3fb9566ce15ab82c93edad8cb976a60dce40208386b0184d78de6c3d42",
+   "scripts/verify-liblib-batch698.py": "b23f3ce3c2da00a6b2db469791a2eb6ebdcca24097eb37e7e9e920e0c3e1d900"
+  }
+ },
+ "HEAD态红": [
+  "657.py",
+  "664.py",
+  "674.py",
+  "681.py",
+  "691.py",
+  "692.py",
+  "718.py",
+  "729.py",
+  "730.py",
+  "735.py",
+  "737.py",
+  "740.py",
+  "742.py",
+  "743.py",
+  "746.py",
+  "747.py",
+  "762.py",
+  "765.py",
+  "766.py",
+  "771.py",
+  "772.py",
+  "773.py",
+  "775.py",
+  "777.py",
+  "778.py",
+  "779.py",
+  "780.py"
+ ],
+ "WORK态红": [
+  "657.py",
+  "664.py",
+  "674.py",
+  "681.py",
+  "691.py",
+  "692.py",
+  "718.py",
+  "729.py",
+  "730.py",
+  "735.py",
+  "737.py",
+  "740.py",
+  "742.py",
+  "743.py",
+  "746.py",
+  "747.py",
+  "762.py",
+  "765.py",
+  "766.py",
+  "771.py",
+  "772.py",
+  "773.py",
+  "775.py",
+  "777.py",
+  "778.py",
+  "779.py",
+  "780.py",
+  "801.py"
+ ],
+ "本批引入的红": [],
+ "两态都红（旧账）": [
+  "657.py",
+  "664.py",
+  "674.py",
+  "681.py",
+  "691.py",
+  "692.py",
+  "718.py",
+  "729.py",
+  "730.py",
+  "735.py",
+  "737.py",
+  "740.py",
+  "742.py",
+  "743.py",
+  "746.py",
+  "747.py",
+  "762.py",
+  "765.py",
+  "766.py",
+  "771.py",
+  "772.py",
+  "773.py",
+  "775.py",
+  "777.py",
+  "778.py",
+  "779.py",
+  "780.py"
+ ],
+ "HEAD红而WORK绿（本批修好）": [],
+ "逐条": {
+  "657.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [
+     "the-two-landing-probes-do-not-agree-with-each-other"
+    ],
+    "last": "FAILED: the-two-landing-probes-do-not-agree-with-each-other",
+    "seconds": 50.7
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [
+     "the-two-landing-probes-do-not-agree-with-each-other"
+    ],
+    "last": "FAILED: the-two-landing-probes-do-not-agree-with-each-other",
+    "seconds": 48.7
+   }
+  },
+  "664.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [
+     "the-blind-population-is-22-elements-and-13-cannot-even-be-named",
+     "the-blind-population-includes-the-playhead-and-the-aspect-frame"
+    ],
+    "last": "FAILED: the-blind-population-includes-the-playhead-and-the-aspect-frame",
+    "seconds": 15.6
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [
+     "the-blind-population-is-22-elements-and-13-cannot-even-be-named",
+     "the-blind-population-includes-the-playhead-and-the-aspect-frame"
+    ],
+    "last": "FAILED: the-blind-population-includes-the-playhead-and-the-aspect-frame",
+    "seconds": 14.6
+   }
+  },
+  "674.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [
+     "the-two-folding-partitions-are-not-nested",
+     "670s-66-is-a-name-count-not-a-control-count"
+    ],
+    "last": "FAILED: 670s-66-is-a-name-count-not-a-control-count",
+    "seconds": 10.1
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [
+     "the-two-folding-partitions-are-not-nested",
+     "670s-66-is-a-name-count-not-a-control-count"
+    ],
+    "last": "FAILED: 670s-66-is-a-name-count-not-a-control-count",
+    "seconds": 9.7
+   }
+  },
+  "681.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [
+     "CRASH: ValueError: invalid literal for int() with base 10: 'auto'"
+    ],
+    "last": "ValueError: invalid literal for int() with base 10: 'auto'",
+    "seconds": 9.7
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [
+     "CRASH: ValueError: invalid literal for int() with base 10: 'auto'"
+    ],
+    "last": "ValueError: invalid literal for int() with base 10: 'auto'",
+    "seconds": 9.6
+   }
+  },
+  "691.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [
+     "census-only-one-derived-pixel-length-exists-and-690-found-it",
+     "a-second-and-unrelated-mechanism-makes-integers-come-out-fractional"
+    ],
+    "last": "FAILED: a-second-and-unrelated-mechanism-makes-integers-come-out-fractional",
+    "seconds": 7.4
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [
+     "census-only-one-derived-pixel-length-exists-and-690-found-it",
+     "a-second-and-unrelated-mechanism-makes-integers-come-out-fractional"
+    ],
+    "last": "FAILED: a-second-and-unrelated-mechanism-makes-integers-come-out-fractional",
+    "seconds": 7.4
+   }
+  },
+  "692.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [
+     "only-three-expressions-are-displayed-at-more-than-one-explicit-precision"
+    ],
+    "last": "FAILED: only-three-expressions-are-displayed-at-more-than-one-explicit-precision",
+    "seconds": 10.7
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [
+     "only-three-expressions-are-displayed-at-more-than-one-explicit-precision"
+    ],
+    "last": "FAILED: only-three-expressions-are-displayed-at-more-than-one-explicit-precision",
+    "seconds": 10.7
+   }
+  },
+  "718.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "5/6 通过",
+    "seconds": 9.0
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "5/6 通过",
+    "seconds": 9.2
+   }
+  },
+  "729.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "6/7 通过",
+    "seconds": 11.4
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "6/7 通过",
+    "seconds": 11.7
+   }
+  },
+  "730.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "! all-46-carrying-tags-are-buttons-and-729s-45-was-a-scanner-artifact: [{'file': 'src/components/TopNavBar.tsx', 'line': 173, 'attrs': 'type=\"button\" aria-label=\"开通会员 限时 45 折\" title=\"开通会员为付费操作，克隆侧不提供\" data-inert=\"true\" className=\"flex h-8 c",
+    "seconds": 88.4
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "! all-46-carrying-tags-are-buttons-and-729s-45-was-a-scanner-artifact: [{'file': 'src/components/TopNavBar.tsx', 'line': 173, 'attrs': 'type=\"button\" aria-label=\"开通会员 限时 45 折\" title=\"开通会员为付费操作，克隆侧不提供\" data-inert=\"true\" className=\"flex h-8 c",
+    "seconds": 89.3
+   }
+  },
+  "735.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [
+     "C7 特效库 Tab 260 步 77 停靠 / 27 名"
+    ],
+    "last": "9/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch735-2026-10-01/runtime-audit.json",
+    "seconds": 72.1
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [
+     "C7 特效库 Tab 260 步 77 停靠 / 27 名"
+    ],
+    "last": "9/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch735-2026-10-01/runtime-audit.json",
+    "seconds": 73.6
+   }
+  },
+  "737.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [
+     "C1 静态 195 写点",
+     "C2 flyout 走 createPortal（IconRail.tsx:308）",
+     "C3 打开「添加角色」flyout：根内不变、根外 +11",
+     "C6 台外 Shift+Tab：起点「项目菜单」时 2 步内进台内、此后 18 步在台内（可复现）",
+     "C10 台外 36 枚（关闭态）/ 47 枚（flyout 开着），其中 11 枚是连线删除手柄"
+    ],
+    "last": "5/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch737-2026-10-01/runtime-audit.json",
+    "seconds": 21.4
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [
+     "C1 静态 195 写点",
+     "C2 flyout 走 createPortal（IconRail.tsx:308）",
+     "C3 打开「添加角色」flyout：根内不变、根外 +11",
+     "C6 台外 Shift+Tab：起点「项目菜单」时 2 步内进台内、此后 18 步在台内（可复现）",
+     "C10 台外 36 枚（关闭态）/ 47 枚（flyout 开着），其中 11 枚是连线删除手柄"
+    ],
+    "last": "5/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch737-2026-10-01/runtime-audit.json",
+    "seconds": 20.7
+   }
+  },
+  "740.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [
+     "C1 源码四处在位（派发 / 监听 / pushHistory / undo 清空选区）"
+    ],
+    "last": "7/8 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch740-2026-10-01/runtime-audit.json",
+    "seconds": 20.0
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [
+     "C1 源码四处在位（派发 / 监听 / pushHistory / undo 清空选区）"
+    ],
+    "last": "7/8 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch740-2026-10-01/runtime-audit.json",
+    "seconds": 20.1
+   }
+  },
+  "742.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "判据 6/7",
+    "seconds": 39.5
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "判据 6/7",
+    "seconds": 40.2
+   }
+  },
+  "743.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "判据 5/6",
+    "seconds": 6.8
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "判据 5/6",
+    "seconds": 6.9
+   }
+  },
+  "746.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "判据 10/11",
+    "seconds": 31.8
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "判据 10/11",
+    "seconds": 31.9
+   }
+  },
+  "747.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "判据 6/7",
+    "seconds": 16.2
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "判据 6/7",
+    "seconds": 16.3
+   }
+  },
+  "762.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 762 不通过",
+    "seconds": 0.2
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 762 不通过",
+    "seconds": 0.1
+   }
+  },
+  "765.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 765 不通过",
+    "seconds": 0.8
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 765 不通过",
+    "seconds": 0.7
+   }
+  },
+  "766.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 766 不通过",
+    "seconds": 0.6
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 766 不通过",
+    "seconds": 0.6
+   }
+  },
+  "771.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 771 不通过",
+    "seconds": 0.2
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 771 不通过",
+    "seconds": 0.2
+   }
+  },
+  "772.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 772 不通过",
+    "seconds": 0.2
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 772 不通过",
+    "seconds": 0.2
+   }
+  },
+  "773.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 773 不通过",
+    "seconds": 0.2
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 773 不通过",
+    "seconds": 0.2
+   }
+  },
+  "775.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 775 不通过",
+    "seconds": 0.2
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 775 不通过",
+    "seconds": 0.2
+   }
+  },
+  "777.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 777 不通过",
+    "seconds": 0.1
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 777 不通过",
+    "seconds": 0.1
+   }
+  },
+  "778.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 778 不通过",
+    "seconds": 0.3
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 778 不通过",
+    "seconds": 0.3
+   }
+  },
+  "779.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 779 不通过",
+    "seconds": 0.2
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 779 不通过",
+    "seconds": 0.2
+   }
+  },
+  "780.py": {
+   "HEAD": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 780 不通过",
+    "seconds": 0.1
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [],
+    "last": "batch 780 不通过",
+    "seconds": 0.1
+   }
+  },
+  "801.py": {
+   "HEAD": {
+    "rc": 0,
+    "failures": [],
+    "last": "★ 阴性对照后字节级复原：{'cs': True, 'pre': True, 'post': True}",
+    "seconds": 0.3
+   },
+   "WORK": {
+    "rc": 1,
+    "failures": [
+     "AssertionError: ★ 基线有 1 项红（['S10:★★ 记账：本批**没改** `src/`']）⟹ 阴性对照没意义"
+    ],
+    "last": "AssertionError: ★ 基线有 1 项红（['S10:★★ 记账：本批**没改** `src/`']）⟹ 阴性对照没意义",
+    "seconds": 0.1
+   }
+  }
+ },
+ "整改后复验": {
+  "801": {
+   "说明": "★ ★ 本批把 801 的 S10 判据从「读当下工作树」改成「锚到 801 自己的提交」",
+   "HEAD态(新判据)": {
+    "rc": 0,
+    "failures": [],
+    "last": "★ 阴性对照后字节级复原：{'cs': True, 'pre': True, 'post': True}",
+    "seconds": 0.7
+   },
+   "WORK态(新判据)": {
+    "rc": 0,
+    "failures": [],
+    "last": "★ 阴性对照后字节级复原：{'cs': True, 'pre': True, 'post': True}",
+    "seconds": 0.6
+   },
+   "复原自检": true
+  }
+ },
+ "本批引入的红(整改后)": [],
+ "整改说明": "★ ★ 受控对照第一轮（整改前）：HEAD 态红 27 ／ WORK 态红 28 ⟹ ⟹ 本批引入 ['801.py'] ⟹ ⟹ ⟹ ⟹ ⇒ ★ 根因：★ 801 的 S10 判据说「本批没改 src」⟹ ⟹ 实现却读**当下工作树**的脏状态 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 本批一改 src/ 它就红 ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★ 修法：★ 锚到 801 自己的提交 `8b1fb063`（★ `git show --name-only` 的 `src/` 为空 ⟹ ⟹ 证明 801 那批确实没改 src） ⟹ ⟹ ⟹ ⟹ ⇒ ★ 并新增 S10b 留痕「当下工作树脏」（★ 不参与判定） ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 整改后：★ 新判据在 HEAD 态与 WORK 态**都绿** ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⇒ 本批引入的红**归零**"
+}

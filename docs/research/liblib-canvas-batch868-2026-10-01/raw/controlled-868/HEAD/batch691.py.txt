@@ -1,0 +1,10 @@
+  FAIL census-only-one-derived-pixel-length-exists-and-690-found-it  {'censusOutput': ['几何 style 属性 67 条 · 派生表达式 13 条', '  像素族 5 条', '    DirectorTimeline.tsx:1937 width = Math.max( 640, timeline.duration * (3.36 + 4.97  [a census that agrees with a prior answer is not thereby validated]
+  PASS integer-pointer-coordinates-produce-fractional-pose-values  {'samples': 21, 'clientXs': [662, 676, 690, 704, 718, 732, 746, 760, 774, 788, 802, 816, 830, 844, 858, 872, 886, 900, 914, 928, 942], 'bitExactAgains  [a field can be fractional by construction, not by omission of rounding]
+  PASS one-field-reads-as-four-different-numbers-on-four-surfaces  {'surfaces': [{'clientX': 662, 'store': -44.42675159235669, 'dataAttr2dp': '-44.43', 'visible': '-44 / 5 / 0', 'aria': '-44', 'dotPercent': '0.636943%  [integrality is a property of the reader, not of the field]
+  PASS the-indicator-never-lands-under-the-pointer-because-of-a-border-mismatch  {'padBorderBoxWidth': 314, 'borderLeft': 1, 'borderRight': 1, 'paddingBoxWidth': 312, 'clientWidthAgrees': True, 'mechanism': "the formula divides by   [the percentage resolves against the padding box; the formula divides by the border box]
+  PASS aria-valuenow-cannot-express-where-the-dot-actually-is  {'maxPositionErrorPx': 1.4794055201698484, 'worstSample': {'clientX': 662, 'aria': -44.0, 'storeYaw': -44.42675159235669, 'positionErrorPx': 1.4794055  [an announced value that cannot place its own thumb]
+  FAIL a-second-and-unrelated-mechanism-makes-integers-come-out-fractional  {'mechanismIn690': 'MULTIPLY by a fitted non-integer constant (timeline.duration * (3.36 + 4.978 * zoom))', 'mechanismHere': 'DIVIDE an integer offset  [two mechanisms, one symptom; only one of them is UI-reachable]
+
+4/6 checks passed
+  FAILED: census-only-one-derived-pixel-length-exists-and-690-found-it
+  FAILED: a-second-and-unrelated-mechanism-makes-integers-come-out-fractional

@@ -1,0 +1,84 @@
+=== 静态：调用点普查（含解构别名）===
+  别名 3 组：{"setNodes": ["setStoreNodes"], "addEdge": ["addStoreEdge"], "setViewport": ["setStoreViewport"]}
+    setNodes → setStoreNodes  at src/app/page.tsx:373
+    addEdge → addStoreEdge  at src/app/page.tsx:375
+    setViewport → setStoreViewport  at src/app/page.tsx:389
+
+  记账 34：LibTV 有入口 30 / 零入口 4  ['duplicateNode', 'removeNode', 'setEdges', 'submitLibTVEditorSessionCommit']
+  不记账 21：LibTV 有入口 17 / 零入口 4  ['purgeRemovedCanvas', 'selectEdges', 'selectNodeOutput', 'selectNodes']
+    零入口·记账 duplicateNode                    别的 app 调用方：['FrameOS', 'Jimeng']
+    零入口·记账 removeNode                       别的 app 调用方：['FrameOS', 'Jimeng']
+    零入口·记账 setEdges                         别的 app 调用方：['FrameOS']
+    零入口·记账 submitLibTVEditorSessionCommit   别的 app 调用方：无（全 src/ 零调用）
+
+=== git log -S：零入口命令是否曾经被外部调用过 ===
+  duplicateNode                    曾有外部调用的提交数 = 7
+  removeNode                       曾有外部调用的提交数 = 13
+  setEdges                         曾有外部调用的提交数 = 3
+  submitLibTVEditorSessionCommit   曾有外部调用的提交数 = 0
+  purgeRemovedCanvas               曾有外部调用的提交数 = 0
+  selectEdges                      曾有外部调用的提交数 = 0
+  selectNodeOutput                 曾有外部调用的提交数 = 0
+  selectNodes                      曾有外部调用的提交数 = 2
+
+=== 反馈清单 13 个 surface ===
+  editor-session-commit    canvasStore.submitLibTVEditorSessionCommit   feedbackKind=none
+  asset-reference-attach   canvasStore.attachAssetReferences            feedbackKind=none
+
+=== 回收站稳定属性：['data-recycle-check', 'data-recycle-empty', 'data-recycle-item', 'data-recycle-panel', 'data-recycle-restore', 'data-recycle-restore-selected', 'data-recycle-selection'] ===
+  onClick 片段里出现 restoreCanvas 的次数：2；出现 purgeRemovedCanvas 的次数：0
+
+=== C4 直调四个 LibTV 零入口的记账命令 ===
+  duplicateNode                    past 0→1、节点 10→11、边 11→12；返回 null
+  removeNode                       past 0→1、节点 10→9、边 11→10；返回 null
+  setEdges（不带 flag）                past 0→0、节点 10→10、边 11→11；返回 null
+  setEdges（带 flag）                 past 0→1、节点 10→10、边 11→11；返回 null
+  submitLibTVEditorSessionCommit   past 0→1、节点 10→10、边 11→11；返回 {"status": "accepted", "historyPushed": true, "normalizedDraft": "x", "normalizedCurrent": ""}
+
+=== C5 键盘 Cmd+D → duplicateSelectedNodes（有入口那条真通）===
+  选中 1 个后按 Cmd+D：节点 10→11、past 0→1
+  再 Cmd+Z：节点 10、past 0、future 1
+
+=== C6 回收站（/project）===
+  展开后（尚未删除任何画布）：{"panel": true, "buttons": 0, "items": 0, "empty": true}
+  删掉 canvas-1 之后：removedCanvases=['canvas-1']
+  面板 {"panel": true, "buttons": [{"text": "恢复", "restore": true, "restoreSelected": false}], "items": ["canvas-1"], "empty": false}
+  点「恢复」之后：removed=[]、面板 {"items": 0, "empty": true}
+  源码里回收站区块的 onClick 提到 purgeRemovedCanvas 吗：False
+
+=== 汇总 ===
+  grid: {"acct_total": 34, "acct_libtv": 30, "acct_dead": ["duplicateNode", "removeNode", "setEdges", "submitLibTVEditorSessionCommit"], "noacct_total": 21, "noacct_libtv": 17, "noacct_dead": ["purgeRemovedCanvas", "selectEdges", "selectNodeOutput", "selectNodes"]}
+  aliases: {"setNodes": ["setStoreNodes"], "addEdge": ["addStoreEdge"], "setViewport": ["setStoreViewport"]}
+  renames: [["setNodes", "setStoreNodes", "src/app/page.tsx", 373], ["addEdge", "addStoreEdge", "src/app/page.tsx", 375], ["setViewport", "setStoreViewport", "src/app/page.tsx", 389]]
+  acct_dead_others: {"duplicateNode": ["FrameOS", "Jimeng"], "removeNode": ["FrameOS", "Jimeng"], "setEdges": ["FrameOS"], "submitLibTVEditorSessionCommit": []}
+  libtv_entries: {"createDirectorCapture": [["src/components/director/DirectorDesk.tsx", 673], ["src/components/director/DirectorDesk.tsx", 690]], "setNodes": [["src/app/page.tsx", 1127], ["src/app/page.tsx", 1144], ["src/app/page.tsx", 1594], ["src/app/page.tsx", 1600]], "createSmartMatting": [["src/components/nodes/VideoNode.tsx", 372]], "addEdge": [["src/app/page.tsx", 672], ["src/components/director/DirectorAiImportModal.tsx", 72], ["src/components/nodes/VideoNode.tsx", 721]], "submitLibTVEditorSessionCommit": [], "createImageHdPreset": [["src/components/nodes/ImageNode.tsx", 294]], "clearVideoContinuation": [["src/components/nodes/VideoNode.tsx", 733]], "nudgeSelectedNodes": [["src/app/page.tsx", 1429]], "createVideoContinuation": [["src/components/nodes/VideoNode.tsx", 219]], "duplicateNode": [], "createPictureEdit": [["src/components/nodes/VideoNode.tsx", 396]], "createFirstFrameReference": [["src/components/nodes/VideoNode.tsx", 677]], "attachAssetReferences": [["src/components/AddNodePanel.tsx", 76]], "createVideoFrameCapture": [["src/components/nodes/VideoNode.tsx", 304]], "createStoryScriptPair": [["src/components/CanvasEmptyState.tsx", 49]], "createDirectorAnimationExport": [["src/components/director/DirectorDesk.tsx", 822]], "destroyFirstFrameReference": [["src/components/nodes/VideoNode.tsx", 725]], "addDerivedNode": [["src/components/nodes/ImageNode.tsx", 142], ["src/components/nodes/ImageNode.tsx", 162], ["src/components/nodes/ImageNode.tsx", 187], ["src/components/nodes/VideoNode.tsx", 201]], "createDepthMotionCapture": [["src/components/nodes/VideoNode.tsx", 296]], "duplicateSelectedNodes": [["src/app/page.tsx", 1409], ["src/app/page.tsx", 1680]], "createSubtitleErase": [["src/components/nodes/VideoNode.tsx", 227]], "setEdges": [], "addResourceCohort": [["src/components/AddNodePanel.tsx", 140]], "createAudioSplit": [["src/components/nodes/VideoNode.tsx", 257]], "updateNodeData": [["src/components/StoryboardBoard.tsx", 113], ["src/components/nodes/ImageNode.tsx", 89], ["src/components/nodes/ShotBreakdownNode.tsx", 56], ["src/components/nodes/ShotBreakdownNode.tsx", 70], ["src/components/nodes/ShotBreakdownNode.tsx", 162], ["src/components/nodes/VideoNode.tsx", 125]], "addNodeAtPosition": [["src/components/nodes/VideoNode.tsx", 714]], "ungroupSelectedNodes": [["src/app/page.tsx", 1436]], "removeEdge": [["src/app/page.tsx", 1503]], "removeNode": [], "completeShotBreakdown": [["src/components/nodes/ShotBreakdownNode.tsx", 84]], "removeSelectedNodes": [["src/app/page.tsx", 1380], ["src/app/page.tsx", 1684]], "groupSelectedNodes": [["src/app/page.tsx", 1437]], "createFirstLastFrameReference": [["src/components/nodes/VideoNode.tsx", 679]], "createLongVideoProcess": [["src/components/nodes/VideoNode.tsx", 730]]}
+  gitlog_external_calls: {"duplicateNode": 7, "removeNode": 13, "setEdges": 3, "submitLibTVEditorSessionCommit": 0, "purgeRemovedCanvas": 0, "selectEdges": 0, "selectNodeOutput": 0, "selectNodes": 2}
+  feedback: {"surfaceCount": 13, "entries": [["add-node-panel", "AddNodePanel", "status-line"], ["add-resource-upload", "AddNodePanel", "status-line"], ["video-clip-panel", "VideoClipEditPanel", "status-line"], ["subtitle-erase-panel", "SubtitleErasePanel", "node-state"], ["smart-matting-panel", "VideoNode", "node-state"], ["shot-breakdown-card", "ShotBreakdownNode", "node-state"], ["editor-session-commit", "canvasStore.submitLibTVEditorSessionCommit", "none"], ["asset-reference-attach", "canvasStore.attachAssetReferences", "none"], ["annotate-toolbar", "ImageAnnotateToolbar", "none"], ["share-overlay", "TopNavBar.SharePanel", "status-line"], ["agent-drawer-status", "AgentDrawer", "status-line"], ["project-menu", "TopNavBar.ProjectMenu", "status-line"], ["canvas-empty-chips", "CanvasEmptyState", "status-line"]], "storeBacked": [["editor-session-commit", "canvasStore.submitLibTVEditorSessionCommit", "none"], ["asset-reference-attach", "canvasStore.attachAssetReferences", "none"]]}
+  recycleAttrs: ["data-recycle-check", "data-recycle-empty", "data-recycle-item", "data-recycle-panel", "data-recycle-restore", "data-recycle-restore-selected", "data-recycle-selection"]
+  direct_calls: {"duplicateNode": {"p0": 0, "p1": 1, "n0": 10, "n1": 11, "e0": 11, "e1": 12, "ret": "null"}, "removeNode": {"p0": 0, "p1": 1, "n0": 10, "n1": 9, "e0": 11, "e1": 10, "ret": "null"}, "setEdges（不带 flag）": {"p0": 0, "p1": 0, "n0": 10, "n1": 10, "e0": 11, "e1": 11, "ret": "null"}, "setEdges（带 flag）": {"p0": 0, "p1": 1, "n0": 10, "n1": 10, "e0": 11, "e1": 11, "ret": "null"}, "submitLibTVEditorSessionCommit": {"p0": 0, "p1": 1, "n0": 10, "n1": 10, "e0": 11, "e1": 11, "ret": "{\"status\": \"accepted\", \"historyPushed\": true, \"normalizedDraft\": \"x\", \"normalizedCurrent\": \"\"}"}}
+  cmdd: {"n0": 10, "n1": 11, "p0": 0, "p1": 1, "undo_n": 10, "undo_p": 0, "undo_f": 1}
+  recycle_dom: {"panel": true, "buttons": [{"text": "恢复", "restore": true, "restoreSelected": false}], "items": ["canvas-1"], "empty": false}
+  recycle_empty_first: {"panel": true, "buttons": 0, "items": 0, "empty": true}
+  recycle_after_restore: {"items": 0, "empty": true}
+  recycle_removed_before: ["canvas-1"]
+  recycle_removed_after: []
+
+=== 判据 ===
+  FAIL  C1 交叉表：记账 33 = LibTV 29 / 零入口 4；不记账 21 = 17 / 4
+        {"acct_total": 34, "acct_libtv": 30, "acct_dead": ["duplicateNode", "removeNode", "setEdges", "submitLibTVEditorSessionCommit"], "noacct_total": 21, "noacct_libtv": 17, "noacct_dead": ["purgeRemovedCanvas", "selectEdges", "selectNodeOutput", "selectNodes"]}
+  PASS  C2 四个零入口记账命令点名；submitLibTVEditorSessionCommit 全 src/ 零调用且从未调用过
+        {"dead": ["duplicateNode", "removeNode", "setEdges", "submitLibTVEditorSessionCommit"], "submitHits": [], "gitlog": 0, "others": {"duplicateNode": ["FrameOS", "Jimeng"], "removeNode": ["FrameOS", "Jimeng"], "setEdges": ["FrameOS"], "submitLibTVEditorSessionCommit": []}}
+  PASS  C3 别名映射 3 个；用 741 的运行时事实反证 census（setNodes 必须有 LibTV 入口）
+        {"aliases": {"setNodes": ["setStoreNodes"], "addEdge": ["addStoreEdge"], "setViewport": ["setStoreViewport"]}, "setNodesLibTV": [["src/app/page.tsx", 1127], ["src/app/page.tsx", 1144], ["src/app/page.tsx", 1594], ["src/app/page.tsx", 1600]]}
+  PASS  C4 零入口命令直调：3 个无条件记账，setEdges 需带 recordHistory 才记（承 741 的条件记账）
+        {"duplicateNode": {"p0": 0, "p1": 1, "n0": 10, "n1": 11, "e0": 11, "e1": 12, "ret": "null"}, "removeNode": {"p0": 0, "p1": 1, "n0": 10, "n1": 9, "e0": 11, "e1": 10, "ret": "null"}, "setEdges（不带 flag）": {"p0": 0, "p1": 0, "n0": 10, "n1": 10, "e0": 11, "e1": 11, "ret": "null"}, "setEdges（带 flag）": {"p0": 0, "p1": 1, "n0": 10, "n1": 10, "e0": 11, "e1": 11, "ret": "null"}, "submitLibTVEditorSessionCommit": {"p0": 0, "p1": 1, "n0": 10, "n1": 10, "e0": 11, "e1": 11, "ret": "{\"status\": \"accepted\", \"historyPushed\": true, \"normalizedDraft\": \"x\", \"normalizedCurrent\": \"\"}"}}
+  PASS  C5 Cmd+D 走 duplicateSelectedNodes：节点 +1、past +1、Cmd+Z 逐项撤回
+        {"n0": 10, "n1": 11, "p0": 0, "p1": 1, "undo_n": 10, "undo_p": 0, "undo_f": 1}
+  PASS  C6 回收站真有内容：每个按钮都是「恢复」、点它真的回来了 ⟹ purgeRemovedCanvas 零入口与 UI 自洽
+        {"emptyFirst": {"panel": true, "buttons": 0, "items": 0, "empty": true}, "dom": {"panel": true, "buttons": [{"text": "恢复", "restore": true, "restoreSelected": false}], "items": ["canvas-1"], "empty": false}, "removedBefore": ["canvas-1"], "afterRestore": {"items": 0, "empty": true}, "removedAfter": [], "attrs": ["data-recycle-check", "data-recycle-empty", "data-recycle-item", "data-recycle-panel", "data-recycle-restore", "data-recycle-restore-selected", "data-recycle-selection"]}
+  PASS  C7 反馈清单 13 个 surface，登记了那条从不执行的 submitLibTVEditorSessionCommit
+        {"surfaceCount": 13, "entries": [["add-node-panel", "AddNodePanel", "status-line"], ["add-resource-upload", "AddNodePanel", "status-line"], ["video-clip-panel", "VideoClipEditPanel", "status-line"], ["subtitle-erase-panel", "SubtitleErasePanel", "node-state"], ["smart-matting-panel", "VideoNode", "node-state"], ["shot-breakdown-card", "ShotBreakdownNode", "node-state"], ["editor-session-commit", "canvasStore.submitLibTVEditorSessionCommit", "none"], ["asset-reference-attach", "canvasStore.attachAssetReferences", "none"], ["annotate-toolbar", "ImageAnnotateToolbar", "none"], ["share-overlay", "TopNavBar.SharePanel", "status-line"], ["agent-drawer-status", "AgentDrawer", "status-line"], ["project-menu", "TopNavBar.ProjectMenu", "status-line"], ["canvas-empty-chips", "CanvasEmptyState", "status-line"]], "storeBacked": [["editor-session-commit", "canvasStore.submitLibTVEditorSessionCommit", "none"], ["asset-reference-attach", "canvasStore.attachAssetReferences", "none"]]}
+
+写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch742-2026-10-01/runtime-audit.json
+
+判据 6/7

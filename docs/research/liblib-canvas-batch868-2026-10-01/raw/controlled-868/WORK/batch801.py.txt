@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch801.py", line 459, in <module>
+    sys.exit(main())
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch801.py", line 323, in main
+    assert nPass == len(checks), (
+AssertionError: ★ 基线有 1 项红（['S10:★★ 记账：本批**没改** `src/`']）⟹ 阴性对照没意义

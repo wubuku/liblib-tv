@@ -99,6 +99,17 @@ const AGE_OPTIONS = ["儿童", "少年", "青年", "中年", "老年"];
 const CULTURE_OPTIONS_MINE = ["东亚", "欧美", "中东", "非洲", "其他"];
 const CULTURE_OPTIONS_OFFICIAL = ["东亚", "欧美", "中东", "非洲", "奇幻"];
 
+// ★★★ Batch 868：源站 i18n **逐字**（batch 827 raw/source-827-i18n.json）：
+//   ★ `characterStudioQuickAgeTip`     = "生成其他年龄版本"
+//   ★ `characterStudioAgeVersionName`  = "{name}{age}版"
+//   ★ `characterStudioAge*` 的档位      = 默认 / 幼年 / 少年 / 青年 / 中年 / 老年
+// ★ ⇒ 所以「生成其他年龄版本」这件事在**源站是真实存在的功能**，
+//   ⟹ ⟹ 生成物的名字**有逐字依据**（`{name}{age}版`），档位**也有逐字依据**。
+// ★ ★★ 源站的「生成」是**云端真实生图** ⟹ ⟹ clone **不触发任何真实生成**
+//   ⟹ ⟹ ⟹ ⟹ ⇒ 这里做**本地等价**：按档位**派生**出年龄版本条目（CLONE_DECISION）。
+// ★ ★★ 注意：源站档位里的「默认」是**基线**（不是另一个年龄）⟹ ⟹ 不参与派生。
+const STUDIO_AGE_TIERS = ["幼年", "少年", "青年", "中年", "老年"] as const;
+
 // ★ 角色名 → 筛选标签（本地 mock；★ 非源站采样 ⟹ 只用于让筛选**真的能筛出东西**）
 const tagsFor = (name: string) => {
   const gender = /女|母|千金|少女/.test(name)
@@ -173,6 +184,14 @@ export function CharacterLibraryPanel({
   //   ★ 源站的「保存」会把改名存进服务端 ⟹ clone 没有服务端 ⟹ 落本地，
   //   ⟹ 且**不**碰任何积分/生成副作用。
   const [renames, setRenames] = useState<Record<string, string>>({});
+  // ★★★ Batch 868：点「生成其他年龄版本」派生出来的**年龄版本**条目。
+  //   ★ 源站是真的云端生图 ⟹ ⟹ clone **不触发** ⟹ ⟹ 这里只**本地派生**条目
+  //   ⟹ ⟹ ⟹ ⟹ ⇒ 名字按源站逐字模板 `{name}{age}版`（★ 依据见 STUDIO_AGE_TIERS 上面）。
+  //   ★ `baseId` 指向**基角色** ⟹ ⟹ 再次点击时**替换**同一基角色的那一组版本
+  //   ⟹ ⟹ ⟹ ⟹ ⇒ 名字不会叠成「XX青年版少年版」。
+  const [ageVariants, setAgeVariants] = useState<
+    { id: string; name: string; imageUrl: string; baseId: string; age: string }[]
+  >([]);
 
   const viewportRef = useRef<HTMLDivElement | null>(null);
   // ★ 源站的 track 是 `absolute left-1/2` ⟹ **当前项永远居中**。
@@ -217,9 +236,13 @@ export function CharacterLibraryPanel({
   };
 
   // ★★ Batch 840：显示用的角色表 = 原表 ＋ 大编辑器里改过的名字
+  // ★★ Batch 868：＋ **年龄版本**（点「生成其他年龄版本」派生出来的那些）
   const roster = useMemo(
-    () => characters.map((c) => ({ ...c, name: renames[c.id] ?? c.name })),
-    [renames],
+    () => [
+      ...characters.map((c) => ({ ...c, name: renames[c.id] ?? c.name })),
+      ...ageVariants,
+    ],
+    [renames, ageVariants],
   );
 
   const visible = roster.filter((character) => matches(character.name));
@@ -246,15 +269,59 @@ export function CharacterLibraryPanel({
   const current = items[currentIndex];
   const isRealRole = Boolean(current && current.id !== CREATE_SLOT);
 
+  // ★★★ Batch 868：「生成其他年龄版本」⟹ ⟹ 之前这枚按钮**没有 onClick**
+  //   ⟹ ⟹ ★ 它是**死按钮** ⟹ ⟹ ★ 而 `verify-liblib-batch367.py` 早就
+  //   ⟹ ⟹ 把它当成「自称可点却没有接线」的候选 ⟹ ⟹ ⟹ ⟹ ⇒ 那条门禁**一直是红的**
+  //   ⟹ ⟹ ⟹ ⟹ ⇒ 而 367 **从来不在回归清单里** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这次红**没人看见**。
+  // ★ 源站逐字依据：`characterStudioQuickAgeTip` / `characterStudioAgeVersionName`。
+  const ageTierOf = (name: string) => {
+    // ★ 筛选档位（儿童/少年/青年/中年/老年）⟹ ⟹ 映射到**源站**档位（幼年/少年/…）
+    const age = tagsFor(name)[1];
+    return age === "儿童" ? "幼年" : age;
+  };
+  const handleQuickAge = () => {
+    if (!isRealRole) return;
+    const currentCharacter = roster.find((item) => item.id === currentId);
+    if (!currentCharacter) return;
+    // ★ 若当前选中的是**版本本身** ⟹ ⟹ 回到它的**基角色**再派生
+    const baseId =
+      (currentCharacter as { baseId?: string }).baseId ?? currentCharacter.id;
+    const base = roster.find((item) => item.id === baseId) ?? currentCharacter;
+    const baseTier = ageTierOf(base.name);
+    const created = STUDIO_AGE_TIERS.filter((tier) => tier !== baseTier).map(
+      (tier) => ({
+        id: `character-age-${base.id}-${tier}`,
+        name: `${base.name}${tier}版`,
+        imageUrl: base.imageUrl,
+        baseId: base.id,
+        age: tier,
+      }),
+    );
+    if (created.length === 0) return;
+    setAgeVariants((prev) => [
+      ...prev.filter((variant) => variant.baseId !== base.id),
+      ...created,
+    ]);
+    // ★ 切到**第一个新版本** ⟹ ⟹ 用户立刻看得见「多出来了」
+    setCurrentId(created[0].id);
+    setPicked([]);
+  };
+
   // ★★ Batch 839：资产视图的内容
   //   ★ 源站那 4 张图是**同一个角色**的四种视图（立绘／近景／表情／三视图）⟹
   //   ★ 仓库里只有 `character-detail-1..4.webp` **一张角色**的 4 张 ⟹
   //   ⟹ 首个角色用这 4 张，**其余角色复用它自己的缩略图**（与
   //   `docs/research/components/CharacterLibraryPanel.spec.md` 的既有约定一致）。
   const [voicePicked, setVoicePicked] = useState(false);
+  // ★ ★★ Batch 868：**补上 `roster` 依赖**（★ eslint 报 `preserve-manual-memoization`）
+  //   ★ 原因：★ 本批把 `roster` 的组成改了（★ ＋ `ageVariants`）⟹ ⟹ ⟹ ⟹ ⇒
+  //   ★ 而这里的 `useMemo` **只**依赖 `assetsId` ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒
+  //   ★ ★★ 于是「改名／派生了年龄版本」⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ `roster` 变了
+  //   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 而 `assetsCharacter` **不会**重算
+  //   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★★ 那是个**真 bug**（★ 不是风格问题）
   const assetsCharacter = useMemo(
     () => roster.find((item) => item.id === assetsId) ?? null,
-    [assetsId],
+    [assetsId, roster],
   );
   const assetImages = useMemo(() => {
     const character = assetsCharacter;
@@ -265,7 +332,7 @@ export function CharacterLibraryPanel({
       );
     }
     return [character.imageUrl, character.imageUrl, character.imageUrl, character.imageUrl];
-  }, [assetsCharacter, roster]);
+  }, [assetsCharacter]);
 
   // ★ 把焦点移进资产视图容器（★ clone 决策）
   //   ★ 源站的资产视图**没有**单独的返回入口 ⟹ 不发明返回按钮 ⟹
@@ -633,6 +700,7 @@ export function CharacterLibraryPanel({
                     type="button"
                     aria-label="生成其他年龄版本"
                     data-character-studio-quick
+                    onClick={handleQuickAge}
                     className="cs-quick"
                   >
                     <UserPlus size={16} />

@@ -1,0 +1,364 @@
+{
+ "说明": "★ 真实失败原因从各门禁**自己落的 JSON**里抽 ⟹ ⟹ 不重跑 ⟹ ⟹ 便宜且更准",
+ "红条数": 29,
+ "未识别": [
+  "664.py",
+  "674.py",
+  "681.py",
+  "691.py",
+  "692.py",
+  "801.py"
+ ],
+ "逐条": {
+  "657.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "① 显式失败字段「failures」",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "the-two-landing-probes-do-not-agree-with-each-other"
+   ],
+   "基线verdict(★ 不可信)": "rc=1 '  [a number is allowed to be scary as long as the label on it is accurate] ／ 5 checks, 1 failures ／ FAILED: the-two-landing-probes-do-not-agree-with-each-other"
+  },
+  "664.py": {
+   "rc": 1,
+   "失败条数": 0,
+   "抽取形状": "★ 没找到产物目录",
+   "产物": [],
+   "失败": [],
+   "基线verdict(★ 不可信)": "rc=1 hecks passed ／ FAILED: the-blind-population-is-22-elements-and-13-cannot-even-be-named ／ FAILED: the-blind-population-includes-the-playhead-and-the-aspect-frame"
+  },
+  "674.py": {
+   "rc": 1,
+   "失败条数": 0,
+   "抽取形状": "★ 没找到产物目录",
+   "产物": [],
+   "失败": [],
+   "基线verdict(★ 不可信)": "rc=1 5/7 checks passed ／ FAILED: the-two-folding-partitions-are-not-nested ／ FAILED: 670s-66-is-a-name-count-not-a-control-count"
+  },
+  "681.py": {
+   "rc": 1,
+   "失败条数": 0,
+   "抽取形状": "★ 没找到产物目录",
+   "产物": [],
+   "失败": [],
+   "基线verdict(★ 不可信)": "rc=1  line 214, in <genexpr> ／ all(int(zs[k][\"railZ\"]) == 30 and int(zs[k][\"barZ\"]) == 40 for k in keys) ／ ValueError: invalid literal for int() with base 10: 'auto'"
+  },
+  "691.py": {
+   "rc": 1,
+   "失败条数": 0,
+   "抽取形状": "★ 没找到产物目录",
+   "产物": [],
+   "失败": [],
+   "基线verdict(★ 不可信)": "rc=1 ecks passed ／ FAILED: census-only-one-derived-pixel-length-exists-and-690-found-it ／ FAILED: a-second-and-unrelated-mechanism-makes-integers-come-out-fractional"
+  },
+  "692.py": {
+   "rc": 1,
+   "失败条数": 0,
+   "抽取形状": "★ 没找到产物目录",
+   "产物": [],
+   "失败": [],
+   "基线verdict(★ 不可信)": "rc=1 nnot distinguish this case from a genuinely simple field] ／ 4/5 checks passed ／ FAILED: only-three-expressions-are-displayed-at-more-than-one-explicit-precision"
+  },
+  "718.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "① 显式失败字段「failures」",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "only-899-is-paired-the-rest-are-one-sided: {'min': 15, 'max': 23}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "729.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "① 显式失败字段「failures」",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "two-contracts-coexist-46-data-inert-and-12-toast-only: {'src/app/project/page.tsx': 9, 'src/components/CanvasEmptyState.tsx': 1, 'src/components/TopNavBar.tsx': 1}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "730.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "① 显式失败字段「failures」",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "all-46-carrying-tags-are-buttons-and-729s-45-was-a-scanner-artifact: [{'file': 'src/components/TopNavBar.tsx', 'line': 173, 'attrs': 'type=\"button\" aria-label=\"开通会员 限时 45 折\" title=\"开通会员为付费操作，克隆侧不提供\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\"'}, {'file': 'src/components/TopNavBar.tsx', 'line': 190, 'attrs': 'type=\"button\" aria-label=\"积分余额\" title=\"积分余额（读数，无可点操作）\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\"'}]"
+   ],
+   "基线verdict(★ 不可信)": "rc=1 ton\" aria-label=\"积分余额\" title=\"积分余额（读数，无可点操作）\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\"'}]"
+  },
+  "735.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "① 显式失败字段「failures」",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "C7 特效库 Tab 260 步 77 停靠 / 27 名"
+   ],
+   "基线verdict(★ 不可信)": "rc=1 } ／ [PASS] C10 4 个门控写点仍不出现  ⟵ [] ／ 9/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch735-2026-10-01/runtime-audit.json"
+  },
+  "737.py": {
+   "rc": 1,
+   "失败条数": 5,
+   "抽取形状": "① 显式失败字段「failures」",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "C1 静态 195 写点",
+    "C2 flyout 走 createPortal（IconRail.tsx:308）",
+    "C3 打开「添加角色」flyout：根内不变、根外 +11",
+    "C6 台外 Shift+Tab：起点「项目菜单」时 2 步内进台内、此后 18 步在台内（可复现）",
+    "C10 台外 36 枚（关闭态）/ 47 枚（flyout 开着），其中 11 枚是连线删除手柄"
+   ],
+   "基线verdict(★ 不可信)": "rc=1 着 38 枚；删除连线 11 枚；TV Director 1 枚 ／ 5/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch737-2026-10-01/runtime-audit.json"
+  },
+  "740.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "① 显式失败字段「failures」",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "C1 源码四处在位（派发 / 监听 / pushHistory / undo 清空选区）"
+   ],
+   "基线verdict(★ 不可信)": "rc=1 的删除  ⟵ 另一张画布边 0→0；原画布删后仍为 10（未被撤） ／ 7/8 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch740-2026-10-01/runtime-audit.json"
+  },
+  "742.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "{\"acct_total\": 34, \"acct_libtv\": 30, \"acct_dead\": [\"duplicateNode\", \"removeNode\", \"setEdges\", \"submitLibTVEditorSessionCommit\"], \"noacct_total\": 21, \"noacct_libtv\": 17, \"noacct_dead\": [\"purgeRemovedCanvas\", \"selectEdges\", \"selectNodeOutput\", \"selectNodes\"]}"
+   ],
+   "基线verdict(★ 不可信)": "rc=1 attachAssetReferences\", \"none\"]]} ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch742-2026-10-01/runtime-audit.json ／ 判据 6/7"
+  },
+  "743.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "{\"commands\": 34, \"sites\": 46, \"byFile\": {\"src/components/nodes/VideoNode.tsx\": 16, \"src/app/page.tsx\": 13, \"src/components/StoryboardBoard.tsx\": 1, \"src/components/nodes/ImageNode.tsx\": 5, \"src/components/nodes/ShotBreakdownNode.tsx\": 4, \"src/components/Canvas"
+   ],
+   "基线verdict(★ 不可信)": "rc=1 \"重做视频处理\"], \"outsideSeedOnly\": []} ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch743-2026-10-01/runtime-audit.json ／ 判据 5/6"
+  },
+  "746.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "{\"longVideoModeLine\": 110, \"longVideoModeSrc\": \"{ id: \\\"long-video\\\", label: \\\"超长视频\\\", disabled: true, inMenu: false, badge: \\\"Beta\\\" },\", \"effectsTriggerLine\": 393, \"isLongVideoLine\": 172, \"chipBranchLines\": [179, 225, 268, 282], \"setModeLongVideoLines\": [226"
+   ],
+   "基线verdict(★ 不可信)": "rc=1 通（芯片路径，past +1、节点 +12、边 +22）\"}] ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch746-2026-10-01/runtime-audit.json ／ 判据 10/11"
+  },
+  "747.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "{\"decl_createVideoContinuation\": [324, 1822], \"decl_clearVideoContinuation\": [374, 3133], \"decl_createPictureEdit\": [353, 2774], \"uiMinDurationLine\": 23, \"uiMinDurationSrc\": \"const MIN_DURATION = 4;\", \"uiClampLine\": 101, \"storeGuardLine\": 1846, \"storeGuardSrc\""
+   ],
+   "基线verdict(★ 不可信)": "rc=1 , \"delta\": \"742 验出零 UI 入口，从未触发\"}] ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch747-2026-10-01/runtime-audit.json ／ 判据 6/7"
+  },
+  "762.py": {
+   "rc": 1,
+   "失败条数": 2,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "verify-report.json"
+   ],
+   "失败": [
+    "{\"label\": \"静态：两个不可达元素在源码里都是 input[type=file] + className=hidden\", \"pass\": false, \"got\": null}",
+    "{\"label\": \"静态：rail 那个 input 有 aria-label、desk 那个没有（记为措辞不一致）\", \"pass\": false, \"got\": null}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "765.py": {
+   "rc": 1,
+   "失败条数": 3,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "verify-report.json"
+   ],
+   "失败": [
+    "{\"label\": \"★ 台账历史 U+FFFD 仍是 9 个（522/583/587 未被动）\", \"pass\": false, \"got\": 0}",
+    "{\"label\": \"★ U+FFFD 仍只落在 522/583/587 三行\", \"pass\": false, \"got\": []}",
+    "{\"label\": \"★ 台账行数 = 628（追加一行，不加前导空行）\", \"pass\": false, \"got\": 734}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "766.py": {
+   "rc": 1,
+   "失败条数": 3,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "verify-report.json"
+   ],
+   "失败": [
+    "{\"label\": \"★ 台账历史 U+FFFD 仍是 9 个\", \"pass\": false, \"got\": 0}",
+    "{\"label\": \"★ U+FFFD 仍只落在 522/583/587 三行\", \"pass\": false, \"got\": []}",
+    "{\"label\": \"★ 台账行数 = 629（追加一行）\", \"pass\": false, \"got\": 734}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "771.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "verify-report.json"
+   ],
+   "失败": [
+    "{\"label\": \"台账：历史 U+FFFD 仍在 9 处、且分布未变\", \"pass\": false, \"got\": {\"count\": 0}}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "772.py": {
+   "rc": 1,
+   "失败条数": 1,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "verify-report.json"
+   ],
+   "失败": [
+    "{\"label\": \"台账：历史 U+FFFD 仍在 9 处\", \"pass\": false, \"got\": {\"count\": 0}}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "773.py": {
+   "rc": 1,
+   "失败条数": 2,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "verify-report.json"
+   ],
+   "失败": [
+    "{\"label\": \"产物：静态层与验收器重读的源码一致\", \"pass\": false, \"got\": {\"got\": [483, 491, 502, 507, 513, 526, 541, 550]}}",
+    "{\"label\": \"台账：历史 U+FFFD 仍在 9 处\", \"pass\": false, \"got\": {\"count\": 0}}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "775.py": {
+   "rc": 1,
+   "失败条数": 3,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "verify-report.json"
+   ],
+   "失败": [
+    "{\"label\": \"静态：守卫在第 487 行（R102：抹白不删，注释不漂行号）\", \"pass\": false, \"got\": 546, \"want\": 487}",
+    "{\"label\": \"静态：6 个浮层 panel 选择器都在源码里\", \"pass\": false, \"got\": false}",
+    "{\"label\": \"产物：汇编器与我的静态读数**一致**（独立实现对上了）\", \"pass\": false, \"got\": 487, \"want\": 546}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "777.py": {
+   "rc": 1,
+   "失败条数": 3,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "runtime-audit.json",
+    "verify-report.json"
+   ],
+   "失败": [
+    "verdict: {'不可逆': '**不成立**（非输入框落点 2/2 能撤销）', '跨reload持久化': '**成立**（且撤销历史不保留）', '无提示': '**成立**，但比原话更具体：零入口 + 零确认 + 「无命令反馈」', '新缺陷': '**输入框落点上撤销不可用**（D1d）'}",
+    "{\"label\": \"产物：汇编器与我**独立算出的**守卫行号一致\", \"pass\": false, \"got\": 487, \"want\": 546}",
+    "{\"label\": \"产物：汇编器与我独立算出的 Cmd+Z 行号一致\", \"pass\": false, \"got\": 506, \"want\": 565}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "778.py": {
+   "rc": 1,
+   "失败条数": 3,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "runtime-audit.json",
+    "verify-report.json"
+   ],
+   "失败": [
+    "verdict: {'D1d范围': '**没有被收窄** —— 全部 53 个可用控件、两族 2/2 成立', '死键范围': '**只有 range 族 26 个**（number 族 27 个有原生撤销）', '守卫能否整体去掉': '**不能** —— 去掉会让 number 用户的 `Cmd+Z` 撤掉上一个文档动作（数据错）', '出路': '**存在** —— blur 之后两族都 2/2 可撤'}",
+    "{\"label\": \"产物：audit 的守卫行号 = 静态重算\", \"pass\": false, \"got\": 487, \"want\": 546}",
+    "{\"label\": \"产物：audit 的 Cmd+Z 行号 = 静态重算\", \"pass\": false, \"got\": 506, \"want\": 565}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "779.py": {
+   "rc": 1,
+   "失败条数": 4,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "runtime-audit.json",
+    "verify-report.json"
+   ],
+   "失败": [
+    "verdict: {'776的机制归属': '**对**（第 2/3 次确实被 hook 的 stopPropagation 吞）', '776的推论': '**错** —— 后面还有第二道吞嘴，(a) 单独做净效果为零', '「按一次就关掉面板」': '**不是两处改动能做到的** —— 阶梯 `:553` 自己有一档 `activeGesture`，需要第三个**产品决定**', '与778的汇合': '两批独立得到同一结论：修法必须**按控件类型分流**'}",
+    "{\"label\": \"产物：audit 的阶梯档位 = 静态重算\", \"pass\": false, \"got\": {\"gesture\": 553, \"export\": 557, \"follow\": 564, \"close\": 568}, \"want\": {\"gesture\": 631, \"export\": 635, \"follow\": 642, \"close\": 646}}",
+    "{\"label\": \"产物：audit 的守卫行号 = 静态重算\", \"pass\": false, \"got\": 487, \"want\": 546}",
+    "{\"label\": \"产物：audit 的阶梯闸门行号 = 静态重算\", \"pass\": false, \"got\": 549, \"want\": 627}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "780.py": {
+   "rc": 1,
+   "失败条数": 3,
+   "抽取形状": "② checks 里 ok=false",
+   "产物": [
+    "runtime-audit.json",
+    "verify-report.json"
+   ],
+   "失败": [
+    "verdict: {'777的「顺手」': '**不成立** —— 焦点在控件上时 Delete/Backspace 删不掉', 'D1d严重度': '**下调 中-高 → 中**（缺陷本身不撤销：53 个控件、2/2 族）', '`:487`放行判据': '★ **不是「控件类型」，是「该键在该类型上有没有原生兜底」**', 'D1f范围': '**扩展** —— `Meta+z` 与 `Delete`/`Backspace` 是同一缺陷的两种键，落在同样 26 个滑杆上 ⟹ 合并', '未测': '★ `Meta+c`/`Meta+v`（在 gesture 控件上）本批未测'}",
+    "{\"label\": \"产物：audit 的守卫行号 = 静态重算\", \"pass\": false, \"got\": 487, \"want\": 546}",
+    "{\"label\": \"产物：audit 的 Delete 分支行号 = 静态重算\", \"pass\": false, \"got\": 517, \"want\": 595}"
+   ],
+   "基线verdict(★ 不可信)": "通过"
+  },
+  "801.py": {
+   "rc": 1,
+   "失败条数": 0,
+   "抽取形状": "★ 没找到产物目录",
+   "产物": [],
+   "失败": [],
+   "基线verdict(★ 不可信)": "rc=1 b-tv/scripts/verify-liblib-batch801.py\", line 323, in main ／ assert nPass == len(checks), ( ／ AssertionError: ★ 基线有 1 项红（['S10:★★ 记账：本批**没改** `src/`']）⟹ 阴性对照没意义"
+  },
+  "868.py": {
+   "rc": 1,
+   "失败条数": 2,
+   "抽取形状": "① 显式失败字段「失败」",
+   "产物": [
+    "runtime-audit.json"
+   ],
+   "失败": [
+    "source:every-gate-touching-the-tracked-sources-is-listed  ⟵ {'缺口': ['35.py', '36.py', '360.py', '364.py', '367.py', '368.py', '369.py', '37.py', '38.py', '39.py', '40.py', '41.py', '42.py', '43.py', '437.py', '44.py', '441.py', '442.py', '443.py', '445.py', '447.py', '449.py', '45.py', '46.py', '467.py', '47.py', '470.py', '48.py', '49.py', '50.py', '513.py', '59.py', '599.py', '611.py', '612.py', '613.py', '614.py', '615.py', '616.py', '617.py', '618.py', '619.py', '620.py', '621.py', '622.py', '623.py', '630.py', '641.py', '648.py', '657.py', '662.py', '664.py', '67.mjs', '674.py', '678.py', '68.mjs', '68.py', '681.py', '685.py', '686.py', '687.py', '688.py', '689.py', '69.mjs', '690.py', '691.py', '692.py', '694.py', '695.py', '699.py', '70.mjs', '700.py', '701.py', '71.mjs', '718.py', '72.mjs', '720.py', '721.py', '722.py', '727.py', '728.py', '729.py', '73.mjs', '730.py', '731.py', '732.py', '733.py', '734.py', '735.py', '736.py', '737.py', '738.py', '739.py', '74.mjs', '740.py', '741.py', '742.py', '743.py', '744.py', '746.py', '747.py', '748.py', '749.py', '75.mjs', '750.py', '751.py', '752.py', '753.py', '754.py', '755.py', '756.py', '757.py', '758.py', '759.py', '76.mjs', '76.py', '760.py', '761.py', '762.py', '763.py', '764.py', '765.py', '766.py', '767.py', '768.py', '769.py', '77.py', '770.py', '771.py', '772.py', '773.py', '774.py', '775.py', '776.py', '777.py', '778.py', '779.py', '78.py', '780.py', '781.py', '782.py', '783.py', '784.py', '785.py', '786.py', '787.py', '788.py', '789.py', '79.mjs', '790.py', '791.py', '792.py', '793.py', '794.py', '795.py', '796.py', '797.py', '798.py', '799.py', '80.mjs', '800.py', '801.py', '802.py', '806.py', '807.py', '808.py', '809.py', '81.mjs', '810.py', '811.py', '812.py', '813.py', '814.py', '815.py', '817.py', '818.py', '819.py', '82.mjs', '820.py', '821.py', '822.py', '823.py', '828.py', '83.mjs', '830.py', '833.py', '834.py', '835.py', '837.py', '838.py', '839.py', '84.mjs', '840.py', '841.py', '85.mjs', '851.py', '852.py', '853.py', '854.py', '855.py', '856.py', '857.py', '858.py', '859.py', '86.mjs', '860.py', '861.py', '862.py', '863.py', '864.py', '865.py', '866.py', '868.py', '87.mjs', '88.mjs', '89.mjs', '90.mjs', '91.mjs', '92.mjs', '93.py', '94.py', '95.py', '96.py'], '口径': '★ 文件名 ∪ 目录名 ∪ src 上的 glob/rglob', '说明': '★ 这些门禁**碰**导演台源文件 ⟹ ⟹ 它们的红**不能藏**'}",
+    "source:the-new-gates-baseline-is-in-the-repo  ⟵ /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch868-2026-10-01/raw/new-gates-868.json"
+   ],
+   "基线verdict(★ 不可信)": "rc=1 ce:the-new-gates-baseline-is-in-the-repo  ⟵ /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch868-2026-10-01/raw/new-gates-868.json"
+  }
+ }
+}

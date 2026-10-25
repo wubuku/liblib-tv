@@ -1,0 +1,10 @@
+FAIL two-contracts-coexist-46-data-inert-and-12-toast-only
+PASS one-component-uses-both-contracts
+PASS data-inert-never-pairs-with-disabled-or-aria-disabled
+PASS the-three-unwired-chips-carry-no-marker-at-all
+PASS all-three-unwired-chips-show-the-identical-toast
+PASS a-contract-a-button-is-marked-but-still-focusable
+PASS the-wired-chip-does-create-nodes-so-the-control-group-is-real
+  -> two-contracts-coexist-46-data-inert-and-12-toast-only: {'src/app/project/page.tsx': 9, 'src/components/CanvasEmptyState.tsx': 1, 'src/components/TopNavBar.tsx': 1}
+
+6/7 通过

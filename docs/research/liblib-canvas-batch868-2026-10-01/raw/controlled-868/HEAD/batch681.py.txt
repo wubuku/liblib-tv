@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch681.py", line 288, in <module>
+    sys.exit(main())
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch681.py", line 214, in main
+    all(int(zs[k]["railZ"]) == 30 and int(zs[k]["barZ"]) == 40 for k in keys)
+  File "/Users/yangjiefeng/Documents/wubuku/liblib-tv/scripts/verify-liblib-batch681.py", line 214, in <genexpr>
+    all(int(zs[k]["railZ"]) == 30 and int(zs[k]["barZ"]) == 40 for k in keys)
+ValueError: invalid literal for int() with base 10: 'auto'

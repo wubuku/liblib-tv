@@ -1,0 +1,8 @@
+  PASS the-help-entry-is-occluded-by-the-timeline-track-list  {'center': [24, 1126], 'rect': [8, 1110, 32, 32], 'stackDepth': 22, 'targetIsTopmost': False, 'targetIndexInStack': 8, 'topFive': [{'el': 'button.group.relative.z-[1  [found structurally with elementsFromPoint, not by clicking — 649's method, and the reason it found w]
+  PASS the-plain-click-timeout-was-playwright-refusing-an-occluded-target  {'landed': {'plain': False, 'force': True, 'dispatch': True, 'force-repeat': True}, 'errors': {'plain': 'TimeoutError: Locator.click: Timeout 6000ms exceeded.\nCall   [a probe that refuses to act is not a broken probe; sometimes it is the only honest witness in the ro]
+  FAIL the-two-landing-probes-do-not-agree-with-each-other  {'forceRun1': 'moved/+0/-0/sig+0/sig-0/geo28/1401->1378', 'forceRun2': 'moved/+0/-0/sig+0/sig-0/geo28/1401->1378', 'identical': True, 'dispatchOutcome': 'opened', 'd  [two probes that both 'succeeded' and disagree is a stronger signal than either one alone]
+  PASS the-four-scene-markers-are-in-src-and-in-no-dom-state  {'predicted': ['data-director-scene-settings-section', 'data-director-scene-display-settings', 'data-director-scene-camera-actions', 'data-director-scene-toggle'], '  [the prediction was wrong in an informative way: it guessed the right suspect for the wrong reason]
+  PASS the-never-observed-markers-are-a-number-not-an-implication  {'markersInSrc': 490, 'observedInTenStates': 210, 'inSrcButNeverObserved': 281, 'aSample': ['data-director-ai-import-history', 'data-director-ai-import-history-item'  [a number is allowed to be scary as long as the label on it is accurate]
+
+5 checks, 1 failures
+  FAILED: the-two-landing-probes-do-not-agree-with-each-other

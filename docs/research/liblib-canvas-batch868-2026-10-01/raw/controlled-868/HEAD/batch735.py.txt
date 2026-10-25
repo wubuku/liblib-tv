@@ -1,0 +1,62 @@
+=== 静态扫描 ===
+  data-inert 写点 46 处 / 16 文件（范围外另有 1 处，不在本批范围：[('src/components/frameos/FrameosGroupToolbar.tsx', 257)]）
+
+=== 16 状态普查 ===
+  裸画布                    自身   0  可见   0  非button 0
+  工具箱                    自身   2  可见   2  非button 0
+  生成历史                   自身  10  可见  10  非button 0
+  教程                     自身   4  可见   4  非button 0
+  Agent 抽屉               自身   3  可见   3  非button 0
+  图片卡·编辑面板               自身   7  可见   7  非button 0
+  图片卡·全景面板               自身   5  可见   5  非button 0
+  新视频卡·生成面板              自身   6  可见   6  非button 0
+  [C2] button[title=片段重拍] 命中 0；按可见文本 clicked
+  视频卡·特效菜单               自身  10  可见  10  非button 0
+  视频卡·标记选择               自身  12  可见  12  非button 0
+  视频卡·片段重拍               自身   9  可见   9  非button 0
+  音频卡                    自身   1  可见   1  非button 0
+  智能剪辑卡                  自身   2  可见   2  非button 0
+  脚本生成器卡                 自身   1  可见   1  非button 0
+  风格库                    自身  17  可见   1  非button 0
+  特效库                    自身  25  可见   1  非button 0
+
+=== 叠加 ===
+  [C5] 标记选择 12 + 生成历史 → 22（可见 22）
+  [C5] 坞面板：历史 10 → +教程 4 → +工具箱 4
+
+=== 自然 Tab ===
+  [C7] 特效库 25 枚（可见 1）：Tab 260 步停靠 68 次 / 27 种名
+  [C7] 标记选择 12 枚：Tab 260 步停靠 31 次 / 11 种名
+
+=== 汇总 ===
+  staticSites: 46
+  staticFiles: 16
+  outOfScopeSites: 1
+  states: 16
+  identities: 83
+  nominalTotal: 114
+  nominalPeakName: 特效库
+  nominalPeak: 25
+  nominalPeakVisible: 1
+  visiblePeak: 22
+  invisibleIdentities: 40
+  invisibleInstances: 40
+  styleLibraryInvisible: 16
+  effectsLibraryInvisible: 24
+  nonButtonRoles: 0
+  allFocusable: True
+  gatedHits: []
+
+=== 判据 ===
+  [PASS] C1 静态写点数/文件数  ⟵ 46 处 / 16 文件
+  [PASS] C2 片段重拍入口：title 选择器命中 0  ⟵ {'byTitle': 0, 'byText': 'clicked'}
+  [PASS] C3 片段重拍 6→9 枚  ⟵ {'before': 6, 'after': 9}
+  [PASS] C4 状态数 16  ⟵ 16
+  [PASS] C5 叠加 12+10=22 全可见；坞面板互斥  ⟵ {"markPlusHistory": {"mark": 12, "stacked": 22, "stackedVisible": 22}, "docks": {"history": 10, "plusTutorial": 4, "plusToolbox": 4}}
+  [PASS] C6 40 枚不可见（16+24）且可及名互不相同  ⟵ 40 身份 / 40 枚；风格库 16 特效库 24
+  [FAIL] C7 特效库 Tab 260 步 77 停靠 / 27 名  ⟵ stops=68 distinct=27
+  [PASS] C8 全实例 role=button 且 focus() 成功  ⟵ 非button 0 / focusable 全成功 True
+  [PASS] C9 除 addNode 状态外 store 零写入  ⟵ {}
+  [PASS] C10 4 个门控写点仍不出现  ⟵ []
+
+9/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch735-2026-10-01/runtime-audit.json

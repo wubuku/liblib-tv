@@ -1,0 +1,602 @@
+{
+ "碰被跟踪源文件的门禁数": 223,
+ "清单外": 94,
+ "红条数": 29,
+ "红": [
+  "657.py",
+  "664.py",
+  "674.py",
+  "681.py",
+  "691.py",
+  "692.py",
+  "718.py",
+  "729.py",
+  "730.py",
+  "735.py",
+  "737.py",
+  "740.py",
+  "742.py",
+  "743.py",
+  "746.py",
+  "747.py",
+  "762.py",
+  "765.py",
+  "766.py",
+  "771.py",
+  "772.py",
+  "773.py",
+  "775.py",
+  "777.py",
+  "778.py",
+  "779.py",
+  "780.py",
+  "801.py",
+  "868.py"
+ ],
+ "逐条": [
+  {
+   "batch": "360",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 eview overlay, the annotate canvas and its colour menu. No input silently discards what the user types and no enabled control is left click-dead in any of them."
+  },
+  {
+   "batch": "364",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 364: 11/11 checks passed ／ Video node's cover play button is now declared inert with a title, and the picture-edit panel is reachable and clean."
+  },
+  {
+   "batch": "367",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 + title + cursor:default, no hover), geometry and copy unchanged; the working 'view frame-erase help' hover target was left alone and still reveals its tooltip."
+  },
+  {
+   "batch": "368",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  and copy unchanged; working controls in the same panels were left alone; the three judgment blind spots are closed and each is self-checked in both directions."
+  },
+  {
+   "batch": "369",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 VERAGE_MATRIX.md with an explicit status; no documented path has drifted; and the census proves an audit-script mention is not product wiring (both directions)."
+  },
+  {
+   "batch": "437",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 nvas without touching active canvas or selection, unknown source returns stable null, pending task interrupted by switch is canceled, browser diagnostics clean."
+  },
+  {
+   "batch": "441",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 e scan read-only with expected conflict kinds, smart-matting derived node flagged for the generic 512x288 frame against a 1:1 source, browser diagnostics clean."
+  },
+  {
+   "batch": "442",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 288), landscape sources keep the generic 512x288, extreme ratios fall back and are flagged, video display-string intrinsics drive the policy, diagnostics clean."
+  },
+  {
+   "batch": "443",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 n + contain fit), the fit transform matches §7 formulas, a red marker drawn at the mapped intrinsic point reads back exactly and round-trips, diagnostics clean."
+  },
+  {
+   "batch": "445",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 t checks, session state machine transitions and stable rejections, semantic normalization no-op, local-history budget and gesture coalescing, diagnostics clean."
+  },
+  {
+   "batch": "447",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 title-erase and picture-edit resubmits are no-ops returning the existing target (one node/edge/history each), a different mode still creates, diagnostics clean."
+  },
+  {
+   "batch": "449",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 tion acceptor (node/edge/history land once on the owner canvas) and a submit interrupted by a canvas switch is cancelled with no late commit, diagnostics clean."
+  },
+  {
+   "batch": "467",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 back catalog covers every expected surface, outcome->disposition projection exact (accepted success, no-op inert, rejections error/announce), diagnostics clean."
+  },
+  {
+   "batch": "470",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 port duplicate suppression returns the existing node for the same exportId (no duplicate node/edge/history), missing source is a stable null, diagnostics clean."
+  },
+  {
+   "batch": "513",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 s 10/10 green (round-trip, order/ID retention, runtime stripping, stable rejection reasons, media diagnostics, injected limits); recorded in runtime-audit.json."
+  },
+  {
+   "batch": "611",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 49/49 passed"
+  },
+  {
+   "batch": "612",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 118/118 passed"
+  },
+  {
+   "batch": "614",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS mobile:drawer-above-the-scrim ／ PASS mobile:no-page-errors ／ 48/48 passed"
+  },
+  {
+   "batch": "615",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop:场景-restores-it ／ PASS desktop:geometry-restored  [240, 5.5, 40, 40] ／ 22/22 passed"
+  },
+  {
+   "batch": "616",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 19/19 passed"
+  },
+  {
+   "batch": "618",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop:no-page-errors ／ PASS desktop:no-console-errors ／ 42/42 passed"
+  },
+  {
+   "batch": "620",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS 390-asset-manager:no-page-errors ／ PASS 390-asset-manager:no-console-errors ／ 57/57 passed"
+  },
+  {
+   "batch": "621",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop-1920:no-page-errors ／ PASS desktop-1920:no-console-errors ／ 40/40 passed"
+  },
+  {
+   "batch": "622",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 scrolling  {'controls': 14, 'blocked': [], 'neverInWindow': []} ／ PASS vw1280:the-hidden-part-is-clipped-not-buried  {'hidden': 0, 'covered': []} ／ 47/47 passed"
+  },
+  {
+   "batch": "623",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS vw900:no-page-errors ／ PASS vw900:no-console-errors  {'errs': [], 'filtered': 0} ／ 24/24 passed"
+  },
+  {
+   "batch": "657",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 '  [a number is allowed to be scary as long as the label on it is accurate] ／ 5 checks, 1 failures ／ FAILED: the-two-landing-probes-do-not-agree-with-each-other"
+  },
+  {
+   "batch": "664",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 hecks passed ／ FAILED: the-blind-population-is-22-elements-and-13-cannot-even-be-named ／ FAILED: the-blind-population-includes-the-playhead-and-the-aspect-frame"
+  },
+  {
+   "batch": "674",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 5/7 checks passed ／ FAILED: the-two-folding-partitions-are-not-nested ／ FAILED: 670s-66-is-a-name-count-not-a-control-count"
+  },
+  {
+   "batch": "678",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 搭建的场景'], '1280x1150': ['上传图片', '帮助', '描述想搭建的场景'], '1366x1150': ['帮助', '描述想搭建的场景'], '1440x  [three probe rules, three populations, one order] ／ 6/6 checks passed"
+  },
+  {
+   "batch": "681",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1  line 214, in <genexpr> ／ all(int(zs[k][\"railZ\"]) == 30 and int(zs[k][\"barZ\"]) == 40 for k in keys) ／ ValueError: invalid literal for int() with base 10: 'auto'"
+  },
+  {
+   "batch": "691",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 ecks passed ／ FAILED: census-only-one-derived-pixel-length-exists-and-690-found-it ／ FAILED: a-second-and-unrelated-mechanism-makes-integers-come-out-fractional"
+  },
+  {
+   "batch": "692",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 nnot distinguish this case from a genuinely simple field] ／ 4/5 checks passed ／ FAILED: only-three-expressions-are-displayed-at-more-than-one-explicit-precision"
+  },
+  {
+   "batch": "694",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 chable': 20, 'pxPerValue': 9.444444444444445}, {'key': 'uniform-scale', 't  [a measured invariant, with its cause explicitly left unclaimed] ／ 5/5 checks passed"
+  },
+  {
+   "batch": "695",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 a-radius', 'scene-ground-opacity', 'scene-ground-height'], 'howTheyWereReac  [some controls have an entry only in the state you fall out of] ／ 6/6 checks passed"
+  },
+  {
+   "batch": "699",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ected': 'director-camera-m  [the same attribute, the same page, two verdicts — which is also why a census must state its starting state, an] ／ 5/5 checks passed"
+  },
+  {
+   "batch": "718",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "727",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "728",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "729",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "73",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "730",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 ton\" aria-label=\"积分余额\" title=\"积分余额（读数，无可点操作）\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\"'}]"
+  },
+  {
+   "batch": "731",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 nd-wired-buttons-are-byte-identical ／ PASS accessible-names-fall-back-to-title-instead-of-being-empty ／ PASS title-fallback-is-confined-to-two-icon-only-buttons"
+  },
+  {
+   "batch": "732",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 invisible-yet-still-focusable ／ PASS the-40-invisible-buttons-are-still-in-tab-order-and-in-the-ax-tree ／ PASS seed-canvas-video-status-blocks-two-more-families"
+  },
+  {
+   "batch": "733",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ens-and-its-one-site-is-focusable ／ PASS storyboard-editor-entry-button-is-absent-by-conditional-gate ／ PASS shot-breakdown-result-is-gated-on-uploading-a-video"
+  },
+  {
+   "batch": "734",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS mark-select-mode-opens-2-sites ／ PASS reshoot-opens-4-sites-as-6-instances ／ PASS coverage-table-closes-at-42-opened-plus-4-gated"
+  },
+  {
+   "batch": "735",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 } ／ [PASS] C10 4 个门控写点仍不出现  ⟵ [] ／ 9/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch735-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "737",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 着 38 枚；删除连线 11 枚；TV Director 1 枚 ／ 5/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch737-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "739",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ）  ⟵ selectedEdgeIds=0（记未取证，不下结论） ／ 9/9 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch739-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "740",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 的删除  ⟵ 另一张画布边 0→0；原画布删后仍为 10（未被撤） ／ 7/8 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch740-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "742",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 attachAssetReferences\", \"none\"]]} ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch742-2026-10-01/runtime-audit.json ／ 判据 6/7"
+  },
+  {
+   "batch": "743",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 \"重做视频处理\"], \"outsideSeedOnly\": []} ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch743-2026-10-01/runtime-audit.json ／ 判据 5/6"
+  },
+  {
+   "batch": "744",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  1], \"toolbarInNodeBoth\": [0, 0]} ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch744-2026-10-01/runtime-audit.json ／ 判据 6/6"
+  },
+  {
+   "batch": "746",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 通（芯片路径，past +1、节点 +12、边 +22）\"}] ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch746-2026-10-01/runtime-audit.json ／ 判据 10/11"
+  },
+  {
+   "batch": "747",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 , \"delta\": \"742 验出零 UI 入口，从未触发\"}] ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch747-2026-10-01/runtime-audit.json ／ 判据 6/7"
+  },
+  {
+   "batch": "762",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "765",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "766",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "771",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "772",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "773",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "775",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "777",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "778",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "779",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "78",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  \"timelineStaleMoveStopped\": true, \"timelinePointerReuse\": true, \"timelineVisibilityCleanup\": true, \"historyUntouched\": true}}, \"screenshots\": [], \"errors\": []}"
+  },
+  {
+   "batch": "780",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "790",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 每格的行数与菜单项前后完全相同'] ／ ★ 正向 11/11   阴性 5/5 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch790-2026-10-01/verify-report.json"
+  },
+  {
+   "batch": "791",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Tab / 右键菜单）前后都通'] ／ ★ 正向 11/11   阴性 5/5 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch791-2026-10-01/verify-report.json"
+  },
+  {
+   "batch": "793",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 拖拽收口仍经它、旧裸写点已消失'] ／ ★ 正向 10/10   阴性 5/5 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch793-2026-10-01/verify-report.json"
+  },
+  {
+   "batch": "794",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "断言通过"
+  },
+  {
+   "batch": "795",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "断言通过"
+  },
+  {
+   "batch": "796",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "断言通过"
+  },
+  {
+   "batch": "799",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N6 ★★ 反向对照：`GROUP_PADDING` 改成 60（仍是 20 的倍数） ｜ 翻红：无 ／ ★ 阴性对照 6/6 ／ ★ 阴性对照后字节级复原：{'cs': True, 'pre': True, 'post': True, 'diagPre': True, 'diagPost': True}"
+  },
+  {
+   "batch": "800",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N5 ★★ pre raw：把顶层组臂里 n-loose 的绝对 y 挪 +11 ｜ 翻红：['S3:★★ 阴性对照：取消顶层组，成员与子组不动（pre/post）'] ／ ★ 阴性对照 5/5 ／ ★ 阴性对照后字节级复原：{'cs': True, 'pre': True, 'post': True}"
+  },
+  {
+   "batch": "801",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 b-tv/scripts/verify-liblib-batch801.py\", line 323, in main ／ assert nPass == len(checks), ( ／ AssertionError: ★ 基线有 1 项红（['S10:★★ 记账：本批**没改** `src/`']）⟹ 阴性对照没意义"
+  },
+  {
+   "batch": "802",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N4 ★★ 反向对照：只改 `createImageHdPreset` 那段注释的字 ｜ 翻红：无 ／ ★ 阴性对照 4/4 ／ ★ 阴性对照后字节级复原：{'cs': True, 'pre': True, 'post': True}"
+  },
+  {
+   "batch": "806",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N5 ★★ raw：声称确认框不再说「不可恢复」 ｜ 翻红：['S5:★★ 文案与实现矛盾：确认框写「此操作不可恢复」，而删除后条目**进了回收站**'] ／ PASS N6 ★★ 反向对照：只动与判据无关的字段（note） ｜ 翻红：无 ／ ★ 阴性对照 6/6"
+  },
+  {
+   "batch": "807",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N5 ★★ raw：声称空组的框被清零了 ｜ 翻红：['S6:★★ 附赠读数（给 793／757 ②）：组被搬空后**框不变**，仍等于原成员的包围盒 ⊕ 2×padding'] ／ PASS N6 ★★ 反向对照：只动与判据无关的字段（note） ｜ 翻红：无 ／ ★ 阴性对照 6/6"
+  },
+  {
+   "batch": "808",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N6 ★★★ raw：伪造「菜单里有其它项」（即那臂其实测到了东西） ｜ 翻红：['S7:★★★ 作废闸：右键菜单那条臂**探针没打开菜单** ⟹ 显式作废、不得据此下结论'] ／ PASS N7 ★★ 反向对照：只动与判据无关的字段（note） ｜ 翻红：无 ／ ★ 阴性对照 7/7"
+  },
+  {
+   "batch": "809",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N7 ｜ 翻红：['S5:★★★ DOM 交'] ／ PASS N8 ｜ 翻红：[] ／ ★ 阴性对照 8/8"
+  },
+  {
+   "batch": "810",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N6 ｜ 翻红：['S5:★★ DOM 侧也'] ／ PASS N7 ｜ 翻红：[] ／ ★ 阴性对照 7/7"
+  },
+  {
+   "batch": "811",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N7 ｜ 翻红：['S6:★★ 切过去之'] ／ PASS N8 ｜ 翻红：[] ／ ★ 阴性对照 8/8"
+  },
+  {
+   "batch": "812",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N5 ｜ 翻红：['S6:★★★ 空记录'] ／ PASS N6 ｜ 翻红：[] ／ ★ 阴性对照 6/6"
+  },
+  {
+   "batch": "813",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N4 ｜ 翻红：['S1:★★★ 阳性对'] ／ PASS N5 ｜ 翻红：[] ／ ★ 阴性对照 5/5"
+  },
+  {
+   "batch": "814",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N7 ｜ 翻红：['S1:★★ 阳性对照'] ／ PASS N8 ｜ 翻红：[] ／ ★ 阴性对照 7/7"
+  },
+  {
+   "batch": "818",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N7 ｜ 翻红：['S6:★'] ／ PASS N8 ｜ 翻红：[] ／ ★ 阴性对照 8/8"
+  },
+  {
+   "batch": "819",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N11 ｜ 翻红：[] ／ PASS N12 ｜ 翻红：[] ／ ★ 阴性对照 12/12"
+  },
+  {
+   "batch": "82",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "820",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N10 ｜ 翻红：['S2:★'] ／ PASS N11 ｜ 翻红：[] ／ ★ 阴性对照 11/11"
+  },
+  {
+   "batch": "83",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "834",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✔ N13 删掉旧属性名别名 ⟹ S14 翻红 → 实际翻红 S14 ／ ✔ N14 把源站的步数改成 4 ⟹ S1 翻红 → 实际翻红 S1 ／ ✔ N15 改组件源码里第 2 步的文案 ⟹ S2 翻红 → 实际翻红 S2"
+  },
+  {
+   "batch": "868",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 ce:the-new-gates-baseline-is-in-the-repo  ⟵ /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch868-2026-10-01/raw/new-gates-868.json"
+  },
+  {
+   "batch": "92",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "94",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 eMethod\":\"escape\"},\"collapsedRailsAreInert\":true,\"noHorizontalOverflow\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[]}}}"
+  }
+ ]
+}

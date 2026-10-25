@@ -1,0 +1,97 @@
+{
+ "director": {
+  "控件数": 148,
+  "组数": 64,
+  "正常": 58,
+  "真糊弄": 0,
+  "待人工": 6,
+  "真糊弄清单": [],
+  "待人工清单": [
+   {
+    "组": "button#data-director-reset-view",
+    "组员数": 1,
+    "tag": "button",
+    "aria": "",
+    "text": "重置视角",
+    "data": {
+     "data-director-reset-view": "true"
+    },
+    "定位器": "button[data-director-reset-view=\"true\"]",
+    "判定": "只变焦点",
+    "依据": "★ 只变焦点 ⟹ ⟹ 没有阳性对照",
+    "同组兄弟": null
+   },
+   {
+    "组": "button#data-director-scene-prompt-upload",
+    "组员数": 1,
+    "tag": "button",
+    "aria": "上传图片",
+    "text": "",
+    "data": {
+     "data-director-scene-prompt-upload": "true"
+    },
+    "定位器": "button[data-director-scene-prompt-upload=\"true\"]",
+    "判定": "只变焦点",
+    "依据": "★ 只变焦点 ⟹ ⟹ 没有阳性对照",
+    "同组兄弟": null
+   },
+   {
+    "组": "button#data-director-scene-axis-scrub",
+    "组员数": 9,
+    "tag": "button",
+    "aria": "左右拖动调整 X 轴",
+    "text": "x",
+    "data": {
+     "data-director-scene-axis-scrub": "position-X"
+    },
+    "定位器": "button[data-director-scene-axis-scrub=\"position-X\"]",
+    "判定": "只变焦点",
+    "依据": "★ 只变焦点 ⟹ ⟹ 没有阳性对照",
+    "同组兄弟": null
+   },
+   {
+    "组": "button#data-director-add-keyframe",
+    "组员数": 1,
+    "tag": "button",
+    "aria": "",
+    "text": "添加关键帧",
+    "data": {
+     "data-director-add-keyframe": "true"
+    },
+    "定位器": "button[data-director-add-keyframe=\"true\"]",
+    "判定": "死",
+    "依据": "★ 点了什么也没发生 ⟹ ⟹ 没有阳性对照",
+    "同组兄弟": null
+   },
+   {
+    "组": "button#data-director-delete-keyframe",
+    "组员数": 1,
+    "tag": "button",
+    "aria": "删除关键帧",
+    "text": "",
+    "data": {
+     "data-director-delete-keyframe": "true"
+    },
+    "定位器": "button[data-director-delete-keyframe=\"true\"]",
+    "判定": "死",
+    "依据": "★ 点了什么也没发生 ⟹ ⟹ 没有阳性对照",
+    "同组兄弟": null
+   },
+   {
+    "组": "input#data-workspace-name",
+    "组员数": 1,
+    "tag": "input",
+    "aria": "工作区名称",
+    "text": "",
+    "data": {
+     "data-workspace-name": "true"
+    },
+    "定位器": "input[data-workspace-name=\"true\"]",
+    "判定": "死",
+    "依据": "★ 点了什么也没发生 ⟹ ⟹ 没有阳性对照",
+    "同组兄弟": null
+   }
+  ]
+ },
+ "真糊弄总数": 0
+}

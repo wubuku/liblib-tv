@@ -1,0 +1,9 @@
+FAIL only-899-is-paired-the-rest-are-one-sided
+PASS the-min-900px-pair-only-survives-in-a-comment
+PASS max-899px-is-strictly-less-than-while-the-css-query-is-inclusive
+PASS the-two-branches-are-mutually-exclusive-and-jointly-exhaustive
+PASS the-breakpoint-swaps-a-48px-rail-for-a-68x32-button-pair
+PASS retraction-of-717-the-899-boundary-is-by-construction
+  -> only-899-is-paired-the-rest-are-one-sided: {'min': 15, 'max': 23}
+
+5/6 通过

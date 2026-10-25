@@ -1,0 +1,11 @@
+PASS data-inert-is-written-46-times-across-16-files
+FAIL all-46-carrying-tags-are-buttons-and-729s-45-was-a-scanner-artifact
+PASS data-inert-never-pairs-with-any-focus-blocking-attribute
+PASS every-mounted-instance-is-programmatically-focusable
+PASS every-mounted-instance-grows-a-focus-ring-when-focused
+PASS clicking-them-changes-nothing-at-all
+PASS keyboard-activating-them-changes-nothing-at-all
+PASS jsx-sites-are-not-controls-two-map-sites-multiply-them
+PASS every-mounted-instance-is-reachable-by-tab
+PASS tab-is-hijacked-by-the-canvas-into-a-new-node-shortcut
+  ! all-46-carrying-tags-are-buttons-and-729s-45-was-a-scanner-artifact: [{'file': 'src/components/TopNavBar.tsx', 'line': 173, 'attrs': 'type="button" aria-label="开通会员 限时 45 折" title="开通会员为付费操作，克隆侧不提供" data-inert="true" className="flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs"'}, {'file': 'src/components/TopNavBar.tsx', 'line': 190, 'attrs': 'type="button" aria-label="积分余额" title="积分余额（读数，无可点操作）" data-inert="true" className="flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs"'}]

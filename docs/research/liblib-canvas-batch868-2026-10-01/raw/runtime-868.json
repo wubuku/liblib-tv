@@ -1,0 +1,173 @@
+{
+ "角色库": {
+  "点之前": {
+   "cards": 17,
+   "name": "霸总/精英大佬"
+  },
+  "点之后": {
+   "cards": 21,
+   "name": "霸总/精英大佬幼年版"
+  },
+  "基角色名": "霸总/精英大佬"
+ },
+ "预设运镜选项": [
+  "环绕",
+  "半弧",
+  "推近",
+  "拉远",
+  "升降",
+  "横移",
+  "螺旋上升"
+ ],
+ "预设应用": {
+  "之前": null,
+  "之后": {
+   "trackId": "director-track-camera-main",
+   "preset": "orbit",
+   "mode": "replace",
+   "startTime": 0,
+   "endTime": 8,
+   "generatedKeyframeIds": [
+    "director-track-camera-main-preset-orbit-1792929839538-0",
+    "director-track-camera-main-preset-orbit-1792929839538-1",
+    "director-track-camera-main-preset-orbit-1792929839538-2",
+    "director-track-camera-main-preset-orbit-1792929839538-3",
+    "director-track-camera-main-preset-orbit-1792929839538-4",
+    "director-track-camera-main-preset-orbit-1792929839538-5",
+    "director-track-camera-main-preset-orbit-1792929839538-6",
+    "director-track-camera-main-preset-orbit-1792929839538-7",
+    "director-track-camera-main-preset-orbit-1792929839538-8"
+   ]
+  }
+ },
+ "轨迹几何选项": [
+  "直线路径",
+  "圆环路径",
+  "矩形路径"
+ ],
+ "轨迹数": {
+  "之前": 0,
+  "之后": 1
+ },
+ "核对": [
+  {
+   "判据": "角色造型室面板能打开",
+   "通过": true,
+   "详情": {
+    "count": 1
+   }
+  },
+  {
+   "判据": "角色库里至少有若干真实角色",
+   "通过": true,
+   "详情": {
+    "卡片数": 17
+   }
+  },
+  {
+   "判据": "选中真实角色后 ⟹ 「生成其他年龄版本」按钮在",
+   "通过": true,
+   "详情": {
+    "count": 1
+   }
+  },
+  {
+   "判据": "点「生成其他年龄版本」⟹ 卡片数增加",
+   "通过": true,
+   "详情": {
+    "前": 17,
+    "后": 21
+   }
+  },
+  {
+   "判据": "点「生成其他年龄版本」⟹ 名字变成 `{name}{age}版`",
+   "通过": true,
+   "详情": {
+    "新名字": "霸总/精英大佬幼年版",
+    "档位表": [
+     "幼年",
+     "少年",
+     "青年",
+     "中年",
+     "老年"
+    ]
+   }
+  },
+  {
+   "判据": "选中机位并切到「运动轨迹」页签 ⟹ 右栏那两枚在",
+   "通过": true,
+   "详情": {
+    "count": 1
+   }
+  },
+  {
+   "判据": "点「预设运镜」⟹ 出现 7 个源站预设",
+   "通过": true,
+   "详情": {
+    "实际": [
+     "环绕",
+     "半弧",
+     "推近",
+     "拉远",
+     "升降",
+     "横移",
+     "螺旋上升"
+    ],
+    "期望": [
+     "环绕",
+     "半弧",
+     "推近",
+     "拉远",
+     "升降",
+     "横移",
+     "螺旋上升"
+    ]
+   }
+  },
+  {
+   "判据": "点一个预设 ⟹ store 真的记下了应用",
+   "通过": true,
+   "详情": {
+    "之前": null,
+    "之后": {
+     "trackId": "director-track-camera-main",
+     "preset": "orbit",
+     "mode": "replace",
+     "startTime": 0,
+     "endTime": 8,
+     "generatedKeyframeIds": [
+      "director-track-camera-main-preset-orbit-1792929839538-0",
+      "director-track-camera-main-preset-orbit-1792929839538-1",
+      "director-track-camera-main-preset-orbit-1792929839538-2",
+      "director-track-camera-main-preset-orbit-1792929839538-3",
+      "director-track-camera-main-preset-orbit-1792929839538-4",
+      "director-track-camera-main-preset-orbit-1792929839538-5",
+      "director-track-camera-main-preset-orbit-1792929839538-6",
+      "director-track-camera-main-preset-orbit-1792929839538-7",
+      "director-track-camera-main-preset-orbit-1792929839538-8"
+     ]
+    }
+   }
+  },
+  {
+   "判据": "点「创建运动轨迹」⟹ 出现 3 种几何",
+   "通过": true,
+   "详情": {
+    "实际": [
+     "直线路径",
+     "圆环路径",
+     "矩形路径"
+    ]
+   }
+  },
+  {
+   "判据": "点一种几何 ⟹ 真的多了一条运动轨迹",
+   "通过": true,
+   "详情": {
+    "前": 0,
+    "后": 1
+   }
+  }
+ ],
+ "失败": []
+}

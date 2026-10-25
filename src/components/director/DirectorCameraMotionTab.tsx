@@ -8,6 +8,12 @@ import {
   type DirectorTransform,
 } from "@/store/directorStore";
 import type { DirectorTimelineTrack } from "@/store/directorStore";
+// ★★★ Batch 868：右栏那两枚「预设运镜」「创建运动轨迹」**不再是占位**
+//   ★ 源站截图 50/51 的右栏就是这两个入口 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 它们必须**真的能点**
+//   ★ ★★ 与时间线（DirectorTimeline）**同一份预设表、同一个 store 动作**
+//   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ （★ 698 的教训：★ 标记名不能与时间线**同名**
+//   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 否则「查一个标记只查到一个」⟹ ⟹ 静默漏掉另一个）
+import { DIRECTOR_CAMERA_MOTION_PRESETS } from "./directorCameraPresets";
 
 // Batch 563: 源站截图 50/51——摄像机面板「运动轨迹」(NEW) 页签内容：
 // 虚拟相机（请保持手机和电脑在同一 wifi 下，用手机扫码连接 + QR + 录制/
@@ -18,6 +24,13 @@ import type { DirectorTimelineTrack } from "@/store/directorStore";
 // Batch 576: 源站截图 64——关键帧选中态联动本页签的编辑字段组
 // （时长/位置/旋转/缩放/统一缩放，镜像选中关键帧值）；字段编辑经
 // updateObjectTransform 在当前播头提交（autoKeyframe 开时更新该关键帧）。
+// ★ ★★ Batch 868（**前向更正** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 上面 Batch 563 那段里
+//   「预设运镜/创建运动轨迹的完整面板位于时间线控制簇 ⟹ ⟹ 此处按钮以提示态渲染」
+//   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★★ **已被本批推翻** ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒
+//   ★ 那两枚在**源站右栏**就是真实入口 ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 源站截图 50/51
+//   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 所以本批**就地接上**：★ 展开源站那
+//   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 7 个预设／3 种几何 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 点一个 ⟹ ⟹ store **真的变**
+//   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ （★ 审计链不可重写 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 更正**只**写在这里）
 // Batch 580（源站截图 64 放大复核，docs/research/liblib-source-exploration-
 // 2026-09-25/64-director-diamond-dragged.png 右栏 3180-3840 × 1140-1960 区域）：
 // 1) 「时长」与「统一缩放」在源站是 **滑杆 + 数值框** 同一行（青色已填充
@@ -145,6 +158,51 @@ export function DirectorCameraMotionTab({ cameraName }: { cameraName: string }) 
     (state) => state.updateObjectTransform,
   );
   const setTimelineTime = useDirectorStore((state) => state.setTimelineTime);
+  // ★★★ Batch 868：右栏那两枚按钮的**真实动作**
+  //   ★ 与时间线**同一份预设表、同一个 store 动作** ⟹ ⟹ ⟹ ⟹ ⇒ ★
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 「预设运镜」→ applyCameraMotionPreset(preset, "replace", trackId)
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 「创建运动轨迹」→ createMotionPath(preset, trackId)
+  const applyCameraMotionPreset = useDirectorStore(
+    (state) => state.applyCameraMotionPreset,
+  );
+  const createMotionPath = useDirectorStore((state) => state.createMotionPath);
+  // ★ 展开态（★ 两枚按钮各自一个）
+  const [presetListOpen, setPresetListOpen] = useState(false);
+  const [pathListOpen, setPathListOpen] = useState(false);
+  // ★ ★★ 错误留痕：★ 没有选中机位时点不动 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 要**看得见**为什么
+  const [presetError, setPresetError] = useState<string | null>(null);
+  // ★ ★★ 3 种几何（★ 源站的直线路径／圆环路径／矩形路径）
+  //   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ store 的 `DirectorMotionPathGeometryPreset`
+  //   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ （★ `pencil`／`pen` 是**绘制工具**、不是几何 ⟹ ⟹ 不列）
+  const MOTION_PATH_GEOMETRIES = [
+    { id: "line", label: "直线路径" },
+    { id: "ring", label: "圆环路径" },
+    { id: "rectangle", label: "矩形路径" },
+  ] as const;
+  // ★ 当前机位轨道（★ 预设与轨迹都要落在**它**上面）
+  const cameraTrack = (() => {
+    const track = timeline.tracks.find(
+      (candidate): candidate is MotionKeyframeTrack =>
+        candidate.objectId === selectedObjectId && candidate.kind === "camera",
+    );
+    return track ?? null;
+  })();
+  const handleCameraMotionPreset = (presetId: (typeof DIRECTOR_CAMERA_MOTION_PRESETS)[number]["id"]) => {
+    if (!cameraTrack) {
+      setPresetError("请先在左侧选中一个机位");
+      return;
+    }
+    setPresetError(null);
+    applyCameraMotionPreset(presetId, "replace", cameraTrack.id);
+  };
+  const handleCreateMotionPath = (presetId: "line" | "ring" | "rectangle") => {
+    if (!cameraTrack) {
+      setPresetError("请先在左侧选中一个机位");
+      return;
+    }
+    setPresetError(null);
+    createMotionPath(presetId, cameraTrack.id);
+  };
   const selectedKeyframe = (() => {
     const track = timeline.tracks.find(
       (candidate): candidate is MotionKeyframeTrack =>
@@ -308,22 +366,74 @@ export function DirectorCameraMotionTab({ cameraName }: { cameraName: string }) 
         <button
           type="button"
           data-director-motion-preset-button
-          title="预设运镜面板位于时间线控制簇"
+          data-director-right-panel-camera-preset-toggle
+          aria-expanded={presetListOpen}
+          title="预设运镜"
+          onClick={() => setPresetListOpen((open) => !open)}
           className="h-9 w-full rounded-lg bg-[#333] text-xs text-[#d9d9d9] hover:bg-[#3d3d3d]"
         >
           ⟳ 预设运镜
         </button>
+        {/* ★ ★★ Batch 868：展开源站那 **7** 个预设 ⟹ ⟹ 点一个 ⟹ store **真的变** */}
+        {presetListOpen ? (
+          <div
+            data-director-right-panel-camera-preset-list
+            className="grid grid-cols-2 gap-1.5"
+          >
+            {DIRECTOR_CAMERA_MOTION_PRESETS.map((preset) => (
+              <button
+                key={preset.id}
+                type="button"
+                data-director-right-panel-camera-preset={preset.id}
+                onClick={() => handleCameraMotionPreset(preset.id)}
+                className="flex h-8 min-w-0 items-center justify-center gap-1.5 rounded border border-white/[0.07] bg-[#252525] px-2 text-[10px] text-[#9b9b9b] hover:border-white/[0.14] hover:text-white"
+              >
+                <span className="truncate">{preset.label}</span>
+              </button>
+            ))}
+          </div>
+        ) : null}
+        {presetError ? (
+          <p
+            data-director-right-panel-camera-preset-error
+            className="text-[10px] leading-4 text-[#c98a8a]"
+          >
+            {presetError}
+          </p>
+        ) : null}
       </section>
 
       <section className="space-y-2">
         <button
           type="button"
           data-director-motion-create-path
-          title="创建运动轨迹面板位于时间线控制簇"
+          data-director-right-panel-motion-path-toggle
+          aria-expanded={pathListOpen}
+          title="创建运动轨迹"
+          onClick={() => setPathListOpen((open) => !open)}
           className="h-9 w-full rounded-lg bg-[#333] text-xs text-[#d9d9d9] hover:bg-[#3d3d3d]"
         >
           创建运动轨迹
         </button>
+        {/* ★ ★★ Batch 868：展开 **3** 种几何 ⟹ ⟹ 点一个 ⟹ 时间轴**真的多一条轨迹** */}
+        {pathListOpen ? (
+          <div
+            data-director-right-panel-motion-path-list
+            className="grid grid-cols-1 gap-1.5"
+          >
+            {MOTION_PATH_GEOMETRIES.map((preset) => (
+              <button
+                key={preset.id}
+                type="button"
+                data-director-right-panel-motion-path-preset={preset.id}
+                onClick={() => handleCreateMotionPath(preset.id)}
+                className="flex h-8 min-w-0 items-center justify-center gap-1.5 rounded border border-white/[0.07] bg-[#252525] px-2 text-[10px] text-[#9b9b9b] hover:border-white/[0.14] hover:text-white"
+              >
+                <span className="truncate">{preset.label}</span>
+              </button>
+            ))}
+          </div>
+        ) : null}
         <p className="text-[10px] leading-4 text-[#686868]">
           为「{cameraName}」创建运动轨迹
           {retryCount > 0 ? `（重试 ${retryCount} 次）` : ""}

@@ -110,6 +110,16 @@ SNAPSHOT = r"""() => {
   };
 }"""
 
+# ★★★ Batch 868（**前向更正**）：★ 右栏那两枚副本现在**真的开出选项面板**
+#   ⟹ ⟹ 这段探针专门数「面板出现了几个」⟹ ⟹ ⟹ ⟹ ⇒ 用它把 698 的第 4 条判据
+#   ⟹ ⟹ ⟹ ⟹ 从「钉住缺陷」**反转**成「守住修复」。
+SURFACES = r"""() => ({
+  presetList: document.querySelectorAll(
+    '[data-director-right-panel-camera-preset-list]').length,
+  pathList: document.querySelectorAll(
+    '[data-director-right-panel-motion-path-list]').length,
+})"""
+
 RANGES = r"""() => Array.from(document.querySelectorAll('input[type="range"]'))
   .map((el) => {
     const k = el.getAttributeNames().find((n) => n.startsWith('data-director'));
@@ -271,14 +281,22 @@ def main() -> int:
                 for idx in range(len(found.get(attr, []))):
                     meta = found[attr][idx]
                     before = page.evaluate(SNAPSHOT)
+                    surfaces_before = page.evaluate(SURFACES)
                     page.locator(f"[{attr}]").nth(idx).click(timeout=3000)
                     page.wait_for_timeout(500)
                     after = page.evaluate(SNAPSHOT)
+                    surfaces_after = page.evaluate(SURFACES)
                     clicks.append({
                         "feature": feat, "attr": attr, "index": idx,
                         "host": meta["host"], "text": meta["text"],
                         "rect": meta["rect"], "disabled": meta["disabled"],
                         "anythingChanged": before != after,
+                        # ★ Batch 868：★ 「右栏选项面板」有没有**真的**开出来
+                        "surfacesBefore": surfaces_before,
+                        "surfacesAfter": surfaces_after,
+                        "openedRealSurface": (
+                            surfaces_after["presetList"] + surfaces_after["pathList"]
+                            > surfaces_before["presetList"] + surfaces_before["pathList"]),
                         "beforeMotionSliders": before["motionSliders"],
                         "afterMotionSliders": after["motionSliders"],
                         "dialogOrToast": [after["anyDialog"], after["anyToast"]],
@@ -396,22 +414,38 @@ def main() -> int:
                         "returning zero is a claim about the query as often as about the DOM."},
             note="the same two words, in a different order")
 
-    # 4 四个副本全部 enabled 且全部无效
-    v.check("all-four-copies-look-enabled-and-none-of-them-does-anything",
-            len(clicks) == 4 and all_enabled and none_effective,
+    # 4 ★★★ Batch 868（**前向更正**：★ 这条判据原来**钉住了缺陷本身**）
+    #   ⟹ ⟹ 原来写的是「四个副本全部 enabled 且全部无效」
+    #   ⟹ ⟹ ⟹ ⟹ ⇒ 而 batch 868 把**右栏**那两枚真的**接上了**
+    #   ⟹ ⟹ ⟹ ⟹ ⇒ 「不做事」这件事**不再是事实** ⟹ ⟹ ⟹ ⟹ ⇒ 判据**过时**
+    #   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 按 batch 867 立下的纪律：★ 缺陷被修好 ⟹ ⟹ 判据要**反转**
+    #   ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ **不是**删掉 ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 而是改成「**守住那个修复**」。
+    #   ⟹ ⟹ ⟹ ⟹ ⇒ 时间线上那两枚**仍然**由 699 单独覆盖（★ 699 已证它「是活的」，
+    #   ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这里不重复断言 ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 只断言**右栏**这两枚）。
+    right_panel = [c for c in clicks if c["host"] == "RIGHT-PANEL"]
+    right_panel_open = all(c["openedRealSurface"] for c in right_panel) and right_panel
+    v.check("the-right-panel-copies-now-open-real-option-lists",
+            len(right_panel) == 2 and right_panel_open,
             detail={"clicks": clicks,
-                            "enabledCount": sum(1 for c in clicks if not c["disabled"]),
-                            "effectiveCount": sum(1 for c in clicks if c["anythingChanged"]),
-                            "whatChangedWasChecked":
-                                "timeline track count, keyframes per track, the selected "
-                                "keyframe id, the motion sliders, and whether any dialog or "
-                                "toast appeared.",
-                            "strongerThan695":
-                                "695 could only say the two right-panel buttons have no "
-                                "onClick -- a source-level fact. This says all four copies, "
-                                "including the two on the timeline that are NOT disabled, "
-                                "produce no observable change at all."},
-            note="enabled is not the same as working")
+                            "rightPanelCopies": len(right_panel),
+                            "allEnabled": all_enabled,
+                            "timelineNoneEffective": none_effective,
+                            "rightPanelOpenedRealSurface": [
+                                {"attr": c["attr"], "opened": c["openedRealSurface"],
+                                 "before": c["surfacesBefore"], "after": c["surfacesAfter"]}
+                                for c in right_panel],
+                            "theForwardCorrection":
+                                "★ Batch 868 之前，这条判据写的是「四个副本全部 enabled "
+                                "且全部无效」⟹ ⟹ ⟹ ⟹ ⇒ ★ 它**钉住的是缺陷本身**。"
+                                "⟹ ⟹ ★ 右栏那两枚现在真的开出选项面板（★ 与时间线同一份"
+                                "预设表、同一个 store 动作）⟹ ⟹ ⟹ ⟹ ⇒ 「不做事」已不是事实 "
+                                "⟹ ⟹ ⟹ ⟹ ⇒ 判据**过时** ⟹ ⟹ ⟹ ⟹ ⇒ ★ **反转**成「守住修复」。",
+                            "timelineCopiesAreNotAssertedHere":
+                                "★ 时间线上那两枚**仍然**是 699 的判据范围（★ 699 已证"
+                                "「data-director-create-motion-path」是**活的**：它开菜单）"
+                                "⟹ ⟹ ⟹ ⟹ ⇒ 这里**不重复**断言 ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 免得两条门禁"
+                                "⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 对同一件事**各说各话**。"},
+            note="a criterion that pins the defect must be reversed when the defect is fixed")
 
     # 5 空入口 ≠ 不可达
     v.check("dead-entrances-do-not-mean-the-feature-is-unreachable",

@@ -1,0 +1,6 @@
+FAIL  静态：两个不可达元素在源码里都是 input[type=file] + className=hidden  got=null
+FAIL  静态：rail 那个 input 有 aria-label、desk 那个没有（记为措辞不一致）  got=null
+
+验收 36/38 通过
+阴性对照 26/26 全部拦下
+batch 762 不通过

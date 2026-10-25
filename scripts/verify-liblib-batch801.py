@@ -36,8 +36,61 @@ AUDIT = OUTDIR / "audit-801.json"
 REPORT = OUTDIR / "verify-report.json"
 CS = "src/store/canvasStore.ts"
 
+# ★ ★★ Batch 868：**801 自己那批**的提交（★ raw 就是它采的）
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ S10 要钉的是「**801 那批**没改 src」⟹ ⟹ ⟹ ⟹ ⇒ ★ 那是**历史事实**
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 必须锚到**这个提交** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 而不是「当下工作树」
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ （证据：该提交 `git show --name-only` 里的 `src/` 为空）
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★★ 注意：★ 这个常量**故意留在源码里**（★ 而不是塞进函数体）
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 因为下面的读取函数是**从本文件解析**它的
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这样负控改这个常量**真的会改变行为**
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ （★ 否则负控就是**假绿**：★ 改了磁盘 ⟹ ⟹ 内存里
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 那个常量没变 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 行为自然也不变
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★★ 那就是「变异没落地」）
+BATCH801_COMMIT = "8b1fb063798c372c41f157f1ca02750b58b00e4c"
+
 WANT = {"copyFlatGroup": 3, "copyNested": 5, "copyMember": 1}
 GROUP_ARMS = ("copyFlatGroup", "copyNested")
+
+
+def current_801_commit() -> str:
+    """★ ★★ **从本文件解析**锚点（★ 而不是读模块常量）。
+
+    ★ ★★ 为什么必须解析文件：★ 否则负控改磁盘上的常量 ⟹ ⟹ ⟹ ⟹ ⇒
+    ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 内存里的 `BATCH801_COMMIT` **没变** ⟹ ⟹ ⟹ ⟹ ⇒
+    ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 行为**自然也不变** ⟹ ⟹ ⟹ ⟹ ⇒
+    ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★★ 负控就成了**假绿**（★ 变异没落地）
+    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这是本仓记过的同款：★ 「**变异失败不复原**」
+    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 的**镜像**：★ 「变异**不生效**」。
+    """
+    import re as _re
+    txt = pathlib.Path(__file__).read_text(encoding="utf-8")
+    m = _re.search(r'^BATCH801_COMMIT\s*=\s*"([0-9a-f]{7,40})"',
+                   txt, _re.M)
+    if not m:
+        raise RuntimeError("★ 读不出 BATCH801_COMMIT（★ 锚点被删了？）")
+    return m.group(1)
+
+
+def src_dirty_at_801() -> list[str]:
+    """★ ★★ 「801 那批动过的 `src/` 文件」⟹ ⟹ 空列表＝**没动过**。
+
+    ★ ★★ **为什么不用「当下工作树」**：★ 那是**另一个**问题
+    ⟹ ⟹ ⟹ ⟹ ⇒ ★ 「现在有没有未提交的改动」⟹ ⟹ ⟹ ⟹ ⇒ ★ 随**任何**后续批次变
+    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 而「801 那批没改 src」⟹ ⟹ ⟹ ⟹ ⇒ ★ 是**历史事实**
+    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 只随 `BATCH801_COMMIT` 变 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 所以查**那次提交**。
+
+    ★ ★★ **独立实现**：★ 不用 `git diff <commit> --name-only -- src/`（★ 那是**相对现在**的差）
+    ⟹ ⟹ ⟹ ⟹ ⇒ ★ 而是 `git show <commit> --name-only`（★ **那次提交自己**动了哪些文件）
+    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这样它**不依赖工作树状态** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 稳。
+    """
+    p = subprocess.run(["git", "show", "--name-only", "--pretty=format:",
+                        current_801_commit()],
+                       cwd=str(ROOT), capture_output=True, text=True)
+    if p.returncode != 0:
+        # ★ 取不到那次提交 ⟹ ⟹ 不能当成「没动过」⟹ ⟹ ⟹ ⟹ ⇒ ★ 显式报出来
+        return ["★ 取不到 801 那次提交（git show 失败）⟹ ⟹ 不能当成没动过"]
+    files = [ln.strip() for ln in p.stdout.splitlines() if ln.strip()]
+    return sorted(f for f in files if f.startswith("src/"))
 
 
 # ============================================================ 独立实现
@@ -247,9 +300,41 @@ def run_checks(pre_raw, post_raw, src, audit, src_dirty):
          "父没被复制时提升为顶层": has_promote})
 
     # ── S10 记账：本批没改 src（用 git 钉死）
+    # ★ ★★ Batch 868：**读数口径已改**（★ 前向更正 ⟹ ⟹ 更正写在本行 ⟹ ⟹ 旧批次的
+    #   台账行与 README 保留不动）。
+    #   ★ ★★ **旧口径**：★ `git status --porcelain src/`（★ 读**当下工作树**）
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ 而它钉的是「**801 那批**没改 src」⟹ ⟹ ⟹ ⟹ ⇒
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★★ **两件事不是一回事** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 只要**后续任何批次**
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ 动了 `src/`（★ 哪怕是**别的**文件 ⟹ ⟹ 哪怕是**合法**的改动）
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ 801 就**翻红** ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★ 这正是本仓反复出现的形状：
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ 「**老前提过期**」⟹ ⟹ ⟹ ⟹ ⇒ ★ 判据钉的是**批次事实**，
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ 实现却读**当下状态** ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ 本批（868）改了 `CharacterLibraryPanel.tsx` ＋
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ `DirectorCameraMotionTab.tsx` ⟹ ⟹ ⟹ ⟹ ⇒ ★ 801 当场翻红
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ （受控对照 `raw/controlled-868.json` 记着：
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ **HEAD 态绿 / WORK 态红** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 即**本批引入**）。
+    #   ★ ★★ **新口径**：★ 锚到 **801 自己的提交**（★ `BATCH801_COMMIT`）
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ 「801 那批没改 src」这件事是**历史事实** ⟹ ⟹ ⟹ ⟹ ⇒
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ 用 `git show <commit> --name-only` 查**那次提交**动没动 `src/`
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这样它**只**随「801 那批」变 ⟹ ⟹ ⟹ ⟹ ⇒
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 后续批次改 `src/` **不再**把它染红
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 而「**现在**工作树脏」这件事 ⟹ ⟹ ⟹ ⟹ ⇒
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ **另记一条**（★ S10b ⟹ ⟹ 不参与「本批没改 src」）
+    #     ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这样它**既不被掩盖**、**也不被误伤**。
     add("S10:★★ 记账：本批**没改** `src/`",
         "★ 纯测量批次必须被钉住，否则后人得重新判断「这份 raw 是不是本批代码跑的」",
-        not src_dirty, {"git status --porcelain src/": src_dirty})
+        not src_dirty["锚点"],
+        {"801 那次提交动过的 src/ 文件": src_dirty["锚点"]})
+    # ★ ★★ S10b：★ 「**现在**工作树有未提交改动」⟹ ⟹ 这**不是**「801 改过 src」
+    #   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 但它是**必须留痕**的事实 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 所以**另记一条**
+    #   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★★ 而它**不参与**「基线必须全绿」
+    #   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ （否则任何后续批次一改 src/ ⟹ ⟹ 801 就红
+    #   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 而那**恰恰**是本批踩到的坑）
+    add("S10b:★★ 留痕：当前工作树有未提交的 `src/` 改动（★ 不参与判定）",
+        "★ 这是**当下**状态 ⟹ ⟹ 与「801 那批没改 src」是**两件事** ⟹ ⟹ ⟹ ⟹ ⇒ "
+        "★ 只留痕、不判红 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这样它既不被掩盖、也不被误伤",
+        True,
+        {"git status --porcelain src/": src_dirty["工作树"]})
 
     if audit:
         add("S11:汇编器零失败", "汇编器自己的断言必须全绿",
@@ -313,9 +398,11 @@ def main():
     post_raw = json.loads(POST.read_text(encoding="utf-8"))
     src = (ROOT / CS).read_text(encoding="utf-8")
     audit = json.loads(AUDIT.read_text(encoding="utf-8")) if AUDIT.exists() else None
+    # ★ ★★ Batch 868：★ S10 的**读数口径**改了（★ 见下面 `src_dirty` 的说明）
     src_dirty = subprocess.run(["git", "status", "--porcelain", "--", "src/"],
                                cwd=str(ROOT), capture_output=True,
                                text=True).stdout.strip()
+    src_dirty = {"工作树": src_dirty, "锚点": src_dirty_at_801()}
 
     src0, pre0, post0 = sha(ROOT / CS), sha(PRE), sha(POST)
     checks = run_checks(pre_raw, post_raw, src, audit, src_dirty)
@@ -329,13 +416,14 @@ def main():
     def neg(name, why, mutate, expect):
         restore, ev = mutate()
         try:
+            worktree = subprocess.run(
+                ["git", "status", "--porcelain", "--", "src/"],
+                cwd=str(ROOT), capture_output=True,
+                text=True).stdout.strip()
             c = run_checks(json.loads(PRE.read_text(encoding="utf-8")),
                            json.loads(POST.read_text(encoding="utf-8")),
                            (ROOT / CS).read_text(encoding="utf-8"), audit,
-                           subprocess.run(
-                               ["git", "status", "--porcelain", "--", "src/"],
-                               cwd=str(ROOT), capture_output=True,
-                               text=True).stdout.strip())
+                           {"工作树": worktree, "锚点": src_dirty_at_801()})
             flipped = [x["id"] for x in c if not x["ok"]]
             if expect == "__NO_FLIP__":
                 return {"name": name, "why": why, "evidence": ev,
@@ -411,13 +499,17 @@ def main():
                         "raw/vb801a-post.json", collide),
         "S3:★ 阳性对照：副本 id 与原 id 全不相交，且数量符合预期"))
 
-    # ④ 反向对照：只改注释 ⟹ **除了 S10 之外**一项都不该翻
-    #    ★ S10 的职责就是「盯 `src/` 有没有被改脏」⟹ 任何改 src 的变异
-    #      都必然让它翻。所以「不翻」只能对**与 src 无关**的检查成立，
-    #      期望写成「S10 翻、S9 不翻」⟹ 这恰好同时证明 S9 与 S10 各自有效。
+    # ④ 反向对照：只改注释 ⟹ **S9 不该翻**
+    #    ★ ★★ Batch 868：**口径改了** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 旧版靠「S10 因工作树脏而翻」
+    #    ⟹ ⟹ ⟹ ⟹ ⇒ ★ 来间接证明「src 确实被改脏了」⟹ ⟹ ⟹ ⟹ ⇒ ★ 新口径下
+    #    ⟹ ⟹ ⟹ ⟹ ⇒ ★ S10 锚的是**801 那次提交** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 改当前 src **不再**让它翻
+    #    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 所以拆成两条：
+    #    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ④a「改当前 src ⟹ **S9 不翻**」（★ 证明 S9 锚的是表达式）
+    #    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ④b「让 801 那次提交看起来动过 src ⟹ **S10 必须翻**」
+    #    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ④b 才是**新 S10 的牙**（★ 判据不许自己失效）
     negs.append(neg(
-        "N4 ★★ 反向对照：只改 `duplicateGraphSelection` 那段注释的字",
-        "★ 证明 S9 锚的是表达式不是某段文本（S10 应当翻：src 确实被改脏了）",
+        "N4a ★★ 反向对照：只改 `duplicateGraphSelection` 那段注释的字",
+        "★ 证明 S9 锚的是表达式不是某段文本（★ 改当前 src ⟹ ⟹ S9 **不该**翻）",
         lambda: mut_text(CS,
                          "  const nodesById = new Map(canvas.nodes.map("
                          "(node) => [node.id, node]));\n"
@@ -428,6 +520,29 @@ def main():
                          "  const requested = Array.from(new Set("
                          "requestedIds)).filter((id) => nodesById.has(id));  // 801 读过",
                          allow_superset=True),
+        "__NO_FLIP__"))
+
+    # ④b ★★ 新 S10 的牙：★ 伪造「801 那次提交动过 src」⟹ ⟹ S10 必须翻
+    #    ★ ★★ 怎么伪造：★ 把 `BATCH801_COMMIT` 指到**一个确实动过 src 的提交**
+    #    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ （`f7052113`＝batch 802，改了 `canvasStore.ts`）
+    #    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这**只改常量** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 不动任何源文件
+    #    ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 所以它**不会**被「工作树脏」污染
+    def fake_801_commit_has_src():
+        self_path = pathlib.Path(__file__)
+        orig = self_path.read_text(encoding="utf-8")
+        mutated = orig.replace('BATCH801_COMMIT = "8b1fb063798c372c41f157f1ca02750b58b00e4c"',
+                               'BATCH801_COMMIT = "f7052113"')
+        assert mutated != orig, "★ 锚点没找到"
+        self_path.write_text(mutated, encoding="utf-8")
+
+        def restore():
+            self_path.write_text(orig, encoding="utf-8")
+        return restore, {"801_COMMIT": "f7052113（★ 一个确实动过 src/ 的提交）"}
+
+    negs.append(neg(
+        "N4b ★★ 新 S10 的牙：伪造「801 那次提交动过 src」⟹ ⟹ S10 必须翻",
+        "★ 证明 S10 真的在查**那次提交**（★ 而不是又变回读工作树）",
+        fake_801_commit_has_src,
         "S10:★★ 记账：本批**没改** `src/`"))
 
     restored = {"cs": sha(ROOT / CS) == src0, "pre": sha(PRE) == pre0,

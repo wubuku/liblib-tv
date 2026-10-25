@@ -1,0 +1,73 @@
+[
+ {
+  "name": "基线：门禁 868 必须是绿的",
+  "gate": "868",
+  "applied": true,
+  "rc": 0,
+  "red": false,
+  "verdict": "★ 基线绿"
+ },
+ {
+  "name": "N1: 删掉「生成其他年龄版本」的 onClick",
+  "gate": "868",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙"
+ },
+ {
+  "name": "N2: 删掉导演台「预设运镜」的 onClick",
+  "gate": "868",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙"
+ },
+ {
+  "name": "N3: 往导演台注入一枚没有行为的按钮",
+  "gate": "868",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙"
+ },
+ {
+  "name": "N4: 从回归清单里删掉一条（(\"856\", \"py\"),）",
+  "gate": "868",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙"
+ },
+ {
+  "name": "N5: 把运行时读数挪走",
+  "gate": "868",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙"
+ },
+ {
+  "name": "N6: 删掉真 onClick ＋ 在注释里补一枚 ⟹ 判据必须红",
+  "gate": "868",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 剥注释生效（注释不算接线）"
+ },
+ {
+  "复原自检": "字节级干净（★ 与负控开始前一致）"
+ },
+ {
+  "跨文件污染守卫": {
+   "负控期间变动的文件": "无",
+   "★ 回归脚本特征泄漏进 .tsx": "无"
+  }
+ }
+]

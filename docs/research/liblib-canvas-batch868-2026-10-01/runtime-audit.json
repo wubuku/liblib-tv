@@ -1,0 +1,81 @@
+{
+ "判据数": 11,
+ "失败": [],
+ "audit": {
+  "batch": 868,
+  "title": "「看着可点、点了没反应」的那批控件：普查 ＋ 整改 ＋ 上锁",
+  "运行时核对条数": 10,
+  "运行时核对失败": 0,
+  "两处整改": {
+   "quick-age": {
+    "needle": "aria-label=\"生成其他年龄版本\"",
+    "命中数": 1,
+    "有 onClick": true,
+    "标签属性表": "type=\"button\" aria-label=\"生成其他年龄版本\" data-character-studio-quick onClick={handleQuickAge} className=\"cs-quick\"",
+    "依据": "★ 源站 i18n 逐字：characterStudioQuickAgeTip / characterStudioAgeVersionName = {name}{age}版",
+    "口径": "★ 用 scan_tags 解析**该标签自己的属性表**（★ 不用「往后 2000 字符」那个宽口径）"
+   },
+   "motion-preset": {
+    "needle": "data-director-motion-preset-button",
+    "命中数": 1,
+    "有 onClick": true,
+    "标签属性表": "type=\"button\" data-director-motion-preset-button data-director-right-panel-camera-preset-toggle aria-expanded={presetListOpen} title=\"预设运镜\" onClick={() => setPresetListOpen((open) => !open)} className",
+    "依据": "★ 源站截图 50/51 的右栏就是这两个入口",
+    "口径": "★ 用 scan_tags 解析**该标签自己的属性表**（★ 不用「往后 2000 字符」那个宽口径）"
+   },
+   "motion-create-path": {
+    "needle": "data-director-motion-create-path",
+    "命中数": 1,
+    "有 onClick": true,
+    "标签属性表": "type=\"button\" data-director-motion-create-path data-director-right-panel-motion-path-toggle aria-expanded={pathListOpen} title=\"创建运动轨迹\" onClick={() => setPathListOpen((open) => !open)} className=\"h-9 ",
+    "依据": "★ 同上",
+    "口径": "★ 用 scan_tags 解析**该标签自己的属性表**（★ 不用「往后 2000 字符」那个宽口径）"
+   }
+  },
+  "导演台死控件候选": [],
+  "放宽口径命中": 223,
+  "回归清单条数": 283,
+  "覆盖缺口": [],
+  "静态普查候选": [
+   "src/components/CameraConfigDialog.tsx:102",
+   "src/components/CameraConfigDialog.tsx:140",
+   "src/components/CameraConfigDialog.tsx:178",
+   "src/components/CameraConfigDialog.tsx:216",
+   "src/components/SubtitleErasePanel.tsx:472",
+   "src/components/VideoGenerationPanel.tsx:499"
+  ],
+  "静态普查未登记": [],
+  "清单外门禁数": 94,
+  "其中红的": [
+   "657.py",
+   "664.py",
+   "674.py",
+   "681.py",
+   "691.py",
+   "692.py",
+   "718.py",
+   "729.py",
+   "730.py",
+   "735.py",
+   "737.py",
+   "740.py",
+   "742.py",
+   "743.py",
+   "746.py",
+   "747.py",
+   "762.py",
+   "765.py",
+   "766.py",
+   "771.py",
+   "772.py",
+   "773.py",
+   "775.py",
+   "777.py",
+   "778.py",
+   "779.py",
+   "780.py",
+   "801.py",
+   "868.py"
+  ]
+ }
+}

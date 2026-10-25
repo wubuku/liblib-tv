@@ -1,0 +1,10 @@
+  PASS the-census-has-to-be-two-layered-and-that-is-now-a-checked-fact  {'pythonAstHitCalls': 0, 'jsLayerHitCalls': 52, 'scripts': 565, 'unparsable': [], 'theFirstRunFoundNothing': 'and that is not a null result -- it is a  [654's AST census was right for `.click()` and wrong for this]
+  PASS of-the-hit-test-call-sites-only-one-payload-can-refuse  {'scripts': 565, 'filesWithHitCalls': 81, 'hitCallsInJs': 52, 'hitCallsInPeAwarePayload': 32, 'evaluateCallSites': 191, 'filesThatCanRefuse': ['verify  [a gate that only one instrument walks through is not yet a criterion]
+  FAIL the-blind-population-is-22-elements-and-13-cannot-even-be-named  {'perViewport': {'1280x1150': {'liveControls': 129, 'pointerEventsNoneElements': 18, 'ofWhichOpacityZero': 1, 'controlsWhoseCentreIsUnderOne': 28}, '1  [an instrument that cannot see it and a name that cannot address it are the same gap twice]
+  FAIL the-blind-population-includes-the-playhead-and-the-aspect-frame  {'byDataAt1920': {'(no data-director attr)': 10, 'data-director-webgl-canvas=true': 1, 'data-director-character-label=角色A': 1, 'data-director-gizmo-we  [invisible to a click test does not mean invisible on screen]
+  PASS no-new-occlusion-hides-behind-the-pointer-events-none-population  {'controlsWhoseCentreIsUnderOne': {'1280x1150': 28, '1280x720': 28, '1920x1150': 29}, 'liveControls': {'1280x1150': 129, '1280x720': 129, '1920x1150':  [空集不算证据；但量到的零和没记录不是一回事]
+  PASS the-gate-already-exists-and-it-fired  {'batch663States': [('1280x720/add-character-flyout', 'measured-empty'), ('1280x720/ai-import-modal', 'measured-empty'), ('1280x720/aspect-flyout', 'm  [基础设施齐了，缺的是有人接线]
+
+4/6 checks passed
+  FAILED: the-blind-population-is-22-elements-and-13-cannot-even-be-named
+  FAILED: the-blind-population-includes-the-playhead-and-the-aspect-frame

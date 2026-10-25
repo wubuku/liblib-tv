@@ -1,0 +1,44 @@
+{
+ "扫描文件数": 85,
+ "范围": "src/**/*.tsx（排除 jimeng/ 与 frameos/）",
+ "候选数": 6,
+ "判据": "★ 可点元素 ⟹ ⟹ 既无 onClick/onPointerDown/onChange/href 等行为 ⟹ ⟹ 又无 data-inert/disabled/aria-disabled 等惰性声明",
+ "候选": [
+  {
+   "file": "src/components/CameraConfigDialog.tsx",
+   "line": 102,
+   "tag": "button",
+   "attrs": "className=\"rounded-lg p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white\""
+  },
+  {
+   "file": "src/components/CameraConfigDialog.tsx",
+   "line": 140,
+   "tag": "button",
+   "attrs": "className=\"rounded-lg p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white\""
+  },
+  {
+   "file": "src/components/CameraConfigDialog.tsx",
+   "line": 178,
+   "tag": "button",
+   "attrs": "className=\"rounded-lg p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white\""
+  },
+  {
+   "file": "src/components/CameraConfigDialog.tsx",
+   "line": 216,
+   "tag": "button",
+   "attrs": "className=\"rounded-lg p-2 text-white/60 transition-colors hover:bg-white/10 hover:text-white\""
+  },
+  {
+   "file": "src/components/SubtitleErasePanel.tsx",
+   "line": 472,
+   "tag": "button",
+   "attrs": "data-subtitle-erase-help type=\"button\" aria-label=\"查看框选去字幕说明\" className=\"flex size-4 items-center justify-center text-[#8b8b8b] hover:text-white\""
+  },
+  {
+   "file": "src/components/VideoGenerationPanel.tsx",
+   "line": 499,
+   "tag": "button",
+   "attrs": "key={item.label} type=\"button\" className=\"flex h-[26px] items-center gap-1.5 rounded-full bg-white/[0.05] px-2 py-1 text-xs text-[#aaa] hover:bg-white/[0.09] hover:text-white\""
+  }
+ ]
+}

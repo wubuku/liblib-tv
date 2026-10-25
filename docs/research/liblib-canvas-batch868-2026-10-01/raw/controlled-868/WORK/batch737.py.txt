@@ -1,0 +1,80 @@
+ M src/components/CharacterLibraryPanel.tsx
+ M src/components/director/DirectorCameraMotionTab.tsx
+=== 静态 ===
+  写点 button 151 / input 49 / select 4  合计 204
+  createPortal 在 IconRail.tsx:None；轨入口 6 个；添加角色 flyout 0 项
+
+=== 根内 139 枚 / 根外 38 枚 ===
+  根外可及名 top: [('删除连线', 11), ('项目菜单', 1), ('工作区名称', 1), ('画布 2', 1), ('工作流', 1), ('故事板', 1), ('发布与分享', 1), ('开通会员 限时 45 折', 1)]
+
+=== 打开「添加角色」flyout ===
+  根内 124（-15）  根外 38（+0）
+  根外新增可及名: []
+
+=== 焦点在台内，20 次 Tab ===
+  捕获 0 / 冒泡 20；落点 desk 20 flyout 0 outside 0
+
+=== flyout 开着时 30 步 Tab ===
+  点击后焦点 desk；落点 desk 30 flyout 0 outside 0 body 0
+  8 轮开关：每次 [{"afterClick": "desk", "desk": 5, "flyout": 0, "outside": 0}, {"afterClick": "desk", "desk": 5, "flyout": 0, "outside": 0}, {"afterClick": "desk", "desk": 5, "flyout": 0, "outside": 0}, {"afterClick": "desk", "desk": 5, "flyout": 0, "outside": 0}, {"afterClick": "desk", "desk": 5, "flyout": 0, "outside": 0}, {"afterClick": "desk", "desk": 5, "flyout": 0, "outside": 0}, {"afterClick": "desk", "desk": 5, "flyout": 0, "outside": 0}, {"afterClick": "desk", "desk": 5, "flyout": 0, "outside": 0}]
+
+=== 焦点程序化搬到台外（项目菜单），20 次 Tab ===
+  捕获 0 / 冒泡 0；落点 desk 0 outside 20
+  起点 项目菜单
+
+=== 台外 Shift+Tab 20 次 ===
+  捕获 0 / 冒泡 12；落点 desk 13 outside 6 body 1；前 6 步里首次进台内 = 第 None 步
+
+=== 角色页签「姿势」(clicked) ===
+  选中角色后根内 139 → 姿势页签 151（+12）
+  出现 45 枚 / 消失 33 枚 / 净增 12 / 切回属性页 139（可逆=True）
+
+=== 汇总 ===
+  staticSites: 204
+  createPortalLine: None
+  railEntries: 6
+  inRootClosed: 139
+  outRootClosed: 38
+  inRootFlyout: 124
+  outRootFlyout: 38
+  flyoutOutAdded: 0
+  flyoutOutNames: 0
+  insideCapture: 0
+  insideBubble: 20
+  insideDeskStops: 20
+  insideOutsideStops: 0
+  outsideCapture: 0
+  outsideBubble: 0
+  outsideDeskStops: 0
+  outsideOnlyStops: 20
+  backBubble: 12
+  backDeskStops: 13
+  backOutsideStops: 6
+  backBodyStops: 1
+  firstDeskStep: None
+  fly30Desk: 30
+  fly30Flyout: 0
+  fly30Outside: 0
+  cyclesAllInsideDesk: True
+  cyclesOutsideTotal: 0
+  poseDelta: 12
+  posePreset: 20
+  poseControl: 25
+  poseAdded: 45
+  poseRemoved: 33
+  poseReversible: True
+  shiftStart: 项目菜单
+
+=== 判据 ===
+  [FAIL] C1 静态 195 写点  ⟵ 204
+  [FAIL] C2 flyout 走 createPortal（IconRail.tsx:308）  ⟵ {"createPortalLine": null, "railEntries": ["scene", "add-character", "add-camera", "panorama", "aspect-ratio", "ai-import"]}
+  [FAIL] C3 打开「添加角色」flyout：根内不变、根外 +11  ⟵ 根内 139→124；根外 38→38（+0）
+  [PASS] C4 台内 20 步 Tab：冒泡 20/20 被拦、落点 20/20 在台内  ⟵ bubble=20 desk=20 outside=0
+  [PASS] C5 台外 20 步 Tab：冒泡 0/20、落点 20/20 在台外  ⟵ bubble=0 outside=20 desk=0
+  [FAIL] C6 台外 Shift+Tab：起点「项目菜单」时 2 步内进台内、此后 18 步在台内（可复现）  ⟵ 起点=项目菜单 desk=13 outside=6 body=1 冒泡=12 首次进台内=第None步
+  [PASS] C7 捕获阶段读 defaultPrevented 恒 0（测法错的证据）  ⟵ 台内 capture=0 / 台外 capture=0
+  [PASS] C8 键盘走不到台外：flyout 开着 30 步全在台内 + 8 轮开关焦点不回退  ⟵ 30 步 desk=30 outside=0；8 轮全在台内=True
+  [PASS] C9 「姿势」页签：出现 45 / 消失 33 / 净增 12 / 切回可逆  ⟵ 出现=45(preset 20+control 25) 消失=33 净增=12 可逆=True
+  [FAIL] C10 台外 36 枚（关闭态）/ 47 枚（flyout 开着），其中 11 枚是连线删除手柄  ⟵ 关闭态根外 38 枚 / flyout 开着 38 枚；删除连线 11 枚；TV Director 1 枚
+
+5/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch737-2026-10-01/runtime-audit.json

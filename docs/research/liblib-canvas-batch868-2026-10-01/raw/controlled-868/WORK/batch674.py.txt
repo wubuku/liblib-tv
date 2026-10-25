@@ -1,0 +1,11 @@
+  PASS five-identities-five-folding-counts-identical-at-three-viewports  {'uniquish': (99, 58, 117, 116, 123), 'foldsName_groups_inside_shadowed': (8, 36, 28), 'foldsKS': (19, 88, 69), 'foldsKS2': (5, 15, 10), 'foldsKS3': (  [names swallow 28, structure swallows 68, structure+value swallows 10; kS3 swallows 11 (coarser f]
+  FAIL the-two-folding-partitions-are-not-nested  {'swallowedByName': 28, 'swallowedByKS': 69, 'swallowedByKS2': 10, 'exampleWhereStructureWins': '当前帧有关键帧 is ONE name (11 controls) but TWO kS2 keys',   [no key is simply 'best' — each is best for a different family]
+  PASS the-kS2-residue-of-ten-is-exactly-two-families  {'groups': [{'key': 'button|group.relative.flex|data-director-track-label=director-track-camera-main|-', 'n': 3, 'names': ['上一关键帧', '当前帧有关键帧', '下一关键帧'  [9 transform inputs grouped 3-by-field, 6 keyframe-nav buttons grouped 3-by-track. NOT claimed ir]
+  PASS eighteen-controls-carry-no-data-attribute-of-their-own  {'elementsWithoutSelfData': 18, 'distinctNames': 14, 'names': ['上一关键帧', '下一关键帧', '变换', '开启九宫格辅助线', '当前帧有关键帧', '搜索场景内容', '收起属性', '机位', '隐藏冷掉的咖啡', '隐藏咖啡  [they can only be identified through an ancestor's attribute]
+  FAIL 670s-66-is-a-name-count-not-a-control-count  {'alwaysTrueFPByKey': {'name': {'perCell': [65, 67, 68], 'intersection': 65}, 'kS': {'perCell': [31, 33, 34], 'intersection': 31}, 'kS2': {'perCell':   [the wording is what fails, not the number 66 itself]
+  PASS a-finer-key-on-one-dimension-can-be-coarser-on-another  {'swallowedByKS2': 10, 'swallowedByKS3': 11, 'largestResidueGroupKS2': 3, 'largestResidueGroupKS3': 6, 'ks3ResidueGroups': [{'key': 'button|group.rela  [a key is not 'finer' overall — it is finer per dimension, and the dimensions trade against each ]
+  PASS the-transform-family-already-had-a-per-node-discriminator-kS2-threw-away  {'transformControls': 9, 'distinctFULLselfDataTuples': 9, 'sampleFullTuples': ['data-director-transform-field=position&data-director-transform-axis=x'  [kS4 keeps the self-data dimension fine AND the ancestor fallback intact; the residue is the cont]
+
+5/7 checks passed
+  FAILED: the-two-folding-partitions-are-not-nested
+  FAILED: 670s-66-is-a-name-count-not-a-control-count

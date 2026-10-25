@@ -1,0 +1,8 @@
+  FAIL only-three-expressions-are-displayed-at-more-than-one-explicit-precision  {'censusOutput': ['显式取整点 42 处 · 去重后表达式 33 个', '精度档 ≥2 的表达式 3 个：', '  phoneVcam.pose.yaw  ← 4 处, 档 ["Math.round","toFixed(0)","toFixed(2)"]', '      Di  [a census of rounding calls measures the code, not the display]
+  PASS the-census-dedupes-jsx-wrapped-rounding-calls  {'censusReportsSitesForYaw': 4, 'grepHitsForPoseYaw': 5, 'theDoubleCount': 'aria-valuenow={Math.round(x)} is a CallExpression AND is wrapped in a JsxE  [the same class of bug as 691's census, caught one batch later]
+  PASS at-runtime-yaw-and-pitch-have-the-same-surfaces-despite-the-census-ranking-them-differently  {'samples': 42, 'censusSaid': 'yaw 4 sites / 3 tiers, pitch 3 sites / 2 tiers -- so the census ranks yaw as the more complex one', 'runtimeSays': 'ide  [the census's own ranking is falsified by the runtime, using the same drag]
+  PASS one-border-causes-the-registration-error-on-both-axes  {'samples': 42, 'matchesThePredictionWithinOneSixtyFourth': 42, 'maxResidualPx': 0.015525477707006408, 'yawMaxAbsRegistrationErrorPx': 0.984375, 'pitc  [one cause, two axes]
+  PASS stability-is-single-tier-in-the-census-yet-has-three-surfaces  {'censusSays': '1 explicit rounding site -> single tier', 'runtimeSurfaces': {'label': '稳定度：{Math.round(stability)}', 'slider': 'input[type=range] ste  [the census cannot distinguish this case from a genuinely simple field]
+
+4/5 checks passed
+  FAILED: only-three-expressions-are-displayed-at-more-than-one-explicit-precision

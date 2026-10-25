@@ -390,6 +390,108 @@ python3 scripts/verify-docs.py
   parser under test still honoured comments. **Rule**: for each negative
   control, write down which quantity the assertion actually reads ⟹ ⟹ move
   the mutation there ⟹ ⟹ only then suspect the criterion.
+- A "clicked it and nothing happened" criterion needs **four** observations,
+  not two (Batch 868). A page with animation makes any two snapshots differ
+  ⟹ ⟹ the criterion becomes **permanently false**; and clicking any button
+  gives it **focus** ⟹ ⟹ if focus counts as a change the criterion becomes
+  **permanently true** ⟹ ⟹ ⟹ ⟹ ⇒ neither direction can detect anything.
+  **Rule**: take `pre1`/`pre2` (1.5s apart, before the click) and require them
+  equal ⟹ ⟹ (the page was quiet) ⟹ ⟹ then `after1`/`after2` ⟹ ⟹ require those
+  equal ⟹ ⟹ ⇒ the control is **dead** only when all four are equal, and a
+  change that is **focus only** must be recorded separately, never as "dead".
+- "Nothing happened" must be paired with a **positive control** before it can
+  be called a defect (Batch 868). A control that did nothing is one of four
+  things: an **input** (clicking it only focuses it), the **currently selected
+  item** of a group (clicking it again is idempotent), **broken**, or
+  **undeterminable**. **Rule**: the "broken" verdict requires a **sibling in
+  the same group** that *does* produce an observable change ⟹ ⟹ ⟹ ⟹ ⇒ "it did
+  nothing" on its own is never a finding.
+- A census over gates must cover gates that **scan a whole directory**
+  (Batch 868). Batch 866's census matched a gate to the tracked sources only
+  when the gate's text **mentioned a file name** ⟹ ⟹ ⟹ ⟹ ⇒ a gate that scans
+  `src/components/**` never names `DirectorViewport.tsx` ⟹ ⟹ ⟹ ⟹ ⇒ it fell
+  out of the census entirely ⟹ ⟹ ⟹ ⟹ ⇒ and it was **red at that moment**
+  (`367`, red since batch 840) ⟹ ⟹ ⟹ ⟹ ⇒ nobody could see it. **Rule**: the
+  matching predicate needs three arms ⟹ ⟹ file name **OR** directory name
+  **OR** a `glob`/`rglob` over `src`.
+- A criterion that **pins the defect** must be **reversed** when the defect is
+  fixed (Batch 868). Batch 698 asserted "all four copies look enabled and none
+  of them does anything" ⟹ ⟹ ⟹ ⟹ ⇒ it pinned the defect ⟹ ⟹ ⟹ ⟹ ⇒ once the
+  right-panel copies were wired, that criterion silently became a false
+  green. **Rule**: when a fix lands, search the gates for a criterion that
+  *asserts the broken behaviour* ⟹ ⟹ ⟹ ⟹ ⇒ reverse it into "guard the fix"
+  (★ do not delete it) ⟹ ⟹ ⟹ ⟹ ⇒ and record the correction as a **forward
+  correction**, never by rewriting an old ledger row.
+- "**Passed**" is not a verdict you may extract from a gate's output (Batch
+  868). The batch's baseline script looked for the last line that contained
+  `/` and ended with "通过" ⟹ ⟹ ⟹ ⟹ ⇒ `9/10 判据通过` (★ one check **failed**) was
+  extracted as `通过` ⟹ ⟹ ⟹ ⟹ ⇒ the table showed rows with `rc=1` and
+  `verdict=通过` ⟹ ⟹ ⟹ ⟹ ⇒ and "ran fine ≠ saw the thing" again. **Rule**:
+  extract **named red lines** (`FAILED:` / `FAIL … ｜` / `[FAIL]` /
+  `AssertionError`) and never a conclusion word; give the extractor a
+  **self-test** that feeds it several failure shapes and asserts it sees every
+  one, asserts a green output yields no red lines, and asserts "通过" is never
+  treated as a conclusion; when nothing can be extracted, mark it
+  `★ unrecognised` ⟹ ⟹ ⟹ ⟹ ⇒ **not** green.
+- A negative control whose mutation **changes a file but not the running
+  process** is a **false green** (Batch 868). Batch 801's new criterion reads
+  its anchor commit from a module constant ⟹ ⟹ ⟹ ⟹ ⇒ the negative control
+  rewrote that constant **on disk** ⟹ ⟹ ⟹ ⟹ ⇒ but the module in memory still
+  held the old value ⟹ ⟹ ⟹ ⟹ ⇒ nothing changed ⟹ ⟹ ⟹ ⟹ ⇒ the criterion never
+  flipped ⟹ ⟹ ⟹ ⟹ ⇒ the control "passed" while proving nothing. **Rule**: when
+  the thing under test is read from the artifact's own source, **re-read it from
+  the file at call time** so a mutation on disk really lands; and if a negative
+  control does not flip, first ask **whether the mutation landed at all**
+  (★ the same discipline as "negative control did not fail ⟹ ⟹ check where the
+  mutation landed") ⟹ ⟹ ⟹ ⟹ ⇒ before suspecting the criterion.
+- A criterion that states a **batch fact** must not read the **current
+  working tree** (Batch 868). Batch 801 asserted "this batch did not change
+  `src/`" but implemented it as `git status --porcelain src/` ⟹ ⟹ ⟹ ⟹ ⇒ it
+  pins a **historical fact** through **present state** ⟹ ⟹ ⟹ ⟹ ⇒ any later
+  batch that touches `src/` turns it red even when the change is unrelated and
+  legitimate ⟹ ⟹ ⟹ ⟹ ⇒ it went red the moment this batch edited two
+  components. **Rule**: anchor such a criterion to the **commit of that
+  batch** (`git show <commit> --name-only -- src/`) ⟹ ⟹ ⟹ ⟹ ⇒ and record the
+  present working-tree state as a **separate, non-blocking** line ⟹ ⟹ ⟹ ⟹ ⇒
+  so the fact is neither hidden nor misfired; keep the old criterion's teeth
+  with a negative control that points the anchor at a commit that *did* touch
+  `src/`.
+- A **red** must be attributed by a **controlled comparison**, not by static
+  screening (Batch 868). Static screening showed only two of the 28 red gates
+  even mentioned the files this batch edited ⟹ ⟹ ⟹ ⟹ ⇒ but gates are
+  **runtime** ⟹ ⟹ ⟹ ⟹ ⇒ a gate that scans `src/**` reads those files without
+  naming them. **Rule**: swap the batch's edited **source files** back to
+  `HEAD` (★ `git show HEAD:<path>`, never `stash`), let the dev server
+  recompile, run the **same** gates with the **same** method, and compare
+  red/green ⟹ ⟹ ⟹ ⟹ ⇒ only "HEAD green / WORK red" is introduced by this
+  batch; verify the restore by **SHA-256** and restore on `SIGTERM` too.
+- A negative control that uses a **leftover variable** writes into the
+  **wrong file** (Batch 868). `neg868.py`'s N4 wrote `p.write_text(...)` while
+  `p` had never been assigned in that block ⟹ ⟹ ⟹ ⟹ ⇒ it still held the
+  **previous** block's path ⟹ ⟹ ⟹ ⟹ ⇒ which was a **source file** ⟹ ⟹ ⟹ ⟹ ⇒
+  so "delete one entry from the regression list" silently **overwrote a
+  component with the regression script**, and the `finally` restored only the
+  list ⟹ ⟹ ⟹ ⟹ ⇒ the component stayed polluted while the run still "passed".
+  **Rule**: every negative control must **name the file it mutates** in its
+  own block (★ never rely on a leftover variable); the restore check must
+  compare against the **SHA-256 taken before the negative controls started**
+  (★ `git diff` is useless here ⟹ ⟹ ⟹ ⟹ ⇒ this batch *did* edit those
+  components ⟹ ⟹ ⟹ ⟹ ⇒ so `git diff` is **always dirty** ⟹ ⟹ ⟹ ⟹ ⇒ that
+  criterion is equivalent to no criterion); and add a **cross-file pollution
+  guard** that scans `.tsx` files for the regression script's own markers
+  (`GATES = [`, `KNOWN_RED`).
+- A criterion that reads "**is there an `onClick` near here**" is too wide to
+  have teeth (Batch 868). Batch 868's S2 looked for any `onClick` within
+  2000 characters after the needle ⟹ ⟹ ⟹ ⟹ ⇒ deleting the target button's
+  own `onClick` left the **expanded panel's** `onClick` inside that window
+  ⟹ ⟹ ⟹ ⟹ ⇒ the criterion stayed green ⟹ ⟹ ⟹ ⟹ ⇒ negative controls N1/N2
+  could not make it fail. **Rule**: parse the **tag's own attribute table**
+  (the file already has a `scan_tags` helper) instead of scanning a window
+  after the needle ⟹ ⟹ ⟹ ⟹ ⇒ and when a negative control's expectation
+  contradicts the code, **fix the expectation** (★ N6 was "the criterion must
+  stay red" while the real `onClick` was still present ⟹ ⟹ ⟹ ⟹ ⇒ the honest
+  negative control deletes the real `onClick` **and** adds a commented-out
+  one).
 
 ## 6. Change Protocol
 
