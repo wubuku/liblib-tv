@@ -341,7 +341,7 @@
       "detail": [
         322.609375,
         55.5,
-        177.09375,
+        121.734375,
         28
       ]
     },
@@ -712,7 +712,7 @@
     },
     "flyout:8px-right-of-its-entry": {
       "ok": true,
-      "detail": "{'x': 47.5, 'y': 116, 'width': 232, 'height': 390} vs x=47.5"
+      "detail": "{'x': 48, 'y': 52, 'width': 232, 'height': 1098} vs x=47.5"
     },
     "flyout:panorama-opens": {
       "ok": true,
@@ -724,7 +724,7 @@
     },
     "flyout:panorama-8px-right-of-its-entry": {
       "ok": true,
-      "detail": "{'x': 47.5, 'y': 196, 'width': 232, 'height': 134} vs x=47.5"
+      "detail": "{'x': 48, 'y': 52, 'width': 232, 'height': 1098} vs x=47.5"
     },
     "flyout:another-entry-dismisses-it": {
       "ok": true,

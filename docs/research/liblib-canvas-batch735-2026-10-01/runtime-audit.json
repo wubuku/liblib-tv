@@ -153,12 +153,12 @@
    },
    {
     "file": "src/components/TopNavBar.tsx",
-    "line": 183,
+    "line": 173,
     "tag": "<button type=\"button\" aria-label=\"开通会员 限时 45 折\" title=\"开通会员为付费操作，克隆侧不提供\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\" >"
    },
    {
     "file": "src/components/TopNavBar.tsx",
-    "line": 200,
+    "line": 190,
     "tag": "<button type=\"button\" aria-label=\"积分余额\" title=\"积分余额（读数，无可点操作）\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\" >"
    },
    {
@@ -1631,19 +1631,11 @@
     "mounted": 25,
     "mountedVisible": 1,
     "steps": 260,
-    "stops": 77,
+    "stops": 68,
     "distinct": 27,
     "top": [
      [
       "开通会员 限时 45 折",
-      3
-     ],
-     [
-      "收藏 3D解构",
-      3
-     ],
-     [
-      "收藏 City Drive",
       3
      ],
      [
@@ -1667,31 +1659,11 @@
       3
      ],
      [
-      "收藏 山路追击",
-      3
-     ],
-     [
-      "收藏 微距推镜",
-      3
-     ],
-     [
-      "收藏 悬浮深入",
-      3
-     ],
-     [
       "收藏 普拉达换装",
       3
      ],
      [
-      "收藏 水下慢镜头",
-      3
-     ],
-     [
       "收藏 环球缩放",
-      3
-     ],
-     [
-      "收藏 直升机揭幕",
       3
      ],
      [
@@ -1703,15 +1675,7 @@
       3
      ],
      [
-      "收藏 试妆特写",
-      3
-     ],
-     [
       "收藏 逆转引力",
-      3
-     ],
-     [
-      "收藏 雪地赛车",
       3
      ],
      [
@@ -1727,11 +1691,47 @@
       3
      ],
      [
+      "收藏 3D解构",
+      2
+     ],
+     [
+      "收藏 City Drive",
+      2
+     ],
+     [
       "收藏 Showroom",
       2
      ],
      [
+      "收藏 山路追击",
+      2
+     ],
+     [
       "收藏 巨人俯瞰",
+      2
+     ],
+     [
+      "收藏 微距推镜",
+      2
+     ],
+     [
+      "收藏 悬浮深入",
+      2
+     ],
+     [
+      "收藏 水下慢镜头",
+      2
+     ],
+     [
+      "收藏 直升机揭幕",
+      2
+     ],
+     [
+      "收藏 试妆特写",
+      2
+     ],
+     [
+      "收藏 雪地赛车",
       2
      ],
      [
@@ -1818,5 +1818,7 @@
   "allFocusable": true,
   "gatedHits": []
  },
- "failures": []
+ "failures": [
+  "C7 特效库 Tab 260 步 77 停靠 / 27 名"
+ ]
 }

@@ -44,9 +44,9 @@
    "详情": "值=false→true→false 来源=DOM开关 两条路一致=True"
   },
   {
-   "判据": "S9 吸附步长 = 1（源站 p7 逐字），clone 三处 TransformControls 都用它",
+   "判据": "S9 吸附步长 = 1（源站 p7 逐字），clone 每处 TransformControls 都用它",
    "通过": true,
-   "详情": "math里=True viewport里命中=3 处 残留0.5=False"
+   "详情": "math里=True viewport里 gizmo 挂点=2 处 用步长的=2 处 相等=True 残留0.5=False"
   },
   {
    "判据": "S10 源站实测：R/F/V 三步成链 ＋ Shift+V ＋ X 翻转 ＋ 吞按键",

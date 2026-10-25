@@ -529,15 +529,15 @@
   },
   {
    "label": "产物：audit 的守卫行号 = 静态重算",
-   "pass": true,
+   "pass": false,
    "got": 487,
-   "want": 487
+   "want": 546
   },
   {
    "label": "产物：audit 的 Delete 分支行号 = 静态重算",
-   "pass": true,
+   "pass": false,
    "got": 517,
-   "want": 517
+   "want": 595
   },
   {
    "label": "产物：audit 记的零 FAILED",
@@ -571,7 +571,7 @@
    "got": 0
   }
  ],
- "pass": 99,
+ "pass": 97,
  "total": 99,
  "negativeControls": [
   {
@@ -653,9 +653,7 @@
    "mutatedAnything": true,
    "kwMatchedCount": 1,
    "flipped": [
-    "静态：★ 守卫排在 Delete 分支**之前** ⟹ 焦点在 `<input>` 上时 `:517` 够不着（这是「顺手不成立」的机制）",
-    "产物：audit 的守卫行号 = 静态重算",
-    "产物：audit 的 Delete 分支行号 = 静态重算"
+    "静态：★ 守卫排在 Delete 分支**之前** ⟹ 焦点在 `<input>` 上时 `:517` 够不着（这是「顺手不成立」的机制）"
    ],
    "caught": true,
    "expectFailOn": "守卫排在 Delete 分支**之前**"
@@ -669,8 +667,7 @@
     "静态：Delete/Backspace 分支找得到",
     "静态：★ 守卫排在 Delete 分支**之前** ⟹ 焦点在 `<input>` 上时 `:517` 够不着（这是「顺手不成立」的机制）",
     "静态：`deleteDirectorEntity` 调用点在该分支**之内**",
-    "静态：★ 该分支**同时**覆盖 Delete 与 Backspace 两个键",
-    "产物：audit 的 Delete 分支行号 = 静态重算"
+    "静态：★ 该分支**同时**覆盖 Delete 与 Backspace 两个键"
    ],
    "caught": true,
    "expectFailOn": "**同时**覆盖 Delete 与 Backspace"
@@ -685,5 +682,5 @@
   "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
  ],
  "rawError": null,
- "ok": true
+ "ok": false
 }

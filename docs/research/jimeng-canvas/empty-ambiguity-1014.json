@@ -14,17 +14,17 @@
   "why_declared_here": "⇒ **「声明」与「发布」之间那道缝**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 声明必须落在产物里、而不只在 README 的散文里**"
  },
  "census_inputs_2029": {
-  "n_fingerprinted": 35,
+  "n_fingerprinted": 36,
   "n_unreadable": 0,
   "n_volatile": 1,
   "volatile_inputs": {
    "golden-freshness-1027.json": {
-    "sha256_12": "f5c3a2ea6b24",
-    "bytes": 107497,
+    "sha256_12": "25ec5b9dd239",
+    "bytes": 100193,
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
-  "n_from_probe_products": 36,
+  "n_from_probe_products": 37,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
     "sha256_12": "92e91802dbd4",
@@ -71,7 +71,7 @@
     "bytes": 1437
    },
    "exemption-claims-1024.json": {
-    "sha256_12": "c831c23ea30b",
+    "sha256_12": "2f50afd04f72",
     "bytes": 19739
    },
    "expanded-contract-1032b4.json": {
@@ -81,6 +81,10 @@
    "fake-interaction-census-1034.json": {
     "sha256_12": "fff360e357fc",
     "bytes": 11558
+   },
+   "floating-reachability-1040.json": {
+    "sha256_12": "24984fe16ceb",
+    "bytes": 1685
    },
    "gen-contract-1032b2.json": {
     "sha256_12": "1d9f4ab02cc2",
@@ -99,8 +103,8 @@
     "bytes": 21395
    },
    "instrument-fake-green-census-1037.json": {
-    "sha256_12": "ec5c98441567",
-    "bytes": 12594
+    "sha256_12": "59f0cc91e521",
+    "bytes": 12821
    },
    "interaction-wiring-check-1032.json": {
     "sha256_12": "d13d5109bdb1",
@@ -139,12 +143,12 @@
     "bytes": 2109
    },
    "replica-coverage-1017.json": {
-    "sha256_12": "0e03b1b560d2",
+    "sha256_12": "2e87bee9e39c",
     "bytes": 15016
    },
    "silent-exit-census-1038.json": {
-    "sha256_12": "f4cd6a16ada9",
-    "bytes": 34820
+    "sha256_12": "9ee77a1b1ab0",
+    "bytes": 35315
    },
    "source-claim-census-1036.json": {
     "sha256_12": "da0e6bc8dd21",
@@ -155,27 +159,27 @@
     "bytes": 1272
    },
    "type-layer-gate-1023.json": {
-    "sha256_12": "2cff76d71be1",
+    "sha256_12": "c3effa32f92f",
     "bytes": 9205
    },
    "wired-contract-1032b1.json": {
-    "sha256_12": "dd84c19ff7c7",
-    "bytes": 1310
+    "sha256_12": "fc8dd95f1c5e",
+    "bytes": 1320
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "cab9079bea1e",
+    "sha256_12": "62dff3d65fe5",
     "bytes": 143647
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 36,
+  "n_goldens": 37,
   "n_excluded_self": 4,
-  "n_empty_list": 301,
-  "n_empty_null": 113,
+  "n_empty_list": 304,
+  "n_empty_null": 115,
   "n_self_provable": 10,
-  "n_ambiguous": 404
+  "n_ambiguous": 409
  },
  "rows": [
   {
@@ -1516,6 +1520,20 @@
    "invariant": null
   },
   {
+   "golden": "floating-reachability-1040.json",
+   "path": "/false_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "floating-reachability-1040.json",
+   "path": "/degraded_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "gen-contract-1032b2.json",
    "path": "/false_criteria",
    "kind": "list",
@@ -1944,13 +1962,6 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[18]/green_holders",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[19]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -2000,6 +2011,13 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[22]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[23]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -2014,14 +2032,14 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[24]/green_holders",
+   "path": "/verdicts/[25]/failure_signals",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[25]/failure_signals",
+   "path": "/verdicts/[25]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2049,13 +2067,6 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[28]/green_holders",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[29]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -2077,6 +2088,13 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[30]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[31]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -2084,14 +2102,14 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[31]/green_holders",
+   "path": "/verdicts/[32]/failure_signals",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[32]/failure_signals",
+   "path": "/verdicts/[32]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2106,13 +2124,6 @@
   {
    "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[34]/failure_signals",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[34]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2154,6 +2165,13 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[37]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[38]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -2162,6 +2180,20 @@
   {
    "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[38]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[39]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[39]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2952,6 +2984,20 @@
   },
   {
    "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[104]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[105]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
    "path": "/registry/[2]/func",
    "kind": "null",
    "self_provable": false,
@@ -3058,13 +3104,6 @@
   {
    "golden": "type-layer-gate-1023.json",
    "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "wired-contract-1032b1.json",
-   "path": "/false_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -4409,6 +4448,20 @@
    "invariant": null
   },
   {
+   "golden": "floating-reachability-1040.json",
+   "path": "/false_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "floating-reachability-1040.json",
+   "path": "/degraded_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "gen-contract-1032b2.json",
    "path": "/false_criteria",
    "kind": "list",
@@ -4830,13 +4883,6 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[18]/green_holders",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[19]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -4886,6 +4932,13 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[22]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[23]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -4900,14 +4953,14 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[24]/green_holders",
+   "path": "/verdicts/[25]/failure_signals",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[25]/failure_signals",
+   "path": "/verdicts/[25]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -4935,13 +4988,6 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[28]/green_holders",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[29]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -4963,6 +5009,13 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[30]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[31]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -4970,14 +5023,14 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[31]/green_holders",
+   "path": "/verdicts/[32]/failure_signals",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[32]/failure_signals",
+   "path": "/verdicts/[32]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -4992,13 +5045,6 @@
   {
    "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[34]/failure_signals",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[34]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -5040,6 +5086,13 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[37]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[38]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -5048,6 +5101,20 @@
   {
    "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[38]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[39]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[39]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -5803,6 +5870,20 @@
   },
   {
    "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[104]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[105]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
    "path": "/registry/[2]/func",
    "kind": "null",
    "self_provable": false,
@@ -5888,13 +5969,6 @@
   {
    "golden": "type-layer-gate-1023.json",
    "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "wired-contract-1032b1.json",
-   "path": "/false_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null

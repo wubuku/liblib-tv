@@ -194,6 +194,26 @@ export function JimengAudioGenPanel({
   const [open, setOpen] = useState<"gen" | "music" | "dur" | "tts" | "dub" | "voice" | null>(
     null,
   );
+  /* ⭐⭐⭐⭐⭐ 1032-⑬：**「全音色」面板开到【视口外】** ⇒ 4 个筛选芯片点不到。
+   *
+   *  实测（1032-⑬，demo 画布 1280×720）：打开后面板 `700×884`、顶边 **y=-318**，
+   *  4 枚筛选芯片在 **y=-278** ⇒ `elementFromPoint` 落空 ⇒ **鼠标点不到**
+   *  ⇒ ⇒ 「音色筛选」这条功能在那个位置**整个不可用**。
+   *
+   *  成因：面板是 `absolute bottom-[calc(100%+8px)]` ⇒ **永远向上开**；
+   *  而节点工具条在节点**上方** ⇒ 节点越靠近视口顶边，面板越往外跑。
+   *
+   *  处置（CLONE_DECISION —— 源站在这种位置下开成什么样**没量到**）：
+   *  ① 开层时量触发器的屏上位置 ⇒ **上方不够就改向下开**；
+   *  ② 面板加 `max-h` + 内部滚动 ⇒ 永远不会超出视口。
+   */
+  const [voicePanelDown, setVoicePanelDown] = useState(false);
+  /* ⭐⭐⭐⭐⭐ 1032-⑬ 续：**横向**也会出屏。
+   *  实测：触发器在屏上 `x≈1245`、面板 `700` 宽、`left-0` ⇒ 右缘 `1945`
+   *  ⇒ 超出 1280 的视口 **665px** ⇒ 芯片几乎全在屏外。
+   *  ⇒ ⇒ 触发器离右缘太近时改成 `right-0`（面板向左展开）。 */
+  const [voicePanelRight, setVoicePanelRight] = useState(false);
+  const voiceTriggerRef = useRef<HTMLButtonElement | null>(null);
   /* 批 851 SOURCE_FACT（探针 851b，源站登录态实测，视口 1512×1200）：
      `audio-voice-model-listbox`（音色模型）与 `audio-gen-mode-listbox`
      （音频生成模式）**开层即把焦点移进层里**（落在层内 option 的 BUTTON 上），
@@ -711,7 +731,25 @@ export function JimengAudioGenPanel({
                     <button
                       type="button"
                       aria-label="音色: 音色库"
-                      onClick={() => setOpen((v) => (v === "voice" ? null : "voice"))}
+                      ref={voiceTriggerRef}
+                      onClick={() => {
+                        if (open === "voice") {
+                          setOpen(null);
+                          return;
+                        }
+                        /* 1032-⑬：开层前量触发器的屏上位置 ⇒ 决定朝哪边开。
+                         * 上方不够（面板高 ≈ 884 + 间距 8）就**向下**开。 */
+                        const r = voiceTriggerRef.current?.getBoundingClientRect();
+                        const need = 892;
+                        const spaceAbove = r ? r.top : 0;
+                        const spaceBelow = r ? window.innerHeight - r.bottom : 0;
+                        setVoicePanelDown(spaceAbove < need && spaceBelow > spaceAbove);
+                        /* 横向：触发器 + 面板宽超了视口右缘 ⇒ 改成向左展开 */
+                        setVoicePanelRight(
+                          r ? r.left + 700 > window.innerWidth - 16 : false,
+                        );
+                        setOpen("voice");
+                      }}
                       className="flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]"
                     >
                       音色库
@@ -719,7 +757,13 @@ export function JimengAudioGenPanel({
                     </button>
                     {open === "voice" ? (
                       <div
-                        className="absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[700px] rounded-xl p-3"
+                        className={`absolute z-[140] w-[700px] rounded-xl p-3 ${
+                          voicePanelRight ? "right-0" : "left-0"
+                        } ${
+                          voicePanelDown
+                            ? "top-[calc(100%+8px)]"
+                            : "bottom-[calc(100%+8px)]"
+                        } max-h-[70vh] overflow-y-auto`}
                         style={{ background: "rgb(38,38,38)" }}
                         role="listbox"
                         aria-label="全音色"

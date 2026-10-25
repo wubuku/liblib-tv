@@ -1,7 +1,7 @@
 {
  "batch": 752,
  "title": "源站导演台对照：把积压的「需先有源站 A/B」逐条解掉",
- "verdict": "10/10",
+ "verdict": "8/10",
  "twoRoundsIdentical": null,
  "twoRoundsNote": "源站是共享浏览器上的现场快照，无法重放两次取一致；本批改判为「源站读数文件字段齐全 + clone 静态逐项对平」",
  "noGenerationPerformed": true,
@@ -893,8 +893,8 @@
    "line": "MOTION_SLIDER_MAX = 10;"
   },
   "deadButtons": {
-   "presetHasOnClick": false,
-   "createPathHasOnClick": false,
+   "presetHasOnClick": true,
+   "createPathHasOnClick": true,
    "presetLabel": "⟳ 预设运镜"
   },
   "axisDrag": {
@@ -1193,7 +1193,7 @@
   },
   {
    "label": "C7 **Batch 583 的存疑项有源站证据了**：源站 `时长` range `min=0.1 max=10 value=0.1`，clone `MOTION_SLIDER_MIN = 0` ⟹ **clone 下界错**（上界 10 对）",
-   "pass": true,
+   "pass": false,
    "detail": {
     "source": {
      "min": "0.1",
@@ -1213,7 +1213,7 @@
   },
   {
    "label": "C8 源站运动轨迹页签**没有「创建运动轨迹」按钮** ⟹ clone 的 `data-director-motion-create-path` 是 clone 自造、且恰好又是那个无 `onClick` 的按钮；源站有的是 `预设运镜`（248×36、aria-label、无 ⟳ 前缀）",
-   "pass": true,
+   "pass": false,
    "detail": {
     "sourceMotionTab": {
      "clickedTab": {
@@ -1386,8 +1386,8 @@
      ]
     },
     "cloneStatic": {
-     "presetHasOnClick": false,
-     "createPathHasOnClick": false,
+     "presetHasOnClick": true,
+     "createPathHasOnClick": true,
      "presetLabel": "⟳ 预设运镜"
     }
    }

@@ -1,63 +1,64 @@
 {
   "batch": 741,
   "title": "canvasStore 54 个命令的历史栈记账普查：33 记账 / 17 只 set / 4 皆无；一次拖动 = 多次中间路由零记账 + 停下时 1 条",
-  "verdict": "13/13",
+  "verdict": "11/13",
   "summary": {
     "static": {
       "store_range": [
-        1020,
-        4072
+        1172,
+        4321
       ],
       "decl_range": [
         282,
-        453
+        454
       ],
       "decl_push_hits": [],
-      "push_history_def": 506,
+      "push_history_def": 507,
       "call_sites": [
-        1311,
-        1384,
-        1472,
-        1518,
-        1572,
-        1603,
-        1658,
-        1759,
-        1892,
-        2025,
-        2136,
-        2237,
-        2501,
-        2608,
-        2768,
-        2853,
-        2967,
-        3007,
-        3099,
-        3145,
-        3182,
-        3218,
-        3254,
-        3323,
-        3363,
-        3384,
-        3409,
-        3433,
-        3650,
-        3668,
-        3869,
-        3976,
-        4042
+        1463,
+        1536,
+        1624,
+        1677,
+        1731,
+        1762,
+        1817,
+        1918,
+        2051,
+        2184,
+        2295,
+        2396,
+        2660,
+        2767,
+        2927,
+        3012,
+        3126,
+        3166,
+        3258,
+        3304,
+        3341,
+        3379,
+        3417,
+        3477,
+        3563,
+        3606,
+        3627,
+        3652,
+        3676,
+        3899,
+        3917,
+        4118,
+        4225,
+        4291
       ],
       "max_history": 50
     },
     "buckets": {
-      "fns": 54,
-      "both": 33,
+      "fns": 55,
+      "both": 34,
       "setonly": 17,
       "neither": 4,
       "conditional": 2,
-      "call_sites": 33
+      "call_sites": 34
     },
     "both_names": [
       "createStoryScriptPair",
@@ -83,6 +84,7 @@
       "duplicateSelectedNodes",
       "removeNode",
       "removeSelectedNodes",
+      "nudgeSelectedNodes",
       "groupSelectedNodes",
       "ungroupSelectedNodes",
       "updateNodeData",
@@ -117,8 +119,8 @@
       {
         "name": "addNode",
         "range": [
-          1252,
-          1258
+          1404,
+          1410
         ],
         "delegates": [
           "addNodeAtPosition",
@@ -128,8 +130,8 @@
       {
         "name": "addNodeAtFlowCenter",
         "range": [
-          1260,
-          1269
+          1412,
+          1421
         ],
         "delegates": [
           "addNodeAtPosition"
@@ -138,16 +140,16 @@
       {
         "name": "getActiveCanvas",
         "range": [
-          4053,
-          4056
+          4302,
+          4305
         ],
         "delegates": []
       },
       {
         "name": "getSelectionSnapshot",
         "range": [
-          4058,
-          4071
+          4307,
+          4320
         ],
         "delegates": []
       }
@@ -158,8 +160,8 @@
     ],
     "addNode": {
       "name": "addNode",
-      "start": 1252,
-      "end": 1258,
+      "start": 1404,
+      "end": 1410,
       "kind": "brace",
       "calls_set": false,
       "calls_push": false,
@@ -171,8 +173,8 @@
     },
     "addNodeAtPosition": {
       "name": "addNodeAtPosition",
-      "start": 1577,
-      "end": 1606,
+      "start": 1736,
+      "end": 1765,
       "kind": "brace",
       "calls_set": true,
       "calls_push": true,
@@ -300,17 +302,17 @@
   "checks": [
     {
       "label": "C1 54 命令 = 33 记账 / 17 只 set / 4 皆无；33 个调用点逐个对平；声明区 0 命中",
-      "pass": true,
-      "detail": "{\"fns\": 54, \"both\": 33, \"setonly\": 17, \"neither\": 4, \"conditional\": 2, \"call_sites\": 33}"
+      "pass": false,
+      "detail": "{\"fns\": 55, \"both\": 34, \"setonly\": 17, \"neither\": 4, \"conditional\": 2, \"call_sites\": 34}"
     },
     {
       "label": "C2 修正扫描错：addNode 是转发器（无 pushHistory）、setProjectName 被状态字段吞掉后才找回来",
       "pass": true,
-      "detail": "{\"addNode\": {\"name\": \"addNode\", \"start\": 1252, \"end\": 1258, \"kind\": \"brace\", \"calls_set\": false, \"calls_push\": false, \"conditional_push\": false, \"delegates\": [\"addNodeAtPosition\", \"getActiveCanvas\"]}, \"setProjectName\": {\"name\": \"setProjectName\", \"start\": 1030, \"end\": 1034, \"kind\": \"brace\", \"calls_set\": true, \"calls_push\": false, \"conditional_push\": false, \"delegates\": []}}"
+      "detail": "{\"addNode\": {\"name\": \"addNode\", \"start\": 1404, \"end\": 1410, \"kind\": \"brace\", \"calls_set\": false, \"calls_push\": false, \"conditional_push\": false, \"delegates\": [\"addNodeAtPosition\", \"getActiveCanvas\"]}, \"setProjectName\": {\"name\": \"setProjectName\", \"start\": 1182, \"end\": 1186, \"kind\": \"brace\", \"calls_set\": true, \"calls_push\": false, \"conditional_push\": false, \"delegates\": []}}"
     },
     {
       "label": "C3 setNodes/setEdges 条件记账，其余 31 个无条件",
-      "pass": true,
+      "pass": false,
       "detail": "{\"conditional\": [\"setNodes\", \"setEdges\"]}"
     },
     {

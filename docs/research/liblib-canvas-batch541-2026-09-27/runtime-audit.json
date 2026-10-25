@@ -7,12 +7,14 @@
       "viewport": "1440x900",
       "checks": [
         "flyout:opens",
+        "crowd:dialog-opens",
+        "crowd:dialog-defaults-3x3",
         "crowd:objects-increase",
         "crowd:ack",
-        "crowd:flyout-closes",
+        "crowd:panel-stays-open",
         "preset:ack",
         "preset:no-3d-spawn",
-        "preset:flyout-closes",
+        "preset:panel-stays-open",
         "ack:auto-dismiss",
         "diagnostics:zero"
       ],

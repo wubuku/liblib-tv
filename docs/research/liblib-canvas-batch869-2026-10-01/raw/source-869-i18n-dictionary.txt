@@ -1,0 +1,34 @@
+# 源站 i18n 字典逐字摘录（★ batch 869 判据的期望值出处）
+
+## 出处
+
+- 缓存文件：`/tmp/liblib_srcjs/e602a5b3e0_3sqc5lvxsgmdw.js.js`
+- 该 chunk 是源站 **i18n 字典**（★ 全部中文文案都在这里）
+- 字节数：498751
+- sha256：`1b27b5dd4ecc6128005d1b1ba1e4c3336a504b177ebae6f39ce03e6199bbe44b`
+- 摘录起始字节偏移：29283
+
+## 逐字摘录
+
+```text
+TimelineExpandProperties":"展开属性","directorTimelineCollapseProperties":"收起属性","directorTimelinePreviousKeyframe":"上一关键帧","directorTimelineCurrentKeyframeVisible":"当前帧有关键帧","directorTimelineCurrentKeyframeHidden":"当前帧无关键帧","directorTimelineNextKeyframe":"下一关键帧","directorMotionPathAdd":"新增路径","directorMotionPathDrawing":"正在绘制曲线","directorMot
+```
+
+## 逐条结论
+
+| i18n 键 | 源站中文（★ 逐字） |
+| --- | --- |
+| `directorTimelineCurrentKeyframeVisible` | 当前帧有关键帧 |
+| `directorTimelineCurrentKeyframeHidden` | 当前帧无关键帧 |
+| `directorAddKeyframe` | ◆ 添加关键帧（★ **未被任何 chunk 引用** ⟹ 未使用词条） |
+| `directorDeleteKeyframe` | （★ 字典里**没有**这个键） |
+
+## ★ 顺带记下一条**已使用**词条的存在
+
+`directorAddKeyframe`＝「◆ 添加关键帧」在字典里**确实存在** ⟹ ⟹ ⟹ ⟹ ⇒ ★
+且 batch 36 的源站实测（★ `docs/research/liblib-canvas-batch36-2026-08-26/
+SOURCE_EVIDENCE.md`）里也列出了「◆ 添加关键帧」这个**可及名** ⟹ ⟹ ⟹ ⟹ ⇒ ★
+⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ **源站确实有「添加关键帧」这个按钮** ⟹ ⟹ ⟹ ⟹ ⇒ ★
+⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⚠ ⚠ 本批早期结论「源站没有添加关键帧字面」是
+**查法错** ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ （★ 当时搜的缓存目录里**没有**这个
+字典 chunk）⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ 详见 `source-869-correction.md`。

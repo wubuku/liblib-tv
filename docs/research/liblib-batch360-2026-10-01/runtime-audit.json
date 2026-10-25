@@ -41,45 +41,45 @@
     "surfaces": {
       "new:音频": {
         "inputs": 1,
-        "controls": 37,
+        "controls": 40,
         "silent": [],
         "dead": []
       },
       "new:智能剪辑": {
         "inputs": 2,
-        "controls": 46,
+        "controls": 49,
         "silent": [],
         "dead": []
       },
       "new:逐帧拉片": {
         "inputs": 1,
-        "controls": 46,
+        "controls": 49,
         "silent": [],
         "dead": []
       },
       "overlay:preview": {
         "inputs": 2,
-        "controls": 69,
+        "controls": 72,
         "silent": [],
         "dead": []
       },
       "overlay:annotate": {
         "inputs": 2,
-        "controls": 54,
+        "controls": 57,
         "silent": [],
         "dead": []
       },
       "overlay:annotate:color": {
         "inputs": 2,
-        "controls": 61,
+        "controls": 64,
         "silent": [],
         "dead": []
       }
     },
     "created": {
-      "音频": "audio-1790879607262-brduvg",
-      "智能剪辑": "video-clip-1790879611039-gpsz8p",
-      "逐帧拉片": "shot-breakdown-1790879614754-4xj70l"
+      "音频": "audio-1792935091224-fswv39",
+      "智能剪辑": "video-clip-1792935094953-spe80k",
+      "逐帧拉片": "shot-breakdown-1792935098669-0c8b85"
     },
     "diagnostics": {
       "console": 0,

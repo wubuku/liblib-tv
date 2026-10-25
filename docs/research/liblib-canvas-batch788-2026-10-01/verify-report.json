@@ -220,13 +220,13 @@
     "evidence": [
      {
       "file": "src/components/director/DirectorViewport.tsx",
-      "line": 2560,
+      "line": 3085,
       "oldGone": true,
       "newThere": true
      },
      {
       "file": "src/components/director/DirectorViewport.tsx",
-      "line": 3589,
+      "line": 4075,
       "oldGone": true,
       "newThere": true
      }

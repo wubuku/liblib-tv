@@ -297,7 +297,7 @@
   },
   {
    "label": "产物：audit 的阶梯档位 = 静态重算",
-   "pass": true,
+   "pass": false,
    "got": {
     "gesture": 553,
     "export": 557,
@@ -305,23 +305,23 @@
     "close": 568
    },
    "want": {
-    "gesture": 553,
-    "export": 557,
-    "follow": 564,
-    "close": 568
+    "gesture": 631,
+    "export": 635,
+    "follow": 642,
+    "close": 646
    }
   },
   {
    "label": "产物：audit 的守卫行号 = 静态重算",
-   "pass": true,
+   "pass": false,
    "got": 487,
-   "want": 487
+   "want": 546
   },
   {
    "label": "产物：audit 的阶梯闸门行号 = 静态重算",
-   "pass": true,
+   "pass": false,
    "got": 549,
-   "want": 549
+   "want": 627
   },
   {
    "label": "产物：audit 记的零 FAILED",
@@ -355,7 +355,7 @@
    "got": 0
   }
  ],
- "pass": 64,
+ "pass": 61,
  "total": 64,
  "negativeControls": [
   {
@@ -445,9 +445,7 @@
    "mutatedAnything": true,
    "kwMatchedCount": 1,
    "flipped": [
-    "静态：★ 守卫排在阶梯闸门**之前** ⟹ 第二道吞嘴在第一道**下游**",
-    "产物：audit 的守卫行号 = 静态重算",
-    "产物：audit 的阶梯闸门行号 = 静态重算"
+    "静态：★ 守卫排在阶梯闸门**之前** ⟹ 第二道吞嘴在第一道**下游**"
    ],
    "caught": true,
    "expectFailOn": "守卫排在阶梯闸门**之前**"
@@ -484,8 +482,7 @@
    "flipped": [
     "静态：★ 阶梯**自己有一档 `activeGesture`** ⟹ 前两处都改完，第 1 次按压仍只取消手势",
     "静态：阶梯四档齐全",
-    "静态：★ 阶梯档位有序（手势→导出面板→退出跟随→关桌）",
-    "产物：audit 的阶梯档位 = 静态重算"
+    "静态：★ 阶梯档位有序（手势→导出面板→退出跟随→关桌）"
    ],
    "caught": true,
    "expectFailOn": "阶梯**自己有一档 `activeGesture`**"
@@ -496,8 +493,7 @@
    "mutatedAnything": true,
    "kwMatchedCount": 1,
    "flipped": [
-    "静态：★ 阶梯档位有序（手势→导出面板→退出跟随→关桌）",
-    "产物：audit 的阶梯档位 = 静态重算"
+    "静态：★ 阶梯档位有序（手势→导出面板→退出跟随→关桌）"
    ],
    "caught": true,
    "expectFailOn": "阶梯档位有序"
@@ -512,5 +508,5 @@
   "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
  ],
  "rawError": null,
- "ok": true
+ "ok": false
 }

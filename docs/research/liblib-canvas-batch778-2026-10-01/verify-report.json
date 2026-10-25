@@ -387,15 +387,15 @@
   },
   {
    "label": "产物：audit 的守卫行号 = 静态重算",
-   "pass": true,
+   "pass": false,
    "got": 487,
-   "want": 487
+   "want": 546
   },
   {
    "label": "产物：audit 的 Cmd+Z 行号 = 静态重算",
-   "pass": true,
+   "pass": false,
    "got": 506,
-   "want": 506
+   "want": 565
   },
   {
    "label": "台账：Batch 778 恰有一行",
@@ -423,7 +423,7 @@
    "got": 0
   }
  ],
- "pass": 72,
+ "pass": 70,
  "total": 72,
  "negativeControls": [
   {
@@ -538,9 +538,7 @@
    "mutatedAnything": true,
    "kwMatchedCount": 1,
    "flipped": [
-    "静态：★ 守卫排在 Cmd+Z 分支**之前** ⟹ 焦点在可编辑元素时 undo 到不了",
-    "产物：audit 的守卫行号 = 静态重算",
-    "产物：audit 的 Cmd+Z 行号 = 静态重算"
+    "静态：★ 守卫排在 Cmd+Z 分支**之前** ⟹ 焦点在可编辑元素时 undo 到不了"
    ],
    "caught": true,
    "expectFailOn": "守卫排在 Cmd+Z 分支**之前**"
@@ -562,9 +560,7 @@
    "mutatedAnything": true,
    "kwMatchedCount": 1,
    "flipped": [
-    "静态：★ `isEditable` 判据**不看 `type`** ⟹ 两族走同一条分支（这既是 D1d 两族同形的机制，也是「守卫不能整体去掉」的根）",
-    "产物：audit 的守卫行号 = 静态重算",
-    "产物：audit 的 Cmd+Z 行号 = 静态重算"
+    "静态：★ `isEditable` 判据**不看 `type`** ⟹ 两族走同一条分支（这既是 D1d 两族同形的机制，也是「守卫不能整体去掉」的根）"
    ],
    "caught": true,
    "expectFailOn": "判据**不看 `type`**"
@@ -590,5 +586,5 @@
   "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
  ],
  "rawError": null,
- "ok": true
+ "ok": false
 }

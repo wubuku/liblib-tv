@@ -111,7 +111,7 @@
    }
   ],
   "marqueePlan": {
-   "sx": 38,
+   "sx": 39,
    "sy": 89,
    "ex": 1243,
    "ey": 1030,
@@ -178,20 +178,20 @@
   "chipClicked": true,
   "nodesAfterChip": [
    {
-    "id": "text-1791043547428-s2q80o",
+    "id": "text-1792935948604-s6jr4m",
     "type": "text"
    },
    {
-    "id": "script-v2-1791043547428-hjwg20",
+    "id": "script-v2-1792935948604-gmdfcs",
     "type": "script-v2"
    }
   ],
   "edgesAfterChip": [],
-  "v2Id": "script-v2-1791043547428-hjwg20",
-  "textId": "text-1791043547428-s2q80o",
+  "v2Id": "script-v2-1792935948604-gmdfcs",
+  "textId": "text-1792935948604-s6jr4m",
   "v2Handles": [
    {
-    "id": "script-v2-1791043547428-hjwg20",
+    "id": "script-v2-1792935948604-gmdfcs",
     "nHandles": 2,
     "handles": [
      {
@@ -207,14 +207,14 @@
   ],
   "dragFromV2": {
    "plan": [
-    "script-v2-1791043547428-hjwg20",
+    "script-v2-1792935948604-gmdfcs",
     "right",
-    "text-1791043547428-s2q80o",
+    "text-1792935948604-s6jr4m",
     "left"
    ],
    "atTarget": [
     {
-     "nodeId": "text-1791043547428-s2q80o",
+     "nodeId": "text-1792935948604-s6jr4m",
      "id": "target",
      "extra": [
       "connectingto"
@@ -222,7 +222,7 @@
      "bg": "rgb(9, 202, 245)"
     },
     {
-     "nodeId": "script-v2-1791043547428-hjwg20",
+     "nodeId": "script-v2-1792935948604-gmdfcs",
      "id": null,
      "extra": [
       "connectingfrom"
@@ -234,9 +234,9 @@
   },
   "dragTextToV2": {
    "plan": [
-    "text-1791043547428-s2q80o",
+    "text-1792935948604-s6jr4m",
     "right",
-    "script-v2-1791043547428-hjwg20",
+    "script-v2-1792935948604-gmdfcs",
     "left"
    ],
    "atTarget": [],

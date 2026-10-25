@@ -20,7 +20,7 @@
     },
     {
      "file": "DirectorInspector.tsx",
-     "line": 739,
+     "line": 713,
      "checksMods": false,
      "keys": [
       "Enter"
@@ -28,7 +28,7 @@
     },
     {
      "file": "DirectorInspector.tsx",
-     "line": 1973,
+     "line": 1928,
      "checksMods": false,
      "keys": [
       "Enter"
@@ -36,7 +36,7 @@
     },
     {
      "file": "DirectorInspector.tsx",
-     "line": 2349,
+     "line": 2304,
      "checksMods": false,
      "keys": [
       "Enter"
@@ -44,7 +44,7 @@
     },
     {
      "file": "DirectorInspector.tsx",
-     "line": 2852,
+     "line": 2807,
      "checksMods": false,
      "keys": [
       "Enter"
@@ -60,7 +60,7 @@
     },
     {
      "file": "DirectorTimeline.tsx",
-     "line": 223,
+     "line": 230,
      "checksMods": false,
      "keys": [
       "Enter"
@@ -68,7 +68,7 @@
     },
     {
      "file": "DirectorViewport.tsx",
-     "line": 2323,
+     "line": 2817,
      "checksMods": false,
      "keys": [
       " ",
@@ -81,6 +81,7 @@
     "DirectorInspector.tsx",
     "DirectorObjectTree.tsx",
     "DirectorPhoneVcamPanel.tsx",
+    "DirectorShortcutsDialog.tsx",
     "DirectorTimeline.tsx",
     "DirectorViewport.tsx",
     "useDirectorFocusContainment.ts",
@@ -92,11 +93,11 @@
    "deskOpen": true,
    "objects": 5,
    "names": [
-    "角色01 · 陈默",
+    "角色A",
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景"
+    "机位1"
    ],
    "past": 0,
    "cmd": null,
@@ -128,11 +129,11 @@
     "deskOpen": true,
     "objects": 5,
     "names": [
-     "角色01 · 陈默",
+     "角色A",
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景"
+     "机位1"
     ],
     "past": 0,
     "cmd": null,
@@ -160,11 +161,11 @@
      "deskOpen": true,
      "objects": 6,
      "names": [
-      "角色01 · 陈默",
+      "角色A",
       "咖啡桌",
       "冷掉的咖啡",
       "咖啡馆背景",
-      "机位01 · 对峙中景",
+      "机位1",
       "饮料瓶"
      ],
      "past": 1,
@@ -190,11 +191,11 @@
     "deskOpen": true,
     "objects": 5,
     "names": [
-     "角色01 · 陈默",
+     "角色A",
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景"
+     "机位1"
     ],
     "past": 0,
     "cmd": "SET",
@@ -218,11 +219,11 @@
     "deskOpen": true,
     "objects": 6,
     "names": [
-     "角色01 · 陈默",
+     "角色A",
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景",
+     "机位1",
      "饮料瓶"
     ],
     "past": 1,
@@ -247,11 +248,11 @@
     "deskOpen": false,
     "objects": 6,
     "names": [
-     "角色01 · 陈默",
+     "角色A",
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景",
+     "机位1",
      "饮料瓶"
     ],
     "past": 0,
@@ -272,11 +273,11 @@
     "deskOpen": true,
     "objects": 5,
     "names": [
-     "角色01 · 陈默",
+     "角色A",
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景"
+     "机位1"
     ],
     "past": 0,
     "cmd": null,
@@ -306,7 +307,7 @@
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景"
+     "机位1"
     ],
     "past": 1,
     "cmd": "SET",
@@ -334,7 +335,7 @@
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景"
+     "机位1"
     ],
     "past": 0,
     "cmd": null,
@@ -358,7 +359,7 @@
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景"
+     "机位1"
     ],
     "past": 1,
     "cmd": null,
@@ -388,7 +389,7 @@
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景"
+     "机位1"
     ],
     "past": 2,
     "cmd": "SET",
@@ -416,7 +417,7 @@
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景",
+     "机位1",
      "饮料瓶"
     ],
     "past": 3,
@@ -445,7 +446,7 @@
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景",
+     "机位1",
      "饮料瓶"
     ],
     "past": 0,
@@ -470,7 +471,7 @@
      "咖啡桌",
      "冷掉的咖啡",
      "咖啡馆背景",
-     "机位01 · 对峙中景",
+     "机位1",
      "饮料瓶"
     ],
     "past": 3,

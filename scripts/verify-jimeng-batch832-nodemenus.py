@@ -570,13 +570,49 @@ def main() -> int:
                 if aud_tid:
                     select(aud_tid)
                 if tid == "@filter":
-                    # 音色筛选下拉**没有自己的触发器**：它们是「全音色」面板里
-                    # 4 个筛选钮各自挂的子下拉，渲染在同一个 map 里，父面板一开
-                    # 4 个就同时在 DOM 里。所以这里的「打开」= 打开全音色。
+                    # ⭐⭐⭐⭐⭐ 1032-⑬ 订正：批 870 把「4 个筛选下拉**常驻**」改成
+                    #   「**点哪个筛选芯片开哪个**」（源站实测：4 个筛选钮各自挂自己
+                    #   的子下拉，一次只开一个；批 870 探针 `jimeng_probe870_voicefilter_src.py`）。
+                    #   ⇒ ⇒ 原来这道判据「父面板一开就该有 4 个 listbox」是
+                    #   ⇒ ⇒ **批 870 之前**的口径 ⇒ ⇒ 在 870 之后**必然恒红**
+                    #   ⇒ ⇒ 现在改成**更强**的口径：逐个点芯片 ⇒ 每次**恰好 1 个**
+                    #   ⇒ ⇒ 且 4 个的可访问名**互不相同**（源站逐字「性别 options」…）
                     ok = open_trigger(
                         '.react-flow__node-toolbar button[aria-label^="音色"]',
                         "audio-all-voices-listbox")
-                    tid = "audio-voice-filter-listbox"
+                    el = page.locator('[data-testid="audio-voice-filter-listbox"]')
+                    # ⭐⭐⭐⭐⭐ 1032-⑬ 订正（第二版）：批 870 之后，**点哪个芯片开哪个**，
+                    #   而且**可以同时开着多个**（每个筛选名一个独立开合态）。
+                    #   ⇒ ⇒ 所以判据不能写「恰好 1 个」—— 那是把产品说窄了。
+                    #   ⇒ ⇒ 改成三条**更强**的：
+                    #     ① 面板刚开时 **0 个**（批 870 的修法：不再是 4 个常驻）
+                    #     ② 逐个点 4 枚芯片 ⇒ 每个都能开出**自己那枚**下拉
+                    #     ③ 4 枚的可访问名**逐字**是源站名（性别 options / 年龄 options / …）
+                    n_before = el.count()
+                    names, opened_labels = [], []
+                    for lab in ("性别", "年龄", "语言", "声音特点"):
+                        chip = page.locator(f'button[aria-label^="{lab}:"]')
+                        if chip.count():
+                            chip.first.click()
+                            page.wait_for_timeout(700)
+                        got = page.locator(
+                            '[data-testid="audio-voice-filter-listbox"]'
+                            f'[aria-label="{lab} options"]').count()
+                        if got == 1:
+                            opened_labels.append(lab)
+                            names.append(f"{lab} options")
+                    check(f"G.{tid} 面板刚开时**没有**筛选下拉（批 870 的修法：不再常驻）",
+                          n_before == 0, f"count={n_before}")
+                    check(f"G.{tid} 每枚筛选芯片都能开出自己那枚下拉（{branch} 分支）",
+                          ok and len(opened_labels) == 4, f"{opened_labels}")
+                    check(f"G.{tid} 每个实例都有可访问名（取自源站）",
+                          names == ["性别 options", "年龄 options",
+                                    "语言 options", "声音特点 options"], f"{names}")
+                    check(f"G.{tid} 同族实例的 aria-label 互不相同（靠名字区分）",
+                          len(set(names)) == len(names), f"{names}")
+                    if el.count():
+                        census(f"音频生成面板·{branch}·{tid}")
+                    continue
                 else:
                     ok = open_trigger(
                         f'.react-flow__node-toolbar button[aria-label^="{trig_map[tid]}"]', tid)

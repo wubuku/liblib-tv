@@ -5,6 +5,7 @@ import {
   clampDirectorTimelineTime,
   sampleDirectorTimelineTrack,
 } from "@/components/director/directorTimelineMath";
+import { DIRECTOR_KEYFRAME_EPSILON } from "@/components/director/directorKeyframeWindow";
 import {
   isFiniteDirectorCameraValue,
   mapDirectorPhonePoseToCamera,
@@ -1748,8 +1749,15 @@ function upsertTrackKeyframe(
   object: DirectorObject,
   time: number,
 ): { track: DirectorTimelineTrack; keyframeId: string } {
+  // ★ ★★ Batch 869：★ 「同时刻 upsert」的容差改用**具名常量**（★ 0.001）
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 出处：`docs/research/beeftv-canvas-2026-09-27/
+  //   ★   SOURCE_ANALYSIS.md` §23.3「关键帧 upsert epsilon」记的就是这个数
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⚠ 它**不是**「当前帧命中」那个窗口（★ ±0.05s
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ 见 `directorKeyframeWindow.ts`）⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹
+  //   ★ ⟹ ⟹ 两者**必须分开** ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 混用就会出现「以为在命中、
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 其实在 upsert」的账。
   const existing = track.keyframes.find(
-    (keyframe) => Math.abs(keyframe.time - time) < 0.001,
+    (keyframe) => Math.abs(keyframe.time - time) < DIRECTOR_KEYFRAME_EPSILON,
   );
   const keyframeId =
     existing?.id ??
@@ -1791,8 +1799,15 @@ function upsertGroupTrackKeyframe(
   track: Extract<DirectorTimelineTrack, { kind: "group" }>;
   keyframeId: string;
 } {
+  // ★ ★★ Batch 869：★ 「同时刻 upsert」的容差改用**具名常量**（★ 0.001）
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 出处：`docs/research/beeftv-canvas-2026-09-27/
+  //   ★   SOURCE_ANALYSIS.md` §23.3「关键帧 upsert epsilon」记的就是这个数
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⚠ 它**不是**「当前帧命中」那个窗口（★ ±0.05s
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ 见 `directorKeyframeWindow.ts`）⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹
+  //   ★ ⟹ ⟹ 两者**必须分开** ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 混用就会出现「以为在命中、
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 其实在 upsert」的账。
   const existing = track.keyframes.find(
-    (keyframe) => Math.abs(keyframe.time - time) < 0.001,
+    (keyframe) => Math.abs(keyframe.time - time) < DIRECTOR_KEYFRAME_EPSILON,
   );
   const keyframeId =
     existing?.id ??

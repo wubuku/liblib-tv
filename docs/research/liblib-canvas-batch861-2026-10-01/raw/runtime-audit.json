@@ -124,14 +124,14 @@
    },
    "选择器": null,
    "本地资产": {
-    "id": "local-1792815219716",
+    "id": "local-1792933387713",
     "filename": "b861-gate-panorama.png",
     "imageUrl前缀": "blob:http://",
     "w": 4,
     "h": 4
    },
    "当前全景图元素在场": true,
-   "当前全景图来源": "local-panorama:local-1792815219716",
+   "当前全景图来源": "local-panorama:local-1792933387713",
    "当前全景图文本": "当前全景图：b861-gate-panorama.png"
   },
   "含本地的选择器": {
@@ -164,18 +164,18 @@
      "i-dnwoZQ7jsG",
      "i-vxeeCnxySa",
      "i-lBzmo67AHv",
-     "local-panorama:local-1792815219716"
+     "local-panorama:local-1792933387713"
     ]
    },
    "本地资产": {
-    "id": "local-1792815219716",
+    "id": "local-1792933387713",
     "filename": "b861-gate-panorama.png",
     "imageUrl前缀": "blob:http://",
     "w": 4,
     "h": 4
    },
    "当前全景图元素在场": true,
-   "当前全景图来源": "local-panorama:local-1792815219716",
+   "当前全景图来源": "local-panorama:local-1792933387713",
    "当前全景图文本": "当前全景图：b861-gate-panorama.png"
   }
  }

@@ -1,7 +1,7 @@
 {
   "batch": 746,
   "title": "A 档剩下 4 个命令：createLongVideoProcess 有一条被菜单藏起来、芯片能进的路径（我第一版静态推理漏了 :226 而误判为不可达）；同一个「已加入本地任务」提示，真假各有一条",
-  "verdict": "11/11",
+  "verdict": "10/11",
   "summary": {
     "results": {
       "modes": [
@@ -307,9 +307,9 @@
         "menuFilterLine": 974,
         "storeDeclLines": [
           348,
-          2244
+          2403
         ],
-        "storeImplLine": 2244,
+        "storeImplLine": 2403,
         "storeMakeNodeWrites": 12,
         "storeProcessNodesSpread": 3,
         "storeProcessNodeSingles": 2,
@@ -351,8 +351,8 @@
   "checks": [
     {
       "label": "C1 静态：long-video 是 inMenu:false（被 :974 过滤），但 :226 有 setMode(\"long-video\") ⟹ 存在第二条赋值路径；且 createLongVideoProcess 恰好两处（:348 接口声明 + :2244 实现）",
-      "pass": true,
-      "detail": "{\"longVideoModeLine\": 110, \"longVideoModeSrc\": \"{ id: \\\"long-video\\\", label: \\\"超长视频\\\", disabled: true, inMenu: false, badge: \\\"Beta\\\" },\", \"effectsTriggerLine\": 393, \"isLongVideoLine\": 172, \"chipBranchLines\": [179, 225, 268, 282], \"setModeLongVideoLines\": [226], \"chipClearOnModeSwitchLine\": 268, \"earlyReturnLine\": 309, \"pureComponentStateLine\": 310, \"pureComponentStateReturnLine\": 311, \"effectsCardLine\": 532, \"continuationExitLine\": 641, \"slotGroupLine\": 736, \"destroyLine\": 745, \"longSubmitStateLine\": 839, \"generateBtnLine\": 851, \"menuFilterLine\": 974, \"storeDeclLines\": [348, 2244], \"storeImplLine\": 2244, \"storeMakeNodeWrites\": 12, \"storeProcessNodesSpread\": 3, \"storeProcessNodeSingles\": 2, \"storeEdgeWrites\": 18, \"storeEdgeCount\": 22}"
+      "pass": false,
+      "detail": "{\"longVideoModeLine\": 110, \"longVideoModeSrc\": \"{ id: \\\"long-video\\\", label: \\\"超长视频\\\", disabled: true, inMenu: false, badge: \\\"Beta\\\" },\", \"effectsTriggerLine\": 393, \"isLongVideoLine\": 172, \"chipBranchLines\": [179, 225, 268, 282], \"setModeLongVideoLines\": [226], \"chipClearOnModeSwitchLine\": 268, \"earlyReturnLine\": 309, \"pureComponentStateLine\": 310, \"pureComponentStateReturnLine\": 311, \"effectsCardLine\": 532, \"continuationExitLine\": 641, \"slotGroupLine\": 736, \"destroyLine\": 745, \"longSubmitStateLine\": 839, \"generateBtnLine\": 851, \"menuFilterLine\": 974, \"storeDeclLines\": [348, 2403], \"storeImplLine\": 2403, \"storeMakeNodeWrites\": 12, \"storeProcessNodesSpread\": 3, \"storeProcessNodeSingles\": 2, \"storeEdgeWrites\": 18, \"storeEdgeCount\": 22}"
     },
     {
       "label": "C2 运行时：模式菜单里没有 long-video",

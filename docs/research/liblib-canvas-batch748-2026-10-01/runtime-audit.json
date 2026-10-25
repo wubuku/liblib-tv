@@ -1,7 +1,7 @@
 {
   "batch": 748,
   "title": "导演台首轮运行时普查：属性全集与运行时差集分三类对平；7 枚 rail 入口里 2 枚零新增；createDirectorAnimationExport 真跑通（约 9 秒）",
-  "verdict": "7/7",
+  "verdict": "4/7",
   "summary": {
     "results": {
       "C2_open": {
@@ -13,9 +13,9 @@
         "ident": {
           "workspace": true,
           "canvasId": "canvas-2",
-          "projectId": "director-project-1791083161402-1",
+          "projectId": "director-project-1792932837809-1",
           "sourceNodeId": "b-bTLLuU4w5q",
-          "sessionId": "director-session-1791083161403-2",
+          "sessionId": "director-session-1792932837810-2",
           "view": "director",
           "focusScope": "workspace",
           "focusState": "workspace"
@@ -46,20 +46,23 @@
         ]
       },
       "C3_diff": {
-        "firstPaintCount": 200,
-        "afterRailWalkCount": 250,
-        "staticLiteralUnion": 446,
-        "staticEffectiveUnion": 447,
-        "staticSumByFile": 460,
-        "directorKindsSeen": 224,
-        "extraOnPage": 26,
+        "firstPaintCount": 215,
+        "afterRailWalkCount": 240,
+        "staticLiteralUnion": 493,
+        "staticEffectiveUnion": 494,
+        "staticSumByFile": 515,
+        "directorKindsSeen": 209,
+        "extraOnPage": 31,
         "extraCanvasLeftover": [
           "data-canvas-tool",
           "data-canvas-trigger",
+          "data-clone-site-nav",
+          "data-clone-site-nav-link",
           "data-edge-delete",
           "data-engine",
           "data-follow-banner",
           "data-follow-cancel",
+          "data-guide-target",
           "data-handleid",
           "data-handlepos",
           "data-id",
@@ -74,8 +77,10 @@
           "data-open-director",
           "data-precedence",
           "data-project-menu-trigger",
+          "data-studio-new-dot",
           "data-temporary-pan",
           "data-testid",
+          "data-tv-director-trigger",
           "data-viewport-menu-trigger",
           "data-workspace-name"
         ],
@@ -84,24 +89,53 @@
           "data-director-node",
           "data-director-node-id"
         ],
-        "residueAfterWalk": 223,
+        "residueAfterWalk": 285,
         "residue": [
           "data-camera-id",
           "data-director-ai-import-history",
           "data-director-ai-import-history-item",
           "data-director-ai-import-upload-note",
+          "data-director-aspect-flyout",
+          "data-director-aspect-frame",
+          "data-director-aspect-mask",
+          "data-director-aspect-mask-container",
+          "data-director-aspect-ratio",
           "data-director-back-to-timeline",
           "data-director-camera-follow-conflict",
           "data-director-camera-follow-offset",
+          "data-director-camera-follow-state",
+          "data-director-camera-follow-target",
           "data-director-camera-follow-view",
           "data-director-camera-follow-view-option",
+          "data-director-camera-fov",
+          "data-director-camera-fov-field",
+          "data-director-camera-fov-fill",
+          "data-director-camera-fov-help",
+          "data-director-camera-fov-help-badge",
+          "data-director-camera-fov-help-tooltip",
+          "data-director-camera-fov-knob",
+          "data-director-camera-fov-number",
+          "data-director-camera-fov-readout",
+          "data-director-camera-fov-slider",
+          "data-director-camera-look-at-mode",
+          "data-director-camera-look-at-object",
+          "data-director-camera-motion-new",
           "data-director-camera-preset-error",
           "data-director-camera-preset-mode",
           "data-director-camera-preset-mode-option",
           "data-director-camera-preset-option",
-          "data-director-camera-preset-panel",
           "data-director-camera-preset-panel-mode",
           "data-director-camera-preset-status",
+          "data-director-camera-preview",
+          "data-director-camera-preview-canvas",
+          "data-director-camera-preview-expand",
+          "data-director-camera-preview-fov",
+          "data-director-camera-preview-state",
+          "data-director-camera-switch",
+          "data-director-camera-tab",
+          "data-director-camera-tabs",
+          "data-director-camera-target-coordinates",
+          "data-director-camera-target-derived",
           "data-director-capture-clear-all",
           "data-director-capture-clear-cancel",
           "data-director-capture-clear-confirm",
@@ -121,16 +155,11 @@
           "data-director-capture-viewer",
           "data-director-capture-viewer-close",
           "data-director-character-ack",
-          "data-director-crowd-action",
           "data-director-crowd-cancel",
-          "data-director-crowd-columns",
           "data-director-crowd-confirm",
           "data-director-crowd-count",
           "data-director-crowd-dialog",
           "data-director-crowd-input",
-          "data-director-crowd-panel",
-          "data-director-crowd-rows",
-          "data-director-crowd-spacing",
           "data-director-curve-editor",
           "data-director-curve-handle",
           "data-director-curve-locked",
@@ -148,16 +177,18 @@
           "data-director-export-submit",
           "data-director-follow-banner",
           "data-director-follow-cancel",
+          "data-director-follow-hint",
+          "data-director-frame-thirds-toggle",
           "data-director-geometry-option",
           "data-director-geometry-submenu",
           "data-director-group-expanded",
           "data-director-group-id",
           "data-director-group-inspector",
           "data-director-group-member-id",
+          "data-director-group-member-kind",
           "data-director-group-name",
           "data-director-group-rig",
           "data-director-group-selected",
-          "data-director-group-transform-field",
           "data-director-insert-path-anchor",
           "data-director-local-model-resource-attempt",
           "data-director-local-model-resource-error",
@@ -219,8 +250,19 @@
           "data-director-panorama-clear",
           "data-director-panorama-connected",
           "data-director-panorama-error",
+          "data-director-panorama-generate",
+          "data-director-panorama-generate-notice",
           "data-director-panorama-hint",
           "data-director-panorama-input",
+          "data-director-panorama-picker",
+          "data-director-panorama-picker-cancel",
+          "data-director-panorama-picker-close",
+          "data-director-panorama-picker-confirm",
+          "data-director-panorama-picker-empty",
+          "data-director-panorama-picker-kind",
+          "data-director-panorama-picker-mode",
+          "data-director-panorama-picker-option",
+          "data-director-panorama-picker-upload",
           "data-director-panorama-selection",
           "data-director-panorama-source",
           "data-director-panorama-source-option",
@@ -265,6 +307,13 @@
           "data-director-pose-side",
           "data-director-pose-state",
           "data-director-pose-value",
+          "data-director-right-panel-camera-preset",
+          "data-director-right-panel-camera-preset-error",
+          "data-director-right-panel-camera-preset-list",
+          "data-director-right-panel-camera-preset-toggle",
+          "data-director-right-panel-motion-path-list",
+          "data-director-right-panel-motion-path-preset",
+          "data-director-right-panel-motion-path-toggle",
           "data-director-scene-background-color",
           "data-director-scene-camera-actions",
           "data-director-scene-character-labels",
@@ -291,6 +340,21 @@
           "data-director-scene-transform",
           "data-director-scene-translate",
           "data-director-send-capture",
+          "data-director-shortcut-badge",
+          "data-director-shortcut-badge-text",
+          "data-director-shortcut-command-glyph",
+          "data-director-shortcut-delete-glyph",
+          "data-director-shortcut-row",
+          "data-director-shortcuts-column",
+          "data-director-shortcuts-dialog",
+          "data-director-shortcuts-overlay",
+          "data-director-shortcuts-title",
+          "data-director-shot-end",
+          "data-director-shot-id",
+          "data-director-shot-inspector",
+          "data-director-shot-name",
+          "data-director-shot-range",
+          "data-director-shot-start",
           "data-director-speed-curve-path",
           "data-director-thirds",
           "data-director-toggle-path-closed",
@@ -299,7 +363,10 @@
           "data-director-tree-context-menu",
           "data-end-time",
           "data-expanded",
+          "data-follow-target-id",
+          "data-follow-view",
           "data-keyframe-count",
+          "data-look-at-mode",
           "data-mode",
           "data-pitch",
           "data-pose-control-count",
@@ -324,61 +391,34 @@
             "title": "添加角色",
             "gainedCount": 3,
             "gained": [
-              "data-director-character-flyout",
               "data-director-character-option",
-              "data-director-flyout-title"
+              "data-director-character-panel",
+              "data-director-panel-title"
             ]
           },
           {
             "i": 2,
             "key": "add-camera",
             "title": "添加机位",
-            "gainedCount": 34,
+            "gainedCount": 3,
             "gained": [
-              "data-director-camera-follow-state",
-              "data-director-camera-follow-target",
-              "data-director-camera-fov",
-              "data-director-camera-fov-field",
-              "data-director-camera-fov-fill",
-              "data-director-camera-fov-help",
-              "data-director-camera-fov-help-badge",
-              "data-director-camera-fov-help-tooltip",
-              "data-director-camera-fov-knob",
-              "data-director-camera-fov-number",
-              "data-director-camera-fov-readout",
-              "data-director-camera-fov-slider",
-              "data-director-camera-look-at-mode",
-              "data-director-camera-look-at-object",
-              "data-director-camera-motion-new",
-              "data-director-camera-preview",
-              "data-director-camera-preview-canvas",
-              "data-director-camera-preview-expand",
-              "data-director-camera-preview-fov",
-              "data-director-camera-preview-state",
-              "data-director-camera-switch",
-              "data-director-camera-tab",
-              "data-director-camera-tabs",
-              "data-director-camera-target-coordinates",
-              "data-director-camera-target-derived",
-              "data-director-shot-end",
-              "data-director-shot-id",
-              "data-director-shot-inspector",
-              "data-director-shot-name",
-              "data-director-shot-range",
-              "data-director-shot-start",
-              "data-follow-target-id",
-              "data-follow-view",
-              "data-look-at-mode"
+              "data-director-camera-preset",
+              "data-director-camera-preset-glyph",
+              "data-director-camera-preset-panel"
             ]
           },
           {
             "i": 3,
             "key": "panorama",
             "title": "全景图",
-            "gainedCount": 2,
+            "gainedCount": 6,
             "gained": [
-              "data-director-panorama-flyout",
-              "data-director-panorama-option"
+              "data-director-panorama-current",
+              "data-director-panorama-current-source",
+              "data-director-panorama-file-input",
+              "data-director-panorama-list",
+              "data-director-panorama-option",
+              "data-director-panorama-panel"
             ]
           },
           {
@@ -387,10 +427,10 @@
             "title": "选择画幅比例",
             "gainedCount": 4,
             "gained": [
-              "data-director-aspect-flyout",
               "data-director-aspect-glyph",
               "data-director-aspect-grid",
-              "data-director-aspect-option"
+              "data-director-aspect-option",
+              "data-director-aspect-panel"
             ]
           },
           {
@@ -412,8 +452,11 @@
             "i": 6,
             "key": "help",
             "title": "帮助",
-            "gainedCount": 0,
-            "gained": []
+            "gainedCount": 2,
+            "gained": [
+              "data-director-help-menu",
+              "data-director-help-menu-item"
+            ]
           }
         ]
       },
@@ -423,19 +466,14 @@
             "i": 0,
             "key": "scene",
             "title": "场景"
-          },
-          {
-            "i": 6,
-            "key": "help",
-            "title": "帮助"
           }
         ],
-        "zeroGainCount": 2,
+        "zeroGainCount": 1,
         "biggest": {
-          "i": 2,
-          "key": "add-camera",
-          "title": "添加机位",
-          "gainedCount": 34
+          "i": 5,
+          "key": "ai-import",
+          "title": "AI 识图导入",
+          "gainedCount": 7
         },
         "gains": [
           {
@@ -448,11 +486,11 @@
           },
           {
             "key": "add-camera",
-            "n": 34
+            "n": 3
           },
           {
             "key": "panorama",
-            "n": 2
+            "n": 6
           },
           {
             "key": "aspect-ratio",
@@ -464,7 +502,7 @@
           },
           {
             "key": "help",
-            "n": 0
+            "n": 2
           }
         ]
       },
@@ -567,22 +605,29 @@
     },
     "staticPerFile": {
       "DirectorAiImportModal.tsx": 12,
-      "DirectorCameraMotionTab.tsx": 11,
+      "DirectorAspectPanel.tsx": 6,
+      "DirectorCameraMotionTab.tsx": 18,
+      "DirectorCameraPresetPanel.tsx": 3,
+      "DirectorCharacterPanel.tsx": 12,
       "DirectorCurveEditor.tsx": 8,
-      "DirectorDesk.tsx": 46,
+      "DirectorDesk.tsx": 50,
       "DirectorExportPanel.tsx": 6,
-      "DirectorIconRail.tsx": 20,
-      "DirectorInspector.tsx": 142,
+      "DirectorIconRail.tsx": 5,
+      "DirectorInspector.tsx": 141,
       "DirectorMannequin.tsx": 0,
-      "DirectorObjectTree.tsx": 21,
+      "DirectorObjectTree.tsx": 22,
+      "DirectorPanoramaPanel.tsx": 7,
+      "DirectorPanoramaPicker.tsx": 11,
       "DirectorPhoneVcamPanel.tsx": 23,
       "DirectorScenePromptBar.tsx": 6,
-      "DirectorTimeline.tsx": 79,
+      "DirectorShortcutsDialog.tsx": 10,
+      "DirectorTimeline.tsx": 78,
+      "DirectorTimelineGuide.tsx": 11,
       "DirectorViewport.tsx": 86
     },
-    "staticLiteralUnion": 446,
-    "staticEffectiveUnion": 447,
-    "staticSumByFile": 460,
+    "staticLiteralUnion": 493,
+    "staticEffectiveUnion": 494,
+    "staticSumByFile": 515,
     "sharedNameOwners": {
       "data-director-add-camera": [
         "DirectorInspector.tsx",
@@ -597,12 +642,16 @@
         "DirectorInspector.tsx",
         "DirectorTimeline.tsx"
       ],
+      "data-director-camera-preset-panel": [
+        "DirectorCameraPresetPanel.tsx",
+        "DirectorTimeline.tsx"
+      ],
       "data-director-capture-viewer": [
         "DirectorDesk.tsx",
         "DirectorInspector.tsx"
       ],
-      "data-director-crowd-count": [
-        "DirectorIconRail.tsx",
+      "data-director-crowd-mobile-trigger": [
+        "DirectorCharacterPanel.tsx",
         "DirectorViewport.tsx"
       ],
       "data-director-export-submit": [
@@ -616,6 +665,11 @@
       "data-director-motion-path-preset": [
         "DirectorTimeline.tsx",
         "DirectorViewport.tsx"
+      ],
+      "data-director-panel-title": [
+        "DirectorAspectPanel.tsx",
+        "DirectorCharacterPanel.tsx",
+        "DirectorPanoramaPanel.tsx"
       ],
       "data-director-panels-collapsed": [
         "DirectorDesk.tsx",
@@ -633,6 +687,20 @@
         "DirectorInspector.tsx",
         "DirectorViewport.tsx"
       ],
+      "data-director-rail-entry": [
+        "DirectorIconRail.tsx",
+        "DirectorShortcutsDialog.tsx"
+      ],
+      "data-director-timeline-guide-icon": [
+        "DirectorDesk.tsx",
+        "DirectorTimeline.tsx",
+        "DirectorTimelineGuide.tsx"
+      ],
+      "data-director-timeline-guide-target": [
+        "DirectorDesk.tsx",
+        "DirectorTimeline.tsx",
+        "DirectorTimelineGuide.tsx"
+      ],
       "data-director-workspace": [
         "DirectorAiImportModal.tsx",
         "DirectorDesk.tsx"
@@ -641,13 +709,13 @@
     "datasetAssignments": [
       {
         "file": "DirectorViewport.tsx",
-        "line": 410,
+        "line": 824,
         "expr": "dataset.directorGizmoWebglCanvas",
         "attr": "data-director-gizmo-webgl-canvas"
       },
       {
         "file": "DirectorViewport.tsx",
-        "line": 2920,
+        "line": 3443,
         "expr": "dataset.directorWebglCanvas",
         "attr": "data-director-webgl-canvas"
       }
@@ -656,23 +724,23 @@
   "checks": [
     {
       "label": "C1 静态：导演台 13 个组件，**按文件求和 460 / 去重并集 446**（14 个属性名跨文件重复）；另有 2 处 dataset. 赋值是字面量盲区",
-      "pass": true,
-      "detail": "{\"fileCount\": 13, \"sumByFile\": 460, \"unionCount\": 446, \"sharedAcrossFiles\": 14, \"sharedNames\": [\"data-director-add-camera\", \"data-director-bottom-bar\", \"data-director-camera-follow-conflict\", \"data-director-capture-viewer\", \"data-director-crowd-count\", \"data-director-export-submit\", \"data-director-icon-rail\", \"data-director-motion-path-preset\", \"data-director-panels-collapsed\", \"data-director-panorama-clear\", \"data-director-panorama-source-id\", \"data-director-panorama-state\", \"data-director-workspace\"], \"perFile\": {\"DirectorAiImportModal.tsx\": 12, \"DirectorCameraMotionTab.tsx\": 11, \"DirectorCurveEditor.tsx\": 8, \"DirectorDesk.tsx\": 46, \"DirectorExportPanel.tsx\": 6, \"DirectorIconRail.tsx\": 20, \"DirectorInspector.tsx\": 142, \"DirectorMannequin.tsx\": 0, \"DirectorObjectTree.tsx\": 21, \"DirectorPhoneVcamPanel.tsx\": 23, \"DirectorScenePromptBar.tsx\": 6, \"DirectorTimeline.tsx\": 79, \"DirectorViewport.tsx\": 86}, \"dataset\": [{\"file\": \"DirectorViewport.tsx\", \"line\": 410, \"expr\": \"dataset.directorGizmoWebglCanvas\", \"attr\": \"data-director-gizmo-webgl-canvas\"}, {\"file\": \"DirectorViewport.tsx\", \"line\": 2920, \"expr\": \"dataset.directorWebglCanvas\", \"attr\": \"data-director-webgl-canvas\"}]}"
+      "pass": false,
+      "detail": "{\"fileCount\": 20, \"sumByFile\": 515, \"unionCount\": 493, \"sharedAcrossFiles\": 22, \"sharedNames\": [\"data-director-add-camera\", \"data-director-bottom-bar\", \"data-director-camera-follow-conflict\", \"data-director-camera-preset-panel\", \"data-director-capture-viewer\", \"data-director-crowd-mobile-trigger\", \"data-director-export-submit\", \"data-director-icon-rail\", \"data-director-motion-path-preset\", \"data-director-panel-title\", \"data-director-panels-collapsed\", \"data-director-panorama-clear\", \"data-director-panorama-source-id\", \"data-director-panorama-state\", \"data-director-rail-entry\", \"data-director-timeline-guide-icon\", \"data-director-timeline-guide-target\", \"data-director-workspace\"], \"perFile\": {\"DirectorAiImportModal.tsx\": 12, \"DirectorAspectPanel.tsx\": 6, \"DirectorCameraMotionTab.tsx\": 18, \"DirectorCameraPresetPanel.tsx\": 3, \"DirectorCharacterPanel.tsx\": 12, \"DirectorCurveEditor.tsx\": 8, \"DirectorDesk.tsx\": 50, \"DirectorExportPanel.tsx\": 6, \"DirectorIconRail.tsx\": 5, \"DirectorInspector.tsx\": 141, \"DirectorMannequin.tsx\": 0, \"DirectorObjectTree.tsx\": 22, \"DirectorPanoramaPanel.tsx\": 7, \"DirectorPanoramaPicker.tsx\": 11, \"DirectorPhoneVcamPanel.tsx\": 23, \"DirectorScenePromptBar.tsx\": 6, \"DirectorShortcutsDialog.tsx\": 10, \"DirectorTimeline.tsx\": 78, \"DirectorTimelineGuide.tsx\": 11, \"DirectorViewport.tsx\": 86}, \"dataset\": [{\"file\": \"DirectorViewport.tsx\", \"line\": 824, \"expr\": \"dataset.directorGizmoWebglCanvas\", \"attr\": \"data-director-gizmo-webgl-canvas\"}, {\"file\": \"DirectorViewport.tsx\", \"line\": 3443, \"expr\": \"dataset.directorWebglCanvas\", \"attr\": \"data-director-webgl-canvas\"}]}"
     },
     {
       "label": "C2 打开导演台：入口在 script-execution 节点上；六个标识符齐（workspace/canvasId/sourceNodeId/sessionId/view/focusScope）；**store 零写入**",
       "pass": true,
-      "detail": "{\"entry\": {\"onNode\": true, \"nodeId\": \"b-bTLLuU4w5q\"}, \"opened\": true, \"ident\": {\"workspace\": true, \"canvasId\": \"canvas-2\", \"projectId\": \"director-project-1791083161402-1\", \"sourceNodeId\": \"b-bTLLuU4w5q\", \"sessionId\": \"director-session-1791083161403-2\", \"view\": \"director\", \"focusScope\": \"workspace\", \"focusState\": \"workspace\"}, \"regions\": {\"workspace\": true, \"viewport\": true, \"webgl\": true, \"objectTree\": true, \"timeline\": true, \"shotBar\": true, \"bottomBar\": true, \"closeBtn\": true, \"shotOptions\": 1, \"railEntries\": 7}, \"past\": [0, 0], \"nodes\": [10, 10], \"edges\": [11, 11]}"
+      "detail": "{\"entry\": {\"onNode\": true, \"nodeId\": \"b-bTLLuU4w5q\"}, \"opened\": true, \"ident\": {\"workspace\": true, \"canvasId\": \"canvas-2\", \"projectId\": \"director-project-1792932837809-1\", \"sourceNodeId\": \"b-bTLLuU4w5q\", \"sessionId\": \"director-session-1792932837810-2\", \"view\": \"director\", \"focusScope\": \"workspace\", \"focusState\": \"workspace\"}, \"regions\": {\"workspace\": true, \"viewport\": true, \"webgl\": true, \"objectTree\": true, \"timeline\": true, \"shotBar\": true, \"bottomBar\": true, \"closeBtn\": true, \"shotOptions\": 1, \"railEntries\": 7}, \"past\": [0, 0], \"nodes\": [10, 10], \"edges\": [11, 11]}"
     },
     {
       "label": "C3 差集：整页 200 → 走完 7 枚 rail 累计 250；字面量并集 446、补 dataset 后有效并集 447；运行时 250 = 导演台 224 + 非并集 26（画布/应用层残留 24 + 无 data-director- 前缀 2）；有效并集 447 中没出现 223。三笔都对平",
-      "pass": true,
-      "detail": "{\"firstPaintCount\": 200, \"afterRailWalkCount\": 250, \"staticLiteralUnion\": 446, \"staticEffectiveUnion\": 447, \"staticSumByFile\": 460, \"directorKindsSeen\": 224, \"extraOnPage\": 26, \"extraDatasetBlindSpot\": [], \"extraUnprefixedDirector\": [\"data-director-node\", \"data-director-node-id\"], \"residueAfterWalk\": 223}"
+      "pass": false,
+      "detail": "{\"firstPaintCount\": 215, \"afterRailWalkCount\": 240, \"staticLiteralUnion\": 493, \"staticEffectiveUnion\": 494, \"staticSumByFile\": 515, \"directorKindsSeen\": 209, \"extraOnPage\": 31, \"extraDatasetBlindSpot\": [], \"extraUnprefixedDirector\": [\"data-director-node\", \"data-director-node-id\"], \"residueAfterWalk\": 285}"
     },
     {
       "label": "C4 7 枚 rail 入口里恰好 2 枚点开 0 新增（scene / help），「添加机位」一枚带出 34 种",
-      "pass": true,
-      "detail": "{\"zeroGain\": [{\"i\": 0, \"key\": \"scene\", \"title\": \"场景\"}, {\"i\": 6, \"key\": \"help\", \"title\": \"帮助\"}], \"zeroGainCount\": 2, \"biggest\": {\"i\": 2, \"key\": \"add-camera\", \"title\": \"添加机位\", \"gainedCount\": 34}, \"gains\": [{\"key\": \"scene\", \"n\": 0}, {\"key\": \"add-character\", \"n\": 3}, {\"key\": \"add-camera\", \"n\": 34}, {\"key\": \"panorama\", \"n\": 2}, {\"key\": \"aspect-ratio\", \"n\": 4}, {\"key\": \"ai-import\", \"n\": 7}, {\"key\": \"help\", \"n\": 0}]}"
+      "pass": false,
+      "detail": "{\"zeroGain\": [{\"i\": 0, \"key\": \"scene\", \"title\": \"场景\"}], \"zeroGainCount\": 1, \"biggest\": {\"i\": 5, \"key\": \"ai-import\", \"title\": \"AI 识图导入\", \"gainedCount\": 7}, \"gains\": [{\"key\": \"scene\", \"n\": 0}, {\"key\": \"add-character\", \"n\": 3}, {\"key\": \"add-camera\", \"n\": 3}, {\"key\": \"panorama\", \"n\": 6}, {\"key\": \"aspect-ratio\", \"n\": 4}, {\"key\": \"ai-import\", \"n\": 7}, {\"key\": \"help\", \"n\": 2}]}"
     },
     {
       "label": "C5 createDirectorCapture 第一跳：store 零写入，但 capture-preview 与 send-capture 出现 ⟹ 两跳",

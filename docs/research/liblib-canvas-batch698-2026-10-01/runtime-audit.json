@@ -28,9 +28,9 @@
     "picked": {
      "rowText": "",
      "selected": {
-      "id": "director-camera-1790998863201-1",
+      "id": "director-camera-1792931745728-1",
       "kind": "camera",
-      "name": "机位 02 · 新镜头"
+      "name": "机位2"
      }
     },
     "tracks": 3,
@@ -39,7 +39,7 @@
      3,
      1
     ],
-    "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+    "selKf": "director-track-director-camera-1792931749641-1-keyframe-0",
     "keys": [
      "data-director-camera-fov",
      "data-director-timeline-zoom",
@@ -59,7 +59,7 @@
      3,
      1
     ],
-    "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+    "selKf": "director-track-director-camera-1792931749641-1-keyframe-0",
     "keys": [
      "data-director-motion-slider",
      "data-director-timeline-zoom"
@@ -83,7 +83,7 @@
      3,
      1
     ],
-    "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+    "selKf": "director-track-director-camera-1792931749641-1-keyframe-0",
     "keys": [
      "data-director-motion-slider",
      "data-director-timeline-zoom"
@@ -109,6 +109,15 @@
     ],
     "disabled": false,
     "anythingChanged": false,
+    "surfacesBefore": {
+     "presetList": 0,
+     "pathList": 0
+    },
+    "surfacesAfter": {
+     "presetList": 0,
+     "pathList": 1
+    },
+    "openedRealSurface": true,
     "beforeMotionSliders": [
      "duration",
      "uniform-scale"
@@ -136,6 +145,15 @@
     ],
     "disabled": false,
     "anythingChanged": false,
+    "surfacesBefore": {
+     "presetList": 0,
+     "pathList": 1
+    },
+    "surfacesAfter": {
+     "presetList": 0,
+     "pathList": 1
+    },
+    "openedRealSurface": false,
     "beforeMotionSliders": [
      "duration",
      "uniform-scale"
@@ -163,6 +181,15 @@
     ],
     "disabled": false,
     "anythingChanged": false,
+    "surfacesBefore": {
+     "presetList": 0,
+     "pathList": 1
+    },
+    "surfacesAfter": {
+     "presetList": 1,
+     "pathList": 1
+    },
+    "openedRealSurface": true,
     "beforeMotionSliders": [
      "duration",
      "uniform-scale"
@@ -190,6 +217,15 @@
     ],
     "disabled": false,
     "anythingChanged": false,
+    "surfacesBefore": {
+     "presetList": 1,
+     "pathList": 1
+    },
+    "surfacesAfter": {
+     "presetList": 1,
+     "pathList": 1
+    },
+    "openedRealSurface": false,
     "beforeMotionSliders": [
      "duration",
      "uniform-scale"
@@ -222,8 +258,8 @@
     ]
    ],
    "selectedKeyframeId": [
-    "director-track-director-camera-1790998866733-1-keyframe-0",
-    "director-track-director-camera-1790998866733-1-keyframe-0"
+    "director-track-director-camera-1792931749641-1-keyframe-0",
+    "director-track-director-camera-1792931749641-1-keyframe-0"
    ]
   },
   "nothingSelectedProbe": {
@@ -266,9 +302,9 @@
       "picked": {
        "rowText": "",
        "selected": {
-        "id": "director-camera-1790998863201-1",
+        "id": "director-camera-1792931745728-1",
         "kind": "camera",
-        "name": "机位 02 · 新镜头"
+        "name": "机位2"
        }
       },
       "tracks": 3,
@@ -277,7 +313,7 @@
        3,
        1
       ],
-      "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+      "selKf": "director-track-director-camera-1792931749641-1-keyframe-0",
       "keys": [
        "data-director-camera-fov",
        "data-director-timeline-zoom",
@@ -297,7 +333,7 @@
        3,
        1
       ],
-      "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+      "selKf": "director-track-director-camera-1792931749641-1-keyframe-0",
       "keys": [
        "data-director-motion-slider",
        "data-director-timeline-zoom"
@@ -321,7 +357,7 @@
        3,
        1
       ],
-      "selKf": "director-track-director-camera-1790998866733-1-keyframe-0",
+      "selKf": "director-track-director-camera-1792931749641-1-keyframe-0",
       "keys": [
        "data-director-motion-slider",
        "data-director-timeline-zoom"
@@ -354,7 +390,7 @@
      3,
      1
     ],
-    "depth1_selectedKeyframeId": "director-track-director-camera-1790998866733-1-keyframe-0",
+    "depth1_selectedKeyframeId": "director-track-director-camera-1792931749641-1-keyframe-0",
     "motionSlidersAtDepth2": [
      "duration",
      "uniform-scale"
@@ -428,7 +464,7 @@
    },
    "note": "the same two words, in a different order"
   },
-  "all-four-copies-look-enabled-and-none-of-them-does-anything": {
+  "the-right-panel-copies-now-open-real-option-lists": {
    "ok": true,
    "detail": {
     "clicks": [
@@ -446,6 +482,15 @@
       ],
       "disabled": false,
       "anythingChanged": false,
+      "surfacesBefore": {
+       "presetList": 0,
+       "pathList": 0
+      },
+      "surfacesAfter": {
+       "presetList": 0,
+       "pathList": 1
+      },
+      "openedRealSurface": true,
       "beforeMotionSliders": [
        "duration",
        "uniform-scale"
@@ -473,6 +518,15 @@
       ],
       "disabled": false,
       "anythingChanged": false,
+      "surfacesBefore": {
+       "presetList": 0,
+       "pathList": 1
+      },
+      "surfacesAfter": {
+       "presetList": 0,
+       "pathList": 1
+      },
+      "openedRealSurface": false,
       "beforeMotionSliders": [
        "duration",
        "uniform-scale"
@@ -500,6 +554,15 @@
       ],
       "disabled": false,
       "anythingChanged": false,
+      "surfacesBefore": {
+       "presetList": 0,
+       "pathList": 1
+      },
+      "surfacesAfter": {
+       "presetList": 1,
+       "pathList": 1
+      },
+      "openedRealSurface": true,
       "beforeMotionSliders": [
        "duration",
        "uniform-scale"
@@ -527,6 +590,15 @@
       ],
       "disabled": false,
       "anythingChanged": false,
+      "surfacesBefore": {
+       "presetList": 1,
+       "pathList": 1
+      },
+      "surfacesAfter": {
+       "presetList": 1,
+       "pathList": 1
+      },
+      "openedRealSurface": false,
       "beforeMotionSliders": [
        "duration",
        "uniform-scale"
@@ -541,12 +613,39 @@
       ]
      }
     ],
-    "enabledCount": 4,
-    "effectiveCount": 0,
-    "whatChangedWasChecked": "timeline track count, keyframes per track, the selected keyframe id, the motion sliders, and whether any dialog or toast appeared.",
-    "strongerThan695": "695 could only say the two right-panel buttons have no onClick -- a source-level fact. This says all four copies, including the two on the timeline that are NOT disabled, produce no observable change at all."
+    "rightPanelCopies": 2,
+    "allEnabled": true,
+    "timelineNoneEffective": true,
+    "rightPanelOpenedRealSurface": [
+     {
+      "attr": "data-director-motion-create-path",
+      "opened": true,
+      "before": {
+       "presetList": 0,
+       "pathList": 0
+      },
+      "after": {
+       "presetList": 0,
+       "pathList": 1
+      }
+     },
+     {
+      "attr": "data-director-motion-preset-button",
+      "opened": true,
+      "before": {
+       "presetList": 0,
+       "pathList": 1
+      },
+      "after": {
+       "presetList": 1,
+       "pathList": 1
+      }
+     }
+    ],
+    "theForwardCorrection": "★ Batch 868 之前，这条判据写的是「四个副本全部 enabled 且全部无效」⟹ ⟹ ⟹ ⟹ ⇒ ★ 它**钉住的是缺陷本身**。⟹ ⟹ ★ 右栏那两枚现在真的开出选项面板（★ 与时间线同一份预设表、同一个 store 动作）⟹ ⟹ ⟹ ⟹ ⇒ 「不做事」已不是事实 ⟹ ⟹ ⟹ ⟹ ⇒ 判据**过时** ⟹ ⟹ ⟹ ⟹ ⇒ ★ **反转**成「守住修复」。",
+    "timelineCopiesAreNotAssertedHere": "★ 时间线上那两枚**仍然**是 699 的判据范围（★ 699 已证「data-director-create-motion-path」是**活的**：它开菜单）⟹ ⟹ ⟹ ⟹ ⇒ 这里**不重复**断言 ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 免得两条门禁⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 对同一件事**各说各话**。"
    },
-   "note": "enabled is not the same as working"
+   "note": "a criterion that pins the defect must be reversed when the defect is fixed"
   },
   "dead-entrances-do-not-mean-the-feature-is-unreachable": {
    "ok": true,

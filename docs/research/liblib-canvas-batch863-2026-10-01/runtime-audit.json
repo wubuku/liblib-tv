@@ -1,5 +1,5 @@
 {
- "判据数": 110,
+ "判据数": 113,
  "失败": [],
  "audit": {
   "batch": 863,
@@ -496,6 +496,28 @@
     },
     "分线条数": 0
    },
+   "z序": {
+    "gizmoZ": "10",
+    "containerZ": "10",
+    "gizmoCls": "absolute left-3 z-10 h-20 w-20",
+    "containerCls": "pointer-events-none absolute bottom-0 left-0 right-0 top-0 z-10"
+   },
+   "命中测试": {
+    "按钮在场": true,
+    "按钮rect": {
+     "x": 1533,
+     "y": 128,
+     "w": 32,
+     "h": 32
+    },
+    "命中点": {
+     "x": 1549,
+     "y": 144
+    },
+    "isToggle": true,
+    "命中标签": "path",
+    "命中类": ""
+   },
    "点开关后": {
     "容器在场": true,
     "遮罩层在场": true,
@@ -536,15 +558,15 @@
      "backdropFilter": "blur(12px)",
      "maskImage": "linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px), linear-gradient(rgb(0, 0, 0) 0px, rgb(0, 0, 0) 0px)",
      "maskComposite": "exclude, exclude",
-     "maskPosition": "0px 0px, 484.938px 32px",
-     "maskSize": "100% 100%, 388.125px 690px",
+     "maskPosition": "0px 0px, 65.6667px 32px",
+     "maskSize": "100% 100%, 1226.67px 690px",
      "maskRepeat": "no-repeat, no-repeat",
      "pointerEvents": "none"
     },
     "框": {
-     "x": 766,
+     "x": 347,
      "y": 120,
-     "w": 388,
+     "w": 1227,
      "h": 690
     },
     "框样式": {
@@ -564,7 +586,7 @@
      "radius": "12px"
     },
     "框相对容器": {
-     "left": 484.94,
+     "left": 65.66,
      "top": 32
     },
     "分线条数": 4

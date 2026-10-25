@@ -7,8 +7,8 @@
   "markSelectTrigger": true,
   "markSelectBanner": true,
   "reshootButton": true,
-  "seedVideoFailedLine": 940,
-  "newVideoReadyLine": 4209
+  "seedVideoFailedLine": 1092,
+  "newVideoReadyLine": 4458
  },
  "run": {
   "steps": {
@@ -71,7 +71,7 @@
       "focusable": true
      }
     ],
-    "panoNodeId": "image-1791055591068"
+    "panoNodeId": "image-1792936109697"
    },
    "newVideo": {
     "rows": [
@@ -467,8 +467,8 @@
   "markSelectTrigger": true,
   "markSelectBanner": true,
   "reshootButton": true,
-  "seedVideoFailedLine": 940,
-  "newVideoReadyLine": 4209
+  "seedVideoFailedLine": 1092,
+  "newVideoReadyLine": 4458
  },
  "panoSites": 4,
  "refuted732": {

@@ -51,7 +51,7 @@
     {
      "event": "pointerdown",
      "file": "src/components/director/DirectorViewport.tsx",
-     "line": 2739,
+     "line": 3266,
      "arg": "false"
     }
    ]
@@ -62,7 +62,7 @@
    "ok": true,
    "detail": {
     "inWithout": true,
-    "falsyWriteAt": 2826
+    "falsyWriteAt": 3345
    }
   },
   {
@@ -242,7 +242,12 @@
     "evidence": [
      {
       "file": "src/components/director/DirectorViewport.tsx",
-      "line": 2739,
+      "line": 3266,
+      "改了哪几行": [
+       3266
+      ],
+      "提示行号": 2739,
+      "行号是否漂移": true,
       "oldPresentBefore": true,
       "oldPresentAfter": false,
       "newPresentAfter": true,
@@ -276,7 +281,12 @@
     "evidence": [
      {
       "file": "src/components/director/DirectorObjectTree.tsx",
-      "line": 207,
+      "line": 231,
+      "改了哪几行": [
+       231
+      ],
+      "提示行号": 207,
+      "行号是否漂移": true,
       "oldPresentBefore": true,
       "oldPresentAfter": false,
       "newPresentAfter": true,
@@ -310,15 +320,13 @@
     "evidence": [
      {
       "file": "src/components/director/DirectorTimeline.tsx",
-      "line": 569,
-      "oldPresentBefore": true,
-      "oldPresentAfter": false,
-      "newPresentAfter": true,
-      "codeAfter": "window.addEventListener(\"pointerenter\", close);"
-     },
-     {
-      "file": "src/components/director/DirectorTimeline.tsx",
-      "line": 593,
+      "line": 634,
+      "改了哪几行": [
+       634,
+       658
+      ],
+      "提示行号": 569,
+      "行号是否漂移": true,
       "oldPresentBefore": true,
       "oldPresentAfter": false,
       "newPresentAfter": true,
@@ -352,7 +360,7 @@
     "evidence": [
      {
       "file": "src/components/director/DirectorViewport.tsx",
-      "line": 2826,
+      "line": 3345,
       "oldPresentBefore": true,
       "oldPresentAfter": false,
       "newPresentAfter": true,
@@ -360,7 +368,7 @@
      },
      {
       "file": "src/components/director/DirectorViewport.tsx",
-      "line": 3081,
+      "line": 3612,
       "oldPresentBefore": true,
       "oldPresentAfter": false,
       "newPresentAfter": true,
@@ -368,7 +376,7 @@
      },
      {
       "file": "src/components/director/DirectorViewport.tsx",
-      "line": 3558,
+      "line": 4032,
       "oldPresentBefore": true,
       "oldPresentAfter": false,
       "newPresentAfter": true,

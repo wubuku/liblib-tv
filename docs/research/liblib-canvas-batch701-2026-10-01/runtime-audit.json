@@ -8,7 +8,7 @@
    "ok": true,
    "expected": "director-camera-main",
    "got": "director-camera-main",
-   "name": "机位01 · 对峙中景"
+   "name": "机位1"
   },
   "nullClickDrift": [],
   "ledgerSourceCensus": {
@@ -41,7 +41,7 @@
     "NO_ACTIVE_SESSION",
     "OWNER_STALE"
    ],
-   "lastCommandResultMentions": 126
+   "lastCommandResultMentions": 127
   },
   "rows": [
    {
@@ -419,7 +419,7 @@
       "NO_ACTIVE_SESSION",
       "OWNER_STALE"
      ],
-     "lastCommandResultMentions": 126
+     "lastCommandResultMentions": 127
     },
     "runtimeGap": [
      "data-director-playback",

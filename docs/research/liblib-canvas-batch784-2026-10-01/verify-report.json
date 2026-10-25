@@ -145,7 +145,7 @@
     "event": "mousedown",
     "handler": "close",
     "file": "src/components/director/DirectorObjectTree.tsx",
-    "line": 212
+    "line": 236
    }
   ],
   "treeMousedown": true,

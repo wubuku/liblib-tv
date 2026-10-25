@@ -1,7 +1,7 @@
 {
   "batch": 747,
   "title": "把 16 个记账命令里最后两个「从未真跑」的跑通：createVideoContinuation → clearVideoContinuation、createPictureEdit（主体消除第三段）；并撤回 745「主体消除提交按钮无提示」这条待拍板项",
-  "verdict": "7/7",
+  "verdict": "6/7",
   "summary": {
     "results": {
       "A2_continuationEntry": {
@@ -34,31 +34,31 @@
           12
         ],
         "selectionBefore": [
-          "video-1791080340121-x4s5fk"
+          "video-1792936350799-s94ydm"
         ],
         "selectionAfter": [
-          "video-continuation-1791080341241-9q0655"
+          "video-continuation-1792936351949-aey0ku"
         ],
         "selectionMovedToNewCard": true,
         "contNodes": [
           {
-            "id": "video-continuation-1791080341241-9q0655",
+            "id": "video-continuation-1792936351949-aey0ku",
             "filename": "续写 视频节点 5-片段重拍",
             "status": "empty",
             "duration": 6,
             "start": 0,
             "end": 30,
-            "edgeId": "e-video-1791080340121-x4s5fk-video-continuation-1791080341241-9q0655",
-            "sourceNodeId": "video-1791080340121-x4s5fk"
+            "edgeId": "e-video-1792936350799-s94ydm-video-continuation-1792936351949-aey0ku",
+            "sourceNodeId": "video-1792936350799-s94ydm"
           }
         ],
-        "sourceNodeId": "video-1791080340121-x4s5fk",
+        "sourceNodeId": "video-1792936350799-s94ydm",
         "expectedFilename": "续写 视频节点 5-片段重拍",
         "exitButtonPresent": true
       },
       "A4_clear": {
         "cleared": true,
-        "contCardId": "video-continuation-1791080341241-9q0655",
+        "contCardId": "video-continuation-1792936351949-aey0ku",
         "past": [
           2,
           3
@@ -75,7 +75,7 @@
         "contNodesAfter": [],
         "continuationCardsAfter": [
           {
-            "id": "video-continuation-1791080341241-9q0655",
+            "id": "video-continuation-1792936351949-aey0ku",
             "file": "续写 视频节点 5-片段重拍",
             "status": "empty",
             "hasCont": false,
@@ -152,7 +152,7 @@
         ],
         "newNodeData": [
           {
-            "id": "picture-edit-1791080351667-sndzzq",
+            "id": "picture-edit-1792936362720-h5jqyi",
             "file": "主体消除-视频节点 5-片段重拍",
             "status": "pending",
             "type": "video"
@@ -162,26 +162,26 @@
       "static": {
         "decl_createVideoContinuation": [
           324,
-          1663
+          1822
         ],
         "decl_clearVideoContinuation": [
           374,
-          2974
+          3133
         ],
         "decl_createPictureEdit": [
           353,
-          2615
+          2774
         ],
         "uiMinDurationLine": 23,
         "uiMinDurationSrc": "const MIN_DURATION = 4;",
         "uiClampLine": 101,
-        "storeGuardLine": 1687,
+        "storeGuardLine": 1846,
         "storeGuardSrc": "if (normalizedEnd - normalizedStart < 4) return null;",
         "confirmLine": 231,
         "confirmHasDisabled": false,
-        "contOnTargetLine": 1731,
-        "selectTargetLine": 1756,
-        "clearLine": 2974,
+        "contOnTargetLine": 1890,
+        "selectTargetLine": 1915,
+        "clearLine": 3133,
         "clearDeletesContinuation": true,
         "clearFiltersEdge": true,
         "clearTouchesNodes": false,
@@ -306,8 +306,8 @@
   "checks": [
     {
       "label": "C1 静态：三个命令各恰好两处（声明+实现）；UI MIN_DURATION=4 ⟺ store 的 <4 守卫；确认按钮无 disabled；clear 摘元数据+删边但不删节点；submit-reason 读点存在",
-      "pass": true,
-      "detail": "{\"decl_createVideoContinuation\": [324, 1663], \"decl_clearVideoContinuation\": [374, 2974], \"decl_createPictureEdit\": [353, 2615], \"uiMinDurationLine\": 23, \"uiMinDurationSrc\": \"const MIN_DURATION = 4;\", \"uiClampLine\": 101, \"storeGuardLine\": 1687, \"storeGuardSrc\": \"if (normalizedEnd - normalizedStart < 4) return null;\", \"confirmLine\": 231, \"confirmHasDisabled\": false, \"contOnTargetLine\": 1731, \"selectTargetLine\": 1756, \"clearLine\": 2974, \"clearDeletesContinuation\": true, \"clearFiltersEdge\": true, \"clearTouchesNodes\": false, \"clearPushesHistory\": true, \"reasonLine\": 534, \"reasonReasons\": [534, 539, 545], \"reasonReadLine\": 866, \"reasonColour\": \"#bd8c55\", \"submitLine\": 866, \"submitDisabledLine\": 884, \"canSubmitLine\": 550, \"beginDrawLine\": 379, \"pointBranchLine\": 401, \"confirmContinuationLine\": 217, \"emptyStateLine\": 548, \"emptyStateText\": \"等待续写内容\"}"
+      "pass": false,
+      "detail": "{\"decl_createVideoContinuation\": [324, 1822], \"decl_clearVideoContinuation\": [374, 3133], \"decl_createPictureEdit\": [353, 2774], \"uiMinDurationLine\": 23, \"uiMinDurationSrc\": \"const MIN_DURATION = 4;\", \"uiClampLine\": 101, \"storeGuardLine\": 1846, \"storeGuardSrc\": \"if (normalizedEnd - normalizedStart < 4) return null;\", \"confirmLine\": 231, \"confirmHasDisabled\": false, \"contOnTargetLine\": 1890, \"selectTargetLine\": 1915, \"clearLine\": 3133, \"clearDeletesContinuation\": true, \"clearFiltersEdge\": true, \"clearTouchesNodes\": false, \"clearPushesHistory\": true, \"reasonLine\": 534, \"reasonReasons\": [534, 539, 545], \"reasonReadLine\": 866, \"reasonColour\": \"#bd8c55\", \"submitLine\": 866, \"submitDisabledLine\": 884, \"canSubmitLine\": 550, \"beginDrawLine\": 379, \"pointBranchLine\": 401, \"confirmContinuationLine\": 217, \"emptyStateLine\": 548, \"emptyStateText\": \"等待续写内容\"}"
     },
     {
       "label": "C2 智能续写入口：工具栏「智能续写」文字按钮 ⟹ 选择器面板出现，默认区间 0→30.00 秒",
@@ -317,12 +317,12 @@
     {
       "label": "C3 确认续写：past+1、节点+1、边+1；**选中切到新建的续写卡**；卡 filename=「续写 <源卡名>」、status=empty；「退出续写模式」按钮出现",
       "pass": true,
-      "detail": "{\"confirmed\": true, \"past\": [1, 2], \"nodes\": [11, 12], \"edges\": [11, 12], \"selectionBefore\": [\"video-1791080340121-x4s5fk\"], \"selectionAfter\": [\"video-continuation-1791080341241-9q0655\"], \"selectionMovedToNewCard\": true, \"contNodes\": [{\"id\": \"video-continuation-1791080341241-9q0655\", \"filename\": \"续写 视频节点 5-片段重拍\", \"status\": \"empty\", \"duration\": 6, \"start\": 0, \"end\": 30, \"edgeId\": \"e-video-1791080340121-x4s5fk-video-continuation-1791080341241-9q0655\", \"sourceNodeId\": \"video-1791080340121-x4s5fk\"}], \"sourceNodeId\": \"video-1791080340121-x4s5fk\", \"expectedFilename\": \"续写 视频节点 5-片段重拍\", \"exitButtonPresent\": true}"
+      "detail": "{\"confirmed\": true, \"past\": [1, 2], \"nodes\": [11, 12], \"edges\": [11, 12], \"selectionBefore\": [\"video-1792936350799-s94ydm\"], \"selectionAfter\": [\"video-continuation-1792936351949-aey0ku\"], \"selectionMovedToNewCard\": true, \"contNodes\": [{\"id\": \"video-continuation-1792936351949-aey0ku\", \"filename\": \"续写 视频节点 5-片段重拍\", \"status\": \"empty\", \"duration\": 6, \"start\": 0, \"end\": 30, \"edgeId\": \"e-video-1792936350799-s94ydm-video-continuation-1792936351949-aey0ku\", \"sourceNodeId\": \"video-1792936350799-s94ydm\"}], \"sourceNodeId\": \"video-1792936350799-s94ydm\", \"expectedFilename\": \"续写 视频节点 5-片段重拍\", \"exitButtonPresent\": true}"
     },
     {
       "label": "C4 退出续写：past+1、节点**±0**、边**-1**；续写卡仍在画布上且 continuation 已被摘掉",
       "pass": true,
-      "detail": "{\"cleared\": true, \"contCardId\": \"video-continuation-1791080341241-9q0655\", \"past\": [2, 3], \"nodes\": [12, 12], \"edges\": [12, 11], \"cardStillOnCanvas\": true, \"contNodesAfter\": [], \"continuationCardsAfter\": [{\"id\": \"video-continuation-1791080341241-9q0655\", \"file\": \"续写 视频节点 5-片段重拍\", \"status\": \"empty\", \"hasCont\": false, \"duration\": 6}], \"exitButtonStillPresent\": false}"
+      "detail": "{\"cleared\": true, \"contCardId\": \"video-continuation-1792936351949-aey0ku\", \"past\": [2, 3], \"nodes\": [12, 12], \"edges\": [12, 11], \"cardStillOnCanvas\": true, \"contNodesAfter\": [], \"continuationCardsAfter\": [{\"id\": \"video-continuation-1792936351949-aey0ku\", \"file\": \"续写 视频节点 5-片段重拍\", \"status\": \"empty\", \"hasCont\": false, \"duration\": 6}], \"exitButtonStillPresent\": false}"
     },
     {
       "label": "C5 主体消除第 1、2 段：改时长到 10 后面板出现；**submit-reason=「请先标记主体」**、提交 disabled、计数 0/4（745 记的「无提示」要在这里被推翻）",
@@ -332,7 +332,7 @@
     {
       "label": "C6 主体消除第 3 段：落一个 point 标记 ⟹ 计数 0/4→1/4、提交解禁；点提交 ⟹ analyzing → 面板卸载，past+1、节点+1、边+1、新文件名以「主体消除-」开头",
       "pass": true,
-      "detail": "{\"marksAtOpen\": 0, \"marksAfterPointer\": 1, \"count\": [\"0/4\", \"1/4\"], \"submitBeforeMark\": {\"disabled\": true, \"status\": \"idle\", \"aria\": \"提交主体消除\", \"text\": \"提交\"}, \"submitAfterMark\": {\"disabled\": false, \"status\": \"idle\"}, \"submitted\": true, \"statusAt300ms\": \"analyzing\", \"panelAt300ms\": true, \"statusAt2500ms\": null, \"panelAt2500ms\": false, \"past\": [2, 3], \"nodes\": [11, 12], \"edges\": [11, 12], \"newFiles\": [\"主体消除-视频节点 5-片段重拍\"], \"newNodeData\": [{\"id\": \"picture-edit-1791080351667-sndzzq\", \"file\": \"主体消除-视频节点 5-片段重拍\", \"status\": \"pending\", \"type\": \"video\"}]}"
+      "detail": "{\"marksAtOpen\": 0, \"marksAfterPointer\": 1, \"count\": [\"0/4\", \"1/4\"], \"submitBeforeMark\": {\"disabled\": true, \"status\": \"idle\", \"aria\": \"提交主体消除\", \"text\": \"提交\"}, \"submitAfterMark\": {\"disabled\": false, \"status\": \"idle\"}, \"submitted\": true, \"statusAt300ms\": \"analyzing\", \"panelAt300ms\": true, \"statusAt2500ms\": null, \"panelAt2500ms\": false, \"past\": [2, 3], \"nodes\": [11, 12], \"edges\": [11, 12], \"newFiles\": [\"主体消除-视频节点 5-片段重拍\"], \"newNodeData\": [{\"id\": \"picture-edit-1792936362720-h5jqyi\", \"file\": \"主体消除-视频节点 5-片段重拍\", \"status\": \"pending\", \"type\": \"video\"}]}"
     },
     {
       "label": "C7 16 个记账命令的「真跑过」汇总表 16 行齐（15 真跑 + 1 零入口）",

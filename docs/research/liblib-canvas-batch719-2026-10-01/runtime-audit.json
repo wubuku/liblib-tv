@@ -11,8 +11,8 @@
    "beforeHit": "other",
    "beforeScroll": 0,
    "afterHit": "self",
-   "afterScroll": 250,
-   "barMax": 250,
+   "afterScroll": 210,
+   "barMax": 210,
    "focused": true,
    "inputBox": [
     143,
@@ -22,8 +22,8 @@
   },
   "base": {
    "vw": 1280,
-   "barScrollLeft": 250,
-   "barMax": 250,
+   "barScrollLeft": 210,
+   "barMax": 210,
    "store": {
     "objects": 5,
     "pastLen": 0,
@@ -52,8 +52,8 @@
   },
   "typed": {
    "vw": 1280,
-   "barScrollLeft": 250,
-   "barMax": 250,
+   "barScrollLeft": 210,
+   "barMax": 210,
    "store": {
     "objects": 5,
     "pastLen": 0,
@@ -82,8 +82,8 @@
   },
   "submitted": {
    "vw": 1280,
-   "barScrollLeft": 250,
-   "barMax": 250,
+   "barScrollLeft": 210,
+   "barMax": 210,
    "store": {
     "objects": 5,
     "pastLen": 0,
@@ -112,8 +112,8 @@
   },
   "after2s": {
    "vw": 1280,
-   "barScrollLeft": 250,
-   "barMax": 250,
+   "barScrollLeft": 210,
+   "barMax": 210,
    "store": {
     "objects": 5,
     "pastLen": 0,
@@ -168,8 +168,8 @@
   },
   "cleared": {
    "vw": 1280,
-   "barScrollLeft": 250,
-   "barMax": 250,
+   "barScrollLeft": 210,
+   "barMax": 210,
    "store": {
     "objects": 5,
     "pastLen": 0,
@@ -198,8 +198,8 @@
   },
   "emptyEnter": {
    "vw": 1280,
-   "barScrollLeft": 250,
-   "barMax": 250,
+   "barScrollLeft": 210,
+   "barMax": 210,
    "store": {
     "objects": 5,
     "pastLen": 0,
@@ -229,8 +229,8 @@
   "whitespace": {
    "before": {
     "vw": 1280,
-    "barScrollLeft": 250,
-    "barMax": 250,
+    "barScrollLeft": 210,
+    "barMax": 210,
     "store": {
      "objects": 5,
      "pastLen": 0,
@@ -259,8 +259,8 @@
    },
    "afterEnter": {
     "vw": 1280,
-    "barScrollLeft": 250,
-    "barMax": 250,
+    "barScrollLeft": 210,
+    "barMax": 210,
     "store": {
      "objects": 5,
      "pastLen": 0,
@@ -290,8 +290,8 @@
   },
   "uploaded": {
    "vw": 1280,
-   "barScrollLeft": 250,
-   "barMax": 356,
+   "barScrollLeft": 210,
+   "barMax": 316,
    "store": {
     "objects": 5,
     "pastLen": 0,
@@ -320,8 +320,8 @@
   },
   "uploadedSubmit": {
    "vw": 1280,
-   "barScrollLeft": 250,
-   "barMax": 356,
+   "barScrollLeft": 210,
+   "barMax": 316,
    "store": {
     "objects": 5,
     "pastLen": 0,
@@ -350,8 +350,8 @@
   },
   "uploaded2s": {
    "vw": 1280,
-   "barScrollLeft": 250,
-   "barMax": 356,
+   "barScrollLeft": 210,
+   "barMax": 316,
    "store": {
     "objects": 5,
     "pastLen": 0,

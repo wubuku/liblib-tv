@@ -37,15 +37,14 @@
   },
   {
    "label": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib",
-   "pass": true,
+   "pass": false,
    "got": [
-    "crowd",
     "modellib"
    ]
   },
   {
    "label": "★ 产物里的声明名单与现算一致",
-   "pass": true,
+   "pass": false,
    "got": [
     "crowd",
     "modellib"
@@ -53,7 +52,7 @@
   },
   {
    "label": "★ 产物里「声明了却没围栏」的名单与现算一致",
-   "pass": true,
+   "pass": false,
    "got": [
     "crowd",
     "modellib"
@@ -424,7 +423,6 @@
    "pass": true,
    "got": {
     "declares": [
-     "crowd",
      "modellib"
     ],
     "leftPanel": [
@@ -656,174 +654,170 @@
   },
   {
    "label": "★ 台账历史 U+FFFD 仍是 9 个、仍在 522/583/587",
-   "pass": true,
+   "pass": false,
    "got": {
-    "n": 9,
-    "lines": [
-     522,
-     583,
-     587
-    ]
+    "n": 0,
+    "lines": []
    }
   },
   {
    "label": "★ 台账只有 633 行",
-   "pass": true,
-   "got": 633
+   "pass": false,
+   "got": 735
   }
  ],
- "pass": 73,
+ "pass": 68,
  "total": 73,
  "negativeControls": [
   {
    "name": "★★ 删掉 D13",
    "caught": true,
-   "firstFail": "★★ D13 在 defects 里，严重度中、标了与 767 的 D10 相关、要改 src"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 把 D13 降级成观察",
    "caught": true,
-   "firstFail": "★★ D13 在 defects 里，严重度中、标了与 767 的 D10 相关、要改 src"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 把 D13 的严重度从中改成低",
    "caught": true,
-   "firstFail": "★★ D13 在 defects 里，严重度中、标了与 767 的 D10 相关、要改 src"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 抹掉 D13 的 relatedToD10From767（与 D10 的因果没了）",
    "caught": true,
-   "firstFail": "★★ D13 在 defects 里，严重度中、标了与 767 的 D10 相关、要改 src"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 抹掉 D13 的 relationToD10",
    "caught": true,
-   "firstFail": "★ D13 的 relationToD10 说清了 D10 与本批的因果"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 抹掉 D13 的「两层围栏会互相抢 Tab」",
    "caught": true,
-   "firstFail": "★ D13 的 fixDirection 写了「两层围栏会互相抢 Tab」这个坑"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ D13 的 where 指向不存在的行号",
    "caught": true,
-   "firstFail": "★ D13 的 where 每一项行号都有效"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 删掉 J5",
    "caught": true,
-   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 把 noPanelHasTrap 缩到 4 个（谎称有两个有围栏）",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 把 stayed-in-panel 那一桶塞进 export",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 把 counts 改成 12 格都在浮层内",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 把「步数不够」的格从 cellsBeyondWalk 里抹掉",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 删掉 J10（不许把步数不够当围栏好）",
    "caught": true,
-   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 删掉 R88（步数不够要给公式）",
    "caught": true,
-   "firstFail": "★ 观察 5 条、探针教训 2 条（R87/R88/R89）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 把 J4 里的「不矛盾」抹掉（会被当成推翻 765）",
    "caught": true,
-   "firstFail": "★★ J4 写明与 765 的 J6 不矛盾（参照系不同）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 删掉 O1（参照系这条方法论）",
    "caught": true,
-   "firstFail": "★ O1 把「参照系必须写清」记成了方法论"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 删掉 R87",
    "caught": true,
-   "firstFail": "★ 观察 5 条、探针教训 2 条（R87/R88/R89）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 删掉 J4",
    "caught": true,
-   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 把 declaresDialogButNoTrap 清空（说声明的都守住了焦点）",
    "caught": true,
-   "firstFail": "★ 产物里「声明了却没围栏」的名单与现算一致"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 删掉 J6",
    "caught": true,
-   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 删掉 R89",
    "caught": true,
-   "firstFail": "★ 观察 5 条、探针教训 2 条（R87/R88/R89）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 把 arraySegment 的 expectedStepPerStep 全写成 1",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 把 J5 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 把 J6 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 把 J8 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 把 J10 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 判据全改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 把判据条数从 10 改成 7",
    "caught": true,
-   "firstFail": "★ 判据 10 条（6 PASS / 4 FAIL）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 把 J2 的 matchedCount 从 11 改成 12",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 只改 findings 一份（判据的 evidence 不动）",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "伪造：围栏开始监听 focusin（D11 修法已落地）",
@@ -858,116 +852,116 @@
   {
    "name": "★★ 原始：把 export/fwd 的第 4 步改成不出浮层（D13 少一格）",
    "caught": true,
-   "firstFail": "★★ 逃逸步数与公式**逐格**吻合（由 raw 现算，不只信产物）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 原始：把某格的逃逸落点改成出对话框（J4 破）",
    "caught": true,
-   "firstFail": "★★ 对话框级围栏成立：0/12 格的焦点离开过对话框"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 原始：改一个下标打断连续段（J3 破）",
    "caught": true,
-   "firstFail": "★★ 段内下标在**行进方向上**严格单调（12/12 格，方向由行进方向给）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 原始：反向的下标改成递增（应该递减）",
    "caught": true,
-   "firstFail": "★★ 段内下标在**行进方向上**严格单调（12/12 格，方向由行进方向给）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 原始：把逃逸步数改得与公式不符（J2 破）",
    "caught": true,
-   "firstFail": "★★ 逃逸步数与公式**逐格**吻合（由 raw 现算，不只信产物）"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 原始：把起点下标改成不在浮层内（起点纪律）",
    "caught": true,
-   "firstFail": "★★ 起点纪律：起点在浮层内、下标落在对话框数组内、控件存量非 0"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★★ 原始：把起点下标改成落在对话框数组之外",
    "caught": true,
-   "firstFail": "★★ 起点纪律：起点在浮层内、下标落在对话框数组内、控件存量非 0"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 原始：某格 FAILED",
    "caught": true,
-   "firstFail": "★★ 12 格无缺格、无 FAILED、每格两轮"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ all([]) 陷阱：把 rows 清空（两轮都清）",
    "caught": true,
-   "firstFail": "★★ 12 格无缺格、无 FAILED、每格两轮"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 原始：步数改成 5（与产物不符）",
    "caught": true,
-   "firstFail": "★ 步数在产物与 raw 上一致且非 0"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 原始：浮层控件数改成大于对话框控件数",
    "caught": true,
-   "firstFail": "★★ 起点纪律：起点在浮层内、下标落在对话框数组内、控件存量非 0"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 台账删掉 Batch 770 行",
    "caught": true,
-   "firstFail": "★★ 台账恰好一行 Batch 770"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 台账行首格改成裸数字 770",
    "caught": true,
-   "firstFail": "★★ 台账恰好一行 Batch 770"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 台账行首格写成 Batch 0770",
    "caught": true,
-   "firstFail": "★★ 台账恰好一行 Batch 770"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 台账新行塞一个 U+FFFD",
    "caught": true,
-   "firstFail": "★★ 台账新行 0 个 U+FFFD"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 台账被追加了 Batch 771（行数断言）",
    "caught": true,
-   "firstFail": "★ 台账新行是 3 列"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ 台账新行不含 D13",
    "caught": true,
-   "firstFail": "★ 台账新行提到了 D13 与「与 765 不矛盾」"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ README 判据表首格改成裸数字",
    "caught": true,
-   "firstFail": "★ README 判据表 10 行"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ README 删掉「不声称」章节",
    "caught": true,
-   "firstFail": "★ README 有「不声称」章节"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ README 删掉 D13 章节",
    "caught": true,
-   "firstFail": "★★ README 有 D13 章节"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ README 删掉「与 765 不矛盾」章节",
    "caught": true,
-   "firstFail": "★ README 有「与 765 不矛盾」章节"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   },
   {
    "name": "★ README 删掉「第 14 步」",
    "caught": true,
-   "firstFail": "★ README 写明「不许把 12 步没走出去当成围栏好」"
+   "firstFail": "★ 静态：声明 role=dialog 的浮层恰好是 crowd 与 modellib"
   }
  ],
  "negativeCaught": 58,
  "negativeTotal": 58,
  "rawError": null,
- "ok": true
+ "ok": false
 }

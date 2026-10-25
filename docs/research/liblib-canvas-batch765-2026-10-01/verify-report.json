@@ -4,30 +4,30 @@
   {
    "label": "静态：isEditable 早退排在 Escape 分支之前",
    "pass": true,
-   "got": 486
+   "got": 545
   },
   {
    "label": "静态：isEditable 早退排在「关导出面板」那一档之前",
    "pass": true,
    "got": [
-    486,
-    556
+    545,
+    634
    ]
   },
   {
    "label": "静态：移动端关抽屉那一档排在 isEditable 早退之前",
    "pass": true,
    "got": [
-    481,
-    486
+    540,
+    545
    ]
   },
   {
    "label": "静态：Escape 分支的入口排在「关导出面板」那一档之前",
    "pass": true,
    "got": [
-    548,
-    556
+    626,
+    634
    ]
   },
   {
@@ -959,22 +959,18 @@
   },
   {
    "label": "★ 台账历史 U+FFFD 仍是 9 个（522/583/587 未被动）",
-   "pass": true,
-   "got": 9
+   "pass": false,
+   "got": 0
   },
   {
    "label": "★ U+FFFD 仍只落在 522/583/587 三行",
-   "pass": true,
-   "got": [
-    522,
-    583,
-    587
-   ]
+   "pass": false,
+   "got": []
   },
   {
    "label": "★ 台账行数 = 628（追加一行，不加前导空行）",
-   "pass": true,
-   "got": 628
+   "pass": false,
+   "got": 734
   },
   {
    "label": "★ Batch 764 行仍在且唯一",
@@ -982,7 +978,7 @@
    "got": null
   }
  ],
- "pass": 140,
+ "pass": 137,
  "total": 140,
  "negativeControls": [
   {
@@ -1414,5 +1410,5 @@
  "negativeCaught": 85,
  "negativeTotal": 85,
  "rawError": null,
- "ok": true
+ "ok": false
 }

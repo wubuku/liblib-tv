@@ -200,12 +200,12 @@
    },
    {
     "file": "src/components/TopNavBar.tsx",
-    "line": 183,
+    "line": 173,
     "attrs": "type=\"button\" aria-label=\"开通会员 限时 45 折\" title=\"开通会员为付费操作，克隆侧不提供\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\""
    },
    {
     "file": "src/components/TopNavBar.tsx",
-    "line": 200,
+    "line": 190,
     "attrs": "type=\"button\" aria-label=\"积分余额\" title=\"积分余额（读数，无可点操作）\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\""
    },
    {
@@ -413,7 +413,7 @@
      }
     ],
     "tab": {
-     "steps": 73,
+     "steps": 76,
      "truncated": true,
      "inertStops": 2,
      "inertCounter": {
@@ -679,7 +679,7 @@
      }
     ],
     "tab": {
-     "steps": 87,
+     "steps": 90,
      "truncated": true,
      "inertStops": 4,
      "inertCounter": {
@@ -1419,7 +1419,7 @@
      }
     ],
     "tab": {
-     "steps": 80,
+     "steps": 83,
      "truncated": true,
      "inertStops": 12,
      "inertCounter": {
@@ -1807,7 +1807,7 @@
      }
     ],
     "tab": {
-     "steps": 63,
+     "steps": 66,
      "truncated": true,
      "inertStops": 6,
      "inertCounter": {
@@ -2136,7 +2136,7 @@
      }
     ],
     "tab": {
-     "steps": 179,
+     "steps": 188,
      "truncated": true,
      "inertStops": 5,
      "inertCounter": {
@@ -2697,7 +2697,7 @@
      }
     ],
     "tab": {
-     "steps": 93,
+     "steps": 96,
      "truncated": true,
      "inertStops": 9,
      "inertCounter": {
@@ -3029,7 +3029,7 @@
      }
     ],
     "tab": {
-     "steps": 92,
+     "steps": 95,
      "truncated": true,
      "inertStops": 5,
      "inertCounter": {
@@ -3055,12 +3055,12 @@
    "focusBefore": [
     "BODY",
     "",
-    "画布 2开通会员限时 4"
+    "全部项目即梦画布克隆总览"
    ],
    "focusAfter": [
     "BODY",
     "",
-    "画布 2开通会员限时 4"
+    "全部项目即梦画布克隆总览"
    ],
    "panelBefore": false,
    "panelAfter": true,
@@ -3155,25 +3155,25 @@
    "mounted": 2,
    "stops": 2,
    "truncated": true,
-   "steps": 73
+   "steps": 76
   },
   "toolbox": {
    "mounted": 4,
    "stops": 4,
    "truncated": true,
-   "steps": 87
+   "steps": 90
   },
   "history": {
    "mounted": 12,
    "stops": 12,
    "truncated": true,
-   "steps": 80
+   "steps": 83
   },
   "tutorial": {
    "mounted": 6,
    "stops": 6,
    "truncated": true,
-   "steps": 63
+   "steps": 66
   },
   "agent": {
    "reason": "未取证，本批只记录不判。两组读数互相矛盾：(a) 隔离复现（只开抽屉、不做任何点击/按键、200 步）三次都读不到抽屉那三枚 header 按钮；正向 Tab 说其后直接绕回、反向 Tab 说其前是「移动」，互不相容。(b) 本验收器自己的 walk 停到 5 次，但重数是 {开通会员:3, 积分余额:2} —— 抽屉那三枚仍然一次没被命中；**总数恰好 5==5 恰好等于挂载数 5**，只有比多重集才发现不对。浏览器自己的可聚焦元素集合里它们是在的（tabIndex=0、未禁用、offsetParent=ASIDE、display:flex），故不是渲染或禁用的问题；成因未取证。另有一版探针因假定抽屉已打开而拿到空列表（querySelectorAll('button[data-inert]') 只返回 2 枚、focus() 静默失败），那次读数整个作废。",
@@ -3189,13 +3189,13 @@
    "mounted": 9,
    "stops": 9,
    "truncated": true,
-   "steps": 93
+   "steps": 96
   },
   "video-card": {
    "mounted": 5,
    "stops": 5,
    "truncated": true,
-   "steps": 92
+   "steps": 95
   }
  },
  "tabKeySummary": {
@@ -3203,12 +3203,12 @@
   "focusAfter": [
    "BODY",
    "",
-   "画布 2开通会员限时 4"
+   "全部项目即梦画布克隆总览"
   ],
   "focusBefore": [
    "BODY",
    "",
-   "画布 2开通会员限时 4"
+   "全部项目即梦画布克隆总览"
   ],
   "panelAfter": true,
   "panelBefore": false,
@@ -3221,7 +3221,7 @@
  },
  "summary": {
   "data-inert-is-written-46-times-across-16-files": true,
-  "all-46-carrying-tags-are-buttons-and-729s-45-was-a-scanner-artifact": true,
+  "all-46-carrying-tags-are-buttons-and-729s-45-was-a-scanner-artifact": false,
   "data-inert-never-pairs-with-any-focus-blocking-attribute": true,
   "every-mounted-instance-is-programmatically-focusable": true,
   "every-mounted-instance-grows-a-focus-ring-when-focused": true,
@@ -3231,5 +3231,7 @@
   "every-mounted-instance-is-reachable-by-tab": true,
   "tab-is-hijacked-by-the-canvas-into-a-new-node-shortcut": true
  },
- "failures": []
+ "failures": [
+  "all-46-carrying-tags-are-buttons-and-729s-45-was-a-scanner-artifact: [{'file': 'src/components/TopNavBar.tsx', 'line': 173, 'attrs': 'type=\"button\" aria-label=\"开通会员 限时 45 折\" title=\"开通会员为付费操作，克隆侧不提供\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\"'}, {'file': 'src/components/TopNavBar.tsx', 'line': 190, 'attrs': 'type=\"button\" aria-label=\"积分余额\" title=\"积分余额（读数，无可点操作）\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\"'}]"
+ ]
 }

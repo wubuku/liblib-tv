@@ -130,70 +130,76 @@
    "got": {
     "branches": {
      "Meta+C": {
-      "guardLine": 490,
+      "guardLine": 549,
       "preventDefaultLines": [
-       491,
-       502,
-       507,
-       513,
-       526,
-       541,
-       550
+       550,
+       561,
+       566,
+       572,
+       590,
+       604,
+       619,
+       628
       ],
       "hasPreventDefault": true
      },
      "Meta+V": {
-      "guardLine": 495,
+      "guardLine": 554,
       "preventDefaultLines": [
-       502,
-       507,
-       513,
-       526,
-       541,
-       550
+       561,
+       566,
+       572,
+       590,
+       604,
+       619,
+       628
       ],
       "hasPreventDefault": true
      },
      "Meta+Z": {
-      "guardLine": 506,
+      "guardLine": 565,
       "preventDefaultLines": [
-       507,
-       513,
-       526,
-       541,
-       550
+       566,
+       572,
+       590,
+       604,
+       619,
+       628
       ],
       "hasPreventDefault": true
      },
      "Meta+Y": {
-      "guardLine": 512,
+      "guardLine": 571,
       "preventDefaultLines": [
-       513,
-       526,
-       541,
-       550
+       572,
+       590,
+       604,
+       619,
+       628
       ],
       "hasPreventDefault": true
      },
      "Delete|Backspace": {
-      "guardLine": 517,
+      "guardLine": 595,
       "preventDefaultLines": [
-       526,
-       541,
-       550
+       604,
+       619,
+       628
       ],
       "hasPreventDefault": true
      }
     },
     "pdLines": [
-     483,
-     491,
-     502,
-     507,
-     513,
-     526,
-     541,
-     550
+     537,
+     542,
+     550,
+     561,
+     566,
+     572,
+     590,
+     604,
+     619,
+     628
     ]
    }
   },
@@ -213,7 +219,7 @@
   },
   {
    "label": "产物：静态层与验收器重读的源码一致",
-   "pass": true,
+   "pass": false,
    "got": {
     "got": [
      483,
@@ -467,13 +473,13 @@
   },
   {
    "label": "台账：历史 U+FFFD 仍在 9 处",
-   "pass": true,
+   "pass": false,
    "got": {
-    "count": 9
+    "count": 0
    }
   }
  ],
- "pass": 39,
+ "pass": 37,
  "total": 39,
  "negativeControls": [
   {
@@ -609,5 +615,5 @@
  "negativeTotal": 16,
  "negativeKwBroken": [],
  "rawError": null,
- "ok": true
+ "ok": false
 }

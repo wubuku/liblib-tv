@@ -48,9 +48,41 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "docs/research/liblib-canvas-batch866-2026-10-01"
 RAW = OUT_DIR / "raw"
 
-REGRESS = OUT_DIR / "probes/regress866.py"
+# ★ ★★ Batch 869 修正：★ 「在用的回归清单」**不能写死文件名**。
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 写死的后果（本批实测）：★ 每一批新门禁都会让本门禁**变红**
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ 而那个红与本门禁要验的性质（覆盖面）**毫无关系**。
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ 具体：★ batch 868 提交了 `verify-liblib-batch868.py`
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ （★ 它引用了被跟踪源文件 ⟹ ⟹ ⟹ ⇒ ★ ⟹ 落在「碰被跟踪源文件」
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 那 92 个里）⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 而本门禁比的是**本批那份**
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ **历史快照** ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ 缺口＝`868.py` ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ 受控对照（★ 临时移走 `868.py` ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 立刻 18 判据
+#   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 0 失败）⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ **证明**了归因。
+#   ⟹ ⇒ **修法**：★ 在用清单＝`docs/research/liblib-canvas-batch*/probes/
+#   ⟹ ⇒   regress*.py` 里**批次号最大**的那一份 ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 不用写死。
+HISTORIC_REGRESS = OUT_DIR / "probes/regress866.py"
 HEADCMP = RAW / "head464-comparison.json"
 BASELINE = RAW / "baseline-46.json"
+
+
+def resolve_live_regress() -> tuple[Path | None, list[tuple[str, str]], Path | None]:
+    """★ 找出**在用**的回归清单 ⟹ ⟹ ⟹ ⇒ ★ 返回 (路径, 条目, 上一份路径)。
+
+    ★ ★ 判据是「**批次号最大**」⟹ ⟹ ⟹ ⇒ ★ ⟹ 而不是「文件名写死的那个」
+    ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 这样每加一批门禁 ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 本门禁**自动**跟着走
+    ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ 而不是每次都要有人记得回来改这里。
+    """
+    cands: list[tuple[int, Path]] = []
+    for path in sorted((ROOT / "docs/research").glob(
+            "liblib-canvas-batch*/probes/regress*.py")):
+        m = re.search(r"liblib-canvas-batch(\d+)", path.parent.parent.name)
+        if m:
+            cands.append((int(m.group(1)), path))
+    if not cands:
+        return None, [], None
+    cands.sort(key=lambda item: item[0])
+    live_batch, live_path = cands[-1]
+    prev_path = cands[-2][1] if len(cands) >= 2 else None
+    return live_path, parse_gates(live_path.read_text(encoding="utf-8")), prev_path
 
 # ★ 本批**被跟踪**的源文件（★ 普查的「碰本批区域」就是按这个集合算的）
 TRACKED_SRC = [
@@ -124,9 +156,36 @@ def main() -> int:
     }
 
     # ── S1 静态：清单完整性 ─────────────────────────────────────────
-    v.check("source:the-regression-script-exists", REGRESS.exists(), detail=str(REGRESS))
-    reg_text = REGRESS.read_text(encoding="utf-8") if REGRESS.exists() else ""
-    gates = parse_gates(reg_text)
+    live_regress, gates, prev_regress = resolve_live_regress()
+    v.check("source:the-regression-script-exists", live_regress is not None,
+            detail=str(live_regress))
+    reg_text = (live_regress.read_text(encoding="utf-8")
+                if live_regress is not None else "")
+    audit["在用回归清单"] = str(live_regress) if live_regress else None
+    audit["历史快照（本门禁当初那份）"] = str(HISTORIC_REGRESS)
+    audit["上一份回归清单"] = str(prev_regress) if prev_regress else None
+
+    # ★ ★★ Batch 869：★ 「在用清单」**必须**是批次号最大的那一份 ⟹ ⟹ ⟹ ⇒ ★
+    #   ⟹ 否则「写死文件名」的老毛病会从别的入口长回来。
+    v.check("source:the-live-regression-list-is-the-newest-one",
+            live_regress is not None and prev_regress is None
+            or (live_regress is not None and prev_regress is not None
+                and live_regress.parent.parent.name
+                > prev_regress.parent.parent.name),
+            detail={"在用": str(live_regress), "上一份": str(prev_regress),
+                    "★ 说明": "★ 判据是「批次号最大」⟹ ⟹ 不用写死文件名"})
+
+    # ★ ★★ Batch 869：★ 清单**只能增长** ⟹ ⟹ ⟹ ⇒ ★ ⟹ 缩水了就必须报出来
+    #   ⟹ ⟹ ⟹ ⇒ ★ ⟹ （★ 否则某批「重写清单」时手抖删掉几十条 ⟹ ⟹ ⟹ ⇒ ★ ⟹
+    #   ⟹ ⟹ ⟹ ⇒ ★ ⟹ 那些门禁的红**又没人看了** ⟹ ⟹ ⟹ ⇒ ★ ⟹ 且没有任何痕迹）
+    if live_regress is not None and prev_regress is not None:
+        prev_gates = parse_gates(prev_regress.read_text(encoding="utf-8"))
+        shrunk = sorted(set(prev_gates) - set(gates))
+        v.check("source:the-regression-list-never-shrinks",
+                not shrunk,
+                detail={"上一份条数": len(prev_gates), "在用条数": len(gates),
+                        "被删掉的条目": ["%s.%s" % g for g in shrunk],
+                        "★ 说明": "★ 清单只增不减 ⟹ ⟹ 缩水必须报出来"})
     listed = [b for b, _ in gates]
     audit["清单条数"] = len(gates)
     audit["被跟踪源文件"] = TRACKED_SRC

@@ -1510,7 +1510,7 @@
     "after": "ArrowRight"
    }
   ],
-  "censusText": "显式取整点 41 处 · 去重后表达式 32 个\n精度档 ≥2 的表达式 3 个：\n  phoneVcam.pose.yaw  ← 4 处, 档 [\"Math.round\",\"toFixed(0)\",\"toFixed(2)\"]\n      DirectorPhoneVcamPanel.tsx:502  DirectorPhoneVcamPanel.tsx:507  DirectorPhoneVcamPanel.tsx:519  DirectorPhoneVcamPanel.tsx:520\n  phoneVcam.pose.pitch  ← 3 处, 档 [\"toFixed(0)\",\"toFixed(2)\"]\n      DirectorPhoneVcamPanel.tsx:503  DirectorPhoneVcamPanel.tsx:508  DirectorPhoneVcamPanel.tsx:520\n  phoneVcam.pose.roll  ← 2 处, 档 [\"toFixed(0)\",\"toFixed(2)\"]\n      DirectorPhoneVcamPanel.tsx:504  DirectorPhoneVcamPanel.tsx:509",
+  "censusText": "显式取整点 42 处 · 去重后表达式 33 个\n精度档 ≥2 的表达式 3 个：\n  phoneVcam.pose.yaw  ← 4 处, 档 [\"Math.round\",\"toFixed(0)\",\"toFixed(2)\"]\n      DirectorPhoneVcamPanel.tsx:502  DirectorPhoneVcamPanel.tsx:507  DirectorPhoneVcamPanel.tsx:519  DirectorPhoneVcamPanel.tsx:520\n  phoneVcam.pose.pitch  ← 3 处, 档 [\"toFixed(0)\",\"toFixed(2)\"]\n      DirectorPhoneVcamPanel.tsx:503  DirectorPhoneVcamPanel.tsx:508  DirectorPhoneVcamPanel.tsx:520\n  phoneVcam.pose.roll  ← 2 处, 档 [\"toFixed(0)\",\"toFixed(2)\"]\n      DirectorPhoneVcamPanel.tsx:504  DirectorPhoneVcamPanel.tsx:509",
   "theHeadline": "How many different numbers a field shows cannot be recovered from how many places the code rounds it. Two of the three multi-tier fields gain an unrounded position surface that no rounding census can see, and the third (stability) is single-tier in the census while having three surfaces at runtime.",
   "howThePanelWasReached": "clicked [data-director-phone-vcam-trigger], then set phoneVcam.status = 'local-ready' through the real setter. The real connect path (local HTTPS preview server + certificate trust) was NOT exercised.",
   "storeWritesInThisRun": [
@@ -1521,10 +1521,10 @@
  },
  "checks": {
   "only-three-expressions-are-displayed-at-more-than-one-explicit-precision": {
-   "ok": true,
+   "ok": false,
    "detail": {
     "censusOutput": [
-     "显式取整点 41 处 · 去重后表达式 32 个",
+     "显式取整点 42 处 · 去重后表达式 33 个",
      "精度档 ≥2 的表达式 3 个：",
      "  phoneVcam.pose.yaw  ← 4 处, 档 [\"Math.round\",\"toFixed(0)\",\"toFixed(2)\"]",
      "      DirectorPhoneVcamPanel.tsx:502  DirectorPhoneVcamPanel.tsx:507  DirectorPhoneVcamPanel.tsx:519  DirectorPhoneVcamPanel.tsx:520",

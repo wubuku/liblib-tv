@@ -1122,7 +1122,7 @@
   },
   "tab": {
    "steps": 260,
-   "favStops": 68,
+   "favStops": 59,
    "favSample": [
     "收藏 3D解构",
     "收藏 City Drive",
@@ -1161,7 +1161,7 @@
  },
  "tabAndAx": {
   "distinctAxNames": 40,
-  "favStops": 68,
+  "favStops": 59,
   "steps": 260
  },
  "unreachableBySeed": {

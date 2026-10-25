@@ -3,29 +3,29 @@
  "checks": [
   {
    "label": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）",
-   "pass": true,
+   "pass": false,
    "got": {
-    "total": 6,
-    "cap": 3,
+    "total": 7,
+    "cap": 4,
     "bub": 3
    }
   },
   {
    "label": "★★ 静态：每一处监听的函数体都找得到（正则在工作）",
-   "pass": true,
+   "pass": false,
    "got": [
     {
      "file": "DirectorDesk.tsx",
-     "line": 570,
+     "line": 648,
      "fn": "handleKeyDown",
      "capture": false,
-     "bodyFound": true,
+     "bodyFound": false,
      "stops": false,
-     "prevents": true
+     "prevents": false
     },
     {
      "file": "DirectorTimeline.tsx",
-     "line": 570,
+     "line": 635,
      "fn": "closeOnEscape",
      "capture": false,
      "bodyFound": true,
@@ -34,7 +34,7 @@
     },
     {
      "file": "DirectorTimeline.tsx",
-     "line": 594,
+     "line": 659,
      "fn": "closeOnEscape",
      "capture": false,
      "bodyFound": true,
@@ -52,16 +52,25 @@
     },
     {
      "file": "DirectorViewport.tsx",
-     "line": 2711,
+     "line": 507,
      "fn": "handleKeyDown",
      "capture": true,
      "bodyFound": true,
-     "stops": true,
+     "stops": false,
      "prevents": true
     },
     {
      "file": "DirectorViewport.tsx",
-     "line": 2748,
+     "line": 3238,
+     "fn": "handleKeyDown",
+     "capture": true,
+     "bodyFound": true,
+     "stops": false,
+     "prevents": true
+    },
+    {
+     "file": "DirectorViewport.tsx",
+     "line": 3275,
      "fn": "closeOnEscape",
      "capture": true,
      "bodyFound": true,
@@ -72,19 +81,19 @@
   },
   {
    "label": "★★ 静态：只有两种组合 capture/stops 与 bubble/leaks（D8 机制的地基）",
-   "pass": true,
+   "pass": false,
    "got": [
     "bubble/leaks",
+    "capture/leaks",
     "capture/stops"
    ]
   },
   {
-   "label": "★★ 静态：捕获阶段 3 处**全部**停止传播",
-   "pass": true,
+   "label": "★★ 静态：捕获阶段 4 处**全部**停止传播",
+   "pass": false,
    "got": [
     "DirectorPhoneVcamPanel.tsx:294",
-    "DirectorViewport.tsx:2711",
-    "DirectorViewport.tsx:2748"
+    "DirectorViewport.tsx:3275"
    ]
   },
   {
@@ -94,7 +103,7 @@
   },
   {
    "label": "★ 静态：产物里的监听表与现算的逐项一致（阶段/停止传播）",
-   "pass": true,
+   "pass": false,
    "got": [
     {
      "file": "DirectorDesk.tsx",
@@ -160,7 +169,7 @@
   },
   {
    "label": "★ 静态：产物的组合集合与现算一致",
-   "pass": true,
+   "pass": false,
    "got": [
     "bubble/leaks",
     "capture/stops"
@@ -196,16 +205,16 @@
    "got": [
     {
      "file": "DirectorDesk.tsx",
-     "line": 570,
+     "line": 648,
      "fn": "handleKeyDown",
      "capture": false,
-     "bodyFound": true,
+     "bodyFound": false,
      "stops": false,
-     "prevents": true
+     "prevents": false
     },
     {
      "file": "DirectorTimeline.tsx",
-     "line": 570,
+     "line": 635,
      "fn": "closeOnEscape",
      "capture": false,
      "bodyFound": true,
@@ -214,7 +223,7 @@
     },
     {
      "file": "DirectorTimeline.tsx",
-     "line": 594,
+     "line": 659,
      "fn": "closeOnEscape",
      "capture": false,
      "bodyFound": true,
@@ -232,16 +241,25 @@
     },
     {
      "file": "DirectorViewport.tsx",
-     "line": 2711,
+     "line": 507,
      "fn": "handleKeyDown",
      "capture": true,
      "bodyFound": true,
-     "stops": true,
+     "stops": false,
      "prevents": true
     },
     {
      "file": "DirectorViewport.tsx",
-     "line": 2748,
+     "line": 3238,
+     "fn": "handleKeyDown",
+     "capture": true,
+     "bodyFound": true,
+     "stops": false,
+     "prevents": true
+    },
+    {
+     "file": "DirectorViewport.tsx",
+     "line": 3275,
      "fn": "closeOnEscape",
      "capture": true,
      "bodyFound": true,
@@ -254,8 +272,8 @@
    "label": "★ 静态：isEditable 早退排在 Escape 分支之前（D3 的机制，765 已立）",
    "pass": true,
    "got": {
-    "isEditable": 486,
-    "escGate": 548
+    "isEditable": 545,
+    "escGate": 626
    }
   },
   {
@@ -1045,329 +1063,325 @@
   },
   {
    "label": "★ 台账历史 U+FFFD 仍是 9 个、仍在 522/583/587",
-   "pass": true,
+   "pass": false,
    "got": {
-    "n": 9,
-    "lines": [
-     522,
-     583,
-     587
-    ]
+    "n": 0,
+    "lines": []
    }
   },
   {
    "label": "★ 台账只有 631 行",
-   "pass": true,
-   "got": 631
+   "pass": false,
+   "got": 735
   }
  ],
- "pass": 98,
+ "pass": 90,
  "total": 98,
  "negativeControls": [
   {
    "name": "★ 删掉 D11",
    "caught": true,
-   "firstFail": "★★ D11 在 defects 里，严重度低、标了扩宽 765 的 D4、要改 src"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 D11 降级成观察",
    "caught": true,
-   "firstFail": "★ 观察 6 条、探针教训 6 条（R75/R76/R77/R78/R79/R80）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 D11 的严重度从低改成中",
    "caught": true,
-   "firstFail": "★★ D11 在 defects 里，严重度低、标了扩宽 765 的 D4、要改 src"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 D11 的 widensD4From765 去掉（退回个案）",
    "caught": true,
-   "firstFail": "★★ D11 在 defects 里，严重度低、标了扩宽 765 的 D4、要改 src"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 D11 的 inRepoExemplar 抹掉（修法就没先例了）",
    "caught": true,
-   "firstFail": "★★ D11 有 inRepoExemplar 且指向 useLayerFocus（修法有先例）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ D11 的 where 指向不存在的行号",
    "caught": true,
-   "firstFail": "★ D11 的 where 每一项行号都有效"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ D11 的 measured 里抹掉「没测到」",
    "caught": true,
-   "firstFail": "★★ D11 的 measured 里含「没测到」的 4 个浮层（不许算成通过）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 把「被 D3 遮住」的两格算成通过",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 把「触发器已卸载」的两格算成通过",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 只留两个「测到且错」就把分母说成 2",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 把三个 no-op 格标成「不是平凡读数」",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 把 J5 的 no-op 撤回删掉",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 把 J5 改成 FAIL（撤回就不成立了）",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 删掉 O1（平凡读数这条方法论）",
    "caught": true,
-   "firstFail": "★ O1 把「平凡读数」记成了方法论"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 删掉 R75（本批核心教训）",
    "caught": true,
-   "firstFail": "★ 观察 5 条、探针教训 5 条（R75/R76/R77/R78/R79/R80）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ R75 抹掉 whyItMatters",
    "caught": true,
-   "firstFail": "★ 每条探针教训都有 whyItMatters"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 删掉 cellsChangedByInjection（注入对照就没了）",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 把注入说成改动了 4 格",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 抹掉注入挂在捕获阶段的原因",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 D8 的第二种机制抹掉（只剩 crowd 那种）",
    "caught": true,
-   "firstFail": "★★ D8 记了**两种机制**且分开命名（修法不同）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 D8 的新增成员改成只有 preset",
    "caught": true,
-   "firstFail": "★★ D8 从 1/6 扩到 3/6，新增成员是 preset + pathmenu"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 D8 的 from/to 抹掉",
    "caught": true,
-   "firstFail": "★★ D8 从 1/6 扩到 3/6，新增成员是 preset + pathmenu"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ D8 抹掉「注册顺序无关」这个要点",
    "caught": true,
-   "firstFail": "★★ D8 记了**两种机制**且分开命名（修法不同）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 删掉 J7（D8 两种机制的判据）",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 删掉 J12（更正 aria-expanded 份数）",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把带 aria-expanded 的份数从 5 改成 6",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 pathmenu 从「只有 aria-pressed」里去掉",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 D3 的扩宽抹掉",
    "caught": true,
-   "firstFail": "★★ D3 从 1/6 扩到 2/6（新增 crowd）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ D3 抹掉「两个缺陷会叠在一起」",
    "caught": true,
-   "firstFail": "★★ D3 记了「两个缺陷会叠在一起、修 D3 必须先修 D8」"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 D4 的扩宽抹掉",
    "caught": true,
-   "firstFail": "★★ D4 从 1/6 扩到 3/6（新增 phonevcam + modellib）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 J3 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 J6 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 J7 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 J9 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 J10 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 J12 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 判据全改成 PASS",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把判据条数从 14 改成 11",
    "caught": true,
-   "firstFail": "★ 判据 14 条（8 PASS / 6 FAIL）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 把 J3 的 evidence 换成可比性（D11 失去支撑）",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 只改 findings 一份（判据的 evidence 不动）",
    "caught": true,
-   "firstFail": "★★ 每条判据的 evidence 与 findings 同一份（JSON 往返后再查一遍）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：DirectorDesk 里其实有 crowdPanelOpen 的一档",
    "caught": true,
-   "firstFail": "★★ 静态：DirectorDesk 的 Esc 阶梯对另外五个浮层状态 0 处引用"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：阶梯里 exportPanelOpen 有两档",
    "caught": true,
-   "firstFail": "★★ 静态：阶梯里导出面板那档恰好一处，且排在 closeWorkspace 之前"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：那档排在 closeWorkspace 之后",
    "caught": true,
-   "firstFail": "★★ 静态：阶梯里导出面板那档恰好一处，且排在 closeWorkspace 之前"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：导演台自己的监听变成捕获阶段",
    "caught": true,
-   "firstFail": "★ 静态：产物里的监听表与现算的逐项一致（阶段/停止传播）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：冒泡阶段有一处停止传播",
    "caught": true,
-   "firstFail": "★★ 静态：冒泡阶段**一处**停止传播的都没有（D8 机制②成立）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：捕获阶段有一处没停止传播",
    "caught": true,
-   "firstFail": "★★ 静态：捕获阶段 3 处**全部**停止传播"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：出现第三种组合",
    "caught": true,
-   "firstFail": "★★ 静态：只有两种组合 capture/stops 与 bubble/leaks（D8 机制的地基）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：函数体找不到（正则失效）",
    "caught": true,
-   "firstFail": "★★ 静态：每一处监听的函数体都找得到（正则在工作）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：useLayerFocus 的 opener.focus() 不见了",
    "caught": true,
-   "firstFail": "★★ 静态：useLayerFocus 有 opener.focus() / isConnected 守卫 / rAF"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：useLayerFocus 注释里没有本批症状",
    "caught": true,
-   "firstFail": "★★ 静态：useLayerFocus 的注释里**逐字**写着本批的症状（焦点掉到 body）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：导演台其实用了 useLayerFocus",
    "caught": true,
-   "firstFail": "★★ 静态：useLayerFocus 的消费者只有即梦那两个组件，导演台一个没用"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "伪造：isEditable 早退排在 Escape 分支之后",
    "caught": true,
-   "firstFail": "★ 静态：isEditable 早退排在 Escape 分支之前（D3 的机制，765 已立）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 原始：虚拟相机的焦点不再掉 body（D11 少一个）",
    "caught": true,
-   "firstFail": "★★ 焦点归还：**实现 = 0 个**（分母 6）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 原始：把模型库也说成焦点回触发器",
    "caught": true,
-   "firstFail": "★★ 焦点归还：**实现 = 0 个**（分母 6）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 原始：预设运镜不再关导演台（D8 缩回 1/6）",
    "caught": true,
-   "firstFail": "★★ 焦点归还：触发器已卸载的是预设 + 路径菜单"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 原始：路径菜单也不再关导演台",
    "caught": true,
-   "firstFail": "★★ 焦点归还：触发器已卸载的是预设 + 路径菜单"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 原始：把 b 臂还原成 a 臂（注入一格都没改动）",
    "caught": true,
-   "firstFail": "★★ 注入改动的格**恰好**是那 2 格（掉 body → 触发器）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 原始：注入在「面板没关」的那格也调了 focus（R76 失效）",
    "caught": true,
-   "firstFail": "★★ 注入在「面板没关」的 2 格上**没调** focus，且焦点读数未变"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★★ 原始：注入在导演台没了的格谎称触发器还在",
    "caught": true,
-   "firstFail": "★★ 注入在「导演台没了」的 5 格上**没能**调 focus（trigThere=false）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 原始：把群众阵列的浮层说成关掉了（D3 扩宽失效）",
    "caught": true,
-   "firstFail": "★★ 焦点归还：被 D3 遮住的是导出 + 群众"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 原始：某格 FAILED",
    "caught": true,
-   "firstFail": "★★ 12 格 0 格 FAILED、无缺格"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ all([]) 陷阱：把 rows 清空（两轮都清）",
@@ -1377,17 +1391,17 @@
   {
    "name": "★ 原始：某格起点不干净（浮层没打开）",
    "caught": true,
-   "firstFail": "★★ 12 格的起点都干净（浮层确实打开、焦点确实放到位）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 原始：把可聚焦控件数改成与 767 不同（跨批核对失效）",
    "caught": true,
-   "firstFail": "★★ 跨批：6 个浮层的可聚焦控件数与 767 逐个相同"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 原始：pathmenu 的 aria-expanded 填上 true（J12 失去依据）",
    "caught": true,
-   "firstFail": "★★ crossBatch：pathmenu 的 aria-expanded 读数是 null（与 767 的 J10 同）"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 原始：把两轮说成不一致时（可比性失效）",
@@ -1397,66 +1411,66 @@
   {
    "name": "★ 台账删掉 Batch 768 行",
    "caught": true,
-   "firstFail": "★★ 台账恰好一行 Batch 768"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 台账行首格改成裸数字 768",
    "caught": true,
-   "firstFail": "★★ 台账恰好一行 Batch 768"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 台账行首格写成 Batch 0768",
    "caught": true,
-   "firstFail": "★★ 台账恰好一行 Batch 768"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 台账新行塞一个 U+FFFD",
    "caught": true,
-   "firstFail": "★★ 台账新行 0 个 U+FFFD"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 台账被追加了 Batch 769（行数断言）",
    "caught": true,
-   "firstFail": "★ 台账新行是 3 列"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ 台账新行不含 D11",
    "caught": true,
-   "firstFail": "★ 台账新行提到了 D11 与 D8 扩宽"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ README 判据表首格改成裸数字",
    "caught": true,
-   "firstFail": "★ README 判据表 14 行"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ README 删掉「不声称」章节",
    "caught": true,
-   "firstFail": "★ README 有「不声称」章节"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ README 删掉 D11 章节",
    "caught": true,
-   "firstFail": "★★ README 有独立的 D11 章节"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ README 删掉撤回 no-op 那一节",
    "caught": true,
-   "firstFail": "★★ README 有撤回 no-op 那一节"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ README 删掉「更正 767」章节",
    "caught": true,
-   "firstFail": "★ README 有「更正 767」章节"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   },
   {
    "name": "★ README 删掉「注册顺序无关」",
    "caught": true,
-   "firstFail": "★ README 记了 D8 的两种机制的对照表"
+   "firstFail": "★★ 静态：全仓导演台 keydown 监听 6 处（捕获 3 / 冒泡 3）"
   }
  ],
  "negativeCaught": 78,
  "negativeTotal": 78,
  "rawError": null,
- "ok": true
+ "ok": false
 }

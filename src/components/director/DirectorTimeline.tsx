@@ -35,6 +35,12 @@ import {
 } from "@/store/directorStore";
 import type { DirectorTimelineTrack } from "@/store/directorStore";
 import { DirectorCurveEditor } from "@/components/director/DirectorCurveEditor";
+import {
+  DIRECTOR_KEYFRAME_EPSILON,
+  directorKeyframeEarlier,
+  directorKeyframeHit,
+  directorKeyframeLater,
+} from "@/components/director/directorKeyframeWindow";
 // Batch 834：源站时间轴的**5 步引导**（组件 ＋ 步数据）。
 import {
   DIRECTOR_TIMELINE_GUIDE_STEPS,
@@ -64,7 +70,11 @@ type DirectorTimeUnit = "s" | "ms";
 // 关键帧在播放头 0 时：‹› 双禁用、◆ pressed；播放头移到 977ms 时 ‹ 可用、
 // › 仍禁用、◆ 变为「当前帧无关键帧」——证明源站的 seek 范围是**本轨道**
 // 而非全局时间轴。
-const DIRECTOR_KEYFRAME_EPSILON = 1e-3;
+// ★ ★★ Batch 869：★ 上面这条实测只给了**可及名与禁用规则** ⟹ ⟹ ⟹ ⟹ ⇒ ★
+//   ★ **没有**给「命中窗口」这个**数** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 那个数来自源站 chunk
+//   ★   的 `cZ`（★ 逐字 ＝ ±0.05s）⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 详见
+//   ★   `directorKeyframeWindow.ts`（★ 那里写清了两个容差**为什么**必须
+//   ★   分开：★ 命中窗口 ±0.05s ⟹ ⟹ vs ⟹ ⟹ 同时刻 upsert 0.001）。
 
 // Batch 595（源站 2026-10-01 逐像素实测，见 directorTrackKeyframeState 上方）：
 const DIRECTOR_RULER_TICK_SECONDS = 0.1;
@@ -123,15 +133,24 @@ function directorTrackKeyframeState(
   const times = track.keyframes
     .map((keyframe) => keyframe.time)
     .sort((a, b) => a - b);
-  const exact = times.find(
-    (time) => Math.abs(time - currentTime) <= DIRECTOR_KEYFRAME_EPSILON,
-  );
+  // ★ ★★ Batch 869：★ 命中窗口与「上一／下一」取点窗口全部改成**源站逐字**
+  //   ★ 的 ±0.05s（★ 源站 `cZ`：`markers.find(e => .05 >= Math.abs(e.time - h))`
+  //   ★ ／ `n.time < t - .05` ／ `e.time > h + .05`）⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 之前这里
+  //   ★ 用的是 1e-3（★ 1 毫秒）⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ **差 50 倍** ⟹ ⟹ ⟹ ⟹ ⇒ ★
+  //   ★ ⟹ ⟹ 后果（★ 逐字）：★ 播头在 `0.04s`、关键帧在 `0s` 时 ⟹ ⟹ ⟹ ⟹ ⇒ ★
+  //   ★ ⟹ ⟹ 源站判「当前帧**有**关键帧」（★ 可点它＝**移除**那一枚）
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 而 clone 判「**无**」⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 可点它＝
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ **再加一枚** ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 两边**决策相反**
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 而且「上一关键帧」在源站是 **disabled**（★ 因为
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ `0 < 0.04 - 0.05` 不成立）⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ clone 却
+  //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 给它点亮了 ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 那是**另一个真差异**。
+  const exact = times.find((time) => directorKeyframeHit(time, currentTime));
   return {
     exact,
     earlier: [...times]
       .reverse()
-      .find((time) => time < currentTime - DIRECTOR_KEYFRAME_EPSILON),
-    later: times.find((time) => time > currentTime + DIRECTOR_KEYFRAME_EPSILON),
+      .find((time) => directorKeyframeEarlier(time, currentTime)),
+    later: times.find((time) => directorKeyframeLater(time, currentTime)),
   };
 }
 
@@ -1292,6 +1311,23 @@ export function DirectorTimeline({
           >
             <Trash2 size={13} />
           </button>
+          {/* ★ ★★ Batch 869：★ 这枚按钮的语义**改回**源站的逐字规格。
+              ★ ★★ **为什么撤回**：★ 本批一度把它改成「有则移除、无则添加」的
+              ★   切换语义 ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★★ 那是**改错了方向** ⟹ ⟹ ⟹ ⟹ ⇒ ★ ★★
+              ★   源站 chunk 逐字规格（★ `docs/research/liblib-canvas-batch36-2026-08-26/
+              ★   DIRECTOR_TIMELINE.spec.md`）写的是：
+              ★     `◆ 添加关键帧` captures the selected track object's complete
+              ★     current value; same-time add replaces the existing keyframe value;
+              ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 即「**取当前值、同时刻覆盖既有值**」
+              ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ **不是**切换 ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 所以 clone 的
+              ★   `addTimelineKeyframe()`（★ → `upsertTrackKeyframe`）**本来就**
+              ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 是源站语义 ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 「播放头处已有
+              ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 关键帧时点击**数量不变**」⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 那
+              ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ **不是缺陷** ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 是**幂等**
+              ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ （★ 门禁 700 早就把它记成幂等控件 ⟹ ⟹ ⟹ ⟹ ⇒ ★
+              ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 那个判断**是对的**）。
+              ★ ★★ 而源站那枚真正的「切换」按钮在**轨道行的中键**（★ 源站 `cZ`）
+              ★   ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 本批改的**是那一枚**（★ 命中窗口 ±0.05s）。 */}
           <button
             type="button"
             data-director-add-keyframe
@@ -1856,11 +1892,14 @@ export function DirectorTimeline({
                                 aria-pressed={keyframeState.exact !== undefined}
                                 onClick={() => {
                                   selectTimelineTrack(track.id);
-                                  const keyframe = track.keyframes.find(
-                                    (item) =>
-                                      Math.abs(
-                                        item.time - timeline.currentTime,
-                                      ) <= DIRECTOR_KEYFRAME_EPSILON,
+                                  // ★ Batch 869：★ 命中窗口＝源站逐字 ±0.05s
+                                  //   ★ （★ 源站 `cZ` 的 `f`）⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹
+                                  //   ★ 之前这里是 1e-3 ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 差 50 倍。
+                                  const keyframe = track.keyframes.find((item) =>
+                                    directorKeyframeHit(
+                                      item.time,
+                                      timeline.currentTime,
+                                    ),
                                   );
                                   if (keyframe) {
                                     deleteTimelineKeyframe(keyframe.id);

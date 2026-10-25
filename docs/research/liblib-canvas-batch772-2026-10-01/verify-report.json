@@ -467,13 +467,13 @@
   },
   {
    "label": "台账：历史 U+FFFD 仍在 9 处",
-   "pass": true,
+   "pass": false,
    "got": {
-    "count": 9
+    "count": 0
    }
   }
  ],
- "pass": 40,
+ "pass": 39,
  "total": 40,
  "negativeControls": [
   {
@@ -625,5 +625,5 @@
  "negativeTotal": 15,
  "negativeKwBroken": [],
  "rawError": null,
- "ok": true
+ "ok": false
 }

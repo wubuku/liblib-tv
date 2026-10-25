@@ -2,11 +2,11 @@
   "batch": 831,
   "mode": "offline",
   "totals": {
-    "passed": 17,
+    "passed": 16,
     "total": 17
   },
   "阴性对照": {
-    "passed": 17,
+    "passed": 1,
     "total": 17
   },
   "checks": [
@@ -695,14 +695,10 @@
     {
       "id": "S14:★★★★★ clone 的引导气泡**必须**用 `createPortal(…, document.body)`（源站同款）⟹ 否则 fixed 会被祖先的 containing block 接管 ⟹ 气泡掉到视口外（y=1749）⟹ 这条判据专门防这个回退",
       "name": "S14:★★★★★ clone 的引导气泡**必须**用 `createPortal(…, document.body)`（源站同款）⟹ 否则 fixed 会被祖先的 containing block 接管 ⟹ 气泡掉到视口外（y=1749）⟹ 这条判据专门防这个回退",
-      "ok": true,
+      "ok": false,
       "detail": {
         "timeline 里的锚点": [
-          "? createPortal(",
-          "// ★ Batch 831：这个气泡改用 **portal 到 document.body**（源站就是",
-          "//   这么做的：源码 `createPortal(…, document.body)`）。",
-          "style={{ top: \"calc(100vh - 230px)\", zIndex: 1800 }}",
-          "document.body,"
+          "★ portal 到 document.body（源站同款）——否则祖先的 containing block"
         ],
         "★为什么 z 1800": "portal 到 body 后脱离导演台的 z-[100] 上下文 ⟹ 要用源站引导浮层同款的 z-[1800] 才压得住"
       }
@@ -787,105 +783,118 @@
       "name": "N1 把源站「帮助」按钮盒宽改成 33 ⟹ S1 翻红",
       "期望翻红": "S1",
       "实际翻红": [
-        "S1"
+        "S1",
+        "S14"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N2 把 clone 菜单盒高改成 80 ⟹ S2 翻红",
       "期望翻红": "S2",
       "实际翻红": [
+        "S14",
         "S2"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N3 把 clone 第二枚菜单项挪 1px ⟹ S3 翻红",
       "期望翻红": "S3",
       "实际翻红": [
+        "S14",
         "S3"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N4 把 clone 对话框高改成 315 ⟹ S4 翻红",
       "期望翻红": "S4",
       "实际翻红": [
+        "S14",
         "S4"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N5 把 clone 标题挪回 85 ⟹ S5 翻红",
       "期望翻红": "S5",
       "实际翻红": [
+        "S14",
         "S5"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N6 把 clone 左列挪 1px ⟹ S6 翻红",
       "期望翻红": "S6",
       "实际翻红": [
+        "S14",
         "S6"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N7 把 WASDQE 键帽宽改成 72 ⟹ S7 翻红",
       "期望翻红": "S7",
       "实际翻红": [
+        "S14",
         "S7"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N8 把「俯视视角」写成「顶视视角」⟹ S8 翻红",
       "期望翻红": "S8",
       "实际翻红": [
+        "S14",
         "S8"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N9 把 clone 的 SVG 列表清空 ⟹ S9 翻红",
       "期望翻红": "S9",
       "实际翻红": [
+        "S14",
         "S9"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N10 把 Esc 后的 dialogs 改成 1 ⟹ S10 翻红",
       "期望翻红": "S10",
       "实际翻红": [
-        "S10"
+        "S10",
+        "S14"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N11 把引导泡挪回视口外(1749) ⟹ S11 翻红",
       "期望翻红": "S11",
       "实际翻红": [
-        "S11"
+        "S11",
+        "S14"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N12 改坏 clone 的 ⌘ 图标 path ⟹ S12 翻红",
       "期望翻红": "S12",
       "实际翻红": [
-        "S12"
+        "S12",
+        "S14"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N13 把 aria-haspopup 改掉 ⟹ S13 翻红",
       "期望翻红": "S13",
       "实际翻红": [
-        "S13"
+        "S13",
+        "S14"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N14 把 createPortal 改掉 ⟹ S14 翻红",
@@ -899,25 +908,28 @@
       "name": "N15 把「时间轴展开时命中」改成帮助 ⟹ S15 翻红",
       "期望翻红": "S15",
       "实际翻红": [
+        "S14",
         "S15"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N16 把 raw 里的 ⌘ path 从它的源站 excerpt 里摘掉 ⟹ S16 翻红",
       "期望翻红": "S16",
       "实际翻红": [
+        "S14",
         "S16"
       ],
-      "ok": true
+      "ok": false
     },
     {
       "name": "N17 把像素比对的差异改成「path 抄错那版」的实测值 ⟹ S17 翻红",
       "期望翻红": "S17",
       "实际翻红": [
+        "S14",
         "S17"
       ],
-      "ok": true
+      "ok": false
     }
   ]
 }

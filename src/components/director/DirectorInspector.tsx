@@ -47,6 +47,7 @@ import {
   type DirectorPoseControlDefinition,
   type DirectorPoseControlGroup,
 } from "@/components/director/directorPose";
+import { directorKeyframeHit } from "@/components/director/directorKeyframeWindow";
 import { getDirectorGroupAnchorTransform } from "@/components/director/directorGroupMath";
 import { useDirectorGestureBoundary } from "@/components/director/useDirectorGestureBoundary";
 import {
@@ -2079,7 +2080,13 @@ export function DirectorInspector({
           | Record<string, unknown>
           | undefined;
         return (
-          Math.abs(keyframe.time - timeline.currentTime) < 0.001 &&
+          // ★ ★★ Batch 869：★ 命中窗口改成**源站逐字** ±0.05s（★ 源站 `cZ`：
+          //   ★ `markers.find(e => .05 >= Math.abs(e.time - h))`）⟹ ⟹ ⟹ ⟹ ⇒ ★
+          //   ★ 之前这里是 `< 0.001`（★ 1 毫秒）⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 差 50 倍
+          //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 后果：★ 播头距该关键帧 50ms 以内时 ⟹ ⟹ ⟹ ⟹ ⇒ ★
+          //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 源站认这枚 ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ clone 说不认 ⟹ ⟹ ⟹ ⟹ ⇒ ★
+          //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ **数值框右端的开关点出另一套结果**。
+          directorKeyframeHit(keyframe.time, timeline.currentTime) &&
           Array.isArray(values?.[field])
         );
       });
@@ -2100,7 +2107,10 @@ export function DirectorInspector({
     if (!track) return null;
     let hit: string | null = null;
     for (const keyframe of track.keyframes) {
-      if (Math.abs(keyframe.time - timeline.currentTime) < 0.001) {
+      // ★ ★★ Batch 869：★ 同一个**源站逐字**命中窗口（★ ±0.05s）⟹ ⟹ ⟹ ⟹ ⇒ ★
+      //   ★ ⟹ ⟹ 与轨道行那枚「当前帧有关键帧」按钮**用同一个出处** ⟹ ⟹ ⟹ ⟹ ⇒ ★
+      //   ★ ⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ 否则 clone 自己的两枚按钮会**互相矛盾**。
+      if (directorKeyframeHit(keyframe.time, timeline.currentTime)) {
         hit = keyframe.id;
       }
     }

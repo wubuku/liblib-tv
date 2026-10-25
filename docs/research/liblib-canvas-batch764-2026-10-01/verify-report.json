@@ -322,17 +322,13 @@
   },
   {
    "label": "台账：行数 627",
-   "pass": true,
-   "got": 627
+   "pass": false,
+   "got": 734
   },
   {
    "label": "台账：历史 U+FFFD 仍只在 522/583/587",
-   "pass": true,
-   "got": [
-    522,
-    583,
-    587
-   ]
+   "pass": false,
+   "got": []
   },
   {
    "label": "原始：3 份读数全部可读",
@@ -1003,7 +999,7 @@
    "got": null
   }
  ],
- "pass": 123,
+ "pass": 121,
  "total": 123,
  "negativeControls": [
   {
@@ -1069,7 +1065,7 @@
   {
    "name": "★ 谎报 pick 失败次数（5 次说成 1 次）",
    "caught": true,
-   "firstFail": "★ 前置：产物 picksFailedIn764c 与重算一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "★ 把 J5 的证据换成可比上下文（FAIL 失去支撑）",
@@ -1079,27 +1075,27 @@
   {
    "name": "只改 findings.boundaryCountComparable",
    "caught": true,
-   "firstFail": "J1：产物 boundaryCountComparable 与重算一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "只改 findings.boundarySwallowedAll",
    "caught": true,
-   "firstFail": "J1：产物 boundarySwallowedAll 与重算一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "只改 findings.nonBoundaryNeverSwallowed",
    "caught": true,
-   "firstFail": "J1：产物 nonBoundaryNeverSwallowed 与重算一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "只改 findings.copyFromFieldDead",
    "caught": true,
-   "firstFail": "★ J9：产物 copyFromFieldDead / pasteFromFieldDead 与重算一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "只改 findings.pasteFromFieldDead",
    "caught": true,
-   "firstFail": "★ J9：产物 copyFromFieldDead / pasteFromFieldDead 与重算一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "只改 findings.boundaryDidNotBlockModifierKeys",
@@ -1109,7 +1105,7 @@
   {
    "name": "只改 findings.emptyPasteDispositionNoop",
    "caught": true,
-   "firstFail": "★ J8：产物 emptyPasteDispositionNoop 与重算一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "只改 findings.editableAllRoundsSame",
@@ -1124,7 +1120,7 @@
   {
    "name": "只改 findings.boundaryTypesComparable（去掉 range）",
    "caught": true,
-   "firstFail": "★ J2：产物 boundaryTypesComparable 与重算一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "只改 findings.mouseActions 里的 delete 那一格",
@@ -1134,7 +1130,7 @@
   {
    "name": "只改 findings.pasteDeltas",
    "caught": true,
-   "firstFail": "J7：产物 pasteDeltas / pasteAgainDeltas 与重算一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "只改 findings.emptyContexts（把空上下文抹掉）",
@@ -1199,57 +1195,57 @@
   {
    "name": "伪造：所有边界控件都到达了 window 冒泡",
    "caught": true,
-   "firstFail": "★ J1 交叉：可比上下文里每一个边界控件都被吞"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：只有 number 中招、range 不中招",
    "caught": true,
-   "firstFail": "★ J1 交叉：可比上下文里每一个边界控件都被吞"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：把不可比的上下文说成可比",
    "caught": true,
-   "firstFail": "J1：产物 boundaryCountComparable 与重算一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：每个上下文只扫了 3 个控件",
    "caught": true,
-   "firstFail": "★ J1 交叉：阴性对照至少 3 个（不能一个都没有）"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：数值框里 ⌘C 其实生效了",
    "caught": true,
-   "firstFail": "★ J9 交叉：数值框里 ⌘C 完全没反应（标签都没换）"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：数值框里 ⌘V 其实生效了",
    "caught": true,
-   "firstFail": "★ J9 交叉：数值框里 ⌘V 完全没反应（Δ 全 0）"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：按 ⌘C 时 gesture 变了（D1 确实拦了）",
    "caught": true,
-   "firstFail": "★ J10 交叉：按 ⌘C 前后 activeGesture 逐字符不变（D1 没拦）"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：空剪贴板粘贴的 disposition 是 COMMITTED",
    "caught": true,
-   "firstFail": "J7：产物 keyboard764b 就是原始读数（两轮逐格相等）"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：delete 按钮其实没删",
    "caught": true,
-   "firstFail": "★ 前置：探针自报的 Δ 与我从 count/past 重算的 Δ 一致"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：粘贴其实没造对象",
    "caught": true,
-   "firstFail": "J7 交叉：两次粘贴都是 +1 个对象"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：路径根本没建出来",
    "caught": true,
-   "firstFail": "J6 交叉：路径确实建出来了（lastCommand=PROJECT_MUTATION）"
+   "firstFail": "台账：行数 627"
   },
   {
    "name": "伪造：边界里已经有「没有手势就放行」的守卫",
@@ -1300,5 +1296,5 @@
  "negativeCaught": 58,
  "negativeTotal": 58,
  "rawError": null,
- "ok": true
+ "ok": false
 }

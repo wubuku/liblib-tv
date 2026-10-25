@@ -1007,28 +1007,28 @@
           "right": 606,
           "width": 313,
           "clientWidth": 313,
-          "scrollWidth": 944,
+          "scrollWidth": 904,
           "top": 670
         },
         "shared": {
           "left": 293,
-          "right": 1237,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "right": 1197,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
           "left": 293,
-          "right": 1004,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "right": 964,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1012,
-          "right": 1237,
+          "left": 972,
+          "right": 1197,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -1047,18 +1047,18 @@
             ]
           },
           "上传图片": {
-            "cx": 1037,
+            "cx": 997,
             "rect": [
-              1021,
+              981,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1216,
+            "cx": 1176,
             "rect": [
-              1200,
+              1160,
               679,
               32,
               32
@@ -1066,7 +1066,7 @@
           }
         }
       },
-      "jointCount": 8,
+      "jointCount": 7,
       "jointLabels": [
         "1:1",
         "9:16",
@@ -1074,7 +1074,6 @@
         "开启九宫格辅助线",
         "模型库",
         "添加关键帧",
-        "添加群众阵列",
         "虚拟相机"
       ],
       "targets": {
@@ -1091,9 +1090,9 @@
           "predictedMargin": 134.0
         },
         "上传图片": {
-          "cx": 1037,
+          "cx": 997,
           "rect": [
-            1021,
+            981,
             679,
             32,
             32
@@ -1103,9 +1102,9 @@
           "predictedMargin": 431.0
         },
         "发送": {
-          "cx": 1216,
+          "cx": 1176,
           "rect": [
-            1200,
+            1160,
             679,
             32,
             32
@@ -1130,28 +1129,28 @@
           "right": 859,
           "width": 566,
           "clientWidth": 566,
-          "scrollWidth": 944,
+          "scrollWidth": 904,
           "top": 670
         },
         "shared": {
           "left": 293,
-          "right": 1237,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "right": 1197,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
           "left": 293,
-          "right": 1004,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "right": 964,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1012,
-          "right": 1237,
+          "left": 972,
+          "right": 1197,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -1170,18 +1169,18 @@
             ]
           },
           "上传图片": {
-            "cx": 1037,
+            "cx": 997,
             "rect": [
-              1021,
+              981,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1216,
+            "cx": 1176,
             "rect": [
-              1200,
+              1160,
               679,
               32,
               32
@@ -1189,12 +1188,11 @@
           }
         }
       },
-      "jointCount": 4,
+      "jointCount": 3,
       "jointLabels": [
         "上传图片",
         "保存构图",
-        "描述想搭建的场景",
-        "模型库"
+        "描述想搭建的场景"
       ],
       "targets": {
         "开启九宫格辅助线": {
@@ -1210,9 +1208,9 @@
           "predictedMargin": -119.0
         },
         "上传图片": {
-          "cx": 1037,
+          "cx": 997,
           "rect": [
-            1021,
+            981,
             679,
             32,
             32
@@ -1222,9 +1220,9 @@
           "predictedMargin": 178.0
         },
         "发送": {
-          "cx": 1216,
+          "cx": 1176,
           "rect": [
-            1200,
+            1160,
             679,
             32,
             32
@@ -1249,28 +1247,28 @@
           "right": 987,
           "width": 694,
           "clientWidth": 694,
-          "scrollWidth": 944,
+          "scrollWidth": 904,
           "top": 670
         },
         "shared": {
           "left": 293,
-          "right": 1237,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "right": 1197,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
           "left": 293,
-          "right": 1004,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "right": 964,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1012,
-          "right": 1237,
+          "left": 972,
+          "right": 1197,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -1289,18 +1287,18 @@
             ]
           },
           "上传图片": {
-            "cx": 1037,
+            "cx": 997,
             "rect": [
-              1021,
+              981,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1216,
+            "cx": 1176,
             "rect": [
-              1200,
+              1160,
               679,
               32,
               32
@@ -1328,9 +1326,9 @@
           "predictedMargin": -247.0
         },
         "上传图片": {
-          "cx": 1037,
+          "cx": 997,
           "rect": [
-            1021,
+            981,
             679,
             32,
             32
@@ -1340,9 +1338,9 @@
           "predictedMargin": 50.0
         },
         "发送": {
-          "cx": 1216,
+          "cx": 1176,
           "rect": [
-            1200,
+            1160,
             679,
             32,
             32
@@ -1367,28 +1365,28 @@
           "right": 1037,
           "width": 744,
           "clientWidth": 744,
-          "scrollWidth": 944,
+          "scrollWidth": 904,
           "top": 670
         },
         "shared": {
           "left": 293,
-          "right": 1237,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "right": 1197,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
           "left": 293,
-          "right": 1004,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "right": 964,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1012,
-          "right": 1237,
+          "left": 972,
+          "right": 1197,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -1407,18 +1405,18 @@
             ]
           },
           "上传图片": {
-            "cx": 1037,
+            "cx": 997,
             "rect": [
-              1021,
+              981,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1216,
+            "cx": 1176,
             "rect": [
-              1200,
+              1160,
               679,
               32,
               32
@@ -1426,9 +1424,8 @@
           }
         }
       },
-      "jointCount": 3,
+      "jointCount": 2,
       "jointLabels": [
-        "上传图片",
         "发送",
         "描述想搭建的场景"
       ],
@@ -1446,21 +1443,21 @@
           "predictedMargin": -297.0
         },
         "上传图片": {
-          "cx": 1037,
+          "cx": 997,
           "rect": [
-            1021,
+            981,
             679,
             32,
             32
           ],
-          "joint": true,
+          "joint": false,
           "predictedCx": 1037.0,
           "predictedMargin": 0.0
         },
         "发送": {
-          "cx": 1216,
+          "cx": 1176,
           "rect": [
-            1200,
+            1160,
             679,
             32,
             32
@@ -1485,28 +1482,28 @@
           "right": 1038,
           "width": 745,
           "clientWidth": 745,
-          "scrollWidth": 944,
+          "scrollWidth": 904,
           "top": 670
         },
         "shared": {
           "left": 293,
-          "right": 1237,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "right": 1197,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
           "left": 293,
-          "right": 1004,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "right": 964,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1012,
-          "right": 1237,
+          "left": 972,
+          "right": 1197,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -1525,18 +1522,18 @@
             ]
           },
           "上传图片": {
-            "cx": 1037,
+            "cx": 997,
             "rect": [
-              1021,
+              981,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1216,
+            "cx": 1176,
             "rect": [
-              1200,
+              1160,
               679,
               32,
               32
@@ -1563,9 +1560,9 @@
           "predictedMargin": -298.0
         },
         "上传图片": {
-          "cx": 1037,
+          "cx": 997,
           "rect": [
-            1021,
+            981,
             679,
             32,
             32
@@ -1575,9 +1572,9 @@
           "predictedMargin": -1.0
         },
         "发送": {
-          "cx": 1216,
+          "cx": 1176,
           "rect": [
-            1200,
+            1160,
             679,
             32,
             32
@@ -1602,28 +1599,28 @@
           "right": 1147,
           "width": 854,
           "clientWidth": 854,
-          "scrollWidth": 944,
+          "scrollWidth": 904,
           "top": 670
         },
         "shared": {
           "left": 293,
-          "right": 1237,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "right": 1197,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
           "left": 293,
-          "right": 1004,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "right": 964,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1012,
-          "right": 1237,
+          "left": 972,
+          "right": 1197,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -1642,18 +1639,18 @@
             ]
           },
           "上传图片": {
-            "cx": 1037,
+            "cx": 997,
             "rect": [
-              1021,
+              981,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1216,
+            "cx": 1176,
             "rect": [
-              1200,
+              1160,
               679,
               32,
               32
@@ -1679,9 +1676,9 @@
           "predictedMargin": -407.0
         },
         "上传图片": {
-          "cx": 1037,
+          "cx": 997,
           "rect": [
-            1021,
+            981,
             679,
             32,
             32
@@ -1691,9 +1688,9 @@
           "predictedMargin": -110.0
         },
         "发送": {
-          "cx": 1216,
+          "cx": 1176,
           "rect": [
-            1200,
+            1160,
             679,
             32,
             32
@@ -1718,28 +1715,28 @@
           "right": 1207,
           "width": 914,
           "clientWidth": 914,
-          "scrollWidth": 944,
+          "scrollWidth": 914,
           "top": 670
         },
         "shared": {
-          "left": 293,
-          "right": 1237,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "left": 298,
+          "right": 1202,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
-          "left": 293,
-          "right": 1004,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "left": 298,
+          "right": 969,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1012,
-          "right": 1237,
+          "left": 977,
+          "right": 1202,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -1749,27 +1746,27 @@
         "inspectorBottom": 718,
         "controls": {
           "开启九宫格辅助线": {
-            "cx": 741,
+            "cx": 746,
             "rect": [
-              725,
+              730,
               678,
               32,
               32
             ]
           },
           "上传图片": {
-            "cx": 1037,
+            "cx": 1002,
             "rect": [
-              1021,
+              986,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1216,
+            "cx": 1181,
             "rect": [
-              1200,
+              1165,
               679,
               32,
               32
@@ -1777,15 +1774,13 @@
           }
         }
       },
-      "jointCount": 1,
-      "jointLabels": [
-        "发送"
-      ],
+      "jointCount": 0,
+      "jointLabels": [],
       "targets": {
         "开启九宫格辅助线": {
-          "cx": 741,
+          "cx": 746,
           "rect": [
-            725,
+            730,
             678,
             32,
             32
@@ -1795,9 +1790,9 @@
           "predictedMargin": -467.0
         },
         "上传图片": {
-          "cx": 1037,
+          "cx": 1002,
           "rect": [
-            1021,
+            986,
             679,
             32,
             32
@@ -1807,14 +1802,14 @@
           "predictedMargin": -170.0
         },
         "发送": {
-          "cx": 1216,
+          "cx": 1181,
           "rect": [
-            1200,
+            1165,
             679,
             32,
             32
           ],
-          "joint": true,
+          "joint": false,
           "predictedCx": 1216.0,
           "predictedMargin": 9.0
         }
@@ -1834,28 +1829,28 @@
           "right": 1216,
           "width": 923,
           "clientWidth": 923,
-          "scrollWidth": 944,
+          "scrollWidth": 923,
           "top": 670
         },
         "shared": {
-          "left": 293,
-          "right": 1237,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "left": 302.5,
+          "right": 1206.5,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
-          "left": 293,
-          "right": 1004,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "left": 302.5,
+          "right": 973.5,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1012,
-          "right": 1237,
+          "left": 981.5,
+          "right": 1206.5,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -1865,27 +1860,27 @@
         "inspectorBottom": 718,
         "controls": {
           "开启九宫格辅助线": {
-            "cx": 741,
+            "cx": 750.5,
             "rect": [
-              725,
+              735,
               678,
               32,
               32
             ]
           },
           "上传图片": {
-            "cx": 1037,
+            "cx": 1006.5,
             "rect": [
-              1021,
+              991,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1216,
+            "cx": 1185.5,
             "rect": [
-              1200,
+              1170,
               679,
               32,
               32
@@ -1893,15 +1888,13 @@
           }
         }
       },
-      "jointCount": 1,
-      "jointLabels": [
-        "发送"
-      ],
+      "jointCount": 0,
+      "jointLabels": [],
       "targets": {
         "开启九宫格辅助线": {
-          "cx": 741,
+          "cx": 750.5,
           "rect": [
-            725,
+            735,
             678,
             32,
             32
@@ -1911,9 +1904,9 @@
           "predictedMargin": -476.0
         },
         "上传图片": {
-          "cx": 1037,
+          "cx": 1006.5,
           "rect": [
-            1021,
+            991,
             679,
             32,
             32
@@ -1923,14 +1916,14 @@
           "predictedMargin": -179.0
         },
         "发送": {
-          "cx": 1216,
+          "cx": 1185.5,
           "rect": [
-            1200,
+            1170,
             679,
             32,
             32
           ],
-          "joint": true,
+          "joint": false,
           "predictedCx": 1216.0,
           "predictedMargin": 0.0
         }
@@ -1950,28 +1943,28 @@
           "right": 1217,
           "width": 924,
           "clientWidth": 924,
-          "scrollWidth": 944,
+          "scrollWidth": 924,
           "top": 670
         },
         "shared": {
-          "left": 293,
-          "right": 1237,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "left": 303,
+          "right": 1207,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
-          "left": 293,
-          "right": 1004,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "left": 303,
+          "right": 974,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1012,
-          "right": 1237,
+          "left": 982,
+          "right": 1207,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -1981,27 +1974,27 @@
         "inspectorBottom": 718,
         "controls": {
           "开启九宫格辅助线": {
-            "cx": 741,
+            "cx": 751,
             "rect": [
-              725,
+              735,
               678,
               32,
               32
             ]
           },
           "上传图片": {
-            "cx": 1037,
+            "cx": 1007,
             "rect": [
-              1021,
+              991,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1216,
+            "cx": 1186,
             "rect": [
-              1200,
+              1170,
               679,
               32,
               32
@@ -2013,9 +2006,9 @@
       "jointLabels": [],
       "targets": {
         "开启九宫格辅助线": {
-          "cx": 741,
+          "cx": 751,
           "rect": [
-            725,
+            735,
             678,
             32,
             32
@@ -2025,9 +2018,9 @@
           "predictedMargin": -477.0
         },
         "上传图片": {
-          "cx": 1037,
+          "cx": 1007,
           "rect": [
-            1021,
+            991,
             679,
             32,
             32
@@ -2037,9 +2030,9 @@
           "predictedMargin": -180.0
         },
         "发送": {
-          "cx": 1216,
+          "cx": 1186,
           "rect": [
-            1200,
+            1170,
             679,
             32,
             32
@@ -2068,24 +2061,24 @@
           "top": 670
         },
         "shared": {
-          "left": 328,
-          "right": 1272,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "left": 348,
+          "right": 1252,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
-          "left": 328,
-          "right": 1039,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "left": 348,
+          "right": 1019,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1047,
-          "right": 1272,
+          "left": 1027,
+          "right": 1252,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -2095,27 +2088,27 @@
         "inspectorBottom": 718,
         "controls": {
           "开启九宫格辅助线": {
-            "cx": 776,
+            "cx": 796,
             "rect": [
-              760,
+              780,
               678,
               32,
               32
             ]
           },
           "上传图片": {
-            "cx": 1072,
+            "cx": 1052,
             "rect": [
-              1056,
+              1036,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1251,
+            "cx": 1231,
             "rect": [
-              1235,
+              1215,
               679,
               32,
               32
@@ -2127,9 +2120,9 @@
       "jointLabels": [],
       "targets": {
         "开启九宫格辅助线": {
-          "cx": 776,
+          "cx": 796,
           "rect": [
-            760,
+            780,
             678,
             32,
             32
@@ -2139,9 +2132,9 @@
           "predictedMargin": -532.0
         },
         "上传图片": {
-          "cx": 1072,
+          "cx": 1052,
           "rect": [
-            1056,
+            1036,
             679,
             32,
             32
@@ -2151,9 +2144,9 @@
           "predictedMargin": -235.0
         },
         "发送": {
-          "cx": 1251,
+          "cx": 1231,
           "rect": [
-            1235,
+            1215,
             679,
             32,
             32
@@ -2182,24 +2175,24 @@
           "top": 670
         },
         "shared": {
-          "left": 488,
-          "right": 1432,
-          "width": 944,
-          "clientWidth": 944,
-          "scrollWidth": 944,
+          "left": 508,
+          "right": 1412,
+          "width": 904,
+          "clientWidth": 904,
+          "scrollWidth": 904,
           "top": 670
         },
         "toolbar": {
-          "left": 488,
-          "right": 1199,
-          "width": 711,
-          "clientWidth": 709,
-          "scrollWidth": 709,
+          "left": 508,
+          "right": 1179,
+          "width": 671,
+          "clientWidth": 669,
+          "scrollWidth": 669,
           "top": 670
         },
         "promptBar": {
-          "left": 1207,
-          "right": 1432,
+          "left": 1187,
+          "right": 1412,
           "width": 225,
           "clientWidth": 223,
           "scrollWidth": 223,
@@ -2209,27 +2202,27 @@
         "inspectorBottom": 718,
         "controls": {
           "开启九宫格辅助线": {
-            "cx": 936,
+            "cx": 956,
             "rect": [
-              920,
+              940,
               678,
               32,
               32
             ]
           },
           "上传图片": {
-            "cx": 1232,
+            "cx": 1212,
             "rect": [
-              1216,
+              1196,
               679,
               32,
               32
             ]
           },
           "发送": {
-            "cx": 1411,
+            "cx": 1391,
             "rect": [
-              1395,
+              1375,
               679,
               32,
               32
@@ -2241,9 +2234,9 @@
       "jointLabels": [],
       "targets": {
         "开启九宫格辅助线": {
-          "cx": 936,
+          "cx": 956,
           "rect": [
-            920,
+            940,
             678,
             32,
             32
@@ -2253,9 +2246,9 @@
           "predictedMargin": -692.0
         },
         "上传图片": {
-          "cx": 1232,
+          "cx": 1212,
           "rect": [
-            1216,
+            1196,
             679,
             32,
             32
@@ -2265,9 +2258,9 @@
           "predictedMargin": -395.0
         },
         "发送": {
-          "cx": 1411,
+          "cx": 1391,
           "rect": [
-            1395,
+            1375,
             679,
             32,
             32
@@ -2310,9 +2303,76 @@
       }
     },
     "the-four-constants-hold-at-every-width": {
-      "ok": true,
+      "ok": false,
       "detail": {
-        "contradictions": [],
+        "contradictions": [
+          {
+            "width": "899",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          },
+          {
+            "width": "1152",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          },
+          {
+            "width": "1280",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          },
+          {
+            "width": "1330",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          },
+          {
+            "width": "1331",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          },
+          {
+            "width": "1440",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          },
+          {
+            "width": "1500",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          },
+          {
+            "width": "1509",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          },
+          {
+            "width": "1510",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          },
+          {
+            "width": "1600",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          },
+          {
+            "width": "1920",
+            "constant": "toolbarWidth",
+            "measured": 671,
+            "predicted": 711.0
+          }
+        ],
         "constants": {
           "toolbarWidth": {
             "narrow": "min(711, W - 48)",
@@ -2340,9 +2400,74 @@
       }
     },
     "each-controls-margin-equals-the-closed-form": {
-      "ok": true,
+      "ok": false,
       "detail": {
-        "contradictions": [],
+        "contradictions": [
+          {
+            "width": "899",
+            "control": "上传图片",
+            "cx": 997,
+            "rowRight": 606,
+            "margin": 391,
+            "predictedMargin": 431.0
+          },
+          {
+            "width": "899",
+            "control": "发送",
+            "cx": 1176,
+            "rowRight": 606,
+            "margin": 570,
+            "predictedMargin": 610.0
+          },
+          {
+            "width": "1152",
+            "control": "上传图片",
+            "cx": 997,
+            "rowRight": 859,
+            "margin": 138,
+            "predictedMargin": 178.0
+          },
+          {
+            "width": "1152",
+            "control": "发送",
+            "cx": 1176,
+            "rowRight": 859,
+            "margin": 317,
+            "predictedMargin": 357.0
+          },
+          {
+            "width": "1280",
+            "control": "上传图片",
+            "cx": 997,
+            "rowRight": 987,
+            "margin": 10,
+            "predictedMargin": 50.0
+          },
+          {
+            "width": "1280",
+            "control": "发送",
+            "cx": 1176,
+            "rowRight": 987,
+            "margin": 189,
+            "predictedMargin": 229.0
+          },
+          {
+            "width": "1330",
+            "control": "上传图片",
+            "cx": 997,
+            "rowRight": 1037,
+            "margin": -40,
+            "predictedMargin": 0.0
+          },
+          {
+            "width": "1330",
+            "control": "发送",
+            "cx": 1176,
+            "rowRight": 1037,
+            "margin": 139,
+            "predictedMargin": 179.0
+          }
+        ],
         "observedMarginsOnJointWidths": {
           "开启九宫格辅助线": {
             "480": -9,
@@ -2355,17 +2480,14 @@
             "620": 9,
             "767": 1,
             "768": 0,
-            "1152": 178,
-            "1280": 50,
-            "1330": 0
+            "1152": 138,
+            "1280": 10
           },
           "发送": {
-            "1280": 229,
-            "1330": 179,
-            "1331": 178,
-            "1440": 69,
-            "1500": 9,
-            "1509": 0
+            "1280": 189,
+            "1330": 139,
+            "1331": 138,
+            "1440": 29
           }
         },
         "theFormula": "cx comes from the four constants; margin = cx - (rowLeft + rowBoxWidth)"
@@ -2400,21 +2522,21 @@
           {
             "control": "上传图片",
             "marginAt898": -130,
-            "marginAt899": 431,
+            "marginAt899": 391,
             "rowBoxWidthAt898": 874,
             "rowBoxWidthAt899": 313
           },
           {
             "control": "发送",
             "marginAt898": 49,
-            "marginAt899": 610,
+            "marginAt899": 570,
             "rowBoxWidthAt898": 874,
             "rowBoxWidthAt899": 313
           }
         ],
         "jumps": [
-          561,
-          561
+          521,
+          521
         ],
         "mechanism": "at the family break the row's left inset jumps 12 -> 293 and its width jumps W-24 -> W-586, so the row narrows by ~562 while the pills stay where they are; the margin does not continue, it restarts"
       }
@@ -2431,14 +2553,14 @@
           "768": 1,
           "780": 0,
           "898": 0,
-          "899": 8,
-          "1152": 4,
+          "899": 7,
+          "1152": 3,
           "1280": 3,
-          "1330": 3,
+          "1330": 2,
           "1331": 2,
           "1440": 1,
-          "1500": 1,
-          "1509": 1,
+          "1500": 0,
+          "1509": 0,
           "1510": 0,
           "1600": 0,
           "1920": 0
@@ -2448,6 +2570,8 @@
             "bottomWidths": [
               780,
               898,
+              1500,
+              1509,
               1510,
               1600,
               1920
@@ -2455,12 +2579,14 @@
             "at": 780,
             "joint": 0,
             "higherToTheLeft": 2,
-            "higherToTheRight": 8
+            "higherToTheRight": 7
           },
           {
             "bottomWidths": [
               780,
               898,
+              1500,
+              1509,
               1510,
               1600,
               1920
@@ -2468,7 +2594,7 @@
             "at": 898,
             "joint": 0,
             "higherToTheLeft": 2,
-            "higherToTheRight": 8
+            "higherToTheRight": 7
           }
         ],
         "reading": "a single monotone decay law would be easier to assert and would also be WRONG: the joint set empties out inside the narrow family and comes back at the family break"
@@ -2560,9 +2686,12 @@
       }
     }
   },
-  "ok": true,
+  "ok": false,
   "checkCount": 11,
-  "failures": [],
+  "failures": [
+    "the-four-constants-hold-at-every-width",
+    "each-controls-margin-equals-the-closed-form"
+  ],
   "totals": {
     "perWidth": {
       "339": 2,
@@ -2573,14 +2702,14 @@
       "768": 1,
       "780": 0,
       "898": 0,
-      "899": 8,
-      "1152": 4,
+      "899": 7,
+      "1152": 3,
       "1280": 3,
-      "1330": 3,
+      "1330": 2,
       "1331": 2,
       "1440": 1,
-      "1500": 1,
-      "1509": 1,
+      "1500": 0,
+      "1509": 0,
       "1510": 0,
       "1600": 0,
       "1920": 0
@@ -2597,17 +2726,14 @@
         "620": 9,
         "767": 1,
         "768": 0,
-        "1152": 178,
-        "1280": 50,
-        "1330": 0
+        "1152": 138,
+        "1280": 10
       },
       "发送": {
-        "1280": 229,
-        "1330": 179,
-        "1331": 178,
-        "1440": 69,
-        "1500": 9,
-        "1509": 0
+        "1280": 189,
+        "1330": 139,
+        "1331": 138,
+        "1440": 29
       }
     }
   }

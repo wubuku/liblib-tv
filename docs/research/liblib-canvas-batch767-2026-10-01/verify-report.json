@@ -21,8 +21,8 @@
    "label": "静态：「关导出面板」那一档排在 closeWorkspace() 之前（D8 的修法位置）",
    "pass": true,
    "got": [
-    556,
-    567
+    634,
+    645
    ]
   },
   {
@@ -55,21 +55,21 @@
    "label": "静态：时间轴里路径菜单/预设面板有 pointerdown 外点处理与 Esc 处理",
    "pass": true,
    "got": [
-    554,
+    619,
     2
    ]
   },
   {
    "label": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label",
-   "pass": true,
+   "pass": false,
    "got": null
   },
   {
    "label": "★★ 静态：三个文件里 aria-controls / aria-haspopup 各 0 处（D10）",
-   "pass": true,
+   "pass": false,
    "got": [
     0,
-    0
+    1
    ]
   },
   {
@@ -665,22 +665,18 @@
   },
   {
    "label": "★ 台账历史 U+FFFD 仍是 9 个",
-   "pass": true,
-   "got": 9
+   "pass": false,
+   "got": 0
   },
   {
    "label": "★ U+FFFD 仍只落在 522/583/587 三行",
-   "pass": true,
-   "got": [
-    522,
-    583,
-    587
-   ]
+   "pass": false,
+   "got": []
   },
   {
    "label": "★ 台账行数 = 630（追加一行）",
-   "pass": true,
-   "got": 630
+   "pass": false,
+   "got": 734
   },
   {
    "label": "★ Batch 766 行仍在且唯一",
@@ -688,133 +684,133 @@
    "got": null
   }
  ],
- "pass": 97,
+ "pass": 92,
  "total": 97,
  "negativeControls": [
   {
    "name": "★ 删掉 D8",
    "caught": true,
-   "firstFail": "缺陷 3 条 D8/D9/D10"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 D8 降级成观察",
    "caught": true,
-   "firstFail": "观察 4 条"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 D8 的严重度从中改成低",
    "caught": true,
-   "firstFail": "★★ D8 严重度是「中」（唯一「按 Esc 丢工作区」的路径）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 D8 的机制里「0 处引用」抹掉",
    "caught": true,
-   "firstFail": "★ D8 的 mechanism 点名了「阶梯里对它 0 处引用」"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 D8 的修法方向抹掉",
    "caught": true,
-   "firstFail": "★ D8 写明了修法方向（同族两选一）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 D9 的 widensD5From765 去掉（退回个案）",
    "caught": true,
-   "firstFail": "★ D9 标了 widensD5From765（扩宽 765 的 D5，不退回个案）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 D9 的 inRepoExemplar 抹掉（修法就没先例了）",
    "caught": true,
-   "firstFail": "★ D9 写了 inRepoExemplar"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 D10 的 widensD6From765 去掉",
    "caught": true,
-   "firstFail": "★ D10 标了 widensD6From765"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 D10 的「标题不构成可访问名」抹掉",
    "caught": true,
-   "firstFail": "★ D10 说明了「标题不构成可访问名」"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 缺陷 where 指向不存在的行号",
    "caught": true,
-   "firstFail": "★ 缺陷 where 指针都指向真实文件与行号"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 J4 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "verdict 分布 6 PASS / 5 FAIL"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 J6 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "verdict 分布 6 PASS / 5 FAIL"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 J7 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "verdict 分布 6 PASS / 5 FAIL"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 J9 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "verdict 分布 6 PASS / 5 FAIL"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 J10 从 FAIL 改成 PASS",
    "caught": true,
-   "firstFail": "verdict 分布 6 PASS / 5 FAIL"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 判据全改成 PASS",
    "caught": true,
-   "firstFail": "verdict 分布 6 PASS / 5 FAIL"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把判据条数从 11 改成 8",
    "caught": true,
-   "firstFail": "判据 11 条"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把 J4 的 evidence 换成可比性（D8 失去支撑）",
    "caught": true,
-   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "只改 findings.disclosureCensus.escClosedWholeDesk",
    "caught": true,
-   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "只改 findings.disclosureCensus.outsideCloseMissing",
    "caught": true,
-   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "只改 findings.disclosureCensus.roleDialogPresent",
    "caught": true,
-   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "只改 findings.disclosureCensus.ariaControlsAny",
    "caught": true,
-   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 把可比性说成一致（results 不一致）",
    "caught": true,
-   "firstFail": "★ findings[k] == judgments[].evidence（JSON 往返后逐条）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 删掉 R72（node --check 只验语法那条）",
    "caught": true,
-   "firstFail": "探针教训 R71–R74 四条"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 不声称里删掉「焦点归还没有干净读数」",
    "caught": true,
-   "firstFail": "★ 不声称里写明焦点归还那一问没有干净读数（J9）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "伪造：DirectorDesk 里其实有 crowdPanelOpen 的一档",
@@ -854,7 +850,7 @@
   {
    "name": "伪造：aria-controls 其实有 1 处",
    "caught": true,
-   "firstFail": "★★ 静态：三个文件里 aria-controls / aria-haspopup 各 0 处（D10）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "伪造：群众阵列面板没有 role=dialog",
@@ -864,111 +860,111 @@
   {
    "name": "★ 原始：crowd 的 Esc 不再关导演台（D8 消失）",
    "caught": true,
-   "firstFail": "★ 测到 Esc 的 3 个里，只有 crowd 关掉了整个导演台"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 原始：把 export 也说成会关导演台",
    "caught": true,
-   "firstFail": "★ 测到 Esc 的 3 个里，只有 crowd 关掉了整个导演台"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 原始：给群众阵列补一个外点关闭（D9 少一个）",
    "caught": true,
-   "firstFail": "★ 外点关闭有效的恰好是 3 个：preset / pathmenu / modellib"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 原始：给导出面板补上 aria-controls（D10 破）",
    "caught": true,
-   "firstFail": "★★ aria-controls 0/6、aria-haspopup 0/6（D10）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 原始：把群众阵列的 role 去掉（role=dialog 变 1/6）",
    "caught": true,
-   "firstFail": "★ role=dialog 只有 crowd 与 modellib 2/6"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 原始：让某浮层的焦点移进面板（破坏「都不移焦点」）",
    "caught": true,
-   "firstFail": "★ 没有一个把焦点移进浮层"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 原始：pathmenu 的 aria-expanded 填上 true（J10 失去依据）",
    "caught": true,
-   "firstFail": "★ pathmenu 的 aria-expanded 读数是 null（J10 的实测依据）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 原始：把外点落点改成可点元素（R74 失效）",
    "caught": true,
-   "firstFail": "★ 外点落点没有一个是可点元素（R74：先量可点性再点）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 原始：某个浮层根本没打开",
    "caught": true,
-   "firstFail": "★ 6 个 disclosure 两轮都打开"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ all([]) 陷阱：把 results 清空（两轮都清）",
    "caught": true,
-   "firstFail": "★ 6 个 disclosure 两轮都打开"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ all([]) 陷阱：把某浮层的可聚焦控件数改成 0",
    "caught": true,
-   "firstFail": "★ 6 个浮层可聚焦控件数都 >0（焦点进得去，只是要自己 Tab）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 伪造：3 个被外点关掉的那格其实测过 Esc",
    "caught": true,
-   "firstFail": "★★ 测到 Esc 的恰好是 export/phonevcam/crowd，没测到的恰好是 preset/pathmenu/modellib"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 台账删掉 Batch 767 行",
    "caught": true,
-   "firstFail": "★ 台账恰好一行 Batch 767"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 台账行首格改成裸数字 767",
    "caught": true,
-   "firstFail": "★ 台账恰好一行 Batch 767"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 台账行首格写成 Batch 0767",
    "caught": true,
-   "firstFail": "★ 台账恰好一行 Batch 767"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 台账新行塞一个 U+FFFD",
    "caught": true,
-   "firstFail": "★ 台账新行里 0 个 U+FFFD"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ 台账被追加了 Batch 768（行数断言）",
    "caught": true,
-   "firstFail": "★ 台账新行够长（不许占位）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ README 表格首格改成裸数字",
    "caught": true,
-   "firstFail": "★ README 表格首格没有裸数字（pre-commit 正则会误判）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ README 删掉「不声称」章节",
    "caught": true,
-   "firstFail": "README 含章节 ## 不声称"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ README 删掉 D8 章节",
    "caught": true,
-   "firstFail": "★ README 有 D8 的独立章节"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   },
   {
    "name": "★ README 删掉「照抄」那句",
    "caught": true,
-   "firstFail": "★ README 写了同仓先例（照抄即可）"
+   "firstFail": "静态：群众阵列与模型库两个浮层带 role=dialog + aria-label"
   }
  ],
  "negativeCaught": 55,
  "negativeTotal": 55,
  "rawError": null,
- "ok": true
+ "ok": false
 }

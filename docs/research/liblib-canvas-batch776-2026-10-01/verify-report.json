@@ -269,10 +269,20 @@
    "label": "台账：该行恰 4 个竖线（3 列）",
    "pass": true,
    "got": 4
+  },
+  {
+   "label": "★ README 里没有裸数字开头的 markdown 表行（会骗过 pre-commit 的 added_batch_numbers）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "README 无 U+FFFD",
+   "pass": true,
+   "got": 0
   }
  ],
- "pass": 43,
- "total": 43,
+ "pass": 45,
+ "total": 45,
  "negativeControls": [
   {
    "name": "把对照臂改成「1 次 Escape 没关面板也没关桌」 ⟹ 「测量有鉴别力」必须红",

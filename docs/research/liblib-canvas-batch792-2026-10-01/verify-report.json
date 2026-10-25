@@ -7,13 +7,13 @@
    "ok": true,
    "detail": {
     "guard": [
-     3284
+     3507
     ],
     "typeFilter": [
-     3283
+     3506
     ],
     "collect": [
-     3276
+     3499
     ]
    }
   },
@@ -22,8 +22,8 @@
    "desc": "★ 同一个文件里有多个 `…SelectedNodes` 实现，只断言「文件里有一行」会把别处的同名行也算进来（750 立过的「同一模式出现多次先数清有几处」）；★ 两边都必须换算成**行号**再比",
    "ok": true,
    "detail": {
-    "fnLine": 3259,
-    "guardLine": 3284,
+    "fnLine": 3482,
+    "guardLine": 3507,
     "delta": 25
    }
   },

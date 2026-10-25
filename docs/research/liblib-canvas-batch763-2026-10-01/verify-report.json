@@ -301,17 +301,13 @@
   },
   {
    "label": "台账：行数 626（本批只追加一行）",
-   "pass": true,
-   "got": 626
+   "pass": false,
+   "got": 734
   },
   {
    "label": "台账：历史 U+FFFD 仍只在 522/583/587",
-   "pass": true,
-   "got": [
-    522,
-    583,
-    587
-   ]
+   "pass": false,
+   "got": []
   },
   {
    "label": "原始：8 份读数全部可读",
@@ -1030,7 +1026,7 @@
    "got": null
   }
  ],
- "pass": 119,
+ "pass": 117,
  "total": 119,
  "negativeControls": [
   {
@@ -1091,42 +1087,42 @@
   {
    "name": "只改 findings.addSurvivesReload",
    "caught": true,
-   "firstFail": "J12：产物 addSurvivesReload / reloadNeverLostAdd 与重算一致"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "只改 findings.persistenceKey",
    "caught": true,
-   "firstFail": "J12：产物记下了持久化键"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "只改 findings.seedCount（6 个而不是 5 个）",
    "caught": true,
-   "firstFail": "J13：产物 seedDeterministic / seedCount 与重算一致"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "只改 findings.tabHatchWorks",
    "caught": true,
-   "firstFail": "J10：产物 tabHatchWorks 与重算一致"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "只改 findings.focusAloneOpensGesture",
    "caught": true,
-   "firstFail": "J11：产物 focusAloneOpensGesture / focusAloneNoHistory 与重算一致"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "只改 findings.gestureCommitsOnBlur",
    "caught": true,
-   "firstFail": "J11：产物 gestureCommitsOnBlur 与重算一致"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "只改 findings.deleteBothFired",
    "caught": true,
-   "firstFail": "J6：产物 deleteBothFired 与重算一致"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "只改 findings.deleteLabelBlindSpot（把看漏的那行抹掉）",
    "caught": true,
-   "firstFail": "J6：★ 产物里如实记下「按标签判会看漏」的那一行"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "只改 findings.breakpointRows[3].ok",
@@ -1136,12 +1132,12 @@
   {
    "name": "只改 findings.breakpointAllOk",
    "caught": true,
-   "firstFail": "J1：产物 breakpointAllOk 与重算一致"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "只改 findings.resizeFitViewAllExpected",
    "caught": true,
-   "firstFail": "J14：产物 resizeFitViewAllExpected 与重算一致"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "把判据 7 的证据换成树面板的读数",
@@ -1201,97 +1197,97 @@
   {
    "name": "伪造：失效控件全都到达了 window 冒泡",
    "caught": true,
-   "firstFail": "J8 交叉：失效控件的 Esc 从未到达 window 冒泡"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：失效控件只剩 1 个（且序号被改小）",
    "caught": true,
-   "firstFail": "J7 交叉：属性面板 9 个关不掉"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：window 捕获也没触发",
    "caught": true,
-   "firstFail": "J8 交叉：但 window 捕获照样触发（事件确实发出去了）"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：注入的 number 输入框也关不掉抽屉",
    "caught": true,
-   "firstFail": "J9 交叉：注入的 text 与 number 四格都关掉了抽屉"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：Esc 第二次把抽屉关掉了",
    "caught": true,
-   "firstFail": "J10 交叉：Esc 连按两次都关不掉抽屉、也没关导演台"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：Tab 之后 Esc 也关不掉（逃生门没了）",
    "caught": true,
-   "firstFail": "J10 交叉：Tab 离开边界后 Esc 恢复正常（逃生门）"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：只聚焦不再开 gesture",
    "caught": true,
-   "firstFail": "J11 交叉：只聚焦就开 gesture、但不写历史"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：编辑完立刻 commit（不经失焦）",
    "caught": true,
-   "firstFail": "J11 交叉：失焦才 commit（past 0→1、GESTURE_COMMIT）"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：持久化键不是 director-project",
    "caught": true,
-   "firstFail": "J12 交叉：持久化键就是 director-project"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：新增的机位没扛过 reload",
    "caught": true,
-   "firstFail": "J12 交叉：两轮新增的机位都扛过 reload"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：种子变成 6 个对象",
    "caught": true,
-   "firstFail": "J13 交叉：两轮种子都是 5 个对象、一次到位、零重复 id"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：种子随时间增长（异步加载）",
    "caught": true,
-   "firstFail": "J13 交叉：两轮种子都是 5 个对象、一次到位、零重复 id"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：种子出现重复 id",
    "caught": true,
-   "firstFail": "J13 交叉：两轮种子都是 5 个对象、一次到位、零重复 id"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：六档里有一档错位",
    "caught": true,
-   "firstFail": "J1 交叉：重算后六档零错位"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：resize 落点出现旧宽度的 596",
    "caught": true,
-   "firstFail": "J14 交叉：落点只有 276 一个值（没有旧宽度的 596）"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：两轮焦点字段其实不一致（Tab 逃出 2 次）",
    "caught": true,
-   "firstFail": "J3 交叉：两轮焦点相关字段逐字段一致"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：Delete 只删掉了对象但历史没动",
    "caught": true,
-   "firstFail": "J6 交叉：Delete/Backspace × 两轮都真删（判效应）"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：Backspace 的 lastCommand 也变了（标签不再看漏）",
    "caught": true,
-   "firstFail": "J6：★ 产物里如实记下「按标签判会看漏」的那一行"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：⌘Z 没有推动历史",
    "caught": true,
-   "firstFail": "J5 交叉：两轮四步都动了历史"
+   "firstFail": "台账：行数 626（本批只追加一行）"
   },
   {
    "name": "伪造：边界里已经有「没有手势就放行」的守卫",
@@ -1332,5 +1328,5 @@
  "negativeCaught": 59,
  "negativeTotal": 59,
  "rawError": null,
- "ok": true
+ "ok": false
 }

@@ -1,8 +1,8 @@
 {
  "batch": 801,
  "totals": {
-  "passed": 11,
-  "total": 11
+  "passed": 12,
+  "total": 12
  },
  "checks": [
   {
@@ -681,7 +681,7 @@
    "why": "★ 行为证据（S1–S8）之外，再钉住「代码没被改回去」",
    "ok": true,
    "evidence": {
-    "段长": 77858,
+    "段长": 78261,
     "父也被复制时保持相对": true,
     "父没被复制时提升为顶层": true
    }
@@ -691,7 +691,15 @@
    "why": "★ 纯测量批次必须被钉住，否则后人得重新判断「这份 raw 是不是本批代码跑的」",
    "ok": true,
    "evidence": {
-    "git status --porcelain src/": ""
+    "801 那次提交动过的 src/ 文件": []
+   }
+  },
+  {
+   "id": "S10b:★★ 留痕：当前工作树有未提交的 `src/` 改动（★ 不参与判定）",
+   "why": "★ 这是**当下**状态 ⟹ ⟹ 与「801 那批没改 src」是**两件事** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 只留痕、不判红 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这样它既不被掩盖、也不被误伤",
+   "ok": true,
+   "evidence": {
+    "git status --porcelain src/": "M src/components/director/DirectorTimeline.tsx\n M src/components/jimeng/JimengVideoPreview.tsx\n M src/components/jimeng/nodes/JimengVideoMediaCard.tsx\n M src/components/jimeng/nodes/JimengVideoNode.tsx\n M src/store/jimengStore.ts\n M src/types/jimeng.ts"
    }
   },
   {
@@ -752,12 +760,22 @@
    "ok": true
   },
   {
-   "name": "N4 ★★ 反向对照：只改 `duplicateGraphSelection` 那段注释的字",
-   "why": "★ 证明 S9 锚的是表达式不是某段文本（S10 应当翻：src 确实被改脏了）",
+   "name": "N4a ★★ 反向对照：只改 `duplicateGraphSelection` 那段注释的字",
+   "why": "★ 证明 S9 锚的是表达式不是某段文本（★ 改当前 src ⟹ ⟹ S9 **不该**翻）",
    "evidence": {
     "新的在": true,
     "行数中性": true,
     "旧串仍在（预期）": true
+   },
+   "expectFlipped": "（反向对照：期望不翻）",
+   "flipped": [],
+   "ok": true
+  },
+  {
+   "name": "N4b ★★ 新 S10 的牙：伪造「801 那次提交动过 src」⟹ ⟹ S10 必须翻",
+   "why": "★ 证明 S10 真的在查**那次提交**（★ 而不是又变回读工作树）",
+   "evidence": {
+    "801_COMMIT": "f7052113（★ 一个确实动过 src/ 的提交）"
    },
    "expectFlipped": "S10:★★ 记账：本批**没改** `src/`",
    "flipped": [
@@ -766,14 +784,14 @@
    "ok": true
   }
  ],
- "negativesOk": 4,
- "negativesTotal": 4,
+ "negativesOk": 5,
+ "negativesTotal": 5,
  "auditSummary": {
   "passed": 8,
   "total": 8
  },
  "restoreSha": {
-  "src": "3bbd575fbe93041a45f12ffc103cf02eeedfe0375c9d49f8c9e71d142fa4c1cc",
+  "src": "95ad798d1a79b58ab558101aaf840f3f2c66d7fef0d7221f3f0285e655dfd757",
   "pre": "56829081ca782ffadaa07818b12e16eb07614e87610cd36bab18b3dad530e69f",
   "post": "df9da393a28cd0044b77cc9c42492508587cf6a791cebdf1b03594dec48208b6",
   "ok": {

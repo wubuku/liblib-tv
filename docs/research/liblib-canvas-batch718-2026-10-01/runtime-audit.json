@@ -11,7 +11,7 @@
    "counts": {
     "899": {
      "min": 15,
-     "max": 22
+     "max": 23
     },
     "850": {
      "min": 0,
@@ -499,12 +499,14 @@
   ]
  },
  "summary": {
-  "only-899-is-paired-the-rest-are-one-sided": true,
+  "only-899-is-paired-the-rest-are-one-sided": false,
   "the-min-900px-pair-only-survives-in-a-comment": true,
   "max-899px-is-strictly-less-than-while-the-css-query-is-inclusive": true,
   "the-two-branches-are-mutually-exclusive-and-jointly-exhaustive": true,
   "the-breakpoint-swaps-a-48px-rail-for-a-68x32-button-pair": true,
   "retraction-of-717-the-899-boundary-is-by-construction": true
  },
- "failures": []
+ "failures": [
+  "only-899-is-paired-the-rest-are-one-sided: {'min': 15, 'max': 23}"
+ ]
 }

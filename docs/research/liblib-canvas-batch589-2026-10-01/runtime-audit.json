@@ -105,28 +105,28 @@
         }
       ],
       "panorama_width": 232,
-      "panorama_text": "全景图\n本地上传\n历史记录\nAI生成",
+      "panorama_text": "全景图\n本地上传\n历史记录\nAI生成\n当前全景图：未选择",
       "aspect_width": 232,
       "aspect_row_ys": [
-        261,
-        261,
-        341,
-        341,
-        421,
-        421,
-        501
+        100,
+        100,
+        180,
+        180,
+        260,
+        260,
+        340
       ],
       "aspect_row_pitches": [
         80,
         80,
         80
       ],
-      "aspect_card_height": 326,
+      "aspect_card_height": 324,
       "aspect_title_box": {
-        "x": 47.5,
-        "y": 236,
+        "x": 48,
+        "y": 52,
         "width": 232,
-        "height": 24
+        "height": 48
       },
       "diagnostics": {
         "console": 0,

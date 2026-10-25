@@ -1,11 +1,11 @@
 {
   "batch": 742,
   "title": "命令入口普查：记账 33 × LibTV 有入口 29 / 零入口 4；一条从未被调用过的记账命令",
-  "verdict": "7/7",
+  "verdict": "6/7",
   "summary": {
     "grid": {
-      "acct_total": 33,
-      "acct_libtv": 29,
+      "acct_total": 34,
+      "acct_libtv": 30,
       "acct_dead": [
         "duplicateNode",
         "removeNode",
@@ -37,19 +37,19 @@
         "setNodes",
         "setStoreNodes",
         "src/app/page.tsx",
-        366
+        373
       ],
       [
         "addEdge",
         "addStoreEdge",
         "src/app/page.tsx",
-        368
+        375
       ],
       [
         "setViewport",
         "setStoreViewport",
         "src/app/page.tsx",
-        381
+        389
       ]
     ],
     "acct_dead_others": {
@@ -67,16 +67,23 @@
       "submitLibTVEditorSessionCommit": []
     },
     "libtv_entries": {
-      "ungroupSelectedNodes": [
+      "createImageHdPreset": [
         [
-          "src/app/page.tsx",
-          1365
+          "src/components/nodes/ImageNode.tsx",
+          294
         ]
       ],
-      "createDepthMotionCapture": [
+      "removeNode": [],
+      "clearVideoContinuation": [
         [
           "src/components/nodes/VideoNode.tsx",
-          296
+          733
+        ]
+      ],
+      "createFirstFrameReference": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          677
         ]
       ],
       "addResourceCohort": [
@@ -91,67 +98,10 @@
           304
         ]
       ],
-      "createAudioSplit": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          257
-        ]
-      ],
-      "removeNode": [],
-      "createVideoContinuation": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          219
-        ]
-      ],
-      "removeSelectedNodes": [
+      "nudgeSelectedNodes": [
         [
           "src/app/page.tsx",
-          1326
-        ],
-        [
-          "src/app/page.tsx",
-          1612
-        ]
-      ],
-      "completeShotBreakdown": [
-        [
-          "src/components/nodes/ShotBreakdownNode.tsx",
-          84
-        ]
-      ],
-      "createDirectorCapture": [
-        [
-          "src/components/director/DirectorDesk.tsx",
-          591
-        ],
-        [
-          "src/components/director/DirectorDesk.tsx",
-          608
-        ]
-      ],
-      "addNodeAtPosition": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          714
-        ]
-      ],
-      "createFirstLastFrameReference": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          679
-        ]
-      ],
-      "createSubtitleErase": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          227
-        ]
-      ],
-      "groupSelectedNodes": [
-        [
-          "src/app/page.tsx",
-          1366
+          1429
         ]
       ],
       "attachAssetReferences": [
@@ -160,10 +110,100 @@
           76
         ]
       ],
-      "createLongVideoProcess": [
+      "completeShotBreakdown": [
+        [
+          "src/components/nodes/ShotBreakdownNode.tsx",
+          84
+        ]
+      ],
+      "createDirectorAnimationExport": [
+        [
+          "src/components/director/DirectorDesk.tsx",
+          822
+        ]
+      ],
+      "createDirectorCapture": [
+        [
+          "src/components/director/DirectorDesk.tsx",
+          673
+        ],
+        [
+          "src/components/director/DirectorDesk.tsx",
+          690
+        ]
+      ],
+      "removeSelectedNodes": [
+        [
+          "src/app/page.tsx",
+          1380
+        ],
+        [
+          "src/app/page.tsx",
+          1684
+        ]
+      ],
+      "removeEdge": [
+        [
+          "src/app/page.tsx",
+          1503
+        ]
+      ],
+      "createSubtitleErase": [
         [
           "src/components/nodes/VideoNode.tsx",
-          730
+          227
+        ]
+      ],
+      "createSmartMatting": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          372
+        ]
+      ],
+      "duplicateSelectedNodes": [
+        [
+          "src/app/page.tsx",
+          1409
+        ],
+        [
+          "src/app/page.tsx",
+          1680
+        ]
+      ],
+      "createPictureEdit": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          396
+        ]
+      ],
+      "setNodes": [
+        [
+          "src/app/page.tsx",
+          1127
+        ],
+        [
+          "src/app/page.tsx",
+          1144
+        ],
+        [
+          "src/app/page.tsx",
+          1594
+        ],
+        [
+          "src/app/page.tsx",
+          1600
+        ]
+      ],
+      "ungroupSelectedNodes": [
+        [
+          "src/app/page.tsx",
+          1436
+        ]
+      ],
+      "createStoryScriptPair": [
+        [
+          "src/components/CanvasEmptyState.tsx",
+          49
         ]
       ],
       "destroyFirstFrameReference": [
@@ -172,48 +212,74 @@
           725
         ]
       ],
-      "createImageHdPreset": [
+      "addNodeAtPosition": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          714
+        ]
+      ],
+      "addDerivedNode": [
         [
           "src/components/nodes/ImageNode.tsx",
-          294
-        ]
-      ],
-      "removeEdge": [
+          142
+        ],
         [
-          "src/app/page.tsx",
-          1431
-        ]
-      ],
-      "clearVideoContinuation": [
+          "src/components/nodes/ImageNode.tsx",
+          162
+        ],
+        [
+          "src/components/nodes/ImageNode.tsx",
+          187
+        ],
         [
           "src/components/nodes/VideoNode.tsx",
-          733
+          201
         ]
       ],
-      "setNodes": [
+      "groupSelectedNodes": [
         [
           "src/app/page.tsx",
-          1073
-        ],
-        [
-          "src/app/page.tsx",
-          1090
-        ],
-        [
-          "src/app/page.tsx",
-          1522
-        ],
-        [
-          "src/app/page.tsx",
-          1528
+          1437
         ]
       ],
-      "duplicateNode": [],
+      "createVideoContinuation": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          219
+        ]
+      ],
+      "createFirstLastFrameReference": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          679
+        ]
+      ],
       "submitLibTVEditorSessionCommit": [],
-      "createFirstFrameReference": [
+      "setEdges": [],
+      "addEdge": [
+        [
+          "src/app/page.tsx",
+          672
+        ],
+        [
+          "src/components/director/DirectorAiImportModal.tsx",
+          72
+        ],
         [
           "src/components/nodes/VideoNode.tsx",
-          677
+          721
+        ]
+      ],
+      "createAudioSplit": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          257
+        ]
+      ],
+      "createLongVideoProcess": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          730
         ]
       ],
       "updateNodeData": [
@@ -242,73 +308,13 @@
           125
         ]
       ],
-      "createSmartMatting": [
+      "duplicateNode": [],
+      "createDepthMotionCapture": [
         [
           "src/components/nodes/VideoNode.tsx",
-          372
+          296
         ]
-      ],
-      "addEdge": [
-        [
-          "src/app/page.tsx",
-          618
-        ],
-        [
-          "src/components/director/DirectorAiImportModal.tsx",
-          72
-        ],
-        [
-          "src/components/nodes/VideoNode.tsx",
-          721
-        ]
-      ],
-      "createDirectorAnimationExport": [
-        [
-          "src/components/director/DirectorDesk.tsx",
-          740
-        ]
-      ],
-      "duplicateSelectedNodes": [
-        [
-          "src/app/page.tsx",
-          1355
-        ],
-        [
-          "src/app/page.tsx",
-          1608
-        ]
-      ],
-      "createStoryScriptPair": [
-        [
-          "src/components/CanvasEmptyState.tsx",
-          49
-        ]
-      ],
-      "addDerivedNode": [
-        [
-          "src/components/nodes/ImageNode.tsx",
-          142
-        ],
-        [
-          "src/components/nodes/ImageNode.tsx",
-          162
-        ],
-        [
-          "src/components/nodes/ImageNode.tsx",
-          187
-        ],
-        [
-          "src/components/nodes/VideoNode.tsx",
-          201
-        ]
-      ],
-      "createPictureEdit": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          396
-        ]
-      ],
-      "setEdges": []
+      ]
     },
     "gitlog_external_calls": {
       "duplicateNode": 7,
@@ -499,8 +505,8 @@
   "checks": [
     {
       "label": "C1 交叉表：记账 33 = LibTV 29 / 零入口 4；不记账 21 = 17 / 4",
-      "pass": true,
-      "detail": "{\"acct_total\": 33, \"acct_libtv\": 29, \"acct_dead\": [\"duplicateNode\", \"removeNode\", \"setEdges\", \"submitLibTVEditorSessionCommit\"], \"noacct_total\": 21, \"noacct_libtv\": 17, \"noacct_dead\": [\"purgeRemovedCanvas\", \"selectEdges\", \"selectNodeOutput\", \"selectNodes\"]}"
+      "pass": false,
+      "detail": "{\"acct_total\": 34, \"acct_libtv\": 30, \"acct_dead\": [\"duplicateNode\", \"removeNode\", \"setEdges\", \"submitLibTVEditorSessionCommit\"], \"noacct_total\": 21, \"noacct_libtv\": 17, \"noacct_dead\": [\"purgeRemovedCanvas\", \"selectEdges\", \"selectNodeOutput\", \"selectNodes\"]}"
     },
     {
       "label": "C2 四个零入口记账命令点名；submitLibTVEditorSessionCommit 全 src/ 零调用且从未调用过",
@@ -510,7 +516,7 @@
     {
       "label": "C3 别名映射 3 个；用 741 的运行时事实反证 census（setNodes 必须有 LibTV 入口）",
       "pass": true,
-      "detail": "{\"aliases\": {\"setNodes\": [\"setStoreNodes\"], \"addEdge\": [\"addStoreEdge\"], \"setViewport\": [\"setStoreViewport\"]}, \"setNodesLibTV\": [[\"src/app/page.tsx\", 1073], [\"src/app/page.tsx\", 1090], [\"src/app/page.tsx\", 1522], [\"src/app/page.tsx\", 1528]]}"
+      "detail": "{\"aliases\": {\"setNodes\": [\"setStoreNodes\"], \"addEdge\": [\"addStoreEdge\"], \"setViewport\": [\"setStoreViewport\"]}, \"setNodesLibTV\": [[\"src/app/page.tsx\", 1127], [\"src/app/page.tsx\", 1144], [\"src/app/page.tsx\", 1594], [\"src/app/page.tsx\", 1600]]}"
     },
     {
       "label": "C4 零入口命令直调：3 个无条件记账，setEdges 需带 recordHistory 才记（承 741 的条件记账）",

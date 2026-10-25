@@ -312,15 +312,15 @@
   },
   {
    "label": "产物：汇编器与我**独立算出的**守卫行号一致",
-   "pass": true,
+   "pass": false,
    "got": 487,
-   "want": 487
+   "want": 546
   },
   {
    "label": "产物：汇编器与我独立算出的 Cmd+Z 行号一致",
-   "pass": true,
+   "pass": false,
    "got": 506,
-   "want": 506
+   "want": 565
   },
   {
    "label": "产物：★ 结论把「不可逆」判为**不成立**（而不是跟着 763 的原话）",
@@ -342,10 +342,20 @@
    "label": "台账：该行恰 4 个竖线（3 列）",
    "pass": true,
    "got": 4
+  },
+  {
+   "label": "★ README 里没有裸数字开头的 markdown 表行（会骗过 pre-commit 的 added_batch_numbers）",
+   "pass": true,
+   "got": []
+  },
+  {
+   "label": "README 无 U+FFFD",
+   "pass": true,
+   "got": 0
   }
  ],
  "pass": 50,
- "total": 50,
+ "total": 52,
  "negativeControls": [
   {
    "name": "把输入框落点的撤销改成「成功了」 ⟹ 「撤销无效」必须红",
@@ -436,5 +446,5 @@
   "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ 不许有判据翻红"
  ],
  "rawError": null,
- "ok": true
+ "ok": false
 }

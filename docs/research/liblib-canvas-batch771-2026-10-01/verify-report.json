@@ -499,13 +499,13 @@
   },
   {
    "label": "台账：历史 U+FFFD 仍在 9 处、且分布未变",
-   "pass": true,
+   "pass": false,
    "got": {
-    "count": 9
+    "count": 0
    }
   }
  ],
- "pass": 42,
+ "pass": 41,
  "total": 42,
  "negativeControls": [
   {
@@ -590,5 +590,5 @@
  "negativeCaught": 13,
  "negativeTotal": 13,
  "rawError": null,
- "ok": true
+ "ok": false
 }

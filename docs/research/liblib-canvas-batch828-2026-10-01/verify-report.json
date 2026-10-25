@@ -17,8 +17,8 @@
         "hydration": {
           "found": true,
           "keys": [
-            "__reactFiber$910hct8t2n",
-            "__reactProps$910hct8t2n"
+            "__reactFiber$cwsjc2lm3c5",
+            "__reactProps$cwsjc2lm3c5"
           ],
           "hasOnClick": true
         },
@@ -51,7 +51,7 @@
               "nodeId": "b-bTLLuU4w5q"
             },
             {
-              "nodeId": "script-execution-1792571008924-kjgpq8"
+              "nodeId": "script-execution-1792934959715-ycu0nj"
             }
           ],
           "scriptExecutionNodes": [
@@ -60,7 +60,7 @@
               "title": "第一集：咖啡馆对峙"
             },
             {
-              "id": "script-execution-1792571008924-kjgpq8",
+              "id": "script-execution-1792934959715-ycu0nj",
               "title": "Batch 828"
             }
           ]
@@ -75,24 +75,24 @@
       "detail": {
         "第一次开台": {
           "deskOpen": true,
-          "projectId": "director-project-1792570998981-1",
+          "projectId": "director-project-1792934949678-1",
           "pastLen": 0,
           "pastKinds": [],
           "last": null,
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },
         "改名后": {
           "deskOpen": true,
-          "projectId": "director-project-1792570998981-1",
+          "projectId": "director-project-1792934949678-1",
           "pastLen": 1,
           "pastKinds": [
             "UPDATE_OBJECT"
@@ -101,7 +101,7 @@
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
@@ -111,7 +111,7 @@
         },
         "重开后": {
           "deskOpen": true,
-          "projectId": "director-project-1792570998981-1",
+          "projectId": "director-project-1792934949678-1",
           "pastLen": 1,
           "pastKinds": [
             "UPDATE_OBJECT"
@@ -120,7 +120,7 @@
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
@@ -138,18 +138,18 @@
       "detail": {
         "重开后撤销": {
           "deskOpen": true,
-          "projectId": "director-project-1792570998981-1",
+          "projectId": "director-project-1792934949678-1",
           "pastLen": 0,
           "pastKinds": [],
           "last": "UNDO/COMMITTED",
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },
@@ -163,24 +163,24 @@
       "detail": {
         "后门臂开台后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571011107-1",
+          "projectId": "director-project-1792934961908-1",
           "pastLen": 0,
           "pastKinds": [],
           "last": null,
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
-          "nodeId": "script-execution-1792571008924-kjgpq8"
+          "nodeId": "script-execution-1792934959715-ycu0nj"
         },
         "后门臂重开后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571011107-1",
+          "projectId": "director-project-1792934961908-1",
           "pastLen": 1,
           "pastKinds": [
             "UPDATE_OBJECT"
@@ -189,17 +189,17 @@
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
             "Batch 828 改名"
           ],
-          "nodeId": "script-execution-1792571008924-kjgpq8"
+          "nodeId": "script-execution-1792934959715-ycu0nj"
         },
         "节点": {
           "用户路径臂": "b-bTLLuU4w5q",
-          "后门臂": "script-execution-1792571008924-kjgpq8"
+          "后门臂": "script-execution-1792934959715-ycu0nj"
         },
         "★两条路径的函数完全相同": "真实按钮 `ScriptExecutionNode.tsx:57` 调的就是 `openDirectorDesk(id, activeCanvasId)`"
       }
@@ -211,39 +211,39 @@
       "detail": {
         "混搭臂开台后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571055971-1",
+          "projectId": "director-project-1792935008296-1",
           "pastLen": 0,
           "pastKinds": [],
           "last": null,
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
-          "nodeId": "script-execution-1792571053800-esc8vy"
+          "nodeId": "script-execution-1792935006121-pcimea"
         },
         "混搭臂重开后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571060996-3",
+          "projectId": "director-project-1792935013392-3",
           "pastLen": 0,
           "pastKinds": [],
           "last": null,
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },
-        "第一次的节点": "script-execution-1792571053800-esc8vy",
+        "第一次的节点": "script-execution-1792935006121-pcimea",
         "重开的节点": "b-bTLLuU4w5q"
       }
     },
@@ -254,39 +254,39 @@
       "detail": {
         "反混搭臂开台后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571066685-1",
+          "projectId": "director-project-1792935019206-1",
           "pastLen": 0,
           "pastKinds": [],
           "last": null,
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },
         "反混搭臂重开后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571071715-3",
+          "projectId": "director-project-1792935024680-3",
           "pastLen": 0,
           "pastKinds": [],
           "last": null,
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
-          "nodeId": "script-execution-1792571064503-u0giy6"
+          "nodeId": "script-execution-1792935017018-x409b1"
         },
-        "第一次的节点": "script-execution-1792571064503-u0giy6",
+        "第一次的节点": "script-execution-1792935017018-x409b1",
         "重开的节点": "b-bTLLuU4w5q"
       }
     },
@@ -297,7 +297,7 @@
       "detail": {
         "刷新前改名后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571041438-1",
+          "projectId": "director-project-1792934993063-1",
           "pastLen": 1,
           "pastKinds": [
             "UPDATE_OBJECT"
@@ -306,7 +306,7 @@
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
@@ -323,24 +323,24 @@
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": null
         },
         "刷新后重开": {
           "deskOpen": true,
-          "projectId": "director-project-1792571041438-1",
+          "projectId": "director-project-1792934993063-1",
           "pastLen": 0,
           "pastKinds": [],
           "last": null,
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
@@ -359,41 +359,41 @@
       "detail": {
         "开台后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571020059-1",
+          "projectId": "director-project-1792934971382-1",
           "pastLen": 0,
           "pastKinds": [],
           "last": null,
           "active": null,
           "fovStore": 43,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },
         "手势后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571020059-1",
+          "projectId": "director-project-1792934971382-1",
           "pastLen": 0,
           "pastKinds": [],
           "last": "UPDATE_CAMERA/COMMITTED",
           "active": "camera-fov",
           "fovStore": 46,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },
         "重开后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571020059-1",
+          "projectId": "director-project-1792934971382-1",
           "pastLen": 1,
           "pastKinds": [
             "camera-fov"
@@ -402,11 +402,11 @@
           "active": null,
           "fovStore": 46,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },
@@ -431,41 +431,41 @@
       "detail": {
         "手势后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571029742-1",
+          "projectId": "director-project-1792934981198-1",
           "pastLen": 0,
           "pastKinds": [],
           "last": "UPDATE_CAMERA/COMMITTED",
           "active": "camera-fov",
           "fovStore": 46,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },
         "点画布后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571029742-1",
+          "projectId": "director-project-1792934981198-1",
           "pastLen": 0,
           "pastKinds": [],
           "last": "UPDATE_CAMERA/COMMITTED",
           "active": "camera-fov",
           "fovStore": 46,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },
         "失焦后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571029742-1",
+          "projectId": "director-project-1792934981198-1",
           "pastLen": 1,
           "pastKinds": [
             "camera-fov"
@@ -474,17 +474,17 @@
           "active": null,
           "fovStore": 46,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },
         "重开后": {
           "deskOpen": true,
-          "projectId": "director-project-1792571029742-1",
+          "projectId": "director-project-1792934981198-1",
           "pastLen": 1,
           "pastKinds": [
             "camera-fov"
@@ -493,11 +493,11 @@
           "active": null,
           "fovStore": 46,
           "names": [
-            "角色01 · 陈默",
+            "角色A",
             "咖啡桌",
             "冷掉的咖啡",
             "咖啡馆背景",
-            "机位01 · 对峙中景"
+            "机位1"
           ],
           "nodeId": "b-bTLLuU4w5q"
         },

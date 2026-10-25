@@ -1,0 +1,1857 @@
+{
+ "逐条读数": [
+  {
+   "batch": "856",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "条通过"
+  },
+  {
+   "batch": "854",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 4 不符=[] ／ PASS  S11 可达性：**从根地址无参**进入 ⟹ 打开导演台 ⟹ 树／对象行／rail／可交互元素都在 ｜ 根地址=http://localhost:4317/ 有入口=True 树=True 对象行=5 rail=7 可交互=21 ／ == batch 854 门禁：11/11 通过 =="
+  },
+  {
+   "batch": "853",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 e=[('group-command', 'command'), ('group-key', 'G'), ('ungroup-command', 'command'), ('ungroup-shift', '⇧'), ('ungroup-key', 'D')] ／ == batch 853 门禁：11/11 通过 =="
+  },
+  {
+   "batch": "852",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ｜ math里=True viewport里 gizmo 挂点=2 处 用步长的=2 处 相等=True 残留0.5=False ／ PASS  S10 源站实测：R/F/V 三步成链 ＋ Shift+V ＋ X 翻转 ＋ 吞按键 ｜ 不符=[]（共 6 项） ／ == batch 852 门禁：10/10 通过 =="
+  },
+  {
+   "batch": "851",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "850",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 行仍在 ⟹ ⟹ 且预览区**没有**说明文字 ／ 7/7 条通过 ⟹ ⟹ PASS ／ 产物： /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch850-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "849",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 **没有**底部生成遮罩、★ 服装图是**引用**源站 CDN ／ PASS 7/7 ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch849-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "848",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 标「21」的含义**未实测**、图标字形是 lucide 占位 ／ PASS 7/7 ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch848-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "847",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ts／body／outfit 三段是**整宽 240×36** 的 ／ ✔ S7 ★★ **如实标注 ＋ 未实测的入口不编造**：README 必须写明——★ 图标**字形**是 lucide 占位（源站是 iconify）、★ 「我的音色」「AI 生成」两页**未实测**、★ 更正了**两处既 ／ PASS  7/7"
+  },
+  {
+   "batch": "846",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 列顶 + 40、内容起点在 + 56；滚动区高 **1312**； ／ ✔ S7 ★★ **如实标注**：README 必须写明——★ 卡片图**引用**源站 CDN（是引用不是复刻）、★ 图标**字形**用的是 lucide 占位（源站是 iconify）、★ 「服装」「AI 生成」两页**未 ／ PASS  7/7"
+  },
+  {
+   "batch": "845",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "844",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "843",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "842",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "841",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "840",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "839",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "830",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✔ N13 把 clone 的 z 判定改成裸 Z ⟹ S13 翻红 → 实际翻红 S13 ／ ✔ N14 把 i18n 的 directorShortcutUndo 改掉 ⟹ S14 翻红 → 实际翻红 S14 ／ ✔ N15 把「已复原(新context)」改成 False ⟹ S15 翻红 → 实际翻红 S15"
+  },
+  {
+   "batch": "831",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 间轴展开时命中」改成帮助 ⟹ S15 翻红 → 实际翻红 S14,S15 ／ ✘ N16 把 raw 里的 ⌘ path 从它的源站 excerpt 里摘掉 ⟹ S16 翻红 → 实际翻红 S14,S16 ／ ✘ N17 把像素比对的差异改成「path 抄错那版」的实测值 ⟹ S17 翻红 → 实际翻红 S14,S17"
+  },
+  {
+   "batch": "543",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ication passed: 7 checks, 0 diagnostics. reset-view pill below the pose gizmo issuing the default director-view snapshot command recorded in runtime-audit.json."
+  },
+  {
+   "batch": "783",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "｜通过"
+  },
+  {
+   "batch": "827",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✔ N14 在内存副本里把「公共角色库」放回面板 src ⟹ S12 翻红 → 实际翻红 S12 ／ ✔ N15 把 clone「查看角色资产」的 opacity 改成 1 ⟹ S14 翻红 → 实际翻红 S14 ／ ✔ N16 把「点添加后面板关着」改成 False ⟹ S15 翻红 → 实际翻红 S15"
+  },
+  {
+   "batch": "826",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✔ N10 在源站 raw 的「底部一行」里塞进「打开工具箱」⟹ S4 翻红 → 实际翻红 S4 ／ ✔ N11 在探针源码副本里塞一个 store 写调用 ⟹ S1 翻红（前提真被读） → 实际翻红 S1 ／ ✔ N12 把「点后面板开着」的读数改成 False ⟹ S6 翻红 → 实际翻红 S6"
+  },
+  {
+   "batch": "838",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "835",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1  false, \"C3\": false, \"C4\": false} ／ 判据 6/7 ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch835-2026-10-01/verify-report.json"
+  },
+  {
+   "batch": "62",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 s, captured command IDs, foreground shortcut suspension, one-Escape cleanup, editable/IME pass-through, pane cleanup, focus root, mobile bounds and diagnostics."
+  },
+  {
+   "batch": "111",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 827 起本门禁钉的是源站**当前**形态：Modal shell 1200x760, tabs 我的角色库/官方角色库, three filter pills, centered name label, bottom CTA and close aria recorded in runtime-audit.json."
+  },
+  {
+   "batch": "112",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ree <details> filter pills (性别/年龄段/文化区域), option text set, local tag-based filtering, clear-restore via the summary ✕ and toggle recorded in runtime-audit.json."
+  },
+  {
+   "batch": "113",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 113 verification passed: 5 checks, 0 diagnostics. Uniform strip card pitch recorded in runtime-audit.json."
+  },
+  {
+   "batch": "146b",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 agnostics. 文化区域 filter group（★ Batch 827 起是源站**当前**形态：我的角色库 = 东亚/欧美/中东/非洲/其他，官方角色库 = 东亚/欧美/中东/非洲/奇幻）、clear/restore, filter close recorded in runtime-audit.json."
+  },
+  {
+   "batch": "169",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 batch169: OK (10 checks) -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch169-2026-09-07/runtime-audit.json"
+  },
+  {
+   "batch": "556",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 556 verification passed: 8 checks, 0 diagnostics. coachmark content, skip and next dismissal recorded in runtime-audit.json."
+  },
+  {
+   "batch": "557",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 557 verification passed: 5 checks, 0 diagnostics. camera track row 绘制轨迹 affordance opening the motion-path menu recorded in runtime-audit.json."
+  },
+  {
+   "batch": "536",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  checks, 0 diagnostics. six-entry icon rail (图层/人物/机位/帧/文件夹/导入) with active-state switching and non-navigating unsampled entries recorded in runtime-audit.json."
+  },
+  {
+   "batch": "538",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 on passed: 20 checks, 0 diagnostics. panorama flyout (本地上传/历史记录/AI生成), aspect-ratio grid (7 options, 自适应 default, single-select) recorded in runtime-audit.json."
+  },
+  {
+   "batch": "540",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 nel (15 presets) without adding a camera; the scene tree's 新增机位 button still adds one directly. Contract corrected by batch 832, recorded in runtime-audit.json."
+  },
+  {
+   "batch": "575",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 575 verification passed: 4 checks, 0 diagnostics. per-axis keyframe badges appear after auto-keyframed transforms recorded in runtime-audit.json."
+  },
+  {
+   "batch": "46",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 46 Director capture gallery verification passed."
+  },
+  {
+   "batch": "36",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 36 director timeline verification passed."
+  },
+  {
+   "batch": "720",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "42",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 42 director character pose verification passed."
+  },
+  {
+   "batch": "43",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 43 director camera follow verification passed."
+  },
+  {
+   "batch": "550",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 550 verification passed: 5 checks, 0 diagnostics. snap-to-grid toggle persistence and TransformControls snap wiring recorded in runtime-audit.json."
+  },
+  {
+   "batch": "588",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  text inputs in the source formats, the three switches are self-drawn 24x14 track + 10x10 knob rows, and the search placeholder matches. See runtime-audit.json."
+  },
+  {
+   "batch": "741",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 1 改过的名字\", \"nodesAfterUndo\": 10} ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch741-2026-10-01/runtime-audit.json ／ 判据 11/13"
+  },
+  {
+   "batch": "797",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "断言通过"
+  },
+  {
+   "batch": "798",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "断言通过"
+  },
+  {
+   "batch": "45",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 45 director group/crowd verification passed."
+  },
+  {
+   "batch": "47",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 47 director model-library verification passed."
+  },
+  {
+   "batch": "48",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 48 director local-model-library verification passed."
+  },
+  {
+   "batch": "49",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 49 director viewport gizmo verification passed."
+  },
+  {
+   "batch": "50",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Known transient filtered (TransformControls scene-graph attach): 2 entries ／ Batch 50 director workspace shell verification passed."
+  },
+  {
+   "batch": "91",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 ched 3D object must be a part of the scene graph.', 'group-command:console:error:TransformControls: The attached 3D object must be a part of the scene graph.']}"
+  },
+  {
+   "batch": "91",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 Batch 91 pure/source verification passed (10 assertions)."
+  },
+  {
+   "batch": "59",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 brary search, preview-only selection, explicit scene insertion, object-tree/Inspector continuity, empty results, mobile bounds, no-overflow and graph isolation."
+  },
+  {
+   "batch": "792",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 「本来就空」的组没被算成受害者'] ／ ★ 正向 11/11   阴性 5/5 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch792-2026-10-01/verify-report.json"
+  },
+  {
+   "batch": "96",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ,\"pageErrors\":0,\"requestFailures\":0,\"details\":[\"mobile-bootstrap:console:error:TransformControls: The attached 3D object must be a part of the scene graph.\"]}}}"
+  },
+  {
+   "batch": "67",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 \"inputIsolationVerified\": true, ／ \"orderPreservationVerified\": true ／ }"
+  },
+  {
+   "batch": "68",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 : The attached 3D object must be a part of the scene graph.\", ／ \"console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
+  },
+  {
+   "batch": "74",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 74 Director persistence verification passed."
+  },
+  {
+   "batch": "79",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 lipboardEmpty\":true,\"sourceTargetIsolation\":true,\"independentProjectIds\":true},\"persistence\":{\"targetKeyPresent\":true,\"targetOwnerIsDistinct\":true},\"errors\":[]}"
+  },
+  {
+   "batch": "80",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ferencedLocalResourceReleased\":true,\"graphHistoryPreserved\":true},\"reload\":{\"bothDurableTombstonesRejectReopen\":true,\"localModelLibraryEmpty\":true},\"errors\":[]}"
+  },
+  {
+   "batch": "81",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ight verification passed: strict Director project import/export, owner rebind, history undo/redo, invalid zero-partial, download round-trip and graph isolation."
+  },
+  {
+   "batch": "69",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ameraPoseAuthoring\": \"pass\", \"closeReopenAuthoredRestore\": \"pass\", \"ownerIsolation\": \"pass\", \"ordinaryGraphIsolation\": \"pass\"}, \"screenshots\": [], \"errors\": []}"
+  },
+  {
+   "batch": "70",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 estureOneEntry\": \"pass\", \"ownerHistoryIsolation\": \"pass\", \"reopenHistoryContinuity\": \"pass\", \"ordinaryGraphIsolation\": \"pass\"}, \"screenshots\": [], \"errors\": []}"
+  },
+  {
+   "batch": "71",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 : The attached 3D object must be a part of the scene graph.\", ／ \"console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
+  },
+  {
+   "batch": "72",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ESOURCE_IN_USE\", \"cascadeHistoryDelta\": 1, \"storageDescriptorRemoved\": true}, \"diagnostics\": {\"errors\": [], \"status\": \"PASS\"}}, \"screenshots\": [], \"errors\": []}"
+  },
+  {
+   "batch": "75",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 tRestored\": true, \"clipboardRestored\": false, \"pasteCountRestored\": false, \"sessionCaptureRestored\": false, \"objectCount\": 8}}, \"screenshots\": [], \"errors\": []}"
+  },
+  {
+   "batch": "84",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Recovery\": true}, \"mobile\": {\"lockControlRemainsDiscoverable\": true}, \"diagnostics\": {\"consoleErrors\": 0, \"pageErrors\": 0, \"requestFailures\": 0, \"details\": []}}"
+  },
+  {
+   "batch": "85",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 d 3D object must be a part of the scene graph.\", \"multi-selection:console:error:TransformControls: The attached 3D object must be a part of the scene graph.\"]}}"
+  },
+  {
+   "batch": "86",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 obile\": {\"contextWithinToolbar\": true, \"noHorizontalOverflow\": true}, \"diagnostics\": {\"consoleErrors\": 0, \"pageErrors\": 0, \"requestFailures\": 0, \"details\": []}}"
+  },
+  {
+   "batch": "87",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1  object must be a part of the scene graph. ／ missing-selection-repair:console:error:TransformControls: The attached 3D object must be a part of the scene graph."
+  },
+  {
+   "batch": "88",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 eWithinViewport\": true}, \"mobile\": {\"workspaceWithinViewport\": true}, \"diagnostics\": {\"consoleErrors\": 0, \"pageErrors\": 0, \"requestFailures\": 0, \"details\": []}}"
+  },
+  {
+   "batch": "89",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 89 Director scene settings and add-camera verification passed."
+  },
+  {
+   "batch": "90",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 90 Director session and scene command verification passed."
+  },
+  {
+   "batch": "736",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 =0 aria-disabled=0 原生 disabled=7 ／ 6/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch736-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "748",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 hotOptions\": 1, \"railEntries\": 7} ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch748-2026-10-01/runtime-audit.json ／ 判据 4/7"
+  },
+  {
+   "batch": "749",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1  90）；本批已验证可打开 21 种（11 图库 + 10 姿势） ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch749-2026-10-01/runtime-audit.json ／ 判据 6/9"
+  },
+  {
+   "batch": "782",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "｜不通过"
+  },
+  {
+   "batch": "857",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "条通过"
+  },
+  {
+   "batch": "625",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ortal-moved-nothing ／ PASS crowd-dialog-width-is-220  [(1920, 1150, 220), (1440, 900, 220), (1280, 720, 220), (1920, 844, 220), (1100, 700, 220)] ／ 10/10 passed"
+  },
+  {
+   "batch": "590",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 easured 104x72 / radius 12 / per-ratio glyph boxes, 几何模型 opens its eight-option submenu, and 群众 (3x3) opens the real dialog and commits. See runtime-audit.json."
+  },
+  {
+   "batch": "626",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 x540/aspect-panel  {'items': 7, 'last': {'x': 56, 'y': 340, 'w': 104, 'h': 72}} ／ 117 checks, 1 failures ／ FAILED: live-controls-reachable/1280x720/crowd-dialog"
+  },
+  {
+   "batch": "613",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 55/55 passed"
+  },
+  {
+   "batch": "617",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS canvas:no-page-errors ／ PASS canvas:no-console-errors ／ 30/30 passed"
+  },
+  {
+   "batch": "619",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS 390-tree-drawer:no-page-errors ／ PASS 390-tree-drawer:no-console-errors ／ 137/137 passed"
+  },
+  {
+   "batch": "541",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ed addCrowdArray local equivalent with acknowledgement, preset types flash a local-equivalent notice without spawning 3D models, recorded in runtime-audit.json."
+  },
+  {
+   "batch": "589",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  All three rail flyouts are 232px with a 12px title line, the eleven 添加角色 options match the source order, and 全景图 reads 「AI生成」 verbatim. See runtime-audit.json."
+  },
+  {
+   "batch": "546",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1  from None ／ playwright._impl._errors.Error: FileChooser.set_files: ENOENT: no such file or directory, access '/private/tmp/batch542-fixture/hero-character.fbx'"
+  },
+  {
+   "batch": "624",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS no-cell-has-an-unexpected-covered-control ／ PASS every-panel-state-was-seen-open ／ 10/10 passed"
+  },
+  {
+   "batch": "861",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ok: clone:the-picker-lists-the-local-asset ／ ok: clone:no-page-errors ／ == batch 861 门禁：29 判据，0 失败 =="
+  },
+  {
+   "batch": "542",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1  from None ／ playwright._impl._errors.Error: FileChooser.set_files: ENOENT: no such file or directory, access '/private/tmp/batch542-fixture/hero-character.fbx'"
+  },
+  {
+   "batch": "738",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1  枚 8x8=True peNone=True selfHit=0 ／ 8/9 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch738-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "656",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 7 checks, 2 failures ／ FAILED: 655s-entries-reproduce-under-656s-own-instrument ／ FAILED: the-scene-prediction-was-wrong-and-scene-is-a-dom-level-no-op"
+  },
+  {
+   "batch": "858",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 'pressed': 'true'} ／ [PASS] mobile:the-mobile-entry-still-opens-the-dialog  ⟵ {'x': 162, 'y': 628, 'w': 220, 'h': 204, 'right': 382, 'bottom': 832} ／ 38 判据，0 失败"
+  },
+  {
+   "batch": "648",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 -line-that-made-it ／ FAILED: every-casualty-is-a-designed-non-control-not-a-clone-defect ／ FAILED: the-zero-size-guard-is-one-pixel-short-of-the-right-predicate"
+  },
+  {
+   "batch": "859",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 48 判据，0 失败"
+  },
+  {
+   "batch": "860",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 59 判据，0 失败"
+  },
+  {
+   "batch": "862",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 58 判据，0 失败"
+  },
+  {
+   "batch": "863",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 113 判据，0 失败"
+  },
+  {
+   "batch": "864",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 38 判据，0 失败"
+  },
+  {
+   "batch": "35",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 35 director workspace verification passed."
+  },
+  {
+   "batch": "645",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 11 checks, 2 failures ／ FAILED: the-four-constants-hold-at-every-width ／ FAILED: each-controls-margin-equals-the-closed-form"
+  },
+  {
+   "batch": "722",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "629",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 14 checks, 2 failures ／ FAILED: every-squeeze-coverer-is-in-the-viewports-bottom-band ／ FAILED: the-raw-viewport-bound-is-reconciled-by-the-timeline-height"
+  },
+  {
+   "batch": "815",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N9 ｜ 翻红：[] ／ PASS N10 ｜ 翻红：[] ／ ★ 阴性对照 10/10"
+  },
+  {
+   "batch": "816",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N9 ｜ 翻红：['S2:★'] ／ PASS N10 ｜ 翻红：[] ／ ★ 阴性对照 10/10"
+  },
+  {
+   "batch": "817",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N10 ｜ 翻红：['S1:★'] ／ PASS N11 ｜ 翻红：[] ／ ★ 阴性对照 11/11"
+  },
+  {
+   "batch": "77",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 inaryGraphUnchanged\": true}, \"directorNoopDrag\": {\"zeroDistanceDrag\": true, \"historyUnchanged\": true, \"gestureCleared\": true}}, \"screenshots\": [], \"errors\": []}"
+  },
+  {
+   "batch": "788",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 链四段都在（正则找，不靠行号）'] ／ ★ 正向 10/10   阴性 5/5 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch788-2026-10-01/verify-report.json"
+  },
+  {
+   "batch": "865",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 22 判据，0 失败"
+  },
+  {
+   "batch": "37",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 37 director motion path verification passed (filtered 5 transient TransformControls console error(s))."
+  },
+  {
+   "batch": "38",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 38 director path authoring verification passed."
+  },
+  {
+   "batch": "39",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 39 director path transform verification passed."
+  },
+  {
+   "batch": "40",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 playwright._impl._errors.TimeoutError: Locator.bounding_box: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-aspect-frame]\")"
+  },
+  {
+   "batch": "41",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 h\": 12.574996948242188, \"roll\": -9.04356743879379}, \"trackKeyframes\": null, \"lastKeyframeT\": null} ／ Batch 41 director phone virtual-camera verification passed."
+  },
+  {
+   "batch": "44",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 44 director preset camera motion verification passed."
+  },
+  {
+   "batch": "599",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 599 verification: 10/10 checks passed ／ wrote docs/research/liblib-canvas-batch599-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "630",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 16 checks, 2 failures ／ FAILED: no-cell-has-an-unexplained-covered-control ／ FAILED: every-squeeze-coverer-is-the-band-or-a-zero-height-replacement"
+  },
+  {
+   "batch": "641",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  unfixed, awaiting a source reading; this is the ONLY genuine cover the 14-width sweep found, once the round corners are accounted for'} ／ 13 checks, 0 failures"
+  },
+  {
+   "batch": "662",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 , 360, 420], 'priorInstrument': \"633's own census, `buriedColumns`\", 'comparison': {  [two instruments, two batches, one page, same members] ／ 8/8 checks passed"
+  },
+  {
+   "batch": "685",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 -of-real-ramps ／ FAILED: the-second-breakpoint-is-a-discontinuity-at-620-not-a-band ／ FAILED: two-nominally-identical-icon-buttons-behave-completely-differently"
+  },
+  {
+   "batch": "686",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 -subpixel-ramp ／ FAILED: the-top-edge-is-pinned-at-264-then-switches-to-bottom-anchored-crossing-at-356 ／ FAILED: 683s-only-one-key-holds-in-unrounded-units-too"
+  },
+  {
+   "batch": "687",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  'dragStartsFrom': {'engageNoMin200': 112, 'engageHitsMin150': 88  [a value that cannot survive a resize is not a preference, it is a cache] ／ 7/7 checks passed"
+  },
+  {
+   "batch": "688",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ollapsed': 'false'}, {'step': 'dragUpFar', 'tlAttr': 420, 'collapsed': 'false'}, {'s  [being a dependency is not the same as being a writer] ／ 5/5 checks passed"
+  },
+  {
+   "batch": "689",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 essedAtY': 539, 'dragDistance': 139, 'heightAtRelease': 321}, {'  [an interaction whose result needs two inputs is not predictable from one] ／ 4/4 checks passed"
+  },
+  {
+   "batch": "690",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 'ratioPredict  [an unverified inference with a closed-form price tag] ／ 6/7 checks passed ／ FAILED: census-one-leaf-path-in-74-is-integer-valued-by-construction"
+  },
+  {
+   "batch": "700",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 one, 'anyFeedback': False}  [the playhead opens at 0, a position that already carries a keyframe, so the very first click a user makes does] ／ 4/4 checks passed"
+  },
+  {
+   "batch": "701",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 g ledger is impressive and tells you nothing about its coverage; coverage can only be measured by finding ] ／ 4/4 checks passed ／ 注意：判据 1 预期为假 —— 预测被推翻才是本批的交付物。"
+  },
+  {
+   "batch": "721",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "750",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 两轮跑探针…… ／ /Users/yangjiefeng/.pyenv/versions/3.10.6/bin/python3: can't open file '/tmp/dbg750e.py': [Errno 2] No such file or directory ／ 探针失败 exit=2"
+  },
+  {
+   "batch": "751",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 两轮跑探针…… ／ /Users/yangjiefeng/.pyenv/versions/3.10.6/bin/python3: can't open file '/tmp/dbg751e.py': [Errno 2] No such file or directory ／ 探针失败 exit=2"
+  },
+  {
+   "batch": "752",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 当前帧有关键帧`/`当前帧无关键帧` 开关；**clone 三样都已经有** ⟹ 不是缺口；源站 FOV ra ／ ✅ C10 时间线缩放滑杆**已经对平**：源站 `aria-label='时间轴缩放'` min=0 max=100 value=44，clone `data-director-timeline-zoo"
+  },
+  {
+   "batch": "76",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 AssertionError: [ ／ \"delete-active-owner-a:console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
+  },
+  {
+   "batch": "763",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "764",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "767",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "768",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "769",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 lib-tv/scripts/verify-liblib-batch769.py\", line 93, in static_side ／ cseg = vp[vp.index(\"data-director-crowd-panel\"):vp.index( ／ ValueError: substring not found"
+  },
+  {
+   "batch": "770",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "774",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "776",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "781",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "784",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "｜通过"
+  },
+  {
+   "batch": "785",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 编器 / 普查器 / 验收器）'] ／ ★ 正向 14/14   阴性 7/7 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch785-2026-10-01/verify-report.json"
+  },
+  {
+   "batch": "786",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 \", line 516, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 3 项红（['S3:三向互斥的三组都在', 'S5:vcam 打开者带门', 'S6:三方对账（汇编器 / 普查器 / 验收器）']）⟹ 阴性对照会在污染过的前提上跑"
+  },
+  {
+   "batch": "787",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 ert nPos == len(checks), ( ／ AssertionError: ★ 基线有 4 项红（['S2:四组新增都在', 'S3:★ 重头戏：模型库加条目会杀掉运镜绘制', 'S4:action 侧行锚定', 'S5:四方一致（普查 / 验收器 计数+清单，汇编器 那 4 组）']）⟹ 阴性对照没意义"
+  },
+  {
+   "batch": "789",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 nts/wubuku/liblib-tv/scripts/verify-liblib-batch789.py\", line 356, in main ／ assert nPos == len(checks), ( ／ AssertionError: ★ 基线有 1 项红（['S10:桌的锚点唯一']）⟹ 阴性对照没意义"
+  },
+  {
+   "batch": "821",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N11 ｜ 翻红：['S1:★', 'S4:★', 'S7:★'] ／ PASS N12 ｜ 翻红：[] ／ ★ 阴性对照 12/12"
+  },
+  {
+   "batch": "822",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✔ N10 容差 0.001→0.0001 ⟹ 「+1ms 仍被拒」翻红（**S3**） → 实际翻红 S3 ／ ✔ N11 抹掉臂5 的面板外提示 ⟹ S5 翻红 → 实际翻红 S5 ／ ✔ N12 把失焦前显示改成真实值 ⟹ S10 翻红 → 实际翻红 S10"
+  },
+  {
+   "batch": "823",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✔ N9 把 B10「面板被真实点击关掉了」改成 False ⟹ S7 翻红 → 实际翻红 S7 ／ ✔ N10 把 B5 的默认选中轨道改成相机 ⟹ S5 翻红 → 实际翻红 S5 ／ ✔ N11 把 B3 的跟随目标抹成 null ⟹ S6 翻红 → 实际翻红 S6"
+  },
+  {
+   "batch": "828",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✔ N10 把刷新臂的名字里去掉那次改名 ⟹ S8 翻红 → 实际翻红 S8 ／ ✔ N11 在持久化源码副本里去掉 TOMBSTONED ⟹ S10 翻红 → 实际翻红 S10 ／ ✔ N12 把失焦臂的结果改成 GESTURE_CANCEL ⟹ S11 翻红 → 实际翻红 S11"
+  },
+  {
+   "batch": "833",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✔ N14 把 store 的 updateCamera 写空 ⟹ S14 翻红 → 实际翻红 S14 ／ ✔ N15 把 desk 里的 fov 写死 ⟹ S15 翻红 → 实际翻红 S15 ／ ✔ N16 把源站点完后的格数改成 14 ⟹ S16 翻红 → 实际翻红 S16"
+  },
+  {
+   "batch": "837",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "855",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "条通过"
+  },
+  {
+   "batch": "93",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 rue,\"mobileInspectorDrawer\":true,\"timeline\":true,\"noHorizontalOverflow\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[]}}}"
+  },
+  {
+   "batch": "95",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ,\"pageErrors\":0,\"requestFailures\":0,\"details\":[],\"consoleErrorsExpected\":false,\"consoleErrorReason\":\"malformed base64 data URL rejected before TextureLoader\"}}}"
+  },
+  {
+   "batch": "866",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 y'], '说明': '★ 删掉一条 ⟹ ⟹ 缺口必须**恰好**是那一条 ⟹ ⟹ ★ 否则「缺口为空」可能是**恒空**的假绿'} ／ FAILED: runtime:the-census-finds-the-same-gap-as-the-static-check  ⟵ {'动态重算缺口': ['868.py']}"
+  },
+  {
+   "batch": "67",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "68",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "74",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "79",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "80",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "81",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "69",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 \"path projection never samples runtime objects\",\"phone preview remains runtime-only\"],\"forbiddenRuntimeProjectionCalls\":0,\"authoredRuntimeState\":\"discoverable\"}"
+  },
+  {
+   "batch": "70",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 t transform starts a gesture\",\"curve editing starts a gesture\",\"graph history is not called\"],\"historyBoundary\":\"discoverable\",\"gestureBoundary\":\"discoverable\"}"
+  },
+  {
+   "batch": "71",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 s path drawing lifecycle\"],\"gestureBoundary\":\"focus-pointer-update-commit-cancel\",\"coveredInputs\":[\"number\",\"range\",\"path-anchor\",\"path-transform\",\"path-draw\"]}"
+  },
+  {
+   "batch": "72",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "75",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "84",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 nspectorLockControl\":true,\"lockedViewportNoTransformControls\":true,\"lockedObjectGuard\":true,\"lockedPathGuard\":true,\"lockedGroupGuard\":true,\"stableReason\":true}}"
+  },
+  {
+   "batch": "85",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 ses\":{\"selectionToolbar\":true,\"selectionCount\":true,\"copyAction\":true,\"deleteAction\":true,\"clearAction\":true,\"groupContext\":true,\"sourceBoundaryRecorded\":true}}"
+  },
+  {
+   "batch": "86",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 erCancel\":true,\"objectAndGroupLostPointerCapture\":true,\"authoredRuntimeAuthorityPresent\":true,\"lockedReasonBoundaryPresent\":true,\"sourceBoundaryRecorded\":true}}"
+  },
+  {
+   "batch": "87",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 cy\":true,\"objectSelectionRepair\":true,\"groupSelectionRepair\":true,\"timelineSelectionRepair\":true,\"portableDocumentBoundary\":true,\"sourceBoundaryRecorded\":true}}"
+  },
+  {
+   "batch": "88",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 ership\":true,\"deleteRepair\":true,\"directWriteEntrypoints\":true,\"inspectorTimelineAgreement\":true,\"viewportTransformContext\":true,\"sourceBoundaryRecorded\":true}}"
+  },
+  {
+   "batch": "89",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 Batch 89 pure/source verification passed (12 assertions)."
+  },
+  {
+   "batch": "90",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 Batch 90 pure/source verification passed (12 assertions)."
+  },
+  {
+   "batch": "76",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "753",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✅ 判据11 Alt+Shift+F 整理 9/10 节点移位 + 出现「还原」48×32 ／ ✅ 判据13 中键拖 viewport 变 / 左键拖不变 ／ ⏭ 原始读数交叉核对（/tmp/vb753h.json 不在本机）  ⟵ SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  },
+  {
+   "batch": "754",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ⟹ 不计入分母 ／ ⏭ 提示时间序列交叉核对（/tmp/vb754d.json 不在本机）  ⟵ SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母 ／ ⏭ 单轮组偏移交叉核对（/tmp/vb754b.json 不在本机）  ⟵ SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  },
+  {
+   "batch": "755",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✅ 判判13 store 升序 vs DOM 倒序 ／ ✅ 判据14 purgeRemovedCanvas 零调用点 ／ ⏭ 原始读数交叉核对（/tmp/vb755d.json 不在本机）  ⟵ SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  },
+  {
+   "batch": "756",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✅ 产物：不声称里明确写了「没有与源站对照」 ／ ✅ 产物：rawProbeFiles 四个探针都有说明 ／ ⏭ 原始读数交叉核对（/tmp/vb756{c,d}.json 不在本机）  ⟵ SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  },
+  {
+   "batch": "757",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✅ 产物：不声称里明确写了「没有与源站对照」与 oklab 解析限制 ／ ✅ 产物：rawProbeFiles 三个探针都有说明 ／ ⏭ 原始读数交叉核对（/tmp/vb757{a,b,c}.json 不在本机）  ⟵ SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  },
+  {
+   "batch": "758",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✅ 产物：不声称里明确写了「单 handle 结论未做运行时验证」与「没有与源站对照」 ／ ✅ 产物：rawProbeFiles 三个探针都有说明 ／ ⏭ 原始读数交叉核对（/tmp/vb758{a,b,c,d}.json 不在本机）  ⟵ SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  },
+  {
+   "batch": "759",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✅ 产物：不声称里写了「新建项目未单独验」与「没有与源站对照」 ／ ✅ 产物：rawProbeFiles 两个探针都有说明 ／ ⏭ 原始读数交叉核对（/tmp/vb759{a,b}.json 不在本机）  ⟵ SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  },
+  {
+   "batch": "554",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 e']}: {error}\") from None ／ playwright._impl._errors.Error: FileChooser.set_files: ENOENT: no such file or directory, access '/private/tmp/batch554-fixture.png'"
+  },
+  {
+   "batch": "562",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 e']}: {error}\") from None ／ playwright._impl._errors.Error: FileChooser.set_files: ENOENT: no such file or directory, access '/private/tmp/batch554-fixture.png'"
+  },
+  {
+   "batch": "565",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 rification passed: 6 checks, 0 diagnostics. upstream image node auto-selected as panorama source, runtime ready and 已连接全景图 label recorded in runtime-audit.json."
+  },
+  {
+   "batch": "760",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "761",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "360",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 eview overlay, the annotate canvas and its colour menu. No input silently discards what the user types and no enabled control is left click-dead in any of them."
+  },
+  {
+   "batch": "364",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Batch 364: 11/11 checks passed ／ Video node's cover play button is now declared inert with a title, and the picture-edit panel is reachable and clean."
+  },
+  {
+   "batch": "367",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 + title + cursor:default, no hover), geometry and copy unchanged; the working 'view frame-erase help' hover target was left alone and still reveals its tooltip."
+  },
+  {
+   "batch": "368",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  and copy unchanged; working controls in the same panels were left alone; the three judgment blind spots are closed and each is self-checked in both directions."
+  },
+  {
+   "batch": "369",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 VERAGE_MATRIX.md with an explicit status; no documented path has drifted; and the census proves an audit-script mention is not product wiring (both directions)."
+  },
+  {
+   "batch": "437",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 nvas without touching active canvas or selection, unknown source returns stable null, pending task interrupted by switch is canceled, browser diagnostics clean."
+  },
+  {
+   "batch": "441",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 e scan read-only with expected conflict kinds, smart-matting derived node flagged for the generic 512x288 frame against a 1:1 source, browser diagnostics clean."
+  },
+  {
+   "batch": "442",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 288), landscape sources keep the generic 512x288, extreme ratios fall back and are flagged, video display-string intrinsics drive the policy, diagnostics clean."
+  },
+  {
+   "batch": "443",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 n + contain fit), the fit transform matches §7 formulas, a red marker drawn at the mapped intrinsic point reads back exactly and round-trips, diagnostics clean."
+  },
+  {
+   "batch": "445",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 t checks, session state machine transitions and stable rejections, semantic normalization no-op, local-history budget and gesture coalescing, diagnostics clean."
+  },
+  {
+   "batch": "447",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 title-erase and picture-edit resubmits are no-ops returning the existing target (one node/edge/history each), a different mode still creates, diagnostics clean."
+  },
+  {
+   "batch": "449",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 tion acceptor (node/edge/history land once on the owner canvas) and a submit interrupted by a canvas switch is cancelled with no late commit, diagnostics clean."
+  },
+  {
+   "batch": "467",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 back catalog covers every expected surface, outcome->disposition projection exact (accepted success, no-op inert, rejections error/announce), diagnostics clean."
+  },
+  {
+   "batch": "470",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 port duplicate suppression returns the existing node for the same exportId (no duplicate node/edge/history), missing source is a stable null, diagnostics clean."
+  },
+  {
+   "batch": "513",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 s 10/10 green (round-trip, order/ID retention, runtime stripping, stable rejection reasons, media diagnostics, injected limits); recorded in runtime-audit.json."
+  },
+  {
+   "batch": "611",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 49/49 passed"
+  },
+  {
+   "batch": "612",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 118/118 passed"
+  },
+  {
+   "batch": "614",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS mobile:drawer-above-the-scrim ／ PASS mobile:no-page-errors ／ 48/48 passed"
+  },
+  {
+   "batch": "615",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop:场景-restores-it ／ PASS desktop:geometry-restored  [240, 5.5, 40, 40] ／ 22/22 passed"
+  },
+  {
+   "batch": "616",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 19/19 passed"
+  },
+  {
+   "batch": "618",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop:no-page-errors ／ PASS desktop:no-console-errors ／ 42/42 passed"
+  },
+  {
+   "batch": "620",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS 390-asset-manager:no-page-errors ／ PASS 390-asset-manager:no-console-errors ／ 57/57 passed"
+  },
+  {
+   "batch": "621",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop-1920:no-page-errors ／ PASS desktop-1920:no-console-errors ／ 40/40 passed"
+  },
+  {
+   "batch": "622",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 scrolling  {'controls': 14, 'blocked': [], 'neverInWindow': []} ／ PASS vw1280:the-hidden-part-is-clipped-not-buried  {'hidden': 0, 'covered': []} ／ 47/47 passed"
+  },
+  {
+   "batch": "623",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS vw900:no-page-errors ／ PASS vw900:no-console-errors  {'errs': [], 'filtered': 0} ／ 24/24 passed"
+  },
+  {
+   "batch": "657",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 '  [a number is allowed to be scary as long as the label on it is accurate] ／ 5 checks, 1 failures ／ FAILED: the-two-landing-probes-do-not-agree-with-each-other"
+  },
+  {
+   "batch": "664",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 hecks passed ／ FAILED: the-blind-population-is-22-elements-and-13-cannot-even-be-named ／ FAILED: the-blind-population-includes-the-playhead-and-the-aspect-frame"
+  },
+  {
+   "batch": "674",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 5/7 checks passed ／ FAILED: the-two-folding-partitions-are-not-nested ／ FAILED: 670s-66-is-a-name-count-not-a-control-count"
+  },
+  {
+   "batch": "678",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 搭建的场景'], '1280x1150': ['上传图片', '帮助', '描述想搭建的场景'], '1366x1150': ['帮助', '描述想搭建的场景'], '1440x  [three probe rules, three populations, one order] ／ 6/6 checks passed"
+  },
+  {
+   "batch": "681",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1  line 214, in <genexpr> ／ all(int(zs[k][\"railZ\"]) == 30 and int(zs[k][\"barZ\"]) == 40 for k in keys) ／ ValueError: invalid literal for int() with base 10: 'auto'"
+  },
+  {
+   "batch": "691",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 ecks passed ／ FAILED: census-only-one-derived-pixel-length-exists-and-690-found-it ／ FAILED: a-second-and-unrelated-mechanism-makes-integers-come-out-fractional"
+  },
+  {
+   "batch": "692",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 nnot distinguish this case from a genuinely simple field] ／ 4/5 checks passed ／ FAILED: only-three-expressions-are-displayed-at-more-than-one-explicit-precision"
+  },
+  {
+   "batch": "694",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 chable': 20, 'pxPerValue': 9.444444444444445}, {'key': 'uniform-scale', 't  [a measured invariant, with its cause explicitly left unclaimed] ／ 5/5 checks passed"
+  },
+  {
+   "batch": "695",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 a-radius', 'scene-ground-opacity', 'scene-ground-height'], 'howTheyWereReac  [some controls have an entry only in the state you fall out of] ／ 6/6 checks passed"
+  },
+  {
+   "batch": "699",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ected': 'director-camera-m  [the same attribute, the same page, two verdicts — which is also why a census must state its starting state, an] ／ 5/5 checks passed"
+  },
+  {
+   "batch": "718",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "727",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "728",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "通过"
+  },
+  {
+   "batch": "729",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "73",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "730",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 ton\" aria-label=\"积分余额\" title=\"积分余额（读数，无可点操作）\" data-inert=\"true\" className=\"flex h-8 cursor-default items-center gap-1.5 rounded-lg bg-[#262626] px-3 text-xs\"'}]"
+  },
+  {
+   "batch": "731",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 nd-wired-buttons-are-byte-identical ／ PASS accessible-names-fall-back-to-title-instead-of-being-empty ／ PASS title-fallback-is-confined-to-two-icon-only-buttons"
+  },
+  {
+   "batch": "732",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 invisible-yet-still-focusable ／ PASS the-40-invisible-buttons-are-still-in-tab-order-and-in-the-ax-tree ／ PASS seed-canvas-video-status-blocks-two-more-families"
+  },
+  {
+   "batch": "733",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ens-and-its-one-site-is-focusable ／ PASS storyboard-editor-entry-button-is-absent-by-conditional-gate ／ PASS shot-breakdown-result-is-gated-on-uploading-a-video"
+  },
+  {
+   "batch": "734",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS mark-select-mode-opens-2-sites ／ PASS reshoot-opens-4-sites-as-6-instances ／ PASS coverage-table-closes-at-42-opened-plus-4-gated"
+  },
+  {
+   "batch": "735",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 } ／ [PASS] C10 4 个门控写点仍不出现  ⟵ [] ／ 9/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch735-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "737",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 着 38 枚；删除连线 11 枚；TV Director 1 枚 ／ 5/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch737-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "739",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ）  ⟵ selectedEdgeIds=0（记未取证，不下结论） ／ 9/9 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch739-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "740",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 的删除  ⟵ 另一张画布边 0→0；原画布删后仍为 10（未被撤） ／ 7/8 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch740-2026-10-01/runtime-audit.json"
+  },
+  {
+   "batch": "742",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 attachAssetReferences\", \"none\"]]} ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch742-2026-10-01/runtime-audit.json ／ 判据 6/7"
+  },
+  {
+   "batch": "743",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 \"重做视频处理\"], \"outsideSeedOnly\": []} ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch743-2026-10-01/runtime-audit.json ／ 判据 5/6"
+  },
+  {
+   "batch": "744",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  1], \"toolbarInNodeBoth\": [0, 0]} ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch744-2026-10-01/runtime-audit.json ／ 判据 6/6"
+  },
+  {
+   "batch": "746",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 通（芯片路径，past +1、节点 +12、边 +22）\"}] ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch746-2026-10-01/runtime-audit.json ／ 判据 10/11"
+  },
+  {
+   "batch": "747",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "rc=1 , \"delta\": \"742 验出零 UI 入口，从未触发\"}] ／ 写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch747-2026-10-01/runtime-audit.json ／ 判据 6/7"
+  },
+  {
+   "batch": "762",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "765",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "766",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "771",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "772",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "773",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "775",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "777",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "778",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "779",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "78",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0  \"timelineStaleMoveStopped\": true, \"timelinePointerReuse\": true, \"timelineVisibilityCleanup\": true, \"historyUntouched\": true}}, \"screenshots\": [], \"errors\": []}"
+  },
+  {
+   "batch": "780",
+   "ext": "py",
+   "rc": 1,
+   "verdict": "通过"
+  },
+  {
+   "batch": "790",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 每格的行数与菜单项前后完全相同'] ／ ★ 正向 11/11   阴性 5/5 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch790-2026-10-01/verify-report.json"
+  },
+  {
+   "batch": "791",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 Tab / 右键菜单）前后都通'] ／ ★ 正向 11/11   阴性 5/5 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch791-2026-10-01/verify-report.json"
+  },
+  {
+   "batch": "793",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 拖拽收口仍经它、旧裸写点已消失'] ／ ★ 正向 10/10   阴性 5/5 ／ wrote /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch793-2026-10-01/verify-report.json"
+  },
+  {
+   "batch": "794",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "断言通过"
+  },
+  {
+   "batch": "795",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "断言通过"
+  },
+  {
+   "batch": "796",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "断言通过"
+  },
+  {
+   "batch": "799",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N6 ★★ 反向对照：`GROUP_PADDING` 改成 60（仍是 20 的倍数） ｜ 翻红：无 ／ ★ 阴性对照 6/6 ／ ★ 阴性对照后字节级复原：{'cs': True, 'pre': True, 'post': True, 'diagPre': True, 'diagPost': True}"
+  },
+  {
+   "batch": "800",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N5 ★★ pre raw：把顶层组臂里 n-loose 的绝对 y 挪 +11 ｜ 翻红：['S3:★★ 阴性对照：取消顶层组，成员与子组不动（pre/post）'] ／ ★ 阴性对照 5/5 ／ ★ 阴性对照后字节级复原：{'cs': True, 'pre': True, 'post': True}"
+  },
+  {
+   "batch": "801",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N4b ★★ 新 S10 的牙：伪造「801 那次提交动过 src」⟹ ⟹ S10 必须翻 ｜ 翻红：['S10:★★ 记账：本批**没改** `src/`'] ／ ★ 阴性对照 5/5 ／ ★ 阴性对照后字节级复原：{'cs': True, 'pre': True, 'post': True}"
+  },
+  {
+   "batch": "802",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N4 ★★ 反向对照：只改 `createImageHdPreset` 那段注释的字 ｜ 翻红：无 ／ ★ 阴性对照 4/4 ／ ★ 阴性对照后字节级复原：{'cs': True, 'pre': True, 'post': True}"
+  },
+  {
+   "batch": "806",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N5 ★★ raw：声称确认框不再说「不可恢复」 ｜ 翻红：['S5:★★ 文案与实现矛盾：确认框写「此操作不可恢复」，而删除后条目**进了回收站**'] ／ PASS N6 ★★ 反向对照：只动与判据无关的字段（note） ｜ 翻红：无 ／ ★ 阴性对照 6/6"
+  },
+  {
+   "batch": "807",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N5 ★★ raw：声称空组的框被清零了 ｜ 翻红：['S6:★★ 附赠读数（给 793／757 ②）：组被搬空后**框不变**，仍等于原成员的包围盒 ⊕ 2×padding'] ／ PASS N6 ★★ 反向对照：只动与判据无关的字段（note） ｜ 翻红：无 ／ ★ 阴性对照 6/6"
+  },
+  {
+   "batch": "808",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N6 ★★★ raw：伪造「菜单里有其它项」（即那臂其实测到了东西） ｜ 翻红：['S7:★★★ 作废闸：右键菜单那条臂**探针没打开菜单** ⟹ 显式作废、不得据此下结论'] ／ PASS N7 ★★ 反向对照：只动与判据无关的字段（note） ｜ 翻红：无 ／ ★ 阴性对照 7/7"
+  },
+  {
+   "batch": "809",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N7 ｜ 翻红：['S5:★★★ DOM 交'] ／ PASS N8 ｜ 翻红：[] ／ ★ 阴性对照 8/8"
+  },
+  {
+   "batch": "810",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N6 ｜ 翻红：['S5:★★ DOM 侧也'] ／ PASS N7 ｜ 翻红：[] ／ ★ 阴性对照 7/7"
+  },
+  {
+   "batch": "811",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N7 ｜ 翻红：['S6:★★ 切过去之'] ／ PASS N8 ｜ 翻红：[] ／ ★ 阴性对照 8/8"
+  },
+  {
+   "batch": "812",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N5 ｜ 翻红：['S6:★★★ 空记录'] ／ PASS N6 ｜ 翻红：[] ／ ★ 阴性对照 6/6"
+  },
+  {
+   "batch": "813",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N4 ｜ 翻红：['S1:★★★ 阳性对'] ／ PASS N5 ｜ 翻红：[] ／ ★ 阴性对照 5/5"
+  },
+  {
+   "batch": "814",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N7 ｜ 翻红：['S1:★★ 阳性对照'] ／ PASS N8 ｜ 翻红：[] ／ ★ 阴性对照 7/7"
+  },
+  {
+   "batch": "818",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N7 ｜ 翻红：['S6:★'] ／ PASS N8 ｜ 翻红：[] ／ ★ 阴性对照 8/8"
+  },
+  {
+   "batch": "819",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N11 ｜ 翻红：[] ／ PASS N12 ｜ 翻红：[] ／ ★ 阴性对照 12/12"
+  },
+  {
+   "batch": "82",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "820",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 PASS N10 ｜ 翻红：['S2:★'] ／ PASS N11 ｜ 翻红：[] ／ ★ 阴性对照 11/11"
+  },
+  {
+   "batch": "83",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "834",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 ✔ N13 删掉旧属性名别名 ⟹ S14 翻红 → 实际翻红 S14 ／ ✔ N14 把源站的步数改成 4 ⟹ S1 翻红 → 实际翻红 S1 ／ ✔ N15 改组件源码里第 2 步的文案 ⟹ S2 翻红 → 实际翻红 S2"
+  },
+  {
+   "batch": "868",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 11 判据，0 失败"
+  },
+  {
+   "batch": "92",
+   "ext": "mjs",
+   "rc": 0,
+   "verdict": "rc=0 g, add \"type\": \"module\" to /Users/yangjiefeng/Documents/wubuku/liblib-tv/package.json. ／ (Use `node --trace-warnings ...` to show where the warning was created)"
+  },
+  {
+   "batch": "94",
+   "ext": "py",
+   "rc": 0,
+   "verdict": "rc=0 eMethod\":\"escape\"},\"collapsedRailsAreInert\":true,\"noHorizontalOverflow\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[]}}}"
+  }
+ ],
+ "判定": {
+  "红": [
+   "831.py",
+   "835.py",
+   "741.py",
+   "91.py",
+   "68.py",
+   "71.py",
+   "87.py",
+   "736.py",
+   "748.py",
+   "749.py",
+   "782.py",
+   "626.py",
+   "546.py",
+   "542.py",
+   "738.py",
+   "656.py",
+   "648.py",
+   "645.py",
+   "722.py",
+   "629.py",
+   "40.py",
+   "630.py",
+   "685.py",
+   "686.py",
+   "690.py",
+   "750.py",
+   "751.py",
+   "752.py",
+   "76.py",
+   "763.py",
+   "764.py",
+   "767.py",
+   "768.py",
+   "769.py",
+   "770.py",
+   "774.py",
+   "781.py",
+   "786.py",
+   "787.py",
+   "789.py",
+   "866.py",
+   "554.py",
+   "562.py",
+   "760.py",
+   "657.py",
+   "664.py",
+   "674.py",
+   "681.py",
+   "691.py",
+   "692.py",
+   "718.py",
+   "729.py",
+   "730.py",
+   "735.py",
+   "737.py",
+   "740.py",
+   "742.py",
+   "743.py",
+   "746.py",
+   "747.py",
+   "762.py",
+   "765.py",
+   "766.py",
+   "771.py",
+   "772.py",
+   "773.py",
+   "775.py",
+   "777.py",
+   "778.py",
+   "779.py",
+   "780.py"
+  ],
+  "旧账": [
+   "831.py",
+   "835.py",
+   "741.py",
+   "91.py",
+   "68.py",
+   "71.py",
+   "87.py",
+   "736.py",
+   "748.py",
+   "749.py",
+   "782.py",
+   "626.py",
+   "546.py",
+   "542.py",
+   "738.py",
+   "656.py",
+   "648.py",
+   "645.py",
+   "722.py",
+   "629.py",
+   "40.py",
+   "630.py",
+   "685.py",
+   "686.py",
+   "690.py",
+   "750.py",
+   "751.py",
+   "752.py",
+   "76.py",
+   "763.py",
+   "764.py",
+   "767.py",
+   "768.py",
+   "769.py",
+   "770.py",
+   "774.py",
+   "781.py",
+   "786.py",
+   "787.py",
+   "789.py",
+   "554.py",
+   "562.py",
+   "760.py",
+   "657.py",
+   "664.py",
+   "674.py",
+   "681.py",
+   "691.py",
+   "692.py",
+   "718.py",
+   "729.py",
+   "730.py",
+   "735.py",
+   "737.py",
+   "740.py",
+   "742.py",
+   "743.py",
+   "746.py",
+   "747.py",
+   "762.py",
+   "765.py",
+   "766.py",
+   "771.py",
+   "772.py",
+   "773.py",
+   "775.py",
+   "777.py",
+   "778.py",
+   "779.py",
+   "780.py"
+  ],
+  "新红": [
+   "866.py"
+  ],
+  "已归因的偶发": [],
+  "本批引入": [
+   "866.py"
+  ],
+  "WATCH里红的": []
+ }
+}

@@ -41,7 +41,7 @@
     {
       "name": "picture-edit:control-floor",
       "ok": true,
-      "detail": "controls=49"
+      "detail": "controls=52"
     },
     {
       "name": "picture-edit:no-silent-discard",
@@ -78,7 +78,7 @@
   },
   "pictureEdit": {
     "inputs": 2,
-    "controls": 49,
+    "controls": 52,
     "lyingAffordance": [],
     "silentDiscard": [],
     "deadControls": []

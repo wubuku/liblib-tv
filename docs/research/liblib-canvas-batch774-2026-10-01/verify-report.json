@@ -185,8 +185,8 @@
    "label": "静态：★ Escape 阶梯排在守卫之后（问② 的全部要害）",
    "pass": true,
    "got": {
-    "guardLine": 487,
-    "escapeRel": 77
+    "guardLine": 546,
+    "escapeRel": 101
    }
   },
   {
@@ -199,9 +199,9 @@
   },
   {
    "label": "静态：★ 扫到 9 个 keydown 监听器",
-   "pass": true,
+   "pass": false,
    "got": {
-    "got": 9
+    "got": 11
    }
   },
   {
@@ -278,6 +278,10 @@
       "esc"
      ],
      [
+      "DirectorShortcutsDialog.tsx",
+      "onKey"
+     ],
+     [
       "DirectorViewport.tsx",
       "handleKeyDown"
      ]
@@ -292,7 +296,7 @@
   },
   {
    "label": "产物：静态层与验收器重读的源码一致",
-   "pass": true,
+   "pass": false,
    "got": {
     "owners": [
      "modellib",
@@ -861,13 +865,13 @@
   },
   {
    "label": "台账：历史 U+FFFD 仍在 9 处",
-   "pass": true,
+   "pass": false,
    "got": {
-    "count": 9
+    "count": 0
    }
   }
  ],
- "pass": 63,
+ "pass": 60,
  "total": 63,
  "negativeControls": [
   {
@@ -1083,5 +1087,5 @@
  "negativeKwBroken": [],
  "negativeInert": [],
  "rawError": null,
- "ok": true
+ "ok": false
 }

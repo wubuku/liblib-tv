@@ -1671,6 +1671,7 @@
     "aria-valuenow",
     "background",
     "blur",
+    "bottom",
     "box",
     "button",
     "canSend",
@@ -1717,6 +1718,8 @@
     "getBoundingClientRect",
     "height",
     "indexOf",
+    "innerHeight",
+    "innerWidth",
     "input",
     "inputMode",
     "isNaN",
@@ -1733,6 +1736,7 @@
     "musicBoxRef",
     "n",
     "name",
+    "need",
     "next",
     "nid",
     "nodeEl",
@@ -1785,7 +1789,11 @@
     "setText",
     "setTimeout",
     "setVoice",
+    "setVoicePanelDown",
+    "setVoicePanelRight",
     "size",
+    "spaceAbove",
+    "spaceBelow",
     "span",
     "startRefPicking",
     "startsWith",
@@ -1800,6 +1808,7 @@
     "text",
     "textarea",
     "title",
+    "top",
     "touchAction",
     "trackRef",
     "trim",
@@ -1817,7 +1826,11 @@
     "visibleVoices",
     "voice",
     "voiceBoxRef",
-    "width"
+    "voicePanelDown",
+    "voicePanelRight",
+    "voiceTriggerRef",
+    "width",
+    "window"
    ],
    "jsx_texts": [
     "SeedMusic 1.0 Preview",
@@ -1887,13 +1900,13 @@
     "absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[192px] rounded-xl p-1.5",
     "absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[368px] rounded-xl p-3",
     "absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[392px] rounded-xl p-1.5",
-    "absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[700px] rounded-xl p-3",
     "absolute bottom-[calc(100%+8px)] right-0 z-[140] w-[220px] rounded-[10px] p-2 text-[12px] text-white/80",
     "absolute inset-x-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-white/[0.14]",
     "absolute left-0 top-1/2 h-1 -translate-y-1/2 rounded-full bg-white/40",
     "absolute left-[-4px] top-[calc(100%+8px)] z-[150] w-[161px] rounded-xl p-1",
     "absolute top-1/2 h-1 w-px -translate-y-1/2 bg-white/25",
     "absolute top-1/2 h-4 w-1 -translate-x-1/2 -translate-y-1/2 rounded-[11px] border border-white/40 bg-white",
+    "absolute z-[140] w-[700px] rounded-xl p-3   max-h-[70vh] overflow-y-auto",
     "audio",
     "audio-all-voices-listbox",
     "audio-discount-detail",
@@ -1908,6 +1921,7 @@
     "bg-white/[0.10] text-white",
     "bg-white/[0.12] text-white",
     "bg-white/[0.16] text-white/20",
+    "bottom-[calc(100%+8px)]",
     "button",
     "currentColor",
     "data-id",
@@ -1940,6 +1954,7 @@
     "flex w-full flex-col items-start gap-0.5 rounded-lg px-2.5 py-2 text-left hover:bg-white/10",
     "gen",
     "grid grid-cols-3 gap-1",
+    "left-0",
     "listbox",
     "lucide-react",
     "mb-2 flex size-12 items-center justify-center rounded-xl bg-white/[0.06] text-white/80 hover:bg-white/10",
@@ -1962,6 +1977,7 @@
     "relative shrink-0",
     "relative w-[680px]",
     "rgb(38,38,38)",
+    "right-0",
     "rotate-180",
     "shrink-0 text-[12px] text-white/45",
     "shrink-0 text-white/60",
@@ -1979,6 +1995,7 @@
     "text-white/90",
     "top-4",
     "top-[72px]",
+    "top-[calc(100%+8px)]",
     "tts",
     "use client",
     "voice",
@@ -2152,7 +2169,7 @@
      "relative",
      "flex h-8 items-center gap-1 whitespace-nowrap rounded-lg px-2 text-[12px] text-white/90 hover:bg-white/[0.08]",
      "text-white/60",
-     "absolute bottom-[calc(100%+8px)] left-0 z-[140] w-[700px] rounded-xl p-3",
+     "`absolute z-[140] w-[700px] rounded-xl p-3 ${\n                          voicePanelRight ? \"right-0\" : \"left-0\"\n                        } ${\n                          voicePanelDown\n                   ",
      "pb-2 text-[13px] text-white/80",
      "flex gap-1.5 pb-2",
      "relative flex h-7 w-[153px] shrink-0 items-center gap-2 px-[9px]",
@@ -2246,7 +2263,7 @@
      "() => setOpen((v) => (v === \"dub\" ? null : \"dub\"))",
      "() => setOpen(null)",
      "() => startRefPicking()",
-     "() => setOpen((v) => (v === \"voice\" ? null : \"voice\"))",
+     "() => {\n                        if (open === \"voice\") {\n                          setOpen(null);\n                          return;\n                        }\n                        /* 1032-⑬：开层前量触发器的屏",
      "() => {\n                                  /* ⚠️⚠️ 批 873：箭头**必须改成块体**\n                                     `{ … }` —— 原来它是**表达式体**\n                                     `() => setFilterSel(…)`，一个表达式体里\n ",
      "() => {\n                                    /* 先收焦点再改状态：层若正开着，\n                                       收焦点会让它在同一帧被卸载。 */\n                                    chipRefs.current[label]?.focus();\n          ",
      "(e) => {\n                                        /* 块体，理由同上（一条 JSX 属性里\n                                           要三条语句 ⇒ 必须是块体）。 */\n                                        /* 批 873：源站实测选完之后**焦点回到\n   ",
@@ -2350,6 +2367,7 @@
      "trackRef",
      "voiceBoxRef",
      "dubBoxRef",
+     "voiceTriggerRef",
      "(el) => {\n                                  chipRefs.current[label] = el;\n                                }",
      "filterBoxRef[label]"
     ],
@@ -2451,6 +2469,8 @@
     ],
     "useState": [
      "null",
+     "false",
+     "false",
      "\"\"",
      "false",
      "\"音频生成\"",
@@ -2461,6 +2481,7 @@
      "{}"
     ],
     "useRef": [
+     "null",
      "null",
      "null",
      "null",
@@ -2539,7 +2560,8 @@
      "null",
      "(v) => (v === \"dub\" ? null : \"dub\")",
      "null",
-     "(v) => (v === \"voice\" ? null : \"voice\")",
+     "null",
+     "\"voice\"",
      "null"
     ],
     "[\"音频生成\", \"音乐生成\"].map": [
@@ -2585,6 +2607,15 @@
     ],
     "e.currentTarget.blur": [
      ""
+    ],
+    "voiceTriggerRef.current?.getBoundingClientRect": [
+     ""
+    ],
+    "setVoicePanelDown": [
+     "spaceAbove < need && spaceBelow > spaceAbove"
+    ],
+    "setVoicePanelRight": [
+     "r ? r.left + 700 > window.innerWidth - 16 : false"
     ],
     "FILTERS.map": [
      "({ label, options }) => (\n                            /* ⚠️⚠️ 批 875 SOURCE_FACT：外层格子**恒定 153×28**\n                               —— 选中与否都不变。变的是**格子里装什么**：\n     "

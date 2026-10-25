@@ -1,0 +1,1119 @@
+{
+ "说明": "★ 全部判据只从实测读数来",
+ "源站依据": {
+  "命中窗口": "±0.05s（★ 源站 chunk `cZ` 逐字）",
+  "aria 文案": "当前帧有关键帧 ／ 当前帧无关键帧（★ 源站 i18n 字典逐字）",
+  "添加关键帧语义": "取当前值覆盖（★ 源站 batch 36 逐字规格）"
+ },
+ "轨道列表": [
+  "director-track-character-lead-transform",
+  "director-track-camera-main"
+ ],
+ "初始": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "轨道对象id": "director-character-lead",
+  "选中对象id": "director-character-lead",
+  "轨道种类": "transform",
+  "当前时间": 0,
+  "关键帧时间": [
+   0,
+   4,
+   8
+  ],
+  "关键帧数": 3,
+  "关键帧值": [
+   {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "position": [
+     0.65,
+     0,
+     0.35
+    ],
+    "rotation": [
+     0,
+     -12,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   },
+   {
+    "position": [
+     -0.4,
+     0,
+     0.8
+    ],
+    "rotation": [
+     0,
+     -42,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "中键aria": "当前帧有关键帧",
+  "中键pressed": "true",
+  "上一键disabled": true,
+  "下一键disabled": false,
+  "检查器开关aria": "当前帧有关键帧",
+  "检查器开关state": "on",
+  "检查器开关testId": "position-X",
+  "对象变换": {
+   "position": [
+    -1.25,
+    0,
+    0.2
+   ],
+   "rotation": [
+    0,
+    18,
+    0
+   ],
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  }
+ },
+ "夹具_关键帧时间": [
+  -0.0
+ ],
+ "窗口内_+0.04s": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "轨道对象id": "director-character-lead",
+  "选中对象id": "director-character-lead",
+  "轨道种类": "transform",
+  "当前时间": 0.04,
+  "关键帧时间": [
+   -0.0
+  ],
+  "关键帧数": 1,
+  "关键帧值": [
+   {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "中键aria": "当前帧有关键帧",
+  "中键pressed": "true",
+  "上一键disabled": true,
+  "下一键disabled": true,
+  "检查器开关aria": "当前帧有关键帧",
+  "检查器开关state": "on",
+  "检查器开关testId": "position-X",
+  "对象变换": {
+   "position": [
+    -1.25,
+    0,
+    0.2
+   ],
+   "rotation": [
+    0,
+    18,
+    0
+   ],
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  }
+ },
+ "检查器_窗口内": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "轨道对象id": "director-character-lead",
+  "选中对象id": "director-character-lead",
+  "轨道种类": "transform",
+  "当前时间": 0.04,
+  "关键帧时间": [
+   -0.0
+  ],
+  "关键帧数": 1,
+  "关键帧值": [
+   {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "中键aria": "当前帧有关键帧",
+  "中键pressed": "true",
+  "上一键disabled": true,
+  "下一键disabled": true,
+  "检查器开关aria": "当前帧有关键帧",
+  "检查器开关state": "on",
+  "检查器开关testId": "position-X",
+  "对象变换": {
+   "position": [
+    -1.25,
+    0,
+    0.2
+   ],
+   "rotation": [
+    0,
+    18,
+    0
+   ],
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  }
+ },
+ "窗口外_+0.2s": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "轨道对象id": "director-character-lead",
+  "选中对象id": "director-character-lead",
+  "轨道种类": "transform",
+  "当前时间": 0.2,
+  "关键帧时间": [
+   -0.0
+  ],
+  "关键帧数": 1,
+  "关键帧值": [
+   {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  ],
+  "中键aria": "当前帧无关键帧",
+  "中键pressed": "false",
+  "上一键disabled": false,
+  "下一键disabled": true,
+  "检查器开关aria": "当前帧无关键帧",
+  "检查器开关state": "off",
+  "检查器开关testId": "position-X",
+  "对象变换": {
+   "position": [
+    -1.25,
+    0,
+    0.2
+   ],
+   "rotation": [
+    0,
+    18,
+    0
+   ],
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  }
+ },
+ "夹具_关键帧时间_W4前": [
+  -0.0
+ ],
+ "点击_窗口内": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0.04,
+   "关键帧时间": [
+    -0.0
+   ],
+   "关键帧数": 1,
+   "关键帧值": [
+    {
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "中键aria": "当前帧有关键帧",
+   "中键pressed": "true",
+   "上一键disabled": true,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧有关键帧",
+   "检查器开关state": "on",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0.04,
+   "关键帧时间": [],
+   "关键帧数": 0,
+   "关键帧值": [],
+   "中键aria": "当前帧无关键帧",
+   "中键pressed": "false",
+   "上一键disabled": true,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧无关键帧",
+   "检查器开关state": "off",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  }
+ },
+ "夹具_关键帧时间_W4b前": [
+  -0.0
+ ],
+ "点击_关键帧时刻": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0,
+   "关键帧时间": [
+    -0.0
+   ],
+   "关键帧数": 1,
+   "关键帧值": [
+    {
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "中键aria": "当前帧有关键帧",
+   "中键pressed": "true",
+   "上一键disabled": true,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧有关键帧",
+   "检查器开关state": "on",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0,
+   "关键帧时间": [],
+   "关键帧数": 0,
+   "关键帧值": [],
+   "中键aria": "当前帧无关键帧",
+   "中键pressed": "false",
+   "上一键disabled": true,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧无关键帧",
+   "检查器开关state": "off",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  }
+ },
+ "夹具_关键帧时间_W6前": [
+  -0.0
+ ],
+ "点击_窗口外": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0.2,
+   "关键帧时间": [
+    -0.0
+   ],
+   "关键帧数": 1,
+   "关键帧值": [
+    {
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "中键aria": "当前帧无关键帧",
+   "中键pressed": "false",
+   "上一键disabled": false,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧无关键帧",
+   "检查器开关state": "off",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0.2,
+   "关键帧时间": [
+    -0.0,
+    0.2
+   ],
+   "关键帧数": 2,
+   "关键帧值": [
+    {
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    {
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "中键aria": "当前帧有关键帧",
+   "中键pressed": "true",
+   "上一键disabled": false,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧有关键帧",
+   "检查器开关state": "on",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  }
+ },
+ "夹具_关键帧时间_W8前": [
+  -0.0
+ ],
+ "点击_检查器开关": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0.04,
+   "关键帧时间": [
+    -0.0
+   ],
+   "关键帧数": 1,
+   "关键帧值": [
+    {
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "中键aria": "当前帧有关键帧",
+   "中键pressed": "true",
+   "上一键disabled": true,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧有关键帧",
+   "检查器开关state": "on",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0.04,
+   "关键帧时间": [],
+   "关键帧数": 0,
+   "关键帧值": [],
+   "中键aria": "当前帧无关键帧",
+   "中键pressed": "false",
+   "上一键disabled": true,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧无关键帧",
+   "检查器开关state": "off",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  }
+ },
+ "夹具_关键帧时间_W9前": [
+  -0.0
+ ],
+ "工具条_添加关键帧": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0,
+   "关键帧时间": [
+    -0.0
+   ],
+   "关键帧数": 1,
+   "关键帧值": [
+    {
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "中键aria": "当前帧有关键帧",
+   "中键pressed": "true",
+   "上一键disabled": true,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧有关键帧",
+   "检查器开关state": "on",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     -1.25,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "挪动后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0,
+   "关键帧时间": [
+    -0.0
+   ],
+   "关键帧数": 1,
+   "关键帧值": [
+    {
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "中键aria": "当前帧有关键帧",
+   "中键pressed": "true",
+   "上一键disabled": true,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧有关键帧",
+   "检查器开关state": "on",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     0,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "轨道对象id": "director-character-lead",
+   "选中对象id": "director-character-lead",
+   "轨道种类": "transform",
+   "当前时间": 0,
+   "关键帧时间": [
+    0
+   ],
+   "关键帧数": 1,
+   "关键帧值": [
+    {
+     "position": [
+      0,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   ],
+   "中键aria": "当前帧有关键帧",
+   "中键pressed": "true",
+   "上一键disabled": true,
+   "下一键disabled": true,
+   "检查器开关aria": "当前帧有关键帧",
+   "检查器开关state": "on",
+   "检查器开关testId": "position-X",
+   "对象变换": {
+    "position": [
+     0,
+     0,
+     0.2
+    ],
+    "rotation": [
+     0,
+     18,
+     0
+    ],
+    "scale": [
+     1,
+     1,
+     1
+    ]
+   }
+  },
+  "对象新变换": {
+   "position": [
+    0,
+    0,
+    0.2
+   ],
+   "rotation": [
+    0,
+    18,
+    0
+   ],
+   "scale": [
+    1,
+    1,
+    1
+   ]
+  }
+ },
+ "判据": [
+  {
+   "判据": "W0a: 轨道行中键读得到 aria-label（★ 探针可读性自检）",
+   "通过": true,
+   "证据": {
+    "got": "当前帧有关键帧",
+    "轨道种类": "transform"
+   }
+  },
+  {
+   "判据": "W1: 播头落在关键帧 +0.04s（源站 ±0.05s 窗口内）⟹ 轨道行中键 aria-label 逐字＝「当前帧有关键帧」",
+   "通过": true,
+   "证据": {
+    "got": "当前帧有关键帧",
+    "当前时间": 0.04,
+    "关键帧时间": [
+     -0.0
+    ]
+   }
+  },
+  {
+   "判据": "W2: 同处 aria-pressed＝true",
+   "通过": true,
+   "证据": {
+    "got": "true"
+   }
+  },
+  {
+   "判据": "W3: 同处「上一关键帧」disabled（源站逐字：T < 播头-0.05 不成立）",
+   "通过": true,
+   "证据": {
+    "got": true,
+    "源站算式": "T(0.0) < 0.04-0.05 ⟹ False",
+    "全部关键帧时间": [
+     -0.0
+    ]
+   }
+  },
+  {
+   "判据": "W7: 检查器开关在 +0.04s 处逐字＝「当前帧有关键帧」且 state＝on",
+   "通过": true,
+   "证据": {
+    "got": "当前帧有关键帧",
+    "state": "on",
+    "testId": "position-X",
+    "关键帧时间": [
+     -0.0
+    ]
+   }
+  },
+  {
+   "判据": "W5: 播头落在关键帧 +0.2s（源站窗口外）⟹ aria-label 逐字＝「当前帧无关键帧」",
+   "通过": true,
+   "证据": {
+    "got": "当前帧无关键帧",
+    "当前时间": 0.2,
+    "关键帧时间": [
+     -0.0
+    ]
+   }
+  },
+  {
+   "判据": "W5b: 同处 aria-pressed＝false",
+   "通过": true,
+   "证据": {
+    "got": "false"
+   }
+  },
+  {
+   "判据": "W4: 窗口内点中键 ⟹ 那枚关键帧真的消失（数量 −1，不是覆盖、不是新增）",
+   "通过": true,
+   "证据": {
+    "前": [
+     -0.0
+    ],
+    "后": [],
+    "前数": 1,
+    "后数": 0
+   }
+  },
+  {
+   "判据": "W4b: 播头正好落在关键帧时刻 ⟹ 中键＝「当前帧有关键帧」⟹ 点它 ⟹ 那一枚**消失**（源站逐字 action＝remove，★ 不是「再加一枚」）",
+   "通过": true,
+   "证据": {
+    "前": [
+     -0.0
+    ],
+    "后": [],
+    "前中键aria": "当前帧有关键帧",
+    "前数": 1,
+    "后数": 0
+   }
+  },
+  {
+   "判据": "W6: 窗口外点中键 ⟹ 真的多出一枚（数量 +1）",
+   "通过": true,
+   "证据": {
+    "前": [
+     -0.0
+    ],
+    "后": [
+     -0.0,
+     0.2
+    ]
+   }
+  },
+  {
+   "判据": "W8: 检查器开关在 +0.04s 处点击 ⟹ 那枚关键帧真的消失（数量 −1）",
+   "通过": true,
+   "证据": {
+    "前": [
+     -0.0
+    ],
+    "后": []
+   }
+  },
+  {
+   "判据": "W0b: 挪动对象后读回的 transform 确实变了（★ 否则 W9 是空判）",
+   "通过": true,
+   "证据": {
+    "挪动前": {
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    "挪动后": {
+     "position": [
+      0,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    "期望": {
+     "position": [
+      0,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    }
+   }
+  },
+  {
+   "判据": "W9: 工具条「添加关键帧」＝取当前值覆盖（源站逐字）：数量不变、时间列表不变，但那枚的 value 变成对象当前变换",
+   "通过": true,
+   "证据": {
+    "数量前": 1,
+    "数量后": 1,
+    "时间前": [
+     -0.0
+    ],
+    "时间后": [
+     0
+    ],
+    "value前": {
+     "position": [
+      -1.25,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    "value后": {
+     "position": [
+      0,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    "对象当前变换": {
+     "position": [
+      0,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    "对象新变换": {
+     "position": [
+      0,
+      0,
+      0.2
+     ],
+     "rotation": [
+      0,
+      18,
+      0
+     ],
+     "scale": [
+      1,
+      1,
+      1
+     ]
+    },
+    "轨道种类": "transform"
+   }
+  }
+ ],
+ "失败数": 0
+}

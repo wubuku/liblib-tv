@@ -2,11 +2,11 @@
  "static": {
   "lines": {
    "dispatch": 87,
-   "listener": 1433,
-   "keyDeleteCall": 1326,
-   "removeEdgeImpl": 3656,
-   "pushInRemoveEdge": 3668,
-   "undo": 3673,
+   "listener": 1505,
+   "keyDeleteCall": 1380,
+   "removeEdgeImpl": 3905,
+   "pushInRemoveEdge": 3917,
+   "undo": 3922,
    "undoClearsSelection": true
   }
  },
@@ -730,11 +730,11 @@
  "summary": {
   "staticLines": {
    "dispatch": 87,
-   "listener": 1433,
-   "keyDeleteCall": 1326,
-   "removeEdgeImpl": 3656,
-   "pushInRemoveEdge": 3668,
-   "undo": 3673,
+   "listener": 1505,
+   "keyDeleteCall": 1380,
+   "removeEdgeImpl": 3905,
+   "pushInRemoveEdge": 3917,
+   "undo": 3922,
    "undoClearsSelection": true
   },
   "h0nodes": 10,
@@ -783,5 +783,7 @@
   "reloadNodesAfter": 10,
   "reloadEdgesAfter": 11
  },
- "failures": []
+ "failures": [
+  "C1 源码四处在位（派发 / 监听 / pushHistory / undo 清空选区）"
+ ]
 }

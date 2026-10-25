@@ -2,324 +2,337 @@
  "batch": 754,
  "checks": [
   {
-   "label": "静态 高清预设几何 source+(320,−60) / 430×452 / 子 340×330@(40,60)",
+   "label": "静态 高清预设用的是【绝对坐标】而非源节点的相对位置（batch 802 的修复）",
    "pass": true,
-   "got": null
+   "got": {
+    "usesAbsolute": true,
+    "★ 说明": "★ 旧形态 `source.position.x + 320` 是**已修复的坐标系缺陷** ⟹ ⟹ 源节点在组里时沿途祖先偏移被整段丢掉"
+   },
+   "skipped": false
+  },
+  {
+   "label": "静态 高清预设几何 sourceAbsolute+(320,−60) / 430×452 / 子 340×330@(40,60)",
+   "pass": true,
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 高清组 title=预设 - 图片高清 且选中集切到组",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 高清预设入口在 ImageNode 的图片高清芯片上",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 空态门 flowNodes.length === 0 才挂 CanvasEmptyState",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 故事脚本对：芯片 story-script → createStoryScriptPair",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 故事脚本对把两个节点都放进选中集 + script x 偏移 350",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 attach 全被跳过时返回 status: accepted（判据5 的根因）",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 attach 有去重（attachedAssetIds 语义）",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 生成历史入口是 data-history-asset + GENERATED_HISTORY_ATTACH",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 REGISTERED_ASSET_ATTACH 无 UI 调用点",
    "pass": true,
-   "got": []
+   "got": [],
+   "skipped": false
   },
   {
    "label": "静态 拉片结果 x = 源x+宽+120，y 起 源y−80，每张 +高+48",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 拉片结果边 id 形如 e-${sourceId}-${node.id}",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 拉片两条守卫：已有结果不重跑 / 定义为空不建节点",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 拉片开始按钮四道门齐全",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 拉片延迟 700ms、按钮带 data-shot-breakdown-start、默认三维度、从画布选择置 ready",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "静态 拉片定义表 storyboard3 + motion1 + music1 = 5（判据11 的根据）",
    "pass": true,
    "got": {
-    "music": 1,
     "storyboard": 3,
-    "motion": 1
-   }
+    "motion": 1,
+    "music": 1
+   },
+   "skipped": false
   },
   {
    "label": "静态 cohort 入口是 upload 按钮 + 隐藏 file input（accept 三种图格式）",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据 16 条",
    "pass": true,
-   "got": 16
+   "got": 16,
+   "skipped": false
   },
   {
    "label": "两轮一致（按生成 id 形态过滤后 diff 为空）",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "过滤规则写明是 createNodeId 的 <prefix>-<epoch>-<rand6> 形态",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "轮间独立性写明是整页 reload",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "返工条目 8 条（全是我自己的错）",
    "pass": true,
-   "got": 8
+   "got": 8,
+   "skipped": false
   },
   {
    "label": "返工覆盖 R8 选择器引擎 / R9 路径表 / R10 accept 绕过 / R11 同 tick 连点 / R12 正面样本 / R13 时间序列 / R14 验收器正则 / R15 测试顺序污染",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "不声称清单非空（≥8 条）",
    "pass": true,
-   "got": 12
+   "got": 12,
+   "skipped": false
   },
   {
    "label": "accept 拒绝路径明确进了不声称而不是判据",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据1 种子 0 枚芯片 → 加空图片节点后 2 枚",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据2 高清预设记账 节点+2 边±0 past+1 选中集=新组",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据3 高清预设几何 430×452 + 子 340×330@(40,60)",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据3 组相对源节点 +(320,−60) 实测自洽",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据4 attach 记账 节点+1 past+1 且提示是绿色成功",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据5 重复 attach 零变化但仍显示成功文案（缺陷成立）",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据6 换 asset 对照 节点+1",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据7 REGISTERED_ASSET_ATTACH 零调用点",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据8 cohort 节点+2 但 past 只+1（单个图事务）",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据8 cohort 面板自动关闭",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据9 成功提示只活到面板关闭（时间序列：早期有、717ms 已空）",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据10 拉片门链 empty→disabled / ready→enabled / 拉片中 / 拉片完成",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据11 维度数→结果数 3 维出 5 条 / 1 维出 1 条",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据12 结果几何 x 相同、y 逐张 = 上一张+高+48、跨 3 种高度",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据13 两条守卫：二次 start 零变化 / 维度全关后 disabled",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据14 故事脚本对 节点+2 且选中集=2（第四条多选入口）",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据14 故事脚本对几何：中心 y 相同、script x = text x + 350",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据15 另 3 枚空态芯片点 1 枚 → 节点+0 + 未接入提示",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据15 两枚芯片 textContent 含 SD 2.5 角标（精确文本匹配会漏）",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
    "label": "判据16 duplicateNode/removeNode 零入口沿用 753 的静态断言",
    "pass": true,
-   "got": null
+   "got": null,
+   "skipped": false
   },
   {
-   "label": "原始读数交叉核对 19 项（/tmp/vb754c.json）",
+   "label": "原始读数交叉核对（/tmp/vb754c.json 不在本机）",
    "pass": true,
-   "got": []
+   "got": "SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+   "skipped": true
   },
   {
-   "label": "原始读数：两轮按生成 id 形态过滤后 diff 为空（验收器内重算，不采信探针的路径表结果）",
+   "label": "754e 两格交叉核对（/tmp/vb754e.json 不在本机）",
    "pass": true,
-   "got": []
+   "got": "SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+   "skipped": true
   },
   {
-   "label": "原始读数：探针自报的三处「不一致」全部只含生成 id",
+   "label": "提示时间序列交叉核对（/tmp/vb754d.json 不在本机）",
    "pass": true,
-   "got": [
-    "hd_added",
-    "pair_selectedIds",
-    "sb3_results"
-   ]
+   "got": "SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+   "skipped": true
   },
   {
-   "label": "原始读数：baseline 两轮都是 canvas-2 / 10 节点 / 11 边",
+   "label": "单轮组偏移交叉核对（/tmp/vb754b.json 不在本机）",
    "pass": true,
-   "got": null
-  },
-  {
-   "label": "原始读数：754e 两格各自两轮一致（/tmp/vb754e.json）",
-   "pass": true,
-   "got": null
-  },
-  {
-   "label": "原始读数：1 维差分 = 只留 motion ⟹ 1 个结果 + 1 条边",
-   "pass": true,
-   "got": {
-    "cell": "one-dim",
-    "allHitsOk": true,
-    "deltas": {
-     "nodeD": 1,
-     "edgeD": 1,
-     "pastD": 1
-    },
-    "newResultKeys": [
-     "motion"
-    ]
-   }
-  },
-  {
-   "label": "原始读数：三维全关 ⟹ start disabled 且零节点变化",
-   "pass": true,
-   "got": {
-    "cell": "all-dims-off",
-    "allHitsOk": true,
-    "allDimsOff": true,
-    "startDisabled": true,
-    "startText": "开始拉片",
-    "nodeDeltaWhileAllOff": 0
-   }
-  },
-  {
-   "label": "原始读数：提示在早期采样点可见、后期消失（/tmp/vb754d.json）",
-   "pass": true,
-   "got": {
-    "visibleAtMs": [
-     16,
-     184,
-     350,
-     514
-    ],
-    "goneAtMs": [
-     717,
-     922,
-     1249,
-     1528,
-     2018,
-     2513
-    ]
-   }
-  },
-  {
-   "label": "原始读数：组偏移实测 == 源码里的 +(320,−60)",
-   "pass": true,
-   "got": {
-    "dx": 320,
-    "dy": -60
-   }
+   "got": "SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+   "skipped": true
   }
  ],
- "passed": 54,
- "total": 54,
+ "passed": 46,
+ "total": 46,
+ "skipped": [
+  {
+   "label": "原始读数交叉核对（/tmp/vb754c.json 不在本机）",
+   "got": "SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  },
+  {
+   "label": "754e 两格交叉核对（/tmp/vb754e.json 不在本机）",
+   "got": "SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  },
+  {
+   "label": "提示时间序列交叉核对（/tmp/vb754d.json 不在本机）",
+   "got": "SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  },
+  {
+   "label": "单轮组偏移交叉核对（/tmp/vb754b.json 不在本机）",
+   "got": "SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母"
+  }
+ ],
+ "skippedCount": 4,
  "static": {
   "hd_groupGeom": true,
+  "hd_usesAbsolute": true,
   "hd_childGeom": true,
   "hd_title": true,
   "hd_selectsGroup": true,
@@ -339,9 +352,9 @@
   "historyEntry": true,
   "registeredAssetCallSites": [],
   "sbDefinitionsByCategory": {
-   "music": 1,
    "storyboard": 3,
-   "motion": 1
+   "motion": 1,
+   "music": 1
   },
   "sbDefinitionsTotal": 5,
   "sbResultX": true,

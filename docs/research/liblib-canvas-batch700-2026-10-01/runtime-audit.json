@@ -13,7 +13,7 @@
    "ok": true,
    "expected": "director-camera-main",
    "got": "director-camera-main",
-   "name": "机位01 · 对峙中景"
+   "name": "机位1"
   },
   "nullClickDrift": [],
   "addTrackRead": {
@@ -219,7 +219,7 @@
      "reason": ""
     },
     "toasts": 0,
-    "selectedKeyframeId": "director-track-camera-main-keyframe-400-1791004701496"
+    "selectedKeyframeId": "director-track-camera-main-keyframe-400-1792934787193"
    },
    {
     "fraction": 0.125,
@@ -245,7 +245,7 @@
      "reason": ""
     },
     "toasts": 0,
-    "selectedKeyframeId": "director-track-camera-main-keyframe-1000-1791004706464"
+    "selectedKeyframeId": "director-track-camera-main-keyframe-1000-1792934792658"
    },
    {
     "fraction": 0.25,
@@ -271,7 +271,7 @@
      "reason": ""
     },
     "toasts": 0,
-    "selectedKeyframeId": "director-track-camera-main-keyframe-2000-1791004711460"
+    "selectedKeyframeId": "director-track-camera-main-keyframe-2000-1792934802386"
    },
    {
     "fraction": 0.375,
@@ -297,7 +297,7 @@
      "reason": ""
     },
     "toasts": 0,
-    "selectedKeyframeId": "director-track-camera-main-keyframe-3000-1791004716693"
+    "selectedKeyframeId": "director-track-camera-main-keyframe-3000-1792934808801"
    },
    {
     "fraction": 0.5,

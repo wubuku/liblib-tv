@@ -16,40 +16,40 @@
    0.9
   ],
   "samplesPerControl": 25,
-  "controls": 130,
+  "controls": 127,
   "population": {
    "1280x720": {
-    "controls": 130,
+    "controls": 127,
     "centre": 6,
     "grid": 33,
-    "c667": 2
+    "c667": 3
    },
    "1280x1150": {
-    "controls": 130,
+    "controls": 127,
     "centre": 4,
     "grid": 30,
-    "c667": 2
+    "c667": 3
    },
    "1366x1150": {
-    "controls": 130,
+    "controls": 127,
     "centre": 3,
     "grid": 29,
     "c667": 2
    },
    "1440x1150": {
-    "controls": 130,
+    "controls": 127,
     "centre": 2,
-    "grid": 29,
+    "grid": 28,
     "c667": 1
    },
    "1600x1150": {
-    "controls": 130,
+    "controls": 127,
     "centre": 1,
     "grid": 27,
     "c667": 1
    },
    "1920x1150": {
-    "controls": 130,
+    "controls": 127,
     "centre": 1,
     "grid": 27,
     "c667": 1
@@ -59,7 +59,7 @@
    "1280x720": 27,
    "1280x1150": 26,
    "1366x1150": 26,
-   "1440x1150": 27,
+   "1440x1150": 26,
    "1600x1150": 26,
    "1920x1150": 26
   },
@@ -73,10 +73,12 @@
   },
   "c667": {
    "1280x720": [
+    "上传图片",
     "帮助",
     "描述想搭建的场景"
    ],
    "1280x1150": [
+    "上传图片",
     "帮助",
     "描述想搭建的场景"
    ],
@@ -547,7 +549,7 @@
      0.2
     ],
     "names": [
-     "移除角色01 · 陈默 · 变换轨道"
+     "移除角色A · 变换轨道"
     ],
     "coverers": [
      [
@@ -654,38 +656,12 @@
       5
      ]
     ]
-   },
-   {
-    "data": "data-director-scene-prompt-input=true",
-    "box": [
-     143,
-     16
-    ],
-    "cells": 1,
-    "fracs": [
-     0.4
-    ],
-    "names": [
-     "描述想搭建的场景"
-    ],
-    "coverers": [
-     [
-      "div|absolute.inset-0",
-      5
-     ],
-     [
-      "div|min-h-0.flex-1",
-      5
-     ]
-    ]
    }
   ],
   "covererFamilies": [
    "button|absolute.h-[15px]",
    "button|shrink-0.cursor-ew-resize",
-   "div|absolute.inset-0",
    "div|absolute.inset-x-0",
-   "div|min-h-0.flex-1",
    "section|z-40.pointer-events-auto"
   ],
   "fractionsSeen": [
@@ -700,7 +676,7 @@
     "button|shrink-0.cursor-ew-resize"
    ]
   },
-  "judged": 19500
+  "judged": 19050
  },
  "cells": {
   "1280x720": {
@@ -792,10 +768,10 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "name": "机位1 · 镜头0.0-8.0s",
      "data": "data-director-shot-option=director-shot-director-camera-main",
      "box": [
-      177,
+      122,
       28
      ],
      "pe": "auto",
@@ -904,7 +880,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏角色01 · 陈默",
+     "name": "隐藏角色A",
      "data": "data-director-object-id=director-character-lead",
      "box": [
       24,
@@ -918,7 +894,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定角色01 · 陈默",
+     "name": "锁定角色A",
      "data": "data-director-object-lock=director-character-lead",
      "box": [
       24,
@@ -932,7 +908,7 @@
      "coverers": {}
     },
     {
-     "name": "删除角色01 · 陈默",
+     "name": "删除角色A",
      "data": "data-director-delete-object=director-character-lead",
      "box": [
       24,
@@ -1072,7 +1048,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏机位01 · 对峙中景",
+     "name": "隐藏机位1",
      "data": "data-director-object-id=director-camera-main",
      "box": [
       24,
@@ -1086,7 +1062,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定机位01 · 对峙中景",
+     "name": "锁定机位1",
      "data": "data-director-object-lock=director-camera-main",
      "box": [
       24,
@@ -1100,7 +1076,7 @@
      "coverers": {}
     },
     {
-     "name": "删除机位01 · 对峙中景",
+     "name": "删除机位1",
      "data": "data-director-delete-object=director-camera-main",
      "box": [
       24,
@@ -1446,20 +1422,6 @@
      "coverers": {}
     },
     {
-     "name": "添加群众阵列",
-     "data": "data-director-crowd-trigger=true",
-     "box": [
-      32,
-      32
-     ],
-     "pe": "auto",
-     "samples": 25,
-     "foreign": 0,
-     "gridCentre": false,
-     "centre": false,
-     "coverers": {}
-    },
-    {
      "name": "模型库",
      "data": "data-director-model-library-trigger=true",
      "box": [
@@ -1496,14 +1458,12 @@
      ],
      "pe": "auto",
      "samples": 25,
-     "foreign": 25,
+     "foreign": 20,
      "gridCentre": true,
      "centre": true,
      "coverers": {
-      "button|shrink-0.cursor-ew-resize": 4,
-      "div|space-y-3.border-t": 10,
-      "span|": 5,
-      "input|h-full.min-w-0": 6
+      "div|absolute.inset-0": 10,
+      "div|space-y-4.px-4": 10
      }
     },
     {
@@ -1519,9 +1479,10 @@
      "gridCentre": true,
      "centre": true,
      "coverers": {
-      "input|h-full.min-w-0": 6,
+      "button|shrink-0.cursor-ew-resize": 4,
       "div|space-y-3.border-t": 15,
-      "div|grid.grid-cols-3": 4
+      "input|h-full.min-w-0": 4,
+      "button|ml-px.flex": 2
      }
     },
     {
@@ -1537,11 +1498,12 @@
      "gridCentre": true,
      "centre": true,
      "coverers": {
-      "button|shrink-0.cursor-ew-resize": 2,
+      "button|ml-px.flex": 5,
       "div|space-y-3.border-t": 10,
-      "input|w-24.accent-[#09caf5]": 4,
-      "input|h-full.min-w-0": 8,
-      "span|flex.items-center": 1
+      "input|w-24.accent-[#09caf5]": 5,
+      "rect|": 1,
+      "div|grid.grid-cols-3": 2,
+      "button|shrink-0.cursor-ew-resize": 2
      }
     },
     {
@@ -2066,34 +2028,6 @@
      }
     },
     {
-     "name": "跳过",
-     "data": "data-director-coachmark-skip=true",
-     "box": [
-      50,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
-     "name": "下一步",
-     "data": "data-director-coachmark-next=true",
-     "box": [
-      63,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
      "name": "播放",
      "data": "data-director-playback=true",
      "box": [
@@ -2270,7 +2204,7 @@
      }
     },
     {
-     "name": "移除角色01 · 陈默 · 变换轨道",
+     "name": "移除角色A · 变换轨道",
      "data": "data-director-remove-track=true",
      "box": [
       28,
@@ -2362,7 +2296,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默",
+     "name": "角色A",
      "data": "data-director-timeline-object-name=director-character-lead",
      "box": [
       60,
@@ -2446,7 +2380,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "data": "data-director-timeline-object-name=director-camera-main",
      "box": [
       60,
@@ -2530,7 +2464,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "name": "角色A · 变换 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-0",
      "box": [
       11,
@@ -2544,7 +2478,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "name": "角色A · 变换 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-4",
      "box": [
       11,
@@ -2558,7 +2492,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "name": "角色A · 变换 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-8",
      "box": [
       11,
@@ -2572,7 +2506,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "name": "机位1 · 机位 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-0",
      "box": [
       11,
@@ -2586,7 +2520,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "name": "机位1 · 机位 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-4",
      "box": [
       11,
@@ -2600,7 +2534,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "name": "机位1 · 机位 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-8",
      "box": [
       11,
@@ -2704,10 +2638,10 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "name": "机位1 · 镜头0.0-8.0s",
      "data": "data-director-shot-option=director-shot-director-camera-main",
      "box": [
-      177,
+      122,
       28
      ],
      "pe": "auto",
@@ -2816,7 +2750,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏角色01 · 陈默",
+     "name": "隐藏角色A",
      "data": "data-director-object-id=director-character-lead",
      "box": [
       24,
@@ -2830,7 +2764,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定角色01 · 陈默",
+     "name": "锁定角色A",
      "data": "data-director-object-lock=director-character-lead",
      "box": [
       24,
@@ -2844,7 +2778,7 @@
      "coverers": {}
     },
     {
-     "name": "删除角色01 · 陈默",
+     "name": "删除角色A",
      "data": "data-director-delete-object=director-character-lead",
      "box": [
       24,
@@ -2984,7 +2918,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏机位01 · 对峙中景",
+     "name": "隐藏机位1",
      "data": "data-director-object-id=director-camera-main",
      "box": [
       24,
@@ -2998,7 +2932,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定机位01 · 对峙中景",
+     "name": "锁定机位1",
      "data": "data-director-object-lock=director-camera-main",
      "box": [
       24,
@@ -3012,7 +2946,7 @@
      "coverers": {}
     },
     {
-     "name": "删除机位01 · 对峙中景",
+     "name": "删除机位1",
      "data": "data-director-delete-object=director-camera-main",
      "box": [
       24,
@@ -3358,20 +3292,6 @@
      "coverers": {}
     },
     {
-     "name": "添加群众阵列",
-     "data": "data-director-crowd-trigger=true",
-     "box": [
-      32,
-      32
-     ],
-     "pe": "auto",
-     "samples": 25,
-     "foreign": 0,
-     "gridCentre": false,
-     "centre": false,
-     "coverers": {}
-    },
-    {
      "name": "模型库",
      "data": "data-director-model-library-trigger=true",
      "box": [
@@ -3408,11 +3328,12 @@
      ],
      "pe": "auto",
      "samples": 25,
-     "foreign": 25,
+     "foreign": 20,
      "gridCentre": true,
      "centre": true,
      "coverers": {
-      "div|min-h-0.flex-1": 25
+      "div|absolute.inset-0": 10,
+      "div|min-h-0.flex-1": 10
      }
     },
     {
@@ -3956,34 +3877,6 @@
      "coverers": {}
     },
     {
-     "name": "跳过",
-     "data": "data-director-coachmark-skip=true",
-     "box": [
-      50,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
-     "name": "下一步",
-     "data": "data-director-coachmark-next=true",
-     "box": [
-      63,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
      "name": "播放",
      "data": "data-director-playback=true",
      "box": [
@@ -4160,7 +4053,7 @@
      }
     },
     {
-     "name": "移除角色01 · 陈默 · 变换轨道",
+     "name": "移除角色A · 变换轨道",
      "data": "data-director-remove-track=true",
      "box": [
       28,
@@ -4252,7 +4145,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默",
+     "name": "角色A",
      "data": "data-director-timeline-object-name=director-character-lead",
      "box": [
       60,
@@ -4336,7 +4229,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "data": "data-director-timeline-object-name=director-camera-main",
      "box": [
       60,
@@ -4420,7 +4313,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "name": "角色A · 变换 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-0",
      "box": [
       11,
@@ -4434,7 +4327,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "name": "角色A · 变换 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-4",
      "box": [
       11,
@@ -4448,7 +4341,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "name": "角色A · 变换 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-8",
      "box": [
       11,
@@ -4462,7 +4355,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "name": "机位1 · 机位 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-0",
      "box": [
       11,
@@ -4476,7 +4369,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "name": "机位1 · 机位 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-4",
      "box": [
       11,
@@ -4490,7 +4383,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "name": "机位1 · 机位 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-8",
      "box": [
       11,
@@ -4594,10 +4487,10 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "name": "机位1 · 镜头0.0-8.0s",
      "data": "data-director-shot-option=director-shot-director-camera-main",
      "box": [
-      177,
+      122,
       28
      ],
      "pe": "auto",
@@ -4706,7 +4599,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏角色01 · 陈默",
+     "name": "隐藏角色A",
      "data": "data-director-object-id=director-character-lead",
      "box": [
       24,
@@ -4720,7 +4613,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定角色01 · 陈默",
+     "name": "锁定角色A",
      "data": "data-director-object-lock=director-character-lead",
      "box": [
       24,
@@ -4734,7 +4627,7 @@
      "coverers": {}
     },
     {
-     "name": "删除角色01 · 陈默",
+     "name": "删除角色A",
      "data": "data-director-delete-object=director-character-lead",
      "box": [
       24,
@@ -4874,7 +4767,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏机位01 · 对峙中景",
+     "name": "隐藏机位1",
      "data": "data-director-object-id=director-camera-main",
      "box": [
       24,
@@ -4888,7 +4781,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定机位01 · 对峙中景",
+     "name": "锁定机位1",
      "data": "data-director-object-lock=director-camera-main",
      "box": [
       24,
@@ -4902,7 +4795,7 @@
      "coverers": {}
     },
     {
-     "name": "删除机位01 · 对峙中景",
+     "name": "删除机位1",
      "data": "data-director-delete-object=director-camera-main",
      "box": [
       24,
@@ -5248,20 +5141,6 @@
      "coverers": {}
     },
     {
-     "name": "添加群众阵列",
-     "data": "data-director-crowd-trigger=true",
-     "box": [
-      32,
-      32
-     ],
-     "pe": "auto",
-     "samples": 25,
-     "foreign": 0,
-     "gridCentre": false,
-     "centre": false,
-     "coverers": {}
-    },
-    {
      "name": "模型库",
      "data": "data-director-model-library-trigger=true",
      "box": [
@@ -5312,11 +5191,12 @@
      ],
      "pe": "auto",
      "samples": 25,
-     "foreign": 20,
+     "foreign": 15,
      "gridCentre": true,
      "centre": true,
      "coverers": {
-      "div|min-h-0.flex-1": 20
+      "section|flex.h-full": 5,
+      "div|min-h-0.flex-1": 10
      }
     },
     {
@@ -5844,34 +5724,6 @@
      "coverers": {}
     },
     {
-     "name": "跳过",
-     "data": "data-director-coachmark-skip=true",
-     "box": [
-      50,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
-     "name": "下一步",
-     "data": "data-director-coachmark-next=true",
-     "box": [
-      63,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
      "name": "播放",
      "data": "data-director-playback=true",
      "box": [
@@ -6048,7 +5900,7 @@
      }
     },
     {
-     "name": "移除角色01 · 陈默 · 变换轨道",
+     "name": "移除角色A · 变换轨道",
      "data": "data-director-remove-track=true",
      "box": [
       28,
@@ -6140,7 +5992,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默",
+     "name": "角色A",
      "data": "data-director-timeline-object-name=director-character-lead",
      "box": [
       60,
@@ -6224,7 +6076,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "data": "data-director-timeline-object-name=director-camera-main",
      "box": [
       60,
@@ -6308,7 +6160,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "name": "角色A · 变换 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-0",
      "box": [
       11,
@@ -6322,7 +6174,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "name": "角色A · 变换 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-4",
      "box": [
       11,
@@ -6336,7 +6188,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "name": "角色A · 变换 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-8",
      "box": [
       11,
@@ -6350,7 +6202,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "name": "机位1 · 机位 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-0",
      "box": [
       11,
@@ -6364,7 +6216,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "name": "机位1 · 机位 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-4",
      "box": [
       11,
@@ -6378,7 +6230,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "name": "机位1 · 机位 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-8",
      "box": [
       11,
@@ -6482,10 +6334,10 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "name": "机位1 · 镜头0.0-8.0s",
      "data": "data-director-shot-option=director-shot-director-camera-main",
      "box": [
-      177,
+      122,
       28
      ],
      "pe": "auto",
@@ -6594,7 +6446,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏角色01 · 陈默",
+     "name": "隐藏角色A",
      "data": "data-director-object-id=director-character-lead",
      "box": [
       24,
@@ -6608,7 +6460,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定角色01 · 陈默",
+     "name": "锁定角色A",
      "data": "data-director-object-lock=director-character-lead",
      "box": [
       24,
@@ -6622,7 +6474,7 @@
      "coverers": {}
     },
     {
-     "name": "删除角色01 · 陈默",
+     "name": "删除角色A",
      "data": "data-director-delete-object=director-character-lead",
      "box": [
       24,
@@ -6762,7 +6614,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏机位01 · 对峙中景",
+     "name": "隐藏机位1",
      "data": "data-director-object-id=director-camera-main",
      "box": [
       24,
@@ -6776,7 +6628,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定机位01 · 对峙中景",
+     "name": "锁定机位1",
      "data": "data-director-object-lock=director-camera-main",
      "box": [
       24,
@@ -6790,7 +6642,7 @@
      "coverers": {}
     },
     {
-     "name": "删除机位01 · 对峙中景",
+     "name": "删除机位1",
      "data": "data-director-delete-object=director-camera-main",
      "box": [
       24,
@@ -7136,20 +6988,6 @@
      "coverers": {}
     },
     {
-     "name": "添加群众阵列",
-     "data": "data-director-crowd-trigger=true",
-     "box": [
-      32,
-      32
-     ],
-     "pe": "auto",
-     "samples": 25,
-     "foreign": 0,
-     "gridCentre": false,
-     "centre": false,
-     "coverers": {}
-    },
-    {
      "name": "模型库",
      "data": "data-director-model-library-trigger=true",
      "box": [
@@ -7200,13 +7038,10 @@
      ],
      "pe": "auto",
      "samples": 25,
-     "foreign": 10,
+     "foreign": 0,
      "gridCentre": false,
      "centre": false,
-     "coverers": {
-      "div|absolute.inset-0": 5,
-      "div|min-h-0.flex-1": 5
-     }
+     "coverers": {}
     },
     {
      "name": "发送",
@@ -7733,34 +7568,6 @@
      "coverers": {}
     },
     {
-     "name": "跳过",
-     "data": "data-director-coachmark-skip=true",
-     "box": [
-      50,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
-     "name": "下一步",
-     "data": "data-director-coachmark-next=true",
-     "box": [
-      63,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
      "name": "播放",
      "data": "data-director-playback=true",
      "box": [
@@ -7937,7 +7744,7 @@
      }
     },
     {
-     "name": "移除角色01 · 陈默 · 变换轨道",
+     "name": "移除角色A · 变换轨道",
      "data": "data-director-remove-track=true",
      "box": [
       28,
@@ -8029,7 +7836,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默",
+     "name": "角色A",
      "data": "data-director-timeline-object-name=director-character-lead",
      "box": [
       60,
@@ -8113,7 +7920,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "data": "data-director-timeline-object-name=director-camera-main",
      "box": [
       60,
@@ -8197,7 +8004,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "name": "角色A · 变换 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-0",
      "box": [
       11,
@@ -8211,7 +8018,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "name": "角色A · 变换 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-4",
      "box": [
       11,
@@ -8225,7 +8032,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "name": "角色A · 变换 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-8",
      "box": [
       11,
@@ -8239,7 +8046,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "name": "机位1 · 机位 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-0",
      "box": [
       11,
@@ -8253,7 +8060,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "name": "机位1 · 机位 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-4",
      "box": [
       11,
@@ -8267,7 +8074,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "name": "机位1 · 机位 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-8",
      "box": [
       11,
@@ -8371,10 +8178,10 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "name": "机位1 · 镜头0.0-8.0s",
      "data": "data-director-shot-option=director-shot-director-camera-main",
      "box": [
-      177,
+      122,
       28
      ],
      "pe": "auto",
@@ -8483,7 +8290,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏角色01 · 陈默",
+     "name": "隐藏角色A",
      "data": "data-director-object-id=director-character-lead",
      "box": [
       24,
@@ -8497,7 +8304,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定角色01 · 陈默",
+     "name": "锁定角色A",
      "data": "data-director-object-lock=director-character-lead",
      "box": [
       24,
@@ -8511,7 +8318,7 @@
      "coverers": {}
     },
     {
-     "name": "删除角色01 · 陈默",
+     "name": "删除角色A",
      "data": "data-director-delete-object=director-character-lead",
      "box": [
       24,
@@ -8651,7 +8458,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏机位01 · 对峙中景",
+     "name": "隐藏机位1",
      "data": "data-director-object-id=director-camera-main",
      "box": [
       24,
@@ -8665,7 +8472,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定机位01 · 对峙中景",
+     "name": "锁定机位1",
      "data": "data-director-object-lock=director-camera-main",
      "box": [
       24,
@@ -8679,7 +8486,7 @@
      "coverers": {}
     },
     {
-     "name": "删除机位01 · 对峙中景",
+     "name": "删除机位1",
      "data": "data-director-delete-object=director-camera-main",
      "box": [
       24,
@@ -9013,20 +8820,6 @@
     {
      "name": "虚拟相机",
      "data": "data-director-phone-vcam-trigger=true",
-     "box": [
-      32,
-      32
-     ],
-     "pe": "auto",
-     "samples": 25,
-     "foreign": 0,
-     "gridCentre": false,
-     "centre": false,
-     "coverers": {}
-    },
-    {
-     "name": "添加群众阵列",
-     "data": "data-director-crowd-trigger=true",
      "box": [
       32,
       32
@@ -9617,34 +9410,6 @@
      "coverers": {}
     },
     {
-     "name": "跳过",
-     "data": "data-director-coachmark-skip=true",
-     "box": [
-      50,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
-     "name": "下一步",
-     "data": "data-director-coachmark-next=true",
-     "box": [
-      63,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
      "name": "播放",
      "data": "data-director-playback=true",
      "box": [
@@ -9821,7 +9586,7 @@
      }
     },
     {
-     "name": "移除角色01 · 陈默 · 变换轨道",
+     "name": "移除角色A · 变换轨道",
      "data": "data-director-remove-track=true",
      "box": [
       28,
@@ -9913,7 +9678,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默",
+     "name": "角色A",
      "data": "data-director-timeline-object-name=director-character-lead",
      "box": [
       60,
@@ -9997,7 +9762,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "data": "data-director-timeline-object-name=director-camera-main",
      "box": [
       60,
@@ -10081,7 +9846,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "name": "角色A · 变换 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-0",
      "box": [
       11,
@@ -10095,7 +9860,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "name": "角色A · 变换 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-4",
      "box": [
       11,
@@ -10109,7 +9874,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "name": "角色A · 变换 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-8",
      "box": [
       11,
@@ -10123,7 +9888,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "name": "机位1 · 机位 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-0",
      "box": [
       11,
@@ -10137,7 +9902,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "name": "机位1 · 机位 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-4",
      "box": [
       11,
@@ -10151,7 +9916,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "name": "机位1 · 机位 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-8",
      "box": [
       11,
@@ -10255,10 +10020,10 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "name": "机位1 · 镜头0.0-8.0s",
      "data": "data-director-shot-option=director-shot-director-camera-main",
      "box": [
-      177,
+      122,
       28
      ],
      "pe": "auto",
@@ -10367,7 +10132,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏角色01 · 陈默",
+     "name": "隐藏角色A",
      "data": "data-director-object-id=director-character-lead",
      "box": [
       24,
@@ -10381,7 +10146,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定角色01 · 陈默",
+     "name": "锁定角色A",
      "data": "data-director-object-lock=director-character-lead",
      "box": [
       24,
@@ -10395,7 +10160,7 @@
      "coverers": {}
     },
     {
-     "name": "删除角色01 · 陈默",
+     "name": "删除角色A",
      "data": "data-director-delete-object=director-character-lead",
      "box": [
       24,
@@ -10535,7 +10300,7 @@
      "coverers": {}
     },
     {
-     "name": "隐藏机位01 · 对峙中景",
+     "name": "隐藏机位1",
      "data": "data-director-object-id=director-camera-main",
      "box": [
       24,
@@ -10549,7 +10314,7 @@
      "coverers": {}
     },
     {
-     "name": "锁定机位01 · 对峙中景",
+     "name": "锁定机位1",
      "data": "data-director-object-lock=director-camera-main",
      "box": [
       24,
@@ -10563,7 +10328,7 @@
      "coverers": {}
     },
     {
-     "name": "删除机位01 · 对峙中景",
+     "name": "删除机位1",
      "data": "data-director-delete-object=director-camera-main",
      "box": [
       24,
@@ -10897,20 +10662,6 @@
     {
      "name": "虚拟相机",
      "data": "data-director-phone-vcam-trigger=true",
-     "box": [
-      32,
-      32
-     ],
-     "pe": "auto",
-     "samples": 25,
-     "foreign": 0,
-     "gridCentre": false,
-     "centre": false,
-     "coverers": {}
-    },
-    {
-     "name": "添加群众阵列",
-     "data": "data-director-crowd-trigger=true",
      "box": [
       32,
       32
@@ -11501,34 +11252,6 @@
      "coverers": {}
     },
     {
-     "name": "跳过",
-     "data": "data-director-coachmark-skip=true",
-     "box": [
-      50,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
-     "name": "下一步",
-     "data": "data-director-coachmark-next=true",
-     "box": [
-      63,
-      28
-     ],
-     "pe": "auto",
-     "samples": 0,
-     "foreign": 0,
-     "gridCentre": null,
-     "centre": false,
-     "coverers": {}
-    },
-    {
      "name": "播放",
      "data": "data-director-playback=true",
      "box": [
@@ -11705,7 +11428,7 @@
      }
     },
     {
-     "name": "移除角色01 · 陈默 · 变换轨道",
+     "name": "移除角色A · 变换轨道",
      "data": "data-director-remove-track=true",
      "box": [
       28,
@@ -11797,7 +11520,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默",
+     "name": "角色A",
      "data": "data-director-timeline-object-name=director-character-lead",
      "box": [
       60,
@@ -11881,7 +11604,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "data": "data-director-timeline-object-name=director-camera-main",
      "box": [
       60,
@@ -11965,7 +11688,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "name": "角色A · 变换 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-0",
      "box": [
       11,
@@ -11979,7 +11702,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "name": "角色A · 变换 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-4",
      "box": [
       11,
@@ -11993,7 +11716,7 @@
      "coverers": {}
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "name": "角色A · 变换 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-character-8",
      "box": [
       11,
@@ -12007,7 +11730,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "name": "机位1 · 机位 00:00.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-0",
      "box": [
       11,
@@ -12021,7 +11744,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "name": "机位1 · 机位 00:04.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-4",
      "box": [
       11,
@@ -12035,7 +11758,7 @@
      "coverers": {}
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "name": "机位1 · 机位 00:08.00 关键帧",
      "data": "data-director-keyframe-id=director-keyframe-camera-8",
      "box": [
       11,
@@ -12053,10 +11776,12 @@
  },
  "c667": {
   "1280x720": [
+   "上传图片",
    "帮助",
    "描述想搭建的场景"
   ],
   "1280x1150": [
+   "上传图片",
    "帮助",
    "描述想搭建的场景"
   ],
@@ -12078,7 +11803,7 @@
   "no-control-in-the-population-has-pointer-events-none": {
    "ok": true,
    "detail": {
-    "controls": 130,
+    "controls": 127,
     "pointerEventsNonePerCell": {
      "1280x720": 0,
      "1280x1150": 0,
@@ -12097,37 +11822,37 @@
    "detail": {
     "population": {
      "1280x720": {
-      "controls": 130,
+      "controls": 127,
       "centre": 6,
       "grid": 33,
-      "c667": 2
+      "c667": 3
      },
      "1280x1150": {
-      "controls": 130,
+      "controls": 127,
       "centre": 4,
       "grid": 30,
-      "c667": 2
+      "c667": 3
      },
      "1366x1150": {
-      "controls": 130,
+      "controls": 127,
       "centre": 3,
       "grid": 29,
       "c667": 2
      },
      "1440x1150": {
-      "controls": 130,
+      "controls": 127,
       "centre": 2,
-      "grid": 29,
+      "grid": 28,
       "c667": 1
      },
      "1600x1150": {
-      "controls": 130,
+      "controls": 127,
       "centre": 1,
       "grid": 27,
       "c667": 1
      },
      "1920x1150": {
-      "controls": 130,
+      "controls": 127,
       "centre": 1,
       "grid": 27,
       "c667": 1
@@ -12137,12 +11862,12 @@
      "1280x720": 27,
      "1280x1150": 26,
      "1366x1150": 26,
-     "1440x1150": 27,
+     "1440x1150": 26,
      "1600x1150": 26,
      "1920x1150": 26
     },
     "samplesPerControl": 25,
-    "controls": 130
+    "controls": 127
    },
    "note": "centre sees 1-6, the grid sees 27-33, at every cell"
   },
@@ -12156,8 +11881,8 @@
      0.7,
      0.9
     ],
-    "comparedControlCells": 720,
-    "unsampledBecauseCentreIsOffViewport": 60,
+    "comparedControlCells": 714,
+    "unsampledBecauseCentreIsOffViewport": 48,
     "disagreements": [],
     "thirdState": "gridCentre is null when the control's centre lies outside the viewport, so the grid never samples it. That is `missing`, not `measured false` — and the centre probe does return false there."
    },
@@ -12166,13 +11891,11 @@
   "every-missed-control-has-a-named-coverer-and-a-fraction-of-the-grid": {
    "ok": true,
    "detail": {
-    "distinctMissedControls": 22,
+    "distinctMissedControls": 21,
     "covererFamilies": [
      "button|absolute.h-[15px]",
      "button|shrink-0.cursor-ew-resize",
-     "div|absolute.inset-0",
      "div|absolute.inset-x-0",
-     "div|min-h-0.flex-1",
      "section|z-40.pointer-events-auto"
     ],
     "fractionsSeen": [
@@ -12204,10 +11927,12 @@
    "detail": {
     "c667": {
      "1280x720": [
+      "上传图片",
       "帮助",
       "描述想搭建的场景"
      ],
      "1280x1150": [
+      "上传图片",
       "帮助",
       "描述想搭建的场景"
      ],
@@ -12227,37 +11952,37 @@
     },
     "perCell": {
      "1280x720": {
-      "controls": 130,
+      "controls": 127,
       "centre": 6,
       "grid": 33,
-      "c667": 2
+      "c667": 3
      },
      "1280x1150": {
-      "controls": 130,
+      "controls": 127,
       "centre": 4,
       "grid": 30,
-      "c667": 2
+      "c667": 3
      },
      "1366x1150": {
-      "controls": 130,
+      "controls": 127,
       "centre": 3,
       "grid": 29,
       "c667": 2
      },
      "1440x1150": {
-      "controls": 130,
+      "controls": 127,
       "centre": 2,
-      "grid": 29,
+      "grid": 28,
       "c667": 1
      },
      "1600x1150": {
-      "controls": 130,
+      "controls": 127,
       "centre": 1,
       "grid": 27,
       "c667": 1
      },
      "1920x1150": {
-      "controls": 130,
+      "controls": 127,
       "centre": 1,
       "grid": 27,
       "c667": 1

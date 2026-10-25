@@ -5,13 +5,13 @@
    "1440x1150",
    "1920x1150"
   ],
-  "controls": 130,
+  "controls": 127,
   "uniquish": [
-   102,
-   62,
-   120,
-   119,
-   126
+   99,
+   58,
+   117,
+   116,
+   123
   ],
   "folds": {
    "name": [
@@ -21,8 +21,8 @@
    ],
    "kS": [
     19,
-    87,
-    68
+    88,
+    69
    ],
    "kS2": [
     5,
@@ -43,43 +43,43 @@
   "alwaysTrueFPByKey": {
    "name": {
     "perCell": [
-     66,
-     68,
-     69
+     65,
+     67,
+     68
     ],
-    "intersection": 66
+    "intersection": 65
    },
    "kS": {
     "perCell": [
-     32,
-     34,
-     35
+     31,
+     33,
+     34
     ],
-    "intersection": 32
+    "intersection": 31
    },
    "kS2": {
     "perCell": [
-     71,
-     73,
-     74
+     70,
+     72,
+     73
     ],
-    "intersection": 71
+    "intersection": 70
    },
    "kS3": {
     "perCell": [
-     66,
-     68,
-     69
+     65,
+     67,
+     68
     ],
-    "intersection": 66
+    "intersection": 65
    },
    "kS4": {
     "perCell": [
-     71,
-     73,
-     74
+     70,
+     72,
+     73
     ],
-    "intersection": 71
+    "intersection": 70
    }
   },
   "residueGroupsKS2": [
@@ -106,11 +106,11 @@
     "key": "button|flex.h-6.w-6|data-director-object-id|-",
     "n": 5,
     "names": [
-     "隐藏角色01 · 陈默",
+     "隐藏角色A",
      "隐藏咖啡桌",
      "隐藏冷掉的咖啡",
      "隐藏咖啡馆背景",
-     "隐藏机位01 · 对峙中景"
+     "隐藏机位1"
     ]
    },
    {
@@ -164,20 +164,20 @@
    "隐藏咖啡桌",
    "隐藏咖啡馆背景",
    "隐藏对象",
-   "隐藏机位01 · 对峙中景",
-   "隐藏角色01 · 陈默"
+   "隐藏机位1",
+   "隐藏角色A"
   ],
-  "judged": 390
+  "judged": 381
  },
  "cells": {
   "1280x1150": {
    "W": 1280,
-   "controls": 130,
-   "distinctNames": 102,
-   "distinctKS": 62,
-   "distinctKS2": 120,
-   "distinctKS3": 119,
-   "distinctKS4": 126,
+   "controls": 127,
+   "distinctNames": 99,
+   "distinctKS": 58,
+   "distinctKS2": 117,
+   "distinctKS3": 116,
+   "distinctKS4": 123,
    "dupsName": [
     {
      "key": "<input>",
@@ -294,45 +294,46 @@
      "key": "button|flex.h-6.w-6|data-director-object-id|-",
      "n": 5,
      "names": [
-      "隐藏角色01 · 陈默",
+      "隐藏角色A",
       "隐藏咖啡桌",
       "隐藏冷掉的咖啡",
       "隐藏咖啡馆背景",
-      "隐藏机位01 · 对峙中景"
+      "隐藏机位1"
      ]
     },
     {
      "key": "button|flex.h-6.w-6|data-director-object-lock|-",
      "n": 5,
      "names": [
-      "锁定角色01 · 陈默",
+      "锁定角色A",
       "锁定咖啡桌",
       "锁定冷掉的咖啡",
       "锁定咖啡馆背景",
-      "锁定机位01 · 对峙中景"
+      "锁定机位1"
      ]
     },
     {
      "key": "button|flex.h-6.w-6|data-director-delete-object|-",
      "n": 5,
      "names": [
-      "删除角色01 · 陈默",
+      "删除角色A",
       "删除咖啡桌",
       "删除冷掉的咖啡",
       "删除咖啡馆背景",
-      "删除机位01 · 对峙中景"
+      "删除机位1"
      ]
     },
     {
      "key": "button|flex.size-8.items-center|data-director-rail-entry|-",
-     "n": 6,
+     "n": 7,
      "names": [
       "场景",
       "添加角色",
       "添加机位",
       "全景图",
       "选择画幅比例",
-      "AI 识图导入"
+      "AI 识图导入",
+      "帮助"
      ]
     },
     {
@@ -430,8 +431,8 @@
      "key": "div|relative.z-[1].min-w-0|data-director-timeline-object-name|button",
      "n": 2,
      "names": [
-      "角色01 · 陈默",
-      "机位01 · 对峙中景"
+      "角色A",
+      "机位1"
      ]
     },
     {
@@ -458,12 +459,12 @@
      "key": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "n": 6,
      "names": [
-      "角色01 · 陈默 · 变换 00:00.00 关键帧",
-      "角色01 · 陈默 · 变换 00:04.00 关键帧",
-      "角色01 · 陈默 · 变换 00:08.00 关键帧",
-      "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
-      "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
-      "机位01 · 对峙中景 · 机位 00:08.00 关键帧"
+      "角色A · 变换 00:00.00 关键帧",
+      "角色A · 变换 00:04.00 关键帧",
+      "角色A · 变换 00:08.00 关键帧",
+      "机位1 · 机位 00:00.00 关键帧",
+      "机位1 · 机位 00:04.00 关键帧",
+      "机位1 · 机位 00:08.00 关键帧"
      ]
     }
    ],
@@ -519,11 +520,11 @@
      "key": "button|flex.h-6.w-6|data-director-object-id|-",
      "n": 5,
      "names": [
-      "隐藏角色01 · 陈默",
+      "隐藏角色A",
       "隐藏咖啡桌",
       "隐藏冷掉的咖啡",
       "隐藏咖啡馆背景",
-      "隐藏机位01 · 对峙中景"
+      "隐藏机位1"
      ]
     },
     {
@@ -577,11 +578,11 @@
    ],
    "noSelfData": [
     "搜索场景内容",
-    "隐藏角色01 · 陈默",
+    "隐藏角色A",
     "隐藏咖啡桌",
     "隐藏冷掉的咖啡",
     "隐藏咖啡馆背景",
-    "隐藏机位01 · 对峙中景",
+    "隐藏机位1",
     "开启九宫格辅助线",
     "隐藏对象",
     "收起属性",
@@ -669,7 +670,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "name": "机位1 · 镜头0.0-8.0s",
      "kS": "button|flex.h-7.shrink-0|data-director-shot-option|-",
      "kS2": "button|flex.h-7.shrink-0|data-director-shot-option=director-shot-director-camera-main|-",
      "kS3": "button|flex.h-7.shrink-0|data-director-shot-option=director-shot-director-camera-main|-",
@@ -763,7 +764,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "隐藏角色01 · 陈默",
+     "name": "隐藏角色A",
      "kS": "button|flex.h-6.w-6|data-director-object-id|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-id=director-character-lead|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-id|-",
@@ -773,7 +774,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "锁定角色01 · 陈默",
+     "name": "锁定角色A",
      "kS": "button|flex.h-6.w-6|data-director-object-lock|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-lock=director-character-lead|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-lock=director-character-lead&data-director-object-locked=false|-",
@@ -786,7 +787,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "删除角色01 · 陈默",
+     "name": "删除角色A",
      "kS": "button|flex.h-6.w-6|data-director-delete-object|-",
      "kS2": "button|flex.h-6.w-6|data-director-delete-object=director-character-lead|-",
      "kS3": "button|flex.h-6.w-6|data-director-delete-object=director-character-lead|-",
@@ -903,7 +904,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "隐藏机位01 · 对峙中景",
+     "name": "隐藏机位1",
      "kS": "button|flex.h-6.w-6|data-director-object-id|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-id=director-camera-main|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-id|-",
@@ -913,7 +914,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "锁定机位01 · 对峙中景",
+     "name": "锁定机位1",
      "kS": "button|flex.h-6.w-6|data-director-object-lock|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-lock=director-camera-main|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-lock=director-camera-main&data-director-object-locked=false|-",
@@ -926,7 +927,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "删除机位01 · 对峙中景",
+     "name": "删除机位1",
      "kS": "button|flex.h-6.w-6|data-director-delete-object|-",
      "kS2": "button|flex.h-6.w-6|data-director-delete-object=director-camera-main|-",
      "kS3": "button|flex.h-6.w-6|data-director-delete-object=director-camera-main|-",
@@ -1011,10 +1012,10 @@
     },
     {
      "name": "帮助",
-     "kS": "button|mt-auto.flex.size-8|data-director-rail-entry|-",
-     "kS2": "button|mt-auto.flex.size-8|data-director-rail-entry=help|-",
-     "kS3": "button|mt-auto.flex.size-8|data-director-rail-entry=help|-",
-     "kS4": "button|mt-auto.flex.size-8|data-director-rail-entry=help|-",
+     "kS": "button|flex.size-8.items-center|data-director-rail-entry|-",
+     "kS2": "button|flex.size-8.items-center|data-director-rail-entry=help|-",
+     "kS3": "button|flex.size-8.items-center|data-director-rail-entry=help|-",
+     "kS4": "button|flex.size-8.items-center|data-director-rail-entry=help|-",
      "selfData": [
       "data-director-rail-entry=help"
      ],
@@ -1212,18 +1213,6 @@
      "blame": "absolute.inset-0"
     },
     {
-     "name": "添加群众阵列",
-     "kS": "button|group.relative.flex|data-director-crowd-trigger|-",
-     "kS2": "button|group.relative.flex|data-director-crowd-trigger=true|-",
-     "kS3": "button|group.relative.flex|data-director-crowd-trigger=true|-",
-     "kS4": "button|group.relative.flex|data-director-crowd-trigger=true|-",
-     "selfData": [
-      "data-director-crowd-trigger=true"
-     ],
-     "trueFP": true,
-     "blame": "absolute.inset-0"
-    },
-    {
      "name": "模型库",
      "kS": "button|group.relative.flex|data-director-model-library-trigger|-",
      "kS2": "button|group.relative.flex|data-director-model-library-trigger=true|-",
@@ -1257,7 +1246,7 @@
       "data-director-scene-prompt-upload=true"
      ],
      "trueFP": false,
-     "blame": "min-h-0.flex-1.overflow-y-auto"
+     "blame": "absolute.inset-0"
     },
     {
      "name": "描述想搭建的场景",
@@ -1738,37 +1727,14 @@
      "blame": null
     },
     {
-     "name": "跳过",
-     "kS": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip|-",
-     "kS2": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip=true|-",
-     "kS3": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip=true|-",
-     "kS4": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip=true|-",
-     "selfData": [
-      "data-director-coachmark-skip=true"
-     ],
-     "trueFP": false,
-     "blame": null
-    },
-    {
-     "name": "下一步",
-     "kS": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next|-",
-     "kS2": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next=true|-",
-     "kS3": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next=true|-",
-     "kS4": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next=true|-",
-     "selfData": [
-      "data-director-coachmark-next=true"
-     ],
-     "trueFP": false,
-     "blame": null
-    },
-    {
      "name": "播放",
      "kS": "button|flex.h-6.w-[26px]|data-director-playback|-",
      "kS2": "button|flex.h-6.w-[26px]|data-director-playback=true|-",
-     "kS3": "button|flex.h-6.w-[26px]|data-director-playback=true|-",
-     "kS4": "button|flex.h-6.w-[26px]|data-director-playback=true|-",
+     "kS3": "button|flex.h-6.w-[26px]|data-director-playback=true&data-director-timeline-guide-target=play|-",
+     "kS4": "button|flex.h-6.w-[26px]|data-director-playback=true&data-director-timeline-guide-target=play|-",
      "selfData": [
-      "data-director-playback=true"
+      "data-director-playback=true",
+      "data-director-timeline-guide-target=play"
      ],
      "trueFP": true,
      "blame": "absolute.bottom-0.left-0.top-[52px].z-30.hidden.w-12.shrink-0.flex-col.items-center.gap-2.border-r.border-white/8.bg-[#171717].p-2.min-[899px]:flex"
@@ -1898,7 +1864,7 @@
      "blame": null
     },
     {
-     "name": "移除角色01 · 陈默 · 变换轨道",
+     "name": "移除角色A · 变换轨道",
      "kS": "button|flex.h-7.w-7|data-director-remove-track|-",
      "kS2": "button|flex.h-7.w-7|data-director-remove-track=true|-",
      "kS3": "button|flex.h-7.w-7|data-director-remove-track=true|-",
@@ -1949,10 +1915,11 @@
      "name": "导出视频到画布",
      "kS": "button|relative.flex.h-7|data-director-export-trigger|-",
      "kS2": "button|relative.flex.h-7|data-director-export-trigger=true|-",
-     "kS3": "button|relative.flex.h-7|data-director-export-trigger=true|-",
-     "kS4": "button|relative.flex.h-7|data-director-export-trigger=true|-",
+     "kS3": "button|relative.flex.h-7|data-director-export-trigger=true&data-director-timeline-guide-target=export-to-canvas|-",
+     "kS4": "button|relative.flex.h-7|data-director-export-trigger=true&data-director-timeline-guide-target=export-to-canvas|-",
      "selfData": [
-      "data-director-export-trigger=true"
+      "data-director-export-trigger=true",
+      "data-director-timeline-guide-target=export-to-canvas"
      ],
      "trueFP": true,
      "blame": "flex.h-9.shrink-0.items-center.gap-0.border-b.border-white/[0.07].px-2.py-1.pr-[260px].max-[899px]:pr-2"
@@ -1968,7 +1935,7 @@
      "blame": "absolute.bottom-0.left-0.top-[52px].z-30.hidden.w-12.shrink-0.flex-col.items-center.gap-2.border-r.border-white/8.bg-[#171717].p-2.min-[899px]:flex"
     },
     {
-     "name": "角色01 · 陈默",
+     "name": "角色A",
      "kS": "div|relative.z-[1].min-w-0|data-director-timeline-object-name|button",
      "kS2": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-character-lead|button",
      "kS3": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-character-lead|button",
@@ -2030,7 +1997,7 @@
      "blame": "lucide.lucide-circle-question-mark"
     },
     {
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "kS": "div|relative.z-[1].min-w-0|data-director-timeline-object-name|button",
      "kS2": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-camera-main|button",
      "kS3": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-camera-main|button",
@@ -2045,10 +2012,11 @@
      "name": "绘制轨迹",
      "kS": "button|flex.h-6.w-fit|data-director-track-draw-trail|-",
      "kS2": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main|-",
-     "kS3": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main|-",
-     "kS4": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main|-",
+     "kS3": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main&data-director-timeline-guide-target=draw-trajectory|-",
+     "kS4": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main&data-director-timeline-guide-target=draw-trajectory|-",
      "selfData": [
-      "data-director-track-draw-trail=director-track-camera-main"
+      "data-director-track-draw-trail=director-track-camera-main",
+      "data-director-timeline-guide-target=draw-trajectory"
      ],
      "trueFP": true,
      "blame": "min-h-0.flex-1.overflow-y-auto.px-2.pb-3.[scrollbar-color:rgba(255,255,255,0.2)_transparent].[scrollbar-width:thin]"
@@ -2094,7 +2062,7 @@
      "blame": null
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "name": "角色A · 变换 00:00.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-0|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-0&data-director-keyframe-time=0|-",
@@ -2107,7 +2075,7 @@
      "blame": null
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "name": "角色A · 变换 00:04.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-4|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-4&data-director-keyframe-time=4|-",
@@ -2120,7 +2088,7 @@
      "blame": null
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "name": "角色A · 变换 00:08.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-8|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-8&data-director-keyframe-time=8|-",
@@ -2133,7 +2101,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "name": "机位1 · 机位 00:00.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-0|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-0&data-director-keyframe-time=0|-",
@@ -2146,7 +2114,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "name": "机位1 · 机位 00:04.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-4|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-4&data-director-keyframe-time=4|-",
@@ -2159,7 +2127,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "name": "机位1 · 机位 00:08.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-8|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-8&data-director-keyframe-time=8|-",
@@ -2175,12 +2143,12 @@
   },
   "1440x1150": {
    "W": 1440,
-   "controls": 130,
-   "distinctNames": 102,
-   "distinctKS": 62,
-   "distinctKS2": 120,
-   "distinctKS3": 119,
-   "distinctKS4": 126,
+   "controls": 127,
+   "distinctNames": 99,
+   "distinctKS": 58,
+   "distinctKS2": 117,
+   "distinctKS3": 116,
+   "distinctKS4": 123,
    "dupsName": [
     {
      "key": "<input>",
@@ -2297,45 +2265,46 @@
      "key": "button|flex.h-6.w-6|data-director-object-id|-",
      "n": 5,
      "names": [
-      "隐藏角色01 · 陈默",
+      "隐藏角色A",
       "隐藏咖啡桌",
       "隐藏冷掉的咖啡",
       "隐藏咖啡馆背景",
-      "隐藏机位01 · 对峙中景"
+      "隐藏机位1"
      ]
     },
     {
      "key": "button|flex.h-6.w-6|data-director-object-lock|-",
      "n": 5,
      "names": [
-      "锁定角色01 · 陈默",
+      "锁定角色A",
       "锁定咖啡桌",
       "锁定冷掉的咖啡",
       "锁定咖啡馆背景",
-      "锁定机位01 · 对峙中景"
+      "锁定机位1"
      ]
     },
     {
      "key": "button|flex.h-6.w-6|data-director-delete-object|-",
      "n": 5,
      "names": [
-      "删除角色01 · 陈默",
+      "删除角色A",
       "删除咖啡桌",
       "删除冷掉的咖啡",
       "删除咖啡馆背景",
-      "删除机位01 · 对峙中景"
+      "删除机位1"
      ]
     },
     {
      "key": "button|flex.size-8.items-center|data-director-rail-entry|-",
-     "n": 6,
+     "n": 7,
      "names": [
       "场景",
       "添加角色",
       "添加机位",
       "全景图",
       "选择画幅比例",
-      "AI 识图导入"
+      "AI 识图导入",
+      "帮助"
      ]
     },
     {
@@ -2433,8 +2402,8 @@
      "key": "div|relative.z-[1].min-w-0|data-director-timeline-object-name|button",
      "n": 2,
      "names": [
-      "角色01 · 陈默",
-      "机位01 · 对峙中景"
+      "角色A",
+      "机位1"
      ]
     },
     {
@@ -2461,12 +2430,12 @@
      "key": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "n": 6,
      "names": [
-      "角色01 · 陈默 · 变换 00:00.00 关键帧",
-      "角色01 · 陈默 · 变换 00:04.00 关键帧",
-      "角色01 · 陈默 · 变换 00:08.00 关键帧",
-      "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
-      "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
-      "机位01 · 对峙中景 · 机位 00:08.00 关键帧"
+      "角色A · 变换 00:00.00 关键帧",
+      "角色A · 变换 00:04.00 关键帧",
+      "角色A · 变换 00:08.00 关键帧",
+      "机位1 · 机位 00:00.00 关键帧",
+      "机位1 · 机位 00:04.00 关键帧",
+      "机位1 · 机位 00:08.00 关键帧"
      ]
     }
    ],
@@ -2522,11 +2491,11 @@
      "key": "button|flex.h-6.w-6|data-director-object-id|-",
      "n": 5,
      "names": [
-      "隐藏角色01 · 陈默",
+      "隐藏角色A",
       "隐藏咖啡桌",
       "隐藏冷掉的咖啡",
       "隐藏咖啡馆背景",
-      "隐藏机位01 · 对峙中景"
+      "隐藏机位1"
      ]
     },
     {
@@ -2580,11 +2549,11 @@
    ],
    "noSelfData": [
     "搜索场景内容",
-    "隐藏角色01 · 陈默",
+    "隐藏角色A",
     "隐藏咖啡桌",
     "隐藏冷掉的咖啡",
     "隐藏咖啡馆背景",
-    "隐藏机位01 · 对峙中景",
+    "隐藏机位1",
     "开启九宫格辅助线",
     "隐藏对象",
     "收起属性",
@@ -2672,7 +2641,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "name": "机位1 · 镜头0.0-8.0s",
      "kS": "button|flex.h-7.shrink-0|data-director-shot-option|-",
      "kS2": "button|flex.h-7.shrink-0|data-director-shot-option=director-shot-director-camera-main|-",
      "kS3": "button|flex.h-7.shrink-0|data-director-shot-option=director-shot-director-camera-main|-",
@@ -2766,7 +2735,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "隐藏角色01 · 陈默",
+     "name": "隐藏角色A",
      "kS": "button|flex.h-6.w-6|data-director-object-id|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-id=director-character-lead|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-id|-",
@@ -2776,7 +2745,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "锁定角色01 · 陈默",
+     "name": "锁定角色A",
      "kS": "button|flex.h-6.w-6|data-director-object-lock|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-lock=director-character-lead|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-lock=director-character-lead&data-director-object-locked=false|-",
@@ -2789,7 +2758,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "删除角色01 · 陈默",
+     "name": "删除角色A",
      "kS": "button|flex.h-6.w-6|data-director-delete-object|-",
      "kS2": "button|flex.h-6.w-6|data-director-delete-object=director-character-lead|-",
      "kS3": "button|flex.h-6.w-6|data-director-delete-object=director-character-lead|-",
@@ -2906,7 +2875,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "隐藏机位01 · 对峙中景",
+     "name": "隐藏机位1",
      "kS": "button|flex.h-6.w-6|data-director-object-id|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-id=director-camera-main|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-id|-",
@@ -2916,7 +2885,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "锁定机位01 · 对峙中景",
+     "name": "锁定机位1",
      "kS": "button|flex.h-6.w-6|data-director-object-lock|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-lock=director-camera-main|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-lock=director-camera-main&data-director-object-locked=false|-",
@@ -2929,7 +2898,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "删除机位01 · 对峙中景",
+     "name": "删除机位1",
      "kS": "button|flex.h-6.w-6|data-director-delete-object|-",
      "kS2": "button|flex.h-6.w-6|data-director-delete-object=director-camera-main|-",
      "kS3": "button|flex.h-6.w-6|data-director-delete-object=director-camera-main|-",
@@ -3014,10 +2983,10 @@
     },
     {
      "name": "帮助",
-     "kS": "button|mt-auto.flex.size-8|data-director-rail-entry|-",
-     "kS2": "button|mt-auto.flex.size-8|data-director-rail-entry=help|-",
-     "kS3": "button|mt-auto.flex.size-8|data-director-rail-entry=help|-",
-     "kS4": "button|mt-auto.flex.size-8|data-director-rail-entry=help|-",
+     "kS": "button|flex.size-8.items-center|data-director-rail-entry|-",
+     "kS2": "button|flex.size-8.items-center|data-director-rail-entry=help|-",
+     "kS3": "button|flex.size-8.items-center|data-director-rail-entry=help|-",
+     "kS4": "button|flex.size-8.items-center|data-director-rail-entry=help|-",
      "selfData": [
       "data-director-rail-entry=help"
      ],
@@ -3210,18 +3179,6 @@
      "kS4": "button|group.relative.flex|data-director-phone-vcam-trigger=true|-",
      "selfData": [
       "data-director-phone-vcam-trigger=true"
-     ],
-     "trueFP": true,
-     "blame": "absolute.inset-0"
-    },
-    {
-     "name": "添加群众阵列",
-     "kS": "button|group.relative.flex|data-director-crowd-trigger|-",
-     "kS2": "button|group.relative.flex|data-director-crowd-trigger=true|-",
-     "kS3": "button|group.relative.flex|data-director-crowd-trigger=true|-",
-     "kS4": "button|group.relative.flex|data-director-crowd-trigger=true|-",
-     "selfData": [
-      "data-director-crowd-trigger=true"
      ],
      "trueFP": true,
      "blame": "absolute.inset-0"
@@ -3741,37 +3698,14 @@
      "blame": null
     },
     {
-     "name": "跳过",
-     "kS": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip|-",
-     "kS2": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip=true|-",
-     "kS3": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip=true|-",
-     "kS4": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip=true|-",
-     "selfData": [
-      "data-director-coachmark-skip=true"
-     ],
-     "trueFP": false,
-     "blame": null
-    },
-    {
-     "name": "下一步",
-     "kS": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next|-",
-     "kS2": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next=true|-",
-     "kS3": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next=true|-",
-     "kS4": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next=true|-",
-     "selfData": [
-      "data-director-coachmark-next=true"
-     ],
-     "trueFP": false,
-     "blame": null
-    },
-    {
      "name": "播放",
      "kS": "button|flex.h-6.w-[26px]|data-director-playback|-",
      "kS2": "button|flex.h-6.w-[26px]|data-director-playback=true|-",
-     "kS3": "button|flex.h-6.w-[26px]|data-director-playback=true|-",
-     "kS4": "button|flex.h-6.w-[26px]|data-director-playback=true|-",
+     "kS3": "button|flex.h-6.w-[26px]|data-director-playback=true&data-director-timeline-guide-target=play|-",
+     "kS4": "button|flex.h-6.w-[26px]|data-director-playback=true&data-director-timeline-guide-target=play|-",
      "selfData": [
-      "data-director-playback=true"
+      "data-director-playback=true",
+      "data-director-timeline-guide-target=play"
      ],
      "trueFP": true,
      "blame": "absolute.bottom-0.left-0.top-[52px].z-30.hidden.w-12.shrink-0.flex-col.items-center.gap-2.border-r.border-white/8.bg-[#171717].p-2.min-[899px]:flex"
@@ -3901,7 +3835,7 @@
      "blame": null
     },
     {
-     "name": "移除角色01 · 陈默 · 变换轨道",
+     "name": "移除角色A · 变换轨道",
      "kS": "button|flex.h-7.w-7|data-director-remove-track|-",
      "kS2": "button|flex.h-7.w-7|data-director-remove-track=true|-",
      "kS3": "button|flex.h-7.w-7|data-director-remove-track=true|-",
@@ -3952,10 +3886,11 @@
      "name": "导出视频到画布",
      "kS": "button|relative.flex.h-7|data-director-export-trigger|-",
      "kS2": "button|relative.flex.h-7|data-director-export-trigger=true|-",
-     "kS3": "button|relative.flex.h-7|data-director-export-trigger=true|-",
-     "kS4": "button|relative.flex.h-7|data-director-export-trigger=true|-",
+     "kS3": "button|relative.flex.h-7|data-director-export-trigger=true&data-director-timeline-guide-target=export-to-canvas|-",
+     "kS4": "button|relative.flex.h-7|data-director-export-trigger=true&data-director-timeline-guide-target=export-to-canvas|-",
      "selfData": [
-      "data-director-export-trigger=true"
+      "data-director-export-trigger=true",
+      "data-director-timeline-guide-target=export-to-canvas"
      ],
      "trueFP": true,
      "blame": "flex.h-9.shrink-0.items-center.gap-0.border-b.border-white/[0.07].px-2.py-1.pr-[260px].max-[899px]:pr-2"
@@ -3971,7 +3906,7 @@
      "blame": "absolute.bottom-0.left-0.top-[52px].z-30.hidden.w-12.shrink-0.flex-col.items-center.gap-2.border-r.border-white/8.bg-[#171717].p-2.min-[899px]:flex"
     },
     {
-     "name": "角色01 · 陈默",
+     "name": "角色A",
      "kS": "div|relative.z-[1].min-w-0|data-director-timeline-object-name|button",
      "kS2": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-character-lead|button",
      "kS3": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-character-lead|button",
@@ -4033,7 +3968,7 @@
      "blame": "lucide.lucide-circle-question-mark"
     },
     {
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "kS": "div|relative.z-[1].min-w-0|data-director-timeline-object-name|button",
      "kS2": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-camera-main|button",
      "kS3": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-camera-main|button",
@@ -4048,10 +3983,11 @@
      "name": "绘制轨迹",
      "kS": "button|flex.h-6.w-fit|data-director-track-draw-trail|-",
      "kS2": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main|-",
-     "kS3": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main|-",
-     "kS4": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main|-",
+     "kS3": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main&data-director-timeline-guide-target=draw-trajectory|-",
+     "kS4": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main&data-director-timeline-guide-target=draw-trajectory|-",
      "selfData": [
-      "data-director-track-draw-trail=director-track-camera-main"
+      "data-director-track-draw-trail=director-track-camera-main",
+      "data-director-timeline-guide-target=draw-trajectory"
      ],
      "trueFP": true,
      "blame": "min-h-0.flex-1.overflow-y-auto.px-2.pb-3.[scrollbar-color:rgba(255,255,255,0.2)_transparent].[scrollbar-width:thin]"
@@ -4097,7 +4033,7 @@
      "blame": null
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "name": "角色A · 变换 00:00.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-0|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-0&data-director-keyframe-time=0|-",
@@ -4110,7 +4046,7 @@
      "blame": null
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "name": "角色A · 变换 00:04.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-4|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-4&data-director-keyframe-time=4|-",
@@ -4123,7 +4059,7 @@
      "blame": null
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "name": "角色A · 变换 00:08.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-8|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-8&data-director-keyframe-time=8|-",
@@ -4136,7 +4072,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "name": "机位1 · 机位 00:00.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-0|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-0&data-director-keyframe-time=0|-",
@@ -4149,7 +4085,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "name": "机位1 · 机位 00:04.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-4|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-4&data-director-keyframe-time=4|-",
@@ -4162,7 +4098,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "name": "机位1 · 机位 00:08.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-8|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-8&data-director-keyframe-time=8|-",
@@ -4178,12 +4114,12 @@
   },
   "1920x1150": {
    "W": 1920,
-   "controls": 130,
-   "distinctNames": 102,
-   "distinctKS": 62,
-   "distinctKS2": 120,
-   "distinctKS3": 119,
-   "distinctKS4": 126,
+   "controls": 127,
+   "distinctNames": 99,
+   "distinctKS": 58,
+   "distinctKS2": 117,
+   "distinctKS3": 116,
+   "distinctKS4": 123,
    "dupsName": [
     {
      "key": "<input>",
@@ -4300,45 +4236,46 @@
      "key": "button|flex.h-6.w-6|data-director-object-id|-",
      "n": 5,
      "names": [
-      "隐藏角色01 · 陈默",
+      "隐藏角色A",
       "隐藏咖啡桌",
       "隐藏冷掉的咖啡",
       "隐藏咖啡馆背景",
-      "隐藏机位01 · 对峙中景"
+      "隐藏机位1"
      ]
     },
     {
      "key": "button|flex.h-6.w-6|data-director-object-lock|-",
      "n": 5,
      "names": [
-      "锁定角色01 · 陈默",
+      "锁定角色A",
       "锁定咖啡桌",
       "锁定冷掉的咖啡",
       "锁定咖啡馆背景",
-      "锁定机位01 · 对峙中景"
+      "锁定机位1"
      ]
     },
     {
      "key": "button|flex.h-6.w-6|data-director-delete-object|-",
      "n": 5,
      "names": [
-      "删除角色01 · 陈默",
+      "删除角色A",
       "删除咖啡桌",
       "删除冷掉的咖啡",
       "删除咖啡馆背景",
-      "删除机位01 · 对峙中景"
+      "删除机位1"
      ]
     },
     {
      "key": "button|flex.size-8.items-center|data-director-rail-entry|-",
-     "n": 6,
+     "n": 7,
      "names": [
       "场景",
       "添加角色",
       "添加机位",
       "全景图",
       "选择画幅比例",
-      "AI 识图导入"
+      "AI 识图导入",
+      "帮助"
      ]
     },
     {
@@ -4436,8 +4373,8 @@
      "key": "div|relative.z-[1].min-w-0|data-director-timeline-object-name|button",
      "n": 2,
      "names": [
-      "角色01 · 陈默",
-      "机位01 · 对峙中景"
+      "角色A",
+      "机位1"
      ]
     },
     {
@@ -4464,12 +4401,12 @@
      "key": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "n": 6,
      "names": [
-      "角色01 · 陈默 · 变换 00:00.00 关键帧",
-      "角色01 · 陈默 · 变换 00:04.00 关键帧",
-      "角色01 · 陈默 · 变换 00:08.00 关键帧",
-      "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
-      "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
-      "机位01 · 对峙中景 · 机位 00:08.00 关键帧"
+      "角色A · 变换 00:00.00 关键帧",
+      "角色A · 变换 00:04.00 关键帧",
+      "角色A · 变换 00:08.00 关键帧",
+      "机位1 · 机位 00:00.00 关键帧",
+      "机位1 · 机位 00:04.00 关键帧",
+      "机位1 · 机位 00:08.00 关键帧"
      ]
     }
    ],
@@ -4525,11 +4462,11 @@
      "key": "button|flex.h-6.w-6|data-director-object-id|-",
      "n": 5,
      "names": [
-      "隐藏角色01 · 陈默",
+      "隐藏角色A",
       "隐藏咖啡桌",
       "隐藏冷掉的咖啡",
       "隐藏咖啡馆背景",
-      "隐藏机位01 · 对峙中景"
+      "隐藏机位1"
      ]
     },
     {
@@ -4583,11 +4520,11 @@
    ],
    "noSelfData": [
     "搜索场景内容",
-    "隐藏角色01 · 陈默",
+    "隐藏角色A",
     "隐藏咖啡桌",
     "隐藏冷掉的咖啡",
     "隐藏咖啡馆背景",
-    "隐藏机位01 · 对峙中景",
+    "隐藏机位1",
     "开启九宫格辅助线",
     "隐藏对象",
     "收起属性",
@@ -4675,7 +4612,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "name": "机位1 · 镜头0.0-8.0s",
      "kS": "button|flex.h-7.shrink-0|data-director-shot-option|-",
      "kS2": "button|flex.h-7.shrink-0|data-director-shot-option=director-shot-director-camera-main|-",
      "kS3": "button|flex.h-7.shrink-0|data-director-shot-option=director-shot-director-camera-main|-",
@@ -4769,7 +4706,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "隐藏角色01 · 陈默",
+     "name": "隐藏角色A",
      "kS": "button|flex.h-6.w-6|data-director-object-id|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-id=director-character-lead|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-id|-",
@@ -4779,7 +4716,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "锁定角色01 · 陈默",
+     "name": "锁定角色A",
      "kS": "button|flex.h-6.w-6|data-director-object-lock|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-lock=director-character-lead|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-lock=director-character-lead&data-director-object-locked=false|-",
@@ -4792,7 +4729,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "删除角色01 · 陈默",
+     "name": "删除角色A",
      "kS": "button|flex.h-6.w-6|data-director-delete-object|-",
      "kS2": "button|flex.h-6.w-6|data-director-delete-object=director-character-lead|-",
      "kS3": "button|flex.h-6.w-6|data-director-delete-object=director-character-lead|-",
@@ -4909,7 +4846,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "隐藏机位01 · 对峙中景",
+     "name": "隐藏机位1",
      "kS": "button|flex.h-6.w-6|data-director-object-id|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-id=director-camera-main|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-id|-",
@@ -4919,7 +4856,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "锁定机位01 · 对峙中景",
+     "name": "锁定机位1",
      "kS": "button|flex.h-6.w-6|data-director-object-lock|-",
      "kS2": "button|flex.h-6.w-6|data-director-object-lock=director-camera-main|-",
      "kS3": "button|flex.h-6.w-6|data-director-object-lock=director-camera-main&data-director-object-locked=false|-",
@@ -4932,7 +4869,7 @@
      "blame": "relative.min-h-0.flex-1"
     },
     {
-     "name": "删除机位01 · 对峙中景",
+     "name": "删除机位1",
      "kS": "button|flex.h-6.w-6|data-director-delete-object|-",
      "kS2": "button|flex.h-6.w-6|data-director-delete-object=director-camera-main|-",
      "kS3": "button|flex.h-6.w-6|data-director-delete-object=director-camera-main|-",
@@ -5017,10 +4954,10 @@
     },
     {
      "name": "帮助",
-     "kS": "button|mt-auto.flex.size-8|data-director-rail-entry|-",
-     "kS2": "button|mt-auto.flex.size-8|data-director-rail-entry=help|-",
-     "kS3": "button|mt-auto.flex.size-8|data-director-rail-entry=help|-",
-     "kS4": "button|mt-auto.flex.size-8|data-director-rail-entry=help|-",
+     "kS": "button|flex.size-8.items-center|data-director-rail-entry|-",
+     "kS2": "button|flex.size-8.items-center|data-director-rail-entry=help|-",
+     "kS3": "button|flex.size-8.items-center|data-director-rail-entry=help|-",
+     "kS4": "button|flex.size-8.items-center|data-director-rail-entry=help|-",
      "selfData": [
       "data-director-rail-entry=help"
      ],
@@ -5213,18 +5150,6 @@
      "kS4": "button|group.relative.flex|data-director-phone-vcam-trigger=true|-",
      "selfData": [
       "data-director-phone-vcam-trigger=true"
-     ],
-     "trueFP": true,
-     "blame": "absolute.inset-0"
-    },
-    {
-     "name": "添加群众阵列",
-     "kS": "button|group.relative.flex|data-director-crowd-trigger|-",
-     "kS2": "button|group.relative.flex|data-director-crowd-trigger=true|-",
-     "kS3": "button|group.relative.flex|data-director-crowd-trigger=true|-",
-     "kS4": "button|group.relative.flex|data-director-crowd-trigger=true|-",
-     "selfData": [
-      "data-director-crowd-trigger=true"
      ],
      "trueFP": true,
      "blame": "absolute.inset-0"
@@ -5744,37 +5669,14 @@
      "blame": null
     },
     {
-     "name": "跳过",
-     "kS": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip|-",
-     "kS2": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip=true|-",
-     "kS3": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip=true|-",
-     "kS4": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-skip=true|-",
-     "selfData": [
-      "data-director-coachmark-skip=true"
-     ],
-     "trueFP": false,
-     "blame": null
-    },
-    {
-     "name": "下一步",
-     "kS": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next|-",
-     "kS2": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next=true|-",
-     "kS3": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next=true|-",
-     "kS4": "button|pointer-events-auto.h-7.rounded-lg|data-director-coachmark-next=true|-",
-     "selfData": [
-      "data-director-coachmark-next=true"
-     ],
-     "trueFP": false,
-     "blame": null
-    },
-    {
      "name": "播放",
      "kS": "button|flex.h-6.w-[26px]|data-director-playback|-",
      "kS2": "button|flex.h-6.w-[26px]|data-director-playback=true|-",
-     "kS3": "button|flex.h-6.w-[26px]|data-director-playback=true|-",
-     "kS4": "button|flex.h-6.w-[26px]|data-director-playback=true|-",
+     "kS3": "button|flex.h-6.w-[26px]|data-director-playback=true&data-director-timeline-guide-target=play|-",
+     "kS4": "button|flex.h-6.w-[26px]|data-director-playback=true&data-director-timeline-guide-target=play|-",
      "selfData": [
-      "data-director-playback=true"
+      "data-director-playback=true",
+      "data-director-timeline-guide-target=play"
      ],
      "trueFP": true,
      "blame": "absolute.bottom-0.left-0.top-[52px].z-30.hidden.w-12.shrink-0.flex-col.items-center.gap-2.border-r.border-white/8.bg-[#171717].p-2.min-[899px]:flex"
@@ -5904,7 +5806,7 @@
      "blame": null
     },
     {
-     "name": "移除角色01 · 陈默 · 变换轨道",
+     "name": "移除角色A · 变换轨道",
      "kS": "button|flex.h-7.w-7|data-director-remove-track|-",
      "kS2": "button|flex.h-7.w-7|data-director-remove-track=true|-",
      "kS3": "button|flex.h-7.w-7|data-director-remove-track=true|-",
@@ -5955,10 +5857,11 @@
      "name": "导出视频到画布",
      "kS": "button|relative.flex.h-7|data-director-export-trigger|-",
      "kS2": "button|relative.flex.h-7|data-director-export-trigger=true|-",
-     "kS3": "button|relative.flex.h-7|data-director-export-trigger=true|-",
-     "kS4": "button|relative.flex.h-7|data-director-export-trigger=true|-",
+     "kS3": "button|relative.flex.h-7|data-director-export-trigger=true&data-director-timeline-guide-target=export-to-canvas|-",
+     "kS4": "button|relative.flex.h-7|data-director-export-trigger=true&data-director-timeline-guide-target=export-to-canvas|-",
      "selfData": [
-      "data-director-export-trigger=true"
+      "data-director-export-trigger=true",
+      "data-director-timeline-guide-target=export-to-canvas"
      ],
      "trueFP": true,
      "blame": "flex.h-9.shrink-0.items-center.gap-0.border-b.border-white/[0.07].px-2.py-1.pr-[260px].max-[899px]:pr-2"
@@ -5974,7 +5877,7 @@
      "blame": "absolute.bottom-0.left-0.top-[52px].z-30.hidden.w-12.shrink-0.flex-col.items-center.gap-2.border-r.border-white/8.bg-[#171717].p-2.min-[899px]:flex"
     },
     {
-     "name": "角色01 · 陈默",
+     "name": "角色A",
      "kS": "div|relative.z-[1].min-w-0|data-director-timeline-object-name|button",
      "kS2": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-character-lead|button",
      "kS3": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-character-lead|button",
@@ -6036,7 +5939,7 @@
      "blame": "lucide.lucide-circle-question-mark"
     },
     {
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "kS": "div|relative.z-[1].min-w-0|data-director-timeline-object-name|button",
      "kS2": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-camera-main|button",
      "kS3": "div|relative.z-[1].min-w-0|data-director-timeline-object-name=director-camera-main|button",
@@ -6051,10 +5954,11 @@
      "name": "绘制轨迹",
      "kS": "button|flex.h-6.w-fit|data-director-track-draw-trail|-",
      "kS2": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main|-",
-     "kS3": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main|-",
-     "kS4": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main|-",
+     "kS3": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main&data-director-timeline-guide-target=draw-trajectory|-",
+     "kS4": "button|flex.h-6.w-fit|data-director-track-draw-trail=director-track-camera-main&data-director-timeline-guide-target=draw-trajectory|-",
      "selfData": [
-      "data-director-track-draw-trail=director-track-camera-main"
+      "data-director-track-draw-trail=director-track-camera-main",
+      "data-director-timeline-guide-target=draw-trajectory"
      ],
      "trueFP": true,
      "blame": "min-h-0.flex-1.overflow-y-auto.px-2.pb-3.[scrollbar-color:rgba(255,255,255,0.2)_transparent].[scrollbar-width:thin]"
@@ -6100,7 +6004,7 @@
      "blame": null
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+     "name": "角色A · 变换 00:00.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-0|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-0&data-director-keyframe-time=0|-",
@@ -6113,7 +6017,7 @@
      "blame": null
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+     "name": "角色A · 变换 00:04.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-4|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-4&data-director-keyframe-time=4|-",
@@ -6126,7 +6030,7 @@
      "blame": null
     },
     {
-     "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+     "name": "角色A · 变换 00:08.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-8|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-character-8&data-director-keyframe-time=8|-",
@@ -6139,7 +6043,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+     "name": "机位1 · 机位 00:00.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-0|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-0&data-director-keyframe-time=0|-",
@@ -6152,7 +6056,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+     "name": "机位1 · 机位 00:04.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-4|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-4&data-director-keyframe-time=4|-",
@@ -6165,7 +6069,7 @@
      "blame": null
     },
     {
-     "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+     "name": "机位1 · 机位 00:08.00 关键帧",
      "kS": "button|absolute.top-1/2.z-10|data-director-keyframe-id|-",
      "kS2": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-8|-",
      "kS3": "button|absolute.top-1/2.z-10|data-director-keyframe-id=director-keyframe-camera-8&data-director-keyframe-time=8|-",
@@ -6185,11 +6089,11 @@
    "ok": true,
    "detail": {
     "uniquish": [
-     102,
-     62,
-     120,
-     119,
-     126
+     99,
+     58,
+     117,
+     116,
+     123
     ],
     "foldsName_groups_inside_shadowed": [
      8,
@@ -6198,8 +6102,8 @@
     ],
     "foldsKS": [
      19,
-     87,
-     68
+     88,
+     69
     ],
     "foldsKS2": [
      5,
@@ -6220,10 +6124,10 @@
    "note": "names swallow 28, structure swallows 68, structure+value swallows 10; kS3 swallows 11 (coarser fallback), kS4 swallows fewer than kS2"
   },
   "the-two-folding-partitions-are-not-nested": {
-   "ok": true,
+   "ok": false,
    "detail": {
     "swallowedByName": 28,
-    "swallowedByKS": 68,
+    "swallowedByKS": 69,
     "swallowedByKS2": 10,
     "exampleWhereStructureWins": "当前帧有关键帧 is ONE name (11 controls) but TWO kS2 keys",
     "exampleWhereNameWins": "左右拖动调整 X/Y/Z 轴 are THREE names but ONE kS key (9 controls)"
@@ -6305,62 +6209,62 @@
      "隐藏咖啡桌",
      "隐藏咖啡馆背景",
      "隐藏对象",
-     "隐藏机位01 · 对峙中景",
-     "隐藏角色01 · 陈默"
+     "隐藏机位1",
+     "隐藏角色A"
     ],
     "notTheSameAs664s22": "664 counted 22 pe:none ELEMENTS; this counts 18 CONTROLS with no self data attribute. Different populations — not a conflict"
    },
    "note": "they can only be identified through an ancestor's attribute"
   },
   "670s-66-is-a-name-count-not-a-control-count": {
-   "ok": true,
+   "ok": false,
    "detail": {
     "alwaysTrueFPByKey": {
      "name": {
       "perCell": [
-       66,
-       68,
-       69
+       65,
+       67,
+       68
       ],
-      "intersection": 66
+      "intersection": 65
      },
      "kS": {
       "perCell": [
-       32,
-       34,
-       35
+       31,
+       33,
+       34
       ],
-      "intersection": 32
+      "intersection": 31
      },
      "kS2": {
       "perCell": [
-       71,
-       73,
-       74
+       70,
+       72,
+       73
       ],
-      "intersection": 71
+      "intersection": 70
      },
      "kS3": {
       "perCell": [
-       66,
-       68,
-       69
+       65,
+       67,
+       68
       ],
-      "intersection": 66
+      "intersection": 65
      },
      "kS4": {
       "perCell": [
-       71,
-       73,
-       74
+       70,
+       72,
+       73
       ],
-      "intersection": 71
+      "intersection": 70
      }
     },
     "trueFPCountsPerCell": [
-     73,
-     75,
-     76
+     72,
+     74,
+     75
     ],
     "correction": "670's README said '66 枚控件在每一档宽度上都是假阳性'; 66 is the intersection of NAMES (73/75/76 controls are true-FP at 1280/1440/1920, the counts 670 recorded). The control-level number depends on the key and is not pinned here",
     "correctsThisBatchesOwnPriorGuess": "I expected kS2 to be the SMALLEST count because kS2 folds least. The reading says the opposite: 71 > 66, because a finer key splits the same true-FP set into MORE keys. The key count is not monotone in the folding amount; the most-collapsing key (kS, 32) is the smallest."
@@ -6391,11 +6295,11 @@
       "key": "button|flex.h-6.w-6|data-director-object-id|-",
       "n": 5,
       "names": [
-       "隐藏角色01 · 陈默",
+       "隐藏角色A",
        "隐藏咖啡桌",
        "隐藏冷掉的咖啡",
        "隐藏咖啡馆背景",
-       "隐藏机位01 · 对峙中景"
+       "隐藏机位1"
       ]
      },
      {

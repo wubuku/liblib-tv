@@ -4,7 +4,7 @@
   "deskHeight": 1150,
   "clusterInFreshState": [
    {
-    "data": "data-director-playback",
+    "data": "data-director-playback,data-director-timeline-guide-target",
     "text": "",
     "disabled": false,
     "visible": true
@@ -550,7 +550,7 @@
      "disabled": false,
      "ariaExpanded": null,
      "title": "移除轨道",
-     "ariaLabel": "移除角色01 · 陈默 · 变换轨道",
+     "ariaLabel": "移除角色A · 变换轨道",
      "inert": null,
      "cursor": "default",
      "hoverCls": true,
@@ -709,13 +709,13 @@
    },
    {
     "attr": "data-director-motion-preset-button",
-    "verdict": "inert",
+    "verdict": "live",
     "before": {
      "present": true,
      "text": "⟳ 预设运镜",
      "disabled": false,
-     "ariaExpanded": null,
-     "title": "预设运镜面板位于时间线控制簇",
+     "ariaExpanded": "false",
+     "title": "预设运镜",
      "ariaLabel": null,
      "inert": null,
      "cursor": "default",
@@ -732,8 +732,8 @@
      "present": true,
      "text": "⟳ 预设运镜",
      "disabled": false,
-     "ariaExpanded": null,
-     "title": "预设运镜面板位于时间线控制簇",
+     "ariaExpanded": "true",
+     "title": "预设运镜",
      "ariaLabel": null,
      "inert": null,
      "cursor": "default",
@@ -746,20 +746,27 @@
      ],
      "hitAtCenter": "SELF"
     },
-    "changedKeys": [],
-    "selfChanged": [],
-    "surfacesAdded": [],
+    "changedKeys": [
+     "expanded"
+    ],
+    "selfChanged": [
+     "ariaExpanded"
+    ],
+    "surfacesAdded": [
+     "data-director-right-panel-camera-preset",
+     "data-director-right-panel-camera-preset-list"
+    ],
     "surfacesRemoved": [],
     "ariaExpanded": [
-     null,
-     null
+     "false",
+     "true"
     ],
     "nav": {
      "ok": true,
      "expected": "director-camera-main",
      "got": "director-camera-main",
      "kind": "camera",
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "spec": {
       "kind": "camera"
      },
@@ -777,13 +784,13 @@
    },
    {
     "attr": "data-director-motion-create-path",
-    "verdict": "inert",
+    "verdict": "live",
     "before": {
      "present": true,
      "text": "创建运动轨迹",
      "disabled": false,
-     "ariaExpanded": null,
-     "title": "创建运动轨迹面板位于时间线控制簇",
+     "ariaExpanded": "false",
+     "title": "创建运动轨迹",
      "ariaLabel": null,
      "inert": null,
      "cursor": "default",
@@ -800,8 +807,8 @@
      "present": true,
      "text": "创建运动轨迹",
      "disabled": false,
-     "ariaExpanded": null,
-     "title": "创建运动轨迹面板位于时间线控制簇",
+     "ariaExpanded": "true",
+     "title": "创建运动轨迹",
      "ariaLabel": null,
      "inert": null,
      "cursor": "default",
@@ -814,20 +821,27 @@
      ],
      "hitAtCenter": "SELF"
     },
-    "changedKeys": [],
-    "selfChanged": [],
-    "surfacesAdded": [],
+    "changedKeys": [
+     "expanded"
+    ],
+    "selfChanged": [
+     "ariaExpanded"
+    ],
+    "surfacesAdded": [
+     "data-director-right-panel-motion-path-list",
+     "data-director-right-panel-motion-path-preset"
+    ],
     "surfacesRemoved": [],
     "ariaExpanded": [
-     null,
-     null
+     "false",
+     "true"
     ],
     "nav": {
      "ok": true,
      "expected": "director-camera-main",
      "got": "director-camera-main",
      "kind": "camera",
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "spec": {
       "kind": "camera"
      },
@@ -852,7 +866,7 @@
     "expected": "director-camera-main",
     "got": "director-camera-main",
     "kind": "camera",
-    "name": "机位01 · 对峙中景",
+    "name": "机位1",
     "spec": {
      "kind": "camera"
     }
@@ -867,13 +881,13 @@
     "data-director-create-motion-path",
     "data-director-open-curve-editor",
     "data-director-remove-track",
-    "data-director-delete-keyframe"
+    "data-director-delete-keyframe",
+    "data-director-motion-preset-button",
+    "data-director-motion-create-path"
    ],
    "inert": [
     "data-director-add-track",
-    "data-director-add-keyframe",
-    "data-director-motion-preset-button",
-    "data-director-motion-create-path"
+    "data-director-add-keyframe"
    ],
    "unclickable": [
     "data-director-camera-preset-trigger",
@@ -918,13 +932,13 @@
      "data-director-create-motion-path",
      "data-director-open-curve-editor",
      "data-director-remove-track",
-     "data-director-delete-keyframe"
+     "data-director-delete-keyframe",
+     "data-director-motion-preset-button",
+     "data-director-motion-create-path"
     ],
     "inert": [
      "data-director-add-track",
-     "data-director-add-keyframe",
-     "data-director-motion-preset-button",
-     "data-director-motion-create-path"
+     "data-director-add-keyframe"
     ],
     "unclickable": [
      "data-director-camera-preset-trigger",
@@ -955,7 +969,7 @@
       "expected": "director-camera-main",
       "got": "director-camera-main",
       "kind": "camera",
-      "name": "机位01 · 对峙中景",
+      "name": "机位1",
       "spec": {
        "kind": "camera"
       },
@@ -975,7 +989,7 @@
       "expected": "director-camera-main",
       "got": "director-camera-main",
       "kind": "camera",
-      "name": "机位01 · 对峙中景",
+      "name": "机位1",
       "spec": {
        "kind": "camera"
       },
@@ -995,20 +1009,20 @@
      {
       "attr": "data-director-motion-preset-button",
       "text": "⟳ 预设运镜",
-      "title": "预设运镜面板位于时间线控制簇",
+      "title": "预设运镜",
       "dataInert": null,
       "cursor": "default",
       "hoverClass": true,
-      "verdict": "inert"
+      "verdict": "live"
      },
      {
       "attr": "data-director-motion-create-path",
       "text": "创建运动轨迹",
-      "title": "创建运动轨迹面板位于时间线控制簇",
+      "title": "创建运动轨迹",
       "dataInert": null,
       "cursor": "default",
       "hoverClass": true,
-      "verdict": "inert"
+      "verdict": "live"
      }
     ]
    },
@@ -1042,7 +1056,7 @@
       "expected": "director-camera-main",
       "got": "director-camera-main",
       "kind": "camera",
-      "name": "机位01 · 对峙中景",
+      "name": "机位1",
       "spec": {
        "kind": "camera"
       }

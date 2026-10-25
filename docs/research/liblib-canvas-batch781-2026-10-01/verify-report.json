@@ -23,7 +23,7 @@
    "got": true
   },
   {
-   "label": "静态：★ 扫了 director 面 28 个文件",
+   "label": "静态：★ 扫了 director 面 36 个文件",
    "pass": true,
    "got": true
   },
@@ -516,9 +516,9 @@
   },
   {
    "label": "产物：audit 的守卫行号 = 静态重算",
-   "pass": true,
+   "pass": false,
    "got": 487,
-   "want": 487
+   "want": 546
   },
   {
    "label": "产物：audit 记的零 FAILED",
@@ -552,7 +552,7 @@
    "got": 0
   }
  ],
- "pass": 99,
+ "pass": 98,
  "total": 99,
  "negativeControls": [
   {
@@ -661,8 +661,7 @@
     "静态：内部包类型是 `DirectorClipboardPacketV1`",
     "静态：★ store 里有 `if (!state.clipboard)` 那道拒绝（这是「Paste 给真实消息」的机制）",
     "静态：★ `getDirectorCommandFeedback` 对 `COMMITTED` 返回 null⟹ Copy 成功时面板只能显示占位文案",
-    "产物：audit 记的系统剪贴板命中数 = 静态重算",
-    "产物：audit 的守卫行号 = 静态重算"
+    "产物：audit 记的系统剪贴板命中数 = 静态重算"
    ],
    "caught": true,
    "expectFailOn": "零** `navigator.clipboard`"
@@ -674,8 +673,7 @@
    "kwMatchedCount": 1,
    "flipped": [
     "静态：★ `Cmd+C` 分支排在守卫**之后**",
-    "静态：★ `Cmd+V` 分支排在守卫**之后**",
-    "产物：audit 的守卫行号 = 静态重算"
+    "静态：★ `Cmd+V` 分支排在守卫**之后**"
    ],
    "caught": true,
    "expectFailOn": "`Cmd+C` 分支排在守卫**之后**"
@@ -712,5 +710,5 @@
   "★ 对照自己没改成：写一个 raw 里不存在的字段 ⟹ 不许有判据翻红"
  ],
  "rawError": null,
- "ok": true
+ "ok": false
 }

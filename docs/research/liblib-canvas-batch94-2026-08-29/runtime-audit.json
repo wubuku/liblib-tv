@@ -24,7 +24,7 @@
     },
     "initialFocusInsideWorkspace": true,
     "workspaceTabCycle": {
-      "focusableCount": 124,
+      "focusableCount": 121,
       "forwardSamples": [
         {
           "tag": "button",
@@ -63,7 +63,7 @@
       "reverseFirst": {
         "tag": "button",
         "id": "",
-        "ariaLabel": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+        "ariaLabel": "机位1 · 机位 00:08.00 关键帧",
         "dataScope": "workspace",
         "isWorkspace": true,
         "isCanvasRoot": false

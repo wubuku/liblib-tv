@@ -136,7 +136,7 @@
     "data-director-track-label=director-track-character-lead-transform": 4,
     "data-director-timeline-object-row=director-camera-main": 4,
     "data-director-timeline=true": 2,
-    "data-director-playback=true": 1
+    "data-director-timeline-guide-icon=true": 1
    },
    "distinct": 6,
    "blockedTotal": 54,
@@ -319,7 +319,7 @@
     ],
     "helpInStackButNeverTop": {
      "inStack": "readings above are topIsSelf, i.e. the operational reading 661 settled",
-     "helpStackDepthAtDefault": 21,
+     "helpStackDepthAtDefault": 22,
      "helpIndexInStackAtDefault": 8
     },
     "note": "this is the opposite of the batch's first guess, which predicted a clean band at 151 < h < 203 leaving the default as the only bad value"
@@ -490,7 +490,7 @@
      "data-director-track-label=director-track-character-lead-transform": 4,
      "data-director-timeline-object-row=director-camera-main": 4,
      "data-director-timeline=true": 2,
-     "data-director-playback=true": 1
+     "data-director-timeline-guide-icon=true": 1
     },
     "why": "the left column is 320px wide and the rail 48px, and the timeline section is z-40 against the rail's z-30 — so the column wins every point inside it",
     "theMembers": {
@@ -517,7 +517,7 @@
      "data-director-track-label=director-track-character-lead-transform": 4,
      "data-director-timeline-object-row=director-camera-main": 4,
      "data-director-timeline=true": 2,
-     "data-director-playback=true": 1
+     "data-director-timeline-guide-icon=true": 1
     }
    },
    "note": "naming a member correctly is not the same as naming the cause"

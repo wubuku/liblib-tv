@@ -1,0 +1,165 @@
+{
+ "负控": [
+  {
+   "负控": "N1-命中窗口改回1e-3",
+   "类别": "源码",
+   "改哪个文件": "src/components/director/directorKeyframeWindow.ts",
+   "被测判据": "source:the-shared-window-constant-equals-the-source-number",
+   "读的是哪个量": "DIRECTOR_SOURCE_KEYFRAME_HIT_WINDOW 的值",
+   "变异前红": [],
+   "变异后红": [
+    "source:the-shared-window-constant-equals-the-source-number",
+    "source:the-hit-window-and-the-upsert-epsilon-are-different-numbers"
+   ],
+   "门禁退出码": 1,
+   "★ 归因": {
+    "目标判据变异前是绿的": true,
+    "目标判据变异后红了": true,
+    "门禁崩了": false
+   },
+   "通过": true,
+   "复原后 sha 一致": true
+  },
+  {
+   "负控": "N2-两个容差混成同一个数",
+   "类别": "源码",
+   "改哪个文件": "src/components/director/directorKeyframeWindow.ts",
+   "被测判据": "source:the-hit-window-and-the-upsert-epsilon-are-different-numbers",
+   "读的是哪个量": "DIRECTOR_KEYFRAME_EPSILON 的值",
+   "变异前红": [],
+   "变异后红": [
+    "source:the-hit-window-and-the-upsert-epsilon-are-different-numbers"
+   ],
+   "门禁退出码": 1,
+   "★ 归因": {
+    "目标判据变异前是绿的": true,
+    "目标判据变异后红了": true,
+    "门禁崩了": false
+   },
+   "通过": true,
+   "复原后 sha 一致": true
+  },
+  {
+   "负控": "N3-时间轴塞回裸0.001命中判据",
+   "类别": "源码",
+   "改哪个文件": "src/components/director/DirectorTimeline.tsx",
+   "被测判据": "source:the-timeline-and-the-inspector-carry-no-bare-hit-epsilon",
+   "读的是哪个量": "两个 UI 文件里**剥注释后**的 0.001／1e-3",
+   "变异前红": [],
+   "变异后红": [
+    "source:the-timeline-and-the-inspector-carry-no-bare-hit-epsilon"
+   ],
+   "门禁退出码": 1,
+   "★ 归因": {
+    "目标判据变异前是绿的": true,
+    "目标判据变异后红了": true,
+    "门禁崩了": false
+   },
+   "通过": true,
+   "复原后 sha 一致": true
+  },
+  {
+   "负控": "N4-工具条改回切换语义",
+   "类别": "源码",
+   "改哪个文件": "src/components/director/DirectorTimeline.tsx",
+   "被测判据": "source:the-toolbar-add-keyframe-stays-an-upsert",
+   "读的是哪个量": "工具条块里有没有 addTimelineKeyframe",
+   "变异前红": [],
+   "变异后红": [
+    "source:the-toolbar-add-keyframe-stays-an-upsert"
+   ],
+   "门禁退出码": 1,
+   "★ 归因": {
+    "目标判据变异前是绿的": true,
+    "目标判据变异后红了": true,
+    "门禁崩了": false
+   },
+   "通过": true,
+   "复原后 sha 一致": true
+  },
+  {
+   "负控": "N5-866改回写死回归清单",
+   "类别": "源码",
+   "改哪个文件": "scripts/verify-liblib-batch866.py",
+   "被测判据": "source:the-regression-list-resolves-the-live-one-dynamically",
+   "读的是哪个量": "866.py 里有没有 resolve_live_regress",
+   "变异前红": [],
+   "变异后红": [
+    "source:the-regression-list-resolves-the-live-one-dynamically"
+   ],
+   "门禁退出码": 1,
+   "★ 归因": {
+    "目标判据变异前是绿的": true,
+    "目标判据变异后红了": true,
+    "门禁崩了": false
+   },
+   "通过": true,
+   "复原后 sha 一致": true
+  },
+  {
+   "负控": "N6-运行时读数挪走",
+   "类别": "证据",
+   "改哪个文件": "docs/research/liblib-canvas-batch869-2026-10-01/raw/keyframe-window-869.json",
+   "被测判据": "runtime:the-keyframe-window-probe-readings-are-in-the-repo",
+   "读的是哪个量": "raw/keyframe-window-869.json 在不在库",
+   "变异前红": [],
+   "变异后红": [
+    "runtime:the-keyframe-window-probe-readings-are-in-the-repo",
+    "runtime:the-probe-placed-the-playhead-where-it-claims",
+    "runtime:the-probe-read-the-source-aria-copy"
+   ],
+   "门禁退出码": 1,
+   "★ 归因": {
+    "目标判据变异前是绿的": true,
+    "目标判据变异后红了": true,
+    "门禁崩了": false
+   },
+   "通过": true,
+   "复原后 sha 一致": true
+  },
+  {
+   "负控": "N7-读数里W1改成红",
+   "类别": "证据",
+   "改哪个文件": "docs/research/liblib-canvas-batch869-2026-10-01/raw/keyframe-window-869.json",
+   "被测判据": "runtime:the-keyframe-window-probe-readings-are-in-the-repo",
+   "读的是哪个量": "读数里每条判据的『通过』",
+   "变异前红": [],
+   "变异后红": [
+    "runtime:the-keyframe-window-probe-readings-are-in-the-repo"
+   ],
+   "门禁退出码": 1,
+   "★ 归因": {
+    "目标判据变异前是绿的": true,
+    "目标判据变异后红了": true,
+    "门禁崩了": false
+   },
+   "通过": true,
+   "复原后 sha 一致": true
+  },
+  {
+   "负控": "N8-★运行时负控：窗口改回1e-3后探针必须报红",
+   "类别": "运行时",
+   "改哪个文件": "src/components/director/directorKeyframeWindow.ts",
+   "被测判据": "探针 13 条（W1/W2/W3/W5/W7/W8…）",
+   "读的是哪个量": "★ 探针**实测**出来的窗口内外读数",
+   "探针退出码": 1,
+   "探针基线失败判据": [],
+   "探针变异后失败判据": [
+    "W1: 播头落在关键帧 +0.04s（源站 ±0.05s 窗口内）⟹ 轨道行中键 aria-label 逐字＝「当前帧有关键帧」",
+    "W2: 同处 aria-pressed＝true",
+    "W3: 同处「上一关键帧」disabled（源站逐字：T < 播头-0.05 不成立）",
+    "W7: 检查器开关在 +0.04s 处逐字＝「当前帧有关键帧」且 state＝on",
+    "W4: 窗口内点中键 ⟹ 那枚关键帧真的消失（数量 −1，不是覆盖、不是新增）",
+    "W8: 检查器开关在 +0.04s 处点击 ⟹ 那枚关键帧真的消失（数量 −1）"
+   ],
+   "从绿变红的探针判据数": 6,
+   "通过": true,
+   "复原后 sha 一致": true
+  }
+ ],
+ "失败数": 0,
+ "总条数": 8,
+ "探针基线失败判据": [],
+ "跨文件污染": [],
+ "★ 说明": "★ 每条负控都自声明改哪个文件 ＋ 字节级复原 ＋ sha 自检 ＋ **红灯集合差分**归因"
+}

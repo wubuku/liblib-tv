@@ -1,0 +1,191 @@
+{
+ "判据": [
+  {
+   "判据": "source:the-cZ-evidence-is-in-the-repo",
+   "通过": true,
+   "证据": {
+    "路径": "docs/research/liblib-canvas-batch869-2026-10-01/raw/source-869-cz-toggle.txt",
+    "存在": true
+   }
+  },
+  {
+   "判据": "source:the-i18n-evidence-is-in-the-repo",
+   "通过": true,
+   "证据": {
+    "路径": "docs/research/liblib-canvas-batch869-2026-10-01/raw/source-869-i18n-dictionary.txt",
+    "存在": true
+   }
+  },
+  {
+   "判据": "source:the-batch36-evidence-is-in-the-repo",
+   "通过": true,
+   "证据": {
+    "路径": "docs/research/liblib-canvas-batch869-2026-10-01/raw/source-869-batch36-spec.md",
+    "存在": true
+   }
+  },
+  {
+   "判据": "source:the-更正记录-evidence-is-in-the-repo",
+   "通过": true,
+   "证据": {
+    "路径": "docs/research/liblib-canvas-batch869-2026-10-01/raw/source-869-correction.md",
+    "存在": true
+   }
+  },
+  {
+   "判据": "source:the-three-source-windows-agree-on-one-number",
+   "通过": true,
+   "证据": {
+    "解析结果": {
+     "命中": 0.05,
+     "上一": 0.05,
+     "下一": 0.05
+    },
+    "★ 出处": "★ `raw/source-869-cz-toggle.txt` 里源站 chunk 的 `cZ`"
+   }
+  },
+  {
+   "判据": "source:the-source-toggle-action-is-verbatim",
+   "通过": true,
+   "证据": {
+    "needle": "action:f?\"remove\":\"add\"",
+    "命中": true
+   }
+  },
+  {
+   "判据": "source:the-source-disabled-rules-are-verbatim",
+   "通过": true,
+   "证据": {
+    "disabled:!m": true,
+    "disabled:!x": true
+   }
+  },
+  {
+   "判据": "source:the-source-aria-copy-is-in-the-repo",
+   "通过": true,
+   "证据": {
+    "可见": "当前帧有关键帧",
+    "不可见": "当前帧无关键帧"
+   }
+  },
+  {
+   "判据": "source:the-source-batch36-spec-is-in-the-repo",
+   "通过": true,
+   "证据": {
+    "缺的片段": [],
+    "★ 出处": "★ `raw/source-869-batch36-spec.md`（★ 源站逐字规格）"
+   }
+  },
+  {
+   "判据": "source:the-shared-window-constant-equals-the-source-number",
+   "通过": true,
+   "证据": {
+    "源码常量": 0.05,
+    "源站解析值": 0.05,
+    "★ 说明": "★ 期望值**从源站原文解析** ⟹ ⟹ 不手打"
+   }
+  },
+  {
+   "判据": "source:the-hit-window-and-the-upsert-epsilon-are-different-numbers",
+   "通过": true,
+   "证据": {
+    "命中窗口": 0.05,
+    "upsert 容差": 0.001,
+    "★ 出处": "★ `SOURCE_ANALYSIS.md` §23.3 ＝ upsert epsilon"
+   }
+  },
+  {
+   "判据": "source:the-hit-window-has-a-single-origin",
+   "通过": true,
+   "证据": {
+    "DirectorTimeline.tsx": true,
+    "DirectorInspector.tsx": true
+   }
+  },
+  {
+   "判据": "source:the-timeline-and-the-inspector-carry-no-bare-hit-epsilon",
+   "通过": true,
+   "证据": {
+    "残留": {
+     "DirectorTimeline.tsx": [],
+     "DirectorInspector.tsx": []
+    },
+    "★ 说明": "★ **剥注释后**查 ⟹ ⟹ 注释里提到 0.001 不算"
+   }
+  },
+  {
+   "判据": "source:the-toolbar-add-keyframe-stays-an-upsert",
+   "通过": true,
+   "证据": {
+    "工具条命中 data-director-add-keyframe": true,
+    "工具条块里走 addTimelineKeyframe": true,
+    "store 里 addTimelineKeyframe→upsertTrackKeyframe": true,
+    "★ 出处": "★ batch36 逐字规格：「取当前值、同时刻覆盖」"
+   }
+  },
+  {
+   "判据": "runtime:the-keyframe-window-probe-readings-are-in-the-repo",
+   "通过": false,
+   "证据": {
+    "判据条数": 13,
+    "失败条数": 1,
+    "读数自记的失败数": 0,
+    "★ 说明": "★ **不写死条数** ⟹ ⟹ 改成「非空 ∧ 全真 ∧ 自洽」"
+   }
+  },
+  {
+   "判据": "runtime:the-probe-placed-the-playhead-where-it-claims",
+   "通过": true,
+   "证据": {
+    "关键帧时刻 t0": 0,
+    "窗口内实际差": 0.04,
+    "窗口外实际差": 0.2
+   }
+  },
+  {
+   "判据": "runtime:the-probe-read-the-source-aria-copy",
+   "通过": true,
+   "证据": {
+    "窗口内 aria": "当前帧有关键帧",
+    "源站逐字（可见）": "当前帧有关键帧",
+    "窗口外 aria": "当前帧无关键帧",
+    "源站逐字（不可见）": "当前帧无关键帧",
+    "窗口内 pressed": "true",
+    "窗口外 pressed": "false"
+   }
+  },
+  {
+   "判据": "runtime:the-negative-control-is-in-the-repo",
+   "通过": true,
+   "证据": {
+    "负控条数": 8,
+    "其中运行时负控": 1,
+    "全通过": true,
+    "★ 说明": "★ 运行时负控＝把窗口改回 1e-3 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 探针必须报红"
+   }
+  },
+  {
+   "判据": "source:the-regression-list-resolves-the-live-one-dynamically",
+   "通过": true,
+   "证据": {
+    "有 resolve_live_regress": true,
+    "仍写死 REGRESS 路径": false,
+    "★ 说明": "★ 在用清单＝批次号最大的那份 ⟹ ⟹ 不用写死文件名"
+   }
+  },
+  {
+   "判据": "source:the-live-regression-list-never-shrinks",
+   "通过": true,
+   "证据": {
+    "869 条数": 284,
+    "868 条数": 283,
+    "被删掉的条目": [],
+    "869 新增": [
+     "869.py"
+    ]
+   }
+  }
+ ],
+ "失败数": 1,
+ "总条数": 20
+}

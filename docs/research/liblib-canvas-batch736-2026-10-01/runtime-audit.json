@@ -1,8 +1,8 @@
 {
  "static": {
   "counts": {
-   "button": 141,
-   "input": 50,
+   "button": 151,
+   "input": 49,
    "select": 4
   },
   "perFile": {
@@ -11,9 +11,24 @@
     "input": 1,
     "select": 0
    },
+   "DirectorAspectPanel.tsx": {
+    "button": 1,
+    "input": 0,
+    "select": 0
+   },
    "DirectorCameraMotionTab.tsx": {
-    "button": 5,
+    "button": 7,
     "input": 3,
+    "select": 0
+   },
+   "DirectorCameraPresetPanel.tsx": {
+    "button": 1,
+    "input": 0,
+    "select": 0
+   },
+   "DirectorCharacterPanel.tsx": {
+    "button": 4,
+    "input": 4,
     "select": 0
    },
    "DirectorCurveEditor.tsx": {
@@ -32,8 +47,8 @@
     "select": 0
    },
    "DirectorIconRail.tsx": {
-    "button": 8,
-    "input": 3,
+    "button": 4,
+    "input": 0,
     "select": 0
    },
    "DirectorInspector.tsx": {
@@ -51,6 +66,16 @@
     "input": 1,
     "select": 0
    },
+   "DirectorPanoramaPanel.tsx": {
+    "button": 1,
+    "input": 1,
+    "select": 0
+   },
+   "DirectorPanoramaPicker.tsx": {
+    "button": 6,
+    "input": 0,
+    "select": 0
+   },
    "DirectorPhoneVcamPanel.tsx": {
     "button": 10,
     "input": 1,
@@ -61,21 +86,31 @@
     "input": 3,
     "select": 0
    },
+   "DirectorShortcutsDialog.tsx": {
+    "button": 0,
+    "input": 0,
+    "select": 0
+   },
    "DirectorTimeline.tsx": {
-    "button": 29,
+    "button": 27,
     "input": 2,
     "select": 0
    },
+   "DirectorTimelineGuide.tsx": {
+    "button": 2,
+    "input": 0,
+    "select": 0
+   },
    "DirectorViewport.tsx": {
-    "button": 24,
-    "input": 5,
+    "button": 23,
+    "input": 2,
     "select": 0
    }
   },
   "guards": {
-   "directorGuardLine": 1312,
-   "surfaceGuardLine": 1313,
-   "windowHookLine": 1401,
+   "directorGuardLine": 1366,
+   "surfaceGuardLine": 1367,
+   "windowHookLine": 1472,
    "blockingSurfaces": [
     "isFollowingSession",
     "isStoryboardEditorOpen",
@@ -86,6 +121,8 @@
     "isSharePanelOpen",
     "isNotificationOpen",
     "isUserMenuOpen",
+    "characterEditorId",
+    "characterAssetsId",
     "activePrimaryPanel"
    ]
   }
@@ -231,13 +268,13 @@
     "role": "",
     "label": "",
     "title": "",
-    "text": "机位01 · 对峙中景 · 镜头0.",
+    "text": "机位1 · 镜头0.0-8.0s",
     "placeholder": "",
     "disabled": false,
     "ariaDisabled": null,
     "inertSelf": false,
     "inertAncestor": false,
-    "w": 177,
+    "w": 122,
     "h": 28,
     "display": "flex",
     "visibility": "visible",
@@ -383,7 +420,7 @@
     "role": "treeitem",
     "label": "",
     "title": "",
-    "text": "角色01 · 陈默",
+    "text": "角色A",
     "placeholder": "",
     "disabled": false,
     "ariaDisabled": null,
@@ -400,7 +437,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "隐藏角色01 · 陈默",
+    "label": "隐藏角色A",
     "title": "隐藏",
     "text": "",
     "placeholder": "",
@@ -419,7 +456,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "锁定角色01 · 陈默",
+    "label": "锁定角色A",
     "title": "锁定",
     "text": "",
     "placeholder": "",
@@ -438,7 +475,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "删除角色01 · 陈默",
+    "label": "删除角色A",
     "title": "删除",
     "text": "",
     "placeholder": "",
@@ -687,7 +724,7 @@
     "role": "treeitem",
     "label": "",
     "title": "",
-    "text": "机位01 · 对峙中景",
+    "text": "机位1",
     "placeholder": "",
     "disabled": false,
     "ariaDisabled": null,
@@ -704,7 +741,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "隐藏机位01 · 对峙中景",
+    "label": "隐藏机位1",
     "title": "隐藏",
     "text": "",
     "placeholder": "",
@@ -723,7 +760,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "锁定机位01 · 对峙中景",
+    "label": "锁定机位1",
     "title": "锁定",
     "text": "",
     "placeholder": "",
@@ -742,7 +779,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "删除机位01 · 对峙中景",
+    "label": "删除机位1",
     "title": "删除",
     "text": "",
     "placeholder": "",
@@ -889,25 +926,6 @@
     "visibility": "visible",
     "focusable": true,
     "owner": "data-director-rail-entry=help"
-   },
-   {
-    "tag": "input",
-    "type": "file",
-    "role": "",
-    "label": "导入本地角色模型",
-    "title": "",
-    "text": "",
-    "placeholder": "",
-    "disabled": false,
-    "ariaDisabled": null,
-    "inertSelf": false,
-    "inertAncestor": false,
-    "w": 0,
-    "h": 0,
-    "display": "none",
-    "visibility": "visible",
-    "focusable": false,
-    "owner": "data-director-icon-rail=true"
    },
    {
     "tag": "button",
@@ -1263,12 +1281,12 @@
     "ariaDisabled": null,
     "inertSelf": false,
     "inertAncestor": false,
-    "w": 32,
-    "h": 32,
-    "display": "flex",
+    "w": 0,
+    "h": 0,
+    "display": "none",
     "visibility": "visible",
-    "focusable": true,
-    "owner": "data-director-crowd-trigger=true"
+    "focusable": false,
+    "owner": "data-director-crowd-mobile-trigger=true"
    },
    {
     "tag": "button",
@@ -2072,44 +2090,6 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "",
-    "title": "",
-    "text": "跳过",
-    "placeholder": "",
-    "disabled": false,
-    "ariaDisabled": null,
-    "inertSelf": false,
-    "inertAncestor": false,
-    "w": 50,
-    "h": 28,
-    "display": "block",
-    "visibility": "visible",
-    "focusable": true,
-    "owner": "data-director-coachmark-skip=true"
-   },
-   {
-    "tag": "button",
-    "type": "button",
-    "role": "",
-    "label": "",
-    "title": "",
-    "text": "下一步",
-    "placeholder": "",
-    "disabled": false,
-    "ariaDisabled": null,
-    "inertSelf": false,
-    "inertAncestor": false,
-    "w": 63,
-    "h": 28,
-    "display": "block",
-    "visibility": "visible",
-    "focusable": true,
-    "owner": "data-director-coachmark-next=true"
-   },
-   {
-    "tag": "button",
-    "type": "button",
-    "role": "",
     "label": "播放",
     "title": "播放",
     "text": "",
@@ -2319,7 +2299,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "移除角色01 · 陈默 · 变换轨道",
+    "label": "移除角色A · 变换轨道",
     "title": "移除轨道",
     "text": "",
     "placeholder": "",
@@ -2453,8 +2433,8 @@
     "type": "",
     "role": "button",
     "label": "",
-    "title": "角色01 · 陈默",
-    "text": "角色01 · 陈默",
+    "title": "角色A",
+    "text": "角色A",
     "placeholder": "",
     "disabled": false,
     "ariaDisabled": null,
@@ -2472,7 +2452,7 @@
     "type": "",
     "role": "button",
     "label": "",
-    "title": "角色01 · 陈默 · 变换",
+    "title": "角色A · 变换",
     "text": "变换",
     "placeholder": "",
     "disabled": false,
@@ -2567,8 +2547,8 @@
     "type": "",
     "role": "button",
     "label": "",
-    "title": "机位01 · 对峙中景",
-    "text": "机位01 · 对峙中景",
+    "title": "机位1",
+    "text": "机位1",
     "placeholder": "",
     "disabled": false,
     "ariaDisabled": null,
@@ -2605,7 +2585,7 @@
     "type": "",
     "role": "button",
     "label": "",
-    "title": "机位01 · 对峙中景 · 机位",
+    "title": "机位1 · 机位",
     "text": "机位",
     "placeholder": "",
     "disabled": false,
@@ -2680,7 +2660,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+    "label": "角色A · 变换 00:00.00 关键帧",
     "title": "00:00.00 关键帧",
     "text": "",
     "placeholder": "",
@@ -2699,7 +2679,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+    "label": "角色A · 变换 00:04.00 关键帧",
     "title": "00:04.00 关键帧",
     "text": "",
     "placeholder": "",
@@ -2718,7 +2698,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+    "label": "角色A · 变换 00:08.00 关键帧",
     "title": "00:08.00 关键帧",
     "text": "",
     "placeholder": "",
@@ -2737,7 +2717,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+    "label": "机位1 · 机位 00:00.00 关键帧",
     "title": "00:00.00 关键帧",
     "text": "",
     "placeholder": "",
@@ -2756,7 +2736,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+    "label": "机位1 · 机位 00:04.00 关键帧",
     "title": "00:04.00 关键帧",
     "text": "",
     "placeholder": "",
@@ -2775,7 +2755,7 @@
     "tag": "button",
     "type": "button",
     "role": "",
-    "label": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+    "label": "机位1 · 机位 00:08.00 关键帧",
     "title": "00:08.00 关键帧",
     "text": "",
     "placeholder": "",
@@ -2792,11 +2772,11 @@
    }
   ],
   "trap": {
-   "all": 136,
-   "list": 124,
+   "all": 133,
+   "list": 121,
    "treeitem": [
     {
-     "name": "角色01 · 陈默",
+     "name": "角色A",
      "tag": "div",
      "tabIndex": -1,
      "rects": 1,
@@ -2824,7 +2804,7 @@
      "inTrap": false
     },
     {
-     "name": "机位01 · 对峙中景",
+     "name": "机位1",
      "tag": "div",
      "tabIndex": -1,
      "rects": 1,
@@ -2879,7 +2859,7 @@
    },
    {
     "role": "button",
-    "name": "机位01 · 对峙中景 · 镜头 0.0-8.0s",
+    "name": "机位1 · 镜头 0.0-8.0s",
     "ignored": false
    },
    {
@@ -2919,22 +2899,22 @@
    },
    {
     "role": "treeitem",
-    "name": "角色01 · 陈默 隐藏角色01 · 陈默 锁定角色01 · 陈默 删除角色01 · 陈默",
+    "name": "角色A 隐藏角色A 锁定角色A 删除角色A",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "隐藏角色01 · 陈默",
+    "name": "隐藏角色A",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "锁定角色01 · 陈默",
+    "name": "锁定角色A",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "删除角色01 · 陈默",
+    "name": "删除角色A",
     "ignored": false
    },
    {
@@ -2999,22 +2979,22 @@
    },
    {
     "role": "treeitem",
-    "name": "机位01 · 对峙中景 隐藏机位01 · 对峙中景 锁定机位01 · 对峙中景 删除机位01 · 对峙中景",
+    "name": "机位1 隐藏机位1 锁定机位1 删除机位1",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "隐藏机位01 · 对峙中景",
+    "name": "隐藏机位1",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "锁定机位01 · 对峙中景",
+    "name": "锁定机位1",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "删除机位01 · 对峙中景",
+    "name": "删除机位1",
     "ignored": false
    },
    {
@@ -3051,11 +3031,6 @@
     "role": "button",
     "name": "帮助",
     "ignored": false
-   },
-   {
-    "role": "none",
-    "name": null,
-    "ignored": true
    },
    {
     "role": "button",
@@ -3148,9 +3123,9 @@
     "ignored": false
    },
    {
-    "role": "button",
-    "name": "添加群众阵列",
-    "ignored": false
+    "role": "none",
+    "name": null,
+    "ignored": true
    },
    {
     "role": "button",
@@ -3364,16 +3339,6 @@
    },
    {
     "role": "button",
-    "name": "跳过",
-    "ignored": false
-   },
-   {
-    "role": "button",
-    "name": "下一步",
-    "ignored": false
-   },
-   {
-    "role": "button",
     "name": "播放",
     "ignored": false
    },
@@ -3429,7 +3394,7 @@
    },
    {
     "role": "button",
-    "name": "移除角色01 · 陈默 · 变换轨道",
+    "name": "移除角色A · 变换轨道",
     "ignored": false
    },
    {
@@ -3464,7 +3429,7 @@
    },
    {
     "role": "button",
-    "name": "角色01 · 陈默",
+    "name": "角色A",
     "ignored": false
    },
    {
@@ -3494,7 +3459,7 @@
    },
    {
     "role": "button",
-    "name": "机位01 · 对峙中景",
+    "name": "机位1",
     "ignored": false
    },
    {
@@ -3524,32 +3489,32 @@
    },
    {
     "role": "button",
-    "name": "角色01 · 陈默 · 变换 00:00.00 关键帧",
+    "name": "角色A · 变换 00:00.00 关键帧",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "角色01 · 陈默 · 变换 00:04.00 关键帧",
+    "name": "角色A · 变换 00:04.00 关键帧",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "角色01 · 陈默 · 变换 00:08.00 关键帧",
+    "name": "角色A · 变换 00:08.00 关键帧",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "机位01 · 对峙中景 · 机位 00:00.00 关键帧",
+    "name": "机位1 · 机位 00:00.00 关键帧",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "机位01 · 对峙中景 · 机位 00:04.00 关键帧",
+    "name": "机位1 · 机位 00:04.00 关键帧",
     "ignored": false
    },
    {
     "role": "button",
-    "name": "机位01 · 对峙中景 · 机位 00:08.00 关键帧",
+    "name": "机位1 · 机位 00:08.00 关键帧",
     "ignored": false
    }
   ],
@@ -3557,19 +3522,19 @@
    "steps": 200,
    "inside": 200,
    "escaped": 0,
-   "distinct": 97,
+   "distinct": 94,
    "topStops": [
     [
      "INPUT",
-     16
+     18
     ],
     [
      "当前帧有关键帧",
-     16
+     17
     ],
     [
      "左右拖动调整 X 轴",
-     5
+     6
     ],
     [
      "左右拖动调整 Y 轴",
@@ -3604,7 +3569,7 @@
      2
     ],
     [
-     "机位01 · 对峙中景 · 镜头0.0-8.0s",
+     "机位1 · 镜头0.0-8.0s",
      2
     ]
    ]
@@ -3623,18 +3588,18 @@
   }
  },
  "summary": {
-  "staticButton": 141,
-  "staticInput": 50,
+  "staticButton": 151,
+  "staticInput": 49,
   "staticSelect": 4,
-  "staticTotal": 195,
+  "staticTotal": 204,
   "entryFound": "found",
   "deskMounted": true,
-  "runtimeTotal": 142,
-  "runtimeButton": 111,
-  "runtimeInput": 21,
+  "runtimeTotal": 139,
+  "runtimeButton": 109,
+  "runtimeInput": 20,
   "runtimeDivRole": 10,
-  "trapAll": 136,
-  "trapList": 124,
+  "trapAll": 133,
+  "trapList": 121,
   "treeitem": 5,
   "separator": 1,
   "ariaRoleUnreachable": 6,
@@ -3649,7 +3614,7 @@
   "tabSteps": 200,
   "tabInside": 200,
   "tabEscaped": 0,
-  "tabDistinct": 97,
+  "tabDistinct": 94,
   "openReading": {
    "entriesBefore": 0,
    "entriesAfter": 0,
@@ -3660,9 +3625,14 @@
    "entriesAfter": 9,
    "prevented": 0
   },
-  "directorGuardLine": 1312,
-  "surfaceGuardLine": 1313,
-  "blockingSurfaces": 10
+  "directorGuardLine": 1366,
+  "surfaceGuardLine": 1367,
+  "blockingSurfaces": 12
  },
- "failures": []
+ "failures": [
+  "C1 静态写点 141/50/4",
+  "C3 运行时 142 = 111 button + 21 input + 10 div[role]",
+  "C4 围栏列表 136 → 124",
+  "C7 自然 Tab 200 步 0 逃出 / 97 种停靠名"
+ ]
 }

@@ -34,7 +34,7 @@
    "historyByProjectIsModuleMap": true,
    "closeSessionRemembersHistory": true
   },
-  "nodeX": "script-execution-1791036687647-9lj7up",
+  "nodeX": "script-execution-1792934897477-pfpie2",
   "seedNodeIds": [
    "g-245IDFh8sB",
    "g-EFbbHpwq5w",
@@ -46,24 +46,24 @@
    "b-bTLLuU4w5q",
    "i-YDfWhFlthe",
    "v-UGQZzZOpbv",
-   "script-execution-1791036687647-9lj7up"
+   "script-execution-1792934897477-pfpie2"
   ],
   "open1": {
    "deskOpen": true,
    "objects": 5,
    "authored": 5,
    "names": [
-    "角色01 · 陈默",
+    "角色A",
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景"
+    "机位1"
    ],
    "past": 0,
    "future": 0,
    "generation": 1,
-   "projectId": "director-project-1791036687980-1",
-   "sessionId": "director-session-1791036687981-2"
+   "projectId": "director-project-1792934897805-1",
+   "sessionId": "director-session-1792934897806-2"
   },
   "firstBtn": {
    "nodeId": "b-bTLLuU4w5q",
@@ -82,13 +82,13 @@
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景"
+    "机位1"
    ],
    "past": 1,
    "future": 0,
    "generation": 1,
-   "projectId": "director-project-1791036687980-1",
-   "sessionId": "director-session-1791036687981-2"
+   "projectId": "director-project-1792934897805-1",
+   "sessionId": "director-session-1792934897806-2"
   },
   "afterAdd": {
    "deskOpen": true,
@@ -99,14 +99,14 @@
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景",
+    "机位1",
     "饮料瓶"
    ],
    "past": 2,
    "future": 0,
    "generation": 1,
-   "projectId": "director-project-1791036687980-1",
-   "sessionId": "director-session-1791036687981-2"
+   "projectId": "director-project-1792934897805-1",
+   "sessionId": "director-session-1792934897806-2"
   },
   "firstNameFieldAfterAdd": "饮料瓶",
   "closed": {
@@ -118,7 +118,7 @@
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景",
+    "机位1",
     "饮料瓶"
    ],
    "past": 0,
@@ -128,7 +128,7 @@
    "sessionId": null
   },
   "recordAfterClose": {
-   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22script-execution-1791036687647-9lj7up%22%5D",
+   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22script-execution-1792934897477-pfpie2%22%5D",
    "topKeys": [
     "storageSchemaVersion",
     "projectId",
@@ -158,7 +158,7 @@
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景",
+    "机位1",
     "饮料瓶"
    ],
    "primitives": [
@@ -170,8 +170,8 @@
     "library"
    ],
    "generation": 1,
-   "projectId": "director-project-1791036687980-1",
-   "savedAt": "2026-10-03T14:11:33.236Z",
+   "projectId": "director-project-1792934897805-1",
+   "savedAt": "2026-10-25T13:28:22.976Z",
    "hasHistoryKey": false
   },
   "reopenSameNode": {
@@ -183,14 +183,14 @@
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景",
+    "机位1",
     "饮料瓶"
    ],
    "past": 2,
    "future": 0,
    "generation": 2,
-   "projectId": "director-project-1791036687980-1",
-   "sessionId": "director-session-1791036694240-3"
+   "projectId": "director-project-1792934897805-1",
+   "sessionId": "director-session-1792934903964-3"
   },
   "closedAgain": {
    "deskOpen": false,
@@ -201,7 +201,7 @@
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景",
+    "机位1",
     "饮料瓶"
    ],
    "past": 0,
@@ -216,28 +216,28 @@
    "objects": 5,
    "authored": 5,
    "names": [
-    "角色01 · 陈默",
+    "角色A",
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景"
+    "机位1"
    ],
    "past": 0,
    "future": 0,
    "generation": 1,
-   "projectId": "director-project-1791036696615-4",
-   "sessionId": "director-session-1791036696615-5"
+   "projectId": "director-project-1792934906356-4",
+   "sessionId": "director-session-1792934906356-5"
   },
   "closedOther": {
    "deskOpen": false,
    "objects": 5,
    "authored": 5,
    "names": [
-    "角色01 · 陈默",
+    "角色A",
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景"
+    "机位1"
    ],
    "past": 0,
    "future": 0,
@@ -272,11 +272,11 @@
    ],
    "nObjects": 5,
    "names": [
-    "角色01 · 陈默",
+    "角色A",
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景"
+    "机位1"
    ],
    "primitives": [
     "character",
@@ -286,8 +286,8 @@
     "camera"
    ],
    "generation": 1,
-   "projectId": "director-project-1791036696615-4",
-   "savedAt": "2026-10-03T14:11:38.001Z",
+   "projectId": "director-project-1792934906356-4",
+   "savedAt": "2026-10-25T13:28:27.742Z",
    "hasHistoryKey": false
   },
   "nodeIdsAfterReload": [
@@ -304,7 +304,7 @@
   ],
   "nodeXSurvivedReload": false,
   "recordAfterReload": {
-   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22script-execution-1791036687647-9lj7up%22%5D",
+   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22script-execution-1792934897477-pfpie2%22%5D",
    "topKeys": [
     "storageSchemaVersion",
     "projectId",
@@ -334,7 +334,7 @@
     "咖啡桌",
     "冷掉的咖啡",
     "咖啡馆背景",
-    "机位01 · 对峙中景",
+    "机位1",
     "饮料瓶"
    ],
    "primitives": [
@@ -346,8 +346,8 @@
     "library"
    ],
    "generation": 2,
-   "projectId": "director-project-1791036687980-1",
-   "savedAt": "2026-10-03T14:11:35.614Z",
+   "projectId": "director-project-1792934897805-1",
+   "savedAt": "2026-10-25T13:28:25.373Z",
    "hasHistoryKey": false
   },
   "btnsAfterReload": [

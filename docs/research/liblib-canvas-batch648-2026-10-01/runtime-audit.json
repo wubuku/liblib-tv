@@ -5,7 +5,7 @@
     {
       "batch": "626",
       "name": "crowd-panel",
-      "selector": "[data-director-crowd-panel]",
+      "selector": "[data-director-crowd-dialog]",
       "kind": "overlay"
     },
     {
@@ -107,7 +107,7 @@
     "deferredTo": "batch 649"
   },
   "probe": {
-    "[data-director-crowd-panel]": {
+    "[data-director-crowd-dialog]": {
       "count": 0,
       "inDesk": 0,
       "firstBox": null
@@ -194,18 +194,18 @@
     }
   },
   "matrix": {
-    "crowd-panel@1920x1150": {
+    "crowd-dialog@1920x1150": {
       "box": [
-        824,
-        688,
-        272,
-        208
+        280,
+        388,
+        220,
+        204
       ],
-      "bottom": 896,
-      "ownZ": "20",
+      "bottom": 592,
+      "ownZ": "1800",
       "pointerEvents": "auto",
-      "overflowBottom": -246,
-      "overflowRight": -816,
+      "overflowBottom": -550,
+      "overflowRight": -1412,
       "structBad": [],
       "liveCount": 5,
       "blocked": [],
@@ -285,18 +285,18 @@
       "blocked": [],
       "present": true
     },
-    "crowd-panel@1440x900": {
+    "crowd-dialog@1440x900": {
       "box": [
-        584,
-        438,
-        272,
-        208
+        280,
+        388,
+        220,
+        204
       ],
-      "bottom": 646,
-      "ownZ": "20",
+      "bottom": 592,
+      "ownZ": "1800",
       "pointerEvents": "auto",
-      "overflowBottom": -246,
-      "overflowRight": -576,
+      "overflowBottom": -300,
+      "overflowRight": -932,
       "structBad": [],
       "liveCount": 5,
       "blocked": [],
@@ -376,22 +376,45 @@
       "blocked": [],
       "present": true
     },
-    "crowd-panel@1280x720": {
+    "crowd-dialog@1280x720": {
       "box": [
-        504,
-        258,
-        272,
-        208
+        280,
+        388,
+        220,
+        204
       ],
-      "bottom": 466,
-      "ownZ": "20",
+      "bottom": 592,
+      "ownZ": "1800",
       "pointerEvents": "auto",
-      "overflowBottom": -246,
-      "overflowRight": -496,
+      "overflowBottom": -120,
+      "overflowRight": -772,
       "structBad": [],
       "liveCount": 5,
-      "blocked": [],
-      "present": true
+      "blocked": [
+        {
+          "label": "间距",
+          "why": "occluded",
+          "by": "button.pointer-events-auto"
+        }
+      ],
+      "present": true,
+      "blockedDetail": [
+        {
+          "tag": "input",
+          "type": "number",
+          "ariaLabel": "间距",
+          "className": "h-7 min-w-0 rounded-lg border border-white/10 bg-white/[0.06] px-2 text-[12px] text-white outline-none transition-colors focus:border-white/30",
+          "data": "directorCrowdInput",
+          "w": 194,
+          "h": 28,
+          "clip": "auto",
+          "clipPath": "none",
+          "position": "static",
+          "overflow": "clip",
+          "opacity": "1",
+          "excludedByZeroSizeGuard": false
+        }
+      ]
     },
     "phone-vcam-panel@1280x720": {
       "box": [
@@ -529,7 +552,7 @@
       "note": null
     },
     "each-classification-is-pinned-to-the-source-line-that-made-it": {
-      "ok": true,
+      "ok": false,
       "detail": {
         "pose-panel": "className=\"space-y-4 px-4 py-3\" — content",
         "panels-toggle": "inside a <button>",
@@ -562,7 +585,7 @@
         "cells": 12,
         "absent": {},
         "paths": {
-          "crowd-panel": "[data-director-crowd-trigger]",
+          "crowd-panel": "@crowd@ (rail → 群众 (3x3) → 对话框)",
           "phone-vcam-panel": "[data-director-phone-vcam-trigger]",
           "model-library-panel": "[data-director-model-library-trigger]",
           "model-library-preview-panel": "open the panel, then hover a card — the source gates it on previewModelLibraryItem"
@@ -574,15 +597,15 @@
       "ok": true,
       "detail": {
         "liveCounts": {
-          "crowd-panel@1920x1150": 5,
+          "crowd-dialog@1920x1150": 5,
           "phone-vcam-panel@1920x1150": 2,
           "model-library-panel@1920x1150": 15,
           "model-library-preview-panel@1920x1150": 1,
-          "crowd-panel@1440x900": 5,
+          "crowd-dialog@1440x900": 5,
           "phone-vcam-panel@1440x900": 2,
           "model-library-panel@1440x900": 15,
           "model-library-preview-panel@1440x900": 1,
-          "crowd-panel@1280x720": 5,
+          "crowd-dialog@1280x720": 5,
           "phone-vcam-panel@1280x720": 2,
           "model-library-panel@1280x720": 15,
           "model-library-preview-panel@1280x720": 1
@@ -613,7 +636,7 @@
       "note": null
     },
     "every-casualty-is-a-designed-non-control-not-a-clone-defect": {
-      "ok": true,
+      "ok": false,
       "detail": {
         "designedNonControls": [
           {
@@ -644,7 +667,17 @@
             "clipPath": "inset(50%)"
           }
         ],
-        "unexplainedCasualties": [],
+        "unexplainedCasualties": [
+          {
+            "cell": "crowd-dialog@1280x720",
+            "control": "directorCrowdInput",
+            "type": "number",
+            "w": 194,
+            "h": 28,
+            "clip": "auto",
+            "clipPath": "none"
+          }
+        ],
         "cellsMissingDetail": {},
         "reading": "the one casualty in the model library panel is an `sr-only` `type=file` input — the standard pattern for a file picker driven by a visible button. Its 1x1 centre sitting under the panel's scrim is by design, not a defect.",
         "whyItStillMatters": "626's casualty half would have reported it, and it has no way to tell this case from a real one. The ruler needs the gap closed before its greens mean anything."
@@ -652,7 +685,7 @@
       "note": "the casualty is recorded, classified and NOT hidden"
     },
     "the-zero-size-guard-is-one-pixel-short-of-the-right-predicate": {
-      "ok": true,
+      "ok": false,
       "detail": {
         "guards": [
           {
@@ -667,6 +700,13 @@
             "h": 1,
             "clip": "auto",
             "clipPath": "inset(50%)",
+            "excludedBy626sGuard": false
+          },
+          {
+            "w": 194,
+            "h": 28,
+            "clip": "auto",
+            "clipPath": "none",
             "excludedBy626sGuard": false
           },
           {
@@ -705,39 +745,39 @@
     "each-of-the-four-is-measured-at-all-three-viewports": {
       "ok": true,
       "detail": {
-        "crowd-panel": {
+        "crowd-dialog": {
           "viewports": 3,
           "box": {
             "1920x1150": [
-              824,
-              688,
-              272,
-              208
+              280,
+              388,
+              220,
+              204
             ],
             "1440x900": [
-              584,
-              438,
-              272,
-              208
+              280,
+              388,
+              220,
+              204
             ],
             "1280x720": [
-              504,
-              258,
-              272,
-              208
+              280,
+              388,
+              220,
+              204
             ]
           },
           "ownZ": {
-            "1920x1150": "20",
-            "1440x900": "20",
-            "1280x720": "20"
+            "1920x1150": "1800",
+            "1440x900": "1800",
+            "1280x720": "1800"
           },
           "liveCount": {
             "1920x1150": 5,
             "1440x900": 5,
             "1280x720": 5
           },
-          "allClean": true
+          "allClean": false
         },
         "phone-vcam-panel": {
           "viewports": 3,
@@ -845,9 +885,13 @@
       "note": null
     }
   },
-  "ok": true,
+  "ok": false,
   "checkCount": 13,
-  "failures": [],
+  "failures": [
+    "each-classification-is-pinned-to-the-source-line-that-made-it",
+    "every-casualty-is-a-designed-non-control-not-a-clone-defect",
+    "the-zero-size-guard-is-one-pixel-short-of-the-right-predicate"
+  ],
   "totals": {
     "cells": 12,
     "markersResolved": 15,

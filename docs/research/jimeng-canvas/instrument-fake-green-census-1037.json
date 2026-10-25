@@ -2,8 +2,8 @@
   "generated_by": "jimeng_probe1037_instrument_fake_green_census.py",
   "target": "jimeng-canvas-instrument-fake-green",
   "question": "⭐⭐⭐⭐⭐ **有没有产物在仪器故障的同时声称全绿？**",
-  "n_artifacts_scanned": 39,
-  "n_artifacts_with_criteria": 16,
+  "n_artifacts_scanned": 40,
+  "n_artifacts_with_criteria": 17,
   "n_fake_green": 0,
   "fake_green": [],
   "verdicts": [
@@ -170,6 +170,17 @@
       "n_criteria_sets": 1,
       "green_holders": [
         "P"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "floating-reachability-1040.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "criteria"
       ],
       "verdict": "ok"
     },
@@ -377,9 +388,7 @@
       "has_failure_signal": false,
       "failure_signals": [],
       "n_criteria_sets": 1,
-      "green_holders": [
-        "criteria"
-      ],
+      "green_holders": [],
       "verdict": "ok"
     },
     {

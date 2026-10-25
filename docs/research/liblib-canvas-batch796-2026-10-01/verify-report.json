@@ -773,8 +773,8 @@
   "pre": "5ceddc52d673c298d1c6ab1ad6f0280a02abbea5b8b78d35b698135fb1f4a1dc",
   "post": "a30f7c777258d0b866e03bea2c15a420f64815ed0654c911cb71810ad82e600f",
   "src": {
-   "src/app/page.tsx": "86230807ae59ff2c8c524fcb8fe92bb4e6ec3e826629c88726e83bdcbc8b947b",
-   "src/store/canvasStore.ts": "942c15059f63c2faeb73198e9b65de230a62681b95410762cee371c0d46fc43b"
+   "src/app/page.tsx": "1a232a18ee390987e9601fdfd5e4474b38760c29ecd336f96bc9f7e077860dd7",
+   "src/store/canvasStore.ts": "95ad798d1a79b58ab558101aaf840f3f2c66d7fef0d7221f3f0285e655dfd757"
   },
   "ok": {
    "pre": true,

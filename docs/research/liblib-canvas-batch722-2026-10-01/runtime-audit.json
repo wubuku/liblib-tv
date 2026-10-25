@@ -28,17 +28,17 @@
     "w": 694
    },
    "clientWidth": 694,
-   "scrollWidth": 944,
+   "scrollWidth": 904,
    "row": {
     "x": 293,
-    "w": 944,
+    "w": 904,
     "h": 48
    },
    "hasTinyScrollbar": false
   },
   "toolbar": {
    "toolbar": {
-    "w": 711,
+    "w": 671,
     "h": 48
    },
    "prompt": {
@@ -52,12 +52,12 @@
    "kids": [
     {
      "i": 0,
-     "ariaLabel": "角色01 · 陈默，可拖动三轴控件",
+     "ariaLabel": "角色A，可拖动三轴控件",
      "data": {
       "transform-context": "true",
       "transform-context-kind": "object",
       "transform-context-state": "editable",
-      "transform-context-target": "角色01 · 陈默"
+      "transform-context-target": "角色A"
      },
      "w": 98,
      "ml": 0,
@@ -167,9 +167,9 @@
      "i": 8,
      "ariaLabel": "添加群众阵列",
      "data": {
-      "crowd-trigger": "true"
+      "crowd-mobile-trigger": "true"
      },
-     "w": 32,
+     "w": 0,
      "ml": 0,
      "mr": 0,
      "btns": []
@@ -209,15 +209,15 @@
   },
   "reconcile": {
    "n": 12,
-   "sumKids": 593,
+   "sumKids": 561,
    "gaps": 88,
    "padL": 8,
    "padR": 8,
    "border": 2,
    "margins": 12,
-   "accounted": 711,
-   "toolbarW": 711,
-   "residual": 0
+   "accounted": 679,
+   "toolbarW": 671,
+   "residual": -8
   },
   "scan": [
    {
@@ -226,12 +226,12 @@
     "barX": 281,
     "padTotal": 24,
     "clientWidth": 694,
-    "scrollWidth": 944,
-    "contentW": 944,
+    "scrollWidth": 904,
+    "contentW": 904,
     "windowLevelW": 1256,
     "fitsNow": false,
     "fitsIfWindowLevel": true,
-    "slackIfWindowLevel": 312
+    "slackIfWindowLevel": 352
    },
    {
     "vw": 1024,
@@ -239,12 +239,12 @@
     "barX": 281,
     "padTotal": 24,
     "clientWidth": 438,
-    "scrollWidth": 944,
-    "contentW": 944,
+    "scrollWidth": 904,
+    "contentW": 904,
     "windowLevelW": 1000,
     "fitsNow": false,
     "fitsIfWindowLevel": true,
-    "slackIfWindowLevel": 56
+    "slackIfWindowLevel": 96
    },
    {
     "vw": 968,
@@ -252,12 +252,12 @@
     "barX": 281,
     "padTotal": 24,
     "clientWidth": 382,
-    "scrollWidth": 944,
-    "contentW": 944,
+    "scrollWidth": 904,
+    "contentW": 904,
     "windowLevelW": 944,
     "fitsNow": false,
     "fitsIfWindowLevel": true,
-    "slackIfWindowLevel": 0
+    "slackIfWindowLevel": 40
    },
    {
     "vw": 900,
@@ -265,12 +265,12 @@
     "barX": 281,
     "padTotal": 24,
     "clientWidth": 314,
-    "scrollWidth": 944,
-    "contentW": 944,
+    "scrollWidth": 904,
+    "contentW": 904,
     "windowLevelW": 876,
     "fitsNow": false,
     "fitsIfWindowLevel": false,
-    "slackIfWindowLevel": -68
+    "slackIfWindowLevel": -28
    },
    {
     "vw": 899,
@@ -278,12 +278,12 @@
     "barX": 281,
     "padTotal": 24,
     "clientWidth": 313,
-    "scrollWidth": 944,
-    "contentW": 944,
+    "scrollWidth": 904,
+    "contentW": 904,
     "windowLevelW": 875,
     "fitsNow": false,
     "fitsIfWindowLevel": false,
-    "slackIfWindowLevel": -69
+    "slackIfWindowLevel": -29
    },
    {
     "vw": 880,
@@ -383,13 +383,21 @@
   }
  },
  "summary": {
-  "content-944-splits-into-toolbar-711-plus-prompt-225-over-a-694-box": true,
-  "only-the-tool-capsule-differs-from-source-351-wider-while-prompt-matches": true,
-  "the-tool-capsule-twelve-children-reconcile-to-its-own-width": true,
-  "clone-only-controls-account-for-558-of-711": true,
-  "lifting-the-container-to-window-level-fits-at-every-vw-from-968-up": true,
-  "keeping-the-container-needs-at-least-250-cut-achieved-by-four-controls": true,
-  "the-narrow-side-is-already-window-level-so-option-a-does-not-cover-it": true
+  "content-944-splits-into-toolbar-711-plus-prompt-225-over-a-694-box": false,
+  "only-the-tool-capsule-differs-from-source-351-wider-while-prompt-matches": false,
+  "the-tool-capsule-twelve-children-reconcile-to-its-own-width": false,
+  "clone-only-controls-account-for-558-of-711": false,
+  "lifting-the-container-to-window-level-fits-at-every-vw-from-968-up": false,
+  "keeping-the-container-needs-at-least-250-cut-achieved-by-four-controls": false,
+  "the-narrow-side-is-already-window-level-so-option-a-does-not-cover-it": false
  },
- "failures": []
+ "failures": [
+  "content-944-splits-into-toolbar-711-plus-prompt-225-over-a-694-box: {'w': 671, 'h': 48}",
+  "only-the-tool-capsule-differs-from-source-351-wider-while-prompt-matches: {'toolbar': {'w': 671, 'h': 48}, 'prompt': {'w': 225, 'h': 48}, 'gap': 8, 'padL': 8, 'padR': 8, 'border': 2, 'kids': [{'i': 0, 'ariaLabel': '角色A，可拖动三轴控件', 'data': {'transform-context': 'true', 'transform-context-kind': 'object', 'transform-context-state': 'editable', 'transform-context-target': '角色A'}, 'w': 98, 'ml': 0, 'mr': 0, 'btns': []}, {'i': 1, 'ariaLabel': None, 'data': {}, 'w': 112, 'ml': 0, 'mr': 0, 'btns': [{'label': '移动', 'w': 32, 'h': 32}, {'label': '旋转', 'w': 32, 'h': 32}, {'label': '缩放', 'w': 32, 'h': 32}]}, {'i': 2, 'ariaLabel': '动画时间轴', 'data': {'timeline-toggle': 'true'}, 'w': 32, 'ml': 0, 'mr': 0, 'btns': []}, {'i': 3, 'ariaLabel': None, 'data': {}, 'w': 1, 'ml': 2, 'mr': 2, 'btns': []}, {'i': 4, 'ariaLabel': '画幅比例', 'data': {}, 'w': 136, 'ml': 0, 'mr': 0, 'btns': [{'label': '16:9', 'w': 40, 'h': 32}, {'label': '9:16', 'w': 40, 'h': 32}, {'label': '1:1', 'w': 40, 'h': 32}]}, {'i': 5, 'ariaLabel': '开启九宫格辅助线', 'data': {}, 'w': 32, 'ml': 0, 'mr': 0, 'btns': []}, {'i': 6, 'ariaLabel': None, 'data': {}, 'w': 1, 'ml': 2, 'mr': 2, 'btns': []}, {'i': 7, 'ariaLabel': '虚拟相机', 'data': {'phone-vcam-trigger': 'true'}, 'w': 32, 'ml': 0, 'mr': 0, 'btns': []}, {'i': 8, 'ariaLabel': '添加群众阵列', 'data': {'crowd-mobile-trigger': 'true'}, 'w': 0, 'ml': 0, 'mr': 0, 'btns': []}, {'i': 9, 'ariaLabel': '模型库', 'data': {'model-library-trigger': 'true'}, 'w': 32, 'ml': 0, 'mr': 0, 'btns': []}, {'i': 10, 'ariaLabel': None, 'data': {}, 'w': 1, 'ml': 2, 'mr': 2, 'btns': []}, {'i': 11, 'ariaLabel': None, 'data': {'capture': 'true'}, 'w': 84, 'ml': 0, 'mr': 0, 'btns': []}]}",
+  "the-tool-capsule-twelve-children-reconcile-to-its-own-width: {'n': 12, 'sumKids': 561, 'gaps': 88, 'padL': 8, 'padR': 8, 'border': 2, 'margins': 12, 'accounted': 679, 'toolbarW': 671, 'residual': -8}",
+  "clone-only-controls-account-for-558-of-711: 526",
+  "lifting-the-container-to-window-level-fits-at-every-vw-from-968-up: {'vw': 1280, 'barW': 718, 'barX': 281, 'padTotal': 24, 'clientWidth': 694, 'scrollWidth': 904, 'contentW': 904, 'windowLevelW': 1256, 'fitsNow': False, 'fitsIfWindowLevel': True, 'slackIfWindowLevel': 352}",
+  "keeping-the-container-needs-at-least-250-cut-achieved-by-four-controls: (32, 32, 0, 32)",
+  "the-narrow-side-is-already-window-level-so-option-a-does-not-cover-it: {'vw': 900, 'barW': 338, 'barX': 281, 'padTotal': 24, 'clientWidth': 314, 'scrollWidth': 904, 'contentW': 904, 'windowLevelW': 876, 'fitsNow': False, 'fitsIfWindowLevel': False, 'slackIfWindowLevel': -28}"
+ ]
 }

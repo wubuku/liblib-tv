@@ -1,0 +1,60 @@
+{
+ "generated_by": "jimeng_probe1040_floating_reachability.py",
+ "target": "jimeng-canvas-floating-reachability",
+ "question": "⭐⭐⭐⭐⭐ **画布弹出来的浮层，用户够得着吗？**",
+ "probe_run": "rc=0",
+ "probe_crashed": false,
+ "readings_available": true,
+ "readings_fresh": true,
+ "readings_file": "docs/research/jimeng-canvas/inputs/floating-reachability-1040.json",
+ "criteria": {
+  "P1": true,
+  "P2": true,
+  "P3": true,
+  "P4": true,
+  "P5": true,
+  "P6": true,
+  "P7": true,
+  "P8": true
+ },
+ "p8_mutation": {
+  "n_p3_before": true,
+  "n_p3_after": false,
+  "n_p4_before": true,
+  "n_p4_after": false,
+  "p3_turned_red": true,
+  "p4_turned_red": true,
+  "note": "⭐ 判据级变异：只改读数、不碰真源 ⇒ 真源产物零污染"
+ },
+ "detail": {
+  "viewport": [
+   1280,
+   720
+  ],
+  "panel_present": true,
+  "panel_in_viewport": false,
+  "panel_hits_itself": true,
+  "n_chips": 4,
+  "chips_present": 4,
+  "chips_in_viewport": 4,
+  "chips_hittable": 4,
+  "n_dropdowns_after_chip_click": 1,
+  "n_pageerrors": 0
+ },
+ "why_this_gate_exists": "⭐⭐⭐⭐⭐ 1032-⑬ 的根因：**面板开到视口外**（顶边 y=-318、芯片 y=-278）⇒ 鼠标点不到 ⇒ 功能不可用。⚠️ 而它**不报错、不变红**（面板照样渲染、DOM 照样有节点）⇒ ⇒ ⇒ 只有「在不在屏内 / 点不点得到」能判出来。",
+ "n_false": 0,
+ "false_criteria": [],
+ "degraded_criteria": [],
+ "criterion_kinds_1040": {
+  "P1": "failure",
+  "P2": "failure",
+  "P3": "failure",
+  "P4": "failure",
+  "P5": "failure",
+  "P6": "failure",
+  "P7": "failure",
+  "P8": "failure"
+ },
+ "criterion_kinds_complete_1040": true,
+ "criteria_n_1040": 8
+}

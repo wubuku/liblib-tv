@@ -34,10 +34,10 @@
         "createFirstLastFrameReference": 321,
         "createLongVideoProcess": 348,
         "addNodeAtPosition": 312,
-        "addEdge": 400,
+        "addEdge": 401,
         "destroyFirstFrameReference": 323,
         "clearVideoContinuation": 374,
-        "updateNodeData": 385,
+        "updateNodeData": 386,
         "addDerivedNode": 313,
         "createSubtitleErase": 329,
         "createAudioSplit": 334,
@@ -78,7 +78,7 @@
         "hasToolbarAnywhere": 1
       },
       "seedId": "v-UGQZzZOpbv",
-      "readyId": "video-1791073650036-96qlq5",
+      "readyId": "video-1792936299126-wmmk2f",
       "seedBefore": {
         "nodeCount": 10,
         "edgeCount": 11,
@@ -206,7 +206,7 @@
           "i-vxeeCnxySa",
           "t-9j2MoccxBj",
           "v-UGQZzZOpbv",
-          "video-1791073661891-xwovea"
+          "video-1792936311043-vo1so0"
         ],
         "edgeIds": [
           "e-8IgMkf6Vbj",
@@ -228,7 +228,7 @@
             "attempt": "5分钟超长视频"
           },
           {
-            "id": "video-1791073661891-xwovea",
+            "id": "video-1792936311043-vo1so0",
             "status": "ready",
             "attempt": null
           }
@@ -260,7 +260,7 @@
     {
       "label": "C5 ready 卡上「智能续写」入口存在且可点（B 档唯一的两段式命令）",
       "pass": true,
-      "detail": "{\"entry\": {\"found\": true, \"aria\": null}, \"ui\": {\"canvasNodes\": 11, \"hasTimeInputs\": 2, \"bodyHasContinue\": true}, \"before\": {\"nodeCount\": 11, \"edgeCount\": 11, \"past\": 2, \"future\": 0, \"nodeIds\": [\"b-bTLLuU4w5q\", \"g-245IDFh8sB\", \"g-EFbbHpwq5w\", \"i-1FQ9tErTcC\", \"i-YDfWhFlthe\", \"i-dnwoZQ7jsG\", \"i-lBzmo67AHv\", \"i-vxeeCnxySa\", \"t-9j2MoccxBj\", \"v-UGQZzZOpbv\", \"video-1791073661891-xwovea\"], \"edgeIds\": [\"e-8IgMkf6Vbj\", \"e-AQmdIgKtl2\", \"e-OwhsBRzrTz\", \"e-QzX895ot0u\", \"e-VQACH36eJC\", \"e-XmiJkHfFAL\", \"e-abKze5c8Ug\", \"e-m2wWA2wIBA\", \"e-nlMX3rEjwN\", \"e-xNVTHNFZZl\", \"e-yEqrTOR2Ya\"], \"videoData\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": \"5分钟超长视频\"}, {\"id\": \"video-1791073661891-xwovea\", \"status\": \"ready\", \"attempt\": null}]}}"
+      "detail": "{\"entry\": {\"found\": true, \"aria\": null}, \"ui\": {\"canvasNodes\": 11, \"hasTimeInputs\": 2, \"bodyHasContinue\": true}, \"before\": {\"nodeCount\": 11, \"edgeCount\": 11, \"past\": 2, \"future\": 0, \"nodeIds\": [\"b-bTLLuU4w5q\", \"g-245IDFh8sB\", \"g-EFbbHpwq5w\", \"i-1FQ9tErTcC\", \"i-YDfWhFlthe\", \"i-dnwoZQ7jsG\", \"i-lBzmo67AHv\", \"i-vxeeCnxySa\", \"t-9j2MoccxBj\", \"v-UGQZzZOpbv\", \"video-1792936311043-vo1so0\"], \"edgeIds\": [\"e-8IgMkf6Vbj\", \"e-AQmdIgKtl2\", \"e-OwhsBRzrTz\", \"e-QzX895ot0u\", \"e-VQACH36eJC\", \"e-XmiJkHfFAL\", \"e-abKze5c8Ug\", \"e-m2wWA2wIBA\", \"e-nlMX3rEjwN\", \"e-xNVTHNFZZl\", \"e-yEqrTOR2Ya\"], \"videoData\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": \"5分钟超长视频\"}, {\"id\": \"video-1792936311043-vo1so0\", \"status\": \"ready\", \"attempt\": null}]}}"
     },
     {
       "label": "C6 743 那句「status 不是门控」的边界：L3 成立（两态各 3 枚芯片）、L2 不成立（toolbar 只在 ready）",

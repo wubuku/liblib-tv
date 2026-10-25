@@ -1,0 +1,72 @@
+{
+ "generated_by": "scripts/jimeng_probe1040_floating_reachability_runtime.mjs",
+ "pageerrors": [],
+ "panel_open": {
+  "vw": 1280,
+  "vh": 720,
+  "panel_present": true,
+  "panel_in_viewport": false,
+  "panel_hits_itself": true,
+  "chips": [
+   {
+    "label": "性别",
+    "present": true,
+    "in_viewport": true,
+    "hittable": true
+   },
+   {
+    "label": "年龄",
+    "present": true,
+    "in_viewport": true,
+    "hittable": true
+   },
+   {
+    "label": "语言",
+    "present": true,
+    "in_viewport": true,
+    "hittable": true
+   },
+   {
+    "label": "声音特点",
+    "present": true,
+    "in_viewport": true,
+    "hittable": true
+   }
+  ],
+  "n_dropdowns_open": 0
+ },
+ "after_chip_click": {
+  "vw": 1280,
+  "vh": 720,
+  "panel_present": true,
+  "panel_in_viewport": false,
+  "panel_hits_itself": true,
+  "chips": [
+   {
+    "label": "性别",
+    "present": true,
+    "in_viewport": true,
+    "hittable": true
+   },
+   {
+    "label": "年龄",
+    "present": true,
+    "in_viewport": true,
+    "hittable": true
+   },
+   {
+    "label": "语言",
+    "present": true,
+    "in_viewport": true,
+    "hittable": true
+   },
+   {
+    "label": "声音特点",
+    "present": true,
+    "in_viewport": true,
+    "hittable": true
+   }
+  ],
+  "n_dropdowns_open": 1
+ }
+}

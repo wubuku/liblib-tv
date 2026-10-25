@@ -1,16 +1,36 @@
 {
  "batch": 782,
- "verdict": "通过",
+ "verdict": "不通过",
  "criteria": {
   "total": 70,
-  "passed": 70,
-  "failed": 0,
-  "failedLabels": []
+  "passed": 53,
+  "failed": 17,
+  "failedLabels": [
+   "静态：`src/app/page.tsx:1400` 注册点在位且**是 capture**",
+   "静态：`src/app/page.tsx:1401` 注册点在位且**是 bubble**",
+   "静态：两个宿主页 handler 体都取到了（0 / 0 字符）",
+   "静态：★ `src/app/page.tsx:1400`（capture+sIP）认领 `Escape`",
+   "静态：★ `src/app/page.tsx:1400` 认领 `Delete`",
+   "静态：★ `src/app/page.tsx:1400` 认领 `Backspace`",
+   "静态：★ `src/app/page.tsx:1400` 认领 `Tab`",
+   "静态：★★ `src/app/page.tsx:1400` 用**成员式**认领 `Meta+z`/`Meta+y`（普查器第一版整个漏掉的那一种形态）",
+   "静态：★ `src/app/page.tsx:1401` 认领 `Escape`",
+   "静态：★ `src/app/page.tsx:1401` 认领 `Delete`/`Backspace`",
+   "静态：★ `src/app/page.tsx:1401` 认领 `Tab`",
+   "静态：★ `src/app/page.tsx:1401` 认领 `Meta+z`",
+   "静态：★ `src/app/page.tsx:1401` 认领 `Meta+y`",
+   "静态：★ 宿主页里唯一的 `\"v\"` 是**裸 v**（`!modifier && …`）⟹ `Meta+v` 的主人**真的唯一**（普查器第一版把它报成 `Meta+v`，方向刚好反）",
+   "静态：★ `src/app/page.tsx:1401` 的门是 `if (uiState.activeDirectorNodeId) return;` ⟹ **显式以导演台开着为条件**（可靠让位）",
+   "静态：★ `src/app/page.tsx:1400` 的门是 `if (!resolveLibTVBlockingForegroundSurface(uiState)) return;`",
+   "产物：★ audit 记的 `Escape` `sIP` 数 = 独立字面量重算（director 面 3 + 宿主页 0）"
+  ]
  },
  "negativeControls": {
   "total": 9,
-  "caught": 9,
-  "stale": [],
+  "caught": 7,
+  "stale": [
+   "给宿主页的 capture handler 加上 `Meta+c` 认领"
+  ],
   "kwNotUnique": [],
   "cases": [
    {
@@ -19,8 +39,8 @@
     "mutatedAnything": true,
     "kwMatchedCount": 1,
     "flipped": [
-     "静态：★★ `LibTVBlockingForegroundSurface` 的 11 个成员里**没有导演台** ⟹ `:1400` 休眠是**遗漏**不是设计（D1h 的载荷）",
-     "产物：★ audit 的阻塞面枚举 = 静态重算"
+     "静态：★★ `LibTVBlockingForegroundSurface` 的 13 个成员里**没有导演台** ⟹ `:1400` 休眠是**遗漏**不是设计（D1h 的载荷）",
+     "产物：★ audit 的阻塞面枚举 = 静态重算（★ artifact 是**历史快照** ⟹ 允许后续批次新增的成员：character-assets、character-editor；artifact 10 个／今天 13 个／多出来：character-assets、character-editor、director-desk）"
     ],
     "caught": true,
     "expectFailOn": "没有导演台"
@@ -29,11 +49,9 @@
     "name": "删掉 `page.tsx:1312` 的 `activeDirectorNodeId` 早退",
     "why": "★ 两道门里那道**可靠**的没了 ⟹ `:1401` 会在导演台打开时抢走那 4 个键 ⟹ 「显式让位」这条判据必须红",
     "mutatedAnything": true,
-    "kwMatchedCount": 1,
-    "flipped": [
-     "静态：★ `src/app/page.tsx:1401` 的门是 `if (uiState.activeDirectorNodeId) return;` ⟹ **显式以导演台开着为条件**（可靠让位）"
-    ],
-    "caught": true,
+    "kwMatchedCount": 0,
+    "flipped": [],
+    "caught": false,
     "expectFailOn": "显式以导演台"
    },
    {
@@ -43,7 +61,7 @@
     "kwMatchedCount": 1,
     "flipped": [
      "静态：★ `DirectorViewport` 有 1 处 `stopImmediatePropagation()`",
-     "产物：★ audit 记的 `Escape` `sIP` 数 = 独立字面量重算（director 面 2 + 宿主页 1）",
+     "产物：★ audit 记的 `Escape` `sIP` 数 = 独立字面量重算（director 面 2 + 宿主页 0）",
      "静态：★★ D8 的同仓先例**只数 director 面**（2 处），宿主页那处**不算**（语义不同：一个是页面 chrome 的门）",
      "产物：★ audit 记的 D8 先例数 = 独立字面量重算"
     ],
@@ -64,12 +82,10 @@
    {
     "name": "给宿主页的 capture handler 加上 `Meta+c` 认领",
     "why": "★ 「`Meta+c` 的主人**真的唯一**」是**负向**断言 ⟹ 必须能被抓到（负向断言最容易写成恒真）",
-    "mutatedAnything": true,
-    "kwMatchedCount": 1,
-    "flipped": [
-     "静态：★★ 宿主页两个 handler 体里**没有任何 `\"c\"` 字面量** ⟹ `Meta+c` 的主人在挂载域里**真的唯一**"
-    ],
-    "caught": true,
+    "mutatedAnything": false,
+    "kwMatchedCount": 0,
+    "flipped": [],
+    "caught": false,
     "expectFailOn": "真的唯一"
    },
    {
@@ -135,13 +151,17 @@
    "src/components/director/directorMotionMath.ts": 0,
    "src/components/director/directorPhoneVcamMath.ts": 0,
    "src/components/director/directorPose.ts": 0,
+   "src/components/director/directorShortcutRules.ts": 0,
    "src/components/director/directorTimelineMath.ts": 0,
    "src/components/director/directorVideoExport.ts": 0,
    "src/components/director/directorViewportMath.ts": 0,
    "src/components/director/useDirectorFocusContainment.ts": 1,
    "src/components/director/useDirectorGestureBoundary.ts": 1,
    "src/components/director/DirectorAiImportModal.tsx": 0,
+   "src/components/director/DirectorAspectPanel.tsx": 0,
    "src/components/director/DirectorCameraMotionTab.tsx": 0,
+   "src/components/director/DirectorCameraPresetPanel.tsx": 0,
+   "src/components/director/DirectorCharacterPanel.tsx": 0,
    "src/components/director/DirectorCurveEditor.tsx": 0,
    "src/components/director/DirectorDesk.tsx": 1,
    "src/components/director/DirectorExportPanel.tsx": 0,
@@ -149,38 +169,42 @@
    "src/components/director/DirectorInspector.tsx": 1,
    "src/components/director/DirectorMannequin.tsx": 0,
    "src/components/director/DirectorObjectTree.tsx": 1,
+   "src/components/director/DirectorPanoramaPanel.tsx": 0,
+   "src/components/director/DirectorPanoramaPicker.tsx": 0,
    "src/components/director/DirectorPhoneVcamPanel.tsx": 1,
    "src/components/director/DirectorScenePromptBar.tsx": 0,
+   "src/components/director/DirectorShortcutsDialog.tsx": 1,
    "src/components/director/DirectorTimeline.tsx": 2,
-   "src/components/director/DirectorViewport.tsx": 2,
+   "src/components/director/DirectorTimelineGuide.tsx": 0,
+   "src/components/director/DirectorViewport.tsx": 4,
    "src/app/page.tsx": 3
   },
-  "siteTotal": 13,
+  "siteTotal": 16,
   "typeDeclSitesExcluded": 1,
-  "hostCaptureRegExists": true,
-  "hostBubbleRegExists": true,
-  "hostCaptureIsCapture": true,
+  "hostCaptureRegExists": false,
+  "hostBubbleRegExists": false,
+  "hostCaptureIsCapture": false,
   "hostBubbleIsCapture": false,
-  "hostCaptureHandler": "handleActiveImageSurfaceKeyDown",
-  "hostBubbleHandler": "handleKeyDown",
-  "hostCaptureDecl": 1268,
-  "hostBubbleDecl": 1309,
-  "hostCaptureBodyLen": 1217,
-  "hostBubbleBodyLen": 2299,
+  "hostCaptureHandler": null,
+  "hostBubbleHandler": null,
+  "hostCaptureDecl": null,
+  "hostBubbleDecl": null,
+  "hostCaptureBodyLen": 0,
+  "hostBubbleBodyLen": 0,
   "literals": {
-   "hostCap_escape": true,
-   "hostCap_delete": true,
-   "hostCap_backspace": true,
-   "hostCap_tab": true,
-   "hostCap_meta_zyx": true,
+   "hostCap_escape": false,
+   "hostCap_delete": false,
+   "hostCap_backspace": false,
+   "hostCap_tab": false,
+   "hostCap_meta_zyx": false,
    "hostCap_no_c_literal": false,
    "hostCap_no_v_literal": false,
-   "hostBub_escape": true,
-   "hostBub_delete": true,
-   "hostBub_tab": true,
-   "hostBub_meta_z": true,
-   "hostBub_meta_y": true,
-   "hostBub_bare_v": true,
+   "hostBub_escape": false,
+   "hostBub_delete": false,
+   "hostBub_tab": false,
+   "hostBub_meta_z": false,
+   "hostBub_meta_y": false,
+   "hostBub_bare_v": false,
    "hostBub_no_c_literal": false,
    "desk_meta_c": true,
    "desk_meta_v": true,
@@ -189,13 +213,15 @@
    "desk_delete": true,
    "desk_escape": true
   },
-  "gateBubbleLiteral": true,
-  "gateCaptureLiteral": true,
+  "gateBubbleLiteral": false,
+  "gateCaptureLiteral": false,
   "gateBubGlobalCount": 1,
   "gateCapGlobalCount": 1,
   "unionMembers": [
    "add-node",
    "canvas-dropdown",
+   "character-assets",
+   "character-editor",
    "follow-banner",
    "notification",
    "primary-panel",
@@ -208,8 +234,10 @@
   "unionMentionsDirector": false,
   "snapshotMentionsActiveDirectorNodeId": false,
   "viewportCaptureSites": [
-   2711,
-   2748
+   507,
+   508,
+   3238,
+   3275
   ],
   "viewportSipCount": 2,
   "gestureHasSip": false,
@@ -217,9 +245,9 @@
   "gestureExcludesTab": true,
   "gestureClaimsTab": false,
   "phoneVcamSip": true,
-  "captureBodySip": true,
+  "captureBodySip": false,
   "d8PrecedentsInPlane": 3,
-  "d8PrecedentsIncludingHost": 4,
+  "d8PrecedentsIncludingHost": 3,
   "fcCallCount": 3,
   "fcWithStop": 2,
   "fcStopAllMobileGated": true,
@@ -402,15 +430,19 @@
   "产物：★ audit 记的挂载页与静态重算一致": true,
   "产物：★ audit 记的单主人键 = ['Meta+c', 'Meta+v']": true,
   "产物：★ audit 记的多主人计数 = 独立发现的主人数": true,
-  "产物：★ audit 记的 `Escape` `sIP` 数 = 独立字面量重算（director 面 3 + 宿主页 1）": true,
+  "产物：★ audit 记的 `Escape` `sIP` 数 = 独立字面量重算（director 面 3 + 宿主页 0）": false,
   "产物：★ audit 记的 D8 先例数 = 独立字面量重算": true,
   "产物：★ audit 记的格数（**跨轮**）= 重算值": true,
   "产物：★ audit 记的每轮按压数 = 重算值": true,
   "产物：★ audit 记的「宿主页门此刻关着」= True": true,
   "产物：audit 记的零 FAILED": true,
-  "产物：★ audit 的阻塞面枚举 = 静态重算": true,
+  "产物：★ audit 的阻塞面枚举 = 静态重算（★ artifact 是**历史快照** ⟹ 允许后续批次新增的成员：character-assets、character-editor；artifact 10 个／今天 12 个／多出来：character-assets、character-editor）": true,
   "产物：★ audit 记的 director 面阻塞面命中 = 静态重算": true
  },
- "problems": [],
+ "problems": [
+  "17 条判据未过：['静态：`src/app/page.tsx:1400` 注册点在位且**是 capture**', '静态：`src/app/page.tsx:1401` 注册点在位且**是 bubble**', '静态：两个宿主页 handler 体都取到了（0 / 0 字符）', '静态：★ `src/app/page.tsx:1400`（capture+sIP）认领 `Escape`', '静态：★ `src/app/page.tsx:1400` 认领 `Delete`', '静态：★ `src/app/page.tsx:1400` 认领 `Backspace`', '静态：★ `src/app/page.tsx:1400` 认领 `Tab`', '静态：★★ `src/app/page.tsx:1400` 用**成员式**认领 `Meta+z`/`Meta+y`（普查器第一版整个漏掉的那一种形态）', '静态：★ `src/app/page.tsx:1401` 认领 `Escape`', '静态：★ `src/app/page.tsx:1401` 认领 `Delete`/`Backspace`', '静态：★ `src/app/page.tsx:1401` 认领 `Tab`', '静态：★ `src/app/page.tsx:1401` 认领 `Meta+z`', '静态：★ `src/app/page.tsx:1401` 认领 `Meta+y`', '静态：★ 宿主页里唯一的 `\"v\"` 是**裸 v**（`!modifier && …`）⟹ `Meta+v` 的主人**真的唯一**（普查器第一版把它报成 `Meta+v`，方向刚好反）', '静态：★ `src/app/page.tsx:1401` 的门是 `if (uiState.activeDirectorNodeId) return;` ⟹ **显式以导演台开着为条件**（可靠让位）', '静态：★ `src/app/page.tsx:1400` 的门是 `if (!resolveLibTVBlockingForegroundSurface(uiState)) return;`', '产物：★ audit 记的 `Escape` `sIP` 数 = 独立字面量重算（director 面 3 + 宿主页 0）']",
+  "阴性对照 7/9 被抓",
+  "对照没真的改动任何东西：['给宿主页的 capture handler 加上 `Meta+c` 认领']"
+ ],
  "srcDiff": "**验收器未改 `src/`**（对照全在内存副本上做）"
 }

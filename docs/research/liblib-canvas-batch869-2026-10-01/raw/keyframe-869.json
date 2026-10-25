@@ -1,0 +1,302 @@
+{
+ "说明": "★ 三档测量 ⟹ ⟹ 每档都读实时状态 ＋ 点了之后的结果",
+ "档A_默认": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "选中轨道label": "角色A · 变换",
+  "选中轨道kind": "transform",
+  "该轨道关键帧数": 3,
+  "该轨道关键帧时间": [
+   0,
+   4,
+   8
+  ],
+  "选中关键帧id": "director-keyframe-character-0",
+  "选中关键帧值": "{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}",
+  "当前时间": 0,
+  "add": {
+   "hasDisabledAttr": false,
+   "ariaDisabled": null,
+   "title": null,
+   "cursor": "default",
+   "browserDisabled": false
+  },
+  "del": {
+   "hasDisabledAttr": false,
+   "ariaDisabled": null,
+   "title": "删除关键帧",
+   "cursor": "default",
+   "browserDisabled": false
+  }
+ },
+ "档A_点添加": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "该轨道关键帧数": 3,
+   "该轨道关键帧时间": [
+    0,
+    4,
+    8
+   ],
+   "选中关键帧id": "director-keyframe-character-0",
+   "选中关键帧值": "{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}",
+   "当前时间": 0
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "该轨道关键帧数": 3,
+   "该轨道关键帧时间": [
+    0,
+    4,
+    8
+   ],
+   "选中关键帧id": "director-keyframe-character-0",
+   "选中关键帧值": "{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}",
+   "当前时间": 0
+  },
+  "变了的量": {},
+  "有变化": false,
+  "错误": null
+ },
+ "档B_清空选中轨道_轨道行数": 2,
+ "档B_清空选中轨道": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "选中轨道label": "角色A · 变换",
+  "选中轨道kind": "transform",
+  "该轨道关键帧数": 3,
+  "该轨道关键帧时间": [
+   0,
+   4,
+   8
+  ],
+  "选中关键帧id": "director-keyframe-character-0",
+  "选中关键帧值": "{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}",
+  "当前时间": 0,
+  "add": {
+   "hasDisabledAttr": false,
+   "ariaDisabled": null,
+   "title": null,
+   "cursor": "default",
+   "browserDisabled": false
+  },
+  "del": {
+   "hasDisabledAttr": false,
+   "ariaDisabled": null,
+   "title": "删除关键帧",
+   "cursor": "default",
+   "browserDisabled": false
+  }
+ },
+ "档B_点添加": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "该轨道关键帧数": 3,
+   "该轨道关键帧时间": [
+    0,
+    4,
+    8
+   ],
+   "选中关键帧id": "director-keyframe-character-0",
+   "选中关键帧值": "{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}",
+   "当前时间": 0
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "该轨道关键帧数": 3,
+   "该轨道关键帧时间": [
+    0,
+    4,
+    8
+   ],
+   "选中关键帧id": "director-keyframe-character-0",
+   "选中关键帧值": "{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}",
+   "当前时间": 0
+  },
+  "变了的量": {},
+  "有变化": false,
+  "错误": null
+ },
+ "档B_点删除": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "该轨道关键帧数": 3,
+   "该轨道关键帧时间": [
+    0,
+    4,
+    8
+   ],
+   "选中关键帧id": "director-keyframe-character-0",
+   "选中关键帧值": "{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}",
+   "当前时间": 0
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "该轨道关键帧数": 2,
+   "该轨道关键帧时间": [
+    4,
+    8
+   ],
+   "选中关键帧id": null,
+   "选中关键帧值": null,
+   "当前时间": 0
+  },
+  "变了的量": {
+   "该轨道关键帧数": [
+    3,
+    2
+   ],
+   "该轨道关键帧时间": [
+    [
+     0,
+     4,
+     8
+    ],
+    [
+     4,
+     8
+    ]
+   ],
+   "选中关键帧id": [
+    "director-keyframe-character-0",
+    null
+   ],
+   "选中关键帧值": [
+    "{\"position\":[-1.25,0,0.2],\"rotation\":[0,18,0],\"scale\":[1,1,1]}",
+    null
+   ]
+  },
+  "有变化": true,
+  "错误": null
+ },
+ "档C_清空选中关键帧_数量": 5,
+ "档C_清空选中关键帧": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "选中轨道label": "角色A · 变换",
+  "选中轨道kind": "transform",
+  "该轨道关键帧数": 2,
+  "该轨道关键帧时间": [
+   4,
+   8
+  ],
+  "选中关键帧id": null,
+  "选中关键帧值": null,
+  "当前时间": 0,
+  "add": {
+   "hasDisabledAttr": false,
+   "ariaDisabled": null,
+   "title": null,
+   "cursor": "default",
+   "browserDisabled": false
+  },
+  "del": {
+   "hasDisabledAttr": true,
+   "ariaDisabled": null,
+   "title": "删除关键帧",
+   "cursor": "default",
+   "browserDisabled": true
+  }
+ },
+ "档C_点添加": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "该轨道关键帧数": 2,
+   "该轨道关键帧时间": [
+    4,
+    8
+   ],
+   "选中关键帧id": null,
+   "选中关键帧值": null,
+   "当前时间": 0
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "该轨道关键帧数": 3,
+   "该轨道关键帧时间": [
+    0,
+    4,
+    8
+   ],
+   "选中关键帧id": "director-track-character-lead-transform-keyframe-0-1792933471473",
+   "选中关键帧值": "{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}",
+   "当前时间": 0
+  },
+  "变了的量": {
+   "该轨道关键帧数": [
+    2,
+    3
+   ],
+   "该轨道关键帧时间": [
+    [
+     4,
+     8
+    ],
+    [
+     0,
+     4,
+     8
+    ]
+   ],
+   "选中关键帧id": [
+    null,
+    "director-track-character-lead-transform-keyframe-0-1792933471473"
+   ],
+   "选中关键帧值": [
+    null,
+    "{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}"
+   ]
+  },
+  "有变化": true,
+  "错误": null
+ },
+ "档C_点删除": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "该轨道关键帧数": 3,
+   "该轨道关键帧时间": [
+    0,
+    4,
+    8
+   ],
+   "选中关键帧id": "director-track-character-lead-transform-keyframe-0-1792933471473",
+   "选中关键帧值": "{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}",
+   "当前时间": 0
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "该轨道关键帧数": 2,
+   "该轨道关键帧时间": [
+    4,
+    8
+   ],
+   "选中关键帧id": null,
+   "选中关键帧值": null,
+   "当前时间": 0
+  },
+  "变了的量": {
+   "该轨道关键帧数": [
+    3,
+    2
+   ],
+   "该轨道关键帧时间": [
+    [
+     0,
+     4,
+     8
+    ],
+    [
+     4,
+     8
+    ]
+   ],
+   "选中关键帧id": [
+    "director-track-character-lead-transform-keyframe-0-1792933471473",
+    null
+   ],
+   "选中关键帧值": [
+    "{\"position\":[0.65,0,0.35],\"rotation\":[0,-12,0],\"scale\":[1,1,1]}",
+    null
+   ]
+  },
+  "有变化": true,
+  "错误": null
+ }
+}

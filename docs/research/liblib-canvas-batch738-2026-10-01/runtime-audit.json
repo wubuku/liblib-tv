@@ -12,12 +12,14 @@
     "empty-object"
    ],
    "crowdInputKeys": [
-    "key"
+    "rows",
+    "columns",
+    "spacing"
    ],
-   "railFlyoutZLine": 143,
-   "geometrySubmenuZClass": "z-50"
+   "railFlyoutZLine": null,
+   "geometrySubmenuZClass": null
   },
-  "railFlyoutZLine": 143
+  "railFlyoutZLine": null
  },
  "run": {
   "large": {
@@ -27,7 +29,7 @@
     "options": [],
     "dialogPresent": false,
     "dialog": null,
-    "outRootButtons": 47,
+    "outRootButtons": 38,
     "aspectOptions": []
    },
    "crowd": {
@@ -36,34 +38,34 @@
     "options": [],
     "dialogPresent": true,
     "dialog": {
-     "zIndex": "160",
+     "zIndex": "1800",
      "position": "fixed",
      "inRoot": false,
-     "inFixedPortal": true,
+     "inFixedPortal": false,
      "inputs": [
       {
        "key": "rows",
        "type": "number",
        "w": 93,
        "h": 28,
-       "x": 307,
-       "y": 114
+       "x": 293,
+       "y": 454
       },
       {
        "key": "columns",
        "type": "number",
        "w": 93,
        "h": 28,
-       "x": 408,
-       "y": 114
+       "x": 394,
+       "y": 454
       },
       {
        "key": "spacing",
        "type": "number",
        "w": 194,
        "h": 28,
-       "x": 307,
-       "y": 175
+       "x": 293,
+       "y": 511
       }
      ],
      "buttons": [
@@ -71,38 +73,38 @@
        "label": "取消",
        "w": 48,
        "h": 28,
-       "x": 397,
-       "y": 219
+       "x": 383,
+       "y": 551
       },
       {
        "label": "添加",
        "w": 48,
        "h": 28,
-       "x": 453,
-       "y": 219
+       "x": 439,
+       "y": 551
       }
      ]
     },
-    "outRootButtons": 52,
+    "outRootButtons": 43,
     "aspectOptions": []
    },
    "geometry": {
     "submenuPresent": true,
     "submenuBox": {
      "w": 204,
-     "h": 270,
-     "x": 52,
-     "y": 508,
-     "zIndex": "50",
-     "position": "absolute",
-     "parentIsFixedPortal": true,
-     "inRoot": false
+     "h": 256,
+     "x": 68,
+     "y": 452,
+     "zIndex": "auto",
+     "position": "static",
+     "parentIsFixedPortal": false,
+     "inRoot": true
     },
     "options": [
      {
       "id": "geometry-upload",
       "label": "上传文件",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -112,7 +114,7 @@
      {
       "id": "cube",
       "label": "立方体",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -122,7 +124,7 @@
      {
       "id": "sphere",
       "label": "球体",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -132,7 +134,7 @@
      {
       "id": "cylinder",
       "label": "圆柱体",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -142,7 +144,7 @@
      {
       "id": "torus",
       "label": "环状体",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -152,7 +154,7 @@
      {
       "id": "cone",
       "label": "圆锥",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -162,7 +164,7 @@
      {
       "id": "pyramid",
       "label": "棱锥",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -172,7 +174,7 @@
      {
       "id": "empty-object",
       "label": "添加空对象",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -182,7 +184,7 @@
     ],
     "dialogPresent": false,
     "dialog": null,
-    "outRootButtons": 55,
+    "outRootButtons": 38,
     "aspectOptions": []
    },
    "handles": [
@@ -232,7 +234,7 @@
      "pe": "none",
      "opacity": "0",
      "hitIsSelf": false,
-     "hitLabel": "flex h-8 w-full items-center g"
+     "hitLabel": "[object SVGAnimatedString]"
     },
     {
      "w": 8,
@@ -264,7 +266,7 @@
      "pe": "none",
      "opacity": "0",
      "hitIsSelf": false,
-     "hitLabel": "flex h-8 w-full items-center g"
+     "hitLabel": "truncate"
     },
     {
      "w": 8,
@@ -281,19 +283,19 @@
     "submenuPresent": true,
     "submenuBox": {
      "w": 204,
-     "h": 270,
-     "x": 52,
-     "y": 422,
-     "zIndex": "50",
-     "position": "absolute",
-     "parentIsFixedPortal": true,
-     "inRoot": false
+     "h": 256,
+     "x": 68,
+     "y": 452,
+     "zIndex": "auto",
+     "position": "static",
+     "parentIsFixedPortal": false,
+     "inRoot": true
     },
     "options": [
      {
       "id": "geometry-upload",
       "label": "上传文件",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -303,7 +305,7 @@
      {
       "id": "cube",
       "label": "立方体",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -313,7 +315,7 @@
      {
       "id": "sphere",
       "label": "球体",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -323,7 +325,7 @@
      {
       "id": "cylinder",
       "label": "圆柱体",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -333,7 +335,7 @@
      {
       "id": "torus",
       "label": "环状体",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -343,7 +345,7 @@
      {
       "id": "cone",
       "label": "圆锥",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -353,7 +355,7 @@
      {
       "id": "pyramid",
       "label": "棱锥",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -363,7 +365,7 @@
      {
       "id": "empty-object",
       "label": "添加空对象",
-      "w": 190,
+      "w": 199,
       "h": 32,
       "opacity": "1",
       "pe": "auto",
@@ -373,7 +375,7 @@
     ],
     "dialogPresent": false,
     "dialog": null,
-    "outRootButtons": 55,
+    "outRootButtons": 38,
     "aspectOptions": []
    },
    "aspect": {
@@ -382,94 +384,39 @@
     "options": [],
     "dialogPresent": false,
     "dialog": null,
-    "outRootButtons": 43,
-    "aspectOptions": [
-     {
-      "label": "自适应",
-      "w": 103,
-      "h": 72,
-      "x": 57,
-      "y": 261,
-      "inViewport": true
-     },
-     {
-      "label": "21:9",
-      "w": 103,
-      "h": 72,
-      "x": 168,
-      "y": 261,
-      "inViewport": true
-     },
-     {
-      "label": "16:9",
-      "w": 103,
-      "h": 72,
-      "x": 57,
-      "y": 341,
-      "inViewport": true
-     },
-     {
-      "label": "4:3",
-      "w": 103,
-      "h": 72,
-      "x": 168,
-      "y": 341,
-      "inViewport": true
-     },
-     {
-      "label": "1:1",
-      "w": 103,
-      "h": 72,
-      "x": 57,
-      "y": 421,
-      "inViewport": true
-     },
-     {
-      "label": "3:4",
-      "w": 103,
-      "h": 72,
-      "x": 168,
-      "y": 421,
-      "inViewport": true
-     },
-     {
-      "label": "9:16",
-      "w": 103,
-      "h": 72,
-      "x": 57,
-      "y": 501,
-      "inViewport": true
-     }
-    ]
+    "outRootButtons": 38,
+    "aspectOptions": []
    }
   }
  },
  "summary": {
   "staticGeometryItems": 8,
-  "crowdInputKeys": 1,
+  "crowdInputKeys": 3,
   "crowdInputs": 3,
   "crowdButtons": 2,
   "crowdTotal": 5,
-  "crowdZIndex": "160",
+  "crowdZIndex": "1800",
   "crowdPosition": "fixed",
   "crowdInRoot": false,
   "geometryCountLarge": 8,
   "geometryCountSmall": 8,
   "geometryAllVisibleLarge": true,
   "geometryAllVisibleSmall": true,
-  "submenuZIndex": "50",
-  "submenuPosition": "absolute",
-  "submenuParentFixedPortal": true,
-  "submenuInRoot": false,
-  "outRootFlyout": 47,
-  "outRootCrowd": 52,
-  "outRootGeometry": 55,
-  "aspectCount": 7,
+  "submenuZIndex": "auto",
+  "submenuPosition": "static",
+  "submenuParentFixedPortal": false,
+  "submenuInRoot": true,
+  "outRootFlyout": 38,
+  "outRootCrowd": 43,
+  "outRootGeometry": 38,
+  "aspectCount": 0,
   "aspectAllInViewport": true,
   "handles": 11,
   "handlesAllPeNone": true,
   "handlesAllTiny": true,
   "handlesSelfHit": 0
  },
- "failures": []
+ "failures": [
+  "C6 画幅比例 7 枚（含 9:16）在 1100×700 全在视口内"
+ ]
 }

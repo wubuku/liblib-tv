@@ -9,8 +9,8 @@
   },
   {
    "label": "静态：守卫在第 487 行（R102：抹白不删，注释不漂行号）",
-   "pass": true,
-   "got": 487,
+   "pass": false,
+   "got": 546,
    "want": 487
   },
   {
@@ -62,8 +62,8 @@
   },
   {
    "label": "静态：6 个浮层 panel 选择器都在源码里",
-   "pass": true,
-   "got": true
+   "pass": false,
+   "got": false
   },
   {
    "label": "覆盖：每轮 66 格、两轮全在（缺格/多格皆为红）",
@@ -263,9 +263,9 @@
   },
   {
    "label": "产物：汇编器与我的静态读数**一致**（独立实现对上了）",
-   "pass": true,
+   "pass": false,
    "got": 487,
-   "want": 487
+   "want": 546
   },
   {
    "label": "台账：Batch 775 恰有一行",
@@ -293,7 +293,7 @@
    "got": 0
   }
  ],
- "pass": 46,
+ "pass": 43,
  "total": 46,
  "negativeControls": [
   {
@@ -374,5 +374,5 @@
   "★ 对照自己没改成：改一个 raw 里不存在的字段名 ⟹ **不许**有判据翻红"
  ],
  "rawError": null,
- "ok": true
+ "ok": false
 }

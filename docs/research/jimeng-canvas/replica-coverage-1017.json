@@ -12,7 +12,7 @@
       "n_files_uncovered": 35,
       "pct_files_covered": 41.7,
       "uncovered_lines": 6330,
-      "pct_uncovered_lines": 39.5,
+      "pct_uncovered_lines": 39.4,
       "uncovered_files": [
         "src/app/jimeng/canvas/[id]/page.tsx",
         "src/app/jimeng/layout.tsx",
@@ -58,7 +58,7 @@
       "n_files_uncovered": 35,
       "pct_files_covered": 41.7,
       "uncovered_lines": 6330,
-      "pct_uncovered_lines": 39.5,
+      "pct_uncovered_lines": 39.4,
       "uncovered_files": [
         "src/app/jimeng/canvas/[id]/page.tsx",
         "src/app/jimeng/layout.tsx",
@@ -98,7 +98,7 @@
       ]
     },
     "whole_apparatus": {
-      "n_scripts": 440,
+      "n_scripts": 441,
       "n_path_refs": 41,
       "n_files_covered": 37,
       "n_files_uncovered": 23,
@@ -132,9 +132,9 @@
       ]
     }
   },
-  "denominator_spread_pp": 16.3,
+  "denominator_spread_pp": 16.2,
   "n_prototype_files": 60,
-  "n_prototype_lines": 16036,
+  "n_prototype_lines": 16080,
   "glob_evidence": [
     {
       "script": "scripts/jimeng-b165i-bands.py",
@@ -217,7 +217,7 @@
       "token": "**"
     }
   ],
-  "n_glob_evidence": 362,
+  "n_glob_evidence": 363,
   "bare_base_refs": {
     "n_found_in_repo": 4,
     "would_deflate_metric": true,

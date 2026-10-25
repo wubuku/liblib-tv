@@ -132,7 +132,7 @@
     "never_true_claim": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **那句「`npm run check` 是 eslint、不跑 tsc」从来就不成立** —— 初始提交 `check` 就是 `npm run lint && npm run typecheck && npm run build`"
   },
   "the_never_true_premise": {
-    "where": "src/components/jimeng/JimengAudioGenPanel.tsx 第 268 行",
+    "where": "src/components/jimeng/JimengAudioGenPanel.tsx 第 288 行",
     "sentence": "`npm run check` 是 eslint、不跑 tsc",
     "sentence_present_in_source": true,
     "which_criterion_leans_on_it": "`CC.9`（判据正文把那句话整段引了过去）",

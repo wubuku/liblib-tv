@@ -1,0 +1,209 @@
+{
+ "说明": "★ 全部判据只从实测读数来",
+ "轨道列表": [
+  "director-track-character-lead-transform",
+  "director-track-camera-main"
+ ],
+ "初始": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "当前时间": 0,
+  "该轨道关键帧时间": [
+   0,
+   4,
+   8
+  ],
+  "该轨道关键帧数": 3,
+  "按钮ariaLabel": "当前帧有关键帧",
+  "按钮title": "当前帧有关键帧",
+  "按钮ariaPressed": "true",
+  "按钮文字": "移除关键帧",
+  "按钮toggleState": "on",
+  "按钮disabled": false
+ },
+ "当前帧有": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "当前时间": 0,
+  "该轨道关键帧时间": [
+   0,
+   4,
+   8
+  ],
+  "该轨道关键帧数": 3,
+  "按钮ariaLabel": "当前帧有关键帧",
+  "按钮title": "当前帧有关键帧",
+  "按钮ariaPressed": "true",
+  "按钮文字": "移除关键帧",
+  "按钮toggleState": "on",
+  "按钮disabled": false
+ },
+ "点击_有": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "当前时间": 0,
+   "该轨道关键帧时间": [
+    0,
+    4,
+    8
+   ],
+   "该轨道关键帧数": 3,
+   "按钮ariaLabel": "当前帧有关键帧",
+   "按钮title": "当前帧有关键帧",
+   "按钮ariaPressed": "true",
+   "按钮文字": "移除关键帧",
+   "按钮toggleState": "on",
+   "按钮disabled": false
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "当前时间": 0,
+   "该轨道关键帧时间": [
+    4,
+    8
+   ],
+   "该轨道关键帧数": 2,
+   "按钮ariaLabel": "当前帧无关键帧",
+   "按钮title": "当前帧无关键帧",
+   "按钮ariaPressed": "false",
+   "按钮文字": "添加关键帧",
+   "按钮toggleState": "off",
+   "按钮disabled": false
+  }
+ },
+ "当前帧无": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "当前时间": 0,
+  "该轨道关键帧时间": [
+   4,
+   8
+  ],
+  "该轨道关键帧数": 2,
+  "按钮ariaLabel": "当前帧无关键帧",
+  "按钮title": "当前帧无关键帧",
+  "按钮ariaPressed": "false",
+  "按钮文字": "添加关键帧",
+  "按钮toggleState": "off",
+  "按钮disabled": false
+ },
+ "点击_无": {
+  "前": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "当前时间": 0,
+   "该轨道关键帧时间": [
+    4,
+    8
+   ],
+   "该轨道关键帧数": 2,
+   "按钮ariaLabel": "当前帧无关键帧",
+   "按钮title": "当前帧无关键帧",
+   "按钮ariaPressed": "false",
+   "按钮文字": "添加关键帧",
+   "按钮toggleState": "off",
+   "按钮disabled": false
+  },
+  "后": {
+   "选中轨道id": "director-track-character-lead-transform",
+   "当前时间": 0,
+   "该轨道关键帧时间": [
+    0,
+    4,
+    8
+   ],
+   "该轨道关键帧数": 3,
+   "按钮ariaLabel": "当前帧有关键帧",
+   "按钮title": "当前帧有关键帧",
+   "按钮ariaPressed": "true",
+   "按钮文字": "移除关键帧",
+   "按钮toggleState": "on",
+   "按钮disabled": false
+  }
+ },
+ "窗口探针_播头=base+0.04": {
+  "选中轨道id": "director-track-character-lead-transform",
+  "当前时间": 0.04,
+  "该轨道关键帧时间": [
+   0,
+   4,
+   8
+  ],
+  "该轨道关键帧数": 3,
+  "按钮ariaLabel": "当前帧有关键帧",
+  "按钮title": "当前帧有关键帧",
+  "按钮ariaPressed": "true",
+  "按钮文字": "移除关键帧",
+  "按钮toggleState": "on",
+  "按钮disabled": false
+ },
+ "核对": [
+  {
+   "判据": "C1: 当前帧有关键帧时 aria-label 逐字＝「当前帧有关键帧」",
+   "通过": true,
+   "证据": {
+    "got": "当前帧有关键帧"
+   }
+  },
+  {
+   "判据": "C3: 当前帧有关键帧时 aria-pressed＝true",
+   "通过": true,
+   "证据": {
+    "got": "true"
+   }
+  },
+  {
+   "判据": "C4: 当前帧有关键帧时点击 ⟹ 该时间点的关键帧**消失**（不是被覆盖）",
+   "通过": true,
+   "证据": {
+    "前": [
+     0,
+     4,
+     8
+    ],
+    "后": [
+     4,
+     8
+    ]
+   }
+  },
+  {
+   "判据": "C2: 当前帧无关键帧时 aria-label 逐字＝「当前帧无关键帧」",
+   "通过": true,
+   "证据": {
+    "got": "当前帧无关键帧"
+   }
+  },
+  {
+   "判据": "C3b: 当前帧无关键帧时 aria-pressed＝false",
+   "通过": true,
+   "证据": {
+    "got": "false"
+   }
+  },
+  {
+   "判据": "C5: 当前帧无关键帧时点击 ⟹ 该时间点**真的多出一枚**关键帧",
+   "通过": true,
+   "证据": {
+    "前": 2,
+    "后": 3,
+    "前时间": [
+     4,
+     8
+    ],
+    "后时间": [
+     0,
+     4,
+     8
+    ]
+   }
+  },
+  {
+   "判据": "C6: 播头距最近关键帧 0.04s（源站窗口 ±0.05s）⟹ ⟹ ⟹ ⟹ ⇒ ★ 按钮必须判为「当前帧**有**关键帧」",
+   "通过": true,
+   "证据": {
+    "播头": 0.04,
+    "最近关键帧": 0,
+    "距离": 0.04,
+    "got": "当前帧有关键帧"
+   }
+  }
+ ],
+ "失败数": 0
+}

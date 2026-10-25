@@ -3,7 +3,7 @@
  "title": "左列第二段「脸部 & 身体特征」：H3「纹身 & 疤痕」＋ 6 张 76×54 贴纸卡",
  "verdict": "7/7",
  "preflight": {
-  "等了几秒": 0.2,
+  "等了几秒": 0.3,
   "标记": "纹身 & 疤痕"
  },
  "source": {
@@ -1665,7 +1665,7 @@
   {
    "label": "S7 ★★ **如实标注**：README 必须写明——★ 缩略图是**引用**源站 CDN 的真实图（★ **不是**复刻 ⟹ ⟹ 资产不归本仓库）；★ 选中态的**外观**未实测（那趟只点了分段 ⟹ ⟹ 没点卡片）；★ 源站**点击卡片**会发生什么未实测；★ 左列**三段**（身材塑形／服装造型／音色音调）**未实现**；★ 且「确认生成」等仍是 mock、不消耗 ⚡44",
    "pass": true,
-   "detail": "{\"★README存在\": true, \"★README写明缩略图是引用源站CDN\": true, \"★README写明选中外观未实测\": true, \"★README写明源站点击行为未实测\": true, \"★README写明左列三段未实现\": true, \"★README写明不消耗积分\": true, \"★README里mock出现次数\": 4}"
+   "detail": "{\"★README存在\": true, \"★README写明缩略图是引用源站CDN\": true, \"★README写明选中外观未实测\": true, \"★README写明源站点击行为未实测\": true, \"★README写明左列三段未实现\": true, \"★README写明不消耗积分\": true, \"★README里mock出现次数\": 5}"
   }
  ],
  "conclusions": [
