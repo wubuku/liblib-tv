@@ -7,14 +7,14 @@
       "commands": 34,
       "sites": 46,
       "byFile": {
-        "src/components/nodes/ImageNode.tsx": 5,
         "src/components/nodes/VideoNode.tsx": 16,
-        "src/components/AddNodePanel.tsx": 2,
-        "src/app/page.tsx": 13,
         "src/components/nodes/ShotBreakdownNode.tsx": 4,
+        "src/app/page.tsx": 13,
+        "src/components/director/DirectorAiImportModal.tsx": 1,
+        "src/components/AddNodePanel.tsx": 2,
         "src/components/director/DirectorDesk.tsx": 3,
         "src/components/CanvasEmptyState.tsx": 1,
-        "src/components/director/DirectorAiImportModal.tsx": 1,
+        "src/components/nodes/ImageNode.tsx": 5,
         "src/components/StoryboardBoard.tsx": 1
       },
       "videoNodeSites": 16,
@@ -165,7 +165,7 @@
             "hasImageEdge": true
           },
           {
-            "id": "video-1792936293073-w75owp",
+            "id": "video-1792950332446-rz0j3y",
             "status": "ready",
             "attempt": null,
             "hasImageEdge": false
@@ -185,7 +185,7 @@
             "hasImageEdge": true
           },
           {
-            "id": "video-1792936293073-w75owp",
+            "id": "video-1792950332446-rz0j3y",
             "status": "ready",
             "attempt": "首帧生成视频",
             "hasImageEdge": true
@@ -200,7 +200,7 @@
     {
       "label": "C1 45 处记账入口 / 29 个非空命令（33 键中 4 个空表）；VideoNode 独占 16 处",
       "pass": false,
-      "detail": "{\"commands\": 34, \"sites\": 46, \"byFile\": {\"src/components/nodes/ImageNode.tsx\": 5, \"src/components/nodes/VideoNode.tsx\": 16, \"src/components/AddNodePanel.tsx\": 2, \"src/app/page.tsx\": 13, \"src/components/nodes/ShotBreakdownNode.tsx\": 4, \"src/components/director/DirectorDesk.tsx\": 3, \"src/components/CanvasEmptyState.tsx\": 1, \"src/components/director/DirectorAiImportModal.tsx\": 1, \"src/components/StoryboardBoard.tsx\": 1}, \"videoNodeSites\": 16, \"attemptCommentLine\": 1478, \"playInertLine\": 498}"
+      "detail": "{\"commands\": 34, \"sites\": 46, \"byFile\": {\"src/components/nodes/VideoNode.tsx\": 16, \"src/components/nodes/ShotBreakdownNode.tsx\": 4, \"src/app/page.tsx\": 13, \"src/components/director/DirectorAiImportModal.tsx\": 1, \"src/components/AddNodePanel.tsx\": 2, \"src/components/director/DirectorDesk.tsx\": 3, \"src/components/CanvasEmptyState.tsx\": 1, \"src/components/nodes/ImageNode.tsx\": 5, \"src/components/StoryboardBoard.tsx\": 1}, \"videoNodeSites\": 16, \"attemptCommentLine\": 1478, \"playInertLine\": 498}"
     },
     {
       "label": "C2 两态逐项：11 个按钮文案差集为空（status 不是门控）",
@@ -220,7 +220,7 @@
     {
       "label": "C5 ready 卡上同一芯片：节点 +1、边 +1、past +1 ⟹ 两态都可达",
       "pass": true,
-      "detail": "{\"clicked\": true, \"before\": {\"nodeCount\": 11, \"edgeCount\": 11, \"past\": 2, \"future\": 0, \"videos\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": \"首帧生成视频\", \"hasImageEdge\": true}, {\"id\": \"video-1792936293073-w75owp\", \"status\": \"ready\", \"attempt\": null, \"hasImageEdge\": false}]}, \"after\": {\"nodeCount\": 12, \"edgeCount\": 12, \"past\": 3, \"future\": 0, \"videos\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": \"首帧生成视频\", \"hasImageEdge\": true}, {\"id\": \"video-1792936293073-w75owp\", \"status\": \"ready\", \"attempt\": \"首帧生成视频\", \"hasImageEdge\": true}]}, \"status\": \"ready\", \"hasImageEdge\": true}"
+      "detail": "{\"clicked\": true, \"before\": {\"nodeCount\": 11, \"edgeCount\": 11, \"past\": 2, \"future\": 0, \"videos\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": \"首帧生成视频\", \"hasImageEdge\": true}, {\"id\": \"video-1792950332446-rz0j3y\", \"status\": \"ready\", \"attempt\": null, \"hasImageEdge\": false}]}, \"after\": {\"nodeCount\": 12, \"edgeCount\": 12, \"past\": 3, \"future\": 0, \"videos\": [{\"id\": \"v-UGQZzZOpbv\", \"status\": \"failed\", \"attempt\": \"首帧生成视频\", \"hasImageEdge\": true}, {\"id\": \"video-1792950332446-rz0j3y\", \"status\": \"ready\", \"attempt\": \"首帧生成视频\", \"hasImageEdge\": true}]}, \"status\": \"ready\", \"hasImageEdge\": true}"
     },
     {
       "label": "C6 对账 734「新卡自身 6 枚」：新卡 节点内 4 + 工具栏 2 = 6；种子 3 + 0 = 3",

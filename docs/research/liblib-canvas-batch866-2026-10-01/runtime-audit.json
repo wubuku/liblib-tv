@@ -4,18 +4,18 @@
  "audit": {
   "batch": 866,
   "title": "回归清单的覆盖面：把「碰被跟踪源文件的门禁」全部纳入",
-  "在用回归清单": "/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch868-2026-10-01/probes/regress868.py",
+  "在用回归清单": "/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch869-2026-10-01/probes/regress869.py",
   "历史快照（本门禁当初那份）": "/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch866-2026-10-01/probes/regress866.py",
-  "上一份回归清单": "/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch867-2026-10-01/probes/regress867.py",
-  "清单条数": 283,
+  "上一份回归清单": "/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch868-2026-10-01/probes/regress868.py",
+  "清单条数": 284,
   "被跟踪源文件": [
    "src/components/director/DirectorViewport.tsx",
    "src/components/director/DirectorAspectPanel.tsx",
    "src/store/directorStore.ts",
    "src/lib/directorTelemetry.ts"
   ],
-  "仓库门禁总数": 590,
-  "碰被跟踪源文件的门禁数": 92,
+  "仓库门禁总数": 591,
+  "碰被跟踪源文件的门禁数": 93,
   "碰被跟踪源文件的门禁（按扩展名分）": {
    "py": [
     "35",
@@ -97,6 +97,7 @@
     "865",
     "866",
     "868",
+    "869",
     "93",
     "95",
     "96"

@@ -64,21 +64,10 @@
      "lt900": true,
      "ge900": false
     },
-    "rail": {
-     "display": "none",
-     "w": 0,
-     "h": 0,
-     "y": 0
-    },
-    "pair": {
-     "display": "flex",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "8px",
-    "drawerLeft": "0px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 895,
@@ -90,21 +79,10 @@
      "lt900": true,
      "ge900": false
     },
-    "rail": {
-     "display": "none",
-     "w": 0,
-     "h": 0,
-     "y": 0
-    },
-    "pair": {
-     "display": "flex",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "8px",
-    "drawerLeft": "0px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 896,
@@ -116,21 +94,10 @@
      "lt900": true,
      "ge900": false
     },
-    "rail": {
-     "display": "none",
-     "w": 0,
-     "h": 0,
-     "y": 0
-    },
-    "pair": {
-     "display": "flex",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "8px",
-    "drawerLeft": "0px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 897,
@@ -142,21 +109,10 @@
      "lt900": true,
      "ge900": false
     },
-    "rail": {
-     "display": "none",
-     "w": 0,
-     "h": 0,
-     "y": 0
-    },
-    "pair": {
-     "display": "flex",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "8px",
-    "drawerLeft": "0px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 898,
@@ -168,21 +124,10 @@
      "lt900": true,
      "ge900": false
     },
-    "rail": {
-     "display": "none",
-     "w": 0,
-     "h": 0,
-     "y": 0
-    },
-    "pair": {
-     "display": "flex",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "8px",
-    "drawerLeft": "0px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 899,
@@ -194,21 +139,10 @@
      "lt900": true,
      "ge900": false
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 900,
@@ -220,21 +154,10 @@
      "lt900": false,
      "ge900": true
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 901,
@@ -246,21 +169,10 @@
      "lt900": false,
      "ge900": true
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 902,
@@ -272,21 +184,10 @@
      "lt900": false,
      "ge900": true
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 903,
@@ -298,21 +199,10 @@
      "lt900": false,
      "ge900": true
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 904,
@@ -324,21 +214,10 @@
      "lt900": false,
      "ge900": true
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 905,
@@ -350,21 +229,10 @@
      "lt900": false,
      "ge900": true
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 906,
@@ -376,21 +244,10 @@
      "lt900": false,
      "ge900": true
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 898,
@@ -402,21 +259,10 @@
      "lt900": true,
      "ge900": false
     },
-    "rail": {
-     "display": "none",
-     "w": 0,
-     "h": 0,
-     "y": 0
-    },
-    "pair": {
-     "display": "flex",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "8px",
-    "drawerLeft": "0px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 899,
@@ -428,21 +274,10 @@
      "lt900": true,
      "ge900": false
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 900,
@@ -454,21 +289,10 @@
      "lt900": false,
      "ge900": true
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    },
    {
     "vw": 1280,
@@ -480,33 +304,26 @@
      "lt900": false,
      "ge900": true
     },
-    "rail": {
-     "display": "flex",
-     "w": 48,
-     "h": 1098,
-     "y": 52
-    },
-    "pair": {
-     "display": "none",
-     "kids": [
-      "打开场景对象",
-      "打开属性面板"
-     ]
-    },
-    "headerPr": "260px",
-    "drawerLeft": "48px"
+    "rail": null,
+    "pair": null,
+    "headerPr": null,
+    "drawerLeft": null
    }
   ]
  },
  "summary": {
   "only-899-is-paired-the-rest-are-one-sided": false,
-  "the-min-900px-pair-only-survives-in-a-comment": true,
-  "max-899px-is-strictly-less-than-while-the-css-query-is-inclusive": true,
-  "the-two-branches-are-mutually-exclusive-and-jointly-exhaustive": true,
-  "the-breakpoint-swaps-a-48px-rail-for-a-68x32-button-pair": true,
+  "the-min-900px-pair-only-survives-in-a-comment": false,
+  "max-899px-is-strictly-less-than-while-the-css-query-is-inclusive": false,
+  "the-two-branches-are-mutually-exclusive-and-jointly-exhaustive": false,
+  "the-breakpoint-swaps-a-48px-rail-for-a-68x32-button-pair": false,
   "retraction-of-717-the-899-boundary-is-by-construction": true
  },
  "failures": [
-  "only-899-is-paired-the-rest-are-one-sided: {'min': 15, 'max': 23}"
+  "only-899-is-paired-the-rest-are-one-sided: {'min': 15, 'max': 23}",
+  "the-min-900px-pair-only-survives-in-a-comment: icon rail 在 900 下没被认出来",
+  "max-899px-is-strictly-less-than-while-the-css-query-is-inclusive: None",
+  "the-two-branches-are-mutually-exclusive-and-jointly-exhaustive: (894, {'vw': 894, 'mq': {'cssMax899': True, 'lt899': True, 'ge899': False, 'cssMax900': True, 'lt900': True, 'ge900': False}, 'rail': None, 'pair': None, 'headerPr': None, 'drawerLeft': None})",
+  "the-breakpoint-swaps-a-48px-rail-for-a-68x32-button-pair: 'NoneType' object is not subscriptable"
  ]
 }

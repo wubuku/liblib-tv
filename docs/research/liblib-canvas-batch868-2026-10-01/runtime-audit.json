@@ -1,6 +1,8 @@
 {
  "判据数": 11,
- "失败": [],
+ "失败": [
+  "source:every-gate-touching-the-tracked-sources-is-listed  ⟵ {'缺口': ['869.py'], '口径': '★ 文件名 ∪ 目录名 ∪ src 上的 glob/rglob', '说明': '★ 这些门禁**碰**导演台源文件 ⟹ ⟹ 它们的红**不能藏**'}"
+ ],
  "audit": {
   "batch": 868,
   "title": "「看着可点、点了没反应」的那批控件：普查 ＋ 整改 ＋ 上锁",
@@ -33,9 +35,11 @@
    }
   },
   "导演台死控件候选": [],
-  "放宽口径命中": 223,
+  "放宽口径命中": 224,
   "回归清单条数": 283,
-  "覆盖缺口": [],
+  "覆盖缺口": [
+   "869.py"
+  ],
   "静态普查候选": [
    "src/components/CameraConfigDialog.tsx:102",
    "src/components/CameraConfigDialog.tsx:140",

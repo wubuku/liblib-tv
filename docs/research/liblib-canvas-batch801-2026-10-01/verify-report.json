@@ -699,7 +699,7 @@
    "why": "★ 这是**当下**状态 ⟹ ⟹ 与「801 那批没改 src」是**两件事** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 只留痕、不判红 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 这样它既不被掩盖、也不被误伤",
    "ok": true,
    "evidence": {
-    "git status --porcelain src/": "M src/components/director/DirectorTimeline.tsx\n M src/components/jimeng/JimengVideoPreview.tsx\n M src/components/jimeng/nodes/JimengVideoMediaCard.tsx\n M src/components/jimeng/nodes/JimengVideoNode.tsx\n M src/store/jimengStore.ts\n M src/types/jimeng.ts"
+    "git status --porcelain src/": ""
    }
   },
   {

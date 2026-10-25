@@ -28,14 +28,14 @@
      {
       "aria": "播放音频",
       "title": "音频播放在克隆侧尚未接入",
-      "node": "audio-1792936091501-8crtuq",
+      "node": "audio-1792950155732-6lnqds",
       "axRole": "button",
       "focusable": true
      }
     ],
     "pick": "clicked",
     "pickSub": null,
-    "nodeId": "audio-1792936091501-8crtuq",
+    "nodeId": "audio-1792950155732-6lnqds",
     "selected": true
    },
    "VideoClipEditPanel": {
@@ -57,21 +57,21 @@
      {
       "aria": "",
       "title": "剪辑模式设置在克隆侧尚未接入",
-      "node": "video-clip-1792936095401-jybe0g",
+      "node": "video-clip-1792950159563-n45j6n",
       "axRole": "button",
       "focusable": true
      },
      {
       "aria": "",
       "title": "输出设置在克隆侧尚未接入",
-      "node": "video-clip-1792936095401-jybe0g",
+      "node": "video-clip-1792950159563-n45j6n",
       "axRole": "button",
       "focusable": true
      }
     ],
     "pick": "clicked",
     "pickSub": null,
-    "nodeId": "video-clip-1792936095401-jybe0g",
+    "nodeId": "video-clip-1792950159563-n45j6n",
     "selected": true
    },
    "ScriptGeneratorNode": {
@@ -93,14 +93,14 @@
      {
       "aria": "",
       "title": "参考图上传暂不可用",
-      "node": "script-generator-1792936099319-9yh4c0",
+      "node": "script-generator-1792950163382-8vgz1i",
       "axRole": "button",
       "focusable": true
      }
     ],
     "pick": "clicked",
     "pickSub": "clicked",
-    "nodeId": "script-generator-1792936099319-9yh4c0",
+    "nodeId": "script-generator-1792950163382-8vgz1i",
     "selected": true
    }
   },
@@ -123,7 +123,7 @@
   },
   "shotBreakdownPick": "clicked",
   "shotBreakdown": {
-   "nodeId": "shot-breakdown-1792936104052-w7xfg8",
+   "nodeId": "shot-breakdown-1792950167194-35rfwz",
    "actionLabels": [
     "打开导演台 →",
     "上传视频后开始",

@@ -21,40 +21,40 @@
    "label": "★ 静态：滑杆与数值框**同名不同属性**（-fov vs -fov-number）",
    "pass": true,
    "got": [
-    1634,
-    1649
+    1635,
+    1650
    ]
   },
   {
    "label": "静态：控制柄框在「锚点类型 ≠ vertex」的门里",
    "pass": true,
-   "got": 1170
+   "got": 1171
   },
   {
    "label": "★ 静态：MotionPathInspector 组件体内依次是 锚点门 → 控制柄门，而渲染它的是后面的 selectedPath 门",
    "pass": true,
    "got": [
-    931,
-    1115,
-    1170,
-    2730
+    932,
+    1116,
+    1171,
+    2740
    ]
   },
   {
    "label": "静态：selectedPath 由 selectedTrack?.motionPathId 决定",
    "pass": true,
    "got": [
-    2140,
-    2146,
-    2730
+    2150,
+    2156,
+    2740
    ]
   },
   {
    "label": "静态：selectedAnchor 定义在 selectedPath 之前（渲染门逐层叠加）",
    "pass": true,
    "got": [
-    931,
-    2146
+    932,
+    2156
    ]
   },
   {
@@ -69,17 +69,17 @@
    "label": "★ 静态：PathTupleFields 三处调用都在 selectedAnchor 门之后",
    "pass": true,
    "got": [
-    1155,
-    1173,
-    1189
+    1156,
+    1174,
+    1190
    ]
   },
   {
    "label": "静态：FOV 的门在调用点之前",
    "pass": true,
    "got": [
-    2334,
-    2562
+    2344,
+    2572
    ]
   },
   {
@@ -930,7 +930,7 @@
   {
    "label": "★ 台账行数 = 629（追加一行）",
    "pass": false,
-   "got": 734
+   "got": 735
   },
   {
    "label": "★ Batch 765 行仍在且唯一",

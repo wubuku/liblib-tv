@@ -25,7 +25,7 @@
     },
     {
      "file": "DirectorTimeline.tsx",
-     "line": 635,
+     "line": 654,
      "fn": "closeOnEscape",
      "capture": false,
      "bodyFound": true,
@@ -34,7 +34,7 @@
     },
     {
      "file": "DirectorTimeline.tsx",
-     "line": 659,
+     "line": 678,
      "fn": "closeOnEscape",
      "capture": false,
      "bodyFound": true,
@@ -214,7 +214,7 @@
     },
     {
      "file": "DirectorTimeline.tsx",
-     "line": 635,
+     "line": 654,
      "fn": "closeOnEscape",
      "capture": false,
      "bodyFound": true,
@@ -223,7 +223,7 @@
     },
     {
      "file": "DirectorTimeline.tsx",
-     "line": 659,
+     "line": 678,
      "fn": "closeOnEscape",
      "capture": false,
      "bodyFound": true,
@@ -1072,7 +1072,7 @@
   {
    "label": "★ 台账只有 631 行",
    "pass": false,
-   "got": 735
+   "got": 736
   }
  ],
  "pass": 90,
