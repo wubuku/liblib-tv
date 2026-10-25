@@ -338,6 +338,13 @@ export interface JimengCanvasState {
   closePreview: () => void;
   /** 静音切换 (Batch 29) */
   toggleMute: (id: string) => void;
+  /** ⭐⭐⭐⭐⭐ 1032-⑫：**音量**（0–1）—— 全屏播放器的音量滑杆是**真状态**。
+   *
+   *  此前那枚滑杆是静态 span（`role="slider"` 却零处理器）⇒ 拖了没反应。
+   *  ⇒ ⇒ 现在拖动写回这里，`JimengVideoPreview` 与卡面上的 `<video>` 同步
+   *  `.volume` ⇒ ⇒ 拖完**听得见**。
+   */
+  setVolume: (id: string, volume: number) => void;
   /** 媒体失效态 (Batch 67, SOURCE_FACT 视频播放失败+重试): 触发/清除 */
   setMediaError: (id: string, error: boolean) => void;
   /** 进度条点击 seek (Batch 32)，fraction ∈ [0,1] */
@@ -592,6 +599,8 @@ const initialNodes: JimengNode[] = [
       duration: 6,
       currentTime: 2,
       muted: true,
+      /* 1032-⑫：音量初值 0.6（源站全屏音量滑杆 aria-valuenow 口径 0–1） */
+      volume: 0.6,
       width: 569,
       height: 320,
     },
@@ -1610,6 +1619,17 @@ export const useJimengStore = create<JimengCanvasState>((set) => ({
         if (n.id !== id || n.type !== "video") return n;
         const vd = n.data as JimengVideoNodeData;
         return { ...n, data: { ...vd, muted: !(vd.muted ?? true) } };
+      }),
+    })),
+
+  // 音量 (1032-⑫)：钳到 [0,1] ⇒ ⇒ 越界值不可能进 store。
+  setVolume: (id, volume) =>
+    set((state) => ({
+      nodes: state.nodes.map((n) => {
+        if (n.id !== id || n.type !== "video") return n;
+        const vd = n.data as JimengVideoNodeData;
+        const v = Math.min(1, Math.max(0, volume));
+        return { ...n, data: { ...vd, volume: v } };
       }),
     })),
 

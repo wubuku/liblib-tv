@@ -18,7 +18,7 @@ function formatTime(s: number): string {
 /**
  * 视频节点媒体卡片 (Batch 74 自 JimengVideoNode 拆分，无行为变更)。
  *
- * 结构 (SOURCE_FACT): 8px 圆角卡片、object-cover 海报、中央 32px 半透明
+ * 结构 (SOURCE_FACT): 8px 圆角卡片、object-cover 海报、中央 44px 半透明
  * 播放圆钮、底部 播放/时间/静音/全屏 控制条、底边 2px 进度条；
  * 截取帧徽章 (batch 35/36)、进度条 seek/scrub (batch 32/37)、
  * 任务/生成中遮罩 (batch 11/50)、媒体失效态 (batch 67)。
@@ -65,10 +65,22 @@ export function JimengVideoMediaCard({
    */
   const videoRef = useRef<HTMLVideoElement>(null);
 
+  /* ⭐⭐⭐⭐⭐ 1032-⑫：**全屏预览打开时，卡面这个元素要让位**。
+   *  理由：全屏层里也有一个真 `<video>`（此前全屏层只有一张海报 ⇒ 假播放）。
+   *  ⇒ ⇒ 两个元素同时播 ⇒ 声音叠两遍、时间码互相追尾。
+   *  ⇒ ⇒ 所以预览开着时**卡面这个暂停**（时间码由全屏层那个写回 store）。
+   */
+  const previewOpen = useJimengStore((s) => s.previewNodeId === id);
+
   /* store 的播放态 ⇒ 真的 play()/pause() */
   useEffect(() => {
     const v = videoRef.current;
     if (!v) return;
+    if (previewOpen) {
+      /* 预览开着 ⇒ 播放权归全屏层那个元素。 */
+      v.pause();
+      return;
+    }
     if (playing) {
       void v.play().catch(() => {
         /* 自动播放被浏览器拦下（有声/无用户手势）⇒ 忽略，
@@ -77,7 +89,7 @@ export function JimengVideoMediaCard({
     } else {
       v.pause();
     }
-  }, [playing, d.src]);
+  }, [playing, d.src, previewOpen]);
 
   /* store 的当前时间 ⇒ 真的 seek（用户拖进度条时） */
   useEffect(() => {
@@ -96,6 +108,17 @@ export function JimengVideoMediaCard({
     if (!v) return;
     v.muted = d.muted ?? false;
   }, [d.muted]);
+
+  /* ⭐⭐⭐⭐⭐ 1032-⑫：**音量** ⇒ 真的写到元素上。
+   *  此前全屏播放器里那枚「音量滑杆」是**静态 span**（拖了没反应）⇒ 假交互。
+   *  ⇒ ⇒ 现在音量是 store 里的真状态，拖动写回 store，再由这里写到 `<video>.volume`
+   *  ⇒ ⇒ 拖完**听得见变化**。
+   */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.volume = d.volume ?? 0.6;
+  }, [d.volume, d.src]);
 
   return (
     <div
@@ -137,7 +160,16 @@ export function JimengVideoMediaCard({
               setMediaError(id, true);
             }}
           />
-          {/* 中央播放/暂停圆钮 32px rgba(0,0,0,0.6) SOURCE_FACT；点击切换播放 */}
+          {/* ⭐⭐⭐⭐⭐ 1032-⑫：中央播放/暂停圆钮 —— **44×44**。
+           *  此前这里是 `size-8`（32px）**并且注释写着 SOURCE_FACT** ⇒⇒
+           *  那是**假源站标注**：源站那个大播放键实测是 **44×44**
+           *  （testid `video-simple-player`，aria `Play <节点名>`；
+           *    见手册 10-tasks/media-playback.md「三档状态表」，
+           *    批次 101 / 195 实测，100% 档画布像素）。
+           *  ⇒⇒ 现在改成 44×44 **对齐源站事实**，注释也改成真实出处。
+           *  ⚠️ 复刻口径差异（CLONE_DECISION）：源站那枚只在「已选中未播」时挂载，
+           *    复刻这边**三态都在**（静止态也给一个入口）—— 这是**多给**不是**少给**，
+           *    已在手册「复刻口径与源站口径的差异」一节逐条写明。 */}
           <button
             type="button"
             aria-label={playing ? "暂停" : "播放"}
@@ -145,12 +177,12 @@ export function JimengVideoMediaCard({
               e.stopPropagation();
               togglePlay(id);
             }}
-            className="absolute left-1/2 top-1/2 z-[1] flex size-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/75"
+            className="absolute left-1/2 top-1/2 z-[1] flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white hover:bg-black/75"
           >
             {playing ? (
-              <Pause size={14} fill="currentColor" />
+              <Pause size={16} fill="currentColor" />
             ) : (
-              <Play size={14} fill="currentColor" />
+              <Play size={16} fill="currentColor" />
             )}
           </button>
           {/* 底部控制条 (批 208 SOURCE_FACT: 未选中静止卡仅中央播放钮可见，

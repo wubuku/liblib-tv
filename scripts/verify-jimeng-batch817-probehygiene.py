@@ -112,7 +112,12 @@ def main() -> int:
 
     print("\n— 组 3：无障碍名词汇收口（源码级）—")
     tb = (ROOT / "src/components/jimeng/JimengNodeToolbar.tsx").read_text(encoding="utf-8")
-    check("JimengNodeToolbar 用 `全屏预览`", 'aria-label="全屏预览"' in tb)
+    # ⭐⭐⭐⭐⭐ 1032-⑫ 订正：批 1031 用登录态在真实画布上取到源站实名是
+    #   **`全屏编辑`**（不是动作名 `全屏预览`）⇒ ⇒ 这道门跟着改成源站实名。
+    #   ⚠️ 1031 改了这枚按钮的无障碍名，**却没同步 817/57/80/97/840 五处**
+    #   ⇒ ⇒ ⇒ 五道门在 HEAD 上就一直红 ⇒ ⇒ 本批一并修好（见 README 六之六十六）。
+    check("JimengNodeToolbar 用 `全屏编辑`（1031 实测源站实名）",
+          'aria-label="全屏编辑"' in tb)
     check("裸 `全屏` 名已消失", not re.search(r'aria-label="全屏"', tb))
     # 退出浮层是另一个语义，必须保持独立
     vp = (ROOT / "src/components/jimeng/JimengVideoPreview.tsx").read_text(encoding="utf-8")

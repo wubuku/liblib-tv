@@ -25,7 +25,10 @@ import { FEEDBACK } from "@/components/jimeng/jimengFeedback";
  * 结构证据 (SOURCE_FACT, docs/research/jimeng-canvas/README.md):
  * - 标题行在卡片上方 32px：文件徽标 16×16 + 13px/22px rgba(255,255,255,0.7) 标题 + 右侧 Tag 图标
  * - 卡片 569×320 世界尺寸、8px 圆角；媒体 object-cover
- * - 有内容: 中央 32px 半透明播放圆钮 + 底部 播放/时间/静音/全屏 控制 + 底边 2px 进度条
+ * - 有内容: 中央 44px 半透明播放圆钮 + 底部 播放/时间/静音/全屏 控制 + 底边 2px 进度条
+ *   ⚠️ (1032-⑫) 复刻口径差异 (CLONE_DECISION)：源站那枚 44px 大播放键
+ *   **只在「已选中未播」时挂载**，复刻这边**三态都在** ⇒ 属「多给入口」，
+ *   已在手册「复刻口径与源站口径的差异」一节逐条写明。
  * - 空节点: 对角渐变占位 + 中央小图标
  * - 左右连接热区 60×120 (隐形)；"+ " 圆钮 24px：本地上传节点仅右侧，空节点两侧 (hover/选中显示)
  * Batch 74: 拆分为 JimengVideoTitleRow + JimengVideoMediaCard + 本编排器

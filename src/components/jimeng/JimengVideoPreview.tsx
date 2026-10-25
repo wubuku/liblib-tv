@@ -39,7 +39,11 @@ export function JimengVideoPreview({
   const togglePlay = useJimengStore((s) => s.togglePlay);
   const toggleMute = useJimengStore((s) => s.toggleMute);
   const seek = useJimengStore((s) => s.seek);
+  const setVolume = useJimengStore((s) => s.setVolume);
+  const updateNodeData = useJimengStore((s) => s.updateNodeData);
   const layerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const volume = data.volume ?? 0.6;
 
   /* 批 863：开层即接管焦点 + Tab 困在层内。
      判据在复刻上抓到实锤：此前焦点留在触发器上（`focus_at_open.state='other'`），
@@ -72,6 +76,49 @@ export function JimengVideoPreview({
     return () => window.removeEventListener("keydown", onKey, true);
   }, [onClose]);
 
+  /* ⭐⭐⭐⭐⭐ 1032-⑫：**全屏层里是真的 `<video>`**。
+   *  此前这里只渲染一张**海报 `<img>`** ⇒ ⇒ 全屏里画面**永远是静止的**，
+   *  而时间码在往前走 ⇒ ⇒ **假播放**（与卡面 C11 那次整改同族，但全屏层漏了）。
+   *  ⇒ ⇒ 现在渲染真 `<video src>`：海报仍作 `poster`（未播时的第一帧）。
+   *
+   *  ⚠️ 与卡面那个元素的关系：**卡面那个在本层打开时暂停**
+   *    （见 JimengVideoMediaCard 的 previewOpen 分支）⇒
+   *    ⇒ 两个元素不会同时播 ⇒ 声音不叠、时间码不互相追尾。
+   */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    if (playing) {
+      void v.play().catch(() => {
+        /* 自动播放被浏览器拦下 ⇒ 忽略；用户点一下播放钮会再试。 */
+      });
+    } else {
+      v.pause();
+    }
+  }, [playing, data.src]);
+
+  /* store 的当前时间 ⇒ 真的 seek */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v || !data.src) return;
+    const target = data.currentTime ?? 0;
+    if (Math.abs(v.currentTime - target) > 0.3) {
+      v.currentTime = target;
+    }
+  }, [data.currentTime, data.src]);
+
+  /* 静音 / 音量 ⇒ 真的写到元素上 */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = muted;
+  }, [muted, data.src]);
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.volume = volume;
+  }, [volume, data.src]);
+
   return createPortal(
     <div
       ref={layerRef}
@@ -85,8 +132,24 @@ export function JimengVideoPreview({
          它才浮出来。补锚点只是让它可指名，**不声称**源站有同名属性。 */
       data-testid="video-fullscreen-preview"
     >
-      {/* 媒体铺满 */}
-      {data.poster ? (
+      {/* 媒体铺满 —— ⭐⭐⭐⭐⭐ 1032-⑫：真 `<video>`（此前是海报 `<img>` ⇒ 假播放）。
+          没有 `src` 的空节点才回落成海报图。 */}
+      {data.src ? (
+        <video
+          ref={videoRef}
+          src={data.src}
+          poster={data.poster}
+          preload="metadata"
+          playsInline
+          muted={muted}
+          data-testid="jimeng-video-preview-element"
+          className="absolute inset-0 h-full w-full object-contain"
+          onTimeUpdate={(e) => {
+            /* 元素的真实进度写回 store ⇒ 进度条与画面永远一致。 */
+            updateNodeData(nodeId, { currentTime: e.currentTarget.currentTime });
+          }}
+        />
+      ) : data.poster ? (
         // eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 海报
         <img
           src={data.poster}
@@ -148,19 +211,62 @@ export function JimengVideoPreview({
         >
           {muted ? <VolumeX size={16} /> : <Volume2 size={16} />}
         </button>
-        {/* 批 218 SOURCE_FACT: 音量滑杆 (细线 + 圆点)；静态 60% 为 CLONE_DECISION */}
+        {/* ⭐⭐⭐⭐⭐ 1032-⑫：音量滑杆 —— **真能拖**（此前是**静态 span**）。
+         *  旧形态：`role="slider"` + `aria-valuenow={60}` 写死、**零事件处理器**
+         *  ⇒ ⇒ 拖它没反应、读数永远 60 ⇒ ⇒ **假交互**
+         *  （也正是 1034 假交互普查扫不到它的那一类：
+         *    那道门只扫**带事件属性**的元素 ⇒ 零处理器的元素压根不在候选集里）。
+         *
+         *  现在：拖动 ⇒ 写 store 的 `volume` ⇒ ⇒ 真的写到 `<video>.volume`
+         *  ⇒ ⇒ 拖完**听得见**；读数 `aria-valuenow` 随动。
+         *  键盘：←/→/↑/↓ 调 0.05，Home/End 到两端（`role="slider"` 语义要求可聚焦）。
+         *
+         *  口径 (SOURCE_FACT, 手册 10-tasks/media-playback.md「音量滑杆」节，
+         *  2026-10-02 源站实测)：音量 `aria-valuemin=0` / `aria-valuemax=1`
+         *  ⇒ ⇒ 复刻对齐（进度条那条的 `aria-valuemax` 是**素材总时长**，两者不混）。 */}
         <span
-          className="mr-1 flex h-4 w-16 items-center"
+          className="mr-1 flex h-4 w-[52px] items-center"
           role="slider"
+          tabIndex={0}
           aria-label="音量"
           aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={60}
+          aria-valuemax={1}
+          aria-valuenow={Number(volume.toFixed(2))}
+          data-testid="preview-volume-slider"
+          onPointerDown={(e) => {
+            (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+            const r = e.currentTarget.getBoundingClientRect();
+            setVolume(nodeId, (e.clientX - r.left) / r.width);
+          }}
+          onPointerMove={(e) => {
+            if (!(e.buttons & 1)) return;
+            const r = e.currentTarget.getBoundingClientRect();
+            setVolume(nodeId, (e.clientX - r.left) / r.width);
+          }}
+          onKeyDown={(e) => {
+            const cur = volume;
+            let next: number | null = null;
+            if (e.key === "ArrowRight" || e.key === "ArrowUp") next = cur + 0.05;
+            if (e.key === "ArrowLeft" || e.key === "ArrowDown") next = cur - 0.05;
+            if (e.key === "Home") next = 0;
+            if (e.key === "End") next = 1;
+            if (next === null) return;
+            e.preventDefault();
+            setVolume(nodeId, next);
+          }}
         >
-          <span className="h-px w-full bg-white/40">
-            <span className="block h-px w-[60%] bg-white" />
+          {/* 轨道 52×2 + 8×8 圆点 thumb（贴住分位）——
+              源站口径见上方注释。 */}
+          <span className="relative h-px w-full bg-white/40">
+            <span
+              className="block h-px bg-white"
+              style={{ width: `${Math.round(volume * 100)}%` }}
+            />
+            <span
+              className="absolute top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
+              style={{ left: `${Math.round(volume * 100)}%` }}
+            />
           </span>
-          <span className="-ml-1.5 size-2 rounded-full bg-white" />
         </span>
         <button
           type="button"

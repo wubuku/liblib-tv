@@ -49,13 +49,13 @@
       },
       {
         "file": "src/components/jimeng/JimengVideoPreview.tsx",
-        "line": 61,
+        "line": 65,
         "rule": "react-hooks/exhaustive-deps",
         "text": "// eslint-disable-next-line react-hooks/exhaustive-deps"
       },
       {
         "file": "src/components/jimeng/JimengVideoPreview.tsx",
-        "line": 90,
+        "line": 153,
         "rule": "@next/next/no-img-element",
         "text": "// eslint-disable-next-line @next/next/no-img-element -- 本地 data URI mock 海报"
       },
@@ -210,7 +210,7 @@
   },
   "class_C_evidence_file_citations": {
     "what": "⭐⭐⭐⭐⭐ **口径比第一版宽**：不只扫「注释里的代码路径」，而是扫 **`src/**` 注释 + `scripts/jimeng_*.py` 全文**里形如 `docs/research/…json` 的**证据文件引用** ⇒ 真正要紧的不是「代码路径在不在」，是**「SOURCE_FACT 指着的那份实测记录」还在不在**",
-    "n_citations": 80,
+    "n_citations": 81,
     "n_missing": 1,
     "missing": [
       {

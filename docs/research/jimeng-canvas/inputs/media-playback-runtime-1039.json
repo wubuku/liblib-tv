@@ -1,0 +1,190 @@
+{
+ "generated_by": "scripts/jimeng_probe1039_media_playback_runtime.mjs",
+ "pageerrors": [],
+ "aria_dead_census": [],
+ "aria_dead_census_selftest": {
+  "detects_dead_widget": true,
+  "ignores_delegated_widget": true,
+  "n_candidates_in_copy": 1,
+  "detected_role": "slider",
+  "note": "⭐ 合成坏样本只在临时副本里 ⇒ 仓库零污染；本字段只记布尔与计数。"
+ },
+ "playing_advances": {
+  "moved": true
+ },
+ "deselect_freezes": {
+  "frozen": true
+ },
+ "video_still_in_dom_after_deselect": true,
+ "ctx_menu": {
+  "present": true,
+  "box": [
+   192,
+   322
+  ],
+  "items": [
+   {
+    "text": "复制 ⌘ C",
+    "disabled": false
+   },
+   {
+    "text": "复制副本 ⌘ D",
+    "disabled": false
+   },
+   {
+    "text": "粘贴 ⌘ V",
+    "disabled": false
+   },
+   {
+    "text": "保存到主体库",
+    "disabled": false
+   },
+   {
+    "text": "下载",
+    "disabled": false
+   },
+   {
+    "text": "重做 ⌘ ⇧ Z无需重做操作",
+    "disabled": true
+   },
+   {
+    "text": "撤销 ⌘ Z",
+    "disabled": true
+   },
+   {
+    "text": "删除 ⌫",
+    "disabled": false
+   }
+  ]
+ },
+ "preview": {
+  "present": true,
+  "has_video_element": true,
+  "video_paused": false,
+  "n_sliders": 1,
+  "slider_aria_label": "音量",
+  "slider_aria_min": "0",
+  "slider_aria_max": "1",
+  "slider_aria_now": "0.6",
+  "slider_screen_px": [
+   52,
+   16
+  ],
+  "buttons": [
+   "全屏暂停",
+   "取消静音",
+   "退出全屏预览"
+  ]
+ },
+ "volume_drag": {
+  "aria_changed": true,
+  "decreased": true,
+  "landed_near_target": true,
+  "video_volume_follows": true,
+  "video_volume_changed": true
+ },
+ "volume_keyboard": {
+  "aria_changed": true,
+  "increased": true
+ },
+ "viewport_scale": 0.73,
+ "central_button_canvas_px": [
+  44,
+  44
+ ],
+ "states": [
+  {
+   "label": "unselected",
+   "selected_attr": "false",
+   "has_media_anchor": true,
+   "central_aria": "播放",
+   "central_screen_px": [
+    32.12,
+    32.12
+   ],
+   "bar_present": true,
+   "bar_opacity": "0",
+   "time_text_present": true,
+   "time_text_shape": "#:## / #:##",
+   "node_button_arias": [
+    "Add tags",
+    "播放",
+    "底部播放",
+    "取消静音",
+    "全屏预览"
+   ],
+   "video_paused": true,
+   "video_muted": true
+  },
+  {
+   "label": "playing",
+   "selected_attr": "false",
+   "has_media_anchor": true,
+   "central_aria": "暂停",
+   "central_screen_px": [
+    32.12,
+    32.12
+   ],
+   "bar_present": true,
+   "bar_opacity": "1",
+   "time_text_present": true,
+   "time_text_shape": "#:## / #:##",
+   "node_button_arias": [
+    "Add tags",
+    "暂停",
+    "底部暂停",
+    "取消静音",
+    "全屏预览"
+   ],
+   "video_paused": false,
+   "video_muted": true
+  },
+  {
+   "label": "paused",
+   "selected_attr": "false",
+   "has_media_anchor": true,
+   "central_aria": "播放",
+   "central_screen_px": [
+    32.12,
+    32.12
+   ],
+   "bar_present": true,
+   "bar_opacity": "1",
+   "time_text_present": true,
+   "time_text_shape": "#:## / #:##",
+   "node_button_arias": [
+    "Add tags",
+    "播放",
+    "底部播放",
+    "取消静音",
+    "全屏预览"
+   ],
+   "video_paused": true,
+   "video_muted": true
+  },
+  {
+   "label": "deselected",
+   "selected_attr": "false",
+   "has_media_anchor": true,
+   "central_aria": "播放",
+   "central_screen_px": [
+    32.12,
+    32.12
+   ],
+   "bar_present": true,
+   "bar_opacity": "0",
+   "time_text_present": true,
+   "time_text_shape": "#:## / #:##",
+   "node_button_arias": [
+    "Add tags",
+    "播放",
+    "底部播放",
+    "取消静音",
+    "全屏预览"
+   ],
+   "video_paused": true,
+   "video_muted": true
+  }
+ ],
+ "errors": []
+}

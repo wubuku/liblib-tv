@@ -1,0 +1,80 @@
+{
+ "generated_by": "scripts/jimeng_probe1039_source_media_playback.py",
+ "measured_at": "2026-10-25",
+ "canvas_url": "https://jimeng.jianying.com/ai-tool/ai-canvas/64b58cd5-7b04-4312-890a-09f2d1d3399f?enter_from=project_list&from_page=create",
+ "how": "登录源站 → 等画布就绪 → 找视频节点 → 量未选中态 → 点它(选中) → 再量 → 右键读菜单 → 点全屏钮 → 读全屏里的 slider。⚠️ 只点不消耗积分的控件；绝不点生成/发送/购买/充值。",
+ "ready": {
+  "preparing": false,
+  "empty_open": false,
+  "n_nodes": 76
+ },
+ "steps": [
+  {
+   "step": "pick_target",
+   "note": "画布上**没有**带媒体的视频节点（只有空节点）⇒ 下面的读数是空节点口径",
+   "tid": "rf__node-node_236ctpehgg"
+  },
+  {
+   "step": "unselected",
+   "card": {
+    "has_simple_player": false,
+    "simple_player_aria": null,
+    "simple_player_box": null,
+    "simple_player_tag": null,
+    "n_video": 0,
+    "n_img": 0,
+    "has_player_bar": false,
+    "has_player_controls": false,
+    "has_mute_toggle": false,
+    "has_fullscreen_toggle": false,
+    "has_slider_track": false,
+    "buttons": [],
+    "text": ""
+   }
+  },
+  {
+   "step": "selected",
+   "card": {
+    "has_simple_player": false,
+    "simple_player_aria": null,
+    "simple_player_box": null,
+    "simple_player_tag": null,
+    "n_video": 0,
+    "n_img": 0,
+    "has_player_bar": false,
+    "has_player_controls": false,
+    "has_mute_toggle": false,
+    "has_fullscreen_toggle": false,
+    "has_slider_track": false,
+    "buttons": [],
+    "text": ""
+   }
+  },
+  {
+   "step": "context_menu",
+   "menu": {
+    "present": false
+   }
+  },
+  {
+   "step": "fullscreen_sliders",
+   "not_measured": "选中态没有 video-node-fullscreen-toggle ⇒ 进不了全屏"
+  }
+ ],
+ "viewport_scale": 0.336318,
+ "video_nodes": [
+  {
+   "tid": "rf__node-node_236ctpehgg",
+   "rect": [
+    346,
+    105,
+    108,
+    191
+   ],
+   "n_video": 0,
+   "n_img": 0,
+   "aria_label": "视频 node: 视频 1",
+   "text": ""
+  }
+ ]
+}

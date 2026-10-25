@@ -4,7 +4,7 @@
  "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「读不到」与「读到 0」必须分开** ⇒ ⇒ ⇒ 凡是没有写产物就退出的路径，**一律登记**、**一律现场验证**、**一律 rc=2**",
  "scope": {
   "how": "⭐ 按产物的 `generated_by` 发现探针（**不手写清单**）⇒ 范围 = 有产物、因而会进册子的那些探针",
-  "n_probes_scanned": 38,
+  "n_probes_scanned": 39,
   "probes": [
    "jimeng_probe1005_zero_coupling_census.py",
    "jimeng_probe1007_disparate_copies.py",
@@ -43,11 +43,12 @@
    "jimeng_probe1034_fake_interaction_census.py",
    "jimeng_probe1035_manual_clone_parity_gate.py",
    "jimeng_probe1036_manual_source_claim_census.py",
-   "jimeng_probe1037_instrument_fake_green_census.py"
+   "jimeng_probe1037_instrument_fake_green_census.py",
+   "jimeng_probe1039_media_playback_contract.py"
   ]
  },
  "exit_point_kind": "⭐ 退出点 = `sys.exit` / `os._exit` / `raise SystemExit` **或「调用一个会退出的本地函数」** ⇒ ⇒ ⇒ 后者是必需的：修好之后早退走的是 `_fail_early(...)`",
- "n_exit_points": 102,
+ "n_exit_points": 104,
  "n_suspected_silent": 0,
  "exit_points": [
   {
@@ -967,6 +968,24 @@
    "arg": "main()",
    "writes_before_exit": true,
    "why": "退出前调用了会写产物的本地函数:main"
+  },
+  {
+   "file": "jimeng_probe1039_media_playback_contract.py",
+   "lineno": 272,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1039_media_playback_contract.py",
+   "lineno": 273,
+   "func": null,
+   "how": "exit",
+   "arg": "1 if false_list else 0",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
   }
  ],
  "registry": [

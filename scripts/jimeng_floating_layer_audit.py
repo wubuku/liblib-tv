@@ -421,14 +421,15 @@ def main() -> int:
         ok_fs = False
         if sel:
             close_open()
-            # ⚠️ **不要**先去开「工具」下拉：`全屏预览` 这枚按钮本身就平铺在
+            # ⚠️ **不要**先去开「工具」下拉：`全屏编辑` 这枚按钮本身就平铺在
             #    工具条上（`JimengNodeToolbar` 里它在工具下拉 div **之外**），
             #    多开一个下拉只会让普查把工具菜单也记进这个状态名下。
             #    顺带说明「点了之后工具下拉还开着」不是判据的毛病：那是真状态。
-            #    源站这枚的实名是「全屏编辑」，复刻收口成「全屏预览」
-            #    （见 JimengNodeToolbar 里那条注释）。这里认**复刻真值**。
+            #    源站这枚的实名是「全屏编辑」，**复刻也已改成同名**（批 1031 取到的源站实名）。
+            #    ⚠️ 1032-⑫ 订正：1031 当时只改了产品、**没同步**这几道门 ⇒
+            #      ⇒ 它们在 HEAD 上一直红（840 的「前置态没成立」就是它）⇒ 本批一并修好。
             fs_btn = page.locator(
-                '.react-flow__node-toolbar button[aria-label="全屏预览"]')
+                '.react-flow__node-toolbar button[aria-label="全屏编辑"]')
             if fs_btn.count():
                 try:
                     fs_btn.first.click(timeout=8000)

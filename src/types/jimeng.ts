@@ -47,6 +47,17 @@ export interface JimengVideoNodeData extends Record<string, unknown> {
   playing?: boolean;
   /** 是否静音 (Batch 29；源站卡片默认显示静音图标) */
   muted?: boolean;
+  /** ⭐⭐⭐⭐⭐ 1032-⑫：**音量**（0–1）。
+   *
+   *  此前复刻的「音量滑杆」是个**静态 span**（`role="slider"` 但**没有任何
+   *  事件处理器**）⇒ ⇒ 拖它没反应、读数永远 60 ⇒ ⇒ **假交互**。
+   *  ⇒ ⇒ 现在音量是 store 里的**真状态**，拖动写回这里，
+   *  并且真的写到 `<video>.volume` ⇒ ⇒ 拖完**听得见变化**。
+   *
+   *  口径：源站全屏播放器的音量滑杆 `aria-valuemin=0` / `aria-valuemax=1`
+   *  （手册 10-tasks/media-playback.md「音量滑杆」节，2026-10-02 实测）⇒ 复刻对齐。
+   */
+  volume?: number;
   /** 节点颜色标记 (Batch 31；源站标题 Tag 图标点击弹出五色选择器) */
   tagColor?: string | null;
   /** 生成中 (Batch 50)：发送生成任务后的处理态 (mock) */

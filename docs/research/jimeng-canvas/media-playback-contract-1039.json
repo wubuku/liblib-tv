@@ -1,0 +1,105 @@
+{
+ "generated_by": "jimeng_probe1039_media_playback_contract.py",
+ "target": "jimeng-canvas-media-playback",
+ "question": "⭐⭐⭐⭐⭐ **手册那一页描述的媒体播放操作，在当前复刻上成不成立？**",
+ "probe_run": "rc=0",
+ "probe_crashed": false,
+ "readings_available": true,
+ "readings_fresh": true,
+ "readings_file": "docs/research/jimeng-canvas/inputs/media-playback-runtime-1039.json",
+ "criteria": {
+  "P1": true,
+  "P2": true,
+  "P3": true,
+  "P4": true,
+  "P5": true,
+  "P6": true,
+  "P7": true,
+  "P8": true,
+  "P9": true,
+  "P10": true,
+  "P11": true,
+  "P12": true,
+  "P13": true,
+  "P14": true,
+  "P15": true
+ },
+ "p13_static": {
+  "central_button_is_44px": true,
+  "no_stale_32px_source_fact": true,
+  "volume_slider_has_pointer_handler": true,
+  "volume_slider_has_key_handler": true,
+  "volume_slider_aria_0_1": true,
+  "preview_renders_video_element": true,
+  "store_has_set_volume": true,
+  "card_pauses_when_preview_open": true
+ },
+ "p15_manual": {
+  "manual_has_clone_wording_section": true,
+  "manual_states_44x44": true,
+  "manual_covers_volume_slider": true,
+  "manual_covers_context_menu_download": true
+ },
+ "p14_mutation": {
+  "n_p1_before": true,
+  "n_p1_after": false,
+  "n_p6_after": false,
+  "p1_turned_red": true,
+  "p6_turned_red": true,
+  "note": "⭐ 判据级变异：只改读数、不碰真源 ⇒ 真源产物零污染"
+ },
+ "detail": {
+  "central_button_canvas_px": [
+   44,
+   44
+  ],
+  "n_states_measured": 3,
+  "state_labels": [
+   "deselected",
+   "playing",
+   "unselected"
+  ],
+  "control_row_opacity_unselected": "0",
+  "control_row_opacity_playing": "1",
+  "time_text_present_unselected": true,
+  "time_text_shape": "#:## / #:##",
+  "n_node_buttons": 5,
+  "video_paused_playing_state": false,
+  "video_paused_deselected_state": true,
+  "ctx_menu_n_items": 8,
+  "preview_has_video_element": true,
+  "preview_slider_aria": {
+   "min": "0",
+   "max": "1"
+  },
+  "volume_drag_landed_near_target": true,
+  "n_aria_dead_candidates": 0,
+  "n_pageerrors": 0
+ },
+ "known_differences_vs_source": [
+  "手册正文记的是**源站**读数；本门量的是**复刻**当前行为。两者的结构性差异（控件行用 opacity 门控而非条件挂载、`<video>` 常驻、中央播放钮三态都在）已在手册「复刻口径与源站口径的差异」一节逐条写明。",
+  "源站当前画布上**没有带媒体的视频节点**（2026-10-25 复验：76 个节点、0 个含 video 的元素）⇒ 源站侧读数只能取手册归档证据，本轮无法复验。"
+ ],
+ "n_false": 0,
+ "false_criteria": [],
+ "degraded_criteria": [],
+ "criterion_kinds_1039": {
+  "P1": "failure",
+  "P2": "failure",
+  "P3": "failure",
+  "P4": "failure",
+  "P5": "failure",
+  "P6": "failure",
+  "P7": "failure",
+  "P8": "failure",
+  "P9": "failure",
+  "P10": "failure",
+  "P11": "failure",
+  "P12": "failure",
+  "P13": "failure",
+  "P14": "failure",
+  "P15": "failure"
+ },
+ "criterion_kinds_complete_1039": true,
+ "criteria_n_1039": 15
+}
