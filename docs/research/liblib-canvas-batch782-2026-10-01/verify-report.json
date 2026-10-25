@@ -146,6 +146,7 @@
    "src/components/director/directorCameraPresets.ts": 0,
    "src/components/director/directorCameraPreview.ts": 0,
    "src/components/director/directorGroupMath.ts": 0,
+   "src/components/director/directorKeyframeWindow.ts": 0,
    "src/components/director/directorLocalModelImport.ts": 0,
    "src/components/director/directorModelLibrary.ts": 0,
    "src/components/director/directorMotionMath.ts": 0,

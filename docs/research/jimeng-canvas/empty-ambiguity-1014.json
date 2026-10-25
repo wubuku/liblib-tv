@@ -163,8 +163,8 @@
     "bytes": 9205
    },
    "wired-contract-1032b1.json": {
-    "sha256_12": "fc8dd95f1c5e",
-    "bytes": 1320
+    "sha256_12": "dd84c19ff7c7",
+    "bytes": 1310
    },
    "zero-coupling-anchors-1005.json": {
     "sha256_12": "62dff3d65fe5",
@@ -176,10 +176,10 @@
  "census": {
   "n_goldens": 37,
   "n_excluded_self": 4,
-  "n_empty_list": 304,
+  "n_empty_list": 305,
   "n_empty_null": 115,
   "n_self_provable": 10,
-  "n_ambiguous": 409
+  "n_ambiguous": 410
  },
  "rows": [
   {
@@ -3110,6 +3110,13 @@
   },
   {
    "golden": "wired-contract-1032b1.json",
+   "path": "/false_criteria",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "wired-contract-1032b1.json",
    "path": "/degraded_criteria",
    "kind": "list",
    "self_provable": false,
@@ -5969,6 +5976,13 @@
   {
    "golden": "type-layer-gate-1023.json",
    "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "wired-contract-1032b1.json",
+   "path": "/false_criteria",
    "kind": "list",
    "self_provable": false,
    "invariant": null

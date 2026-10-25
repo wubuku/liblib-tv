@@ -14,7 +14,7 @@
  *   · 只读 + 点本批新接的那些按钮；**绝不点生成 / 发送 / 购买 / 充值**
  */
 import pw from '/Users/yangjiefeng/node_modules/playwright/index.js';
-import { writeFileSync, mkdirSync } from 'fs';
+import { writeFileSync, mkdirSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
 
@@ -29,6 +29,21 @@ const OUT =
 mkdirSync(dirname(OUT), { recursive: true });
 
 const UPLOAD_FILE = '/tmp/jm-upload-sample-1032b1.png';
+/* ⭐⭐⭐⭐⭐ 1032-⑬ 修：**夹具不许靠 /tmp 里的「 leftovers」**。
+ *
+ *   此前这个夹具是**手工**放进 /tmp 的 ⇒ ⇒ 一次 /tmp 清理就没了
+ *   ⇒ ⇒ `chooser.setFiles(不存在的路径)` 抛 ENOENT ⇒ **上传根本没发生**
+ *   ⇒ ⇒ ⇒ 于是 3 条上传判据（gen_panel / repaint / video_edit）全红
+ *   ⇒ ⇒ ⇒ 而那个红**长得极像产品回归**（“上传功能坏了”）⇒ ⇒ 其实只是夹具没了。
+ *
+ *   ⇒ 现在：**夹具缺失就现造**（1×1 合法 PNG，够走通 FileReader → poster 那条路）
+ *   ⇒ ⇒ 于是这道探针**不再依赖任何机器上的残留状态**。
+ */
+if (!existsSync(UPLOAD_FILE)) {
+  writeFileSync(UPLOAD_FILE, Buffer.from(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
+    'base64'));
+}
 
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ acceptDownloads: true });

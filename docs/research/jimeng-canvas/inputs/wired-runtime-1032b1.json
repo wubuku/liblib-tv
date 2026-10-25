@@ -34,11 +34,11 @@
    "banner_after_cancel": 0
   },
   "gen_panel_upload_adds_node": {
-   "ok": false,
+   "ok": true,
    "selected": true,
    "filechooser_fired": true,
    "nodes_before": 6,
-   "nodes_after": 6
+   "nodes_after": 7
   },
   "audio_panel_opens": {
    "ok": true,
@@ -109,7 +109,7 @@
    "empty_before": "暂无最近 7 天的图片素材",
    "empty_after_type_switch": null,
    "n_items_before": 0,
-   "n_items_after": 1
+   "n_items_after": 2
   },
   "repaint_model_switches": {
    "ok": true,
@@ -125,19 +125,19 @@
    "duration_after": "4s"
   },
   "repaint_upload_adds_node": {
-   "ok": false,
+   "ok": true,
    "filechooser_fired": true,
-   "nodes_before": 6,
-   "nodes_after": 6
+   "nodes_before": 7,
+   "nodes_after": 8
   },
   "video_edit_upload_adds_node": {
-   "ok": false,
+   "ok": true,
    "panel_open": true,
    "panned_into_viewport": true,
    "edit_clicked": true,
    "filechooser_fired": true,
-   "nodes_before": 6,
-   "nodes_after": 6
+   "nodes_before": 8,
+   "nodes_after": 9
   },
   "video_edit_quote_ref_enters_pick_mode": {
    "ok": true,
@@ -149,5 +149,5 @@
  },
  "pageerrors": [],
  "n_checks": 21,
- "n_failed": 3
+ "n_failed": 0
 }

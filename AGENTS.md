@@ -485,6 +485,38 @@ python3 scripts/verify-docs.py
   stay red" while the real `onClick` was still present ⟹ ⟹ ⟹ ⟹ ⇒ the honest
   negative control deletes the real `onClick` **and** adds a commented-out
   one).
+- **Criteria must not pollute each other** (Batch 869). The runtime probe had no
+  fixture ⟹ ⟹ ⟹ ⟹ ⇒ an earlier step clicked the "current frame" button while the
+  playhead sat **outside** the hit window ⟹ ⟹ ⟹ ⟹ ⇒ that click **added** a
+  keyframe at the playhead ⟹ ⟹ ⟹ ⟹ ⇒ the later criteria about the inspector
+  toggle then read *that new keyframe* ⟹ ⟹ ⟹ ⟹ ⇒ they were **independent of the
+  hit window** ⟹ ⟹ ⟹ ⟹ ⇒ mutating the window from ±0.05s to 1e-3 left them green
+  ⟹ ⟹ ⟹ ⟹ ⇒ the probe "passed" while proving nothing about the inspector.
+  **Rule**: reset the state under test to a **known set** before every step
+  (Batch 869 added a `SET_KEYFRAMES` fixture), and put all **read-only** criteria
+  **before** any click ⟹ ⟹ ⟹ ⟹ ⇒ then a runtime negative control that flips the
+  constant must flip **those** criteria too (it did: 6 of 13 went red).
+- **A negative control that never applies its mutation is a false green**
+  (Batch 869). `neg869.py`'s runtime branch **forgot to call `mutate()`** ⟹ ⟹ ⇒
+  the probe then ran against **unmodified** code ⟹ ⟹ ⇒ it was green, with exit
+  code 0 and clean output ⟹ ⟹ ⇒ nothing looked wrong. **Rule**: every branch must
+  mutate, and add a **read-back** check that the file bytes actually changed
+  before trusting a green result.
+- **"0 hits" may be a wrong search, not an absence** (Batch 869). Three chunk
+  caches were searched for the source string 「添加关键帧」 ⟹ ⟹ ⟹ ⟹ ⇒ one of them
+  (159 chunks) contained **no i18n dictionary chunk at all** ⟹ ⟹ ⟹ ⟹ ⇒ its "0
+  hits" was read as "the source site has no such button" ⟹ ⟹ ⟹ ⟹ ⇒ and the
+  repository's own batch-36 evidence had listed the label all along. **Rule**:
+  before recording an external absence, ask **whether the probe's own scope can
+  see it** ⟹ ⟹ ⟹ ⟹ ⇒ and correct an earlier conclusion by **annotation**, never
+  by rewriting the record.
+- **Two tolerances that look alike must not share a name or a number**
+  (Batch 869). The source's "current frame **hit**" window is ±**0.05s**
+  (`markers.find(e => .05 >= Math.abs(e.time - h))`) while the same-time
+  **upsert** epsilon is **0.001** ⟹ ⟹ ⟹ ⟹ ⇒ mixing them produces "I thought I
+  was hitting, but I was actually upserting". **Rule**: give each tolerance its
+  own named constant, write its source next to it, and add a criterion that the
+  two are **not** the same number.
 
 ## 6. Change Protocol
 

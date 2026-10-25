@@ -3,40 +3,35 @@
  "note": "⭐ 判据是「某个可观察的东西变了」；负控验「不该发生时**不**发生」。面板规格 = SOURCE_FACT 手册批次 33/34/113/114。",
  "checks": {
   "image_node_with_resource_inserted": {
-   "ok": true,
+   "ok": false,
    "input_found": true,
-   "before": 5,
-   "after": 6
+   "before": 0,
+   "after": 0
   },
   "subject_node_inserted": {
-   "ok": true,
-   "before": 6,
-   "after": 7
+   "ok": false,
+   "before": 0,
+   "after": 0
   },
   "entered_repaint_mode": {
-   "ok": true
+   "ok": false
   },
   "mention_panel_opens": {
-   "ok": true,
-   "entered": true,
-   "clicked": true,
-   "panel_count": 1,
-   "panel_visible": true
+   "ok": false,
+   "entered": false,
+   "clicked": false,
+   "panel_count": 0,
+   "panel_visible": false
   },
   "mention_panel_is_listbox_may_at_content": {
-   "ok": true,
-   "role": "listbox",
-   "aria": "可能@的内容",
-   "n_options": 4
+   "ok": false,
+   "role": null,
+   "aria": null,
+   "n_options": -1
   },
   "mention_panel_has_four_categories": {
-   "ok": true,
-   "labels": [
-    "主体",
-    "图片",
-    "视频",
-    "音频"
-   ],
+   "ok": false,
+   "labels": [],
    "expected": [
     "主体",
     "图片",
@@ -45,47 +40,49 @@
    ]
   },
   "mention_submenu_opens_with_resource_nodes": {
-   "ok": true,
+   "ok": false,
    "clicked": true,
-   "submenu_count": 1,
-   "submenu_visible": true,
-   "n_items": 2,
+   "submenu_count": 0,
+   "submenu_visible": false,
+   "n_items": -1,
    "empty_text": ""
   },
   "picking_candidate_inserts_chip": {
-   "ok": true,
-   "clicked": true,
+   "ok": false,
+   "clicked": false,
    "chips_before": 0,
-   "chips_after": 1,
+   "chips_after": 0,
    "panel_closed_after_pick": true
   },
   "subject_category_empty_when_no_resource": {
-   "ok": true,
+   "ok": false,
    "clicked": true,
-   "submenu_count": 1,
-   "empty_text": "暂无相关节点",
-   "n_items": 0
+   "submenu_count": 0,
+   "empty_text": "",
+   "n_items": -1
   },
   "escape_closes_panel_and_keeps_prompt": {
-   "ok": true,
-   "typed": true,
-   "panel_before": 1,
+   "ok": false,
+   "typed": false,
+   "panel_before": 0,
    "panel_after": 0,
-   "prompt_value": "保留我这个提示词"
+   "prompt_value": null
   },
   "video_edit_mention_panel_opens": {
-   "ok": true,
-   "entered": true,
-   "clicked": true,
-   "panel_count": 1,
-   "panel_visible": true
+   "ok": false,
+   "entered": false,
+   "clicked": false,
+   "panel_count": 0,
+   "panel_visible": false
   },
   "no_page_errors": {
-   "ok": true,
-   "n": 0
+   "ok": false,
+   "n": 1
   }
  },
  "n_checks": 12,
- "n_failed": 0,
- "pageerrors": []
+ "n_failed": 12,
+ "pageerrors": [
+  "Error: Module [project]/Documents/wubuku/liblib-tv/node_modules/node_modules/@swc/helpers/cjs/_interop_require_default.cjs [app-client] (ecmascript) was instantiated because it was required from modul"
+ ]
 }

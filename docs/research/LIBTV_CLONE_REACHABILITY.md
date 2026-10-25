@@ -194,6 +194,33 @@ with sync_playwright() as pw:
 ★ **store 副读数**（方便断言）：页面里暴露了
 `window.__libtv_store`（画布）与 `window.__director_store`（导演台）。
 
+### 3.4 ★ 专项手测：「当前帧关键帧」的命中窗口（★ batch 869）
+
+★ 这一条**单拎出来**，因为它是**肉眼几乎看不出差别**的行为
+（★ 差的是 **40 毫秒**）⟹ ⟹ ⟹ ⟹ ⇒ ★ 只能靠**精确放播头**才能验。
+
+**怎么到达**：★ 根 `http://localhost:4317/` ⟹ ⟹ hover 导演台卡片 ⟹ ⟹
+「打开导演台 →」⟹ ⟹ 底部时间轴出现轨道行 ⟹ ⟹ **选中一个已经有关键帧的轨道**
+（★ 默认机位轨道就有 ⟹ ⟹ 它有一枚 0ms 的关键帧）。
+
+**怎么测（手测版）**：
+1. 把播放头**拖到那枚关键帧之后一点点**（★ 约 **40 毫秒**级）；
+2. ⟹ ⟹ ⟹ ⟹ ⇒ ★ 轨道行**中间**那枚菱形按钮此刻应显示「**当前帧有关键帧**」
+   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 且它**左边**的「上一关键帧」是**灰的**；
+3. ⟹ ⟹ ⟹ ⟹ ⇒ ★ 点它 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 那枚关键帧**消失**（★ **不是**多出一枚）。
+
+★ ★ **为什么「上一关键帧」要灰**：★ 源站逐字 `disabled: !m`，
+★ 而 `m` 是「严格早于播放头 **0.05 秒**」的那枚 ⟹ ⟹ ⟹ ⟹ ⇒ ★
+★ 播放头在 `0.04s` 时 `0 < 0.04 - 0.05` **不成立** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 所以是灰的。
+
+**怎么测（脚本版）**：
+```bash
+python3 docs/research/liblib-canvas-batch869-2026-10-01/probes/keyframe_window869.py
+# → 13 条判据 0 失败
+```
+★ 脚本用 **store 的 `setTimelineTime`** 精确放置播头（★ 拖标尺没法命中 40ms），
+★ 但**被测动作本身仍然是真实按钮点击**。
+
 ---
 
 ## 4. 不在「从根可达」范围内的东西（**如实登记**）
@@ -314,6 +341,16 @@ with sync_playwright() as pw:
 | `docs/research/liblib-canvas-batch868-2026-10-01/probes/regress868.py` | ★ **回归清单**（**283** 条 ⟹ ⟹ 189 → 283）⟹ ⟹ 旧账 **27** 条**逐条带说明**登记（★ 绿的一律不登记）⟹ ⟹ ★ 本批门禁 `868` **自己**不登记（★ 那是本批的验收门）⟹ ⟹ ★ `801` **也不登记**（★ 已整改） |
 | `scripts/verify-liblib-batch801.py` | ★ **整改后**的 801：★ S10 判据从「读**当下工作树**」改成「**锚到 801 自己的提交**」（`8b1fb063`）⟹ ⟹ ⟹ ⟹ ⇒ ★ 另加 **S10b** 留痕「当下工作树脏」（★ **不参与判定**）⟹ ⟹ ⟹ ⟹ ⇒ ★ 负控 ④b 证明它**仍有牙**（★ 锚点指到 `f7052113` ⟹ ⟹ ⟹ ⟹ ⇒ **S10 必须翻**） |
 | `scripts/verify-liblib-batch868.py` | 本批门禁（**11 判据**；★ S2 用 `scan_tags` 解析**该标签自己的属性表** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 不用「往后 2000 字符」那个宽口径） |
+| `scripts/verify-liblib-batch869.py` | 本批门禁（**20 判据**；★ 期望值**只从入库的源站 raw 解析**（★ `cZ` 里的 `0.05` 用正则抽出来）⟹ ⟹ ⟹ ⟹ ⇒ ★ 改坏源码常量或改坏源站证据**两边都会红**；★ 「命中窗口 ≠ upsert 容差」各一条判据；★ 「命中只有一个出处」用**剥注释后**的 import 查；★ 回归清单**只增不减**） |
+| `docs/research/liblib-canvas-batch869-2026-10-01/raw/source-869-cz-toggle.txt` | ★ **源站逐字**（chunk `0fmehki05gkzw.js.js` 的 `cZ` ⟹ ⟹ 轨道行三键）⟹ ⟹ **三处都用同一个 `0.05` 秒**：命中 `.05>=Math.abs(e.time-h)`／上一 `n.time<t-.05`／下一 `e.time>h+.05` ⟹ ⟹ 中键 `"aria-pressed":!!f` ＋ `action:f?"remove":"add"` |
+| `docs/research/liblib-canvas-batch869-2026-10-01/raw/source-869-i18n-dictionary.txt` | ★ **源站 i18n 逐字**：`directorTimelineCurrentKeyframeVisible`＝「当前帧有关键帧」、`…Hidden`＝「当前帧无关键帧」⟹ ⟹ ★ 含 chunk 路径／字节数／sha256／摘录偏移 |
+| `docs/research/liblib-canvas-batch869-2026-10-01/raw/source-869-batch36-spec.md` | ★ **源站 batch 36 逐字规格**：`◆ 添加关键帧` captures the selected track object's complete current value; same-time add replaces the existing keyframe value ⟹ ⟹ ★ 这条**推翻了**本批一度想做的「改成切换语义」 |
+| `docs/research/liblib-canvas-batch869-2026-10-01/raw/source-869-correction.md` | ★★ **更正记录**（★ 本批**两处**更正：① 「源站没有添加关键帧」是**查法错**（★ 搜的缓存目录里没有 i18n 字典 chunk）；② 「把工具条改成切换」**方向错了、已撤回**） |
+| `docs/research/liblib-canvas-batch869-2026-10-01/raw/keyframe-window-869.json` | ★ **运行时读数**（★ **13 条判据 0 失败**）⟹ ⟹ 播头 **+0.04s**（★ 源站窗口**内**）⟹ ⟹ 中键 aria 逐字＝「当前帧有关键帧」、`aria-pressed=true`、上一键 **disabled**；⟹ ⟹ **+0.2s**（★ 窗口**外**）⟹ ⟹ 逐字＝「当前帧无关键帧」、`aria-pressed=false`；⟹ ⟹ 点中键 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 窗口内**消失**／窗口外**新增**；⟹ ⟹ 检查器开关同窗口；⟹ ⟹ 工具条「添加关键帧」＝**取当前值覆盖** |
+| `docs/research/liblib-canvas-batch869-2026-10-01/raw/negative-audit-869.json` | ★ **负控** 8/8 全打红 ⟹ ⟹ ★★ 含**运行时负控 N8**：★ 把命中窗口改回 `0.001` ⟹ ⟹ ⟹ ⟹ ⇒ ★ **探针实测打红 6 条**（W1／W2／W3／W7／W4／W8）⟹ ⟹ ⟹ ⟹ ⇒ ★ ⟹ ⟹ ⟹ ⟹ **证明那 13 条真的在测那个窗口** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 归因用**红灯集合差分**（★ 目标判据「变异前绿、变异后红」）⟹ ⟹ 源码**字节级复原** ＋ **跨文件污染守卫**干净 |
+| `docs/research/liblib-canvas-batch869-2026-10-01/probes/keyframe_window869.py` | ★ **运行时探针**（★ 13 条判据；★ 用**固定夹具**把轨道关键帧重置成同一份已知集合 ⟹ ⟹ ⟹ ⟹ ⇒ ★ 只读判据全放在**任何点击之前** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 判据之间**不互相污染**） |
+| `docs/research/liblib-canvas-batch869-2026-10-01/probes/regress869.py` | ★ **回归清单**（**284** 条 ⟹ ⟹ 283 → 284）⟹ ⟹ ★ 本批门禁 `869` **自己**也进清单（★ 免得它坏了没人看见） |
+| `docs/research/liblib-canvas-batch869-2026-10-01/README.md` | 本批（**「当前帧关键帧」的命中窗口 ⟹ clone 1e-3 vs 源站 ±0.05s** ⟹ ⟹ ⟹ ⟹ ⇒ ★ 差 **50 倍**）的完整取证、整改、**撤回**、负控与验收；★ 含**两条探针自身的坑**（★ 判据之间互相污染／★ 负控的变异压根没落到文件上） |
 
 ★ ★ **每批 README 的 §「复现步骤」都写了这条链**：契约提取 → 源站实测 →
 clone 实测 → 门禁 → 阴性 → 回归 → 受控对照。**先看那一条**，
