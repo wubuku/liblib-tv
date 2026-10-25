@@ -833,19 +833,19 @@
     "sites": [
      {
       "owner": null,
-      "line": 4986,
+      "line": 5001,
       "round": null,
       "value": "camera.id"
      },
      {
       "owner": null,
-      "line": 5173,
+      "line": 5188,
       "round": null,
       "value": "shot.cameraId"
      },
      {
       "owner": null,
-      "line": 7217,
+      "line": 7232,
       "round": null,
       "value": "cameraId"
      }
@@ -862,13 +862,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 6649,
+      "line": 6664,
       "round": null,
       "value": "capture.id"
      },
      {
       "owner": null,
-      "line": 6655,
+      "line": 6670,
       "round": null,
       "value": "captureId && state.captures.some((capture) => capture.id === captureId) ? captureId : null"
      }
@@ -885,25 +885,25 @@
     "sites": [
      {
       "owner": null,
-      "line": 4987,
+      "line": 5002,
       "round": null,
       "value": "shot.id"
      },
      {
       "owner": null,
-      "line": 5144,
+      "line": 5159,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 5172,
+      "line": 5187,
       "round": null,
       "value": "shot.id"
      },
      {
       "owner": null,
-      "line": 7218,
+      "line": 7233,
       "round": null,
       "value": "shot.id"
      }
@@ -920,7 +920,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 5838,
+      "line": 5853,
       "round": null,
       "value": "ratio"
      }
@@ -937,49 +937,49 @@
     "sites": [
      {
       "owner": null,
-      "line": 4833,
+      "line": 4848,
       "round": null,
       "value": "authoredObjects"
      },
      {
       "owner": null,
-      "line": 4976,
+      "line": 4991,
       "round": null,
       "value": "authoredObjects"
      },
      {
       "owner": null,
-      "line": 5551,
+      "line": 5566,
       "round": null,
       "value": "authoredObjects"
      },
      {
       "owner": null,
-      "line": 5800,
+      "line": 5815,
       "round": null,
       "value": "authoredObjects"
      },
      {
       "owner": null,
-      "line": 6167,
+      "line": 6182,
       "round": null,
       "value": "authoredObjects"
      },
      {
       "owner": null,
-      "line": 6310,
+      "line": 6325,
       "round": null,
       "value": "authoredObjects"
      },
      {
       "owner": null,
-      "line": 6543,
+      "line": 6558,
       "round": null,
       "value": "authoredObjects"
      },
      {
       "owner": null,
-      "line": 7207,
+      "line": 7222,
       "round": null,
       "value": "authoredObjects"
      }
@@ -996,13 +996,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 6647,
+      "line": 6662,
       "round": null,
       "value": "nextCaptures"
      },
      {
       "owner": null,
-      "line": 6675,
+      "line": 6690,
       "round": null,
       "value": "state.captures.map((capture) => capture.id === captureId ? { ...capture, sentNodeId: nodeId } : capture, )"
      }
@@ -1019,13 +1019,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 3526,
+      "line": 3541,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 4215,
+      "line": 4230,
       "round": null,
       "value": "built.packet"
      }
@@ -1042,19 +1042,19 @@
     "sites": [
      {
       "owner": null,
-      "line": 3527,
+      "line": 3542,
       "round": null,
       "value": "0"
      },
      {
       "owner": null,
-      "line": 4216,
+      "line": 4231,
       "round": null,
       "value": "0"
      },
      {
       "owner": null,
-      "line": 4319,
+      "line": 4334,
       "round": null,
       "value": "state.clipboardPasteCount + 1"
      }
@@ -1071,7 +1071,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 5841,
+      "line": 5856,
       "round": null,
       "value": "ratio"
      }
@@ -1088,7 +1088,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 3598,
+      "line": 3613,
       "round": null,
       "value": "null"
      }
@@ -1105,19 +1105,19 @@
     "sites": [
      {
       "owner": null,
-      "line": 4728,
+      "line": 4743,
       "round": null,
       "value": "groups"
      },
      {
       "owner": null,
-      "line": 4839,
+      "line": 4854,
       "round": null,
       "value": "[...state.groups, group]"
      },
      {
       "owner": null,
-      "line": 5661,
+      "line": 5676,
       "round": null,
       "value": "groups"
      }
@@ -1134,25 +1134,25 @@
     "sites": [
      {
       "owner": null,
-      "line": 8493,
+      "line": 8508,
       "round": null,
       "value": "safeValue"
      },
      {
       "owner": null,
-      "line": 8501,
+      "line": 8516,
       "round": null,
       "value": "anchor.type === \"symmetric\" ? opposite : anchor.handleIn"
      },
      {
       "owner": null,
-      "line": 8568,
+      "line": 8583,
       "round": null,
       "value": "localValue"
      },
      {
       "owner": null,
-      "line": 8576,
+      "line": 8591,
       "round": null,
       "value": "anchor.type === \"symmetric\" ? opposite : anchor.handleIn"
      }
@@ -1169,25 +1169,25 @@
     "sites": [
      {
       "owner": null,
-      "line": 8494,
+      "line": 8509,
       "round": null,
       "value": "anchor.type === \"symmetric\" ? opposite : anchor.handleOut"
      },
      {
       "owner": null,
-      "line": 8500,
+      "line": 8515,
       "round": null,
       "value": "safeValue"
      },
      {
       "owner": null,
-      "line": 8569,
+      "line": 8584,
       "round": null,
       "value": "anchor.type === \"symmetric\" ? opposite : anchor.handleOut"
      },
      {
       "owner": null,
-      "line": 8575,
+      "line": 8590,
       "round": null,
       "value": "localValue"
      }
@@ -1204,103 +1204,103 @@
     "sites": [
      {
       "owner": null,
-      "line": 3328,
+      "line": 3343,
       "round": null,
       "value": "historyForDirectorProject(result.session.projectId)"
      },
      {
       "owner": null,
-      "line": 3525,
+      "line": 3540,
       "round": null,
       "value": "history"
      },
      {
       "owner": null,
-      "line": 3608,
+      "line": 3623,
       "round": null,
       "value": "createDirectorHistoryState()"
      },
      {
       "owner": null,
-      "line": 3941,
+      "line": 3956,
       "round": null,
       "value": "history"
      },
      {
       "owner": null,
-      "line": 4081,
+      "line": 4096,
       "round": null,
       "value": "history"
      },
      {
       "owner": null,
-      "line": 4154,
+      "line": 4169,
       "round": null,
       "value": "history"
      },
      {
       "owner": null,
-      "line": 4320,
+      "line": 4335,
       "round": null,
       "value": "history"
      },
      {
       "owner": null,
-      "line": 4456,
+      "line": 4471,
       "round": null,
       "value": "history"
      },
      {
       "owner": null,
-      "line": 4733,
+      "line": 4748,
       "round": null,
       "value": "commit.history"
      },
      {
       "owner": null,
-      "line": 4989,
+      "line": 5004,
       "round": null,
       "value": "history"
      },
      {
       "owner": null,
-      "line": 5132,
+      "line": 5147,
       "round": null,
       "value": "history"
      },
      {
       "owner": null,
-      "line": 5304,
+      "line": 5319,
       "round": null,
       "value": "commit.history"
      },
      {
       "owner": null,
-      "line": 5663,
+      "line": 5678,
       "round": null,
       "value": "commit.history"
      },
      {
       "owner": null,
-      "line": 5803,
+      "line": 5818,
       "round": null,
       "value": "commit.history"
      },
      {
       "owner": null,
-      "line": 6016,
+      "line": 6031,
       "round": null,
       "value": "history"
      },
      {
       "owner": null,
-      "line": 6170,
+      "line": 6185,
       "round": null,
       "value": "commit.history"
      },
      {
       "owner": null,
-      "line": 6549,
+      "line": 6564,
       "round": null,
       "value": "commit.history"
      }
@@ -1317,37 +1317,37 @@
     "sites": [
      {
       "owner": null,
-      "line": 3862,
+      "line": 3877,
       "round": null,
       "value": "gesture"
      },
      {
       "owner": null,
-      "line": 3893,
+      "line": 3908,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 3905,
+      "line": 3920,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 3969,
+      "line": 3984,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 3982,
+      "line": 3997,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 4006,
+      "line": 4021,
       "round": null,
       "value": "null"
      }
@@ -1364,13 +1364,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 3601,
+      "line": 3616,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 6590,
+      "line": 6605,
       "round": null,
       "value": "capturing"
      }
@@ -1387,169 +1387,163 @@
     "sites": [
      {
       "owner": null,
-      "line": 3330,
+      "line": 3345,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 3387,
+      "line": 3402,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3396,
+      "line": 3411,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3409,
+      "line": 3424,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3419,
+      "line": 3434,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3445,
+      "line": 3460,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3457,
+      "line": 3472,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3478,
+      "line": 3493,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3528,
+      "line": 3543,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3609,
+      "line": 3624,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 3813,
+      "line": 3828,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3822,
+      "line": 3837,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3831,
+      "line": 3846,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3841,
+      "line": 3856,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3864,
+      "line": 3879,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3878,
+      "line": 3893,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3894,
+      "line": 3909,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3906,
+      "line": 3921,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3922,
+      "line": 3937,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3941,
+      "line": 3956,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3954,
+      "line": 3969,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3970,
+      "line": 3985,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3983,
+      "line": 3998,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 3999,
+      "line": 4014,
       "round": null,
       "value": "staleResult"
      },
      {
       "owner": null,
-      "line": 4007,
+      "line": 4022,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4025,
+      "line": 4040,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4035,
-      "round": null,
-      "value": "result"
-     },
-     {
-      "owner": null,
-      "line": 4049,
+      "line": 4050,
       "round": null,
       "value": "result"
      },
@@ -1561,25 +1555,25 @@
      },
      {
       "owner": null,
-      "line": 4081,
+      "line": 4079,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4098,
+      "line": 4096,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4108,
+      "line": 4113,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4122,
+      "line": 4123,
       "round": null,
       "value": "result"
      },
@@ -1591,61 +1585,61 @@
      },
      {
       "owner": null,
-      "line": 4154,
+      "line": 4152,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4170,
+      "line": 4169,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4180,
+      "line": 4185,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4205,
+      "line": 4195,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4217,
+      "line": 4220,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4230,
+      "line": 4232,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4239,
+      "line": 4245,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4253,
+      "line": 4254,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4263,
+      "line": 4268,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4280,
+      "line": 4278,
       "round": null,
       "value": "result"
      },
@@ -1657,175 +1651,175 @@
      },
      {
       "owner": null,
-      "line": 4321,
+      "line": 4310,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4338,
+      "line": 4336,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4348,
+      "line": 4353,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4383,
+      "line": 4363,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4399,
+      "line": 4398,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4416,
+      "line": 4414,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4457,
+      "line": 4431,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4630,
+      "line": 4472,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4639,
+      "line": 4645,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4653,
+      "line": 4654,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4659,
+      "line": 4668,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4722,
+      "line": 4674,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4734,
+      "line": 4737,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 4749,
       "round": null,
       "value": "commit.result"
      },
      {
       "owner": null,
-      "line": 4857,
+      "line": 4872,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4871,
+      "line": 4886,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4889,
+      "line": 4904,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4899,
+      "line": 4914,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4949,
+      "line": 4964,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 4990,
+      "line": 5005,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5047,
+      "line": 5062,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5058,
+      "line": 5073,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5068,
+      "line": 5083,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5109,
+      "line": 5124,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5133,
+      "line": 5148,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5217,
+      "line": 5232,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5228,
+      "line": 5243,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5249,
+      "line": 5264,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5255,
-      "round": null,
-      "value": "result"
-     },
-     {
-      "owner": null,
-      "line": 5290,
+      "line": 5270,
       "round": null,
       "value": "result"
      },
@@ -1833,17 +1827,17 @@
       "owner": null,
       "line": 5305,
       "round": null,
-      "value": "commit.result"
-     },
-     {
-      "owner": null,
-      "line": 5580,
-      "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5589,
+      "line": 5320,
+      "round": null,
+      "value": "commit.result"
+     },
+     {
+      "owner": null,
+      "line": 5595,
       "round": null,
       "value": "result"
      },
@@ -1855,37 +1849,37 @@
      },
      {
       "owner": null,
-      "line": 5613,
-      "round": null,
-      "value": "result"
-     },
-     {
-      "owner": null,
       "line": 5619,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5655,
+      "line": 5628,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5664,
+      "line": 5634,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5670,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5679,
       "round": null,
       "value": "commit.result"
      },
      {
       "owner": null,
-      "line": 5681,
-      "round": null,
-      "value": "result"
-     },
-     {
-      "owner": null,
-      "line": 5692,
+      "line": 5696,
       "round": null,
       "value": "result"
      },
@@ -1897,109 +1891,109 @@
      },
      {
       "owner": null,
-      "line": 5716,
+      "line": 5722,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5763,
+      "line": 5731,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5794,
+      "line": 5778,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5804,
+      "line": 5809,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 5819,
       "round": null,
       "value": "commit.result"
      },
      {
       "owner": null,
-      "line": 5915,
+      "line": 5930,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5926,
+      "line": 5941,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5937,
+      "line": 5952,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5957,
+      "line": 5972,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5970,
+      "line": 5985,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 5993,
+      "line": 6008,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6017,
+      "line": 6032,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6036,
+      "line": 6051,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6058,
+      "line": 6073,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6071,
+      "line": 6086,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6091,
+      "line": 6106,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6103,
+      "line": 6118,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6109,
-      "round": null,
-      "value": "result"
-     },
-     {
-      "owner": null,
-      "line": 6156,
+      "line": 6124,
       "round": null,
       "value": "result"
      },
@@ -2007,65 +2001,59 @@
       "owner": null,
       "line": 6171,
       "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6186,
+      "round": null,
       "value": "commit.result"
      },
      {
       "owner": null,
-      "line": 6201,
+      "line": 6216,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6212,
+      "line": 6227,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6221,
+      "line": 6236,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6230,
+      "line": 6245,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6344,
+      "line": 6359,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6387,
+      "line": 6402,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6410,
+      "line": 6425,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6421,
-      "round": null,
-      "value": "result"
-     },
-     {
-      "owner": null,
-      "line": 6452,
-      "round": null,
-      "value": "result"
-     },
-     {
-      "owner": null,
-      "line": 6461,
+      "line": 6436,
       "round": null,
       "value": "result"
      },
@@ -2077,31 +2065,43 @@
      },
      {
       "owner": null,
-      "line": 6532,
+      "line": 6476,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 6550,
+      "line": 6482,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6547,
+      "round": null,
+      "value": "result"
+     },
+     {
+      "owner": null,
+      "line": 6565,
       "round": null,
       "value": "commit.result"
      },
      {
       "owner": null,
-      "line": 7622,
+      "line": 7637,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 7951,
+      "line": 7966,
       "round": null,
       "value": "result"
      },
      {
       "owner": null,
-      "line": 8991,
+      "line": 9006,
       "round": null,
       "value": "result"
      }
@@ -2118,31 +2118,31 @@
     "sites": [
      {
       "owner": null,
-      "line": 3724,
+      "line": 3739,
       "round": null,
       "value": "released.localModelLibrary"
      },
      {
       "owner": null,
-      "line": 3796,
+      "line": 3811,
       "round": null,
       "value": "localModelLibrary"
      },
      {
       "owner": null,
-      "line": 4381,
+      "line": 4396,
       "round": null,
       "value": "localModelLibrary"
      },
      {
       "owner": null,
-      "line": 5317,
+      "line": 5332,
       "round": null,
       "value": "localModelLibrary"
      },
      {
       "owner": null,
-      "line": 5336,
+      "line": 5351,
       "round": null,
       "value": "items"
      }
@@ -2159,61 +2159,61 @@
     "sites": [
      {
       "owner": null,
-      "line": 3725,
+      "line": 3740,
       "round": null,
       "value": "released.localModelResources"
      },
      {
       "owner": null,
-      "line": 3797,
+      "line": 3812,
       "round": null,
       "value": "localModelResources"
      },
      {
       "owner": null,
-      "line": 4382,
+      "line": 4397,
       "round": null,
       "value": "localModelResources"
      },
      {
       "owner": null,
-      "line": 5318,
+      "line": 5333,
       "round": null,
       "value": "createDirectorLocalResourceMap( localModelLibrary, )"
      },
      {
       "owner": null,
-      "line": 5337,
+      "line": 5352,
       "round": null,
       "value": "addDirectorLocalResource( state.localModelResources, descriptor, )"
      },
      {
       "owner": null,
-      "line": 5374,
+      "line": 5389,
       "round": null,
       "value": "nextResources"
      },
      {
       "owner": null,
-      "line": 5403,
+      "line": 5418,
       "round": null,
       "value": "retryDirectorLocalResource( state.localModelResources, resourceId, )"
      },
      {
       "owner": null,
-      "line": 5420,
+      "line": 5435,
       "round": null,
       "value": "next"
      },
      {
       "owner": null,
-      "line": 5437,
+      "line": 5452,
       "round": null,
       "value": "next"
      },
      {
       "owner": null,
-      "line": 5472,
+      "line": 5487,
       "round": null,
       "value": "markDirectorLocalResourceReleased( state.localModelResources, resourceId, )"
      }
@@ -2230,7 +2230,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 5500,
+      "line": 5515,
       "round": null,
       "value": "asset"
      }
@@ -2247,223 +2247,223 @@
     "sites": [
      {
       "owner": null,
-      "line": 4834,
+      "line": 4849,
       "round": null,
       "value": "projectDirectorRuntimeObjects( authoredObjects, timeline, state.groups.concat(group), )"
      },
      {
       "owner": null,
-      "line": 4977,
+      "line": 4992,
       "round": null,
       "value": "projectDirectorRuntimeObjects( authoredObjects, timeline, state.groups, )"
      },
      {
       "owner": null,
-      "line": 5303,
+      "line": 5318,
       "round": null,
       "value": "objects"
      },
      {
       "owner": null,
-      "line": 5552,
+      "line": 5567,
       "round": null,
       "value": "projectDirectorRuntimeObjects( authoredObjects, timeline, state.groups, )"
      },
      {
       "owner": null,
-      "line": 5801,
+      "line": 5816,
       "round": null,
       "value": "objects"
      },
      {
       "owner": null,
-      "line": 6168,
+      "line": 6183,
       "round": null,
       "value": "objects"
      },
      {
       "owner": null,
-      "line": 6311,
+      "line": 6326,
       "round": null,
       "value": "projectDirectorRuntimeObjects( authoredObjects, timeline, state.groups, )"
      },
      {
       "owner": null,
-      "line": 6544,
+      "line": 6559,
       "round": null,
       "value": "objects"
      },
      {
       "owner": null,
-      "line": 6841,
+      "line": 6856,
       "round": null,
       "value": "state.objects.map((object) => object.id === camera.id ? { ...object, transform: cloneTransform(nextCamera.transform), camera: { ...object.camera!, tar…"
      },
      {
       "owner": null,
-      "line": 6895,
+      "line": 6910,
       "round": null,
       "value": "state.objects.map((object) => object.id === camera.id ? { ...object, transform: cloneTransform(nextCamera.transform), camera: { ...object.camera!, tar…"
      },
      {
       "owner": null,
-      "line": 6988,
+      "line": 7003,
       "round": null,
       "value": "activeCamera ? sampledObjects.map((object) => object.id === activeCamera.id ? activeCamera : object, ) : sampledObjects"
      },
      {
       "owner": null,
-      "line": 7208,
+      "line": 7223,
       "round": null,
       "value": "projectDirectorRuntimeObjects( authoredObjects, timeline, current.groups, )"
      },
      {
       "owner": null,
-      "line": 7244,
+      "line": 7259,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, state.timeline, currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 7283,
+      "line": 7298,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, state.timeline, currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 7306,
+      "line": 7321,
       "round": null,
       "value": "restart ? applyTimelineAtTime( state.authoredObjects, state.timeline, currentTime, state.groups, ) : state.objects"
      },
      {
       "owner": null,
-      "line": 7334,
+      "line": 7349,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, state.timeline, currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 7463,
+      "line": 7478,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, keyframe.time, state.groups, )"
      },
      {
       "owner": null,
-      "line": 7707,
+      "line": 7722,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, state.timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 7737,
+      "line": 7752,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, state.timeline, nextTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 7890,
+      "line": 7905,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 7923,
+      "line": 7938,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8057,
+      "line": 8072,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, selectedTimeline, selectedTimeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8108,
+      "line": 8123,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, selectedTimeline, selectedTimeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8311,
+      "line": 8326,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8404,
+      "line": 8419,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8455,
+      "line": 8470,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8517,
+      "line": 8532,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8592,
+      "line": 8607,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8629,
+      "line": 8644,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8692,
+      "line": 8707,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8739,
+      "line": 8754,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8774,
+      "line": 8789,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8832,
+      "line": 8847,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8869,
+      "line": 8884,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8912,
+      "line": 8927,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8939,
+      "line": 8954,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      },
      {
       "owner": null,
-      "line": 8972,
+      "line": 8987,
       "round": null,
       "value": "applyTimelineAtTime( state.authoredObjects, timeline, timeline.currentTime, state.groups, )"
      }
@@ -2480,7 +2480,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 3607,
+      "line": 3622,
       "round": null,
       "value": "createDefaultPhoneVcamState()"
      }
@@ -2497,37 +2497,37 @@
     "sites": [
      {
       "owner": null,
-      "line": 6743,
+      "line": 6758,
       "round": null,
       "value": "baselineCamera"
      },
      {
       "owner": null,
-      "line": 6792,
+      "line": 6807,
       "round": null,
       "value": "baselineCamera"
      },
      {
       "owner": null,
-      "line": 6857,
+      "line": 6872,
       "round": null,
       "value": "baselineCamera"
      },
      {
       "owner": null,
-      "line": 6911,
+      "line": 6926,
       "round": null,
       "value": "baselineCamera"
      },
      {
       "owner": null,
-      "line": 6959,
+      "line": 6974,
       "round": null,
       "value": "cloneCameraValue(camera) ?? current.phoneVcam.baselineCamera"
      },
      {
       "owner": null,
-      "line": 7224,
+      "line": 7239,
       "round": null,
       "value": "cloneCameraKeyframeValue(lastValue)"
      }
@@ -2544,19 +2544,19 @@
     "sites": [
      {
       "owner": null,
-      "line": 6741,
+      "line": 6756,
       "round": null,
       "value": "0"
      },
      {
       "owner": null,
-      "line": 6793,
+      "line": 6808,
       "round": null,
       "value": "0"
      },
      {
       "owner": null,
-      "line": 6910,
+      "line": 6925,
       "round": null,
       "value": "elevation"
      }
@@ -2573,97 +2573,97 @@
     "sites": [
      {
       "owner": null,
-      "line": 6685,
+      "line": 6700,
       "round": null,
       "value": "error"
      },
      {
       "owner": null,
-      "line": 6704,
+      "line": 6719,
       "round": null,
       "value": "\"导演台视口还未准备好\""
      },
      {
       "owner": null,
-      "line": 6714,
+      "line": 6729,
       "round": null,
       "value": "\"请先关闭机位跟随，再使用手机运镜\""
      },
      {
       "owner": null,
-      "line": 6746,
+      "line": 6761,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 6796,
+      "line": 6811,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 6858,
+      "line": 6873,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 6912,
+      "line": 6927,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 6926,
+      "line": 6941,
       "round": null,
       "value": "\"导演台视口还未准备好\""
      },
      {
       "owner": null,
-      "line": 6935,
+      "line": 6950,
       "round": null,
       "value": "\"请先关闭机位跟随，再使用手机运镜\""
      },
      {
       "owner": null,
-      "line": 6949,
+      "line": 6964,
       "round": null,
       "value": "\"当前播放头后没有可录制时长\""
      },
      {
       "owner": null,
-      "line": 6965,
+      "line": 6980,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7046,
+      "line": 7061,
       "round": null,
       "value": "\"本次手机运镜没有有效录制内容\""
      },
      {
       "owner": null,
-      "line": 7059,
+      "line": 7074,
       "round": null,
       "value": "\"导演台会话已失效，请重新录制\""
      },
      {
       "owner": null,
-      "line": 7089,
+      "line": 7104,
       "round": null,
       "value": "\"手机运镜结果未被接受，请重新录制\""
      },
      {
       "owner": null,
-      "line": 7117,
+      "line": 7132,
       "round": null,
       "value": "\"手机运镜结果已失效，请重新录制\""
      },
      {
       "owner": null,
-      "line": 7230,
+      "line": 7245,
       "round": null,
       "value": "null"
      }
@@ -2680,7 +2680,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 6755,
+      "line": 6770,
       "round": null,
       "value": "enabled"
      }
@@ -2697,19 +2697,19 @@
     "sites": [
      {
       "owner": null,
-      "line": 6740,
+      "line": 6755,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 6779,
+      "line": 6794,
       "round": null,
       "value": "hold"
      },
      {
       "owner": null,
-      "line": 6795,
+      "line": 6810,
       "round": null,
       "value": "false"
      }
@@ -2726,13 +2726,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 6963,
+      "line": 6978,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7228,
+      "line": 7243,
       "round": null,
       "value": "cameraId"
      }
@@ -2749,13 +2749,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 6964,
+      "line": 6979,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7229,
+      "line": 7244,
       "round": null,
       "value": "trackId"
      }
@@ -2772,7 +2772,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 6773,
+      "line": 6788,
       "round": null,
       "value": "!state.phoneVcam.keepLevel"
      }
@@ -2789,13 +2789,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 6826,
+      "line": 6841,
       "round": null,
       "value": "normalizedPose"
      },
      {
       "owner": null,
-      "line": 6856,
+      "line": 6871,
       "round": null,
       "value": "normalizedPose"
      }
@@ -2812,13 +2812,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 6742,
+      "line": 6757,
       "round": null,
       "value": "0"
      },
      {
       "owner": null,
-      "line": 6794,
+      "line": 6809,
       "round": null,
       "value": "0"
      }
@@ -2835,13 +2835,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 6742,
+      "line": 6757,
       "round": null,
       "value": "0"
      },
      {
       "owner": null,
-      "line": 6794,
+      "line": 6809,
       "round": null,
       "value": "0"
      }
@@ -2858,13 +2858,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 6742,
+      "line": 6757,
       "round": null,
       "value": "0"
      },
      {
       "owner": null,
-      "line": 6794,
+      "line": 6809,
       "round": null,
       "value": "0"
      }
@@ -2881,49 +2881,49 @@
     "sites": [
      {
       "owner": null,
-      "line": 6686,
+      "line": 6701,
       "round": null,
       "value": "status === \"recording\" ? state.phoneVcam.recordingStartTime : null"
      },
      {
       "owner": null,
-      "line": 6744,
+      "line": 6759,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 6961,
+      "line": 6976,
       "round": null,
       "value": "current.timeline.currentTime"
      },
      {
       "owner": null,
-      "line": 7045,
+      "line": 7060,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7058,
+      "line": 7073,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7088,
+      "line": 7103,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7116,
+      "line": 7131,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7225,
+      "line": 7240,
       "round": null,
       "value": "null"
      }
@@ -2940,25 +2940,25 @@
     "sites": [
      {
       "owner": null,
-      "line": 6745,
+      "line": 6760,
       "round": null,
       "value": "0"
      },
      {
       "owner": null,
-      "line": 6962,
+      "line": 6977,
       "round": null,
       "value": "0"
      },
      {
       "owner": null,
-      "line": 7005,
+      "line": 7020,
       "round": "round",
       "value": "Math.max( 0, Math.round(Number.isFinite(count) ? count : 0), )"
      },
      {
       "owner": null,
-      "line": 7226,
+      "line": 7241,
       "round": null,
       "value": "validSamples.length"
      }
@@ -2975,7 +2975,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 6762,
+      "line": 6777,
       "round": null,
       "value": "Math.min( Math.max(Number.isFinite(stability) ? stability : 0, 0), 100, )"
      }
@@ -2992,61 +2992,61 @@
     "sites": [
      {
       "owner": null,
-      "line": 6684,
+      "line": 6699,
       "round": null,
       "value": "status"
      },
      {
       "owner": null,
-      "line": 6703,
+      "line": 6718,
       "round": null,
       "value": "\"error\""
      },
      {
       "owner": null,
-      "line": 6713,
+      "line": 6728,
       "round": null,
       "value": "\"error\""
      },
      {
       "owner": null,
-      "line": 6739,
+      "line": 6754,
       "round": null,
       "value": "\"local-ready\""
      },
      {
       "owner": null,
-      "line": 6958,
+      "line": 6973,
       "round": null,
       "value": "\"recording\""
      },
      {
       "owner": null,
-      "line": 7041,
+      "line": 7056,
       "round": null,
       "value": "current.phoneVcam.status === \"recording\" ? \"local-ready\" : current.phoneVcam.status"
      },
      {
       "owner": null,
-      "line": 7057,
+      "line": 7072,
       "round": null,
       "value": "\"local-ready\""
      },
      {
       "owner": null,
-      "line": 7087,
+      "line": 7102,
       "round": null,
       "value": "\"local-ready\""
      },
      {
       "owner": null,
-      "line": 7115,
+      "line": 7130,
       "round": null,
       "value": "\"local-ready\""
      },
      {
       "owner": null,
-      "line": 7223,
+      "line": 7238,
       "round": null,
       "value": "\"imported\""
      }
@@ -3063,7 +3063,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 7227,
+      "line": 7242,
       "round": null,
       "value": "takeIndex"
      }
@@ -3080,7 +3080,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 3596,
+      "line": 3611,
       "round": null,
       "value": "null"
      }
@@ -3097,7 +3097,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 3599,
+      "line": 3614,
       "round": null,
       "value": "null"
      }
@@ -3114,7 +3114,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 3595,
+      "line": 3610,
       "round": null,
       "value": "null"
      }
@@ -3131,7 +3131,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 6015,
+      "line": 6030,
       "round": null,
       "value": "nextScene"
      }
@@ -3148,163 +3148,163 @@
     "sites": [
      {
       "owner": null,
-      "line": 4498,
+      "line": 4513,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 4542,
+      "line": 4557,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 4553,
+      "line": 4568,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 4598,
+      "line": 4613,
       "round": null,
       "value": "group.id"
      },
      {
       "owner": null,
-      "line": 4731,
+      "line": 4746,
       "round": null,
       "value": "group.id"
      },
      {
       "owner": null,
-      "line": 4842,
+      "line": 4857,
       "round": null,
       "value": "group.id"
      },
      {
       "owner": null,
-      "line": 4985,
+      "line": 5000,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 5176,
+      "line": 5191,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 5559,
+      "line": 5574,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 5824,
+      "line": 5839,
       "round": null,
       "value": "selectedGroupId"
      },
      {
       "owner": null,
-      "line": 6318,
+      "line": 6333,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 6547,
+      "line": 6562,
       "round": null,
       "value": "selection.selectedGroupId"
      },
      {
       "owner": null,
-      "line": 6725,
+      "line": 6740,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7216,
+      "line": 7231,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7395,
+      "line": 7410,
       "round": null,
       "value": "group?.id ?? null"
      },
      {
       "owner": null,
-      "line": 7462,
+      "line": 7477,
       "round": null,
       "value": "group?.id ?? null"
      },
      {
       "owner": null,
-      "line": 7499,
+      "line": 7514,
       "round": null,
       "value": "requestedGroup.id"
      },
      {
       "owner": null,
-      "line": 7545,
+      "line": 7560,
       "round": null,
       "value": "requestedGroup.id"
      },
      {
       "owner": null,
-      "line": 7564,
+      "line": 7579,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7608,
+      "line": 7623,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7798,
+      "line": 7813,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7864,
+      "line": 7879,
       "round": null,
       "value": "group.id"
      },
      {
       "owner": null,
-      "line": 8065,
+      "line": 8080,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 8116,
+      "line": 8131,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 8168,
+      "line": 8183,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 8310,
+      "line": 8325,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 8366,
+      "line": 8381,
       "round": null,
       "value": "null"
      }
@@ -3321,163 +3321,163 @@
     "sites": [
      {
       "owner": null,
-      "line": 4496,
+      "line": 4511,
       "round": null,
       "value": "objectId"
      },
      {
       "owner": null,
-      "line": 4540,
+      "line": 4555,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 4551,
+      "line": 4566,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 4596,
+      "line": 4611,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 4729,
+      "line": 4744,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 4840,
+      "line": 4855,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 4983,
+      "line": 4998,
       "round": null,
       "value": "camera.id"
      },
      {
       "owner": null,
-      "line": 5174,
+      "line": 5189,
       "round": null,
       "value": "shot.cameraId"
      },
      {
       "owner": null,
-      "line": 5557,
+      "line": 5572,
       "round": null,
       "value": "objectId"
      },
      {
       "owner": null,
-      "line": 5822,
+      "line": 5837,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 6316,
+      "line": 6331,
       "round": null,
       "value": "objectId"
      },
      {
       "owner": null,
-      "line": 6545,
+      "line": 6560,
       "round": null,
       "value": "selection.selectedObjectId"
      },
      {
       "owner": null,
-      "line": 6723,
+      "line": 6738,
       "round": null,
       "value": "camera.id"
      },
      {
       "owner": null,
-      "line": 7214,
+      "line": 7229,
       "round": null,
       "value": "cameraId"
      },
      {
       "owner": null,
-      "line": 7393,
+      "line": 7408,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 7460,
+      "line": 7475,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 7497,
+      "line": 7512,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 7543,
+      "line": 7558,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 7562,
+      "line": 7577,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 7606,
+      "line": 7621,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 7796,
+      "line": 7811,
       "round": null,
       "value": "objectId"
      },
      {
       "owner": null,
-      "line": 7862,
+      "line": 7877,
       "round": null,
       "value": "selectedObjectId"
      },
      {
       "owner": null,
-      "line": 8063,
+      "line": 8078,
       "round": null,
       "value": "camera.id"
      },
      {
       "owner": null,
-      "line": 8114,
+      "line": 8129,
       "round": null,
       "value": "object.id"
      },
      {
       "owner": null,
-      "line": 8166,
+      "line": 8181,
       "round": null,
       "value": "object.id"
      },
      {
       "owner": null,
-      "line": 8308,
+      "line": 8323,
       "round": null,
       "value": "draft.objectId"
      },
      {
       "owner": null,
-      "line": 8364,
+      "line": 8379,
       "round": null,
       "value": "object.id"
      }
@@ -3494,163 +3494,163 @@
     "sites": [
      {
       "owner": null,
-      "line": 4497,
+      "line": 4512,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 4541,
+      "line": 4556,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 4552,
+      "line": 4567,
       "round": null,
       "value": "[]"
      },
      {
       "owner": null,
-      "line": 4597,
+      "line": 4612,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 4730,
+      "line": 4745,
       "round": null,
       "value": "members.map((member) => member.id)"
      },
      {
       "owner": null,
-      "line": 4841,
+      "line": 4856,
       "round": null,
       "value": "[...group.characterIds]"
      },
      {
       "owner": null,
-      "line": 4984,
+      "line": 4999,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 5175,
+      "line": 5190,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 5558,
+      "line": 5573,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 5823,
+      "line": 5838,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 6317,
+      "line": 6332,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 6546,
+      "line": 6561,
       "round": null,
       "value": "selection.selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 6724,
+      "line": 6739,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 7215,
+      "line": 7230,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 7394,
+      "line": 7409,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 7461,
+      "line": 7476,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 7498,
+      "line": 7513,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 7544,
+      "line": 7559,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 7563,
+      "line": 7578,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 7607,
+      "line": 7622,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 7797,
+      "line": 7812,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 7863,
+      "line": 7878,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 8064,
+      "line": 8079,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 8115,
+      "line": 8130,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 8167,
+      "line": 8182,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 8309,
+      "line": 8324,
       "round": null,
       "value": "selectedObjectIds"
      },
      {
       "owner": null,
-      "line": 8365,
+      "line": 8380,
       "round": null,
       "value": "selectedObjectIds"
      }
@@ -3667,7 +3667,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 3597,
+      "line": 3612,
       "round": null,
       "value": "null"
      }
@@ -3684,37 +3684,37 @@
     "sites": [
      {
       "owner": null,
-      "line": 3257,
+      "line": 3272,
       "round": null,
       "value": "createDirectorSessionOutcome(result)"
      },
      {
       "owner": null,
-      "line": 3279,
+      "line": 3294,
       "round": null,
       "value": "createDirectorSessionOutcome(result)"
      },
      {
       "owner": null,
-      "line": 3298,
+      "line": 3313,
       "round": null,
       "value": "createDirectorSessionOutcome(result)"
      },
      {
       "owner": null,
-      "line": 3329,
+      "line": 3344,
       "round": null,
       "value": "createDirectorSessionOutcome(result)"
      },
      {
       "owner": null,
-      "line": 3342,
+      "line": 3357,
       "round": null,
       "value": "createDirectorSessionOutcome(result)"
      },
      {
       "owner": null,
-      "line": 3600,
+      "line": 3615,
       "round": null,
       "value": "null"
      }
@@ -3731,25 +3731,25 @@
     "sites": [
      {
       "owner": null,
-      "line": 4982,
+      "line": 4997,
       "round": null,
       "value": "shots"
      },
      {
       "owner": null,
-      "line": 5301,
+      "line": 5316,
       "round": null,
       "value": "shots"
      },
      {
       "owner": null,
-      "line": 6648,
+      "line": 6663,
       "round": null,
       "value": "shots"
      },
      {
       "owner": null,
-      "line": 7213,
+      "line": 7228,
       "round": null,
       "value": "shots"
      }
@@ -3766,7 +3766,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 5843,
+      "line": 5858,
       "round": null,
       "value": "!state.showThirds"
      }
@@ -3783,7 +3783,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 3594,
+      "line": 3609,
       "round": null,
       "value": "null"
      }
@@ -3800,7 +3800,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 5850,
+      "line": 5865,
       "round": null,
       "value": "[...state.telemetryLog, event].slice( -DIRECTOR_TELEMETRY_LOG_LIMIT, )"
      }
@@ -3817,283 +3817,283 @@
     "sites": [
      {
       "owner": null,
-      "line": 4505,
+      "line": 4520,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 4543,
+      "line": 4558,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 4554,
+      "line": 4569,
       "round": null,
       "value": "normalizeDirectorTimelineSelection( { ...state.timeline, selectedMotionPathId: null, selectedMotionPathAnchorId: null, selectedMotionPathHandle: null,…"
      },
      {
       "owner": null,
-      "line": 4599,
+      "line": 4614,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 4732,
+      "line": 4747,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 4843,
+      "line": 4858,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 4988,
+      "line": 5003,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 5131,
+      "line": 5146,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 5177,
+      "line": 5192,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 5302,
+      "line": 5317,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 5560,
+      "line": 5575,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 5662,
+      "line": 5677,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 5802,
+      "line": 5817,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 5825,
+      "line": 5840,
       "round": null,
       "value": "normalizeDirectorTimelineSelection( state.timeline, { selectedObjectId, selectedObjectIds, selectedGroupId, }, )"
      },
      {
       "owner": null,
-      "line": 6169,
+      "line": 6184,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 6319,
+      "line": 6334,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 6548,
+      "line": 6563,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 6726,
+      "line": 6741,
       "round": null,
       "value": "normalizeDirectorTimelineSelection( { ...current.timeline, isPlaying: false, }, { selectedObjectId: camera.id, selectedObjectIds, selectedGroupId: nul…"
      },
      {
       "owner": null,
-      "line": 7220,
+      "line": 7235,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 7396,
+      "line": 7411,
       "round": null,
       "value": "normalizeDirectorTimelineSelection( { ...state.timeline, selectedTrackId: track.id, selectedKeyframeId: null, selectedMotionPathId: track.motionPathId…"
      },
      {
       "owner": null,
-      "line": 7469,
+      "line": 7484,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 7500,
+      "line": 7515,
       "round": null,
       "value": "normalizeDirectorTimelineSelection( { ...state.timeline, selectedTrackId: existing.id, selectedKeyframeId: null, selectedMotionPathId: existing.motion…"
      },
      {
       "owner": null,
-      "line": 7546,
+      "line": 7561,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 7565,
+      "line": 7580,
       "round": null,
       "value": "normalizeDirectorTimelineSelection( { ...state.timeline, selectedTrackId: existing.id, selectedKeyframeId: null, selectedMotionPathId: existing.motion…"
      },
      {
       "owner": null,
-      "line": 7609,
+      "line": 7624,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 7799,
+      "line": 7814,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 7865,
+      "line": 7880,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 7896,
+      "line": 7911,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 7929,
+      "line": 7944,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8066,
+      "line": 8081,
       "round": null,
       "value": "selectedTimeline"
      },
      {
       "owner": null,
-      "line": 8117,
+      "line": 8132,
       "round": null,
       "value": "selectedTimeline"
      },
      {
       "owner": null,
-      "line": 8169,
+      "line": 8184,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8317,
+      "line": 8332,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8368,
+      "line": 8383,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8410,
+      "line": 8425,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8461,
+      "line": 8476,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8523,
+      "line": 8538,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8598,
+      "line": 8613,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8635,
+      "line": 8650,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8698,
+      "line": 8713,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8745,
+      "line": 8760,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8780,
+      "line": 8795,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8838,
+      "line": 8853,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8875,
+      "line": 8890,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8918,
+      "line": 8933,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8945,
+      "line": 8960,
       "round": null,
       "value": "timeline"
      },
      {
       "owner": null,
-      "line": 8978,
+      "line": 8993,
       "round": null,
       "value": "timeline"
      }
@@ -4110,7 +4110,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 7357,
+      "line": 7372,
       "round": null,
       "value": "!state.timeline.autoKeyframe"
      }
@@ -4127,13 +4127,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 7965,
+      "line": 7980,
       "round": null,
       "value": "\"跟随目标时不可使用预设运镜\""
      },
      {
       "owner": null,
-      "line": 7988,
+      "line": 8003,
       "round": null,
       "value": "\"当前时间轴没有可追加的时长\""
      }
@@ -4150,13 +4150,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 7964,
+      "line": 7979,
       "round": null,
       "value": "mode"
      },
      {
       "owner": null,
-      "line": 7987,
+      "line": 8002,
       "round": null,
       "value": "mode"
      }
@@ -4173,13 +4173,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 7963,
+      "line": 7978,
       "round": null,
       "value": "preset"
      },
      {
       "owner": null,
-      "line": 7986,
+      "line": 8001,
       "round": null,
       "value": "preset"
      }
@@ -4196,13 +4196,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 7962,
+      "line": 7977,
       "round": null,
       "value": "track.id"
      },
      {
       "owner": null,
-      "line": 7985,
+      "line": 8000,
       "round": null,
       "value": "track.id"
      }
@@ -4219,37 +4219,37 @@
     "sites": [
      {
       "owner": null,
-      "line": 6995,
+      "line": 7010,
       "round": null,
       "value": "currentTime"
      },
      {
       "owner": null,
-      "line": 7252,
+      "line": 7267,
       "round": null,
       "value": "currentTime"
      },
      {
       "owner": null,
-      "line": 7292,
+      "line": 7307,
       "round": null,
       "value": "currentTime"
      },
      {
       "owner": null,
-      "line": 7316,
+      "line": 7331,
       "round": null,
       "value": "currentTime"
      },
      {
       "owner": null,
-      "line": 7342,
+      "line": 7357,
       "round": null,
       "value": "currentTime"
      },
      {
       "owner": null,
-      "line": 7745,
+      "line": 7760,
       "round": null,
       "value": "nextTime"
      }
@@ -4266,7 +4266,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 7291,
+      "line": 7306,
       "round": null,
       "value": "duration"
      }
@@ -4283,7 +4283,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 7873,
+      "line": 7888,
       "round": null,
       "value": "mode"
      }
@@ -4300,79 +4300,79 @@
     "sites": [
      {
       "owner": null,
-      "line": 3604,
+      "line": 3619,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 6955,
+      "line": 6970,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 6996,
+      "line": 7011,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 7253,
+      "line": 7268,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 7300,
+      "line": 7315,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 7317,
+      "line": 7332,
       "round": null,
       "value": "true"
      },
      {
       "owner": null,
-      "line": 7343,
+      "line": 7358,
       "round": null,
       "value": "reachedEnd ? state.timeline.loop : true"
      },
      {
       "owner": null,
-      "line": 7659,
+      "line": 7674,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 7683,
+      "line": 7698,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 7716,
+      "line": 7731,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 7747,
+      "line": 7762,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 7874,
+      "line": 7889,
       "round": null,
       "value": "false"
      },
      {
       "owner": null,
-      "line": 8328,
+      "line": 8343,
       "round": null,
       "value": "false"
      }
@@ -4389,7 +4389,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 7350,
+      "line": 7365,
       "round": null,
       "value": "!state.timeline.loop"
      }
@@ -4406,19 +4406,19 @@
     "sites": [
      {
       "owner": null,
-      "line": 3605,
+      "line": 3620,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 8256,
+      "line": 8271,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 8325,
+      "line": 8340,
       "round": null,
       "value": "null"
      }
@@ -4435,13 +4435,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 8204,
+      "line": 8219,
       "round": null,
       "value": "[...draft.anchors, anchor]"
      },
      {
       "owner": null,
-      "line": 8241,
+      "line": 8256,
       "round": null,
       "value": "anchors"
      }
@@ -4458,7 +4458,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 8792,
+      "line": 8807,
       "round": null,
       "value": "state.timeline.motionPaths.map((path) => path.id === pathId ? { ...path, name } : path, )"
      }
@@ -4475,25 +4475,25 @@
     "sites": [
      {
       "owner": null,
-      "line": 7658,
+      "line": 7673,
       "round": null,
       "value": "result.keyframeId"
      },
      {
       "owner": null,
-      "line": 7682,
+      "line": 7697,
       "round": null,
       "value": "result.keyframeId"
      },
      {
       "owner": null,
-      "line": 7715,
+      "line": 7730,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 7746,
+      "line": 7761,
       "round": null,
       "value": "null"
      }
@@ -4510,13 +4510,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 8257,
+      "line": 8272,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 8326,
+      "line": 8341,
       "round": null,
       "value": "null"
      }
@@ -4533,13 +4533,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 8258,
+      "line": 8273,
       "round": null,
       "value": "null"
      },
      {
       "owner": null,
-      "line": 8327,
+      "line": 8342,
       "round": null,
       "value": "null"
      }
@@ -4556,13 +4556,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 7657,
+      "line": 7672,
       "round": null,
       "value": "track.id"
      },
      {
       "owner": null,
-      "line": 7681,
+      "line": 7696,
       "round": null,
       "value": "track.id"
      }
@@ -4579,13 +4579,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 7654,
+      "line": 7669,
       "round": null,
       "value": "state.timeline.tracks.map((item) => item.id === track.id ? result.track : item, )"
      },
      {
       "owner": null,
-      "line": 7678,
+      "line": 7693,
       "round": null,
       "value": "state.timeline.tracks.map((item) => item.id === track.id ? result.track : item, )"
      }
@@ -4602,7 +4602,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 7367,
+      "line": 7382,
       "round": null,
       "value": "Math.min(Math.max(zoom, 0), 100)"
      }
@@ -4619,7 +4619,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 5867,
+      "line": 5882,
       "round": "round",
       "value": "Math.min( DIRECTOR_TIMELINE_HEIGHT_MAX, Math.max(DIRECTOR_TIMELINE_HEIGHT_MIN, Math.round(height)), )"
      }
@@ -4636,13 +4636,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 5863,
+      "line": 5878,
       "round": null,
       "value": "open"
      },
      {
       "owner": null,
-      "line": 5864,
+      "line": 5879,
       "round": null,
       "value": "!state.timelinePanelOpen"
      }
@@ -4659,7 +4659,7 @@
     "sites": [
      {
       "owner": null,
-      "line": 5836,
+      "line": 5851,
       "round": null,
       "value": "mode"
      }
@@ -4676,31 +4676,31 @@
     "sites": [
      {
       "owner": null,
-      "line": 5821,
+      "line": 5836,
       "round": null,
       "value": "mode"
      },
      {
       "owner": null,
-      "line": 6722,
+      "line": 6737,
       "round": null,
       "value": "\"camera\""
      },
      {
       "owner": null,
-      "line": 7219,
+      "line": 7234,
       "round": null,
       "value": "\"camera\""
      },
      {
       "owner": null,
-      "line": 8165,
+      "line": 8180,
       "round": null,
       "value": "\"director\""
      },
      {
       "owner": null,
-      "line": 8367,
+      "line": 8382,
       "round": null,
       "value": "\"director\""
      }
@@ -4717,13 +4717,13 @@
     "sites": [
      {
       "owner": null,
-      "line": 5857,
+      "line": 5872,
       "round": null,
       "value": "!state.viewportPanelsCollapsed"
      },
      {
       "owner": null,
-      "line": 5861,
+      "line": 5876,
       "round": null,
       "value": "collapsed"
      }

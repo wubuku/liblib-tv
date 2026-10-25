@@ -6,8 +6,8 @@
  "hydration": {
   "found": true,
   "keys": [
-   "__reactFiber$27zd4mnydwk",
-   "__reactProps$27zd4mnydwk"
+   "__reactFiber$tdox5osqxx",
+   "__reactProps$tdox5osqxx"
   ],
   "hasOnClick": true
  },
@@ -28,7 +28,7 @@
   },
   "开台后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952618146-1",
+   "projectId": "director-project-1792956509016-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": null,
@@ -45,7 +45,7 @@
   },
   "改名后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952618146-1",
+   "projectId": "director-project-1792956509016-1",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -81,7 +81,7 @@
   },
   "重开后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952618146-1",
+   "projectId": "director-project-1792956509016-1",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -100,7 +100,7 @@
   },
   "重开后撤销": {
    "deskOpen": true,
-   "projectId": "director-project-1792952618146-1",
+   "projectId": "director-project-1792956509016-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": "UNDO/COMMITTED",
@@ -117,14 +117,14 @@
   }
  },
  "E 后门开·同节点真实按钮重开": {
-  "node": "script-execution-1792952628084-d688bh",
+  "node": "script-execution-1792956518960-5bl406",
   "节点普查": {
    "buttons": [
     {
      "nodeId": "b-bTLLuU4w5q"
     },
     {
-     "nodeId": "script-execution-1792952628084-d688bh"
+     "nodeId": "script-execution-1792956518960-5bl406"
     }
    ],
    "scriptExecutionNodes": [
@@ -133,14 +133,14 @@
      "title": "第一集：咖啡馆对峙"
     },
     {
-     "id": "script-execution-1792952628084-d688bh",
+     "id": "script-execution-1792956518960-5bl406",
      "title": "Batch 828"
     }
    ]
   },
   "开台后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952630263-1",
+   "projectId": "director-project-1792956521147-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": null,
@@ -153,11 +153,11 @@
     "咖啡馆背景",
     "机位1"
    ],
-   "nodeId": "script-execution-1792952628084-d688bh"
+   "nodeId": "script-execution-1792956518960-5bl406"
   },
   "改名后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952630263-1",
+   "projectId": "director-project-1792956521147-1",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -172,7 +172,7 @@
     "咖啡馆背景",
     "Batch 828 改名"
    ],
-   "nodeId": "script-execution-1792952628084-d688bh"
+   "nodeId": "script-execution-1792956518960-5bl406"
   },
   "关台后": {
    "deskOpen": false,
@@ -193,7 +193,7 @@
   },
   "重开后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952630263-1",
+   "projectId": "director-project-1792956521147-1",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -208,14 +208,14 @@
     "咖啡馆背景",
     "Batch 828 改名"
    ],
-   "nodeId": "script-execution-1792952628084-d688bh"
+   "nodeId": "script-execution-1792956518960-5bl406"
   }
  },
  "G 手势臂·同节点": {
   "node": "b-bTLLuU4w5q",
   "开台后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952639175-1",
+   "projectId": "director-project-1792956530044-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": null,
@@ -232,7 +232,7 @@
   },
   "手势后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952639175-1",
+   "projectId": "director-project-1792956530044-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": "UPDATE_CAMERA/COMMITTED",
@@ -266,7 +266,7 @@
   },
   "重开后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952639175-1",
+   "projectId": "director-project-1792956530044-1",
    "pastLen": 1,
    "pastKinds": [
     "camera-fov"
@@ -288,7 +288,7 @@
   "node": "b-bTLLuU4w5q",
   "开台后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952648890-1",
+   "projectId": "director-project-1792956539741-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": null,
@@ -305,7 +305,7 @@
   },
   "手势后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952648890-1",
+   "projectId": "director-project-1792956539741-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": "UPDATE_CAMERA/COMMITTED",
@@ -322,7 +322,7 @@
   },
   "点画布后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952648890-1",
+   "projectId": "director-project-1792956539741-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": "UPDATE_CAMERA/COMMITTED",
@@ -340,7 +340,7 @@
   "点画布后的blur日志": [],
   "失焦后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952648890-1",
+   "projectId": "director-project-1792956539741-1",
    "pastLen": 1,
    "pastKinds": [
     "camera-fov"
@@ -395,7 +395,7 @@
   },
   "重开后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952648890-1",
+   "projectId": "director-project-1792956539741-1",
    "pastLen": 1,
    "pastKinds": [
     "camera-fov"
@@ -417,7 +417,7 @@
   "node": "b-bTLLuU4w5q",
   "改名后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952660608-1",
+   "projectId": "director-project-1792956551472-1",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -453,7 +453,7 @@
   },
   "刷新后重开": {
    "deskOpen": true,
-   "projectId": "director-project-1792952660608-1",
+   "projectId": "director-project-1792956551472-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": null,
@@ -470,11 +470,11 @@
   }
  },
  "C 混搭（后门→别的节点）": {
-  "node": "script-execution-1792952673036-1ez5b8",
+  "node": "script-execution-1792956563840-mqs1ym",
   "另一个节点": "b-bTLLuU4w5q",
   "开台后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952675213-1",
+   "projectId": "director-project-1792956566020-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": null,
@@ -487,11 +487,11 @@
     "咖啡馆背景",
     "机位1"
    ],
-   "nodeId": "script-execution-1792952673036-1ez5b8"
+   "nodeId": "script-execution-1792956563840-mqs1ym"
   },
   "改名后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952675213-1",
+   "projectId": "director-project-1792956566020-1",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -506,11 +506,11 @@
     "咖啡馆背景",
     "Batch 828 改名"
    ],
-   "nodeId": "script-execution-1792952673036-1ez5b8"
+   "nodeId": "script-execution-1792956563840-mqs1ym"
   },
   "重开后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952680269-3",
+   "projectId": "director-project-1792956571129-3",
    "pastLen": 0,
    "pastKinds": [],
    "last": null,
@@ -527,11 +527,11 @@
   }
  },
  "D 反混搭（真实→别的节点）": {
-  "node": "script-execution-1792952683779-wugpag",
+  "node": "script-execution-1792956574607-izqc52",
   "另一个节点": "b-bTLLuU4w5q",
   "开台后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952685988-1",
+   "projectId": "director-project-1792956576815-1",
    "pastLen": 0,
    "pastKinds": [],
    "last": null,
@@ -548,7 +548,7 @@
   },
   "改名后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952685988-1",
+   "projectId": "director-project-1792956576815-1",
    "pastLen": 1,
    "pastKinds": [
     "UPDATE_OBJECT"
@@ -567,7 +567,7 @@
   },
   "重开后": {
    "deskOpen": true,
-   "projectId": "director-project-1792952691048-3",
+   "projectId": "director-project-1792956581872-3",
    "pastLen": 0,
    "pastKinds": [],
    "last": null,
@@ -580,7 +580,7 @@
     "咖啡馆背景",
     "机位1"
    ],
-   "nodeId": "script-execution-1792952683779-wugpag"
+   "nodeId": "script-execution-1792956574607-izqc52"
   }
  }
 }

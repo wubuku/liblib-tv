@@ -67,22 +67,27 @@
       "submitLibTVEditorSessionCommit": []
     },
     "libtv_entries": {
-      "addNodeAtPosition": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          714
-        ]
-      ],
-      "completeShotBreakdown": [
-        [
-          "src/components/nodes/ShotBreakdownNode.tsx",
-          84
-        ]
-      ],
-      "removeEdge": [
+      "nudgeSelectedNodes": [
         [
           "src/app/page.tsx",
-          1503
+          1429
+        ]
+      ],
+      "submitLibTVEditorSessionCommit": [],
+      "duplicateSelectedNodes": [
+        [
+          "src/app/page.tsx",
+          1409
+        ],
+        [
+          "src/app/page.tsx",
+          1680
+        ]
+      ],
+      "createDirectorAnimationExport": [
+        [
+          "src/components/director/DirectorDesk.tsx",
+          822
         ]
       ],
       "addEdge": [
@@ -97,52 +102,6 @@
         [
           "src/components/nodes/VideoNode.tsx",
           721
-        ]
-      ],
-      "attachAssetReferences": [
-        [
-          "src/components/AddNodePanel.tsx",
-          76
-        ]
-      ],
-      "createDirectorCapture": [
-        [
-          "src/components/director/DirectorDesk.tsx",
-          673
-        ],
-        [
-          "src/components/director/DirectorDesk.tsx",
-          690
-        ]
-      ],
-      "createFirstFrameReference": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          677
-        ]
-      ],
-      "groupSelectedNodes": [
-        [
-          "src/app/page.tsx",
-          1437
-        ]
-      ],
-      "createSubtitleErase": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          227
-        ]
-      ],
-      "createFirstLastFrameReference": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          679
-        ]
-      ],
-      "createVideoContinuation": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          219
         ]
       ],
       "setNodes": [
@@ -163,14 +122,21 @@
           1600
         ]
       ],
-      "duplicateSelectedNodes": [
+      "duplicateNode": [],
+      "createDirectorCapture": [
         [
-          "src/app/page.tsx",
-          1409
+          "src/components/director/DirectorDesk.tsx",
+          673
         ],
         [
-          "src/app/page.tsx",
-          1680
+          "src/components/director/DirectorDesk.tsx",
+          690
+        ]
+      ],
+      "destroyFirstFrameReference": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          725
         ]
       ],
       "createLongVideoProcess": [
@@ -179,107 +145,34 @@
           730
         ]
       ],
-      "ungroupSelectedNodes": [
-        [
-          "src/app/page.tsx",
-          1436
-        ]
-      ],
-      "addResourceCohort": [
-        [
-          "src/components/AddNodePanel.tsx",
-          140
-        ]
-      ],
-      "duplicateNode": [],
-      "destroyFirstFrameReference": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          725
-        ]
-      ],
-      "createDepthMotionCapture": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          296
-        ]
-      ],
-      "createStoryScriptPair": [
-        [
-          "src/components/CanvasEmptyState.tsx",
-          49
-        ]
-      ],
-      "createImageHdPreset": [
-        [
-          "src/components/nodes/ImageNode.tsx",
-          294
-        ]
-      ],
-      "createSmartMatting": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          372
-        ]
-      ],
-      "clearVideoContinuation": [
-        [
-          "src/components/nodes/VideoNode.tsx",
-          733
-        ]
-      ],
-      "removeSelectedNodes": [
-        [
-          "src/app/page.tsx",
-          1380
-        ],
-        [
-          "src/app/page.tsx",
-          1684
-        ]
-      ],
       "createVideoFrameCapture": [
         [
           "src/components/nodes/VideoNode.tsx",
           304
         ]
       ],
-      "submitLibTVEditorSessionCommit": [],
-      "setEdges": [],
+      "completeShotBreakdown": [
+        [
+          "src/components/nodes/ShotBreakdownNode.tsx",
+          84
+        ]
+      ],
+      "createFirstLastFrameReference": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          679
+        ]
+      ],
       "createPictureEdit": [
         [
           "src/components/nodes/VideoNode.tsx",
           396
         ]
       ],
-      "addDerivedNode": [
-        [
-          "src/components/nodes/ImageNode.tsx",
-          142
-        ],
-        [
-          "src/components/nodes/ImageNode.tsx",
-          162
-        ],
-        [
-          "src/components/nodes/ImageNode.tsx",
-          187
-        ],
-        [
-          "src/components/nodes/VideoNode.tsx",
-          201
-        ]
-      ],
       "createAudioSplit": [
         [
           "src/components/nodes/VideoNode.tsx",
           257
-        ]
-      ],
-      "createDirectorAnimationExport": [
-        [
-          "src/components/director/DirectorDesk.tsx",
-          822
         ]
       ],
       "updateNodeData": [
@@ -308,11 +201,118 @@
           125
         ]
       ],
-      "removeNode": [],
-      "nudgeSelectedNodes": [
+      "createFirstFrameReference": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          677
+        ]
+      ],
+      "createStoryScriptPair": [
+        [
+          "src/components/CanvasEmptyState.tsx",
+          49
+        ]
+      ],
+      "ungroupSelectedNodes": [
         [
           "src/app/page.tsx",
-          1429
+          1436
+        ]
+      ],
+      "removeSelectedNodes": [
+        [
+          "src/app/page.tsx",
+          1380
+        ],
+        [
+          "src/app/page.tsx",
+          1684
+        ]
+      ],
+      "addDerivedNode": [
+        [
+          "src/components/nodes/ImageNode.tsx",
+          142
+        ],
+        [
+          "src/components/nodes/ImageNode.tsx",
+          162
+        ],
+        [
+          "src/components/nodes/ImageNode.tsx",
+          187
+        ],
+        [
+          "src/components/nodes/VideoNode.tsx",
+          201
+        ]
+      ],
+      "createSmartMatting": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          372
+        ]
+      ],
+      "addResourceCohort": [
+        [
+          "src/components/AddNodePanel.tsx",
+          140
+        ]
+      ],
+      "createImageHdPreset": [
+        [
+          "src/components/nodes/ImageNode.tsx",
+          294
+        ]
+      ],
+      "createVideoContinuation": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          219
+        ]
+      ],
+      "setEdges": [],
+      "addNodeAtPosition": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          714
+        ]
+      ],
+      "attachAssetReferences": [
+        [
+          "src/components/AddNodePanel.tsx",
+          76
+        ]
+      ],
+      "createSubtitleErase": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          227
+        ]
+      ],
+      "removeNode": [],
+      "removeEdge": [
+        [
+          "src/app/page.tsx",
+          1503
+        ]
+      ],
+      "clearVideoContinuation": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          733
+        ]
+      ],
+      "groupSelectedNodes": [
+        [
+          "src/app/page.tsx",
+          1437
+        ]
+      ],
+      "createDepthMotionCapture": [
+        [
+          "src/components/nodes/VideoNode.tsx",
+          296
         ]
       ]
     },

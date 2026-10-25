@@ -13,9 +13,9 @@
         "ident": {
           "workspace": true,
           "canvasId": "canvas-2",
-          "projectId": "director-project-1792946841313-1",
+          "projectId": "director-project-1792954533997-1",
           "sourceNodeId": "b-bTLLuU4w5q",
-          "sessionId": "director-session-1792946841314-2",
+          "sessionId": "director-session-1792954533998-2",
           "view": "director",
           "focusScope": "workspace",
           "focusState": "workspace"
@@ -730,7 +730,7 @@
     {
       "label": "C2 打开导演台：入口在 script-execution 节点上；六个标识符齐（workspace/canvasId/sourceNodeId/sessionId/view/focusScope）；**store 零写入**",
       "pass": true,
-      "detail": "{\"entry\": {\"onNode\": true, \"nodeId\": \"b-bTLLuU4w5q\"}, \"opened\": true, \"ident\": {\"workspace\": true, \"canvasId\": \"canvas-2\", \"projectId\": \"director-project-1792946841313-1\", \"sourceNodeId\": \"b-bTLLuU4w5q\", \"sessionId\": \"director-session-1792946841314-2\", \"view\": \"director\", \"focusScope\": \"workspace\", \"focusState\": \"workspace\"}, \"regions\": {\"workspace\": true, \"viewport\": true, \"webgl\": true, \"objectTree\": true, \"timeline\": true, \"shotBar\": true, \"bottomBar\": true, \"closeBtn\": true, \"shotOptions\": 1, \"railEntries\": 7}, \"past\": [0, 0], \"nodes\": [10, 10], \"edges\": [11, 11]}"
+      "detail": "{\"entry\": {\"onNode\": true, \"nodeId\": \"b-bTLLuU4w5q\"}, \"opened\": true, \"ident\": {\"workspace\": true, \"canvasId\": \"canvas-2\", \"projectId\": \"director-project-1792954533997-1\", \"sourceNodeId\": \"b-bTLLuU4w5q\", \"sessionId\": \"director-session-1792954533998-2\", \"view\": \"director\", \"focusScope\": \"workspace\", \"focusState\": \"workspace\"}, \"regions\": {\"workspace\": true, \"viewport\": true, \"webgl\": true, \"objectTree\": true, \"timeline\": true, \"shotBar\": true, \"bottomBar\": true, \"closeBtn\": true, \"shotOptions\": 1, \"railEntries\": 7}, \"past\": [0, 0], \"nodes\": [10, 10], \"edges\": [11, 11]}"
     },
     {
       "label": "C3 差集：整页 200 → 走完 7 枚 rail 累计 250；字面量并集 446、补 dataset 后有效并集 447；运行时 250 = 导演台 224 + 非并集 26（画布/应用层残留 24 + 无 data-director- 前缀 2）；有效并集 447 中没出现 223。三笔都对平",

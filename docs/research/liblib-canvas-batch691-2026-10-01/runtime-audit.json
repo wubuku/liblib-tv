@@ -805,7 +805,7 @@
     "positionErrorPx": 0.5961783439490489
    }
   ],
-  "censusText": "几何 style 属性 67 条 · 派生表达式 13 条\n  像素族 5 条\n    DirectorTimeline.tsx:1937 width = Math.max( 640, timeline.duration * (3.36 + 4.978 * timeline.zoom), )   ⟵ 非整数常数 3.36,4.978\n    DirectorTimelineGuide.tsx:293 marginLeft = -geometry.ring.rippleSize / 2\n    DirectorTimelineGuide.tsx:294 marginTop = -geometry.ring.rippleSize / 2\n    DirectorViewport.tsx:2554 left = frameLeft + frameWidth - 40\n    DirectorViewport.tsx:2555 top = frameTop + 8\n  百分比族 8 条\n    DirectorExportPanel.tsx:106 width = `${Math.round(progress * 100)}%`  [显式取整]\n    DirectorInspector.tsx:1620 width = `${ratio * 100}%`\n    DirectorInspector.tsx:1626 left = `${ratio * 100}%`\n    DirectorPhoneVcamPanel.tsx:552 left = `${50 + (phoneVcam.pose.yaw / 90) * 100}%`\n    DirectorPhoneVcamPanel.tsx:553 top = `${50 - (phoneVcam.pose.pitch / 60) * 100}%`\n    DirectorTimeline.tsx:1956 left = `${(tick / timeline.duration) * 100}%`\n    DirectorTimeline.tsx:1969 left = `${(tick / timeline.duration) * 100}%`\n    DirectorTimeline.tsx:2092 left = `clamp(9px, ${ (keyframe.time / timeline.duration) * 100 }%, calc(100% - 9px))`",
+  "censusText": "几何 style 属性 67 条 · 派生表达式 13 条\n  像素族 5 条\n    DirectorTimeline.tsx:1976 width = Math.max( 640, timeline.duration * (3.36 + 4.978 * timeline.zoom), )   ⟵ 非整数常数 3.36,4.978\n    DirectorTimelineGuide.tsx:293 marginLeft = -geometry.ring.rippleSize / 2\n    DirectorTimelineGuide.tsx:294 marginTop = -geometry.ring.rippleSize / 2\n    DirectorViewport.tsx:2554 left = frameLeft + frameWidth - 40\n    DirectorViewport.tsx:2555 top = frameTop + 8\n  百分比族 8 条\n    DirectorExportPanel.tsx:106 width = `${Math.round(progress * 100)}%`  [显式取整]\n    DirectorInspector.tsx:1621 width = `${ratio * 100}%`\n    DirectorInspector.tsx:1627 left = `${ratio * 100}%`\n    DirectorPhoneVcamPanel.tsx:552 left = `${50 + (phoneVcam.pose.yaw / 90) * 100}%`\n    DirectorPhoneVcamPanel.tsx:553 top = `${50 - (phoneVcam.pose.pitch / 60) * 100}%`\n    DirectorTimeline.tsx:1995 left = `${(tick / timeline.duration) * 100}%`\n    DirectorTimeline.tsx:2008 left = `${(tick / timeline.duration) * 100}%`\n    DirectorTimeline.tsx:2131 left = `clamp(9px, ${ (keyframe.time / timeline.duration) * 100 }%, calc(100% - 9px))`",
   "padGeometry": {
    "borderBoxW": 314,
    "borderBoxH": 96,
@@ -829,20 +829,20 @@
     "censusOutput": [
      "几何 style 属性 67 条 · 派生表达式 13 条",
      "  像素族 5 条",
-     "    DirectorTimeline.tsx:1937 width = Math.max( 640, timeline.duration * (3.36 + 4.978 * timeline.zoom), )   ⟵ 非整数常数 3.36,4.978",
+     "    DirectorTimeline.tsx:1976 width = Math.max( 640, timeline.duration * (3.36 + 4.978 * timeline.zoom), )   ⟵ 非整数常数 3.36,4.978",
      "    DirectorTimelineGuide.tsx:293 marginLeft = -geometry.ring.rippleSize / 2",
      "    DirectorTimelineGuide.tsx:294 marginTop = -geometry.ring.rippleSize / 2",
      "    DirectorViewport.tsx:2554 left = frameLeft + frameWidth - 40",
      "    DirectorViewport.tsx:2555 top = frameTop + 8",
      "  百分比族 8 条",
      "    DirectorExportPanel.tsx:106 width = `${Math.round(progress * 100)}%`  [显式取整]",
-     "    DirectorInspector.tsx:1620 width = `${ratio * 100}%`",
-     "    DirectorInspector.tsx:1626 left = `${ratio * 100}%`",
+     "    DirectorInspector.tsx:1621 width = `${ratio * 100}%`",
+     "    DirectorInspector.tsx:1627 left = `${ratio * 100}%`",
      "    DirectorPhoneVcamPanel.tsx:552 left = `${50 + (phoneVcam.pose.yaw / 90) * 100}%`",
      "    DirectorPhoneVcamPanel.tsx:553 top = `${50 - (phoneVcam.pose.pitch / 60) * 100}%`",
-     "    DirectorTimeline.tsx:1956 left = `${(tick / timeline.duration) * 100}%`",
-     "    DirectorTimeline.tsx:1969 left = `${(tick / timeline.duration) * 100}%`",
-     "    DirectorTimeline.tsx:2092 left = `clamp(9px, ${ (keyframe.time / timeline.duration) * 100 }%, calc(100% - 9px))`"
+     "    DirectorTimeline.tsx:1995 left = `${(tick / timeline.duration) * 100}%`",
+     "    DirectorTimeline.tsx:2008 left = `${(tick / timeline.duration) * 100}%`",
+     "    DirectorTimeline.tsx:2131 left = `clamp(9px, ${ (keyframe.time / timeline.duration) * 100 }%, calc(100% - 9px))`"
     ],
     "whyTheInstrumentFollowsIdentifiers": "690's timelineWidth is an identifier at the JSX site; the arithmetic lives in a const above it. Scanning only JSX attributes would have reported ZERO pixel-family expressions, which is the same mistake in reverse -- 688's lesson that reading half the code gives half the answer.",
     "theInstrumentWasWrongFirst": "the first version tested /[+*\\/]/.test(t) && !/^[\"'`]/, which excluded every template literal -- i.e. the whole percent family -- and reported 1 derived expression. I checked that result against 690's known answer and it 'matched', which is exactly how a census blind spot gets mistaken for a finding. Stripping the backticks gives 9.",

@@ -168,7 +168,9 @@
       "has_failure_signal": false,
       "failure_signals": [],
       "n_criteria_sets": 1,
-      "green_holders": [],
+      "green_holders": [
+        "P"
+      ],
       "verdict": "ok"
     },
     {

@@ -178,20 +178,20 @@
   "chipClicked": true,
   "nodesAfterChip": [
    {
-    "id": "text-1792950018454-tu216k",
+    "id": "text-1792957431719-wwidi1",
     "type": "text"
    },
    {
-    "id": "script-v2-1792950018455-nov71n",
+    "id": "script-v2-1792957431719-55ywzo",
     "type": "script-v2"
    }
   ],
   "edgesAfterChip": [],
-  "v2Id": "script-v2-1792950018455-nov71n",
-  "textId": "text-1792950018454-tu216k",
+  "v2Id": "script-v2-1792957431719-55ywzo",
+  "textId": "text-1792957431719-wwidi1",
   "v2Handles": [
    {
-    "id": "script-v2-1792950018455-nov71n",
+    "id": "script-v2-1792957431719-55ywzo",
     "nHandles": 2,
     "handles": [
      {
@@ -207,14 +207,14 @@
   ],
   "dragFromV2": {
    "plan": [
-    "script-v2-1792950018455-nov71n",
+    "script-v2-1792957431719-55ywzo",
     "right",
-    "text-1792950018454-tu216k",
+    "text-1792957431719-wwidi1",
     "left"
    ],
    "atTarget": [
     {
-     "nodeId": "text-1792950018454-tu216k",
+     "nodeId": "text-1792957431719-wwidi1",
      "id": "target",
      "extra": [
       "connectingto"
@@ -222,7 +222,7 @@
      "bg": "rgb(9, 202, 245)"
     },
     {
-     "nodeId": "script-v2-1792950018455-nov71n",
+     "nodeId": "script-v2-1792957431719-55ywzo",
      "id": null,
      "extra": [
       "connectingfrom"
@@ -234,9 +234,9 @@
   },
   "dragTextToV2": {
    "plan": [
-    "text-1792950018454-tu216k",
+    "text-1792957431719-wwidi1",
     "right",
-    "script-v2-1792950018455-nov71n",
+    "script-v2-1792957431719-55ywzo",
     "left"
    ],
    "atTarget": [],

@@ -693,91 +693,91 @@
   {
    "batch": "41",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 t._impl._errors.TimeoutError: Page.goto: Timeout 30000ms exceeded. ／ Call log: ／ - navigating to \"http://localhost:4317/?batch41=1\", waiting until \"networkidle\""
+   "rc": 0,
+   "verdict": "rc=0 h\": 12.574996948242188, \"roll\": -9.04356743879379}, \"trackKeyframes\": null, \"lastKeyframeT\": null} ／ Batch 41 director phone virtual-camera verification passed."
   },
   {
    "batch": "44",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 laywright._impl._errors.TimeoutError: Locator.wait_for: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-workspace]\") to be visible"
+   "rc": 0,
+   "verdict": "rc=0 Batch 44 director preset camera motion verification passed."
   },
   {
    "batch": "599",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 30000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 Batch 599 verification: 10/10 checks passed ／ wrote docs/research/liblib-canvas-batch599-2026-10-01/runtime-audit.json"
   },
   {
    "batch": "630",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "verdict": "rc=1 16 checks, 2 failures ／ FAILED: no-cell-has-an-unexplained-covered-control ／ FAILED: every-squeeze-coverer-is-the-band-or-a-zero-height-replacement"
   },
   {
    "batch": "641",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0  unfixed, awaiting a source reading; this is the ONLY genuine cover the 14-width sweep found, once the round corners are accounted for'} ／ 13 checks, 0 failures"
   },
   {
    "batch": "662",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 , 360, 420], 'priorInstrument': \"633's own census, `buriedColumns`\", 'comparison': {  [two instruments, two batches, one page, same members] ／ 8/8 checks passed"
   },
   {
    "batch": "685",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "verdict": "rc=1 -of-real-ramps ／ FAILED: the-second-breakpoint-is-a-discontinuity-at-620-not-a-band ／ FAILED: two-nominally-identical-icon-buttons-behave-completely-differently"
   },
   {
    "batch": "686",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "verdict": "rc=1 -subpixel-ramp ／ FAILED: the-top-edge-is-pinned-at-264-then-switches-to-bottom-anchored-crossing-at-356 ／ FAILED: 683s-only-one-key-holds-in-unrounded-units-too"
   },
   {
    "batch": "687",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0  'dragStartsFrom': {'engageNoMin200': 112, 'engageHitsMin150': 88  [a value that cannot survive a resize is not a preference, it is a cache] ／ 7/7 checks passed"
   },
   {
    "batch": "688",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 ollapsed': 'false'}, {'step': 'dragUpFar', 'tlAttr': 420, 'collapsed': 'false'}, {'s  [being a dependency is not the same as being a writer] ／ 5/5 checks passed"
   },
   {
    "batch": "689",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 essedAtY': 539, 'dragDistance': 139, 'heightAtRelease': 321}, {'  [an interaction whose result needs two inputs is not predictable from one] ／ 4/4 checks passed"
   },
   {
    "batch": "690",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "verdict": "rc=1 'ratioPredict  [an unverified inference with a closed-form price tag] ／ 6/7 checks passed ／ FAILED: census-one-leaf-path-in-74-is-integer-valued-by-construction"
   },
   {
    "batch": "700",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 one, 'anyFeedback': False}  [the playhead opens at 0, a position that already carries a keyframe, so the very first click a user makes does] ／ 4/4 checks passed"
   },
   {
    "batch": "701",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 g ledger is impressive and tells you nothing about its coverage; coverage can only be measured by finding ] ／ 4/4 checks passed ／ 注意：判据 1 预期为假 —— 预测被推翻才是本批的交付物。"
   },
   {
    "batch": "721",
    "ext": "py",
-   "rc": 1,
+   "rc": 0,
    "verdict": "通过"
   },
   {
@@ -802,7 +802,7 @@
    "batch": "76",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 30000ms exceeded."
+   "verdict": "rc=1 AssertionError: [ ／ \"delete-active-owner-a:console:error:TransformControls: The attached 3D object must be a part of the scene graph.\" ／ ]"
   },
   {
    "batch": "763",
@@ -909,8 +909,8 @@
   {
    "batch": "828",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 ✔ N10 把刷新臂的名字里去掉那次改名 ⟹ S8 翻红 → 实际翻红 S8 ／ ✔ N11 在持久化源码副本里去掉 TOMBSTONED ⟹ S10 翻红 → 实际翻红 S10 ／ ✔ N12 把失焦臂的结果改成 GESTURE_CANCEL ⟹ S11 翻红 → 实际翻红 S11"
   },
   {
    "batch": "833",
@@ -921,8 +921,8 @@
   {
    "batch": "837",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 {parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded. ／ 探针失败 clone837.py exit=1"
+   "rc": 0,
+   "verdict": "通过"
   },
   {
    "batch": "855",
@@ -933,14 +933,14 @@
   {
    "batch": "93",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 30000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 rue,\"mobileInspectorDrawer\":true,\"timeline\":true,\"noHorizontalOverflow\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[]}}}"
   },
   {
    "batch": "95",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 30000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 ,\"pageErrors\":0,\"requestFailures\":0,\"details\":[],\"consoleErrorsExpected\":false,\"consoleErrorReason\":\"malformed base64 data URL rejected before TextureLoader\"}}}"
   },
   {
    "batch": "866",
@@ -1108,19 +1108,19 @@
    "batch": "554",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 30000ms exceeded."
+   "verdict": "rc=1 e']}: {error}\") from None ／ playwright._impl._errors.Error: FileChooser.set_files: ENOENT: no such file or directory, access '/private/tmp/batch554-fixture.png'"
   },
   {
    "batch": "562",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 30000ms exceeded."
+   "verdict": "rc=1 e']}: {error}\") from None ／ playwright._impl._errors.Error: FileChooser.set_files: ENOENT: no such file or directory, access '/private/tmp/batch554-fixture.png'"
   },
   {
    "batch": "565",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 30000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 rification passed: 6 checks, 0 diagnostics. upstream image node auto-selected as panorama source, runtime ready and 已连接全景图 label recorded in runtime-audit.json."
   },
   {
    "batch": "760",
@@ -1137,26 +1137,26 @@
   {
    "batch": "360",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:1:44) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 eview overlay, the annotate canvas and its colour menu. No input silently discards what the user types and no enabled control is left click-dead in any of them."
   },
   {
    "batch": "364",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:2:42) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 Batch 364: 11/11 checks passed ／ Video node's cover play button is now declared inert with a title, and the picture-edit panel is reachable and clean."
   },
   {
    "batch": "367",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:1:28) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 + title + cursor:default, no hover), geometry and copy unchanged; the working 'view frame-erase help' hover target was left alone and still reveals its tooltip."
   },
   {
    "batch": "368",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:1:28) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0  and copy unchanged; working controls in the same panels were left alone; the three judgment blind spots are closed and each is self-checked in both directions."
   },
   {
    "batch": "369",
@@ -1167,98 +1167,98 @@
   {
    "batch": "437",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:2:46) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 nvas without touching active canvas or selection, unknown source returns stable null, pending task interrupted by switch is canceled, browser diagnostics clean."
   },
   {
    "batch": "441",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:5:20) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 e scan read-only with expected conflict kinds, smart-matting derived node flagged for the generic 512x288 frame against a 1:1 source, browser diagnostics clean."
   },
   {
    "batch": "442",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:1:28) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 288), landscape sources keep the generic 512x288, extreme ratios fall back and are flagged, video display-string intrinsics drive the policy, diagnostics clean."
   },
   {
    "batch": "443",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-testid=\\\"image-toolbar-annotate\\\"]\")"
+   "rc": 0,
+   "verdict": "rc=0 n + contain fit), the fit transform matches §7 formulas, a red marker drawn at the mapped intrinsic point reads back exactly and round-trips, diagnostics clean."
   },
   {
    "batch": "445",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:4:30) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 t checks, session state machine transitions and stable rejections, semantic normalization no-op, local-history budget and gesture coalescing, diagnostics clean."
   },
   {
    "batch": "447",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:1:28) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 title-erase and picture-edit resubmits are no-ops returning the existing target (one node/edge/history each), a different mode still creates, diagnostics clean."
   },
   {
    "batch": "449",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:1:28) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 tion acceptor (node/edge/history land once on the owner canvas) and a submit interrupted by a canvas switch is cancelled with no late commit, diagnostics clean."
   },
   {
    "batch": "467",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 s/wubuku/liblib-tv/scripts/verify-liblib-batch467.py\", line 98, in main ／ assert len(catalog) >= 13, catalog ／ TypeError: object of type 'NoneType' has no len()"
+   "rc": 0,
+   "verdict": "rc=0 back catalog covers every expected surface, outcome->disposition projection exact (accepted success, no-op inert, rejections error/announce), diagnostics clean."
   },
   {
    "batch": "470",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:1:28) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 port duplicate suppression returns the existing node for the same exportId (no duplicate node/edge/history), missing source is a stable null, diagnostics clean."
   },
   {
    "batch": "513",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:1:14) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 s 10/10 green (round-trip, order/ID retention, runtime stripping, stable rejection reasons, media diagnostics, injected limits); recorded in runtime-audit.json."
   },
   {
    "batch": "611",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 49/49 passed"
   },
   {
    "batch": "612",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 118/118 passed"
   },
   {
    "batch": "614",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 PASS mobile:drawer-above-the-scrim ／ PASS mobile:no-page-errors ／ 48/48 passed"
   },
   {
    "batch": "615",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 se rewrite_error(error, f\"{parsed_st['apiName']}: {error}\") from None ／ playwright._impl._errors.TimeoutError: Page.wait_for_function: Timeout 60000ms exceeded."
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop:场景-restores-it ／ PASS desktop:geometry-restored  [240, 5.5, 40, 40] ／ 22/22 passed"
   },
   {
    "batch": "616",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 n, list:present, tree:four-children-2-clone-only-toolbars, tree:the-two-extra-children-are-36px-toolbars, search:present-and-visible, diagnostics:no-page-errors"
+   "rc": 0,
+   "verdict": "rc=0 PASS diagnostics:no-page-errors ／ PASS diagnostics:no-console-errors ／ 19/19 passed"
   },
   {
    "batch": "618",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 laywright._impl._errors.TimeoutError: Locator.wait_for: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-workspace]\") to be visible"
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop:no-page-errors ／ PASS desktop:no-console-errors ／ 42/42 passed"
   },
   {
    "batch": "620",
@@ -1269,80 +1269,80 @@
   {
    "batch": "621",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:16:15) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "rc": 0,
+   "verdict": "rc=0 PASS desktop-1920:no-page-errors ／ PASS desktop-1920:no-console-errors ／ 40/40 passed"
   },
   {
    "batch": "622",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 cripts/verify-liblib-batch622.py\", line 278, in main ／ \"tree\": (not (a[\"treeBox\"][0] + a[\"treeBox\"][2] > 0)) ／ TypeError: 'NoneType' object is not subscriptable"
+   "rc": 0,
+   "verdict": "rc=0 scrolling  {'controls': 14, 'blocked': [], 'neverInWindow': []} ／ PASS vw1280:the-hidden-part-is-clipped-not-buried  {'hidden': 0, 'covered': []} ／ 47/47 passed"
   },
   {
    "batch": "623",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 /liblib-tv/scripts/verify-liblib-batch623.py\", line 298, in main ／ tree_on = g[\"tree\"][0] + g[\"tree\"][2] > 0 ／ TypeError: 'NoneType' object is not subscriptable"
+   "rc": 0,
+   "verdict": "rc=0 PASS vw900:no-page-errors ／ PASS vw900:no-console-errors  {'errs': [], 'filtered': 0} ／ 24/24 passed"
   },
   {
    "batch": "657",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 laywright._impl._errors.TimeoutError: Locator.wait_for: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-workspace]\") to be visible"
+   "verdict": "rc=1 '  [a number is allowed to be scary as long as the label on it is accurate] ／ 5 checks, 1 failures ／ FAILED: the-two-landing-probes-do-not-agree-with-each-other"
   },
   {
    "batch": "664",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:14:26) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "verdict": "rc=1 hecks passed ／ FAILED: the-blind-population-is-22-elements-and-13-cannot-even-be-named ／ FAILED: the-blind-population-includes-the-playhead-and-the-aspect-frame"
   },
   {
    "batch": "674",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 ontrol-count ／ FAILED: a-finer-key-on-one-dimension-can-be-coarser-on-another ／ FAILED: the-transform-family-already-had-a-per-node-discriminator-kS2-threw-away"
+   "verdict": "rc=1 5/7 checks passed ／ FAILED: the-two-folding-partitions-are-not-nested ／ FAILED: 670s-66-is-a-name-count-not-a-control-count"
   },
   {
    "batch": "678",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 id ／ FAILED: the-nine-inspector-number-boxes-are-40-percent-covered-by-their-own-axis-chips ／ FAILED: 667s-population-is-the-smallest-of-the-three-at-every-cell"
+   "rc": 0,
+   "verdict": "rc=0 搭建的场景'], '1280x1150': ['上传图片', '帮助', '描述想搭建的场景'], '1366x1150': ['帮助', '描述想搭建的场景'], '1440x  [three probe rules, three populations, one order] ／ 6/6 checks passed"
   },
   {
    "batch": "681",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:19:18) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "verdict": "rc=1  line 214, in <genexpr> ／ all(int(zs[k][\"railZ\"]) == 30 and int(zs[k][\"barZ\"]) == 40 for k in keys) ／ ValueError: invalid literal for int() with base 10: 'auto'"
   },
   {
    "batch": "691",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-phone-vcam-trigger]\")"
+   "verdict": "rc=1 ecks passed ／ FAILED: census-only-one-derived-pixel-length-exists-and-690-found-it ／ FAILED: a-second-and-unrelated-mechanism-makes-integers-come-out-fractional"
   },
   {
    "batch": "692",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-phone-vcam-trigger]\")"
+   "verdict": "rc=1 nnot distinguish this case from a genuinely simple field] ／ 4/5 checks passed ／ FAILED: only-three-expressions-are-displayed-at-more-than-one-explicit-precision"
   },
   {
    "batch": "694",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-phone-vcam-trigger]\")"
+   "rc": 0,
+   "verdict": "rc=0 chable': 20, 'pxPerValue': 9.444444444444445}, {'key': 'uniform-scale', 't  [a measured invariant, with its cause explicitly left unclaimed] ／ 5/5 checks passed"
   },
   {
    "batch": "695",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 playwright._impl._errors.TimeoutError: Locator.click: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"[data-director-phone-vcam-trigger]\").first"
+   "rc": 0,
+   "verdict": "rc=0 a-radius', 'scene-ground-opacity', 'scene-ground-height'], 'howTheyWereReac  [some controls have an entry only in the state you fall out of] ／ 6/6 checks passed"
   },
   {
    "batch": "699",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 as-no-inert-attestation-at-all ／ FAILED: enabled-is-a-function-of-state-not-a-property-of-a-control ／ FAILED: inert-or-live-is-a-function-of-control-times-state"
+   "rc": 0,
+   "verdict": "rc=0 ected': 'director-camera-m  [the same attribute, the same page, two verdicts — which is also why a census must state its starting state, an] ／ 5/5 checks passed"
   },
   {
    "batch": "718",
@@ -1414,7 +1414,7 @@
    "batch": "737",
    "ext": "py",
    "rc": 1,
-   "verdict": "rc=1 at eval (eval at evaluate (:234:30), <anonymous>:7:29) ／ at UtilityScript.evaluate (<anonymous>:241:19) ／ at UtilityScript.<anonymous> (<anonymous>:1:44)"
+   "verdict": "rc=1 着 38 枚；删除连线 11 枚；TV Director 1 枚 ／ 5/10 判据通过；写入 /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch737-2026-10-01/runtime-audit.json"
   },
   {
    "batch": "739",
@@ -1521,8 +1521,8 @@
   {
    "batch": "78",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 rrors.TimeoutError: Locator.wait_for: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"canvas[data-director-webgl-canvas=\\\"true\\\"]\") to be visible"
+   "rc": 0,
+   "verdict": "rc=0  \"timelineStaleMoveStopped\": true, \"timelinePointerReuse\": true, \"timelineVisibilityCleanup\": true, \"historyUntouched\": true}}, \"screenshots\": [], \"errors\": []}"
   },
   {
    "batch": "780",
@@ -1683,8 +1683,8 @@
   {
    "batch": "868",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 urce:every-gate-touching-the-tracked-sources-is-listed  ⟵ {'缺口': ['869.py'], '口径': '★ 文件名 ∪ 目录名 ∪ src 上的 glob/rglob', '说明': '★ 这些门禁**碰**导演台源文件 ⟹ ⟹ 它们的红**不能藏**'}"
+   "rc": 0,
+   "verdict": "rc=0 13 判据，0 失败"
   },
   {
    "batch": "92",
@@ -1695,8 +1695,8 @@
   {
    "batch": "94",
    "ext": "py",
-   "rc": 1,
-   "verdict": "rc=1 rrors.TimeoutError: Locator.wait_for: Timeout 30000ms exceeded. ／ Call log: ／ - waiting for locator(\"canvas[data-director-webgl-canvas=\\\"true\\\"]\") to be visible"
+   "rc": 0,
+   "verdict": "rc=0 eMethod\":\"escape\"},\"collapsedRailsAreInert\":true,\"noHorizontalOverflow\":true,\"diagnostics\":{\"consoleErrors\":0,\"pageErrors\":0,\"requestFailures\":0,\"details\":[]}}}"
   },
   {
    "batch": "869",
@@ -1728,21 +1728,10 @@
    "722.py",
    "629.py",
    "40.py",
-   "41.py",
-   "44.py",
-   "599.py",
    "630.py",
-   "641.py",
-   "662.py",
    "685.py",
    "686.py",
-   "687.py",
-   "688.py",
-   "689.py",
    "690.py",
-   "700.py",
-   "701.py",
-   "721.py",
    "750.py",
    "751.py",
    "752.py",
@@ -1758,47 +1747,15 @@
    "786.py",
    "787.py",
    "789.py",
-   "828.py",
-   "837.py",
-   "93.py",
-   "95.py",
    "554.py",
    "562.py",
-   "565.py",
    "760.py",
-   "360.py",
-   "364.py",
-   "367.py",
-   "368.py",
-   "437.py",
-   "441.py",
-   "442.py",
-   "443.py",
-   "445.py",
-   "447.py",
-   "449.py",
-   "467.py",
-   "470.py",
-   "513.py",
-   "611.py",
-   "612.py",
-   "614.py",
-   "615.py",
-   "616.py",
-   "618.py",
-   "621.py",
-   "622.py",
-   "623.py",
    "657.py",
    "664.py",
    "674.py",
-   "678.py",
    "681.py",
    "691.py",
    "692.py",
-   "694.py",
-   "695.py",
-   "699.py",
    "718.py",
    "729.py",
    "730.py",
@@ -1819,10 +1776,7 @@
    "777.py",
    "778.py",
    "779.py",
-   "78.py",
-   "780.py",
-   "868.py",
-   "94.py"
+   "780.py"
   ],
   "旧账": [
    "831.py",
@@ -1896,105 +1850,9 @@
    "779.py",
    "780.py"
   ],
-  "新红": [
-   "41.py",
-   "44.py",
-   "599.py",
-   "641.py",
-   "662.py",
-   "687.py",
-   "688.py",
-   "689.py",
-   "700.py",
-   "701.py",
-   "721.py",
-   "828.py",
-   "837.py",
-   "93.py",
-   "95.py",
-   "565.py",
-   "360.py",
-   "364.py",
-   "367.py",
-   "368.py",
-   "437.py",
-   "441.py",
-   "442.py",
-   "443.py",
-   "445.py",
-   "447.py",
-   "449.py",
-   "467.py",
-   "470.py",
-   "513.py",
-   "611.py",
-   "612.py",
-   "614.py",
-   "615.py",
-   "616.py",
-   "618.py",
-   "621.py",
-   "622.py",
-   "623.py",
-   "678.py",
-   "694.py",
-   "695.py",
-   "699.py",
-   "78.py",
-   "868.py",
-   "94.py"
-  ],
+  "新红": [],
   "已归因的偶发": [],
-  "本批引入": [
-   "41.py",
-   "44.py",
-   "599.py",
-   "641.py",
-   "662.py",
-   "687.py",
-   "688.py",
-   "689.py",
-   "700.py",
-   "701.py",
-   "721.py",
-   "828.py",
-   "837.py",
-   "93.py",
-   "95.py",
-   "565.py",
-   "360.py",
-   "364.py",
-   "367.py",
-   "368.py",
-   "437.py",
-   "441.py",
-   "442.py",
-   "443.py",
-   "445.py",
-   "447.py",
-   "449.py",
-   "467.py",
-   "470.py",
-   "513.py",
-   "611.py",
-   "612.py",
-   "614.py",
-   "615.py",
-   "616.py",
-   "618.py",
-   "621.py",
-   "622.py",
-   "623.py",
-   "678.py",
-   "694.py",
-   "695.py",
-   "699.py",
-   "78.py",
-   "868.py",
-   "94.py"
-  ],
-  "WATCH里红的": [
-   "565.py"
-  ]
+  "本批引入": [],
+  "WATCH里红的": []
  }
 }

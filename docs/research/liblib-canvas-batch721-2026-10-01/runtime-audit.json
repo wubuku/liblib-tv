@@ -34,7 +34,7 @@
    "historyByProjectIsModuleMap": true,
    "closeSessionRemembersHistory": true
   },
-  "nodeX": "script-execution-1792952586830-lo4t1m",
+  "nodeX": "script-execution-1792956459536-vopl7b",
   "seedNodeIds": [
    "g-245IDFh8sB",
    "g-EFbbHpwq5w",
@@ -46,7 +46,7 @@
    "b-bTLLuU4w5q",
    "i-YDfWhFlthe",
    "v-UGQZzZOpbv",
-   "script-execution-1792952586830-lo4t1m"
+   "script-execution-1792956459536-vopl7b"
   ],
   "open1": {
    "deskOpen": true,
@@ -62,8 +62,8 @@
    "past": 0,
    "future": 0,
    "generation": 1,
-   "projectId": "director-project-1792952587159-1",
-   "sessionId": "director-session-1792952587160-2"
+   "projectId": "director-project-1792956459864-1",
+   "sessionId": "director-session-1792956459865-2"
   },
   "firstBtn": {
    "nodeId": "b-bTLLuU4w5q",
@@ -87,8 +87,8 @@
    "past": 1,
    "future": 0,
    "generation": 1,
-   "projectId": "director-project-1792952587159-1",
-   "sessionId": "director-session-1792952587160-2"
+   "projectId": "director-project-1792956459864-1",
+   "sessionId": "director-session-1792956459865-2"
   },
   "afterAdd": {
    "deskOpen": true,
@@ -105,8 +105,8 @@
    "past": 2,
    "future": 0,
    "generation": 1,
-   "projectId": "director-project-1792952587159-1",
-   "sessionId": "director-session-1792952587160-2"
+   "projectId": "director-project-1792956459864-1",
+   "sessionId": "director-session-1792956459865-2"
   },
   "firstNameFieldAfterAdd": "饮料瓶",
   "closed": {
@@ -128,7 +128,7 @@
    "sessionId": null
   },
   "recordAfterClose": {
-   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22script-execution-1792952586830-lo4t1m%22%5D",
+   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22script-execution-1792956459536-vopl7b%22%5D",
    "topKeys": [
     "storageSchemaVersion",
     "projectId",
@@ -170,8 +170,8 @@
     "library"
    ],
    "generation": 1,
-   "projectId": "director-project-1792952587159-1",
-   "savedAt": "2026-10-25T18:23:12.286Z",
+   "projectId": "director-project-1792956459864-1",
+   "savedAt": "2026-10-25T19:27:44.969Z",
    "hasHistoryKey": false
   },
   "reopenSameNode": {
@@ -189,8 +189,8 @@
    "past": 2,
    "future": 0,
    "generation": 2,
-   "projectId": "director-project-1792952587159-1",
-   "sessionId": "director-session-1792952593274-3"
+   "projectId": "director-project-1792956459864-1",
+   "sessionId": "director-session-1792956465959-3"
   },
   "closedAgain": {
    "deskOpen": false,
@@ -225,8 +225,8 @@
    "past": 0,
    "future": 0,
    "generation": 1,
-   "projectId": "director-project-1792952595622-4",
-   "sessionId": "director-session-1792952595623-5"
+   "projectId": "director-project-1792956468322-4",
+   "sessionId": "director-session-1792956468322-5"
   },
   "closedOther": {
    "deskOpen": false,
@@ -286,8 +286,8 @@
     "camera"
    ],
    "generation": 1,
-   "projectId": "director-project-1792952595622-4",
-   "savedAt": "2026-10-25T18:23:17.003Z",
+   "projectId": "director-project-1792956468322-4",
+   "savedAt": "2026-10-25T19:27:49.682Z",
    "hasHistoryKey": false
   },
   "nodeIdsAfterReload": [
@@ -304,7 +304,7 @@
   ],
   "nodeXSurvivedReload": false,
   "recordAfterReload": {
-   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22script-execution-1792952586830-lo4t1m%22%5D",
+   "key": "liblib-tv-director-project-v1:%5B%22libtv%22%2C%22canvas-2%22%2C%22script-execution-1792956459536-vopl7b%22%5D",
    "topKeys": [
     "storageSchemaVersion",
     "projectId",
@@ -346,8 +346,8 @@
     "library"
    ],
    "generation": 2,
-   "projectId": "director-project-1792952587159-1",
-   "savedAt": "2026-10-25T18:23:14.635Z",
+   "projectId": "director-project-1792956459864-1",
+   "savedAt": "2026-10-25T19:27:47.335Z",
    "hasHistoryKey": false
   },
   "btnsAfterReload": [

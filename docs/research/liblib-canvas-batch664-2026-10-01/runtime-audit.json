@@ -8,7 +8,7 @@
     "jsLayerHitCalls": 52,
     "why": "the first version scanned only the Python AST and found zero. 654's AST census counted `.click()` on the Python side; `document.elementFromPoint` lives INSIDE a JS string constant, so the instrument is in the string."
    },
-   "scripts": 565,
+   "scripts": 566,
    "unparsable": [],
    "totals": {
     "filesWithHit": 81,
@@ -263,7 +263,7 @@
    "detail": {
     "pythonAstHitCalls": 0,
     "jsLayerHitCalls": 52,
-    "scripts": 565,
+    "scripts": 566,
     "unparsable": [],
     "theFirstRunFoundNothing": "and that is not a null result -- it is a fact about where the instrument lives",
     "rule": "a call-site census over a criterion corpus has to count the Python side (how often a payload is evaluated) and the JS side (how many hit tests are in it) separately"
@@ -273,7 +273,7 @@
   "of-the-hit-test-call-sites-only-one-payload-can-refuse": {
    "ok": true,
    "detail": {
-    "scripts": 565,
+    "scripts": 566,
     "filesWithHitCalls": 81,
     "hitCallsInJs": 52,
     "hitCallsInPeAwarePayload": 32,
