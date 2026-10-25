@@ -14,11 +14,11 @@
    "criterion-direction-1025.json": "e2a56b02ef35",
    "criterion-effectiveness-1026.json": "8c3833501fcb",
    "edit-visibility-1009.json": "cbccf1eaa2e9",
-   "empty-ambiguity-1014.json": "9251fb9f85ef",
+   "empty-ambiguity-1014.json": "87ee7f43fd98",
    "exemption-claims-1024.json": "0dabc595ff10",
    "expanded-contract-1032b4.json": "8d1a63147bf6",
    "fake-interaction-census-1034.json": "fff360e357fc",
-   "fingerprint-gate-1032l.json": "e5cb06cf792b",
+   "fingerprint-gate-1032l.json": "866003f0587c",
    "gen-contract-1032b2.json": "1d9f4ab02cc2",
    "global-detection-1012.json": "b0a4b41fb417",
    "golden-freshness-1008.json": "38a1bfcbd0fb",
@@ -51,7 +51,7 @@
  "pen_is_the_book": {
   "n_zero_coupling_head": 937,
   "n_zero_coupling_now": 937,
-  "n_positive_present_head": 7079,
+  "n_positive_present_head": 7080,
   "n_positive_present_now": 7080,
   "n_audit_2015_lines": 2165,
   "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **被测的账和记账的笔是同一份文件时，往笔上多写一句，被测的那些账就跟着重算** —— 1005 普查的是 `_ausrc`，而本批往 audit 里塞了判据 ⇒ ⇒ ⇒ ⇒ ⇒ 所以它的读数必然跟着变"
@@ -516,11 +516,11 @@
     "criterion-direction-1025.json": "e2a56b02ef35",
     "criterion-effectiveness-1026.json": "8c3833501fcb",
     "edit-visibility-1009.json": "cbccf1eaa2e9",
-    "empty-ambiguity-1014.json": "9251fb9f85ef",
+    "empty-ambiguity-1014.json": "87ee7f43fd98",
     "exemption-claims-1024.json": "0dabc595ff10",
     "expanded-contract-1032b4.json": "8d1a63147bf6",
     "fake-interaction-census-1034.json": "fff360e357fc",
-    "fingerprint-gate-1032l.json": "e5cb06cf792b",
+    "fingerprint-gate-1032l.json": "866003f0587c",
     "gen-contract-1032b2.json": "1d9f4ab02cc2",
     "global-detection-1012.json": "b0a4b41fb417",
     "golden-freshness-1008.json": "38a1bfcbd0fb",
@@ -710,82 +710,11 @@
   "five_states": "⭐⭐⭐⭐⭐ **红账现在是五档**：**① 红（读到了、且有 False）② 不可判定（产物拿到了、而它里面没有逐条判据 ⇒ 这一档必须恒为 0）③ 不适用（普查型仪器：它本来就没有一条一条的判据）④ 绿（读到了、且没有 False）** —— 而外加一条**门自己的账**：**⑤ 产物压根没被找到（必须恒为 0）⑤b 路径有了而文件读不出来（必须恒为 0）** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ② 与 ③ 必须分开、而 ⑤ 与 ⑤b 又是另一件事** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 「产物没找到」与「产物里没有判据」的区别**：前者是**产物都没拿到**、后者是**产物拿到了、而它里面没有那条判据** ⇒ ⇒ ⇒⇒ **⇒ 而 ⑤ 今天曾经有 8 本 —— 原因不是书没写判据、而是 1015 的产物路径正则太窄** ⇒ ⇒ **⇒ ⇒ 「红」的是门（正则窄）、不是数据（书没写判据）** ⇒ ⇒ ⇒⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ③「本来就没有」的那一档的前提是「产物拿到了」—— ⇒ ⇒ 不许把「产物没拿到」的书混进 ③ ⇒ ⇒ ⇒⇒ **⇒ ⇒ 所以四档 + 两条「门自己的账」构成一个**划分**（不重不漏）** ⇒ ⇒ ⇒⇒ **⇒ 今天：读得到 21 本（打印行 13 / 产物 8）、读不到 0、本来就没有 14、产物没找到 0（**必须为 0**）、读不出来 0（**必须为 0**）**",
   "four_states": "⭐⭐⭐⭐⭐ **红账现在是四档**：**① 红（读到了、且有 False）② 不可判定（它本来有逐条判据、而我读不出来 ⇒ 这一档必须恒为 0）③ 不适用（普查型仪器：它本来就没有一条一条的判据 ⇒ 对它「逐条点名」是不适用、不是「缺」）④ 绿（读到了、且没有 False）** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 ② 与 ③ 必须分开 —— 混在一栏 ⇒ 「读不到」就永远查不出来** ⇒ ⇒ ⭐⭐⭐⭐⭐ **⇒ 而 1032-②i 还多认了一个来源：产物里的逐条判据** ⇒ ⇒ **⇒ 「判据逐条」那一行不是唯一的来源 ⇒ ⇒ 而「来源」必须记进产物** ⇒ ⇒ ⇒⇒ **⇒ 今天：读得到 21 本（其中打印行 13 本 / 产物 8 本）、读不到 0 本（**必须为 0**）、本来就没有 14 本**",
   "stale_vs_committed_1015": {
-   "n_books_compared": 34,
-   "n_books_unknown": 1,
+   "n_books_compared": 35,
+   "n_books_unknown": 0,
    "n_books_snapshot_unknown": 0,
-   "n_stale": 14,
-   "stale": [
-    {
-     "golden": "connect-contract-1032a.json",
-     "n_bytes_committed": 1475,
-     "n_bytes_worktree": 1472
-    },
-    {
-     "golden": "criterion-effectiveness-1026.json",
-     "n_bytes_committed": 101680,
-     "n_bytes_worktree": 101680
-    },
-    {
-     "golden": "empty-ambiguity-1014.json",
-     "n_bytes_committed": 117449,
-     "n_bytes_worktree": 129513
-    },
-    {
-     "golden": "exemption-claims-1024.json",
-     "n_bytes_committed": 19486,
-     "n_bytes_worktree": 19738
-    },
-    {
-     "golden": "expanded-contract-1032b4.json",
-     "n_bytes_committed": 4171,
-     "n_bytes_worktree": 4972
-    },
-    {
-     "golden": "fingerprint-gate-1032l.json",
-     "n_bytes_committed": 2619,
-     "n_bytes_worktree": 3076
-    },
-    {
-     "golden": "gen-contract-1032b2.json",
-     "n_bytes_committed": 1536,
-     "n_bytes_worktree": 1654
-    },
-    {
-     "golden": "live-canvas-check-1031.json",
-     "n_bytes_committed": 1258,
-     "n_bytes_worktree": 1735
-    },
-    {
-     "golden": "mention-contract-1032b3.json",
-     "n_bytes_committed": 2070,
-     "n_bytes_worktree": 3307
-    },
-    {
-     "golden": "noop-contract-1032c.json",
-     "n_bytes_committed": 1911,
-     "n_bytes_worktree": 2410
-    },
-    {
-     "golden": "replica-coverage-1017.json",
-     "n_bytes_committed": 15016,
-     "n_bytes_worktree": 15016
-    },
-    {
-     "golden": "type-layer-gate-1023.json",
-     "n_bytes_committed": 1303,
-     "n_bytes_worktree": 9205
-    },
-    {
-     "golden": "wired-contract-1032b1.json",
-     "n_bytes_committed": 1313,
-     "n_bytes_worktree": 1310
-    },
-    {
-     "golden": "zero-coupling-anchors-1005.json",
-     "n_bytes_committed": 143650,
-     "n_bytes_worktree": 143647
-    }
-   ],
+   "n_stale": 0,
+   "stale": [],
    "what_it_is_not": "⇒ ⇒ **这不是四态里的任何一态**⇒ ⇒ **⇒ 四态答「可复现吗」；这一栏答「还新鲜吗」**⇒ ⇒ **⇒ 而「提交态取不到」单列成一栏**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 「取不到」不许混进「不新鲜」**",
    "rule": "⇒ ⇒ **这一栏与 1027 报的是同一件事**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 区别是：1027 只跑「被本次变更触及的」那些、而这里是全量**"
   },
@@ -1320,7 +1249,7 @@
   "P1_hold_1015": true,
   "P2_hold_1015": true,
   "P3_hold_1015": true,
-  "P_stale_vs_committed_is_zero_1015": false,
+  "P_stale_vs_committed_is_zero_1015": true,
   "P4_hold_1015": true,
   "P5_hold_1015": true,
   "P6_hold_1015": true,
@@ -2028,7 +1957,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "40cbe8e48113",
    "generator_sha12": "dde134d49676",
-   "committed_sha12": "056a44572632",
+   "committed_sha12": "40cbe8e48113",
    "tail": [
     "为假的： 无 | 降级： 无",
     "PROBE_1032A_CONNECT_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/connect-contract-1032a.json"
@@ -2145,7 +2074,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "8c3833501fcb",
    "generator_sha12": "16cb5e876702",
-   "committed_sha12": "4dd0e47ea1b6",
+   "committed_sha12": "8c3833501fcb",
    "tail": [
     "PROBE_1026_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/criterion-effectiveness-1026.json",
     "<unknown>:75: SyntaxWarning: invalid escape sequence '\\s'"
@@ -2251,17 +2180,17 @@
    "probe": "scripts/jimeng_probe1014_empty_ambiguity.py",
    "rc": 0,
    "wrote_golden": true,
-   "n_bytes": 129513,
-   "n_bytes_fresh": 129513,
+   "n_bytes": 129514,
+   "n_bytes_fresh": 129514,
    "state": "reproduced",
    "artifact_self_reports_crash": null,
    "n_bytes_equal": true,
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "9251fb9f85ef",
+   "fresh_sha12": "87ee7f43fd98",
    "generator_sha12": "41d30f775e15",
-   "committed_sha12": "41247aa49194",
+   "committed_sha12": "87ee7f43fd98",
    "tail": [
     "P1..P10 = [True, True, True, True, True, True, True, True, True, True]",
     "P 为假的： 无 | 共 10 条 P 判据"
@@ -2327,7 +2256,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "0dabc595ff10",
    "generator_sha12": "7bd49a025bbc",
-   "committed_sha12": "b6065031266e",
+   "committed_sha12": "0dabc595ff10",
    "tail": [
     "P1..P7 = [True, True, True, True, True, True, True]",
     "PROBE_1024_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/exemption-claims-1024.json"
@@ -2381,7 +2310,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "8d1a63147bf6",
    "generator_sha12": "c52c7d7eb722",
-   "committed_sha12": "a76818434f89",
+   "committed_sha12": "8d1a63147bf6",
    "tail": [
     "P 为假的： 无 | 共 15 条",
     "PROBE_1032B4_EXPANDED_CONTRACT_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/expanded-contract-1032b4.json"
@@ -2516,9 +2445,9 @@
    "n_keys_added": 0,
    "n_values_changed": 0,
    "n_keys_removed": 0,
-   "fresh_sha12": "e5cb06cf792b",
+   "fresh_sha12": "866003f0587c",
    "generator_sha12": "a94b635d1d7c",
-   "committed_sha12": "16a23906b95c",
+   "committed_sha12": "866003f0587c",
    "tail": [
     "PROBE_1032L_FINGERPRINT_GATE_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/fingerprint-gate-1032l.json",
     "PROBE_1032L_FINGERPRINT_GATE_OK"
@@ -2580,7 +2509,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "1d9f4ab02cc2",
    "generator_sha12": "042c0dd92865",
-   "committed_sha12": "0ef7000d7ba0",
+   "committed_sha12": "1d9f4ab02cc2",
    "tail": [
     "为假的： 无 | 降级： 无",
     "PROBE_1032B2_GEN_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/gen-contract-1032b2.json"
@@ -2826,7 +2755,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "44ffff580a19",
    "generator_sha12": "ce56c3c9a8fd",
-   "committed_sha12": null,
+   "committed_sha12": "44ffff580a19",
    "tail": [
     "P 为假的： 无",
     "PROBE_1037_INSTRUMENT_FAKE_GREEN_CENSUS_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/instrument-fake-green-census-1037.json"
@@ -2944,7 +2873,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "7b27828bdaa1",
    "generator_sha12": "9f8d88358e8b",
-   "committed_sha12": "89547675f772",
+   "committed_sha12": "7b27828bdaa1",
    "tail": [
     "退出码约定：0=全绿 1=有 P 判据为假 2=探针崩了/契约不是合法 JSON（JIMENG_FORCE_CRASH=1 可现场验证 2 号出口）",
     "PROBE_1031_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/live-canvas-check-1031.json"
@@ -3062,7 +2991,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "0c0b4e8f8cff",
    "generator_sha12": "c06e18b11bfa",
-   "committed_sha12": "a4d13ae3f79b",
+   "committed_sha12": "0c0b4e8f8cff",
    "tail": [
     "P 为假的： 无 | 共 10 条",
     "PROBE_1032B3_MENTION_CONTRACT_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/mention-contract-1032b3.json"
@@ -3127,7 +3056,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "da0ffb8e7460",
    "generator_sha12": "f548ed7807fd",
-   "committed_sha12": "6e98ab6f32d6",
+   "committed_sha12": "da0ffb8e7460",
    "tail": [
     "P 为假的： 无 | 共 8 条",
     "PROBE_1032C_NOOP_CONTRACT_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/noop-contract-1032c.json"
@@ -3371,7 +3300,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "27680fd26c42",
    "generator_sha12": "6a1edd4a950b",
-   "committed_sha12": "b156bad4a905",
+   "committed_sha12": "27680fd26c42",
    "tail": [
     "P1..P8 = [True, True, True, True, True, True, True, True]",
     "PROBE_1017_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/replica-coverage-1017.json"
@@ -3555,7 +3484,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "2cff76d71be1",
    "generator_sha12": "eb66f8fd90c8",
-   "committed_sha12": "1ab82d27d8b7",
+   "committed_sha12": "2cff76d71be1",
    "tail": [
     "产物可复现自检：无随机临时目录名残留 ✓",
     "PROBE_1023_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/type-layer-gate-1023.json"
@@ -3609,7 +3538,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "dd84c19ff7c7",
    "generator_sha12": "f3eca16c24ef",
-   "committed_sha12": "90efc1c28255",
+   "committed_sha12": "dd84c19ff7c7",
    "tail": [
     "为假的： 无 | 降级： 无",
     "PROBE_1032B1_WIRED_DONE -> /Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/jimeng-canvas/wired-contract-1032b1.json"
@@ -3673,7 +3602,7 @@
    "n_keys_removed": 0,
    "fresh_sha12": "61d034c780c8",
    "generator_sha12": "64eade14c34f",
-   "committed_sha12": "f4585b16ac00",
+   "committed_sha12": "61d034c780c8",
    "tail": [
     "判据逐条 = P1_hold_1005=True | P2_hold_1005=True | P3_hold_1005=True | P4_hold_1005=True | P5_hold_1005=True",
     "PROBE_1005_DONE -> /tmp/b1005-zero-coupling-census.json"
@@ -3885,7 +3814,6 @@
   "325": "1014 普查口径下全部账里「不可自证」的总数",
   "34": "1014 普查看到的 golden 本数（已排除它自己那本）",
   "937": "1005 golden 现在的 `n_zero_coupling`（本批重跑后）",
-  "7079": "1005 golden 在 git HEAD 上的 `n_positive_present`",
   "7080": "1005 golden 现在的 `n_positive_present`（本批重跑后）",
   "4/9": "1015 上一版的不动点漂移比例（已挂【1015 改写横幅】，原文保留）",
   "2/9": "曾观测到的一轮漂移比例（分母 = 认领到的本数）",
