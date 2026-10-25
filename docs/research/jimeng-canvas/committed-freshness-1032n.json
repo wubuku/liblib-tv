@@ -4,7 +4,7 @@
   "what_it_is_not": "⇒ ⇒ **这不是「可复现性」** ⇒ ⇒ 1015 的四态答的是「跑两遍会不会变」⇒ ⇒ ⇒ ⇒ 而本门答的是「提交的那本是不是【现在】的产物」⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 两个口径不许合并**",
   "head": {
     "ok": true,
-    "n_rows": 35,
+    "n_rows": 36,
     "n_mismatch": 0,
     "n_unreadable": 0,
     "n_no_fact": 0,
@@ -20,7 +20,7 @@
   },
   "worktree": {
     "ok": true,
-    "n_rows": 35,
+    "n_rows": 36,
     "n_mismatch": 0,
     "n_unreadable": 0,
     "n_no_fact": 0,
