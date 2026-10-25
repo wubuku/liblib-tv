@@ -40,6 +40,35 @@ def node_version():
         return None
 
 
+# ── ⭐⭐⭐⭐⭐ 跑一段 node 脚本（需要 stdout 的探针走这个）─────────────
+#   ⇒ ⇒ ⇒ **为什么必须有它**：`run_node_probe` 只回传「跑没跑成」，
+#   ⇒ ⇒ ⇒⇒ 而 1019 / 1020 / 1031 要的**正是 node 的 stdout（读数本身）**
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ 所以「执行 node」也必须只有**一个入口** ⇒ ⇒ 否则又长出第二个 spawn 点
+#   ⇒ ⇒ ⇒⇒ ⇒ ⭐ **stdout / stderr 只许调用方自己用、不许进产物**
+#   ⇒ ⇒ ⇒⇒ ⇒   （超时/异常信息里带绝对路径 ⇒ 进产物就变成机器相关量）
+def run_node_script(script, cwd=None, timeout=300, env=None):
+    """跑一段 node 脚本 ⇒ 返回 dict（`stdout`/`stderr` **不许进产物**）。"""
+    ok, why = node_available()
+    if not ok:
+        return {"ok": False, "rc": None, "crashed": True, "stdout": "", "stderr": "",
+                "reason": "node-unavailable",
+                "run_info": "probe failed: node unavailable (%s)" % why}
+    try:
+        r = subprocess.run(["node", str(script)], cwd=cwd,
+                           capture_output=True, text=True, timeout=timeout,
+                           env=env)
+    except Exception as e:                                   # noqa: BLE001
+        return {"ok": False, "rc": None, "crashed": True, "stdout": "", "stderr": "",
+                "reason": ("timeout" if isinstance(e, subprocess.TimeoutExpired)
+                           else "exception"),
+                "run_info": "probe failed: %s" % str(e)[:200]}
+    _rc = r.returncode
+    return {"ok": _rc == 0, "rc": _rc, "crashed": _rc != 0,
+            "stdout": r.stdout or "", "stderr": r.stderr or "",
+            "reason": "rc",
+            "run_info": ("rc=0" if _rc == 0 else "rc=%d probe-crashed" % _rc)}
+
+
 # ── ⭐⭐⭐⭐⭐ 统一跑 node 探针的入口 ─────────────────────────────────
 #   ⭐⭐⭐⭐⭐ **退出码语义（本套件全部门统一）**：
 #     0 = 探针跑完了
@@ -68,21 +97,14 @@ def run_node_probe(probe, cwd=None, timeout=300, env=None,
        · `crashed=True`  ⇒ 退出码必须走 **2**，且**不许**读上一轮留下的读数文件
        · `crashed=False` ⇒ 读数文件才可用
     """
-    ok, why = node_available()
-    if not ok:
-        return {"ok": False, "rc": None, "crashed": True,
-                "run_info": "probe failed: node unavailable (%s)" % why}
-    try:
-        r = subprocess.run(["node", str(probe)], cwd=cwd,
-                           capture_output=True, text=True, timeout=timeout,
-                           env=env)
-    except Exception as e:                                   # noqa: BLE001
-        return {"ok": False, "rc": None, "crashed": True,
-                "run_info": "probe failed: %s" % str(e)[:200]}
-    rc = r.returncode
-    if rc == 0:
+    res = run_node_script(probe, cwd=cwd, timeout=timeout, env=env)
+    if res["crashed"] is False:
         return {"ok": True, "rc": 0, "crashed": False, "run_info": "rc=0"}
-    if rc == 2 or "INSTRUMENT_CRASH" in (r.stdout or ""):
+    rc = res["rc"]
+    if rc is None:
+        return {"ok": False, "rc": None, "crashed": True,
+                "run_info": res["run_info"]}
+    if rc == 2 or "INSTRUMENT_CRASH" in res["stdout"]:
         return {"ok": False, "rc": rc, "crashed": True,
                 "run_info": "rc=2 instrument-crash"}
     if nonzero_is_crash:

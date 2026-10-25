@@ -34,10 +34,12 @@ import atexit
 import json
 import re
 import shutil
-import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from jimeng_node_toolchain import run_node_script  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 WS = "src/components/jimeng/JimengWorkspace.tsx"
@@ -45,6 +47,44 @@ GOLDEN = ROOT / "docs/research/jimeng-canvas/harness-fidelity-1020.json"
 
 TMPDIR = Path(tempfile.mkdtemp(prefix="b1020-"))
 atexit.register(shutil.rmtree, str(TMPDIR), ignore_errors=True)
+
+# ── ⭐⭐⭐⭐⭐ 仪器崩了 ⇒ 写产物 + rc=2（**不许沉默退出**）────────────────
+#   ⇒ ⇒ ⇒ 起因：原来基线跑挂时是 `raise SystemExit("基线跑挂了: …")`
+#   ⇒ ⇒ ⇒ ⇒ ⇒ **产物一个字都没写** ⇒⇒⇒ 而「产物不存在」与「读到 0」在账上一样
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒⇒ 而本探针量的是「harness 本身可不可信」⇒⇒⇒ 崩了就必须说出来
+class _InstrumentCrash(Exception):
+    """node 不可用 / 基线跑挂 ⇒ ⇒ 走 rc=2 那条出口。"""
+
+
+CRIT_KEYS_1020 = [
+    "P1_stub_and_dom_disagree_exactly_on_depth2_2020",
+    "P2_1019_eight_expectations_hold_under_the_faithful_stub_2020",
+    "P3_both_stubs_can_kill_mutants_2020",
+    "P4_there_are_surviving_mutants_2020",
+    "P5_branch_coverage_is_six_of_seven_and_the_missing_one_is_dead_code_2020",
+    "P6_differential_grid_cannot_kill_mutants_by_construction_2020",
+    "P7_one_sample_depth_flips_a_verdict_2020",
+    "P8_two_more_cells_buy_more_discriminating_power_2020",
+    "P9_string_versus_integer_tabindex_disagrees_2020",
+    "P10_offline_2020",
+]
+
+
+def _write_crashed_artifact(label):
+    """崩了也要写一份**形状完整**的产物 ⇒ ⇒ 不许「产物不存在」冒充「没测到」。"""
+    GOLDEN.parent.mkdir(parents=True, exist_ok=True)
+    GOLDEN.write_text(json.dumps({
+        "generated_by": "jimeng_probe1020_harness_fidelity.py",
+        "note": "⭐⭐⭐⭐⭐ **本轮仪器崩了（node 不可用或基线跑挂）⇒ 判据全部未测（None）** ⇒ "
+                "**⇒⇒⇒ 而它必须写出来** ⇒⇒⇒⇒ 否则「读不到」与「读到 0」在账上一样",
+        "probe_crashed": True,
+        "readings_available": False,
+        "readings_fresh": False,
+        "crash_label": label,
+        "criteria": {k: None for k in CRIT_KEYS_1020},
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print("P1..P10 =", [None] * len(CRIT_KEYS_1020))
+    print("⚠️ 仪器崩了（%s）⇒ 判据降级为 None ⇒ 退出码 2" % label)
 
 
 # ── 抽函数真身（与 1019 同一套：按函数名 + 括号配平，不是转写） ─────────────────
@@ -320,18 +360,24 @@ def run_variant(tag, body):
     js = HARNESS_HEAD + "\n" + body + "\n" + HARNESS_TAIL
     f = TMPDIR / ("h-%s.ts" % tag)
     f.write_text(js, encoding="utf-8")
-    try:
-        r = subprocess.run(["node", str(f)], capture_output=True, timeout=60)
-    except subprocess.TimeoutExpired:
-        return None, "B1020_SUBPROCESS_TIMEOUT"
-    if r.returncode != 0:
-        return None, (r.stderr.decode()[:300])
-    return json.loads(r.stdout.decode("utf-8")), None
+    # ⭐⭐⭐⭐⭐ 走统一工具链 ⇒「node 在不在」只有一个答案 ⇒
+    #   ⇒ 且崩的原因必须**分得开**：node 不在（仪器崩）/ 超时 / 变异体自身语法错
+    _res = run_node_script(f, timeout=60)
+    if _res["crashed"]:
+        _why = _res.get("reason")
+        if _why == "node-unavailable":
+            return None, "node-unavailable"
+        if _why == "timeout":
+            return None, "B1020_SUBPROCESS_TIMEOUT"
+        return None, "syntax_error"
+    return json.loads(_res["stdout"]), None
 
 
 BASE, e0 = run_variant("base", FN_BODY)
 if BASE is None:
-    raise SystemExit("基线跑挂了: %s" % e0)
+    # ⭐ 基线跑不起来 = **仪器崩**（不是「产品红」）⇒ ⇒ 写产物 + rc=2
+    _write_crashed_artifact(e0 or "baseline-crashed")
+    sys.exit(2)
 BASE_SHALLOW, BASE_DEEP = BASE["shallow"], BASE["deep"]
 
 
@@ -370,6 +416,11 @@ for name, txt, diff in MUTANTS:
     row = {"name": name, "diff": diff}
     res, err = run_variant("m%04d" % len(mut_rows), txt)
     if res is None:
+        # ⭐⭐⭐⭐⭐ node 中途没了 ⇒ ⇒ 那是仪器崩 ⇒ ⇒ 整本作废
+        #   ⇒⇒⇒ 绝不许拿「残缺的判别力」当结论（那正是「没测到长得像测过了」）
+        if err == "node-unavailable":
+            _write_crashed_artifact("node-unavailable")
+            sys.exit(2)
         # ⭐ 子进程超时/语法错 = **这份变异体跑不出结果**，单列，不并进任何一态
         row["shallow"] = row["deep"] = ("timeout" if err == "B1020_SUBPROCESS_TIMEOUT"
                                         else "syntax_error")
@@ -509,10 +560,16 @@ OUT = {"P1_stub_and_dom_disagree_exactly_on_depth2_2020": P1,
        "P8_two_more_cells_buy_more_discriminating_power_2020": P8,
        "P9_string_versus_integer_tabindex_disagrees_2020": P9,
        "P10_offline_2020": P10}
+# ⭐⭐⭐⭐⭐ 降级产物用的判据键必须与正常产物**逐字一致** ⇒
+#   ⇒⇒⇒⇒ 否则「崩了写出来的那本」与「跑成了写出来的那本」形状不同 ⇒⇒⇒⇒ 而账就分不清
+assert list(OUT.keys()) == CRIT_KEYS_1020, "判据键与降级产物不一致"
 
 GOLDEN.parent.mkdir(parents=True, exist_ok=True)
 GOLDEN.write_text(json.dumps({
     "generated_by": "jimeng_probe1020_harness_fidelity.py",
+    "probe_crashed": False,
+    "readings_available": True,
+    "readings_fresh": True,
     "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **把 1019 那 8 个行为格本身当被测对象** —— "
             "量这个 harness 的**保真度**（同一个函数真身、同一批输入，"
             "两条 stub 的答案在哪些格上分叉）与**判别力**（系统枚举的变异体，"

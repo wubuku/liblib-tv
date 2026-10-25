@@ -1,5 +1,8 @@
 {
   "generated_by": "jimeng_probe1020_harness_fidelity.py",
+  "probe_crashed": false,
+  "readings_available": true,
+  "readings_fresh": true,
   "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **把 1019 那 8 个行为格本身当被测对象** —— 量这个 harness 的**保真度**（同一个函数真身、同一批输入，两条 stub 的答案在哪些格上分叉）与**判别力**（系统枚举的变异体，8 个格杀死了几个）。",
   "question_2020": "1019 把一条判据升级成「真行为验证」之后，那个验证器本身有多可靠？",
   "under_test": {

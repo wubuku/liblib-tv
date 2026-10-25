@@ -317,7 +317,9 @@
       "has_failure_signal": false,
       "failure_signals": [],
       "n_criteria_sets": 1,
-      "green_holders": [],
+      "green_holders": [
+        "criteria_1015"
+      ],
       "verdict": "ok"
     },
     {
@@ -416,11 +418,8 @@
     "no_healthy_flagged": true
   },
   "node_toolchain_1037": {
-    "n_direct_spawn_scripts": 19,
+    "n_direct_spawn_scripts": 16,
     "direct_spawn_scripts": [
-      "jimeng_probe1019_behavior_harness.py",
-      "jimeng_probe1020_harness_fidelity.py",
-      "jimeng_probe1031_live_canvas_contract.py",
       "verify-frameos-batch357.py",
       "verify-liblib-batch67.py",
       "verify-liblib-batch68.py",

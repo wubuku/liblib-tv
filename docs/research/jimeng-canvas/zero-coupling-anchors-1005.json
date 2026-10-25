@@ -6233,14 +6233,14 @@
    "var": "_p1019",
    "anchor": "A_step_doubled",
    "occurrences": 3,
-   "min_line_gap": 109
+   "min_line_gap": 124
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1019",
    "anchor": "B_end_guard_removed",
    "occurrences": 3,
-   "min_line_gap": 108
+   "min_line_gap": 123
   },
   {
    "class": "P-散文/片段",
@@ -6282,14 +6282,14 @@
    "var": "_p1019",
    "anchor": "focus_node1_backward_arms_0",
    "occurrences": 2,
-   "min_line_gap": 211
+   "min_line_gap": 232
   },
   {
    "class": "I-标识符(多处引用)",
    "var": "_p1019",
    "anchor": "focus_node2_forward_others_minus1",
    "occurrences": 2,
-   "min_line_gap": 211
+   "min_line_gap": 232
   },
   {
    "class": "P-散文/片段",

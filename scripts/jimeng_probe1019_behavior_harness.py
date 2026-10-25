@@ -32,10 +32,12 @@ import atexit
 import json
 import re
 import shutil
-import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from jimeng_node_toolchain import node_available, run_node_script  # noqa: E402
 
 ROOT = Path(__file__).resolve().parents[1]
 WS = "src/components/jimeng/JimengWorkspace.tsx"
@@ -44,6 +46,43 @@ GOLDEN = ROOT / "docs/research/jimeng-canvas/behavior-harness-1019.json"
 
 TMPDIR = Path(tempfile.mkdtemp(prefix="b1019-"))
 atexit.register(shutil.rmtree, str(TMPDIR), ignore_errors=True)
+
+# ── ⭐⭐⭐⭐⭐ 仪器崩了 ⇒ 写产物 + rc=2（**不许沉默退出**）────────────────
+#   ⇒ ⇒ ⇒ 起因（1032-⑨ 实测出来的同一族）：本探针原来在 node 跑挂时
+#   ⇒ ⇒ ⇒ `raise SystemExit(...)` ⇒⇒⇒ **产物一个字都没写**
+#   ⇒ ⇒ ⇒⇒⇒ 而「产物不存在」与「读到 0」在账上长得一模一样 ⇒⇒⇒⇒ ⇒ ⇒ 假绿
+#   ⇒ ⇒ ⇒⇒⇒ ⇒⇒⇒ 而本探针还更贵：它是**唯一**能看见「改行为」的那本
+class _InstrumentCrash(Exception):
+    """node 不可用 / node 跑挂 ⇒ ⇒ 走 rc=2 那条出口。"""
+
+
+CRIT_KEYS_1019 = [
+    "P1_behavior_baseline_all_green_2019",
+    "P2_behavior_check_sees_a_behavior_change_2019",
+    "P3_end_guard_removed_is_caught_2019",
+    "P4_ws_string_criteria_green_at_baseline_2019",
+    "P5_ws_string_criteria_cannot_see_either_patch_2019",
+    "P6_the_guard_really_is_in_the_function_2019",
+    "P7_scope_declared_2019",
+    "P8_offline_2019",
+]
+
+
+def _write_crashed_artifact(label):
+    """崩了也要写一份**形状完整**的产物 ⇒ ⇒ 不许「产物不存在」冒充「没测到」。"""
+    GOLDEN.parent.mkdir(parents=True, exist_ok=True)
+    GOLDEN.write_text(json.dumps({
+        "generated_by": "jimeng_probe1019_behavior_harness.py",
+        "note": "⭐⭐⭐⭐⭐ **本轮仪器崩了（node 不可用或跑挂）⇒ 判据全部未测（None）** ⇒ "
+                "**⇒⇒⇒ 而它必须写出来** ⇒⇒⇒⇒ 否则「读不到」与「读到 0」在账上一样",
+        "probe_crashed": True,
+        "readings_available": False,
+        "readings_fresh": False,
+        "crash_label": label,
+        "criteria": {k: None for k in CRIT_KEYS_1019},
+    }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print("P1..P8 =", [None] * len(CRIT_KEYS_1019))
+    print("⚠️ 仪器崩了（%s）⇒ 判据降级为 None ⇒ 退出码 2" % label)
 
 
 # ── 抽函数真身（按函数名 + 括号配平；不是转写） ─────────────────────────────────
@@ -170,13 +209,28 @@ def run_variant(name, subs):
     #   ⇒ 不需要正则去手术、也就不可能手术出第二种真身
     f = TMPDIR / ("harness-%s.ts" % name)
     f.write_text(js, encoding="utf-8")
-    r = subprocess.run(["node", str(f)], capture_output=True, timeout=120)
-    if r.returncode != 0:
-        raise SystemExit("node 跑挂了 %s: %s" % (name, r.stderr.decode()[:400]))
-    return json.loads(r.stdout.decode("utf-8"))
+    # ⭐⭐⭐⭐⭐ 走统一工具链 ⇒ 「node 在不在」只有一个答案 ⇒
+    #   ⇒ 且崩了**不许** raise SystemExit ⇒⇒⇒ 那是「产物一个字都不写」的沉默退出
+    _res = run_node_script(f, timeout=120)
+    if _res["crashed"]:
+        raise _InstrumentCrash("node-crashed:%s" % name)
+    return json.loads(_res["stdout"])
 
 
-RES = {k: run_variant(k, v) for k, v in MUTS.items()}
+# ⭐⭐⭐⭐⭐ node 可用性先问一次 ⇒ 「node 根本不在」与「node 跑挂了」要分得开
+_NODE_OK, _NODE_WHY = node_available()
+
+RES = None
+_CRASH_LABEL = None
+try:
+    RES = {k: run_variant(k, v) for k, v in MUTS.items()}
+except _InstrumentCrash as _e:
+    _CRASH_LABEL = ("node-unavailable" if not _NODE_OK else str(_e))
+
+if RES is None:
+    # ⭐ 仪器崩了 ⇒ ⇒ 写产物（形状完整）＋ rc=2 ⇒ ⇒ 不许沉默退出
+    _write_crashed_artifact(_CRASH_LABEL or "instrument-crash")
+    sys.exit(2)
 
 
 def fails(rows):
@@ -310,10 +364,16 @@ OUT = {"P1_behavior_baseline_all_green_2019": P1,
        "P6_the_guard_really_is_in_the_function_2019": P6,
        "P7_scope_declared_2019": P7,
        "P8_offline_2019": P8}
+# ⭐⭐⭐⭐⭐ 降级产物用的判据键必须与正常产物**逐字一致** ⇒
+#   ⇒⇒⇒⇒ 否则「崩了写出来的那本」与「跑成了写出来的那本」形状不同 ⇒⇒⇒⇒ 而账就分不清
+assert list(OUT.keys()) == CRIT_KEYS_1019, "判据键与降级产物不一致"
 
 GOLDEN.parent.mkdir(parents=True, exist_ok=True)
 GOLDEN.write_text(json.dumps({
     "generated_by": "jimeng_probe1019_behavior_harness.py",
+    "probe_crashed": False,
+    "readings_available": True,
+    "readings_fresh": True,
     "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **第一次把一条判据从「字面量存在性」升级成「真行为验证」** —— "
             "抽函数真身、配最小 DOM stub、用 node 真跑；"
             "并量出这次升级的代价：**两个改行为、一个锚点都不动的补丁，"

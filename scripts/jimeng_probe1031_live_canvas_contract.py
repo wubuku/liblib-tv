@@ -31,9 +31,11 @@ import io
 import json
 import os
 import re
-import subprocess
 import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from jimeng_node_toolchain import node_available, run_node_script  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 GDIR = ROOT / "docs/research/jimeng-canvas"
@@ -62,26 +64,32 @@ def harvest():
     """拿一份实测结构：优先用环境变量指向的副本，否则现跑一次无头取证。
 
     ⭐⭐⭐⭐⭐ **「仪器崩了」与「没有浏览器」必须分开**（1032-⑨ 实测出来的）
-      · spawn 失败（连 node 都没有）⇒ **降级**：没浏览器就是没浏览器
+      · **node 不在 PATH** ⇒ ⇒ **仪器崩了**（不是「没浏览器」）⇒ ⇒ 必须走 rc=2
       · node 跑了但 returncode≠0、或它没写盘 ⇒ **仪器崩了**
-      ⇒⇒⇒ 而「降级」的 rc 是 0 ⇒⇒⇒ **崩溃会被伪装成「没测到、而且还没红」**
-      ⇒⇒⇒ 那是这套门最贵的那种绿 ⇒⇒⇒ 必须走 rc=2 那条出口
-      ⇒⇒⇒ 且**崩溃细节不许进产物**（stderr 每次都不同 ⇒ 会把产物变成随机量）
+      ⇒⇒⇒ 而旧的写法把「node 不在」叫「没浏览器」⇒⇒⇒ **⇒ 退出码 0 ⇒⇒⇒**
+      ⇒⇒⇒ ⇒ **崩溃被伪装成「没测到、而且还没红」** ⇒⇒⇒ ⇒ 那是最贵的那种绿
+      ⇒⇒⇒ ⇒ ⇒ 而 1032-⑩ 已把「node 在不在」收进统一工具链 ⇒⇒⇒ ⇒ ⇒ 只有一个答案
+      ⇒⇒⇒ ⇒ ⇒⇒⇒ 且**崩溃细节不许进产物**（stderr 每次都不同 ⇒ 会把产物变成随机量）
     """
     src = os.environ.get("JIMENG_FORENSICS_JSON")
     if src:
         p = Path(src)
         return (json.loads(p.read_text(encoding="utf-8")) if p.exists() else None), "copy"
-    try:
-        r = subprocess.run(["node", str(FORENSICS)], capture_output=True,
-                           text=True, timeout=300,
-                           env=dict(os.environ, JIMENG_FORENSICS_OUT=FRESH_DEFAULT))
-    except (OSError, subprocess.SubprocessError) as _e:
-        return None, "no_browser"
-    p = Path(FRESH_DEFAULT)
-    if r.returncode != 0 or not p.exists():
+    # ⭐⭐⭐⭐⭐ 走统一工具链 ⇒「node 在不在」只有一个答案 ⇒
+    #   ⇒⇒⇒ 「node 不在」**不是**「没浏览器」⇒⇒⇒ 它是仪器崩 ⇒⇒⇒ 走 rc=2
+    _node_ok, _node_why = node_available()
+    if not _node_ok:
+        sys.stderr.write("FORENSICS_CRASHED_1031 :: node unavailable (%s)\n" % _node_why)
+        return None, "crashed"
+    _res = run_node_script(FORENSICS, timeout=300,
+                            env=dict(os.environ, JIMENG_FORENSICS_OUT=FRESH_DEFAULT))
+    if _res["crashed"]:
         sys.stderr.write("FORENSICS_CRASHED_1031 rc=%s :: %s\n"
-                         % (r.returncode, (r.stderr or "")[-800:]))
+                         % (_res["rc"], (_res["stderr"] or "")[-800:]))
+        return None, "crashed"
+    p = Path(FRESH_DEFAULT)
+    if not p.exists():
+        sys.stderr.write("FORENSICS_CRASHED_1031 :: 跑完了但没写盘\n")
         return None, "crashed"
     return json.loads(p.read_text(encoding="utf-8")), "live"
 
@@ -129,6 +137,11 @@ out = {"generated_by": "jimeng_probe1031_live_canvas_contract.py"}
 
 if not CONTRACT.exists():
     out["fatal"] = "契约文件不存在：%s" % CONTRACT
+    # ⭐ 三个字段成对出现（此时探针本身没崩 ⇒ probe_crashed=False；
+    #   ⇒⇒⇒ 而没有读数 ⇒ available/fresh 都 false ⇒⇒⇒ 满足 1037 的 R3）
+    out["probe_crashed"] = False
+    out["readings_available"] = False
+    out["readings_fresh"] = False
     io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
     # ⭐ 这一行原本是 `exit(1)`，而「契约没登记」是**数据/环境错**、不是判据为假
     #   ⇒ 第一版「退出码可区分」只改了一半：坏 JSON 归了 2，文件缺失还留在 1
@@ -330,6 +343,14 @@ out["downgraded"] = (
     ("⚠️⭐⭐⭐⭐⭐ **本轮没有浏览器通路，P4/P5 记 `null` 而不是 `False`**"
      " —— 记成 `False` 就是「没跑过」与「跑过没过」混成同一件事，"
      "而这正是这套门最贵的那种失败"))
+
+# ⭐⭐⭐⭐⭐ 三个字段必须**成对出现** ⇒ ⇒ 「可用性」与「新鲜度」缺一不可
+#   ⇒ ⇒⇒ 「新鲜度」= **这一轮用的读数就是这一轮产的**（live：本轮的 .mjs 写的；
+#   ⇒ ⇒⇒⇒   copy：本轮显式注入的那份）⇒ ⇒⇒⇒ **而不是「上一轮遗留的」**
+#   ⇒ ⇒⇒⇒ 而崩了 ⇒ ⇒ 两项都 false（1037 的 R3：fresh=False ⇒ available 必须 False）
+out["probe_crashed"] = bool(how == "crashed")
+out["readings_available"] = bool(live is not None)
+out["readings_fresh"] = bool(live is not None)
 
 io.open(OUT, "w", encoding="utf-8").write(json.dumps(out, ensure_ascii=False, indent=1))
 if live is not None:

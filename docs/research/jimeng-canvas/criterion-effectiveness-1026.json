@@ -717,7 +717,7 @@
         "probe": "jimeng_probe1019_behavior_harness.py",
         "var": "P1",
         "naming": "indexed",
-        "lineno": 296,
+        "lineno": 350,
         "label": "P1_behavior_baseline_all_green_2019",
         "kind": "zero",
         "evidence": [
@@ -730,7 +730,7 @@
         "probe": "jimeng_probe1019_behavior_harness.py",
         "var": "P2",
         "naming": "indexed",
-        "lineno": 297,
+        "lineno": 351,
         "label": "P2_behavior_check_sees_a_behavior_change_2019",
         "kind": "nonempty",
         "evidence": [
@@ -743,7 +743,7 @@
         "probe": "jimeng_probe1019_behavior_harness.py",
         "var": "P3",
         "naming": "indexed",
-        "lineno": 298,
+        "lineno": 352,
         "label": "P3_end_guard_removed_is_caught_2019",
         "kind": "nonempty+mechanism",
         "evidence": [
@@ -757,7 +757,7 @@
         "probe": "jimeng_probe1019_behavior_harness.py",
         "var": "P4",
         "naming": "indexed",
-        "lineno": 299,
+        "lineno": 353,
         "label": "P4_ws_string_criteria_green_at_baseline_2019",
         "kind": "nonempty",
         "evidence": [
@@ -770,7 +770,7 @@
         "probe": "jimeng_probe1019_behavior_harness.py",
         "var": "P5",
         "naming": "indexed",
-        "lineno": 300,
+        "lineno": 354,
         "label": "P5_ws_string_criteria_cannot_see_either_patch_2019",
         "kind": "other",
         "evidence": [
@@ -783,7 +783,7 @@
         "probe": "jimeng_probe1019_behavior_harness.py",
         "var": "P6",
         "naming": "indexed",
-        "lineno": 301,
+        "lineno": 355,
         "label": "P6_the_guard_really_is_in_the_function_2019",
         "kind": "other",
         "evidence": [
@@ -796,7 +796,7 @@
         "probe": "jimeng_probe1019_behavior_harness.py",
         "var": "P7",
         "naming": "indexed",
-        "lineno": 302,
+        "lineno": 356,
         "label": "P7_scope_declared_2019",
         "kind": "decorative",
         "evidence": [
@@ -809,7 +809,7 @@
         "probe": "jimeng_probe1019_behavior_harness.py",
         "var": "P8",
         "naming": "indexed",
-        "lineno": 303,
+        "lineno": 357,
         "label": "P8_offline_2019",
         "kind": "decorative",
         "evidence": [
@@ -822,7 +822,7 @@
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P1",
         "naming": "indexed",
-        "lineno": 491,
+        "lineno": 542,
         "label": "P1_stub_and_dom_disagree_exactly_on_depth2_2020",
         "kind": "nonempty",
         "evidence": [
@@ -835,7 +835,7 @@
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P2",
         "naming": "indexed",
-        "lineno": 492,
+        "lineno": 543,
         "label": "P2_1019_eight_expectations_hold_under_the_faithful_stub_2020",
         "kind": "zero",
         "evidence": [
@@ -848,7 +848,7 @@
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P3",
         "naming": "indexed",
-        "lineno": 493,
+        "lineno": 544,
         "label": "P3_both_stubs_can_kill_mutants_2020",
         "kind": "nonempty",
         "evidence": [
@@ -863,7 +863,7 @@
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P4",
         "naming": "indexed",
-        "lineno": 494,
+        "lineno": 545,
         "label": "P4_there_are_surviving_mutants_2020",
         "kind": "nonempty",
         "evidence": [
@@ -876,7 +876,7 @@
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P5",
         "naming": "indexed",
-        "lineno": 495,
+        "lineno": 546,
         "label": "P5_branch_coverage_is_six_of_seven_and_the_missing_one_is_dead_code_2020",
         "kind": "zero",
         "evidence": [
@@ -891,7 +891,7 @@
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P6",
         "naming": "indexed",
-        "lineno": 496,
+        "lineno": 547,
         "label": "P6_differential_grid_cannot_kill_mutants_by_construction_2020",
         "kind": "nonempty",
         "evidence": [
@@ -905,7 +905,7 @@
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P7",
         "naming": "indexed",
-        "lineno": 497,
+        "lineno": 548,
         "label": "P7_one_sample_depth_flips_a_verdict_2020",
         "kind": "other",
         "evidence": [
@@ -918,7 +918,7 @@
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P8",
         "naming": "indexed",
-        "lineno": 498,
+        "lineno": 549,
         "label": "P8_two_more_cells_buy_more_discriminating_power_2020",
         "kind": "nonempty",
         "evidence": [
@@ -931,7 +931,7 @@
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P9",
         "naming": "indexed",
-        "lineno": 499,
+        "lineno": 550,
         "label": "P9_string_versus_integer_tabindex_disagrees_2020",
         "kind": "nonempty",
         "evidence": [
@@ -944,7 +944,7 @@
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P10",
         "naming": "indexed",
-        "lineno": 500,
+        "lineno": 551,
         "label": "P10_offline_2020",
         "kind": "decorative",
         "evidence": [
@@ -2328,7 +2328,7 @@
       {
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P5",
-        "lineno": 495,
+        "lineno": 546,
         "label": "P5_branch_coverage_is_six_of_seven_and_the_missing_one_is_dead_code_2020",
         "kind": "zero",
         "words": [
@@ -2398,19 +2398,19 @@
       {
         "probe": "jimeng_probe1019_behavior_harness.py",
         "var": "P7",
-        "lineno": 302,
+        "lineno": 356,
         "label": "P7_scope_declared_2019"
       },
       {
         "probe": "jimeng_probe1019_behavior_harness.py",
         "var": "P8",
-        "lineno": 303,
+        "lineno": 357,
         "label": "P8_offline_2019"
       },
       {
         "probe": "jimeng_probe1020_harness_fidelity.py",
         "var": "P10",
-        "lineno": 500,
+        "lineno": 551,
         "label": "P10_offline_2020"
       },
       {

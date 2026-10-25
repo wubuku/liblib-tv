@@ -44,5 +44,8 @@
  "P10_waited_until_the_contract_was_satisfied_1031": true,
  "duplicate_keys_in_audit_block": [],
  "P6_no_duplicate_keys_in_contract_block_1031": true,
- "downgraded": "⚠️⭐⭐⭐⭐⭐ **本轮没有浏览器通路，P4/P5 记 `null` 而不是 `False`** —— 记成 `False` 就是「没跑过」与「跑过没过」混成同一件事，而这正是这套门最贵的那种失败"
+ "downgraded": "⚠️⭐⭐⭐⭐⭐ **本轮没有浏览器通路，P4/P5 记 `null` 而不是 `False`** —— 记成 `False` 就是「没跑过」与「跑过没过」混成同一件事，而这正是这套门最贵的那种失败",
+ "probe_crashed": false,
+ "readings_available": true,
+ "readings_fresh": true
 }
