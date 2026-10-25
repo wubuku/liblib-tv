@@ -1,5 +1,7 @@
 {
  "generated_by": "jimeng_probe1014_empty_ambiguity.py",
+ "volatile": true,
+ "volatile_why": "⭐⭐⭐⭐⭐ 本产物的输入集是**整目录 glob**（`GDIR.glob(\"*.json\")`）⇒ ⇒ ⇒ 目录里任何一本产物变了（**包括本产物自己**）⇒ ⇒ ⇒ ⇒ 它的读数就变 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而这不是「产品变了」、是「普查面变了」** ⇒ ⇒ ⇒⇒ ⇒ ⇒ ★ 所以它**每轮都会变** ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **必须自己声明**，否则跨轮稳定性的账会把「面变了」记成「出问题了」。",
  "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「空集合」有歧义：看起来是空的，和没算过，在仓里长得一模一样**",
  "rule": "⭐⭐⭐⭐⭐ **可自证 = 旁边有一个**可校验的不变式**；散文说明不算（它与「没算过」完全兼容）**",
  "snapshot_and_who_checks_it": {
@@ -12,17 +14,17 @@
   "why_declared_here": "⇒ **「声明」与「发布」之间那道缝**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 声明必须落在产物里、而不只在 README 的散文里**"
  },
  "census_inputs_2029": {
-  "n_fingerprinted": 32,
+  "n_fingerprinted": 33,
   "n_unreadable": 0,
   "n_volatile": 1,
   "volatile_inputs": {
    "golden-freshness-1027.json": {
-    "sha256_12": "82db22d97da3",
-    "bytes": 97210,
+    "sha256_12": "76fa6067f45a",
+    "bytes": 99988,
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
-  "n_from_probe_products": 33,
+  "n_from_probe_products": 34,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
     "sha256_12": "92e91802dbd4",
@@ -53,15 +55,15 @@
     "bytes": 28140
    },
    "connect-contract-1032a.json": {
-    "sha256_12": "056a44572632",
-    "bytes": 1475
+    "sha256_12": "40cbe8e48113",
+    "bytes": 1472
    },
    "criterion-direction-1025.json": {
     "sha256_12": "e2a56b02ef35",
     "bytes": 328910
    },
    "criterion-effectiveness-1026.json": {
-    "sha256_12": "4dd0e47ea1b6",
+    "sha256_12": "8c3833501fcb",
     "bytes": 101680
    },
    "edit-visibility-1009.json": {
@@ -69,20 +71,20 @@
     "bytes": 1437
    },
    "exemption-claims-1024.json": {
-    "sha256_12": "b6065031266e",
-    "bytes": 19486
+    "sha256_12": "0dabc595ff10",
+    "bytes": 19738
    },
    "expanded-contract-1032b4.json": {
-    "sha256_12": "a76818434f89",
-    "bytes": 4171
+    "sha256_12": "8d1a63147bf6",
+    "bytes": 4972
    },
    "fake-interaction-census-1034.json": {
     "sha256_12": "fff360e357fc",
     "bytes": 11558
    },
    "gen-contract-1032b2.json": {
-    "sha256_12": "0ef7000d7ba0",
-    "bytes": 1536
+    "sha256_12": "1d9f4ab02cc2",
+    "bytes": 1654
    },
    "global-detection-1012.json": {
     "sha256_12": "b0a4b41fb417",
@@ -96,25 +98,29 @@
     "sha256_12": "7bd0a0c99ed1",
     "bytes": 21313
    },
+   "instrument-fake-green-census-1037.json": {
+    "sha256_12": "44ffff580a19",
+    "bytes": 12200
+   },
    "interaction-wiring-check-1032.json": {
     "sha256_12": "d13d5109bdb1",
     "bytes": 1843
    },
    "live-canvas-check-1031.json": {
-    "sha256_12": "89547675f772",
-    "bytes": 1258
+    "sha256_12": "7b27828bdaa1",
+    "bytes": 1735
    },
    "manual-clone-parity-1035.json": {
     "sha256_12": "5589a0a0b396",
     "bytes": 4994
    },
    "mention-contract-1032b3.json": {
-    "sha256_12": "a4d13ae3f79b",
-    "bytes": 2070
+    "sha256_12": "0c0b4e8f8cff",
+    "bytes": 3307
    },
    "noop-contract-1032c.json": {
-    "sha256_12": "6e98ab6f32d6",
-    "bytes": 1911
+    "sha256_12": "da0ffb8e7460",
+    "bytes": 2410
    },
    "occurrence-ledger-1013.json": {
     "sha256_12": "585d9250b194",
@@ -129,7 +135,7 @@
     "bytes": 2109
    },
    "replica-coverage-1017.json": {
-    "sha256_12": "b156bad4a905",
+    "sha256_12": "27680fd26c42",
     "bytes": 15016
    },
    "source-claim-census-1036.json": {
@@ -141,27 +147,27 @@
     "bytes": 1272
    },
    "type-layer-gate-1023.json": {
-    "sha256_12": "1ab82d27d8b7",
-    "bytes": 1303
+    "sha256_12": "2cff76d71be1",
+    "bytes": 9205
    },
    "wired-contract-1032b1.json": {
-    "sha256_12": "90efc1c28255",
-    "bytes": 1313
+    "sha256_12": "dd84c19ff7c7",
+    "bytes": 1310
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "f4585b16ac00",
-    "bytes": 143650
+    "sha256_12": "61d034c780c8",
+    "bytes": 143647
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 33,
+  "n_goldens": 34,
   "n_excluded_self": 4,
-  "n_empty_list": 223,
-  "n_empty_null": 83,
+  "n_empty_list": 296,
+  "n_empty_null": 39,
   "n_self_provable": 10,
-  "n_ambiguous": 296
+  "n_ambiguous": 325
  },
  "rows": [
   {
@@ -1376,132 +1382,6 @@
    "invariant": null
   },
   {
-   "golden": "exemption-claims-1024.json",
-   "path": "/class_A_where_the_rule_is_now_unnecessary/unused",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P1_detail/n_checks",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P1_detail/n_failed",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P2_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P3_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P4_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P5_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P6_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P7_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P8_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P9_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P10_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P11_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P12_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P13_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P14_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P15_detail/mutated_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P15_detail/judgement_is_red",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
    "golden": "fake-interaction-census-1034.json",
    "path": "/details/P2_detail/new",
    "kind": "list",
@@ -1629,78 +1509,15 @@
   },
   {
    "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P1",
-   "kind": "null",
+   "path": "/false_criteria",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P2",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P3",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P4",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P5",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P6",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P7",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P8",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/p8_mutation",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/detail/n_checks",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/detail/n_failed",
-   "kind": "null",
+   "path": "/degraded_criteria",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
@@ -1901,6 +1718,468 @@
    "invariant": null
   },
   {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/fake_green",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[0]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[0]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[1]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[1]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[2]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[3]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[3]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[4]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[4]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[5]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[5]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[6]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[6]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[7]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[7]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[8]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[9]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[9]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[10]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[10]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[11]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[11]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[12]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[13]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[13]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[14]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[15]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[16]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[17]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[18]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[18]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[19]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[19]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[20]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[20]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[21]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[21]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[22]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[23]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[24]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[24]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[25]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[26]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[27]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[27]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[28]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[28]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[29]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[30]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[30]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[31]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[31]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[32]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[32]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[33]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[33]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[34]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[34]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[35]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[36]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[36]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/violations_r2_crashed_but_available",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/violations_r3_stale_but_available",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/violations_r4_volatile_without_why",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/node_toolchain_1037/migrated_but_direct_spawn",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "interaction-wiring-check-1032.json",
    "path": "/P1_detail/new_dead",
    "kind": "list",
@@ -1965,22 +2244,29 @@
   },
   {
    "golden": "live-canvas-check-1031.json",
-   "path": "/P4_live_matches_contract_1031",
-   "kind": "null",
+   "path": "/live_1031/missing_testids",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "live-canvas-check-1031.json",
-   "path": "/P5_live_status_line_shape_1031",
-   "kind": "null",
+   "path": "/live_1031/missing_aria",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "live-canvas-check-1031.json",
-   "path": "/P10_waited_until_the_contract_was_satisfied_1031",
-   "kind": "null",
+   "path": "/live_1031/missing_aria_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/live_1031/missing_node_kinds",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
@@ -2009,55 +2295,6 @@
    "golden": "manual-clone-parity-1035.json",
    "path": "/runtime_readings_1035/offline_dialog_ui/candidates",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "mention-contract-1032b3.json",
-   "path": "/P1_detail/n_checks",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "mention-contract-1032b3.json",
-   "path": "/P1_detail/n_failed",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "mention-contract-1032b3.json",
-   "path": "/P8_detail/mutated_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "mention-contract-1032b3.json",
-   "path": "/P8_detail/judgement_is_red",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "noop-contract-1032c.json",
-   "path": "/P1_detail/n_buttons",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "noop-contract-1032c.json",
-   "path": "/P7_detail/mutated_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "noop-contract-1032c.json",
-   "path": "/P7_detail/judgement_is_red",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -2238,57 +2475,29 @@
   },
   {
    "golden": "type-layer-gate-1023.json",
-   "path": "/early_exit/whole_repo_tsc/error_codes_seen",
+   "path": "/self_check/whole_repo_tsc/first",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "type-layer-gate-1023.json",
-   "path": "/early_exit/unmutated_copy_tsc/error_codes_seen",
+   "path": "/self_check/unmutated_copy_tsc/first",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "type-layer-gate-1023.json",
-   "path": "/P2_check_has_chained_typecheck_1023",
-   "kind": "null",
+   "path": "/type_layer_experiment/mutants/[6]/first",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "type-layer-gate-1023.json",
-   "path": "/P3_type_layer_catches_some_and_misses_some_1023",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "type-layer-gate-1023.json",
-   "path": "/P4_local_commit_gate_never_calls_tsc_but_ci_does_1023",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "type-layer-gate-1023.json",
-   "path": "/P5_a_never_true_premise_is_what_a_criterion_leans_on_1023",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "type-layer-gate-1023.json",
-   "path": "/P6_scope_declared_1023",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "type-layer-gate-1023.json",
-   "path": "/P7_offline_1023",
-   "kind": "null",
+   "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
@@ -3513,132 +3722,6 @@
    "invariant": null
   },
   {
-   "golden": "exemption-claims-1024.json",
-   "path": "/class_A_where_the_rule_is_now_unnecessary/unused",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P1_detail/n_checks",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P1_detail/n_failed",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P2_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P3_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P4_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P5_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P6_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P7_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P8_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P9_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P10_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P11_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P12_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P13_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P14_detail/upstream_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P15_detail/mutated_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "expanded-contract-1032b4.json",
-   "path": "/P15_detail/judgement_is_red",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
    "golden": "fake-interaction-census-1034.json",
    "path": "/details/P2_detail/new",
    "kind": "list",
@@ -3766,78 +3849,15 @@
   },
   {
    "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P1",
-   "kind": "null",
+   "path": "/false_criteria",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P2",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P3",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P4",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P5",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P6",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P7",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/criteria/P8",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/p8_mutation",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/detail/n_checks",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "gen-contract-1032b2.json",
-   "path": "/detail/n_failed",
-   "kind": "null",
+   "path": "/degraded_criteria",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
@@ -4031,6 +4051,468 @@
    "invariant": null
   },
   {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/fake_green",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[0]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[0]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[1]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[1]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[2]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[3]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[3]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[4]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[4]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[5]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[5]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[6]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[6]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[7]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[7]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[8]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[9]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[9]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[10]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[10]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[11]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[11]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[12]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[13]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[13]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[14]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[15]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[16]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[17]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[18]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[18]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[19]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[19]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[20]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[20]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[21]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[21]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[22]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[23]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[24]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[24]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[25]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[26]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[27]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[27]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[28]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[28]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[29]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[30]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[30]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[31]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[31]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[32]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[32]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[33]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[33]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[34]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[34]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[35]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[36]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[36]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/violations_r2_crashed_but_available",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/violations_r3_stale_but_available",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/violations_r4_volatile_without_why",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/node_toolchain_1037/migrated_but_direct_spawn",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
    "golden": "interaction-wiring-check-1032.json",
    "path": "/P1_detail/new_dead",
    "kind": "list",
@@ -4095,22 +4577,29 @@
   },
   {
    "golden": "live-canvas-check-1031.json",
-   "path": "/P4_live_matches_contract_1031",
-   "kind": "null",
+   "path": "/live_1031/missing_testids",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "live-canvas-check-1031.json",
-   "path": "/P5_live_status_line_shape_1031",
-   "kind": "null",
+   "path": "/live_1031/missing_aria",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "live-canvas-check-1031.json",
-   "path": "/P10_waited_until_the_contract_was_satisfied_1031",
-   "kind": "null",
+   "path": "/live_1031/missing_aria_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "live-canvas-check-1031.json",
+   "path": "/live_1031/missing_node_kinds",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
@@ -4139,55 +4628,6 @@
    "golden": "manual-clone-parity-1035.json",
    "path": "/runtime_readings_1035/offline_dialog_ui/candidates",
    "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "mention-contract-1032b3.json",
-   "path": "/P1_detail/n_checks",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "mention-contract-1032b3.json",
-   "path": "/P1_detail/n_failed",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "mention-contract-1032b3.json",
-   "path": "/P8_detail/mutated_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "mention-contract-1032b3.json",
-   "path": "/P8_detail/judgement_is_red",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "noop-contract-1032c.json",
-   "path": "/P1_detail/n_buttons",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "noop-contract-1032c.json",
-   "path": "/P7_detail/mutated_ok",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "noop-contract-1032c.json",
-   "path": "/P7_detail/judgement_is_red",
-   "kind": "null",
    "self_provable": false,
    "invariant": null
   },
@@ -4312,57 +4752,29 @@
   },
   {
    "golden": "type-layer-gate-1023.json",
-   "path": "/early_exit/whole_repo_tsc/error_codes_seen",
+   "path": "/self_check/whole_repo_tsc/first",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "type-layer-gate-1023.json",
-   "path": "/early_exit/unmutated_copy_tsc/error_codes_seen",
+   "path": "/self_check/unmutated_copy_tsc/first",
    "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "type-layer-gate-1023.json",
-   "path": "/P2_check_has_chained_typecheck_1023",
-   "kind": "null",
+   "path": "/type_layer_experiment/mutants/[6]/first",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },
   {
    "golden": "type-layer-gate-1023.json",
-   "path": "/P3_type_layer_catches_some_and_misses_some_1023",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "type-layer-gate-1023.json",
-   "path": "/P4_local_commit_gate_never_calls_tsc_but_ci_does_1023",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "type-layer-gate-1023.json",
-   "path": "/P5_a_never_true_premise_is_what_a_criterion_leans_on_1023",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "type-layer-gate-1023.json",
-   "path": "/P6_scope_declared_1023",
-   "kind": "null",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "type-layer-gate-1023.json",
-   "path": "/P7_offline_1023",
-   "kind": "null",
+   "path": "/type_layer_experiment/the_four_from_1020/survived_tsc",
+   "kind": "list",
    "self_provable": false,
    "invariant": null
   },

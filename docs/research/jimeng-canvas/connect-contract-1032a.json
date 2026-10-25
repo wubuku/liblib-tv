@@ -2,7 +2,9 @@
  "generated_by": "jimeng_probe1032a_connect_contract.py",
  "target": "jimeng-canvas-connect",
  "question": "⭐⭐⭐⭐⭐ **用户能不能真的拖出一条连线？**",
- "probe_run": "probe failed: [Errno 2] No such file or directory: 'node'",
+ "probe_run": "rc=0",
+ "probe_crashed": false,
+ "readings_fresh": true,
  "readings_file": "docs/research/jimeng-canvas/inputs/connect-runtime-1032a.json",
  "readings_available": true,
  "criteria": {

@@ -480,6 +480,14 @@ def main(argv=None):
         "n_files_on_disk": work["n_files_on_disk"],
         "n_excluded_from_the_table": work["n_excluded"],
         "n_volatile": work["n_volatile"],
+        # ⭐⭐⭐⭐⭐ 2026-10-25：**本产物每轮都会变** ⇒ ⇒ 必须自己声明（1032n 判据③）
+        "volatile": True,
+        "volatile_why": "⭐⭐⭐⭐⭐ 本产物记的是**全目录的文件指纹表**"
+                        "⇒ ⇒ ⇒⇒ 目录里任何一本书变了 ⇒ ⇒ ⇒⇒ 指纹表就变 "
+                        "⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ 而它自己写盘也会改到别人的指纹** "
+                        "⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **所以它必然每轮都变** ⇒ ⇒ ⇒⇒ ⇒ ⇒ "
+                        "⇒ ⇒ ⇒ **必须自己声明**，否则跨轮稳定性的账"
+                        "会把「面变了」记成「出问题了」。",
         "worktree": {
             "ok": work["ok"],
             "n_matched": work["n_matched"],

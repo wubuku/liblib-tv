@@ -98,7 +98,7 @@
       ]
     },
     "whole_apparatus": {
-      "n_scripts": 435,
+      "n_scripts": 437,
       "n_path_refs": 41,
       "n_files_covered": 37,
       "n_files_uncovered": 23,
@@ -217,7 +217,7 @@
       "token": "**"
     }
   ],
-  "n_glob_evidence": 358,
+  "n_glob_evidence": 359,
   "bare_base_refs": {
     "n_found_in_repo": 4,
     "would_deflate_metric": true,

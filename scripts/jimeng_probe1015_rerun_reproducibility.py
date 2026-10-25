@@ -70,6 +70,21 @@ PY = sys.executable
 TIMEOUT = 2400
 MAX_ROUNDS = 6
 
+# ⭐⭐⭐⭐⭐ 2026-10-25：**跑之前必须先确认 node 能不能用**
+#   ⇒ ⇒ ⇒ 本套件里多个探针要 node ⇒ ⇒ 缺 node ⇒ 它们全崩
+#   ⇒ ⇒ ⇒ 而「探针崩了」以前会被伪装成「跑完了、而且没漂移」⇒ ⇒ ⇒ 假绿
+#   ⇒ ⇒ ⇒⇒ 而且崩了还会写出**降级版的产物** ⇒ ⇒ ⇒⇒ 册子把降级版当正常版记下来
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ★ 处置：**缺 node ⇒ 整个 1015 不许跑**（rc=2、不写册子）
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from jimeng_node_toolchain import node_available  # noqa: E402
+
+_NODE_OK, _NODE_WHY = node_available()
+if not _NODE_OK:
+    sys.stderr.write("NODE_UNAVAILABLE_1015 :: %s\n" % _NODE_WHY)
+    sys.stderr.write("⇒ 缺 node ⇒ 依赖 node 的探针全崩 ⇒ 本轮结果无意义 "
+                     "⇒ ⇒ 拒绝写册子 ⇒ 退出码 2\n")
+    sys.exit(2)
+
 # ⚠️⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **本仪器会覆写别人的产物 ⇒ ⇒ 每次跑之前必须留快照、跑完原样写回去**
 #   ⇒ ⇒ ⇒ 否则「量可复现性」这个动作本身就会改掉被量的东西
 #   ⇒ ⇒ ⇒ ⇒ 1008 立过一条：任何改动临时状态的仪器都必须注册 `atexit` 兜底
@@ -139,6 +154,42 @@ def _flatten(obj, prefix=""):
     return out
 
 
+
+
+# ── ⭐⭐⭐⭐⭐ 2026-10-25：两条独立路径互核（退出码 vs 产物自报）─────
+#   ⇒ ⇒ ⇒ 路径 A：退出码（rc=2 ⇒ 仪器崩）
+#   ⇒ ⇒ ⇒ 路径 B：产物自己写的 `probe_crashed`（探针自报「这轮我崩了」）
+#   ⇒ ⇒ ⇒⇒ 而「只看一条」都会漏：只 A ⇒ 漏掉「崩了却 rc=0」（本次假绿）；
+#   ⇒ ⇒ ⇒⇒                       只 B ⇒ 漏掉「崩了却没自报」；
+#   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ★ **⇒ 两条必须互核** ⇒ ⇒ 判据 `P_instrument_failure_agrees_1015`
+def _artifact_self_reports_crash(post):
+    """产物自己有没有说「这轮探针崩了」？⇒ True / False / None（读不出）。"""
+    if post is None:
+        return None
+    try:
+        obj = json.loads(post.decode("utf-8"))
+    except Exception:                                             # noqa: BLE001
+        return None
+    if not isinstance(obj, dict):
+        return None
+    for k in ("probe_crashed", "instrument_crashed"):
+        if k in obj:
+            return bool(obj[k])
+    return None
+
+
+def _cross_mismatch(rc, self_report):
+    """两条路径是否打架？⇒ True / False / None（读不出 ⇒ 不判定）。
+
+    ⭐⭐⭐⭐⭐ **只判一个方向，理由要说清楚**：
+    ⇒ ⇒ ⇒ 「自报崩 ⇒ 退出码必须是 2」—— 这是**假绿的通道**，必须红。
+    ⇒ ⇒ ⇒ 「退出码是 2 ⇒ 必须自报崩」—— 本套件里 rc=2 还被用于「数据错」
+    ⇒ ⇒ ⇒   （1031 的 CONTRACT_BAD_JSON）⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 那个方向会误报。
+    ⇒ ⇒ ⇒⇒ ⇒ ⇒ ★ 所以：**红只判一个方向；另一个方向记读数，不判红。**
+    """
+    if self_report is None:
+        return None
+    return bool(self_report) and (rc != 2)
 def _classify(rc, pre, post):
     """四态。⭐⭐⭐⭐⭐ **「跑不起来」必须单列**：探针崩了不告诉你数据有没有变，
     并进任何一态都等于把仪器故障报成数据结论（1006：门报红 ≠ 数据错）。"""
@@ -147,6 +198,13 @@ def _classify(rc, pre, post):
     #   ⇒ ⇒⇒ 而 ②e 查出来的那些书**正是 rc=1**（它们的判据红、而它们没崩）
     #   ⇒ ⇒⇒⇒⇒ **⇒ 「崩」与「红」在记账上混成一栏 ⇒ ⇒ ⇒ 门看不见真正的失败**
     #   ⇒ ⇒⇒⇒⇒⇒ ⇒ **⇒ 处置：rc=1 ⇒ `self_red`（判据红）；rc=2 ⇒ `crashed`（仪器崩）**
+    # ⭐⭐⭐⭐⭐ 2026-10-25：**产物自报「这轮探针崩了」必须凌驾于退出码之上**
+    #   ⇒ ⇒ ⇒ 探针自己知道它崩了 ⇒ ⇒ 而门只看退出码 ⇒ ⇒ ⇒ 就漏了
+    #   ⇒ ⇒ ⇒⇒ 而「探针崩了却 rc=0」正是 1032a / 1032b1 这次的假绿形状
+    #   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ★ 而「退出码这条路径」由新判据负责互核 ⇒ ⇒ 两条都得走
+    if _artifact_self_reports_crash(post) is True:
+        return {"state": "crashed",
+                "why": "artifact_self_reports_probe_crashed"}
     if rc == 1:
         return {"state": "self_red"}
     if rc == 2:
@@ -819,6 +877,9 @@ def _run_round():
                "wrote_golden": wrote, "n_bytes": len(pre),
                "n_bytes_fresh": len(post) if post is not None else 0}
         row.update(_classify(rc, pre, post))
+        # ⭐⭐⭐⭐⭐ 2026-10-25：**路径 B 的读数也要落进账**
+        #   ⇒ ⇒ ⇒ 而它必须与路径 A（退出码）分开记 ⇒ ⇒ ⇒⇒ 互核才有着落
+        row["artifact_self_reports_crash"] = _artifact_self_reports_crash(post)
         # ⭐⭐⭐⭐⭐ 1032-②n 续：**把不变式所依赖的字段【发布】出来**
         #   ⇒ ⇒⇒⇒ ⇒ ⇒ 而产物里登记的不变式写着「len(books[i].n_keys_added) == 0」，
         #   ⇒ ⇒⇒⇒ ⇒ ⇒ ⇒ 而 `keys_added` **从来没有被发布过**（只有 drifted 那支才有）
@@ -1047,6 +1108,49 @@ SELF_RED_BOOKS = sorted(r["golden"] for r in BOOKS
                          if (r.get("n_self_reported_false") or 0) > 0)
 N_SELF_RED_BOOKS = len(SELF_RED_BOOKS)
 N_SELF_RED_CRITERIA = sum(r.get("n_self_reported_false") or 0 for r in BOOKS)
+
+# ── ⭐⭐⭐⭐⭐ 2026-10-25：两条路径的**互核**（退出码 vs 产物自报）────────
+#   ⇒ ⇒ ⇒ 这是新判据 `P_instrument_failure_agrees_1015` 的数据源
+#   ⇒ ⇒ ⇒⇒ 而「自报崩却 rc≠2」正是**假绿的通道** ⇒ ⇒ ⇒⇒ 必须红
+N_CROSS_MISMATCH = sum(
+    1 for r in BOOKS
+    if _cross_mismatch(r.get("rc"),
+                       r.get("artifact_self_reports_crash")) is True)
+BOOKS_CROSS_MISMATCH = sorted(
+    r["golden"] for r in BOOKS
+    if _cross_mismatch(r.get("rc"),
+                       r.get("artifact_self_reports_crash")) is True)
+# ⭐⭐⭐⭐⭐ 反方向只记读数、不判红（理由见 `_cross_mismatch` 的 docstring）
+N_RC2_NO_SELF_REPORT = sum(
+    1 for r in BOOKS
+    if r.get("rc") == 2 and r.get("artifact_self_reports_crash") is not True)
+
+# ⭐⭐⭐⭐⭐ 2026-10-25：**册子里不许留「崩过的书」** ⇒ ⇒ ⇒
+#   ⇒ ⇒ ⇒ 实测背景：已提交的册子（a9f0482b）里 `golden-freshness-1008.json`
+#   ⇒ ⇒ ⇒ 是 rc=2 / state=crashed ⇒ ⇒ ⇒ ⇒ **⇒ 而没人处理 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒**
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 因为红账「先记账、不下结论」**
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒**
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒**
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒**
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而「崩了」与「红了」必须分开**：崩 = 没测到（仪器问题）
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 红 = 测了没过（结论）⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而「没测到」的书被发布出去 ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒**
+#   ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒**
+BOOKS_CRASHED = sorted(r["golden"] for r in BOOKS
+                       if r.get("state") in ("crashed", "crashed_rc_other"))
+
+# ⭐⭐⭐⭐⭐ **这个判据自己也必须能失败** ⇒ ⇒ ⇒ 注入几条「自报崩却 rc≠2」
+_CROSS_SELFTEST = [
+    {"rc": 0, "self_report": True, "want": True},
+    {"rc": 1, "self_report": True, "want": True},
+    {"rc": 2, "self_report": True, "want": False},
+    {"rc": 0, "self_report": False, "want": False},
+    {"rc": 2, "self_report": False, "want": False},
+    {"rc": 0, "self_report": None, "want": None},
+]
+CROSS_SELFTEST = [{"got": _cross_mismatch(c["rc"], c["self_report"]),
+                   "want": c["want"]} for c in _CROSS_SELFTEST]
+CROSS_SELFTEST_OK = all(c["got"] == c["want"] for c in CROSS_SELFTEST)
 
 # ── 1032-②g：红账的「逐条」与「台账」两栏 ───────────────────────────
 N_WITH_DETAIL = sum(1 for r in BOOKS if r.get("criteria_detail_readable"))
@@ -1898,7 +2002,18 @@ out = {"P1_hold_1015": (N_STATES_SUM == len(BOOKS) and len(BOOKS) > 0
        #   ⇒ ⇒ ⇒⇒ **⇒ ⇒ 而「风格词表」本身必须与 `_styles_in` 产出的完全一致** ⇒ ⇒ ⇒⇒
        #   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ 少登记一种 ⇒ 那一种风格的书就会悄悄读不出** ⇒ ⇒ ⇒⇒
        "P_styles_all_supported_1015": (
-           N_STYLES_UNSUPPORTED == 0 and N_STYLES_IN_USE > 0 and STYLE_VOCAB_OK)}
+           N_STYLES_UNSUPPORTED == 0 and N_STYLES_IN_USE > 0 and STYLE_VOCAB_OK),
+       # ⭐⭐⭐⭐⭐ 2026-10-25：**仪器故障必须走独立出口码，且两条路径必须互核**
+       #   ⇒ ⇒ ⇒ 「产物自报崩、退出码却不是 2」⇒ ⇒ 就是**假绿的通道**
+       #   ⇒ ⇒ ⇒⇒ 而它正是 1032a / 1032b1 这次的形状 ⇒ ⇒ ⇒⇒ 必须红
+       #   ⇒ ⇒ ⇒⇒ ⇒ ⇒ ★ 而判据自己也必须能失败 ⇒ ⇒ ⇒⇒ ⇒ ⇒ ⇒ 注入式自检在下面
+       "P_instrument_failure_agrees_1015": (
+           N_CROSS_MISMATCH == 0 and CROSS_SELFTEST_OK),
+       # ⭐⭐⭐⭐⭐ 2026-10-25：**册子里不许留「崩过的书」**
+       #   ⇒ ⇒ ⇒⇒ 而它不是恒真：已提交的册子里就有一本（1008）⇒ ⇒ ⇒⇒ 所以它抓得到
+       #   ⇒ ⇒ ⇒⇒ ⇒ ⇒ **⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒**
+       "P_no_crashed_book_in_final_round_1015": (N_CRASHED == 0),
+}
 # ⭐ 不许静默：提取器一条没抓到、或条数对不上，都必须打一行出来
 if N_AB_EXTRACTED != _N_KEYS_IN_AUDIT:
     print("!! 判据条数对不上：提取到 %d 条、audit 里实际 %d 条 ⇒ "
@@ -1912,6 +2027,13 @@ if _missing:
 #   ⇒ ⇒ ⇒ ⇒ **⇒ 而本批新写的门（1032l）恰恰是靠「声明落在产物里」才闭环的**
 #   ⇒ ⇒ ⇒ ⇒ **⇒ ⇒ ⇒ 两条纪律互相打脸 ⇒ ⇒ ⇒ ⇒ ⇒ 处置：落进产物**
 out["criteria_1015"] = dict(out)
+# ⭐⭐⭐⭐⭐ 2026-10-25：互核的读数也要落进产物 ⇒ ⇒ 「写在代码里」≠「发布」
+out["n_books_cross_mismatch_1015"] = N_CROSS_MISMATCH
+out["books_cross_mismatch_1015"] = BOOKS_CROSS_MISMATCH
+out["books_crashed_1015"] = BOOKS_CRASHED
+out["n_books_rc2_without_self_report_1015"] = N_RC2_NO_SELF_REPORT
+out["cross_selftest_1015"] = CROSS_SELFTEST
+out["cross_selftest_ok_1015"] = CROSS_SELFTEST_OK
 # ⇒ ⇒ ⇒ ⇒ **每条判据的 kind**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 而「没标注」=「不可判定」= 第三档、不许默认成 failure**
 out["criterion_kinds_1015"] = {
     "P1_hold_1015": "failure",
@@ -1927,6 +2049,10 @@ out["criterion_kinds_1015"] = {
     "P_every_book_has_readable_self_report_1015": "failure",
     "P_self_report_agrees_with_detail_1015": "failure",
     "P_styles_all_supported_1015": "failure",
+    # ⭐⭐⭐⭐⭐ 2026-10-25：仪器故障互核判据
+    "P_instrument_failure_agrees_1015": "failure",
+    # ⭐⭐⭐⭐⭐ 2026-10-25：册子里不许留崩过的书
+    "P_no_crashed_book_in_final_round_1015": "failure",
 }
 out["criterion_kinds_complete_1015"] = (
     set(out["criterion_kinds_1015"]) == set(out["criteria_1015"]))
@@ -2108,6 +2234,10 @@ print("红账：读到 %d/%d 本有可读判据；自报 False 的书 %d 本 / �
       % (N_READABLE, len(BOOKS), N_SELF_RED_BOOKS, N_SELF_RED_CRITERIA,
          N_SELF_RED, N_CRASHED,
          "OK" if DETECTOR_SELFTEST_OK else "FAIL"))
+print("仪器故障互核：自报崩却 rc≠2 的书 %d 本 %s | rc=2 未自报的 %d 本 | 注入式自检 %s"
+      % (N_CROSS_MISMATCH, (BOOKS_CROSS_MISMATCH or "无"),
+         N_RC2_NO_SELF_REPORT,
+         "OK" if CROSS_SELFTEST_OK else "FAIL"))
 print("P1..P9 =", [out["P%d_hold_1015" % i] for i in range(1, 10)])
 print("PROBE_1015_DONE ->", GOLDEN)
 # ⭐⭐⭐⭐⭐ **1032-① 修一个「门在说谎」的 bug：1015 探针此前**没有 sys.exit**，

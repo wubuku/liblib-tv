@@ -32,7 +32,11 @@ import json
 import os
 import subprocess
 import sys
+import time
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from jimeng_node_toolchain import readings_fresh, run_node_probe  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 GDIR = ROOT / "docs/research/jimeng-canvas"
@@ -46,29 +50,32 @@ OUT = GDIR / "noop-contract-1032c.json"
 _readings = None
 _run_info = "not attempted"
 _crashed = False
+_t0 = 0.0
 if os.environ.get("JIMENG_C4_SKIP_PROBE") != "1":
-    try:
-        r = subprocess.run(["node", str(PROBE)], cwd=str(ROOT),
-                           capture_output=True, text=True, timeout=3600)
-        _run_info = "rc=%d" % r.returncode
-        # ⭐⭐⭐⭐⭐ **「仪器故障」有独立退出码（2）** ⇒ ⇒ 本门据此知道
-        #   「这轮探针没跑成」⇒ ⇒ 而不是把它当成「产品坏了」。
-        if r.returncode == 2 or "INSTRUMENT_CRASH" in (r.stdout or ""):
-            _crashed = True
-            _run_info = "rc=2 instrument-crash"
-        elif r.returncode != 0:
-            _run_info += " stderr=%s" % r.stderr.strip()[-200:]
-    except Exception as e:                                   # 探针跑不动 = 仪器问题
-        _crashed = True
-        _run_info = "probe failed: %s" % str(e)[:200]
+    _t0 = time.time()
+    _res = run_node_probe(PROBE, cwd=str(ROOT), timeout=3600,
+                           nonzero_is_crash=False)
+    _run_info = _res["run_info"]
+    _crashed = _res["crashed"]
 else:
     _run_info = "skipped by env"
+    # ⭐⭐⭐⭐⭐ 跳过 ⇒ **本轮探针没跑** ⇒ ⇒ 同样不许拿旧读数冒充
     _crashed = True
 
 try:
-    _readings = json.loads(READINGS.read_text(encoding="utf-8"))
+    if READINGS.exists():
+        _readings = json.loads(READINGS.read_text(encoding="utf-8"))
 except Exception:                                             # noqa: BLE001
     _readings = None
+# ⭐⭐⭐⭐⭐ **读数必须新鲜** ⇒ ⇒ 「文件在」≠「是本轮的」
+#   ⇒ ⇒ 否则「这轮探针没跑成、却留着上一轮的文件」会被当成「本轮测过了」
+#   ⇒ ⇒ ⇒ 而那正是 1032a / 1032b1 这次假绿的真实形状。
+_readings_fresh = (readings_fresh(READINGS, _t0) if not _crashed else False)
+# ⭐⭐⭐⭐⭐ **探针崩了 / 读数不新鲜 ⇒ 一律作废，并按「仪器崩」记账**
+#   ⇒ ⇒ 「没测到」绝不许长得像「测过了」⇒ ⇒ 那是假绿的根形状。
+if _crashed or not _readings_fresh:
+    _readings = None
+    _crashed = True
 # ⭐⭐⭐⭐⭐ **探针崩了 ⇒ 不许拿「上一轮留下的旧读数」冒充本轮读数。**
 if _crashed:
     _readings = None
@@ -79,6 +86,8 @@ out = {
     "probe": str(PROBE.relative_to(ROOT)),
     "probe_run": _run_info,
     "probe_crashed": bool(_crashed),
+    "readings_fresh": bool(_readings_fresh),
+    "readings_available": bool(_readings),
     "source_fact": "「点了有没有发生事」= 运行时量；源站**不参与**（本门只验复刻侧自洽）。",
     "P": {},
 }
@@ -272,4 +281,10 @@ print("P 判据 =", flags)
 bad = [k for k, v in out["P"].items() if v is not True]
 print("P 为假的：", ("、".join(bad) if bad else "无"), "| 共 %d 条" % len(flags))
 print("PROBE_1032C_NOOP_CONTRACT_DONE ->", OUT)
+# ⭐⭐⭐⭐⭐ **退出码三态**：2=仪器崩（探针没跑成 / 读数不新鲜）
+#   1=判据红（产品或数据问题）　0=全绿
+#   ⇒ ⇒ ⇒ 「跑不动」绝不许与「跑完了没过」共用一个码 ⇒ ⇒ ⇒ 否则崩了被记成绿。
+if _crashed:
+    print("⚠️ 探针崩了或读数不新鲜 ⇒ 读数作废 ⇒ 判据降级为 None ⇒ 退出码 2")
+    sys.exit(2)
 sys.exit(0 if out["all_ok"] else 1)

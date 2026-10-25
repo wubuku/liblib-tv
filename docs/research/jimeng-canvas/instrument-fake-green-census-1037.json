@@ -1,0 +1,469 @@
+{
+  "generated_by": "jimeng_probe1037_instrument_fake_green_census.py",
+  "target": "jimeng-canvas-instrument-fake-green",
+  "question": "⭐⭐⭐⭐⭐ **有没有产物在仪器故障的同时声称全绿？**",
+  "n_artifacts_scanned": 37,
+  "n_artifacts_with_criteria": 14,
+  "n_fake_green": 0,
+  "fake_green": [],
+  "verdicts": [
+    {
+      "file": "anchor-gate-coverage-1021.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "anchor-identity-1030.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "assertion-vs-behavior-1018.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "P"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "baseline-host-misuse-1016.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "behavior-harness-1019.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "change-locality-1011.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "clone-reachability-1033.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "committed-freshness-1032n.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "connect-contract-1032a.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "criteria"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "criterion-direction-1025.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "criterion-effectiveness-1026.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "edit-visibility-1009.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "empty-ambiguity-1014.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "P"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "exemption-claims-1024.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "expanded-contract-1032b4.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "P"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "fake-interaction-census-1034.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 2,
+      "green_holders": [
+        "criteria",
+        "<顶层 P*>"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "fingerprint-gate-1032l.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "P"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "gen-contract-1032b2.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "criteria"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "global-detection-1012.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "golden-freshness-1008.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "golden-freshness-1027.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "harness-fidelity-1020.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "interaction-wiring-check-1032.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "<顶层 P*>"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "live-canvas-check-1031.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "<顶层 P*>"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "manual-clone-parity-1035.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "mention-contract-1032b3.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "P"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "noop-contract-1032c.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "P"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "occurrence-ledger-1013.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "real-history-detection-1010.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "replica-contract-1031d.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "<顶层 P*>"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "replica-coverage-1017.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "rerun-reproducibility-1015.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "source-claim-census-1036.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "stem-attribution-1007.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "type-layer-gate-1023.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    },
+    {
+      "file": "wired-contract-1032b1.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 1,
+      "green_holders": [
+        "criteria"
+      ],
+      "verdict": "ok"
+    },
+    {
+      "file": "zero-coupling-anchors-1005.json",
+      "readable": true,
+      "has_failure_signal": false,
+      "failure_signals": [],
+      "n_criteria_sets": 0,
+      "green_holders": [],
+      "verdict": "ok"
+    }
+  ],
+  "violations_r2_crashed_but_available": [],
+  "violations_r3_stale_but_available": [],
+  "violations_r4_volatile_without_why": [],
+  "injection": {
+    "fake": [
+      {
+        "name": "旧形状：probe_run 说失败、判据全 true",
+        "caught": true
+      },
+      {
+        "name": "自报崩 + 顶层 P 全 true",
+        "caught": true
+      },
+      {
+        "name": "读数不可用 + criteria_1015 全 true",
+        "caught": true
+      },
+      {
+        "name": "读数不新鲜 + P 集合全 true",
+        "caught": true
+      },
+      {
+        "name": "rc=2 仪器崩 + 判据全 true",
+        "caught": true
+      }
+    ],
+    "healthy": [
+      {
+        "name": "全绿且仪器正常",
+        "flagged": false
+      },
+      {
+        "name": "降级但不声称绿（判据 None）",
+        "flagged": false
+      },
+      {
+        "name": "判据红（不是假绿）",
+        "flagged": false
+      },
+      {
+        "name": "只有静态判据、没有运行时自述",
+        "flagged": false
+      }
+    ],
+    "all_fake_caught": true,
+    "no_healthy_flagged": true
+  },
+  "node_toolchain_1037": {
+    "n_direct_spawn_scripts": 19,
+    "direct_spawn_scripts": [
+      "jimeng_probe1019_behavior_harness.py",
+      "jimeng_probe1020_harness_fidelity.py",
+      "jimeng_probe1031_live_canvas_contract.py",
+      "verify-frameos-batch357.py",
+      "verify-liblib-batch67.py",
+      "verify-liblib-batch68.py",
+      "verify-liblib-batch69.py",
+      "verify-liblib-batch690.py",
+      "verify-liblib-batch691.py",
+      "verify-liblib-batch692.py",
+      "verify-liblib-batch693.py",
+      "verify-liblib-batch70.py",
+      "verify-liblib-batch71.py",
+      "verify-liblib-batch72.py",
+      "verify-liblib-batch73.py",
+      "verify-liblib-batch74.py",
+      "verify-liblib-batch75.py",
+      "verify-liblib-batch76.py",
+      "verify-liblib-batch802.py"
+    ],
+    "migrated_but_direct_spawn": [],
+    "note": "⭐ 清单是**迁移待办**⇒ ⇒ 凡是 import 了 jimeng_node_toolchain 的脚本 ⇒ ⇒ 就必须走统一入口 ⇒ ⇒ ⇒ 而自己 spawn node 的 ⇒ ⇒ 判红。"
+  },
+  "excluded": {
+    "file": "instrument-fake-green-census-1037.json",
+    "why": "⭐ 本门扫的就是这个目录 ⇒ ⇒ 而它自己也在目录里 ⇒ ⇒ 自引用会让自己不收敛 ⇒ ⇒ ⇒ 所以排除自己、且登记为什么。"
+  },
+  "criteria": {
+    "P1_scan_coverage_1037": true,
+    "P2_no_fake_green_1037": true,
+    "P3_reading_declaration_complete_1037": true,
+    "P4_stale_readings_not_available_1037": true,
+    "P5_injection_fake_all_caught_1037": true,
+    "P6_injection_healthy_none_flagged_1037": true,
+    "P7_volatile_declares_why_1037": true,
+    "P8_migrated_scripts_use_toolchain_1037": true
+  },
+  "criterion_kinds_1037": {
+    "P1_scan_coverage_1037": "failure",
+    "P2_no_fake_green_1037": "failure",
+    "P3_reading_declaration_complete_1037": "failure",
+    "P4_stale_readings_not_available_1037": "failure",
+    "P5_injection_fake_all_caught_1037": "failure",
+    "P6_injection_healthy_none_flagged_1037": "failure",
+    "P7_volatile_declares_why_1037": "failure",
+    "P8_migrated_scripts_use_toolchain_1037": "failure"
+  },
+  "criterion_kinds_complete_1037": true
+}
