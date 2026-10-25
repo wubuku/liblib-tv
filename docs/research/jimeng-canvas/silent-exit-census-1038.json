@@ -1,0 +1,1182 @@
+{
+ "generated_by": "jimeng_probe1038_silent_exit_census.py",
+ "note": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「早退时产物写不写」从此是一项可普查的量** —— 不是撞见一个修一个，而是**枚举 → 登记 → 现场验证 → 阴性对照**四段",
+ "rule": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **「读不到」与「读到 0」必须分开** ⇒ ⇒ ⇒ 凡是没有写产物就退出的路径，**一律登记**、**一律现场验证**、**一律 rc=2**",
+ "scope": {
+  "how": "⭐ 按产物的 `generated_by` 发现探针（**不手写清单**）⇒ 范围 = 有产物、因而会进册子的那些探针",
+  "n_probes_scanned": 38,
+  "probes": [
+   "jimeng_probe1005_zero_coupling_census.py",
+   "jimeng_probe1007_disparate_copies.py",
+   "jimeng_probe1008_golden_freshness.py",
+   "jimeng_probe1009_edit_visibility.py",
+   "jimeng_probe1010_real_history_detection.py",
+   "jimeng_probe1011_change_locality.py",
+   "jimeng_probe1012_global_detection.py",
+   "jimeng_probe1013_occurrence_ledger.py",
+   "jimeng_probe1014_empty_ambiguity.py",
+   "jimeng_probe1015_rerun_reproducibility.py",
+   "jimeng_probe1016_baseline_host_misuse.py",
+   "jimeng_probe1017_replica_coverage.py",
+   "jimeng_probe1018_assertion_vs_behavior.py",
+   "jimeng_probe1019_behavior_harness.py",
+   "jimeng_probe1020_harness_fidelity.py",
+   "jimeng_probe1021_anchor_gate_coverage.py",
+   "jimeng_probe1023_type_layer_gate.py",
+   "jimeng_probe1024_exemption_claims.py",
+   "jimeng_probe1025_criterion_direction.py",
+   "jimeng_probe1026_criterion_effectiveness.py",
+   "jimeng_probe1027_freshness_gate.py",
+   "jimeng_probe1030_anchor_identity.py",
+   "jimeng_probe1031_live_canvas_contract.py",
+   "jimeng_probe1031d_replica_contract.py",
+   "jimeng_probe1032_interaction_wiring.py",
+   "jimeng_probe1032a_connect_contract.py",
+   "jimeng_probe1032b1_wired_contract.py",
+   "jimeng_probe1032b2_gen_contract.py",
+   "jimeng_probe1032b3_mention_contract.py",
+   "jimeng_probe1032b4_expanded_contract.py",
+   "jimeng_probe1032c_noop_contract.py",
+   "jimeng_probe1032l_fingerprint_gate.py",
+   "jimeng_probe1032n_committed_freshness_gate.py",
+   "jimeng_probe1033_clone_reachability.py",
+   "jimeng_probe1034_fake_interaction_census.py",
+   "jimeng_probe1035_manual_clone_parity_gate.py",
+   "jimeng_probe1036_manual_source_claim_census.py",
+   "jimeng_probe1037_instrument_fake_green_census.py"
+  ]
+ },
+ "exit_point_kind": "⭐ 退出点 = `sys.exit` / `os._exit` / `raise SystemExit` **或「调用一个会退出的本地函数」** ⇒ ⇒ ⇒ 后者是必需的：修好之后早退走的是 `_fail_early(...)`",
+ "n_exit_points": 102,
+ "n_suspected_silent": 0,
+ "exit_points": [
+  {
+   "file": "jimeng_probe1005_zero_coupling_census.py",
+   "lineno": 51,
+   "func": "_crash_hook",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1005_zero_coupling_census.py",
+   "lineno": 568,
+   "func": null,
+   "how": "exit",
+   "arg": "_EXIT",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1007_disparate_copies.py",
+   "lineno": 57,
+   "func": "_crash_hook",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1007_disparate_copies.py",
+   "lineno": 862,
+   "func": null,
+   "how": "exit",
+   "arg": "_EXIT",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:run_gate"
+  },
+  {
+   "file": "jimeng_probe1008_golden_freshness.py",
+   "lineno": 121,
+   "func": "_crash_hook8",
+   "how": "_exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1008_golden_freshness.py",
+   "lineno": 715,
+   "func": null,
+   "how": "exit",
+   "arg": "_EXIT8",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_a_edit_path,_v_clean_path,run_census"
+  },
+  {
+   "file": "jimeng_probe1009_edit_visibility.py",
+   "lineno": 56,
+   "func": "_crash_hook",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1009_edit_visibility.py",
+   "lineno": 408,
+   "func": null,
+   "how": "exit",
+   "arg": "_EXIT",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:gate_ok,run_gate"
+  },
+  {
+   "file": "jimeng_probe1010_real_history_detection.py",
+   "lineno": 57,
+   "func": "_crash_hook",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1010_real_history_detection.py",
+   "lineno": 492,
+   "func": null,
+   "how": "exit",
+   "arg": "_EXIT",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:run_gate"
+  },
+  {
+   "file": "jimeng_probe1011_change_locality.py",
+   "lineno": 66,
+   "func": "_crash_hook",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1011_change_locality.py",
+   "lineno": 574,
+   "func": null,
+   "how": "exit",
+   "arg": "_EXIT",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1012_global_detection.py",
+   "lineno": 64,
+   "func": "_crash_hook",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1012_global_detection.py",
+   "lineno": 665,
+   "func": null,
+   "how": "exit",
+   "arg": "_EXIT",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:run_gate"
+  },
+  {
+   "file": "jimeng_probe1013_occurrence_ledger.py",
+   "lineno": 55,
+   "func": "_crash_hook",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1013_occurrence_ledger.py",
+   "lineno": 528,
+   "func": null,
+   "how": "exit",
+   "arg": "_EXIT",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1014_empty_ambiguity.py",
+   "lineno": 635,
+   "func": null,
+   "how": "exit",
+   "arg": "1 if _N_FALSE_2014 else 0",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1015_rerun_reproducibility.py",
+   "lineno": 86,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1015_rerun_reproducibility.py",
+   "lineno": 2251,
+   "func": null,
+   "how": "exit",
+   "arg": "1 if _BAD_P else 0",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_restore"
+  },
+  {
+   "file": "jimeng_probe1016_baseline_host_misuse.py",
+   "lineno": 267,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if all(OUT.values()) else 1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1017_replica_coverage.py",
+   "lineno": 353,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if all(OUT.values()) else 1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1018_assertion_vs_behavior.py",
+   "lineno": 446,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if all(OUT.values()) else 1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 99,
+   "func": "_fail_early",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_write_crashed_artifact"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 107,
+   "func": "extract_fn",
+   "how": "call:_fail_early",
+   "arg": "'强制触发的抽取失败（%s）' % name",
+   "writes_before_exit": true,
+   "why": "被调函数 _fail_early 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 112,
+   "func": "extract_fn",
+   "how": "call:_fail_early",
+   "arg": "'强制触发的括号不配平（%s）' % name",
+   "writes_before_exit": true,
+   "why": "被调函数 _fail_early 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 115,
+   "func": "extract_fn",
+   "how": "call:_fail_early",
+   "arg": "'找不到函数 %s' % name",
+   "writes_before_exit": true,
+   "why": "被调函数 _fail_early 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 129,
+   "func": "extract_fn",
+   "how": "call:_fail_early",
+   "arg": "'函数 %s 括号没配平' % name",
+   "writes_before_exit": true,
+   "why": "被调函数 _fail_early 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 133,
+   "func": null,
+   "how": "call:extract_fn",
+   "arg": "WS_SRC",
+   "writes_before_exit": true,
+   "why": "被调函数 extract_fn 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 134,
+   "func": null,
+   "how": "call:extract_fn",
+   "arg": "WS_SRC",
+   "writes_before_exit": true,
+   "why": "被调函数 extract_fn 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 147,
+   "func": null,
+   "how": "call:_fail_early",
+   "arg": "'强制触发的锚点失败'",
+   "writes_before_exit": true,
+   "why": "被调函数 _fail_early 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 151,
+   "func": null,
+   "how": "call:_fail_early",
+   "arg": "'补丁锚点不在函数真身里：%r' % _a",
+   "writes_before_exit": true,
+   "why": "被调函数 _fail_early 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 259,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_fail_early,_write_crashed_artifact,extract_fn"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "lineno": 494,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if all(OUT.values()) else 1",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_fail_early,_write_crashed_artifact,extract_fn"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "lineno": 100,
+   "func": "_fail_early",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_write_crashed_artifact"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "lineno": 107,
+   "func": "extract_fn",
+   "how": "call:_fail_early",
+   "arg": "'强制触发的抽取失败（%s）' % name",
+   "writes_before_exit": true,
+   "why": "被调函数 _fail_early 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "lineno": 112,
+   "func": "extract_fn",
+   "how": "call:_fail_early",
+   "arg": "'强制触发的括号不配平（%s）' % name",
+   "writes_before_exit": true,
+   "why": "被调函数 _fail_early 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "lineno": 115,
+   "func": "extract_fn",
+   "how": "call:_fail_early",
+   "arg": "'找不到函数 %s' % name",
+   "writes_before_exit": true,
+   "why": "被调函数 _fail_early 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "lineno": 126,
+   "func": "extract_fn",
+   "how": "call:_fail_early",
+   "arg": "'函数 %s 括号没配平' % name",
+   "writes_before_exit": true,
+   "why": "被调函数 _fail_early 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "lineno": 130,
+   "func": null,
+   "how": "call:extract_fn",
+   "arg": "WS_SRC",
+   "writes_before_exit": true,
+   "why": "被调函数 extract_fn 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "lineno": 131,
+   "func": null,
+   "how": "call:extract_fn",
+   "arg": "WS_SRC",
+   "writes_before_exit": true,
+   "why": "被调函数 extract_fn 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "lineno": 401,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_write_crashed_artifact,extract_fn,run_variant"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "lineno": 444,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_write_crashed_artifact,extract_fn,run_variant"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "lineno": 787,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if all(OUT.values()) else 1",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_write_crashed_artifact,extract_fn,run_variant"
+  },
+  {
+   "file": "jimeng_probe1021_anchor_gate_coverage.py",
+   "lineno": 130,
+   "func": null,
+   "how": "raise SystemExit",
+   "arg": "'自检失败：驱动方式不忠实，先停。%r / 树上 check 数 %d' % (BASE, N_CHECKS_TREE)",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:run_variant"
+  },
+  {
+   "file": "jimeng_probe1021_anchor_gate_coverage.py",
+   "lineno": 133,
+   "func": null,
+   "how": "raise SystemExit",
+   "arg": "'⭐⭐⭐ 覆盖面基线被跌破：受检锚点 %d < %d 或 check %d < %d\\n   ⇒⇒⇒⇒⇒ 这是「判据被改弱」的形状（1021 实测 4 个形状会",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:run_variant"
+  },
+  {
+   "file": "jimeng_probe1021_anchor_gate_coverage.py",
+   "lineno": 286,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if all(OUT.values()) else 1",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:run_variant"
+  },
+  {
+   "file": "jimeng_probe1023_type_layer_gate.py",
+   "lineno": 164,
+   "func": null,
+   "how": "raise SystemExit",
+   "arg": "'自检失败：仓当前就有类型错误、或副本装置不干净，先停。%r / %r' % (REPO_TSC, COPY_TSC)",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:run_tsc"
+  },
+  {
+   "file": "jimeng_probe1023_type_layer_gate.py",
+   "lineno": 386,
+   "func": null,
+   "how": "raise SystemExit",
+   "arg": "'⭐ 产物里残留随机临时目录名 %r ⇒ golden 不可复现，先归一再跑。\\n   （这道自检比等 1015 套件报「漂移」便宜得多）' % sorted(",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:run_tsc"
+  },
+  {
+   "file": "jimeng_probe1023_type_layer_gate.py",
+   "lineno": 390,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if all(OUT.values()) else 1",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:run_tsc"
+  },
+  {
+   "file": "jimeng_probe1024_exemption_claims.py",
+   "lineno": 511,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if all(OUT.values()) else 1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1025_criterion_direction.py",
+   "lineno": 327,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if all(OUT.values()) else 1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1026_criterion_effectiveness.py",
+   "lineno": 409,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if all(OUT.values()) else 1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1027_freshness_gate.py",
+   "lineno": 961,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if _ALL_OK else 1",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_selftest_write_gated_detection"
+  },
+  {
+   "file": "jimeng_probe1030_anchor_identity.py",
+   "lineno": 315,
+   "func": null,
+   "how": "exit",
+   "arg": "1 if _N_FALSE_1030 else 0",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1031_live_canvas_contract.py",
+   "lineno": 150,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1031_live_canvas_contract.py",
+   "lineno": 163,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1031_live_canvas_contract.py",
+   "lineno": 173,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1031_live_canvas_contract.py",
+   "lineno": 378,
+   "func": null,
+   "how": "exit",
+   "arg": "2 if how == 'crashed' else 1 if _bad else 0",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:harvest"
+  },
+  {
+   "file": "jimeng_probe1031d_replica_contract.py",
+   "lineno": 33,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1031d_replica_contract.py",
+   "lineno": 38,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1031d_replica_contract.py",
+   "lineno": 267,
+   "func": null,
+   "how": "exit",
+   "arg": "1 if _bad else 0",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032_interaction_wiring.py",
+   "lineno": 56,
+   "func": "_load",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032_interaction_wiring.py",
+   "lineno": 61,
+   "func": "_load",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032_interaction_wiring.py",
+   "lineno": 64,
+   "func": null,
+   "how": "call:_load",
+   "arg": "SCAN",
+   "writes_before_exit": true,
+   "why": "被调函数 _load 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1032_interaction_wiring.py",
+   "lineno": 65,
+   "func": null,
+   "how": "call:_load",
+   "arg": "ALLOW",
+   "writes_before_exit": true,
+   "why": "被调函数 _load 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1032_interaction_wiring.py",
+   "lineno": 75,
+   "func": "_load_notes",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032_interaction_wiring.py",
+   "lineno": 84,
+   "func": "_load_notes",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032_interaction_wiring.py",
+   "lineno": 86,
+   "func": "_load_notes",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032_interaction_wiring.py",
+   "lineno": 89,
+   "func": null,
+   "how": "call:_load_notes",
+   "arg": "",
+   "writes_before_exit": true,
+   "why": "被调函数 _load_notes 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1032_interaction_wiring.py",
+   "lineno": 244,
+   "func": null,
+   "how": "exit",
+   "arg": "1 if _bad else 0",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_load,_load_notes"
+  },
+  {
+   "file": "jimeng_probe1032a_connect_contract.py",
+   "lineno": 218,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032a_connect_contract.py",
+   "lineno": 220,
+   "func": null,
+   "how": "exit",
+   "arg": "1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032a_connect_contract.py",
+   "lineno": 221,
+   "func": null,
+   "how": "exit",
+   "arg": "0",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032b1_wired_contract.py",
+   "lineno": 349,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032b1_wired_contract.py",
+   "lineno": 351,
+   "func": null,
+   "how": "exit",
+   "arg": "1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032b1_wired_contract.py",
+   "lineno": 352,
+   "func": null,
+   "how": "exit",
+   "arg": "0",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032b2_gen_contract.py",
+   "lineno": 289,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032b2_gen_contract.py",
+   "lineno": 291,
+   "func": null,
+   "how": "exit",
+   "arg": "1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032b2_gen_contract.py",
+   "lineno": 292,
+   "func": null,
+   "how": "exit",
+   "arg": "0",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032b3_mention_contract.py",
+   "lineno": 296,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032b3_mention_contract.py",
+   "lineno": 297,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if out['all_ok'] else 1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032b4_expanded_contract.py",
+   "lineno": 379,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032b4_expanded_contract.py",
+   "lineno": 380,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if out['all_ok'] else 1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032c_noop_contract.py",
+   "lineno": 289,
+   "func": null,
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032c_noop_contract.py",
+   "lineno": 290,
+   "func": null,
+   "how": "exit",
+   "arg": "0 if out['all_ok'] else 1",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1032l_fingerprint_gate.py",
+   "lineno": 532,
+   "func": null,
+   "how": "exit",
+   "arg": "main()",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:main"
+  },
+  {
+   "file": "jimeng_probe1032n_committed_freshness_gate.py",
+   "lineno": 356,
+   "func": null,
+   "how": "exit",
+   "arg": "main()",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:main"
+  },
+  {
+   "file": "jimeng_probe1033_clone_reachability.py",
+   "lineno": 797,
+   "func": null,
+   "how": "exit",
+   "arg": "main()",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:main"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 172,
+   "func": "_load_registry",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 181,
+   "func": "_load_registry",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 183,
+   "func": "_load_registry",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 190,
+   "func": "_run_scanner",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 198,
+   "func": "_run_scanner",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 202,
+   "func": "_run_scanner",
+   "how": "exit",
+   "arg": "2",
+   "writes_before_exit": true,
+   "why": "同作用域内已有写产物调用"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 210,
+   "func": null,
+   "how": "call:_load_registry",
+   "arg": "",
+   "writes_before_exit": true,
+   "why": "被调函数 _load_registry 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 423,
+   "func": "_judge",
+   "how": "call:_run_scanner",
+   "arg": "",
+   "writes_before_exit": true,
+   "why": "被调函数 _run_scanner 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 622,
+   "func": "main",
+   "how": "call:_judge",
+   "arg": "",
+   "writes_before_exit": true,
+   "why": "被调函数 _judge 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 669,
+   "func": null,
+   "how": "exit",
+   "arg": "main()",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:_load_registry,main"
+  },
+  {
+   "file": "jimeng_probe1034_fake_interaction_census.py",
+   "lineno": 669,
+   "func": null,
+   "how": "call:main",
+   "arg": "",
+   "writes_before_exit": true,
+   "why": "被调函数 main 会写产物 ⇒ 终止前写过了"
+  },
+  {
+   "file": "jimeng_probe1035_manual_clone_parity_gate.py",
+   "lineno": 313,
+   "func": null,
+   "how": "exit",
+   "arg": "main()",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:main"
+  },
+  {
+   "file": "jimeng_probe1036_manual_source_claim_census.py",
+   "lineno": 637,
+   "func": null,
+   "how": "exit",
+   "arg": "main()",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:main"
+  },
+  {
+   "file": "jimeng_probe1037_instrument_fake_green_census.py",
+   "lineno": 318,
+   "func": null,
+   "how": "exit",
+   "arg": "main()",
+   "writes_before_exit": true,
+   "why": "退出前调用了会写产物的本地函数:main"
+  }
+ ],
+ "registry": [
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "func": "extract_fn",
+   "msg_prefix": "找不到函数",
+   "writes_product": true,
+   "verifiable": true,
+   "switch": "JIMENG_FORCE_EXTRACT_FAIL",
+   "expect_label": "extract-fail",
+   "artifact": "docs/research/jimeng-canvas/behavior-harness-1019.json",
+   "disposition": "改成 _fail_early ⇒ 写产物（判据逐条 None）＋ rc=2"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "func": "extract_fn",
+   "msg_prefix": "括号没配平",
+   "writes_product": true,
+   "verifiable": true,
+   "switch": "JIMENG_FORCE_EXTRACT_UNBALANCED",
+   "expect_label": "extract-unbalanced",
+   "artifact": "docs/research/jimeng-canvas/behavior-harness-1019.json",
+   "disposition": "同上（强制开关验证的是**那条出口的契约**，不是扫描器的发现能力）"
+  },
+  {
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "func": null,
+   "msg_prefix": "补丁锚点不在函数真身里",
+   "writes_product": true,
+   "verifiable": true,
+   "switch": "JIMENG_FORCE_ANCHOR_FAIL",
+   "expect_label": "anchor-fail",
+   "artifact": "docs/research/jimeng-canvas/behavior-harness-1019.json",
+   "disposition": "同上"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "func": "extract_fn",
+   "msg_prefix": "找不到函数",
+   "writes_product": true,
+   "verifiable": true,
+   "switch": "JIMENG_FORCE_EXTRACT_FAIL",
+   "expect_label": "extract-fail",
+   "artifact": "docs/research/jimeng-canvas/harness-fidelity-1020.json",
+   "disposition": "改成 _fail_early ⇒ 写产物（判据逐条 None）＋ rc=2"
+  },
+  {
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "func": "extract_fn",
+   "msg_prefix": "括号没配平",
+   "writes_product": true,
+   "verifiable": true,
+   "switch": "JIMENG_FORCE_EXTRACT_UNBALANCED",
+   "expect_label": "extract-unbalanced",
+   "artifact": "docs/research/jimeng-canvas/harness-fidelity-1020.json",
+   "disposition": "同上（强制开关验证的是**那条出口的契约**）"
+  }
+ ],
+ "n_registry": 5,
+ "n_registry_matched": 5,
+ "registry_missing_in_enumeration": [],
+ "silent_unregistered": [],
+ "verifications": [
+  {
+   "entry": "找不到函数",
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "ran": true,
+   "rc": 2,
+   "artifact_exists": true,
+   "artifact_readable": true,
+   "n_criteria": 8,
+   "self_reports_crash": true,
+   "readings_available": false,
+   "readings_fresh": false,
+   "label": "extract-fail",
+   "label_ok": true,
+   "why": "在副本上强制触发 ⇒ 仓库产物未被改动"
+  },
+  {
+   "entry": "括号没配平",
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "ran": true,
+   "rc": 2,
+   "artifact_exists": true,
+   "artifact_readable": true,
+   "n_criteria": 8,
+   "self_reports_crash": true,
+   "readings_available": false,
+   "readings_fresh": false,
+   "label": "extract-unbalanced",
+   "label_ok": true,
+   "why": "在副本上强制触发 ⇒ 仓库产物未被改动"
+  },
+  {
+   "entry": "补丁锚点不在函数真身里",
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "ran": true,
+   "rc": 2,
+   "artifact_exists": true,
+   "artifact_readable": true,
+   "n_criteria": 8,
+   "self_reports_crash": true,
+   "readings_available": false,
+   "readings_fresh": false,
+   "label": "anchor-fail",
+   "label_ok": true,
+   "why": "在副本上强制触发 ⇒ 仓库产物未被改动"
+  },
+  {
+   "entry": "找不到函数",
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "ran": true,
+   "rc": 2,
+   "artifact_exists": true,
+   "artifact_readable": true,
+   "n_criteria": 10,
+   "self_reports_crash": true,
+   "readings_available": false,
+   "readings_fresh": false,
+   "label": "extract-fail",
+   "label_ok": true,
+   "why": "在副本上强制触发 ⇒ 仓库产物未被改动"
+  },
+  {
+   "entry": "括号没配平",
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "ran": true,
+   "rc": 2,
+   "artifact_exists": true,
+   "artifact_readable": true,
+   "n_criteria": 10,
+   "self_reports_crash": true,
+   "readings_available": false,
+   "readings_fresh": false,
+   "label": "extract-unbalanced",
+   "label_ok": true,
+   "why": "在副本上强制触发 ⇒ 仓库产物未被改动"
+  }
+ ],
+ "negative_controls": [
+  {
+   "entry": "找不到函数",
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "n_matching_rows": 1,
+   "flagged_silent": true,
+   "rc_without_write": 2,
+   "artifact_absent": true,
+   "why": "副本里去掉写产物 ⇒ 普查必须把它标成沉默（否则这扇门是恒真的）"
+  },
+  {
+   "entry": "括号没配平",
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "n_matching_rows": 1,
+   "flagged_silent": true,
+   "rc_without_write": 2,
+   "artifact_absent": true,
+   "why": "副本里去掉写产物 ⇒ 普查必须把它标成沉默（否则这扇门是恒真的）"
+  },
+  {
+   "entry": "补丁锚点不在函数真身里",
+   "file": "jimeng_probe1019_behavior_harness.py",
+   "n_matching_rows": 1,
+   "flagged_silent": true,
+   "rc_without_write": 2,
+   "artifact_absent": true,
+   "why": "副本里去掉写产物 ⇒ 普查必须把它标成沉默（否则这扇门是恒真的）"
+  },
+  {
+   "entry": "找不到函数",
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "n_matching_rows": 1,
+   "flagged_silent": true,
+   "rc_without_write": 2,
+   "artifact_absent": true,
+   "why": "副本里去掉写产物 ⇒ 普查必须把它标成沉默（否则这扇门是恒真的）"
+  },
+  {
+   "entry": "括号没配平",
+   "file": "jimeng_probe1020_harness_fidelity.py",
+   "n_matching_rows": 1,
+   "flagged_silent": true,
+   "rc_without_write": 2,
+   "artifact_absent": true,
+   "why": "副本里去掉写产物 ⇒ 普查必须把它标成沉默（否则这扇门是恒真的）"
+  }
+ ],
+ "probe_crashed": false,
+ "readings_available": true,
+ "readings_fresh": true,
+ "criteria": {
+  "P1_exit_points_are_enumerable_1038": true,
+  "P2_registry_matches_enumeration_1038": true,
+  "P3_registry_declares_writes_product_1038": true,
+  "P4_registry_declares_verifiable_1038": true,
+  "P5_every_verifiable_path_was_run_and_exited_2_1038": true,
+  "P6_artifact_is_readable_after_early_exit_1038": true,
+  "P7_artifact_self_reports_the_crash_1038": true,
+  "P8_negative_control_detects_a_silent_exit_1038": true
+ },
+ "criterion_kinds_1038": {
+  "P1_exit_points_are_enumerable_1038": "failure",
+  "P2_registry_matches_enumeration_1038": "failure",
+  "P3_registry_declares_writes_product_1038": "failure",
+  "P4_registry_declares_verifiable_1038": "failure",
+  "P5_every_verifiable_path_was_run_and_exited_2_1038": "failure",
+  "P6_artifact_is_readable_after_early_exit_1038": "failure",
+  "P7_artifact_self_reports_the_crash_1038": "failure",
+  "P8_negative_control_detects_a_silent_exit_1038": "failure"
+ },
+ "criterion_kinds_complete_1038": true,
+ "criteria_n_1038": 8
+}

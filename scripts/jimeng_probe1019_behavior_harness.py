@@ -30,6 +30,7 @@
 import ast
 import atexit
 import json
+import os
 import re
 import shutil
 import sys
@@ -85,11 +86,33 @@ def _write_crashed_artifact(label):
     print("⚠️ 仪器崩了（%s）⇒ 判据降级为 None ⇒ 退出码 2" % label)
 
 
+def _fail_early(msg, label="source-transformed"):
+    """⭐⭐⭐⭐⭐ **早退也必须写产物 + rc=2** ⇒ ⇒ 不许「产物不存在」冒充「没测到」。
+
+    ⇒ ⇒⇒ 起因（1032-⑪ 实测）：这条早退是「**抽不出函数真身**」，
+    ⇒ ⇒⇒⇒ 即**输入源码变形了** ⇒ ⇒⇒ 那属于仪器/输入侧的问题、不是产品红
+    ⇒ ⇒⇒⇒ ⇒ 而原来的 `raise SystemExit(...)` ⇒⇒⇒⇒ **产物一个字都不写**
+    ⇒ ⇒⇒⇒ ⇒ ⇒ 下游只看到「这本书不在」⇒⇒⇒⇒ ⇒ ⇒ 「读不到」与「读到 0」在账上一样
+    """
+    _write_crashed_artifact(label)
+    print("⚠️ 早退（%s）⇒ 判据降级为 None ⇒ 退出码 2" % msg)
+    sys.exit(2)
+
+
 # ── 抽函数真身（按函数名 + 括号配平；不是转写） ─────────────────────────────────
 def extract_fn(src, name):
+    # ⭐⭐⭐⭐⭐ **强制开关**：让门能**现场验证**这条早退路径（1032-⑪ 的普查门要用）
+    #   ⇒⇒⇒⇒ 而「不可现场验证的早退」只能是「登记」，不能是「没人管」
+    if os.environ.get("JIMENG_FORCE_EXTRACT_FAIL") == "1":
+        _fail_early("强制触发的抽取失败（%s）" % name, "extract-fail")
+    # ⭐ 同一个函数的**第二条**退出（「括号没配平」）也要能现场验证
+    #   ⇒⇒⇒ 强制开关验证的是**那条出口的契约**（写产物 + rc=2 + 标签）
+    #   ⇒⇒⇒ 而不是「扫描器能不能发现不配平」⇒⇒⇒⇒ 那是另一件事、另有归属
+    if os.environ.get("JIMENG_FORCE_EXTRACT_UNBALANCED") == "1":
+        _fail_early("强制触发的括号不配平（%s）" % name, "extract-unbalanced")
     m = re.search(r"\bfunction\s+%s\s*\(" % re.escape(name), src)
     if not m:
-        raise SystemExit("找不到函数 %s" % name)
+        _fail_early("找不到函数 %s" % name, "extract-fail")
     i = src.index("{", m.end() - 1)
     depth, j = 0, i
     while j < len(src):
@@ -103,7 +126,7 @@ def extract_fn(src, name):
                 #   顶层 `return` 直接 SyntaxError（node: `Return statement is not allowed here`）
                 return src[m.start():j + 1]
         j += 1
-    raise SystemExit("函数 %s 括号没配平" % name)
+    _fail_early("函数 %s 括号没配平" % name, "extract-fail")
 
 
 WS_SRC = (ROOT / WS).read_text(encoding="utf-8")
@@ -119,10 +142,13 @@ MUTS = {
     "B_end_guard_removed": [("if (next < 0 || next >= nodes.length) return;",
                              "if (next < 0) return;")],
 }
+# ⭐⭐⭐⭐⭐ **强制开关**：让门能现场验证「补丁锚点不在真身里」这条早退
+if os.environ.get("JIMENG_FORCE_ANCHOR_FAIL") == "1":
+    _fail_early("强制触发的锚点失败", "anchor-fail")
 for _k, _subs in MUTS.items():
     for _a, _b in _subs:
         if _a not in FN_BODY:
-            raise SystemExit("补丁锚点不在函数真身里：%r" % _a)
+            _fail_early("补丁锚点不在函数真身里：%r" % _a, "anchor-fail")
 
 # ── 最小 DOM stub + 7 个行为格 ────────────────────────────────────────────────
 HARNESS_HEAD = r"""

@@ -14,17 +14,17 @@
   "why_declared_here": "⇒ **「声明」与「发布」之间那道缝**⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 声明必须落在产物里、而不只在 README 的散文里**"
  },
  "census_inputs_2029": {
-  "n_fingerprinted": 33,
+  "n_fingerprinted": 34,
   "n_unreadable": 0,
   "n_volatile": 1,
   "volatile_inputs": {
    "golden-freshness-1027.json": {
-    "sha256_12": "df555d3a98e4",
-    "bytes": 94222,
+    "sha256_12": "6be784ed66da",
+    "bytes": 96293,
     "why": "⭐⭐⭐⭐⭐ **每次跑 1027 都整个重写、且按纪律不随批提交** ⇒ ⇒ ⇒ 它的指纹对不上提交态是**结构性的**、不是「产物坏了」 ⇒ ⇒ ⇒ 单列一节（记当次字节供复算），不进可核对的那张表"
    }
   },
-  "n_from_probe_products": 34,
+  "n_from_probe_products": 35,
   "fingerprints": {
    "anchor-gate-coverage-1021.json": {
     "sha256_12": "92e91802dbd4",
@@ -63,7 +63,7 @@
     "bytes": 328910
    },
    "criterion-effectiveness-1026.json": {
-    "sha256_12": "683c5be5044c",
+    "sha256_12": "423ce905202d",
     "bytes": 101680
    },
    "edit-visibility-1009.json": {
@@ -71,7 +71,7 @@
     "bytes": 1437
    },
    "exemption-claims-1024.json": {
-    "sha256_12": "0dabc595ff10",
+    "sha256_12": "080e3616f5e9",
     "bytes": 19738
    },
    "expanded-contract-1032b4.json": {
@@ -99,8 +99,8 @@
     "bytes": 21395
    },
    "instrument-fake-green-census-1037.json": {
-    "sha256_12": "d35fa7de08e0",
-    "bytes": 12089
+    "sha256_12": "a046f7cf5961",
+    "bytes": 12339
    },
    "interaction-wiring-check-1032.json": {
     "sha256_12": "d13d5109bdb1",
@@ -135,8 +135,12 @@
     "bytes": 2109
    },
    "replica-coverage-1017.json": {
-    "sha256_12": "27680fd26c42",
+    "sha256_12": "7693477d040d",
     "bytes": 15016
+   },
+   "silent-exit-census-1038.json": {
+    "sha256_12": "cb5835986820",
+    "bytes": 34319
    },
    "source-claim-census-1036.json": {
     "sha256_12": "da0e6bc8dd21",
@@ -155,19 +159,19 @@
     "bytes": 1310
    },
    "zero-coupling-anchors-1005.json": {
-    "sha256_12": "1067053991a6",
+    "sha256_12": "cab9079bea1e",
     "bytes": 143647
    }
   },
   "why": "⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐ **一个读数不带输入指纹，就无法被引用** —— 下次看到它变了，分不清是「输入变了」还是「类型器不对了」"
  },
  "census": {
-  "n_goldens": 34,
+  "n_goldens": 35,
   "n_excluded_self": 4,
-  "n_empty_list": 295,
-  "n_empty_null": 39,
+  "n_empty_list": 298,
+  "n_empty_null": 111,
   "n_self_provable": 10,
-  "n_ambiguous": 324
+  "n_ambiguous": 399
  },
  "rows": [
   {
@@ -2090,13 +2094,6 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[32]/green_holders",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[33]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -2132,6 +2129,13 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[35]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[36]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -2139,7 +2143,14 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[36]/green_holders",
+   "path": "/verdicts/[37]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[37]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -2399,6 +2410,524 @@
   {
    "golden": "replica-contract-1031d.json",
    "path": "/unknown_status_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[1]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[3]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[5]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[7]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[9]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[11]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[13]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[15]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[16]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[17]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[18]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[19]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[20]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[21]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[27]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[28]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[29]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[30]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[31]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[32]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[38]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[39]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[40]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[41]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[42]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[43]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[44]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[45]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[46]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[47]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[48]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[49]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[50]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[51]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[52]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[53]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[54]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[55]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[56]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[57]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[58]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[59]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[60]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[63]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[64]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[68]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[69]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[70]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[71]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[72]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[73]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[74]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[75]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[76]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[77]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[78]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[79]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[80]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[81]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[82]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[83]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[84]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[85]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[86]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[87]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[94]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[97]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[98]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[99]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[100]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[101]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/registry/[2]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/registry_missing_in_enumeration",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/silent_unregistered",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -4416,13 +4945,6 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[32]/green_holders",
-   "kind": "list",
-   "self_provable": false,
-   "invariant": null
-  },
-  {
-   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[33]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -4458,6 +4980,13 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[35]/green_holders",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[36]/failure_signals",
    "kind": "list",
    "self_provable": false,
@@ -4465,7 +4994,14 @@
   },
   {
    "golden": "instrument-fake-green-census-1037.json",
-   "path": "/verdicts/[36]/green_holders",
+   "path": "/verdicts/[37]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[37]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -4690,6 +5226,524 @@
   {
    "golden": "replica-contract-1031d.json",
    "path": "/unknown_status_shapes",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[1]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[3]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[5]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[7]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[9]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[11]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[13]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[15]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[16]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[17]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[18]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[19]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[20]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[21]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[27]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[28]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[29]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[30]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[31]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[32]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[38]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[39]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[40]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[41]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[42]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[43]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[44]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[45]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[46]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[47]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[48]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[49]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[50]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[51]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[52]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[53]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[54]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[55]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[56]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[57]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[58]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[59]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[60]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[63]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[64]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[68]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[69]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[70]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[71]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[72]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[73]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[74]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[75]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[76]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[77]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[78]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[79]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[80]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[81]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[82]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[83]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[84]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[85]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[86]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[87]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[94]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[97]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[98]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[99]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[100]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/exit_points/[101]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/registry/[2]/func",
+   "kind": "null",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/registry_missing_in_enumeration",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "silent-exit-census-1038.json",
+   "path": "/silent_unregistered",
    "kind": "list",
    "self_provable": false,
    "invariant": null
