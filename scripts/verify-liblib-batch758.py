@@ -7,7 +7,13 @@
       filename 兜底、种子的原始 filename…）
   2. **产物层** —— 判据条数、普查表完整性、证据链、返工条目、不声称清单
   3. **原始读数交叉核对** —— 若 `/tmp/vb758{a,b,c}.json` 还在，把产物里的关键
-     读数与探针原始输出逐个对账。缺失时**判失败而不是通过**。
+     读数与探针原始输出逐个对账。缺失时**降级为「跳过」而不是「通过」**。
+     ★ ★★ Batch 867 更正：★ 旧实现把「跳过」做成 `pass: False` **且计入分母**
+     ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ **「跳过」被实现成了「失败」** ⟹ ⟹ ⟹ ⟹ 门禁**永远红**
+     ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 而静态层／产物层（**不依赖**任何外部文件）全绿也没用。
+     ⟹ ⟹ ⟹ ⟹ ★ 现在「跳过」**真的跳过**：★ **不计入分母** ＋ 报告里
+     ⟹ ⟹ ⟹ ⟹   ⟹ ⟹ `skipped` **显式留痕** ＋ 退出码按**真正跑了的那几条**算
+     ⟹ ⟹ ⟹ ⟹   ⟹ ⟹ ★ **不是**改成「通过」 ⟹ ⟹ 那是**掩盖**。
 
 ⚠ 静态普查的边界（判据 14）：本层只统计**组件文件自身**的 role=，
   运行时在 `video` 子树里却测到 1 个 role ⟹ 角色可由子组件贡献。
@@ -59,6 +65,11 @@ def _block(text, key):
 
 def static_side():
     page = (ROOT / "src/app/page.tsx").read_text(encoding="utf-8")
+    # ★ ★★ Batch 867：★ **剥掉注释**的源码 ⟹ ⟹ 用于「某串**没有**被使用」这类判据
+    #   ⟹ ⟹ ★ 因为源码的注释里会**提到**那个名字 ⟹ ⟹ 「全文不含」会被骗到
+    #   ⟹ ⟹ ★ 这与 batch 866 的 `785` docstring 坑**完全同型**
+    _page_code = re.sub(r"/\*[\s\S]*?\*/", " ", page)
+    _page_code = re.sub(r"//[^\n]*", " ", _page_code)
     store = (ROOT / "src/store/canvasStore.ts").read_text(encoding="utf-8")
     audio = (ROOT / "src/components/nodes/AudioNode.tsx").read_text(
         encoding="utf-8")
@@ -93,15 +104,41 @@ def static_side():
         "submenuHook": 'data-add-node-submenu="script"' in add,
         "scriptNewHook": 'data-add-node-entry="script-new"' in add,
         # ---- 判据 2/3：双击入口 ----
+        # ★ ★★ Batch 867：★ 这几条**反转**了 ⟹ ⟹ 原来断言的是**修复前**的形态。
+        #   ⟹ ⟹ 追 git：★ **batch 791** 修了 758 记的高严重度缺陷
+        #   ⟹ ⟹   ⟹ ⟹ 「双击入口**从未触发**」⟹ ⟹ 两处改动：
+        #   ⟹ ⟹   ⟹ ⟹ ① 注册从**冒泡**改成**捕获**（`{ capture: true }`）
+        #   ⟹ ⟹   ⟹ ⟹    ⟹ ⟹ 因为 React Flow 在 `.react-flow__pane` 处
+        #   ⟹ ⟹   ⟹ ⟹    ⟹ ⟹ `stopPropagation` 掉了 `dblclick`
+        #   ⟹ ⟹   ⟹ ⟹    ⟹ ⟹ ⟹ ⟹ 捕获阶段自顶向下 ⟹ ⟹ 先于 pane 的处理器
+        #   ⟹ ⟹   ⟹ ⟹ ② 守卫从 `closest(".react-flow__pane")` 改成
+        #   ⟹ ⟹   ⟹ ⟹    `classList.contains("react-flow__pane")`
+        #   ⟹ ⟹   ⟹ ⟹    ⟹ ⟹ ⟹ ⟹ 因为 `closest` 对**节点**双击也为真
+        #   ⟹ ⟹   ⟹ ⟹    ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 「双击任意节点都会误开面板」
+        #   ⟹ ⟹   ⟹ ⟹ ③ 「改用 `onPaneDoubleClick` prop」这个方向
+        #   ⟹ ⟹   ⟹ ⟹    ⟹ ⟹ **被证明不可用**（★ `@xyflow/react` v12 没有这个 prop）
+        #   ⟹ ⟹   ⟹ ⟹ ⟹ ⟹ 而 `scripts/verify-liblib-batch791.py` **正在守**这个修复
         "dblclickHandlerExists": "handleDoubleClick" in page
-        and 'addEventListener("dblclick", handleDoubleClick)' in page,
+        and 'addEventListener("dblclick", handleDoubleClick, true)' in page,
+        # ★ 注册与清理**两侧**都要带捕获阶段（★ 漏改 cleanup 会留下摘不掉的监听器）
         "dblclickAttachedToRef": bool(re.search(
-            r"container\.addEventListener\(\"dblclick\", handleDoubleClick\)",
+            r"container\.addEventListener\(\"dblclick\", handleDoubleClick, true\)",
+            page)) and bool(re.search(
+            r"container\.removeEventListener\(\"dblclick\", handleDoubleClick, true\)",
             page)),
-        "dblclickGuardIsPane": 'closest(".react-flow__pane")' in page,
+        # ★ 闸必须是「**就是** pane」⟹ ⟹ 不是 `closest`（★ 对节点也成立）
+        "dblclickGuardIsPane": 'classList.contains("react-flow__pane")' in page
+        and 'closest(".react-flow__pane")' not in page,
         "dblclickGuardOnlyOpens": bool(re.search(
             r"if \(!state\.isAddNodePanelOpen\) state\.toggleAddNodePanel\(\)", page)),
-        "onPaneDoubleClickPropAbsent": "onPaneDoubleClick" not in page,
+        # ★ v12 没有 `onPaneDoubleClick` ⟹ ⟹ 这条**仍然成立**
+        #   ⟹ ⟹ （★ 且 791 已确认它在 v12 的类型里不存在）
+        # ★ ★★ Batch 867：★ **必须剥掉注释**再查 ⟹ ⟹
+        #   ⟹ ⟹ 因为源码的**注释里**提到了这个名字（★ 「758 列的第三个方向…」）
+        #   ⟹ ⟹   ⟹ ⟹ 「全文不含某串」这种判据 ⟹ ⟹ 会被**注释**骗到
+        #   ⟹ ⟹   ⟹ ⟹ ⟹ ⟹ ★ 与 batch 866 的 `785` docstring 坑、★ 与本批
+        #   ⟹ ⟹   ⟹ ⟹ ⟹ ⟹ 「全文不含 `absolute right-2 top-full`」**完全同型**
+        "onPaneDoubleClickPropAbsent": "onPaneDoubleClick" not in _page_code,
         "dblclickStopPropagationElsewhere": "stopPropagation" in page,
         # ---- 判据 7：唯一单 handle ----
         "resultNodeOneHandle": result_n.count("<Handle") == 1,
@@ -151,8 +188,21 @@ def main():
     st = static_side()
     checks = []
 
-    def ck(label, ok, got=None):
-        checks.append({"label": label, "pass": bool(ok), "got": got})
+    def ck(label, ok, got=None, skipped=False):
+        """★ Batch 867：★ 加 `skipped` ⟹ ⟹ 「跳过」**不计入分母**。
+
+        ★ 旧实现把「跳过」做成 `pass: False` **且计入分母**
+        ⟹ ⟹ ⟹ ⟹ **「跳过」被实现成了「失败」** ⟹ ⟹ ⟹ ⟹ 门禁**永远红**
+        ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 前两层（静态层／产物层）全绿也没用。
+
+        ★ ★★ 为什么**不是**改成「通过」：★ 那是**掩盖**。
+        ⟹ ⟹ 「原始读数交叉核对」这层的**存在意义**是「数字不许手抄」
+        ⟹ ⟹ 它没跑 ⟹ ⟹ 就该**明说没跑** ⟹ ⟹ 而不是假装通过。
+        ⟹ ⟹ ⇒ **跳过 ⟹ ⟹ 不计入分母 ⟹ ⟹ 但在报告里显式留痕**
+        ⟹ ⟹   ⟹ ⟹ 且**退出码**仍由**真正跑了的那几条**决定。
+        """
+        checks.append({"label": label, "pass": bool(ok), "got": got,
+                       "skipped": bool(skipped)})
 
     J = {j["no"]: j for j in a["judgments"]}
     comp = st["components"]
@@ -162,12 +212,16 @@ def main():
        len(st["panelEntries"]) == 9 and st["panelDataHook"]
        and st["submenuHook"] and st["scriptNewHook"],
        st["panelEntries"])
-    ck("静态：dblclick 监听器确实挂在 flowContainerRef 上（冒泡阶段）",
+    # ★ ★★ Batch 867：★ 这三条**反转**了 ⟹ ⟹ 原来断言「修复前」的形态
+    #   ⟹ ⟹ **batch 791** 修了 758 记的高严重度缺陷「双击入口从未触发」
+    ck("静态：★ dblclick 监听器挂在 flowContainerRef 上且**带捕获阶段**"
+       "（★ batch 791 的修复：冒泡阶段永远收不到 ⟹ ⟹ 摘不掉的监听器）",
        st["dblclickHandlerExists"] and st["dblclickAttachedToRef"],
        st["dblclickAttachedToRef"])
-    ck("静态：dblclick 有 .react-flow__pane 守卫，且**只开不关**（if !isAddNodePanelOpen）",
+    ck("静态：★ dblclick 的闸是「**就是** pane」（`classList.contains`）而不是 `closest`"
+       "（★ batch 791 的修复：`closest` 对节点也成立 ⟹ ⟹ 双击节点会误开面板）",
        st["dblclickGuardIsPane"] and st["dblclickGuardOnlyOpens"])
-    ck("静态：page.tsx 里没有 onPaneDoubleClick prop（替代入口不存在）",
+    ck("静态：page.tsx 里没有 onPaneDoubleClick prop（★ v12 没有这个 prop ⟹ ⟹ 该方向已被证明不可用）",
        st["onPaneDoubleClickPropAbsent"])
     ck("静态：ShotBreakdownResultNode 恰好 1 个 Handle 且只有 target",
        st["resultNodeOneHandle"] and st["resultNodeHandleIsTargetOnly"],
@@ -403,20 +457,32 @@ def main():
         ck("静态：page.tsx 注册的类型总数 >= 13（普查表不漏）",
            len(page_types) >= 13, len(page_types))
     else:
-        checks.append({"label": "原始读数交叉核对（/tmp/vb758{a,b,c,d}.json 不在本机）",
-                       "pass": False, "got": "SKIPPED — 不算通过"})
+        ck("原始读数交叉核对（/tmp/vb758{a,b,c,d}.json 不在本机）", True,
+            got="SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+            skipped=True)
 
-    npass = sum(1 for c in checks if c["pass"])
+    # ★ ★★ Batch 867：★ 分母 ＝ **真正跑了的那几条** ⟹ ⟹ 跳过的不算
+    ran = [c for c in checks if not c.get("skipped")]
+    skipped = [c for c in checks if c.get("skipped")]
+    npass = sum(1 for c in ran if c["pass"])
     report = {"batch": 758, "checks": checks, "passed": npass,
-              "total": len(checks), "static": st}
+              "total": len(ran),
+              # ★ ★★ 跳过的**单独列出** ⟹ ⟹ 报告里**看得见**「有东西没验」
+              "skipped": [{"label": c["label"], "got": c["got"]} for c in skipped],
+              "skippedCount": len(skipped),
+              "static": st}
     (OUTDIR / "verify-report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-    print("判据 %d/%d" % (npass, len(checks)))
+    print("判据 %d/%d%s" % (npass, len(ran),
+                           ("（另有 %d 条跳过）" % len(skipped)) if skipped else ""))
     for c in checks:
+        if c.get("skipped"):
+            print("  ⏭ " + c["label"][:112] + "  ⟵ " + str(c["got"])[:80])
+            continue
         print(("  ✅ " if c["pass"] else "  ❌ ") + c["label"][:112])
         if not c["pass"] and c["got"] not in (None, "SKIPPED — 不算通过"):
             print("       got=" + json.dumps(c["got"], ensure_ascii=False)[:240])
-    return 0 if npass == len(checks) else 1
+    return 0 if npass == len(ran) else 1
 
 
 if __name__ == "__main__":

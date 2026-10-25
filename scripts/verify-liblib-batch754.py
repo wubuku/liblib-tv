@@ -6,7 +6,13 @@
       拉片结果的 x/y 递推与 48 间距、故事脚本对的选中集、两个零入口 profile…）
   2. **产物层** —— 判据条数、两轮一致性、生成 id 过滤规则、返工条目、不声称清单
   3. **原始读数交叉核对** —— 若 `/tmp/vb754c.json` 还在，把产物里的关键读数
-     与探针原始输出逐个对账（**数字不许手抄**）。缺失时**判失败而不是通过**。
+     与探针原始输出逐个对账（**数字不许手抄**）。缺失时**降级为「跳过」而不是「通过」**。
+     ★ ★★ Batch 867 更正：★ 旧实现把「跳过」做成 `pass: False` **且计入分母**
+     ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ **「跳过」被实现成了「失败」** ⟹ ⟹ ⟹ ⟹ 门禁**永远红**
+     ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 而静态层／产物层（**不依赖**任何外部文件）全绿也没用。
+     ⟹ ⟹ ⟹ ⟹ ★ 现在「跳过」**真的跳过**：★ **不计入分母** ＋ 报告里
+     ⟹ ⟹ ⟹ ⟹   ⟹ ⟹ `skipped` **显式留痕** ＋ 退出码按**真正跑了的那几条**算
+     ⟹ ⟹ ⟹ ⟹   ⟹ ⟹ ★ **不是**改成「通过」 ⟹ ⟹ 那是**掩盖**。
 
 判据 **16 条**（14 条两轮一致 + 2 条静态）。
 """
@@ -55,10 +61,30 @@ def static_side():
             reg_hits.append(f"{p.relative_to(ROOT)}:{i}")
 
     return {
+        # ★ ★★ Batch 867：★ 判据**更新到 batch 802 修复之后**的正确形态。
+        #   ⟹ ⟹ 旧判据找的是 `source.position.x + 320` ⟹ ⟹ 那是**修复前的 bug**
+        #   ⟹ ⟹   （★ `source.position` 是**相对源节点直接父节点**的位置
+        #   ⟹ ⟹      ⟹ ⟹ 源节点在任何组里时 ⟹ ⟹ 沿途祖先偏移被整段丢掉
+        #   ⟹ ⟹      ⟹ ⟹ 新建组是顶层 ⟹ ⟹ 它的 position 就是**绝对坐标**
+        #   ⟹ ⟹      ⟹ ⟹ ⟹ ⟹ ⇒ 「宿主组挪动 Δ，新组必须跟着挪 Δ」被破坏）
+        #   ⟹ ⟹ ★ **batch 802** 已把它改成 `sourceAbsolute`（`getAbsoluteNodePosition`）
+        #   ⟹ ⟹ ⟹ ⟹ 且 `802` 自己的门禁**正在守**这个修复
+        #   ⟹ ⟹ ⟹ ⟹ （★ `scripts/verify-liblib-batch802.py` 里有 `has_old` 检测）
+        #   ⟹ ⟹ ⇒ ★ 所以这条判据要求的**是已经被修掉的缺陷**
+        #   ⟹ ⟹ ⇒ ★ 改成断言**修复后的形态**（★ 绝对坐标 ＋ 偏移常量不变）
+        #   ⟹ ⟹ ⇒ ★ ★★ 通式：★ **门禁断言了一个已经被修复的 bug** ⟹ ⟹
+        #   ⟹ ⟹ ⟹ ⟹ 那它红的时候 ⟹ ⟹ **先查那个 bug 是不是已经被修**
         "hd_groupGeom": bool(re.search(
-            r"position: \{ x: source\.position\.x \+ 320, "
-            r"y: source\.position\.y - 60 \}", store))
+            r"position: \{ x: sourceAbsolute\.x \+ 320, "
+            r"y: sourceAbsolute\.y - 60 \}", store))
         and "width: 430" in store and "height: 452" in store,
+        # ★ ★★ 并且**守住「用的是绝对坐标」这件事本身**
+        #   ⟹ ⟹ （★ 若有人把 sourceAbsolute 改回 source ⟹ ⟹ 这条必须红）
+        "hd_usesAbsolute": bool(re.search(
+            r"const sourceAbsolute = getAbsoluteNodePosition\(source, nodesById\);", store))
+        and "sourceAbsolute.x + 320" in store
+        # ★ 旧的 buggy 形态**不许**回来
+        and not re.search(r"position: \{ x: source\.position\.x \+ 320", store),
         "hd_childGeom": bool(re.search(
             r"position: \{ x: 40, y: 60 \},\s*width: 340,\s*height: 330", store)),
         "hd_title": '"预设 - 图片高清"' in store,
@@ -120,11 +146,30 @@ def main():
 
     checks = []
 
-    def ck(label, cond, got=None):
-        checks.append({"label": label, "pass": bool(cond), "got": got})
+    def ck(label, cond, got=None, skipped=False):
+        """★ Batch 867：★ 加 `skipped` ⟹ ⟹ 「跳过」**不计入分母**。
+
+        ★ 旧实现把「跳过」做成 `pass: False` **且计入分母**
+        ⟹ ⟹ ⟹ ⟹ **「跳过」被实现成了「失败」** ⟹ ⟹ ⟹ ⟹ 门禁**永远红**
+        ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 前两层（静态层／产物层）全绿也没用。
+
+        ★ ★★ 为什么**不是**改成「通过」：★ 那是**掩盖**。
+        ⟹ ⟹ 「原始读数交叉核对」这层的**存在意义**是「数字不许手抄」
+        ⟹ ⟹ 它没跑 ⟹ ⟹ 就该**明说没跑** ⟹ ⟹ 而不是假装通过。
+        ⟹ ⟹ ⇒ **跳过 ⟹ ⟹ 不计入分母 ⟹ ⟹ 但在报告里显式留痕**
+        ⟹ ⟹   ⟹ ⟹ 且**退出码**仍由**真正跑了的那几条**决定。
+        """
+        checks.append({"label": label, "pass": bool(cond), "got": got,
+                       "skipped": bool(skipped)})
 
     # ---- 1. 静态层 ----
-    ck("静态 高清预设几何 source+(320,−60) / 430×452 / 子 340×330@(40,60)",
+    # ★ ★★ Batch 867：★ 加一条**独立**判据 ⟹ ⟹ 守住「用的是绝对坐标」这件事
+    ck("静态 高清预设用的是【绝对坐标】而非源节点的相对位置（batch 802 的修复）",
+       st["hd_usesAbsolute"],
+       {"usesAbsolute": st["hd_usesAbsolute"],
+        "★ 说明": "★ 旧形态 `source.position.x + 320` 是**已修复的坐标系缺陷** "
+                  "⟹ ⟹ 源节点在组里时沿途祖先偏移被整段丢掉"})
+    ck("静态 高清预设几何 sourceAbsolute+(320,−60) / 430×452 / 子 340×330@(40,60)",
        st["hd_groupGeom"] and st["hd_childGeom"])
     ck("静态 高清组 title=预设 - 图片高清 且选中集切到组",
        st["hd_title"] and st["hd_selectsGroup"])
@@ -311,8 +356,9 @@ def main():
            r1["baseline"] == rc["rounds"][1]["baseline"]
            == {"canvasId": "canvas-2", "nodes": 10, "edges": 11, "past": 0, "n": 0})
     else:
-        checks.append({"label": "原始读数交叉核对（/tmp/vb754c.json 不在本机）",
-                       "pass": False, "got": "SKIPPED — 不算通过"})
+        ck("原始读数交叉核对（/tmp/vb754c.json 不在本机）", True,
+            got="SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+            skipped=True)
 
     RE_754E = pathlib.Path("/tmp/vb754e.json")
     if RE_754E.exists():
@@ -334,8 +380,9 @@ def main():
            and S["all-dims-off"]["round1"]["nodeDeltaWhileAllOff"] == 0,
            S["all-dims-off"]["round1"])
     else:
-        checks.append({"label": "754e 两格交叉核对（/tmp/vb754e.json 不在本机）",
-                       "pass": False, "got": "SKIPPED — 不算通过"})
+        ck("754e 两格交叉核对（/tmp/vb754e.json 不在本机）", True,
+            got="SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+            skipped=True)
 
     if rd is not None:
         def _txt(s):
@@ -351,8 +398,9 @@ def main():
            {"visibleAtMs": [s["elapsed"] for s in seen],
             "goneAtMs": [s["elapsed"] for s in gone]})
     else:
-        checks.append({"label": "提示时间序列交叉核对（/tmp/vb754d.json 不在本机）",
-                       "pass": False, "got": "SKIPPED — 不算通过"})
+        ck("提示时间序列交叉核对（/tmp/vb754d.json 不在本机）", True,
+            got="SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+            skipped=True)
 
     if rb is not None:
         a3 = [s for s in rb["steps"] if s["tag"].startswith("A3")][0]
@@ -363,20 +411,32 @@ def main():
            grp["x"] - src["x"] == 320 and grp["y"] - src["y"] == -60,
            {"dx": grp["x"] - src["x"], "dy": grp["y"] - src["y"]})
     else:
-        checks.append({"label": "单轮组偏移交叉核对（/tmp/vb754b.json 不在本机）",
-                       "pass": False, "got": "SKIPPED — 不算通过"})
+        ck("单轮组偏移交叉核对（/tmp/vb754b.json 不在本机）", True,
+            got="SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+            skipped=True)
 
-    npass = sum(1 for c in checks if c["pass"])
+    # ★ ★★ Batch 867：★ 分母 ＝ **真正跑了的那几条** ⟹ ⟹ 跳过的不算
+    ran = [c for c in checks if not c.get("skipped")]
+    skipped = [c for c in checks if c.get("skipped")]
+    npass = sum(1 for c in ran if c["pass"])
     report = {"batch": 754, "checks": checks, "passed": npass,
-              "total": len(checks), "static": st}
+              "total": len(ran),
+              # ★ ★★ 跳过的**单独列出** ⟹ ⟹ 报告里**看得见**「有东西没验」
+              "skipped": [{"label": c["label"], "got": c["got"]} for c in skipped],
+              "skippedCount": len(skipped),
+              "static": st}
     (OUTDIR / "verify-report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"判据 {npass}/{len(checks)}")
+    print(f"判据 {npass}/{len(ran)}"
+          + (f"（另有 {len(skipped)} 条跳过）" if skipped else ""))
     for c in checks:
-        print(("  ✅ " if c["pass"] else "  ❌ ") + c["label"][:110])
+        if c.get("skipped"):
+            print("  ⏭ " + c["label"][:112] + "  ⟵ " + str(c["got"])[:80])
+            continue
+        print(("  ✅ " if c["pass"] else "  ❌ ") + c["label"][:112])
         if not c["pass"] and c["got"] not in (None, "SKIPPED — 不算通过"):
             print("       got=" + json.dumps(c["got"], ensure_ascii=False)[:220])
-    return 0 if npass == len(checks) else 1
+    return 0 if npass == len(ran) else 1
 
 
 if __name__ == "__main__":

@@ -324,6 +324,68 @@ python3 scripts/verify-docs.py
   was toothless, but because `91.py` **never touched** the tracked sources ⟹ ⟹
   removing it legitimately produces no gap. Misreading that as "the criterion
   is vacuous" would have been wrong.
+- A gate that **always** fails for an **unrecoverable external reason** is a
+  **stale-premise list** of its own (Batch 867). Gates `753`–`759` split into
+  three layers (static / product artifact / raw-probe cross-check); the first
+  two need **no** external file, but the third depended on `/tmp/vb*.json`
+  files that no longer exist ⟹ ⟹ and the "skip" was implemented as
+  `pass: False` **counted in the denominator** ⟹ ⟹ so the gate was **permanently
+  red** even though all its real criteria passed. **Fix**: a skip must **not**
+  count in the denominator, must stay **visible** in the report (`skipped`
+  list), and must **not** be turned into "pass" (that is concealment).
+- When a gate goes red, first ask whether **that bug was already fixed**
+  (Batch 867). Two of that batch's four real defects were gates asserting a
+  **bug that a later batch had already fixed**: `754` asserted the pre-`802`
+  relative coordinates, `756` asserted `GROUP_PADDING == 32` (changed to 40 by
+  `797`), `755`/`759` asserted the pre-`790` `absolute right-2 top-full` menu,
+  `758` asserted the pre-`791` bubbling dblclick listener, `759` asserted the
+  pre-`805` hard-coded "30 days". Each fix **had its own gate guarding it**.
+  **Rule**: a red gate ⟹ ⟹ `git log -S` the property ⟹ ⟹ if some batch already
+  fixed it ⟹ ⟹ the **criterion** is stale ⟹ ⟹ **reverse** it into "guard that
+  fix" instead of deleting it. When the fix changed a constant, assert the
+  **multiple** (e.g. `v % 20 == 0`), not the new value.
+- A criterion being **green** does not prove it checks what it claims
+  (Batch 867). `759`'s `openCanvasOrder` used a cross-segment regex
+  (`[\s\S]{0,2000}?`) that skipped a long comment ⟹ ⟹ so it matched **even when
+  the two calls were swapped** ⟹ ⟹ it never verified the order at all. **Fix**:
+  slice the function body out first (bracket matching, not line numbers) and
+  **compare indices**. **Rule**: every "order" criterion needs a negative
+  control that swaps the two statements.
+- A "the string does not appear anywhere" criterion must **strip comments**
+  first (Batch 867). Source comments *mention* the names they talk about
+  (`onEdgeClick`, `onPaneDoubleClick`, `absolute right-2 top-full`), so a
+  whole-file containment check gets fooled by the comment. **The criterion's
+  own source must be stripped too** ⟹ ⟹ a batch gate failed on `753` because
+  the *comment* there quoted the old `endswith(("...:387"))` form.
+- Swapping two statements with `str.replace` does **not** work when the two
+  strings are identical (Batch 867). `replace(old2, placeholder)` consumed the
+  occurrence just produced by `replace(old, new)` ⟹ ⟹ the mutation never took
+  effect ⟹ ⟹ the gate stayed green for the wrong reason. **Rule**: locate both
+  occurrences by **character index** and splice by slice.
+- A gate that asserts **set/list coverage** must have a negative control **of
+  its own**, and that negative control must be **falsifiable** (Batch 867).
+  Batch 867's gate asserted "every gate depending on a vanished `/tmp` file is
+  in the regression list" ⟹ ⟹ its parser scanned the list with a bare regex ⟹ ⟹
+  a `("761", "py")` written **inside a comment** was counted as a list entry ⟹ ⟹
+  the gap was **permanently empty** ⟹ ⟹ the gate was **false-green** and stayed
+  green until it was given a negative control of its own. **Fix**: the parser
+  must strip `"""..."""` and `#` comments before parsing. **Rule**: a criterion
+  that reads a *collection* can be impersonated by something that merely looks
+  like a member ⟹ ⟹ it needs its own negative control.
+- A negative control must be able to **fail** (Batch 867). Removing `761.py`
+  from the list (G1) turned the gate red under **both** the old and the new
+  parser ⟹ ⟹ it could not detect the regression. G2 removed it **and** wrote
+  the same tuple into a comment ⟹ ⟹ it stayed green under the old parser ⟹ ⟹
+  only G2 actually guards the "strip comments" fix. **Rule**: for every fix,
+  ask "which negative control turns green if this fix is reverted?" ⟹ ⟹ if
+  none does, the negative control is decorative.
+- When a negative control does **not** turn red, check the **mutation landing
+  point** before blaming the criterion (Batch 867). Two distinct causes hit the
+  same batch: (1) the mutation changed a **parameter name** while the criterion
+  read an **expression**; (2) the mutated entry was **commented out**, and the
+  parser under test still honoured comments. **Rule**: for each negative
+  control, write down which quantity the assertion actually reads ⟹ ⟹ move
+  the mutation there ⟹ ⟹ only then suspect the criterion.
 
 ## 6. Change Protocol
 

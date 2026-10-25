@@ -1,0 +1,21 @@
+554   rc=1      rc=1 ／ ewrite_error(error, f"{parsed_st['apiName']}: {error}") from None ／ playwright._impl._errors.Error: Fil
+562   rc=1      rc=1 ／ ewrite_error(error, f"{parsed_st['apiName']}: {error}") from None ／ playwright._impl._errors.Error: Fil
+565   rc=0      rc=0 ／ Batch 565 verification passed: 6 checks, 0 diagnostics. upstream image node auto-selected as panorama s
+719   rc=0      通过
+750   rc=1      rc=1 ／ a-director-path': 15, 'data-director-curve': 6}） ／ 两轮跑探针…… ／ /Users/yangjiefeng/.pyenv/versions/3.10.6/
+751   rc=1      rc=1 ／ a-director-path': 15, 'data-director-curve': 6}） ／ 两轮跑探针…… ／ /Users/yangjiefeng/.pyenv/versions/3.10.6/
+753   rc=1      rc=1 ／ ✅ 判据11 拖节点 3/3 抓点 moved 且 past+1 ／ ✅ 判据11 Alt+Shift+F 整理 9/10 节点移位 + 出现「还原」48×32 ／ ✅ 判据13 中键拖 viewport 
+754   rc=1      rc=1 ／ ❌ 原始读数交叉核对（/tmp/vb754c.json 不在本机） ／ ❌ 754e 两格交叉核对（/tmp/vb754e.json 不在本机） ／ ❌ 提示时间序列交叉核对（/tmp/vb754d.jso
+755   rc=1      rc=1 ／ ✅ 判据12b 恢复入口在 /project 的回收站（画布内无提示） ／ ✅ 判判13 store 升序 vs DOM 倒序 ／ ✅ 判据14 purgeRemovedCanvas 零调用点 ／ ❌ 原始
+756   rc=1      rc=1 ／ ✅ 产物：不声称清单 ≥ 6 条 ／ ✅ 产物：不声称里明确写了「没有与源站对照」 ／ ✅ 产物：rawProbeFiles 四个探针都有说明 ／ ❌ 原始读数交叉核对（/tmp/vb756{c,d}.js
+757   rc=1      rc=1 ／ ✅ 产物：不声称清单 ≥ 9 条 ／ ✅ 产物：不声称里明确写了「没有与源站对照」与 oklab 解析限制 ／ ✅ 产物：rawProbeFiles 三个探针都有说明 ／ ❌ 原始读数交叉核对（/tmp/v
+758   rc=1      rc=1 ／ ✅ 产物：不声称清单 ≥ 9 条 ／ ✅ 产物：不声称里明确写了「单 handle 结论未做运行时验证」与「没有与源站对照」 ／ ✅ 产物：rawProbeFiles 三个探针都有说明 ／ ❌ 原始读数交叉
+759   rc=1      rc=1 ／ ✅ 产物：不声称清单 ≥ 9 条 ／ ✅ 产物：不声称里写了「新建项目未单独验」与「没有与源站对照」 ／ ✅ 产物：rawProbeFiles 两个探针都有说明 ／ ❌ 原始读数交叉核对（/tmp/vb75
+760   rc=1      通过
+761   rc=0      通过
+802   rc=0      rc=0 ／ st raw：把 A 臂的「子节点挂在新组下」改成 False ｜ 翻红：['S3:★ 阳性对照：组与 child 都建了，child 挂在新组下'] ／ PASS N4 ★★ 反向对照：只改 `creat
+542   rc=1      rc=1 ／ ror, f"{parsed_st['apiName']}: {error}") from None ／ playwright._impl._errors.Error: FileChooser.set_fi
+546   rc=1      rc=1 ／ ror, f"{parsed_st['apiName']}: {error}") from None ／ playwright._impl._errors.Error: FileChooser.set_fi
+
+★ 共 18 条，红 14 条：['554', '562', '750', '751', '753', '754', '755', '756', '757', '758', '759', '760', '542', '546']
+★ 读数已落盘：/Users/yangjiefeng/Documents/wubuku/liblib-tv/docs/research/liblib-canvas-batch867-2026-10-01/raw/baseline-tmp-deps.json

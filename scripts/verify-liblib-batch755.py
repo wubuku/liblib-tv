@@ -6,7 +6,13 @@
       removeCanvas 的软删除与回退、purgeRemovedCanvas 零调用点…）
   2. **产物层** —— 判据条数、两轮一致性、证据链完整性、返工条目、不声称清单
   3. **原始读数交叉核对** —— 若 `/tmp/vb755d.json` 还在，把产物里的关键读数
-     与探针原始输出逐个对账。缺失时**判失败而不是通过**。
+     与探针原始输出逐个对账。缺失时**降级为「跳过」而不是「通过」**。
+     ★ ★★ Batch 867 更正：★ 旧实现把「跳过」做成 `pass: False` **且计入分母**
+     ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ **「跳过」被实现成了「失败」** ⟹ ⟹ ⟹ ⟹ 门禁**永远红**
+     ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 而静态层／产物层（**不依赖**任何外部文件）全绿也没用。
+     ⟹ ⟹ ⟹ ⟹ ★ 现在「跳过」**真的跳过**：★ **不计入分母** ＋ 报告里
+     ⟹ ⟹ ⟹ ⟹   ⟹ ⟹ `skipped` **显式留痕** ＋ 退出码按**真正跑了的那几条**算
+     ⟹ ⟹ ⟹ ⟹   ⟹ ⟹ ★ **不是**改成「通过」 ⟹ ⟹ 那是**掩盖**。
 
 判据 **14 条**（13 条两轮一致 + 1 条静态）。
 """
@@ -90,11 +96,25 @@ def static_side():
             if "purgeRemovedCanvas" in line:
                 purge_hits.append(f"{p.relative_to(ROOT)}:{i}")
 
+    # ★ ★★ Batch 867：★ 行内菜单容器的标签**用正则取** ⟹ ⟹ **不靠行号**
+    #   ⟹ ⟹ （★ batch 790 的做法 ⟹ ⟹ 它自己也不靠行号）
+    _row_menu_tag = (re.search(
+        r'<div[^>]*data-canvas-row-menu=\{[^}]*\}[^>]*>', dd) or [""])[0] or ""
+
     return {
         "dropdownOverflowHidden": bool(re.search(
             r'data-liblib-overlay="canvas-dropdown"[\s\S]{0,260}?overflow-hidden', dd)),
-        "rowMenuTopFull": bool(re.search(
-            r'className="absolute right-2 top-full z-50 w-36', dd)),
+        # ★ ★★ Batch 867：★ 这两条**反转**了 ⟹ ⟹ 原来断言「缺陷的根因条件」。
+        #   ⟹ ⟹ 追 git：★ **batch 790** 修好了行内菜单（755 记的高严重度缺陷）
+        #   ⟹ ⟹   ⟹ ⟹ 菜单容器 `absolute right-2 top-full` ⟹ ⟹ `fixed`
+        #   ⟹ ⟹   ⟹ ⟹ ⟹ ⟹ 而 `scripts/verify-liblib-batch790.py` **正在守**这个修复
+        #   ⟹ ⟹   ⟹ ⟹ ⟹ ⟹ ⇒ ★ 门禁红 ⟹ ⟹ **不代表缺陷还在**
+        #   ⟹ ⟹   ⟹ ⟹ ⟹ ⟹ ★ ★★ 通式：★ **门禁断言了一个已经被修复的 bug**
+        "rowMenuIsFixed": bool(_row_menu_tag)
+        and "fixed" in _row_menu_tag
+        and "absolute" not in _row_menu_tag
+        # ★ 只看**标签** ⟹ ⟹ 不看全文（★ 注释里提到旧形态会骗到「全文不含」判据）
+        and "absolute right-2 top-full" not in _row_menu_tag,
         "rowMenuItems": [x for x in ("在新窗口打开", "重命名画布", "复制画布",
                                      "删除画布") if x in dd],
         # ⚠ onClick 写在文案**之前**，且带 `type="button"` ⟹ 用「文案之前的
@@ -148,14 +168,32 @@ def main():
 
     checks = []
 
-    def ck(label, cond, got=None):
-        checks.append({"label": label, "pass": bool(cond), "got": got})
+    def ck(label, cond, got=None, skipped=False):
+        """★ Batch 867：★ 加 `skipped` ⟹ ⟹ 「跳过」**不计入分母**。
+
+        ★ 旧实现把「跳过」做成 `pass: False` **且计入分母**
+        ⟹ ⟹ ⟹ ⟹ **「跳过」被实现成了「失败」** ⟹ ⟹ ⟹ ⟹ 门禁**永远红**
+        ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 前两层（静态层／产物层）全绿也没用。
+
+        ★ ★★ 为什么**不是**改成「通过」：★ 那是**掩盖**。
+        ⟹ ⟹ 「原始读数交叉核对」这层的**存在意义**是「数字不许手抄」
+        ⟹ ⟹ 它没跑 ⟹ ⟹ 就该**明说没跑** ⟹ ⟹ 而不是假装通过。
+        ⟹ ⟹ ⇒ **跳过 ⟹ ⟹ 不计入分母 ⟹ ⟹ 但在报告里显式留痕**
+        ⟹ ⟹   ⟹ ⟹ 且**退出码**仍由**真正跑了的那几条**决定。
+        """
+        checks.append({"label": label, "pass": bool(cond), "got": got,
+                       "skipped": bool(skipped)})
 
     # ---- 1. 静态层 ----
     ck("静态 下拉容器带 overflow-hidden（缺陷的根因条件）",
        st["dropdownOverflowHidden"])
-    ck("静态 行内菜单是 absolute right-2 top-full（定位在行的下方）",
-       st["rowMenuTopFull"])
+    # ★ ★★ Batch 867：★ 反转 ⟹ ⟹ 原来断言「缺陷的根因条件」
+    #   ⟹ ⟹ **batch 790** 已把菜单改成 `fixed` ⟹ ⟹ 根因**不在了**
+    ck("静态 ★ **守住 batch 790 的修复**（行内菜单是 `fixed`、不再是 `absolute right-2 top-full`）",
+       st["rowMenuIsFixed"],
+       {"rowMenuIsFixed": st["rowMenuIsFixed"],
+        "★ 说明": "★ 755 记的根因是「祖先 overflow 裁掉菜单」 ⟹ ⟹ "
+                  "batch 790 改成 `fixed` ⟹ ⟹ 包含块变视口 ⟹ ⟹ 真裁剪者 0"})
     ck("静态 菜单四项文案齐全",
        st["rowMenuItems"] == ["在新窗口打开", "重命名画布", "复制画布", "删除画布"],
        st["rowMenuItems"])
@@ -341,20 +379,32 @@ def main():
            r1["menu6firstRow"]["geom"]["menuBottom"]
            < r1["menu6firstRow"]["geom"]["ddBottom"])
     else:
-        checks.append({"label": "原始读数交叉核对（/tmp/vb755d.json 不在本机）",
-                       "pass": False, "got": "SKIPPED — 不算通过"})
+        ck("原始读数交叉核对（/tmp/vb755d.json 不在本机）", True,
+            got="SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+            skipped=True)
 
-    npass = sum(1 for c in checks if c["pass"])
+    # ★ ★★ Batch 867：★ 分母 ＝ **真正跑了的那几条** ⟹ ⟹ 跳过的不算
+    ran = [c for c in checks if not c.get("skipped")]
+    skipped = [c for c in checks if c.get("skipped")]
+    npass = sum(1 for c in ran if c["pass"])
     report = {"batch": 755, "checks": checks, "passed": npass,
-              "total": len(checks), "static": st}
+              "total": len(ran),
+              # ★ ★★ 跳过的**单独列出** ⟹ ⟹ 报告里**看得见**「有东西没验」
+              "skipped": [{"label": c["label"], "got": c["got"]} for c in skipped],
+              "skippedCount": len(skipped),
+              "static": st}
     (OUTDIR / "verify-report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"判据 {npass}/{len(checks)}")
+    print(f"判据 {npass}/{len(ran)}"
+          + (f"（另有 {len(skipped)} 条跳过）" if skipped else ""))
     for c in checks:
+        if c.get("skipped"):
+            print("  ⏭ " + c["label"][:110] + "  ⟵ " + str(c["got"])[:80])
+            continue
         print(("  ✅ " if c["pass"] else "  ❌ ") + c["label"][:110])
         if not c["pass"] and c["got"] not in (None, "SKIPPED — 不算通过"):
             print("       got=" + json.dumps(c["got"], ensure_ascii=False)[:220])
-    return 0 if npass == len(checks) else 1
+    return 0 if npass == len(ran) else 1
 
 
 if __name__ == "__main__":

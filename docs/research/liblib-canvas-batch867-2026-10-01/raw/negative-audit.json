@@ -1,0 +1,116 @@
+[
+ {
+  "name": "N1: 753 的 setEdges 判据 —— 把实现改成声明形态",
+  "gate": "753",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙（变异后翻红）"
+ },
+ {
+  "name": "N2: 753 的 includeExternalEdges 判据 —— 改判据真正读的那个表达式",
+  "gate": "753",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙（变异后翻红）"
+ },
+ {
+  "name": "N3: 754 的高清预设判据 —— 把绝对坐标改回相对坐标（batch 802 修的 bug）",
+  "gate": "754",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙（变异后翻红）"
+ },
+ {
+  "name": "N4: 754 的「守住 802 修复」判据 —— 删掉 getAbsoluteNodePosition 那行",
+  "gate": "754",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙（变异后翻红）"
+ },
+ {
+  "name": "N5: 755/759 的行内菜单判据 —— 把 fixed 改回 absolute right-2 top-full",
+  "gate": "755",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙（变异后翻红）"
+ },
+ {
+  "name": "N6: 759 的回收站判据 —— 把「按剩余天数过滤」改成不过滤",
+  "gate": "759",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙（变异后翻红）"
+ },
+ {
+  "name": "N7: 759 的 openCanvas 顺序判据 —— 把 window.open 与 setActiveCanvas **对调**",
+  "gate": "759",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙（变异后翻红）"
+ },
+ {
+  "name": "N8: 756 的 GROUP_PADDING 判据 —— 改成不是 20 的倍数",
+  "gate": "756",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙（变异后翻红）"
+ },
+ {
+  "name": "N9: 758 的 dblclick 捕获阶段判据 —— 改回冒泡阶段",
+  "gate": "758",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙（变异后翻红）"
+ },
+ {
+  "name": "N10: 758 的 pane 闸判据 —— 把 classList.contains 改回 closest",
+  "gate": "758",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 判据有牙（变异后翻红）"
+ },
+ {
+  "复原自检": "字节级干净"
+ },
+ {
+  "name": "G1: 门禁自身的负控 —— 把 761.py 从回归清单里删掉 ⟹ ⟹ 缺口必须被指出",
+  "gate": "867",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 门禁有牙（变异后翻红 ＋ 缺口精确指出 761.py）"
+ },
+ {
+  "name": "G2: 门禁自身的负控 —— 删掉 761.py **并且**把同一条写进**注释**里 ⟹ ⟹ 仍必须翻红（★ 验证 parse_gates 先剥注释）",
+  "gate": "867",
+  "applied": true,
+  "rc": 1,
+  "red": true,
+  "expectLabelSeen": true,
+  "verdict": "★ 门禁有牙（变异后翻红 ＋ 缺口精确指出 761.py）"
+ },
+ {
+  "复原自检": "字节级干净（回归清单脚本）"
+ }
+]

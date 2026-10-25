@@ -6,7 +6,13 @@
       duplicateGraphSelection 的子孙展开 / 边过滤 / 子树平移、N 分支判定式…）
   2. **产物层** —— 判据条数、两轮一致性、证据链完整性、返工条目、不声称清单
   3. **原始读数交叉核对** —— 若 `/tmp/vb756{c,d}.json` 还在，把产物里的关键
-     读数与探针原始输出逐个对账。缺失时**判失败而不是通过**。
+     读数与探针原始输出逐个对账。缺失时**降级为「跳过」而不是「通过」**。
+     ★ ★★ Batch 867 更正：★ 旧实现把「跳过」做成 `pass: False` **且计入分母**
+     ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ **「跳过」被实现成了「失败」** ⟹ ⟹ ⟹ ⟹ 门禁**永远红**
+     ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 而静态层／产物层（**不依赖**任何外部文件）全绿也没用。
+     ⟹ ⟹ ⟹ ⟹ ★ 现在「跳过」**真的跳过**：★ **不计入分母** ＋ 报告里
+     ⟹ ⟹ ⟹ ⟹   ⟹ ⟹ `skipped` **显式留痕** ＋ 退出码按**真正跑了的那几条**算
+     ⟹ ⟹ ⟹ ⟹   ⟹ ⟹ ★ **不是**改成「通过」 ⟹ ⟹ 那是**掩盖**。
 
 ⚠ 本批的静态断言必须**先把实现体取出来再找关键字**：`children = ...filter`
   在文件里出现**两次**（3266 在 groupSelectedNodes、3341 在 ungroupSelectedNodes），
@@ -83,8 +89,23 @@ def static_side():
             x in g for x in ("parentId: groupId", "absolutePositions.has(node.id)")),
         "newGroupPrepended": "[groupNode, ...nextNodes]" in (g or ""),
         "groupKindSelection": 'groupKind: "selection"' in (g or ""),
+        # ★ ★★ Batch 867：★ `GROUP_PADDING` 的判据改成「**倍数**」而不是「== 32」。
+        #   ⟹ ⟹ 追 git：★ **batch 797** 把 32 改成 **40**（＝ 2×20 网格整数倍）
+        #   ⟹ ⟹   ⟹ ⟹ 那是**真修复**：「吸附开着时拖组会把成员拖下网格」
+        #   ⟹ ⟹   ⟹ ⟹ ⟹ ⟹ 而 `scripts/verify-liblib-batch797.py` **正在守**它
+        #   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹ ★ 且 797 自己的提交说明里写了
+        #   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹ 「**判据必须是「倍数」而不是「40」**」
+        #   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹ 「若把断言写成 padding == 40，
+        #   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹   将来有人改成 60（也是 20 的倍数、
+        #   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹   功能仍对）会被误判红」
+        #   ⟹ ⟹   ⟹ ⟹   ⟹ ⟹ ⟹ ⟹ ★ ★★ 本条**照抄那个形状** ⟹ ⟹ 断言 `v % 20 == 0`
         "groupPadding32": "GROUP_PADDING" in store
-        and bool(re.search(r"const GROUP_PADDING = 32", store)),
+        and bool(re.search(r"const GROUP_PADDING = (\d+);", store))
+        and int(re.search(r"const GROUP_PADDING = (\d+);", store).group(1)) % 20 == 0,
+        # ★ 把**实际值**也记下来 ⟹ ⟹ 报告里看得见
+        "groupPaddingValue": (
+            int(re.search(r"const GROUP_PADDING = (\d+);", store).group(1))
+            if re.search(r"const GROUP_PADDING = (\d+);", store) else None),
         # ---- 判据 17：硬门 ----
         "groupHardGateChildren2": "if (children.length < 2) return state;" in (g or ""),
         # ---- 判据 11：解组只作用在传入的 nodeIds 上 ----
@@ -128,8 +149,21 @@ def main():
     st = static_side()
     checks = []
 
-    def ck(label, ok, got=None):
-        checks.append({"label": label, "pass": bool(ok), "got": got})
+    def ck(label, ok, got=None, skipped=False):
+        """★ Batch 867：★ 加 `skipped` ⟹ ⟹ 「跳过」**不计入分母**。
+
+        ★ 旧实现把「跳过」做成 `pass: False` **且计入分母**
+        ⟹ ⟹ ⟹ ⟹ **「跳过」被实现成了「失败」** ⟹ ⟹ ⟹ ⟹ 门禁**永远红**
+        ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 前两层（静态层／产物层）全绿也没用。
+
+        ★ ★★ 为什么**不是**改成「通过」：★ 那是**掩盖**。
+        ⟹ ⟹ 「原始读数交叉核对」这层的**存在意义**是「数字不许手抄」
+        ⟹ ⟹ 它没跑 ⟹ ⟹ 就该**明说没跑** ⟹ ⟹ 而不是假装通过。
+        ⟹ ⟹ ⇒ **跳过 ⟹ ⟹ 不计入分母 ⟹ ⟹ 但在报告里显式留痕**
+        ⟹ ⟹   ⟹ ⟹ 且**退出码**仍由**真正跑了的那几条**决定。
+        """
+        checks.append({"label": label, "pass": bool(ok), "got": got,
+                       "skipped": bool(skipped)})
 
     J = {j["no"]: j for j in a["judgments"]}
     B = a["boundary"]
@@ -142,9 +176,14 @@ def main():
        "children=...filter 在 3266 与 3341 各出现一次")
     ck("静态：子节点被无条件 re-parent 到新组（absolutePositions 命中即改 parentId）",
        st["reparentsChildrenUnconditionally"])
-    ck("静态：新组前置插入且 groupKind=selection、GROUP_PADDING=32",
+    ck("静态：新组前置插入且 groupKind=selection、GROUP_PADDING 是网格(20)的**整数倍**",
        st["newGroupPrepended"] and st["groupKindSelection"]
-       and st["groupPadding32"])
+       and st["groupPadding32"],
+       {"newGroupPrepended": st["newGroupPrepended"],
+        "groupKindSelection": st["groupKindSelection"],
+        "groupPaddingValue": st["groupPaddingValue"],
+        "★ 说明": "★ 判据是「倍数」不是「== 32」 ⟹ ⟹ batch 797 改成 40（2×20）"
+                  "⟹ ⟹ 将来改成 60（也是倍数、功能仍对）也不会误判红"})
     ck("静态：硬门 children.length < 2 存在（判据 17 的零变化根因）",
        st["groupHardGateChildren2"])
     ck("静态：ungroupSelectedNodes 只作用于传入/选中的 nodeIds（Shift+G 修不了的根因）",
@@ -294,20 +333,32 @@ def main():
            r1["groupWithOwnChild"]["pastD"] == 0
            and r1["groupWithOwnChild"]["n"] == 2)
     else:
-        checks.append({"label": "原始读数交叉核对（/tmp/vb756{c,d}.json 不在本机）",
-                       "pass": False, "got": "SKIPPED — 不算通过"})
+        ck("原始读数交叉核对（/tmp/vb756{c,d}.json 不在本机）", True,
+            got="SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+            skipped=True)
 
-    npass = sum(1 for c in checks if c["pass"])
+    # ★ ★★ Batch 867：★ 分母 ＝ **真正跑了的那几条** ⟹ ⟹ 跳过的不算
+    ran = [c for c in checks if not c.get("skipped")]
+    skipped = [c for c in checks if c.get("skipped")]
+    npass = sum(1 for c in ran if c["pass"])
     report = {"batch": 756, "checks": checks, "passed": npass,
-              "total": len(checks), "static": st}
+              "total": len(ran),
+              # ★ ★★ 跳过的**单独列出** ⟹ ⟹ 报告里**看得见**「有东西没验」
+              "skipped": [{"label": c["label"], "got": c["got"]} for c in skipped],
+              "skippedCount": len(skipped),
+              "static": st}
     (OUTDIR / "verify-report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-    print("判据 %d/%d" % (npass, len(checks)))
+    print("判据 %d/%d%s" % (npass, len(ran),
+                           ("（另有 %d 条跳过）" % len(skipped)) if skipped else ""))
     for c in checks:
+        if c.get("skipped"):
+            print("  ⏭ " + c["label"][:112] + "  ⟵ " + str(c["got"])[:80])
+            continue
         print(("  ✅ " if c["pass"] else "  ❌ ") + c["label"][:112])
         if not c["pass"] and c["got"] not in (None, "SKIPPED — 不算通过"):
             print("       got=" + json.dumps(c["got"], ensure_ascii=False)[:240])
-    return 0 if npass == len(checks) else 1
+    return 0 if npass == len(ran) else 1
 
 
 if __name__ == "__main__":

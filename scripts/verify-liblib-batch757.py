@@ -8,7 +8,13 @@
   2. **产物层** —— 判据条数、三探针两轮一致性、证据链完整性、
      对比度算式、返工条目、不声称清单
   3. **原始读数交叉核对** —— 若 `/tmp/vb757{a,b,c}.json` 还在，把产物里的
-     关键读数与探针原始输出逐个对账。缺失时**判失败而不是通过**。
+     关键读数与探针原始输出逐个对账。缺失时**降级为「跳过」而不是「通过」**。
+     ★ ★★ Batch 867 更正：★ 旧实现把「跳过」做成 `pass: False` **且计入分母**
+     ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ **「跳过」被实现成了「失败」** ⟹ ⟹ ⟹ ⟹ 门禁**永远红**
+     ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 而静态层／产物层（**不依赖**任何外部文件）全绿也没用。
+     ⟹ ⟹ ⟹ ⟹ ★ 现在「跳过」**真的跳过**：★ **不计入分母** ＋ 报告里
+     ⟹ ⟹ ⟹ ⟹   ⟹ ⟹ `skipped` **显式留痕** ＋ 退出码按**真正跑了的那几条**算
+     ⟹ ⟹ ⟹ ⟹   ⟹ ⟹ ★ **不是**改成「通过」 ⟹ ⟹ 那是**掩盖**。
 
 ⚠ 本批两个必须固化的坑：
   · 画布带 zoom（fitView 后 0.375）⟹ getBoundingClientRect() 读到的是**变换后**
@@ -142,8 +148,21 @@ def main():
     st = static_side()
     checks = []
 
-    def ck(label, ok, got=None):
-        checks.append({"label": label, "pass": bool(ok), "got": got})
+    def ck(label, ok, got=None, skipped=False):
+        """★ Batch 867：★ 加 `skipped` ⟹ ⟹ 「跳过」**不计入分母**。
+
+        ★ 旧实现把「跳过」做成 `pass: False` **且计入分母**
+        ⟹ ⟹ ⟹ ⟹ **「跳过」被实现成了「失败」** ⟹ ⟹ ⟹ ⟹ 门禁**永远红**
+        ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 前两层（静态层／产物层）全绿也没用。
+
+        ★ ★★ 为什么**不是**改成「通过」：★ 那是**掩盖**。
+        ⟹ ⟹ 「原始读数交叉核对」这层的**存在意义**是「数字不许手抄」
+        ⟹ ⟹ 它没跑 ⟹ ⟹ 就该**明说没跑** ⟹ ⟹ 而不是假装通过。
+        ⟹ ⟹ ⇒ **跳过 ⟹ ⟹ 不计入分母 ⟹ ⟹ 但在报告里显式留痕**
+        ⟹ ⟹   ⟹ ⟹ 且**退出码**仍由**真正跑了的那几条**决定。
+        """
+        checks.append({"label": label, "pass": bool(ok), "got": got,
+                       "skipped": bool(skipped)})
 
     J = {j["no"]: j for j in a["judgments"]}
     B = a["boundary"]
@@ -418,20 +437,32 @@ def main():
            - B["evidence"]["groupRectBefore"]["x"]
            and B["evidence"]["panDeltaX"] < 0, B["evidence"]["panDeltaX"])
     else:
-        checks.append({"label": "原始读数交叉核对（/tmp/vb757{a,b,c}.json 不在本机）",
-                       "pass": False, "got": "SKIPPED — 不算通过"})
+        ck("原始读数交叉核对（/tmp/vb757{a,b,c}.json 不在本机）", True,
+            got="SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+            skipped=True)
 
-    npass = sum(1 for c in checks if c["pass"])
+    # ★ ★★ Batch 867：★ 分母 ＝ **真正跑了的那几条** ⟹ ⟹ 跳过的不算
+    ran = [c for c in checks if not c.get("skipped")]
+    skipped = [c for c in checks if c.get("skipped")]
+    npass = sum(1 for c in ran if c["pass"])
     report = {"batch": 757, "checks": checks, "passed": npass,
-              "total": len(checks), "static": st}
+              "total": len(ran),
+              # ★ ★★ 跳过的**单独列出** ⟹ ⟹ 报告里**看得见**「有东西没验」
+              "skipped": [{"label": c["label"], "got": c["got"]} for c in skipped],
+              "skippedCount": len(skipped),
+              "static": st}
     (OUTDIR / "verify-report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-    print("判据 %d/%d" % (npass, len(checks)))
+    print("判据 %d/%d%s" % (npass, len(ran),
+                           ("（另有 %d 条跳过）" % len(skipped)) if skipped else ""))
     for c in checks:
+        if c.get("skipped"):
+            print("  ⏭ " + c["label"][:112] + "  ⟵ " + str(c["got"])[:80])
+            continue
         print(("  ✅ " if c["pass"] else "  ❌ ") + c["label"][:112])
         if not c["pass"] and c["got"] not in (None, "SKIPPED — 不算通过"):
             print("       got=" + json.dumps(c["got"], ensure_ascii=False)[:240])
-    return 0 if npass == len(checks) else 1
+    return 0 if npass == len(ran) else 1
 
 
 if __name__ == "__main__":

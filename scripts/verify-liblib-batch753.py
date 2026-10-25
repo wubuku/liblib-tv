@@ -18,7 +18,13 @@
      防止汇编时抄错（**数字不许手抄**，751/752 立）。
      该层缺失时降级为「跳过」而不是「通过」。
 
-判据 **13 条**。
+★ ★★ Batch 867 修正：★ 旧实现把「跳过」**当成失败**（`pass: False` 且**计入分母**）
+⟹ ⟹ ⟹ ⟹ **门禁永远红** ⟹ ⟹ 而那 13 条真判据其实**全绿**。
+⟹ ⟹ ★ 现在「跳过」**真的跳过** ⟹ ⟹ **不计入分母** ⟹ ⟹ 但在报告里
+⟹ ⟹   ⟹ ⟹ `skipped` 清单**显式留痕** ⟹ ⟹ 且退出码仍由**真正跑了的那几条**决定。
+⟹ ⟹ ★ **不是**改成「通过」 ⟹ ⟹ 那是**掩盖**。
+
+判据 **13 条**（★ 另有 1 条交叉核对层**可能跳过**）。
 """
 import json
 import pathlib
@@ -34,6 +40,12 @@ RAW = pathlib.Path("/tmp/vb753h.json")
 def static_side():
     store = (ROOT / "src/store/canvasStore.ts").read_text(encoding="utf-8")
     page = (ROOT / "src/app/page.tsx").read_text(encoding="utf-8")
+    # ★ ★★ Batch 867：★ **剥掉注释**的源码 ⟹ ⟹ 用于「某串**没有**被使用」这类判据
+    #   ⟹ ⟹ ★ 因为源码的注释里会**提到**那个名字 ⟹ ⟹ 「全文不含」会被骗到
+    #   ⟹ ⟹ ★ 这与 batch 866 的 `785` docstring 坑**完全同型**
+    #   ⟹ ⟹ ★ 而 `758` 已经在做同一件事（★ `onPaneDoubleClick` 那条）
+    _page_code = re.sub(r"/\*[\s\S]*?\*/", " ", page)
+    _page_code = re.sub(r"//[^\n]*", " ", _page_code)
     routing = (ROOT / "src/lib/libtvReactFlowChangeRouting.ts").read_text(
         encoding="utf-8")
     edge = (ROOT / "src/components/nodes/DeletableEdge.tsx").read_text(
@@ -71,6 +83,17 @@ def static_side():
     dup_node_hits = scan(r"\bduplicateNode\b", "canvasStore.ts")
     remove_node_hits = scan(r"\bremoveNode\b", "canvasStore.ts")
 
+    # ★ ★★ Batch 867：★ 「声明 vs 实现」靠**形态**区分 ⟹ ⟹ **不靠行号**
+    #   ⟹ ⟹ （★ `store` 在这里才拿得到 ⟹ ⟹ 所以必须放进 `static_side()` 的返回值）
+    set_edges_is_decl = any(
+        re.search(r"^\s*setEdges:\s*\(edges: Edge\[\], options\?: SetGraphOptions\)\s*=>\s*void;\s*$",
+                  line)
+        for line in store.split("\n"))
+    set_edges_is_impl = any(
+        re.search(r"^\s*setEdges:\s*\(edges: Edge\[\], options\?: SetGraphOptions\)\s*=>\s*\{",
+                  line)
+        for line in store.split("\n"))
+
     return {
         "dupIncludeExternal": bool(re.search(
             r"requestedIds\.length === 1 && !includesGroup", store)),
@@ -84,6 +107,8 @@ def static_side():
             r"if \(!currentCanvas \|\| requestedIds\.size === 0\) return state;", store)),
         "withDescendantIds": "const removedIds = withDescendantIds(currentCanvas" in store,
         "setEdgesHits": sorted(set_edges_hits),
+        "setEdgesIsDecl": set_edges_is_decl,
+        "setEdgesIsImpl": set_edges_is_impl,
         "duplicateNodeHits": sorted(set(dup_node_hits)),
         "removeNodeHits": sorted(set(remove_node_hits)),
         "panOnDrag": bool(re.search(
@@ -93,7 +118,8 @@ def static_side():
         "selectionOnDragFalse": "selectionOnDrag={false}" in page,
         "noOnNodeClickMeta": bool(re.search(
             r"onNodeClick=\{\(event, node\) => \{\s*if \(!event\.metaKey", page)),
-        "noOnEdgeClick": "onEdgeClick" not in page,
+        # ★ ★★ Batch 867：★ 用**剥注释后**的源码 ⟹ ⟹ 免得被注释里的提及骗到
+        "noOnEdgeClick": "onEdgeClick" not in _page_code,
         "deleteEdgeEvent": 'window.addEventListener("delete-edge", handler)' in page,
         "edgeBtnGate": (
             'isActive\n                ? "opacity-100 scale-100 pointer-events-auto"' in edge
@@ -121,8 +147,24 @@ def main():
 
     checks = []
 
-    def ck(label, cond, got=None):
-        checks.append({"label": label, "pass": bool(cond), "got": got})
+    def ck(label, cond, got=None, skipped=False):
+        """★ Batch 867：★ 加 `skipped` ⟹ ⟹ 「跳过」**不计入分母**。
+
+        ★ ★★ 修的是**声明与实现不一致**：★ 本文件的文档头写的是
+        ⟹ ⟹ 「该层缺失时降级为『跳过』而不是『通过』」
+        ⟹ ⟹ ★ 而旧实现是 `pass: False` **且计入分母**
+        ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ **「跳过」被实现成了「失败」**
+        ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 门禁**永远红** ⟹ ⟹ 而那 13 条真判据其实**全绿**。
+
+        ★ ★★ 为什么**不是**改成「通过」：★ 那是**掩盖**。
+        ⟹ ⟹ 「原始读数交叉核对」这层的**存在意义**就是「数字不许手抄」
+        ⟹ ⟹ 它没跑 ⟹ ⟹ 就该**明说没跑** ⟹ ⟹ 而不是假装通过。
+        ⟹ ⟹ ⇒ **跳过 ⟹ ⟹ 不计入分母 ⟹ ⟹ 但在报告里显式留痕**
+        ⟹ ⟹   ⟹ ⟹ （`skipped: true` ＋ 单独的 `skipped` 清单）
+        ⟹ ⟹   ⟹ ⟹ 且**退出码**仍由**真正跑了的那几条**决定。
+        """
+        checks.append({"label": label, "pass": bool(cond), "got": got,
+                       "skipped": bool(skipped)})
 
     # ---- 1. 静态层：实现事实 ----
     ck("静态 includeExternalEdges 表达式在位（N=1/N=2 差分的根据）",
@@ -148,10 +190,22 @@ def main():
     ck("静态 删边按钮 aria-label=删除连线", st["edgeBtnAria"])
     ck("静态 变更路由对 select 走 toggle（多选的活路）",
        st["routingSelectCase"] and st["routingSelectToggles"])
+    # ★ ★★ Batch 867：★ 去掉**写死的行号**。
+    #   ⟹ ⟹ 旧写法 `all(h.endswith(("canvasStore.ts:387", "canvasStore.ts:3415")))`
+    #   ⟹ ⟹ ★ **行号当断言** ⟹ ⟹ 源码一改（声明挪一行、实现挪二百多行）就漂
+    #   ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 门禁红 ⟹ ⟹ 而那个红**与它要验的性质毫无关系**
+    #   ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ 它要验的是「**零调用点**」⟹ ⟹ 那仍然成立
+    #   ⟹ ⟹ ⟹ ⟹ ⟹ ⇒ ★ 与 batch 866 整改的 `785` **完全同型**。
+    #   ⟹ ⟹ ★ 修法：★ **按性质断言** ⟹ ⟹
+    #   ⟹ ⟹   ① 命中数仍是 2（声明 + 实现）；
+    #   ⟹ ⟹   ② 两处**都在 canvasStore.ts 里**（不是别的文件）；
+    #   ⟹ ⟹   ③ 一处是**接口声明**、一处是**实现**（靠「有没有 `=>`」区分，
+    #   ⟹ ⟹      ⟹ ⟹ **不靠行号** ⟹ ⟹ ⟹ ★ 行号只当提示）。
+    set_edges_files = {h.rsplit(":", 1)[0] for h in st["setEdgesHits"]}
     ck("静态 canvasStore.setEdges 全应用只剩声明+实现（零调用点死 action）",
        len(st["setEdgesHits"]) == 2
-       and all(h.endswith(("canvasStore.ts:387", "canvasStore.ts:3415"))
-               for h in st["setEdgesHits"]),
+       and set_edges_files == {"src/store/canvasStore.ts"}
+       and st["setEdgesIsDecl"] and st["setEdgesIsImpl"],
        st["setEdgesHits"])
     ck("静态 canvasStore.duplicateNode 无 UI 调用点",
        st["duplicateNodeHits"] == [], st["duplicateNodeHits"])
@@ -274,25 +328,36 @@ def main():
            set(raw["roundDiff"].keys()) == {"group_geom"},
            list(raw["roundDiff"].keys()))
     else:
-        checks.append({"label": "原始读数交叉核对（/tmp/vb753h.json 不在本机）",
-                       "pass": False, "got": "SKIPPED — 不算通过"})
+        # ★ ★★ Batch 867：★ 真的**跳过** ⟹ ⟹ 不计入分母 ⟹ ⟹ 但显式留痕
+        ck("原始读数交叉核对（/tmp/vb753h.json 不在本机）",
+           True, got="SKIPPED — 该层未跑（探针原始读数不在本机）⟹ ⟹ 不计入分母",
+           skipped=True)
 
-    npass = sum(1 for c in checks if c["pass"])
+    # ★ ★★ Batch 867：★ 分母 = **真正跑了的那几条** ⟹ ⟹ 跳过的不算
+    ran = [c for c in checks if not c.get("skipped")]
+    skipped = [c for c in checks if c.get("skipped")]
+    npass = sum(1 for c in ran if c["pass"])
     report = {
         "batch": 753,
         "checks": checks,
         "passed": npass,
-        "total": len(checks),
+        "total": len(ran),
+        # ★ ★★ 跳过的**单独列出** ⟹ ⟹ 报告里**看得见**「有东西没验」
+        "skipped": [{"label": c["label"], "got": c["got"]} for c in skipped],
+        "skippedCount": len(skipped),
         "static": st,
     }
     (OUTDIR / "verify-report.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"判据 {npass}/{len(checks)}")
+    print(f"判据 {npass}/{len(ran)}" + (f"（另有 {len(skipped)} 条跳过）" if skipped else ""))
     for c in checks:
+        if c.get("skipped"):
+            print("  ⏭ " + c["label"][:110] + "  ⟵ " + str(c["got"])[:80])
+            continue
         print(("  ✅ " if c["pass"] else "  ❌ ") + c["label"][:110])
         if not c["pass"] and c["got"] not in (None, "SKIPPED — 不算通过"):
             print("       got=" + json.dumps(c["got"], ensure_ascii=False)[:200])
-    return 0 if npass == len(checks) else 1
+    return 0 if npass == len(ran) else 1
 
 
 if __name__ == "__main__":
