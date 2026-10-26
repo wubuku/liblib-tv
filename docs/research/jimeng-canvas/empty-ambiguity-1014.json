@@ -103,8 +103,8 @@
     "bytes": 21395
    },
    "instrument-fake-green-census-1037.json": {
-    "sha256_12": "1b0d59590cb5",
-    "bytes": 12847
+    "sha256_12": "5d9a42fd8ba6",
+    "bytes": 12828
    },
    "interaction-wiring-check-1032.json": {
     "sha256_12": "d13d5109bdb1",
@@ -176,10 +176,10 @@
  "census": {
   "n_goldens": 37,
   "n_excluded_self": 4,
-  "n_empty_list": 304,
+  "n_empty_list": 305,
   "n_empty_null": 115,
   "n_self_provable": 10,
-  "n_ambiguous": 409
+  "n_ambiguous": 410
  },
  "rows": [
   {
@@ -1942,6 +1942,13 @@
   {
    "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[16]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[16]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null
@@ -4863,6 +4870,13 @@
   {
    "golden": "instrument-fake-green-census-1037.json",
    "path": "/verdicts/[16]/failure_signals",
+   "kind": "list",
+   "self_provable": false,
+   "invariant": null
+  },
+  {
+   "golden": "instrument-fake-green-census-1037.json",
+   "path": "/verdicts/[16]/green_holders",
    "kind": "list",
    "self_provable": false,
    "invariant": null

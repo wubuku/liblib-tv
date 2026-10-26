@@ -90,6 +90,44 @@ def _book_rows(book):
     return out
 
 
+def _declared_volatile(golden, read, row):
+    """⭐⭐⭐⭐⭐ 这本书是不是【跨轮不稳定】而且【自己声明过】？
+
+    ⇒ ⇒⇒ **为什么要单列一条**：1014（空歧义普查）的普查面是**整目录 glob**
+    ⇒ ⇒⇒ ⇒ ⇒ 而册子运行期间**别的书的产物正处于中间态** ⇒ ⇒⇒ ⇒ ⇒
+    ⇒ ⇒⇒ ⇒ ⇒ 1014 在册子跑的那一瞬间读到的面 ≠ 最终落盘的面
+    ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ 册子发布的 `fresh_sha12` 是**那一瞬间**的字节
+    ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ 而提交态的字节是**还原后**的字节 ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **两者必然不同**
+    ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 那条严格等式对它**恒假** ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ **零检验力**
+    ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 而且它会把**真失配**淹没在假失配里（本批实测：2 本失配里 1本是它）
+    ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **处置**：跨轮不稳定（册子实测 `stable_across_rounds=False`）
+    ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **且**自己声明了 `volatile=True` + 非空理由的书
+    ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 改走「声明 + 册子逐本比对」这条**有信息量**的路
+    ⇒ ⇒⇒ ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **而不是**把它留在一条恒假的断言里
+
+    ⚠️⚠️ **判据的强度不许被悄悄放松**：跳过一本**必须**同时满足三条
+    ⇒ ① 册子**实测**它跨轮不稳定（不是我自己说了算）
+    ⇒ ② 它**自己**在产物里声明了 `volatile: true`
+    ⇒ ③ 它**自己**写出了非空的 `volatile_why`（理由不许是空壳）
+    ⇒ ⇒⇒ 三条缺一 ⇒ 那本书**照旧**进 mismatch ⇒ 注入式反证（第 4 例）正是靠这条打红的
+    """
+    if not isinstance(row, dict):
+        return False
+    if row.get("stable_across_rounds") is not False:
+        return False
+    raw = read("docs/research/jimeng-canvas/" + golden)
+    if raw is None:
+        return False
+    try:
+        doc = json.loads(raw.decode("utf-8"))
+    except Exception:
+        return False
+    if not isinstance(doc, dict):
+        return False
+    return (doc.get("volatile") is True
+            and str(doc.get("volatile_why") or "").strip() != "")
+
+
 def _judge(book, read):
     """⭐ 纯函数：册子（事实）＋ 一个读取器 ⇒ 判决。
 
@@ -99,6 +137,8 @@ def _judge(book, read):
       ③ 跨轮不稳定的书必须**自己声明**「我的产物每次都变」
       ④ 被排除的那些必须在册子里**公布理由**、且不许混进被判集合
       ⑤ 两份实现（门自己算的 vs 册子发布的 `committed_sha12`）必须逐本相等
+      ⑥ ⭐ 跨轮不稳定（册子实测）且**自己声明过**的书 ⇒ 改走「声明 + 册子比对」，
+         不留在「字节 == 册子发布的 fresh_sha12」这条**恒假**等式里 ⇒ 跳过清单逐本记进产物
     """
     why = []
     rows = _book_rows(book)
@@ -109,6 +149,7 @@ def _judge(book, read):
     mismatch = []
     unreadable = []
     no_fact = []
+    skipped_volatile = []
     for r in rows:
         rel = "docs/research/jimeng-canvas/" + r["golden"]
         raw = read(rel)
@@ -121,6 +162,17 @@ def _judge(book, read):
             continue
         got = _sha12(raw)
         if got != fact:
+            # ⭐⭐⭐⭐⭐ 跨轮不稳定且已自行声明的书 ⇒ 走「声明 + 册子比对」，不留在恒假等式里
+            if _declared_volatile(r["golden"], read, r):
+                skipped_volatile.append({
+                    "golden": r["golden"],
+                    "stable_across_rounds": r.get("stable_across_rounds"),
+                    "declared_volatile": True,
+                    "why": "⭐ 册子实测它跨轮不稳定（stable_across_rounds=False）"
+                           " ＋ 它自己声明了 volatile=True 并写了理由"
+                           " ⇒ 严格等式对它恒假 ⇒ 改走声明路径（判据强度由 ③ 承接）",
+                })
+                continue
             mismatch.append({"golden": r["golden"], "state": r.get("state"),
                              "sha12_read": got, "fresh_sha12_in_book": fact})
     if mismatch:
@@ -135,7 +187,11 @@ def _judge(book, read):
     script_same = bool(script_now) and bool(script_in_book) and \
         script_now == script_in_book
     inputs_changed = []
+    _skipped_names = {s["golden"] for s in skipped_volatile}
     for r in rows:
+        if r["golden"] in _skipped_names:
+            # ⭐ 与上面同一口径：跨轮不稳定且已声明的书不参与「输入没变」这条
+            continue
         raw = read("docs/research/jimeng-canvas/" + r["golden"])
         if raw is None:
             continue
@@ -223,6 +279,8 @@ def _judge(book, read):
         "inputs_changed": inputs_changed,
         "n_unstable": len(unstable),
         "unstable": unstable,
+        "n_skipped_volatile": len(skipped_volatile),
+        "skipped_volatile": skipped_volatile,
         "n_undeclared": len(undeclared),
         "undeclared": undeclared,
         "n_excluded": len(excluded),
