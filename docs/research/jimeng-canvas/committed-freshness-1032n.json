@@ -3,24 +3,64 @@
   "what_this_gate_asks": "**提交的那本 == 探针现在会写的那本**",
   "what_it_is_not": "⇒ ⇒ **这不是「可复现性」** ⇒ ⇒ 1015 的四态答的是「跑两遍会不会变」⇒ ⇒ ⇒ ⇒ 而本门答的是「提交的那本是不是【现在】的产物」⇒ ⇒ ⇒ ⇒ ⇒ ⇒ **⇒ 两个口径不许合并**",
   "head": {
-    "ok": true,
-    "n_rows": 37,
-    "n_mismatch": 0,
+    "ok": false,
+    "why": [
+      "committed_bytes_differ_from_the_bytes_the_probe_wrote:1",
+      "inputs_changed_since_the_run:1",
+      "the_two_implementations_of_committed_bytes_disagree:1"
+    ],
+    "n_rows": 38,
+    "n_mismatch": 1,
+    "mismatch": [
+      {
+        "golden": "instrument-fake-green-census-1037.json",
+        "state": "reproduced",
+        "sha12_read": "5d9a42fd8ba6",
+        "committed_sha12_in_book": "1b0d59590cb5"
+      }
+    ],
     "n_unreadable": 0,
     "n_no_fact": 0,
     "script_sha12_now": "e948eeea4455",
     "script_sha12_in_book": "e948eeea4455",
     "script_unchanged": true,
-    "n_inputs_changed": 0,
-    "n_unstable": 0,
+    "n_inputs_changed": 1,
+    "inputs_changed": [
+      "instrument-fake-green-census-1037.json"
+    ],
+    "n_unstable": 1,
+    "unstable": [
+      "empty-ambiguity-1014.json"
+    ],
+    "n_skipped_volatile": 1,
+    "skipped_volatile": [
+      {
+        "golden": "empty-ambiguity-1014.json",
+        "stable_across_rounds": false,
+        "declared_volatile": true,
+        "why": "⭐ 册子实测它跨轮不稳定（stable_across_rounds=False） ＋ 它自己声明了 volatile=True 并写了理由 ⇒ 它在「可复现性」这条口径上恒不相等 ⇒ 不计入判决"
+      }
+    ],
+    "n_fresh_mismatch": 1,
+    "fresh_mismatch": [
+      {
+        "golden": "instrument-fake-green-census-1037.json",
+        "state": "reproduced",
+        "sha12_read": "5d9a42fd8ba6",
+        "fresh_sha12_in_book": "1b0d59590cb5"
+      }
+    ],
     "n_undeclared": 0,
     "n_excluded": 3,
     "n_bad_exclusion": 0,
-    "n_disagree": 0
+    "n_disagree": 1,
+    "disagree": [
+      "instrument-fake-green-census-1037.json"
+    ]
   },
   "worktree": {
     "ok": true,
-    "n_rows": 37,
+    "n_rows": 38,
     "n_mismatch": 0,
     "n_unreadable": 0,
     "n_no_fact": 0,
@@ -28,7 +68,34 @@
     "script_sha12_in_book": "e948eeea4455",
     "script_unchanged": true,
     "n_inputs_changed": 0,
-    "n_unstable": 0,
+    "n_unstable": 1,
+    "unstable": [
+      "empty-ambiguity-1014.json"
+    ],
+    "n_skipped_volatile": 1,
+    "skipped_volatile": [
+      {
+        "golden": "empty-ambiguity-1014.json",
+        "stable_across_rounds": false,
+        "declared_volatile": true,
+        "why": "⭐ 册子实测它跨轮不稳定（stable_across_rounds=False） ＋ 它自己声明了 volatile=True 并写了理由 ⇒ 它在「可复现性」这条口径上恒不相等 ⇒ 不计入判决"
+      }
+    ],
+    "n_fresh_mismatch": 2,
+    "fresh_mismatch": [
+      {
+        "golden": "instrument-fake-green-census-1037.json",
+        "state": "reproduced",
+        "sha12_read": "5d9a42fd8ba6",
+        "fresh_sha12_in_book": "b27132201396"
+      },
+      {
+        "golden": "silent-exit-census-1038.json",
+        "state": "reproduced",
+        "sha12_read": "9ee77a1b1ab0",
+        "fresh_sha12_in_book": "4cb5df39f60c"
+      }
+    ],
     "n_undeclared": 0,
     "n_excluded": 3,
     "n_bad_exclusion": 0,
@@ -37,10 +104,6 @@
   "selftest": {
     "n_cases": 5,
     "cases": [
-      {
-        "name": "改掉一行的 fresh_sha12",
-        "went_red": true
-      },
       {
         "name": "改掉书级 generator_sha12_1015",
         "went_red": true
@@ -56,16 +119,20 @@
       {
         "name": "改掉一行的 committed_sha12",
         "went_red": true
+      },
+      {
+        "name": "改掉一行的 fresh_sha12 ⇒ 可复现性读数必须变",
+        "went_red": true
       }
     ],
     "ok": true
   },
   "criteria_1032n": {
-    "P1_committed_bytes_equal_the_bytes_the_probe_wrote_1032n": true,
-    "P2_this_book_itself_is_what_the_current_script_would_write_1032n": true,
+    "P1_committed_bytes_equal_the_bytes_the_probe_wrote_1032n": false,
+    "P2_this_book_itself_is_what_the_current_script_would_write_1032n": false,
     "P3_books_that_change_every_round_must_declare_themselves_1032n": true,
     "P4_every_excluded_book_must_publish_a_reason_1032n": true,
-    "P6_two_implementations_of_the_committed_bytes_must_agree_1032n": true,
+    "P6_two_implementations_of_the_committed_bytes_must_agree_1032n": false,
     "P5_this_gate_can_actually_go_red_1032n": true
   },
   "criterion_kinds_1032n": {

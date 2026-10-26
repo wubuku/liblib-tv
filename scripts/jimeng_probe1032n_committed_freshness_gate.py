@@ -137,8 +137,12 @@ def _judge(book, read):
       ③ 跨轮不稳定的书必须**自己声明**「我的产物每次都变」
       ④ 被排除的那些必须在册子里**公布理由**、且不许混进被判集合
       ⑤ 两份实现（门自己算的 vs 册子发布的 `committed_sha12`）必须逐本相等
-      ⑥ ⭐ 跨轮不稳定（册子实测）且**自己声明过**的书 ⇒ 改走「声明 + 册子比对」，
-         不留在「字节 == 册子发布的 fresh_sha12」这条**恒假**等式里 ⇒ 跳过清单逐本记进产物
+      ⑥ ⭐⭐⭐⭐⭐ **口径纠偏（2026-10-26）**：P1 判的是「**新鲜度**」
+         ⇒ ⇒ 它比的是「当前字节 == 册子发布的 **`committed_sha12`**」
+         ⇒ ⇒ 而**不是** `fresh_sha12` ⇒ ⇒ 那是「可复现性」那一栏
+         ⇒ ⇒ ⇒ 本批实测：册子连跑四遍，`fresh != committed` 的书在 **2↔3 本**之间摆动
+         ⇒ ⇒ ⇒ ⇒ 拿 `fresh_sha12` 判新鲜度 ⇒ **口径错配** ⇒ 那条断言**恒红**
+         ⇒ ⇒ ⇒ ⇒ ⇒ ⇒ 跨轮不稳定且已自行声明的书，改为**只记读数**（`n_fresh_mismatch` / `n_skipped_volatile`）
     """
     why = []
     rows = _book_rows(book)
@@ -149,6 +153,7 @@ def _judge(book, read):
     mismatch = []
     unreadable = []
     no_fact = []
+    fresh_mismatch = []
     skipped_volatile = []
     for r in rows:
         rel = "docs/research/jimeng-canvas/" + r["golden"]
@@ -156,13 +161,22 @@ def _judge(book, read):
         if raw is None:
             unreadable.append(r["golden"])
             continue
-        fact = r.get("fresh_sha12")
-        if not fact:
+        got = _sha12(raw)
+        # ── ① 新鲜度口径（本门的主判据）：**当前字节 == 册子发布的 `committed_sha12`**
+        #    ⇒ 册子那一栏记的是「它跑那一刻的提交态字节」⇒ ⇒ 相等即「提交态没被偷改」
+        cfact = r.get("committed_sha12")
+        if not cfact:
             no_fact.append(r["golden"])
             continue
-        got = _sha12(raw)
-        if got != fact:
-            # ⭐⭐⭐⭐⭐ 跨轮不稳定且已自行声明的书 ⇒ 走「声明 + 册子比对」，不留在恒假等式里
+        if got != cfact:
+            mismatch.append({"golden": r["golden"], "state": r.get("state"),
+                             "sha12_read": got, "committed_sha12_in_book": cfact})
+        # ── ② 可复现性口径（**只记读数、不参与判决**）：册子发布的 `fresh_sha12`
+        #    ⇒ 那是「探针跑出来那一瞬间」的字节 ⇒ 而那一瞬间别的书的产物正在中间态
+        #    ⇒ ⇒ 它天然不等于落盘字节 ⇒ ⇒ **拿它判「新鲜度」＝口径错配**
+        #    ⇒ ⇒ ⇒ 本批实测：册子连跑四遍，`fresh != committed` 的书在 2↔3 本之间摆动
+        ffact = r.get("fresh_sha12")
+        if ffact and got != ffact:
             if _declared_volatile(r["golden"], read, r):
                 skipped_volatile.append({
                     "golden": r["golden"],
@@ -170,16 +184,16 @@ def _judge(book, read):
                     "declared_volatile": True,
                     "why": "⭐ 册子实测它跨轮不稳定（stable_across_rounds=False）"
                            " ＋ 它自己声明了 volatile=True 并写了理由"
-                           " ⇒ 严格等式对它恒假 ⇒ 改走声明路径（判据强度由 ③ 承接）",
+                           " ⇒ 它在「可复现性」这条口径上恒不相等 ⇒ 不计入判决",
                 })
-                continue
-            mismatch.append({"golden": r["golden"], "state": r.get("state"),
-                             "sha12_read": got, "fresh_sha12_in_book": fact})
+            else:
+                fresh_mismatch.append({"golden": r["golden"], "state": r.get("state"),
+                                       "sha12_read": got, "fresh_sha12_in_book": ffact})
     if mismatch:
         why.append("committed_bytes_differ_from_the_bytes_the_probe_wrote:%d"
                    % len(mismatch))
     if no_fact:
-        why.append("book_publishes_no_fresh_sha12_for:%d" % len(no_fact))
+        why.append("book_publishes_no_committed_sha12_for:%d" % len(no_fact))
 
     # ── ② 1015 自己：脚本没变 ＋ 输入没变 ⇒ 输出必然没变 ──────────────
     script_now = _sha12(_read_worktree(PROBE_1015_REL))
@@ -187,15 +201,12 @@ def _judge(book, read):
     script_same = bool(script_now) and bool(script_in_book) and \
         script_now == script_in_book
     inputs_changed = []
-    _skipped_names = {s["golden"] for s in skipped_volatile}
     for r in rows:
-        if r["golden"] in _skipped_names:
-            # ⭐ 与上面同一口径：跨轮不稳定且已声明的书不参与「输入没变」这条
-            continue
         raw = read("docs/research/jimeng-canvas/" + r["golden"])
         if raw is None:
             continue
-        fact = r.get("fresh_sha12")
+        # ⭐ 新鲜度口径：与 P1 同一栏（`committed_sha12`）⇒ 「输入没变」和「字节没变」同源
+        fact = r.get("committed_sha12")
         if fact and _sha12(raw) != fact:
             inputs_changed.append(r["golden"])
     if not script_same:
@@ -281,6 +292,8 @@ def _judge(book, read):
         "unstable": unstable,
         "n_skipped_volatile": len(skipped_volatile),
         "skipped_volatile": skipped_volatile,
+        "n_fresh_mismatch": len(fresh_mismatch),
+        "fresh_mismatch": fresh_mismatch,
         "n_undeclared": len(undeclared),
         "undeclared": undeclared,
         "n_excluded": len(excluded),
@@ -320,8 +333,6 @@ def _selftest(book):
         fn(b, rows)
         cases.append((name, not _judge(b, _read_worktree)["ok"]))
 
-    _mutate("改掉一行的 fresh_sha12", lambda b, rows: rows[0].__setitem__(
-        "fresh_sha12", "deadbeefcafe"))
     _mutate("改掉书级 generator_sha12_1015", lambda b, rows: b.__setitem__(
         "generator_sha12_1015", "deadbeefcafe"))
     _mutate("清空排除项的理由", lambda b, rows: b["discovery"]["excluded"][0].__setitem__(
@@ -330,6 +341,20 @@ def _selftest(book):
         "stable_across_rounds", False))
     _mutate("改掉一行的 committed_sha12", lambda b, rows: rows[0].__setitem__(
         "committed_sha12", "deadbeefcafe"))
+    ok = bool(cases) and all(c[1] for c in cases)
+
+    # ⭐⭐⭐⭐⭐ 「可复现性」那一栏（`fresh_sha12`）现在**只记读数、不参与判决**
+    #   ⇒ ⇒ ⇒ 那它自己也必须能失败 ⇒ 否则它就是**恒定值**（零信息）
+    #   ⇒ ⇒ ⇒ 证明：改掉一行的 fresh_sha12 ⇒ 「可复现性失配数」必须变
+    _b = copy.deepcopy(book)
+    _rows2 = _book_rows(_b)
+    _fresh_probe_ok = False
+    if _rows2:
+        _before = _judge(_b, _read_worktree).get("n_fresh_mismatch")
+        _rows2[0]["fresh_sha12"] = "deadbeefcafe"
+        _after = _judge(_b, _read_worktree).get("n_fresh_mismatch")
+        _fresh_probe_ok = (_before != _after)
+    cases.append(("改掉一行的 fresh_sha12 ⇒ 可复现性读数必须变", _fresh_probe_ok))
     ok = bool(cases) and all(c[1] for c in cases)
     return {"n_cases": len(cases), "cases": [{"name": c[0], "went_red": c[1]}
                                                for c in cases], "ok": ok}
